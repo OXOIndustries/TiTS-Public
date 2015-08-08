@@ -126,8 +126,8 @@ package classes.TITSSaveEdit.UI
 			_mainDisplay.tailAppearance.tailType = char.tailType;
 			_mainDisplay.tailAppearance.tailCount = char.tailCount;
 			_mainDisplay.tailAppearance.tailFlags = char.tailFlags;
-			_mainDisplay.tailAppearance.tailGenitalArg = char.tailGenital;
-			_mainDisplay.tailAppearance.tailGenitalType = char.tailGenitalArg;
+			_mainDisplay.tailAppearance.tailGenitalArg = char.tailGenitalArg;
+			_mainDisplay.tailAppearance.tailGenitalType = char.tailGenital;
 			
 			_mainDisplay.fluidSettings.cumType = char.cumType;
 			_mainDisplay.fluidSettings.girlCumType = char.girlCumType;

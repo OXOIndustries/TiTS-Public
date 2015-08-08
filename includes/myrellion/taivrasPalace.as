@@ -1,3 +1,4 @@
+import classes.Creature;
 import classes.Items.Miscellaneous.GemSatchel;
 //flags["CRYSTAL_GOO_DEFEAT"] - 1 = HP, 2 = LUST, 3 = you fucked her after winning (or got egged)
 
@@ -928,7 +929,7 @@ public function pcBeatsGoo():void
 		else addDisabledButton(0,"Fuck Her","Fuck Her","You need a cock to jam one inside of her.");
 		if(pc.hasGenitals()) 
 		{
-			if(pc.findEmptyPregnancySlot(0) == -1) addDisabledButton(1,"Get Egged","Get Egged","You don't have any room for eggs.");
+			if(pc.findEmptyPregnancySlot(Creature.PREGSLOT_ANY) == -1) addDisabledButton(1,"Get Egged","Get Egged","You don't have any room for eggs.");
 			else addButton(1,"Get Egged",getEggedByCrystalGoo,undefined,"Get Egged","You can only imagine how amazing it would feel to have the bubbly bimbo goo-girl pump you full of her eggs.");
 		}
 		else addDisabledButton(1,"Get Egged","Get Egged","You need genitals for this act.");
@@ -1024,40 +1025,60 @@ public function getEggedByCrystalGoo():void
 	if(silly) output(" like an anime character’s");
 	output(", and you feel her gooey hands mold themselves around yours, guiding you to more pleasurable spots on her belly.");
 
-	var x:int = -1;
-	if(pc.hasVagina()) x = rand(pc.totalVaginas());
-	output("\n\n<i>“The queen told me to take care of them,”</i> the goo-girl whines between moans, but she doesn’t stop you as you grasp her slimy body, stroking it out until you’ve shaped a vaguely phallic pillar of goop from her groin. You keep jacking off the growing spire of veridian goo, guiding it from just below her crystalline belly towards your [pc.vagOrAss " + x + "]. Your defeated foe moans, bucking her vaguely-defined hips in response to your touch. Her resistance, such as it was, evaporates into lusty cries and obscenes jiggles that make her pendulous breasts and huge belly shake maddeningly. You can’t resist the urge to bury your face in her chest, smothering yourself in bouncy, warm goo. She’s so soft, just firm enough to keep you from sinking completely inside her. Not that you think she’d mind that, if the way your free hand’s fingers penetrating even her side make her squeal and gasp when you move them. Her whole body must be like a pussy, mindbreakingly sensitive to anything that finds its way inside.");
+	var bEmptyVagina:Boolean = false;
+	var holeIdx:int = -1;
+	
+	// prefer an empty hole
+	if (pc.hasVagina())
+	{
+		for (var vi:int = 0; vi < pc.vaginas.length; vi++)
+		{
+			if (!pc.isPregnant(vi))
+			{
+				bEmptyVagina = true;
+				holeIdx = vi;
+			}
+		}
+	}
+	
+	var bEmptyAss:Boolean = !bEmptyVagina;
+	
+	var holeTag:String;
+	if (bEmptyVagina) holeTag = "[pc.vagina " + holeIdx + "]";
+	else holeTag = "[pc.asshole]";
+	
+	output("\n\n<i>“The queen told me to take care of them,”</i> the goo-girl whines between moans, but she doesn’t stop you as you grasp her slimy body, stroking it out until you’ve shaped a vaguely phallic pillar of goop from her groin. You keep jacking off the growing spire of veridian goo, guiding it from just below her crystalline belly towards your "+ holeTag +". Your defeated foe moans, bucking her vaguely-defined hips in response to your touch. Her resistance, such as it was, evaporates into lusty cries and obscenes jiggles that make her pendulous breasts and huge belly shake maddeningly. You can’t resist the urge to bury your face in her chest, smothering yourself in bouncy, warm goo. She’s so soft, just firm enough to keep you from sinking completely inside her. Not that you think she’d mind that, if the way your free hand’s fingers penetrating even her side make her squeal and gasp when you move them. Her whole body must be like a pussy, mindbreakingly sensitive to anything that finds its way inside.");
 
-	output("\n\nNo wonder those eggs are so amazing for her! Imagine having a hundred cocks inside you, edging you all day every day, rubbing incessantly against every sensitive spot inside your [pc.vagOrAss " + x + "] - that’s what the goo-girl must feel from her belly full of eggs! It might not feel so intense for you, but realizing what’s got the goo so pleasure-crazed only makes you more eager for her to pump you full of ‘em.");
+	output("\n\nNo wonder those eggs are so amazing for her! Imagine having a hundred cocks inside you, edging you all day every day, rubbing incessantly against every sensitive spot inside your "+ holeTag +" - that’s what the goo-girl must feel from her belly full of eggs! It might not feel so intense for you, but realizing what’s got the goo so pleasure-crazed only makes you more eager for her to pump you full of ‘em.");
 
-	output("\n\nYou squeeze the pillar of goo in your hand, stroking it until it presses against your [pc.vagOrAss " + x + "]. Chewing your lip, you start to press your [pc.hips] down onto the cock - or more accurately, ovipositor - you’ve shaped out of the broodmare’s body, whispering sweet nothings between commands to hold herself still: you need her nice and hard to actually side inside you! She whimpers with pleasure, squirming haplessly underneath you, but her rod stays nice and firm, letting you push yourself down on it until with a gasp, you feel warm wetness flood into you.");
-	output("\n\nWith a groan of pleasure, you slide down her artificial goo-cock, letting as much of her slimy body pour into your [pc.vagOrAss " + x + "] as you can. And she gives you plenty! Once the dam breaks, she floods like water through your clenching hole, using the first sliver of goo like a beachhead to stretch you out, growing and growing her tendril inside you until it’s as thick as a proper cock, and then some. You grit your teeth and moan, grinding your [pc.hips] into the gooey girl’s lap as she fucks you wide open.");
-	if(x >= 0) pc.cuntChange(x,200);
+	output("\n\nYou squeeze the pillar of goo in your hand, stroking it until it presses against your "+ holeTag +". Chewing your lip, you start to press your [pc.hips] down onto the cock - or more accurately, ovipositor - you’ve shaped out of the broodmare’s body, whispering sweet nothings between commands to hold herself still: you need her nice and hard to actually side inside you! She whimpers with pleasure, squirming haplessly underneath you, but her rod stays nice and firm, letting you push yourself down on it until with a gasp, you feel warm wetness flood into you.");
+	output("\n\nWith a groan of pleasure, you slide down her artificial goo-cock, letting as much of her slimy body pour into your "+ holeTag +" as you can. And she gives you plenty! Once the dam breaks, she floods like water through your clenching hole, using the first sliver of goo like a beachhead to stretch you out, growing and growing her tendril inside you until it’s as thick as a proper cock, and then some. You grit your teeth and moan, grinding your [pc.hips] into the gooey girl’s lap as she fucks you wide open.");
+	if(bEmptyVagina) pc.cuntChange(holeIdx,200);
 	else pc.buttChange(200);
 
-	output("\n\nNow that she’s got a thick, pulsing probe of goo snaking inside you, the goo-girl’s got a perfect vector to start pumping you full of those magnificent little eggs. Each of them looks a little less than fist-sized, certainly thicker around than your average cock! You can’t wait to feel them pushing through your [pc.vagOrAss " + x + "], stretching you wide again and again");
-	if(x < 0) output(" like the biggest set of lubed-up anal beads you’ve ever seen");
+	output("\n\nNow that she’s got a thick, pulsing probe of goo snaking inside you, the goo-girl’s got a perfect vector to start pumping you full of those magnificent little eggs. Each of them looks a little less than fist-sized, certainly thicker around than your average cock! You can’t wait to feel them pushing through your "+ holeTag +", stretching you wide again and again");
+	if(bEmptyAss) output(" like the biggest set of lubed-up anal beads you’ve ever seen");
 	output(". You give the girl’s crystal belly a gentle pat and tell her to get to it: you <i>need</i> those eggs inside you.");
 
 	output("\n\nShe whines at your request, clearly sad to be forced to disgorge her ovi-load... but she knows she’s been beaten. To the victor go the spoils, after all. After a moment of hesitation, she finally seems to lose her resistance, and you see the clutch of eggs inside her start to shift downwards toward her squirming ovi-cock. A shiver of anticipation slips down your spine as you bury your face deeper into her slimy cleavage, trying to relax your quivering muscles around the goo inside you, opening wide to make way for the eggs.");
 
 	output("\n\nIt’s almost hypnotic, watching a stream of eggs dislodge from the near-perfect crystal casing pressing against your [pc.belly]. Several of eggs start the long journey through the goo-girl’s body towards your ");
-	if(x >= 0) output("crotch");
+	if(bEmptyVagina) output("crotch");
 	else output("ass");
 	output(", and just like you’d thought, feeling all those fist-sized orbs rolling through her porous body makes the goo-girl squeal with pleasure. Every inch of her vacuous insides is as sensitive as a normal girl’s G-spot, and the eggs inside her tumble end over end through a pulsating channel that makes sure that as much goo as possible gets rubbed again and again by passing eggs.");
 
 	output("\n\nEventually, after what seems like an eternity of agonizing anticipation, the first of the eggs finally finds its way into the viridian ovipositor you’ve forced the goo-girl to create. You bite your lip, trying to relax yourself as the egg begins its journey upwards through her tendril and into you. Her wriggling inside you reaches a fever pitch, thrashing her gooey tentacle around in your ");
-	if(x < 0) output("ass");
+	if(bEmptyAss) output("ass");
 	else output("pussy");
 	output(" like she’s trying to stretch you out to make room for her charges.");
-	if((x >= 0 && pc.vaginalCapacity(x) >= 500) || (x < 0 && pc.analCapacity() >= 500)) output(" Not that she needs to: you’re pretty sure you could stuff all those eggs inside you, no problem!");
+	if((bEmptyVagina && pc.vaginalCapacity(holeIdx) >= 500) || (bEmptyAss && pc.analCapacity() >= 500)) output(" Not that she needs to: you’re pretty sure you could stuff all those eggs inside you, no problem!");
 	output(" You brace for impact, feeling the gentle but firm pressure on your ");
-	if(x >= 0) output("pussy lips");
+	if(bEmptyVagina) output("pussy lips");
 	else output("anal ring");
 	output(" as the goo-girl fucks the first egg in.");
 
-	output("\n\nGetting egged feels exactly as good as you’d imagined, a cascade of pleasure radiating up from your [pc.vagOrAss " + x + "], turning your muscles to liquid. The egg pushes in, spreading your hole wide open and gliding in through a tube of pure, wet, gooey lube. Your stomach lurches as the egg tumbles in along the tentacle’s slimey expanse. The sensation is overwhelming, eliciting a silent cry of pleasure from you; your limbs contract around the goo’s soft body, going limp as your body surrenders to the egging. A second soon joins the first in stretching out your ");
-	if(x >= 0) output("womb");
+	output("\n\nGetting egged feels exactly as good as you’d imagined, a cascade of pleasure radiating up from your "+ holeTag +", turning your muscles to liquid. The egg pushes in, spreading your hole wide open and gliding in through a tube of pure, wet, gooey lube. Your stomach lurches as the egg tumbles in along the tentacle’s slimey expanse. The sensation is overwhelming, eliciting a silent cry of pleasure from you; your limbs contract around the goo’s soft body, going limp as your body surrenders to the egging. A second soon joins the first in stretching out your ");
+	if(bEmptyVagina) output("womb");
 	else output("bowels");
 	output(", pushing through your failing defenses on a sloppy trail of wriggling goo.");
 
@@ -1066,7 +1087,7 @@ public function getEggedByCrystalGoo():void
 	else if(pc.hasScales()) output("scaly");
 	else if(pc.hasFur()) output("furry");
 	else output("fleshy");
-	output(" counterpart to the goo-girl’s own. You both moan and cry out, engulfing each other in ecstasy as the queen’s clutch transfers from the gooey broodmare’s body to yours.You lose count of how many eggs pass through your [pc.vagOrAss " + x + "], but it feels like at least ");
+	output(" counterpart to the goo-girl’s own. You both moan and cry out, engulfing each other in ecstasy as the queen’s clutch transfers from the gooey broodmare’s body to yours.You lose count of how many eggs pass through your "+ holeTag +", but it feels like at least ");
 	var eggCount:int = 5 + rand(6);
 	output("! You’re left panting and gasping as the last egg squirms inside you, settling in among its sisters.");
 
@@ -1075,12 +1096,22 @@ public function getEggedByCrystalGoo():void
 	output("\n\nYou take a few moments to recover before slowly rolling off of the goo-girl, running your hands across your gravid belly. Oh, that felt amazing... and now you’ve got a host of the queen’s ");
 	if(flags["CRYSTAL_GOO_GLORYHOLED"] == 1) output("fertilized ");
 	output("eggs rolling around in your ");
-	if(x >= 0) output("womb");
+	if(bEmptyVagina) output("womb");
 	else output("gut");
 	output(". Maybe you’ll have some royal daughters before long...");
 	//99999 set up some pregger shit
+	
+	if (flags["CRYSTAL_GOO_GLORYHOLED"] == 1)
+	{
+		(pc as Creature).createStatusEffect("Goo Gloryholed", 0, 0, 0, 0, true, "", "", false, 0);
+	}
+	
+	if (bEmptyVagina) pc.loadInCunt(foes[0], holeIdx);
+	else pc.loadInAss(foes[0]);
+	
 	processTime(16);
 	pc.orgasm();
+	
 	//[Next]
 	gooVictoryPostGooCheck();
 }

@@ -22,32 +22,35 @@ package classes.DataManager
 		{
 			var pc:Object = data.characters.PC;
 			
-			var hasBlood:Boolean = false;
-			
-			var newInventory:Array = [];
-			
-			for (var i:int = 0; i < pc.inventory.length; i++)
+			if (pc.inventory != undefined)
 			{
-				if (pc.inventory[i].classInstance != "classes.Items.Miscellaneous::RedMyrBlood")
+				var hasBlood:Boolean = false;
+				
+				var newInventory:Array = [];
+				
+				for (var i:int = 0; i < pc.inventory.length; i++)
 				{
-					newInventory.push(pc.inventory[i])
+					if (pc.inventory[i].classInstance != "classes.Items.Miscellaneous::RedMyrBlood")
+					{
+						newInventory.push(pc.inventory[i])
+					}
+					else
+					{
+						hasBlood = true;
+					}
 				}
-				else
+				
+				if (hasBlood)
 				{
-					hasBlood = true;
+					pc.inventory = newInventory;
+					
+					var ki:StorageClass = new StorageClass();
+					ki.storageName = "Red Myr Blood";
+					
+					pc.keyItems.push(ki.getSaveObject());
+					
+					(pc.keyItems as Array).sortOn("storageName", Array.CASEINSENSITIVE);
 				}
-			}
-			
-			if (hasBlood)
-			{
-				pc.inventory = newInventory;
-				
-				var ki:StorageClass = new StorageClass();
-				ki.storageName = "Red Myr Blood";
-				
-				pc.keyItems.push(ki.getSaveObject());
-				
-				(pc.keyItems as Array).sortOn("storageName", Array.CASEINSENSITIVE);
 			}
 			
 			data.version = 22;

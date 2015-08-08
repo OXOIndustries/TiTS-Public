@@ -75,16 +75,16 @@ public function kellysOfficeBonusFunction():Boolean
 		author("Quiet Browser & LD");
 		//If Player has not met Kelly Yet:
 		if(flags["KELLY_MET"] == undefined) {
-			output("\n\nA strange figure is seated behind the receptionist counter; a bipedal female humanoid who looks... well, like an anthropomorphic rabbit. But with a vaguely bee-like fur pattern of black stripes on yellow, offset by honey-orange hair. Maybe she's one of those furry gene-modders?"); 
-			if(flags["MET_PENNY"] != undefined) output(" Like Penny?");
-			output(" She calls for you to approach.");
+			output("\n\nA strange figure is seated behind the receptionist counter; a bipedal female humanoid who looks... well, like an anthropomorphic rabbit, but with a vaguely bee-like fur pattern of black stripes on yellow, offset by honey-orange hair. Maybe she's one of those furry gene-modders"); 
+			if(flags["MET_PENNY"] != undefined) output(", like Penny");
+			output("? She calls for you to approach.");
 
 			//1st Time:
 			output("\n\nYou walk over to the rabbit-like receptionist, currently busy going over some files. One floppy ear, nearly hidden among her lush strands of honey-orange hair, twitches as you approach and she looks up towards you with a beaming smile. \"<i>Why, hello there, and welcome to Xenogen Research Labs, where the wonders of biotechnology never cease! My name is Kelly, the receptionist - how may I help you today?</i>\" Though her words are professional and welcoming, her tone is sincerely chirpy and friendly, suggesting she's quite happy to see you.");
 			//If no Laquine entry in codex:
 			if(!CodexManager.entryUnlocked("Laquines"))
 			{
-				output("\n\nYour codex gives a beep, signalling that Kelly is a member of an alien race. Stealthily, you check it out and skim the summary; Kelly here is a member of a race of rabbit-like anthro aliens known as the Laquines. They're most well-known for their high rate of hermaphroditism, and their rabbit-like breeding abilities, though in recent decades a mysterious \"sterility plague\" has been afflicting the race.");
+				output("\n\nYour codex gives a beep, signaling that Kelly is a member of an alien race. Stealthily, you check it out and skim the summary; Kelly here is a member of a race of rabbit-like anthro aliens known as the Laquines. They're most well-known for their high rate of hermaphroditism, and their rabbit-like breeding abilities, though in recent decades a mysterious \"sterility plague\" has been afflicting the race.");
 				CodexManager.unlockEntry("Laquines");
 			}
 			output("\n\nHer fingers tap away at the keyboard, and she scans the screen professionally. <i>\"Hmm... I see we don't have your ID in our registry. Before we can allow you into the building or offer any kind of services to you, we require that you fill out a registry form. Would you like to register now, " + pc.mf("sir","madam") + "?\"</i>");
@@ -213,7 +213,7 @@ public function talkToKellyAboutHerself():void
 	showKellyName();
 	author("Quiet Browser & LD");
 	output("<i>\"Now, now.\"</i> She waves a finger at you. <i>\"Aren’t you getting a little ahead of yourself?\"</i> She smiles disarmingly.");
-	output("\n\nYou apologise, you didn’t mean to offend her. You were just interested in getting to know her a little better.");
+	output("\n\nYou apologize, you didn’t mean to offend her. You were just interested in getting to know her a little better.");
 	output("\n\n<i>\"Flirting at work is forbidden, you know? How about you catch me off the clock? Then you and I can get to know each other a bit better,\"</i> she smirks.");
 	output("\n\nYou nod and tell her you’d like that.");
 	output("\n\n<i>\"Excellent, now... anything else?\"</i> She bats her eyelashes.");
@@ -234,7 +234,7 @@ public function talkToKellyAboutHerRoleAtXenogen():void
 	showKellyName();
 	author("Quiet Browser & LD");
 	output("\"<i>My role here at Xenogen? Well, that's an easy question,</i>\" she giggles. \"<i>I'm basically a receptionist - you know, I interact with customers, handle intra-office mail, generally try and keep the place running smoothly down here on the ground level, you know?</i>\" she shrugs her shoulders and grins, unabashed by her rather low-level position. \"<i>I suppose the most interesting part of my job is the mod dispensing,</i>\" she adds.");
-	output("\n\nWhen you ask what that means, she puffs her chest out proudly and launches into her explanation. \"<i>Here at Xenogen, we make a wide variety of modifications. Many of our clients come for personally customised changes and transformations, but we do get a significant amount who ultimately are after the same sorts of basic mods. These popularised \"com-mods\" are so frequently requested that we have them stocked and ready. I'm empowered to sell these basic mods literally over the counter to people who are willing to pay the credits for them.</i>\"");
+	output("\n\nWhen you ask what that means, she puffs her chest out proudly and launches into her explanation. \"<i>Here at Xenogen, we make a wide variety of modifications. Many of our clients come for personally customized changes and transformations, but we do get a significant amount who ultimately are after the same sorts of basic mods. These popularized \"com-mods\" are so frequently requested that we have them stocked and ready. I'm empowered to sell these basic mods literally over the counter to people who are willing to pay the credits for them.</i>\"");
 	output("\n\nShe then smiles at you playfully. \"<i>So, are you interested in buying anything?</i>\"");
 	processTime(2);
 	kellyAttraction(5);
@@ -346,7 +346,7 @@ public function flirtWithKellyAnywayPartII():void {
 	output("\n\nShe just sits there for a moment, eyes looking at you as you stand up again. When you get close enough, though, her hand shoots out like lightning, cracking audibly against your cheek. <i>\"Jackass! Just what were you thinking?! I told you that I can't be caught fucking around on the job - I'd lose my position here!\"</i> She snaps at you. <i>\"All I wanted was for you to wait two minutes whilst I sorted that out, you have any idea how much risk you put me in with those little games of yours?!\"</i> She snarls, panting again in her anger.");
 	output("\n\nYou rub your cheek and throw her an apology, admitting that maybe you were a little out of line.");
 	output("\n\nShe takes a deep breath and then slowly exhales it, visibly calming down. <i>\"And with that out of the way... thank you. That really was exactly what I needed, all things considered. Oh!\"</i> She giggles softly. <i>\"Come here a sec, please?\"</i> As you bend your face closer to hers, she closes her eyes and sticks her tongue out, the yellow appendage snaking sinuously through the air and gently lapping at the corner of your mouth, drawing slowly over your lips and then retracting. She opens her eyes with a coy smile. <i>\"I sprayed you with some,\"</i> she says by way of explanation.");
-	output("\n\nAnd then her hands grab you and pull you into a full-on kiss, her tongue authoritatively thrusting itself into your mouth, trying to dominate you with its supple length. You are bit stunned by her initial move, but quickly recompose yourself and kiss her back. Your tongues and lips wrestle for a pleasurable minute or two. As she breaks the kiss she sighs in satisfaction. <i>\"Just don't do that again, buster,\"</i> she warns you, a twinkle in her eye.");
+	output("\n\nThen her hands grab you and pull you into a full-on kiss, her tongue authoritatively thrusting itself into your mouth, trying to dominate you with its supple length. You are a bit stunned by her initial move, but quickly recompose yourself and kiss her back. Your tongues and lips wrestle for a pleasurable minute or two. As she breaks the kiss she sighs in satisfaction. <i>\"Just don't do that again, buster,\"</i> she warns you, a twinkle in her eye.");
 	output("\n\nShe stretches herself luxuriantly after she releases you. <i>\"Now, I really need a drink,\"</i> she comments, gently taking the mugful of her jism she captured earlier and taking a swig. With the ease that bespeaks of plenty of practice, she chugs the whole thing, then licks her lips clean, her eyes darting in your direction. <i>\"Down, " + pc.mf("boy","girl") + "; you've had your fun for a while.\"</i>");
 	output("\n\nShe gets to her feet and pulls up her skirt, refastening her belt with a strangely authoritative gesture. Once that's done, she starts to push you towards the door. <i>\"Come on, let's get you out of here before you get any more bright ideas,\"</i> she says, but she's grinning as she does so.");
 	output("\n\nYou don’t bother protesting as you are shoved towards the door by the eager modded laquine.");
@@ -388,7 +388,7 @@ public function approachKellyAtTheBar():void
 		output("You waltz up to the friendly receptionist and greet her with a wave.");
 		output("\n\n<i>\"Why hello, there, " + pc.mf("handsome","beautiful") + ", going my way?\"</i> she purrs, openly checking you out.");
 		output("\n\nSeeing no reason not to, you decide to return the favor.");
-		output("\n\nNow that she's out of that stuffy uniform, you can really see how well-stacked this girl is. She's barely wearing any clothes at all, with a teeny-tiny bikini struggling to simply hide her nipples, nevermind obscure her luscious DD-cups. You can see for yourself that her yellow and black color-scheme goes <i>everywhere</i> as your eyes trail down, over her flat stomach, towards her shapely legs. She's squeezed herself into jeans cut down into miniature shorts, just barely enough to cover her ass and loins... and what loins. A monstrous bulge bloats the front of her shorts, and when she shifts, crossing one leg over the other, you can see the fabric beneath hugging a blatant camel-toe.");
+		output("\n\nNow that she's out of that stuffy uniform, you can really see how well-stacked this girl is. She's barely wearing any clothes at all, with a teeny-tiny bikini struggling to simply hide her nipples, never mind obscure her luscious DD-cups. You can see for yourself that her yellow and black color-scheme goes <i>everywhere</i> as your eyes trail down, over her flat stomach, towards her shapely legs. She's squeezed herself into jeans cut down into miniature shorts, just barely enough to cover her ass and loins... and what loins. A monstrous bulge bloats the front of her shorts, and when she shifts, crossing one leg over the other, you can see the fabric beneath hugging a blatant camel-toe.");
 		output("\n\n<i>\"Mmm... do you like what you see, " + pc.mf("handsome","beautiful") + "? Because I certainly do,\"</i> she says, openly licking her lips in a salacious gesture.");
 		output("\n\nYou have to admit it’s quite a change from seeing her in a traditional business suit. She looks almost naked... in fact her choice of attire really leaves nothing to imagination.");
 		output("\n\n<i>\"And is that such a bad thing?\"</i> she teasingly asks. <i>\"When you're as sexy as I am, why, it's a crime to hide it... besides, fair is fair when it comes to letting folks know what you're packing, don't you think?\"</i> she questions, uncrossing her legs and patting her bulging crotch. <i>\"Not to mention, I spend all day stuffed into one of those suits at work - I deserve the opportunity to get out of those awful things and let myself have some air.\"</i>");
@@ -439,7 +439,7 @@ public function noKellyIFuckingLoveDickgirls():void
 	output("\n\nKelly doesn't look ruffled in the slightest, instead smirking proudly and then rolling her eyes. <i>\"Only a whistle? Is that all you think I'm worth? Or is it that you can't control your tongue any better around a sexy woman, huh? Is that why you don't come over and have a chat - you're scared you slip on your own drool? Come and see me when you get your tongue back, then I might be interested,\"</i> she replies dryly. You can hear the perp's buddies razzing on their compatriot for getting ripped up.");
 	output("\n\nYou chuckle at the poor chap leaving with a low head. Looks like Kelly really knows how to put up on show. You feel a tap on your shoulder and turn to face the bartender, handing you your drinks. You take them and make your way back.");
 	output("\n\n<i>\"Took your sweet time, huh?\"</i> she grins, then indicates a seat beside hers with a nod of her head. <i>\"Come on, pull up a seat, I don't bite... unless you ask nicely.\"</i> A wicked smile crosses her lips at the thought.");
-	output("\n\nYou lay the drink on the table and pull up a chair beside her. As you sit, you note that the scent of booze is slowly being replaced by that sweet honey-scented perfume she seems to wear. Quite fond of it ain’t she?");
+	output("\n\nYou lay the drink on the table and pull up a chair beside her. As you sit, you note that the scent of booze is slowly being replaced by that sweet honey-scented perfume she seems to wear. Quite fond of it, ain’t she?");
 	output("\n\n<i>\"Oh, yes, I am,\"</i> she agrees, then smirks. <i>\"It's only fitting, after all; what better scent for a sweet girl with a sweet tooth? Besides, I rather like bees - or couldn't you tell?\"</i> She giggles, indicating her coat. <i>\"And... it's not exactly perfume,\"</i> she adds casually.");
 	output("\n\nYou stare at her in confusion.");
 	output("\n\n<i>\"It's a long story,\"</i> she says, <i>\"But I suppose I can give you the bullet point version. Basically, there's a species on this planet called the Zil, who have honey for their sexual fluids - pussy juices, milk and cum. I thought that sounded really, really hot. I happen to work at a genetic engineering lab... and we laquines? We make a lot of cum. Getting the picture now?\"</i> She smirks, patting the stretched front of her pants.");
@@ -488,7 +488,7 @@ public function kellyConfessesHerAffectionForYouAt():void
 	{
 		output("\n\nYou look at her in curiosity. What is it?");
 	}
-	output("\n\n<i>\"Can we step outside for a little while? Take a walk together? This isn't something I want to really go over around so many prying ears around,\"</i> she sighs.");
+	output("\n\n<i>\"Can we step outside for a little while? Take a walk together? This isn't something I want to really go over, not with so many prying ears around,\"</i> she sighs.");
 	output("\n\nSeeing no reason to refuse, you accept her invitation, prompting her to lead the way.");
 	output("\n\nA grateful smile crosses her face as she stands up and leads you towards the door and out into the streets. As she starts leading you along the road, she sighs softly to herself. <i>\"Alright... I wanted to talk about us,\"</i> she informs you. <i>\"See, I've been thinking....\"</i>");
 	output("\n\nShe stops talking there, closing her eyes and rubbing her temples with thumb and forefinger, visibly puzzling over how to say whatever it is she wants to say. Opening her eyes, she throws a half-hearted kick at a nearby stone, sending it clattering away, before she takes a deep breath. <i>\"Well, what I'm trying to say is, I've been having some conflicts with my lifestyle, since we started hanging out together,\"</i> she admits.");
@@ -522,7 +522,7 @@ public function kellyConfessesHerAffectionForYouAt():void
 	//Kind:
 	if(pc.isNice()) output("\n\nShe doesn’t have to tell you if she doesn’t want to. You know everyone has their secrets.\n\nShe smiles as you say that. <i>\"Thank you, honey, but I want to tell you. I need to tell you this.\"</i>");
 	else output("\n\nOkay, that has got your curiosity piqued. What exactly did she keep hidden from you?");
-	if(pc.isMischievous()) output("\n\nIs she some sort of intergalactic crime kingpin? Maybe a super heroine? Though you just have to say, and she doesn’t need to take that personally, that <i>gene lab receptionist</i> is such a cliche cover....\n\n<i>\"I'd like to think I'd be smart enough to pick a better cover than <b>that</b>,\"</i> she giggles, poking her tongue out at the \"insult.\" <i>\"No, I'm not a crime-queen or a superheroine. It's something else.\"</i>");
+	if(pc.isMischievous()) output("\n\nIs she some sort of intergalactic crime kingpin? Maybe a super heroine? Though you just have to say, and she doesn’t need to take it personally, that <i>gene lab receptionist</i> is such a cliche cover....\n\n<i>\"I'd like to think I'd be smart enough to pick a better cover than <b>that</b>,\"</i> she giggles, poking her tongue out at the \"insult.\" <i>\"No, I'm not a crime-queen or a superheroine. It's something else.\"</i>");
 	output("\n\nWith a quiet sigh, she reaches down and gently pats the bulge between her legs. <i>\"You know I'm not exactly Miss Underendowed, right? Well... what would you say if I were to tell you if you haven't seen all I have down here?\"</i> she asks.");
 	output("\n\nYou just eye her with curiosity. She’s not giving you much to go on here....");
 	output("\n\n<i>\"Okay... I guess I'm too used to keeping shut about this,\"</i> she apologises. <i>\"What I'm saying is that, the twelve inches I'm currently sporting? That's me on reducing medicine. If I don't keep up the dosage, I get bigger. A <b>lot</b> bigger.\"</i>");
@@ -592,8 +592,8 @@ public function endOfLoppeConfession():void
 	userInterface.showBust("KELLY");
 	showKellyName();
 	author("Quiet Browser & LD");
-	output("\n\nThe rest of the walk goes by in silence, tho Kelly does shoot you some seductive gestures.");
-	output("\n\n<i>\"So... thanks for the company this evening. But....\"</i> she trails off with a mischievous smile.");
+	output("\n\nThe rest of the walk goes by in silence, though Kelly does shoot you some seductive gestures.");
+	output("\n\n<i>\"So... thanks for the company this evening. But...\"</i> she trails off with a mischievous smile.");
 	output("\n\nBut?");
 	output("\n\n<i>\"You did come to see me at the bar, and I can’t help but think you were expecting something when you did,\"</i> she smirks.");
 	output("\n\nThat's when she stops, and you realize you’re standing just outside her house.");
@@ -648,7 +648,7 @@ public function talkToKellyAtBar():void
 	//if Not Sexed:
 	if(flags["KELLY_SEXED"] == undefined)
 	{
-		output("<i>\"Talk?\"</i> she says, pouting in dismay. <i>\"What, all of this isn't enough for you? Come on, I'm a prime-grade sex machine! ...Oh, very well, if you really want to just talk, I'll humour you. But trust me, a night with me is something you'll <b>never</b> forget.\"</i> She winks lewdly for emphasis.");
+		output("<i>\"Talk?\"</i> she says, pouting in dismay. <i>\"What, all of this isn't enough for you? Come on, I'm a prime-grade sex machine! ...Oh, very well, if you really want to just talk, I'll humor you. But trust me, a night with me is something you'll <b>never</b> forget.\"</i> She winks lewdly for emphasis.");
 	}
 	else //If Sexed:
 	{
@@ -792,9 +792,9 @@ public function waitKellyOutAfterFlattering():void
 	output("<i>\"If you really must know, I'm 24 standard years old,\"</i> she tells you casually, and takes a sip from her cup. Once she's finished wetting her throat, she continues, <i>\"I grew up in a spaceport, so, growing up, I saw a lot of aliens. I don't know, maybe that's why I always wanted to see what was out there... or maybe I just wanted to share myself with the universe,\"</i> she grins arching her shoulders in a way that makes her bosom heave quite nicely.");
 	output("\n\n<i>\"So, about three years ago, I took my savings and I bought myself a little one-girl starrider and blasted off, just sort of bumming my way across the galaxy. It was just incredible... right up until the day that the stupid thing broke down on me, a couple of systems over,</i>\" she adds, idly thumbing in the direction of galactic south.");
 	output("\n\nThat sucks, you note. But at least she seems to be doing well for herself.");
-	output("\n\n<i>\"From where I started out when that happened, sure, this is up,\"</i> she agrees with a nod of her head. <i>\"You see, luckily, I was near a space-port, so I was able to crawl into civilisation. I ended up selling my ship to a spare parts merchant, but that didn't leave me with enough to do... well, anything. I couldn't buy a new ship, I couldn't purchase a ride back home, I certainly couldn't stay where I was. I managed to basically hitchhike my way from the station to here - unfortunately for me, the captain who took me here had certain ulterior motivations and, when I wouldn't put out for her, she abandoned me here.</i>\" She looks angry, spitting a curse on the individual in question. <i>\"I know I'm drop-dead sexy and all, but to strand me because I won't fuck you?! What kind of person does that?\"</i> she demands angrily.");
+	output("\n\n<i>\"From where I started out when that happened, sure, this is up,\"</i> she agrees with a nod of her head. <i>\"You see, luckily, I was near a space-port, so I was able to crawl into civilization. I ended up selling my ship to a spare parts merchant, but that didn't leave me with enough to do... well, anything. I couldn't buy a new ship, I couldn't purchase a ride back home, I certainly couldn't stay where I was. I managed to basically hitchhike my way from the station to here - unfortunately for me, the captain who took me here had certain ulterior motivations and, when I wouldn't put out for her, she abandoned me here.</i>\" She looks angry, spitting a curse on the individual in question. <i>\"I know I'm drop-dead sexy and all, but to strand me because I won't fuck you?! What kind of person does that?\"</i> she demands angrily.");
 	output("\n\nYou keep silent, allowing her to cool off with another gulp from her mug before she continues. <i>\"So, there I was, stuck here with not too much more than what I had on my back and in my carry bags. I certainly didn't have a lot of credits left, but fortunately, flats in a frontier town come cheap. So I started looking for a job; I figured there had to be someone here who could and would hire me. And of course, I was right,\"</i> she smirks, buffing her nails on her breast's fur. <i>\"Xenogen was looking for a receptionist, and I was the first one to get my foot in the door. And so I've been here ever since; modding myself with spare savings, and building up my credits until the day comes I can buy a new ship and take off on my own again.\"</i> She sighs wistfully at the thought.");
-	output("\n\nShe went through a lot, that’s for sure. You tap her arm comfortingly and tell her that once you get to the bottom, only way left is up. Plus she doesn’t seem to be type to let the world kick her about.");
+	output("\n\nShe went through a lot, that’s for sure. You tap her arm comfortingly and tell her that once you get to the bottom, the only way left is up. Plus she doesn’t seem to be the type to let the world kick her about.");
 	output("\n\n<i>\"You got that right, buster; when life kicks me, I kick it right back!\"</i> she cheers. Then she looks at you and smiles. <i>\"But it's nice to hear some support, now and then, so... thanks. Well, enough about where I came from; was there anything else you wanted?\"</i>");
 	processTime(7);
 	//Display Meadhall Kelly Options//
@@ -808,7 +808,7 @@ public function talkToKellyAboutHerMods():void
 	userInterface.showBust("KELLY");
 	showKellyName();
 	author("Quiet Browser & LD");
-	output("<i>\"Modifications, huh? You sure you wouldn't rather have a little hand's on analysis, hmm? Wouldn't that be a much more fun way to find out?\"</i> she winks suggestively at you.");
+	output("<i>\"Modifications, huh? You sure you wouldn't rather have a little hands on analysis, hmm? Wouldn't that be a much more fun way to find out?\"</i> she winks suggestively at you.");
 	//[Yes] [No]
 	clearMenu();
 	addButton(0,"Yes",yesHandsOnModAnalysisIsTheWayToGoKelly);
@@ -840,7 +840,7 @@ public function yesHandsOnModAnalysisIsTheWayToGoKelly():void
 		output("\n\nYou rise yourself and follow after her.");
 		output("\n\nSince Esbeth is a young frontier town, Kelly's current choice of home, a cheap little rental unit, doesn't take too long for you to reach. She opens the door quickly and leads the way inside, closing the door after you've followed.");
 		output("\n\nKelly's home may be small and cheap, but she's done it up quite nicely. A pair of handy shelves groan on the weight of myriad books and magazines - ranging in topics from fashion and cooking magazines to scientific newsletters and textbooks on engineering and genetics. A number of bee and flower-themed ornaments are scattered around, pride of place being given to several incense holders that fill the room with a sweet, floral scent. Her bed is the most ornate of all, being structured to actually look like a huge flower.");
-		output("\n\nKelly grins as she enthusiastically seats herself atop her bed, bouncing as she settles, kicking her legs in glee. <i>\"So.. you want that hands on demonstration, honey? Well...\"</i> she crooks a finger in invitation, a mischievous light in her eyes.");
+		output("\n\nKelly grins as she enthusiastically seats herself atop her bed, bouncing as she settles, kicking her legs in glee. <i>\"So... you want that hands on demonstration, honey? Well...\"</i> she crooks a finger in invitation, a mischievous light in her eyes.");
 		output("\n\nWalking up to her, you gently set your hands on her shoulders, caressing her back as you make your way down.");
 		output("\n\nShe closes her eyes and lets out a purring noise of approval, leaning into your touch.");
 
@@ -853,7 +853,7 @@ public function yesHandsOnModAnalysisIsTheWayToGoKelly():void
 		output("\n\nYou watch her work your finger enraptured, wondering how it’d feel to have her do that on a real dick. Preferably yours");
 		if(!pc.hasCock()) output(", if you had one");
 		output(". Yes, you’d make sure to reward her like the naughty girl she is.... You feel yourself growing flush with arousal at your thoughts.");
-		output("\n\nHer tongue wrings your finger one last time and then uncurls itself, her lips unsealing and setting your finger free with a wet pop, momentarily linked by a glistening strand before she laps it up. She opens her eyes and looks you squarely, a mischievous smirk on her lips. <i>\"Well, honey? Have I been a good girl?\"</i> she asks you, her voice a husky, lustful exhalation as she bats her eyelashes at you.");
+		output("\n\nHer tongue wrings your finger one last time and then uncurls itself, her lips unsealing and setting your finger free with a wet pop, momentarily linked by a glistening strand before she laps it up. She opens her eyes and looks at you squarely, a mischievous smirk on her lips. <i>\"Well, honey? Have I been a good girl?\"</i> she asks you, her voice a husky, lustful exhalation as she bats her eyelashes at you.");
 		output("\n\nYou believe she did show she can be good, so you’ll let her <i>spring free</i> this time. You move a hand to her shorts and rub her cocks through the fabric. She moans, screwing her eyes closed in ecstasy as her dicks thrust themselves brutally against the fabric, which is growing increasingly damp and sticky, a sweet smell filling the air. Larger and harder the bulge swells, until her poor shorts button can't take it and pops off, flying away to the floor. \"<i>Oopsie,</i>\" she giggles.");
 		output("\n\nYou waste no time in pulling down her zipper to let her shafts pop from their fabric prison, lest she pop the zipper too!");
 			
@@ -861,7 +861,7 @@ public function yesHandsOnModAnalysisIsTheWayToGoKelly():void
 
 		output("\n\nYou stop for a moment to admire her twin spires, juicy and throbbing, dribbling honey. Before you get to that, though, you decide to finish removing her shorts. You push her legs up and pull her shorts off, tossing them away to join her bikini top.");
 		output("\n\nShe smiles up at you and spreads her legs so that you have a full, unobstructed view of everything that lays between them. <i>\"Enjoying the view?\"</i> she asks mischievously, the look on her face making it clear she assumes the answer to be \"yes.\"");
-		output("\n\nYou don’t grace her with an answer, instead you step forward and grab one of her legs. You caress her thighs, slowly making your way towards her dainty feet, checking her muscles along the way. An appreciative groan escapes her throat, and she flexes her legs, wriggling her feet at the sensation. You grab her foot, massaging it as you check each of her padded toes.");
+		output("\n\nYou don’t grace her with an answer; instead you step forward and grab one of her legs. You caress her thighs, slowly making your way towards her dainty feet, checking her muscles along the way. An appreciative groan escapes her throat, and she flexes her legs, wriggling her feet at the sensation. You grab her foot, massaging it as you check each of her padded toes.");
 
 		output("\n\n<i>\"Mmm... that feels nice. Can't remember the last time I got a footrub,\"</i> she mumbles appreciatively, trying to stare down the length of her body and watch you work, despite her impressive cleavage and twin-shafts being in the way.");
 
@@ -869,7 +869,7 @@ public function yesHandsOnModAnalysisIsTheWayToGoKelly():void
 
 		output("\n\nShe squeals in glee and wriggles frantically, kicking out in an effort to shake off your grip, but not hard enough to actually succeed.");
 
-		output("\n\nYou stop with a grin, looks like her reflexes are in order.\n\n<i>\"Wait until I test your reflexes,\"</i> she promises you, a wicked grin on her face as she contemplates her payback.");
+		output("\n\nYou stop with a grin; looks like her reflexes are in order.\n\n<i>\"Wait until I test your reflexes,\"</i> she promises you, a wicked grin on her face as she contemplates her payback.");
 
 		output("\n\nNow back to business. You lift her her legs over her shoulders, bending her over awkwardly. Thankfully she does not seem to complain, watching what you’re doing with amusement. You shuffle onto the bed, overlooking her amused expression over her tight ass, damp pussy, churning balls and throbbing shafts.");
 
@@ -1011,11 +1011,11 @@ public function getKellyOff(newScreen:Boolean = false):void
 
 	output("\n\nWith a malicious grin, you reach for her throbbing shafts, giving each a yank and pointing them at her face.");
 
-	output("\n\n<i>\"Oh, yes... give it to me,\"</i> she pleads in rapturous delight, seeing exactly what you have in mind and loving the idea. Her juices are flowing thick and fast, her pussy squeezing tight in anticipation of a cock that isn't there, even her asshole is clenching down in pursuit of the orgasm to come. Finally, with an ecstatic moan of relief, she cums, honey gushing from her dicks and cunt with equal fervor.");
+	output("\n\n<i>\"Oh, yes... give it to me,\"</i> she pleads in rapturous delight, seeing exactly what you have in mind and loving the idea. Her juices are flowing thick and fast, her pussy squeezing tight in anticipation of a cock that isn't there; even her asshole is clenching down in pursuit of the orgasm to come. Finally, with an ecstatic moan of relief, she cums, honey gushing from her dicks and cunt with equal fervor.");
 
 	output("\n\nYou pump each in turn, effectively milking her honey out as she drenches herself with her honey. Her arms finally give, but you quickly adjust yourself to hold her in position.");
 
-	output("\n\nNeglected pussy pouring honey down her ass, running through her crack to mat her tail, her twin shafts bulge in unison as thick load after load of honey forces its way from her swollen quad. Great globs spatter over her face and her tits, smearing thickly over her features, eyes closed and mouth open to try and catch it, but not trying particularly hard. Any that enters her mouth is more of a fluke than deliberate, and you have a feeling that's intentional. It plasters her cheeks and soaks her ears, strings drooling wetly onto her belly after each shot is fired, and still more keeps coming. Only when she is totally drenched and laying in a thick pool of sweet, sticky orange-yellow semen do her cocks finally go slack, her whole body unclenching with a huge sigh of release.");
+	output("\n\nHer neglected pussy pours honey down her ass, running through her crack to mat her tail. Her twin shafts bulge in unison as thick load after load of honey forces its way from her swollen quad. Great globs spatter over her face and her tits, smearing thickly over her features, eyes closed and mouth open to try and catch it, but not trying particularly hard. Any that enters her mouth is more of a fluke than deliberate, and you have a feeling that's intentional. It plasters her cheeks and soaks her ears, strings drooling wetly onto her belly after each shot is fired, and still more keeps coming. Only when she is totally drenched and laying in a thick pool of sweet, sticky orange-yellow semen do her cocks finally go slack, her whole body unclenching with a huge sigh of release.");
 
 	output("\n\nYou release her and let her drop on her side, completely worn out.");
 
@@ -1033,7 +1033,7 @@ public function getKellyOff(newScreen:Boolean = false):void
 
 	output("\n\nA soft gasp escapes her throat and she closes her eyes again, letting out a purring noise as her shafts start to rise again. <i>\"Mmm, I like where this is going,\"</i> she giggles. Her dicks continue to grow harder again, slowly rising to their foot-long lengths again, her balls almost palpably swelling in your grip as they work to replenish themselves. She groans luxuriantly as your fingers massage the bulging orbs, unthinkingly humping the bedsheets with her twin shafts.");
 
-	output("\n\nShe looks ready, you declare. Then spin her around, legs spread, so you’re kneeling between them. With a teasing pat to her quad-nads you tell her that you’re going to begin the extraction process.");
+	output("\n\nShe looks ready, you declare. You then spin her around, legs spread, so you’re kneeling between them. With a teasing pat to her quad-nads you tell her that you’re going to begin the extraction process.");
 
 	output("\n\nShe stares up at you with an expression of equal parts lust and amusement. <i>\"Extract away, honey,\"</i> she informs you.");
 
@@ -1108,12 +1108,12 @@ public function getKellyOff(newScreen:Boolean = false):void
 	}
 	output(".");
 
-	output("\n\nA delighted squeal ripples from her throat, she arches her back and clenches down");
+	output("\n\nA delighted squeal ripples from her throat. She arches her back and clenches down");
 	if(pc.hasTailFlag(GLOBAL.FLAG_PREHENSILE) && pc.hasTailFlag(GLOBAL.FLAG_LONG))
 	{
 		output(", inadvertently squeezing your [pc.tails] in the silken vice of her depths");
 	}
-	output(", before her cocks bulge once more and send twin streamers of semen flying for the ceiling. Though they make a spirited attempt, they fall short, and instead drop like molten meteors back down to splat wetly against her already-smeared face and belly. She moans and cries and whimpers in ecstasy as she paints herself a second time; finally coming to a halt, she is completely plastered in her own herm-goo, panting for breath in a near-palpable fug of honeyed sex fumes.");
+	output(", before her cocks bulge once more and send twin streamers of semen flying for the ceiling. Though they make a spirited attempt, they fall short, and instead drop like molten meteors back down to splat wetly against her already-smeared face and belly. She moans, cries and whimpers in ecstasy as she paints herself a second time; finally coming to a halt, she is completely plastered in her own herm-goo, panting for breath in a near-palpable fug of honeyed sex fumes.");
 
 	output("\n\nYou release her");
 	if(pc.hasTailFlag(GLOBAL.FLAG_PREHENSILE) && pc.hasTailFlag(GLOBAL.FLAG_LONG))
@@ -1216,7 +1216,7 @@ public function askKellyAboutHerZilFetish():void
 
 	output("\n\n<i>\"So, yeah; great looks, rotten attitude, that's how I'd sum up the zil. Still, they were good for one thing... they made getting my mods super-cheap, because all I needed was a bit of zil gene-splicing,\"</i> she grins confidently, wrapping her arms behind her head and stretching, surely <i>coincidentally</i> displaying her black and yellow tits for your appraisal as she does so.");
 
-	output("\n\nThat’s an interesting story, tho you admit a part of is rather curious about the <i>grisly details</i>. So... as long as it got stripes, honey and doesn’t try to rape her, she’s game?");
+	output("\n\nThat’s an interesting story, though you admit a part of is rather curious about the <i>grisly details</i>. So... as long as it got stripes, honey and doesn’t try to rape her, she’s game?");
 
 	//If PC has Zil or otherwise Bee Coloration AND HoneyCum OR HoneyFemCum:
 	if(pc.zilScore() > 2)
@@ -1356,7 +1356,7 @@ public function kellyShopping():void
 	{
 		output("\n\nHer bags soon start piling up and you’re thankful that you’re strong enough to carry them. Still, keeping up with Kelly can be quite difficult. She shows no shame as she starts to pile bag upon bag whilst you’re carrying.");
 		output("\n\n<i>\"It's so nice to have a strong " + pc.mf("man","woman") + " along to help out; it's such a bother having to make multiple trips every time I want to get some shopping done. You're so sweet to help me out like this, [pc.name],\"</i> she chirps gleefully.");
-		output("\n\nBy the time you start heading back to her house you admit you were getting tired, you were running of room to carry her stuff too.");
+		output("\n\nBy the time you start heading back to her house you admit you were getting tired; you were running of room to carry her stuff too.");
 	}
 	output("\n\n<i>\"And that's the last of it,\"</i> she declares happily, closing the final cupboard. <i>\"You're such a sweet " + pc.mf("man","woman") + ", to help a little lady like myself,\"</i> she says, turning her head to look over her shoulder to shoot a mock-innocent smile at you as she does. With a sigh of relief, she starts to fiddle with her bra-like mini-top, casually dropping it to the floor once it springs free of her breasts, then bending over to start removing her pants, ass up and pointed towards you, each shapely curve of buttock and leg emphasised as her pants slide with slow, deliberate motion down to the floor. She steps out of them with one foot, and then a delicate backwards kick flicks the garment away.");
 	output("\n\n<i>\"Much better,\"</i> she announces. <i>\"Always so much more comfortable like this; it's nice to let the girls breathe.\"</i> She stops and giggles to herself. <i>\"My moms would spank my cute little bunny-butt until it glowed red for doing this... but that's half the fun, isn't it?\"</i> she asks; you're not sure if she's being hypothetical or not. <i>\"Oh, please, don't be shy on my account; my home is your home. Go on and make yourself comfortable, too,\"</i> she adds, almost as an afterthought.");
@@ -1414,7 +1414,7 @@ public function helpKellyOutDinnerDate():void
 	userInterface.showBust("KELLY");
 	showKellyName();
 	author("Quiet Browser & LD");
-	output("You suppose there’s not harm in <i>helping</i> her then.");
+	output("You suppose there’s no harm in <i>helping</i> her then.");
 
 	output("\n\nShe pushes her chair away from the table and hops back on her feet. <i>\"I just need to clear my tab and we can go.\"</i>");
 
@@ -1468,7 +1468,7 @@ public function kellyDinnerPrepGogo():void
 
 	output("\n\n<i>\"Now, where did I put that honey?\"</i> she muses aloud, seemingly to herself.");
 
-	output("\n\nPart of you is amused that she bothered to buy honey instead of just using her own. But you suppose she doesn’t want to use hers for cooking, or maybe she’s doing that for you? In any case it’s kind of funny that she’s forgotten where she’s placed it, you should help her out.");
+	output("\n\nPart of you is amused that she bothered to buy honey instead of just using her own. But you suppose she doesn’t want to use hers for cooking, or maybe she’s doing that for you? In any case it’s kind of funny that she’s forgotten where she’s placed it. You should help her out.");
 
 	processTime(10);
 	//[UseHers][HelpHer]
@@ -1492,12 +1492,12 @@ public function useKellysHoneyForCooking():void
 	if(x >= 0) output("\n\nYou adjust yourself so the [pc.cockHead " + x + "] of your erect [pc.cockNounSimple " + x + "] is nestled between the folds of her inviting pussy.");
 	else if(pc.hasTailCock()) output("\n\nYou move your [pc.tail], gently rubbing her folds before nestling the [pc.tailCockHead] against her moist entrance.");
 	
-	output("\n\nGently, you fondle her balls and whisper into her ear that if she’s going to cook for you, might as well as use fresh ingredients. You already helped her shop, you wouldn’t mind helping her extract some honey either.");
+	output("\n\nGently, you fondle her balls and whisper into her ear that if she’s going to cook for you, might as well use fresh ingredients. You already helped her shop, you wouldn’t mind helping her extract some honey either.");
 
 	output("\n\n<i>\"Ohhh... talk about music to my ears,\"</i> she purrs, grinding her ass back against your ");
 	if(!pc.hasCockTail()) output("crotch");
 	else output("tail");
-	output(". <i>\"If you're hungry for my personal brand... well, I'm eager to accommodate you,\"</i> she giggles, twin shafts already starting to slide from her leathery sheaths, rising upwards in synchronised erections. <i>\"But may I take the proper position first?\"</i> she asks, a mocking attempt at pleading in her tone.");
+	output(". <i>\"If you're hungry for my personal brand... well, I'm eager to accommodate you,\"</i> she giggles, twin shafts already starting to slide from her leathery sheaths, rising upwards in synchronized erections. <i>\"But may I take the proper position first?\"</i> she asks, a mocking attempt at pleading in her tone.");
 
 	output("\n\nYou bite her ear lightly, licking it slowly. A squeak escapes her lips, followed by an appreciative giggle. You tell her that you don’t intend to let her go so easily, so if she intends to take any position, she’s going to have to do it with you attached.");
 	if(x >= 0 || pc.hasTailCock()) output(" You give her a short thrust to draw more moisture from her dripping folds, effectively sandwiching your shaft between her folds.\n\nKelly moans like a whore in heat as she feels your dick brushing through her womanhood, the first thick, fat drops of syrupy precum drooling from her twin shafts in her excitement. <i>\"You make a <b>very</b> convincing argument,\"</i> she informs you in a stage whisper. <i>\"...So what are you waiting for?\"</i>");
@@ -1525,7 +1525,7 @@ public function useKellysHoneyForCooking():void
 		output("\n\nYou push forward; lubed as you are from her female juices you find almost no resistance as you feel her stretch around you. An appreciative moan spills from her throat and she arches her back, pushing back against you to help you reach deeper. Inch after inch, you feed her ass until you are completely sheathed inside her.");
 		output("\n\n<i>\"Ah... oh, that feels so good,\"</i> she moans eagerly, syrup spurting in a splattering squirt from each shaft, her cunt drooling wetness onto the floor below.");
 		output("\n\nYou waste no time and eagerly start humping her, being especially attentive to her prostate.");
-		output("\n\nShe groans and grunts and gasps with each thrust, humping herself back against you in counterpoint. Her pussy drips ceaselessly, but it is her cocks that are drooling like open faucets, each brush against the swollen bulge of her prostate causing her to spurt a glob of semen-syrup onto the floor.");
+		output("\n\nShe groans, grunts and gasps with each thrust, humping herself back against you in counterpoint. Her pussy drips ceaselessly, but it is her cocks that are drooling like open faucets, each brush against the swollen bulge of her prostate causing her to spurt a glob of semen-syrup onto the floor.");
 	}
 	output("\n\nYour hands massage her pair of pricks; her slick honey makes the process smoother by the second. In no time at all your hands become a blur, alternatively milking her shafts.");
 
@@ -1539,7 +1539,7 @@ public function useKellysHoneyForCooking():void
 	if(x >= 0 || pc.hasTailCock())
 	{
 		output("\n\nWithout warning you bury yourself inside her and groan as you orgasm; sputtering your seed deep into her bowels.");
-		if(pc.cumQ() >= 1000) output(" You easily fill her to the brim, to the point your [pc.cum] starts dripping around the seal of your shaft, yet you are relentless. You continue to pound her even as you turn her abused hole into a veritable mess.");
+		if(pc.cumQ() >= 1000) output(" You easily fill her to the brim, to the point that your [pc.cum] starts dripping around the seal of your shaft, yet you are relentless. You continue to pound her even as you turn her abused hole into a veritable mess.");
 		output("\n\n<i>\"I... oh, gods, oh gods...\"</i> she moans, bucking against you, so very close, yet not quite there just yet....");
 	}
 	output("\n\n<i>\"Cum,\"</i> you whisper to her. She needs no second instruction, her whole body tensing as she erupts into a wet climax; the shaft you are guiding hammers a torrent of honey into the glass, almost knocking it from your grip with the force. The other, left to its own devices, sends a great arc of orange-yellow semen flying through the air to splatter wetly across the counter, almost hitting the bowl in its own right, but falling just a little short. She gasps and moans as she empties herself, until finally it seems that she's drained.");
@@ -1565,24 +1565,24 @@ public function useKellysHoneyForCooking():void
 		output("\n\nHer eyes light up at your praise and her tongue redoubles its assault on your sensitive parts, caressing you with the most inhumanly skilled and delicious tenderness along your length and across your girth, squeezing and rubbing, now fast, now slow, now tender, now rough, milking you with more skill than any ordinary hand could.");
 		output("\n\nHer tongue feels too good, the irregular motions only spur you on. You find yourself gripping her hair, out of reaction rather than any intention of hurting her, though you are quick to release her and pat her head apologetically. It doesn’t seem she’s mad, though; actually, seeing how she’s driving you nuts with her limb-like tongue only makes her try all the harder. It’s all you can take, and without warning you groan and climax right then and there.");
 		output("\n\nHer tongue uncoils itself like a whip, letting your cock go loose and dangling freely as she closes her eyes and opens her mouth, letting you spray your [pc.cumNoun] all over her face. Her lips are curled into a blissful expression, seemingly lost in a perverse rapture as your semen washes over her. She turns her face to this angle and that, striving to make sure you cover every last inch of her face, her neglected shafts now hard again between her legs.");
-		output("\n\nYou take a step back and admire your handiwork. Kelly’s face is completely plastered with [pc.cum]. Much to her apparent enjoyment. She lifts her head up, letting it run down her cheeks and neck, dribbling into the canyon of her cleavage, then sighs hugely. <i>\"Nothing feels as good as a nice plaster of cum, that's what I always say,\"</i> she giggles, finally opening her eyes and batting them at you. <i>\"What do you think? Do I look better with this on?\"</i> she suggests, then shrugs. <i>\"But ah well, I can't wear this forever,\"</i> she notes to herself. As you watch, her inhuman tongue stretches out and begins to rub itself over her face, lapping up every drop with lewd slurps until she is clean as a whistle. Patting her belly appreciatively, she climbs back to her feet.");
+		output("\n\nYou take a step back and admire your handiwork. Kelly’s face is completely plastered with [pc.cum], much to her apparent enjoyment. She lifts her head up, letting it run down her cheeks and neck, dribbling into the canyon of her cleavage, then sighs hugely. <i>\"Nothing feels as good as a nice plaster of cum, that's what I always say,\"</i> she giggles, finally opening her eyes and batting them at you. <i>\"What do you think? Do I look better with this on?\"</i> she suggests, then shrugs. <i>\"But ah well, I can't wear this forever,\"</i> she notes to herself. As you watch, her inhuman tongue stretches out and begins to rub itself over her face, lapping up every drop with lewd slurps until she is clean as a whistle. Patting her belly appreciatively, she climbs back to her feet.");
 	}
 	//else if tailcock
 	else if(pc.hasTailCock())
 	{
 		output("\n\nPersonally, you think she should clean up at least part of the mess she made with her antics. You maneuver your [pc.tailCock], placing its [pc.tailCockHead] against her lips.");
 		output("\n\nShe doesn't even bother wasting time with words; the light in her eyes makes her intent obvious enough. Gently taking hold of your inhuman shaft, she opens her mouth, closes her eyes, and guides it inside, her elongated tongue coiling about it and drawing it inside the warm wetness of her mouth. She sucks away contentedly, bobbing up and down its length, tickling and caressing you with her prehensile tongue as she does so.");
-		output("\n\nYou groan as she plays with your sensitive [pc.tailCock]. Eagerly, you begin to thrust yourself into her mouth, effectively face-fucking her; something she seems to approve, judging by her moans. While you do that, you embrace her, grabbing her pillowy tits and massaging them. Since she’s being such a good girl, you don’t see why she shouldn’t feel good too.");
+		output("\n\nYou groan as she plays with your sensitive [pc.tailCock]. Eagerly, you begin to thrust yourself into her mouth, effectively face-fucking her; something she seems to approve of, judging by her moans. While you do that, you embrace her, grabbing her pillowy tits and massaging them. Since she’s being such a good girl, you don’t see why she shouldn’t feel good too.");
 		output("\n\nShe moans in appreciation, the vibration rippling along your [pc.tailCock] and sending sparks of pleasure through you, before she begins to redouble her suckling, lewdly slurping and gulping as she seeks an oral injection of your seed.");
 		output("\n\nWith a groan and a squeeze on her voluminous chest, you give her what she wants. Spurt after delicious spurt of [pc.cum] exits your [pc.tailCockHead] to enter her hungry mouth and settle in her hungry stomach.");
 		//if high cum amount:
 		if(pc.cumQ() >= 1000) output(" You wonder for a moment if she’s even going to be able to eat after you’re finished, so great is the amount of seed you feed her. However you don’t have to worry too much about that, as another shuddering wave of orgasmic high wipes your mind clean of any coherent thought.");
-		output("\n\nShe steadfastly sucks and slurps, swallowing every mouthful you give her as fast as she can, tongue occasionally tickling your shaft to coax a litte more from you, until at last you have finished and, as pleasurable as her continued suckling is, you have nothing more to give her. She painstakingly polishes your tail's phallic tip off with her tongue, and then lets you pop free of her mouth, panting slightly as she catches up with her need for air. Fingers genteely cover her lips as she hiccups, then giggles an apology to you. <i>\"Mmm... all nice and clean now,\"</i> she informs you.");
+		output("\n\nShe steadfastly sucks and slurps, swallowing every mouthful you give her as fast as she can, tongue occasionally tickling your shaft to coax a litte more from you, until at last you have finished and, as pleasurable as her continued suckling is, you have nothing more to give her. She painstakingly polishes your tail's phallic tip off with her tongue, and then lets you pop free of her mouth, panting slightly as she catches up with her need for air. Fingers gently cover her lips as she hiccups, then giggles an apology to you. <i>\"Mmm... all nice and clean now,\"</i> she informs you.");
 		output("\n\nYou thank her for a job well done. <i>\"It was my pleasure,\"</i> she assures you, licking her lips to ensure she catches anything that might have spilt.");
 	}
 	output("\n\nHumming contentedly, she walks back over to the counter, taking the glass of freshly jizzed honey and pouring it into the dry mix, softly singing snatches of something to herself as she mixes it all together to make a glaze, which she then starts cooking over the oven top.");
 
-	output("\n\nYou watch her finish the last steps, preparing everything for when its time to apply the glaze and let it cook.");
+	output("\n\nYou watch her finish the last steps, preparing everything for when it's time to apply the glaze and let it cook.");
 
 	output("\n\n<i>\"Alrighty, now we just wait,\"</i> she explains, washing her hands off in the sink. ");
 	if(kellyAttraction() < 50) output("<i>\"So... wanna chat for a bit to pass the time?\"</i> she asks.");
@@ -1590,7 +1590,7 @@ public function useKellysHoneyForCooking():void
 
 	output("\n\nSounds like a plan....");
 
-	output("\n\nKelly visibly perks up as the timer goes off for the last. <i>\"Oh, would you get that please, [pc.name]? I'll set the table,\"</i> she says, pushing herself up from her seat and literally hopping to her feet, tits and ass jiggling nicely from the motion as she does so.");
+	output("\n\nKelly visibly perks up as the timer goes off at last. <i>\"Oh, would you get that please, [pc.name]? I'll set the table,\"</i> she says, pushing herself up from her seat and literally hopping to her feet, tits and ass jiggling nicely from the motion as she does so.");
 
 	output("\n\nYou do as requested, fetching the bowl of salad first and laying it on the table, then walking towards the oven to fetch the ham. Careful not to burn yourself, you use a cloth to take the ham off the oven and lay it nicely on a tray. Satisfied, you leave the cloth behind and take the tray back to the table.");
 
@@ -1622,7 +1622,7 @@ public function haveKellyServeAfterUsingHerHoney():void
 	author("Quiet Browser & LD");
 	output("Nodding you take your plate and hand it over for her.");
 
-	output("\n\nShe smiles and accepts it from you, placing it in front of her and taking up the carving knife, meat fork and salad tongs in turn. <i>\"Now, lets see here... first, some salad; need to eat healthy if you want plenty of stamina,\"</i> she notes, applying a generous helping of salad as she speaks. <i>\"And next, a nice, big, thick, juicy cut of meat; just the way you like it,\"</i> she notes, winking at you as she slices a sizable piece from the ham and applies it to your plate in turn. Stopping, she looks at your plate and shakes her head. <i>\"That should be enough; don't want you getting overstuffed before dessert, no?\"</i> she comments, smirking as she does.");
+	output("\n\nShe smiles and accepts it from you, placing it in front of her and taking up the carving knife, meat fork and salad tongs in turn. <i>\"Now, let’s see here... first, some salad; need to eat healthy if you want plenty of stamina,\"</i> she notes, applying a generous helping of salad as she speaks. <i>\"And next, a nice, big, thick, juicy cut of meat; just the way you like it,\"</i> she notes, winking at you as she slices a sizable piece from the ham and applies it to your plate in turn. Stopping, she looks at your plate and shakes her head. <i>\"That should be enough; don't want you getting overstuffed before dessert, no?\"</i> she comments, smirking as she does.");
 
 	output("\n\nCome to think of it, you don’t recall seeing her prepare anything for dessert. So what is she planning? You ask teasingly.");
 
@@ -1671,7 +1671,7 @@ public function noServingFoodAfterKellyUsesHerCum():void
 	userInterface.showBust("KELLY_NUDE");
 	showKellyName();
 	author("Quiet Browser & LD");
-	output("You get up, taking you own plate in hand. You thank her, but it’s simpler if you get the food yourself.");
+	output("You get up, taking your own plate in hand. You thank her, but it’s simpler if you get the food yourself.");
 
 	output("\n\nKelly just smiles and nods in an understanding fashion. <i>\"Okay, that's fine,\"</i> she replies. <i>\"Just give me the utensils when you're done so I can get my own.\"</i>");
 
@@ -1690,7 +1690,7 @@ public function eatingWithKellysHoneyForSeasoning():void
 	author("Quiet Browser & LD");
 	output("Now that both of you have loaded plates in front of you, Kelly raises her cutlery with a gleeful expression. <i>\"Alright, let's eat!\"</i> she cheers, already putting fork and knife to her ham.");
 
-	output("\n\nWithout further ado, you stab your ham and cut off a piece. It tastes great, you find yourself humming as you bite into the soft flesh. The sauce adds a great aftertaste and you can really tell the bittersweet taste of honey with a touch of lemon.");
+	output("\n\nWithout further ado, you stab your ham and cut off a piece. It tastes great; you find yourself humming as you bite into the soft flesh. The sauce adds a great aftertaste and you can really detect the bittersweet taste of honey with a touch of lemon.");
 
 	output("\n\nKelly watches you hungrily; even as her own hands cut some ham on auto-pilot, her eyes never leave you or your plate, a faint smirk on her lips. <i>\"Good stuff, isn't it?\"</i> she asks, taking a mouthful of herself and humming with delight as she savors it.");
 
@@ -1742,7 +1742,7 @@ public function refuseDesertFromKellysWang():void
 	userInterface.showBust("KELLY_NUDE");
 	showKellyName();
 	author("Quiet Browser & LD");
-	output("You shake your head at Kelly. She really has a one-track mind doesn’t she? Well, you apologise, but you’ll have to refuse her invitation.");
+	output("You shake your head at Kelly. She really has a one-track mind doesn’t she? Well, you apologize, but you’ll have to refuse her invitation.");
 	//if Mischievous:
 	if(pc.isMischievous())
 	{
@@ -1766,7 +1766,7 @@ public function refuseDesertFromKellysWang():void
 		output("\n\nYou break the kiss, as suddenly as you’ve begun. Food for thought, you tell her. Something to help her get off.");
 		output("\n\n<i>\"That'll do it,\"</i> she giggles dreamily, still looking a little dopey.");
 	}
-	output("\n\nYou apologise, but you really should get going.");
+	output("\n\nYou apologize, but you really should get going.");
 	tempNudeOff();
 	if(!pc.isNude()) output(" With a quick stop to gather your gear and dress up, y");
 	else output(" Y");
@@ -1838,7 +1838,7 @@ public function helpKellyFindHerHoneyThisWasntAPloyForCumPlayAtAll():void
 		{
 			output("\n\nYou admit, a bit awkwardly, that you haven’t been out of the city limits yourself. At least not yet.");
 
-			output("\n\n<i>\"Oh...\"</i> she notes quietly, looking a little disappointed. Then she brightens and shrugs her shoulder. <i>\"Okay then, nevermind. I'm sure you must have other stories to tell about yourself? Maybe something from your past?\"</i> she suggests.");
+			output("\n\n<i>\"Oh...\"</i> she notes quietly, looking a little disappointed. Then she brightens and shrugs her shoulder. <i>\"Okay then, never mind. I'm sure you must have other stories to tell about yourself? Maybe something from your past?\"</i> she suggests.");
 
 			output("\n\nYou nod, of course. Now where to start....");
 		}
@@ -1893,7 +1893,7 @@ public function helpKellyFindHerHoneyThisWasntAPloyForCumPlayAtAll():void
 			//Cunt Snakes:
 			else if(select == 4)
 			{
-				output("\n\nThere are a few parasitic snakes commonly known as cunt snakes. They got a nasty bite.");
+				output("\n\nThere are a few parasitic snakes commonly known as cunt snakes. They have a nasty bite.");
 				output("\n\n<i>\"I can imagine,\"</i> she says, wincing. <i>\"But why do they call them cunt snakes? Sounds like they crawl up inside girls' pussies and make nests in there,\"</i> she seems rather grossed out by the notion.");
 				output("\n\nYou shake your head. You explain that it’s actually because they have what looks like a pussy on their other end.");
 				output("\n\n<i>\"...That's one reason to call them that,\"</i> she admits, clearly trying to picture that in her head. <i>\"But you said they were parasites? How do they work?\"</i>");
@@ -1915,7 +1915,7 @@ public function helpKellyFindHerHoneyThisWasntAPloyForCumPlayAtAll():void
 				//else if no dick:
 				else if(!pc.hasCock())
 				{
-					output("\n\nThey leave you alone for the most part, tho. Apparently they are only interested in people with dicks.");
+					output("\n\nThey leave you alone for the most part, though. Apparently they are only interested in people with dicks.");
 					output("\n\n<i>\"I guess that makes sense,\"</i> she notes, nodding her head. <i>\"I guess I'd be a pretty tempting target for them, huh?\"</i> she jests, a little weakly at the thought.");
 					output("\n\nNo kidding, you state. You begin to recount your encounter, warning her not to go looking for one....");
 				}
@@ -1934,7 +1934,7 @@ public function helpKellyFindHerHoneyThisWasntAPloyForCumPlayAtAll():void
 	{
 		output("\n\n<i>\"Hi honey; miss me?\"</i> she giggles, draping an arm over your shoulder and snuggling close to you, her breasts pushing against your own [pc.chest].");
 
-		output("\n\nYou reach down to cup one of her breasts, giving it a quick grope. Your other hand reaching around her to hug her and bring her chin up so you can give her a friendly peck on her lips.");
+		output("\n\nYou reach down to cup one of her breasts, giving it a quick grope. Your other hand reaches around her to hug her and bring her chin up so you can give her a friendly peck on her lips.");
 
 		output("\n\nShe lets out an appreciative mumble as your fingers close over sensitive titflesh, gladly letting you lean in to kiss her. Her arms wrap themselves over your shoulders, pulling you tighter against her body as she deepens the kiss, her zil-like tongue probing insistently at your [pc.lips], looking for the slightest weakness to slide inside.");
 
@@ -1947,7 +1947,7 @@ public function helpKellyFindHerHoneyThisWasntAPloyForCumPlayAtAll():void
 
 		output("\n\nYou take advantage of your position to attack her pillowy mounds, nuzzling and gently nipping her erect nubs.");
 
-		output("\n\nShe moans and gasps, arching her back, her buttons stiff and firm against your lips, shafts hot and hard against your belly. <i>\"Mmm...somebody wanna have some fun while we wait for supper?\"</i> she suggests, licking her lips and giggling at the thought. Her hands stroke their way down your back to give the cheeks of your [pc.butt] an inviting squeeze.");
+		output("\n\nShe moans and gasps, arching her back, her buttons stiff and firm against your lips, shafts hot and hard against your belly. <i>\"Mmm... somebody wanna have some fun while we wait for supper?\"</i> she suggests, licking her lips and giggling at the thought. Her hands stroke their way down your back to give the cheeks of your [pc.butt] an inviting squeeze.");
 
 		output("\n\nMight as well. She looks like she needs it and you want it too, just have to be careful not to let the ham burn, or you’ll have to find something else to eat.");
 
@@ -1966,7 +1966,7 @@ public function helpKellyFindHerHoneyThisWasntAPloyForCumPlayAtAll():void
 	output("\n\n<i>\"What? You think just because I like a bit of casualness in life I'm completely unsophisticated?\"</i> she giggles, then moves to pull out her own chair, stopping before actually seating herself. <i>\"Ah, guests first?\"</i> she suggests with a smile, indicating your seat with her hand. <i>\"That's what my mom always said.\"</i>");
 	output("\n\nSeeing no reason to refuse her invitation, you take your seat, place your serving in front of you, and patiently wait for her to take hers. Happily she flops down into her seat and pulls herself in to the table. <i>\"Alright! I'm so hungry... I was starting to wonder just how long this stupid ham was gonna take to cook,\"</i> she pouts, her belly grumbling as if in emphasis.");
 
-	output("\n\nYou exchange smiles and promptly dig in. The ham is delicious, you compliment Kelly on her recipe.");
+	output("\n\nYou exchange smiles and promptly dig in. The ham is delicious; you compliment Kelly on her recipe.");
 
 	output("\n\n<i>\"Thank you!\"</i> she beams, already forking up a big piece for herself. <i>\"I'm quite proud of my cooking - I didn't go to home economics class for nothing, I'll have you know,\"</i> she jokes, then gobbles down her forkful.");
 
@@ -1974,7 +1974,7 @@ public function helpKellyFindHerHoneyThisWasntAPloyForCumPlayAtAll():void
 
 	output("\n\nIt doesn’t take long for you to finish stuffing yourself. You drain the last of your drink and sigh, completely satisfied for the moment. Once more, you compliment Kelly’s cooking.");
 
-	output("\n\n<i>\"You're welcome,\"</i> she tells you, hiccups, then giggles. <i>\"Sorry, ate a bit too fast there,\"</i> she apologises, then climbs to her feet. <i>\"Just sit back and relax, honey. I’ll just clear the table and be with you in a second,\"</i> she tells you, blowing you a kiss. Then she sets about gathering up her cutlery and taking yours, stacking it atop hers and strutting off to the kitchen, humming contentedly as she goes.");
+	output("\n\n<i>\"You're welcome,\"</i> she tells you, hiccups, then giggles. <i>\"Sorry, ate a bit too fast there,\"</i> she apologizes, then climbs to her feet. <i>\"Just sit back and relax, honey. I’ll just clear the table and be with you in a second,\"</i> she tells you, blowing you a kiss. Then she sets about gathering up her cutlery and taking yours, stacking it atop hers and strutting off to the kitchen, humming contentedly as she goes.");
 	processTime(35);
 	//[HelpHer][Relax]
 	clearMenu();
@@ -2103,7 +2103,7 @@ public function mischievouslyFlirtingWithKelly():void
 	author("Quiet Browser & LD");
 	output("Better? Well if she says so....");
 
-	output("\n\nYou get back on your [pc.feet] and proceed towards the nearest group of stranger you can find.");
+	output("\n\nYou get back on your [pc.feet] and proceed towards the nearest group of strangers you can find.");
 
 	output("\n\n<i>\"Hey, wait!\"</i> Kelly splutters indignantly, springing to her feet and slamming her hands angrily on the table behind you. <i>\"You can't just walk up to me and then go chasing some other piece of tail!\"</i> she protests. <i>\"I thought you wanted me?!\"</i>");
 
@@ -2113,7 +2113,7 @@ public function mischievouslyFlirtingWithKelly():void
 
 	output("\n\nYou shrug, if she’s so sure she wants you, fine. You smile.");
 
-	output("\n\n<i>\"You bet your sweet ass I... oh, you dirty little; you just played me, didn't you?\"</i> Kelly asks , realisation visibly dawning on her face. <i>\"Oh, well-played, " + pc.mf("sir","madam") + ", well-played indeed,\"</i> she giggles, clearly amused at how you tricked her. A coy look in her eyes suggests she's plotting how to get you back for that, as she starts strutting proudly towards you. <i>\"C'mere, you; you want me, you got me... or do I have you?\"</i> she suggests, taking your hand and dragging you towards the door.");
+	output("\n\n<i>\"You bet your sweet ass I... oh, you dirty little; you just played me, didn't you?\"</i> Kelly asks , realization visibly dawning on her face. <i>\"Oh, well-played, " + pc.mf("sir","madam") + ", well-played indeed,\"</i> she giggles, clearly amused at how you tricked her. A coy look in her eyes suggests she's plotting how to get you back for that, as she starts strutting proudly towards you. <i>\"C'mere, you; you want me, you got me... or do I have you?\"</i> she suggests, taking your hand and dragging you towards the door.");
 
 	output("\n\nYou chuckle. You don’t know, does she?");
 
@@ -2226,7 +2226,7 @@ public function kellyHyperPlayAwwwYiss():void
 		}
 		else
 		{
-			output("\n\nYou dig through yours stuff and come up with the mod for Kelly.");
+			output("\n\nYou dig through your stuff and come up with the mod for Kelly.");
 
 			output("\n\nKelly takes it from you, a little uncertainly, but with a determined look on her face, already adjusting the delivery mechanism. <i>\"Right, I just need a little of this; too much and I might end up getting modded, not countered,\"</i> she explains. Satisfied with her tweaking, she nods and brings the business end of it to rest against the base of her shafts. <i>\"Alright, here goes nothing,\"</i> she declares, and depresses the trigger, hissing as the minute dose rushes into her bloodstream.");
 			output("\n\nShe shivers, and rubs the injection site tenderly. <i>\"Okay now... it's going to take time for this stuff to kick in, but arousal should help; why don't you and I have a little fun to give it a jumpstart?\"</i> she suggests. <i>\"Your cock in my cunt would be just the thing... besides, it'd be more fun than just sitting around watching my junk,\"</i> she manages to quip dryly.");
@@ -2259,7 +2259,7 @@ public function kellyHyperPlayAwwwYiss():void
 			output("\n\nKelly simply giggles and wags a finger at you. <i>\"Patience, honey. Just let me get my grow-juice,\"</i> she informs you with a smile. Despite her words, she wastes no time in crossing the room to where she keeps that 'grow-juice' stashed.");
 		}
 		output("\n\nWith the mod recovered, Kelly returns to you, brandishing it with a grin and a flourish. <i>\"Ready? Here we go!\"</i> she cheers, plunging it without hesitation into the base of her dicks and depressing the trigger. She shudders appreciatively as she withdraws it, then places it aside. <i>\"Now, let me guess; you'd like to do a little hands-on coaxing for my growth? Hmm?\"</i> she asks you, a cheeky grin writ wide on her face.");
-		output("\n\nYou walk up to her, caressing her side as you circle her and hug her from behind. A hand on her hip and another encircling her topmost shaft. A teasing stroke drawing a small moan from the laquine.");
+		output("\n\nYou walk up to her, caressing her side as you circle her and hug her from behind. You place a hand on her hip and another encircling her topmost shaft, a teasing stroke drawing a small moan from the laquine.");
 		output("\n\n<i>\"Mmm... let's take this to bed, shall we?\"</i> Kelly suggests. WIth no reason to oppose her, you let her lead the way to the bedroom.");
 	}
 	//All variants rejoin here//
@@ -2274,14 +2274,14 @@ public function kellyHyperPlayAwwwYiss():void
 	else output("\n\nThis is a butt you could see yourself slapping over and over. So firm and yet so soft. You’d love to see it jiggle for you.");
 	output("\n\n<i>\"I work out,\"</i> she professes candidly. <i>\"Now, nice as that feels, though, I think somebody is getting a little distracted...?\"</i> she teasingly asks.");
 
-	output("\n\nYou respond to that with a slap on one ass-cheek, the crack of flesh on flesh audibly as it jiggles before you, an appreciative moan rippling its way out of the laquine's throat. <i>\"Patience, patience,\"</i> you instruct her. She needs to get into the mood for this, first. Still, as fun as it may be, it is time to move on from her ass... and so, laying yourself down behind her, you bring your face closer to her feminine treasure. She wriggles slightly as she feels your hot breath on her labia, but holds herself still. You're dimly aware of her cocks growing bigger, slowly but steadily, out of the corner of your eye, but you have something else in mind. Opening your mouth, you let your [pc.tongue] extend out, then lean close enough to slowly swipe it through her netherlips.");
+	output("\n\nYou respond to that with a slap on one ass-cheek, the crack of flesh on flesh audible as it jiggles before you, an appreciative moan rippling its way out of the laquine's throat. <i>\"Patience, patience,\"</i> you instruct her. She needs to get into the mood for this, first. Still, as fun as it may be, it is time to move on from her ass... and so, laying yourself down behind her, you bring your face closer to her feminine treasure. She wriggles slightly as she feels your hot breath on her labia, but holds herself still. You're dimly aware of her cocks growing bigger, slowly but steadily, out of the corner of your eye, but you have something else in mind. Opening your mouth, you let your [pc.tongue] extend out, then lean close enough to slowly swipe it through her netherlips.");
 
 	output("\n\nAn appreciative coo echoes from the direction of Kelly's head, but you are more concerned with savoring her flavors. Though it's not the honey that is steadily seeping from her twin shafts, it's still a very sweet flavor - sugary sweet, in fact. Certainly pleasant enough to encourage you to take a second lick, and then a third, rolling your tongue through her plump pussy and plumbing her wet depths, soaking up the tastes that ensue. A steady stream of approving groans and moans fill the air, as does the sweet scent of honey, Kelly's arousal increasing with each caress you give her fem-sex. Her cunt winks and ripples, trying to catch and hold your squirming tongue in her depths, but you slide free, teasing her at her futile efforts.");
 
 	//Long or SuperLong Tongue
 	if(pc.hasTongueFlag(GLOBAL.FLAG_LONG))
 	{
-		output("\n\nAware of her quad swaying back and forth as she rocks under your ministrations, a wicked idea comes to mind. Your inhuman [pc.tongue] worms its way through her slick netherlips and slithers downwards; even as some of it continues stroking and teasing her femininity, the rest of it writhes like a tentacle, brushing gently over the swollen skin of her quad-stuffed girlsac. It moves across the tender flesh with tantalizing strokes, reaching along and then looping itself around the base of her two shafts, filling your senses with the strange cocktail of tastes: her sugary-sweet pussy-juices, mingling with the honeyed taste of her precum as it paints her shafts, all undercut with just the faintest salty tang of sweet.");
+		output("\n\nAware of her quad swaying back and forth as she rocks under your ministrations, a wicked idea comes to mind. Your inhuman [pc.tongue] worms its way through her slick netherlips and slithers downwards; even as some of it continues stroking and teasing her femininity, the rest of it writhes like a tentacle, brushing gently over the swollen skin of her quad-stuffed girlsac. It moves across the tender flesh with tantalizing strokes, reaching along and then looping itself around the base of her two shafts, filling your senses with the strange cocktail of tastes: her sugary-sweet pussy-juices, mingling with the honeyed taste of her precum as it paints her shafts, all undercut with just the faintest salty tang of sweat.");
 		output("\n\n<i>\"Oh, gods... I'm gonna have to remember that trick,\"</i> Kelly groans, deep and low in her throat, longing filling her voice.");
 	}
 
@@ -2306,7 +2306,7 @@ public function kellyHyperPlayAwwwYiss():void
 	output("\n\nThe room is filled with the sound of flesh on flesh as your respective hips collide, Kelly moaning under you in pleasure, you voicing your own sounds of pleasure above her. Her fingers squeeze at her bedding for support, eyes screwed shut as she loses herself in the sensations. As you continue to plough her, though, you become aware of a strange dissonance in the background; a wet slapping noise that isn't the two of you. Twisting around is a little awkward, but you manage to find the source; it's Kelly's cocks! Under your ministrations, her two horse-like shafts have grown into 20-inch long monsters, bouncing forcibly against her belly and into the canyon of her cleavage in rough synchronicity with the thrusting of your hips.");
 
 	output("\n\nHmm... if you were to get a little more involved, you might be able to see how big she can <b>really</b> get. But, it would probably require touching her dicks...");
-	if(silly) output(" and it's only gay your dick touches hers, right? Hands are okay.")
+	if(silly) output(" and it's only gay if your dick touches hers, right? Hands are okay.")
 
 	processTime(10);
 	pc.lust(33);
@@ -2434,9 +2434,9 @@ public function addAHandjobToKellyHyperFuckPlay():void
 	showKellyName();
 	author("Quiet Browser & LD");
 	output("Well, polite is polite....");
-	output("\n\nShe grunts as you drape yourself over her back for added support. <i>\"Wha?\"</i> she starts to ask, then lets out a soft gasp of realisation as she feels your hands closing around the base of each shaft. She purrs approvingly, leaning her head back to try and nuzzle her cheek against yours. Your present position makes thrusting into her a little awkward, but you certainly have a good grip on her dicks, which you put to good use.");
+	output("\n\nShe grunts as you drape yourself over her back for added support. <i>\"Wha?\"</i> she starts to ask, then lets out a soft gasp of realization as she feels your hands closing around the base of each shaft. She purrs approvingly, leaning her head back to try and nuzzle her cheek against yours. Your present position makes thrusting into her a little awkward, but you certainly have a good grip on her dicks, which you put to good use.");
 
-	output("\n\nYour hands slide up and down the twin equine shafts, exploring their immense lengths - and Kelly's not done growing yet, either. You can feel them stretching longer and longer under your touch, growing fatter and rounder in your hands. You let one girlcock go to examine her straining balls, feeling the almost cantaloup-sized globes and their sloshing weight of honeycum, rubbing your fingers across the sensitive skin, much to Kelly's enjoyment.");
+	output("\n\nYour hands slide up and down the twin equine shafts, exploring their immense lengths - and Kelly's not done growing yet, either. You can feel them stretching longer and longer under your touch, growing fatter and rounder in your hands. You let one girlcock go to examine her straining balls, feeling the almost cantaloupe-sized globes and their sloshing weight of honeycum, rubbing your fingers across the sensitive skin, much to Kelly's enjoyment.");
 
 	output("\n\nBending your head a little closer to one of her long, floppy ears, you stage-whisper into it, <i>\"Grow for me,\"</i> even as your hands continue to dance along her dicks and you hump against her eager pussy.");
 
@@ -2447,7 +2447,7 @@ public function addAHandjobToKellyHyperFuckPlay():void
 
 	output("\n\nThe treatment seems to be working; the scent of honey is overpowering now, and you realize you can actually see the heads of her shafts even when her own hips are thrusting away; she's grown up and through her boob-canyon.");
 
-	output("\n\nShe giggles absently. <i>\"You think that's something? I'm not done yet,\"</i> she chuckles, opening her mouth and closing her eyes. You watch in fascination as her tongue stretches out...and out; a foot long bright yellow appendage that coils itself around her heads in a figure-8 loop. Muffled hums escape her throat as she wriggles and undulates, teasing her slowly-flaring tips even as you continue to fuck her womanhood and use her tits on the lower parts of her shaft. Under your combined ministrations, she just keeps getting bigger and bigger; by the time she stops, she's got twin meter-long shafts jutting from her loins, each four inches thick and gushing honeyed precum like an open tap. Her tongue-tip lifts itself to each flared head in turn, and you can actually see it bulging as it somehow sucks her juices through the tip.");
+	output("\n\nShe giggles absently. <i>\"You think that's something? I'm not done yet,\"</i> she chuckles, opening her mouth and closing her eyes. You watch in fascination as her tongue stretches out... and out; a foot long bright yellow appendage that coils itself around her heads in a figure-8 loop. Muffled hums escape her throat as she wriggles and undulates, teasing her slowly-flaring tips even as you continue to fuck her womanhood and use her tits on the lower parts of her shaft. Under your combined ministrations, she just keeps getting bigger and bigger; by the time she stops, she's got twin meter-long shafts jutting from her loins, each four inches thick and gushing honeyed precum like an open tap. Her tongue-tip lifts itself to each flared head in turn, and you can actually see it bulging as it somehow sucks her juices through the tip.");
 
 	output("\n\nYou can feel her cunt ");
 	if(y >= 0) output("and tailhole ");
@@ -2529,7 +2529,7 @@ public function doKellyInTheBumBUMBUMMMMMMMM():void
 
 		output("\n\n<i>\"You are just too sweet for your own good, honey,\"</i> she chuckles, crossing the distance between the two of you and draping her arms over your shoulders. <i>\"But throw in that confident streak of yours, and that's one of the reasons I like you,\"</i> she giggles, then kisses you quickly on the lips. <i>\"Now, let's indulge one of those other reasons, hmm?\"</i> she suggests, winking as her hand drifts down to caress your [pc.cock " + x + "].");
 
-		output("\n\nBrushing her fingers tantalizingly across your shaft, she takes gentle hold of you and starts to lead you towards the couch. Only once you have reached it does she let go and position herself on the seat, resting against the back and turning her head to look at you over her shoulder. <i>\"Well? Come on, lets see what you got, sweet thing,\"</i> she giggles, shaking her butt slightly for emphasis.");
+		output("\n\nBrushing her fingers tantalizingly across your shaft, she takes gentle hold of you and starts to lead you towards the couch. Only once you have reached it does she let go and position herself on the seat, resting against the back and turning her head to look at you over her shoulder. <i>\"Well? Come on, let’s see what you got, sweet thing,\"</i> she giggles, shaking her butt slightly for emphasis.");
 
 		output("\n\nYou caress her pillowy cheeks, fingers brushing teasingly against her tight backdoor. She closes her eyes, a soft exclamation of approval humming from her lips. You adjust her position so you can get easy access to her goods.");
 
@@ -2568,12 +2568,12 @@ public function doKellyInTheBumBUMBUMMMMMMMM():void
 		output("\n\nYou release your [pc.cock " + x + "] and let her just grab you. However you aren’t beat yet. Since she’s got ");
 		if(pc.cockTotal() > 1) output("one of ");
 		output("yours, it’s only fair you get one of hers. With a playful grin you grab her topmost shaft right behind her flare, stroking her tip with your thumb.");
-		output("\n\nA giggling moan escapes her, beads of sticky pre-cum smearing against your thumb. WIth a grin, she starts to play with the cock in her hands, fingers dancing across your shaft, thumbs rubbing your tip.");
+		output("\n\nA giggling moan escapes her, beads of sticky pre-cum smearing against your thumb. With a grin, she starts to play with the cock in her hands, fingers dancing across your shaft, thumbs rubbing your tip.");
 		output("\n\nAs much as you appreciate getting some help, this is something you can do on your own. Now, if she’d be so kind as to stop holding out on your promised bunny butts?");
 		output("\n\n<i>\"Well... since you seem to be ready,\"</i> she suggestively notes, removing her fingers from your prick and rubbing the pre-cum she has gathered between thumb and forefinger. <i>\"Come on, sweet thing,\"</i> she purrs, before she sashays her way over to the couch. Clambering onto the seat with deliberate motions, kneeling on it to make herself comfortable, she drapes herself over the back, tail flicking like a rabbit's as if beckoning you to join her.");
 		output("\n\nYou follow that bobbing tuft of fur, playfully biting it.");
 		output("\n\n<i>\"H-hey!\"</i> She says with a gasp. <i>\"Just what do you think you're doing?\"</i> she demands of you.");
-		output("\n\nYou apologise, laughing. It just looked so tasty you couldn’t resist. Now, there’s another thing that looks tasty from your angle....");
+		output("\n\nYou apologize, laughing. It just looked so tasty you couldn’t resist. Now, there’s another thing that looks tasty from your angle....");
 		output("\n\n<i>\"And what might that be, hmm?\"</i> she questions, keeping her face turned away so as not to spoil the surprise.");
 		output("\n\nShe gasps as you bury your face between her legs, licking into her soft folds with gusto.");
 		output("\n\n<i>\"Ohhh...\"</i> she sighs softly in pleasure, nether-lips squirming around your [pc.tongue], wrapping their silken walls around it as you burrow inside, the unmistakable taste of sex-tinged honey washing over your senses. Above you, Kelly wriggles a little. <i>\"A-as good as that feels,\"</i> she says, tone swinging across the scale as you keep hitting sensitive spots. <i>\"I-I thought you were after the other hole?\"</i>");
@@ -2631,7 +2631,7 @@ public function doKellyInTheBumBUMBUMMMMMMMM():void
 
 		output("\n\nShe moans softly and bites back a whimper, wriggling slightly in a futile attempt to adjust to being penetrated so suddenly and forcibly, attempting to make herself stop resisting.");
 
-		output("\n\nYou pull your hips back and with a powerful pump you hilt yourself completely inside her. Her resistance turning to acceptance as you slip in with a wet schluck. The first of many to follow, no doubt. You hold yourself still for a moment, letting her adapt to your shaft.");
+		output("\n\nYou pull your hips back and with a powerful pump you hilt yourself completely inside her, her resistance turning to acceptance as you slip in with a wet schluck. The first of many to follow, no doubt. You hold yourself still for a moment, letting her adapt to your shaft.");
 
 		output("\n\nShe pants for breath as her asshole recovers from your brutal entry. <i>\"You, [pc.name], are a real asshole, you know that? Lucky for you, I don't mind it rough,\"</i> she growls for emphasis, grinding back against you.");
 
@@ -2696,11 +2696,11 @@ public function getGlazedWhileButtFuckingTheHoneyBunny():void
 
 	output("\n\nThat was the last straw for her; her tailhole clamps down on you like a vice, milking the last of your seed from you as she cries out in pleasure. Balls clench down and cocks bulge as they erupt like twin fountains, spraying thick streamers of orange-yellow semen squarely at you.");
 
-	output("\n\nYou close your eyes as her seed sprays all over yourself, only to rain back down at her. By the time she’s done you look like a mess, she looks like a mess, the couch looks like a mess.");
+	output("\n\nYou close your eyes as her seed sprays all over yourself, only to rain back down at her. By the time she’s done you look like a mess, she looks like a mess, and even the couch looks like a mess.");
 
 	output("\n\nA deep, loud groan escapes Kelly, who bonelessly collapses back against her seat, cocks falling limply against her ");
 	if(pc.cumQ() > 1000) output("swollen ");
-	output("stomach and slowly sliding back into her sheaths. <i>\"I...I think I'm done now,\"</i> she mumbles, opening her eyes to take in what she did. <i>\"Wow, I sure did a number on us, didn't I?\"</i> she asks. She sounds quite pleased with the sheer amount of mess she's made.");
+	output("stomach and slowly sliding back into her sheaths. <i>\"I... I think I'm done now,\"</i> she mumbles, opening her eyes to take in what she did. <i>\"Wow, I sure did a number on us, didn't I?\"</i> she asks. She sounds quite pleased with the sheer amount of mess she's made.");
 
 	//Kind:
 	if(pc.isNice())
@@ -2797,14 +2797,14 @@ public function deepFuckKellysButthole():void
 	output("\n\nHer ass squeezing down on you, demanding your seed. The perverted fountain of honey-jizz she’s spewing into the air. It’s all too much for you. You let loose a scream of pleasure as you paint her innards with your [pc.cum].");
 
 	//CumQuantity=Normal:
-	if(pc.cumQ() <= 250) output("\n\nAs you empty yourself inside of her, Kelly's rosebud milks you, doing it's best to suck you completely dry. When nothing more is forthcoming, it clenches down on you, holding you in a vice-like grip.");
+	if(pc.cumQ() <= 250) output("\n\nAs you empty yourself inside of her, Kelly's rosebud milks you, doing its best to suck you completely dry. When nothing more is forthcoming, it clenches down on you, holding you in a vice-like grip.");
 	//CumQuantity=High:
 	else if(pc.cumQ() <= 1000) output("\n\nKelly grinds herself back into you, wringing your dick for all it's worth even as her stomach begins to stretch from the sheer quantity of cum you've given her. Even as your prodigious load ebbs away, her tailhole keeps on gently milking you, as if hoping there's yet more to come.");
 	//CumQuantity=VeryHigh:
 	else if(pc.cumQ() <= 10000) output("\n\nYou can feel the weight of the laquine in your lap increasing as your [pc.cum] pours inside of her, bloating her belly into a pregnant-looking bulge. Throughout it all her ass suckles from you, its hunger insatiable, gobbling down each great globule of jism without pause. When you finally run dry, it clamps down on you, determined to not let a single drop escape.");
 	//CumQuantity=Extreme:
 	else output("\n\nKelly's stomach balloons outwards under the inhuman tidal wave of [pc.cum] that is your orgasm, her whole body writhing atop you as you fill her to her very limits. If she weren't so busy catching her own cum with her mouth, she'd probably be crying out in ecstasy at being crammed so very full, stomach visible to you even from your position behind and under her. Through it all, her ravenous ass shows no signs of relenting its efforts of milking you, even as her cum-gut sloshes and wobbles with each twitch of her orgasmic form. Only the slightest of moisture escapes to wet your dick once you have finished, the rest locked away inside her stomach.");
-	output("\n\nYou hug your lapful of laquine. Not really caring that you wind up with a bit of her honey on your arms. You feel pretty warm right now. The afterglow after such a great climax must be settling in. Without thinking you hug Kelly just a bit tighter, feeling her bosom press against your [pc.skinFurScales]. Her little nipples feel like small pebbles poking against your arm.");
+	output("\n\nYou hug your lapful of laquine, not really caring that you wind up with a bit of her honey on your arms. You feel pretty warm right now. The afterglow after such a great climax must be settling in. Without thinking you hug Kelly just a bit tighter, feeling her bosom press against your [pc.skinFurScales]. Her little nipples feel like small pebbles poking against your arm.");
 	output("\n\nKelly moans softly and shifts gingerly in your arms, audibly wincing as she does so. <i>\"[pc.name]? Honey? That was incredible, but...\"</i> she groans again and shifts once more. <i>\"I am going to be feeling this for days,\"</i> she whimpers.");
 	var bigCum:Boolean = false;
 	if(pc.cumQ() > 1000) bigCum = true;
@@ -2823,7 +2823,7 @@ public function deepFuckKellysButthole():void
 
 		output("\n\n<i>\"Yessirree, you're a lucky " + pc.mf("boy","girl") + ", aren't you?\"</i> Kelly chuckles softly. <i>\"The cutest bunny-bum on the planet, and it's all yours to play with - I hope you appreciate this.\"</i>");
 		output("\n\nOh, you certainly do. You appreciate everything, you say, giving her a kiss on the back of her neck.");
-		output("\n\nShe giggles and wriggles a little at your gesture, only to let out a soft hiss. <i>\"Nnn... honey? Do you think I can maybe get up now? I really am kind of sore down there,\"</i> she admits, abused rosebud rippling around your shaft, still plugged inside of her.");
+		output("\n\nShe giggles and wriggles a little at your gesture, only to let out a soft hiss. <i>\"Nnn... honey? Do you think I can maybe get up now? I really am kind of sore down there,\"</i> she admits, her abused rosebud rippling around your shaft, still plugged inside of her.");
 		output("\n\nYou promptly release her.");
 		output("\n\nWith a sigh and a moan, Kelly squirms free of your lap and shuffles awkwardly to the floor, groaning softly. Rivulets of [pc.cumColor] begin visibly leaking from her ass, currently gaping in the perfect shape to contour to your mighty prick. She staggers slightly, and then straightens up, turning to give you a slightly strained smile. <i>\"Oooh,\"</i> she moans softly to herself, hand reaching behind her to gently play with her ass. <i>\"It feels kind of empty now... don't think I like that,\"</i> she pouts.");
 		output("\n\nYou ask if she has anything you could get her to dull the pain. Maybe a lotion or something?");
@@ -2851,7 +2851,7 @@ public function deepFuckKellysButthole():void
 		output("\n\n<i>\"And they say I'm sex-mad,\"</i> she says, mockingly rolling her eyes. <i>\"Now, how about letting me up, huh? This isn't the most comfortable seat I could have,\"</i> she drawls.");
 		output("\n\nYou do as she asks. Pity, you were getting kinda comfy.");
 		output("\n\nShe awkwardly hops out of your lap, groaning as she hits the floor. <i>\"Think you can help me out? I've got some Peggy's Elasticizing Oil brand lubricant in my room, near the bed - would you mind grabbing it and helping me put some on? Ought to help me feel better,\"</i> she explains.");
-		output("\n\nNodding you get up on your [pc.feet] and go off to fetch her jar, returning mere moments later with the jar in hand.");
+		output("\n\nNodding, you get up on your [pc.feet] and go off to fetch her jar, returning mere moments later with the jar in hand.");
 		output("\n\nBy this time, Kelly has laid herself down on her belly on the couch, buttocks up in the air due to being draped over one arm. <i>\"Ah, good, you found it,\"</i> she says with a relieved smile. <i>\"Can you put some on?\"</i>");
 		output("\n\nSure you can, you reply excitedly.");
 		output("\n\nShe grins at your enthusiasm. <i>\"I thought you might,\"</i> she notes, making herself comfortable once more.");
@@ -2865,7 +2865,7 @@ public function deepFuckKellysButthole():void
 			output("\n\n<i>\"Hey, I asked you to lube me up!\"</i> She squeals in protest, trying to wriggle away from you, but trapped by her choice in reclining positions so that she can't escape.");
 			output("\n\nAnd you are, you reply. Just because you chose this specific way to do it, doesn’t mean you aren’t. Now, if she doesn’t stop moving around you can’t do a proper job. You tell her she has nothing to worry about, you’ll make her enjoy this too.");
 			output("\n\n<i>\"So you say,\"</i> is the sarcastic reply she voices, but she stops struggling, trying instead to find a position where she is more comfortable. Her fingers clench into the cushion for support and she takes two deep, slow breaths. <i>\"Alright, ready as I'll ever be,\"</i> she informs you.");
-			output("\n\nYou nod, though she can’t quite see you in this position. First you move slowly, grinding against her opening and spreading the lube around opening. You grab her buttcheeks and push them together so you can properly hot-dog her.");
+			output("\n\nYou nod, though she can’t quite see you in this position. First you move slowly, grinding against her opening and spreading the lube around. You grab her buttcheeks and push them together so you can properly hot-dog her.");
 			output("\n\nShe arches her back and groans softly, doing her best to get in on the fun by trying to squeeze her luscious buttocks together and make it a tighter grip on you.");
 			output("\n\nOnce you’re satisfied, you decide to use your [pc.cockHead " + x + "] to slowly massage her sphincter. You don’t outright penetrate her, instead you nudge her open with short and slow strokes.");
 			output("\n\nKelly moans softly, her rosebud squeezing hesitantly back against you, but with nowhere near the energy or force of before.");
@@ -2883,7 +2883,7 @@ public function deepFuckKellysButthole():void
 			output("\n\nYou get yourself a handful of the slick gel and put a generous helping on top of her tail-hole.");
 			output("\n\nA soft moan of anticipation escapes the prone laquine, who wriggles slightly as the coolness of the lubricant penetrates her flesh.");
 			output("\n\nWith your thumbs, you gently rub it around her opening. In the meantime you also use your remaining fingers to massage her pillowy butt, enjoying the way her soft flesh yields under your advances. No sense why you shouldn’t have a bit of fun while you help her.");
-			output("\n\nKelly groans deep and luxuriantly, shiftly softly in place as you grope and massage her. Stretched out as it is from your recent fun, her ass barely clenches as your fingers touch it, and she seems quite content to let you do as you please.");
+			output("\n\nKelly groans deep and luxuriantly, shifting softly in place as you grope and massage her. Stretched out as it is from your recent fun, her ass barely clenches as your fingers touch it, and she seems quite content to let you do as you please.");
 			output("\n\nYou rub around the circumference of her sphincter, slowly pushing more and more of your thumbs in. Slowly, you coax her to open up and accept you. A task that is not too difficult considering the earlier fucking.");
 			output("\n\n<i>\"Mmm... that feels good,\"</i> she replies dreamily, tailhole clutching weakly at your thumbs.");
 			output("\n\nYou get another handful and apply it to her sore hole. Using your index, you thrust inside her and massage her innards.");
@@ -2898,7 +2898,7 @@ public function deepFuckKellysButthole():void
 	//Hard:
 	else
 	{
-		output("\n\nShe might be hurting now, but you’re pretty sure it was worth it. For both you, you add. Plus this gives her something to look forward to. You doubt there’s anyone that can make her cum this hard from buttsex in Esbeth. You cup one of her breasts, gently fondling it.");
+		output("\n\nShe might be hurting now, but you’re pretty sure it was worth it. For both of you, you add. Plus this gives her something to look forward to. You doubt there’s anyone that can make her cum this hard from buttsex in Esbeth. You cup one of her breasts, gently fondling it.");
 		output("\n\nShe groans in pleasure and shifts a little, wincing as she does so. <i>\"I'd have to say you're right about that,\"</i> she admits.");
 		output("\n\nOf course you are. You give her a couple more pumps and hug her tight, kissing her on the back of her neck.");
 		output("\n\nShe hisses softly as you pump inside of her again, clenching her ass weakly on your dick as she does so. <i>\"Don't tell me you want another round?\"</i> she asks in disbelief, wriggling as you kiss her neck.");
@@ -2924,7 +2924,7 @@ public function deepFuckKellysButthole():void
 			output("\n\nWell, you are still kinda horny, and from what you could see Kelly did enjoy your rough treatment. Perhaps you should treat her to a memorable aftermath? Your [pc.cock " + x + "] throbs in agreement, already beginning to harden once more. Sounds like a plan.");
 			output("\n\nYou take a large helping of the lube and apply it in a dense layer all over your member. Kelly seems oblivious of what you have in mind thus far. Just as well, you want to surprise her.");
 			output("\n\n<i>\"[pc.name]? What's taking you?\"</i> Kelly asks. Then, with a smirk you can hear, she asks, <i>\"Is the sight of my ass just that enthralling, huh? You can't take your eyes off it to apply the lube?\"</i>");
-			output("\n\nYou tell her not to get ahead of herself, lube is coming alright. You set on hand on her left cheek, then one on her right cheek, then press the [pc.cockHead " + x + "] of your [pc.cock " + x + "] against her abused hole.");
+			output("\n\nYou tell her not to get ahead of herself, lube is coming all right. You set on hand on her left cheek, then one on her right cheek, then press the [pc.cockHead " + x + "] of your [pc.cock " + x + "] against her abused hole.");
 			output("\n\n<i>\"That doesn't feel like your fingers!\"</i> she protests, her panic ringing in her voice.");
 			output("\n\nShe asked for lube, and you’re going to apply it... with your dick.");
 			output("\n\n<i>\"But -! Ohhh...\"</i> she sighs, long and soft as your shaft gently slides into her gaping rosebud, slowly pushing its lubed surface along her walls and back inside of her once more. <i>\"That... that doesn't feel so bad,\"</i> she mumbles.");
@@ -2952,7 +2952,7 @@ public function deepFuckKellysButthole():void
 			output("\n\nKelly can't really get into it in her present position, but from the chorus of lusty moans and mewls she puts out, she's clearly enjoying this just as much as you are. Her stretched walls gently hold your shaft as it glides in and out, unable or perhaps unwilling to squeeze, but still clearly reacting to your presence.");
 			output("\n\nYou continue with your motions until you feel yourself nearing your peak. Rather than dumping it all deep inside her like earlier, you decide to mix things up and pull away until only your [pc.cockHead " + x + "] remains inside her. Then you furiously stroke yourself, bringing you over the edge as");
 			if (pc.balls > 0) output(" your balls churn and"); 
-			output(" you creampie her butt with your [pc.cum]. The lewd mixture of cum and lube pouring out around your shaft as you make a veritable mess of the bee-bunny’s behind.");
+			output(" you creampie her butt with your [pc.cum]. The lewd mixture of cum and lube pours out around your shaft as you make a veritable mess of the bee-bunny’s behind.");
 			output("\n\nA great sigh of contentment flows from Kelly's mouth as she goes limp there. <i>\"That feels so much better... nothing like a nice wet dollop of ointment to soothe sore muscles, right?\"</i> There's a mischievous tint to her words that makes you positive she's smiling as she says this.");
 			output("\n\nYou’d have to agree, you say whilst giving her butt a friendly slap. Now if she’d only be a dear and clean you up so you can put your [pc.gear] back on?");
 			output("\n\n<i>\"Of course,\"</i> she heaves a long-suffering sigh. <i>\"Why don't you come up here where I can reach you, then?\"</i> she suggests, in a much more enthusiastic tone.");
@@ -2975,9 +2975,9 @@ public function deepFuckKellysButthole():void
 			output("\n\nWorking the lube in, like she asked you to. You leisurely pump your finger in and out of her, massaging her sphincter and her innards.");
 			output("\n\nShe moans luxuriantly. <i>\"Mmm, yeah, that feels good,\"</i> she tells you absently, rosebud fluttering around your finger. <i>\"Please, give me more,\"</i> she pleads.");
 			output("\n\nSmiling at her request, you feed her another finger. And here you thought she was too worn out for more fun....");
-			output("\n\n<i>\"Real fun, yeah. Laying here and letting you - ah! - touch me in all the right places ? Now that I've got energy for,\"</i> she boasts, shuffling a little in her position. The reason why is obvious from your position; slowly, but surely, both of her shafts are starting to slide back out of their leathery sheaths.");
+			output("\n\n<i>\"Real fun, yeah. Laying here and letting you - ah! - touch me in all the right places? Now that I've got energy for,\"</i> she boasts, shuffling a little in her position. The reason why is obvious from your position; slowly, but surely, both of her shafts are starting to slide back out of their leathery sheaths.");
 			output("\n\nGood to see she’s enjoying herself, but it’s time to up the ante. You poke yet another finger in her overstretched bunny-butt, lightly pumping and snooping around inside her. You grin when you touch a spot that makes her cry out, her prostate.");
-			output("\n\nHer tailhole squeezes your fingers back as best it can, the laquine's eyes screwed close as she concentrates solely on your actions. She even tries feebly to pump her ass back against your hand as you continue to rub and thrust and caress her sensitive flesh. And through it all, her cocks get longer and harder, pussy starting to glisten with the feminine equivalent of pre-cum....");
+			output("\n\nHer tailhole squeezes your fingers back as best it can, the laquine's eyes screwed close as she concentrates solely on your actions. She even tries feebly to pump her ass back against your hand as you continue to rub, thrust and caress her sensitive flesh. Through it all, her cocks get longer and harder, her pussy starting to glisten with the feminine equivalent of pre-cum....");
 			output("\n\nYou ask her if she’s enjoying herself.");
 			output("\n\n<i>\"Mmm... w-what do you - ah! - think?\"</i> she drawls sarcastically, in between whimpering gasps of pleasure and satisfied groans, visibly humping the couch by this point.");
 			output("\n\nThat it’s time to go, you tell her. Unceremoniously you pull your fingers away, wiping them off on her butt.");
@@ -3027,20 +3027,20 @@ public function kellysCocksGetBLOWN():void
 		output("<i>\"Hold it!\"</i> Kelly suddenly interjects, frowning as she holds up a hand for emphasis. <i>\"Off with the [pc.gear] first, sugar; I'm a very messy honey-bunny, and take it from me, bunny-honey is very hard to get out of clothes. You just take your things off and put them out of the way before we start; save you some very nasty cleaning bills after we're done,\"</i> she declares.");
 		output("\n\nConceding she has a point, you see no reason to refuse. So you strip off your [pc.gear] and lay it neatly on a table in the living room. Somewhere where you don’t think she has a chance in heavens of hitting.\n\n");
 	}
-	output("You stroke her topmost shaft, admiring it. The texture, the warmth, the way it throbs before you. Her flared tip has already worked itself into a translucent, yellowish honey-glaze. And it drips down with each little twitch of her shaft. Encircling her pole with a hand, you gently test it with a squeeze. This nets you a small burst of pre from her tip. Truly, Kelly has one fine pair of juicy horse-dongs.");
+	output("You stroke her topmost shaft, admiring it. The texture, the warmth, the way it throbs before you. Her flared tip has already worked itself into a translucent, yellowish honey-glaze. It drips down with each little twitch of her shaft. Encircling her pole with a hand, you gently test it with a squeeze. This nets you a small burst of pre from her tip. Truly, Kelly has one fine pair of juicy horse-dongs.");
 	//Kind:
 	if(pc.isNice()) output("\n\nWell, time for dessert! You lick your lips and glomp her topmost shaft without hesitation.");
 	//Mischievous:
 	else if(pc.isMischievous()) output("\n\nTime to take these ponies out for a stroll! And get some candy while at it too! You lick the flared tip of Kelly’s topmost shaft, teasing her cumslit with the tip of your [pc.tongue] and welcoming it into the warmth of your mouth as you do so.");
 	//Hard:
-	else output("\n\nThese juicy cocks are too beautiful to be shared with others. You’ll give Kelly the blowjob of her life. One so good that she’ll be masturbating to the memory for months. You give her shaft a suckling kiss, just behind her flare. Mouthing your way around her honey-spitting tip as you suck her into your mouth.");
+	else output("\n\nThese juicy cocks are too beautiful to be shared with others. You’ll give Kelly the blowjob of her life. One so good that she’ll be masturbating to the memory for months. You give her shaft a suckling kiss, just behind her flare, mouthing your way around her honey-spitting tip as you suck her into your mouth.");
 
 	output("\n\nA great humming moan of approval blossoms from the laquine's throat, Kelly's eyes closing as she savors the feel of your warm, wet mouth closing around her glans. <i>\"Yeah... sugar, you sure have a sweet mouth,\"</i> she purrs, a throb pulsing along her shaft so you can feel it against your tongue, leaking sweet pre-cum syrup unabashedly into your mouth and down onto the table. <i>\"Why don't you show me just how sweet?\"</i> she suggests.");
 
 	//Hard:
 	if(pc.isAss())
 	{
-		output("\n\nYou reach for her balls and give it a sharp squeeze. Not hard enough to pain her, but hard enough that she feels it.");
+		output("\n\nYou reach for her balls and give them a sharp squeeze. Not hard enough to pain her, but hard enough that she feels it.");
 		output("\n\n<i>\"Dessert doesn’t talk,\"</i> you remark.");
 		output("\n\nShe winces at the pressure on her sensitive nuts, but manages a cheerfully mocking grin. Still, as per your <i>\"suggestion,\"</i> she doesn't say anything.");
 		output("\n\nGood girl. The problem being solved, you begin bobbing your head.");
@@ -3051,17 +3051,17 @@ public function kellysCocksGetBLOWN():void
 	if(pc.horns > 0) output("[pc.horns] before moving on to caress your ");
 	output("[pc.hair], a hum of appreciation dripping from her lips as she lovingly kneads at your scalp.");
 
-	output("\n\nHer lower shaft bumps against your neck, smearing her honeyed-pre with each bop. With a smile, or at least as much of one as you can manage with a footlong of horse-cock up your mouth, you move your hands to encircle her other shaft. The one on her shaft proper stroking her languidly, loose grip on the way down, strong grip on the way up. The one on her flared head busies itself by smearing her leaking pre around her flare. Hands moving to open her cumvein whenever you feel you could use a fresh batch.");
+	output("\n\nHer lower shaft bumps against your neck, smearing her honeyed-pre with each bop. With a smile, or at least as much of one as you can manage with a footlong of horse-cock up your mouth, you move your hands to encircle her other shaft, the one on her shaft proper stroking her languidly, a loose grip on the way down, strong grip on the way up. The one on her flared head busies itself by smearing her leaking pre around her flare, your hands moving to open her cumvein whenever you feel you could use a fresh batch.");
 
 	output("\n\nNaturally, you’re not going to forget about the delicious honey-baguette inside your mouth. You roll her shaft around, smearing her delicious pre all over your taste buds, enjoying each throb as you deepen your bobs, intent on deep throating her.");
 
 	output("\n\nFrom the moans and grunts bubbling from the laquine's throat, she's enjoying your ministrations all too well. You can hear her tongue slapping wetly against her breast as it lolls from pleasure-slackened jaws, slurping noisily as she realizes what she's done and sucks it back inside. Her fingers atop your scalp start to clench, but she forces herself to stop before she might hurt you in her enthusiasm. Instead, her hand moves slightly, to keep you in place and to help her balance, even as her hips start to buck slowly, thrusting her into your mouth in clumsy time with your own bobbing, spare cock sliding through your fingers and bobbing meatily against your chin. In her eagerness, she wriggles forward on her knees, inching closer to the edge.");
 
-	output("\n\nYou move a hand to knead her balls, coaxing them to produce more tasty honey for you. Kelly’s movements help you open your throat and her moving a bit closer makes your job easier. You redouble your efforts at pleasuring her. Collecting some pre leaking from her lower shaft to smear it atop her upper shaft like a perverted frosting. This slows your rhythm a bit, but you make up for it by gently using your lips to massage her shaft, just behind her flare.");
+	output("\n\nYou move a hand to knead her balls, coaxing them to produce more tasty honey for you. Kelly’s movements help you open your throat and her moving a bit closer makes your job easier. You redouble your efforts at pleasuring her, collecting some pre leaking from her lower shaft to smear it atop her upper shaft like a perverted frosting. This slows your rhythm a bit, but you make up for it by gently using your lips to massage her shaft, just behind her flare.");
 
 	output("\n\nA trill of bliss bursts from Kelly's lips, interrupted when you start smearing her precum along her upper shaft by a faint giggle and a full-body shiver that you can feel right through the cock in your mouth. The laquine's ticklish, it seems... but it also seems that she rather enjoys it, since she inches forward again, trying to avoid moving in such a way that she'll accidentally pop her dick from your mouth, her other hand joining the first atop your head to help her balance.");
 
-	output("\n\nNot that you don’t appreciate her enthusiasm, but if she keeps moving like that she’ll miss the table sometime soon. You would warn her if you weren’t so busy with her cock stuffed in your mouth. But surely she must realize this?");
+	output("\n\nNot that you don’t appreciate her enthusiasm, but if she keeps moving like that she’ll miss the table sometime soon. You would warn her if you weren’t so busy with her cock stuffed in your mouth. Surely she must realize this?");
 	if(flags["KELLY_BLOWJOBS_GIVEN"] > 1 && flags["KELLY_BLOWJOBS_GIVEN"] != undefined) output(" It’s not like she’d repeat her mistake from last time. That table of hers can only take so much abuse before it shatters into a million splinters. There’s no way she’s that much of an air-head... right?");
 
 	output("\n\nEvidently, no, she doesn't realize it. She just keeps on blindly inching forward, a slave to her lusts and her fixation on your mouth, pumping her hips even as she crawls forward. Finally, she pushes her luck too far; as you are lifting your head back along her shaft, she pumps forward in an effort to keep it inside of your mouth, only to lose her balance completely! With a startled yelp, Kelly falls clean off the table, sending it clattering off its legs behind her as she hurtles down right on top of you!");
@@ -3076,7 +3076,7 @@ public function kellysCocksGetBLOWN():void
 	//Kind:
 	if(pc.isNice())
 	{
-		output("\n\nQuickly recovering from the sudden events, you ask if Kelly is alright.");
+		output("\n\nQuickly recovering from the sudden events, you ask if Kelly is all right.");
 		output("\n\nKelly groans slightly, then shakes her head and smiles at you. <i>\"Yeah, honey, I'm just fine. Can't believe I got so careless,\"</i> she sighs, more than a little exaggeration in her tone as she adds, <i>\"I guess I'm a bit more of a bimbo than I like to think.\"</i>");
 		output("\n\nYou take her by the chin and give her a tender kiss. It’s fine, you like her just the way she is. Bimbo or not.");
 		output("\n\nShe smiles softly, eyes closing as she kisses you back, arms draping themselves gently around your neck as she leans in as close as she can. When you release her, she nuzzles tenderly against your cheek. <i>\"I like me the way I am too... but I like the way you are a whole lot more,\"</i> she giggles.");
@@ -3099,7 +3099,7 @@ public function kellysCocksGetBLOWN():void
 		if(flags["KELLY_BLOWJOBS_GIVEN"] > 1 && flags["KELLY_BLOWJOBS_GIVEN"] != undefined) output(" Much less repeat it after the first time, you add.");
 		output(" Closing your hand you lightly knock on her head. Is there a brain in there or is she just not using it? You doubt you’ve managed to suck her brains out through her dick yet.");
 		output("\n\n<i>\"Yes, there's a brain in there,\"</i> she pouts at you in wounded dignity. <i>\"But, like I always say, if you have time to use your brain when you're fucking, you're clearly not enjoying yourself properly,\"</i> she declares with a huff, folding her arms under her impressive cleavage for emphasis.");
-		output("\n\nChuckling, you tug on her nipple and muffle her moan with a kiss. Alright, she has a point, you concede. Now, back to dessert?");
+		output("\n\nChuckling, you tug on her nipple and muffle her moan with a kiss. All right, she has a point, you concede. Now, back to dessert?");
 		output("\n\n<i>\"I thought you'd never ask,\"</i> she purrs, stealing a quick kiss from you.");
 	}
 	//Hard:
@@ -3114,18 +3114,18 @@ public function kellysCocksGetBLOWN():void
 		output(" She was a bad girl, messing up the kitchen like that. And you punish your girls when they’re naughty. It’s only logical, you explain.");
 		output("\n\n<i>\"I guess,\"</i> she declares, clearly trying to sound grudging as she does so. <i>\"Though I suppose I'm lucky; my mom spanks me a lot harder than that when I do something wrong,\"</i> she admits, actually giggling as she does so, her former gloom brushed to the wayside now.");
 		output("\n\nOh? Is this an invitation for you to go harder on her?");
-		output("\n\nShe stiffens, you're sure that she pales under her fluffy coat, and quickly shakes her head. <i>\"Oh, no! I mean, when you spank me it.... well, it's kinda hot,\"</i> she admits, downcast gaze going to her now-revealed cocks, which haven't gotten any softer since you stopped sucking. <i>\"But getting spanked like my mom does... I mean, talk about a turn off,\"</i> she proclaims, waving her hand idly.");
+		output("\n\nShe stiffens; you're sure that she pales under her fluffy coat, and quickly shakes her head. <i>\"Oh, no! I mean, when you spank me it.... well, it's kinda hot,\"</i> she admits, downcast gaze going to her now-revealed cocks, which haven't gotten any softer since you stopped sucking. <i>\"But getting spanked like my mom does... I mean, talk about a turn off,\"</i> she proclaims, waving her hand idly.");
 		output("\n\nYou drape an arm over her shoulders, smiling confidently. She’s got one little detail wrong. It’s always sexy when it’s you doing the spanking. Now if she doesn’t want another. You haven’t finished your dessert yet.");
 		output("\n\n<i>\"Oh? Still hungry? Well...\"</i> she trails off, making a show of thinking about, one hand placing its fingers delicately upon her chin, the other tracing idle circles atop the nearest of her flat glanses. <i>\"I think I can still give you what you need,\"</i> she declares, a wicked smirk on her lips.");
 	}
-	output("\n\nLifting herself daintily from your lap, the horny laquine sashays over to a chair that remained standing when she brought down the table. With an exaggerated flick of her tail - and the luscious ass underneath - she plonks herself down upon it, balls hanging comfortably over the edge , grinning as she awaits your approach.");
+	output("\n\nLifting herself daintily from your lap, the horny laquine sashays over to a chair that remained standing when she brought down the table. With an exaggerated flick of her tail - and the luscious ass underneath - she plonks herself down upon it, her balls hanging comfortably over the edge, grinning as she awaits your approach.");
 	output("\n\nYou spread her legs and kneel before her, but before you continue you’re just going to have to confirm. <i>\"You’re going to stay in your seat this time, right?\"</i>");
 	output("\n\nKelly pouts indignantly. <i>\"Yes, I am,\"</i> she huffs, turning her nose up at the comment that has so wounded her pride.");
 	output("\n\nYou chuckle at her reaction. Well, no sense in dilly-dallying. You lean over her twin masts and give the lower one a soft kiss, right on its flared tip.");
 	output("\n\nA soft titter escapes her, and she wriggles on her seat in ticklish pleasure at the kiss. <i>\"Mmm, that feels nice,\"</i> she croons, arching her back as if for emphasis. <i>\"You're the best " + pc.mf("boy","girl") + "friend a girl could ever hope to have...\"</i> she sighs. <i>\"Mmm, I would kill for another minute between those lips,\"</i> she purrs, her tongue lavishly caressing her own pouting, kissable lips before she turns her attention back towards you. <i>\"Kiss me some more?\"</i> she asks hopefully, giving you a surprisingly innocent look for such a lusty bunny.");
 	output("\n\nSince she’s asked so nicely.... You move to her topmost shaft and give it a similar treatment, extending your tongue to tease her cumslit.");
 	output("\n\nShe lets out an appreciative moan at the gesture, eyes half-closing as she savors the contact of flesh on flesh.");
-	output("\n\nYou lean over to the side, licking along her lengths. Your hands cup her flares to collect some of her sweet honey and spread along her members as you continue to lick her ponies like a pair of honeyed lollipops. Kissing along her length, delivering teasing licks to the part where her sheath connects to her cocks and even suckling behind her flare. You draw her cock with you as you pull away with your suckling kiss to let it slap lewdly on its twin, sending both shafts bobbing and flinging her pre about.");
+	output("\n\nYou lean over to the side, licking along her lengths. Your hands cup her flares to collect some of her sweet honey and spread it along her members as you continue to lick her ponies like a pair of honeyed lollipops. You kiss along her length, delivering teasing licks to the part where her sheath connects to her cocks and even suckling behind her flare. You draw her cock with you as you pull away with your suckling kiss to let it slap lewdly on its twin, sending both shafts bobbing and flinging her pre about.");
 	output("\n\nEach touch you make elicits a shiver or a squeak of pure delight from the laquine, and when you make the two dicks slap against each other, she moans like a whore. <i>\"Mmm, you kiss good,\"</i> she purrs, but then opens her eyes wide into a pleading look. <i>\"But won't you please suck on me, now? Pretty please?\"</i> she begs, lips curled into her sexiest pout, arms moved just so to press her boobs together most enticingly.");
 
 	//Mischievous:
@@ -3135,7 +3135,7 @@ public function kellysCocksGetBLOWN():void
 	}
 	else output("\n\nWith a smile, you reply, <i>\"Sure thing.\"</i>");
 
-	output("\n\nWithout further ado you return to her topmost shaft and opening your mouth, you slide her cock in. Your hands waste no time in kneading her lower shaft. Pressing and turning and rubbing it like soft clay ready to be molded by an artisan’s hand.");
+	output("\n\nWithout further ado you return to her topmost shaft and opening your mouth, you slide her cock in. Your hands waste no time in kneading her lower shaft, pressing, turning and rubbing it like soft clay ready to be molded by an artisan’s hand.");
 
 	output("\n\nKelly's mouth opens in a soft mewl of delight, eyes closing as she loses herself in your ministrations. Her hands reach out to your head, caressing your cheeks before placing themselves atop your scalp, but she makes no move to plunge you further down her shaft, nor does she buck her hips; evidently, she's waiting to see you make the next step.");
 
@@ -3143,9 +3143,9 @@ public function kellysCocksGetBLOWN():void
 
 	output("\n\n<i>\"Oh, yes,\"</i> she purrs absently, clearly approving of your actions.");
 
-	output("\n\nYou continue teasing and switching her shafts around. Submitting both of her ponies to the ministrations provided both by your mouth and your kneading hands. You can only guess how that must feel for the shuddering bee-laquine.");
+	output("\n\nYou continue teasing and switching her shafts around, submitting both of her ponies to the ministrations provided both by your mouth and your kneading hands. You can only guess how that must feel for the shuddering bee-laquine.");
 
-	output("\n\nKelly's hands are clenched tight atop your head, her eyes screwed shut. Wordless gasps and mewls of pleasure bubble from her throat, any coherence driven from her by your touch. With the way she’s throbbing both in your mouth and on your hands, you reckon she won’t last much longer. Now you’ve got a choice to make. With some technique you might be able to close off one of her shafts and make those churning balls of hers pump all their sweet load up the topmost shaft. This way you could drink it all. Or you could just let her paint you with lower shaft while you enjoy a lighter load from her topmost shaft.");
+	output("\n\nKelly's hands are clenched tight atop your head, her eyes screwed shut. Wordless gasps and mewls of pleasure bubble from her throat, any coherence driven from her by your touch. With the way she’s throbbing both in your mouth and on your hands, you reckon she won’t last much longer. Now you’ve got a choice to make. With some technique you might be able to close off one of her shafts and make those churning balls of hers pump all their sweet load up the topmost shaft. This way you could drink it all. Or you could just let her paint you with her lower shaft while you enjoy a lighter load from her topmost shaft.");
 
 	processTime(20+rand(3));
 	pc.lust(15);
@@ -3208,7 +3208,7 @@ public function splatterYourselfWithHoneyBunnysCumAfterGivingHerABJ():void
 	else output(" Such intimate knowledge of my body. - Hmm - You’re really one of a kind, honey. I’m putty and you’re the artisan honey, don't stop!");
 	output("\"</i>");
 
-	output("\n\nKelly pants in her excitement, the short, sharp breaths making her tits bounce about most enticingly. Her hands unthinkingly fly from your head to catch them, kneading the soft fur covering their expanse, thumbs and forefingers moving to pinch the diamond-hard black nubs of her nipples as they jut out in her excitement. She moans like a whore as your tongue caresses her cum-vein. <i>\"That mouth of yours.... gods, I could just melt in your mouth. ");
+	output("\n\nKelly pants in her excitement, the short, sharp breaths making her tits bounce about most enticingly. Her hands unthinkingly fly from your head to catch them, kneading the soft fur covering their expanse, thumbs and forefingers moving to pinch the diamond-hard black nubs of her nipples as they jut out in her excitement. She moans like a whore as your tongue caresses her cum-vein. <i>\"That mouth of yours... gods, I could just melt in your mouth. ");
 	 //if Affection < 50:
 	 if(kellyAttraction() <= 50) output("How can you take it so well? - Ah! - I don't know if there's some very heartbroken she-stallion pining for you out there - ohhh! - or if you're just that damn good at sucking girl-cock!");
 	 else output("I want to be your favorite sweet treat, lover - please, let me just melt away in that mouth of yours! Hot and wet and tight, sucking me dry, I wanna give you everything I have!");
@@ -3283,7 +3283,7 @@ public function splatterYourselfWithHoneyBunnysCumAfterGivingHerABJ():void
 		//Hard:
 		{
 			output("\n\nA fine job, but you already expected as much from your bitch-bunny.");
-			output("\n\n<i>\"But of course,\"</i> she grins smugly. <i>\"Only the finest for my rose,\"</i> she declares in a triumphant, closing the distance between you so that she is sitting on your lap, more or less, arms going around your neck, clearly a moment's whim away from closing the distance and kissing you.");
+			output("\n\n<i>\"But of course,\"</i> she grins smugly. <i>\"Only the finest for my rose,\"</i> she declares in a triumphant tone, closing the distance between you so that she is sitting on your lap, more or less, arms going around your neck, clearly a moment's whim away from closing the distance and kissing you.");
 			output("\n\nYou grab her bouncing titties and give her nipples a little twist. Kelly gasps in surprise and you attack her by kissing her, tongue first.");
 			output("\n\nKelly is caught off-guard by your initial assault, but recovers with considerable speed, swiftly tightening her grip around your shoulders and hungrily ravishing your mouth in reply. Her tongue grapples desperately with yours, attempting to seize it in writhing coils and make it submit to her will, even as she suckles upon it with a lustful moan.");
 			output("\n\nYou break the kiss and push her off, getting up after her. That’ll be enough for now.");
@@ -3381,7 +3381,7 @@ public function eatOutKellysQuoteUnquoteCunny():void
 		output("\n\nAs much as you appreciate her offer, you’d rather eat some honey directly from her honey-pot.");
 		output("\n\n<i>\"Well, for such a nice " + pc.mf("boy","girl") + ", how could I possibly refuse? Eat your fill,\"</i> she giggles.");
 		output("\n\nQuite an enticing invitation... and since she’s given you free reign, you’ll do just as you want. You lift her balls off her moist snatch, inhaling her honeyed scent, licking your lips in anticipation.");
-		output("\n\nKelly simply smiles and spreads her legs a little more, making sure your access is as unrestricted as possibly. She reaches down and gently shifts her four over-sized balls out of the way, brushing against your fingers with her own as she takes over the task of keeping them off of her juicy snatch.");
+		output("\n\nKelly simply smiles and spreads her legs a little more, making sure your access is as unrestricted as possible. She reaches down and gently shifts her four over-sized balls out of the way, brushing against your fingers with her own as she takes over the task of keeping them off of her juicy snatch.");
 		output("\n\nYou start off with a tender kiss to her folds, extending your [pc.tongue] just enough to lick along her slick opening. From top to bottom, you barely part her folds as you tease her with the very tip of your tongue.");
 		output("\n\nThe laquine shivers, sticky sweet fluids already dabbing at your tongue's tip as it passes through them, making it evident that there's going to be plenty of juice when you start licking for real. She says nothing, though, apart from a contented hum.");
 		output("\n\nSeeing no reason to hold back any longer, you plunge into her depths. A sloppy lick here, a teasing one there, a little kiss here and pinch there. You pleasure her in earnest as you enjoy the sweetness of her fluids.");
@@ -3439,7 +3439,7 @@ public function eatOutKellysQuoteUnquoteCunny():void
 		output("\n\nShe bites back a gasp or a moan at the surprise penetration, trained pussy stretching wonderfully around your intruding digit, but the look on her face makes it clear that you're succeeding in stimulating her. <i>\"Ah... I'm not selling,\"</i> she pants, unable to keep a grin off her face as she gives you a playfully defiant look.");
 		output("\n\nO-ho! But she hasn’t even heard your proposal yet? You promise to make her an offer she just. Can’t. Refuse. You say, pumping your finger inside her with each word.");
 		output("\n\nKelly lets out a short gasp, clenching down on your finger with surprising force, eyes half-hooded as she basks in the stimulus. <i>\"So sure of yourself, honey? Well, alright... let's hear this offer of yours. But it's going to need to be spectacular,\"</i> she purrs, winking cheekily at you for emphasis.");
-		output("\n\nYou chuckle, she has no idea.... You slowly slide your finger out of her, lightly touching her as you slide it down her taint. Leaning close, you extend your [pc.tongue] to give her sloppy cunt and equally sloppy lap, wrapping your lips around her erect little pleasure buzzer in a perverted kiss.");
+		output("\n\nYou chuckle, she has no idea... you slowly slide your finger out of her, lightly touching her as you slide it down her taint. Leaning close, you extend your [pc.tongue] to give her sloppy cunt an equally sloppy lap, wrapping your lips around her erect little pleasure buzzer in a perverted kiss.");
 		output("\n\nKelly moans in desire, arching her back slightly as you lips close around her clit, eyes closed as she savors the feeling.");
 		output("\n\nYou continue to suckle her clit, licking it softly as you prod at her tight little rosebud. You could just shove your finger inside, as well lubed as it is, but that would be no fun. No... you want her ass to work for its prize, you want her to plead for you to violate her rosebud with your intruding finger. You want to tease her until she’s a screaming pile of oversexed bunny.");
 		output("\n\nKelly tries instinctively to squeeze your finger between her luscious buttcheeks, but in her position, she can't really manage it. <i>\"Ah! ...Is that the best you got? N-nng!-Nothing special yet,\"</i> she pants, moaning as you delicately scrape the very tip of her little button with your teeth.");
@@ -3455,7 +3455,7 @@ public function eatOutKellysQuoteUnquoteCunny():void
 			output("\n\nShe wants more, and you’re happy to oblige. Using your [pc.tongue] to its fullest, you plunge into her as far as you can reach. Her cervix tries its best to deter your advances, and while it does take some work for you to find wiggle room, you eventually pierce that barrier guarding her innermost sanctuary.");
 			output("\n\nKelly arches her back with an ecstatic cry of pleasure, her cunt greedily clenching down on your tongue as it penetrates her very womb, soaking you in the taste of her honeyed fluids.");
 		}
-		output("\n\n<i>\"I'm sooo close,\"</i> she moans luxuriantly, barely able to keep her balls out of your face as she caresses and kneads her own dripping shafts in erratic strokes. Her long tongue slithers from her mouth and sinuously caresses her erect nipples, tantalising flickers teasing each nub in turn as she helps push herself towards her inevitable climax. She can't take much more....");
+		output("\n\n<i>\"I'm sooo close,\"</i> she moans luxuriantly, barely able to keep her balls out of your face as she caresses and kneads her own dripping shafts in erratic strokes. Her long tongue slithers from her mouth and sinuously caresses her erect nipples, tantalizing flickers teasing each nub in turn as she helps push herself towards her inevitable climax. She can't take much more....");
 		output("\n\nWithdrawing from her pussy, you grin widely. If she’s so close, just cum already. You feed her butt a second finger, just as you give her buzzer a complementary lick.");
 		output("\n\nHer pussy ripples, her ass clenches down tightly on your fingers and she wriggles, trying to fight it back, but she can't. With a squeal of delight she erupts in a veritable fountain of honeyed jism, thick gushes of girlcum washing over your chin and spilling down your front, over your [pc.breasts], whilst her twin cocks start painting her belly, breasts and even face with long golden ropes of sperm-laden honey. The laquine bucks and heaves as her abundantly liquid orgasm pours forth, covering her and the tabletop and the floor below in thick sex-juices, filling the air with a heavy fug of honey and musk. Finally, however, even her prodigious reserves run empty and she slumps back, panting slow and deep, eyes screwed closed as she savors the afterglow.");
 		output("\n\n<i>\"...You were right,\"</i> she comments softly, once she can speak again. She's wearing a huge smile as she adds, <i>\"totally worth the price.\"</i>");
@@ -3542,7 +3542,7 @@ public function eatOutKellysQuoteUnquoteCunny():void
 			output("\n\nKelly groans deep and soft, her quivering quim immediately folding itself tightly back around your probing finger. <i>\"Promises, promises, sweet thing,\"</i> she declares with a smile, giving her ass a shake under your hands. And with that she sets off walking, trusting you to follow - which you do, holding her ass all the while as she leads you to the laundry.");
 			output("\n\n<b>Later....</b>");
 			output("\n\n<i>\"And there we are... huh, gotta say, I'm more used to helping people take their clothes off,\"</i> Kelly remarks, even as the last of your gear is put in its proper place.");
-			output("\n\nOnce you’ve double-checked to make sure nothing is missing, you pull Kelly in for a kiss. Then make your way out of her home.");
+			output("\n\nOnce you’ve double-checked to make sure nothing is missing, you pull Kelly in for a kiss, then make your way out of her home.");
 			output("\n\n<i>\"Come back when I'm not so sore - I promise you'll enjoy it,\"</i> Kelly calls after you with a smirk. <i>\"Of course, it might be you who walks away sore the next time,\"</i> she giggles, before closing the door behind you.");
 			clearMenu();
 			addButton(0,"Next",leaveKellyNext);
@@ -3555,7 +3555,7 @@ public function eatOutKellysQuoteUnquoteCunny():void
 			output("\n\n<i>\"You know you love it,\"</i> she quips back. She still has hold of your hand, and she smirks to see it's the one covered in her feminine fluids. Gently yet insistently she draws it towards her mouth, eyes clothing and lips opening as her tongue slithers out. She takes a long, languid lick up the length of your arm, her warm wet tongue scraping over your [pc.skin] as she laps up a good mouthful of her femcum. Once her tongue is good and soaked in it, she draws it back inside, noisily smacking her lips as she swallows. <i>\"Delicious,\"</i> she trills, eyes opening enough to give you a mischievous look.");
 			output("\n\nHeh, it’s not everyday you meet someone so eager to clean up the mess they made and enjoy it. She missed a spot, you tell her whilst presenting a finger.");
 			output("\n\n<i>\"Cleaning's the best part,\"</i> she giggles. <i>\"As for missing a spot,\"</i> she croons in a coy tone. <i>\"I only just got started, silly " + pc.mf("boy","girl") + "... but let me have that...\"</i> she delicately takes your offered hand and closes her mouth tenderly around the proffered digit, sucking greedily at it with wet slurping sounds, her tongue wrapping itself around it and milking it dry of every last trace of her juices. She sucks away for a few moments, then noisily pops it free of her mouth, a thin strand of saliva momentarily linking it to her mouth. <i>\"All clean,\"</i> she announces. <i>\"Now, for the rest of you...\"</i> and back she bends to her task. She lavishes the same attention on each finger in turn, then turns your hand over and starts lapping at your palm, tongue slurping wetly over your flesh and insinuating itself around the base of each finger.");
-			output("\n\nYou patiently for her to lick your whole hand, petting her and telling her to clean up all her mess like a good girl.");
+			output("\n\nYou wait patiently for her to lick your whole hand, petting her and telling her to clean up all of her mess like a good girl.");
 			output("\n\nShe rolls her eyes at that, lips curling in a smirk, but she certainly doesn't lose any enthusiasm. Once your hand is glistening clean, she starts to lap and lick her way down your arm, the unnaturally long tongue curling completely around your wrist to ensure she cleans it all off. With wet, noisy slurps she licks your forearm clean, then tugs you forward so that she can keep licking your upper arm too, until finally she has followed your arm to your torso and is toying with your closest [pc.nipple].");
 			output("\n\nYou place a hand behind her head and pull her towards your [pc.breasts]");
 			if(pc.biggestTitSize() >= 20) output(", nearly smothering her with your breast-flesh");
@@ -3617,8 +3617,8 @@ public function takeANapAfterNiceCunnilingus():void
 	if(kellyAttraction() >= 50)
 	{
 		output("\n\nYour soft breathing is interrupted by a pair of soft lips pressing against your own. Though you don’t open your eyes you do inhale sharply through your nose when you feel a familiar tongue worming its way inside.");
-		output("\n\nKelly hums softly into your mouth, her tongue shamelessly feeding itself into your own and coiling possessively around your own [pc.tongue]. Her hands gently take your [pc.face] so that you can't move it away, her breasts laying flush against your own [pc.chest]. She kisses you deeply, tongue wriggling in your mouth as it stakes its claim, but then she breaks the kiss, wetly slurping her tongue back into her own mouth and lifting herself off of you a tad. <i>\"Sorry, sweet thing, but I just couldn't resist,\"</i> she giggles. <i>\"You looked so cute sleeping there like that.... guess you're feeling tired, huh?\"</i> She pushes up off of you and stretches.");
-		output("\n\nYou nod in agreement. Chuckling as you inform her that she has a way of wearing you out.");
+		output("\n\nKelly hums softly into your mouth, her tongue shamelessly feeding itself into your own and coiling possessively around your own [pc.tongue]. Her hands gently take your [pc.face] so that you can't move it away, her breasts laying flush against your own [pc.chest]. She kisses you deeply, tongue wriggling in your mouth as it stakes its claim, but then she breaks the kiss, wetly slurping her tongue back into her own mouth and lifting herself off of you a tad. <i>\"Sorry, sweet thing, but I just couldn't resist,\"</i> she giggles. <i>\"You looked so cute sleeping there like that... guess you're feeling tired, huh?\"</i> She pushes up off of you and stretches.");
+		output("\n\nYou nod in agreement, chuckling as you inform her that she has a way of wearing you out.");
 		output("\n\n<i>\"Don't tell me you don't love it,\"</i> she smirks, poking playfully at your nose. <i>\"But, if you're so tired... I'd be happy to loan you my bed for the night, if you don't mind sharing, but I suppose a big, bold spaceship captain would rather sleep on " + pc.mf("his","her") + " ship, huh?\"</i> she comments, winking at you.");
 		output("\n\nNo offense, but if you took her up on her offer you’d likely get no sleep at all and wind up even more worn out. Plus you’re pretty sure you might be responsible for her missing work tomorrow.");
 		output("\n\n<i>\"No you wouldn't,\"</i> she huffs, adopting a wounded-looking pout. She manages to hold it for roughly all of three, maybe four seconds before she bursts into giggles at your look. <i>\"Okay, you're probably right, I would. I think it'd be worth it, though. But, if you really have to go,\"</i> she sighs at the mere thought, a momentary flicker of melodrama, <i>\"I won't try and keep you here.\"</i>");
@@ -3713,7 +3713,7 @@ public function mischievousMasturbateAfterCunnilingateKelly():void {
 	if(pc.hasCock()) output("Wrapping a hand around your [pc.cockBiggest] you begin to gently stroke yourself. The still lingering scent of Kelly’s climax fueling your desire");
 	if(pc.hasCock() && pc.hasVagina()) output(" while your other hand");
 	else if(pc.hasVagina()) output("Your hand");
-	if(pc.hasVagina()) output(" strokes the folds of [pc.oneVagina]. Images of the honey-bunny’s seed fountaining through the air bringing a smile to your face.");
+	if(pc.hasVagina()) output(" strokes the folds of [pc.oneVagina], images of the honey-bunny’s seed fountaining through the air bringing a smile to your face.");
 
 	output("\n\nClosing your eyes, you continue masturbating yourself.");
 
@@ -3744,7 +3744,7 @@ public function nudeNapAfterKellyCunnilingus():void
 	showKellyName();
 	author("Quiet Browser & LD");
 	output("Maybe a short nap would be fine....");
-	output("\n\n<i>\"[pc.name]? [pc.name]? Come on, honey, it's time to wake up - you don't really wanna spend the night on my couch, do you?\"</i> a familiar giggle follows those words, chasing you back to the land of the living. As your eyes open, you see Kelly is standing over you, gently shaking you by the shoulder. She gives you a cheeky grin upon realising you're awake. <i>\"What, is my couch that comfy?\"</i> she asks. <i>\"Personally, I can't recommend it; if you're tired, it might be better to get back to your ship and get some shuteye,\"</i> she recommends.");
+	output("\n\n<i>\"[pc.name]? [pc.name]? Come on, honey, it's time to wake up - you don't really wanna spend the night on my couch, do you?\"</i> a familiar giggle follows those words, chasing you back to the land of the living. As your eyes open, you see Kelly is standing over you, gently shaking you by the shoulder. She gives you a cheeky grin upon realizing you're awake. <i>\"What, is my couch that comfy?\"</i> she asks. <i>\"Personally, I can't recommend it; if you're tired, it might be better to get back to your ship and get some shuteye,\"</i> she recommends.");
 	//Attraction =<50: 
 	if(kellyAttraction() <= 50) output(" She then gives you a coy look. <i>\"Of course, there's plenty of room for another in my bed...\"</i> she trails off meaningfully.");
 
@@ -3768,10 +3768,10 @@ public function kellyNudeMasturbateAfterCunnilingate():void
 	showKellyName();
 	author("Quiet Browser & LD");
 	//if cock:
-	if(pc.hasCock()) output("Wrapping a hand around your [pc.cockBiggest] you begin to gently stroke yourself. The still lingering scent of Kelly’s climax fueling your desire");
+	if(pc.hasCock()) output("Wrapping a hand around your [pc.cockBiggest] you begin to gently stroke yourself, the still lingering scent of Kelly’s climax fueling your desire");
 	if(pc.hasCock() && pc.hasVagina()) output(" while your other hand");
 	else if(pc.hasVagina()) output("Your hand");
-	if(pc.hasVagina()) output(" strokes the folds of [pc.oneVagina]. Images of the honey-bunny’s seed fountaining through the air bringing a smile to your face.");
+	if(pc.hasVagina()) output(" strokes the folds of [pc.oneVagina], images of the honey-bunny’s seed fountaining through the air bringing a smile to your face.");
 
 	output("\n\nClosing your eyes, you continue masturbating yourself. You chuckle when you feel a hand that doesn’t belong to you make contact with your ");
 	if(pc.hasCock()) output("[pc.cockBiggest]");
@@ -3818,11 +3818,11 @@ public function kellyCunnilingusHardEndingNap():void
 
 	output("\n\n<i>\"Promises, promises,\"</i> she retorts with a cheeky roll of the eyes and a mischievous grin. Since you're now awake, she wriggles jauntily away from you and stretches her limbs. Her joints audibly popping, she walks away from you, a little more hesitantly than normal, and returns with your gear, which she offers to you. <i>\"Like some help?\"</i> she suggests, a twinkle in her eye at the prospect.");
 
-	output("\n\nHaving no reason to refuse, you tell her get started.");
+	output("\n\nHaving no reason to refuse, you tell her to get started.");
 
 	output("\n\n<i>\"Well, if you insist,\"</i> she replies, already advancing on you with gear in hand. Painstakingly she fits each piece into its proper place on your body, until finally you are as dressed as you were when you entered. <i>\"There we are, good as new... gotta say, I'm better at undressing people than I am at dressing people,\"</i> Kelly muses.");
 
-	output("\n\nDouble checking to make sure you’re not forgetting anything, you pull Kelly into a goodbye kiss. Then make your way out of her home.");
+	output("\n\nDouble checking to make sure you’re not forgetting anything, you pull Kelly into a goodbye kiss, then make your way out of her home.");
 
 	output("\n\n<i>\"See you later sweet thing... maybe next time, you're the one who'll be going home sore?\"</i> Kelly calls after you, a wicked smirk on her lips at the thought.");
 	processTime(45+rand(4));
@@ -4083,7 +4083,7 @@ public function getDPedByKelly():void
 		//Mischievous
 		else if(pc.isMischievous())
 		{
-			output("\n\nOh, is she feeling intimidated because you have more to offer than she has to give? What a pity, and here you pegged her for the confident type... but it’s alright. It’s the skill that matters, not the quantity. But you won’t deny that quantity helps, you add with a chuckle.");
+			output("\n\nOh, is she feeling intimidated because you have more to offer than she has to give? What a pity, and here you pegged her for the confident type... but it’s all right. It’s the skill that matters, not the quantity. But you won’t deny that quantity helps, you add with a chuckle.");
 			output("\n\n<i>\"It's not everyday that I have too few cocks for somebody,\"</i> she admits, but then shakes her head and smiles. <i>\"But, like you say, quality over quantity. I'll get you off, have no fear of that....\"</i>");
 		}
 		//Hard:
@@ -4109,7 +4109,7 @@ public function getDPedByKelly():void
 	{
 		output("\n\nHer tongue immediately moves on to the next vagina, giving it the same treatment");
 		if(pc.totalVaginas() > 2) output(" before moving on to each in turn");
-		output(". Each lick chips away at your self control. The urge to pin Kelly down and just taking the ride you want from the laquine. Still you manage to hold yourself back, for now at least.");
+		output(". Each lick chips away at your self control. You have an urge to pin Kelly down and just take the ride you want from the laquine. Still you manage to hold yourself back, for now at least.");
 	}
 
 	output("\n\nHer hands move, worming their way under your [pc.legs] to grip the underside of your [pc.thighs], hoisting your [pc.butt] off of the bed even as her tongue slurps back into her mouth. <i>\"Alright, honey, just try to relax - this might feel a little weird,\"</i> she informs you, even as she ");
@@ -4123,14 +4123,14 @@ public function getDPedByKelly():void
 	//Kind:
 	if(pc.isNice())
 	{
-		output("\n\nWhat’s the verdict? You ready yet or is she going to lick you till you orgasm? Because you certainly feel ready. You hump the air for emphasis.");
+		output("\n\nWhat’s the verdict? Are you ready yet or is she going to lick you until you orgasm? Because you certainly feel ready. You hump the air for emphasis.");
 		output("\n\n<i>\"Just making sure you were ready for me,\"</i> she grins back. <i>\"But I think you're all lubed up now; time for the real fun,\"</i> she announces hungrily.");
 	}
 	//Mischievous:
 	else if(pc.isMischievous())
 	{
 		output("\n\nWhat a little tease. Did she forget how to use her tools? Do you need to teach her what goes where or is she going to get down to business?");
-		output("\n\n<i>\"As tempting as a lesson may be,\"</i> she declares, the dryness of her tone undercut by the look on her face saying that, yes, she would like it, <i>\"I'll take a raincheck. Now that we're both ready...\"</i> she trails off meaningfully, giving a thrust of her hips to make it clear what she has in mind.");
+		output("\n\n<i>\"As tempting as a lesson that may be,\"</i> she declares, the dryness of her tone undercut by the look on her face saying that, yes, she would like it, <i>\"I'll take a raincheck. Now that we're both ready...\"</i> she trails off meaningfully, giving a thrust of her hips to make it clear what she has in mind.");
 	}
 	//Hard:
 	else
@@ -4153,7 +4153,7 @@ public function getDPedByKelly():void
 
 	output("\n\n<i>\"Ah!... Honey, if you keep holding me like that....\"</i> she trails off into a moan of her own. By the time you feel her hips flush against yours, you’re both a panting mess. Kelly strokes your cheek lovingly as you move your [pc.legs] to wrap around her, securing her in place and ensuring she can’t get away.");
 
-	output("\n\nShe giggles, <i>\"You don’t have to hold me down, sweet thing. I’m not going anywhere. I’m exactly where I want to be,\"</i> she grins. Slowly, she leans down to wrap your [pc.lips] into a deep kiss. You welcome her questing tongue whilst feeding her your own. The two of you waiting as you conform to the shape of her pricks, tongues dancing as the flames of your lusts threaten to consume you.");
+	output("\n\nShe giggles, <i>\"You don’t have to hold me down, sweet thing. I’m not going anywhere. I’m exactly where I want to be,\"</i> she grins. Slowly, she leans down to wrap your [pc.lips] into a deep kiss. You welcome her questing tongue whilst feeding her your own. The two of you wait as you conform to the shape of her pricks, tongues dancing as the flames of your lusts threaten to consume you.");
 
 	output("\n\nWith a wet pop, Kelly frees her mouth of yours, tongue lolling momentarily, still linked to yours by a thin strand of saliva. Panting so heavily that her breasts jiggle hypnotically before your eyes, she pushes herself fully upright from where she was sprawled across your belly. A hand reaches down to your hip and pulls you closer to the edge of the bed, adjusting your position to better suit her needs.");
 
@@ -4167,7 +4167,7 @@ public function getDPedByKelly():void
 
 		output("\n\n<i>\"Mmm, yeah, this is what I was made for,\"</i> Kelly purrs, caressing your ass. <i>\"Ass is nice, pussy is nice, but both at once? That's what I call paradise,\"</i> she notes, then giggles at her own cheap rhyme. Shaking her head, her expression turns back towards the lecherous as she returns to the matter at hand.");
 
-		output("\n\nHer hands reach down to your hips, holding onto your for balance as she pushes back, digging her heels in to slide herself as far out of you as your [pc.legs] will let her, and then suddenly thrusting back home again with a meaty slap. An appreciative moan bubbles from her throat at the feel of herself being welcomed back inside of your holes, but she frowns in frustration. Bending down at the waist, she wraps you in a powerful hug and lifts you up from the bed so that you are upright, cuddled against her breast to ");
+		output("\n\nHer hands reach down to your hips, holding onto you for balance as she pushes back, digging her heels in to slide herself as far out of you as your [pc.legs] will let her, and then suddenly thrusting back home again with a meaty slap. An appreciative moan bubbles from her throat at the feel of herself being welcomed back inside of your holes, but she frowns in frustration. Bending down at the waist, she wraps you in a powerful hug and lifts you up from the bed so that you are upright, cuddled against her breast to ");
 		if(pc.biggestTitSize() >= 1) output("breast");
 		else output("chest");
 		output(", staring into your eyes with a smile as she supports you more upon her hips.");
@@ -4183,7 +4183,7 @@ public function getDPedByKelly():void
 			if(pc.cockTotal() > 1) output("first ");
 			output("cock, pumping it with clumsy enthusiasm, stroking up and down with fast, jerky motions.");
 		}
-		output("\n\nYou can feel yourself getting close to the edge. Just a little longer and you’ll be able to cum. But you won’t be alone for this ride. You want Kelly to cum too, so you decide to up the ante. With all your might you will both your [pc.vagina " + x + "] and your [pc.asshole] to clamp down on Kelly intruding members, doubling your own pleasure as well as hers.");
+		output("\n\nYou can feel yourself getting close to the edge. Just a little longer and you’ll be able to cum. But you won’t be alone for this ride. You want Kelly to cum too, so you decide to up the ante. With all your might you will both your [pc.vagina " + x + "] and your [pc.asshole] to clamp down on Kelly’s intruding members, doubling your own pleasure as well as hers.");
 		output("\n\nA wordless wail of pleasure ripples up the laquine's throat, her eyes screwing themselves closed and her head throwing itself back in warning as you push her over the edge. Inside of you, you can feel her shafts expanding, their heads flaring out to anchor themselves inside of your guts and womb. Kelly's shafts bulge - you can feel the swollen flesh pushing out your inner walls - as the first two shots of her honey rush up from her clenching quad-sack and erupt inside of you, glazing the interior of your stomach and your womb in one single burst. Your [pc.belly] practically explodes outwards, almost hitting the laquine in the face as it swells rounder and fuller. Kelly shifts you desperately in her arms to keep hold of you, gladly nuzzling your expanding gut even as she keeps pouring honey inside of it, making it swell by the second. Knowing that it is inevitable that you will push her off-balance and make her fall, she spins the two of you around so that when it happens, she will land upon the bed behind her with you atop her.");
 		output("\n\nMolten heat boils through your insides, the titanic influx of warm, sweet, gooey honey overwhelming your last resistance. With a cry of ecstasy, your fingers gripping Kelly's shoulders hard, you cum yourself, your cunt drenching her slick loins with your female juices.");
 		if(pc.hasCock())
@@ -4195,13 +4195,13 @@ public function getDPedByKelly():void
 		}
 		output(" Your eager grinding proves too much for Kelly's sense of balance, and the laquine topples over onto her bed, smooshed under your growing belly - something that seems to make her cum even harder, from the size of the shots she fires into you in response. Moaning in pleasure, you grind your belly against her face, her arms shifting to encompass the honey-crammed globe obscuring her face, even as your twin holes continue to wring every last delicious drop out of her - you want it all!");
 
-		output("\n\nTime fades away, lost as you are in the feeling of being stuffed ever fuller, of feeling every vein and twitch and shaft-stretching bulge of cum flooding up your ass and your cunt, honey starting to seep and flow down your holes to lube up the fucksticks impaling you so deliciously.... But, even Kelly's four cum-factories have their limits, and eventually the haze leaves you panting for breath, groaning as your stomach complains to the twin monster loads of jism currently crammed into it. You can't even see your laquine lover's upper half anymore; she's being smothered completely under your beachball of a belly. The arms wrapping themselves vainly around your gut, and the way it rises and falls in accordance with her own pants, makes it clear she's still alive, at least.");
+		output("\n\nTime fades away, lost as you are in the feeling of being stuffed ever fuller, of feeling every vein, twitch and shaft-stretching bulge of cum flooding up your ass and your cunt, honey starting to seep and flow down your holes to lube up the fucksticks impaling you so deliciously... but, even Kelly's four cum-factories have their limits, and eventually the haze leaves you panting for breath, groaning as your stomach complains to the twin monster loads of jism currently crammed into it. You can't even see your laquine lover's upper half anymore; she's being smothered completely under your beachball of a belly. The arms wrapping themselves vainly around your gut, and the way it rises and falls in accordance with her own pants, makes it clear she's still alive, at least.");
 
 		output("\n\nYou roll, falling on your side. A groan escaping you as the strain of your escapade with the honey-bunny takes its toll on you.");
 
 		output("\n\n<i>\"Nnngn... honey? Are you alright? I think I - oohhh - might have overdone it,\"</i> Kelly calls to you; even with you both on your sides, she evidently still can't see you around your stomach. She shifts slightly, wriggling around, then seems to come to a decision. <i>\"I'm going to pull out, sweetie, so... try and relax, okay?\"</i>");
 		output("\n\nYou give your assent, and the laquine starts to slide back, dragging her still partially-flared heads from you, sending sparks crackling through your nerves. A moan escapes your lips at the further treatment of your sore holes, but the honey has certainly made you wet and slick enough to help her escape. As she pulls free, you can feel it flowing, thick and steady, from your cunt and your ass. Kelly heaves a sigh of satisfaction. <i>\"There we are; just try and relax, and you'll drain in no time, I promise.\"</i> She gently touches your stomach for emphasis, then lays herself back down and curls up against you. <i>\"Until that happens, though... mmm; nothing like that warmth,\"</i> she purrs, nuzzling one fluffy cheek against your stretched [pc.skinNoun].");
-		output("\n\nNot like you can do much else. For now you decide to just take her suggestion and relax....");
+		output("\n\nNot like you can do much else. For now you decide to just take her suggestion and relax.");
 		output("\n\n<b>Later....</b>");
 		output("\n\nYou pick up your [pc.gear] and put it on. Not having a gigantic, honey-belly to squeeze under your [pc.upperGarment] helps a lot. Fully dressed, you bid the laquine farewell.");
 		output("\n\n<i>\"Mmm, don't be a stranger, sweet thing,\"</i> she purrs, stealing a quick kiss before you go.");
@@ -4234,11 +4234,11 @@ public function getDPedByKelly():void
 			output(" own orgasm, washing Kelly's belly and tits with [pc.cum].");
 		}
 
-		output("\n\nTime fades away, lost as you are in the feeling of being stuffed ever fuller, of feeling every vein and twitch and shaft-stretching bulge of cum flooding up into each thirsty womb, honey starting to seep and flow down your holes to lube up the fucksticks impaling you so deliciously.... But, even Kelly's four cum-factories have their limits, and eventually the haze leaves you panting for breath, groaning as your stomach complains to the twin monster loads of jism currently crammed into it. Kelly herself is panting with exertion, moaning softly as she sprawls over the beachball-like swell of your stomach.");
+		output("\n\nTime fades away, lost as you are in the feeling of being stuffed ever fuller, of feeling every vein, twitch and shaft-stretching bulge of cum flooding up into each thirsty womb, honey starting to seep and flow down your holes to lube up the fucksticks impaling you so deliciously... but, even Kelly's four cum-factories have their limits, and eventually the haze leaves you panting for breath, groaning as your stomach complains to the twin monster loads of jism currently crammed into it. Kelly herself is panting with exertion, moaning softly as she sprawls over the beachball-like swell of your stomach.");
 
 		output("\n\nThe two of you lay there together, letting the heat wash off your bodies, the scent of sex and honey and sweat filling the room. Kelly is the first of you to move, sighing as she nuzzles your sensitive belly, letting twinges crackle across your senses. <i>\"Oh, gods, sugar; that was absolutely incredible. And I thought ass and cunt at the same time was incredible...\"</i> she yawns hugely, then giggles softly. <i>\"Mmm... you sure took it out of me. I'mma have a little... little nap...\"</i> she trails off dopily, smiling as she settles back down atop you, cuddling against your stomach as if it were her own personal waterbed.");
 
-		output("\n\nHardly in any position to stop her, and feeling rather tired yourself, you settle back and make yourself comfortable, listening to the soft breathing of the laquine atop your belly as you drift off....");
+		output("\n\nHardly in any position to stop her, and feeling rather tired yourself, you settle back and make yourself comfortable, listening to the soft breathing of the laquine atop your belly as you drift off.");
 
 		output("\n\n<b>Later....</b>");
 
@@ -4342,7 +4342,7 @@ public function getDoubleStuffedByKellyCancelled():void
 	output("\n\nYou follow her directions, raising your behind to allow her easy access as you find a comfortable position.");
 	output("\n\nA soft, plump cushion is placed gently in front of your head, Kelly's lopsided beam coming into view close behind. <i>\"Just lay your head on this and relax, sweet thing. I swear, you're going to enjoy this almost as much as when we get down to the real fun.\"</i> With a giggle, she reaches in and gently taps your nose with her finger. <i>\"But don't get too carried away with enjoying the lubing, though, my naughty little lover. I want to make sure you've got lots of energy left for when my ponies get to ride your ass for all it's worth,\"</i> she playfully chides you.");
 	output("\n\nAccepting her pillow, you lay down and do your best to relax. The anticipation has you feeling a bit antsy. But you bear it and patiently wait for Kelly to begin.");
-	output("\n\nKelly busies herself somewhere beside you, humming a wordless tune as she rattles around in a draw and casually flicks it closed again. Springs protest as she climbs up onto the bed behind you, and you can clearly hear the distinctive sound of a bottle lid being unscrewed. Throughout it all, she keeps mumbling her little tune to herself, making it almost jarring when she stops.");
+	output("\n\nKelly busies herself somewhere beside you, humming a wordless tune as she rattles around in a drawer and casually flicks it closed again. Springs protest as she climbs up onto the bed behind you, and you can clearly hear the distinctive sound of a bottle lid being unscrewed. Throughout it all, she keeps mumbling her little tune to herself, making it almost jarring when she stops.");
 
 	output("\n\n<i>\"Alright now, honey; I want you to relax, can you do that for me? I'm just going to start with a finger's worth of lube.\"</i> Kelly's voice is warm and soothing, and you give her your assent once you feel you have it under control. The laquine's hands move, swift and steadily, to gently spread your cheeks apart and her lube-coated finger moves in, trailing softly down your crack and tracing circles around your back passage. It brushes the sensitive flesh there with featherlight touches, then gently starts to press its very tip into you, trying to wriggle inside of you.");
 	output("\n\nYou shudder as the cool liquid touches your sensitive anus, gasping in surprise. But your gasp soon gives way to a hum of pleasure as you feel Kelly’s delicate touch. Her massaging fingers fill you with pleasure, and you slowly drop into a relaxed state, your [pc.asshole] twitching in anticipation as you wiggle your butt and tell her that you’re ready.");
@@ -4350,7 +4350,7 @@ public function getDoubleStuffedByKellyCancelled():void
 	output("\n\nKelly simply giggles from behind you. <i>\"Not yet, you aren't. But soon,\"</i> as if in emphasis, her finger begins to feed itself inside of you, pushing gently through the relaxed ring of muscle to the knuckle, ticklishly stroking your interior. Gently pumping it, she adds, <i>\"very soon,\"</i> in an eager tone, continuing to smear lube inside of you wherever she can reach.");
 	output("\n\nA few pumps and she carefully extracts herself from inside of you, a soft moan unthinkingly making its way from you in disappointment. Some wet squelching noises from behind you announce what she's doing, and it's two fingers that start to rub and push against your rosebud this time. Patiently and tenderly she presses them against you, coaxing your flesh to stretch and accept both of her fingers at the same time, smearing copious amounts of lube upon you and inside of you....");
 
-	output("\n\nYou moan and buck against her, eager to take more of her inside. As careful as she’s being with your condition, you can’t help but feel like Kelly is a freaking tease. If you were hungry for her cocks when this first started. Now you’re positively ravenous. You urge her to move on. At least give you one so you can have some fulfillment!");
+	output("\n\nYou moan and buck against her, eager to take more of her inside. As careful as she’s being with your condition, you can’t help but feel like Kelly is a freaking tease. If you were hungry for her cocks when this first started, now you’re positively ravenous. You urge her to move on. At least give you one so you can have some fulfillment!");
 
 	output("\n\nA giggle echoes from behind you. <i>\"You want a cock already? Greedy thing,\"</i> she chides you, digging her fingers particularly deep inside of your yearning ass for emphasis. <i>\"But... I suppose one won't spoil your appetite,\"</i> she muses, seemingly to herself, even as she pries herself free of the grip your walls have on her fingers. For what seems like a small eternity, you are left empty and aching, before you feel something warm and wet and slimy being rubbed tantalizingly through the canyon of your ass-cleavage. <i>\"Alright honey; you wanted one? Here it comes,\"</i> Kelly chirps, even as she aligns her lube-smeared cock with your [pc.butt] and pushes it home, impaling you with the first of her pony-like fucksticks.");
 
@@ -4382,7 +4382,7 @@ public function getDoubleStuffedByKellyCancelled():void
 
 	output("\n\nPatiently the laquine works at lubing and stretching, stretching and lubing, her thrusts falling down in pace as she works on working your butthole further and further open. You realize that you are starting to feel her cock less and less, as she stretches you so wide that you aren't touching it anymore. There comes a point when you can barely feel it, as if she only has the tip inside of you, and a moan of dismay at being so empty rumbles out of you.");
 
-	output("\n\n<i>\"Aw, you don't like that, do you sugar?\"</i> Kelly notes sadly. Then, in a tone dripping with mischief, she adds, <i>\"Well, this will fix that!\"</i> You can feel one set of fingers remove themselves from your gaping hole, the other applying themselves do your ass below the cock, pulling it down towards your ");
+	output("\n\n<i>\"Aw, you don't like that, do you sugar?\"</i> Kelly notes sadly. Then, in a tone dripping with mischief, she adds, <i>\"Well, this will fix that!\"</i> You can feel one set of fingers remove themselves from your gaping hole, the other applying themselves to your ass below the cock, pulling it down towards your ");
 	if(!pc.hasVagina()) output("taint");
 	else output("[pc.vaginas]");
 	output(". Something hot and wet and slimy butts itself against the stretched walls of your anus, gliding over Kelly's pinning fingers to grind along against the underside of her shaft and the lower half of your ass alike.");
@@ -4544,7 +4544,7 @@ public function getBlownByKelly(noIntro:Boolean = false):void
 	else if(pc.isMischievous())
 	{
 		output("\n\nWell, you suppose you should have expected that. Kelly must’ve had a lot of practice to pull that off.");
-		if(kellyAttraction() >= 50) output(" Did she practice on herself too? Nevermind, that’s a thought for another time.");
+		if(kellyAttraction() >= 50) output(" Did she practice on herself too? Never mind, that’s a thought for another time.");
 		output(" You praise her skill, saying that she’s your favorite bimbo-bunny.");
 		output("\n\n<i>\"Of course I am,\"</i> she chirpily agrees, grinning up at you. <i>\"I'm the best bimbo-bunny on the planet; why wouldn't I be your favorite?\"</i>");
 	}
@@ -4574,7 +4574,7 @@ public function getLickedOutByKellllaaaahhhh(noIntro:Boolean = false):void
 	author("Quiet Browser & LD");
 	if(!noIntro)
 	{
-		output("A beaming grin splits the laquine's features as she nods in response to your suggestion. <i>\"What kind of bunny-bee would I be I to turn down a chance to savor so rare and special a flower?\"</i> she asks, striking her best dramatic pose as she does. She manages to take herself seriously for all of ten, twenty seconds before she bursts into giggles at her own comical posturing. With a surprisingly courtly bow, she indicates the couch to you, signalling that is where she wants you.");
+		output("A beaming grin splits the laquine's features as she nods in response to your suggestion. <i>\"What kind of bunny-bee would I be I to turn down a chance to savor so rare and special a flower?\"</i> she asks, striking her best dramatic pose as she does. She manages to take herself seriously for all of ten, twenty seconds before she bursts into giggles at her own comical posturing. With a surprisingly courtly bow, she indicates the couch to you, signaling that is where she wants you.");
 
 		//ind:
 		if(pc.isNice()) output("\n\nSmiling, you follow her lead and seat yourself.");
@@ -4595,11 +4595,11 @@ public function getLickedOutByKellllaaaahhhh(noIntro:Boolean = false):void
 		output(",\"</i> she notes. <i>\"But that's not what you and I are here for, is it?\"</i> Her tongue slurps wetly out between pursed lips and sloppily licks its way up your [pc.cockBiggest], from base to tip, before it shoots back inside and her hands move to get your male genitalia out of the way, exposing your [pc.vagina] for her.");
 	}
 
-	output("\n\nLeaning in for a better view, she scrutinises your womanhood, smiling with satisfaction as it evidently passes whatever test she had in mind. With a grin, she plants a warm, wet kiss right at the base of your netherlips, then retreats her head, just enough that you can see as her tongue slides from her mouth like a perverse, bright yellow tentacle and reaches for your outer lips. She keeps her eyes focused on your face, even as her warm, wet tongue begins to glide smoothly and steadily around the rim of your pussy, the very tip dipping itself shallowly inside and curving in under the lips as she slides up and down first one wall, and then the other.");
+	output("\n\nLeaning in for a better view, she scrutinizes your womanhood, smiling with satisfaction as it evidently passes whatever test she had in mind. With a grin, she plants a warm, wet kiss right at the base of your netherlips, then retreats her head, just enough that you can see as her tongue slides from her mouth like a perverse, bright yellow tentacle and reaches for your outer lips. She keeps her eyes focused on your face, even as her warm, wet tongue begins to glide smoothly and steadily around the rim of your pussy, the very tip dipping itself shallowly inside and curving in under the lips as she slides up and down first one wall, and then the other.");
 
 	output("\n\nYou hiss at her teasing caresses, [pc.legs] tensing as she continues to do so. There’s a part of you that just wants to grab her and shove her into your muff so she can properly do her job. But for now you decide to let her take the lead. After all, you can take a little teasing.");
 
-	output("\n\nThe laquine's eyes glint with mischief at your expression, and her tongue continues its tantalising caressing of your sensitive flesh. As [pc.oneClit] exposes itself, however, her attention is diverted, tongue snapping back between her jaws. <i>\"Look who came out to play; now we can really have some fun,\"</i> she giggles, bowing her head once more to plant a soft, feather-light kiss on your clitoris. Her tongue flows forth again, Kelly moving her head back to not block the view as it brushes itself against your sensitive buzzer, slathering you with drool before trying to coil around it like a snake with its prey, encircling it in a hot ring that squeezes down before releasing you. It slides its excess length back between her lips, the pointed tip hovering before the tip of your button and then descending to it. Sparks crackle across your [pc.vaginaColor] skin as the strangest sensation hits your senses; the tip of Kelly's tongue has opened up, and it's now sucking away industriously at your [pc.clit], as if trying to slurp it inside of itself!");
+	output("\n\nThe laquine's eyes glint with mischief at your expression, and her tongue continues its tantalizing caressing of your sensitive flesh. As [pc.oneClit] exposes itself, however, her attention is diverted, tongue snapping back between her jaws. <i>\"Look who came out to play; now we can really have some fun,\"</i> she giggles, bowing her head once more to plant a soft, feather-light kiss on your clitoris. Her tongue flows forth again, Kelly moving her head back to not block the view as it brushes itself against your sensitive buzzer, slathering you with drool before trying to coil around it like a snake with its prey, encircling it in a hot ring that squeezes down before releasing you. It slides its excess length back between her lips, the pointed tip hovering before the tip of your button and then descending to it. Sparks crackle across your [pc.vaginaColor] skin as the strangest sensation hits your senses; the tip of Kelly's tongue has opened up, and it's now sucking away industriously at your [pc.clit], as if trying to slurp it inside of itself!");
 
 	output("\n\nHowever, it looks like even her obscene appendage isn't that stretchy, and after a few deliciously long moments, it releases its grip upon you, darting down to lap at the wetness pooling between your cunt-lips. It undulates luxuriantly amongst your folds, then curls back up to Kelly's mouth, the laquine making a perverse show of swallowing as she tastes you. <i>\"Hmm... not bad; and now that you're wet, we can really start to play....\"</i>");
 
@@ -4610,7 +4610,7 @@ public function getLickedOutByKellllaaaahhhh(noIntro:Boolean = false):void
 	{
 		output("\n\nYou ask if Kelly could do you a favor.");
 		output("\n\n<i>\"Sure... what is it?\"</i>");
-		output("\n\n<i>\"Be silent,\"</i> you state. Then push her head straight towards your [pc.vagina], not stopping till you feel her nose contact ");
+		output("\n\n<i>\"Be silent,\"</i> you state, then push her head straight towards your [pc.vagina], not stopping until you feel her nose contact ");
 		if(pc.clitLength > 3) output("the base of ");
 		output("your [pc.clit].");
 	}
@@ -4642,9 +4642,9 @@ public function getLickedOutByKellllaaaahhhh(noIntro:Boolean = false):void
 
 	output("\n\nKelly doesn't seem even the faintest bit bothered by the sudden cascade of femjuices sluicing across her face. If anything, she starts sucking harder, the free length of her tongue slurping and flailing around inside of you as she tries to catch as much of your juice as she can. She seems more interested in the taste than preventing the mess, though, blithely letting it flow across her cheeks and roll down her chin, muffled moans rumbling wonderfully through your muff.");
 	if(pc.hasCock()) output(" She certainly doesn't seem to care about the [pc.cum] raining down upon her back and flowing wetly into her hair as [pc.eachCock] geysers above her.");
-	output(" Finally, however, even her teasing tongue can't prolong your climax any further and you slump back against the seat with a moan. She continues to leisurely stroke your inner walls, lapping up every drop she can find, and then sluggishly withdraws her tongue back into her mouth. <i>\"Mmm... you delicious,\"</i> she says - or something like that; her mouth is still jammed inside your cunt, after all, so she's rather muffled. <i>\"You gonna let me up now?\"</i>");
+	output(" Finally, however, even her teasing tongue can't prolong your climax any further and you slump back against the seat with a moan. She continues to leisurely stroke your inner walls, lapping up every drop she can find, and then sluggishly withdraws her tongue back into her mouth. <i>\"Mmm... you’re delicious,\"</i> she says - or something like that; her mouth is still jammed inside your cunt, after all, so she's rather muffled. <i>\"You gonna let me up now?\"</i>");
 
-	output("\n\nRealising that you’re still holding her against your muff, you release her.");
+	output("\n\nRealizing that you’re still holding her against your muff, you release her.");
 	if(pc.isNice()) output(" Then apologize for the roughness.");
 	else if(pc.isMischievous()) output(" And just when you were getting used to having her muzzle in there....");
 	else output(" Can’t have her drowning on your juices. At least not yet.");
@@ -4658,7 +4658,7 @@ public function getLickedOutByKellllaaaahhhh(noIntro:Boolean = false):void
 	//Kind:
 	if(pc.isNice()) output("\n\nWell, that seems like a reasonable request. So you’ll comply.");
 	//Mischievous:
-	else if(pc.isMischievous()) output("\n\nCan’t get enough of you, huh? Alright, since she was such a fine cunt-licker, you think you can oblige.");
+	else if(pc.isMischievous()) output("\n\nCan’t get enough of you, huh? All right, since she was such a fine cunt-licker, you think you can oblige.");
 	//Hard:
 	else output("\n\nYou have things to do... but a little rest wouldn’t be so bad. So you decide to stay a little longer.");
 

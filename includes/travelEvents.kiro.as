@@ -1833,7 +1833,7 @@ public function yesKiroIDoWantPubbieFJ():void
 	{
 		output("\n\nGrimly clamping your mouth closed, you pull up the credit transfer app on your Codex and pay for the drink. It’s a pittance to pay for something as nice as this anyway.");
 		output("\n\nKiro giggles, <i>“What a gentle" + pc.mf("man","lady") + ". Such genteel manners on this one!”</i> Her foot flows back and forth like the lapping of gentle waves, squirming against your hot flesh.");
-		output("\n\nYou do your best to wear a mask of calm and sophistication, but your gut isn’t buying it. By the looks of it, neither is the bartender. A disbelieving smile later and the two of you are more or less along once more.");
+		output("\n\nYou do your best to wear a mask of calm and sophistication, but your gut isn’t buying it. By the looks of it, neither is the bartender. A disbelieving smile later and the two of you are more or less alone once more.");
 		output("\n\n<i>“You really shouldn’t let pirates trick you into paying for their drinks. It’s a terrible habit to get into,”</i> Kiro drawls, ");
 		if(pc.balls > 0) output("resting your [pc.sack] atop her other foot, playfully wiggling her toes against your [pc.balls].");
 		else output("bringing her other foot to press on your [pc.sheathBiggest], gingerly squeezing the supply flesh there.");
@@ -2125,8 +2125,8 @@ public function bodyBloatingButtObliteratingBowelBasting():void
 	if(pc.hasCock()) output(", [pc.eachCock] spouting what feels like rivers of liquid pleasure out onto your [pc.belly], the [pc.cumColor] stuff milked right out of you before you can even start to cum.");
 	else if(pc.hasVagina()) 
 	{
-		output(", [eachVagina] twitching and squeezing, the motions so violent that Kiro can feel them through your walls.");
-		if(pc.isSquirter()) output(" You gush [girlCum] all over your thighs, her middle, and her balls, and she doesn’t seem to mind in the slightest. You haven’t even cum yet, either!");
+		output(", [pc.eachVagina] twitching and squeezing, the motions so violent that Kiro can feel them through your walls.");
+		if(pc.isSquirter()) output(" You gush [pc.girlCum] all over your thighs, her middle, and her balls, and she doesn’t seem to mind in the slightest. You haven’t even cum yet, either!");
 	}
 	output(" Inside, you feel a river of white-hot juice flooding into your passages. It’s warm, wet, and sticky in all the right ways, and you’re sure Kiro hasn’t even cum yet; she’s still looking down at you with a knowing smile.");
 	output("\n\nShe rolls her hips back and forth, setting an easy rhythm that leaves you gasping. Her cock is just sliding through your bowels, stretching, stroking, and addicting them to the feel of her mammoth horse-prick. You’re not sure you’ll ever be able to enjoy a small partner after this body-distending reaming. She’s just so... big! Kiro grabs your [pc.legs], lifting them up and redoubling her pace. She pounds your [pc.butt] like a jackhammer, slapping against it so forcefully that the sound of her crotch hitting your oiled-up asscheeks can be heard echoing down the halls of her ship. The bed is creaking with each hit, her balls are sloshing, and you’re utterly lost to lust, looking at Kiro with an expression that’s just begging her to release into you at last and give you the filling you deserve.");

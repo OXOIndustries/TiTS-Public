@@ -31,7 +31,7 @@ public function goldenPeakBonusFunction():Boolean
 	//Add Liliana's shit to the bar.
 	lilianaBonusShits();
 	
-	if (flags["TARKUS_DESTROYED"] == 1)
+	if (flags["DECK13_GRAY_PRIME_DECISION"] == 1) // "Help: Bodies" option
 	{
 		output("\n\nOf all the things, there's a gray goo-girl bouncing around the bar, her eyes saucer-like and full of wonder as she stares at the myr and other aliens.");
 		addButton(8, "Gray Goo", grayGooAtBar);
@@ -425,7 +425,7 @@ public function grayGooAtBar():void
 	processTime(5+rand(3));
 
 	// [Sure] [Not now]
-	clearOutput();
+	clearMenu();
 	addButton(0, "Sure", grayGooAtBarSure, undefined, "Sure", "Tell the goo-girl you'll take her with you. Considering what she was able to do when you fought her, maybe you can get some use out of her in battle...");
 	addButton(1, "Not Now", grayGooAtBarNotNow);
 }

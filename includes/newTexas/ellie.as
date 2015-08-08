@@ -782,23 +782,26 @@ public function ellieSexScene():void
 	IncrementFlag("ELLIE_SEXED");
 	clearMenu();
 	//Scene routing here!
-	var scenes:Array = new Array();
+	var scenes:Array = [];
+	
 	if(pc.hasCock())
 	{
 		//Mount Her (Centaurs, any dick size)
-		if(pc.isTaur()) scenes[scenes.length] = centaursOnCentaursOnCentaursOnCentaursThisShitIsLikeInception;
+		if (pc.isTaur()) scenes.push(centaursOnCentaursOnCentaursOnCentaursThisShitIsLikeInception);
 		else if(pc.biggestCockLength() < 12)
 		{
 			//Little Dick, First Time
-			if(flags["ELLIE_EMBARASSED_LIL_DICK_FUCK"] == undefined) scenes[scenes.length] = littleDicksGetToPlayForTheFirstTime;
+			if (flags["ELLIE_EMBARASSED_LIL_DICK_FUCK"] == undefined) scenes.push(littleDicksGetToPlayForTheFirstTime);
 			//Anal (Little Dick Repeat)
-			else scenes[scenes.length] = littleDicksGetToGoRoundTwo;
+			else scenes.push(littleDicksGetToGoRoundTwo);
 		}
 		//Vaginal (Big Dick)
-		else scenes[scenes.length] = ellieBigDickVaginalScenesForBigDickBoysWithBigDicksAndNowImJustTypingBigDicksAsManyTimesAsPossibleInThisBigDickFunctionName;
+		else scenes.push(ellieBigDickVaginalScenesForBigDickBoysWithBigDicksAndNowImJustTypingBigDicksAsManyTimesAsPossibleInThisBigDickFunctionName);
 	}
+	
 	//Get Tailpegged (F/ForN)
-	if(pc.hasVagina() || !pc.hasCock()) scenes[scenes.length] = getTailPeggedByTaurBitches;
+	if (pc.hasVagina() || !pc.hasCock()) scenes.push(getTailPeggedByTaurBitches);
+	
 	//Pick a scene and add it to a button - really no random yet but more could be added.
 	//I just wanted to be as robust as Ellie's snatch.
 	addButton(0,"Next",scenes[rand(scenes.length)]);

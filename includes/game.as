@@ -1,4 +1,5 @@
-﻿import classes.Characters.PlayerCharacter;
+﻿import classes.BreastRowClass;
+import classes.Characters.PlayerCharacter;
 import classes.Creature;
 import classes.GameData.PerkData;
 import classes.GameData.Pregnancy.Handlers.RenvraEggPregnancy;
@@ -210,6 +211,11 @@ public function mainGameMenu():void {
 	
 	// Enable the perk list button
 	(userInterface as GUI).perkDisplayButton.Activate();
+}
+
+public function generateMapForLocation(location:String):void
+{
+	userInterface.setMapData(mapper.generateMap(location));
 }
 
 public function showCodex():void
@@ -1135,7 +1141,7 @@ public function processTime(arg:int):void {
 	}
 	
 	// Extra special handler for Renvra's egg messages
-	if (pc.hasStatusEffect("Renvra Eggs Messages Available") || pc.hasStatusEffect("Nyrea Eggs Messages Available"))
+	if (pc.hasStatusEffect("Renvra Eggs Messages Available") || pc.hasStatusEffect("Nyrea Eggs Messages Available") || pc.hasStatusEffect("Royal Eggs Messages Available"))
 	{
 		var cRoom:RoomClass = rooms[currentLocation];
 		var pSpace:Boolean = cRoom.hasFlag(GLOBAL.PUBLIC);
@@ -1143,6 +1149,8 @@ public function processTime(arg:int):void {
 		// This should avoid doubling messages up if the player has both pregnancies at the same time.
 		if (pc.hasStatusEffect("Renvra Eggs Messages Available")) RenvraEggPregnancy.renvraEggsMessageHandler(pSpace, arg);
 		else if (pc.hasStatusEffect("Nyrea Eggs Messages Available")) NyreaHuntressPregnancy.nyreaEggsMessageHandler(pSpace, arg);
+		else if (pc.hasStatusEffect("Royal Eggs Messages Available")) RoyalEggPregnancy.royalEggsMessageHandler(pSpace, arg);
+		
 	}
 	
 	// I named this badly, but this is the secondary pregnancy variant that Renvra has. It's much more complicated, so
@@ -1681,22 +1689,29 @@ public function boobswellStuff(time:Number = 0):void
 		//Bonus lust for each extra row:
 		pc.lust(time/10);
 		//Use x to hold the original value for later comparison.
-		x = pc.breastRows[swelledRows[swelledRows.length-1]].breastRating();
-		trace("BOOBSWELL! Original titty: " + x);
-		trace("Time: " + time + " Amount grown from time: " + (time * 0.003));
-		//Actually change it
-		pc.breastRows[swelledRows[swelledRows.length-1]].breastRatingRaw += time * 0.003;
-		trace("BOOBSWELL! Post titty: " + pc.breastRows[swelledRows[swelledRows.length-1]].breastRating());
 		
-		if(Math.floor(pc.breastRows[swelledRows[swelledRows.length-1]].breastRating()) > Math.floor(x) 
-			&& (Math.floor(pc.breastRows[swelledRows[swelledRows.length-1]].breastRating()) % 2 == 0 || Math.floor(pc.breastRows[swelledRows[swelledRows.length-1]].breastRating()) < 6))
+		var bRow:BreastRowClass = pc.breastRows[swelledRows[swelledRows.length - 1]];
+		
+		if (bRow != null) // Catching potential errors in lieu of a "proper" fix.
 		{
-			trace("BOOBSWELL OUTPUT TRIGGERED");
-			eventBuffer += "\n\nThanks to the BoobSwell pads you’re wearing, your chest is slowly but steadily filling out! <b>You figure that ";
-			if(pc.bRows() == 1) eventBuffer += "you ";
-			else eventBuffer += "your " + num2Text2(swelledRows[swelledRows.length-1]+1) + " row of breasts ";
-			eventBuffer += "could now fit into " + indefiniteArticle(pc.breastCup(swelledRows[swelledRows.length-1])) + " bra!</b>";
+			x = bRow.breastRating();
+			trace("BOOBSWELL! Original titty: " + x);
+			trace("Time: " + time + " Amount grown from time: " + (time * 0.003));
+			//Actually change it
+			pc.breastRows[swelledRows[swelledRows.length-1]].breastRatingRaw += time * 0.003;
+			trace("BOOBSWELL! Post titty: " + pc.breastRows[swelledRows[swelledRows.length-1]].breastRating());
+		
+			if(Math.floor(pc.breastRows[swelledRows[swelledRows.length-1]].breastRating()) > Math.floor(x) 
+				&& (Math.floor(pc.breastRows[swelledRows[swelledRows.length-1]].breastRating()) % 2 == 0 || Math.floor(pc.breastRows[swelledRows[swelledRows.length-1]].breastRating()) < 6))
+			{
+				trace("BOOBSWELL OUTPUT TRIGGERED");
+				eventBuffer += "\n\nThanks to the BoobSwell pads you’re wearing, your chest is slowly but steadily filling out! <b>You figure that ";
+				if(pc.bRows() == 1) eventBuffer += "you ";
+				else eventBuffer += "your " + num2Text2(swelledRows[swelledRows.length-1]+1) + " row of breasts ";
+				eventBuffer += "could now fit into " + indefiniteArticle(pc.breastCup(swelledRows[swelledRows.length - 1])) + " bra!</b>";
+			}
 		}
+		
 		swelledRows.splice(swelledRows.length-1,1);
 	}
 }

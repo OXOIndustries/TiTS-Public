@@ -384,7 +384,8 @@ public function appearance(target:Creature):void {
 		else if(target.armType == GLOBAL.TYPE_LEITHAN) 
 		{
 			output2(" Small claws protrude from the tips of your fingers in place of fingernails");
-			if(target.skinType != GLOBAL.SKIN_TYPE_SCALES) output2(", and your arms are covered in scales up to the shoulders");
+			if (target.hasArmFlag(GLOBAL.FLAG_CHITINOUS)) output2(", and your arms are covered from fingertip to elbow with a thick layer of chitinous plates");
+			else if (target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2(", and your arms are covered in scales up to the shoulders");
 			output2(".");
 		}
 		else if(target.armType == GLOBAL.TYPE_EQUINE) output2(" Hard, hoof-like tips have grown in place of fingernails, covering the end of each digit in shiny black. You can still feel through them all the same.")

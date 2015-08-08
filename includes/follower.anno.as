@@ -1230,6 +1230,7 @@ public function annoFollowerSuckAndFuckSexPartII():void
 	output("\n\nAnno bites her lip, muffling a girlish whimper as your [pc.hips] rock forward, inching your [pc.cock " + selCock + "] into her sodden quim. You nearly join her as you feel your cock submerging into the sultry hole, surrounded by hot, wet, squirming walls as Anno’s pussy clenches around your intruding member. You push forward despite her body’s resistance, the ausar’s incredibly wet sex making it unnaturally easy to spread her walls wide. Anno moans as you plunge deep into her sex, fingers digging into the lip of her desk, tail flicking madly as you bottom out inside her");
 	if (pc.cockVolume(selCock) >= 500) output(", your tremendous cock stretching her out almost painfully wide, distending her gut against the bed");
 	output(".");
+	pc.cockChange(true, false);
 	
 	output("\n\n");
 	if (pc.balls > 0) output("Balls");

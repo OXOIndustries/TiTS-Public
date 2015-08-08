@@ -1078,7 +1078,7 @@ public function initializeMyrellionRooms():void
 	rooms["807"].eastExit = "806";
 	rooms["807"].westExit = "808";
 	rooms["807"].southExit = "825";
-	//rooms["807"].northExit = "9999";
+	rooms["807"].northExit = "832";
 	rooms["807"].moveMinutes = 2;
 	rooms["807"].runOnEnter = undefined;
 	rooms["807"].addFlag(GLOBAL.INDOOR);
@@ -1133,7 +1133,7 @@ public function initializeMyrellionRooms():void
 	//Street H16
 	rooms["811"] = new RoomClass(this);
 	rooms["811"].roomName = "\nSTREET";
-	rooms["811"].description = "The storefronts here are largely abandoned. The reason's obvious: some huge explosion caved in a part of the cavern ceiling, and a light beam shoots down onto the floor, and several destroyed stores.\n\nA footpath off to the west leads into the city park, called \"Queen's Solace.\"";
+	rooms["811"].description = "The storefronts here are largely abandoned. The reason's obvious: some huge explosion caved in a part of the cavern ceiling, and a light beam shoots down onto the floor, and several destroyed stores.\n\nA footpath off to the east leads into the city park, called \"Queen's Solace.\"";
 	rooms["811"].planet = "PLANET: MYRELLION";
 	rooms["811"].system = "SYSTEM: SINDATHU";
 	rooms["811"].eastExit = "824";
@@ -1430,6 +1430,129 @@ public function initializeMyrellionRooms():void
 	rooms["831"].addFlag(GLOBAL.INDOOR);
 	rooms["831"].addFlag(GLOBAL.PUBLIC);
 	rooms["831"].addFlag(GLOBAL.NPC);
+
+	rooms["832"] = new RoomClass(this);
+	rooms["832"].roomName = "PATH TO\nMANOR";
+	rooms["832"].description = "You find a major road that leads away from the rest of the city, to an open part of the cavern where you can clearly see an impressive manor illuminated by countless lights around and above it. The façade clearly once bore all manner of decorations and expressions of architectural cleverness, but much of that was blasted away in the invasion. The occupying forces have made an effort to clean up the mess and shore up the building's integrity, but it does not look as though restoring the more gaudy elements of its design is a priority.\n\nThe Federation presence is much stronger here, and only thickens farther up the path. Something tells you that while the ostentatious abode was likely built for a queen, whoever is residing there now has far different affiliations. You'll likely encounter at least one security check if you continue north toward the manor."
+	rooms["832"].system = "SYSTEM: SINDATHU";
+	rooms["832"].planet = "PLANET: MYRELLION";
+	rooms["832"].northExit = "833";
+	rooms["832"].southExit = "807";
+	rooms["832"].moveMinutes = 1;
+	rooms["832"].runOnEnter = undefined
+	rooms["832"].addFlag(GLOBAL.PUBLIC);
+	rooms["832"].addFlag(GLOBAL.CAVE);
+
+	rooms["833"] = new RoomClass(this);
+	rooms["833"].roomName = "MANOR\nENTRANCE";
+	rooms["833"].description = "";
+	rooms["833"].system = "SYSTEM: SINDATHU";
+	rooms["833"].planet = "PLANET: MYRELLION";
+	rooms["833"].northExit = "834";
+	rooms["833"].southExit = "832";
+	rooms["833"].moveMinutes = 1;
+	rooms["833"].runOnEnter = myrellionManorEntrance;
+	rooms["833"].addFlag(GLOBAL.PUBLIC);
+	rooms["833"].addFlag(GLOBAL.CAVE);
+
+	rooms["834"] = new RoomClass(this);
+	rooms["834"].roomName = "MANOR\nINTERIOR";
+	rooms["834"].description = "You enter the manor's main hall, flanked on all sides by corridors and stairways that lead every which way. Servants make their way through, and you can see the occasional soldier passing by on whatever duties they're up to.\n\nThe front door is to your south, and the main hall continues on northward. Most of the soldiers seem to be filtering in and out of a passage to the west, so you assume something important is that way. Additionally, a large stairway to the east clearly leads down into the cellar.";
+	rooms["834"].system = "SYSTEM: SINDATHU";
+	rooms["834"].planet = "PLANET: MYRELLION";
+	rooms["834"].northExit = "835";
+	rooms["834"].eastExit = "839";
+	rooms["834"].southExit = "833";
+	rooms["834"].westExit = "840";
+	rooms["834"].moveMinutes = 1;
+	rooms["834"].runOnEnter = undefined;
+	rooms["834"].addFlag(GLOBAL.PUBLIC);
+	rooms["834"].addFlag(GLOBAL.INDOOR);
+
+	rooms["835"] = new RoomClass(this);
+	rooms["835"].roomName = "MANOR\nINTERIOR";
+	rooms["835"].description = "Continuing along, you find yourself in an absolutely breathtaking high-ceilinged section of the main hall, with doors and rooms along the sides and sweeping arches above that serve as both decoration and architectural support. Small, dim lightbulbs dangle from strings that criss-cross the ceiling like an intricate web, which you find an ironic design choice considering the Terran insect which springs to your mind upon thinking of myr. The effect is profound and impressive, however: it's like walking through a twilit valley, with the faint stars just appearing above your head. You imagine this level of lighting is more comfortable for the subterranean myr.\n\nThe corridor continues along in both directions, with the main rooms to the south of you and the more private sections in the back.";
+	rooms["835"].system = "SYSTEM: SINDATHU";
+	rooms["835"].planet = "PLANET: MYRELLION";
+	rooms["835"].northExit = "836";
+	rooms["835"].eastExit = "838";
+	rooms["835"].southExit = "834";
+	rooms["835"].moveMinutes = 1;
+	rooms["835"].runOnEnter = undefined;
+	rooms["835"].addFlag(GLOBAL.PUBLIC);
+	rooms["835"].addFlag(GLOBAL.INDOOR);
+
+	rooms["836"] = new RoomClass(this);
+	rooms["836"].roomName = "MANOR\nINTERIOR";
+	rooms["836"].description = "You're in the far end of the manor's main hall, at the back of the building. This section is where the larger, more opulent private rooms are located. It's far quieter here than in the other areas of the building. You see a few maids and servants flittering about, cleaning or straightening things which already seemed impeccably neat to you. Perhaps they just find it prudent to look busy.\n\nThe master bedroom is to the east. If you go south, you can head back down to the rest of the manor.";
+	rooms["836"].system = "SYSTEM: SINDATHU";
+	rooms["836"].planet = "PLANET: MYRELLION";
+	rooms["836"].eastExit = "837";
+	rooms["836"].southExit = "835";
+	rooms["836"].moveMinutes = 1;
+	rooms["836"].runOnEnter = myrellionManorOutsideBedroom;
+	rooms["836"].addFlag(GLOBAL.PUBLIC);
+	rooms["836"].addFlag(GLOBAL.INDOOR);
+
+	rooms["837"] = new RoomClass(this);
+	rooms["837"].roomName = "MASTER\nBEDROOM";
+	rooms["837"].description = "The manor's master bedroom is as opulent as you might expect from the former abode of a gold myr queen: the bed is massive, more than 12 feet long, and set beneath a tremendous canopy. The bedsheets are a luxurious silk, cream white with gemstone patterns inlaid through them. Small statues make up the bedposts, each of a hugely buxom gold myr queen. The walls are inlaid with gold, flickering brilliantly in the light of a crystal chandelier.";
+	rooms["837"].system = "SYSTEM: SINDATHU";
+	rooms["837"].planet = "PLANET: MYRELLION";
+	rooms["837"].westExit = "836";
+	rooms["837"].moveMinutes = 1;
+	rooms["837"].runOnEnter = undefined;
+	rooms["837"].addFlag(GLOBAL.PUBLIC);
+	rooms["837"].addFlag(GLOBAL.INDOOR);
+
+	rooms["838"] = new RoomClass(this);
+	rooms["838"].roomName = "MANOR\nKITCHEN";
+	rooms["838"].description = "A small kitchen is set up here, equipped with several polished steel utensils, grills, even an electric icebox. There doesn't appear to be a staff working at present, or any guards for that matter. Still, you can see evidence of several boxes of food stored away.";
+	rooms["838"].system = "SYSTEM: SINDATHU";
+	rooms["838"].planet = "PLANET: MYRELLION";
+	rooms["838"].westExit = "835";
+	rooms["838"].moveMinutes = 1;
+	rooms["838"].runOnEnter = undefined;
+	rooms["838"].addFlag(GLOBAL.PUBLIC);
+	rooms["838"].addFlag(GLOBAL.INDOOR);
+
+	rooms["839"] = new RoomClass(this);
+	rooms["839"].roomName = "MANOR\nCELLAR";
+	rooms["839"].description = "At the bottom of the large stairway is a cramped cellar. It might be sort of cheeky to call it a basement, since the entire city is underground, but this area certainly <i>feels</i> more chthonic than everywhere else. The walls, ceiling, and floor are all the same bare stone the place was carved out of. At least the stone seems to have been smoothed over and polished, though the last touch-up was likely decades ago. Lamps are scattered about on wall-mounted sconces every few meters, meaning you can at least see where you're going.\n\nThe passages here are more winding and tunnel-like than those upstairs, and many of them have been sealed off. From what you can gather, this cellar runs beneath the entire manor, connecting various rooms with underground accesses and hidden pathways. However, you can only access a small portion of the entire basement, as most of it is sealed off and guarded.\n\nThis section still sees use as a storage space, however. The manor's wine cellar is still accessible, although much of its stock was either destroyed or raided by Federation troops during the invasion.";
+	rooms["839"].system = "SYSTEM: SINDATHU";
+	rooms["839"].planet = "PLANET: MYRELLION";
+	rooms["839"].westExit = "834";
+	rooms["839"].moveMinutes = 1;
+	rooms["839"].runOnEnter = undefined;
+	rooms["839"].addFlag(GLOBAL.PUBLIC);
+	rooms["839"].addFlag(GLOBAL.INDOOR);
+
+
+	rooms["840"] = new RoomClass(this);
+	rooms["840"].roomName = "MANOR\nWAR ROOM";
+	rooms["840"].description = "840";
+	rooms["840"].system = "SYSTEM: SINDATHU";
+	rooms["840"].planet = "PLANET: MYRELLION";
+	rooms["840"].eastExit = "834";
+	rooms["840"].outExit = "841";
+	rooms["840"].outText = "Down";
+	rooms["840"].moveMinutes = 1;
+	rooms["840"].runOnEnter = myrellionManorEnterWarroom;
+	rooms["840"].addFlag(GLOBAL.PUBLIC);
+	rooms["840"].addFlag(GLOBAL.INDOOR);
+
+	rooms["841"] = new RoomClass(this);
+	rooms["841"].roomName = "MANOR\nWAR ROOM";
+	rooms["841"].description = "You approach the bustling, busy doorway that you know leads to the manor's administration office. A familiar-looking soldier is standing sentry, and you could swear you catch a quick glimpse of a smile on her face once she's seen you.\n\nOnce you're close enough to face her, the sentry asks if you're going inside to see Field Marshal Sellera.\n\nDo you have business with the Marshal, or are you just passing through?";
+	rooms["841"].system = "SYSTEM: SINDATHU";
+	rooms["841"].planet = "PLANET: MYRELLION";
+	rooms["841"].inExit = "840";
+	rooms["841"].inText = "Up";
+	rooms["841"].moveMinutes = 1;
+	rooms["841"].runOnEnter = myrellionManorAdminRoom;
+	rooms["841"].addFlag(GLOBAL.PUBLIC);
+	rooms["840"].addFlag(GLOBAL.INDOOR);
+	rooms["840"].addFlag(GLOBAL.NPC);
 
 	//=========================================//
 	// NO MANZ LAND ROOMS. 1A0 to 1Z99 Reserved//

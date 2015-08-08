@@ -1,3 +1,4 @@
+import classes.Creature;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
 /*
 
@@ -93,6 +94,8 @@ public function saendraX1LiftGo():void
 {
 	clearOutput();
 	showName("\nDECK 92");
+
+	generateMapForLocation("SX1 FAKE FIGHT ROOM");
 
 	// 2late
 	if (flags["SAENDRA_XPACK1_STATUS"] == 2)
@@ -229,7 +232,7 @@ public function sx1SaendraAI():Boolean
 
 	var sHackAvail:Boolean = !UpdateStatusEffectCooldown(pc, "SaenSHackCD");
 	var sBoostAvail:Boolean = !UpdateStatusEffectCooldown(pc, "SaenSBoostCD");
-	var sDisarmAvail:Boolean = !UpdateStatusEffectCooldown(pc, "SaenDisarmShotCD") && !foes[0].hasStatusEffect("PartialDisarm") && !foes[0].hasStatusEffect("Disarmed");
+	var sDisarmAvail:Boolean = !UpdateStatusEffectCooldown(pc, "SaenDisarmShotCD") && !foes[0].hasStatusEffect("Disarm Immune") && !foes[0].hasStatusEffect("PartialDisarm") && !foes[0].hasStatusEffect("Disarmed");
 
 	if (noAction) return false;
 
@@ -330,8 +333,9 @@ public function sx1SaenHammerPistol():void
 public function sx1SaenLowBlow():void
 {
 	// Low Blow
-	if (foes[0].plural) output("One of ");
-	output(foes[0].a + foes[0].short + " gets a little too close to Saendra, and she responds by giving " + foes[0].mf("him", "her") + " a swift kick in the groin!");
+	if (foes[0].plural) output("One of " + foes[0].a);
+	else output(foes[0].capitalA);
+	output(foes[0].short + " gets a little too close to Saendra, and she responds by giving " + foes[0].mf("him", "her") + " a swift kick in the groin!");
 	output(" " + foes[0].mf("He", "She") + " takes doubles over in pain!");
 	applyDamage(new TypeCollection({ kinetic: 10 }), pc, foes[0], "minimal");
 
@@ -393,6 +397,8 @@ public function sx1PirateGroupPCLoss():void
 	author("Savin");
 	showBust("VOIDPIRATE", "VOIDPIRATE", "VOIDPIRATE", "VOIDPIRATE");
 
+	generateMapForLocation("SX1 FAKE FIGHT ROOM");
+
 	output("You slump to the ground, completely unable to put up even token resistance anymore. Your [pc.mainWeapon] clatters out of your hands, and is quickly stomped on by a jackbooted thug. You look up, in the barrel of a machine pistol, and can’t help but clench down in preparation for the inevitable.");
 	
 	output("\n\nIt doesn’t come. Instead, you’re roughly grabbed by plated hands and rolled onto your stomach. Your hands are cuffed behind your back, completely restrained as the other assassins grab Saendra and drag her off, kicking and screaming.");
@@ -437,7 +443,9 @@ public function sx1PirateGroupPCVictory():void
 	author("Savin");
 	showBust("VOIDPIRATE", "VOIDPIRATE", "VOIDPIRATE", "VOIDPIRATE");
 
-	output("The last of the assassins drops to his knees, several bullet holes smoking in his armor. Saendra twirls her Hammer around her finger, blows the smoke off the barrel, and drops it into her holster.");
+	generateMapForLocation("SX1 FAKE FIGHT ROOM");
+
+	output("The last of the assassins drops to his knees, several bullet holes smoking in his armor. Saendra twirls her pistol around her finger, blows the smoke off the barrel, and drops it into her holster.");
 	
 	output("\n\n<i>“Who the hell </i>were<i> they?”</i> you ask between gasping breaths.");
 	
@@ -451,7 +459,9 @@ public function sx1PirateGroupPCVictory():void
 	
 	output("\n\nYou turn to Saen and give her a look, which she answers with a loud declaration of <i>“MAWP”</i> while she rubs her ears. You mutter a small thanks to your nano-docs for repairing your hearing damage about as fast as it happens.");
 	
-	output("\n\nAnd thanks to that, you’re able to hear the elevator ding into place. You{ draw your [pc.weapon] and} grab Saendra’s shoulder, shoving the both of you into cover and out of sight. You pull Saendra tight against yourself, wrapping your arm around her belly. She has the sense to shut up and draw her gun, clumsily swapping magazines just before the elevator slides open.");
+	output("\n\nAnd thanks to that, you’re able to hear the elevator ding into place. You");
+	if ((pc as Creature).hasEquippedWeapon()) output(" draw your [pc.weapon] and");
+	output(" grab Saendra’s shoulder, shoving the both of you into cover and out of sight. You pull Saendra tight against yourself, wrapping your arm around her belly. She has the sense to shut up and draw her gun, clumsily swapping magazines just before the elevator slides open.");
 	
 	output("\n\nLight floods into the darkened corridor, and a trio of people stride out - two more armored men, and a woman in a skin-tight red jumpsuit, worn under a flowing black longcoat. The woman’s dark hair half-conceals a face that’s a network of scars and tattoos that wrap around an eyepatch. One of her gloved hands rests on the hilt of a saber at her hip; the other carries a sleek laser pistol.");
 	
@@ -473,7 +483,7 @@ public function sx1PirateGroupPCVictory():void
 	
 	output("\n\nThe halfbreed runs off towards the elevator bank, disappearing into the car you’d taken up. She gives you a wink as the door closes, taking her back down to the merchant decks.");
 	
-	output("\n\n...And now you’re going to have to wait for another elevator.");
+	output("\n\n...And now you’re going to have to wait for another elevator.\n\n");
 
 	flags["SAENDRA_XPACK1_STATUS"] = 5;
 	flags["SAENDRA_XPACK1_TIMER"] = GetGameTimestamp();
@@ -520,6 +530,8 @@ public function sx1TalkFriendII():void
 	clearOutput();
 	saenHeader();
 
+	generateMapForLocation("HOTEL CORRIDOR");
+
 	output("You and Saendra walk up the stairs behind the bar, towards the small hall of rooms for rent Anon’s sports. It’s small and undecorated, steel walls straight down a ten foot corridor. A fluorescent light flickers uneasily overhead, casting dark shadows across the dull gray bulkheads.");
 	
 	output("\n\nYou hear muffled moans and distant thumps against the walls, sounds of pleasure echoing from the handful of side rooms as you pass them. A man in a long, heavily worn brown coat is standing with his back to one of the doors, chewing on the butt of an unlit cigar. His hands are shoved into his pockets. The handful of self-defense classes Dad put you through tip you off to the way the man’s right pocket seems weighed down by something heavy... like a gun.");
@@ -559,9 +571,34 @@ public function sx1TalkFriendII():void
 		output("\n\nYou bite back a comment as she lifts the guy’s wallet and crawls off of him.");
 	}
 	
-	output("\n\nJust like Saen had suggested, you find a compact machine pistol next to the guard’s unconscious body and pick it up. <b>You acquire a SecureMP</b>.");
-	
-	output("\n\n<i>“Okay, I don’t think anybody heard that,”</i> Saendra says, pulling the Hammer pistol off her hip. <i>“Or if they did, they probably figured it was that busty callgirl next door slamming her headboard into the wall again. Trust me, it was only sexy listening to her moaning all night the first time,”</i> she laughs.");
+	output("\n\nJust like Saen had suggested, you find a compact machine pistol next to the guard’s unconscious body."); //  and pick it up. <b>You acquire a SecureMP</b>
+	clearMenu();
+	addButton(0, "Take It", sx1LootSecureMP);
+	addButton(1, "Leave It", sx1TalkFriendIII);
+}
+
+public function sx1LootSecureMP():void
+{
+	clearOutput();
+	saenHeader();
+
+	generateMapForLocation("HOTEL CORRIDOR");
+
+	output("You snatch up the pistol from the guards body, hefting it in your grip with ease. Feels... pretty light actually, but not in a bad way.");
+	output("\n\n");
+
+	lootScreen = sx1TalkFriendIII;
+	itemCollect([new SecureMP()]);
+}
+
+public function sx1TalkFriendIII():void
+{
+	clearOutput();
+	saenHeader();
+
+	generateMapForLocation("HOTEL CORRIDOR");
+
+	output("<i>“Okay, I don’t think anybody heard that,”</i> Saendra says, pulling the Hammer pistol off her hip. <i>“Or if they did, they probably figured it was that busty callgirl next door slamming her headboard into the wall again. Trust me, it was only sexy listening to her moaning all night the first time,”</i> she laughs.");
 	
 	output("\n\nThe way Saen’s cheeks tint with red, something tells you she did more than just listen to the local call-girl at that...");
 	
@@ -601,6 +638,8 @@ public function sx1AskValiera():void
 	saenHeader();
 	showBust("VALERIA");
 
+	generateMapForLocation("HOTEL CORRIDOR");
+
 	flags["SAENDRA_XPACK1_ASKEDVAL"] = 1;
 
 	output("<i>“Hey, Valeria?”</i> you say, leaning in towards Saendra’s wrist.");
@@ -627,6 +666,8 @@ public function sx1AskSaendra():void
 
 	flags["SAENDRA_XPACK1_ASKEDSAEN"] = 1;
 
+	generateMapForLocation("HOTEL CORRIDOR");
+
 	output("<i>“So, any ideas?”</i>");
 	
 	output("\n\nSaendra shrugs. <i>“I mean, aside from shooting bitches? I guess we could try and honeypot ‘em... I could put on a sweet voice, tell them their boss sent some pleasure. Maybe flash ‘em my tits when they open the door while you bum-rush ‘em.”</i>");
@@ -645,6 +686,8 @@ public function sx1AskSaendra():void
 public function sx1SeeCallgirl():void
 {
 	clearOutput();
+
+	generateMapForLocation("CALLGIRL ROOM");
 
 	if (flags["SAENDRA_XPACK1_CALLGIRLSTATE"] == undefined)
 	{
@@ -707,6 +750,8 @@ public function sx1CallgirlNevermind():void
 {
 	clearOutput();
 
+	generateMapForLocation("CALLGIRL ROOM");
+
 	output("<i>“Aww. Nervous, hun?”</i> the callgirl coos, blowing you a kiss. <i>“Go ahead and take your time. I’ll be here.”</i>");
 
 	sx1PuzzleOfDoomMenu();
@@ -715,6 +760,8 @@ public function sx1CallgirlNevermind():void
 public function sx1CallgirlOkay():void
 {
 	clearOutput();
+
+	generateMapForLocation("CALLGIRL ROOM");
 
 	flags["SAENDRA_XPACK1_CALLGIRLSTATE"] = 2;
 	pc.credits -= 500;
@@ -731,7 +778,10 @@ public function sx1CallgirlOkay():void
 	
 	output("\n\n<i>“Is that so?”</i> she says as you explain your desires. <i>“I think I can make all your dreams come true, then.”</i>");
 	
-	output("\n\nYou smile at her and run a hand along the cup of her of her soft, squeezable breasts. Steadily moving up her lush body, you brush your thumb over the sin-black flesh of her nipple, her slender shoulders, finally hooking it into her lip and gently pulling at the lush, dark rim of her mouth. You start to crawl up the {zil / exotic} woman’s slender frame, kissing and caressing until your");
+	output("\n\nYou smile at her and run a hand along the cup of her of her soft, squeezable breasts. Steadily moving up her lush body, you brush your thumb over the sin-black flesh of her nipple, her slender shoulders, finally hooking it into her lip and gently pulling at the lush, dark rim of her mouth. You start to crawl up the");
+	if (CodexManager.entryViewed("Zil")) output(" zil");
+	else output(" exotic");
+	output(" woman’s slender frame, kissing and caressing until your");
 	if (pc.hasCock())
 	{
 		output(" [pc.cocks]");
@@ -811,6 +861,8 @@ public function sx1CallgirlOfferJob():void
 	clearOutput();
 	pc.credits -= 500;
 
+	generateMapForLocation("CALLGIRL ROOM");
+
 	output("<i>“Hey, so, my buddy is over in the next room,”</i> you lie, pulling a credstick out of your pocket. <i>“It’s his birthday, you know, and I was thinking maybe...”</i>");
 	
 	output("\n\nThe alien whore smiles, her lush black lips reflecting the candlelight of her room. <i>“Ah, how generous of you,”</i> she coos, crawling up off the bed and slinking over to you. She takes the credit chit, pressing herself flirtatiously close as she does so. <i>“Your friend’s lucky to have you... I’ll make sure he knows that by the time I’m done.”</i>");
@@ -862,6 +914,8 @@ public function sx1Holoburn():void
 {
 	clearOutput();
 
+	generateMapForLocation("HOTEL CORRIDOR");
+
 	output("<i>“Valeria, think you can overload the power in there?”</i> you ask, jerking a thumb to the pirates’ door.");
 	
 	output("\n\nThe little holo-fairy shakes her head apologetically. <i>“Not from digital space. I’m equipped for basic security tasks, but I don’t have the training protocols to go toe to toe with their hacker. You’d have to do it manually, [pc.name].”</i>");
@@ -896,6 +950,9 @@ public function sx1Holoburn():void
 public function sx1SaenDistract():void
 {
 	clearOutput();
+	saenHeader();
+
+	generateMapForLocation("HOTEL CORRIDOR");
 
 	output("<i>“Alright, we’ll go with your plan,”</i> you tell Saendra, eyeing her mouthwatering rack. <i>“Let’s lure the bastards out.”</i>");
 	
@@ -923,6 +980,8 @@ public function sx1ThrowFlashbang():void
 {
 	clearOutput();
 
+	generateMapForLocation("HOTEL CORRIDOR");
+
 	output("<i>“Kick the door,”</i> you say, pulling a flash grenade out and pulling the pin. Saen gives you a nod, rears her leg back, and slams her foot into the door. It buckles, tumbling back on its hinges and you toss the flashbang in.");
 	
 	output("\n\nA thunderous <i>kabang</i> echoes out of the room with a blinding flash to accompany it. The moment the bang passes, you and Saendra charge in with weapons drawn - and come face to face with a staggering man, dressed in a long coat and a ballistic vest, fumbling for the shotgun strapped to his back.");
@@ -934,6 +993,8 @@ public function sx1ThrowFlashbang():void
 public function sx1DoorBreach():void
 {
 	clearOutput();
+
+	generateMapForLocation("SX1 RESCUE ROOM");
 
 	output("<i>“Fuck it. Let’s do it loud,”</i> you say, nodding towards the door. Saen grins and thumbs the safety on her Hammer pistol.");
 	
@@ -1088,6 +1149,8 @@ public function sx1ShotguardPCVictory():void
 	clearOutput();
 	showName("VICTORY:\nVOID PIRATE");
 
+	generateMapForLocation("SX1 RESCUE ROOM");
+
 	flags["SAENDRA_XPACK1_RESCUE_SHOTGUARD_STATE"] = 3;
 
 	output("The guard collapses, unable to fight anymore. Saen gives him a solid kick to the head, making sure he’s down for the count, and flashes you a cocky grin. The two of you advance into the pirates’ room, stepping over the guard’s body as you go.");
@@ -1100,7 +1163,7 @@ public function sx1ShotguardPCVictory():void
 
 		//Go to "Rescue" scene
 		clearMenu();
-		addButton(0, "Next", sx1RescueTheDude);
+		addButton(0, "Next", sx1RescueTheDude, true);
 	}
 	else
 	{
@@ -1122,6 +1185,8 @@ public function sx1SkipShotguard():void
 {
 	clearOutput();
 
+	generateMapForLocation("SX1 RESCUE ROOM");
+
 	output("Cautiously, you peer into the room. An ausar woman with a shock of blonde hair is standing inside, aiming a machine pistol toward the door and stumbling back until she’s against the far wall with nowhere else to go. Wires lead down from a brace around her neck to a huge rig of computer equipment planted on a desk a few feet away.");
 		
 	output("\n\n<i>“Stay back!”</i> she shouts, waving her gun around. <i>“I’m warning you!”</i>");
@@ -1138,6 +1203,8 @@ public function sx1ShotguardPCLoss():void
 {
 	clearOutput();
 	showName("DEFEAT:\nVOID PIRATE");
+
+	generateMapForLocation("SX1 RESCUE ROOM");
 
 	output("<i>“Hehehe,”</i> the pirate chuckles as you and Saen collapse, battered down by his barrage of shells. <i>“Got us a couple of live ones here... and what’s this?”</i> he grunts, turning to Saendra. <i>“Ah, you’re the kitten Bragga was after, aren’t you? Come to rescue your friend, huh?”</i>");
 	
@@ -1156,7 +1223,7 @@ public function sx1InitTechguardFight():void
 public function sx1TechguardAI():void
 {
 	// inject Saendra AI
-	sx1SaendraAI();
+	if (sx1SaendraAI()) output("\n\n");
 	
 	UpdateStatusEffectCooldown(foes[0], "StunCD");
 
@@ -1208,7 +1275,7 @@ public function sx1TechguardMachinePistolBurst():void
 		output(" hit, drilling you!");
 
 		var damage:TypeCollection = foes[0].rangedDamage();
-		damage.multiply(numHits);
+		damage.multiply(0.4 * numHits);
 
 		applyDamage(damage, foes[0], pc, "minimal");
 	}
@@ -1246,7 +1313,7 @@ public function sx1TechguardTease():void
 	// Tease
 	//Basic lust attack
 
-	output("\n\nHey, come on,”</i> the tech says, pressing her back to the wall and zipping down the front of her flight suit, revealing the perky mounds of her tits. <i>“Why don’t you put those weapons down, huh? We can work something out...”</i> she groans, running a hand up her chest.");
+	output("Hey, come on,”</i> the tech says, pressing her back to the wall and zipping down the front of her flight suit, revealing the perky mounds of her tits. <i>“Why don’t you put those weapons down, huh? We can work something out...”</i> she groans, running a hand up her chest.");
 
 	if (pc.willpower() + rand(30) + 1 < 30)
 	{
@@ -1266,7 +1333,7 @@ public function sx1TechguardDroneAttack():void
 	// Light laser shot, so long as her shields are still up.
 	var bHit:Boolean = false;
 
-	output("\n\nThe techie’s drone fires at you, scorching");
+	output("The techie’s drone fires at you, scorching");
 	if (rangedCombatMiss(foes[0], pc, -1, 2))
 	{
 		bHit = true;
@@ -1289,7 +1356,7 @@ public function sx1TechguardShieldRecharge():void
 {
 	// Shield Recharge
 	//1/encounter. Recharge 50% shields.
-	output("\n\nThe pirate babe grabs the generator on her belt and pushes it into maximum overdrive, giving herself a few more seconds of shielding from your assault.");
+	output("The pirate babe grabs the generator on her belt and pushes it into maximum overdrive, giving herself a few more seconds of shielding from your assault.");
 
 	foes[0].shields(foes[0].shieldsMax() * 0.5);
 	foes[0].createStatusEffect("ShieldBoostCD");
@@ -1300,6 +1367,8 @@ public function sx1TechguardPCVictory():void
 	clearOutput();
 	showName("VICTORY:\nVOID TECHIE");
 
+	generateMapForLocation("SX1 RESCUE ROOM");
+
 	if (flags["SAENDRA_XPACK1_RESCUE_SHOTGUARD_STATE"] != 3) output("The last of the pirates");
 	else output("The techie pirate");
 	output(" collapses, unable to put up any more resistance. Saen breathes a sigh of relief, and the two of you advance into the room. It’s a small affair, with peeling wallpaper and dim lights that barely let you see. A bed has been pushed against the western wall, opposite a metal desk where a truckload of computer gear is set up.");
@@ -1308,13 +1377,15 @@ public function sx1TechguardPCVictory():void
 
 	// {To Rescue scene}
 	clearMenu();
-	addButton(0, "Next", sx1RescueTheDude);
+	addButton(0, "Next", sx1RescueTheDude, true);
 }
 
 public function sx1TechguardPCLoss():void
 {
 	clearOutput();
 	showName("DEFEAT:\nVOID TECHIE");
+
+	generateMapForLocation("SX1 RESCUE ROOM");
 
 	flags["SAENDRA_XPACK1_RESCUE_TECHGUARD_STATE"] = 4;
 	flags["SAENDRA_XPACK1_STATUS"] = 8;
@@ -1335,6 +1406,8 @@ public function sx1TechguardPCLossII():void
 {
 	clearOutput();
 	showName("DEFEAT:\nVOID TECHIE");
+
+	currentLocation = "MERCHANT'S THOROUGHFARE";
 
 	output("You wake up... what must be hours later with a splitting headache and swimming vision. Everything hurts.");
 	
@@ -1359,11 +1432,13 @@ public function sx1TechguardPCLossII():void
 	genericLoss();
 }
 
-public function sx1RescueTheDude():void
+public function sx1RescueTheDude(fromCombat:Boolean = false):void
 {
 	clearOutput();
 
 	flags["SAENDRA_XPACK1_STATUS"] = 9;
+
+	generateMapForLocation("SX1 RESCUE ROOM");
 
 	output("<i>“Pete! Peter, you okay?”</i> Saendra says, gently shaking the man’s shoulders. He groans and slumps forward into her arms, alive but badly beaten.");
 	
@@ -1391,8 +1466,12 @@ public function sx1RescueTheDude():void
 	//Key Item Added: Pirate Datapad
 	pc.createKeyItem("Pirate Datapad");
 
-	clearMenu();
-	addButton(0, "Next", mainGameMenu); // 9999 -- move to elevator?
+	if (fromCombat) genericVictory();
+	else
+	{
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+	}
 }
 
 public function sx1SaensFriendExpired():void
@@ -1477,7 +1556,7 @@ public function sx1TalkPirates():void
 	
 	output("\n\n<i>“What’re you talking about? Who’s Miri?”</i>");
 	
-	output("\n\nYour companion doesn’t meet your eye as she answers. <i>“Mirian Bragga. A Dread Lord of the Black Void pirates, one of the most powerful women in the galaxy’s underworld. She... we were...”</i> she pauses for a moment, struggling to collect her thoughts. When she continues, Saendra’s robotic fingers clench hard. <i>“Miri and I were raised together. Like sisters, almost. And yeah, before you ask, that means I used to be part of the Void. My parents commanded an interceptor frigate on the fringe; when I was born, they left me on a Void base to keep me safe. Miri was just a year older, and our parents were good friends. So Miss Braga and her servants brought me up, same as her daughter.”</i>");
+	output("\n\nYour companion doesn’t meet your eye as she answers. <i>“Mirian Bragga. A Dread Lord of the Black Void pirates, one of the most powerful women in the galaxy’s underworld. She... we were...”</i> she pauses for a moment, struggling to collect her thoughts. When she continues, Saendra’s robotic fingers clench hard. <i>“Miri and I were raised together. Like sisters, almost. And yeah, before you ask, that means I used to be part of the Void. My parents commanded an interceptor frigate on the fringe; when I was born, they left me on a Void base to keep me safe. Miri was just a year older, and our parents were good friends. So Miss Bragga and her servants brought me up, same as her daughter.”</i>");
 	
 	output("\n\n<i>“I could have been her second in command,”</i> Saen laughs sadly. <i>“We were such good friends...”</i>");
 	
@@ -1497,6 +1576,9 @@ public function sx1TalkPirates():void
 	if (flags["SAENDRA TIMES SEXED"] != undefined) output(" lover");
 	else output(" companion");
 	output(".");
+	
+	flags["SAENDRA_MAX_AFFECTION"] = 100;
+	saendraAffection(30);
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);

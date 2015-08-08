@@ -76,7 +76,7 @@ public function confirmRaceChoice(race:String = "human"):void {
 		output("Leithans are a race visually similar to mythological centaurs, though they trace their origins to reptile-like species and have six clawed legs. They have powerful, prehensile tails as well as a highly acute set of four ears: two tapered ones on the side of their heads, and two large bunny-like ears atop. They are known for their speed and strength, and have a distinct color palette of grays and blacks, with yellow bioluminate areas on their scales. Leithans are also much taller than normal, reaching natural heights up to nine feet tall. If the child is male, it will have a large, bulbous reptilian penis between its rear legs.");
 	}
 	else if(race == "kui-tan") {
-		output("The kui-tan are a raccoon-like race who invariably have a phallus with multiple knots. They are also known to have fuzzy, rounded ears, fluffy tails bigger than many species' adolescent young, and a balls that engorge with seed the longer they go without release.");
+		output("The kui-tan are a raccoon-like race who invariably have a phallus with multiple knots. They are also known to have fuzzy, rounded ears, fluffy tails bigger than many species' adolescent young, and balls that engorge with seed the longer they go without release.");
 	}
 	output("\n\nIs this the race Victor chooses?")
 	this.clearMenu();

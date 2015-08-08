@@ -174,12 +174,12 @@ package classes.Characters
 		
 		override public function prepForCombat():void
 		{
-			var pGang:SX1GroupPirates = this.makeCopy();
+			var gang:SX1GroupPirates = this.makeCopy();
 			
 			kGAMECLASS.userInterface.showBust("BLACKVOID", "BLACKVOID", "BLACKVOID", "BLACKVOID");
 			kGAMECLASS.showName("FIGHT:\nPIRATE GANG");
 			
-			kGAMECLASS.foes.push(pGang);
+			kGAMECLASS.foes.push(gang);
 		}
 	}
 }

@@ -3,6 +3,7 @@ package classes.Characters
 	import classes.Creature;
 	import classes.GLOBAL;
 	import classes.Items.Guns.MagnumPistol;
+	import classes.Items.Guns.SecureMP;
 	import classes.Items.Guns.TrenchShotgun;
 	import classes.Items.Melee.Fists;
 	import classes.Items.Protection.DecentShield;
@@ -21,12 +22,12 @@ package classes.Characters
 			this.version = _latestVersion;
 			this._neverSerialize = true;
 			
-			this.short = "pirate guard";
+			this.short = "mercenary guard";
 			this.originalRace = "pirates";
 			this.a = "the ";
 			this.capitalA = "The ";
-			this.long = "The pirate guard is a gruff, weathered human man with a long, faded-brown coat pulled over a ballistic vest -- enough armor for a corporate jackboot, but less than the assassins you fought upstairs. He's packing a pump-action shotgun and a bandolier full of grenades and other goodies.";
-			this.customBlock = "The pirates armor deflects your attack with an alarming ease.";
+			this.long = "The mercenary guard is a gruff, weathered human man with a long, faded-brown coat pulled over a ballistic vest -- enough armor for a corporate jackboot, but less than the assassins you fought upstairs. He's packing a pump-action shotgun and a bandolier full of grenades and other goodies.";
+			this.customBlock = "The mercs armor deflects your attack with an alarming ease.";
 			this.plural = false;
 			isLustImmune = false;
 			
@@ -34,6 +35,7 @@ package classes.Characters
 			this.rangedWeapon = new TrenchShotgun();
 			rangedWeapon.attackVerb = "shoot";
 			rangedWeapon.attackNoun = "shot";
+			rangedWeapon.longName = "shotgun";
 			rangedWeapon.hasRandomProperties = true;
 			this.shield = new DecentShield();
 			
@@ -56,8 +58,6 @@ package classes.Characters
 			this.credits = 120 + rand(52);
 			this.HPMod = 100;
 			this.HPRaw = this.HPMax();
-			
-			this.createPerk("Multiple Attacks",0,0,0,0,"");
 			
 			this.femininity = 35;
 			this.eyeType = GLOBAL.TYPE_HUMAN;
@@ -163,17 +163,20 @@ package classes.Characters
 			this.ass.wetnessRaw = 0;
 			
 			this._isLoading = false;
-			this.createStatusEffect("Flee Disabled",0,0,0,0,true,"","",false,0);
+			
+			this.createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
+			this.createStatusEffect("Disarm Immune", 0, 0, 0, 0, true, "", "", false, 0);
 		}
 		
 		override public function prepForCombat():void
 		{
-			var pGang:SX1Shotguard = this.makeCopy();
+			var dude:SX1Shotguard = this.makeCopy();
+			dude.sexualPreferences.setRandomPrefs(4, 2);
 			
 			kGAMECLASS.userInterface.showBust("BLACKVOID");
-			kGAMECLASS.showName("FIGHT: SHOTGUN\nGUARD");
+			kGAMECLASS.showName("FIGHT:\nSHOTGUN GUARD");
 			
-			kGAMECLASS.foes.push(pGang);
+			kGAMECLASS.foes.push(dude);
 		}
 	}
 }

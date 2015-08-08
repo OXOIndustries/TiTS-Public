@@ -38,7 +38,7 @@
 	import classes.GameData.TooltipManager;
 	import classes.GameData.CodexManager;
 	import classes.GameData.GameOptions;
-	import classes.GameData.Pregnancy.Handlers.QueenOfTheDeepPregnancy;
+	import classes.GameData.Pregnancy.Handlers.*;
 	
 	import fl.transitions.easing.None;
 
@@ -206,6 +206,7 @@
 		include "../includes/myrellion/lieve.as";
 		include "../includes/myrellion/liliana.as";
 		include "../includes/myrellion/lyralla.as";
+		include "../includes/myrellion/manor.as";
 		include "../includes/myrellion/merchantQueen.as";
 		include "../includes/myrellion/myrDeserterIndividuals.as";
 		include "../includes/myrellion/nehzara.as";
