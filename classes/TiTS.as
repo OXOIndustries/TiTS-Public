@@ -206,6 +206,7 @@
 		include "../includes/myrellion/lieve.as";
 		include "../includes/myrellion/liliana.as";
 		include "../includes/myrellion/lyralla.as";
+		include "../includes/myrellion/manor.as";
 		include "../includes/myrellion/merchantQueen.as";
 		include "../includes/myrellion/myrDeserterIndividuals.as";
 		include "../includes/myrellion/nehzara.as";
