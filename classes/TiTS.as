@@ -1061,5 +1061,13 @@
 		{
 			return chars["SHADE"];
 		}
+		public function get bess():Bess
+		{
+			return chars["BESS"];
+		}
+		public function get ben():Bess
+		{
+			return chars["BESS"];
+		}
 	}
 }
