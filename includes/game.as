@@ -870,14 +870,15 @@ public function variableRoomUpdateCheck():void
 	if(nyreaDungeonGateOpen()) 
 	{
 		rooms["2G11"].westExit = "2E11";
-		rooms["2G11"].removeFlag(GLOBAL.QUEST);
+		if(nyreaDungeonFinished()) rooms["2G11"].removeFlag(GLOBAL.QUEST);
+		else if(!rooms["2G11"].hasFlag(GLOBAL.QUEST)) rooms["2G11"].addFlag(GLOBAL.QUEST);
 	}
 	//Nyrea gate should be closed
 	else 
 	{
 		rooms["2G11"].westExit = "";
 		if(!nyreaDungeonFinished() && !rooms["2G11"].hasFlag(GLOBAL.QUEST)) rooms["2G11"].addFlag(GLOBAL.QUEST);
-		else rooms["2G11"].removeFlag(GLOBAL.QUEST);
+		else if(nyreaDungeonFinished()) rooms["2G11"].removeFlag(GLOBAL.QUEST);
 	}
 	//Other nyrea gate:
 	if(flags["UNLOCKED_TAIVRAS_GATE"] == undefined) rooms["2G15"].southExit = "";

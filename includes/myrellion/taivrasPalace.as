@@ -41,7 +41,7 @@ public function nyreaDungeonGateOpen():Boolean
 	//Otherwise, Gate is open if praetorians are in recovery mode
 	else if(flags["FOUGHT_PRAETORIANS"] != undefined)
 	{
-		if(flags["PRAETORIAN_RESPAWN"] != undefined && flags["PRAETORIAN_RESPAWN"] + 60*12 < GetGameTimestamp()) return true;
+		if(flags["PRAETORIAN_RESPAWN"] != undefined && flags["PRAETORIAN_RESPAWN"] + 60*12 > GetGameTimestamp()) return true;
 	}
 	return false;
 }
@@ -53,7 +53,7 @@ public function taivrasPalaceSquareBonus():Boolean
 	if(!pc.hasPerk("Nyrean Royal") && flags["KING_NYREA"] == 1) 
 	{
 		nyreaKingReturnGreeting();
-		return false;
+		return true;
 	}
 	//KING NYREA!
 	else if(pc.hasPerk("Nyrean Royal"))
@@ -79,7 +79,7 @@ public function taivrasPalaceSquareBonus():Boolean
 		else
 		{
 			//within 12 hours:
-			if(flags["PRAETORIAN_RESPAWN"] != undefined && flags["PRAETORIAN_RESPAWN"] + 60*12 < GetGameTimestamp()) output("\n\nA squad of armed and armored nyrean huntresses are scattered around the ground, recovering from the ass-kicked you gave them earlier. When they see you standing around, they either get small or play dead in a hurry.");
+			if(flags["PRAETORIAN_RESPAWN"] != undefined && flags["PRAETORIAN_RESPAWN"] + 60*12 > GetGameTimestamp()) output("\n\nA squad of armed and armored nyrean huntresses are scattered around the ground, recovering from the ass-kicked you gave them earlier. When they see you standing around, they either get small or play dead in a hurry.");
 			//13+ hours, PC hasn’t finished dungeon OR PC got rekt by the Praetorian last time:
 			else
 			{
@@ -433,6 +433,7 @@ public function taivrasGateInteriorBonus():Boolean
 	if(pc.hasPerk("Nyrean Royal") && (flags["NYREAN_SPOILS"] == undefined || flags["NYREAN_SPOILS"] + 60*24*7 < GetGameTimestamp()))
 	{
 		getRoyalSpoils();
+		return true;
 	}
 	return false;
 }
@@ -551,7 +552,11 @@ public function gatewayBonusFunc():Boolean
 	output("You’re standing before a huge, imposing steel gate bearing the symbol of the queen: a shield with a spear pierced through it, and what looks like several tentacles wrapped around them both. The gate is currently ");
 	if(flags["UNLOCKED_TAIVRAS_GATE"] == undefined) 
 	{
-		if(!pc.hasKeyItem("Silver Key")) output("sealed, barring your path. You’ll need to find a key to get the big, meaty padlock off of it.");
+		if(!pc.hasKeyItem("Silver Key")) 
+		{
+			output("sealed, barring your path. You’ll need to find a key to get the big, meaty padlock off of it.");
+			addDisabledButton(0,"Use Key","Use Key","You don't have the key.");
+		}
 		else 
 		{
 			output("sealed, barring your path. Luckily, you found a key!");
@@ -1292,8 +1297,8 @@ public function taivraTalk(plat190:Boolean):void
 public function startFightingQueenButt(plat190:Boolean = false):void
 {
 	clearOutput();
-	showTaivra();
 	showBust("TAIVRA","QUEENSGUARD");
+	showName("TAIVRA &\nQUEENSGUARD");
 	pc.addHard(4);
 	output("You draw your [pc.weapon] and flash the queen a dangerous smile. You’ve got nothing to say to her.");
 	output("\n\n<i>“At least this one is honest about [pc.hisHer] intentions,”</i> Taivra chuckles. <i>“Unfortunately, I’m a bit too preoccupied to play at the moment. Queensguard, my dearest, why don’t you show this star-walker what happens to regicides.”</i>");
@@ -1914,7 +1919,8 @@ public function spankedQueensguardsAss():void
 
 public function taivraAI():void
 {
-	if(rand(3) <= 1)
+	if(foes[0].hasStatusEffect("Dane Grappled")) taivraGrappleBreak();
+	else if(rand(3) <= 1)
 	{
 		if(rand(4) == 0) lustFungus();
 		else if(rand(2) == 0) taivraCockTease();
@@ -1932,12 +1938,72 @@ public function taivraAI():void
 	if(foes[0].lust() >= 10) taivraConstantLustReduction();
 	//Flurry Attack
 	//Taivra makes a Flurry attack after any turn!
-	else taivraBonusAttackShit();
+	else if(!foes[0].hasStatusEffect("Dane Grappled")) taivraBonusAttackShit();
 	//COUSIN DOUCHEBAGGERY
 	//Play during Queen Taivra combat if Dane’s free. Cousin gets free and buggers off.
 	if(flags["FREED_DANE_FROM_TAIVRA"] == 1 && flags["RIVAL_GOT_MYR_COORDS_FIRST"] == undefined) cousinDouchebaggery();
+	if(kGAMECLASS.flags["FREED_DANE_FROM_TAIVRA"] == 1) daneTaivraAssistAI();
 	processCombat();
 
+}
+
+//Dane Special
+public function daneTaivraAssistAI():void
+{
+	if(foes[0].hasStatusEffect("Dane Grappled")) foes[0].removeStatusEffect("Dane Grappled");
+	else if(rand(2) == 0) quadGripSpearStab();
+	//Wastes 1/4 of her turns!
+	else if(pc.statusEffectv1("Round") % 4 == 0 ) daneGrappleTaivra();
+	else quadPummel();
+}
+
+//Four-Armed Grapple
+public function daneGrappleTaivra():void {
+	output("\n\nCharging forward, Dane tosses away a splintered spear. His arms come open, open-palmed and grabbing for Taivra!");
+	//Miss
+	if(combatMiss(chars["DANE"],foes[0])) output("\nShe twists out of the way of his four-armed grapple in the nick of time. The buff Ausar snickers, liberating a spear from the ground. <i>\"Speed alone cannot win a fight.\"</i>");
+	//Hit
+	else
+	{
+		output("\nTaivra tries to twist out of the way, but there's just so many hands grabbing for her at once. Her arms are pinned to her [pc.hips] by one pair while the other bear hugs her against his broad chest. <i>\"Now, [pc.name]! Hit her now!\"</i>");
+		output("\n<b>Taivra is grappled!</b>");
+		foes[0].createStatusEffect("Dane Grappled",0,35,0,0,false,"Constrict","Taivra is pinned in a grapple.",true,0);
+	}
+}
+
+public function taivraGrappleBreak():void
+{
+	output("With a contemptuous sneer, Taivra breaks Dane's grip and boots him backward. He converts the momentum into a combat roll and comes up with a fresh spear in his hand.");
+}
+
+public function quadGripSpearStab():void
+{
+	output("\n\nDane secures a fresh spear from an insensate guard and strikes at the queen!");
+	if(rand(10) <= 1) output(" She dodges!");
+	else
+	{
+		output(" Much of it splinters from the impact.");
+		var damage:TypeCollection = new TypeCollection( { kinetic: 33/2 } )
+		damage.add(7);
+		damage.multiply(1.5);
+		damageRand(damage, 15);
+		applyDamage(damage, chars["DANE"], foes[0], "melee");
+	}
+}
+public function quadPummel():void
+{
+	output("\n\nDane moves like a boxer, delivering punch after punch to the Queen.");
+	for(var x:int = 0; x < 4; x++)
+	{
+		if(rand(10) <= 1) output("\nHe misses!");
+		else
+		{
+			output("\nHe connects!");
+			var damage:TypeCollection = new TypeCollection( { kinetic: 33/2 } )
+			damageRand(damage, 15);
+			applyDamage(damage, chars["DANE"], foes[0], "melee");
+		}
+	}
 }
 
 
@@ -2073,7 +2139,6 @@ public function taivraBonusAttackShit():void
 {
 	output("\n\nThe queen follows through with a quick jab at you, thrusting at your chest.");
 	attack(foes[0],pc,true,1);
-	output("\n");
 }
 
 //COUSIN DOUCHEBAGGERY
@@ -2370,6 +2435,8 @@ public function takeTentaclesForTaivra():void
 
 public function subjugateQueenTaivra():void
 {
+	clearOutput();
+	showTaivra();
 	output("You kick Taivra’s fallen spear up into your hand, giving the long haft a few experimental twirls. The blade cuts the air around you, so light and quick that it feels like a whirlwind of steel around you. A fine weapon, one clearly built for a queen" + pc.mf("... or a king","") + ".");
 	output("\n\nThe fallen queen looks up at you, her eyes as unfathomably dark as a pair of black holes. Striding forward, you swing the longspear around until its tip rests squarely under Taivra’s chin, dangerously close to her unprotected throat. Grinning triumphantly at the queen, you say <i>“I’ve heard a lot about you nyrea. The way you dominate those who you beat in battle.”</i>");
 	output("\n\nTaivra nods slowly. <i>“That is how I built this city, yes. Subjecting lesser huntresses, males... any nyrea I found weaker than myself, that I could force to work in my name.”</i>");
@@ -2382,11 +2449,12 @@ public function subjugateQueenTaivra():void
 	output(" You smile down at your new mate, eager to get the chance to take advantage of her willingness. You doubt you’ll ever find a more experienced partner, after all. The things she probably knows... mmm.");
 
 	output("\n\nYou shake yourself out of your momentary reverie, long enough to tell Taivra to have the probe taken out of her village: you can make a hefty profit off of it thanks to Dad’s company, after all. She agrees, just as one of her submissives arrives with bandages for Queensguard.");
-
 	output("\n\n<i>“We’ll talk later, [pc.name],”</i> she says quietly. <i>“I can only imagine how eager you are to... claim your prizes.”</i>");
 	output("\n\nMore than one prize, too. After all, you’ve got the coordinates you need for the next leg of your quest!\n\n");
 	flags["KING_NYREA"] = 1;
 	flags["BEAT_TAIVRA_TIMESTAMP"] = GetGameTimestamp();
+	//Should make queen nyreabuns ready to go immediately
+	flags["QUEENSGUARD_STAB_TIME"] = GetGameTimestamp() - (60*13);
 	genericVictory();
 }
 
@@ -2829,6 +2897,11 @@ public function nyreaKingReturnGreeting():void
 	output("\n\nNow that’s more like it. Certainly a step up from your first meeting with these soldiers... though you don’t recognize any from before. Clearly Taivra was none too pleased with their performance. You command the new gate guards to rise, and direct you to their mistress. You’re told you can find the queen in her throne room, and that she’ll no doubt be expecting you. Hopefully, now that things have calmed down after your cousin’s escape, you’ll have the chance to take advantage of your new privileges...");
 	kGAMECLASS.output("\n\n(<b>Perk Gained: Nyrean Royal</b> - Reduces hostile nyrea attacks and deal increased tease damage to them!)");
 	pc.createPerk("Nyrean Royal",0,0,0,0,"Reduces hostile nyrea attacks and deal increased tease damage to them!");
+	variableRoomUpdateCheck();
+	var map:* = mapper.generateMap(currentLocation);
+	userInterface.setMapData(map);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 //Nyrean Monarch
@@ -2844,8 +2917,11 @@ public function getRoyalSpoils():void
 	output("\n\n<i>“Ah, my " + pc.mf("lord","lady") + ",”</i> a voice says as you enter the palace proper. You turn and see the captain of the gate guard jogging towards you. She gives you a respectful nod and produces a small pouch from her belt. <i>“Queen Taivra asked us to give you this when you arrived. Our mines and traders have been working tirelessly since your last visit. Prosperity reigns throughout the queenship, and we’re only expanding. Taivra has, of course, set aside some of our growing wealth for her mate.”</i>");
 	output("\n\nYou take the pouch, and find several small green crystals jostling around inside. This will certainly fetch a tidy profit somewhere - maybe even in your little village down the tunnel. Smiling at the guard-captain, you pocket your royal gains. It’s good to be the " + pc.mf("king","queen") + "!");
 	flags["NYREAN_SPOILS"] = GetGameTimestamp();
+	output("\n\n(+" + pc.level*100 + " credits)");
 	//PC gets a satchel of gemstones worth whatever, same item descript as the one found in Taivra’s chambers. [Next] into palace map.
 	pc.credits += pc.level*100;
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 //Repeat Gloryhole Shenanigans

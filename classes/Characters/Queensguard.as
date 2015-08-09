@@ -190,14 +190,7 @@
 			
 			nyrea.sexualPreferences.setRandomPrefs(8,2);
 			
-			nyrea.long = "You’re fighting Queensguard, the knightly nyrean warrior who stands between you and Queen Taivra - and the probe that makes up her throne. The warrior before you is clad from head to toe in heavy metal plates, like a medieval soldier’s, supplementing her natural chitin with forged steel. She carries a hefty kite-style shield, bearing the same crest as the tyrant she serves’, plus a glistening longsword that twirls about her with expert skill. Clearly the queen has chosen her personal guard well!";
-			//\n\nYou can see Dane and [rival.name] in their cages, just behind the valiant knight. They’re both yelling and screaming, much to the disdain of their huntresses standing guard by the cages. <b>{You’re too far away to try and break them out - and Queensguard is blocking any chance of shooting them out // You’re about half way to Dane and [rival.name]’s cages now! // You’re close enough to bash the lock to Dane’s cage if you wanted. Maybe the big bastard could help you out!}</b>");
-
-			nyrea.long += "\n\nThe queen’s long black hair is tied into a tight ponytail behind her elfin ears, and her pitch-black eyes regard you with ";
-			if(kGAMECLASS.flags["FREED_DANE_FROM_TAIVRA"] == 1) nyrea.long += "cold contempt.";
-			else nyrea.long += "playful mirth, like a cat stalking her prey";
-			nyrea.long += ". Her purple lips twist in a smile, and she twirls her towering longspear about herself in a series of flourishes and feints that would have impressed a core-world martial artist.";
-			if(kGAMECLASS.flags["FREED_DANE_FROM_TAIVRA"] == 1) nyrea.long += "\n\nDane, your cousin [rival.name]’s four-armed ausar bodyguard, is standing at your side. Though wounded by Queensguard, he’s still managing to stand - if only barely. He might not be at full strength, but it’s reassuring to have somebody watching your back.";
+			nyrea.long = "You’re fighting Queensguard, the knightly nyrean warrior who stands between you and Queen Taivra - and the probe that makes up her throne. The warrior before you is clad from head to toe in heavy metal plates, like a medieval soldier’s, supplementing her natural chitin with forged steel. She carries a hefty kite-style shield, bearing the same crest as the tyrant she serves’, plus a glistening longsword that twirls about her with expert skill. Clearly the queen has chosen her personal guard well!\n\nYou can see Dane and [rival.name] in their cages, just behind the valiant knight. They’re both yelling and screaming, much to the disdain of their huntresses standing guard by the cages. <b>You’re too far away to try and break them out - and Queensguard is blocking any chance of shooting them out.</b>";
 
 			//if (rand(40) == 0) nyrea.inventory.push(new Kirkite());
 			//else if(rand(50) == 0) nyrea.inventory.push(new Satyrite());
