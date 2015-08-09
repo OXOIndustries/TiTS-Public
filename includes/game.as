@@ -866,30 +866,22 @@ public function statusTick():void {
 
 public function variableRoomUpdateCheck():void
 {
-	//Gate is closed right now
-	if(rooms["2G11"].westExit != "2E11")
+	//Nyrea gate should be open
+	if(nyreaDungeonGateOpen()) 
 	{
-		//If King or guards recently defeeated, open.
-		if(flags["KING_NYREA"] == 1) rooms["2G11"].westExit = "2E11";
-		//Not king!
-		else
-		{
-			//Queen down? Open dat shit if not at lockdown time
-			if(flags["BEAT_TAIVRA_TIMESTAMP"] != undefined && flags["BEAT_TAIVRA_TIMESTAMP"] + 60*13 < GetGameTimestamp()) rooms["2G11"].westExit = "2E11";
-			//Guards down? Open.
-			else if(flags["PRAETORIAN_RESPAWN"] != undefined && flags["PRAETORIAN_RESPAWN"] + 60 * 12 < GetGameTimestamp()) rooms["2G11"].westExit = "2E11";
-		}
+		rooms["2G11"].westExit = "2E11";
+		rooms["2G11"].removeFlag(GLOBAL.QUEST);
 	}
-	//Nyrea gate is open. Should we close?
+	//Nyrea gate should be closed
 	else 
 	{
-		//King? KEEP DAT SHIT OPEN.
-		if(flags["KING_NYREA"] == 1) {}
-		//Queen down? SEAL IT 5EVER.
-		else if(flags["BEAT_TAIVRA_TIMESTAMP"] != undefined && flags["BEAT_TAIVRA_TIMESTAMP"] + 60*13 >= GetGameTimestamp()) rooms["2G11"].westExit = "";
-		//Queen still unbeaten && Praetorians respawned? Aww yiss, close dat shit.
-		else if(flags["PRAETORIAN_RESPAWN"] == undefined || flags["PRAETORIAN_RESPAWN"] + 60 * 12 >= GetGameTimestamp()) rooms["2G11"].westExit = "";
+		rooms["2G11"].westExit = "";
+		if(!nyreaDungeonFinished() && !rooms["2G11"].hasFlag(GLOBAL.QUEST)) rooms["2G11"].addFlag(GLOBAL.QUEST);
+		else rooms["2G11"].removeFlag(GLOBAL.QUEST);
 	}
+	//Other nyrea gate:
+	if(flags["UNLOCKED_TAIVRAS_GATE"] == undefined) rooms["2G15"].southExit = "";
+	else rooms["2G15"].southExit = "2G17";
 	//Handle badger closure
 	if(flags["DR_BADGER_TURNED_IN"] != undefined && rooms["209"].northExit != "") rooms["209"].northExit = "";
 	if(flags["DR_BADGER_TURNED_IN"] == undefined && rooms["209"].northExit == "") rooms["209"].northExit = "304";

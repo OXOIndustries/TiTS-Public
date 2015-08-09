@@ -1,6 +1,11 @@
 ﻿//Landing on Myrellion, First Time
 public function myrellionHangarBonus():Boolean
 {
+	if(flags["MYRELLION_PROBE_CASH_GOT"] == undefined && flags["BEAT_TAIVRA_TIMESTAMP"] != undefined) 
+	{
+		probeReclamationShit();
+		return true;
+	}
 	return false;
 }
 

@@ -2662,6 +2662,10 @@ public function tease(target:Creature, part:String = "chest"):void {
 	trace("TOTAL MULTIPLICATION FACTOR: " + totalFactor);
 	//Multiplier gets 50% boost for quivering quasar
 	if(pc.hasStatusEffect("Sex On a Meteor") || pc.hasStatusEffect("Tallavarian Tingler")) totalFactor *= 1.5;
+	//Nyrean royals get a 10% bonus vs nyrea!
+	if(target.originalRace == "nyrea" && pc.hasPerk("Nyrean Royal")) totalFactor *= 1.1;
+	//Lets cap this ridiculousness
+	if(totalFactor >= 2) totalFactor = 2;
 	//Celise ignores ALL THIS SHIT!
 	if(!(target is Celise)) 
 	{

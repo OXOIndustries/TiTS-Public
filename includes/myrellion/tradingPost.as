@@ -139,10 +139,10 @@ public function seifynCreditTalk():void
 	output("\n\n<i>“Oh, well, I trade them with some of the explorers and traders that work in the upper caves. They can spend your credits when they go back up, and I get first dibs on star-walker items they bring back. It’s a really good deal!”</i> she grins, waving a hand over a small collection of modern knick-knacks on her shelves. <i>“I’ve never been up to the surface myself, but a lot of the huntresses get close. Some of them can trade with the red myr - they’ve got some nyrea from another continent in their army, I guess, and they don’t mind doing business with us.”</i>");
 	output("\n\nOut of curiosity, you ask, <i>“What kind of currency do you normally use down here?”</i>");
 	output("\n\nSiefyn shrugs. <i>“Barter, mostly. A lot of us trade in gemstones and crystals, and everybody likes gold and platinum, though we don’t have a proper mine anywhere nearby. Every time we find one, one of the stupid myr armies rushes down and kicks us out. Queen Taivra ");
-	if(9999 == 0) output("has been");
+	if(flags["KILLED_TAIVRA"] == undefined) output("has been");
 	else output("was");
 	output(" pushing for us to make coins, like the myr do, but a lot of the huntresses ");
-	if(9999 == 0) output("are still resisting her rule");
+	if(flags["KILLED_TAIVRA"] == undefined) output("are still resisting her rule");
 	else output("resisted her rule right to the bitter end");
 	output(". I guess we’ll just keep trading for now.”</i>");
 	processTime(7);
@@ -157,11 +157,11 @@ public function seifynNyreaTalk():void
 	showSeifyn();
 	output("<i>“Mind if I ask you about the nyrea?”</i> you ask.");
 	output("\n\n<i>“Sure, I guess,”</i> Siefyn says, resting her elbows on the counter and her chin in her hands.");
-	if(9999) output(" <i>“Though if you want to know about our town, you should probably ask Queen Taivra.”</i>");
+	if(flags["KILLED_TAIVRA"] == undefined) output(" <i>“Though if you want to know about our town, you should probably ask Queen Taivra.”</i>");
 
 	output("\n\nYou drag your eyes off the tops of her breasts peeking through between her arms and ask your first question that pops into your head. <i>“So how come none of you are attacking me? All the nyrea outside have been pretty hostile.”</i>");
 	output("\n\nShe pouts, pursing her blue lips at you. <i>“We’re not </i>all<i> like that, you know. I mean, a lot of us are - especially the females. Some of them can be kind of crazy - but not all of us. Queen Taivra ");
-	if(9999) output("has made a real town out of us. Spent years gathering us all into her harem before settling down here, and put us to work making a village we could all be proud of!");
+	if(flags["KILLED_TAIVRA"] == undefined) output("has made a real town out of us. Spent years gathering us all into her harem before settling down here, and put us to work making a village we could all be proud of!");
 	else output("tried to make a town out of us. Before she died//left, anyway. Spent years gathering us all into her harem before settling down here, and put us to work making a village we could all be proud of!");
 	output("”</i>");
 	output("\n\nWait a second. You’d chalk that up to a translator microbe error, but... <i>“Do you mean </i>you’re<i> not a female?”</i> you ask, glancing down at the nyrea’s girl’s full chest.");
@@ -182,7 +182,7 @@ public function seifynNyreaTalk():void
 	output("\n\n<i>“It’s not!”</i> Seifyn assures you, now laying her hand flat across her belly. <i>“Most females aren’t very gentle about it... and usually don’t give us little males much of a choice about it... but it’s still the most amazing feeling in the world. I’ve never felt so... so complete as when I’ve been with a belly full of eggs. And the pleasure of the act is overwhelming. I’ve lost consciousness more than once when a female’s decided to ‘gift’ me with her get. I just wish more females were kind about it. So many of them are like Queen Taivra: they don’t take no for an answer.”</i>");
 	output("\n\nYou nod your understanding, such as it is, and ask her to talk more about nyrean women.");
 	output("\n\n<i>“Female nyrea are bigger and more aggressive than us males - and they’ve got the dicks, too. Females have big shafts they absorb sperm and lay eggs through. Sometimes at once. They’re wonderful when they’re gentle and kind, but most of them are just dominate by their libidos. That’s why Queen Taivra ");
-	if(9999 == 0) output("didn’t");
+	if(flags["KILLED_TAIVRA"] == 1) output("didn’t");
 	else output("doesn’t");
 	output(" allow many females around here. Almost everyone in town here is a male, actually. Not many females can keep it in their pants, especially when their eggs are swollen up and desperate to be fertilized.”</i>");
 	output("\n\nSounds like there’s a pretty pitched battle of the sexes among nyrea.");

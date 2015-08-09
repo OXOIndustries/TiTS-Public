@@ -2980,6 +2980,7 @@ public function initializeMyrellionRooms():void
 	rooms["2E17"].runOnEnter = taivrasThroneBonusFunc;
 	rooms["2E17"].addFlag(GLOBAL.CAVE);
 	rooms["2E17"].addFlag(GLOBAL.INDOOR);
+	rooms["2E17"].addFlag(GLOBAL.NPC);
 	
 	rooms["2C13"] = new RoomClass(this);
 	rooms["2C13"].roomName = "QUEEN'S\nFOUNTAIN";
@@ -3008,6 +3009,7 @@ public function initializeMyrellionRooms():void
 	rooms["2C15"].runOnEnter = queensChambersBonus;
 	rooms["2C15"].addFlag(GLOBAL.CAVE);
 	rooms["2C15"].addFlag(GLOBAL.INDOOR);
+	rooms["2C15"].addFlag(GLOBAL.OBJECTIVE);
 
 	rooms["2C11"] = new RoomClass(this);
 	rooms["2C11"].roomName = "CIRCLE\nTUNNEL";
@@ -3050,6 +3052,7 @@ public function initializeMyrellionRooms():void
 	rooms["2A09"].runOnEnter = haremChamberBonusFunc;
 	rooms["2A09"].addFlag(GLOBAL.CAVE);
 	rooms["2A09"].addFlag(GLOBAL.INDOOR);
+	rooms["2A09"].addFlag(GLOBAL.NPC);
 
 	//M15 -- Pillar SE
 	rooms["2M15"] = new RoomClass(this);
