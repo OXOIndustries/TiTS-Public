@@ -139,6 +139,7 @@ package classes.Items.Transformatives
 								pc.clearLegFlags();
 								pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
 								pc.legCount = 2;
+								pc.genitalSpot = 0;
 								changes++;
 							}
 							else output("\n\n" + target.legTypeLockedMessage());
@@ -172,6 +173,7 @@ package classes.Items.Transformatives
 								pc.armType = GLOBAL.TYPE_MYR;
 								pc.legType = GLOBAL.TYPE_MYR;
 								pc.legCount = 2;
+								pc.genitalSpot = 0;
 								pc.clearLegFlags();
 								pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
 								pc.addLegFlag(GLOBAL.FLAG_CHITINOUS);

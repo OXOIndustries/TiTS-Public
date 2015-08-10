@@ -989,6 +989,13 @@ public function variableRoomUpdateCheck():void
 	//IrelliaQuest incomplete. No east passage, people token in main room.
 	if(flags["IRELLIA_QUEST_STATUS"] == undefined || flags["IRELLIA_QUEST_STATUS"] < 6)
 	{
+		// Quest markers
+		//Added by JCup
+		if(flags["IRELLIA_QUEST_STATUS"] == 2 && (hours >= 17 && hours <= 18) && !rooms["708"].hasFlag(GLOBAL.OBJECTIVE)) rooms["708"].addFlag(GLOBAL.OBJECTIVE);
+		else if(rooms["708"].hasFlag(GLOBAL.OBJECTIVE)) rooms["708"].removeFlag(GLOBAL.OBJECTIVE);
+		if(flags["IRELLIA_QUEST_STATUS"] == 3 && hours >= 23 && !rooms["725"].hasFlag(GLOBAL.OBJECTIVE)) rooms["725"].addFlag(GLOBAL.OBJECTIVE);
+		else if(rooms["725"].hasFlag(GLOBAL.OBJECTIVE)) rooms["725"].removeFlag(GLOBAL.OBJECTIVE);
+
 		if(!rooms["746"].hasFlag(GLOBAL.NPC)) rooms["746"].addFlag(GLOBAL.NPC);
 		if(rooms["747"].hasFlag(GLOBAL.NPC)) rooms["747"].removeFlag(GLOBAL.NPC);
 		rooms["746"].eastExit = "";
