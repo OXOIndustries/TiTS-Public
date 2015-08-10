@@ -66,9 +66,12 @@ package classes.GameData.Pregnancy.Handlers
 				}
 				else
 				{
-					if (kGAMECLASS.pc.vaginas[pregSlot].wetnessRaw < 5)
+					if (kGAMECLASS.pc.vaginas.length > pregSlot) // potential error catching.
 					{
-						kGAMECLASS.pc.ass.wetnessRaw += 1;
+						if (kGAMECLASS.pc.vaginas[pregSlot].wetnessRaw < 5)
+						{
+							kGAMECLASS.pc.vaginas[pregSlot].wetnessRaw += 1;
+						}
 					}
 				}
 				

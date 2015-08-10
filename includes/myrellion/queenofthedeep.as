@@ -3,7 +3,7 @@ import classes.Engine.Combat.DamageTypes.TypeCollection;
 
 public function tryEncounterQueenOfTheDeep():Boolean
 {
-	if ((pc.hasVagina() && pc.fertility() > 0) && flags["QUEEN_OF_THE_DEEP_ENCOUNTERED"] == undefined && pc.findEmptyPregnancySlot(Creature.PREGSLOT_ANY) != -1)
+	if (flags["QUEEN_OF_THE_DEEP_ENCOUNTERED"] == undefined && pc.findEmptyPregnancySlot(Creature.PREGSLOT_ANY) != -1)
 	{
 		queenOfTheDeepInitialEncounter();
 		return true;

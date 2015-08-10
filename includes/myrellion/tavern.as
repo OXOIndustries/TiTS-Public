@@ -31,7 +31,7 @@ public function goldenPeakBonusFunction():Boolean
 	//Add Liliana's shit to the bar.
 	lilianaBonusShits();
 	
-	if (flags["DECK13_GRAY_PRIME_DECISION"] == 1) // "Help: Bodies" option
+	if (flags["DECK13_GRAY_PRIME_DECISION"] == 1 && flags["ANNO_NOVA_UPDATE"] == 1) // "Help: Bodies" option, has had an update from Anno about the Nova.
 	{
 		output("\n\nOf all the things, there's a gray goo-girl bouncing around the bar, her eyes saucer-like and full of wonder as she stares at the myr and other aliens.");
 		addButton(8, "Gray Goo", grayGooAtBar);
