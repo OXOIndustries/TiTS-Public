@@ -2288,6 +2288,7 @@ public function fuckTaivra():void
 	processTime(4);
 	clearMenu();
 	if(pc.cockThatFits(foes[0].vaginalCapacity(0)) >= 0) addButton(0,"FuckHerAss",fuckTaivrasAss,undefined,"Fuck Her Ass","Taivra’s already bent over, ass in the air. Grab your cock and thrust into her tight-looking ass!");
+	else addDisabledButton(0,"FuckHerAss","FuckHerAss","You must have an appropriately-sized phallus to do this.");
 	addButton(1,"Take Tentacles",takeTentaclesForTaivra,undefined,"Take Tentacles","Take Taivra’s tentacles in every hole. Get the most out of all those wriggling parasites attached to her hind end.");
 }
 

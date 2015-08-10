@@ -50,6 +50,7 @@
 		public static const FLAG_HOLLOW:int									= 32;
 		public static const FLAG_RIBBED:int									= 33;
 		public static const FLAG_CHITINOUS:int								= 34;
+		public static const FLAG_FEATHERED:int								= 35;
 		
 		public static const FLAG_NAMES:Array = [
 			"OFFSET -- INVALID",
@@ -86,7 +87,8 @@
 			"Foreskinned",
 			"Hollow",
 			"Ribbed",
-			"Chitinous"
+			"Chitinous",
+			"Feathered"
 		];
 		
 		public static const VALID_SKIN_FLAGS:Array = [
@@ -94,6 +96,8 @@
 			FLAG_THICK,
 			FLAG_STICKY,
 			FLAG_FLUFFY,
+			FLAG_SQUISHY,
+			FLAG_LUBRICATED,
 		];
 		
 		//TYPES
@@ -182,8 +186,8 @@
 			"Deer",
 			"Anemone",
 			"Tentacle",
-			"Kuitan",
-			"Humanmasked",
+			"Kui-tan",
+			"Human Masked",
 			"Mouse",
 			"Mouseman",
 			"(Name Index 28)",
@@ -319,6 +323,7 @@
 			TYPE_DRIDER,
 			TYPE_BADGER,
 			TYPE_LEITHAN,
+			TYPE_KUITAN,
 			TYPE_OVIR,
 			TYPE_MYR,
 		];
@@ -329,6 +334,7 @@
 			FLAG_FURRED,
 			FLAG_SCALED,
 			FLAG_CHITINOUS,
+			FLAG_FEATHERED
 		];
 		
 		public static const VALID_LEG_TYPES:Array = [
@@ -371,7 +377,8 @@
 			FLAG_PAWS,
 			FLAG_HEELS,
 			FLAG_PREHENSILE,
-			FLAG_SMOOTH
+			FLAG_SMOOTH,
+			FLAG_CHITINOUS
 		];
 		
 		public static const VALID_ANTENNAE_TYPES:Array = [

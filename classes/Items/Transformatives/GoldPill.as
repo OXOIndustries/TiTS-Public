@@ -140,6 +140,7 @@ package classes.Items.Transformatives
 								pc.clearLegFlags();
 								pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
 								pc.legCount = 2;
+								pc.genitalSpot = 0;
 								changes++;
 							}
 							else output("\n\n" + target.legTypeLockedMessage());
@@ -173,6 +174,7 @@ package classes.Items.Transformatives
 								pc.armType = GLOBAL.TYPE_MYR;
 								pc.legType = GLOBAL.TYPE_MYR;
 								pc.legCount = 2;
+								pc.genitalSpot = 0;
 								pc.clearLegFlags();
 								pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
 								pc.addLegFlag(GLOBAL.FLAG_CHITINOUS);
@@ -402,6 +404,25 @@ package classes.Items.Transformatives
 						changes++;
 					}
 					else output("\n\n" + pc.girlCumTypeLockedMessage());
+				}
+				//Grow wings once! Requires legs!
+				if(changes < changeLimit && target.hasCock() && target.legType == GLOBAL.TYPE_MYR && (target.wingType != GLOBAL.TYPE_SMALLBEE || target.wingType != GLOBAL.TYPE_MYR) && target.wingTypeUnlocked(GLOBAL.TYPE_MYR) && rand(4) == 0) {
+					if(!target.hasWings()) {
+						kGAMECLASS.output("\n\nCramps attack your shoulder blades, forcing you to arch your back and cry out. You drop and roll on the ground to try and keep it together, and before you know, the pain is gone. In its place, there's the pleasant ache of growing muscles and something sliding down your back. You crane your head over your shoulder");
+						if(target.armor.shortName != "") kGAMECLASS.output(" and pull back your [pc.armor.longName]");
+						kGAMECLASS.output(" to take a look; <b>there are small, transparent wings pressed against your back</b>. They're too small to allow you to fly, but you're definitely getting more myr-like.");
+						target.wingType = GLOBAL.TYPE_MYR;
+					}
+					//TF other wings!
+					else {
+						kGAMECLASS.output("\n\nA cramp ruffles your [pc.wings], making them flutter wildly as they contort and twist. You can feel them changing as they flail around, thinning, shrinking, and warping with each gasp of air you drag into your lungs. A few seconds later, your body calms, and you're able to look behind you. <b>You've grown small, transparent, myr-like wings!</b>");
+						target.wingType = GLOBAL.TYPE_MYR;
+					}
+					changes++;
+				}
+				else if (!target.wingTypeUnlocked(GLOBAL.TYPE_MYR))
+				{
+					kGAMECLASS.output(target.wingTypeLockedMessage());
 				}
 				//+Thin
 				//Slight reduction to thickness. 
