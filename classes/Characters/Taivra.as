@@ -4,7 +4,7 @@
 	import classes.Creature;
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.Items.Melee.TaivrasSpear;
-	import classes.Items.Protection.DecentShield;
+	import classes.Items.Protection.ReaperArmamentsMarkIShield;
 	import classes.ItemSlotClass;
 	import classes.kGAMECLASS;
 	import classes.Util.RandomInCollection;
@@ -12,13 +12,9 @@
 	import classes.Items.Guns.HammerPistol;
 	import classes.Items.Guns.EagleHandgun;
 	import classes.Items.Guns.LaserPistol;
-	import classes.Items.Miscellaneous.Picardine;
-	import classes.Items.Miscellaneous.Kirkite;
-	import classes.Items.Miscellaneous.Satyrite;
 	
 	import classes.GLOBAL;
-	
-	
+
 	/**
 	 * ...
 	 * @author Gedan
@@ -44,7 +40,7 @@
 			
 			this.plural = false;
 			
-			this.shield = new DecentShield();
+			this.shield = new ReaperArmamentsMarkIShield();
 			this.meleeWeapon = new TaivrasSpear();
 			
 			this.physiqueRaw = 25;
@@ -67,6 +63,7 @@
 			this.credits = 0;
 			this.HPMod = 150;
 			this.HPRaw = this.HPMax();
+			this.shieldsRaw = this.shieldsMax();
 			
 			this.femininity = 100;
 			this.eyeType = 0;
@@ -176,11 +173,12 @@
 			this.cocks = [];
 			this.cocks.push(new CockClass());
 			(this.cocks[0] as CockClass).cType = GLOBAL.TYPE_NYREA;
-			(this.cocks[0] as CockClass).cLengthRaw = 13;
-			(this.cocks[0] as CockClass).cThicknessRatioRaw = 1.66;
+			(this.cocks[0] as CockClass).cLengthRaw = 22;
+			(this.cocks[0] as CockClass).cThicknessRatioRaw = 1.2;
 			(this.cocks[0] as CockClass).addFlag(GLOBAL.FLAG_KNOTTED);
 			(this.cocks[0] as CockClass).virgin = false;
 			this.cockVirgin = false;
+			createStatusEffect("Force Fem Gender");
 			
 			this._isLoading = false;
 		}
@@ -200,18 +198,19 @@
 			nyrea.sexualPreferences.setPref(GLOBAL.SEXPREF_MASCULINE,		GLOBAL.KINDA_LIKES_SEXPREF);
 			
 			nyrea.long += "\n\nThe queen’s long black hair is tied into a tight ponytail behind her elfin ears, and her pitch-black eyes regard you with ";
-			if(kGAMECLASS.flags["FREED_DANE_FROM_TAIVRA"] == 1) nyrea.long += "cold contempt.";
+			if(kGAMECLASS.flags["FREED_DANE_FROM_TAIVRA"] == 1) nyrea.long += "cold contempt";
 			else nyrea.long += "playful mirth, like a cat stalking her prey";
 			nyrea.long += ". Her purple lips twist in a smile, and she twirls her towering longspear about herself in a series of flourishes and feints that would have impressed a core-world martial artist.";
 			if(kGAMECLASS.flags["FREED_DANE_FROM_TAIVRA"] == 1) nyrea.long += "\n\nDane, your cousin [rival.name]’s four-armed ausar bodyguard, is standing at your side. Though wounded by Queensguard, he’s still managing to stand - if only barely. He might not be at full strength, but it’s reassuring to have somebody watching your back.";
 
-			//if (rand(40) == 0) nyrea.inventory.push(new Kirkite());
+			nyrea.inventory.push(new TaivrasSpear());
 			//else if(rand(50) == 0) nyrea.inventory.push(new Satyrite());
 			//else if(rand(20) == 0) nyrea.inventory.push(new Picardine());
 			//else if (rand(20) == 0)	nyrea.inventory.push(nyrea.rangedWeapon.makeCopy());
 			//else if (rand(20) == 0) nyrea.inventory.push(nyrea.meleeWeapon.makeCopy());
 			kGAMECLASS.showName("FIGHT:\nQUEEN TAIVRA");
-			kGAMECLASS.showBust("TAIVRA");
+			if(kGAMECLASS.flags["FREED_DANE_FROM_TAIVRA"] == 1) kGAMECLASS.showBust("TAIVRA","DANE");
+			else kGAMECLASS.showBust("TAIVRA");
 			kGAMECLASS.foes.push(nyrea);
 		}
 		

@@ -186,10 +186,13 @@ public function combatMainMenu():void
 		//Bonus shit for stuff!
 		if (foes[0] is CaptainKhorganMech) khorganMechBonusMenu();
 		if (foes[0] is QueenOfTheDeep) queenOfTheDeepCombatMenuAddition();
-		if (foes[0] is Queensguard) 
+		if (foes[0] is Queensguard || foes[0] is Taivra) 
 		{
-			if(pc.statusEffectv1("Cage Distance") != 0) addButton(5,"Cage",moveToCage,undefined,"Cage","Attempt to move closer to Dane and [rival.name]'s cage.");
-			else addButton(5,"BreakCage",breakOutDane,undefined,"Break Cage","Try and break Dane out - that big, burly ausar might just level the playing field!");
+			if(flags["FREED_DANE_FROM_TAIVRA"] == undefined)
+			{
+				if(pc.statusEffectv1("Cage Distance") != 0) addButton(10,"Cage",moveToCage,undefined,"Cage","Attempt to move closer to Dane and [rival.name]'s cage.");
+				else addButton(10,"BreakCage",breakOutDane,undefined,"Break Cage","Try and break Dane out - that big, burly ausar might just level the playing field!");
+			}
 		}
 	}
 	flags["COMBAT MENU SEEN"] = 1;
@@ -551,7 +554,7 @@ public function updateCombatStatuses():void {
 		if (pc.statusEffectv1("Staggered"))
 		{
 			pc.addStatusValue("Staggered", 1, -1);
-			output("<b>You're still reeling from the force of the blows to which you've been subject.</b>");
+			output("<b>You're still reeling from the force of the blows to which you've been subjected.</b>");
 		}
 		else
 		{
@@ -1702,6 +1705,8 @@ public function enemyAI(aggressor:Creature):void
 	else if (aggressor is SX1Shotguard) sx1ShotguardAI();
 	else if (aggressor is SX1Techguard) sx1TechguardAI();
 	else if (aggressor is Queensguard) queensguardAI();
+	else if (aggressor is Taivra) taivraAI();
+	else if (aggressor is Princess) princessAI();
 	else enemyAttack(aggressor);
 }
 public function victoryRouting():void 
@@ -1865,6 +1870,8 @@ public function victoryRouting():void
 	else if (foes[0] is SX1Shotguard) sx1ShotguardPCVictory();
 	else if (foes[0] is SX1Techguard) sx1TechguardPCVictory();
 	else if (foes[0] is Queensguard) spankedQueensguardsAss();
+	else if (foes[0] is Taivra) whupTaivrasAss();
+	else if (foes[0] is Princess) beatUpPrincessYeSlut();
 	else genericVictory();
 }
 
@@ -2026,6 +2033,7 @@ public function defeatRouting():void
 	else if (foes[0] is SX1Techguard) sx1TechguardPCLoss();
 	else if (foes[0] is Queensguard) loseToQueensTaivra();
 	else if (foes[0] is Taivra) loseToQueensTaivra();
+	else if (foes[0] is Princess) loseToPrincessYeGit();
 	else {
 		output("You lost!  You rouse yourself after an hour and a half, quite bloodied.");
 		processTime(90);
@@ -2377,10 +2385,14 @@ public function startCombat(encounter:String):void
 			break;
 		case "Queensguard":
 			chars["QUEENSGUARD"].prepForCombat();
-			pc.createStatusEffect("Cage Distance",2,0,0,0,false,"9999 CAGE","You're a good ways away from Dane and your cousin's cage. It'll take a lot of work to reposition yourself to break them out.",true,0);
+			pc.createStatusEffect("Cage Distance",2,0,0,0,false,"Icon_RadioSignal","You're a good ways away from Dane and your cousin's cage. It'll take a lot of work to reposition yourself to break them out.",true,0);
 			break;
 		case "Taivra":
+			if(flags["FREED_DANE_FROM_TAIVRA"] == 1) pc.removeStatusEffect("Cage Distance");
 			chars["TAIVRA"].prepForCombat();
+			break;
+		case "princess":
+			chars["PRINCESS"].prepForCombat();
 			break;
 		default:
 			throw new Error("Tried to configure combat encounter for '" + encounter + "' but couldn't find an appropriate setup method!");
@@ -2659,6 +2671,10 @@ public function tease(target:Creature, part:String = "chest"):void {
 	trace("TOTAL MULTIPLICATION FACTOR: " + totalFactor);
 	//Multiplier gets 50% boost for quivering quasar
 	if(pc.hasStatusEffect("Sex On a Meteor") || pc.hasStatusEffect("Tallavarian Tingler")) totalFactor *= 1.5;
+	//Nyrean royals get a 10% bonus vs nyrea!
+	if(target.originalRace == "nyrea" && pc.hasPerk("Nyrean Royal")) totalFactor *= 1.1;
+	//Lets cap this ridiculousness
+	if(totalFactor >= 2) totalFactor = 2;
 	//Celise ignores ALL THIS SHIT!
 	if(!(target is Celise)) 
 	{
@@ -3892,6 +3908,7 @@ public function gasGrenade(target:Creature):void
 	output("\n");
 	output(teaseReactions(damageResult.lustDamage, target));
 	outputDamage(damageResult);
+	output("\n");
 	processCombat();
 }
 

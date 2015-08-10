@@ -16,7 +16,7 @@
 			this._latestVersion = 1;
 			
 			this.quantity = 1;
-			this.stackSize = 1;
+			this.stackSize = 2;
 			this.type = GLOBAL.GEM;
 			
 			//Used on inventory buttons

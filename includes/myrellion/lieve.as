@@ -153,7 +153,7 @@ public function lieveInitialEncounter():void
 public function lieveRepeatEncounter():void
 {
 	clearOutput();
-
+	lieveHeader();
 	if (!hasFuckedLieve() && pc.mf("m", "f") == "m")
 	{
 		output("<i>“Hey again, Steele,”</i> Lieve says, giving you a friendly smile. Her harem girls look up excitedly when you enter, and they quickly go from lounging on the carpet and chairs to curling up around their mistress, getting very friendly with Lieve’s thighs.");

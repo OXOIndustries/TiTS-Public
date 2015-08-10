@@ -156,7 +156,7 @@ public function daneQuadStrike():void {
 public function daneGrappleAttack():void {
 	output("Charging forward, Dane sheaths his weapons simultaneously. His arms come open, open-palmed and grabbing for you!");
 	//Miss
-	if(combatMiss(foes[0],pc)) output("\nYou twist out of the way of his four-armed grapple in the nick of time. The four-armed Ausar snickers, pulling his weapons once more. <i>\"Speed alone cannot win a fight.\"</i>");
+	if(combatMiss(foes[0],pc)) output("\nYou twist out of the way of his four-armed grapple in the nick of time. The buff Ausar snickers, pulling his weapons once more. <i>\"Speed alone cannot win a fight.\"</i>");
 	//Hit
 	else
 	{

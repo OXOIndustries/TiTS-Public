@@ -2958,7 +2958,7 @@ public function initializeMyrellionRooms():void
 	rooms["2G17"].description = "Beyond the gate lies a twisting passage heading westward, with sharp steps taking you even deeper into the stone in Myrellion’s heart. Flickering lanterns light your way, and the sounds of speech below tell you that you’re not the only one here...";
 	rooms["2G17"].planet = "PLANET: MYRELLION";
 	rooms["2G17"].system = "SYSTEM: SINDATHU";
-	rooms["2G17"].northExit = "2G13";
+	rooms["2G17"].northExit = "2G15";
 	rooms["2G17"].eastExit = "";
 	rooms["2G17"].southExit = "";
 	rooms["2G17"].westExit = "2E17";
@@ -2980,6 +2980,7 @@ public function initializeMyrellionRooms():void
 	rooms["2E17"].runOnEnter = taivrasThroneBonusFunc;
 	rooms["2E17"].addFlag(GLOBAL.CAVE);
 	rooms["2E17"].addFlag(GLOBAL.INDOOR);
+	rooms["2E17"].addFlag(GLOBAL.NPC);
 	
 	rooms["2C13"] = new RoomClass(this);
 	rooms["2C13"].roomName = "QUEEN'S\nFOUNTAIN";
@@ -3008,6 +3009,7 @@ public function initializeMyrellionRooms():void
 	rooms["2C15"].runOnEnter = queensChambersBonus;
 	rooms["2C15"].addFlag(GLOBAL.CAVE);
 	rooms["2C15"].addFlag(GLOBAL.INDOOR);
+	rooms["2C15"].addFlag(GLOBAL.OBJECTIVE);
 
 	rooms["2C11"] = new RoomClass(this);
 	rooms["2C11"].roomName = "CIRCLE\nTUNNEL";
@@ -3050,6 +3052,7 @@ public function initializeMyrellionRooms():void
 	rooms["2A09"].runOnEnter = haremChamberBonusFunc;
 	rooms["2A09"].addFlag(GLOBAL.CAVE);
 	rooms["2A09"].addFlag(GLOBAL.INDOOR);
+	rooms["2A09"].addFlag(GLOBAL.NPC);
 
 	//M15 -- Pillar SE
 	rooms["2M15"] = new RoomClass(this);

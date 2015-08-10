@@ -752,6 +752,7 @@
 		public static const ITEM_FLAG_ENERGY_WEAPON:int					= 1;
 		public static const NOT_CONSUMED_BY_DEFAULT:int 				= 2;
 		public static const ITEM_FLAG_EFFECT_FLURRYBONUS:int			= 3; // Equipping the items removes the additional miss-chances from flurry attacks.
+		public static const ITEM_FLAG_AIRTIGHT:int 						= 4; // Used for space suits and the like.
 		
 		/**
 		 * You have a couple of ways of querying the preference values to get useful information back out; it's why I've set the LIKES/DISLIKES values like I have.

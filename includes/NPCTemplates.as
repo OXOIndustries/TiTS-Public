@@ -86,7 +86,7 @@
 	prepChar(justUpdate, "SX1TECHGUARD", SX1Techguard);
 	prepChar(justUpdate, "TAIVRA", Taivra);
 	prepChar(justUpdate, "QUEENSGUARD", Queensguard);
-	prepChar(justUpdate, "BESS", Bess);
+	prepChar(justUpdate, "PRINCESS", Princess);
 
 	// Check all characters have version information set
 	for (var prop:String in chars)

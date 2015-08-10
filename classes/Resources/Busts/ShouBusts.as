@@ -121,8 +121,14 @@
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/nyrea_beta.png", mimeType = "image/png")]
 		public var Bust_NYREA_BETA:Class;
+		//9999 - temp queensguard for testin
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/nyrea_beta.png", mimeType = "image/png")]
+		public var Bust_QUEENSGUARD:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/nyrea_alpha.png", mimeType = "image/png")]
 		public var Bust_NYREA_ALPHA:Class;
+		//9999 - temp taivra for testin
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/nyrea_alpha.png", mimeType = "image/png")]
+		public var Bust_TAIVRA:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/ogram.png", mimeType = "image/png")]
 		public var Bust_OGRAM:Class;

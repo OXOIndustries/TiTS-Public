@@ -874,12 +874,23 @@ public function statusTick():void {
 
 public function variableRoomUpdateCheck():void
 {
-	//Open Nyrea village gate
-	if(rooms["2G11"].westExit != "2E11")
+	//Nyrea gate should be open
+	if(nyreaDungeonGateOpen()) 
 	{
-		if(flags["PRAETORIAN_RESPAWN"] != 0 && flags["PRAETORIAN_RESPAWN"] != undefined) rooms["2G11"].westExit = "2E11"
+		rooms["2G11"].westExit = "2E11";
+		if(nyreaDungeonFinished()) rooms["2G11"].removeFlag(GLOBAL.QUEST);
+		else if(!rooms["2G11"].hasFlag(GLOBAL.QUEST)) rooms["2G11"].addFlag(GLOBAL.QUEST);
 	}
-	else if(flags["PRAETORIAN_RESPAWN"] == undefined) rooms["2G11"].westExit = "";
+	//Nyrea gate should be closed
+	else 
+	{
+		rooms["2G11"].westExit = "";
+		if(!nyreaDungeonFinished() && !rooms["2G11"].hasFlag(GLOBAL.QUEST)) rooms["2G11"].addFlag(GLOBAL.QUEST);
+		else if(nyreaDungeonFinished()) rooms["2G11"].removeFlag(GLOBAL.QUEST);
+	}
+	//Other nyrea gate:
+	if(flags["UNLOCKED_TAIVRAS_GATE"] == undefined) rooms["2G15"].southExit = "";
+	else rooms["2G15"].southExit = "2G17";
 	//Handle badger closure
 	if(flags["DR_BADGER_TURNED_IN"] != undefined && rooms["209"].northExit != "") rooms["209"].northExit = "";
 	if(flags["DR_BADGER_TURNED_IN"] == undefined && rooms["209"].northExit == "") rooms["209"].northExit = "304";
@@ -1121,7 +1132,7 @@ public function processTime(arg:int):void {
 
 	//Queue up procs for boobswell shit
 	if (pc.hasStatusEffect("Boobswell Pads")) boobswellStuff(arg);
-	variableRoomUpdateCheck();
+
 	//Laneshit
 	processLaneDetoxEvents(arg);
 	
@@ -1226,12 +1237,6 @@ public function processTime(arg:int):void {
 			{
 				if(flags["SHEKKA_TALK_COOLDOWN"] > 0) flags["SHEKKA_TALK_COOLDOWN"]--;
 				if(flags["SHEKKA_TALK_COOLDOWN"] < 0) flags["SHEKKA_TALK_COOLDOWN"] = 0;
-			}
-			//Taivra's guards respawn
-			if(flags["PRAETORIAN_RESPAWN"] != undefined && flags["PRAETORIAN_RESPAWN"] != 0)
-			{
-				flags["PRAETORIAN_RESPAWN"]--;
-				if(flags["PRAETORIAN_RESPAWN"] <= 0) flags["PRAETORIAN_RESPAWN"] = 0;
 			}
 			if(flags["FLAHNE_PISSED"] > 0) {
 				flags["FLAHNE_PISSED"]--;
@@ -1435,6 +1440,7 @@ public function processTime(arg:int):void {
 	if (!MailManager.isEntryUnlocked("orangepills") && flags["MCALLISTER_MYR_HYBRIDITY"] == 2 && GetGameTimestamp() >= (flags["MCALLISTER_MYR_HYBRIDITY_START"] + (7 * 24 * 60))) nevriOrangeMailGet();
 	if (!MailManager.isEntryUnlocked("bjreminder") && flags["NEVRIE_FIRST_DISCOUNT_DATE"] != undefined && days >= flags["NEVRIE_FIRST_DISCOUNT_DATE"]+20) nevriBJMailGet();
 	flags["HYPNO_EFFECT_OUTPUT_DONE"] = undefined;
+	variableRoomUpdateCheck();
 	updatePCStats();
 }
 
