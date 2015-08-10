@@ -3,71 +3,70 @@
 	import classes.CockClass;
 	import classes.Creature;
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
-	import classes.Items.Melee.NyreanSpear;
-	import classes.Items.Protection.DecentShield;
-	import classes.Items.Armor.PolishedPlate;
+	import classes.Items.Melee.TaivrasSpear;
+	import classes.Items.Protection.ReaperArmamentsMarkIShield;
+	import classes.Items.Miscellaneous.EmptySlot;
 	import classes.ItemSlotClass;
 	import classes.kGAMECLASS;
 	import classes.Util.RandomInCollection;
 	
+	import classes.Items.Guns.HammerPistol;
+	import classes.Items.Guns.EagleHandgun;
+	import classes.Items.Guns.LaserPistol;
+	
 	import classes.GLOBAL;
-	
-	
+
 	/**
 	 * ...
 	 * @author Gedan
 	 */
 	
-	public class Queensguard extends Creature
+	public class Princess extends Creature
 	{
 		
-		public function Queensguard() 
+		public function Princess() 
 		{
 			this._latestVersion = 1;
 			this.version = this._latestVersion;
 			this._neverSerialize = true; // Setting this will stop a given NPC class from ever being serialized.
 			
-			this.short = "Queensguard";
+			this.short = "princess";
 			this.originalRace = "nyrea";
-			this.a = "";
-			this.capitalA = "";
+			this.a = "the ";
+			this.capitalA = "The ";
 			this.tallness = 72;
 			this.scaleColor = "green";
 			
-			this.long = "";
+			this.long = "The nyrean princess glares at you from across the room, her boytoys taking refuge in the shadowed recesses of the chamber. The citrine gems interwoven into her slender head-spikes have shifted with her clumsy attempts at combat so that they hang askew, less like a regal crown and more like a classless harlot’s glass jewelry. It is a sight that is nonetheless steeped in sexuality, even if it has been overlaid in bandoleers of red myrmedion drug-spit. You almost wish you had the time to admire how her heaving bust is just this side of too large for her frame, but if you’re going to get out of here without joining her harem, you’d best keep your eyes on the fight.";
 			
 			this.plural = false;
 			
-			this.meleeWeapon = new NyreanSpear();
-			this.meleeWeapon.hasRandomProperties = true;
-			this.meleeWeapon.attackVerb = "slash";
-			this.meleeWeapon.attackNoun = "slash";
-			this.meleeWeapon.longName = "polished longsword";
-			this.meleeWeapon.baseDamage.kinetic.damageValue = 4;
-			this.armor = new PolishedPlate();
-						
-			this.physiqueRaw = 22;
-			this.reflexesRaw = 22;
-			this.aimRaw = 20;
-			this.intelligenceRaw = 15;
-			this.willpowerRaw = 15;
-			this.libidoRaw = 80;
+			this.shield = new EmptySlot();
+			this.meleeWeapon = new TaivrasSpear();
+			
+			this.physiqueRaw = 20;
+			this.reflexesRaw = 20;
+			this.aimRaw = 29;
+			this.intelligenceRaw = 10;
+			this.willpowerRaw = 5;
+			this.libidoRaw = 60;
 			this.shieldsRaw = this.shieldsMax();
 			this.energyRaw = 100;
-			this.lustRaw = 25;
+			this.lustRaw = 5;
 			
 			baseHPResistances = new TypeCollection();
 			baseHPResistances.kinetic.damageValue = 25.0;
 			baseHPResistances.electric.damageValue = 25.0;
 			baseHPResistances.burning.damageValue = 25.0;
 			
-			this.XPRaw = 750;
-			this.level = 8;
+			this.XPRaw = 600;
+			this.level = 7;
 			this.credits = 0;
-			this.HPMod = 130;
+			this.HPMod = 55;
 			this.HPRaw = this.HPMax();
+			this.shieldsRaw = this.shieldsMax();
 			
-			this.femininity = 100;
+			this.femininity = 90;
 			this.eyeType = 0;
 			this.eyeColor = "red";
 			this.thickness = 40;
@@ -168,38 +167,39 @@
 			this.milkType = GLOBAL.FLUID_TYPE_MILK;
 			this.milkRate = 1;
 			this.ass.wetnessRaw = 0;
-			this.ass.loosenessRaw = 2;
+			this.ass.loosenessRaw = 1;
 			
 			this.hairLength = 10;
 			
 			this.cocks = [];
-			this.createVagina();
-			this.vaginas[0].type = GLOBAL.TYPE_INHUMAN;
-			this.vaginas[0].wetnessRaw = 2;
-			this.vaginas[0].loosenessRaw = 3;
-			this.vaginas[0].hymen = false;
-			this.vaginalVirgin = false;
-			this.analVirgin = false;
-			createStatusEffect("Force Male Gender");
+			this.cocks.push(new CockClass());
+			(this.cocks[0] as CockClass).cType = GLOBAL.TYPE_NYREA;
+			(this.cocks[0] as CockClass).cLengthRaw = 8;
+			(this.cocks[0] as CockClass).cThicknessRatioRaw = 1.66;
+			(this.cocks[0] as CockClass).addFlag(GLOBAL.FLAG_KNOTTED);
+			(this.cocks[0] as CockClass).virgin = false;
+			this.cockVirgin = false;
+			createStatusEffect("Force Fem Gender");
 			
 			this._isLoading = false;
 		}
 		
 		override public function prepForCombat():void
 		{
-			var nyrea:Queensguard = this.makeCopy();
+			var nyrea:Princess = this.makeCopy();
 			
-			nyrea.sexualPreferences.setRandomPrefs(8,2);
+			nyrea.tallness = 68 + (rand(12) - 6);
+			nyrea.rangedWeapon = new (RandomInCollection(EagleHandgun, HammerPistol, LaserPistol))();
 			
-			nyrea.long = "You’re fighting Queensguard, the knightly nyrean warrior who stands between you and Queen Taivra - and the probe that makes up her throne. The warrior before you is clad from head to toe in heavy metal plates, like a medieval soldier’s, supplementing her natural chitin with forged steel. She carries a hefty kite-style shield, bearing the same crest as the tyrant she serves’, plus a glistening longsword that twirls about her with expert skill. Clearly the queen has chosen her personal guard well!\n\nYou can see Dane and [rival.name] in their cages, just behind the valiant knight. They’re both yelling and screaming, much to the disdain of their huntresses standing guard by the cages. <b>You’re too far away to try and break them out - and Queensguard is blocking any chance of shooting them out.</b>";
+			nyrea.sexualPreferences.setRandomPrefs(7,1);
 
-			//if (rand(40) == 0) nyrea.inventory.push(new Kirkite());
+			nyrea.inventory.push(new ReaperArmamentsMarkIShield());
 			//else if(rand(50) == 0) nyrea.inventory.push(new Satyrite());
 			//else if(rand(20) == 0) nyrea.inventory.push(new Picardine());
 			//else if (rand(20) == 0)	nyrea.inventory.push(nyrea.rangedWeapon.makeCopy());
 			//else if (rand(20) == 0) nyrea.inventory.push(nyrea.meleeWeapon.makeCopy());
-			kGAMECLASS.showName("FIGHT:\nQUEENSGUARD");
-			kGAMECLASS.showBust("QUEENSGUARD");
+			kGAMECLASS.showName("FIGHT:\nPRINCESS");
+			kGAMECLASS.showBust("PRINCESS");
 			kGAMECLASS.foes.push(nyrea);
 		}
 		

@@ -6,7 +6,12 @@ public function showTaivra(nude:Boolean = false):void
 {
 	if (nude) showBust("TAIVRA_NUDE");
 	else showBust("TAIVRA");
-	showName("QUEEN\nTAIVRA");
+	if(!inCombat() || pc.HP() <= 0 || pc.lust() >= pc.lustMax() || foes[0].HP() <= 0 || foes[0].lust() >= foes[0].lustMax()) showName("QUEEN\nTAIVRA");
+	else 
+	{
+		showName("FIGHT:\nQUEEN TAIVRA");
+		if(flags["FREED_DANE_FROM_TAIVRA"] == 1) showBust("TAIVRA","DANE");
+	}
 }
 public function showQueensguard():void
 {
@@ -514,34 +519,35 @@ public function searchTheQueensChambers():void
 	quickLoot(new GemSatchel());
 }
 
-
-
 //Room 2C9 Stairway
 public function taivrasStairwellBonus():Boolean
 {
 	output("A curving path connects the rest of the palace grounds to a large set of stairs, leading up to a pair of heavy stone doors flanked by brilliantly glowing blue lanterns. Through the door, you can hear the sounds of pleasure echoing, moans and cries of sexual ecstasy. Several of them, in fact.");
 	//if Princess Defeated:
-	if (9999 == 9999) output(" You’re surprised the harem is still going, even after freeing them from the queen’s daughter.");
+	if (flags["PRINCESS_DEFEATED"] == 1) output(" You're surprised the harem is still going, even after freeing them from the queen's daughter.");
 	return false;
 }
 
 //Room 2A9 Harem Chamber
 public function haremChamberBonusFunc():Boolean
 {
-	output("The harem chamber is a wide open stone room covered with pillows, cushions, and other comforts for the feminine males kept within it. An all but obscene amount of bondage gear - leather, cuffs, whips, and chains, plus no small number of dildoes and plugs - sit in racks along the walls. Several dozen <i>“male”</i> nyrea - all with plump bosoms, girly figures, and drooling vaginal slits - make up their queen’s harem.");
+	output("The harem chamber is a wide open stone room covered with pillows, cushions, and other comforts for the feminine males kept within it. An all but obscene amount of bondage gear - leather, cuffs, whips, and chains, plus no small number of dildos and plugs - sits in racks along the walls. Several dozen \"male\" nyrea - all with plump bosoms, girly figures, and drooling vaginal slits - make up their queen's harem.");
 
 	//Post Princess battle:
-	if(9999 == 0)
+	if(flags["PRINCESS_DEFEATED"] == 1)
 	{
-		output("\n\nThe harem is currently taking their lusts and aggression out on the nyrean princess. Moans and cries of pleasure echo through the chamber, and the floor is covered with writhing bodies and squirting cum.");
+		output("\n\nThe nyrean princess is down in the middle of her swarming harem, pinned by some of that very same bondage gear to the wall. Her eyes are glassy and fogged, her lips flopping and confused, yet her unseemly prick is still rock hard and oozing a thick, purple paste as if recently used. The harem males aren’t giving her much rest, it seems.");
+		//output("\n\nThe harem is currently taking their lusts and aggression out on the nyrean princess. Moans and cries of pleasure echo through the chamber, and the floor is covered with writhing bodies and squirting cum.");
+		addButton(0,"Join Orgy",genericPostVictoryPrincessOrgyFuck,undefined,"Join Orgy","You've little doubt the harem slaves would welcome their liberator into the orgy.");
 	}
 	//PC is KingNyrea:
-	if(flags["KING_NYREA"] == 1)
+	else if(flags["KING_NYREA"] == 1)
 	{
 		output("\n\nYour nyrea harem is lounging around on the cushions and couches. They do nothing to conceal their nudity as you observe them - indeed, some actively flaunt it, running their hands over hefty tits or spreading their pussy-lips invitingly. Others are busy with each other, groping and kissing and grinding their unique sexes against each others’ chitinous bodies.");
 	}
+	else return princessBonus();
 	//[Use Harem] [Free Them] (see Princess and Harem stuff below)
-	//9999 - check for conflicts between king nyrea & post princessbeat stuff
+	//check for conflicts between king nyrea & post princessbeat stuff
 	return false;
 }
 
@@ -1420,7 +1426,7 @@ public function dealWithTaivra(plat190:Boolean = false):void
 	if(flags["OFFERED_TAIVRA_AN_ALLIANCE"] == undefined) addButton(2,"Alliance",offerTaivraAnAlliance,plat190,"Alliance","Offer Queen Taivra an alliance. There’s not much you can do to cement it beyond your word at this point, but being the partner of an interstellar business mogul is a hell of an advantage when your world is on the brink, and you’re just a stone age tribe. Steele Tech could offer her help, protection...");
 	else addButton(2,"Partnership",partnershipWithTaivra,plat190,"Partnership","Your father was the biggest interstellar playboy in the galaxy. He left a trail of lovers in his wake. What are you, if not your father’s child? You offered the nyrea partnership, so make it official: take Queen Taivra as your wife, with all the responsibility and vulnerability that brings.");
 
-	if(flags["MET_PRINCESS"] == 9999) addButton(3,"Princess",princessChoice,plat190,"Princess","Offer to take the rambunctious princess under your care. Marry her, if you have to. Surely Taivra wouldn’t object to her daughter being at the side of a galactic super-star like you’ll soon be.");
+	if(flags["PRINCESS_DEFEATED"] == 1) addButton(3,"Princess",princessChoice,plat190,"Princess","Offer to take the rambunctious princess under your care. Marry her, if you have to. Surely Taivra wouldn’t object to her daughter being at the side of a galactic super-star like you’ll soon be.");
 	else addDisabledButton(3,"Locked","Locked","You haven't met who you need to meet to unlock this option.");
 	addButton(4,"Weapon",giveTaivraGunsForPeace,plat190,"Weapons","Offer the nyrean queen futuristic weapons from Steele Tech. Imagine going from the literal stone age to rocking modern ray guns. Goodbye, balance of power... Though you’ll be trading your reward for recovering the probe in exchange for the guns.");
 }
@@ -1704,7 +1710,7 @@ public function queensguardShieldBash():void
 		if(pc.physique() + rand(20) + 1 >= foes[0].physique() + 10) output("nearly staggers you");
 		else
 		{
-			if(pc.statusEffectv1("Cage Distance") >= 2) 
+			if(pc.statusEffectv1("Cage Distance") < 2) 
 			{
 				output(", forcing you back");
 				pc.addStatusValue("Cage Distance",1,1);
@@ -1712,7 +1718,7 @@ public function queensguardShieldBash():void
 			}
 			else
 			{
-				output(", knocking the wind out of you enough that the knight is easily able to strike you again, sending you flat on your back. <b>You’re knocked prone");
+				output(", knocking the wind out of you enough that the knight is easily able to strike you again, sending you flat on your back. <b>You’re knocked prone!</b>");
 				if(!pc.hasStatusEffect("Trip")) pc.createStatusEffect("Trip", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
 			}
 		}
@@ -1830,11 +1836,12 @@ public function queensGuardLust():void
 public function moveToCage():void
 {
 	clearOutput();
-	if(pc.statusEffectv1("Cage Distance") == 2) output("You try to work your way closer to the cage holding Dane and [rival.name] but only manage to close about half the distance.");
+	if(pc.statusEffectv1("Cage Distance") >= 2) output("You try to work your way closer to the cage holding Dane and [rival.name] but only manage to close about half the distance.");
 	else if(pc.statusEffectv1("Cage Distance") == 1) output("Working across the room, you close the rest of the way with Dane's cage. <b>Maybe you can break him out?</b>");
 	output("\n");
 	pc.addStatusValue("Cage Distance",1,-1);
-	queensguardLongUpdate();
+	trace("CAGE DISTANCE v1: " + pc.statusEffectv1("CAGE DISTANCE"));
+	if(foes[0] is Queensguard) queensguardLongUpdate();
 	processCombat();
 }
 
@@ -1844,36 +1851,50 @@ public function moveToCage():void
 public function breakOutDane():void
 {
 	clearOutput();
-	output("You’ve got a clear shot at Dane’s cage now, and the ausar knows it. <i>“Get me out of here!”</i> he growls, eyeing Queensguard dangerously. <i>“C’mon already!”</i>");
-	output("\n\nYou take aim at the lock and strike!");
-	//{Unfortunately for you, the lock isn’t completely destroyed by your attack - you’ll need to try again! //else, [Next] to Dane Breakout Fen wrote}");
-	showName("DANE &\nQUEENSGUARD");
-	showBust("DANE_NUDE","QUEENSGUARD");
-	output("\n\nAs soon as you destroy the cage’s primitive lock, Dane is surging into action. The big ausar combat rolls into the door, smashing it fully open with his muscular bulk. His hands wrap around the haft of his warden’s spear, and with a simple tug, the weapon is liberated from the gape-mouthed nyrea. As big as Dane is, the spear looks like a toothpick in his hammer-thick hands. He growls, deep in his throat and snaps it in two, simultaneously backhanding the surprised cave-dweller into the wall with one of his free hands.");
-	output("\n\nThe alabaster ausar is utterly naked, stripped of his gear and bruised from his capture, but he’s grinning like a mad dog all the same. The veins on his arms bulge as he flexes his corded muscles, flipping the pieces of primitive weaponry down to his lower arms to hold like daggers. <i>“You should’ve killed me when you had the chance. This time you won’t get a chance to jump me in the dark.”</i>");
-	output("\n\n<i>“Slaves should learn their place,”</i> Queensguard answers, lowering her shield into place and readying her sword. <i>“If they cannot fathom that, then they will be fed to the deeps, piece by piece.”</i> She advances steadily, one plated boot in front of the other warily moving to intercept Dane.");
-	output("\n\n<i>“That’s all you’ve got? Not even a gun?”</i> Dane grins, cracking a pair of his knuckles.");
-	output("\n\nConfusion briefly crosses Queensguard’s face. <i>“You are naked with naught but a broken weapon. I have no need of a dishonorable star-blaster.”</i>");
-	output("\n\n<i>“If you had a gun, you might have had a chance.”</i>");
-	output("\n\nYou wouldn’t have thought a guy as big as Dane could lunge so far and so fast if you hadn’t tangled with him once already, and the armored nyrea clearly doesn’t share that experience. She only has time for her eyes to widen in surprise before Dane crashes into her in a flash of albino fur and pounding fists, driving her back half a pace. The broken haft of the spear shatters on impact with her armor-plated side, visibly denting the plate. Knuckles deflect off Queensguard’s helm, leaving lines of blood behind where the sharp metal ripped into Dane’s knuckles.");
-	output("\n\nFor all his power and speed, it’s clear that your cousin’s bodyguard is more a brawler than a trained fighter. He doesn’t try to avoid harrowing slashes from Queensguard’s sword, relying on the awkward positioning to rob the strength from her blows and his thick fur to keep her from cutting too deeply. Dane’s left forearms are soon matted red with blood from a half-dozen surface cuts, but none so deep as to stop him from grabbing hold of his foe’s shield in two hands wrenching it powerfully to the side.");
-	output("\n\nQueensguard is no brawler. She’s a fighter, used to tackling her Queen’s enemies in one on one confrontations. She lets her arm slide out of the shield’s strap and spins with the momentum, twisting around for a vicious, back-handed slice. A diagonal rent opens up across Dane’s chest, deep enough to reveal two or three blood-drenched bones but not quite deep enough to bring down the mighty ausar. His rage filled blood leaves steaming, crimson puddles on the ground between them.");
-	output("\n\nDane staggers a half-step back from the pain, but he doesn’t drop the shield. He leans further back, sweeping the shield up and into the underside of Queenguard’s polished blade. The clang of metal on metal reverberates through the cavernous chamber as the two bodyguards struggle. The nyrea barely keeps her grip on her weapon, but Dane never needed to disarm her, just take away her biggest defense - the shield - and open her up to a strike.");
-	output("\n\nThe metal spearpoint flashes as Dane’s fist carries it forward into the dented section of the nyrea’s armor. The impact reminds you of the sound of the industrial steel punches in one of your father’s factories. Dane’s hand comes away empty, the only evidence of his strike a rent in his foe’s armor and a protruding bit of wood. Thick purple blood oozes down the plate covering Queensguard’s legs, staining them with visible defeat.");
-	output("\n\n<i>“Told you that you should’ve brought a gun,”</i> Dane snarls, kicking the nyrea square in the chest. She drops like a sack of bricks and curls into a ball, wincing from what must be terrible abdominal pain. <i>“Musta ruptured something other than your sperm sacks, huh? I guess not all the male nyrea get off on penetration.”</i>");
-	output("\n\nDane doesn’t look much better off, but he’s still standing, somehow. He slips the shield onto his lower left arm and nods respectfully to you. <i>“Thanks for the assist. A word of advice - don’t get into the bodyguarding game. Half the job is bleeding for the boss.”</i>");
-	output("\n\n<i>“Enough of this!”</i> the shocked Queen cries. <i>“I will lay you low myself!”</i>");
-	if(pc.isBimbo()) output("\n\nYou giggle at Dane. <i>“Got time for one more, hunk?”</i>");
-	else if(pc.isNice()) output("\n\nYou smile at Dane. <i>“Ever taken down a queen before?”</i>");
-	else if(pc.isMischievous()) output("\n\nYou favor Dane with a roguish grin. <i>“Don’t bleed out yet. There’s still a queen to take care of, remember?”</i>");
-	else output("\n\nYou glance Dane’s way. <i>“You owe me. Think you can keep from passing out long enough to depose some royalty?”</i>");
-	output("\n\nDane rolls his shoulders and silently nods, his cold glare locking on the creature responsible for his imprisonment. <i>“Yeah, I’m game.”</i>");
-	pc.energy(40);
-	pc.shields(pc.shieldsMax());
-	//Pass 1 minute, +40 energy to queen and PC. Refill shields for both parties.
-	flags["FREED_DANE_FROM_TAIVRA"] = 1;
-	flags["QUEENSGUARD_STAB_TIME"] = GetGameTimestamp();
-	spankedQueensguardsAss();
+	if(foes[0] is Queensguard)
+	{
+		output("You’ve got a clear shot at Dane’s cage now, and the ausar knows it. <i>“Get me out of here!”</i> he growls, eyeing Queensguard dangerously. <i>“C’mon already!”</i>");
+		output("\n\nYou take aim at the lock and strike!");
+		//{Unfortunately for you, the lock isn’t completely destroyed by your attack - you’ll need to try again! //else, [Next] to Dane Breakout Fen wrote}");
+		showName("DANE &\nQUEENSGUARD");
+		showBust("DANE_NUDE","QUEENSGUARD");
+		output("\n\nAs soon as you destroy the cage’s primitive lock, Dane is surging into action. The big ausar combat rolls into the door, smashing it fully open with his muscular bulk. His hands wrap around the haft of his warden’s spear, and with a simple tug, the weapon is liberated from the gape-mouthed nyrea. As big as Dane is, the spear looks like a toothpick in his hammer-thick hands. He growls, deep in his throat and snaps it in two, simultaneously backhanding the surprised cave-dweller into the wall with one of his free hands.");
+		output("\n\nThe alabaster ausar is utterly naked, stripped of his gear and bruised from his capture, but he’s grinning like a mad dog all the same. The veins on his arms bulge as he flexes his corded muscles, flipping the pieces of primitive weaponry down to his lower arms to hold like daggers. <i>“You should’ve killed me when you had the chance. This time you won’t get a chance to jump me in the dark.”</i>");
+		output("\n\n<i>“Slaves should learn their place,”</i> Queensguard answers, lowering her shield into place and readying her sword. <i>“If they cannot fathom that, then they will be fed to the deeps, piece by piece.”</i> She advances steadily, one plated boot in front of the other warily moving to intercept Dane.");
+		output("\n\n<i>“That’s all you’ve got? Not even a gun?”</i> Dane grins, cracking a pair of his knuckles.");
+		output("\n\nConfusion briefly crosses Queensguard’s face. <i>“You are naked with naught but a broken weapon. I have no need of a dishonorable star-blaster.”</i>");
+		output("\n\n<i>“If you had a gun, you might have had a chance.”</i>");
+		output("\n\nYou wouldn’t have thought a guy as big as Dane could lunge so far and so fast if you hadn’t tangled with him once already, and the armored nyrea clearly doesn’t share that experience. She only has time for her eyes to widen in surprise before Dane crashes into her in a flash of albino fur and pounding fists, driving her back half a pace. The broken haft of the spear shatters on impact with her armor-plated side, visibly denting the plate. Knuckles deflect off Queensguard’s helm, leaving lines of blood behind where the sharp metal ripped into Dane’s knuckles.");
+		output("\n\nFor all his power and speed, it’s clear that your cousin’s bodyguard is more a brawler than a trained fighter. He doesn’t try to avoid harrowing slashes from Queensguard’s sword, relying on the awkward positioning to rob the strength from her blows and his thick fur to keep her from cutting too deeply. Dane’s left forearms are soon matted red with blood from a half-dozen surface cuts, but none so deep as to stop him from grabbing hold of his foe’s shield in two hands wrenching it powerfully to the side.");
+		output("\n\nQueensguard is no brawler. She’s a fighter, used to tackling her Queen’s enemies in one on one confrontations. She lets her arm slide out of the shield’s strap and spins with the momentum, twisting around for a vicious, back-handed slice. A diagonal rent opens up across Dane’s chest, deep enough to reveal two or three blood-drenched bones but not quite deep enough to bring down the mighty ausar. His rage filled blood leaves steaming, crimson puddles on the ground between them.");
+		output("\n\nDane staggers a half-step back from the pain, but he doesn’t drop the shield. He leans further back, sweeping the shield up and into the underside of Queenguard’s polished blade. The clang of metal on metal reverberates through the cavernous chamber as the two bodyguards struggle. The nyrea barely keeps her grip on her weapon, but Dane never needed to disarm her, just take away her biggest defense - the shield - and open her up to a strike.");
+		output("\n\nThe metal spearpoint flashes as Dane’s fist carries it forward into the dented section of the nyrea’s armor. The impact reminds you of the sound of the industrial steel punches in one of your father’s factories. Dane’s hand comes away empty, the only evidence of his strike a rent in his foe’s armor and a protruding bit of wood. Thick purple blood oozes down the plate covering Queensguard’s legs, staining them with visible defeat.");
+		output("\n\n<i>“Told you that you should’ve brought a gun,”</i> Dane snarls, kicking the nyrea square in the chest. She drops like a sack of bricks and curls into a ball, wincing from what must be terrible abdominal pain. <i>“Musta ruptured something other than your sperm sacks, huh? I guess not all the male nyrea get off on penetration.”</i>");
+		output("\n\nDane doesn’t look much better off, but he’s still standing, somehow. He slips the shield onto his lower left arm and nods respectfully to you. <i>“Thanks for the assist. A word of advice - don’t get into the bodyguarding game. Half the job is bleeding for the boss.”</i>");
+		output("\n\n<i>“Enough of this!”</i> the shocked Queen cries. <i>“I will lay you low myself!”</i>");
+		if(pc.isBimbo()) output("\n\nYou giggle at Dane. <i>“Got time for one more, hunk?”</i>");
+		else if(pc.isNice()) output("\n\nYou smile at Dane. <i>“Ever taken down a queen before?”</i>");
+		else if(pc.isMischievous()) output("\n\nYou favor Dane with a roguish grin. <i>“Don’t bleed out yet. There’s still a queen to take care of, remember?”</i>");
+		else output("\n\nYou glance Dane’s way. <i>“You owe me. Think you can keep from passing out long enough to depose some royalty?”</i>");
+		output("\n\nDane rolls his shoulders and silently nods, his cold glare locking on the creature responsible for his imprisonment. <i>“Yeah, I’m game.”</i>");
+		pc.energy(40);
+		pc.shields(pc.shieldsMax());
+		//Pass 1 minute, +40 energy to queen and PC. Refill shields for both parties.
+		flags["FREED_DANE_FROM_TAIVRA"] = 1;
+		flags["QUEENSGUARD_STAB_TIME"] = GetGameTimestamp();
+		spankedQueensguardsAss();
+	}
+	else
+	{
+		output("You’ve got a clear shot at Dane’s cage now, and the ausar knows it. <i>“Get me out of here!”</i> he growls, eyeing Taivra dangerously. <i>“C’mon already!”</i>");
+		output("\n\nYou take aim at the lock and strike!");
+		output("\n\nAs soon as you destroy the cage’s primitive lock, Dane is surging into action. The big ausar combat rolls into the door, smashing it fully open with his muscular bulk. His hands wrap around the haft of his warden’s spear, and with a simple tug, the weapon is liberated from the gape-mouthed nyrea. As big as Dane is, the spear looks like a toothpick in his hammer-thick hands. He growls, deep in his throat and snaps it in two, simultaneously backhanding the surprised cave-dweller into the wall with one of his free hands.");
+		output("\n\nThe alabaster ausar is utterly naked, stripped of his gear and bruised from his capture, but he’s grinning like a mad dog all the same. The veins on his arms bulge as he flexes his corded muscles, flipping the pieces of primitive weaponry down to his lower arms to hold like daggers. <i>“You should’ve killed me when you had the chance. This time you won’t get a chance to have your pets jump me in the dark. Come on, [pc.name]. Let's take her.”</i>");
+		output("\n\nQueensguard valiantly struggles to her feet to interpose herself between her mistress and the near-rabid ausar, but she earns little more than a stunning backhand for her effort.\n\n<b>Together you can bring down the Queen!</b>\n");
+		flags["FREED_DANE_FROM_TAIVRA"] = 1;
+		pc.removeStatusEffect("Cage Distance");
+		processCombat();
+	}
 }
 
 //Queensguard wins: loseToQueensTaivra
@@ -1919,6 +1940,7 @@ public function spankedQueensguardsAss():void
 
 public function taivraAI():void
 {
+	showTaivra();
 	if(foes[0].hasStatusEffect("Dane Grappled")) taivraGrappleBreak();
 	else if(rand(3) <= 1)
 	{
@@ -2203,8 +2225,12 @@ public function whupTaivrasAss():void
 	addButton(1,"Kill Taivra",killTaivraYouMonster,undefined,"Kill Taivra","The nyrea have been a constant threat on this planet, and would have done far worse. Kill the queen to keep her and her people from bothering you - and any other offworlder - ever again.");
 	//Subjugate
 	//PC must have either read the nyrea codex or talked to Seifyn about Queen Taivra. Must have solo’d Queensguard and Taivra.
-	if(CodexManager.entryViewed("Nyrea") || flags["SEIFYN_TAIVRA_TALK"] == 1) addButton(2,"Subjugate",subjugateQueenTaivra,undefined,"Subjugate","You know how the nyrea operate - especially Queen Taivra, it seems. Were your positions reversed, she’d have added you to her harem; maybe you should add the queen to yours? To the victor go the spoils, and you just single-handedly beat down her and her bodyguard.");
-	else addDisabledButton(2,"Subjugate","Subjugate","You don’t know enough about the nyrea to try and seize control here.")
+	if(flags["FREED_DANE_FROM_TAIVRA"] == undefined)
+	{
+		if(CodexManager.entryViewed("Nyrea") || flags["SEIFYN_TAIVRA_TALK"] == 1) addButton(2,"Subjugate",subjugateQueenTaivra,undefined,"Subjugate","You know how the nyrea operate - especially Queen Taivra, it seems. Were your positions reversed, she’d have added you to her harem; maybe you should add the queen to yours? To the victor go the spoils, and you just single-handedly beat down her and her bodyguard.");
+		else addDisabledButton(2,"Subjugate","Subjugate","You don’t know enough about the nyrea to try and seize control here.")
+	}
+	else addDisabledButton(2,"Subjugate","Subjugate","She'd never respect someone who needed help to defeat her.");
 	addButton(14,"Leave",leaveTaivraLikeABaws,undefined,"Leave","You don’t need anything else from the nyrea. Take your leave.");
 }
 
@@ -2563,6 +2589,7 @@ public function cousinGetsExecuted():void
 	output("<i>“Kill [rival.himHer],”</i> you say, sneering at your helpless cousin.");
 	output("\n\nTaivra chuckles and nods at a couple of her soldiers, who latch their arms on [rival.name]’s shoulder and start to pull [rival.himHer] away. <i>“Good choice, my new mate... better to have your rivals killed than risk their coming back to harm you later. I’ll have gallows erected in the village, and we’ll dispose of this worm.”</i>");
 	output("\n\n[rival.name] screams a host of profanities, but is helpless to resist as [rival.heShe]’s dragged away her [rival.hisHer] doom. Taivra’s hand tightens around your waist as your rival is dragged off, until it’s almost painful. <i>“Now then, I believe it’s time you paid your fealty to me...”</i>");
+	flags["COUSIN_EXECUTED"] = 1;
 	clearMenu();
 	addButton(0,"Next",badEndWithTaivraShit);
 }
@@ -2606,7 +2633,12 @@ public function bedWarmerCuz():void
 public function badEndWithTaivraShit():void
 {
 	clearOutput();
-	showRival();
+	if(flags["COUSIN_EXECUTED"] == undefined) showRival();
+	else 
+	{
+		showTaivra();
+		showBust("TAIVRA","RIVAL");
+	}
 	output("Your queen leads you in your cousin’s wake, out of the throne room and back through the palace. Nyrean warriors follow you, spears and armor clanking loudly. Taivra’s arm wraps around you, guiding you up the winding stairs and into a large room off of the main thoroughfare. The queen’s chambers - and yours, now, you think. The nyrean queen’s hands run across your bare flesh, caressing your ");
 	if(pc.hasCock()) output("[pc.cocks]");
 	if(pc.hasCock() && pc.hasVagina()) output(" and ");
@@ -2643,6 +2675,7 @@ public function soloTaivraBadEndPart2():void
 	//if BedWarmer Rival: 
 	if(flags["COUSIN_BEDWARMER"] == 1) 
 	{
+		showBust("TAIVRA","RIVAL");
 		output(" Your cousin, too, finds [rival.himHer]self at your mercy, a permanent fixture in your chambers by way of a solid steel chain and collar. Your first time together is... emotional, to say the least. There’s screaming, clawing, and eventually crying, but you have your way. Eventually [rival.name] learns to love [rival.hisHer] place - even thanks your for saving [rival.hisHer] life. It turns out that with a little effort and training, you couldn’t ask for a better ");
 		if(pc.hasCock()) output("cock-warmer");
 		else if(rival.hasCock() && pc.hasVagina()) output("cock to fill your pussy");
@@ -3548,3 +3581,722 @@ public function queensGuardRepeatApproaches():void
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
+
+
+/*Princess Deets
+Female Nyrea w/Harem of Slave Boys
+Barbed Hair with Citrine adornments.
+Small for girl Nyrea 5’8”
+Eyes
+Huge, erogenous ears
+Bigger than normal tits: G-cup - purple nips!
+Smaller than normal cock - 8” long?
+
+Princess Deets
+Her Rooms
+Room 2C9 Stairway
+Room 2A9 Harem Chamber
+Princess Beaten Bonus
+Princess Bonus
+Resist
+Fight Princess!
+Bad End
+Combatuuu Victoryuuuuuu
+Leave
+Cowgirl Dat Bitch & Make Out With Her Harem
+Buttfuck The Princess While She Fucks A Loyal Harem Whatever
+[Unfinish] Harem Polishjob + Princess Bukkake
+Generic Orgy Join*/
+
+
+public function showPrincess():void
+{
+	if(inCombat()) showName("FIGHT:\nPRINCESS");
+	else showName("NYREAN\nPRINCESS");
+	showBust("PRINCESS");
+}
+
+//Princess Bonus
+public function princessBonus():Boolean
+{
+	showPrincess();
+	output("\n\nThe nyrean princess, wearing a crown of citrine embedded into her head-spikes, lounges amongst the males, holding a pair of them against her breasts while another two bob up and down along an eight-inch, flaring shaft.");
+	output("\n\nAt the sight of you, she pushes the topmost set away, leaving the busy bottoms to continue orally polishing her rod. <i>“How dare you intrude upon the royal harem!”</i> She releases a gooey wad into a suckling mouth, seemingly unperturbed by her own irritation. With a haughty huff, she gazes at you with lust-lidded eyes. <i>“Unless you’ve come to join the harem. Is that it, star-walker? I suppose you are cute enough to hold a few eggs...”</i>");
+	output("\n\nYou didn’t come here for that, but that wouldn’t be such a bad end to your adventures. Do you join her harem or resist?");
+	clearMenu();
+	addButton(0,"Join",loseToPrincessYeGit,true,"Join","Give up your quest and join her harem.");
+	addButton(1,"Resist",resistPrincessYouSloot,undefined,"Resist","Looks like you'll have to put this overblown princess in her place.");
+	return true;
+}
+
+//Resist
+public function resistPrincessYouSloot():void
+{
+	clearOutput();
+	showPrincess();
+	//Bimbo
+	if(pc.isBimbo()) output("<i>“Like, maybe you should join my harem,”</i> you suggest with a sensuous sway of your [pc.hips]. <i>“I bet I’m the funnest boss you’ll ever have!”</i> After a lengthy pause, you add, <i>“And I even like your lady-dick, and stuff.”</i>");
+	//Nice
+	else if(pc.isNice()) output("<i>“No, I don’t think so.”</i> Looking at the too-meek <i>“males,”</i> you have a hard time seeing yourself in their position. Even if they’re having a great time, you couldn’t throw away your inheritance for that. <i>“Sorry, but I’m not the type to volunteer for that sort of thing.”</i>");
+	//Mischievous
+	else if(pc.isMischievous()) output("<i>“Oh, I’m not really looking for employment right now, but if you take it up with my agent after I’m free, we might be able to work something out.”</i> You favor her with a devilish grin. <i>“Though I might have an opening for you, if you wanna see the other side of the coin.”</i>");
+	//Hard
+	else output("<i>“I don’t think so, bitch,”</i> you retort. <i>“Just stay out of my way. I’m a little too busy to handle your frippery at the moment.”</i>");
+	output("\n\nThe nyrea’s face goes pink with rage. <i>“You... you insolent whelpling! I’ll show you your place - on your knees with a belly full of eggs.”</i> She stamps a chitin-plated boot on the floor hard enough to make her tits bounce distractingly and fixes you with what’s clearly meant to be a soul-searing scowl. It looks more like a child’s petulant pout.");
+	output("\n\nClearly, not all nyrea are as fearsome as those in the tunnels.");
+	output("\n\n<i>“Wipe that grin off your face! I’ll put them in your ass too!”</i> The nyrean princess adds, sucking in a huge breath of air for more. <i>“Only your ass! You’ll be my little anal eggpot!”</i>");
+	output("\n\nYou ignore her, looking around the room while she wears herself out.");
+	output("\n\nThe sound of glass shattering against the wall alerts you to your mistake. You can actually feel a piece of moist glass bounce off your ");
+	if(!(pc.armor is EmptySlot)) output("[pc.armor]");
+	else output("[pc.butt]");
+	output(". The princess is standing there wearing two bandoleers covered in red vials - and another two doses of red myr venom are in her cute, balled-up fists.");
+	output("\n\nFuck. You’ll have to fight this tart. Princess or not, she’s a nyrea. She can probably take some damage.");
+	processTime(3);
+	clearMenu();
+	addButton(0,"Next",startCombat,"princess");
+}
+
+//Mechanics
+//Princess lobs red myr drugspit at the PC. If her lust is raised high enough, she’ll bust an egg in a slave. If damaged enough, she’ll grab a shield from the bed.
+public function princessAI():void
+{
+	showPrincess();
+	if(foes[0].lust() >= 60) princessNutBuster();
+	else if(!(foes[0].shield is ReaperArmamentsMarkIShield) && foes[0].HP()/foes[0].HPMax() < .5) princessGetsAShield();
+	else vialGetsHockedAtPCFaaaace();
+}
+
+//Hock a vial
+public function vialGetsHockedAtPCFaaaace():void
+{
+	output("The nyrean princess lobs a vial of red-tinted myr-spit at you!");
+	//Dodge
+	if(rangedCombatMiss(foes[0],pc)) 
+	{
+		output("\nYou slip away from the clumsy projectile");
+		if(rand(3) == 0) output(", leaving it to shatter on the upraised arm of one of her harem slaves. The unfortunate creature’s eyes dilate until they look like inky saucers, and she slumps to the floor, her hips quivering weakly along the way.");
+		else if(rand(2) == 0) output(", letting it impact on a wall behind you. One of the harem slaves dives for it, crying out when she misses her chance to catch the drugged liquid in her mouth.");
+		else output(", allowing it to bounce off a cushion and into the chitinous palms of a grinning slave. You don’t get a chance to see what she does with it.");
+	}
+	//Impact
+	else
+	{
+		var damage:DamageResult = applyDamage(new TypeCollection({ drug: 10+rand(4) } ), foes[0], pc, "suppress");
+		output("\nDespite your attempts to avoid it, it ");
+		if(pc.shields() > 0) output("slips through your shield, too slow to be blocked, and ");
+		output("crashes into your upraised forearm. The thin glass shatters, you’re splattered in one of the more potent aphrodisiacs this side of the Milky Way.");
+		if(!(pc.armor is EmptySlot)) 
+		{
+			if(!pc.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT)) output(" Your [pc.armor] doesn’t do much to stop it either. The insidious stuff slips through cracks and seams with alarming ease. You doubt anything but an airtight suit could stop it.");
+			else 
+			{
+				output(" Your [pc.armor] handles the stuff with almost contemptuous ease, allowing the insidious fluid to drip down its airtight surface to the floor where it can’t trouble anything but rock.");
+				processCombat();
+				return;
+			}
+		}
+		//{Permeated armor or no armor:}
+		output(" Once it hits your [pc.skinFurScales], it soaks ");
+		if(!pc.hasFur() && !pc.hasScales()) output("in");
+		else output("into the [pc.skin] beneath");
+		output(" with alarming speed. Attempts to wipe it away just smear the crimson narcotic across your fingers, giving it another vector to worm its way into your system.");
+		//New PG. Lust reaction!
+		//0-10 Lust
+		if(pc.lust() <= 10) output("\n\nYou can feel your cheeks heating against your will, and it’s suddenly more difficult to pull your eyes from the bouncing nyrean royalty so close at hand.");
+		//11-20
+		else if(pc.lust() <= 20) output("\n\nWhy haven’t you noticed how cute the princess’ nose is before now? And her lips... her lips are magnificent – a work of art. You shake your head to clear the errant thoughts away.");
+		///21-30
+		else if(pc.lust() <= 30) output("\n\nThe princess’ breasts bounce in the most hypnotic way. You regretfully tug your eyes away, but they unerringly wind their way back to her purplish, jutting nipples. Did she spill some on herself, or is she getting off on this?");
+		//31 – 40
+		else if(pc.lust() <= 40) output("\n\nYou feel a stirring in your loins. At least if you end up giving in you’ll wind up enjoying whatever the princess does to you.");
+		//41-50
+		else if(pc.lust() <= 50) output("\n\nOooh, that felt... good. There’s no hiding your growing arousal anymore, not from the princess and certainly not from yourself. Your body wants her, wants her like a thirsty man craves a glass of water, or a man on a diet aches for a cheeseburger.");
+		//51-60
+		else if(pc.lust() <= 60) output("\n\nYour heart flutters with excitement and vulnerability. You can feel your muscles wanting to slacken, wanting to ease you into the princess’ arms. You fight the narcotic euphoria off with a grunt of irritation. You can’t take many more hits like that.");
+		//61-70
+		else if(pc.lust() <= 70) 
+		{
+			output("\n\nYou realize that you’ve started panting a moment later, but your body doesn’t seem to want to stop.");
+			if(pc.race() == "ausar" || pc.race() == "half-ausar" || pc.originalRace == "half-ausar") output(" Must be some kind of ausar instinct.");
+			output(" You’re horny, damnit, and there’s a nyrea right over there that’s willing to fuck you. All you have to do is submit to her, let her put a few eggs into you, then you can get relief. It’s quite tempting.");
+		}
+		//71-80
+		else if(pc.lust() <= 80) 
+		{
+			if(pc.hasCock() && pc.hasVagina()) output("\n\nGoddamn, having two sets of genitals has never felt more like a liability than at this very moment. Desires to fuck and <i>be fucked</i> battle over the hormones and endorphins flooding your bloodstream. You sway on your feet, painfully aware of just how easy it would be to kneel to the princess and satisfy it all, again and again and again...");
+			else if(pc.hasCock()) 
+			{
+				output("\n\nDamn, it feels less like you’ve got ");
+				if(pc.cockTotal() == 1) output("an erection");
+				else output("erections");
+				output(" and more like you’ve sprouted ");
+				if(pc.cockTotal() == 1) output("an aching length");
+				else output("aching lengths");
+				output(" of stone with ");
+				if(pc.cockTotal() == 1) output("a creamy center");
+				else output("creamy centers");
+				output(" just waiting to burst free.");
+			}
+			else if(pc.hasVagina()) 
+			{
+				output("\n\nFuck, you’re so warmed up that you feel less like you’ve got ");
+				if(pc.totalVaginas() == 1) output("a vagina");
+				else output("vaginas");
+				output(" between your legs and more like ");
+				if(pc.totalVaginas() == 1) output("a ");
+				output("hot spring");
+				if(pc.totalVaginas() > 1) output("s");
+				output(", bubbling with effervescent warmth that erodes your willpower as easily as grains of sand.");
+			}
+			else output("\n\nUgh, how can you be entirely without normal genitalia and yet so excited by the prospect of intercourse? Your [pc.asshole] clenches at the thought of the princess’ less-than-feminine member prying your sphincter open to deposit some eggs.");
+		}
+		//81-90
+		else if(pc.lust() <= 90)
+		{
+			output("\n\nYou whimper – actually whimper – with need. You don’t want to, but your body... your body needs to. Mere arousal doesn’t describe what you feel any longer. A white-hot inferno of passion rages within your breast, threatening to burn away your reason and replace it with a primal, pernicious desire to fuck, to procreate and revel in the act of giving over to pure, animal instinct.");
+		}
+		//Hit max?
+		else if(pc.lust() >= pc.lustMax())
+		{
+			output("\n\nNo more... you can’t handle anymore. Your venom-fueled ardor bursts through the levee of your restraint, and with a moan of unrepentant, animalistic desire, you give in.");
+		}
+		//91-100
+		else if(pc.lust() <= 100)
+		{
+			output("\n\n[pc.LegOrLegs] quaking, you struggle to stay upright and fight. Your body wants to sag down and present itself for a good fucking, whether by another member of the harem or the princess herself. You’re certain that a single, stray drop of that venom would push you over the edge at this point. If you don’t want to be a mewling fucktoy, you’ll have to act and act now.");
+		}
+		//101-110
+		else if(pc.lust() <= 110)
+		{
+			output("\n\nIf you were any normal person, the liquid, aphrodisiac-enhanced desire coursing through your veins would have you rutting with the horny, nyrean sluts surrounding you, but to you... to you, you’re just starting to enjoy yourself. Do you want to fuck so badly that it’s impossible to think of anything else? Sure. Do you want to cede control of the situation over to this stuck up bitch? No way, it doesn’t matter how languid your muscles are getting.");
+		}
+		//111+
+		else
+		{
+			output("\n\nYour [pc.skin] is so hot and so tender that every breeze, every swishing gush of air across your body sends sparks of ecstasy up your spine. Superhuman as your libido may be, there are limits to what the mortal mind can endure. Submitting would be so much easier....");
+		}
+		outputDamage(damage);
+	}
+	processCombat();
+}
+
+//Nutbusters - Princess relieves herself
+public function princessNutBuster():void
+{
+	output("The princess pants, her eyes wide and nipples hard. <i>“It’ll take more than that to beat me! Latiku! Attend!”</i> She gestures imperiously at her drooling, hard erection. Even the nubs around her flared crown look angry and inflamed, desperate for a fuck.");
+	output("\n\nOne of the slaves, her eyes gleaming with fanaticism, launches herself onto the royal nyrea and wraps her arms around the princess’ neck, her legs around her waist, and her folds around her pulsing, too-hard boner.");
+	output("\n\nA few powerful thrusts bounce the soft-bottomed slave into the air. She has to cling tightly to keep from being bucked off by the bitch’s vicious bounces. Her quavering moans leave you no doubt as to her enjoyment of the brief rut, and the traitorous slut even looks over her mistress’s shoulder at you, smiling as light purple cream begins to drip from between her thighs.");
+	output("\n\nThe princess shudders, then bodily tosses her submissive cum-receptacle across the room and onto the bed. Her face is flushed, but much of the tension has left her body. Fuck. So long as she can get off so quickly and so easily with her slaves, you won’t be able to beat her this way. <b>You’ll have to try a different tactic.</b>");
+	foes[0].lust(-100);
+	processCombat();
+}
+
+//Get a shield
+public function princessGetsAShield():void
+{
+	output("<i>“Ouch! Stop it! Don’t you know how much that hurts!”</i> The haughty royal reaches under her bed to pull out a sophisticated-looking device. Even by core standards, it looks like a substantial piece of tech, covered in traceries of glowing circuitry. She flicks it around her waist, allowing it to snap closed entirely on its own, guided by embedded electromagnets. A faint hum flickers into audibility, followed by the appearance of a near-invisible outline around princess.");
+	output("\n\nThat shield belt is going to make this more of a fight than you thought!");
+	output("\n\n<i>“Now, get on all fours, and I’ll make sure you get enough venom to love how I pay you back.”</i>");
+	foes[0].shield = new ReaperArmamentsMarkIShield();
+	foes[0].shields(foes[0].shieldsMax());
+	processCombat();
+}
+
+public function loseToPrincessYeGit(willing:Boolean = false):void
+{
+	clearOutput();
+	showPrincess();
+	//Bad End
+	//Willingly join her harem
+	if(willing)
+	{
+		output("Is there really any point in continuing this useless farce? You shrug and tell her you’ll join up.");
+		output("\n\n<i>“How sweet,”</i> the princess titters while uncapping a vial of red venom. <i>“I require a test of loyalty from an incubator-to-be, of course.”</i> She extends the vial to you. <i>“Drink up, and commit yourself to your new life. I assure you, you will not want for food or sex again.”</i>");
+		output("\n\nBottoms up! You knock back the aphrodisiac without giving yourself time for second thoughts. It burns with its own kind of quiet, soulful heat, relaxing your muscles while making your [pc.skin] tingle like a gigantic erogenous zone.");
+		output("\n\n<i>“There there, little eggpot,”</i> the princess coos. <i>“You’ll make an excellent addition to my harem.”</i>");
+	}
+	//HP Loss
+	else if(pc.HP() <= 0)
+	{
+		output("Somehow, you’ve managed to exhaust yourself against an opponent who hasn’t even tried to damage you. You slump to the ground, unable to rise, prostrate before her chitin-plated feet. A pointed toe presses under your chin, lifting your gaze up to your captor’s dangling cock. The x-shaped slit in the center is distended with a burgeoning droplet of light purple excitement.");
+		output("\n\n<i>“Drink up, little eggpot,”</i> the princess coos while bending over you, uncapping a vial and holding it to your lips.");
+		output("\n\nAt first, you try to keep the stuff out of your mouth, but then your lips are tingling with excitement, slowly going limp against the polished surface of the glass. You doubt you could hold them closed if you wanted to, and it feels so good, besides.");
+		output("\n\n<i>“There there,”</i> coos your captor while replacing the empty vial with another. <i>“Now, doesn’t fighting me seem pointless?”</i>");
+	}
+	//Lust loss
+	else
+	{
+		output("\n\nThere’s no resisting her and her venom, not in an enclosed space where she can pelt you endless amounts of the intoxicating venom, not when she’s so pretty and your body aches for the touch of a lover, and certainly not when your muscles feel like jello. The princess could probably pour you into a mold for all the resistance you would offer.");
+		if(pc.isGoo()) output(" Good thing you’re made of goo, eh?");
+		output("\n\n<i>“There there, little eggpot,”</i> the princess coos with something approximating warmth, but it does little to calm your nerves. At best, it’s comparable to the hot tubs favored by the natives of Uveto, filled with water just warm enough to avoid freezing solid.");
+	}
+	//Merge
+	output("\n\nThe selfish prattle still sounds like music to your ears. Your former foe’s eyes are sparkling gemstones, her skin finer than the finest woven silk. You feel oddly compelled to touch and caress it, to submit yourself wholly to her pleasure. Why? You briefly ponder the question, but your whole body feels so good, practically thrumming with dull, red heat, that the only thing that makes any sense at all is holding yourself against her and allowing her to use you as she will.");
+	output("\n\n<i>“You can call me Princess or Mistress. I don’t really care which, so long as you don’t dare to disgrace yourself by offering my proper name,”</i> Princess explains");
+	if(!pc.isNude()) output(" while carelessly stripping away your [pc.gear]. She smiles when you help her pull away the offending garments, giving her better access to your form/ while brazenly appraising your nude form. She smiles when you stroke your hands along your body, accentuating the lewdest sections of your body for her pleasure.");
+	output(" <i>“But do you really need to use your mouth for talking?”</i> She presents the throbbing hard length of her alien cock to you, stopping only to pour a vial of crimson aphrodisiac across it. It stiffens immediately, throbbing powerfully a scant few inches away from you while its precious coating drips away.");
+	output("\n\nYou try to think of a reason to talk... but her cock is <i>right there</i>. You lick your lips, fumbling for words, but now your lips are all slick, practically ready to slip around Princess’ egg-depositor. Fuck, what did you want to say? Your eyes flick to her nub-lined flare, and any less-than-obscene notions flee your " + pc.mf("mind","pretty little head") + ". Words seem so distant, like half-shrouded figures buried behind a wall of too-thick mist, and every time you reach out for one, Princess’ nubby flare is right there, clear as day and tastier than the sweetest lollipop.");
+	output("\n\nThe wet sound of your tongue slurping across its surface reaches your ears before you’re conscious of what you’re doing, what your body is doing, but it feels too good to stop. Your tongue fizzles and pops with the crimson-coated flavor of Princess’ all-too-lewd flesh. Sparkles of erotic electricity radiate from your flexing, licking muscle down to ");
+	if(pc.hasToes()) output("your curling toes");
+	else output("the very tips of your [pc.footOrFeet]");
+	output(", priming your hips to thrust and grind, your back to arch, and your eyelids to flutter dreamily. Your [pc.lips] part around the deliciously welcome intrusion on their own. Slack-jawed, you’re shocked by how right it feels.");
+	output("\n\nPrincess giggles and grabs you by");
+	if(pc.hasHair()) output(" your [pc.hair]");
+	else output(" the back of your head");
+	output(", forcing another two inches of her myr-spit-infused prong into your gape-mouthed gullet. <i>“Not bad for a first-timer.”</i> Her slightly glazed eyes shine down at you, the purple of her iris nearly entirely devoured by her too-wide pupil. <i>“Suck it well enough, and I might even let you cum. Is that something you want?”</i>");
+	output("\n\nYou gurgle your assent around the ever-increasing amount of cock in your throat. You’d lost track of your own needs while tending to the royal shaft’s insistent ache, but now that it’s been given voice, you remember just how flushed with libidinous urges your form has become. ");
+	if(pc.hasCock() && pc.hasVagina()) output("It feels like cascades of moisture are drizzling down between your [pc.thighs], mixing in a dual-gendered puddle of generalized fuck-juice. A few stiff jerks or skillful, penetrative thrusts, and you’d cum your brains out.");
+	else if(pc.hasVagina()) 
+	{
+		output("It feels like a cascade of moisture is pouring out from between your [pc.thighs], ");
+		if(pc.wettestVaginalWetness() < 4) output("staining them with the fruit of your unsatisfied longing");
+		else output("collecting in a fragrant puddle below");
+		output(". All you’d have to do is stick a finger or two inside, and you could probably cum your brains out.");
+	}
+	else if(pc.hasCock()) output("It feels someone replaced [pc.eachCock] with a length of tungsten carbide pipe and then pressurized it to the breaking point. A few quick strokes, and you feel like you’d be spurting gallons of [pc.cum] onto your equipment, the floor – anywhere your captor asked you to.");
+	else output("It feels sort of like hunger, only more sensuous, like your whole body is yawning wide open and begging for something to fill it. All it’d take is a finger or two, and you’d be cumming your brains out.");
+	output(" You’re sure of it, but Princess hasn’t told you to do anything but suck. Your tongue undulates rhythmically along the intruding length while your [pc.lips] seal vacuum tight. Anything would be fun right now, but nothing quite as fun as earning an orgasm.");
+	output("\n\nYou’re going to get that cum if it kills you.");
+	output("\n\nExcited flesh surrounds you and your mistress. Any hint of resistance from the harem has died out, replaced with the numb acceptance and an idle desire to enjoy captivity as much as they can. Fingers caress the nyrean Queen-to-be’s happily thrusting form while sweaty palms caress and cup ");
+	if(pc.biggestTitSize() <= 5 && pc.hipRating() <= 8) output("what curves they can find on your body");
+	else output("your exquisite curves");
+	output(". It’s a sublime sensation, immersing yourself in a sea of pliant flesh and welcoming caresses while your mouth is so brazenly used. The next thrust, you surprise Princess by taking her to the root, inviting her nub-tipped prick to see just how welcoming you can be.");
+	output("\n\n<i>“Keep it up and you’ll earn that orgasm, slave,”</i> Princess offers mid-thrust.");
+	output("\n\nYou look gratefully up at her, or what you can see of her past her exquisitely rounded breasts. Thanking her is out of the question. The only sound getting out of your well-fucked gullet is a seemingly endless cacophony of wet gurgles and sloppy slaps of flesh on flesh. Princess’ prick has flushed pink under the layers of bubbling spit, and the head has only grown over the course of your fellatio, forcing you to stretch your jaw wide in order to abide the royal rod.");
+	output("\n\nIt’s surprising that it fits as well as it does. Not even the pulsing, pointed nubs on its tip can slow your eager, slurping cock-sucking. Creamy blobs of goo issue forth into your waiting and willing throat, one after another. Princess’ fingers pull tight against your [pc.hair], pulling hard throughout her orgasmic convulsions, seating your [pc.lips] firmly against her hairless abdomen while she repeatedly glazes the inside of your throat.");
+	output("\n\nYour eyelashes flutter in enjoyment through it all. Though you get precious little contact to your erogenous zones (not even from the other slaves’ caresses), you feel a deep-seated contentment in bringing someone else to such a state of complete ecstasy, radiating little thrills of pleasure all the way out to where your fingertips are wrapped around Princess’ quivering thighs. You squeeze her affectionately. Nevermind what came before; she’s beautiful, lovely, and making you feel such powerful desire that you can barely comprehend it.");
+	output("\n\nMid-swallow, you realize that you think you love her.");
+	output("\n\nEventually, Princess stops wasting her fluids on your humble belly and pulls out, spilling one last string of condensed sexual desire across your chin. You take a swipe at it and miss, then forget it when a spunky burp erupts from your mouth. Blushing, you lick your lips and look uncertainly at your Mistress.");
+	output("\n\nShe’s flopped backwards onto the bed and allowed an eager harem ‘boy’ to climb atop her still-stiff pole. She’s bucking and moaning with feverish intensity, surrounded by the cooing forms of a dozen of her compatriots in servitude. You make your way over to join them, awaiting your promised reward.");
+	processTime(80);
+	pc.lust(1000);
+	clearMenu();
+	addButton(0,"Next",princessBadEndPartDeus);
+}
+
+//[Next]
+public function princessBadEndPartDeus():void
+{
+	clearOutput();
+	showPrincess();
+	output("You did get your reward later that night - along with what felt like a dozen eggs, but by that point, you were too far gone to consider an attempt at escape. Exhausted from the fight, the sex, and group massages, you were incapable of anything but sleep, and even then, your dreams were plagued with alien dicks and hundreds of warm hands caressing your body.");
+	output("\n\nYou hardly wanted to wake. The dreams were too incredible to abandon for consciousness. How could you throw that away for something as banal as bleary eyes and awareness?");
+	output("\n\nBut then Princess’ cock was on your lips. Your mouth tingled hotly and your eyelids fluttered closed. You may have had to wake, but you could live the dream if you wanted.");
+	output("\n\nYou wanted to very much.");
+	//[Next]
+	processTime(100);
+	clearMenu();
+	addButton(0,"Next",princessBadEndPartTrees);
+}
+
+public function princessBadEndPartTrees():void
+{
+	clearOutput();
+	showPrincess();
+	output("Your quest is over, abandoned for endless nights of aphrodisiac-fueled debauchery and a parade of anally-incubated nyrea eggs.");
+	badEnd();
+}
+
+//Combatuuu Victoryuuuuuu
+public function beatUpPrincessYeSlut():void
+{
+	clearOutput();
+	showPrincess();
+	flags["PRINCESS_DEFEATED"] = 1;
+	//Lust, somehow	
+	if(foes[0].lust() >= foes[0].lustMax())
+	{
+		output("The nyrean princess sways almost drunkenly, her knees quivering with need. One hand dips down to stroke her lube-leaking cock as she stares at you, wide-eyed with lust and amazement. <i>“How...? How are you so fucking hot?!”</i>");
+		output("\n\nShe drops to her knees, grunting like a beast and panting at the sight of you. Her other hand none-too-gently gropes her pliant breastflesh, kneading her healthy bosom with almost bruising enthusiasm. Her fingers twine about a pebbly, too-hard nipple as she arches her back in your direction. <i>“Please! F-f-fuck me! I’m yours!”</i>");
+		output("\n\nHer harem looks on with longing, gleaming eyes. You have a hunch that even if you don’t take her, they will.");
+	}
+	//HP!
+	else
+	{
+		output("The nyrean princess collapses to the floor and nearly bounces off her too-plush ass. Her fingers scrabble against the worked stone in an attempt to drag herself away from you, but all she manages to do is break a half-dozen of her vials between herself and the floor, slicking her back with a thick coat of the potent red venom. <i>“Noooo,”</i> she whines while her cock surges. Her pale skin flushes, and the reedy tone of her whining turns husky and breathless in the span of a half-dozen heartbeats.");
+		output("\n\n<i>“I-I was supposed to be on top,”</i> the fallen nyrea sullenly gripes as her hands explore her blushing mammaries. The nipples pop out from between her fingers, almost begging to be sucked on. <i>“Please... j-just go! I didn’t mean to ah-ah-attack you, I swear!”</i> Alien lubricant drools from her flaring dicktip onto her taut belly.");
+		output("\n\nIt’s normally difficult to get a read on someone with such black, featureless eyes, but in this case, the royal nyrea’s diminishing fear and still-mounting arousal are clearly broadcast by the relaxing of her brow and the way her mouth has shifted to a half-open pout. Her pale cheeks are blushed nearly crimson, coloring more deeply with every passing second. She looks away, but steals glances back at you a second later and licks her lips.");
+		output("\n\nThere’s nothing for you here... well, besides a too-turned on princess - if princesses had eight inch cocks that looked like the love children of horse-cocks and kaithrit dongs.");
+		output("\n\n<i>“Fuck me!”</i> the over-aroused alien abruptly cries while quivering on the floor. Somehow, she’s peeled her bandoleer off in order to better display her juicy tits to your eyes. <i>“I don’t care anymore! Just fuck me!”</i>");
+		output("\n\nSo she wants it now? What do you do? If you don’t take her yourself, her harem will as soon as you turn your back. They’re watching the two of you with feverish looks in their eyes.");
+	}
+	output("\n\n");
+	//menu!
+	clearMenu();
+	if(pc.hasVagina()) addButton(0,"RideCowgirl",cowgirlDatBitch,undefined,"Ride Cowgirl","Ride her cow-girl style before letting the harem have their turn.");
+	else addDisabledButton(0,"RideCowgirl","Ride Cowgirl","You need a vagina in order to do this.");
+	if(pc.hasCock() && pc.cockThatFits(foes[0].analCapacity()) >= 0) addButton(1,"Buttfuck",buttFuckPrincessWhileSheFucks,undefined,"Buttfuck","Violate the princess the same way she planned to violate you.");
+	else addDisabledButton(1,"Buttfuck","Buttfuck","You need a penis that'll fit in her butt in order to do this.");
+	if(pc.hasCock() && pc.biggestCockLength() >= 36) addButton(2,"PolishJob",haremPolishjob,undefined,"PolishJob","You're way too big to fuck the princess")
+	addButton(14,"Leave",leavePrincess2Harem,undefined,"Leave","Leave her to the not-so-tender affections of her harem.");
+}
+
+public function leavePrincessRoom():void
+{
+	currentLocation = "2C09";
+	var map:* = mapper.generateMap(currentLocation);
+	userInterface.setMapData(map);
+}
+
+//Leave
+//Exit the room
+public function leavePrincess2Harem():void
+{
+	clearOutput();
+	showPrincess();
+	output("The moment you turn to leave the room, there is a flurry of movement from behind you. A dozen dickless nyrean ‘girls’ swarm your fallen foe, dragging her up into the bed. You spare a glance her way as they snap her arms and legs into the bondage equipment and fit a ring around her quivering dick. She looks like she wants to protest, but her lips barely manage a throaty, eager moan.");
+	output("\n\nThe sounds of vigorous sex start when you close the door. At least she has her harem for company.");
+	leavePrincessRoom();
+	genericVictory();
+}
+
+//Cowgirl Dat Bitch & Make Out With Her Harem
+//GO GO GO!
+public function cowgirlDatBitch():void
+{
+	clearOutput();
+	showPrincess();
+	output("You step up and grab the princess beneath her arm, levering her up onto the bed while she quivers and blubbers. Her body hasn’t stopped oozing distilled sexual need. In fact, she lubricates even more freely at your rough handling, staining herself with her own glittering pre-cum. Batting her eyes, the princess implores you: <i>“Please...”</i>");
+	//Nice
+	if(pc.isNice())
+	{
+		output("\n\nYou pat her cock, feeling it throb against your palm, slick and juicy. <i>“Of course. Not all of us are as uncaring as you.”</i> Her hips lift to press back against you, and you smile back down at her. <i>“We’re both a little hot and bothered, aren’t we?”</i>");
+	}
+	//Mischievous
+	else if(pc.isMischievous())
+	{
+		output("\n\nYou grin down at her. <i>“Please what? Please forgive me for being such an incredible bitch?”</i>");
+		output("\n\n<i>“Please fuck me!”</i> the big-breasted dickgirl answers, lifting her hips to waggle her cock at you.");
+		output("\n\nYou cock your head and consider your answer, drumming her dick as if you were distracted by deep thought. <i>“Not the answer I was looking for, but I suppose it’ll do, won’t it?”</i>");
+	}
+	//Hard
+	else
+	{
+		output("\n\n<i>“Shut up and be thankful you turned me on too.”</i> You give her trembling cock a dismissive little flick and watch her jump in surprise. <i>“Now you just lie there, and let me wring some relief out of that undersized pecker of yours. Got it?”</i>");
+		output("\n\nIt really isn’t small - average by modern human standards even - but you aren’t going to tell her that. Besides, the other nyrean dickgirls you’ve seen have been bigger.");
+	}
+	//Merge
+	output("\n\n<i>“Yes!”</i> your fallen foe pants while grabbing her breasts and hefting them, lifting them to better present their pebbly purple teats for examination. Her heavy mammary mounds bounce and jiggle, compressing around the princess’ pretty little fingers until they’re almost entirely devoured in bountiful boob. Her eyelashes flutter, and her pale skin shines in the light. She’s a delectable fruit, just waiting to be plucked.");
+	output("\n\nYou mount the bed in a swift");
+	if(pc.isNaga()) output(", slithering");
+	output(" motion");
+	if(pc.legCount > 2) output(", not bothering to try and arrange all your [pc.legs] on a bed built for bipeds");
+	output(". The princess squeaks meekly and looks at you with two parts excitement and one part confusion. She’s undoubtedly wondering why you haven’t mounted her just yet.");
+	output("\n\nSmiling to yourself, you inch your way higher, dragging your [pc.vaginas] across your alien prize’s legs");
+	if(pc.wettestVaginalWetness() >= 4) output(", coating them in a slick sheen of your ever-present lubrication");
+	else if(pc.wettestVaginalWetness() >= 2)
+	{
+		output(", leaving ");
+		if(pc.totalVaginas() == 1) output("a stream");
+		else output("streams");
+		output(" of liquid excitement to mark your travels");
+	}
+	else output(", dribbling bits of excited moisture along the way");
+	output(". The higher you get, the faster the princess’ breathing becomes. You catch her chewing on her lower lip and staring at you with a look of undisguised lust, her nostrils flaring like a panicked doe’s.");
+	output("\n\nYou’ve climbed high enough up <i>“Mount Royal Bitch”</i> to fondle her breasts if you wanted to, but instead, you press your fingers into the space between them. The nyrea gasps in surprise, then coos as you drag them lower, following the midpoint of her body down to the divot of her belly button. You idly circle it, feeling her pulse increase the closer you come to her still-pulsing member, mere inches away. Your own heartbeat is hammering in your chest now, excited by the presence of such a such a pretty, quivering piece of girl pinned beneath you - as well as by the way her meat swells and jumps at your near touches.");
+	output("\n\nShe would probably go off if you touched her the right way, and that’s just fine. You cast a glance at her bandoleer of red myr venom and bare your teeth. She’ll stay hard more than long enough to take care of you, no matter how many times she gets off along the way.");
+	output("\n\n<i>“P-p-please,”</i> the nyrea whimpers once more, shifting her hips to try to butt her nub-covered, blunt tool against your dancing fingers, desperate for any kind of stimulation.");
+	output("\n\nTsking softly, you pull your fingers away, dragging them up an inch or two away, just far enough away that your captive, dickgirl princess can’t get at them. <i>“Patience, dear. ");
+	if(!pc.isAss()) output("Let’s enjoy this, hmm?");
+	else output("Let me enjoy this.");
+	output("”</i>");
+	output("\n\nWhimpers are all the answer you get.");
+	output("\n\nThat’s fine by you. Pushing off the mattress for leverage, you drag your hips higher, sliding upward until the crease of [pc.oneVagina] is pressed tight against the trembling, girlish length.");
+	if(pc.hasCock()) 
+	{
+		output(" Your [pc.cockBiggest] flops down atop it");
+		if(pc.cumQ() >= 1000) output(", mixing its own clear pre in with the princess’");
+		output(".");
+	}
+	output(" Her urethra bulges beneath you, pumping out bullets of musky, lubricating fluid. It can’t be actual pre-cum, given what your Codex had to say about nyrean biology, but it’s certainly slippery enough to be indistinguishable from that early ejaculate.");
+	var x:int = rand(pc.totalVaginas());
+	output("\n\nYour breath catches in your throat as you rise higher on her length. Your folds spread across her like a butterfly’s wings and flutter just as quickly. The bumps on her head prod at [pc.oneClit] as you mantle onto her flaring crown, making you moan as you position her squarely in your entrance. The princess throws back her head and matches your moan pitch for pitch. Her eyes are closed, but her body squirms against yours. Her fingers reach out for your [pc.chest] to touch your [pc.skinFurScales], absently squeezing and stroking in the moments leading up to penetration.");
+	output("\n\nYou let her grope you; it only makes you that much hotter, your [pc.vagina " + x + "] that much wetter. Beginning to relax your [pc.legOrLegs], you watch the nyrea’s face, enjoying the way her lips fall open, the way her lashes twitch nervelessly. Her fingers falter, but that’s just fine - her blunted tip is spreading you open");
+	if(pc.vaginas[x].looseness() >= 4) output(" all too easily. Sometimes it’s nice to be a little gaped");
+	output(". It’s so warm and so hard inside you, forcing your flesh to yield around it as it presses into you. Pampered royalty or not, her dick is something else.");
+	output("\n\nThe pleasure robs you of most of your higher faculties by the time you’ve taken three quarters of her inside you. Your eyelids drift closed, and your arms cross the space between your bodies in an instant, grabbing hold of the nyrea’s tremendous tits and giving them an eager, passionate squeeze. She gropes right back");
+	if(pc.biggestTitSize() < 1) output(", even though you’ve little more than [pc.nipples] for her to play with");
+	output(", turning the space between your sweating, rutting bodies into a lattice of searching arms and stimulating fingertips.");
+	pc.cuntChange(x,foes[0].cockVolume(0));
+	output("\n\nFuck, she’s got great tits! They’re so goddamn soft, with nary a blemish to be found. They seem almost virginal in their suppleness. Her nipples are like overripe, purple cherries, demanding to be licked and sucked. In a fit of lust-driven decision making, you lean down to do just that, letting the rest of her eight-inch, egg-laying cock sink deeply into your passage. Your eyes nearly cross from the pleasure, but you manage to seal your lips around a nipple all the same, tonguing it with such vigor that the princess squeals and shudders in delight. Her unbound breast jiggles in the most enticing way. If you weren’t squeezing your eyes closed from an overload of pleasure, it’d be nigh impossible to look away from the hypnotic sight.");
+	output("\n\nBallooning inside you, the nyrea’s knot turns a mere pussy-filling experience into a slit-stretching symphony of delight. You can’t really pull off for another downstroke, not with that bulging sphere of erectile tissue locking you in place, but you can swivel your hips, twisting your passage in little rings around its over-swollen dance partner. Incredibly thick wetness floods over the deepest parts of you as you rock back and forth on the princess’ flaring she-cock.");
+	output("\n\nShe’s cumming already!");
+	output("\n\nPart of you wants to be mad that she’s hit her peak before you reached yours, but the hot liquid spurting against your walls has paroxysms of pleasure wracking your feminine flesh, and her fingers are ");
+	if(pc.biggestTitSize() >= 1) output("squeezing your boobs tight");
+	else output("teasing your [pc.nipples] well");
+	output(" enough to make them feel aglow with flashes of violent pleasure. You moan and shake, swiveling your hips fast, dragging your [pc.clits] against the smooth, sweat-slicked skin of her crotch, revelling in the way her cock lurches upward with each ejaculation of purple-hued love.");
+	output("\n\nThe nyrea’s breasts forgotten, you arch your back and grind your [pc.clits] against her, simultaneously pushing her endlessly orgasming rod into the deepest parts of your folds. The too-thick flare wrings bolts of shining bliss from your drenched cunt-walls, and the knot tirelessly presses at your entrance, hammering against your flesh to the tune of the princess’ heartbeat.");
+	output("\n\nShe isn’t just filling you with her alien jism - she’s filling you with pleasure, carrying you to the heights of ecstasy with every passionate pulse of her knotty ladycock. You whimper as you feel it coming, aware of her veins throbbing against you, your flesh clamped tight against them, and then, you cum.");
+	output("\n\nYou scream like a banshee, twisting and thrashing against the eight-inch rod impaling your [pc.vagina " + x + "], helpless against the tide of orgasmic juice your alien lover floods you with and your own too-powerful bliss. Your can’t even manage to quell your quivering [pc.legOrLegs]. Instead, you continue to scream out your enjoyment to the princess’ entire harem, letting them know just how much you’ve enjoyed laying claim to their mistress.");
+	processTime(33);
+	pc.orgasm();
+	pc.loadInCunt(foes[0],x);
+	//[Next]
+	clearMenu();
+	addButton(0,"Next",princessCowgirlPt2);
+}
+
+public function princessCowgirlPt2():void
+{
+	clearOutput();
+	showPrincess();
+	output("When you finally come down, the knot inside you has dwindled enough to let you pop free. Streamers of purple gunk cake your [pc.thighs], evidence of the lewd tryst, but at least you’ve scratched the pernicious itch inside you.");
+	if(pc.totalVaginas() > 1)
+	{
+		output(" If only you had the time ");
+		if(pc.lust() < 50 && pc.libido() < 80) output("and desire ");
+		output("to do it again with your ");
+		if(pc.totalVaginas() == 2) output("other pussy");
+		else output("other pussies");
+		output(".");
+	}
+	output("\n\nThe slave harem moves in the moment you leave their still-hard mistress, piling onto the bed with almost fanatical enthusiasm. Well... it’s not quite revenge, but at least they’re in charge for a change.\n\n");
+	processTime(15);
+	clearMenu();
+	genericVictory();
+}
+
+//Buttfuck The Princess While She Fucks A Loyal Harem Whatever
+//Weirdos.
+public function buttFuckPrincessWhileSheFucks():void
+//HEY! THIS CHICK FUCKS!
+{
+	clearOutput();
+	showPrincess();
+	var x:int = pc.cockThatFits(foes[0].analCapacity());
+	if(x < 0) pc.smallestCockIndex();
+	//Low exhib
+	if(pc.exhibitionism() <= 33) output("The sight of so many harem slaves watching you use their mistress gives you pause, but then your arousal takes back over. They’re no strangers to wild, bedroom romps, and you’re finally going to get some relief for your aching hard [pc.cocksNounSimple " + x + "].");
+	//Med-high exhib
+	else output("The sight of so many harem slaves watching you sends even more excited thrills through your body. So many of them are going to watch you violate their mistress! [pc.EachCock] is hard enough to chop wood with at this point.");
+	//Merge
+	output("\n\n<i>“On the bed,”</i> you order while tossing your equipment aside. <i>“");
+	if(pc.isNice()) output("I’m going to fuck your ass, but don’t worry. I’ll be gentle.");
+	else output("I’m going to fuck your ass until you’re my little anal princess.");
+	output("”</i>");
+	output("\n\nWide-eyed, the princess drags herself up onto the bed. Her head-spikes are quivering with nervous energy, but her cock is still just as hard as it was before, if not harder. <i>“P-please... I’ve never... never...”</i>");
+	output("\n\nHelping her into position, you finish for her, <i>“...ever got fucked in the ass so hard that your legs stop working?”</i>");
+	output("\n\nShe bites a purple-painted lip and nods at you over her shoulder.");
+	output("\n\n<i>“");
+	if(pc.isNice()) output("Don’t worry. You’re going to love it.");
+	else if(pc.isMischievous()) output("Trust me, a dick-girl like you is going to love it... especially with all that myr venom you took in.");
+	else output("You’re in for a treat.");
+	output("”</i> You swat her ass and watch her plush backside wobble. This bitch has probably never done a day of real work in her life, let alone seen any kind of combat. Her body has been molded by luxury and privilege, leaving her all soft curves and pliant flesh. In between her cushy asscheeks, a puckered, virginal butthole practically winks at you.");
+	output("\n\nYour hand is on [pc.oneCock] before you know it, and you’re pressing it forward, threading it between the plump cheeks to rub against her convulsing ring. The way she’s twitching there, she must not have been lying. She’s truly nervous about the presence of your dick back there, and it shows in the way she clenches. For now, you content yourself on sawing back and forth through her ass-cleavage, helping yourself to a bit of a warm-up buttjob.");
+	output("\n\nThe princess whimpers, but her rigid prick is practically pissing her purplish pre-cum onto the already cummy bedsheets. Reaching around her hip, you grab hold of it and give it a few quick pumps, making her flare expand and her knot bloom against your palm. <i>“Relax,”</i> you tell her as calmly as you can, then inspiration strikes. <i>“Once I get my dick in your ass, you can call one of your harem sluts over to tend to yours.”</i>");
+	output("\n\nClosing her eyes, the princess bites her lip and nods. At first you don’t feel much difference when you prod at her asshole, but little by little, she starts to give around the [pc.cockHead " + x + "] of your [pc.cock " + x + "], letting you get a bit farther each time. Her sphincter gradually loosens around you, and you reward her with a firm squeeze on her alien prong. Back and forth, you slide through her cheeks to gently press at her anus, working her more and more open. Damn, she’s tight!");
+	output("\n\nMaking excited little squeaks, the nyrean royalty finally relaxes enough for you to press inside. Once her unspoiled asshole opens up to you, it’s almost too easy to slide into its snug, dick-squeezing embrace. She pants as you bury yourself in to the hilt, and dribbles more of her pinkish-purple dickslime into her sheets. Her muscles ripple around you, squeezing you like a glove that was made to accept your [pc.cock " + x + "].");
+	if(pc.cockTotal() > 1)
+	{
+		output(" Meanwhile, your ");
+		if(pc.cockTotal() == 2) output("other penis juts");
+		else output("other penises jut");
+		output(" out of the top of her asscrack, drooling pre-cum as ");
+		if(pc.cockTotal() == 2) output("it slides");
+		else output("they slide");
+		output(" back and forth through her excess of booty-flesh.");
+	}
+	output("\n\n<i>“Atta girl,”</i> you call as you adjust to her anal embrace. You aren’t sure if it’s nervous energy, her drug-fueled arousal, or simply the reflexive instincts of a nyrean asshole, but her butt is absolutely milking your cock. You aren’t even fucking it, and her plush derriere is begging for you to ");
+	if(pc.balls > 0) output("nut");
+	else output("cum");
+	output(" inside. <i>“You’re a natural.”</i>");
+
+	output("\n\nThe blushing princess coos, <i>“Thank you,”</i> in a quavering voice, and looks up at you questioningly. <i>“C-can I?”</i>");
+	output("\n\nYou draw back and thrust in, your passage made easy by her sweat and your pre-cum, reveling in the way her ring squeezes you. <i>“I said you could, didn’t I?”</i>");
+	output("\n\nYou enjoy a slow back and forth rhythm while your defeated foe receives her reward for being such an obedient butt-slut in the form of a quivering slave-girl. While she’s still lining up with her harem slave, you give an especially firm thrust into her cushy asshole, forcing her cock deep into the slave’s creamy cunt.");
+	output("\n\nBoth moan like the sluts they are, surprised by an onslaught of sudden pleasure they had no way of preparing for. The princess’ no longer virginal asshole clenches around you in the same way that her slave’s pussy is doubtlessly squeezing down on her, and you join them, releasing a throaty, joyous moan.");
+	output("\n\nA dozen pairs of eyes watch the whole sordid thing. Some of the harem <i>“girls”</i> feign disgust, but a great many are touching themselves, slipping fingers into needy-looking slits or tweaking nipples that have no business being that hard. Two of them are even stroking each other while they watch their sister get plowed by their lust-broken mistress. You grin their way and keep at it, picking up the pace so that the princess’ bouncing bottom visibly ripples from the impact of your [pc.hips].");
+	output("\n\n<i>“Yes!”</i> the Princess cries in wild abandon, lost to a chorus of chemical pleasure signals coursing through her body and soul with every nonchalant thrust.");
+	output("\n\nYou note that when you pull back, the princess doesn’t bob back up with you - her cock is firmly and fully embedded in the cooing slut, sealed in place by a canine knot as securely as riveted steel. There’s no evidence of any alien jism escaping the slut’s stretched lips, but why would there be? Your aphrodisiaced-up royal is more effective at plugging entrances than any cork, and far more enthusiastic. They both moan and quiver, jumping in pitch whenever your thickness is fully embedded, squeezing down on whatever internal organs produce their sticky-sweet spunk.");
+	output("\n\nGrabbing the anal princess by the shoulders, you pull her lips away from her toy and use the leverage to spear her still deeper, plowing her backdoor so hard that it doesn’t even try to close up when you accidentally pull back too far. Her ass is gaping open, pink and gooey, practically begging for you to slide back in. You do just that, grunting with near-feral ardor now that your prey has given herself wholly over to your judgement.");
+	output("\n\n");
+	if(pc.balls > 1) output("Your [pc.balls] twitch and tighten against your loins as your climax nears");
+	else output("[pc.EachCock] twitches and jumps with pleasant convulsions as your climax nears");
+	output(". Slowing down would seem the obvious way to prolong your pleasure, but you’ve no time for that. Instead, you redouble the pace until the whole room seems to echo with the sound of meaty slaps of crotch on ass. You can feel the princess clamp down as she cums again, and this time, you’re too close to do anything but unload inside her, giving her squeeze-toy of a rectum the [pc.cumVisc] treat it deserves.");
+	//Lil/nocum
+	if(pc.cumQ() < 5) output("\n\nThough it feels like you must have squirted out gallons, when you pull out, there’s exactly zero evidence of your orgasm. Maybe you’d better give your [pc.balls] a chance to brew up some fresh [pc.cumNoun]?");
+	//Normal cum to 100ml
+	else if(pc.cumQ() < 100) 
+	{
+		output("\n\nRhythmic convulsions of your internal muscles work to push out squirt after squirt of [pc.cumNoun], layering ropes of [pc.cumColor] in neat little lines across the nyrea’s intestines. At last, ");
+		if(!pc.hasKnot(x)) output("your body’s frenzied ejaculation pauses");
+		else output("your [pc.knot " + x + "] recedes");
+		output(", and you’re able to pull yourself out to admire your handiwork. A small trail of [pc.cum] leaks out of her asshole to slide down the princess’ leg.");
+	}
+	//High cum - 100ml to 500 ml
+	else if(pc.cumQ() < 500)
+	{
+		output("\n\nPowerful contractions of your internal muscles wring out huge ropes of [pc.cumNoun], pouring out enough reproductive gunk to paint the majority of your butt-loving nyrea’s anal cavity. When ");
+		if(!pc.hasKnot(x)) output("you finally stop adding to the [pc.cumColor] flood and ");
+		else output("your [pc.knot " + x + "] finally recedes, and you ");
+		output("pull out, you’re treated to the sight of a half-dozen streams of [pc.cum] rushing from the recently-violated asshole. Most dribble down her legs, but at least one trickles down the underside of her cock and into her squirming pet.");
+	}
+	//Very High cum! 501 to 2L
+	else if(pc.cumQ() < 2000)
+	{
+		output("\n\nEruptions have more in common with your climax than most orgasms. Powerful contractions push out ropes of [pc.cumNoun] so thick that they seem more like waves, rolling in a biological tide across every fold of the princess’ cock-loving intestines. Your body doesn’t let up, not even when you can hear a sloshing and gurgling from deep inside her gut. By the time you pull out");
+		if(pc.hasKnot(x)) output(" with a knotty ‘pop,’");
+		else output(",");
+		output(" she’s sporting some deep-packed creme filling. A small river runs out of her gaped rectum once you remove the only thing pinning it inside.");
+	}
+	//Kiro cum! SPLOOSH
+	else
+	{
+		output("\n\nTerran religious texts often make references to great floods caused by forgotten deities. Had the authors of such tomes been given the opportunity to witness your ejaculation, they’d undoubtedly downgrade the events of their writings. The first wave of [pc.cum] comes in such massive quantities that you can hear it sloshing and gurgling through the defeated nyrea’s intestines. The second makes her belly visibly bulge, and each successive squirt only adds to her increasingly gravid appearance, gifting her with a belly so bulgy that it forces her and her toy apart, popping her knotted member free with an audible squelch.");
+		output("\n\nWhen you finally pull out, a tidal wave of backwashing [pc.cum] washes off your [pc.cock " + x + "], and the princess lies there, cradling her distended midsection in pleased disbelief.");
+	}
+	//Merge
+	output("\n\nThe slave harem moves in the moment you leave their still-hard mistress, piling onto the bed with almost fanatical enthusiasm. Well... it’s not quite revenge, but at least they’re in charge for a change.\n\n");
+	processTime(22);
+	pc.orgasm();
+	genericVictory();
+}
+
+//Harem Polishjob + Princess Bukkake
+public function haremPolishjob():void
+{
+	clearOutput();
+	showPrincess();
+	//Get some help jacking your giant dong off on the princess.
+	output("Now that you’re both turned on, there’s only one problem: there’s no way in hell your [pc.cock " + x + "] will fit inside her.");
+	var x:int = pc.biggestCockIndex();
+	if(pc.biggestCockLength() > foes[0].tallness) output(" Hell, it’s bigger than she is!");
+	output(" But where there’s a will, there’s a way.");
+	output("\n\n<i>“You there!”</i> you call, waving your arm at the assembled slaves. <i>“Get over here. Your mistress is going to need some help taking care of something she started.”</i> To emphasize exactly what you mean");
+	if(pc.isCrotchGarbed()) output(", you pull your [pc.lowerGarments] out of the way, revealing the sheer immensity of your phallic engorgement");
+	else output(", you tug on your massively engorged phallus, suspending it just above the princess");
+	output(". Your length bobs heavily in the air. Then, you drop it square onto the nyrean royalty, pinning her to the ground beneath a mountain of cock.");
+	output("\n\nThe former harem mistress blubbers and gasps, her every motion a delight of pleasant friction against your [pc.cockColor " + x + "] dickskin. She makes to twist her head aside but stops halfway, suddenly stopping to stare at the girthy organ above. Her nostrils flare, and she tentatively leans up and slowly, nervously extends her tongue. The contact is but a single, enjoyable point of sensation for you, but for her, in her venom-addled mind, it’s a magnificent, perfectly erotic moment. She’s soon eagerly slurping and licking at every inch that she can access, stroking at the pulsating veins with loving, almost reverent attention.");
+	output("\n\nQuiet footsteps call your attention back to the harem. Seeing their mistress’ enthusiasm, the slave-girls have come forward, prancing up to your [pc.cock " + x + "] on bare feet. Their eyes are wide with gratitude and intrigue, flicking between nervous smiles at your face and licentious glances at your boner. One wraps her svelte arms around you in a quivering hug. The others get to work, kneeling around the dick-stricken princess. They don’t need much encouragement to grab hold and start rubbing, leering knowingly at their pinned tormentor all the while.");
+	//Nice
+	if(pc.isNice()) 
+	{
+		output("\n\n<i>“Ahhh, that’s nice girls. She really made sure you knew your way around a dick, didn’t she?”</i>");
+		output("\n\nTen pairs of submissive, downcast eyes dare to look at you, and their owners meekly nod. You can feel the one hugging you shaking her assent. Poor things.");
+		output("\n\n<i>“Well, you’re free now. No one can make you stay here any longer, but I’d consider it a personal favor if you helped me out before you left.”</i> You pat the head of the girl hugging you, then groan as a dollop of pre-cum rolls out of your cockslit and into the princess’ sucking mouth.");
+		output("\n\nThe nyrea with the largest chest sighs. <i>“We’ve nowhere else to go, but I think we can help the princess learn how to be a little nicer from all this.”</i> She grins wickedly and looks at the bondage gear. <i>“Once we finish thanking you, that is.”</i>");
+	}
+	//Mischievous
+	else if(pc.isMischievous())
+	{
+		output("\n\n<i>“Ahhh, nice job girls, and I thought this bitch would be good at sucking cock. You guys are fucking pros!”</i>");
+		output("\n\nTen pairs of cheeks blush in response.");
+		output("\n\n<i>“I got an idea. Why don’t you guys make use of that bondage gear once I’m gone and teach her to be a little bit nicer? Play your cards right and you might even twist her into your secret little slavegirl.”</i>");
+		output("\n\nThe nyrea with the largest chest grins. <i>“Do you think so?”</i>");
+		output("\n\nGlancing at the cock-obsessed princess, you answer, <i>“Oh, I’m sure of it.”</i>");
+	}
+	//Hard
+	else
+	{
+		output("\n\n<i>“Keep it up and I’ll gift-wrap this royal cunt for you, and serve her up on a silver platter!”</i> You cast your gaze over the assembled fuck-toys. <i>“Bitches like this don’t deserve fine-ass ladies like you.”</i> Peering around your dick, you look the princess in the eye. <i>“You’re gonna be the slut when we’re done here, you know that, right? I’m going to put these meek little slave-girls in charge of you and let them exact whatever sordid sorts of revenge you’ve inspired in their hot little minds.”</i>");
+		output("\n\nThe harem slave with the biggest chest glances at the bondage equipment and grins wickedly. Twisted minds indeed.");
+	}
+	//Merge
+	output("\n\nYou aren’t sure which part of this you like more - pinning this spoiled brat beneath a mountain of throbbing hard meat, the obsessive desire in her eyes, or the two dozen hands slaving against your oh-so-sensitive skin. It’d be impossible to pick a favorite even if you cared to. There’s no comparing the psychological thrill of the princess’ single-minded desire to the physical delight that you receive from the three tongues circling your [pc.cockHead " + x + "] or the slick fingers massaging the [pc.cockColor " + x + "] skin of your shaft.");
+	//Balls
+	if(pc.balls > 0)
+	{
+		output("\n\nEven your [pc.balls] ");
+		if(pc.balls == 1) output("is");
+		else output("are");
+		output(" able to join in on the lusty celebration when the girl hugging you moves her fingers down to meet your [pc.sack]. At first, she gently cups the orb{s}, smiling mischievously all the while. Her fingers are soft, and while her motions are less skillful than those attending to your [pc.cock " + x + "], they are nonetheless enthusiastic. You could get used to being pampered like this.");
+	}
+	//Elsepussy
+	else if(pc.hasVagina())
+	{
+		output("\n\nEven your [pc.vaginas] ");
+		if(pc.totalVaginas() == 1) output("is");
+		else output("are");
+		output(" able to join in on the lusty celebration. The girl hugging you evidently meant to contribute more than a simple embrace. Her fingers slither between your lips with consummate skill, the kind that can only be gained from long hours of practice with her sisters. Whether such training was voluntary or part of a show for her former mistress is entirely a mystery - likely one you’ll never have time to solve. What you do have time for is moaning and rocking your [pc.hips] against her brilliantly caressing digits.");
+	}
+	//Neither - sheath
+	else if(pc.hasSheath(x))
+	{
+		output("\n\nBetter still, what started as a simple hug from a grateful nyrea has transformed into something far, far lewder. She’s moved her hands lower and lower while her sisters have kept your attention on the more distant end of your dick. Now, her hands are inside your sheath, gingerly exploring the musky, slickened surface of an oft-forgotten part of your cock. The pleasure is almost overwhelming. Any kind of stimulation in there is as rare as diamonds, leaving the nerves raw and ready, primed to drive crystalline stalagmites of ecstasy into your vulnerable consciousness.");
+	}
+	//Neither - nosheath
+	else
+	{
+		output("\n\nBetter still, what started as a simple hug from a grateful nyrea has transformed into something far, far lewder. She’s moved her hands higher and higher while her sisters have kept your attention on the more distant end of your dick. Now, her fingers are playing with your [pc.nipples]");
+		if(pc.hasLipples()) output(", gently caressing their puffy lips, letting you suck insistently upon them");
+		else if(pc.hasFuckableNipples()) output(", slipping inside to fuck the pliable nipple-holes. How she knew they’d be so fuckable is a total mystery, but the raw bolts of pleasure firing from your titty-twats are a remarkable truth");
+		else if(pc.hasDickNipples()) output(", peeling them back to expose the pricks within. How she knew you’d be packing more dick up there is a total mystery, but her teasing, perfect strokes are a total certainty");
+		else output(", tugging and rubbing in equal measure. Just when her attentions start to become painful, she shifts her tack to treating them another way");
+		output(". You arch your back. What else can you do in such a situation but thrust yourself forward to indulge in more pleasure?");
+	}
+	//Merge
+	output("\n\nYou make sure that the busily stroking harem girls never lift your dick off the myr-drugged nyrea. You want to make sure she feels every eager pulse that runs through your rigid shaft. You want her to enjoy the heat of your flesh, the thickness of your veins, and the raw, overpowering scent of your cock. And she does. Her eyes are practically rolled back, and you can feel her much smaller cock dripping and jerking against your impressive pecker, spurting weak globs of purple cum from time to time, the red venom keeping her on the edge no matter how many orgasms she wastes in her service to you.");
+	output("\n\nThe princess’ tongue slurps at the pre-cum that dribbles from your [pc.cockHead " + x + "] whenever she can get to it before her slaves, and she practically purrs after swallowing a particularly potent glob. They must all know that you’re getting closer to going off from the way you’re starting to drip and how hard your length has become.");
+	if(pc.hasKnot(x)) 
+	{
+		output(" Your knot is already a little bigger");
+		if(pc.cocks[x].hasFlag(GLOBAL.FLAG_FLARED)) output(", and y");
+	}
+	else if(pc.cocks[x].hasFlag(GLOBAL.FLAG_FLARED)) output(" Y");
+	if(pc.cocks[x].hasFlag(GLOBAL.FLAG_FLARED)) output("our flare bulges out warningly with each beat of your rapidly hammering heart.");
+	output("\n\n<i>“Are you ready for a bath, princess?”</i> you ask by way of warning. The question is purely rhetorical of course; you’re going to bathe her in [pc.cum] regardless. You just wanted to make sure the slaves knew what was coming. They have to keep you aimed and on target, after all.");
+	output("\n\nWhen she yanks her head back, still connected to your [pc.cockHead " + x + "] by a web of excessively copious pre-cum, and answers, <i>“YES!”</i> you go off.");
+	//No new PG!
+	//No cum
+	if(pc.cumQ() < 5) output("\n\nYou’re both somewhat surprised when your bucking bronco of a cock only manages to expel a few drops into her still-open mouth. You had hoped for more, but perhaps you should’ve given your body a chance to brew up a fresh batch.");
+	//Normalish cum 7-50
+	else if(pc.cumQ() < 50) output("\n\nThe first strand of [pc.cumNoun] lands square in her still-open mouth, connecting her uppermost teeth to her wet tongue with a [pc.cumColor] rope. She closes her maw instinctively, which is fine by you. It makes it easier to paint the next few squirts across her cheeks, nose, and forehead. You even manage to place a drop on her citrine crown, spoiling it as effectively as you have her.");
+	//High cum 50-250
+	else if(pc.cumQ() < 250) output("\n\nThe first voluminous strand of [pc.cumNoun] splatters into her still-open mouth, flooding it beneath a wave of [pc.cumColor]. Her mouth closes instinctively, perhaps surprised to be suddenly full of reproductive melange, but that’s fine by you. It makes it easier to aim the rest of the shots from your cannon of a cock, splattering tsunamis of [pc.cumFlavor] spooge across her cheeks, nose, and forehead. You even manage to bury her alien hair and crown in a web of [pc.cum], spoiling any evidence of her royalty as effectively as you have the rest of her.");
+	//Megacum 251-2000
+	else if(pc.cumQ() < 2000)
+	{
+		output("\n\nThe first cannon-like shot from your [pc.cock " + x + "] hits the princess square in her still-open mouth, filling the open orifice from tonsils to lips with a heady reward for her efforts. There’s enough extra to roll down the sides of her cheeks when she instinctively tries to close her stuffed palate, forcing her to try and swallow the [pc.cumFlavor] payload. It’s quite a sight to see. A shame you bury the entire thing in a mask of [pc.cumColor] a second later.");
+		output("\n\nEjaculations pour out of your dickslit like water from a hose, washing away each previous squirt with a whole new wave of [pc.cum]. The excess puddles around her hair, and the citrine of her crown is completely hidden, as thoroughly debauched as the princess herself. You spend yourself fully on the bukkaked royalty, pulling back to glaze the rest of her form as thoroughly as her face.");
+	}
+	//Hypercum
+	else
+	{
+		output("\n\nThe first cannon-like shot from your [pc.cock " + x + "] hits the princess square in her still-open mouth, overwhelms that meager cavity, and splatters across the whole of her face. When it dies down, puddles of your [pc.cumNoun] have formed on her neck and collarbones, and her face is a mask of [pc.cumColor]. And that was just the first blast! You make sure the next drenches her hair and crown, spoiling her symbol of authority as thoroughly as the rest of her.");
+		output("\n\nThe princess lies in a growing puddle as you hose her down. The harem helps you back up to evenly coat the rest of her, still squeezing and stroking to maximize the volume of your ejaculate. The royal breasts soon look like polished [pc.cumColor] globes. A flat belly becomes a canvas of [pc.cumVisc] spunk. And the princess’ cock? The princess’ cock is buried in your superior juices, lightly diluting them with her pathetic, pink-squirting production.");
+	}
+	//Merge
+	output("\n\nYou struggle to remain standing as you climb down from your orgasmic high, letting the princess lick at your still-swollen [pc.cockHeadNoun " + x + "] a few moments more. Tender hands gradually migrate from your sensitive length to your arms and shoulders, helping you to seat yourself until you recover. Your equipment is placed at your feet, and a number of happy-looking harem girls take turns hugging or kissing at you. Sometimes they target your face, other times your cock. The only constant is their gratefulness.");
+	output("\n\nThey take their cummy mistress up onto the bed - and into a bondage harness - while you’re getting ready to leave the chamber. At least they’re getting a chance to be on top!\n\n");
+	processTime(33);
+	pc.orgasm();
+	genericVictory();
+}
+
+//Generic Orgy Join
+//For defeated Princess!
+//Slight exhibitionism gain
+public function genericPostVictoryPrincessOrgyFuck():void
+{
+	clearOutput();
+	showPrincess();
+	output("Without preamble, you shuck your equipment and climb into the bed, joining the dozens of squirming limbs and sweat-soaked bodies currently abusing the princess turned fuck-toy. The nyrea react with shock and wariness at the sight of an outsider approaching them, but when they identify you as their savior, the one that turned the tables on their ovipositional overlord, they joyously embrace you, pulling you deep into the crowd.");
+	output("\n\nYou’re awash in a sea of budding breasts and unrepentant sensuality. The libidinous caresses of hands big and small wash across your [pc.skinFurScales], pausing only to focus on a [pc.nipple] or fondle their way across your [pc.groin]. A lithe form embraces you from behind while a tongue licks at the lobe of your ear. Lips press against your own, and a tongue is daringly offered to the interior of your mouth. You fence with it, for a time, feeling your body grow hot with excitement and need.");
+	output("\n\nThe fallen princess is close enough that you can touch her, if you wanted to. She trembles and bucks against her restraints and the lithe girl currently mounting her. With each crash of alien pussy on ovipositor, she pants, <i>“Yes,”</i> but her eyes are vacant, almost unseeing. She’s dosed up with enough red myr venom to throw an elephant into a rutting frenzy. You spot the cause: a red myr is among the harem, suckling her former mistress’ toes with a mischievous look on her face.");
+	output("\n\nWhen she sees you staring, the crimson ant stops and asks, <i>“What? I like feet.”</i>");
+	output("\n\nYou can’t really argue with that. A skillful touch ");
+	if(pc.legCount > 1) output("between your [pc.legs]");
+	else output("at the joining of your [pc.leg] with your [pc.hips]");
+	output(" pulls your attention over and into another kiss, one so hot and soul-searing that you nearly forget the red entirely. Your eager fingers wrap around the new nyrea’s back to pull her more firmly against you, rubbing small circles against the smooth skin at the small of her back. She grinds against your hips");
+	if(pc.hasCock()) output(", soon seating herself on [pc.oneCock]");
+	else output(", soon pressing herself against [pc.oneVagina]");
+	output(", rubbing her feverishly slick form for ever more friction.");
+	output("\n\nInky eyes gaze into yours. Hands cross over your shoulders. Fingers slip over the increasingly sweat-slicked expanse of your [pc.butt]. You bump and grind, twitching your hips back against them. Groaning, you slither your tongue against endless onslaughts of alien muscle, bathing it in orgiastic bliss. Rather than battle the mounting ecstasy in an ill-fated attempt to hold out, you let it wash over you, twitching nervelessly in your lovers’ grasps. They bring you to heights of pleasure you can barely endure, let alone remember.");
+	processTime(45);
+	pc.orgasm();
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",genericPrincessOrgyFinisher);
+}
+
+//[Next]
+public function genericPrincessOrgyFinisher():void
+{
+	clearOutput();
+	showPrincess();
+	output("You awaken on a cushion some time later. The nyrea are still at it, swapping in and out in shifts to ensure the hedonistic orgy never abates. Your gear hasn’t been messed with, and none make a move to stop you as you move along on your business.");
+	processTime(33+rand(20));
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+

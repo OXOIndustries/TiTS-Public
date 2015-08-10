@@ -343,7 +343,7 @@ public function sx1SaenLowBlow():void
 
 public function sx1SaenShieldHack():void
 {
-	var damage:DamageResult = applyDamage(new TypeCollection({ electric: 15 }, DamageFlag.ONLY_SHIELD), pc, foes[0], "supress");
+	var damage:DamageResult = applyDamage(new TypeCollection({ electric: 15 }, DamageFlag.ONLY_SHIELD), pc, foes[0], "suppress");
 	// Valeria Shield Hack
 	output("Saendra taps on her wrist, yanking Valeria out of her digital hidey-hole and aiming the fluttery holo-avatar at");
 	if (foes[0].plural == true) output(" one of ");

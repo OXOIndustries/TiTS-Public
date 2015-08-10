@@ -173,11 +173,12 @@
 			this.cocks = [];
 			this.cocks.push(new CockClass());
 			(this.cocks[0] as CockClass).cType = GLOBAL.TYPE_NYREA;
-			(this.cocks[0] as CockClass).cLengthRaw = 13;
-			(this.cocks[0] as CockClass).cThicknessRatioRaw = 1.66;
+			(this.cocks[0] as CockClass).cLengthRaw = 22;
+			(this.cocks[0] as CockClass).cThicknessRatioRaw = 1.2;
 			(this.cocks[0] as CockClass).addFlag(GLOBAL.FLAG_KNOTTED);
 			(this.cocks[0] as CockClass).virgin = false;
 			this.cockVirgin = false;
+			createStatusEffect("Force Fem Gender");
 			
 			this._isLoading = false;
 		}
@@ -202,7 +203,7 @@
 			nyrea.long += ". Her purple lips twist in a smile, and she twirls her towering longspear about herself in a series of flourishes and feints that would have impressed a core-world martial artist.";
 			if(kGAMECLASS.flags["FREED_DANE_FROM_TAIVRA"] == 1) nyrea.long += "\n\nDane, your cousin [rival.name]’s four-armed ausar bodyguard, is standing at your side. Though wounded by Queensguard, he’s still managing to stand - if only barely. He might not be at full strength, but it’s reassuring to have somebody watching your back.";
 
-			nyrea.inventory.push(new ReaperArmamentsMarkIShield());
+			nyrea.inventory.push(new TaivrasSpear());
 			//else if(rand(50) == 0) nyrea.inventory.push(new Satyrite());
 			//else if(rand(20) == 0) nyrea.inventory.push(new Picardine());
 			//else if (rand(20) == 0)	nyrea.inventory.push(nyrea.rangedWeapon.makeCopy());
