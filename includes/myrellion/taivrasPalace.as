@@ -140,7 +140,7 @@ public function tryAndPerseudeFutaBugSlootsToMooooove():void
 	clearOutput();
 	showName("NYREAN\nGUARDS");
 	output("<i>“Come on, can’t we work something out?”</i> you ask, putting on your most diplomatic smile.");
-	output("\n\nThe two guards exchange a glance, and one of them puts a hand on her hip. <i>“Hmm, at least this one understands parley. Very well, perhaps we could convince the queen to see you. If you have something of sufficient value...");
+	output("\n\nThe two guards exchange a glance, and one of them puts a hand on her hip. <i>“Hmm, at least this one understands parley. Very well, perhaps we could convince the queen to see you. If you have something of sufficient value...”</i>");
 	processTime(1);
 	clearMenu();
 	//[Leave] [Sex] [Plat190] [Credits]
@@ -658,7 +658,6 @@ public function incubatorGooEncounter():void
 	{
 		addDisabledButton(0,"Use G.Hole","Use Gloryhole","You don't have the equipment to do that.");
 		addButton(1,"Step Back",stepBackFromGloryHoles,undefined,"Step Back","You don’t exactly have the right equipment to slot in there...");
-		addDisabledButton(1,"Step Back","Step Back","");
 	}
 }
 
@@ -1353,7 +1352,7 @@ public function talkOfPeace(plat190:Boolean = false):void
 	//if PC has a high Kindness rating:
 	if(pc.isNice()) 
 	{
-		output("<i>“Hmm,”</i> the queen murmurs, sizing you up for a good long moment. <i>“I beleive you, [pc.name]. Strange as that may seem, you have an honest demeanor about you. Quite contrary to your cousin... it suits you.");
+		output("<i>“Hmm,”</i> the queen murmurs, sizing you up for a good long moment. <i>“I beleive you, [pc.name]. Strange as that may seem, you have an honest demeanor about you. Quite contrary to your cousin... it suits you.”</i>");
 		output("\n\n<i>“So... can we make a deal?”</i> you ask, taking a hesitant step forward. Queensguard makes no movement to stop you.");
 		output("\n\nThe queen smiles. <i>“Perhaps. Among my kind, there is a saying: ‘triumph brings the spoils of conquest.’ You are an unwelcome guest, but an honest one... I will give you the chance to earn your father’s treasure, with honor. Something your cousin lacks entirely.”</i>");
 		output("\n\n<i>“That’s not quite what I had in mind,”</i> you say, taking a step back as Queensguard turns her attentions to you. <i>“I’ve got plenty of honor, but I don’t want a fight here. Like I said, I come in peace.”</i>");
