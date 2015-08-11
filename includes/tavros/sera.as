@@ -138,6 +138,8 @@ public function initSeraFuckFlags():void
 	if (flags["SERA FUCKED PCS TAILCUNT"] == undefined) flags["SERA FUCKED PCS TAILCUNT"] = 0;
 	if (flags["TIMES_RODE_BY_SERA"] == undefined) flags["TIMES_RODE_BY_SERA"] = 0;
 	if (flags["SERA_STUCK_IT_ALL_IN_BUTT"] == undefined) flags["SERA_STUCK_IT_ALL_IN_BUTT"] = 0;
+	if (flags["SERA_URETHRA_TAILFUCKS"] == undefined) flags["SERA_URETHRA_TAILFUCKS"] = 0;
+	if (flags["SAEN_X_SERA_THREESOME"] == undefined) flags["SAEN_X_SERA_THREESOME"] = 0;
 }
 
 public function fuckedSeraBefore():Boolean
@@ -146,11 +148,10 @@ public function fuckedSeraBefore():Boolean
 	
 	if (flags["FUCKED SERA"] == 1) return true;
 	
-	// Tailfuck scene has to flag set atm, added but yeah
-	
 	if (flags["SERA FUCKED PCS TAILCUNT"] > 0) return true;
 	if (flags["TIMES_RODE_BY_SERA"] > 0) return true;
 	if (flags["SERA_STUCK_IT_ALL_IN_BUTT"] > 0) return true;
+	if (flags["SERA_URETHRA_TAILFUCKS"] > 0) return true;
 	
 	return false;
 }
@@ -159,7 +160,7 @@ public function timesFuckedSera():int
 {
 	initSeraFuckFlags();
 	
-	return flags["SERA FUCKED PCS TAILCUNT"] + flags["TIMES_RODE_BY_SERA"] + flags["SERA_STUCK_IT_ALL_IN_BUTT"];
+	return (flags["SERA FUCKED PCS TAILCUNT"] + flags["TIMES_RODE_BY_SERA"] + flags["SERA_STUCK_IT_ALL_IN_BUTT"] + flags["SERA_URETHRA_TAILFUCKS"] + flags["SAEN_X_SERA_THREESOME"]);
 }
 
 public function letSeraFuckYou():void
@@ -452,6 +453,7 @@ public function getGiantDickTailfilledWhileEatingSeraOut():void
 	processTime(30+rand(10));
 	pc.girlCumInMouth(chars["SERA"]);
 	pc.orgasm();
+	flags["SERA_URETHRA_TAILFUCKS"]++;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

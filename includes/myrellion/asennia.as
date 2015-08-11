@@ -153,7 +153,7 @@ public function introToAsseniaPartThree():void
 	output("\n\nYou smile at the well-sucked honeypot and stand up, wiping away an excess of honey on your cheeks. The other woman, the redhead, hops to her feet and starts to leave - but not before reaching back and slapping your [pc.butt] first. You flinch and turn to face her, just in time to see her flashing you a wink before she saunters off into the crowd.");
 	output("\n\n<i>“See you next time,”</i> Asennia murmurs to you as you step out of line, letting her next set of customers come over to get their long-awaited drink.");
 	processTime(13);
-	pc.modThickness(1, false);
+	output(pc.modThickness(1));
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -361,8 +361,8 @@ public function repeatDrinkStraightFromAsenniasTap():void
 	processTime(23);
 	pc.lust(11);
 	pc.energy(200);
-	pc.modThickness(2, false);
-	pc.modTone( -1, false);
+	output(pc.modThickness(2));
+	output(pc.modTone(-1));
 	pc.credits -= 50;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -436,8 +436,8 @@ public function drinkHoneySmallerBoobsAfternoonWithADongle():void
 	pc.shower();
 	pc.energy(100);
 	pc.exhibitionism(2);
-	pc.modThickness(2, false);
-	pc.modTone( -1, false);
+	output(pc.modThickness(2));
+	output(pc.modTone(-1));
 	pc.credits -= 50;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -507,7 +507,7 @@ public function drinkHoneyAfternoonWithNoBoner():void
 	processTime(19);
 	clearMenu();
 	pc.credits -= 50;
-	pc.modThickness(2, false);
-	pc.modTone( -1, false);
+	output(pc.modThickness(2));
+	output(pc.modTone(-1));
 	addButton(0,"Next",mainGameMenu);
 }

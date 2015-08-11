@@ -307,7 +307,7 @@ public function kiroDrankinConterst():void
 	showKiro();
 	output("<i>“How about a drinking contest?</i>” you suggest with a glance toward the bar.");
 	output("\n\nKiro smirks, looking back at you evenly. <i>“");
-	if(flags["KIRO_DRINKING_CONTEST_RESULTS"] == undefined) output("If you expect the space pirate to be a lightweight, you’re gonna have a bad time.");
+	if(flags["KIRO_DRINKING_CONTEST_RESULTS"] == undefined || flags["KIRO_DRINKING_CONTEST_RESULTS"] < 0) output("If you expect this space pirate to be a lightweight, you’re gonna have a bad time.");
 	else output("If you wanted to take advantage of me sexually, all you had to do was ask. Keep this up, though, and you’re gonna be the one getting taken advantage of.");
 	output("”</i> Her clothes visibly tent, starting to strain away from her body. <i>“If I win, you get to be my cock-milker for a day.</i>”");
 	output("\n\nGrinning back, you ask, <i>“And if I win?</i>”");
@@ -362,6 +362,8 @@ public function drinkingContestGo(cheated:Boolean = false):void{
 			output("\n\n<i>“Shit, I lost?</i>” Kiro looks completely shell shocked. <i>“I was... I was winning!</i>” She leans her whole body against you, tits pressing on either side of you. <i>“Y-you... you think I’m a winner, right, [pc.name]?</i>”");
 			output("\n\nYou nod while standing, dragging her body with you as you both sway a little. You sink a hand into her plump ass, squeezing it enthusiastically as you start to lead her away. <i>“Come on Kiro, you have a bet to own up to.</i>”");
 			output("\n\nShe purrs, <i>“Yesh, " + pc.mf("shir","ma’am") + "!</i>” while allowing herself to be lead back towards her ship. The front of her leotard abruptly begins to strain into an obscene tent long before you make it there, and Kiro’s drunken wobbles quickly turn into a sexy, horny sway.");
+			flags["KIRO_DRINKING_CONTEST_RESULTS"] = 1;
+			StatTracking.track("contests/kiro drinkoff wins");
 		}
 		//Losing fork
 		else
@@ -374,6 +376,8 @@ public function drinkingContestGo(cheated:Boolean = false):void{
 			output("\n\nThe striped seductress smiles at you as she guides your reflexively squeezing hand into her crotch where it can find purchase, letting you get a good, firm feel of her filling sheath and bulbous balls. <i>“I hope you like what you feel, because you’re going to be getting a lot more familiar with each other for the rest of the day.</i>” She pulls you tight, dragging you out of your seat and towards the exit. <i>“Let’s get you back to the ship. You’ve got a cute look on your face and I know just what you can fill that mouth with.</i>”");
 			output("\n\nAs she leads you stumbling through the corridors, you keep falling against her, every time getting a few handfuls of her curvy form before she pulls you up with a smile. By the time you’re halfway there, the tanuki-herm is pitching a tent big enough to house a circus, and you keep finding reasons to catch yourself on it or her breasts, squeezing and groping in equal measure.");
 			won = false;
+			flags["KIRO_DRINKING_CONTEST_RESULTS"] = -1;
+			StatTracking.track("contests/kiro drinkoff losses");
 		}
 	}
 	//Cheat
@@ -384,6 +388,8 @@ public function drinkingContestGo(cheated:Boolean = false):void{
 		output("\n\n<i>“Shit, I lost?</i>” Kiro looks completely shell shocked. <i>“I was... I was winning!</i>” She leans her whole body against you, tits pressing on either side of you. <i>“Y-you... you think I’m a winner, right, [pc.name]?</i>”");
 		output("\n\nYou nod while standing, dragging her body with you as you both sway a little. You sink a hand into her plump ass, squeezing it enthusiastically as you start to lead her away. <i>“Come on Kiro, you have a bet to own up to.</i>”");
 		output("\n\nShe purrs, <i>“Yesh, " + pc.mf("shir","ma’am") +"!</i>” while allowing herself to be lead back towards her ship. The front of her leotard abruptly begins to strain into an obscene tent long before you make it there, and Kiro’s drunken wobbles quickly turn into a sexy, horny sway.");
+		flags["KIRO_DRINKING_CONTEST_RESULTS"] = 0;
+		StatTracking.track("contests/kiro drinkoff wins");
 	}
 	processTime(73);
 	//route win/loss conditions!

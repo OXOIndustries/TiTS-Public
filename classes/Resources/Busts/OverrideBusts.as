@@ -21,7 +21,7 @@
 		public var Bust_DALLY_LIMP_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/jacques00/deep_lake_queen.png", mimeType = "image/png")]
-		public var Bust_DEEP_LAKE_QUEEN:Class;
+		public var Bust_QUEENOFTHEDEEP:Class;
 
 
 		[Embed(source = "../../../assets/images/npcs/drBadger.png", mimeType = "image/png")]

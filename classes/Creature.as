@@ -3708,7 +3708,7 @@
 		}
 		public function legs(forceType: Boolean = false, forceAdjective: Boolean = false): String 
 		{
-			return pluralize(leg(forceType, forceAdjective));
+			return pluralize(leg(forceType, forceAdjective, true));
 		}
 		public function legOrLegs(forceType: Boolean = false, forceAdjective: Boolean = false): String {
 			if (legCount == 1) return leg(forceType, forceAdjective);
@@ -3943,7 +3943,7 @@
 			output += "finger";
 			return output;
 		}
-		public function leg(forceType: Boolean = false, forceAdjective: Boolean = false): String
+		public function leg(forceType: Boolean = false, forceAdjective: Boolean = false, pluralAdjective: Boolean = false): String
 		{
 			var output: String = "";
 			var adjectives:Array = [];
@@ -3983,9 +3983,11 @@
 				//ADJECTIVE!
 				else if (this.rand(3) == 0 || forceAdjective)
 				{
-					if (legCount > 2 && this.rand(2) == 0) { adjectives.push("numerous"); }
+					if (pluralAdjective && legCount > 2 && this.rand(2) == 0) { adjectives.push("numerous"); }
 					else if (hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) { adjectives.push("digitigrade"); }
 					else if (hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) { adjectives.push("plantigrade"); }
+					//Coulda sworn there was a reason I didn't include these originally, but it's slipping away from me now.
+					else if (hasLegFlag(GLOBAL.FLAG_AMORPHOUS)) { adjectives.push("amorphous"); adjectives.push("fluid"); adjectives.push("ever-changing"); }
 					else if (hasLegFlag(GLOBAL.FLAG_SCALED)) { adjectives.push("scaled"); adjectives.push("scaley"); }
 					else if (hasLegFlag(GLOBAL.FLAG_FURRED)) { adjectives.push("furry"); adjectives.push("fuzzy"); adjectives.push("fur-covered"); }
 					else if (hasLegFlag(GLOBAL.FLAG_TENDRIL)) { adjectives.push("wiggling"); adjectives.push("wriggling"); adjectives.push("tendril-like"); }
@@ -7000,9 +7002,12 @@
 		public function orangeMyrScore():int
 		{
 			var counter:int = myrScore();
-			if(hasPerk("Honeypot") && hasPerk("Myr Venom")) counter += 4;
-			if(tailType == GLOBAL.TYPE_MYR && tailCount == 1) counter++;
-			if(scaleColor == "orange" && (armType == GLOBAL.TYPE_MYR || legType == GLOBAL.TYPE_MYR)) counter+=5;
+			if(kGAMECLASS.flags["MCALLISTER_MYR_HYBRIDITY"] >= 3)
+			{
+				if(hasPerk("Honeypot") && hasPerk("Myr Venom")) counter += 4;
+				if(tailType == GLOBAL.TYPE_MYR && tailCount == 1) counter++;
+				if(scaleColor == "orange" && (armType == GLOBAL.TYPE_MYR || legType == GLOBAL.TYPE_MYR)) counter+=5;
+			}
 			return counter;
 		}
 		public function horseScore(): int
@@ -7070,6 +7075,9 @@
 			if (wingType == GLOBAL.TYPE_SMALLBEE || wingType == GLOBAL.TYPE_BEE) counter++;
 			if (tailType == GLOBAL.TYPE_BEE && tailCount > 0) counter++;
 			if (faceType == GLOBAL.TYPE_HUMAN && counter > 0) counter++;
+			if (faceType == GLOBAL.TYPE_HUMAN && eyeType == GLOBAL.TYPE_BEE) counter++;
+			if (faceType == GLOBAL.TYPE_HUMAN && tongueType == GLOBAL.TYPE_BEE) counter++;
+			if (antennae == 2 && counter > 0) counter++;
 			return counter;
 		}
 		public function naleenScore(): int {

@@ -55,6 +55,11 @@ public function approachJade():void {
 	clearOutput();
 	userInterface.showBust("JADE");
 	userInterface.showName("\nJADE");
+	// Nipple TF not completed!
+	if(flags["JADE_NIPPLE_TF_QUEUED"] == undefined || flags["JADE_NIPPLE_TF_QUEUED"] < 2)
+	{
+	if(!chars["JADE"].hasFlatNipples()) chars["JADE"].breastRows[0].nippleType = GLOBAL.NIPPLE_TYPE_FLAT;
+	}
 	//First Time
 	if(flags["KNOW_JADES_NAME"] == undefined)
 	{

@@ -313,6 +313,33 @@ package classes.Items.Transformatives
 					output("\n\nAfter a few moments, your Codex beeps, informing you that a new chemical has been detected in your mouth, corresponding to a weak version of the venom of a red myrmedion. <b>You've gained a form of red myrvenom!</b>");
 					changes++;
 					pc.createPerk("Myr Venom",0,0,0,0,"Allows you do to a little lust damage when melee attacking.");
+					// Perk Swapped!
+					if(pc.hasPerk("Honeypot"))
+					{
+						// Reset boob sizes
+						var bSizeChange:Boolean = false;
+						var iBreastNum:int = pc.totalBreasts();
+						for(var bb:int = 0; bb < pc.bRows(); bb++)
+						{
+							if(pc.breastRows[bb].breastRatingHoneypotMod != 0)
+							{
+								pc.breastRows[bb].breastRatingHoneypotMod == 0;
+								bSizeChange = true;
+							}
+						}
+						output("\n\nWith your new ability attained, your body instantaneously shivers all over and you feel your [pc.chest] and [pc.skin] tingle.");
+						if(bSizeChange)
+						{
+							output(" Your breast");
+							if(iBreastNum != 1) output("s");
+							output(" deflate");
+							if(iBreastNum == 1) output("s");
+							output(", squirting and dribbling [pc.milk] from your [pc.nipples] as the tingling sensation pushes the fluid out.");
+						}
+						output(" When the feeling passes, you double check your Codex and confirm that <b>you have lost the mass-displacing Honeypot genes from your previous transformation</b>. It seems the genes are not compatible with this drug...");
+						// Remove perk!
+						pc.removePerk("Honeypot");
+					}
 				}
 
 				//Lactation Typechange

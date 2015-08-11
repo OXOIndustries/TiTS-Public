@@ -109,7 +109,6 @@
 			}
 			else {
 				kGAMECLASS.output(target.capitalA + target.short + " applies the cream but to no effect!");
-				target.energy(35);
 			}
 			return false;
 		}
