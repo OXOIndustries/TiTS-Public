@@ -155,7 +155,7 @@ public function voluntaryFuckSexBot():void
 	if(!pc.isNude()) output("as you take off your [pc.gear] ");
 	output("and lie down on your side. Returning your grin with its own serene unchanging smile, the exquisitely proportioned droid steps towards you. Its warm hum fills your ears.");
 	//[go to loss scenes]
-	loseToSexBotRouter();
+	loseToSexBotRouter(true);
 }
 
 
@@ -174,7 +174,7 @@ public function yesToRobotSexBotFirstTime():void
 	output("\n\n<i>“Initiating sexy times,”</i> the sexbot agrees pleasantly. Your smile becomes slightly fixed as, with a whirr and the now-familiar sound of unwinding rope, four flexible tentacles tipped with rounded rubber grippers appear out of its back. Before you can maybe rethink agreeing to this eerily beautiful droid, its warm synthetic skin and its many seeking, insistent hands are upon you.");
 	//[go to loss scenes]
 	clearMenu();
-	addButton(0,"Next",loseToSexBotRouter);
+	addButton(0,"Next",loseToSexBotRouter,true);
 }
 
 public function sexbotAI():void
@@ -405,7 +405,7 @@ public function defeatTheSexBot():void
 }
 
 //Loss Scenes
-public function loseToSexBotRouter():void
+public function loseToSexBotRouter(cameFromMenu:Boolean = false):void
 {
 	author("Nonesuch");
 	sexBotDisplay();
@@ -413,24 +413,25 @@ public function loseToSexBotRouter():void
 	if(foes[0].mf("","FUCK") == "FUCK")
 	{
 		//PC has dick
-		if(pc.hasCock() && (!pc.hasVagina() || rand(2) == 0)) loseToSexBotAndHaveADick();
+		if(pc.hasCock() && (!pc.hasVagina() || rand(2) == 0)) loseToSexBotAndHaveADick(cameFromMenu);
 		//PC female
-		else if(pc.hasVagina()) femalePCsGetBangedByAFemBot();
+		else if(pc.hasVagina()) femalePCsGetBangedByAFemBot(cameFromMenu);
 	}
 	//Malebot
 	else
 	{
 		//PC Male
-		if(pc.hasCock() && (!pc.hasVagina() || rand(2) == 0)) malebotDefeatsMalePCs();
+		if(pc.hasCock() && (!pc.hasVagina() || rand(2) == 0)) malebotDefeatsMalePCs(cameFromMenu);
 		//PC has vagina
-		else if(pc.hasVagina()) loseToManBotWhenHavingAPussy();
+		else if(pc.hasVagina()) loseToManBotWhenHavingAPussy(cameFromMenu);
 	}
 }
 		
 //Female Bot
 //PC has dick
-public function loseToSexBotAndHaveADick():void
+public function loseToSexBotAndHaveADick(cameFromMenu:Boolean = false):void
 {
+	if(cameFromMenu) clearOutput();
 	author("Nonesuch");
 	sexBotDisplay();
 	var x:int = rand(pc.cockTotal());
@@ -546,8 +547,9 @@ public function loseToSexBotAndHaveADick():void
 }
 
 //PC female
-public function femalePCsGetBangedByAFemBot():void
+public function femalePCsGetBangedByAFemBot(var cameFromMenu:Boolean = false):void
 {
+	if(cameFromMenu) clearOutput();
 	author("Nonesuch");
 	sexBotDisplay();
 	var x:int = rand(pc.totalVaginas());
@@ -622,8 +624,9 @@ public function femalePCsGetBangedByAFemBot():void
 
 //Malebot
 //PC Male
-public function malebotDefeatsMalePCs():void
+public function malebotDefeatsMalePCs(cameFromMenu:Boolean = false):void
 {
+	if(cameFromMenu) clearOutput();
 	author("Nonesuch");
 	sexBotDisplay();
 	var x:int = rand(pc.cockTotal());
@@ -691,9 +694,9 @@ public function malebotDefeatsMalePCs():void
 }
 
 //PC has vagina
-public function loseToManBotWhenHavingAPussy():void
+public function loseToManBotWhenHavingAPussy(cameFromMenu:Boolean = false):void
 {
-	clearOutput();
+	if(cameFromMenu) clearOutput();
 	sexBotDisplay();
 	author("Nonesuch");
 	var x:int = rand(pc.totalVaginas());
