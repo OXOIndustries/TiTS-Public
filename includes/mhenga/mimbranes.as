@@ -4378,18 +4378,30 @@ public function mimbraneMenu():void
 	//If all Mimbranes are full
 	else
 	{
-		output2("You try and interact with your Mimbrane");
-		if (attachedMimbranes() > 1) output2("s");
-		output2(", but");
-		if (attachedMimbranes() == 1) output2(" it doesn’t seem");
-		else output2(" they don’t seem");
-		output2(" to be interested.");
-		if (attachedMimbranes() == 1) output2(" It");
-		else output2(" They");
-		output2(" must be full.");
-		
-		addDisabledGhostButton(0, "Cock Feed");
-		addDisabledGhostButton(1, "Vag Feed");
+		if(currentLocation == "SHIP INTERIOR")
+		{
+			output2("You try and interact with your Mimbrane");
+			if (attachedMimbranes() > 1) output2("s");
+			output2(", but");
+			if (attachedMimbranes() == 1) output2(" it doesn’t seem");
+			else output2(" they don’t seem");
+			output2(" to be interested.");
+			if (attachedMimbranes() == 1) output2(" It");
+			else output2(" They");
+			output2(" must be full.");
+			
+			addDisabledGhostButton(0, "Cock Feed");
+			addDisabledGhostButton(1, "Vag Feed");
+		}
+		else
+		{
+			output2("If you were somewhere a little more private, you could interact with your mimbrane");
+			if (attachedMimbranes() > 1) output2("s");
+			output2(", but ");
+			if (attachedMimbranes() > 1) output2("none seem");
+			else output2("it doesn't seem");
+			output2(" that hungry.");
+		}
 	}
 
 	// Ability toggles

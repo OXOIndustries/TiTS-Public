@@ -1220,6 +1220,7 @@ public function enemyAttack(attacker:Creature):void
 public function playerAttack(target:Creature):void 
 {
 	attack(pc, target, true);
+	if(pc.hasPerk("Second Attack")) attack(pc,target,true,1);
 	mimbraneHandBonusAttack(target);
 	playerMimbraneCloudAttack();
 	//Cleave only triggers off the last swing before round completion.
@@ -1273,10 +1274,13 @@ public function concentratedFire(hit:Boolean = true):void
 
 public function playerRangedAttack(target:Creature):void 
 {
-	rangedAttack(pc, target);
+	rangedAttack(pc, target,true);
+	if(pc.hasPerk("Second Shot")) attack(pc,target,true,1);
 	playerMimbraneCloudAttack();
+	processCombat();
 }
 
+//Special 1 = flurry bonus
 public function attack(attacker:Creature, target:Creature, noProcess:Boolean = false, special:int = 0):void {
 	//Set drone target
 	setDroneTarget(target);
@@ -1469,7 +1473,7 @@ public function droneAttack(target:Creature):void {
 		applyDamage(droneDamage(), pc, target, "minimal");
 		output(" Good boy!");
 	}
-	else if(pc.accessory is TamWolfDamaged) 
+	else if(pc.accessory is TamWolfDamaged)
 	{
 		//In Combat:
 		//Tam-wolf has a 30% chance of doing nothing on his turn. Otherwise, he makes a light Piercing attack.
@@ -1494,8 +1498,12 @@ public function droneAttack(target:Creature):void {
 public function droneDamage():TypeCollection
 {
 	var d:Number = 1 + pc.level + rand(2 + pc.level/2)
-	if (pc.accessory is TamWolfDamaged) d -= 1;
-	return new TypeCollection( { kinetic: d } );
+	if (pc.accessory is TamWolfDamaged) 
+	{
+		d -= 1;
+		return new TypeCollection( { kinetic: d } );
+	}
+	return new TypeCollection( { electric: d } );
 }
 
 public function teaseMenu(target:Creature):void 

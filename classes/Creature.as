@@ -2328,6 +2328,7 @@
 		public function energyMax(): Number {
 			var bonus:int = 0;
 			if(hasStatusEffect("Royal Nectar")) bonus += 40;
+			if(hasPerk("Heroic Reserves")) bonus += 33;
 			return energyMod + 100 + bonus;
 		}
 		public function energyMin(): Number {
