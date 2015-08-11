@@ -532,7 +532,7 @@ public function fuckMillie():void
 	//Merge
 	output("\n\nThe dark-haired cow-woman ");
 	if(pc.isNude()) output("bats your hand away");
-	else output("uses a hoof to kick your [pc.lowerGarments] aside");
+	else output("uses a foot to kick your [pc.lowerGarments] aside");
 	output(", then flicks the volume on control on her tablet, filling the stall with harsh-sounding tunes. <i>“Yeah, you look like you need a good... thorough... milking.”</i> Her gray-blue eyes twinkle while her hand wraps you in a firm grip. <i>“This needs a more personal touch, don’t you agree?”</i>");
 
 	pc.lust(10);

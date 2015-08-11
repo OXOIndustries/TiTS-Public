@@ -26,6 +26,7 @@
 	import classes.Items.Miscellaneous.EmptySlot;
 	import classes.Util.RandomInCollection;
 	import classes.Util.InCollection;
+	import classes.Engine.Utility.num2Ordinal;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	
 	import classes.Engine.Utility.num2Text;
@@ -6854,6 +6855,13 @@
 
 		//Remove a breast row
 		public function removeBreastRow(arraySpot:int, totalRemoved:int): void {
+			if (hasStatusEffect("Boobswell Pads") && statusEffectv1("Boobswell Pads") == arraySpot)
+			{
+				kGAMECLASS.eventBuffer += "\n\nThe Boobswell pads you had been wearing on your " + num2Ordinal(arraySpot + 1) + " row of breast";
+				if (breastRows[arraySpot].breasts != 1) kGAMECLASS.eventBuffer += "s";
+				kGAMECLASS.eventBuffer += " disintegrate as the row was removed. <b>You're no longer under the effects of the Boobswell Pads!</b>";
+				removeStatusEffect("Boobswell Pads");
+			}
 			removeJunk(breastRows, arraySpot, totalRemoved);
 		}
 		public function removeBreastRowUnlocked(arraySpot:int = 0, totalRemoved:int = 1):Boolean

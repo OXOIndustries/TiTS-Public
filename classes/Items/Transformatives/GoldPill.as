@@ -406,7 +406,7 @@ package classes.Items.Transformatives
 					else output("\n\n" + pc.girlCumTypeLockedMessage());
 				}
 				//Grow wings once! Requires legs!
-				if(changes < changeLimit && target.hasCock() && target.legType == GLOBAL.TYPE_MYR && (target.wingType != GLOBAL.TYPE_SMALLBEE || target.wingType != GLOBAL.TYPE_MYR) && target.wingTypeUnlocked(GLOBAL.TYPE_MYR) && rand(4) == 0) {
+				if(changes < changeLimit && target.hasCock() && target.legType == GLOBAL.TYPE_MYR && (target.wingType != GLOBAL.TYPE_SMALLBEE && target.wingType != GLOBAL.TYPE_MYR) && target.wingTypeUnlocked(GLOBAL.TYPE_MYR) && rand(4) == 0) {
 					if(!target.hasWings()) {
 						kGAMECLASS.output("\n\nCramps attack your shoulder blades, forcing you to arch your back and cry out. You drop and roll on the ground to try and keep it together, and before you know, the pain is gone. In its place, there's the pleasant ache of growing muscles and something sliding down your back. You crane your head over your shoulder");
 						if(target.armor.shortName != "") kGAMECLASS.output(" and pull back your [pc.armor.longName]");
