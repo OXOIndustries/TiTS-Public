@@ -549,6 +549,23 @@
 		public static const FLUID_TYPE_VANAE_HUNTRESS_MILK:int					= 11;
 		public static const FLUID_TYPE_NECTAR:int 								= 12;
 		public static const FLUID_TYPE_LEITHAN_MILK:int							= 13;
+		public static const FLUID_TYPE_CANDY:int								= 14;
+		public static const FLUID_TYPE_COFFEE:int								= 15;
+		public static const FLUID_TYPE_VANILLA:int								= 16;
+		public static const FLUID_TYPE_CARAMEL:int								= 17;
+		public static const FLUID_TYPE_BANANA:int								= 18;
+		public static const FLUID_TYPE_COCONUT:int								= 19;
+		public static const FLUID_TYPE_MAPLESYRUP:int							= 20;
+		public static const FLUID_TYPE_CHERRY:int								= 21;
+		public static const FLUID_TYPE_CHOCVANILLA:int							= 22;
+		public static const FLUID_TYPE_WHISKY:int								= 23;
+		public static const FLUID_TYPE_RUM:int									= 24;
+		public static const FLUID_TYPE_VODKA:int								= 25;
+		public static const FLUID_TYPE_BEER:int									= 26;
+		public static const FLUID_TYPE_ORANGE:int								= 27;
+		public static const FLUID_TYPE_BLUEBERRY:int							= 28;
+		public static const FLUID_TYPE_RASPBERRY:int							= 29;
+		public static const FLUID_TYPE_LIME:int									= 30;
 		
 		public static const FLUID_TYPE_NAMES:Array = [
 			"Milk",

@@ -137,6 +137,172 @@ public function bessHairLength():String
 	}
 }
 
+public function bessNippleType():String
+{
+	var nipType:int = bess.breastRows[0].nippleType;
+
+	switch (nipType)
+	{
+		case GLOBAL.NIPPLE_TYPE_FUCKABLE:
+			return "fuckable";
+
+		case GLBOAL.NIPPLE_TYPE_LIPPES:
+			return "mouth";
+
+		case GLOBAL.NIPPLE_TYPE_DICK:
+			return "dick";
+
+		case GLOBAL.NIPPLE_TYPE_FLAT:
+			return "flat";
+
+		case GLOBAL.NIPPLE_TYPE_INVERTED:
+			return "inverted";
+
+		case GLOBAL.NIPPLE_TYPE_TENTACLED:
+			return "tentacle";
+
+		case GLOBAL.NIPPLE_TYPE_NORMAL:
+		default:
+			return "normal";
+	}
+}
+
+public function bessAssSize():String
+{
+	if (bess.buttRatingRaw < 2) return "boyish";
+	if (bess.buttRatingRaw < 4) return "slender";
+	if (bess.buttRatingRaw < 8) return "average";
+	if (bess.buttRatingRaw < 10) return "ample";
+	if (bess.buttRatingRaw < 16) return "voluptuous";
+	return "massive";
+}
+
+public function bessThighSize():String
+{
+	if (bess.buttRatingRaw < 2) return "boyish";
+	if (bess.buttRatingRaw < 4) return "slender";
+	if (bess.buttRatingRaw < 8) return "average";
+	if (bess.buttRatingRaw < 10) return "ample";
+	if (bess.buttRatingRaw < 16) return "voluptuous";
+	return "massive";
+}
+
+public function bessBellySize():String
+{
+	switch (bess.bellyRatingRaw)
+	{
+		case 0: return "normal";
+		case 10: return "cushy";
+		case 15: return "pudgy";
+		case 20: return "large";
+		case 30: return "pregnant";
+		case 40: return "full";
+		case 50: return "expansive";
+		case 60: return "excessive";
+		case 80: return "over-inflated";
+		case 90: return "massive";
+		case 100: return "stupidly huge";
+		default: return "";
+	}
+}
+
+public function bessTone():String
+{
+	if (bess.tone == 100) return "muscular";
+	if (bess.tone == 70) return "semi-muscular";
+	if (bess.tone == 50) return "average";
+	if (bess.tone == 30) return "semi-soft";
+	return "soft";
+}
+
+public function bessThickness():String
+{
+	if (bess.thickness == 100) return "thick";
+	if (bess.thickness == 70) return "semi-thick";
+	if (bess.thickness == 50) return "average";
+	if (bess.thickness == 30) return "semi-thin";
+	return "thin";
+}
+
+public function bessCockType():String
+{
+	if (!bess.hasCock()) return "";
+
+	switch (bess.cocks[0].cType)
+	{
+		case GLOBAL.TYPE_HUMAN: return "normal";
+		case GLOBAL.TYPE_SAURIAN: return "saurian";
+		case GLOBAL.TYPE_EQUINE: return "equine";
+		case GLOBAL.TYPE_CANINE: return "canine";
+		case GLOBAL.TYPE_VULPINE: return "vulpine";
+		case GLOBAL.TYPE_DEMONIC: return "demonic";
+		case GLOBAL.TYPE_TENTACLE: return "tentacle";
+		case GLOBAL.TYPE_FELINE: return "feline";
+		case GLOBAL.TYPE_DRACONIC: return "draconic";
+		case GLOBAL.TYPE_GOO: return "goo";
+		case GLOBAL.TYPE_PLANT: return "plant";
+		default: return "";
+	}
+}
+
+public function bessCumFlavor():String
+{
+	switch (bess.cumType)
+	{
+		case GLOBAL.FLUID_TYPE_CUM: return "normal";
+		case GLOBAL.FLUID_TYPE_CHOCOLATE_MILK: return "chocolate";
+		case GLOBAL.FLUID_TYPE_CANDY: return "candy";
+		case GLOBAL.FLUID_TYPE_COFFEE: return "coffee";
+		case GLOBAL.FLUID_TYPE_VANILLA: return "vanilla";
+		case GLOBAL.FLUID_TYPE_STRAWBERRY_MILK: return "strawberry";
+		case GLOBAL.FLUID_TYPE_CARAMEL: return "caramel";
+		case GLOBAL.FLUID_TYPE_BANANA: return "banana";
+		case GLOBAL.FLUID_TYPE_COCONUT: return "coconut";
+		case GLOBAL.FLUID_TYPE_MAPLESYRUP: return "maple syrup";
+		case GLOBAL.FLUID_TYPE_CHERRY: return "cherry";
+		case GLOBAL.FLUID_TYPE_CHOCVANILLA: return "choc-vanilla";
+		case GLOBAL.FLUID_TYPE_WHISKY: return "whisky";
+		case GLOBAL.FLUID_TYPE_HONEY: return "honey";
+		case GLOBAL.FLUID_TYPE_RUM: return "rum";
+		case GLOBAL.FLUID_TYPE_VODKA: return "vodka";
+		case GLOBAL.FLUID_TYPE_BEER: return "beer";
+		case GLOBAL.FLUID_TYPE_ORANGE: return "orange";
+		case GLOBAL.FLUID_TYPE_BLUEBERRY: return "blueberry";
+		case GLOBAL.FLUID_TYPE_RASPBERRY: return "raspberry";
+		case GLOBAL.FLUID_TYPE_LIME: return "lime";
+		default: return "normal";
+	}
+}
+
+public function bessGirlCumFlavor():String
+{
+	switch (bess.girlCumType)
+	{
+		case GLOBAL.FLUID_TYPE_GIRLCUM: return "normal";
+		case GLOBAL.FLUID_TYPE_CHOCOLATE_MILK: return "chocolate";
+		case GLOBAL.FLUID_TYPE_CANDY: return "candy";
+		case GLOBAL.FLUID_TYPE_COFFEE: return "coffee";
+		case GLOBAL.FLUID_TYPE_VANILLA: return "vanilla";
+		case GLOBAL.FLUID_TYPE_STRAWBERRY_MILK: return "strawberry";
+		case GLOBAL.FLUID_TYPE_CARAMEL: return "caramel";
+		case GLOBAL.FLUID_TYPE_BANANA: return "banana";
+		case GLOBAL.FLUID_TYPE_COCONUT: return "coconut";
+		case GLOBAL.FLUID_TYPE_MAPLESYRUP: return "maple syrup";
+		case GLOBAL.FLUID_TYPE_CHERRY: return "cherry";
+		case GLOBAL.FLUID_TYPE_CHOCVANILLA: return "choc-vanilla";
+		case GLOBAL.FLUID_TYPE_WHISKY: return "whisky";
+		case GLOBAL.FLUID_TYPE_HONEY: return "honey";
+		case GLOBAL.FLUID_TYPE_RUM: return "rum";
+		case GLOBAL.FLUID_TYPE_VODKA: return "vodka";
+		case GLOBAL.FLUID_TYPE_BEER: return "beer";
+		case GLOBAL.FLUID_TYPE_ORANGE: return "orange";
+		case GLOBAL.FLUID_TYPE_BLUEBERRY: return "blueberry";
+		case GLOBAL.FLUID_TYPE_RASPBERRY: return "raspberry";
+		case GLOBAL.FLUID_TYPE_LIME: return "lime";
+		default: return "normal";
+	}
+}
+
 public static const BESS_AT_TAVROS:uint = 1;
 public static const BESS_ON_CREW:uint = 2;
 
@@ -159,6 +325,58 @@ public function bessIsCrew():Boolean
 {
 	if (flags["BESS_LOCATION"] == BESS_ON_CREW) return true;
 	return false;
+}
+
+public function bessTopStripScene():void
+{
+	if (bess.isChestGarbed()
+	{
+		//If bess is wearing armor
+		if (!(bess.armor is EmptySlot))
+		{
+			// First brackets are if Bess is wearing any known outfit with a slide down top. Else she just removes the top (All her clothing items that aren't slide down have a removable top). 
+
+			// E.g. if (bess.armor.shortName == "ShortKimono" || bess.armor.shortName == "Yukata" || bess.armor.shortName == "FemaleKimono" || bess.armor.shortName == "ChinaDress" || bess.armor.shortName == bess.armor.shortName == "NinjaOutfit" || bess.armor.shortName == "Yukata" || bess.armor.shortName == "NurseOutfit" || || bess.armor.shortName == "CheerleaderUniform" ||bess.armor.shortName == "GothLolita" || bess.armor.shortName == "LittleBlackDress")
+
+			if
+			(		bess.armor is ShortKimono
+			||	bess.armor is Yukata
+			||	bess.armor is FemaleKimono
+			||	bess.armor is ChinaDress
+			||	bess.armor is NinjaOutfit
+			||	bess.armor is NurseOutfit
+			||	bess.armor is CheerleaderUniform
+			||	bess.armor is GothLolita
+			||	bess.armor is LittleBlackDress
+			)
+			{
+				output("\n\n[bess.name] reaches up to [bess.hisHer] neck and undoes [bess.hisHer] [bess.armor], sliding it down [bess.hisHer] body");
+				if (bess.isFeminine()) output(" with a cute little wiggle");
+				output(" until it is bunched around [bess.hisHer] waist.");
+			}
+			else
+			{
+				output("\n\n[bess.name] reaches up and slips off the top of [bess.hisHer] [bess.armor].");
+			}
+			output(" Underneath [bess.heShe]'s");
+			if (bess.upperUndergarment is EmptySlot) output(" completely naked and");
+			else output(" wearing a [bess.upperUnderGarment]. [bess.HeShe] removes it and soon");
+			output(" [bess.hisHer] [bess.chest]");
+			if (bess.biggestTitSize() == 0) output(" is");
+			else output(" are");
+			output(" proudly on display.");
+		}
+		// B is wearing no armor, but undergarment that covers the top.
+		else if (!(bess.upperUndergarment is EmptySlot))
+		{
+			output("\n\n[bess.HisHer] [bess.chest]");
+			if (bess.biggestTitSize() == 0) output(" is");
+			else output(" are");
+			output(" barely constrained by [bess.hisHer] [bess.upperUndergarment]. [Bess.heShe] slips it off and tosses it aside. [bess.HisHer] beautiful, naked body is now on display as [bess.heShe] stands there wearing nothing");
+			if (!(bess.lowerUndergarment is EmptySlot)) output(" but a pair of [bess.lowerUnderGarment] clinging to [bess.hisHer] [bess.hips].");
+			else output(" at all.");
+		}
+	}
 }
 
 public function bessAffection(val:Number = 0):Number
@@ -1457,19 +1675,6 @@ public function talkToBessAboutBoobSize():void
 	var options:Array = [0, 1, 2, 3, 4, 7, 11, 15, 19, 24];
 	var lbls:Array = ["Flat", "A-Cup", "B-Cup", "C-Cup", "D-Cup", "E-Cup", "F-Cup", "G-Cup", "H-Cup", "I-Cup"];
 
-	/*
-		Flat (0)
-		A Cup (1)
-		B Cup. (2)
-		C Cup (3)
-		D Cup (4) 
-		E Cup (7)
-		F Cup (11)
-		G Cup (15)
-		H Cup (19)
-		I Cup (24)
-	*/
-
 	var optSlot:int = -1;
 	for (var i:int = 0; optSlot < options.length; i++)
 	{
@@ -1489,7 +1694,7 @@ public function talkToBessAboutBoobSize():void
 		}
 		else
 		{
-			addButton(i, StringUtil.toTitleCase(lbls[optSlot]), bessSetBoobSize, options[optSlot]);
+			addButton(i, lbls[optSlot], bessSetBoobSize, options[optSlot]);
 		}
 	}
 
@@ -1503,6 +1708,8 @@ public function bessSetBoobSize(newSize:int):void
 {
 	clearOutput();
 	bessHeader();
+
+	flags["BESS_BOOBCHANGED"] = 1;
 
 	output("[bess.name]");
 	if (bess.biggestTitSize() > 0)
@@ -1588,7 +1795,7 @@ public function bessSetBoobSize(newSize:int):void
 		}
 		else
 		{
-			output("\n\n{You massage [bess.hisHer] breasts until they swell up to the right size, but");
+			output("\n\nYou massage [bess.hisHer] breasts until they swell up to the right size, but");
 		}
 		output(" it seems [bess.name] has generated more than she needed. Like a farm animal, you squeeze and massage her drooling udders until they spurt out the excess fluid.");
 
@@ -1643,431 +1850,947 @@ public function bessSetBoobSize(newSize:int):void
 		output("\n\n<i>“A decrease? That’s a little trickier. You’ll need to milk me if you want to reduce their size. All that excess liquid has got to go somewhere.”</i> [bess.name] cups [bess.hisHer] [bess.breasts] and emphasises their weight.");
 
 		clearMenu();
-		addButton(0, "MilkUdders", );
+		if (!bessIsDom()) addButton(0, "MilkUdders", );
+		else addDisabledButton(0, "MilkUdders");
 		addButton(1, "Nurse", );
-		addButton(2, "Yourself", )
+		addButton(2, bess.mf("Him", "Her") + "self", bessMilkYoself, newSize)
 	}
 }
 
-[Milk Udders] [Breast Drink] [Milk {Him/Her}self]
-
-// MILK UDDERS and BREAST DRINK connect to Sex Scenes of the same name. There is a generic sex version and a slightly different Size Decrease version. They started as transforms and got kind of sex scene-y.
-
-// Milk Udders can't be selected if BessSexRole = 1
-
-Milk {Him/Her}self
-
-[bess.name] takes some time off to milk [bess.hisHer] breasts down to size. When [bess.heShe] returns, [bess.heShe] {has a perfectly flat chest/is sporting [bess.breastCupSize]s}. 
-
-<b>[bess.name] now has {[bess.breastCupSize] breasts!/a flat chest!}</b>
-
-
-Nipples
-
-<i>“I suppose [bess.nippleType] nipples aren't to everyone's taste. What kind would you like?”</i>
-
-//Menu Options alter bess.nipples value. Nipple size is always set to < 1 (Prominent).
-
-Normal (0)
-Fuckable (1)
-Dick (3)
-Flat (4)
-Inverted (5)
-
-Nipple change
-
-[bess.name] plays with them for a bit, and suddenly they become [bess.nipplesDesc]! It seems [bess.heShe] came with that particular function built in, so it's an easy alteration to make.
-
-<i>“There you go, two [bess.nipplesNounSimple]! Anything else..?”</i>
-
-<b>Bess now has a pair of [bess.nipplesNounSimple]!</b>
-
- 
-
-
-Lactation
-
-<i>“It's simple to process synthetic milk and lactate it from my nipples. Both biologically and flavor wise, my milk is indistinguishable from the real thing.”</i> [bess.name] sounds rather proud of that fact.
-// Sets bess.isLactating = true or false
-// Must have breasts, no matter the size.
-
-[Lactate] [Don't Lactate]
-
-
-Lactate
-
-{if (bessSexRole = 2) "You order [[bess.name] to start lactating"}{else: "request that [bess.name] start lactating"} and [bess.heShe] seems happy to {if (bessSexRole = 1) "indulge you"}{else: "comply"}. 
-
-<i>“{if (bessSexRole = 1) "For SOME"}{else: "Um, for </i>some<i>} reason my designers made the way I activate my lactation mode quite involved, so this may take a moment.”</i> [bess.name] {if (bessSexRole = 1) "huffs"}{else: "apologises in advance"}, and then gets to it.
-
-// Insert Top Strip Scene Here. (See Sex Doc for scene content).
-
-It seems [bess.name] needs to induce lactation in a very similar way to a nursing mother. There's a good chance JoyCo, being a medical company, thought it was important for [bess.name] to know this particular method. That, or the more likely scenario; [bess.name]'s developers were just a bunch of pregophiles.
-
-Cupping one of [bess.hisHer] [bess.breastLight] in one hand, [bess.name] begins to gently stroke it like a mother stimulating prolactin. [bess.HeShe] methodically massages each and every part with a flushing expression. 
-
-The {[bess.hairColor] haired/bald synthetic} seems keenly aware of your eyes on [bess.hisHer] every action, lewdly watching [bess.himHer] massage [bess.hisHer] {tiny/modest/ample/mountainous} mounds.
-
-<i>“Kind of feels weird having you watch me like this. I feel a bit tingly...”</i> [bess.name] remarks as [bess.heShe] touches [bess.himHer]self in front of you. You remark that [bess.heShe] is spending a lot of time on one breast, and {male android/android girl} huffs.
-
-<i>“Well of course, I've only got two hands!”</i> That's an easily solved problem. You move up behind [bess.himHer] and reach around, gently caressing her other [bess.breastNoun]. 
-
-You feel [bess.himHer] stiffen up at first in surprise, and then relax into your chest with a pleasured sigh. With [bess.himHer] massaging one and you the other, it's going to take half the time. 
-
-It's not long before you feel [bess.name]'s [bess.assSize] ass unconsciously rubbing against your crotch. [Bess.HeShe] seems to be getting really worked up by having [bess.hisHer] [bess.breastsLight] milked.
-
-You're getting all worked up by [bess.hisHer] heated moans and trembling thighs{if pc.hasCock = true) ", and especially [bess.hisHer] [bess.assTone] buttocks squeezing and caress the underside of your [pc.cocksNounSimple."}{else if (bess.hasCock = true) ". [bess.HisHer] [bess.cock] is pressed hard and erect against [bess.hisHer] [bess.belly]."}{else if (pc.hasPussy: ", your [pc.pussyLight] getting all wet."}{else: "."} The simple breast massage has gotten fairly intense, and now both of you are looking for sexual relief.
-
-Sliding your arms around [bess.hisHer] waist, you seize [bess.hisHer] [bess.nipples] in your fingers and give them a gentle tug. Immediately [bess.name] turns into a quivering mess and lets an incoherent yet pleased noise, clearly loving them being toyed with. <i>“{if (bessSexRole = 1) "Tug"}{else: "Please tug"} and milk my udders, [bSexNamePC]!”</i>
-
-[Bess.HisHer] own hands shift underneath [bess.hisHer] [bess.breastsLight] and begin to massage them while you tease [bess.hisHer] [bess.nipples]. It's not long before they're bubbling with [bess.milk], [bess.hisHer] frothy fluid pouring down her supple breast flesh and running across your teasing fingers.
-
-<i>“Just like that, [bSexNamePC] - milk my naughty udders!”</i> [bess.name] {if (bessSexRole = 1) "orders"}{"breathily begs"} you. You squeeze [bess.hisHer] [bess.nipples] between your thumb and fingers, milking her like a farm animal as [bess.hisHer [bess.milk] lewdly sprays out. You could fill a bucket with [bess.hisHer] it!
-
-if (pc.sex != neuter && pc.backgenitals = false)
+public function bessMilkYoself(newSize:int):void
 {
-Now that she's started lactating, [bess.name] turns to you with a lusty look in [bess.hisHer] eyes. <i>“You should sit down, [bSexNamePC], {clothes?: "and take off your clothes"/else if legs?: : "and spread your legs"/else: "and prepare yourself.”</i> {if (bessSexRole = 2) "For a change of pace you do as [bess.heShe] requests.}{Else: You do as [bess.heShe] requests, though you wonder what [bess.heShe] has in mind."}
+	clearOutput();
+	bessHeader();
 
-Dropping to [bess.hisHer] knees in front of you, [bess.name] continues to stroke [bess.hisHer] freshly lactating tits, caressing [bess.hisHer] [bess.nipples] with [bess.hisHer] fingers. At the same time, [bess.heShe] {takes [pc.oneCock] into [bess.hisHer] mouth, sucking on it <i>long</i> and <i>hard</i>}{buries [bess.hisHer] face in your [bess.pussyNounSimple], sticking [bess.hisHer] tongue and lapping hungrily inside.}
+	bess.breastRows[0].breastRatingRaw = newSize;
 
-Taken aback by [bess.hisHer] boldness, you reel in the sensations of [bess.himHer] going down on your {achingly erect cock/thoroughly wet gash}. [Bess.HeShe] passionately {sucks you off/laps at your folds} as [bess.heShe] massages and squeezes [bess.hisHer] freshly drooling udders, spurting [bess.hisHer] [bess.milk] on the ground beneath you.
+	output("[bess.name] takes some time off to milk [bess.hisHer] breasts down to size. When [bess.heShe] returns, [bess.heShe]");
+	if (newSize == 0) output(" has a perfectly flat chest.");
+	else output(" is sporting [bess.breastCupSize]s.");
 
-if (pc.hasCock)
+	output("\n\n<b>[bess.name] now has");
+	if (newSize > 0) output(" [bess.breastCupSize] breasts!");
+	else output(" a flat chest!");
+	output("</b>");
+
+	bessFunctionsMenu();
+}
+
+public function talkToBessAboutNipples():void
 {
-It's not long before you're arching your back and burying your [pc.cockLight] in [bess.hisHer] throat hole. You shoot your [bess.cumFlav] [bess.cumNoun] without restraint into her gaping synthetic neck, spilling your hot seed directly down into [bess.hisHer] stomach. Your hands reach up and grab the back of [bess.hisHer] head, holding onto it as you utterly blow your load.
+	clearOutput();
+	bessHeader();
+
+	output("<i>“I suppose "+ bessNippleType() +" nipples aren’t to everyone’s taste. What kind would you like?”</i>");
+
+	//Menu Options alter bess.nipples value. Nipple size is always set to < 1 (Prominent).
+	/*
+	Normal (0)
+	Fuckable (1)
+	Dick (3)
+	Flat (4)
+	Inverted (5)
+	*/
+
+	clearMenu();
+	addButton(0, "Normal", bessSetNippleType, GLOBAL.NIPPLE_TYPE_NORMAL);
+	addButton(1, "Fuckable", bessSetNippleType, GLOBAL.NIPPLE_TYPE_FUCKABLE);
+	addButton(2, "Dick", bessSetNippleType, GLOBAL.NIPPLE_TYPE_DICK);
+	addButton(3, "Flat", bessSetNippleType, GLOBAL.NIPPLE_TYPE_FLAT);
+	addButton(4, "Inverted", bessSetNippleType, GLOBAL.NIPPLE_TYPE_INVERTED);
+
+	addButton(14, "Back", bessFunctionsMenu);
 }
 
-else if (pc.hasPussy)
+public function bessSetNippleType(newType:int):void
 {
-It's not long before you're arching your back and pushing your [pc.pussyLight] right into [bess.hisHer] face. You cream yourself right in [bess.hisHer] face, your [pc.girlCum] splattering right against [bess.hisHer] mouth in a ecstatic, gooey gush. Your hands reach up and grab the back of [bess.hisHer] head, holding onto it as you explosively cum against [bess.hisHer] lips.
+	clearOutput();
+	bessHeader();
+
+	bess.breastRows[0].nippleType = newType;
+
+	output("[bess.name] plays with them for a bit, and suddenly they become [bess.nipplesDesc]! It seems [bess.heShe] came with that particular function built in, so it’s an easy alteration to make.");
+
+	output("\n\n<i>“There you go, two [bess.nipplesNoun]! Anything else..?”</i>");
+
+	output("\n\n<b>Bess now has a pair of [bess.nipplesNoun]!</b>");
+
+	bessFunctionsMenu();
 }
 
-[bess.name] lets out a low, trembling moan as [bess.heShe] takes your {girl} spunk to the face. In the process of you cumming and playing with [bess.hisHer] tits [bess.heShe] also creams [bess.himHer]self{if (bess.hasCock) ", [bess.hisHer] [bess.cock] shooting [bess.hisHer] [bess.cum] all over the place."}{else if (bess.hasPussy) ", [bess.hisHer] [bess.pussy] shooting [bess.hisHer] [bess.girlCum] all over the place."}{else: "."} [Bess.HisHer] [bess.nipples] fire spastic spurts of [bess.milk] everywhere, almost like a separate ejaculation of their own.
-
-
-Afterwards [bess.name] wipes off [bess.hisHer] face. There is a truly intoxicated look in [bess.hisHer] [bess.eyeColor] eyes, almost as if [bess.heShe]'s utterly drunk off playing with [bess.hisHer] [bess.nipplesNoun] and giving you head.}
-}
-else
+public function talkToBessAboutLactation():void
 {
-[bess.name] shudders in your arms and suddenly creams [bess.himHer]self. It seems [bess.hisHer] nipples really are sensitive, especially when [bess.heShe]'s lactating!
+	clearOutput();
+	bessHeader();
+
+	output("<i>“It’s simple to process synthetic milk and lactate it from my nipples. Both biologically and flavor wise, my milk is indistinguishable from the real thing.”</i> [bess.name] sounds rather proud of that fact.");
+
+	clearMenu();
+
+	if (bess.biggestTitSize() > 0) addButton(0, "Lactate", bessStartLactation);
+	else addDisabledButton(0, "Lactate", "Start Lactation", "[bess.name] first needs at least some breastflesh in order to lactate.");
+
+	addButton(1, "StopLactate", bessStopLactation);
+
+	addButton(14, "Back", bessFunctionsMenu);
 }
 
-<i>“I guess that that, then? Maybe my designers weren't so crazy after all.</i> [bess.name] states in a dreamy voice, [bess.milk] drooling from [bess.hisHer] [bess.nipplesLight]. It's definitely a different kind of 'on' switch.
-
-<b>[bess.name] is now lactating from [bess.hisHer] [bess.nipplesNoun]!</b>
-
-
-Don't Lactate
-
-<i>“Wha-- don't lactate any more?</i> [bess.name] sounds thoroughly disappointed. It seems the {male synthetic/synthetic girl} really likes leaking [bess.milk] from [bess.hisHer] breasts.
-
-<i>“... Oh well. I guess it </i>is<i> a waste of my resources if you aren't going to enjoy it.”</i> [Bess.HeShe] grudgingly concedes. With a simple tweak of [bess.hisHer] nipples, [bess.hisHer] milk suddenly stops flowing.
-
-... What, <i>that's it</i>? No kinky breast massages, nothing? Seems it's a lot simpler to turn that mode on than it is to turn it off again.
-
-[If (bess.gender = female) "Wearing the world's biggest pout"}{else: "With a downhearted sigh"}, [bess.name] goes off to look for something else to do. At least the ship will be saving money on breast pads.
-
-
-Body Shape
-
-<i>“My body shape is easily changed. What would you like me to alter...?</i>
-
-
-[Hips] [Butt] [Tone] [Stomach] [Thickness]
-
-Hips
-
-<i>“You know what they say; it's all in the hips! What size were you thinking of, , "+ bessPCName() +"?</i>
-
-Boyish (0)
-Slender (2)
-Average (4)
-Ample (8)
-Voluptuous (10)
-Massive (16)
-
-
-Ass
-
-<i>“My ass, huh? Were you thinking of putting some junk in this trunk, or taking some out, "+ bessPCName() +"?”</i>
-
-Boyish (0)
-Slender (2)
-Average (4)
-Ample (8)
-Voluptuous (10)
-Massive (16)
-
-
-Tone or Thickness
-
-<i>“Good thing I don't have to do things the hard way like you organics. How {thick/toned were you thinking, "+ bessPCName() +"?”</i>
-
-//Menu Options alters bess.tone. If separate tone for ass, breasts, thighs etc, change all these values to match tone.
-
-For Tone
-
-Muscular
-Semi-Muscular
-Average 
-Semi-Soft 
-Soft 
-
-For Thickness
-
-Thick 
-Semi-Thick
-Average
-Semi-Thin
-Thin
-
-Tone / Thickness Change
-
-Changing [bess.hisHer] {tone/body thickness} is a rather quick process. [bess.name] simply shifts around the insides of [bess.hisHer] FlexMetal body, and before you know it, [bess.heShe] {TONE: is completely ripped/has a nice set of muscles/is a nice mix of soft curves and toned muscle/is nice and plushy, without being overly so/is soft and fleshy}{Thickness: is incredibly broad/is thicker than average/is of average size/is thinner than average/is incredibly thin}. 
-
-<b>[bess.name] now has a {[bess.tone]/[bess.thickness] body!</b>
-
-
-Stomach
-
-<i>“My stomach, huh? Well, I can change that fairly easily. What size were you thinking, , "+ bessPCName() +"?”</i>
-
-Normal (0)
-Cushy (10)
-Pudgy (15)
-Large (20)
-Pregnant (30)
-Full (40)
-Expansive (50)
-Excessive (60)
-Over-inflated (80)
-Massive (90)
-Stupidly Huge (100)
-
-
-Hip/Butt/Stomach Size Increase
-
-<i>“A size increase, huh? Easily done. Let me just properly allocate the right amount of MeldMilk, then i'll need to shift it using my JoyCord.”</i> [bess.name] remarks.
-
-(First time: Shift it using her JoyCord? You're not sure what [bess.heShe] means...")
-
-The {male synthetic/synthetic girl} lies on [bess.hisHer] back and spreads [bess.hisHer] thighs. [Bess.HeShe then raises [bess.hisHer] ass and hips off the ground, lewdly exposing [bess.hisHer] [bess.crotch] to you.
-
-<i>“... I've got to directly pump it into my {If ButtIncrease or bess.hasPussy = false: [bess.assNoun]}{else: [bess.pussyNoun]} using my JoyCord. You can watch if you want.”</i> [bess.name] winks at you as [bess.heShe] slips [bess.hisHer] silvery, phallic-tipped tail around and between [bess.hisHer] thighs.
-
-You can't help but be turned on as you watch [bess.hisHer] glistening glans naughtily rub against [bess.hisHer] {If ButtIncrease or bess.hasPussy = false: [bess.ass]. [bess.name] reaches down and parts [bess.hisHer] cheeks with [bess.hisHer] hands, flashing [bess.hisHer] [bess.asshole] at you.}{else: [bess.pussyNoun]. [bess.name] reaches down and parts [bess.hisHer] puffy lower lips with [bess.hisHer] fingers, flashing [bess.hisHer] moist inner folds at you.}
-
-As it slowly slides inside of [bess.hisHer] silvery {snatch/pucker} {[bess.hisHer] [bess.cockLight] jerks and spasms with delight. Dollops of pre-cum drool from [bess.hisHer] [bess.cockHeadLight] and drool onto [bess.hisHer] synthetic belly./[bess.heShe] lets out a pleasured little moan and arches [bess.hisHer] back. [Bess.HeShe] is enjoying every second of [bess.hisHer] pulsing phallus pushing inside [bess.himHer]self and [bess.heShe] isn't afraid to show it.}
-
-Once it is fully inside of [bess.himHer] you hear an audible sloshing noise. Suddenly lumps are moving along the prehensile pipe and pumping directly into [bess.hisHer] {[bess.ass]/[bess.pussy]}. The delightful pressure inside [bess.hisHer] sensitive inner walls forces [bess.hisHer] eyes to roll back. It seems [bess.heShe] is in a state of incalculable bliss right now.
-
-Adding to the mix and unwilling to be a passive observer, you {if (bess.hasCock = true) "grab [bess.hisHer] [bess.cockNounSimple] and begin to jerk [bess.himHer] off./else if (bess.hasPussy = false && buttincrease) "grab [bess.hisHer] tail and begin to use it like a dildo, fucking [bess.himHer] with it as [bess.heShe] is simultaneously inflated."}{else: "stick your fingers inside of [bess.hisHer] defenseless [bess.ass] and begin to screw [bess.himHer] with them.} [bess.name] lets out a sweet cry and immediately creams {if bess.hasCock = true) "all over [bess.hisHer] stomach and } around [bess.hisHer] own cock. [Bess.HeShe] squeezes and spasms lewdly around [bess.hisHer] own extensive length as it simultaneously shoots [bess.hisHer] juice into [bess.himHer].}
-
-At the same time [bess.name]'s {thighs begin/ass begins/stomach begins} to swell in size. The transformation seems to turn [bess.himHer] on as [bess.heShe] can't stop cumming around [bess.hisHer] own tail cock as [bess.hisHer] body bloats up.
-
-In the end [bess.hisHer] own spurting cock is dislodged from the pressure of [bess.hisHer] gushing fluid, bursting out of [bess.hisHer] {ass/pussy} and spilling all over the floor. [bess.name] lies there with a thoroughly inflated {set of hips and thighs/set of asscheeks/belly}, nursing (it/them) in a post-orgasmic haze.
-
-<b>[bess.name] now has {[bess.thighSize] thighs and hips!}/a [bess.assSize] ass!/a [bess.bellySize] belly!}</b> 
-
-Hip/Butt/Stomach Size Decrease
-
-
-<i>“A size decrease, huh? I can do that. It's uh... best done in private, though.”</i> [bess.name] remarks, {if (bessSexRole != 1) "flushing"}{"coughing"} a little. [Bess.HeShe] does grab a pump before [bess.heShe] leaves.
-
-When [bess.heShe] comes back, [bess.heShe] has a much smaller {set of hips and thighs/set of asscheeks/belly}. <i>“What do you think...?”</i> [bess.name] models [bess.hisHer] new, more compact look for you.
-
-<b>[bess.name] now has {[bess.thighSize] thighs and hips!}/a [bess.assSize] ass!/a [bess.bellySize] belly!}</b> 
-
-
-
-Genitals
-
-<i>“Interested in changing things down there? 
-
-
-[Cock] [Pussy] [Cock Knot] 
-
-Male Knot.Tooltop: Whenever [bess.name] penetrates you with [bess.hisHer] cock, it will swell and lock inside until [bess.heShe] has finished cumming inside.
-
-// Possible Pussy Knot plans. 
-
-Cock
-
-<i>“I have the ability to equip a cock extension to better pleasure you, "+ bessPCName() +". Would you like me to do that?”</i>
-
-// All cocks except for Dino cock have girth and length = ½ pc orifice capacity.
-
-No cock: Self explanatory.
-Regular Cock: Synthetic Type
-Regular Cock & Balls: Synthetic Type
-Dino Cock: Saurian Type, 12 inches thick, 20 inches long. Balls are 8 inches wide.
-Horse Cock: Equine type.
-Dog Cock: Canine Type.
-Fox Cock: Vulpine Type.
-Demon Cock: Demonic Type
-Tentacle Cock: Tentacle Type
-Cat Cock: Feline Type
-Draconic Cock: Draconic Type
-Goo Cock: Goo Type
-Plant Cock: Plant Type
-
-
-Change Cock Message (Default - Specials below)
-
-<i>“Just one second, "+ bessPCName() +", while I make the adjustments.”</i> [bess.name] darts off and when [bess.heShe] comes back, [if (hasCock = false) "[bess.hisHer] cock is gone - though where [bess.heShe]’s stored it is a mystery. <i>“Do you like me better this way, "+ bessPCName() +"?”</i>" <b>[bess.name] has removed [bess.hisHer] cock!</b>] [if (Regular Cock) "she’s sporting [bess.cockType]! [bess.HeShe] eagerly models it off for you. <i>“Do you like it, "+ bessPCName() +"?”</i> <b>[bess.name] now has a [bess.cock]!</b>"]
-
-Cock Message, Not Yet Purchased
-
-<i>“You’ll need to purchase that cock attachment from the JoyCo extranet store before I can equip it, "+ bessPCName() +".”</i> <b>[bess.name]’s cock attachments can be purchased from the Accessories menu.</b>
-
-Dino Cock Equip Message
-
-You decide you’d like to equip [bess.name] with the dino cock attachment you purchased from JoyCo. It takes some work to equip [bess.name] with it; it’s a two-person effort just to get it attached. Once you’re done, [bess.heShe] models off [bess.hisHer] prehistorically massive member and balls for your enjoyment. Its girth is clearly something else - you’ve seen smaller tree trunks.
-
-The head of the cock is entirely covered in rounded spikes or nubs. They're big enough that they look like you could hold on to them. [bess.HisHer] urethra is so big that a regular cock could fit inside of it. The shaft is segmented; each part looks like it has a muscle for squeezing or stretching. 
-
-<i>“Umm, "+ bessPCName() +", I’m not sure this is going to fit inside you. It seems like it’s used for insemination of city-destroying monsters...”</i> [bess.name] voices [bess.hisHer] concerns about the size of [bess.hisHer] positively preposterous phallus. <i>“Have you checked to see if your health insurance covers this kind of thing?”</i><b> [bess.name] now has a dino cock and balls!</b>
-
-
-Horse Cock Equip Message
-
-You decide you’d like to equip [bess.name] with the horse cock attachment you purchased from JoyCo. It takes some work to equip [bess.name] with it, it’s a two-person effort just to get it attached. Once you’re done, [bess.heShe] models off [bess.hisHer] newly fastened horse phallus and balls for your enjoyment.
-
-[bess.HisHer] new equine cock flares at you, it looks ready and raring to go. <i>“What do you think, "+ bessPCName() +", did you want to take a ride?”</i><b> [bess.name] now has a horse cock and balls!</b>
-
-
-Canine Cock Equp Message
-
-You decide you’d like to equip [bess.name] with the canine cock attachment you purchased from JoyCo. It’s not that hard to attach, though it is interesting feeling where the knot should go. Once you’re done, [bess.heShe] models off [bess.hisHer] newly fastened canine cock and balls, replete with tapered tip and knot.
-
-if (bess.hasKnot = false)
-(
-Since you don't like knots, [bess.name] immediately de-swells it. <i>“Kind of interesting to have a canine cock without a knot. Feels very... spear-like.”</i>
-}
-else
+public function bessStartLactation():void
 {
-As [bess.heShe] flexes it, [bess.himHer] base expands and [bess.hisHer] eyes do the same. <i>“Whoa, I have the feeling if I stuck into you I could turn around and not slip out. What do you think, time to get a little bit ‘ruff’, "+ bessPCName() +"?”</i>
+	clearOutput();
+	bessHeader();
+
+	bess.milkMultiplier = 50;
+	bess.milkFullness = 100;
+
+	if (bessIsSub()) output("You order [[bess.name] to start lactating");
+	else output("You request that [bess.name] start lactating");
+	output(" and [bess.heShe] seems happy to");
+	if (bessIsDom()) output(" indulge you.");
+	else output(" comply.");
+
+	output("\n\n");
+	if (bessIsDom()) output("<i>“For SOME");
+	else output("<i>“Um, for </i>some<i>");
+	output(" reason my designers made the way I activate my lactation mode quite involved, so this may take a moment.”</i> [bess.name]");
+	if (bessIsDom()) output(" huffs");
+	else output(" apologises in advance");
+	output(", and then gets to it.");
+
+	bessTopStripScene();
+
+	output("\n\nIt seems [bess.name] needs to induce lactation in a very similar way to a nursing mother. There’s a good chance JoyCo, being a medical company, thought it was important for [bess.name] to know this particular method. That, or the more likely scenario; [bess.name]’s developers were just a bunch of pregophiles.");
+
+	output("\n\nCupping one of [bess.hisHer] [bess.breastLight] in one hand, [bess.name] begins to gently stroke it like a mother stimulating prolactin. [bess.HeShe] methodically massages each and every part with a flushing expression.");
+
+	output("\n\nThe");
+	if (bess.hairLength > 0) output(" [bess.hairColor] haired");
+	else output(" bald");
+	output(" synthetic seems keenly aware of your eyes on [bess.hisHer] every action, lewdly watching [bess.himHer] massage [bess.hisHer]");
+	// var options:Array = [0, 1, 2, 3, 4, 7, 11, 15, 19, 24];
+	if (bess.biggestTitSize() >= 19) output(" mountainous");
+	else if (bess.biggestTitSize() >= 11) output(" ample");
+	else if (bess.biggestTitSize() >= 3) output(" modest");
+	else output(" tiny");
+	output(" mounds.");
+
+	output("\n\n<i>“Kind of feels weird having you watch me like this. I feel a bit tingly...”</i> [bess.name] remarks as [bess.heShe] touches [bess.himHer]self in front of you. You remark that [bess.heShe] is spending a lot of time on one breast, and the " + bess.mf("male android","android girl")+" huffs.");
+
+	output("\n\n<i>“Well of course, I’ve only got two hands!”</i> That’s an easily solved problem. You move up behind [bess.himHer] and reach around, gently caressing her other [bess.breastNoun].");
+
+	output("\n\nYou feel [bess.himHer] stiffen up at first in surprise, and then relax into your chest with a pleasured sigh. With [bess.himHer] massaging one and you the other, it’s going to take half the time.");
+	
+	output("\n\nIt’s not long before you feel [bess.name]’s "+bessAssSize()+" ass unconsciously rubbing against your crotch. [Bess.HeShe] seems to be getting really worked up by having [bess.hisHer] [bess.breastsLight] milked.");
+
+	output("\n\nYou’re getting all worked up by [bess.hisHer] heated moans and trembling thighs");
+	if (pc.hasCock()) output(", and especially [bess.hisHer] [bess.assTone] buttocks squeezing and caress the underside of your [pc.cocksNounSimple].");
+	else if (bess.hasCock()) output(". [bess.HisHer] [bess.cock] is pressed hard and erect against [bess.hisHer] [bess.belly].");
+	else if (pc.hasVagina()) output(", your [pc.pussyLight] getting all wet.");
+	else output(".");
+	output(" The simple breast massage has gotten fairly intense, and now both of you are looking for sexual relief.");
+
+	output("\n\nSliding your arms around [bess.hisHer] waist, you seize [bess.hisHer] [bess.nipples] in your fingers and give them a gentle tug. Immediately [bess.name] turns into a quivering mess and lets an incoherent yet pleased noise, clearly loving them being toyed with.");
+	if (bessIsDom()) output(" <i>“Tug”</i>");
+	else output(" <i>“Please tug”</i>");
+	output(" and milk my udders, "+ bessPCSexName() +"!”</i>");
+
+	output("\n\n[Bess.HisHer] own hands shift underneath [bess.hisHer] [bess.breastsLight] and begin to massage them while you tease [bess.hisHer] [bess.nipples]. It’s not long before they’re bubbling with [bess.milk], [bess.hisHer] frothy fluid pouring down her supple breast flesh and running across your teasing fingers.");
+
+	output("\n\n<i>“Just like that, "+ bessPCSexName() +" - milk my naughty udders!”</i> [bess.name]");
+	if (bessIsDom()) output(" orders");
+	else output(" breathily begs");
+	output(" you. You squeeze [bess.hisHer] [bess.nipples] between your thumb and fingers, milking her like a farm animal as [bess.hisHer] [bess.milk] lewdly sprays out. You could fill a bucket with [bess.hisHer] it!");
+
+	if ((pc.hasCock() || pc.hasVagina()) && pc.genitalSpot <= 1)
+	{
+		output("\n\nNow that she’s started lactating, [bess.name] turns to you with a lusty look in [bess.hisHer] eyes. <i>“You should sit down, "+ bessPCSexName() +",");
+		if (!pc.isNude()) output(" and take off your clothes");
+		else if (pc.biped()) output(" and spread your legs");
+		else output(" and prepare yourself");
+		output(".”</i>");
+		if (bessIsSub()) output(" For a change of pace you do as [bess.heShe] requests.");
+		else output(" You do as [bess.heShe] requests, though you wonder what [bess.heShe] has in mind.");
+
+		output("\n\nDropping to [bess.hisHer] knees in front of you, [bess.name] continues to stroke [bess.hisHer] freshly lactating tits, caressing [bess.hisHer] [bess.nipples] with [bess.hisHer] fingers. At the same time, [bess.heShe]");
+		if (pc.hasCock()) output(" takes [pc.oneCock] into [bess.hisHer] mouth, sucking on it <i>long</i> and <i>hard</i>.");
+		else output(" buries [bess.hisHer] face in your [bess.pussyNounSimple], sticking [bess.hisHer] tongue and lapping hungrily inside.");
+
+		output("\n\nTaken aback by [bess.hisHer] boldness, you reel in the sensations of [bess.himHer] going down on your");
+		if (pc.hasCock()) output(" achingly erect cock");
+		else output(" thoroughly wet gash");
+		output(". [Bess.HeShe] passionately");
+		if (pc.hasCock()) output(" sucks you off");
+		else output(" laps at your folds");
+		output(" as [bess.heShe] massages and squeezes [bess.hisHer] freshly drooling udders, spurting [bess.hisHer] [bess.milk] on the ground beneath you.");
+
+		if (pc.hasCock())
+		{
+			output("\n\nIt’s not long before you’re arching your back and burying your [pc.cockLight] in [bess.hisHer] throat hole. You shoot your [bess.cumFlavor] [bess.cumNoun] without restraint into her gaping synthetic neck, spilling your hot seed directly down into [bess.hisHer] stomach. Your hands reach up and grab the back of [bess.hisHer] head, holding onto it as you utterly blow your load.");
+		}
+		else
+		{
+			output("\n\nIt’s not long before you’re arching your back and pushing your [pc.pussyLight] right into [bess.hisHer] face. You cream yourself right in [bess.hisHer] face, your [pc.girlCum] splattering right against [bess.hisHer] mouth in a ecstatic, gooey gush. Your hands reach up and grab the back of [bess.hisHer] head, holding onto it as you explosively cum against [bess.hisHer] lips.");
+		}
+
+		output("\n\n[bess.name] lets out a low, trembling moan as [bess.heShe] takes your");
+		if (!pc.hasCock()) output(" girl");
+		output(" spunk to the face. In the process of you cumming and playing with [bess.hisHer] tits [bess.heShe] also creams [bess.himHer]self");
+		if (bess.hasCock()) output(", [bess.hisHer] [bess.cock] shooting [bess.hisHer] [bess.cum] all over the place.");
+		else if (bess.hasVagina()) output(", [bess.hisHer] [bess.pussy] shooting [bess.hisHer] [bess.girlCum] all over the place.");
+		else output(".");
+		output(" [Bess.HisHer] [bess.nipples] fire spastic spurts of [bess.milk] everywhere, almost like a separate ejaculation of their own.");
+
+		output("\n\nAfterwards [bess.name] wipes off [bess.hisHer] face. There is a truly intoxicated look in [bess.hisHer] [bess.eyeColor] eyes, almost as if [bess.heShe]’s utterly drunk off playing with [bess.hisHer] [bess.nipplesNoun] and giving you head.");
+	}
+	else
+	{
+		output("\n\n[bess.name] shudders in your arms and suddenly creams [bess.himHer]self. It seems [bess.hisHer] nipples really are sensitive, especially when [bess.heShe]’s lactating!");
+	}
+
+	output("\n\n<i>“I guess that that, then? Maybe my designers weren’t so crazy after all.</i> [bess.name] states in a dreamy voice, [bess.milk] drooling from [bess.hisHer] [bess.nipplesLight]. It’s definitely a different kind of ‘on’ switch.");
+
+	output("\n\n<b>[bess.name] is now lactating from [bess.hisHer] [bess.nipplesNoun]!</b>");
+
+	pc.orgasm();
+	bess.orgasm();
+	bessFunctionsMenu();
 }
 
-<b>[bess.name] now has a dog cock and balls!</b>
-
-Tentacle Cock Equip Message
-
-You decide you’d like to equip [bess.name] with the tentacle cock attachment you purchased from JoyCo. It’s a slippery sucker to attach (literally) as you fasten the strange "phallus" between [bess.himHer] legs. 
-
-It swings about as [bess.heShe] swells and shrinks it at will, there’s not many things it couldn’t probe or penetrate. At its tip is a slit where [bess.hisHer] seed can be pumped out into any orifice. 
-
-<i>“Wow, where’s a school-girl when you need one, eh, "+ bessPCName() +"?”</i> [bess.name] cheekily remarks, marvelling at [bess.hisHer] prehensile phallus.
-
-<b> [bess.name] now has a dangerous looking tentacle cock!</b> 
-
-
-Goo Cock Equip Message
-
-You decide you’d like to equip [bess.name] with the goo cock attachment you purchased from JoyCo. You pull out a small ring that seems to be some kind of compact material manipulator. As soon as you attach it to her, [bess.name]’s Meld-Milk insides pour out and form a semi-transparent, metallic looking goo cock!
-
-<i>“Wow, guess my insides are kind of like that of a metallic goo [bess.boyGirl]...! Imagine the naughty things I can do with this, "+ bessPCName() +", I could probably penetrate even the smallest cracks.”</i> [bess.HeShe] strokes [bess.hisHer] silver gelatinous cock as it ripples about. [bess.HeShe] seems to be able to harden the liquid substance at will. 
-
-<b>[bess.name] now has a goo cock!</b>
-
-
-Plant Cock Equip Message
-
-You decide you’d like to equip [bess.name] with the plant cock attachment you purchased from JoyCo. Technically it’s not a plant cock so much as a \"bio-organic construct\" grown in a lab, and genetically designed to feed off of [bess.name]’s internal Meld-Milk supply. 
-
-Pulling it out of the cryo-stasis canister it came in, you then fasten it to [bess.name]’s crotch extension slot, watching it slowly awaken and bury its roots into [bess.hisHer] body.
-
-The packaging said it was based on an organism discovered on one of the outer rim planets, known for mating with both plant and mammalian life-forms. [bess.HisHer] base is a giant open blossom, while in the middle of the petals is a phallic looking stamen with a bulbous head. 
-
-As the mysterious organism feeds off [bess.hisHer] Meld-Milk it begins to generate pollen contained in a gooey sap. The amber fluid leaks freely from [bess.hisHer] pod-like tip or "anther", and dribbles down [bess.hisHer] new shaft.
-
-<i>“It kind of tingles, "+ bessPCName() +". I can feel it suckling off me - I can’t say it’s unpleasant.”</i> [bess.name] informs you, testing and flexing [bess.hisHer] symbiotic rod. <i>“I can’t believe they grew this; isn’t JoyCo just amazing?”</i> 
-
-
-<b> [bess.name] now has a Plant Cock!</b>
-
-
-Dragon Cock Equip Message
-
-You decide you’d like to equip [bess.name] with the draconic cock attachment you purchased from JoyCo. When you see it, your immediate impression is this cock is positively majestic in its appearance; truly the phallus of a mythical beast.
-
-The draconic cock’s tapered tip hooks like a crescent curving upwards - you imagine there’s very few holes it couldn’t stick into. The muscled and studded base is considerably thicker than the head, it considerably thickens and curves as your eyes travel down the muscled, studded base, each throbbing curve a promise of intense sexual pleasure. 
-
-if (bess.hasKnot = false)
-(
-[bess.name]'s dragon cock has a knot, but since you don't like them [bess.heShe] immediately shrinks it away. 
-}
-else
+public function bessStopLactation():void
 {
-Down near the base is a draconic bulb-like knot. Just beyond the base is a sudden lack of girth before [bess.hisHer] cock connects to [bess.hisHer] waist - here the cock is half the size of the actual knot. If one wasn’t careful, a clenching orifice might hook into this deep spot and refuse to unfasten until the fierce phallus has become completely flaccid.
+	clearOutput();
+	bessHeader();
+
+	output("<i>“Wha- don’t lactate any more?</i> [bess.name] sounds thoroughly disappointed. It seems the "+ bess.mf(" male synthetic", "synthetic girl") +" really likes leaking [bess.milk] from [bess.hisHer] breasts.");
+
+	output("\n\n<i>“... Oh well. I guess it </i>is<i> a waste of my resources if you aren’t going to enjoy it,”</i> [bess.heShe] grudgingly concedes. With a simple tweak of [bess.hisHer] nipples, [bess.hisHer] milk suddenly stops flowing.");
+
+	bess.milkMultiplier = 0;
+	bess.milkFullness = 0;
+
+	output("\n\n... What, <i>that’s it</i>? No kinky breast massages, nothing? Seems it’s a lot simpler to turn that mode on than it is to turn it off again.");
+
+	output("\n\n");
+	if (bess.isFeminine()) output("Wearing the world's biggest pout");
+	else output("With a downhearted sigh");
+	output(", [bess.name] goes off to look for something else to do. At least the ship will be saving money on breast pads.");
+
+	bessFunctionsMenu();
 }
-Once it is attached, [bess.name] flexes [bess.hisHer] new cock. As it expands [bess.hisHer] eyes do the same. <i>“This is really something else, "+ bessPCName() +"! I kind of feel fierce when I’m wearing this, like nothing can stop me...”</i>
 
-<b> [bess.name] now has a draconic cock and balls!</b>
+public function talkToBessAboutBodyShape():void
+{
+	clearOutput();
+	bessHeader();
 
-Pussy 
+	output("<i>“My body shape is easily changed. What would you like me to alter...?</i>");
 
-<i>“Did you want me to {have a pussy/get rid of my pussy, "+ bessPCName() +"?”</i> [bess.name] asks.
+	clearMenu();
+	addButton(0, "Hips", talkToBessAboutHips);
+	addButton(1, "Butt", talkToBessAboutButt);
+	addButton(2, "Tone", talkToBessAboutTone);
+	addButton(3, "Stomach", talkToBessAboutStomach);
+	addButton(4, "Thickness", talkToBessAboutThickness);
 
-[Yes] [No]
+	addButton(14, "Back", bessFunctionsMenu);
+}
 
-Remove Pussy
+public function talkToBessAboutHips():void
+{
+	clearOutput();
+	bessHeader();
 
-In what can only be described as bizarre to watch, [bess.name]'s silvery vagina moves up just slightly into her body. A skin covered panel then slides down and out, pressing into the empty spot and filling the gap. What is left is a perfectly smooth groin area. 
+	output("<i>“You know what they say; it’s all in the hips! What size were you thinking of, "+ bessPCName() +"?”</i>");
 
-<b>[bess.name] no longer has a [bess.pussyNounLight]!</b>
-Add Pussy
+	clearMenu();
+	addButton(0, "Boyish", setBessHipSize, 0);
+	addButton(1, "Slender", setBessHipSize, 2);
+	addButton(2, "Average", setBessHipSize, 4);
+	addButton(3, "Ample", setBessHipSize, 8);
+	addButton(4, "Voluptuous", setBessHipSize, 10);
+	addButton(5, "Massive", setBessHipSize, 16);
 
-In what can only be described as bizarre to watch, [bess.name]'s flat groin slides in and up, like a hatch opening. From inside a silvery vagina pushes out, filling the gap. 
+	addButton(14, "Back", bessFunctionsMenu);
+}
 
-<b>[bess.name] now has a [bess.pussyNounLight]!</b>
+public function setBessHipSize(newRating:int):void
+{
+	changeBessCurvy(newRating, BESS_CURVE_HIPS);
+}
 
-Cock Knot
+public function talkToBessAboutButt():void
+{
+	clearOutput();
+	bessHeader();
 
-<i>“Did you want me to {get rid of my knot/have a knot}, "+ bessPCName() +"?”</i> [bess.name] asks.
+	output("<i>“My ass, huh? Were you thinking of putting some junk in this trunk, or taking some out, "+ bessPCName() +"?”</i>");
 
-[Yes] [No]
+	clearMenu();
+	addButton(0, "Boyish", setBessButtSize, 0);
+	addButton(1, "Slender", setBessButtSize, 2);
+	addButton(2, "Average", setBessButtSize, 4);
+	addButton(3, "Ample", setBessButtSize, 8);
+	addButton(4, "Voluptuous", setBessButtSize, 10);
+	addButton(5, "Massive", setBessButtSize, 16);
 
-Add Knot
+	addButton(14, "Back", bessFunctionsMenu);
+}
 
-[bess.name]'s [bess.cock] suddenly begins to flare at the base. The entire process takes mere moments. Afterwards. [bess.heShe] has a muscular lump at the stem of [bess.hisHer] [bess.cockNounSimple].
+public function setBessButtSize(newRating:int):void
+{
+	changeBessCurvy(newRating, BESS_CURVE_BUTT);
+}
 
-Flexing it and watching it swell and recede, [bess.name] gives a small grin. <i>“Wow, I could trap anyone with this! Fancy a ride, "+ bessPCName() +"?”</i>
+public function talkToBessAboutTone():void
+{
+	clearOutput();
+	bessHeader();
 
-<b>[bess.name]'s [bess.cockNounSimple] now has a [bess.knot]!</b>
+	output("<i>“Good thing I don’t have to do things the hard way like you organics. How toned were you thinking, "+ bessPCName() +"?”</i>");
 
-Remove Knot
+	clearMenu();
+	addButton(0, "Muscular", setBessTone, 100);
+	addButton(1, "SemiMuscular", setBessTone, 70);
+	addButton(2, "Average", setBessTone, 50);
+	addButton(3, "SemiSoft", setBessTone, 30)
+	addButton(4, "Soft", setBessTone, 0);
 
-Within seconds of your request being issued, [bess.name]'s [bess.knot] shrinks until it is completely gone. The signiture lump is now missing from the base of [bess.hisHer] [bess.cockNounSimple].
+	addButton(14, "Back", bessFunctionsMenu);
+}
 
-<b>[bess.name] no longer has a knot!</b>
+public function setBessTone(newTone:int):void
+{
+	changeBessToneThickness(newTone, true);
+}
 
+public function talkToBessAboutThickness():void
+{
+	clearOutput();
+	bessHeader();
 
-Cum
+	output("<i>“Good thing I don’t have to do things the hard way like you organics. How thick were you thinking, "+ bessPCName() +"?”</i>");
 
-<i>“My cum? Which one in particular...?”</i> [bess.name] asks.
+	clearOutput();
+	addButton(0, "Thick", setBessThickness, 100);
+	addButton(1, "SemiThick", setBessThickness, 70);
+	addButton(2, "Average", setBessThickness, 50);
+	addButton(3, "SemiThin", setBessThickness, 30);
+	addButton(4, "Thin", setBessThickness, 0);
 
-[Cum Flavor] [Girl Cum Flavor]
+	addButton(14, "Back", bessFunctionsMenu);
+}
 
+public function setBessThickness(newThickness:int):void
+{
+	changeBessToneThickness(newThickness, false);
+}
 
-Cum / Girl Cum Flavor
+public function changeBessToneThickness(newValue:int, asTone:Boolean):void
+{
+	clearOutput();
+	bessHeader();
 
-<i>“Flavoring is a cinch. Any particular taste you'd fancy? I could give you test tastings, if you want.”</i> [bess.name] offers.
+	output("Changing [bess.hisHer] " + (asTone ? "tone" : "body thickness") + " is a rather quick process. [bess.name] simply shifts around the insides of [bess.hisHer] FlexMetal body, and before you know it, [bess.heShe]");
+	if (asTone)
+	{
+		if (newValue == 100) output(" is completely ripped");
+		if (newValue == 70) output(" has a nice set of muscles");
+		if (newValue == 50) output(" is a nice mix of soft curves and toned muscle");
+		if (newValue == 30) output(" is nice and plushy, without being overly so");
+		else output(" is soft and flesh");
+	}
+	else
+	{
+		if (newValue == 100) output(" is incredibly broad");
+		if (newValue == 70) output(" is thicker than average");
+		if (newValue == 50) output(" is of average size");
+		if (newValue == 30) output(" is thinner than average");
+		else output(" is incredibly thin");
+	}
+	output(".");
 
-[Normal] [Chocolate] [Candy] [Coffee] [Vanilla] 
-[Strawberry] [Caramel] [Banana] [Coconut] [Maple Syrup]
-[Cherry] [Choc-vanilla] [Whisky] [Honey] [Rum]
-[Vodka] [Beer] [Orange] [Blueberry] [Raspberry]
-[Lime] 
+	output("\n\n<b>[bess.name] now has a ");
+	if (asTone) output(bessTone());
+	else output(bessThickness());
+	output(" body!</b>");
 
+	bessFunctionsMenu();
+}
 
-Change message
+public function talkToBessAboutStomach():void
+{
+	clearOutput();
+	bessHeader();
 
-There are no obvious outward signs other than a short period of blinking by the {male synthetic/android girl}.
+	output("<i>“My stomach, huh? Well, I can change that fairly easily. What size were you thinking, , "+ bessPCName() +"?”</i>");
 
-<i>“... All done! Next time I cum, it will taste {[bess.cumFlav]/[bess.girlCumFlav]}!</i> [bess.name] cheerfully exclaims.
+	clearMenu();
+	addButton(0, "Normal", setBessBelly, 0);
+	addButton(1, "Cushy", setBessBelly, 10);
+	addButton(2, "Pudgy", setBessBelly, 15);
+	addButton(3, "Large", setBessBelly, 20);
+	addButton(4, "Pregnant", setBessBelly, 30);
+	addButton(5, "Full", setBessBelly, 40);
+	addButton(6, "Expansive", setBessBelly, 50);
+	addButton(7, "Excessive", setBessBelly, 60);
+	addButton(8, "Over-inflated", setBessBelly, 80);
+	addButton(9, "Massive", setBessBelly, 90);
+	addButton(10, "StupidlyHuge", setBessBelly, 100);
+	
+	addButton(14, "Back", bessFunctionsMenu);
+}
 
-<b>[bess.name]'s {cum/girl cum} now tastes like {[bess.cumFlav]/[bess.girlCumFlav]}!<\b>
+public function setBessBelly(newRating:int):void
+{
+	changeBessCurvy(newRating, BESS_CURVE_BELLY);
+}
+
+private static const BESS_CURVE_BUTT:uint = 0;
+private static const BESS_CURVE_HIPS:uint = 1;
+private static const BESS_CURVE_BELLY:uint = 2;
+
+public function changeBessCurvy(newRating:int, targetRating:uint):void
+{
+	clearOutput();
+	bessHeader();
+
+	var currRating:Number = -1;
+
+	if (targetRating == BESS_CURVE_BUTT) currRating = bess.buttRatingRaw;
+	else if (targetRating == BESS_CURVE_HIPS) currRating = bess.hipRatingRaw;
+	else targetRating = bess.bellyRatingRaw;
+
+	// Increase
+	if (newRating > currRating)
+	{
+		output("<i>“A size increase, huh? Easily done. Let me just properly allocate the right amount of MeldMilk, then i’ll need to shift it using my JoyCord.”</i> [bess.name] remarks.");
+
+		if (flags["BESS_CHANGED_CURVES"] == undefined)
+		{
+			output("\n\nShift it using her JoyCord? You’re not sure what [bess.heShe] means...");
+		}
+
+		output("\n\nThe " + bess.mf("male synthetic", "synthetic girl") +" lies on [bess.hisHer] back and spreads [bess.hisHer] thighs. [Bess.HeShe] then raises [bess.hisHer] ass and hips off the ground, lewdly exposing [bess.hisHer] [bess.crotch] to you.");
+		
+		output("\n\n<i>“... I’ve got to directly pump it into my");
+		if (targetRating == BESS_CURVE_BUTT || !bess.hasVagina()) output(" [bess.assNoun]");
+		else output(" [bess.pussyNoun]");
+		output(" using my JoyCord. You can watch if you want.”</i> [bess.name] winks at you as [bess.heShe] slips [bess.hisHer] silvery, phallic-tipped tail around and between [bess.hisHer] thighs.");
+		
+		output("\n\nYou can’t help but be turned on as you watch [bess.hisHer] glistening glans naughtily rub against [bess.hisHer]");
+		if (targetRating == BESS_CURVE_BUTT || !bess.hasVagina()) output(" [bess.ass]. [bess.name] reaches down and parts [bess.hisHer] cheeks with [bess.hisHer] hands, flashing [bess.hisHer] [bess.asshole] at you.");
+		else output(" [bess.pussyNoun]. [bess.name] reaches down and parts [bess.hisHer] puffy lower lips with [bess.hisHer] fingers, flashing [bess.hisHer] moist inner folds at you.");
+		
+		output("\n\nAs it slowly slides inside of [bess.hisHer] silvery");
+		if (targetRating = BESS_CURVE_BUTT || !bess.hasVagina()) output(" pucker");
+		else output(" snatch");
+		if (bess.hasCock()) output(" [bess.hisHer] [bess.cockLight] jerks and spasms with delight. Dollops of pre-cum drool from [bess.hisHer] [bess.cockHeadLight] and drool onto [bess.hisHer] synthetic belly.");
+		else output(" [bess.heShe] lets out a pleasured little moan and arches [bess.hisHer] back. [Bess.HeShe] is enjoying every second of [bess.hisHer] pulsing phallus pushing inside [bess.himHer]self and [bess.heShe] isn’t afraid to show it.");
+
+		output("\n\nOnce it is fully inside of [bess.himHer] you hear an audible sloshing noise. Suddenly lumps are moving along the prehensile pipe and pumping directly into [bess.hisHer]");
+		if (targetRating == BESS_CURVE_BUTT || !bess.hasVagina()) output(" [bess.ass]");
+		else output(" [bess.pussy]");
+		output(". The delightful pressure inside [bess.hisHer] sensitive inner walls forces [bess.hisHer] eyes to roll back. It seems [bess.heShe] is in a state of incalculable bliss right now.");
+		
+		output("\n\nAdding to the mix and unwilling to be a passive observer, you");
+		if (bess.hasCock()) output(" grab [bess.hisHer] [bess.cockNounSimple] and begin to jerk [bess.himHer] off.");
+		else if (bess.hasVagina() && targetRating == BESS_CURVE_BUTT) output(" grab [bess.hisHer] tail and begin to use it like a dildo, fucking [bess.himHer] with it as [bess.heShe] is simultaneously inflated.");
+		else output(" stick your fingers inside of [bess.hisHer] defenseless [bess.ass] and begin to screw [bess.himHer] with them.");
+		output(" [bess.name] lets out a sweet cry and immediately creams");
+		if (bess.hasCock()) output("all over [bess.hisHer] stomach and around [bess.hisHer] own cock. [Bess.HeShe] squeezes and spasms lewdly around [bess.hisHer] own extensive length as it simultaneously shoots [bess.hisHer] juice into [bess.himHer].");
+		
+		output("\n\nAt the same time [bess.name]’s");
+		if (targetRating == BESS_CURVE_HIPS) output(" thighs begin");
+		else if (targetRating == BESS_CURVE_BUTT) output(" ass begins");
+		else output(" stomach begins");
+		output(" to swell in size. The transformation seems to turn [bess.himHer] on as [bess.heShe] can’t stop cumming around [bess.hisHer] own tail cock as [bess.hisHer] body bloats up.");
+		
+		output("\n\nIn the end [bess.hisHer] own spurting cock is dislodged from the pressure of [bess.hisHer] gushing fluid, bursting out of [bess.hisHer]");
+		if (targetRating == BESS_CURVE_BUTT || !bess.hasVagina()) output(" ass");
+		else output(" pussy");
+		output(" and spilling all over the floor. [bess.name] lies there with a thoroughly inflated");
+		if (targetRating == BESS_CURVE_HIPS) output(" set of hips and thighs");
+		else if (targetRating == BESS_CURVE_BUTT) output(" set of asscheeks");
+		else output(" belly");
+		output(".");
+		
+		output("\n\n<b>[bess.name] now has");
+		if (targetRating == BESS_CURVE_BUTT)
+		{
+			bess.buttRatingRaw = newRating;
+			output(" a " + bessAssSize() + " ass!");
+		}
+		else if (targetRating == BESS_CURVE_HIPS)
+		{
+			bess.hipRatingRaw = newRating;
+			output(" " + bessThighSize() + " thighs and hips!");
+		}
+		else
+		{
+			bess.bellyRatingRaw = newRating;
+			output(" a " + bessBellySize() + " belly!");
+		}
+		output("</b>");
+	}
+	else
+	{
+		output("<i>“A size decrease, huh? I can do that. It’s uh... best done in private, though.”</i> [bess.name] remarks,");
+		if (!bessIsDom()) output(" flushing");
+		else output(" coughing");
+		output(" a little. [Bess.HeShe] does grab a pump before [bess.heShe] leaves.");
+		
+		output("\n\nWhen [bess.heShe] comes back, [bess.heShe] has a much smaller");
+		if (targetRating == BESS_CURVE_HIPS)
+		{
+			bess.hipRatingRaw = newRating;
+			output(" set of hips and thighs");
+		}
+		else if (targetRating == BESS_CURVE_BUTT)
+		{
+			bess.buttRatingRaw = newRating;
+			output(" set of asscheeks");
+		}
+		else
+		{
+			bess.bellyRatingRaw = newRating;
+			output(" belly");
+		}
+		output(". <i>“What do you think...?”</i> [bess.name] models [bess.hisHer] new, more compact look for you.");
+		
+		output("\n\n<b>[bess.name] now has");
+		if (targetRating == BESS_CURVE_HIPS) output(" " + bessThighSize() + " thighs and hips!");
+		else if (targetRating == BESS_CURVE_BUTT) output(" a " + bessAssSize() + " ass!");
+		else output(" a " + bessBellySize() + " belly!");
+		output("</b>");
+	}
+
+	flags["BESS_CHANGED_CURVES"] = 1;
+	bessFunctionsMenu();
+}
+
+public function talkToBessAboutGenitals():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("<i>“Interested in changing things down there?”</i>");
+
+	clearMenu();
+	addButton(0, "Cock", talkToBessAboutCock);
+	addButton(1, "Pussy", talkToBessAboutPussy);
+	if (bess.hasCock()) addButton(2, "Knot", talkToBessAboutKnot, undefined, "Cock Knot", "Whenever [bess.name] penetrates you with [bess.hisHer] cock, it will swell and lock inside until [bess.heShe] has finished cumming inside.");
+	else addDisabledButton(2, "Knot", "Knot State", "[bess.name] needs to be sporting a cock to configure it's knottyness!");
+
+	addButton(14, "Back", bessFunctionsMenu);
+}
+
+public function talkToBessAboutCock():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("<i>“I have the ability to equip a cock extension to better pleasure you, "+ bessPCName() +". Would you like me to do that?”</i>");
+
+	// All cocks except for Dino cock have girth and length = ½ pc orifice capacity.
+
+	clearMenu();
+	addButton(0, "None", 			setBessCockType, -1);
+	addButton(1, "Normal", 			setBessCockType, GLOBAL.TYPE_HUMAN);
+	addButton(2, "Normal+Balls", 	setBessCockType, -2);
+	addButton(3, "Dino", 			setBessCockType, GLOBAL.TYPE_SAURIAN);
+	addButton(4, "Equine", 			setBessCockType, GLOBAL.TYPE_EQUINE);
+	addButton(5, "Canine", 			setBessCockType, GLOBAL.TYPE_CANINE);
+	addButton(6, "Vulpine", 		setBessCockType, GLOBAL.TYPE_VULPINE);
+	addButton(7, "Demonic", 		setBessCockType, GLOBAL.TYPE_DEMONIC);
+	addButton(8, "Tentacle", 		setBessCockType, GLOBAL.TYPE_TENTACLE);
+	addButton(9, "Feline", 			setBessCockType, GLOBAL.TYPE_FELINE);
+	addButton(10, "Draconic", 		setBessCockType, GLOBAL.TYPE_DRACONIC);
+	addButton(11, "Goo", 			setBessCockType, GLOBAL.TYPE_GOO);
+	addButton(12, "Plant", 			setBessCockType, GLOBAL.TYPE_PLANT);
+
+	addButton(14, "Back", bessFunctionsMenu);
+}
+
+public function setBessCockType(newType:int):void
+{
+	clearOutput();
+	bessHeader();
+
+	if (newType == GLOBAL.TYPE_SAURIAN)
+	{
+		if (!bess.hasCock()) bess.cocks.push(new CockClass());
+		bess.cocks[0].cType = GLOBAL.TYPE_SAURIAN;
+		bess.cocks[0].cLengthRaw = 20;
+		bess.cocks[0].cThicknessRatioRaw = 3;
+		bess.cocks[0].clearFlags();
+
+		bess.balls = 2;
+		bess.ballSizeRaw = 8;
+
+		output("You decide you’d like to equip [bess.name] with the dino cock attachment you purchased from JoyCo. It takes some work to equip [bess.name] with it; it’s a two-person effort just to get it attached. Once you’re done, [bess.heShe] models off [bess.hisHer] prehistorically massive member and balls for your enjoyment. Its girth is clearly something else - you’ve seen smaller tree trunks.");
+
+		output("\n\nThe head of the cock is entirely covered in rounded spikes or nubs. They’re big enough that they look like you could hold on to them. [bess.HisHer] urethra is so big that a regular cock could fit inside of it. The shaft is segmented; each part looks like it has a muscle for squeezing or stretching.");
+
+		output("\n\n<i>“Umm, "+ bessPCName() +", I’m not sure this is going to fit inside you. It seems like it’s used for insemination of city-destroying monsters...”</i> [bess.name] voices [bess.hisHer] concerns about the size of [bess.hisHer] positively preposterous phallus. <i>“Have you checked to see if your health insurance covers this kind of thing?”</i><b> [bess.name] now has a dino cock and balls!</b>");
+
+		if (silly) output("\n\n<b>[bess.name] now has a gigantic ogre cock!</b>");
+		else output("\n\n<b>[bess.name] now has a saurian cock!</b>")
+	}
+	else if (newType == GLOBAL.TYPE_EQUINE)
+	{
+		if (!bess.hasCock()) bess.cocks.push(new CockClass());
+		bess.cocks[0].cType = GLOBAL.TYPE_EQUINE;
+		bess.cocks[0].cLengthRaw = 16;
+		bess.cocks[0].cThicknessRatioRaw = 2.5;
+		bess.cocks[0].clearFlags();
+		bess.cocks[0].addFlag(GLOBAL.FLAG_FLARED);
+
+		bess.balls = 2;
+		bess.ballSizeRaw = 7;
+
+		output("You decide you’d like to equip [bess.name] with the horse cock attachment you purchased from JoyCo. It takes some work to equip [bess.name] with it, it’s a two-person effort just to get it attached. Once you’re done, [bess.heShe] models off [bess.hisHer] newly fastened horse phallus and balls for your enjoyment.");
+		
+		output("\n\n[bess.HisHer] new equine cock flares at you, it looks ready and raring to go. <i>“What do you think, "+ bessPCName() +", did you want to take a ride?”</i><b> [bess.name] now has a horse cock and balls!</b>");
+
+		output("\n\n<b>[bess.name] now has an equine cock and balls!</b>");
+	}
+	else if (newType == GLOBAL.TYPE_CANINE)
+	{
+		var knot:Boolean = bess.hasKnot();
+
+		if (!bess.hasCock()) bess.cocks.push(new CockClass());
+		bess.cocks[0].cType = GLOBAL.TYPE_CANINE;
+		bess.cocks[0].cLengthRaw = 12;
+		bess.cocks[0].cThicknessRatioRaw = 2;
+		bess.cocks[0].clearFlags();
+		if (knot) bess.cocks[0].addFlag(GLOBAL.FLAG_KNOTTED);
+		bess.cocks[0].addFlag(GLOBAL.FLAG_TAPERED);
+
+		bess.balls = 2;
+		bess.ballSizeRaw = 5;
+
+		output("You decide you’d like to equip [bess.name] with the canine cock attachment you purchased from JoyCo. It’s not that hard to attach, though it is interesting feeling where the knot should go. Once you’re done, [bess.heShe] models off [bess.hisHer] newly fastened canine cock and balls, replete with tapered tip and knot.");
+
+		if (!bess.hasKnot())
+		{
+			output("\n\nSince you don’t like knots, [bess.name] immediately de-swells it. <i>“Kind of interesting to have a canine cock without a knot. Feels very... spear-like.”</i>");
+		}
+		else
+		{
+			output("\n\nAs [bess.heShe] flexes it, [bess.himHer] base expands and [bess.hisHer] eyes do the same. <i>“Whoa, I have the feeling if I stuck into you I could turn around and not slip out. What do you think, time to get a little bit ‘ruff’, "+ bessPCName() +"?”</i>");
+		}
+
+		output("\n\n<b>[bess.name] now has a dog cock and balls!</b>");
+	}
+	else if (newType == GLOBAL.TYPE_TENTACLE)
+	{
+		if (!bess.hasCock()) bess.cocks.push(new CockClass());
+		bess.cocks[0].cType = GLOBAL.TYPE_TENTACLE;
+		bess.cocks[0].cLengthRaw = 24;
+		bess.cocks[0].cThicknessRatioRaw = 1.5;
+		bess.cocks[0].clearFlags();
+		bess.cocks[0].addFlag(GLOBAL.FLAG_PREHENSILE);
+
+		bess.balls = 0;
+		bess.ballSizeRaw = 0;
+
+		output("You decide you’d like to equip [bess.name] with the tentacle cock attachment you purchased from JoyCo. It’s a slippery sucker to attach (literally) as you fasten the strange <i>“phallus”</i> between [bess.himHer] legs.");
+		
+		output("\n\nIt swings about as [bess.heShe] swells and shrinks it at will, there’s not many things it couldn’t probe or penetrate. At its tip is a slit where [bess.hisHer] seed can be pumped out into any orifice.");
+		
+		output("\n\n<i>“Wow, where’s a school-girl when you need one, eh, "+ bessPCName() +"?”</i> [bess.name] cheekily remarks, marvelling at [bess.hisHer] prehensile phallus.");
+		
+		output("\n\n<b> [bess.name] now has a dangerous looking tentacle cock!</b>");
+	}
+	else if (newType == GLOBAL.TYPE_GOO)
+	{
+		if (!bess.hasCock()) bess.cocks.push(new CockClass());
+		bess.cocks[0].cType = GLOBAL.TYPE_GOO;
+		bess.cocks[0].cLengthRaw = 16;
+		bess.cocks[0].cThicknessRatioRaw = 1.5;
+		bess.cocks[0].clearFlags();
+
+		bess.balls = 0;
+		bess.ballSizeRaw = 0;
+
+		output("You decide you’d like to equip [bess.name] with the goo cock attachment you purchased from JoyCo. You pull out a small ring that seems to be some kind of compact material manipulator. As soon as you attach it to her, [bess.name]’s Meld-Milk insides pour out and form a semi-transparent, metallic looking goo cock!");
+		
+		output("\n\n<i>“Wow, guess my insides are kind of like that of a metallic goo [bess.boyGirl]...! Imagine the naughty things I can do with this, "+ bessPCName() +", I could probably penetrate even the smallest cracks.”</i> [bess.HeShe] strokes [bess.hisHer] silver gelatinous cock as it ripples about. [bess.HeShe] seems to be able to harden the liquid substance at will.");
+		
+		output("\n\n<b>[bess.name] now has a goo cock!</b>");
+	}
+	else if (newType == GLOBAL.TYPE_PLANT)
+	{
+		if (!bess.hasCock()) bess.cocks.push(new CockClass());
+		bess.cocks[0].cType = GLOBAL.TYPE_PLANT;
+		bess.cocks[0].cLengthRaw = 12;
+		bess.cocks[0].cThicknessRatioRaw = 1.5;
+		bess.cocks[0].clearFlags();
+		bess.cocks[0].addFlag(GLOBAL.FLAG_PREHENSILE);
+		bess.cocks[0].addFlag(GLOBAL.FLAG_TAPERED);
+
+		bess.balls = 0;
+		bess.ballSizeRaw = 0;
+
+		output("You decide you’d like to equip [bess.name] with the plant cock attachment you purchased from JoyCo. Technically it’s not a plant cock so much as a ‘bio-organic construct’ grown in a lab, and genetically designed to feed off of [bess.name]’s internal Meld-Milk supply.");
+		
+		output("\n\nPulling it out of the cryo-stasis canister it came in, you then fasten it to [bess.name]’s crotch extension slot, watching it slowly awaken and bury its roots into [bess.hisHer] body.");
+		
+		output("\n\nThe packaging said it was based on an organism discovered on one of the outer rim planets, known for mating with both plant and mammalian life-forms. [bess.HisHer] base is a giant open blossom, while in the middle of the petals is a phallic looking stamen with a bulbous head.");
+		
+		output("\n\nAs the mysterious organism feeds off [bess.hisHer] Meld-Milk it begins to generate pollen contained in a gooey sap. The amber fluid leaks freely from [bess.hisHer] pod-like tip or ‘anther’, and dribbles down [bess.hisHer] new shaft.");
+		
+		output("\n\n<i>“It kind of tingles, "+ bessPCName() +". I can feel it suckling off me - I can’t say it’s unpleasant.”</i> [bess.name] informs you, testing and flexing [bess.hisHer] symbiotic rod. <i>“I can’t believe they grew this; isn’t JoyCo just amazing?”</i>");
+		
+		
+		output("\n\n<b> [bess.name] now has a Plant Cock!</b>");
+	}
+	else if (newType == GLOBAL.TYPE_DRACONIC)
+	{
+		if (!bess.hasCock()) bess.cocks.push(new CockClass());
+		bess.cocks[0].cType = GLOBAL.TYPE_DRACONIC;
+		bess.cocks[0].cLengthRaw = 16;
+		bess.cocks[0].cThicknessRatioRaw = 2;
+		bess.cocks[0].clearFlags();
+		bess.cocks[0].addFlag(GLOBAL.FLAG_PREHENSILE);
+
+		bess.balls = 0;
+		bess.ballSizeRaw = 0;
+
+		output("You decide you’d like to equip [bess.name] with the draconic cock attachment you purchased from JoyCo. When you see it, your immediate impression is this cock is positively majestic in its appearance; truly the phallus of a mythical beast.");
+		
+		output("\n\nThe draconic cock’s tapered tip hooks like a crescent curving upwards - you imagine there’s very few holes it couldn’t stick into. The muscled and studded base is considerably thicker than the head, it considerably thickens and curves as your eyes travel down the muscled, studded base, each throbbing curve a promise of intense sexual pleasure.");
+
+		if (!bess.hasKnot())
+		{
+			output("\n\n[bess.name]’s dragon cock has a knot, but since you don’t like them [bess.heShe] immediately shrinks it away.");
+		}
+		else
+		{
+			output("\n\nDown near the base is a draconic bulb-like knot. Just beyond the base is a sudden lack of girth before [bess.hisHer] cock connects to [bess.hisHer] waist - here the cock is half the size of the actual knot. If one wasn’t careful, a clenching orifice might hook into this deep spot and refuse to unfasten until the fierce phallus has become completely flaccid.");
+		}
+
+		output("\n\nOnce it is attached, [bess.name] flexes [bess.hisHer] new cock. As it expands [bess.hisHer] eyes do the same. <i>“This is really something else, "+ bessPCName() +"! I kind of feel fierce when I’m wearing this, like nothing can stop me...”</i>");
+
+		output("\n\n<b>[bess.name] now has a draconic cock and balls!</b>");
+	}
+	else
+	{
+		if (newType == -1)
+		{
+			if (bess.hasCock()) bess.removeCock();
+			bess.balls = 0;
+			bess.ballSizeRaw = 0;
+		}
+		else
+		{
+			if (!bess.hasCock()) bess.cocks.push(new CockClass());
+			bess.cocks[0].cType = newType;
+			bess.cocks[0].cLengthRaw = 12;
+			bess.cocks[0].cThicknessRatioRaw = 1.5;
+			bess.cocks[0].clearFlags();
+
+			bess.balls = 2;
+			bess.ballSizeRaw = 4;
+		}
+
+		if (newType == -2)
+		{
+			bess.balls = 0;
+			bess.ballSizeRaw = 0;
+		}
+
+		output("\n\n<i>“Just one second, "+ bessPCName() +", while I make the adjustments.”</i> [bess.name] darts off and when [bess.heShe] comes back,");
+		if (newType == -1) output(" [bess.hisHer] cock is gone - though where [bess.heShe]’s stored it is a mystery. <i>“Do you like me better this way, "+ bessPCName() +"?”</i>\n\n<b>[bess.name] has removed [bess.hisHer] cock!</b>");
+		else output(" she’s sporting "+ bessCockType() +"! [bess.HeShe] eagerly models it off for you. <i>“Do you like it, "+ bessPCName() +"?”</i> <b>[bess.name] now has a [bess.cock]!</b>”</i>");
+	}
+
+	bessFunctionsMenu();
+}
+
+public function talkToBessAboutPussy():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("<i>“Did you want me to");
+	if (!bess.hasVagina()) output(" have a pussy");
+	else output(" get rid of my pussy");
+	output(", "+ bessPCName() +"?”</i> [bess.name] asks.");
+
+	clearMenu();
+	
+	if (!bess.hasVagina()) addButton(0, "GetPussy", bessGainPussy);
+	else addDisabledButton(0, "GetPussy");
+
+	if (bess.hasVagina()) addButton(1, "LosePussy", bessRemovePussy);
+	else addDisabledButton(1, "LosePussy");
+
+	addButton(14, "Back", bessFunctionsMenu);
+}
+
+public function bessRemovePussy():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("In what can only be described as bizarre to watch, [bess.name]’s silvery vagina moves up just slightly into her body. A skin covered panel then slides down and out, pressing into the empty spot and filling the gap. What is left is a perfectly smooth groin area.");
+	
+	output("\n\n<b>[bess.name] no longer has a [bess.pussyNounLight]!</b>");
+
+	bess.removeVagina();
+
+	bessFunctionsMenu();
+}
+
+public function bessGainPussy():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("In what can only be described as bizarre to watch, [bess.name]’s flat groin slides in and up, like a hatch opening. From inside a silvery vagina pushes out, filling the gap.");
+
+	bess.vaginas.push(new VaginaClass());
+	
+	output("\n\n<b>[bess.name] now has a [bess.pussyNounLight]!</b>");
+
+	bessFunctionsMenu();
+}
+
+public function talkToBessAboutKnot():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("<i>“Did you want me to");
+	if (bess.hasKnot()) output(" get rid of my knot");
+	else output(" have a knot");
+	output(", "+ bessPCName() +"?”</i> [bess.name] asks.");
+
+	clearMenu();
+
+	if (!bess.hasKnot())
+	{
+		addButton(0, "GainKnot", bessGainKnot);
+		addDisabledButton(1, "LoseKnot");
+	}
+	else
+	{
+		addDisabledButton(0, "GainKnot");
+		addButton(1, "LoseKnot", bessRemoveKnot);
+	}
+
+	addButton(14, "Back", bessFunctionsMenu);
+}
+
+public function bessGainKnot():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("[bess.name]’s [bess.cock] suddenly begins to flare at the base. The entire process takes mere moments. Afterwards. [bess.heShe] has a muscular lump at the stem of [bess.hisHer] [bess.cockNounSimple].");
+
+	output("\n\nFlexing it and watching it swell and recede, [bess.name] gives a small grin. <i>“Wow, I could trap anyone with this! Fancy a ride, "+ bessPCName() +"?”</i>");
+
+	bess.cocks[0].addFlag(GLOBAL.FLAG_KNOTTED);
+
+	output("\n\n<b>[bess.name]’s [bess.cockNounSimple] now has a [bess.knot]!</b>");
+
+	bessFunctionsMenu();
+}
+
+public function bessRemoveKnot():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("Within seconds of your request being issued, [bess.name]’s [bess.knot] shrinks until it is completely gone. The signiture lump is now missing from the base of [bess.hisHer] [bess.cockNounSimple].");
+	
+	output("\n\n<b>[bess.name] no longer has a knot!</b>");
+
+	bess.cocks[0].removeFlag(GLOBAL.FLAG_KNOTTED);
+
+	bessFunctionsMenu();
+}
+
+public function talkToBessAboutCum():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("<i>“My cum? Which one in particular...?”</i> [bess.name] asks.");
+
+	if (bess.hasCock()) addButton(0, "CumFlavor", talkToBessAboutCumFlavour, true);
+	else addDisabledButton(0, "CumFlavor");
+
+	if (bess.hasVagina()) addButton(1, "GirlCum F", talkToBessAboutCumFlavour, false);
+	else addDisabledButton(1, "GirlCum F");
+
+	addButton(14, "Back", bessFunctionsMenu);
+}
+
+public function talkToBessAboutCumFlavour(asCock:Boolean):void
+{
+	clearOutput();
+	bessHeader();
+
+	output("<i>“Flavoring is a cinch. Any particular taste you’d fancy? I could give you test tastings, if you want.”</i> [bess.name] offers.");
+
+	var opts:Array = ["normal", "chocolate", "candy", "coffee", "vanilla", "strawberry", "caramel", "banana", "coconut", "maple syrup", "cherry", "choc-vanilla", "whisky", "honey", "rum", "vodka", "beer", "orange", "blueberry", "raspberry", "lime"];
+	var vals:Array = [0, GLOBAL.FLUID_TYPE_CHOCOLATE_MILK, GLOBAL.FLUID_TYPE_CANDY, GLOBAL.FLUID_TYPE_COFFEE, GLOBAL.FLUID_TYPE_VANILLA, GLOBAL.FLUID_TYPE_STRAWBERRY_MILK, GLOBAL.FLUID_TYPE_CARAMEL, GLOBAL.FLUID_TYPE_BANANA, GLOBAL.FLUID_TYPE_COCONUT, GLOBAL.FLUID_TYPE_MAPLESYRUP, GLOBAL.FLUID_TYPE_CHERRY, GLOBAL.FLUID_TYPE_CHOCVANILLA, GLOBAL.FLUID_TYPE_WHISKY, GLOBAL.FLUID_TYPE_HONEY, GLOBAL.FLUID_TYPE_RUM, GLOBAL.FLUID_TYPE_RUM, GLOBAL.FLUID_TYPE_VODKA, GLOBAL.FLUID_TYPE_BEER, GLOBAL.FLUID_TYPE_ORANGE, GLOBAL.FLUID_TYPE_BLUEBERRY, GLOBAL.FLUID_TYPE_RASPBERRY, GLOBAL.FLUID_TYPE_LIME];
+
+	clearMenu();
+
+	var optSlot:int = -1;
+	for (var i:int = 0; optSlot < opts.length; i++)
+	{
+		if (i > 0 && (i + 1) % 15 == 0)
+		{
+			addButton(i, "Back", bessFunctionsMenu);
+			continue;
+		}
+		else
+		{
+			optSlot++;
+		}
+
+		addButton(i, StringUtil.toTitleCase(opts[optSlot]), bessSetCumFlavor, [asCock, vals[optSlot]]);
+	}
+}
+
+public function bessSetCumFlavor(opts:Array):void
+{
+	clearOutput();
+	bessHeader();
+
+	var asCock:Boolean = opts[0];
+	var flav:int = opts[1];
+
+	output("There are no obvious outward signs other than a short period of blinking by the " + bess.mf("male synthetic", "android girl") +".");
+
+	output("\n\n<i>“... All done! Next time I cum, it will taste ");
+	if (asCock)
+	{
+		bess.cumType = flav;
+		output(bessCumFlavor());
+	}
+	else
+	{
+		bess.girlCumType = flav;
+		output(bessGirlCumFlavor());
+	}
+	output(" !</i> [bess.name] cheerfully exclaims.");
+	
+	output("\n\n<b>[bess.name]’s");
+	if (asCock) output(" cum");
+	else output(" girl cum");
+	output(" now tastes like ");
+	if (asCock) output(bessCumFlavor());
+	else output( bessGirlCumFlavor());
+	output("!</b>");
+
+	bessFunctionsMenu();
+}
 
 
 Clothing & Acc
