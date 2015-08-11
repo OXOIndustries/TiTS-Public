@@ -502,7 +502,7 @@ public function specialRedAntPreggosShitEvent():void
 		output("\n\n <i>“Hi there, soldier. Probably a good as time as any to tell you you’re a father,”</i> she grins, gently stroking the ");
 		if(flags["BRIHA_INCUBATION_TIMER"] >= 120) output("baby’s cheek");
 		else output("eggshell");
-		output(". <i>“And before you ask, it’s definitely yours. I don’t get laid enough to mix</i>that<i> up.”</i>");
+		output(". <i>“And before you ask, it’s definitely yours. I don’t get laid enough to mix </i>that<i> up.”</i>");
 		flags["SEEN_RED_DESERTER_PREGGERS"] = 1;
 	}
 	//Second Pregnancy && First Time Seeing Her Pregnant (this time)
@@ -541,7 +541,7 @@ public function specialRedAntPreggosShitEvent():void
 		flags["BRIHA_OLDEST_SPAWN_AGE"] = 0;
 		son = false;
 		output("\n\nBriha lowers the bundle with a warm, motherly smile. You edge forward, feeling your heart thumping madly in your chest.");
-		if(flags["BRIHA_LATEST_SPAWN_AGE"] < 120) output(" The egg is partially see-through, so you can see your own half-myr child floating within - defenseless, unborn, and truly precious. Even in her semi opaque shell, you can see a glimpse of " + flags["BRIHA_SPAWN_1_DEETS"][0] + " hair.");
+		if(flags["BRIHA_INCUBATION_TIMER"] < 120) output(" The egg is partially see-through, so you can see your own half-myr child floating within - defenseless, unborn, and truly precious. Even in her semi opaque shell, you can see a glimpse of " + flags["BRIHA_SPAWN_1_DEETS"][0] + " hair.");
 		else output(" The world stops as you look down at your precious little daughter. Her hair, sparse and babyish, is a mess of " + flags["BRIHA_SPAWN_1_DEETS"][0] + ", and two gorgeous " + flags["BRIHA_SPAWN_1_DEETS"][1] + " eyes stare up at you.");
 		output("\n\n<i>“See? She takes after you. Her name is Aya, after my grandmother,”</i> Briha smiles, then adds, <i>“...And before you say anything, I had to push her out, so I get to name her.”</i>");
 		output("\n\nIt’s a girl. You have a baby girl named Aya Steele. You’re a <i>father</i>.");
@@ -815,7 +815,7 @@ public function loseToAntGrillDeserts():void
 		output("You’re so aroused you can barely think straight. Panting heavily, your ");
 		if(pc.physique() >= pc.aim()) output("[pc.meleeWeapon]");
 		else output("[pc.rangedWeapon]");
-		output(" slips from your fingers. Instead of picking it up,/you can no longer make a fist. Instead,} you find yourself touching yourself, fanning the flames of your wildly raging libido instead of putting them out.");
+		output(" slips from your fingers. Instead of picking it up, you find yourself touching yourself, fanning the flames of your wildly raging libido instead of putting them out.");
 
 		//PcNotTripped:
 		if(!pc.hasStatusEffect("Trip")) output("\n\nStriding up to you, the seasoned soldieress presses a palm against your [pc.chest]. With a simple push, she knocks on your back. Instead of getting up, you gulp with delight. What does she have planned for you? A delighted shiver of anticipation scampers up your back.");
@@ -1112,7 +1112,7 @@ public function analRedButtStuffMcStuffinButts():void
 	if(chars["RED_DESERTER"].isPregnant()) output("the pregnant myr’s");
 	else output("the female soldier’s");
 	output(" narrow hole begins to slacken, and you’re able to slowly slip your tip inside. Because she’s so tense, her ring and rectum are gloriously tight. At the same time, it takes a lot of effort to sheathe yourself inside of her muscled backside.");
-	output("\n\nWhen at last your [pc.cock] bottoms out inside of her butt, you let out a throaty groan. Every inch of her narrow confines are deliciously wringing you. Reflexively, your [pc.cockHead " + x + "] swells deep inside of her ass, and she lets out another sharp cry. <i>“... O-Oh - you’re breaking my ass!”</i> Her whole butt tenses up. Void; she’s so tight inside it’s almost criminal!");
+	output("\n\nWhen at last your [pc.cock] bottoms out inside of her butt, you let out a throaty groan. Every inch of her narrow confines are deliciously wringing you. Reflexively, your [pc.cockHead " + x + "] swells deep inside of her ass, and she lets out another sharp cry. <i>“... O-Oh - you’re breaking my ass!”</i> Her whole butt tenses up. Void! She’s so tight inside it’s almost criminal!");
 	pc.cockChange();
 
 	output("\n\nHolding her back against you, you suck on her neck and pinch her nipples. Her clinging insides ripple around your [pc.cock " + x + "]. Moaning into her shoulder, you can’t help but thrust upwards, using gravity to fully impale her on your turgid tool. This time ");
@@ -1508,9 +1508,11 @@ public function redDildoScrew():void
 	}
 	showDeserter(false);
 	var DontKnowName:Boolean = (foes[0].short != "Lys" && foes[0].short != "Briha");
+	var loss:Boolean = false;
 	//IF PC LOSS:
 	if(inCombat() && (pc.HP() <= 0 || pc.lust() >= pc.lustMax()))
 	{
+		loss = true;
 		output("From her kitpack, ");
 		if(DontKnowName) output("the ");
 		output("[monster.name]");
@@ -1525,7 +1527,7 @@ public function redDildoScrew():void
 			output("\n\nYour eyes cross as you stare at the camo-colored cock. It’s shaped just like a myr cock, but instead of being scarlet, it’s a mottled green from tip to base with the occasional splotch of chocolate brown.");
 			output("\n\n<i>“Like it?”</i> She purrs, <i>“It’s standard issue for us girls in the trenches. I’ve spent many a happy night with the Private inside of me, both of us quivering away.”</i>");
 			output("\n\nThere’s a clicking noise. The synthetic wang begins to wizz against your sensitive nose. It’s shaped like a dildo, but it’s actually a vibrator? Two separate motors - one in the tip and another in the base - wildly whir.");
-			output("\n\nDoes it look so thick because it’s right in front of your eyes, or is it <i>really</i>that big? A matching shiver courses through you, starting at your nose and ending at your [pc.toes].");
+			output("\n\nDoes it look so thick because it’s right in front of your eyes, or is it <i>really</i> that big? A matching shiver courses through you, starting at your nose and ending at your [pc.toes].");
 			flags["RED_MYR_DESERT_DILDO_DONE"] = 1;
 		}
 		//Else / Not first time:
@@ -1666,7 +1668,7 @@ public function redDildoScrew():void
 		if(pc.cockTotal() == 1) output("is");
 		else output("are");
 		output(" pressing firmly against your [pc.belly] and dripping with pre-cum");
-		if(x >= 0) output(", while your");
+		if(x >= 0) output(", while your ");
 	}
 	if(x >= 0) 
 	{
@@ -1762,10 +1764,15 @@ public function redDildoScrew():void
 		output(" already slipped off.");
 	}
 	myrDeserterEpilogueShitTracker();
+	output("\n\n");
 	processTime(90+rand(10));
 	pc.orgasm();
 	pc.orgasm();
-	if(inCombat()) genericVictory();
+	if(inCombat()) 
+	{
+		if(!loss) genericVictory();
+		else genericLoss();
+	}
 	else
 	{
 		clearMenu();

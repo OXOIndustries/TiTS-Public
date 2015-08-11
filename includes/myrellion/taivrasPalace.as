@@ -3041,6 +3041,7 @@ public function useRepeatGloryhole():void
 	addButton(0,"Next",mainGameMenu);
 }
 
+//9999 - Fertilization stuff. Use for sorting Taivra pregger setup?
 public function taivraFertilize():void
 {
 	flags["TAIVRA_FERTILE"] = GetGameTimestamp();

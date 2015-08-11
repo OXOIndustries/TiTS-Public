@@ -240,6 +240,7 @@ public function selleraExploration():void
 	output("\n\nAn awkward silence follows before she speaks up again. <i>“In any case, Steele... since you’ve come all the way here to see me, is there anything else you’d like to know?”</i>");
 
 	// [The War] [Occupation] [Sellera] [Nehzara] [Appearance] [Leave]
+	selleraMenu();
 }
 
 public function approachSellera():void

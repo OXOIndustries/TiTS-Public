@@ -2009,7 +2009,7 @@ public function shadeBoobWorship():void
 	output(" She flashes you a sultry smile and grabs your shoulders, pulling you up to a sitting position and mashing her chest into your face. You gasp and squirm, suddenly blinded and smothered by your lover’s chest. Shade takes the opportunity to adjust herself, moving up until she’s straddling your [pc.hips] and grinding her crotch against yours. Her cunt-tail reaches in behind to rub at your bare");
 	if (pc.hasCock()) output(" cock");
 	else output(" cunt");
-	output(", teasing you relentlessly white Shade’s breasts batter your cheeks.");
+	output(", teasing you relentlessly while Shade’s breasts batter your cheeks.");
 
 	output("\n\nWhen the lusty kaithrit finally leans back, you’re treated to the intoxicating sight of two huge");
 	if (shade.canLactate()) output(", milky");
@@ -2067,7 +2067,7 @@ public function shadeBoobWorship():void
 	output("\n\nBetween moans and shakes of her hips, Shade manages to murmur into your ear, <i>“Getting close, kiddo... real close.”</i> As if on cue, her words bring a new wave of lust hammering through you, making your");
 	if (pc.hasCock())
 	{
-		output(" [pc.cocks] drool into the crack of her ass, throbbing with need and ready to blow");
+		output(" [pc.cocks] drool into the crack of her ass, throbbing with need and ready to blow.");
 	}
 	else
 	{
