@@ -4349,8 +4349,8 @@ public function mimbraneMenu():void
 				output2(" ready to feed. However, you have no means to feed them!")
 			}
 
-			addDisabledGhostButton(0, "Cock Feed");
-			addDisabledGhostButton(1, "Vag Feed");
+			addDisabledGhostButton(0, "Cock Feed","Cock Feed","You need to have a dick and the libido to get it up to do this.");
+			addDisabledGhostButton(1, "Vag Feed","Vag Feed","You need to have a pussy and the libido to get it going to do this.");
 		}
 		else
 		{
@@ -4362,18 +4362,18 @@ public function mimbraneMenu():void
 			
 			//[Feed With Cock][Feed With Pussy]
 			if (pc.hasCock()) addGhostButton(0, "Cock Feed", feedMimbranesWithCock);
-			else addDisabledGhostButton(0, "Cock Feed");
+			else addDisabledGhostButton(0, "Cock Feed","Cock Feed","You don't have a penis to use.");
 
 			if (pc.hasVagina()) addGhostButton(1, "Vag Feed", feedMimbranesWithPussy);
-			else addDisabledGhostButton(1, "Vag Feed");
+			else addDisabledGhostButton(1, "Vag Feed","Vag Feed","You don't have a vagina to use for this.");
 		}
 	}
 	else if (hasFeedableMimbranes() && currentLocation != "SHIP INTERIOR")
 	{
 		output2("Maybe if you were somewhere a little more private, you could ensure your mimbranes were properly fed....");
 		
-		addDisabledGhostButton(0, "Cock Feed");
-		addDisabledGhostButton(1, "Vag Feed");
+		addDisabledGhostButton(0, "Cock Feed","Cock Feed","You cannot do this action outside of your ship.");
+		addDisabledGhostButton(1, "Vag Feed","Vag Feed","You cannot do this action outside of your ship.");
 	}
 	//If all Mimbranes are full
 	else
@@ -4390,8 +4390,8 @@ public function mimbraneMenu():void
 			else output2(" They");
 			output2(" must be full.");
 			
-			addDisabledGhostButton(0, "Cock Feed");
-			addDisabledGhostButton(1, "Vag Feed");
+			addDisabledGhostButton(0, "Cock Feed","Cock Feed","You don't have any mimbranes wanting to eat at the moment.");
+			addDisabledGhostButton(1, "Vag Feed","Vag Feed","You don't have any mimbranes wanting to eat at the moment.");
 		}
 		else
 		{
@@ -4401,6 +4401,8 @@ public function mimbraneMenu():void
 			if (attachedMimbranes() > 1) output2("none seem");
 			else output2("it doesn't seem");
 			output2(" that hungry.");
+			addDisabledGhostButton(0, "Cock Feed","Cock Feed","You cannot do this action outside of your ship.");
+			addDisabledGhostButton(1, "Vag Feed","Vag Feed","You cannot do this action outside of your ship.");
 		}
 	}
 
