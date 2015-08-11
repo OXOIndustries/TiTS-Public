@@ -165,6 +165,8 @@
 			this.milkRate = 1;
 			this.ass.wetnessRaw = 5;
 			
+			impregnationType = "RoyalEggPregnancy";
+			
 			this._isLoading = false;
 		}
 		

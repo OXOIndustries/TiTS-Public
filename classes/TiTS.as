@@ -1069,5 +1069,9 @@
 		{
 			return chars["BESS"];
 		}
+		public function get taivra():Taivra
+		{
+			return chars["TAIVRA"];
+		}
 	}
 }

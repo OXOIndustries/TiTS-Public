@@ -3536,8 +3536,23 @@ public function lapRideDatQueenAllPublicLike():void
 		if(pc.hasCock()) output(" Between the sudden pressure of eggs stretching you out and the queen’s skillful handjob, you can’t help but cum! <i>“That’s it, join me!”</i> Taivra groans, stroking faster as the first jet of [pc.cumNoun] splatters across the dias of her throne. <i>“I want you to feel every bit of pleasure I do...”</i>");
 		output("\n\nWhen the final egg settles inside you, you feel so bloated and worn out by the ordeal that it’s hard not to just fall asleep on the queen’s lap. She chuckles and wraps her arms around your swollen belly, giving you a surprisingly tender hug. <i>“");
 		//if fertile eggs:
-		if(taivraHasFertileEggs()) output(" Take care of these for me, won’t you, love? Take them out to the stars, show them a world I’ll never see...");
-		else output(" Don’t worry, love, they’ll dissolve soon enough. Can’t have you waddling around with a belly full of empty eggs... at least, not without me there to enjoy it.");
+		if (taivraHasFertileEggs())
+		{
+			output(" Take care of these for me, won’t you, love? Take them out to the stars, show them a world I’ll never see...");
+			// workaroundy thing I added for the goocubater
+			taivra.createStatusEffect("Goo Gloryholed");
+		}
+		else
+		{
+			output(" Don’t worry, love, they’ll dissolve soon enough. Can’t have you waddling around with a belly full of empty eggs... at least, not without me there to enjoy it.");
+		}
+		
+		//9999 put load in orifice and knock up appropriately.
+		if (x == -1) pc.loadInAss(taivra);
+		else pc.loadInCunt(taivra, x);
+		
+		if (taivra.hasStatusEffect("Goo Gloryholed")) taivra.removeStatusEffect("Goo Gloryholed");
+	
 		output("”</i>");
 	}
 	else
@@ -3551,9 +3566,10 @@ public function lapRideDatQueenAllPublicLike():void
 	}
 	output("\n\nYou relax in Taivra’s lap after that, breathing hard as her thick ovipositor slowly deflates inside of you, dragging her spines through your [pc.vagOrAss " + x + "] one last time before you’re free - and drooling moisture out of your thoroughly-fucked hole.");
 	output("\n\n<i>“I suppose I can’t convince you to retire with me to my chambers, love?”</i> Taivra murmurs, gently stroking her sodden prick as you dislodge yourself from her. <i>“That only got me ready for a proper fuck...”</i>");
+	
 	processTime(22);
 	pc.exhibitionism(2);
-	//9999 put load in orifice and knock up appropriately.
+	
 	pc.orgasm();
 	//[Next]
 	clearMenu();

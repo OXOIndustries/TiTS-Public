@@ -180,6 +180,8 @@
 			this.cockVirgin = false;
 			createStatusEffect("Force Fem Gender");
 			
+			impregnationType = "RoyalEggPregnancy";
+			
 			this._isLoading = false;
 		}
 		
