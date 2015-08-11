@@ -1457,6 +1457,7 @@ public function shadeAtTheBar():Boolean
 	if(flags["SHADE_DEFEATED_WITH_KARA"] != undefined) return false;
 	if(karaAndShadeUnfinished()) return false;
 	if(flags["MET_KARA"] != undefined) return true;
+	if(flags["SHADE_ON_UVETO"] != undefined) return false;
 	else return false;
 }
 
