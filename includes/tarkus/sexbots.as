@@ -547,7 +547,7 @@ public function loseToSexBotAndHaveADick(cameFromMenu:Boolean = false):void
 }
 
 //PC female
-public function femalePCsGetBangedByAFemBot(var cameFromMenu:Boolean = false):void
+public function femalePCsGetBangedByAFemBot(cameFromMenu:Boolean = false):void
 {
 	if(cameFromMenu) clearOutput();
 	author("Nonesuch");
