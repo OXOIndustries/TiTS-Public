@@ -1194,6 +1194,8 @@ public function reahaBreastMilkIceCream():void
 	output(" offers you and twist the nozzle on the machine, grinning as you’re rewarded with a nice, tall cone of ice cream. The machine pumps Reaha for a few seconds longer than it needs to, making sure to give the cow a nice, full draining before releasing her. The stall pops open as you take the first lick, and Reaha staggers down, cupping her hands around her nipples and shivering. ");
 	
 	output("\n\nYum. Tastes just like [reaha.milkNoun]!");
+	IncrementFlag("REAHA_ICE_CREAM_TIMES");
+	flags["REAHA_ICE_CREAM_DAYS"] = days;
 
 	processTime(20);
 	pc.credits -= 20;

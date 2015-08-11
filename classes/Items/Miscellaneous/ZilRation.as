@@ -122,7 +122,7 @@
 				}
 				else if (!target.faceTypeUnlocked(GLOBAL.TYPE_HUMAN))
 				{
-					kGAMECLASS.output(target.skinTypeLockedMessage());
+					kGAMECLASS.output("\n\n" + target.skinTypeLockedMessage());
 				}
 				
 				//Legs to chitin-armored.
@@ -151,11 +151,11 @@
 				}
 				else if (!target.legCountUnlocked(2))
 				{
-					kGAMECLASS.output(target.legCountLockedMessage());
+					kGAMECLASS.output("\n\n" + target.legCountLockedMessage());
 				}
 				else if (!target.legTypeUnlocked(GLOBAL.TYPE_BEE))
 				{
-					kGAMECLASS.output(target.legTypeLockedMessage());
+					kGAMECLASS.output("\n\n" + target.legTypeLockedMessage());
 				}
 				
 				//Arms to chitin-armored.
@@ -168,7 +168,7 @@
 				}
 				else if (!target.armTypeUnlocked(GLOBAL.TYPE_BEE))
 				{
-					kGAMECLASS.output(target.armTypeLockedMessage());
+					kGAMECLASS.output("\n\n" + target.armTypeLockedMessage());
 				}
 				
 				//Removal of fur
@@ -181,9 +181,49 @@
 					//Pass 15m
 					kGAMECLASS.processTime(15);
 				}
+				//JCUP ANTENNAE/TONGUE INSERT
+				//Antennae
+				if(target.antennaeUnlocked(2) && target.antennae == 0 && changes < changeLimit && rand(2) == 0) {
+					kGAMECLASS.output("\n\nA tingling sensation on your head catches your attention. As you run your fingers across your forehead, you feel two distinct nubs growing out of your [pc.skinFurScales]. They continue to grow, elongating into <b>a pair of bee-like antennae</b>. They make you look more insectile as you move them around experimentally.");
+					target.antennae = 2;
+					target.antennaeType = GLOBAL.TYPE_BEE;
+					changes++;
+				}
+				else if (!target.antennaeUnlocked(2))
+				{
+					kGAMECLASS.output("\n\n" + target.antennaeLockedMessage());
+				}
+
+				//Eyes--Oh! No! Not the bees! NOT THE BEES! Ahhhh! They're in my eyes! MY EYES! Aaarghghgbhlbllblblrghghrghh...
+				if(target.eyeTypeUnlocked(GLOBAL.TYPE_BEE) && target.eyeType != GLOBAL.TYPE_BEE && changes < changeLimit && rand(2) == 0) {
+					// Colors: usually black, rare for gold
+					if(rand(5) != 0) target.eyeColor = "black";
+					else target.eyeColor = "gold";
+					kGAMECLASS.output("\n\nA sudden flash of amber fills your vision. You give a few experimental blinks, but all you can see is pure yellow. It doesn't last very long as the color gradually dissolves away in a brilliant honey-combed pattern until your vision fully returns and your eyes refocus, leaving you wondering what just happened. You flip on your Codex to see what changed. <b>You now have " + target.eyeColor + "-colored zil eyes!</b>");
+					target.eyeType = GLOBAL.TYPE_BEE;
+					changes++;
+				}
+				else if (!target.eyeTypeUnlocked(GLOBAL.TYPE_BEE))
+				{
+					kGAMECLASS.output("\n\n" + target.eyeTypeLockedMessage());
+				}
+				//Tongue
+				if(target.tongueTypeUnlocked(GLOBAL.TYPE_BEE) && target.tongueType != GLOBAL.TYPE_BEE && changes < changeLimit && rand(4) == 0) {
+					kGAMECLASS.output("\n\nYou feel strange pulses eminating from your [pc.tongue]. The muscle gradually pokes past your [pc.lips] and slides out your mouth, inch after inch, until you can estimate it to be about a foot long by the time it stops and looking fully changed. The tongue itself is bright yellow in color and the tip seems to be a hollow tube, like a straw to suck in fluids with. As you try your best to reel in your new tongue, you are hit by a sudden craving for nectar... <b>You now have a zil tongue!</b>");
+					target.tongueType = GLOBAL.TYPE_BEE;
+					target.clearTongueFlags();
+					target.addTongueFlag(GLOBAL.FLAG_LONG);
+					target.addTongueFlag(GLOBAL.FLAG_HOLLOW);
+					changes++;
+				}
+				else if (!target.tongueTypeUnlocked(GLOBAL.TYPE_BEE))
+				{
+					kGAMECLASS.output("\n\n" + target.tongueTypeLockedMessage());
+				}
+				//END JCUP INSERT
 				else if (!target.skinTypeUnlocked(GLOBAL.SKIN_TYPE_SKIN))
 				{
-					kGAMECLASS.output(target.skinTypeLockedMessage());
+					kGAMECLASS.output("\n\n" + target.skinTypeLockedMessage());
 				}
 				
 				if(changes == 0) {
@@ -270,7 +310,7 @@
 			}
 			else if (!target.clitLengthUnlocked(newClitLength))
 			{
-				kGAMECLASS.output(target.clitLengthLockedMessage());
+				kGAMECLASS.output("\n\n" + target.clitLengthLockedMessage());
 			}
 			
 			//Wetness to ⅖ - gotta check if pc needs it somewhere
@@ -304,7 +344,7 @@
 			}
 			else if (!target.wetnessUnlocked(x, 2))
 			{
-				kGAMECLASS.output(target.wetnessLockedMessage());
+				kGAMECLASS.output("\n\n" + target.wetnessLockedMessage());
 			}
 			
 			//Find biggest Tit row!
@@ -334,7 +374,7 @@
 			}
 			else if (!target.breastRatingUnlocked(x, 11))
 			{
-				kGAMECLASS.output(target.breastRatingLockedMessage());
+				kGAMECLASS.output("\n\n" + target.breastRatingLockedMessage());
 			}
 			
 			//Breasts grow to C's - top row only
@@ -365,7 +405,7 @@
 			}
 			else if (!target.breastRatingUnlocked(0, 3))
 			{
-				kGAMECLASS.output(target.breastRatingLockedMessage());
+				kGAMECLASS.output("\n\n" + target.breastRatingLockedMessage());
 			}
 			
 			//Hips widen to 6
@@ -379,7 +419,7 @@
 			}
 			else if (!target.hipRatingUnlocked(target.hipRatingRaw + 1))
 			{
-				kGAMECLASS.output(target.hipRatingLockedMessage());
+				kGAMECLASS.output("\n\n" + target.hipRatingLockedMessage());
 			}
 			
 			//Butt expands to 7
@@ -390,7 +430,7 @@
 			}
 			else if (!target.buttRatingUnlocked(target.buttRatingRaw + 1))
 			{
-				kGAMECLASS.output(target.buttRatingLockedMessage());
+				kGAMECLASS.output("\n\n" + target.buttRatingLockedMessage());
 			}
 			
 			//HONEY GIRLCUM! - Req's appropriate wetness of 2 first.
@@ -417,7 +457,7 @@
 			}
 			else if (!target.girlCumTypeUnlocked(GLOBAL.FLUID_TYPE_HONEY))
 			{
-				kGAMECLASS.output(target.girlCumTypeLockedMessage());
+				kGAMECLASS.output("\n\n" + target.girlCumTypeLockedMessage());
 			}
 			
 			//Grow zilbutt!
@@ -443,7 +483,7 @@
 			}
 			else if (!target.tailTypeUnlocked(GLOBAL.TYPE_BEE))
 			{
-				kGAMECLASS.output(target.tailTypeLockedMessage());
+				kGAMECLASS.output("\n\n" + target.tailTypeLockedMessage());
 			}
 			return changes;
 		}
@@ -505,7 +545,7 @@
 					// In case you wanna do something special with the lock message.
 					//x = blockedChoices[rand(blockedChoices.length)];
 					
-					kGAMECLASS.output(target.cockTypeLockedMessage());
+					kGAMECLASS.output("\n\n" + target.cockTypeLockedMessage());
 				}
 			}
 			//Dick shrinkage - shrink down to 8" max
@@ -546,7 +586,7 @@
 				else if (blockedChoices.length > 0)
 				{
 					// x = blockedChoices[rand(blockedChoices.length)];
-					kGAMECLASS.output(target.cockLengthLockedMessage());
+					kGAMECLASS.output("\n\n" + target.cockLengthLockedMessage());
 				}
 			}
 			//Girth booster!
@@ -581,7 +621,7 @@
 			else if (blockedChoices.length > 0)
 			{
 				// x = blockedChoices[rand(blockedChoices.length)];
-				kGAMECLASS.output(target.cockThicknessLockedMessage());
+				kGAMECLASS.output("\n\n" + target.cockThicknessLockedMessage());
 			}
 			
 			//Ball shrinkage
@@ -604,7 +644,7 @@
 			}
 			else if (!target.ballSizeUnlocked(newBallSize))
 			{
-				kGAMECLASS.output(target.ballSizeLockedMessage());
+				kGAMECLASS.output("\n\n" + target.ballSizeLockedMessage());
 			}
 
 			//Trappy Smoothpouch! - requires balls small enough
@@ -649,7 +689,7 @@
 			}
 			else if (!target.wingTypeUnlocked(GLOBAL.TYPE_BEE))
 			{
-				kGAMECLASS.output(target.wingTypeLockedMessage());
+				kGAMECLASS.output("\n\n" + target.wingTypeLockedMessage());
 			}
 			
 			//Honeycum!
@@ -667,7 +707,7 @@
 			}
 			else if (!target.cumTypeUnlocked(GLOBAL.FLUID_TYPE_HONEY))
 			{
-				kGAMECLASS.output(target.cumTypeLockedMessage());
+				kGAMECLASS.output("\n\n" + target.cumTypeLockedMessage());
 			}
 			
 			return changes;

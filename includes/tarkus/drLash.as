@@ -351,10 +351,16 @@ public function lashTreatment2(treatment:String):void
 		}
 		//Flat chestiness.
 		pc.breastRows[0].breastRatingRaw = 0;
-		pc.breastRows[0].nippleType = GLOBAL.NIPPLE_TYPE_NORMAL;
+		if(pc.breastRows[0].nippleType != GLOBAL.NIPPLE_TYPE_FLAT) pc.breastRows[0].nippleType = GLOBAL.NIPPLE_TYPE_NORMAL;
 		pc.nippleLengthRatio = 1;
 		pc.nippleWidthRatio = 1;
-		output("Your breasts are gone. All that remains are two plain-looking nipples.");
+		if(pc.breastRows[0].nippleType != GLOBAL.NIPPLE_TYPE_FLAT && pc.nipplesPerBreast > 0) pc.nipplesPerBreast = 1;
+		output("Your breasts are gone.");
+		if(pc.breastRows[0].nippleType != GLOBAL.NIPPLE_TYPE_FLAT && pc.nipplesPerBreast == 1)
+		{
+			if(pc.breastRows[0].breasts == 1) output(" All that remains is one plain-looking nipple.");
+			else output(" All that remains are " + num2Text(pc.breastRows[0].breasts) + " plain-looking nipples.");
+		}
 	}
 	else if(treatment == "vagina replacement")
 	{
@@ -399,6 +405,9 @@ public function lashTreatment2(treatment:String):void
 	}
 	else if(treatment == "pure purge")
 	{
+		output("Your genitals");
+		if(pc.biggestTitSize() >= 1) output(" and breasts");
+		output(" are totally gone!");
 		pc.removeCocks();
 		pc.removeVaginas();
 		pc.balls = 0;
@@ -409,12 +418,10 @@ public function lashTreatment2(treatment:String):void
 		}
 		//Flat chestiness.
 		pc.breastRows[0].breastRatingRaw = 0;
-		pc.breastRows[0].nippleType = GLOBAL.NIPPLE_TYPE_NORMAL;
+		if(pc.breastRows[0].nippleType != GLOBAL.NIPPLE_TYPE_FLAT) pc.breastRows[0].nippleType = GLOBAL.NIPPLE_TYPE_NORMAL;
 		pc.nippleLengthRatio = 1;
 		pc.nippleWidthRatio = 1;
-		output("Your genitals");
-		if(pc.biggestTitSize() >= 1) output(" and breasts");
-		output(" are totally gone!");
+		if(pc.breastRows[0].nippleType != GLOBAL.NIPPLE_TYPE_FLAT && pc.nipplesPerBreast > 0) pc.nipplesPerBreast = 1;
 	}
 	output("</b>");
 

@@ -337,7 +337,8 @@ public function talkToSaendraAboutStuffAndThings(doOutput:Boolean = true):void
 	if (days != flags["SAENDRA TALK PHOENIX STATUS"]) addButton(4, "Phoenix Status", saendraPhoenixStatus);
 	else addDisabledButton(4, "Phoenix Status", "Phoenix Status", "You've already talked to Saendra about the status of her ship today.");
 
-	if (flags["SAENDRA OFFER CREDITS UNLOCKED"] != undefined && flags["SAENDRA OFFERED CREDITS"] == undefined) addButton(5, "OfferCreds", saendraOfferCredits, "OfferCreds", "A loader of a few thousand credits would go a long way towards helping Saendra get back on her feet...");
+	if (flags["SAENDRA CREDITS TALK AVAILABLE"] != undefined && flags["SAENDRA OFFERED CREDITS"] == undefined) addButton(5, "OfferCreds", saendraOfferCredits, "OfferCreds", "A loader of a few thousand credits would go a long way towards helping Saendra get back on her feet...");
+	else if (flags["SAENDRA CREDITS TALK AVAILABLE"] != undefined && flags["SAENDRA OFFERED CREDITS"] != undefined) addDisabledButton(5, "Offer Credits", "Offer Credits", "You've already offered her credits, but she politely declined.");
 	else addDisabledButton(5, "OfferCreds", "Offer Credits", "Maybe if you can find out about the problems she's been having in a little more detail, you could offer to help her out with some credits.");
 
 	if (flags["SAENDRA_XPACK1_CREDITOFFER"] == 1)
@@ -1059,6 +1060,8 @@ public function saenAndSeraThreesome():void
 	saendra.orgasm();
 	sera.orgasm();
 	sera.orgasm();
+	flags["FUCKED SERA"] = 1;
+	flags["SAEN_X_SERA_THREESOME"] = 1;
 	
 	output("\n\nSera heaves a heavy sigh, and you feel the tendril of her cocktail recede from inside you. <i>“Not bad,”</i> she growls, <i>“I guess that’ll do. This time.”</i>");
 

@@ -185,6 +185,31 @@ package classes.GameData
 			//3. (Replaces #1 if Power Strike Chosen) Wounding Strike: Upgrades power strike to increase damage dealt by 5 and place a status effect on the target. The status effect reduces healing and shield recovery by 50%.
 			//Leaving this one for Geddy!
 
+			//Level 8
+			//Passive: Heroic Reserves - boosts energy reserves by 33.
+			var heroicReserves:PerkData = new PerkData();
+			heroicReserves.classLimit = GLOBAL.CLASS_MERCENARY;
+			heroicReserves.levelLimit = 8;
+			heroicReserves.autoGained = true;
+			heroicReserves.perkName = "Heroic Reserves";
+			heroicReserves.perkDescription = "Raises your maximum energy reserves by 33, allowing you to use more special attacks before tiring.";
+			insertPerkData(heroicReserves);
+
+			//1. Second Attack - flurry attack on melee
+			var secondAttack:PerkData = new PerkData();
+			secondAttack.classLimit = GLOBAL.CLASS_MERCENARY;
+			secondAttack.levelLimit = 8;
+			secondAttack.perkName = "Second Attack";
+			secondAttack.perkDescription = "Allows you to make a second, low-accuracy attack whenever you perform a melee attack. Can stack with \"Cleave.\"";
+			insertPerkData(secondAttack);
+
+			//2. Second Shot - flurry attack on ranged shot
+			var secondShot:PerkData = new PerkData();
+			secondShot.classLimit = GLOBAL.CLASS_MERCENARY;
+			secondShot.levelLimit = 8;
+			secondShot.perkName = "Second Shot";
+			secondShot.perkDescription = "Allows you to make a second, low-accuracy attack whenever you shoot a ranged weapon.";
+			insertPerkData(secondShot);
 		}
 		
 		private function ConfigureSmugglerPerks():void
@@ -349,6 +374,32 @@ package classes.GameData
 			burstOfEnergy.perkDescription = "Allows you to recover 60 energy, once per combat encounter.";
 			insertPerkData(burstOfEnergy);
 
+			//Level 8
+			//Passive: Heroic Reserves - boosts energy reserves by 33.
+			var heroicReserves:PerkData = new PerkData();
+			heroicReserves.classLimit = GLOBAL.CLASS_SMUGGLER;
+			heroicReserves.levelLimit = 8;
+			heroicReserves.autoGained = true;
+			heroicReserves.perkName = "Heroic Reserves";
+			heroicReserves.perkDescription = "Raises your maximum energy reserves by 33, allowing you to use more special attacks before tiring.";
+			insertPerkData(heroicReserves);
+
+			//1. Second Attack - flurry attack on melee
+			var secondAttack:PerkData = new PerkData();
+			secondAttack.classLimit = GLOBAL.CLASS_SMUGGLER;
+			secondAttack.levelLimit = 8;
+			secondAttack.perkName = "Second Attack";
+			secondAttack.perkDescription = "Allows you to make a second, low-accuracy attack whenever you perform a melee attack.";
+			insertPerkData(secondAttack);
+
+			//2. Second Shot - flurry attack on ranged shot
+			var secondShot:PerkData = new PerkData();
+			secondShot.classLimit = GLOBAL.CLASS_SMUGGLER;
+			secondShot.levelLimit = 8;
+			secondShot.perkName = "Second Shot";
+			secondShot.perkDescription = "Allows you to make a second, low-accuracy attack whenever you shoot a ranged weapon.";
+			insertPerkData(secondShot);
+
 		}
 		
 		private function ConfigureEngineerPerks():void
@@ -497,6 +548,32 @@ package classes.GameData
 			shieldHack.perkName = "Shield Hack";
 			shieldHack.perkDescription = "Allows you to spend 25 energy to hack an enemy's shield, dealing very high shield damage.";
 			insertPerkData(shieldHack);
+
+			//Level 8
+			//Passive: Heroic Reserves - boosts energy reserves by 33.
+			var heroicReserves:PerkData = new PerkData();
+			heroicReserves.classLimit = GLOBAL.CLASS_ENGINEER;
+			heroicReserves.levelLimit = 8;
+			heroicReserves.autoGained = true;
+			heroicReserves.perkName = "Heroic Reserves";
+			heroicReserves.perkDescription = "Raises your maximum energy reserves by 33, allowing you to use more special attacks before tiring.";
+			insertPerkData(heroicReserves);
+
+			//1. Second Attack - flurry attack on melee
+			var secondAttack:PerkData = new PerkData();
+			secondAttack.classLimit = GLOBAL.CLASS_ENGINEER;
+			secondAttack.levelLimit = 8;
+			secondAttack.perkName = "Second Attack";
+			secondAttack.perkDescription = "Allows you to make a second, low-accuracy attack whenever you perform a melee attack.";
+			insertPerkData(secondAttack);
+
+			//2. Second Shot - flurry attack on ranged shot
+			var secondShot:PerkData = new PerkData();
+			secondShot.classLimit = GLOBAL.CLASS_ENGINEER;
+			secondShot.levelLimit = 8;
+			secondShot.perkName = "Second Shot";
+			secondShot.perkDescription = "Allows you to make a second, low-accuracy attack whenever you shoot a ranged weapon.";
+			insertPerkData(secondShot);
 		}
 		
 		public function getPlayerClassPerksList():Vector.<PerkData>

@@ -383,7 +383,7 @@ public function sleepInRuinedCamp():void
 		addButton(0, "Next", startCombat, "HUNTRESS_VANAE");
 		return;
 	}
-	if ((pc.XPRaw >= pc.XPMax()) && pc.level < 7 && flags["LEVEL_UP_AVAILABLE"] == undefined)
+	if ((pc.XPRaw >= pc.XPMax()) && pc.level < 8 && flags["LEVEL_UP_AVAILABLE"] == undefined)
 	{
 		(pc as PlayerCharacter).unspentStatPoints += 13;
 		(pc as PlayerCharacter).unclaimedClassPerks += 1;

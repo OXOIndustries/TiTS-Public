@@ -195,6 +195,7 @@ public function appearance(target:Creature):void {
 		else if (target.eyeType == GLOBAL.TYPE_BEE)
 		{
 			if(target.eyeColor == "gold") output2(" Your eyes are completely pitch black with the exception of your vibrant golden irises.");
+			else if(target.eyeColor != "black") output2(" Your eyes are pitch black with " + target.eyeColor + " irises.");
 			else output2(" The black sclera and iris of both of your eyes make them appear as solid black and very alien.");
 			output2(" Their structure allows you to have a larger angle of vision as well as detecting the fastest of movements.");
 		}

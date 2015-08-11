@@ -3010,6 +3010,7 @@ public function initializeMyrellionRooms():void
 	rooms["2C15"].addFlag(GLOBAL.CAVE);
 	rooms["2C15"].addFlag(GLOBAL.INDOOR);
 	rooms["2C15"].addFlag(GLOBAL.OBJECTIVE);
+	rooms["2C15"].addFlag(GLOBAL.BED);
 
 	rooms["2C11"] = new RoomClass(this);
 	rooms["2C11"].roomName = "CIRCLE\nTUNNEL";
@@ -3053,6 +3054,7 @@ public function initializeMyrellionRooms():void
 	rooms["2A09"].addFlag(GLOBAL.CAVE);
 	rooms["2A09"].addFlag(GLOBAL.INDOOR);
 	rooms["2A09"].addFlag(GLOBAL.NPC);
+	rooms["2A09"].addFlag(GLOBAL.BED);
 
 	//M15 -- Pillar SE
 	rooms["2M15"] = new RoomClass(this);

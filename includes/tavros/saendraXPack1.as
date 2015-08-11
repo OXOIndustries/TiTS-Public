@@ -844,7 +844,7 @@ public function sx1CallgirlOkay():void
 	else output(" waspy alien girl");
 	output(" smiles, running a black-plated finger through the coating of juices on her face. <i>“I wish you weren’t in such a hurry... I’d love to have a repeat performance if-”</i>");
 	
-	output("\n\n<i>“[pc.name!]”</i> you hear from the door, along with a gentle knock. <i>“Come on already, what’s taking so long!?”</i>");
+	output("\n\n<i>“[pc.name]!”</i> you hear from the door, along with a gentle knock. <i>“Come on already, what’s taking so long!?”</i>");
 	
 	output("\n\nThe callgirl tsks her tongue and takes the credit chit you slip her. <i>“Thank you, honey. Now go and tend to your woman... I’ll be here.”</i>");
 

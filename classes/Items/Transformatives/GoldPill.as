@@ -406,7 +406,7 @@ package classes.Items.Transformatives
 					else output("\n\n" + pc.girlCumTypeLockedMessage());
 				}
 				//Grow wings once! Requires legs!
-				if(changes < changeLimit && target.hasCock() && target.legType == GLOBAL.TYPE_MYR && (target.wingType != GLOBAL.TYPE_SMALLBEE || target.wingType != GLOBAL.TYPE_MYR) && target.wingTypeUnlocked(GLOBAL.TYPE_MYR) && rand(4) == 0) {
+				if(changes < changeLimit && target.hasCock() && target.legType == GLOBAL.TYPE_MYR && (target.wingType != GLOBAL.TYPE_SMALLBEE && target.wingType != GLOBAL.TYPE_MYR) && target.wingTypeUnlocked(GLOBAL.TYPE_MYR) && rand(4) == 0) {
 					if(!target.hasWings()) {
 						kGAMECLASS.output("\n\nCramps attack your shoulder blades, forcing you to arch your back and cry out. You drop and roll on the ground to try and keep it together, and before you know, the pain is gone. In its place, there's the pleasant ache of growing muscles and something sliding down your back. You crane your head over your shoulder");
 						if(target.armor.shortName != "") kGAMECLASS.output(" and pull back your [pc.armor.longName]");
@@ -489,6 +489,16 @@ package classes.Items.Transformatives
 					}
 					if(pc.milkFullness < 100) pc.milkFullness = 100;
 					pc.createPerk("Honeypot",0,0,0,0,"Allows your body to convert excess thickness into delicious, boob-filling goodness.");
+					// Perk Swapped!
+					if(pc.hasPerk("Myr Venom"))
+					{
+						output("\n\nWith your new genes attained, your jaw begins to shiver all over and you feel your canines tingle. You rub your [pc.tongueNoun] along the roof of your mouth and across the back of your front teeth. As you do this, a pool of pink myr venom rapidly collects and a stream of the stuff dribbles down your [pc.lip]. Surprised, you reflexively swollow it before any more can come out. You almost instantly regret the action as an overwhelming feeling of desire and anticipation skyrockets in your [pc.groin], giving way to the lust-laden effects of the venom!");
+						output("\n\nComposing yourself, you expect the venom to replenish itself after discharging so much at once, but instead it's just regular, watery spit. After noticing the change in your saliva, you double check your Codex and confirm that <b>you have lost your lust-inducing venom from your previous transformation</b>. It seems the ability is not compatible with this drug...");
+						// Lusty!
+						pc.lust(9000);
+						// Remove perk!
+						pc.removePerk("Myr Venom");
+					}
 					changes++;
 				}
 				//Ant Abdomen

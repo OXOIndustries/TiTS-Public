@@ -338,7 +338,8 @@ public function heyDocImAHero():void
 		output("\n\nA shiver runs through your entire body, and with a feeling like sinking into a warm bath you feel fur slide blissfully out over your [pc.skin], sweeping over your body in moments to leave you wrapped entirely in thick black fur. <b>You now have black fur</b>!");
 		pc.skinType = GLOBAL.SKIN_TYPE_FUR;
 		pc.clearSkinFlags();
-		pc.addSkinFlag(GLOBAL.FLAG_FURRED);
+		pc.addSkinFlag(GLOBAL.FLAG_THICK);
+		pc.addSkinFlag(GLOBAL.FLAG_FLUFFY);
 		pc.furColor = "black";
 	}
 	//IF PC HAS NON-BLACK FUR

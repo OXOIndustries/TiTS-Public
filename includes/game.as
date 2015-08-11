@@ -454,18 +454,22 @@ public function sleep(outputs:Boolean = true):void {
 	
 	var minutes:int = 420 + rand(80) + 1
 	
-	if(outputs) 
+	if(outputs) clearOutput();
+	if(currentLocation == "SHIP INTERIOR")
 	{
-		clearOutput();
-		
-		// Anno interjection
-		if (flags["ANNO_SLEEPWITH_INTRODUCED"] == undefined && annoIsCrew() && annoSexed() > 0)
-		{
-			annoSleepWithIntroduce();
-			return;
+		if(outputs)
+		{			
+			// Anno interjection
+			if (flags["ANNO_SLEEPWITH_INTRODUCED"] == undefined && annoIsCrew() && annoSexed() > 0)
+			{
+				annoSleepWithIntroduce();
+				return;
+			}
 		}
-		
-		if ((pc.XPRaw >= pc.XPMax()) && pc.level < 7 && flags["LEVEL_UP_AVAILABLE"] == undefined)
+	}
+	if(outputs)
+	{
+		if ((pc.XPRaw >= pc.XPMax()) && pc.level < 8 && flags["LEVEL_UP_AVAILABLE"] == undefined)
 		{
 			(pc as PlayerCharacter).unspentStatPoints += 13;
 			(pc as PlayerCharacter).unclaimedClassPerks += 1;
@@ -480,45 +484,50 @@ public function sleep(outputs:Boolean = true):void {
 			
 			eventBuffer += "\n\nA nights rest is just what you needed; you feel faster... stronger... harder....\n<b>Level Up is available!</b>";
 		}
-		else if (pc.level == 7)
+		else if (pc.level == 8)
 		{
-			eventBuffer += "\n\n<b>You've already reached the current maximum level.</b>";
+			eventBuffer += "\n\n<b>You've already reached the current maximum level. It will be raised in future builds.</b>";
 		}
-		
-		//CELISE NIGHT TIME BEDTIMEZ
-		if(celiseIsCrew() && rand(3) == 0 && flags["CREWMEMBER_SLEEP_WITH"] == undefined)
-		{
-			celiseOffersToBeYourBedSenpai();
-			return;
-		}
-		else if (annoIsCrew() && rand(3) == 0 && flags["CREWMEMBER_SLEEP_WITH"] == "ANNO")
-		{
-			annoSleepSexyTimes();
-			return;
-		}
-		
-		output("You lie down and sleep for about " + num2Text(Math.round(minutes/60)) + " hours.");
 	}
+	if(currentLocation == "SHIP INTERIOR")
+	{
+		if(outputs)
+		{
+			//CELISE NIGHT TIME BEDTIMEZ
+			if(celiseIsCrew() && rand(3) == 0 && flags["CREWMEMBER_SLEEP_WITH"] == undefined)
+			{
+				celiseOffersToBeYourBedSenpai();
+				return;
+			}
+			else if (annoIsCrew() && rand(3) == 0 && flags["CREWMEMBER_SLEEP_WITH"] == "ANNO")
+			{
+				annoSleepSexyTimes();
+				return;
+			}
+		}
+	}
+	if(outputs) output("You lie down and sleep for about " + num2Text(Math.round(minutes/60)) + " hours.");
 	
 	sleepHeal();
 	
 	processTime(minutes);
-
-	if (pc.hasStatusEffect("Queen Pregnancy State"))
+	if(outputs)
 	{
-		if (pc.statusEffectv1("Queen Pregnancy State") > 0 && flags["Queen Message Supression"] == undefined && (flags["Queen Dream Last Day"] < days || flags["Queen Dream Last Day"] == undefined))
+		if (pc.hasStatusEffect("Queen Pregnancy State"))
 		{
-			queenDreamEvent();
-			flags["Queen Message Supression"] = 1;
-			flags["Queen Dream Last Day"] = days;
-			clearMenu();
-			addButton(0, "Next", mainGameMenu);
-			return;
+			if (pc.statusEffectv1("Queen Pregnancy State") > 0 && flags["Queen Message Supression"] == undefined && (flags["Queen Dream Last Day"] < days || flags["Queen Dream Last Day"] == undefined))
+			{
+				queenDreamEvent();
+				flags["Queen Message Supression"] = 1;
+				flags["Queen Dream Last Day"] = days;
+				clearMenu();
+				addButton(0, "Next", mainGameMenu);
+				return;
+			}
 		}
+		mimbraneSleepEvents();
+		if(currentLocation == "SHIP INTERIOR") grayGooSpessSkype();
 	}
-	
-	mimbraneSleepEvents();
-	grayGooSpessSkype();
 	
 	this.clearMenu();
 	if (flags["ANNO_SLEEPWITH_DOMORNING"] != undefined) this.addButton(0, "Next", annoMorningRouter);

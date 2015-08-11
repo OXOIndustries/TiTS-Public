@@ -108,7 +108,7 @@ public function approachNyreanGuardsFirstTime():void
 	output("You walk over to the guards, hoping to talk to them. Instead, the guardswomen plant their feet and cross their spears over the heavy stone gate, an unnecessary but obvious sign that you’re about to be refused passage.");
 	output("\n\n<i>“Turn back, star-walker,”</i> one of the women says; the other twists her black lips into a distinct frown. <i>“Queen Taivra has decreed no more offworlders are to be permitted in the palace. Your kind have done us enough insult.”</i>");
 	output("\n\n<i>“What?”</i> you ask. Definitely weren’t expecting that answer.");
-	output("\n\nThe other guard grunts. <i>“Our queen was attacked by one of you space-creatures. One who said " + pc.mf("he","she") + " wished to talk diplomacy. We will not suffer such an insult again... you kind is no longer welcome here.”</i>");
+	output("\n\nThe other guard grunts. <i>“Our queen was attacked by one of you space-creatures. One who said [rival.heShe] wished to talk diplomacy. We will not suffer such an insult again... you kind is no longer welcome here.”</i>");
 	output("\n\nShit. Something tells you this sociopathic star-walker they’re talking about just might be your dear cousin " + chars["RIVAL"].mf("Jack","Jill") + "...");
 	processTime(2);
 	//[Leave] [Attack] [Persuade]
@@ -1000,7 +1000,7 @@ public function pcBeatsGoo():void
 	//[Fuck Her] [Get Egged] [Leave]
 	if(pc.lust() >= 33)
 	{
-		if(pc.hasCock()) addButton(0,"Fuck Her",pcFuckDatGooWivCockVictory,undefined,"Fuck Her","The goo-girl’s entire body might as well be a huge pussy, ready to be fucked anywhere you like. Shove your cock{s} right on in and fill her with cum!");
+		if(pc.hasCock()) addButton(0,"Fuck Her",pcFuckDatGooWivCockVictory,undefined,"Fuck Her","The goo-girl’s entire body might as well be a huge pussy, ready to be fucked anywhere you like. Shove your [pc.cockNounSimple] right on in and fill her with cum!");
 		else addDisabledButton(0,"Fuck Her","Fuck Her","You need a cock to jam one inside of her.");
 		if(pc.hasGenitals()) 
 		{
@@ -1352,7 +1352,7 @@ public function talkOfPeace(plat190:Boolean = false):void
 	//if PC has a high Kindness rating:
 	if(pc.isNice()) 
 	{
-		output("<i>“Hmm,”</i> the queen murmurs, sizing you up for a good long moment. <i>“I beleive you, [pc.name]. Strange as that may seem, you have an honest demeanor about you. Quite contrary to your cousin... it suits you.”</i>");
+		output("<i>“Hmm,”</i> the queen murmurs, sizing you up for a good long moment. <i>“I believe you, [pc.name]. Strange as that may seem, you have an honest demeanor about you. Quite contrary to your cousin... it suits you.”</i>");
 		output("\n\n<i>“So... can we make a deal?”</i> you ask, taking a hesitant step forward. Queensguard makes no movement to stop you.");
 		output("\n\nThe queen smiles. <i>“Perhaps. Among my kind, there is a saying: ‘triumph brings the spoils of conquest.’ You are an unwelcome guest, but an honest one... I will give you the chance to earn your father’s treasure, with honor. Something your cousin lacks entirely.”</i>");
 		output("\n\n<i>“That’s not quite what I had in mind,”</i> you say, taking a step back as Queensguard turns her attentions to you. <i>“I’ve got plenty of honor, but I don’t want a fight here. Like I said, I come in peace.”</i>");
@@ -1552,7 +1552,7 @@ public function partnershipWithTaivra(plat190:Boolean = false):void
 	pc.XP(XPBuffer);
 	if(XPBuffer > 0) output("\n\n" + XPBuffer + " XP gained.");
 	else {
-		output("\n<b>Maximum XP attained! You need to level up to continue to progress.</b>");
+		output("\n\n<b>Maximum XP attained! You need to level up to continue to progress.</b>");
 		if(pc.level == 1) output("\n<b>Find a bed to sleep on in order to level up (like on your ship).</b>");
 	}
 	//[Next]
@@ -1569,7 +1569,7 @@ public function youMarriedAnEvilChick():void
 	output("<i>“RUN FOR IT!”</i> a voice booms behind you, just as you and Taivra are about to seal the metaphorical deal. You scramble to your ");
 	if(pc.legCount > 1) output("[pc.feet]");
 	else output("full height");
-	output(" and look back, just in time to see Dane lumbering to his full height, you cousin scrambling off behind him. The pair of huntresses standing behind the cages leap towards him, but are quickly swept aside by his bulging arms - thrown against the walls with heavy thuds.");
+	output(" and look back, just in time to see Dane lumbering to his full height, your cousin scrambling off behind him. The pair of huntresses standing behind the cages leap towards him, but are quickly swept aside by his bulging arms - thrown against the walls with heavy thuds.");
 
 	output("\n\nThe alabaster ausar is utterly naked, stripped of his gear and bruised from his capture, but he’s grinning like a mad dog all the same. The veins on his arms bulge as he flexes his corded muscles, flipping the pieces of primitive weaponry down to his lower arms to hold like daggers. <i>“You should’ve killed me when you had the chance. This time you won’t get a chance to jump me in the dark.”</i>");
 	output("\n\n<i>“Slaves should learn their place,”</i> Queensguard answers, lowering her shield into place and readying her sword. <i>“If they cannot fathom that, then they will be fed to the deeps, piece by piece.”</i> She advances steadily, one plated boot in front of the other warily moving to intercept Dane.");
@@ -1578,7 +1578,7 @@ public function youMarriedAnEvilChick():void
 	output("\n\n<i>“If you had a gun, you might have had a chance.”</i>");
 	output("\n\nYou wouldn’t have thought a guy as big as Dane could lunge so far and so fast if you hadn’t tangled with him once already, and the armored nyrea clearly doesn’t share that experience. She only has time for her eyes to widen in surprise before Dane crashes into her in a flash of albino fur and pounding fists, driving her back half a pace. The broken haft of the spear shatters on impact with her armor-plated side, visibly denting the plate. Knuckles deflect off Queensguard’s helm, leaving lines of blood behind where the sharp metal ripped into Dane’s knuckles.");
 	output("\n\nFor all his power and speed, it’s clear that your cousin’s bodyguard is more a brawler than a trained fighter. He doesn’t try to avoid harrowing slashes from Queensguard’s sword, relying on the awkward positioning to rob the strength from her blows and his thick fur to keep her from cutting too deeply. Dane’s left forearms are soon matted red with blood from a half-dozen surface cuts, but none so deep as to stop him from grabbing hold of his foe’s shield in two hands wrenching it powerfully to the side.");
-	output("\n\nQueensguard is no brawler. She’s a fighter, used to tackling her Queen’s enemies in one on one confrontations. She lets her arm slide out of the shield’s strap and spins with the momentum, twisting around for a vicious, back-handed slice. A diagonal rent opens up across Dane’s chest, deep enough to reveal two or three blood-drenched bones but not quite deep enough to bring down the mighty ausar. His rage filled blood leaves steaming, crimson puddles on the ground between them.");
+	output("\n\nQueensguard is no brawler. She’s a fighter, used to tackling her Queen’s enemies in one-on-one confrontations. She lets her arm slide out of the shield’s strap and spins with the momentum, twisting around for a vicious, back-handed slice. A diagonal rent opens up across Dane’s chest, deep enough to reveal two or three blood-drenched bones but not quite deep enough to bring down the mighty ausar. His rage filled blood leaves steaming, crimson puddles on the ground between them.");
 	output("\n\nDane staggers a half-step back from the pain, but he doesn’t drop the shield. He leans further back, sweeping the shield up and into the underside of Queenguard’s polished blade. The clang of metal on metal reverberates through the cavernous chamber as the two bodyguards struggle. The nyrea barely keeps her grip on her weapon, but Dane never needed to disarm her, just take away her biggest defense - the shield - and open her up to a strike.");
 	output("\n\nThe metal spearpoint flashes as Dane’s fist carries it forward into the dented section of the nyrea’s armor. The impact reminds you of the sound of the industrial steel punches in one of your father’s factories. Dane’s hand comes away empty, the only evidence of his strike a rent in his foe’s armor and a protruding bit of wood. Thick purple blood oozes down the plate covering Queensguard’s legs, staining them with visible defeat.");
 	output("\n\n<i>“Told you that you should’ve brought a gun,”</i> Dane snarls, kicking the nyrea square in the chest. She drops like a sack of bricks and curls into a ball, wincing from what must be terrible abdominal pain. <i>“Musta ruptured something other than your sperm sacks, huh? I guess not all the male nyrea get off on penetration.”</i>");
@@ -2528,7 +2528,7 @@ public function loseToQueensTaivra():void
 	output("\n\n<i>“Gross,”</i> [rival.name] uncremoniously delcares, curling [rival.hisHer] nose. <i>“I’m not-”</i>");
 	output("\n\n[rival.HisHer] gripes are cut off by a swift slap from Taivra, a crack of chitin on flesh that echoes painfully through the throne room. Several nyrea cheer or jeer, shouting curses as your cousin’s blonde hair billows around [rival.hisHer] head, and [rival.hisHer] hand goes to [rival.hisHer] cheek, touching it with wide, horrified eyes.");
 	output("\n\n<i>“Maybe you liked it better in your cage, worm?”</i> Taivra growls. <i>“Or would you prefer death?”</i>");
-	output("\n\n[rival.name] looks bat at the queen with tear-stained eyes, bitterly biting [rival.hisHer] lip. You’d laugh, if circumstances were just a little different. Now, though, the queen’s gaze turns to you, and you are drawn forward your [pc.lips] nearly brush Taivra’s ovipositor-cock. You reach back, grabbing [rival.name]’s shirt collar and yank [rival.himHer] forward. [rival.HeShe] stumbles, making you drag [rival.himHe] up to sit beside you, on the other side of Taivra’s mighty egg-layer.");
+	output("\n\n[rival.name] looks bat at the queen with tear-stained eyes, bitterly biting [rival.hisHer] lip. You’d laugh, if circumstances were just a little different. Now, though, the queen’s gaze turns to you, and you are drawn forward your [pc.lips] nearly brush Taivra’s ovipositor-cock. You reach back, grabbing [rival.name]’s shirt collar and yank [rival.himHer] forward. [rival.HeShe] stumbles, making you drag [rival.himHer] up to sit beside you, on the other side of Taivra’s mighty egg-layer.");
 
 	output("\n\nYour cousin looks at you with absolute hatred... or is it defeat? Either way, [rival.hisHer] tongue snakes out of [rival.hisHer] lips and slowly reaches out to touch the flank of Taivra’s pink shaft. That’s better - no way you’re doing this alone. Taivra gives you an ever-so-slight nod, and drinks in a deep, chesty breath as [rival.name]’s tongue caresses her cock. You follow suit, breathing a sigh before submitting to your new mistress. There’s no coming back from this, a small part of your mind tells you: the rest of your life will be spent here on your [pc.knees], worshipping Queen Taivra’s powerful body. That’s what happens to people like you and [rival.name] on this word: the losers, the ones not strong enough to stand up to someone like Taivra.");
 	output("\n\nYou deserve this.");
@@ -2755,7 +2755,7 @@ public function probeReclamationShit():void
 	output("\n\nYou pause, though, when you see a Steele Tech freighter parked on the airfield beside your own vessel. Its cargo doors are down, and a pair of crewmen in the familiar black and yellow company jumpsuit are inspecting a familiar glossy-black hunk of space junk: your Dad’s probe! The company made good time in retrieving it, no doubt about it. You walk over and give the two burly men a wave, and head over to check in with them.");
 	output("\n\n<i>“Ah, " + pc.mf("Mr.","Ms.") + " Steele,”</i> one of the pilots says with a grin, tipping his cap to you. <i>“Good work finding this old bird. The techs back at headquarters will have her shooting through the stars again in no time. Probably rewire her as an explorer or comm relay, I reckon.”</i>");
 	output("\n\nThat’s good to hear. If there’s one thing that makes Steele Tech great, its that the company never lets anything go to waste. The company pilots chuckle when you mention it, and one jokes that he’s fairly certain ");
-	if(9999 == 9999) output("that starship next to their must be old Tricky Vic’s original");
+	if(9999 == 9999) output("that starship next to theirs must be old Tricky Vic’s original");
 	else output("that old Tricky Vic’s original is still flying out there, somewhere");
 	output(". You just grin.");
 
@@ -2892,7 +2892,9 @@ public function revealShadesDad():void
 	flags["UVETO_UNLOCKED"] = 1;
 	//[Next]
 	flags["TOLD_SHADE_SHES_YER_SIS"] = 1;
+	flags["SHADE_ON_UVETO"] = 1;
 	processTime(16);
+	pc.addNice(2);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -2913,6 +2915,8 @@ public function hideShadesRelation():void
 	output("\n\nShe waves over her shoulder, and her cunt-like tail winks its pink slit alluring as she walks.");
 	output("\n\nYou watch her go, until she’s lost in the crowd of myr on the tarmac. After that, you let go of a long-held breath and wipe your brow. You’re not sure if Shade believed you, but for now, you’ve got other things to worry about: there’s a new leg of your journey ahead of you!");
 	flags["UVETO_UNLOCKED"] = 1;
+	flags["SHADE_ON_UVETO"] = 1;
+	pc.addMischievous(2);
 	processTime(7);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -3037,6 +3041,7 @@ public function useRepeatGloryhole():void
 	addButton(0,"Next",mainGameMenu);
 }
 
+//9999 - Fertilization stuff. Use for sorting Taivra pregger setup?
 public function taivraFertilize():void
 {
 	flags["TAIVRA_FERTILE"] = GetGameTimestamp();
@@ -4199,7 +4204,9 @@ public function haremPolishjob():void
 		output("\n\nEven your [pc.balls] ");
 		if(pc.balls == 1) output("is");
 		else output("are");
-		output(" able to join in on the lusty celebration when the girl hugging you moves her fingers down to meet your [pc.sack]. At first, she gently cups the orb{s}, smiling mischievously all the while. Her fingers are soft, and while her motions are less skillful than those attending to your [pc.cock " + x + "], they are nonetheless enthusiastic. You could get used to being pampered like this.");
+		output(" able to join in on the lusty celebration when the girl hugging you moves her fingers down to meet your [pc.sack]. At first, she gently cups the orb");
+		if(pc.balls > 1) output("s");
+		output(", smiling mischievously all the while. Her fingers are soft, and while her motions are less skillful than those attending to your [pc.cock " + x + "], they are nonetheless enthusiastic. You could get used to being pampered like this.");
 	}
 	//Elsepussy
 	else if(pc.hasVagina())

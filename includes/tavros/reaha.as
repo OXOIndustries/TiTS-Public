@@ -92,7 +92,11 @@ public function approachShipBoardReahaWhyDidntSavinCodeThisHeWasntExhaustedYeste
 	if (shipLocation != "500" || flags["MET_YAMMI"] == undefined) addDisabledButton(5, "Ice Cream", "Ice Cream", "If only you knew of a local ice cream parlor....")
 	else if (pc.credits < 20) addDisabledButton(5, "Ice Cream", "Ice Cream", "If only you could afford a trip to the local ice cream parlor...."); 
 	else if (!InCollection(reaha.milkType, GLOBAL.FLUID_TYPE_MILK, GLOBAL.FLUID_TYPE_CHOCOLATE_MILK, GLOBAL.FLUID_TYPE_STRAWBERRY_MILK)) addDisabledButton(5, "Ice Cream", "Ice Cream", "If only your resident " + reaha.fluidNoun(reaha.milkType) + "-dispenser could produce something more amenable to creating icy, creamy treats....");
-	else addButton(5, "Ice Cream", reahaBreastMilkIceCream, undefined);
+	else
+	{
+		if(days != flags["REAHA_ICE_CREAM_DAYS"] || flags["REAHA_ICE_CREAM_DAYS"] == undefined) addButton(5, "Ice Cream", reahaBreastMilkIceCream, undefined);
+		else addDisabledButton(5, "Ice Cream", "Ice Cream", "You've already had ice cream with the cowgirl today!");
+	}
 
 	if (shipLocation == "500") addButton(6, "Boot Reaha", reahaBootOffShip, undefined, "Boot Reaha", "Kick Reaha off the ship. Dropping her off on the homeworld might not be in her best interest, but hey. She's your property, anyway.");
 	else addButton(6, "Boot Reaha", reahaBootOffShip, undefined, "Boot Reaha", "Kick Reaha off the ship. You can send her to hang out on Tavros Station");

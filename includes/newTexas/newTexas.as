@@ -1228,6 +1228,9 @@ public function specialOrdersForTreatedGals():void
 	//pc.thickness += (1);
 	pc.modThickness(1, false);
 	IncrementFlag("HERMAN_SPECIAL_ORDER");
+	pc.loadInMouth();
+	pc.loadInMouth();
+	pc.loadInMouth();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

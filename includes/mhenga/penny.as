@@ -3616,9 +3616,16 @@ public function whineToPennyCauseYerABitch():void
 	flags["DR_BADGER_TURNED_IN"] = 1;
 	processTime(15);
 	this.clearMenu();
-	this.addButton(0,"Talk",talkToGirfriendPenny);
-	if(pc.lust() >= 33) this.addButton(1,"Sex",pennySexMenu);
-	else this.addDisabledButton(1,"Sex","Sex","This choice requires lust at or above 33.");
+	if(flags["SEXED_PENNY"] == undefined) 
+	{
+		this.addButton(0,"Next",approachFriendPenny, false);
+	}
+	else
+	{
+		this.addButton(0,"Talk",talkToGirfriendPenny);
+		if(pc.lust() >= 33) this.addButton(1,"Sex",pennySexMenu);
+		else this.addDisabledButton(1,"Sex","Sex","This choice requires lust at or above 33.");
+	}
 	this.addButton(14,"Back",mainGameMenu);
 }
 
