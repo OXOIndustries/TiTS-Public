@@ -67,7 +67,13 @@ public function bessCrewRole():String
 
 public function bessGlasses():Boolean
 {
-	if (flags["BESS_GLASSES"] != undefined) return true;
+	if (flags["BESS_GLASSES"] == 1) return true;
+	return false;
+}
+
+public function bessKatana():Boolean
+{
+	if (flags["BESS_KATANA"] == 1) return true;
 	return false;
 }
 
@@ -301,6 +307,55 @@ public function bessGirlCumFlavor():String
 		case GLOBAL.FLUID_TYPE_LIME: return "lime";
 		default: return "normal";
 	}
+}
+
+public static const BESS_ACCSET_EQUINE:uint 		= 1;
+public static const BESS_ACCSET_BOVINE:uint 		= 1 << 1;
+public static const BESS_ACCSET_CANINE:uint 		= 1 << 2;
+public static const BESS_ACCSET_FELINE:uint 		= 1 << 3;
+public static const BESS_ACCSET_VULPINE:uint 		= 1 << 4;
+public static const BESS_ACCSET_BUNNY:uint 			= 1 << 5;
+public static const BESS_ACCSET_BEE:uint 			= 1 << 6;
+public static const BESS_ACCSET_DRACONIC:uint 		= 1 << 7;
+public static const BESS_ACCSET_DEMONIC:uint 		= 1 << 8;
+public static const BESS_ACCSET_SHARK:uint 			= 1 << 9;
+public static const BESS_ACCSET_DEER:uint 			= 1 << 10;
+public static const BESS_ACCSET_MOUSE:uint 			= 1 << 11;
+public static const BESS_ACCSET_ANGEL:uint 			= 1 << 12;
+public static const BESS_ACCSET_KITSUNE:uint 		= 1 << 13;
+
+public function bessHasAccessorySet(setType:int):Boolean
+{
+	if (flags["BESS_ACCESSORY_SETS"] == undefined) flags["BESS_ACCESSORY_SETS"] = 0;
+
+	return flags["BESS_ACCESSORY_SETS"] & setType;
+}
+
+public function bessAddAccessorySet(setType:int):void
+{
+	if (flags["BESS_ACCESSORY_SETS"] == undefined) flags["BESS_ACCESSORY_SETS"] = 0;
+
+	flags["BESS_ACCESSORY_SETS"] |= setType;
+}
+
+public function bessHasClothingItem(clothingType:Class):Boolean
+{
+	// 9999
+	// can't really pack this into uints -- too many options (outfits) even if we split armor/upper/lower (more than 32 options)
+	// creature inventory I guess is a decent placeholder for now maybe -- can look into other options later, hence wrapping simple call here
+	return bess.hasItemByType(clothingType);
+}
+
+public function bessHasGlasses():Boolean
+{
+	if (flags["BESS_OWNS_GLASSES"] == 1) return true;
+	return false;
+}
+
+public function bessHasKatana():Boolean
+{
+	if (flags["BESS_OWNS_KATANA"] == 1) return true;
+	return false;
 }
 
 public static const BESS_AT_TAVROS:uint = 1;
@@ -2792,152 +2847,474 @@ public function bessSetCumFlavor(opts:Array):void
 	bessFunctionsMenu();
 }
 
+public function talkToBessAboutClothes():void
+{
+	clearOutput();
+	bessHeader();
 
-Clothing & Acc
+	output("You ask [bess.name] to open [bess.hisHer] closet so that you can select a new outfit and accessories for [bess.himHer]. [bess.HeShe] shows you all the clothes that[bess.heShe] owns.");
 
-You ask [bess.name] to open [bess.hisHer] closet so that you can select a new outfit and accessories for [bess.himHer]. [bess.HeShe] shows you all the clothes that[bess.heShe] owns.
+	// Bess always has access to "Nude". Others are bought from the JoyCo catalogue. many of these are new additions (See Clothing Additions section towards the end of the document).
 
-// Bess always has access to "Nude". Others are bought from the JoyCo catalogue. many of these are new additions (See Clothing Additions section towards the end of the document).
+	// Ears, Horns, Tails and Wings can be purchased in 'sets' from the JoyCo catalogue and then individually activated. If none are purchased, Bess only has the default. 
 
-// Ears, Horns, Tails and Wings can be purchased in 'sets' from the JoyCo catalogue and then individually activated. If none are purchased, Bess only has the default. 
+	// Choosing the Glasses or Katana triggers bessGlasses or bessKatana boolean true or false (equipped or unequipped).
 
-// Choosing the Glasses or Katana triggers bessGlasses or bessKatana boolean true or false (equipped or unequipped).
+	clearMenu();
+	addButton(0, "Outfits", talkToBessAboutOutfits);
+	addButton(1, "Underwear Tops", talkToBessAboutUpperUndergarments);
+	addButton(2, "Underwear Bottoms", talkToBessAboutLowerUndergarments);
+	addButton(3, "Ears", talkToBessAboutEars);
+	addButton(4, "Horns", talkToBessAboutHorns);
+	addButton(5, "Tails", talkToBessAboutTails);
+	addButton(6, "Wings", talkToBessAboutWings);
+	addButton(7, "Items", talkToBessAboutItems);
 
+	addButton(14, "Back", bessFunctionsMenu);
+}
 
+public function talkToBessAboutOutfits():void
+{
+	clearMenu();
+	addButton(0, "Nude", EmptySlot, "Nude", "Go Nude!"); // 9999 need to target the correct slot somehow
 
-[Outfits] [Underwear Tops] [Underwear Bottoms] [Ears] [Horns]
-[Tails] [Wings] [Items]
+	bessCIW(1, "C.Clothes", CasualClothes, "Casual Clothes", "Casual Clothes");
+	bessCIW(2, "P.Jacket", ProtectiveJacket, "Protective Jacket", "Protective Jacket");
+	bessCIW(3, "UGC Uniform", UGCUniform, "UGC Uniform", "UGC Uniform");
+	bessCIW(4, "SleepShirt", SleepShirt, "Sleep Shirt", "Sleep Shirt");
 
+	bessCIW(5, "Top&Skirt", TopNSkirt, "Top & Skirt", "Top & Skirt");
+	bessCIW(6, "B.Clothes", BusinessClothes, "Business Clothes", "Business Clothes");
+	bessCIW(7, "Librarian", LibrarianOutfit, "Librarian Outfit", "Librarian Outfit");
+	bessCIW(8, "LatexBSuit", LatexBodysuit, "Latex Bodysuit", "Latex Bodysuit");
+	bessCIW(9, "ChinaDress", ChinaDress, "China Dress", "China Dress");
 
-Outfits (25)
+	bessCIW(10, "Kimono", Kimono, "Kimono", "Kimono");
+	bessCIW(11, "S.Kimono", ShortKimono, "Short Kimono", "Short Kimono");
+	bessCIW(12, "Maid" MaidOutfit, "Maid Outfit", "Maid Outfit");
+	bessCIW(13, "Nurse" NurseOutfit, "Nurse Outfit", "Nurse Outfit");
 
-Casual Clothes
-Protective Jacket
-UGC Uniform
-Sleep Shirt
-Top And Skirt
-Business Clothes
-Librarian Outfit
-Latex Bodysuit
-China Dress
-Kimono
-Short Kimono
-Maid Outfit
-Nurse Outfit
-Miko Outfit
-Apron
-Seifuku
-Schoolgirl Outfit
-Cheerleader Uniform
-Waitress Uniform
-Bunny Outfit
-Battle Ballgown
-Military Outfit
-Space Pirate Outfit
-Goth-Lolita Outfit
-Tank-Top & Mini Skirt
+	addButton(14, "Back", talkToBessAboutClothes);
 
+	bessCIW(15, "Miko" MikoOutfit, "Miko Outfit", "Miko Outfit");
+	bessCIW(16, "Apron" ApronOutfit, "Apron", "Apron");
+	bessCIW(17, "Seifuku" Seifuku, "Seifuku", "Seifuku"); // no fuk uuuuuuuuu
+	bessCIW(18, "Schoolgirl" SchoolgirlOutfit, "Schoolgirl", "Schoolgirl");
+	bessCIW(19, "Cheerleader" CheerleaderUniform, "Cheerleader Uniform", "CheerleaderUniform");
 
-Underwear Tops (16)
+	bessCIW(20, "Waitress" WaitressUniform, "Waitress Uniform", "Waitress Uniform");
+	bessCIW(21, "Bunnygirl" BunnygirlOutfit, "Bunnygirl Outfit", "Bunnygirl Outfit");
+	bessCIW(22, "Battlegown" BattleBallgown, "Battle Ballgown", "Battle Ballgown");
+	bessCIW(23, "Military" MilitaryUniform, "Military Uniform", "Military Uniform");
+	bessCIW(24, "Pirate" SpacePirateOutfit, "Space Pirate", "Space Pirate");
 
-Normal Bra
-White bra
-Striped Bra
-Frilly Bra
-Girly Bra
-String Tie Top
-Furry Bra
-Sarashi
-Corset
-Underbust Corset
-Sports Bra
-Shibari Top
-Pasties
-Babydoll
-Lacy Bra
-Black Lace Bra
+	bessCIW(25, "GothLolita" GothLolitaOutfit, "Goth-Lolita Outfit", "Goth-Lolita Outfit");
+	bessCIW(26, "Tank&Skirt" TankNSkirt, "Tank-top & Miniskirt", "Tank-top & Miniskirt");
+	bessCIW(27, "BattleMaid" BattleMaidOutfit, "Battle Maid Outfit", "Battle Maid Outfit");
+	bessCIW(28, "R.Bodysuit" ReinforcedBodysuit, "Reinforced Bodysuit", "Reinforced Bodysuit");
 
+	addButton(29, "Back", talkToBessAboutClothes);
 
-Underwear Bottoms (13)
+	bessCIW(30, "R.Fem Armor" RevealingFemaleArmor, "Revealing Female Armor", "Revealing Female Armor");
+	bessCIW(31, "R.Male Armor" RevealingMaleArmor, "Revealing Male Armor", "Revealing Male Armor");
+	bessCIW(32, "T.Zipsuit" TransparentZipsuit, "Transparent Zipsuit", "Transparent Zipsuit");
+	bessCIW(33, "Yukata" BessYukata, "Yukata", "Yukata");
+	bessCIW(34, "Ninja" NinjaOutfit, "Ninja Outfit", "Ninja Outfit");
 
-Normal Underwear
-Stockings & Panties
-String Tie Bottoms
-Boxers
-Thong
-Frilly Panties
-Girly Panties
-White Panties
-Shibari Bottom
-Striped Panties
-Lowrider Panties
-Furry Panties
-Black Lace Panties
-Boy Shorts
+	bessCIW(35, "Butler" ButlerOutfit, "Butler Outfit", "Butler Outfit");
+	bessCIW(36, "M.Doctor" MaleDoctorOutfit, "Male Doctor Outfit", "Male Doctor Outfit");
+	bessCIW(37, "F.Doctor" FemaleDoctorOutfit, "Female Doctor Outfit", "Female Doctor Outfit");
+	bessCIW(38, "Gakuran" BessGakuran, "Gakuran", "Gakuran");
+	bessCIW(39, "Schoolboy" SchoolboyOutfit, "Schoolboy Outfit", "Schoolboy Outfit");
 
+	bessCIW(40, "StrapHarness" LeatherStrapHarness, "Leather Strap Harness", "Leather Strap Harness");
+	bessCIW(41, "BlackDress" LittleBlackDress, "Little Black Dress", "Little Black Dress");
+	//addButton(42, "", setBessOutfit, , "", "");
+	//addButton(43, "", setBessOutfit, , "", "");
 
-Change Clothes Message
+	addButton(44, "Back", talkToBessAboutClothes);
+}
 
-<b>[bess.name] is now {wearing [bess.gear]/naked}!</b>
+/**
+ * Bess Clothing Item Wrapper - simplify simple calls determining if an item is available or not and handle button generation.
+ * @param idx button index
+ * @param lbl button label text
+ * @param cType Class type definition of the item - use for availability comparison & button argument
+ * @param ttH tooltip header
+ * @param ttB tooltop text body
+ */
+public function bessCIW(idx:int, lbl:String, cType:Class, ttH:String, ttB:String):void
+{
+	if (bessHasClothingItem(cType))
+	{
+		addButton(idx, lbl, setBessOutfit, cType, ttH, ttB);
+	}
+	else
+	{
+		addDisabledButton(idx, lbl, ttH, "[bess.name] doesn't have access to this item of clothing!");
+	}
+}
 
+public function talkToBessAboutUpperUndergarments():void
+{
+	clearMenu();
 
-Ears
+	addButton(0, "Nude", setBessOutfit, EmptySlot, "Nude", "Nude");
+	bessCIW(1, "NormalBra", BessNormalBra, "Normal Bra", "Normal Bra");
+	bessCIW(2, "WhiteBra", BessWhiteBra, "White Bra", "White Bra");
+	bessCIW(3, "StripedBra", BessStripedBra, "Striped Bra", "Striped Bra");
+	bessCIW(4, "FrillyBra", BessFrillyBra, "Frilly Bra", "Frilly Bra");
 
-Human (Default)
-Equine - 1
-Bovine - 2
-Canine - 3
-Feline - 4
-Vulpine - 5
-Elfin/Pointy Ears = 8
-Draconic Ears = 11
-Deer - 21
-Mouse - 26
-Bunny - 9
+	bessCIW(5, "GirlyBra", BessGirlyBra, "Girly Bra", "Girly Bra");
+	bessCIW(6, "StringTie", BessStringTie, "String Tie Top", "String Tie Top");
+	bessCIW(7, "Furry", BessFurryBra, "Furry Bra", "Furry Bra");
+	bessCIW(8, "Sarashi", BessSarashi, "Sarashi", "Sarashi");
+	bessCIW(9, "Corset", BessCorset, "Corset", "Corset");
 
-Horns
-None (Default)
-Bovine - 2
-Draconic - 11
-Demonic - 15
-Deer - 21
+	bessCIW(10, "UB.Corset", BessUnderbustCorset, "Underbust Corset", "Underbust Corset");
+	bessCIW(11, "SportBra", BessSportsBra, "Sports Bra", "Sports Bra");
+	bessCIW(12, "Pasties", BessPasties, "Nipple Pasties", "Nipple Pasties");
+	bessCIW(13, "Babydoll", BessBabydoll, "Babydoll", "Babydoll");
 
-Tails
-None (Default)
-Equine - 1
-Bovine - 2
-Canine - 3
-Feline - 4
-Vulpine - 5
-Draconic - 11
-Demonic - 15
-Shark - 19
-Deer - 21
-Mouse - 26
-Bunny - 9
-Kitsune (Tail type 5, tails = 9)
+	addButton(14, "Back", talkToBessAboutClothes);
 
-Wings
-None (Default)
-Bee - 6
-Draconic - 11
-Demonic - 15
-Angel / Feathered - None Yet
+	bessCIW(15, "LacyBra", BessLacyBra, "Lacy Bra", "Lacy Bra");
+	bessCIW(16, "BlackLace", BessBlackLaceBra, "Black Lace Bra", "Black Lace Bra");
+	bessCIW(17, "Shibari", BessShibariTop, "Shibari Top", "Shibari Top")
+	bessCIW(18, "MuscleShrt", MuscleShirt, "Muscle Shirt", "Muscle Shirt")
+	bessCIW(19, "SportSing", SportSinglet, "Sports Singlet", "Sports Singlet")
 
-Items
+	bessCIW(20, "MeshShirt", MeshShirt, "Mesh Shirt", "Mesh Shirt")
+	bessCIW(21, "PatriotBra", PatrioticBra, "PatrioticBra", "PatrioticBra")
+	bessCIW(22, "SkullBra", SkullBra, "Skull Bra", "Skull Bra")
+	bessCIW(23, "HeartTassel", HeartShapedTassels, "Heart Shaped Nipple Tassels", "Heart Shaped Nipple Tassels")
+	bessCIW(24, "SkullTassel", SkullShapedTassels, "Skull Shaped Nipple Tassels", "Skull Shaped Nipple Tassels")
 
-Katana - sets bessKatana = true or false
-Glasses - sets bessGlasses = true or false
+	bessCIW(25, "GoldTassel", GoldenTassels, "Golden Nipple Tassels", "Golden Nipple Tassels")
+	bessCIW(26, "CloverTassel", CloverTassels, "Clover Nipple Tassels", "Clover Nipple Tassels")
+	bessCIW(27, "FlowerTassel", FlowerTassels, "Flower Nipple Tassels", "Flower Nipple Tassels")
+	bessCIW(28, "StarTassel", StarTassels, "Star Shaped Nipple Tassels", "Star Shaped Nipple Tassels")
 
+	addButton(29, "Back", talkToBessAboutClothes);
 
+	bessCIW(30, "JewelTassel", JewelTassel, "Jeweled Nipple Tassels", "Jeweled Nipple Tassels")
+	bessCIW(31, "BlackTassel", BlackTassel, "Black Nipple Tassels", "Black Nipple Tassels")
 
-Change Accessories Message
+	addButton(44, "Back", talkToBessAboutClothes);
+}
 
-<b>Bess now has {[bess.ears]/[bess.horns]/[bess.wings]/[bess.tails]/a katana/glasses on}!</b>
+public function talkToBessAboutLowerUndergarments():void
+{
+	clearMenu();
 
-OR
+	addButton(0, "Nude", EmptySlot, "Nude", "Nude");
+	bessCIW(1, "Normal", BessNormalPanties, "Normal Panties", "Normal Panties");
+	bessCIW(2, "Stk&Panty", BessStockingsNPanty, "Stockings & Panties", "Stockings & Panties");
+	bessCIW(3, "StringTie", BessStringTiePanty, "String Tie Bottoms", "String Tie Bottoms");
+	bessCIW(4, "Boxers", BessBoxers, "Boxers", "Boxers");
 
-<b>Bess has removed [bess.hisHer] {horns/wings/tail/katana/glasses}!</b>
+	bessCIW(5, "Frilly", BessFrillyPanties, "Frilly Panties", "Frilly Panties");
+	bessCIW(6, "Girly", BessGirlyPanties, "Girly Panties", "Girly Panties");
+	bessCIW(7, "Whities", BessWhitePanties, "White Panties", "White Panties");
+	bessCIW(8, "Shibari", BessShibariBottom, "Shibari Bottoms", "Shibari Bottoms");
+	bessCIW(9, "Striped", BessStripedPanties, "Striped Panties", "Striped Panties");
+
+	bessCIW(10, "Lowrider", BessLowrider, "Lowrider Bottoms", "Lowrider Bottoms");
+	bessCIW(11, "Furry", BessFurryPanties, "Furry Panties", "Furry Panties");
+	bessCIW(12, "Black Lace", BessBlackLacePanties, "Black Lace Panties", "Black Lace Panties");
+	bessCIW(13, "Boyshorts", BessBoyshorts, "Boyshorts", "Boyshorts");
+
+	addButton(14, "Back", talkToBessAboutClothes);
+
+	bessCIW(15, "Thong", BessThong, "Thong", "Thong");
+	bessCIW(16, "P.Boxers", PatrioticBoxers, "Patriotic Boxers", "Patriotic Boxers");
+	bessCIW(17, "P.Panties", PatrioticPanties, "Patriotic Panties", "Patriotic Panties");
+	bessCIW(18, "S.Boxers", SkullBoxers, "Skull Boxers", "Skull Boxers");
+	bessCIW(19, "S.Panties", SkullPanties, "Skull Panties", "Skull Panties");
+
+	bessCIW(20, "C-String", BessCString, "C-String", "C-String");
+	bessCIW(21, "SilkBoxers", SilkBoxers, "Black Silk Boxers", "Black Silk Boxers");
+	bessCIW(22, "SatinBoxers", SatinBoxers, "Red Satin Boxers", "Red Satin Boxers");
+	bessCIW(23, "L.Shorts", LeatherBoyShorts, "Leather Boy Shorts", "Leather Boy Shorts");
+	bessCIW(24, "PouchStrap", ZipPouchJockStrap, "Zip Pouch Jock Strap", "Zip Pouch Jock Strap");
+
+	addButton(29, "Back", talkToBessAboutClothes);
+}
+
+public function setBessOutfit(classT:Class):void
+{
+	clearOutput();
+	bessHeader();
+
+	var item:ItemSlotClass = new classT(); // now we can inspect the item
+
+	if (item.type == GLOBAL.ARMOR) bess.armor = item;
+	if (item.type == GLOBAL.UPPER_UNDERGARMENT) bess.upperUndergarment = item;
+	if (item.type == GLOBAL.LOWER_UNDERGARMENT) bess.lowerUndergarment = item;
+
+	output("<b>[bess.name] is now");
+	if (!bess.isNude()) output(" wearing [bess.gear]");
+	else output(" naked");
+	output("!</b>");
+
+	bessFunctionsMenu();
+}
+
+public static const BESS_ACS_EAR:uint = 0;
+public static const BESS_ACS_HORNS:uint = 1;
+public static const BESS_ACS_TAIL:uint = 2;
+public static const BESS_ACS_WINGS:uint = 3;
+
+public function talkToBessAboutEars():void
+{
+	clearMenu();
+
+	var opts:Array = [
+		{l: "Human", v: GLOBAL.TYPE_HUMAN, bType: uint.MAX_VALUE},
+		{l: "Equine", v: GLOBAL.TYPE_EQUINE, bType: BESS_ACCSET_EQUINE},
+		{l: "Bovine", v: GLOBAL.TYPE_BOVINE, bType: BESS_ACCSET_BOVINE},
+		{l: "Canine", v: GLOBAL.TYPE_CANINE, bType: BESS_ACCSET_CANINE},
+		{l: "Feline", v: GLOBAL.TYPE_FELINE, bType: BESS_ACCSET_FELINE},
+		{l: "Vulpine", v: GLOBAL.TYPE_VULPINE, bType: BESS_ACCSET_VULPINE},
+		{l: "Elfin", v: GLOBAL.TYPE_ELFIN, bType: BESS_ACCSET_ANGEL},
+		{l: "Draconic", v: GLOBAL.TYPE_DRACONIC, bType: BESS_ACCSET_DRACONIC},
+		{l: "Deer", v: GLOBAL.TYPE_DEER, bType: BESS_ACCSET_DEER},
+		{l: "Mouse", v: GLOBAL.TYPE_MOUSE, bType: BESS_ACCSET_MOUSE},
+		{l: "Bunny", v: GLOBAL.TYPE_BUNNY, bType: BESS_ACCSET_BUNNY}
+	];
+
+	for (var i:int = 0; i < opts.length; i++)
+	{
+		if (opts[i].bType == uint.MAX_VALUE || bessHasAccessorySet(opts[i].bType))
+		{
+			addButton(i, opts[i].l, setBessAccessory, [BESS_ACS_EAR, opts[i].v]);
+		}
+		else
+		{
+			addDisabledButton(i, opts[i].l, opts[i].l, "[bess.name] does not have access to this accessory set yet. Please consult the product catalogue for purchasing information!");
+		}
+	}
+
+	addButton(14, "Back", talkToBessAboutClothes);
+}
+
+public function talkToBessAboutHorns():void
+{
+	clearMenu();
+
+	var opts:Array = [
+		{l: "None", v: GLOBAL.TYPE_HUMAN, bType: uint.MAX_VALUE},
+		{l: "Bovine", v: GLOBAL.TYPE_BOVINE, bType: BESS_ACCSET_BOVINE},
+		{l: "Draconic", v: GLOBAL.TYPE_DRACONIC, bType: BESS_ACCSET_DRACONIC},
+		{l: "Demonic", v: GLOBAL.TYPE_DEMONIC, bType: BESS_ACCSET_DEMONIC},
+		{l: "Deer", v: GLOBAL.TYPE_DEER, bType: BESS_ACCSET_DEER}
+	];
+
+	for (var i:int = 0; i < opts.length; i++)
+	{
+		if (opts[i].bType == uint.MAX_VALUE || bessHasAccessorySet(opts[i].bType))
+		{
+			addButton(i, opts[i].l setBessAccessory, [BESS_ACS_HORNS, opts[i].v]);
+		}
+		else
+		{
+			addDisabledButton(i, opts[i].l, opts[i].l, "[bess.name] does not have access to this accessory set yet. Please consult the product catalogue for purchasing information!");
+		}
+	}
+
+	addButton(14, "Back", talkToBessAboutClothes);
+}
+
+public function talkToBessAboutTails():void
+{
+	clearMenu();
+
+	var opts:Array = [
+		{l: "None", v: GLOBAL.TYPE_HUMAN, bType: uint.MAX_VALUE},
+		{l: "Equine", v: GLOBAL.TYPE_EQUINE, bType: BESS_ACCSET_EQUINE},
+		{l: "Bovine", v: GLOBAL.TYPE_BOVINE, bType: BESS_ACCSET_BOVINE},
+		{l: "Canine", v: GLOBAL.TYPE_CANINE, bType: BESS_ACCSET_CANINE},
+		{l: "Feline", v: GLOBAL.TYPE_FELINE, bType: BESS_ACCSET_FELINE},
+
+		{l: "Vulpine", v: GLOBAL.TYPE_VULPINE, bType: BESS_ACCSET_VULPINE},
+		{l: "Draconic", v: GLOBAL.TYPE_DRACONIC, bType: BESS_ACCSET_DRACONIC},
+		{l: "Demonic", v: GLOBAL.TYPE_DEMONIC, bType: BESS_ACCSET_DEMONIC},
+		{l: "Shark", v: GLOBAL.TYPE_SHARK, bType: BESS_ACCSET_SHARK},
+		{l: "Deer", v: GLOBAL.TYPE_DEER, bType: BESS_ACCSET_DEER},
+
+		{l: "Mouse", v: GLOBAL.TYPE_MOUSE, bType: BESS_ACCSET_MOUSE},
+		{l: "Bunny", v: GLOBAL.TYPE_BUNNY, bType: BESS_ACCSET_BUNNY},
+		{l: "Kitsune", v: GLOBAL.TYPE_KITSUNE, bType: BESS_ACCSET_KITSUNE}
+	];
+
+	for (var i:int = 0; i < opts.length; i++)
+	{
+		if (opts[i].bType == uint.MAX_VALUE || bessHasAccessorySet(opts[i].bType))
+		{
+			addButton(i, opts[i].l, setBessAccessory, [BESS_ACS_TAIL, opts[i].v]);
+		}
+		else
+		{
+			addDisabledButton(i, opts[i].l, opts[i].l, "[bess.name] does not have access to this accessory set yet. Please consult the product catalogue for purchasing information!");
+		}
+	}
+
+	addButton(14, "Back", talkToBessAboutClothes);
+}
+
+public function talkToBessAboutWings():void
+{
+	clearMenu();
+
+	var opts:Array = [
+		{l: "None", v: GLOBAL.TYPE_HUMAN, bType: uint.MAX_VALUE},
+		{l: "Bee", v: GLOBAL.TYPE_BEE, bType: BESS_ACCSET_BEE},
+		{l: "Draconic", v: GLOBAL.TYPE_DRACONIC, bType: BESS_ACCSET_DRACONIC},
+		{l: "Demonic", v: GLOBAL.TYPE_DEMONIC, bType: BESS_ACCSET_DEMONIC},
+		{l: "Angel", v: GLOBAL.TYPE_ANGEL, bType: BESS_ACCSET_ANGEL}
+	];
+
+	for (var i:int = 0; i < opts.length; i++)
+	{
+		if (opts[i].bType == uint.MAX_VALUE || bessHasAccessorySet(opts[i].bType))
+		{
+			addButton(i, opts[i].l, setBessAccessory, [BESS_ACS_WINGS, opts[i].v]);
+		}
+		else
+		{
+			addDisabledButton(i, opts[i].l, opts[i].l, "[bess.name] does not have access to this accessory set yet. Please consult the product catalogue for purchasing information!");
+		}
+	}
+
+	addButton(14, "Back", talkToBessAboutClothes);
+}
+
+public function setBessAccessory(opts:Array):void
+{
+	clearOutput();
+	bessHeader();
+
+	var acsType:uint = opts[0];
+	var newType:int = opts[1];
+
+	if (acsType == BESS_ACS_EAR)
+	{
+		bess.earType = newType;
+		output("<b>Bess now has [bess.ears]!</b>");
+	}
+	else if (acsType == BESS_ACS_WINGS)
+	{
+		bess.wingType = newType;
+		// removing
+		if (newType == GLOBAL.TYPE_HUMAN)
+		{
+			output("<b>Bess has removed [bess.hisHer] wings!</b>");
+		}
+		else
+		{
+			output("<b>Bess now has [bess.wings]!</b>");
+		}
+	}
+	else if (acsType == BESS_ACS_HORNS)
+	{
+		bess.hornType = newType;
+		if (newType == GLOBAL.TYPE_HUMAN)
+		{
+			bess.horns = 0;
+			bess.hornsLength = 0;
+			output("<b>Bess has removed [bess.hisHer] horns!</b>");
+		}
+		else
+		{
+			bess.horns = 2;
+			bess.hornType = 4;
+			output("<b>Bess now has [bess.horns]!</b>");
+		}
+	}
+	else if (acsType == BESS_ACS_TAIL)
+	{
+		bess.tailType = newType;
+		if (newType == GLOBAL.TYPE_HUMAN)
+		{
+			output("<b>Bess has removed [bess.hisHer] tail");
+			if (bess.tailCount > 1) output("s")
+			output("!</b>");
+			bess.tailCount = 0;
+		}
+		else
+		{
+			if (newType == GLOBAL.TYPE_KITSUNE) bess.tailCount = 9;
+			else bess.tailCount = 1;
+
+			output("<b>Bess now has [bess.tails]!</b>");
+		}
+	}
+
+	bessFunctionsMenu();
+}
+
+public function talkToBessAboutItems():void
+{
+	clearMenu();
+
+	if (!bessHasGlasses()) addDisabledButton(0, "Glasses", "Glasses", "[bess.name] doesn't own glasses!");
+	else if (!bessGlasses()) addButton(0, "Glasses", talkToBessWearGlasses, undefined, "Glasses", "Have [bess.name] wear glasses.");
+	else addButton(0, "Glasses", talkToBessRemoveGlasses, undefined, "Glasses", "Have [bess.name] remove [bess.hisHer] glasses.");
+
+	if (!bessHasKatana()) addDisabledButton(1, "Katana", "Katana", "[bess.name] doesn't own a katana!");
+	else if (!bessKatana()) addButton(1, "Katana", talkToBessUseKatana, undefined, "Katana", "Have [bess.name] carry a katana.");
+	else addButton(1, "Katana", talkToBessNoKatana, undefined, "Katana", "Have [bess.name] put [bess.hisHer] katana away.");
+
+	addButton(14, "Back", talkToBessAboutClothes);
+}
+
+public function talkToBessWearGlasses():void
+{
+	clearOutput();
+	bessHeader();
+
+	flags["BESS_GLASSES"] = 1;
+
+	output("<b>[bess.name] now has glasses on!</b>");
+
+	bessFunctionsMenu();
+}
+
+public function talkToBessRemoveGlasses():void
+{
+	clearOutput();
+	bessHeader();
+
+	flags["BESS_GLASSES"] = 0;
+
+	output("<b>[bess.name] has remove [bess.hisHer] glasses!</b>");
+
+	bessFunctionsMenu();
+}
+
+public function talkToBessUseKatana():void
+{
+	clearOutput();
+	bessHeader();
+
+	flags["BESS_KATANA"] = 1;
+
+	output("<b>[bess.name] now has a katana!</b>");
+
+	bessFunctionsMenu();
+}
+
+public function talkToBessNoKatana():void
+{
+	clearOutput();
+	bessHeader();
+
+	flags["BESS_KATANA"] = 0;
+
+	output("<b>[bess.name] has removed [bess.hisHer] katana!</b>");
+
+	bessFunctionsMenu();
+}
 
 
 
