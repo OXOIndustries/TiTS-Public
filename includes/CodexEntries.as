@@ -66,6 +66,7 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "SynthSheath", synthSheathCodex);
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Technology", "AI Systems", AISystemsCodexEntry, true);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Technology", "Item Mechanics", mechanicsCodex, true);
 
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Dragon’s Hoard", dragonsHordeCodexStory, true);
 }
@@ -100,6 +101,22 @@ public function codexHomeFunction():void
 
 	userInterface.outputCodex();
 }
+
+public function mechanicsCodex():void
+{
+	clearOutputCodex();
+	outputCodex(header("Item Mechanics"));
+	outputCodex("<i>What the hell do all the weird little flags in the tooltips mean?</i>\n");
+	outputCodex("\nMany weapons and armors in the universe react in different ways to each other. To help identify possible interactions between these items, this Codex has been equipped with the capability to automatically identify and tag these with <b>item flags</b>. The estimated effects of the various flags are detailed below.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Armor Flags"));
+	outputCodex("<b>Ablative:</b> Indicative of heavy armor like platemail. These types of armors can be easily defeated by crushing, blunt impacts, but are resistant to blades and bullets.");
+	outputCodex("\n\t* 25% resistant to Penetrating\n\t* 15% resistant to Bullet\n\t* 25% vulnerable to Crushing\n<b>Amplifying:</b> These armors increase the effects of psionic abilities on the wearer. They are typically favored by psionics and are rarely used by others.\n\t* 25% vulnerable to Psionic\n<b>Crystal:</b> Armors with crystalline features are useful for diffracting the damaging energies of lasers but shatter more easily against explosive attacks.\n\t* 40% resistant to Laser\n\t* 40% vulnerable to Explosive\n<b>Mirrored:</b> Highly reflective surfaces render laser-based attacks nearly useless against the wearer. For this reason, mirrored equipment is highly sought after (but difficult to maintain).\n\t* 90% resistant to Laser\n<b>Nullifying:</b> Though psionic creatures and peoples are highly uncommon, nullifying armors have been made for those who hunt or police them. Such equipment often comes at a price.\n\t* 25% resistant to Psionic\n<b>Plated:</b> Indicative of the kinds of heavy armor plates bolted to walkers, battle-bots, and tanks, armor plates are good against most forms of attack but vulnerable to penetrating attacks against armor slits.\n\t* 25% resistant to Crushing\n\t* 15% resistant to Bullet\n\t* 25% vulnerable to Penetrating\n\n");
+	outputCodex(blockHeader("Weapon Flags"));
+	outputCodex("<b>Bullet:</b> This indicates that the weapon uses bullets to convey damage to its targets. Many armors offer at least some resistance to bullets, but never enough for this style of kinetic combat to go out of style.\n<b>Crushing:</b> The crushing flag is almost always found on blunt melee weapons, though rare projectile weapons are not unheard of.\n<b>Energy Weapon:</b> This indicates that a weapon delivers it payload via energy, a hallmark of laser-based, electrical, or plasma weaponry.\n<b>Explosive:</b> As indicated by their name, explosive weapons detonate with concussive force.\n<b>Laser:</b> Laser weapons fire their payload in the form of beams of cohesive energy. Some items offer great defense against lasers, but no one can deny the effectiveness of the near-instant transmission of burning death.\n<b>Penetrating:</b> Weapons with the penetrating quality are often melee weapons - anything you can use to stab someone or something with.\n\n");
+	CodexManager.viewedEntry("Item Mechanics");
+}
+
 
 //The Humans[edit]
 public function humanTerranCodex():void
