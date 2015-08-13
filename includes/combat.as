@@ -4034,7 +4034,7 @@ public function pcGooClone(target:Creature):void
 	target.lust(3 + rand(3));
 	
 	pc.createStatusEffect("Reduced Goo", 0, 0, 0, 0, false, "Icon_DefDown", chars["GOO"].short + " has split from your frame and is busy teasing your foes - but it's reduced your defense!", true, 0);
-	pc.armor.defense = 1;
+	pc.armor.defense -= 5;
 	target.createStatusEffect("Gray Goo Clone", 0, 0, 0, 0, false, "Icon_LustUp", chars["GOO"].short + " is busy distracting your foes!", true, 0);
 	processCombat();
 }
@@ -4042,8 +4042,8 @@ public function pcGooClone(target:Creature):void
 public function pcRecallGoo():void
 {
 	clearOutput();
-	
-	var target:Creature;
+	//Set target as PC incase something gets fucked up with the enemy. That way it doesn't crash when attempting to remove the status from the target.
+	var target:Creature = pc;
 	
 	for (var i:uint = 0; i < foes.length; i++)
 	{
@@ -4056,8 +4056,8 @@ public function pcRecallGoo():void
 	
 	output("<i>“Come on back, [goo.name]!”</i> you shout. In the blink of an eye, your body is wrapped in a thick covering of gray goo, cool and wet and comforting.");
 	pc.removeStatusEffect("Reduced Goo");
-	pc.armor.defense = 8;
-	target.removeStatusEffect("Gray Goo Clone");
+	pc.armor.defense += 5;
+	if(target != undefined) target.removeStatusEffect("Gray Goo Clone");
 	processCombat();
 }
 
