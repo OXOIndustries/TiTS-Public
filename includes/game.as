@@ -2437,7 +2437,7 @@ public function statisticsScreen(showID:String = "All"):void
 		{
 			for(i = 0; i < GLOBAL.MAX_SEXPREF_VALUE; i++)
 			{
-				if(pc.sexualPreferences.getPref(i) != undefined && pc.sexualPreferences.getPref(i) != 0)
+				if(pc.sexualPreferences.getPref(i) != 0)
 				{
 					output2("\n<b>* Preferences, " + StringUtil.toTitleCase(GLOBAL.SEXPREF_DESCRIPTORS[i]) + ":</b>");
 					if(pc.sexualPreferences.getPref(i) >= GLOBAL.REALLY_LIKES_SEXPREF - 0.33335) output2(" Really likes!");
