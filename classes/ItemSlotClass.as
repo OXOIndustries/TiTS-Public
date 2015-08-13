@@ -491,7 +491,8 @@
 			var oFlags:Vector.<DamageFlag> = oldItem.baseDamage.getFlags();
 			var hasFlags:Array = [];
 			
-			var flags:String = "Damage Flags:\n";
+			var flags:String = "";
+			if (headerString.length > 0) flags = headerString + ":\n";
 			var fNew:String = "";
 			var fDupe:String = "";
 			var fLost:String = "";
@@ -619,7 +620,8 @@
 			var oFlags:Vector.<DamageFlag> = oldItem.resistances.getFlags();
 			var hasFlags:Array = [];
 			
-			var flags:String = header + ":\n";
+			var flags:String = "";
+			if (header.length > 0) flags = header + ":\n";
 			var fNew:String = "";
 			var fDupe:String = "";
 			var fLost:String = "";
