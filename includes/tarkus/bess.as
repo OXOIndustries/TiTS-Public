@@ -474,6 +474,56 @@ public function bessAffection(val:Number = 0):Number
 	return flags["BESS_AFFECTION"];
 }
 
+public static const BESS_AFFECTION_SPENDTIME:uint = 1;
+public static const BESS_AFFECTION_SEX:uint = 2;
+public static const BESS_AFFECTION_SLEEPWITH:uint = 3;
+public static const BESS_AFFECTION_SLEEPWITHANDOTHERS:uint = 4;
+public static const BESS_AFFECTION_SLEEPWITHOTHER:uint = 5;
+public static const BESS_AFFECTION_GRAVIBALL:uint = 6;
+public static const BESS_AFFECTION_KAREOKE:uint = 7;
+public static const BESS_AFFECTION_SEX_LOVERSMORNINGS:uint = 8;
+public static const BESS_AFFECTION_DATE:uint = 9;
+
+public function bessAffectionGain(gainType:uint):void
+{
+	if (gainType == BESS_AFFECTION_SEX)
+	{
+		if (flags["BESS_LOVER"] == 1) bessAffection(2);
+		else if (flags["BESS_FRIEND"] == 1) bessAffection(1);
+		else bessAffection(0.5);
+	}
+	else if (gainType == BESS_AFFECTION_SPENDTIME)
+	{
+		if (flags["BESS_LOVER"] == 1) bessAffection(3);
+		if (flags["BESS_FRIEND"] == 1) bessAffection(2);
+		else bessAffection(1);
+	}
+	else if (gainType == BESS_AFFECTION_SLEEPWITH)
+	{
+		bessAffection(5);
+	}
+	else if (gainType == BESS_AFFECTION_SLEEPWITHOTHER)
+	{
+		if (flags["BESS_POLY"] == 2) bessAffection(2);
+	}
+	else if (gainType == BESS_AFFECTION_GRAVIBALL)
+	{
+		bessAffection(2);
+	}
+	else if (gainType == BESS_AFFECTION_KAREOKE)
+	{
+		bessAffection(3);
+	}
+	else if (gainType == BESS_AFFECTION_DATE)
+	{
+		bessAffection(10);
+	}
+	else if (gainType == BESS_AFFECTION_SEX_LOVERSMORNINGS)
+	{
+		bessAffection(5);
+	}
+}
+
 public function findingBessBonusFunc():Boolean
 {
 	if (flags["BESS_IN_RUBBLE"] == undefined)
@@ -1016,9 +1066,9 @@ public function bessFollowerMenu():void
 {
 	clearMenu();
 	
-	addButton(0, "Discuss", );
+	addButton(0, "Discuss", talkToBessAboutThings);
 	addButton(1, "Functions", bessFunctions, undefined, "Functions", "Bess’ Functions");
-	addButton(2, "Accessories", );
+	addButton(2, "Accessories", talkToBessAboutAccessories);
 	addButton(3, "Sex", );
 
 	addButton(10, "Appearance", bessAppearance, undefined, "Appearance", "Bess’ Appearance");
@@ -1146,7 +1196,6 @@ public function bessFunctionsMenu():void
 	addButton(6, "Genitals", talkToBessAboutGenitals, undefined, "Genitals", "Ask [bess.name] to change [bess.hisHer] genitals, such as if [bess.heShe] has a pussy or a cock.");
 	addButton(7, "Cum", talkToBessAboutCum);
 	addButton(8, "Clothing", talkToBessAboutClothes);
-	addButton(9, "Accessories", talkToBessAboutAccessories);
 	addButton(10, "JoyCord", talkToBessAboutJoyCord);
 	addButton(11, "TentaPussy", talkToBessAboutTentacunt);
 
@@ -3752,3 +3801,351 @@ public function bessBuyCockType(opts:Array):void
 	clearMenu();
 	addButton(0, "Next", talkToBessAboutAccessories);
 }
+
+public function talkToBessAboutThings():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("\n\n<i>\"Yes "+ bessPCName() +" what would you like to talk about?\”</i>");
+
+	clearMenu();
+	addButton(0, "SpendTime", bessSpendTime);
+	addButton(1, bessName(), );
+	addButton(2, "You", );
+	addButton(3, "JoyCo", );
+	if (flags["BESS_FUCKED"] != undefined || flags["BESS_BOOBCHANGED"] != undefined) addButton(4, "Nipples", );
+	if (flags["BESS_EVENT_11"] != undefined) addButton(5, bess.mf("His", "Her") + " Job", );
+	if (flags["BESS_EVENT_17"] && pcShipHasHolodeck()) addButton(6, "Graviball", );
+	if (flags["BESS_EVENT_18"] addButton(7, "Karaoke", );
+	if (celiseIsFollower()) addButton(8, "Celise", );
+
+	addButton(14, "Back", bessFollowerMenu);
+}
+
+public function bessSpendTime():void
+{
+	// available message functors & requirements
+	var availableMessages:Array = [];
+
+	if (flags["BESS_LOVER"] == 1)
+	{
+		availableMessages.push(bessSpendTime1, bessSpendTime2, bessSpendTime3, bessSpendTime6, bessSpendTime7);
+		if (flags["BESS_LOVER_STATUS"] == "sub" || flags["BESS_LOVER_STATUS"] == "pet") availableMessages.push(bessSpendTime4);
+		if (flags["BESS_LOVER_STATUS"].indexOf("dom") != -1) availableMessages.push(bessSpendTime5);
+		if (bess.isFeminine()) availableMessages.push(bessSpendTime8);
+	}
+}
+
+public function bessSpendTime1():void
+{
+	// Randomize bracket contents
+	clearOutput();
+	bessHeader();
+
+	output("You spend time cuddling with [bess.name] in your bed, talking about small things while you hold [bess.himHer] in your arms. You enjoy the feeling of [bess.himHer] pressed against your body as you chat.");
+
+	output("\n\n<i>“");
+	output(
+		RandomInCollection(
+			"I love you more than words can express.",
+			"You are my everything, you know that?",
+			"You are my best friend as well as my heart.",
+			"The sound of your laughter makes me smile.",
+			"I will always love you, "+ bessNamePC() +".",
+			"You inspire me to follow my dreams, and I love you for it.",
+			"Your love has helped me become a better version of myself.",
+			"I never imagined I would get to love someone as wonderful and special as you.",
+			"You should always be proud of the person you are.",
+			"Being in your arms is the most wonderful feeling in the galaxy.I’m so glad you’re home.",
+			"The day I met you was the best day of my life.",
+			"My life is full of color and love, and all because of you.",
+			"The galaxy seems perfect when you hold me in your arms.",
+			"I enjoy your company more than anything else in the world - that includes books!"
+		);
+	);
+	output("”</i> [bess.HeShe] tells you.");
+
+	bessAffectionGain(BESS_AFFECTION_SPENDTIME);
+	processTime(15+rand(5));
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function bessSpendTime2():void
+{
+	clearOutput();
+	bessHeader();
+
+	if (flags["BESS_LOVER_STATUS"].indexOf("dom") != -1 || (bess.isMasculine() && flags["BESS_LOVER_STATUS"] != "sub" && flags["BESS_LOVER_STATUS"] != "pet"))
+	{
+		output("You spend some time making out with [bess.name] in the ship’s hallway. [bess.HeShe] shoves you up against the wall and kisses you long and hard. When [bess.heShe] pulls away you’re breathing rapidly and feeling deliriously happy.");
+	}
+	else
+	{
+		output("You spend some time making out with [bess.name] in the ship’s hallway, pushing [bess.himHer] up against a wall and kissing long and hard. When you pull away [bess.heShe]’s breathing rapidly looking like [bess.heShe]’s about to swoon.");
+	}
+
+	processTime(5+rand(3));
+	bessAffectionGain(BESS_AFFECTION_SPENDTIME);
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function bessSpendTime3():void
+{
+	clearOutput();
+	bessHeader();
+
+	if (flags["BESS_LOVER_STATUS"].indexOf("dom") != -1 || (bess.isMasculine() && flags["BESS_LOVER_STATUS"] != "sub" && flags["BESS_LOVER_STATUS"] != "pet"))
+	{
+		output("[bess.name] wants you to spend some time with her. When you are in the ship’s galley [bess.name] grabs you all of a sudden and presses you against the fridge. <i>“I want your lips...”</i> You happily submit, kissing [bess.hisHer] fervently as [bess.heShe] claims your [pc.lips]. You moan into [bess.hisHer] mouth, relishing [bess.himHer] claiming what is rightfully [bess.hisHers].");
+
+		output("\n\nIt’s a long time before you pull away from each other and [bess.heShe] grins.  <i>“... Tastiest thing I’ve ever gotten from the galley. Keep it up.”</i> [bess.HeShe] slaps you on your ass as [bess.heShe] leaves, causing a shiver to run up your spine");
+		if (pc.hasTail()) output(" and down your [pc.tail]");
+		output(".");
+	}
+	else
+	{
+		output("You spend some time with your [bessLoverStatus], [Bess]. When you are both in the ship’s galley, you suddenly press [bess.hisHer] against the fridge. [bess.HeShe] moans into your lips as you kiss [bess.himHer] " + bess.mf("sliding his arms around your waist", "wrapping her arms around your neck") +".");
+
+		output("\n\nIt’s a long time before you pull away from each other and [bess.heShe] grins, clearly happy with your decision to randomly seize [bess.himHer] and steal a kiss. <i>“... Mmm, I think that’s the tastiest thing I’ve ever gotten from the galley!”</i>");
+	}
+
+	processTime(15+rand(5));
+	bessAffectionGain(BESS_AFFECTION_SPENDTIME);
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function bessSpendTime4():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You decide to spend some time with your " + bessLoverStatus() + ". You notice [bess.name] has done something naughty by the way [bess.heShe]’s acting. You force [bess.himHer] to cough it out and [bess.heShe] spills the beans.");
+	
+	output("\n\nFor punishment you get [bess.himHer] to turn on [bess.hisHer] pain sensors and present to you [bess.hisHer] bare bottom. [bess.HeShe] does so immediately, trembling a little, as you spank [bess.himHer] until [bess.hisHer] silver cheeks are sore and flushed. [bess.HisHer] ");
+	if (bess.hasCock()) output("[bess.cockSimple] is erect");
+	else if (bess.hasVagina()) output("girl juice leaks down [bess.hisHer] thighs");
+	else output("face is flushed with arousal")
+	output(" despite [bess.hisHer] cries of protest, wiggling [bess.hisHer] stinging [bess.ass] and whining the entire time.");
+	
+	output("\n\nYou tell [bess.himHer] [bess.heShe] can stand up again and [bess.name] rubs [bess.hisHer] sore rump, thanking you for punishing [bess.himHer]. Even after you’re finished [bess.heShe] lingers, rubbing [bess.hisHer] [bess.thighs] together and looking at you with a needy expression.");
+
+	bessAffectionGain(BESS_AFFECTION_SPENDTIME);
+	processTime(12+rand(7));
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function bessSpendTime5():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("Your " + bessLoverStatus() + ", [bess.name] decides to remind you who the boss is. [bess.HeShe] orders you to turn around and present your bare [pc.assLight]. You do so immediately, trembling a little, as [bess.heShe] spanks you <b>hard</b> until your buttcheeks are sore and flushed. You let out a little moan despite yourself, totally getting off on the abuse.");
+	
+	output("\n\nOnce [bess.heShe]’s finished you stand up and wriggle both because your rump is so sore and because you’re so turned on right now. You thank your " + bessLoverStatus() + " for punishing you and leave the room all hot and bothered.");
+
+	bessAffectionGain(BESS_AFFECTION_SPENDTIME);
+	processTime(3+rand(3));
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function bessSpendTime6():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You decide to spend some quality time with [bess.name]. [bess.HeShe] kisses you " + bess.mf("slowly on the lips. It transforms into a long and passionate embrace.","sweetly on the lips, tiny little kisses of affection that soon blossom into a long and passionate embrace.");
+	
+	output("\n\nTime just seems to stop as you are in each other’s arms, lips locked together, " + bess.mf("his handsome musk","the faint smell of synth vanilla") + " tingling your nose. When you part [bess.heShe] gives you a " + bess.mf("deep, intense","dreamy") + " look, and strokes your cheek. <i>“");
+	output(
+		RandomInCollection(
+			"I love you, " + bessPCName() + ".",
+			"You know how much I love you, right?",
+			"Could you be any more perfect?",
+			"Your kisses always blow me away.",
+			"I don’t think I could be any more in love with you, and then you make me fall for you that much more...",
+			"You are my heartbeat, you know that?",
+			"Can I keep you forever?",
+			"Your kisses are intoxicating - they should be outlawed.",
+		)
+	);
+	output("”</i>");
+
+	bessAffectionGain(BESS_AFFECTION_SPENDTIME);
+	processTime(8+rand(5));
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function bessSpendTime7():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You spend some time with [Bess]. [bess.HeShe] " + bess.mf("wraps his arms around you","leaps into your arms and wraps her legs around your waist") + ", grinning all the while as [bess.heShe] litters your face with kisses. <i>“");
+	output(
+		RandomInCollection(
+			"Mine, all mine!",
+			"I claim you in the name of [bess.name]!",
+			"Your face is just too kissable!",
+			"You came to spend time with me!",
+			"I’m going to kiss you heaps to make up for lost time!"
+		)
+	);
+	output("”</i>");
+
+	output("\n\nYou " + bess.mf("push him on a nearby couch, and he laughs","dump her on a nearby couch and she squeals loudly") + ". You then leap on [bess.himHer] and return [bess.hisHer] assault, much to [bess.hisHer] delight. After a while of making out you both just lie there in each others arms.");
+
+	bessAffectionGain(BESS_AFFECTION_SPENDTIME);
+	procesTime(10+rand(5));
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function bessSpendTime8():void
+{
+	clearOutput();
+	bessHeader();
+
+	if (bessLoverStatus().indexOf("dom") == -1)
+	{
+		output("\n\nYou spend some time with your "+bessLoverStatus()+", [bess.name]. You hand [bess.hisHer] a bouquet of [bess.hisHer] favorite flowers you recieved via space delivery - white oriental lilies with pink roses - causing [bess.hisHer] to flush and give you a great big hug. [bess.HeShe] immediately finds a place in the ship where [bess.heShe] can put it to show them off.");
+
+		output("\n\nShe then spends quite a while showing you exactly how appreciative [bess.heShe] is of them.");
+	}
+	else
+	{
+		output("\n\nYour "+bessLoverStatus()+", [bess.name] needs you to do something for her. [bess.HeShe] orders you to go out and get some of [bess.hisHer] favorite flowers - white oriental lilies with pink roses - so [bess.heShe] can put them around the ship. You go out of your way to get some via space delivery.  When you hand them over [bess.heShe] finds a place on the ship where they will be proudly displayed.");
+
+		output("\n\n[bess.name] praises you for your hard work, causing you to flush.");
+	}
+
+	bessAffectionGain(BESS_AFFECTION_SPENDTIME);
+	processTime(20+rand(5));
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+Message #9 | bessLoverStatus = domme
+
+
+[Bess], your Domme, decides to reward you for being a good sub. [bess.HeShe] pets your head and tells you that you've been very well behaved and that [bess.heShe] loves you. For your obedience [bess.heShe] gives you a nice meal - served on the floor, from a bowl with your name on it.
+
+You happily finish off the food you have been given as [bess.heShe] rubs a riding crop along your [pc.skinFurScalesNoun]. You make sure to clean the bowl thoroughly, but you still miss a spot - [Bess] smacks you with the crop until you lick it up. 
+
+
+Message #10 | bessLoverStatus = pet || bessLoverStatus = sub
+
+You spend some time with your [bessLoverStatus], [Bess]. You pat [bess.hisHer] head and tell [bess.himHer] [bess.heShe]'s been a good little sub, and that you love [bess.himHer]. As a reward you give [bess.himHer] a nice meal - served on the floor, from a bowl with [bess.hisHer] name on it.
+
+[Bess] happily finishes off the food you have provided while you rub a riding crop between [bess.hisHer] thighs. Even though [bess.heShe] tries to clean the bowl as thoroughly as possible [bess.heShe] still misses a spot  - you smack [bess.hisHer] rump with the crop until [bess.heShe] licks it up. 
+
+
+Message #11 | Up to Approach Scene #7 (Watched #6).
+
+You decide to chill a bit with [Bess]. You throw on a [bessGenre] movie and watch it while drinking some [bessDrink] with her.
+
+
+Message #12 | Up to Approach Scene #7 (Watched #6).
+
+You decide to chill a bit with [Bess].  You sit back and relax listening to some [bessMusic] with her, drinking some [bessDrink] all the while. 
+
+
+Message #13 | Up to Approach Scene #10 (Watched #9).
+// Randomize in brackets
+
+You sit down with [Bess] to chat. [bess.HeShe] tells you all about {an adventure book/a crime novel/a history book/a horror story/a book on philosophy/a sci-fi novel/a romance novel/a murder mystery novel/a fantasy novel/a biography/an auto-biography/a shojo manga/a shonen manga/a jousei manga/a seinen manga/a graphic novel/a superhero comic/a short story/a historical fiction/a poetry book/an erotic fiction/a steampunk novel/a paranormal romance} [bess.heShe] read recently, and how [bess.heShe] {absolutely loved it and is going to add it to [bess.hisHer] collection/really liked it and thinks you should read it too/thought it was so-so and could have been written much better/found it really bad and wouldn't recommend it to anyone/found it indescribably awful and threw it in the trash compactor}. 
+
+
+Message #14 | bessFriend = true && bessLover = false
+
+[Bess] comes looking for you. When [bess.heShe] finds you [bess.heShe] walks up and gives you a tight hug, telling you that you are [bess.hisHer] dearest friend. [bess.HeShe] doesn't let go until you feel well and truly appreciated.
+
+<i>{You make me brave, you know that?\I'm so glad that we're friends!\I just wanted you to know how much I appreciate you!\Hugs are the best, aren't they? I can't believe you organics don't do it more often!\Thank you for being my friend.\I feel close to you emotionally, so I thought I'd get close to you physically! ... Wait, that came out wrong.\I'm the luckiest synthetic in the whole galaxy!}.\"</i> [Bess] tells you.
+
+
+Message #15 | bessFriend = true
+
+You spend some of your down time with [Bess]. You make up a sport with odds and ends in the ship, as well as a set of rules, and go about trying to beat each other at it. At the end you get to declare yourself the galactic champion of the made up sport.
+
+
+Message #16 | bessFriend = true
+// Randomize the game & skill level
+You decide to chill a bit with [Bess]. You both sit down and play a {fighting/strategy/platformer/role-playing/shooter/adventure/simulation/sports/racing/puzzle/board/chess/ping-pong/stealth} game on your holo-rig, trying to thrash each other at it. [Bess] is {incredibly good/quite good/decent/really bad/incredibly bad} at it. You both have a blast.
+
+
+Message #17 | bessFriend = true
+// Randomize bracket contents.
+
+You decide to chill a bit with [Bess]. You both sit down and watch a {mind-blowingly awesome TV show. You both gush about how awesome it is/great TV show that has some fantastic hooks. You both thoroughly enjoy it/pretty average TV show. You both remark on its pros and cons/pretty awful TV show. You both pick it apart/show that is so bad, it's good. You critique the show at length} as you continue to watch it together. 
+
+
+Message #18 | bessFriend = false
+
+You sit and talk to [Bess]. You chat about what has been going on lately and [bess.heShe] hangs on every word. 
+
+
+Message #19 | bessFriend = false
+
+You spend some time with [Bess]. There are small but critical errors around the ship and you get [bess.himHer] to help you fix them up. Once you're done the ship is running that much better.
+
+
+Message #20 | bessFriend = false
+
+You spend some time with [Bess]. [bess.HeShe] spends a lot of time explaining to you about the latest JoyCo products, encouraging you to buy them as soon as you are physically able.
+
+
+Message #21 | bessFriend = false
+
+You sit down with [Bess] to chat. [bess.HeShe] talks to you about the exact process your body goes through when you orgasm, skipping no details. For some reason it still sounds hot even when [bess.heShe] reduces it to science.
+
+
+Message #22 | bessFriend = false
+// Randomize in the brackets one.
+
+You spend some time chatting with [Bess]. [bess.HeShe] informs you of [bess.hisHer] current condition and also tells you that [bess.heShe] is perfectly capable of providing sexual relief whenever you need it in a multitude of positions. [bess.HeShe] goes on to detail [bess.heShe] sex act called {the 'flaming horndog'/the 'farmer's wheel'/the 'horny frogger'/the 'spaghetti slideshow'/the 'medusan cascade''/'crouching for credits'/'flipping the pink''/'rubber flubbing'/'TPTA'}
+
+
+Message #23 | Up to Approach Scene #4 (Watched #3). && bessFriend = false
+
+You sit down with [Bess] to talk.  [bess.HeShe] explains how [bess.hisHer] research into making the universe a happier place is going. You listen to [bess.hisHer] thoughts and conclusions, occasionally giving [bess.himHer] some advice on what to try next.
+
+
+Message #24 | Up to Approach Scene #4 (Watched #3)
+// Another randomizer in the brackets one.
+
+You decide to spend some time with [Bess]. [bess.HeShe] spends a great deal of time talking about the {movies [bess.heShe]'s watched/holos [bess.heShe]'s read/shows [bess.heShe]'s watched/music [bess.heShe]'s listened to} lately and how [bess.heShe] {loved it and is adding it to [bess.hisHer] collection/really, really liked it/thought it was pretty average/found it really bad/positively awful and wants [bess.hisHer] time back.} You spend some time talking with [bess.himHer] about it.
+
+Message #25 | Up to Approach Scene #4 (Watched #3)
+// Another randomizer in the brackets one.
+
+You decide to spend some time with [Bess]. [bess.HeShe] spends a great deal of time talking about the {articles [bess.heShe] has read/news [bess.heShe] has watched} lately and how [bess.heShe] found the subject matter {really sad/hilarious/quite infuriating/a little silly/thought-provoking/mind-numbing/perplexing/awe-inspiring/quite worrying}. You spend some time talking with [bess.himHer] about it.
+
+
+Message #26 | bessFriend = false
+
+You sit down with [Bess] to chat. You talk to [bess.himHer] about your journey and why you're on it. [bess.HeShe] seems touched by the fact you are sharing this information with [bess.himHer] and listens to you speak in reverent silence.
+
+
+ Message #27 | bessFriend = false
+
+You spend some time with [Bess]. You talk to [bess.himHer] about your uncle, Maximillian, and your cousin slash rival. [bess.HeShe] seems touched by the fact you are sharing this information with [bess.himHer] and listens to you speak in reverent silence.
+
+
+Message #28 | bessFriend = false
+// Another randomizer with brackets.
+
+You sit down with [Bess] to talk. You ask [bess.hisHer] simple questions about [bess.himHer]self and [bess.heShe] eagerly responds, quite happy to give you [bess.hisHer] full specs in every single detail. By the time you've both finished talking you know {the exact size of [bess.hisHer] brain/how much meld-milk [bess.heShe] can store/her body weight/exactly how [bess.hisHer] skeleton was made/how many lines of code [bess.heShe] has/the names of [bess.hisHer] programming team/how many gallons of cum [bess.heShe] can swallow/the largest object [bess.heShe] can fit inside [bess.himHer]self/how [bess.hisHer] skin was made}.
