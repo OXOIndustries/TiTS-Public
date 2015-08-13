@@ -7,6 +7,7 @@ import classes.GameData.Pregnancy.Handlers.NyreaHuntressPregnancy;
 import classes.GameData.Pregnancy.PregnancyManager;
 import classes.GUI;
 import classes.Items.Accessories.LeithaCharm;
+import classes.Items.Miscellaneous.EmptySlot;
 import classes.Items.Miscellaneous.HorsePill;
 import classes.RoomClass;
 import classes.StorageClass;
@@ -2458,7 +2459,7 @@ public function statisticsScreen(showID:String = "All"):void
 		output2("\n<b><u>Currently Worn</u></b>");
 		if(!(pc.meleeWeapon is EmptySlot))
 		{
-			output2("\n<b>* Melee Weapon: </b>" + pc.meleeWeapon.shortName);
+			output2("\n<b>* Melee Weapon: </b>" + pc.meleeWeapon.shortName + " " + pc.meleeWeapon.getDamageFlags("", pc.meleeWeapon, new EmptySlot()) + " " + pc.meleeWeapon.getResistanceFlags("", pc.meleeWeapon, new EmptySlot()));
 		}
 		if(!(pc.rangedWeapon is EmptySlot))
 		{

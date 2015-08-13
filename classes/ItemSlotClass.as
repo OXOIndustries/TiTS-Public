@@ -469,13 +469,14 @@
 			return damageString;
 		}
 		
-		private function getDamageFlags(headerString:String, newItem:ItemSlotClass, oldItem:ItemSlotClass):String
+		public function getDamageFlags(headerString:String, newItem:ItemSlotClass, oldItem:ItemSlotClass):String
 		{
 			var nFlags:Vector.<DamageFlag> = newItem.baseDamage.getFlags();
 			var oFlags:Vector.<DamageFlag> = oldItem.baseDamage.getFlags();
 			var hasFlags:Array = [];
 			
-			var flags:String = "Damage Flags:\n";
+			var flags:String = "";
+			if (headerString.length > 0) flags = headerString + ":\n";
 			var fNew:String = "";
 			var fDupe:String = "";
 			var fLost:String = "";
@@ -597,13 +598,14 @@
 			return resistancesDiffString;
 		}
 		
-		private function getResistanceFlags(header:String, newItem:ItemSlotClass, oldItem:ItemSlotClass):String
+		public function getResistanceFlags(header:String, newItem:ItemSlotClass, oldItem:ItemSlotClass):String
 		{
 			var nFlags:Vector.<DamageFlag> = newItem.resistances.getFlags();
 			var oFlags:Vector.<DamageFlag> = oldItem.resistances.getFlags();
 			var hasFlags:Array = [];
 			
-			var flags:String = header + ":\n";
+			var flags:String = "";
+			if (header.length > 0) flags = header + ":\n";
 			var fNew:String = "";
 			var fDupe:String = "";
 			var fLost:String = "";
