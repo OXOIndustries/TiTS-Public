@@ -424,7 +424,7 @@ package classes.GameData
 			shieldBooster.classLimit = GLOBAL.CLASS_ENGINEER;
 			shieldBooster.levelLimit = 2;
 			shieldBooster.perkName = "Shield Booster";
-			shieldBooster.perkDescription = "Grants a further increase to your shield generator, providing an additional four points of protection per level.";
+			shieldBooster.perkDescription = "Grants a further increase to your shield generator, providing an additional eight points of protection per level.";
 			insertPerkData(shieldBooster);
 			
 			// Level 3

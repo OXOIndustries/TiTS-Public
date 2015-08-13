@@ -1014,7 +1014,7 @@ public function pcBeatsGoo():void
 		addDisabledButton(0,"Fuck Her","Fuck Her","You aren't aroused enough to even consider this.");
 		addDisabledButton(1,"Get Egged","Get Egged","You aren't aroused enough to even consider this.");
 	}
-	if(pc.armor is GooArmor || pc.destroyItemByName("Goo Armor",1)) addButton(14,"Leave",armorGooVictoryShits);
+	if(pc.armor is GooArmor || pc.hasItemByName("Goo Armor",1)) addButton(14,"Leave",armorGooVictoryShits);
 	else addButton(14,"Leave",genericVictory);
 }
 
@@ -1227,13 +1227,15 @@ public function armorGooVictoryShits():void
 	}
 	//what if pc has it somewhere in inventory...
 	//Find it in inventory... and upgrade. Fuck it, if the PC has multiple, upgrade 'em all. Fekkin' cheaters.
-	for(var x:int = 0; x < inventory.length; x++)
+	for(var x:int = 0; x < pc.inventory.length; x++)
 	{
-		if(inventory[x].shortName == "Goo Armor")
+		trace("LOOKING FOR GOO ARMOR. @: " + pc.inventory[x].longName);
+		if(pc.inventory[x].shortName == "Goo Armor")
 		{
-			inventory[x].hasRandomProperties = true;
-			inventory[x].defense += 2;
-			inventory[x].resistances.addFlag(DamageFlag.MIRRORED);
+			trace("UPGRADING GOOSHIT!");
+			pc.inventory[x].hasRandomProperties = true;
+			pc.inventory[x].defense += 2;
+			pc.inventory[x].resistances.addFlag(DamageFlag.MIRRORED);
 		}
 	}
 	processTime(6);

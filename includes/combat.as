@@ -206,69 +206,69 @@ public function specialsMenu():void {
 	if(pc.characterClass == GLOBAL.CLASS_MERCENARY)
 	{
 		//EVERYONE HAS
-		if(pc.energy() >= 25) addButton(offset,"Headbutt",attackRouter,headbutt,"Headbutt","A physique-based attack that does not factor in weapon damage but has a chance of stunning your target.\n\nConsumes 25 energy.");
-		else addDisabledButton(offset, "Headbutt");
+		if(pc.energy() >= 25) addButton(offset,"Headbutt",attackRouter,headbutt,"Headbutt","<b>Energy Cost: 25</b>\n\nA physique-based attack that does not benefit from weapon damage but has a chance of stunning your target.");
+		else addDisabledButton(offset, "Headbutt","Headbutt","<b>Energy Cost: 25</b>\n\nA physique-based attack that does not benefit from weapon damage but has a chance of stunning your target.");
 		offset++;
 		
 		//EITHER OR!
 		if(pc.hasPerk("Rapid Fire"))
 		{
 			if(pc.hasStatusEffect("Disarmed")) addDisabledButton(offset,"Rapid Fire","Rapid Fire","You cannot use rapid fire while disarmed.");
-			else if(pc.energy() >= 20) addButton(offset,"Rapid Fire",attackRouter,rapidFire,"Rapid Fire","Perform a long range attack with two additional, low accuracy shots following it.\n\nConsumes 20 energy.");
-			else addDisabledButton(offset, "Rapid Fire");
+			else if(pc.energy() >= 20) addButton(offset,"Rapid Fire",attackRouter,rapidFire,"Rapid Fire","<b>Energy Cost: 20</b>\n\nPerform a long range attack with two additional, low accuracy shots following it.");
+			else addDisabledButton(offset, "Rapid Fire","Rapid Fire","<b>Energy Cost: 20</b>\n\nPerform a long range attack with two additional, low accuracy shots following it.");
 			offset++;
 		}
 		
 		if(pc.hasPerk("Power Strike"))
 		{
 			if(pc.hasStatusEffect("Disarmed")) addDisabledButton(offset,"Power Strike","Power Strike","You cannot use power strike while disarmed.");
-			else if(pc.energy() >= 20) addButton(offset,"Power Strike",attackRouter,powerStrike,"Power Strike","Strike once with a melee weapon for double damage.\n\nConsumes 20 energy.");
-			else addDisabledButton(offset, "Power Strike");
+			else if(pc.energy() >= 20) addButton(offset,"Power Strike",attackRouter,powerStrike,"Power Strike","<b>Energy Cost: 20</b>\n\nStrike once with a melee weapon for 200% of normal damage.");
+			else addDisabledButton(offset, "Power Strike","Power Strike","<b>Energy Cost: 20</b>\n\nStrike once with a melee weapon for 200% of normal damage.");
 			offset++;
 		}
 		
 		if(pc.hasPerk("Take Cover")) 
 		{
 			
-			if(pc.energy() >= 20) addButton(offset,"Take Cover",takeCover,undefined,"Take Cover","Provides you a 90% chance of avoiding a ranged attack for 3 turns.\n\nConsumes 20 energy.");
-			else addDisabledButton(offset,"Take Cover");
+			if(pc.energy() >= 20) addButton(offset,"Take Cover",takeCover,undefined,"Take Cover","<b>Energy Cost: 20</b>\n\nIncreased ranged evasion to 90% for three turns.");
+			else addDisabledButton(offset,"Take Cover","Take Cover","<b>Energy Cost: 20</b>\n\nIncreased ranged evasion to 90% for three turns.");
 			offset++;
 		}
 		
 		if (pc.hasPerk("Carpet Grenades"))
 		{
 			if(pc.hasStatusEffect("Disarmed")) addDisabledButton(offset,"Carpet Grenades","Carpet Grenades","You cannot use carpet grenades while disarmed.");
-			else if(pc.energy() >= 25) addButton(offset,"Carpet Grenades",carpetGrenades,undefined,"Carpet Grenades","An attack that is extra effective against multiple foes. It deals thermal damage and is not tied into a particular stat.\n\nConsumes 25 energy.");
-			else addDisabledButton(offset,"Carpet Grenades");
+			else if(pc.energy() >= 25) addButton(offset,"Carpet Grenades",carpetGrenades,undefined,"Carpet Grenades","<b>Energy Cost: 25</b>\n\nAn attack that is extra effective against multiple foes. Its damage is increased by level and intelligence.");
+			else addDisabledButton(offset,"Carpet Grenades","Carpet Grenades","<b>Energy Cost: 25</b>\n\nAn attack that is extra effective against multiple foes. Its damage is increased by level and intelligence.");
 			offset++;
 		}
 		
 		if(pc.hasPerk("Detonation Charge"))
 		{
 			if(pc.hasStatusEffect("Disarmed")) addDisabledButton(offset,"Det. Charge","Det. Charge","You cannot use det. charges while disarmed.");
-			else if(pc.energy() >= 25) addButton(offset,"Det. Charge",attackRouter,detCharge,"Detonation Charge","Deals a moderate amount of thermal damage against a single foe.\n\nConsumes 25 energy.");
-			else addDisabledButton(offset,"Det. Charge");
+			else if(pc.energy() >= 25) addButton(offset,"Det. Charge",attackRouter,detCharge,"Detonation Charge","<b>Energy Cost: 25</b>\n\nDeals a high amount of level and intelligence-based thermal damage against a single foe.");
+			else addDisabledButton(offset,"Det. Charge","Det. Charge","<b>Energy Cost: 25</b>\n\nDeals a high amount of level and intelligence-based thermal damage against a single foe.");
 			offset++;
 		}
 		
 		if(pc.level >= 5)
 		{
-			if(!pc.hasStatusEffect("Used Second Wind")) addButton(offset,"Second Wind",secondWind,undefined,"Second Wind","Regenerate 50% of your maximum HP and energy once per battle! An invaluable ability for the mercenary in the field.");
-			else addDisabledButton(offset,"Second Wind");
+			if(!pc.hasStatusEffect("Used Second Wind")) addButton(offset,"Second Wind",secondWind,undefined,"Second Wind","<b>Energy Cost: 0\nOnce per combat encounter!</b>\n\nRegenerate 50% of your maximum HP and energy once per battle! An invaluable ability for the mercenary in the field.");
+			else addDisabledButton(offset,"Second Wind","Second Wind","<b>Energy Cost: 0\nOnce per combat encounter!</b>\n\nRegenerate 50% of your maximum HP and energy once per battle! An invaluable ability for the mercenary in the field.");
 			offset++;
 		}
 	}
 	else if (pc.characterClass == GLOBAL.CLASS_ENGINEER) 
 	{
-		if(pc.energy() >= 25) addButton(offset,"P.Shock",attackRouter,paralyzingShock,"Paralyzing Shock","An attack that allows you to paralyze a single foe. Characters with higher intelligence will have greater success using this skill.\n\nConsumes 25 energy.");
-		else addDisabledButton(offset, "P.Shock");
+		if(pc.energy() >= 25) addButton(offset,"P.Shock",attackRouter,paralyzingShock,"Paralyzing Shock","<b>Energy Cost: 25</b>\n\nAn ability with an intelligence-based chance to paralyze a single foe. Enemies with higher physique scores will be more likely to resist its effects!");
+		else addDisabledButton(offset, "P.Shock","P.Shock","<b>Energy Cost: 25</b>\n\nAn ability with an intelligence-based chance to paralyze a single foe. Enemies with higher physique scores will be more likely to resist its effects!");
 		offset++;
 		
 		if(pc.hasPerk("Volley")) 
 		{
 			if(pc.hasStatusEffect("Disarmed")) addDisabledButton(offset,"Volley","Volley","You cannot use volley while disarmed.");
-			else if (pc.energy() >= 20) addButton(offset, "Volley", attackRouter, volley, "Volley", "An attack that allows you to fire your gun one additional time at lowered accuracy. Players with higher aim will notice the attack has a higher chance of blinding the target.\n\nConsumes 20 energy.");
-			else addDisabledButton(offset, "Volley");
+			else if (pc.energy() >= 20) addButton(offset, "Volley", attackRouter, volley, "Volley", "<b>Energy Cost: 20</b>\n\nPerform a ranged attack with an additional, low-accuracy attack added on. Can blind foes based upon aim and the target's reflexes, but only if done with <b>an energy weapon.</b>");
+			else addDisabledButton(offset, "Volley","Volley","<b>Energy Cost: 20</b>\n\nPerform a ranged attack with an additional, low-accuracy attack added on. Can blind foes based upon aim and the target's reflexes.");
 			offset++;
 		}
 		
@@ -281,51 +281,51 @@ public function specialsMenu():void {
 			else
 			{
 				if(pc.hasStatusEffect("Disarmed")) addDisabledButton(offset,"Overcharge","Overcharge","You cannot use overcharge while disarmed.");
-				else if(pc.energy() >= 20) addButton(offset,"Overcharge",attackRouter,overcharge,"Overcharge","A powerful ranged attack, Overcharge deals 150% damage and has a chance of stunning. Higher aim increases the chance of successfully stunning your foe.\n\nConsumes 20 energy.");
-				else addDisabledButton(offset, "Overcharge", "Overcharge", "You do not have enough energy to use Overcharge.");
+				else if(pc.energy() >= 20) addButton(offset,"Overcharge",attackRouter,overcharge,"Overcharge","<b>Energy Cost: 20</b>\n\nA powerful ranged attack, Overcharge deals 150% damage and has a chance of stunning. Higher intelligence increases the chance of successfully stunning your foe.");
+				else addDisabledButton(offset, "Overcharge", "Overcharge", "<b>Energy Cost: 20</b>\n\nA powerful ranged attack, Overcharge deals 150% damage and has a chance of stunning. Higher intelligence increases the chance of successfully stunning your foe.");
 			}
 			offset++;
 		}
 		
 		if(pc.hasPerk("Deflector Regeneration"))
 		{
-			if(pc.energy() >= 20) addButton(offset,"D. Regen.",deflectorRegeneration,pc,"Deflector Regeneration","Restores a portion of your shields every turn. Higher intelligence characters will regain even more shields per turn.\n\nConsumes 20 energy.");
-			else addDisabledButton(offset, "D. Regen.");
+			if(pc.energy() >= 20) addButton(offset,"D. Regen.",deflectorRegeneration,pc,"Deflector Regeneration","<b>Energy Cost: 20</b>\n\nRestores a portion of your shields every turn for four turns. Higher intelligence will increase the amount.");
+			else addDisabledButton(offset, "D. Regen.","Deflector Regeneration","<b>Energy Cost: 20</b>\n\nRestores a portion of your shields every turn for four turns. Higher intelligence will increase the amount.");
 			offset++;
 		}
 		
 		if(pc.hasPerk("Power Surge"))
 		{
-			if(pc.energy() >= 33) addButton(offset,"P. Surge",powerSurge,pc,"Power Surge","Restores a moderate amount of shields based on intelligence.\n\nConsumes 33 energy.");
-			else addDisabledButton(offset, "P. Surge");
+			if(pc.energy() >= 33) addButton(offset,"P. Surge",powerSurge,pc,"Power Surge","<b>Energy Cost: 33</b>\n\nRestores a moderate amount of shields based on intelligence.");
+			else addDisabledButton(offset, "P. Surge","Power Surge","<b>Energy Cost: 33</b>\n\nRestores a moderate amount of shields based on intelligence.");
 			offset++;
 		}
 		
 		if(pc.hasPerk("Thermal Disruptor"))
 		{
 			if(pc.hasStatusEffect("Disarmed")) addDisabledButton(offset,"Thermal Strike","Thermal Strike","You cannot use thermal disruptors while disarmed.");
-			else if(pc.energy() >= 25) addButton(offset,"T. Disrupt.",attackRouter,thermalDisruptor,"Thermal Disruptor","Deals a large amount of intelligence-based thermal damage to a single target.\n\nConsumes 25 energy.");
-			else addDisabledButton(offset, "T. Disrupt.");
+			else if(pc.energy() >= 25) addButton(offset,"T. Disrupt.",attackRouter,thermalDisruptor,"Thermal Disruptor","<b>Energy Cost: 25</b>\n\nDeals a large amount of intelligence-based thermal damage to a single target.");
+			else addDisabledButton(offset, "T. Disrupt.","Thermal Disruptor","<b>Energy Cost: 25</b>\n\nDeals a large amount of intelligence-based thermal damage to a single target.");
 			offset++;
 		}
 		
 		if(pc.hasPerk("Gravidic Disruptor"))
 		{
 			if(pc.hasStatusEffect("Disarmed")) addDisabledButton(offset,"G. Disrupt.","G. Disrupt.","You cannot use disruptors while disarmed.");
-			else if(pc.energy() >= 25) addButton(offset, "G. Disrupt.",attackRouter,gravidicDisruptor,"Gravitic Disruptor","Deals a moderate amount of intelligence-based, Unresistable damage to a single target.\n\nConsumes 25 energy.");
-			else addDisabledButton(offset, "G. Disrupt.");
+			else if(pc.energy() >= 25) addButton(offset, "G. Disrupt.",attackRouter,gravidicDisruptor,"<b>Energy Cost: 25</b>\n\nGravitic Disruptor","Deals a moderate amount of intelligence-based, Unresistable damage to a single target.");
+			else addDisabledButton(offset, "G. Disrupt.","Gravitic Disruptor","<b>Energy Cost: 25</b>\n\nDeals a moderate amount of intelligence-based, Unresistable damage to a single target.");
 			offset++;
 		}
 		if(pc.hasPerk("Shield Hack"))
 		{
-			if(pc.energy() >= 25) addButton(offset,"S. Hack",attackRouter,shieldHack,"Shield Hack","Attempts to deal high damage to a target's shields.\n\nConsumes 25 energy.");
-			else addDisabledButton(offset,"S. Hack","Shield Hack","You do not have enough energy to use this attack.\n\nConsumes 25 energy.");
+			if(pc.energy() >= 25) addButton(offset,"S. Hack",attackRouter,shieldHack,"Shield Hack","<b>Energy Cost: 25</b>\n\nAn attack that deals a high amount of electric-typed damage to a target's shields. Damage is increased by intelligence.");
+			else addDisabledButton(offset,"S. Hack","Shield Hack","<b>Energy Cost: 25</b>\n\nAn attack that deals a high amount of electric-typed damage to a target's shields. Damage is increased by intelligence.");
 			offset++;
 		}
 		if(pc.hasPerk("Weapon Hack"))
 		{
-			if(pc.energy() >= 25) addButton(offset,"W. Hack",attackRouter,weaponHack,"Weapon Hack","Attempt to neutralize a foe's energy weapon.\n\nConsumes 20 energy.");
-			else addDisabledButton(offset,"W. Hack","Weapon Hack","You do not have enough energy to use this attack.\n\nConsumes 20 energy.");
+			if(pc.energy() >= 10) addButton(offset,"W. Hack",attackRouter,weaponHack,"Weapon Hack","<b>Energy Cost: 10</b>\n\nAttempt to neutralize a foe's <b>energy weapon</b> using your intelligence. Smarter foes will resist your attempts.");
+			else addDisabledButton(offset,"W. Hack","Weapon Hack","<b>Energy Cost: 10</b>\n\nAttempt to neutralize a foe's <b>energy weapon</b> using your intelligence. Smarter foes will resist your attempts.");
 			offset++;
 		}
 	}
@@ -333,64 +333,63 @@ public function specialsMenu():void {
 	{
 		if(silly)
 		{
-			if(pc.energy() >= 10) addButton(offset,"P.Sand",attackRouter,flashGrenade,"Pocket Sand","Produce some sand from your level and use it to blind your enemies! Better aim will help you land the attack.\n\nConsumes 10 energy.");
-			else addDisabledButton(offset, "P.Sand");
+			if(pc.energy() >= 10) addButton(offset,"P.Sand",attackRouter,flashGrenade,"Pocket Sand","<b>Energy Cost: 10</b>\n\nProduce some sand from your level and use it to blind your enemies! Better aim will help you land the attack.");
+			else addDisabledButton(offset, "P.Sand","Pocket Sand","<b>Energy Cost: 10</b>\n\nProduce some sand from your level and use it to blind your enemies! Better aim will help you land the attack.");
 			offset++;
 		}
 		else
 		{
-			if(pc.energy() >= 10) addButton(offset,"F.Grenade",attackRouter,flashGrenade,"Flash Grenade","Produce a rechargible flash grenade and use it to blind your enemy. Better aim will increase the chance of success.\n\nConsumes 10 energy.");
-			else addDisabledButton(offset, "F.Grenade");	
+			if(pc.energy() >= 10) addButton(offset,"F.Grenade",attackRouter,flashGrenade,"Flash Grenade","<b>Energy Cost: 10</b>\n\nProduce a rechargible flash grenade and use it to blind your enemy. Better aim will increase the chance of success.");
+			else addDisabledButton(offset, "F.Grenade","Flash Grenade","Energy Cost: 10</b>\n\nProduce a rechargible flash grenade and use it to blind your enemy. Better aim will increase the chance of success.");	
 			offset++;
 		}
 		
 		if(pc.hasPerk("Low Blow"))
 		{
-			if(pc.energy() >= 15) addButton(offset,"Low Blow",attackRouter,lowBlow,"Low Blow","A melee strike with an aim-based chance of stunning your target.\n\nConsumes 15 energy.");
-			else addDisabledButton(offset, "Low Blow");	
+			if(pc.energy() >= 15) addButton(offset,"Low Blow",attackRouter,lowBlow,"Low Blow","<b>Energy Cost: 15</b>\n\nA melee ability with a physique-based chance of stunning your target. It does not do damage, and stronger foes will be more able to resist being stunned.");
+			else addDisabledButton(offset, "Low Blow","Low Blow","<b>Energy Cost: 15</b>\n\nA melee ability with a physique-based chance of stunning your target. It does not do damage, and stronger foes will be more able to resist being stunned.");
 			offset++;
 		}
 		
 		if (pc.hasPerk("Disarming Shot")) 
 		{
 			if(pc.hasStatusEffect("Disarmed")) addDisabledButton(offset,"Disarm Shot","Disarm Shot","You cannot use disarming shot while disarmed.");
-			else if(pc.energy() >= 20) addButton(offset, "Disarm Shot",attackRouter,disarmingShot,"Disarming Shot","Disarms your foe, preventing them from making use of melee or ranged weapons for turn.\n\nConsumes 15 energy.");
-			else addDisabledButton(offset, "Disarm Shot");	
+			else if(pc.energy() >= 20) addButton(offset, "Disarm Shot",attackRouter,disarmingShot,"Disarming Shot","<b>Energy Cost: 20</b>\n\nA single shot that will disable your target's usage of traditional weapons - if it hits. The strike has the same chance of hitting as any other shot. Note that this does not effect creatures or machines with integrated weaponry.");
+			else addDisabledButton(offset, "Disarm Shot","Disarm Shot","<b>Energy Cost: 20</b>\n\nA single shot that will disable your target's usage of traditional weapons - if it hits. The strike has the same chance of hitting as any other shot. Note that this does not effect creatures or machines with integrated weaponry.");
 			offset++;
 		}
-		
 		if (pc.hasPerk("Stealth Field Generator")) 
 		{
-			if(pc.energy() >= 20 && !pc.hasStatusEffect("Stealth Field Generator")) addButton(offset,"Stealth Field",stealthFieldActivation,undefined,"Stealth Field","Creates a stealth field that greatly increases your evasion for a few turns.");
-			else addDisabledButton(offset, "Stealth Field");
+			if(pc.energy() >= 20 && !pc.hasStatusEffect("Stealth Field Generator")) addButton(offset,"Stealth Field",stealthFieldActivation,undefined,"Stealth Field","<b>Energy Cost: 20</b>\n\nCreates a stealth field that greatly increases your evasion for a few turns.");
+			else addDisabledButton(offset, "Stealth Field","Stealth Field","<b>Energy Cost: 20</b>\n\nCreates a stealth field that greatly increases your evasion for a few turns.");
 			offset++;
 		}
 		
 		if(pc.hasPerk("Grenade"))
 		{
 			if(pc.hasStatusEffect("Disarmed")) addDisabledButton(offset,"Grenade","Grenade","You cannot use grenades while disarmed.");
-			else if(pc.energy() >= 25) addButton(offset,"Grenade",attackRouter,grenade,"Grenade","Does a moderate amount of thermal damage to a single opponent.\n\nConsumes 25 energy.");
-			else addDisabledButton(offset, "Grenade");	
+			else if(pc.energy() >= 25) addButton(offset,"Grenade",attackRouter,grenade,"Grenade","<b>Energy Cost: 25</b>\n\nDoes a moderate amount of intelligence-based thermal and kinetic damage to a single opponent.");
+			else addDisabledButton(offset, "Grenade","Grenade","<b>Energy Cost: 25</b>\n\nDoes a moderate amount of intelligence-based thermal and kinetic damage to a single opponent.");
 			offset++;
 		}
 		
 		if(pc.hasPerk("Gas Grenade"))
 		{
 			if(pc.hasStatusEffect("Disarmed")) addDisabledButton(offset,"Gas Grenade","Gas Grenade","You cannot use grenades while disarmed.");
-			else if(pc.energy() >= 25) addButton(offset,"Gas Grenade",attackRouter,gasGrenade,"Gas Grenade","An unavoidable attack that deals a fair amount of lust damage.\n\nConsumes 25 energy.");
-			else addDisabledButton(offset, "Gas Grenade");	
+			else if(pc.energy() >= 25) addButton(offset,"Gas Grenade",attackRouter,gasGrenade,"Gas Grenade","<b>Energy Cost: 25</b>\n\nAn unavoidable attack that deals a fair amount of lust damage. Increases slightly with level.");
+			else addDisabledButton(offset, "Gas Grenade","Gas Grenade","<b>Energy Cost: 25</b>\n\nAn unavoidable attack that deals a fair amount of lust damage. Increases slightly with level.");
 			offset++;
 		}
 		if(pc.hasPerk("Smuggled Stimulant"))
 		{
-			if(pc.hasStatusEffect("Used Smuggled Stimulant")) addDisabledButton(offset,"S.Stimulant","Smuggled Stimulant","You've already used your smuggled stimulant for this encounter.");
-			else addButton(offset,"S.Stimulant",struggledStimulant,undefined,"Smuggled Stimulant","Inject yourself with a smuggled stimulant, causing you to recover 25 energy a turn for three turns.");
+			if(pc.hasStatusEffect("Used Smuggled Stimulant")) addDisabledButton(offset,"S.Stimulant","Smuggled Stimulant","<b>You've already used your smuggled stimulant for this encounter.");
+			else addButton(offset,"S.Stimulant",struggledStimulant,undefined,"Smuggled Stimulant","<b>Energy Cost: 0</b>\n<b>Once per combat encounter!</b>\n\nInject yourself with a smuggled stimulant, causing you to recover 25 energy a turn for three turns.");
 			offset++;
 		}
 		if(pc.hasPerk("Burst of Energy"))
 		{
 			if(pc.hasStatusEffect("Used Burst of Energy")) addDisabledButton(offset,"B.O. Energy","Burst of Energy","You've already used a burst of energy this encounter.");
-			else addButton(offset,"B.O. Energy",burstOfEnergy,undefined,"Burst of Energy","Get a burst of energy, recovering 60 energy.\n\nYou may only do this once per encounter.");
+			else addButton(offset,"B.O. Energy",burstOfEnergy,undefined,"Burst of Energy","<b>Energy Cost: 0</b>\n<b>Once per combat encounter!</b>\n\nGet a burst of energy, recovering 60 energy.\n\nYou may only do this once per encounter.");
 			offset++;
 		}
 	}
@@ -435,11 +434,11 @@ public function specialsMenu():void {
 		}
 		else if (pc.energy() < 25)
 		{
-			addDisabledButton(offset++, "Concussive Shot", "Concussive Shot", "Concussive shot requires 25 energy.");
+			addDisabledButton(offset++, "Concussive Shot", "Concussive Shot", "<b>Energy Cost: 25</b>\n\nFire an explosive arrow at your target, potentially stunning them for 1-2 rounds.");
 		}
 		else
 		{
-			addButton(offset, "Concussive Shot", attackRouter, pcConcShot, "Concussive Shot", "Fire an explosive arrow at your target, potentially stunning them for 2-4 rounds.");
+			addButton(offset, "Concussive Shot", attackRouter, pcConcShot, "Concussive Shot", "<b>Energy Cost: 25</b>\n\nFire an explosive arrow at your target, potentially stunning them for 1-2 rounds.");
 		}
 		offset++;
 	}
@@ -1275,7 +1274,7 @@ public function concentratedFire(hit:Boolean = true):void
 public function playerRangedAttack(target:Creature):void 
 {
 	rangedAttack(pc, target,true);
-	if(pc.hasPerk("Second Shot")) attack(pc,target,true,1);
+	if(pc.hasPerk("Second Shot")) rangedAttack(pc,target,true,2);
 	playerMimbraneCloudAttack();
 	processCombat();
 }
@@ -1350,8 +1349,9 @@ public function attack(attacker:Creature, target:Creature, noProcess:Boolean = f
 		if(attacker == pc) output("You land a hit on " + target.a + target.short + " with your " + pc.meleeWeapon.longName + "!");
 		else if(!attacker.plural) output(attacker.capitalA + attacker.short + " connects with " + attacker.mfn("his","her","its") + " " + attacker.meleeWeapon.longName + "!");
 		else output(attacker.capitalA + attacker.short + " connect with their " + attacker.meleeWeapon.longName + "!");
-		
-		applyDamage(attacker.meleeDamage(), attacker, target, "melee");
+		var damage = attacker.meleeDamage();
+ 		damageRand(damage, 15);
+		applyDamage(damage, attacker, target, "melee");
 	}
 	//Do multiple attacks if more are queued (does not stack with special!)
 	if(attacker.hasStatusEffect("Multiple Attacks") && special == 0) {
@@ -1442,13 +1442,15 @@ public function rangedAttack(attacker:Creature, target:Creature, noProcess:Boole
 		else if(attacker.plural) output(attacker.capitalA + attacker.short + " connect with their " + plural(attacker.rangedWeapon.longName) + "!");
 		else output(attacker.capitalA + attacker.short + " connects with " + attacker.mfn("his", "her", "its") + " " + attacker.rangedWeapon.longName + "!");
 		
+		var damage = attacker.rangedDamage();
+ 		damageRand(damage, 15);
 		if (attacker.rangedWeapon is Goovolver)
 		{
-			applyDamage(attacker.rangedDamage(), attacker, target, "goovolver");
+			applyDamage(damage, attacker, target, "goovolver");
 		}
 		else
 		{
-			applyDamage(attacker.rangedDamage(), attacker, target, "ranged");
+			applyDamage(damage, attacker, target, "ranged");
 		}		
 	}
 	//Do multiple attacks if more are queued.
@@ -3593,7 +3595,7 @@ public function volley(target:Creature):void {
 	//Do the bonus flurry shot!
 	rangedAttack(pc,target,true,2);
 	//Chance of bliiiiiiiind
-	if(pc.aim()/2 + rand(20) + 1 >= target.reflexes()/2 + 10 && !target.hasStatusEffect("Blind")) {
+	if(pc.aim()/2 + rand(20) + 1 >= target.reflexes()/2 + 10 && !target.hasStatusEffect("Blind") && pc.hasRangedEnergyWeapon()) {
 		if(target.plural) output("<b>" + target.capitalA + target.short + " are blinded by your " + possessive(pc.rangedWeapon.longName) + " flashes.</b>\n");
 		else output("<b>" + target.capitalA + target.short + " is blinded by your " + possessive(pc.rangedWeapon.longName) + " flashes.</b>\n");
 		target.createStatusEffect("Blind",3,0,0,0,false,"Blind","Accuracy is reduced, and ranged attacks are far more likely to miss.",true,0);
@@ -3642,13 +3644,16 @@ public function overcharge(target:Creature):void {
 		damage.multiply(1.5);
 		damageRand(damage, 15);
 		applyDamage(damage, pc, target, "overcharge");
+		if(pc.intelligence()/2 + rand(20) + 1 >= target.physique()/2 + 10 && !target.hasStatusEffect("Stunned") && !target.hasStatusEffect("Stun Immune")) {
+			output("\n");
+			if(target.plural) output("<b>" + target.capitalA + target.short + " are stunned.</b>");
+			else output("<b>" + target.capitalA + target.short + " is stunned.</b>");
+			target.createStatusEffect("Stunned",1,0,0,0,false,"Stun","Cannot act for a turn.",true,0);
+		}
 	}
+	
+	
 	output("\n");
-	if(pc.aim()/2 + rand(20) + 1 >= target.physique()/2 + 10 && !target.hasStatusEffect("Stunned") && !target.hasStatusEffect("Stun Immune")) {
-		if(target.plural) output("<b>" + target.capitalA + target.short + " are stunned.</b>\n");
-		else output("<b>" + target.capitalA + target.short + " is stunned.</b>\n");
-		target.createStatusEffect("Stunned",1,0,0,0,false,"Stun","Cannot act for a turn.",true,0);
-	}
 	processCombat();
 }
 
@@ -3669,7 +3674,7 @@ public function NPCOvercharge():void {
 		damage.multiply(1.75);
 		damageRand(damage, 15);
 		applyDamage(damage, foes[0], pc, "overcharge");
-		if(foes[0].aim()/2 + rand(20) + 1 > pc.physique()/2 + 10 && !pc.hasStatusEffect("Stunned")) {
+		if(foes[0].intelligence()/2 + rand(20) + 1 > pc.physique()/2 + 10 && !pc.hasStatusEffect("Stunned")) {
 			output(" <b>You are stunned!</b>");
 			pc.createStatusEffect("Stunned",1,0,0,0,false,"Stun","You cannot act for one turn!",true,0);
 		}
@@ -3681,8 +3686,9 @@ public function gravidicDisruptor(target:Creature):void
 {
 	clearOutput();
 	pc.energy(-25);
+	var damageAmount:int = Math.round(15 + pc.level * 2.5 + pc.intelligence()/1.5);
 	output("Raising the disruptor, you unleash a targetted gravitic disruption on " + target.a + target.short + "! ");
-	applyDamage(new TypeCollection( { unresistablehp: Math.round(10 + pc.intelligence() / 2 + rand(10)) } ), pc, target, "grav_disruptor");
+	applyDamage(new TypeCollection( { unresistablehp: damageAmount } ), pc, target, "grav_disruptor");
 	output("\n");
 	processCombat();
 }
@@ -3691,7 +3697,8 @@ public function thermalDisruptor(target:Creature):void
 	clearOutput();
 	pc.energy(-25);
 	output("Raising the disruptor, you unleash a wave of burning fire on " + target.a + target.short + "! ");
-	applyDamage(new TypeCollection( { burning: Math.round(25 + pc.intelligence() / 2 + rand(10)) } ), pc, target, "therm_disruptor");
+	var damageAmount:int = Math.round(20 + pc.level * 4 + pc.intelligence());
+	applyDamage(new TypeCollection( { burning: damageAmount } ), pc, target, "therm_disruptor");
 	output("\n");
 	processCombat();
 }
@@ -3861,6 +3868,11 @@ public function disarmingShot(target:Creature):void {
 	if(target.hasStatusEffect("Disarm Immune")) output("You try to disarm " + target.a + target.short + " but can't. <b>It's physically impossible!</b>\n");
 	else if(target.hasStatusEffect("Disarmed")) output("You try to disarm " + target.a + target.short + " but can't. <b>You already did!</b>\n");
 	else if(rangedCombatMiss(pc,target)) output("You try to disarm " + target.a + target.short + " but miss.\n");
+	//Extra miss for blind
+	else if((pc.hasStatusEffect("Blind") || pc.hasStatusEffect("Smoke Grenade")) && rand(10) > 0) {
+		output("Your blind-fired shot fails to connect.\n");
+		concentratedFire(false);
+	}
 	else {
 		output("You land a crack shot on " + possessive(target.a + target.short) + ", disarming them.\n");
 		target.createStatusEffect("Disarmed",4,0,0,0,false,"Blocked","Cannot use normal melee or ranged attacks!",true,0);
@@ -3886,8 +3898,11 @@ public function grenade(target:Creature):void
 	pc.energy(-25);
 	output("Tossing an explosive in the general direction of your target, you unleash an explosive blast of heat on " + target.a + target.short + "! ");
 	
-	var damage:TypeCollection = damageRand(new TypeCollection( { kinetic: 20, burning: 20 } ), 15);
-	
+	var kinDamAmount:int = Math.round(7.5 + pc.level * 2 + pc.intelligence()/2);
+	var thermDamAmount:int = Math.round(7.5 + pc.level * 2 + pc.intelligence()/2);
+
+	var damage:TypeCollection = damageRand(new TypeCollection( { kinetic: kinDamAmount, burning: thermDamAmount } ), 15);
+
 	if (foes[0] is Cockvine)
 	{
 		adultCockvineGrenadesInEnclosedSpaces(damage, false, false, false);
@@ -3904,8 +3919,8 @@ public function gasGrenade(target:Creature):void
 	clearOutput();
 	pc.energy(-25);
 	output("Tossing a hissing grenade in the general direction of your target, you watch the stuff do its trick.");
-	
-	var damage:TypeCollection = damageRand(new TypeCollection( { drug: 14 + pc.level*2 } ), 10);
+	var damageAmount:int = 14 + pc.level*2;
+	var damage:TypeCollection = damageRand(new TypeCollection( { drug: damageAmount } ), 10);
 
 	if (foes[0] is Cockvine)
 	{
@@ -3980,6 +3995,10 @@ public function pcConcShot(target:Creature):void
 	{
 		output(" You let fly, but the arrow sails clean past your intended target.");
 	}
+	//Extra miss for blind
+	else if(pc.hasStatusEffect("Blind") && rand(10) > 0) {
+		output("Your blind <b>concussion shot</b> missed.");
+	}
 	else
 	{
 		output(" You let fly, and a moment later, the arrow explodes in a shockwave of force");
@@ -3993,13 +4012,14 @@ public function pcConcShot(target:Creature):void
 		{
 			output(", stunning your enemy!");
 			
-			var rounds:int = 2 + rand(3);
+			var rounds:int = 1 + rand(2);
 			target.createStatusEffect("Stunned",rounds,0,0,0,false,"Stun","Cannot act for "+ rounds +" turns.",true,0);
 		}
 		
 		// Add some burning damage for the explosion
 		var damage:TypeCollection = pc.rangedDamage();
 		damage.add(new TypeCollection( { burning: 10 } ));
+		damage = damageRand(damage,15);
 		applyDamage(damage, pc, target, "ranged");
 	}
 	
@@ -4126,8 +4146,9 @@ public function carpetGrenades():void
 	clearOutput();
 	pc.energy(-25);
 	output("You sling an array of microgrenades at everything in the area! ");
-	
-	var damage:TypeCollection = damageRand(new TypeCollection( { burning: 30 } ), 15);
+	var damageAmount:int = 10 + pc.level * 2.5 + pc.intelligence()/1.5;
+
+	var damage:TypeCollection = damageRand(new TypeCollection( { burning: damageAmount } ), 15);
 	
 	if (foes[0] is Cockvine)
 	{
@@ -4156,7 +4177,8 @@ public function detCharge(target:Creature):void
 	clearOutput();
 	pc.energy(-25);
 	output("You toss a bundle of explosives in the direction of " + target.a + target.short + "! ");
-	
+	var damageAmount:int = 15 + pc.level * 4 + pc.intelligence();
+
 	var damage:TypeCollection = damageRand(new TypeCollection( { burning: 50 } ), 15);
 	
 	if (foes[0] is Cockvine)
@@ -4182,7 +4204,7 @@ public function shieldHack(target:Creature):void
 	}
 	output("You attempt to wirelessly hack the shield protecting " + target.a + target.short + "! ");
 	
-	var damage:TypeCollection = damageRand(new TypeCollection( { electric: 25 + pc.level * 5 } ), 15);
+	var damage:TypeCollection = damageRand(new TypeCollection( { electric: Math.round(25 + pc.level * 2.5 + pc.intelligence()/1.5) } ), 15);
 	damage.addFlag(DamageFlag.ONLY_SHIELD);
 	
 	var damageResult:DamageResult = calculateDamage(damage, pc, target, "suppress");
@@ -4206,10 +4228,17 @@ public function shieldHack(target:Creature):void
 
 public function weaponHack(target:Creature):void {
 	clearOutput();
-	pc.energy(-20);
+	pc.energy(-10);
 	if(target.hasStatusEffect("Disarm Immune")) output("You try to hack " + target.a + target.short + " but can't. <b>It's physically impossible!</b>\n");
 	else if(target.hasStatusEffect("Disarmed")) output("You try to hack " + target.a + target.short + " but can't. <b>You already did!</b>\n");
 	else if(!target.hasEnergyWeapon()) output("You try to hack " + target.a + target.short + " but there are no energy weapons to shut down!");
+	//ENEMY RESISTS THE HACK!
+	else if(rand(20) + 1 + pc.intelligence() / 2 < target.intelligence()/2 + 10)
+	{
+		output("You try to hack " + target.a + possessive(target.short) + " weapon, but they're too smart and too quick.");
+		if(pc.intelligence() > target.intelligence() - 5) output(".. this time.");
+		output("\n");
+	}
 	else {
 		output("You hack " + possessive(target.a + target.short) + " weapon, disarming them.\n");
 		target.createStatusEffect("Disarmed",4+rand(2),0,0,0,false,"Blocked","Cannot use normal melee or ranged attacks!",true,0);

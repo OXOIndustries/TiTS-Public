@@ -1919,6 +1919,17 @@
 			if(foundAmount >= amount) return true;
 			return false;
 		}
+		public function hasItemByName(arg:String,amount:int = 1):Boolean
+		{
+			if(inventory.length == 0) return false;
+			var foundAmount:int = 0;
+			for(var x:int = 0; x < inventory.length; x++)
+			{
+				if(inventory[x].shortName == arg) foundAmount += inventory[x].quantity;
+			}
+			if(foundAmount >= amount) return true;
+			return false;
+		}
 		public function hasItemByType(ref:Class, amount:int = 1):Boolean
 		{
 			var amt:int = 0;
@@ -2305,7 +2316,9 @@
 			return HPRaw;
 		}
 		public function HPMax(): Number {
-			var hitPoints: Number = 15 + (level - 1) * 15 + HPMod;
+			var bonus:int = 0;
+			bonus = fortification();
+			var hitPoints: Number = 15 + (level - 1) * 15 + HPMod + bonus;
 			if (characterClass == GLOBAL.CLASS_MERCENARY)
 				hitPoints += level * 5;
 			if (characterClass == GLOBAL.CLASS_ENGINEER)
@@ -2840,7 +2853,7 @@
 			temp += rangedWeapon.shields;
 			temp += armor.shields + upperUndergarment.shields + lowerUndergarment.shields + accessory.shields + shield.shields;
 			if (hasPerk("Shield Tweaks")) temp += level * 2;
-			if (hasPerk("Shield Booster")) temp += level * 4;
+			if (hasPerk("Shield Booster")) temp += level * 8;
 			if (hasPerk("Attack Drone") && !(accessory is TamWolf || accessory is TamWolfDamaged)) temp += level;
 
 			//Debuffs!

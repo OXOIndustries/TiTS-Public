@@ -20,16 +20,18 @@ package classes.GameData
 			CodexManager.CODEXCATEGORIES[CodexManager.CODEX_TYPE_PERSON] = "PERSON";
 			CodexManager.CODEXCATEGORIES[CodexManager.CODEX_TYPE_RACE] = "RACE";
 			CodexManager.CODEXCATEGORIES[CodexManager.CODEX_TYPE_EVENT] = "EVENTS";
+			CodexManager.CODEXCATEGORIES[CodexManager.CODEX_TYPE_STORY] = "FICTION";
 			CodexManager.CODEXCATEGORIES[CodexManager.CODEX_TYPE_LOCATION] = "LOCATIONS";
 			CodexManager.CODEXCATEGORIES[CodexManager.CODEX_TYPE_ITEM] = "ITEMS";
-			CodexManager.CODEXCATEGORIES[CodexManager.CODEX_TYPE_STORY] = "FICTION";
+			
 			
 			CodexManager.CODEXTREE[CodexManager.CODEX_TYPE_PERSON] 		= new Object();
 			CodexManager.CODEXTREE[CodexManager.CODEX_TYPE_RACE] 		= new Object();
 			CodexManager.CODEXTREE[CodexManager.CODEX_TYPE_EVENT] 		= new Object();
+			CodexManager.CODEXTREE[CodexManager.CODEX_TYPE_STORY] 		= new Object();
 			CodexManager.CODEXTREE[CodexManager.CODEX_TYPE_LOCATION] 	= new Object();
 			CodexManager.CODEXTREE[CodexManager.CODEX_TYPE_ITEM] 		= new Object();
-			CodexManager.CODEXTREE[CodexManager.CODEX_TYPE_STORY] 		= new Object();
+			
 		}
 		
 		private static var ALWAYSUNLOCKEDENTRIES:Array;

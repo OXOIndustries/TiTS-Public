@@ -40,7 +40,7 @@
 			//Information
 			this.basePrice = 6000;
 			this.attack = 0;
-			this.defense = 8;
+			this.defense = 7;
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 2;
@@ -48,7 +48,7 @@
 			this.evasion = 0;
 			this.fortification = 2;
 			
-			resistances.kinetic.resistanceValue = 25.0;
+			resistances.kinetic.resistanceValue = 5.0;
 			resistances.addFlag(DamageFlag.ABLATIVE);
 			
 			this.version = _latestVersion;

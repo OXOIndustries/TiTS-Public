@@ -103,7 +103,8 @@ package classes.Engine.Combat.DamageTypes
 						break;
 					
 					case CRYSTAL:
-						createTrigger(LASER, 1.5);
+						createTrigger(LASER, 0.6);
+						createTrigger(EXPLOSIVE, 1.4);
 						break;
 						
 					case NULLIFYING:
