@@ -14,6 +14,19 @@ public function doParse(script:String, markdown:Boolean = false):String
 	return parser.recursiveParser(script, markdown);
 }
 
+// HTML tag formatting wrappers, because lazy as fuck
+public function header(words:String, newLine:Boolean = true):String
+{
+	if(!newLine) return String("<span class='header'>" + words + "</span>");
+	return String("<span class='header'>" + words + "</span>\n");
+}
+
+public function blockHeader(words:String, newLine:Boolean = true):String
+{
+	if(!newLine) return String("<span class='blockHeader'>" + words + "</span>");
+	return String("<span class='blockHeader'>" + words + "</span>\n");
+}
+
 
 /*
 MOST of this should be broken up into simple shim-functions that call the real, relevant function in userInterface:GUI
@@ -60,7 +73,7 @@ public function clearOutputCodex():void
 {
 	this.userInterface.clearOutputCodex();
 }
-
+/*
 // HTML tag formatting wrappers, because lazy as fuck
 public function header(words:String):String
 {
@@ -70,7 +83,7 @@ public function header(words:String):String
 public function blockHeader(words:String):String
 {
 	return String("<span class='blockHeader'>" + words + "</span>\n");
-}
+}*/
 
 public function num2Text(number:Number):String {
 	var returnVar:String = null;
