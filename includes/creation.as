@@ -471,8 +471,8 @@ public function chooseSkinTone():void
 		this.addButton(1,"Fair",applySkinTone,"fair");
 		this.addButton(2,"Tan",applySkinTone,"tan");
 		this.addButton(3,"Olive",applySkinTone,"olive");
-		this.addButton(3,"Dark",applySkinTone,"dark");
-		this.addButton(4,"Ebony",applySkinTone,"ebony");
+		this.addButton(4,"Dark",applySkinTone,"dark");
+		this.addButton(5,"Ebony",applySkinTone,"ebony");
 	}
 	this.addButton(14,"Back",chooseEyeColor);
 }
