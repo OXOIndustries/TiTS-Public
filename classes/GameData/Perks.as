@@ -673,6 +673,12 @@ package classes.GameData
 			if (filterPerks.length == 0) return null;
 			if (filterPerks.length == 1) return filterPerks[0];
 			
+			var count:int = 0;
+			for (var x:int = 0; x < kGAMECLASS.pc.perks.length; x++)
+			{
+				if (kGAMECLASS.pc.perks[x].storageName == perkName) count++;
+			}
+			trace("ACTUAL COUNT OF PERK: " + count);
 			throw new Error("Found multiple perks for the provided search key! (" + perkName + ")");
 		}
 		

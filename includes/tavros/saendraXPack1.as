@@ -143,7 +143,7 @@ public function saendraX1LiftGo():void
 		
 		output("\n\n<i>“Am not,”</i> Saen huffs, sounding a little less self-assured.");
 		
-		output("\n\nWhile the two of them start bickering about whatever plan Saendra’s got up her sleeve, you turn and start looking around the construction site. You imagine they’re building shops here, probably high end judging by the fountain and wide open corridors. Much swankier than the main merchant deck near the hangar deck, that’s for sure.");
+		output("\n\nWhile the two of them start bickering about whatever plan Saendra’s got up her sleeve, you turn and start looking around the construction site. You imagine they’re building shops here, probably high end judging by the fountain and wide open corridors. Much swankier than the main merchant deck near the hangar, that’s for sure.");
 		
 		output("\n\nAnd you’re almost certain you can hear a clinking sound coming towards you.");
 		
@@ -898,7 +898,7 @@ public function sx1CallgirlOfferJob():void
 	
 	output("\n\n<i>“Knock knock!”</i> Saen says, cracking the woman over the head with the butt of her pistol.");
 	
-	output("\n\nThe pirate tech collapses with blood spilling out of her nose leaving you and Saen to hop over her body and into the room. It’s a small, cramped space with peeling wallpaper and dim lights that barely let you see. A bed has been pushed against the western wall, opposite a metal desk where a truckload of computer gear is set up.");
+	output("\n\nThe pirate tech collapses with blood spilling out of her nose, leaving you and Saen to hop over her body and into the room. It’s a small, cramped space with peeling wallpaper and dim lights that barely let you see. A bed has been pushed against the western wall, opposite a metal desk where a truckload of computer gear is set up.");
 	
 	output("\n\nSitting on the bed with ropes tied around his arms and legs is a grizzled looking human who’s clearly had some better days: he’s gotten roughed up pretty good, and his mechanic’s outfit’s been darkened with blood and grease. Saendra runs over to him and grabs the man’s shoulders.");
 
