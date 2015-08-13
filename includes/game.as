@@ -2459,128 +2459,30 @@ public function statisticsScreen(showID:String = "All"):void
 		if(!(pc.meleeWeapon is EmptySlot))
 		{
 			output2("\n<b>* Melee Weapon: </b>" + pc.meleeWeapon.shortName);
-			if(pc.meleeWeapon.baseDamage.flags.length > 0)
-			{
-				for(i = 0; i < pc.meleeWeapon.baseDamage.flags.length; i++)
-				{
-					if(pc.meleeWeapon.baseDamage.flags[i].thisFlag != 0) output2(", <i>" + DamageFlag.FlagNames[pc.meleeWeapon.baseDamage.flags[i].thisFlag] + "</i>");
-				}
-			}
-			if(pc.meleeWeapon.resistances.flags.length > 0)
-			{
-				for(i = 0; i < pc.meleeWeapon.resistances.flags.length; i++)
-				{
-					if(pc.meleeWeapon.resistances.flags[i].thisFlag != 0) output2(", <i>" + DamageFlag.FlagNames[pc.meleeWeapon.resistances.flags[i].thisFlag] + "</i>");
-				}
-			}
 		}
 		if(!(pc.rangedWeapon is EmptySlot))
 		{
 			output2("\n<b>* Ranged Weapon: </b>" + pc.rangedWeapon.shortName);
-			if(pc.rangedWeapon.baseDamage.flags.length > 0)
-			{
-				for(i = 0; i < pc.rangedWeapon.baseDamage.flags.length; i++)
-				{
-					if(pc.rangedWeapon.baseDamage.flags[i].thisFlag != 0) output2(", <i>" + DamageFlag.FlagNames[pc.rangedWeapon.baseDamage.flags[i].thisFlag] + "</i>");
-				}
-			}
-			if(pc.rangedWeapon.resistances.flags.length > 0)
-			{
-				for(i = 0; i < pc.rangedWeapon.resistances.flags.length; i++)
-				{
-					if(pc.rangedWeapon.resistances.flags[i].thisFlag != 0) output2(", <i>" + DamageFlag.FlagNames[pc.rangedWeapon.resistances.flags[i].thisFlag] + "</i>");
-				}
-			}
 		}
 		if(!(pc.armor is EmptySlot))
 		{
 			output2("\n<b>* Armor: </b>" + pc.armor.shortName);
-			if(pc.armor.baseDamage.flags.length > 0)
-			{
-				for(i = 0; i < pc.armor.baseDamage.flags.length; i++)
-				{
-					if(pc.armor.baseDamage.flags[i].thisFlag != 0) output2(", <i>" + DamageFlag.FlagNames[pc.armor.baseDamage.flags[i].thisFlag] + "</i>");
-				}
-			}
-			if(pc.armor.resistances.flags.length > 0)
-			{
-				for(i = 0; i < pc.armor.resistances.flags.length; i++)
-				{
-					if(pc.armor.resistances.flags[i].thisFlag != 0) output2(", <i>" + DamageFlag.FlagNames[pc.armor.resistances.flags[i].thisFlag] + "</i>");
-				}
-			}
 		}
 		if(!(pc.shield is EmptySlot))
 		{
 			output2("\n<b>* Shield: </b>" + pc.shield.shortName);
-			if(pc.shield.baseDamage.flags.length > 0)
-			{
-				for(i = 0; i < pc.shield.baseDamage.flags.length; i++)
-				{
-					if(pc.shield.baseDamage.flags[i].thisFlag != 0) output2(", <i>" + DamageFlag.FlagNames[pc.shield.baseDamage.flags[i].thisFlag] + "</i>");
-				}
-			}
-			if(pc.shield.resistances.flags.length > 0)
-			{
-				for(i = 0; i < pc.shield.resistances.flags.length; i++)
-				{
-					if(pc.shield.resistances.flags[i].thisFlag != 0) output2(", <i>" + DamageFlag.FlagNames[pc.shield.resistances.flags[i].thisFlag] + "</i>");
-				}
-			}
 		}
 		if(!(pc.accessory is EmptySlot))
 		{
 			output2("\n<b>* Accessory: </b>" + pc.accessory.shortName);
-			if(pc.accessory.baseDamage.flags.length > 0)
-			{
-				for(i = 0; i < pc.accessory.baseDamage.flags.length; i++)
-				{
-					if(pc.accessory.baseDamage.flags[i].thisFlag != 0) output2(", <i>" + DamageFlag.FlagNames[pc.accessory.baseDamage.flags[i].thisFlag] + "</i>");
-				}
-			}
-			if(pc.accessory.resistances.flags.length > 0)
-			{
-				for(i = 0; i < pc.accessory.resistances.flags.length; i++)
-				{
-					if(pc.accessory.resistances.flags[i].thisFlag != 0) output2(", <i>" + DamageFlag.FlagNames[pc.accessory.resistances.flags[i].thisFlag] + "</i>");
-				}
-			}
 		}
 		if(!(pc.upperUndergarment is EmptySlot))
 		{
 			output2("\n<b>* Underwear Top: </b>" + pc.upperUndergarment.shortName);
-			if(pc.upperUndergarment.baseDamage.flags.length > 0)
-			{
-				for(i = 0; i < pc.upperUndergarment.baseDamage.flags.length; i++)
-				{
-					if(pc.upperUndergarment.baseDamage.flags[i].thisFlag != 0) output2(", <i>" + DamageFlag.FlagNames[pc.upperUndergarment.baseDamage.flags[i].thisFlag] + "</i>");
-				}
-			}
-			if(pc.upperUndergarment.resistances.flags.length > 0)
-			{
-				for(i = 0; i < pc.upperUndergarment.resistances.flags.length; i++)
-				{
-					if(pc.upperUndergarment.resistances.flags[i].thisFlag != 0) output2(", <i>" + DamageFlag.FlagNames[pc.upperUndergarment.resistances.flags[i].thisFlag] + "</i>");
-				}
-			}
 		}
 		if(!(pc.lowerUndergarment is EmptySlot))
 		{
 			output2("\n<b>* Underwear Bottom: </b>" + pc.lowerUndergarment.shortName);
-			if(pc.lowerUndergarment.baseDamage.flags.length > 0)
-			{
-				for(i = 0; i < pc.lowerUndergarment.baseDamage.flags.length; i++)
-				{
-					if(pc.lowerUndergarment.baseDamage.flags[i].thisFlag != 0) output2(", <i>" + DamageFlag.FlagNames[pc.lowerUndergarment.baseDamage.flags[i].thisFlag] + "</i>");
-				}
-			}
-			if(pc.lowerUndergarment.resistances.flags.length > 0)
-			{
-				for(i = 0; i < pc.lowerUndergarment.resistances.flags.length; i++)
-				{
-					if(pc.lowerUndergarment.resistances.flags[i].thisFlag != 0) output2(", <i>" + DamageFlag.FlagNames[pc.lowerUndergarment.resistances.flags[i].thisFlag] + "</i>");
-				}
-			}
 		}
 		
 		//======COMBAT STATISTICS=====//
