@@ -302,6 +302,8 @@ public function cockBoxDickDoublingHijinx(args:Array):void
 
 	var newLength:Number = Math.round(Math.pow((pc.cocks[args[0]].cLengthRaw * pc.cocks[args[0]].cLengthRaw * pc.cocks[args[0]].cLengthRaw / 2), 1/3)*10)/10;
 
+	pc.cocks[args[0]].cLengthRaw = newLength;
+
 	cloneDick.cLengthRaw = pc.cocks[args[0]].cLengthRaw;
 	cloneDick.cThicknessRatioRaw = pc.cocks[args[0]].cThicknessRatioRaw;
 	cloneDick.cType = pc.cocks[args[0]].cType;
