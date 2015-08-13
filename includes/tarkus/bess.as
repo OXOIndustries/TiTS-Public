@@ -324,14 +324,40 @@ public static const BESS_ACCSET_MOUSE:uint 			= 1 << 11;
 public static const BESS_ACCSET_ANGEL:uint 			= 1 << 12;
 public static const BESS_ACCSET_KITSUNE:uint 		= 1 << 13;
 
-public function bessHasAccessorySet(setType:int):Boolean
+public static const BESS_COCKTYPE_DINO:uint 		= 1 << 14;
+public static const BESS_COCKTYPE_HORSE:uint 		= 1 << 15;
+public static const BESS_COCKTYPE_DOG:uint 			= 1 << 16;
+public static const BESS_COCKTYPE_FOX:uint 			= 1 << 17;
+public static const BESS_COCKTYPE_DEMON:uint 		= 1 << 18;
+public static const BESS_COCKTYPE_TENTACLE:uint 	= 1 << 19;
+public static const BESS_COCKTYPE_CAT:uint 			= 1 << 20;
+public static const BESS_COCKTYPE_GOO:uint 			= 1 << 21;
+public static const BESS_COCKTYPE_PLANT:uint 		= 1 << 22;
+public static const BESS_COCKTYPE_DRAGON:uint 		= 1 << 23;
+
+public function bessHasAccessorySet(setType:uint):Boolean
 {
 	if (flags["BESS_ACCESSORY_SETS"] == undefined) flags["BESS_ACCESSORY_SETS"] = 0;
 
-	return flags["BESS_ACCESSORY_SETS"] & setType;
+	return (flags["BESS_ACCESSORY_SETS"] & setType > 0);
 }
 
 public function bessAddAccessorySet(setType:int):void
+{
+	if (flags["BESS_ACCESSORY_SETS"] == undefined) flags["BESS_ACCESSORY_SETS"] = 0;
+
+	flags["BESS_ACCESSORY_SETS"] |= setType;
+}
+
+// Packing these values into the accset flag for now -- if we need more space we can easily split them into two sets of flags
+public function bessHasCockType(setType:uint):Boolean
+{
+	if (flags["BESS_ACCESSORY_SETS"] == undefined) flags["BESS_ACCESSORY_SETS"] = 0;
+
+	return (flags["BESS_ACCESSORY_SETS"] & setType > 0);
+}
+
+public function bessAddCockType(setType:uint):void
 {
 	if (flags["BESS_ACCESSORY_SETS"] == undefined) flags["BESS_ACCESSORY_SETS"] = 0;
 
@@ -2452,16 +2478,36 @@ public function talkToBessAboutCock():void
 	addButton(0, "None", 			setBessCockType, -1);
 	addButton(1, "Normal", 			setBessCockType, GLOBAL.TYPE_HUMAN);
 	addButton(2, "Normal+Balls", 	setBessCockType, -2);
-	addButton(3, "Dino", 			setBessCockType, GLOBAL.TYPE_SAURIAN);
-	addButton(4, "Equine", 			setBessCockType, GLOBAL.TYPE_EQUINE);
-	addButton(5, "Canine", 			setBessCockType, GLOBAL.TYPE_CANINE);
-	addButton(6, "Vulpine", 		setBessCockType, GLOBAL.TYPE_VULPINE);
-	addButton(7, "Demonic", 		setBessCockType, GLOBAL.TYPE_DEMONIC);
-	addButton(8, "Tentacle", 		setBessCockType, GLOBAL.TYPE_TENTACLE);
-	addButton(9, "Feline", 			setBessCockType, GLOBAL.TYPE_FELINE);
-	addButton(10, "Draconic", 		setBessCockType, GLOBAL.TYPE_DRACONIC);
-	addButton(11, "Goo", 			setBessCockType, GLOBAL.TYPE_GOO);
-	addButton(12, "Plant", 			setBessCockType, GLOBAL.TYPE_PLANT);
+	
+	if (bessHasCockType(BESS_COCKTYPE_DINO)) addButton(3, "Dino", setBessCockType, GLOBAL.TYPE_SAURIAN);
+	else addDisabledButton(3, "Dino", "Dinosaur", "[bess.name] doesn’t have access to this cock style!");
+
+	if (bessHasCockType(BESS_COCKTYPE_HORSE)) addButton(4, "Equine", setBessCockType, GLOBAL.TYPE_EQUINE);
+	else addDisabledButton(4, "Equine", "Equine", "[bess.name] doesn’t have access to this cock style!");
+
+	if (bessHasCockType(BESS_COCKTYPE_DOG)) addButton(5, "Canine", setBessCockType, GLOBAL.TYPE_CANINE);
+	else addDisabledButton(5, "Canine", "Canine", "[bess.name] doesn’t have access to this cock style!");
+
+	if (bessHasCockType(BESS_COCKTYPE_FOX)) addButton(6, "Vulpine", setBessCockType, GLOBAL.TYPE_VULPINE);
+	else addDisabledButton(6, "Vulpine", "Vulpine", "[bess.name] doesn’t have access to this cock style!");
+
+	if (bessHasCockType(BESS_COCKTYPE_DEMON))addButton(7, "Demonic", setBessCockType, GLOBAL.TYPE_DEMONIC);
+	else addDisabledButton(7, "Demonic", "Demonic", "[bess.name] doesn’t have access to this cock style!");
+
+	if (bessHasCockType(BESS_COCKTYPE_TENTACLE)) addButton(8, "Tentacle", setBessCockType, GLOBAL.TYPE_TENTACLE);
+	else addDisabledButton(8, "Tentacle", "Tentacle", "[bess.name] doesn’t have access to this cock style!");
+
+	if (bessHasCockType(BESS_COCKTYPE_CAT)) addButton(9, "Feline", setBessCockType, GLOBAL.TYPE_FELINE);
+	else addDisabledButton(9, "Feline", "Feline", "[bess.name] doesn’t have access to this cock style!");
+
+	if (bessHasCockType(BESS_COCKTYPE_DRAGON)) addButton(10, "Draconic", setBessCockType, GLOBAL.TYPE_DRACONIC);
+	else addDisabledButton(10, "Dragonic", "Dragonic", "[bess.name] doesn’t have access to this cock style!");
+
+	if (bessHasCockType(BESS_COCKTYPE_GOO)) addButton(11, "Goo", setBessCockType, GLOBAL.TYPE_GOO);
+	else addDisabledButton(11, "Goo", "Goo", "[bess.name] doesn’t have access to this cock style!");
+
+	if (bessHasCockType(BESS_COCKTYPE_PLANT)) addButton(12, "Plant", setBessCockType, GLOBAL.TYPE_PLANT);
+	else addDisabledButton(12, "Plant", "Plant", "[bess.name] doesn’t have access to this cock style!");
 
 	addButton(14, "Back", bessFunctionsMenu);
 }
@@ -3316,787 +3362,393 @@ public function talkToBessNoKatana():void
 	bessFunctionsMenu();
 }
 
-
-
-
-
-Product Catalogue
-
-You download the latest JoyCo product catalogue for {Bess-13/Ben-14_ units into one of the ship's terminals. A holographic projection of specialized clothing, accessories, and upgrades appear on the screen. 
-
-What are you interested in purchasing?
-
-//Purchases alter which options unlock in the Functions -> Clothing & Acc Menu (where the clothes and accessories can actually be changed). 
-
-
-
-
-[Outfits] [Underwear Tops] [Underwear Bottoms] [Accessory Sets] [Items] [Cocks]
-
-Outfits / Underwear Tops / Underwear Bottoms
-
-// See the Functions -> Clothing and Acc Menu for a list of all the purchasable clothes and accessories for Bess/Ben!
-
-Accessory Sets
-
-What set would you like to purchase?
-
-Equine set (Allows Bess to set Equine Tail and Ears) - 250 Creds
-Bovine Set (Allows Bess to set Bovine Tail, Ears and Horns) - 250 Creds
-Canine Set (Allows Bess to set Canine Tail and Ears) - 250 Creds
-Feline Set (Allows Bess to set Feline Tail and Ears) - 250 Creds
-Vulpine Set (Allows Bess to set Vulpine Tail and Ears) - 250 Creds
-Bunny Set (Allows Bess to set Leporine Tail, Ears) - 250 Creds
-Bee Set (Allows Bess to set Bee Wings) - 250 Creds
-Draconic Set (Allows Bess to set Draconic Ears, Tail, Wings and Horns). - 500 Creds
-Demonic Set (Allows Bess to set Demonic Ears, Tail, Wings and Horns) - 500 Creds
-Shark Set (Allows Bess to set Shark Ears and Tail) - 250 Creds
-Deer Set (Allows Bess to set Deer Ears, Tail and Horns) - 250 Creds
-Mouse Set (Allows Bess to set Mouse Ears and Tail) - 250 Creds
-Angel Set (Allows Bess to set Angel/White Feathered Wings) - 500 Creds
-
-Items
-
-What JoyCo product would you like to purchase for [bess.name]?
-
-Katana (Allows Bess to equip Katana in Accessory Menu) - 1000 Creds
-Glasses (Allows Bess to equip Glasses in Accessory Menu) - 500 Creds
-
-
-Cocks
-
-What kind would you like to purchase?
-
-//Purchases alter which cock options unlock in the Functions -Menu (where the upgrades can actually be activated). See Functions Menu / Cock or value guide for details.
-
-Dino Cock - 1500 credits
-Horse Cock - 500 credits
-Dog Cock - 500 credits
-Fox Cock - 500 Credits
-Demon Cock - 500 credits
-Tentacle Cock - 1000 credits
-Cat Cock - 500 credits
-Goo Cock - 1000 credits
-Plant Cock - 1000 credits
-Dragon Cock - 1000 credits
-
-
-Purchase Message (All)
-
-You transfer the credits to JoyCo and place your order. It’s not long before a warp-space delivery service is dropping off a package to your spaceship hangar.
-
-
-New Pussy Type: Synthetic
-
-Adjective List Below:
-metallic
-synthetic
-artificial
-inorganic
-mechanical
-automated
-designer made
-robotic
-chrome
-silvery
-sleek
-polished
-chrome 
-tinny
-gynoid
-steely
-plated
-
-New Cock Type: Synthetic
-
-Adjective List Below:
-metallic
-synthetic
-artificial
-inorganic
-mechanical
-automated
-designer made
-robotic
-chrome
-silvery
-sleek
-polished
-chrome 
-tinny
-android
-steely
-mineral
-motorized
-vibrating
-humming
-
-New Cock Type: Goo
-Description: Cock that is a semi-solid liquid, generally soft and gelatinous when unaroused and stiffer when erect. Able to penetrate most crevasses. Often shoots goo sperm (Either a self-generated sperm-like compound, or seperating bits off the goo-cock and shooting it inside).
-
-Adjective List Below:
-gelatinous
-gooey
-slimey
-jellied
-glutinous
-jellied
-jelly-like
-amorphous
-gummy
-semi-solid
-squishy
-smooth
-gloppy
-viscid
-viscous
-spongy
-gel-like
-
-New Cum Type: goocum
-Description: Goo-like cum, usually shot from goo cocks. Used in Bess/Ben cum scenes as a semi-sentient substance that feeds off cum and girlcum, expands and multiplies. Likes to creep into the womb or deep bowels and release aphrodisiacs and massage, milking its host for more liquid. Obviously does not have to work like this, but Bess/Ben's goo cum does.
-
-Adjective List Below:
-jelly jism
-slime spunk
-goo cum
-New Cock Type: Saurian
-Description: A cock that is typically mammoth in size. Human shaped with rounded spikes/bumps/nubs around the glans and a segmented shaft. The shaft segments contract and expand to push cum out (also milk cocks when used for urethra fucking).
-
-
-Adjectives:
-saurian
-dino
-reptilian
-prehistoric
-archaic
-jurassic
-scaley
-nubbly
-spikey
-bumpy
-pulsing
-ripply
-segmented
-
-New Cock Type: Plant
-Description: Base is a giant open blossom, in the middle of the petals is a phallic looking stamen with a bulbous head. Pollen-filled sap drips constantly from the pod-like tip or "anther", dribbling down the shaft. The shaft is like a collection of vines. The vines often grow when moist, thickening and stretching. 
-The sap is stickier than regular semen, meaning once it fills an orifice very little dribble outs. Instead, the sap needs to break down naturally.
-
-Adjectives:
-viney
-plant
-botanic
-sap-covered
-flowery
-organic
-blossom
-tendril
-flourishing
-blooming
-floral
-
-Clothing Additions
-
-
-Armor (Outfits)
-
-Sleep Shirt
-Class Name: Sleepshirt
-ShortName: Sleep Shirt
-LongName: sleep shirt
-thisDescription: a long, comfortable sleep shirt
-thisTooltip: This is a long, comfortable looking sleep shirt. It is made of incredibly soft fabric.
-
-Top And Skirt
-Class Name: TopAndSkirt
-ShortName: Top And Skirt
-LongName: cute top and skirt
-thisDescription: a cute top and skirt
-thisTooltip: This is a cute top that looks comfortable to wear, accompanied by a short chic skirt. 
-
-Business Clothes
-Class Name: BusinessClothes
-ShortName: Business Clothes
-LongName: business clothes
-thisDescription: a set of high-powered business clothes
-thisTooltip: These business clothes are perfect for any high-powered corporate function. They're also perfect for someone aiming to make their way up the food chain. 
-Librarian Outfit
-Class Name: Librarian
-ShortName: Librarian Outfit
-LongName: librarian outfit
-thisDescription: a librarian outfit
-thisTooltip: This long sleeve shirt, cardigan, and knee length skirt rides the line between conservative and sexy. Which side it falls on depends on how many buttons you have done up. 
-
-Latex Bodysuit
-Class Name: LatexBodysuit
-ShortName: Latex Bodysuit
-LongName: latex bodysuit
-thisDescription: a shiny, full-body latex bodysuit
-thisTooltip: This snug fitting full-body latex bodysuit leaves nothing up to the imagination. It is also very shiny. There is a zipper starting at the neck and ending just above the crotch. 
-
-China Dress
-Class Name: ChinaDress
-ShortName: China Dress
-LongName: china dress
-thisDescription: a body hugging, one-piece Chinese dress
-thisTooltip: This body hugging, one-piece Chinese dress (also known as a "cheongsam") With a high collar, short sleeves, and knee length skirt, it is very eye catching - especially the split on either side trailing up the thigh. 
-
-Kimono
-Class Name: Kimono
-ShortName: Kimono
-LongName: kimono
-thisDescription: an elegantly designed Japanese kimono 
-thisTooltip: This kimono is designed of fine silk with brilliant patterns adorning every inch of fabric. It is worn with a specially designed waist sash or "obi". 
-
-Short Kimono
-// Useful for those who want a kimono plus some push up skirt & sex action.
-Class Name: ShortKimono
-ShortName: Short Kimono
-LongName: short kimono
-thisDescription: a short silk kimono
-thisTooltip: This is a fetishized kimono made of silk that only reaches down to the mid thigh. It is worn with a specially designed waist sash or "obi". Often worn by female ninjas. 
-
-Maid Outfit
-Class Name: Maid
-ShortName: maid outfit
-LongName: maid outfit
-thisDescription: a frilly French maid outfit
-thisTooltip: A sexy French maid outfit, the staple diet of cosplay fetishists everywhere. Every inch of this outfit is lined with frills, from the headpiece to the puffed out skirt. 
-
-Nurse Outfit
-Class Name: Nurse
-ShortName: Nurse Outfit
-LongName: nurse outfit
-thisDescription: A tight fitting nurse outfit
-thisTooltip: A sexy white and red nurse outfit. It hugs the body and barely covers the crotch, designed to emphasise any natural assets a wearer may have. It comes complete with a nurse's cap, stethoscope, and frilly stockings. 
-
-Miko Outfit
-Class Name: Miko
-LongName: Miko Outfit
-LongName: miko outfit
-thisDescription: a white and red Miko outfit
-thisTooltip: This is a Japanese Shrine Maiden or "Miko" outfit. It consists of a white haori, red hakama, and white socks with sandals. 
-
-Apron
-Class Name: Apron	
-ShortName: Simple Apron
-LongName: simple apron
-thisDescription: a simple cooking apron
-thisTooltip: This is a simple cooking apron. Rather plain when worn with clothes and extremely sexy when worn without them.
-
-Seifuku
-Class Name: Seifuku
-ShortName: Seifuku
-LongName: Japanese schoolgirl outfit
-thisDescription: a Japanese Schoolgirl outfit
-thisTooltip: This is a Japanese school girl outfit or 'seifuku'. It consists of a traditional blouse with a sailor style collar and pleated skirt. There is a ribbon tied just above the chest. 
-
-Schoolgirl Outfit
-Class Name: Schoolgirl
-ShortName: Schoolgirl Outfit
-LongName: schoolgirl outfit
-thisDescription: a sexy Schoolgirl outfit
-thisTooltip: This is a highly fetishized western schoolgirl outfit. It consists of an incredibly tight white blouse, short tartan skirt and low hanging tie. Nobody would ever mistake this for a real school outfit!
-
-Cheerleader Uniform
-Class Name: Cheerleader
-ShortName: Cheerleader Uniform
-LongName: cheerleader uniform
-thisDescription: a cheerleader uniform
-thisTooltip: An incredibly sexy cheerleader uniform. It consists of a tight colorful top, short pleated skirt, and pom-poms!
-Waitress Uniform
-Class Name: Waitress
-ShortName: Waitress Uniform
-LongName: waitress uniform
-thisDescription: a waitress uniform
-thisTooltip: A highly fetishized waitress uniform. It consists of an underbust corset, frilly short-sleeved top, mid-thigh length skirt, and half apron.
-
-Bunny Outfit
-Class Name: BunnyOutfit
-ShortName: Bunny Outfit
-LongName: bunny outfit
-thisDescription: a one-piece bunny outfit
-thisTooltip: This is a "HumpHard Bunny" outfit. It's not a full bunny outfit - there's only satin ears and a fluffy tail. The rest of the outfit is hardly furry; a strapless one-piece bikini, black pantyhose, high heels, a collar with bow tie, and cuffs with cuff links. Wear it and be a HumpHard Bunny!
-
-Battle Ballgown
-Class Name: BattleBallgown
-ShortName: Battle Ballgown
-LongName: battle ballgown
-thisDescription: a dazzling battle ballgown
-thisTooltip: This is a battle ballgown. It consists of a resplendent dress with an armored breastplate, skirting, and arms. The armor is made of a lightweight space-age metal making for easy movement.
-
-Military Outfit
-Class Name: MilitaryOutfit	
-ShortName: Military Outfit
-LongName: military outfit
-thisDescription: a military issue tank top and pants
-thisTooltip: This military outfit is reminiscent of those worn on Earth in the 20th century. It consists of a tank top, bullet chain sling, and baggy camo pants. 
-
-Space Pirate Outfit
-Class Name: SpacePirate	
-ShortName: Space Pirate Outfit
-LongName: space pirate outfitt
-thisDescription: a space pirate outfit made mostly of leather
-thisTooltip: This is a space pirate outfit consisting of a lot of tight black leather. There's also a lot of tough looking patches with badass insignias. Great for any rebel with or without a cause. 
-
-Goth-Lolita Outfit
-Class Name: GothLolita	
-ShortName: Goth Lolita Outfit
-LongName: goth lolita outfit
-thisDescription: a frilly goth lolita outfit
-thisTooltip: This is a gothic lolita outfit. It consists of a very frilly black dress with white lace woven through the seams. There are lots of ribbons attached. Best worn with lots of makeup.
-
-Tank-Top & Mini Skirt
-Class Name: TankMini
-ShortName: Tank And Mini
-LongName: Tight tank top and mini skirt
-thisDescription: A tight tank top and mini skirt with suspenders
-thisTooltip: The signature outfit of a character from a famous video game series. It consists of an incredibly tight white top, black miniskirt, and asset pressing suspenders. 
-
-Underwear (Top)
-
-String Tie Top
-Class Name: StringTieTop
-ShortName: String-Tie Top
-LongName: String-tie bikini top
-thisDescription: A skimpy string-tie bikini top
-thisTooltip: This is a skimpy string-tie bikini top, held in place by a looped knot at the small of the back. Two palm sized pieces of fabric cover the breasts - the rest is just string.
-
-Frilly Bra
-
-Class Name: FrillyBra
-ShortName: Frilly Bra
-LongName: frilly bra
-thisDescription: frilly bra
-thisTooltip: This frilly bra is made of an ultra-elastic fabric that breathes well. That, and they're damn hot when worn. 
-
-Girly Bra
-
-Class Name: GirlyBra
-ShortName: Girly Bra
-LongName: girly bra
-thisDescription: girly bra
-thisTooltip: You couldn't get a bra much more girly than this. It's pink, lace frilled, and littered with cute little bows.
-
-White Bra
-// Aware that colors are not usually mentioned, but the "white panties" and "black lace underwear" are almost sub-fetishes of underwear fetishism. I know because it's my kink and I'm trying to slip it in here. :)
-
-Class Name: WhiteBra
-ShortName: White Bra
-LongName: white bra
-thisDescription: white bra
-thisTooltip: A nice, plain pure white bra. Available pretty much anywhere. 
-
-Striped Bra
-
-Class Name: StripedBra
-ShortName: Striped Bra
-LongName: striped bra
-thisDescription: striped bra
-thisTooltip: A striped bra. The stripes do a lot to enhance the bust.
-
-Furry Bra
-
-Class Name: FurryBra
-ShortName: Furry Bra
-LongName: Furry bra
-thisDescription: furry bra
-thisTooltip: A furry bra made of synthetic animal hide. It gives a very tribal "cave girl" look when worn. Good for showing off your primal side.
-
-
-Black Lace Bra
-// See "White Bra" for comment. 
-
-Class Name: BlackLaceBra
-ShortName: Black Lace Bra
-LongName: black lace bra
-thisDescription: black lace bra
-thisTooltip: A sexy black lace bra. This kind of underwear has a sensual, mature, and risque feel to it.
-
-Sarashi
-
-Class Name: Sarashi
-ShortName: Sarashi
-LongName: sarashi
-thisDescription: sarashi
-thisTooltip: A chest cloth binding known as a "Sarashi", wrapped around the midsection. For women, it also binds the breasts close to the chest. 
-Underwear (Bottom)
-
-String Tie Bottoms
-Class Name: StringTieBottom
-ShortName: String-Tie Bottoms
-LongName: string-tie bikini bottoms
-thisDescription: Skimpy string-tie bikini bottoms.
-thisTooltip: These are skimpy string-tie bikini bottoms, held in place by looped knots on each hip. Pulling them would cause this garment to quickly unravel.
-
-Frilly Panties
-
-Class Name: FrillyPanties
-ShortName: Frilly Panties
-LongName: frilly panties
-thisDescription: frilly panties
-thisTooltip: These frilly panties are made of an ultra-elastic fabric that breathes well. That, and they're damn hot when worn. 
-
-Girly Panties
-
-Class Name: GirlyPanties
-ShortName: Girly Panties
-LongName: girly panties
-thisDescription: girly panties
-thisTooltip: You couldn't get panties much more girly than these. They're pink, lace frilled, and littered with cute little bows.
-
-White Panties
-// See White bra.
-
-Class Name: WhitePanties
-ShortName: White Panties
-LongName: white panties
-thisDescription: white panties
-thisTooltip: Never underestimate the appeal of a pair of pure white panties. Available pretty much anywhere. 
-
-Striped Panties
-
-Class Name: StripedPanties
-ShortName: Striped Panties
-LongName: striped panties
-thisDescription: striped panties
-thisTooltip: A pair of striped panties that cling deliciously to the thigh. The stripes really show off the contours of the wearer's rump.
-
-
-Lowrider Panties
-
-Class Name: LowriderPanties
-ShortName: Lowrider Panties
-LongName: lowrider panties
-thisDescription: lowrider panties
-thisTooltip: A pair of lowrider panties that barely cover the crotch and ass. If they were to slide down even an inch, something would be exposed.
-
-Furry Panties
-
-Class Name: FurryPanties
-ShortName: Furry Panties
-LongName: Furry panties
-thisDescription: furry panties
-thisTooltip: A pair of panties made of synthetic animal hide. They give a very tribal "cave girl" look when worn. Good for showing off your primal side.
-
-Black Lace Panties
-// See "White Bra" for comment. 
-
-Class Name: BlackLacePanties
-ShortName: Black Lace Panties
-LongName: black lace panties
-thisDescription: black lace panties
-thisTooltip: A pair of sexy black lace panties. This kind of underwear has a sensual, mature, and risque feel to it.
-
-//
-
-
-
-Bess-13 Code Values
-
-//Potentially at least. Just trying to make life easier by doing this part. List of possible value entries are listed further down.
-
- 
-Int Values
-
-bessHair = 2;
-// A value determining Bess/Ben's hair length. Default is 2 (Loose Chignon).
-
-bess.chest = 3;
-// Default.
-
-bess.hipRating & bess.buttRating (and thigh, if applicable) = 4;
-
-
-bessAffection = 0;
-// A value determining Bess/Ben’s affection for the PC. See affection section.
-
-bessSexRole = 0 (Default)
-// A value that determines how Bess speaks and acts during sex. 0 is equal, 1 is dominant and 2 is submissive.
-
-bessVocal = null.
-// In scene 17, a number is rolled between 0 and 5 determining the PC’s singing ability. This is then attached to the bessVocal variable and referenced in scenes.
-
-
-Boolean Values
-
-bessGlasses = false;
-// A boolean value determining if Bess/Ben has glasses equipped or not.
-
-bessKatana = false
-// A boolean value determining if the Bess/Ben has katana equipped or not.
-
-bessTitCum = False;
-// A boolean value determining if Bess/Ben cums out of their nipples or not.
-
-bessCumDump = False;
-// A boolean value determining if Bess/Ben secretes ‘semen-like’ juices from their mouth, pussy and ass. Also if his cock is perpetually covered in cum.
-
-bessCockTail = False
-// Boolean value determining if Bess/Ben's JoyCord is active.
-
-bessCuntTail = False
-// Boolean value determining if Bess/Ben's detaching pussy is active.
-
-flags["BESS_LOVER"] = False
-// Boolean triggered when the player professes mutual love for Bess/Ben.
-
-bessFriend = False
-// Boolean triggered when you reach high affection with Bess/Ben
-
-bessDream = false
-// Whether Bess/Ben has installed their dream software or not. Activated by Approach Scene 27.
-
-bessFertile = false.
-// Flag placeholder. When Bess/Ben gets [bess.himHer] GX upgrade (Gene Splicer) that allows them to get PCs pregnant or become pregnant by others, this becomes "true". GX upgrade will be modular content. This flag is used in some sex scenes.
-
-String Values
-
-bessHairStyle = chignon;
-// A string value determining [bess.himHer] hair style. New hair styles are included as options modifying the string value in the customization menu.
-
-bessAcc = null;
-// A string value that contains the current worn accessory set. If the value is null, no accessory set is worn.
-
-bSexNamePC = [pc.Master]
-// String that determines what Bess/Ben calls the PC during sex; default [pc.Master]. Alterable from Discuss menu. 
-
-bNamePC = [pc.Master]
-// String that determines what Bess/Ben calls the PC during non-sex scenes; default [pc.Master]. Alterable from Discuss menu.
-
-bName = [bess.name]
-// String that determines what the PC calls Bess/Ben during non-sex scenes; default [bess.name]. Alterable from Discuss menu.
-
-bSexName = [bess.name]
-// String that determines what the PC calls Bess/Ben during sex; default [bess.name]. Alterable from Discuss menu.
-
-bessRole = null.
-// A string that contains Bess/Ben's role as part of the ship’s crew, should the PC decide to make thema fully fledged crew member.
-
-bessColor = null.
-// A string recording the PC’s favorite color, according to a question asked in Bess/Ben Approach Scene 06
-
-bessDrink = null.
-// A string recording the PC’s favorite drink, according to a question asked in Bess/Ben Approach Scene 06
-
-bessGenre= null.
-// A string recording the PC’s favorite genre of movie, according to a question asked in Bess/Ben Approach Scene 06
-
-bessMusic = null.
-// A string recording the PC’s favorite kind of music, according to a question asked in Bess/Ben Approach Scene 06.
-
-
-
-/*
-Values Guide
-Where different Bess modification values are listed for quick reference.
- 
-
-bess.chest
-
-Flat (0) - Default if Bess-14
-A Cup (1)
-B Cup. (2)
-C Cup (3) - Default if Bess-13
-D Cup (4) 
-E Cup (7)
-F Cup (11)
-G Cup (15)
-H Cup (19)
-I Cup (24)
-
-bess.tone
-
-100 - Muscly as fuck
-70 - Pseudo muscle - Default for Ben-14)
-50 - Average (Default for Bess-13)
-30 - Jiggly
-0 - Bouncy gal!
-
-
-bessCurves (Set bess.hipRating, bess.assRating and thighs)
-
-Boyish (0)
-Slender (2)
-Average (4) - Default.
-Ample (8)
-Voluptuous (10)
-Massive (16)
-
-
-Bess Accessory Sets (Can Purchase)
-
-Equine set (Allows Bess to set Equine Tail and Ears) 
-Bovine Set (Allows Bess to set Bovine Tail, Ears and Horns) 
-Canine Set (Allows Bess to set Canine Tail and Ears) 
-Feline Set (Allows Bess to set Feline Tail and Ears) 
-Vulpine Set (Allows Bess to set Vulpine Tail and Ears)
-Bunny Set (Allows Bess to set Leporine Tail, Ears) 
-Bee Set (Allows Bess to set Bee Wings) 
-Draconic Set (Allows Bess to set Draconic Ears, Tail, Wings and Horns).
-Demonic Set (Allows Bess to set Demonic Ears, Tail, Wings and Horns)
-Shark Set (Allows Bess to set Shark Ears and Tail
-Deer Set (Allows Bess to set Deer Ears, Tail and Horns)
-Mouse Set (Allows Bess to set Mouse Ears and Tail)
-Angel Set (Allows Bess to set Angel/White Feathered Wings)
-
-
-bess.ears
-
-Human (Default)
-Equine - 1
-Bovine - 2
-Canine - 3
-Feline - 4
-Vulpine - 5
-Draconic - 11
-Demonic -15
-Shark - 19
-Deer - 21
-Mouse - 26
-Bunny - Unknown
-
-bess.horns
-
-None (Default)
-Equine - 1
-Bovine - 2
-Draconic - 11
-Demonic - 15
-Deer - 21
-
-bess.tails
-
-None (Default)
-Equine - 1
-Bovine - 2
-Canine - 3
-Feline - 4
-Vulpine - 5
-Draconic - 11
-Demonic - 15
-Shark - 19
-Deer - 21
-Mouse - 26
-Bunny - Unknown
-
-bess.wings
-
-None (Default)
-Bee - 6
-Draconic - 11
-Demonic - 15
-Angel / Feathered - None Yet
-
-
-bess.nipples
-
-Normal (0) - Default
-Fuckable (1)
-Lipples (2)
-Dick (3)
-Flat (4)
-Inverted (5)
-Tentacled (6)
-
-
-
-bNamePC
-bSexNamePC
-bName
-bSexName
-See Bess/Ben Titles Section
-
-
-
-bess.cockType
-
-// All cocks except for Dino cock have girth and length = ½ pc orifice capacity.
-
-No Cock: Null value
-Regular Cock: Synthetic Type
-Regular Cock & Balls: Synthetic Type
-Dino Cock: Saurian Type, 12 inches thick, 20 inches long. Balls are 8 inches wide.
-Horse Cock: Equine type.
-Dog Cock: Canine Type.
-Fox Cock: Vulpine Type.
-Demon Cock: Demonic Type
-Tentacle Cock: Tentacle Type
-Cat Cock: Feline Type
-Draconic Cock: Draconic Type
-Goo Cock: Goo Type
-Plant Cock: Plant Type
-
-bessHairStyle
-// Potential values for bessHairStyle string
-
-a simple part
-spikes
-a messy chignon (Bess Default)
-a tight chignon
-a ponytail
-a bob
-a single braid
-a mess of curls
-a crown braid
-a set of twintails
-a side plait
-pigtail buns
-a hime cut
-ruffled layers
-a front wave
-a side part
-a backwards slick (Ben Default)
-
-bess.hairLength
-
-None (0)
-Short (2) - Default for Ben-14
-Moderately Long (8) - default for Bess-13
-Shoulder Length (18)
-Ass Length (40)
-Floor Length (60)
-
-
-bess.hairColor String options (All lower case)
-
-Silver (Default)
-Black
-Brown
-Red
-Blonde
-White
-Green
-Blue
-Orange
-Pink
-Purple
-Violet
-Magenta
-Cyan
-Red and Black
-Clear
- 
-
-bess.eyeColor String Options
-
-Silver - Default
-Black
-Brown
-Green
-Hazel
-Blue
-Red
-Purple
-Violet
-Aquamarine
-Orange
-Pink
-Golden
-Clear
-/*
-
-
-
-
+public function talkToBessAboutAccessories():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You download the latest JoyCo product catalogue for " + bess.mf("Bess-13", "Ben-14") + " units into one of the ship’s terminals. A holographic projection of specialized clothing, accessories, and upgrades appear on the screen.");
+	
+	output("\n\nWhat are you interested in purchasing?");
+
+	//Purchases alter which options unlock in the Functions -> Clothing & Acc Menu (where the clothes and accessories can actually be changed).
+
+	clearMenu();
+	addButton(0, "Outfits", bessBuyShitOutfits);
+	addButton(1, "U.Tops", bessBuyShitBras);
+	addButton(2, "U.Bottoms", bessBuyShitPanties);
+	addButton(3, "AccSets", bessBuyShitAccessories);
+	addButton(4, "Items", bessBuyShitItems);
+	addButton(5, "Cocks", bessBuyShitCocks);
+
+	addButton(14, "Back", bessFunctionsMenu);
+}
+
+public function bessBuyShitOutfits():void
+{
+	clearMenu();
+	
+	bessBuyCIW(0, "C.Clothes", CasualClothes, "Casual Clothes", "Casual Clothes");
+	bessBuyCIW(1, "P.Jacket", ProtectiveJacket, "Protective Jacket", "Protective Jacket");
+	bessBuyCIW(2, "UGC Uniform", UGCUniform, "UGC Uniform", "UGC Uniform");
+	bessBuyCIW(3, "SleepShirt", SleepShirt, "Sleep Shirt", "Sleep Shirt");
+	bessBuyCIW(4, "Top&Skirt", TopNSkirt, "Top & Skirt", "Top & Skirt");
+
+	bessBuyCIW(5, "B.Clothes", BusinessClothes, "Business Clothes", "Business Clothes");
+	bessBuyCIW(6, "Librarian", LibrarianOutfit, "Librarian Outfit", "Librarian Outfit");
+	bessBuyCIW(7, "LatexBSuit", LatexBodysuit, "Latex Bodysuit", "Latex Bodysuit");
+	bessBuyCIW(8, "ChinaDress", ChinaDress, "China Dress", "China Dress");
+	bessBuyCIW(9, "Kimono", Kimono, "Kimono", "Kimono");
+
+	bessBuyCIW(10, "S.Kimono", ShortKimono, "Short Kimono", "Short Kimono");
+	bessBuyCIW(11, "Maid" MaidOutfit, "Maid Outfit", "Maid Outfit");
+	bessBuyCIW(12, "Nurse" NurseOutfit, "Nurse Outfit", "Nurse Outfit");
+	bessBuyCIW(13, "Miko" MikoOutfit, "Miko Outfit", "Miko Outfit");
+
+	addButton(14, "Back", talkToBessAboutAccessories);
+	
+	bessBuyCIW(15, "Apron" ApronOutfit, "Apron", "Apron");
+	bessBuyCIW(16, "Seifuku" Seifuku, "Seifuku", "Seifuku"); // no fuk uuuuuuuuu
+	bessBuyCIW(17, "Schoolgirl" SchoolgirlOutfit, "Schoolgirl", "Schoolgirl");
+	bessBuyCIW(18, "Cheerleader" CheerleaderUniform, "Cheerleader Uniform", "CheerleaderUniform");
+	bessBuyCIW(19, "Waitress" WaitressUniform, "Waitress Uniform", "Waitress Uniform");
+
+	bessBuyCIW(20, "Bunnygirl" BunnygirlOutfit, "Bunnygirl Outfit", "Bunnygirl Outfit");
+	bessBuyCIW(21, "Battlegown" BattleBallgown, "Battle Ballgown", "Battle Ballgown");
+	bessBuyCIW(22, "Military" MilitaryUniform, "Military Uniform", "Military Uniform");
+	bessBuyCIW(23, "Pirate" SpacePirateOutfit, "Space Pirate", "Space Pirate");
+	bessBuyCIW(24, "GothLolita" GothLolitaOutfit, "Goth-Lolita Outfit", "Goth-Lolita Outfit");
+
+	bessBuyCIW(25, "Tank&Skirt" TankNSkirt, "Tank-top & Miniskirt", "Tank-top & Miniskirt");
+	bessBuyCIW(26, "BattleMaid" BattleMaidOutfit, "Battle Maid Outfit", "Battle Maid Outfit");
+	bessBuyCIW(27, "R.Bodysuit" ReinforcedBodysuit, "Reinforced Bodysuit", "Reinforced Bodysuit");
+	bessBuyCIW(28, "R.Fem Armor" RevealingFemaleArmor, "Revealing Female Armor", "Revealing Female Armor");
+
+	addButton(29, "Back", talkToBessAboutAccessories);
+
+	bessBuyCIW(30, "R.Male Armor" RevealingMaleArmor, "Revealing Male Armor", "Revealing Male Armor");
+	bessBuyCIW(31, "T.Zipsuit" TransparentZipsuit, "Transparent Zipsuit", "Transparent Zipsuit");
+	bessBuyCIW(32, "Yukata" BessYukata, "Yukata", "Yukata");
+	bessBuyCIW(33, "Ninja" NinjaOutfit, "Ninja Outfit", "Ninja Outfit");
+	bessBuyCIW(34, "Butler" ButlerOutfit, "Butler Outfit", "Butler Outfit");
+
+	bessBuyCIW(35, "M.Doctor" MaleDoctorOutfit, "Male Doctor Outfit", "Male Doctor Outfit");
+	bessBuyCIW(36, "F.Doctor" FemaleDoctorOutfit, "Female Doctor Outfit", "Female Doctor Outfit");
+	bessBuyCIW(37, "Gakuran" BessGakuran, "Gakuran", "Gakuran");
+	bessBuyCIW(38, "Schoolboy" SchoolboyOutfit, "Schoolboy Outfit", "Schoolboy Outfit");
+	bessBuyCIW(39, "StrapHarness" LeatherStrapHarness, "Leather Strap Harness", "Leather Strap Harness");
+
+	bessBuyCIW(41, "BlackDress" LittleBlackDress, "Little Black Dress", "Little Black Dress");
+}
+
+public function bessBuyCIW(idx:int, lbl:String, classT:Class, ttH:String, ttB:String):void
+{
+	var item:ItemSlotClass = new classT();
+
+	// already owns, hide
+	if (bessHasClothingItem(classT))
+	{
+		output(StringUtil.toTitleCase(item.longName) + " - [bess.name] already owns this item!\n");
+		addDisabledButton(idx, lbl, ttH, "[bess.name] already owns this item!");
+	}
+	else
+	{
+		output(StringUtil.toTitleCase(item.longName) + " - ");
+		// Can afford
+		if (pc.credits >= item.basePrice)
+		{
+			output(" Cost: " + String(item.basePrice));
+			addButton(idx, lbl, bessBuyOutfit, item, ttH, ttB + "\n\nCost: " + item.basePrice);
+		}
+		// too spensive
+		else
+		{
+			output(" Cost: " + String(item.basePrice) + " (Too expensive!)");
+			addDisabledButton(idx, lbl, ttH, ttB + "\n\nCost: " + item.basePrice + "\nToo expensive!");
+		}
+		output("\n");
+	}
+}
+
+public function bessBuyOutfit(boughtItem:ItemSlotClass):void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You transfer the credits to JoyCo and place your order. It’s not long before a warp-space delivery service is dropping off a package to your spaceship hangar.");
+
+	bess.inventory.push(boughtItem);
+	pc.credits -= boughtItem.basePrice;
+
+	clearMenu();
+	addButton(0, "Next", talkToBessAboutAccessories);
+
+	// 9999 -- offer option to immediately equip?
+}
+
+public function bessBuyShitBras():void
+{
+	clearMenu();
+	bessBuyCIW(0, "NormalBra", BessNormalBra, "Normal Bra", "Normal Bra");
+	bessBuyCIW(1, "WhiteBra", BessWhiteBra, "White Bra", "White Bra");
+	bessBuyCIW(2, "StripedBra", BessStripedBra, "Striped Bra", "Striped Bra");
+	bessBuyCIW(3, "FrillyBra", BessFrillyBra, "Frilly Bra", "Frilly Bra");
+	bessBuyCIW(4, "GirlyBra", BessGirlyBra, "Girly Bra", "Girly Bra");
+
+	bessBuyCIW(5, "StringTie", BessStringTie, "String Tie Top", "String Tie Top");
+	bessBuyCIW(6, "Furry", BessFurryBra, "Furry Bra", "Furry Bra");
+	bessBuyCIW(7, "Sarashi", BessSarashi, "Sarashi", "Sarashi");
+	bessBuyCIW(8, "Corset", BessCorset, "Corset", "Corset");
+	bessBuyCIW(9, "UB.Corset", BessUnderbustCorset, "Underbust Corset", "Underbust Corset");
+
+	bessBuyCIW(10, "SportBra", BessSportsBra, "Sports Bra", "Sports Bra");
+	bessBuyCIW(11, "Pasties", BessPasties, "Nipple Pasties", "Nipple Pasties");
+	bessBuyCIW(12, "Babydoll", BessBabydoll, "Babydoll", "Babydoll");
+	bessBuyCIW(13, "LacyBra", BessLacyBra, "Lacy Bra", "Lacy Bra");
+
+	addButton(14, "Back", talkToBessAboutAccessories);
+
+	bessBuyCIW(15, "BlackLace", BessBlackLaceBra, "Black Lace Bra", "Black Lace Bra");
+	bessBuyCIW(16, "Shibari", BessShibariTop, "Shibari Top", "Shibari Top");
+	bessBuyCIW(17, "MuscleShrt", MuscleShirt, "Muscle Shirt", "Muscle Shirt");
+	bessBuyCIW(18, "SportSing", SportSinglet, "Sports Singlet", "Sports Singlet");
+	bessBuyCIW(19, "MeshShirt", MeshShirt, "Mesh Shirt", "Mesh Shirt");
+
+	bessBuyCIW(20, "PatriotBra", PatrioticBra, "PatrioticBra", "PatrioticBra");
+	bessBuyCIW(21, "SkullBra", SkullBra, "Skull Bra", "Skull Bra");
+	bessBuyCIW(22, "HeartTassel", HeartShapedTassels, "Heart Shaped Nipple Tassels", "Heart Shaped Nipple Tassels");
+	bessBuyCIW(23, "SkullTassel", SkullShapedTassels, "Skull Shaped Nipple Tassels", "Skull Shaped Nipple Tassels");
+	bessBuyCIW(24, "GoldTassel", GoldenTassels, "Golden Nipple Tassels", "Golden Nipple Tassels");
+
+	bessBuyCIW(25, "CloverTassel", CloverTassels, "Clover Nipple Tassels", "Clover Nipple Tassels");
+	bessBuyCIW(26, "FlowerTassel", FlowerTassels, "Flower Nipple Tassels", "Flower Nipple Tassels");
+	bessBuyCIW(27, "StarTassel", StarTassels, "Star Shaped Nipple Tassels", "Star Shaped Nipple Tassels");
+	bessBuyCIW(29, "JewelTassel", JewelTassel, "Jeweled Nipple Tassels", "Jeweled Nipple Tassels");
+
+	addButton(29, "Back", talkToBessAboutAccessories);
+
+	bessBuyCIW(31, "BlackTassel", BlackTassel, "Black Nipple Tassels", "Black Nipple Tassels");
+
+	addButton(44, "Back", talkToBessAboutAccessories);
+}
+
+public function bessBuyShitPanties():void
+{
+	clearMenu();
+
+	bessBuyCIW(0, "Normal", BessNormalPanties, "Normal Panties", "Normal Panties");
+	bessBuyCIW(1, "Stk&Panty", BessStockingsNPanty, "Stockings & Panties", "Stockings & Panties");
+	bessBuyCIW(2, "StringTie", BessStringTiePanty, "String Tie Bottoms", "String Tie Bottoms");
+	bessBuyCIW(3, "Boxers", BessBoxers, "Boxers", "Boxers");
+	bessBuyCIW(4, "Frilly", BessFrillyPanties, "Frilly Panties", "Frilly Panties");
+
+	bessBuyCIW(5, "Girly", BessGirlyPanties, "Girly Panties", "Girly Panties");
+	bessBuyCIW(6, "Whities", BessWhitePanties, "White Panties", "White Panties");
+	bessBuyCIW(7, "Shibari", BessShibariBottom, "Shibari Bottoms", "Shibari Bottoms");
+	bessBuyCIW(8, "Striped", BessStripedPanties, "Striped Panties", "Striped Panties");
+	bessBuyCIW(9, "Lowrider", BessLowrider, "Lowrider Bottoms", "Lowrider Bottoms");
+
+	bessBuyCIW(10, "Furry", BessFurryPanties, "Furry Panties", "Furry Panties");
+	bessBuyCIW(11, "Black Lace", BessBlackLacePanties, "Black Lace Panties", "Black Lace Panties");
+	bessBuyCIW(12, "Boyshorts", BessBoyshorts, "Boyshorts", "Boyshorts");
+	bessBuyCIW(13, "Thong", BessThong, "Thong", "Thong");
+
+	addButton(14, "Back", talkToBessAboutAccessories);
+
+	bessBuyCIW(15, "P.Boxers", PatrioticBoxers, "Patriotic Boxers", "Patriotic Boxers");
+	bessBuyCIW(16, "P.Panties", PatrioticPanties, "Patriotic Panties", "Patriotic Panties");
+	bessBuyCIW(17, "S.Boxers", SkullBoxers, "Skull Boxers", "Skull Boxers");
+	bessBuyCIW(18, "S.Panties", SkullPanties, "Skull Panties", "Skull Panties");
+	bessBuyCIW(19, "C-String", BessCString, "C-String", "C-String");
+
+	bessBuyCIW(20, "SilkBoxers", SilkBoxers, "Black Silk Boxers", "Black Silk Boxers");
+	bessBuyCIW(21, "SatinBoxers", SatinBoxers, "Red Satin Boxers", "Red Satin Boxers");
+	bessBuyCIW(22, "L.Shorts", LeatherBoyShorts, "Leather Boy Shorts", "Leather Boy Shorts");
+	bessBuyCIW(23, "PouchStrap", ZipPouchJockStrap, "Zip Pouch Jock Strap", "Zip Pouch Jock Strap");
+
+	addButton(29, "Back", talkToBessAboutAccessories);
+}
+
+public function bessBuyShitAccessories():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("What set would you like to purchase?");
+
+	output("\nEquine set (Allows Bess to set Equine Tail and Ears) - 250 Creds");
+	output("\nBovine Set (Allows Bess to set Bovine Tail, Ears and Horns) - 250 Creds");
+	output("\nCanine Set (Allows Bess to set Canine Tail and Ears) - 250 Creds");
+	output("\nFeline Set (Allows Bess to set Feline Tail and Ears) - 250 Creds");
+	output("\nVulpine Set (Allows Bess to set Vulpine Tail and Ears) - 250 Creds");
+	output("\nBunny Set (Allows Bess to set Leporine Tail, Ears) - 250 Creds");
+	output("\nBee Set (Allows Bess to set Bee Wings) - 250 Creds");
+	output("\nDraconic Set (Allows Bess to set Draconic Ears, Tail, Wings and Horns). - 500 Creds");
+	output("\nDemonic Set (Allows Bess to set Demonic Ears, Tail, Wings and Horns) - 500 Creds");
+	output("\nShark Set (Allows Bess to set Shark Ears and Tail) - 250 Creds");
+	output("\nDeer Set (Allows Bess to set Deer Ears, Tail and Horns) - 250 Creds");
+	output("\nMouse Set (Allows Bess to set Mouse Ears and Tail) - 250 Creds");
+	output("\nAngel Set (Allows Bess to set Angel/White Feathered Wings) - 500 Creds");
+
+	clearMenu();
+	bessBASW(0, "Equine", BESS_ACCSET_EQUINE, 250);
+	bessBASW(1, "Bovine", BESS_ACCSET_BOVINE, 250);
+	bessBASW(2, "Canine", BESS_ACCSET_CANINE, 250);
+	bessBASW(3, "Feline", BESS_ACCSET_FELINE, 250);
+	bessBASW(4, "Vulpine", BESS_ACCSET_VULPINE, 250);
+	bessBASW(5, "Bunny", BESS_ACCSET_BUNNY, 250);
+	bessBASW(6, "Bee", BESS_ACCSET_BEE, 250);
+	bessBASW(7, "Draconic", BESS_ACCSET_DRACONIC, 500);
+	bessBASW(8, "Demonic", BESS_ACCSET_DEMONIC, 500);
+	bessBASW(9, "Shark", BESS_ACCSET_SHARK, 250);
+	bessBASW(10, "Deer", BESS_ACCSET_DEER, 250);
+	bessBASW(11, "Mouse", BESS_ACCSET_MOUSE, 250);
+	bessBASW(12, "Angel", BESS_ACCSET_ANGEL, 500);
+
+	addButton(14, "Back", talkToBessAboutAccessories);
+}
+
+public function bessBASW(idx:int, lbl:String, accSet:uint, cost:int):void
+{
+	if (bessHasAccessorySet(accSet))
+	{
+		addDisabledButton(idx, lbl, lbl, "[bess.name] already owns this accessory set!");
+	}
+	else
+	{
+		if (pc.credits >= cost)
+		{
+			addButton(idx, lbl, bessBuyAccessory, [accSet, cost], lbl, "Cost: " + cost);
+		}
+		else
+		{
+			addDisabledButton(idx, lbl, lbl, "Cost: " + cost + "\nToo expensive!");
+		}
+	}
+}
+
+public function bessBuyAccessory(opts:Array):void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You transfer the credits to JoyCo and place your order. It’s not long before a warp-space delivery service is dropping off a package to your spaceship hangar.");
+
+	var accSet:uint = opts[0];
+	var cost:int = opts[1];
+
+	pc.credits -= cost;
+	bessAddAccessorySet(accSet);
+
+	addButton(0, "Next", talkToBessAboutAccessories)
+}
+
+public function bessBuyShitItems():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("What JoyCo product would you like to purchase for [bess.name]?");
+	
+	output("\n\nGlasses (Allows Bess to equip Glasses in Accessory Menu) - 500 Creds");
+	output("\nKatana (Allows Bess to equip Katana in Accessory Menu) - 1000 Creds");
+
+	clearMenu();
+	
+	if (bessHasGlasses()) addDisabledButton(0, "Glasses", "Glasses", "[bess.name] already owns glasses!");
+	else if (pc.credits < 500) addDisabledButton(0, "Glasses", "Glasses", "You can't afford to buy [bess.name] glasses!");
+	else addButton(0, "Glasses", bessBuyGlasses, undefined, "Glasses", "Buy some glasses and allow [bess.name] to equip them!");
+
+	if (bessHasKatana()) addDisabledButton(1, "Katana", "Katana", "[bess.name] already owns a katana!");
+	else if (pc.credits < 1000) addDisabledButton(1, "Katana", "Katana", "You can't afford to buy [bess.name] a katana!");
+	else addButton(1, "Katana", bessBuyKatana, undefined, "Katana", "Buy a katana for [bess.name] to saunter around with it!");
+
+	addButton(14, "Back", talkToBessAboutAccessories);
+}
+
+public function bessBuyGlasses():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You transfer the credits to JoyCo and place your order. It’s not long before a warp-space delivery service is dropping off a package to your spaceship hangar.");
+
+	pc.credits -= 500;
+	flags["BESS_OWNS_GLASSES"] = 1;
+
+	clearMenu();
+	addButton(0, "Next", bessBuyShitItems);
+}
+
+public function bessBuyKatana():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You transfer the credits to JoyCo and place your order. It’s not long before a warp-space delivery service is dropping off a package to your spaceship hangar.");
+
+	pc.credits -= 1000;
+	flags["BESS_OWNS_KATANA"] = 1;
+
+	clearMenu();
+	addButton(0, "Next", bessBuyShitItems);
+}
+
+public function bessBuyShitCocks():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("What kind would you like to purchase?");
+
+	//Purchases alter which cock options unlock in the Functions -Menu (where the upgrades can actually be activated). See Functions Menu / Cock or value guide for details.
+	clearMenu();
+	bessBCW(0, "Dino", BESS_COCKTYPE_DINO, 1500);
+	bessBCW(1, "Horse", BESS_COCKTYPE_HORSE, 500);
+	bessBCW(2, "Dog", BESS_COCKTYPE_DOG, 500);
+	bessBCW(3, "Fox", BESS_COCKTYPE_FOX, 500);
+	bessBCW(4, "Demon", BESS_COCKTYPE_DEMON, 500);
+	bessBCW(5, "Tentacle", BESS_COCKTYPE_TENTACLE, 1000);
+	bessBCW(6, "Cat", BESS_COCKTYPE_CAT, 500);
+	bessBCW(7, "Goo", BESS_COCKTYPE_GOO, 1000);
+	bessBCW(8, "Plant", BESS_COCKTYPE_PLANT, 1000);
+	bessBCW(9, "Dragon", BESS_COCKTYPE_DRAGON, 1000);
+
+	addButton(14, "Back", talkToBessAboutAccessories);
+}
+
+public function bessBCW(idx:int, lbl:String, cockType:uint, cost:int):void
+{
+	if (bessHasCockType(cockType))
+	{
+		addDisabledButton(idx, lbl, lbl, "[bess.name] already has access to this cock type!");
+	}
+	else
+	{
+		if (pc.credits >= cost)
+		{
+			addButton(idx, lbl, bessBuyCockType, [cockType, cost], lbl, "Cost: " + cost);
+		}
+		else
+		{
+			addDisabledButton(idx, lbl, lbl, "Cost: " + cost + "\nToo expensive!");
+		}
+	}
+}
+
+public function bessBuyCockType(opts:Array):void
+{
+	var cType:uint = opts[0];
+	var cost:uint = opts[1];
+
+	clearOutput();
+	bessHeader();
+
+	output("You transfer the credits to JoyCo and place your order. It’s not long before a warp-space delivery service is dropping off a package to your spaceship hangar.");
+
+	bessAddCockType(cType);
+	pc.credits -= cost;
+
+	clearMenu();
+	addButton(0, "Next", talkToBessAboutAccessories);
+}
