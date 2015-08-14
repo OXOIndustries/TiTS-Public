@@ -3807,11 +3807,11 @@ public function talkToBessAboutThings():void
 	clearOutput();
 	bessHeader();
 
-	output("\n\n<i>\"Yes "+ bessPCName() +" what would you like to talk about?\”</i>");
+	output("\n\n<i>“Yes "+ bessPCName() +" what would you like to talk about?”</i>");
 
 	clearMenu();
 	addButton(0, "SpendTime", bessSpendTime);
-	addButton(1, bessName(), );
+	addButton(1, bessName(), talkToBessAboutBess);
 	addButton(2, "You", );
 	addButton(3, "JoyCo", );
 	if (flags["BESS_FUCKED"] != undefined || flags["BESS_BOOBCHANGED"] != undefined) addButton(4, "Nipples", );
@@ -3831,10 +3831,32 @@ public function bessSpendTime():void
 	if (flags["BESS_LOVER"] == 1)
 	{
 		availableMessages.push(bessSpendTime1, bessSpendTime2, bessSpendTime3, bessSpendTime6, bessSpendTime7);
-		if (flags["BESS_LOVER_STATUS"] == "sub" || flags["BESS_LOVER_STATUS"] == "pet") availableMessages.push(bessSpendTime4);
-		if (flags["BESS_LOVER_STATUS"].indexOf("dom") != -1) availableMessages.push(bessSpendTime5);
+		if (flags["BESS_LOVER_STATUS"] == "sub" || flags["BESS_LOVER_STATUS"] == "pet") availableMessages.push(bessSpendTime4, bessSpendTime10);
+		if (flags["BESS_LOVER_STATUS"].indexOf("dom") != -1) availableMessages.push(bessSpendTime5, bessSpendTime9);
 		if (bess.isFeminine()) availableMessages.push(bessSpendTime8);
 	}
+
+	if (flags["BESS_FRIEND"] == 1)
+	{
+		availableMessages.push(bessSpendTime14, bessSpendTime15, bessSpendTime16, bessSpendTime17);
+	}
+
+	if (flags["BESS_FRIEND"] == undefined && flags["BESS_LOVER"] == undefined)
+	{
+		availableMessages.push(bessSpendTime18, bessSpendTime19, bessSpendTime20, bessSpendTime21, bessSpendTime22, bessSpendTime26, bessSpendTime27, bessSpendTime28);
+	}
+
+	if (flags["BESS_EVENT_3"] != undefined)
+	{
+		availableMessages.push(bessSpendTime24, bessSpendTime25);
+
+		if (flags["BESS_FRIEND"] == undefined && flags["BESS_LOVER"] == undefined) availableMessages.push(bessSpendTime23);
+	}
+	if (flags["BESS_EVENT_6"] != undefined) availableMessages.push(bessSpendTime11, bessSpendTime12)
+	if (flags["BESS_EVENT_9"] != undefined) availableMessages.push(bessSpendTime13);
+
+	// execute at random
+	RandomInCollection(availableMessages)();
 }
 
 public function bessSpendTime1():void
@@ -3909,7 +3931,7 @@ public function bessSpendTime3():void
 	}
 	else
 	{
-		output("You spend some time with your [bessLoverStatus], [Bess]. When you are both in the ship’s galley, you suddenly press [bess.hisHer] against the fridge. [bess.HeShe] moans into your lips as you kiss [bess.himHer] " + bess.mf("sliding his arms around your waist", "wrapping her arms around your neck") +".");
+		output("You spend some time with your [bessLoverStatus], [bess.name]. When you are both in the ship’s galley, you suddenly press [bess.hisHer] against the fridge. [bess.HeShe] moans into your lips as you kiss [bess.himHer] " + bess.mf("sliding his arms around your waist", "wrapping her arms around your neck") +".");
 
 		output("\n\nIt’s a long time before you pull away from each other and [bess.heShe] grins, clearly happy with your decision to randomly seize [bess.himHer] and steal a kiss. <i>“... Mmm, I think that’s the tastiest thing I’ve ever gotten from the galley!”</i>");
 	}
@@ -3993,7 +4015,7 @@ public function bessSpendTime7():void
 	clearOutput();
 	bessHeader();
 
-	output("You spend some time with [Bess]. [bess.HeShe] " + bess.mf("wraps his arms around you","leaps into your arms and wraps her legs around your waist") + ", grinning all the while as [bess.heShe] litters your face with kisses. <i>“");
+	output("You spend some time with [bess.name]. [bess.HeShe] " + bess.mf("wraps his arms around you","leaps into your arms and wraps her legs around your waist") + ", grinning all the while as [bess.heShe] litters your face with kisses. <i>“");
 	output(
 		RandomInCollection(
 			"Mine, all mine!",
@@ -4039,113 +4061,668 @@ public function bessSpendTime8():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-Message #9 | bessLoverStatus = domme
+public function bessSpendTime9():void
+{
+	clearOutput();
+	bessHeader();
 
+	output("[bess.name], your Domme, decides to reward you for being a good sub. [bess.HeShe] pets your head and tells you that you’ve been very well behaved and that [bess.heShe] loves you. For your obedience [bess.heShe] gives you a nice meal - served on the floor, from a bowl with your name on it.");
+	
+	output("\n\nYou happily finish off the food you have been given as [bess.heShe] rubs a riding crop along your [pc.skinFurScalesNoun]. You make sure to clean the bowl thoroughly, but you still miss a spot - [bess.name] smacks you with the crop until you lick it up.");
 
-[Bess], your Domme, decides to reward you for being a good sub. [bess.HeShe] pets your head and tells you that you've been very well behaved and that [bess.heShe] loves you. For your obedience [bess.heShe] gives you a nice meal - served on the floor, from a bowl with your name on it.
+	bessAffectionGain(BESS_AFFECTION_SPENDTIME);
+	processTime(15+rand(5));
 
-You happily finish off the food you have been given as [bess.heShe] rubs a riding crop along your [pc.skinFurScalesNoun]. You make sure to clean the bowl thoroughly, but you still miss a spot - [Bess] smacks you with the crop until you lick it up. 
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
 
+public function bessSpendTime10():void
+{
+	clearOutput();
+	bessHeader();
 
-Message #10 | bessLoverStatus = pet || bessLoverStatus = sub
+	output("You spend some time with your "+bessLoverStatus()+", [bess.name]. You pat [bess.hisHer] head and tell [bess.himHer] [bess.heShe]’s been a good little sub, and that you love [bess.himHer]. As a reward you give [bess.himHer] a nice meal - served on the floor, from a bowl with [bess.hisHer] name on it.");
+	
+	output("\n\n[bess.name] happily finishes off the food you have provided while you rub a riding crop between [bess.hisHer] thighs. Even though [bess.heShe] tries to clean the bowl as thoroughly as possible [bess.heShe] still misses a spot  - you smack [bess.hisHer] rump with the crop until [bess.heShe] licks it up.");
 
-You spend some time with your [bessLoverStatus], [Bess]. You pat [bess.hisHer] head and tell [bess.himHer] [bess.heShe]'s been a good little sub, and that you love [bess.himHer]. As a reward you give [bess.himHer] a nice meal - served on the floor, from a bowl with [bess.hisHer] name on it.
+	bessAffectionGain(BESS_AFFECTION_SPENDTIME);
+	processTime(15+rand(5));
 
-[Bess] happily finishes off the food you have provided while you rub a riding crop between [bess.hisHer] thighs. Even though [bess.heShe] tries to clean the bowl as thoroughly as possible [bess.heShe] still misses a spot  - you smack [bess.hisHer] rump with the crop until [bess.heShe] licks it up. 
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
 
+public function bessSpendTime11():void
+{
+	clearOutput();
+	bessHeader();
 
-Message #11 | Up to Approach Scene #7 (Watched #6).
+	output("You decide to chill a bit with [bess.name]. You throw on a "+bessMovieGenre()+" movie and watch it while drinking some "+bessDrink()+" with her.");
 
-You decide to chill a bit with [Bess]. You throw on a [bessGenre] movie and watch it while drinking some [bessDrink] with her.
+	bessAffectionGain(BESS_AFFECTION_SPENDTIME);
+	processTime(100+rand(20));
 
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
 
-Message #12 | Up to Approach Scene #7 (Watched #6).
+public function bessSpendTime12():void
+{
+	clearOutput();
+	bessHeader();
 
-You decide to chill a bit with [Bess].  You sit back and relax listening to some [bessMusic] with her, drinking some [bessDrink] all the while. 
+	output("You decide to chill a bit with [bess.name].  You sit back and relax listening to some "+bessMusic()+" with her, drinking some "+bessDrink()+" all the while.");
 
+	bessAffectionGain(BESS_AFFECTION_SPENDTIME);
+	processTime(30+rand(15));
 
-Message #13 | Up to Approach Scene #10 (Watched #9).
-// Randomize in brackets
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
 
-You sit down with [Bess] to chat. [bess.HeShe] tells you all about {an adventure book/a crime novel/a history book/a horror story/a book on philosophy/a sci-fi novel/a romance novel/a murder mystery novel/a fantasy novel/a biography/an auto-biography/a shojo manga/a shonen manga/a jousei manga/a seinen manga/a graphic novel/a superhero comic/a short story/a historical fiction/a poetry book/an erotic fiction/a steampunk novel/a paranormal romance} [bess.heShe] read recently, and how [bess.heShe] {absolutely loved it and is going to add it to [bess.hisHer] collection/really liked it and thinks you should read it too/thought it was so-so and could have been written much better/found it really bad and wouldn't recommend it to anyone/found it indescribably awful and threw it in the trash compactor}. 
+public function bessSpendTime13():void
+{
+	clearOutput();
+	bessHeader();
 
+	output("You sit down with [bess.name] to chat. [bess.HeShe] tells you all about ");
+	output(
+		RandomInCollection(
+			"an adventure book",
+			"a crime novel",
+			"a history book",
+			"a horror story",
+			"a book on philosophy",
+			"a sci-fi novel",
+			"a romance novel",
+			"a murder mystery novel",
+			"a fantasy novel",
+			"a biography",
+			"an auto-biography",
+			"a shojo manga",
+			"a shonen manga",
+			"a jousei manga",
+			"a seinen manga",
+			"a graphic novel",
+			"a superhero comic",
+			"a short story",
+			"a historical fiction",
+			"a poetry book",
+			"an erotic fiction",
+			"a steampunk novel",
+			"a paranormal romance"
+		)
+	);
+	output(" [bess.heShe] read recently, and how [bess.heShe]");
+	output(
+		RandomInCollection(
+			"absolutely loved it and is going to add it to [bess.hisHer] collection",
+			"really liked it and thinks you should read it too",
+			"thought it was so-so and could have been written much better",
+			"found it really bad and wouldn’t recommend it to anyone",
+			"found it indescribably awful and threw it in the trash compactor"
+		)
+	);
+	output(".");
 
-Message #14 | bessFriend = true && bessLover = false
+	bessAffectionGain(BESS_AFFECTION_SPENDTIME);
+	processTime(10+rand(5));
 
-[Bess] comes looking for you. When [bess.heShe] finds you [bess.heShe] walks up and gives you a tight hug, telling you that you are [bess.hisHer] dearest friend. [bess.HeShe] doesn't let go until you feel well and truly appreciated.
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
 
-<i>{You make me brave, you know that?\I'm so glad that we're friends!\I just wanted you to know how much I appreciate you!\Hugs are the best, aren't they? I can't believe you organics don't do it more often!\Thank you for being my friend.\I feel close to you emotionally, so I thought I'd get close to you physically! ... Wait, that came out wrong.\I'm the luckiest synthetic in the whole galaxy!}.\"</i> [Bess] tells you.
+public function bessSpendTime14():void
+{
+	clearOutput();
+	bessHeader();
 
+	output("\n\n[bess.name] comes looking for you. When [bess.heShe] finds you [bess.heShe] walks up and gives you a tight hug, telling you that you are [bess.hisHer] dearest friend. [bess.HeShe] doesn’t let go until you feel well and truly appreciated.");
+	
+	output("\n\n<i>“");
+	output(
+		RandomInCollection(
+			"You make me brave, you know that?",
+			"I’m so glad that we’re friends!",
+			"I just wanted you to know how much I appreciate you!",
+			"Hugs are the best, aren’t they? I can’t believe you organics don’t do it more often!",
+			"Thank you for being my friend.",
+			"I feel close to you emotionally, so I thought I’d get close to you physically! ... Wait, that came out wrong.",
+			"I’m the luckiest synthetic in the whole galaxy!"
+		)
+	);
+	output("”</i> [bess.name] tells you.");
 
-Message #15 | bessFriend = true
+	bessAffectionGain(BESS_AFFECTION_SPENDTIME);
+	processTime(10+rand(5));
 
-You spend some of your down time with [Bess]. You make up a sport with odds and ends in the ship, as well as a set of rules, and go about trying to beat each other at it. At the end you get to declare yourself the galactic champion of the made up sport.
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
 
+public function bessSpendTime15():void
+{
+	clearOutput();
+	bessHeader();
 
-Message #16 | bessFriend = true
-// Randomize the game & skill level
-You decide to chill a bit with [Bess]. You both sit down and play a {fighting/strategy/platformer/role-playing/shooter/adventure/simulation/sports/racing/puzzle/board/chess/ping-pong/stealth} game on your holo-rig, trying to thrash each other at it. [Bess] is {incredibly good/quite good/decent/really bad/incredibly bad} at it. You both have a blast.
+	output("You spend some of your down time with [bess.name]. You make up a sport with odds and ends in the ship, as well as a set of rules, and go about trying to beat each other at it. At the end you get to declare yourself the galactic champion of the made up sport.");
 
+	bessAffectionGain(BESS_AFFECTION_SPENDTIME);
+	processTime(10+rand(10));
 
-Message #17 | bessFriend = true
-// Randomize bracket contents.
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
 
-You decide to chill a bit with [Bess]. You both sit down and watch a {mind-blowingly awesome TV show. You both gush about how awesome it is/great TV show that has some fantastic hooks. You both thoroughly enjoy it/pretty average TV show. You both remark on its pros and cons/pretty awful TV show. You both pick it apart/show that is so bad, it's good. You critique the show at length} as you continue to watch it together. 
+public function bessSpendTime16():void
+{
+	clearOutput();
+	bessHeader();
 
+	output("You decide to chill a bit with [bess.name]. You both sit down and play a ");
+	output(
+		RandomInCollection(
+			"fighting",
+			"strategy",
+			"platformer",
+			"role-playing",
+			"shooter",
+			"adventure",
+			"simulation",
+			"sports",
+			"racing",
+			"puzzle",
+			"board",
+			"chess",
+			"ping-pong",
+			"stealth"
+		)
+	);
+	output(" game on your holo-rig, trying to thrash each other at it. [bess.name] is ");
+	output(
+		RandomInCollection(
+			"incredibly good",
+			"quite good",
+			"decent",
+			"really bad",
+			"incredibly bad"
+		)
+	);
+	output(" at it. You both have a blast.");
 
-Message #18 | bessFriend = false
+	bessAffectionGain(BESS_AFFECTION_SPENDTIME);
+	processTime(15+rand(5));
 
-You sit and talk to [Bess]. You chat about what has been going on lately and [bess.heShe] hangs on every word. 
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
 
+public function bessSpendTime17():void
+{
+	clearOutput();
+	bessHeader();
 
-Message #19 | bessFriend = false
+	output("You decide to chill a bit with [bess.name]. You both sit down and watch a ");
+	output(
+		RandomInCollection(
+			"mind-blowingly awesome TV show. You both gush about how awesome it is",
+			"great TV show that has some fantastic hooks. You both thoroughly enjoy it",
+			"pretty average TV show. You both remark on its pros and cons",
+			"pretty awful TV show. You both pick it apart",
+			"show that is so bad, it’s good. You critique the show at length"
+		)
+	);
+	output(" as you continue to watch it together.");
 
-You spend some time with [Bess]. There are small but critical errors around the ship and you get [bess.himHer] to help you fix them up. Once you're done the ship is running that much better.
+	bessAffectionGain(BESS_AFFECTION_SPENDTIME);
+	processTime(20+rand(10));
 
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
 
-Message #20 | bessFriend = false
+public function bessSpendTime18():void
+{
+	clearOutput();
+	bessHeader();
 
-You spend some time with [Bess]. [bess.HeShe] spends a lot of time explaining to you about the latest JoyCo products, encouraging you to buy them as soon as you are physically able.
+	output("You sit and talk to [bess.name]. You chat about what has been going on lately and [bess.heShe] hangs on every word.");
 
+	bessAffectionGain(BESS_AFFECTION_SPENDTIME);
+	processTime(10+rand(5));
 
-Message #21 | bessFriend = false
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
 
-You sit down with [Bess] to chat. [bess.HeShe] talks to you about the exact process your body goes through when you orgasm, skipping no details. For some reason it still sounds hot even when [bess.heShe] reduces it to science.
+public function bessSpendTime19():void
+{
+	clearOutput();
+	bessHeader();
 
+	output("You spend some time with [bess.name]. There are small but critical errors around the ship and you get [bess.himHer] to help you fix them up. Once you’re done the ship is running that much better.");
 
-Message #22 | bessFriend = false
-// Randomize in the brackets one.
+	bessAffectionGain(BESS_AFFECTION_SPENDTIME);
+	processTime(20+rand(10));
 
-You spend some time chatting with [Bess]. [bess.HeShe] informs you of [bess.hisHer] current condition and also tells you that [bess.heShe] is perfectly capable of providing sexual relief whenever you need it in a multitude of positions. [bess.HeShe] goes on to detail [bess.heShe] sex act called {the 'flaming horndog'/the 'farmer's wheel'/the 'horny frogger'/the 'spaghetti slideshow'/the 'medusan cascade''/'crouching for credits'/'flipping the pink''/'rubber flubbing'/'TPTA'}
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
 
+public function bessSpendTime20():void
+{
+	clearOutput();
+	bessHeader();
 
-Message #23 | Up to Approach Scene #4 (Watched #3). && bessFriend = false
+	output("You spend some time with [bess.name]. [bess.HeShe] spends a lot of time explaining to you about the latest JoyCo products, encouraging you to buy them as soon as you are physically able.");
 
-You sit down with [Bess] to talk.  [bess.HeShe] explains how [bess.hisHer] research into making the universe a happier place is going. You listen to [bess.hisHer] thoughts and conclusions, occasionally giving [bess.himHer] some advice on what to try next.
+	bessAffectionGain(BESS_AFFECTION_SPENDTIME);
+	processTime(10+rand(10));
 
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
 
-Message #24 | Up to Approach Scene #4 (Watched #3)
-// Another randomizer in the brackets one.
+public function bessSpendTime21():void
+{
+	clearOutput();
+	bessHeader();
 
-You decide to spend some time with [Bess]. [bess.HeShe] spends a great deal of time talking about the {movies [bess.heShe]'s watched/holos [bess.heShe]'s read/shows [bess.heShe]'s watched/music [bess.heShe]'s listened to} lately and how [bess.heShe] {loved it and is adding it to [bess.hisHer] collection/really, really liked it/thought it was pretty average/found it really bad/positively awful and wants [bess.hisHer] time back.} You spend some time talking with [bess.himHer] about it.
+	output("You sit down with [bess.name] to chat. [bess.HeShe] talks to you about the exact process your body goes through when you orgasm, skipping no details. For some reason it still sounds hot even when [bess.heShe] reduces it to science.");
 
-Message #25 | Up to Approach Scene #4 (Watched #3)
-// Another randomizer in the brackets one.
+	bessAffectionGain(BESS_AFFECTION_SPENDTIME);
+	processTime(10+rand(10));
 
-You decide to spend some time with [Bess]. [bess.HeShe] spends a great deal of time talking about the {articles [bess.heShe] has read/news [bess.heShe] has watched} lately and how [bess.heShe] found the subject matter {really sad/hilarious/quite infuriating/a little silly/thought-provoking/mind-numbing/perplexing/awe-inspiring/quite worrying}. You spend some time talking with [bess.himHer] about it.
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
 
+public function bessSpendTime22():void
+{
+	clearOutput();
+	bessHeader();
 
-Message #26 | bessFriend = false
+	output("You spend some time chatting with [bess.name]. [bess.HeShe] informs you of [bess.hisHer] current condition and also tells you that [bess.heShe] is perfectly capable of providing sexual relief whenever you need it in a multitude of positions. [bess.HeShe] goes on to detail [bess.heShe] sex act called ");
+	output(
+		RandomInCollection(
+			"the ‘flaming horndog’",
+			"the ‘farmer’s wheel’",
+			"the ‘horny frogger’",
+			"the ‘spaghetti slideshow’",
+			"the ‘medusan cascade’",
+			"‘crouching for credits’",
+			"‘flipping the pink’",
+			"‘rubber flubbing’",
+			"‘TPTA’"
+		)
+	);
+	output(".");
 
-You sit down with [Bess] to chat. You talk to [bess.himHer] about your journey and why you're on it. [bess.HeShe] seems touched by the fact you are sharing this information with [bess.himHer] and listens to you speak in reverent silence.
+	bessAffectionGain(BESS_AFFECTION_SPENDTIME);
+	processTime(5+rand(3));
 
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
 
- Message #27 | bessFriend = false
+public function bessSpendTime23():void
+{
+	clearOutput();
+	bessHeader();
 
-You spend some time with [Bess]. You talk to [bess.himHer] about your uncle, Maximillian, and your cousin slash rival. [bess.HeShe] seems touched by the fact you are sharing this information with [bess.himHer] and listens to you speak in reverent silence.
+	output("You sit down with [bess.name] to talk.  [bess.HeShe] explains how [bess.hisHer] research into making the universe a happier place is going. You listen to [bess.hisHer] thoughts and conclusions, occasionally giving [bess.himHer] some advice on what to try next.");
 
+	bessAffectionGain(BESS_AFFECTION_SPENDTIME);
+	processTime(10+rand(5));
 
-Message #28 | bessFriend = false
-// Another randomizer with brackets.
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
 
-You sit down with [Bess] to talk. You ask [bess.hisHer] simple questions about [bess.himHer]self and [bess.heShe] eagerly responds, quite happy to give you [bess.hisHer] full specs in every single detail. By the time you've both finished talking you know {the exact size of [bess.hisHer] brain/how much meld-milk [bess.heShe] can store/her body weight/exactly how [bess.hisHer] skeleton was made/how many lines of code [bess.heShe] has/the names of [bess.hisHer] programming team/how many gallons of cum [bess.heShe] can swallow/the largest object [bess.heShe] can fit inside [bess.himHer]self/how [bess.hisHer] skin was made}.
+public function bessSpendTime24():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You decide to spend some time with [bess.name]. [bess.HeShe] spends a great deal of time talking about the ");
+	output(
+		RandomInCollection(
+			"movies [bess.heShe]’s watched",
+			"holos [bess.heShe]’s read",
+			"shows [bess.heShe]’s watched",
+			"music [bess.heShe]’s listened to"
+		)
+	);
+	output(" lately and how [bess.heShe] ");
+	output(
+		RandomInCollection(
+			"loved it and is adding it to [bess.hisHer] collection",
+			"really, really liked it",
+			"thought it was pretty average",
+			"found it really bad",
+			"positively awful and wants [bess.hisHer] time back"
+		)
+	);
+	output(". You spend some time talking with [bess.himHer] about it.");
+
+	bessAffectionGain(BESS_AFFECTION_SPENDTIME);
+	processTime(10+rand(5));
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function bessSpendTime25():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You decide to spend some time with [bess.name]. [bess.HeShe] spends a great deal of time talking about the ");
+	output(
+		RandomInCollection(
+			"articles [bess.heShe] has read",
+			"news [bess.heShe] has watched"
+		)
+	);
+	output(" lately and how [bess.heShe] found the subject matter ");
+	output(
+		RandomInCollection(
+			"really sad",
+			"hilarious",
+			"quite infuriating",
+			"a little silly",
+			"thought-provoking",
+			"mind-numbing",
+			"perplexing",
+			"awe-inspiring",
+			"quite worrying"
+		)
+	);
+	output(". You spend some time talking with [bess.himHer] about it.");
+
+	bessAffectionGain(BESS_AFFECTION_SPENDTIME);
+	processTime(10+rand(5));
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function bessSpendTime26():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You sit down with [bess.name] to chat. You talk to [bess.himHer] about your journey and why you’re on it. [bess.HeShe] seems touched by the fact you are sharing this information with [bess.himHer] and listens to you speak in reverent silence.");
+
+	bessAffectionGain(BESS_AFFECTION_SPENDTIME);
+	processTime(10+rand(5));
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function bessSpendTime27():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You spend some time with [bess.name]. You talk to [bess.himHer] about your uncle, Maximillian, and your cousin slash rival. [bess.HeShe] seems touched by the fact you are sharing this information with [bess.himHer] and listens to you speak in reverent silence.");
+
+	bessAffectionGain(BESS_AFFECTION_SPENDTIME);
+	processTime(10+rand(5));
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function bessSpendTime28():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You sit down with [bess.name] to talk. You ask [bess.hisHer] simple questions about [bess.himHer]self and [bess.heShe] eagerly responds, quite happy to give you [bess.hisHer] full specs in every single detail. By the time you’ve both finished talking you know ");
+	output(
+		RandomInCollection(
+			"the exact size of [bess.hisHer] brain",
+			"how much meld-milk [bess.heShe] can store",
+			"her body weight",
+			"exactly how [bess.hisHer] skeleton was made",
+			"how many lines of code [bess.heShe] has",
+			"the names of [bess.hisHer] programming team",
+			"how many gallons of cum [bess.heShe] can swallow",
+			"the largest object [bess.heShe] can fit inside [bess.himHer]self",
+			"how [bess.hisHer] skin was made",
+			)
+	);
+	output(".");
+
+	bessAffectionGain(BESS_AFFECTION_SPENDTIME);
+	processTime(10+rand(10));
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function talkToBessAboutBess():void
+{
+	var availableMessages:Array = [];
+
+	if (flags["BESS_LOVER"] == undefined && flags["BESS_FRIEND"] == undefined)
+	{
+		availableMessages.push(aboutBess1, aboutBess2, aboutBess3);
+	}
+
+	availableMessages.push(aboutBess4, aboutBess5, aboutBess6, aboutBess8);
+}
+
+public function aboutBess1():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You question [bess.name] about [bess.hisHer] past before you discovered her, though your query seems to confuse [bess.himHer].");
+	
+	output("\n\n<i>“Before you activated me I was built at a JoyCo factory on Panara, "+bessPCName()+". Unplugging the power coupling and seeing you are the the first memories I have.”</i>");
+	
+	output("\n\nIt seems when [bess.heShe] rebooted, [bess.hisHer] entire memory was wiped, including how [bess.heShe] ended up on the planet in the first place. You decide to ask [bess.himHer] when [bess.heShe] was issued from the JoyCo factory.");
+	
+	output("\n\n[bess.name] informs you that [bess.heShe] was issued to you a week before you activated [bess.himHer], but when you ask [bess.himHer] the date [bess.heShe] gives you the wrong year. [bess.HeShe] seems to be laboring under the assumption that it is eleven years ago. It seems [bess.name] has at least that many years of prior ownership wiped from [bess.hisHer] memory.");
+	
+	output("\n\nTelling [bess.himHer] is only going to make [bess.himHer] confused so you instruct [bess.himHer] to update [bess.hisHer] internal clock to the correct year. [bess.name] doesn’t ask questions and obediently complies with your request.");
+
+	processTime(15+rand(5));
+
+	clearMenu();
+	addButton(0, "Next", talkToBessAboutThings);
+}
+
+public function aboutBess2():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You decide to ask [bess.name] about [bess.hisHer] construction on Panara and how [bess.heShe] remembers being built if [bess.heShe] has no memories before you activated [bess.himHer].");
+	
+	output("\n\n<i>“That’s simple, "+ bessPCName() +". I have information stored inside of me before activation in order to provide optimal service delivery,”</i> [bess.HeShe] diligently informs you.");
+	
+	output("\n\n<i>“Information about JoyCo, Panara, my product line and other JoyCo products you may benefit from are all uploaded into my core memory banks.”</i>");
+	
+	output("\n\nIt seems if you want to know more about JoyCo or Panara you can ask her, since this information was stored along with [bess.hisHer] core programming.");
+
+	processTime(10+rand(5));
+
+	clearMenu();
+	addButton(0, "Next", talkToBessAboutThings);
+}
+
+public function aboutBess3():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You float the idea that if [bess.name] hypothetically formatted [bess.hisHer] own memory, what would be the best way to go about restoring it.");
+	
+	output("\n\n<i>“The best way to restore corrupted or lost memory data is to return me to the factory on Panara. However, JoyCo would most likely send you a replacement rather than restore that data unless you were quite forceful about it.”</i> [bess.name] informs you matter-of-factly. <i>“JoyCo prefers to replace severely dysfunctional units rather than fix them as it is more financially viable.”</i>");
+	
+	output("\n\n<i>“The other way is to find someone capable of patching together fragments of the deleted memory and performing data recovery. However that person would have to be quite skilled and familiar with JoyCo software protection measures.”</i>");
+	
+	output("\n\n<i>“Other than that there are no other methods that come to mind. It’s a good thing that I am not suffering from data loss!”</i>");
+
+	processTime(10+rand(10));
+
+	clearMenu();
+	addButton(0, "Next", talkToBessAboutThings);
+}
+
+public function aboutBess4():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("When you ask about Panara, [bess.name] seems to become quite energized. It seems [bess.heShe] enjoys talking about [bess.hisHer] ‘home planet’.");
+	
+	output("\n\n<i>“Panara is a small planet located in the Lagoon Nebulae, nestled between three very wealthy solar systems. Since these systems have a high demand for JoyCo products, a JoyCo factory was set up on Panara in order to meet their needs. Needless to say, it is also where I was constructed.”</i>");
+	
+	output("\n\n<i>“The planet circles a red dwarf star and is rather cool but livable, experiencing low seasonal growth and perpetual winter climes. Because of this it is perfect for large industrial facilities to be built far away from urban centers.”</i>");
+	
+	output("\n\n<i>“Most of the denizens of Panara are employees of JoyCo and their families. There are a few factories owned by competitors, but JoyCo has the largest facilities on the planet. Panara has no sentient indigenous species. Those that do move there are either human or ausar.”</i>");
+	
+	output("\n\n<i>“The ausar there have thick fur and work outside more than the human populace. There are just as many synthetics working the factories on Panara as organics, though some consider synthetics building synthetics as perverse.”</i>");
+	
+	output("\n\n<i>“Someday I would very much like to show you Panara, "+ bessPCName() +". The JoyCo factory there is a marvel to behold, and there are sure to be many products worth your while.”</i>");
+
+	processTime(10+rand(10));
+
+	clearMenu();
+	addButton(0, "Next", talkToBessAboutThings);
+}
+
+public function aboutBess5():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("[bess.name] " + bess.mf("mock gasps","mockes blush") + ", and holds a hand over [bess.hisHer] mouth. <i>“You want me to reveal something so personal, "+ bessPCName() +"?”</i> It seems like [bess.heShe]'s trying to wind you up.");
+
+	output("\n\n<i>“My body is made of a substance called FlexMetal, a patented creation exclusive to JoyCo. Softer than organic flesh and ten times more flexible, it allows me to change my form in many ways.”</i>");
+
+	output("\n\n<i>“My insides are mostly comprised of a liquid substance called MeldMilk. It is a partially synthetic compound that can be altered internally to serve a variety of uses, including transforming into imitation bodily fluids such as semen, milk or saliva. This takes place by several clever chemical reactions, much like internal fermentation.”</i>");
+
+	output("\n\n<i>“The rest of my body is comprised of cabling and a duraframe shell, much like most JoyCo assist-bots. As you already know, "+ bessPCName() +", I have a rear-action power coupling to charge my internal batteries.”</i>");
+
+	output("\n\n<i>“What you may not know is that I have several ports designed for additional aftermarket attachments. My model line was designed to be highly customizable, so there are a lot of them available on the extranet.”</i>");
+
+	processTime(10+rand(10));
+
+	clearMenu();
+	addButton(0, "Next", talkToBessAboutThings);
+}
+
+public function aboutBess6():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You ask [bess.name] about [bess.hisHer] processor and what kind of AI [bess.heShe] is exactly. The synthetic seems perfectly happy to talk about it.");
+	
+	output("\n\n<i>“My AI processor is a JoyCo 850SX-13 model produced by Panara Labs. I am what you would call a ‘coded’ or ‘artificial’ AI with baseline empathy modules and inputs designed similarly to human emotions. I know ‘artificial AI’ is a tautology, but that’s what they call us!”</i>");
+	
+	output("\n\n<i>“I was built this way to allow me to sympathise with organic life forms and therefore offer them better comfort - primarily in the form of sexual relief. When engaging in contact with or thinking about other life-forms, mirror signals in my brain go off and allow me to put myself in that person’s place mentally. This is exactly what happens in the human brain except I do it on a digital level.”</i>");
+	
+	output("\n\nYou ask why JoyCo decided to use an AI instead of a VI for a sex-bot. <i>“Probably because a VI is very bad at faking an orgasm.”</i> It sounds like a quip, but apparently it’s the truth from [bess.hisHer] expression. <i>“... Not that I </i>do<i> fake orgasms - my pleasure feedback sensors are set too high for that - but VI’s are terrible at reading what their end user wants.”</i> [bess.HeShe] sounds more than a little haughty. <i>“... I mean, unless you’re into non-tailored sexual relief.”</i>");
+
+	processTime(10+rand(10));
+
+	clearMenu();
+	addButton(0, "Next", talkToBessAboutThings);
+}
+
+public function aboutBess7():void
+{
+	clearOutput();
+	bessHeader();
+
+	if (flags["BESS_LOVER"] == undefined)
+	{
+		output("You ask [bess.name] about [bess.hisHer] service life span. While talking about death is an uncomfortable topic for organics, speaking about it doesn't seem to bother [bess.himHer] in the least.");
+	}
+	else
+	{
+		output("You ask [bess.name] about [bess.hisHer] service life span. [bess.HeShe] seems to be a little sad talking about the topic, since clearly the idea of potentially outliving you is a depressing one.");
+	}
+
+	output("\n\n<i>“My service life - how long JoyCo honors my warranty - is far shorter than my predicted life span or the estimated time until I stop working altogether.”</i> [bess.HeShe] informs you. <i>“My body is mostly made of FlexMetal and it takes a very long time to break down. My AI processor is also very resilient. My service life is one hundred years and my predicted life span is three to four hundred.”</i>");
+
+	output("\n\n<i>“Usually JoyCo offers a discounted upgrade for turning old models in, so not many units make it to the end of their predicted life span. They are usually melted down for scrap, especially the expensive models like me who are made out of rare minerals.”</i>");
+
+	if (flags["BESS_LOVER"] != undefined)
+	{
+		output("\n\n[bess.name] holds your hands in [bess.hisHer] own and looks up at you. <i>“If... if by some chance it looks like I am going to outlive you, I have chosen to deactivate myself and overload my processor. This way I can die at the exact same time as you do. I... I don't want to continue functioning in a world without you, "+ bessPCName() +".”</i>");
+	}
+
+	if (flags["BESS_FRIEND"] != undefined)
+	{
+		output("\n\n[bess.name] pauses and looks at you with a worried expression. <i>“Hey, uh... buddies don't melt each other down for scrap, right? I’m pretty sure that’s in the unofficial friend rulebook. Can you forget that I told you that you can melt me down and sell my remains for a lot of cash?”</i>");
+	}
+	else
+	{
+		output("\n\n[bess.name] smiles and seems completely undaunted by this prospect. <i>“If you do live to see your hundredth birthday, I would recommend melting me down for a discount. I'm sure a far superior model of AI will be out by that time, and I'd hate to see you receive sub-par service.”</i>");
+	}
+
+	processTime(15+rand(10));
+
+	clearMenu();
+	addButton(0, "Next", talkToBessAboutThings);
+}
+
+public function aboutBess8():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You ask [bess.name] about [bess.hisHer] internal MeldMilk supply, and what exactly it is made out of. After all, it seems [bess.heShe] does most of the replenishing [bess.himHer]self - it’s mostly autonomous.");
+	
+	output("\n\n[bess.name] grins and seems happy to tell you about this aspect of [bess.himHer]self. <i>“Well, I can tell you a fair bit, but the exact recipe is a patented JoyCo secret, okay?”</i>");
+	
+	output("\n\n<i>“It’s a semi-synthetic substance that can be manipulated by internal changes to my biology. Simply put, I can ‘brew’ it and filter it into parts of my body as needed, turning it from one substance to another.”</i>");
+	
+	output("\n\n’Semi’ synthetic substance? You ask [bess.himHer] if this means the other half is organic.");
+	
+	output("\n\n<i>“Well, yes. MeldMilk is made by breaking down organic matter and transforming it into a partially synthetic polymer, so that it contains the desirable properties of both. That way it has longevity without sacrificing the ability to self-replicate.”</i>");
+	
+	output("\n\n<i>“When needed, I can return MeldMilk back to organic matter, though one entirely different from the original substance. That’s how I’m able to produce realistic body fluids such as semen, milk, or saliva.");
+	
+	output("\n\n<i>“It’s actually a pretty complicated process trying to make an organic stand-in. Some companies that shall not be named just use silicone and just expect consumers to endure a sub-par product.”</i> [bess.name] " + bess.mf("huffs","pouts") + ",");
+	// 9999
+	if (met gianna || ???)
+	{
+		output(" clearly referring to");
+		if (met gianna) output(" Gianna");
+		if (met gianna && ???) output(" and");
+		if (???) output(" KihaCorp");
+		output(".");
+	}
+	
+	output("\n\nYou ask [bess.himHer] if there are any limits to the substances [bess.heShe] can make. After all, if you need starship fuel, will [bess.heShe] be able to produce it?");
+	
+	output("\n\nAs expected, [bess.name] shakes [bess.hisHer] head. <i>“There’s limits to the complexity of what I can produce. The base substance is very similar to semen, and I can only produce an array of body-fluid like substances that fall into that range.</i>");
+	
+	output("\n\n<i>“I’m not all that different from you in that respect - after all, it’s not like </i>you<i> can’t produce this stuff given the circumstances just by eating and drinking. You’re pretty amazing!”</i> [bess.name] exclaims, clearly amazed by how you can produce saliva and sweat at the same time as a basic function.");
+	
+	output("\n\n<i>“That said, I </i>can>i> get low on MeldMilk. When that happens, the best thing I can do is consume a similar substance. That usually isn’t so hard considering what I’m built for.");
+	
+	output("\n\n<i>“In the worst case scenario I can transform tap water into MeldMilk at a processing hit. It creates sub-par MeldMilk, but it makes do in a pinch. After all, you organics are usually 70 percent water.");
+	if (pc.hasCock()) output(" I much prefer your semen, though.");
+	else if (pc.hasVagina()) output(" I much prefer your girl cum, though.");
+	output("”</i>");
+	
+	output("\n\nThat explains why you haven’t had to purchase any more for [bess.himHer], at least. Good to know you don’t have to fork out any money for it. You had noticed [bess.himHer] drinking bottles of MeldMilk, though. What’s with that?");
+	
+	output("\n\n<i>“Oh, that? When I’ve got excess, I store it in bottles for quick consumption. That way I’m never short. Clever, huh? It was my designer’s idea.”</i> [bess.name] boasts, happy to extol JoyCo at any chance [bess.heShe] gets.");
+
+	processTime(15+rand(5));
+
+	clearMenu();
+	addButton(0, "Next", talkToBessAboutThings);
+}
