@@ -1349,7 +1349,7 @@ public function attack(attacker:Creature, target:Creature, noProcess:Boolean = f
 		if(attacker == pc) output("You land a hit on " + target.a + target.short + " with your " + pc.meleeWeapon.longName + "!");
 		else if(!attacker.plural) output(attacker.capitalA + attacker.short + " connects with " + attacker.mfn("his","her","its") + " " + attacker.meleeWeapon.longName + "!");
 		else output(attacker.capitalA + attacker.short + " connect with their " + attacker.meleeWeapon.longName + "!");
-		var damage = attacker.meleeDamage();
+		var damage:TypeCollection = attacker.meleeDamage();
  		damageRand(damage, 15);
 		applyDamage(damage, attacker, target, "melee");
 	}
@@ -1442,7 +1442,7 @@ public function rangedAttack(attacker:Creature, target:Creature, noProcess:Boole
 		else if(attacker.plural) output(attacker.capitalA + attacker.short + " connect with their " + plural(attacker.rangedWeapon.longName) + "!");
 		else output(attacker.capitalA + attacker.short + " connects with " + attacker.mfn("his", "her", "its") + " " + attacker.rangedWeapon.longName + "!");
 		
-		var damage = attacker.rangedDamage();
+		var damage:TypeCollection = attacker.rangedDamage();
  		damageRand(damage, 15);
 		if (attacker.rangedWeapon is Goovolver)
 		{
@@ -4057,7 +4057,7 @@ public function pcRecallGoo():void
 	output("<i>“Come on back, [goo.name]!”</i> you shout. In the blink of an eye, your body is wrapped in a thick covering of gray goo, cool and wet and comforting.");
 	pc.removeStatusEffect("Reduced Goo");
 	pc.armor.defense += 5;
-	if(target != undefined) target.removeStatusEffect("Gray Goo Clone");
+	target.removeStatusEffect("Gray Goo Clone");
 	processCombat();
 }
 

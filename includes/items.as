@@ -348,14 +348,7 @@ public function inventoryDisplay():void
 	var x:int = 0;
 	itemScreen = inventory;
 	useItemFunction = inventory;
-	output("<b><u>Currently Worn Equipment:</u></b>\n");
-	output("<b>Melee Weapon:</b> " + StringUtil.toTitleCase(pc.meleeWeapon.description) + "\n");
-	output("<b>Ranged Weapon:</b> " + StringUtil.toTitleCase(pc.rangedWeapon.description) + "\n");
-	output("<b>Armor:</b> " + StringUtil.toTitleCase(pc.armor.description) + "\n");
-	output("<b>Shield:</b> " + StringUtil.toTitleCase(pc.shield.description) + "\n");
-	output("<b>Accessory:</b> " + StringUtil.toTitleCase(pc.accessory.description) + "\n");
-	output("<b>Underwear Bottom:</b> " + StringUtil.toTitleCase(pc.lowerUndergarment.description) + "\n");
-	output("<b>Underwear Top:</b> " + StringUtil.toTitleCase(pc.upperUndergarment.description) + "\n\n");
+	
 	output("<b><u>Key Items:</u></b>\n");
 	if(pc.keyItems.length > 0) 
 	{
@@ -376,6 +369,38 @@ public function inventoryDisplay():void
 		output("\n");
 	}
 	else output("None\n\n");
+	
+	output("<b><u>Equipment:</u></b>\n");
+	output("<b>Melee Weapon:</b> " + StringUtil.toTitleCase(pc.meleeWeapon.description) + "\n");
+	output("<b>Ranged Weapon:</b> " + StringUtil.toTitleCase(pc.rangedWeapon.description) + "\n");
+	output("<b>Armor:</b> " + StringUtil.toTitleCase(pc.armor.description) + "\n");
+	output("<b>Shield:</b> " + StringUtil.toTitleCase(pc.shield.description) + "\n");
+	output("<b>Accessory:</b> " + StringUtil.toTitleCase(pc.accessory.description) + "\n");
+	output("<b>Underwear Bottom:</b> " + StringUtil.toTitleCase(pc.lowerUndergarment.description) + "\n");
+	output("<b>Underwear Top:</b> " + StringUtil.toTitleCase(pc.upperUndergarment.description) + "\n\n");
+	
+	output("<b><u>Equipment Stats:</u></b>\n");
+	output("<b>" + upperCase(pc.meleeWeapon.longName) + "</b>\n");
+	output(pc.meleeWeapon.compareTo(new EmptySlot(), null, null, true));
+	
+	output("\n<b>" + upperCase(pc.rangedWeapon.longName) + "</b>\n");
+	output(pc.rangedWeapon.compareTo(new EmptySlot(), null, null, true));
+
+	output("\n<b>" + upperCase(pc.armor.longName) + "</b>\n");
+	output(pc.armor.compareTo(new EmptySlot(), null, null, true));
+
+	output("\n<b>" + upperCase(pc.shield.longName) + "</b>\n");
+	output(pc.shield.compareTo(new EmptySlot(), null, null, true));
+
+	output("\n<b>" + upperCase(pc.accessory.longName) + "</b>\n");
+	output(pc.accessory.compareTo(new EmptySlot(), null, null, true));
+
+	output("\n<b>" + upperCase(pc.upperUndergarment.longName) + "</b>\n");
+	output(pc.upperUndergarment.compareTo(new EmptySlot(), null, null, true));
+
+	output("\n<b>" + upperCase(pc.lowerUndergarment.longName) + "</b>\n");
+	output(pc.lowerUndergarment.compareTo(new EmptySlot(), null, null, true));
+
 }
 
 public function generalInventoryMenu():void

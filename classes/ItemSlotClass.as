@@ -155,7 +155,7 @@
 		 * @param	item	Item to compare against
 		 * @return			Resultant HTML formatted string of the diff
 		 */
-		public function compareTo(oldItem:ItemSlotClass, seller:Creature = null, buyer:Creature = null):String
+		public function compareTo(oldItem:ItemSlotClass, seller:Creature = null, buyer:Creature = null, short:Boolean = false):String
 		{
 			var compareString:String = "";
 			var statString:String = "";
@@ -172,10 +172,14 @@
 			compareString = mergeString(compareString, this.statDiff("shields", 		"Shields", 			this, oldItem));
 			
 			// Damage Type & Bonus Resistances will be a pain in the cunt
-			var damageString:String = damageDiff(this, oldItem);
+			var damageString:String = damageDiff(this, oldItem,short);
 			if (damageString.length > 0)
 			{
-				if (compareString.length > 0) compareString += "\n\n";
+				if (compareString.length > 0) 
+				{
+					if(!short) compareString += "\n\n";
+					else compareString += "\n";
+				}
 				compareString += damageString;
 			}
 			
@@ -185,7 +189,11 @@
 				var resistString:String = resistancesDiff(this, oldItem);
 				if (resistString.length > 0)
 				{
-					if (compareString.length > 0) compareString += "\n\n";
+					if (compareString.length > 0) 
+					{
+						if(!short) compareString += "\n\n";
+						else compareString += "\n";
+					}
 					compareString += resistString;
 				}
 			}
@@ -197,7 +205,7 @@
 			// prices a given NPC will sell/buy the stuff for.
 			if ('basePrice' in this)
 			{
-				if (compareString.length > 0) compareString += "\n";
+				if (compareString.length > 0 && !short) compareString += "\n";
 				
 				var price:Number = this.basePrice;
 								
@@ -247,7 +255,7 @@
 		 * @param	oldItem				The item the "replacement" would displace
 		 * @return						Formatted HTML string
 		 */
-		private function statDiff(propertyName:String, displayAs:String, newItem:ItemSlotClass, oldItem:ItemSlotClass, asPercentage:Boolean = false, lowIsGood:Boolean = false):String
+		public function statDiff(propertyName:String, displayAs:String, newItem:ItemSlotClass, oldItem:ItemSlotClass, asPercentage:Boolean = false, lowIsGood:Boolean = false):String
 		{
 			var resultString:String = "";
 			var closeFormatting:Boolean = false;
@@ -342,7 +350,7 @@
 			return pRes;
 		}
 		
-		private function damageDiff(newItem:ItemSlotClass, oldItem:ItemSlotClass):String
+		public function damageDiff(newItem:ItemSlotClass, oldItem:ItemSlotClass, short:Boolean = false):String
 		{
 			var pH:String;
 			var lH:String;
@@ -361,17 +369,25 @@
 			var pDam:String = getDamageComparison(pH, DamageType.HPDamageTypes, newItem, oldItem);
 			var lDam:String = getDamageComparison(lH, DamageType.LustDamageTypes, newItem, oldItem);
 			
-			if (pDam.length > 0 && lDam.length > 0) pDam += "\n\n" + lDam;
+			if (pDam.length > 0 && lDam.length > 0) 
+			{
+				if(!short) pDam += "\n\n" + lDam;
+				else pDam += "\n" + lDam;
+			}
 			
 			// Flagshit
 			var flagStr:String = getDamageFlags("Damage Flags", newItem, oldItem);
-			if (pDam.length > 0 && flagStr.length > 0) pDam += "\n\n";
+			if (pDam.length > 0 && flagStr.length > 0) 
+			{
+				if(!short) pDam += "\n\n";
+				else pDam += "\n";
+			}
 			pDam += flagStr;
 			
 			return pDam;
 		}
 		
-		private function getDamageComparison(header:String, typesList:Array, newItem:ItemSlotClass, oldItem:ItemSlotClass):String
+		public function getDamageComparison(header:String, typesList:Array, newItem:ItemSlotClass, oldItem:ItemSlotClass):String
 		{
 			var damageString:String = "";
 			var damAppend:String = "";

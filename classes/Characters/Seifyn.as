@@ -35,6 +35,7 @@
 			this.typesBought[this.typesBought.length] = GLOBAL.SHIELD;
 			this.typesBought[this.typesBought.length] = GLOBAL.ACCESSORY;
 			this.typesBought[this.typesBought.length] = GLOBAL.GADGET;
+			this.typesBought[this.typesBought.length] = GLOBAL.GEM;
 			this.sellMarkup = .9;
 			this.buyMarkdown = .5;
 

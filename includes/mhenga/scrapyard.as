@@ -496,7 +496,7 @@ public function dudesTopGeoffFirstTime():void
 	output("\n\n<i>“Mmmmm,”</i> you breathe into his ear as one hand slides from his slender waist to his semi-hard six-inch cock. The moment you wrap your hand around it you hear a sharp gasp and feel him back his soft cheeks up into you. The hand that isn’t rubbing his now-leaking cock roves his body, massaging his flesh and occasionally tweaking his hard nipples. He reaches back, rubbing your [pc.legs] as he squeezes his tight little ass against your [pc.cock]. When you lean in to taste him he tastes you, a wet tongue tunneling into your [pc.ear] as you kiss his trapezius.");
 	
 	output("\n\nThe two of you continue to touch and tease, each working the other into a furious lather until at last you can’t take it anymore. You reach down and take your [pc.cock] in hand.");
-	if (9999 == 0) output(" {if (pc.cock =/= self lubing): In the absence of synthetic or biological lubricant you work up a good glob of spit and open your [pc.lips] to let it fall to your [pc.cockHead].}");
+	if (pc.cocks[tCock].hasFlag(GLOBAL.FLAG_LUBRICATED)) output(" In the absence of synthetic or biological lubricant you work up a good glob of spit and open your [pc.lips] to let it fall to your [pc.cockHead " + tCock + "].}");
 	output(" Tightening your grip, you press your cockhead against his winking entrance.");
 
 	if (tLength < 6)
@@ -599,11 +599,15 @@ public function dudesTopGeoffRepeat():void
 	
 	output("\n\n<i>“Mmmmm,”</i> you breathe into his ear as one hand slides from his slender waist to his semi-hard six-inch cock. The moment you wrap your hand around it you hear a sharp gasp and feel him back his soft cheeks up into you. The hand that isn’t rubbing his now-leaking cock roves his body, massaging his flesh and occasionally tweaking his hard nipples. He reaches back, rubbing your [pc.legs] as he squeezes his tight little ass against your [pc.cock].");
 	
-	output("\n\nThe two of you continue to touch and tease, each working the other into a furious lather until at last you can’t take it anymore. You reach down and take your [pc.cock] in hand. {if (pc.cock =/= self lubing): In the absence of synthetic or biological lubricant you work up a good glob of spit and open your [pc.lips] to let it fall to your [pc.cockHead].} Tightening your grip, you press your cockhead against his winking entrance.");
-
+	output("\n\nThe two of you continue to touch and tease, each working the other into a furious lather until at last you can’t take it anymore. You reach down and take your [pc.cock] in hand.");
+	
 	var tCock:int = pc.cockThatFits(geoff.analCapacity());
 	if (tCock == -1) tCock = pc.smallestCockIndex();
 	var tLength:Number = pc.cocks[tCock].cLength();
+
+	//{if (pc.cock =/= self lubing):}
+	if(pc.cocks[tCock].hasFlag(GLOBAL.FLAG_LUBRICATED)) output(" In the absence of synthetic or biological lubricant you work up a good glob of spit and open your [pc.lips] to let it fall to your [pc.cockHead].");
+	output(" Tightening your grip, you press your cockhead against his winking entrance.");
 
 	if (tLength < 6)
 	{

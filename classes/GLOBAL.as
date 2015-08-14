@@ -88,7 +88,7 @@
 			"Hollow",
 			"Ribbed",
 			"Chitinous",
-			"Feathered"
+			"Feathered",
 		];
 		
 		public static const VALID_SKIN_FLAGS:Array = [

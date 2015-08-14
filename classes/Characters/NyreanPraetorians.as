@@ -185,6 +185,7 @@
 			this.cockVirgin = false;
 			
 			this.createPerk("Sneak Attack",0,0,0,0);
+			createStatusEffect("Force Fem Gender");
 			this._isLoading = false;
 		}
 		
@@ -207,7 +208,7 @@
 			else if(rand(20) == 0) nyrea.inventory.push(new Picardine());
 			else if (rand(20) == 0)	nyrea.inventory.push(nyrea.rangedWeapon.makeCopy());
 			else if (rand(20) == 0) nyrea.inventory.push(nyrea.meleeWeapon.makeCopy());*/
-			kGAMECLASS.showName("FIGHT:\nNYREAN GUARDS");
+			kGAMECLASS.showName("FIGHT: NYREAN\nGUARDS");
 			kGAMECLASS.showBust("NYREAN_PRAETORIAN","NYREAN_PRAETORIAN","NYREAN_PRAETORIAN");
 			kGAMECLASS.flags["FOUGHT_PRAETORIANS"] = 1;
 			kGAMECLASS.foes.push(nyrea);
