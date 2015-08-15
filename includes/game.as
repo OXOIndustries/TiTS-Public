@@ -2634,7 +2634,7 @@ public function statisticsScreen(showID:String = "All"):void
 		if(StatTracking.getStat("pregnancy/total births") > 0)
 		{
 			output2("\n\n" + blockHeader("Reproduction Statistics", false));
-			utput2("\n<b><u>Offspring</u></b>");
+			output2("\n<b><u>Offspring</u></b>");
 			output2("\n<b>* Total: </b>" + StatTracking.getStat("pregnancy/total births"));
 			// Mother
 			if(StatTracking.getStat("pregnancy/cockvine seedlings birthed") > 0)
