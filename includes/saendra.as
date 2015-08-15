@@ -337,15 +337,19 @@ public function talkToSaendraAboutStuffAndThings(doOutput:Boolean = true):void
 	if (days != flags["SAENDRA TALK PHOENIX STATUS"]) addButton(4, "Phoenix Status", saendraPhoenixStatus);
 	else addDisabledButton(4, "Phoenix Status", "Phoenix Status", "You've already talked to Saendra about the status of her ship today.");
 
-	if (flags["SAENDRA CREDITS TALK AVAILABLE"] != undefined && flags["SAENDRA OFFERED CREDITS"] == undefined) addButton(5, "OfferCreds", saendraOfferCredits, "OfferCreds", "A loader of a few thousand credits would go a long way towards helping Saendra get back on her feet...");
-	else if (flags["SAENDRA CREDITS TALK AVAILABLE"] != undefined && flags["SAENDRA OFFERED CREDITS"] != undefined) addDisabledButton(5, "Offer Credits", "Offer Credits", "You've already offered her credits, but she politely declined.");
-	else addDisabledButton(5, "OfferCreds", "Offer Credits", "Maybe if you can find out about the problems she's been having in a little more detail, you could offer to help her out with some credits.");
-
 	if (flags["SAENDRA_XPACK1_CREDITOFFER"] == 1)
 	{
 		if (pc.credits >= 20000) addButton(5, "OfferCreds", sx1OfferCredits, undefined, "Offer Credits", "Offer to pay for Saendra's ship to be repaired. You may end up in the hole for twenty grand or so, but you'll make her very, very happy.")
 		else addDisabledButton(5, "OfferCreds", "Offer Credits", "You figure you'll need about twenty grand to get Saendra back into space....")
 	}
+	else
+	{
+		if (flags["SAENDRA CREDITS TALK AVAILABLE"] != undefined && flags["SAENDRA OFFERED CREDITS"] == undefined) addButton(5, "OfferCreds", saendraOfferCredits, undefined, "OfferCreds", "A loader of a few thousand credits would go a long way towards helping Saendra get back on her feet...");
+		else if (flags["SAENDRA CREDITS TALK AVAILABLE"] != undefined && flags["SAENDRA OFFERED CREDITS"] != undefined) addDisabledButton(5, "Offer Credits", "Offer Credits", "You've already offered her credits, but she politely declined.");
+		else addDisabledButton(5, "OfferCreds", "Offer Credits", "Maybe if you can find out about the problems she's been having in a little more detail, you could offer to help her out with some credits.");
+	}
+
+	
 
 	if (!saendra.hasCock())
 	{

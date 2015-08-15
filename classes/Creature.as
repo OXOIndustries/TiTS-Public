@@ -8435,7 +8435,7 @@
 			return descript;
 		}
 		public function vagOrAss(arg: int = 0): String {
-			if (hasVagina()) return vaginaDescript(arg);
+			if (hasVagina() && arg >= 0) return vaginaDescript(arg);
 			else return assholeDescript();
 		}
 		//Vaginas + Descript

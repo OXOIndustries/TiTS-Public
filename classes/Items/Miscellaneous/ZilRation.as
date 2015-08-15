@@ -144,6 +144,7 @@
 					target.clearLegFlags();
 					target.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
 					target.addLegFlag(GLOBAL.FLAG_SMOOTH);
+					target.addLegFlag(GLOBAL.FLAG_CHITINOUS);
 					target.legType = GLOBAL.TYPE_BEE;
 					target.legCount = 2;
 					target.genitalSpot = 0;
