@@ -59,6 +59,12 @@ public function bessPCSexName():String
 	return flags["BESS_PC_SEX_NAME"];
 }
 
+public static const BESS_CREWROLE_INTOFFICER:String = "intelligence officer";
+public static const BESS_CREWROLE_ACCOUNTANT:String = "accountant";
+public static const BESS_CREWROLE_ARCHIVIST:String = "archivist";
+public static const BESS_CREWROLE_STEWARDESS:String = "chief stewardess";
+public static const BESS_CREWROLE_TECHNICIAN:String = "technician";
+
 public function bessCrewRole():String
 {
 	if (flags["BESS_CREW_ROLE"] == undefined) flags["BESS_CREW_ROLE"] = "crewmember"; // ??????
@@ -406,6 +412,12 @@ public function bessIsCrew():Boolean
 {
 	if (flags["BESS_LOCATION"] == BESS_ON_CREW) return true;
 	return false;
+}
+
+public function bessIsSleepCompanion():Boolean
+{
+	// 9999
+	return true;
 }
 
 public function bessTopStripScene():void
@@ -3812,11 +3824,14 @@ public function talkToBessAboutThings():void
 	clearMenu();
 	addButton(0, "SpendTime", bessSpendTime);
 	addButton(1, bessName(), talkToBessAboutBess);
-	addButton(2, "You", );
-	addButton(3, "JoyCo", );
-	if (flags["BESS_FUCKED"] != undefined || flags["BESS_BOOBCHANGED"] != undefined) addButton(4, "Nipples", );
-	if (flags["BESS_EVENT_11"] != undefined) addButton(5, bess.mf("His", "Her") + " Job", );
-	if (flags["BESS_EVENT_17"] && pcShipHasHolodeck()) addButton(6, "Graviball", );
+	addButton(2, "You", talkToBessAboutPC);
+	
+	if (flags["BESS_EVENT_28"] == undefined) addButton(3, "JoyCo", talkToBessAboutJoyco);
+	else addDisabledButton(3, "JoyCo");
+
+	if (flags["BESS_FUCKED"] != undefined || flags["BESS_BOOBCHANGED"] != undefined) addButton(4, "Nipples", talkToBessGetInfoOnNipnips);
+	if (flags["BESS_EVENT_11"] != undefined) addButton(5, bess.mf("His", "Her") + " Job", talkToBessAboutHerJob);
+	if (flags["BESS_EVENT_17"] && pcShipHasHolodeck()) addButton(6, "Graviball", talkToBessPlayGraviball);
 	if (flags["BESS_EVENT_18"] addButton(7, "Karaoke", );
 	if (celiseIsFollower()) addButton(8, "Celise", );
 
@@ -4514,6 +4529,8 @@ public function talkToBessAboutBess():void
 	}
 
 	availableMessages.push(aboutBess4, aboutBess5, aboutBess6, aboutBess8);
+
+	RandomInCollection(availableMessages)();
 }
 
 public function aboutBess1():void
@@ -4726,3 +4743,516 @@ public function aboutBess8():void
 	clearMenu();
 	addButton(0, "Next", talkToBessAboutThings);
 }
+
+public function talkToBessAboutPC():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You ask [bess.name] what [bess.heShe] thinks about you. [bess.HeShe] seems to have no trouble telling you exactly what [bess.heShe] thinks of [pc.fullName].");
+
+	if (flags["BESS_LOVER"] != undefined)
+	{
+		output("\n\n<i>“What do I think about you, "+bessPCName()+"? I love and adore you with all of my heart, and " + bess.mf("you’re my wonderful "+bessLoverRole() + "!", "I’m glad that you chose me to be your "+bessLoverRole() + ".");
+		output("”</i>");
+
+		if (bessAffection() >= 90)
+		{
+			output("\n\n<i>“I think you are wonderful " + bess.mf(", and the light of my life", ", and treat me like a princess") + "! Even though I spend so much time with you, I feel like I can never get enough.”</i> The silver skinned synthetic wraps [bess.hisHer] arms around your waist. <i>“I know some people would say we’re always in each other’s arms, but I don’t care one bit!”</i>");
+		}
+		else if (bessAffection() >= 70)
+		{
+			output("\n\n<i>“I think you are wonderful " + bess.mf(", and the light of my life", ", and treat me like a princess") + ". You make my life complete in so many ways, and I’m glad you can always find time to spend with me and make me feel special.”</i>");
+		}
+		else if (bessAffection() >= 50)
+		{
+			output("\n\n<i>“I love every moment we spend together, but lately I feel like we’re not seeing each other enough. I know you’ve got things to do but I feel like you’re always somewhere else. I’ve been getting pretty lonely lately.”</i>");
+		}
+		else if (bessAffection() >= 30)
+		{
+			output("\n\n<i>“I feel like we’ve really drifted apart. You never come and visit me anymore and when you do you’re not really </i>here<i>. Is it something I’ve done wrong, or something I said?”</i>");
+		}
+		else
+		{
+			output("\n\n<i>“... I... I feel like we’re not even a couple anymore. You’re so incredibly distant that it feels like you’re a dream that never happened. Sometimes I cry myself to sleep thinking about how we could have become like this... do you even love me anymore?”</i>");
+		}
+
+		if (bessIsSleepCompanion())
+		{
+			output("\n\n<i>“It makes me happier than you could ever know that we wake up beside each other every morning. Seeing you as I boot up is like seeing the sunrise every morning - you fill my life with light.”</i>");
+		}
+		else
+		{
+			output("\n\n<i>“... I wish we slept together instead of me always having to go back to my room. It gets lonely in there by myself.”</i>");
+		}
+	}
+	else if (flags["BESS_IS_FRIEND"] != undefined)
+	{
+		output("\n\n<i>“What do I think about you, "+ bessPCName() +"? You’re my first and very best friend, that’s what! I can’t say enough good things about you.”</i>");
+
+		if (bessAffection() >= 90)
+		{
+			output("\n\n<i>“We’re so damn close and spend so much time together, it’s amazing! Hanging out with you is my favorite thing to do, so I love that we do it so often.”</i> The silver skinned synthetic gives you a tight hug. <i>“Thank you for finding so much time to spend with me.”</i>");
+		}
+		else if (bessAffection() >= 50)
+		{
+			output("\n\n<i>“I love hanging out with you and I love that you find the time to spend with me so often. When I’m with you it’s like my whole day is better for it, no matter what else happens.”</i>");
+		}
+		else if (bessAffection() >= 25)
+		{
+			output("\n\n<i>“We’ve been spending time together, but I feel like we’re drifting apart. I don’t know, you seem kind of distant. Is something on your mind, or is it something I did or said?”</i>");
+		}
+		else if (bessAffection() >= 10)
+		{
+			output("\n\n<i>“... That said, I--I kind of feel like we’ve drifted apart. We’re still friends, right? It feels like I hardly see you anymore, and when I do you’re right out the door. Things have been getting really lonely around here...”</i>");
+		}
+		else
+		{
+			output("\n\n<i>“... That said, I--I kind of wonder if we are still friends? We never hang out, it’s as if we’re strangers... or worse. Did... did I do something wrong? Did I offend you somehow?”</i>");
+		}
+	}
+	else
+	{
+		output("\n\n<i>“What do I think about you, "+bessPCName()+"? When I watch you sometimes I wonder if you’re an organic at all, or if you really are made of Steele!”</i>");
+
+		if (bessAffection() >= 90)
+		{
+			output("\n\n<i>“I’m humbled... beyond humbled, positively </i>dumbfounded<i> that you spend so much time with a lowly synthetic like me.”</i> The ");
+			if (bess.hairLength > 0) output(" [bess.hairColor] haired");
+			output(" sex-bot bows to you.");
+		}
+		else if (bessAffection() >= 25)
+		{
+			output("\n\n<i>“I’m incredibly humbled that you spend time with a synthetic like me... sometimes I wonder what I’m doing to deserve this much wonderful attention.”</i>");
+		}
+		else if (bessAffection() >= 10)
+		{
+			output("\n\n<i>“I’m so glad that you take time out to spend with me. I hope that the service I am providing you is satisfactory?”</i>");
+		}
+		else
+		{
+			output("\n\n<i>“You’re my owner, so you are free to use me as you wish. I constantly worry that you are not getting enough sexual relief.”</i>");
+		}
+	}
+
+	// Brackets are bessVocal 0 to 5. Should only show up if PC has watched scene 18 (Kareoke scene).
+	if (flags["BESS_EVENT_6"] != undefined)
+	{
+		output("\n\n<i>“I know you like drinking "+bessDrink()+", the color "+bessColor()+", ");
+		if (bessMusic() != "any") output(bessMusic());
+		else output("any kind of music");
+		output(" and "+bessMovieGenre()+" movies.");
+
+		if (flags["BESS_EVENT_18"] != undefined)
+		{
+			var vResponse:Array = [
+				"Your singing voice doesn’t sound like a stray cat in heat falling down a thermal vent, I-I swear!",
+				"Your singing ability is uh, kind of below the galactic average.",
+				"Your singing ability is around the galactic average!",
+				"You are a really good singer!",
+				"You are a fantastic singer!",
+				"Listening to you sing is like having an orgasm through my ears."
+			];
+			output(vResponse[bessVocalSkill()] + "”</i>");
+		}
+	}
+
+	processTime(5+rand(3));
+
+	clearMenu();
+	addButton(0, "Next", talkToBessAboutThings);
+}
+
+public function talkToBessAboutJoyco():void
+{
+	clearOutput();
+	bessHeader();
+
+	// Option does not show up just yet after Approach Scene 28
+	if (flags["BESS_EVENT_28"] == undefined)
+	{
+		output("Talking about JoyCo seems to be something [bess.heShe] enjoys quite immensely. [bess.name] seems to become quite animated at your question as [bess.heShe] positively rushes to answer it.");
+		
+		output("\n\n<i>“JoyCo is the most wondrous corporation in galactic existence, "+bessPCName()+"! Not only did it create my product line, it helps the poor and sick across the known universe with its outpost hospitals and top of the line medicines!”</i>");
+		
+		output("\n\n<i>“No other organization does as much for the needy. Of course JoyCo’s competitors will claim it is for a cut of future exports from developing planets, but JoyCo’s mission is to heal and tend to the known galaxy. Finances are of course needed to make that happen.”</i>");
+		
+		output("\n\nWhen you ask about JoyCo’s competitors, [bess.name] screws up [bess.hisHer] nose as if talking about something unpleasant. <i>“JoyCo’s biggest current competitor is KihaCorp with its mainstream AI designs and cut-throat business practices.”</i>");
+		
+		output("\n\n<i>“Where JoyCo specializes in targeted consumer needs, KihaCorp creates cheap inferior technology at low prices to flood the market. It wants to have a monopoly on the AI market, including JoyCo’s medical assist-bot line!”</i>");
+		
+		output("\n\nIt’s clear that [bess.name] has been programmed with a fierce loyalty to JoyCo and a rather scathing opinion of its competitors.");
+	}
+
+	clearMenu();
+	addButton(0, "Next", talkToBessAboutThings);
+}
+
+public function talkToBessGetInfoOnNipnips():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You bring up the topic of [bess.name]’s nipples. Specifically, you’ve noticed that they seem unusually sensitive.");
+
+	output("\n\n[bess.name] coughs and turns [bess.hisHer] head slightly to the side, surprisingly bashful about the subject. <i>“O-oh, those? I don’t think they are </i>that<i> sensitive. Do you..?</i>");
+	
+	output("\n\nConsidering [bess.heShe] almost melts into a puddle every time you touch [bess.hisHer] areolae, you nod. They’re pretty sensitive!");
+	
+	output("\n\nSince it doesn’t seem like you’re going to let it go, [bess.name] looks at you with apologetic eyes. <i>“... Well, truth be told, I’ve got a bug. Or at least, I think I do. I can’t turn the sensitivity settings of my nipples down.”</i>");
+	
+	output("\n\nYou ask how long [bess.heShe’]s had this particular quirk, and exactly <i>how</i> sensitive they are.");
+	
+	output("\n\n<i>“U-um... three times higher than human normal. Since I don’t have pain receptors active in them, only the pleasure sensors give feedback.”</i> [bess.name]’s cheeks flush. No wonder [bess.heShe] looks like [bess.heShe]’s going to " + bess.mf("cum", "cream herself") + " every time you touch [bess.hisHer] nipples!");
+	
+	output("\n\n<i>“What I can’t believe is that I came with this issue straight after being shipped to you. Having this kind of glitch on arrival is just plain </i>embarassing<i>, let alone what it does to consumer confidence.”</i>");
+
+	processTime(5+rand(3));
+
+	clearMenu();
+	addButton(0, "Lower", talkToBessNipSenseDown);
+	addButton(1, "Increase", talkToBessNipSenseToMaximumEngage);
+	addButton(14, "Back", talkToBessAboutThings);
+}
+
+public function talkToBessNipSenseDown():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You ask [bess.name] if there’s any way to lower it, and [bess.name] shakes [bess.hisHer] head.");
+	
+	output("\n\n<i>“Not that I know of so far. JoyCo doesn’t seem to have released a patch for my model, which is really odd. Maybe it’s in the works? I’ve tried to tweak it myself, but I’m having no luck.</i> [bess.HeShe sighs].");
+	
+	output("\n\n<i>“It’s not all that bad, I just have to be </i>really<i> careful when brushing things against them. Otherwise I need a change of underwear. They’re just that sensitive!”</i> [bess.name] groans, sounding both delighted <i>and</i> irritated by her ‘problem’.");
+
+	processTime(3);
+
+	clearMenu();
+	addButton(0, "Next", talkToBessAboutThings);
+}
+
+public function talkToBessNipSenseToMaximumEngage():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You ask [bess.name] if there’s any way to increase it. [bess.name]’s face looks utterly incredulous.");
+	
+	output("\n\n<i>“I-I-increasing it?”</i> [bess.name] stammers; clearly this thought never even crossed [bess.hisHer] mind. <i>“I have enough trouble now needing a change of underwear every time my nipples get touched!”</i>");
+	
+	output("\n\nAfter [bess.heShe] calms down, [bess.heShe] looks down at [bess.hisHer] [bess.nipples]. <i>“... I could </i>try<i> tweaking it that way, but I’d have to play with my own settings a bit. Give it some time and come back to me, okay?”</i>");
+
+	processTime(3);
+
+	clearMenu();
+	addButton(0, "Next", talkToBessAboutThings);
+}
+
+public function talkToBessAboutHerJob():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("\n\nYou ask [bess.himHer] how [bess.hisHer] job as the Ship’s "+ bessCrewRole() +" is going. As usual [bess.heShe]’s " + bess.mf("happy","excited") + " to tell you all about it.");
+
+	if (bessCrewRole() == BESS_CREWROLE_INTOFFICER)
+	{
+		output("\n\n<i>“Things are going great, "+ bessPCName() +"! I just "); 
+		output(
+			RandomInCollection(
+				"dug up some info on this system’s planetary biology",
+				"found out about some of the dangerous life-forms in this star system",
+				"brought our star charts completely up to date",
+				"scouted out the planetary terrain in this solar system",
+				"did some research into known pirate hot-spots in this solar system",
+				"checked out the UTC presence in this solar system"
+			)
+		);
+		output(", I hope the info I gathered will be of use to you!”</i>");
+	}
+	else if (bessCrewRole() == BESS_CREWROLE_ACCOUNTANT)
+	{
+		output("\n\n<i>“Things are going great, "+ bessPCName() +"! I’ve just been figuring out ");
+		output(
+			RandomInCollection(
+				"how to save us money on starship fuel",
+				"how to save money on food procurement",
+				"where we can get cheap clean water in this system",
+				"our spending for this month",
+				"a way to save on our extranet account",
+				"how much ammo you need this month, and what kinds",
+				"our starship’s shield efficiency rate."
+			)
+		);
+		output(". Hopefully I’ll be able to save us some credits.”</i>");
+	}
+	else if (bessCrewRole() == BESS_CREWROLE_ARCHIVIST)
+	{
+		output("\n\n<i>“Things are going great, "+ bessPCName() +"! I’ve just been ");
+		output(
+			RandomInCollection(
+				"putting some new holos in the shelves",
+				"putting some new books on the shelves",
+				"getting some new games in",
+				"restocking the ship’s holo pornography",
+				"replacing the ship’s magazines",
+				"updating the ship’s logs",
+				"sorting out our credentials and documentation"
+			)
+		);
+		output(".”</i>");
+	}
+	else if (bessCrewRole() == BESS_CREWROLE_STEWARDESS)
+	{
+		output("\n\n<i>“Things are going great, "+ bessPCName() +"! I’ve just been ");
+		output(
+			RandomInCollection(
+				"vacuuming the ship’s hallways",
+				"changing the bedding in all the rooms",
+				"putting air fresheners about the ship",
+				"dusting the entire ship",
+				"refilling the galley fridge",
+				"washing all the dishes piled up in the galley",
+				"throwing all of our trash in the compactor",
+				"making sure all the ship’s windows are spotless"
+			)
+		);
+		output(". I think the ship is a little bit cleaner now!”</i>");
+	}
+	else if (bessCrewRole() == BESS_CREWROLE_TECHNICIAN)
+	{
+		output("\n\n<i>“Things are going great, "+ bessPCName() +"! I’ve just been ");
+		output(
+			RandomInCollection(
+				"working on Spidey. I’m hoping to have him up and running soon!",
+				"adjusting the output of your [pc.shield]. It should be more efficient now!",
+				"fixing up the ship. There were a few parts that needed replacing.",
+				"fixing up the ship’s water recycling system. It’s been playing up again.",
+				"recalibrating the ship’s engines - they were making that high pitched noise again."
+			)
+		);
+		output("”</i>");
+	}
+
+	processTime(10+rand(3));
+
+	clearMenu();
+	addButton(0, "Next", talkToBessAboutThings);
+}
+
+public function talkToBessPlayGraviball():void
+{
+	clearOutput();
+	bessHeader();
+
+	// Requires a Holo-room. Does not require bess once activated. Accessed through Holo-room or through Bess Menu (Either or)
+
+	output("You decide you’d like to play a game of Graviball on the holo room using the program that [bess.name] whipped up.");
+	if (crew(true) == 2) output(" <i>“You decide to go grab the only other crewmember on the ship to see if they’d be up for a game.”</i>");
+	else if (crew(true) >= 3) output(" <i>“You decide to go grab your other crewmembers to see if they’d be up for a game.”</i>");
+
+// Different NPC reactions on being asked.
+
+	output("<i>“You want to play Graviball, [bess.name]?”</i> [bess.name]’s eyes shine with delight. <i> “Let’s do it!”</i>");
+
+	output("\n\nThe");
+	if (bess.hairLength > 0) output(" [bess.hairColor] haired");
+	else output(" silver headed");
+	output(" synthetic runs off and comes back in a modified white and navy blue Graviball outfit designed loosely to resemble that of the Stallium Knights. [bess.HisHer] outfit consists of a sexy, tight short sleeve sports top, a pair of dark short shorts and a pair of sports sneakers. When did [bess.heShe] buy it--?");
+
+	if (celiseIsCrew())
+	{
+		output("\n\nCelise is more than happy to join in on a game of Graviball, though [bess.heShe] seems to have ulterior motives. <i>“How about the winner gets a nice big supply of protein--?”</i> She slyly suggests, her emerald green body sloshing about.");
+
+		output("\n\nYou tell Celise that you’re playing for fun and exercise causing the galotian to pout, crossing her arms and causing her massive gooey mammaries to push out.");
+
+		output("\n\n<i>“Well, you never know which way the game might turn...”</i> She cryptically gives her assent, eyeing you off with a saucy look in her eyes. You’re definitely going to have to watch your back during the game - seems Celise is on the hunt!");
+	}
+
+	output("\n\nHeading to the holodeck you enter the room and activate the Graviball simulation. In the blink of an eye you are standing in a galactic class sports stadium with billions of fans of almost every conceivable species cheering around you. The atmosphere is so authentic you can’t help but feel momentarily taken aback - [bess.name] really went all out putting together this simulation.");
+	
+	output("\n\nYour "+bessColor()+" team banners fly high, a nice touch from the synthetic sports fan. Your team, the Steele Tigers, is playing against ");
+	if (crew(true) == 1) output(" a randomly generated opposing team.");
+	else if (crew(true) == 2) output(" your other crewmate and a computer generated team for them to play with.");
+	else output(" the rest of the crew and a computer generated team to play with.");
+	output(" Of course you have your own allies to play with - you selected them personally before the match and now you feel you have the perfect team.");
+	
+	output("\n\nThe program has provided you with league issue pulse gear needed to play the game. Your [pc.feetNoun] and hands are outfitted with special gloves and boots that allow you to jump incredibly high, fly through the air and kick the z-g ball (or opponents) away at incredible speeds. It also allows you to easily catch fast flying balls just like a high-tech catching mitt.");
+	
+	output("\n\nOn either side of the stadium are two hovering circular nets suspended twenty feet above the ground, manned by a goalie constantly using their pulse boots to stay afloat. The entire ring lights up with an incredible fanfare when a goal is scored.");
+	
+	output("\n\nEight floating platforms exist across the length of the arena. There are three on either side, each in a V shaped pattern with the point of each facing the nearby goal. In the middle of these two wedges, is another platform where the game is started. Thirty feet above this and higher than the rest is the final platform.");
+	
+	output("\n\nGraviball is a truly three-dimensional sport with teams manning each of the platforms, kicking off the bottom or the top and bouncing the z-g ball about like a pinball machine. Good players know exactly how to get past a blocking opponent by kicking up into a floating platform and having it rebound towards their team-mates, making the game far more interesting to watch.");
+
+	processTime(5+rand(5));
+
+	clearMenu();
+	addButton(0, "Next", talkToBessPlayGraviballII);
+}
+
+public function talkToBessPlayGraviballII():void
+{
+	clearOutput();
+	bessHeader();
+	// 9999 these stat checks are terrible
+
+	output("The game starts with you in the center position and standing on the largest hover platform. The z-g ball falls from above and you’re leaping up to smack it away from your opponent,");
+	if (rand(pc.RQ()) >= 25) output(" easily able to jump up in time and hit it out of his grasp");
+	else output(" but your reflexes aren’t sharp enough and your opponent bats it away");
+	output(" and to a fellow team-mate. The game is just beginning and you follow the ball, soaring through the air as your pulse boots take you from platform to platform.");
+	
+	output("\n\nAs the game goes on you’re on the middle platform on your opponent’s side right in front of their goal. Suddenly someone kicks up the z-g ball from the ground below, but before you even move towards it you’re about to be tackled by a strong looking point guard.");
+	if (rand(pc.PQ()) >= 25) output(" As he tackles you, you easily break free of his grip and drive your palm against his chest - your pulse glove sends him flying off the platform leaving you free to grab the ball. You punch it with your powered fist at a nearby forward who then promptly scores a goal.");
+	else output(" As he tackles you, you simply can’t break free and the ball goes to an opposing player. You’re cursing all the while until he lets go of you and moves off to tackle another player.");
+	
+	output("\n\nLater in the game you find yourself up the front as you realise everyone’s too busy defending against the opposing team, who have suddenly launched a strong offensive. Your gamble pays off when one of your team-mates suddenly kicks it clear across the field, bouncing it off the bottom of the top platform as it rebounds towards your position.");
+	if (rand(pc.AQ() >= 25) output(" Ready and waiting to take the shot you kick the z-g ball and send it hurtling towards the goals with a slight curve, catching the goalie by surprise as you nail it right in the net. The ring explodes in a fanfare celebrating your goal and you grin, it was the perfect shot!");
+		else output(" Ready and waiting to take the shot you kick the z-g ball and send it hurtling towards the goals... or so you think. Your aim is way off and it shoots past the goalie, hitting the holo-field protecting the crowd and the referee calls it out. If only your aim was better, you had the perfect chance to score a goal!");
+
+	output("\n\nMoving back to the center platform you see [bess.name] darting on to the one above you, clearly up to something. You fly up and hook around just as one of [bess.hisHer] team-mates kicks the ball up to her. There’s a perfect chance for [bess.himHer] to make a shot from high up diagonally down and at the goals, none of your team are there defending except for the goalie.");
+	
+	output("\n\n<i>“Think you can stop me making the shot, "+ bessPCName() +"?”</i> [bess.name] cheekily taunts you as [bess.heShe] darts forward making [bess.hisHer] move. You have no idea what [bess.heShe]’s going to try and do, but you’re ready for anything! [bess.HeShe] kicks the ball sideways to another player who is jetting up and to your side and just as you move to intercept [bess.heShe] launches [bess.himHer]self at you.");
+	if (rand(pc.RQ() >= 25) output(" You’re far too quick and dart to the side, kicking the ball far into [bess.hisHer] end of the field as [bess.heShe] faceplants on the platform. <i>“SYNTAX ERRORS!”</i> [bess.HeShe] curses aloud while rubbing [bess.hisHer] nose.”</i>");
+	else output(" <i>“You’re just too slow on the uptake as [bess.hisHer] ally steals the ball and kicks it far away. Another one of the opposing team is there to collect and scores a goal. Frag your reflexes!”</i>");
+
+	if (celiseIsCrew())
+	{
+		output("\n\nThings take a bit of a turn when Celise decides she would be much better taking the goalie position. Suddenly your team is unable to get a single shot past the green galotian, absorbing even the strongest hits into her jelly-like body. <i>“I always get whatever I want to catch-!”</i> She boldly exclaims, your team is really going to have to step up its game.");
+
+		if (pc.intelligence() >= 25)
+		{
+			if (rand(pc.IQ() >= 25))
+			{
+				output("\n\nYou come up with a cunning plan in order to break through her defences. There’s no way you’re going to be able to beat her while she’s defending the goal - she’s far too good for that. Instead you come up with a plan to take advantage of ger biggest weakness, using your pulse boots to get up close to the goals.");
+				
+				output("\n\nYou stroke your her down your body and look at her  rather suggestively, giving her a wink. <i>“... Hey Celise, how about you step away from those goals and we go get a little frisky-?”</i>");
+				
+				output("\n\nCelise falls for it hook, line and sinker and moves away from the goals as soon as there’s a promise of a nice protein snack. The instant she does your team advances in, scoring a loud goal. The emerald galotian looks behind herself and suddenly realises your ploy, looking thoroughly grumpy. <i>“... No fair, that’s cheating!”</i>");
+				
+				output("\n\nTechnically seduction has never been against Graviball league rules, so you’re pretty sure it’s fair play... you might end up paying for it later though.");
+			}
+			else
+			{
+				output("\n\nYou simply can’t find a way to penetrate her defenses, she’s just too good at repelling, absorbing or catching anything that even comes close to her net. Thankfully a rather attractive (and sadly, entirely digital) player catches her interest later on and she moves away from the net, ending the one sided spanking your team was taking.");
+			}
+		}
+		else
+		{
+			output("In the end Celise protecting the goals swung the game entirely in the opposing team’s favor and you lose the match. She comes sloshing up to you as both sides congratulate each other on a good game, a hopeful look in her  eyes. <i>“So, do I get anything for winning-?”</i></i>");
+			
+			output("\n\nShe runs her fingers suggestively down her massive gooey tits, it’s not hard to imagine what she’s after as a victory prize.");
+		}
+	}
+	else if (pc.physique() + pc.aim() + pc.reflexes() < 50 + rand(20))
+	{
+		output("\n\nYou get absolutely smashed by the other team. In the end when it comes to Graviball you’re just not");
+		if (pc.PQ() < 25 && pc.AQ() < 25 && pc.RQ() < 25) output(" physically fit at all. You’re not strong enough, accurate enough and you don’t have the reflexes for such an intense sport.");
+		else if (pc.PQ() >= 25 && pc.AQ() < 25 && pc.RQ() < 25) output(" accurate or fast enough, though you’re strong enough to hold your own.");
+		else if (pc.PQ() < 25 && pc.AQ() >= 25 && pc.RQ() < 25) output(" strong or quick enough, though your aim was spot on.");
+		else if (pc.PQ() < 25 && pc.AQ() < 25 && pc.RQ() >= 25) output(" strong or accurate enough, though your reflexes were lightning quick.");
+		else if (pc.PQ() >= 25 && pc.AQ() >= 25 && pc.RQ() < 25) output(" quick enough, though your strength and aim were perfect.");
+		else if (pc.PQ() >= 25 && pc.AQ() < 25 && pc.RQ() >= 25) output(" accurate enough with your shots, though your strength and reflexes were perfect.");
+		else if (pc.PQ() < 25 && pc.AQ() >= 25 && pc.RQ() >= 25) output(" strong enough, though your aim and reflexes were perfect.");
+		else output(" cut out for the game.")
+		output(" Maybe if you train a bit harder you’ll be able to win next time.");
+	}
+	else
+	{
+		output("\n\nYou absolutely smash the other team; you’re all over that field and everywhere you’re supposed to be. Maybe you should take up a career in Graviball? You’re certainly pretty good at it, at least against these virtual opponents.");
+
+		if (celiseIsCrew())
+		{
+			output("\n\nYou see Celise ‘slooping’ up and licking her lips, apparently she found herself a snack. You can see one of the players naked and completely incapacitated. <i>“Enjoyable game, but I’m still hungry... this virtual stuff is always such a tease.”</i>
+}
+
+
+if (pc.companion “bess” = true)
+{
+Meanwhile even though [bess.heShe] lost [bess.name] seems thrilled to have played such a good game, running towards you and giving you a flying hug. <i> “You were so awesome, "+ bessPCName() +", though I almost totally had you for a second there--! We’ll have to have a rematch sometime, okay?”</i>
+// Small bessAffection boost.
+}
+
+}
+
+You gain ??? XP from  playing a game of Graviball.
+// Time passes, PC takes a big fatigue hit! Possible
+
+
+Sing Karaoke 
+
+
+[bess.name] boots up the karaoke machine and tosses you a microphone. [if (pc.crewmembers > 1) "You invite the other crew members along too."]
+
+if (Celise = companion)
+{
+Celise is a surprisingly beautiful singer and really gets into it, her massive tits jiggling as she wiggles along with the music. The sexy jello girl sings in perfect tune, wobbling about the place in a truly distracting fashion. <i>“How'd I do? Did I do good?”</i> Even when she stops the galotian's tits are still moving about.
+}
+
+As usual [bess.name] gets up to sing and [bess.heShe]'s a wonderful vocalist, [bess.hisHer] voice has a naturally melodic quality as is. [bess.HeShe] sings with [bess.hisHer] entire body, letting the music flow through [bess.hisHer] and course through [bess.hisHer] artificial skin. The silver skinned synthetic winks at you as [bess.heShe] performs.
+
+0 = Catastrophic 1= Bad 2 = Average 3 = Good 4 = Great 5 = WTF?
+if (pc.vocal = 0)
+{
+As you get up to sing you grab [bess.name]'s microphone and start to sing - [if (pc.companions > 1) "everyone"] [if (pc.companions = 1) "[bess.heShe]"] cringes and your microphone is taken away from you. It is quickly replaced with another. <i>“Here, take this one!”</i> [bess.name] exclaims, it seems you're not allowed to sing without the 'special microphone'. When you do your voice sounds wonderful and more importantly, bearable.
+}
+
+if (pc.vocal != 0 && pc.vocal != 5)
+{
+You get up to sing and grab the microphone, really getting into it. You're a [if (pc.vocal = 1) "terrible singer and really butcher every song"] [if (pc.vocal = 2) "very average singer and spend as much time in tune as out of it"] [if (pc.vocal = 3) "good singer and everyone is really impressed"] [if (pc.vocal = 4) "sublime singer and everyone is really impressed"], but in the end that's not what matters. You have a good time with [if (pc.companions > 1) "everyone"] [if (pc.companions = 1) "[bess.name]"] singing karaoke, and that's what counts.
+}
+
+if (pc.vocal = 5)
+{
+You get up to sing and grab the microphone, really getting into it. Your singing voice is truly sublime - when you sing a word it is the most perfect way that word can possibly sound to any ear in the galaxy. [if (pc.companions > 1) "Everyone"] [if (pc.companions = 1) "[bess.name]"] sits spellbound as you put your magical vocal cords to work. When you finish there is a lot of applause and calling for another song. Whenever you sing it's not karaoke as much as a live performance.
+}
+
+// bessAffection increases, time is spent.
+
+Celise
+
+// If Celise is a ship mate.
+
+You ask [bess.name] what [bess.heShe] thinks of Celise.
+
+if (bessSleepW = true && Celise is sleeping with PC too && bessPoly != 2)
+{
+<i>“Celise? " + bess.mf("Well, what's not to love about her?","I love and adore her to bits!") + "Not in the same way I love you, of course. If there is one thing I had to say... it's that I'd rather not have to share the bed with her. Waking up to her sucking you off - it's a bit much, don't you think?”</i>
+}
+else if (bessSleepW = false && bessLover = true && Celise is sleeping with PC too)
+{
+<i>“Celise?”</i> [bess.name] narrows her eyes at you a little. <i>“Look, I love Celise, not in the same way I love you, but... letting her sleep with you while I have to sleep in another room? That's so unfair!”</i> [bess.HisHer] tone is very grumpy. It was probably a bad question to ask her.
+}
+
+else if (bessLover = true)
+{
+<i>“Celise?”</i> [bess.name] " + bess.mf("grins","beams brightly") + ", <i>“" + bess.mf("Well, what's not to love about her?","I love and adore her to bits!") + " Not as much or in the same way as I love you, of course. My one problem is that she always seems to find and interrupt us when we're in the middle of us time!\</i>
+
+<i>“It's mostly for protein though, and that's not so bad. I can make it from my MeldMilk easily enough, though the way she likes to feed off it...”</i> [bess.name] " + bess.mf("coughs","flushes a little") + ". <i>“... Well, she says there's a 'boring way' and a 'fun way'. She always picks the latter.”</i>
+
+}
+
+else
+{
+<i>“Celise?”</i> " + bess.mf("grins","beams brightly") + ", <i>“She's my friend, and I think she's wonderful! You're my best friend of course. She's always pestering me for protein though.\</i>
+
+<i>“ I can make it from my MeldMilk easily enough, though the way she likes to feed off it...”</i> [bess.name] " + bess.mf("coughs","flushes a little") + ". <i>“... Well, she says there's a 'boring way' and a 'fun way'. She always picks the latter.”</i>
+}
+
+Break Up / Dismiss
+
+
+
+// Break Up / if bessLover = true
+Are you sure you want to break up with [bess.name]? You have a gut feeling that if you end your relationship, it won't be a clean break. [bess.HeShe]'ll probably leave the ship. You'd lose your [bessLoverStatus] as well as your "+ bessCrewRole() +".
+[Reconsider] [Yes, Break Up]
+
+=[Yes, Break Up]=
+You tell [bess.name] that you no longer love [bess.himHer] and that it's over between you. {Nice: You try to word it as gently as possible, but there's just no good way to deliver it./Mischevious: You try to deliver the news lightly, but there's just no way to take the edge off./Hard: You're rather blunt about it, since you're no good at beating around the bush with this sort of thing.}
+
+As expected, your words are utterly soul crushing. [bess.HisHer] [bess.eyes] quiver and " + bess.mf("his whole body trembles","her lower lip trembles") + ". You can see [bess.hisHer] entire world crashing down as [bess.heShe] stares at you in utter disbelief and heart-wrenched despair.
+
+[bess.HeShe] tries to open [bess.hisHer] mouth, but only a choked noise comes out. Soon [bess.heShe]'s running and collecting [bess.hisHer] things, obviously packing to leave the ship. 
+
+Before you know it, there’s silence, and [bess.name] has left to who knows where. You have no idea where [bess.heShe] went, or if you’ll ever see [bess.himHer] again.

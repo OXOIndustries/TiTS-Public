@@ -629,8 +629,7 @@ package classes.GameData
 			var filterPerk:Vector.<PerkData> = _perkList.filter(function(item:PerkData, index:int, vector:Vector.<PerkData>):Boolean {
 				if ((item as PerkData).autoGained == true
 					&& (item as PerkData).levelLimit == creature.level
-					&& (item as PerkData).isClassLimited == true
-					&& (item as PerkData).classLimit == creature.characterClass) return true;
+					&& ((item as PerkData).isClassLimited == false || ((item as PerkData).isClassLimited == true && (item as PerkData).classLimit == creature.characterClass))) return true;
 					return false;
 			});
 			
@@ -649,8 +648,7 @@ package classes.GameData
 			var filterPerks:Vector.<PerkData> = _perkList.filter(function(item:PerkData, index:int, vector:Vector.<PerkData>):Boolean {
 				if ((item as PerkData).autoGained == true
 					&& (item as PerkData).levelLimit <= creature.level
-					&& (item as PerkData).isClassLimited == true
-					&& (item as PerkData).classLimit == creature.characterClass) return true;
+					&& ((item as PerkData).isClassLimited == false || ((item as PerkData).isClassLimited == true && (item as PerkData).classLimit == creature.characterClass))) return true;
 					return false;
 			});
 			
@@ -671,14 +669,12 @@ package classes.GameData
 			var filterPerks:Vector.<PerkData> = _perkList.filter(ff);
 			
 			if (filterPerks.length == 0) return null;
-			if (filterPerks.length == 1) return filterPerks[0];
 			
-			var count:int = 0;
-			for (var x:int = 0; x < kGAMECLASS.pc.perks.length; x++)
-			{
-				if (kGAMECLASS.pc.perks[x].storageName == perkName) count++;
-			}
-			trace("ACTUAL COUNT OF PERK: " + count);
+			// attempt to class filter if more than 1 perk
+			if (filterPerks.length > 1) filterPerks = filterPerks.filter(classFilter);
+			
+			if (filterPerks.length == 1) return filterPerks[0];
+
 			throw new Error("Found multiple perks for the provided search key! (" + perkName + ")");
 		}
 		
