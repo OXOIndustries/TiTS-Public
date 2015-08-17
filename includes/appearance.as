@@ -1369,12 +1369,15 @@ public function appearance(target:Creature):void {
 		}
 		
 		clearGhostMenu();
+		var btnIndex:int = 0;
+		addGhostButton(btnIndex++, "PrefGender", selectGenderPref, undefined, "Preferred Gender", "Indicate the gender you would prefer your character to be considered.");
+		
 		// Mimbrane hooooook
 		// [MIMBRANECODE]
 		if (attachedMimbranes() > 0)
 		{
-			if (kGAMECLASS.canSaveAtCurrentLocation) addGhostButton(0, "Mimbranes", mimbraneMenu);
-			else addDisabledGhostButton(0,"Mimbranes","Mimbranes","You cannot access your mimbrane menu at this time.");
+			if (kGAMECLASS.canSaveAtCurrentLocation) addGhostButton(btnIndex++, "Mimbranes", mimbraneMenu);
+			else addDisabledGhostButton(btnIndex++,"Mimbranes","Mimbranes","You cannot access your mimbrane menu at this time.");
 			
 			// Detailed Mimbrane sentence that includes specific body regions.
 			output2("\n\nFrom time to time, small chirps remind you that your body is not owned by just you alone. The");
@@ -1428,6 +1431,60 @@ public function appearance(target:Creature):void {
 		}		
 		addGhostButton(14, "Back", pcAppearance);
 	}
+}
+
+public function selectGenderPref():void
+{
+	clearOutput2();
+	output2("Your current preferred gender is set to <b>");
+	
+	clearGhostMenu();
+	
+	addGhostButton(0, "Female", setGenderPref, "female");
+	addGhostButton(1, "Male", setGenderPref, "male");
+	addGhostButton(2, "Auto", setGenderPref, "auto");
+	
+	if (pc.hasStatusEffect("Force Fem Gender"))
+	{
+		output2("Female</b>");
+		output2("\n\nNo matter your femininity value, genitalia presence, or any other contributing factors, where possible you will be considered female.");
+		addDisabledGhostButton(0, "Female");
+	}
+	else if (pc.hasStatusEffect("Force Male Gender"))
+	{
+		output2("Male</b>");
+		output2("\n\nNo matter your masculinity value, genitalia presence, or any other contributing factors, where possible you will be considered male.");
+		addDisabledGhostButton(1, "Male");
+	}
+	else
+	{
+		output2("Automatic</b>");
+		output2("\n\nPronouns used for your character will be based on contributions from a number of appearance properties, switching between male & female pronouns as appropriate.");
+		addDisabledGhostButton(2, "Auto");
+	}
+	
+	addGhostButton(14, "Back", appearance, pc);
+}
+
+public function setGenderPref(pref:String):void
+{
+	if (pref == "auto")
+	{
+		pc.removeStatusEffect("Force Fem Gender");
+		pc.removeStatusEffect("Force Male Gender");
+	}
+	else if (pref == "female")
+	{
+		pc.removeStatusEffect("Force Male Gender");
+		pc.createStatusEffect("Force Fem Gender");
+	}
+	else if (pref == "male")
+	{
+		pc.removeStatusEffect("Force Fem Gender");
+		pc.createStatusEffect("Force Male Gender");
+	}
+	
+	selectGenderPref();
 }
 
 public function dickBonusForAppearance(target:Creature, x:int = 0):void

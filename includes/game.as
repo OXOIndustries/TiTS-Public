@@ -82,6 +82,11 @@ public function isNavDisabled(umask:uint):Boolean
 public function mainGameMenu():void {
 	flags["COMBAT MENU SEEN"] = undefined;
 	
+	if (flags["PC_UPBRINGING"] == undefined)
+	{
+		eventQueue.push(fixPcUpbringing);
+	}
+	
 	//Display shit that happened during time passage.
 	if (processEventBuffer()) return;
 	
@@ -5452,4 +5457,56 @@ public function displayEncounterLog(showID:String = "All"):void
 	}
 	
 	output2("\n\n");
+}
+
+public function fixPcUpbringing():void
+{
+	clearOutput();
+	showName("CODEX\nALERT");
+	author("Gedan");
+	
+	output("Your trusty codex vibrates incessently, demanding your attention for something. The means are unusual, which piques your interest; you’ve been wearing the thing for long enough now to have most of it’s features down pat, and whatever it’s doing right now is most certainly out of the ordinary.");
+	
+	output("\n\nSafely shuffled off to one side, hopefully out of the way - and out of sight - of any one or any thing that might come by, you bring your handy forearm-mounted helper to the fore to see exactly what it’s complaining about....");
+	
+	output("\n\n<i>DATA CORRUPTION DETECTED</i>");
+	
+	output("\n\nWell, shit.");
+	
+	output("\n\n<i>FIX NOW?</i>");
+	
+	output("\n\n<i>“Fucking computers,”</i> you mutter under your breath, a [pc.finger] already tapping on the key labelled ‘Okay’. The thing chugs away for a second or two, seemingly hard at work repairing itself... you’re about set to move on rather than wind up waiting all day for the Codex to");
+	if (!silly) output(" fix itself");
+	else output(" do the needful");
+	output(" before it’s vibrating away, demanding its masters duitiful attention again.");
+	
+	output("\n\n<i>UNRECOVERABLE DATA FRAGMENT LOCATED IN FILE: [pc.fullName]</i>");
+	output("\n<i>MISSING SEGMENT: SCHOOL HISTORY</i>");
+	output("\n<i>PLEASE RE-ENTER VALID DATA...</i>");
+	
+	output("\n\nThere doesn’t seem to be any way around the prompt other than to give the fucking thing an acceptable answer to devices question...");
+	
+	clearMenu();
+	addButton(0,"Pampered",fixPcUpbringingSetNew,GLOBAL.UPBRINGING_PAMPERED);
+	addButton(1,"Athletic",fixPcUpbringingSetNew,GLOBAL.UPBRINGING_ATHLETIC);
+	addButton(2,"Bookworm",fixPcUpbringingSetNew,GLOBAL.UPBRINGING_BOOKWORM);
+	addButton(3,"Austere",fixPcUpbringingSetNew,GLOBAL.UPBRINGING_AUSTERE);
+	addButton(4,"Balanced",fixPcUpbringingSetNew,GLOBAL.UPBRINGING_BALANCED);
+}
+
+public function fixPcUpbringingSetNew(upType:uint):void
+{
+	clearOutput();
+	showName("CODEX\nALERT");
+	author("Gedan");
+	
+	flags["PC_UPBRINGING"] = upType;
+	
+	output("<i>INPUT REGISTERED: " + (GLOBAL.UPBRINGING_NAMES[upType] as String).toUpperCase() + "</i>");
+	output("\n<i>THANK YOU FOR YOUR COMPLIANCE.</i>");
+	
+	output("\n\nLooks like that was all the cheeky little bastard wanted from you. Another ‘Okay’ key tap and you’re back on your travels.");
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
