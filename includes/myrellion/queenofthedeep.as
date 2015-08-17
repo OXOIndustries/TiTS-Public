@@ -878,8 +878,7 @@ public function queenOfTheDeepClimb():void
 	clearOutput();
 	output("You’re at a hell of a disadvantage down here, facing the beast of a woman head on. But on her back, the woman-half can’t see and the legs can’t stab you... you’d definitely stand a better chance back there! Though those tentacles are going to be a problem, they’re certainly the lesser of two evils.");
 
-	// 9999 reflex check math
-	if (pc.reflexes() >= 75)
+	if (pc.reflexes() >= 20 + rand(15))
 	{
 		output("\n\nYou leap forward, running straight at the creature, hoping to take her by surprise. She shrieks and jabs one of her huge legs at you, slamming it into the water just inches from you. You bob and weave, evading her strikes until you’re just under her carapaced lower body. Gritting your teeth, you grab hold of one of her legs’ spikey outcroppings and start to haul yourself up, scrambling out of the water and up onto the creature’s back.");
 		
