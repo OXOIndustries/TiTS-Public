@@ -6433,7 +6433,7 @@
 
 		public function hasGenitals():Boolean
 		{
-			return (hasCocks() || hasVagina());
+			return (hasCock() || hasVagina());
 		}
 		public function hasTailCock(): Boolean {
 			if (hasTailFlag(GLOBAL.FLAG_TAILCOCK) && tailCount > 0) return true;
