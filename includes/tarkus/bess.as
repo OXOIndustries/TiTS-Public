@@ -124,6 +124,27 @@ public function bessIsEqual():Boolean
 	return false
 }
 
+public function bessPoly():int
+{
+	if (flags["BESS_POLY"] == undefined) flags["BESS_POLY"] = 0;
+	return flags["BESS_POLY"];
+}
+
+public function bessClosedRelationship():Boolean
+{
+	return bessPoly() == 0;
+}
+
+public function bessOpenRelationship():Boolean
+{
+	return bessPoly() == 1;
+}
+
+public function bessPolyRelationship():Boolean
+{
+	return bessPoly() == 2;
+}
+
 public function bessHairLength():String
 {
 	switch (bess.hairLength)
@@ -392,6 +413,7 @@ public function bessHasKatana():Boolean
 
 public static const BESS_AT_TAVROS:uint = 1;
 public static const BESS_ON_CREW:uint = 2;
+public static cosnt BESS_DISABLED:uint = 3;
 
 public function bessHeader():void
 {
@@ -414,10 +436,15 @@ public function bessIsCrew():Boolean
 	return false;
 }
 
+public function bessIsFollower():Boolean
+{
+	if (flags["BESS_LOCATION"] != undefined && flags["BESS_LOCATION"] != BESS_DISABLED) return true;
+	return false;
+}
+
 public function bessIsSleepCompanion():Boolean
 {
-	// 9999
-	return true;
+	return (flags["CREWMEMBER_SLEEP_WITH"] == "BESS");
 }
 
 public function bessTopStripScene():void
@@ -3832,8 +3859,11 @@ public function talkToBessAboutThings():void
 	if (flags["BESS_FUCKED"] != undefined || flags["BESS_BOOBCHANGED"] != undefined) addButton(4, "Nipples", talkToBessGetInfoOnNipnips);
 	if (flags["BESS_EVENT_11"] != undefined) addButton(5, bess.mf("His", "Her") + " Job", talkToBessAboutHerJob);
 	if (flags["BESS_EVENT_17"] && pcShipHasHolodeck()) addButton(6, "Graviball", talkToBessPlayGraviball);
-	if (flags["BESS_EVENT_18"] addButton(7, "Karaoke", );
-	if (celiseIsFollower()) addButton(8, "Celise", );
+	if (flags["BESS_EVENT_18"] addButton(7, "Karaoke", talkToBessSingKareoke);
+	if (celiseIsFollower()) addButton(8, "Celise", talkToBessAboutCelise);
+
+	if (flags["BESS_LOVER"] == 1) addButton(9, "BreakUp", talkToBessBreakUp);
+	else addButton(10, "Dismiss", talkToBessDismiss);
 
 	addButton(14, "Back", bessFollowerMenu);
 }
@@ -5052,7 +5082,7 @@ public function talkToBessPlayGraviball():void
 	if (crew(true) == 2) output(" <i>“You decide to go grab the only other crewmember on the ship to see if they’d be up for a game.”</i>");
 	else if (crew(true) >= 3) output(" <i>“You decide to go grab your other crewmembers to see if they’d be up for a game.”</i>");
 
-// Different NPC reactions on being asked.
+	// Different NPC reactions on being asked.
 
 	output("<i>“You want to play Graviball, [bess.name]?”</i> [bess.name]’s eyes shine with delight. <i> “Let’s do it!”</i>");
 
@@ -5164,95 +5194,168 @@ public function talkToBessPlayGraviballII():void
 
 		if (celiseIsCrew())
 		{
-			output("\n\nYou see Celise ‘slooping’ up and licking her lips, apparently she found herself a snack. You can see one of the players naked and completely incapacitated. <i>“Enjoyable game, but I’m still hungry... this virtual stuff is always such a tease.”</i>
+			output("\n\nYou see Celise ‘slooping’ up and licking her lips, apparently she found herself a snack. You can see one of the players naked and completely incapacitated. <i>“Enjoyable game, but I’m still hungry... this virtual stuff is always such a tease.”</i>");
+		}
+
+
+		output("\n\nMeanwhile even though [bess.heShe] lost [bess.name] seems thrilled to have played such a good game, running towards you and giving you a flying hug. <i> “You were so awesome, "+ bessPCName() +", though I almost totally had you for a second there--! We’ll have to have a rematch sometime, okay?”</i>");
+	}
+
+	//You gain ??? XP from  playing a game of Graviball.
+	// Time passes, PC takes a big fatigue hit! Possible
+
+	bessAffectionGain(BESS_AFFECTION_GRAVIBALL);
+	processTime(120+rand(30));
+	pc.energy(-pc.energyMax() * 0.8 );
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
 
-
-if (pc.companion “bess” = true)
+public function talkToBessSingKareoke():void
 {
-Meanwhile even though [bess.heShe] lost [bess.name] seems thrilled to have played such a good game, running towards you and giving you a flying hug. <i> “You were so awesome, "+ bessPCName() +", though I almost totally had you for a second there--! We’ll have to have a rematch sometime, okay?”</i>
-// Small bessAffection boost.
+	clearOutput();
+	bessHeader();
+
+	output("[bess.name] boots up the karaoke machine and tosses you a microphone.");
+	if (crew(true) > 1) output(" You invite the other crew members along too.");
+
+	if (celiseIsCrew())
+	{
+		output("\n\nCelise is a surprisingly beautiful singer and really gets into it, her massive tits jiggling as she wiggles along with the music. The sexy jello girl sings in perfect tune, wobbling about the place in a truly distracting fashion. <i>“How’d I do? Did I do good?”</i> Even when she stops the galotian’s tits are still moving about.");
+	}
+
+	output("\n\nAs usual [bess.name] gets up to sing and [bess.heShe]’s a wonderful vocalist, [bess.hisHer] voice has a naturally melodic quality as is. [bess.HeShe] sings with [bess.hisHer] entire body, letting the music flow through [bess.hisHer] and course through [bess.hisHer] artificial skin. The silver skinned synthetic winks at you as [bess.heShe] performs.");
+
+	if (flags["BESS_PC_KAREOKE_SKILL"] == undefined) flags["BESS_PC_KAREOKE_SKILL"] = rand(6);
+
+	if (flags["BESS_PC_KAREOKE_SKILL"] == 0)
+	{
+		output("\n\nAs you get up to sing you grab [bess.name]’s microphone and start to sing -");
+		if (crew(true) > 1) output(" everyone");
+		else output(" [bess.heShe]");
+		output(" cringes and your microphone is taken away from you. It is quickly replaced with another. <i>“Here, take this one!”</i> [bess.name] exclaims, it seems you’re not allowed to sing without the ‘special microphone’. When you do your voice sounds wonderful and more importantly, bearable.");
+	}
+	else if (flags["BESS_PC_KAREOKE_SKILL"] < 5)
+	{
+		output("\n\nYou get up to sing and grab the microphone, really getting into it. You’re a");
+		if (flags["BESS_PC_KAREOKE_SKILL"] == 1) output(" terrible singer and really butcher every song");
+		else if (flags["BESS_PC_KAREOKE_SKILL"] == 2) output(" very average singer and spend as much time in tune as out of it");
+		else if (flags["BESS_PC_KAREOKE_SKILL"] == 3) output(" good singer and everyone is really impressed");
+		else if (flags["BESS_PC_KAREOKE_SKILL"] == 4) output(" sublime singer and everyone is really impressed");
+		output(", but in the end that’s not what matters. You have a good time with");
+		if (crew(true) > 1) output(" everyone");
+		else output(" [bess.name]");
+		output(" singing karaoke, and that’s what counts.");
+	}
+	else
+	{
+		output("\n\nYou get up to sing and grab the microphone, really getting into it. Your singing voice is truly sublime - when you sing a word it is the most perfect way that word can possibly sound to any ear in the galaxy.");
+		if (crew(true) > 1) output(" Everyone");
+		else output(" [bess.name]");
+		output(" sits spellbound as you put your magical vocal cords to work. When you finish there is a lot of applause and calling for another song. Whenever you sing it’s not karaoke as much as a live performance.");
+	}
+
+	// bessAffection increases, time is spent.
+
+	bessAffectionGain(BESS_AFFECTION_KAREOKE);
+	processTime(50+rand(20));
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
 
-}
-
-You gain ??? XP from  playing a game of Graviball.
-// Time passes, PC takes a big fatigue hit! Possible
-
-
-Sing Karaoke 
-
-
-[bess.name] boots up the karaoke machine and tosses you a microphone. [if (pc.crewmembers > 1) "You invite the other crew members along too."]
-
-if (Celise = companion)
+public function talkToBessAboutCelise():void
 {
-Celise is a surprisingly beautiful singer and really gets into it, her massive tits jiggling as she wiggles along with the music. The sexy jello girl sings in perfect tune, wobbling about the place in a truly distracting fashion. <i>“How'd I do? Did I do good?”</i> Even when she stops the galotian's tits are still moving about.
+	clearOutput();
+	bessHeader();
+
+	output("You ask [bess.name] what [bess.heShe] thinks of Celise.");
+
+	if (celiseIsCrew() && bessClosedRelationship() && flags["CREWMEMBER_SLEEP_WITH"] == undefined && flags["BESS_SLEEPWITH_INTRODUCED"] != undefined)
+	{
+		output("\n\n<i>“Celise? " + bess.mf("Well, what’s not to love about her?", "I love and adore her to bits!") + " Not in the same way I love you, of course. If there is one thing I had to say... it’s that I’d rather not have her sharing your bed - it’s a bit much, don’t you think?”</i>");
+
+			//to share the bed with her. Waking up to her sucking you off - it’s a bit much, don’t you think?”</i>");
+	}
+	else if (celiseIsCrew() && bessClosedRelationship() && flags["BESS_LOVER"] != undefined && flags["CREWMEMBER_SLEEP_WITH"] == undefined)
+	{
+		output("\n\n<i>“Celise?”</i> [bess.name] narrows her eyes at you a little. <i>“Look, I love Celise, not in the same way I love you, but... letting her sleep with you while I have to sleep in another room? That’s so unfair!”</i> [bess.HisHer] tone is very grumpy. It was probably a bad question to ask her.");
+	}
+	else if (flags["BESS_LOVER"] != undefined)
+	{
+		output("\n\n<i>“Celise?”</i> [bess.name] " + bess.mf("grins", "beams brightly") + ", <i>“" + bess.mf("Well, what’s not to love about her?", "I love and adore her to bits!") + " Not as much or in the same way as I love you, of course. My one problem is that she always seems to find and interrupt us when we’re in the middle of us time!”</i>");
+
+		output("\n\n<i>“It’s mostly for protein though, and that’s not so bad. I can make it from my MeldMilk easily enough, though the way she likes to feed off it...”</i> [bess.name] " + bess.mf("coughs", "flushes a little") + ". <i>“... Well, she says there’s a ‘boring way’ and a ‘fun way’. She always picks the latter.”</i>");
+	}
+	else
+	{
+		output("\n\n<i>“Celise?”</i> " + bess.mf("grins", "beams brightly") + ", <i>“She’s my friend, and I think she’s wonderful! You’re my best friend of course. She’s always pestering me for protein though.”</i>");
+
+		output("\n\n<i>“I can make it from my MeldMilk easily enough, though the way she likes to feed off it...”</i> [bess.name] " + bess.mf("coughs", "flushes a little") + ". <i>“... Well, she says there’s a ‘boring way’ and a ‘fun way’. She always picks the latter.”</i>");
+	}
+
+	processTime(5);
+
+	clearMenu();
+	addButton(0, "Next", talkToBessAboutThings);
 }
 
-As usual [bess.name] gets up to sing and [bess.heShe]'s a wonderful vocalist, [bess.hisHer] voice has a naturally melodic quality as is. [bess.HeShe] sings with [bess.hisHer] entire body, letting the music flow through [bess.hisHer] and course through [bess.hisHer] artificial skin. The silver skinned synthetic winks at you as [bess.heShe] performs.
-
-0 = Catastrophic 1= Bad 2 = Average 3 = Good 4 = Great 5 = WTF?
-if (pc.vocal = 0)
+public function talkToBessDismiss():void
 {
-As you get up to sing you grab [bess.name]'s microphone and start to sing - [if (pc.companions > 1) "everyone"] [if (pc.companions = 1) "[bess.heShe]"] cringes and your microphone is taken away from you. It is quickly replaced with another. <i>“Here, take this one!”</i> [bess.name] exclaims, it seems you're not allowed to sing without the 'special microphone'. When you do your voice sounds wonderful and more importantly, bearable.
+	clearOutput();
+	bessHeader();
+
+	if (flags["BESS_LOVER"] != undefined)
+	{
+		output("Are you sure you want to break up with [bess.name]? You have a gut feeling that if you end your relationship, it won’t be a clean break. [bess.HeShe]’ll probably leave the ship. You’d lose your "+ bessLoverStatus() +" as well as your "+ bessCrewRole() +".");
+		//[Reconsider] [Yes, Break Up]
+		clearMenu();
+		addButton(0, "Reconsider", talkToBessAboutThings);
+		addButton(1, "BreakUp", talkToBessBreakUp);
+	}
+	else
+	{
+		output("Did you want to dismiss [bess.name] from your service? If you tell [bess.himHer] to leave, [bess.heShe] will wait in your hangar back on Tavros station.")
+		clearMenu();
+		addButton(0, "Reconsider", talkToBessAboutThings);
+		addButton(1, "Dismiss", talkToBessConfirmDismiss);
+	}
+
+
 }
 
-if (pc.vocal != 0 && pc.vocal != 5)
+public function talkToBessBreakUp():void
 {
-You get up to sing and grab the microphone, really getting into it. You're a [if (pc.vocal = 1) "terrible singer and really butcher every song"] [if (pc.vocal = 2) "very average singer and spend as much time in tune as out of it"] [if (pc.vocal = 3) "good singer and everyone is really impressed"] [if (pc.vocal = 4) "sublime singer and everyone is really impressed"], but in the end that's not what matters. You have a good time with [if (pc.companions > 1) "everyone"] [if (pc.companions = 1) "[bess.name]"] singing karaoke, and that's what counts.
+	clearOutput();
+	bessHeader();
+
+	flags["BESS_LOCATION"] = BESS_DISABLED;
+
+	output("You tell [bess.name] that you no longer love [bess.himHer] and that it’s over between you.");
+	if (pc.isNice()) output(" You try to word it as gently as possible, but there’s just no good way to deliver it.");
+	else if (pc.isMischievous()) output(" You try to deliver the news lightly, but there’s just no way to take the edge off.");
+	else output(" You’re rather blunt about it, since you’re no good at beating around the bush with this sort of thing.");
+	
+	output("\n\nAs expected, your words are utterly soul crushing. [bess.HisHer] [bess.eyes] quiver and " + bess.mf("his whole body trembles", "her lower lip trembles") + ". You can see [bess.hisHer] entire world crashing down as [bess.heShe] stares at you in utter disbelief and heart-wrenched despair.");
+	
+	output("\n\n[bess.HeShe] tries to open [bess.hisHer] mouth, but only a choked noise comes out. Soon [bess.heShe]’s running and collecting [bess.hisHer] things, obviously packing to leave the ship.");
+	
+	output("\n\nBefore you know it, there’s silence, and [bess.name] has left to who knows where. You have no idea where [bess.heShe] went, or if you’ll ever see [bess.himHer] again.");
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
 
-if (pc.vocal = 5)
+public function talkToBessConfirmDismiss():void
 {
-You get up to sing and grab the microphone, really getting into it. Your singing voice is truly sublime - when you sing a word it is the most perfect way that word can possibly sound to any ear in the galaxy. [if (pc.companions > 1) "Everyone"] [if (pc.companions = 1) "[bess.name]"] sits spellbound as you put your magical vocal cords to work. When you finish there is a lot of applause and calling for another song. Whenever you sing it's not karaoke as much as a live performance.
+	clearOutput();
+	bessHeader();
+
+	flags["BESS_LOCATION"] = BESS_AT_TAVROS;
+
+	output("<i>“Alright, "+ bessPCName() +"! I’ll wait for you back on Tavros if you need me,”</i> [bess.name] obediently replies. [bess.HeShe] doesn’t seem that upset by you kicking [bess.himHer] off the ship.");
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
-
-// bessAffection increases, time is spent.
-
-Celise
-
-// If Celise is a ship mate.
-
-You ask [bess.name] what [bess.heShe] thinks of Celise.
-
-if (bessSleepW = true && Celise is sleeping with PC too && bessPoly != 2)
-{
-<i>“Celise? " + bess.mf("Well, what's not to love about her?","I love and adore her to bits!") + "Not in the same way I love you, of course. If there is one thing I had to say... it's that I'd rather not have to share the bed with her. Waking up to her sucking you off - it's a bit much, don't you think?”</i>
-}
-else if (bessSleepW = false && bessLover = true && Celise is sleeping with PC too)
-{
-<i>“Celise?”</i> [bess.name] narrows her eyes at you a little. <i>“Look, I love Celise, not in the same way I love you, but... letting her sleep with you while I have to sleep in another room? That's so unfair!”</i> [bess.HisHer] tone is very grumpy. It was probably a bad question to ask her.
-}
-
-else if (bessLover = true)
-{
-<i>“Celise?”</i> [bess.name] " + bess.mf("grins","beams brightly") + ", <i>“" + bess.mf("Well, what's not to love about her?","I love and adore her to bits!") + " Not as much or in the same way as I love you, of course. My one problem is that she always seems to find and interrupt us when we're in the middle of us time!\</i>
-
-<i>“It's mostly for protein though, and that's not so bad. I can make it from my MeldMilk easily enough, though the way she likes to feed off it...”</i> [bess.name] " + bess.mf("coughs","flushes a little") + ". <i>“... Well, she says there's a 'boring way' and a 'fun way'. She always picks the latter.”</i>
-
-}
-
-else
-{
-<i>“Celise?”</i> " + bess.mf("grins","beams brightly") + ", <i>“She's my friend, and I think she's wonderful! You're my best friend of course. She's always pestering me for protein though.\</i>
-
-<i>“ I can make it from my MeldMilk easily enough, though the way she likes to feed off it...”</i> [bess.name] " + bess.mf("coughs","flushes a little") + ". <i>“... Well, she says there's a 'boring way' and a 'fun way'. She always picks the latter.”</i>
-}
-
-Break Up / Dismiss
-
-
-
-// Break Up / if bessLover = true
-Are you sure you want to break up with [bess.name]? You have a gut feeling that if you end your relationship, it won't be a clean break. [bess.HeShe]'ll probably leave the ship. You'd lose your [bessLoverStatus] as well as your "+ bessCrewRole() +".
-[Reconsider] [Yes, Break Up]
-
-=[Yes, Break Up]=
-You tell [bess.name] that you no longer love [bess.himHer] and that it's over between you. {Nice: You try to word it as gently as possible, but there's just no good way to deliver it./Mischevious: You try to deliver the news lightly, but there's just no way to take the edge off./Hard: You're rather blunt about it, since you're no good at beating around the bush with this sort of thing.}
-
-As expected, your words are utterly soul crushing. [bess.HisHer] [bess.eyes] quiver and " + bess.mf("his whole body trembles","her lower lip trembles") + ". You can see [bess.hisHer] entire world crashing down as [bess.heShe] stares at you in utter disbelief and heart-wrenched despair.
-
-[bess.HeShe] tries to open [bess.hisHer] mouth, but only a choked noise comes out. Soon [bess.heShe]'s running and collecting [bess.hisHer] things, obviously packing to leave the ship. 
-
-Before you know it, there’s silence, and [bess.name] has left to who knows where. You have no idea where [bess.heShe] went, or if you’ll ever see [bess.himHer] again.
