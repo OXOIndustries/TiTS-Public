@@ -833,9 +833,11 @@ public function applyUpbringing(arg:int = 0):void {
 	if(arg == 0) {
 		pc.willpowerRaw--;
 		pc.credits += 1000;
+		flags["PC_UPBRINGING"] = GLOBAL.UPBRINGING_PAMPERED;
 	}
 	//Athletic
-	else if(arg == 1) {
+	else if (arg == 1) {
+		flags["PC_UPBRINGING"] = GLOBAL.UPBRINGING_ATHLETIC;
 		pc.physiqueRaw++;
 		pc.reflexesRaw++;
 		pc.aimRaw++;
@@ -844,19 +846,21 @@ public function applyUpbringing(arg:int = 0):void {
 		pc.libidoRaw++;
 	}
 	//Bookworm
-	else if(arg == 2) {
+	else if (arg == 2) {
+		flags["PC_UPBRINGING"] = GLOBAL.UPBRINGING_BOOKWORM;
 		pc.physiqueRaw--;
 		pc.reflexesRaw--;
 		pc.intelligenceRaw+=2;
 	}
 	//Austere
-	else if(arg == 3) {
+	else if (arg == 3) {
+		flags["PC_UPBRINGING"] = GLOBAL.UPBRINGING_AUSTERE;
 		pc.willpowerRaw++;
 		pc.credits -= 250;
 	}
 	//Balanced
 	else if(arg == 4) {
-		
+		flags["PC_UPBRINGING"] = GLOBAL.UPBRINGING_BALANCED;
 	}
 
 	chooseAlignment();

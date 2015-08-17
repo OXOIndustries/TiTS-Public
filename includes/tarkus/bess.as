@@ -6764,7 +6764,7 @@ public function bessEvent9():void
 	else output("with wide [bess.eyeColor] eyes");
 	output(", expecting you to know the answer.");
 
-	if (pc.intelligence() >= 25 && pc.IQ() >= 75)
+	if (pc.intelligence() >= 25 && pc.IQ() >= 75 || flags["PC_UPBRINGING"] == GLOBAL.UPBRINGING_BOOKWORM)
 	{
 		output("\n\nIntimately familiar with the works [bess.heShe] is reading, you have a long discussion with [bess.hisHer] about The Time Machine and several other similar works. [bess.name] is incredibly impressed by your knowledge and listens with rapt attention, absorbing every word.");
 		
@@ -7765,32 +7765,33 @@ public function bessEvent17():void
 
 	output("\n\nPeople love gambling on Graviball on the galactic rim. You hear there are shadier matches played on the fringe worlds where there are almost no rules and certain shock weapons are allowed.");
 
-	if (pc.PQ() >= 80)
+	if (flags["PC_UPBRINGING"] == GLOBAL.UPBRINGING_ATHLETIC)
 	{
 		output("\n\n<i>“Of course I’ve played Graviball - who do you take me for?”</i> You scoff, you spent half your childhood playing every kind of sport the galaxy had to offer; mostly at your father’s insistence. <i>“They used to call me the ‘Steele Hammer’ back home when I was playing in the junior leagues because I had a way of making that z-g ball crash down.”</i>");
 
 		output("\n\n<i>“O-hoh, so you’re a pro then? Guess you wouldn’t turn down a challenge from a synthetic newb like me, then?”</i>  [bess.name]’s [bess.eyeColor] eyes are alight with competitive spirit, as [bess.heShe] spins the gravity-defying ball on one finger.");
 	}
-	else if (pc.IQ() >= 80)
+	else if (flags["PC_UPBRINGING"] == GLOBAL.UPBRINGING_BOOKWORM)
 	{
 		output("\n\n<i>“Well, I was a bit of an indoors sort. Partially because of my old man, but also because I genuinely love reading. I never really did play many sports growing up.”</i> You reluctantly admit, looking at the z-g ball. What were the rules again?");
 		
 		output("\n\n<i>“That’s no good! I love books too, but you organic types have got to keep the blood pumping through your veins. Embrace the day, seize the moment, live life to the fullest!”</i> [bess.name] sighs, obviously disappointed by your hermit-like attitude.");
 	}
-	else
+	else if (flags["PC_UPBRINGING"] == GLOBAL.UPBRINGING_BALANCED)
 	{
 		output("\n\n<i>“I played it a bit at school - the old man was always making sure I tried everything at least once, so I had a balanced education.”</i> You inform [bess.himHer], all the while eyeing off the way [bess.heShe]’s spinning the z-g ball on [bess.hisHer] index finger.");
 	}
-
-	/*
-	"I had a pretty strict upbringing; I didn’t really get time to play sports. Even though my old man was rich, he made me earn my way from a young age - I never got any hand outs." You tell [bess.name], realising you’d never told [bess.himHer] how hard you had it growing up. As a Steele, most people automatically assumed you lived a pampered lifestyle from a young age.
-
-	The edge of [bess.name]’s eyes soften, then [bess.heShe] gets a little gleam in [bess.hisHer] eyes. "All work and no play? Now I know why your family are called Steeles. How about we recapture some of that lost childhood...?"
+	else if (flags["PC_UPBRINGING"] == GLOBAL.UPBRINGING_AUSTERE)
+	{
+		output("\n\n<i>“I had a pretty strict upbringing; I didn’t really get time to play sports. Even though my old man was rich, he made me earn my way from a young age - I never got any hand outs.”</i> You tell [bess.name], realising you’d never told [bess.himHer] how hard you had it growing up. As a Steele, most people automatically assumed you lived a pampered lifestyle from a young age.");
+		
+		output("\n\nThe edge of [bess.name]’s eyes soften, then [bess.heShe] gets a little gleam in [bess.hisHer] eyes. <i>“All work and no play? Now I know why your family are called Steeles. How about we recapture some of that lost childhood...?”</i>");
 	}
-	{PC = pampered:
-	"Sure, I played a fair bit of Graviball, though mostly for social reasons. We had a field built into our space yacht; I’ve even played against a few celebrities." You admit, realising how pampered you sound right now. Your old man let you live in the lap of luxury growing up, which is probably why he’s making you earn your inheritance now with this galactic treasure hunt.
-
-	[bess.name] pouts a little bit, spinning the z-g ball on one finger. "... Well okay, this is no private yacht, and I’m no celebrity - just a bot with a ball. Anyway, the point is you know how to play!"
+	else if (flags["PC_UPBRINGING"] == GLOBAL.UPBRINGING_PAMPERED)
+	{
+		output("\n\n<i>“Sure, I played a fair bit of Graviball, though mostly for social reasons. We had a field built into our space yacht; I’ve even played against a few celebrities.”</i> You admit, realising how pampered you sound right now. Your old man let you live in the lap of luxury growing up, which is probably why he’s making you earn your inheritance now with this galactic treasure hunt.");
+		
+		output("\n\n[bess.name] pouts a little bit, spinning the z-g ball on one finger. <i>“... Well okay, this is no private yacht, and I’m no celebrity - just a bot with a ball. Anyway, the point is you know how to play!”</i>");
 	}
 	*/
 
@@ -8007,7 +8008,10 @@ public function bessEvent18No():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-Approach Scene 19 - "Catch That Thrill"
+public function bessEvent19():void
+{
+	clearOutput();
+	bessHeader();
 
 // Repeating Scene (If PC refuses to watch movies with her)
 // Bess affection must be 70 or higher

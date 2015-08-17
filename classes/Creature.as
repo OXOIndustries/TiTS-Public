@@ -2447,6 +2447,7 @@
 			//Debuffs!
 			if (hasStatusEffect("Trip")) currReflexes -= 4;
 			if (hasStatusEffect("Staggered")) currReflexes *= 0.8;
+			if (hasStatusEffect("Watered Down")) currReflexes *= 0.9;
 			if (hasStatusEffect("Pitch Black")) currReflexes *= 0.66;
 
 			if (currReflexes > reflexesMax())
@@ -3952,7 +3953,7 @@
 				if (armType == GLOBAL.TYPE_EQUINE) adjective.push("hoof-tipped");
 			}
 			// Build
-			if (rand(2) == 0) output += RandomInCollection(adjective);
+			if (adjective.length > 0 && rand(2) == 0) output += RandomInCollection(adjective);
 			// Noun
 			if (output != "") output += " ";
 			output += "finger";
@@ -6669,6 +6670,10 @@
 			return (cocks.length > 0 && cockVirgin);
 		}
 		public function mfn(male: String, female: String, neuter: String): String {
+			
+			if (hasStatusEffect("Force Fem Gender")) return female;
+			if (hasStatusEffect("Force Male Gender")) return male;
+			
 			//1/2 facial
 			var weighting: Number = femininity;
 			//Tits count up to their rating for femininity
@@ -6706,6 +6711,10 @@
 			return mfn(male, female, "");
 		}
 		public function rawmfn(male: String, female: String, neuter: String): String {
+			
+			if (hasStatusEffect("Force Fem Gender")) return female;
+			if (hasStatusEffect("Force Male Gender")) return male;
+			
 			if (!hasCock() && !hasVagina()) return neuter;
 			else return rawmf(male, female);
 		}

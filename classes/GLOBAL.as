@@ -13,6 +13,21 @@
 			"Mercenary",
 			"Engineer"
 		];
+		
+		public static const UPBRINGING_PAMPERED:uint						= 0;
+		public static const UPBRINGING_ATHLETIC:uint						= 1;
+		public static const UPBRINGING_BOOKWORM:uint						= 2;
+		public static const UPBRINGING_AUSTERE:uint							= 3;
+		public static const UPBRINGING_BALANCED:uint						= 4;
+		public static const MAX_UPBRINGINGS:uint							= 5;
+		
+		public static const UPBRINGING_NAMES:Array = [
+			"Pampered",
+			"Athletic",
+			"Bookworm",
+			"Austere",
+			"Balanced"
+		];
 
 		//Body Part Flags - used for any body part that supports the new flags system.
 		//NOTE: Not all flags work with all body parts, for obvious reasons
