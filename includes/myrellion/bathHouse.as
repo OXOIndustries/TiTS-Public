@@ -88,14 +88,28 @@ public function publicBathSlutBitchComeOnYouDipshitBastardInsertCurseWordsHere()
 	processTime(13);
 	pc.shower();
 	//CHOOSE A TARGET!
+	publicBathMenu();
+}
+
+public function publicBathBackMenu():void
+{
+	clearOutput();
+	showName("BATH\nHOUSE");
+	output("No, that won't do. You back away and consider your options.");
+	publicBathMenu();
+}
+public function publicBathMenu():void
+{
 	clearMenu();
 	addButton(0,"Red Officer",chooseRedOfficerForBathShenanigansIllPistolWhipTheNextPersonWhoSaysRedOfficerWhatDidYouThinkIdSayShenanigans,undefined,"Red Officer","You catch sight of a very uncomfortable red myr woman sitting at the back of the upper pool. She's naked, revealing a body of albino-pale flesh and crimson plates, though one of her arms is guardedly wrapped around her chest to preserve some measure of her modesty. She looks like she could use some friendly company... or a little loosening up.");
 	addButton(1,"Honeypot",honeyPotFunTimes,undefined,"Honeypot","There's a gold myr woman on the second tier with a rack you can hardly believe: she's rocking a pair of breasts too large to be constrained by any bra you've ever seen. Her tits float like a pair of balloons, strained to the absolute physical limit with an overabundance of myr nectar. She'd probably appreciate someone attending to those awesome curves of hers...");
 	//Alone
 	//Tooltip: You don’t want to bathe with anybody else in particular. Just go in, get clean, and get out.
 	addButton(2,"Alone",batheAloneYouSloot,undefined,"Alone","You don’t want to bathe with anybody else in particular. Just go in, get clean, and get out.");
+	addButton(3,"GoldGroup",bathHouseGoldMyrGroup,undefined,"Gold Group","Several gorgeous gold myr mill about in a shallow corner of the lower pool, some engaged in washing their glistening bodies and some lying idle or playing in the water. Occasionally they call out to a patron that has worked up the courage to approach, inviting him or her to partake in their “amateur bathing service”. From the lascivious looks these sex bombs wear, there’s no doubt that their ministrations would be more intimate than an ‘official’ bathing attendant’s.");
 	addDisabledButton(14,"Back","Back","No backing out now. You might as well get a bath!");
 }
+
 
 public function showRedMyrOfficer():void
 {
@@ -366,6 +380,159 @@ public function batheAloneEpilogue():void
 	//[Next]
 	//Back to Bath House main room
 	processTime(15);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//scene intro
+public function bathHouseGoldMyrGroup():void
+{
+	clearOutput();
+	showBust("9999");
+	showName("GOLD\nMYR GROUP");
+	author("Zeikfried");
+	output("<i>“Pardon.”</i>");
+	output("\n\nThe ring of stunning gold myr turn toward you, presenting profiles of perky breasts and creamy stomachs. <i>“");
+	if(pc.race() == "gold myr" || pc.race() == "red myr" || pc.race() == "myr") output("What a " + pc.mf("handsome","beautiful") + " myr we have here,");
+	else output("The fetching offworlder is upon us,");
+	output("”</i> remarks an especially curvy woman lounging in the center. <i>“We saw you come in. Are you... interested in our amateur bathing service?”</i> At the word ‘interested’, she stretches a hand out to you.");
+	output("\n\nYou accept her hand and the myr pulls you into the small ring, which forms up around you. As you look over the faces, a tall bather to your left lays your towel aside, then steps closer and takes your free arm in hers, pressing her breast to your elbow surreptitiously. You glance at her and she returns a seductive stare that’s smoky enough to cook a ham.");
+	output("\n\n<i>“We’re not officially affiliated with the bath house, but we’re just as ready to be of service,”</i> continues the apparent ringleader. <i>“We’d love to assist you with bathing, releasing tension, or even matters of spirit.”</i>");
+	output("\n\n<i>“Just think of us as eager volunteers,”</i> the leggy beauty on your arm adds, <i>“and ask for whatever you’d like.”</i>");
+	if(pc.hasCock())
+	{
+		output(" Your [pc.cocks] swell");
+		if(pc.cockTotal() > 1) output("s");
+		output(", half-erect from the implications. None of the girls bat an eye; one even smiles slightly at the outline.");
+	}
+	output("\n\n<i>“Now, will we have the pleasure of attending you?”</i> prompts the myr who spoke first.");
+	output("\n\nWhat will you ask for ‘help’ with?");
+
+	//choices - include ‘Nothing’ that returns to previous menu
+	processTime(4);
+	pc.lust(10);
+	clearMenu();
+	if(pc.hasCock())
+	{
+		if(pc.cockThatFits(200) >= 0) addButton(0,"Clean Penis",cleanMuhPenisYo,undefined,"Clean Penis","You have a hunch that they'd be quite adept at cleaning your penis.");
+		else addDisabledButton(0,"Clean Penis","Clean Penis","You're too big for the type of cleaning they're liable to give...");
+	}
+	else addDisabledButton(0,"Clean Penis","Clean Penis","You don't have a tallywacker to clean!");
+	if(pc.hasVagina()) addButton(1,"Clean Vagina",cleanMuhVaginaYo,undefined,"Clean Vagina","Have them tend to your vagina.");
+	else addDisabledButton(1,"Clean Vagina","Clean Vagina","You don't have a vagina to clean!");
+	addButton(14,"Back",publicBathBackMenu);
+}
+
+//Clean Penis - avail. when PC has at least one cock that’s within gold myr capacity
+public function cleanMuhPenisYo():void
+{
+	clearOutput();
+	showName("GOLD\nMYR GROUP");
+	var x:int = pc.cockThatFits(200);
+	if(x < 0) x = pc.smallestCockIndex();
+	author("Zeikfried");
+	output("<i>“A nice, warm dip wouldn’t go amiss,”</i> you announce, waggling your half-stiff dick in the water.");
+	output("\n\n<i>“Yes, of course,”</i> answers the long-legged temptress on your arm. One of her hands slides down your thigh and over to your groin, feeling the heft and thickness of your [pc.cock " + x + "]. Quietly, she begins to work the shaft. <i>“Let’s just see what we have, here.”</i>");
+
+	//norml cocks fuck the leggy myr (plus shy myr if tailcocked)
+	if(pc.cockVolume(x) <= 100)
+	{
+		output("\n\nShe smiles as her strokes bring your modest prick to erectness. <i>“I will be glad to personally oversee this,”</i> the tall myr says. The matronly woman opposite you folds her arms and smiles wanly as your self-declared overseer seats you in the waist-deep water. A gorgeous leg passes over you as she straddles your crotch, and the rest of the myr begin to wet your skin, expertly concealing your lower body from view.");
+		output("\n\n<i>“I serve at your pleasure,”</i> your myr says, dribbling water down your ");
+		if(pc.biggestTitSize() >= 5) output("busty ");
+		else if(pc.tone >= 70) output("chiseled ");
+		else if(pc.thickness <= 33) output("thin");
+		output(" chest with cupped hands. <i>“Between you and I, I’m the best of us at seeing to a visitor’s needs.”</i> She leans close and wraps her arms around your neck, raising up. You feel a hand on your [pc.cock " + x + "] for just a moment before she sinks down again, and your mouth opens involuntarily as your shaft’s bathed in heat - you’re already inside her.");
+		pc.cockChange();
+		output("\n\n<i>“Mmm... feeling good?”</i> she sighs, releasing your neck. She brushes her close-cut bob out of her face and smiles sweetly at you, then begins to shift her hips. The other women close in; the curvaceous myr seeks out your [pc.legOrLegs], rubbing tension away with her thumbs, and two other myr present themselves, massaging their soft, alabaster breasts. A pleasant perfume fills your nose as one presses up to your back and you feel her erect nipples poking at your [pc.skinFurScales]; the other brushes up against your arm, sliding it into her cleavage. A slippery sensation spreads wherever they touch, and you realize they must have been massaging perfumed bath oils into their skin while you were focused on your slim-waisted seductress.");
+		output("\n\n<i>“How’s this?”</i> inquires the myr behind you, sweetly. Her oiled hands dance gently over you, searching for knots of tension in your shoulders. She locates one, and leans into you to work it out; you can feel her petite breasts through your back, rising and falling with her breath as she rubs, and your [pc.cock " + x + "] responds by swelling up a little bit more. The woman on your prick moans lightly as her tight sex is filled with more hard shaft, and the other myr all slow a bit, imagining the pleasure she must be experiencing.");
+		output("\n\nThe woman at your arm squeezes her breasts against you, depositing dollops of myr nectar which she begins to work into your [pc.skin]. <i>“Do you like my special honey massage?”</i> she asks, popping two sweet fingers into your mouth. Your [pc.tongue] conforms automatically, lapping up the nectar and teasing the fingers apart to snake down to the bases. She slowly pulls them back out, savoring the feel of your lips, then rubs your saliva into her honeyed nipple with a smoldering look, completely distracted with her fantasies. The raunchy eye-fuck from your masseuse only brings your [pc.cock " + x + "] closer to bursting inside your slender lover.");
+
+		//(tailcock)
+		if(pc.hasTailCock()) output("\n\nA shock travels up your spine as fingers suddenly probe the opening at the end of your perverted, cock-concealing tail, touching the crown of the penis inside. <i>“What’s this?”</i> asks a very quiet voice. Both you and the girl astride your shaft look back to see a youthful myr of average height examining the end of your tail. She leans over for a closer look, and that’s when you notice her staggering bust - a pair of full, round DD-cup beauties dangling from her chest, begging for attention. Your tailcock slides out almost before you think of it, presenting its proud, veiny shaft and blood-engorged, puffy head to the mousey myr girl.\n\nHer eyes widen at the writhing, precum-slicked hot rod in her hand that seconds ago was an innocuous tail tip, and when she looks up and meets the gazes of you and your lover, still busily humping away, her whole skin blushes with embarrassment. Despite that, her thighs rub together and her nipples drool nectar... clearly, her body is far sluttier than she likes to admit. Your tail slips free of her hand, slick with [pc.cumVisc] pre-cum, and begins to press between her thighs. Looking away, the shy myr opens her legs and leans back, allowing your alien, parasitic cock to penetrate. She moans lightly and grasps one of her superb breasts as the thick tool enters her and begins to thrust, already near climax.");
+
+		output("\n\n<i>“Fuck me... I’m coming!”</i> the beauty in your lap moans, pulling your head into her breasts. Her tight cunt takes on a new dimension of pressure as her orgasm squeezes your [pc.cock " + x + "], and with all the creamy flesh, innuendo, and rubbing going on around you, you can no longer hold out. Your jizz boils from your cum slit, basting the pussy of your enthusiastic partner.");
+		if(pc.hasTailCock()) 
+		{
+			output(" The alien tail-cock in the shy myr erupts as well; she half-heartedly squeezes the base");
+			if(pc.balls > 0) output(" when she sees your [pc.sack] tighten up ");
+			output("as if to stop it, but her inner slut wins out and she allows you to blow your fertile load inside her.");
+		}
+		//(much cum)
+		if(pc.cumQ() >= 2500) output(" Your cum quickly fills your leggy lover and continues to gush out; her belly bumps into yours as the stream of seed fills it like a condom and eventually, streamers of [pc.cumColor] spurt back out of her pussy, decorating the water.");
+		output("\n\nShe heaves a long-drawn-out sigh of satisfaction as your session ends, and the other myr look on with envy as she slowly rises up from your dick with a stream of jizz running down her thigh. Grudgingly, they finish cleaning you, even wiping the cum and pussy juice from your twitching manhood. The tall myr tries to close her legs to hold in your ");
+		if(pc.cumQ() >= 2500) output("massive ");
+		output("dose of sperm as she addresses you.");
+		output("\n\n<i>“I hope you’re completely satisfied with our work.”</i> Her eyes soften as she looks down at your flagging dick, and her knees wobble. <i>“Please come back soon... we’d love to service you again.”</i>");
+		
+	}
+	//med-huge cocks fuck the curvy ringleader (plus shy myr if tailcock)
+	else
+	{
+		output("\n\nHer smooth strokes bring you to full erectness, and her eyes widen as your [pc.cock " + x + "] swells past " + num2Text(Math.round(pc.cocks[x].cLength()-4)) + " inches. The voluptuous myr opposite you raises an eyebrow.");
+		output("\n\n<i>“Another for me?”</i> she inquires innocently. The tall woman relinquishes your arm with a slight air of defeat and gently pushes you over toward the wide-hipped sexpot, who bids you be seated. The other myr busily begin wetting and rubbing your [pc.skinFurScales] in ways that conveniently conceal your crotch from outside scrutiny.");
+		output("\n\n<i>“We have a contest going,”</i> the curvy myr whispers. Her medium-length blonde hair cascades from her neck as she leans in. <i>“She’s quite certain that she’s the best... but I’m winning.”</i> She seats herself in your lap and looks pointedly at the taller woman. <i>“Would you be so kind as to wash our visitor’s chest while I see to " + pc.mf("his","her") + " lower half?”</i>");
+		output("\n\nThe disappointed myr anoints your [pc.chest] with warm water; meanwhile, the myr in your lap has turned around and begun gently washing your [pc.legOrLegs]. Her fantastic, heart-shaped ass is on full display as she bends forward, and she makes sure to rub it against the base of your [pc.cock " + x + "] before throwing a knowing glance over her shoulder. She raises her perfectly-rounded booty above the water, and you very briefly feel fingertips guiding your penis into place before she lowers it again, onto the lengthy shaft. Several of the smaller women wince as your pole slides home.");
+		pc.cockChange();
+		output("\n\n<i>“Ah... get to work, myr,”</i> grunts your lover, starting to ride your fat cock. Two women move in closer, massaging their soft, alabaster bodies, and a pleasant smell permeates the air at their approach. One grasps your shoulders and gently pulls your head into her chest, massaging your scalp while your head rests against her petite breasts; the other joins the tall myr in massaging your chest, leaning over far enough that her nipples sometimes brush your arm. An oily sensation spreads");
+		if(pc.hasFur()) output(" through your fur");
+		else if(pc.hasScales()) output(" between your scales");
+		output(", and you realize that they must have been preparing their bodies with scented oils while you were fixated on your lover’s gropable backside.");
+
+		output("\n\n<i>“You’re very tense,”</i> remarks the myr behind you, working the stress from your forehead. You look up at her and from this angle, even her modest breasts seem huge. The sight of her cute face looking at you through her oiled, glistening cleavage turns you on even more; the bombshell in your lap rolls her head as your erection stiffens and stretches her hole");
+		if(pc.biggestTitSize() >= 5) output(", and her hair drags over your [pc.chest]");
+		output(". The leggy myr says nothing at her competitor’s obvious pleasure, but her chest massage slows down as she bites her lip enviously.");
+
+		output("\n\nThe myr at your arm squeezes her own teats, producing dollops of nectar which she smears into your oily [pc.skin]. <i>“Special service,”</i> she whispers, kneading the tense muscle of your pectoral. The extra ministrations playing out over your body only enhance the pleasure from the honeypot in your lap, who is now slamming down on your cock with such joy that waves are forming in the pool.");
+
+
+		if(pc.hasTailCock()) output("\n\n<i>“Hello, what’s here?”</i> marvels a quiet voice. A shiver travels up your spine as fingers invade the loose skin at the end of your mutant tail and touch the cock-head within. You peer around the big, alabaster ass riding your dick to see a youthful-looking myr of average height but with an amazing bust - at least a DD-cup. She leans over [pc.oneTail] to look closer, giving you an eyeful; her unrestrained breasts beg to be cradled and caressed. Eager to get her involved, you curl your tail up to her stomach and slide your secret penis from its hidden recess. Her eyes widen in shock as the pre-cum-drooling shaft glides between her well-developed tits; when she looks up in surprise, you make sure to catch her eye and nod appreciatively.\n\nShe blushes, shyly covering her nipples and averting her gaze, but a trickle of nectar leaks from behind her hands. Her body is clearly more determined to be slutty than she’s ready to admit; you help her make the right choice by sliding your perverted tail-prick up and down through her cleavage, mixing your [pc.cumVisc] pre-cum with her own nectar. Her smile breaks, and though still refusing to meet your eyes, she pushes her huge breasts together and begins to pump her chest, stimulating you with soft, honey-coated strokes.");
+
+		output("\n\n<i>“Yes... yess!”</i> the curvy myr cries, climaxing. Her cunny tightens and roils around your shaft, as if trying to massage the cum from it. The women attending you switch from bathing you to holding you down as your hips continue to buck violently into the slutty myr, cock hard as iron and seconds from blowing. With a soft whine, you release the first shot into your lover, who immediately trembles with aftershock as the hot semen splashes into her vagina.");
+		if(pc.hasTailCock()) output("\n\nThe honey-covered cock trapped between the shy myr’s glorious tits likewise ejaculates, and the girl squeezes her eyes shut awkwardly as your load lands on her face and in her wavy hair. Your tailcock quickly spurts out, depositing the last two strings of jizz atop her tits.");
+		if(pc.cumQ() >= 2500) output(" Your overproductive sex easily overflows the myr woman in your lap, spilling so much seed that her belly rounds slightly and the cum begins to squirt back out, spreading a [pc.cumColor] fog through the pool.");
+		output(" The myr continues to shake her ass weakly as your final strokes drool into her womb, and when the orgasm finally stops, two of the other women have to support her by holding her under the arms before she can rise up off your [pc.cock " + x + "]. The remaining myr quietly wash the oils from your skin and scrub your twitching shaft, washing away the traces of your ejaculation as your lover is laid down opposite you.");
+		output("\n\n<i>“It has been our utmost pleasure to service you,”</i> she gasps, face colored with exertion. <i>“I dearly hope to see you again.”</i>");
+		//end and pass time
+	}
+	//end and pass time
+	processTime(22);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Clean Vagina
+public function cleanMuhVaginaYo():void
+{
+	clearOutput();
+	author("Zeikfried");
+	showName("GOLD\nMYR GROUP");
+	var x:int = rand(pc.totalVaginas());
+
+	output("<i>“I could use some help with those hard-to-reach places,”</i> you say, pointing clandestinely at [pc.oneVagina]. The tall myr releases your arm petulantly and the matronly leader laughs. She gestures toward a short-but-well-proportioned woman with a pixie haircut.");
+	output("\n\n<i>“My turn?”</i> the new myr asks sweetly. She licks her lips and steps forward, taking your hand and seating you in the shallows. <i>“We have a contest going to see who can service the most people,”</i> she whispers, rubbing water into your [pc.chest] with relish, <i>“and none of these girls can hold her breath like I can. It will be my delight to see to your... beautiful... body.”</i> She punctuates her statement by kissing your neck.");
+	if(pc.hasKnees()) output(" Your knees pinch together reflexively");
+	else output("You tense and relax reflexively");
+	output(" as her hot breath hits your [pc.skinFurScales], and the other bathers take up positions concealing your lower body, hinting at what’s to come.");
+
+	output("\n\nSeveral of the women are already rubbing their breasts and stomachs, spreading a glistening oil that they must have retrieved while you were making foreplay with the short-haired myr - a pleasant, florid perfume fills the air. <i>“Just relax,”</i> your lesbian lover reassures. <i>“Not even an inch of you will feel neglected.”</i> She slides a hand up your [pc.chest], catching one of your [pc.nipples] between her fingers and brushing past it with her palm. The little dyke flashes a mischievous smirk as she disappears behind another myr who straddles your stomach and begins massaging your chest; a third moves behind you, supporting your back on her lap, and works on your shoulders. The others busy themselves gently washing your arms and [pc.legOrLegs]. You briefly turn your attention to the myr in front of you, who winks at you and gladly presents her small, oiled breasts and smooth skin for your inspection, but your study is interrupted by the sudden touch of lips on your hot pussy.");
+
+	output("\n\n<i>“Looks like she’s started,”</i> giggles the girl on your stomach, transferring some perfumed oil from her chest to yours by rubbing her breasts on you. <i>“She’s very... practiced.”</i> You have no doubt, as the hidden myr teases and nibbles at your labia. [pc.OneClit] is alternately rubbed between two fingers and cradled in her warm tongue, and more fingers slide inside your vagina, flicking back and forth through the opening and rubbing your nerves with just the right amount of pressure.");
+
+	output("\n\nYour mouth works as the arousal mounts in your womanhood - with the almost-sadistic teasing of your [pc.vagina " + x + "] by the lesbian myr, you’re horny and desperate for something to happen. The girl behind you notices, and remarks, <i>“You poor thing. You look like you might enjoy my special honey massage.”</i> She scoots backward, allowing you to see as she squeezes her breasts with her hands, producing dollops of nectar from her nipples. She scoops up the nectar and some pool water and begins to work it into your skin, adding a sugary smell to the aroma already present. <i>“Does this feel good?”</i>");
+	output("\n\nYour [pc.vagina " + x + "] continues to burn under the heat of myr tongue, now joined by a whole hand’s worth of fingers as your opening becomes slicker and wetter with your juices. The myr behind you offers her own fingers to you, dangling the honey-coated digits in front of your mouth. You snap them up, caressing them with your [pc.tongue] and slurping between them right down to the ticklish bases. The sound of a sharp breath comes from behind you as your rapacious mouth takes the myr by surprise. She looks into your eyes for a moment, flushing with her own arousal, and then makes a decision: leaning over, she lowers her honey-dribbling breast until it dangles just above your face. Spurred by the crashing orchestra of nerves in your nethers, you don’t even hesitate, reaching up and wrapping the teat in your lips. The taste of sweet sugar fills your mouth as the myr moans, stimulated to give up her precious nectar. Her hand darts between her thighs, and the other myr look positively envious as you tease and circle her nipple with your teeth and tongue, slowing down their bathing efforts as new fantasies fill their heads.");
+	//(tailcunt)
+	if(pc.hasTailCunt()) output("\n\nThe lack of control over the pace begins to get to you; you’re eager to cum but every time you get close, the myr at your pussy backs off with expert timing. Try as you might to rub your crotch on her, she seems dedicated to taking the fuck nice and slow, giving all the other myr their chance to tease you. Your tail even begins to ache as your maddened mind becomes painfully aware of your [pc.tailgina]’s emptiness. A desperate idea occurs: though you can’t use your mouth to punish your lesbian lover in kind, the throbbing, wet opening of your tail-pussy begs for stimulation, and it’s flexible enough to curl around to the little myr’s own hot hole.\n\nYou waste no time, snaking your tail between her legs; at first, you can only feel her smile as it brushes up against her cunt clumsily, but once you zero in on it, you spread the strange, alien opening as wide as you can and press it right up to hers. A hot breath blows past your labia as the shocked myr gets a taste of her own foreplay - your parasitic pussy drools and smears sex juices on her crotch, and you can feel her squirm. Knowing that you have the capacity to tease her just as much as she’s teasing you, you sigh and resume sucking on the gorgeous breast in your mouth, confident that she’ll bring you to orgasm soon.");
+	output("\n\nIt doesn’t take much longer, in fact, before your pussy is teased over the breaking point. As your [pc.vagina " + x + "] convulses");
+	if(pc.isSquirter()) output(" and squirts");
+	output(", the little myr pops her head out and inhales deeply, still holding several fingers inside you that touch and tease your entrance. Your mouth pops free of the other myr’s nectar-dripping breast, and she leans back, satisfied.");
+	if(pc.hasTailCunt()) output(" Your [pc.tailgina] is filled as well, as the myr’s own vagina unloads its sticky femcum - she must have been aroused almost to the point of orgasm just from playing with your pussy.");
+	output(" As your back spasms and your juice blends with the pool water, the little myr drags herself up to lay beside you. The other women conscientiously finish bathing you, even wiping the saliva from your [pc.vagina " + x + "] and the love juices from your myr’s mouth. Slowly recovering her breath, she sits up and looks over.");
+	output("\n\n<i>“I hope you found our services both satisfying and in-depth,”</i> she quips. <i>“I’d love to have your company again if you return to the bath house.”</i>");
+	//end and pass time
+	processTime(22);
+	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
