@@ -499,16 +499,30 @@ public function initializeMyrellionRooms():void
 	//717 Crystamere Road
 	rooms["717"] = new RoomClass(this);
 	rooms["717"].roomName = "CRYSTAMERE\nROAD";
-	rooms["717"].description = "This part of the city is low on light but high on foot traffic. Luckily, the pavement itself is made from thousands of glittering stones painstakingly interlocked together, so what little illumination does make it here is reflected into gentle, soft-hued rainbows of every color. Many of the buildings here have small pots with glowing mushrooms or window planters to help brighten the mood. One building to the west stands out from the rest, built of U.G.C. prefabricated panels and lit by a brilliant sign that reads, “Gene’s Mods”. Another offworlder must have moved in.";
+	rooms["717"].description = "This part of the city is low on light but high on foot traffic. Luckily, the pavement itself is made from thousands of glittering stones painstakingly interlocked together, so what little illumination does make it here is reflected into gentle, soft-hued rainbows of every color. Many of the buildings here have small pots with glowing mushrooms or window planters to help brighten the mood.";
 	rooms["717"].planet = "PLANET: MYRELLION";
 	rooms["717"].system = "SYSTEM: SINDATHU";
 	rooms["717"].southExit = "716";
 	rooms["717"].northExit = "718";
+	rooms["717"].westExit = "GENES MODS";
 	rooms["717"].moveMinutes = 2;
 	rooms["717"].runOnEnter = gildenmereStreetBonus;
 	rooms["717"].addFlag(GLOBAL.INDOOR);
 	rooms["717"].addFlag(GLOBAL.PUBLIC);
 	rooms["717"].addFlag(GLOBAL.CAVE);
+
+	//Gene's Mods`
+	rooms["GENES MODS"] = new RoomClass(this);
+	rooms["GENES MODS"].roomName = "GENE'S\nMODS";
+	rooms["GENES MODS"].description = "";
+	rooms["GENES MODS"].planet = "PLANET: MYRELLION";
+	rooms["GENES MODS"].system = "SYSTEM: SINDATHU";
+	rooms["GENES MODS"].eastExit = "717";
+	rooms["GENES MODS"].moveMinutes = 1;
+	rooms["GENES MODS"].runOnEnter = genesModsInteriorBonus;
+	rooms["GENES MODS"].addFlag(GLOBAL.INDOOR);
+	rooms["GENES MODS"].addFlag(GLOBAL.PUBLIC);
+	rooms["GENES MODS"].addFlag(GLOBAL.COMMERCE);
 	
 	//718 Crystamere Road
 	//East checkpoint

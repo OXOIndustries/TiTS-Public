@@ -1073,5 +1073,9 @@
 		{
 			return chars["TAIVRA"];
 		}
+		public function get gene():Gene
+		{
+			return chars["GENE"];
+		}
 	}
 }

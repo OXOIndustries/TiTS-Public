@@ -186,6 +186,11 @@ public function shop(keeper:Creature):void {
 		ceriaMenu();
 		return;
 	}
+	else if(keeper is Gene)
+	{
+		genesModsGenericScene();
+		return;
+	}
 	clearOutput();
 	output(keeper.keeperGreeting);
 	shopkeep = keeper;

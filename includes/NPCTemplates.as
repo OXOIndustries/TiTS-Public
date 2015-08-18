@@ -87,6 +87,7 @@
 	prepChar(justUpdate, "TAIVRA", Taivra);
 	prepChar(justUpdate, "QUEENSGUARD", Queensguard);
 	prepChar(justUpdate, "PRINCESS", Princess);
+	prepChar(justUpdate, "GENE", Gene);
 
 	// Check all characters have version information set
 	for (var prop:String in chars)
