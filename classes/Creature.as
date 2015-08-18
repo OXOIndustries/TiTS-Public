@@ -1827,9 +1827,12 @@
 					break;
 				case "boy":
 				case "girl":
+				case "boyGirl":
 					buffer = this.mf("boy", "girl");
 					break;
 				case "guy":
+				case "girl":
+				case "guyGirl":
 					buffer = this.mf("guy","girl");
 					break;
 				case "cockShape":
