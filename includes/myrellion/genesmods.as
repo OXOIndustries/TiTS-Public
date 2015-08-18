@@ -48,7 +48,7 @@ public function genesModsExteriorRoomDecorator():Boolean
 	if (flags["GENES_MODS_ENTERED"] == undefined)
 	{
 		// 9999
-		output("\n\nTo the [direction] is, unless you’re very much mistaken, the back end of a white, modern-day spaceship, its cargo doors open and loading ramp extended. It looks ludicrously incongruous nestled amongst the pseudo-classical architecture of Gildenmere. Above the cavernous semicircular entrance are lit the words <i>“Gene’s Mods”</i>.");
+		output("\n\nTo the west is a square, white plasti-flex autossembler, a type of self-constructing building that are common on recently colonized worlds. Its severe, glossy walls look ludicrously incongruous nestled amongst the pseudo-classical architecture of Gildenmere. Above the cavernous semicircular entrance are lit the words \"Gene's Mods\".");
 	}
 	else
 	{
@@ -73,9 +73,9 @@ public function genesModsInterior():void
 	if (flags["GENES_MODS_ENTERED"] == undefined)
 	{
 		flags["GENES_MODS_ENTERED"] = 1;
-
-		output("\n\nStepping up the loading ramp and into the spaceship, you find yourself in a warm, sandy colored hangar bay, decorated with stands showing off various types of gene-mods, both modern and antique. The walls are covered with old poster and shifting-image advertisements for mods; to your eyes they look quaint, but you’d guess to myr eyes they would be the exact opposite. Other, more esoteric trinkets and objects hang from the ceiling and crowd the corners. Despite the clutter it seems big for a hangar bay, and everything is very widely spaced.");
-		if (flags["LANDED_ON_TEXAS"] != undefined) output(" You are reminded immediately of the size of things on New Texas.");
+		output("Stepping up the ramp into the shop, you find yourself in an airy, sandy-colored room, decorated with stands showing off various types of gene-mods, both modern and antique.");
+		output("\n\nThe walls are covered with old poster and shifting-image advertisements for mods; to your eyes they look quaint, but you'd guess to myr eyes they would be the exact opposite. Other, more esoteric trinkets and objects hang from the ceiling and crowd the corners. Despite the clutter the place is hangar-sized, and everything is very widely spaced.");
+		if(flags["LANDED_ON_TEXAS"] != undefined) output(" You are reminded immediately of the size of things on New Texas.");
 		output(" That, combined with the color, gives the place the feeling of a town hall, or museum.");
 
 		output("\n\n<i>“And what do we have here?”</i> inquires a rumbling, liquid voice from the back of the room. <i>“A new customer, I warrant.”</i> It takes a moment for your eyes to adjust to what you’re looking at, and it is with a slight fright you realize that what you assumed from your peripheral vision was the whole back wall of the shop is, in fact, the shopkeeper.");
@@ -264,11 +264,11 @@ public function geneTalk(cFunc:Function = null):void
 		else output(" <i>“And if I may inquire...?”</i> You tell him. <i>“[pc.name] Steele.”</i> He draws the <i>“s”</i> and <i>“e”</i> out with obvious enjoyment. You are put in mind of a sword being drawn. <i>“Very space adventure-y. I shall remember it.”</i>");
 		output(" He carefully extends the vast canopy of his wings to indicate the store.");
 
-		output("\n\n<i>“I travel the frontier in my shop, my vessel, my damnable joy, offering specialist gene mods to the agog masses of the freshly discovered, before the mega-corporations get their talons into them. The transitive life suits, for every life-bearing planet that is visited, opportunities to collect new DNA arise, for new mutations to be teased into existence, to be compounded and distributed to a public ever hungry for change.”</i>");
+		output("\n\n<i>“I travel the frontier in my self-assembled market, my damnable joy, offering specialist gene mods to the agog masses of the freshly discovered, before the mega-corporations get their talons into them. The transitive life suits, for every life-bearing planet that is visited, opportunities to collect new DNA arise, for new mutations to be teased into existence, to be compounded and distributed to a public ever hungry for change.”</i>");
 		
 		output("\n\n<i>“You make gene mods yourself?”</i>");
 		
-		output("\n\n<i>“Oh goodness me no,”</i> Gene chuckles. <i>“I am an itinerant dilettante, not a chemist! But you would not believe just how richly some companies will reward you for providing them with freshly discovered alien DNA. Particularly if, say, those aliens may not exist in a week’s time. Or if they are living in the shadow of a much larger company.”</i> He stretches his shoulders, glancing idly around his shop-cum-hangar bay. <i>“I will admit I have grown fond of Myrellion, though. I have lingered here longer than I usually do. The place has... how shall I put this.");
+		output("\n\n<i>“Oh goodness me no,”</i> Gene chuckles. <i>“I am an itinerant dilettante, not a chemist! But you would not believe just how richly some companies will reward you for providing them with freshly discovered alien DNA. Particularly if, say, those aliens may not exist in a week’s time. Or if they are living in the shadow of a much larger company.”</i> He stretches his shoulders, glancing idly around his hangar bay-sized shop. <i>“I will admit I have grown fond of Myrellion, though. I have lingered here longer than I usually do. The place has... how shall I put this.");
 		if (pc.isMasculine())
 		{
 			output(" <i>“ He grins");
@@ -321,7 +321,15 @@ public function genesModsTalkShop():void
 	geneHeader();
 
 	flags["GENES_MODS_TALK_SHOP"] = 1;
+	output("<i>“This place, then.</i>”</i> You wave your hand at the curved roof of the shop. <i>“Did you just ride in and set it up one day or what?”</i>");
 
+	output("\n\n<i>“Well, I sought permission first.”</i> Gene harrumphs as he turns and click-thud-clack-thumps his way around the oak-coloured space, tails flicking, continuing to talk as he slides fastidious cybernetic fingers over cases and posters. <i>“Discretely. After the kui-tan gave me permission to land and trade here, I approached a couple of gold myr civil servants about room in Gildenmere where I might safely build. It turned out there was quite a lot of that - vacant lots do have a tendency to spring up during the prosecution of lost wars. And they were quite happy, desperate even, to get fresh commerce in, particularly from the stars. Of course, I did not tell them about the nature of autossemblers. Nor that I was going to activate it during rush hour.”</i>");
+	output("\n\nHe suddenly whips around to you, balancing himself on two creaking cabinets again, beaming down like a giant red lighthouse.");
+	output("\n\n<i>“Imagine it,”</i> he insists. <i>“Put yourself in the shoes of your average gold myr. Worn and fraught by conflict, you and your people have been given a stay of execution by the arrival of extraterrestrial beings. Who are they, these mysterious, benevolent beings, what do they want, where, how...? And then, one morning.”</i> He lowers his voice to a ominous hush, his cyber arms opening to the sky. <i>“You are walking down the street to your place of work when a piece of technology of unknowable, wondrous design unfurls itself like a ceramic flower where a part of your shattered city once stood. In mere minutes, with impossible grace and speed, it unfolds piece by piece into a shining white building the likes of which you have never seen. Then - after the clouds have dissipated, and one or two more minutes have dragged by - ”</i> One metal arm points to a corner. If you’re not very much mistaken, a dry ice machine is standing over there. <i>“I emerge on the roof.”</i> He unfolds his massive bat wings to their full extent, eyes fixed on the middle distance.");
+
+	output("\n\n<i>“People of Gildenmere!”</i> he roars, full-throated, making the room shake. You suddenly feel thrilled in a diffuse, indefinable way and perhaps, just for a moment, you are that gold myr, standing frozen in the street in awe. <i>“For too long you have struggled under the yoke of war that is not your path. I come in peace, and to you I bring the fruits of a peace beyond your world that has lasted centuries beyond reckoning. Those brave enough to taste of them can become anything they wish - may break away from the cruel bonds of nature. The only limit is your imagination, o young people of art, thought and liberty. Become what you wish to be. Become the future!”</i> He trumpets the last word like a cavalry charge, and then settles himself down to gaze at you smugly.");
+	output("\n\n<i>“I have not wanted for customers. I also understand every other off-worlder has been something of a disappointment, at least to those who were there that morning.”</i>");
+	/* OLD:
 	output("<i>“This place, then.”</i> You wave your hand at the curved roof of the shop. <i>“Did you just land it here one day or what?”</i>");
 	
 	output("\n\n<i>“Well, I sought permission first.”</i> Gene harrumphs as he turns and click-thud-clack-thumps his way around the oak-colored space, tails flicking, continuing to talk as he slides fastidious cybernetic fingers over cases and posters. <i>“Discretely. After the kui-tan gave me permission to land and trade here, I approached a couple of gold myr civil servants about room in Gildenmere where I might safely set myself up. It turned out there was quite a lot of that - vacant lots do have a tendency to spring up during the prosecution of lost wars. And they were quite happy, desperate even, to get fresh commerce in, particularly from the stars. Of course, I did not tell them I was actually going to land here. That I had researched the tunnels, found one big yet secluded enough for me to glide down here on low power during the night cycle, perch up high in the caverns.”</i>”</i> He suddenly whips around to you, balancing himself on two creaking cabinets again, beaming down like a giant red lighthouse.");
@@ -329,7 +337,7 @@ public function genesModsTalkShop():void
 	output("\n\n<i>“Imagine it,”</i> he insists. <i>“Put yourself in the shoes of your average gold myr. Worn and fraught by conflict, you and your people have been given a stay of execution by the arrival of extraterrestrial beings. Who are they, these mysterious, benevolent beings, what do they want, where, how...? And then, one morning.”</i> He lowers his voice to a ominous hush, his cyber arms opening to the sky. <i>“You are walking down the street to your place of work when a spaceship appears above you, a piece of technology of unknowable, wondrous design, and with impossible grace and speed, it sits itself down where once a part of your shattered city stood. You are transfixed, unaware of the crowd you are part of - your people, the precious free few, are reduced to objects in the way of the sight. Then - after the clouds have dissipated, and minutes have dragged by - <i>“ One metal arm points to a corner. If you’re not very much mistaken, a dry ice machine is standing over there. <i>“The doors slide open, and I emerge.”</i> He unfolds his massive bat wings to their full extent, eyes fixed on the middle distance.");
 	
 	output("\n\n<i>“People of Gildenmere!”</i> he roars, full-throated, making the room shake. You suddenly feel thrilled in a diffuse, indefinable way and perhaps, just for a moment, you are that gold myr, standing frozen in the street in awe. <i>“For too long you have struggled under the yoke of war that is not your path. I come in peace, and to you I bring the fruits of a peace beyond your world that has lasted centuries beyond reckoning. Those brave enough to taste of them can become anything they wish - may break away from the cruel bonds of nature. The only limit is your imagination, o young people of art, thought and liberty. Become what you wish to be. Become the future!”</i> He trumpets the last word like a cavalry charge, and then settles himself down to gaze at you smugly. <i>“I have not wanted for customers. I also understand every other off-worlder has been something of a disappointment, at least to those who were there that morning.”</i>");
-
+	*/
 	geneSubmissionLevel(1);
 	geneLustIncrease();
 
@@ -1023,7 +1031,7 @@ public function genesModsBellyrubRelease():void
 	
 	output("\n\n<i>“That’s enough for today, I think,”</i> you say breezily. <i>“If you’re a really good boy, though... maybe we’ll do it again.”</i>");
 	
-	output("\n\n<i>“You,”</i> replies Gene, gathering back all his deep, declamatory delivery, <i>“are a terrible [player.type], and I rue the day you ever darkened my ship’s ramp.”</i> You think you detect a chord of complete fascination runs through his words; whatever the case, you give him a big unashamed grin in response.");
+	output("\n\n<i>“You,”</i> replies Gene, gathering back all his deep, declamatory delivery, <i>“are a terrible [player.type], and I rue the day you ever darkened my threshold.”</i> You think you detect a chord of complete fascination runs through his words; whatever the case, you give him a big unashamed grin in response.");
 
 	geneSubmissionLevel(-3);
 
@@ -1044,7 +1052,7 @@ public function genesModsBellyrubDeny():void
 	
 	output("\n\n<i>“That’s enough for today, I think,”</i> you say breezily. <i>“If you’re really good... and are extra polite... I’ll empty those big, frustrated balls of yours next time.?”</i> Gene stares at you, breast still heaving, his modest human cock hotly erect, palpably barely able to believe you.");
 	
-	output("\n\n<i>“You,”</i> he says eventually gathering back all his deep, declamatory delivery, <i>“are a terrible [player.type], and I rue the day you ever darkened my ship’s ramp.”</i> You think you detect a chord of complete fascination runs through his words, maybe even a thrill of submission; whatever the case, you give him a big unashamed grin in response.");
+	output("\n\n<i>“You,”</i> he says eventually gathering back all his deep, declamatory delivery, <i>“are a terrible [player.type], and I rue the day you ever darkened my threshold.”</i> You think you detect a chord of complete fascination runs through his words, maybe even a thrill of submission; whatever the case, you give him a big unashamed grin in response.");
 
 	geneSubmissionLevel(-3);
 
