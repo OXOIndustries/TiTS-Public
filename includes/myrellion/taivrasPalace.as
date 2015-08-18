@@ -3544,7 +3544,7 @@ public function lapRideDatQueenAllPublicLike():void
 		{
 			output(" Take care of these for me, won’t you, love? Take them out to the stars, show them a world I’ll never see...");
 			// workaroundy thing I added for the goocubater
-			taivra.createStatusEffect("Goo Gloryholed");
+			pc.createStatusEffect("Goo Gloryholed");
 		}
 		else
 		{
@@ -3555,7 +3555,8 @@ public function lapRideDatQueenAllPublicLike():void
 		if (x == -1) pc.loadInAss(taivra);
 		else pc.loadInCunt(taivra, x);
 		
-		if (taivra.hasStatusEffect("Goo Gloryholed")) taivra.removeStatusEffect("Goo Gloryholed");
+		// Can remove it here, or the pregnancy will clean it up later too
+		if (pc.hasStatusEffect("Goo Gloryholed")) pc.removeStatusEffect("Goo Gloryholed");
 	
 		output("”</i>");
 	}
