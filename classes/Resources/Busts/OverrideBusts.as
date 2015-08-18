@@ -35,10 +35,6 @@
 		[Embed(source = "../../../assets/images/npcs/jacques00/queen_fuzzlebottom.png", mimeType = "image/png")]
 		public var Bust_FUZZLEBOTTOM:Class;
 
-		[Embed(source = "../../../assets/images/npcs/Incugoo.png", mimeType = "image/png")]
-		public var Bust_GOOCUBATOR:Class;
-
-
 		[Embed(source = "../../../assets/images/npcs/jacques00/gray_goo_prime.png", mimeType = "image/png")]
 		public var Bust_GRAY_GOO_PRIME:Class;
 		[Embed(source = "../../../assets/images/npcs/jacques00/gray_goo_prime_2.png", mimeType = "image/png")]
@@ -112,6 +108,9 @@
 		public var Bust_NEHZARA:Class;
 		[Embed(source = "../../../assets/images/npcs/jacques00/nehzara_nude.png", mimeType = "image/png")]
 		public var Bust_NEHZARA_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/nevrie.png", mimeType = "image/png")]
+		public var Bust_NEVRIE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/jacques00/scalla.png", mimeType = "image/png")]
 		public var Bust_SCALLA:Class;

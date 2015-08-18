@@ -95,13 +95,15 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/frog_8.png", mimeType = "image/png")]
 		public var Bust_FROG_8:Class;
 
-
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/gianna.png", mimeType = "image/png")]
 		public var Bust_GIANNA_NUDE:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/gianna_med.png", mimeType = "image/png")]
 		public var Bust_GIANNA_MEDIUM_NUDE:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/gianna_large.png", mimeType = "image/png")]
 		public var Bust_GIANNA_LARGE_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/goocubator.png", mimeType = "image/png")]
+		public var Bust_GOOCUBATOR:Class;
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/herman.png", mimeType = "image/png")]
 		public var Bust_HERMAN:Class;
@@ -121,14 +123,8 @@
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/nyrea_beta.png", mimeType = "image/png")]
 		public var Bust_NYREA_BETA:Class;
-		//9999 - temp queensguard for testin
-		[Embed(source = "../../../assets/images/npcs/shou_puppy/nyrea_beta.png", mimeType = "image/png")]
-		public var Bust_QUEENSGUARD:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/nyrea_alpha.png", mimeType = "image/png")]
 		public var Bust_NYREA_ALPHA:Class;
-		//9999 - temp taivra for testin
-		[Embed(source = "../../../assets/images/npcs/shou_puppy/nyrea_alpha.png", mimeType = "image/png")]
-		public var Bust_TAIVRA:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/ogram.png", mimeType = "image/png")]
 		public var Bust_OGRAM:Class;
