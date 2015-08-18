@@ -494,6 +494,7 @@ public function noManzLandBonus():Boolean
 //==========================
 public function gildenmereStreetBonus():Boolean
 {
+	if(currentLocation == "717") genesModsExteriorRoomDecorator();
 	if(flags["IRELLIA_QUEST_STATUS"] == 1  && (rand(35) == 0 || debug))
 	{
 		unificationInvitationEventProcInGildenmere();

@@ -47,27 +47,30 @@ public function genesModsExteriorRoomDecorator():Boolean
 {
 	if (flags["GENES_MODS_ENTERED"] == undefined)
 	{
-		// 9999
 		output("\n\nTo the west is a square, white plasti-flex autossembler, a type of self-constructing building that are common on recently colonized worlds. Its severe, glossy walls look ludicrously incongruous nestled amongst the pseudo-classical architecture of Gildenmere. Above the cavernous semicircular entrance are lit the words \"Gene's Mods\".");
 	}
 	else
 	{
-		// 9999
-		output("\n\nTo the [direction] are the jarringly modern white curves of Gene’s Mods. The entrance to the shop, as ever, yawns open a welcome to you.");
+		output("\n\nTo the west are the jarringly modern white curves of Gene’s Mods. The entrance to the shop, as ever, yawns open a welcome to you.");
 	}
 
 	return false;
 }
 
+public function genesModsInteriorBonus():Boolean
+{
+	if(flags["GENES_MODS_ENTERED"] != undefined) output("You find yourself back in Gene's airy, sandy-colored room, decorated with stands showing off various types of gene-mods, both modern and antique. The walls are covered with old poster and shifting-image advertisements for mods; to your eyes they look quaint, but you'd guess to myr eyes they would be the exact opposite. Other, more esoteric trinkets and objects hang from the ceiling and crowd the corners. Despite the clutter the place is hangar-sized, and everything is very widely spaced.");
+	genesModsInterior();
+	return false;
+}
+
 public function geneCockVolume():Number
 {
-	// 9999
 	return 20;
 }
 
 public function genesModsInterior():void
 {
-	clearOutput();
 	geneHeader();
 
 	if (flags["GENES_MODS_ENTERED"] == undefined)
@@ -96,6 +99,7 @@ public function genesModsInterior():void
 			else output(" yet has never encountered a fanfir before?");
 			output(" Curious.”</i> He laughs at his own joke, making the surrounding cabinets shake. <i>“Don’t worry, I do not bite. Not customers, as a rule. I sell gene mods, many different types, many of which are not available elsewhere. Ask, fellow stranger in a strange land, and you may receive. And relax.”</i> This last word is drawn out as a low, whispery susurration. You do suddenly feel rather more relaxed.");
 		}
+		processTime(3);
 	}
 	else
 	{
@@ -162,12 +166,11 @@ public function genesModsInterior():void
 		if (pc.lust() == pc.lustMax())
 		{
 			output("\n\n<i>“But trifling talk and business can wait, can’t they.”</i> The massive creature strides out from behind his counter, and you do not resist him as, smile widening, he envelopes you in his cool, granite smell and powerful, looming frame.");
-
-			// 9999 - Goto sex
+			// Goto sex
+			addButton(0,"Next",genesModsGoSex,true);
 			return;
 		}
 	}
-
 	genesModsMenu();
 }
 
@@ -193,17 +196,17 @@ public function genesModsMenu(cFunc:Function = null):void
 	if (cFunc != geneAppearance) addButton(10, "Appearance", geneAppearance);
 	else addDisabledButton(10, "Appearance");
 
-	addButton(14, "Back", mainGameMenu);
+	addButton(14, "Leave", move, rooms[currentLocation].eastExit);
 }
 
-public function genesModsGenericScene():void
+public function genesModsGenericScene(cFunc:Function = null):void
 {
 	clearOutput();
 	geneHeader();
 
 	output("You’re standing in the airy, quaintly decorated shop floor of Gene’s Mods. The proprietor is propped up on the counter, gazing at you with his hawkish yellow eyes, waiting languidly.");
 
-	genesModsMenu();
+	genesModsMenu(cFunc);
 }
 
 public function genesModsBuyStuff():void
@@ -215,17 +218,20 @@ public function genesModsBuyStuff():void
 	{
 		flags["GENE_SEEN_BUYMENU"] = 1;
 
-		output("You say you’d like to see what he’s got to sell.");
-		
-		output("\n\n<i>“Right this way!”</i> he grandly sweeps back to his counter and directs you to a touch screen fastened to it. To your sensitivities it again looks rather antique and blocky.");
-		if (pcIsMyrOrNyrea() && flags["GENE_TALKED_TO"] == undefined) output(" <i>“Do not be over-awed by such technology, small one,”</i> the shopkeeper suggests. <i>“Once you’ve gotten over your initial fright of it, it becomes a gateway to everything you could ever dream of.”</i>");
+		gene.keeperBuy = "You say you’d like to see what he’s got to sell.\n\n<i>“Right this way!”</i> he grandly sweeps back to his counter and directs you to a touch screen fastened to it. To your sensitivities it again looks rather antique and blocky.";
+		if (pcIsMyrOrNyrea() && flags["GENE_TALKED_TO"] == undefined) gene.keeperBuy += " <i>“Do not be over-awed by such technology, small one,”</i> the shopkeeper suggests. <i>“Once you’ve gotten over your initial fright of it, it becomes a gateway to everything you could ever dream of.”</i>";
 	}
 	else
 	{
-		output("Gene lazily spins a talon in the direction of the touch-screen.");
+		gene.keeperBuy = "Gene lazily spins a talon in the direction of the touch-screen.";
 	}
-
-	// 9999
+	gene.keeperBuy += "\n";
+	shopkeep = chars["GENE"];
+	gene.keeperGreeting = "RUH ROH! SOMETHING WENT WRONG.";
+	itemScreen = mainGameMenu;
+	lootScreen = mainGameMenu;
+	useItemFunction = mainGameMenu;
+	buyItem();
 	//[Show inventory]
 }
 
@@ -244,7 +250,7 @@ public function geneAppearance():void
 	if (flags["GENE_FUCKED"] == undefined) output(" You’d guess, from the size of the rest of him, he packs pretty heavily.");
 	else output(" You know by now he has one sixteen inch fanfir cock, hot, ribbed and incredibly girthy, one six inch human cock, as simple and unassuming as you could  imagine save for the burgundy color, and four dense, melon-sized balls.");
 	output(" Behind his firm, muscular backside his two lizard-like tails swish restlessly, the two bulbous tips occasionally making a <i>“blat”</i> sound as they hit a surface.");
-
+	processTime(3);
 	genesModsMenu(geneAppearance);
 }
 
@@ -257,7 +263,7 @@ public function geneTalk(cFunc:Function = null):void
 
 		flags["GENE_TALKED_TO"] = 1;
 
-		output("\<i>“So your name is Gene?”</i>");
+		output("<i>“So your name is Gene?”</i>");
 		
 		output("\n\n<i>“That name will suffice, yes.”</i> His hawkish eyes narrow as he considers you closer.");
 		if (pcIsMyrOrNyrea()) output(" <i>“But you aren’t a native at all, are you? The way you speak, the way you hold yourself... yeeesss, I see it now. An offworlder so entranced by the insect people [pc.heShe] used Xenogen’s magic to become one, and now is impatient to see how else [pc.heShe] might splice [pc.himHer]self here!”</i> he bellows an exasperated laugh at the ceiling. A slight amount of dust comes down and you take a nervous step back. <i>“Oh, what a crashing fool I have made of myself! And I call myself a modder! You must forgive me...?”</i> You tell him. <i>“Forgive this fanfir’s arrogant presumption then, [pc.name] Steele.”</i> He lowers his head with theatrical humbleness. <i>“I only hope I can be of some small use to you, as Gildenmere’s premier supplier of finest transformatives, to make up for it.”</i>");
@@ -281,10 +287,10 @@ public function geneTalk(cFunc:Function = null):void
 			if (pc.tallness < 120) output(" down");
 			output(" at you toothily. <i>“But however many ant women you feast upon, you never lose the passion for more. Not when so many interesting people keep walking through your front door.”</i>");
 		}
-
+		processTime(3);
 		geneSubmissionLevel(1);
 
-		genesModsMenu();
+		genesModsTalkMenu();
 		return;
 	}
 	else
@@ -304,13 +310,13 @@ public function genesModsTalkMenu(cFunc:Function = null):void
 	else addDisabledButton(1, "Other Aliens");
 
 	if (cFunc != genesModsTalkMods) addButton(2, "Mods", genesModsTalkMods);
-	addDisabledButton(2, "Mods");
+	else addDisabledButton(2, "Mods");
 
 	if (cFunc != genesModsTalkYou) addButton(3, "You", genesModsTalkYou);
-	addDisabledButton(3, "You");
+	else addDisabledButton(3, "You");
 
 	if (cFunc != genesModsTalkMyr) addButton(4, "Myr", genesModsTalkMyr);
-	addDisabledButton(4, "Myr");
+	else addDisabledButton(4, "Myr");
 
 	addButton(14, "Back", genesModsMenu);
 }
@@ -329,6 +335,7 @@ public function genesModsTalkShop():void
 
 	output("\n\n<i>“People of Gildenmere!”</i> he roars, full-throated, making the room shake. You suddenly feel thrilled in a diffuse, indefinable way and perhaps, just for a moment, you are that gold myr, standing frozen in the street in awe. <i>“For too long you have struggled under the yoke of war that is not your path. I come in peace, and to you I bring the fruits of a peace beyond your world that has lasted centuries beyond reckoning. Those brave enough to taste of them can become anything they wish - may break away from the cruel bonds of nature. The only limit is your imagination, o young people of art, thought and liberty. Become what you wish to be. Become the future!”</i> He trumpets the last word like a cavalry charge, and then settles himself down to gaze at you smugly.");
 	output("\n\n<i>“I have not wanted for customers. I also understand every other off-worlder has been something of a disappointment, at least to those who were there that morning.”</i>");
+	processTime(5);
 	/* OLD:
 	output("<i>“This place, then.”</i> You wave your hand at the curved roof of the shop. <i>“Did you just land it here one day or what?”</i>");
 	
@@ -358,7 +365,7 @@ public function genesModsTalkMods():void
 	output("\n\nHe whips his two thin, serpentine tails around, narrowly avoiding knocking over a stand, considering them proudly. You notice that each has got a fleshy bulb at the end. <i>“Naturally fanfir tails are wiry, unwieldy and finely haired. To aid with the business of flying, you know. With these I have much more control, sensitivity and can do, oh, all sorts of things. Plus they are simply a lot more fun to swing around.”</i>");
 	
 	output("\n\nHe holds your eye and allows his great, long, purple tongue to droop out, wriggling it sensually. <i>“A cutting edge transformative,”</i> the fanfir says, after he’s retracted it. <i>“Isolated from pygmy natives of a wretched-sounding planet discovered in this very rush. Deeply enjoyable and - right feeling. I must say it feels like my people should have been equipped with such tongues all along. And then, of course... <i>“ He leans backwards and waves a robotic hand at the generously sized cod-piece of his outfit. <i>“Many are the native girls who like the look of a male fanfir’s genitalia, but few and far between are they that are willing to put them anywhere near their own. Quite understandable. So I invested in another, more modestly sized one.”</i> He rocks back onto the balls of his feet. <i>“I have always enjoyed the look of human sexual organs. No unnecessary adornments, no silly little bells and whistles - elegantly and concisely designed. A phallus, bold, blunt and ready. Next to my natural endowment, outrageous to most sensitivities, it is an excellent juxtaposition. Exactly how gene-mods should be used.”</i>");
-
+	processTime(4);
 	clearMenu();
 	addButton(0, "Next", genesModsTalkModsII);
 }
@@ -375,7 +382,7 @@ public function genesModsTalkModsII():void
 	output("\n\n<i>“What’s the other reason?”</i> you inquire as levelly as you can.");
 	
 	output("\n\n<i>“Well, that one is much more simple,”</i> Gene says, closing his wings and again stepping closer to you. There’s a clean metal sound and suddenly the synthetic harness unclasps, his arms falling to the ground. <i>“I am a vain creature, it cannot be denied. And I have never encountered a second pair of arms that I felt would genuinely improve how I look. I mean, look.”</i> The top half of his bulky outfit falls to the ground as well, and the fanfir swells his immense, red chest in front of you. <i>“Really consider,”</i> he insists, a grin of total confidence somewhere far above. <i>“Would you really have a pair of spindly little arms sprouting out of this the entire time? Would you really ruin such a vista?”</i>");
-
+	processTime(3);
 	if (geneSubmissionLevel() < 10)
 	{
 		clearMenu();
@@ -400,7 +407,7 @@ public function genesModsTalkModsLookClosely():void
 	output("You do as he says and admire the huge wine glass shape that is the fanfir’s nipple-less chest, all suggestions and understated plateaus of tectonic muscle under vast amounts of bulk.");
 	if (pc.IQ() >= 60) output(" You do notice a strange fleck of lighter red, almost pink, on his lower left belly, just below the rib cage. You wonder, given how top heavy he is, if Gene’s even aware of it.");
 	else output(" It's difficult to deny how impressive he is in a bestial, masculine way.");
-
+	processTime(1);
 	genesModsTalkModsCombine();
 }
 
@@ -443,12 +450,19 @@ public function genesModsTalkModsCombine():void
 		if (flags["GENE_TALK_MODS_NO"] != undefined) addButton(2, "Back Off!", genesModsTalkBackOff, genesModsTalkMods);
 		else addDisabledButton(2, "Back Off!");
 	}
+	else
+	{
+		clearMenu();
+		addButton(0, "Next", genesModsTalkMenu, genesModsTalkMods);
+		return;
+	}
 }
 
 public function genesModsTalkModsYes():void
 {
 	geneSubmissionLevel(1);
-	// 9999 - goto sex
+	// - goto sex
+	genesModsGoSex();
 }
 
 public function genesModsTalkModsNo(nFunc:Function = null):void
@@ -461,7 +475,7 @@ public function genesModsTalkModsNo(nFunc:Function = null):void
 	output("You shrug the fanfir’s claw off and politely tell him not right now.");
 	
 	output("\n\n<i>“As you wish, Steele,”</i> replies Gene, giving you one last hungry, convivial look before turning back to his voluminous armor. <i>“For now.”</i>");
-
+	processTime(1);
 	geneSubmissionLevel(1);
 
 	genesModsTalkMenu(nFunc);
@@ -484,7 +498,7 @@ public function genesModsTalkBackOff(nFunc:Function = null):void
 
 	//Submission set to 0, no longer rises
 	flags["GENE_SUBMISSION_LEVEL"] = -1;
-
+	processTime(2);
 	genesModsTalkMenu(nFunc);
 }
 
@@ -515,7 +529,7 @@ public function genesModsTalkOtherAliens():void
 		
 		output("\n\n<i>“Xanthe,”</i> he says, drawing out of the syllables. <i>“That is her name - although undoubtedly an alias in reference to something as surely as mine is, she of all people will know the power of names. She is a siel, a wondrous and utterly infuriating folk I was happily unaware of until she arrived here not a month ago.”</i> He shakes his head mournfully at your ignorance, revelling in his own misery. <i>“Go find her shop, here in this very city. Approach and talk to her, bask in her presence. Then, perhaps, you shall understand a small part of my pain.”</i>");
 	}
-
+	processTime(5);
 	geneSubmissionLevel(1);
 
 	genesModsTalkMenu(genesModsTalkOtherAliens);
@@ -578,6 +592,7 @@ public function genesModsTalkYou():void
 
 		geneSubmissionLevel(1);
 	}
+	processTime(4);
 
 	genesModsTalkMenu(genesModsTalkYou);
 }
@@ -602,7 +617,7 @@ public function genesModsTalkMyr():void
 	output("\n\n<i>“What do you mean, if the mods don’t work?”</i> Gene turns and pads slowly towards you in a predatory stance, huge wings slicing into the air, tails lashing.");
 	
 	output("\n\n<i>“Why do you think there aren’t a hundred other gene-mod companies already here, merrily undercutting me?”</i> he replies in the soft, deadly rumble of slowly shifting granite. <i>“Aside from the possible inconvenience of nuclear annihilation, I mean. Nothing currently produced has been tested on myr physiology. I am all but certain, given their obvious similarities to other bipedal, warm-blooded races, that they will work; but no, not certain.”</i> He rears up to his full height in front of you, the deep brass of his voice quaking through you. <i>“This is the frontier, Steele. It is filled with danger, rogues and disrepute, and if you want to grasp the golden opportunities it offers, you must also take chances. There is no triumph if there was no possibility of terrible failure.”</i>");
-
+	processTime(6);
 	if (isGeneSubmissionDisabled())
 	{
 		genesModsTalkMenu(genesModsTalkMyr);
@@ -730,9 +745,11 @@ public function genesModsGoSex(isAuto:Boolean = false):void
 		
 		output("\n\nYou were wondering that yourself.");
 	}
+	processTime(1);
 
 	clearMenu();
-	addButton(0, "OverCounter", genesModsOverCounter);
+	if(pc.hasVagina()) addButton(0, "OverCounter", genesModsOverCounter,undefined,"OverCounter","Get bent over the counter.");
+	else addDisabledButton(0,"OverCounter","OverCounter","You don't have a vagina to get plowed.");
 
 	if (!pc.hasCock())
 	{
@@ -762,11 +779,11 @@ public function genesModsBlowjob():void
 
 	if (!isGeneSubmissionLevelMaxed() || flags["GENE_BLOWJOB"] == undefined)
 	{
-		output("\n\n<i>“Sure about this?”</i> the fanfir murmurs, bracing himself on the glass surface with his wings and brandishing in your face his sixteen inch, ribbed dick, with its huge bulge two thirds of the way down. Below it his four melon-like testicles sway restlessly. Above it is his six inch human cock, almost clitoris-like in comparison to the fanfir’s natural endowment. <i>“I think it would be wiser if you... <i>“ he fades off in a rumbling sigh as you wrap as much of your hand around his big, hot knob as you can and begin to smooth your grip up and down it. You are firmly interested in the main course, not the snack.");
+		output("\n\n<i>“Sure about this?”</i> the fanfir murmurs, bracing himself on the glass surface with his wings and brandishing in your face his sixteen inch, ribbed dick, with its huge bulge two thirds of the way down. Below it his four melon-like testicles sway restlessly. Above it is his six inch human cock, almost clitoris-like in comparison to the fanfir’s natural endowment. <i>“I think it would be wiser if you... ”</i> he fades off in a rumbling sigh as you wrap as much of your hand around his big, hot knob as you can and begin to smooth your grip up and down it. You are firmly interested in the main course, not the snack.");
 		
 		output("\n\nYou shift your hand round and around his firm, arching meat, sampling the different textures of his ribbed undercarriage, his rough, slightly bumpy upper side and his sleek, spearhead tip, enjoying the rumbling, heavy breath you begin to draw out of his looming chest and the way it increasingly stands to attention under your ministrations. His slit beads transparent orange pre and the smell of musk, wild and overgrown, hangs densely in your nostrils. It makes you feel warm and relaxed, in contrast to the increasing tenseness you can see in Gene’s muscular thighs.");
 		
-		output("\n\n<i>“Go on... <i>“ he sighs, poking his burningly erect tower of a cock at your lips. You look up at him coyly, poke your [pc.tongue] out and then lick the end, tantalizing his most sensitive spot with swirls of your tongue, pausing when slightly sweet spice tingles across your taste-buds. Wow, is that natural? You don’t get a chance to savour it though, because next moment Gene, agitated by your teasing, shoves forward and opens your mouth with his girthy, pre-slicked cock-head.");
+		output("\n\n<i>“Go on... ”</i> he sighs, poking his burningly erect tower of a cock at your lips. You look up at him coyly, poke your [pc.tongue] out and then lick the end, tantalizing his most sensitive spot with swirls of your tongue, pausing when slightly sweet spice tingles across your taste-buds. Wow, is that natural? You don’t get a chance to savour it though, because next moment Gene, agitated by your teasing, shoves forward and opens your mouth with his girthy, pre-slicked cock-head.");
 		output("\n\nAfter a moment of getting used to it you swiftly find a rhythm, moving your [pc.lips] and tongue over the hot, spicy meat, pumping the base with one hand, the other reaching further back to give his heavy quad a good fondle - and the occasional gentle squeeze, just to see him tense up again. After a few fervent, shallow thrusts he calms himself down and lets your head do the moving.");
 		if (pc.isTreatedFemale())
 		{
@@ -791,6 +808,7 @@ public function genesModsBlowjob():void
 		output("\n\n<i>“I don’t think I should let you go, [pc.short],”</i> growls Gene when he’s recovered his breath, sleepy eyed and practically purring with contentment. <i>“It is imperative that nobody else learns about those lips of yours but me. They could start wars.”</i> Saying this, he does stand back to let you back up. You cradle your full gut and flick cum out of your face, feeling well used but perversely pleased with yourself. A check of your reflector app tells you that you do currently look like you got hit by an explosion in an orange grove. Gene provides you with a myr-sized towel though - of which he seems to have a large number, in a compartment of his counter - and in due course you’re looking roughly normal. If carrying the heavy, round belly and the sticky spicy smell synonymous with a fanfir cocksucker.");
 
 		geneSubmissionLevel(2);
+		pc.loadInMouth(chars["GENE"]);
 		// 9999 - Cumflation
 		pc.lust(33);
 	}
@@ -814,7 +832,7 @@ public function genesModsBlowjob():void
 
 		output("\n\nThe very fact you are being denied by your own obedience only makes it hotter,");
 		if (pc.hasVagina()) output(" the arousal so bad the [pc.girlCum] dribbles freely down your thighs");
-		else output(" the arousal so bad pre seeps freely from your own needy [pc.cock0]");
+		else output(" the arousal so bad pre seeps freely from your own needy [pc.cock]");
 		output(". Whilst your hands continue to slide over the bulky, veined flesh of his cock, you channel that fierce heat into reaching in far to lick at his four, plump testicles, enveloping each within your mouth to give them the attention they deserve. It is all you can do not to moan when they clench up underneath your lips, preparing the load you so desperately wish to earn. Once they gleam with your saliva, you pull back and gaze up at the fanfir coquettishly.");
 		
 		output("\n\n<i>“Isn’t life pleasurable now you have found where you truly belong?”</i> he rumbles leisurely, the sugared waves of resonance flooding over and through you. <i>“");
@@ -846,12 +864,13 @@ public function genesModsBlowjob():void
 		
 		output("\n\n<i>“Wars were prevented when I made your mouth my own,”</i> rumbles Gene with intense satisfaction, curling a finger behind your ear. <i>“But I’m no hero. Those lips are their own reward.”</i>");
 
+		pc.loadInMouth(chars["GENE"]);
 		// Belly = moderately pregnant for next 3 hours
 
 		// 9999 - cumflate
 		pc.lust(33);
 	}
-
+	processTime(29);
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -887,7 +906,7 @@ public function genesModsFrot():void
 	else output(" your [pc.chest]");
 	output(". Although the sensation of stuffed, slick dick sliding against each other is decent enough, the way that your big, winged partner is built makes it all rather awkward; you’re having to lean into his groin from the side to get at it. A ivory-clad claw bangs down on the counter behind you impatiently.");
 	
-	output("\n\n<i>“This is no good,”</i> he declares. <i>“The intent is well-placed, but we shan’t make the most of it unless - <i>“ His synthetic arms suddenly reach out and grasp you under the armpits. A small thrill of fright leaps up your belly as you are lifted bodily onto the counter, [pc.butt] pressed onto the glass. Braced by his wing claws, Gene’s huge frame rears over you, heat radiating off of it as, grinning");
+	output("\n\n<i>“This is no good,”</i> he declares. <i>“The intent is well-placed, but we shan’t make the most of it unless - ”</i> His synthetic arms suddenly reach out and grasp you under the armpits. A small thrill of fright leaps up your belly as you are lifted bodily onto the counter, [pc.butt] pressed onto the glass. Braced by his wing claws, Gene’s huge frame rears over you, heat radiating off of it as, grinning");
 	if (pc.tallness < 112) output(" down at you");
 	else output(" into your face");
 	output(" he begins to work his thighs, thrusting his bulge-cock into your [pc.cockBiggest] demandingly. <i>“Much better,”</i> he breathes.");
@@ -940,7 +959,8 @@ public function genesModsFrot():void
 		
 		output("\n\n<i>“Very enjoyable,”</i> he says once his breath returns with a pleased nod, as if informing a waiter of the fineness of the meal he was just served. <i>“I do so enjoy finding a type of sex I haven’t experienced yet, don’t you?”</i> Your push in his chest indicates you’d rather he got off you and found you a towel rather than pontificate, which in fairness he duly does.");
 	}
-
+	processTime(27);
+	pc.orgasm();
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -976,10 +996,10 @@ public function genesModsBellyrub():void
 			output("\n\nGene’s eyes glimmer.");
 			
 			output("\n\n<i>“I think we both know what you’re really asking for,”</i> he grins, his long, pliant tongue tracing his lower lip. <i>“So let’s just skip to that, hmm?”</i>");
-
+			processTime(1);
 			clearMenu();
 			
-			addButton(0, "Yes", genesModsLickedOut); // 9999 - Go to licked out
+			addButton(0, "Yes", genesModsLickedOut); // - Go to licked out
 			
 			if (pc.lust() < pc.lustMax()) addButton(1, "No", genesModsBellyrubNo);
 			else addDisabledButton(1, "No");
@@ -996,7 +1016,7 @@ public function genesModsBellyrub():void
 			if (pc.hasVagina() && pc.tallness < 112) output(" <i>“You know the penalty for tickling me though, Steele. I tickle back.”</i>");
 			else output(" <i>“You’re lucky I have such a patient attitude towards alien foibles, Steele. Break a leg, you odd little "+pc.mf("fellow", "woman") + ".”</i>");
 		}
-
+		processTime(3);
 		genesModsBellyrubFirst();
 	}
 	else
@@ -1008,7 +1028,7 @@ public function genesModsBellyrub():void
 		output("\n\n<i>“You’re getting yourself all worked up again,”</i> you say smoothly, casually stepping beyond his wings and laying your hands on his warm chest. <i>“Just relax. You can’t enjoy being a good pet if you don’t relax and let me take charge, can you?”</i> Knowing exactly where it is now, you easily slip your touch down below his left ribs and finding that wonderful pink groove again. The fanfir’s proud, swelling breast heaves with a gale-like gasp as you begin to gently stroke and tease it, and the next moment there is a mighty thud as Gene lands on his back, completely abandoning himself to your fingers.");
 		
 		output("\n\n<i>“Damn everything to - fucking - calumny,”</i> he groans, legs stretching and kicking fitfully. <i>“Why does that have to be - so - bloody - good?”</i> The flop of his semi-erect human cock catches your attention, another sensitive secret of his hulking frame, and you begin to tease that with your other hand, quickly stroking it into a full, needy erection. The great beast groans and roars wordlessly at the ceiling, tails lashing, completely stupefied by the touch of your cunning fingers.");
-
+		processTime(5);
 		// [Release] [Deny]
 		clearMenu();
 		addButton(0, "Release", genesModsBellyrubRelease);
@@ -1025,14 +1045,15 @@ public function genesModsBellyrubRelease():void
 	
 	output("\n\n<i>“Who’s a good boy?”</i> you insist.");
 	
-	output("\n\n<i>“Me! I’m a good boy, damn you to hell, I’m a good boy who’ll do anything... <i>“ he howls. You immediately up the pace, whipping your hand up and down his hot, trapped meat until, with a cataclysmic groan, it swells up and then spurts great flumes of orange cum several feet into the air. The fanfir gasps and flexes his hips helplessly as you milk him quite dry, forcing huge quantities of his spooge surging out of his dilated slit and onto his belly and floor, caressing his sensitive area all the while.");
+	output("\n\n<i>“Me! I’m a good boy, damn you to hell, I’m a good boy who’ll do anything... ”</i> he howls. You immediately up the pace, whipping your hand up and down his hot, trapped meat until, with a cataclysmic groan, it swells up and then spurts great flumes of orange cum several feet into the air. The fanfir gasps and flexes his hips helplessly as you milk him quite dry, forcing huge quantities of his spooge surging out of his dilated slit and onto his belly and floor, caressing his sensitive area all the while.");
 	
 	output("\n\nYou stand back, hot hands clasped in front of you when you’re done, and watch him slowly clamber to an upright position, his own seed dripping off him. He gazes at you cloudy-eyed and open-mouthed, still not quite believing you can do this to him.");
 	
 	output("\n\n<i>“That’s enough for today, I think,”</i> you say breezily. <i>“If you’re a really good boy, though... maybe we’ll do it again.”</i>");
 	
-	output("\n\n<i>“You,”</i> replies Gene, gathering back all his deep, declamatory delivery, <i>“are a terrible [player.type], and I rue the day you ever darkened my threshold.”</i> You think you detect a chord of complete fascination runs through his words; whatever the case, you give him a big unashamed grin in response.");
-
+	output("\n\n<i>“You,”</i> replies Gene, gathering back all his deep, declamatory delivery, <i>“are a terrible [player.race], and I rue the day you ever darkened my threshold.”</i> You think you detect a chord of complete fascination runs through his words; whatever the case, you give him a big unashamed grin in response.");
+	processTime(3);
+	pc.lust(10+rand(5));
 	geneSubmissionLevel(-3);
 
 	clearMenu();
@@ -1055,6 +1076,8 @@ public function genesModsBellyrubDeny():void
 	output("\n\n<i>“You,”</i> he says eventually gathering back all his deep, declamatory delivery, <i>“are a terrible [player.type], and I rue the day you ever darkened my threshold.”</i> You think you detect a chord of complete fascination runs through his words, maybe even a thrill of submission; whatever the case, you give him a big unashamed grin in response.");
 
 	geneSubmissionLevel(-3);
+	processTime(2);
+	pc.lust(10);
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -1080,7 +1103,7 @@ public function genesModsBellyrubFirstNotTheSpot():void
 	output("You move in and lay your hands on his chest and belly where you’ve chosen and begin to slowly rub, moulding the warm, heavy flesh under your hands as if it were stubborn clay, following the lines of muscle, trying to carefully work your fingers into him and loosen him up. It’s absorbing in its own way, and you’re just getting into it when Gene shifts and snorts with laughter, huge lungs vibrating under your touch.");
 
 	output("\n\n<i>“Alright, that’s enough,”</i> he chuckles. <i>“You’re tickling me! I appreciate your attempt to introduce me to something new, dear Steele, but I’m afraid this does nothing for me.");
-
+	processTime(1);
 	if (pc.tallness < 112 || !pc.hasVagina())
 	{
 		output(" Desist, and we’ll do something we both know will be mutually satisfying instead.”</i> Disappointed, you step away, knowing you have no choice but to proffer a different form of fucking now.");
@@ -1094,7 +1117,7 @@ public function genesModsBellyrubFirstNotTheSpot():void
 	{
 		output("”</i> He suddenly rears up, tails swinging around to encircle you, eyes gleaming lustily down at you. <i>“Time,”</i> he husks, <i>“for you to pay the price of your presumption.”</i>");
 
-		// 9999 - Go to licked out
+		//  - Go to licked out
 		clearMenu();
 		addButton(0, "Next", genesModsLickedOut);
 	}
@@ -1109,10 +1132,11 @@ public function genesModsBellyrubFirstThatsTheSpot():void
 	
 	output("\n\nThe effect is immediate. The complacent purr reverberating through Gene’s chest inflates into a startled, whooping gasp.");
 	
-	output("\n\n<i>“Oh my giddy aunt,”</i> he barks. <i>“What did you do just do? What - don’t... <i>“ Grinning, you attack the soft, pink patch ruthlessly, rubbing and scratching it bluntly as if it were a dog’s ear. A wing claw smashes down into the floor behind you, denting it, as Gene writhes uncontrollably, his massive body quaking to your simplest touch, unable to push you away without his arms. He tries to back himself up, legs pawing at the ground as he cringes away from you; you follow him, keeping your eye firmly on that streak of pink, and when you reapply your curling, teasing fingers he gives up.");
+	output("\n\n<i>“Oh my giddy aunt,”</i> he barks. <i>“What did you do just do? What - don’t... ”</i> Grinning, you attack the soft, pink patch ruthlessly, rubbing and scratching it bluntly as if it were a dog’s ear. A wing claw smashes down into the floor behind you, denting it, as Gene writhes uncontrollably, his massive body quaking to your simplest touch, unable to push you away without his arms. He tries to back himself up, legs pawing at the ground as he cringes away from you; you follow him, keeping your eye firmly on that streak of pink, and when you reapply your curling, teasing fingers he gives up.");
 	
 	output("\n\n<i>“Stars, void, fuck,”</i> he cries, craning his neck and bellowing full-throated abandon at the ceiling. All of the layers of self-possession and subliminal suggestion in his voice are gone - you’re listening to the real Gene, now. <i>“That is way too much! A drab, a weak spot, I never knew - stop, oh don’t stop, keep going, I beseech you!”</i> You grin, deeply enjoying putting this massive creature on his back, quaking and begging to the twitch of your fingers. His two mismatched dicks flop around, semi-erect and in easy reach - you could have even more fun here, if you chose to.");
-
+	processTime(2);
+	pc.lust(5);
 	clearMenu();
 	addButton(0, "Release", genesModsBellyrubFirstRelease);
 	addButton(1, "End", genesModsBellyrubFirstEnd);
@@ -1129,16 +1153,16 @@ public function genesModsBellyrubFirstRelease():void
 	
 	output("\n\n<i>“Who’s a good boy?”</i> you insist.");
 	
-	output("\n\n<i>“Me! I’m a good boy, damn you to hell, I’m a good boy who’ll do anything... <i>“ he howls. You immediately up the pace, whipping your hand up and down his hot, trapped meat until, with a cataclysmic groan, it swells up and then spurts great flumes of orange cum several feet into the air. The fanfir gasps and flexes his hips helplessly as you milk him quite dry, forcing huge quantities of his spooge out of his dilated slit and onto his belly and floor, caressing his sensitive area all the while.");
+	output("\n\n<i>“Me! I’m a good boy, damn you to hell, I’m a good boy who’ll do anything... ”</i> he howls. You immediately up the pace, whipping your hand up and down his hot, trapped meat until, with a cataclysmic groan, it swells up and then spurts great flumes of orange cum several feet into the air. The fanfir gasps and flexes his hips helplessly as you milk him quite dry, forcing huge quantities of his spooge out of his dilated slit and onto his belly and floor, caressing his sensitive area all the while.");
 	
 	output("\n\nYou stand back, hot hands clasped in front of you when you’re done, and watch him slowly clamber to an upright position, his own seed dripping off him. He gazes at you cloudy-eyed and open-mouthed, seeing you in an entirely different light.");
 	
 	output("\n\n<i>“That’s enough for today, I think,”</i> you say breezily. <i>“If you’re a really good boy, though... maybe we’ll do it again.”</i>");
 	
 	output("\n\n<i>“You can’t tell anyone about... that, Steele,”</i> he replies thickly. <i>“My reputation... if you don’t, then, yes, I wouldn’t mind... that.”</i> He wipes himself down and clambers back into his clothing, looking rather shamefaced.");
-
+	processTime(4);
 	geneSubmissionLevel(-3);
-
+	pc.lust(10);
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -1155,7 +1179,7 @@ public function genesModsBellyrubFirstEnd():void
 	output("\n\n<i>“You can’t tell anyone about... that, Steele,”</i> he says thickly. <i>“My reputation... if you don’t, then, yes, I wouldn’t mind... that.”</i> He clambers back into his clothing, looking rather shamefaced.");
 
 	geneSubmissionLevel(-3);
-
+	processTime(1);
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -1168,7 +1192,7 @@ public function genesModsBellyrubNo():void
 	output("<i>“I still want to try,”</i> you manage, valiantly denying the imperative that he’s sent trembling through your [pc.eachVagina]. <i>“I want to try massaging you.”</i>");
 	
 	output("\n\n<i>“As you wish,”</i> the giant wyvern replies complacently. He rolls over onto one side, a landslide of red bulk, yellow eyes fixed on you. <i>“You know the penalty for tickling me though, pet. I tickle back.”</i>");
-
+	processTime(1);
 	genesModsBellyrubFirst();
 }
 
@@ -1208,7 +1232,7 @@ public function genesModsLickedOut():void
 	else output(" gushing");
 	output(" [pc.girlCum] deliriously, unable to comprehend anything but that wet, rough lapping at your sensitive [pc.cuntColor]. When it’s finally over you sag in the fanfir’s claws, [pc.chest] heaving.");
 	
-	output("\n\n<i>“That was good for a start to our little massaging session,”</i> purrs Gene, all mocking, casual menace. He taps your throbbing [pc.clit0] with his long, purple tongue, laughing softly as it makes you twitch. <i>“Time to get a bit more serious.”</i>");
+	output("\n\n<i>“That was good for a start to our little massaging session,”</i> purrs Gene, all mocking, casual menace. He taps your throbbing [pc.clit] with his long, purple tongue, laughing softly as it makes you twitch. <i>“Time to get a bit more serious.”</i>");
 
 	if (pc.vaginas.length > 0)
 	{
@@ -1221,7 +1245,7 @@ public function genesModsLickedOut():void
 		output("\n\nYou moan woozily as he trails that devilishly long, prehensile muscle over your [pc.vagina], pushing inside to swab at its entrance, obviously intent now on the pussy proper. It’s over-sensitive and flared from orgasm, intensifying the sensation of his teasing - and then the sensation of ten inches of hot, thick tongue suddenly ramming straight up your tunnel, wriggling further and further and further in to caress and tease at your most sensitive spots. You writhe and squeal as Gene deftly lowers you slightly in his claws and then up again, making you bounce on his obscenely long mouth tentacle.");
 	}
 
-	output("\n\nThe fanfir packs your pussy full of his wet tongue, the vibrations of his soft, deep laughter reverberating through you as you are quickly brought to another clenching high by its rubbing and curling roughness, deeper and inward this time, [pc.girlCum] dripping onto his lips whilst you rock and moan to the juicy, filthy rhythms of orgasm. Then he just keeps going, withdrawing only to lick and lap at your tender [pc.clit0] again, with apparently unquenchable lust.");
+	output("\n\nThe fanfir packs your pussy full of his wet tongue, the vibrations of his soft, deep laughter reverberating through you as you are quickly brought to another clenching high by its rubbing and curling roughness, deeper and inward this time, [pc.girlCum] dripping onto his lips whilst you rock and moan to the juicy, filthy rhythms of orgasm. Then he just keeps going, withdrawing only to lick and lap at your tender [pc.clit] again, with apparently unquenchable lust.");
 	if (pc.vaginas.length > 2) output(" Not one of your many, moist cunts escapes his wet, ruthless touch; the lithe, purple meat strokes and then deeply penetrates each one, owning them and making them quiver together in such ridiculous ecstasy you think you might go completely mad with it.");
 	
 	output("\n\nWhenever you gaze down from your stocks-like perch you meet his yellow eyes, gloatingly drinking in every moment of the over-fucked delirium he’s causing you. His heavy breath resonates through you, making you feel soft and simple, and eventually you completely surrender yourself to it, bouncing, moaning and squealing gleefully to the fanfir’s masterful, sadistic touch, feeling like nothing more than a piece of ripe, dangling fruit, leaking a steady stream of your slutty juices in deference to his thirsty, powerful mouth.");
@@ -1244,7 +1268,8 @@ public function genesModsLickedOut():void
 		if (!pc.isNude()) output(", step back into your [pc.gear]");
 		output(" and shuffle back around the counter; gingerly, thanks to the throbbing, pleasurable ache in your [pc.groin].");
 	}
-
+	processTime(20);
+	pc.orgasm();
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -1253,7 +1278,7 @@ public function genesModsOverCounter():void
 {
 	clearOutput();
 	geneHeader();
-
+	var x:int = rand(pc.totalVaginas());
 	// Requires: Vagina.
 	// Tooltip: Get bent over the counter.
 
@@ -1266,7 +1291,7 @@ public function genesModsOverCounter():void
 	}
 	else
 	{
-		output("<i>“Do me,”</i> you sigh. The fanfir’s hot breath washes over you, making you feel like an ear of corn, rippling in a summer wind. Smooth, synthetic fingers find your [pc.vagina] and trace its wet lips, circling [pc.oneClit], making you squirm and clutch at his wings, lust pulsing through you.");
+		output("<i>“Do me,”</i> you sigh. The fanfir’s hot breath washes over you, making you feel like an ear of corn, rippling in a summer wind. Smooth, synthetic fingers find your [pc.vagina " + x + "] and trace its wet lips, circling [pc.oneClit], making you squirm and clutch at his wings, lust pulsing through you.");
 		
 		output("\n\n<i>“How?”</i> he murmurs, his deep voice shaking you right down to your pussy, intensifying the helpless heat there. <i>“You’re going to have to say how, or this is as far as we go.”</i>");
 		
@@ -1275,11 +1300,11 @@ public function genesModsOverCounter():void
 		output("\n\n<i>“Ah, there it is: the perfect timbre,”</i> he smiles at you proudly. <i>“Shamelessly slutty, yet earnestly polite.”</i>");
 	}
 
-	output("\n\nGene lowers you down and flips you over with strong, careful sweeps of his claws, shifting himself forward as he does, the great shadow of his form looming over you, the cool, earthy smell of him in your nostrils. You shudder as you feel the swell of his chest touch you between the shoulder-blades; the sheer weight of him could easily keep you pinned here, naked with your [pc.butt] in the air, if he so wished. You bite your lip as grey, warm digits caress and test the slick folds of your [pc.vagina]; the hot, oak-like girth of his fanfir cock rides up between your buttocks, the ribs of its underside brushing over your [pc.anus].");
+	output("\n\nGene lowers you down and flips you over with strong, careful sweeps of his claws, shifting himself forward as he does, the great shadow of his form looming over you, the cool, earthy smell of him in your nostrils. You shudder as you feel the swell of his chest touch you between the shoulder-blades; the sheer weight of him could easily keep you pinned here, naked with your [pc.butt] in the air, if he so wished. You bite your lip as grey, warm digits caress and test the slick folds of your [pc.vagina " + x + "]; the hot, oak-like girth of his fanfir cock rides up between your buttocks, the ribs of its underside brushing over your [pc.anus].");
 
 	if (pc.biggestVaginalCapacity() <= geneCockVolume())
 	{
-		output("\n\n<i>“Hmm,”</i> he murmurs a moment later. <i>“A pretty and charmingly sized lady-hole you have down here. Am I the type of brute to resize it as he pleases?”</i> You inhale sharply as you feel the spear-head of his bigger dick restlessly press against your lips, stretching them wide. <i>“No, of course not.”</i> You exhale, a sigh of relief spiked with frustration as it withdraws. Gene arches his hips, bulky chest shifting down the small of your back, and the next moment you feel a more compact protrusion bump against your [pc.vagina]. <i>“Not when I deliberately come equipped for sweet pixies like you,”</i> the fanfir growls. He thrusts forward, filling your tight tunnel with six inches of human cock.");
+		output("\n\n<i>“Hmm,”</i> he murmurs a moment later. <i>“A pretty and charmingly sized lady-hole you have down here. Am I the type of brute to resize it as he pleases?”</i> You inhale sharply as you feel the spear-head of his bigger dick restlessly press against your lips, stretching them wide. <i>“No, of course not.”</i> You exhale, a sigh of relief spiked with frustration as it withdraws. Gene arches his hips, bulky chest shifting down the small of your back, and the next moment you feel a more compact protrusion bump against your [pc.vagina " + x + "]. <i>“Not when I deliberately come equipped for sweet pixies like you,”</i> the fanfir growls. He thrusts forward, filling your tight tunnel with six inches of human cock.");
 		
 		output("\n\nThe winged colossus’s hard thighs slap rhythmically against your [pc.butt] as he pumps you, pressing deep into your wet depths, making you tingle with pleasure with each returning thrust. His huge, turgid bulge-cock slides between your [pc.thighs] as he goes at you; you clench down, tightening your pussy up around his human cock at the same time as squeezing the soft flesh of your thighs around his bigger dick. Gene rumbles his enjoyment to this, and rewards you by picking up the pace, wing claws clutching the counter in order to provide the ballast to stretch the sensitive, clasping pocket you’ve provided with heavy, fervent strokes.");
 		
@@ -1293,7 +1318,7 @@ public function genesModsOverCounter():void
 		if (pc.isLactating()) output(" and [pc.milk] spurting freely from your kneaded [pc.nipples]");
 		output(".");
 		
-		output("\n\nGene laughs his soft, deep enjoyment to watching your squirm and squirt yourself silly around him, slowing his pace down a bit in the aftermath of your orgasm - but he’s still hard as rock, and he continues to push himself into your oozing [pc.vagina], bending it this way and that to stir and strain you, making you twitch and groan anew. He murmurs something under his breath which you don’t catch, his heavy susurrations trembling through your core, and suddenly you feel both refreshed and extra tender, your [pc.nipples] and [pc.clit] puffing up as blood rushes to them, ready and needy for extra fucking. Your [pc.tongue] hangs out of your mouth as he picks up the pace again");
+		output("\n\nGene laughs his soft, deep enjoyment to watching your squirm and squirt yourself silly around him, slowing his pace down a bit in the aftermath of your orgasm - but he’s still hard as rock, and he continues to push himself into your oozing [pc.vagina " + x + "], bending it this way and that to stir and strain you, making you twitch and groan anew. He murmurs something under his breath which you don’t catch, his heavy susurrations trembling through your core, and suddenly you feel both refreshed and extra tender, your [pc.nipples] and [pc.clit] puffing up as blood rushes to them, ready and needy for extra fucking. Your [pc.tongue] hangs out of your mouth as he picks up the pace again");
 		if (geneSubmissionLevel() >= 8) output(", whining your approval as he gives your [pc.butt] a hard swat for good measure.");
 		
 		output("\n\nGene pushes you to a second hot, heaving high, sweat rolling down your face as your whole body tenses up around the endless thick propulsion of his sex; then, when you feel reduced to a fuck-dazed puddle, he thrusts his way to his own high, claiming and stretching your pussy strenuously, android hands clutching your [pc.chest] for support, heavy balls slapping against your [pc.thighs] and semi-erect dragon dick rubbing over");
@@ -1304,14 +1329,14 @@ public function genesModsOverCounter():void
 		else output(" [pc.chest]");
 		output(" jouncing, letting this monstrously sized creature have his way with you, and the thought makes you tighten up ecstatically again around his stern, hot cocks.");
 		
-		output("\n\nGene grunts hoarsely, tightens his grip on your [pc.nipples] and rams himself up to the quick in your [pc.vagina]. You groan long and low as he swells your tunnel and womb with copious, orange cum, surge after surge until you feel utterly stuffed with its thickness; can almost taste its spicy, musky tang on your limp [pc.tongue]. You can hear it hit the counter side below you, spurting unheeded from his bigger dick as well.");
+		output("\n\nGene grunts hoarsely, tightens his grip on your [pc.nipples] and rams himself up to the quick in your [pc.vagina " + x + "]. You groan long and low as he swells your tunnel and womb with copious, orange cum, surge after surge until you feel utterly stuffed with its thickness; can almost taste its spicy, musky tang on your limp [pc.tongue]. You can hear it hit the counter side below you, spurting unheeded from his bigger dick as well.");
 		if (isGeneSubmissionLevelMaxed()) output(" The sound almost manages to sober you out of the golden dizziness you are experiencing for taking Master’s cock and getting him off so well. All of that wonderful, endorphin-tingling cum, going to waste... perhaps you could lick it up afterwards? Only if he asks.");
 		
 		output("\n\nIt oozes out of you when he finally withdraws from your hard-ridden pussy in a thick, steady stream, enough still inside to round your [pc.belly] with packed warmth. You loll on the counter, too fucked to do anything but quietly enjoy copious amounts of male juices slide slowly over your [pc.clit] and onto the floor.");
 	}
 	else
 	{
-		output("\n\n<i>“My word,”</i> he murmurs. You sigh blissfully as he sinks first one long digit, then two, then finally a whole smooth, android fist into the wet suck of your [pc.vagina]. <i>“You’re... spaciously designed, aren’t you?”</i> There is an edge of excitement to his lava-like tones. A slight thrill runs through you when his caressing fingers are replaced by a big, hot conical shape, oozing pre and restlessly spreading your gaping pussy lips. <i>“I wonder. Shall I?...”</i>");
+		output("\n\n<i>“My word,”</i> he murmurs. You sigh blissfully as he sinks first one long digit, then two, then finally a whole smooth, android fist into the wet suck of your [pc.vagina " + x + "]. <i>“You’re... spaciously designed, aren’t you?”</i> There is an edge of excitement to his lava-like tones. A slight thrill runs through you when his caressing fingers are replaced by a big, hot conical shape, oozing pre and restlessly spreading your gaping pussy lips. <i>“I wonder. Shall I?...”</i>");
 		
 		output("\n\n<i>“Do it,”</i> you husk. You open your mouth in sheer bliss, tightening your grip on the counter when Gene complies, flexing his hips to penetrate you with sixteen inches of ribbed bulge-cock.");
 
@@ -1337,19 +1362,19 @@ public function genesModsOverCounter():void
 		else output(" jiggle of your generous");
 		output(" flesh.");
 		
-		output("\n\n<i>“Of course,”</i> he murmurs, <i>“one of the best things about doing it like this is... <i>“ You feel a hard protrusion slide between the cheeks of your [pc.butt] and press demandingly against your [pc.anus]. In the dizziness of the moment you cannot immediately think what it is. You remember a moment later when, with a harsh groan, Gene thrusts forward, packing your [pc.vagina0] full of cock at the same time as spreading and penetrating your butthole with his human dick. It’s much smaller than his fanfir organ but, oh void, it feels anything but small as it drives into your colon...");
+		output("\n\n<i>“Of course,”</i> he murmurs, <i>“one of the best things about doing it like this is... <i>“ You feel a hard protrusion slide between the cheeks of your [pc.butt] and press demandingly against your [pc.anus]. In the dizziness of the moment you cannot immediately think what it is. You remember a moment later when, with a harsh groan, Gene thrusts forward, packing your [pc.vagina " + x + "] full of cock at the same time as spreading and penetrating your butthole with his human dick. It’s much smaller than his fanfir organ but, oh void, it feels anything but small as it drives into your colon...");
 		
 		output("\n\nGasps escape your mouth, hands clutching at the hard glass, your whole body shaking to the force of the massive beast completely stuffing you, his hot, bullish dicks pressing together through your tender walls. Gasps become wanton moans as his robot hands clasp your [pc.chest] and fondle your [pc.nipples],");
 		if (!pc.hasFuckableNipples()) output(" stroking and pinching them until they are erect and inflamed");
 		else output(" pushing into their wet depths until they are oozing [pc.girlCum] eagerly around his fingers");
-		output(". You arch your back as orgasm grasps you; you thrust back into Gene’s double sex gleefully, the roughness of the cock taking your asshole contrasting brilliantly with the huge cock sliding and rubbing in your [pc.vagina], clenching up and squealing to the irrepressible joy of it, [pc.girlCum]");
+		output(". You arch your back as orgasm grasps you; you thrust back into Gene’s double sex gleefully, the roughness of the cock taking your asshole contrasting brilliantly with the huge cock sliding and rubbing in your [pc.vagina " + x + "], clenching up and squealing to the irrepressible joy of it, [pc.girlCum]");
 		if (pc.wettestVaginalWetness() <= 2) output(" dripping");
 		else output(" spurting");
 		output(" around the hot wood filling you");
 		if (pc.isLactating()) output(" and [pc.milk] spurting freely from your kneaded [pc.nipples]");
 		output(".");
 		
-		output("\n\nGene laughs his soft, deep enjoyment to watching your squirm and squirt yourself silly around him, slowing his pace down a bit in the aftermath of your orgasm - but he’s still hard as rock, and he continues to push himself into your oozing [pc.vagina0] and opened [pc.anus], bending them this way and that to stir and strain you, making you twitch and groan anew. He murmurs something under his breath which you don’t catch, his heavy susurrations trembling through your core, and suddenly you feel both refreshed and extra tender, your [pc.nipples] and [pc.clit0] puffing up as blood rushes to them, ready and needy for extra fucking. Your [pc.tongue] hangs out of your mouth as he picks up the pace again");
+		output("\n\nGene laughs his soft, deep enjoyment to watching your squirm and squirt yourself silly around him, slowing his pace down a bit in the aftermath of your orgasm - but he’s still hard as rock, and he continues to push himself into your oozing [pc.vagina " + x + "] and opened [pc.anus], bending them this way and that to stir and strain you, making you twitch and groan anew. He murmurs something under his breath which you don’t catch, his heavy susurrations trembling through your core, and suddenly you feel both refreshed and extra tender, your [pc.nipples] and [pc.clit] puffing up as blood rushes to them, ready and needy for extra fucking. Your [pc.tongue] hangs out of your mouth as he picks up the pace again");
 		if (geneSubmissionLevel() >= 8) output(", whining your approval as he gives your [pc.butt] a hard swat for good measure");
 		output(".");
 		
@@ -1361,10 +1386,10 @@ public function genesModsOverCounter():void
 		else output(" streaming");
 		output(" freely down your insides of your thighs.");
 		
-		output("\n\nGene grunts hoarsely, tightens his grip on your [pc.nipples] and rams himself up to the quick in your [pc.vagina0] and [pc.butt]. You groan long and low as he swells your colon and womb with copious, orange cum, surge after surge until you feel utterly stuffed with its thickness; can almost taste its spicy, musky tang on your limp [pc.tongue]. It is soon spurting out of your utterly packed holes, dripping onto the faux-wooden floor below.");
+		output("\n\nGene grunts hoarsely, tightens his grip on your [pc.nipples] and rams himself up to the quick in your [pc.vagina " + x + "] and [pc.butt]. You groan long and low as he swells your colon and womb with copious, orange cum, surge after surge until you feel utterly stuffed with its thickness; can almost taste its spicy, musky tang on your limp [pc.tongue]. It is soon spurting out of your utterly packed holes, dripping onto the faux-wooden floor below.");
 		if (isGeneSubmissionLevelMaxed()) output(" The sound almost manages to sober you out of the golden dizziness you are experiencing for taking Master’s cock and getting him off so well. All of that wonderful, endorphin-tingling cum, going to waste... perhaps you could lick it up afterwards? Only if he asks.");
 		
-		output("\n\nIt oozes out of you when he finally withdraws from your hard-ridden pussy and ass in a thick, steady stream, enough still inside to round your [pc.belly] with packed warmth. You loll on the counter, too fucked to do anything but quietly enjoy copious amounts of male juices slide slowly over your [pc.clit0] and onto the floor.");
+		output("\n\nIt oozes out of you when he finally withdraws from your hard-ridden pussy and ass in a thick, steady stream, enough still inside to round your [pc.belly] with packed warmth. You loll on the counter, too fucked to do anything but quietly enjoy copious amounts of male juices slide slowly over your [pc.clit] and onto the floor.");
 	}
 
 	output("\n\n<i>“I sometimes think I should invest in some mods that tone down my semen production,”</i> says Gene lowly, resting his chest carefully on your sweat-slicked back, his heat and heavy voice vibrating through your skin. <i>“It makes such a wretched mess. But it’s the style of the thing, isn’t it? Nobody would take you seriously if you were my size and came like a kaithrit.");
@@ -1388,6 +1413,9 @@ public function genesModsOverCounter():void
 	output(" whilst Gene lumbers off in search of a mop.");
 	if (pc.hasLowerGarment()) output(" You make a mental note to put your [pc.lowerUndergarment] on a heavy wash once you’re back to your ship.");
 
+	pc.loadInCunt(chars["GENE"],x);
+	processTime(24);
+	pc.orgasm();
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
