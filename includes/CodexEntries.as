@@ -36,6 +36,7 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Thraggen", thraggenCodexEntry,true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Varmints", varmintCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "V-Ko", VKoCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Bess13", Bess13CodexEntry);
 
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Mhen'ga", "Cunt Snakes", cuntSnakeCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Mhen'ga", "Kerokoras",kerokorasCodexEntry);

@@ -1,4 +1,5 @@
-﻿
+﻿import classes.Creature;
+
 // Flags: 
 // CELISE_ONBOARD        : TODO - FIXME
 // RECRUITED_CELISE      : TODO - FIXME
@@ -941,6 +942,10 @@ public function letCeliseInForBed():void {
 	output("You open the door to invite the green goopy girl into your room. She screams, <i>“Yay!”</i>  and happily bobs her way past.");
 	output("\n\nThe Galotian circles around the room for a few moments before settling down near the center and reshaping her body. She reaches her arms down and firmly grabs the bottoms of her pornstar breasts, then heaves them up while simultaneously leaning her body back further and further. The secret to her technique eludes you until you notice how her lower body is stretching forward at the same time, giving the illusion that she is leaning back.");
 	output("\n\nFinally she’s stretched out into a long oval pad of emerald goo, big enough that you could easily lie down on it. Satisfied, she drops her enormous assets onto the unusual bed and pats them proudly. <i>“Come on! Try out the best pillows in the universe!”</i>  she proclaims, her upbeat mood still in full force.");
+	
+	// flag gets unset at the first mainGameMenu call, allowing other chars to intercept the end of
+	// the sleep event, check the flag to react appropriately, and then clean up afterwards.
+	flags["CELISE_BEDSTUFF_HAPPENED"] = 1;
 	
 	//{if PC is not nude}
 	if(!pc.isNude())

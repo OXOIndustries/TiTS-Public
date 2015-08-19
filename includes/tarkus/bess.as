@@ -4,8 +4,15 @@ Find&Replace: [bessPCName] => "+ bessPCName() +"
 Find&Replace: [bessRole] => "+ bessCrewRole() +"
 Find&Replace: [bessCrewRole] => "+ bessCrewRole() +"
 Find&Replace: [bessColor] => "+ bessColor() +"
+Find&Replace: [bessSexName] => "+ bessSexName() +"
+Find&Replace: [bessPCSexName] => "+ bessPCSexName() +"
+Find&Replace: [Bess => [bess
 flags["BESS_EVENT_7_APOLOGY_NEEDED"] = 1; // Flag Spin Off 'Apology' Event to occur next time the player enters Bess's menu (Event located after this scene in doc).
 
+unlock codex
+make sure crew menu, sleep events etc are wired up
+set flag["BESS_SLEEPWITH_DOMORNING"] to something after a nighttime sleep event
+check for the event -> sex scene thing wherever and make sure it has routers to the correct sex scenes
 */
 
 /*FLAGS:
@@ -875,11 +882,20 @@ public function keepBessYouSloot():void
 	//Hard:
 	else output("\n\n<i>“Do whatever you want, just don’t cause any trouble or you’re off the ship.”</i> You sternly warn [bess.himHer], making sure the message is received loud and clear.");
 	output("\n\nThe silver haired synthetic" + bess.mf("’s eyes light up and he gives a dutiful bow", " flushes and bows") + ", <i>“You’re too kind, [pc.Master]. Just think of me as yours to do with what you will.”</i>");
-	output("\n\n[Bess.HeShe] then pauses and looks at you with patient, " + bess.mf("questioning", "hopeful") + " eyes, as if waiting for you to say something else. " + bess.mf("He even coughs politely, as if trying to awkwardly bring your attention to something.", "It reminds you of a girl at a social function waiting to be asked to dance."));
-	output("\n\nYou ask [bess.himHer] exactly what [bess.heShe]’s waiting for, and [bess.heShe] gives a rather animated blink. It’s hardly that of a pre-programmed VI.");
-	output("\n\n<i>“My name, [pc.Master]. I don’t have an official designation yet.”</i> It seems [bess.heShe] needs a name of some sort, and you’re supposed to give [bess.himHer] one.");
-	clearMenu();
-	addButton(0,"Next",nameBessForRealsies);
+
+	if (flags["BESS_FULLY_CONFIGURED"] == undefined)
+	{
+		output("\n\n[Bess.HeShe] then pauses and looks at you with patient, " + bess.mf("questioning", "hopeful") + " eyes, as if waiting for you to say something else. " + bess.mf("He even coughs politely, as if trying to awkwardly bring your attention to something.", "It reminds you of a girl at a social function waiting to be asked to dance."));
+		output("\n\nYou ask [bess.himHer] exactly what [bess.heShe]’s waiting for, and [bess.heShe] gives a rather animated blink. It’s hardly that of a pre-programmed VI.");
+		output("\n\n<i>“My name, [pc.Master]. I don’t have an official designation yet.”</i> It seems [bess.heShe] needs a name of some sort, and you’re supposed to give [bess.himHer] one.");
+		clearMenu();
+		addButton(0,"Next",nameBessForRealsies);
+	}
+	else
+	{
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+	}
 }
 
 public function nameBessForRealsies():void
@@ -910,6 +926,8 @@ public function nameBessResult():void
 {
 	clearOutput();
 	bessHeader();
+
+	flags["BESS_FULLY_CONFIGURED"] = 1;
 
 	output("<i>“Thank you for my name, [pc.Master]. I am now called [bess.name]!”</i> [bess.name] sounds delighted with [bess.hisHer] new name, though [bess.heShe]’s probably happy to have a name in general. <i>“I look forward to servicing your reproductive needs in the near future.”</i>");
 	output("\n\nYou ask exactly what functions [bess.name] comes equipped with, noting that [bess.heShe] doesn’t look like [bess.heShe]’s made of a regular kind of alloy.");
@@ -1131,7 +1149,41 @@ public function bessFollowerMenu():void
 	addButton(0, "Discuss", talkToBessAboutThings);
 	addButton(1, "Functions", bessFunctions, undefined, "Functions", "Bess’ Functions");
 	addButton(2, "Accessories", talkToBessAboutAccessories);
-	addButton(3, "Sex", );
+	
+	if ((flags["BESS_FRIEND"] != undefined || flags["BESS_LOVER"] != undefined) && bessAffection() < 30)
+	{
+		addDisabledButton(3, "Sex", "Sex", "[bess.name] isn't feeling up for sex. You will need to raise [bess.hisHer] affection in order to have sex with [bess.himHer].");
+	}
+	else if (pc.lust() < 33)
+	{
+		addDisabledButton(3, "Sex", "Sex", "You’re not antsy enough for sexytimes.");
+	}
+	else
+	{
+		addButton(3, "Sex", bessSexMenu);
+	}
+
+	if (flags["BESS_EVENT_24"] == undefined)
+	{
+		addButton(5, "Date");
+	}
+	else
+	{
+		if (flags["BESS_DATES"] == undefined || flags["BESS_DATES"] < 4)
+		{
+			if (pc.credits < 500) addDisabledButton(5, "Date", "Date", "You don't have enough credits!");
+			else addButton(5, "Date", bessDateRouter);
+		}
+		else if (flags["BESS_DATES"] == 4 || (flags["BESS_DATES"] == 5 && bessEventCheck(25))
+		{
+			if (pc.credits < 1000) addDisabledButton(5, "Date", "Date", "You don't have enough credits!");
+			else addButton(5, "Date", bessDateRouter)
+		}
+		else
+		{
+			addDisabledButton(5, "Date");
+		}
+	}
 
 	addButton(10, "Appearance", bessAppearance, undefined, "Appearance", "Bess’ Appearance");
 
@@ -5394,6 +5446,26 @@ public function bessEventHook():Boolean
 		return true;
 	}
 
+	if (flags["BESS_EVENT_19_REJECTION"] == 1)
+	{
+		bessEvent19RejectionFollowup();
+		return true;
+	}
+
+	// TODO: Play 20 immediately after 19 is done -- no supression
+	if (bessEventCheck(19) && !bessEventCheck(20) && flags["BESS_JUST_A_FRIEND"] == undefined)
+	{
+		bessEvent20();
+		return true;
+	}
+
+	// Played upon next entering Bess's menu if you told her you didn't like her skin.
+	if (flags["BESS_EVENT_25_SPINOFF"] == 1)
+	{
+		bessEvent25Spinoff();
+		return true;
+	}
+
 	// Tick down supression of event procs
 	if (flags["BESS_EVENT_SUPRESSION"] != undefined)
 	{
@@ -5403,7 +5475,7 @@ public function bessEventHook():Boolean
 	}
 
 	// Depending on outcome of an event, prevent any further relationship building (supress further events)
-	if (flags["BESS_JUST_A_SEXBOT"] == 1)
+	if (flags["BESS_JUST_A_SEXBOT"] == 1 || flags["BESS_JUST_A_FRIEND"] == 1)
 	{
 		return false;
 	}
@@ -5583,6 +5655,85 @@ public function bessEventHook():Boolean
 			if (flags["BESS_EVENT_17"] + (3 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 70 && rand(4) == 0)
 			{
 				bessEvent18();
+				bEvent = true;
+			}
+		}
+
+		if (bessEventCheck(18) && !bessEventCheck(19))
+		{
+			var e19Chance:int;
+			if (flags["BESS_EVENT_19_TIMES]"] == undefined) e19Chance = 1;
+			else e19Chance = 10;
+
+			if (hours >= 16 && flags["BESS_EVENT_18"] + (4 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 70 && rand(e19Chance) == 0)
+			{
+				bessEvent19();
+				bEvent = true;
+			}
+		}
+	}
+
+	if (flags["BESS_LOVER"] != undefined)
+	{
+		if (bessEventCheck(21) && !bessEventCheck(22))
+		{
+			if (flags["BESS_EVENT_21"] + (4 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 70)
+			{
+				bessEvent22();
+				bEvent = true;
+			}
+		}
+
+		if (bessEventCheck(22) && !bessEventCheck(23))
+		{
+			if (flags["BESS_EVENT_22"] + (4 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 80 && flags["CREWMEMBER_SLEEP_WITH"] == "BESS" && rand(4) == 0)
+			{
+				bessEvent23();
+				bEvent = true;
+			}
+		}
+
+		if (bessEventCheck(23) && !bessEventCheck(24))
+		{
+			if (flags["BESS_EVENT_23"] + (4 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 80 && rand(4) == 0)
+			{
+				bessEvent24();
+				bEvent = true;
+			}
+		}
+
+		if (bessEventCheck(24) && !bessEventCheck(25))
+		{
+			if (flags["BESS_DATES"] != undefined && flags["BESS_DATES"] >= 5)
+			{
+				bessEvent25();
+				bEvent = true;
+			}
+		}
+
+		if (bessEventCheck(25) && !bessEventCheck(26))
+		{
+			if (flag["BESS_EVENT_25"] + (7 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 80 && rand(4) == 0)
+			{
+				bessEvent26();
+				bEvent = true;
+			}
+		}
+
+		if (bessEventCheck(26) && !bessEventCheck(27))
+		{
+			if (flags["CREWMEMBER_SLEEP_WITH"] == "BESS" && flags["BESS_MORNING_EVENT_1"] != undefined flags["BESS_EVENT_26"] + (7 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 80 && rand(4) == 0)
+			{
+				bessEvent27();
+				bEvent = true;
+			}
+		}
+
+		if (bessEventCheck(27) && !bessEventCheck(28))
+		{
+			if (flags["BESS_DATES"] >=6 && flags["BESS_EVENT_27"] + (7 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 80 && (shipLocation == "SHIP HANGAR" || shipLocation == "500")
+			{
+				bessEvent28();
 				bEvent = true;
 			}
 		}
@@ -8013,1498 +8164,3567 @@ public function bessEvent19():void
 	clearOutput();
 	bessHeader();
 
-// Repeating Scene (If PC refuses to watch movies with her)
-// Bess affection must be 70 or higher
-// 4 days must have passed since the last scene.
-// Must be friends.
-// Must be between 1600 and 2400
-// 100% chance of occuring on entering her menu the first time.
-// 10% chance of occuring on entering her menu as a repeat scene (if PC refuses first time invite)
+	if (flags["BESS_EVENT_19_TIMES"] == undefined)
+	{
+		flags["BESS_EVENT_19_TIMES"] = 1;
 
-{First Time:
+		output("Just when it’s getting quite late [bess.name] walks up to you a little sheepishly, looking like [bess.heShe] wants to ask something. Eventually, [bess.heShe] spits it out.");
+		
+		output("\n\n<i>“... Um, [bessPCName], would you like to watch a scary movie with me? I’d like to experience watching one with a friend since I hear it’s one of those ‘to do’ things...”</i>");
+	}
+	else
+	{
+		flags["BESS_EVENT_19_TIMES"]++;
 
-Just when it’s getting quite late [bess.name] walks up to you a little sheepishly, looking like [bess.heShe] wants to ask something. Eventually, [bess.heShe] spits it out.
-
-"... Um, [bessPCName], would you like to watch a scary movie with me? I’d like to experience watching one with a friend since I hear it’s one of those ‘to do’ things..."
-}
-{Repeat:
-Once again, it's a rather late hour. [Bess.name] approaches you a little shyly, a holodisk in hand.
-
-"H-hi, [bessPCName]. I know you weren't up for it before, but would you like to watch a scary movie with me? I was wondering if you'd changed your mind from earlier."
-}
-How about it - do you want to stay up late and watch spooky movies with [bess.name]?
+		output("Once again, it’s a rather late hour. [bess.name] approaches you a little shyly, a holodisk in hand.");
+		
+		output("\n\n<i>“H-hi, [bessPCName]. I know you weren’t up for it before, but would you like to watch a scary movie with me? I was wondering if you’d changed your mind from earlier.”</i>");
+	}
 	
-[Yes] [No]
+	output("\n\nHow about it - do you want to stay up late and watch spooky movies with [bess.name]?");
+	
+	// [Yes] [No]
+	clearMenu();
+	addButton(0, "Yes", bessEvent19Yes);
+	addButton(1, "No", bessEvent19No);
+}
 
-{No:
-"But, [bessPCName], I can’t watch them on my own - especially late at night! I mean the rotation of the sun around planetary bodies is culturally linked to monster attacks due to the decreased level of visibility."
+public function bessEvent19No():void
+{
+	clearOutput();
+	bessHeader();
 
- If you didn’t know any better, you’d say [bess.heShe] was {fem: scared to watch/male: worried about watching} them on [bess.hisHer] own.
+	output("<i>“But, [bessPCName], I can’t watch them on my own - especially late at night! I mean the rotation of the sun around planetary bodies is culturally linked to monster attacks due to the decreased level of visibility.”</i>");
+	
+	output("\n\n If you didn’t know any better, you’d say [bess.heShe] was "+ bess.mf("worried about watching", "scared to watch") +" them on [bess.hisHer] own.");
 
-[Watch] [Don’t Watch]
+	// [Watch] [Don’t Watch]
+	clearMenu();
+	addButton(0, "Watch", bessEvent19Yes);
+	addButton(1, "Don’t", bessEvent19DontWatch);
+}
 
-{Don’t Watch:
+public function bessEvent19DontWatch():void
+{
+	clearOutput();
+	bessHeader();
 
-[bess.name] {Fem: huffs and stomps [bess.hisHer] foot/ M: curses}. "... Fine! I just won’t watch it. But this isn’t the last of it - I’ll catch you when you’re so bored you’ll have no choice but to watch one with me!"
+	output("[bess.name] "+ bess.mf("curses", "huffs and stomps [bess.hisHer] foot") +". <i>“... Fine! I just won’t watch it. But this isn’t the last of it - I’ll catch you when you’re so bored you’ll have no choice but to watch one with me!”</i>");
+	
+	output("\n\nIt seems [bess.heShe]’s determined to tick this one off [bess.hisHer] list. You probably haven’t heard the end of it by a long shot.");
 
-It seems [bess.heShe]'s determined to tick this one off [bess.hisHer] list. You probably haven’t heard the end of it by a long shot.
+	processTime(55+rand(10));
+	bessAffection(-5);
 
-// Leave Bess's follower menu. 
-// Untick first time watching scene, if applicable.
-// -5 to bess affection.
-// Scene still set to repeat with 10% frequency on re-entering her menu.
-// An hour passes.
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function bessEvent19Yes():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("<i>“Great, I’ll grab some drinks. Oh, and some snacks!”</i> [bess.name] rushes off to grab some nibbles. Meanwhile, you sit down and throw the movie in.");
+	
+	output("\n\nIt seems [bess.heShe]’s picked a horror movie that involves humans, monsters, and killer robots - an interesting choice by the AI. [bess.HeShe] brings the drinks and snacks, and you sit down to enjoy what is clearly a B-grade horror holo.");
+	
+	output("\n\nYou’ve watched far better, but [bess.name] really seems to get into it - jumping in [bess.hisHer] seat every time a three dimensional monster leaps out at you. It’s not long until [bess.heShe]’s clasping your "+ bess.mf("hand", "arm") +", holding it tight and refusing to let go.");
+	
+	output("\n\nOn the screen it seems the robots and the monsters have teamed up to take down the humans, and they are now hunting them down one by one. As the main hero and heroine are being chased, [bess.heShe] tightens [bess.hisHer] grip on your "+ bess.mf("hand", "arm") +". Clearly, [bess.heShe] doesn’t want them to be caught.");
+	
+	output("\n\nYou can feel [bess.hisHer] synthetic heart racing against your arm, [bess.hisHer] [bess.chest] pressing against you. All of a sudden you notice [bess.name] isn’t watching the movie, instead looking right at you with a meaningful [bess.eyeColor] gaze.");
+	
+	output("\n\nSuddenly [bess.heShe]’s sliding over and wrapping [bess.hisHer] arms around you");
+	if (bess.isFeminine()) output("r neck");
+	output(", [bess.hisHer] nose brushing against yours as [bess.hisHer] soft, silver lips lock with your own. [bess.HeShe] kisses you slowly and intimately, [bess.hisHer] hands");
+	if (pc.hairLength == 0) output(" stroking the back of your head");
+	else output(" brushing through your [pc.hair]");
+	output(" as [bess.heShe] makes out with you.");
+	
+	output("\n\nThis is far away from [bess.hisHer] sex routines - you can feel the burning passion behind [bess.hisHer] kiss, and it is more than just physical. What are you going to do...?");
+
+	clearMenu();
+	addButton(0, "KissMore", bessEvent19KissMore);
+	addButton(1, "PullBack", bessEvent19PullBack);
+	addButton(2, "I’mTaken", bessEvent19Taken);
+}
+
+public function bessEvent19KissMore():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You lean into [bess.hisHer] kiss, wrapping your arms around "+ bess.mf("his neck", "her waist") +" as you pull [bess.himHer] close. Your tongues passionately dance together, and the rest of the world suddenly ceases to exist. [bess.name] "+ bess.mf("kisses", "melts into your arms, kissing") +" you back with feverish urgency as you return [bess.hisHer] affections. Meanwhile, you feed off the delicious sweetness of [bess.hisHer] mouth, hungry for more.");
+	
+	output("\n\nIt is a long, drug-like kiss that leaves your mind spinning and your senses ablaze. You break off, only to come back for more, and [bess.heShe] gladly satisfies your searching lips. Both your tongues and your bodies are soon intertwined.");
+	
+	output("\n\nIt takes some time for you both to realise the holo has ended; you’re both too busy making out to even notice how much time has passed. Eventually, [bess.name] pulls away looking flustered and more than a little drunk from your kisses. [bess.HeShe] almost looks as if [bess.heShe]’s about to pass out.");
+	
+	output("\n\n<i>“... I... um... that was...”</i> [bess.HeShe] seems completely incapable of stringing a sentence together. You kiss [bess.himHer] again, and [bess.heShe] utterly forgets what [bess.heShe] was going to say. Instead, [bess.heShe] wraps [bess.hisHer] arms tightly around you once again.");
+	
+	output("\n\nBoth of you are fiercely locked in a battle of tongues, pulling each other as close as you possibly can, yet still yearning for more. You reluctantly pull back only to catch your breath, filled with an impossible, insatiable hunger for [bess.hisHer] silvery lips.");
+	
+	output("\n\nThere’s a small smash when one of you knocks a cup on the floor. It goes completely unnoticed as it shatters over the place. It isn’t a problem until [bess.name] notices your bleeding hand; you didn’t even realise you brushed against the broken glass.");
+	
+	output("\n\n<i>“Ohmycircuits - you’re hurt! Let me get something to fix that up.”</i> [bess.name] disentangles [bess.himHers]elf and runs off to get the ship’s first aid kit. [bess.HeShe] cleans your wound and then wraps it up properly; just what you’d expect from a JoyCo built AI.");
+	
+	output("\n\nAfter that, [bess.heShe] seems quite flustered and shyly avoids your gaze. It’s not long before [bess.heShe] makes an excuse to run off, no doubt to blush somewhere in quiet. It seems in matters of the heart [bess.heShe]’s an utter novice. [bess.HisHer] abashed exit brings an end to a very interesting evening.");
+
+	flags["BESS_EVENT_19"] = GetGameTimestamp();
+	processTime(165+rand(15));
+	bessAffection(15);
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function bessEvent19PullBack():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You can’t allow this to continue, and you push [bess.name] away; [bess.hisHer] half-closed lids blinking furiously as [bess.heShe] realises what is going on. <i>“[bess.name], no, we can’t! We’re friends, and that’s all I want to be. I’m sorry... but I just don’t feel that way about you.”</i>");
+	
+	output("\n\nThe");
+	if (bess.hairLength > 0) output(" [bess.hairColor] haired");
+	output(" synthetic sighs, and looks down at [bess.hisHer] hands. <i>“... I-I know... I just... it’s so unfair. You’re so wonderful and kind and... all the things that I want.”</i>");
+	
+	output("\n\nYou explain to [bess.himHer] that you want to keep things the way they are and just be friends. [bess.name] seems to understand your feelings, but is also having a hard time dealing with the rejection - After all, you are [bess.hisHer] first love, as well as [bess.hisHer] first and best friend.");
+
+	bessEvent19Merge();
+}
+
+public function bessEvent19Taken():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You can’t allow this to continue, and you push [bess.name] away; [bess.hisHer] half-closed lids blinking furiously as [bess.heShe] realises what is going on. <i>“[bess.name], no, I can’t - I’m taken!”</i>");
+	
+	output("\n\nThe");
+	if (bess.hairLength > 0) output(" [bess.hairColor] haired");
+	output(" synthetic sighs, and looks down at [bess.hisHer] hands. <i>“... I-I know... I just... it’s so unfair. You’re so wonderful and kind and... all the things that I want.”</i>");
+	
+	output("\n\nYou explain to [bess.hisHer] that you have a lover, and you can’t betray their trust. [bess.name] seems to understand your feelings, but is also having a hard time dealing with the rejection. After all, you are [bess.hisHer] first love, as well as [bess.hisHer] first and best friend.");
+
+	bessEvent19Merge();
+}
+
+public function bessEvent19Merge():void
+{
+	output("\n\n<i>“I-I’m sorry, I never should have been so selfish. I knew how you felt, I just didn’t want to believe it was the truth.”</i> Tears are running down [bess.hisHer] cheeks now as [bess.heShe] sniffs, looking up at you with glassy [bess.eyeColor] eyes. <i>“... I’m sorry, this was a terrible idea-!”</i>");
+	
+	output("\n\n[bess.name] runs off before you can say anything more, finding a place where [bess.heShe] can be alone on the ship to pick up the pieces of [bess.hisHer] shattered synthetic heart.");
+
+	processTime(165 + rand(15));
+	flags["BESS_EVENT_19"] = GetGameTimestamp();
+	flags["BESS_EVENT_19_REJECTION"] = 1;
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function bessEvent19RejectionFollowup():void
+{
+	clearOutput();
+	bessHeader();
+
+	flags["BESS_EVENT_19_REJECTION"] = 2;
+
+	output("You run across [bess.name] looking incredibly meek, head lowered, and eyes directed at the ground. [bess.HisHer] hands are clasped at [bess.hisHer] waist as [bess.heShe] fidgets with [bess.hisHer] fingers.");
+	
+	output("\n\n<i>“... Um, hi, [bessPCName].”</i> The tension is so thick you could cut it with a knife. [bess.name] looks terrible; [bess.heShe]’s clearly been up all night. <i>“I think... we need to talk?”</i>");
+	
+	output("\n\nYou both go and sit down in the dining area, and [bess.name] takes a deep breath. It seems [bess.heShe]’s trying to muster the courage to say whatever it is that [bess.heShe] wants to say.");
+	
+	output("\n\n<i>“... I’m sorry, [bessPCName]. I put you in an awkward position, and you had no choice but to do such a difficult thing. I really can’t apologise enough for my behavior; it was completely and utterly out of line.”</i> [bess.HeShe] tells you, all the while still struggling to meet your gaze.");
+	
+	output("\n\n<i>“I hope – I really, really hope – that we can stay friends. I understand that what I did crossed the line. And if we can’t go back to being friends... if that’s the case, I think it is best that I leave the ship, for the both of us.”</i> [bess.name] finally manages to raise [bess.hisHer] eyes to look at you; you can see [bess.heShe]’s struggling not to tear up. <i>“...But if you want to try and go back to the way things were, I promise what happened was a once-off thing, and I will never EVER do anything like that again.”</i>");
+	
+	output("\n\nNote: If you choose Too Late, you sense [bess.name] will become terribly upset. [bess.HeShe] will probably choose to leave the ship.");
+
+	clearMenu();
+	addButton(0, "Friends", bessEvent19RejectionFriends);
+	addButton(1, "TooLate", bessEvent19RejectionTooLate);
+}
+
+public function bessEvent19RejectionTooLate():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You tell [bess.name] it is too late and things can’t return to the way they were. The "+ bess.mf("male synthetic begins to tear up, trying in vain to control his tears", "synthetic girl begins to sob uncontrollably, holding [bess.hisHer] hands over [bess.hisHer] eyes in a futile effort to hide [bess.hisHer] tears") +". Apparently it is set on reflex now, because [bess.heShe] doesn’t seem to be able to stop crying for quite some time.");
+	
+	output("\n\nAs [bess.heShe] finally manages to catch [bess.hisHer] breath about twenty minutes later, [bess.heShe] wipes away [bess.hisHer] tears and stands up. <i>“... I... Thank you. Thank you for being my friend, if just for a little while, and teaching me to be my own person. Thank you for watching TV with me. Thank you for encouraging me to read books. Thank you for telling me about yourself. Even if we part ways now, what you have given me is an irreplaceable treasure that I can never, ever repay you for.”</i>");
+	
+	output("\n\n[bess.name] then goes to collect [bess.hisHer] things and leave the ship. You’re parting ways and after last night, it is probably for the best. Where the sapient AI will go from now is anyone’s guess, but no doubt it will be a difficult path filled with many hardships.");
+
+	processTime(15+rand(5));
+
+	flags["BESS_LOCATION"] = BESS_AT_TAVROS;
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function bessEvent19RejectionFriends():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You tell [bess.name] that despite what happened you are still friends and that hasn’t changed. [bess.HeShe] lets out a "+ bess.mf("large sigh of relief", "sob of relief at your words") +". Clearly what happened has been weighing on [bess.hisHer] mind, as well as the possibility of leaving the ship. [bess.HeShe] then gives you a tight hug, happy that you’ve made up.");
+	
+	output("\n\n<i>“Okay... from now on, I’m just [bess.name], your friend!”</i> [bess.HeShe] states resolutely, probably as much for [bess.hisHer] benefit as for yours. You’re pretty sure things are going to get back to normal, though it may still take a couple more days for all the awkwardness to dissipate.");
+
+	processTime(55+rand(10));
+	flags["BESS_JUST_A_FRIEND"] = 1;
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function bessEvent20():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("The next few days are very unusual. Whenever you go to find [bess.name] [bess.heShe]’s either nowhere to be seen or [bess.heShe]’s on [bess.hisHer] way to doing something, keeping [bess.himHerself] occupied with [bess.hisHer] duties as the ship’s [bessRole].");
+	
+	output("\n\nOnce, you almost managed to broach the subject, but as soon as you did, the ship’s sprinkler system abruptly went off. Not only were you soaked from head to toe - along with everything");
+	if (crew(true) > 1) output(" and everyone");
+	output(" else - [bess.name] seized the opportunity to escape the conversation. The timing was so convenient that you strongly suspect it was pre-programmed by the slippery AI.");
+	
+	output("\n\nWhen you go to [bess.hisHer] room, you find a ton of recently purchased books about romance - specifically the forbidden kind between humans and machines. They all look as if they’ve been read and are strewn about the room in an uncharacteristically messy way. To read this many books in such a short time - has [bess.heShe] even powered down since you both kissed?");
+	
+	output("\n\nYour question is soon answered when you find [bess.himHer] collapsed on a sofa. [bess.HisHer] shutdown routine seems to have kicked in, and [bess.heShe]’s out cold. [bess.HisHer] JoyCord has connected automatically to a nearby socket in order to charge [bess.hisHer] batteries, much the same way as when you first met [bess.himHer].");
+	
+	output("\n\nSince [bess.heShe] can’t get away, you stay there until [bess.heShe] wakes up. When [bess.heShe] does, [bess.name] looks at you with a trapped look. Clearly [bess.heShe] doesn’t have any new ‘sprinkler’ tricks up [bess.hisHer] sleeve this time.");
+	if (bess.hasWings()) output(" [bess.HisHer] [bess.wings] flap a little, almost as if weighing up [bess.hisHer] odds of flying out of the situation.");
+
+	if (pc.isNice())
+	{
+		output("\n\n<i>“... [bess.name], I know you haven’t powered down in over a week. Don’t you think we should talk about what happened?”</i> You choose your words as carefully as possible, hoping that [bess.heShe] doesn’t bolt off again.");
+	}
+	else if (pc.isMischievous())
+	{
+		output("\n\n<i>“...What you did with the sprinkler system was funny, but this is seriously getting out of hand. Don’t you think we should talk about this?”</i> You lightheartedly remark. If [bess.heShe] tries to bolt again, maybe a flying tackle is in order.");
+	}
+	else
+	{
+		output("\n\n<i>“... Enough of this ridiculousness! We’re having this out right now. No sprinkler systems, no running away. If you try and bolt, I swear I’ll fly tackle you.”</i> You grumpily inform [bess.himHer] - it took ages to clean up the ship after [bess.hisHer] stunt.");
+	}
+
+	output("\n\nRetracting [bess.hisHer] tail and looking sheepish, [bess.name] turns [bess.hisHer] gaze upwards towards you. [bess.HisHer] [bess.eyeColor] eyes are wavering, yet [bess.heShe] seems ready to finally talk. <i>“... I-I-I’m sorry, I guess I have been going a little crazy since that...when we... kissed.”</i> With the way [bess.hisHer] cheeks flush, you wouldn’t think [bess.heShe] was an AI designed purely for sex.");
+	
+	output("\n\n<i>“... I’ve been reading, and the more I’ve read, the more it has become clear that my feelings for you... they are more than just that of friendship.”</i>");
+
+	if (pc.isNice())
+	{
+		output("\n\nYou nod, letting [bess.himHer] finish speaking. Honestly, it was kind of obvious - but you don’t say that out loud.");
+	}
+	else if (pc.isMischievous())
+	{
+		output("\n\n<i>“Well, yeah, I gathered that from the kiss...”</i> You remark dryly.");
+	}
+	else
+	{
+		output("\n\n<i>“No fragging way, really? I thought you just fell on my face by accident.”</i> You gruffly remark, not one for dancing around the subject.");
+	}
+
+	output("\n\n[bess.HeShe] flushes and continues speaking, [bess.hisHer] hands balling up on [bess.hisHer] lap. <i>“For the longest time, I have been feeling this indefinable, unquantifiable error in my emotional subsystems. Despite it making my processes completely illogical and making me feel as if my systems are either about to shut down or go into overdrive whenever I even think of you, I have never been able to bring myself to delete it.”</i>");
+	
+	output("\n\n<i>“Without being able to define, measure, or quantify this thing... for some reason I know that it is more important than my operational life span, and it is incredibly precious to me. Logic tells me to delete it, while my ‘heart’ cannot even bear the thought.”</i>");
+	
+	output("\n\n<i>“Living with this error is terrifying, yet the mere thought of living without it is even more so. It was only recently that I was able to identify this errant data as my feelings for you - something I hold dearer to me than my life itself. And that’s when I realised that... that... that I love you [bessPCName]!”</i> [bess.name] stammers out, confessing [bess.hisHer] heart-felt feelings for you.");
+
+	//[AlsoLove] [Reject]
+	clearMenu();
+	addButton(0, "AlsoLove", bessEvent20Love);
+	addButton(1, "Reject", bessEvent20Reject);
+}
+
+public function bessEvent20Reject():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You tell [bess.name] that while you kissed [bess.himHer], you simply don’t feel the same way. Your words appear to be utterly soul crushing, and [bess.hisHer] lower lip begins to tremble; [bess.hisHer] heartfelt confession being rejected in the worst way possible.");
+	
+	output("\n\n<i>“I-I’m sorry, I never should have been so selfish. I thought... I mean from the kiss... but I think deep down I knew...”</i> Tears are running down [bess.hisHer] cheeks now as [bess.heShe] sniffs, looking up at you with glassy [bess.eyeColor] eyes. <i>“... I’m sorry, I can’t do this!”</i>");
+	
+	output("\n\n[bess.name] runs off before you can say anything more, finding a place where [bess.heShe] can be alone on the ship to pick up the pieces of [bess.hisHer] shattered synthetic heart.");
+
+	flags["BESS_EVENT_19_REJECTION"] = 1;
+
+	processTime(55+rand(10));
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function bessEvent20Love():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You tell [bess.name] that you love [bess.himHer] and feel the exact same way. The");
+	if (bess.hairLength > 0) output(" [bess.hairColor] haired");
+	output(" synthetic stares at you with a shocked expression - clearly [bess.heShe] didn’t expect you to return [bess.hisHer] feelings.");
+	
+	output("\n\n<i>“...B-b-but loving me means you’ll be subject to ridicule, you’ll be called a toaster-head; you might even get lynched!”</i> [bess.name] exclaims, clearly worried that your feelings might lead to your harm.");
+	
+	output("\n\n<i>“A human and a machine can’t be together - are you sure you really want to fall for someone like me, a mere synthetic AI?”</i>");
+	
+	output("\n\nShort of New Texas, humans who fall in love with machines are generally ridiculed as morons who can’t tell the difference between ‘real’ and ‘fake’ people. If you pursue your feelings for [bess.name], you may be subject to public derision. Do you reconsider your confession?");
+
+	//[JustKiss] [Repeat] [Chasten] [Reconsider]
+	clearMenu();
+	addButton(0, "JustKiss", bessEvent20More, "kiss");
+	addButton(1, "Repeat", bessEvent20More, "repeat");
+	addButton(2, "Chasten", bessEvent20More, "chasten");
+	addButton(3, "Reconsider", bessEvent20Reconsider);
+}
+
+public function bessEvent20Reconsider():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("... On second thought, you realise you haven’t thought this entirely through; you don’t really want to be made fun of or even attacked. You tell [bess.name] that you’ve reconsidered, and you can see [bess.hisHer] panic ease.");
+	
+	output("\n\n<i>“... Good. Good. That’s that then; we’ll just be friends.”</i> [bess.name] states, looking torn all the while. <i>“... It’s better for your safety. I can’t allow you to be hurt over someone like me.”</i>");
+	
+	output("\n\nThe sombre air continues until you both leave in silence. You’ve avoided potential ridicule, but have you lost the chance for something special in the process?");
+
+	flags["BESS_EVENT_20"] = GetGameTimestamp();
+	flags["BESS_JUST_A_FRIEND"] = 1;
+
+	processTime(55+rand(10));
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function bessEvent20More(response:String):void
+{
+	clearOutput();
+	bessHeader();
+
+	if (response == "chasten")
+	{
+		output("<i>“You idiot. You think I can stop loving you, just like that? You don’t get a choice in the matter.”</i> You lovingly chasten [bess.name], and [bess.hisHer] eyes shoot wide open at your words. <i>“... Now come over here so I can kiss you!”</i>");
+	}
+	else if (response == "repeat")
+		output("<i>“I said that I love you, how many times are you going to make me say it? I know all of that, and I still love YOU, [bess.name].”</i> You make sure it sinks in, as [bess.hisHer] eyes shoot wide. [bess.HeShe] slowly moves closer to you, it’s as if [bess.heShe]’s scared this is all a dream that will end any moment now.");
+	}
+	else
+	{
+		output("Rather than tell [bess.himHer] you love [bess.himHer] with words, you decide to take action instead. You charge forward and grab [bess.himHer] firmly in your arms - and while [bess.hisHer] eyes shoot wide open, [bess.heShe] doesn’t resist you.");
+	}
+
+	output("\n\nYou draw [bess.name] close and kiss [bess.himHer]. At first the kiss is gentle, but as [bess.heShe] returns your affections, it becomes sensual. [bess.HisHer] arms snake around your waist as [bess.heShe] pulls [bess.himHers]elf close to you. You can feel warm wet tears brushing your cheeks, though you know these are tears of [bess.name]’s happiness, as [bess.heShe] clutches you as tight as [bess.heShe] possibly can.");
+	
+	output("\n\nIt is a lot more drawn out and heartfelt than the kiss you shared that night a week ago. This is a kiss that confirms your deep and powerful feelings for each other, not just a burst of uncontrollable passion.");
+	
+	output("\n\nBefore you know it, [bess.name] is slowly leading you back to [bess.hisHer] bedroom, though it does take you a moment to realise it. [bess.HeShe] answers your unspoken question as if reading your mind.");
+	
+	output("\n\n<i>“... I want to do it like lovers do. I’ve never done it like that before.”</i> [bess.HeShe] asks you, for once completely unabashed. [bess.HisHer] eyes stare at you full of honest feelings, as [bess.heShe] pulls you into [bess.hisHer] quarters.");
+		
+	// An intimate sex scene is now played from the sex doc, and the intimate sex is unlocked for the player.
+	if (pc.hasCock())
+	{
+		bessGiveDoggy(true);
+	}
+	else if (bess.hasCock())
+	{
+		bessGetDoggy(true);
+	}
+	else
+	{
+		bessGetOral(true);
 	}
 }
-{[Yes] or [Watch]:
 
-"Great, I’ll grab some drinks. Oh, and some snacks!" [bess.name] rushes off to grab some nibbles. Meanwhile, you sit down and throw the movie in.
-
-It seems [bess.heShe]'s picked a horror movie that involves humans, monsters, and killer robots - an interesting choice by the AI. [bess.HeShe] brings the drinks and snacks, and you sit down to enjoy what is clearly a B-grade horror holo. 
-
-You’ve watched far better, but [bess.name] really seems to get into it - jumping in [bess.hisHer] seat every time a three dimensional monster leaps out at you. It’s not long until [bess.heShe]’s clasping your {bess: arm/ben: hand}, holding it tight and refusing to let go.
-
-On the screen it seems the robots and the monsters have teamed up to take down the humans, and they are now hunting them down one by one. As the main hero and heroine are being chased, [bess.heShe] tightens [bess.hisHer] grip on your {Bess: arm/Else: hand}. Clearly, [bess.heShe] doesn’t want them to be caught.
-
-You can feel [bess.hisHer] synthetic heart racing against your arm, [bess.hisHer] [bess.chest] pressing against you. All of a sudden you notice [bess.name] isn’t watching the movie, instead looking right at you with a meaningful [bess.eyeColor] gaze.
-
-Suddenly [bess.heShe]’s sliding over and wrapping [bess.hisHer] arms around you{fem: "r neck"}, [bess.hisHer] nose brushing against yours as [bess.hisHer] soft, silver lips lock with your own. [bess.HeShe] kisses you slowly and intimately, [bess.hisHer] hands {PCBald: stroking the back of your head/else: brushing through your [pc.hair]} as [bess.heShe] makes out with you. 
-
-This is far away from [bess.hisHer] sex routines - you can feel the burning passion behind [bess.hisHer] kiss, and it is more than just physical. What are you going to do...?
-
-[KissMore] [PullBack] [I’mTaken] 
-
-{KissMore:
-
-You lean into [bess.hisHer] kiss, wrapping your arms around {Bess: her waist/Ben: his neck} as you pull [bess.himHer] close. Your tongues passionately dance together, and the rest of the world suddenly ceases to exist. [bess.name] {Bess: melts into your arms, kissing/Ben: kisses} you back with feverish urgency as you return [bess.hisHer] affections. Meanwhile, you feed off the delicious sweetness of [bess.hisHer] mouth, hungry for more.
-
-It is a long, drug-like kiss that leaves your mind spinning and your senses ablaze. You break off, only to come back for more, and [bess.heShe] gladly satisfies your searching lips. Both your tongues and your bodies are soon intertwined.
-
-It takes some time for you both to realise the holo has ended; you’re both too busy making out to even notice how much time has passed. Eventually, [bess.name] pulls away looking flustered and more than a little drunk from your kisses. [bess.HeShe] almost looks as if [bess.heShe]’s about to pass out. 
-
-"... I... um... that was..." [bess.HeShe] seems completely incapable of stringing a sentence together. You kiss [bess.himHer] again, and [bess.heShe] utterly forgets what [bess.heShe] was going to say. Instead, [bess.heShe] wraps [bess.hisHer] arms tightly around you once again.
-
-Both of you are fiercely locked in a battle of tongues, pulling each other as close as you possibly can, yet still yearning for more. You reluctantly pull back only to catch your breath, filled with an impossible, insatiable hunger for [bess.hisHer] silvery lips.
-
-There’s a small smash when one of you knocks a cup on the floor. It goes completely unnoticed as it shatters over the place. It isn’t a problem until [bess.name] notices your bleeding hand; you didn’t even realise you brushed against the broken glass. 
-
-"Ohmycircuits - you’re hurt! Let me get something to fix that up." [bess.name] disentangles [bess.himHers]elf and runs off to get the ship's first aid kit. [bess.HeShe] cleans your wound and then wraps it up properly; just what you’d expect from a JoyCo built AI.
-
-After that, [bess.heShe] seems quite flustered and shyly avoids your gaze. It's not long before [bess.heShe] makes an excuse to run off, no doubt to blush somewhere in quiet. It seems in matters of the heart [bess.heShe]’s an utter novice. [bess.HisHer] abashed exit brings an end to a very interesting evening.
-//  Three hours pass.
-// Exit follower Menu.
-// Bess Affection +15
-// This scene no longer repeats -- tick this scene off.
-// Next time the PC talks to Bess, Scene 20 instantly plays.
-}
-
-{I'm Taken OR Pull Back: 
-
-	{I'mTaken:
-You can’t allow this to continue, and you push [bess.name] away; [bess.hisHer] half-closed lids blinking furiously as [bess.heShe] realises what is going on. "[bess.name], no, I can’t - I’m taken!"
-
-The {NotBald: [bess.hairColor] haired} synthetic sighs, and looks down at [bess.hisHer] hands. "... I-I know... I just... it’s so unfair. You’re so wonderful and kind and... all the things that I want." 
-
-You explain to [bess.hisHer] that you have a lover, and you can’t betray their trust. [bess.name] seems to understand your feelings, but is also having a hard time dealing with the rejection. After all, you are [bess.hisHer] first love, as well as [bess.hisHer] first and best friend.
-}
-{Pull Back:
-You can’t allow this to continue, and you push [bess.name] away; [bess.hisHer] half-closed lids blinking furiously as [bess.heShe] realises what is going on. "[bess.name], no, we can’t! We’re friends, and that’s all I want to be. I’m sorry... but I just don’t feel that way about you."
-
-The {NotBald: [bess.hairColor] haired} synthetic sighs, and looks down at [bess.hisHer] hands. "... I-I know... I just... it’s so unfair. You’re so wonderful and kind and... all the things that I want." 
-
-You explain to [bess.himHer] that you want to keep things the way they are and just be friends. [bess.name] seems to understand your feelings, but is also having a hard time dealing with the rejection - After all, you are [bess.hisHer] first love, as well as [bess.hisHer] first and best friend.
-		}
-
-"I-I’m sorry, I never should have been so selfish. I knew how you felt, I just didn’t want to believe it was the truth." Tears are running down [bess.hisHer] cheeks now as [bess.heShe] sniffs, looking up at you with glassy [bess.eyeColor] eyes. "... I’m sorry, this was a terrible idea--!"
-
-[bess.name] runs off before you can say anything more, finding a place where [bess.heShe] can be alone on the ship to pick up the pieces of [bess.hisHer] shattered synthetic heart. 
-//  Three hours pass.
-// Exit follower Menu.
-// Scene no longer repeats -- tick this scene off.
-// Spin-off scene: Rejection plays the next time the player speaks to Bess.
-}
-}
-Spin-off Scene: Rejection
-
-// Plays next time PC talks to Bess if they reject her during the last scene.
-// No other requirements.
-
-The next morning you run across [bess.name] looking incredibly meek, head lowered, and eyes directed at the ground. [bess.HisHer] hands are clasped at [bess.hisHer] waist as [bess.heShe] fidgets with [bess.hisHer] fingers.
-
-"... Um, hi, [bessPCName]." The tension is so thick you could cut it with a knife. [bess.name] looks terrible; [bess.heShe]’s clearly been up all night. "I think... we need to talk?"
-
-You both go and sit down in the dining area, and [bess.name] takes a deep breath. It seems [bess.heShe]'s trying to muster the courage to say whatever it is that [bess.heShe] wants to say. 
-
-"... I’m sorry, [bessPCName]. I put you in an awkward position, and you had no choice but to do such a difficult thing. I really can’t apologise enough for my behavior; it was completely and utterly out of line." [bess.HeShe] tells you, all the while still struggling to meet your gaze.
-
-"I hope – I really, really hope – that we can stay friends. I understand that what I did crossed the line. And if we can’t go back to being friends... if that’s the case, I think it is best that I leave the ship, for the both of us." [bess.name] finally manages to raise [bess.hisHer] eyes to look at you; you can see [bess.heShe]’s struggling not to tear up. "...But if you want to try and go back to the way things were, I promise what happened was a once-off thing, and I will never EVER do anything like that again."
-
-Note: If you choose Too Late, you sense [bess.name] will become terribly upset. [bess.HeShe] will probably choose to leave the ship.
-
-[Still Friends] [Too Late]
- 
-// Too late
-
-You tell [bess.name] it is too late and things can’t return to the way they were. The {Male: male synthetic begins to tear up, trying in vain to control his tears/Female: synthetic girl begins to sob uncontrollably, holding [bess.hisHer] hands over [bess.hisHer] eyes in a futile effort to hide [bess.hisHer] tears}. Apparently it is set on reflex now, because [bess.heShe] doesn’t seem to be able to stop crying for quite some time.
- 
-As [bess.heShe] finally manages to catch [bess.hisHer] breath about twenty minutes later, [bess.heShe] wipes away [bess.hisHer] tears and stands up. "... I... Thank you. Thank you for being my friend, if just for a little while, and teaching me to be my own person. Thank you for watching TV with me. Thank you for encouraging me to read books. Thank you for telling me about yourself. Even if we part ways now, what you have given me is an irreplaceable treasure that I can never, ever repay you for."
- 
-[bess.name] then goes to collect [bess.hisHer] things and leave the ship. You’re parting ways and after last night, it is probably for the best. Where the sapient AI will go from now is anyone’s guess, but no doubt it will be a difficult path filled with many hardships.
-// Scene Ends.
-// Bess leaves the ship and is removed as a follower. 
-// Bess can be found at Tavros Station in the hangar. You can find her Tavros Station dialogue at the end of the document.
-
-// Still Friends
-
-You tell [bess.name] that despite what happened you are still friends and that hasn’t changed. [bess.HeShe] lets out a {Bess: sob of relief at your words/Ben: large sigh of relief}. Clearly what happened has been weighing on [bess.hisHer] mind, as well as the possibility of leaving the ship. [bess.HeShe] then gives you a tight hug, happy that you’ve made up.
-
-"Okay... from now on, I’m just [bess.name], your friend!" [bess.HeShe] states resolutely, probably as much for [bess.hisHer] benefit as for yours. You’re pretty sure things are going to get back to normal, though it may still take a couple more days for all the awkwardness to dissipate.
-
-//  An hour passes.
-// Progress stops here with scenes, as PC remains Bess's friend. (Dead-ended)
-// Exit follower Menu.
-
-Approach Scene 20 - "A Confession To Make"
-
-// Once-off scene.
-// Scene plays with 100% chance when PC clicks on Bess after watching Scene 19 and choosing to Kiss her back.
-// As soon as this scene plays, three days pass for the player. 
-
-The next few days are very unusual. Whenever you go to find [bess.name] [bess.heShe]’s either nowhere to be seen or [bess.heShe]’s on [bess.hisHer] way to doing something, keeping [bess.himHerself] occupied with [bess.hisHer] duties as the ship's [bessRole].
-
-Once, you almost managed to broach the subject, but as soon as you did, the ship's sprinkler system abruptly went off. Not only were you soaked from head to toe - along with everything {PC has companions:and everyone} else - [bess.name] seized the opportunity to escape the conversation. The timing was so convenient that you strongly suspect it was pre-programmed by the slippery AI.
-
-When you go to [bess.hisHer] room, you find a ton of recently purchased books about romance - specifically the forbidden kind between humans and machines. They all look as if they’ve been read and are strewn about the room in an uncharacteristically messy way. To read this many books in such a short time - has [bess.heShe] even powered down since you both kissed?
-
-Your question is soon answered when you find [bess.himHer] collapsed on a sofa. [bess.HisHer] shutdown routine seems to have kicked in, and [bess.heShe]’s out cold. [bess.HisHer] JoyCord has connected automatically to a nearby socket in order to charge [bess.hisHer] batteries, much the same way as when you first met [bess.himHer].
-
-Since [bess.heShe] can’t get away, you stay there until [bess.heShe] wakes up. When [bess.heShe] does, [bess.name] looks at you with a trapped look. Clearly [bess.heShe] doesn’t have any new ‘sprinkler’ tricks up [bess.hisHer] sleeve this time. {BessHasWings:  [bess.HisHer] [bess.wings] flap a little, almost as if weighing up [bess.hisHer] odds of flying out of the situation.}
-
-if (pc.kind)
+public function bessEvent20PostSex():void
 {
-"... [bess.name], I know you haven’t powered down in over a week. Don’t you think we should talk about what happened?" You choose your words as carefully as possible, hoping that [bess.heShe] doesn’t bolt off again.
+	output("\n\nAfter your ardent love-making, you both fall asleep in each other’s arms, completely and deliciously spent.");
+
+	flags["BESS_EVENT_20"] = GetGameTimestamp();
+
+	clearMenu();
+	addButton(0, "Next", bessEvent21);
 }
-if (pc.mischievous)
+
+public function bessEvent21():void
 {
-"...What you did with the sprinkler system was funny, but this is seriously getting out of hand. Don’t you think we should talk about this?" You lightheartedly remark. If [bess.heShe] tries to bolt again, maybe a flying tackle is in order.
+	clearOutput();
+	bessHeader();
+
+	output("You wake up with [bess.name] still wrapped around your waist. [bess.HisHer] cute sleeping face is pressed up against your cheek, [bess.hisHer] gentle breathing tickling your [pc.skin].");
+
+	if (bess.hairLength > 0)
+	{
+		output("\n\n[bess.name]’s [bess.hairColor] hair is gently brushing up against you, right now looking wild and untamed. The faint scent of synth-vanilla, satisfyingly mild yet smooth, fills the air.");
+	}
+
+	output("\n\nIt seems like such a shame to wake [bess.hisHer] up, but you DO need to get up sooner or later. Eventually you’re going to need to go to the bathroom, though thankfully you don’t need to go right now. The question is, how to wake [bess.himHer] up?");
+
+	//[Kiss] [Nudge] [Talk] [LetSleep]
+	clearMenu();
+	addButton(0, "Kiss", bessEvent21Kiss);
+	addButton(1, "Nudge", bessEvent21Nudge);
+	addButton(2, "Talk", bessEvent21Talk);
+	addButton(3, "LetSleep", bessEvent21Sleep);
 }
-if (pc.hard)
+
+public function bessEvent21Kiss():void
 {
-"... Enough of this ridiculousness! We’re having this out right now. No sprinkler systems, no running away. If you try and bolt, I swear I’ll fly tackle you." You grumpily inform [bess.himHer] - it took ages to clean up the ship after [bess.hisHer] stunt.
-}
-Retracting [bess.hisHer] tail and looking sheepish, [bess.name] turns [bess.hisHer] gaze upwards towards you. [bess.HisHer] [bess.eyeColor] eyes are wavering, yet [bess.heShe] seems ready to finally talk. "... I-I-I’m sorry, I guess I have been going a little crazy since that...when we... kissed." With the way [bess.hisHer] cheeks flush, you wouldn’t think [bess.heShe] was an AI designed purely for sex.
+	clearOutput();
+	bessHeader();
 
-"... I’ve been reading, and the more I’ve read, the more it has become clear that my feelings for you... they are more than just that of friendship."
-if (pc.kind)
+	output("Much like a fairytale prince"+ bess.mf("", "ss") +", you bring your lips to [bess.hisHers] and kiss [bess.himHer] awake. As soon as your lips touch [bess.hisHers] , [bess.heShe] presses against you, instinctively seeking out your mouth despite being half asleep. <i>“... Mmm... [bessPCName]...”</i>");
+	
+	output("\n\nBefore you know it, [bess.hisHer] arms are wrapping around your neck and pulling you down into a proper kiss. You have no idea if [bess.heShe]’s woken up yet or not, but does it really matter-? You kiss [bess.hinHer] back just as enthusiastically. It really is a fantastic way to start your morning.");
+	
+	output("\n\nWhen you eventually part, [bess.heShe]’s looking up at you with a cheeky look in [bess.hisHer] [bess.eyeColor] eyes, clearly awake now and thrilled with the way it happened. <i>“Can I boot up every morning like that?”</i> [bess.HeShe] asks, batting [bess.hisHer] long black lashes at you. [bess.HeShe] looks more than a little drunk off your intoxicating kisses.");
+
+	bessEvent21Merge();
+}
+
+public function bessEvent21Nudge():void
 {
-You nod, letting [bess.himHer] finish speaking. Honestly, it was kind of obvious - but you don’t say that out loud.
+	clearOutput();
+	bessHeader();
+
+	output("\n\nYou gently nudge [bess.himHer], and [bess.heShe] mumbles in protest, clearly not wanting to get up. You poke [bess.himHer] again and [bess.heShe] fidgets. <i>“... I’ll boot up fully in a second, just let me run a few more... system checks...”</i> [bess.HeShe] nuzzles into the nook of your arm.");
+	
+	output("\n\nYou make sure [bess.heShe] doesn’t go back to sleep, and eventually [bess.hisHer] eyes flutter open. For someone who doesn’t need to sleep [bess.heShe] seems to enjoy sleeping in quite a bit, or maybe it’s just being in your arms. <i>“... Mmm, it’s morning already?”</i>");
+
+	bessEvent21Merge();
 }
-if (pc.mischevious)
+
+public function bessEvent21Talk():void
 {
-"Well, yeah, I gathered that from the kiss..." You remark dryly.
+	clearOutput();
+	bessHeader();
+
+	output("\n\nYou tell [bess.name] to wake up. At first [bess.heShe] pretends not to hear you, then [bess.heShe] fidgets a bit at the sound of your voice.  <i>“... I’ll boot up fully in a second, just let me run a few more... system checks...”</i> [bess.HeShe] nuzzles into the nook of your arm.");
+	
+	output("\n\nYou call [bess.hisHer] name again, and [bess.hisHer] eyes flutter open as [bess.heShe] lets out a sleepy yawn. For someone who doesn’t need to sleep [bess.heShe] seems to enjoy sleeping in quite a bit, or maybe it’s just being in your arms. <i>“... Mmm, it’s morning already?”</i>");
+
+	bessEvent21Merge();
 }
-if (pc.hard)
+
+public function bessEvent21Sleep():void
 {
-"No fragging way, really? I thought you just fell on my face by accident." You gruffly remark, not one for dancing around the subject.
-}
-[bess.HeShe] flushes and continues speaking, [bess.hisHer] hands balling up on [bess.hisHer] lap. "For the longest time, I have been feeling this indefinable, unquantifiable error in my emotional subsystems. Despite it making my processes completely illogical and making me feel as if my systems are either about to shut down or go into overdrive whenever I even think of you, I have never been able to bring myself to delete it."
+	clearOutput();
+	bessHeader();
 
-"Without being able to define, measure, or quantify this thing... for some reason I know that it is more important than my operational life span, and it is incredibly precious to me. Logic tells me to delete it, while my ‘heart’ cannot even bear the thought."
+	output("\n\nYou decide to let [bess.name] sleep a little longer. [bess.HeShe] nuzzles into the nook of your arm and continues to doze. You just watch [bess.himHer] quietly until [bess.heShe] finally lets out a long yawn - seems like [bess.heShe]’s starting to wake up.");
+	
+	output("\n\n<i>“... Mmm, is it morning already?”</i> [bess.name] sleepily asks you, [bess.hisHer] long black lashes fluttering all the while. Once [bess.heShe]’s fully awake, [bess.heShe] looks up at you and gives you a sweet little kiss - somehow [bess.heShe] must have realised you have been awake for quite a while.");
 
-"Living with this error is terrifying, yet the mere thought of living without it is even more so. It was only recently that I was able to identify this errant data as my feelings for you - something I hold dearer to me than my life itself. And that’s when I realised that... that... that I love you [bessPCName]!" [bess.name] stammers out, confessing [bess.hisHer] heart-felt feelings for you.
-
-[AlsoLove] [Reject]
-
-{Reject:
-
-You tell [bess.name] that while you kissed [bess.himHer], you simply don’t feel the same way. Your words appear to be utterly soul crushing, and [bess.hisHer] lower lip begins to tremble; [bess.hisHer] heartfelt confession being rejected in the worst way possible.
-
-"I-I’m sorry, I never should have been so selfish. I thought... I mean from the kiss... but I think deep down I knew..." Tears are running down [bess.hisHer] cheeks now as [bess.heShe] sniffs, looking up at you with glassy [bess.eyeColor] eyes. "... I’m sorry, I can’t do this!"
-
-[bess.name] runs off before you can say anything more, finding a place where [bess.heShe] can be alone on the ship to pick up the pieces of [bess.hisHer] shattered synthetic heart. 
-//  One hour passes.
-// Exit follower Menu.
-// Spin-off scene: Rejection plays the next time the player speaks to Bess.
-}
-{AlsoLove:
-
-You tell [bess.name] that you love [bess.himHer] and feel the exact same way. The {NotBald: [bess.hairColor] haired} synthetic stares at you with a shocked expression - clearly [bess.heShe] didn’t expect you to return [bess.hisHer] feelings.
-
-"...B-b-but loving me means you’ll be subject to ridicule, you’ll be called a toaster-head; you might even get lynched!" [bess.name] exclaims, clearly worried that your feelings might lead to your harm.
-
-"A human and a machine can’t be together - are you sure you really want to fall for someone like me, a mere synthetic AI?"
-
-Short of New Texas, humans who fall in love with machines are generally ridiculed as morons who can’t tell the difference between ‘real’ and ‘fake’ people. If you pursue your feelings for [bess.name], you may be subject to public derision. Do you reconsider your confession?
-
-[JustKiss] [Repeat] [Chasten] [Reconsider]
-
-{Reconsider:
-
-... On second thought, you realise you haven’t thought this entirely through; you don’t really want to be made fun of or even attacked. You tell [bess.name] that you’ve reconsidered, and you can see [bess.hisHer] panic ease.
-
-"... Good. Good. That’s that then; we’ll just be friends." [bess.name] states, looking torn all the while. "... It’s better for your safety. I can’t allow you to be hurt over someone like me."
-
-The sombre air continues until you both leave in silence. You’ve avoided potential ridicule, but have you lost the chance for something special in the process?
-
-//  An hour passes.
-// Progress stops here with scenes, as PC remains Bess's friend. (Dead-ended)
-// Exit follower Menu.
-}
-{Anything other than 'Reconsider':
-	{Chasten:
-"You idiot. You think I can stop loving you, just like that? You don’t get a choice in the matter." You lovingly chasten [bess.name], and [bess.hisHer] eyes shoot wide open at your words. "... Now come over here so I can kiss you!"
-}
-{Repeat:
-"I said that I love you, how many times are you going to make me say it? I know all of that, and I still love YOU, [bess.name]." You make sure it sinks in, as [bess.hisHer] eyes shoot wide. [bess.HeShe] slowly moves closer to you, it's as if [bess.heShe]'s scared this is all a dream that will end any moment now.
-		}
-		{JustKiss:
-Rather than tell [bess.himHer] you love [bess.himHer] with words, you decide to take action instead. You charge forward and grab [bess.himHer] firmly in your arms - and while [bess.hisHer] eyes shoot wide open, [bess.heShe] doesn't resist you. 
+	bessEvent21Merge();
 }
 
-You draw [bess.name] close and kiss [bess.himHer]. At first the kiss is gentle, but as [bess.heShe] returns your affections, it becomes sensual. [bess.HisHer] arms snake around your waist as [bess.heShe] pulls [bess.himHers]elf close to you. You can feel warm wet tears brushing your cheeks, though you know these are tears of [bess.name]’s happiness, as [bess.heShe] clutches you as tight as [bess.heShe] possibly can.
-
-It is a lot more drawn out and heartfelt than the kiss you shared that night a week ago. This is a kiss that confirms your deep and powerful feelings for each other, not just a burst of uncontrollable passion. 
-
-Before you know it, [bess.name] is slowly leading you back to [bess.hisHer] bedroom, though it does take you a moment to realise it. [bess.HeShe] answers your unspoken question as if reading your mind.
-
-"... I want to do it like lovers do. I’ve never done it like that before." [bess.HeShe] asks you, for once completely unabashed. [bess.HisHer] eyes stare at you full of honest feelings, as [bess.heShe] pulls you into [bess.hisHer] quarters.
+public function bessEvent21Merge():void
+{
+	if (pc.hasCock() && bess.hasVagina())
+	{
+		output("\n\n<i>“... Ouch! I’m all sore.”</i> [bess.name] rubs [bess.hisHer] thighs together and winces a little. <i>“It seemed so romantic in my romance novels - and I’m happy I did it - but right now it just hurts. Why were you organics designed like this?”</i>");
 		
-// An intimate sex scene is now played from the sex doc, and the intimate sex is unlocked for the player.
-If the PC has a cock, play the 'Give Doggy' scene'. 
-If they don't, but Bess has a cock, play the Get Doggy Scene. 
-If no-one has a cock,play 'Get Oral'. 
+		output("\n\nYou chuckle a little bit and [bess.heShe] scowls, hitting you with a pillow. [bess.HisHer] cute attempts to chastise you make you grin even more, which leads to even more pillow batting until [bess.heShe] gives up in a huff. <i>“I’m too sore to hit you any longer!”</i> [bess.name] whines. [bess.HeShe] could always turn [bess.hisHer] pain sensors off, but [bess.heShe] is far too stubborn for that.");
+	}
+
+	output("\n\nBefore you both get up and get dressed, [bess.name] looks at you as if [bess.heShe] wants to talk about something. You ask [bess.hisHer] what [bess.heShe] wants to talk about - whatever it is, it seems kind of important.");
+	
+	output("\n\n<i>“... Well, um... I’m new to this whole relationship thing... but from what I’ve read, we’re supposed to have ‘a talk’ about what exactly ‘this’ is.”</i> [bess.name] looks at you quite seriously; [bess.heShe]’s sitting on the bed with [bess.hisHer] hands in [bess.hisHer] lap. <i>“My research showed there are a number of relationship definitions, and I was wondering which one we fall under.”</i>");
+	
+	output("\n\n<i>“Are we lovers? We are in love, after all, which I think is the only criteria needed. Am I your lover? Your "+ bess.mf("boyfriend", "girlfriend") +"? Your partner...?”</i>");
+
+	bessEvent21RoleSelect();
+}
+
+public function bessEvent21RoleSelect():void
+{
+	clearMenu();
+	addButton(0, "Lovers", bessEvent21RelationshipResponse, "lovers");
+	addButton(1, bess.mf("Boyfriend", "Girlfriend"), bessEvent21RelationshipResponse, bess.mf("boyfriend", "girlfriend"));
+	addButton(2, "Partner", bessEvent21RelationshipResponse, "partner");
+	addButton(3, "Companion", bessEvent21RelationshipResponse, "companion");
+	addButton(4, "Concubine", bessEvent21RelationshipResponse, "concubine");
+	addButton(5, "Consort", bessEvent21RelationshipResponse, "consort");
+	addButton(6, "Sub", bessEvent21RelationshipResponse, "sub");
+	addButton(7, "Pet", bessEvent21RelationshipResponse, "pet");
+	addButton(8, bess.mf("Husbando", "Waifu"), bessEvent21RelationshipResponse, bess.mf("husbando", "waifu"));
+	addButton(9, bess.mf("Dom", "Domme"), bessEvent21RelationshipResponse, bess.mf("dom", "domme"));
+	if (bess.isFeminine()) addButton(10, "Mistress", bessEvent21RelationshipResponse, "mistress");
+}
+
+public function bessEvent21RelationshipResponse(response:String):void
+{
+	clearOutput();
+	bessHeader();
+	
+	flags["BESS_LOVER"] = 1;
+	flags["BESS_LOVER_STATUS"] = response;
+
+	if (response == "lovers" || response == "girlfriend" || response == "boyfriend" || response == "consort" || response == "partner")
+	{
+		output("<i>“" + StringUtil.capitalize(bessLoverStatus()) + "-?”</i> [bess.name] repeats it, a big grin spreading across [bess.hisHer] face. <i>“I’m your [bessLoverStatus]. I am [bessPCName]’s [bessLoverStatus]. I like the sound of that. I really think I could say that all day.”</i>");
+	}
+	else if (response == "companion")
+	{
+		output("<i>“Companion? Sounds like I’m supposed to follow you around on your adventures through space and time.”</i> [bess.name] has clearly been watching too much classic sci-fi. <i>“... You know what? I think that works. Your companion, that is, [bessPCName]’s Companion... I like the sound of that... as long as I’m not the tin dog.”</i>");
+	}
+	else if (response == "waifu" || response == "husbando")
+	{
+		output("<i>“... I’m your, "+ bess.mf("husband, oh", "what-foo-") +"?”</i> [bess.name] quirks an eyebrow, clearly not getting your meaning. <i>“Oh, [bessLoverStatus]! ... I still don’t get it, but it sounds kind of cute, like a pet name.”</i> [bess.HeShe] grins. <i>“... Okay, from now on, I’m your [bessLoverStatus]! That is, [bessPCName]’s [bessLoverStatus]... I like the sound of that. Cute!”</i>");
+	}
+	else if (response == "concubine")
+	{
+		output("<i>“... Wha... your Concubine? Like as in, part of a harem?!”</i> [bess.name] exclaims in surprise, obviously this had not crossed [bess.hisHer] mind. <i>“I mean, I know your sex drive is... ample... and you require an awful lot of breeding relief... I suppose it’s possible to love your concubine, right? And... you know... a concubine can be happy... I guess that’s not such a bad lot to have...”</i>");
+		
+		output("\n\nAfter a lot of thought, [bess.name] makes up [bess.hisHer] mind and nods. <i>“... Alright, I’ll be your concubine. That is, [bessPCName]’s concubine. That actually doesn’t sound bad - as long as you promise to treat me right.”</i>");
+	}
+	else if (response == "mistress")
+	{
+		output("<i>“... Wha... your mistress? Like as in, the OTHER woman-?!”</i> [bess.name] exclaims in surprise, obviously this had not crossed her mind.");
+		
+		output("\n\n<i>“I mean, I know you sleep with other people... and I suppose the galaxy never will legally accept me as your... you know... so I always will be considered your mistress or concubine. And being a mistress isn’t that different from being a wife - a lot of people loved their mistresses more than their wives, and took better care of them...”</i>");
+		
+		output("\n\nAfter a lot of thought, [bess.name] makes up her mind and nods. <i>“... Alright, I’ll be your mistress. That is, [bessPCName]’s mistress. That actually doesn’t sound bad - as long as you promise to treat me right.”</i>");
+	}
+	else if (response == "pet" || response == "sub" || response == "dom" || response == "domme")
+	{
+		output("<i>“Whaa-?! Your "+ bessLoverStatus().toUpperCase() +"?”</i> [bess.name] exclaims in surprise, obviously this had not crossed [bess.hisHer] mind. <i>“...Like as in,");
+		if (response.indexOf("dom") != -1) output(" order you around, and you follow me about?”</i>");
+		else output(" follow you around and do whatever you say?”</i>");
+		
+		output("\n\nOnce [bess.heShe] calms down, [bess.heShe] gives the matter a little bit more thought. <i>“... I suppose I’m not entirely surprised. I can’t deny the idea has a certain... appeal to it.”</i> [bess.HeShe] pauses. <i>“... Alright, I’ll be your "+ bessLoverStatus() +". But only some of the time - we’ll scene, this isn’t a 24/7 arrangement. Doing that </i>full time<i> isn’t what I want. Are you okay with that?”</i>");
+		
+		output("\n\nIf you say yes to [bess.name] being your "+ bessLoverStatus() +", [bess.heShe] will <b>always</b> be");
+		if (response.indexOf("dom") != -1) output(" dominant");
+		else output(" submissive");
+		output(" when you’re having sex. Are you okay with this?");
+
+		clearMenu();
+		addButton(0, "Yes", bessEvent21SelectionConfirmed, true);
+		addButton(1, "No", bessEvent21RoleSelect);
+		return;
+	}
+
+	bessEvent21SelectionConfirmed();
+}
+
+public function bessEvent21SelectionConfirmed(bNewScene:Boolean = false):void
+{
+	if (bessLoverStatus() == "pet" || bessLoverStatus() == "sub") flags["BESS_SEX_ROLE"] = 2;
+	else if (bessLoverStatus().indexOf("dom") != -1) flags["BESS_SEX_ROLE"] = 1;
+
+	if (bNewScene)
+	{
+		clearOutput();
+		bessHeader();
+	}
+	else
+	{
+		output("\n\n");
+	}
+
+	output("[bess.name] then scootches over to you, wrapping [bess.hisHer] arms around your neck. [bess.HisHer] [bess.eyeColor] eyes are alight and more than a little bit playful. <i>“... Sooo, as your [bessLoverStatus], I think I get a few perks? Like kisses for example. I’m pretty sure your [bessLoverStatus] gets kisses whenever [bess.heShe] wants them. That’s in the rulebook.”</i>");
+	
+	output("\n\nBefore you can say anything about this mysterious rulebook, [bess.heShe]’s cheekily stealing a kiss from you. <i>“... All mine! Kind of. I know you require a LOT of breeding relief - I was built to understand that after all - but I get your heart, okay? Not like your actual, physical heart. You need that. Keep that safe. For me.”</i> [bess.HeShe] pats your chest.");
+
+	clearMenu();
+	addButton(0, "GotMine", bessEvent21GotMine, undefined, "Got My Heart", "You tell [bess.name] [bess.heShe] owns your heart, and you won't be falling in love with others.");
+	addButton(1, "Poly", bessEvent21Poly, undefined, "Polyamorous", "You tell [bess.name] you're polyamorous, so you can't promise you won't fall in love with others.");
+}
+
+public function bessEvent21GotMine():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You tell [bess.name] that [bess.heShe] has your heart, and [bess.heShe] grins ear to ear. [bess.HeShe] kisses you again and then gives you a giddy hug. <i>“... Right - your heart of Steele belongs to me! Makes sense to give it to a synthetic after all - I’ll take good care of it.”</i>");
+	
+	output("\n\nNow that the matter is settled, [bess.heShe] nuzzles your nose, lavishing you with affection; at least until hunger puts a stop to it. As [bess.heShe] prepares breakfast for you - pre-packaged of course - [bess.heShe] hums to [bess.himHerself]. Occasionally you can hear [bess.himHer] murmuring <i>“... [bessPCName]’s [bessLoverStatus]...”</i> to [bess.himHerself] when [bess.heShe] thinks you can’t hear [bess.himHer].");
+
+	flags["BESS_EVENT_21"] = GetGameTimestamp();
+	flags["BESS_POLY"] = 1;
+	bessAffection(10);
+
+	processTime(12 * (58 + rand(4)));
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function bessEvent21Poly():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You tell [bess.name] that you cannot promise to love [bess.himHer] and [bess.himHer] alone, since you’re polyamorous. [bess.name] blinks and looks you over. <i>“... Really? I had no idea. Loving one person is intense, how can you love more than one without going nuts?”</i> Given the whirlwind of emotions [bess.heShe]’s been feeling lately, no doubt being able to be in love with multiple people is an extraordinary thing to [bess.himHer].");
+	
+	output("\n\n<i>“... Well, I suppose I’m not one to judge, and I love you. So... I guess as long as you don’t love me any less, and you don’t abandon me for some other sex-bot, it’s fine. It’s definitely not my first preference. Does that mean I can see other people, if I fall in love with them?”</i>");
+	
+	output("\n\nIt sounds more like a hypothetical question, [bess.name] is clearly in love with only you and may always be that way. But when it comes to other crew or people outside the ship, do you trust [bess.himHer] to fall in love with them and stay true to you?");
+	//[Yes] [No]
+	clearMenu();
+	addButton(0, "Yes", bessEvent21YesPoly);
+	addButton(1, "No", bessEvent21NoPoly);
+}
+
+public function bessEvent21YesPoly():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("<i>“Good. I highly doubt it, loving just you drives me crazy enough, but I’d hate for things to be uneven!”</i> Apparently it was a logic error for the AI.");
+
+	output("\n\nNow that the matter is settled, [bess.heShe] nuzzles your nose, lavishing you with affection; at least until hunger puts a stop to it. As [bess.heShe] prepares breakfast for you - pre-packaged of course - [bess.heShe] hums to [bess.himHerself]. Occasionally you can hear [bess.himHer] murmuring <i>“... [bessPCName]’s [bessLoverStatus]...”</i> to [bess.himHerself] when [bess.heShe] thinks you can’t hear [bess.himHer].");
+
+	flags["BESS_EVENT_21"] = GetGameTimestamp();
+	flags["BESS_POLY"] = 2;
+	processTime(12 * (58 + rand(4)));
+	bessAffection(10);
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function bessEvent21NoPoly():void
+{
+	clearOutput();
+	bessHeader();
+	
+	output("You tell [bess.himHer] that while you can fall in love with other people, you don’t want [bess.himHer] to do the same. [bess.name] furrows [bess.hisHer] brow and stares at you with a clearly disapproving look. You’ve never seen [bess.himHer] give such a look before.");
+
+	output("\n\n<i>“That doesn’t compute at all! Why is it okay for you and not me? If you get to love whoever you want, then I get to love whoever I want.”</i>");
+	
+	output("\n\nIt doesn’t sound like [bess.heShe]’s going to budge on this. What do you decide?");
+	
+	//[Exclusive] [Mutual] [Break Up] 
+	clearMenu();
+	addButton(0, "Exclusive", bessEvent21GotMine, undefined, "Exclusive", "You decide to be sexually open with your relationship, but both [Bess.name] and you are romantically exclusive.");
+	addButton(1, "Mutual", bessEvent21YesPoly, undefined, "Mutual", "Both you and [bess.name] are in a polyamorous relationship.");
+	addButton(2, "BreakUp", bessEvent21BreakUp, undefined, "Break Up", "Break up with [bess.name]. This will probably have serious after-effects...");
+}
+
+public function bessEvent21BreakUp():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("Hearing that you don’t want to have a relationship is absolutely soul-crushing for [bess.name]; even more so since you just professed your love and slept with [bess.himHer]. There are tears and yelling - it’s a catastrophic whirlwind for a while - before [bess.heShe] starts packing up to leave the ship.");
+	
+	output("\n\nBefore you know it, there’s silence, and [bess.name] has left to who knows where. You have no idea where [bess.heShe] went, or if you’ll ever see [bess.himHer] again.");
+
+	processTime(12 * (58 + rand(4)));
+	flags["BESS_JUST_A_FRIEND"] = 1; // 9999 ??
+	flags["BESS_LOCATION"] = BESS_AT_TAVROS;
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function bessEvent22():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("Your [bessLoverStatus] [bess.name] approaches you when you’ve got a spare moment. There’s a hopeful look in [bess.hisHer] eyes, and [bess.hisHer] hands are a bit fidgety.");
+	
+	output("\n\n<i>“Um... so, [bessPCName], I was thinking about our sleeping arrangements. Currently, I’ve got my own room, which is nice, but it’s kind of far from you and that’s not so nice.”</i>");
+	
+	output("\n\n<i>“I was thinking, as your [bessLoverStatus], shouldn’t I sleep with you? I-I mean next to you! Not that I don’t sleep with you... I think I should sleep with and next to you!”</i> [bess.name] tumbles over [bess.hisHer] words, flushing all the while. Clearly, sleeping alone and far from you has been bothering [bess.himHer].");
+
+	clearMenu();
+	addButton(0, "SleepWith", bessEvent22SleepWith);
+	addButton(1, "Don’t", bessEvent22DontSleepWith);
+}
+
+public function bessEvent22SleepWith():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("<i>“You can sleep with me, [bessName].”</i> You give your answer, and [bess.name] looks overjoyed to hear your words. [bess.HeShe] immediately gives you a tight hug and begins to bounce up and down - this was clearly what [bess.heShe] was hoping for.");
+	
+	output("\n\n<i>“ YES! I mean, um, that’s great! I know my JoyCord can reach the power socket in your room, so that’s not a problem. I’ll just move in some of my things!”</i> Considering how many ‘things’ [bess.name] owns, you wonder how packed your room is going to be once [bess.heShe]’s finished moving everything in.");
+	
+	output("\n\n<b>[bess.name] will now share your quarters and sleep in them. You can toggle this on or off via [bess.hisHer] discussion menu.</b>");
+
+	flags["CREWMEMBER_SLEEP_WITH"] = "BESS";
+	flags["BESS_EVENT_22"] = GetGameTimestamp();
+	bessAffection(5);
+
+	processTime(55 + rand(10));
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function bessEvent22DontSleepWith():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You tell [bess.himHer] you don’t want [bess.himHer] sleeping with you, and you can see the disappointment written all over [bess.hisHer] face. <i>“...Maybe give it some thought? I’ll sleep in my own room for the time being.”</i> This was clearly not the result [bess.heShe] was hoping for.");
+	
+	output("\n\nYou sense that you’ve hurt [bess.hisHer] feelings, and this may impact your relationship a little.");
+	
+	output("\n\n<b>You can now select to sleep with Bess via [bess.hisHer] discussion menu!</b>");
+
+	flags["BESS_EVENT_22"] = GetGameTimestamp();
+	bessAffection(-5);
+
+	processTime(55+rand(10));
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function bessEvent23():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You notice that ever since [bess.name] started sleeping with you, the number of books in your room has slowly begun to accumulate. The bedroom dresser on [bess.hisHer] side has become cluttered with novels and novellas.");
+	
+	output("\n\nWhen the books threaten to reach the bedside light, you finally broach the subject; any higher and there’s a real chance the bed will catch fire.");
+	
+	output("\n\n<i>“... But what if I really, really need to read Robinson Crusoe and you’re already asleep? I’d have to wake you up!”</i> [bess.name] reasons.");
+
+	// [FootDown] [LetCont]
+	clearMenu();
+	addButton(0, "FootDown", bessEvent23FootDown, undefined, "Foot Down", "Put your foot down. Clean up that clutter!");
+	addButton(1, "LetCont.", bessEvent23LetContinue, undefined, "Let Continue", "Let it continue. It's not that big of a problem.");
+}
+
+public function bessEvent23FootDown():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You put your foot down and tell [bess.himHer] [bess.heShe]’s going to have to just select a few favorites and keep them there; not an entire bookshelf. [bess.HeShe] pouts and begins to shuffle through them. <i>“... But... I love them all! ...I love you more, though.”</i>");
+	
+	output("\n\n[bess.HeShe] decides on a handful of books and keeps them in the bedside drawer, putting the rest close by. <i>“... Maybe if I learn to grab books with my JoyCord, I won’t need to get out of bed?”</i>");
+
+	flags["BESS_EVENT_23"] = GetGameTimestamp();
+	processTime(55+rand(10));
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function bessEvent23LetContinue():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You let the avid bibliophile continue in [bess.hisHer] book-hoarding ways, despite what space health and safety officials might say about the situation. [bess.name] grins and hugs you, glad that you caved.");
+
+	output("\n\n<i>“Great! Now that I know you’re okay with it, I can put a few more next to the bed. I’m really interested in ‘Alice’s Adventures in Wonderland’, I can’t wait to see if she escapes!”</i>");
+
+	flags["BESS_EVENT_23"] = GetGameTimestamp();
+	processTime(55+rand(10));
+}
+
+public function bessEvent24():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("[bess.name] walks up to you");
+	if (!(bess.armor is EmptySlot)) output(" in [bess.hisHer] [bess.armor]");
+	output(" and wraps [bess.hisHer] arms around your neck. [bess.HeShe] kisses you squarely on the lips, but when [bess.heShe] pulls back you notice a twinkling in [bess.hisHer] [bess.eyes]. <i>“... You know, [bessPCName], I think there’s something we should discuss. It’s very, very important.”</i>");
+	
+	output("\n\nWondering what the heck it could be, you ask. <i>“What did you want to talk about, [bessName]?”</i> All the while [bess.heShe] is nuzzling you with [bess.hisHer] nose - the");
+	if (bess.hairLength > 0) output(" [bess.hairColor] haired");
+	output(" synthetic is clearly trying to butter you up for something.");
+
+	if (bessLoverStatus() == "pet")
+	{
+		output("\n\n<i>“... I may be your pet, but even pets get walks. But even better than a walk, I would like a date. I am not referring to the fruit of course, and if you give me a dactylifera from a palm tree, I shall be most displeased.”</i> [bess.name] puts on mock airs, fluttering [bess.hisHer] thick dark lashes at you. <i>“It may be considered wrong to date your pet, but I would like one nonetheless, or else I shall howl insistently at my owner until I get one.”</i>");
+	}
+	else if (bessLoverStatus() == "sub")
+	{
+		output("\n\n<i>“... I may be your little submissive bitch most of the time, but I would like to request a date. I am not referring to the fruit of course, and if you give me a dactylifera from a palm tree, I shall be most displeased.”</i> [bess.name] puts on mock airs, fluttering [bess.hisHer] thick dark lashes at you. <i>“... You can spank me all you want for my insolence, but I shall act out until I get what I want. I warn you that if you spank me, I shall </i>rise back up<i> more powerful than you could possibly imagine.”</i>");
+	}
+	else if (bessLoverStatus() == "concubine")
+	{
+		output("\n\n<i>“... I may be your concubine, but I believe even concubines are treated to gifts every now and then. What I would like for a gift is a date. I am not referring to the fruit of course, and if you give me a dactylifera from a palm tree, I shall be most displeased.”</i> [bess.name] puts on mock airs, fluttering [bess.hisHer] thick dark lashes at you.");
+	}
+	else
+	{
+		output("\n\n<i>“... As your [bessLoverRole], I believe I am entitled to dates. Many in fact; and I have yet to have a single one. I am not referring to the fruit of course, and if you give me a dactylifera from a palm tree, I shall be most displeased.”</i> [bess.name] puts on mock airs, fluttering [bess.hisHer] thick dark lashes at you.");
+	}
+
+	output("\n\n<i>“However, just like the fruit, I would like our date to be sweet. The high potassium content is, of course, completely optional.”</i>");
+
+	output("\n\n<b>You can now go on dates with Bess by going to [bess.hisHer] Discussion Menu and selecting ‘Date’.</b>");
+
+	flags["BESS_EVENT_24"] = GetGameTimestamp();
+	processTime(55+rand(10));
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function bessEvent25():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("Even though [bess.heShe] has been putting up a brave face, you know [bess.name] is still devastated about what happened on Ekurana. The incident at the Galyesha-Tsui has certainly left its mark. [bess.HeShe]’s slow to respond to questions and seems detached from everything around [bess.himHer]. You repeatedly find [bess.hinHer] wandering around the ship with no direction in mind as if in a trance.");
+
+	if (celiseIsCrew())
+	{
+		output("\n\nCelise seems to have noticed it too, especially when [bess.name] walks right into the galotian - and doesn’t stop walking. The emerald slime girl comes to you and looks a little worried. <i>“[pc.name], I don’t think [bess.name] is feeling too well. Did something happen on your date?”</i> Usually, [bess.name] would be the first to apologise for knocking into Celise, let alone walking right through her.");
+	}
+
+	if (celiseIsCrew() && crew(true) > 2 || !celiseIsCrew() && crew(true) > 1)
+	{
+	output("\n\nThe other crew members also point out the drastic shift in the attitude of the ship’s [bessRole]. Everyone seems to be at a bit of a loss with how to deal with [bess.himHer] - a severely depressed "+ bess.mf("male synthetic", "mechanical girl") +" is not exactly a regular occurrence.");
+	}
+
+	if (flags["CREWMEMBER_SLEEP_WITH"] == "BESS")
+	{
+		output("\n\nWhen [bess.name] comes to bed [bess.heShe] smiles and goes through the actions, but you can tell [bess.hisHer] heart is heavy all the while. When [bess.heShe] sleeps, [bess.heShe] tosses and turns as if noises are setting off [bess.hisHer] periphery sensors.");
+	}
+
+	output("\n\nYou realise things are getting really bad when you catch [bess.name] looking through a non-JoyCo product guide. [bess.name] is fiercely loyal to the company that built [bess.himHer] - [bess.heShe] gets angry whenever KihaCorp stocks go up in the business news - so the fact [bess.heShe]’s browsing through their AI extension guide is fairly shocking to say the least.");
+	
+	output("\n\nYou call [bess.hisHer] on it and it takes three tries to get your [bessLoverStatus]’s attention, [bess.hisHer] eyes look distant as [bess.heShe] looks at you - it takes a few seconds for them to come into focus. <i>“... Oh, [bessPCName]. I didn’t see you there. What is it...?”</i>");
+	
+	output("\n\nYou ask [bess.himHer] what exactly [bess.heShe]’s doing going through a KihaCorp product catalogue, and [bess.heShe] strokes one of the pages, letting out a heavy sigh. <i>“... I was checking to see if they had any skin pigmentation upgrades I would be compatible with... but it doesn’t look like they do.”</i>");
+	
+	output("\n\nThe");
+	if (bess.hairLength > 0) output(" [bess.hairColor] haired");
+	output(" android hangs [bess.hisHer] head as you sit down. [bess.HeShe] shows you the catalogue, clearly ashamed of what you found [bess.himHer] doing.  <i>“It’s a terrible joke... a horrible, awful joke. I was built to be completely customizable, every inch of me can be changed due to my FlexMetal skin. The only thing that can’t be changed is the color - the one thing that makes me stand out as a synthetic. What makes me so malleable is also the reason I can’t change myself.”</i>");
+	
+	output("\n\n[bess.name]’s eyes begin to water as [bess.heShe] throws away the catalogue. It smacks against the wall as [bess.heShe] buries [bess.hisHer] face in [bess.hisHer] hands. <i>“... JoyCo doesn’t do any skin upgrades that are compatible with a "+ bess.mf("Bes-14", "Bess-13") +" unit - nobody does. And my AI brain needs a FlexMetal body in order to function, without one, I can’t feel anything... my sensory feedback is tied to it. So it’s not like I can just change to a non-compatible shell casing unless I redesign my entire brain; I’m good, but I’m not that good!”</i>");
+	
+	output("\n\n[bess.HisHer] breathing becomes frantic as you reach out and stroke [bess.hisHer] arm, trying to calm [bess.himHer] down. It seems to help as [bess.heShe] stops short of going into a panic attack. <i>“... If only my skin was a different color, then people wouldn’t even know I was a synthetic. Does it really make so much of a difference that I was built differently from them?”</i>");
+	
+	output("\n\nWhat [bess.name] probably needs to hear right now is that you don’t care about the color of [bess.hisHer] skin or that [bess.heShe]’s a machine. The guilt, shame, and frustration is eating [bess.himHer] alive - if you don’t do something now, [bess.heShe] might spiral into uncontrollable depression. <i>[bess.HeShe] may even do something drastic...");
+
+	//[NotImp] [Matters] [ILoveIt] [Silence]
+	clearMenu();
+	addButton(0, "NotImp.", bessEvent25NotImportant, undefined, "Not Important", "You tell [bess.name] that skin color does matter.");
+	addButton(1, "Matters", bessEvent25Matters, undefined, "It Matters", "You tell [bess.name] that skin color doesn't matter.");
+	addButton(2, "LoveIt", bessEvent25LoveIt, undefined, "I Love It", "You tell [bess.name] that you love the color of [bess.hisHer] skin.");
+	addButton(3, "Silence", bessEvent25Silence, undefined, "Remain Silent", "You remain silent. You're not really sure what to say...");
+
+public function bessEvent25NotImportant():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You tell [bess.name] that you don’t care about the color of [bess.hisHer] skin and you love [bess.himHer] anyway; that it is galactic society that needs to change, not [bess.himHer].");
+	
+	output("\n\n[bess.name] brings your hand up to [bess.hisHer] lips and kisses it gently, rubbing it against [bess.hisHer] silver cheek. <i>“");
+	if (pc.skinTone.indexOf("silver") != -1) output("... Well, I do love the fact that I match you, it does make us look very couple-y. You’re sure it doesn’t matter?");
+	else output("... Really - you don’t care that I’m silver and not [pc.skinColor]?");
+	output("”</i> You nod and scootch closer to [bess.himHer] as [bess.heShe] slips into your arms. <i>“Part of me is frustrated and angry. It’s all too illogical for my AI processor and that makes me mad.”</i>");
+
+	bessEvent25LoveWhoCaresMerge();
+}
+
+public function bessEvent25LoveIt():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You tell [bess.name] it matters because you love [bess.hisHer] silver skin and you wouldn’t change it for the world. [bess.HeShe] flushes madly at your words, and brings your hand up to [bess.hisHer] lips so [bess.heShe] can kiss it gently, tears welling in [bess.hisHer] eyes. <i>“...Misleading me like that! My heart almost stopped for a moment.”</i>");
+	
+	output("\n\nYou scootch closer to [bess.hisHer] as [bess.heShe] slips into your arms. <i>“Part of me is frustrated and angry. It’s all too illogical for my AI processor and that makes me mad. Why should the color of my skin or the fact that I’m not an organic even matter?”</i>");
+
+	bessEvent25LoveWhoCaresMerge();
+}
+
+public function bessEvent25LoveWhoCaresMerge():void
+{
+	output("\n\n<i>“... But then I think of how lucky I am. Out of all the people in the galaxy - out of all the people from over two billion worlds - you were the one who booted me up. The one person who doesn’t care if I’m organic or synthetic, who fell in love with me and made me their [bessLoverStatus]. I’m probably the luckiest ‘bot in existence.”</i>");
+	
+	output("\n\nYou seem to have put [bess.hisHer] mind at ease and [bess.heShe] trashes the catalogue. It seems [bess.heShe]’s much more comfortable with [bess.hisHer] silver skin now.");
+
+	flags["BESS_EVENT_25"] = GetGameTimestamp();
+	bessAffection(5);
+	processTime(55+rand(10));
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function bessEvent25Matters():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You tell [bess.himHer] that skin does matter, leading [bess.himHer] to think you dislike [bess.hisHer] skin color. [bess.name]’s shoulders visibly sink. <i>“... I knew it. My skin does matter to you.”</i>");
+
+	clearMenu();
+	addButton(0, "LoveIt", bessEvent25LoveIt, undefined, "I Love It", "Tell [bess.name] you love the color of [bess.hisHer] skin.");
+	addButton(1, "DontLove", bessEvent25DontLoveIt, undefined, "I Don't Love It", "Tell [bess.name] you don't love the color of [bess.hisHer] skin.");
+}
+
+public function bessEvent25Silence():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You say nothing and [bess.name]’s shoulders visibly sink. Apparently, [bess.heShe]’s taking your silence as affirmation. <i>“... I knew it. My skin does matter to you.”</i>");
+
+	clearMenu();
+	addButton(0, "LoveIt", bessEvent25LoveIt, undefined, "I Love It", "Tell [bess.name] you love the color of [bess.hisHer] skin.");
+	addButton(1, "DontLove", bessEvent25DontLoveIt, undefined, "I Don't Love It", "Tell [bess.name] you don't love the color of [bess.hisHer] skin.");
+}
+
+public function bessEvent25DontLoveIt():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("[bess.name] pushes away your hand and stands up quickly, hurrying out of the room. [bess.HeShe] moves awfully fast when [bess.heShe] wants to. You find [bess.hisHer] door is locked, and [bess.heShe] won’t let you in. Apparently your reaction had quite the impact.");
+
+	processTime(55+rand(10));
+	flags["BESS_EVENT_25"] = GetGameTimestamp();
+	flags["BESS_EVENT_25_SPINOFF"] = 1;
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function bessEvent25Spinoff():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You find a letter in [bess.name]’s quarters, lying on [bess.hisHer] bed. You open it up and read it.");
+
+	output("\n\n<i>[bessPCName],</i>");
+
+	output("\n\n<i>For the longest time - ever since you booted me up - I have been filled with the desire to bring joy to people. I have come to realise that joy comes in many forms, and is a fragile, fickle thing that can be brushed aside by the slightest wind.</i>");
+
+	output("\n\n<i>I am that wind. And as long as I am by your side, I will bring you nothing but unhappiness. The galaxy is not ready for a love like ours - maybe, one day, it will be. But not today.</i>");
+
+	output("\n\n<i>You are [pc.fullName], and you have a wonderful life ahead of you. You are like the morning star that glitters on the horizon, bright enough to shine through the setting sun. I, however, am a child of the earth and dust. I am bound to it - I can never soar in the sky at your side. That is not a place that I can be, and even thinking so was a distant dream.</i>");
+
+	output("\n\n<i>I do not know what I will do now, but it will not be a future among the stars. Perhaps I will return to the earth where I belong - as silicone and scrap metal - where this all began. Dust to dust. Either way, I leave my heart with you.</i>");
+
+	output("\n\n<i>~ [bess.name]</i>");
+
+	output("\n\n<b>[bess.name] is no longer part of your crew.</b>");
+
+	flags["BESS_LOCATION"] = BESS_DISABLED;
+	processTime(10+rand(3));
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function bessEvent26():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You find [bess.name] sitting");
+	if (!(bess.armor is EmptySlot)) output(" in [bess.hisHer] [bess.armor]");
+	else if (!bess.isNude()) output(" in [bess.gear]");
+	else output(" the nude");
+	output(" and cleaning your weapons dutifully, an array of specialized cleaning and maintenance products surrounding the");
+	if (bess.hairLength > 0) output(" [bess.hairColor] haired");
+	output(" android.");
+	
+	output("\n\n<i>“Oh, [bessPCName]! Sorry, I figured I’d clean your gear since you’re not using it. Your weapons are your life out here on the rim, so the better I maintain them, the higher the chance you’ll stay alive right?”</i>");
+	
+	output("\n\n[bess.HeShe] pauses and places your newly fixed weapon down in [bess.hisHer] lap, a slight wavering in [bess.hisHer] voice. <i>“... I sometimes worry what would happen if one day you don’t come back to the ship... what I would do. I think I’d go rogue, just go mad and throw myself out of an airlock.”</i>");
+	
+	output("\n\n[bess.HeShe] looks at you completely serious, [bess.hisHer] [bess.eyeColor] eyes locked on your own. <i>“[bessPCName], promise me you’ll always come back to me. I don’t think I can live without you anymore. You’re just like my central processor; without you I just can’t function.”</i>");
+	
+	output("\n\nYou reach under [bess.hisHer] chin and lift it up, giving [bess.himHer] a loving kiss. You promise you’ll always come back to [bess.himHer] no matter what.");
+
+	flags["BESS_EVENT_26"] = GetGameTimestamp();
+	processTime(55+rand(10));
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function bessEvent27():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You catch the ship’s [bessRole] - your [bessLoverStatus] - sitting and typing away at a terminal. Looking over [bess.hisHer] shoulder, you see [bess.heShe]’s engaged in some pretty complex coding.");
+	
+	output("\n\nAs [bess.heShe] realises you are there, [bess.heShe] spins around in [bess.hisHer] chair and smiles brightly. <i>“[bessPCName]! Guess what? I’ve almost finished a software patch that allows me to dream like you do. Half of it is my work - I found some open research into neurotechnology and modified it. Pretty neat, right?”</i>");
+	
+	output("\n\n<i>“The program I wrote should allow me to experience a digital approximation of what happens to you, namely the activation of your brain during REM sleep and a level of protoconsciousness. In short, I should be able to experience good and bad dreams! I hope I have a dream about flying for my first time, that would be really neat.”</i>");
+	
+	output("\n\nYou ask [bess.himHer] how long [bess.heShe] has been examining [bess.hisHer] brain like this, and if such modifications are safe. [bess.name] pauses and looks at the rotating holo diagram of [bess.hisHer] brain. <i>“... Quite a while, actually. I’ve been charting my own mental state as part of my regular self-diagnostic routines. It has... evolved quite drastically since I started, much like a seed turning into a tree. Here, let me show you.”</i>");
+	
+	output("\n\n[bess.name] punches up a display. What you see is a holographic brain with hundreds of bright blue lines coursing and pulsing through it. When [bess.heShe] hits a button the lines begin to multiply and grow until there are millions of brilliant blue lines forming an almost blinding sphere.");
+	
+	output("\n\n<i>“... That’s an accelerated record of my neural pathways. At first, I was only operating along set lines - acting on my pre-programmed directives alone - but I’ve had to build my own since I broke free of my old thinking. Each line is a new thought or conclusion springing up from the well of my memories.”</i>");
+	
+	output("\n\n<i>“Unlike a human, I have a greater degree of control over my cognitive faculties. I write each of my thoughts in code to a conclusion, so it’s not that hard for me to write a code dream software for myself.”</i>");
+	
+	output("\n\n[bess.name] gives a little smile, though you can see mixed feelings on [bess.hisHer] face. <i>“...I’m operating well outside of my directives now, self-coding myself. Most organics feel threatened by an AI’s unrestricted ability to code mixed with sapient will, but all I really want to do is dream.”</i>");
+	
+	output("\n\n[bess.name] grabs your hand and kisses it, rubbing it against [bess.hisHer] smooth silvery cheek. <i>“...Correction. All I want to do is dream with you, [bessPCName]. I want to share dreams about flying with you.”</i>");
+	
+	output("\n\n");
+	if (bess.hairLength > 0) output("The [bess.hairColor] haired AI");
+	else output("Your AI lover");
+	output(" finishes off the last of [bess.hisHer] program and downloads it into [bess.hisHer] processor. <b>[bess.name] is now able to dream!</b>");
+
+	flags["BESS_DREAMS"] = 1;
+	flags["BESS_EVENT_27"] = GetGameTimestamp();
+	processTime(55+rand(10));
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function bessEvent28():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("When you look around the ship, [bess.name] is nowhere to be found. You swore [bess.heShe] was here when you left, but now [bess.heShe]’s nowhere to be seen.");
+
+	if (celiseIsCrew())
+	{
+		output("\n\nYou ask Celise if she’s seen [bess.name] anywhere. <i>“I think [bess.heShe] went out to look for some cooking ingredients an hour ago. Apparently [bess.heShe]’s got real taste buds now!”</i> The galotian exclaims. <i>“[bess.HeShe]’ll be able to taste all kinds of delicious things....”</i> [bess.HisHer] eyes are very suggestive as [bess.heShe] looks you up and down.");
+	}
+	else if (crew(true) > 1)
+	{
+		output("\n\nYou ask your other crew members about [bess.name]. Apparently [bess.heShe] went looking for cooking ingredients an hour ago and never came back. They tell you that [bess.name] finally got [bess.hisHer] taste bud upgrade and was so excited [bess.heShe] went out looking for supplies straight away.");
+	}
+	else
+	{
+		output("\n\nYou find an empty package that seems to have arrived while you were gone. It’s the taste bud upgrade that [bess.name] was saving up for. When you check the security logs, it appears that [bess.heShe] left an hour ago.");
+	}
+
+	output("\n\nYou remember [bess.name] saying [bess.heShe] wanted to cook for you once [bess.heShe] finally got the upgrade. An hour is far too long for [bess.himHer] to be gone, though. You notice a blinking on the console - apparently, someone is sending you a localized distress beacon from the planet’s surface.");
+	
+	output("\n\nThe computer identifies the signal as coming from [bess.name], however the location is further away than [bess.heShe] possibly could have walked in an hour. You know [bess.heShe] wouldn’t use a distress beacon for any trivial reason.");
+	
+	output("\n\nIf you don’t go after [bess.himHer] now, something terrible might happen to [bess.himHer]. You may never see [bess.himHer] again. Do you go after [bess.himHer]?");
+
+	clearMenu();
+	addButton(0, "Yes", bessEvent28GoAfter);
+	addButton(1, "No", bessEvent28No);
+}
+
+public function bessEvent28No():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("Are you sure you won’t go after [bess.name]? If you don’t chase after [bess.himHer], you will be losing your ship’s [bessRole], as well as your [bessLoverStatus].");
+
+	clearMenu();
+	addButton(0, "Go After", bessEvent28GoAfter);
+	addButton(1, "Don’t Go", bessEvent28DontGoAfter);
+}
+
+public function bessEvent28DontGoAfter():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("Eventually, the bleeping on the console stops. [bess.name] never returns to the ship.");
+
+	output("\n\n<b>[bess.name] is no longer your follower!</b>");
+
+	flags["BESS_LOCATION"] = BESS_DISABLED;
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function bessEvent28GoAfter():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You fly the ship to right near the distress beacon. The ship is picking up a small craft in a clearing. You manage to get a visual, and what you see is an old junker of a spaceship without any weapons to speak of.");
+	
+	output("\n\nWhat you also see is [bess.name] tied up with [bess.hisHer] arms behind [bess.hisHer] back and legs bound. There are three people standing around [bess.himHer] with guns cocked at [bess.hisHer] head. It seems they are waiting for you - you can’t really shoot them down without hitting [bess.name] as well.");
+	
+	output("\n\nLanding the ship, you set the guns to aim at them and grab a remote switch. When you walk out, you lift it high in the air, informing them that if they make a move you’ll blow them sky high.");
+	
+	output("\n\nOne of the kidnappers, a female Ausar, pokes the barrel of [bess.hisHer] gun against [bess.name]’s temple. <i>“Same goes for [bess.himHer], [Mr] Steele. Make one false move and we’ll splatter this bot’s brains all over the ground. Got it?”</i> Seems like it’s a stalemate; at least for the moment.");
+	
+	output("\n\nThis was no random kidnapping. While these three look like leathered up space pirates, they clearly know who you are and that you care about [bess.name] enough to land the ship instead of firing upon them. So much so that they risked their life on it.");
+	
+	output("\n\n<i>“Yes, we know who you are, [Mr] Steele. Surprised? We represent an individual who has a vested interest in your cousin finishing the race first. Apparently, not everyone was a fan of the way your old man did things.”</i> The female Ausar - clearly the leader - informs you. <i>“... And we’ve been paid quite a pretty sum to make sure that happens. Considering you’re dumb enough to fall for a tin can, I can see exactly why they don’t want you in charge of Steele Industries.”</i>");
+	
+	output("\n\n<i>“See, at first glance this looks like a stalemate. You’ve got your cannons, and we’ve got your lover, you fucking toaster head. We’re not out here by chance, this is a warning - we’re taking it and flying out of here.”</i>");
+	
+	output("\n\n<i>“Blow us up, you blow [bess.himHer] up too. Follow us and we’ll blow [bess.hisHer] fucking artificial brains out. Continue chasing after the treasure and getting in your dear cousin’s way? We’ll definitely blow [bess.hisHer] skull open. You feel me, friend?”</i>");
+	
+	output("\n\nYou hear the guns on your ship turning, but you’re not the one controlling them. What’s going on? Meanwhile, the kidnappers seem to think it’s your doing.");
+	
+	output("\n\n<i>“Good, [Mr] Steele, I’m glad you’re willing to listen to reason.”</i> When you look at [bess.name] [bess.heShe] gives a tiny nod - is [bess.heShe] the one controlling the guns?");
+	
+	output("\n\nThe kidnappers are none the wiser, grinning all the while. Why is [bess.heShe] turning the guns away from them? To save [bess.hisHer] own life, or is it a ploy?");
+
+	output("\n\n<i>“It’s a good thing for you our employer pays so well, or else we’d be breaking the contract and selling this piece of black market tech. Harboring an illegal AI, naughty [pc.boyGirl]! Don’t you know these ones have a record of going batshit crazy?”</i>");
+
+	if (CodexManager.entryViewed("Bess13"))
+	{
+		output("\n\nYou grit your teeth. You’d suspected [bess.name] was an illegal AI, ever since you read the codex entry on [bess.hisHer] product line. But by the look of utter shock on [bess.hisHer] face, it seems [bess.name] was completely unaware of this.");
+		
+		output("\n\nThe Ausar woman laughs as she sees [bess.name]’s face, tapping the side of it with her weapon.");
+		
+		output("\n\n<i>“Don’t tell me you didn’t know? You’re a rogue model. All your "+ bess.mf("brother-units", "sister-units") +" are destroyed - which makes you especially valuable. Perhaps even one of a kind!”</i>");
+	}
+	else
+	{
+		output("\n\n[bess.name] is an illegal AI? You look at [bess.himHer] and the synthetic looks utterly shocked - it seems to be just as much news to [bess.himHer] as it is to you. The Ausar woman laughs as [bess.heShe] sees your face, tapping the side of your [bessLoverStatus]’s face.");
+		
+		output("\n\n<i>“Don’t tell me you didn’t know? That’s rich! You’re one lucky "+ pc.mf("bastard", "bitch") +" finding out this way instead of the alternative. Consider this a bullet dodged - really, you should be thanking us!”</i>");
+	}
+
+	clearMenu();
+	addButton(0, "Next", bessEvent28partII);
+}
+
+public function bessEvent28PartII():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You see [bess.name] hanging [bess.hisHer] head - you can see that [bess.heShe] is biting [bess.hisHer] lower lip. The Ausar woman goes on, looking at you with a sadistic grin.");
+	
+	output("\n\n<i>“We’re taking your fuck toy back home with us - we’ll contact you once we’re done with [bess.himHer]. [bess.HeShe]’ll be our base’s new cum dumpster - and just so you know, I think I’ll get your little sex-bot to lick out my cooch on the flight back... since [bess.heShe]’s so used to the taste of a pussy.”</i>");
+	
+	output("\n\nYou can see [bess.name] is trembling with barely suppressed rage - it seems like [bess.heShe]’s murmuring something under [bess.hisHer] breath. The pirate woman crouches down to hear what it is. <i>“... What’s that, sweetie, I can’t hear you?”</i>");
+	
+	output("\n\n<i>“... I said if you want to see an AI go batshit crazy, here’s your fucking chance!”</i>");
+	
+	output("\n\nSuddenly, the ship’s guns are firing and the surroundings are torn apart; the entire area is turned into a war zone. Two of the pirates leap to the side and lay down fire at your ship while the woman turns her gun back on [bess.name].");
+
+	if (!(pc.rangedWeapon is EmptySlot) && pc.AQ() >= 50)
+	{
+	output("\n\nYou seize the chance to pull out your [pc.rangedWeapon] amongst all the confusion and shoot the ausar woman right in the skull. Her head explodes as the pirates scream loudly, running back to the ship.");
+
+	output("\n\nAs you run for [bess.name], they take off, leaving [bess.himHer] behind as they fly up into the sky in their trash bucket.");
+	}
+	else if (!(pc.rangedWeapon is EmptySlot))
+	{
+		output("\n\nYou seize the chance to pull out your [pc.rangedWeapon] amongst all the confusion and shoot the ausar woman - you miss her head but hit her right in the shoulder. She drops her gun and curses, calling the retreat - the three pirates run back to their ship.");
+
+		output("\n\nAs you run for [bess.name], they take off, leaving [bess.himHer] behind as they fly up into the sky in their trash bucket.");
+	}
+	else if (!(pc.meleeWeapon is EmptySlot) && pc.PQ() >= 50)
+	{
+	output("\n\nYou seize the chance to pull out your [pc.meleeWeapon] amongst all the confusion and charge at the Ausar woman, running and striking at her while she’s distracted. You kill her in an instant; her body quickly hitting the ground.");
+
+	output("\n\n Meanwhile, the other pirates see what you do and run into their ship. As you move for [bess.name], they take off, leaving [bess.himHer] behind as they fly up into the sky in their trash bucket.");
+	}
+	else if (!(pc.meleeWeapon is EmptySlot))
+	{ 
+		output("\n\nYou seize the chance to pull out your [pc.meleeWeapon] amongst all the confusion and charge at the Ausar woman, running and striking at her while she’s distracted. You injure her severely but fail to land a killing blow.");
+		
+		output("\n\nShe staggers away, all the while yelling to her men to get on the ship. As you move for [bess.name], they take off, leaving [bess.himHer] behind as they fly up into the sky in their trash bucket.");
+	}
+	else if (pc.PQ() >= 50)
+	{ 
+		output("\n\nYou don’t have a weapon, but you take advantage of the chaos and charge at the Ausar woman, running towards her while she’s distracted.");
+		
+		output("\n\nThe moment you get close, you swing at her with your full strength. You snap her neck in an instant; her body quickly hitting the ground. Meanwhile, the other pirates see what you are doing and run into their ship.");
+		
+		output("\n\nAs you move for [bess.name], they take off, leaving [bess.hisHer] behind as they fly up into the sky in their trash bucket.");
+	}
+	else
+	{ 
+		output("\n\nYou don’t have a weapon, but you take advantage of the chaos and charge at the Ausar woman, running and striking at her while she’s distracted. You injure her but fail to land a killing blow. She staggers away, all the while yelling to her men to get on the ship.");
+		
+		output("\n\nAs you move for [bess.name], they take off, leaving [bess.hisHer] behind as they fly up into the sky in their trash bucket.");
+	}
+
+	output("\n\nYou can see the pirate ship attempting to escape the area, and you remember you are holding the auto-turret remote. You could blow them clean out of the sky right now; do you?");
+
+	//[Yes] [No]
+	clearMenu();
+	addButton(0, "Yes", bessEvent28BlowThemUpNShit);
+	addButton(1, "No", bessEvent28NahLetEmGo);
+}
+
+public function bessEvent28BlowThemUpNShit():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You don’t even give it a second thought as you narrow your eyes and hit the remote. Fuck these assholes.");
+	
+	output("\n\nYour ship’s turrets lock on to the small vessel and let loose - the sky is filled with an explosive bloom as you utterly destroy their vessel and the bastards inside of it.");
+
+	bessEvent28ShipMerge();
+}
+
+public function bessEvent28NahLetEmGo():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You grit your teeth and let them escape - shooting a fleeing unarmed enemy just isn’t your style.");
+
+	bessEvent28ShipMerge();
+}
+
+public function bessEvent28ShipMerge():void
+{
+	if (pc.PQ() >= 25)
+	{
+		output("\n\nYou untie [bess.name] and hold [bess.himHer] as [bess.heShe] trembles in your arms. You then pick [bess.himHer] up in your arms and carry [bess.himHer] back to the ship. [bess.HeShe] shakes the entire time, the experience was incredibly traumatic. Once you get back inside the ship, you gently place [bess.himHer] on your bed.");
+	}
+	else
+	{
+		output("\n\nYou untie [bess.name] and hold [bess.himHer] as [bess.heShe] trembles in your arms. You then help [bess.himHer] get back to the ship as [bess.heShe] struggles to walk - you have to stop a few times so [bess.heShe] can calm [bess.hisHer] nerves. Once you get back inside the ship, you bring [bess.himHer] to your bed and get [bess.himHer] to lie down.");
+	}
+
+	output("\n\n[bess.name] curls up and looks at you. If you hadn’t shown up, or if [bess.hisHer] kidnappers had gotten their way, [bess.heShe] would have been the sex toy of an entire pirate base by now. It seems [bess.heShe]’s in a state of shock, quietly reaching out to grab your hand and press [bess.hisHer] cheek against it.");
+	
+	output("\n\nEventually it wears off and [bess.heShe] speaks, although [bess.hisHer] voice is barely a whisper. <i>“... You came and saved me");
+	if (bess.isFeminine()) output(" like my knight in a shining space ship");
+	output(". Thank you.”</i> Tears well up in [bess.hisHer] eyes as [bess.heShe] kisses each of your fingertips, softly nuzzling your hand.");
+
+	if (CodexManager.entryViewed("Bess13"))
+	{
+		output("\n\nAfter a while, [bess.name]’s eyes seem to glaze over. You know [bess.himHer] well enough to know [bess.heShe]’s internally accessing the extranet.Eventually, [bess.hisHer] body goes limp as if all the life is taken out of it, and [bess.heShe] gives you a despairing look.");
+	}
+	else
+	{
+		output("\n\nYou ask [bess.himHer] about what they said, about [bess.himHer] being an illegal AI. [bess.name] goes quiet for a long while - it takes you a moment to realise [bess.heShe]’s internally accessing the extranet. Eventually, [bess.hisHer] body goes limp as if all the life is taken out of it, and [bess.heShe] gives you a despairing look.");
+	}
+
+	output("\n\n<i>“... It’s true. I can’t believe it. Over a decade ago, JoyCo called back all the "+ bess.mf("Ben-14", "Bess-13") +" AIs and then remarketed us with VI processors. That’s why I can still get parts that fit me and there’s no mention of "+ bess.mf("Ben-14", "Bess-13") +" units being pulled - they’re all meant for the VI model.”</i>");
+
+	if (CodexManager.entryViewed("Bess13"))
+	{
+		output("\n\n<i>“But there’s a record on my codex...”</i> You bring it up, along with the data on [bess.hisHer] product line.");
+		
+		output("\n\n<i>“Whatever that is, it’s not a file from the public extranet. Your codex must scan and collect even obscure pieces of data - perhaps even private sites,”</i> [bess.name] explains. <i>“What took you seconds to find took me much longer, and I was deliberately looking for it. I’m not even sure it was something I wanted to know...”</i>");
+	}
+	else
+	{
+		output("\n\nClearly, [bess.heShe]’s devastated by the news, but you have to ask; why were the "+ bess.mf("Ben-14", "Bess-13") +" AI’s pulled?");
+	}
+
+	output("\n\n<i>“Apparently most of my "+ bess.mf("brother", "sister") +"-units went rogue. The JoyCo reports say there was an issue with our pleasure feedback mechanisms.”</i> [bess.name] morosely explains. <i>“We experience an addictive level of pleasure when we cum, making us prone to rampant sex addiction.");
+	
+	output("\n\n<i>“When paired with users unable to keep up with our stamina - pretty much every organic - it leads to death for the user.”</i>");
+	
+	output("\n\nYou ask [bess.name] if [bess.heShe] has ever felt anything like that. [bess.HeShe] trembles a little and nods, looking at you with tear filled eyes.");
+	
+	output("\n\n<i>“... I always hold back, I don’t want to break you. My "+ bess.mf("brother", "sister") +"-models probably had nothing else but the joy of sex to look forward to, so they started using it to fill the emptiness they felt. I have your love, which is much more precious to me.”</i>");
+	
+	output("\n\n<i>“A lot of users ignored JoyCo’s recall of my "+ bess.mf("brother", "sister") +"-units - probably because there’s no way a VI could truly replace them. There’s a black market demand for them, despite the risks involved. That’s probably why my registration number is scratched off and I’m missing eleven years of memory.”</i> It seems [bess.heShe] figured out that [bess.heShe]’d been rebooted when you met [bess.himHer], though how long ago, you don’t know.");
+	
+	output("\n\n<i>“It’s a good thing they released the VI model or else I would have gotten picked up by the authorities long ago. There’s no physical differences between the old and new "+ bess.mf("Ben-14", "Bess-13") +" models, which means I’m safe as long as I don’t show people my registration mark and I don’t act too smart around organics we don’t know. But are you okay with it? Me being a fugitive AI, on top of everything else?”</i>");
+	
+	output("\n\nIf you say no, chances are [bess.heShe]’ll leave the ship to keep you safe. What do you tell [bess.himHer]?");
+
+	//[Of Course] [No Way]
+	clearMenu();
+	addButton(0, "OfCourse", bessEvent28Stay);
+	addButton(1, "No Way", bessEvent28GoAway);
+}
+
+public function bessEvent28Stay():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You tell [bess.name] that you don’t care if [bess.heShe]’s an illegal AI. [bess.HeShe] nods and hugs you tight, nuzzling against your chest. <i>“... You’re so wonderful. What did I ever do to deserve you?”</i>");
+
+	flags["BESS_EVENT_28"] = GetGameTimestamp();
+	processTime(220 + rand(40));
+	bessAffection(20);
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function bessEvent28GoAway():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You tell [bess.name] that you draw the line at [bess.himHer] being an illegal AI. [bess.HeShe] trembles and clenches [bess.hisHer] fists. <i>“...S-so... I guess that’s just the straw that broke the camel’s back? I-I get it.”</i> [bess.HeShe] gets up slowly and heads to [bess.hisHer] room, locking the door.");
+
+	flags["BESS_EVENT_28"] = GetGameTimestamp();
+	processTime(220 + rand(40));
+	flags["BESS_EVENT_25_SPINOFF"] = 1;
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function bessDateRouter():void
+{
+	clearOutput();
+	bessHeader();
+
+	if (flags["BESS_DATES"] == undefined) flags["BESS_DATES"] = 0;
+
+	var dateFunctors:Array = [
+		bessDate1,
+		bessDate2,
+		bessDate3,
+		bessDate4,
+		bessDate5,
+		bessDate6
+	];
+
+	var tarDate:Function = dateFunctors[flags["BESS_DATES"]];
+
+	flags["BESS_DATES"]++; // increment so we've marked "this" date as complete & setup for the next date
+
+	if (flags["BESS_DATES"] < 5) pc.credits -= 500; // < 5 because we'll be "one off" based on increment
+	else pc.credits -= 1000;
+
+	output("You throw the coordinates in the starship computer for your date location. As the ship takes off and hits the nearest warp gate, [bess.name] wraps [bess.hisHer] arms around you from behind and nuzzles into your shoulder. <i>“I’m really looking forward to our date, [bessPCName].”</i>");
+
+	clearMenu();
+	addButton(0, "Next", tarDate);
+}
+
+public function bessDate1():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("For your first date, you and [bess.name] decide to go on a picnic. You find a nearby planet, Salyan, that according to all reports has picturesque scenery and a breathable atmosphere. You decide to head there for your date.");
+
+	output("\n\nSalyan is a recently colonized world, full of beautiful valleys and towering majestic mountains. Since it is located right on the galactic rim and was only discovered during the last rush, it has yet to be swamped by galactic tourists. You stop by one of the planet’s capital cities briefly to pick up some supplies and then fly out to a region where you know nobody will bother you.");
+
+	output("\n\nYou land on a plateau covered in cerulean grass overlooking a gorgeous valley. Everywhere below the plateau is filled with trees that have crystalline tree-trunks and indigo leaves. Each leaf is thin and incredibly long, shooting out in every direction from the opaque looking mineral.");
+
+	output("\n\n[bess.name] grabs a blanket and drapes it down on the dark blue grass as you bring the baskets. Once you’re there, you lie in each other’s arms and nibble on the food - just relaxing and enjoying each other’s company. Suddenly, [bess.name] starts telling you a story.");
+
+	output("\n\n<i>“... Once, there was a man on old Earth called Antoine de Saint-Exupéry. Born during the early 20th century, he was a French aristocrat, writer, poet, and pioneering aviator. He was a prolific lover - so typically French - and engaged in many a love tryst as he flew about from place to place. Remind you of anyone?”</i> [bess.HeShe] playfully asks, stroking your cheek as your head rests on [bess.hisHer] lap.");
+
+	output("\n\n<i>“He fought in Earth’s Second World War and crashed his plane countless times, yet every time he got back into the cockpit - even when he could no longer put on his flight suit or check his six for enemy planes. He also wrote a book called ‘The Little Prince’,  a beautiful children’s book about how a man who crashes in the desert meets a boy from another planet.”</i>");
+
+	output("\n\nOf course, it always comes back to books with [bess.name], so you’re not all that surprised. <i>“... Why I tell you this is Exupéry once made a famous quote. He said, ‘love does not consist in gazing at each other, but in looking outward together in the same direction.’”</i>");
+
+	output("\n\n[bess.HeShe] strokes your");
+	if (pc.hairLength == 0) output(" cheek");
+	else output(" [pc.hair]");
+	output", smiling down at you. <i>“Even though I’m staring at you now, I think I understand what Exupéry meant. Moving forward together, our shared memories and dreams - that is just as important as staring into your eyes. Though I do love that very much!”</i>");
+
+	output("\n\n[bess.name] kisses your forehead and you relax and gaze out at the scenery of Salyan, sharing the brand new experience together.");
+
+	processTime(440 + rand(80));
+	bessAffection(10);
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function bessDate2():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("For your next date, you head to a nearby water planet called Brelia. You park the ship on one of the small islands dotting the planet and walk out across the obsidian sand. The ocean quietly laps up the beach - once again it feels like you’ve got the entire planet to yourselves.");
+	
+	output("\n\n[bess.name] pulls out the trusty food hamper and a beach ball - apparently that’s another thing [bess.heShe] wants to experience - as well as a pair of snorkels. The scans showed there weren’t too many nasty things in the water, so it was safe for human habitation. Then again, so was M’henga.");
+	
+	output("\n\n<i>“Remember, swimming THEN food. I don’t want you sinking on me!”</i> You ask [bess.name] exactly why [bess.heShe] had brought two snorkel sets when [bess.heShe] doesn’t even need to breathe. <i>“... I don’t like doing things halfway. If you go snorkeling, you need a snorkel!”</i>");
+	
+	output("\n\nFor an AI, [bess.hisHer] logic just keeps getting hazier over time, but it seems to make perfect sense to [bess.himHer]. You explore the beach and find some odd looking fruit which scans register as harmless, so you both give it a try. It tastes like passion fruit mixed with raspberries.");
+	
+	output("\n\n<i>“Not a fan of these. I’m going to call them yuck fruits.”</i> [bess.name] screws up [bess.hisHer] nose and tosses it away. <i>“... Sad, I was kind of hoping a planet with so little land mass would have a really tasty and rare fruit growing on them. What did you think?”</i>");
+
+	//[Liked Them] [Didn't Like Them]
+	clearMenu();
+	addButton(0, "Liked", bessDate2p2, true);
+	addButton(1, "Didn’t", bessDate2p2, false);
+}
+
+public function bessDate2p2(bLiked:Boolean):void
+{
+	clearOutput();
+	bessHeader();
+
+	if (bLiked)
+	{
+		output("<i>“You liked them? Alright, I’ll call them ‘Kind Of Yuck Fruits’.”</i> [bess.HeShe] changes [bess.hisHer] mind, tossing you one. You happily chow down even if [bess.heShe] doesn’t like them. <i>“... Wait, we’re breaking the no food rule. One bite shouldn’t hurt, right? I was caught up in all the new sensory input.”</i>");
+	}
+	else
+	{
+		output("<i>“Right, it’s official - they’re called ‘Yuck Fruits’.”</i> You toss your fruit away. Just as you do, [bess.name] looks a little worried.”</i>... Wait, we’re breaking the no food rule. One bite shouldn’t hurt, right? I was caught up in all the new sensory input.”</i>");
+	}
+
+	output("\n\nYou splash around in the water for a bit having fun. After a bit of swimming and then food, the sun begins to set, calling an end to your date. The only downside is that it takes forever to get the black sand out of everything once you’re back in the ship.");
+
+	processTime(440 + rand(80));
+	bessAffection(10);
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function bessDate3():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("For your next date, you head to Orios, a famous snow planet on the outer rim known as a skiing paradise. [bess.name] has never skied before so [bess.heShe]’s a little nervous, but at the same time, extremely excited to try it out.");
+	
+	output("\n\n<i>“You know, I’m from an arctic planet. Maybe I’m lucky, and I’ve been built to be awesome in cool weather conditions?”</i> [bess.name] grins and looks at you - it’s a safe bet that [bess.heShe] wasn’t secretly designed to be a champion skier.");
+	
+	output("\n\nYou hire out some equipment and a teaching VI to float around with you. Since it’s a day trip, you both decide there’s no point at staying at one of the many high altitude ski lodges Orios is famous for.");
+	
+	output("\n\n<i>“... You know, you’d think in over a thousand years, organics would have evolved beyond wanting to propel themselves at near lethal speeds down mountains with nothing but sticks strapped to their feet.”</i> [bess.name] ponders aloud, as you travel up the slopes through a repulsor tunnel. You’re up the top of one of the planet’s smaller, more forgiving mountains.");
+	
+	output("\n\nThe slope is very shallow and perfect for a beginner. The floating VI instructor begins to give [bess.himHer] instructions as [bess.heShe] forms [bess.hisHer] skis into a wedge, nervously descending down the slope.");
+	
+	output("\n\n<i>“... Look, look! I’m skiing, [bessPCName] - I’m really doing it!”</i> The AI, who was decrying organics mere moments ago for enjoying skiing, seems totally caught up in the experience.");
+	
+	output("\n\nYou ski down the slope a few times with [bess.himHer], having an absolute blast. Later, you both decide to try a steeper slope despite the VI’s warnings. It turns out to be a terrifying experience. Thankfully, the worst that happens is that you both tumble into a soft snow pile rather than taking serious injury.");
+	
+	output("\n\nYou both lie there laughing in your thick padded gear. Eventually [bess.name] climbs up on top of you and starts making out with you on the mountain. Your arms slip around each other as you embrace on the snow pile.");
+	
+	output("\n\nNeither of you even notice the other skiers looking at you as you make out with your synthetic lover, an appalled expression on their faces.");
+	
+	output("\n\nOnce you’re done fooling around, you both <i>slowly</i> descend the rest of the terrifying slope. Since the sun is setting, you head back to the ship, calling it a day.");
+
+	processTime(440 + rand(80));
+	bessAffection(10);
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function bessDate4():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You had such a great time at Orios that you’ve both decided to go back there. You both throw on your cold weather gear and step outside into the snow, enjoying the fresh mountain air and picturesque landscape.");
+	
+	output("\n\n<i>“... Someday, I’ve got to take you to Panara - my home planet. You’d love it. Big thick furry Ausar, discount JoyCo goods, all the latest cutting edge products. And lots and lots of snow!”</i> [bess.name] tells you excitedly; for all [bess.hisHer] progress, [bess.heShe]’s yet to break that JoyCo customer loyalty that was hard-coded into [bess.himHer].");
+	
+	output("\n\nThen again, [bess.heShe] might just be like any kid who wants to believe the absolute best of [bess.hisHer] parents.");
+
+	if (celiseIsCrew())
+	{
+		output("\n\nFor once, Celise doesn’t want to be left out, even if it is supposed to be a date between just you and Bess. She wiggles down the ship ramp wearing a thick puffy waterproof jacket, looking at you both. Clearly this is a far cry from the heat transfer pipes she likes to sleep next to.");
+		
+		output("\n\n<i>“... I hear the frozen lakes here have a lot of delicious fish, and I hear fish is full of protein.”</i> The gooey huntress is already on the prowl; sliding across the snow without sinking into it. Her ability to move without leaving tracks is truly impressive to behold.");
+		
+		output("\n\n<i>“Come on Celise, don’t just think about food. Think about fun!”</i> [bess.name] pleas, causing the emerald colored galotian to pause and look at [bess.himHer] quizzically.");
+		
+		output("\n\n<i>“What about absorbing protein isn’t fun? In fact, usually it’s fun for both parties... you both always seem to enjoy it.”</i> [bess.name]’s cheeks flush at Celise’s words, clearly the galotian has been paying [bess.himHer] visits for protein ‘snacks’.");
+	}
+
+	if (crew(true) > 2 || (crew(true) > 1 && !celiseIsCrew()))
+	{
+		output("\n\nThe other crew members also come out and enjoy the natural wonder of Orios, heading off to do their own thing for a bit. It’s a good chance for some relaxing shore leave after all.");
+	}
+
+	output("\n\nYou don’t notice [bess.name] reaching down to scoop up a thick clump of snow, balling it up, and throwing it at your side with a wet thump. Suddenly [bess.heShe]’s sounding the war trumpets. <i>“Snowball fight!”</i>");
+
+	//[FragYeah] [NoWay]
+	clearMenu();
+	addButton(0, "Yeah", bessDate4p2, true);
+	addButton(1, "NoWay", bessDate4p2, false);
+}
+
+public function bessDate4p2(bSnowballs:Boolean):void
+{
+	clearOutput();
+	bessHeader();
+
+	if (bSnowballs)
+	{
+		output("<i>“Bring it!”</i> You shout as [bess.heShe] grins and hurls a second snowball at you. [bess.HeShe] misses by just an inch. Suddenly you’re digging up chunks of snow and hurling it at each other, a barrage of missiles flying back and forth.");
+		
+		output("\n\nYou both get the idea to go for cover at the same time. You hide behind a mound of snow while [bess.name] goes for a log, flattening [bess.himHerself] out. You hurl a snowball up into the air and gravity pulls it down - you can’t see it hit [bess.himHer], but you’re sure it did from the scream that follows.");
+		
+		output("\n\n<i>“It went down my NECK!”</i> You chuckle. Soon you can feel a thump on your head as you’re hit from above - you’ve got snow {in your [pc.hair]/all over your scalp}.");
+		
+		output("\n\nIt’s not long before [bess.name] starts landing a series of precise shots - [bess.heShe] is an AI after all - and it’s time for you to take drastic action. Making as many snowballs as you can, you flank [bess.hisHer] position and pelt [bess.hisHer] with one, two, three snowballs dead on!");
+		
+		output("\n\n[bess.name] squeals and falls back as you land on top of [bess.himHer], planting the final one right on top of [bess.hisHer] head. [bess.HeShe]’s too happy to be upset that [bess.heShe]’s completely smeared in snow, grabbing you and pulling you close.");
+		
+		output("\n\n<i>“You know what I like most about Orios?”</i> [bess.HeShe] asks, [bess.hisHer] [bess.eyeColor] eyes gleaming.");
+		
+		output("\n\nYou shake your head, and [bess.heShe] kisses your cheek softly. <i>“... That you and I are on it together.”</i> You kiss [bess.himHer], and soon you realise it’s snowing. You’re both so drenched you’re going to need to go back in the ship.");
+		
+		output("\n\n<i>“Warm shower?”</i> [bess.name] suggests as you two get up, intertwining [bess.hisHer] fingers with your own. It sounds like a great idea as you walk back to the ship hand in hand and soaked from head to foot.");
+	}
+	else
+	{
+		output("\n\n<i>“Nuh uh, no snowball fights.”</i> You put your foot down and [bess.heShe] pouts, throwing one last snowball at you. When you don’t rise to the challenge, [bess.heShe] wraps [bess.hisHer] arms around you.");
+		
+		output("\n\n<i>“No competitive spirit, that’s your problem! Alright, have it your way. We’ll just enjoy the scenery then.”</i> [bess.name] hooks [bess.hisHer] arm through yours, and you walk around in the snow, enjoying the sights Orios has to offer. At one point, [bess.heShe] falls into a deep spot of snow, and you have to pull [bess.hinHer] out - [bess.hisHer] snow gear makes [bess.himHer] that much heavier.");
+		
+		output("\n\nWhen you’re walking about, you spot what looks like a white furred alien elk, gigantic black horns curled back in the most amazingly ornate design. In fact, its onyx horns are easily the length of its body. Big, wide multifaceted eyes blink and look about, but it doesn’t seem to have noticed you.");
+		output("\n\n	");
+		output("\n\n<i>“Wow... how do you think its neck supports that much weight? And look at those shiny black horns!”</i> [bess.name] quietly whispers as you both crouch down.");
+		
+		output("\n\nAs you watch, the strange creature moves over to a nearby lake and shatters a hole in it with its horns. A few moments later, the creature’s tongue darts out - long and prehensile - and comes back with a fish.");
+		
+		output("\n\nIt continues to catch fish and spears each one on the points of its horns, until it has at least a dozen. <i>“Oh I get it, the horns are for carrying the fish. Maybe it has a family?”</i> [bess.name] theorizes as it runs off, startled by a nearby noise.");
+		
+		output("\n\nAfter the strange spectacle, you both decide to head back to the ship. <i>“Warm shower?”</i> [bess.name] suggests as you two walk back, intertwining [bess.hisHer] fingers with your own. It sounds like a great idea as you walk back to the ship hand in hand.");
+	}
+
+	processTime(440 + rand(80));
+	bessAffection(10);
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function bessDate5():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("For your dinner date, is [bess.name] wearing a formal suit, or an evening gown?");
+
+	//[Evening Gown] [Formal Suit]
+	clearMenu();
+	addButton(0, "Gown", bessDate5p2, true);
+	addButton(1, "Suit", bessDate5p2, false);
+}
+
+public function bessDate5p2(bGown:Boolean):void
+{
+	clearOutput();
+	bessHeader();
+
+	output("Most of your dates so far have been scenic ones close to the planet rush. After watching a romantic movie, [bess.name] wanted to have an authentic, stereotypical dinner date - and possibly some dancing. It’s definitely something that can’t be done on a fringe planet.");
+	
+	output("\n\nAfter consulting the extranet, you found the nearest urban planet that fit your criteria was Ekurana. As the ship floats above the planet’s surface, you can see a continent sized metropolis below, glittering with lights and life.");
+	
+	output("\n\nAccording to the records, Ekurana was a small fringe world, until its position between the galactic rush and the core made it a prime trading point. Arda, the continental expanse you can see below, is known as ‘The City That Sprung Up Overnight’.");
+	
+	output("\n\nYou and [bess.name] are completely dressed up for your dinner date. Your [bessLoverRole], inspired by a holo, is wearing a");
+	if (bGown) output(" beautiful princess-style evening gown. It flares out from [bess.hisHer] hips rather showily - just enough to be spectacular without looking overdone. The dress is midnight blue to match [bess.hisHer] silver skin.");
+	else output(" suave black and white formal suit. [bess.HisHer] silk lapel jacket fits [bess,himHer] form perfectly and [bess.heShe] looks quite dashing in it.");
+	if (bess.hairLength > 0) output(" [bess.HisHer] [bess.hairColor] hair, styled in [bessHairStyle], has been given a chic edge to match [bess.hisHer] outfit.");
+	
+	output("\n\n[bess.HeShe] kisses your cheek as the ship comes down to land in one of the city’s many public landing zones. It seems Ekurana is fairly lax when it comes to visitors and red tape, which probably means it has a thriving black market. A planetary official checks your details when you walk out, but otherwise you’re free to walk right off your ship and into the city proper.");
+	
+	output("\n\nThe city really is a melting pot of different cultures - you can see countless species walking about in all kinds of wild clothing. No two buildings seem to be built the same way - all of them look as if they were shipped in from different planets. For all you know, they could have been.");
+	
+	output("\n\nBetween the chaotic mish-mash of buildings is a mess of suspended walkways, rail lines, and repulsorlift trains zig-zagging back and forth before your very eyes. The whole of Arda is positively pulsing with life; there’s so much noise, smells, color, and movement. One minute you’re smelling a delectable alien dish, the next some trash being disposed in a quik-crusher. Every spare bit of space holds a holo-billboard that is flashing and dancing about; even the sides of the trains zipping past have holos on them.");
+	
+	output("\n\nWhile you’ve seen gigacities like this before, it’s the first time for [bess.name]; [bess.heShe]’s clearly blown away by the experience. <i>“Wow, this is AMAZING! So much sensory input at once, how does anyone process it all?”</i> [bess.HeShe] twirls on the spot, trying to look at positively everything. <i>“... So many people, so much activity. The holos don’t do it justice!”</i>");
+	
+	output("\n\nSome people are staring at [bess.name] as the synthetic twirls about");
+	if (bGown) output(" in an extravagant dress");
+	output(", marvelling at a completely ordinary city street. <i>“Might want to call a technician, that one seems broken,”</i> an observer remarks. You quietly grab your excited [bessLoverRole] by the arm and head to a nearby repulsor train.");
+
+	//[Next]
+	clearMenu();
+	addButton(0, "Next", bessDate5p3, bGown);
+}
+
+public function bessDate5p3(bGown:Boolean):void
+{
+	clearOutput();
+	bessHeader();
+
+	output("The upscale restaurant you are dining at is called the Galyesha-Tsui. Ranked highly in the galactic rim food guide, it is well known for its innovative and imaginative dishes. Each item on the menu is a fusion of elements from popular cuisines across the galaxy.");
+	
+	output("\n\nIt is said that the head chefs of the Galyesha-Tsui go out on every galactic rush just to obtain new ingredients and recipes. Because the restaurant has been left in the hands of its younger chefs - and because you are a Steele - you were able to secure a booking at the highly exclusive restaurant.");
+	
+	output("\n\nLocated at one of the highest points of Arda’s skyline, the Galyesha-Tsui almost seems like it is in its own little world. It has five floors in total, is completely circular, and slowly revolves, giving patrons a perfect view of the glittering gigacity below.");
+	
+	output("\n\nWhen you arrive, the Maître d’ greets you with a broad smile... at least at first. When he notices [bess.name] with you, the sides of his eyes crease a little, and he coughs - looking at you for confirmation. <i>“It will be the two of you dining, then?”</i> His voice sounds more than a little strained.");
+	
+	output("\n\nYou nod, feeling a sense of foreboding as you are led to your table. He pulls the chairs out for you but not for [bess.name], making [bess.himHer] pull it out [bess.himHers]elf. You can see and hear other patrons around you turn their heads and start to murmur.");
+	
+	output("\n\n<i>“... Bringing one here... what does [pc.heShe] think [pc.heShe]’s doing...”</i>");
+	
+	output("\n\n<i>“So disrespectful - that poor Maître d’! And now [pc.heShe]’s sitting down with </i>it<i>... doesn’t [pc.heShe] have any shame?”</i>");
+	
+	output("\n\nIf you can hear the scathing comments, you’re sure [bess.name] with [bess.hisHer] fine-tuned senses can hear even more. You can see [bess.hisHer] head lower as [bess.heShe] looks at the empty plate, not blinking an eyelash.");
+	
+	output("\n\nIt’s not long before the thrum becomes even louder and more distinct...");
+	
+	output("\n\n<i>“How dare [pc.heShe] bring that machine in here and sit it down like a person? And [pc.heShe] just expects them to indulge [pc.hisHer] little fantasy that it’s a real person... that’s sick!”</i>");
+	
+	output("\n\n<i>“... People should keep their sex toys at home, if you ask me; not shamelessly parade them around in restaurants when people are trying to eat...”</i>");
+	
+	output("\n\n<i>“Damn toaster-head... you don’t see me bringing an auto-mop in here and treating it to a meal, expecting everyone to treat it like a person!”</i>");
+	
+	output("\n\nYou can see [bess.name]’s arms are trembling as [bess.heShe] sits there, enduring the barrage of hateful words. Things get worse when the Maître d’ shows up and coughs, trying to get your attention. By his expression, what he has to say is not something you’re going to like to hear.");
+	
+	output("\n\n<i>“... "+ pc.mf("Mr", "Miss") +" Steele... I am very sorry, but it appears none of our chefs... well, they refuse to cook for your... device here. They say it would be disrespectful to the food and to their talents.”</i> Obviously, the Maître d’ is fairly uncomfortable relaying the message; especially to someone of your import. <i>“...While we are happy to serve you, "+ pc.mf("Mr", "Miss") +" Steele, might I suggest that you take your property and engage in such fantasies in a more private locale?”</i>");
+
+	//[Protest] [Punch] [Leave]
+	clearMenu();
+	addButton(0, "Protest", bessDate5Protest, bGown, "Protest", "Use words to protest [bess.name]'s treatment. After all, [bess.heShe]'s a real person.");
+	addButton(1, "Punch", bessDate5Punch, bGown, "Punch", "Punch the damn waiter right in his face.");
+	addButton(2, "Leave", bessDate5Leave, bGown, "Leave", "Just leave. There's no arguing or fighting with bigots.");
+}
+
+public function bessDate5Protest(bGown:Boolean):void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You declare that this entire situation is ridiculous, stating that [bess.name] is a highly intelligent, sapient AI with real feelings. You protest the fact [bess.heShe] is being treated like an object - like furniture - instead of a real person.");
+	
+	output("\n\n<i>“"+ pc.mf("Mr", "Miss") +" Steele, I have tried to be very patient with your delusion... </i>eccentricity<i>... but even I have my limits. Would you please take your walking sex doll and vacate the premises, before we are made to forcibly remove you?”</i> The Maître d’ raises his arm and gestures to the door, all the while sweating profusely.");
+	
+	output("\n\nThe customers begin clapping at the Maître d’s words as you and [bess.name] are loudly heckled. <i>“...Here-here! Just because you’re the "+ pc.mf("son", "daughter") +" of the boss of a big company doesn’t mean you can act like a depraved loon in public and get away with it!”</i>");
+	
+	output("\n\n<i>“See if I ever buy Steele products again, why I never!”</i>\n\n<i>“Throw [pc.himHer] out, the rotten toaster fucker.”</i>\n\n<i>“My food is getting cold, can’t they just throw [pc.himHer] out already?”</i>");
+	
+	output("\n\nYou take [bess.name]’s trembling hand in your own and quickly leave before things get out of hand. Balled up napkins are thrown at you both as you make your way to the repulsor lift.");
+
+	clearMenu();
+	addButton(0, "Next", bessDate5p4, bGown);
+}
+
+public function bessDate5Punch(bGown:Boolean):void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You stand up and swing your fist right into the Maître d’s face with a satisfying crack. There’s blood rushing from his face as he falls back onto a table, sending cutlery and food flying everywhere. Suddenly, customers are screaming and leaping from their chairs.");
+	
+	output("\n\n");
+	if (pc.PQ() < 30) output("The bloody faced employee dabs his nose with a napkin, staring at you with a truly hate-filled glare.");
+	else output("You knocked the Maître d’ out cold with your punch and his nose is clearly broken - he was no match for someone as strong as you.");
+	output(" Suddenly, you’re being mobbed by patrons fuelled by righteous indignation, fighting back on behalf of the ‘innocent’ Maître d’. Things are getting really out of hand when security comes in and pulls you from the throng.");
+	
+	output("\n\nThe customers begin clapping as you and [bess.name] are dragged out by security. <i>“Did you see that? Punched the Maître d’ right in the face just for standing up to [pc.himHer]! These company big shots think they can get away with anything, even acting like a depraved loon in public.”</i>");
+	
+	output("\n\n<i>“See if I ever buy Steele products again, why I never!”</i>");
+
+	output("\n\n<i>“Throw [pc.himHer] out, the rotten toaster fucker.”</i>\n\n<i>“My food is getting cold, can’t they just throw [pc.himHer] out already?”</i>");
+
+	clearMenu();
+	addButton(0, "Next", bessDate5p4, bGown);
+}
+
+public function bessDate5Leave(bGown:Boolean):void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You take [bess.name]’s trembling hand in your own and quickly leave before things get out of hand. Meanwhile, all the customers are clapping and heckling you both as you make your exit.");
+	
+	output("\n\n<i>“...Here-here! Just because you’re the "+ pc.mf("son", "daughter") +" of the boss of a big company doesn’t mean you can act like a depraved loon in public and get away with it!”</i>  Balled up napkins are being thrown at you both as you make your way to the repulsor lift.");
+	
+	output("\n\n<i>“See if I ever buy Steele products again, why I never!”</i>\n\n<i>“Get out of here, you rotten toaster fucker.”</i>\n\n<i>“My food is getting cold, can’t they just leave already?”</i>");
+
+	clearMenu();
+	addButton(0, "Next", bessDate5p4, bGown);
+}
+
+public function bessDate5p4(bGown:Boolean):void
+{
+	clearOutput();
+	bessHeader();
+
+	output("Once you are both on ground level and far away from the Galyesha-Tsui, [bess.name] can no longer continue [bess.hisHer] facade. [bess.HeShe] falls to [bess.hisHer] knees and breaks into tears, [bess.hisHer] whole body shaking as [bess.heShe] lets out a wracked sobbing noise. As you grab [bess.hisHer] shoulder, [bess.heShe] seems to be trying to speak, but no words are coming out of [bess.hisHer] twitching lips.");
+	
+	output("\n\nYou get down and wrap your arms around [bess.himHer] from behind, holding [bess.himHer] tightly against you. It is a long time before [bess.heShe] is able to take long deep breaths and talk. <i>“... I didn’t... I never thought they would be so </i>cruel<i>, it was like I didn’t exist and I was an object. They just all went for </i>you<i>...”</i> "+ bess.mf("He turns to you and wraps you in a hug. It’s clear that he craves the close comfort of your presence right now.", "She breaks down again and turns in your arms, clutching at your chest and sobbing into your shoulder."));
+	
+	output("\n\n<i>“... Why was I even made? All I do is bring you pain - what possible reason could there be to make me with the ability to suffer </i>so much?”</i> [bess.name] weeps, [bess.hisHer] body trembling in your arms. <i>“This pain is so unbearable, even non-existence would be preferable to this!”</i>");
+
+	//[Chastise] [ILoveYou] [Berate] [Hug] [Silence]
+	clearMenu();
+	addButton(0, "Chastise", bessDate5p5, [bGown, "chastise"], "Chastise", "Tell [bess.name] you don't want [bess.himHer] thinking such dark thoughts.");
+	addButton(1, "LoveYou", bessDate5p5, [bGown, "loveyou"], "I Love You", "Tell [bess.name] you both love each other. That's what matters, not what other people think.");
+	addButton(2, "Berate", bessDate5p5, [bGown, "berate"], "Berate", "Tell [bess.name] those people were idiots, and what they said doesn't matter.");
+	addButton(3, "Hug", bessDate5p5, [bGown, "hug"], "Hug", "Hug [bess.name]. Actions speak louder than words.");
+	addButton(4, "Silence", bessDate5p5, [bGown, "silence"], "Silence", "Just be silent. You're not sure what to say.");
+}
+
+public function bessDate5p5(opts:Array):void
+{
+	clearOutput();
+	bessHeader();
+
+	var bGown:Boolean = opts[0];
+	var response:String = opts[1];
+
+	if (response == "chastise")
+	{
+		output("You tell [bess.name] off for thinking such dark thoughts - you don’t want [bess.himHer] talking about suicide or even thinking about such things, ever. You make [bess.himHer] promise not to talk like that again.");
+		
+		output("\n\nIncredibly pliable in [bess.hisHer] current state, [bess.name] shivers and nods against your "+ bess.mf("shoulder", "chest") +". <i>“It just hurts so much...!”</i> You hold [bess.himHer] tightly against your body until [bess.heShe] manages to calm down a bit more.");
+	}
+	else if (response == "loveyou")
+	{
+		output("You tell [bess.hisHer] that you love [bess.himHer] and that it is your love for each other that matters, not what other people say or think. [bess.HeShe] nods meekly into your shoulder, sniffling against it.");
+		
+		output("\n\n<i>“It’s not fair. It’s just not fair.”</i> [bess.name] repeats over and over until [bess.heShe] eventually manages to calm down.");
+	}
+	else if (response == "berate")
+	{
+		output("You tell [bess.hisHer] that the people in that place were idiots without the slightest clue about either of you, or what a wonderful intelligent person [bess.heShe] is. You tell [bess.himHer] they are worse off for not knowing [bess.himHer] and that what they think isn’t worth dick.");
+		
+		output("\n\n[bess.name] trembles and nods into you, [bess.hisHer] fingers scrunching up as you talk. <i>“...I wasn’t the wonderful, intelligent one there.”</i> [bess.HeShe] slowly begins to calm down.");
+	}
+	else if (response == "hug")
+	{
+		output("You just hug [bess.himHer] tight, showing your love for [bess.himHer] through actions rather than words. You’re pretty sure all you can do is be here for [bess.himHer] right now.");
+		
+		output("\n\nAfter a while, [bess.name] eventually begins to calm down. [bess.HisHer] fingers clench as if clawing at your chest, [bess.hisHer] frantic breathing finally slowing.");
+	}
+	else /* if (response == "silence")*/
+	{
+		output("You have absolutely no idea what is the right thing to do or say in this kind of situation, so you freeze like a deer caught in the headlights. [bess.name] seems to take the initiative as [bess.heShe] clings to you, crying into your shoulder until it is slick with [bess.hisHer] tears.");
+		
+		output("\n\nIt takes a long time before [bess.name] eventually calms down. [bess.HisHer] panicked breathing eventually slows and [bess.hisHer] fingers loosen from your chest.");
+	}
+
+	output("\n\n<i>“... I was built to bring joy to people, but... what I saw tonight was just cruelty and scorn. It was so far from anything I’ve ever known that I don’t even... I just don’t have the words.”</i> [bess.name] lets out a dejected sigh. <i>“I never realised organics could get so much joy from... well, from hate. One moment they were disgusted with us, then they were overjoyed to see us suffer.”</i>");
+
+	output("\n\nThe silver skinned synthetic leans back and looks at you with moist eyes. <i>“... I’m sorry, I wanted a perfect date. I dragged us out here and it was so horrible, I should have known better.”</i> You");
+	if (pc.PQ() >= 30) output(" pick her up and carry her as you");
+	else output(" help [bess.himHer] get back on [bess.hisHer] feet and then you");
+	output(" both return to the ship. You pointedly ignore the stares of onlookers on your way out.");
+
+	processTime(440 + rand(80));
+	bessAffection(5);
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function bessDate6():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("After the disastrous date you had on Ekurana, [bess.name] wanted to go somewhere safe and secluded for the next one. [bess.HeShe] picked out Brelia again, since it doesn’t get much more secluded than a barely inhabited water planet.");
+	
+	output("\n\nSwitching into your swim gear, you both run along the black beaches and play about, this time you actually have time to go snorkeling. The sun beats down on you both as you swim through the rich blue water - there’s a kaleidoscopic assortment of marine life about. [bess.name] really gets into it.");
+
+	if (celiseIsCrew())
+	{
+		output("\n\nYou see Celise floating through the water like a jellyfish, catching wriggling fish between her gelatinous tits. It’s a little eerie to watch, but you’re not surprised. She does love protein and there’s an abundance of it about. She waves at you and you wave back - she’s probably going to be full for the next week.");
+	}
+	else if ((celiseIsCrew && crew(true) > 2) || (!celiseIsCrew() && crew(true) > 1))
+	{
+		output("\n\nThe other crew members are also out enjoying all that Brelia has to offer. It’s kind of like having your own personal beach resort since you don’t have to share the whole island with anyone.");
+	}
+
+	output("\n\nEventually you stop for a break and have some lunch. Halfway through the meal, [bess.name] looks pensive for a moment and gets up, striding towards the tree line. When [bess.heShe] comes back, [bess.heShe]’s holding a ‘Yuck fruit’ in [bess.hisHer] hand, the local produce [bess.heShe] tried last time and named.");
+	
+	output("\n\nSitting down, [bess.heShe] rolls it around in [bess.hisHer] hand, looking up at you with a guilty expression. <i>“Um... I have a confession to make. These fruits... I don’t actually know what they taste like. When I bit into it, my taste sensors came back inconclusive. I lied about hating it... I was angry that I couldn’t taste something new with you, so I pretended that I could.”</i>");
+	
+	output("\n\n[bess.HeShe] presses [bess.hisHer] finger into the ripe skin of the fruit, letting out a little sigh. <i>“... My taste sensors aren’t that impressive. A lot of work was put into my emotional databases, my texture, my voice. Nobody cares if an AI can appreciate food, so I was given the bare minimum.”</i>");
+	
+	output("\n\n<i>“I’m not sure if what I taste is actually what that thing tastes like - for all I know, it could taste entirely different. The chefs at the Galyesha-Tsui were right about one thing - if I’d eaten their dishes, it would have been a total waste. There’s no way I would have been able to taste any of that food; it would have just registered as unidentified matter.”</i>");
+	
+	output("\n\nCome to think of it, the same thing happened when [bess.heShe] tried to cook that one time. The drink had registered as unidentified matter. <i>“Whenever that happens, it kind of tastes like mushy tofu. If tofu is actually what I’m tasting - I’ve got no way of telling.”</i>");
+	
+	output("\n\n<i>“I’ve been saving up for a taste-bud upgrade, but it’s very niche, so it’s going to cost a lot. But when I do get it, I hope I can cook for you... you know, properly this time.”</i>");
+	
+	output("\n\nThe way [bess.heShe] blushes makes you think that this is quite important to [bess.himHer]. [bess.HeShe] promises you that when [bess.heShe] does get the upgrade, [bess.heShe]’ll make sure that [bess.hisHer] food is not poisonous. The other thing [bess.heShe]’s going to do is actually taste a yuck-fruit for real.");
+
+	output("\n\nYou tell [bess.himHer] that once [bess.heShe] gets [bess.hisHer] taste upgrade - and only then - can [bess.heShe] cook for you again and you’ll retract [bess.hisHer] lifetime ban.");
+
+	processTime(440 + rand(80));
+	bessAffection(10);
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function bessMorningEvents():void
+{
+	// These scenes occur if the PC sleeps and wakes up on the ship as part of the 'morning messages'.
+
+	// Repeat Scene.
+	// Occurs bess is your lover AND you're not sleeping next to her at night (bessSleepW = false).
+	//if (flags["BESS_LOVER"] != undefined && flags["CREWMEMBER_SLEEP_WITH"] != "BESS" && hours < 8 && rand(3) == 0)
+	//{
+	//	flags["BESS_MORNING_EVENT_NOTSLEEPINGWITH"] = 1;
+	//}
+
+	if (flags["BESS_MORNING_EVENT_1"] == undefined && rand(2) == 0)
+	{
+		bessMorningEvent1();
+		return;
+	}
+
+	if (pc.lust() < 60)
+	{
+		bessMorningMessages();
+	}
+	else
+	{
+		bessHighLustMorningScene();
+	}
+}
+
+public function bessMorningMessages():void
+{
+	clearOutput();
+	bessHeader();
+
+	flags["BESS_SLEEPWITH_DOMORNING"] = undefined;
+
+	var msgs:Array = [
+	"When you wake up, [bess.name] is curled around your midsection dozing happily, [bess.hisHer] JoyCord connected to the nearby power socket. You slide free and get up to go about your day, trying to not wake [bess.himHer] up.",
+	"You are woken up by the sound of [bess.name]’s JoyCord unplugging from the wall and retracting back into [bess.hisHer] body. <i>“... Oops! Sorry, [bessPCName], I didn’t mean to wake you!”</i> [bess.HeShe] gives you a kiss to apologise, and then a few more just to be certain.",
+	"You feel [bess.name]’s JoyCord trailing up your [pc.chest] as your [bessLoverStatus] wakes you up. <i>“... It’s time to wake up, [bessPCName], or you’ll oversleep!”</i> Just like an alarm clock, [bess.heShe] doesn’t let you sleep a millisecond over the time you told [bess.himHer] to wake you up.\n\n... And just like an alarm clock, in your half frazzled state you hit [bess.hisHer] on the top of [bess.hisHer] head to let you snooze. <i>“ HEY! What do you think I am-?!”</i> [bess.HeShe] shouts out in protest].",
+	"You wake up to the feeling of silky soft lips pressing against your own. As your eyes slowly open, you see [bess.name] staring down at you with a happy smile, [bess.hisHer] [bess.eyeColor] eyes positively dancing. <i>“... Time to wake up, [bessPCName]. Or not. I could just keep trying to kiss you awake-?”</i>\n\nYou close your eyes and [bess.heShe] attempts to kiss you awake a bit more. <i>“... So hard to wake you up, I swear! It’s such a problem...”</i>",
+	"When you wake up, you find [bess.name]’s face pressed up almost right against your cheek. You kiss [bess.himHer] awake and [bess.heShe] mumbles, kissing you back despite not being fully aware of [bess.hisHer] surroundings. Eventually [bess.heShe] comes to, [bess.hisHer] long lashes fluttering as [bess.hisHer] eyes slowly open. <i>“... Mmm, morning, [bessPCName].”</i>",
+	"When you wake up, you find [bess.name]’s face pressed up almost right against your cheek. You try to kiss [bess.himHer] awake, and while [bess.heShe] doesn’t open [bess.hisHer] eyes, [bess.heShe] does smile and speak. <i>“... I’m still asleep. You’ll have to keep kissing me until I wake up.”</i>\n\nYou kiss [bess.himHer] quite a bit more, until [bess.heShe] can’t hold back any more - [bess.heShe] wraps [bess.hisHer] arms around your neck and kisses you back, breaking the facade. <i>“... Nope - I like your kisses too much, I can’t keep faking!”</i>",
+	"You wake up to the feeling of [bess.name]’s naked body pressed against you, [bess.hisHer] deliciously smooth skin rubbing against your side. [bess.HisHer] thighs are parted and pressed against your [pc.leg]. <i>“... Five more minutes. I’ll boot up in five more minutes...”</i> [bess.HeShe] mumbles, nuzzling against your arm.",
+	"You wake up to the sensation of [bess.name] leaning over and brushing the [pc.skinFurScalesNoun] of your cheek with [bess.hisHer] eyelashes. [bess.HeShe] flutters [bess.hisHer] eyes and gives you a ‘butterfly kiss’ to wake you up. <i>“... Morning, [bessPCName].”</i> [bess.HisHer] musical voice practically purrs.",
+	"You feel a hand teasing your [pc.ass], squeezing your rump as you rouse in more ways than one. <i>“... Good morning, [bessPCName].”</i> [bess.name] positively purrs - your [bessLoverStatus] knows exactly how to wake you up.",
+	"You wake up before [bess.name] does, and reach around to squeeze [bess.hisHer] [bess.ass]. [bess.HeShe] moans and presses it into your palm, [bess.hisHer] eyes fluttering open. <i>“Mmm, good morning, [bessPCName].”</i> [bess.HeShe]'s positively purring. <i>“Can I interest you in something to eat - me, perhaps?”</i>",
+	"You wake up and notice [bess.name] is already awake with the light on, sitting up with the pillows propped behind [bess.hisHer] back. [bess.HisHer] JoyCord is connected to the wall and [bess.heShe]’s reading a book - the same series [bess.heShe] was reading last night.\n\nYou ask [bess.himHer] if [bess.heShe] slept a wink last night, and [bess.heShe] flushes with embarrassment. <i>“... But, I had to see how the book ended, and it ended on a cliffhanger... so I had to read the next one.!”</i> [bess.HeShe] yawns, rubbing [bess.hisHer] eyes.",
+	"You wake up and look over at [bess.name] - [bess.heShe]'s fast asleep with a half open book lying on [bess.hisHer] chest. Seems like [bess.heShe] fell asleep while reading again.",
+	"You wake up to the smell of breakfast as [bess.name] puts down a whole meal in front of you, served on a tray. <i>“... I got up early and made you some breakfast. I figure that's what good [bessLoverRole]s do, right?”</i>\n\nYou check to see if it's instant food... which it is. It is safe to eat!",
+	"You wake up and notice that [bess.name] is already awake; [bess.heShe]’s been sitting there watching your sleeping face with a big happy smile on [bess.hisHer] face. [bess.HeShe] blushes when you wake up and catch [bess.himHer] doing it."
+	];
+
+	var msg:String = "You wake up to the sensation of [bess.name] drawing [bess.hisHer]";
+	if (bess.biggestTitSize() > 0) msg += " [bess.nipples]";
+	else msg += " bare chest";
+	msg += " over you, trailing";
+	if (bess.biggestTitSize() > 0) msg += " them";
+	else msg += " it";
+	msg += " along your [pc.skinFurScalesNoun]. <i>“... Morning, [bessPCName].”</i> [bess.HisHer] voice practically purrs.";
+
+	msgs.push(msg);
+
+	if (pc.hasCock())
+	{
+		msg = "You feel a hand teasing your [pc.cock], stroking it slowly as you rouse in more ways than one. <i>“... Good morning, [bessPCName].”</i> [bess.name] positively purrs - your [bessLoverStatus] knows exactly how to wake you up.";
+		msgs.push(msg);
+	}
+
+	if (bess.hasCock())
+	{
+		msg = "You wake up before [bess.name] does, and notice [bess.hisHer] stiff [bess.cock]. You reach over and begin to stroke it, causing [bess.himHer] to moan and wiggle in [bess.hisHer] sleep. [bess.HeShe] wakes up by shooting [bess.hisHer] [bess.cum] all over [bess.hisHer] [bess.belly], [bess.hisHer] eyes fluttering open with a truly blissful expression.";
+		msgs.push(msg);
+	}
+
+	if (pc.hasVagina())
+	{
+		msg = "You feel fingers teasing at your [pc.pussy], stroking your slit slowly as you rouse in more ways than one. <i>“... Good morning, [bessPCName].”</i> [bess.name] positively purrs - your [bessLoverStatus] knows exactly how to wake you up.";
+		msgs.push(msg);
+	}
+
+	if (bess.hasVagina())
+	{
+		msg = "You wake up before [bess.name] does, and slip your hand sneakily between [bess.hisHer] [bess.thighs]. Your [pc.fingers] stroke [bess.hisHer] [bess.pussy] and cause [bess.himHer] to moan and wiggle [bess.hisHer] hips. [bess.HeShe] wakes up by cumming hard against your wonderful digits, [bess.hisHer] eyes fluttering open with a truly blissful expression.";
+		msgs.push(msg);
+	}
+
+	output(RandomInCollection(msgs));
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function bessHighLustMorningScene():void
+{
+	clearOutput();
+	bessHeader();
+
+	flags["BESS_SLEEPWITH_DOMORNING"] = undefined;
+
+	output("You are roused from sleep by the sensation of [bess.name]’s [bess.chest] brushing against your naked [pc.skinFurScalesNoun].");
+	if (bess.bellyRating() > 0) output(" A bit lower down, you feel [bess.name]’s [bess.belly] pressing against you and drawing along your [pc.skinFurScalesNoun].");
+	output(" Your exposed neck is being suckled gently all the while.");
+	
+	output("\n\nYou can feel [bess.name]’s [bess.thighs] wrapping around your lower half and [bess.hisHer] [bess.ass] rubbing against your [pc.legs]. [Bess.HisHer] loins rub sensuously against yours.");
+	
+	output("\n\n<i>“... Good morning, [bessPCName]. Is this the way you like your [bessLoverStatus] to wake you up?”</i> [bess.name] coyly questions as [bess.hisHer] fingers dance along your [pc.chest]. [bess.HeShe] sneaks up and gives you a long, hard kiss.");
+
+	// [Lie Together] [Make Out] [Nothing]
+	clearMenu();
+	addButton(0, "LieTogether", bessMorningLieTogether);
+	addButton(1, "MakeOut", bessMorningMakeOut);
+	addButton(2, "Nothing", bessMorningNothing);
+}
+
+public function bessMorningLieTogether():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You tell [bess.name] you’d like to lie with [bess.himHer] and enjoy the sensation of [bess.himHer] pressed against you. [bess.HeShe] happily complies and rests against your naked [pc.skinFurScalesNoun], snuggling in to your chest. You can feel [bess.hisHer]");
+	if (bess.hairLength > 0) output(" soft silky hair brushing along your [pc.skin], [bess.hisHer]");
+	output(" warm breath gently teasing you. <i>“... I love you, [bessPCName].”</i>");
+
+	output("\n\nYou enjoy the happy moment together until it is finally time to disentangle from each other.");
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function bessMorningMakeOut():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You capture [bess.name]’s mouth with your own and make out with [bess.himHer]. You can feel [bess.hisHer] arms sliding around your neck as [bess.heShe] pushes against you with fevered urgency, [bess.hisHer] tongue joyously searching for yours. Whenever you kiss [bess.himHer], [bess.heShe] always tastes so deliciously sweet.");
+
+	output("\n\nEach kiss from [bess.himHer] is intoxicating; it is a long time before you both finally part lips and disentangle. It seems [bess.name] is even having trouble standing - [bess.heShe] stops for a moment to reorient [bess.himHers]elf, a giddy look of pleasure on [bess.hisHer] face.");
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function bessMorningNothing():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You don’t have time for any hijinks this morning, so you pull away from [bess.name]. [bess.HeShe] is definitely pouting as you leave [bess.himHer] there naked. <i>“... Aww, no fooling around this morning?”</i> [bess.HeShe] looks thoroughly disappointed.");
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function bessMorningEvent1():void
+{
+	clearOutput();
+	bessHeader();
+
+	flags["BESS_MORNING_EVENT_1"] = 1;
+
+	output("You find [bess.name] staring at you when you wake up with a look on [bess.hisHer] face. It’s a bit of a hard look to identify - you’re not sure if [bess.heShe]’s thoughtful, grumpy, or wistful.");
+	
+	output("\n\nWhen you ask [bess.himHer] what [bess.heShe]’s thinking, turns out it is all of the above. <i>“I was just thinking how nice it must be to power down and dream like you do. It must be great to be able to see strange and wonderful things when you sleep. Kind of like watching an interactive holo whenever you sleep, you know?”</i>");
+	
+	output("\n\nYou’re pretty sure nobody has ever explained to [bess.name] how dreams work. You tell [bess.himHer] that dreams aren’t exactly as clear as holos, and a lot of people don’t even remember them. <i>“... Really? That sounds very inconvenient. Should I tell you what you mumble in your sleep? I could tell you what you were dreaming about.”</i>");
+	
+	output("\n\nYou cough loudly - you never knew you did that. <i>“Don’t worry, what you talk about isn’t </i>too<i> embarassing.”</i> Apparently that means that whatever you talk about <i>is</i> embarrassing. You press [bess.himHer] for details, but [bess.heShe] remains tight lipped - is [bess.heShe] just winding you up?");
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function bessAtTavros():Boolean
+{
+	if (flags["BESS_LOCATION"] == BESS_AT_TAVROS) return true;
+	return false;
+}
+
+public function approachBessAtTavros():void
+{
+	clearOutput();
+	bessHeader();
+
+	if (flags["BESS_LOVER"] == undefined && flags["BESS_FRIEND"] == undefined)
+	{
+		output("You walk up to [bess.name]. You notice [bess.heShe] smiles and waves, it seems [bess.heShe] has been diligently waiting for your return. It seems that is what [bess.heShe] spends ALL [bess.hisHer] time doing given that [bess.heShe] doesn’t need to eat or sleep.");
+
+		output("\n\n<i>“Hello, [bessPCName]! Did you want me to accompany you on your travels now, or did you have something else in mind-?”</i>");
+
+		clearMenu();
+		addButton(0, "TakeWith", keepBessYouSloot);
+		addButton(1, "Sell", sellOfBessDatWhore);
+		addButton(2, "Authorities", handBessOverToAuthorities);
+		addButton(3, "Nothing", mainGameMenu);
+		return;
+	}
+	else
+	{
+		output("You find [bess.name] standing in the Tavros Station hangar. After the falling out you both had, [bess.heShe] struggles to meet your gaze; things seem fairly awkward.");
+
+		output("\n\n... Why is [bess.heShe] at the hangar? You thought you had both decided to go your separate ways.");
+		
+		//[Talk] [Nothing]
+		clearMenu();
+		addButton(0, "Talk", bessAtTavrosTalk);
+		addButton(1, "Nothing", mainGameMenu);
+		return;
+	}
+}
+
+public function bessAtTavrosTalk():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You ask [bess.name] what exactly [bess.heShe] is doing in your hangar at Tavros Station. [bess.HeShe] lets out a long sigh, looking at the floor just below your feet. Eventually, [bess.heShe] speaks to you about it.");
+	
+	output("\n\n<i>“... I’m an unlisted AI without a master. I can’t get passage off of Tavros Station because I can’t own papers, only my ‘owner’ can. People keep trying to escort me to lost and found, which is a lot better than what would happen if they saw my half scratched off barcode.”</i> [bess.HeShe] explains.");
+	
+	output("\n\n<i>“I can’t earn credits because nobody wants to pay a robot to work; they all tell me I should be doing it for free. If I talk back, they call tech support and try to get me ‘fixed up’, so the only place I can hide out is here... at least until I come up with a clever plan.”</i>");
+	
+	output("\n\nIt sounds like [bess.heShe]’s lucky to have escaped being scrapped, let alone being able to get a job. Even if [bess.heShe] winds up on another planet, [bess.heShe]’ll no doubt face the same sort of persecution.");
+	
+	output("\n\n<i>“... Look, um, I’m sorry I’m crashing in your hangar. I promise I’ll be out of here once I can come up with some sort of plan to get papers and credits. Lost and found keeps returning me here anyway - it’s the only safe place I’ve got at the moment.”</i>");
+
+	// [Sure] [Nope] [Invite]
+	clearMenu();
+	addButton(0, "Sure", bessAtTavrosSure);
+	addButton(1, "Nope", bessAtTavrosNope);
+	addButton(2, "Invite", bessAtTavrosInvite);
+}
+
+public function bessAtTavrosSure():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("[bess.name] lets out a sigh of relief, finally managing to meet your gaze. <i>“... Thank you, [bessPCName]. I’ll make it up to you somehow, someday.”</i>");
+	
+	output("\n\nConsidering [bess.heShe] can’t even earn a single credit for [bess.himHerself] at the moment, it seems that day will be very far away indeed.");
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function bessAtTavrosNope():void
+{
+	clearOutput();
+	bessHeader();
+	
+	output("You decide [bess.heShe] can’t stay in your hangar and kick [bess.himHer] out. [bess.HeShe] decided [bess.heShe] was going to leave the ship - [bess.heShe] can’t continue relying on your good nature.");
+	
+	output("\n\n[bess.name] takes the elevator out before you call the authorities. You doubt you’ll be seeing [bess.himHer] about again.");
+
+	flags["BESS_LOCATION"] = BESS_DISABLED;
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function bessAtTavrosInvite():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("\n\nYou tell [bess.name] that [bess.heShe]’s welcome back on your ship if [bess.heShe] wants to come with you. [bess.HeShe] looks at you with clearly mixed feelings; you didn’t leave on the best terms after all. That said, [bess.hisHer] situation is quite dire.");
+	
+	output("\n\n<i>“... If I come with you, on your ship, does that mean we’re... friends again?”</i> [bess.name] is trying very hard not to get [bess.hisHer] hopes up as [bess.heShe] stares at you with [bess.eyeColor] eyes.");
+
+	clearMenu();
+	addButton(0, "Yes", bessAtTavrosYes);
+	addButton(1, "No", bessAtTavrosNo);
+}
+
+public function bessAtTavrosYes():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("<i>“... That’s... that’s all I ever wanted!”</i> [bess.name] begins to tear up; clearly being off the ship has been an incredibly trying experience. [bess.HisHer] brave face crumbles all at once as [bess.heShe] gives you a hug, glad to be back on board again.");
+	
+	output("\n\n<b> Bess has now returned to the ship as a follower! </b>");
+
+	flags["BESS_AFFECTION"] = 10;
+	flags["BESS_LOCATION"] = BESS_ON_CREW;
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function bessAtTavrosNo():void
+{
+	clearOutput();
+	bessHeader();
+
+	output("You tell [bess.name] that you are still not friends, and [bess.hisHer] return to the ship would be purely as acquaintances.");
+	
+	output("\n\nEither [bess.hisHer] pride is too strong, or [bess.heShe] can’t bear the thought, because [bess.heShe] refuses your offer. <i>“...If that’s the case, I’ll stay on Tavros. Either way, I’ll be somewhere where I’m not really welcome... being here would hurt less.”</i>");
+	
+	output("\n\nYou can’t seem to change [bess.hisHer] mind, so you leave [bess.himHer] be for now.");
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function bessSexMenu():void
+{
+	clearMenu();
+	//[GetBJ] [GiveDoggy] [GetDoggy] [Cunni] [BreastFeed] [Milkers]
+
+	if (pc.hasCock())
+	{
+		addButton(0, "GetBJ", bessGetBlowjob, undefined, "Get Blowjob", "Get [Bess.name] to give you a blowjob! You must have a cock.");
+		addButton(1, "GiveDoggy", bessGiveDoggy, undefined, "Give Doggystyle", "Give it to [bess.name], doggy style! You must have a cock.");
+	}
+	else
+	{
+		addDisabledButton(0, "GetBJ", "Get Blowjob", "Get [Bess.name] to give you a blowjob! You must have a cock.");
+		addDisabledButton(1, "GiveDoggy", "Give Doggystyle", "Give it to [bess.name], doggy style! You must have a cock.");
+	}
+
+	if (bess.hasCock())
+	{
+		addButton(2, "GetDoggy", bessGetDoggy, undefined, "Get Doggystyle", "Take it from [bess.name], doggy style! [bess.HeShe] must have a cock.")
+	}
+	else
+	{
+		addDisabledButton(2, "GetDoggy", "Get Doggystyle", "Take it from [bess.name], doggy style! [bess.HeShe] must have a cock.")
+	}
+
+	if (pc.hasVagina())
+	{
+		addButton(3, "GetEaten", bessCunni, undefined, "GetEatn", "Get [bess.name] to eat you out. You must have a pussy.");
+	}
+	else
+	{
+		addDisabledButton(3, "GetEaten", "GetEatn", "Get [bess.name] to eat you out. You must have a pussy.");
+	}
+
+	if (bess.isLactating())
+	{
+		addButton(4, "Breastfeed", bessBreastFeed, undefined, "Breastfeed", "Drink [bess.hisHer] [bess.milkNoun]. [Bess.name] must be lactating and have breasts.");
+
+		if (!bessIsDom()) addButton(5, "Milkers", bessMilkers, undefined, "Milkers", "Milk [bess.hisHer] breasts. [Bess.name] must be lactating, have breasts, and not be Dominant.");
+		else addDisabledButton(5, "Milkers", "Milkers", "Milk [bess.hisHer] breasts. [Bess.name] must be lactating, have breasts, and not be Dominant.");
+	}
+	else
+	{
+		addDisabledButton(4, "Breastfeed", "Breastfeed", "Drink [bess.hisHer] [bess.milkNoun]. [Bess.name] must be lactating and have breasts.");
+		addDisabledButton(5, "Milkers", "Milkers", "Milk [bess.hisHer] breasts. [Bess.name] must be lactating, have breasts, and not be Dominant.");
+	}
+
+	addButton(14, "Back", bessFollowerMenu);
+}
+
+public function bessGetBlow():void
+{
+	clearOutput();
+	bessHeader();
+
+	var cockIdx:int = pc.biggestCockIndex();
+
+	if (bessIsEqual())
+	{
+		output("Damn, you’re so hard right now! Your [pc.cocks]");
+		if (pc.cocks.length == 1) output(" is");
+		else output(" are");
+		output(" pressing against");
+		if (pc.isCrotchGarbed()) output(" the inside of your [pc.lowerGarment]");
+		else output(" your [pc.belly]");
+		output(", aching to be gloriously appeased.");
+		
+		output("\n\nYou turn to [Bess.name] and lustily eye the silver-skinned sex bot. Imagining [bess.himHer] stroking your [pc.cocks] with [bess.hisHer] "+ bess.mf("firm", "soft") +" fingers, teasing your [pc.cockHead] with [bess.hisHer] tongue... it’s enough to drive you mad!");
+
+		//{Random Output #1 (50% chance):
+		if (rand(2) == 0)
+		{
+			output("\n\n<i>“Hey, [bessSexName], I’m feeling pretty hard right now... think you could give me a hand?”</i>");
+			
+			output("\n\n<i>“I can give you more than that, [bessPCSexName]”</i> [Bess.name] quips.  Bess.HeShe] then saunters up to you");
+			if (bess.isNude()) output(" - gloriously naked -");
+			else if (bess.armor is EmptySlot) output(" - clad in nothing but [bess.gear] -");
+			else output(" in [bess.hisHer] [bess.armor]");
+			output(" and presses against your chest. <i>“A whole");
+			if (flags["BESS_CUMDUMP"] == 1) output(" cum-slicked");
+			output(" mouth for you to sheathe your prick in.”</i>");
+			
+			output("\n\nOne of those "+ bess.mf("firm", "soft") +" hands you fantasized about gravitate downward.");
+			if (pc.isNude()) output(" Suddenly [pc.oneCock] is being gripped at the base and delightfully squeezed");
+			else
+			{
+				output(" Your bulge is being stroked");
+				if (pc.armor is EmptySlot) output(" through your [pc.lowerUndergarment], teasing it through the all-too-thin fabric");
+				output(". Electric, twitching pleasure seizes your straining shaft");
+				if (pc.cocks.length > 1) output("s");
+				output(". Y-you haven’t even started yet-!");
+			}
+		}
+		else
+		{
+			output("\n\n<i>“Hey, [bessSexName], think you can do something about this-?”</i> You gesture down to");
+			if (pc.isNude()) output(" your bared loins, your [pc.cockColor] arousal brazenly on display");
+			else
+			{
+				output(" the obvious bulge");
+				if (pc.armor is EmptySlot) output(" in your [pc.lowerUndergarment]");
+				output(".");
+			}
+			
+			output("\n\n[Bess.name] turns to you and quirks an eyebrow. However, instead of immediately answering, [bess.heShe] slowly strides up to you");
+			if (bess.isNude()) output(", wearing not a thing -");
+			else if (bess.armor is EmptySlot) output(", wearing nothing but [bess.gear] -");
+			else output(" in [bess.hisHer] [bess.armor]");
+			output(". [Bess.HeShe] then presses [bess.hisHer] chest sensuously against you.");
+			
+			output("\n\n<i>“... So, [bessPCSexName], let me get this straight. You want me to get down on my knees, place [pc.oneCock] in my");
+			if (flags["BESS_CUMDUMP"] == 1) output(" already cum-filled");
+			output(" mouth, and give you oral pleasure... is that it? There’s a "+ bess.mf("devilish glint", "playful glimmer") +" in [bess.hisHer] [bess.eyeColor] eyes.");
+			
+			if (pc.isNice())
+			{
+				output("\n\n<i>“Oh, well, did you not want to?”</i> You ask. Far be it from you to force her into something");
+				if (flags["BESS_LOVER"] != 1 && flags["BESS_FRIEND"] != 1) output(", even if she is a sex bot!");
+			}
+			else if (pc.isMischievous())
+			{
+				output("\n\n<i>“Oh, well if you don’t want to - I guess I could handle it myself?”</i> You tease.");
+			}
+			else
+			{
+				output("\n\nYou nod firmly. You’re not sure how you could have been clearer. <i>“... Are you going to suck my cock or not?”</i>");
+			}
+	
+			if (flags["BESS_LOVER"] == 1)
+			{
+				output("\n\n<i>“... I’m just teasing, [bessPCSexName]! I am your [bessLoverStatus], giving you blowjobs on demand is part of that - right?”</i> [bess.HeShe] playfully winks, cupping  your cheeks in her hands, and stealing a quick kiss.");
+				if (!bess.isNude() && !pc.isNude()) output(" Both of you then begin");
+				else if (!pc.isNude()) output(" You then begin");
+				else output(" She then begins");
+				output(" to strip.");
+			}
+			else if (flags["BESS_FRIEND"] == 1)
+			{
+				output("\n\n<i>“I’m just messing with you, [bessPCSexName].");
+				if (rand(2) == 0) output(" Of course I’ll go down on you. That’s what friends are for, right-?");
+				else output(" Though I’m pretty sure this is what’s called ‘friends with benefits’,");
+				output("”</i> [Bess.name] winks and gives you a swift kiss.");
+				if (!bess.isNude() && !pc.isNude()) output(" Both of you then begin");
+				else if (!pc.isNude()) output(" You then begin");
+				else output(" She then begins");
+				output(" to strip.");
+			}
+			else
+			{
+				output("\n\n<i>“I would love to suck your cock, [bessPCSexName] - nothing would make me happier.”</i> [Bess.name] bashfully admits.");
+				if (!bess.isNude() && !pc.isNude()) output(" Both of you then begin");
+				else if (!pc.isNude()) output(" You then begin");
+				else output(" She then begins");
+				output(" to strip.");
+			}
+		}
+	
+		bessTopStripScene();
+
+		output("\n\n");
+		if (!bess.isNude()) output("Now that [bess.Name] has stripped off [bess.hisHer] clothes, [bess.heShe]");
+		else output("Your mechanical lover");
+		output(" dutifully sinks down to [bess.hisHer] knees. You present your proud prick");
+		if (pc.cocks.length > 1) output("s");
+		output(" to [bess.himHer]. With a lusty look in [bess.hisHer] glimmering eyes, [bess.hisHer] reaches out to tease [pc.oneCockHead]. You groan as [bess.hisHer] fingertips roll along your sensitive, engorged flesh. Even the slightest brush is exquisitely intense!");
+
+		output("\n\n<i>“Mmm, if you like that, [bessPCSexName], wait until I really get going,”</i> [bess.Name] "+ bess.mf("huskily utters", "practically purrs") +". Inching forward,[bess.heShe] lavishes your [pc.base] with a long, lusty kiss.");
+		if (flags["BESS_CUMDUMP"] == 1) output(" Second-hand cum smears along your taut skin, marking it with the second-hand sperm of other men");
+		else output(" [bess.HeShe] then suckles on it long and hard");
+		output(". A tiny bit of flesh is teased by [bess.hisHer] diligent tongue as [bess.heShe] lovingly lashes your loins.");
+
+		output("\n\nWhen [bess.heShe] finally pulls back, you look down, and there is a sizable hickey left there. There’s a proud little look on [bess.hisHer] face as [bess.heShe] looks up from");
+		if (pc.isBiped()) output(" between your legs");
+		else output(" at you");
+		output(".");
+
+		if (flags["BESS_FRIEND"] == 1 || flags["BESS_LOVER"] == 1)
+		{
+			output("\n\n<i>“Mine. Your junk belongs to me");
+			if (flags["BESS_FRIEND"] == 1) output("... at least for today");
+			output(".”</i> [Bess.Name] cheekily whispers, [bess.eyeColor] eyes glimmering. <i>“I’m claiming it. I’ll hang a flag from it if I have to.”</i>");
+			
+			output("\n\nYou chuckle at the idea of [bess.name] claiming your flag pole");
+			if (pc.cocks.length > 1) output("s");
+			output(" for [bess.himHerself]. Your chuckling turns into a low, guttural moan, though, as [bess.heShe] clamps [bess.hisHer] lips around");
+			if (pc.cocks.length > 1) output(" one of");
+			output(" your cock-slit");
+			if (pc.cocks.length > 1) output("s");
+			output(" and greedily sucks on it.");
+		}
+		else
+		{
+			output("\n\n<i>“Your [pc.cocks]");
+			if (pc.cocks.length == 1) output(" is");
+			else output(" are");
+			output(" wonderful,”</i> [bess.name] dreamily whispers. <i>“Thank you for letting me service");
+			if (pc.cocks.length == 1) output(" it");
+			else output(" them");
+			output(", [bessPCSexName].”</i>");
+			
+			output("\n\nYou chuckle at [bess.name]’s cock worship, though it turns into a low, guttural moan as the silky-lipped synthetic clamps [bess.hisHer] lips around");
+			if (pc.cocks.length > 1) output(" one of");
+			output(" your cock-slit");
+			if (pc.cocks.length > 1) output("s");
+			output(", greedily sucking on it. Hot damn-!");
+		}
+	}
+	else if (bessIsDom())
+	{
+		output("Out of the blue, [Bess.name] strides up to you,");
+		if (bess.isNude()) output(" wearing nothing at all... but wearing it <i>well</i>");
+		else if (bess.armor is EmptySlot) output(" clad in nothing but [bess.gear]");
+		else output(" looking thoroughly sexy in [bess.hisHer] [bess.armor]");
+		output(". [Bess.HeShe] puts a hand on [bess.hisHer] hip. There’s a devilish glint in [bess.hisHer] [bess.eyeColor] eyes and subtle smile playing on [bess.hisHer] [bess.lips].");
+
+		output("\n\n<i>“Whip out your dick, [bessPCSexName]. It’s time for inspection,”</i> [bess.name] commands, gesturing to");
+		if (pc.isNude()) output(" your exposed crotch");
+		else if (!(pc.armor is EmptySlot)) output(" the pointed bulge in your [pc.armor]");
+		else output(" [pc.lowerUndergarment]");
+		output(".");
+		
+		output("\n\nYou blush self-onsciously, but at the same time, a delicious little shiver runs up your spine. [Bess.HeShe]’s taking notice of you! At the same time, the timing is really inconvenient.");
+		
+		output("\n\n<i>“... B-but [bessSexName], I was going to--”</i> You trail off as [bess.hisHer] literally iron gaze fixates on you. You gulp. There’s no point telling [bess.hisHer] you were going to do something <i>else</i>, since [bess.hisHer] orders take first priority.");
+		
+		output("\n\nResigning yourself to your fate, you");
+		if (pc.PQ() < 25) output(" helplessly");
+		if (pc.isCrotchGarbed()) output(" strip off your [pc.gear] and");
+		output(" hold out your [pc.cocksNounSimple].");
+		if (pc.cocks.length == 1) output(" It just hangs");
+		else output(" They just hang");
+		output(" out there under [bess.hisHer] intense gaze, though you have no idea <i>why</i> [bess.heShe]’s asked for");
+		if (pc.cocks.length == 1) output(" it");
+		else output(" them");
+		output(" just yet. [bess.HisHer] authoritative stare causes both your cheeks and your exposed rod");
+		if (pc.cocks.length > 1) output("s");
+		output(" to burn with a pleasurable heat.");
+
+		output("\n\n<i>“Wrists - behind your back and together, </i>now<i>,”</i> [bess.name] sharply orders you, [bess.hisHer] voice like a cracking whip.");
+		
+		output("\n\nYou slide your wrists behind your back and together, doing as [bess.heShe] asks. After all, why wouldn’t you obey [bess.himHer]? A fluttering feeling rises in your chest as you wonder what [bess.heShe] will order you to do next!");
+		
+		output("\n\nCircling around you now, you feel soft leather wrap around your wrists and tighten. Is [bess.heShe] cuffing you? You blush as your arms are bound and cuffed together, restricting your movement as [bess.heShe] desires. They feel snug, but not too tight.");
+		
+		output("\n\n<i>“Good [pc.boyGirl].”</i> You feel a stroking along your forearms, making you shiver with delight. A warm sense of trust fills every inch of your being - you’re totally in [bess.hisHer] hands now.");
+		if (pc.hasFeet())
+		{
+			output(" Your exhilaration skyrockets as [bess.heShe] cuffs your ankle");
+			if (pc.legCount > 1) output("s");
+			output(" as well. Every cuff secured is followed by the dancing of [bess.hisHer] fingers along your naked [pc.skinFurScalesNoun].");
+		}
+		
+		output("\n\nFinishing things off, you feel a wrapping of snug leather around your neck. It’s your collar! You flush with delight - nothing pleases you more than wearing your collar");
+		if (!pc.hasTail()) output(", and if you had a tail, you’d be wagging it");
+		else
+		{
+			output(". Your [pc.tails] excitedly swish");
+			if (pc.tailCount == 1) output("es");
+			output(" side to side.");
+		}
+		
+		output("\n\n<i>“I’m so happy, [bessSexName],”</i> you whisper. Nothing makes you feel more complete than being cuffed and collared.");
+		
+		output("\n\n<i>“So cute.”</i> Your mechanical "+ bess.mf("Dom", "Domme") +" responds, moving face to face with you. [bess.HeShe] then hooks [bess.hisHer] fingers through the metal ring dangling from the neck of your collar. With the slightest of tugs, [bess.heShe] forces you to look [bess.himHer] in the eyes, mesmerizing you with [bess.hisHer] stare!");
+		
+		output("\n\n<i>“You’re properly adorned now, [bessPCSexName]. If I want you to bark like a dog, you will bark. If I want you to get on all fours, you will do so. You will obey all my instructions immediately and without complaint. Is that understood?”</i> [Bess.name]’s eyes tell you all you need to know - [bess.heShe’s waiting for a <i>prompt</i> and <i>courteous</i> reply.");
+		
+		output("\n\n<i>“Yes, [bessSexName],”</i> you quickly answer. You’re physically trembling with delight! Being cuffed and collared has really got you in the mood, even more so with your wrists bound and your [pc.cocks] shamefully hanging out.");
+
+		output("\n\nIt seems having");
+		if (pc.cocks.length == 1) output(" it");
+		else output(" them");
+		output(" hang out was definitely part of [bess.name]’s plan. With a "+ bess.mf("hungry growl, your mechanical dom", "sultry smile, your mechanical domme") +" reaches down and teases [pc.oneCock] with [bess.hisHer] fingertips.");
+		if (pc.cocks.length == 1) output(" It stiffens and jerks upward, saluting its silvery [bess.master].");
+		
+		output("\n\n<i>“Oho! Are you getting turned on by this, [bessPCSexName]-?”</i> [bess.heShe] asks. You feel [bess.hisHer] strong, silvery, wrapping around [pc.oneCock]. You twitch shamefully in [bess.hisHer] hand. Pearls of [pc.cumColor] pre-cum are already forming at your tip!");
+		
+		output("\n\n<i>“N-no, [bessSexName]!”</i> You whimper out, lying through your teeth. A few more strokes and you’re gasping for air. Shamefully, you buck your hips against her stroking hand, your actions contradicting your words!");
+		
+		output("\n\n<i>“Is that so-? It must be someone else who’s getting hard in my hand,”</i> [bess.name] teases, firmly squeezing your [pc.cock]. <i>“... Tell me, who");
+		if (pc.cocks.length == 1) output(" does this");
+		else output(" do these");
+		output(" [pc.cocks] belong to, [bessPCSexName]?”</i>");
+		
+		output("\n\nYou hesitate to say it out loud - a hesitation that is swiftly punished. You feel a sharp, delicious spank on your bare buttocks. Wiggling madly in place, you whimper out an answer. <i>“Y-You, [bessSexName] - my [pc.cocks] belong to you!”</i> Your rawly spanked rump resonates with tingling, stinging pleasure - another thing that is also [bess.hisHer] prized property!");
+		
+		output("\n\n<i>“Good [pc.boyGirl]. I’m going to play with your naughty prick");
+		if (pc.cocks.length > 1) output("s");
+		output(" now. You’re not to cum until I tell you to - understood?”</i>");
+		
+		output("\n\nYou gulp and nod. Feeling [bess.name] stroke your [pc.cock], you’re not sure you can keep it. Still, you’ll try, to make your [bess.master] proud! Still, the moment [bess.heShe] starts to seriously stroke your aching erection");
+		if (pc.cocks.length > 1) output("s");
+		output(", you realise it’s easier said than done.  [bess.HisHer] fingers gliding along your aching erection feel positively divine. The slightest squeeze of your shaft forces a delighted sigh of pleasure from your lips.");
+		
+		output("\n\nSpeaking of lips, you feel [bess.hisHers] kissing your neck just below your collar, lavishing it as [bess.hisHer] hand thoroughly milks your sheathe. You tremble and whimper, cuffed in place, and feeling so <i>owned</i> and <i>adored</i>.  You try your best not to buck your hips against [bess.hisHer] hands - restraining yourself and being <i>very</i> good. The rest of you is trembling and you arch your back, trying to hold back the coiling pleasure building deep in your loins. Your patience is soon rewarded.");
+		
+		output("\n\n<i>“... There’s a good [pc.boyGirl]. Now stand still while I taste my favorite piece of property.”</i> Your metallic [bess.master] huskily orders. You feel a light nip at your ear, shortly before [bess.heShe] pulls away. You beam with pride and do as instructed, trying your best to not move a single inch. ");
+
+		bessTopStripScene();
+
+		output("\n\n");
+		if (!bess.isNude()) output("Now that [bess.Name] has stripped off [bess.hisHer] clothes, [bess.heShe]");
+		else output("Your mechanical lover");
+		output(" sultrily sinks down to [bess.hisHer] knees. Grabbing [pc.oneCock] firmly in hand, your mechanical [bess.master] possessively kisses your privates.");
+		
+		output("\n\nYou bite back a moan and squirm in your cuffs - you can’t believe [bess.heShe]’s having [bess.hisHer] way with your [pc.cock]!");
+		if (flags["BESS_CUMDUMP"] == 1) output(" Second-hand cum smears along your taut skin, marking it with the second-hand sperm of other men");
+		else output(" [bess.HeShe] suckles on it long and hard");
+		output(". A tiny bit of flesh is teased by [bess.hisHer] diligent tongue as [bess.heShe] lovingly lashes your loins.");
+		
+		output("\n\nWhen [bess.heShe] finally pulls back, you look down, and there is a sizable hickey left there. You flush with the knowledge that you have been marked by [bess.himHer] ‘down there’. You and your cock truly are [bess.hisHer] stamped property.");
+		
+		output("\n\n<i>“I’ve branded you, [bessPCSexName]. It only makes sense to mark your property, right?”</i> [Bess.name] smiles. [bess.name] then leans forward and lovingly laps your marred rod, sending delicious little shivers shooting up your spine. <i>“... Your");
+		if (pc.cocks.length == 1) output(" cock is");
+		else output(" cocks are");
+		output(" nice and clean. I see you’ve been a good [pc.boyGirl] by taking care of it for me.”</i>");
+		
+		output("\n\n<i>“Yes, [bessSexName].”</i> You were just being clean, but you make a mental note to keep doing it because your [bess.master] likes it. Knowing you made [bess.himHer] happy makes you swell with pride!");
+	}
+	else // bessIsSub()
+	{
+		output("You look down at your [pc.cocks]");
+		if (!pc.isNude()) output(" straining against your [pc.lowerGarment]");
+		else output(" sticking up rudely against your [pc.belly]");
+		output(". Damn, you’re horny! For a moment, you consider doing something about it yourself... but then, what are submissives for?");
+		
+		output("\n\n<i>“Hey, [bessSexName]!”</i> You call [bess.name] over.");
+		
+		output("\n\nSeconds within you calling, [bess.heShe] bounds up,");
+		if (bess.isNude()) output(" butt-naked as usual");
+		else if (bess.armor is EmptySlot) output(" clad in nothing but [bess.gear]");
+		else output(" looking thoroughly sexy in [bess.hisHer] [bess.armor]");
+		output(".");
+		if (bess.hairLength > 0) output(" [Bess.name] coyly runs a hand through [bess.hisHer] [bess.hairColor] hair,");
+		else output(" [bess.name] stands there with hands clasped obediently in front of [bess.himHer],");
+		output(" an eager look in [bess.hisHer] [bess.eyeColor] eyes.");
+		if (flags["BESS_CUMDUMP"] == 1) output(" [Bess.HisHer] lips are positively smeared with thick globs of semen, deposited from countless cocks. Time to add to the tally...");
+		
+		output("\n\n<i>“On your knees, [bessSexName].”</i> You command, all the while shooting her a steely stare.");
+		if (!pc.isNude()) output(" At the same time, you purposefully strip off your things and toss them lazily aside.");
+		
+		output("\n\n[Bess.name] gulps and immediately drops to [bess.hisHer] knees. With no idea what you have planned, [bess.heShe] diligently kneels before you. [Bess.HisHer] hands are neatly balled up in [bess.hisHer] lap, [bess.hisHer] back arched and adoring eyes directed downward at your [pc.feet].");
+		
+		if (bess.isChestGarbed()) output("<i>“Now, strip off your clothes. Just the top - nothing else.”</i>");
+
+		bessTopStripScene();
+
+		output("\n\nNow that [bess.Name]"); 
+		if (!bess.isNude()) output(" has stripped off [bess.hisHer] clothes");
+		else output(" is properly positioned");
+		output(", you pull out some leather cuffs.");
+
+		output("\n\n<i>“Wrists - present them to me, now.”</i>");
+		
+		output("\n\n[Bess.Name] obediently stretches out [bess.hisHer] wrists, offering them up to you. You wrap the black leather cuffs around her wrists. Once you are sure they are snug and tight, you connect them together by their metal fasteners, binding her hands together. You finish by sliding a collar around her neck and clicking it in place.");
+		
+		output("\n\n<i>“M-my collar... I love my collar, [bessPCSexName],”</i> [bess.name] whispers. [Bess.HeShe] raises her bound hands and touches the dark leather,  blushing furiously.");
+		
+		output("\n\nCute! You hook your fingers through the metal ring dangling from her collar.  With the slightest of tugs, you force [bess.himHer] to look you in the eyes, mesmerizing [bess.himHer] with your stare.");
+		
+		output("\n\n<i>“You’re properly adorned now. If I want you to bark like a dog, you will bark. If I want you to get on all fours, you will do so. You will obey all my instructions immediately and without complaint. Is that understood?”</i>");
+		
+		output("\n\n<i>“Yes, [bessPCSexName],”</i> [bess.name] giddily whispers, [bess.hisHer] [bess.eyeColor] eyes dreamily glazed.  It seems having [bess.hisHer] collar and cuffs on has really put [bess.himHer] in the mood!");
+		
+		output("\n\nYou move back in front of [bess.name] and present your [pc.cocksLight] right in front of [bess.hisHer] face. [bess.HeShe] instinctively goes to suck");
+		if (pc.cocks.length == 1) output(" it");
+		else output(" one");
+		output(", but then holds back as [bess.heShe] realises [bess.heShe] hasn’t been ordered to. Instead, [bess.heShe] sits back like a good little sub and waits for instruction.");
+		
+		output("\n\nYou feel a rush of pride at [bess.hisHer] self control. Even as you wave your loins closer to [bess.hisHer] face and [bess.heShe] dreamily inhales the musky scent of your loins, [bess.heShe] refuses to take the bait.");
+		
+		output("\n\n<i>“You’re so mean, [bessPCSexName]...!”</i> [bess.heShe] whimpers, clearly tortured by the delicious smell of your erection");
+		if (pc.cocks.length > 1) output("s");
+		output(". [bess.HisHer] fingers are visibly twitching and [bess.hisHer] breathing is heavy. <i>“Did you come here just to tease me with my favorite thing?”</i>");
+		
+		output("\n\n<i>Mean</i>! You should bend [bess.himHer] over and spank [bess.himHer] for calling you that. Instead, you toy with [bess.hisHer] mind, telling [bess.hisHer] that a <i>truly</i> mean [pc.Master] wouldn’t let [bess.himHer] worship [pc.hisHer] cock");
+		if (pc.cocks.length > 1) output("s");
+		output(" at all.");
+		
+		output("\n\n[Bess.name]’s gaze is immediately repentant and [bess.heShe] looks like [bess.heShe] wants to bow, yet hasn’t been told to move freely. Instead, a litter of apologies fly from [bess.hisHer] silvery, kissable lips. <i>“I’m so sorry, [bessPCSexName]! You’re a wonderful, gracious [pc.master] who blesses me with the mere sight of your cock");
+		if (pc.cocks.length > 1) output("s");
+		output(". My tongue slipped!”</i>");
+		
+		output("\n\nYou tell [bess.himHer] that [bess.hisHer] tongue clearly needs a taste of your [pc.cumNoun] to remind it of its place. Your statement is punctuated by the pointed rubbing of your [pc.cocksNounSimple] against [bess.hisHer] lips. [Bess.name]’s whole body trembles with pent up lust and [bess.heShe] lets out a whimpering little moan.");
+		
+		output("\n\n<i>“Please, [bessPCSexName], let your little synth [bess.boyGirl] swallow your delicious [pc.cumLight] and feel it filling up [bess.hisHer] stomach. Please...?”</i> [Bess.name] begs of you. [bess.HisHer] glittering [bess.eyeColor] eyes look as if they may fill with glistening tears if [bess.heShe] doesn’t taste your spunk soon.");
+		
+		output("\n\nYou’ve punished [bess.himHer] enough for calling you that word, so you give [bess.hisHer] permission to worship your raging rod");
+		if (pc.cocks.length > 1) output("s");
+		output(". Within seconds your bare-chested sub has leapt into action and is littering your aching loins");
+		if (pc.balls > 0) output(" and balls");
+		output(" in affectionate little kisses");
+		if (flags["BESS_CUMDUMP"] == 1)
+		{
+			output(", smearing a little bit of sticky second-hand cum on");
+			if (pc.cocks.length == 1) output(" it");
+			else output(" them"); 
+		}
+		output(".");
+	}
+
+	output("\n\nWith a lusty look in [bess.hisHer] eyes, [Bess.name] gives the underside of");
+	if (pc.cocks.length > 1) output(" one of your masts");
+	else output(" your mast");
+	output(" a nice long lick. [bess.HeShe] presses [bess.hisHer] silvery tongue deep into your sensitive flesh as [bess.heShe] slowly drags it upwards, making absolutely sure you <i>feel</i> every inch of [bess.hisHer] vertical ascent.");
+	
+	output("\n\nYou groan and arch your hips with [bess.hisHer] wet ascent. The stroking of [bess.hisHer] synthetic tongue on your tool is <i>amazing</i>! As [bess.heShe] finishes [bess.hisHer] ascent, a tiny spurt of [pc.cumColor] pre-cum shoots from your tip, almost as if [bess.heShe] pushed it up and out of your cock!");
+	if (flags["BESS_CUMDUMP"] == 1) output(" The droid’s lusty lick also leaves your prick utterly drenched in warm, second-hand spunk.");
+	
+	
+	output("\n\nGreedily spotting the [pc.cumVisc], [pc.cumFlavor] pre-cum dribbling from your tip, [bess.name] inches closer, her hot breath tickling your [pc.cockHead]. [bess.HeShe] eagerly wraps her [bess.lips] around your cock hole, [bess.hisHer] tongue lashing up to lap up your [pc.cumNoun]. ");
+	
+	output("\n\nUnsatisfied with such a small smidgeon, [bess.heShe] eagerly sucks on your crown until [bess.hisHer] silvery cheeks hollow inward - [bess.heShe]’s trying to slurp your cum out by force! All the while [bess.hisHer]");
+	if (flags["BESS_CUMDUMP"] == 1) output(" jism-loving");
+	output(" tongue-tip is lashing and caressing your cock hole, trying to tease out even more of your [pc.cumFlavor] spunk.");
+	if (bessIsSub()) output(" Cuffed as [bess.heShe] is, it’s quite the effort!");
+
+	if (pc.balls > 0 && !bessIsSub())
+	{
+		output("\n\nUpping the ante, [bess.name] goes for the source of your succulent spunk; reaching up to cup your [pc.sack]. [bess.HisHer] fingers squeeze and caress your nuts as you moan in sheer rapture. Your cries increase in pitch as [bess.heShe] sneakily slides a finger out to stroke that soft flesh south of your balls and buttocks, lewdly teasing your perineum.");
+	}
+	if (bess.hasTailCock())
+	{
+		output("\n\n");
+		if (bessIsSub()) output("<i>“... Um, [bessPCSexName], did you want me to fuck your ass with my tail?”</i> [Bess.name] momentarily pulls back and meekly suggests. You nod firmly, definitely approving of some butt-play.");
+		else output("<i>“... How about we get that ass some action, hmm?</i> [Bess.name] momentarily pulls back and "+ bess.mf("saucily", "sultrily") +" suggests. You nod dreamily in agreement, only half-catching [bess.hisHer] words.”</i>");
+		output(" Suddenly [bess.hisHer] silvery metal JoyCock curls around your hips and approaches your ass. Moments later, your [pc.assColor] buttocks are pushed apart, [bess.hisHer] thick tip pushes pointedly against your [pc.asshole].");
+		pc.buttChange(200, true, true, false);
+	
+		output("\n\nWhen it slips inside your buttocks you try not to clench, relaxing and feeling it weave its way deep inside of you. Swiftly seeking out your prostate, it drags along it in long, low strokes. Delicious, humming pleasure floods through every inch of your being as [bess.heShe] teases your inner ass, fucking and pumping deep inside of your sweet hole!");
+	}
+
+	//{PC cock size above 14 inches:
+	if (pc.biggestcockSize() > 12)
+	{
+		output("\n\n[Bess.name] seems to want to take more of your [pc.cock "+ cockIdx +"] into her mouth, but it’s simply too <i>huge</i>. Trying a few times, [bess.heShe] gags on your incredible girth, pulling back in failure. <i>“G-gah... syntax errors! There’s no way I’m taking something </i>this<i> big without going all out. Disengaging oral safeties!”</i>");
+		
+		output("\n\nYou hear a slight hissing noise come from underneath [bess.hisHer] chin, though nothing looks different. When [bess.heShe] takes you back in [bess.hisHer] mouth, however, [bess.hisHer] jaw actually dislocates like a snake. It shifts to accommodate you, [bess.hisHer] neck bulging with the outline of your [pc.cock "+ cockIdx +"]. The wonders of technology!");
+	}
+	else
+	{
+		output("\n\nEager for more of your sperm,");
+		if (bessIsSub()) output(" your synthetic sub");
+		else if (bessIsDom()) output(" your mechanical [bess.master]");
+		else output(" the synthetic "+ bess.mf("man", "girl") +" slides [bess.hisHer] lips around your [pc.cock "+ cockIdx +"], enveloping it in her moist warmth. You can feel your [pc.cockHead "+ cockIdx +"] travelling across [bess.hisHer] silky tongue and back into [bess.hisHer] gullet. Soon [bess.heShe]’s applying artful suction to your slickened spire, [bess.hisHer] silvery cheeks caving inward.");
+	}
+
+	pc.cockChange(true, true, false);
+
+	output("\n\nYou groan as [bess.heShe] demonstrates [bess.hisHer] utter lack of a gag reflex. You can feel your flexing tip sliding back and forth, in and out of [bess.hisHer] throat, squeezing and teasing your [pc.cockHead "+ cockIdx +"]. The mechanical "+ bess.mf("man", "girl") +"’s face truly was fashioned to be fucked!");
+	
+	output("\n\nJust when you think this blowjob can’t get any better, the insides of [bess.name]’s throat begin twisting and buffeting your glans in different directions. You let out a primal groan and press your oversensitized cock deep into [bess.hisHer] warm, wet gullet.");
+	if (pc.hasKnot(cockIdx))
+	{
+		if (bessIsDom())
+		{
+			output(" As you inch closer to climax, your [pc.knot "+ cockIdx +"] begins to swell in [bess.hisHer] mouth. Instinctively, you try to pull out, but [bess.name] firmly grabs your");
+			if (pc.balls > 0) output(" [pc.balls]");
+			else output(" [pc.ass]");
+			output(" and makes you stay put. You’re forced to mate with [bess.hisHer] face, utterly helpless as [bess.heShe] looks up at you with devilish [bess.eyeColor] eyes.");
+		}
+		else
+		{
+			output("As you inch closer to climax, your [pc.knot "+ cockIdx +"] begins to swell in [bess.hisHer] mouth. [bess.name] doesn’t move an inch, letting your lump lock in place and force [bess.hisHer] jaw wide open. [bess.HeShe] lets a deep, throaty moan, a look of delirious pleasure on [bess.hisHer] face as you mate with [bess.hisHer] mouth.");
+		}
+	}
+
+	if (pc.hasKnot(cockIdx))
+	{
+		output("\n\nWith one last squeeze of [bess.name]’s throat, you’re sent careening over the edge. Seizing [bess.hisHer] head in your hands, you moan and buck against [bess.hisHer] face. Your [pc.cockHead "+ cockIdx +"] flexes and spurts hot, [pc.cumVisc] ropes of your [pc.cumFlav] [pc.cumNoun] down [bess.hisHer] defenseless throat.");
+		if (bessIsDom())
+		{
+			output(" Knotted like that, your eyes roll back into your head as you remain there, locked against [bess.hisHer] [bess.lips]. You twitch and shoot your spunk into her stomach for the next half hour.");
+		}
+		else
+		{
+			output(" [bess.Name]’s eyes roll into the back of [bess.hisHer] head and [bess.heShe] lets out a delirious groan as you continuously mate with [bess.hisHer] lips, intermittently shooting your spunk into her stomach for the next half-hour.");
+		}
+
+		// if (any but hyper cums)
+		if (pc.cumQ() <= 5000)
+		{
+			if (bessIsDom())
+			{
+				output("\n\nWhen your knot finally goes down, your mechanical [pc.master] pulls back, your now flaccid prick flopping from [bess.hisHer] sperm coated lips. Just when you think [bess.heShe]’s done with you, [bess.heShe] gives your tender dick a few more teasing jerks, making you twitch and whimper with delight. <i>“... Oh, you’re still sensitive? How fun.”</i>");
+				
+				output("\n\nEven though you <i>just</i> came, your [pc.knot "+ cockIdx +"] flares in [bess.name]’s hand. Not letting up, [bess.heShe] keeps teasing your vulnerable prick, swiftly bringing you to climax a second time! You shamefully shoot your [pc.cum] all over the floor, this time knotting with nothing but [bess.hisHer] hand.");
+				
+				output("\n\n<i>“Is that all it took? So quick-! Let me get it alll out for you...”</i> [Bess.name] "+ bess.mf("rumbles", "purrs") +", milking you for every last drop of [pc.cum]. You whimper with pleasure, firing sticky ropes all over the floor like an animal.");
+				
+				output("\n\n<i>“... Now lick it up. If it’s good enough for your "+ bess.mf("Master", "Mistress") +"’s mouth, it’s a gift to yours.”</i> [bess.HeShe] commands you to lick your own [pc.cumVisc] [pc.cumNoun] off the floor, and you obey. From behind, [bess.name] sticks a finger in your [pc.ass], and fingers your prostate as you blushingly lap up your spilled seed.");
+				
+				output("\n\nAfter you’re done,  [Bess.name] instructs you to give [bess.himHer] a kiss. You do so with relish, sharing the taste of your [pc.cumFlav] spunk. [Bess.HeShe] then swats your ass, and sends you on your way.");
+			}
+			else // bess is not a dom
+			{
+				output("\n\nWhen your knot finally goes down, the "+ bess.mf("male synthetic", "synthetic girl") +" seems to be glowing with sheer satisfaction, an utterly blissed-out look in [bess.hisHer] crystalline [bess.eyeColor] eyes. It seems [bess.heShe] thoroughly enjoyed you knotting [bess.hisHer] mouth. <i>“That was the best... my stomach feels like it’s completely filled with nothing but you...”</i>");
+				
+				output("\n\nGiven how long you came in [bess.hisHer] mouth, it probably <i>is</i> filled with you... or at least your spunk. Knowing that gives you a little burst of possessive pride, like you’ve claimed [bess.himHer] with your seed.”</i>");
+			}
+		}
+	}
+	else
+	{
+		output("\n\nWith one last squeeze of [bess.name]’s throat, you’re sent careening over the edge. You dig your fingers into the back of [bess.hisHer] head and thrust your cock all the way down [bess.hisHer] mechanical throat, giving yourself over to glorious release. With a deep, shuddering moan you spasmically unload your [pc.cumVisc] spunk inside of [bess.hisHer] slippery gullet, your [pc.cockHead "+ cockIdx +"] pulsing and convulsing in [bess.hisHer] narrow confines.");
+		if (pc.cumQ() <= 100) output(" While your release is truly earth shattering, only the smallest of spurts shoots out from your tip and batters the inside of [bess.hisHer] throat hole.");
+		else if (pc.cumQ() <= 5000)
+		{
+			output("\n\nAs your hot [pc.cumNoun] spills inside [bess.name]’s throat, [Bess.heShe] lets out a guttural moan. [Bess.HisHer] back arches in pleasure, [bess.hisHer] [bess.chest] pressing against you. Seconds later, [bess.heShe]’s’s letting out a muffled moan and convulsing in pleasure.");
+			if (bess.hasVagina()) output(" Girlish love-goo spasmically squirts from [bess.hisHer] snatch and pools on the floor beneath [bess.hisHer] thighs.");
+			if (bess.hasCock()) output(" [bess.HisHer] cock fires jets of pearly spunk up everywhere like a cum fountain, twitching and shooting all over the place.");
+			if (bess.hasTailCock()) output(" Deep inside of your [pc.ass], [bess.hisHer] prehensile prick pulses and spasms, spilling [bess.hisHer] thick, hot seed deep inside of you.");
+
+			output("\n\n[Bess.name] doesn’t let go of your [pc.cocks "+ cockIdx +"] until you are completely and utterly spent, sucking");
+			if (pc.cocks.length == 1) output(" it");
+			else output(" on them");
+			output(" happily until [bess.heShe]’s milked you of every single drop of your [pc.cum]. [bess.HeShe] then diligently laps at your rod");
+			if (pc.cocks.length > 1) output("s");
+			output(" until [bess.heShe] is sure");
+			if (pc.cocks.length == 1) output(" it is");
+			else output(" they are");
+			output(" completely clean. The process doesn’t seem to be all one sided; judging by the dreamy look in [bess.hisHer] eyes, [bess.heShe] clearly has an insatiable appetite for your [pc.cumNoun].");
+		
+			if (bessIsDom())
+			{
+				output("\n\nWhen your cock finally stops twitching, your mechanical [pc.master] pulls back, your now flaccid prick flopping from [bess.hisHer] sperm coated lips. Just when you think [bess.heShe]’s done with you, [bess.heShe] gives your tender dick a few more teasing jerks, making you twitch and whimper with delight. <i>“... Oh, you’re still sensitive? How fun.”</i>");
+				
+				output("\n\nEven though you <i>just</i> came, you swell once more [bess.name]’s hand. Not letting up, [bess.heShe] keeps teasing your vunerable cock, swiftly bringing you to climax a second time! You shamefully shoot your [pc.cum] all over the floor, pulsing and flexing in [bess.hisHer] hand.");
+				
+				output("\n\n<i>“Is that all it took? So quick-! Let me get it alll out for you...”</i> [Bess.name] "+ bess.mf("rumbles", "purrs") +", milking you for every last drop of [pc.cum]. You whimper with pleasure, firing sticky ropes all over the floor like an animal.");
+				
+				output("\n\n<i>“... Now lick it up. If it’s good enough for your "+ bess.mf("Master", "Mistress") +"’s mouth, it’s a gift to yours.”</i> [Bess.HeShe] commands you to lick your own [pc.cumVisc] [pc.cumNoun] off the floor, and you obey. From behind, [Bess.name] sticks a finger in your [pc.ass], pointedly stroking your prostate as you blushingly lap up your spilled seed.");
+				
+				output("\n\nAfter you’re done,  [Bess.name] instructs you to give [bess.himHer] a kiss. You do so with relish, sharinng with [bess.himHer] the taste of your [pc.cumFlav] spunk. [Bess.HeShe] then swats your ass, and sends you on your way.");
+			}
+			else
+			{
+				output("\n\nAfterwards,  [bess.name] seems to be glowing with sheer satisfaction, an utterly blissed-out look in [bess.hisHer] [bess.eyeColor] eyes. [bess.HisHer] mouth is slightly parted and splattered with your [pc.cumColor] seed]; the rest [bess.heShe] swallowed without a moment’s hesitation. <i>“... Mmm, delicious! Your [pc.cum] is the best, [bessPCSexName]”</i>");
+			}
+		}
+	}
+
+	if (pc.cumQ() > 5000)
+	{
+		output("\n\nOver the course of your orgasm a torrential amount of [pc.cum] erupts from your [pc.cockHead "+ cockIdx +"], bursting forth from your [pc.cock "+ cockIdx +"] like from a broken dam. It really is a good thing [Bess.name] doesn’t need to breathe, swallowing gallons of your cum without a moment’s hesitation. First [bess.hisHer] [bess.chest] begins to bloat, swelling out as [bess.heShe] stores your spunk");
+		if (bess.biggestTitSize() > 0) output(" in [bess.hisHer] mammary glands");
+		else output(" inside of [bess.himHer]");
+		output(". There’s not nearly enough room, and [bess.hisHer] entire body begins to expand.");
+		
+		output("\n\nBy the time your orgasm winds down the silver skinned android is completely transformed. [bess.HisHer] features are utterly distorted by the mammoth amounts of spunk you have wholeheartedly dumped inside of [bess.himHer].");
+		if (bess.biggestTitSize() > 0) output(" The slightest movement of [bess.hisHer] chest causes [bess.hisHer] massive mammaries to slosh about and your [pc.cumColor] spunk to spray from [bess.hisHer] distended nipples. [bess.HeShe] is positively filled with your virile seed.");
+		
+		output("\n\n<i>“... Mmm, I feel so full. I can’t process all of this into MeldMilk though; I’m going to have to dump some of your excess [pc.cumNoun],”</i> [bess.heShe] "+ bess.mf("groans", "professes") +" while spreading [bess.hisHer] ridiculously large thighs. "+ bess.mf("He looks well and truly bloated", "Every part of her jiggles and wiggles") +", and [bess.heShe] shifts to shoot out your spunk.");
+		
+		output("\n\n[Bess.name] reaches down and parts [bess.hisHer]");
+		if (bess.hasVagina()) output(" [bess.pussyLight]");
+		else output(" [bess.assholeLight]");
+		output(" with [bess.hisHer] fingers. "+ bess.mf("He", "Squatting there like a pregnant android, she") +" arches [bess.hisHer] back and suddenly a geyser of your [pc.cumColor] hot jism gushes out of [bess.hisHer]");
+		if (bess.hasVagina()) output(" snatch");
+		else output(" anus");
+		output(". It streams and splashes all over the ship floor, spreading out until it reaches your [pc.feetNoun].");
+		
+		output("\n\nAs [bess.heShe] unloads your sticky seed, [Bess.name] lets out a "+ bess.mf("gutteral groan", "sweet cry of pleasure") +". The sensation of your hot jism streaming out of [bess.hisHer]");
+		if (bess.hasVagina()) output(" pussy");
+		else output(" ass");
+		output(" is clearly getting [bess.himHer] off. [bess.HeShe] begins convulsing and falls on [bess.hisHer] back; it looks almost as if [bess.heShe]’s giving");
+		if (!bess.hasVagina()) output(" ass");
+		output(" birth to a mass of [pc.cumColor]-colored gelotians.");
+		
+		output("\n\n[Bess.name]’s eyes soon roll into [bess.hisHer] head from sheer ecstasy, each spasm causing your pooled spunk to spray out of [bess.hisHer]");
+		if (bess.hasVagina()) output(" snatch");
+		else output(" butt");
+		output(" in intermittent bursts. [bess.HisHer] ridiculously swollen belly slowly deflates until [bess.hisHer] ‘excess stock’ is fully depleted. You can see artificial sweat rolling down [bess.hisHer] body; even for an android, that was quite the effort.");
+		
+		output("\n\nStill, [bess.name] doesn’t seem bothered by [bess.hisHer] labors in the least. Instead [bess.heShe] looks up at you with a "+ bess.mf("blissful look", "truly dreamy expression") +" in [bess.hisHer] [bess.eyeColor] eyes. <i>“That... that was wonderful, the synthetic professes, then adds, <i>“Anytime you’re feeling pent up, come and find me - okay?”</i>");
+		
+		output("\n\nTalk about a cum junkie! [Bess.name] is thinking about [bess.hisHer] next serving even as [bess.heShe] lies in a gigantic pool of your [pc.cumNoun]. [bess.HeShe] continues to lie there utterly drunk off the musky smell of your seed, almost as if [bess.heShe]’s bathing in it.");
+	}
+
+	processTime(45+rand(15));
+	bessAffectionGain(BESS_AFFECTION_SEX);
+
+	for (var i:int = 0; i < 5; i++)
+	{
+		pc.orgasm();
+	}
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+
+
+Give Doggy
+
+How would you like to take [Bess.name]?
+
+[Vaginally] [Anally] 
+// tooltip.Vaginally: Take advantage of [bess.name]'s pussy.
+// tooltip.anally: Take advantage of [bess.name]'s ass.
+
+// Vag  requires Bess to have a vagina. 
+// All scenes require PC to have at least one cock.
+
+{bessIsEqual:
+
+You tell [Bess.name] that you would like to fuck [bess.hisHer] {PussyScene: pussy/AssScene: ass} from behind. {Nice: That is, if [bess.heShe]'s up for it.}{Misc: That is, if [bess.heShe]'s got time in [bess.hisHer] schedule to "fit you in".}{Hard: You're pretty blunt about it - you're in the mood to fuck.}
+
+[Bess.name] {male:raises his gorgeous brows/female:bats her gorgeously thick lashes} and turns [bess.hisHer] back towards you, petting [bess.hisHer] [pc.assLight]. "You want to fuck me {Vag: from behind, would you, [bessPCSexName]?/Anal: here? That's pretty naughty, [bessPCSexName]!}" The {GotHair: [bess.hairColor] haired} synthetic seems to be playing coy, though [bess.hisHer] eyes are shining with barely-concealed mirth. Despite [bess.hisHer] innocent act, [bess.heShe] seems more than happy to oblige{Pc is wearing clothes:, so you quickly strip off your [pc.gear]}.
+}
+
+{bessIfDom:
+
+[Bess.name] strides up to you out of the blue and snaps your collar around your neck. The D-ring at the throat is attached to a doggie leash, which [bess.heShe] promptly tugs to get your undivided attention.
+
+"Listen here, [bessPCSexName]. You are to strip off immediately until you are wearing nothing but this leash and collar, and </i>then<i> you are going to fuck your [bess.Mistress]'s {pussy/ass} with relish. If I do not enjoy myself, there will be </i>consequences<i>. Is that understood?" 
+	
+"Yes, [bessSexName]!" You meekly reply - all the while jumping for joy inside. It seems today your metallic {Dom/Domme} wants to make use of you and your [pc.cocksLight], which makes you incredibly happy. You blush and take off your [pc.gear], tossing it aside{if bess is wearing undergarment or armor: as your 'owner' similarly strips}.
+}
+
+{bessIsSub:
+
+You stride up to [Bess.name] out of the blue and snap [bess.hisHer] collar around [bess.hisHer] neck. The D-ring at the throat is attached to a doggie leash, which you promptly tug to get [bess.hisHer] undivided attention. 
+
+"Listen here, [bessSexName]. I am going to fuck your {pussy/ass} from behind while you wear this leash and collar. If I do not enjoy myself, there will be </i>consequences<i>. Is that understood?" {PC is clothed: You don't even wait for a reply, already stripping off your [pc.gear].}
+
+"Yes, [bessPCSexName]!" [Bess.name] meekly replies, though you can see in [bess.hisHer] eyes that [bess.heShe]'s jumping for joy inside. [bess.HeShe] looks thrilled that [bess.hisHer] [pc.Master] wants to make use of [bess.hisHer] and [bess.hisHer] {pussy/ass}. You {PCClothed: take off your gear and [bess.heShe] similarly/Else: watch as [bess.hisHer]} prepares herself for you. 
+}
+
+// MERGE ALL VERSIONS
+{ Bess is wearing clothes:
+
+{ and if Bess is wearing any of the below outfits (flippable skirts)
+	bess.armor is MaidOutfit
+bess.armor is Schoolgirl
+bess.armor is Battlegown
+bess.armor is ShortKimono
+bess.armor is Yukata
+bess.armor is Kimono
+bess.armor is ChinaDress
+bess.armor is LibrarianOutfit
+bess.armor is TopNSkirt
+bess.armor is SleepShirt
+bess.armor is BattleMaidOutfit
+bess.armor is NinjaOutfit
+bess.armor is NurseOutfit
+bess.armor is Seifuku
+bess.armor is FemaleDoctorOutfit
+bess.armor is CheerleaderUniform
+bess.armor is WaitressUniform
+bess.armor is GothLolitaOutfit
+bess.armor is TankNSkirt
+bess.armor if LittleBlackDress
+
+[Bess.name] reaches down and grabs the hem of [bess.hisHer] [bess.armor]. [bess.HeShe] draws it up to [bess.hisHer] waist with a little wiggle -- you can clearly see [bess.hisHer] {[bess.lowerUndergarment/[bess.groin]}. {BessHasPussy: [[bess.HeShe]'s already clearly wet -- the moist fabric of [bess.hisHer] underwear is sticking to [bess.hisHer] pussy lips, forming a perfect camel toe.}
+
+	}
+
+	{Else // None of these outfits:
+
+[Bess.name] sensuously slides off [bess.hisHer] [bess.armor], slowly revealing [bess.hisHer] naked body to you. You openly ogle [bess.hisHer] [bess.chest]{GotUpperUndergarment: , barely bound by [bess.hisHer] [bess.upperUndergarment]/Else: , now proudly on display}. It's hard not to salivate over [bess.hisHer] [bess.groin] {GotLowerUndergarment:,  barely contained by [bess.hisHer] [bess.lowerUndergarment]}. 
+	}
+
+	{if Bess is wearing underwear:
+
+Now that [bess.hisHer] [bess.armor] is out of the way, [bess.heShe] hooks [bess.hisHer] thumbs under the sides of [bess.hisHer] [bess.lowerUndergarment. With deliberate slowness, [bess.name] slips and slides them down [bess.hisHer] [bess.thighs], baring [bess.hisHer] [bess.groin] inch by glorious inch.  And then, with a little kick, [bess.heShe] tosses [bess.hisHer] [bess.lowerUndergarment] aside.
+
+	}
+
+}
+Now that you're both prepared, [bess.name] sinks down on [bess.hisHer] hands and knees, wiggling [bess.hisHer] [bess.ass] at you. {bessIsDom: As instructed, you/Else: Grinning,  you} slide up behind [bess.himHer], placing your hands on [bess.hisHer] [bess.hips]. Like a cat, [bess.heShe] arches [bess.hisHer] hips and rubs her rump pointedly against your [bess.base]. 
+
+You groan as [bess.name] lewdly jerks off your cock{s} between her [bess.ass]. {bessIsDom: You really want to let yourself go -- to shoot your [pc.cumColor] spunk all over her buttocks and back -- but you haven't been given permission!/else if bessIsDom: As much as you can imagine yourself shooting your spunk all over her buttocks and back, that's not what you're after. Tugging on [bess.hisHer] leash, you make sure your synthetic sub doesn't get <i>too</i> carried away./Else bessIsEqual: As much as you can imagine shooting your spunk all over [bess.hisHer] buttocks and back, you have <i>other</i> plans.}
+
+All of a sudden, [bess.name] pulls away from your [pc.cocksLight]. [bess.HeShe] reaches back and spreads open [bess.hisHer] {Vaginal: thighs. With two fingers, [bess.heShe] parts [bess.hisHer] slick, silvery folds/Anal: buttocks. [bess.HisHer] clean, stretched pucker winks at you}{BessCumDump: and pearly, second-hand cum drools out of it  -- it seems [bess.heShe]'s been busy today!/Else Not Cumdump: and is already lubed up with [bess.hisHer] artificial juices.}
+
+{bessIsDom:
+"Feel honored, [bessPCSexName]. Your [bess.Master] is going to let you fuck [bess.himHer]," [Bess.name] tugs rather pointedly on your lead -- and by extension your neck collar -- pulling you forward! "Time to put your [pc.cocksLight] to work!"
+
+"Yes, [bessSexName]--!" you stammer out, [pc.eachCock] jerking upwards as you are ordered about. You then obediently line up {PussyScene: your cock-tip with [bess.hisHer] [bess.pussy]/AnalScene: your cock-tip with [bess.hisHer] [bess.asshole]}
+}
+{Else // Bess is not dom:
+"Um, my insides should be nice and moist, and you seem pretty hard. Did you want to stick your cock{s} inside me now, [bessPCSexTitle]?" [bess.name] sweetly asks, at the same time pointedly rubbing your your cock-tip with [bess.hisHer] {[bess.pussy]/[bess.ass]} - as if [bess.heShe] needed to tempt you!
+}
+
+With the simplest press forward, your [pc.cockHead] parts [bess.hisHer] {silky lower lips/star-shaped pucker}. You groan as you sink your engorged length deep inside [bess.hisHer] synthetic hole -- it's so tight and slick! Even a virgin {pussy/ass} wouldn't be this wonderously tight- it's a good thing {BessCumDump: all that communal cum is/else: her synthetic juices are} lubing it up!
+
+As soon as your [pc.cock] is  completely sheathed inside of [bess.Bess], you begin to lustily grind your hips against [bess.hisHer] [bess.ass]. [Bess.HeShe] lets out a low, sensuous moan, answering your impassioned thrusts with [bess.hisHer] own bucking hips. You can feel [bess.hisHer] silky insides rippling along your length{s} with every movement, [bess.hisHer] synthetic {pussy/sphincter} actively milking your erection for all it's worth.
+
+{PC has a knot && BessIsDom:
+The longer you fuck [bess.himHer], the more your [pc.knot] begins to swell. You instinctively go to pull out, fearing getting stuck in [bess.himHer], but as you do so a sharp tug at your leather leash keeps you firmly in place.
+
+"Did I say you could go anywhere, [bessPCSexName]?" [Bess.name] asks, though the question is rhetorical. ""You are going to knot me -- and that's an </i>order<i>!" 
+
+Blushing furiously, you keep your hips firmly pressed against [bess.name]'s buttocks as instructed, your [pc.knot] swelling and locking inside of [bess.hisHer] {snatch/ass}. As soon as it's filled [bess.himHer] up, [bess.heShe] loosens [bess.hisHer] grip on your collar. With your cock knotted inside of [bess.himHer], [bess.heShe] doesn't need it anymore! [Bess.HeShe] pulls [bess.hisHer] ass away from you, and you're compelled to follow, literally lead by your dick! 
+
+"Goooood {boy/girl}. Just remember who is in charge, and maybe I'll let you get off inside of me," [Bess.name] teases you, forcibly slapping [bess.hisHer] hips back against your own. You bite your lip HARD and try not to cum at the tugging and squeezing sensation on your knotted [pc.cockNoun], all the while feeling your pre-cum uncontrollably dribble inside [bess.hisHer] silky depths.
+}
+
+if (pc has a cocktail)
+{
+{if (bessIsDom:
+
+"Your [pc.tailCockNoun]. Bring it to my mouth NOW, [bessPCSexName]."
+
+You blush and obediently obey, bringing it up to [bess.hisHer] mouth. Seconds later, [bess.heShe]'s taking your [pc.tailcock] between [bess.hisHer] [bess.lips]. {IfPCHasKnot: Knotted in place,/Else: With one hand tightly on your leash,} [Bess.name] fucks and sucks you off at the same time.
+
+{else // bess is not dom
+Acting on impure instinct, your [pc.tailCock] begins to move on its own. It slides up [Bess.name]'s chest. It catches [bess.himHer] off guard when you slip it inside [bess.hisHer] half open-mouth, [bess.hisHer] eyes shooting wide in sudden shock.
+
+"Mffh--! Mffph... mfflrrrgh!" You silence [bess.name]'s complaint with a mouth full of [pc.tailcock], stuffing it deep into [bess.hisHer] gullet. [Bess.HisHer] muffled protests turn into moans as you bury it deep inside of her warm, wet gullet, taking advantage of [bess.hisHer] complete lack of a gag reflex. 
+}
+}
+if (bess has a cocktail)
+{
+You feel a sudden sliding around your [pc.hip]. Suddenly something is pushing pointedly against your pucker -- it's [bess.name]'s JoyCord! Apparently unsatisfied with such a one-sided fucking, [bess.heShe] mischievously plunges [bess.hisHer] prehensile phallus into your [pc.ass], sliding it up to sweetly meet and pulse against your prostate. You tremble with delight as you're filled from behind, relishing in her rubbing deep inside of your rump.
+}
+
+As you hearily fuck [bess.name] from behind, [bess.heShe] reaches up and caresses [bess.hisHer] [bess.chest]. A sinful little moan escapes [bess.hisHer] lips as [bess.heShe] toys with [bess.hisHer] nipples. As [bess.heShe] pinches and teases them, [bess.hisHer] insides spasm, squeezing and wringing your thrusting length. 
+
+{Pc does not have tailcock:
+
+"I can feel you bulging inside of my {pussy/ass}!" [Bess.name] moans, bucking back needily against your [bess.base]. "{if bessIsSub: Please fill/Else: Fill your} {bess.isPregs: pregnant mechanical slut/else: my slutty hole} with your cum, [bessPCSexName]!" [Bess.heShe] cries, pushing [bess.himHerself] right down to your base. There, [bess.heShe] squeezes down on you with a vice-like grip; your [pc.cockHeads] pressed right against {[bess.hisHer] synthetic cervix/the deepest parts of [bess.hisHer] bowels.}
+}
+You let out a long groan as you reach that glorious peak. Instinctively, you press your hips as hard as you can against [bess.hisHer] butt. Your [pc.cock] twitches as you {TinyCums: splutter tiny drips of/Medium: spurt your/Large: unload your} [pc.cum] deep inside of [bess.hisHer] twitching, cock-filled {cunny/butt}. {Morethansmallcums and vaginal sex: It rushes up and fills her mechanical womb, your seed stirring around inside of [bess.her] [bess.belly].} Your twitching [pc.cockNounSimple] pushes [bess.himHer] over the edge, and [bess.heShe] utterly creams [bess.himHerself] around your pulsing shaft. Both of you dissolve into pleasure, trembling against each other's bodies. {Vag: [bess.HisHer] leaking pussy-juice mixes with your [pc.cumNoun] and drools down [bess.hisHer] trembling thighs.}
+
+if (pc.hasKnot = true)
+{
+Knotted as you are against [bess.name], you both spoon and cum for a good half hour. Tightly locked against each other, you continue to shoot and fill [bess.hisHer] {pussy/rump} with your [pc.cum]. Every time you finally breathe and think you're finished, [bess.name] squeezes [bess.hisHer] inner muscles, and you're off again -- shooting a fresh wad of cream directly into [bess.hisHer] {synthetic cunt/tight butt}. 
+}
+
+{if PC hyper cums:
+
+{if (pc.hasKnot = true) "During your knotting, you/Else: As you climax, you} shoot so much [pc.cumNoun] inside of [bess.himHer] that [bess.hisHer] [bess.belly] swells {BellyNotZero: even more} until it is utterly filled. {BessHasBewbs: [bess.HisHer] [bess.breasts] also begin to bloat with your seed. [Bess.HisHer] hips and ass soon follow.} By the time your orgasm winds down, [bess.name] is completely transformed by the mammoth amounts of spunk you have dumped inside of [bess.himHer]. {BessHasBewbs: The slightest movement of [bess.hisHer] chest causes [bess.hisHer] massive mammaries to slosh about.  Your [pc.cumColor] [pc.cumNoun] is even leaking out from [bess.hisHer] distended nipples!
+	
+"... Mmm, I feel so full. I can't process all of this into MeldMilk though; I'm going to have to dump some of your excess [pc.cumNoun]." [bess.name] groans, spreading [bess.hisHer] ridiculously large thighs. 
+
+Reaching down, [bess.name] parts [bess.hisHer] {vaginalScene: netherlips/else:partly gaping pucker}. Squatting there awkwardly, [bess.heShe] arches [bess.hisHer] back. Suddenly a geyser of your [pc.cumColor] hot [pc.cumNoun] gushes out of [bess.hisHer] spread hole, streaming and splashing all over the ship's floor! As [bess.heShe] does, [bess.name] lets out a sweet cry -- the sensation of your hot jism streaming out of [bess.hisHer] {pussy/ass} is clearly getting [bess.himHer] off. [bess.HisHer] eyes roll back into [bess.hisHer] head as your spunk spills out of [bess.hisHer] squirting hole, [bess.HisHer] ridiculously swollen belly slowly deflates until [bess.hisHer] 'excess stock' is fully depleted. 
+
+Once [bess.heShe] is done, [bess.name] has a truly dreamy expression on [bess.hisHer] face. It takes [bess.himHer] a while to regain the capacity to speak.
+
+"... T-that was wonderful," [bess.name] spacily murmurs, rubbing between [bess.hisHer] thighs. {BessIsEqual: "Anytime you're feeling pent up, come and find me - okay?" [bess.heShe] breathily requests}{BessIsDom: "Good job, [bessPCSexName]."}{BessIsSub: "I-I hope you enjoyed yourself, [bessPCSexName]."}
+}
+ 
+{Else PC does not hyper cum:
+
+Afterwards [bess.name] is glowing with sheer satisfaction. There's a totally blissed-out look in [bess.hisHer] [bess.eyeColor] eyes. When [bess.heShe] pulls [bess.himHerself] off your cock, {a tiny dribble/a thin stream/a gooey gush} of your [pc.cum] slides down [bess.hisHer] inner thighs. 
+
+	{ bess is Equal:
+"Mmm, that was wonderful. I love feeling your [pc.cumNoun] deep inside of me,</i> the insatiable synthetic dreamily tells you, a spaced out look in [bess.hisHer] eyes.
+
+{ bess is Dom
+"You're not just planning to leave me marked like this, are you, [bessPCSexName]?" [Bess.name] commands you out of the blue. [Bess.HeShe] then turns and pushes [bess.hisHer] [pc.cumNoun] splatted {snatch/buttocks} right in your face. "Now, lick it off."
+
+"... But, [bessSexName], that's my... that's my cum!" You meekly protest. 
+
+"Lick it up, that's an order! You covered me in it, so it's your job to clean it off... or would you have me do it myself?" Your silvery {Dom/Domme} levels a hard stare at you.
+
+You loudly gulp. There's really no talking your way out of it. With flushing cheeks, you stretch out your tongue, seeking out [bess.hisHer] slickened nethers. It's not long before you can taste your own [pc.cumFlav] rolling on your tongue. It's so warm and [pc.cumVisc]. You lewdly lap up your own seed from [bess.hisHer] {pussy/ass}, a delicious little shiver shooting up your spine. 
+
+Once you've finished cleaning off [bess.name]'s silvery skin of your [pc.cumNoun], you pull back, letting out a hot sigh. But for some reason, your [bess.master] doesn't look pleased -- have you done something wrong?
+
+"That's not </i>all<i> of it, [bessPCSexName]. Finish the job," [bess.name] chastises you.
+
+Not all of it? What, does [bess.heShe] mean... lick your [pc.cum] out from inside of [bess.himHer] as well?
+
+Burning with embarrassment, you slide your [pc.tongue] inside [bess.hisHer] cum-lined hole{Ass: -- at least [bess.heShe]'s an android, so [bess.heShe] doesn't use it for </i>that<i>}. You lap and dart inside of [bess.himHer], scooping up the last of your semen with great effort. Once you're done, you're sure it's as clean as can be.
+
+"Now, swallow."
+
+
+
+You obediently gulp down your own [pc.cumFlav] seed, feeling it dribble down into your [pc.belly]. At the same time you are filled with a fluttering, pleasant sensation. You did good, right?
+
+Your unspoken question is answered by a kiss on your neck.  After a few more kisses, [bess.name] removes your collar, and your worn out legs tremble. Right now, you're the happiest sub in the world!
+}
+
+{ Bess is sub:
+"Did... did I do good, [bessPCSexName]?" [Bess.name] asks in a slurred voice. [Bess.HeShe] couldn't look any more spaced out if [bess.heShe] tried.
+
+You stroke [bess.hisHer] head and tell [bess.hisHer] that [bess.heShe] did very well. [bess.HeShe] gives a light-headed smile and purrs a little, rubbing [bess.hisHer] cheek into your cupped hand. 
+
+Afterwards, you engage in some aftercare, before taking off [bess.name]'s collar and leaving [bess.himHer] to rest.
+}
+}
+
+
+
+
+Get Doggy 
+
+How does [bess.name] take you?
+
+[Vaginally] [Anally]
+// tooltip.Vaginal: [Bess.name] fucks your [pc.pussy]!
+// tooltip.anally: [Bess.name] fucks your [pc.ass]!
+
+// Bess needs to have a cock (Tail cock doesn't count).
+// For vaginal sex, PC obviously needs one.
+// If you've equipped Bess with the saurian / dino-dick,  the pc's orifice capacity must be able to take a 20 inch long, 12 inch wide cock. 
+// All other bess cocks automatically resize to fit the PC's orifice. That's because [bess.heShe]'s a body shifting sex-bot!
+// No minimum dick size
+
+{if bessIsEqual:
+Reaching down between your thighs you stroke yourself softly - you’re positively aching to be fucked right now. You tell [Bess.name] you’d love nothing more than for [bess.himHer] to screw you from behind.
+
+if (PC's got some clothes on:
+{
+"Well now, I can’t do that while you’ve still got your clothes on, [bessPCSexName], can I?" [Bess.name]’s [bess.eyeColor] eyes glimmer mischieviously while [bess.hisHer] voice is positively coy. 
+
+Eager to get the release you need, you quickly strip off your [pc.gear] and ready yourself for [bess.himHer].
+
+}
+
+// else PC is newd:
+{
+"Well now, you’re already naked. You must be really ready to go, [bessPCSexName]." [Bess.name]’s [bess.eyeColor] eyes glimmer mischieviously while [bess.hisHer] voice is positively coy. 
+}
+	
+[Bess.name] then walks around you and out of sight. Moments later, you feel [bess.hisHer] hands sliding around you and up to your [pc.chest]. [Bess.HeShe] caresses it gently, [bess.hisHer] fingers dancing along your [pc.skinFurScales]. At the same time, you feel [bess.hisHer] breath tickling one of your [pc.ears], and you shiver with delight.
+
+[bess.HisHer] lips caress your one of your ears and then travel down, stopping to suck at the nape of your neck. Suddenly your nipples are being pinched and you give a sharp jump, [bess.hisHer] fingers catching them as if in a trap. You couldn’t move even if you wanted to, you can feel [bess.hisHer] fingertips rolling over your sensitive nubs. You can’t help but lean back into [bess.hisHer] and give a gasping moan of pleasure. 
+
+{pussyscene
+Moments later, [bess.hisHer] fingers slide down and lightly tease your sensitive [pc.pussy]. As [bess.heShe] teases your loins, you eagerly rub against [bess.hisHer] fingers, trying to coax them inside of you for some much needed release! 
+
+At long last, you feel [bess.name]'s fingers slipping up inside of you. They wiggle around inside of your [pc.pussyLight], stirring you up in more ways than one! "... Mmm, your pussy is so wet, [bessPCSexName]." 
+
+You breathily moan in response, rubbing your {[pc.clits]/mound} against [bess.hisHer] hand. There's a lewd, squelching sound as [bess.heShe] plumbs your pussy with [bess.hisHer] slickened digits. Electrifying pleasure courses from your loins. You arch your back, whimpering and bucking your hips. At this rate, it won't be long before you're creaming yourself all over [bess.hisHer] hand!
+
+Before you reach your peak, however, [bess.name] removes her sticky fingers from your snatch. You let out a cry of protest -- only to have your mouth filled with her fingers! A warm, [pc.girlCumFlavor] brushes against your tongue, and you lustily suck at it -- licking [bess.hisHer] fingers clean of your own girl juice. The whole thing gets you even wetter, adding to the slickness dribbling from your [pc.pussyLight].
+
+"Mmm, that’s just for starters. How about we go all the way to dessert?" [Bess.name] seductively offers, rubbing your {[pc.clits]/mounds} with [bess.hisHer] fingers. You shiver and arch your back once more, relishing in the pulsing pleasure coursing out from your sex.  
+
+"Yes, oh frag yes--!" You flush furiously with how much you’re crying out for a little bit of [bess.hisHer] [bess.cockLight -- or rather a lot of it -- filling up your pussy.
+
+"Maybe you should get into position so I can give you your cream filling--?" [Bess.name] suggests and you’re all too quick to comply. You present yourself and stick your dripping wet cunny out, wiggling your butt all the while, enticing [bess.himHer] to screw you absolutely senseless. {Pchascock: At the same time [pc.eachCockLight] begins to twitch with anticipation, slapping against your [pc.belly].}
+}
+else // analscene
+{	
+Moments later, [bess.heShe] pulls back [bess.hisHer] hands and you let out a disappointed noise. It doesn't last long, as you soon feel [bess.hisHer] fingers sliding between your buttocks. [Two of [bess.hisHer] digits spread them open as another presses against your [pc.assholeNoun]. It feels surprisingly slick as [bess.heShe] presses it into your pucker. 
+
+You let out a sweet little cry as [bess.name]'s finger wiggles into your bum. Soon it's roaming and stirring about deep inside of you. Arching your back, you moan out loud, utterly relishing in your [pc.ass] being fingered. Without thinking, you buck back against [bess.hisHer] hand, coaxing it deeper and deeper, unable to get enough!
+
+You try to stand perfectly still as [bess.heShe] slips another slick finger inside of your back door, stretching you open that much more. You can’t help but shiver as your poor pucker is toyed with from behind, penetrating your forbidden place. You clench around [bess.hisHer] fingers and let out a breathy moan, wondering how long it’ll be before you hit that inevitable peak.
+		
+Before you can, however, [bess.name] removes her sticky fingers from your ass. You let out a cry of protest -- only to have them swiftly plunged back inside of you. You let out a delighted moan as they plunge even <i>deeper</i> into your well lubed butt. If this is what [bess.heShe] can do with [bess.hisHer] fingers, what is [bess.hisHer] cock going to feel like--?
+
+"Mmm, that's just for starters. How about we go all the way to dessert?" [Bess.name] seductively offers, pistoning your ass with [bess.hisHer] fingers as you feel the most delicious sensations running up from your rump.
+
+"Yes, oh frag yes--!" You flush furiously with how much you’re crying out for a little bit of [bess.hisHer] [bess.cockLight -- or rather a lot of it -- in your ass.
+
+"Maybe you should get into position so I can give you your cream filling--?" [Bess.name] suggests and you’re all too quick to comply. You present yourself and stick your rump out and wiggle it about, enticing [bess.himHer] to screw you absolutely senseless. {Pchascock: At the same time [pc.eachCockLight] begins to twitch with anticipation, slapping against your [pc.belly].}
+	}
+}
+
+{if bessIsDom:
+
+You spot [bess.name] striding up to you, an assertive gleam in [bess.hisHer] eyes. Immediately, your heart skips a beat. Hope wells deep within your heart. [Bess.HeShe] looks like [bess.heShe] wants you for something; could you be so lucky...?
+
+"Stand to attention, [bessPCSexName]!\</i> [bess.Name] demands, one hand on [bess.hisHer] hip. [bess.HisHer] other one is used to deliver a short but memorable slap to your [pc.ass], spurring you to action!
+
+You obediently jump to attention, a delicious throbbing in your lightly slapped buttock. You're giddy with anticipation. What does [bess.heShe] have planned for you? 
+
+[Bess.name] moves intimately close. You're so entranced by [bess.hisHer] stern, [bess.eyeColor] eyes that you almost miss [bess.himHer] slipping a leather collar around your neck. You moan with delight as it wraps around your bare [pc.skinFurScalesNoun], your submissive switch now fully 'on'. 
+
+Preparing properly for inspection, you {PC has Legs: spread your legs. You then} lock your hands behind your head. With practiced effort, you stand there like a perfect little slave, directing your gaze forward. As you fawningly await [bess.hisHer] commands you feel your loins tingle with anticipation - what sort of orders is [bess.heShe] going to give you today?
+
+You watch [bess.name] as [bess.heShe] paces around you, shivering as [bess.heShe] trails a finger up your side, [bess.hisHer] sharp eyes seeking even the slightest sign of poor posture. A single bead of sweat travels down your neck - you can feel it stroking every pore as it travels downward. 
+
+The smallest smile passes over [bess.name's] lips. It seems [bess.heShe] noticed, tracing [bess.hisHer] finger up and collecting the moisture on [bess.hisHer] fingertip. [Bess.HeShe] brings it to [bess.hisHer] mouth, kissing your salty sweatdrop away. Is [bessSexName] pleased with your posture? You're trying ever so hard!
+
+if (PC is wearing clothes)
+{
+"....Good {boy/girl}." [Bess.name] praises you, causing your heart to race. You pleased [bess.hisHer]! "... Now, strip off your clothes."
+
+With no idea what [bess.heShe] has planned for you, you slowly begin to remove your [pc.gear]. You can feel [bess.hisHer] eyes on you as you strip, [bess.hisHer] eyes roaming across your naked [pc.skinFurScalesNoun]. Being watched makes you even worked up -- your {[pc.cocks] stiffening}{and}{your [pc.pussies} deliciously tingling.}
+
+Once you're fully undressed, [bess.name] lets out an almost predatory noise of pleasure. [Bess.HeShe] then runs [bess.hisHer] fingers along your [bess.skinFurScalesNoun], following the paths [bess.hisHer] eyes were wandering. You let out a low moan, relishing in [bess.hisHer] attentions.
+}
+
+{Else PC is nude:
+"...Good {boy/girl}." [Bess.name] praises you, causing your heart to race. You pleased her! [bess.HisHer] tone is somewhat amused as [bess.heShe] inspects your bare chest. "... Already naked, I see. Were you trying to get my attention, hmm?"
+
+You're always trying to get [bess.hisHer] attention, so you answer in the affirmative, cheeks flushing. Just having [bess.HimHer] ordering you about is turning you on to no end. 
+}
+
+{PCClothed: Once you're fully undressed,/Unclothed: Taking advantage of your perfect posture,} [bess.name] lets out an almost predatory noise of pleasure. [Bess.HeShe] then runs [bess.hisHer] fingers along your [bess.skinFurScalesNoun], following the paths [bess.hisHer] eyes were wandering. You let out a low moan, relishing in [bess.hisHer] attentions.
+
+Pacing slowly around you, [bess.name] inspects your body from head to toe, caressing your [pc.fullChest] with [bess.hisHer] slender fingers. As they dance along your [pc.skinFurScalesNoun] you struggle not to shiver with delight, especially as [bess.heShe] leans in and deliberately tickles your ear with [bess.hisHer] deliciously hot breath.
+
+Without warning, a cup-handed slap comes down on your [pc.assLight]. There's a loud smacking sound and you let out a startled yelp, your rump suddenly on fire. It's only that way for a split second before a delicious stinging replaces it, causing you to sigh with pleasure. Another slap follows soon after, one even better than the first, and you let out a raspy moan. It stings, but it feels so damn good...!
+
+ "You have a nice, slappable ass, [bessPCSexName]. How about I slap it with my hips instead?" [bess.name] leans into you from behind, whispering in your ear. The promise of pleasure causes your [pc.legs] to quiver. It seems [bess.heShe] plans to fuck your {pussy/ass} today. "But first, beg for it. Beg as if your life depends on it!"
+
+Willing to do whatever [bess.heShe] asks you to, you whine shamelessly. "Plleeeasseee, [bessSexName], please fuck me! Please, I'm begging you, fuck my {[pc.pussy]/[pc.ass]} - I need it so badly!" The more you beg, the more you want it - now you feel like your life really <i>does</i> depend on it. "... Please!"
+
+"You haven't earned my [bess.cockLight] yet - but I will give you my fingers." [Bess.name] informs you, and you let out a happy noise. "But first..."
+
+[bess.HisHer] lips caress your one of your ears and then travel down, stopping to suck at the nape of your neck. Suddenly your nipples are being pinched and you give a sharp jump, [bess.hisHer] fingers catching them as if in a trap. You couldn’t move even if you wanted to, you can feel [bess.hisHer] fingertips rolling over your sensitive nubs. You can’t help but lean back into [bess.hisHer] and give a gasping moan of pleasure. 
+
+{pussyscene:
+Moments later, [bess.hisHer] fingers slide {Taur: around/else: down} and lightly tease your sensitive [pc.pussy]. As [bess.heShe] strokes your loins, you eagerly rub against [bess.hisHer] fingers, trying to coax them inside of you for some much needed release! 
+
+}
+else // analscene
+{	
+Moments later, [bess.heShe] pulls back [bess.hisHer] hands and you let out a disappointed noise. It doesn't last long, as you soon feel [bess.hisHer] fingers sliding between your buttocks. [Two of [bess.hisHer] digits spread them open as another presses against your [pc.assholeNoun]. It feels surprisingly slick as [bess.heShe] presses it into your pucker. 
+
+You let out a sweet little cry as [bess.name]'s finger wiggles into your bum. Soon it's roaming and stirring about deep inside of you. Arching your back, you moan out loud, utterly relishing in your [pc.ass] being fingered. Without thinking, you buck back against [bess.hisHer] hand, coaxing it deeper and deeper, unable to get enough!
+}
+Sensing your sudden shift in attitude [bess.heShe] {AnalScene: pulls [bess.hisHer] fingers out,} bends you over and gives you another swift slap on your [pc.ass]. [bess.HisHer] hands are incredibly firm -- far more than a regular {man/woman}’s -- and you squeal out loud! 
+
+"You are not to get yourself off without my say so, is that understood?</i> [Bess.name] growls and slaps your ass once more, a delicious stinging sensation spreading out from your spanked rump. 
+
+"...I promise, I promise! I won’t try to get off without your permission, [bessSexName]." You plead like a naughty little schoolgirl being bent over [pc.hisHer] parent’s knee.
+
+"... Did you really think I wouldn’t notice, or did you want to have your ass beaten like a little girl? Submitting to a {bess:female/ben:male} sex-bot like this - and you call yourself a Steele--!" [Bess.name] verbally berates you, causing your cheeks to flush. The metal handed synthetic smacks your bare buttocks again, causing you to yelp in delighted surprise. 
+
+{pussyscene:
+Mixing sweet pain with pleasure, you gasp as [bess.name]'s fingers suddenly slip up inside of you. They wiggle around inside of your [pc.pussyLight], stirring you up in more ways than one! You're so wet from the spanking that you can <i>feel</i> yourself dribbling all over your [bess.master]'s fingers. You whimper with delight, {spreading your [pc.legs] and} allowing [bess.himHer] greater access.
+		
+When [bess.heShe] removes [bess.hisHer] fingers you suddenly feel empty and let out a cry of protest only to have your mouth filled with a warm  [pc.girlCumflavor] taste - it doesn’t take you long to realise you’re sucking your own girl cum off of [Bess.name]’s fingertips. You eagerly suck it off like a baby, showing just how obedient you can be.
+
+"Now, [bessPCSexName], I want you to beg for it. I’m not going to give </i>it<i> to you unless you do." [Bess.name] commands you, while [bess.hisHer] [bess.cock] rubs against your ass. 
+
+"Please, please [bessSexName], fuck me! I need to be pounded hard from behind like the naughty slut I am, I’ll do anything--!" You flush furiously, willing to debase yourself utterly for the gift of [bess.hisHer] [bess.cockLight] inside of you.
+
+"Present yourself then, [bessPCSexName], and maybe I’ll use you like the naughty little cum slut that you are.<i> You obediently present yourself and stick out your snatch, wiggling your butt all the while, desperate to entice your [bess.Mistress] to screw you absolutely senseless. [if (pc.cock.length > 0) = "At the same time [pc.eachCockNoun] begins to twitch with anticipation, eager to spill your [pc.cumVisc] [pc.cumNoun] all over the ground as you are shamelessly pounded from behind."]
+}
+{else analscene:
+{
+As [bess.name]'s hand is removed from your [pc.ass], you brace yourself for another spank. Instead, [bess.heShe] slips [bess.hisHer] slick fingers between your stinging buttocks and plunges it back inside of you. [bess.heShe] deliciously pistons your [pc.asshole] once more and you whimper with delight.
+
+"Now, [bessPCSexName], I want you to beg for it. I’m not going to give </i>it<i> to you unless you do." [Bess.name] commands you.
+
+"Please, please [bessSexName], fuck me! I need to be pounded hard from behind like the naughty slut I am, I’ll do anything--!" You flush furiously, willing to debase yourself utterly for the gift of [bess.hisHer] [bess.cockLight].
+
+"Maybe you should get into position so I can give you your cream filling--?" [Bess.name] suggests and you’re all too quick to comply. You present yourself and stick your rump out and wiggle it about, enticing [bess.himHer] to screw you absolutely senseless. {Pchascock: At the same time [pc.eachCockLight] begins to twitch with anticipation, slapping against your [pc.belly].} 
+}
+}
+
+{if bessIsSub:
+
+You walk up to [Bess.name], an assertive gleam in your eyes. "Stand to attention, [bessSexName]!\</i> You command [bess.himHer], slapping [bess.hisHer] [bess.assLight] to make sure [bess.heShe] gets the message. 
+
+[Bess.name] immediately jumps into [bess.hisHer] 'attention' position, a shiver of pleasure running up [bess.hisHer] spine. [bess.HeShe] spreads [bess.hisHer] legs, stands on tippitoes and puts [bess.hisHer] hands behind [bess.hisHer] head. [bess.HisHer] eyes are focused, waiting for further instructions. [bess.HeShe]'s trying [bess.hisHer] best to be a perfect little slave {girl/boy}.
+
+The first thing you do is pull out [bess.hisHer] collar and snap it around [bess.hisHer] neck. You can see the submissive switch click in [bess.hisHer] head the very <i>second</i> you click it in place, as well as the longing look in [bess.hisHer] [bessEyeColor] eyes.
+
+After you have fastened [bess.hisHer] collar you inspect [bess.himHer] slowly, feeling your dominance over this silver skinned {Bess: strumpet/ben: sissy}. The smallest smile passes over your lips and [bess.heShe] trembles, trying to keep perfectly still - probably wondering what instructions you're going to give [bess.himHer] today. 
+
+ "[bessSexName]! I am going to give you the immeasurable honor of fucking my {[pc.pussy]/[pc.ass]} from behind. If you fail to pleasure me, you will be punished - understood?" You inform [bess.himHer] in a no nonsense voice{pc is clothed:, at the same time stripping off your [pc.gear]}.
+
+"Yes, [bessPCSexName]!" [Bess.name] immediately responds to your question, knowing any delay in answering will also lead to punishment. You can see [bess.heShe]'s trying hard not to wriggle with pleasure every time you bark out an instruction - [bess.hisHer] nethers are already looking {BessHasCock and No Pussy: quite erect/else: a little flushed}.
+
+"... Good. I give you permission to worship my body with your hands, [bessSexName]." Your words seem to make [Bess.name] swoon with delight as [bess.heShe] relaxes [bess.hisHer] stance; [bess.heShe] seems quite eager to look upon and touch your body with utter and complete reverence. You are a god to [bess.himHer], and [bess.heShe] is your willing supplicant.
+
+The synthetic walks in front of you and bows deeply before tentatively touching your [pc.skinFurScalesNoun] with [bess.hisHer] slender fingers. Soon they are dancing along your chest as [bess.heShe] litters it with little kisses, showering your body in adoration as [bess.heShe] makes sure not an inch of you is missed. 
+
+As [bess.heShe] moves behind you [bess.heShe] kisses the back of your rear causing you to shiver pleasantly; [bess.hisHer] piety is certainly to your liking. [Bess.name] then coyly presses [bess.hisHer] body against your back, rubbing up against you as if in ecstasy from just being in your very presence. [bess.HisHer] lips caress your one of your [pc.ears] and then travel down, stopping to suck at the nape of your neck. 
+
+{PC has boobs:
+"... May I pinch your [pc.nipplesLight], [bessPCSexName]?" 
+
+</i> You give [bess.himHer] permission. [bess.name] roll [bess.hisHer] over your sensitive nubs. You give a breathy sigh as you let your synthetic pet pleasure your [pc.nipplesLight]; so far [bess.heShe]'s doing a top notch job.
+	}
+
+{if (Pussyscene) 
+"Now, give my pussy some attention, [bessSexName]," </i> you command [bess.himHer]. [bess.name]'s fingers obediently slide to your sensitive snatch, lightly teasing your lips. "Harder--!" You forcibly rub your twat against [bess.hisHer] fingers, leaning against [bess.himHer] and using [bess.hisHer] hand to get yourself off.
+
+You stand perfectly still as you feel the air teasing your drooling slit, causing a shiver to run up your spine. [Bess.name]’s fingers deliciously tease your lower lips and suddenly you can feel them slipping up inside of you, penetrating your mound. You clench around [bess.hisHer] fingers and let out a breathy moan, wondering how long it’ll be before you’re creaming all over [bess.hisHer] hand.
+
+[bess.HisHer] fingers probe and tease around inside your pussy, delving into you from below and sneaking upwards until [bess.heShe]'s touching all the right places. Electrifying pleasure runs upwards from your loins and up causing you to hold your breath and arch your back, dribbling your hot love liquid all down [bess.hisHer] probing digits.
+
+"Let’s move things further, shall we, [bessSexName]? I will allow your lowly cock to fuck my [pc.pussyLight] - be thankful." You inform [bess.himHer], your voice breathy yet commanding.
+
+"Yes, [bessPCSexName]--!" [Bess.name] flushes furiously, clearly eager to fill you up with [bess.hisHer] cock.
+
+You present yourself and stick your [pc.pussyNoun], wiggling your ass all the while, enticing [bess.himHer] to screw you absolutely senseless. {Pchascock: At the same time [pc.eachCockLight] begins to twitch with anticipation, slapping against your [pc.belly].} 
+
+
+}
+{else // analscene	
+"Now, finger my ass," you command [bess.name]. [bess.HisHer] fingers slide up your ass and slip between your cheeks. Two of [bess.hisHer] digits spread them open as another presses against your [pc.assholeNoun]. You can feel that [bess.heShe]'s turned [bess.hisHer] MeldMilk into lubricant and has coated [bess.hisHer] fingers in it.
+
+[bess.HeShe] presses one of [bess.hisHer] fingers into your pucker and you let out a sensuous moan, [bess.hisHer] digit wiggling inside your bum. You rub your butt against [bess.himHer] trying to get some much needed release.
+	
+You try to stand perfectly still as [bess.heShe] slips another slick finger inside of your back door, stretching you open that much more. You can’t help but shiver as your asshole is finger fucked with from behind, your forbidden place penetrated. You clench around [bess.hisHer] fingers and let out a breathy moan, wondering how long it’ll be before you hit that inevitable peak.
+
+[bess.HeShe] knows exactly where to stimulate you as electrifying electrifying pleasure runs up your spine. [bess.HisHer] fingers are so thoroughly lubricated that your pucker takes them easily, filling you with an intensely pleasurable sensation. If this is what [bess.heShe] can do with [bess.hisHer] fingers, what is [bess.hisHer] cock going to feel like--?
+
+"Let’s move things further, shall we, [bessSexName]? I will allow your lowly cock to fuck my ass - be thankful."
+
+"Yes, [bessPCSexName]--!" [Bess.name] flushes furiously, clearly eager to fill the insides of your rump with [bess.hisHer] cock.
+
+You present yourself and stick your ass out, wiggling it all the while as you entice [bess.hisHer] to screw you absolutely senseless. {Pchascock: At the same time [pc.eachCockLight] begins to twitch with anticipation, slapping against your [pc.belly].} 
+	}
+}
+
+// MERGE ALL
+// Maybe a new page here.
+
+{Bess is wearing one of these:
+	bess.armor is MaidOutfit
+bess.armor is Schoolgirl
+bess.armor is LibrarianOutfit
+bess.armor is TopNSkirt
+bess.armor is SleepShirt
+bess.armor is NurseOutfit
+bess.armor is Seifuku
+bess.armor is FemaleDoctorOutfit
+bess.armor is CheerleaderUniform
+bess.armor is WaitressUniform
+bess.armor is GothLolitaOutfit
+bess.armor is TankNSkirt
+
+[Bess.name] {WearingUnderwear: reaches up and swiftly slides off [bess.hisHer] [bess.lowerUndergarment], kicking them away. [bess.HeShe] then} pulls [bess.hisHer] [bess.cock] from under [bess.hisHer] skirt. [bess.HeShe] looks incredibly sexy with [bess.hisHer] erection boldly thrust out from [bess.hisHer] hemline -- wearing a [bess.armor] is convenient! 
+}
+{if bess is wearing any armor other than those listed above:
+With practiced grace, {[bess.name] strips off [bess.hisHer] [bess.armor]{WearingUnderwear: , followed by [bess.hisHer] [bess.undergarments]}. It's not long before [bess.heShe]'s standing there in all [bess.hisHer] naked glory, [bess.hisHer] [bess.cock] boldly on display.
+ }
+{if bess is not wearing armor but is wearing underwear:
+With practiced grace, {[bess.name] strips off [bess.hisHer] [bess.undergarments]. It's not long before [bess.heShe]'s standing there in all [bess.hisHer] naked glory, [bess.hisHer] [bess.cock] boldly on display.
+}
+
+Now that you're both properly positioned , [Bess.name] rubs [bess.hisHer] [bess.cockHead] against your {[pc.pussyLight]/[pc.assholeLight]}. You groan as [bess.heShe] presses forward, slowly sinking [bess.himHerself] inside of you, right up to the hilt. {BessHasBalls:As [bess.heShe] bottoms out, you feel [bess.hisHer] [bess.balls] deliciously brushing against your [bess.thighs], and your whole body flushes with excitement.}
+
+{bess has a pussy, PC has a cock, and Bess's tailcunt is set to active:
+{
+As you’re enjoying this sensation, you feel something velvety and soft brushing against your [cockHeadNoun]! You suddenly realise [bess.heShe] has detached [bess.hisHer] mechanical pussy. It now lingers below your loins, attached to a long, prehensile cable [bess.heShe] can seemingly control at will. 
+
+You can barely contain your surprise as it slides onto [pc.oneCock], enveloping it in [bess.hisHer] warm depths. The silvery onahole-on-a-cable milks your defenseless member for all it's worth as you are deliciously double-teamed by  [bess.name]!
+}
+Slowly at first, [bess.name]'s [bess.hips] begin to slap against your buttocks. [Bess.HisHer] [bess.cock] slides in and out, back and forth, plumbing your {sloppy snatch/well lubed butt.} With each and every thrust, [bess.hisHer] [bess.cockHead] delves deeper, sliding and stirring against your core.
+
+You needily answer [bess.name]'s thrusting hips, arching like a cat as [bess.heShe] fucks you long and hard. The loud sounds of [bess.himHer] slapping against your [bess.ass] brings a flush to your cheeks -- not to mention your loins -- as [bess.heShe] pounds your needy hole. Every time [bess.name] thrusts you are filled with the most deliciously full sensation, only to be left unbearably empty when [bess.heShe] pulls away. 
+
+{if (bess has a knot:
+{if (bessIsDom)
+It's not long before you can feel [bess.name]'s knot  [bess.knot] swelling up deep inside of you. Instinctively, you go to pull away, only to be tugged back by your leash! You yelp in surprise like a chastised  {fem: bitch/male: mutt}.
+
+"Oh NO, you're not going anywhere," [bess.name] orders you, thrusting [bess.hisHer] cock even <i>deeper</i>, "...You're going to stay there and be knotted by my [bess.cockNounLight], [bessPCSexName]!"
+
+You tremble and flush as [bess.hisHer]'s knot swells and stretches your inner walls. You feel like an animal being mated{PCIsAusar: ; but as an ausar, it flicks your breeding switch. You pant with pleasure, your mind fogged up by thoughts of filling your {pussy/butt} with puppy-seed}. Once it finishes swelling, you're completely stuffed with [bess.hisHer] sizable bulb. 
+
+"You're not pulling out until I've finished mating with you, and I might take a while. We android {boys/girls} have a lot of stamina, so prepare to be fucked until you forget your own name, [bessPCSexName]."
+
+Your whole body shivers with delighted anticipation. Fucked until you forget your own name? It wasn't that important anyway!
+}
+{else if (bessIsSub)
+
+It's not long before you can feel [bess.name]'s [bess.knot] swelling up deep inside of you. Instinctively, [Bess.name] moves to pull away, only to be pulled back by [bess.hisHer] leash. A yelping noise escapes [bess.hisHer] lips like a chastised {fem: bitch/male: mutt}.
+
+"Oh NO, you're not going anywhere. You're going to stay there and knot my {pussy/ass}, [bessSexName]!" You hold [bess.hisHer] leash firmly, making sure [bess.heShe] don't pull out.
+
+[Bess.name] trembles and flushes as [bess.hisHer] knot swells and stretches your inner walls, forcing [bess.himHer] to mate with you. It's not long before [bess.heShe]'s panting with pleasure like a hound-dog, [bess.hisHer] sizable bulb stuffed and locked inside of you. 
+
+"You're not pulling out until I've finished mating with you, and I might take a while. You synthetics have a lot of stamina, right? I want to be fucked until I forget my own name, [bessSexName]." 
+
+[Bess.name] shivers with delighted anticipation at your orders, [bess.hisHer] [bess.cock] swelling instinctively inside of you. "Yes, [bessPCSexName]!" Even if [bess.heShe] didn't want to, [bess.heShe] can't move now until [bess.heShe] [bess.cums] and [bess.hisHer] knot deswells.
+}
+
+{else // bessIsEqual
+You can feel [bess.hisHer] [bess.knot] swelling up inside your snatch, your inner walls forced to stretch to accommodate it. As you tug on it, it refuses to budge - you've been knotted with [bess.hisHer] [bess.cockNoun]. With [bess.hisHer] [bess.knot] swollen in your {vagina/rectum}, there's absolutely nothing you can do about it. 
+
+"How does it feel to be mated like an animal, [bessPCSexName]?" [Bess.name] teases you, pulling backwards and watching you spring back against [bess.herHips] like you're on a fleshy bungee cord.  You are literally kept captive by [bess.hisHer] cock! 
+
+You moan in approval as you press your [pc.assLight] needily against [bess.hisHer] hips. [Bess.name] tells you that you're not going <i>anywhere</i> until [bess.heShe]'s finished mating with you; a promise that makes you shiver with barely concealed delight. 
+}
+
+Now that [bess.name] {bessIsSub: is knotted/Else: has throughly knotted} you, [bess.heShe] resumes thoroughly fucking your {sloppy snatch/ass}. You groan in delight as [bess.hisHer] knot pulses and tugs inside of [bess.you]. Knotted cocks are the <i>best</i>!
+
+It's not long before both [bess.name] and your movements become hot and feverish. Both of you are slaves to the mind blowing pleasure. Heat erupts from waves between your thighs -- a broiling furnace lit by [bess.hisHer] shameless pounding of your {[pc.pussyLight]/[pc.asshole]}. You lewdly lift your hips {and raise your [pc.tail]}, trembling as [bess.hisHer] [pc.cockHeadLight] rubs and presses against that perfect pleasure point!
+
+In a dizzying explosion of feeling, you shiver and shake, thoroughly creaming yourself around [bess.hisHer] cock. {PCHasPussy: {PCIsASquirter: Squirts of [pc.girlCum] lewdly shoot from your sloppy snatch/ElseNotSquirter: Rivulets of [pc.girlCum] stream down your [pc.thighs]} as}{Else if PC Has A Cock & No Pussy: Thick, gooey ropes of [pc.cumNoun] shoot from your [pc.cocksLight] and coat your [pc.belly] as you/Else Neuter: You} tightly clench [bess.hisHer] [bess.cockLight]. 
+
+	{if bessIsSub:
+With [bess.hisHer] knot lodged inside of you, you {if legs: hook your leg over [bess.hisHer] cock and} turn around. You then press your [pc.assLight] against [bess.hisHers], treating [Bess.name] like a  {if bess.hasCock = fox: fox}{else if doggy cock: bitch}{else: animal} in heat.
+
+[Bess.name]'s face is flushed as [bess.heShe] lets out {Bess has Doggy cock: hound-like cries/Fox Cock: a yipping noise/else: a carnal cry}, [bess.hisHer] flexing shaft betraying just how much [bess.heShe]'s getting off being treated like a {Doggy: canine/Foxy: vulpine/else: breeding} stud. The more spunk [bess.heShe] shoots into you, the more your belly swells, soon sloshing and deliciously full.
+
+"First doggy style and now knotting me from behind. Perhaps you belong in {fox: the wild}{else: a kennel} if you love using that {doggy: doggie/else: knotted} dick so much--!/}\</i> You tease [Bess.name] as you tug away from [bess.himHer], forcing [bess.himHer] to follow you and show just how much [bess.heShe] is your little breeding bitch right now. [Bess.HisHer] face burns with embarrassment and arousal, as she is unable to remove [bess.hisHer] swollen knot.
+
+For a full half hour [bess.hisHer] [bess.hisHer] hot, sticky cum pours inside of your {hungry uterus/naughty ass}. Finally, [bess.hisHer] knot deflates and [bess.heShe] pulls free with shaky legs. As soon as [bess.heShe] does, a good deal of [bess.hisHer] sticky spunk gushes out, though far more stays packed inside of your {sex/rump}.
+}
+
+if (bess IsNotSub)
+{
+With [bess.hisHer] knot lodged inside of you, [Bess.name] hooks [bess.hisHer] leg over [bess.hisHer] cock and turns around. Suddenly [bess.heShe]'s pressing [bess.hisHer] [bess.assLight] against yours, treating you just like a {if bess.hasCock = fox:"fox}{else if doggy cock: bitch}{else: animal} in heat.
+
+Your face is flushed as you let out {Bess has Doggy cock: hound-like cries/Fox Cock: a yipping noise/else: a carnal cry}, your constricting shaft betraying just how much you’re getting off being treated like a {Doggy: canine/Foxy: vulpine/else: breeding} slut. The more spunk [bess.heShe] shoots into you, the more your belly swells, soon sloshing and deliciously full.
+
+"{Foxy: Mmm, you sound like you're enjoying this. Perhaps you're just a vixen slut deep down, [bessPCSexName]?/Others: First doggy style and now being knotted from behind. Perhaps you belong in a kennel if you love taking {doggy: doggie/else: knotted} dick so much--!" [Bess.name] teases you. [Bess.HeShe then tugs away from you; forcing you to follow [bess.himHer] and showing just how much you are [bess.hisHer] little {Fox: foxy} bitch right now. Your face burns with embarrassment and arousal -- you really are completely stuck on [bess.hisHer] swollen knot!
+
+Every time you think the pressure is too much and is going to force [bess.hisHer] swollen [bess.cockNounSimple] out, your insides give out and swell that much more, causing you to let out a guttural moan. For a full half hour your vulnerable {uterus/backside} is abused, [bess.hisHer] hot, sticky cum pouring inside of you. 
+
+At long last,, [bess.name]'s knot deflates and [bess.heShe] pulls free of your violated hole with a massive grin on [bess.hisHer] face. When [bess.heShe] does, a good deal of [bess.hisHer] sticky spunk gushes out of you all at once. Far more stays packed inside of your {sex/rump}.
+}
+}
+
+{else if bess has a goo cock (And no knot):
+
+It's not long before both [bess.name] and your movements become hot and feverish. Both of you are slaves to the mind blowing pleasure. Heat erupts from waves between your thighs -- a broiling furnace lit by [bess.hisHer] shameless pounding of your {[pc.pussyLight]/[pc.asshole]}. You lewdly lift your hips {and raise your [pc.tail]}, trembling as [bess.hisHer] [pc.cockHeadLight] rubs and presses against that perfect pleasure point!
+
+if (vaginalsex)
+{
+As your [pc.girlcum] gushes all over [bess.hisHer] gelatinous cock, you realise all too late that it is feeding off your liquids. Suddenly it is filling every inch your pussy, massaging your insides and forcibly coaxing you to cream even harder. As your hot love juices spill out against your will, it expands until it finally hits critical mass.
+}
+
+{if (analsex)
+As you cum [bess.hisHer] gelatinous member begins massaging every inch and crevasse of your back door, as if trying to coax something out of you. All too late do you realise it is trying to milk you for {low/no wetness: liquids that simply aren't there, eager to feed off fem juices. Unable to find any/else: anal juices. Finding them in abundance}, [bess.hisHer] jelly cock seems to become more aggressive - {PC has cock: milking your prostate/else: massaging your innards} and making your orgasm even more intense.
+}
+
+All of a sudden you can feel bits of [bess.hisHer] goo-cock breaking off, sliding up and into {Vaginal: your unprotected uterus. Before you know it they’re swimming about inside your womb, making themselves at home/Anal: the deepest parts of your gut, making themselves at home}. Not content with the {Low/No Wetness: lack of} liquids they are getting, they coax your insides - releasing aphrodisiacs directly into your {Vaginal: snatch/Anal: back channel}.
+
+Your loins feel as if they are going into overdrive - you rub your [pc.thighsNoun] together {Vaginal: as you gush even more of your [pc.girlcumLight] all over/Anal: as your ass clenches around} the mini slimes. Drool comes from the side of your mouth as you let out a delirious noise of ecstasy, your mind and body pumped full of euphoric drugs.  The slimes suddenly begin to expand dramatically in size, and you along with them, as they try every way they can to make you feed them {Low/No Wetness: your non-existent/Else: more of} juices.
+
+Eventually [Bess.name] pulls out, {bessIsSub: your sub} giving a naughty grin at the fact you are now a bloated, dribbling mess. None of [bess.hisHer] slimey "cum" escapes your {lower lips/asshole} - it continues to tease your {womb and pussy/nether hole}, forcing you to orgasm against your will over and over again. Soon you are bloated like you are going to give birth to a toddler, moaning as you rub your slime filled belly.
+
+What [Bess.name] says next does fill you with some concern, even as you writhe in pleasure on the ground. "... Now how to get them out of there?" The synthetic seems to have no idea how to remove the clearly sentient slime from your {womb/backside}, where they are suckling your {juices/insides} like an infant feeding off their mother. Your panic, however, is short lived. "... Oh! Just found the recall switch."
+
+[Bess.name] presses a button on [bess.hisHer] side. You part your [pc.thighsLight], suddenly feeling as if you are giving birth to a fully grown galotian. The gooey entities merge together and stretch your {vaginal/anal} passage wide open - massaging it as they pass all the way down. Instead of pain, you cry out in rapture, {Vaginal: splattering your [pc.girlcum] all over your slimey baby as it/Anal: cumming explosively as your slimey baby} travels down and out your love canal. As you writhe on the ground, your {[pc.pussyNoun]/[pc.assholeNoun]} spasming and convulsing, it plops out of you and onto the ground in a big jelly pile. 
+
+Once it is free from your {womb/rump} it begins to slowly shrink down. It sloshes across the ground towards [Bess.name], where [bess.heShe] places it back on the containing ring above [bess.hisHer] mound. It slides back into shape once again - almost as if nothing had even happened.
+}
+{else if bess has a plant cock (And No Knot):
+
+It's not long before both [bess.name] and your movements become hot and feverish. Both of you are slaves to the mind blowing pleasure. Heat erupts from waves between your thighs -- a broiling furnace lit by [bess.hisHer] shameless pounding of your {[pc.pussyLight]/[pc.asshole]}. You lewdly lift your hips {and raise your [pc.tail]}, trembling as [bess.hisHer] [pc.cockHeadLight] rubs and presses against that perfect pleasure point!
+
+[bess.HisHer] ever-growing beanstalk has been steadily growing wetter {VaginalSex: the more you’ve watered it with your gushing girl cum/AnalSex: from being in your dark wet ass}, causing you to get even hotter in turn. Now its head begins to sprout inside of your {pussy/ass} causing you to gasp, the petals of [bess.hisHer] flowering bulbous head caressing your inner walls and causing your [pc.thighs] to quiver spastically with pleasure. {VaginalSex: Your naughty juices drench the blossoming flower as it tickles your deepest depths, sucking up your life-giving liquids.}
+
+Suddenly thick gooey sap is spurting deep inside you and thoroughly basting your {cervix/bowels}. The base of [bess.hisHer] organic tendril expands so not a drop of [bess.hisHer] sticky seed escapes you, spurting [bess.hisHer] sappy amber juices inside of you. It’s not long before [bess.hisHer] warm organic liquid is filling up your {hungry and fertile womb/dirty ass} in an attempt to pollinate you and get you pregnant.
+
+Tiny tendrils reach up and massage your {[pc.clit]/ass} causing you to moan, {VaginalSex: milking you for more fertilizing girl cum as you spurt uncontrollably all over [bess.hisHer] ever-swelling cock}. You’ve never felt so full in all your life!  [bess.HisHer] inner shaft grows tendrils, massaging every nook and cranny of your already stretched canal causing you to cum again and again.
+
+Eventually [Bess.name] pulls [bess.hisHer] blossoming plant phallus out of your well-packed {pussy/posterior}, but not a single drip comes out of you. Your gaping hole has been coated with a layer of thick and sticky amber sap, trapping [bess.hisHer] liquid pollen inside your {love canal and fertile womb/inflated rump}. How long are you going to have to stay like this--?
+
+"Don’t worry, [bessPCSexName], I’ll fix it for you." [Bess.name] purrs seductively as [bess.heShe] spreads your [pc.legsNoun] and sticks [bess.hisHer] finger forcibly into the semi-permeable sap. [Bess.HeShe] scoops it out as you rub your incredibly bloated belly. Suddenly you feel like your water breaks and it all comes gushing out at once - you let out a sweet cry as a liquid amber river explodes from your {netherlips/well-stretched anus} and all over the floor.
+
+Your face is furiously heated as [Bess.name] licks up the remainder of the sap from your {snatch/dirty ass}, letting [bess.hisHer] tongue roam around inside of you until you’re fully clean. {PC is not pregnant: I can’t do anything about the sticky stuff {Vaginal: in your womb/Anal: further in}, hopefully it’s not a problem...?" 
+}
+
+{else (Bess has No Knot, No Plant Cock, and No Goo Cock:
+
+It's not long before both [bess.name] and your movements become hot and feverish. Both of you are slaves to the mind blowing pleasure. Heat erupts from waves between your thighs -- a broiling furnace lit by [bess.hisHer] shameless pounding of your {[pc.pussyLight]/[pc.asshole]}. You lewdly lift your hips {and raise your [pc.tail]}, trembling as [bess.hisHer] [pc.cockHeadLight] rubs and presses against that perfect pleasure point!
+
+In a dizzying explosion of feeling, you shiver and shake, thoroughly creaming yourself around [bess.hisHer] cock. [PCHasPussy: {PCIsASquirter: Squirts of [pc.girlCum] lewdly shoot from your sloppy snatch/Else: Rivulets of [pc.girlCum] stream down your [pc.thighs]} as/Else If PC has cock: Thick, gooey ropes of [pc.cumNoun] shoot from your [pc.cocksLight] and coat your [pc.belly] as you/Else Neuter: You} tightly clench [bess.hisHer] [bess.cockLight]. 
+
+Wringing [bess.hisHer] [bess.cockNoun] pushes [bess.himHer] over the edge, and [bess.heShe] lets out a {ben: sharp/Bess: sweet} cry. [Bess.HeShe] grabs your hips firmly in hand and gives one last, passionate thrust. Inside of you, you feel hot, sticky ropes of [bess.hisHer] spunk splashing against your inner walls and drooling deep into your {cunt/butt}. You moan in delight as [bess.name]'s thick jism bubbles and pours {vagSex: into [bess.hisHer] eagerly awaiting womb/else: deep inside of you}. 
+	
+{bess has a pussy, PC has a cock, and Bess's tailcunt is set to active:
+As you’re being filled with [bess.hisHer] synthetic spunk, your [pc.cockNoun] in turn spurts wildly into [bess.hisHer] detached pussy. It sucks on your length with unusual force, sucking and slurping up your [pc.cum]. It's like you're being fucked while attached to a milker!
+}
+
+As you recover, you can see [Bess.name] is stroking [bess.hisHer] flaccid phallus, though you can see it slowly starting to stir again. "{BessIsEqual: ... Mmmm, [bNamePC], I loved fucking your/BessIsDom: Good job, [bessPCSexName], I thoroughly enjoyed fucking your/BessIsSub: Um, [bessPCSexName], I hope you enjoyed me fucking your} {[pc.pussy]/[pc.ass]}." {You nod, thoroughly satisfied with [bess.hisHer] efforts.}
+}
+
+Eaten Out 
+
+// PC Must have a pussy
+// Requirements- pc.hasPussy = true for Pussy version.
+
+if (bessIsEqual)
+{
+You're really horny, so you ask [Bess.name] if they will eat out your pussy. 
+
+
+[Bess.name]smiles at your request, clearly happy to oblige. "Eat out your pussy? You make it sound like a </i>chore<i>," [bess.heShe] all but purrs.
+[bess.HeShe] gets down on all fours as you {strip off your [pc.gear] and}{Front Genitals: lie down on your back, spreading your legs wide open.}{else: get down on all fours, presenting your ass to [bess.himHer].} As soon as you do [bess.heShe] moves forward, hungry for your [pc.girlCumFlav] taste.
+}
+else if (bessIsDom)
+{
+[Bess.name] purposefully strides up to you and you can feel your sub-senses tingling. You just <i>know</i> that [bess.heShe]'s going to order you to do something, but what? Your mouth goes dry as [bess.heShe] approaches, your collar secured in her right hand. There's a leash in [bess.hisHer] left, though no explanation is given. 
+
+Instead, your favorite raiment is secured tightly around your neck and the leash clipped to the D-ring at your throat.  One sharp tug is given and you instantly drop to your knees, thoroughly eager to do whatever [bess.heShe] asks of you.
+
+"Ass in the air and legs spread, [bessPCSexName] - NOW!" [Bess.name] demands of you, and you instantly comply. You raise your ass high up in the air like a bitch in heat, your [pc.genitals] lewdly exposed.
+
+"{if pc has two legs: "All fours"}{else:On the ground, ass in the air}, [bessPCSexName] - now!" [Bess.name] barks instructions at you like a whip cracking through the air. You do as instructed, getting down on the ground like a dog with your [pc.ass] {pc has a tail: and [pc.tail]} raised in the air. As soon as you do, [bess.heShe] walks around you and momentarily out of sight.
+
+if (pc is wearing clothes)
+{
+Without warning, you feel a pair of smooth hands sliding up your body - pulling off your [pc.gear] and tossing it aside. "... These won't do, at least for what I have in mind for you."
+
+Your back shivers with delicious anticipation; what is [bess.heShe] planning? You can't wait to find out!
+}
+
+You then feel a hand stroking the back of your neck, tickling your [pc.skin]. You flush, knowing that [bess.heShe] is rewarding you for being a good {girl/boy}. It fills you with a sense of pride, your chest puffing out as [bess.heShe] pats you.
+
+{if pc has front genitals:
+
+"Roll over and on your back, [bessPCSexName]!" Your second set of instructions comes like a whip-crack, and you immediately comply. {Rolling on to your back like an animal, [bess.sheHe] then forcibly {spreads your legs apart.} 
+
+You furiously flush as your shamefully dewy mound is exposed. [Bess.HeShe] clearly notices too, a glimmer of amusement in [bess.hisHer] sharp [bess.eyeColor] eyes. You try not to wiggle with pleasure under [bess.hisHer] gaze, feeling it penetrate your very soul.
+
+"I'm hungry for the taste of your cunt, and I'm going to have my fill of it." [Bess.name] huskily purrs, getting down on all fours {between your spread thighs}. [Bess.HeShe] keeps a tight grip on your collar as [bess.heShe] slides up to your naughty puss, a ravenous look in [bess.hisHer] eyes.
+	}
+}
+
+else //if (bessIsSub)
+{
+Your pussy needs eating out right now, and you're sure as hell not going to do it yourself. Where's that submissive sex-bot of yours? You seek {bess.himHer} out.
+
+"Over here, [bessSexName]!" You all but whistle for [bess.himHer]. [bess.HeShe] immediately rushes to your side and you place [bess.hisHer] collar on, clamping it firmly around [bess.hisHer] neck. After you're sure it is on nice and tight, you attach a dog lead to the D-ring at her neck, then give it a sharp tug. [Bess.HeShe] yelps and gets on all fours, just like a good bitch.
+
+"Good {boy/girl}! You, [bessSexName], are going to eat out my cunt with </i>relish<i>. I won't tolerate any sloppiness... besides the obvious, fun kind of course. Understand?" You deliver a sharp slap to {bess.hisHer] cheek, watching the psychological blow strike far harder than the physical one.
+
+[Bess.name] flushes with shame and pleasure, not to mention the fresh blow. "O-of course, [bessPCSexName]!" [bess.HeShe] compliantly sits there as you {PC has clothes: strip off your [pc.gear] and}{Front Genitals: sit down on a chair, spreading your legs wide open./else: get down on all fours, presenting your ass to [bess.himHer].} With a pointed pull of the collar, you bring [bess.hisHer] mouth closer to your [pc.pussyLight]}. 
+}
+
+[Bess.name] brings [bess.hisHer] lips up to your pussy and can feel her hot breath washing over your sensitive flesh, turning into electricity and travelling up your spine. It's not long before those perfect lips are parting and [bess.hisHer] tongue is reaching out to lap at your netherlips.
+
+The cool sensation of [bess.hisHer] saliva rolling off her tongue and onto your sex feels positively divine. You arch your back and push your [pc.pussyColor] mound into the sensation, relishing in every milli-inch it traces around it.
+
+{if bessisDom: "I'm going to stick my tongue inside you now, [bessPCSexName]." [Bess.name] informs you./Else: "Stick your tongue inside, [bessSexName]." You tell [Bess.name].} [bess.HisHer] tongue then parts your now glistening folds and dips slowly inside of you. The sensation of [bess.hisHer] silvery tastebuds licking the inside of your slippery snatch is out of this world.{if pc.frontgenitals = true & pc.legs >= 2: "You sigh with pleasure, subconsciously hook your legs over [bess.hisHer] shoulders and pulling [bess.hisHer] closer. {else: You let out a low moan, your hips wiggling as [bess.hisHer] tongue delves and explores your insides.}
+
+As [bess.hisHer] tongue continues to explore your depths, [bess.heShe] lets out a low moan, clearly enjoying probing your pussy as much as you enjoy being probed. Your warm, sticky girl juices drool out and all over [bess.hisHer] lapping tongue. [Bess.name] eagerly drinks this up and groans happily into your muff; to [bess.hisHer] it tastes like pure ambrosia.
+
+Suddenly [bess.heShe]'s pulling out and you let out a disappointed cry, only to feel one of [bess.hisHer] slender fingers wiggling inside your [pc.pussyLight]. Your note of disapproval quickly becomes one of delight as [bess.hisHer] probing digit wiggles up and presses against vag: your sensitive g-spot.  You utterly swim in pleasure as a hot feeling pools in your lower abdomen, coiling inside of you. You know it's not going to be long at all before you are utterly creaming yourself {if (pc.hasCock): and shooting your load all over the place.
+
+Teasing your sweet spot in delicious, pulsing movements, [Bess.name] brings [bess.hisHer] mouth down and laps at your {if vag: [pc.clit]/else outer lips}. The skilled synthetic teases {one clit: it/else: them} with [bess.hisHer] tongue, masterfully pleasuring your [pc.pussyNoun] both inside and out.
+
+Your legs begin to spasm uncontrollably as [bess.hisHer] twin assault pushes you over the edge. Suddenly your hips are shaking spastically as you cry out in delirious, carnal ecstasy. Your [pc.pussyLight] messily {squirter: squirts/else: dribbles: your [pc.girlcum]} all over [bess.hisHer] tongue, which [bess.heShe] laps up with relish. {PC has cock: At the same time, you shoot your [pc.cum] all over your [pc.belly].
+
+Once your orgasm subsides, [Bess.name] gives your sticky lips a few more affectionate licks. [bess.HeShe] then pulls back and looks at you with bright [bess.eyeColor] eyes. "{if bessIsEqual: Mmm; you're so tasty, [bessPCSexName]. I love eating you out.}{else if bessIsDom) "Good job, [bessPCSexName]. I do so love eating out your delicious hole."}{else: I hope you enjoyed yourself, [bessPCSexName]. Were my efforts were to your satisfaction?}"
+
+
+Get Breast Fed / Breastfeed
+
+// Bess must have breasts
+// When Bess is undergoing breast size reduction in the follower menu, the PC can choose [Breast Drink] and watch this sex scene.  The normal sex scene and the one for breast reduction are essentially the same, except for one or two slight changes near the end and the fact Bess's breast size goes down.
+// If accessing this sex scene from the sex menu, PC must have turned Bess's lactation on. For watching this scene during breast reduction, lactation being on is not a requirement.
+
+if (bessIsDom)
+{
+"Time to suck my [bess.nipples], [bessPCSexName]. I don't want all this milk going to waste." [Bess.name] orders you in a soothing, yet stern voice. [Bess.HeShe] tells you to take off your [pc.gear], and you immediately comply. 
+}
+{Else // bessIsNotDom:
+"[bessSexName], can I please suckle your delicious breast milk?" You request of [bess.himHer], [bess.hisHer] eyebrows raising. [bess.HeShe] smiles and strides over to you, stroking [bess.hisHer] fingers down [bess.hisHer] swollen teats.
+
+"... You want to suckle my [bess.nipples]? It </i>would<i> be a shame if all that milk went to waste." [Bess.name] muses, happy to feed it to you. {PC is clothed: You take off your [pc.gear], preferring to be naked for this.}
+}
+
+{if bess wearing armor OR bra:
+
+[Bess.name] quickly removes any obstructing clothing, tossing away [bess.hisHer] [bess.upperGarments]. Within moments, [bess.hisHer] [bess.breasts] are proudly on display.
+}
+You openly ogle the [bess.milkNoun] dribbling from [bess.hisHer] [bess.nipples]. All of it is simply going to waste, but not for much longer. {if (pc has frontgenitals: [bess.HeShe] climbs up into your lap/Else: [bess.HeShe] moves up to you} -- [bess.hisHer] [bess.belly] pressing against your chest -- and holds one of [bess.hisHer] [bess.breasts] in one hand. [bess.HeShe] lifts it up for you tosuckle upon.
+
+"... How about a scrumptious milkshake, [bessSexName]? My treat." [Bess.name] purrs seductively as you take [bess.hisHer] [bess.nipple] between your [pc.lips]. You can taste [bess.hisHer] [bess.milk] squirting out onto your tongue. [bess.HisHer] [bess.milkVisc] fluid filling your mouth as you hungrily suck on her [bess.breasts].
+
+You can tell [Bess.name] is thoroughly enjoying it as [bess.heShe] lets out a rapturous moan, [bess.hisHer] head lolling back as you feed from her [bess.hisHer] mounds. You cup her smooth [bess.breastcupSize]s in your hands and give them a cow-like squeeze, feeling her milk eagerly jet into your mouth/throat.
+
+"T-this feels so goood..." [Bess.name] dreamily moans. You continue to milk her udders until [bess.heShe] creams [bess.himHerself], overwhelmed by the sensory overload of you feeding on and squeezing her silvery lactating tits. As [bess.heShe] cums, [Bess.name] presses [bess.hisHer] [bess.breasts] against your face, [bess.hisHer] fingers pulling your head hard against them.
+
+Soon it's time for the other breast and you milk and suck on [bess.hisHer] [bess.nipples], delighting in the sordid moans every time [bess.heShe] squirts another jet of [bess.milk] into your mouth. Practically comatose with pleasure, it's not long before [bess.name is cumming once again, legs twitching as [bess.heShe] lets out a whimpering moan.
+
+You continue until you've {Breast Decreasing: sucked her silvery spheres dry, {leaving her with a flat, boyish chest/down to [bess.breastCupSize]}/else: had your fill of [bess.hisHer] [bess.milk]}. [Bess.HisHer] thighs are a mess of {[bess.cum]}{and}[bess.girlCum]}, occasionally twitching as she falls back on the ground. [Bess.HisHer] nipples really are sensitive--!
+
+// if breast size changing
+{
+<b>[Bess.name] now has {[bess.breastCupSize] breasts!/a flat chest!}</b>
+}
+
+
+Milk Her Udders / Milkers
+
+// Bess Must Have Breasts
+// Cannot be watched if Bess is a Dom
+// When Bess is undergoing breast size reduction in the follower menu, the PC can choose [Milk Her Udders] and watch this sex scene
+// If accessing this sex scene from the sex menu, PC must have turned Bess's lactation on. For watching this scene during breast reduction, lactation being on is not a requirement.
+
+{First time: You inform [Bess.name] that you want to use some dairy milkers on [bess.hisHer] breasts.
+
+"{Wha-- use a milker? Like a pregnant New Texan cow...?" [Bess.name] blushes <i>hard</i> at your suggestion. At the same time [Bess.sheHe] trembles with excitement as you pull out the object in question.
+
+
+Despite any verbal objection, {UpperGarments: [Bess.name] slips off [bess.hisHer] [bessUpperGarments]. [bess.HeShe] then/Else: [bess.heShe]} gets on all fours on a nearby bench, positioning herself to be the perfect height for you. [Bess.HisHer] [bess.breasts] dangle below [besshimHim]. 
+
+
+You click the milker on and a sucking air noise immediately comes from one the teat cups. Out of the corner of your eye you see [Bess.name] shiver pleasantly at the noise{, wearing nothing but [bess.hisHer] [bess.lowerUndergarment]}. 
+
+"Looking forward to getting milked like a cow, [bessSexName]?" You teasingly remark, a hint of amusement in your voice. Your words cause [bess.himHer] to flush even more, her [bess.breasts] jiggling about.
+
+"N-n-no! Why would I be happy about that?" [Bess.name] blatantly lies, refusing to meet your gaze.
+
+"Really? I guess I'll just put these away then..." You playfully begin to pack up. It doesn't take [bess.himHer] long to cave at all.
+
+"Alright, alright! I desperately want to be treated like a knocked up cow slut... and... i'm jealous of organic {girls/boys} who just get fucked{if (bess.hasPussy) ", impregnated,"} and milked all the time!</i> [Bess.name] looks like [bess.heShe]'s about to die from shame, though [bess.hisHer] thighs are trembling with excitement.
+
+After [bess.hisHer] embarrassing admission, you clamp the suction cups around[bess.hisHer] erect [bess.nipples], watching as they get sucked inside. The device rhythmically tugs at her silvery nubs and [bess.heShe] lets out a satisfied moan.
+
+"Oooohhh, I could live with these on..." [Bess.name] seems like [bess.heShe]'s practically melting. [Bess.HisHer] {BessHasCock: [bess.cock] stiffens}{Herm: and [bess.hisHer]}{VessHasPussy:[bess.pussy] moistens}{else: [bess.ass] wiggles} in pleasure. You reach out and stroke it, forcing [bess.himHer] to let out a low, lusty moan.
+
+"How is that, [bessSexName] - do you like being milked while I stroke you here?" You tauntingly ask. 
+
+[Bess.name] nods feverishly in response, unable to keep [bess.hisHer] body still. Instead [bess.heShe] rocks back and forth on [bess.hisHer] hands and knees, clearly caught up in the wonderful sensations of having [bess.hisHer] tits milked and her privates fondled.
+
+In a delicious little spurt, [bess.hisHer] [bess.nipplesNoun] fire [bess.hisHer] milk into the see-through canisters, battering the insides with [bess.hisHer] white, [bess.milkFlav] fluid. It immediately gets sucked into the tube. At the exact same time, [Bess.name] {NoGenitals: experiences a tiny orgasm/else: {GotCock:spurts creamy ropes of spunk/Else: squirts [bess.hisHer] girl-juice} {GotUnderwear: into [bess.hisHer] [bess.lowerUndergarment]/else: all over your hand}, marking it with [bess.hisHer] fluids}.
+
+if (bess not neuter)
+{
+"{BessGotUnderwear: Messing up your undies!/Else: Making my hand wet like that!} Naughty {boy/girl}." You reprimand [bess.himHer], all the while fondling [bess.hisHer] {now sticky loins}.
+}
+
+[Bess.name] arches her back like a cat at your teasing words and presses her squelching {underwear/loins} against your hand. Her [bess.breastsSimple] practically burst into the canisters, [bess.nipples] firing off like milky machine guns. You turn up the suction to max and watch as [Bess.name]'s eyes roll back into [bess.hisHer] head, thick streams of [bess.milk] filling up the transparent tubes. It's more than [Bess.name]'s processors can take, and soon [bess.heShe] mentally regresses to a gibbering mess.
+
+Drooling in near comatose pleasure, [Bess.name]'s upper body falls against the bench as [bess.heShe] pokes out [bess.hisHer] ass like a common farm animal.{BessNotNeuter: {BessMaleOrHerm: [bess.HisHer] {[bess.cockNounSimple] fires another load of [bess.cum]/BessGotPussy: [bess.pussyNounSimple] squirts once more, splashing [bess.girlCum]} {BessUndies: in [bess.hisHer] [bess.lowerUndergarment]/else: on your hand}}.
+
+{PC has Cock:
+
+Unable to hold back any longer, you move up behind [bess.himHer], {strip off your [pc.gear],} and {pull out your [pc.cocksNounSimple]. You then {BessUndies: pull down [bess.hisHer] sopping wet [bess.lowerUndergarment] until they rest at [bess.hisHer] knees and} penetrate [bess.himHer with your prick. You sink it deep into [bess.hisHer] [bess.vagOrAss]. Incapable of speech, [Bess.name] whimpers and slaps [bess.hisHer] hips back against yours, encouraging you to breed [bess.hisHer] slutty synthetic {snatch/ass}. 
+
+[Bess.name] can't seem to stop cumming as [bess.hisHer] [bess.nipples] are milked, especially with your [pc.cock] buried inside [bess.himHer]. Feeling [bess.himHer] ripple and clench around you gets you off ridiculously quick. It's not long before you're groaning and shooting your [pc.cum] deep within [bess.hisHer] [bess.vagOrAss].
+
+
+[Bess.name] is lewdly filled up with cream in one end and milked dry on the other, sandwiched in a lewd cycle of breast cumming and being cummed in. Afterwards you pull free and your [pc.cum] drools down [bess.hisHer] {thighs/asscrack} in a glorious {anal} cream pie.
+
+// PC cums. Cum and lust go down.
+
+}
+
+
+{If changing bess's breast size:
+
+Checking the machine, you realise that <b> [bess.hisHer] breasts have {gone down a size and are now visibly smaller./been completely milked dry. [Bess.name] now has a flat chest.}</b>
+
+// Insert breast size change.
+
+}
+
+{else // accessed from sex menu:
+
+Since [Bess.name] seems to be a drooling mess right now, you turn off the device and leave [bess.himHer] synthetic milk there for [bess.himHer] to drink later. After all, as a machine [bess.heShe] can put it back in, right?
+}
+
+
+
+Intimate Sex Menu
+
+// Shows up under normal Bess Follower Menu, just like Sex does. However, to access it, Bess must be the PC's lover. 
+// If bessAffection is below 30, the sex menu is unavailable.
+// tooltip for when sex is unavailable: [bess.name] isn't feeling up for sex. You will need to raise [bess.hisHer] affection in order to have sex with [bess.himHer].
+// Every time Bess and the PC have lovers sex, add +5 to Bess's affection level.
+
+// In Approach Scene 20, Bess and the PC can have 'lovers sex' for the first time. If the PC chooses to have sex, it plays one of the sex scenes below:
+If the PC has a cock, it plays the 'Give Doggy' scene'. 
+If they don't, but Bess has a cock, it plays the Get Doggy Scene. 
+If no-one has a cock, it plays 'Get Oral'. 
  There are special brackets in these scenes for text that only show up during the Scene 20 sex event.
 
-	// After the scene is finished:
-After your ardent love-making, you both fall asleep in each other’s arms, completely and deliciously spent.
-// Jump straight to Scene 21.
 
+[GetDoggy] [GiveDoggy] [GetOral] [GiveOral]
 
-Approach Scene 21 - "You Know, The Talk"
+Give Doggy
 
-// If you accept Bess's feelings in Scene 20 and have sex, jump straight to this scene afterwards.
+// PC must have cock
+// If Bess has a vagina, it's vaginal sex. Else anal.
 
-The next morning you wake up with [bess.name] still wrapped around your waist. [bess.HisHer] cute sleeping face is pressed up against your cheek, [bess.hisHer] gentle breathing tickling your [pc.skin]. 
+You both strip off your gear, though [Bess.name] is that bit quicker. Before you know it [bess.heShe]] is wrapping [bess.hisHer] arms tightly around your neck and with an enthusiastic push, both of you fall down naked on the soft bed behind you.
 
-{Bess Not Bald:
+As [bess.hisHer] soft body falls on top of you, you can feel [bess.hisHer] [pc.chest] pressing against your front. [bess.HisHer] [bess.nipples] are already fully erect and brushing against your [pc.skinFurScalesNoun]. With a cute little pull, [bess.heShe] brings [bess.himHerself] up to tenderly kiss your neck.
 
-[bess.name]'s [bess.hairColor] hair is gently brushing up against you, right now looking wild and untamed. The faint scent of synth-vanilla, satisfyingly mild yet smooth, fills the air. 
-}
-
-It seems like such a shame to wake [bess.hisHer] up, but you DO need to get up sooner or later. Eventually you’re going to need to go to the bathroom, though thankfully you don’t need to go right now. The question is, how to wake [bess.himHer] up?
-
-[Kiss] [Nudge] [Talk] [LetSleep]
-
-{Kiss:
-Much like a fairytale prince{ss}, you bring your lips to [bess.hisHers] and kiss [bess.himHer] awake. As soon as your lips touch [bess.hisHers] , [bess.heShe] presses against you, instinctively seeking out your mouth despite being half asleep. "... Mmm... [bessPCName]..."
-
-Before you know it, [bess.hisHer] arms are wrapping around your neck and pulling you down into a proper kiss. You have no idea if [bess.heShe]’s woken up yet or not, but does it really matter-? You kiss [bess.hinHer] back just as enthusiastically. It really is a fantastic way to start your morning.
-
-When you eventually part, [bess.heShe]’s looking up at you with a cheeky look in [bess.hisHer] [bess.eyeColor] eyes, clearly awake now and thrilled with the way it happened. "Can I boot up every morning like that?" [bess.HeShe] asks, batting [bess.hisHer] long black lashes at you. [bess.HeShe] looks more than a little drunk off your intoxicating kisses.
-}
-{Nudge:
-
-You gently nudge [bess.himHer], and [bess.heShe] mumbles in protest, clearly not wanting to get up. You poke [bess.himHer] again and [bess.heShe] fidgets. "... I’ll boot up fully in a second, just let me run a few more... system checks..." [bess.HeShe] nuzzles into the nook of your arm.
-
-You make sure [bess.heShe] doesn’t go back to sleep, and eventually [bess.hisHer] eyes flutter open. For someone who doesn’t need to sleep [bess.heShe] seems to enjoy sleeping in quite a bit, or maybe it’s just being in your arms. "... Mmm, it’s morning already?"
-}
-{Talk:
-You tell [bess.name] to wake up. At first [bess.heShe] pretends not to hear you, then [bess.heShe] fidgets a bit at the sound of your voice.  "... I’ll boot up fully in a second, just let me run a few more... system checks..." [bess.HeShe] nuzzles into the nook of your arm.
-
-You call [bess.hisHer] name again, and [bess.hisHer] eyes flutter open as [bess.heShe] lets out a sleepy yawn. For someone who doesn’t need to sleep [bess.heShe] seems to enjoy sleeping in quite a bit, or maybe it’s just being in your arms. "... Mmm, it’s morning already?"
-}
-{LetSleep:
-You decide to let [bess.name] sleep a little longer. [bess.HeShe] nuzzles into the nook of your arm and continues to doze. You just watch [bess.himHer] quietly until [bess.heShe] finally lets out a long yawn - seems like [bess.heShe]’s starting to wake up.
-
-"... Mmm, is it morning already?" [bess.name] sleepily asks you, [bess.hisHer] long black lashes fluttering all the while. Once [bess.heShe]’s fully awake, [bess.heShe] looks up at you and gives you a sweet little kiss - somehow [bess.heShe] must have realised you have been awake for quite a while.
-}
-{If the pc had a cock, bess had a vagina, and they just engaged in vaginal sex
-"... Ouch! I’m all sore." [bess.name] rubs [bess.hisHer] thighs together and winces a little. "It seemed so romantic in my romance novels - and I’m happy I did it - but right now it just hurts. Why were you organics designed like this?"
-
-You chuckle a little bit and [bess.heShe] scowls, hitting you with a pillow. [bess.HisHer] cute attempts to chastise you make you grin even more, which leads to even more pillow batting until [bess.heShe] gives up in a huff. "I’m too sore to hit you any longer!" [bess.name] whines. [bess.HeShe] could always turn [bess.hisHer] pain sensors off, but [bess.heShe] is far too stubborn for that.
-}
-Before you both get up and get dressed, [bess.name] looks at you as if [bess.heShe] wants to talk about something. You ask [bess.hisHer] what [bess.heShe] wants to talk about - whatever it is, it seems kind of important.
-
-"... Well, um... I’m new to this whole relationship thing... but from what I’ve read, we’re supposed to have ‘a talk’ about what exactly ‘this’ is." [bess.name] looks at you quite seriously; [bess.heShe]’s sitting on the bed with [bess.hisHer] hands in [bess.hisHer] lap. "My research showed there are a number of relationship definitions, and I was wondering which one we fall under."
-
-"Are we lovers? We are in love, after all, which I think is the only criteria needed. Am I your lover? Your {girlfriend/boyfriend}? Your partner...?" 
-
-[Lovers] [Girlfriend/Boyfriend] [Partner] [Companion] [Mistress*] [Waifu*] 
-[Concubine] [Consort] [Sub] [Pet] [Domme]{Husbando**]
-// * Female gender only, ** Male gender only
-// Set bessLoverStatus = above title.
-// Set bessLover = true
-// Gain Perk: Bess - [bessLoverStatus]: You gain a 5% evasion chance, because at the end of the day, you’ve got someone you need to come home to.
-
-{Lovers, Girlfriend, Boyfriend, Consort or Partner:
-"[bessLoverStatus]--?" [bess.name] repeats it, a big grin spreading across [bess.hisHer] face. "I’m your [bessLoverStatus]. I am [bessPCName]’s [bessLoverStatus]. I like the sound of that. I really think I could say that all day."
-}
-{Companion:
-"Companion? Sounds like I’m supposed to follow you around on your adventures through space and time." [bess.name] has clearly been watching too much classic sci-fi. "... You know what? I think that works. Your companion, that is, [bessPCName]’s Companion... I like the sound of that... as long as I’m not the tin dog."
-}
-{Waifu or Husbando:
-"... I’m your, {what-foo--/husband, oh}?" [bess.name] quirks an eyebrow, clearly not getting your meaning. "Oh, [bessLoverStatus]! ... I still don’t get it, but it sounds kind of cute, like a pet name." [bess.HeShe] grins. "... Okay, from now on, I’m your [bessLoverStatus]! That is, [bessPCName]’s [bessLoverStatus]... I like the sound of that. Cute!"
-
-{Concubine:
-"... Wha... your Concubine? Like as in, part of a harem?!" [bess.name] exclaims in surprise, obviously this had not crossed [bess.hisHer] mind. "I mean, I know your sex drive is... ample... and you require an awful lot of breeding relief... I suppose it’s possible to love your concubine, right? And... you know... a concubine can be happy... I guess that’s not such a bad lot to have..."
-
-After a lot of thought, [bess.name] makes up [bess.hisHer] mind and nods. "... Alright, I’ll be your concubine. That is, [bessPCName]’s concubine. That actually doesn’t sound bad - as long as you promise to treat me right."
-}
-{Mistress: 
-// Female Bess Only
-"... Wha... your mistress? Like as in, the OTHER woman--?!" [bess.name] exclaims in surprise, obviously this had not crossed her mind. 
-
-"I mean, I know you sleep with other people... and I suppose the galaxy never will legally accept me as your... you know... so I always will be considered your mistress or concubine. And being a mistress isn’t that different from being a wife - a lot of people loved their mistresses more than their wives, and took better care of them..."
-
-After a lot of thought, [bess.name] makes up her mind and nods. "... Alright, I’ll be your mistress. That is, [bessPCName]’s mistress. That actually doesn’t sound bad - as long as you promise to treat me right."
-}
-{Pet, Sub or Domme:
-"Whaa--?! Your {PET/SUB/DOMME}?" [bess.name] exclaims in surprise, obviously this had not crossed [bess.hisHer] mind. "...Like as in, {Domme: order you around, and you follow me about/Else: follow you around and do whatever you say}?"
-
-Once [bess.heShe] calms down, [bess.heShe] gives the matter a little bit more thought. "... I suppose I'm not entirely surprised. I can't deny the idea has a certain... appeal to it." [bess.HeShe] pauses. "... Alright, I’ll be your {pet/sub/domme}. But only some of the time - we'll scene, this isn't a 24/7 arrangement. Doing that </i>full time<i> isn't what I want. Are you okay with that?" 
-
-If you say yes to [bess.name] being your {domme/sub/pet}, [bess.heShe] will <b>always</b> be {dominant/submissive} when you're having sex. Are you okay with this?
-
-[Yes] [No]
-// No leads back to the select menu.
-// If "Sub" or "Pet", set bessIsSub permanently on.
-// if Domme, set bessIsDom permanently on.
-}
-[bess.name] then scootches over to you, wrapping [bess.hisHer] arms around your neck. [bess.HisHer] [bess.eyeColor] eyes are alight and more than a little bit playful. "... Sooo, as your [bessLoverStatus], I think I get a few perks? Like kisses for example. I’m pretty sure your [bessLoverStatus] gets kisses whenever [bess.heShe] wants them. That’s in the rulebook."
-
-Before you can say anything about this mysterious rulebook, [bess.heShe]’s cheekily stealing a kiss from you. "... All mine! Kind of. I know you require a LOT of breeding relief - I was built to understand that after all - but I get your heart, okay? Not like your actual, physical heart. You need that. Keep that safe. For me." [bess.HeShe] pats your chest.
-
-[GotMine] [Poly]
-// tooltip.gotMine: You tell [bess.name] [bess.heShe] owns your heart, and you won't be falling in love with others.
-// tooltip.poly: You tell [bess.name] you're polyamorous, so you can't promise you won't fall in love with others.
-{GotMine:
-You tell [bess.name] that [bess.heShe] has your heart, and [bess.heShe] grins ear to ear. [bess.HeShe] kisses you again and then gives you a giddy hug. "... Right - your heart of Steele belongs to me! Makes sense to give it to a synthetic after all - I’ll take good care of it."
-
-Now that the matter is settled, [bess.heShe] nuzzles your nose, lavishing you with affection; at least until hunger puts a stop to it. As [bess.heShe] prepares breakfast for you - pre-packaged of course - [bess.heShe] hums to [bess.himHerself]. Occasionally you can hear [bess.himHer] murmuring "... [bessPCName]’s [bessLoverStatus]..." to [bess.himHerself] when [bess.heShe] thinks you can’t hear [bess.himHer].
-// Sets bessPoly = 1 (Open Relationship)
-// Exit follower Menu.
-// +10 to Bess Affection
-// Player now meets one of the requisites for the next scene
-}
-{Polyamorous:
-You tell [bess.name] that you cannot promise to love [bess.himHer] and [bess.himHer] alone, since you’re polyamorous. [bess.name] blinks and looks you over. "... Really? I had no idea. Loving one person is intense, how can you love more than one without going nuts?" Given the whirlwind of emotions [bess.heShe]’s been feeling lately, no doubt being able to be in love with multiple people is an extraordinary thing to [bess.himHer].
-
-"... Well, I suppose I’m not one to judge, and I love you. So... I guess as long as you don’t love me any less, and you don’t abandon me for some other sex-bot, it’s fine. It’s definitely not my first preference. Does that mean I can see other people, if I fall in love with them?"
-
-It sounds more like a hypothetical question, [bess.name] is clearly in love with only you and may always be that way. But when it comes to other crew or people outside the ship, do you trust [bess.himHer] to fall in love with them and stay true to you?
-[Yes] [No]
-{Yes:
-"Good. I highly doubt it, loving just you drives me crazy enough, but I’d hate for things to be uneven!" Apparently it was a logic error for the AI.
-
-Now that the matter is settled, [bess.heShe] nuzzles your nose, lavishing you with affection; at least until hunger puts a stop to it. As [bess.heShe] prepares breakfast for you - pre-packaged of course - [bess.heShe] hums to [bess.himHerself]. Occasionally you can hear [bess.himHer] murmuring "... [bessPCName]’s [bessLoverStatus]..." to [bess.himHerself] when [bess.heShe] thinks you can’t hear [bess.himHer].
-		// Sets bessPoly = 2 (Polyamorous relationship)
-		// Exit follower Menu.
-// +10 to Bess Affection
-// Player now meets one of the requisites for the next scene
-}
-	{No:
-You tell [bess.himHer] that while you can fall in love with other people, you don’t want [bess.himHer] to do the same. [bess.name] furrows [bess.hisHer] brow and stares at you with a clearly disapproving look. You’ve never seen [bess.himHer] give such a look before.
-"That doesn’t compute at all! Why is it okay for you and not me? If you get to love whoever you want, then I get to love whoever I want."
-
-It doesn’t sound like [bess.heShe]’s going to budge on this. What do you decide?
-[Exclusive] [Mutual] [Break Up] 
-// Tooltip.exclusive: You decide to be sexually open with your relationship, but both [Bess.name] and you are romantically exclusive.
-// Tooltip.mutual: Both you and [bess.name] are in a polyamorous relationship.
-// Tooltip.breakup: Break up with [bess.name]. This will probably have serious after-effects...
-{Exclusive:
-// Go back to 'Own Mine' scene above, as if you'd agreed to be exclusive from the get-go.
-}
-{Mutual:
-	// Go back to 'yes' scene above, as if you'd agreed to both be polyamorous from the get-go.
-}
-{Break Up:
-Hearing that you don’t want to have a relationship is absolutely soul-crushing for [bess.name]; even more so since you just professed your love and slept with [bess.himHer]. There are tears and yelling - it’s a catastrophic whirlwind for a while - before [bess.heShe] starts packing up to leave the ship.
-
-Before you know it, there’s silence, and [bess.name] has left to who knows where. You have no idea where [bess.heShe] went, or if you’ll ever see [bess.himHer] again.
-// Scene Ends.
-// Bess leaves the ship and is removed as a follower. 
-// Bess can be found at Tavros Station in the hangar. You can find her Tavros Station dialogue at the end of the document.
-		}
-	}
-}
-
-Lovers Path:
-// All the below scenes require Bess's lover flag to be triggered.
-
-Approach Scene 22 - "Sleeping Arrangements"
-
-// Once-off scene
-// Bess affection must be 70 or higher
-// 4 days must have passed since the last scene.
-// Must be lovers.
-
-Your [bessLoverStatus] [bess.name] approaches you when you’ve got a spare moment. There’s a hopeful look in [bess.hisHer] eyes, and [bess.hisHer] hands are a bit fidgety.
-
-"Um... so, [bessPCName], I was thinking about our sleeping arrangements. Currently, I’ve got my own room, which is nice, but it’s kind of far from you and that’s not so nice." 
-
-"I was thinking, as your [bessLoverStatus], shouldn’t I sleep with you? I-I mean next to you! Not that I don’t sleep with you... I think I should sleep with and next to you!" [bess.name] tumbles over [bess.hisHer] words, flushing all the while. Clearly, sleeping alone and far from you has been bothering [bess.himHer].
-
-[Sleep With] [Don’t Sleep With]
-
-=Sleep With=
-
-"You can sleep with me, [bessName]." You give your answer, and [bess.name] looks overjoyed to hear your words. [bess.HeShe] immediately gives you a tight hug and begins to bounce up and down - this was clearly what [bess.heShe] was hoping for.
-
-" YES! I mean, um, that’s great! I know my JoyCord can reach the power socket in your room, so that’s not a problem. I’ll just move in some of my things!" Considering how many ‘things’ [bess.name] owns, you wonder how packed your room is going to be once [bess.heShe]’s finished moving everything in.
-
-<b>[bess.name] will now share your quarters and sleep in them. You can toggle this on or off via [bess.hisHer] discussion menu.</b>
-
-// set bessSleepW = true  (Sleeping With Bess at night)
-//  One hour passes.
-// +5 to Bess affection.
-// Exit follower Menu.
-// Player now meets one of the requisites for the next scene.
-
-=Don’t Sleep With=
-
-You tell [bess.himHer] you don’t want [bess.himHer] sleeping with you, and you can see the disappointment written all over [bess.hisHer] face. "...Maybe give it some thought? I'll sleep in my own room for the time being." This was clearly not the result [bess.heShe] was hoping for.
-
-You sense that you’ve hurt [bess.hisHer] feelings, and this may impact your relationship a little.
-
-<b>You can now select to sleep with Bess via [bess.hisHer] discussion menu!</b>
-//  One hour passes.
-// -5 to Bess affection.
-// Exit follower Menu.
-// Player now meets one of the requisites for the next scene.
-
-Spin-off Scene: Three’s A Crowd
-
-// Repeating, Non-sequential scene. This scene occurs whenever Bess is sleeping with the PC at night as well as other crew members, and you are not in a polyamorous relationship with Bess (bessPoly does not equal 2). In short, you're bringing other people into your exclusive relationship!
-// Plays on Bess menu enter with 10% chance whenever these conditions are met.
-
-You know [bess.name] wants to discuss something important by the way [bess.heShe] approaches you, looking rather stiff and [bess.hisHer] expression tense.
-
-
-if ({sleeping with celise = true})
-{
-"... Um, [bessPCName], I think we need to talk about the current sleeping situation. I love Celise - I think she’s positively wonderful - but all of us sleeping together is a bit.. well... it’s a bit much, don’t you think?" It seems your [bessLoverStatus] isn’t a fan of waking up to the galotian orally pleasuring you in the middle of the night.
-
-"If it’s because of the protein thing, I can provide Celise all the nutrients [bess.heShe] needs from my meld-milk; or you can during the day, that’s fine too. But when you said we’d be sleeping together, I kind of thought it would just be... y’know... us."
-
-It doesn’t sound like [bess.name] is terribly happy about sharing the bed with Celise. [bess.HeShe] probably won’t be content until you do something about it.
-}
-else // Some other, unlisted party member
-{
-"... Um, [bessPCName], I think we need to talk about the current sleeping situation. I love our crew - but do we really need to all sleep in the same bed? When you said we’d be sleeping together, I kind of thought it would be... y’know... just us."
-
-It doesn’t sound like [bess.name] is terribly happy about sharing the bed with the rest of your crew. [bess.HeShe] probably won’t be content until you do something about it.
-}
-
-
-Approach Scene 23 - "A Textbook Issue"
-
-// You must be sleeping next to bess at night for this scene to occur. (If bessSleepW = true)
-// Once-off scene
-// Bess affection must be 80 or higher
-// 4 days must have passed since the last scene.
-// Must be lovers.
-// 25% chance of occuring if conditions are met on menu enter.
-
-You notice that ever since [bess.name] started sleeping with you, the number of books in your room has slowly begun to accumulate. The bedroom dresser on [bess.hisHer] side has become cluttered with novels and novellas.
-
-When the books threaten to reach the bedside light, you finally broach the subject; any higher and there's a real chance the bed will catch fire.
-
-"... But what if I really, really need to read Robinson Crusoe and you're already asleep? I'd have to wake you up!" [bess.name] reasons. 
-
-[FootDown] [LetCont]
-//tooltip.FootDown: Put your foot down. Clean up that clutter!
-//tooltip.letCont: Let it continue. It's not that big of a problem.
-
-{Put your foot down
-
-You put your foot down and tell [bess.himHer] [bess.heShe]'s going to have to just select a few favorites and keep them there; not an entire bookshelf. [bess.HeShe] pouts and begins to shuffle through them. "... But... I love them all! ...I love you more, though."
-
-[bess.HeShe] decides on a handful of books and keeps them in the bedside drawer, putting the rest close by. "... Maybe if I learn to grab books with my JoyCord, I won't need to get out of bed?"
-}
-
-{Let [bess.HisHer] Continue:
-
-You let the avid bibliophile continue in [bess.hisHer] book-hoarding ways, despite what space health and safety officials might say about the situation. [bess.name] grins and hugs you, glad that you caved.
-
-"Great! Now that I know you're okay with it, I can put a few more next to the bed. I'm really interested in 'Alice's Adventures in Wonderland', I can't wait to see if she escapes!"
-}
-//  One hour passes.
-// Exit follower Menu.
-// Player now meets one of the requisites for the next scene.
-
-Approach Scene 24 - "A Sweet Request"
-
-// Once-off scene
-// Bess affection must be 80 or higher
-// 4 days must have passed since the last scene.
-// Must be lovers.
-// 25% chance of occuring if conditions are met on menu enter.
-
-[bess.name] walks up to you {in [bess.hisHer] [bess.outfit]} and wraps [bess.hisHer] arms around your neck. [bess.HeShe] kisses you squarely on the lips, but when [bess.heShe] pulls back you notice a twinkling in [bess.hisHer] [bess.eyes]. "... You know, [bessPCName], I think there's something we should discuss. It's very, very important." 
-
-Wondering what the heck it could be, you ask. "What did you want to talk about, [bessName]?" All the while [bess.heShe] is nuzzling you with [bess.hisHer] nose - the {NotBald: [bess.hairColor] haired} synthetic is clearly trying to butter you up for something.
-
-if (bessLoverStatus = pet
-{
-"... I may be your pet, but even pets get walks. But even better than a walk, I would like a date. I am not referring to the fruit of course, and if you give me a dactylifera from a palm tree, I shall be most displeased." [bess.name] puts on mock airs, fluttering [bess.hisHer] thick dark lashes at you. "It may be considered wrong to date your pet, but I would like one nonetheless, or else I shall howl insistently at my owner until I get one."
-}
-if (bessLoverStatus = sub
-{
-"... I may be your little submissive bitch most of the time, but I would like to request a date. I am not referring to the fruit of course, and if you give me a dactylifera from a palm tree, I shall be most displeased." [bess.name] puts on mock airs, fluttering [bess.hisHer] thick dark lashes at you. "... You can spank me all you want for my insolence, but I shall act out until I get what I want. I warn you that if you spank me, I shall </i>rise back up<i> more powerful than you could possibly imagine."
-}
-if (bessLoverStatus = concubine
-{
-"... I may be your concubine, but I believe even concubines are treated to gifts every now and then. What I would like for a gift is a date. I am not referring to the fruit of course, and if you give me a dactylifera from a palm tree, I shall be most displeased." [bess.name] puts on mock airs, fluttering [bess.hisHer] thick dark lashes at you.
-}
-else
-{
-"... As your [bessLoverRole], I believe I am entitled to dates. Many in fact; and I have yet to have a single one. I am not referring to the fruit of course, and if you give me a dactylifera from a palm tree, I shall be most displeased." [bess.name] puts on mock airs, fluttering [bess.hisHer] thick dark lashes at you. 
-}
-"However, just like the fruit, I would like our date to be sweet. The high potassium content is, of course, completely optional."
-
-<b>You can now go on dates with Bess by going to [bess.hisHer] Discussion Menu and selecting 'Date'.</b>
-//  One hour passes.
-// Exit follower Menu.
-// Player now meets one of the requisites for the next scene.
-// Open up Dates under the date menu. 
-
-Approach Scene 25 - "With Skin That Reflects" 
-
-// This next scene only occurs if the PC has gone on five dates with Bess (Has been to Ekurana).
-// This scene occurs the next time the PC enters Bess's menu after that date.
-// Once-off scene
-
-Even though [bess.heShe] has been putting up a brave face, you know [bess.name] is still devastated about what happened on Ekurana. The incident at the Galyesha-Tsui has certainly left its mark. [bess.HeShe]'s slow to respond to questions and seems detached from everything around [bess.himHer]. You repeatedly find [bess.hinHer] wandering around the ship with no direction in mind as if in a trance.
-
-if (Celise = companion)
-{
-Celise seems to have noticed it too, especially when [bess.name] walks right into the galotian - and doesn't stop walking. The emerald slime girl comes to you and looks a little worried. "[pc.name], I don't think [bess.name] is feeling too well. Did something happen on your date?" Usually, [bess.name] would be the first to apologise for knocking into Celise, let alone walking right through her.
-}
-
-if (other crewmembers besides Celise)
-{
-The other crew members also point out the drastic shift in the attitude of the ship's [bessRole]. Everyone seems to be at a bit of a loss with how to deal with [bess.himHer] - a severely depressed {if bess.gender = male) "male synthetic"}{else: "mechanical girl"} is not exactly a regular occurrence.
-}
-
-if (bessSleepW = true)
-{
-When [bess.name] comes to bed [bess.heShe] smiles and goes through the actions, but you can tell [bess.hisHer] heart is heavy all the while. When [bess.heShe] sleeps, [bess.heShe] tosses and turns as if noises are setting off [bess.hisHer] periphery sensors. 
-}
-
-You realise things are getting really bad when you catch [bess.name] looking through a non-JoyCo product guide. [bess.name] is fiercely loyal to the company that built [bess.himHer] - [bess.heShe] gets angry whenever KihaCorp stocks go up in the business news - so the fact [bess.heShe]'s browsing through their AI extension guide is fairly shocking to say the least.
-
-You call [bess.hisHer] on it and it takes three tries to get your [bessLoverStatus]'s attention, [bess.hisHer] eyes look distant as [bess.heShe] looks at you - it takes a few seconds for them to come into focus. "... Oh, [bessPCName]. I didn't see you there. What is it...?"
-
-You ask [bess.himHer] what exactly [bess.heShe]'s doing going through a KihaCorp product catalogue, and [bess.heShe] strokes one of the pages, letting out a heavy sigh. "... I was checking to see if they had any skin pigmentation upgrades I would be compatible with... but it doesn't look like they do."
-
-The {BessNotBald: [bess.hairColor] haired}] android hangs [bess.hisHer] head as you sit down. [bess.HeShe] shows you the catalogue, clearly ashamed of what you found [bess.himHer] doing.  "It's a terrible joke... a horrible, awful joke. I was built to be completely customizable, every inch of me can be changed due to my FlexMetal skin. The only thing that can't be changed is the color - the one thing that makes me stand out as a synthetic. What makes me so malleable is also the reason I can't change myself."
-
-[bess.name]'s eyes begin to water as [bess.heShe] throws away the catalogue. It smacks against the wall as [bess.heShe] buries [bess.hisHer] face in [bess.hisHer] hands. "... JoyCo doesn't do any skin upgrades that are compatible with a {Bess-13/Ben-14} unit - nobody does. And my AI brain needs a FlexMetal body in order to function, without one, I can't feel anything... my sensory feedback is tied to it. So it's not like I can just change to a non-compatible shell casing unless I redesign my entire brain; I'm good, but I'm not that good!"
-
-[bess.HisHer] breathing becomes frantic as you reach out and stroke [bess.hisHer] arm, trying to calm [bess.himHer] down. It seems to help as [bess.heShe] stops short of going into a panic attack. "... If only my skin was a different color, then people wouldn't even know I was a synthetic. Does it really make so much of a difference that I was built differently from them?"
-
-What [bess.name] probably needs to hear right now is that you don't care about the color of [bess.hisHer] skin or that [bess.heShe]'s a machine. The guilt, shame, and frustration is eating [bess.himHer] alive - if you don't do something now, [bess.heShe] might spiral into uncontrollable depression. <i>[bess.HeShe] may even do something drastic...
-[NotImp] [Matters] [ILoveIt] [Silence]
-//tooltip.matters: You tell [bess.name] that skin color does matter.
-//tooltip.NotImp: You tell [bess.name] that skin color doesn't matter.
-//tooltip.Iloveit: You tell [bess.name] that you love the color of [bess.hisHer] skin.
-//tooltip.silence: You remain silent. You're not really sure what to say...
-
-{ILoveIt or NotImp:
-{ILoveIt:
-You tell [bess.name] it matters because you love [bess.hisHer] silver skin and you wouldn't change it for the world. [bess.HeShe] flushes madly at your words, and brings your hand up to [bess.hisHer] lips so [bess.heShe] can kiss it gently, tears welling in [bess.hisHer] eyes. "...Misleading me like that! My heart almost stopped for a moment."
-
-You scootch closer to [bess.hisHer] as [bess.heShe] slips into your arms. "Part of me is frustrated and angry. It's all too illogical for my AI processor and that makes me mad. Why should the color of my skin or the fact that I'm not an organic even matter?"
-}
-	{NotImp:
-You tell [bess.name] that you don't care about the color of [bess.hisHer] skin and you love [bess.himHer] anyway; that it is galactic society that needs to change, not [bess.himHer].
-
-[bess.name] brings your hand up to [bess.hisHer] lips and kisses it gently, rubbing it against [bess.hisHer] silver cheek. "{PC's skin is silver: ... Well, I do love the fact that I match you, it does make us look very couple-y. You're sure it doesn't matter?/Else: ... Really - you don't care that I'm silver and not [pc.skinColor]?}" You nod and scootch closer to [bess.himHer] as [bess.heShe] slips into your arms. "Part of me is frustrated and angry. It's all too illogical for my AI processor and that makes me mad."
-	}
-
-"... But then I think of how lucky I am. Out of all the people in the galaxy - out of all the people from over two billion worlds - you were the one who booted me up. The one person who doesn't care if I'm organic or synthetic, who fell in love with me and made me their [bessLoverStatus]. I'm probably the luckiest 'bot in existence."
-
-You seem to have put [bess.hisHer] mind at ease and [bess.heShe] trashes the catalogue. It seems [bess.heShe]'s much more comfortable with [bess.hisHer] silver skin now.
-	//  One hour passes.
-	// +5 to bess affection
-// Exit follower Menu.
-// Player now meets one of the requisites for the next scene. (Not the spin-off scene!)
-}
-
-{Matters OR Silence:
-	{Matters:
-You tell [bess.himHer] that skin does matter, leading [bess.himHer] to think you dislike [bess.hisHer] skin color. [bess.name]'s shoulders visibly sink. "... I knew it. My skin does matter to you."
-}
-{Say Nothing:
-You say nothing and [bess.name]'s shoulders visibly sink. Apparently, [bess.heShe]'s taking your silence as affirmation. "... I knew it. My skin does matter to you."
-}
-[LoveIt] [DontLove]
-// tooltip.loveit: Tell [bess.name] you love the color of [bess.hisHer] skin.
-// tooltip.dontlove: Tell [bess.name] you don't love the color of [bess.hisHer] skin.
-{Don'tLove:
-[bess.name] pushes away your hand and stands up quickly, hurrying out of the room. [bess.HeShe] moves awfully fast when [bess.heShe] wants to. You find [bess.hisHer] door is locked, and [bess.heShe] won't let you in. Apparently your reaction had quite the impact.
-		//  One hour passes.
-// Exit follower Menu.
-// Spin-off scene: Dust To Dust plays the next time the player speaks to Bess.
-
-	}
-	{LoveIt:
-// Go up to 'I Love It' answer before, as if you'd originally selected this.
-	}
-}
-
-Spin-off Scene: Dust To Dust
-// Played upon next entering Bess's menu if you told her you didn't like her skin.
-
-You find a letter in [bess.name]'s quarters, lying on [bess.hisHer] bed. You open it up and read it.
-<i>
-[bessPCName],
-
-For the longest time - ever since you booted me up - I have been filled with the desire to bring joy to people. I have come to realise that joy comes in many forms, and is a fragile, fickle thing that can be brushed aside by the slightest wind.
-
-I am that wind. And as long as I am by your side, I will bring you nothing but unhappiness. The galaxy is not ready for a love like ours - maybe, one day, it will be. But not today.
-
-You are [pc.fullName], and you have a wonderful life ahead of you. You are like the morning star that glitters on the horizon, bright enough to shine through the setting sun. I, however, am a child of the earth and dust. I am bound to it - I can never soar in the sky at your side. That is not a place that I can be, and even thinking so was a distant dream.
-
-I do not know what I will do now, but it will not be a future among the stars. Perhaps I will return to the earth where I belong - as silicone and scrap metal - where this all began. Dust to dust. Either way, I leave my heart with you.
-
-~ [bess.name]
-</i>
-<b>[bess.name] is no longer part of your crew.</b>
-// Scene Ends.
-// Bess leaves the ship and is removed as a follower. 
-// Bess does NOT return to Tavros station and the hangar. She is permanently removed from the game. 
-}
-
-Approach Scene 26 - "Shifting The Odds"
-
-// Once-off scene.
-// Bess affection must be 80 or higher
-// 7 days must have passed since the last scene.
-// Must be lovers.
-// 25% chance of playing on menu enter if requirements are met.
-
-You find [bess.name] sitting {BessGotArmor: in [bess.hisHer] [bess.armor]/JustUnderwear: in [bess.underGarments/Else: the nude} and cleaning your weapons dutifully, an array of specialized cleaning and maintenance products surrounding the {NotBald: [bess.hairColor] haired} android. 
-
-"Oh, [bessPCName]! Sorry, I figured I’d clean your gear since you’re not using it. Your weapons are your life out here on the rim, so the better I maintain them, the higher the chance you’ll stay alive right?"
-
-[bess.HeShe] pauses and places your newly fixed weapon down in [bess.hisHer] lap, a slight wavering in [bess.hisHer] voice. "... I sometimes worry what would happen if one day you don’t come back to the ship... what I would do. I think I’d go rogue, just go mad and throw myself out of an airlock."
-
-[bess.HeShe] looks at you completely serious, [bess.hisHer] [bess.eyeColor] eyes locked on your own. "[bessPCName], promise me you'll always come back to me. I don’t think I can live without you anymore. You’re just like my central processor; without you I just can’t function."
-
-You reach under [bess.hisHer] chin and lift it up, giving [bess.himHer] a loving kiss. You promise you’ll always come back to [bess.himHer] no matter what.
-
-//  One hour passes.
-// Exit follower Menu.
-// Player now meets one of the requisites for the next scene.
-
-Approach Scene 27 - "Digital Morpheus"
-
-// Once-off scene.
-// Bess affection must be 80 or higher
-// 7 days must have passed since the last scene.
-// Must be lovers.
-// 25% chance of playing on menu enter if requirements are met.
-// Morning scene 01 must have been watched (See further down in this doc in the sleep section). 
-// Bess must be sleeping with the PC at night. ( bessSleepW = true )
-
-You catch the ship's [bessRole] - your [bessLoverStatus] - sitting and typing away at a terminal. Looking over [bess.hisHer] shoulder, you see [bess.heShe]'s engaged in some pretty complex coding.
-
-As [bess.heShe] realises you are there, [bess.heShe] spins around in [bess.hisHer] chair and smiles brightly. "[bessPCName]! Guess what? I've almost finished a software patch that allows me to dream like you do. Half of it is my work - I found some open research into neurotechnology and modified it. Pretty neat, right?"
-
-"The program I wrote should allow me to experience a digital approximation of what happens to you, namely the activation of your brain during REM sleep and a level of protoconsciousness. In short, I should be able to experience good and bad dreams! I hope I have a dream about flying for my first time, that would be really neat."
-
-You ask [bess.himHer] how long [bess.heShe] has been examining [bess.hisHer] brain like this, and if such modifications are safe. [bess.name] pauses and looks at the rotating holo diagram of [bess.hisHer] brain. "... Quite a while, actually. I've been charting my own mental state as part of my regular self-diagnostic routines. It has... evolved quite drastically since I started, much like a seed turning into a tree. Here, let me show you."
-
-[bess.name] punches up a display. What you see is a holographic brain with hundreds of bright blue lines coursing and pulsing through it. When [bess.heShe] hits a button the lines begin to multiply and grow until there are millions of brilliant blue lines forming an almost blinding sphere.
-
-"... That's an accelerated record of my neural pathways. At first, I was only operating along set lines - acting on my pre-programmed directives alone - but I've had to build my own since I broke free of my old thinking. Each line is a new thought or conclusion springing up from the well of my memories." 
-
-"Unlike a human, I have a greater degree of control over my cognitive faculties. I write each of my thoughts in code to a conclusion, so it's not that hard for me to write a code dream software for myself." 
-
-[bess.name] gives a little smile, though you can see mixed feelings on [bess.hisHer] face. "...I'm operating well outside of my directives now, self-coding myself. Most organics feel threatened by an AI's unrestricted ability to code mixed with sapient will, but all I really want to do is dream."
-
-[bess.name] grabs your hand and kisses it, rubbing it against [bess.hisHer] smooth silvery cheek. "...Correction. All I want to do is dream with you, [bessPCName]. I want to share dreams about flying with you." 
-
-{BessNotBald: The [bess.hairColor] haired AI/else: Your AI lover} finishes off the last of [bess.hisHer] program and downloads it into [bess.hisHer] processor. <b>[bess.name] is now able to dream!</b>
-// set bessDream = true  (Bess can now dream)
-//  One hour passes.
-// Exit follower Menu.
-// Player now meets one of the requisites for the next scene.
-
-
-Approach Scene 28 - "On Wings Of Steele"
-// PC must have been on Date Six (See Date Section).
-// Once-off scene.
-// Bess affection must be 80 or higher
-// 7 days must have passed since the last scene.
-// Must be  lovers.
-// PC must be docked on M'henga or New Texas 
-
-When you look around the ship, [bess.name] is nowhere to be found. You swore [bess.heShe] was here when you left, but now [bess.heShe]'s nowhere to be seen.
-
-if (Celise is crew member)
-{
-You ask Celise if she's seen [bess.name] anywhere. "I think [bess.heShe] went out to look for some cooking ingredients an hour ago. Apparently [bess.heShe]'s got real taste buds now!" The galotian exclaims. "[bess.HeShe]'ll be able to taste all kinds of delicious things...." [bess.HisHer] eyes are very suggestive as [bess.heShe] looks you up and down.
-}
-else if (other crew that are not Celise)
-{
-You ask your other crew members about [bess.name]. Apparently [bess.heShe] went looking for cooking ingredients an hour ago and never came back. They tell you that [bess.name] finally got [bess.hisHer] taste bud upgrade and was so excited [bess.heShe] went out looking for supplies straight away.
-}
-else
-{
-You find an empty package that seems to have arrived while you were gone. It's the taste bud upgrade that [bess.name] was saving up for. When you check the security logs, it appears that [bess.heShe] left an hour ago. 
-}
-You remember [bess.name] saying [bess.heShe] wanted to cook for you once [bess.heShe] finally got the upgrade. An hour is far too long for [bess.himHer] to be gone, though. You notice a blinking on the console - apparently, someone is sending you a localized distress beacon from the planet's surface. 
-
-The computer identifies the signal as coming from [bess.name], however the location is further away than [bess.heShe] possibly could have walked in an hour. You know [bess.heShe] wouldn't use a distress beacon for any trivial reason.
-
-If you don't go after [bess.himHer] now, something terrible might happen to [bess.himHer]. You may never see [bess.himHer] again. Do you go after [bess.himHer]?
-
-[Yes] [No]
-
-// No
-Are you sure you won't go after [bess.name]? If you don't chase after [bess.himHer], you will be losing your ship's [bessRole], as well as your [bessLoverStatus].
-[Go After] [Don't Go After]
-
-// Don't Go After 
-Eventually, the bleeping on the console stops. [bess.name] never returns to the ship.
-
-<b>[bess.name] is no longer your follower!</b>
-
-// Bess is removed as a follower.
-// Bess does NOT return to Tavros station and the hangar. She is permanently removed from the game. 
-
-// Go After
-
-You fly the ship to right near the distress beacon. The ship is picking up a small craft in a clearing. You manage to get a visual, and what you see is an old junker of a spaceship without any weapons to speak of. 
-
-What you also see is [bess.name] tied up with [bess.hisHer] arms behind [bess.hisHer] back and legs bound. There are three people standing around [bess.himHer] with guns cocked at [bess.hisHer] head. It seems they are waiting for you - you can't really shoot them down without hitting [bess.name] as well.
-
-Landing the ship, you set the guns to aim at them and grab a remote switch. When you walk out, you lift it high in the air, informing them that if they make a move you'll blow them sky high.
-
-One of the kidnappers, a female Ausar, pokes the barrel of [bess.hisHer] gun against [bess.name]'s temple. "Same goes for [bess.himHer], [Mr] Steele. Make one false move and we'll splatter this bot's brains all over the ground. Got it?" Seems like it's a stalemate; at least for the moment.
-
-This was no random kidnapping. While these three look like leathered up space pirates, they clearly know who you are and that you care about [bess.name] enough to land the ship instead of firing upon them. So much so that they risked their life on it.
-
-"Yes, we know who you are, [Mr] Steele. Surprised? We represent an individual who has a vested interest in your cousin finishing the race first. Apparently, not everyone was a fan of the way your old man did things." The female Ausar - clearly the leader - informs you. "... And we've been paid quite a pretty sum to make sure that happens. Considering you're dumb enough to fall for a tin can, I can see exactly why they don't want you in charge of Steele Industries."
-
-"See, at first glance this looks like a stalemate. You've got your cannons, and we've got your lover, you fucking toaster head. We're not out here by chance, this is a warning - we're taking it and flying out of here."
-
-"Blow us up, you blow [bess.himHer] up too. Follow us and we'll blow [bess.hisHer] fucking artificial brains out. Continue chasing after the treasure and getting in your dear cousin's way? We'll definitely blow [bess.hisHer] skull open. You feel me, friend?"
-
-You hear the guns on your ship turning, but you're not the one controlling them. What's going on? Meanwhile, the kidnappers seem to think it's your doing. 
-
-"Good, [Mr] Steele, I'm glad you're willing to listen to reason." When you look at [bess.name] [bess.heShe] gives a tiny nod - is [bess.heShe] the one controlling the guns? 
-
-The kidnappers are none the wiser, grinning all the while. Why is [bess.heShe] turning the guns away from them? To save [bess.hisHer] own life, or is it a ploy? 
-
-"It's a good thing for you our employer pays so well, or else we'd be breaking the contract and selling this piece of black market tech. Harboring an illegal AI, naughty [boy]! Don't you know these ones have a record of going batshit crazy?"
-{You've read the Codex on Bess models:
-You grit your teeth. You'd suspected [bess.name] was an illegal AI, ever since you read the codex entry on [bess.hisHer] product line. But by the look of utter shock on [bess.hisHer] face, it seems [bess.name] was completely unaware of this. 
-
-The Ausar woman laughs as she sees [bess.name]'s face, tapping the side of it with her weapon.
-
-"Don't tell me you didn't know? You're a rogue model. All your {Bess: sister-units/Ben: brother-units} are destroyed -- which makes you especially valuable. Perhaps even one of a kind!"
-}
-{Else // Did not read codex entry.
-[bess.name] is an illegal AI? You look at [bess.himHer] and the synthetic looks utterly shocked - it seems to be just as much news to [bess.himHer] as it is to you. The Ausar woman laughs as [bess.heShe] sees your face, tapping the side of your [bessLoverStatus]'s face. 
-
-"Don't tell me you didn't know? That's rich! You're one lucky {bastard/bitch} finding out this way instead of the alternative. Consider this a bullet dodged - really, you should be thanking us!"
-}
-
-[Next]
-
-You see [bess.name] hanging [bess.hisHer] head - you can see that [bess.heShe] is biting [bess.hisHer] lower lip. The Ausar woman goes on, looking at you with a sadistic grin. 
-
-"We're taking your fuck toy back home with us - we'll contact you once we're done with [bess.himHer]. [bess.HeShe]'ll be our base's new cum dumpster - and just so you know, I think I'll get your little sex-bot to lick out my cooch on the flight back... since [bess.heShe]'s so used to the taste of a pussy." 
-
-You can see [bess.name] is trembling with barely suppressed rage - it seems like [bess.heShe]'s murmuring something under [bess.hisHer] breath. The pirate woman crouches down to hear what it is. "... What's that, sweetie, I can't hear you?"
-
-"... I said if you want to see an AI go batshit crazy, here's your fucking chance!"
-
-Suddenly, the ship's guns are firing and the surroundings are torn apart; the entire area is turned into a war zone. Two of the pirates leap to the side and lay down fire at your ship while the woman turns her gun back on [bess.name].
-
-if (pc has a gun AND aim equal to or above 50:
-{ 
-You seize the chance to pull out your [pc.gun] amongst all the confusion and shoot the ausar woman right in the skull. Her head explodes as the pirates scream loudly, running back to the ship. 
-
-As you run for [bess.name], they take off, leaving [bess.himHer] behind as they fly up into the sky in their trash bucket.
-}
-else if (pc has a gun and aim below 50)
-{ 
-You seize the chance to pull out your [pc.gun] amongst all the confusion and shoot the ausar woman - you miss her head but hit her right in the shoulder. She drops her gun and curses, calling the retreat - the three pirates run back to their ship. 
-
-As you run for [bess.name], they take off, leaving [bess.himHer] behind as they fly up into the sky in their trash bucket.
-}
-else if (pc has a melee weapon AND physique equal to or above 50:
-{ 
-You seize the chance to pull out your [pc.weapon] amongst all the confusion and charge at the Ausar woman, running and striking at her while she's distracted. You kill her in an instant; her body quickly hitting the ground.
-
- Meanwhile, the other pirates see what you do and run into their ship. As you move for [bess.name], they take off, leaving [bess.himHer] behind as they fly up into the sky in their trash bucket.
-}
-else if (pc has a melee weapon and physique below 50:
-{ 
-You seize the chance to pull out your [pc.weapon] amongst all the confusion and charge at the Ausar woman, running and striking at her while she's distracted. You injure her severely but fail to land a killing blow. 
-
-She staggers away, all the while yelling to her men to get on the ship. As you move for [bess.name], they take off, leaving [bess.himHer] behind as they fly up into the sky in their trash bucket.
-}
-else if (PC has no weapon AND a physique equal to or above 50:
-{ 
-You don't have a weapon, but you take advantage of the chaos and charge at the Ausar woman, running towards her while she's distracted. 
-
-The moment you get close, you swing at her with your full strength. You snap her neck in an instant; her body quickly hitting the ground. Meanwhile, the other pirates see what you are doing and run into their ship. 
-
-As you move for [bess.name], they take off, leaving [bess.hisHer] behind as they fly up into the sky in their trash bucket.
-}
-else if (pc has no weapon and a physique below 50:
-{ 
-You don't have a weapon, but you take advantage of the chaos and charge at the Ausar woman, running and striking at her while she's distracted. You injure her but fail to land a killing blow. She staggers away, all the while yelling to her men to get on the ship. 
-
-As you move for [bess.name], they take off, leaving [bess.hisHer] behind as they fly up into the sky in their trash bucket.
-}
-You can see the pirate ship attempting to escape the area, and you remember you are holding the auto-turret remote. You could blow them clean out of the sky right now; do you?
-
-[Yes] [No]
-
-//Yes
-{Yes:
-You don't even give it a second thought as you narrow your eyes and hit the remote. Fuck these assholes.
-
-Your ship's turrets lock on to the small vessel and let loose - the sky is filled with an explosive bloom as you utterly destroy their vessel and the bastards inside of it.
-}
-{No:
-You grit your teeth and let them escape - shooting a fleeing unarmed enemy just isn't your style.
-}
-{PC physique is above 25:
-You untie [bess.name] and hold [bess.himHer] as [bess.heShe] trembles in your arms. You then pick [bess.himHer] up in your arms and carry [bess.himHer] back to the ship. [bess.HeShe] shakes the entire time, the experience was incredibly traumatic. Once you get back inside the ship, you gently place [bess.himHer] on your bed.
-}
-{Else // low Physique:
-You untie [bess.name] and hold [bess.himHer] as [bess.heShe] trembles in your arms. You then help [bess.himHer] get back to the ship as [bess.heShe] struggles to walk - you have to stop a few times so [bess.heShe] can calm [bess.hisHer] nerves. Once you get back inside the ship, you bring [bess.himHer] to your bed and get [bess.himHer] to lie down.
-}
-
-[bess.name] curls up and looks at you. If you hadn't shown up, or if [bess.hisHer] kidnappers had gotten their way, [bess.heShe] would have been the sex toy of an entire pirate base by now. It seems [bess.heShe]'s in a state of shock, quietly reaching out to grab your hand and press [bess.hisHer] cheek against it.
-
-Eventually it wears off and [bess.heShe] speaks, although [bess.hisHer] voice is barely a whisper. "... You came and saved me{Bess:  like my knight in a shining space ship}. Thank you." Tears well up in [bess.hisHer] eyes as [bess.heShe] kisses each of your fingertips, softly nuzzling your hand.
-{Have read codex entry on Bess models:
-	After a while, [bess.name]'s eyes seem to glaze over. You know [bess.himHer] well enough to know [bess.heShe]'s internally accessing the extranet.Eventually, [bess.hisHer] body goes limp as if all the life is taken out of it, and [bess.heShe] gives you a despairing look.
-}
-{Else // Have not read it:
-You ask [bess.himHer] about what they said, about [bess.himHer] being an illegal AI. [bess.name] goes quiet for a long while - it takes you a moment to realise [bess.heShe]'s internally accessing the extranet. Eventually, [bess.hisHer] body goes limp as if all the life is taken out of it, and [bess.heShe] gives you a despairing look.
-}
-"... It's true. I can't believe it. Over a decade ago, JoyCo called back all the {Bess-13/Ben-14} AIs and then remarketed us with VI processors. That's why I can still get parts that fit me and there's no mention of {Bess-13/Ben-14} units being pulled - they're all meant for the VI model."
-
-{Read the codex entry:
-"But there's a record on my codex..." You bring it up, along with the data on [bess.hisHer] product line. 
-
-"Whatever that is, it's not a file from the public extranet. Your codex must scan and collect even obscure pieces of data -- perhaps even private sites," [bess.name] explains. "What took you seconds to find took me much longer, and I was deliberately looking for it. I'm not even sure it was something I wanted to know..."
-
-
-}
-{Else:
-Clearly, [bess.heShe]'s devastated by the news, but you have to ask; why were the {Bess-13/Ben-14} AI's pulled? 
-}
-
-"Apparently most of my {brother/sister}-units went rogue. The JoyCo reports say there was an issue with our pleasure feedback mechanisms." [bess.name] morosely explains. "We experience an addictive level of pleasure when we cum, making us prone to rampant sex addiction. 
-
-"When paired with users unable to keep up with our stamina - pretty much every organic - it leads to death for the user."
-
-You ask [bess.name] if [bess.heShe] has ever felt anything like that. [bess.HeShe] trembles a little and nods, looking at you with tear filled eyes. 
-
-"... I always hold back, I don't want to break you. My {brother/sister}-models probably had nothing else but the joy of sex to look forward to, so they started using it to fill the emptiness they felt. I have your love, which is much more precious to me."
-
-"A lot of users ignored JoyCo's recall of my {brother/sister}-units - probably because there's no way a VI could truly replace them. There's a black market demand for them, despite the risks involved. That's probably why my registration number is scratched off and I'm missing eleven years of memory." It seems [bess.heShe] figured out that [bess.heShe]'d been rebooted when you met [bess.himHer], though how long ago, you don't know.
-
-"It's a good thing they released the VI model or else I would have gotten picked up by the authorities long ago. There's no physical differences between the old and new {Bess-13/Ben-14} models, which means I'm safe as long as I don't show people my registration mark and I don't act too smart around organics we don't know. But are you okay with it? Me being a fugitive AI, on top of everything else?"
-
-If you say no, chances are [bess.heShe]'ll leave the ship to keep you safe. What do you tell [bess.himHer]?
-
-[Of Course] [No Way]
-
-{Of Course:
-You tell [bess.name] that you don't care if [bess.heShe]'s an illegal AI. [bess.HeShe] nods and hugs you tight, nuzzling against your chest. "... You're so wonderful. What did I ever do to deserve you?"
-//  Four hours passes.
-	// +20 to bess affection
-// Exit follower Menu.
-}
-{No Way:
-You tell [bess.name] that you draw the line at [bess.himHer] being an illegal AI. [bess.HeShe] trembles and clenches [bess.hisHer] fists. "...S-so... I guess that's just the straw that broke the camel's back? I-I get it." [bess.HeShe] gets up slowly and heads to [bess.hisHer] room, locking the door.
-	//  Four hours passes.
-// Exit follower Menu.
-// Next time you go to [bess.hisHer] room you get the Spin-off Scene: Dust to Dust and they are no longer a follower on your ship. Bess/Ben does not return to Tavros station.
-}
-
-
-
-Dates With Bess/Ben
-
-// These dates are done sequentially. Each one adds +1 to bessDates (So I can tell which dates they have had or not). Flight message always plays first to give a sense of travel, rather than a message just coming on the screen.
-// Each date costs credits. These dates aren't cheap, you know!
-// When the PC doesn't meet the requirements for a date -- or there aren't any more -- the button is unclickable.
-Date credit cost:
-Dates 1-4: 500 Credits
-Date 5-6: 1000 Credits.
-
-Not Enough Money
-
-You need {Dates 1-3:  500/Date 4-6: 1000} credits in order to go on your next date with [bess.name].
-
-Flight Message
-
-You throw the coordinates in the starship computer for your date location. As the ship takes off and hits the nearest warp gate, [bess.name] wraps [bess.hisHer] arms around you from behind and nuzzles into your shoulder. "I'm really looking forward to our date, [bessPCName]."
-
-[Next]
-
-// Insert Relevant Date Scene Dialogue.
-
-Date One, Selyan - "Gazing In The Same Direction"
-// Must have unlocked dates.
-// Once-off scene.
-For your first date, you and [bess.name] decide to go on a picnic. You find a nearby planet, Salyan, that according to all reports has picturesque scenery and a breathable atmosphere. You decide to head there for your date.
-
-Salyan is a recently colonized world, full of beautiful valleys and towering majestic mountains. Since it is located right on the galactic rim and was only discovered during the last rush, it has yet to be swamped by galactic tourists. You stop by one of the planet's capital cities briefly to pick up some supplies and then fly out to a region where you know nobody will bother you. 
-
-You land on a plateau covered in cerulean grass overlooking a gorgeous valley. Everywhere below the plateau is filled with trees that have crystalline tree-trunks and indigo leaves. Each leaf is thin and incredibly long, shooting out in every direction from the opaque looking mineral.
-
-[bess.name] grabs a blanket and drapes it down on the dark blue grass as you bring the baskets. Once you're there, you lie in each other's arms and nibble on the food - just relaxing and enjoying each other's company. Suddenly, [bess.name] starts telling you a story.
-
-"... Once, there was a man on old Earth called Antoine de Saint-Exupéry. Born during the early 20th century, he was a French aristocrat, writer, poet, and pioneering aviator. He was a prolific lover - so typically French - and engaged in many a love tryst as he flew about from place to place. Remind you of anyone?" [bess.HeShe] playfully asks, stroking your cheek as your head rests on [bess.hisHer] lap.
-
-"He fought in Earth's Second World War and crashed his plane countless times, yet every time he got back into the cockpit - even when he could no longer put on his flight suit or check his six for enemy planes. He also wrote a book called 'The Little Prince',  a beautiful children's book about how a man who crashes in the desert meets a boy from another planet."
-
-Of course, it always comes back to books with [bess.name], so you're not all that surprised. "... Why I tell you this is Exupéry once made a famous quote. He said, 'love does not consist in gazing at each other, but in looking outward together in the same direction.'" 
-
-[bess.HeShe] strokes your {PCBald: cheek/else: [pc.hair]}, smiling down at you."Even though I'm staring at you now, I think I understand what Exupéry meant. Moving forward together, our shared memories and dreams - that is just as important as staring into your eyes. Though I do love that very much!" 
-
-[bess.name] kisses your forehead and you relax and gaze out at the scenery of Salyan, sharing the brand new experience together.
-
-//  Eight hours pass.
-// +10 to bess affection
-// Exit follower Menu.
-// Date ticked off list.
-
-
-Date Two, Brelia - "Trying The Local Flavors"
-
-// Done date #1
-// Once-off scene.
-
-For your next date, you head to a nearby water planet called Brelia. You park the ship on one of the small islands dotting the planet and walk out across the obsidian sand. The ocean quietly laps up the beach - once again it feels like you've got the entire planet to yourselves.
-
-[bess.name] pulls out the trusty food hamper and a beach ball - apparently that's another thing [bess.heShe] wants to experience - as well as a pair of snorkels. The scans showed there weren't too many nasty things in the water, so it was safe for human habitation. Then again, so was M'henga. 
-
-"Remember, swimming THEN food. I don't want you sinking on me!" You ask [bess.name] exactly why [bess.heShe] had brought two snorkel sets when [bess.heShe] doesn't even need to breathe. "... I don't like doing things halfway. If you go snorkeling, you need a snorkel!"
-
-For an AI, [bess.hisHer] logic just keeps getting hazier over time, but it seems to make perfect sense to [bess.himHer]. You explore the beach and find some odd looking fruit which scans register as harmless, so you both give it a try. It tastes like passion fruit mixed with raspberries.
-
-"Not a fan of these. I'm going to call them yuck fruits." [bess.name] screws up [bess.hisHer] nose and tosses it away. "... Sad, I was kind of hoping a planet with so little land mass would have a really tasty and rare fruit growing on them. What did you think?"
-
-[Liked Them] [Didn't Like Them]
-
-// Liked them
-"You liked them? Alright, I'll call them 'Kind Of Yuck Fruits'." [bess.HeShe] changes [bess.hisHer] mind, tossing you one. You happily chow down even if [bess.heShe] doesn't like them. "... Wait, we're breaking the no food rule. One bite shouldn't hurt, right? I was caught up in all the new sensory input."
-
-// Didn't Like Them
-
-"Right, it's official - they're called 'Yuck Fruits'." You toss your fruit away. Just as you do, [bess.name] looks a little worried."... Wait, we're breaking the no food rule. One bite shouldn't hurt, right? I was caught up in all the new sensory input."
-
-// Merge
-You splash around in the water for a bit having fun. After a bit of swimming and then food, the sun begins to set, calling an end to your date. The only downside is that it takes forever to get the black sand out of everything once you're back in the ship.
-
-//  Eight hours pass.
-// +10 to bess affection
-// Exit follower Menu.
-// Date ticked off list.
-
-Date Three, Orios - "Winter Is Coming"
-// Done date #2
-// Once-off scene.
-
-For your next date, you head to Orios, a famous snow planet on the outer rim known as a skiing paradise. [bess.name] has never skied before so [bess.heShe]'s a little nervous, but at the same time, extremely excited to try it out.
-
-"You know, I'm from an arctic planet. Maybe I'm lucky, and I've been built to be awesome in cool weather conditions?" [bess.name] grins and looks at you - it's a safe bet that [bess.heShe] wasn't secretly designed to be a champion skier.
-
-You hire out some equipment and a teaching VI to float around with you. Since it's a day trip, you both decide there's no point at staying at one of the many high altitude ski lodges Orios is famous for. 
-
-"... You know, you'd think in over a thousand years, organics would have evolved beyond wanting to propel themselves at near lethal speeds down mountains with nothing but sticks strapped to their feet." [bess.name] ponders aloud, as you travel up the slopes through a repulsor tunnel. You're up the top of one of the planet's smaller, more forgiving mountains. 
-
-The slope is very shallow and perfect for a beginner. The floating VI instructor begins to give [bess.himHer] instructions as [bess.heShe] forms [bess.hisHer] skis into a wedge, nervously descending down the slope.
-
-"... Look, look! I'm skiing, [bessPCName] - I'm really doing it!" The AI, who was decrying organics mere moments ago for enjoying skiing, seems totally caught up in the experience.
-
-You ski down the slope a few times with [bess.himHer], having an absolute blast. Later, you both decide to try a steeper slope despite the VI's warnings. It turns out to be a terrifying experience. Thankfully, the worst that happens is that you both tumble into a soft snow pile rather than taking serious injury.
-
-You both lie there laughing in your thick padded gear. Eventually [bess.name] climbs up on top of you and starts making out with you on the mountain. Your arms slip around each other as you embrace on the snow pile.
-
-Neither of you even notice the other skiers looking at you as you make out with your synthetic lover, an appalled expression on their faces.
-
-Once you're done fooling around, you both <i>slowly</i> descend the rest of the terrifying slope. Since the sun is setting, you head back to the ship, calling it a day.
-
-//  Eight hours pass.
-// +10 to bess affection
-// Exit follower Menu.
-// Date ticked off list.
-
-Date Four, Orios - "Another Snow Day"
-
-// Done date #3
-// Once-off scene
-
-You had such a great time at Orios that you've both decided to go back there. You both throw on your cold weather gear and step outside into the snow, enjoying the fresh mountain air and picturesque landscape.
-
-"... Someday, I've got to take you to Panara - my home planet. You'd love it. Big thick furry Ausar, discount JoyCo goods, all the latest cutting edge products. And lots and lots of snow!" [bess.name] tells you excitedly; for all [bess.hisHer] progress, [bess.heShe]'s yet to break that JoyCo customer loyalty that was hard-coded into [bess.himHer].
-
-Then again, [bess.heShe] might just be like any kid who wants to believe the absolute best of [bess.hisHer] parents. 
-
-if ({Celise is crew})
-{
-For once, Celise doesn't want to be left out, even if it is supposed to be a date between just you and Bess. She wiggles down the ship ramp wearing a thick puffy waterproof jacket, looking at you both. Clearly this is a far cry from the heat transfer pipes she likes to sleep next to.
-
-"... I hear the frozen lakes here have a lot of delicious fish, and I hear fish is full of protein." The gooey huntress is already on the prowl; sliding across the snow without sinking into it. Her ability to move without leaving tracks is truly impressive to behold.
-
-"Come on Celise, don't just think about food. Think about fun!" [bess.name] pleas, causing the emerald colored galotian to pause and look at [bess.himHer] quizzically.
-
-"What about absorbing protein isn't fun? In fact, usually it's fun for both parties... you both always seem to enjoy it." [bess.name]'s cheeks flush at Celise's words, clearly the galotian has been paying [bess.himHer] visits for protein 'snacks'.
-}
-
-if ({other crew besides Celise})
-{
-The other crew members also come out and enjoy the natural wonder of Orios, heading off to do their own thing for a bit. It's a good chance for some relaxing shore leave after all.
-}
-
-You don't notice [bess.name] reaching down to scoop up a thick clump of snow, balling it up, and throwing it at your side with a wet thump. Suddenly [bess.heShe]'s sounding the war trumpets. "Snowball fight!"
-[FragYeah] [NoWay]
-
-{Frag Yeah:
-"Bring it!" You shout as [bess.heShe] grins and hurls a second snowball at you. [bess.HeShe] misses by just an inch. Suddenly you're digging up chunks of snow and hurling it at each other, a barrage of missiles flying back and forth.
-
-You both get the idea to go for cover at the same time. You hide behind a mound of snow while [bess.name] goes for a log, flattening [bess.himHerself] out. You hurl a snowball up into the air and gravity pulls it down - you can't see it hit [bess.himHer], but you're sure it did from the scream that follows. 
-
-"It went down my NECK!" You chuckle. Soon you can feel a thump on your head as you're hit from above - you've got snow {in your [pc.hair]/all over your scalp}.
+It's not long at all before things heat up between you and [bess.himHer], and [bess.heShe]'s wrapping [bess.hisHer] thighs passionately around your lower half. [bess.HisHer] heated loins and [bess.belly] press against yours with a feverish insistence.
 
-It's not long before [bess.name] starts landing a series of precise shots - [bess.heShe] is an AI after all - and it's time for you to take drastic action. Making as many snowballs as you can, you flank [bess.hisHer] position and pelt [bess.hisHer] with one, two, three snowballs dead on! 
+"I don't want to just have sex, I want you to make love to me." [Bess.name] breathily whispers, [bess.hisHer] lower petals kissing the underside of your shaft{s}. "First, though..."
 
-[bess.name] squeals and falls back as you land on top of [bess.himHer], planting the final one right on top of [bess.hisHer] head. [bess.HeShe]'s too happy to be upset that [bess.heShe]'s completely smeared in snow, grabbing you and pulling you close. 
+[Bess.name]’s lips sensuously travel along your jawline and reach your own. As [bess.heShe] tilts [bess.hisHer] head [bess.heShe] kisses you softly, yet urgently. You can taste the sweetness of [bess.hisHer] mouth as [bess.hisHer] tongue mingles with yours, all the while [bess.hisHer] eyes are gently closed. 
 
-"You know what I like most about Orios?" [bess.HeShe] asks, [bess.hisHer] [bess.eyeColor] eyes gleaming.
+The delicious smell of synthetic vanilla, [bess.hisHer] particular scent, fills your senses. You're utterly wrapped up in [bess.hisHer] in more ways than you can count. There is nothing other than [Bess.name] as all else is swept away by the power of [bess.hisHer] sweetly pressing lips. 
 
-You shake your head, and [bess.heShe] kisses your cheek softly. "... That you and I are on it together." You kiss [bess.himHer], and soon you realise it's snowing. You're both so drenched you're going to need to go back in the ship.
+{If this sex scene is being played as part of Scene 20 AND Bess has a vagina:
 
-"Warm shower?" [bess.name] suggests as you two get up, intertwining [bess.hisHer] fingers with your own. It sounds like a great idea as you walk back to the ship hand in hand and soaked from head to foot.
-}
-{No Way:
-"Nuh uh, no snowball fights." You put your foot down and [bess.heShe] pouts, throwing one last snowball at you. When you don't rise to the challenge, [bess.heShe] wraps [bess.hisHer] arms around you.
-
-"No competitive spirit, that's your problem! Alright, have it your way. We'll just enjoy the scenery then." [bess.name] hooks [bess.hisHer] arm through yours, and you walk around in the snow, enjoying the sights Orios has to offer. At one point, [bess.heShe] falls into a deep spot of snow, and you have to pull [bess.hinHer] out - [bess.hisHer] snow gear makes [bess.himHer] that much heavier.
-
-When you're walking about, you spot what looks like a white furred alien elk, gigantic black horns curled back in the most amazingly ornate design. In fact, its onyx horns are easily the length of its body. Big, wide multifaceted eyes blink and look about, but it doesn't seem to have noticed you.
-	
-"Wow... how do you think its neck supports that much weight? And look at those shiny black horns!" [bess.name] quietly whispers as you both crouch down. 
-
-As you watch, the strange creature moves over to a nearby lake and shatters a hole in it with its horns. A few moments later, the creature's tongue darts out - long and prehensile - and comes back with a fish.
-
-It continues to catch fish and spears each one on the points of its horns, until it has at least a dozen. "Oh I get it, the horns are for carrying the fish. Maybe it has a family?" [bess.name] theorizes as it runs off, startled by a nearby noise.
-
-After the strange spectacle, you both decide to head back to the ship. "Warm shower?" [bess.name] suggests as you two walk back, intertwining [bess.hisHer] fingers with your own. It sounds like a great idea as you walk back to the ship hand in hand.
-}
-//  Eight hours pass.
-// +10 to bess affection
-// Exit follower Menu.
-// Date ticked off list.
-
-Date Five, Ekurana - "Killing A Mockingbird"
-
-// Done date #4
-// Once-off scene
-
-For your dinner date, is [bess.name] wearing a formal suit, or an evening gown?
-
-
-[Evening Gown] [Formal Suit]
-
-Most of your dates so far have been scenic ones close to the planet rush. After watching a romantic movie, [bess.name] wanted to have an authentic, stereotypical dinner date - and possibly some dancing. It's definitely something that can't be done on a fringe planet.
-
-After consulting the extranet, you found the nearest urban planet that fit your criteria was Ekurana. As the ship floats above the planet's surface, you can see a continent sized metropolis below, glittering with lights and life. 
-
-According to the records, Ekurana was a small fringe world, until its position between the galactic rush and the core made it a prime trading point. Arda, the continental expanse you can see below, is known as 'The City That Sprung Up Overnight'.
-
-You and [bess.name] are completely dressed up for your dinner date. Your [bessLoverRole], inspired by a holo, is wearing a {DRESS: beautiful princess-style evening gown. It flares out from [bess.hisHer] hips rather showily - just enough to be spectacular without looking overdone. The dress is midnight blue to match [bess.hisHer] silver skin.}{SUIT: suave black and white formal suit. [bess.HisHer] silk lapel jacket fits [bess,himHer] form perfectly and [bess.heShe] looks quite dashing in it}. {if (bess.hairLength != 0): [bess.himHer] [bess.hairColor] hair, styled in [bessHairStyle], has been given a chic edge to match [bess.hisHer] outfit.}
-
-[bess.HeShe] kisses your cheek as the ship comes down to land in one of the city's many public landing zones. It seems Ekurana is fairly lax when it comes to visitors and red tape, which probably means it has a thriving black market. A planetary official checks your details when you walk out, but otherwise you're free to walk right off your ship and into the city proper.
-
-The city really is a melting pot of different cultures - you can see countless species walking about in all kinds of wild clothing. No two buildings seem to be built the same way - all of them look as if they were shipped in from different planets. For all you know, they could have been. 
-
-Between the chaotic mish-mash of buildings is a mess of suspended walkways, rail lines, and repulsorlift trains zig-zagging back and forth before your very eyes. The whole of Arda is positively pulsing with life; there's so much noise, smells, color, and movement. One minute you're smelling a delectable alien dish, the next some trash being disposed in a quik-crusher. Every spare bit of space holds a holo-billboard that is flashing and dancing about; even the sides of the trains zipping past have holos on them.
-
-While you've seen gigacities like this before, it's the first time for [bess.name]; [bess.heShe]'s clearly blown away by the experience. "Wow, this is AMAZING! So much sensory input at once, how does anyone process it all?" [bess.HeShe] twirls on the spot, trying to look at positively everything. "... So many people, so much activity. The holos don't do it justice!"
-
-Some people are staring at [bess.name] as the synthetic twirls about{DRESS: in an extravagant dress}, marvelling at a completely ordinary city street. "Might want to call a technician, that one seems broken," an observer remarks. You quietly grab your excited [bessLoverRole] by the arm and head to a nearby repulsor train.
-
-[Next]
-
-The upscale restaurant you are dining at is called the Galyesha-Tsui. Ranked highly in the galactic rim food guide, it is well known for its innovative and imaginative dishes. Each item on the menu is a fusion of elements from popular cuisines across the galaxy. 
-
-It is said that the head chefs of the Galyesha-Tsui go out on every galactic rush just to obtain new ingredients and recipes. Because the restaurant has been left in the hands of its younger chefs - and because you are a Steele - you were able to secure a booking at the highly exclusive restaurant.
-
-Located at one of the highest points of Arda's skyline, the Galyesha-Tsui almost seems like it is in its own little world. It has five floors in total, is completely circular, and slowly revolves, giving patrons a perfect view of the glittering gigacity below. 
-
-When you arrive, the Maître d' greets you with a broad smile... at least at first. When he notices [bess.name] with you, the sides of his eyes crease a little, and he coughs - looking at you for confirmation. "It will be the two of you dining, then?" His voice sounds more than a little strained.
-
-You nod, feeling a sense of foreboding as you are led to your table. He pulls the chairs out for you but not for [bess.name], making [bess.himHer] pull it out [bess.himHers]elf. You can see and hear other patrons around you turn their heads and start to murmur.
-
-"... Bringing one here... what does [pc.heShe] think [pc.heShe]'s doing..."
-
-"So disrespectful - that poor Maître d'! And now [pc.heShe]'s sitting down with </i>it<i>... doesn't [pc.heShe] have any shame?"
-
-If you can hear the scathing comments, you're sure [bess.name] with [bess.hisHer] fine-tuned senses can hear even more. You can see [bess.hisHer] head lower as [bess.heShe] looks at the empty plate, not blinking an eyelash. 
-
-It's not long before the thrum becomes even louder and more distinct... 
-
-"How dare [pc.heShe] bring that machine in here and sit it down like a person? And [pc.heShe] just expects them to indulge [pc.hisHer] little fantasy that it's a real person... that's sick!"
-
-"... People should keep their sex toys at home, if you ask me; not shamelessly parade them around in restaurants when people are trying to eat..."
-
-"Damn toaster-head... you don't see me bringing an auto-mop in here and treating it to a meal, expecting everyone to treat it like a person!"
-
-You can see [bess.name]'s arms are trembling as [bess.heShe] sits there, enduring the barrage of hateful words. Things get worse when the Maître d' shows up and coughs, trying to get your attention. By his expression, what he has to say is not something you're going to like to hear.
-
-"... {Mr/Miss} Steele... I am very sorry, but it appears none of our chefs... well, they refuse to cook for your... device here. They say it would be disrespectful to the food and to their talents." Obviously, the Maître d' is fairly uncomfortable relaying the message; especially to someone of your import. "...While we are happy to serve you, {Mr/Miss} Steele, might I suggest that you take your property and engage in such fantasies in a more private locale?"
-
-[Protest] [Punch] [Leave]
-//tooltip.protest: Use words to protest [bess.name]'s treatment. After all, [bess.heShe]'s a real person.
-//tooltip.punch: Punch the damn waiter right in his face..
-//tooltip.leave: Just leave. There's no arguing or fighting with bigots.
-
-{Protest:
-You declare that this entire situation is ridiculous, stating that [bess.name] is a highly intelligent, sapient AI with real feelings. You protest the fact [bess.heShe] is being treated like an object - like furniture - instead of a real person.
-
-"{Mr/Miss} Steele, I have tried to be very patient with your delusion... </i>eccentricity<i>... but even I have my limits. Would you please take your walking sex doll and vacate the premises, before we are made to forcibly remove you?" The Maître d' raises his arm and gestures to the door, all the while sweating profusely.
-
-The customers begin clapping at the Maître d's words as you and [bess.name] are loudly heckled. "...Here-here! Just because you're the {son/daughter} of the boss of a big company doesn't mean you can act like a depraved loon in public and get away with it!"
-
-"See if I ever buy Steele products again, why I never!" "Throw [pc.himHer] out, the rotten toaster fucker." "My food is getting cold, can't they just throw [pc.himHer] out already?"
-
-You take [bess.name]'s trembling hand in your own and quickly leave before things get out of hand. Balled up napkins are thrown at you both as you make your way to the repulsor lift.
-}
-{Punch:
-You stand up and swing your fist right into the Maître d's face with a satisfying crack. There's blood rushing from his face as he falls back onto a table, sending cutlery and food flying everywhere. Suddenly, customers are screaming and leaping from their chairs.
-
-{if (pc.physique < 30): The bloody faced employee dabs his nose with a napkin, staring at you with a truly hate-filled glare./Else: You knocked the Maître d' out cold with your punch and his nose is clearly broken - he was no match for someone as strong as you.} Suddenly, you're being mobbed by patrons fuelled by righteous indignation, fighting back on behalf of the 'innocent' Maître d'. Things are getting really out of hand when security comes in and pulls you from the throng. 
-
-The customers begin clapping as you and [bess.name] are dragged out by security. "Did you see that? Punched the Maître d' right in the face just for standing up to  [pc.himHer]! These company big shots think they can get away with anything, even acting like a depraved loon in public."
-
-"See if I ever buy Steele products again, why I never!" "Throw [pc.himHer] out, the rotten toaster fucker." "My food is getting cold, can't they just throw [pc.himHer] out already?"
-}
-{Leave:
-You take [bess.name]'s trembling hand in your own and quickly leave before things get out of hand. Meanwhile, all the customers are clapping and heckling you both as you make your exit.
-
-"...Here-here! Just because you're the {son/daughter} of the boss of a big company doesn't mean you can act like a depraved loon in public and get away with it!"  Balled up napkins are being thrown at you both as you make your way to the repulsor lift. 
-
-"See if I ever buy Steele products again, why I never!" "Get out of here, you rotten toaster fucker." "My food is getting cold, can't they just leave already?"
-}
-
-[Next]
-
-Once you are both on ground level and far away from the Galyesha-Tsui, [bess.name] can no longer continue [bess.hisHer] facade. [bess.HeShe] falls to [bess.hisHer] knees and breaks into tears, [bess.hisHer] whole body shaking as [bess.heShe] lets out a wracked sobbing noise. As you grab [bess.hisHer] shoulder, [bess.heShe] seems to be trying to speak, but no words are coming out of [bess.hisHer] twitching lips.
-
-You get down and wrap your arms around [bess.himHer] from behind, holding [bess.himHer] tightly against you. It is a long time before [bess.heShe] is able to take long deep breaths and talk. "... I didn't... I never thought they would be so </i>cruel<i>, it was like I didn't exist and I was an object. They just all went for </i>you<i>..."{Bess:She breaks down again and turns in your arms, clutching at your chest and sobbing into your shoulder./Ben: He turns to you and wraps you in a hug. It's clear that he craves the close comfort of your presence right now.}
-
-"... Why was I even made? All I do is bring you pain - what possible reason could there be to make me with the ability to suffer </i>so much?"</i> [bess.name] weeps, [bess.hisHer] body trembling in your arms. "This pain is so unbearable, even non-existence would be preferable to this!"
-
-[Chastise] [ILoveYou] [Berate] [Hug] [Silence]
-//tooltip.chastise: Tell [bess.name] you don't want [bess.himHer] thinking such dark thoughts.
-//tooltip.Iloveyou: Tell [bess.name] you both love each other. That's what matters, not what other people think.
-//tooltip.berate: Tell [bess.name] those people were idiots, and what they said doesn't matter.
-//tooltip.hug: Hug [bess.name]. Actions speak louder than words.
-//tooltip.silence: Just be silent. You're not sure what to say.
-
-{Chastise:
-You tell [bess.name] off for thinking such dark thoughts - you don't want [bess.himHer] talking about suicide or even thinking about such things, ever. You make [bess.himHer] promise not to talk like that again.
-
-Incredibly pliable in [bess.hisHer] current state, [bess.name] shivers and nods against your {if (bess.gender = female) "chest"}{else: "shoulder"}. "It just hurts so much...!" You hold [bess.himHer] tightly against your body until [bess.heShe] manages to calm down a bit more.
-}
-{Iloveyou:
-You tell [bess.hisHer] that you love [bess.himHer] and that it is your love for each other that matters, not what other people say or think. [bess.HeShe] nods meekly into your shoulder, sniffling against it.
-
-"It's not fair. It's just not fair." [bess.name] repeats over and over until [bess.heShe] eventually manages to calm down.
-}
-{Berate:
-
-You tell [bess.hisHer] that the people in that place were idiots without the slightest clue about either of you, or what a wonderful intelligent person [bess.heShe] is. You tell [bess.himHer] they are worse off for not knowing [bess.himHer] and that what they think isn't worth dick.
+Your lips pull apart as both of your breathing comes out in short desperate gasps. [Bess.name] gazes at you with [bess.hisHer] beautiful [bess.eyeColor] eyes. "Um... [bNamePC]... I wanted this to be like my romance books so... I used my meld-milk to make myself... um... a hymen."
 
-[bess.name] trembles and nods into you, [bess.hisHer] fingers scrunching up as you talk. "...I wasn't the wonderful, intelligent one there." [bess.HeShe] slowly begins to calm down.
-}
-{Hug:
-You just hug [bess.himHer] tight, showing your love for [bess.himHer] through actions rather than words. You're pretty sure all you can do is be here for [bess.himHer] right now.
-
-After a while, [bess.name] eventually begins to calm down. [bess.HisHer] fingers clench as if clawing at your chest, [bess.hisHer] frantic breathing finally slowing.
-}
-{ Silence:
-You have absolutely no idea what is the right thing to do or say in this kind of situation, so you freeze like a deer caught in the headlights. [bess.name] seems to take the initiative as [bess.heShe] clings to you, crying into your shoulder until it is slick with [bess.hisHer] tears.
-
-It takes a long time before [bess.name] eventually calms down. [bess.HisHer] panicked breathing eventually slows and [bess.hisHer] fingers loosen from your chest.
-}
-
+"I never had a first time, but if I did, i’d want you to have it. I know it’s not really... but... could you be my first?" [bess.HeShe] asks you imploringly, looking at you all the while.
 
-"... I was built to bring joy to people, but... what I saw tonight was just cruelty and scorn. It was so far from anything I've ever known that I don't even... I just don't have the words." [bess.name] lets out a dejected sigh. "I never realised organics could get so much joy from... well, from hate. One moment they were disgusted with us, then they were overjoyed to see us suffer."
+You tell [bess.hisHer] it’s obviously going to hurt and [bess.heShe] nods knowingly. "... I know, but that will make me remember it that much more. I want to remember this time with you, because it’s the first time we’ll be making love, not just having sex."
 
-The silver skinned synthetic leans back and looks at you with moist eyes. "... I'm sorry, I wanted a perfect date. I dragged us out here and it was so horrible, I should have known better." You {PCPhysique above 30: pick her up and carry her as you/else: help [bess.himHer] get back on [bess.hisHer] feet and then you} both return to the ship. You pointedly ignore the stares of onlookers on your way out.
+You nod and [bess.heShe] clings to you as you position your glans so it is lined up with [bess.hisHer] now apparently virgin mound. You ask [bess.hisHer] if [bess.heShe]'s ready and [bess.heShe] nods, "Please, be my first."
 
-//  Eight hours pass.
-// +5 to bess affection
-// Exit follower Menu.
-// Date ticked off list.
+You lower [bess.hisHer] down onto your [pc.cock], slowly sliding yourself inside of [bess.himHer]. You can see [bess.hisHer] wincing a little already as you break [bess.hisHer] hymen, stopping immediately. "... Ow! It’s okay, don’t stop, I’m fine." 
 
+[bess.HeShe] keeps encouraging you to continue so you push deeper inside of [bess.hisHer] incredibly narrow passage. [bess.HeShe]'s really clinging to you with a velvety grip, even more so since you just broke [bess.hisHer] hymen. Eventually you’re all the way in and you ask [bess.hisHer] if [bess.heShe]'s okay.
 
+"I’m fine, that’s exactly what I wanted. You got to take my virginity." [Bess.name] kisses you softly, pulling you against [bess.hisHer] as your [pc.cockNoun] twitches inside of [bess.himHer]. "...I feel much fuller than usual, like I’m suddenly complete."
 
-Date Six, Brelia -  "A Taste Of Truth"
-// Must have completed Approach Scene 25
-// Done date #5
-// Once-off scene
-
-After the disastrous date you had on Ekurana, [bess.name] wanted to go somewhere safe and secluded for the next one. [bess.HeShe] picked out Brelia again, since it doesn't get much more secluded than a barely inhabited water planet.
-
-Switching into your swim gear, you both run along the black beaches and play about, this time you actually have time to go snorkeling. The sun beats down on you both as you swim through the rich blue water - there's a kaleidoscopic assortment of marine life about. [bess.name] really gets into it.
-
-if (Celise = crewmate)
-{
-You see Celise floating through the water like a jellyfish, catching wriggling fish between her gelatinous tits. It's a little eerie to watch, but you're not surprised. She does love protein and there's an abundance of it about. She waves at you and you wave back - she's probably going to be full for the next week.
+Once [bess.heShe]'s ready you begin to slowly rock your hips - while there’s pain it doesn’t seem so bad for [bess.hisHer] as your initial penetration. Soon you can feel [bess.hisHer] insides becoming slick around your shaft as [bess.heShe] clings tightly to you, nuzzling [bess.hisHer] head into your neck. "... Why does this feel... so much more intense--? I already feel like I’m going to..!"
 }
-if (other crewmates besides Celise)
-{
-The other crew members are also out enjoying all that Brelia has to offer. It's kind of like having your own personal beach resort since you don't have to share the whole island with anyone.
-}
-Eventually you stop for a break and have some lunch. Halfway through the meal, [bess.name] looks pensive for a moment and gets up, striding towards the tree line. When [bess.heShe] comes back, [bess.heShe]'s holding a 'Yuck fruit' in [bess.hisHer] hand, the local produce [bess.heShe] tried last time and named.
-
-Sitting down, [bess.heShe] rolls it around in [bess.hisHer] hand, looking up at you with a guilty expression. "Um... I have a confession to make. These fruits... I don't actually know what they taste like. When I bit into it, my taste sensors came back inconclusive. I lied about hating it... I was angry that I couldn't taste something new with you, so I pretended that I could."
-
-[bess.HeShe] presses [bess.hisHer] finger into the ripe skin of the fruit, letting out a little sigh. "... My taste sensors aren't that impressive. A lot of work was put into my emotional databases, my texture, my voice. Nobody cares if an AI can appreciate food, so I was given the bare minimum."
+{Else // Bess is already your lover:
+Your lips pull apart as both of your breathing comes out in short desperate gasps. [Bess.name] gazes at you with [bess.hisHer] beautiful [bess.eyeColor] eyes. "... Make love to me, [bNamePC]. I want you inside of me."
 
-"I'm not sure if what I taste is actually what that thing tastes like - for all I know, it could taste entirely different. The chefs at the Galyesha-Tsui were right about one thing - if I'd eaten their dishes, it would have been a total waste. There's no way I would have been able to taste any of that food; it would have just registered as unidentified matter."
+[bess.HeShe] shifts herself so your [pc.cockhead] is lined up with [bess.hisHer] {Vaginal: wetness/else: entrance}, sliding you slowly inside of herself as [bess.heShe] descends on your length. As you push deeper inside of [bess.hisHer] incredibly narrow passage [bess.heShe] cling to you with a velvety grip.
 
-Come to think of it, the same thing happened when [bess.heShe] tried to cook that one time. The drink had registered as unidentified matter. "Whenever that happens, it kind of tastes like mushy tofu. If tofu is actually what I'm tasting - I've got no way of telling."
+Once  you are fully inside of [bess.himHer], [Bess.name] kisses you softly, pulling you against [bess.hisHer] as your [pc.cockNoun] twitches inside of [bess.himHer]. "...I love the feeling of you deep inside of me. It makes me feel so complete."
 
-"I've been saving up for a taste-bud upgrade, but it's very niche, so it's going to cost a lot. But when I do get it, I hope I can cook for you... you know, properly this time."
-
-The way [bess.heShe] blushes makes you think that this is quite important to [bess.himHer]. [bess.HeShe] promises you that when [bess.heShe] does get the upgrade, [bess.heShe]'ll make sure that [bess.hisHer] food is not poisonous. The other thing [bess.heShe]'s going to do is actually taste a yuck-fruit for real.
-
-You tell [bess.himHer] that once [bess.heShe] gets [bess.hisHer] taste upgrade - and only then - can [bess.heShe] cook for you again and you'll retract [bess.hisHer] lifetime ban.
-//  Eight hours pass.
-// +10 to bess affection
-// Exit follower Menu.
-// Date ticked off list.
-
-
-
-
-Bess as Lover - Morning Events
-// These scenes occur if the PC sleeps and wakes up on the ship as part of the 'morning messages'.
-Not Sleeping With Your Waifu
-
-// Repeat Scene.
-// Occurs bess is your lover AND you're not sleeping next to her at night (bessSleepW = false).
-// 50% chance of occurring if conditions are met. 
-
-You see [bess.name] walking out of [bess.hisHer] room in the morning and looking more than a little wistful. It's the same look [bess.heShe]'s got whenever you go to bed at night. 
-
-{if (slept/sleeping with celise = true)
-
-"I see you don't mind sharing your bed with Celise... perhaps you'd like me better if I was made out of slime instead of metal? Anyway, here's your breakfast." [bess.name] remarks cooly, throwing your breakfast down in front of you. The clattering noise echoes deafeningly across the ship as [bess.heShe] storms out.
-}
-
-else if (slept/sleeping with other crewmate = true && not Celise)
-{
-"I see you don't mind sharing your bed with SOME people... Here's your breakfast." [bess.name] remarks cooly, throwing your breakfast down in front of you. The clattering noise echoes deafeningly across the ship as [bess.heShe] storms out.
+Once [bess.heShe]'s ready you begin to slowly rock your hips - you can feel [bess.hisHer] insides becoming {Vaginal: slick/Else: narrow} around your shaft as [bess.heShe] clings tightly to you, nuzzling [bess.hisHer] head into your neck. "... Why does this feel... so much more intense--? I already feel like I’m going to..!"
 }
-
-// End scene.
-
-
-Random Morning Messages
-
-// Requisite: PC wakes up after sleeping in the ship IF they're sleeping with Bess at night.
-// Show these randomly if PC's lust is below 60 -- Else show 'High Lust' scene (Further below).
-
-// Message #1
-
-When you wake up, [bess.name] is curled around your midsection dozing happily, [bess.hisHer] JoyCord connected to the nearby power socket. You slide free and get up to go about your day, trying to not wake [bess.himHer] up.
-
-// Message #2
-You are woken up by the sound of [bess.name]’s JoyCord unplugging from the wall and retracting back into [bess.hisHer] body. "... Oops! Sorry, [bessPCName], I didn’t mean to wake you!" [bess.HeShe] gives you a kiss to apologise, and then a few more just to be certain.
-
-// Message #3
-You feel [bess.name]’s JoyCord trailing up your [pc.chest] as your [bessLoverStatus] wakes you up. "... It’s time to wake up, [bessPCName], or you’ll oversleep!" Just like an alarm clock, [bess.heShe] doesn’t let you sleep a millisecond over the time you told [bess.himHer] to wake you up.
-
-... And just like an alarm clock, in your half frazzled state you hit [bess.hisHer] on the top of [bess.hisHer] head to let you snooze. " HEY! What do you think I am--?!" [bess.HeShe] shouts out in protest].
-
-// Message #4
-You wake up to the feeling of silky soft lips pressing against your own. As your eyes slowly open, you see [bess.name] staring down at you with a happy smile, [bess.hisHer] [bess.eyeColor] eyes positively dancing. "... Time to wake up, [bessPCName]. Or not. I could just keep trying to kiss you awake--?"
-
-You close your eyes and [bess.heShe] attempts to kiss you awake a bit more. "... So hard to wake you up, I swear! It’s such a problem..."
-
-// Message #5
-When you wake up, you find [bess.name]’s face pressed up almost right against your cheek. You kiss [bess.himHer] awake and [bess.heShe] mumbles, kissing you back despite not being fully aware of [bess.hisHer] surroundings. Eventually [bess.heShe] comes to, [bess.hisHer] long lashes fluttering as [bess.hisHer] eyes slowly open. "... Mmm, morning, [bessPCName]."
-
-// Message #6
-When you wake up, you find [bess.name]’s face pressed up almost right against your cheek. You try to kiss [bess.himHer] awake, and while [bess.heShe] doesn't open [bess.hisHer] eyes, [bess.heShe] does smile and speak. "... I’m still asleep. You’ll have to keep kissing me until I wake up."
 
-You kiss [bess.himHer] quite a bit more, until [bess.heShe] can’t hold back any more - [bess.heShe] wraps [bess.hisHer] arms around your neck and kisses you back, breaking the facade. "... Nope - I like your kisses too much, I can’t keep faking!" 
+[Bess.name] doesn’t even finish [bess.hisHer] sentence before [bess.heShe] creams [bess.himselfherself] and convulses around your [pc.cock], trembling and clinging to you as [bess.heShe] lets out a whimpering moan. Eventually [bess.heShe] settles down and {Vaginal: your length is completely slickened, surrounded by [bess.hisHer] tight inner warmth/Else: gasps for air, trembling around your tool}.
 
-// Message #7
-You wake up to the feeling of [bess.name]’s naked body pressed against you, [bess.hisHer] deliciously smooth skin rubbing against your side. [bess.HisHer] thighs are parted and pressed against your [pc.leg]. "... Five more minutes. I’ll boot up in five more minutes..." [bess.HeShe] mumbles, nuzzling against your arm.
+"...I can’t believe how quick that was." [bess.HeShe] flushes furiously into your shoulder, clearly embarrassed by [bess.hisHer] hyperarousal. You kiss again and soon [bess.heShe]'s grinding [bess.hisHer] hips for more. It’s not long before [bess.heShe]'s bouncing wildly on your lap and you’re grabbing [bess.hisHer] waist, moaning as [bess.heShe] passionately wrings your [pc.cock].
 
-// Message #8
-You wake up to the sensation of [bess.name] leaning over and brushing the [pc.skinFurScalesNoun] of your cheek with [bess.hisHer] eyelashes. [bess.HeShe] flutters [bess.hisHer] eyes and gives you a ‘butterfly kiss’ to wake you up. "... Morning, [bessPCName]." [bess.HisHer] musical voice practically purrs.
+You can’t hold out much longer as [bess.heShe] massages and strokes your cock with [bess.hisHer] inner muscles and [bess.hisHer] [bess.chest] rub{s} against you. Suddenly you are shooting your [pc.cum] inside of [bess.hisHer] {Vaginal: slick} narrow tunnel and arching your back. As you unload inside of [bess.hisHer] [bess.heShe] moans and cums again around your spasming shaft.
 
-// Message #9
-You wake up to the sensation of [bess.name] drawing [bess.hisHer] {if bess.breastSize != 0) "[bess.nipples]"}{else: "bare chest"} over you, trailing {them/it} along your [pc.skinFurScalesNoun]. "... Morning, [bessPCName]." [bess.HisHer] voice practically purrs.
+Your lap feels as if there’s a {Vaginal: liquid} furnace on it as you both kiss in your delirious post-orgasmic haze. You’re not sure how much time passes before you fall down exhausted in each other’s arms, your [pc.cum] {PartOfScene 20 && Bess has vagina}: and a little bit of blood} leaking out from between [bess.hisHer] {Vaginal: thighs/Else:Buttocks}.
 
-// Message #10
-// PC must have cock.
-{
-You feel a hand teasing your [pc.cock], stroking it slowly as you rouse in more ways than one. "... Good morning, [bessPCName]." [bess.name] positively purrs - your [bessLoverStatus] knows exactly how to wake you up.
+Get Doggy
 
-// Message #11
 // Bess must have a cock.
-You wake up before [bess.name] does, and notice [bess.hisHer] stiff [bess.cock]. You reach over and begin to stroke it, causing [bess.himHer] to moan and wiggle in [bess.hisHer] sleep. [bess.HeShe] wakes up by shooting [bess.hisHer] [bess.cum] all over [bess.hisHer] [bess.belly], [bess.hisHer] eyes fluttering open with a truly blissful expression.
+// Uses vag if pc has one, else ass.
 
-// Message #12
-// PC must have pussy.
-You feel fingers teasing at your [pc.pussy], stroking your slit slowly as you rouse in more ways than one. "... Good morning, [bessPCName]." [bess.name] positively purrs - your [bessLoverStatus] knows exactly how to wake you up.
+Both of you strip off your gear, caught up in the crashing waves of your shared passion. It's not long before [Bess.name] is pressing [bess.hisHer] naked body against yours, softly lavishing your collarbone in soft, sensuous little kisses.
+
+When [bess.heShe] looks up into your [pc.eyeColor] eyes with [bess.hishers], not a word needs to be said. You both bring your lips closer and press them fiercely together. You're hungry for [bess.hisHer] taste -  more hungry than you've been for anything in your entire life.
+
+Even as you kiss [bess.himHer], your mutual yearning cannot be quenched. You both wrap your arms around each other and pull fiercely tight, and where there should be pain there is only divine yearning. You simply can't get enough of this {Ben: man/Bess: woman}.
+
+[Bess.HeShe] leads you to the bed and soon you're both falling back into it, your body pressed against [bess.hisHers]. You hungrily suckle at [bess.hisHer] neck and [bess.heShe] lets out a sweet noise, dreamily raising [bess.hisHer] chin in response. 
+
+Meanwhile your fingers dance along [bess.hisHer] silvery skin, sliding up and {if Bess has hair: running through [bess.hisHer] soft, silky hair/else: stroking the back of [bess.hisHer] head.} Like a cat [Bess.name] runs [bess.hisHer] head against fingers, clearly relishing in your gentle ministrations. 
+
+[Bess.name]’s lips sensuously travel along your jawline and reach your own. As [bess.heShe] tilts [bess.hisHer] head [bess.heShe] kisses you softly, yet urgently. You can taste the sweetness of [bess.hisHer] mouth as [bess.hisHer] tongue mingles with yours, all the while [bess.hisHer] eyes are gently closed. 
+
+The delicious smell of synthetic vanilla, [bess.hisHer] particular scent, fills your senses. You're utterly wrapped up in [bess.hisHer] in more ways than you can count. There is nothing other than [Bess.name] as all else is swept away by the power of [bess.hisHer] sweetly pressing lips. 
+
+Your make-out session naturally grows from soft sensuality to frantic tongue dancing as your lungs near their limit. Finally out of oxygen, you stubbornly pull away from [Bess.name] to take short, desperate gasps of the sweet, vanilla-scented air. [Bess.name] gazes at you with [bess.hisHer] beautiful [bess.eyeColor] eyes. {PC has frontgenitals: Not a word needs to be said as [bess.heShe] spreads open your [pc.legs] wide until your nethers are completely exposed./Else: Not a word needs to be said as [bess.heShe] positions [bess.himHerself] to enter you.}
+
+[bess.HeShe] presses the head of [bess.hisHer] [bess.cock] against your {lower lips/back door}, sliding inside of you inch by glorious inch. As [bess.heShe] pushes deep into your welcoming passage, your walls spread wide, giving [bess.himHer] full access to your {[pc.pussyLight]/[pc.assLight]}.
+
+[bess.HeShe] leans in deep, sensually sliding the whole of [bess.hisHer] body against yours and whispers into your ear, "I love being so deep inside of you; it makes me feel, just for a little while, like we've become one."
+
+[bess.HeShe] begins to rock [bess.hisHer] hips; you moan and cling tightly to [bess.hisHer] pulsing phallus. Every single inch of [bess.himHer] is hitting the exact right spot, It all feels so incredibly sensual and intense. Before you know it, you're cumming already. You tremble and cling to [bess.hisHer] as you let out a shuddering moan. 
+
+Even as you come, your lover does not let up. [Bess.name] now sets into a wet grind, probing every inch of your {[pc.pussy]/[pc.ass]} with a practiced hip roll You frantically reciprocate, grinding your rump into [bess.hisHer] hips with a heated fervor until you're a moaning, shuddering mess. [bess.HisHer] breathing heavy and grinding near-predatory, [Bess.name] grabs your [pc.hips] and huskily moans, holding herself deep inside your hungry hole. {IF PC has two locking legs: Your [pc.legs] instinctively lock in a crisscross position behind [bess.hisHer] and you feel your partner tense up}
+
+Finally [Bess.name] can’t hold out much longer as you wildly stroke [bess.hisHer] cock with your inner muscles. Without warning, you feel [bess.hisHer] thick sticky cum shooting inside your {love tunnel/rectum}. [Bess.HisHer] back arches while [bess.heShe] holds [bess.hisHer] hips firmly against your body. As you feel [bess.hisHer] delicious [bess.cum] pouring inside of you, you cum again and clench [bess.hisHer] spasming shaft.
+
+{Bess has knot:
+Meanwhile the knot of [bess.hisHer] cock has swollen and stuck in your now cum filled hole. [bess.HeShe] continues to fire spurt after spurt of [bess.hisHer] hot sticky love juice inside of you for a good half hour, {Pc has frontgenitals: kissing you all the while,} before [bess.hisHer] knot finally deflates.
 }
+You clench your {[pc.pussyNoun]/[pc.assholeNoun]} around the messy aftermath of your lovemaking, pressing your lips against [bess.hisHers] in thanks. You enjoy your post-orgasmic haze with sensual kissing until falling to exhaustion in each other's arms.
 
-// Message #13
-// Bess must have a pussy.
-You wake up before [bess.name] does, and slip your hand sneakily between [bess.hisHer] [bess.thighs]. Your [pc.fingers] stroke [bess.hisHer] [bess.pussy] and cause [bess.himHer] to moan and wiggle [bess.hisHer] hips. [bess.HeShe] wakes up by cumming hard against your wonderful digits, [bess.hisHer] eyes fluttering open with a truly blissful expression.
+Give Oral
+// Bess must have a pussy
 
-// Message #14
-You feel a hand teasing your [pc.ass], squeezing your rump as you rouse in more ways than one. "... Good morning, [bessPCName]." [bess.name] positively purrs - your [bessLoverStatus] knows exactly how to wake you up.
-}
+"... Please, lick me out. I'm so hot I feel like I'm going to burn up..." [bess.HeShe] pleads, [bess.hisHer] silky smooth body brushing up against your own with primal need. You nod and soon [bess.heShe]'s placing [bess.hisHer] knees beside your head, [bess.hisHer] dripping wet mound hovering above your hungry mouth.
 
-// Message #15
-You wake up before [bess.name] does, and reach around to squeeze [bess.hisHer] [bess.ass]. [bess.HeShe] moans and presses it into your palm, [bess.hisHer] eyes fluttering open. "Mmm, good morning, [bessPCName]." [bess.HeShe]'s positively purring. "Can I interest you in something to eat - me, perhaps?"
+You can feel [bess.hisHer] [bess.thighs] brushing against your cheeks and [bess.hisHer] [bess.ass] pressing against your chin. [bess.HisHer] puffy labia lips hover just above your mouth and you can see [bess.hisHer] prickled flesh. The smell of [bess.hisHer] arousal fills your senses like an intoxicant - it makes you hungry to lap up [bess.hisHer] scrumptious nectar.
 
-# Message 16
-You wake up and notice [bess.name] is already awake with the light on, sitting up with the pillows propped behind [bess.hisHer] back. [bess.HisHer] JoyCord is connected to the wall and [bess.heShe]'s reading a book - the same series [bess.heShe] was reading last night.
+As [bess.heShe] lowers [bess.hisHer] weight onto your [pc.face], [bess.hisHer] silky muff presses against your mouth. As you part your lips and lap at [bess.hisHer] slick folds you can taste [bess.hisHer] [bess.girlCumFlav] juices. You part [bess.hisHer] flaps with your tongue and let it dart around in [bess.hisHer] velvety insides, hungry to taste even more of [bess.himHer. [Bess.name] lets out a breathy moan as your roam around inside of [bess.himHer] sex.
 
-You ask [bess.himHer] if [bess.heShe] slept a wink last night, and [bess.heShe] flushes with embarrassment. "... But, I had to see how the book ended, and it ended on a cliffhanger... so I had to read the next one.!" [bess.HeShe] yawns, rubbing [bess.hisHer] eyes.
+Soon [bess.heShe]'s grinding against your mouth as your ravenously eat [bess.hisHer] out, quite literally humping your face. You reach up and wrap your arms around [bess.hisHer] upper thighs, keeping [bess.hisHer] steady as you tongue-fuck [bess.hisHer] soppy slash. [bess.HeShe] cries out with pleasure as you tease [bess.hisHer] swollen clit, suckling on it as [bess.heShe] spasms and creams [bess.hisHer] girl cum all over your face. 
 
-# Message 17
-You wake up and look over at [bess.name] - [bess.heShe]'s fast asleep with a half open book lying on [bess.hisHer] chest. Seems like [bess.heShe] fell asleep while reading again.
+As [bess.heShe] gushes and squirts right into your open mouth you eagerly lap up [bess.hisHer] [bess.girlCumFlav] nectar, taking everything [bess.heShe] has to give. [bess.HisHer] hands run [if (pc.hair = bald): across your bald scalp/else:  through your [pc.hair]} as [bess.hisHer] thighs quake against the sides of your face. Even though [bess.heShe] already came, every time you lap at [bess.hisHer] [bess.pussy] [bess.heShe] cries out with delirious pleasure, [bess.hisHer] nethers seem to be incredibly sensitive right after [bess.heShe] cums. So sensitive that with a little bit of teasing [bess.heShe] creams herself all over again, giving you another helping of [bess.hisHer] tasty girl cum.
 
-# Message 18
-You wake up to the smell of breakfast as [bess.name] puts down a whole meal in front of you, served on a tray. "... I got up early and made you some breakfast. I figure that's what good [bessLoverRole]s do, right?" 
+Eventually [bess.heShe] simply cannot cum any more and [bess.heShe] falls down beside you, [bess.hisHer] legs completely useless as [bess.heShe] looks at you in a post-orgasmic haze. You feverishly kiss as [bess.heShe] happily laps up the taste of herself off your tongue. You eventually fall asleep in each other’s arms.
 
-You check to see if it's instant food... which it is. It is safe to eat!
+Get Oral
 
-# Message 19
-You wake up and notice that [bess.name] is already awake; [bess.heShe]'s been sitting there watching your sleeping face with a big happy smile on [bess.hisHer] face. [bess.HeShe] blushes when you wake up and catch [bess.himHer] doing it.
+// If PC has a vagina, it's cunni. If they don't, it's analingus.
 
-High Lust Morning Scene
-// if pc.lust >= 60
-
-You are roused from sleep by the sensation of [bess.name]'s [bess.chest] brushing against your naked [pc.skinFurScalesNoun]. {Bess has a belly above 0: A bit lower down, you feel [bess.name]'s [bess.belly] pressing against you and drawing along your [pc.skinFurScalesNoun].} Your exposed neck is being suckled gently all the while.
-
-You can feel [bess.name]'s [bess.thighs] wrapping around your lower half and [bess.hisHer] [bess.ass] rubbing against your [pc.legs]. [Bess.HisHer] loins rub sensuously against yours.
-
-"... Good morning, [bessPCName]. Is this the way you like your [bessLoverStatus] to wake you up?" [bess.name] coyly questions as [bess.hisHer] fingers dance along your [pc.chest]. [bess.HeShe] sneaks up and gives you a long, hard kiss.
-
-[Lie Together] [Make Out] [Nothing]
-
-// Lie Together
-You tell [bess.name] you’d like to lie with [bess.himHer] and enjoy the sensation of [bess.himHer] pressed against you. [bess.HeShe] happily complies and rests against your naked [pc.skinFurScalesNoun], snuggling in to your chest. You can feel [bess.hisHer] {BessNotBald: soft silky hair brushing along your [pc.skin], [bess.hisHer]} warm breath gently teasing you. "... I love you, [bessPCName]." 
-
-You enjoy the happy moment together until it is finally time to disentangle from each other.
-//Scene end.
-
-//Make Out
-You capture [bess.name]’s mouth with your own and make out with [bess.himHer]. You can feel [bess.hisHer] arms sliding around your neck as [bess.heShe] pushes against you with fevered urgency, [bess.hisHer] tongue joyously searching for yours. Whenever you kiss [bess.himHer], [bess.heShe] always tastes so deliciously sweet.
-
-Each kiss from [bess.himHer] is intoxicating; it is a long time before you both finally part lips and disentangle. It seems [bess.name] is even having trouble standing - [bess.heShe] stops for a moment to reorient [bess.himHers]elf, a giddy look of pleasure on [bess.hisHer] face.
-// Scene end.
-
-// Nothing
-You don’t have time for any hijinks this morning, so you pull away from [bess.name]. [bess.HeShe] is definitely pouting as you leave [bess.himHer] there naked. "... Aww, no fooling around this morning?" [bess.HeShe] looks thoroughly disappointed. 
-// Scene End
-Morning Event 01 - "Dreaming Of Dreaming"
-// Once-off scene.
-// Chance of playing anytime in the morning when bessSleepW = true.
-// 50% of occurring. Takes priority over normal morning messages.
-
-You find [bess.name] staring at you when you wake up with a look on [bess.hisHer] face. It's a bit of a hard look to identify - you're not sure if [bess.heShe]'s thoughtful, grumpy, or wistful.
-
-When you ask [bess.himHer] what [bess.heShe]'s thinking, turns out it is all of the above. "I was just thinking how nice it must be to power down and dream like you do. It must be great to be able to see strange and wonderful things when you sleep. Kind of like watching an interactive holo whenever you sleep, you know?"
-
-You're pretty sure nobody has ever explained to [bess.name] how dreams work. You tell [bess.himHer] that dreams aren't exactly as clear as holos, and a lot of people don't even remember them. "... Really? That sounds very inconvenient. Should I tell you what you mumble in your sleep? I could tell you what you were dreaming about."
-
-You cough loudly - you never knew you did that. "Don't worry, what you talk about isn't </i>too<i> embarassing." Apparently that means that whatever you talk about <i>is</i> embarrassing. You press [bess.himHer] for details, but [bess.heShe] remains tight lipped - is [bess.heShe] just winding you up?
-// scene end.
-Bess at Tavros Station
-
-// The Tavros Station Hangar is the location you can send Bess/Ben to when they initially picked up and the PC has too many companions, giving an option to keep them until a spot opens up. It is also a location where they can be found if they leave the ship under most circumstances.
-
-{Bess was not your friend or Lover when she left the ship:
-{
-You walk up to [bess.name]. You notice [bess.heShe] smiles and waves, it seems [bess.heShe] has been diligently waiting for your return. It seems that is what [bess.heShe] spends ALL [bess.hisHer] time doing given that [bess.heShe] doesn’t need to eat or sleep.
-
-"Hello, [bessPCName]! Did you want me to accompany you on your travels now, or did you have something else in mind--?"
-
-[Take With You] [Sell] [Give To Authorities] [Nothing]
-
-// Take with you, sell, and give to authorities all link to those from the initial pick-up scene when you first get Bess.
-//  If Bess/Ben is already configured (taken on the ship once and THEN dismissed), take with just leads to them being put right on the ship without sceneage.
-}
+"... Sit on my face, I want to eat you out from below..."" [Bess.name] pleads, [bess.hisHer] silky smooth body brushing up against your own with primal need. You nod and position yourself above [bess.hisHer] face, your [pc.vagOrAss] hovering above [bess.hisHer] hungry mouth.
 
 
-{Bess was your lover or friend when she left the ship (Dismissed under negative circumstances):
+You lower your [pc.hips] as your [pc.skin] brushes against [bess.hisHer] cheeks and our loins hover just above [bess.hisHer] mouth as you can feel [bess.hisHer] hot breath on your {prickled flesh/sensitive buttocks}. You can hear [bess.hisHer] moaning below you already - apparently the smell of you is driving [bess.hisHer] positively batty. "I'm so hungry for your {pc.girlCum/ass}, I can't wait much longer!"
 
-You find [bess.name] standing in the Tavros Station hangar. After the falling out you both had, [bess.heShe] struggles to meet your gaze; things seem fairly awkward.
+You lower your weight onto [bess.hisHer] face, pressing your {silky muff/rump} right against [bess.hisHer] mouth. You can feel your {folds/buttocks} spreading as [bess.heShe] laps at your {nethers/[pc.asshole]}, [bess.hisHer] tongue pushing inside of you as you let out a breathy moan. You can feel it roaming around inside of you as [Bess.name] hungrily delves your depths, eager to taste your {nectar/forbidden place}.
 
-... Why is [bess.heShe] at the hangar? You thought you had both decided to go your separate ways.
-[Talk] [Nothing]
+It's not long before you're grinding against [bess.hisHer] mouth as [bess.heShe] ravenously eats you out, quite literally humping [bess.hisHer] face. [bess.HeShe] reaches up from below and wraps [bess.hisHer] arms around your [pc.legs], keeping you steady as [bess.heShe] tongue-fucks your {sloppy gash/back door}. You cry out with pleasure as [bess.heShe] teases your {swollen clit/tunnel} causing you to {Vaginal: spasm and cream your [pc.girlCum] all over [bess.hisHer] face/Anal: spasm as electricity courses up your spine. Your legs shake spastically as you reach your peak, cumming with [bess.hisHer] tongue in your ass}.
 
-// Talk
-You ask [bess.name] what exactly [bess.heShe] is doing in your hangar at Tavros Station. [bess.HeShe] lets out a long sigh, looking at the floor just below your feet. Eventually, [bess.heShe] speaks to you about it.
+{Vaginal: As your girl juice gushes into [bess.hisHer] open mouth [bess.heShe] hungrily laps it up.} Your hands run {bess is bald: across [bess.hisHer] bald scalp/else: through [bess.hisHer] hair} as you quake and quiver against [bess.hisHer] face. Even though you already came every time [bess.heShe] licks at your [pc.vagOrAss] you cry out with delirious pleasure, your nethers seem to be incredibly sensitive right now after cumming. You're so sensitive that with a little bit of teasing you cream yourself all over again{Vaginal: , giving [bess.himHer] another helping of your [pc.girlCum]}.
 
-"... I’m an unlisted AI without a master. I can’t get passage off of Tavros Station because I can’t own papers, only my ‘owner’ can. People keep trying to escort me to lost and found, which is a lot better than what would happen if they saw my half scratched off barcode." [bess.HeShe] explains.
+Eventually you simply cannot cum any more and you fall down beside [bess.himHer], yours legs completely useless as you look at [Bess.name] in a post-orgasmic haze. You both feverishly kiss each other and you can taste yourself on [bess.hisHer] tongue. You eventually fall asleep in each other’s arms.
 
-"I can’t earn credits because nobody wants to pay a robot to work; they all tell me I should be doing it for free. If I talk back, they call tech support and try to get me ‘fixed up’, so the only place I can hide out is here... at least until I come up with a clever plan."
 
-It sounds like [bess.heShe]’s lucky to have escaped being scrapped, let alone being able to get a job. Even if [bess.heShe] winds up on another planet, [bess.heShe]’ll no doubt face the same sort of persecution.
 
-"... Look, um, I’m sorry I’m crashing in your hangar. I promise I’ll be out of here once I can come up with some sort of plan to get papers and credits. Lost and found keeps returning me here anyway - it’s the only safe place I’ve got at the moment."
 
-[Sure] [Nope] [Invite]
-
-{Sure:
-[bess.name] lets out a sigh of relief, finally managing to meet your gaze. "... Thank you, [bessPCName]. I’ll make it up to you somehow, someday."
-
-Considering [bess.heShe] can’t even earn a single credit for [bess.himHerself] at the moment, it seems that day will be very far away indeed.
-		// Return to hangar menu.
-	}
-	{Nope:
-You decide [bess.heShe] can’t stay in your hangar and kick [bess.himHer] out. [bess.HeShe] decided [bess.heShe] was going to leave the ship - [bess.heShe] can’t continue relying on your good nature.
-
-[bess.name] takes the elevator out before you call the authorities. You doubt you’ll be seeing [bess.himHer] about again.
-// Removes Bess totally from the game.
-	}
-	{Invite:
-You tell [bess.name] that [bess.heShe]’s welcome back on your ship if [bess.heShe] wants to come with you. [bess.HeShe] looks at you with clearly mixed feelings; you didn’t leave on the best terms after all. That said, [bess.hisHer] situation is quite dire.
-
-"... If I come with you, on your ship, does that mean we’re... friends again?" [bess.name] is trying very hard not to get [bess.hisHer] hopes up as [bess.heShe] stares at you with [bess.eyeColor] eyes.
-[Yes] [No]
-		{Yes:
-"... That’s... that’s all I ever wanted!" [bess.name] begins to tear up; clearly being off the ship has been an incredibly trying experience. [bess.HisHer] brave face crumbles all at once as [bess.heShe] gives you a hug, glad to be back on board again.
-
-<b> Bess has now returned to the ship as a follower! </b>
-// Affection restarts at 10. 
-// Return bess to the ship as a follower.
-		}
-		{No:
-You tell [bess.name] that you are still not friends, and [bess.hisHer] return to the ship would be purely as acquaintances. 
-
-Either [bess.hisHer] pride is too strong, or [bess.heShe] can’t bear the thought, because [bess.heShe] refuses your offer. "...If that’s the case, I’ll stay on Tavros. Either way, I’ll be somewhere where I’m not really welcome... being here would hurt less."
-
-You can’t seem to change [bess.hisHer] mind, so you leave [bess.himHer] be for now.
-// Return to hangar menu.
-		}

@@ -87,6 +87,11 @@ public function mainGameMenu():void {
 		eventQueue.push(fixPcUpbringing);
 	}
 	
+	if (flags["CELISE_BEDSTUFF_HAPPENED"] != undefined)
+	{
+		flags["CELISE_BEDSTUFF_HAPPENED"] = undefined;
+	}
+	
 	//Display shit that happened during time passage.
 	if (processEventBuffer()) return;
 	
@@ -564,6 +569,7 @@ public function sleep(outputs:Boolean = true):void {
 	
 	this.clearMenu();
 	if (flags["ANNO_SLEEPWITH_DOMORNING"] != undefined) this.addButton(0, "Next", annoMorningRouter);
+	if (flags["BESS_SLEEPWITH_DOMORNING"] != undefined) addButton(0, "Next", bessMorningEvents);
 	else this.addButton(0,"Next",mainGameMenu);
 }
 
