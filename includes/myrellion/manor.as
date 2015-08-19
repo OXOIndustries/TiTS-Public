@@ -75,7 +75,7 @@ public function myrellionManorGoInside():Boolean
 	
 	output("\n\nOne soldier in the functional garb you’ve seen the guards and sentries wearing, what you assume is their combat attire, approaches you. She hails you in a raised voice loud enough to penetrate the ambient buzz. <i>“Captain Steele. The marshal is in the war room. Follow me.”</i> She then turns snappily, moving away from you with a sauntering gait that manages to look professional while still drawing your attention to her toned and shapely ass. You’re not sure if it’s racial genetics or if it’s due to some military exercise regimen, but you have yet to see a red myr whose hindquarters weren’t a work of art.");
 	
-	output("\n\nYou follow her through the main aisle bisecting the bustling room, moving to the back wall where she knocks on an indescript and easily overlooked doorway. It opens a moment later, and your escort leads you into a small side-room where another sentry awaits. The first soldier gives you a nod and then turns back, likely resuming whatever duty she’d been occupied with before you arrived.");
+	output("\n\nYou follow her through the main aisle bisecting the bustling room, moving to the back wall where she knocks on a nondescript and easily overlooked doorway. It opens a moment later, and your escort leads you into a small side-room where another sentry awaits. The first soldier gives you a nod and then turns back, likely resuming whatever duty she’d been occupied with before you arrived.");
 	
 	output("\n\n");
 	if (pc.isNice()) output("Flashing a smile");
@@ -109,7 +109,7 @@ public function myrellionManorAdminRoom():Boolean
 		if (flags["MET_NEHZARA"] != undefined) output(" A uniform, you note, which looks to be of the same type worn by Colonel Nehzara.");
 		output(" The air around her seems to fill with intensity as she leans forward to skewer you with her jet-black gaze.");
 		
-		output("\n\n<i>“Steele,”</i> she puurs. <i>“Captain Steele.”</i> Her voice isn’t unpleasant, but there’s something icy and dangerous about it. The way she says your name reminds you of a predator that’s thinking over the best time to pounce on its target. Her eyes drift down to");
+		output("\n\n<i>“Steele,”</i> she purrs. <i>“Captain Steele.”</i> Her voice isn’t unpleasant, but there’s something icy and dangerous about it. The way she says your name reminds you of a predator that’s thinking over the best time to pounce on its target. Her eyes drift down to");
 		if (pc.hasMeleeWeapon()) output("  your [pc.meleeWeapon] and narrow before moving on to");
 		if (pc.hasRangedWeapon()) output(" your [pc.weapon] and");
 		output(" the [pc.gear] you’re wearing.");

@@ -786,7 +786,7 @@ public function victoryVsRaskGang():void
 	if(foes[0].HP() < 1)
 	{
 		output("Your blow fells the big raskvel; he lands in a semi-comatose heap at your feet. The other two, all the laughter thoroughly thrashed out of them, take this as a sign to collapse as well, groaning surrender. You look down at the dusty pile of taut, burnished reptile muscle you’ve created, feeling rather satisfied.");
-		if(pc.lust() >= 33) output(" You wonder if you’re quite satisfied enough, though.");
+		if(pc.lust() >= 33) output(" You wonder if you’re quite satisfied enough, though.\n\n");
 	}
 	//Via Lust
 	else

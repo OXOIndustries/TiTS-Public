@@ -200,7 +200,7 @@ public function queenOfTheDeepWaterVeil():void
 {
 	output("<i>“You cannot fight what you cannot see,”</i> the creature hisses gleefully, slamming her lower claws into the water before you with earthshaking force and kicking up a spray of water that seems to have no end. Worse, she keeps swiping her claws through the water, creating a thick mist between the two of you. <b>It’s much harder to see the creature now!</b>");
 
-	foes[0].createStatusEffect("Water Veil", 2 + rand(3), 25, 0, 0, false, "Icon_DefUp", "The Queen of the Deep is thrasing in the water, making it difficult to properly see!", true, 0);
+	foes[0].createStatusEffect("Water Veil", 2 + rand(3), 25, 0, 0, false, "Icon_DefUp", "The Queen of the Deep is thrashing in the water, making it difficult to properly see!", true, 0);
 }
 
 public function queenOfTheDeepLegStomp():void

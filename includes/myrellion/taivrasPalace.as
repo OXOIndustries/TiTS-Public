@@ -108,7 +108,7 @@ public function approachNyreanGuardsFirstTime():void
 	output("You walk over to the guards, hoping to talk to them. Instead, the guardswomen plant their feet and cross their spears over the heavy stone gate, an unnecessary but obvious sign that you’re about to be refused passage.");
 	output("\n\n<i>“Turn back, star-walker,”</i> one of the women says; the other twists her black lips into a distinct frown. <i>“Queen Taivra has decreed no more offworlders are to be permitted in the palace. Your kind have done us enough insult.”</i>");
 	output("\n\n<i>“What?”</i> you ask. Definitely weren’t expecting that answer.");
-	output("\n\nThe other guard grunts. <i>“Our queen was attacked by one of you space-creatures. One who said [rival.heShe] wished to talk diplomacy. We will not suffer such an insult again... you kind is no longer welcome here.”</i>");
+	output("\n\nThe other guard grunts. <i>“Our queen was attacked by one of you space-creatures. One who said [rival.heShe] wished to talk diplomacy. We will not suffer such an insult again... your kind is no longer welcome here.”</i>");
 	output("\n\nShit. Something tells you this sociopathic star-walker they’re talking about just might be your dear cousin " + chars["RIVAL"].mf("Jack","Jill") + "...");
 	processTime(2);
 	//[Leave] [Attack] [Persuade]
@@ -449,7 +449,7 @@ public function palaceThoroughfareBonus():Boolean
 	output("A long tunnel runs east to west, T-boning north back towards the gates. A painted mural decorates the southern wall, showing ");
 	if(flags["MET_TAIVRA"] != undefined) output("Queen Taivra");
 	else output("an especially buxom, powerful-looking huntress");
-	output(" wielding a spear and driving back a horde of horrible worm-like creatures in a darkened cavern. Several naked, afraid male nrea cling to her plated legs, cowering behind the amazonian warrior woman.");
+	output(" wielding a spear and driving back a horde of horrible worm-like creatures in a darkened cavern. Several naked, afraid male nyrea cling to her plated legs, cowering behind the amazonian warrior woman.");
 	return false;
 }
 
@@ -1272,7 +1272,7 @@ public function queenTaivrasThrone(plat190:Boolean = false):void
 	output("\n\nThe queen tsks her tongue and turns her attention from you to another figure on the dias, standing behind the throne. Another nyrea, but unlike her sisters, is clad in glistening steel plates from head to toe and carrying a blade and shield. Very unhuntress-like. <i>“My dear Queensguard,”</i> the queen says, leaning back on her throne, <i>“Kindly show this-”</i>");
 	output("\n\n<i>“[pc.name]!”</i> a familiar voice shrieks from the shadows near the throne, cutting the queen off mid-sentence. At the foot of the dias, though, are a pair of metal cages meant more for an animal than a person. Your cousin and [rival.hisHer] bodyguard, Dane, are held captive inside them. <i>“Get us out of here, cousin [pc.name]! This stupid wanna-be queen grabbed us - she’ll get you next. Hurry!”</i>");
 	output("\n\n<i>“<b>SILENCE!</b>”</i> the armored nyrea, Queensguard, bellows, slamming her kite shield against [rival.name]’s cage. Your cousin shrinks back with a yelp of surprise. Dane growls, his four arms grabbing the bars and straining against them. <i>“Queen Taivra will suffer no further insult from you, worm.”</i>");
-	output("\n\n<i>“Do you know who I am!?”</i> [rival.name] yells back, glowering at the knightly nyrea. <i>“Do you know who my </i>father<i> is? Let us go and give me that proe your skank ass is sitting on and </i>maybe<i> he won’t burn your stupid planet to ashes!”</i>");
+	output("\n\n<i>“Do you know who I am!?”</i> [rival.name] yells back, glowering at the knightly nyrea. <i>“Do you know who my </i>father<i> is? Let us go and give me that probe your skank ass is sitting on and </i>maybe<i> he won’t burn your stupid planet to ashes!”</i>");
 	output("\n\nBeyond them, the queen chuckles and raps her claw-like nails on the arms of her throne. Now that you look at it, [rival.name] is right... the back of this Queen Taivra’s throne is a matte black, flickering with electronic lights. They must have recovered the probe when it landed!");
 	output("\n\n<i>“Enough,”</i> Taivra sighs, fixing her gaze on you once more. <i>“I see you are related to my new pets... [pc.name]. Cousins? I suppose that answers the who and the why of this unexpected interruption.”</i>");
 	output("\n\nShe waves the hand not wielding her towering spear across the dozen huntresses sprawled at her feet, all moaning and squirming as the queen’s bushel of tentacle cocks fuck their strange sexes. <i>“Your cousin has already attempted to usurp my throne, star-walker. [rival.HeShe] very likely would have assassinated me in the process. And now you have ");
@@ -1661,9 +1661,9 @@ public function queensguardAI():void
 
 	//Thunder Kick
 	//Rare attack that staggers the PC, like a Wetraxxel.
-	else if(rand(5) == 0) queensGuardThunderKick();
+	else if(rand(5) == 0 && !foes[0].hasStatusEffect("Disarmed")) queensGuardThunderKick();
 
-	else if(rand(3) == 0) queensguardShieldBash();
+	else if(rand(3) == 0 || foes[0].hasStatusEffect("Disarmed")) queensguardShieldBash();
 	//Power Attack
 	//Huge damage sword strike. Chance to stun.
 	else if(!pc.hasStatusEffect("Stunned") && rand(5) == 0) powerAttackQueensguard();
@@ -1709,7 +1709,7 @@ public function queensguardShieldBash():void
 		output(".");
 
 		output("The sheer weight of the impact");
-		if(pc.physique() + rand(20) + 1 >= foes[0].physique() + 10) output("nearly staggers you");
+		if(pc.physique() + rand(20) + 1 >= foes[0].physique() + 10) output(" nearly staggers you");
 		else
 		{
 			if(pc.statusEffectv1("Cage Distance") < 2) 
@@ -1944,7 +1944,7 @@ public function taivraAI():void
 {
 	showTaivra();
 	if(foes[0].hasStatusEffect("Dane Grappled")) taivraGrappleBreak();
-	else if(rand(3) <= 1)
+	else if(rand(3) <= 1 || foes[0].hasStatusEffect("Disarmed"))
 	{
 		if(rand(4) == 0) lustFungus();
 		else if(rand(2) == 0) taivraCockTease();
@@ -3045,7 +3045,7 @@ public function useRepeatGloryhole():void
 	addButton(0,"Next",mainGameMenu);
 }
 
-//9999 - Fertilization stuff. Use for sorting Taivra pregger setup?
+//Fertilization stuff. Use for sorting Taivra pregger setup?
 public function taivraFertilize():void
 {
 	flags["TAIVRA_FERTILE"] = GetGameTimestamp();
@@ -3190,7 +3190,7 @@ public function cowgirlWivTaivra():void
 	showTaivra();
 	var x:int = pc.cuntThatFits(chars["TAIVRA"].cockVolume(0));
 	if(pc.hasVagina() && x < 0) x = rand(pc.totalVaginas());
-	else x = -1;
+	else if(!pc.hasVagina()) x = -1;
 	output("You reach up and run your hands over Taivra’s big hips, purpose-built to pass the thick, smooth orbs of her eggs. You can just imagine the clutch already growing in the thoroughly-fertile nyrea’s womb, ready to be pumped into you. It’s hard not to wonder if Taivra’s been fertilized... and if you’ll be popping out some royal heirs before long.");
 	output("\n\nExcited by the thought, you secure your hands on your lover’s waist and roll her over, putting the queen on her back and taking her place on top, straddling her breeder’s hips and reaching down to caress her horse-sized ovipositor.");
 	output("\n\n<i>“Mmm, aggressive, aren’t we?”</i> your queen purrs, obviously not displeased. She smiles, caressing your [pc.hips]. <i>“I like that...”</i>");
@@ -3268,9 +3268,13 @@ public function cowgirlWivTaivra():void
 	//Hole aint preggers? KNOCK DAT UP~
 	if((x == -1 && !pc.isPregnant(3)) || (x >= 0 && !pc.isPregnant(x))) 
 	{
-		//If fertile eggs
-		if(taivraHasFertileEggs()) {}
-		else {}
+		// workaroundy thing I added for the goocubater
+		if(taivraHasFertileEggs()) pc.createStatusEffect("Goo Gloryholed");
+		//put load in orifice and knock up appropriately.
+		if (x == -1) pc.loadInAss(taivra);
+		else pc.loadInCunt(taivra, x);
+		// Can remove it here, or the pregnancy will clean it up later too
+		if (pc.hasStatusEffect("Goo Gloryholed")) pc.removeStatusEffect("Goo Gloryholed");
 	}
 	processTime(33);
 	pc.orgasm();
@@ -3551,7 +3555,7 @@ public function lapRideDatQueenAllPublicLike():void
 			output(" Don’t worry, love, they’ll dissolve soon enough. Can’t have you waddling around with a belly full of empty eggs... at least, not without me there to enjoy it.");
 		}
 		
-		//9999 put load in orifice and knock up appropriately.
+		//put load in orifice and knock up appropriately.
 		if (x == -1) pc.loadInAss(taivra);
 		else pc.loadInCunt(taivra, x);
 		
@@ -3597,7 +3601,7 @@ public function queensGuardRepeatApproaches():void
 		output("\n\n<i>“Queensguard, isn’t it?”</i> you ask. That can’t actually be her name, can it?");
 		output("\n\nShe answers with a faint smile, planting one of her armored hands on her side. <i>“Most of Queen Taivra’s subjects, and more importantly, her enemies, know me by that name,”</i> she says with a hint of pride. <i>“I know of your arrangement with my queen, so of course may call me Cerres, if you wish. That is my given name.”</i>");
 		output("\n\nYou notice that her breastplate’s been patched with an off-color plate of steel, hiding the injury Dane left her with during your cousin’s escape. She doesn’t seem any worse for wear, despite having been on the verge of death at the time. Taivra must have a truly talented healer at her disposal, and you find yourself asking the knight if her wounds have fully healed.");
-		output("\n\n<i>“They have. Thank you, my " + pc.mf("lord","lady") + ",”</i> she answers crisply. The injury looked worse than it was. Debilitatingly painful, but not life-threatening. A bit of crystal goo and some medical herbs were enough to get me back on my feet, though I don’t think I’ll be doing much fighting for a while.”</i>");
+		output("\n\n<i>“They have. Thank you, my " + pc.mf("lord","lady") + ",”</i> she answers crisply. <i>“The injury looked worse than it was. Debilitatingly painful, but not life-threatening. A bit of crystal goo and some medical herbs were enough to get me back on my feet, though I don’t think I’ll be doing much fighting for a while.”</i>");
 		output("\n\nA shame, you tell her. Her fight with Dane was certainly something to behold - she’s a great warrior, even among nyrean huntresses.");
 		output("\n\nShe smiles faintly at that, resting a hand back on the hilt of her very un-huntresslike sword. <i>“I’m no huntress, though you’re kind to say so. We males don’t take that title, no matter how well it may fit.”</i>");
 		output("\n\nWait, Queensguard’s a... a male? That’s certainly new - you’ve never seen a male nyrea as anything but a submissive in your time on Myrellion. Still, with skills like hers, you imagine Queensguard must fought her way to the top and earned her place. Taivra doesn’t seem like the type to keep pets as mere gimmicks.");

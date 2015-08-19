@@ -286,7 +286,7 @@ public function tanisGetHisBow():void
 	
 	output("\n\nTanis steps forward and plants a hand on your shoulder. <i>“Put it to good use, alright? I want to hear some kick-ass stories some day, alright?”</i>");
 	
-	output("\n\nYou can probably manage that!");
+	output("\n\nYou can probably manage that!\n\n");
 
 	processTime(25 + rand(5));
 

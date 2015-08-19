@@ -2476,6 +2476,7 @@ public function statisticsScreen(showID:String = "All"):void
 	if(showID == "Other" || showID == "All")
 	{
 		// Equipment/Flags (Of course, this is visible in the inventory, but this is primarily for those who can't see the flags on the tooltips!)
+		/*
 		output2("\n\n" + blockHeader("Equipment Statistics", false));
 		output2("\n<b><u>Currently Worn</u></b>");
 		if(!(pc.meleeWeapon is EmptySlot))
@@ -2506,6 +2507,7 @@ public function statisticsScreen(showID:String = "All"):void
 		{
 			output2("\n<b>* Underwear Bottom: </b>" + pc.lowerUndergarment.shortName);
 		}
+		*/
 		
 		//======COMBAT STATISTICS=====//
 		output2("\n\n" + blockHeader("Combat Statistics", false));

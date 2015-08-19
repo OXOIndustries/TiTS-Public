@@ -312,7 +312,7 @@ public function specialsMenu():void {
 		if(pc.hasPerk("Gravidic Disruptor"))
 		{
 			if(pc.hasStatusEffect("Disarmed")) addDisabledButton(offset,"G. Disrupt.","G. Disrupt.","You cannot use disruptors while disarmed.");
-			else if(pc.energy() >= 25) addButton(offset, "G. Disrupt.",attackRouter,gravidicDisruptor,"<b>Energy Cost: 25</b>\n\nGravitic Disruptor","Deals a moderate amount of intelligence-based, Unresistable damage to a single target.");
+			else if(pc.energy() >= 25) addButton(offset, "G. Disrupt.",attackRouter,gravidicDisruptor,"G. Disrupt","<b>Energy Cost: 25</b>\n\nDeals a moderate amount of intelligence-based, Unresistable damage to a single target.");
 			else addDisabledButton(offset, "G. Disrupt.","Gravitic Disruptor","<b>Energy Cost: 25</b>\n\nDeals a moderate amount of intelligence-based, Unresistable damage to a single target.");
 			offset++;
 		}
@@ -340,7 +340,7 @@ public function specialsMenu():void {
 		else
 		{
 			if(pc.energy() >= 10) addButton(offset,"F.Grenade",attackRouter,flashGrenade,"Flash Grenade","<b>Energy Cost: 10</b>\n\nProduce a rechargible flash grenade and use it to blind your enemy. Better aim will increase the chance of success.");
-			else addDisabledButton(offset, "F.Grenade","Flash Grenade","Energy Cost: 10</b>\n\nProduce a rechargible flash grenade and use it to blind your enemy. Better aim will increase the chance of success.");	
+			else addDisabledButton(offset, "F.Grenade","Flash Grenade","<b>Energy Cost: 10</b>\n\nProduce a rechargible flash grenade and use it to blind your enemy. Better aim will increase the chance of success.");	
 			offset++;
 		}
 		
@@ -382,7 +382,7 @@ public function specialsMenu():void {
 		}
 		if(pc.hasPerk("Smuggled Stimulant"))
 		{
-			if(pc.hasStatusEffect("Used Smuggled Stimulant")) addDisabledButton(offset,"S.Stimulant","Smuggled Stimulant","<b>You've already used your smuggled stimulant for this encounter.");
+			if(pc.hasStatusEffect("Used Smuggled Stimulant")) addDisabledButton(offset,"S.Stimulant","Smuggled Stimulant","<b>You've already used your smuggled stimulant for this encounter.</b>");
 			else addButton(offset,"S.Stimulant",struggledStimulant,undefined,"Smuggled Stimulant","<b>Energy Cost: 0</b>\n<b>Once per combat encounter!</b>\n\nInject yourself with a smuggled stimulant, causing you to recover 25 energy a turn for three turns.");
 			offset++;
 		}
@@ -518,32 +518,32 @@ public function updateCombatStatuses():void {
 	if(pc.hasStatusEffect("Burn"))
 	{
 		//2% of HP per tic.
-		output("<b>The flames slowly lick at you,");
+		output("<b>The flames slowly lick at you,</b>");
 		if(pc.statusEffectv1("Burn") > 1) 
 		{
 			pc.addStatusValue("Burn",1,-1);
-			output(" resisting any attempt to put them out.</b>");
+			output("<b> resisting any attempt to put them out.</b>");
 		}
 		else 
 		{
 			pc.removeStatusEffect("Burn");
-			output(" refusing to go out until they've done their foul work.</b>");
+			output("<b> refusing to go out until they've done their foul work.</b>");
 		}		
 		applyDamage(new TypeCollection( { burning: 3 + rand(4) } ), foes[0], pc);
 		output("\n");
 	}
 	if (pc.hasStatusEffect("Bleeding"))
 	{
-		output("<b>Your wounds continue to take their toll on your body;");
+		output("<b>Your wounds continue to take their toll on your body;</b>");
 		if (pc.statusEffectv2("Bleeding") >= 1)
 		{
 			pc.addStatusValue("Bleeding", 2, -1);
-			output(" your microsugeons working overtime to stem the ongoing damage.</b>");
+			output("<b> your microsugeons working overtime to stem the ongoing damage.</b>");
 		}
 		else
 		{
 			pc.removeStatusEffect("Bleeding");
-			output(" your microsurgeons have triaged the worst of it, but you'll need proper rest to heal.</b>");
+			output("<b> your microsurgeons have triaged the worst of it, but you'll need proper rest to heal.</b>");
 		}
 		applyDamage(damageRand(new TypeCollection( { kinetic: pc.statusEffectv1("Bleeding") * pc.statusEffectv3("Bleeding") } ), 15), foes[0], pc);
 		output("\n");
@@ -638,7 +638,7 @@ public function updateCombatStatuses():void {
 		if(temp + pc.shields() > pc.shieldsMax()) temp = pc.shieldsMax() - pc.shields();
 		if(temp > 0) 
 		{
-			output("<b>You recover " + temp + " points of shielding.\n");
+			output("<b>You recover " + temp + " points of shielding.</b>\n");
 			pc.shields(temp);
 		}
 		if(pc.statusEffectv1("Deflector Regeneration") <= 0)
@@ -742,16 +742,16 @@ public function updateCombatStatuses():void {
 		if(foes[x].hasStatusEffect("Burn"))
 		{
 			//2% of HP per tic.
-			output("<b>The flames slowly lick at " + foes[x].a + foes[x].short + ",");
+			output("<b>The flames slowly lick at " + foes[x].a + foes[x].short + ",</b>");
 			if(foes[x].statusEffectv1("Burn") > 1) 
 			{
 				foes[x].addStatusValue("Burn",1,-1);
-				output(" resisting any attempt to put them out.</b>");
+				output("<b> resisting any attempt to put them out.</b>");
 			}
 			else 
 			{
 				foes[x].removeStatusEffect("Burn");
-				output(" refusing to go out until they've done their foul work.</b>");
+				output("<b> refusing to go out until they've done their foul work.</b>");
 			}		
 			applyDamage(new TypeCollection( { burning: 3 + rand(4) } ), null, foes[x]);
 			output("\n");
@@ -2715,10 +2715,10 @@ public function tease(target:Creature, part:String = "chest"):void {
 			}
 			else if(target.isLustImmune == true) 
 			{
-				output("\n<b>" + target.capitalA + target.short + " ");
-				if(target.plural) output("don't");
-				else output("doesn't");
-				output(" seem to care to care for your eroticly-charged display. (0)</b>\n");
+				output("\n<b>" + target.capitalA + target.short + " </b>");
+				if(target.plural) output("<b>don't</b>");
+				else output("<b>doesn't</b>");
+				output("<b> seem to care to care for your eroticly-charged display. (0)</b>\n");
 			}
 			else if(part == "squirt") 
 			{

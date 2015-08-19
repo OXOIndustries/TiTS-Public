@@ -153,6 +153,7 @@ public function grabARubbahTube():void
 		flags["SYNTHSHEATH_TWO_FOUND"] = 1;
 		output("You walk over and gingerly pull it out and hold it up in the air. Sure enough, it’s another SynthSheath; you spy the distinct lettering, faded though it may be, spelling out the label “Xenogen Biotech SynthSheath Mk1”. You waggle the fleshy tube around in the air for a moment for your amusement before stowing it safely in your pack.");
 	}
+	output("\n\n");
 	var SynthButte:HorseCock = new HorseCock();
 	SynthButte.quantity = 1;
 	

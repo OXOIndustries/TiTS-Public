@@ -3107,7 +3107,7 @@ public function deck13GooSample():void
 	clearOutput();
 	author("Savin");
 
-	output("You look around at the mass of slick gray goo still splattered on the walls and identify a particularly large plot of it. You draw a small vial from your pack and take a sample of it - could be useful later. <b>You acquired a Gray Goo sample!</b>");
+	output("You look around at the mass of slick gray goo still splattered on the walls and identify a particularly large plot of it. You draw a small vial from your pack and take a sample of it - could be useful later. <b>You acquired a Gray Goo sample!</b>\n\n");
 
 	if (flags["DECK13_SAMPLES_TAKEN"] == undefined) flags["DECK13_SAMPLES_TAKEN"] = 0;
 	flags["DECK13_SAMPLES_TAKEN"]++;

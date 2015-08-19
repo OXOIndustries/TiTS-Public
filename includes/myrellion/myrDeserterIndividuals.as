@@ -1225,7 +1225,9 @@ public function cumSplurgeForRedAntSloots():void
 
 	output("\n\nWith a few more licks, your [pc.cockHeads] deliciously twitch");
 	if(pc.cockTotal() == 1) output("es");
-	output(" and begins to dribble [pc.cumNoun] like ");
+	output(" and begin");
+	if(pc.cockTotal() == 1) output("s");
+	output(" to dribble [pc.cumNoun] like ");
 	if(pc.cockTotal() == 1) output("a broken faucet");
 	else output("broken faucets");
 	output(". When her wet lips brush against your crown");
@@ -1238,7 +1240,7 @@ public function cumSplurgeForRedAntSloots():void
 	output(" suckles on ");
 	if(pc.cockTotal() > 1) output("one of your shafts");
 	else output("your shaft");
-	output(". You let out an rapturous cry. Without warning, you cry out and shoot [pc.cumVisc] ropes of [pc.cumNoun] all over her face. Your head");
+	output(". You let out a rapturous cry. Without warning, you cry out and shoot [pc.cumVisc] ropes of [pc.cumNoun] all over her face. Your head");
 	if(pc.cockTotal() > 1) output("s are");
 	else output(" is");
 	output(" so hypersensitive you almost faint from the pleasure as jets out your cock hole");
@@ -1252,8 +1254,8 @@ public function cumSplurgeForRedAntSloots():void
 	else output("them");
 	output(" in your hands, you instead moan from the brushing of your fingertips against your [pc.cockColor] flesh.");
 
-	output("\n\n<i>“Oh, that won’t do-we’re not nearly finished yet,”</i> ");
-	if(foes[0].short != "Briha") output("Briha");
+	output("\n\n<i>“Oh, that won’t do - we’re not nearly finished yet,”</i> ");
+	if(foes[0].short == "Briha") output("Briha");
 	else output("She");
 	output(" purrs. You moan as the red-skinned woman crawls up to you on all fours, clad in nothing but a black thong.");
 
