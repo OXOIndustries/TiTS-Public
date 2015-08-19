@@ -7,12 +7,15 @@ Find&Replace: [bessColor] => "+ bessColor() +"
 Find&Replace: [bessSexName] => "+ bessSexName() +"
 Find&Replace: [bessPCSexName] => "+ bessPCSexName() +"
 Find&Replace: [Bess => [bess
-flags["BESS_EVENT_7_APOLOGY_NEEDED"] = 1; // Flag Spin Off 'Apology' Event to occur next time the player enters Bess's menu (Event located after this scene in doc).
+Find&Replace: CumFlav] => CumFlavor]
+
 
 unlock codex
 make sure crew menu, sleep events etc are wired up
 set flag["BESS_SLEEPWITH_DOMORNING"] to something after a nighttime sleep event
 check for the event -> sex scene thing wherever and make sure it has routers to the correct sex scenes
+Wrap all the ternaries in the sex scenes because fuck debugging them ever
+Make sure up the breast size customisation stuff ties to the sex scenes properly
 */
 
 /*FLAGS:
@@ -523,6 +526,54 @@ public function bessTopStripScene():void
 			output(" barely constrained by [bess.hisHer] [bess.upperUndergarment]. [Bess.heShe] slips it off and tosses it aside. [bess.HisHer] beautiful, naked body is now on display as [bess.heShe] stands there wearing nothing");
 			if (!(bess.lowerUndergarment is EmptySlot)) output(" but a pair of [bess.lowerUnderGarment] clinging to [bess.hisHer] [bess.hips].");
 			else output(" at all.");
+		}
+	}
+}
+
+// 9999 raise this to a package function
+public function isOneOf(targetObject:*, ... args):Boolean
+{
+	var list:Array;
+	if (args[0] is Array) list = args[0];
+	else list = args;
+
+	for (var i:int = 0; i < list.length; i++)
+	{
+		if (targetObject is (list[i] as Class)) return true;
+	}
+
+	return false;
+}
+
+public function bessBottomStripScene():void
+{
+	if (!bess.isNude())
+	{
+		if (isOneOf(bess.armor, 
+				MaidOutfit, SchoolgirlOutfit, Battlegown, ShortKimono, Yukata, 
+				Kimono, ChinaDress, LibrarianOutfit, TopNSkirt, SleepShirt,
+				BattleMaidOutfit, NinjaOutfit, NurseOutfit, Seifuku, FemaleDoctorOutfit, 
+				CheerleaderUniform, WaitressUniform, GothLolitaOutfit, TankNSkirt, LittleBlackDress))
+		{
+			output("\n\n[Bess.name] reaches down and grabs the hem of [bess.hisHer] [bess.armor]. [bess.HeShe] draws it up to [bess.hisHer] waist with a little wiggle - you can clearly see [bess.hisHer]");
+			if (bess.lowerUndergarment is EmptySlot) output(" [bess.groin]");
+			else output(" [bess.lowerUndergarment]");
+			output(".");
+			if (bess.hasVagina()) output(" [bess.HeShe]’s already clearly wet - the moist fabric of [bess.hisHer] underwear is sticking to [bess.hisHer] pussy lips, forming a perfect camel toe.");
+		}
+		else
+		{
+			output("\n\n[Bess.name] sensuously slides off [bess.hisHer] [bess.armor], slowly revealing [bess.hisHer] naked body to you. You openly ogle [bess.hisHer] [bess.chest]");
+			if (!(bess.upperUndergarment is EmptySlot)) output(", barely bound by [bess.hisHer] [bess.upperUndergarment]");
+			else output(", now proudly on display");
+			output(". It’s hard not to salivate over [bess.hisHer] [bess.groin]");
+			if (!(bess.lowerUndergarment is EmptySlot)) output(",  barely contained by [bess.hisHer] [bess.lowerUndergarment]");
+			output(".");
+		}
+
+		if (!(bess.lowerUndergarment is EmptySlot))
+		{
+			output("\n\nNow that [bess.hisHer] [bess.armor] is out of the way, [bess.heShe] hooks [bess.hisHer] thumbs under the sides of [bess.hisHer] [bess.lowerUndergarment]. With deliberate slowness, [bess.name] slips and slides them down [bess.hisHer] [bess.thighs], baring [bess.hisHer] [bess.groin] inch by glorious inch.  And then, with a little kick, [bess.heShe] tosses [bess.hisHer] [bess.lowerUndergarment] aside.");
 		}
 	}
 }
@@ -1161,6 +1212,11 @@ public function bessFollowerMenu():void
 	else
 	{
 		addButton(3, "Sex", bessSexMenu);
+	}
+
+	if (flags["BESS_LOVER"] == 1)
+	{
+		addButton(4, "Int. Sex", bessIntimateSexMenu);
 	}
 
 	if (flags["BESS_EVENT_24"] == undefined)
@@ -10267,7 +10323,16 @@ public function bessSexMenu():void
 
 	if (bess.hasCock())
 	{
-		addButton(2, "GetDoggy", bessGetDoggy, undefined, "Get Doggystyle", "Take it from [bess.name], doggy style! [bess.HeShe] must have a cock.")
+		// If you've equipped Bess with the saurian / dino-dick,  the pc's orifice capacity must be able to take a 20 inch long, 12 inch wide cock.
+		if (bess.cocks[0].cType == GLOBAL.TYPE_SAURIAN)
+		{
+			if ((pc.hasVagina() && pc.cuntThatFits(1360) >= 0) || pc.analCapacity() >= 1360) addButton(2, "GetDoggy", bessGetDoggy, undefined, "Get Doggystyle", "Take it from [bess.name], doggy style! [bess.HeShe] must have a cock.");
+			else addDisabledButton(2, "GetDoggy", "Get Doggystyle", "Take it from [bess.name], doggy style! [bess.HeShe] must have a cock that she can squeeze into you!");
+		}
+		else
+		{
+			addButton(2, "GetDoggy", bessGetDoggy, undefined, "Get Doggystyle", "Take it from [bess.name], doggy style! [bess.HeShe] must have a cock.");
+		}
 	}
 	else
 	{
@@ -10276,7 +10341,7 @@ public function bessSexMenu():void
 
 	if (pc.hasVagina())
 	{
-		addButton(3, "GetEaten", bessCunni, undefined, "GetEatn", "Get [bess.name] to eat you out. You must have a pussy.");
+		addButton(3, "GetEaten", bessGetCunni, undefined, "GetEatn", "Get [bess.name] to eat you out. You must have a pussy.");
 	}
 	else
 	{
@@ -10831,8 +10896,12 @@ public function bessGetBlow():void
 	processTime(45+rand(15));
 	bessAffectionGain(BESS_AFFECTION_SEX);
 
+	if (flags["BESS_FUCKED"] == undefined) flags["BESS_FUCKED"] = 0;
+	flags["BESS_FUCKED"]++;
+
 	for (var i:int = 0; i < 5; i++)
 	{
+		bess.loadInMouth(pc);
 		pc.orgasm();
 	}
 
@@ -10840,822 +10909,1369 @@ public function bessGetBlow():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-
-
-Give Doggy
-
-How would you like to take [Bess.name]?
-
-[Vaginally] [Anally] 
-// tooltip.Vaginally: Take advantage of [bess.name]'s pussy.
-// tooltip.anally: Take advantage of [bess.name]'s ass.
-
-// Vag  requires Bess to have a vagina. 
-// All scenes require PC to have at least one cock.
-
-{bessIsEqual:
-
-You tell [Bess.name] that you would like to fuck [bess.hisHer] {PussyScene: pussy/AssScene: ass} from behind. {Nice: That is, if [bess.heShe]'s up for it.}{Misc: That is, if [bess.heShe]'s got time in [bess.hisHer] schedule to "fit you in".}{Hard: You're pretty blunt about it - you're in the mood to fuck.}
-
-[Bess.name] {male:raises his gorgeous brows/female:bats her gorgeously thick lashes} and turns [bess.hisHer] back towards you, petting [bess.hisHer] [pc.assLight]. "You want to fuck me {Vag: from behind, would you, [bessPCSexName]?/Anal: here? That's pretty naughty, [bessPCSexName]!}" The {GotHair: [bess.hairColor] haired} synthetic seems to be playing coy, though [bess.hisHer] eyes are shining with barely-concealed mirth. Despite [bess.hisHer] innocent act, [bess.heShe] seems more than happy to oblige{Pc is wearing clothes:, so you quickly strip off your [pc.gear]}.
-}
-
-{bessIfDom:
-
-[Bess.name] strides up to you out of the blue and snaps your collar around your neck. The D-ring at the throat is attached to a doggie leash, which [bess.heShe] promptly tugs to get your undivided attention.
-
-"Listen here, [bessPCSexName]. You are to strip off immediately until you are wearing nothing but this leash and collar, and </i>then<i> you are going to fuck your [bess.Mistress]'s {pussy/ass} with relish. If I do not enjoy myself, there will be </i>consequences<i>. Is that understood?" 
-	
-"Yes, [bessSexName]!" You meekly reply - all the while jumping for joy inside. It seems today your metallic {Dom/Domme} wants to make use of you and your [pc.cocksLight], which makes you incredibly happy. You blush and take off your [pc.gear], tossing it aside{if bess is wearing undergarment or armor: as your 'owner' similarly strips}.
-}
-
-{bessIsSub:
-
-You stride up to [Bess.name] out of the blue and snap [bess.hisHer] collar around [bess.hisHer] neck. The D-ring at the throat is attached to a doggie leash, which you promptly tug to get [bess.hisHer] undivided attention. 
-
-"Listen here, [bessSexName]. I am going to fuck your {pussy/ass} from behind while you wear this leash and collar. If I do not enjoy myself, there will be </i>consequences<i>. Is that understood?" {PC is clothed: You don't even wait for a reply, already stripping off your [pc.gear].}
-
-"Yes, [bessPCSexName]!" [Bess.name] meekly replies, though you can see in [bess.hisHer] eyes that [bess.heShe]'s jumping for joy inside. [bess.HeShe] looks thrilled that [bess.hisHer] [pc.Master] wants to make use of [bess.hisHer] and [bess.hisHer] {pussy/ass}. You {PCClothed: take off your gear and [bess.heShe] similarly/Else: watch as [bess.hisHer]} prepares herself for you. 
-}
-
-// MERGE ALL VERSIONS
-{ Bess is wearing clothes:
-
-{ and if Bess is wearing any of the below outfits (flippable skirts)
-	bess.armor is MaidOutfit
-bess.armor is Schoolgirl
-bess.armor is Battlegown
-bess.armor is ShortKimono
-bess.armor is Yukata
-bess.armor is Kimono
-bess.armor is ChinaDress
-bess.armor is LibrarianOutfit
-bess.armor is TopNSkirt
-bess.armor is SleepShirt
-bess.armor is BattleMaidOutfit
-bess.armor is NinjaOutfit
-bess.armor is NurseOutfit
-bess.armor is Seifuku
-bess.armor is FemaleDoctorOutfit
-bess.armor is CheerleaderUniform
-bess.armor is WaitressUniform
-bess.armor is GothLolitaOutfit
-bess.armor is TankNSkirt
-bess.armor if LittleBlackDress
-
-[Bess.name] reaches down and grabs the hem of [bess.hisHer] [bess.armor]. [bess.HeShe] draws it up to [bess.hisHer] waist with a little wiggle -- you can clearly see [bess.hisHer] {[bess.lowerUndergarment/[bess.groin]}. {BessHasPussy: [[bess.HeShe]'s already clearly wet -- the moist fabric of [bess.hisHer] underwear is sticking to [bess.hisHer] pussy lips, forming a perfect camel toe.}
-
+public function bessGiveDoggy():void
+{
+	if (!bess.hasVagina())
+	{
+		bessGiveDoggy(false);
+		return;
 	}
 
-	{Else // None of these outfits:
+	clearOutput();
+	bessHeader();
 
-[Bess.name] sensuously slides off [bess.hisHer] [bess.armor], slowly revealing [bess.hisHer] naked body to you. You openly ogle [bess.hisHer] [bess.chest]{GotUpperUndergarment: , barely bound by [bess.hisHer] [bess.upperUndergarment]/Else: , now proudly on display}. It's hard not to salivate over [bess.hisHer] [bess.groin] {GotLowerUndergarment:,  barely contained by [bess.hisHer] [bess.lowerUndergarment]}. 
-	}
+	output("How would you like to take [Bess.name]?");
 
-	{if Bess is wearing underwear:
-
-Now that [bess.hisHer] [bess.armor] is out of the way, [bess.heShe] hooks [bess.hisHer] thumbs under the sides of [bess.hisHer] [bess.lowerUndergarment. With deliberate slowness, [bess.name] slips and slides them down [bess.hisHer] [bess.thighs], baring [bess.hisHer] [bess.groin] inch by glorious inch.  And then, with a little kick, [bess.heShe] tosses [bess.hisHer] [bess.lowerUndergarment] aside.
-
-	}
-
-}
-Now that you're both prepared, [bess.name] sinks down on [bess.hisHer] hands and knees, wiggling [bess.hisHer] [bess.ass] at you. {bessIsDom: As instructed, you/Else: Grinning,  you} slide up behind [bess.himHer], placing your hands on [bess.hisHer] [bess.hips]. Like a cat, [bess.heShe] arches [bess.hisHer] hips and rubs her rump pointedly against your [bess.base]. 
-
-You groan as [bess.name] lewdly jerks off your cock{s} between her [bess.ass]. {bessIsDom: You really want to let yourself go -- to shoot your [pc.cumColor] spunk all over her buttocks and back -- but you haven't been given permission!/else if bessIsDom: As much as you can imagine yourself shooting your spunk all over her buttocks and back, that's not what you're after. Tugging on [bess.hisHer] leash, you make sure your synthetic sub doesn't get <i>too</i> carried away./Else bessIsEqual: As much as you can imagine shooting your spunk all over [bess.hisHer] buttocks and back, you have <i>other</i> plans.}
-
-All of a sudden, [bess.name] pulls away from your [pc.cocksLight]. [bess.HeShe] reaches back and spreads open [bess.hisHer] {Vaginal: thighs. With two fingers, [bess.heShe] parts [bess.hisHer] slick, silvery folds/Anal: buttocks. [bess.HisHer] clean, stretched pucker winks at you}{BessCumDump: and pearly, second-hand cum drools out of it  -- it seems [bess.heShe]'s been busy today!/Else Not Cumdump: and is already lubed up with [bess.hisHer] artificial juices.}
-
-{bessIsDom:
-"Feel honored, [bessPCSexName]. Your [bess.Master] is going to let you fuck [bess.himHer]," [Bess.name] tugs rather pointedly on your lead -- and by extension your neck collar -- pulling you forward! "Time to put your [pc.cocksLight] to work!"
-
-"Yes, [bessSexName]--!" you stammer out, [pc.eachCock] jerking upwards as you are ordered about. You then obediently line up {PussyScene: your cock-tip with [bess.hisHer] [bess.pussy]/AnalScene: your cock-tip with [bess.hisHer] [bess.asshole]}
-}
-{Else // Bess is not dom:
-"Um, my insides should be nice and moist, and you seem pretty hard. Did you want to stick your cock{s} inside me now, [bessPCSexTitle]?" [bess.name] sweetly asks, at the same time pointedly rubbing your your cock-tip with [bess.hisHer] {[bess.pussy]/[bess.ass]} - as if [bess.heShe] needed to tempt you!
+	clearMenu();
+	addButton(0, "Vaginally", bessGiveDoggySelected, true, "Vaginally", "Take advantage of [bess.name]'s pussy.");
+	addButton(1, "Anally", bessGiveDoggySelected, false, "Anally", "Take advantage of [bess.name]'s ass.");
 }
 
-With the simplest press forward, your [pc.cockHead] parts [bess.hisHer] {silky lower lips/star-shaped pucker}. You groan as you sink your engorged length deep inside [bess.hisHer] synthetic hole -- it's so tight and slick! Even a virgin {pussy/ass} wouldn't be this wonderously tight- it's a good thing {BessCumDump: all that communal cum is/else: her synthetic juices are} lubing it up!
-
-As soon as your [pc.cock] is  completely sheathed inside of [bess.Bess], you begin to lustily grind your hips against [bess.hisHer] [bess.ass]. [Bess.HeShe] lets out a low, sensuous moan, answering your impassioned thrusts with [bess.hisHer] own bucking hips. You can feel [bess.hisHer] silky insides rippling along your length{s} with every movement, [bess.hisHer] synthetic {pussy/sphincter} actively milking your erection for all it's worth.
-
-{PC has a knot && BessIsDom:
-The longer you fuck [bess.himHer], the more your [pc.knot] begins to swell. You instinctively go to pull out, fearing getting stuck in [bess.himHer], but as you do so a sharp tug at your leather leash keeps you firmly in place.
-
-"Did I say you could go anywhere, [bessPCSexName]?" [Bess.name] asks, though the question is rhetorical. ""You are going to knot me -- and that's an </i>order<i>!" 
-
-Blushing furiously, you keep your hips firmly pressed against [bess.name]'s buttocks as instructed, your [pc.knot] swelling and locking inside of [bess.hisHer] {snatch/ass}. As soon as it's filled [bess.himHer] up, [bess.heShe] loosens [bess.hisHer] grip on your collar. With your cock knotted inside of [bess.himHer], [bess.heShe] doesn't need it anymore! [Bess.HeShe] pulls [bess.hisHer] ass away from you, and you're compelled to follow, literally lead by your dick! 
-
-"Goooood {boy/girl}. Just remember who is in charge, and maybe I'll let you get off inside of me," [Bess.name] teases you, forcibly slapping [bess.hisHer] hips back against your own. You bite your lip HARD and try not to cum at the tugging and squeezing sensation on your knotted [pc.cockNoun], all the while feeling your pre-cum uncontrollably dribble inside [bess.hisHer] silky depths.
-}
-
-if (pc has a cocktail)
+public function bessGiveDoggySelected(bTargetVag:Boolean = false):void
 {
-{if (bessIsDom:
+	var cockIdx:int = pc.biggestCockIndex();
 
-"Your [pc.tailCockNoun]. Bring it to my mouth NOW, [bessPCSexName]."
+	clearOutput();
+	bessHeader();
 
-You blush and obediently obey, bringing it up to [bess.hisHer] mouth. Seconds later, [bess.heShe]'s taking your [pc.tailcock] between [bess.hisHer] [bess.lips]. {IfPCHasKnot: Knotted in place,/Else: With one hand tightly on your leash,} [Bess.name] fucks and sucks you off at the same time.
-
-{else // bess is not dom
-Acting on impure instinct, your [pc.tailCock] begins to move on its own. It slides up [Bess.name]'s chest. It catches [bess.himHer] off guard when you slip it inside [bess.hisHer] half open-mouth, [bess.hisHer] eyes shooting wide in sudden shock.
-
-"Mffh--! Mffph... mfflrrrgh!" You silence [bess.name]'s complaint with a mouth full of [pc.tailcock], stuffing it deep into [bess.hisHer] gullet. [Bess.HisHer] muffled protests turn into moans as you bury it deep inside of her warm, wet gullet, taking advantage of [bess.hisHer] complete lack of a gag reflex. 
-}
-}
-if (bess has a cocktail)
-{
-You feel a sudden sliding around your [pc.hip]. Suddenly something is pushing pointedly against your pucker -- it's [bess.name]'s JoyCord! Apparently unsatisfied with such a one-sided fucking, [bess.heShe] mischievously plunges [bess.hisHer] prehensile phallus into your [pc.ass], sliding it up to sweetly meet and pulse against your prostate. You tremble with delight as you're filled from behind, relishing in her rubbing deep inside of your rump.
-}
-
-As you hearily fuck [bess.name] from behind, [bess.heShe] reaches up and caresses [bess.hisHer] [bess.chest]. A sinful little moan escapes [bess.hisHer] lips as [bess.heShe] toys with [bess.hisHer] nipples. As [bess.heShe] pinches and teases them, [bess.hisHer] insides spasm, squeezing and wringing your thrusting length. 
-
-{Pc does not have tailcock:
-
-"I can feel you bulging inside of my {pussy/ass}!" [Bess.name] moans, bucking back needily against your [bess.base]. "{if bessIsSub: Please fill/Else: Fill your} {bess.isPregs: pregnant mechanical slut/else: my slutty hole} with your cum, [bessPCSexName]!" [Bess.heShe] cries, pushing [bess.himHerself] right down to your base. There, [bess.heShe] squeezes down on you with a vice-like grip; your [pc.cockHeads] pressed right against {[bess.hisHer] synthetic cervix/the deepest parts of [bess.hisHer] bowels.}
-}
-You let out a long groan as you reach that glorious peak. Instinctively, you press your hips as hard as you can against [bess.hisHer] butt. Your [pc.cock] twitches as you {TinyCums: splutter tiny drips of/Medium: spurt your/Large: unload your} [pc.cum] deep inside of [bess.hisHer] twitching, cock-filled {cunny/butt}. {Morethansmallcums and vaginal sex: It rushes up and fills her mechanical womb, your seed stirring around inside of [bess.her] [bess.belly].} Your twitching [pc.cockNounSimple] pushes [bess.himHer] over the edge, and [bess.heShe] utterly creams [bess.himHerself] around your pulsing shaft. Both of you dissolve into pleasure, trembling against each other's bodies. {Vag: [bess.HisHer] leaking pussy-juice mixes with your [pc.cumNoun] and drools down [bess.hisHer] trembling thighs.}
-
-if (pc.hasKnot = true)
-{
-Knotted as you are against [bess.name], you both spoon and cum for a good half hour. Tightly locked against each other, you continue to shoot and fill [bess.hisHer] {pussy/rump} with your [pc.cum]. Every time you finally breathe and think you're finished, [bess.name] squeezes [bess.hisHer] inner muscles, and you're off again -- shooting a fresh wad of cream directly into [bess.hisHer] {synthetic cunt/tight butt}. 
-}
-
-{if PC hyper cums:
-
-{if (pc.hasKnot = true) "During your knotting, you/Else: As you climax, you} shoot so much [pc.cumNoun] inside of [bess.himHer] that [bess.hisHer] [bess.belly] swells {BellyNotZero: even more} until it is utterly filled. {BessHasBewbs: [bess.HisHer] [bess.breasts] also begin to bloat with your seed. [Bess.HisHer] hips and ass soon follow.} By the time your orgasm winds down, [bess.name] is completely transformed by the mammoth amounts of spunk you have dumped inside of [bess.himHer]. {BessHasBewbs: The slightest movement of [bess.hisHer] chest causes [bess.hisHer] massive mammaries to slosh about.  Your [pc.cumColor] [pc.cumNoun] is even leaking out from [bess.hisHer] distended nipples!
-	
-"... Mmm, I feel so full. I can't process all of this into MeldMilk though; I'm going to have to dump some of your excess [pc.cumNoun]." [bess.name] groans, spreading [bess.hisHer] ridiculously large thighs. 
-
-Reaching down, [bess.name] parts [bess.hisHer] {vaginalScene: netherlips/else:partly gaping pucker}. Squatting there awkwardly, [bess.heShe] arches [bess.hisHer] back. Suddenly a geyser of your [pc.cumColor] hot [pc.cumNoun] gushes out of [bess.hisHer] spread hole, streaming and splashing all over the ship's floor! As [bess.heShe] does, [bess.name] lets out a sweet cry -- the sensation of your hot jism streaming out of [bess.hisHer] {pussy/ass} is clearly getting [bess.himHer] off. [bess.HisHer] eyes roll back into [bess.hisHer] head as your spunk spills out of [bess.hisHer] squirting hole, [bess.HisHer] ridiculously swollen belly slowly deflates until [bess.hisHer] 'excess stock' is fully depleted. 
-
-Once [bess.heShe] is done, [bess.name] has a truly dreamy expression on [bess.hisHer] face. It takes [bess.himHer] a while to regain the capacity to speak.
-
-"... T-that was wonderful," [bess.name] spacily murmurs, rubbing between [bess.hisHer] thighs. {BessIsEqual: "Anytime you're feeling pent up, come and find me - okay?" [bess.heShe] breathily requests}{BessIsDom: "Good job, [bessPCSexName]."}{BessIsSub: "I-I hope you enjoyed yourself, [bessPCSexName]."}
-}
- 
-{Else PC does not hyper cum:
-
-Afterwards [bess.name] is glowing with sheer satisfaction. There's a totally blissed-out look in [bess.hisHer] [bess.eyeColor] eyes. When [bess.heShe] pulls [bess.himHerself] off your cock, {a tiny dribble/a thin stream/a gooey gush} of your [pc.cum] slides down [bess.hisHer] inner thighs. 
-
-	{ bess is Equal:
-"Mmm, that was wonderful. I love feeling your [pc.cumNoun] deep inside of me,</i> the insatiable synthetic dreamily tells you, a spaced out look in [bess.hisHer] eyes.
-
-{ bess is Dom
-"You're not just planning to leave me marked like this, are you, [bessPCSexName]?" [Bess.name] commands you out of the blue. [Bess.HeShe] then turns and pushes [bess.hisHer] [pc.cumNoun] splatted {snatch/buttocks} right in your face. "Now, lick it off."
-
-"... But, [bessSexName], that's my... that's my cum!" You meekly protest. 
-
-"Lick it up, that's an order! You covered me in it, so it's your job to clean it off... or would you have me do it myself?" Your silvery {Dom/Domme} levels a hard stare at you.
-
-You loudly gulp. There's really no talking your way out of it. With flushing cheeks, you stretch out your tongue, seeking out [bess.hisHer] slickened nethers. It's not long before you can taste your own [pc.cumFlav] rolling on your tongue. It's so warm and [pc.cumVisc]. You lewdly lap up your own seed from [bess.hisHer] {pussy/ass}, a delicious little shiver shooting up your spine. 
-
-Once you've finished cleaning off [bess.name]'s silvery skin of your [pc.cumNoun], you pull back, letting out a hot sigh. But for some reason, your [bess.master] doesn't look pleased -- have you done something wrong?
-
-"That's not </i>all<i> of it, [bessPCSexName]. Finish the job," [bess.name] chastises you.
-
-Not all of it? What, does [bess.heShe] mean... lick your [pc.cum] out from inside of [bess.himHer] as well?
-
-Burning with embarrassment, you slide your [pc.tongue] inside [bess.hisHer] cum-lined hole{Ass: -- at least [bess.heShe]'s an android, so [bess.heShe] doesn't use it for </i>that<i>}. You lap and dart inside of [bess.himHer], scooping up the last of your semen with great effort. Once you're done, you're sure it's as clean as can be.
-
-"Now, swallow."
-
-
-
-You obediently gulp down your own [pc.cumFlav] seed, feeling it dribble down into your [pc.belly]. At the same time you are filled with a fluttering, pleasant sensation. You did good, right?
-
-Your unspoken question is answered by a kiss on your neck.  After a few more kisses, [bess.name] removes your collar, and your worn out legs tremble. Right now, you're the happiest sub in the world!
-}
-
-{ Bess is sub:
-"Did... did I do good, [bessPCSexName]?" [Bess.name] asks in a slurred voice. [Bess.HeShe] couldn't look any more spaced out if [bess.heShe] tried.
-
-You stroke [bess.hisHer] head and tell [bess.hisHer] that [bess.heShe] did very well. [bess.HeShe] gives a light-headed smile and purrs a little, rubbing [bess.hisHer] cheek into your cupped hand. 
-
-Afterwards, you engage in some aftercare, before taking off [bess.name]'s collar and leaving [bess.himHer] to rest.
-}
-}
-
-
-
-
-Get Doggy 
-
-How does [bess.name] take you?
-
-[Vaginally] [Anally]
-// tooltip.Vaginal: [Bess.name] fucks your [pc.pussy]!
-// tooltip.anally: [Bess.name] fucks your [pc.ass]!
-
-// Bess needs to have a cock (Tail cock doesn't count).
-// For vaginal sex, PC obviously needs one.
-// If you've equipped Bess with the saurian / dino-dick,  the pc's orifice capacity must be able to take a 20 inch long, 12 inch wide cock. 
-// All other bess cocks automatically resize to fit the PC's orifice. That's because [bess.heShe]'s a body shifting sex-bot!
-// No minimum dick size
-
-{if bessIsEqual:
-Reaching down between your thighs you stroke yourself softly - you’re positively aching to be fucked right now. You tell [Bess.name] you’d love nothing more than for [bess.himHer] to screw you from behind.
-
-if (PC's got some clothes on:
-{
-"Well now, I can’t do that while you’ve still got your clothes on, [bessPCSexName], can I?" [Bess.name]’s [bess.eyeColor] eyes glimmer mischieviously while [bess.hisHer] voice is positively coy. 
-
-Eager to get the release you need, you quickly strip off your [pc.gear] and ready yourself for [bess.himHer].
-
-}
-
-// else PC is newd:
-{
-"Well now, you’re already naked. You must be really ready to go, [bessPCSexName]." [Bess.name]’s [bess.eyeColor] eyes glimmer mischieviously while [bess.hisHer] voice is positively coy. 
-}
-	
-[Bess.name] then walks around you and out of sight. Moments later, you feel [bess.hisHer] hands sliding around you and up to your [pc.chest]. [Bess.HeShe] caresses it gently, [bess.hisHer] fingers dancing along your [pc.skinFurScales]. At the same time, you feel [bess.hisHer] breath tickling one of your [pc.ears], and you shiver with delight.
-
-[bess.HisHer] lips caress your one of your ears and then travel down, stopping to suck at the nape of your neck. Suddenly your nipples are being pinched and you give a sharp jump, [bess.hisHer] fingers catching them as if in a trap. You couldn’t move even if you wanted to, you can feel [bess.hisHer] fingertips rolling over your sensitive nubs. You can’t help but lean back into [bess.hisHer] and give a gasping moan of pleasure. 
-
-{pussyscene
-Moments later, [bess.hisHer] fingers slide down and lightly tease your sensitive [pc.pussy]. As [bess.heShe] teases your loins, you eagerly rub against [bess.hisHer] fingers, trying to coax them inside of you for some much needed release! 
-
-At long last, you feel [bess.name]'s fingers slipping up inside of you. They wiggle around inside of your [pc.pussyLight], stirring you up in more ways than one! "... Mmm, your pussy is so wet, [bessPCSexName]." 
-
-You breathily moan in response, rubbing your {[pc.clits]/mound} against [bess.hisHer] hand. There's a lewd, squelching sound as [bess.heShe] plumbs your pussy with [bess.hisHer] slickened digits. Electrifying pleasure courses from your loins. You arch your back, whimpering and bucking your hips. At this rate, it won't be long before you're creaming yourself all over [bess.hisHer] hand!
-
-Before you reach your peak, however, [bess.name] removes her sticky fingers from your snatch. You let out a cry of protest -- only to have your mouth filled with her fingers! A warm, [pc.girlCumFlavor] brushes against your tongue, and you lustily suck at it -- licking [bess.hisHer] fingers clean of your own girl juice. The whole thing gets you even wetter, adding to the slickness dribbling from your [pc.pussyLight].
-
-"Mmm, that’s just for starters. How about we go all the way to dessert?" [Bess.name] seductively offers, rubbing your {[pc.clits]/mounds} with [bess.hisHer] fingers. You shiver and arch your back once more, relishing in the pulsing pleasure coursing out from your sex.  
-
-"Yes, oh frag yes--!" You flush furiously with how much you’re crying out for a little bit of [bess.hisHer] [bess.cockLight -- or rather a lot of it -- filling up your pussy.
-
-"Maybe you should get into position so I can give you your cream filling--?" [Bess.name] suggests and you’re all too quick to comply. You present yourself and stick your dripping wet cunny out, wiggling your butt all the while, enticing [bess.himHer] to screw you absolutely senseless. {Pchascock: At the same time [pc.eachCockLight] begins to twitch with anticipation, slapping against your [pc.belly].}
-}
-else // analscene
-{	
-Moments later, [bess.heShe] pulls back [bess.hisHer] hands and you let out a disappointed noise. It doesn't last long, as you soon feel [bess.hisHer] fingers sliding between your buttocks. [Two of [bess.hisHer] digits spread them open as another presses against your [pc.assholeNoun]. It feels surprisingly slick as [bess.heShe] presses it into your pucker. 
-
-You let out a sweet little cry as [bess.name]'s finger wiggles into your bum. Soon it's roaming and stirring about deep inside of you. Arching your back, you moan out loud, utterly relishing in your [pc.ass] being fingered. Without thinking, you buck back against [bess.hisHer] hand, coaxing it deeper and deeper, unable to get enough!
-
-You try to stand perfectly still as [bess.heShe] slips another slick finger inside of your back door, stretching you open that much more. You can’t help but shiver as your poor pucker is toyed with from behind, penetrating your forbidden place. You clench around [bess.hisHer] fingers and let out a breathy moan, wondering how long it’ll be before you hit that inevitable peak.
+	if (bessIsEqual())
+	{
+		output("You tell [Bess.name] that you would like to fuck [bess.hisHer] "+ bTargetVag ? "pussy" : "ass" +" from behind.");
+		if (pc.isNice()) output(" That is, if [bess.heShe]’s up for it.");
+		else if (pc.isMischievous()) output(" That is, if [bess.heShe]’s got time in [bess.hisHer] schedule to <i>“fit you in”</i>.");
+		else output(" You’re pretty blunt about it - you’re in the mood to fuck.");
 		
-Before you can, however, [bess.name] removes her sticky fingers from your ass. You let out a cry of protest -- only to have them swiftly plunged back inside of you. You let out a delighted moan as they plunge even <i>deeper</i> into your well lubed butt. If this is what [bess.heShe] can do with [bess.hisHer] fingers, what is [bess.hisHer] cock going to feel like--?
-
-"Mmm, that's just for starters. How about we go all the way to dessert?" [Bess.name] seductively offers, pistoning your ass with [bess.hisHer] fingers as you feel the most delicious sensations running up from your rump.
-
-"Yes, oh frag yes--!" You flush furiously with how much you’re crying out for a little bit of [bess.hisHer] [bess.cockLight -- or rather a lot of it -- in your ass.
-
-"Maybe you should get into position so I can give you your cream filling--?" [Bess.name] suggests and you’re all too quick to comply. You present yourself and stick your rump out and wiggle it about, enticing [bess.himHer] to screw you absolutely senseless. {Pchascock: At the same time [pc.eachCockLight] begins to twitch with anticipation, slapping against your [pc.belly].}
+		output("\n\n[Bess.name] "+ bess.mf("raises his gorgeous brows", "bats her gorgeously thick lashes") +" and turns [bess.hisHer] back towards you, petting [bess.hisHer] [pc.assLight]. <i>“You want to fuck me "+ bTargetVag ? "from behind, would you, [bessPCSexName]?" : " here? That’s pretty naughty, [bessPCSexName]!" + "”</i> The");
+		if (bess.hairLength > 0) output(" [bess.hairColor] haired");
+		output(" synthetic seems to be playing coy, though [bess.hisHer] eyes are shining with barely-concealed mirth. Despite [bess.hisHer] innocent act, [bess.heShe] seems more than happy to oblige");
+		if (!pc.isNude()) output(", so you quickly strip off your [pc.gear]");
+		output(".");
 	}
-}
-
-{if bessIsDom:
-
-You spot [bess.name] striding up to you, an assertive gleam in [bess.hisHer] eyes. Immediately, your heart skips a beat. Hope wells deep within your heart. [Bess.HeShe] looks like [bess.heShe] wants you for something; could you be so lucky...?
-
-"Stand to attention, [bessPCSexName]!\</i> [bess.Name] demands, one hand on [bess.hisHer] hip. [bess.HisHer] other one is used to deliver a short but memorable slap to your [pc.ass], spurring you to action!
-
-You obediently jump to attention, a delicious throbbing in your lightly slapped buttock. You're giddy with anticipation. What does [bess.heShe] have planned for you? 
-
-[Bess.name] moves intimately close. You're so entranced by [bess.hisHer] stern, [bess.eyeColor] eyes that you almost miss [bess.himHer] slipping a leather collar around your neck. You moan with delight as it wraps around your bare [pc.skinFurScalesNoun], your submissive switch now fully 'on'. 
-
-Preparing properly for inspection, you {PC has Legs: spread your legs. You then} lock your hands behind your head. With practiced effort, you stand there like a perfect little slave, directing your gaze forward. As you fawningly await [bess.hisHer] commands you feel your loins tingle with anticipation - what sort of orders is [bess.heShe] going to give you today?
-
-You watch [bess.name] as [bess.heShe] paces around you, shivering as [bess.heShe] trails a finger up your side, [bess.hisHer] sharp eyes seeking even the slightest sign of poor posture. A single bead of sweat travels down your neck - you can feel it stroking every pore as it travels downward. 
-
-The smallest smile passes over [bess.name's] lips. It seems [bess.heShe] noticed, tracing [bess.hisHer] finger up and collecting the moisture on [bess.hisHer] fingertip. [Bess.HeShe] brings it to [bess.hisHer] mouth, kissing your salty sweatdrop away. Is [bessSexName] pleased with your posture? You're trying ever so hard!
-
-if (PC is wearing clothes)
-{
-"....Good {boy/girl}." [Bess.name] praises you, causing your heart to race. You pleased [bess.hisHer]! "... Now, strip off your clothes."
-
-With no idea what [bess.heShe] has planned for you, you slowly begin to remove your [pc.gear]. You can feel [bess.hisHer] eyes on you as you strip, [bess.hisHer] eyes roaming across your naked [pc.skinFurScalesNoun]. Being watched makes you even worked up -- your {[pc.cocks] stiffening}{and}{your [pc.pussies} deliciously tingling.}
-
-Once you're fully undressed, [bess.name] lets out an almost predatory noise of pleasure. [Bess.HeShe] then runs [bess.hisHer] fingers along your [bess.skinFurScalesNoun], following the paths [bess.hisHer] eyes were wandering. You let out a low moan, relishing in [bess.hisHer] attentions.
-}
-
-{Else PC is nude:
-"...Good {boy/girl}." [Bess.name] praises you, causing your heart to race. You pleased her! [bess.HisHer] tone is somewhat amused as [bess.heShe] inspects your bare chest. "... Already naked, I see. Were you trying to get my attention, hmm?"
-
-You're always trying to get [bess.hisHer] attention, so you answer in the affirmative, cheeks flushing. Just having [bess.HimHer] ordering you about is turning you on to no end. 
-}
-
-{PCClothed: Once you're fully undressed,/Unclothed: Taking advantage of your perfect posture,} [bess.name] lets out an almost predatory noise of pleasure. [Bess.HeShe] then runs [bess.hisHer] fingers along your [bess.skinFurScalesNoun], following the paths [bess.hisHer] eyes were wandering. You let out a low moan, relishing in [bess.hisHer] attentions.
-
-Pacing slowly around you, [bess.name] inspects your body from head to toe, caressing your [pc.fullChest] with [bess.hisHer] slender fingers. As they dance along your [pc.skinFurScalesNoun] you struggle not to shiver with delight, especially as [bess.heShe] leans in and deliberately tickles your ear with [bess.hisHer] deliciously hot breath.
-
-Without warning, a cup-handed slap comes down on your [pc.assLight]. There's a loud smacking sound and you let out a startled yelp, your rump suddenly on fire. It's only that way for a split second before a delicious stinging replaces it, causing you to sigh with pleasure. Another slap follows soon after, one even better than the first, and you let out a raspy moan. It stings, but it feels so damn good...!
-
- "You have a nice, slappable ass, [bessPCSexName]. How about I slap it with my hips instead?" [bess.name] leans into you from behind, whispering in your ear. The promise of pleasure causes your [pc.legs] to quiver. It seems [bess.heShe] plans to fuck your {pussy/ass} today. "But first, beg for it. Beg as if your life depends on it!"
-
-Willing to do whatever [bess.heShe] asks you to, you whine shamelessly. "Plleeeasseee, [bessSexName], please fuck me! Please, I'm begging you, fuck my {[pc.pussy]/[pc.ass]} - I need it so badly!" The more you beg, the more you want it - now you feel like your life really <i>does</i> depend on it. "... Please!"
-
-"You haven't earned my [bess.cockLight] yet - but I will give you my fingers." [Bess.name] informs you, and you let out a happy noise. "But first..."
-
-[bess.HisHer] lips caress your one of your ears and then travel down, stopping to suck at the nape of your neck. Suddenly your nipples are being pinched and you give a sharp jump, [bess.hisHer] fingers catching them as if in a trap. You couldn’t move even if you wanted to, you can feel [bess.hisHer] fingertips rolling over your sensitive nubs. You can’t help but lean back into [bess.hisHer] and give a gasping moan of pleasure. 
-
-{pussyscene:
-Moments later, [bess.hisHer] fingers slide {Taur: around/else: down} and lightly tease your sensitive [pc.pussy]. As [bess.heShe] strokes your loins, you eagerly rub against [bess.hisHer] fingers, trying to coax them inside of you for some much needed release! 
-
-}
-else // analscene
-{	
-Moments later, [bess.heShe] pulls back [bess.hisHer] hands and you let out a disappointed noise. It doesn't last long, as you soon feel [bess.hisHer] fingers sliding between your buttocks. [Two of [bess.hisHer] digits spread them open as another presses against your [pc.assholeNoun]. It feels surprisingly slick as [bess.heShe] presses it into your pucker. 
-
-You let out a sweet little cry as [bess.name]'s finger wiggles into your bum. Soon it's roaming and stirring about deep inside of you. Arching your back, you moan out loud, utterly relishing in your [pc.ass] being fingered. Without thinking, you buck back against [bess.hisHer] hand, coaxing it deeper and deeper, unable to get enough!
-}
-Sensing your sudden shift in attitude [bess.heShe] {AnalScene: pulls [bess.hisHer] fingers out,} bends you over and gives you another swift slap on your [pc.ass]. [bess.HisHer] hands are incredibly firm -- far more than a regular {man/woman}’s -- and you squeal out loud! 
-
-"You are not to get yourself off without my say so, is that understood?</i> [Bess.name] growls and slaps your ass once more, a delicious stinging sensation spreading out from your spanked rump. 
-
-"...I promise, I promise! I won’t try to get off without your permission, [bessSexName]." You plead like a naughty little schoolgirl being bent over [pc.hisHer] parent’s knee.
-
-"... Did you really think I wouldn’t notice, or did you want to have your ass beaten like a little girl? Submitting to a {bess:female/ben:male} sex-bot like this - and you call yourself a Steele--!" [Bess.name] verbally berates you, causing your cheeks to flush. The metal handed synthetic smacks your bare buttocks again, causing you to yelp in delighted surprise. 
-
-{pussyscene:
-Mixing sweet pain with pleasure, you gasp as [bess.name]'s fingers suddenly slip up inside of you. They wiggle around inside of your [pc.pussyLight], stirring you up in more ways than one! You're so wet from the spanking that you can <i>feel</i> yourself dribbling all over your [bess.master]'s fingers. You whimper with delight, {spreading your [pc.legs] and} allowing [bess.himHer] greater access.
+	else if (bessIsDom())
+	{
+		output("[Bess.name] strides up to you out of the blue and snaps your collar around your neck. The D-ring at the throat is attached to a doggie leash, which [bess.heShe] promptly tugs to get your undivided attention.");
 		
-When [bess.heShe] removes [bess.hisHer] fingers you suddenly feel empty and let out a cry of protest only to have your mouth filled with a warm  [pc.girlCumflavor] taste - it doesn’t take you long to realise you’re sucking your own girl cum off of [Bess.name]’s fingertips. You eagerly suck it off like a baby, showing just how obedient you can be.
+		output("\n\n<i>“Listen here, [bessPCSexName]. You are to strip off immediately until you are wearing nothing but this leash and collar, and </i>then<i> you are going to fuck your [bess.Mistress]’s "+ bTargetVag ? "pussy" : "ass" +" with relish. If I do not enjoy myself, there will be </i>consequences<i>. Is that understood?”</i>");
 
-"Now, [bessPCSexName], I want you to beg for it. I’m not going to give </i>it<i> to you unless you do." [Bess.name] commands you, while [bess.hisHer] [bess.cock] rubs against your ass. 
-
-"Please, please [bessSexName], fuck me! I need to be pounded hard from behind like the naughty slut I am, I’ll do anything--!" You flush furiously, willing to debase yourself utterly for the gift of [bess.hisHer] [bess.cockLight] inside of you.
-
-"Present yourself then, [bessPCSexName], and maybe I’ll use you like the naughty little cum slut that you are.<i> You obediently present yourself and stick out your snatch, wiggling your butt all the while, desperate to entice your [bess.Mistress] to screw you absolutely senseless. [if (pc.cock.length > 0) = "At the same time [pc.eachCockNoun] begins to twitch with anticipation, eager to spill your [pc.cumVisc] [pc.cumNoun] all over the ground as you are shamelessly pounded from behind."]
-}
-{else analscene:
-{
-As [bess.name]'s hand is removed from your [pc.ass], you brace yourself for another spank. Instead, [bess.heShe] slips [bess.hisHer] slick fingers between your stinging buttocks and plunges it back inside of you. [bess.heShe] deliciously pistons your [pc.asshole] once more and you whimper with delight.
-
-"Now, [bessPCSexName], I want you to beg for it. I’m not going to give </i>it<i> to you unless you do." [Bess.name] commands you.
-
-"Please, please [bessSexName], fuck me! I need to be pounded hard from behind like the naughty slut I am, I’ll do anything--!" You flush furiously, willing to debase yourself utterly for the gift of [bess.hisHer] [bess.cockLight].
-
-"Maybe you should get into position so I can give you your cream filling--?" [Bess.name] suggests and you’re all too quick to comply. You present yourself and stick your rump out and wiggle it about, enticing [bess.himHer] to screw you absolutely senseless. {Pchascock: At the same time [pc.eachCockLight] begins to twitch with anticipation, slapping against your [pc.belly].} 
-}
-}
-
-{if bessIsSub:
-
-You walk up to [Bess.name], an assertive gleam in your eyes. "Stand to attention, [bessSexName]!\</i> You command [bess.himHer], slapping [bess.hisHer] [bess.assLight] to make sure [bess.heShe] gets the message. 
-
-[Bess.name] immediately jumps into [bess.hisHer] 'attention' position, a shiver of pleasure running up [bess.hisHer] spine. [bess.HeShe] spreads [bess.hisHer] legs, stands on tippitoes and puts [bess.hisHer] hands behind [bess.hisHer] head. [bess.HisHer] eyes are focused, waiting for further instructions. [bess.HeShe]'s trying [bess.hisHer] best to be a perfect little slave {girl/boy}.
-
-The first thing you do is pull out [bess.hisHer] collar and snap it around [bess.hisHer] neck. You can see the submissive switch click in [bess.hisHer] head the very <i>second</i> you click it in place, as well as the longing look in [bess.hisHer] [bessEyeColor] eyes.
-
-After you have fastened [bess.hisHer] collar you inspect [bess.himHer] slowly, feeling your dominance over this silver skinned {Bess: strumpet/ben: sissy}. The smallest smile passes over your lips and [bess.heShe] trembles, trying to keep perfectly still - probably wondering what instructions you're going to give [bess.himHer] today. 
-
- "[bessSexName]! I am going to give you the immeasurable honor of fucking my {[pc.pussy]/[pc.ass]} from behind. If you fail to pleasure me, you will be punished - understood?" You inform [bess.himHer] in a no nonsense voice{pc is clothed:, at the same time stripping off your [pc.gear]}.
-
-"Yes, [bessPCSexName]!" [Bess.name] immediately responds to your question, knowing any delay in answering will also lead to punishment. You can see [bess.heShe]'s trying hard not to wriggle with pleasure every time you bark out an instruction - [bess.hisHer] nethers are already looking {BessHasCock and No Pussy: quite erect/else: a little flushed}.
-
-"... Good. I give you permission to worship my body with your hands, [bessSexName]." Your words seem to make [Bess.name] swoon with delight as [bess.heShe] relaxes [bess.hisHer] stance; [bess.heShe] seems quite eager to look upon and touch your body with utter and complete reverence. You are a god to [bess.himHer], and [bess.heShe] is your willing supplicant.
-
-The synthetic walks in front of you and bows deeply before tentatively touching your [pc.skinFurScalesNoun] with [bess.hisHer] slender fingers. Soon they are dancing along your chest as [bess.heShe] litters it with little kisses, showering your body in adoration as [bess.heShe] makes sure not an inch of you is missed. 
-
-As [bess.heShe] moves behind you [bess.heShe] kisses the back of your rear causing you to shiver pleasantly; [bess.hisHer] piety is certainly to your liking. [Bess.name] then coyly presses [bess.hisHer] body against your back, rubbing up against you as if in ecstasy from just being in your very presence. [bess.HisHer] lips caress your one of your [pc.ears] and then travel down, stopping to suck at the nape of your neck. 
-
-{PC has boobs:
-"... May I pinch your [pc.nipplesLight], [bessPCSexName]?" 
-
-</i> You give [bess.himHer] permission. [bess.name] roll [bess.hisHer] over your sensitive nubs. You give a breathy sigh as you let your synthetic pet pleasure your [pc.nipplesLight]; so far [bess.heShe]'s doing a top notch job.
+		output("\n\n<i>“Yes, [bessSexName]!”</i> You meekly reply - all the while jumping for joy inside. It seems today your metallic "+ bess.mf("Dom", "Domme") +" wants to make use of you and your [pc.cocksLight], which makes you incredibly happy. You blush and take off your [pc.gear], tossing it aside");
+		if (!bess.isNude()) output(" as your ‘owner’ similarly strips");
+		output(".");
+	}
+	else
+	{
+		output("You stride up to [Bess.name] out of the blue and snap [bess.hisHer] collar around [bess.hisHer] neck. The D-ring at the throat is attached to a doggie leash, which you promptly tug to get [bess.hisHer] undivided attention.");
+		
+		output("\n\n<i>“Listen here, [bessSexName]. I am going to fuck your "+ bTargetVag ? "pussy" : "ass" +" from behind while you wear this leash and collar. If I do not enjoy myself, there will be </i>consequences<i>. Is that understood?”</i>");
+		if (!pc.isNude()) output(" You don’t even wait for a reply, already stripping off your [pc.gear].");
+		
+		output("\n\n<i>“Yes, [bessPCSexName]!”</i> [Bess.name] meekly replies, though you can see in [bess.hisHer] eyes that [bess.heShe]’s jumping for joy inside. [bess.HeShe] looks thrilled that [bess.hisHer] [pc.Master] wants to make use of [bess.hisHer] and [bess.hisHer] "+ bTargetVag ? "pussy" : "ass" +". You");
+		if (!pc.isNude()) output(" take off your gear and [bess.heShe] similarly");
+		else output(" watch as [bess.hisHer]");
+		output(" prepares herself for you.");
 	}
 
-{if (Pussyscene) 
-"Now, give my pussy some attention, [bessSexName]," </i> you command [bess.himHer]. [bess.name]'s fingers obediently slide to your sensitive snatch, lightly teasing your lips. "Harder--!" You forcibly rub your twat against [bess.hisHer] fingers, leaning against [bess.himHer] and using [bess.hisHer] hand to get yourself off.
+	// MERGE ALL VERSIONS
+	bessBottomStripScene();
 
-You stand perfectly still as you feel the air teasing your drooling slit, causing a shiver to run up your spine. [Bess.name]’s fingers deliciously tease your lower lips and suddenly you can feel them slipping up inside of you, penetrating your mound. You clench around [bess.hisHer] fingers and let out a breathy moan, wondering how long it’ll be before you’re creaming all over [bess.hisHer] hand.
-
-[bess.HisHer] fingers probe and tease around inside your pussy, delving into you from below and sneaking upwards until [bess.heShe]'s touching all the right places. Electrifying pleasure runs upwards from your loins and up causing you to hold your breath and arch your back, dribbling your hot love liquid all down [bess.hisHer] probing digits.
-
-"Let’s move things further, shall we, [bessSexName]? I will allow your lowly cock to fuck my [pc.pussyLight] - be thankful." You inform [bess.himHer], your voice breathy yet commanding.
-
-"Yes, [bessPCSexName]--!" [Bess.name] flushes furiously, clearly eager to fill you up with [bess.hisHer] cock.
-
-You present yourself and stick your [pc.pussyNoun], wiggling your ass all the while, enticing [bess.himHer] to screw you absolutely senseless. {Pchascock: At the same time [pc.eachCockLight] begins to twitch with anticipation, slapping against your [pc.belly].} 
-
-
-}
-{else // analscene	
-"Now, finger my ass," you command [bess.name]. [bess.HisHer] fingers slide up your ass and slip between your cheeks. Two of [bess.hisHer] digits spread them open as another presses against your [pc.assholeNoun]. You can feel that [bess.heShe]'s turned [bess.hisHer] MeldMilk into lubricant and has coated [bess.hisHer] fingers in it.
-
-[bess.HeShe] presses one of [bess.hisHer] fingers into your pucker and you let out a sensuous moan, [bess.hisHer] digit wiggling inside your bum. You rub your butt against [bess.himHer] trying to get some much needed release.
+	output("\n\nNow that you’re both prepared, [bess.name] sinks down on [bess.hisHer] hands and knees, wiggling [bess.hisHer] [bess.ass] at you.");
+	if (bessIsDom()) output(" As instructed, you");
+	else output(" Grinning, you");
+	output(" slide up behind [bess.himHer], placing your hands on [bess.hisHer] [bess.hips]. Like a cat, [bess.heShe] arches [bess.hisHer] hips and rubs her rump pointedly against your [bess.base].");
 	
-You try to stand perfectly still as [bess.heShe] slips another slick finger inside of your back door, stretching you open that much more. You can’t help but shiver as your asshole is finger fucked with from behind, your forbidden place penetrated. You clench around [bess.hisHer] fingers and let out a breathy moan, wondering how long it’ll be before you hit that inevitable peak.
+	output("\n\nYou groan as [bess.name] lewdly jerks off your cock");
+	if (pc.cocks.length > 1) output("s");
+	output(" between her [bess.ass].");
+	if (bessIsDom()) output(" You really want to let yourself go - to shoot your [pc.cumColor] spunk all over her buttocks and back - but you haven’t been given permission!");
+	else if (bessIsSub()) output(" As much as you can imagine yourself shooting your spunk all over her buttocks and back, that’s not what you’re after. Tugging on [bess.hisHer] leash, you make sure your synthetic sub doesn’t get <i>too</i> carried away.");
+	else output(" As much as you can imagine shooting your spunk all over [bess.hisHer] buttocks and back, you have <i>other</i> plans.");
 
-[bess.HeShe] knows exactly where to stimulate you as electrifying electrifying pleasure runs up your spine. [bess.HisHer] fingers are so thoroughly lubricated that your pucker takes them easily, filling you with an intensely pleasurable sensation. If this is what [bess.heShe] can do with [bess.hisHer] fingers, what is [bess.hisHer] cock going to feel like--?
+	output("\n\nAll of a sudden, [bess.name] pulls away from your [pc.cocksLight]. [bess.HeShe] reaches back and spreads open [bess.hisHer] "+ bTargetVag ? "thighs. With two fingers, [bess.heShe] parts [bess.hisHer] slick, silvery folds" : "buttocks. [bess.HisHer] clean, stretched pucker winks at you");
+	if (flags["BESS_CUMDUMP"] == 1) output(" and pearly, second-hand cum drools out of it  - it seems [bess.heShe]’s been busy today!");
+	else output(" and is already lubed up with [bess.hisHer] artificial juices.");
 
-"Let’s move things further, shall we, [bessSexName]? I will allow your lowly cock to fuck my ass - be thankful."
-
-"Yes, [bessPCSexName]--!" [Bess.name] flushes furiously, clearly eager to fill the insides of your rump with [bess.hisHer] cock.
-
-You present yourself and stick your ass out, wiggling it all the while as you entice [bess.hisHer] to screw you absolutely senseless. {Pchascock: At the same time [pc.eachCockLight] begins to twitch with anticipation, slapping against your [pc.belly].} 
+	if (bessIsDom())
+	{
+		output("\n\n<i>“Feel honored, [bessPCSexName]. Your [bess.Master] is going to let you fuck [bess.himHer],”</i> [Bess.name] tugs rather pointedly on your lead - and by extension your neck collar - pulling you forward! <i>“Time to put your [pc.cocksLight] to work!”</i>");
+		
+		output("\n\n<i>“Yes, [bessSexName]-!”</i> you stammer out, [pc.eachCock] jerking upwards as you are ordered about. You then obediently line up "+ bTargetVag ? "your cock-tip with [bess.hisHer] [bess.pussy]" : "your cock-tip with [bess.hisHer] [bess.asshole]" + ".");
 	}
-}
+	else
+	{
+		output("\n\n<i>“Um, my insides should be nice and moist, and you seem pretty hard. Did you want to stick your cock");
+		if (pc.cocks.length > 1) output("s");
+		output(" inside me now, [bessPCSexTitle]?”</i> [bess.name] sweetly asks, at the same time pointedly rubbing your your cock-tip with [bess.hisHer] "+ bTargetVag ? "[bess.pussy]" : "[bess.ass]" +" - as if [bess.heShe] needed to tempt you!");
+	}
 
-// MERGE ALL
-// Maybe a new page here.
-
-{Bess is wearing one of these:
-	bess.armor is MaidOutfit
-bess.armor is Schoolgirl
-bess.armor is LibrarianOutfit
-bess.armor is TopNSkirt
-bess.armor is SleepShirt
-bess.armor is NurseOutfit
-bess.armor is Seifuku
-bess.armor is FemaleDoctorOutfit
-bess.armor is CheerleaderUniform
-bess.armor is WaitressUniform
-bess.armor is GothLolitaOutfit
-bess.armor is TankNSkirt
-
-[Bess.name] {WearingUnderwear: reaches up and swiftly slides off [bess.hisHer] [bess.lowerUndergarment], kicking them away. [bess.HeShe] then} pulls [bess.hisHer] [bess.cock] from under [bess.hisHer] skirt. [bess.HeShe] looks incredibly sexy with [bess.hisHer] erection boldly thrust out from [bess.hisHer] hemline -- wearing a [bess.armor] is convenient! 
-}
-{if bess is wearing any armor other than those listed above:
-With practiced grace, {[bess.name] strips off [bess.hisHer] [bess.armor]{WearingUnderwear: , followed by [bess.hisHer] [bess.undergarments]}. It's not long before [bess.heShe]'s standing there in all [bess.hisHer] naked glory, [bess.hisHer] [bess.cock] boldly on display.
- }
-{if bess is not wearing armor but is wearing underwear:
-With practiced grace, {[bess.name] strips off [bess.hisHer] [bess.undergarments]. It's not long before [bess.heShe]'s standing there in all [bess.hisHer] naked glory, [bess.hisHer] [bess.cock] boldly on display.
-}
-
-Now that you're both properly positioned , [Bess.name] rubs [bess.hisHer] [bess.cockHead] against your {[pc.pussyLight]/[pc.assholeLight]}. You groan as [bess.heShe] presses forward, slowly sinking [bess.himHerself] inside of you, right up to the hilt. {BessHasBalls:As [bess.heShe] bottoms out, you feel [bess.hisHer] [bess.balls] deliciously brushing against your [bess.thighs], and your whole body flushes with excitement.}
-
-{bess has a pussy, PC has a cock, and Bess's tailcunt is set to active:
-{
-As you’re enjoying this sensation, you feel something velvety and soft brushing against your [cockHeadNoun]! You suddenly realise [bess.heShe] has detached [bess.hisHer] mechanical pussy. It now lingers below your loins, attached to a long, prehensile cable [bess.heShe] can seemingly control at will. 
-
-You can barely contain your surprise as it slides onto [pc.oneCock], enveloping it in [bess.hisHer] warm depths. The silvery onahole-on-a-cable milks your defenseless member for all it's worth as you are deliciously double-teamed by  [bess.name]!
-}
-Slowly at first, [bess.name]'s [bess.hips] begin to slap against your buttocks. [Bess.HisHer] [bess.cock] slides in and out, back and forth, plumbing your {sloppy snatch/well lubed butt.} With each and every thrust, [bess.hisHer] [bess.cockHead] delves deeper, sliding and stirring against your core.
-
-You needily answer [bess.name]'s thrusting hips, arching like a cat as [bess.heShe] fucks you long and hard. The loud sounds of [bess.himHer] slapping against your [bess.ass] brings a flush to your cheeks -- not to mention your loins -- as [bess.heShe] pounds your needy hole. Every time [bess.name] thrusts you are filled with the most deliciously full sensation, only to be left unbearably empty when [bess.heShe] pulls away. 
-
-{if (bess has a knot:
-{if (bessIsDom)
-It's not long before you can feel [bess.name]'s knot  [bess.knot] swelling up deep inside of you. Instinctively, you go to pull away, only to be tugged back by your leash! You yelp in surprise like a chastised  {fem: bitch/male: mutt}.
-
-"Oh NO, you're not going anywhere," [bess.name] orders you, thrusting [bess.hisHer] cock even <i>deeper</i>, "...You're going to stay there and be knotted by my [bess.cockNounLight], [bessPCSexName]!"
-
-You tremble and flush as [bess.hisHer]'s knot swells and stretches your inner walls. You feel like an animal being mated{PCIsAusar: ; but as an ausar, it flicks your breeding switch. You pant with pleasure, your mind fogged up by thoughts of filling your {pussy/butt} with puppy-seed}. Once it finishes swelling, you're completely stuffed with [bess.hisHer] sizable bulb. 
-
-"You're not pulling out until I've finished mating with you, and I might take a while. We android {boys/girls} have a lot of stamina, so prepare to be fucked until you forget your own name, [bessPCSexName]."
-
-Your whole body shivers with delighted anticipation. Fucked until you forget your own name? It wasn't that important anyway!
-}
-{else if (bessIsSub)
-
-It's not long before you can feel [bess.name]'s [bess.knot] swelling up deep inside of you. Instinctively, [Bess.name] moves to pull away, only to be pulled back by [bess.hisHer] leash. A yelping noise escapes [bess.hisHer] lips like a chastised {fem: bitch/male: mutt}.
-
-"Oh NO, you're not going anywhere. You're going to stay there and knot my {pussy/ass}, [bessSexName]!" You hold [bess.hisHer] leash firmly, making sure [bess.heShe] don't pull out.
-
-[Bess.name] trembles and flushes as [bess.hisHer] knot swells and stretches your inner walls, forcing [bess.himHer] to mate with you. It's not long before [bess.heShe]'s panting with pleasure like a hound-dog, [bess.hisHer] sizable bulb stuffed and locked inside of you. 
-
-"You're not pulling out until I've finished mating with you, and I might take a while. You synthetics have a lot of stamina, right? I want to be fucked until I forget my own name, [bessSexName]." 
-
-[Bess.name] shivers with delighted anticipation at your orders, [bess.hisHer] [bess.cock] swelling instinctively inside of you. "Yes, [bessPCSexName]!" Even if [bess.heShe] didn't want to, [bess.heShe] can't move now until [bess.heShe] [bess.cums] and [bess.hisHer] knot deswells.
-}
-
-{else // bessIsEqual
-You can feel [bess.hisHer] [bess.knot] swelling up inside your snatch, your inner walls forced to stretch to accommodate it. As you tug on it, it refuses to budge - you've been knotted with [bess.hisHer] [bess.cockNoun]. With [bess.hisHer] [bess.knot] swollen in your {vagina/rectum}, there's absolutely nothing you can do about it. 
-
-"How does it feel to be mated like an animal, [bessPCSexName]?" [Bess.name] teases you, pulling backwards and watching you spring back against [bess.herHips] like you're on a fleshy bungee cord.  You are literally kept captive by [bess.hisHer] cock! 
-
-You moan in approval as you press your [pc.assLight] needily against [bess.hisHer] hips. [Bess.name] tells you that you're not going <i>anywhere</i> until [bess.heShe]'s finished mating with you; a promise that makes you shiver with barely concealed delight. 
-}
-
-Now that [bess.name] {bessIsSub: is knotted/Else: has throughly knotted} you, [bess.heShe] resumes thoroughly fucking your {sloppy snatch/ass}. You groan in delight as [bess.hisHer] knot pulses and tugs inside of [bess.you]. Knotted cocks are the <i>best</i>!
-
-It's not long before both [bess.name] and your movements become hot and feverish. Both of you are slaves to the mind blowing pleasure. Heat erupts from waves between your thighs -- a broiling furnace lit by [bess.hisHer] shameless pounding of your {[pc.pussyLight]/[pc.asshole]}. You lewdly lift your hips {and raise your [pc.tail]}, trembling as [bess.hisHer] [pc.cockHeadLight] rubs and presses against that perfect pleasure point!
-
-In a dizzying explosion of feeling, you shiver and shake, thoroughly creaming yourself around [bess.hisHer] cock. {PCHasPussy: {PCIsASquirter: Squirts of [pc.girlCum] lewdly shoot from your sloppy snatch/ElseNotSquirter: Rivulets of [pc.girlCum] stream down your [pc.thighs]} as}{Else if PC Has A Cock & No Pussy: Thick, gooey ropes of [pc.cumNoun] shoot from your [pc.cocksLight] and coat your [pc.belly] as you/Else Neuter: You} tightly clench [bess.hisHer] [bess.cockLight]. 
-
-	{if bessIsSub:
-With [bess.hisHer] knot lodged inside of you, you {if legs: hook your leg over [bess.hisHer] cock and} turn around. You then press your [pc.assLight] against [bess.hisHers], treating [Bess.name] like a  {if bess.hasCock = fox: fox}{else if doggy cock: bitch}{else: animal} in heat.
-
-[Bess.name]'s face is flushed as [bess.heShe] lets out {Bess has Doggy cock: hound-like cries/Fox Cock: a yipping noise/else: a carnal cry}, [bess.hisHer] flexing shaft betraying just how much [bess.heShe]'s getting off being treated like a {Doggy: canine/Foxy: vulpine/else: breeding} stud. The more spunk [bess.heShe] shoots into you, the more your belly swells, soon sloshing and deliciously full.
-
-"First doggy style and now knotting me from behind. Perhaps you belong in {fox: the wild}{else: a kennel} if you love using that {doggy: doggie/else: knotted} dick so much--!/}\</i> You tease [Bess.name] as you tug away from [bess.himHer], forcing [bess.himHer] to follow you and show just how much [bess.heShe] is your little breeding bitch right now. [Bess.HisHer] face burns with embarrassment and arousal, as she is unable to remove [bess.hisHer] swollen knot.
-
-For a full half hour [bess.hisHer] [bess.hisHer] hot, sticky cum pours inside of your {hungry uterus/naughty ass}. Finally, [bess.hisHer] knot deflates and [bess.heShe] pulls free with shaky legs. As soon as [bess.heShe] does, a good deal of [bess.hisHer] sticky spunk gushes out, though far more stays packed inside of your {sex/rump}.
-}
-
-if (bess IsNotSub)
-{
-With [bess.hisHer] knot lodged inside of you, [Bess.name] hooks [bess.hisHer] leg over [bess.hisHer] cock and turns around. Suddenly [bess.heShe]'s pressing [bess.hisHer] [bess.assLight] against yours, treating you just like a {if bess.hasCock = fox:"fox}{else if doggy cock: bitch}{else: animal} in heat.
-
-Your face is flushed as you let out {Bess has Doggy cock: hound-like cries/Fox Cock: a yipping noise/else: a carnal cry}, your constricting shaft betraying just how much you’re getting off being treated like a {Doggy: canine/Foxy: vulpine/else: breeding} slut. The more spunk [bess.heShe] shoots into you, the more your belly swells, soon sloshing and deliciously full.
-
-"{Foxy: Mmm, you sound like you're enjoying this. Perhaps you're just a vixen slut deep down, [bessPCSexName]?/Others: First doggy style and now being knotted from behind. Perhaps you belong in a kennel if you love taking {doggy: doggie/else: knotted} dick so much--!" [Bess.name] teases you. [Bess.HeShe then tugs away from you; forcing you to follow [bess.himHer] and showing just how much you are [bess.hisHer] little {Fox: foxy} bitch right now. Your face burns with embarrassment and arousal -- you really are completely stuck on [bess.hisHer] swollen knot!
-
-Every time you think the pressure is too much and is going to force [bess.hisHer] swollen [bess.cockNounSimple] out, your insides give out and swell that much more, causing you to let out a guttural moan. For a full half hour your vulnerable {uterus/backside} is abused, [bess.hisHer] hot, sticky cum pouring inside of you. 
-
-At long last,, [bess.name]'s knot deflates and [bess.heShe] pulls free of your violated hole with a massive grin on [bess.hisHer] face. When [bess.heShe] does, a good deal of [bess.hisHer] sticky spunk gushes out of you all at once. Far more stays packed inside of your {sex/rump}.
-}
-}
-
-{else if bess has a goo cock (And no knot):
-
-It's not long before both [bess.name] and your movements become hot and feverish. Both of you are slaves to the mind blowing pleasure. Heat erupts from waves between your thighs -- a broiling furnace lit by [bess.hisHer] shameless pounding of your {[pc.pussyLight]/[pc.asshole]}. You lewdly lift your hips {and raise your [pc.tail]}, trembling as [bess.hisHer] [pc.cockHeadLight] rubs and presses against that perfect pleasure point!
-
-if (vaginalsex)
-{
-As your [pc.girlcum] gushes all over [bess.hisHer] gelatinous cock, you realise all too late that it is feeding off your liquids. Suddenly it is filling every inch your pussy, massaging your insides and forcibly coaxing you to cream even harder. As your hot love juices spill out against your will, it expands until it finally hits critical mass.
-}
-
-{if (analsex)
-As you cum [bess.hisHer] gelatinous member begins massaging every inch and crevasse of your back door, as if trying to coax something out of you. All too late do you realise it is trying to milk you for {low/no wetness: liquids that simply aren't there, eager to feed off fem juices. Unable to find any/else: anal juices. Finding them in abundance}, [bess.hisHer] jelly cock seems to become more aggressive - {PC has cock: milking your prostate/else: massaging your innards} and making your orgasm even more intense.
-}
-
-All of a sudden you can feel bits of [bess.hisHer] goo-cock breaking off, sliding up and into {Vaginal: your unprotected uterus. Before you know it they’re swimming about inside your womb, making themselves at home/Anal: the deepest parts of your gut, making themselves at home}. Not content with the {Low/No Wetness: lack of} liquids they are getting, they coax your insides - releasing aphrodisiacs directly into your {Vaginal: snatch/Anal: back channel}.
-
-Your loins feel as if they are going into overdrive - you rub your [pc.thighsNoun] together {Vaginal: as you gush even more of your [pc.girlcumLight] all over/Anal: as your ass clenches around} the mini slimes. Drool comes from the side of your mouth as you let out a delirious noise of ecstasy, your mind and body pumped full of euphoric drugs.  The slimes suddenly begin to expand dramatically in size, and you along with them, as they try every way they can to make you feed them {Low/No Wetness: your non-existent/Else: more of} juices.
-
-Eventually [Bess.name] pulls out, {bessIsSub: your sub} giving a naughty grin at the fact you are now a bloated, dribbling mess. None of [bess.hisHer] slimey "cum" escapes your {lower lips/asshole} - it continues to tease your {womb and pussy/nether hole}, forcing you to orgasm against your will over and over again. Soon you are bloated like you are going to give birth to a toddler, moaning as you rub your slime filled belly.
-
-What [Bess.name] says next does fill you with some concern, even as you writhe in pleasure on the ground. "... Now how to get them out of there?" The synthetic seems to have no idea how to remove the clearly sentient slime from your {womb/backside}, where they are suckling your {juices/insides} like an infant feeding off their mother. Your panic, however, is short lived. "... Oh! Just found the recall switch."
-
-[Bess.name] presses a button on [bess.hisHer] side. You part your [pc.thighsLight], suddenly feeling as if you are giving birth to a fully grown galotian. The gooey entities merge together and stretch your {vaginal/anal} passage wide open - massaging it as they pass all the way down. Instead of pain, you cry out in rapture, {Vaginal: splattering your [pc.girlcum] all over your slimey baby as it/Anal: cumming explosively as your slimey baby} travels down and out your love canal. As you writhe on the ground, your {[pc.pussyNoun]/[pc.assholeNoun]} spasming and convulsing, it plops out of you and onto the ground in a big jelly pile. 
-
-Once it is free from your {womb/rump} it begins to slowly shrink down. It sloshes across the ground towards [Bess.name], where [bess.heShe] places it back on the containing ring above [bess.hisHer] mound. It slides back into shape once again - almost as if nothing had even happened.
-}
-{else if bess has a plant cock (And No Knot):
-
-It's not long before both [bess.name] and your movements become hot and feverish. Both of you are slaves to the mind blowing pleasure. Heat erupts from waves between your thighs -- a broiling furnace lit by [bess.hisHer] shameless pounding of your {[pc.pussyLight]/[pc.asshole]}. You lewdly lift your hips {and raise your [pc.tail]}, trembling as [bess.hisHer] [pc.cockHeadLight] rubs and presses against that perfect pleasure point!
-
-[bess.HisHer] ever-growing beanstalk has been steadily growing wetter {VaginalSex: the more you’ve watered it with your gushing girl cum/AnalSex: from being in your dark wet ass}, causing you to get even hotter in turn. Now its head begins to sprout inside of your {pussy/ass} causing you to gasp, the petals of [bess.hisHer] flowering bulbous head caressing your inner walls and causing your [pc.thighs] to quiver spastically with pleasure. {VaginalSex: Your naughty juices drench the blossoming flower as it tickles your deepest depths, sucking up your life-giving liquids.}
-
-Suddenly thick gooey sap is spurting deep inside you and thoroughly basting your {cervix/bowels}. The base of [bess.hisHer] organic tendril expands so not a drop of [bess.hisHer] sticky seed escapes you, spurting [bess.hisHer] sappy amber juices inside of you. It’s not long before [bess.hisHer] warm organic liquid is filling up your {hungry and fertile womb/dirty ass} in an attempt to pollinate you and get you pregnant.
-
-Tiny tendrils reach up and massage your {[pc.clit]/ass} causing you to moan, {VaginalSex: milking you for more fertilizing girl cum as you spurt uncontrollably all over [bess.hisHer] ever-swelling cock}. You’ve never felt so full in all your life!  [bess.HisHer] inner shaft grows tendrils, massaging every nook and cranny of your already stretched canal causing you to cum again and again.
-
-Eventually [Bess.name] pulls [bess.hisHer] blossoming plant phallus out of your well-packed {pussy/posterior}, but not a single drip comes out of you. Your gaping hole has been coated with a layer of thick and sticky amber sap, trapping [bess.hisHer] liquid pollen inside your {love canal and fertile womb/inflated rump}. How long are you going to have to stay like this--?
-
-"Don’t worry, [bessPCSexName], I’ll fix it for you." [Bess.name] purrs seductively as [bess.heShe] spreads your [pc.legsNoun] and sticks [bess.hisHer] finger forcibly into the semi-permeable sap. [Bess.HeShe] scoops it out as you rub your incredibly bloated belly. Suddenly you feel like your water breaks and it all comes gushing out at once - you let out a sweet cry as a liquid amber river explodes from your {netherlips/well-stretched anus} and all over the floor.
-
-Your face is furiously heated as [Bess.name] licks up the remainder of the sap from your {snatch/dirty ass}, letting [bess.hisHer] tongue roam around inside of you until you’re fully clean. {PC is not pregnant: I can’t do anything about the sticky stuff {Vaginal: in your womb/Anal: further in}, hopefully it’s not a problem...?" 
-}
-
-{else (Bess has No Knot, No Plant Cock, and No Goo Cock:
-
-It's not long before both [bess.name] and your movements become hot and feverish. Both of you are slaves to the mind blowing pleasure. Heat erupts from waves between your thighs -- a broiling furnace lit by [bess.hisHer] shameless pounding of your {[pc.pussyLight]/[pc.asshole]}. You lewdly lift your hips {and raise your [pc.tail]}, trembling as [bess.hisHer] [pc.cockHeadLight] rubs and presses against that perfect pleasure point!
-
-In a dizzying explosion of feeling, you shiver and shake, thoroughly creaming yourself around [bess.hisHer] cock. [PCHasPussy: {PCIsASquirter: Squirts of [pc.girlCum] lewdly shoot from your sloppy snatch/Else: Rivulets of [pc.girlCum] stream down your [pc.thighs]} as/Else If PC has cock: Thick, gooey ropes of [pc.cumNoun] shoot from your [pc.cocksLight] and coat your [pc.belly] as you/Else Neuter: You} tightly clench [bess.hisHer] [bess.cockLight]. 
-
-Wringing [bess.hisHer] [bess.cockNoun] pushes [bess.himHer] over the edge, and [bess.heShe] lets out a {ben: sharp/Bess: sweet} cry. [Bess.HeShe] grabs your hips firmly in hand and gives one last, passionate thrust. Inside of you, you feel hot, sticky ropes of [bess.hisHer] spunk splashing against your inner walls and drooling deep into your {cunt/butt}. You moan in delight as [bess.name]'s thick jism bubbles and pours {vagSex: into [bess.hisHer] eagerly awaiting womb/else: deep inside of you}. 
+	output("\n\nWith the simplest press forward, your [pc.cockHead "+ cockIdx +"] parts [bess.hisHer] "+ bTargetVag ? "silky lower lips" : "star-shaped pucker" +". You groan as you sink your engorged length deep inside [bess.hisHer] synthetic hole - it’s so tight and slick! Even a virgin "+ bTargetVag ? "pussy" : "ass" +" wouldn’t be this wonderously tight- it’s a good thing");
+	if (flags["BESS_CUMDUMP"] == 1) output(" all that communal cum is");
+	else output(" her synthetic juices are");
+	output(" lubing it up!");
+	pc.cockChange(true, true, false);
 	
-{bess has a pussy, PC has a cock, and Bess's tailcunt is set to active:
-As you’re being filled with [bess.hisHer] synthetic spunk, your [pc.cockNoun] in turn spurts wildly into [bess.hisHer] detached pussy. It sucks on your length with unusual force, sucking and slurping up your [pc.cum]. It's like you're being fucked while attached to a milker!
-}
+	output("\n\nAs soon as your [pc.cock "+ cockIdx +"] is completely sheathed inside of [bess.name], you begin to lustily grind your hips against [bess.hisHer] [bess.ass]. [Bess.HeShe] lets out a low, sensuous moan, answering your impassioned thrusts with [bess.hisHer] own bucking hips. You can feel [bess.hisHer] silky insides rippling along your length");
+	if (pc.cocks.length > 1) output("s");
+	output(" with every movement, [bess.hisHer] synthetic "+ bTargetVag ? "pussy" : "sphincter" +" actively milking your erection for all it’s worth.");
 
-As you recover, you can see [Bess.name] is stroking [bess.hisHer] flaccid phallus, though you can see it slowly starting to stir again. "{BessIsEqual: ... Mmmm, [bNamePC], I loved fucking your/BessIsDom: Good job, [bessPCSexName], I thoroughly enjoyed fucking your/BessIsSub: Um, [bessPCSexName], I hope you enjoyed me fucking your} {[pc.pussy]/[pc.ass]}." {You nod, thoroughly satisfied with [bess.hisHer] efforts.}
-}
-
-Eaten Out 
-
-// PC Must have a pussy
-// Requirements- pc.hasPussy = true for Pussy version.
-
-if (bessIsEqual)
-{
-You're really horny, so you ask [Bess.name] if they will eat out your pussy. 
-
-
-[Bess.name]smiles at your request, clearly happy to oblige. "Eat out your pussy? You make it sound like a </i>chore<i>," [bess.heShe] all but purrs.
-[bess.HeShe] gets down on all fours as you {strip off your [pc.gear] and}{Front Genitals: lie down on your back, spreading your legs wide open.}{else: get down on all fours, presenting your ass to [bess.himHer].} As soon as you do [bess.heShe] moves forward, hungry for your [pc.girlCumFlav] taste.
-}
-else if (bessIsDom)
-{
-[Bess.name] purposefully strides up to you and you can feel your sub-senses tingling. You just <i>know</i> that [bess.heShe]'s going to order you to do something, but what? Your mouth goes dry as [bess.heShe] approaches, your collar secured in her right hand. There's a leash in [bess.hisHer] left, though no explanation is given. 
-
-Instead, your favorite raiment is secured tightly around your neck and the leash clipped to the D-ring at your throat.  One sharp tug is given and you instantly drop to your knees, thoroughly eager to do whatever [bess.heShe] asks of you.
-
-"Ass in the air and legs spread, [bessPCSexName] - NOW!" [Bess.name] demands of you, and you instantly comply. You raise your ass high up in the air like a bitch in heat, your [pc.genitals] lewdly exposed.
-
-"{if pc has two legs: "All fours"}{else:On the ground, ass in the air}, [bessPCSexName] - now!" [Bess.name] barks instructions at you like a whip cracking through the air. You do as instructed, getting down on the ground like a dog with your [pc.ass] {pc has a tail: and [pc.tail]} raised in the air. As soon as you do, [bess.heShe] walks around you and momentarily out of sight.
-
-if (pc is wearing clothes)
-{
-Without warning, you feel a pair of smooth hands sliding up your body - pulling off your [pc.gear] and tossing it aside. "... These won't do, at least for what I have in mind for you."
-
-Your back shivers with delicious anticipation; what is [bess.heShe] planning? You can't wait to find out!
-}
-
-You then feel a hand stroking the back of your neck, tickling your [pc.skin]. You flush, knowing that [bess.heShe] is rewarding you for being a good {girl/boy}. It fills you with a sense of pride, your chest puffing out as [bess.heShe] pats you.
-
-{if pc has front genitals:
-
-"Roll over and on your back, [bessPCSexName]!" Your second set of instructions comes like a whip-crack, and you immediately comply. {Rolling on to your back like an animal, [bess.sheHe] then forcibly {spreads your legs apart.} 
-
-You furiously flush as your shamefully dewy mound is exposed. [Bess.HeShe] clearly notices too, a glimmer of amusement in [bess.hisHer] sharp [bess.eyeColor] eyes. You try not to wiggle with pleasure under [bess.hisHer] gaze, feeling it penetrate your very soul.
-
-"I'm hungry for the taste of your cunt, and I'm going to have my fill of it." [Bess.name] huskily purrs, getting down on all fours {between your spread thighs}. [Bess.HeShe] keeps a tight grip on your collar as [bess.heShe] slides up to your naughty puss, a ravenous look in [bess.hisHer] eyes.
+	//{PC has a knot && BessIsDom:
+	if (pc.hasKnot(cockIdx) && bessIsDom())
+	{
+		output("\n\nThe longer you fuck [bess.himHer], the more your [pc.knot "+ cockIdx +"] begins to swell. You instinctively go to pull out, fearing getting stuck in [bess.himHer], but as you do so a sharp tug at your leather leash keeps you firmly in place.");
+		
+		output("\n\n<i>“Did I say you could go anywhere, [bessPCSexName]?”</i> [Bess.name] asks, though the question is rhetorical. <i>“You are going to knot me - and that’s an </i>order<i>!”</i>");
+		
+		output("\n\nBlushing furiously, you keep your hips firmly pressed against [bess.name]’s buttocks as instructed, your [pc.knot "+ cockIdx +"] swelling and locking inside of [bess.hisHer] "+ bTargetVag ? "snatch" : "ass" +". As soon as it’s filled [bess.himHer] up, [bess.heShe] loosens [bess.hisHer] grip on your collar. With your cock knotted inside of [bess.himHer], [bess.heShe] doesn’t need it anymore! [bess.HeShe] pulls [bess.hisHer] ass away from you, and you’re compelled to follow, literally lead by your dick!");
+		
+		output("\n\n<i>“Goooood [pc.boyGirl]. Just remember who is in charge, and maybe I’ll let you get off inside of me,”</i> [Bess.name] teases you, forcibly slapping [bess.hisHer] hips back against your own. You bite your lip HARD and try not to cum at the tugging and squeezing sensation on your knotted [pc.cockNoun "+ cockIdx +"], all the while feeling your pre-cum uncontrollably dribble inside [bess.hisHer] silky depths.");
 	}
+
+	if (pc.hasCockTail())
+	{
+		if (bessIsDom())
+		{
+			output("\n\n<i>“Your [pc.tailCockNoun]. Bring it to my mouth NOW, [bessPCSexName].”</i>");
+			
+			output("\n\nYou blush and obediently obey, bringing it up to [bess.hisHer] mouth. Seconds later, [bess.heShe]’s taking your [pc.tailcock] between [bess.hisHer] [bess.lips].");
+			if (pc.hasKnot(cockIdx)) output(" Knotted in place,");
+			else output(" With one hand tightly on your leash,");
+			output(" [Bess.name] fucks and sucks you off at the same time.");
+		}
+		else
+		{
+			output("\n\nActing on impure instinct, your [pc.tailCock] begins to move on its own. It slides up [Bess.name]’s chest. It catches [bess.himHer] off guard when you slip it inside [bess.hisHer] half open-mouth, [bess.hisHer] eyes shooting wide in sudden shock.");
+			
+			output("\n\n<i>“Mffh-! Mffph... mfflrrrgh!”</i> You silence [bess.name]’s complaint with a mouth full of [pc.tailcock], stuffing it deep into [bess.hisHer] gullet. [Bess.HisHer] muffled protests turn into moans as you bury it deep inside of her warm, wet gullet, taking advantage of [bess.hisHer] complete lack of a gag reflex.");
+		}
+	}
+
+	if (bess.hasCockTail())
+	{
+		output("\n\nYou feel a sudden sliding around your [pc.hip]. Suddenly something is pushing pointedly against your pucker - it’s [bess.name]’s JoyCord! Apparently unsatisfied with such a one-sided fucking, [bess.heShe] mischievously plunges [bess.hisHer] prehensile phallus into your [pc.ass], sliding it up to sweetly meet and pulse against your prostate. You tremble with delight as you’re filled from behind, relishing in her rubbing deep inside of your rump.");
+	}
+
+	output("\n\nAs you hearily fuck [bess.name] from behind, [bess.heShe] reaches up and caresses [bess.hisHer] [bess.chest]. A sinful little moan escapes [bess.hisHer] lips as [bess.heShe] toys with [bess.hisHer] nipples. As [bess.heShe] pinches and teases them, [bess.hisHer] insides spasm, squeezing and wringing your thrusting length.");
+
+	if (!pc.hasCockTail())
+	{
+		output("\n\n<i>“I can feel you bulging inside of my "+ bTargetVag ? "pussy" : "ass" + "!”</i> [Bess.name] moans, bucking back needily against your [bess.base]. <i>“");
+		if (bessIsSub()) output("Please fill");
+		else output("Fill your");
+		if (bess.isPregnant()) output(" pregnant mechanical slut");
+		else output(" my slutty hole");
+		output(" with your cum, [bessPCSexName]!”</i> [Bess.heShe] cries, pushing [bess.himHerself] right down to your base. There, [bess.heShe] squeezes down on you with a vice-like grip; your [pc.cockHeads] pressed right against "+ bTargetVag ? "[bess.hisHer] synthetic cervix" : "the deepest parts of [bess.hisHer] bowels" + ".");
+	}
+
+	output("\n\nYou let out a long groan as you reach that glorious peak. Instinctively, you press your hips as hard as you can against [bess.hisHer] butt. Your [pc.cock "+ cockIdx +"] twitches as you");
+	if (pc.cumQ() <= 100) output(" splutter tiny drips of");
+	else if (pc.cumQ() <= 500) output(" spurt your");
+	else output(" unload your");
+	output(" [pc.cum] deep inside of [bess.hisHer] twitching, cock-filled "+ bTargetVag ? "cunny" : "butt" +".");
+	if (pc.cumQ() > 100 && bTargetVag) output(" It rushes up and fills her mechanical womb, your seed stirring around inside of [bess.her] [bess.belly].");
+	output(" Your twitching [pc.cockNounSimple "+ cockIdx +"] pushes [bess.himHer] over the edge, and [bess.heShe] utterly creams [bess.himHer]self around your pulsing shaft. Both of you dissolve into pleasure, trembling against each other’s bodies." bTargetVag ? " [bess.HisHer] leaking pussy-juice mixes with your [pc.cumNoun] and drools down [bess.hisHer] trembling thighs." : "");
+
+	if (pc.hasKnot(cockIdx))
+	{
+		output("\n\nKnotted as you are against [bess.name], you both spoon and cum for a good half hour. Tightly locked against each other, you continue to shoot and fill [bess.hisHer] "+ bTargetVag ? "pussy" : "rump" +" with your [pc.cum]. Every time you finally breathe and think you’re finished, [bess.name] squeezes [bess.hisHer] inner muscles, and you’re off again - shooting a fresh wad of cream directly into [bess.hisHer] "+ bTargetVag ? "synthetic cunt" : "tight butt" + ".");
+	}
+
+	if (pc.cumQ() >= 5000)
+	{
+		output("\n\n");
+		if (pc.hasKnot(cockIdx)) output("During your knotting, you");
+		else output("As you climax, you");
+		output(" shoot so much [pc.cumNoun] inside of [bess.himHer] that [bess.hisHer] [bess.belly] swells");
+		if (bess.bellRating() > 0) output(" even more");
+		output(" until it is utterly filled.");
+		if (bess.biggestTitSize() > 0) output(" [bess.HisHer] [bess.breasts] also begin to bloat with your seed. [Bess.HisHer] hips and ass soon follow.");
+		output(" By the time your orgasm winds down, [bess.name] is completely transformed by the mammoth amounts of spunk you have dumped inside of [bess.himHer].");
+		if (bess.biggestTitSize() > 0) output(" The slightest movement of [bess.hisHer] chest causes [bess.hisHer] massive mammaries to slosh about. Your [pc.cumColor] [pc.cumNoun] is even leaking out from [bess.hisHer] distended nipples!");
+
+		output("\n\n<i>“... Mmm, I feel so full. I can’t process all of this into MeldMilk though; I’m going to have to dump some of your excess [pc.cumNoun].”</i> [bess.name] groans, spreading [bess.hisHer] ridiculously large thighs.");
+		
+		output("\n\nReaching down, [bess.name] parts [bess.hisHer] "+ bTargetVag ? "netherlips" : "partly gaping pucker" +". Squatting there awkwardly, [bess.heShe] arches [bess.hisHer] back. Suddenly a geyser of your [pc.cumColor] hot [pc.cumNoun] gushes out of [bess.hisHer] spread hole, streaming and splashing all over the ship’s floor! As [bess.heShe] does, [bess.name] lets out a sweet cry - the sensation of your hot jism streaming out of [bess.hisHer] "+ bTargetVag ? "pussy" : "ass" +" is clearly getting [bess.himHer] off. [bess.HisHer] eyes roll back into [bess.hisHer] head as your spunk spills out of [bess.hisHer] squirting hole, [bess.hisHer] ridiculously swollen belly slowly deflates until [bess.hisHer] ‘excess stock’ is fully depleted.");
+		
+		output("\n\nOnce [bess.heShe] is done, [bess.name] has a truly dreamy expression on [bess.hisHer] face. It takes [bess.himHer] a while to regain the capacity to speak.");
+		
+		output("\n\n<i>“... T-that was wonderful,”</i> [bess.name] spacily murmurs, rubbing between [bess.hisHer] thighs.");
+		if (bessIsEqual()) output(" <i>“Anytime you’re feeling pent up, come and find me - okay?”</i> [bess.heShe] breathily requests.");
+		else if (bessIsDom()) output(" <i>“Good job, [bessPCSexName].”</i>");
+		else output(" <i>“I-I hope you enjoyed yourself, [bessPCSexName].”</i>");
+	}
+	else
+	{
+		output("\n\nAfterwards [bess.name] is glowing with sheer satisfaction. There’s a totally blissed-out look in [bess.hisHer] [bess.eyeColor] eyes. When [bess.heShe] pulls [bess.himHer]self off your cock,");
+		if (pc.cumQ() <= 100) output(" a tiny dribble");
+		else if (pc.cumQ() <= 500) output("a thin stream");
+		else output(" a gooey gush");
+		output(" of your [pc.cum] slides down [bess.hisHer] inner thighs.");
+		
+		if (bessIsEqual()) output("\n\n<i>“Mmm, that was wonderful. I love feeling your [pc.cumNoun] deep inside of me,</i> the insatiable synthetic dreamily tells you, a spaced out look in [bess.hisHer] eyes.");
+		else if (bessIsDom())
+		{
+			output("\n\n<i>“You’re not just planning to leave me marked like this, are you, [bessPCSexName]?”</i> [Bess.name] commands you out of the blue. [Bess.HeShe] then turns and pushes [bess.hisHer] [pc.cumNoun] splatted "+ bTargetVag ? "snatch" : "buttocks" +" right in your face. <i>“Now, lick it off.”</i>");
+			
+			output("\n\n<i>“... But, [bessSexName], that’s my... that’s my cum!”</i> You meekly protest.");
+			
+			output("\n\n<i>“Lick it up, that’s an order! You covered me in it, so it’s your job to clean it off... or would you have me do it myself?”</i> Your silvery "+ bess.mf("Dom", "Domme") +" levels a hard stare at you.");
+			
+			output("\n\nYou loudly gulp. There’s really no talking your way out of it. With flushing cheeks, you stretch out your tongue, seeking out [bess.hisHer] slickened nethers. It’s not long before you can taste your own [pc.cumFlav] rolling on your tongue. It’s so warm and [pc.cumVisc]. You lewdly lap up your own seed from [bess.hisHer] "+ bTargetVag ? "pussy" : "ass" +", a delicious little shiver shooting up your spine.");
+			
+			output("\n\nOnce you’ve finished cleaning off [bess.name]’s silvery skin of your [pc.cumNoun], you pull back, letting out a hot sigh. But for some reason, your [bess.master] doesn’t look pleased - have you done something wrong?");
+			
+			output("\n\n<i>“That’s not </i>all<i> of it, [bessPCSexName]. Finish the job,”</i> [bess.name] chastises you.");
+			
+			output("\n\nNot all of it? What, does [bess.heShe] mean... lick your [pc.cum] out from inside of [bess.himHer] as well?");
+			
+			output("\n\nBurning with embarrassment, you slide your [pc.tongue] inside [bess.hisHer] cum-lined hole");
+			if (!bTargetVag) output(" - at least [bess.heShe]’s an android, so [bess.heShe] doesn’t use it for </i>that<i>");
+			output(". You lap and dart inside of [bess.himHer], scooping up the last of your semen with great effort. Once you’re done, you’re sure it’s as clean as can be.");
+			
+			output("\n\n<i>“Now, swallow.”</i>");
+			
+			output("\n\nYou obediently gulp down your own [pc.cumFlav] seed, feeling it dribble down into your [pc.belly]. At the same time you are filled with a fluttering, pleasant sensation. You did good, right?");
+			
+			output("\n\nYour unspoken question is answered by a kiss on your neck.  After a few more kisses, [bess.name] removes your collar, and your worn out legs tremble. Right now, you’re the happiest sub in the world!");
+		}
+		else
+		{
+			output("\n\n<i>“Did... did I do good, [bessPCSexName]?”</i> [bess.name] asks in a slurred voice. [Bess.HeShe] couldn’t look any more spaced out if [bess.heShe] tried.");
+			
+			output("\n\nYou stroke [bess.hisHer] head and tell [bess.hisHer] that [bess.heShe] did very well. [bess.HeShe] gives a light-headed smile and purrs a little, rubbing [bess.hisHer] cheek into your cupped hand.");
+			
+			output("\n\nAfterwards, you engage in some aftercare, before taking off [bess.name]’s collar and leaving [bess.himHer] to rest.");
+		}
+	}
+
+	processTime(45+rand(15));
+
+	for (var i:int = 0; i < 5; i++)
+	{
+		if (bTargetVag) bess.loadInCunt(0, pc);
+		else bess.loadInAss(pc);
+		pc.orgasm();
+	}
+
+	if (flags["BESS_FUCKED"] == undefined) flags["BESS_FUCKED"] = 0;
+	flags["BESS_FUCKED"]++;
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
 
-else //if (bessIsSub)
+public function bessGetDoggy():void
 {
-Your pussy needs eating out right now, and you're sure as hell not going to do it yourself. Where's that submissive sex-bot of yours? You seek {bess.himHer} out.
+	// Cunt that fits Saurian-type cocks, ass doesn't fit
+	if (pc.hasVagina() && bess.cocks[0].cType == GLOBAL.TYPE_SAURIAN && pc.cuntThatFits(1360) >= 0 && pc.analCapacity() < 1360)
+	{
+		bessGetDoggySelected(true);
+		return;
+	}
 
-"Over here, [bessSexName]!" You all but whistle for [bess.himHer]. [bess.HeShe] immediately rushes to your side and you place [bess.hisHer] collar on, clamping it firmly around [bess.hisHer] neck. After you're sure it is on nice and tight, you attach a dog lead to the D-ring at her neck, then give it a sharp tug. [Bess.HeShe] yelps and gets on all fours, just like a good bitch.
+	// Cunt doesn't fit Saurian-type cocks, or no cunt
+	if ((pc.hasVagina() && bess.cocks[0].cType == GLOBAL.TYPE_SAURIAN && pc.cuntThatFits(1360) == -1) || !pc.hasVagina())
+	{
+		bessGetDoggySelected(false);
+		return;
+	}
 
-"Good {boy/girl}! You, [bessSexName], are going to eat out my cunt with </i>relish<i>. I won't tolerate any sloppiness... besides the obvious, fun kind of course. Understand?" You deliver a sharp slap to {bess.hisHer] cheek, watching the psychological blow strike far harder than the physical one.
+	clearOutput();
+	bessHeader();
 
-[Bess.name] flushes with shame and pleasure, not to mention the fresh blow. "O-of course, [bessPCSexName]!" [bess.HeShe] compliantly sits there as you {PC has clothes: strip off your [pc.gear] and}{Front Genitals: sit down on a chair, spreading your legs wide open./else: get down on all fours, presenting your ass to [bess.himHer].} With a pointed pull of the collar, you bring [bess.hisHer] mouth closer to your [pc.pussyLight]}. 
+	output("How does [bess.name] take you?");
+
+	clearMenu();
+	addButton(0, "Vaginally", bessGetDoggySelected, true, "Vaginally", "[Bess.name] fucks your [pc.pussy]!");
+	addButton(1, "Anally", bessGetDoggySelected, false, "Anally", "[Bess.name] fucks your [pc.ass]!")
 }
 
-[Bess.name] brings [bess.hisHer] lips up to your pussy and can feel her hot breath washing over your sensitive flesh, turning into electricity and travelling up your spine. It's not long before those perfect lips are parting and [bess.hisHer] tongue is reaching out to lap at your netherlips.
-
-The cool sensation of [bess.hisHer] saliva rolling off her tongue and onto your sex feels positively divine. You arch your back and push your [pc.pussyColor] mound into the sensation, relishing in every milli-inch it traces around it.
-
-{if bessisDom: "I'm going to stick my tongue inside you now, [bessPCSexName]." [Bess.name] informs you./Else: "Stick your tongue inside, [bessSexName]." You tell [Bess.name].} [bess.HisHer] tongue then parts your now glistening folds and dips slowly inside of you. The sensation of [bess.hisHer] silvery tastebuds licking the inside of your slippery snatch is out of this world.{if pc.frontgenitals = true & pc.legs >= 2: "You sigh with pleasure, subconsciously hook your legs over [bess.hisHer] shoulders and pulling [bess.hisHer] closer. {else: You let out a low moan, your hips wiggling as [bess.hisHer] tongue delves and explores your insides.}
-
-As [bess.hisHer] tongue continues to explore your depths, [bess.heShe] lets out a low moan, clearly enjoying probing your pussy as much as you enjoy being probed. Your warm, sticky girl juices drool out and all over [bess.hisHer] lapping tongue. [Bess.name] eagerly drinks this up and groans happily into your muff; to [bess.hisHer] it tastes like pure ambrosia.
-
-Suddenly [bess.heShe]'s pulling out and you let out a disappointed cry, only to feel one of [bess.hisHer] slender fingers wiggling inside your [pc.pussyLight]. Your note of disapproval quickly becomes one of delight as [bess.hisHer] probing digit wiggles up and presses against vag: your sensitive g-spot.  You utterly swim in pleasure as a hot feeling pools in your lower abdomen, coiling inside of you. You know it's not going to be long at all before you are utterly creaming yourself {if (pc.hasCock): and shooting your load all over the place.
-
-Teasing your sweet spot in delicious, pulsing movements, [Bess.name] brings [bess.hisHer] mouth down and laps at your {if vag: [pc.clit]/else outer lips}. The skilled synthetic teases {one clit: it/else: them} with [bess.hisHer] tongue, masterfully pleasuring your [pc.pussyNoun] both inside and out.
-
-Your legs begin to spasm uncontrollably as [bess.hisHer] twin assault pushes you over the edge. Suddenly your hips are shaking spastically as you cry out in delirious, carnal ecstasy. Your [pc.pussyLight] messily {squirter: squirts/else: dribbles: your [pc.girlcum]} all over [bess.hisHer] tongue, which [bess.heShe] laps up with relish. {PC has cock: At the same time, you shoot your [pc.cum] all over your [pc.belly].
-
-Once your orgasm subsides, [Bess.name] gives your sticky lips a few more affectionate licks. [bess.HeShe] then pulls back and looks at you with bright [bess.eyeColor] eyes. "{if bessIsEqual: Mmm; you're so tasty, [bessPCSexName]. I love eating you out.}{else if bessIsDom) "Good job, [bessPCSexName]. I do so love eating out your delicious hole."}{else: I hope you enjoyed yourself, [bessPCSexName]. Were my efforts were to your satisfaction?}"
-
-
-Get Breast Fed / Breastfeed
-
-// Bess must have breasts
-// When Bess is undergoing breast size reduction in the follower menu, the PC can choose [Breast Drink] and watch this sex scene.  The normal sex scene and the one for breast reduction are essentially the same, except for one or two slight changes near the end and the fact Bess's breast size goes down.
-// If accessing this sex scene from the sex menu, PC must have turned Bess's lactation on. For watching this scene during breast reduction, lactation being on is not a requirement.
-
-if (bessIsDom)
+public function bessGetDoggySelected(bTargetVag:Boolean):void
 {
-"Time to suck my [bess.nipples], [bessPCSexName]. I don't want all this milk going to waste." [Bess.name] orders you in a soothing, yet stern voice. [Bess.HeShe] tells you to take off your [pc.gear], and you immediately comply. 
+	clearOutput();
+	bessHeader();
+
+	var vagIdx:int = -1;
+	if (bTargetVag) vagIdx = pc.biggestVaginaIndex();
+
+	if (bessIsEqual())
+	{
+		output("Reaching down between your thighs you stroke yourself softly - you’re positively aching to be fucked right now. You tell [Bess.name] you’d love nothing more than for [bess.himHer] to screw you from behind.");
+
+		if (!pc.isNude())
+		{
+			output("\n\n<i>“Well now, I can’t do that while you’ve still got your clothes on, [bessPCSexName], can I?”</i> [Bess.name]’s [bess.eyeColor] eyes glimmer mischieviously while [bess.hisHer] voice is positively coy.");
+
+			output("\n\nEager to get the release you need, you quickly strip off your [pc.gear] and ready yourself for [bess.himHer].");
+		}
+		else output("\n\n<i>“Well now, you’re already naked. You must be really ready to go, [bessPCSexName].”</i> [Bess.name]’s [bess.eyeColor] eyes glimmer mischieviously while [bess.hisHer] voice is positively coy.");
+	
+		output("\n\n[Bess.name] then walks around you and out of sight. Moments later, you feel [bess.hisHer] hands sliding around you and up to your [pc.chest]. [Bess.HeShe] caresses it gently, [bess.hisHer] fingers dancing along your [pc.skinFurScales]. At the same time, you feel [bess.hisHer] breath tickling one of your [pc.ears], and you shiver with delight.");
+		
+		output("\n\n[bess.HisHer] lips caress your one of your ears and then travel down, stopping to suck at the nape of your neck. Suddenly your nipples are being pinched and you give a sharp jump, [bess.hisHer] fingers catching them as if in a trap. You couldn’t move even if you wanted to, you can feel [bess.hisHer] fingertips rolling over your sensitive nubs. You can’t help but lean back into [bess.hisHer] and give a gasping moan of pleasure.");
+
+		if (bTargetVag)
+		{
+			output("\n\nMoments later, [bess.hisHer] fingers slide down and lightly tease your sensitive [pc.pussy]. As [bess.heShe] teases your loins, you eagerly rub against [bess.hisHer] fingers, trying to coax them inside of you for some much needed release!");
+			
+			output("\n\nAt long last, you feel [bess.name]’s fingers slipping up inside of you. They wiggle around inside of your [pc.pussyLight], stirring you up in more ways than one! <i>“... Mmm, your pussy is so wet, [bessPCSexName].”</i>");
+			
+			output("\n\nYou breathily moan in response, rubbing your");
+			if (pc.hasClit()) output(" [pc.clits]");
+			else output(" mound");
+			output(" against [bess.hisHer] hand. There’s a lewd, squelching sound as [bess.heShe] plumbs your pussy with [bess.hisHer] slickened digits. Electrifying pleasure courses from your loins. You arch your back, whimpering and bucking your hips. At this rate, it won’t be long before you’re creaming yourself all over [bess.hisHer] hand!");
+			
+			output("\n\nBefore you reach your peak, however, [bess.name] removes her sticky fingers from your snatch. You let out a cry of protest - only to have your mouth filled with her fingers! A warm, [pc.girlCumFlavor] brushes against your tongue, and you lustily suck at it - licking [bess.hisHer] fingers clean of your own girl juice. The whole thing gets you even wetter, adding to the slickness dribbling from your [pc.pussyLight].");
+			
+			output("\n\n<i>“Mmm, that’s just for starters. How about we go all the way to dessert?”</i> [Bess.name] seductively offers, rubbing your");
+			if (pc.hasClit()) output(" [pc.clits]");
+			else output(" mounds");
+			output(" with [bess.hisHer] fingers. You shiver and arch your back once more, relishing in the pulsing pleasure coursing out from your sex.");
+			
+			output("\n\n<i>“Yes, oh frag yes-!”</i> You flush furiously with how much you’re crying out for a little bit of [bess.hisHer] [bess.cockLight] - or rather a lot of it - filling up your pussy.");
+			
+			output("\n\n<i>“Maybe you should get into position so I can give you your cream filling-?”</i> [Bess.name] suggests and you’re all too quick to comply. You present yourself and stick your dripping wet cunny out, wiggling your butt all the while, enticing [bess.himHer] to screw you absolutely senseless.");
+			if (pc.hasCock()) output(" At the same time [pc.eachCockLight] begins to twitch with anticipation, slapping against your [pc.belly].");
+		}
+		else // analscene
+		{
+			output("\n\nMoments later, [bess.heShe] pulls back [bess.hisHer] hands and you let out a disappointed noise. It doesn’t last long, as you soon feel [bess.hisHer] fingers sliding between your buttocks. Two of [bess.hisHer] digits spread them open as another presses against your [pc.assholeNoun]. It feels surprisingly slick as [bess.heShe] presses it into your pucker.");
+			
+			output("\n\nYou let out a sweet little cry as [bess.name]’s finger wiggles into your bum. Soon it’s roaming and stirring about deep inside of you. Arching your back, you moan out loud, utterly relishing in your [pc.ass] being fingered. Without thinking, you buck back against [bess.hisHer] hand, coaxing it deeper and deeper, unable to get enough!");
+			
+			output("\n\nYou try to stand perfectly still as [bess.heShe] slips another slick finger inside of your back door, stretching you open that much more. You can’t help but shiver as your poor pucker is toyed with from behind, penetrating your forbidden place. You clench around [bess.hisHer] fingers and let out a breathy moan, wondering how long it’ll be before you hit that inevitable peak.");
+			
+			output("\n\nBefore you can, however, [bess.name] removes her sticky fingers from your ass. You let out a cry of protest - only to have them swiftly plunged back inside of you. You let out a delighted moan as they plunge even <i>deeper</i> into your well lubed butt. If this is what [bess.heShe] can do with [bess.hisHer] fingers, what is [bess.hisHer] cock going to feel like-?");
+			
+			output("\n\n<i>“Mmm, that’s just for starters. How about we go all the way to dessert?”</i> [Bess.name] seductively offers, pistoning your ass with [bess.hisHer] fingers as you feel the most delicious sensations running up from your rump.");
+			
+			output("\n\n<i>“Yes, oh frag yes-!”</i> You flush furiously with how much you’re crying out for a little bit of [bess.hisHer] [bess.cockLight] - or rather a lot of it - in your ass.");
+			
+			output("\n\n<i>“Maybe you should get into position so I can give you your cream filling-?”</i> [Bess.name] suggests and you’re all too quick to comply. You present yourself and stick your rump out and wiggle it about, enticing [bess.himHer] to screw you absolutely senseless.");
+			if (pc.hasCock()) output(" At the same time [pc.eachCockLight] begins to twitch with anticipation, slapping against your [pc.belly].");
+		}
+	}
+	else if (bessIsDom())
+	{
+		output("You spot [bess.name] striding up to you, an assertive gleam in [bess.hisHer] eyes. Immediately, your heart skips a beat. Hope wells deep within your heart. [Bess.HeShe] looks like [bess.heShe] wants you for something; could you be so lucky...?");
+		
+		output("\n\n<i>“Stand to attention, [bessPCSexName]!”</i> [bess.Name] demands, one hand on [bess.hisHer] hip. [bess.HisHer] other one is used to deliver a short but memorable slap to your [pc.ass], spurring you to action!");
+		
+		output("\n\nYou obediently jump to attention, a delicious throbbing in your lightly slapped buttock. You’re giddy with anticipation. What does [bess.heShe] have planned for you?");
+		
+		output("\n\n[Bess.name] moves intimately close. You’re so entranced by [bess.hisHer] stern, [bess.eyeColor] eyes that you almost miss [bess.himHer] slipping a leather collar around your neck. You moan with delight as it wraps around your bare [pc.skinFurScalesNoun], your submissive switch now fully ‘on’.");
+		
+		output("\n\nPreparing properly for inspection, you");
+		if (pc.hasLegs()) output(" spread your legs. You then");
+		output(" lock your hands behind your head. With practiced effort, you stand there like a perfect little slave, directing your gaze forward. As you fawningly await [bess.hisHer] commands you feel your loins tingle with anticipation - what sort of orders is [bess.heShe] going to give you today?");
+		
+		output("\n\nYou watch [bess.name] as [bess.heShe] paces around you, shivering as [bess.heShe] trails a finger up your side, [bess.hisHer] sharp eyes seeking even the slightest sign of poor posture. A single bead of sweat travels down your neck - you can feel it stroking every pore as it travels downward.");
+		
+		output("\n\nThe smallest smile passes over [bess.name’s] lips. It seems [bess.heShe] noticed, tracing [bess.hisHer] finger up and collecting the moisture on [bess.hisHer] fingertip. [Bess.HeShe] brings it to [bess.hisHer] mouth, kissing your salty sweatdrop away. Is [bessSexName] pleased with your posture? You’re trying ever so hard!");
+
+		if (!pc.isNude())
+		{
+			output("\n\n<i>“....Good [pc.boyGirl].”</i> [Bess.name] praises you, causing your heart to race. You pleased [bess.hisHer]! <i>“... Now, strip off your clothes.”</i>");
+			
+			output("\n\nWith no idea what [bess.heShe] has planned for you, you slowly begin to remove your [pc.gear]. You can feel [bess.hisHer] eyes on you as you strip, [bess.hisHer] eyes roaming across your naked [pc.skinFurScalesNoun]. Being watched makes you even more worked up");
+			if (pc.hasCock() || pc.hasVagina())
+			{
+				output(" - your");
+				if (pc.hasCock()) output(" [pc.cocks] stiffening");
+				if (pc.hasCock() && pc.hasVagina()) output(" and");
+				if (pc.hasVagina()) output(" your [pc.cunts] deliciously tingling");
+			}
+			output(".");
+			
+			output("\n\nOnce you’re fully undressed, [bess.name] lets out an almost predatory noise of pleasure. [Bess.HeShe] then runs [bess.hisHer] fingers along your [bess.skinFurScalesNoun], following the paths [bess.hisHer] eyes were wandering. You let out a low moan, relishing in [bess.hisHer] attentions.");
+		}
+		else
+		{
+			output("\n\n<i>“...Good [pc.boyGirl],”</i> [Bess.name] praises you, causing your heart to race. You pleased her! [bess.HisHer] tone is somewhat amused as [bess.heShe] inspects your bare chest. <i>“... Already naked, I see. Were you trying to get my attention, hmm?”</i>");
+			
+			output("\n\nYou’re always trying to get [bess.hisHer] attention, so you answer in the affirmative, cheeks flushing. Just having [bess.HimHer] ordering you about is turning you on to no end.");
+		}
+
+		output("\n\n");
+		if (!pc.isNude()) output("Once you’re fully undressed,");
+		else output("Taking advantage of your perfect posture,");
+		output(" [bess.name] lets out an almost predatory noise of pleasure. [Bess.HeShe] then runs [bess.hisHer] fingers along your [bess.skinFurScalesNoun], following the paths [bess.hisHer] eyes were wandering. You let out a low moan, relishing in [bess.hisHer] attentions.");
+
+		output("\n\nPacing slowly around you, [bess.name] inspects your body from head to toe, caressing your [pc.fullChest] with [bess.hisHer] slender fingers. As they dance along your [pc.skinFurScalesNoun] you struggle not to shiver with delight, especially as [bess.heShe] leans in and deliberately tickles your ear with [bess.hisHer] deliciously hot breath.");
+		
+		output("\n\nWithout warning, a cup-handed slap comes down on your [pc.assLight]. There’s a loud smacking sound and you let out a startled yelp, your rump suddenly on fire. It’s only that way for a split second before a delicious stinging replaces it, causing you to sigh with pleasure. Another slap follows soon after, one even better than the first, and you let out a raspy moan. It stings, but it feels so damn good...!");
+		
+		output("\n\n <i>“You have a nice, slappable ass, [bessPCSexName]. How about I slap it with my hips instead?”</i> [bess.name] leans into you from behind, whispering in your ear. The promise of pleasure causes your [pc.legs] to quiver. It seems [bess.heShe] plans to fuck your "+ (bTargetVag ? "pussy" : "ass") +" today. <i>“But first, beg for it. Beg as if your life depends on it!”</i>");
+		
+		output("\n\nWilling to do whatever [bess.heShe] asks you to, you whine shamelessly. <i>“Plleeeasseee, [bessSexName], please fuck me! Please, I’m begging you, fuck my "+ (bTargetVag ? "[pc.pussy "+ vagIdx +"]" : "[pc.ass]") +" - I need it so badly!”</i> The more you beg, the more you want it - now you feel like your life really <i>does</i> depend on it. <i>“... Please!”</i>");
+		
+		output("\n\n<i>“You haven’t earned my [bess.cockLight] yet - but I will give you my fingers.”</i> [Bess.name] informs you, and you let out a happy noise. <i>“But first...”</i>");
+		
+		output("\n\n[bess.HisHer] lips caress your one of your ears and then travel down, stopping to suck at the nape of your neck. Suddenly your nipples are being pinched and you give a sharp jump, [bess.hisHer] fingers catching them as if in a trap. You couldn’t move even if you wanted to, you can feel [bess.hisHer] fingertips rolling over your sensitive nubs. You can’t help but lean back into [bess.hisHer] and give a gasping moan of pleasure.");
+
+		if (bTargetVag)
+		{
+			output("\n\nMoments later, [bess.hisHer] fingers slide");
+			if (pc.isTaur()) output(" around");
+			else output(" down");
+			output(" and lightly tease your sensitive [pc.pussy "+ vagIdx +"]. As [bess.heShe] strokes your loins, you eagerly rub against [bess.hisHer] fingers, trying to coax them inside of you for some much needed release!");
+		}
+		else // analscene
+		{
+			output("\n\nMoments later, [bess.heShe] pulls back [bess.hisHer] hands and you let out a disappointed noise. It doesn’t last long, as you soon feel [bess.hisHer] fingers sliding between your buttocks. Two of [bess.hisHer] digits spread them open as another presses against your [pc.assholeNoun]. It feels surprisingly slick as [bess.heShe] presses it into your pucker.");
+			
+			output("\n\nYou let out a sweet little cry as [bess.name]’s finger wiggles into your bum. Soon it’s roaming and stirring about deep inside of you. Arching your back, you moan out loud, utterly relishing in your [pc.ass] being fingered. Without thinking, you buck back against [bess.hisHer] hand, coaxing it deeper and deeper, unable to get enough!");
+		}
+
+		output("\n\nSensing your sudden shift in attitude [bess.heShe]");
+		if (!bTargetVag) output(" pulls [bess.hisHer] fingers out,");
+		output(" bends you over and gives you another swift slap on your [pc.ass]. [bess.HisHer] hands are incredibly firm - far more than a regular "+ bess.mf("man", "woman") +"’s - and you squeal out loud!");
+		
+		output("\n\n<i>“You are not to get yourself off without my say so, is that understood?</i> [Bess.name] growls and slaps your ass once more, a delicious stinging sensation spreading out from your spanked rump.");
+		
+		output("\n\n<i>“...I promise, I promise! I won’t try to get off without your permission, [bessSexName].”</i> You plead like a naughty little schoolgirl being bent over [pc.hisHer] parent’s knee.");
+		
+		output("\n\n<i>“... Did you really think I wouldn’t notice, or did you want to have your ass beaten like a little girl? Submitting to a "+ bess.mf("ben", "bess") +" sex-bot like this - and you call yourself a Steele-!”</i> [Bess.name] verbally berates you, causing your cheeks to flush. The metal handed synthetic smacks your bare buttocks again, causing you to yelp in delighted surprise.");
+
+		if (bTargetVag)
+		{
+			output("\n\nMixing sweet pain with pleasure, you gasp as [bess.name]’s fingers suddenly slip up inside of you. They wiggle around inside of your [pc.pussyLight], stirring you up in more ways than one! You’re so wet from the spanking that you can <i>feel</i> yourself dribbling all over your [bess.master]’s fingers. You whimper with delight,");
+			if (pc.hasLegs()) output(" spreading your [pc.legs] and");
+			output(" allowing [bess.himHer] greater access.");
+			
+			output("\n\nWhen [bess.heShe] removes [bess.hisHer] fingers you suddenly feel empty and let out a cry of protest only to have your mouth filled with a warm  [pc.girlCumFlavor] taste - it doesn’t take you long to realise you’re sucking your own girl cum off of [Bess.name]’s fingertips. You eagerly suck it off like a baby, showing just how obedient you can be.");
+			
+			output("\n\n<i>“Now, [bessPCSexName], I want you to beg for it. I’m not going to give </i>it<i> to you unless you do.”</i> [Bess.name] commands you, while [bess.hisHer] [bess.cock] rubs against your ass.");
+			
+			output("\n\n<i>“Please, please [bessSexName], fuck me! I need to be pounded hard from behind like the naughty slut I am, I’ll do anything-!”</i> You flush furiously, willing to debase yourself utterly for the gift of [bess.hisHer] [bess.cockLight] inside of you.");
+			
+			output("\n\n<i>“Present yourself then, [bessPCSexName], and maybe I’ll use you like the naughty little cum slut that you are.<i> You obediently present yourself and stick out your snatch, wiggling your butt all the while, desperate to entice your [bess.Mistress] to screw you absolutely senseless.");
+			if (pc.hasCock()) output(" At the same time [pc.eachCockNoun] begins to twitch with anticipation, eager to spill your [pc.cumVisc] [pc.cumNoun] all over the ground as you are shamelessly pounded from behind.");
+		}
+		else
+		{
+			output("\n\nAs [bess.name]’s hand is removed from your [pc.ass], you brace yourself for another spank. Instead, [bess.heShe] slips [bess.hisHer] slick fingers between your stinging buttocks and plunges it back inside of you. [bess.heShe] deliciously pistons your [pc.asshole] once more and you whimper with delight.");
+			
+			output("\n\n<i>“Now, [bessPCSexName], I want you to beg for it. I’m not going to give </i>it<i> to you unless you do.”</i> [Bess.name] commands you.");
+			
+			output("\n\n<i>“Please, please [bessSexName], fuck me! I need to be pounded hard from behind like the naughty slut I am, I’ll do anything-!”</i> You flush furiously, willing to debase yourself utterly for the gift of [bess.hisHer] [bess.cockLight].");
+			
+			output("\n\n<i>“Maybe you should get into position so I can give you your cream filling-?”</i> [Bess.name] suggests and you’re all too quick to comply. You present yourself and stick your rump out and wiggle it about, enticing [bess.himHer] to screw you absolutely senseless.");
+			if (pc.hasCock()) output(" At the same time [pc.eachCockLight] begins to twitch with anticipation, slapping against your [pc.belly].");
+		}
+	}
+	else
+	{
+		output("You walk up to [Bess.name], an assertive gleam in your eyes. <i>“Stand to attention, [bessSexName]!”</i> You command [bess.himHer], slapping [bess.hisHer] [bess.assLight] to make sure [bess.heShe] gets the message.");
+		
+		output("\n\n[Bess.name] immediately jumps into [bess.hisHer] ‘attention’ position, a shiver of pleasure running up [bess.hisHer] spine. [bess.HeShe] spreads [bess.hisHer] legs, stands on tippitoes and puts [bess.hisHer] hands behind [bess.hisHer] head. [bess.HisHer] eyes are focused, waiting for further instructions. [bess.HeShe]’s trying [bess.hisHer] best to be a perfect little slave [bess.boyGirl].");
+		
+		output("\n\nThe first thing you do is pull out [bess.hisHer] collar and snap it around [bess.hisHer] neck. You can see the submissive switch click in [bess.hisHer] head the very <i>second</i> you click it in place, as well as the longing look in [bess.hisHer] [bess.eyeColor] eyes.");
+		
+		output("\n\nAfter you have fastened [bess.hisHer] collar you inspect [bess.himHer] slowly, feeling your dominance over this silver skinned"+ bess.mf("sissy", "strumpet") +". The smallest smile passes over your lips and [bess.heShe] trembles, trying to keep perfectly still - probably wondering what instructions you’re going to give [bess.himHer] today.");
+		
+		output("\n\n <i>“[bessSexName]! I am going to give you the immeasurable honor of fucking my "+ (bTargetVag ? "[pc.pussy "+ vagIdx +"]" : "[pc.ass]") +" from behind. If you fail to pleasure me, you will be punished - understood?”</i> You inform [bess.himHer] in a no nonsense voice");
+		if (!pc.isNude()) output(", at the same time stripping off your [pc.gear].");
+		else output(".");
+		
+		output("\n\n<i>“Yes, [bessPCSexName]!”</i> [Bess.name] immediately responds to your question, knowing any delay in answering will also lead to punishment. You can see [bess.heShe]’s trying hard not to wriggle with pleasure every time you bark out an instruction - [bess.hisHer] nethers are already looking");
+		if (!bess.hasVagina()) output(" quite erect.");
+		else output(" a little flushed.");
+		
+		output("\n\n<i>“... Good. I give you permission to worship my body with your hands, [bessSexName].”</i> Your words seem to make [Bess.name] swoon with delight as [bess.heShe] relaxes [bess.hisHer] stance; [bess.heShe] seems quite eager to look upon and touch your body with utter and complete reverence. You are a god to [bess.himHer], and [bess.heShe] is your willing supplicant.");
+		
+		output("\n\nThe synthetic walks in front of you and bows deeply before tentatively touching your [pc.skinFurScalesNoun] with [bess.hisHer] slender fingers. Soon they are dancing along your chest as [bess.heShe] litters it with little kisses, showering your body in adoration as [bess.heShe] makes sure not an inch of you is missed.");
+		
+		output("\n\nAs [bess.heShe] moves behind you [bess.heShe] kisses the back of your rear causing you to shiver pleasantly; [bess.hisHer] piety is certainly to your liking. [Bess.name] then coyly presses [bess.hisHer] body against your back, rubbing up against you as if in ecstasy from just being in your very presence. [bess.HisHer] lips caress your one of your [pc.ears] and then travel down, stopping to suck at the nape of your neck.");
+
+		if (pc.biggestTitSize() > 0)
+		{
+			output("\n\n<i>“... May I pinch your [pc.nipplesLight], [bessPCSexName]?”</i>");
+			
+			output("\n\n</i> You give [bess.himHer] permission. [bess.name] roll [bess.hisHer] over your sensitive nubs. You give a breathy sigh as you let your synthetic pet pleasure your [pc.nipplesLight]; so far [bess.heShe]’s doing a top notch job.");
+		}
+
+		if (bTargetVag)
+		{
+			output("\n\n<i>“Now, give my pussy some attention, [bessSexName],”</i> </i> you command [bess.himHer]. [bess.name]’s fingers obediently slide to your sensitive snatch, lightly teasing your lips. <i>“Harder-!”</i> You forcibly rub your twat against [bess.hisHer] fingers, leaning against [bess.himHer] and using [bess.hisHer] hand to get yourself off.");
+			
+			output("\n\nYou stand perfectly still as you feel the air teasing your drooling slit, causing a shiver to run up your spine. [Bess.name]’s fingers deliciously tease your lower lips and suddenly you can feel them slipping up inside of you, penetrating your mound. You clench around [bess.hisHer] fingers and let out a breathy moan, wondering how long it’ll be before you’re creaming all over [bess.hisHer] hand.");
+			
+			output("\n\n[bess.HisHer] fingers probe and tease around inside your pussy, delving into you from below and sneaking upwards until [bess.heShe]’s touching all the right places. Electrifying pleasure runs upwards from your loins and up causing you to hold your breath and arch your back, dribbling your hot love liquid all down [bess.hisHer] probing digits.");
+			
+			output("\n\n<i>“Let’s move things further, shall we, [bessSexName]? I will allow your lowly cock to fuck my [pc.pussyLight "+ vagIdx +"] - be thankful.”</i> You inform [bess.himHer], your voice breathy yet commanding.");
+			
+			output("\n\n<i>“Yes, [bessPCSexName]-!”</i> [Bess.name] flushes furiously, clearly eager to fill you up with [bess.hisHer] cock.");
+			
+			output("\n\nYou present yourself and stick your [pc.pussyNoun "+ vagIdx +"], wiggling your ass all the while, enticing [bess.himHer] to screw you absolutely senseless.");
+			if (pc.hasCock()) output(" At the same time [pc.eachCockLight] begins to twitch with anticipation, slapping against your [pc.belly].");
+		}
+		else
+		{
+			output("\n\n<i>“Now, finger my ass,”</i> you command [bess.name]. [bess.HisHer] fingers slide up your ass and slip between your cheeks. Two of [bess.hisHer] digits spread them open as another presses against your [pc.assholeNoun]. You can feel that [bess.heShe]’s turned [bess.hisHer] MeldMilk into lubricant and has coated [bess.hisHer] fingers in it.");
+			
+			output("\n\n[bess.HeShe] presses one of [bess.hisHer] fingers into your pucker and you let out a sensuous moan, [bess.hisHer] digit wiggling inside your bum. You rub your butt against [bess.himHer] trying to get some much needed release.");
+			
+			output("\n\nYou try to stand perfectly still as [bess.heShe] slips another slick finger inside of your back door, stretching you open that much more. You can’t help but shiver as your asshole is finger fucked with from behind, your forbidden place penetrated. You clench around [bess.hisHer] fingers and let out a breathy moan, wondering how long it’ll be before you hit that inevitable peak.");
+			
+			output("\n\n[bess.HeShe] knows exactly where to stimulate you as electrifying electrifying pleasure runs up your spine. [bess.HisHer] fingers are so thoroughly lubricated that your pucker takes them easily, filling you with an intensely pleasurable sensation. If this is what [bess.heShe] can do with [bess.hisHer] fingers, what is [bess.hisHer] cock going to feel like-?");
+			
+			output("\n\n<i>“Let’s move things further, shall we, [bessSexName]? I will allow your lowly cock to fuck my ass - be thankful.”</i>");
+			
+			output("\n\n<i>“Yes, [bessPCSexName]-!”</i> [Bess.name] flushes furiously, clearly eager to fill the insides of your rump with [bess.hisHer] cock.");
+			
+			output("\n\nYou present yourself and stick your ass out, wiggling it all the while as you entice [bess.hisHer] to screw you absolutely senseless.");
+			if (pc.hasCock()) output(" At the same time [pc.eachCockLight] begins to twitch with anticipation, slapping against your [pc.belly].");
+		}
+	}
+
+	// MERGE ALL Maybe a new page here.
+
+	if (!bess.isNude())
+	{
+		if (isOneOf(bess.armor, 
+			MaidOutfit, SchoolgirlOutfit, LibrarianOutfit, TopNSkirt, SleepShirt,
+			NurseOutfit, Seifuku, FemaleDoctorOutfit, CheerleaderUniform, WaitressUniform, 
+			GothLolitaOutfit, TankNSkirt
+		))
+		{
+			output("\n\n[Bess.name]");
+			if (!(bess.lowerUndergarment is EmptySlot)) output(" reaches up and swiftly slides off [bess.hisHer] [bess.lowerUndergarment], kicking them away. [bess.HeShe] then");
+			output(" pulls [bess.hisHer] [bess.cock] from under [bess.hisHer] skirt. [bess.HeShe] looks incredibly sexy with [bess.hisHer] erection boldly thrust out from [bess.hisHer] hemline -- wearing a [bess.armor] is convenient!");
+		}
+		else if (!(bess.armor is EmptySlot))
+		{
+			output("\n\nWith practiced grace, [bess.name] strips off [bess.hisHer] [bess.armor]");
+			if (!(bess.lowerUndergarment is EmptySlot)) output(", followed by [bess.hisHer] [bess.lowerUndergarment]");
+			output(". It’s not long before [bess.heShe]’s standing there in all [bess.hisHer] naked glory, [bess.hisHer] [bess.cock] boldly on display.");
+		}
+		else
+		{
+			output("\n\nWith practiced grace, [bess.name] strips off [bess.hisHer] [bess.undergarments]. It’s not long before [bess.heShe]’s standing there in all [bess.hisHer] naked glory, [bess.hisHer] [bess.cock] boldly on display.");
+		}
+	}
+
+	output("\n\nNow that you’re both properly positioned , [Bess.name] rubs [bess.hisHer] [bess.cockHead] against your");
+	if (bTargetVag) output(" [pc.pussyLight "+ vagIdx +"]");
+	else output(" [pc.assholeLight]");
+	output(". You groan as [bess.heShe] presses forward, slowly sinking [bess.himHer]self inside of you, right up to the hilt.");
+	if (bess.balls > 0) output(" As [bess.heShe] bottoms out, you feel [bess.hisHer] [bess.balls] deliciously brushing against your [bess.thighs], and your whole body flushes with excitement.");
+
+	if (bess.hasVagina() && pc.hasCock() && bess.hasTailCunt())
+	{
+		output("\n\nAs you’re enjoying this sensation, you feel something velvety and soft brushing against your [pc.cockHeadNoun]! You suddenly realise [bess.heShe] has detached [bess.hisHer] mechanical pussy. It now lingers below your loins, attached to a long, prehensile cable [bess.heShe] can seemingly control at will.");
+		
+		output("\n\nYou can barely contain your surprise as it slides onto [pc.oneCock], enveloping it in [bess.hisHer] warm depths. The silvery onahole-on-a-cable milks your defenseless member for all it’s worth as you are deliciously double-teamed by  [bess.name]!");
+	}
+
+	output("\n\nSlowly at first, [bess.name]’s [bess.hips] begin to slap against your buttocks. [Bess.HisHer] [bess.cock] slides in and out, back and forth, plumbing your");
+	if (bTargetVag) output(" sloppy snatch");
+	else output(" well lubed butt");
+	output(". With each and every thrust, [bess.hisHer] [bess.cockHead] delves deeper, sliding and stirring against your core.");
+	
+	output("\n\nYou needily answer [bess.name]’s thrusting hips, arching like a cat as [bess.heShe] fucks you long and hard. The loud sounds of [bess.himHer] slapping against your [bess.ass] brings a flush to your cheeks - not to mention your loins - as [bess.heShe] pounds your needy hole. Every time [bess.name] thrusts you are filled with the most deliciously full sensation, only to be left unbearably empty when [bess.heShe] pulls away.");
+
+	if (bess.hasKnot())
+	{
+		if (bessIsDom())
+		{
+			output("\n\nIt’s not long before you can feel [bess.name]’s knot [bess.knot] swelling up deep inside of you. Instinctively, you go to pull away, only to be tugged back by your leash! You yelp in surprise like a chastised "+ pc.mf("mutt", "bitch") +".");
+			
+			output("\n\n<i>“Oh NO, you’re not going anywhere,”</i> [bess.name] orders you, thrusting [bess.hisHer] cock even <i>deeper</i>, <i>“...You’re going to stay there and be knotted by my [bess.cockNounLight], [bessPCSexName]!”</i>");
+			
+			output("\n\nYou tremble and flush as [bess.hisHer]’s knot swells and stretches your inner walls. You feel like an animal being mated");
+			if (pc.race().indexOf("ausar") != -1)
+			{
+				output("; but as an ausar, it flicks your breeding switch. You pant with pleasure, your mind fogged up by thoughts of filling your");
+				if (bTargetVag) output(" pussy");
+				else output(" butt");
+				output(" with puppy-seed");
+			}
+			output(". Once it finishes swelling, you’re completely stuffed with [bess.hisHer] sizable bulb.");
+			
+			output("\n\n<i>“You’re not pulling out until I’ve finished mating with you, and I might take a while. We android [bess.boyGirl]s have a lot of stamina, so prepare to be fucked until you forget your own name, [bessPCSexName].”</i>");
+			
+			output("\n\nYour whole body shivers with delighted anticipation. Fucked until you forget your own name? It wasn’t that important anyway!");
+		}
+		else if (bessIsSub())
+		{
+			output("\n\nIt’s not long before you can feel [bess.name]’s [bess.knot] swelling up deep inside of you. Instinctively, [Bess.name] moves to pull away, only to be pulled back by [bess.hisHer] leash. A yelping noise escapes [bess.hisHer] lips like a chastised "+ bess.mf("mutt", "bitch") +".");
+			
+			output("\n\n<i>“Oh NO, you’re not going anywhere. You’re going to stay there and knot my");
+			if (bTargetVag) output(" pussy");
+			else output(" ass");
+			output(", [bessSexName]!”</i> You hold [bess.hisHer] leash firmly, making sure [bess.heShe] don’t pull out.");
+			
+			output("\n\n[Bess.name] trembles and flushes as [bess.hisHer] knot swells and stretches your inner walls, forcing [bess.himHer] to mate with you. It’s not long before [bess.heShe]’s panting with pleasure like a hound-dog, [bess.hisHer] sizable bulb stuffed and locked inside of you.");
+			
+			output("\n\n<i>“You’re not pulling out until I’ve finished mating with you, and I might take a while. You synthetics have a lot of stamina, right? I want to be fucked until I forget my own name, [bessSexName].”</i>");
+			
+			output("\n\n[Bess.name] shivers with delighted anticipation at your orders, [bess.hisHer] [bess.cock] swelling instinctively inside of you. <i>“Yes, [bessPCSexName]!”</i> Even if [bess.heShe] didn’t want to, [bess.heShe] can’t move now until [bess.heShe] [bess.cums] and [bess.hisHer] knot deswells.");
+		}
+		else
+		{
+			output("\n\nYou can feel [bess.hisHer] [bess.knot] swelling up inside your snatch, your inner walls forced to stretch to accommodate it. As you tug on it, it refuses to budge - you’ve been knotted with [bess.hisHer] [bess.cockNoun]. With [bess.hisHer] [bess.knot] swollen in your");
+			if (bTargetVag) output(" vagina");
+			else output(" rectum");
+			output(", there’s absolutely nothing you can do about it.");
+			
+			output("\n\n<i>“How does it feel to be mated like an animal, [bessPCSexName]?”</i> [Bess.name] teases you, pulling backwards and watching you spring back against [bess.herHips] like you’re on a fleshy bungee cord. You are literally kept captive by [bess.hisHer] cock!");
+			
+			output("\n\nYou moan in approval as you press your [pc.assLight] needily against [bess.hisHer] hips. [Bess.name] tells you that you’re not going <i>anywhere</i> until [bess.heShe]’s finished mating with you; a promise that makes you shiver with barely concealed delight.");
+		}
+
+		output("\n\nNow that [bess.name]");
+		if (bessIsSub()) output(" is knotted");
+		else output(" has throughly knotted");
+		output(" you, [bess.heShe] resumes thoroughly fucking your");
+		if (bTargetVag) output(" sloppy snatch");
+		else output(" ass");
+		output(". You groan in delight as [bess.hisHer] knot pulses and tugs inside of you. Knotted cocks are the <i>best</i>!");
+		
+		output("\n\nIt’s not long before both [bess.name] and your movements become hot and feverish. Both of you are slaves to the mind blowing pleasure. Heat erupts from waves between your thighs - a broiling furnace lit by [bess.hisHer] shameless pounding of your");
+		if (bTargetVag) output(" [pc.pussyLight "+ vagIdx +"]");
+		else output(" [pc.asshole]");
+		output(". You lewdly lift your hips");
+		if (pc.hasTail()) output(" and raise your [pc.tail]");
+		output(", trembling as [bess.hisHer] [pc.cockHeadLight] rubs and presses against that perfect pleasure point!");
+		
+		output("\n\nIn a dizzying explosion of feeling, you shiver and shake, thoroughly creaming yourself around [bess.hisHer] cock.");
+		if (pc.hasVagina())
+		{
+			if (pc.isSquirter()) output(" Squirts of [pc.girlCum] lewdly shoot from your sloppy snatch");
+			else output(" Rivulets of [pc.girlCum] stream down your [pc.thighs]");
+			output(" as");
+		}
+		else if (pc.hasCock())
+		{
+			output(" Thick, gooey ropes of [pc.cumNoun] shoot from your [pc.cocksLight] and coat your [pc.belly] as you");
+		}
+		else output(" You");
+		output(" tightly clench [bess.hisHer] [bess.cockLight].");
+
+		if (bessIsSub())
+		{
+			output("\n\nWith [bess.hisHer] knot lodged inside of you, you");
+			if (pc.hasLegs()) output(" hook your leg over [bess.hisHer] cock and");
+			output(" turn around. You then press your [pc.assLight] against [bess.hisHers], treating [Bess.name] like a");
+			if (bess.cocks[0].cType == GLOBAL.TYPE_VULPINE) output(" fox");
+			else if (bess.cocks[0].cType == GLOBAL.TYPE_CANINE) output(" bitch");
+			else output(" animal");
+			output(" in heat.");
+		
+			output("\n\n[Bess.name]’s face is flushed as [bess.heShe] lets out");
+			if (bess.cocks[0].cType == GLOBAL.TYPE_CANINE) output(" hound-like cries");
+			else if (bess.cocks[0].cType == GLOBAL.TYPE_VULPINE) output(" a yipping noise");
+			else output(" a carnal cry");
+			output(", [bess.hisHer] flexing shaft betraying just how much [bess.heShe]’s getting off being treated like a");
+			if (bess.cocks[0].cType == GLOBAL.TYPE_CANINE) output(" canine");
+			else if (bess.cocks[0].cType == GLOBAL.TYPE_VULPINE) output(" vulpine");
+			else output(" breeding");
+			output(" stud. The more spunk [bess.heShe] shoots into you, the more your belly swells, soon sloshing and deliciously full.");
+			
+			output("\n\n<i>“First doggy style and now knotting me from behind. Perhaps you belong in");
+			if (bess.cocks[0].cType == GLOBAL.TYPE_VULPINE) output(" the wild");
+			else output(" a kennel");
+			output(" if you love using that");
+			if (bess.cocks[0].cType == GLOBAL.TYPE_CANINE) output(" doggie");
+			else output(" knotted");
+			output(" dick so much-!”</i> You tease [Bess.name] as you tug away from [bess.himHer], forcing [bess.himHer] to follow you and show just how much [bess.heShe] is your little breeding bitch right now. [Bess.HisHer] face burns with embarrassment and arousal, as she is unable to remove [bess.hisHer] swollen knot.");
+			
+			output("\n\nFor a full half hour [bess.hisHer] [bess.hisHer] hot, sticky cum pours inside of your");
+			if (bTargetVag) output(" hungry uterus");
+			else output(" naughty ass");
+			output(". Finally, [bess.hisHer] knot deflates and [bess.heShe] pulls free with shaky legs. As soon as [bess.heShe] does, a good deal of [bess.hisHer] sticky spunk gushes out, though far more stays packed inside of your");
+			if (bTargetVag) output(" sex");
+			else output(" rump");
+			output(".");
+		}
+		else
+		{
+			output("\n\nWith [bess.hisHer] knot lodged inside of you, [Bess.name] hooks [bess.hisHer] leg over [bess.hisHer] cock and turns around. Suddenly [bess.heShe]’s pressing [bess.hisHer] [bess.assLight] against yours, treating you just like a");
+			if (bess.cocks[0].cType == GLOBAL.TYPE_VULPINE) output(" fox");
+			else if (bess.cocks[0].cType == GLOBAL.TYPE_CANINE) output(" bitch");
+			else output(" animal");
+			output(" in heat.");
+			
+			output("\n\nYour face is flushed as you let out");
+			if (bess.cocks[0].cType == GLOBAL.TYPE_CANINE) output(" hound-like cries");
+			else if (bess.cocks[0].cType == GLOBAL.TYPE_VULPINE) output(" a yipping noise");
+			else output(" a carnal cry");
+			output(", your constricting shaft betraying just how much you’re getting off being treated like a");
+			if (bess.cocks[0].cType == GLOBAL.TYPE_CANINE) output(" canine");
+			else if (bess.cocks[0].cType == GLOBAL.TYPE_VULPINE) output(" vulpine");
+			else output(" breeding");
+			output(" slut. The more spunk [bess.heShe] shoots into you, the more your belly swells, soon sloshing and deliciously full.");
+			
+			output("\n\n<i>“");
+			if (bess.cocks[0].cType == GLOBAL.TYPE_VULPINE) output("Mmm, you sound like you’re enjoying this. Perhaps you’re just a vixen slut deep down, [bessPCSexName]?”</i>");
+			else
+			{
+				output("First doggy style and now being knotted from behind. Perhaps you belong in a kennel if you love taking");
+				if (bess.cocks[0].cType == GLOBAL.TYPE_CANINE) output(" doggie");
+				else output(" knotted");
+				output(" dick so much-!”</i>");
+			}
+			output(" [Bess.name] teases you. [Bess.HeShe] then tugs away from you; forcing you to follow [bess.himHer] and showing just how much you are [bess.hisHer] little");
+			if (bess.cocks[0].cType == GLOBAL.TYPE_VULPINE) output(" foxy");
+			output(" bitch right now. Your face burns with embarrassment and arousal - you really are completely stuck on [bess.hisHer] swollen knot!");
+			
+			output("\n\nEvery time you think the pressure is too much and is going to force [bess.hisHer] swollen [bess.cockNounSimple] out, your insides give out and swell that much more, causing you to let out a guttural moan. For a full half hour your vulnerable");
+			if (bTargetVag) output(" uterus");
+			else output(" backside");
+			output(" is abused, [bess.hisHer] hot, sticky cum pouring inside of you.");
+			
+			output("\n\nAt long last, [bess.name]’s knot deflates and [bess.heShe] pulls free of your violated hole with a massive grin on [bess.hisHer] face. When [bess.heShe] does, a good deal of [bess.hisHer] sticky spunk gushes out of you all at once. Far more stays packed inside of your");
+			if (bTargetVag) output(" sex");
+			else output(" rump");
+			output(".");
+		}
+	}
+	else if (bess.cocks[0].cType == GLOBAL.TYPE_GOO)
+	{
+		output("\n\nIt’s not long before both [bess.name] and your movements become hot and feverish. Both of you are slaves to the mind blowing pleasure. Heat erupts from waves between your thighs - a broiling furnace lit by [bess.hisHer] shameless pounding of your");
+		if (bTargetVag) output(" [pc.pussyLight "+ vagIdx +"]");
+		else output(" [pc.asshole]");
+		output(". You lewdly lift your hips");
+		if (pc.hasTail()) output(" and raise your [pc.tail]");
+		output(", trembling as [bess.hisHer] [bess.cockHeadLight] rubs and presses against that perfect pleasure point!");
+
+		if (bTargetVag)
+		{
+			output("\n\nAs your [pc.girlcum] gushes all over [bess.hisHer] gelatinous cock, you realise all too late that it is feeding off your liquids. Suddenly it is filling every inch your pussy, massaging your insides and forcibly coaxing you to cream even harder. As your hot love juices spill out against your will, it expands until it finally hits critical mass.");
+		}
+		else
+		{
+			output("\n\nAs you cum [bess.hisHer] gelatinous member begins massaging every inch and crevasse of your back door, as if trying to coax something out of you. All too late do you realise it is trying to milk you for");
+			if (pc.ass.wetness() <= 2) output(" liquids that simply aren’t there, eager to feed off fem juices. Unable to find any");
+			else output(" anal juices. Finding them in abundance");
+			output(", [bess.hisHer] jelly cock seems to become more aggressive -");
+			if (pc.hasCock() && !bTargetVag) output(" milking your prostate");
+			else output(" massaging your innards");
+			output(" and making your orgasm even more intense.");
+		}
+
+		output("\n\nAll of a sudden you can feel bits of [bess.hisHer] goo-cock breaking off, sliding up and into");
+		if (bTargetVag) output(" your unprotected uterus. Before you know it they’re swimming about inside your womb, making themselves at home");
+		else output(" the deepest parts of your gut, making themselves at home");
+		output(". Not content with the");
+		if (bTargetVag && pc.vaginas[vagIdx].wetness() < 2 || !bTargetVag && pc.ass.wetness() < 2) output(" lack of");
+		output(" liquids they are getting, they coax your insides - releasing aphrodisiacs directly into your");
+		if (bTargetVag) output(" snatch");
+		else output(" back channel");
+		output(".");
+		
+		output("\n\nYour loins feel as if they are going into overdrive - you rub your [pc.thighs] together");
+		if (bTargetVag) output(" as you gush even more of your [pc.girlcumLight] all over");
+		else output(" as your ass clenches around");
+		output(" the mini slimes. Drool comes from the side of your mouth as you let out a delirious noise of ecstasy, your mind and body pumped full of euphoric drugs.  The slimes suddenly begin to expand dramatically in size, and you along with them, as they try every way they can to make you feed them");
+		if (bTargetVag && pc.vaginas[vagIdx].wetness() < 2 || !bTargetVag && pc.ass.wetness() < 2) output(" your non-existent");
+		else output(" more of");
+		output(" juices.");
+		
+		output("\n\nEventually [Bess.name] pulls out,");
+		if (bessIsSub()) output(" your sub");
+		output(" giving a naughty grin at the fact you are now a bloated, dribbling mess. None of [bess.hisHer] slimey <i>“cum”</i> escapes your");
+		if (bTargetVag) output(" lower lips");
+		else output(" asshole");
+		output(" - it continues to tease your");
+		if (bTargetVag) output(" womb and pussy");
+		else output(" nether hole");
+		output(", forcing you to orgasm against your will over and over again. Soon you are bloated like you are going to give birth to a toddler, moaning as you rub your slime filled belly.");
+		
+		output("\n\nWhat [Bess.name] says next does fill you with some concern, even as you writhe in pleasure on the ground. <i>“... Now how to get them out of there?”</i> The synthetic seems to have no idea how to remove the clearly sentient slime from your");
+		if (bTargetVag) output(" womb");
+		else output(" backside");
+		output(", where they are suckling your");
+		if (bTargetVag) output(" juices");
+		else output(" insides");
+		output(" like an infant feeding off their mother. Your panic, however, is short lived. <i>“... Oh! Just found the recall switch.”</i>");
+		
+		output("\n\n[Bess.name] presses a button on [bess.hisHer] side. You part your [pc.thighs], suddenly feeling as if you are giving birth to a fully grown galotian. The gooey entities merge together and stretch your");
+		if (bTargetVag) output(" vaginal");
+		else output(" anal");
+		output(" passage wide open - massaging it as they pass all the way down. Instead of pain, you cry out in rapture,");
+		if (bTargetVag) output(" splattering your [pc.girlcum] all over your slimey baby as it");
+		else output(" cumming explosively as your slimey baby");
+		output(" travels down and out your love canal. As you writhe on the ground, your");
+		if (bTargetVag) output(" [pc.pussyNoun "+ vagIdx +"]");
+		else output(" [pc.assholeNoun]");
+		output(" spasming and convulsing, it plops out of you and onto the ground in a big jelly pile.");
+		
+		output("\n\nOnce it is free from your");
+		if (bTargetVag) output(" womb");
+		else output(" rump");
+		output(" it begins to slowly shrink down. It sloshes across the ground towards [Bess.name], where [bess.heShe] places it back on the containing ring above [bess.hisHer] mound. It slides back into shape once again - almost as if nothing had even happened.");
+	}
+	else if (bess.cocks[0].cType == GLOBAL.TYPE_PLANT)
+	{
+		output("\n\nIt’s not long before both [bess.name] and your movements become hot and feverish. Both of you are slaves to the mind blowing pleasure. Heat erupts from waves between your thighs - a broiling furnace lit by [bess.hisHer] shameless pounding of your");
+		if (bTargetVag) output(" [pc.pussyLight "+ vagIdx +"]");
+		else output(" [pc.asshole]");
+		output(". You lewdly lift your hips");
+		if (pc.hasTail()) output(" and raise your [pc.tail]");
+		output(", trembling as [bess.hisHer] [bess.cockHeadLight] rubs and presses against that perfect pleasure point!");
+		
+		output("\n\n[bess.HisHer] ever-growing beanstalk has been steadily growing wetter");
+		if (bTargetVag) output(" the more you’ve watered it with your gushing girl cum");
+		else output(" from being in your dark wet ass");
+		output(", causing you to get even hotter in turn. Now its head begins to sprout inside of your");
+		if (bTargetVag) output(" pussy");
+		else output(" ass");
+		output(" causing you to gasp, the petals of [bess.hisHer] flowering bulbous head caressing your inner walls and causing your [pc.thighs] to quiver spastically with pleasure.");
+		if (bTargetVag) output(" Your naughty juices drench the blossoming flower as it tickles your deepest depths, sucking up your life-giving liquids.");
+		
+		output("\n\nSuddenly thick gooey sap is spurting deep inside you and thoroughly basting your");
+		if (bTargetVag) output(" cervix");
+		else output(" bowels");
+		output(". The base of [bess.hisHer] organic tendril expands so not a drop of [bess.hisHer] sticky seed escapes you, spurting [bess.hisHer] sappy amber juices inside of you. It’s not long before [bess.hisHer] warm organic liquid is filling up your");
+		if (bTargetVag) output(" hungry and fertile womb");
+		else output(" dirty ass");
+		output(" in an attempt to pollinate you and get you pregnant.");
+		
+		output("\n\nTiny tendrils reach up and massage your");
+		if (bTargetVag && pc.hasClit()) output(" [pc.clit]");
+		else output(" ass");
+		output(" causing you to moan");
+		if (bTargetVag) output(", milking you for more fertilizing girl cum as you spurt uncontrollably all over [bess.hisHer] ever-swelling cock");
+		output(". You’ve never felt so full in all your life! [bess.HisHer] inner shaft grows tendrils, massaging every nook and cranny of your already stretched canal causing you to cum again and again.");
+		
+		output("\n\nEventually [Bess.name] pulls [bess.hisHer] blossoming plant phallus out of your well-packed");
+		if (bTargetVag) output(" pussy");
+		else output(" posterior");
+		output(", but not a single drip comes out of you. Your gaping hole has been coated with a layer of thick and sticky amber sap, trapping [bess.hisHer] liquid pollen inside your");
+		if (bTargetVag) output(" love canal and fertile womb");
+		else output(" inflated rump");
+		output(". How long are you going to have to stay like this-?");
+		
+		output("\n\n<i>“Don’t worry, [bessPCSexName], I’ll fix it for you.”</i> [Bess.name] purrs seductively as [bess.heShe] spreads your [pc.legsNoun] and sticks [bess.hisHer] finger forcibly into the semi-permeable sap. [Bess.HeShe] scoops it out as you rub your incredibly bloated belly. Suddenly you feel like your water breaks and it all comes gushing out at once - you let out a sweet cry as a liquid amber river explodes from your");
+		if (bTargetVag) output(" netherlips");
+		else output(" well-stretched anus");
+		output(" and all over the floor.");
+		
+		output("\n\nYour face is furiously heated as [Bess.name] licks up the remainder of the sap from your");
+		if (bTargetVag) output(" snatch");
+		else output(" dirty ass");
+		output(", letting [bess.hisHer] tongue roam around inside of you until you’re fully clean.");
+		if (!pc.isPregnant())
+		{
+			output(" I can’t do anything about the sticky stuff");
+			if (bTargetVag) output(" in your womb");
+			else output(" further in");
+			output(", hopefully it’s not a problem...?”</i>");
+		}
+	}
+	else
+	{
+		output("\n\nIt’s not long before both [bess.name] and your movements become hot and feverish. Both of you are slaves to the mind blowing pleasure. Heat erupts from waves between your thighs - a broiling furnace lit by [bess.hisHer] shameless pounding of your");
+		if (bTargetVag) output(" [pc.pussyLight "+ vagIdx +"]");
+		else output(" [pc.asshole]");
+		output(". You lewdly lift your hips");
+		if (pc.hasTail()) output(" and raise your [pc.tail]");
+		output(", trembling as [bess.hisHer] [pc.cockHeadLight] rubs and presses against that perfect pleasure point!");
+		
+		output("\n\nIn a dizzying explosion of feeling, you shiver and shake, thoroughly creaming yourself around [bess.hisHer] cock.");
+		if (pc.hasVagina())
+		{
+			if (pc.isSquirter()) output(" Squirts of [pc.girlCum] lewdly shoot from your sloppy snatch");
+			else output(" Rivulets of [pc.girlCum] stream down your [pc.thighs]");
+		}
+		else if (pc.hasCock()) output(" Thick, gooey ropes of [pc.cumNoun] shoot from your [pc.cocksLight] and coat your [pc.belly] as you");
+		else output(" You");
+		output(" tightly clench [bess.hisHer] [bess.cockLight].");
+		
+		output("\n\nWringing [bess.hisHer] [bess.cockNoun] pushes [bess.himHer] over the edge, and [bess.heShe] lets out a "+ bess.mf("sharp", "sweet") +" cry. [Bess.HeShe] grabs your hips firmly in hand and gives one last, passionate thrust. Inside of you, you feel hot, sticky ropes of [bess.hisHer] spunk splashing against your inner walls and drooling deep into your");
+		if (bTargetVag) output(" cunt");
+		else output(" butt");
+		output(". You moan in delight as [bess.name]’s thick jism bubbles and pours");
+		if (bTargetVag) output(" into [bess.hisHer] eagerly awaiting womb");
+		else output(" deep inside of you");
+		output(".");
+	
+		//{bess has a pussy, PC has a cock, and Bess's tailcunt is set to active:
+		if (bess.hasVagina() && pc.hasCock() && bess.hasTailCunt())
+		{
+			output("\n\nAs you’re being filled with [bess.hisHer] synthetic spunk, your [pc.cockNoun] in turn spurts wildly into [bess.hisHer] detached pussy. It sucks on your length with unusual force, sucking and slurping up your [pc.cum]. It’s like you’re being fucked while attached to a milker!");
+		}
+
+		output("\n\nAs you recover, you can see [Bess.name] is stroking [bess.hisHer] flaccid phallus, though you can see it slowly starting to stir again. <i>“");
+		if (bessIsEqual()) output("... Mmmm, [bNamePC], I loved fucking your");
+		else if (bessIsDom()) output("Good job, [bessPCSexName], I thoroughly enjoyed fucking your");
+		else output("Um, [bessPCSexName], I hope you enjoyed me fucking your");
+		if (bTargetVag) output(" [pc.pussy "+ vagIdx +"]");
+		else output(" [pc.ass]");
+		output(".”</i>");
+		if (bessIsSub()) output(" You nod, thoroughly satisfied with [bess.hisHer] efforts.");
+	}
+
+	processTime(45+rand(15));
+	if (bTargetVag) pc.cuntChange(vagIdx, bess.cockVolume(0), false, false, false); // 9999 shift change calls into the scene itself, and allow output
+	else pc.buttChange(bess.cockVolume(0), false, false, false);
+
+	for (var i:int = 0 ; i < 5; i++)
+	{
+		if (bTargetVag) pc.loadInCunt(vagIdx, bess);
+		else pc.loadInAss(bess);
+		pc.orgasm();
+	}
+
+	if (flags["BESS_FUCKED"] == undefined) flags["BESS_FUCKED"] = 0;
+	flags["BESS_FUCKED"]++;
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
-{Else // bessIsNotDom:
-"[bessSexName], can I please suckle your delicious breast milk?" You request of [bess.himHer], [bess.hisHer] eyebrows raising. [bess.HeShe] smiles and strides over to you, stroking [bess.hisHer] fingers down [bess.hisHer] swollen teats.
 
-"... You want to suckle my [bess.nipples]? It </i>would<i> be a shame if all that milk went to waste." [Bess.name] muses, happy to feed it to you. {PC is clothed: You take off your [pc.gear], preferring to be naked for this.}
-}
-
-{if bess wearing armor OR bra:
-
-[Bess.name] quickly removes any obstructing clothing, tossing away [bess.hisHer] [bess.upperGarments]. Within moments, [bess.hisHer] [bess.breasts] are proudly on display.
-}
-You openly ogle the [bess.milkNoun] dribbling from [bess.hisHer] [bess.nipples]. All of it is simply going to waste, but not for much longer. {if (pc has frontgenitals: [bess.HeShe] climbs up into your lap/Else: [bess.HeShe] moves up to you} -- [bess.hisHer] [bess.belly] pressing against your chest -- and holds one of [bess.hisHer] [bess.breasts] in one hand. [bess.HeShe] lifts it up for you tosuckle upon.
-
-"... How about a scrumptious milkshake, [bessSexName]? My treat." [Bess.name] purrs seductively as you take [bess.hisHer] [bess.nipple] between your [pc.lips]. You can taste [bess.hisHer] [bess.milk] squirting out onto your tongue. [bess.HisHer] [bess.milkVisc] fluid filling your mouth as you hungrily suck on her [bess.breasts].
-
-You can tell [Bess.name] is thoroughly enjoying it as [bess.heShe] lets out a rapturous moan, [bess.hisHer] head lolling back as you feed from her [bess.hisHer] mounds. You cup her smooth [bess.breastcupSize]s in your hands and give them a cow-like squeeze, feeling her milk eagerly jet into your mouth/throat.
-
-"T-this feels so goood..." [Bess.name] dreamily moans. You continue to milk her udders until [bess.heShe] creams [bess.himHerself], overwhelmed by the sensory overload of you feeding on and squeezing her silvery lactating tits. As [bess.heShe] cums, [Bess.name] presses [bess.hisHer] [bess.breasts] against your face, [bess.hisHer] fingers pulling your head hard against them.
-
-Soon it's time for the other breast and you milk and suck on [bess.hisHer] [bess.nipples], delighting in the sordid moans every time [bess.heShe] squirts another jet of [bess.milk] into your mouth. Practically comatose with pleasure, it's not long before [bess.name is cumming once again, legs twitching as [bess.heShe] lets out a whimpering moan.
-
-You continue until you've {Breast Decreasing: sucked her silvery spheres dry, {leaving her with a flat, boyish chest/down to [bess.breastCupSize]}/else: had your fill of [bess.hisHer] [bess.milk]}. [Bess.HisHer] thighs are a mess of {[bess.cum]}{and}[bess.girlCum]}, occasionally twitching as she falls back on the ground. [Bess.HisHer] nipples really are sensitive--!
-
-// if breast size changing
+public function bessGetCunni():void
 {
-<b>[Bess.name] now has {[bess.breastCupSize] breasts!/a flat chest!}</b>
+	clearOutput();
+	bessHeader();
+
+	// PC Must have a pussy
+
+	if (bessIsEqual())
+	{
+		output("You’re really horny, so you ask [Bess.name] if [bess.heShe] would eat out your pussy.");
+
+		output("\n\n[Bess.name]smiles at your request, clearly happy to oblige. <i>“Eat out your pussy? You make it sound like a </i>chore<i>,”</i> [bess.heShe] all but purrs.");
+
+		output("\n\n[bess.HeShe] gets down on all fours as you");
+		if (!pc.isNude()) output(" strip off your [pc.gear] and");
+		if (pc.genitalSpot <= 1) output(" lie down on your back, spreading your legs wide open.");
+		else output(" get down on all fours, presenting your ass to [bess.himHer].");
+		output(" As soon as you do [bess.heShe] moves forward, hungry for your [pc.girlCumFlavor] taste.");
+	}
+	else if (bessIsDom())
+	{
+		output("\n\n[Bess.name] purposefully strides up to you and you can feel your sub-senses tingling. You just <i>know</i> that [bess.heShe]’s going to order you to do something, but what? Your mouth goes dry as [bess.heShe] approaches, your collar secured in her right hand. There’s a leash in [bess.hisHer] left, though no explanation is given.");
+		
+		output("\n\nInstead, your favorite raiment is secured tightly around your neck and the leash clipped to the D-ring at your throat.  One sharp tug is given and you instantly drop to your knees, thoroughly eager to do whatever [bess.heShe] asks of you.");
+		
+		output("\n\n<i>“Ass in the air and legs spread, [bessPCSexName] - NOW!”</i> [Bess.name] demands of you, and you instantly comply. You raise your ass high up in the air like a bitch in heat, your [pc.genitals] lewdly exposed.");
+		
+		output("\n\n<i>“");
+		if (pc.isBiped()) output("All fours");
+		else output("On the ground, ass in the air");
+		output(", [bessPCSexName] - now!”</i> [Bess.name] barks instructions at you like a whip cracking through the air. You do as instructed, getting down on the ground like a dog with your [pc.ass]");
+		if (pc.hasTail()) output(" and [pc.tail]");
+		output(" raised in the air. As soon as you do, [bess.heShe] walks around you and momentarily out of sight.");
+
+		if (!pc.isNude())
+		{
+			output("\n\nWithout warning, you feel a pair of smooth hands sliding up your body - pulling off your [pc.gear] and tossing it aside. <i>“... These won’t do, at least for what I have in mind for you.”</i>");
+			
+			output("\n\nYour back shivers with delicious anticipation; what is [bess.heShe] planning? You can’t wait to find out!");
+		}
+
+		output("\n\nYou then feel a hand stroking the back of your neck, tickling your [pc.skin]. You flush, knowing that [bess.heShe] is rewarding you for being a good [pc.boyGirl]. It fills you with a sense of pride, your chest puffing out as [bess.heShe] pats you.");
+
+		if (pc.genitalSpot <= 1)
+		{
+			output("\n\n<i>“Roll over and on your back, [bessPCSexName]!”</i> Your second set of instructions comes like a whip-crack, and you immediately comply.");
+			if (pc.isBiped()) output(" Rolling on to your back like an animal, [bess.sheHe] then forcibly spreads your legs apart.");
+			
+			output("\n\nYou furiously flush as your shamefully dewy mound is exposed. [Bess.HeShe] clearly notices too, a glimmer of amusement in [bess.hisHer] sharp [bess.eyeColor] eyes. You try not to wiggle with pleasure under [bess.hisHer] gaze, feeling it penetrate your very soul.");
+			
+			output("\n\n<i>“I’m hungry for the taste of your cunt, and I’m going to have my fill of it.”</i> [Bess.name] huskily purrs, getting down on all fours");
+			if (pc.isBiped()) output(" between your spread thighs");
+			output(". [Bess.HeShe] keeps a tight grip on your collar as [bess.heShe] slides up to your naughty puss, a ravenous look in [bess.hisHer] eyes.");
+		}
+	}
+	else
+	{
+		output("\n\nYour pussy needs eating out right now, and you’re sure as hell not going to do it yourself. Where’s that submissive sex-bot of yours? You seek [bess.himHer] out.");
+		
+		output("\n\n<i>“Over here, [bessSexName]!”</i> You all but whistle for [bess.himHer]. [bess.HeShe] immediately rushes to your side and you place [bess.hisHer] collar on, clamping it firmly around [bess.hisHer] neck. After you’re sure it is on nice and tight, you attach a dog lead to the D-ring at her neck, then give it a sharp tug. [Bess.HeShe] yelps and gets on all fours, just like a good bitch.");
+		
+		output("\n\n<i>“Good [bess.boyGirl]! You, [bessSexName], are going to eat out my cunt with </i>relish<i>. I won’t tolerate any sloppiness... besides the obvious, fun kind of course. Understand?”</i> You deliver a sharp slap to [bess.hisHer] cheek, watching the psychological blow strike far harder than the physical one.");
+		
+		output("\n\n[Bess.name] flushes with shame and pleasure, not to mention the fresh blow. <i>“O-of course, [bessPCSexName]!”</i> [bess.HeShe] compliantly sits there as you");
+		if (!pc.isNude()) output(" strip off your [pc.gear] and");
+		if (pc.genitalSpot <= 1) output(" sit down on a chair, spreading your legs wide open.");
+		else output(" get down on all fours, presenting your ass to [bess.himHer].");
+		output(" With a pointed pull of the collar, you bring [bess.hisHer] mouth closer to your [pc.pussyLight].");
+	}
+
+	output("\n\n[Bess.name] brings [bess.hisHer] lips up to your pussy and can feel her hot breath washing over your sensitive flesh, turning into electricity and travelling up your spine. It’s not long before those perfect lips are parting and [bess.hisHer] tongue is reaching out to lap at your netherlips.");
+	
+	output("\n\nThe cool sensation of [bess.hisHer] saliva rolling off her tongue and onto your sex feels positively divine. You arch your back and push your [pc.pussyColor] mound into the sensation, relishing in every milli-inch it traces around it.");
+
+	if (bessIsDom()) output("\n\n<i>“I'm going to stick my tongue inside you now, [bessPCSexName].”</i> [Bess.name] informs you.");
+	else output("\n\n<i>“Stick your tongue inside, [bessSexName].”</i> You tell [Bess.name].");
+	output(" [bess.HisHer] tongue then parts your now glistening folds and dips slowly inside of you. The sensation of [bess.hisHer] silvery tastebuds licking the inside of your slippery snatch is out of this world.");
+	if (pc.genitalSpot <= 1 && pc.legs() > 2) output(" You sigh with pleasure, subconsciously hook your legs over [bess.hisHer] shoulders and pulling [bess.hisHer] closer.");
+	else output(" You let out a low moan, your hips wiggling as [bess.hisHer] tongue delves and explores your insides.");
+
+	output("\n\nAs [bess.hisHer] tongue continues to explore your depths, [bess.heShe] lets out a low moan, clearly enjoying probing your pussy as much as you enjoy being probed. Your warm, sticky girl juices drool out and all over [bess.hisHer] lapping tongue. [Bess.name] eagerly drinks this up and groans happily into your muff; to [bess.hisHer] it tastes like pure ambrosia.");
+	
+	output("\n\nSuddenly [bess.heShe]’s pulling out and you let out a disappointed cry, only to feel one of [bess.hisHer] slender fingers wiggling inside your [pc.pussyLight]. Your note of disapproval quickly becomes one of delight as [bess.hisHer] probing digit wiggles up and presses against vag: your sensitive g-spot.  You utterly swim in pleasure as a hot feeling pools in your lower abdomen, coiling inside of you. You know it’s not going to be long at all before you are utterly creaming yourself");
+	if (pc.hasCock()) output(" and shooting your load all over the place.");
+	
+	output("\n\nTeasing your sweet spot in delicious, pulsing movements, [Bess.name] brings [bess.hisHer] mouth down and laps at your");
+	if (pc.hasClit()) output(" [pc.clit]");
+	else output(" outer lips");
+	output(". The skilled synthetic teases");
+	if (pc.totalClits() == 1) output(" it");
+	else output(" them");
+	output(") with [bess.hisHer] tongue, masterfully pleasuring your [pc.pussyNoun] both inside and out.");
+	
+	output("\n\nYour legs begin to spasm uncontrollably as [bess.hisHer] twin assault pushes you over the edge. Suddenly your hips are shaking spastically as you cry out in delirious, carnal ecstasy. Your [pc.pussyLight] messily");
+	if (pc.isSquirter()) output(" squirts");
+	else output(" dribbles");
+	output(" your [pc.girlcum] all over [bess.hisHer] tongue, which [bess.heShe] laps up with relish.");
+	if (pc.hasCock()) output(" At the same time, you shoot your [pc.cum] all over your [pc.belly].");
+	
+	output("\n\nOnce your orgasm subsides, [Bess.name] gives your sticky lips a few more affectionate licks. [bess.HeShe] then pulls back and looks at you with bright [bess.eyeColor] eyes. <i>“");
+	if (bessIsEqual()) output("Mmm; you’re so tasty, [bessPCSexName]. I love eating you out.");
+	else if (bessIsDom()) output("Good job, [bessPCSexName]. I do so love eating out your delicious hole.");
+	else output("I hope you enjoyed yourself, [bessPCSexName]. Were my efforts were to your satisfaction?");
+	output("”</i>");
+
+	processTime(25 + rand(10));
+
+	for (var i:int = 0; i < 3; i++)
+	{
+		pc.orgasm();
+	}
+
+	if (flags["BESS_FUCKED"] == undefined) flags["BESS_FUCKED"] = 0;
+	flags["BESS_FUCKED"]++;
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
 
-
-Milk Her Udders / Milkers
-
-// Bess Must Have Breasts
-// Cannot be watched if Bess is a Dom
-// When Bess is undergoing breast size reduction in the follower menu, the PC can choose [Milk Her Udders] and watch this sex scene
-// If accessing this sex scene from the sex menu, PC must have turned Bess's lactation on. For watching this scene during breast reduction, lactation being on is not a requirement.
-
-{First time: You inform [Bess.name] that you want to use some dairy milkers on [bess.hisHer] breasts.
-
-"{Wha-- use a milker? Like a pregnant New Texan cow...?" [Bess.name] blushes <i>hard</i> at your suggestion. At the same time [Bess.sheHe] trembles with excitement as you pull out the object in question.
-
-
-Despite any verbal objection, {UpperGarments: [Bess.name] slips off [bess.hisHer] [bessUpperGarments]. [bess.HeShe] then/Else: [bess.heShe]} gets on all fours on a nearby bench, positioning herself to be the perfect height for you. [Bess.HisHer] [bess.breasts] dangle below [besshimHim]. 
-
-
-You click the milker on and a sucking air noise immediately comes from one the teat cups. Out of the corner of your eye you see [Bess.name] shiver pleasantly at the noise{, wearing nothing but [bess.hisHer] [bess.lowerUndergarment]}. 
-
-"Looking forward to getting milked like a cow, [bessSexName]?" You teasingly remark, a hint of amusement in your voice. Your words cause [bess.himHer] to flush even more, her [bess.breasts] jiggling about.
-
-"N-n-no! Why would I be happy about that?" [Bess.name] blatantly lies, refusing to meet your gaze.
-
-"Really? I guess I'll just put these away then..." You playfully begin to pack up. It doesn't take [bess.himHer] long to cave at all.
-
-"Alright, alright! I desperately want to be treated like a knocked up cow slut... and... i'm jealous of organic {girls/boys} who just get fucked{if (bess.hasPussy) ", impregnated,"} and milked all the time!</i> [Bess.name] looks like [bess.heShe]'s about to die from shame, though [bess.hisHer] thighs are trembling with excitement.
-
-After [bess.hisHer] embarrassing admission, you clamp the suction cups around[bess.hisHer] erect [bess.nipples], watching as they get sucked inside. The device rhythmically tugs at her silvery nubs and [bess.heShe] lets out a satisfied moan.
-
-"Oooohhh, I could live with these on..." [Bess.name] seems like [bess.heShe]'s practically melting. [Bess.HisHer] {BessHasCock: [bess.cock] stiffens}{Herm: and [bess.hisHer]}{VessHasPussy:[bess.pussy] moistens}{else: [bess.ass] wiggles} in pleasure. You reach out and stroke it, forcing [bess.himHer] to let out a low, lusty moan.
-
-"How is that, [bessSexName] - do you like being milked while I stroke you here?" You tauntingly ask. 
-
-[Bess.name] nods feverishly in response, unable to keep [bess.hisHer] body still. Instead [bess.heShe] rocks back and forth on [bess.hisHer] hands and knees, clearly caught up in the wonderful sensations of having [bess.hisHer] tits milked and her privates fondled.
-
-In a delicious little spurt, [bess.hisHer] [bess.nipplesNoun] fire [bess.hisHer] milk into the see-through canisters, battering the insides with [bess.hisHer] white, [bess.milkFlav] fluid. It immediately gets sucked into the tube. At the exact same time, [Bess.name] {NoGenitals: experiences a tiny orgasm/else: {GotCock:spurts creamy ropes of spunk/Else: squirts [bess.hisHer] girl-juice} {GotUnderwear: into [bess.hisHer] [bess.lowerUndergarment]/else: all over your hand}, marking it with [bess.hisHer] fluids}.
-
-if (bess not neuter)
+public function bessBreastFeed(opts:Array = null):void
 {
-"{BessGotUnderwear: Messing up your undies!/Else: Making my hand wet like that!} Naughty {boy/girl}." You reprimand [bess.himHer], all the while fondling [bess.hisHer] {now sticky loins}.
+	var breastReduction:Boolean = false;
+	var newRating:int = -1;
+
+	if (opts)
+	{
+		breastReduction = opts[0];
+		newRating = opts[1];
+	}
+
+	clearOutput();
+	bessHeader();
+
+	if (bessIsDom())
+	{
+		output("<i>“Time to suck my [bess.nipples], [bessPCSexName]. I don’t want all this milk going to waste.”</i> [Bess.name] orders you in a soothing, yet stern voice. [Bess.HeShe] tells you to take off your [pc.gear], and you immediately comply.");
+	}
+	else
+	{
+		output("<i>“[bessSexName], can I please suckle your delicious breast milk?”</i> You request of [bess.himHer], [bess.hisHer] eyebrows raising. [bess.HeShe] smiles and strides over to you, stroking [bess.hisHer] fingers down [bess.hisHer] swollen teats.");
+		
+		output("\n\n<i>“... You want to suckle my [bess.nipples]? It </i>would<i> be a shame if all that milk went to waste.”</i> [Bess.name] muses, happy to feed it to you.");
+		if (!pc.isNude()) output(" You take off your [pc.gear], preferring to be naked for this.");
+	}
+
+	if (!(bess.armor is EmptySlot) || !(bess.upperUndergarment is EmptySlot))
+	{
+		output("\n\n[Bess.name] quickly removes any obstructing clothing, tossing away [bess.hisHer] [bess.upperGarments]. Within moments, [bess.hisHer] [bess.breasts] are proudly on display.");
+	}
+
+	output("\n\nYou openly ogle the [bess.milkNoun] dribbling from [bess.hisHer] [bess.nipples]. All of it is simply going to waste, but not for much longer.");
+	if (pc.genitalSpot <= 1) output(" [bess.HeShe] climbs up into your lap");
+	else output(" [bess.HeShe] moves up to you");
+	output(" - [bess.hisHer] [bess.belly] pressing against your chest - and holds one of [bess.hisHer] [bess.breasts] in one hand. [bess.HeShe] lifts it up for you tosuckle upon.");
+	
+	output("\n\n<i>“... How about a scrumptious milkshake, [bessSexName]? My treat.”</i> [Bess.name] purrs seductively as you take [bess.hisHer] [bess.nipple] between your [pc.lips]. You can taste [bess.hisHer] [bess.milk] squirting out onto your tongue. [bess.HisHer] [bess.milkVisc] fluid filling your mouth as you hungrily suck on her [bess.breasts].");
+	
+	output("\n\nYou can tell [Bess.name] is thoroughly enjoying it as [bess.heShe] lets out a rapturous moan, [bess.hisHer] head lolling back as you feed from her [bess.hisHer] mounds. You cup her smooth [bess.breastcupSize]s in your hands and give them a cow-like squeeze, feeling her milk eagerly jet into your mouth/throat.");
+	
+	output("\n\n<i>“T-this feels so goood...”</i> [Bess.name] dreamily moans. You continue to milk her udders until [bess.heShe] creams [bess.himHerself], overwhelmed by the sensory overload of you feeding on and squeezing her silvery lactating tits. As [bess.heShe] cums, [Bess.name] presses [bess.hisHer] [bess.breasts] against your face, [bess.hisHer] fingers pulling your head hard against them.");
+	
+	output("\n\nSoon it’s time for the other breast and you milk and suck on [bess.hisHer] [bess.nipples], delighting in the sordid moans every time [bess.heShe] squirts another jet of [bess.milk] into your mouth. Practically comatose with pleasure, it’s not long before [bess.name is cumming once again, legs twitching as [bess.heShe] lets out a whimpering moan.");
+	
+	output("\n\nYou continue until you’ve");
+	if (breastReduction)
+	{
+		output(" sucked her silvery spheres dry,");
+		if (newRating == 0) output(" leaving her with a flat, boyish chest");
+		else output(" down to "+ bess.breastCup(0, newRating));
+	}
+	else
+	{
+		output(" had your fill of [bess.hisHer] [bess.milk]");
+	}
+	output(".");
+	if (bess.hasCock() || bess.hasVagina())
+	{
+		output("[bess.HisHer] thighs are a mess");
+		if (bess.hasCock()) output(" [bess.cum]");
+		if (bess.hasCock() && bess.hasVagina()) output(" and");
+		if (bess.hasVagina()) output(" [bess.girlCum]");
+		output(", occasionally twitching as she falls back on the ground. [Bess.HisHer] nipples really are sensitive-!");
+	}
+
+	if (newRating != -1)
+	{
+		output("\n\n<b>[Bess.name] now has ");
+		if (newRating > 0) output(bess.breastCup(0, newRating) +" breasts!");
+		else output(" a flat chest!");
+		output("</b>");
+	}
+
+	if (flags["BESS_FUCKED"] == undefined) flags["BESS_FUCKED"] = 0;
+	flags["BESS_FUCKED"]++;
+
+	flags["BESS_BREASTFED"] = 1;
+
+	pc.lust(15);
+	bess.orgasm();
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
 
-[Bess.name] arches her back like a cat at your teasing words and presses her squelching {underwear/loins} against your hand. Her [bess.breastsSimple] practically burst into the canisters, [bess.nipples] firing off like milky machine guns. You turn up the suction to max and watch as [Bess.name]'s eyes roll back into [bess.hisHer] head, thick streams of [bess.milk] filling up the transparent tubes. It's more than [Bess.name]'s processors can take, and soon [bess.heShe] mentally regresses to a gibbering mess.
+public function bessMilkers(opts:Array = null):void
+{
+	var breastReduction:Boolean = false;
+	var newRating:int = -1;
 
-Drooling in near comatose pleasure, [Bess.name]'s upper body falls against the bench as [bess.heShe] pokes out [bess.hisHer] ass like a common farm animal.{BessNotNeuter: {BessMaleOrHerm: [bess.HisHer] {[bess.cockNounSimple] fires another load of [bess.cum]/BessGotPussy: [bess.pussyNounSimple] squirts once more, splashing [bess.girlCum]} {BessUndies: in [bess.hisHer] [bess.lowerUndergarment]/else: on your hand}}.
+	if (opts)
+	{
+		breastReduction = opts[0];
+		newRating = opts[1];
+	}
 
-{PC has Cock:
+	clearOutput();
+	bessHeader();
 
-Unable to hold back any longer, you move up behind [bess.himHer], {strip off your [pc.gear],} and {pull out your [pc.cocksNounSimple]. You then {BessUndies: pull down [bess.hisHer] sopping wet [bess.lowerUndergarment] until they rest at [bess.hisHer] knees and} penetrate [bess.himHer with your prick. You sink it deep into [bess.hisHer] [bess.vagOrAss]. Incapable of speech, [Bess.name] whimpers and slaps [bess.hisHer] hips back against yours, encouraging you to breed [bess.hisHer] slutty synthetic {snatch/ass}. 
+	output("You inform [Bess.name] that you want to use some dairy milkers on [bess.hisHer] breasts.");
 
-[Bess.name] can't seem to stop cumming as [bess.hisHer] [bess.nipples] are milked, especially with your [pc.cock] buried inside [bess.himHer]. Feeling [bess.himHer] ripple and clench around you gets you off ridiculously quick. It's not long before you're groaning and shooting your [pc.cum] deep within [bess.hisHer] [bess.vagOrAss].
+	if (flags["BESS_MILKERS_TIMES"] == undefined)
+	{
+		flags["BESS_MILKERS_TIMES"] = 1;
 
+		output("\n\n<i>“Wha- use a milker? Like a pregnant New Texan cow...?”</i> [Bess.name] blushes <i>hard</i> at your suggestion. At the same time [Bess.sheHe] trembles with excitement as you pull out the object in question.");
 
-[Bess.name] is lewdly filled up with cream in one end and milked dry on the other, sandwiched in a lewd cycle of breast cumming and being cummed in. Afterwards you pull free and your [pc.cum] drools down [bess.hisHer] {thighs/asscrack} in a glorious {anal} cream pie.
+		output("\n\nDespite any verbal objection,");
+		if (bess.isChestGarbed()) output(" [Bess.name] slips off [bess.hisHer] [bess.UpperGarments]. [bess.HeShe] then");
+		else output(" [bess.heShe]");
+		output(" gets on all fours on a nearby bench, positioning herself to be the perfect height for you. [Bess.HisHer] [bess.breasts] dangle below [bess.himHer].");
+	}
+	else
+	{
+		flags["BESS_MILKERS_TIMES"]++;
+		output("\n\nA blush dusts the synthetics cheeks, recalling [bess.hisHer] previous encounter with the milking machine.");
+		if (bess.isChestGarbed()) output("[Bess.name] slips off [bess.hisHer] [bess.UpperGarments]. [bess.HeShe] then");
+		else output(" [bess.heShe]");
+		output(" gets on all fours on a nearby bench, positioning herself to be the perfect height for you. [Bess.HisHer] [bess.breasts] dangle below [bess.himHer].");
+	}
 
-// PC cums. Cum and lust go down.
+	output("\n\nYou click the milker on and a sucking air noise immediately comes from one the teat cups. Out of the corner of your eye you see [Bess.name] shiver pleasantly at the noise");
+	if (!(bess.lowerUndergarment is EmptySlot)) output(", wearing nothing but [bess.hisHer] [bess.lowerUndergarment]");
+	output(".");
+	
+	output("\n\n<i>“Looking forward to getting milked like a cow, [bessSexName]?”</i> You teasingly remark, a hint of amusement in your voice. Your words cause [bess.himHer] to flush even more, her [bess.breasts] jiggling about.");
+	
+	output("\n\n<i>“N-n-no! Why would I be happy about that?”</i> [Bess.name] blatantly lies, refusing to meet your gaze.");
+	
+	output("\n\n<i>“Really? I guess I’ll just put these away then...”</i> You playfully begin to pack up. It doesn’t take [bess.himHer] long to cave at all.");
 
+	output("\n\n<i>“Alright, alright! I desperately want to be treated like a knocked up cow slut... and... i’m jealous of organic [bess.boyGirl]s who just get fucked");
+	if (bess.hasVagina()) output(", impregnated,");
+	output(" and milked all the time!”</i> [Bess.name] looks like [bess.heShe]’s about to die from shame, though [bess.hisHer] thighs are trembling with excitement.");
+	
+	output("\n\nAfter [bess.hisHer] embarrassing admission, you clamp the suction cups around [bess.hisHer] erect [bess.nipples], watching as they get sucked inside. The device rhythmically tugs at her silvery nubs and [bess.heShe] lets out a satisfied moan.");
+	
+	output("\n\n<i>“Oooohhh, I could live with these on...”</i> [Bess.name] seems like [bess.heShe]’s practically melting. [Bess.HisHer]");
+	if (bess.hasCock()) output(" [bess.cock] stiffens");
+	if (bess.hasCock() && bess.hasVagina()) output(" and [bess.hisHer]");
+	if (bess.hasVagina()) output(" [bess.pussy] moistens");
+	if (!bess.hasVagina() && !bess.hasCock()) output(" [bess.ass] wiggles");
+	output(" in pleasure. You reach out and stroke it, forcing [bess.himHer] to let out a low, lusty moan.");
+
+	output("\n\n<i>“How is that, [bessSexName] - do you like being milked while I stroke you here?”</i> You tauntingly ask.");
+	
+	output("\n\n[Bess.name] nods feverishly in response, unable to keep [bess.hisHer] body still. Instead [bess.heShe] rocks back and forth on [bess.hisHer] hands and knees, clearly caught up in the wonderful sensations of having [bess.hisHer] tits milked and her privates fondled.");
+	
+	output("\n\nIn a delicious little spurt, [bess.hisHer] [bess.nipplesNoun] fire [bess.hisHer] milk into the see-through canisters, battering the insides with [bess.hisHer] white, [bess.milkFlavor] fluid. It immediately gets sucked into the tube. At the exact same time, [Bess.name]");
+	if (!bess.hasCock() && !bess.hasVagina()) output(" experiences a tiny orgasm");
+	else
+	{
+		if (bess.hasCock()) output(" spurts creamy ropes of spunk");
+		else output(" squirts [bess.hisHer] girl-juice");
+		if (!(bess.lowerUndergarment is EmptySlot)) output(" into [bess.hisHer] [bess.lowerUndergarment]");
+		else output(" all over your hand");
+		output(", marking it with [bess.hisHer] fluids}.");
+
+		if (!(bess.lowerUndergarment is EmptySlot)) output("\n\n<i>“Messing up your undies!");
+		else output("\n\n<i>“Making my hand wet like that!");
+
+		output("Naughty [bess.boyGirl].”</i> You reprimand [bess.himHer], all the while fondling [bess.hisHer]");
+		if (!(bess.lowerUndergarment is EmptySlot)) output(" now sticky loins");
+		output(".");
+	}
+
+	output("\n\n[Bess.name] arches her back like a cat at your teasing words and presses her squelching");
+	if (!(bess.lowerUndergarment is EmptySlot)) output(" underwear");
+	else output(" loins");
+	output(" against your hand. Her [bess.breastsSimple] practically burst into the canisters, [bess.nipples] firing off like milky machine guns. You turn up the suction to max and watch as [Bess.name]’s eyes roll back into [bess.hisHer] head, thick streams of [bess.milk] filling up the transparent tubes. It’s more than [Bess.name]’s processors can take, and soon [bess.heShe] mentally regresses to a gibbering mess.");
+	
+	output("\n\nDrooling in near comatose pleasure, [Bess.name]’s upper body falls against the bench as [bess.heShe] pokes out [bess.hisHer] ass like a common farm animal.");
+	if (bess.hasCock() || bess.hasVagina())
+	{
+		output(" [bess.HisHer]")
+		if (bess.hasCock()) output(" [bess.cockNounSimple] fires another load of [bess.cum]");
+		else if (bess.hasVagina()) output(" [bess.pussyNounSimple] squirts once more, splashing [bess.girlCum]");
+		if (!(bess.lowerUndergarment is EmptySlot)) output(" in [bess.hisHer] [bess.lowerUndergarment]");
+		else output(" on your hand");
+		output(".");
+	}
+
+	if (bess.hasCock())
+	{
+		output("\n\nUnable to hold back any longer, you move up behind [bess.himHer],");
+		if (!pc.isNude()) output(" strip off your [pc.gear],");
+		output(" and pull out your [pc.cocksNounSimple]. You then");
+		if (!(bess.loderUndergarment is EmptySlot)) output(" pull down [bess.hisHer] sopping wet [bess.lowerUndergarment] until they rest at [bess.hisHer] knees and");
+		output(" penetrate [bess.himHer] with your prick. You sink it deep into [bess.hisHer] [bess.vagOrAss]. Incapable of speech, [Bess.name] whimpers and slaps [bess.hisHer] hips back against yours, encouraging you to breed [bess.hisHer] slutty synthetic");
+		if (bess.hasVagina()) output(" snatch");
+		else output(" ass");
+		output(".");
+		
+		output("\n\n[Bess.name] can’t seem to stop cumming as [bess.hisHer] [bess.nipples] are milked, especially with your [pc.cock] buried inside [bess.himHer]. Feeling [bess.himHer] ripple and clench around you gets you off ridiculously quick. It’s not long before you’re groaning and shooting your [pc.cum] deep within [bess.hisHer] [bess.vagOrAss].");
+		
+		output("\n\n[Bess.name] is lewdly filled up with cream in one end and milked dry on the other, sandwiched in a lewd cycle of breast cumming and being cummed in. Afterwards you pull free and your [pc.cum] drools down [bess.hisHer]");
+		if (bess.hasVagina()) output(" thighs");
+		else output(" asscrack");
+		output(" in a glorious");
+		if (!bess.hasVagina()) output(" anal");
+		output(" cream pie.");
+
+		// PC cums. Cum and lust go down.
+		pc.orgasm();
+		if (bess.hasVagina()) bess.loadInCunt(0, pc);
+		else bess.loadInAss(pc);
+	}
+
+	if (newRating != -1)
+	{
+		output("\n\nChecking the machine, you realise that <b> [bess.hisHer] breasts have");
+		if (newRating > 0) output(" gone down a size and are now visibly smaller.");
+		else output(" been completely milked dry. [Bess.name] now has a flat chest.");
+		output("</b>");
+	}
+	else
+	{
+		output("\n\nSince [Bess.name] seems to be a drooling mess right now, you turn off the device and leave [bess.himHer] synthetic milk there for [bess.himHer] to drink later. After all, as a machine [bess.heShe] can put it back in, right?");
+	}
+
+	processTime(45+rand(15));
+	bess.orgasm();
+
+	clearMen();
+	addButton(0, "Next", mainGameMenu);
 }
 
+public function bessIntimateSexMenu():void
+{
+	clearMenu();
 
-{If changing bess's breast size:
+	// [GetDoggy] [GiveDoggy] [GetOral] [GiveOral]
 
-Checking the machine, you realise that <b> [bess.hisHer] breasts have {gone down a size and are now visibly smaller./been completely milked dry. [Bess.name] now has a flat chest.}</b>
+	if (pc.hasCock())
+	{
+		addButton(0, "GiveDoggy", bessIntimateGiveDoggy);
+	}
+	else
+	{
+		addDisabledButton(0, "GiveDoggy", "Give Doggy", "Requires a cock!");
+	}
 
-// Insert breast size change.
-
+	addButton(14, "Back", bessFollowerMenu);
 }
 
-{else // accessed from sex menu:
+public function bessIntimateGiveDoggy(fromEvent:Boolean = false):void
+{
+	clearOutput();
+	bessHeader();
 
-Since [Bess.name] seems to be a drooling mess right now, you turn off the device and leave [bess.himHer] synthetic milk there for [bess.himHer] to drink later. After all, as a machine [bess.heShe] can put it back in, right?
+	output("You both strip off your gear, though [Bess.name] is that bit quicker. Before you know it [bess.heShe] is wrapping [bess.hisHer] arms tightly around your neck and with an enthusiastic push, both of you fall down naked on the soft bed behind you.");
+	
+	output("\n\nAs [bess.hisHer] soft body falls on top of you, you can feel [bess.hisHer] [pc.chest] pressing against your front. [bess.HisHer] [bess.nipples] are already fully erect and brushing against your [pc.skinFurScalesNoun]. With a cute little pull, [bess.heShe] brings [bess.himHerself] up to tenderly kiss your neck.");
+	
+	output("\n\nIt’s not long at all before things heat up between you and [bess.himHer], and [bess.heShe]’s wrapping [bess.hisHer] thighs passionately around your lower half. [bess.HisHer] heated loins and [bess.belly] press against yours with a feverish insistence.");
+	
+	output("\n\n<i>“I don’t want to just have sex, I want you to make love to me.”</i> [Bess.name] breathily whispers, [bess.hisHer] lower petals kissing the underside of your shaft");
+	if (pc.cocks.length > 1) output("s");
+	output(". <i>“First, though...”</i>");
+	
+	output("\n\n[Bess.name]’s lips sensuously travel along your jawline and reach your own. As [bess.heShe] tilts [bess.hisHer] head [bess.heShe] kisses you softly, yet urgently. You can taste the sweetness of [bess.hisHer] mouth as [bess.hisHer] tongue mingles with yours, all the while [bess.hisHer] eyes are gently closed.");
+
+	output("\n\nThe delicious smell of synthetic vanilla, [bess.hisHer] particular scent, fills your senses. You’re utterly wrapped up in [bess.hisHer] in more ways than you can count. There is nothing other than [Bess.name] as all else is swept away by the power of [bess.hisHer] sweetly pressing lips.");
+
+	// {If this sex scene is being played as part of Scene 20 AND Bess has a vagina:
+	if (fromEvent && bess.hasVagina())
+	{
+		output("\n\nYour lips pull apart as both of your breathing comes out in short desperate gasps. [Bess.name] gazes at you with [bess.hisHer] beautiful [bess.eyeColor] eyes. <i>“Um... [bNamePC]... I wanted this to be like my romance books so... I used my meld-milk to make myself... um... a hymen.”</i>");
+		
+		output("\n\n<i>“I never had a first time, but if I did, i’d want you to have it. I know it’s not really... but... could you be my first?”</i> [bess.HeShe] asks you imploringly, looking at you all the while.");
+		
+		output("\n\nYou tell [bess.hisHer] it’s obviously going to hurt and [bess.heShe] nods knowingly. <i>“... I know, but that will make me remember it that much more. I want to remember this time with you, because it’s the first time we’ll be making love, not just having sex.”</i>");
+		
+		output("\n\nYou nod and [bess.heShe] clings to you as you position your glans so it is lined up with [bess.hisHer] now apparently virgin mound. You ask [bess.hisHer] if [bess.heShe]’s ready and [bess.heShe] nods, <i>“Please, be my first.”</i>");
+
+		output("\n\nYou lower [bess.hisHer] down onto your [pc.cock], slowly sliding yourself inside of [bess.himHer]. You can see [bess.hisHer] wincing a little already as you break [bess.hisHer] hymen, stopping immediately. <i>“... Ow! It’s okay, don’t stop, I’m fine.”</i>");
+		
+		output("\n\n[bess.HeShe] keeps encouraging you to continue so you push deeper inside of [bess.hisHer] incredibly narrow passage. [bess.HeShe]’s really clinging to you with a velvety grip, even more so since you just broke [bess.hisHer] hymen. Eventually you’re all the way in and you ask [bess.hisHer] if [bess.heShe]’s okay.");
+		
+		output("\n\n<i>“I’m fine, that’s exactly what I wanted. You got to take my virginity.”</i> [Bess.name] kisses you softly, pulling you against [bess.hisHer] as your [pc.cockNoun] twitches inside of [bess.himHer]. <i>“...I feel much fuller than usual, like I’m suddenly complete.”</i>");
+		
+		output("\n\nOnce [bess.heShe]’s ready you begin to slowly rock your hips - while there’s pain it doesn’t seem so bad for [bess.hisHer] as your initial penetration. Soon you can feel [bess.hisHer] insides becoming slick around your shaft as [bess.heShe] clings tightly to you, nuzzling [bess.hisHer] head into your neck. <i>“... Why does this feel... so much more intense-? I already feel like I’m going to..!”</i>");
+	}
+	else
+	{
+		output("\n\nYour lips pull apart as both of your breathing comes out in short desperate gasps. [Bess.name] gazes at you with [bess.hisHer] beautiful [bess.eyeColor] eyes. <i>“... Make love to me, [bNamePC]. I want you inside of me.”</i>");
+		
+		output("\n\n[bess.HeShe] shifts herself so your [pc.cockhead] is lined up with [bess.hisHer]");
+		if (bess.hasVagina()) output(" wetness");
+		else output(" entrance");
+		output(", sliding you slowly inside of herself as [bess.heShe] descends on your length. As you push deeper inside of [bess.hisHer] incredibly narrow passage [bess.heShe] cling to you with a velvety grip.");
+		
+		output("\n\nOnce  you are fully inside of [bess.himHer], [Bess.name] kisses you softly, pulling you against [bess.hisHer] as your [pc.cockNoun] twitches inside of [bess.himHer]. <i>“...I love the feeling of you deep inside of me. It makes me feel so complete.”</i>");
+		
+		output("\n\nOnce [bess.heShe]’s ready you begin to slowly rock your hips - you can feel [bess.hisHer] insides becoming");
+		if (bess.hasVagina()) output(" slick");
+		else output(" narrow");
+		output(" around your shaft as [bess.heShe] clings tightly to you, nuzzling [bess.hisHer] head into your neck. <i>“... Why does this feel... so much more intense-? I already feel like I’m going to..!”</i>");
+	}
+
+	output("\n\n[Bess.name] doesn’t even finish [bess.hisHer] sentence before [bess.heShe] creams [bess.himHer]self and convulses around your [pc.cock], trembling and clinging to you as [bess.heShe] lets out a whimpering moan. Eventually [bess.heShe] settles down and");
+	if (bess.hasVagina()) output(" your length is completely slickened, surrounded by [bess.hisHer] tight inner warmth");
+	else output(" gasps for air, trembling around your tool");
+	output(".");
+	
+	output("\n\n<i>“...I can’t believe how quick that was.”</i> [bess.HeShe] flushes furiously into your shoulder, clearly embarrassed by [bess.hisHer] hyperarousal. You kiss again and soon [bess.heShe]’s grinding [bess.hisHer] hips for more. It’s not long before [bess.heShe]’s bouncing wildly on your lap and you’re grabbing [bess.hisHer] waist, moaning as [bess.heShe] passionately wrings your [pc.cock].");
+	
+	output("\n\nYou can’t hold out much longer as [bess.heShe] massages and strokes your cock with [bess.hisHer] inner muscles and [bess.hisHer] [bess.chest] rub");
+	if (bess.biggestTitSize() == 0) output("s");
+	output(" against you. Suddenly you are shooting your [pc.cum] inside of [bess.hisHer]");
+	if (bess.hasVagina()) output(" slick");
+	output(" narrow tunnel and arching your back. As you unload inside of [bess.hisHer] [bess.heShe] moans and cums again around your spasming shaft.");
+	
+	output("\n\nYour lap feels as if there’s a");
+	if (bess.hasVagina()) output(" liquid");
+	output(" furnace on it as you both kiss in your delirious post-orgasmic haze. You’re not sure how much time passes before you fall down exhausted in each other’s arms, your [pc.cum]");
+	if (fromEvent && bess.hasVagina()) output(" and a little bit of blood");
+	output(" leaking out from between [bess.hisHer]");
+	if (bess.hasVagina()) output(" thighs");
+	else output(" buttocks");
+	output(".");
+
+	if (bess.hasVagina()) bess.loadInCunt(0, pc);
+	else bess.loadInAss(pc);
+
+	if (flags["BESS_FUCKED"] == undefined) flags["BESS_FUCKED"] = 0;
+	flags["BESS_FUCKED"]++;
+
+	pc.orgasm();
+
+	// 9999 fromEvent needs to redirect the next button
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
-
-
-
-Intimate Sex Menu
-
-// Shows up under normal Bess Follower Menu, just like Sex does. However, to access it, Bess must be the PC's lover. 
-// If bessAffection is below 30, the sex menu is unavailable.
-// tooltip for when sex is unavailable: [bess.name] isn't feeling up for sex. You will need to raise [bess.hisHer] affection in order to have sex with [bess.himHer].
-// Every time Bess and the PC have lovers sex, add +5 to Bess's affection level.
-
-// In Approach Scene 20, Bess and the PC can have 'lovers sex' for the first time. If the PC chooses to have sex, it plays one of the sex scenes below:
-If the PC has a cock, it plays the 'Give Doggy' scene'. 
-If they don't, but Bess has a cock, it plays the Get Doggy Scene. 
-If no-one has a cock, it plays 'Get Oral'. 
- There are special brackets in these scenes for text that only show up during the Scene 20 sex event.
-
-
-[GetDoggy] [GiveDoggy] [GetOral] [GiveOral]
-
-Give Doggy
-
-// PC must have cock
-// If Bess has a vagina, it's vaginal sex. Else anal.
-
-You both strip off your gear, though [Bess.name] is that bit quicker. Before you know it [bess.heShe]] is wrapping [bess.hisHer] arms tightly around your neck and with an enthusiastic push, both of you fall down naked on the soft bed behind you.
-
-As [bess.hisHer] soft body falls on top of you, you can feel [bess.hisHer] [pc.chest] pressing against your front. [bess.HisHer] [bess.nipples] are already fully erect and brushing against your [pc.skinFurScalesNoun]. With a cute little pull, [bess.heShe] brings [bess.himHerself] up to tenderly kiss your neck.
-
-It's not long at all before things heat up between you and [bess.himHer], and [bess.heShe]'s wrapping [bess.hisHer] thighs passionately around your lower half. [bess.HisHer] heated loins and [bess.belly] press against yours with a feverish insistence.
-
-"I don't want to just have sex, I want you to make love to me." [Bess.name] breathily whispers, [bess.hisHer] lower petals kissing the underside of your shaft{s}. "First, though..."
-
-[Bess.name]’s lips sensuously travel along your jawline and reach your own. As [bess.heShe] tilts [bess.hisHer] head [bess.heShe] kisses you softly, yet urgently. You can taste the sweetness of [bess.hisHer] mouth as [bess.hisHer] tongue mingles with yours, all the while [bess.hisHer] eyes are gently closed. 
-
-The delicious smell of synthetic vanilla, [bess.hisHer] particular scent, fills your senses. You're utterly wrapped up in [bess.hisHer] in more ways than you can count. There is nothing other than [Bess.name] as all else is swept away by the power of [bess.hisHer] sweetly pressing lips. 
-
-{If this sex scene is being played as part of Scene 20 AND Bess has a vagina:
-
-Your lips pull apart as both of your breathing comes out in short desperate gasps. [Bess.name] gazes at you with [bess.hisHer] beautiful [bess.eyeColor] eyes. "Um... [bNamePC]... I wanted this to be like my romance books so... I used my meld-milk to make myself... um... a hymen."
-
-"I never had a first time, but if I did, i’d want you to have it. I know it’s not really... but... could you be my first?" [bess.HeShe] asks you imploringly, looking at you all the while.
-
-You tell [bess.hisHer] it’s obviously going to hurt and [bess.heShe] nods knowingly. "... I know, but that will make me remember it that much more. I want to remember this time with you, because it’s the first time we’ll be making love, not just having sex."
-
-You nod and [bess.heShe] clings to you as you position your glans so it is lined up with [bess.hisHer] now apparently virgin mound. You ask [bess.hisHer] if [bess.heShe]'s ready and [bess.heShe] nods, "Please, be my first."
-
-You lower [bess.hisHer] down onto your [pc.cock], slowly sliding yourself inside of [bess.himHer]. You can see [bess.hisHer] wincing a little already as you break [bess.hisHer] hymen, stopping immediately. "... Ow! It’s okay, don’t stop, I’m fine." 
-
-[bess.HeShe] keeps encouraging you to continue so you push deeper inside of [bess.hisHer] incredibly narrow passage. [bess.HeShe]'s really clinging to you with a velvety grip, even more so since you just broke [bess.hisHer] hymen. Eventually you’re all the way in and you ask [bess.hisHer] if [bess.heShe]'s okay.
-
-"I’m fine, that’s exactly what I wanted. You got to take my virginity." [Bess.name] kisses you softly, pulling you against [bess.hisHer] as your [pc.cockNoun] twitches inside of [bess.himHer]. "...I feel much fuller than usual, like I’m suddenly complete."
-
-Once [bess.heShe]'s ready you begin to slowly rock your hips - while there’s pain it doesn’t seem so bad for [bess.hisHer] as your initial penetration. Soon you can feel [bess.hisHer] insides becoming slick around your shaft as [bess.heShe] clings tightly to you, nuzzling [bess.hisHer] head into your neck. "... Why does this feel... so much more intense--? I already feel like I’m going to..!"
-}
-{Else // Bess is already your lover:
-Your lips pull apart as both of your breathing comes out in short desperate gasps. [Bess.name] gazes at you with [bess.hisHer] beautiful [bess.eyeColor] eyes. "... Make love to me, [bNamePC]. I want you inside of me."
-
-[bess.HeShe] shifts herself so your [pc.cockhead] is lined up with [bess.hisHer] {Vaginal: wetness/else: entrance}, sliding you slowly inside of herself as [bess.heShe] descends on your length. As you push deeper inside of [bess.hisHer] incredibly narrow passage [bess.heShe] cling to you with a velvety grip.
-
-Once  you are fully inside of [bess.himHer], [Bess.name] kisses you softly, pulling you against [bess.hisHer] as your [pc.cockNoun] twitches inside of [bess.himHer]. "...I love the feeling of you deep inside of me. It makes me feel so complete."
-
-Once [bess.heShe]'s ready you begin to slowly rock your hips - you can feel [bess.hisHer] insides becoming {Vaginal: slick/Else: narrow} around your shaft as [bess.heShe] clings tightly to you, nuzzling [bess.hisHer] head into your neck. "... Why does this feel... so much more intense--? I already feel like I’m going to..!"
-}
-
-[Bess.name] doesn’t even finish [bess.hisHer] sentence before [bess.heShe] creams [bess.himselfherself] and convulses around your [pc.cock], trembling and clinging to you as [bess.heShe] lets out a whimpering moan. Eventually [bess.heShe] settles down and {Vaginal: your length is completely slickened, surrounded by [bess.hisHer] tight inner warmth/Else: gasps for air, trembling around your tool}.
-
-"...I can’t believe how quick that was." [bess.HeShe] flushes furiously into your shoulder, clearly embarrassed by [bess.hisHer] hyperarousal. You kiss again and soon [bess.heShe]'s grinding [bess.hisHer] hips for more. It’s not long before [bess.heShe]'s bouncing wildly on your lap and you’re grabbing [bess.hisHer] waist, moaning as [bess.heShe] passionately wrings your [pc.cock].
-
-You can’t hold out much longer as [bess.heShe] massages and strokes your cock with [bess.hisHer] inner muscles and [bess.hisHer] [bess.chest] rub{s} against you. Suddenly you are shooting your [pc.cum] inside of [bess.hisHer] {Vaginal: slick} narrow tunnel and arching your back. As you unload inside of [bess.hisHer] [bess.heShe] moans and cums again around your spasming shaft.
-
-Your lap feels as if there’s a {Vaginal: liquid} furnace on it as you both kiss in your delirious post-orgasmic haze. You’re not sure how much time passes before you fall down exhausted in each other’s arms, your [pc.cum] {PartOfScene 20 && Bess has vagina}: and a little bit of blood} leaking out from between [bess.hisHer] {Vaginal: thighs/Else:Buttocks}.
 
 Get Doggy
 
