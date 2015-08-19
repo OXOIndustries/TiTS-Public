@@ -939,6 +939,12 @@ public function variableRoomUpdateCheck():void
 	//Other nyrea gate:
 	if(flags["UNLOCKED_TAIVRAS_GATE"] == undefined) rooms["2G15"].southExit = "";
 	else rooms["2G15"].southExit = "2G17";
+	//Queensguard shit
+	if(queensguardAtFountain()) 
+	{
+		if(!rooms["2C13"].hasFlag(GLOBAL.NPC)) rooms["2C13"].addFlag(GLOBAL.NPC);
+	}
+	else if(rooms["2C13"].hasFlag(GLOBAL.NPC)) rooms["2C13"].removeFlag(GLOBAL.NPC);
 	//Handle badger closure
 	if(flags["DR_BADGER_TURNED_IN"] != undefined && rooms["209"].northExit != "") rooms["209"].northExit = "";
 	if(flags["DR_BADGER_TURNED_IN"] == undefined && rooms["209"].northExit == "") rooms["209"].northExit = "304";
@@ -1968,7 +1974,7 @@ public function milkMultiplierGainNotificationCheck():void
 	}
 	//125
 	if(pc.hasStatusEffect("Pending Gain MilkMultiplier Note: 125")) {
-		eventBuffer += "\n\nYour chest is practically singing in delight, and the only thing it sings about is [pc.milk] - rivers of never ending, liquid flows that will spill from you unceasingly. You have trained them to lactate as well as anything can be trained. If you want to make any more [pc.milk], you'll have to grow your [pc.fullChest] bigger or turn science.";
+		eventBuffer += "\n\nYour chest is practically singing in delight, and the only thing it sings about is [pc.milk] - rivers of never ending, liquid flows that will spill from you unceasingly. You have trained them to lactate as well as anything can be trained. If you want to make any more [pc.milk], you'll have to grow your [pc.fullChest] bigger or turn to science.";
 		pc.removeStatusEffect("Pending Gain MilkMultiplier Note: 125");
 	}
 }
@@ -2650,6 +2656,7 @@ public function statisticsScreen(showID:String = "All"):void
 		if(!chars["KIRO"].vaginalVirgin) totalVirginitiesTaken++;
 		if(!embry.vaginalVirgin) totalVirginitiesTaken++;
 		if(!embry.analVirgin) totalVirginitiesTaken++;
+		if(!chars["ANNO"].analVirgin) totalVirginitiesTaken++;
 		if(flags["TOOK_DELILAHS_BUTTGINITY"] != undefined) totalVirginitiesTaken++;
 		output2("\n<b>* Virginities Claimed: </b>" + totalVirginitiesTaken);
 		

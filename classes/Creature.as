@@ -4024,7 +4024,7 @@
 					if (pluralAdjective && legCount > 2 && this.rand(2) == 0) { adjectives.push("numerous"); }
 					//Coulda sworn there was a reason I didn't include these originally, but it's slipping away from me now.
 					if (hasLegFlag(GLOBAL.FLAG_AMORPHOUS)) adjectives.push("amorphous", "fluid", "ever-changing");
-					if (hasLegFlag(GLOBAL.FLAG_SCALED)) adjectives.push(("scaled", "scaley");
+					if (hasLegFlag(GLOBAL.FLAG_SCALED)) adjectives.push("scaled", "scaley");
 					if (hasLegFlag(GLOBAL.FLAG_FURRED)) adjectives.push("furry", "fuzzy", "fur-covered");
 					if (hasLegFlag(GLOBAL.FLAG_TENDRIL)) adjectives.push("wiggling", "wriggling", "tendril-like");
 					if (hasLegFlag(GLOBAL.FLAG_PREHENSILE)) adjectives.push("prehensile");

@@ -2142,6 +2142,7 @@ public function annoxKaedeAnonsBarMenu():void
 {
 	clearMenu();
 	if (pc.hasCock() && (pc.cockThatFits(370) >= 0) && (pc.cockThatFits(anno.vaginalCapacity()) >= 0)) addButton(0, "Fuck Them", annoxKaedeFuckThem, false);
+	else if(pc.hasCock()) addDisabledButton(0, "Fuck Them", "Fuck Them", "Your penis is too big for that!");
 	else addDisabledButton(0, "Fuck Them", "Fuck Them", "Requires a penis.");
 	addButton(1, "Service Kaede", annoxKaedeService, false);
 	addButton(2, "Watch", annoxKaedeWatch, false)

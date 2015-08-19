@@ -139,7 +139,7 @@ public function enemyAphrodisiacDarts():void
 				if(foes[0] is RaskvelFemale) output(" You find yourself wondering what it would be like to slip into her puffy, double-clitted box.");
 			}
 			else if(pc.hasVagina()) output("\n[pc.EachVagina] grows sensitive and moist as you ponder the merits of fucking this fetching little lizard-" + foes[0].mf("man","woman") + ".");
-			else output("\nYour [pc.nipples] harden as you idly consider forcing " + foes[0].mf("him","her") + " to lick you while suckling on " + foes[0].mf("his reptilian tool.","her twin clits.");
+			else output("\nYour [pc.nipples] harden as you idly consider forcing " + foes[0].mf("him","her") + " to lick you while suckling on " + foes[0].mf("his reptilian tool.","her twin clits."));
 		}
 		else if(pc.lust() < 65) output("\nYou groan out loud as the aphrodisiacs surges through your bloodstream, rousing you into a " + pc.rawmf("rut","heat") + " that you have have a hard time suppressing.");
 		else if(pc.lust() < 75) output("\n" + pc.mf("Grunting","Whimpering") + " in anticipation of what is to come, you ball your hands into fists as you try to endure the rising need as it spreads through your body. It feels like your brain is oozing down into your crotch, fixating utterly on sex. You want to fuck right now. You NEED to fuck soon.");

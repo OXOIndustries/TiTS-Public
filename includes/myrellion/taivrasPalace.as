@@ -457,13 +457,19 @@ public function palaceThoroughfareBonus():Boolean
 public function queensFountainBonusShit():Boolean
 {
 	output("This large, circular chamber has passages leading north, south, and east, each a squared-off tunnel with a simple silk curtain acting as a door. The center of the room is dominated by a natural fountain: a caldera of stone eroded in a perfect bowl shape in the floor, and filled with water that trickles down from a crack in the cavern’s ceiling.");
-
+	variableRoomUpdateCheck();
 	//if PC is NyreaKing, 12 hours have passed since dungeon victory:
-	if(pc.hasPerk("Nyrean Royal") && (flags["QUEENSGUARD_STAB_TIME"] != undefined && flags["QUEENSGUARD_STAB_TIME"] + 12*60 < GetGameTimestamp())) 
+	if(queensguardAtFountain()) 
 	{
 		addButton(0,"Queensguard",queensGuardRepeatApproaches);
 		output("\n\nQueensguard, Taivra’s personal bodyguard, is standing here. Her shield is sitting on the ground beside her, and both hands are on the hilt of her sword. She favors you with a slight nod, saying <i>“My " + pc.mf("king","queen") + ",”</i> by way of greeting. It looks like she’s recovered nicely from the fight.");
 	}
+	return false;
+}
+
+public function queensguardAtFountain():Boolean
+{
+	if(pc.hasPerk("Nyrean Royal") && (flags["QUEENSGUARD_STAB_TIME"] != undefined && flags["QUEENSGUARD_STAB_TIME"] + 12*60 < GetGameTimestamp())) return true;
 	return false;
 }
 
@@ -478,7 +484,8 @@ public function queensChambersBonus():Boolean
 		if(flags["CRYSTAL_GOO_DEFEAT"] != undefined) output("\n\nYou can see some gooey slop on the stone floor, near the little hatch Taivra’s pet broodmother goo lives in.");
 		//if NyreaKing & skipped Goofite:
 		else output("\n\nYou can see some gooey slop on the stone floor, near one of the big carpets on the stone floor just under a gloryhole in the wall beside her bed.");
-		addButton(1,"Gloryhole",useRepeatGloryhole,undefined,"Use Gloryhole","Well, that’s what it’s there for, right? Stick your dick right into the gloryhole and treat yourself to your queenly mate’s favorite evening pastime.")
+		if(pc.hasCock()) addButton(1,"Gloryhole",useRepeatGloryhole,undefined,"Use Gloryhole","Well, that’s what it’s there for, right? Stick your dick right into the gloryhole and treat yourself to your queenly mate’s favorite evening pastime.");
+		else addDisabledButton(0,"Gloryhole","Use Gloryhole","You don't have the equipment to do that.");
 	}
 	//Play <i>“Incubator Goo”</i> encounter on first entry.
 	else if(flags["CRYSTAL_GOO_DEFEAT"] == undefined)
@@ -601,9 +608,10 @@ public function taivrasThroneBonusFunc():Boolean
 	//PC spared Taivra:
 	else if(flags["KING_NYREA"] == undefined)
 	{
-		output("Queen Taivra is sitting on the edge of her throne’s dias, tending to the wounds her bodyguard suffered at ");
-		output("at Dane’s hands");
-		output(". As you demanded, some of her warriors are dismantling her probe-throne, getting ready to dump it out into the village. The queen glowers at you, not in hatred, but in what you would almost call admiration. Clearly your ability to best her has made an impression on the nyrean queen.");
+		output("Queen Taivra is sitting on the edge of her throne’s dais, tending to the wounds her bodyguard suffered at ");
+		output("Dane’s hands.");
+		if(flags["BEAT_TAIVRA_TIMESTAMP"] != undefined) output(" As you demanded, some of her warriors are dismantling her probe-throne, getting ready to dump it out into the village.");
+		output(" The queen glowers at you, not in hatred, but in what you would almost call admiration. Clearly your ability to best her has made an impression on the nyrean queen.");
 	}
 	//PC is KingNyrea:
 	else
@@ -611,9 +619,10 @@ public function taivrasThroneBonusFunc():Boolean
 		//First 12 hours after a bitch got shanked
 		if(flags["QUEENSGUARD_STAB_TIME"] != undefined && flags["QUEENSGUARD_STAB_TIME"] + 12*60 > GetGameTimestamp())
 		{
-			output("Your newly-minted mate is sitting on the edge of her throne’s dias, tending to the wounds her bodyguard suffered at ");
-			output("at Dane’s hands");
-			output(". As you demanded, some of her warriors are dismantling her probe-throne, getting ready to dump it out into the village. Taivra looks at you with something between fear and admiration, and she keeps her hands well clear of her weapons.");
+			output("Your newly-minted mate is sitting on the edge of her throne’s dais, tending to the wounds her bodyguard suffered at ");
+			output("Dane’s hands.");
+			if(flags["BEAT_TAIVRA_TIMESTAMP"] != undefined) output(" As you demanded, some of her warriors are dismantling her probe-throne, getting ready to dump it out into the village.");
+			output(" Taivra looks at you with something between fear and admiration, and she keeps her hands well clear of her weapons.");
 		}
 		//Thereafter
 		else 
@@ -1067,7 +1076,7 @@ public function pcFuckDatGooWivCockVictory():void
 	output("\n\nHer pleasure spurs you on, making you fuck your [pc.cocks] deeper and higher inside her, tracing your way through your captive lover’s body until your [pc.cockBiggest] is battering the bottom of her crystal belly. The stone is wonderfully smooth, and even hotter than the rest of her, a burning sphere of ecstasy that drives you and her wild as you fuck it.");
 	output("\n\n<i>“Gonna... gonna...”</i> the goo stammers, too busy screaming her pleasure to form more than that single word. You grin ear to ear and thrust harder, pistoning your hips against her glistening belly. Her body goes wild, squirming madly around you as she rockets over the edge and all but deforms around your [pc.cocks]. She collapses against the stone floor, flooding in a messy green pile around you as you too find orgasm in the goo’s warm embrace, flooding her porous body with [pc.cumNoun]. Your spunk floods out in billowing clouds, caking the gemstone bulb of her belly in a sticky mess.");
 	output("\n\nSated, your head flops heavily between the goo-girl’s huge breasts. You need a few minutes to catch your breath after that - time the goo seems all too willing to provide, as her slimy exterior wraps around your [pc.legs] and arms, pulling you close. She moans softly, wiggling happily as your load of spunk disseminates like ink through water. It’s almost hypnotic, watching it settle over her clutch of eggs, burying into her hundreds of young. Looks like you’re going to be a daddy...");
-	output("\n\nA few minutes later, you find the stamina to pick up and grab your gear, leaving the goo-girl in a pile of barely-humanoid good masturbating herself in a puddle of your spunk. Now that’s a sight to see!\n\n");
+	output("\n\nA few minutes later, you find the stamina to pick up and grab your gear, leaving the goo-girl in a pile of barely-humanoid goo masturbating herself in a puddle of your spunk. Now that’s a sight to see!\n\n");
 	processTime(15);
 	gooVictoryPostGooCheck();
 }
@@ -3353,9 +3362,9 @@ public function dockingBonerIntensifies():void
 	if(x < 0) x = pc.smallestCockIndex();
 	output("Your eyes are drawn to the thick, heavy shaft of Taivra’s ovipositor: a tube of tender meat that leads straight to her egg-laden womb, ready to be fertilized. Your queen sees where your gaze is going, and she smiles and runs an alluring hand along her half-hard ovi-cock. <i>“A pity you star-walkers are so different from us... I’d love to just spread your [pc.legs] and ram this inside your boy-pussy to drain out all you cum. Our offspring would be so wonderfully strong, after all. Conquerors and queens, every one of them.”</i>");
 	output("\n\nYou return her smile, reaching up to run your fingers across the queen’s prick and the nubby spines around her crown. She gasps as your thumb caresses her fleshy slit, gently pushing in one the folds of sensitive skin around her X-shaped slit before slipping inside her, teasing the inner walls of her thick shaft. She’s sultry-hot inside, walls covered with slimey lubricants that let you glide across her flesh. Every inch must be as sensitive as a clit, as Taivra instantly sucks in a sharp breath, hands digging into the bedding beside you as pleasure takes her. The way her cock opens up for you, only gently massaging your exploring digit, you realize her horse-sized ovi-cock feels just like a tight little pussy. Maybe you could fuck it like one...");
-	output("\n\nThe positioning is going to be awkward as hell, what with the sheer size of Taivra’s... less than feminine parts, and your need to either thrust - something tells you being on bottom here’s only going to make the awkwardness of everything that much worse.");
+	output("\n\nThe positioning is going to be awkward as hell, what with the sheer size of Taivra’s... less than feminine parts, and your need to thrust - something tells you being on bottom here’s only going to make the awkwardness of everything that much worse.");
 	output("\n\nFeeling your [pc.cock " + x + "] stiffening against her thigh, Taivra grunts and reaches down to give you a little of your own medicine, stroking your prick and moving her hips ever so slightly, letting your cockflesh grind against the smooth, warm chitin on her legs. <i>“Something on your mind, love?”</i>");
-	output("\n\nYou give her a cheeky grin and hook a hand under your lover’s arm. In the blink of an eye, she’s on her back under you, breasts jiggling heavily with the impact as you settle overtop her. Her black eyes go wide, and you feel her fingers slipping off your tumescent member and onto her own - she’s figured out what you’re up to, and as you crawl your way up her body, until your [pc.butt] is rest on her quivering bust.");
+	output("\n\nYou give her a cheeky grin and hook a hand under your lover’s arm. In the blink of an eye, she’s on her back under you, breasts jiggling heavily with the impact as you settle overtop her. Her black eyes go wide, and you feel her fingers slipping off your tumescent member and onto her own - she’s figured out what you’re up to, and as you crawl your way up her body, until your [pc.butt] is resting on her quivering bust.");
 	output("\n\n<i>“This... is this how you star-walkers breed?”</i> she asks, a hint of nervousness in her voice. You give her a wink and turn around, aligning your [pc.cock " + x + "] with the flared, spine-crested crown of your queen’s ovipositor. A tiny trickle of purple lube peeks out from her four-part slit to greet you, letting you easily slide your [pc.cockHead " + x + "] between her folds. As you do, you gleefully realize that every wiggle of your [pc.hips] sends quakes through Taivra’s huge breasts, even squished between your ass and her chest as they are. The queen gasps with every motion, both from the impending penetration and the shockwaves of jiggling pleasure you’re battering her tits with. Oh, this is going to be fun!");
 	output("\n\nYour hips piston forward, rocking forward on Taivra’s oh-so-soft breasts and guide your prick into the welcoming embrace of her tremendous cock. She’s like a lubed-up onahole, hot and smooth and perfectly molding to the shape of your [pc.cock " + x + "]; every inch brings another moan from the lustful queen, making her squirm like a fresh virgin underneath you. <i>“Oh, fuck. Oooohhh, go slow go slow,”</i> she begs, tearing into the sheets with her long nails, desperately trying to hold on.");
 	output("\n\nYou heed the queen’s request - for now - and slow your steady penetration to a crawl, letting her adjust to the unnatural girth stretching out her ovipositor. Her hips buck desperately, reacting on base, animal instinct as you slowly hilt yourself inside the queen’s cock");
@@ -3373,7 +3382,7 @@ public function dockingBonerIntensifies():void
 	output("\n\nAnd by now, you’re more than happy to let her succeed. Still thrusting as fast and hard as you can, you let the queen’s orgasming cock-sleeve milk you until you join her in climax, blasting a ");
 	if(pc.cumQ() < 6) output("thin, wispy rope of [pc.cumNoun] down her sodden egg-tube, adding to the deluge flooding her prick.");
 	else if(pc.cumQ() < 500) output("nice, thick wad of [pc.cumNoun] right down Taivra’s soaked ovi-prick, flooding her womb with seed.");
-	else output("torrent of [pc.cumNoun] down Taivra’s ovipositor, flooding her already-soaked slit with seed until her womb is bloated with you cum. She cries out as her belly swells with seed, utterly soaking her eager womb.");
+	else output("torrent of [pc.cumNoun] down Taivra’s ovipositor, flooding her already-soaked slit with seed until her womb is bloated with your cum. She cries out as her belly swells with seed, utterly soaking her eager womb.");
 
 	output("\n\nYou sigh and lean forward, catching your breath as the last twitching drops of cum drool out of your [pc.cock " + x + "]. Underneath you, Taivra flops back, all the energy suddenly gone out of her; her hands caress her full belly and breasts, enjoying the feeling of her body in the afterglow. Slowly, you pull yourself out of her, letting loose a small flood of mixed fluids onto her belly and your thighs before you flop down beside her.");
 	//Fertilize those eggs for a day.

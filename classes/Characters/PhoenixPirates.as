@@ -18,7 +18,7 @@ package classes.Characters
 			this._neverSerialize = true;
 			
 			this.short = "pirate gang";
-			this.originalRace = "pirates";
+			this.originalRace = "mixed";
 			this.a = "the ";
 			this.capitalA = "The ";
 			this.long = "A gang of unruly, vicious-looking space toughs, these Black Void pirates are armed to the teeth with machine-pistols, rifles, shotguns, and everything in between. Ausar, humans, kaithrit girls, and even a Centaurin packing a gatling-laser make up their ranks. They’re all wearing skintight black space suits and peppering the cover around you with bullets. ";

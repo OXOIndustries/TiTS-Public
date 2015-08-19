@@ -21,7 +21,7 @@ package classes.Characters
 			this._neverSerialize = true;
 			
 			this.short = "pirate techie";
-			this.originalRace = "pirates";
+			this.originalRace = "ausar";
 			this.a = "the ";
 			this.capitalA = "The ";
 			this.long = "You're fighting a pirate techie, an ausar woman in a flight suit with a machine pistol at her hip. She's got a shock of blonde hair, perky breasts under her suit, and a shield generator that's thrumming with overcharged energy.";

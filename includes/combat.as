@@ -3359,7 +3359,7 @@ public function chestTeaseText():void {
 			output(" you slap your chest with one hand, producing a loud crack of muscle on muscle as your palm meets your iron-hard pectoral.");
 			output(" After a good few seconds of showing off,");
 			if(pc.isChestGarbed()) output(" you close your [pc.upperGarments] and");
-			else output(" you cease your posing");
+			else output(" you cease your posing and");
 			output(" return your gaze to the fight.");
 		}
 		else if(pc.isChestGarbed()) output("You peel open your [pc.upperGarments] to expose your [pc.chest] and [pc.nipples], running a hand up your [pc.skinFurScales] to one as you lock eyes with your target. You make sure that every bit of your musculature is open and on display before you bother to cover back up.");
@@ -3443,7 +3443,7 @@ public function chestTeaseText():void {
 			else output(" you give one of your breasts a grope, showing off how you’re every bit as curvy as a girl without your incredible musculature.");
 			output(" After a good few seconds of showing off,");
 			if(pc.isChestGarbed()) output(" you close your [pc.upperGarments] and");
-			else output(" you cease your posing");
+			else output(" you cease your posing and");
 			output(" return your gaze to the fight.");
 		}
 	}
