@@ -1589,7 +1589,7 @@ public function pennyFutanariTalk():void {
 	if (flags["PENNY_FUTA_TALK"] == undefined)
 	{
 		flags["PENNY_FUTA_TALK"] = 1;
-		output("<i>“Grow a dick?”</i>  Penny states with a dumbfounded look. Ears flattening back on her head, she admits, <i>“I did mention that, didn’t it?”</i>");
+		output("<i>“Grow a dick?”</i>  Penny states with a dumbfounded look. Ears flattening back on her head, she admits, <i>“I did mention that, didn’t I?”</i>");
 		output("\n\nYou nod expectantly.");
 		output("\n\nThe fox-girl snorts and sets some paperwork aside in a huff, swivelling her chair to more directly face you. She searches your eyes for something for a long moment before talking. <i>“Yeah, I guess... I was thinking about it....”</i>  Penny’s ears gradually rise again. <i>“The girl I told you about at the academy... she had one, and all things considered, she was pretty happy with it. Once we got comfortable, she kept finding excuses to show it to me. She even let me watch her masturbate!”</i>");
 		output("\n\nCoughing nervously, the vixen adds, <i>“I thought a vagina was plenty enough to please, but watching her hands dance over two sets of genitals.... I think I might want one too, [pc.name]. It was dirty and decadent and wet in all the right ways. You should see the way she squirted - from both holes!”</i>  Penny’s breathing has gotten heavier from recounting this sordid tale, though her nipples have yet to pop out to visibility. <i>“Could you imagine, mate? Could you see me with a big, throbbing dick just cumming all over you while you fuck me or stretching out your [pc.pussyOrAsshole]? Fuck, that’s hot!”</i>");
