@@ -269,6 +269,7 @@ public function mhengaHarvestUthra():void
 	output("You gather what little of the sap leaking from the tree you can find into a small collection tube - a standard part of any rushers exploration kit - ensuring that you don't accidently get any on yourself in the process.");
 	if (flags["CONSUMED_UTHRA_SAP"] == undefined) output(" No telling what this stuff could do to you without some kind of analysis.");
 	else output(" Even safe in the knowledge that the substance isn't particularly dangerous, it'd be best not to accidently spread any around without intending to.");
+	output("\n\n");
 	
 	quickLoot(new UthraSap());
 	
@@ -409,6 +410,7 @@ public function mhengaSalvageFromCamp():void
 	if (flags["SALVAGED VANAE CAMP"] == undefined)
 	{
 		output("You find something of interest stashed in one of the many storage containers scattered around the camp. Gingerly lifting the lid of a heavily damaged container, you discover a set of some kind of augmented armor. "); // I have no idea what this item is supposed to look like.
+		output("\n\n");
 		quickLoot(new AtmaArmor());
 		flags["SALVAGED VANAE CAMP"] = 1;
 		return;

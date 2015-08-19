@@ -1838,7 +1838,9 @@ public function getFuckedBySyri():void
 	output("\n\nYou nod, beckoning your lover to you. She turns on a heel and saunters over, each step making her dick bounce and bob in the most alluring way. She’s still covered in hot cum, a sticky white coat around dark red cockflesh. Your lover’s hands wrap around your head, caressing your [pc.ears] and running her fingers over your [pc.hair] while she angles her cock up to your [pc.lips].");
 	output("\n\n<i>“Brought you a snack,”</i> she grins, planting her tapered crown right on your lip, The smell of ausar cum is almost overwhelming now, the strong and earthy aroma making your heart hammer in your chest. What you wouldn’t give to have Syri hard again already, able to just throw you back against the couch and pound your [pc.vagOrAss " + x + "]. But no, you’ll have to work for your fun today.");
 	output("\n\nYou open wide, letting your [pc.tongue] play out across Syri’s cum-slathered rod. She gasps and moans, groping at a fishnet-clad boob as you slowly lap up all the delicious, salty ausar-spunk off her cock. The more of her you clean off, the more you slip into your mouth to enjoy the feeling of half-hard dogflesh throbbing between your lips. By the time you’ve worked your way down to Syri’s base, feeling her balls pressing against your chin and her tip battering the back of your throat, you feel her starting to recover from her first climax: before long she’s nice and hard, moaning as your tongue lavishes her sensitive cockflesh with love.");
-	output("\n\n<i>“Got it nice and clean for me?”</i> she murmurs, giving you a gentle push back against the couch and off her now-gleaming dick. <i>“Good " + pc.mf("boy","girl") + ". Now let me give you your reward!”</i>");
+	output("\n\n<i>“Got it nice and clean for me?”</i> she murmurs, giving you a gentle push back against the couch and off her now-gleaming dick. ");
+	if(x >= 0) output("As she speaks, Syri grabs her fallen coat and reaches into its pocket, tearing open a bright-pink condom pack and stretching its contents out around her spit-slick shaft. ");
+	output("<i>“Good " + pc.mf("boy","girl") + ". Now let me give you your reward!”</i>");
 
 	output("\n\nSyri leaps onto you with a feral growl, pushing your [pc.legs] up over her shoulders and burying a pair of fingers straight into your [pc.vagOrAss " + x + "]. You groan and collapse into the cushions, biting your lip as Syri roughly penetrates you, spreading your hole wide open. <i>“That’s right. Moan for me, Steele,”</i> she grins, thrusting her fur-clad digits deep in again and again until you’re desperately trying not to scream in pleasure.");
 	output("\n\nAs quickly as she started, Syri yanks her fingers out of you and flops her spit-slick dick onto your thigh, edging it towards your [pc.vagOrAss " + x + "]. All you can do is wrap your [pc.legs] around Syri’s waist and guide her in. As her hips edge into you, the rest of Syri leans in and kisses you fiercely, thrusting her tongue into your mouth a moment before her throbbing cock penetrates your [pc.vagOrAss " + x + "].");
@@ -1854,7 +1856,10 @@ public function getFuckedBySyri():void
 	else output("anal");
 	output(" passage wide until your whole body is convulsing with pleasure.");
 
-	output("\n\nA moment later, and you feel a flood of hot, wet heat flowing into your [pc.vagOrAss " + x + "], and that’s enough to buckle you over the edge and into orgasm as well. Syri moans, bucking her hips against your [pc.butt] and filling your hole with a second heaping of ausar spunk. The air hangs heavily with the smells of sex and alien sweat, a heady odor that only elevates your own pleasure.");
+	output("\n\nA moment later, and you feel a flood of hot, wet heat ");
+	if(x < 0) output("flowing into your [pc.vagOrAss " + x + "]");
+	else output("forming a tight bubble of wrapped-up puppy spunk inside your pussy");
+	output(", and that’s enough to buckle you over the edge and into orgasm as well. Syri moans, bucking her hips against your [pc.butt] and filling your hole with a second heaping of ausar spunk. The air hangs heavily with the smells of sex and alien sweat, a heady odor that only elevates your own pleasure.");
 	if(pc.hasCock()) output(" Your [pc.cock] erupts all over your belly, spraying you down with [pc.cum] just as Syri’s filling you.");
 
 	output("\n\n<i>“Oh fuck,”</i> your lover moans, bracing her arms against the back of the couch and panting hard into your ear. <i>“Oh, I needed that...”</i>");

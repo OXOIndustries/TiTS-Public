@@ -130,12 +130,16 @@ public function enemyAphrodisiacDarts():void
 	if(hit)
 	{
 		if(pc.lust() < 33) output("\nAn unwelcome heat suffuses your body as the chemicals do their work.");
-		else if(pc.lust() < 45) output("\nYour heart beats faster as you look at your foe's body. Her outfit seems a bit more revealing, and her movements seem more sexually enticing than ever before.");
+		else if(pc.lust() < 45) output("\nYour heart beats faster as you look at your foe's body." + foes[0].mf("","Her outfit seems a bit more revealing, and her movements seem more sexually enticing than ever before."));
 		else if(pc.lust() < 55) 
 		{
-			if(pc.hasCock()) output("\n[pc.EachCock] pulsates as it fills with burgeoning tumescence. You find yourself wondering what it would be like to slip into her puffy, double-clitted box.");
-			else if(pc.hasVagina()) output("\n[pc.EachVagina] grows sensitive and moist as you ponder the merits of fucking this fetching little lizard-woman.");
-			else output("\nYour [pc.nipples] harden as you idly consider forcing her to lick you while suckling on her twin clits.");
+			if(pc.hasCock()) 
+			{
+				output("\n[pc.EachCock] pulsates as it fills with burgeoning tumescence.");
+				if(foes[0] is RaskvelFemale) output(" You find yourself wondering what it would be like to slip into her puffy, double-clitted box.");
+			}
+			else if(pc.hasVagina()) output("\n[pc.EachVagina] grows sensitive and moist as you ponder the merits of fucking this fetching little lizard-" + foes[0].mf("man","woman") + ".");
+			else output("\nYour [pc.nipples] harden as you idly consider forcing " + foes[0].mf("him","her") + " to lick you while suckling on " + foes[0].mf("his reptilian tool.","her twin clits."));
 		}
 		else if(pc.lust() < 65) output("\nYou groan out loud as the aphrodisiacs surges through your bloodstream, rousing you into a " + pc.rawmf("rut","heat") + " that you have have a hard time suppressing.");
 		else if(pc.lust() < 75) output("\n" + pc.mf("Grunting","Whimpering") + " in anticipation of what is to come, you ball your hands into fists as you try to endure the rising need as it spreads through your body. It feels like your brain is oozing down into your crotch, fixating utterly on sex. You want to fuck right now. You NEED to fuck soon.");
@@ -367,7 +371,7 @@ public function raskVelBabeGetsDoggieStyled():void
 	if(pc.balls > 0) output(", your [pc.balls] slapping heavily against one of her stiff buzzers");
 	output(", both of you shuddering in ecstatic relief at the feeling of being fully joined. You hold her like that for a moment to enjoy the simple pleasure. She seems equally pleased, only daring to roll her hips up and down and squeeze you with affectionate, internal muscles. The hot tightness clinging so tightly to your [pc.cock " + x + "] fills you with temporary contentment that is only ebbed away by the growing desire to cum, to climax so tremendously that you fill this petite alien with your [pc.cum].");
 	output("\n\nYou pull back slowly, inching your length out with sensuous slowness, both of you shuddering from the pleasant friction along your genitalia. The randy little raskvel whimpers at the slow emptying of her channel, begging, \"<i>No... put it... put it back in. P-please!</i>\" Her eyes close and her body shudders. \"<i>I need... I need more!</i>\"");
-	output("\n\nYou don't have intention of leaving the lizard-woman empty for long, but you do keep pulling back, releasing your girl-glossed fuck-pole from it's squeeze-happy prison long enough for it to shine in the open air a moment. Then, you push it back in, far faster than the first insertion. Your [pc.cock " + x + "] slides into the pre-shaped passage with perfect, wet squelches. Dollops of slick cunt-juice squirt out around your penetrating pole, ");
+	output("\n\nYou don't have the intention of leaving the lizard-woman empty for long, but you do keep pulling back, releasing your girl-glossed fuck-pole from it's squeeze-happy prison long enough for it to shine in the open air a moment. Then, you push it back in, far faster than the first insertion. Your [pc.cock " + x + "] slides into the pre-shaped passage with perfect, wet squelches. Dollops of slick cunt-juice squirt out around your penetrating pole, ");
 	if(pc.cockTotal() > 1) 
 	{
 		output("splattering over your other erection");

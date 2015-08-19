@@ -166,6 +166,8 @@
 			this.ass.wetnessRaw = 5;
 			
 			impregnationType = "RoyalEggPregnancy";
+			this.createStatusEffect("Flee Disabled",0,0,0,0,true,"","",false,0);
+			this.createStatusEffect("Disarm Immune");
 			
 			this._isLoading = false;
 		}

@@ -23,7 +23,7 @@ package classes.Characters
 			this._neverSerialize = true;
 			
 			this.short = "mercenary guard";
-			this.originalRace = "pirates";
+			this.originalRace = "human";
 			this.a = "the ";
 			this.capitalA = "The ";
 			this.long = "The mercenary guard is a gruff, weathered human man with a long, faded-brown coat pulled over a ballistic vest -- enough armor for a corporate jackboot, but less than the assassins you fought upstairs. He's packing a pump-action shotgun and a bandolier full of grenades and other goodies.";

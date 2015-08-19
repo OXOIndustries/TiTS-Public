@@ -444,12 +444,12 @@ public function generalInventoryMenu():void
 
 public function combatInventoryMenu():void
 {
-	clearOutput2();
-	clearGhostMenu();
+	clearOutput();
+	clearMenu();
 	itemScreen = inventory;
 	useItemFunction = inventory;
 	
-	output2("What item would you like to use?");
+	output("What item would you like to use?");
 	
 	for (var i:int = 0; i < pc.inventory.length; i++)
 	{

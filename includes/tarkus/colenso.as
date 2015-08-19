@@ -117,7 +117,7 @@ public function colensoRumorMillGo():void
 		output("Musingly, you tell the goblin that he seems very well connected.");
 		output("\n\n<i>“I could tell you things that would make your hair turn wh");
 		if(pc.hairColor != "white" && pc.hairColor != "silver" && pc.hairColor != "ivory") output("ite");
-		else output("wh – even whiter");
+		else output(" – even whiter");
 		output(", " + pc.mf("mate","luv") + ",”</i> says Colenso seriously. <i>“And I don’t even care that you’re a secret government agent. You turning up is just proof that I’m getting to the bottom of the laquine hole. And maybe once you realise the extent of the stuff that’s going down in the galaxy, you’ll turn rogue for me and take ‘em down from the inside.”</i>");
 	}
 	//Repeat

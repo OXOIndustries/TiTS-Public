@@ -278,7 +278,7 @@ package classes.Items.Transformatives
 				}
 				//Lactation Typechange
 				//Gain honey milk
-				if(pc.milkType != GLOBAL.FLUID_TYPE_HONEY && changes < changeLimit && rand(2) == 0)
+				if(pc.hasVagina() && pc.milkType != GLOBAL.FLUID_TYPE_HONEY && changes < changeLimit && rand(2) == 0)
 				{
 					if(pc.milkTypeUnlocked(GLOBAL.FLUID_TYPE_HONEY))
 					{
@@ -301,7 +301,7 @@ package classes.Items.Transformatives
 					else output("\n\n" + pc.milkTypeLockedMessage());
 				}
 				//Breast Size Increase (Red: up to DD, Orange/Gold: up to GG
-				if(changes < changeLimit)
+				if(pc.hasVagina() && changes < changeLimit)
 				{
 					var smallestBoobRow:int = 0;
 					//find smallestIndex
@@ -382,7 +382,7 @@ package classes.Items.Transformatives
 					else output("\n\n" + pc.cumTypeLockedMessage());
 				}
 				//Honey Girlspunk
-				if(changes < changeLimit && pc.girlCumType != GLOBAL.FLUID_TYPE_HONEY && pc.hasVagina() && rand(3) == 0)
+				if(pc.hasVagina() && changes < changeLimit && pc.girlCumType != GLOBAL.FLUID_TYPE_HONEY && pc.hasVagina() && rand(3) == 0)
 				{
 					if(pc.girlCumTypeUnlocked(GLOBAL.FLUID_TYPE_HONEY))
 					{
@@ -460,7 +460,7 @@ package classes.Items.Transformatives
 					changes++;
 				}
 				//Honeypot Perk (Convert Thickness to Boob Size)
-				if(changes < changeLimit && rand(5) == 0 && pc.biggestTitSize() >= 5 && !pc.hasPerk("Honeypot") && pc.canLactate())
+				if(pc.hasVagina() && changes < changeLimit && rand(5) == 0 && pc.biggestTitSize() >= 5 && !pc.hasPerk("Honeypot") && pc.canLactate())
 				{
 					var boobDiff:Number = 0;
 					//if PC has high thickness:
@@ -535,7 +535,7 @@ package classes.Items.Transformatives
 				}
 				//Second Breast Row
 				//If PC has only 1 row of tits. 
-				if(changes < changeLimit && rand(5) == 0 && pc.bRows() == 1 && pc.biggestTitSize() >= 4 && pc.hasVagina())
+				if(pc.hasVagina() && changes < changeLimit && rand(5) == 0 && pc.bRows() == 1 && pc.biggestTitSize() >= 4 && pc.hasVagina())
 				{
 					if(pc.createBreastRowUnlocked(2))
 					{

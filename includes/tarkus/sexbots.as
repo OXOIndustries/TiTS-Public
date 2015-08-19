@@ -93,8 +93,8 @@ public function encounterASexBot():void
 			output("\n\nWhilst its sex stays the same its lips become thicker, its chin narrows and its nose softens and turns up, an expression of preternaturally calm female beauty contouring into being. With a snap and click high heels form around its feet. For its own obtuse reasons this sexbot has chosen to appear female to you.");
 		}
 		output("\n\n<i>“Configuration complete,”</i> says the human shape in front of you smoothly. It puts its hand on its hip, its green eyes flickering at you as it pulls its full lips into a serene smile. <i>“Thank you for your patience, insert name here. I am a Pleasure Bot Mk 350, Empatron version. I am programmed to detect and then satisfy your most intimate desires. Please, insert name here, make yourself comfortable. I will begin as soon as you are ready.”</i>");
-		if(manbot) flags["MET_SEXBOT_MALE_ON_TARKUS"] = 1;
-		else flags["MET_SEXBOT_FEMALE_ON_TARKUS"] = 1;
+		if(manbot) IncrementFlag("MET_SEXBOT_MALE_ON_TARKUS");
+		else IncrementFlag("MET_SEXBOT_FEMALE_ON_TARKUS");
 		
 		//If lust > 30 display (Yes/No)
 		if(pc.lust() >= 33)
@@ -1059,7 +1059,7 @@ public function scanASexbot():void
 	flags["SEXBOTS_SCANNED_FOR_COLENSO"]++;
 	output("You pass the GPS scanner over the kneeling sexbot.  It vibrates a few times and then beeps satisfyingly.");
 	if(flags["SEXBOTS_SCANNED_FOR_COLENSO"] < 4) output(" Another one down.\n\n");
-	else output(" A red light appears on its front panel and it dings again, urgently.  On its radar screen it is displaying a small skeleton map of the wastelands with four lines drawn on it - all converging on a single point.  It looks like you’ve finally scanned enough of these things to work out where they’re coming from. <b>It's located in the iron ridges, to the south of the rust plains.\n\n");
+	else output(" A red light appears on its front panel and it dings again, urgently.  On its radar screen it is displaying a small skeleton map of the wastelands with four lines drawn on it - all converging on a single point.  It looks like you’ve finally scanned enough of these things to work out where they’re coming from. <b>It's located in the iron ridges, to the south of the rust plains.</b>\n\n");
 	variableRoomUpdateCheck();
 	genericVictory();
 }

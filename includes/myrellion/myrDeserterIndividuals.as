@@ -189,7 +189,7 @@ public function approachMyrDesertersNonCombatShit(gold:Boolean = false):void
 	if(flags["BRIHA_INCUBATION_TIMER"] != undefined && !gold)
 	{
 		output("\n\nYou’re walking through the desolate and war-torn wasteland. Nearby, you spot a ragged looking red deserter. Under her partially torn uniform, she has a [monster.belly].");
-		if(flags["SEEN_RED_DESERTER_PREGGERS"] == undefined) output(" She’s pregnant-?");
+		if(flags["SEEN_RED_DESERTER_PREGGERS"] == undefined) output(" She’s pregnant?");
 		output("\n\nRaising a nail-chipped hand, ");
 		if(flags["KNOW_RED_MYR_NAME"] != undefined) output("Briha");
 		else output("the amber-haired ant-girl");
@@ -838,7 +838,7 @@ public function winVsAntGrillDeserts():void
 	if(foes[0].HP() <= 0)
 	{
 		if(foes[0].short != "Briha" && foes[0].short != "Lys") output("The ");
-		output("[monster.name] falls to her feet, utterly spent. Her ");
+		output("[monster.name] falls to her knees, utterly spent. Her ");
 		if(gold) output("combat shotgun and service revolvers");
 		else output("hatchet and primitive pistol");
 		output(" slip out of her hands. There’s a series of whumphs as they hit the ground.");
@@ -847,7 +847,7 @@ public function winVsAntGrillDeserts():void
 		
 		if((foes[0] is MyrRedFemaleDeserter && flags["RED_MYR_DESERTER_BEATEN"] == undefined) || (foes[0] is MyrGoldFemaleDeserter && flags["GOLD_MYR_DESERTER_BEATEN"] == undefined)) output("\n\n<i>“... Guess you weren’t such an easy mark after all.");
 		else output("<i>“... Guess it’s my turn after all.");
-		output(" My life is yours, soldier. What are you going to do with me-?”</i> Her singularly black eyes");
+		output(" My life is yours, soldier. What are you going to do with me?”</i> Her singularly black eyes");
 		if(!gold) output("- one partially closed -");
 		output(" stare at you.");
 	}
@@ -855,7 +855,7 @@ public function winVsAntGrillDeserts():void
 	else
 	{
 		if(foes[0].short != "Briha" && foes[0].short != "Lys") output("The ");
-		output("[monster.name] falls to her feet and drops her weapons. Instead of picking them up, she feverishly touches herself. Her face is flushed as she lets out lewd little moans.");
+		output("[monster.name] falls to her knees and drops her weapons. Instead of picking them up, she feverishly touches herself. Her face is flushed as she lets out lewd little moans.");
 		output("\n\n<i>“... F-fuck-! I-I can’t stop!”</i> The [monster.skinColor] skinned deserter moans, <i>“It’s been far too long since I’ve had a good lay. Come on, soldier, h-have your way with me.”</i> She begs.");
 		//Red
 		if(!gold) output("\n\nRaising her knees and hips, she lewdly displays the damp spot between her thighs. The fabric against her pussy is utterly soaked. It clings to her pussy lips, showing you her sinful contours.");
@@ -957,7 +957,7 @@ public function handPlayForGoldWaifusInTraining():void
 	else output("She");
 	output(" slowly strips off her battered combat fatigues. Underneath, she’s wearing an olive camo bra and matching panties. Reaching behind her, there’s a tiny click, and her honey-hued knockers spill out, bouncing before your eyes.");
 
-	output("\n\nAs you lick your lips, thethe alieness saunters over, her sizable breasts jiggling about. <i>“... I think it’s better if I leave on my panties. Can’t have you getting too excited, now, can I?”</i>");
+	output("\n\nAs you lick your lips, the alieness saunters over, her sizable breasts jiggling about. <i>“... I think it’s better if I leave on my panties. Can’t have you getting too excited, now, can I?”</i>");
 
 	output("\n\n");
 	if(foes[0].short != "Lys") output("She");
@@ -1119,7 +1119,7 @@ public function analRedButtStuffMcStuffinButts():void
 	if(foes[0].short != "Briha") output("the ");
 	output("[monster.name] lets out a loud moan and trembles against you.");
 
-	output("\n\nEnthused by her response, you slowly pull yourself around of her naughty pucker and slide back in. Soon you’re slapping your hips against her rippling ass, the air filled with your shared moans and the lewd slapping of flesh.");
+	output("\n\nEnthused by her response, you slowly pull yourself around to her naughty pucker and slide back in. Soon you’re slapping your hips against her rippling ass, the air filled with your shared moans and the lewd slapping of flesh.");
 
 	output("\n\nFeeling her flex and wring your [pc.cock " + x + "] drives you into a lusty frenzy. You pinch and roughly tease her breasts, and ");
 	if(foes[0].short != "Briha") output("the female soldier");
@@ -1170,8 +1170,8 @@ public function cumSplurgeForRedAntSloots():void
 	//FirstTimeGivingYouHead:
 	if(flags["GOTTEN_RED_DESERT_HEAD"] == undefined)
 	{
-		output("\n\n<i>“Are you sure? Asking my people for a blowjob... well, let’s just say you won’t be walking anywhere for a few hours,”</i> she playfully cautions, then adds,”</i>... Or so I hear. I’ve never had the chance to give one, you know?”</i>");
-		output("\n\n<i>“You’ll also have to put up with me being terrible. I mean, I’m confident in my venom, but not so much my technique, you know-?”</i>");
+		output("\n\n<i>“Are you sure? Asking my people for a blowjob... well, let’s just say you won’t be walking anywhere for a few hours,”</i> she playfully cautions, then adds, <i>“...Or so I hear. I’ve never had the chance to give one, you know?”</i>");
+		output("\n\n<i>“You’ll also have to put up with me being terrible. I mean, I’m confident in my venom, but not so much my technique, you know?”</i>");
 		flags["GOTTEN_RED_DESERT_HEAD"] = 1;
 	}
 	//Else / Not first time:
@@ -1188,7 +1188,7 @@ public function cumSplurgeForRedAntSloots():void
 	output("\n\n");
 	if(!pc.isNude()) output("You hastily strip off until you’re standing in the buff. Meanwhile, she takes it slow, slipping");
 	else output("Slowly, she slips");
-	output(" her torn combat fatigues. Underneath she wears a simple cotton black camisole and a matching thong. Her top barely covers her [monster.belly] and accentuates her well-rounded breasts. You can see her nipples poking through the fabric.");
+	output(" her torn combat fatigues. Underneath she wears a simple cotton black camisole and a matching thong. Her top barely covers her [monster.belly] and accentuates her well-rounded breasts.");
 
 	output("\n\nSeeing her in such a sexy yet simple outfit makes your [pc.cocks] stiffen. When she pulls off her top and bares her pert puppies, your [pc.cockHeads] ");
 	if(pc.cockTotal() == 1) output("is");
@@ -1225,7 +1225,9 @@ public function cumSplurgeForRedAntSloots():void
 
 	output("\n\nWith a few more licks, your [pc.cockHeads] deliciously twitch");
 	if(pc.cockTotal() == 1) output("es");
-	output(" and begins to dribble [pc.cumNoun] like ");
+	output(" and begin");
+	if(pc.cockTotal() == 1) output("s");
+	output(" to dribble [pc.cumNoun] like ");
 	if(pc.cockTotal() == 1) output("a broken faucet");
 	else output("broken faucets");
 	output(". When her wet lips brush against your crown");
@@ -1238,10 +1240,10 @@ public function cumSplurgeForRedAntSloots():void
 	output(" suckles on ");
 	if(pc.cockTotal() > 1) output("one of your shafts");
 	else output("your shaft");
-	output(". You let out an rapturous cry. Without warning, you cry out and shoot [pc.cumVisc] ropes of [pc.cumNoun] all over her face. Your head");
+	output(". You let out a rapturous cry. Without warning, you cry out and shoot [pc.cumVisc] ropes of [pc.cumNoun] all over her face. Your head");
 	if(pc.cockTotal() > 1) output("s are");
 	else output(" is");
-	output(" so hypersensitive you almost faint from the pleasure as jets out your cock hole");
+	output(" so hypersensitive you almost faint from the pleasure jetting out your cock hole");
 	if(pc.cockTotal() > 1) output("s");
 	output(".");
 
@@ -1252,8 +1254,8 @@ public function cumSplurgeForRedAntSloots():void
 	else output("them");
 	output(" in your hands, you instead moan from the brushing of your fingertips against your [pc.cockColor] flesh.");
 
-	output("\n\n<i>“Oh, that won’t do-we’re not nearly finished yet,”</i> ");
-	if(foes[0].short != "Briha") output("Briha");
+	output("\n\n<i>“Oh, that won’t do - we’re not nearly finished yet,”</i> ");
+	if(foes[0].short == "Briha") output("Briha");
 	else output("She");
 	output(" purrs. You moan as the red-skinned woman crawls up to you on all fours, clad in nothing but a black thong.");
 
@@ -1270,7 +1272,7 @@ public function cumSplurgeForRedAntSloots():void
 
 	output("\n\nYou’re utterly blown away as she sucks [pc.oneCock] into her moist mouth. Her intoxicating saliva mixes with your [pc.cumVisc] [pc.cum] and pools around your [pc.cockHead]. It feels as intense as sex, if not <i>more</i> so!");
 
-	output("\n\nAs she sucks you off in her hot, spunk-filled mouth, you groan arch your back, a thin stream of drool trickling down your cheek. Right now you’re nothing but a [pc.race] font of [pc.cumNoun] for her to suck upon and you don’t care. Letting out carnal cries and moans, you buck your hips against her chin, utterly lost in the utter pleasure of her druggy drool, giving over every drop you");
+	output("\n\nAs she sucks you off in her hot, spunk-filled mouth, you groan and arch your back, a thin stream of drool trickling down your cheek. Right now you’re nothing but a [pc.race] font of [pc.cumNoun] for her to suck upon and you don’t care. Letting out carnal cries and moans, you buck your hips against her chin, utterly lost in the utter pleasure of her druggy drool, giving over every drop you");
 	if(pc.balls > 0) output("r [pc.balls]");
 	output(" have to give.");
 
@@ -1294,7 +1296,7 @@ public function cumSplurgeForRedAntSloots():void
 	else output("Briha");
 	output(" purrs and licks her lips. When she notices your eyes are rolled back, the soldier instinctively checks your pulse. <i>“... Whoops, did I go a little bit overboard?”</i>");
 
-	output("\n\nUnable to lift even a single finger, you lie there on the ground, tiny pearls of [pc.cumVisc] dripping from your [pc.cocksNoun].");
+	output("\n\nUnable to lift even a single finger, you lie there on the ground, tiny pearls of [pc.cum] dripping from your [pc.cocksNounSimple].");
 	//If have won five or more fights:
 	if(flags["RED_MYR_DESERTER_BEATEN"] != undefined && flags["RED_MYR_DESERTER_BEATEN"] >= 5) 
 	{
@@ -1361,7 +1363,7 @@ public function doggieStyleWithMyrBitches(gold:Boolean = false):void
 	output("\n\n<i>“");
 	var firstTime:Boolean = ((gold && flags["BONED_GOLD_DESERT"] == undefined) || (!gold && flags["BONED_RED_DESERT"] == undefined));
 	if(firstTime) output("I-I’ve never done it with a " + pc.mf("male","real dick") + " before, so please be gentle,”</i> she requests.");
-	else output("J-Just like last time-?”</i>, she asks.");
+	else output("J-Just like last time?”</i>, she asks.");
 
 	output("\n\nWith a light smile, you strip off your [pc.gear]. It falls to the ground around you, leaving you fully naked. Seeing her bent over, crotch exposed, has already got [pc.eachCock] achingly hard.");
 
@@ -1408,10 +1410,11 @@ public function doggieStyleWithMyrBitches(gold:Boolean = false):void
 	output(". The air is filled with lewd smacking noises and her juices dribble down");
 	if(gold) 
 	{
-		output("your thrusting cock.");
+		output(" your thrusting cock");
 		if(pc.balls > 0) output(" and [pc.balls]");
+		output(".");
 	}
-	else output("her taut thighs.");
+	else output(" her taut thighs.");
 
 	output("\n\nWith a shrill cry, the [monster.hairColor]-haired ant-girl cums out of nowhere, convulsing wildly around your [pc.cock " + x + "]. She squeezes it hard as her hot juices flood down her narrow canal, spluttering against your [pc.cockHead " + x + "]. Your entire length is basted in her hot, sticky warmth. Your senses are utterly seized with unspeakable pleasure.");
 	output("\n\nPushed over the edge, you grab and press your hips flush with her ");
@@ -1427,7 +1430,7 @@ public function doggieStyleWithMyrBitches(gold:Boolean = false):void
 	output(" snatch, filling it with your seed.");
 
 	//Red+NotPregnant: 
-	if(!gold && !foes[0].isPregnant()) output("\n\nDeep inside of her alien womb, your [pc.visc] seed swims up and seeks her eggs, basting them in your [pc.cumColor] virility.");
+	if(!gold && !foes[0].isPregnant()) output("\n\nDeep inside of her alien womb, your [pc.cumVisc] seed swims up and seeks her eggs, basting them in your [pc.cumColor] virility.");
 
 	//Knot:
 	if(pc.hasKnot(x)) output("\n\nAs you continuously cum inside of her, your [pc.knot " + x + "] swells inside of her, locking deep inside of her sloppy pussy. She lets out a cry of surprise as you lock with her, followed by a low, throaty moan. Heightening her pleasure, you gyrate your hips. The stirring and spurting of your [pc.cockHead " + x + "] inside of her [pc.cumNoun]-filled hole drives her to insensibility and reduces her to a babbling, pleasure-wrecked mess.");
@@ -1626,7 +1629,7 @@ public function redDildoScrew():void
 		output("[monster.name] whispers. She sensuously strips off your [pc.upperUndergarment] and");
 	}
 	else output("Taking advantage of your toplessness, the deserter sensuously");
-	output(" kisses your [pc.chest]. Her soft lips tickle and brush your [pc.skinFurScales]. Your whole body prickles and feels ultra sensitive - every little touch feels deliciously electric and you tremble in delight. Is this the effect of her venom-?");
+	output(" kisses your [pc.chest]. Her soft lips tickle and brush your [pc.skinFurScales]. Your whole body prickles and feels ultra sensitive - every little touch feels deliciously electric and you tremble in delight. Is this the effect of her venom?");
 
 	output("\n\nHer other hand slides down and out of sight. Between your [pc.thighs], ");
 	//IfPcHasLowerUndergarment:
@@ -1700,7 +1703,7 @@ public function redDildoScrew():void
 	output("[monster.name] pulls back, then plunges it deep into your ");
 	if(x >= 0) output("sloppy snatch");
 	else output("forbidden hole");
-	output(". An explosion of pleasure seizes your senses. Void, that feels so good-! You arch your back in delight, panting like a dog, as drool drips down your chin. Animalistic delight seizes you, and soon you’re a slave to instinct, slapping your [pc.ass] back against her hand.");
+	output(". An explosion of pleasure seizes your senses. Void, that feels so good! You arch your back in delight, panting like a dog, as drool drips down your chin. Animalistic delight seizes you, and soon you’re a slave to instinct, slapping your [pc.ass] back against her hand.");
 
 	if(x >= 0) pc.cuntChange(x,300,true,true,false);
 	else pc.buttChange(300);
@@ -1922,7 +1925,7 @@ public function sitAndScrewGoldMyr():void
 		else output("fake cock-head and stirring up your own pussy in the process.");
 		output(" You moan as she lowers herself onto your shaft, swallowing it whole inside her sopping wet honeypot.");
 
-		output("\n\n<i>“Ooohh queens-!”</i> The nipple-pierced deserter moans. Your ");
+		output("\n\n<i>“Ooohh queens!”</i> The nipple-pierced deserter moans. Your ");
 		if(pc.hasCock()) output("[pc.cockHead " + x + "] penetrates her until it’s lightly brushing against her cervix,");
 		else output("gilded cock is soon fully sheathed inside of her and her waist is pressed against your own.");
 		output(" Slowly, she begins to gyrate on top of you, all the while squeezing and wringing your ");

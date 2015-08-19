@@ -299,7 +299,7 @@
 						pc.addTailFlag(GLOBAL.FLAG_SCALED);
 						changes++;
 					}
-					else kGAMECLASS.output(target.tailTypeLockedMessage());
+					else kGAMECLASS.output("\n\n" + target.tailTypeLockedMessage());
 				}
 				//Grow long tongue
 				if(pc.tongueType != GLOBAL.TYPE_RASKVEL && rand(6) == 0 && changes < changeLimit)

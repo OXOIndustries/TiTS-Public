@@ -491,7 +491,7 @@ public function approachMcallister():void
 		
 		output("\n\nYou thank the good doctor and jab the data chit into your Codex and upload its contents to the Steele Tech server, with an attached <i>“suggestion”</i> that the company consider getting into the xeno-genemod business.");
 		
-		output("\n\nNow all you need to do is find somebody to start distributing the stuff...");
+		output("\n\nNow all you need to do is find somebody to start distributing the stuff...\n\n");
 
 		processTime(3 + rand(2));
 		

@@ -277,7 +277,7 @@ package classes.Items.Transformatives
 				}
 				var boobed:Boolean = false;
 				//Breast Size Increase (Red: up to DD, Orange/Gold: up to GG
-				if(changes < changeLimit)
+				if(pc.hasVagina() && changes < changeLimit)
 				{
 					var smallestBoobRow:int = 0;
 					//find smallestIndex
@@ -336,7 +336,7 @@ package classes.Items.Transformatives
 				}
 				//Lactation start
 				//PC must have C+ cups
-				if(changes < changeLimit && pc.hasVagina() && pc.biggestTitSize() >= 3 && !pc.canLactate() && rand(5) == 0)
+				if(pc.hasVagina() && changes < changeLimit && pc.hasVagina() && pc.biggestTitSize() >= 3 && !pc.canLactate() && rand(5) == 0)
 				{
 					output("\n\nYou feel a pressure welling up in your [pc.fullChest], like your tits are swelling up");
 					if(pc.isChestGarbed()) output(" under your [pc.upperGarment]");
@@ -346,7 +346,7 @@ package classes.Items.Transformatives
 				}
 				//Lactation Typechange
 				//Gain honey milk
-				if(pc.milkType != GLOBAL.FLUID_TYPE_HONEY && changes < changeLimit && rand(2) == 0)
+				if(pc.hasVagina() && pc.milkType != GLOBAL.FLUID_TYPE_HONEY && changes < changeLimit && rand(2) == 0)
 				{
 					if(pc.milkTypeUnlocked(GLOBAL.FLUID_TYPE_HONEY))
 					{
@@ -521,7 +521,7 @@ package classes.Items.Transformatives
 					pc.createPerk("Myr Venom",0,0,0,0,"Allows you do to a little lust damage when melee attacking.");
 				}
 				//Breast Size Increase (Red: up to DD, Orange/Gold: up to GG
-				if(changes < changeLimit)
+				if(pc.hasVagina() && changes < changeLimit)
 				{
 					smallestBoobRow = 0;
 					//find smallestIndex

@@ -186,6 +186,7 @@
 			
 			this.createPerk("Sneak Attack",0,0,0,0);
 			createStatusEffect("Force Fem Gender");
+			this.createStatusEffect("Flee Disabled",0,0,0,0,true,"","",false,0);
 			this._isLoading = false;
 		}
 		

@@ -692,7 +692,7 @@ public function wannaFeelABellyYouAntSlutWhoreBitchNazi():void
 	output("Once you’re in Nehzara’s office, the officer looks up to greet you. <i>“Steele,”</i> she says after a moment. You can tell she tried to make that sound like an offhand salutation, but there was something uncertain in her voice just then. That’s when you notice her stare lingering on your swollen belly. Ah. You recall that bearing children is a pretty big thing in both myr societies, and that most of them are completely infertile. You’d never asked Nehzara whether she was or not, but given her position....");
 	output("\n\nNehzara clears her throat, which shakes you out of your pensive reverie. <i>“Is there anything I can help you with, Steele?”</i> she asks, prompting you to decide whether to ignore her momentary display of envy or to pursue the subject.");
 	//(Usual list of options, plus [Wanna Feel?])
-	clearOutput();
+	clearMenu();
 	addButton(0,"Wanna Feel?",heyAntHitlerWannaFeel,undefined,"Wanna Feel?","She may not be able to bear children, but that doesn’t mean she can’t have the chance to experience the wonder of new life taking shape. You could offer to let her feel it and see what it’s like.");
 	addButton(1,"Ignore",ignoreBellyRubs,undefined,"Ignore","Continue on with business as usual.");
 }

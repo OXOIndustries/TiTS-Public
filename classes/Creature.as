@@ -3954,7 +3954,7 @@
 				if (armType == GLOBAL.TYPE_ARACHNID || armType == GLOBAL.TYPE_DRIDER || armType == GLOBAL.TYPE_BEE || armType == GLOBAL.TYPE_LEITHAN) adjective.push("chitinous");
 			}
 			// Build
-			if (rand(2) == 0) output += RandomInCollection(adjective);
+			if (rand(2) == 0 && adjective.length > 0) output += RandomInCollection(adjective);
 			//Noun
 			if (output != "") output += " ";
 			output += "hand";
@@ -4022,16 +4022,14 @@
 				else if (this.rand(3) == 0 || forceAdjective)
 				{
 					if (pluralAdjective && legCount > 2 && this.rand(2) == 0) { adjectives.push("numerous"); }
-					else if (hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) { adjectives.push("digitigrade"); }
-					else if (hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) { adjectives.push("plantigrade"); }
 					//Coulda sworn there was a reason I didn't include these originally, but it's slipping away from me now.
-					else if (hasLegFlag(GLOBAL.FLAG_AMORPHOUS)) { adjectives.push("amorphous", "fluid", "ever-changing"); }
-					else if (hasLegFlag(GLOBAL.FLAG_SCALED)) { adjectives.push("scaled"); adjectives.push("scaley"); }
-					else if (hasLegFlag(GLOBAL.FLAG_FURRED)) { adjectives.push("furry"); adjectives.push("fuzzy"); adjectives.push("fur-covered"); }
-					else if (hasLegFlag(GLOBAL.FLAG_TENDRIL)) { adjectives.push("wiggling"); adjectives.push("wriggling"); adjectives.push("tendril-like"); }
-					else if (hasLegFlag(GLOBAL.FLAG_PREHENSILE)) { adjectives.push("prehensile"); }
-					else if (hasLegFlag(GLOBAL.FLAG_SMOOTH)) { adjectives.push("smooth"); }
-					else if (hasLegFlag(GLOBAL.FLAG_CHITINOUS)) { adjectives.push("chitinous"); adjectives.push("armored"); adjectives.push("carapace-covered"); }
+					if (hasLegFlag(GLOBAL.FLAG_AMORPHOUS)) adjectives.push("amorphous", "fluid", "ever-changing");
+					if (hasLegFlag(GLOBAL.FLAG_SCALED)) adjectives.push("scaled", "scaley");
+					if (hasLegFlag(GLOBAL.FLAG_FURRED)) adjectives.push("furry", "fuzzy", "fur-covered");
+					if (hasLegFlag(GLOBAL.FLAG_TENDRIL)) adjectives.push("wiggling", "wriggling", "tendril-like");
+					if (hasLegFlag(GLOBAL.FLAG_PREHENSILE)) adjectives.push("prehensile");
+					if (hasLegFlag(GLOBAL.FLAG_SMOOTH)) adjectives.push("smooth");
+					if (hasLegFlag(GLOBAL.FLAG_CHITINOUS)) adjectives.push("chitinous", "armored", "carapace-covered");
 				}
 				//Random goes here!
 				if (adjectives.length > 0) output += RandomInCollection(adjectives);
@@ -4045,8 +4043,8 @@
 		public function legNoun():String
 		{
 			if (legType == GLOBAL.TYPE_SNAKE) return "coil";
-			else if (legType == GLOBAL.TYPE_GOOEY && hasLegFlag(GLOBAL.FLAG_AMORPHOUS)) return "goo mound";
-			else return "leg";
+			if (legType == GLOBAL.TYPE_GOOEY && hasLegFlag(GLOBAL.FLAG_AMORPHOUS)) return "goo mound";
+			return "leg";
 		}
 		public function legsNoun():String
 		{
@@ -4064,7 +4062,7 @@
 				else if (hasLegFlag(GLOBAL.FLAG_TENDRIL)) { adjectives.push("wiggling"); }
 				else if (hasLegFlag(GLOBAL.FLAG_CHITINOUS)) { adjectives.push("chitinous"); adjectives.push("armored"); adjectives.push("carapace-covered"); }
 				//Random goes here!
-				output += RandomInCollection(adjectives);
+				if (adjectives.length > 0) output += RandomInCollection(adjectives);
 			}
 			//Type! 1/5 times
 			if (this.rand(5) == 0 || forceType)
@@ -4117,7 +4115,7 @@
 				else if (legType == GLOBAL.TYPE_MYR)
 					adjectives = ["chitinous", "armored", scaleColor + "-chitin"];
 				//Random goes here!
-				output += RandomInCollection(adjectives);
+				if (adjectives.length > 0) output += RandomInCollection(adjectives);
 			}
 			return output;
 		}
@@ -4181,9 +4179,9 @@
 			var output: String = "";
 			//Noun
 			if (hasLegFlag(GLOBAL.FLAG_HOOVES)) output += "hoof-tips";
-			else if (hasLegFlag(GLOBAL.FLAG_PAWS) && this.rand(2) == 0) output += "fuzzy toes";
+			else if (hasLegFlag(GLOBAL.FLAG_PAWS) && this.rand(2) == 0) output += "paw-toes";
 			else if (hasLegFlag(GLOBAL.FLAG_AMORPHOUS) && legType == GLOBAL.TYPE_GOOEY) output += "cilia";
-			else if (hasLegFlag(GLOBAL.FLAG_HEELS) && this.rand(2) == 0) output += "toes";
+			else if (hasLegFlag(GLOBAL.FLAG_HEELS) && this.rand(2) == 0) output += "pointed toes";
 			else if (legType == GLOBAL.TYPE_LIZAN) output += "claws";
 			else output += "toes";
 			return output;

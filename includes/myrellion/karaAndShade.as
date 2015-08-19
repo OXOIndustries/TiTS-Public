@@ -1276,7 +1276,9 @@ public function shadeTailSex():void
 	author("Savin");
 	output("<i>“I’ve got a few ideas,”</i> you answer the buxom kaithrit overtop you, playing your hands up her ample thighs and over her smooth, flared hips. She smiles down at you, gently rocking in your embrace and letting you watch those huge, perfect tits of hers sway hypnotically over your face. You shiver in anticipation at the thought of burying your face between those titans of titflesh, just losing yourself in them... worshipping them with your mouth. Gently, you start to urge Shade down, bringing the smoking hot kitty lower until you can lick your tongue along one of her hefty orbs, teasing the tip across what must be a very sensitive teat. She gasps and arches her back into you, laying her taut belly flat against your [pc.belly] and easing her cleavage down around your face.");
 	output("\n\nThough your world goes dark, completely obscured by soft, sensual flesh, your body only seems all the more sensitive for it. Every subtle movement of your lover overtop you, every brush of skin or movement of her sultry tail around your [pc.legs] sends electric currents of sensation tearing through you.");
-	output("\n\n<i>“Maybe I should invest in milk mods one of these days,”</i> Shade murmurs, slipping a hand behind your head and pulling you tight into her rack. <i>“I bet you’d love it if I did... get a pair of big, milky tits for you to snack on while I fuck you. You’d let momma Shade have her way with you all day like that, wouldn’t you?”</i>");
+	if(flags["SHADE_BOOBWORSHIP"] != undefined && flags["SHADE_TALKED_ABOUT_MODS"] != undefined && shade.isLactating()) output("\n\nAnother sensation then hits you and rolls down your boob-sandwiched face... a warm, wet stream flowing along your cheeks - This MILF's milk no doubt! <i>“I should invest in more milk mods,”</i> Shade murmurs, slipping a hand behind your head and pulling you tight into her rack. <i>“I bet you love my big, milky tits. Don't you want to snack on them while I fuck you silly?");
+	else output("\n\n<i>“Maybe I should invest in milk mods one of these days,”</i> Shade murmurs, slipping a hand behind your head and pulling you tight into her rack. <i>“I bet you’d love it if I did... get a pair of big, milky tits for you to snack on while I fuck you.");
+	output(" You’d let momma Shade have her way with you all day like that, wouldn’t you?”</i>");
 	output("\n\nYou murmur something like <i>“God, yes,”</i> from between her tits, kissing and licking at the insides of her fleshy mounds, loving the perfumed taste of her skin on your [pc.tongue].");
 	output("\n\nShe laughs, but the idea of lounging around for hours on end in the beautiful cat-girl’s embrace just drives you even wilder. Trapped under her as you are, your lusts can only take themselves out on your [pc.tails], ");
 	if(pc.tailCount > 1) output("one of ");
@@ -1453,11 +1455,11 @@ public function shadeQuestNeedsTurnIn():Boolean
 }
 public function shadeAtTheBar():Boolean
 {
+	if(flags["SHADE_ON_UVETO"] != undefined) return false;
 	if(flags["SHADE_AND_KARA_RESOLVED_THINGS_THEMSELVES"] != undefined) return false;
 	if(flags["SHADE_DEFEATED_WITH_KARA"] != undefined) return false;
 	if(karaAndShadeUnfinished()) return false;
 	if(flags["MET_KARA"] != undefined) return true;
-	if(flags["SHADE_ON_UVETO"] != undefined) return false;
 	else return false;
 }
 
@@ -1977,7 +1979,7 @@ public function shadeBoobWorship():void
 	else output(" she feels the heat and moisture radiating off your [pc.cunt], grinding into her dark blue panties.");
 	output(" <i>“Like what you see, junior?”</i> she grins, squeezing one of her breasts and rocking her hips against your crotch.");
 
-	output("\n\nNodding eagerly, you reach up to run your fingers across her other tit, sinking them into Shade’s flawless flesh. She gives you an approving moan, tail rigling happily behind her. The parasitic appendages own pussy brushes wetly against your [pc.leg], subtly");
+	output("\n\nNodding eagerly, you reach up to run your fingers across her other tit, sinking them into Shade’s flawless flesh. She gives you an approving moan, tail riggling happily behind her. The parasitic appendages own pussy brushes wetly against your [pc.leg], subtly");
 	if (pc.hasCock())
 	{
 		output(" creeping towards your throbbing prick");
@@ -2115,7 +2117,7 @@ public function talkToShadeAboutMods():void
 	
 	output("\n\nShade cocks a silver eyebrow at you, her feline eyes narrowing at you. <i>“Oh boy, this conversation,”</i> she grunts, taking a long drink from her mug. <i>“Look, [pc.name], I’m almost forty - and kaithrit don’t live all that long to begin with. You don’t look this good at my age without a little help.”</i>");
 	
-	output("\n\nYou blink, a bit takken aback. For a moment, you’d thought Shade was about to tell you off for bringing the topic up. Instead, she doesn’t seem hesitant to tell you she’s used mods of her own accord. Like your father, Shade’s probably invested in some over the counter drugs to keep her looking young and hale. They’re working, too: for a woman in her species’ middle ages, she looks remarkably good - barely past twenty, firm and perky in all the right places.");
+	output("\n\nYou blink, a bit taken aback. For a moment, you’d thought Shade was about to tell you off for bringing the topic up. Instead, she doesn’t seem hesitant to tell you she’s used mods of her own accord. Like your father, Shade’s probably invested in some over the counter drugs to keep her looking young and hale. They’re working, too: for a woman in her species’ middle ages, she looks remarkably good - barely past twenty, firm and perky in all the right places.");
 	
 	output("\n\nModern medicine really is a marvel.");
 	

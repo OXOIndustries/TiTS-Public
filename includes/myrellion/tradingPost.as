@@ -182,7 +182,7 @@ public function seifynNyreaTalk():void
 	output("\n\n<i>“That sounds... incredibly painful.”</i>");
 	output("\n\n<i>“It’s not!”</i> Seifyn assures you, now laying her hand flat across her belly. <i>“Most females aren’t very gentle about it... and usually don’t give us little males much of a choice about it... but it’s still the most amazing feeling in the world. I’ve never felt so... so complete as when I’ve been with a belly full of eggs. And the pleasure of the act is overwhelming. I’ve lost consciousness more than once when a female’s decided to ‘gift’ me with her get. I just wish more females were kind about it. So many of them are like Queen Taivra: they don’t take no for an answer.”</i>");
 	output("\n\nYou nod your understanding, such as it is, and ask her to talk more about nyrean women.");
-	output("\n\n<i>“Female nyrea are bigger and more aggressive than us males - and they’ve got the dicks, too. Females have big shafts they absorb sperm and lay eggs through. Sometimes at once. They’re wonderful when they’re gentle and kind, but most of them are just dominate by their libidos. That’s why Queen Taivra ");
+	output("\n\n<i>“Female nyrea are bigger and more aggressive than us males - and they’ve got the dicks, too. Females have big shafts they absorb sperm and lay eggs through. Sometimes at once. They’re wonderful when they’re gentle and kind, but most of them are just dominated by their libidos. That’s why Queen Taivra ");
 	if(flags["KILLED_TAIVRA"] == 1) output("didn’t");
 	else output("doesn’t");
 	output(" allow many females around here. Almost everyone in town here is a male, actually. Not many females can keep it in their pants, especially when their eggs are swollen up and desperate to be fertilized.”</i>");

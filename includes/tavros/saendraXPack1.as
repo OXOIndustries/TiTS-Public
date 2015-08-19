@@ -405,7 +405,7 @@ public function sx1PirateGroupPCLoss():void
 	
 	output("\n\n<i>“Stay down, kid,”</i> the man over you growls, making the barrel of his gun painfully apparent against your spine.");
 	
-	output("\n\nOut of the corner of your eye, you want Saen get slammed down onto the side of the fountain. A few moments later, the elevator dings open behind you, and another figure strides into the corridor. A woman, dressed in an all-red jumpsuit under a black longcoat. Her flowing dark hair half-conceals a face that’s a network of scars and tattoos that wrap around an eyepatch.");
+	output("\n\nOut of the corner of your eye, you watch Saen get slammed down onto the side of the fountain. A few moments later, the elevator dings open behind you, and another figure strides into the corridor. A woman, dressed in an all-red jumpsuit under a black longcoat. Her flowing dark hair half-conceals a face that’s a network of scars and tattoos that wrap around an eyepatch.");
 	
 	output("\n\n<i>“[pc.HimHer] again?”</i> the woman growls, pointing at you. <i>“The same white knight from before? I’m almost impressed.”</i>");
 	
@@ -1447,7 +1447,7 @@ public function sx1RescueTheDude(fromCombat:Boolean = false):void
 	output("\n\nSomething’s been gnawing at you for a while about... well, everything with Saendra. You’re not dumb enough to think these attacks are just random anymore. <i>“I think you owe me an explanation.”</i>");
 	
 	output("\n\nShe flinches as if struck, and her twin tails coil down defensively under her legs. <i>“Yeah... I guess I do, huh, hero? Look, like I said, I gotta get Pete here to a doctor. Catch me down at the bar sometime and I’ll tell you. I promise.");
-	if (flags["SAENDRA_XPACK1_RESCUE_SHOTGUARD_STATE"] == 3 || flags["SAENDRA_XPACK1_RESCUE_TECHGUARD_STATE"] == 3) output(" <i>“Well, assuming I don’t get arrested first,”</i> she says, looking around at the bullet holes in the walls.");
+	if (flags["SAENDRA_XPACK1_RESCUE_SHOTGUARD_STATE"] == 3 || flags["SAENDRA_XPACK1_RESCUE_TECHGUARD_STATE"] == 3) output(" Well, assuming I don’t get arrested first,”</i> she says, looking around at the bullet holes in the walls.");
 	output(" ”</i>");
 	
 	output("\n\nThat’ll have to do. You step out of Saendra’s way, and she hefts her friend up into her arms and staggers out towards the stairs. For your part, you spend a few minutes ransacking the place, trying to find anything of use.");
