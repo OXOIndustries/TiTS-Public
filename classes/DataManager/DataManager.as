@@ -1138,10 +1138,18 @@
 			{
 				StatTracking.loadStorageObject(cloneObject(obj.statTracking));
 			}
+			else
+			{
+				StatTracking.resetStorage();
+			}
 			
 			if (obj.mailSystem != undefined)
 			{
 				MailManager.loadSaveObject(cloneObject(obj.mailSystem));
+			}
+			else
+			{
+				MailManager.resetMails();
 			}
 			
 			//Update room placement:
