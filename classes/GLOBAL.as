@@ -677,6 +677,7 @@
 		];
 		
 		public static const VALID_COCK_FLAGS:Array = [
+			FLAG_LUBRICATED,
 			FLAG_PREHENSILE,
 			FLAG_FLARED,
 			FLAG_KNOTTED,
@@ -688,6 +689,8 @@
 			FLAG_AMORPHOUS,
 			FLAG_BLUNT,
 			FLAG_SMOOTH,
+			FLAG_FORESKINNED,
+			FLAG_APHRODISIAC_LACED,
 		];
 		
 		public static const VALID_VAGINA_TYPES:Array = [

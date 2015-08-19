@@ -1194,7 +1194,7 @@ public function getEggedByCrystalGoo():void
 public function gooVictoryPostGooCheck():void
 {
 	clearMenu();
-	if(pc.armor is GooArmor || pc.destroyItemByName("Goo Armor",1)) addButton(0,"Next",armorGooVictoryShits);
+	if(pc.armor is GooArmor || pc.hasItemByName("Goo Armor",1)) addButton(0,"Next",armorGooVictoryShits);
 	else genericVictory();
 }
 

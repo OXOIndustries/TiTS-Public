@@ -3132,49 +3132,67 @@
 			result += nouns[rand(nouns.length)];
 			return result;
 		}
-		public function earDescript(): String {
+		public function earDescript(): String
+		{
 			var adjectives:Array = new Array();
 			var nouns:Array = ["ear"];
 			var description:String = "";
 			switch (earType)
 			{
 				case GLOBAL.TYPE_CANINE:
-					adjectives[adjectives.length] = "pointed";
-					adjectives[adjectives.length] = "ausar";
-					adjectives[adjectives.length] = "furry";
-					adjectives[adjectives.length] = "upraised";
-					adjectives[adjectives.length] = "anubis-like";
+					adjectives = ["pointed", "ausar", "furry", "upraised", "anubis-like"];
 					break;
 				case GLOBAL.TYPE_EQUINE:
-					adjectives[adjectives.length] = "equine";
-					adjectives[adjectives.length] = "horse-like";
-					adjectives[adjectives.length] = "furry";
-					adjectives[adjectives.length] = "bestial";
-					adjectives[adjectives.length] = "inhuman";
+					adjectives = ["equine", "horse-like", "furry", "bestial", "inhuman"];
 					break;
 				case GLOBAL.TYPE_BOVINE:
-					adjectives[adjectives.length] = "bovine";
-					adjectives[adjectives.length] = "cow-like";
-					adjectives[adjectives.length] = "floppy";
-					adjectives[adjectives.length] = "softly furred";
+					adjectives = ["bovine", "cow-like", "floppy", "softly furred"];
+					break;
+				case GLOBAL.TYPE_FELINE:
+					adjectives = ["pointed", "feline", "cat-like", "furry", "cat-like"];
+					break;
+				case GLOBAL.TYPE_LIZAN:
+					adjectives = ["reptilian", "small", "circular"];
+					break;
+				case GLOBAL.TYPE_LAPINE:
+					adjectives = ["bunny", "rabbit-like", "lapine", "furry", "floppy"];
+					break;
+				case GLOBAL.TYPE_KANGAROO:
+					adjectives = ["kangaroo", "oval-shaped", "elliptical", "furry", "pointed"];
+					break;
+				case GLOBAL.TYPE_VULPINE:
+					adjectives = ["vulpine", "fox-like", "pointed", "furry", "triangular"];
+					break;
+				case GLOBAL.TYPE_DRACONIC:
+					adjectives = ["draconic", "dragon-like", "fin-like", "fan-shaped", "beastial"];
+					break;
+				case GLOBAL.TYPE_KUITAN:
+					adjectives = ["tanuki", "egg-shaped", "rounded", "furry", "beastial"];
+					break;
+				case GLOBAL.TYPE_MOUSE:
+					adjectives = ["mousy", "mouse-like", "rounded", "furry", "circular"];
+					break;
+				case GLOBAL.TYPE_PANDA:
+					adjectives = ["panda", "bear-like", "rounded", "furry", "softly furred"];
+					break;
+				case GLOBAL.TYPE_LEITHAN:
+					adjectives = ["leithan", "elven", "pointy", "inhuman", "pointed"];
 					break;
 				case GLOBAL.TYPE_RASKVEL:
-					adjectives[adjectives.length] = "raskvel";
-					adjectives[adjectives.length] = "obscenely long";
-					adjectives[adjectives.length] = "oh-so sensitive";
-					adjectives[adjectives.length] = "smooth-scaled";
-					adjectives[adjectives.length] = "lengthy";
+					adjectives = ["raskvel", "obscenely long", "oh-so sensitive", "smooth-scaled", "lengthy"];
 					break;
 				case GLOBAL.TYPE_SYLVAN:
-					adjectives[adjectives.length] = "elven";
-					adjectives[adjectives.length] = num2Text(earLength) + "-inch long";
-					adjectives[adjectives.length] = "sensitive";
-					adjectives[adjectives.length] = "pointy";
-					adjectives[adjectives.length] = "elvish";
+					adjectives = ["elven", num2Text(Math.round(earLength)) + "-inch long", "sensitive", "pointy", "elvish"];
+					break;
+				case GLOBAL.TYPE_VANAE:
+					adjectives = ["pointy", "vanae", "fin-like", "inhuman"];
+					break;
+				case GLOBAL.TYPE_DEER:
+					adjectives = ["deer", "pointed", "oval-shaped", "pointy", "softly furred"];
 					break;
 			}
 			//Pick an adjective about 75% of the time
-			if(rand(4) < 3 && adjectives.length > 0) description = adjectives[rand(adjectives.length)] + " ";
+			if (rand(4) < 3 && adjectives.length > 0) description = adjectives[rand(adjectives.length)] + " ";
 			//Pick a noun.
 			description += nouns[rand(nouns.length)];
 			return description;
@@ -3737,99 +3755,100 @@
 			var adjectives:Array = new Array();
 			var nouns:Array = ["tail"];
 			var description:String = "";
-			if(hasTailFlag(GLOBAL.FLAG_PREHENSILE)) 
+			// Types
+			if (tailType == GLOBAL.TYPE_LAPINE)
+				adjectives = ["twitching", "rabbit-like", "lapine"];
+			else if (tailType == GLOBAL.TYPE_EQUINE)
+				adjectives = ["equine", "horse-like"];
+			else if (tailType == GLOBAL.TYPE_CANINE)
+				adjectives = ["ausar", "dog-like"];
+			else if (tailType == GLOBAL.TYPE_BOVINE)
+				adjectives = ["bovine", "cow-like"];
+			else if (hasCuntTail())
+				adjectives = ["snake-like", "writhing", "tentacle-like", "pussy-tipped"];
+			else if (tailType == GLOBAL.TYPE_PANDA)
+				adjectives = ["panda", "bear-like"];
+			else if (tailType == GLOBAL.TYPE_FELINE)
 			{
-				adjectives[adjectives.length] = "talented";
-				adjectives[adjectives.length] = "nimble";
+				adjectives = ["feline", "cat-like"];
+				if (race() == "kaithrit") adjectives.push("kaithrit");
 			}
-			if(hasTailFlag(GLOBAL.FLAG_LONG)) 
-			{
-				adjectives[adjectives.length] = "lengthy";
-				adjectives[adjectives.length] = "long";
-			}
-			if(hasTailFlag(GLOBAL.FLAG_FLUFFY)) 
-			{
-				adjectives[adjectives.length] = "furry";
-				adjectives[adjectives.length] = "furred";
-				adjectives[adjectives.length] = "fluffy";
-				adjectives[adjectives.length] = "soft";
-			}
-			if(hasTailFlag(GLOBAL.FLAG_SMOOTH)) 
-			{
-				adjectives[adjectives.length] = "smooth";
-				adjectives[adjectives.length] = "sleek";
-			}
-			if (hasTailFlag(GLOBAL.FLAG_SCALED))
-			{
-				adjectives.push("scaled");
-				adjectives.push("scaly");
-			}
-			if (hasTailFlag(GLOBAL.FLAG_CHITINOUS))
-			{
-				adjectives.push("chitinous");
-				adjectives.push("armored");
-			}
-			if(tailType == GLOBAL.TYPE_LAPINE)
-			{
-				adjectives[adjectives.length] = "twitching";
-				adjectives[adjectives.length] = "rabbit-like";
-				adjectives[adjectives.length] = "lapine";
-			}
-			else if(tailType == GLOBAL.TYPE_EQUINE)
-			{
-				adjectives[adjectives.length] = "equine";
-				adjectives[adjectives.length] = "horse-like";
-			}
-			else if(tailType == GLOBAL.TYPE_CANINE)
-			{
-				adjectives[adjectives.length] = "ausar";
-				adjectives[adjectives.length] = "dog-like";
-			}
-			else if(tailType == GLOBAL.TYPE_BOVINE)
-			{
-				adjectives[adjectives.length] = "bovine";
-				adjectives[adjectives.length] = "cow-like";
-			}
-			else if (tailType == GLOBAL.TYPE_COCKVINE)
-			{
-				adjectives.push("vine-like");
-				adjectives.push("writhing");
-				adjectives.push("tentacle-like");
-				adjectives.push("cock-tipped");
-			}
-			else if (tailType == GLOBAL.TYPE_OVIR)
-			{
-				adjectives.push("thick");
-				adjectives.push("ovir");
-				adjectives.push("lizard-like");
-				adjectives.push("tapered");
-			}
-			else if(tailType == GLOBAL.TYPE_DRIDER || tailType == GLOBAL.TYPE_ARACHNID || tailType == GLOBAL.TYPE_BEE || tailType == GLOBAL.TYPE_MYR)
+			else if (tailType == GLOBAL.TYPE_DRIDER || tailType == GLOBAL.TYPE_ARACHNID || tailType == GLOBAL.TYPE_BEE || tailType == GLOBAL.TYPE_MYR)
 			{
 				nouns = ["abdomen"];
-				adjectives[adjectives.length] = "dangling";
-				adjectives[adjectives.length] = "insectile";
-				adjectives[adjectives.length] = "insect-like";
-		
-				if(tailType == GLOBAL.TYPE_DRIDER || tailType == GLOBAL.TYPE_ARACHNID)
-				{
-					adjectives[adjectives.length] = "arachnid";
-					adjectives[adjectives.length] = "spherical";
-				}
-				if(tailType == GLOBAL.TYPE_BEE)
-				{
-					adjectives[adjectives.length] = "zil";
-					adjectives[adjectives.length] = "bee-like";
-				}
-				if(tailType == GLOBAL.TYPE_MYR)
-				{
-					adjectives[adjectives.length] = "myr";
-					adjectives[adjectives.length] = "ant-like";
-				}
+				adjectives = ["dangling", "insectile", "insect-like"];
+				
+				if (tailType == GLOBAL.TYPE_DRIDER || tailType == GLOBAL.TYPE_ARACHNID)
+					adjectives.push("arachnid","spherical");
+				if (tailType == GLOBAL.TYPE_BEE)
+					adjectives.push("zil", "bee-like");
+				if (tailType == GLOBAL.TYPE_MYR)
+					adjectives.push("myr", "ant-like");
 			}
+			else if (tailType == GLOBAL.TYPE_DEMONIC)
+				adjectives = ["demonic", "spade-tipped", "whip-like", "inhuman"];
+			else if (tailType == GLOBAL.TYPE_SHARK || tailType == GLOBAL.TYPE_SIREN)
+				adjectives = ["shark", "finned", "fish-like", "fin-tipped"];
+			else if (tailType == GLOBAL.TYPE_LIZAN)
+				adjectives = ["reptilian", "lizard-like"];
+			else if (tailType == GLOBAL.TYPE_AVIAN)
+				adjectives = ["avian", "bird-like"];
+			else if (tailType == GLOBAL.TYPE_KANGAROO)
+				adjectives = ["kangaroo", "roo-like"];
+			else if (tailType == GLOBAL.TYPE_VULPINE)
+				adjectives = ["vulpine", "fox-like", "fox"];
+			else if (tailType == GLOBAL.TYPE_DRACONIC)
+				adjectives = ["draconic", "dragon-like", "reptilian", "bestial"];
+			else if (tailType == GLOBAL.TYPE_KUITAN)
+				adjectives = ["tanuki", "racoon-like", "kui-tan"];
+			else if (tailType == GLOBAL.TYPE_MOUSE)
+				adjectives = ["mouse", "mousy", "mouse-like", "cute"];
+			else if (tailType == GLOBAL.TYPE_BADGER)
+				adjectives = ["badger", "mustelid", "tuft"];
+			else if (tailType == GLOBAL.TYPE_RASKVEL)
+				adjectives = ["raskvel", "reptilian"];
+			else if (tailType == GLOBAL.TYPE_SYDIAN)
+				adjectives = ["reptilian", "snake-like", "serpent"];
+			else if (tailType == GLOBAL.TYPE_SYDIAN)
+				adjectives = ["sydian", "wicked-shaped"];
+			else if (tailType == GLOBAL.TYPE_COCKVINE)
+				adjectives = ["vine-like", "writhing", "tentacle-like", "penis-tipped"];
+			else if (tailType == GLOBAL.TYPE_OVIR)
+				adjectives = ["ovir", "lizard-like"];
+			else if (tailType == GLOBAL.TYPE_VANAE)
+				adjectives = ["vanae", "tentacled-like", "sucker-lined"];
+			else if (tailType == GLOBAL.TYPE_DEER)
+				adjectives = ["deer", "tuft", "cute"];
+			// Flags
+			if (hasTailFlag(GLOBAL.FLAG_PREHENSILE))
+				adjectives.push("talented", "nimble");
+			if (hasTailFlag(GLOBAL.FLAG_LONG))
+				adjectives.push("lengthy", "long");
+			if (hasTailFlag(GLOBAL.FLAG_FLUFFY))
+				adjectives.push("fluffy", "soft");
+			if (hasTailFlag(GLOBAL.FLAG_SMOOTH))
+				adjectives.push("smooth", "sleek");
+			if (hasTailFlag(GLOBAL.FLAG_TAILCOCK))
+				nouns.push("tail-cock", "genitail");
+			if (hasTailFlag(GLOBAL.FLAG_FURRED))
+				adjectives.push("furry", "furred");
+			if (hasTailFlag(GLOBAL.FLAG_SCALED))
+				adjectives.push("scaled", "scaly");
+			if (hasTailFlag(GLOBAL.FLAG_OVIPOSITOR))
+				nouns.push("ovipositor");
+			if (hasTailFlag(GLOBAL.FLAG_THICK))
+				adjectives.push("thick", "girthy");
+			if (hasTailFlag(GLOBAL.FLAG_STINGER_TIPPED))
+				adjectives.push("stinger-tipped", "dangerous");
+			if (hasTailFlag(GLOBAL.FLAG_CHITINOUS))
+				adjectives.push("chitinous", "armored");
+			if (hasTailFlag(GLOBAL.FLAG_TAPERED))
+				adjectives.push("tapered", "conical");
+			if (hasTailFlag(GLOBAL.FLAG_FEATHERED))
+				adjectives.push("feathered", "feathery");
 			
-			//Show color 50% of the time
-			if(rand(2) == 0 && adjectives.length > 0) description = adjectives[rand(adjectives.length)] + " ";
+			//Show adjective 50% of the time
+			if (rand(2) == 0 && adjectives.length > 0) description = adjectives[rand(adjectives.length)] + " ";
 			//Pick a noun.
 			description += nouns[rand(nouns.length)];
 			return description;
@@ -5801,6 +5820,7 @@
 		}
 		public function canLactate():Boolean
 		{
+			if(!hasNipples()) return false;
 			//PC has reached lactation threshold!
 			if(milkMultiplier > 50 || milkFullness >= 50) return true;
 			return false;
@@ -6635,6 +6655,46 @@
 				cocks[slot].cockColor = "purple";
 				cocks[slot].addFlag(GLOBAL.FLAG_SMOOTH);
 			}
+			if (type == GLOBAL.TYPE_DEMONIC) {
+				cocks[slot].cockColor = "red";
+				cocks[slot].knotMultiplier = 1.4;
+				cocks[slot].addFlag(GLOBAL.FLAG_KNOTTED);
+				cocks[slot].addFlag(GLOBAL.FLAG_NUBBY);
+			}
+			if (type == GLOBAL.TYPE_TENTACLE) {
+				if (rand(2) == 0) cocks[slot].cockColor = "purple";
+				else cocks[slot].cockColor = "green";
+				cocks[slot].addFlag(GLOBAL.FLAG_PREHENSILE);
+			}
+			if (type == GLOBAL.TYPE_ANEMONE || type == GLOBAL.TYPE_SIREN) {
+				cocks[slot].cockColor = "blue";
+				cocks[slot].addFlag(GLOBAL.FLAG_APHRODISIAC_LACED);
+				cocks[slot].addFlag(GLOBAL.FLAG_STINGER_BASED);
+			}
+			if (type == GLOBAL.TYPE_KANGAROO) {
+				if (rand(2) == 0) cocks[slot].cockColor = "pink";
+				else cocks[slot].cockColor = "red";
+				cocks[slot].addFlag(GLOBAL.FLAG_PREHENSILE);
+				cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
+			}
+			if (type == GLOBAL.TYPE_DRACONIC) {
+				cocks[slot].cockColor = "blue";
+				cocks[slot].knotMultiplier = 1.25;
+				cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
+				cocks[slot].addFlag(GLOBAL.FLAG_KNOTTED);
+			}
+			if (type == GLOBAL.TYPE_GOOEY) {
+				cocks[slot].cockColor = skinTone;
+				cocks[slot].addFlag(GLOBAL.FLAG_SMOOTH);
+				cocks[slot].addFlag(GLOBAL.FLAG_LUBRICATED);
+			}/*
+			if (type == GLOBAL.TYPE_PLANT) {
+				if (rand(3) == 0) cocks[slot].cockColor = "purple";
+				else if (rand(3) == 0) cocks[slot].cockColor = "olive green";
+				else cocks[slot].cockColor = "green";
+				cocks[slot].addFlag(GLOBAL.FLAG_PREHENSILE);
+				cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
+			}*/
 		}
 		//PC can fly?
 		public function canFly(): Boolean {
@@ -6791,7 +6851,7 @@
 		}
 		public function createBreastRowsLockedMessage():String
 		{
-			return "Your crotch warms, but nothing happens.";
+			return "Your chest warms, but nothing happens.";
 		}
 		
 		public function removeJunk(array:Array, arraySpot:int, totalRemoved:int): void {
@@ -7824,6 +7884,7 @@
 			return desc;
 		}
 		public function nipplesDescript(rowNum:int = 0, forceLactation:Boolean = false): String {
+			if(totalNipples() == 1) return nippleDescript(rowNum, false, forceLactation);
 			return nippleDescript(rowNum, true, forceLactation);
 		}
 		public function nippleDescript(rowNum: Number = 0, plural: Boolean = false, forceLactation:Boolean = false): String {
@@ -9219,7 +9280,28 @@
 				case GLOBAL.TYPE_KANGAROO:
 					collection = ["kangaroo"];
 					break;
-					
+
+				case GLOBAL.TYPE_ANEMONE:
+					case GLOBAL.TYPE_SIREN:
+					collection = ["tentacled"];
+					break;
+
+				case GLOBAL.TYPE_SIMII:
+					collection = ["simii"];
+					break;
+
+				case GLOBAL.TYPE_RASKVEL:
+					collection = ["raskvel"];
+					break;
+
+				case GLOBAL.TYPE_GOOEY:
+					collection = ["gooey", "goo"];
+					break;
+				/*
+				case GLOBAL.TYPE_PLANT:
+					collection = ["plant", "vine-like"];
+					break;
+				*/
 				default:
 					trace("Fallback cock shape used in cockShape() for type: " + GLOBAL.TYPE_NAMES[cock.cType]);
 					collection = ["bestial"];
@@ -9232,6 +9314,16 @@
 			if (cock.hasFlag(GLOBAL.FLAG_BLUNT)) collection.push("blunt");
 			if (cock.hasFlag(GLOBAL.FLAG_PREHENSILE)) collection.push("prehensile");
 			if (cock.hasFlag(GLOBAL.FLAG_TAPERED)) collection.push("tapered");
+			if (cock.hasFlag(GLOBAL.FLAG_STINGER_BASED)) collection.push("stinger-based");
+			if (cock.hasFlag(GLOBAL.FLAG_STINGER_TIPPED)) collection.push("stinger-tipped");
+			//No, Jacques00. This doesn't work when a dick is jutting out of its sheath.
+			//if (cock.hasFlag(GLOBAL.FLAG_SHEATHED)) collection.push("sheathed");
+			if (cock.hasFlag(GLOBAL.FLAG_NUBBY)) collection.push("nubby");
+			if (cock.hasFlag(GLOBAL.FLAG_AMORPHOUS)) collection.push("amorphous");
+			if (cock.hasFlag(GLOBAL.FLAG_SMOOTH)) collection.push("smooth");
+			if (cock.hasFlag(GLOBAL.FLAG_LUBRICATED)) collection.push("lubricated");
+			if (cock.hasFlag(GLOBAL.FLAG_FORESKINNED)) collection.push("foreskinned");
+			if (cock.hasFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) collection.push("aphrodisiac-laced");
 			
 			return RandomInCollection(collection);
 		}
@@ -9343,7 +9435,7 @@
 				if (tail && rand(2) == 0) noun += "tail-";
 				else choices.push("rask-cock","xeno-shaft");
 				noun += choices[rand(choices.length)];
-			} else if (type == GLOBAL.TYPE_ANEMONE) {
+			} else if (type == GLOBAL.TYPE_ANEMONE || type == GLOBAL.TYPE_SIREN) {
 				if (!simple) {
 					choices = ["tentacle-ringed","stinger-laden","pulsating","stinger-coated","near-transparent","tentacle-ringed","squirming"];
 					descript += choices[rand(choices.length)] + " ";
@@ -9399,6 +9491,33 @@
 				else if(descript != "simian ") choices.push("simii-dick","simii-cock");
 				noun += choices[rand(choices.length)];
 			}
+			else if (type == GLOBAL.TYPE_RASKVEL) {
+				if (!simple) descript += "raskvel ";
+				choices = ["dick","shaft","prick","cock","tool","member","cock","pecker","phallus"];
+				if (tail && rand(2) == 0) noun += "tail-";
+				else if (descript != "raskvel ") choices.push("rask-dick","rask-cock");
+				noun += choices[rand(choices.length)];
+			}
+			else if (type == GLOBAL.TYPE_GOOEY) {
+				if (!simple) {
+					choices = ["gooey","self-lubricating","slick"];
+					descript += choices[rand(choices.length)] + " ";
+				}
+				choices = ["dick","shaft","prick","cock","tool","member","cock","pecker","phallus"];
+				if (tail && rand(2) == 0) noun += "tail-";
+				else if (descript != "gooey ") choices.push("goo-dick","goo-cock");
+				noun += choices[rand(choices.length)];
+			}/*
+			else if (type == GLOBAL.TYPE_PLANT) {
+				if (!simple) {
+					choices = ["floral","plant"];
+					descript += choices[rand(choices.length)] + " ";
+				}
+				choices = ["dick","shaft","prick","cock","tool","member","cock","pecker","phallus"];
+				if (tail && rand(2) == 0) noun += "tail-";
+				else if (descript != "plant ") choices.push("plant-dick","plant-cock","vine-dick","vine-cock");
+				noun += choices[rand(choices.length)];
+			}*/
 			/* To return if Third writes it!
 			else if(type == 10) {
 				rando = this.rand(12);
@@ -11528,6 +11647,11 @@
 				}
 				//Descriptive descriptions - 50% chance of being called
 				if (this.rand(3) == 0 && descripted < 2) {
+					if (hornType == GLOBAL.TYPE_DRACONIC) {
+						if (descripted > 0) descript += ", ";
+						descript += "draconic";
+						descripted++;
+					}
 					if (hornType == GLOBAL.TYPE_DEMONIC) {
 						if (descripted > 0) descript += ", ";
 						descript += "demonic";

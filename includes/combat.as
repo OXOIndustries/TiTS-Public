@@ -346,7 +346,7 @@ public function specialsMenu():void {
 		
 		if(pc.hasPerk("Low Blow"))
 		{
-			if(pc.energy() >= 15) addButton(offset,"Low Blow",attackRouter,lowBlow,"Low Blow","<b>Energy Cost: 15</b>\n\nA melee ability with a physique-based chance of stunning your target. It does not do damage, and stronger foes will be more able to resist being stunned.");
+			if(pc.energy() >= 15) addButton(offset,"Low Blow",attackRouter,lowBlow,"Low Blow","<b>Energy Cost: 15</b>\n\nA melee ability with a physique-based chance of stunning your target. It does low damage, and stronger foes will be more able to resist being stunned.");
 			else addDisabledButton(offset, "Low Blow","Low Blow","<b>Energy Cost: 15</b>\n\nA melee ability with a physique-based chance of stunning your target. It does not do damage, and stronger foes will be more able to resist being stunned.");
 			offset++;
 		}
@@ -1273,10 +1273,14 @@ public function concentratedFire(hit:Boolean = true):void
 
 public function playerRangedAttack(target:Creature):void 
 {
-	rangedAttack(pc, target,true);
-	if(pc.hasPerk("Second Shot")) rangedAttack(pc,target,true,2);
+	playerRangedAttacksNoProcess(target);
 	playerMimbraneCloudAttack();
 	processCombat();
+}
+public function playerRangedAttacksNoProcess(target:Creature):void
+{
+	rangedAttack(pc, target,true);
+	if(pc.hasPerk("Second Shot")) rangedAttack(pc,target,true,2);
 }
 
 //Special 1 = flurry bonus
@@ -3571,6 +3575,13 @@ public function paralyzingShock(target:Creature):void {
 		addButton(0,"Next",combatMainMenu);
 		return;
 	}
+	if(target.plural)
+	{
+		output("You can't use this to paralyze all of them!");
+		clearMenu();
+		addButton(0,"Next",combatMainMenu);
+		return;
+	}
 	//Attempt it!
 	output("You launch a paralyzing shock at " + target.a + target.short + "!");
 	pc.energy(-25);
@@ -3591,7 +3602,7 @@ public function paralyzingShock(target:Creature):void {
 public function volley(target:Creature):void {
 	pc.energy(-20);
 	//Do normal attacks
-	rangedAttack(pc,target,true);
+	playerRangedAttacksNoProcess(target);
 	//Do the bonus flurry shot!
 	rangedAttack(pc,target,true,2);
 	//Chance of bliiiiiiiind
@@ -3830,7 +3841,7 @@ public function lowBlow(target:Creature):void {
 	else {
 		output("You connect with your target!");
 
-		applyDamage(damageRand(new TypeCollection( { kinetic: pc.damage() + pc.physique() / 2 } ), 15), pc, target, "lowblow");
+		applyDamage(damageRand(new TypeCollection( { kinetic: pc.physique() / 2 } ), 15), pc, target, "lowblow");
 
 		if((pc.physique()/2 + rand(20) + 1 >= target.physique()/2 + 10 && !target.hasStatusEffect("Stunned")) && !target.hasStatusEffect("Stun Immune") || target is Kaska) {
 			if(target is Kaska) output("\nKaska's eyes cross from the overwhelming pain. She sways back and forth like a drunken sailor before hitting the floor with all the grace of a felled tree. A high pitched squeak of pain rolls out of her plump lips. <b>She's very, very stunned.</b>");
@@ -4179,7 +4190,7 @@ public function detCharge(target:Creature):void
 	output("You toss a bundle of explosives in the direction of " + target.a + target.short + "! ");
 	var damageAmount:int = 15 + pc.level * 4 + pc.intelligence();
 
-	var damage:TypeCollection = damageRand(new TypeCollection( { burning: 50 } ), 15);
+	var damage:TypeCollection = damageRand(new TypeCollection( { burning: damageAmount } ), 15);
 	
 	if (foes[0] is Cockvine)
 	{

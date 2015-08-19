@@ -63,9 +63,12 @@ package classes.Characters
 			if(hasPerk("Honeypot")) 
 			{
 				kGAMECLASS.honeyPotBump(true);
-				if(cumFrom.cumQ() >= 500) kGAMECLASS.honeyPotBump(true);
-				if(cumFrom.cumQ() >= 1000) kGAMECLASS.honeyPotBump(true);
-				if(cumFrom.cumQ() >= 2000) kGAMECLASS.honeyPotBump(true);
+				if(cumFrom != null)
+				{
+					if(cumFrom.cumQ() >= 500) kGAMECLASS.honeyPotBump(true);
+					if(cumFrom.cumQ() >= 1000) kGAMECLASS.honeyPotBump(true);
+					if(cumFrom.cumQ() >= 2000) kGAMECLASS.honeyPotBump(true);
+				}
 			}
 			return false;
 		}
