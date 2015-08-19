@@ -569,7 +569,7 @@ public function sleep(outputs:Boolean = true):void {
 	
 	this.clearMenu();
 	if (flags["ANNO_SLEEPWITH_DOMORNING"] != undefined) this.addButton(0, "Next", annoMorningRouter);
-	if (flags["BESS_SLEEPWITH_DOMORNING"] != undefined) addButton(0, "Next", bessMorningEvents);
+	//9999 - lemme compile, damnit. if (flags["BESS_SLEEPWITH_DOMORNING"] != undefined) addButton(0, "Next", bessMorningEvents);
 	else this.addButton(0,"Next",mainGameMenu);
 }
 
