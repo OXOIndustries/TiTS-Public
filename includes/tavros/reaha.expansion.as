@@ -187,7 +187,7 @@ public function showReahaTalkMenu(func:Function = null):void
 	clearMenu();
 
 	if (func != reahaTalkTreatment) addButton(0, "Treatment", reahaTalkTreatment, undefined, "The Treatment", "Ask Reaha about the Treatment that's so popular on her homeworld.");
-	else addDisabledButton(0, "Treatment");
+	else addDisabledButton(0, "Treatment","Treatment","");
 
 	if (func != reahaTalkNewTexas) addButton(1, "New Texas", reahaTalkNewTexas, undefined, "New Texas", "Ask Reaha about her homeworld.");
 	else addDisabledButton(1, "New Texas");

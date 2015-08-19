@@ -509,11 +509,11 @@ public function embryMenu():void
 		if(flags["EMBRY_TALKED_ABOUT_HER_SPECIES"] != undefined && flags["EMBRY_TALKED_ABOUT_HERSELF"] != undefined && flags["EMBRY_TALKED_ABOUT_WAITRESSING"] != undefined && flags["EMBRY_TALKED_ABOUT_MYRELLION"] != undefined && flags["EMBRY_TALKED_ABOUT_ROCKS"] != undefined && flags["EMBRY_TALKED_ABOUT_SEWING"] != undefined && flags["EMBRY_TALKED_ABOUT_OMARII"] != undefined && flags["EMBRY_TALKED_ABOUT_FAMILY"] != undefined && flags["EMBRY_TALKED_ABOUT_TRANSITIONING"] != undefined && flags["EMBRY_TALKED_ABOUT_WRITING"] != undefined && flags["EMBRY_TALKED_ABOUT_EXPERIENCE"] != undefined) 
 		{
 			//First time
-			if(flags["EMBRY_SPENT_TIME_WITH"] == undefined) addButton(4,"Spend Time",spendTimeWithEmbry,undefined,"Spend Time","Spend some time with Embry");
+			if(flags["EMBRY_SPENT_TIME_WITH"] == undefined) addButton(4,"Spend Time",spendTimeWithEmbry,undefined,"Spend Time","Spend some time with [embry.name]");
 			//Successive times must be lover.
-			else if(flags["EMBRY_RELATIONSHIP"] == 3 && flags["EMBRY_SPENT_TIME_WITH"] < 4) addButton(4,"Spend Time",spendTimeWithEmbry,undefined,"Spend Time","Spend some time with Embry");
-			else if(flags["EMBRY_SPENT_TIME_WITH"] >= 4) addDisabledButton(4,"Spend Time","Spend Time","You've gone through all the events for spending time with Embry.");
-			else addDisabledButton(4,"Spend Time","Spend Time","Only lovers have additional scenes for spending time with Embry.");
+			else if(flags["EMBRY_RELATIONSHIP"] == 3 && flags["EMBRY_SPENT_TIME_WITH"] < 4) addButton(4,"Spend Time",spendTimeWithEmbry,undefined,"Spend Time","Spend some time with [embry.name]");
+			else if(flags["EMBRY_SPENT_TIME_WITH"] >= 4) addDisabledButton(4,"Spend Time","Spend Time","You've gone through all the events for spending time with [embry.name].");
+			else addDisabledButton(4,"Spend Time","Spend Time","Only lovers have additional scenes for spending time with [embry.name].");
 		}
 		else addDisabledButton(4,"Spend Time","Spend Time","You don't know her well enough to spend time with her.");
 		if(flags["EMBRY_RELATIONSHIP"] == 0) addDisabledButton(5,"Sex","Sex","She has no interest in sex with you.");
@@ -550,7 +550,7 @@ public function jokeAtEmbry():void
 	showSimii();
 	pc.addMischievous(3);
 	output("<i>“Are </i>you<i> part of the menu? You know, since you’re attached to it.”</i> You light-heartedly joke.");
-	output("\n\nEmbry blinks, and drops the menu like it’s on fire. <i>“Oh, I didn’t mean–sorry–I’ll leave you to your meal!</i>” She turns on the spot, and moves to dash off.");
+	output("\n\n[embry.name] blinks, and drops the menu like it’s on fire. <i>“Oh, I didn’t mean–sorry–I’ll leave you to your meal!</i>” She turns on the spot, and moves to dash off.");
 	processTime(1);
 	secondTimeEmbryMeetingContinuation();
 }
@@ -563,7 +563,7 @@ public function mockEmbryYouAss():void
 	showSimii();
 	pc.addHard(3);
 	output("<i>“Wow, you’re really attached to the menu. Sure you want to let it go?”</i> You openly mock her.");
-	output("\n\nEmbry eyes start quiver as if she’s going to cry. She drops the menu, and pulls her hands up to her mouth. <i>“... I’m – I didn’t mean to... I’m sorry!</i>” She turns on the spot, and moves to dash off.");
+	output("\n\n[embry.name] eyes start quiver as if she’s going to cry. She drops the menu, and pulls her hands up to her mouth. <i>“... I’m – I didn’t mean to... I’m sorry!</i>” She turns on the spot, and moves to dash off.");
 	processTime(1);
 	secondTimeEmbryMeetingContinuation();
 }
@@ -701,7 +701,7 @@ public function talkToEmbry():void
 	// Before watching second approach scene (Finding out she’s trans), repeat this scene and block talk options.
 	if(flags["MET_EMBRY"] == 1)
 	{
-		output("You try to engage in some small talk with Embry. The moment you focus your attention on her, she takes a step back, biting her lip, and looking off to the side.");
+		output("You try to engage in some small talk with [embry.name]. The moment you focus your attention on her, she takes a step back, biting her lip, and looking off to the side.");
 		output("\n\nWhen you ask her what’s wrong, she stammers a flustered response, taking another step back. <i>“Nothing!”</i> she exclaims slightly too loudly. <i>“It’s--you’re--I--be right back. I mean I will. Not telling you to be ... sorry!”</i>");
 		output("\n\nShe takes another step back, bumping into a patron behind her. An angry shout accompanies the sound of a spilled drink, and she spins around, apologizing, disappearing into the crowd and heading back to the bar.");
 		processTime(1);
@@ -819,7 +819,7 @@ public function talkToEmbryAboutHerRocks():void
 	flags["EMBRY_TALKED_ABOUT_ROCKS"] = 1;
 	output("You ask [embry.name] about her hobby of collecting ‘shiny rocks’. Is it some kind of geology?");
 	output("\n\n<i>\"N-nothing that special, like gems or anything. I just like collecting polished, colorful rocks, you know? Like the kind you can get at crystal shops.”</i>");
-	output("\n\nEmbry pulls one out of the pocket of her waitress outfit, and shows it to you. It’s a beautiful, smooth chameleon rock. It doesn’t look like it’s from Myrellion - perhaps her home planet?");
+	output("\n\n[embry.name] pulls one out of the pocket of her waitress outfit, and shows it to you. It’s a beautiful, smooth chameleon rock. It doesn’t look like it’s from Myrellion - perhaps her home planet?");
 	output("\n\nShe strokes it softly with her fingers. <i>“... When they’re polished up, I can spend hours turning them over and over in my hands, staring into them. I’m not sure if you could call it a hobby, but it makes me kind of happy.”</i>");
 	processTime(2);
 	clearMenu();
@@ -844,7 +844,7 @@ public function talkToEmbryAbootSewing():void
 	output("\n\nYou ask how she learned how to sew, and her eyes look a bit wistful. She looks like she’s recalling a fond memory.");
 	output("\n\n<i>“... Down the street from my house on Omorii, there was this kindly old kaithrit lady, Athilda, who taught me,”</i> she smiles, and looks down at her hands. <i>“... Most other simii didn’t understand that I wanted to be a girl - that I </i>am<i> a girl - but Athilda did.”</i>");
 	output("\n\n<i>\"She helped me sew dresses, and let me try them on with her.”</i> She pauses before continuing, <i>“... It turns out she was trans like me. I only found out just before I left Omorii.</i>");
-	output("\n\nYou can hear the bittersweet affection in Embry’s voice. It sounds like Athilda is someone very important to her.");
+	output("\n\nYou can hear the bittersweet affection in [embry.name]’s voice. It sounds like Athilda is someone very important to her.");
 	processTime(4);
 	clearMenu();
 	addButton(0,"Next",talkToEmbry);
@@ -892,7 +892,7 @@ public function talkToEmbryAboutTransitioning():void
 	showSimii();
 	flags["EMBRY_TALKED_ABOUT_TRANSITIONING"] = 1;
 	output("You ask her about her transitioning. Surely it can’t be that hard to just get gender reassignment treatment?");
-	output("\n\nEmbry looks down at her feet, and scuffs the ground with her foot. <i>\"For most folks, maybe. I’m a simii, and my species has really tough immune systems. Actually, most things don’t work on us - like viruses, transformatives, sedatives, and alcohol.”</i>");
+	output("\n\n[embry.name] looks down at her feet, and scuffs the ground with her foot. <i>\"For most folks, maybe. I’m a simii, and my species has really tough immune systems. Actually, most things don’t work on us - like viruses, transformatives, sedatives, and alcohol.”</i>");
 	output("\n\n<i>\"The upside is we’re really hardy, but the downside is, medical treatment is near impossible. The drugs needed for me to transition are incredibly strong, and very expensive. They’re actually outlawed except in certain situations like mine, because they have pretty extreme effects on non-simii...”</i>");
 	output("\n\nYou ask her what kind of effects, and she explains. <i>“... Um, over-femification. Like, extreme breast tenderness and vaginal lubrication, ovulation goes through the roof, and your body over-emphasises all the feminine parts of your species.</i>");
 	output("\n\nAll that doesn’t sound so bad, and you say so. [embry.name] then shakes her head, <i>\"It’s not, but the symptom list is really long. The worst is a really bad case of estrus - mating heat - and lordosis. The latter is the part of your brain made for submitting to males for copulation, and why animals ‘present’ themselves. You know, when they p-put their butt up for a guy... to... do their thing.”</i>");
@@ -900,7 +900,7 @@ public function talkToEmbryAboutTransitioning():void
 	// If no treatment done yet
 	if(flags["EMBRY_TREATMENTS"] == 0 || flags["EMBRY_TREATMENTS"] == undefined)
 	{
-		output("\n\nIt seems like Embry’s done her research on her drugs. You ask her how far along she is with her treatment.");
+		output("\n\nIt seems like [embry.name]’s done her research on her drugs. You ask her how far along she is with her treatment.");
 		output("\n\n<i>“... N-not far. I only had enough money for one round, and it just made me look a bit more girlish. My voice changed, which was great, because I hated my old boy voice,”</i> she blushes a little. <i>“... And, um, one part </i>shrunk<i> a bit. Not that it was that big to begin with.”</i>");
 		output("\n\n<i>\"If I could afford the next round of treatment, my shoulders should become girlish, and less narrow. And... maybe I’ll grow breasts,”</i> she touches her flat chest wistfully. <i>“... I-I think if I had breasts, I’d really start to feel like a real girl, you know?”</i>");
 	}
@@ -922,7 +922,7 @@ public function talkToEmbryAboutWriting():void
 	output("\n\n<i>\"L-l-look, I’ll tell you, just so long as you promise not to tell anyone, okay?”</i> she swears you to secrecy before handing over her notepad to you.");
 	output("\n\nYou flip through the pages. They’re half full of orders crowded in with snippets of dialogue and story ideas. Is she some kind of writer? You read some of it out loud.");
 	output("\n\n<i>\"The space pirate took Princess Nebula in his strong, tattooed arms, and against the backdrop of the exploding star, kissed her with a passion a thousand times more powerful,”</i> you recite.");
-	output("\n\nEmbry snatches the pad from your hands, and hugs it possessively to her chest. Her face is bright red as she stammers, <i>\"D-don’t read it out loud!! I like writing cheesy space romance, okay--?”</i>");
+	output("\n\n[embry.name] snatches the pad from your hands, and hugs it possessively to her chest. Her face is bright red as she stammers, <i>\"D-don’t read it out loud!! I like writing cheesy space romance, okay--?”</i>");
 	output("\n\nNo wonder she’s such a clumsy waitress. Half the time her head isn’t even in the game! You ask her if she’s published anything, and she shakes her head.");
 	output("\n\n<i>\"N-not yet, I’m working on some stuff, but it’s not ready yet. I-I don’t really have enough </i>experience<i>, I think, so it’s slow going. You know, since I’ve never been in l-love.”</i> she looks down at her pad, shyly averting her gaze. <i>\"Um, but I can dream about someone coming and sweeping me-- UH, I mean Princess Nebula - off her feet, and write that!”</i>");
 	output("\n\nIt seems she’s got some way to go before she’s writing best sellers.");
@@ -1091,7 +1091,7 @@ public function tipEmbryTwoThousandHundredDarrus():void
 	// Not A Lover / if EmbryRelationship != 3
 	if(flags["EMBRY_RELATIONSHIP"] != 3)
 	{
-		output("You tip [Embry.name] 2000 credits, and when she sees the amount, [embry.name]'s eyes go wide open. She's gone into shock.");
+		output("You tip [embry.name] 2000 credits, and when she sees the amount, her eyes go wide open. She's gone into shock.");
 		output("\n\n<i>“" + pc.mf("S-s-sir","M-m-ma’am") + ", you’ve tipped me too much--!</i> she stammers, trying to hand it back. You shake your head, and she reluctantly takes it, bowing to you several times.");
 		output("\n\nIt seems the credits were more than appreciated. Her hands are trembling as she slides the considerable amount into her dress pocket.");
 	}
@@ -1117,7 +1117,7 @@ public function tipEmrbyFiveThousandCredits():void
 	// Not A Lover / if EmbryRelationship != 3
 	if(flags["EMBRY_RELATIONSHIP"] != 3)
 	{
-		output("You transfer 5000 credits to a chip, and then hand it to Embry. When she reads the insane sum on it, she looks at you, and then looks at the chip.");
+		output("You transfer 5000 credits to a chip, and then hand it to [embry.name]. When she reads the insane sum on it, she looks at you, and then looks at the chip.");
 		output("\n\nOnce it finally sinks in that you’re giving her a tip, her blue eyes roll back into her head, and she promptly faints. Her body simply crumbles onto the ground, and there’s a sudden uproar in the bar. The other waitresses run over to fan her off, and figure out what happened.");
 		output("\n\nWhen she finally comes to five minutes later, she stumbles to her feet despite being told to sit down. Instead, she stumbles towards you, and eyes wet with tears, gives you a tight hug.");
 		output("\n\n<i>\"T-t-thank you---! With this much, I can start to be a real g-g-girl...”</i> she bawls into your chest, and won’t let go - at least until she’s pried off by her colleagues. It seems your tip has really changed someone’s life for the better.");
@@ -1159,7 +1159,7 @@ public function firstTransitionForEmbry():void
 	embry.lipMod++;
 	embry.femininity = 80;
 
-	output("Embry approaches you, and pulls you aside for a moment. She seems nervous, more so than usual.");
+	output("[embry.name] approaches you, and pulls you aside for a moment. She seems nervous, more so than usual.");
 	output("\n\n<i>“... U-um, I’ve got a favor to ask. You can refuse, if you want, and i’ll totally understand!”</i> she rambles, and anxiously clutches her pink tail.");
 	output("\n\nYou tell her to go ahead, and she peers at you through her fairy floss colored hair. <i>\"S-so... my transition drugs arrived today. I finally had the money for the next stage, thanks to you, b-but I need someone to supervise me when I take them.”</i>");
 	output("\n\n<i>\"It’s the law... I can’t actually take them without a thumb-print from a witness. If anyone else were to take them... t-that’d be really dangerous.”</i>");
@@ -1183,7 +1183,7 @@ public function declineToWitnessEmbrysStuff():void
 	output(" turn down her offer. [embry.name] squeezes her tail, and she nods.");
 
 	output("\n\n<i>\"I-I guess it was a little forward of me to ask... I’m sorry. You probably have a million more important things to do, right?”</i> [embry.name] looks desperately around, as if looking for an avenue of escape. <i>“...O-oh, a new customer, I better get back to work!</i>");
-	output("\n\nEmbry literally flees the awkward situation. It seems she took your pretty rejection hard. ");
+	output("\n\n[embry.name] literally flees the awkward situation. It seems she took your pretty rejection hard. ");
 
 	// If you decline to witness, you leave, and the next time you see the ‘Not Lover/Declined to Witness’ scene.
 	// If you decline, you also do not get to see any future transition scenes.
@@ -1200,7 +1200,7 @@ public function witnessEmbrysGirlTF():void
 {
 	clearOutput();
 	showSimii(true);
-	output("You agree to witness for Embry, and she gives a bright smile. <i>\"R-really, you will?”</i> The monkey girl wraps her arms around your waist, and gives you a tight, warm hug. <i>\"Thank you!”</i>");
+	output("You agree to witness for [embry.name], and she gives a bright smile. <i>\"R-really, you will?”</i> The monkey girl wraps her arms around your waist, and gives you a tight, warm hug. <i>\"Thank you!”</i>");
 	output("\n\nYou follow her back to her room on the Cappella, and she locks the door after you both. You notice there’s a secure medical container plastered with warning labels on the floor. She wasn’t joking when she said it was dangerous. It’s a lot more regulation than you’ve seen for any transformation drug");
 	if(pc.isTreated()) output(" besides the treatment");
 	else output(" before");
@@ -1221,7 +1221,7 @@ public function witnessEmbrysGirlTF():void
 	output("\n\nIt’s the first time you’ve actually seen [embry.name] with any of her clothes off, let alone fully naked. You soak in the difference, and it’s considerable. Her girly dress was puffed to give curves where there were none, and now that she’s out of it, there’s no hiding her boyish body. The lack of a hip curve, the breadth of her shoulders, and the flatness of her chest and buttocks are completely exposed.");
 
 	output("\n\nStanding out like a sore thumb is her simian member hanging from between her legs. Her simii cock has a glans and shaft, but no foreskin. The entire member is made of the same sensitive flesh as her cock head. It’s the same candy pink as her hair. Her length is fairly small, barely four inches. Her furry balls are small and hang directly below her shaft.");
-	output("\n\nEmbry seems aware of how different she looks without any clothes on, and self consciously moves her hands over her member and chest. Her shoulders are shaking, and now that she’s naked, she looks as if she wants to cry.");
+	output("\n\n[embry.name] seems aware of how different she looks without any clothes on, and self consciously moves her hands over her member and chest. Her shoulders are shaking, and now that she’s naked, she looks as if she wants to cry.");
 	output("\n\n<i>“...U-u-um... t-t-this is way harder than I thought... m-m-maybe you shouldn’t look at me--?”</i> Tears well up in her blue eyes, and she turns her body away from you.");
 	processTime(10);
 	//[Hold Her] [Look Away] 
@@ -1247,7 +1247,7 @@ public function holdEmbryDuringFirstTFLoverMode():void
 	output("\n\n<i>\"That’s it. We’ve, um, just got to wait for it to kick in,”</i> she explains, and lies back against a pillow. You grab her hand, and stroke her palm. After a few minutes, you notice her hand is becoming quite hot, and her body is burning up. She’s beginning to break out in a sweat, and her breathing is becoming more ragged.");
 	output("\n\n<i>“... M-my head is s-s-spinning...”</i> she stammers. You tell her to lie back, and close her eyes. She does just that, and squeezes your hand tightly for comfort. <i>“...T-this is stronger than the last time--!”</i>");
 	output("\n\nHer flat chest arches upwards, and she lets out a sharp gasp. Her small, boyish nipples stiffen and prickle. Little bumps form around her tiny areolae. Her pink fur is standing on end, and her tail seizes up. And then the changes begin...");
-	output("\n\nEmbry’s shoulders begin to slowly retract towards her neck, losing their masculine breadth, and you feel a steady tugging at your hand. Her hips begin to push outwards at the same time, becoming more shapely. You can’t help but admire the delicious curves gradually forming before your very eyes.");
+	output("\n\n[embry.name]’s shoulders begin to slowly retract towards her neck, losing their masculine breadth, and you feel a steady tugging at your hand. Her hips begin to push outwards at the same time, becoming more shapely. You can’t help but admire the delicious curves gradually forming before your very eyes.");
 	output("\n\nHer muscles begin to lose shape, and her body becomes more plush and soft. Her waist pushes up from the bed, and you look down - she’s not lifting it. Her flat butt has suddenly gained a bit of weight, becoming more round and girlish. There’s now a delicious dipping curve between her shoulderblades and her rounded rump.");
 	output("\n\nYou look up at her face, and notice her pink lips have become fuller, and her cheeks rounder. Her face is definitely less harsh, and instead of androgynous, it now looks unmistakably feminine. Even her dark lashes are fuller and longer. Her hair length hasn’t changed, but the rest certainly has.");
 	output("\n\nTwo budding breasts begin to form on her chest, and she curves her back upward. Her nipples, erect and pert, begin to stretch outwards and expand. Her areolas become wider, more girlish, and her pink buds more fulsome. She reaches up and touches them with a pleasured sigh, running her fingers around the cusp.");
@@ -1264,7 +1264,7 @@ public function lookAwayFromEmbrysLoverTF():void
 {
 	clearOutput();
 	showSimii();
-	output("You respectfully look away, and wait until she’s done transitioning. There’s the hiss of the solution being administered, and then Embry cries out. All through her transition, you don’t look once, waiting until she’s finished.");
+	output("You respectfully look away, and wait until she’s done transitioning. There’s the hiss of the solution being administered, and then [embry.name] cries out. All through her transition, you don’t look once, waiting until she’s finished.");
 	output("\n\nWhen you finally turn back around, she’s lying on the bed, and looks completely different. Her shoulders have completely lost their masculine breadth, her curves are more shapely, and her body is more plush and soft. Her rump is round and girlish, and there’s a delicious dipping curve between her shoulderblades and her butt.");
 	output("\n\nYou look up at her face, and notice her pink lips have become fuller and her cheeks rounder. Her face is definitely less harsh, and instead of androgynous, it now looks unmistakably feminine. Even her dark lashes are fuller and longer. Her hair length hasn’t changed, but the rest certainly has.");
 	output("\n\nShe now has a small pair of A cup breasts. Even though they’re not very big, the simii girl seems thrilled, and presses them together with a delighted expression on her face.");
@@ -1307,7 +1307,7 @@ public function notALoverOrTurnedDownSeeingTFsEmbryRunsUpToYouAgain():void
 	output("You sit down at a free table, and [embry.name] walks over to your table. However, as she gets closer, you notice there is something different about her. You narrow your [pc.eyes], and try to figure out what it is.");
 	output("\n\nShe’s shorter than the last time you saw her, and her shoulders aren’t as broad. Actually, all of her seems smaller, more compact, and distinctly feminine. There’s curves where there weren’t any, and her lashes are longer.");
 	output("\n\nThe most noticeable thing, however, are the budding breasts pushing out of her waitress uniform. When she comes to take your order, she pushes them out proudly. It seems she wants people to notice them, especially since she didn’t have any before.");
-	output("\n\nHer stammering voice, however, is typical Embry. <i>\"H-hi, what do you think? Pretty different, huh?”</i> she says as shows off her new curves. You notice that she’s got girlish hips now, and a somewhat curvy ass. <i>“... Still some way to go, but, it’s a start, right?”</i>");
+	output("\n\nHer stammering voice, however, is typical [embry.name]. <i>\"H-hi, what do you think? Pretty different, huh?”</i> she says as shows off her new curves. You notice that she’s got girlish hips now, and a somewhat curvy ass. <i>“... Still some way to go, but, it’s a start, right?”</i>");
 	output("\n\nShe then looks at her feet, and plays with the tip of her tail. <i>\"U-um... most of the money for my transition came from you, so, I just want to thank you again. It really means the world to me, and, you know, I just don’t have words...”</i> she looks like she’s going to tear up, and she’s biting her lip.");
 	output("\n\n<i>\"U-um, right... so! Can I take your order--? I bet you’re hungry.”</i> she sniffles and changes the subject, wiping her eyes with the sleeve of her dress. Seems she doesn’t want to make a scene in public.");
 
@@ -1331,10 +1331,10 @@ public function approachEmbrysSecondTransition():void
 
 	//Lover 
 	// if EmbryRelationship = 3 & Witnessed first transition (Didn’t Decline or Turn Away)
-	output("Embry practically skips over to you, and pulls you to one side. She grabs your hands in her own, and squeezes it tight.");
+	output("[embry.name] practically skips over to you, and pulls you to one side. She grabs your hands in her own, and squeezes it tight.");
 	output("\n\n<i>\"Guess what--? I’ve got enough for my next round of treatment!”</i> she gushes. There’s an excited glimmer in her blue eyes. The monkey girl looks like she’s about to start bouncing on the spot!");
 	output("\n\nYou accompany her back to her cabin on the Cappella to witness her transformation. When you arrive, she pulls out the container. It looks exactly the same as last time, and just like last time, the pink haired girl begins removing her clothes.");
-	output("\n\nEmbry is less bashful than last time, but her cheeks are still flushed as she strips in front of you. She then removes the canister, and sits down on the bed. You notice her [embry.nipples] are stiff, and her [embry.thighs] are slightly parted.");
+	output("\n\n[embry.name] is less bashful than last time, but her cheeks are still flushed as she strips in front of you. She then removes the canister, and sits down on the bed. You notice her [embry.nipples] are stiff, and her [embry.thighs] are slightly parted.");
 	output("\n\nYou watch and wait as she self-administers the treatment. It’s not long before her skin is breaking out in that telltale sweat, and her whole body is burning up. <i>\"P-please, hold my hand -- it helps with the spinning,\"</i> she implores you, and you firmly grab her hand.");
 	output("\n\nBefore you her body begins to change. The last remnants of her adam’s apple disappears. Her skin becomes smoother and softer. Her pink fur becomes finer. Between her legs, her [embry.cock] shrinks another inch, retracting back further into her body.");
 	output("\n\nEvery part of her becomes more jaw-droppingly feminine. Her nose becomes adorably small and cute. Her eyelashes become long and beautiful. Her nails extend out, and her fingertips are gorgeously petite. ");
@@ -1342,7 +1342,7 @@ public function approachEmbrysSecondTransition():void
 	output("\n\nHer tiny, budding breasts begin blossoming. They swell before your eyes, along with her nipples and areolae. Once they have finished growing, she is left with a set of supple, well-rounded c-cups. Her nipples are perkier, and her areolae have stretched to match her new assets.");
 	output("\n\nYour lover now looks so extraordinarily gorgeous that any " + pc.mf("man","woman") + " would be envious to have her on [pc.hisHer] arm. [embry.name] slides her hand out of yours, and cups her ample tits.");
 	output("\n\n<i>“...H-holy smokes, are these MINE?”</i> the pink-haired monkey girl stutters, jiggling her fleshy melons. <i>\"I-I’m going to need a new bra; these could poke someone’s eye out!”</i>");
-	output("\n\nYou look at Embry’s outfit on the floor, and point out she’ll probably need an entirely new wardrobe. She flushes and nods - still holding her perfectly formed breasts. You also get her a hand mirror, and she looks at herself. For a long time.");
+	output("\n\nYou look at [embry.name]’s outfit on the floor, and point out she’ll probably need an entirely new wardrobe. She flushes and nods - still holding her perfectly formed breasts. You also get her a hand mirror, and she looks at herself. For a long time.");
 	output("\n\nTears run down her cheeks, and she looks at you with a trembling lip. <i>\"I--this is---this is the first time I’ve felt close to being a really </i>real<i> girl.</i> she sobs. <i>\"I mean, um, there’s still my actual sex... but I’m </i>so<i> close. I--I feel so happy!”</i>");
 	flags["QUEUE_EMBRY_STAGE_2_BIT"] = 1;
 	// End scene. Next time PC comes into bar, they get the ‘New Outfit / Name Change’ Scene.
@@ -1376,7 +1376,7 @@ public function newOutFitSlashNameChanguuuuu():void
 	{
 		output("\n\nShe’s clearly got that new bra she was talking about, and the simii girl is making the most of her assets. Her bountiful c-cups are pushed up, giving her impressive cleavage, and her rack jiggles as she walks. The well-stacked simii is definitely turning heads!");
 	}
-	output("\n\nEmbry cheerfully walks over to you. As she passes by, a customer wolf whistles at her, and her cheeks flush. She places a menu down on your table, and when she leans over, you get a close up look at her beautifully formed breasts. Her supple, fleshy curves are positively mouthwatering.");
+	output("\n\n[embry.name] cheerfully walks over to you. As she passes by, a customer wolf whistles at her, and her cheeks flush. She places a menu down on your table, and when she leans over, you get a close up look at her beautifully formed breasts. Her supple, fleshy curves are positively mouthwatering.");
 	output("\n\n<i>\"U-um, do--do you like my new outfit? I wanted something to show off my new body, but, um, now I’m wondering if it’s too much--?”</i> she timidly asks. A slender hand brushes a pink bang behind her ear.");
 	output("\n\nBehind her, you can see a slovenly male ausar blatantly ogling her ass. She’s leaned over to talk to you, and the frilly hem of her skirt is scandalously short. The mangy mutt is lecherously leering at her panties...");
 	processTime(6);
@@ -1404,7 +1404,7 @@ public function ignoreDatAusarAndEmbrysAss():void
 {
 	clearOutput();
 	showSimii();
-	output("You decide not to tell Embry, since it’s probably not the first person to stare at her barely concealed ass.");
+	output("You decide not to tell [embry.name], since it’s probably not the first person to stare at her barely concealed ass.");
 	output("\n\nCompletely unaware of the scruffy ausar’s leering, the monkey girl grabs her tail in her hands. By the serious look on her face, it seems she wants to talk to you about something.");
 	processTime(1);
 	literallyAnyOtherFunctionName();
@@ -1415,7 +1415,7 @@ public function confrontDatSlovenlyAusar():void
 {
 	clearOutput();
 	showSimii();
-	output("You stand up, and walk over to the ausar. He don’t even look at you until you’re standing right next to them - he’s captivated by Embry’s [embry.ass].");
+	output("You stand up, and walk over to the ausar. He don’t even look at you until you’re standing right next to them - he’s captivated by [embry.name]’s [embry.ass].");
 	//(pc.nice)
 	if(pc.isNice()) output("\n\n<i>“... Enjoying the show, perv?”</i> you ask, and flash your [pc.weapon] <i>\"This is your only warning. Eyes off my " + pc.mf("friend","girlfriend") + "’s ass.”</i>");
 	//if (pc.mischevious)
@@ -1668,22 +1668,22 @@ public function spendTimeWithEmbry():void
 		output("\n\n<i>\"Wait, what? You want to spend time with me--?”</i> she asks. It seems you’ve floored her with your sudden request. <i>\"N-not that I’m saying no - I’m happy to! It’s just, there’s not a whole lot around to do that’s interesting, you know? I don’t want you to be bored.”</i>");
 		output("\n\nAfter she knocks off work, she ducks into the back to get changed, and then emerges in a white blouse and blue jeans. It seems like it took her a while to pick out what to wear, and there’s a definite flush to her cheeks.");
 		output("\n\n<i>\"Um... hopefully this is okay?”</i> she seems very self conscious. The two of you go for a walk around the airfield, since everywhere else is cordoned off by fences and concertina wire.");
-		output("\n\nEmbry doesn’t complain once about the lack of sights or things to do. Instead she hovers close as you walk through the partially assembled planes and space freighters. A few spacers cat call at her, and she moves even closer to you.");
+		output("\n\n[embry.name] doesn’t complain once about the lack of sights or things to do. Instead she hovers close as you walk through the partially assembled planes and space freighters. A few spacers cat call at her, and she moves even closer to you.");
 		output("\n\n<i>\"So, which one’s yours...?”</i> she asks, and you point out your ship. Rather than make fun of the clunker, her eyes go wide, and the monkey girl seems amazed by it.");
 		output("\n\n<i>\"It must be wonderful to be a space captain. I mean, you get to fly anywhere you want, right, free as a bird? But... you know... a space bird,”</i> she facepalms. The analogy ran off on her. <i>“... How’d you get a ship, anyway?”</i>");
 		output("\n\nYou mention it was your father’s, and she sounds amazed. <i>\"Maybe you can show me through it sometime? I-I mean, if you’re not busy, or even here tomorrow. You’re a planet rusher, after all. You might rush off!”</i>");
 		output("\n\nClearly she doesn’t want to think about that, and instead boldly clings to your arm. Eventually you both tire of walking about, and she leads you to a partially dismantled transport, the Cappella, on the landing strip.");
 		output("\n\n<i>\"This is where I’m living, at least for now,”</i> she explains, and buzzes in on the ship’s intercom. You are briefly introduced to her landlord - the Cappella’s owner - and she leads you to her cabin room. [embry.name] tells you the captain is renting out rooms, and even certain hallways, until the repairs are done.");
-		output("\n\nThere’s not a whole lot in her room, but what is there is very Embry. Frilly outfits hang up everywhere, and there’s an assorted collection of shiny rocks on a bench. There’s a bunch of worn notepads and scrunched up paper about. There’s a bed, though it’s very modest.");
+		output("\n\nThere’s not a whole lot in her room, but what is there is very [embry.name]. Frilly outfits hang up everywhere, and there’s an assorted collection of shiny rocks on a bench. There’s a bunch of worn notepads and scrunched up paper about. There’s a bed, though it’s very modest.");
 		output("\n\nA good chunk of the room is taken up by sewing equipment. Her desk is covered in measuring tools, spare cloth, decorations, and boxes of buttons. There’s an old but well maintained sewing machine. There’s also a handful of books ranging from sewing and writing guides, to romance novels.");
 		output("\n\n<i>\"Um... this is my room. Not much, but it’s home. Sorry, you’ll have to sit on the bed.”</i> she explains, and you both sit down. She fiddles with the tip of her tail, and looks thoroughly nervous. <i>\"T-this is the first time I’ve invited a " + pc.mf("boy","girl") + " to my room...”</i>");
 		processTime(25);
 		//[Kiss Her] [Just Friends] [Fuck Buddies] [Acquaintances]
 		clearMenu();
 		addButton(0,"Kiss Her",kissEmbry,undefined,"Kiss Her","Kiss the girl, you fool!");
-		addButton(1,"Just Friends",justBeFriendsWivEmbrah,undefined,"Just Friends","You'd like to be friends with Embry, but you don't want a more romantic relationship with her.");
+		addButton(1,"Just Friends",justBeFriendsWivEmbrah,undefined,"Just Friends","You'd like to be friends with [embry.name], but you don't want a more romantic relationship with her.");
 		addButton(3,"Acquaintances",beAcquaintancesWithEmbry,undefined,"Acquaintances","You don't really want to be friends or anything more. Knowing her is as deep as you care to get with the young Simii.");
-		addButton(2,"Fuck Buddies",beFuckBuddiesWithEmbry,undefined,"Fuck Buddies","Let [embry.name] know that you just want to be fuckbuddies with Embry.");
+		addButton(2,"Fuck Buddies",beFuckBuddiesWithEmbry,undefined,"Fuck Buddies","Let [embry.name] know that you just want to be fuckbuddies with her.");
 	}
 	//Second Time
 	// Must be lovers / EmbryRelationship = 3
@@ -1757,7 +1757,7 @@ public function beAcquaintancesWithEmbry():void
 	output("You tell [embry.name] you’re just acquaintances, so there’s no point being nervous. She looks down at her hands and lets out a long sigh.");
 	output("\n\n<i>\"O-of course we are. S-silly me... you could never be interested in me; not with all the real girls out there, right?”</i> she mumbles. Her back is hunched and her pink hair is covering her expression.");
 	output("\n\nWhen she looks up, though, she’s hiding her disappointment behind a strained smile. <i>\"R-right! I just wanted to, you know, thank you for keeping my secret! U-um... thank you.”</i>");
-	output("\n\nYou spend a little longer with Embry, though the awkward atmosphere persists until you leave. A pained expression briefly flickers over her face as you tell her you’re leaving, but she doesn’t stop you, instead waving you goodbye.");
+	output("\n\nYou spend a little longer with [embry.name], though the awkward atmosphere persists until you leave. A pained expression briefly flickers over her face as you tell her you’re leaving, but she doesn’t stop you, instead waving you goodbye.");
 	processTime(21);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -1770,7 +1770,7 @@ public function justBeFriendsWivEmbrah():void
 	showSimii();
 	output("You tell [embry.name] you’re friends, so there’s no point being nervous. She scratches the back of her neck and lets out a nervous laugh.");
 	output("\n\n<i>\"R-right, friends--! I’m... um... not really used to having them? I left what few I had back on Omorii, so, I haven’t really made any new ones yet,”</i> she awkwardly explains. <i>“... I-it’s never really been my strength, you know?”</i>");
-	output("\n\nYou spend some time hanging out with Embry, and by the time you leave she seems a lot less awkward around you. You wave goodbye and she happily waves back. She looks thrilled to have a new friend, despite her very obvious crush on you.");
+	output("\n\nYou spend some time hanging out with [embry.name], and by the time you leave she seems a lot less awkward around you. You wave goodbye and she happily waves back. She looks thrilled to have a new friend, despite her very obvious crush on you.");
 	// Set EmbryRelationship = 2 (Friends)
 	flags["EMBRY_RELATIONSHIP"] = 2;
 	processTime(21);
@@ -1789,7 +1789,7 @@ public function beFuckBuddiesWithEmbry():void
 	processTime(1);
 	flags["EMBRY_TURNED_DOWN_FUCKBUDDY"] = 1;
 	addButton(0,"Kiss Her",kissEmbry,undefined,"Kiss Her","Kiss the girl, you fool!");
-	addButton(1,"Just Friends",justBeFriendsWivEmbrah,undefined,"Just Friends","You'd like to be friends with Embry, but you don't want a more romantic relationship with her.");
+	addButton(1,"Just Friends",justBeFriendsWivEmbrah,undefined,"Just Friends","You'd like to be friends with [embry.name], but you don't want a more romantic relationship with her.");
 	addButton(3,"Acquaintances",beAcquaintancesWithEmbry,undefined,"Acquaintances","You don't really want to be friends or anything more. Knowing her is as deep as you care to get with the young Simii.");
 	addDisabledButton(2,"Fuck Buddies","Fuck Buddies","You just tried that one!");
 }
@@ -1815,7 +1815,7 @@ public function kissEmbry():void
 	if(embry.biggestTitSize() <= 1) output("slim");
 	else output("curvy");
 	output(" body against you, desperate to get closer. You slide her into your lap, and pull her close. You and [embry.name] are a tangle of limbs on the bunkbed, your hands on her [embry.ass], and her arms around your neck.");
-	output("\n\nEmbry’s soft, candy-colored hair drapes across your cheek, and her floral scent electrifies your senses. Her heart is racing madly against your chest, and the warmth from her tightly-pressed body is tingling your [pc.skinFurScales]. You’re wrapped up in her, and she in you; the two of you tenderly entwined together.");
+	output("\n\n[embry.name]’s soft, candy-colored hair drapes across your cheek, and her floral scent electrifies your senses. Her heart is racing madly against your chest, and the warmth from her tightly-pressed body is tingling your [pc.skinFurScales]. You’re wrapped up in her, and she in you; the two of you tenderly entwined together.");
 	pc.lust(10);
 	//Pre-transition
 	// If [embry.name] has not fully transitioned (Still has cock)
@@ -1856,7 +1856,7 @@ public function likeCockForEmbry():void
 	flags["EMBRY_TOLD_YOU_LIKE_COCK"] = 1;
 	flags["EMBRY_TOLD_YOU_DONT_LIKE_COCK"] = undefined;
 	output("You tell her that you actually <i>like</i> cock, so it’s not a problem if she has one. In fact, it’s a plus.");
-	output("\n\nEmbry blinks at you several times, and her mouth hangs open for a bit. <i>\"W-wha... you do? Where did you come from, and can I keep you?”</i> she’s completely flabbergasted, and subconsciously moves her hands away from the bulge.");
+	output("\n\n[embry.name] blinks at you several times, and her mouth hangs open for a bit. <i>\"W-wha... you do? Where did you come from, and can I keep you?”</i> she’s completely flabbergasted, and subconsciously moves her hands away from the bulge.");
 	output("\n\nYou take the opportunity to commandingly slip your hand under her dress, and she lets out a surprised squeak. As your hand slides up her thigh, she bites her lip, looking nervous. When you finally begin to stroke her little bulge, she lets out a rasping moan. If she’s never been kissed before, surely <i>this</i> is an experience!");
 	processTime(2);
 	pc.lust(10);
@@ -1871,7 +1871,7 @@ public function dislikeCockEmbry():void
 	flags["EMBRY_TOLD_YOU_DONT_LIKE_COCK"] = 1;
 	flags["EMBRY_TOLD_YOU_LIKE_COCK"] = undefined;
 	output("You tell [embry.name] while you don’t like really like cock, you like <i>her</i>, even if she has one. It’s best to be upfront about it.");
-	output("\n\nEmbry’s cheeks flush as you tell her you like her, despite her extra bits. <i>\"Um, once I get the treatment... I won’t have it anymore. I’ve just got to earn enough money...”</i> she tells you. <i>\"So, maybe we can, you know, pick up then?”</i>");
+	output("\n\n[embry.name]’s cheeks flush as you tell her you like her, despite her extra bits. <i>\"Um, once I get the treatment... I won’t have it anymore. I’ve just got to earn enough money...”</i> she tells you. <i>\"So, maybe we can, you know, pick up then?”</i>");
 	processTime(2);
 	clearMenu();
 	addButton(0,"Agree",agreeToGetRidOfCock,undefined,"Agree","It’s best that you wait until she’s fully transitioned, since you’re kind of put off by the idea of seeing a dick during sex with a girl.");
@@ -2179,11 +2179,11 @@ public function iDontLoveYouEmbry():void
 {
 	clearOutput();
 	showSimii();
-	output("\n\nLooking into Embry’s honest eyes, you tell her that you don’t love her. Whatever feelings she has for you, you definitely don’t feel the same way about her.");
+	output("\n\nLooking into [embry.name]’s honest eyes, you tell her that you don’t love her. Whatever feelings she has for you, you definitely don’t feel the same way about her.");
 	output("\n\nThe simii girl’s expression freezes, and then quickly crumbles before your very eyes. Since she met you she’s lost many of her nervous mannerisms, but all of the re-emerge as she absorbs the devastating news.");
 	output("\n\nYou can almost see her heart breaking and her world falling apart in those wet blue eyes. Her hands are clenched together, body trembling, as she slips into shock and denial.");
 	output("\n\n<i>\"B-b-but y-you... you took my f-first k-k-kiss...a-and everything else you’ve d-done--!\”</i> she sobs out loud, unable to wipe away her tears fast enough.  <i>“You... I thought you and I, we were... aren’t we? I don’t... it hurts!\”</i>");
-	output("\n\nEmbry moves towards you and reaches out to touch you, and you push her hand away. She recoils like a kicked dog, whimpering pitifully and falling to her knees.");
+	output("\n\n[embry.name] moves towards you and reaches out to touch you, and you push her hand away. She recoils like a kicked dog, whimpering pitifully and falling to her knees.");
 	output("\n\nYou’re acutely aware of the bystanders now looking at you both, watching the awkward and dramatic public scene. The simii girl looks utterly distraught as she trembles and rocks on the ground.");
 	output("\n\nYou cough and tell her it’s over, since it seems like the time. Her wailing intensifies. Eager to escape the spectacle before someone gets involved, you hurriedly head back to the elevator, leaving [embry.name] crying on the street. That was <i>never</i> going to go well...");
 	flags["EMBRY_RELATIONSHIP"] = 0;
@@ -2204,7 +2204,7 @@ public function embrySexMenu():void
 	addButton(2,"Analingus",analingusWithEmbry,undefined,"Analingus","Get your ass eaten by [embry.name].");
 	//Breast Massage
 	// [embry.name] must have transitioned at least once / She must have breasts
-	if(embry.biggestTitSize() >= 1) addButton(3,"BreastMassage",breastMassageScene4Embrah,undefined,"Breast Massage","Give [embry.name]a breast massage.");
+	if(embry.biggestTitSize() >= 1) addButton(3,"BreastMassage",breastMassageScene4Embrah,undefined,"Breast Massage","Give [embry.name] a breast massage.");
 	else addDisabledButton(3,"BreastMassage","Breast Massage","[embry.name] must have breasts in order to massage them.");
 	//Anal Sex
 	// [embry.name] must have undergone her second transition.

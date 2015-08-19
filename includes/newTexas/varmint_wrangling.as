@@ -315,6 +315,12 @@ public function varmintProc():void
 		output(" <b>New Codex entry unlocked: Varmints.</b>");
 		CodexManager.unlockEntry("Varmints");
 	}
+	if(flags["MET_VARMINT"] == undefined)
+	{
+		if(flags["VARMINTS_CAUGHT"] != undefined) flags["MET_VARMINT"] = flags["VARMINTS_CAUGHT"];
+		else flags["MET_VARMINT"] = 0;
+	}
+	flags["MET_VARMINT"]++;
 	clearMenu();
 	addButton(0,"Next",startCombat,"varmint");
 }

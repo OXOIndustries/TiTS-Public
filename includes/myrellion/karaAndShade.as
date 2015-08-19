@@ -1984,7 +1984,7 @@ public function shadeBoobWorship():void
 		if (pc.cocks.length > 1) output("s");
 	}
 	else output(" searching for a nice, thick cock to gets its lips around");
-	output(". The more your hands squeeze and cup her chest, the heavier Shade’s breathing gets, and the more her pair of cuts grind against you, seeking out every avenue of pleasure in your foreplay.");
+	output(". The more your hands squeeze and cup her chest, the heavier Shade’s breathing gets, and the more her pair of cunts grind against you, seeking out every avenue of pleasure in your foreplay.");
 
 	output("\n\n<i>“You really like big tits, huh?”</i> she teases, putting a hand over yours on her breast and shifting her knees forward, getting her chest positioned perfectly over your head.");
 	if (shade.canLactate())
@@ -2080,7 +2080,7 @@ public function shadeBoobWorship():void
 	if (shade.canLactate()) output(" milky");
 	output(" tits to suckle as you do so.");
 
-	output("\n\nA few moments later, amid Shade’s must sultry and bombastic moans,");
+	output("\n\nA few moments later, amid Shade’s most sultry and bombastic moans,");
 	if (pc.hasCock())
 	{
 		output(" you feel your [pc.cocks] swell and erupt, blasting a wad of [pc.cumNoun] all across Shade’s marvelous ass");
@@ -2093,7 +2093,7 @@ public function shadeBoobWorship():void
 
 	output("\n\nWhen she finishes, you’re left with a heaving chest in your face, and a cat-babe who’s panting and moaning heavily clinging to you. <i>“That...”</i> she starts to say, trailing off as she catches her breath.");
 
-	output("\n\nSomething tells you you know what she’s going to say anyway. You wrap your arms around your lover’s wait and close your eyes, letting the afterglow wash over you until Shade’s finally calmed down and rolls off of you with a contented sigh.");
+	output("\n\nSomething tells you you know what she’s going to say anyway. You wrap your arms around your lover’s waist and close your eyes, letting the afterglow wash over you until Shade’s finally calmed down and rolls off of you with a contented sigh.");
 
 	//[Next] //Same after-sex scene as normal
 	processTime(20);

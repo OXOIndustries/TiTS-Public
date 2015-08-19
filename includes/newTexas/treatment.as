@@ -559,7 +559,8 @@ public function treatmentHourProcs():void
 			else if(pc.breastRows[0].breastRatingRaw < 24)
 			{
 				eventBuffer += "\n\nWarmth burns through the nerves of your chest, heating your jiggling mounds to an incredibly pleasant simmer as they begin to swell. You grab them, mooing and moaning in equal parts, feeling them bulge out between your fingertips, marvelling at the weight of your expanding feminine flesh. Your tits are definitely I-cups now. The tingling heat fades, replaced by a desire for physical contact. You give them that and more. Your hands fly across your chest, mauling your boobs for what feels like hours. It isn't until you cum from the incessant stimulation that your hands fall away";
-				if(pc.cumQ() >= 100 || pc.wettestVaginalWetness() >= 3 || (pc.isLactating() && pc.lactationQ() >= 200)) eventBuffer += ", leaving you sitting in a puddle of your own fluids and panting.";
+				if((pc.hasCock() && pc.cumQ() >= 100) || (pc.hasVagina() && pc.wettestVaginalWetness() >= 3) || (pc.isLactating() && pc.lactationQ() >= 200)) eventBuffer += ", leaving you sitting in a puddle of your own fluids and panting";
+				eventBuffer += ".";
 				//orgasm!
 				pc.orgasm();
 				pc.breastRows[0].breastRatingRaw++

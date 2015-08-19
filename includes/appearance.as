@@ -243,6 +243,7 @@ public function appearance(target:Creature):void {
 			else if(target.earType == GLOBAL.TYPE_LAPINE || target.earType == GLOBAL.TYPE_LEITHAN) output2(" A pair of floppy rabbit ears stick up from the top of your skull, flopping around as you walk.");
 			else if(target.earType == GLOBAL.TYPE_KANGAROO) output2(" A pair of long, furred kangaroo ears stick out from your skull at an angle.");
 			else if(target.earType == GLOBAL.TYPE_VULPINE) output2(" A pair of large, adept fox ears sit high on your skull, always listening.");
+			else if(target.earType == GLOBAL.TYPE_DEER) output2(" A pair of pointed, oval-shaped ears poke out from the sides of your skull, flicking and flopping about, making you look very much like a deer.");
 			else if(target.earType == GLOBAL.TYPE_DRACONIC) output2(" A pair of rounded protrusions with small holes on the sides of your skull serve as your ears. Bony fins sprout behind them.");
 			else if(target.earType == GLOBAL.TYPE_KUITAN) output2(" A pair of vaguely egg-shaped, furry raccoon ears adorns your skull.");
 			else if(target.earType == GLOBAL.TYPE_MOUSE) output2(" A pair of large, dish-shaped mouse ears tops your skull.");
@@ -271,6 +272,7 @@ public function appearance(target:Creature):void {
 			else if(target.earType == GLOBAL.TYPE_LAPINE || target.earType == GLOBAL.TYPE_LEITHAN) output2(" A pair of floppy rabbit ears stick up out of your " + target.hairDescript(true,true) + ", bouncing around as you walk.");
 			else if(target.earType == GLOBAL.TYPE_KANGAROO) output2(" The " + target.hairDescript(true,true) + " atop your head is parted by a pair of long, furred kangaroo ears that stick out at an angle.");
 			else if(target.earType == GLOBAL.TYPE_VULPINE) output2(" The " + target.hairDescript(true,true) + " atop your head is parted by a pair of large, adept fox ears that always seem to be listening.");
+			else if(target.earType == GLOBAL.TYPE_DEER) output2(" The " + target.hairDescript(true,true) + " on your head is parted by a pair of rounded ears that point out sideways, flicking and flopping about, making you look very much like a deer.");
 			else if(target.earType == GLOBAL.TYPE_DRACONIC) output2(" The " + target.hairDescript(true,true) + " atop your head is parted by a pair of rounded protrusions with small holes on the sides of your head serve as your ears. Bony fins sprout behind them.");
 			else if(target.earType == GLOBAL.TYPE_KUITAN) output2(" The " + target.hairDescript(true,true) + " on your head parts around a pair of egg-shaped, furry raccoon ears.");
 			else if(target.earType == GLOBAL.TYPE_MOUSE) output2(" The " + target.hairDescript(true,true) + " atop your head is funneled between and around a pair of large, dish-shaped mouse ears that stick up prominently.");
@@ -330,8 +332,8 @@ public function appearance(target:Creature):void {
 				else output2(" Two huge horns erupt from your forehead, curving outward at first, then forwards. The weight of them is heavy, and they end in dangerous looking points.");
 			}
 			//Lizard horns
-			else if(target.hornType == GLOBAL.TYPE_LIZAN) {
-				if(target.horns == 2) output2(" A pair of " + num2Text(int(target.hornLength)) + "-inch horns grow from the sides of your head, sweeping backwards and adding to your imposing visage.");
+			else if(target.hornType == GLOBAL.TYPE_LIZAN || target.hornType == GLOBAL.TYPE_DRACONIC) {
+				if(target.horns == 2 && target.hornType != GLOBAL.TYPE_DRACONIC) output2(" A pair of " + num2Text(int(target.hornLength)) + "-inch horns grow from the sides of your head, sweeping backwards and adding to your imposing visage.");
 				//Super lizard horns
 				else output2(" Two pairs of horns, roughly a foot long, sprout from the sides of your head. They sweep back and give you a fearsome look, almost like the dragons from terran legends.");
 			}
@@ -616,6 +618,7 @@ public function appearance(target:Creature):void {
 			if(target.furColor == "black") output2(" A solid-black kui-tan tail waves behind you.");
 			else output2(" A black-and-" + target.furColor + "-ringed kui-tan tail waves behind you.");
 		}
+		else if(target.tailType == GLOBAL.TYPE_DEER) output2(" A short tuft of deer tail sprouts just above your " + target.buttDescript() + ", sometimes twitching at the slightest movements.");
 		else if(target.tailType == GLOBAL.TYPE_MOUSE) output2(" A naked, " + target.skinTone + " mouse tail pokes from your butt, dragging on the ground and twitching occasionally.");
 		else if(target.tailType == GLOBAL.TYPE_CUNTSNAKE) {
 			if(target.tailCount <= 1) output2(" A sinuous, almost snake-like tail waves behind you, covered in " + target.skinFurScales() + " like the rest of you except at the tip. There, it terminates in " + indefiniteArticle(target.tailVaginaDescript()) + " that always seems to crave fresh sperm.");
