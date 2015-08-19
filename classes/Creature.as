@@ -4006,7 +4006,7 @@
 					else if (hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) { adjectives.push("digitigrade"); }
 					else if (hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) { adjectives.push("plantigrade"); }
 					//Coulda sworn there was a reason I didn't include these originally, but it's slipping away from me now.
-					else if (hasLegFlag(GLOBAL.FLAG_AMORPHOUS)) { adjectives.push("amorphous"); adjectives.push("fluid"); adjectives.push("ever-changing"); }
+					else if (hasLegFlag(GLOBAL.FLAG_AMORPHOUS)) { adjectives.push("amorphous", "fluid", "ever-changing"); }
 					else if (hasLegFlag(GLOBAL.FLAG_SCALED)) { adjectives.push("scaled"); adjectives.push("scaley"); }
 					else if (hasLegFlag(GLOBAL.FLAG_FURRED)) { adjectives.push("furry"); adjectives.push("fuzzy"); adjectives.push("fur-covered"); }
 					else if (hasLegFlag(GLOBAL.FLAG_TENDRIL)) { adjectives.push("wiggling"); adjectives.push("wriggling"); adjectives.push("tendril-like"); }
@@ -4015,7 +4015,7 @@
 					else if (hasLegFlag(GLOBAL.FLAG_CHITINOUS)) { adjectives.push("chitinous"); adjectives.push("armored"); adjectives.push("carapace-covered"); }
 				}
 				//Random goes here!
-				output += RandomInCollection(adjectives);
+				if (adjectives.length > 0) output += RandomInCollection(adjectives);
 				//NOUN IT UP BITCHES!
 				if (output != "") output += " ";
 				output += legNoun();
