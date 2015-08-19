@@ -1218,6 +1218,11 @@ public function enemyAttack(attacker:Creature):void
 
 public function playerAttack(target:Creature):void 
 {
+	if (pc.hasPerk("Shoot First") && pc.statusEffectv1("Round") <= 1) {
+		clearOutput();
+		output("<b>Struck first!</b>\n");
+		attack(pc,target,true);
+	}
 	attack(pc, target, true);
 	if(pc.hasPerk("Second Attack")) attack(pc,target,true,1);
 	mimbraneHandBonusAttack(target);
@@ -1273,6 +1278,11 @@ public function concentratedFire(hit:Boolean = true):void
 
 public function playerRangedAttack(target:Creature):void 
 {
+	if (pc.hasPerk("Shoot First") && pc.statusEffectv1("Round") <= 1) {
+		clearOutput();
+		output("<b>Shot first!</b>\n");
+		rangedAttack(pc, target,true);
+	}
 	playerRangedAttacksNoProcess(target);
 	playerMimbraneCloudAttack();
 	processCombat();
@@ -1292,7 +1302,7 @@ public function attack(attacker:Creature, target:Creature, noProcess:Boolean = f
 	{
 		if (!attacker.hasStatusEffect("Multiple Attacks") && !attacker.hasStatusEffect("Mimbrane Bonus Attack") && special == 0)
 		{
-			clearOutput();
+			if (!pc.hasPerk("Shoot First") || pc.statusEffectv1("Round") > 1) clearOutput();
 			if (attacker.hasPerk("Riposte")) attacker.createStatusEffect("Riposting", 0, 0, 0, 0, true, "", "", true, 0);
 			
 			//Bloodthirsty restores energy on hits. Only works on one hit if multiple attacks.
@@ -1375,10 +1385,13 @@ public function rangedAttack(attacker:Creature, target:Creature, noProcess:Boole
 {
 	//Set drone target
 	setDroneTarget(target);
-	if(!attacker.hasStatusEffect("Multiple Shots") && attacker == pc && special != 2) clearOutput();
+	if(!attacker.hasStatusEffect("Multiple Shots") && attacker == pc && special != 2) 
+	{
+		if(!(pc.hasPerk("Shoot First") && pc.statusEffectv1("Round") <= 1)) clearOutput();
+	}
 	trace("Has multiple shots? " + String(!attacker.hasStatusEffect("Multiple Shots")) + " Attacker = PC? " + String(attacker == pc) + " special? " + special);
 	//Run with multiple attacks!
-	if (((attacker.hasPerk("Multiple Shots")) || (attacker.hasPerk("Shoot First") && attacker.statusEffectv1("Round") <= 1)) && special != 1 && special != 2) {
+	if (attacker.hasPerk("Multiple Shots") && special != 1 && special != 2) {
 		//Start up
 		if (!attacker.hasStatusEffect("Multiple Shots")) 
 		{
@@ -1460,7 +1473,7 @@ public function rangedAttack(attacker:Creature, target:Creature, noProcess:Boole
 	//Do multiple attacks if more are queued.
 	if(attacker.hasStatusEffect("Multiple Shots") && special == 0) {
 		output("\n");
-		rangedAttack(attacker,target);
+		rangedAttack(attacker,target,noProcess,special);
 		return;
 	}
 	if(attacker == chars["PC"]) output("\n");
