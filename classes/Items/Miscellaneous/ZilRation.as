@@ -182,6 +182,10 @@
 					//Pass 15m
 					kGAMECLASS.processTime(15);
 				}
+				else if (!target.skinTypeUnlocked(GLOBAL.SKIN_TYPE_SKIN))
+				{
+					kGAMECLASS.output("\n\n" + target.skinTypeLockedMessage());
+				}
 				//JCUP ANTENNAE/TONGUE INSERT
 				//Antennae
 				if(target.antennaeUnlocked(2) && target.antennae == 0 && changes < changeLimit && rand(2) == 0) {
@@ -222,10 +226,6 @@
 					kGAMECLASS.output("\n\n" + target.tongueTypeLockedMessage());
 				}
 				//END JCUP INSERT
-				else if (!target.skinTypeUnlocked(GLOBAL.SKIN_TYPE_SKIN))
-				{
-					kGAMECLASS.output("\n\n" + target.skinTypeLockedMessage());
-				}
 				
 				if(changes == 0) {
 					kGAMECLASS.output("\n\nNothing special happened, though you do feel a bit fuller.")

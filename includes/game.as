@@ -2096,6 +2096,7 @@ public function statisticsScreen(showID:String = "All"):void
 		}
 		else if(pc.skinType == GLOBAL.SKIN_TYPE_FUR) output2(" Fur");
 		else output2(" None");
+		if(pc.antennae > 0 && pc.antennaeType != 0) output2("\n<b>* Antennae:</b> " + pc.antennae + ", " + GLOBAL.TYPE_NAMES[pc.antennaeType]);
 		output2("\n<b>* Ears:</b>");
 		if(pc.earType == GLOBAL.TYPE_SYLVAN && pc.earLength > 0) output2(" " + prettifyLength(pc.earLength) + ",");
 		output2(" " + GLOBAL.TYPE_NAMES[pc.earType]);
@@ -2269,7 +2270,8 @@ public function statisticsScreen(showID:String = "All"):void
 					else output2("\n<b><u>" + StringUtil.toTitleCase(num2Ordinal(x + 1)) + " Breast Row</u></b>");
 					output2("\n<b>* Breast, Count: </b>" + pc.breastRows[x].breasts);
 					output2("\n<b>* Breast, Size: </b>" + StringUtil.toTitleCase(pc.breastCup(x)));
-					if(pc.breastRows[x].breasts != 1) output2("s");
+					if (pc.breastRows[x].breasts != 1) output2("s");
+					if(pc.breastRows[x].breastRating() >= 200) output2(" (" + formatFloat(pc.breastRows[x].breastRating(), 3) + ")");
 					output2("\n<b>* Nipple, Type: </b>" + " " + GLOBAL.NIPPLE_TYPE_NAMES[pc.breastRows[x].nippleType]);
 					if(pc.breastRows[x].nippleType != GLOBAL.NIPPLE_TYPE_FUCKABLE && pc.breastRows[x].nippleType != GLOBAL.NIPPLE_TYPE_FLAT && pc.breastRows[x].nippleType != GLOBAL.NIPPLE_TYPE_INVERTED)
 					{
@@ -3389,7 +3391,7 @@ public function displayQuestLog(showID:String = "All"):void
 				output2("\n<b><u>Myr Hybridity</u></b>");
 				output2("\n<b>* Research:</b>");
 				if(flags["MCALLISTER_MYR_HYBRIDITY"] == 1) output2(" Pending funds...");
-				else if(flags["MCALLISTER_MYR_HYBRIDITY"] == 2)
+				else if(flags["MCALLISTER_MYR_HYBRIDITY"] >= 2)
 				{
 					output2(" Funded");
 					if(flags["MCALLISTER_MYR_HYBRIDITY_START"] != undefined && GetGameTimestamp() < (flags["MCALLISTER_MYR_HYBRIDITY_START"] + (7 * 24 * 60)))
