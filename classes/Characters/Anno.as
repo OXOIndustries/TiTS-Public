@@ -163,7 +163,6 @@
 			this.timesCum = 9001;
 			this.cockVirgin = false;
 			this.vaginalVirgin = false;
-			this.analVirgin = false;
 			//Goo is hyper friendly!
 			this.elasticity = 1.5;
 			//Fertility is a % out of 100. 
@@ -180,6 +179,7 @@
 			this.ass.wetnessRaw = 0;
 			this.ass.loosenessRaw = 1;
 			this.ass.bonusCapacity = 30;
+			this.analVirgin = true;
 			this.createVagina();
 			this.vaginas[0].wetnessRaw = 6;
 			this.vaginas[0].loosenessRaw = 1;
