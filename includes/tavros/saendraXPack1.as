@@ -1041,12 +1041,12 @@ public function sx1ShotguardAI():void
 
 public function sx1RangedAttack():void
 {
-	rangedAttack(foes[0], pc, true);
+	rangedAttack(foes[0], pc);
 }
 
 public function sx1MeleeAttack():void
 {
-	attack(foes[0], pc, true);
+	attack(foes[0], pc);
 }
 
 public function sx1ShotguardShotblast():void

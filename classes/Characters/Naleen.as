@@ -169,7 +169,7 @@
 			this.ass.loosenessRaw = 3;
 			this.ass.bonusCapacity = 1000;
 			
-			this.createPerk("Multiple Attacks",0,0,0,0,"");
+			this.createPerk("Multiple Attacks",1,0,0,0,"");
 			this.createStatusEffect("Disarm Immune");
 
 			this.inventory.push(new NaleenNip());

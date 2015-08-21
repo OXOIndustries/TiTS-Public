@@ -98,7 +98,7 @@ public function naleenDudeAttack():void {
 	output("The naleen quickly slithers your way, using his serpentine body to gain altitude and maul with a vicious downward strike!\n");
 	//{standard dodge/miss messages}
 	//Hit: You manage to fall in a defensive stance just in time, yelping in pain as you are forcibly struck by his razor-sharp claws.
-	attack(foes[0],pc,false,0);
+	attack(foes[0],pc);
 }
 
 

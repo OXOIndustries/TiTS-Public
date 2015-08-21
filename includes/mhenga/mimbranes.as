@@ -2938,7 +2938,7 @@ public function mimbraneSpit():void
 public function mimbraneScratch():void
 {
 	output("Sharp, miniature barbs form along the underside of the parasite, as it glides towards you.\n\n");
-	attack(foes[0], pc, false, 0);
+	attack(foes[0], pc);
 	//{hit}The Mimbrane’s attack connects, and its suddenly jagged skin brushes against you, leaving a series of moderate cuts. 
 }
 
@@ -3698,7 +3698,7 @@ public function mimbraneHandBonusAttack(target:Creature):void
 		output("\nYou’re taken by surprise when your hand moves all on its own, quickly mimicking your previous attack. It seems as though the Mimbrane controlling it is eager to come to your aid!\n\n");
 
 		(pc as PlayerCharacter).createStatusEffect("Mimbrane Bonus Attack", 0, 0, 0, 0, true, "", "", true, 0);
-		attack(pc, target, true);
+		attack(pc, target,[2]);
 		(pc as PlayerCharacter).removeStatusEffect("Mimbrane Bonus Attack");
 	}
 }

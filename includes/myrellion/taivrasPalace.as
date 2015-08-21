@@ -221,15 +221,15 @@ public function offerTaivraGuardsPlat190():void
 public function spearFlurryNyreaShit():void
 {
 	output("Several of the huntresses leap forward from one side, jabbing their spears at your chest.\n");
-	attack(foes[0],pc,true,1);
+	attack(foes[0],pc,[1,2]);
 	output("\n");
-	attack(foes[0],pc,true,1);
+	attack(foes[0],pc,[1,2]);
 	output("\n");
-	attack(foes[0],pc,true,1);
+	attack(foes[0],pc,[1,2]);
 	output("\n");
-	attack(foes[0],pc,true,1);
+	attack(foes[0],pc,[1,2]);
 	output("\n");
-	attack(foes[0],pc,true,1);
+	attack(foes[0],pc,[1,2]);
 	processCombat();
 	//{You manage to dodge, block, and parry every attack they send your way! // You block and dodge most of the attacks, but a few still manage to get through, hammering you down. // You try to defend yourself, but most if not all of the strikes get through, battering you brutally.}
 }
@@ -2212,7 +2212,7 @@ public function taivraConstantLustReduction():void
 public function taivraBonusAttackShit():void
 {
 	output("\n\nThe queen follows through with a quick jab at you, thrusting at your chest.");
-	attack(foes[0],pc,true,1);
+	attack(foes[0],pc,[1,2]);
 }
 
 //COUSIN DOUCHEBAGGERY

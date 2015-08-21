@@ -18,14 +18,15 @@ import classes.Characters.WetraxxelBrawler;
 import classes.Characters.Varmint;
 import classes.Characters.gooArmor;
 import classes.Creature;
+import classes.Engine.Combat.applyDamage;
 import classes.Engine.Combat.DamageTypes.DamageResult;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
 import classes.Items.Accessories.TamWolfDamaged;
 import classes.Items.Armor.GooArmor;
 import classes.Items.Guns.Goovolver;
 import classes.Items.Miscellaneous.GrayMicrobots;
-import classes.Engine.Combat.applyDamage;
 import classes.UIComponents.StatusEffectComponents.StatusEffectsDisplay;
+import classes.Util.InCollection;
 
 //Tracks what NPC in combat we are on. 0 = PC, 1 = first NPC, 2 = second NPC, 3 = fourth NPC... totalNPCs + 1 = status tic
 
@@ -455,6 +456,7 @@ public function updateCombatStatuses():void {
 		pc.createStatusEffect("Used Shield Regen",0,0,0,0,true,"","",true,0);
 	}
 	if(pc.hasStatusEffect("Riposting")) pc.removeStatusEffect("Riposting");
+	if(pc.hasStatusEffect("Bloodthirsted")) pc.removeStatusEffect("Bloodthirsted");
 	if(pc.hasPerk("Juggernaught"))
 	{
 		if(pc.hasStatusEffect("Stunned") && rand(4) == 0)
@@ -1217,38 +1219,6 @@ public function enemyAttack(attacker:Creature):void
 	attack(attacker, pc);
 }
 
-public function playerAttack(target:Creature):void 
-{
-	if (pc.hasPerk("Shoot First") && pc.statusEffectv1("Round") <= 1) {
-		clearOutput();
-		output("<b>Struck first!</b>\n");
-		attack(pc,target,true);
-	}
-	attack(pc, target, true);
-	if(pc.hasPerk("Second Attack")) attack(pc,target,true,1);
-	mimbraneHandBonusAttack(target);
-	playerMimbraneCloudAttack();
-	//Cleave only triggers off the last swing before round completion.
-	if(pc.hasPerk("Cleave") && (target.plural || foes.length > 1)) 
-	{
-		output("<b>Cleave!</b>\n");
-		attack(pc, target, true, 1);
-	}
-	//Myr venom shit!
-	if(pc.hasPerk("Myr Venom"))
-	{
-		if(combatMiss(pc,target)) output("You can't manage to sneak in a bite!");
-		else
-		{
-			output("To finish off your attack, you lean in and deliver a surprise bite, injecting a healthy dose of your red myrmedion venom!");
-			applyDamage(new TypeCollection( { tease: 3 + rand(3) } ), pc,foes[0], "minimal");
-
-		}
-		output("\n");
-	}
-	processCombat();
-}
-
 public function concentratedFire(hit:Boolean = true):void
 {
 	if(pc.hasPerk("Concentrate Fire"))
@@ -1294,8 +1264,146 @@ public function playerRangedAttacksNoProcess(target:Creature):void
 	if(pc.hasPerk("Second Shot")) rangedAttack(pc,target,true,2);
 }
 
+public function playerAttack(target:Creature):void 
+{
+	//Second attack cheese!
+	
+	attack(pc, target,[2]);
+	if(pc.hasPerk("Second Attack")) attack(pc, target,[0,1,2]);
+	mimbraneHandBonusAttack(target);
+	playerMimbraneCloudAttack();
+	//Cleave only triggers off the last swing before round completion.
+	if(pc.hasPerk("Cleave") && (target.plural || foes.length > 1)) 
+	{
+		output("<b>Cleave!</b>\n");
+		attack(pc, target,[0,1]);
+	}
+	//Myr venom shit!
+	if(pc.hasPerk("Myr Venom"))
+	{
+		if(combatMiss(pc,target)) output("You can't manage to sneak in a bite!");
+		else
+		{
+			output("To finish off your attack, you lean in and deliver a surprise bite, injecting a healthy dose of your red myrmedion venom!");
+			applyDamage(new TypeCollection( { tease: 3 + rand(3) } ), pc,foes[0], "minimal");
+
+		}
+		output("\n");
+	}
+	processCombat();
+}
+
+/**
+ * Perform a melee attack. Used by PC's and NPC's.
+ * @param	attacker	Who is performing the attack
+ * @param	target		Pretty self-explanatory
+ * @param	specials	Various special flags that might modify how attacks are processed.
+ */
+//"Multiple Attacks" status tracks extra attacks in v1.
+//InCollection - first arg is what we're looking for, second is array.
+//Specials: 0 No clearscreen.
+//Specials: 1 flurry mode - also prevents multiattacks
+//Specials: 2 no processCombat upon completion.
+//Specials: 3 no multiattack
+public function attack(attacker:Creature, target:Creature, specials:Array = undefined):void {
+	//Set drone target to dis shit.
+	setDroneTarget(target);
+	//PC only start-stuff
+	if (attacker == pc)
+	{
+		//Clear screen?
+		if (!attacker.hasStatusEffect("Multiple Attacks") && !attacker.hasStatusEffect("Mimbrane Bonus Attack") && !InCollection(0,specials)) clearOutput();
+		//Set up Riposte ability
+		if (attacker.hasPerk("Riposte") && !attacker.hasStatusEffect("Riposting")) attacker.createStatusEffect("Riposting", 0, 0, 0, 0, true, "", "", true, 0);
+		//Shoot first bonus! Only procs on the first round of combat from the first "normal" swing.
+		if (attacker.hasPerk("Shoot First") && !attacker.hasStatusEffect("Shot First") && !attacker.hasStatusEffect("Multiple Attacks") && attacker.statusEffectv1("Round") <= 1 && !InCollection(1,specials) && !InCollection(3,specials)) {
+			output("<b>Struck first!</b>\n");
+			attacker.createStatusEffect("Shot First");
+			attack(pc,target,[0,2,3]);
+			attacker.removeStatusEffect("Shot First");
+		}
+	}
+	//Attack prevented by disarm
+	if(attacker.hasStatusEffect("Disarmed")) {
+		if(attacker == pc) output("You try to attack until you remember you got disarmed!");
+		else output(attacker.capitalA + attacker.short + " scrabbles about, trying to find " + attacker.mfn("his","her","its") + " missing weapon.");
+	}
+	//Attack missed!
+	else if(combatMiss(attacker,target)) {
+		if(target.customDodge == "") {
+			if(attacker == pc) output("You " + pc.meleeWeapon.attackVerb + " at " + target.a + target.short + " with your " + pc.meleeWeapon.longName + ", but just can't connect.");
+			else output("You manage to avoid " + attacker.a + possessive(attacker.short) + " " + attacker.meleeWeapon.attackNoun + ".");
+		}
+		else output(target.customDodge);
+	}
+	//Extra miss for blind
+	else if((attacker.hasStatusEffect("Blind") || attacker.hasStatusEffect("Smoke Grenade")) && rand(2) > 0) {
+		if(attacker == pc) output("Your blind strike fails to connect.");
+		else output(attacker.capitalA + possessive(attacker.short) + " blind " + attacker.meleeWeapon.attackNoun + " goes wide!");
+	}
+	//Additional Miss chances for if target isn't stunned and this is a special flurry attack (special == 1)
+	else if((InCollection(1,specials) && !attacker.meleeWeapon.hasFlag(GLOBAL.ITEM_FLAG_EFFECT_FLURRYBONUS)) && rand(100) <= 45 && !target.isImmobilized()) {
+		if(target.customDodge == "") {
+			if(attacker == pc) output("You " + pc.meleeWeapon.attackVerb + " at " + target.a + target.short + " with your " + pc.meleeWeapon.longName + ", but just can't connect.");
+			else output("You manage to avoid " + attacker.a + possessive(attacker.short) + " " + attacker.meleeWeapon.attackNoun + ".");
+		}
+		else output(target.customDodge);
+	}
+	//Celise autoblocks
+	else if(target.short == "Celise") {
+		output(target.customBlock);
+	}
+	// Bonus evades from mimbrane feeties
+	else if (mimbraneFeetBonusEvade(target))
+	{
+		output("\nYou’re taken by surprise as your [pc.foot] suddenly acts on its own, right as you’re about be attacked. The action is intense enough to slide you right out of the face of danger. Seems your Mimbrane is even more attentive than you are!\n");
+	}
+	//Attack connected!
+	else {
+		//Track if ever hurt a zil girl:
+		if (foes[0] is ZilFemale) flags["HIT_A_ZILGIRL"] = 1;
+		//Bloodthirsty restores energy on hits. Only works on one hit per round.
+		if(pc.hasPerk("Bloodthirsty")) 
+		{
+			if(!pc.hasStatusEffect("Bloodthirsted")) 
+			{
+				pc.energy(2+rand(3));
+				attacker.createStatusEffect("Bloodthirsted", 0, 0, 0, 0, true, "", "", true, 0);
+			}
+
+		}
+		//Display normal hit shit
+		if(attacker == pc) output("You land a hit on " + target.a + target.short + " with your " + pc.meleeWeapon.longName + "!");
+		else if(!attacker.plural) output(attacker.capitalA + attacker.short + " connects with " + attacker.mfn("his","her","its") + " " + attacker.meleeWeapon.longName + "!");
+		else output(attacker.capitalA + attacker.short + " connect with their " + attacker.meleeWeapon.longName + "!");
+		//Damage maths & application
+		var damage:TypeCollection = attacker.meleeDamage();
+ 		damageRand(damage, 15);
+		applyDamage(damage, attacker, target, "melee");
+	}
+	//Do multiple attacks if more are queued (does not stack with special!)
+	if(attacker.hasPerk("Multiple Attacks") && !InCollection(1,specials) && !InCollection(3,specials)) {
+		//Initial setup
+		if (!attacker.hasStatusEffect("Multiple Attacks")) attacker.createStatusEffect("Multiple Attacks",attacker.perkv1("Multiple Attacks"),0,0,0,true,"","",true,0);
+		//Count out the extra attacks, one strike at a time.
+		while(attacker.hasStatusEffect("Multiple Attacks") > 0)
+		{
+			attacker.addStatusValue("Multiple Attacks",1,-1);
+			output("\n");
+			attack(attacker,target,[2,3]);
+			//Did the last attack just go off? Purge the temp stats
+			if(attacker.statusEffectv1("Multiple Attacks") <= 0) attacker.removeStatusEffect("Multiple Attacks");
+		}
+	}
+	if(attacker == chars["PC"]) output("\n");
+	//If combat process isn't turned off, do it!
+	if(!InCollection(2,specials)) processCombat();
+}
+/*
+ * No longer used. Fen made a new attack function that's better, stronger, faster...
+ *
 //Special 1 = flurry bonus
-public function attack(attacker:Creature, target:Creature, noProcess:Boolean = false, special:int = 0):void {
+public function oldAttack(attacker:Creature, target:Creature, noProcess:Boolean = false, special:int = 0):void {
 	//Set drone target
 	setDroneTarget(target);
 	if (foes[0].short == "female zil") flags["HIT_A_ZILGIRL"] = 1;
@@ -1378,7 +1486,7 @@ public function attack(attacker:Creature, target:Creature, noProcess:Boolean = f
 	if(!noProcess) {
 		processCombat();
 	}
-}
+}*/
 
 //Special 1: Flurry attack - high miss chance.
 //Special 2: Flurry attack with no new screen display.

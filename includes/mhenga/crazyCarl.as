@@ -635,7 +635,7 @@ public function machinaAI():void {
 public function machinaAttackNormal():void {
 	output("The machine jerks towards you, zig-zagging unexpectedly as it closes in - one of the grasping appendages reaches out to club at you!\n");
 	foes[0].physique(5);
-	attack(foes[0],pc,false,0);
+	attack(foes[0],pc);
 	foes[0].physique(-5);
 }
 

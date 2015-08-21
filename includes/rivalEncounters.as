@@ -142,13 +142,13 @@ public function daneAI():void {
 //Quad Strike
 public function daneQuadStrike():void {
 	//Swing twice, shoot twice.
-	rangedAttack(foes[0],pc,true,1);
+	rangedAttack(foes[0],pc,[1,2]);
 	output("\n");
-	rangedAttack(foes[0],pc,true,1);
+	rangedAttack(foes[0],pc,[1,2]);
 	output("\n");
-	attack(foes[0],pc,true,1);
+	attack(foes[0],pc,[1,2]);
 	output("\n");
-	attack(foes[0],pc,true,1);
+	attack(foes[0],pc,[1,2]);
 	processCombat();
 }
 

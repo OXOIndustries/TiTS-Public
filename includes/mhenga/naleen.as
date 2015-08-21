@@ -84,7 +84,7 @@ public function encounterNaleen():void {
 public function naleenDoubleAttack():void {
 	author("Savin");
 	output("The naleen surges forward, lunging at you and swinging her razor-sharp claws right at your throat!\n");
-	attack(foes[0],pc,false,0);
+	attack(foes[0],pc);
 	//{standard dodge/miss messages}
 	//Hit: You get your arms up just in time, yelping in pain as the kitty-snake's claws rake your [skin], making you stumble back.
 }

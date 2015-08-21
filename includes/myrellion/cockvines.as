@@ -227,7 +227,7 @@ public function adultCockvineWhips():void
 	output("\nThe movement of your own body translates into the surrounding vines where it seems to gather, the tentacles bunching and swaying back and forth until frenetic energy seizes them up, and they are whipping their bulbous heads into you with ropy, numbing force.\n");
 
 	foes[0].createPerk("Multiple Attacks", 2 + rand(2), 0, 0, 0, "");
-	attack(foes[0], pc, true);
+	attack(foes[0], pc, [2]);
 	foes[0].removePerk("Multiple Attacks");
 	
 	output("\n");
