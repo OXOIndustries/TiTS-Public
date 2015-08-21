@@ -78,7 +78,8 @@ public function celiseFeedingRouter():void {
 	else sinkInTooltip += "teasing <i>just</i> your cock";
 	sinkInTooltip += " if you tried.";
 	addButton(3,"Sink In",zeiksCeliseSubmersionTechnique,undefined,"Sink In",sinkInTooltip);
-
+	if(pc.hasCock() || pc.hasVagina() || pc.hasTailCock()) addButton(4,"Use Her",zDomCeliseGo,undefined,"Use Her","Use Celise to get off. She might try to take charge, but you'll show her who's boss.");
+	else addDisabledButton(4,"Use Her","Use Her","You need genitals for this act.");
 	addButton(14,"Back",celiseFollowerInteractions);
 }
 
@@ -1475,6 +1476,220 @@ public function zeiksCeliseSubmersionTechnique():void
 	output("\n\n“<i>Yummy cummy, all mine. Can we do it again?</i>” she grins, shamelessly.");
 	//end scene; increase sensitivity and decrease libido
 	processTime(20+rand(15));
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+public function zDomCeliseGo():void
+{
+	clearOutput();
+	showCelise();
+	author("Zeikfried");
+	output("“<i>Oooh, Captain,”</i> whispers Celise. “<i>It’s been too long since you fed me.”</i> The easy galotian slides up to you, running her hands over your [pc.chest].");
+	//(high sens)
+	if(pc.libido() >- 50) output(" The warmth of her touch brings a flush to your [pc.skin], and her eyes narrow voraciously.");
+	output(" The rest of her liquid form follows, and soon every inch of her is pressed against you.");
+	if(pc.biggestTitSize() >= 5) 
+	{
+		output(" She drags her cushiony rack along your torso until it bumps the bottoms of your own jiggling breasts, resting her head in your cleavage and looking up at you with an exuberant smile. Arching her back, she brushes your ");
+		//(multi-rack)
+		if(pc.bRows() > 1) output("lowest ");
+		output("nipples with her soft tits.");
+	}
+	//(tall PC)
+	else if(pc.tallness > 75) output(" She drags her beautiful breasts as high up your body as her chest will go, squeezing them together until you can barely see anything except canyons of cleavage under her predatory lips.");
+	else output("She drags her bodacious bosom right up your torso, stretching higher until your face is buried between her melon mountains, then jiggles her breasts until they lap at your [pc.ears].");
+	output(" “<i>You know you want to let off some of those burdens of command,”</i> she sings.");
+
+	output("\n\nThe weight pressed against you increases as her gooey undercarriage shifts up into her voluminous ass, and she grabs your hands, holding them to her backside as it swells, filling your palms with supple galotian.");
+	if(pc.hasCock() || pc.hasTailCock()) 
+	{
+		output(" Under the onslaught of breast and butt, your ");
+		if(pc.hasCock()) output("[pc.cocks]");
+		else output("[pc.tailCock]");
+		if(pc.cockTotal() == 1 || pc.hasTailCock()) output(" swells");
+		else output(" swell");
+		output(" with blood, straining and staining ");
+		if(!pc.isCrotchGarbed()) output("the yielding skin of your lover");
+		else output("your [pc.lowerGarment]");
+		output(" with the [pc.cumColor] of your precum.");
+	}
+	//(PC no penis)
+	if(!pc.hasCock()) 
+	{
+		output(" As the woman’s slippery flesh caresses yours, it’s no time at all before your [pc.nipples] are ");
+		if(pc.hasFuckableNipples() || pc.hasInvertedNipples()) output("puffy");
+		else output("erect");
+		output(" with pleasure and your [pc.vaginas] ");
+		if(pc.wettestVaginalWetness() < 3) output("dribble");
+		else if(pc.wettestVaginalWetness() < 5) output("drool");
+		else output("gush");
+		if(pc.totalVaginas() == 1)
+		{
+			if(pc.wettestVaginalWetness() >= 5) output("e");
+			output("s");
+		}
+		output(" with excitement.");
+	}
+	output(" Celise takes notice, pushing more of her mass toward her ass until the weight of the well-appointed woman begins to drag you down. She leans harder as your arousal intensifies, until it’s easier to let her bear you onto the floor than to try to keep standing as your arms overflow with horny goo-girl.");
+	output("\n\n“<i>Oh, you’re such a beast,”</i> Celise teases");
+	if(!pc.isNude()) output(", unfastening your [pc.gear] with the precision of one who has thought a lot about you naked");
+	output(". “<i>Are you going to make me eat off of the floor?”</i>");
+
+	output("\n\nThe galotian’s ass shifts and slides atop you");
+	if(pc.hasTailCock()) output(", pinning your [pc.tails] between your bodies");
+	output(", and Celise straddles your crotch so closely that ");
+	if(pc.hasCock() || pc.hasTailCock()) 
+	{
+		output("the warm, wet skin of her stomach is pressed against the underside of your ");
+		if(pc.hasTailCock() && !pc.hasCock()) output("now-unfolding tail-");
+		output("prick. Her open-mouthed smile widens even further as she slides up the tumescent shaft, moving her wet slit into position.");
+	}
+	else output("the hot, wet skin of her groin grinds against your [pc.clits]. The ravenous woman’s mouth opens slightly as her crotch contacts the heat of your own.");
+
+	//females with no cocks anywhere split
+	if(!pc.hasCock() && !pc.hasTailCock())
+	{
+		output("\n\nAs Celise massages her gooey fingers ");
+		if(pc.biggestTitSize() < 1) output("along your chest");
+		else if(pc.biggestTitSize() < 4) output("over your small breasts");
+		else output("over the curves of your shapely bust");
+		output(" and ");
+		if(pc.hasFuckableNipples() || pc.hasInvertedNipples()) 
+		{
+			output("dips her slippery, hot fingertips into your aching");
+			if(pc.canMilkSquirt()) output(", milky");
+			output(" nipples");
+		}
+		else 
+		{
+			output("pinches your ");
+			if(pc.canMilkSquirt()) output("dribbling ");
+			output("nipples in her slippery, hot grip}, it becomes clear that the hungry alien isn’t going to offer you any control over the fuck unless you take it.");
+		}
+		output("\n\nGrasping her wrists in your hands, you unbalance Celise with a mighty pelvic thrust and roll over until the galotian is pinned underneath you, eyes wide with surprise. Before she can speak, you lean in and press your lips together. Her shock fades as your tongue slides over hers, and her arms reflexively push against your grip, trying to drape around your neck. When you pull back from the kiss, Celise’s eyes open slowly.");
+		output("\n\nYou place a finger over her lips to shush her, and sit up atop your lover. Straddling a goopy thigh, you begin to slide back and forth along it, teasing your [pc.vaginas] with Celise’s slick skin. She even gets into it as the heat of your crotch begins to radiate through her. Small, soft nodules and ridges pop into existence along her thigh while her newly-freed hands play with her tits. It feels as though Celise’s leg is lapping at your clitoris with a carpet of tiny cillia, and your [pc.tongue] lolls from your mouth as you grind her thigh over and over.");
+		output("\n\nSuddenly, a pair of cool hands break you from your trance - Celise has gripped your hips to hold you even closer and is staring at your crotch like it’s bringing her a cold lemonade. You know that she would gladly and inevitably tease your puss");
+		if(pc.totalVaginas() == 1) output("y");
+		else output("ies");
+		output(" to orgasm like this, but though arousing, the thought leaves you wanting more. As much fun as Celise’s nodules offer, your spacious cunn");
+		if(pc.totalVaginas() == 1) output("y throbs");
+		else output("ies throb");
+		output(" with a lust to be filled.");
+
+		output("\n\n“<i>Not yet,”</i> you warn. Celise blinks at you innocently and the slimy cillia recede into her thigh as quickly as they appeared.");
+		output("\n\n“<i>Whatever you say,”</i> your lover giggles. She stops pinching her nipples and folds her hands coquettishly over her collar as you slide forward. Your sweltering crotch bumps the bottom of her breasts, and Celise eyes you curiously as you lift yourself up and away, hovering over her right nipple. ");
+		if(pc.isTaur()) 
+		{
+			output("She quickly comes to an understanding as you press [pc.oneVagina] onto the erect nub, trying to force it inside your ");
+			if(pc.vaginas[0].looseness() < 4) output("stretched");
+			else output("gaping");
+			output(" hole. As you rise up again, her hands wrap around her breast, squeezing the malleable goo into a more tubular shape that fills you as you sink again.");
+		}
+		else output("Understanding is forced upon her as you reach down and squeeze her breast into a roughly tube-shaped tit, then lower [pc.oneVagina] onto the end, swallowing the erect nub. More and more of Celise slides inside you as you rock into position.");
+		pc.cuntChange(0,300);
+		output("\n\nThe woman clenches up as her sensitive breast-flesh is forced into you, releasing a moan in time with your own as her nipple brushes against your cervix. “<i>Oh my,”</i> she marvels, staring at the one breast now deep inside you. “<i>It’s so warm and wet...”</i> Celise arches her back and bites her lip as you begin to bounce up and down, and her other breast jiggles violently as you land on her chest with muffled thumps.");
+
+		output("\n\n“<i>Make those bumps again,”</i> you demand.");
+
+		output("\n\nShe giggles at you and the surface of her squishy skin is once again covered with velvet ridges. “<i>Like this?”</i> she asks breathily. You only grunt in reply, swiveling your [pc.hips] to savor the fullness of your pussy. Every nodule feels like a tiny wet mouth as it passes through your opening. It’s so hot, and you’re still so horny from rubbing against her leg, that your orgasm races up faster than you can control. Celise’s eyes roll back and she thrusts her chest toward you as your vaginal walls clamp down on her breast, clearly enjoying it almost as much as you are. A ");
+		if(pc.wetness() < 3) output("trickle");
+		else if(!pc.isSquirter()) output("dribble");
+		else output("stream");
+		output(" of fluid seeps down her chest as you climax");
+		if(pc.isSquirter()) output(", your usual squirts of femcum arrested by the absorbent boob filling you");
+		output(".");
+		output("\n\nSatisfied for now, you rise from your galotian lover. Her breast pulls free with a wet ‘sllllurp’. “<i>Hee hee... docking clamp released,”</i> she titters. Breathless, you reach down and squash her sopping, tubular boob back into its normal shape. You smile, and she smiles coyly back.");
+		//end, adjust time and lust
+	}
+	//cock/tailcock fork
+	else
+	{
+		output("\n\nThe ravenous look in Celise’s eye is as good as a guarantee that unless you take control of the fuck, she’ll roll over you like a runaway glazed doughnut, leaving you sticky everywhere but ultimately unfulfilled. ");
+		if(pc.biggestCockLength() > 60) output("She practically oozes her way up your [pc.cockBiggest], stretching her body to match your enormous meat and stopping when the tip is just under her breasts. Her stomach ripples and parts around the gargantuan tool, engulfing it in her hot, gooey flesh.");
+		else 
+		{
+			output("Her stomach ripples around your ");
+			if(!pc.hasCock() && pc.hasTailCock()) output("mutant tail, half-coaxing and half-sucking its secret out");
+			else output("[pc.cocks]");
+			output(", drawing the hot shaft");
+			if(pc.cockTotal() > 1) output("s");
+			output(" right through her body wall.");
+		}
+		output(" She pauses with ");
+		if(pc.cockTotal() > 1 && pc.biggestCockLength() < 60) output("one");
+		else output("the");
+		output(" crown exposed and, when you look up at her, gives you a sly wink and uses her fingertips to push your tool the rest of the way through her hot, velvety skin. You groan as the sides of the opening lick at your too-aroused cockhead.");
+		if(pc.cumColor() != "green") output(" A small string of [pc.cumColor] precum floats suspended in Celise’s green stomach, marking the point of entry.");
+
+		output("\n\n“<i>The package is secured,”</i> she giggles, pleased with herself. Your horny galotian begins to gyrate around your shaft, swirling her fluid hips. This is it: take control now, before she builds up momentum. You buck fiercely, startling Celise. She stops rolling her gooey ass over your crotch, and you seize the moment by thrusting powerfully upward into her. Her head rolls back as ");
+		var x:int = pc.biggestCockIndex();
+		if(pc.cocks[x].cLength() > 40) output("40 inches");
+		else output(num2Text(Math.floor(pc.cocks[x].cLength())) + " inches");
+		output(" of dick slide deeply into her, touching parts of her yet unstimulated.");
+
+		//hyper fork - for biggest dicks longer than 40in - assign biggest cock to x
+		if(pc.cocks[x].cLength() > 40)
+		{
+			output("\n\nWith her already stretching herself just to fit your [pc.cockBiggest], every new thrust deforms Celise’s body further, until she resembles a slimy cast of ");
+			var doubleGigantoDick:int = -1;
+			if(pc.cocks[pc.biggestCockIndex2()].cLength() > 40) doubleGigantoDick = pc.biggestCockIndex2();
+			//(one 40in+ cock)
+			if(doubleGigantoDick == -1) output("your unwieldy [pc.cockNounSimple " + x + "]");
+			//(2+ 40in+ cock)
+			else output("your enormous penises");
+			output(". She burbles, unable to speak as the [pc.cockHeadBiggest] presses up to the back of her lips, and her taut breasts wobble against the side of your freaky phallus, making it bob slightly every time you pound it into her slick hole. Seizing her gooey hips and pulling down, you shove deeper into the sex-crazed woman until her head is stretched over your crown like a slippery foreskin. You briefly make eye contact with the galotian, whose formerly-coquettish green face now resembles a [pc.cockHeadBiggest].");
+			pc.cockChange();
+			output("\n\n“<i>How does it feel, being my dick?”</i> you taunt. Rolling your hips, you bounce Celise in the air, causing air to rush over the surface of the galotian-turned-[pc.cockNounSimple " + x + "]. Celise rubs anxiously at her throat, tickling your shaft, and it sends you over the edge.");
+			if(pc.balls > 0) output(" Her eyes widen as your [pc.sack] tightens up, mashing against her abused labia.");
+			output(" With one more push, the green foreskin opens and her mouth is stretched wide, exposing your slit. Releasing a great moan, you orgasm, ejaculating [pc.cum] through Celise’s lips as her eyes roll. Her tongue caresses the underside of your crown and laps at the slit as your seed bubbles forth, trying vainly to intercept the ");
+			if(pc.cumQ() < 10) output("dribble of jizz from your exhausted [pc.balls].");
+			else output("stream of [pc.cumColor] jizz arcing across the engine bay.");
+			if(pc.cumQ() >= 1000) 
+			{
+				output(" A tiny alarm sounds in your mind as your hyper-fertile [pc.balls] ");
+				if(pc.balls > 1) output("empty");
+				else output("empties");
+				output(" onto the bay floor. With difficulty you aim your spasming groin straight up, causing the semen to rain down on Celise’s creamy skin.");
+			}
+			output("\n\n“<i>Ah... ah...”</i> the woman moans, causing vibrations around your slit. “<i>It feels good... when you cum.”</i> Her hands fall to hang limply at her sides as the last globs of spunk dribble from her lips. Carefully, you stand up and aim your [pc.cockBiggest] toward the floor. Celise, too drunk on pleasure and jizz to control her form or anything else, slides slowly off the end");
+			if(pc.cumQ() >= 500) output(" and lands face-down in the puddle of semen}, resembling nothing so much as a used condom in her insensible stupor.");
+			//end, adjust time and lust
+		}
+		//non-hypercocks and tailcock fork
+		else
+		{
+			output("\n\n“<i>Ohhh...”</i> she sighs. “<i>I love it when you push deep inside.”</i>");
+			output("\n\nNot relenting, you squeeze her tightly and thrust again and again, with the aim of going even deeper. The force of your crotch impacting hers actually staggers Celise, and her usually-shapely ass actually begins to splay and lose cohesion as your ");
+			if(pc.cockTotal() < 2) output("dick literally parts");
+			else output("dicks literally part");
+			output(" her fluid form in a quest to touch the deepest reaches of her sex.");
+			pc.cockChange();
+			output("\n\nCelise flops forwards, ");
+			if(pc.biggestTitSize() < 1) output("barely able to hold herself upright through your savage strokes by pressing against your [pc.chest]");
+			else output("smooshing your tits as she tries to hold herself upright through your savage strokes");
+			output(". Eventually she gives up, laying her head on your chest as you continue to knock the jelly from her frame - the puddle of shapeless galotian goo around you grows in time with her moans as the lust for more dick drains the willpower needed to maintain her form. Before you have a chance to reduce her to a quivering puddle of needy slut, though, you cum. Your ejaculation ");
+			if(pc.cumQ() < 5) output("drops a little bubble of [pc.cum] right behind her tits.");
+			else if(pc.cumQ() < 2000) 
+			{
+				output("shoots right up into her throat, the journey made easy by the distance she has sunk down onto your ");
+				if(!pc.hasCock()) output("[pc.tailCock]");
+				else output("[pc.cocks]");
+				output(".");
+			}
+			//(much cum)
+			else 
+			{
+				output("blows through the exhausted galotian like a fire suppression system, filling every corner of her torso");
+				if(pc.cumColor() != "green") output(" with [pc.cumColor] slime");
+				output(". She doesn’t have the focus to hold her shape, and her body bloats out as your monster load presses against every edge. Celise actually gags, spilling a small river of jizz from her mouth as she tries to speak.");
+			}
+			output("\n\nYou slide out from under the thoroughly-fucked woman, leaving her a pair of tits and a face floating in a satisfied puddle on the floor.");
+			//end, adjust time and lust
+		}
+	}
+	processTime(33);
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
