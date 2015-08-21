@@ -1243,7 +1243,7 @@ public function queenOfTheDeepHerStory():void
 	
 	output("\n\nNow that’s an understatement.");
 	
-	output("\n\n<i>“But that does not answer your question, does it? Hmm, where to start, though...");
+	output("\n\n<i>“But that does not answer your question, does it? Hmm, where to start, though...”</i>");
 	
 	output("\n\n<i>“Once, my people were called the Water Queens. We live our whole lives in water, and once there was a queen to every great lake here in the darkest depths of the planet. We traded in water: we would allow the nyrea, ganrael, and other races to enjoy clear, pristine water in exchange for their service. The seed of other races is necessary for us to breed, you see, and those women who came in search of water were asked to bear our eggs. It was an amicable trade for most, made better by the incredible pleasure we offered freely to those that joined with us. But that was many, many generations ago,”</i> she says sadly, her dark eyes drifting closed as she speaks.");
 	

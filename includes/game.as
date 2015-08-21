@@ -395,7 +395,8 @@ public function crewRecruited():Number
 	var counter:Number = 0;
 	if(flags["RECRUITED_CELISE"] > 0) counter++;
 	if(reahaRecruited()) counter++;
-	if(!annoNotRecruited()) counter++;
+	if (!annoNotRecruited()) counter++;
+	//if (bessIsFollower()) counter++;
 	return counter;
 }
 
@@ -432,8 +433,8 @@ public function crew(counter:Boolean = false):Number {
 			else if (hours >= 12 || hours <= 13) crewMessages += "\n\nAnno's busy doing a quick workout in her quarters to the beat of some fast-paced ausar heavy metal. <i>“Gotta keep in shape!”</i> she says.";
 			else crewMessages += "\n\nAnno is sitting in the common area with her nose buried in half a dozen different data slates. It looks like she's splitting her attention between the latest Warp Gate research and several different field tests of experimental shield generators.";
 		}
-	}
-	/*if (bessIsCrew())
+	}/*
+	if (bessIsCrew())
 	{
 		count++;
 		if (!counter)
@@ -569,7 +570,7 @@ public function sleep(outputs:Boolean = true):void {
 	
 	this.clearMenu();
 	if (flags["ANNO_SLEEPWITH_DOMORNING"] != undefined) this.addButton(0, "Next", annoMorningRouter);
-	//9999 - lemme compile, damnit. if (flags["BESS_SLEEPWITH_DOMORNING"] != undefined) addButton(0, "Next", bessMorningEvents);
+	//if (flags["BESS_SLEEPWITH_DOMORNING"] != undefined) addButton(0, "Next", bessMorningEvents);
 	else this.addButton(0,"Next",mainGameMenu);
 }
 
@@ -2095,6 +2096,7 @@ public function statisticsScreen(showID:String = "All"):void
 		}
 		else if(pc.skinType == GLOBAL.SKIN_TYPE_FUR) output2(" Fur");
 		else output2(" None");
+		if(pc.antennae > 0 && pc.antennaeType != 0) output2("\n<b>* Antennae:</b> " + pc.antennae + ", " + GLOBAL.TYPE_NAMES[pc.antennaeType]);
 		output2("\n<b>* Ears:</b>");
 		if(pc.earType == GLOBAL.TYPE_SYLVAN && pc.earLength > 0) output2(" " + prettifyLength(pc.earLength) + ",");
 		output2(" " + GLOBAL.TYPE_NAMES[pc.earType]);
@@ -2268,7 +2270,8 @@ public function statisticsScreen(showID:String = "All"):void
 					else output2("\n<b><u>" + StringUtil.toTitleCase(num2Ordinal(x + 1)) + " Breast Row</u></b>");
 					output2("\n<b>* Breast, Count: </b>" + pc.breastRows[x].breasts);
 					output2("\n<b>* Breast, Size: </b>" + StringUtil.toTitleCase(pc.breastCup(x)));
-					if(pc.breastRows[x].breasts != 1) output2("s");
+					if (pc.breastRows[x].breasts != 1) output2("s");
+					if(pc.breastRows[x].breastRating() >= 200) output2(" (" + formatFloat(pc.breastRows[x].breastRating(), 3) + ")");
 					output2("\n<b>* Nipple, Type: </b>" + " " + GLOBAL.NIPPLE_TYPE_NAMES[pc.breastRows[x].nippleType]);
 					if(pc.breastRows[x].nippleType != GLOBAL.NIPPLE_TYPE_FUCKABLE && pc.breastRows[x].nippleType != GLOBAL.NIPPLE_TYPE_FLAT && pc.breastRows[x].nippleType != GLOBAL.NIPPLE_TYPE_INVERTED)
 					{
@@ -3388,7 +3391,7 @@ public function displayQuestLog(showID:String = "All"):void
 				output2("\n<b><u>Myr Hybridity</u></b>");
 				output2("\n<b>* Research:</b>");
 				if(flags["MCALLISTER_MYR_HYBRIDITY"] == 1) output2(" Pending funds...");
-				else if(flags["MCALLISTER_MYR_HYBRIDITY"] == 2)
+				else if(flags["MCALLISTER_MYR_HYBRIDITY"] >= 2)
 				{
 					output2(" Funded");
 					if(flags["MCALLISTER_MYR_HYBRIDITY_START"] != undefined && GetGameTimestamp() < (flags["MCALLISTER_MYR_HYBRIDITY_START"] + (7 * 24 * 60)))
@@ -5507,7 +5510,7 @@ public function fixPcUpbringing():void
 	showName("CODEX\nALERT");
 	author("Gedan");
 	
-	output("Your trusty codex vibrates incessently, demanding your attention for something. The means are unusual, which piques your interest; you’ve been wearing the thing for long enough now to have most of it’s features down pat, and whatever it’s doing right now is most certainly out of the ordinary.");
+	output("Your trusty codex vibrates incessantly, demanding your attention for something. The means are unusual, which piques your interest; you’ve been wearing the thing for long enough now to have most of it’s features down pat, and whatever it’s doing right now is most certainly out of the ordinary.");
 	
 	output("\n\nSafely shuffled off to one side, hopefully out of the way - and out of sight - of any one or any thing that might come by, you bring your handy forearm-mounted helper to the fore to see exactly what it’s complaining about....");
 	
@@ -5520,7 +5523,7 @@ public function fixPcUpbringing():void
 	output("\n\n<i>“Fucking computers,”</i> you mutter under your breath, a [pc.finger] already tapping on the key labelled ‘Okay’. The thing chugs away for a second or two, seemingly hard at work repairing itself... you’re about set to move on rather than wind up waiting all day for the Codex to");
 	if (!silly) output(" fix itself");
 	else output(" do the needful");
-	output(" before it’s vibrating away, demanding its masters duitiful attention again.");
+	output(" before it’s vibrating away, demanding its masters dutiful attention again.");
 	
 	output("\n\n<i>UNRECOVERABLE DATA FRAGMENT LOCATED IN FILE: [pc.fullName]</i>");
 	output("\n<i>MISSING SEGMENT: SCHOOL HISTORY</i>");

@@ -66,6 +66,7 @@
 	import classes.Engine.checkDate;
 	import classes.Engine.showImage;
 	import classes.Engine.Utility.*;
+	import classes.Util.IsOneOf;
 	import classes.Engine.Combat.*;
 	import classes.Engine.Interfaces.*;
 	import classes.Engine.Map.*;
@@ -155,6 +156,7 @@
 		//Second planet
 		include "../includes/tarkus/anno.as";
 		include "../includes/tarkus/aurora.as";
+		//include "../includes/tarkus/bess.as";
 		include "../includes/tarkus/cockBox.as";
 		include "../includes/tarkus/colenso.as";
 		include "../includes/tarkus/drBadger.as";

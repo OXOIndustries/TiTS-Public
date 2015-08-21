@@ -1164,7 +1164,7 @@ public function flahneExhibitionHugsGirls():void {
 	}
 	if(pc.hasCock())
 	{
-		output(" Your [pc.cum] bursts from [pc.cockBiggest] with a wave of pleasure, blasting the underside of Flahne’s breasts like a firehose and spattering down her stomach.");
+		output(" Your [pc.cum] bursts from your [pc.cockBiggest] with a wave of pleasure, blasting the underside of Flahne’s breasts like a firehose and spattering down her stomach.");
 		if(pc.cockTotal() > 2) output(" Your unused cocks spurt their loads");
 		else if(pc.cockTotal() == 2) output(" Your unused cock spurts its load");
 		if(pc.cockTotal() > 1) output(" against her hips and arms, giving her a coating of [pc.cumColor] nutrition.");

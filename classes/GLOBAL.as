@@ -174,7 +174,8 @@
 		public static const TYPE_OVIR:int									= 57;
 		public static const TYPE_SYLVAN:int 								= 58; //Fuckin' elves
 		public static const TYPE_DARK_SYLVAN:int 							= 59;
-		public static const TYPE_MYR:int 								= 60;
+		public static const TYPE_MYR:int 									= 60;
+		public static const TYPE_SAURIAN:int								= 61;
 		
 		public static const TYPE_NAMES:Array = [
 			"Human",
@@ -237,7 +238,8 @@
 			"Ovir",
 			"Sylvan",
 			"Dark Sylvan",
-			"Myr"
+			"Myr",
+			"Saurian"
 		];
 		
 		public static const VALID_FACE_TYPES:Array = [

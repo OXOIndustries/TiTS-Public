@@ -1439,7 +1439,8 @@ public function cumInYerAusarShapedButtslot():void
 	output("\n\n<i>\"I don't think I'd mind losing again, if that's your scheme, boss,\"</i> Anno adds with a wink as you stagger off, collecting your [pc.gear] and leaving her to finish herself off.");
 	processTime(4);
 	chars["ANNO"].analVirgin = false;
-	if(chars["ANNO"].ass.loosenessRaw < 2) chars["ANNO"].ass.loosenessRaw = 2;
+	if (chars["ANNO"].ass.loosenessRaw < 2) chars["ANNO"].ass.loosenessRaw = 2;
+	IncrementFlag("ANNO_ANALSEXED");
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -1481,7 +1482,8 @@ public function cumWithAnnoOnTop():void
 	processTime(9);
 	pc.orgasm();
 	chars["ANNO"].analVirgin = false;
-	if(chars["ANNO"].ass.loosenessRaw < 2) chars["ANNO"].ass.loosenessRaw = 2;
+	if (chars["ANNO"].ass.loosenessRaw < 2) chars["ANNO"].ass.loosenessRaw = 2;
+	IncrementFlag("ANNO_ANALSEXED");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
