@@ -1247,12 +1247,12 @@ public function concentratedFire(hit:Boolean = true):void
 	}
 }
 
-public function playerRangedAttack(target:Creature):void 
+public function playerRangedAttack(target:Creature, process = true):void 
 {
 	rangedAttack(pc, target,[2]);
 	if(pc.hasPerk("Second Shot")) rangedAttack(pc, target,[0,1,2]);
 	playerMimbraneCloudAttack();
-	processCombat();
+	if(process) processCombat();
 }
 
 public function playerAttack(target:Creature):void 
@@ -3827,9 +3827,9 @@ public function paralyzingShock(target:Creature):void {
 public function volley(target:Creature):void {
 	pc.energy(-20);
 	//Do normal attacks
-	rangedAttack(pc,target,[2]);
+	playerRangedAttack(target,false);
 	//Do the bonus flurry shot!
-	rangedAttack(pc,target,[1,2]);
+	rangedAttack(pc,target,[0,1,2]);
 	//Chance of bliiiiiiiind
 	if(pc.aim()/2 + rand(20) + 1 >= target.reflexes()/2 + 10 && !target.hasStatusEffect("Blind") && pc.hasRangedEnergyWeapon()) {
 		if(target.plural) output("<b>" + target.capitalA + target.short + " are blinded by your " + possessive(pc.rangedWeapon.longName) + " flashes.</b>\n");
@@ -4328,10 +4328,10 @@ public function struggledStimulant():void
 public function rapidFire(target:Creature):void {
 	pc.energy(-20);
 	//Do normal attacks
-	rangedAttack(pc,target,[2]);
+	playerRangedAttack(target,false);
 	//Do the bonus flurry shots!
-	rangedAttack(pc,target,[1,2]);
-	rangedAttack(pc,target,[1,2]);
+	rangedAttack(pc,target,[0,1,2]);
+	rangedAttack(pc,target,[0,1,2]);
 	processCombat();
 }
 
