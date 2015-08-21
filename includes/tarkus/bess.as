@@ -3077,53 +3077,36 @@ public function talkToBessAboutOutfits():void
 	clearMenu();
 	addButton(0, "Nude", EmptySlot, "Nude", "Go Nude!"); // 9999 need to target the correct slot somehow
 
-	bessCIW(1, "C.Clothes", CasualClothes, "Casual Clothes", "Casual Clothes");
+	bessCIW(1, "C.Clothes", ComfortableClothes, "Casual Clothes", "Casual Clothes");
 	bessCIW(2, "P.Jacket", ProtectiveJacket, "Protective Jacket", "Protective Jacket");
 	bessCIW(3, "UGC Uniform", UGCUniform, "UGC Uniform", "UGC Uniform");
-	bessCIW(4, "SleepShirt", SleepShirt, "Sleep Shirt", "Sleep Shirt");
 
 	bessCIW(5, "Top&Skirt", TopNSkirt, "Top & Skirt", "Top & Skirt");
-	bessCIW(6, "B.Clothes", BusinessClothes, "Business Clothes", "Business Clothes");
+	bessCIW(6, "BusinessC.", BusinessClothes, "Business Clothes", "Business Clothes");
 	bessCIW(7, "Librarian", LibrarianOutfit, "Librarian Outfit", "Librarian Outfit");
 	bessCIW(8, "LatexBSuit", LatexBodysuit, "Latex Bodysuit", "Latex Bodysuit");
-	bessCIW(9, "ChinaDress", ChinaDress, "China Dress", "China Dress");
 
-	bessCIW(10, "Kimono", Kimono, "Kimono", "Kimono");
-	bessCIW(11, "S.Kimono", ShortKimono, "Short Kimono", "Short Kimono");
 	bessCIW(12, "Maid", MaidOutfit, "Maid Outfit", "Maid Outfit");
 	bessCIW(13, "Nurse", NurseOutfit, "Nurse Outfit", "Nurse Outfit");
 
 	addButton(14, "Back", talkToBessAboutClothes);
 
-	bessCIW(15, "Miko", MikoOutfit, "Miko Outfit", "Miko Outfit");
-	bessCIW(16, "Apron", ApronOutfit, "Apron", "Apron");
-	bessCIW(17, "Seifuku", Seifuku, "Seifuku", "Seifuku"); // no fuk uuuuuuuuu
 	bessCIW(18, "Schoolgirl", SchoolgirlOutfit, "Schoolgirl", "Schoolgirl");
 	bessCIW(19, "Cheerleader", CheerleaderUniform, "Cheerleader Uniform", "CheerleaderUniform");
 
-	bessCIW(20, "Waitress", WaitressUniform, "Waitress Uniform", "Waitress Uniform");
 	bessCIW(21, "Bunnygirl", BunnygirlOutfit, "Bunnygirl Outfit", "Bunnygirl Outfit");
-	bessCIW(22, "Battlegown", BattleBallgown, "Battle Ballgown", "Battle Ballgown");
 	bessCIW(23, "Military", MilitaryUniform, "Military Uniform", "Military Uniform");
 	bessCIW(24, "Pirate", SpacePirateOutfit, "Space Pirate", "Space Pirate");
-
-	bessCIW(25, "GothLolita", GothLolitaOutfit, "Goth-Lolita Outfit", "Goth-Lolita Outfit");
-	bessCIW(26, "Tank&Skirt", TankNSkirt, "Tank-top & Miniskirt", "Tank-top & Miniskirt");
-	bessCIW(27, "BattleMaid", BattleMaidOutfit, "Battle Maid Outfit", "Battle Maid Outfit");
-	bessCIW(28, "R.Bodysuit", ReinforcedBodysuit, "Reinforced Bodysuit", "Reinforced Bodysuit");
 
 	addButton(29, "Back", talkToBessAboutClothes);
 
 	bessCIW(30, "R.Fem Armor", RevealingFemaleArmor, "Revealing Female Armor", "Revealing Female Armor");
 	bessCIW(31, "R.Male Armor", RevealingMaleArmor, "Revealing Male Armor", "Revealing Male Armor");
 	bessCIW(32, "T.Zipsuit", TransparentZipsuit, "Transparent Zipsuit", "Transparent Zipsuit");
-	bessCIW(33, "Yukata", BessYukata, "Yukata", "Yukata");
-	bessCIW(34, "Ninja", NinjaOutfit, "Ninja Outfit", "Ninja Outfit");
 
 	bessCIW(35, "Butler", ButlerOutfit, "Butler Outfit", "Butler Outfit");
 	bessCIW(36, "M.Doctor", MaleDoctorOutfit, "Male Doctor Outfit", "Male Doctor Outfit");
 	bessCIW(37, "F.Doctor", FemaleDoctorOutfit, "Female Doctor Outfit", "Female Doctor Outfit");
-	bessCIW(38, "Gakuran", BessGakuran, "Gakuran", "Gakuran");
 	bessCIW(39, "Schoolboy", SchoolboyOutfit, "Schoolboy Outfit", "Schoolboy Outfit");
 
 	bessCIW(40, "StrapHarness", LeatherStrapHarness, "Leather Strap Harness", "Leather Strap Harness");
