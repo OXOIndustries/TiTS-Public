@@ -328,7 +328,6 @@ public function praetorianAI():void
 //Not a bad end! Huntresses gang-bang you and dump you in town. Have to attempt Praetorian fight again. Lose some credits, of course.
 public function loseToPraetorianNyreaGangbangu():void
 {
-	clearOutput();
 	showName("NYREAN\nGUARDS");
 	author("Savin");
 	output("You stumble to your [pc.knees], ");
@@ -414,7 +413,6 @@ public function loseToPraetorianNyreaPt2():void
 //Disables Praetorian fight for 12 hours. If PC clears dungeon, never fight them again. Otherwise they recover eventually.
 public function spankDaShitOuttaPraetorians():void
 {
-	clearOutput();
 	showName("NYREAN\nGUARDS");
 	author("Savin");
 	output("<i>“Enough, enough,”</i> the lead guard says, stumbling to a knee and leaning heavily on her spear. <i>“We yield... no more, please.”</i>");
@@ -1008,7 +1006,6 @@ public function loseToRoyalIncuGoo():void
 //PC Beats Guu
 public function pcBeatsGoo():void
 {
-	clearOutput();
 	author("Savin");
 	if(foes[0].HP() <= 0) 
 	{
@@ -1936,7 +1933,8 @@ public function breakOutDane():void
 		//Pass 1 minute, +40 energy to queen and PC. Refill shields for both parties.
 		flags["FREED_DANE_FROM_TAIVRA"] = 1;
 		flags["QUEENSGUARD_STAB_TIME"] = GetGameTimestamp();
-		spankedQueensguardsAss();
+		clearMenu();
+		addButton(0,"Next",spankedQueensguardsAss);
 	}
 	else
 	{
@@ -1958,7 +1956,6 @@ public function breakOutDane():void
 public function spankedQueensguardsAss():void
 {
 	author("Savin");
-	if(flags["FREED_DANE_FROM_TAIVRA"] == undefined) clearOutput();
 	if(foes[0].HP() <= 0) 
 	{
 		output("With a groan of pain, Queensguard collapses to a knee, barely keeping herself upright with all her weight on her blade. She glowers up at you through the slit in her visor, panting hard and coughing up blood into the steel helm.");
@@ -2232,7 +2229,6 @@ public function cousinDouchebaggery():void
 //PC Defeats Taivra
 public function whupTaivrasAss():void
 {
-	clearOutput();
 	author("Savin");
 	output("The queen stumbles back, jabbing the tip of her spear into the ground and leaning hard against it. <i>“You... you fight like a beast,”</i> the queen groans, barely standing. Her harem gasps in shock, clutching at the queen’s legs as Taivra struggles not to stumble.");
 	output("\n\n<i>“I yield, offworlder. I yield,”</i> she sighs, letting her spear clatter to the ground at your [pc.footOrFeet]. Without the long shaft to support her, Taivra slumps to the ground, sitting down at the edge of her throne’s dais. All of a sudden, the once-proud warrior queen looks a lot less self-assured. Almost humble in her defeat.");
@@ -2551,7 +2547,6 @@ public function subjugateQueenTaivra():void
 //PC is defeated by Queensguard or Taivra (w/ Dane)
 public function loseToQueensTaivra():void
 {
-	clearOutput();
 	author("Savin");
 	//Defeat by Queensguard Intro
 	if(foes[0] is Queensguard)
@@ -3923,7 +3918,7 @@ public function princessGetsAShield():void
 
 public function loseToPrincessYeGit(willing:Boolean = false):void
 {
-	clearOutput();
+	if(willing) clearOutput();
 	showPrincess();
 	//Bad End
 	//Willingly join her harem
@@ -4019,7 +4014,6 @@ public function princessBadEndPartTrees():void
 //Combatuuu Victoryuuuuuu
 public function beatUpPrincessYeSlut():void
 {
-	clearOutput();
 	showPrincess();
 	flags["PRINCESS_DEFEATED"] = 1;
 	//Lust, somehow	

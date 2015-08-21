@@ -38,6 +38,7 @@ public function inCombat():Boolean
 public function combatMainMenu():void 
 {
 	userInterface.showPrimaryOutput();
+	clearOutput();
 	if(flags["COMBAT MENU SEEN"] == undefined)
 	{
 		//Track round, expires on combat exit.
@@ -1580,7 +1581,6 @@ public function teaseSquirt(target:Creature):void {
 // NO SIDEEFFECTS TO GAME DATA YO
 public function displayMonsterStatus(targetFoe:Creature):void 
 {
-	clearOutput();
 	if(targetFoe.HP() <= 0) {
 		output("<b>You've knocked the resistance out of " + targetFoe.a + targetFoe.short + ".</b>\n");
 	}

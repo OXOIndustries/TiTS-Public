@@ -18,7 +18,7 @@ package classes.Items.Protection
 			this.type = GLOBAL.SHIELD;
 			
 			//Used in inventodecentttons
-			this.shortName = "Mark IS";
+			this.shortName = "Mark I.S.";
 		
 			//Regular name
 			this.longName = "Reaper Armaments Mark I shield generator";
