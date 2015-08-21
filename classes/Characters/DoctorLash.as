@@ -164,8 +164,8 @@
 			this.ass.wetnessRaw = 0;
 			this.ass.loosenessRaw = 1;
 
-			this.createPerk("Multiple Attacks",4,0,0,0,"");
-			this.createPerk("Multiple Shots",4,0,0,0,"");
+			this.createPerk("Multiple Attacks",5,0,0,0,"");
+			this.createPerk("Multiple Shots",5,0,0,0,"");
 			this.createStatusEffect("Flee Disabled",0,0,0,0,true,"","",false,0);
 			createStatusEffect("Disarm Immune",0,0,0,0,true,"","",false,0);
 		}	

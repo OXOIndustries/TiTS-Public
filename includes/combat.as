@@ -1249,19 +1249,10 @@ public function concentratedFire(hit:Boolean = true):void
 
 public function playerRangedAttack(target:Creature):void 
 {
-	if (pc.hasPerk("Shoot First") && pc.statusEffectv1("Round") <= 1) {
-		clearOutput();
-		output("<b>Shot first!</b>\n");
-		rangedAttack(pc, target,true);
-	}
-	playerRangedAttacksNoProcess(target);
+	rangedAttack(pc, target,[2]);
+	if(pc.hasPerk("Second Shot")) rangedAttack(pc, target,[0,1,2]);
 	playerMimbraneCloudAttack();
 	processCombat();
-}
-public function playerRangedAttacksNoProcess(target:Creature):void
-{
-	rangedAttack(pc, target,true);
-	if(pc.hasPerk("Second Shot")) rangedAttack(pc,target,true,2);
 }
 
 public function playerAttack(target:Creature):void 
@@ -1488,6 +1479,119 @@ public function oldAttack(attacker:Creature, target:Creature, noProcess:Boolean 
 	}
 }*/
 
+/**
+ * Perform a ranged attack. Used by PC's and NPC's.
+ * @param	attacker	Who is performing the attack
+ * @param	target		Pretty self-explanatory
+ * @param	specials	Various special flags that might modify how attacks are processed.
+ */
+//"Multiple Shots" status tracks extra attacks in v1.
+//InCollection - first arg is what we're looking for, second is array.
+//Specials: 0 No clearscreen.
+//Specials: 1 flurry mode - also prevents multiattacks
+//Specials: 2 no processCombat upon completion.
+//Specials: 3 no multiattack
+public function rangedAttack(attacker:Creature, target:Creature, specials:Array = undefined):void {
+	//Set drone target to dis shit.
+	setDroneTarget(target);
+	//PC only start-stuff
+	if (attacker == pc)
+	{
+		//Clear screen?
+		if (!attacker.hasStatusEffect("Multiple Shots") && !attacker.hasStatusEffect("Mimbrane Bonus Attack") && !InCollection(0,specials)) clearOutput();
+		//Shoot first bonus! Only procs on the first round of combat from the first "normal" swing.
+		if (attacker.hasPerk("Shoot First") && !attacker.hasStatusEffect("Shot First") && !attacker.hasStatusEffect("Multiple Shots") && attacker.statusEffectv1("Round") <= 1 && !InCollection(1,specials) && !InCollection(3,specials)) {
+			output("<b>Shot first!</b>\n");
+			attacker.createStatusEffect("Shot First");
+			rangedAttack(pc,target,[0,2,3]);
+			attacker.removeStatusEffect("Shot First");
+		}
+	}
+	//Attack prevented by disarm
+	if(attacker.hasStatusEffect("Disarmed")) {
+		if(attacker == pc) output("You try to attack until you remember you got disarmed!");
+		else output(attacker.capitalA + attacker.short + " scrabbles about, trying to find " + attacker.mfn("his","her","its") + " missing weapon.");
+	}
+	//Attack prevented by gunlock
+	else if(attacker.hasStatusEffect("Gunlock")) {
+		if(attacker == pc) output("Your " + attacker.rangedWeapon.longName + " is currently disabled and unable to be used.");
+		else output(attacker.capitalA + attacker.short + " fiddles fruitlessly with " + attacker.mfn("his","her","its") + " disabled weapon.");
+	}
+	//Attack missed!	
+	else if(rangedCombatMiss(attacker,target)) {
+		if(target.customDodge == "") {
+			if (attacker == pc) 
+			{
+				output("You " + pc.rangedWeapon.attackVerb + " at " + target.a + target.short + " with your " + pc.rangedWeapon.longName + ", but just can't connect.");
+				concentratedFire(false);
+			}
+			else output("You manage to avoid " + attacker.a + possessive(attacker.short) + " " + attacker.rangedWeapon.attackNoun + ".");
+		}
+		else output(target.customDodge)
+	}
+	//Blind prevents normal dodginess & makes your attacks miss 75% of the time.
+	//Extra miss for blind
+	else if((attacker.hasStatusEffect("Blind") || attacker.hasStatusEffect("Smoke Grenade")) && rand(4) > 0) {
+		if(attacker == pc) 
+		{
+			output("None of your blind-fired shots manage to connect.");
+			concentratedFire(false);
+		}
+		else output(attacker.capitalA + possessive(attacker.short) + " blinded shots fail to connect!");
+	}
+	//Additional Miss chances for if target isn't stunned and this is a special flurry attack (special == 1)
+	else if (InCollection(1,specials) && !attacker.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_EFFECT_FLURRYBONUS) && rand(100) <= 45 && !target.isImmobilized())
+	{
+		if(target.customDodge == "") {
+			if(attacker == pc) 
+			{
+				output("You " + pc.rangedWeapon.attackVerb + " at " + target.a + target.short + " with your " + pc.rangedWeapon.longName + ", but just can't connect.");
+				concentratedFire(false);
+			}
+			else output("You manage to avoid " + attacker.a + possessive(attacker.short) + " " + attacker.rangedWeapon.attackNoun + ".");
+		}
+		else output(target.customDodge);
+	}
+	//Celise autoblocks
+	else if(target.short == "Celise") {
+		output("Celise takes the hit, the wound instantly closing in with fresh, green goop. Her surface remains perfectly smooth and unmarred afterwards.");
+	}
+	//Attack connected!
+	else {
+		if(attacker == pc) output("You land a hit on " + target.a + target.short + " with your " + pc.rangedWeapon.longName + "!");
+		else if(attacker.plural) output(attacker.capitalA + attacker.short + " connect with their " + plural(attacker.rangedWeapon.longName) + "!");
+		else output(attacker.capitalA + attacker.short + " connects with " + attacker.mfn("his", "her", "its") + " " + attacker.rangedWeapon.longName + "!");
+		
+		var damage:TypeCollection = attacker.rangedDamage();
+ 		damageRand(damage, 15);
+		if (attacker.rangedWeapon is Goovolver)
+		{
+			applyDamage(damage, attacker, target, "goovolver");
+		}
+		else
+		{
+			applyDamage(damage, attacker, target, "ranged");
+		}		
+	}
+	//Do multiple attacks if more are queued (does not stack with special!)
+	if(attacker.hasPerk("Multiple Shots") && !InCollection(1,specials) && !InCollection(3,specials)) {
+		//Initial setup
+		if (!attacker.hasStatusEffect("Multiple Shots")) attacker.createStatusEffect("Multiple Shots",attacker.perkv1("Multiple Shots"),0,0,0,true,"","",true,0);
+		//Count out the extra attacks, one strike at a time.
+		while(attacker.hasStatusEffect("Multiple Shots") > 0)
+		{
+			attacker.addStatusValue("Multiple Shots",1,-1);
+			output("\n");
+			rangedAttack(attacker,target,[2,3]);
+			//Did the last attack just go off? Purge the temp stats
+			if(attacker.statusEffectv1("Multiple Shots") <= 0) attacker.removeStatusEffect("Multiple Shots");
+		}
+	}
+	if(attacker == chars["PC"]) output("\n");
+	//If combat process isn't turned off, do it!
+	if(!InCollection(2,specials)) processCombat();
+}
+/*OLD RANGED ATTACK! REPLACED WITH NEW HOTNESS!
 //Special 1: Flurry attack - high miss chance.
 //Special 2: Flurry attack with no new screen display.
 public function rangedAttack(attacker:Creature, target:Creature, noProcess:Boolean = false, special:int = 0):void 
@@ -1587,7 +1691,7 @@ public function rangedAttack(attacker:Creature, target:Creature, noProcess:Boole
 	}
 	if(attacker == chars["PC"]) output("\n");
 	if(!noProcess) processCombat();
-}
+}*/
 
 public function droneAttack(target:Creature):void {
 	if (!pc.hasCombatDrone()) return;
@@ -3723,9 +3827,9 @@ public function paralyzingShock(target:Creature):void {
 public function volley(target:Creature):void {
 	pc.energy(-20);
 	//Do normal attacks
-	playerRangedAttacksNoProcess(target);
+	rangedAttack(pc,target,[2]);
 	//Do the bonus flurry shot!
-	rangedAttack(pc,target,true,2);
+	rangedAttack(pc,target,[1,2]);
 	//Chance of bliiiiiiiind
 	if(pc.aim()/2 + rand(20) + 1 >= target.reflexes()/2 + 10 && !target.hasStatusEffect("Blind") && pc.hasRangedEnergyWeapon()) {
 		if(target.plural) output("<b>" + target.capitalA + target.short + " are blinded by your " + possessive(pc.rangedWeapon.longName) + " flashes.</b>\n");
@@ -4224,10 +4328,10 @@ public function struggledStimulant():void
 public function rapidFire(target:Creature):void {
 	pc.energy(-20);
 	//Do normal attacks
-	rangedAttack(pc,target,true);
+	rangedAttack(pc,target,[2]);
 	//Do the bonus flurry shots!
-	rangedAttack(pc,target,true,2);
-	rangedAttack(pc,target,true,2);
+	rangedAttack(pc,target,[1,2]);
+	rangedAttack(pc,target,[1,2]);
 	processCombat();
 }
 

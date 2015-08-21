@@ -720,11 +720,11 @@ public function myrDeserterBarrage(gold:Boolean = false):void
 	else output("The grizzled soldier reloads her combat shotgun with fresh bullets. Pointing it at you, she unloads three consecutive blasts.");
 	output("\n");
 	//[Miss]: Her attack falls far short of hitting you. Instead, {Red: her bullets whiz past/Gold:the buckshot whizzes past} harmlessly.
-	rangedAttack(foes[0],pc,true,1);
+	rangedAttack(foes[0],pc,[1,2]);
 	output("\n");
-	rangedAttack(foes[0],pc,true,1);
+	rangedAttack(foes[0],pc,[1,2]);
 	output("\n");
-	rangedAttack(foes[0],pc,true,1);
+	rangedAttack(foes[0],pc,[1,2]);
 	processCombat();
 }
 

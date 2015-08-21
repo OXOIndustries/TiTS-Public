@@ -213,7 +213,7 @@ public function betaNyreaAI():void
 
 public function nyreaAlphaUseGun():void
 {
-	rangedAttack(foes[0], pc, true);
+	rangedAttack(foes[0], pc, [2]);
 }
 
 public function nyreaSpearThrust():void

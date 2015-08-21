@@ -197,7 +197,7 @@ public function sx1PirateGroupAI():void
 
 public function sx1GroupRangedAttack():void
 {
-	rangedAttack(foes[0], pc, true);
+	rangedAttack(foes[0], pc, [2]);
 }
 
 public function sx1SaendraAI():Boolean
