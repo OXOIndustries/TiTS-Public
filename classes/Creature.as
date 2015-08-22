@@ -9510,7 +9510,7 @@
 				else if (descript != "gooey ") choices.push("goo-dick","goo-cock");
 				noun += choices[rand(choices.length)];
 			}
-			else if (type == GLOBAL.TYPE_PLANT) {
+			else if (type == GLOBAL.TYPE_VENUSPITCHER) {
 				if (!simple) {
 					choices = ["floral","plant"];
 					descript += choices[rand(choices.length)] + " ";

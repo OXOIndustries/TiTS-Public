@@ -274,25 +274,9 @@ public function bessCumFlavor():String
 	{
 		case GLOBAL.FLUID_TYPE_CUM: return "normal";
 		case GLOBAL.FLUID_TYPE_CHOCOLATE_MILK: return "chocolate";
-		case GLOBAL.FLUID_TYPE_CANDY: return "candy";
-		case GLOBAL.FLUID_TYPE_COFFEE: return "coffee";
 		case GLOBAL.FLUID_TYPE_VANILLA: return "vanilla";
 		case GLOBAL.FLUID_TYPE_STRAWBERRY_MILK: return "strawberry";
-		case GLOBAL.FLUID_TYPE_CARAMEL: return "caramel";
-		case GLOBAL.FLUID_TYPE_BANANA: return "banana";
-		case GLOBAL.FLUID_TYPE_COCONUT: return "coconut";
-		case GLOBAL.FLUID_TYPE_MAPLESYRUP: return "maple syrup";
-		case GLOBAL.FLUID_TYPE_CHERRY: return "cherry";
-		case GLOBAL.FLUID_TYPE_CHOCVANILLA: return "choc-vanilla";
-		case GLOBAL.FLUID_TYPE_WHISKY: return "whisky";
 		case GLOBAL.FLUID_TYPE_HONEY: return "honey";
-		case GLOBAL.FLUID_TYPE_RUM: return "rum";
-		case GLOBAL.FLUID_TYPE_VODKA: return "vodka";
-		case GLOBAL.FLUID_TYPE_BEER: return "beer";
-		case GLOBAL.FLUID_TYPE_ORANGE: return "orange";
-		case GLOBAL.FLUID_TYPE_BLUEBERRY: return "blueberry";
-		case GLOBAL.FLUID_TYPE_RASPBERRY: return "raspberry";
-		case GLOBAL.FLUID_TYPE_LIME: return "lime";
 		default: return "normal";
 	}
 }
@@ -303,25 +287,8 @@ public function bessGirlCumFlavor():String
 	{
 		case GLOBAL.FLUID_TYPE_GIRLCUM: return "normal";
 		case GLOBAL.FLUID_TYPE_CHOCOLATE_MILK: return "chocolate";
-		case GLOBAL.FLUID_TYPE_CANDY: return "candy";
-		case GLOBAL.FLUID_TYPE_COFFEE: return "coffee";
 		case GLOBAL.FLUID_TYPE_VANILLA: return "vanilla";
 		case GLOBAL.FLUID_TYPE_STRAWBERRY_MILK: return "strawberry";
-		case GLOBAL.FLUID_TYPE_CARAMEL: return "caramel";
-		case GLOBAL.FLUID_TYPE_BANANA: return "banana";
-		case GLOBAL.FLUID_TYPE_COCONUT: return "coconut";
-		case GLOBAL.FLUID_TYPE_MAPLESYRUP: return "maple syrup";
-		case GLOBAL.FLUID_TYPE_CHERRY: return "cherry";
-		case GLOBAL.FLUID_TYPE_CHOCVANILLA: return "choc-vanilla";
-		case GLOBAL.FLUID_TYPE_WHISKY: return "whisky";
-		case GLOBAL.FLUID_TYPE_HONEY: return "honey";
-		case GLOBAL.FLUID_TYPE_RUM: return "rum";
-		case GLOBAL.FLUID_TYPE_VODKA: return "vodka";
-		case GLOBAL.FLUID_TYPE_BEER: return "beer";
-		case GLOBAL.FLUID_TYPE_ORANGE: return "orange";
-		case GLOBAL.FLUID_TYPE_BLUEBERRY: return "blueberry";
-		case GLOBAL.FLUID_TYPE_RASPBERRY: return "raspberry";
-		case GLOBAL.FLUID_TYPE_LIME: return "lime";
 		default: return "normal";
 	}
 }
@@ -3027,8 +2994,8 @@ public function talkToBessAboutCumFlavour(asCock:Boolean):void
 
 	output("<i>“Flavoring is a cinch. Any particular taste you’d fancy? I could give you test tastings, if you want.”</i> [bess.name] offers.");
 
-	var opts:Array = ["normal", "chocolate", "candy", "coffee", "vanilla", "strawberry", "caramel", "banana", "coconut", "maple syrup", "cherry", "choc-vanilla", "whisky", "honey", "rum", "vodka", "beer", "orange", "blueberry", "raspberry", "lime"];
-	var vals:Array = [0, GLOBAL.FLUID_TYPE_CHOCOLATE_MILK, GLOBAL.FLUID_TYPE_CANDY, GLOBAL.FLUID_TYPE_COFFEE, GLOBAL.FLUID_TYPE_VANILLA, GLOBAL.FLUID_TYPE_STRAWBERRY_MILK, GLOBAL.FLUID_TYPE_CARAMEL, GLOBAL.FLUID_TYPE_BANANA, GLOBAL.FLUID_TYPE_COCONUT, GLOBAL.FLUID_TYPE_MAPLESYRUP, GLOBAL.FLUID_TYPE_CHERRY, GLOBAL.FLUID_TYPE_CHOCVANILLA, GLOBAL.FLUID_TYPE_WHISKY, GLOBAL.FLUID_TYPE_HONEY, GLOBAL.FLUID_TYPE_RUM, GLOBAL.FLUID_TYPE_RUM, GLOBAL.FLUID_TYPE_VODKA, GLOBAL.FLUID_TYPE_BEER, GLOBAL.FLUID_TYPE_ORANGE, GLOBAL.FLUID_TYPE_BLUEBERRY, GLOBAL.FLUID_TYPE_RASPBERRY, GLOBAL.FLUID_TYPE_LIME];
+	var opts:Array = ["normal", "chocolate", "vanilla", "strawberry", "honey"];
+	var vals:Array = [0, GLOBAL.FLUID_TYPE_CHOCOLATE_MILK, GLOBAL.FLUID_TYPE_VANILLA, GLOBAL.FLUID_TYPE_STRAWBERRY_MILK, GLOBAL.FLUID_TYPE_HONEY];
 
 	clearMenu();
 
