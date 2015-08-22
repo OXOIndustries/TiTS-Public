@@ -36,7 +36,7 @@
 			
 			this.meleeWeapon = new Fists();
 			
-			this.rangedWeapon.longName = "rocket launchers";
+			this.rangedWeapon.longName = "rocket launcher";
 			this.rangedWeapon.attack = 0;
 			rangedWeapon.baseDamage.kinetic.damageValue = 1;
 			rangedWeapon.baseDamage.burning.damageValue = 1;
