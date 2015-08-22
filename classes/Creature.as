@@ -9509,7 +9509,7 @@
 				if (tail && rand(2) == 0) noun += "tail-";
 				else if (descript != "gooey ") choices.push("goo-dick","goo-cock");
 				noun += choices[rand(choices.length)];
-			}/*
+			}
 			else if (type == GLOBAL.TYPE_PLANT) {
 				if (!simple) {
 					choices = ["floral","plant"];
@@ -9519,7 +9519,17 @@
 				if (tail && rand(2) == 0) noun += "tail-";
 				else if (descript != "plant ") choices.push("plant-dick","plant-cock","vine-dick","vine-cock");
 				noun += choices[rand(choices.length)];
-			}*/
+			}
+			else if (type == GLOBAL.TYPE_SAURIAN)
+			{
+				if (!simple)
+				{
+					choices = ["dinosaur", "saurian"];
+					descript += choices[rand(choices.length)] + " ";
+				}
+				choices = ["dick", "shaft", "prick", "cock", "tool", "member"];
+				noun += choices[rand(choices.length)];
+			}
 			/* To return if Third writes it!
 			else if(type == 10) {
 				rando = this.rand(12);
@@ -10202,6 +10212,8 @@
 				collection = ["sweet","fruity"];
 			} else if(arg == GLOBAL.FLUID_TYPE_LEITHAN_MILK) {
 				collection = ["tangy","tangy","tangy","tangy","tangy","sweet","sweet","sweet","intoxicating","intoxicating"];
+			} else if (arg == GLOBAL.FLUID_TYPE_VANILLA) {
+				collection = ["tangy", "tangy", "tangy", "sweet", "sweet", "sweet", "woody", "smoky"];
 			}
 			
 			else collection = ["bland"];
@@ -10212,7 +10224,7 @@
 			var collection:Array = [];
 			
 			//CUM & MILK TYPES
-			if (arg == GLOBAL.FLUID_TYPE_MILK || arg == GLOBAL.FLUID_TYPE_CHOCOLATE_MILK || arg == GLOBAL.FLUID_TYPE_STRAWBERRY_MILK) {
+			if (arg == GLOBAL.FLUID_TYPE_MILK || arg == GLOBAL.FLUID_TYPE_CHOCOLATE_MILK || arg == GLOBAL.FLUID_TYPE_STRAWBERRY_MILK || GLOBAL.FLUID_TYPE_VANILLA) {
 				collection = ["creamy"];
 			} else if(arg == GLOBAL.FLUID_TYPE_CUM || arg == GLOBAL.FLUID_TYPE_SYDIAN_CUM) {
 				collection = ["thick","thick","thick","slick","creamy"];
@@ -10240,7 +10252,7 @@
 			var collection:Array = [];
 			
 			//CUM & MILK TYPES
-			if (arg == GLOBAL.FLUID_TYPE_MILK || arg == GLOBAL.FLUID_TYPE_CUM) {
+			if (arg == GLOBAL.FLUID_TYPE_MILK || arg == GLOBAL.FLUID_TYPE_CUM || arg == GLOBAL.FLUID_TYPE_VANILLA) {
 				collection = ["white","white","white","white","white","alabaster","alabaster","alabaster","ivory","ivory"];
 			} else if (arg == GLOBAL.FLUID_TYPE_HONEY || arg == GLOBAL.FLUID_TYPE_NECTAR) {
 				collection = ["amber","amber","amber","amber","amber","yellow","yellow","yellow","gold","tawny"];
@@ -10288,7 +10300,7 @@
 				collection = ["girl-cum"];
 			} else if (arg == GLOBAL.FLUID_TYPE_CUMSAP) {
 				collection = ["cum-sap","cum-sap","botanical spunk","floral jism"];
-			} else if(arg == GLOBAL.FLUID_TYPE_CHOCOLATE_MILK || arg == GLOBAL.FLUID_TYPE_STRAWBERRY_MILK) {
+			} else if(arg == GLOBAL.FLUID_TYPE_CHOCOLATE_MILK || arg == GLOBAL.FLUID_TYPE_STRAWBERRY_MILK || arg == GLOBAL.FLUID_TYPE_VANILLA) {
 				collection = ["milk"];
 			} else if (arg == GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK || arg == GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK) {
 				collection = ["milk"];
