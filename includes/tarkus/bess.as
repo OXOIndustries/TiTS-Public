@@ -1,4 +1,7 @@
-﻿/* TODOS:
+﻿import classes.Characters.Bess;
+import classes.Characters.PlayerCharacter;
+import classes.ItemSlotClass;
+/* TODOS:
 make sure sleep events etc are wired up
 set flag["BESS_SLEEPWITH_DOMORNING"] to something after a nighttime sleep event
 Wrap all the ternaries in the sex scenes because fuck debugging them ever
@@ -50,6 +53,12 @@ public function bessCrewRole():String
 	}
 
 	return "crewmember";
+}
+
+public function bessLoverStatus():String
+{
+	// 9999 maybe convert this to the same system as crew role
+	return flags["BESS_LOVER_STATUS"];
 }
 
 public function bessGlasses():Boolean
@@ -439,7 +448,8 @@ public function bessTopStripScene():void
 
 			// E.g. if (bess.armor.shortName == "ShortKimono" || bess.armor.shortName == "Yukata" || bess.armor.shortName == "FemaleKimono" || bess.armor.shortName == "ChinaDress" || bess.armor.shortName == bess.armor.shortName == "NinjaOutfit" || bess.armor.shortName == "Yukata" || bess.armor.shortName == "NurseOutfit" || || bess.armor.shortName == "CheerleaderUniform" ||bess.armor.shortName == "GothLolita" || bess.armor.shortName == "LittleBlackDress")
 
-			if (IsOneOf(bess.armor, ShortKimono, Yukata, FemaleKimono, ChinaDress, NinjaOutfit, CheerleaderUniform, GothLolita, LittleBlackDress))
+			// if (IsOneOf(bess.armor, ShortKimono, Yukata, FemaleKimono, ChinaDress, NinjaOutfit, CheerleaderUniform, GothLolita, LittleBlackDress))
+			if (IsOneOf(bess.armor, CheerleaderUniform, LittleBlackDress))
 			{
 				output("\n\n[bess.name] reaches up to [bess.hisHer] neck and undoes [bess.hisHer] [bess.armor], sliding it down [bess.hisHer] body");
 				if (bess.isFeminine()) output(" with a cute little wiggle");
@@ -474,11 +484,16 @@ public function bessBottomStripScene():void
 {
 	if (!bess.isNude())
 	{
+		//if (IsOneOf(bess.armor, 
+				//MaidOutfit, SchoolgirlOutfit, Battlegown, ShortKimono, Yukata, 
+				//Kimono, ChinaDress, LibrarianOutfit, TopNSkirt, SleepShirt,
+				//BattleMaidOutfit, NinjaOutfit, NurseOutfit, Seifuku, FemaleDoctorOutfit, 
+				//CheerleaderUniform, WaitressUniform, GothLolitaOutfit, TankNSkirt, LittleBlackDress))
 		if (IsOneOf(bess.armor, 
-				MaidOutfit, SchoolgirlOutfit, Battlegown, ShortKimono, Yukata, 
-				Kimono, ChinaDress, LibrarianOutfit, TopNSkirt, SleepShirt,
-				BattleMaidOutfit, NinjaOutfit, NurseOutfit, Seifuku, FemaleDoctorOutfit, 
-				CheerleaderUniform, WaitressUniform, GothLolitaOutfit, TankNSkirt, LittleBlackDress))
+				MaidOutfit, SchoolgirlOutfit, 
+				LibrarianOutfit, TopNSkirt,
+				NurseOutfit, FemaleDoctorOutfit, 
+				CheerleaderUniform, WaitressUniform, LittleBlackDress))
 		{
 			output("\n\n[bess.name] reaches down and grabs the hem of [bess.hisHer] [bess.armor]. [bess.HeShe] draws it up to [bess.hisHer] waist with a little wiggle - you can clearly see [bess.hisHer]");
 			if (bess.lowerUndergarment is EmptySlot) output(" [bess.groin]");
@@ -606,17 +621,19 @@ public function setBessSex(bessesStartingSexHahaThatsNotHowYouWriteAPossessive:S
 {
 	clearOutput();
 	output("On closer examination, it definitely looks like a " + bessesStartingSexHahaThatsNotHowYouWriteAPossessive + " foot. The real question though is if you want to dig this thing up and see what it is...?");
+	
 	if(bessesStartingSexHahaThatsNotHowYouWriteAPossessive == "female")
 	{
-		bess.configureFemale();
+		bess.configFemale();
 	}
 	else
 	{
-		bess.configureMale();
+		bess.configMale();
 	}
+	
 	//[ Dig It Up ] [ Leave It ]
 	clearMenu();
-	addButton(0,"Dig It Up",digUpBessBenWhoCares);
+	addButton(0,"Dig It Up",digUpAFukkinSexbat);
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -672,7 +689,25 @@ public function digUpAFukkinSexbat():void
 	processTime(7);
 	clearMenu();
 	addButton(0,"TakeToShip",takeBessToZeShip);
-	addButton(1,"Leave Here",leaveBessHereYouCunt);
+	addButton(1,"Leave Here",fuckinLeaveTheBessBot); // 9999 actually leave message, there's nothing for this in the doc
+}
+
+public function fuckinLeaveTheBessBot():void
+{
+	clearOutput();
+	author("Gedan");
+	
+	output("You're about to turn away and leave when something remarkably... odd happens.");
+	output("\n\nIt takes a second to realise what the odd humming noise that's been sufusing the air actually is; a figure is approaching from the north, screaming at the top of his voice from the looks of things. He's closing distance quickly, but he's still far enough away for the sound to be mostly unintelligible.");
+	output("\n\nYou prepare for some kind of face off as he gets closer and closer- but he's not looking at you. He's focused entirely on the foot sticking out of the ground.");
+	output("\n\n<i><b>“I FUCK, I CUM, I FUCK AGAIN,”</b></i> is all he screams, over and over. It's only now that he's close enough to understand that you notice what <i>else</i> he's doing. His cock is flopping all over the place, hanging freely through the zipper of his leather pants. And he has a can in his hand- he's spraypainting his cock silver.");
+	output("\n\nYou're just standing there, flabbergasted, as he runs up to the foot sticking up out of the ground. He turns to you, and you flinch back instinctively, expecting a fight. Instead, all he does is scream <i><b>“WITNESS MEEEE,”</b></i> right at you. You don't respond. You don't even react. The crazed lunatic just turns back to the foot and yanks it from the ground, an entire robot chassis coming with it.");
+	output("\n\nHe hefts the thing over his shoulder and takes off running back in the direction he came from- his chant resuming in short order. <i><b>“I FUCK, I CUM, I FUCK AGAIN! I FUCK, I CUM, I FUCK AGAIN!”</b></i>");
+	output("\n\nA little shellshocked, it takes you a while to actually get back moving. Weird as fuck.");
+	output("\n\nA minute or so later there's an impressive explosion painting the sky a very odd shade of neon blue- coming from the direction the lunatic took off running....");
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
 
 //Taking him/her to the Ship
@@ -765,7 +800,7 @@ public function sellOfBessDatWhore():void
 	clearOutput();
 	output("You decide you’d rather sell [bess.himHer] on the black market for some quick credits than keep [bess.himHer]. After making a discreet listing on the extranet, you eventually find a willing buyer for your Bess-13 unit.");
 	output("\n\nThe handoff takes place in a secluded section of a nearby planet, barren enough to land the ship and avoid any contact with any locals. When you get to the meeting place, another starship is already waiting for you. ");
-	output("\n\nThe hull of the spacecraft has clearly seen better days; either the owner is blowing more money on your " + pc.fm("Bess","Ben") + " Unit than on their starship, or they actually like it looking like a flying garbage heap.");
+	output("\n\nThe hull of the spacecraft has clearly seen better days; either the owner is blowing more money on your " + bess.mf("Ben", "Bess") + " Unit than on their starship, or they actually like it looking like a flying garbage heap.");
 	output("\n\nThe owner of the ship is just as pleasant to look at as his starship is. Coming out to meet you and wringing their hands all the while, he hardly makes eye contact. He’s far too busy ogling the merchandise.");
 	output("\n\n<i>“Nice, nice. Hard to get one of these for anything less than mega-creds. What did you do, steal [bess.himHer] from a hospital? Don’t answer that, I don’t want to know.”</i> The buyer gives you a near-toothless grin.");
 	output("\n\nCredits are exchanged, no names, and soon you’re 10,000 credits richer. It’s sub-light robbery - [bess.heShe]’s worth <i>at least</i> an extra zero - but there are no questions asked and you’re wealthier than before you found it.");
@@ -784,7 +819,7 @@ public function handBessOverToAuthorities():void
 {
 	clearOutput();
 	output("Deciding that the sex-bot doesn’t belong to you and you should probably hand [bess.himHer] over to authorities, you ring and arrange for [bess.himHer] to be picked up. You’re surprised a U.G.C. official is actually going out of their way to Tarkus to pick up a sex bot.");
-	output("\n\nWhen the official shows up in the Novahome docking bay, you find out why. Apparently there’s a standing order for all " + bess.fm("Bess-13","Ben-14") + " Unit AIs put out by JoyCo. It seems you’re entitled to a bounty for bringing the <i>“dangerous sex bot”</i> in.");
+	output("\n\nWhen the official shows up in the Novahome docking bay, you find out why. Apparently there’s a standing order for all " + bess.mf("Ben-14", "Bess-13") + " Unit AIs put out by JoyCo. It seems you’re entitled to a bounty for bringing the <i>“dangerous sex bot”</i> in.");
 	output("\n\nLooking at [bess.hisHer] confused eyes as you hand [bess.himHer] over, it’s hard to imagine [bess.heShe]’s a danger. Still, it seems you dodged a bullet by turning [bess.himHer] in. Not only that, apparently owning a AI version of the units is considered a criminal offense.");
 	output("\n\nThe U.G.C. official leaves with the " + bess.mf("Ben-14", "Bess-13") + " unit, and soon after you are wired 2,500 credits by JoyCo. Seems things wrapped up pretty nicely.");
 	pc.credits += 2500;
@@ -820,7 +855,7 @@ public function dumpTheBessBot():void
 	output("\n\nThings are nice and quiet after that.");
 	//Appear back in Spaceship, Story path ended. +5 to Asshat Score.
 	processTime(10);
-	pc.addAss(10);
+	pc.addHard(10);
 	currentLocation = shipLocation;
 	flags["BESS_DISABLED"] = 1;
 	flags["BESS_DUMPED_INTO_SPAAAAAAACE"] = 1;
@@ -988,7 +1023,7 @@ public function approachFollowerBess():void
 	{
 		if(bessAffection() >= 90)
 		{
-			output("[bess.name] grins as soon as [bess.heShe] sees you, " + bess.fm("leaping into your arms","scooping you into his arms") + " and giving you a long, sensual kiss. </i>\"... Mmmm, "+ bessPCName() +"! Have I told you how much I love you today? I'll tell you once more, just in case you forgot.\"<i> [bess.HisHer] [bess.eyes] are gleaming");
+			output("[bess.name] grins as soon as [bess.heShe] sees you, " + bess.mf("scooping you into his arms", "leaping into your arms") + " and giving you a long, sensual kiss. </i>\"... Mmmm, "+ bessPCName() +"! Have I told you how much I love you today? I'll tell you once more, just in case you forgot.\"<i> [bess.HisHer] [bess.eyes] are gleaming");
 			if (bessGlasses()) output(" through [bess.hisHer] glasses");
 			output(" with happiness.");
 		}
@@ -1006,13 +1041,13 @@ public function approachFollowerBess():void
 		}
 		else if(bessAffection() >= 30)
 		{
-			output("[bess.name] wraps [bess.hisHer] arms around you, looking very serious, <i>“... "+ bessPCName() +"... have I done something wrong? It feels like you're drifting further away from me, you never visit anymore... have I done something wrong?”</i> [bess.HisHer] eyes " + bess.fm("are wavering","look pained"));
+			output("[bess.name] wraps [bess.hisHer] arms around you, looking very serious, <i>“... "+ bessPCName() +"... have I done something wrong? It feels like you're drifting further away from me, you never visit anymore... have I done something wrong?”</i> [bess.HisHer] eyes " + bess.mf("look pained", "are wavering"));
 			if(bessGlasses()) output(" behind [bess.hisHer] glasses");
 			output(".");
 		}
 		else
 		{
-			output("[bess.name] looks at you " + bess.fm("meekly","in distress") + ", [bess.hisHer] expression completely downtrodden. <i>“... Oh, you're here "+ bessPCName() +"... do... do you still love me? You're gone all the time, I never see you anymore...”</i> [bess.HisHer] eyes " + bess.fm("are tearing up","look truly agonized"));
+			output("[bess.name] looks at you " + bess.mf("in distress", "meekly") + ", [bess.hisHer] expression completely downtrodden. <i>“... Oh, you're here "+ bessPCName() +"... do... do you still love me? You're gone all the time, I never see you anymore...”</i> [bess.HisHer] eyes " + bess.mf("look truly agonized", "are tearing up"));
 			if(bessGlasses()) output(" behind [bess.hisHer] glasses");
 			output("."); 
 		}
@@ -1021,19 +1056,19 @@ public function approachFollowerBess():void
 	{
 		if (bessAffection() >= 50)
 		{
-			output("[bess.name] runs " + bess.fm("at you","up to you") + ",giving you a massive hug. <i>“... "+ bessPCName() +"! How goes my best friend in the galaxy? Great, I hope!”</i> [bess.heShe] exclaims " + bess.fm("excitedly","brightly"));
+			output("[bess.name] runs " + bess.mf("at you", "up to you") + ",giving you a massive hug. <i>“... "+ bessPCName() +"! How goes my best friend in the galaxy? Great, I hope!”</i> [bess.heShe] exclaims " + bess.mf("brightly", "excitedly"));
 			if(bessGlasses()) output(", eyes shining behind [bess.hisHer] glasses");
 			output(".");
 		}
 		else if(bessAffection() >= 25)
 		{
-			output("[bess.name] runs " + bess.fm("at you","up to you") + ", giving you a massive hug. <i>“... "+ bessPCName() +"! How goes my best friend in the galaxy? You've been gone </i>so long<i>, tell me what you've been doing!”</i> [bess.heShe] exclaims cheerily");
+			output("[bess.name] runs " + bess.mf("at you","up to you") + ", giving you a massive hug. <i>“... "+ bessPCName() +"! How goes my best friend in the galaxy? You've been gone </i>so long<i>, tell me what you've been doing!”</i> [bess.heShe] exclaims cheerily");
 			if(bessGlasses()) output(", eyes shining behind [bess.hisHer] glasses");
 			output(".");
 		}
 		else
 		{
-			output("[bess.name] walks up to you, looking a little downtrodden. <i>“... Hey "+ bessPCName() +", we're still friends right? I never see you anymore... did I do something wrong?”</i> [bess.HisHer] eyes are " + bess.fm("visibly wavering","look a bit strained"));
+			output("[bess.name] walks up to you, looking a little downtrodden. <i>“... Hey "+ bessPCName() +", we're still friends right? I never see you anymore... did I do something wrong?”</i> [bess.HisHer] eyes are " + bess.mf("look a bit strained", "visibly wavering"));
 			if(bessGlasses()) output(" behind [bess.hisHer] glasses");
 			output(".");
 		}
@@ -1078,9 +1113,9 @@ public function approachFollowerBess():void
 		}
 		output(".");
 	}
-	if(bess.meleeWeapon is bessKatana) output(" At [bess.hisHer] right side is a katana, secure in its glazed sheath.");
+	if(bessKatana()) output(" At [bess.hisHer] right side is a katana, secure in its glazed sheath.");
 	//if (bess.armor = Top&Skirt, Sleepshirt, Maid, Nurse, Schoolgirl, GothLolita, TankMini) 
-	if(bess.armor != null && (bess.armor is TopNSkirt || bess.armor is SleepShirt || bess.armor is Maid || bess.armor is Nurse || bess.armor is Schoolgirl || bess.armor is GothLolita || bess.armor is TankMini))
+	if(bess.armor != null && (bess.armor is TopNSkirt || bess.armor is MaidOutfit || bess.armor is NurseOutfit || bess.armor is SchoolgirlOutfit))
 	{
 		output("\n\nEvery time the hem of [bess.hisHer] outfit rides up, you get a good look at [bess.hisHer] ");
 		if(bess.lowerUndergarment.shortName != "") output("[bess.underGarment].");
@@ -1180,14 +1215,14 @@ public function bessAppearance():void
 	clearOutput();
 	bessHeader();
 
-	output("As you look at [bess.name], [bess.heShe] tries to look away, pretending not to notice that you're staring at [bess.himHer]. " + bess.fm("Her cheeks flush","He politely coughs") + " as you look [bess.himHer] over from head to toe.");
+	output("As you look at [bess.name], [bess.heShe] tries to look away, pretending not to notice that you're staring at [bess.himHer]. " + bess.mf("He politely coughs", "Her cheeks flush") + " as you look [bess.himHer] over from head to toe.");
 	//Bald True:
 	if(!bess.hasHair())
 	{
 		output("\n\n[bess.name]’s head is hairless. All the lines on [bess.hisHer] scalp, usually hidden by artificial locks, are now clearly exposed.");
 	}
 	else output("\n\nThe synthetic's [bess.hairColor] " + num2Text(Math.round(bess.hairLength*10)/10) + " inch hair is in a "+ bessHairStyle() +".");
-	output(". [bess.HisHer] [bess.eyeColor] eyes, framed by " + bess.fm("thick black lashes","brooding brows"));
+	output(". [bess.HisHer] [bess.eyeColor] eyes, framed by " + bess.mf("brooding brows", "thick black lashes"));
 	if (bessGlasses()) output(" as well as the glasses [bess.heShe] is currently wearing");
 	output(", are even more detailed and faceted than those of a human.");
 	if (bess.horns != 0) output(" On top of [bess.hisHer] head are [bess.horns].");
@@ -1209,7 +1244,7 @@ public function bessAppearance():void
 	if(bess.biggestTitSize() < 1) output("a flat chest");
 	else output(bess.breastSize(bess.biggestTitSize()) + " breasts capped with [bess.nipples]. Further down, your eyes are drawn to [bess.hisHer] [bess.hipsAdjective] [bess.hipsNoun] and [bess.assAdjective] [bess.assNoun].");
 
-	if (bess.hasPussy())
+	if (bess.hasVagina())
 	{
 		output("\n\n[bess.name]'s mound is completely hairless and utterly smooth. [bess.HisHer] pussy lips are rather plump and cushony, designed to squeeze and pad a cock perfectly - not to mention extremely tasty.");
 		if (bess.hasCock()) output(" Above [bess.hisHer] synthetic snatch, ");
@@ -1232,7 +1267,7 @@ public function bessAppearance():void
 	output("\n\n[bess.name] currently has a [bess.belly].");
 	if(!bess.isNude()) output(" [bess.HeShe] is currently wearing [pc.gear].");
 	//if (bessKatana = true)
-	if(bess.meleeWeapon is bessKatana) output("\n\nAt [bess.name]’s right side is a well-polished katana, secured safely in a glazed sheath. The sheath is decorated with eastern-style dragons running up its length, talons stretched out as if to strike. The blade is just as silvery and untarnished as [bess.name] herself.");
+	if(bessKatana()) output("\n\nAt [bess.name]’s right side is a well-polished katana, secured safely in a glazed sheath. The sheath is decorated with eastern-style dragons running up its length, talons stretched out as if to strike. The blade is just as silvery and untarnished as [bess.name] herself.");
 	clearMenu();
 	addButton(0,"Next",approachFollowerBess);
 }
@@ -1294,8 +1329,10 @@ public function bessFunctionsMenu():void
 	addButton(6, "Genitals", talkToBessAboutGenitals, undefined, "Genitals", "Ask [bess.name] to change [bess.hisHer] genitals, such as if [bess.heShe] has a pussy or a cock.");
 	addButton(7, "Cum", talkToBessAboutCum);
 	addButton(8, "Clothing", talkToBessAboutClothes);
-	addButton(10, "JoyCord", talkToBessAboutJoyCord);
-	addButton(11, "TentaPussy", talkToBessAboutTentacunt);
+	
+	// I couldn't find any scenes relating to these... anywhere
+	//addButton(10, "JoyCord", talkToBessAboutJoyCord);
+	//addButton(11, "TentaPussy", talkToBessAboutTentacunt);
 
 	addButton(14, "Back", bessFollowerMenu);
 }
@@ -2239,7 +2276,7 @@ public function bessStartLactation():void
 	{
 		output("\n\nNow that she’s started lactating, [bess.name] turns to you with a lusty look in [bess.hisHer] eyes. <i>“You should sit down, "+ bessPCSexName() +",");
 		if (!pc.isNude()) output(" and take off your clothes");
-		else if (pc.biped()) output(" and spread your legs");
+		else if (pc.isBiped()) output(" and spread your legs");
 		else output(" and prepare yourself");
 		output(".”</i>");
 		if (bessIsSub()) output(" For a change of pace you do as [bess.heShe] requests.");
@@ -2516,7 +2553,7 @@ public function changeBessCurvy(newRating:int, targetRating:uint):void
 		else output(" [bess.pussyNoun]. [bess.name] reaches down and parts [bess.hisHer] puffy lower lips with [bess.hisHer] fingers, flashing [bess.hisHer] moist inner folds at you.");
 		
 		output("\n\nAs it slowly slides inside of [bess.hisHer] silvery");
-		if (targetRating = BESS_CURVE_BUTT || !bess.hasVagina()) output(" pucker");
+		if (targetRating == BESS_CURVE_BUTT || !bess.hasVagina()) output(" pucker");
 		else output(" snatch");
 		if (bess.hasCock()) output(" [bess.hisHer] [bess.cockLight] jerks and spasms with delight. Dollops of pre-cum drool from [bess.hisHer] [bess.cockHeadLight] and drool onto [bess.hisHer] synthetic belly.");
 		else output(" [bess.heShe] lets out a pleasured little moan and arches [bess.hisHer] back. [bess.HeShe] is enjoying every second of [bess.hisHer] pulsing phallus pushing inside [bess.himHer]self and [bess.heShe] isn’t afraid to show it.");
@@ -2832,7 +2869,7 @@ public function setBessCockType(newType:int):void
 	{
 		if (newType == -1)
 		{
-			if (bess.hasCock()) bess.removeCock();
+			if (bess.hasCock()) bess.cocks = [];
 			bess.balls = 0;
 			bess.ballSizeRaw = 0;
 		}
@@ -3072,47 +3109,58 @@ public function talkToBessAboutClothes():void
 	addButton(14, "Back", bessFunctionsMenu);
 }
 
+// this is only really used to handle nudity
+public function bessSetArmorSlot(item:ItemSlotClass):void
+{
+	bess.armor = item;
+}
+
 public function talkToBessAboutOutfits():void
 {
 	clearMenu();
-	addButton(0, "Nude", EmptySlot, "Nude", "Go Nude!"); // 9999 need to target the correct slot somehow
-
+	addButton(0, "Nude", bessSetArmorSlot, EmptySlot, "Nude", "Go Nude!");
 	bessCIW(1, "C.Clothes", ComfortableClothes, "Casual Clothes", "Casual Clothes");
 	bessCIW(2, "P.Jacket", ProtectiveJacket, "Protective Jacket", "Protective Jacket");
 	bessCIW(3, "UGC Uniform", UGCUniform, "UGC Uniform", "UGC Uniform");
+	bessCIW(4, "Top&Skirt", TopNSkirt, "Top & Skirt", "Top & Skirt");
+	
+	bessCIW(5, "BusinessC.", BusinessClothes, "Business Clothes", "Business Clothes");
+	bessCIW(6, "Librarian", LibrarianOutfit, "Librarian Outfit", "Librarian Outfit");
+	bessCIW(7, "LatexBSuit", LatexBodysuit, "Latex Bodysuit", "Latex Bodysuit");
+	bessCIW(8, "Maid", MaidOutfit, "Maid Outfit", "Maid Outfit");
+	bessCIW(9, "Nurse", NurseOutfit, "Nurse Outfit", "Nurse Outfit");
 
-	bessCIW(5, "Top&Skirt", TopNSkirt, "Top & Skirt", "Top & Skirt");
-	bessCIW(6, "BusinessC.", BusinessClothes, "Business Clothes", "Business Clothes");
-	bessCIW(7, "Librarian", LibrarianOutfit, "Librarian Outfit", "Librarian Outfit");
-	bessCIW(8, "LatexBSuit", LatexBodysuit, "Latex Bodysuit", "Latex Bodysuit");
-
-	bessCIW(12, "Maid", MaidOutfit, "Maid Outfit", "Maid Outfit");
-	bessCIW(13, "Nurse", NurseOutfit, "Nurse Outfit", "Nurse Outfit");
-
+	bessCIW(10, "Schoolgirl", SchoolgirlOutfit, "Schoolgirl", "Schoolgirl");
+	bessCIW(11, "Cheerleader", CheerleaderUniform, "Cheerleader Uniform", "CheerleaderUniform");
+	bessCIW(12, "Bunnygirl", BunnyOutfit, "Bunnygirl Outfit", "Bunnygirl Outfit");
+	bessCIW(13, "Military", MilitaryUniform, "Military Uniform", "Military Uniform");
+	
 	addButton(14, "Back", talkToBessAboutClothes);
 
-	bessCIW(18, "Schoolgirl", SchoolgirlOutfit, "Schoolgirl", "Schoolgirl");
-	bessCIW(19, "Cheerleader", CheerleaderUniform, "Cheerleader Uniform", "CheerleaderUniform");
+	bessCIW(15, "Schoolgirl", SchoolgirlOutfit, "Schoolgirl", "Schoolgirl");
+	bessCIW(16, "Cheerleader", CheerleaderUniform, "Cheerleader Uniform", "CheerleaderUniform");
+	bessCIW(17, "Bunnygirl", BunnyOutfit, "Bunnygirl Outfit", "Bunnygirl Outfit");
+	bessCIW(18, "Military", MilitaryUniform, "Military Uniform", "Military Uniform");
+	bessCIW(19, "Pirate", SpacePirateOutfit, "Space Pirate", "Space Pirate");
+	
+	bessCIW(20, "R.Fem Armor", RevealingFemaleArmor, "Revealing Female Armor", "Revealing Female Armor");
+	bessCIW(21, "R.Male Armor", RevealingMaleArmor, "Revealing Male Armor", "Revealing Male Armor");
+	bessCIW(22, "T.Zipsuit", TransparentZipsuit, "Transparent Zipsuit", "Transparent Zipsuit");
+	bessCIW(23, "Butler", ButlerOutfit, "Butler Outfit", "Butler Outfit");
+	bessCIW(24, "M.Doctor", MaleDoctorOutfit, "Male Doctor Outfit", "Male Doctor Outfit");
 
-	bessCIW(21, "Bunnygirl", BunnygirlOutfit, "Bunnygirl Outfit", "Bunnygirl Outfit");
-	bessCIW(23, "Military", MilitaryUniform, "Military Uniform", "Military Uniform");
-	bessCIW(24, "Pirate", SpacePirateOutfit, "Space Pirate", "Space Pirate");
-
+	bessCIW(25, "R.Fem Armor", RevealingFemaleArmor, "Revealing Female Armor", "Revealing Female Armor");
+	bessCIW(26, "R.Male Armor", RevealingMaleArmor, "Revealing Male Armor", "Revealing Male Armor");
+	bessCIW(27, "T.Zipsuit", TransparentZipsuit, "Transparent Zipsuit", "Transparent Zipsuit");
+	bessCIW(28, "Butler", ButlerOutfit, "Butler Outfit", "Butler Outfit");
+	
 	addButton(29, "Back", talkToBessAboutClothes);
 
-	bessCIW(30, "R.Fem Armor", RevealingFemaleArmor, "Revealing Female Armor", "Revealing Female Armor");
-	bessCIW(31, "R.Male Armor", RevealingMaleArmor, "Revealing Male Armor", "Revealing Male Armor");
-	bessCIW(32, "T.Zipsuit", TransparentZipsuit, "Transparent Zipsuit", "Transparent Zipsuit");
-
-	bessCIW(35, "Butler", ButlerOutfit, "Butler Outfit", "Butler Outfit");
-	bessCIW(36, "M.Doctor", MaleDoctorOutfit, "Male Doctor Outfit", "Male Doctor Outfit");
-	bessCIW(37, "F.Doctor", FemaleDoctorOutfit, "Female Doctor Outfit", "Female Doctor Outfit");
-	bessCIW(39, "Schoolboy", SchoolboyOutfit, "Schoolboy Outfit", "Schoolboy Outfit");
-
-	bessCIW(40, "StrapHarness", LeatherStrapHarness, "Leather Strap Harness", "Leather Strap Harness");
-	bessCIW(41, "BlackDress", LittleBlackDress, "Little Black Dress", "Little Black Dress");
-	//addButton(42, "", setBessOutfit, , "", "");
-	//addButton(43, "", setBessOutfit, , "", "");
+	bessCIW(30, "M.Doctor", MaleDoctorOutfit, "Male Doctor Outfit", "Male Doctor Outfit");
+	bessCIW(31, "F.Doctor", FemaleDoctorOutfit, "Female Doctor Outfit", "Female Doctor Outfit");
+	bessCIW(32, "Schoolboy", SchoolboyOutfit, "Schoolboy Outfit", "Schoolboy Outfit");
+	bessCIW(33, "StrapHarness", LeatherStrapHarness, "Leather Strap Harness", "Leather Strap Harness");
+	bessCIW(34, "BlackDress", LittleBlackDress, "Little Black Dress", "Little Black Dress");
 
 	addButton(44, "Back", talkToBessAboutClothes);
 }
@@ -3137,90 +3185,50 @@ public function bessCIW(idx:int, lbl:String, cType:Class, ttH:String, ttB:String
 	}
 }
 
+public function bessSetBra(item:ItemSlotClass):void
+{
+	(bess as Bess).upperUndergarment = item;
+}
+
 public function talkToBessAboutUpperUndergarments():void
 {
 	clearMenu();
 
-	addButton(0, "Nude", setBessOutfit, EmptySlot, "Nude", "Nude");
-	bessCIW(1, "NormalBra", BessNormalBra, "Normal Bra", "Normal Bra");
-	bessCIW(2, "WhiteBra", BessWhiteBra, "White Bra", "White Bra");
-	bessCIW(3, "StripedBra", BessStripedBra, "Striped Bra", "Striped Bra");
-	bessCIW(4, "FrillyBra", BessFrillyBra, "Frilly Bra", "Frilly Bra");
-
-	bessCIW(5, "GirlyBra", BessGirlyBra, "Girly Bra", "Girly Bra");
-	bessCIW(6, "StringTie", BessStringTie, "String Tie Top", "String Tie Top");
-	bessCIW(7, "Furry", BessFurryBra, "Furry Bra", "Furry Bra");
-	bessCIW(8, "Sarashi", BessSarashi, "Sarashi", "Sarashi");
-	bessCIW(9, "Corset", BessCorset, "Corset", "Corset");
-
-	bessCIW(10, "UB.Corset", BessUnderbustCorset, "Underbust Corset", "Underbust Corset");
-	bessCIW(11, "SportBra", BessSportsBra, "Sports Bra", "Sports Bra");
-	bessCIW(12, "Pasties", BessPasties, "Nipple Pasties", "Nipple Pasties");
-	bessCIW(13, "Babydoll", BessBabydoll, "Babydoll", "Babydoll");
-
+	addButton(0, "Nude", bessSetBra, EmptySlot, "Nude", "Nude");
+	bessCIW(1, "NormalBra", PlainBra, "Normal Bra", "Normal Bra");
+	bessCIW(2, "GirlyBra", GirlyBra, "Girly Bra", "Girly Bra");
+	bessCIW(3, "Corset", Corset, "Corset", "Corset");
+	bessCIW(4, "Pasties", Pasties, "Nipple Pasties", "Nipple Pasties");
+	
+	bessCIW(5, "Babydoll", Babydoll, "Babydoll", "Babydoll");
+	bessCIW(6, "LacyBra", LacyBra, "Lacy Bra", "Lacy Bra");
+	bessCIW(7, "Shibari", ShibariTop, "Shibari Top", "Shibari Top");
+	bessCIW(8, "SkullBra", SkullPatternBra, "Skull Bra", "Skull Bra");
+	
 	addButton(14, "Back", talkToBessAboutClothes);
+}
 
-	bessCIW(15, "LacyBra", BessLacyBra, "Lacy Bra", "Lacy Bra");
-	bessCIW(16, "BlackLace", BessBlackLaceBra, "Black Lace Bra", "Black Lace Bra");
-	bessCIW(17, "Shibari", BessShibariTop, "Shibari Top", "Shibari Top")
-	bessCIW(18, "MuscleShrt", MuscleShirt, "Muscle Shirt", "Muscle Shirt")
-	bessCIW(19, "SportSing", SportSinglet, "Sports Singlet", "Sports Singlet")
-
-	bessCIW(20, "MeshShirt", MeshShirt, "Mesh Shirt", "Mesh Shirt")
-	bessCIW(21, "PatriotBra", PatrioticBra, "PatrioticBra", "PatrioticBra")
-	bessCIW(22, "SkullBra", SkullBra, "Skull Bra", "Skull Bra")
-	bessCIW(23, "HeartTassel", HeartShapedTassels, "Heart Shaped Nipple Tassels", "Heart Shaped Nipple Tassels")
-	bessCIW(24, "SkullTassel", SkullShapedTassels, "Skull Shaped Nipple Tassels", "Skull Shaped Nipple Tassels")
-
-	bessCIW(25, "GoldTassel", GoldenTassels, "Golden Nipple Tassels", "Golden Nipple Tassels")
-	bessCIW(26, "CloverTassel", CloverTassels, "Clover Nipple Tassels", "Clover Nipple Tassels")
-	bessCIW(27, "FlowerTassel", FlowerTassels, "Flower Nipple Tassels", "Flower Nipple Tassels")
-	bessCIW(28, "StarTassel", StarTassels, "Star Shaped Nipple Tassels", "Star Shaped Nipple Tassels")
-
-	addButton(29, "Back", talkToBessAboutClothes);
-
-	bessCIW(30, "JewelTassel", JewelTassel, "Jeweled Nipple Tassels", "Jeweled Nipple Tassels")
-	bessCIW(31, "BlackTassel", BlackTassel, "Black Nipple Tassels", "Black Nipple Tassels")
-
-	addButton(44, "Back", talkToBessAboutClothes);
+public function bessSetPanties(item:ItemSlotClass):void
+{
+	(bess as Bess).lowerUndergarment = item;
 }
 
 public function talkToBessAboutLowerUndergarments():void
 {
 	clearMenu();
 
-	addButton(0, "Nude", EmptySlot, "Nude", "Nude");
-	bessCIW(1, "Normal", BessNormalPanties, "Normal Panties", "Normal Panties");
-	bessCIW(2, "Stk&Panty", BessStockingsNPanty, "Stockings & Panties", "Stockings & Panties");
-	bessCIW(3, "StringTie", BessStringTiePanty, "String Tie Bottoms", "String Tie Bottoms");
-	bessCIW(4, "Boxers", BessBoxers, "Boxers", "Boxers");
-
-	bessCIW(5, "Frilly", BessFrillyPanties, "Frilly Panties", "Frilly Panties");
-	bessCIW(6, "Girly", BessGirlyPanties, "Girly Panties", "Girly Panties");
-	bessCIW(7, "Whities", BessWhitePanties, "White Panties", "White Panties");
-	bessCIW(8, "Shibari", BessShibariBottom, "Shibari Bottoms", "Shibari Bottoms");
-	bessCIW(9, "Striped", BessStripedPanties, "Striped Panties", "Striped Panties");
-
-	bessCIW(10, "Lowrider", BessLowrider, "Lowrider Bottoms", "Lowrider Bottoms");
-	bessCIW(11, "Furry", BessFurryPanties, "Furry Panties", "Furry Panties");
-	bessCIW(12, "Black Lace", BessBlackLacePanties, "Black Lace Panties", "Black Lace Panties");
-	bessCIW(13, "Boyshorts", BessBoyshorts, "Boyshorts", "Boyshorts");
+	addButton(0, "Nude", bessSetPanties, EmptySlot, "Nude", "Nude");
+	bessCIW(1, "Normal", PlainPanties, "Normal Panties", "Normal Panties");
+	bessCIW(2, "Stk&Panty", Stockings, "Stockings & Panties", "Stockings & Panties");
+	bessCIW(3, "Boxers", Boxers, "Boxers", "Boxers");
+	bessCIW(4, "Girly", GirlyPanties, "Girly Panties", "Girly Panties");
+	
+	bessCIW(5, "Shibari", ShibariBottom, "Shibari Bottoms", "Shibari Bottoms");
+	bessCIW(6, "Boyshorts", Boyshorts, "Boyshorts", "Boyshorts");
+	bessCIW(7, "Thong", Thong, "Thong", "Thong");
+	bessCIW(8, "C-String", CString, "C-String", "C-String");
 
 	addButton(14, "Back", talkToBessAboutClothes);
-
-	bessCIW(15, "Thong", BessThong, "Thong", "Thong");
-	bessCIW(16, "P.Boxers", PatrioticBoxers, "Patriotic Boxers", "Patriotic Boxers");
-	bessCIW(17, "P.Panties", PatrioticPanties, "Patriotic Panties", "Patriotic Panties");
-	bessCIW(18, "S.Boxers", SkullBoxers, "Skull Boxers", "Skull Boxers");
-	bessCIW(19, "S.Panties", SkullPanties, "Skull Panties", "Skull Panties");
-
-	bessCIW(20, "C-String", BessCString, "C-String", "C-String");
-	bessCIW(21, "SilkBoxers", SilkBoxers, "Black Silk Boxers", "Black Silk Boxers");
-	bessCIW(22, "SatinBoxers", SatinBoxers, "Red Satin Boxers", "Red Satin Boxers");
-	bessCIW(23, "L.Shorts", LeatherBoyShorts, "Leather Boy Shorts", "Leather Boy Shorts");
-	bessCIW(24, "PouchStrap", ZipPouchJockStrap, "Zip Pouch Jock Strap", "Zip Pouch Jock Strap");
-
-	addButton(29, "Back", talkToBessAboutClothes);
 }
 
 public function setBessOutfit(classT:Class):void
@@ -3258,11 +3266,11 @@ public function talkToBessAboutEars():void
 		{l: "Canine", v: GLOBAL.TYPE_CANINE, bType: BESS_ACCSET_CANINE},
 		{l: "Feline", v: GLOBAL.TYPE_FELINE, bType: BESS_ACCSET_FELINE},
 		{l: "Vulpine", v: GLOBAL.TYPE_VULPINE, bType: BESS_ACCSET_VULPINE},
-		{l: "Elfin", v: GLOBAL.TYPE_ELFIN, bType: BESS_ACCSET_ANGEL},
+		{l: "Elfin", v: GLOBAL.TYPE_SYLVAN, bType: BESS_ACCSET_ANGEL},
 		{l: "Draconic", v: GLOBAL.TYPE_DRACONIC, bType: BESS_ACCSET_DRACONIC},
 		{l: "Deer", v: GLOBAL.TYPE_DEER, bType: BESS_ACCSET_DEER},
 		{l: "Mouse", v: GLOBAL.TYPE_MOUSE, bType: BESS_ACCSET_MOUSE},
-		{l: "Bunny", v: GLOBAL.TYPE_BUNNY, bType: BESS_ACCSET_BUNNY}
+		{l: "Bunny", v: GLOBAL.TYPE_LAPINE, bType: BESS_ACCSET_BUNNY}
 	];
 
 	for (var i:int = 0; i < opts.length; i++)
@@ -3325,15 +3333,15 @@ public function talkToBessAboutTails():void
 		{l: "Deer", v: GLOBAL.TYPE_DEER, bType: BESS_ACCSET_DEER},
 
 		{l: "Mouse", v: GLOBAL.TYPE_MOUSE, bType: BESS_ACCSET_MOUSE},
-		{l: "Bunny", v: GLOBAL.TYPE_BUNNY, bType: BESS_ACCSET_BUNNY},
-		{l: "Kitsune", v: GLOBAL.TYPE_KITSUNE, bType: BESS_ACCSET_KITSUNE}
+		{l: "Bunny", v: GLOBAL.TYPE_LAPINE, bType: BESS_ACCSET_BUNNY},
+		{l: "Kitsune", v: GLOBAL.TYPE_VULPINE, bType: BESS_ACCSET_KITSUNE}
 	];
 
 	for (var i:int = 0; i < opts.length; i++)
 	{
 		if (opts[i].bType == uint.MAX_VALUE || bessHasAccessorySet(opts[i].bType))
 		{
-			addButton(i, opts[i].l, setBessAccessory, [BESS_ACS_TAIL, opts[i].v]);
+			addButton(i, opts[i].l, setBessAccessory, [BESS_ACS_TAIL, opts[i].v, opts[i].bType]);
 		}
 		else
 		{
@@ -3353,7 +3361,7 @@ public function talkToBessAboutWings():void
 		{l: "Bee", v: GLOBAL.TYPE_BEE, bType: BESS_ACCSET_BEE},
 		{l: "Draconic", v: GLOBAL.TYPE_DRACONIC, bType: BESS_ACCSET_DRACONIC},
 		{l: "Demonic", v: GLOBAL.TYPE_DEMONIC, bType: BESS_ACCSET_DEMONIC},
-		{l: "Angel", v: GLOBAL.TYPE_ANGEL, bType: BESS_ACCSET_ANGEL}
+		{l: "Angel", v: GLOBAL.TYPE_SYLVAN, bType: BESS_ACCSET_ANGEL}
 	];
 
 	for (var i:int = 0; i < opts.length; i++)
@@ -3378,6 +3386,7 @@ public function setBessAccessory(opts:Array):void
 
 	var acsType:uint = opts[0];
 	var newType:int = opts[1];
+	var bType:uint = opts[2];
 
 	if (acsType == BESS_ACS_EAR)
 	{
@@ -3403,7 +3412,7 @@ public function setBessAccessory(opts:Array):void
 		if (newType == GLOBAL.TYPE_HUMAN)
 		{
 			bess.horns = 0;
-			bess.hornsLength = 0;
+			bess.hornLength = 0;
 			output("<b>Bess has removed [bess.hisHer] horns!</b>");
 		}
 		else
@@ -3425,7 +3434,7 @@ public function setBessAccessory(opts:Array):void
 		}
 		else
 		{
-			if (newType == GLOBAL.TYPE_KITSUNE) bess.tailCount = 9;
+			if (bType == BESS_ACCSET_KITSUNE) bess.tailCount = 9;
 			else bess.tailCount = 1;
 
 			output("<b>Bess now has [bess.tails]!</b>");
@@ -3524,57 +3533,37 @@ public function bessBuyShitOutfits():void
 {
 	clearMenu();
 	
-	bessBuyCIW(0, "C.Clothes", CasualClothes, "Casual Clothes", "Casual Clothes");
+	bessBuyCIW(0, "C.Clothes", ComfortableClothes, "Casual Clothes", "Casual Clothes");
 	bessBuyCIW(1, "P.Jacket", ProtectiveJacket, "Protective Jacket", "Protective Jacket");
 	bessBuyCIW(2, "UGC Uniform", UGCUniform, "UGC Uniform", "UGC Uniform");
-	bessBuyCIW(3, "SleepShirt", SleepShirt, "Sleep Shirt", "Sleep Shirt");
-	bessBuyCIW(4, "Top&Skirt", TopNSkirt, "Top & Skirt", "Top & Skirt");
-
-	bessBuyCIW(5, "B.Clothes", BusinessClothes, "Business Clothes", "Business Clothes");
-	bessBuyCIW(6, "Librarian", LibrarianOutfit, "Librarian Outfit", "Librarian Outfit");
-	bessBuyCIW(7, "LatexBSuit", LatexBodysuit, "Latex Bodysuit", "Latex Bodysuit");
-	bessBuyCIW(8, "ChinaDress", ChinaDress, "China Dress", "China Dress");
-	bessBuyCIW(9, "Kimono", Kimono, "Kimono", "Kimono");
-
-	bessBuyCIW(10, "S.Kimono", ShortKimono, "Short Kimono", "Short Kimono");
-	bessBuyCIW(11, "Maid", MaidOutfit, "Maid Outfit", "Maid Outfit");
-	bessBuyCIW(12, "Nurse", NurseOutfit, "Nurse Outfit", "Nurse Outfit");
-	bessBuyCIW(13, "Miko", MikoOutfit, "Miko Outfit", "Miko Outfit");
+	bessBuyCIW(3, "Top&Skirt", TopNSkirt, "Top & Skirt", "Top & Skirt");
+	bessBuyCIW(4, "B.Clothes", BusinessClothes, "Business Clothes", "Business Clothes");
+	
+	bessBuyCIW(5, "Librarian", LibrarianOutfit, "Librarian Outfit", "Librarian Outfit");
+	bessBuyCIW(6, "LatexBSuit", LatexBodysuit, "Latex Bodysuit", "Latex Bodysuit");
+	bessBuyCIW(7, "Maid", MaidOutfit, "Maid Outfit", "Maid Outfit");
+	bessBuyCIW(8, "Nurse", NurseOutfit, "Nurse Outfit", "Nurse Outfit");
+	bessBuyCIW(9, "Schoolgirl", SchoolgirlOutfit, "Schoolgirl", "Schoolgirl");
+	
+	bessBuyCIW(10, "Cheerleader", CheerleaderUniform, "Cheerleader Uniform", "CheerleaderUniform");
+	bessBuyCIW(11, "Waitress", WaitressUniform, "Waitress Uniform", "Waitress Uniform");
+	bessBuyCIW(12, "Bunnygirl", BunnyOutfit, "Bunnygirl Outfit", "Bunnygirl Outfit");
+	bessBuyCIW(13, "Military", MilitaryUniform, "Military Uniform", "Military Uniform");
 
 	addButton(14, "Back", talkToBessAboutAccessories);
 	
-	bessBuyCIW(15, "Apron", ApronOutfit, "Apron", "Apron");
-	bessBuyCIW(16, "Seifuku", Seifuku, "Seifuku", "Seifuku"); // no fuk uuuuuuuuu
-	bessBuyCIW(17, "Schoolgirl", SchoolgirlOutfit, "Schoolgirl", "Schoolgirl");
-	bessBuyCIW(18, "Cheerleader", CheerleaderUniform, "Cheerleader Uniform", "CheerleaderUniform");
-	bessBuyCIW(19, "Waitress", WaitressUniform, "Waitress Uniform", "Waitress Uniform");
+	bessBuyCIW(15, "Pirate", SpacePirateOutfit, "Space Pirate", "Space Pirate");
+	bessBuyCIW(16, "T.Zipsuit", TransparentZipsuit, "Transparent Zipsuit", "Transparent Zipsuit");
+	bessBuyCIW(17, "Butler", ButlerOutfit, "Butler Outfit", "Butler Outfit");
+	bessBuyCIW(18, "M.Doctor", MaleDoctorOutfit, "Male Doctor Outfit", "Male Doctor Outfit");
+	bessBuyCIW(19, "F.Doctor", FemaleDoctorOutfit, "Female Doctor Outfit", "Female Doctor Outfit");
+	
+	bessBuyCIW(20, "Schoolboy", SchoolboyOutfit, "Schoolboy Outfit", "Schoolboy Outfit");
+	bessBuyCIW(21, "StrapHarness", LeatherStrapHarness, "Leather Strap Harness", "Leather Strap Harness");
 
-	bessBuyCIW(20, "Bunnygirl", BunnygirlOutfit, "Bunnygirl Outfit", "Bunnygirl Outfit");
-	bessBuyCIW(21, "Battlegown", BattleBallgown, "Battle Ballgown", "Battle Ballgown");
-	bessBuyCIW(22, "Military", MilitaryUniform, "Military Uniform", "Military Uniform");
-	bessBuyCIW(23, "Pirate", SpacePirateOutfit, "Space Pirate", "Space Pirate");
-	bessBuyCIW(24, "GothLolita", GothLolitaOutfit, "Goth-Lolita Outfit", "Goth-Lolita Outfit");
-
-	bessBuyCIW(25, "Tank&Skirt", TankNSkirt, "Tank-top & Miniskirt", "Tank-top & Miniskirt");
-	bessBuyCIW(26, "BattleMaid", BattleMaidOutfit, "Battle Maid Outfit", "Battle Maid Outfit");
-	bessBuyCIW(27, "R.Bodysuit", ReinforcedBodysuit, "Reinforced Bodysuit", "Reinforced Bodysuit");
-	bessBuyCIW(28, "R.Fem Armor", RevealingFemaleArmor, "Revealing Female Armor", "Revealing Female Armor");
-
+	bessBuyCIW(22, "BlackDress", LittleBlackDress, "Little Black Dress", "Little Black Dress");
+	
 	addButton(29, "Back", talkToBessAboutAccessories);
-
-	bessBuyCIW(30, "R.Male Armor", RevealingMaleArmor, "Revealing Male Armor", "Revealing Male Armor");
-	bessBuyCIW(31, "T.Zipsuit", TransparentZipsuit, "Transparent Zipsuit", "Transparent Zipsuit");
-	bessBuyCIW(32, "Yukata", BessYukata, "Yukata", "Yukata");
-	bessBuyCIW(33, "Ninja", NinjaOutfit, "Ninja Outfit", "Ninja Outfit");
-	bessBuyCIW(34, "Butler", ButlerOutfit, "Butler Outfit", "Butler Outfit");
-
-	bessBuyCIW(35, "M.Doctor", MaleDoctorOutfit, "Male Doctor Outfit", "Male Doctor Outfit");
-	bessBuyCIW(36, "F.Doctor", FemaleDoctorOutfit, "Female Doctor Outfit", "Female Doctor Outfit");
-	bessBuyCIW(37, "Gakuran", BessGakuran, "Gakuran", "Gakuran");
-	bessBuyCIW(38, "Schoolboy", SchoolboyOutfit, "Schoolboy Outfit", "Schoolboy Outfit");
-	bessBuyCIW(39, "StrapHarness", LeatherStrapHarness, "Leather Strap Harness", "Leather Strap Harness");
-
-	bessBuyCIW(41, "BlackDress", LittleBlackDress, "Little Black Dress", "Little Black Dress");
 }
 
 public function bessBuyCIW(idx:int, lbl:String, classT:Class, ttH:String, ttB:String):void
@@ -3625,84 +3614,34 @@ public function bessBuyOutfit(boughtItem:ItemSlotClass):void
 public function bessBuyShitBras():void
 {
 	clearMenu();
-	bessBuyCIW(0, "NormalBra", BessNormalBra, "Normal Bra", "Normal Bra");
-	bessBuyCIW(1, "WhiteBra", BessWhiteBra, "White Bra", "White Bra");
-	bessBuyCIW(2, "StripedBra", BessStripedBra, "Striped Bra", "Striped Bra");
-	bessBuyCIW(3, "FrillyBra", BessFrillyBra, "Frilly Bra", "Frilly Bra");
-	bessBuyCIW(4, "GirlyBra", BessGirlyBra, "Girly Bra", "Girly Bra");
-
-	bessBuyCIW(5, "StringTie", BessStringTie, "String Tie Top", "String Tie Top");
-	bessBuyCIW(6, "Furry", BessFurryBra, "Furry Bra", "Furry Bra");
-	bessBuyCIW(7, "Sarashi", BessSarashi, "Sarashi", "Sarashi");
-	bessBuyCIW(8, "Corset", BessCorset, "Corset", "Corset");
-	bessBuyCIW(9, "UB.Corset", BessUnderbustCorset, "Underbust Corset", "Underbust Corset");
-
-	bessBuyCIW(10, "SportBra", BessSportsBra, "Sports Bra", "Sports Bra");
-	bessBuyCIW(11, "Pasties", BessPasties, "Nipple Pasties", "Nipple Pasties");
-	bessBuyCIW(12, "Babydoll", BessBabydoll, "Babydoll", "Babydoll");
-	bessBuyCIW(13, "LacyBra", BessLacyBra, "Lacy Bra", "Lacy Bra");
-
+	bessBuyCIW(0, "NormalBra", PlainBra, "Normal Bra", "Normal Bra");
+	bessBuyCIW(1, "GirlyBra", GirlyBra, "Girly Bra", "Girly Bra");
+	bessBuyCIW(2, "Corset", Corset, "Corset", "Corset");
+	bessBuyCIW(3, "Pasties", Pasties, "Nipple Pasties", "Nipple Pasties");
+	bessBuyCIW(4, "Babydoll", Babydoll, "Babydoll", "Babydoll");
+	
+	bessBuyCIW(5, "LacyBra", LacyBra, "Lacy Bra", "Lacy Bra");
+	bessBuyCIW(6, "Shibari", ShibariTop, "Shibari Top", "Shibari Top");
+	bessBuyCIW(7, "SkullBra", SkullPatternBra, "Skull Bra", "Skull Bra");
+	
 	addButton(14, "Back", talkToBessAboutAccessories);
-
-	bessBuyCIW(15, "BlackLace", BessBlackLaceBra, "Black Lace Bra", "Black Lace Bra");
-	bessBuyCIW(16, "Shibari", BessShibariTop, "Shibari Top", "Shibari Top");
-	bessBuyCIW(17, "MuscleShrt", MuscleShirt, "Muscle Shirt", "Muscle Shirt");
-	bessBuyCIW(18, "SportSing", SportSinglet, "Sports Singlet", "Sports Singlet");
-	bessBuyCIW(19, "MeshShirt", MeshShirt, "Mesh Shirt", "Mesh Shirt");
-
-	bessBuyCIW(20, "PatriotBra", PatrioticBra, "PatrioticBra", "PatrioticBra");
-	bessBuyCIW(21, "SkullBra", SkullBra, "Skull Bra", "Skull Bra");
-	bessBuyCIW(22, "HeartTassel", HeartShapedTassels, "Heart Shaped Nipple Tassels", "Heart Shaped Nipple Tassels");
-	bessBuyCIW(23, "SkullTassel", SkullShapedTassels, "Skull Shaped Nipple Tassels", "Skull Shaped Nipple Tassels");
-	bessBuyCIW(24, "GoldTassel", GoldenTassels, "Golden Nipple Tassels", "Golden Nipple Tassels");
-
-	bessBuyCIW(25, "CloverTassel", CloverTassels, "Clover Nipple Tassels", "Clover Nipple Tassels");
-	bessBuyCIW(26, "FlowerTassel", FlowerTassels, "Flower Nipple Tassels", "Flower Nipple Tassels");
-	bessBuyCIW(27, "StarTassel", StarTassels, "Star Shaped Nipple Tassels", "Star Shaped Nipple Tassels");
-	bessBuyCIW(29, "JewelTassel", JewelTassel, "Jeweled Nipple Tassels", "Jeweled Nipple Tassels");
-
-	addButton(29, "Back", talkToBessAboutAccessories);
-
-	bessBuyCIW(31, "BlackTassel", BlackTassel, "Black Nipple Tassels", "Black Nipple Tassels");
-
-	addButton(44, "Back", talkToBessAboutAccessories);
 }
 
 public function bessBuyShitPanties():void
 {
 	clearMenu();
 
-	bessBuyCIW(0, "Normal", BessNormalPanties, "Normal Panties", "Normal Panties");
-	bessBuyCIW(1, "Stk&Panty", BessStockingsNPanty, "Stockings & Panties", "Stockings & Panties");
-	bessBuyCIW(2, "StringTie", BessStringTiePanty, "String Tie Bottoms", "String Tie Bottoms");
-	bessBuyCIW(3, "Boxers", BessBoxers, "Boxers", "Boxers");
-	bessBuyCIW(4, "Frilly", BessFrillyPanties, "Frilly Panties", "Frilly Panties");
+	bessBuyCIW(0, "Normal", PlainPanties, "Normal Panties", "Normal Panties");
+	bessBuyCIW(1, "Stk&Panty", Stockings, "Stockings & Panties", "Stockings & Panties");
+	bessBuyCIW(2, "Boxers", Boxers, "Boxers", "Boxers");
+	bessBuyCIW(3, "Girly", GirlyPanties, "Girly Panties", "Girly Panties");
+	bessBuyCIW(4, "Shibari", ShibariBottom, "Shibari Bottoms", "Shibari Bottoms");
 
-	bessBuyCIW(5, "Girly", BessGirlyPanties, "Girly Panties", "Girly Panties");
-	bessBuyCIW(6, "Whities", BessWhitePanties, "White Panties", "White Panties");
-	bessBuyCIW(7, "Shibari", BessShibariBottom, "Shibari Bottoms", "Shibari Bottoms");
-	bessBuyCIW(8, "Striped", BessStripedPanties, "Striped Panties", "Striped Panties");
-	bessBuyCIW(9, "Lowrider", BessLowrider, "Lowrider Bottoms", "Lowrider Bottoms");
-
-	bessBuyCIW(10, "Furry", BessFurryPanties, "Furry Panties", "Furry Panties");
-	bessBuyCIW(11, "Black Lace", BessBlackLacePanties, "Black Lace Panties", "Black Lace Panties");
-	bessBuyCIW(12, "Boyshorts", BessBoyshorts, "Boyshorts", "Boyshorts");
-	bessBuyCIW(13, "Thong", BessThong, "Thong", "Thong");
-
-	addButton(14, "Back", talkToBessAboutAccessories);
-
-	bessBuyCIW(15, "P.Boxers", PatrioticBoxers, "Patriotic Boxers", "Patriotic Boxers");
-	bessBuyCIW(16, "P.Panties", PatrioticPanties, "Patriotic Panties", "Patriotic Panties");
-	bessBuyCIW(17, "S.Boxers", SkullBoxers, "Skull Boxers", "Skull Boxers");
-	bessBuyCIW(18, "S.Panties", SkullPanties, "Skull Panties", "Skull Panties");
-	bessBuyCIW(19, "C-String", BessCString, "C-String", "C-String");
-
-	bessBuyCIW(20, "SilkBoxers", SilkBoxers, "Black Silk Boxers", "Black Silk Boxers");
-	bessBuyCIW(21, "SatinBoxers", SatinBoxers, "Red Satin Boxers", "Red Satin Boxers");
-	bessBuyCIW(22, "L.Shorts", LeatherBoyShorts, "Leather Boy Shorts", "Leather Boy Shorts");
-	bessBuyCIW(23, "PouchStrap", ZipPouchJockStrap, "Zip Pouch Jock Strap", "Zip Pouch Jock Strap");
-
-	addButton(29, "Back", talkToBessAboutAccessories);
+	bessBuyCIW(5, "Boyshorts", Boyshorts, "Boyshorts", "Boyshorts");
+	bessBuyCIW(6, "Thong", Thong, "Thong", "Thong");
+	bessBuyCIW(7, "C-String", CString, "C-String", "C-String");
+	
+	addButton(14, "Back", talkToBessAboutAccessories);	
 }
 
 public function bessBuyShitAccessories():void
@@ -3906,7 +3845,7 @@ public function talkToBessAboutThings():void
 
 	if (flags["BESS_FUCKED"] != undefined || flags["BESS_BOOBCHANGED"] != undefined) addButton(4, "Nipples", talkToBessGetInfoOnNipnips);
 	if (flags["BESS_EVENT_11"] != undefined) addButton(5, bess.mf("His", "Her") + " Job", talkToBessAboutHerJob);
-	if (flags["BESS_EVENT_17"] && pcShipHasHolodeck()) addButton(6, "Graviball", talkToBessPlayGraviball);
+	if (flags["BESS_EVENT_17"] && /*pcShipHasHolodeck()*/ 9999 == 0) addButton(6, "Graviball", talkToBessPlayGraviball);
 	if (flags["BESS_EVENT_18"] != undefined) addButton(7, "Karaoke", talkToBessSingKareoke);
 	if (celiseIsFollower()) addButton(8, "Celise", talkToBessAboutCelise);
 
@@ -3967,7 +3906,7 @@ public function bessSpendTime1():void
 			"You are my everything, you know that?",
 			"You are my best friend as well as my heart.",
 			"The sound of your laughter makes me smile.",
-			"I will always love you, "+ bessNamePC() +".",
+			"I will always love you, "+ bessPCName() +".",
 			"You inspire me to follow my dreams, and I love you for it.",
 			"Your love has helped me become a better version of myself.",
 			"I never imagined I would get to love someone as wonderful and special as you.",
@@ -4123,7 +4062,7 @@ public function bessSpendTime7():void
 	output("\n\nYou " + bess.mf("push him on a nearby couch, and he laughs","dump her on a nearby couch and she squeals loudly") + ". You then leap on [bess.himHer] and return [bess.hisHer] assault, much to [bess.hisHer] delight. After a while of making out you both just lie there in each others arms.");
 
 	bessAffectionGain(BESS_AFFECTION_SPENDTIME);
-	procesTime(10+rand(5));
+	processTime(10+rand(5));
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -4191,7 +4130,7 @@ public function bessSpendTime11():void
 	clearOutput();
 	bessHeader();
 
-	output("You decide to chill a bit with [bess.name]. You throw on a "+bessMovieGenre()+" movie and watch it while drinking some "+bessDrink()+" with her.");
+	output("You decide to chill a bit with [bess.name]. You throw on a your favorite movie and watch it while having a drink with her.");
 
 	bessAffectionGain(BESS_AFFECTION_SPENDTIME);
 	processTime(100+rand(20));
@@ -4205,7 +4144,7 @@ public function bessSpendTime12():void
 	clearOutput();
 	bessHeader();
 
-	output("You decide to chill a bit with [bess.name].  You sit back and relax listening to some "+bessMusic()+" with her, drinking some "+bessDrink()+" all the while.");
+	output("You decide to chill a bit with [bess.name].  You sit back and relax listening to some music with her, drinking some of your favorite tipple all the while.");
 
 	bessAffectionGain(BESS_AFFECTION_SPENDTIME);
 	processTime(30+rand(15));
@@ -4831,7 +4770,7 @@ public function talkToBessAboutPC():void
 
 	if (flags["BESS_LOVER"] != undefined)
 	{
-		output("\n\n<i>“What do I think about you, "+bessPCName()+"? I love and adore you with all of my heart, and " + bess.mf("you’re my wonderful " + bessLoverRole() + "!", "I’m glad that you chose me to be your "+bessLoverRole() + "."));
+		output("\n\n<i>“What do I think about you, "+bessPCName()+"? I love and adore you with all of my heart!");
 		output("”</i>");
 
 		if (bessAffection() >= 90)
@@ -4916,12 +4855,9 @@ public function talkToBessAboutPC():void
 	// Brackets are bessVocal 0 to 5. Should only show up if PC has watched scene 18 (Kareoke scene).
 	if (flags["BESS_EVENT_6"] != undefined)
 	{
-		output("\n\n<i>“I know you like drinking "+bessDrink()+", the color "+bessColor()+", ");
-		if (bessMusic() != "any") output(bessMusic());
-		else output("any kind of music");
-		output(" and "+bessMovieGenre()+" movies.");
+		output("\n\n<i>“I know what you like to drink, I know your favorite color, music and movies.");
 
-		if (flags["BESS_EVENT_18"] != undefined)
+		if (flags["BESS_EVENT_18"] != undefined && flags["BESS_PC_KAREOKE_SKILL"] != undefined)
 		{
 			var vResponse:Array = [
 				"Your singing voice doesn’t sound like a stray cat in heat falling down a thermal vent, I-I swear!",
@@ -4931,7 +4867,7 @@ public function talkToBessAboutPC():void
 				"You are a fantastic singer!",
 				"Listening to you sing is like having an orgasm through my ears."
 			];
-			output(vResponse[bessVocalSkill()] + "”</i>");
+			output(vResponse[flags["BESS_PC_KAREOKE_SKILL"]] + "”</i>");
 		}
 	}
 
@@ -5034,7 +4970,7 @@ public function talkToBessAboutHerJob():void
 
 	output("\n\nYou ask [bess.himHer] how [bess.hisHer] job as the Ship’s "+ bessCrewRole() +" is going. As usual [bess.heShe]’s " + bess.mf("happy","excited") + " to tell you all about it.");
 
-	if (bessCrewRole() == BESS_CREWROLE_INTOFFICER)
+	if (flags["BESS_CREW_ROLE"] == BESS_CREWROLE_INTOFFICER)
 	{
 		output("\n\n<i>“Things are going great, "+ bessPCName() +"! I just "); 
 		output(
@@ -5049,7 +4985,7 @@ public function talkToBessAboutHerJob():void
 		);
 		output(", I hope the info I gathered will be of use to you!”</i>");
 	}
-	else if (bessCrewRole() == BESS_CREWROLE_ACCOUNTANT)
+	else if (flags["BESS_CREW_ROLE"] == BESS_CREWROLE_ACCOUNTANT)
 	{
 		output("\n\n<i>“Things are going great, "+ bessPCName() +"! I’ve just been figuring out ");
 		output(
@@ -5065,7 +5001,7 @@ public function talkToBessAboutHerJob():void
 		);
 		output(". Hopefully I’ll be able to save us some credits.”</i>");
 	}
-	else if (bessCrewRole() == BESS_CREWROLE_ARCHIVIST)
+	else if (flags["BESS_CREW_ROLE"] == BESS_CREWROLE_ARCHIVIST)
 	{
 		output("\n\n<i>“Things are going great, "+ bessPCName() +"! I’ve just been ");
 		output(
@@ -5081,7 +5017,7 @@ public function talkToBessAboutHerJob():void
 		);
 		output(".”</i>");
 	}
-	else if (bessCrewRole() == BESS_CREWROLE_STEWARDESS)
+	else if (flags["BESS_CREW_ROLE"] == BESS_CREWROLE_STEWARDESS)
 	{
 		output("\n\n<i>“Things are going great, "+ bessPCName() +"! I’ve just been ");
 		output(
@@ -5098,7 +5034,7 @@ public function talkToBessAboutHerJob():void
 		);
 		output(". I think the ship is a little bit cleaner now!”</i>");
 	}
-	else if (bessCrewRole() == BESS_CREWROLE_TECHNICIAN)
+	else if (flags["BESS_CREW_ROLE"] == BESS_CREWROLE_TECHNICIAN)
 	{
 		output("\n\n<i>“Things are going great, "+ bessPCName() +"! I’ve just been ");
 		output(
@@ -5150,7 +5086,7 @@ public function talkToBessPlayGraviball():void
 
 	output("\n\nHeading to the holodeck you enter the room and activate the Graviball simulation. In the blink of an eye you are standing in a galactic class sports stadium with billions of fans of almost every conceivable species cheering around you. The atmosphere is so authentic you can’t help but feel momentarily taken aback - [bess.name] really went all out putting together this simulation.");
 	
-	output("\n\nYour "+bessColor()+" team banners fly high, a nice touch from the synthetic sports fan. Your team, the Steele Tigers, is playing against ");
+	output("\n\nYour team banners fly high, a nice touch from the synthetic sports fan. Your team, the Steele Tigers, is playing against ");
 	if (crew(true) == 1) output(" a randomly generated opposing team.");
 	else if (crew(true) == 2) output(" your other crewmate and a computer generated team for them to play with.");
 	else output(" the rest of the crew and a computer generated team to play with.");
@@ -5201,7 +5137,7 @@ public function talkToBessPlayGraviballII():void
 
 		if (pc.intelligence() >= 25)
 		{
-			if (rand(pc.IQ() >= 25))
+			if (rand(pc.IQ()) >= 25)
 			{
 				output("\n\nYou come up with a cunning plan in order to break through her defences. There’s no way you’re going to be able to beat her while she’s defending the goal - she’s far too good for that. Instead you come up with a plan to take advantage of ger biggest weakness, using your pulse boots to get up close to the goals.");
 				
@@ -5686,7 +5622,7 @@ public function bessEventHook():Boolean
 
 		if (bessEventCheck(25) && !bessEventCheck(26))
 		{
-			if (flag["BESS_EVENT_25"] + (7 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 80 && rand(4) == 0)
+			if (flags["BESS_EVENT_25"] + (7 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 80 && rand(4) == 0)
 			{
 				bessEvent26();
 				bEvent = true;
@@ -7066,7 +7002,7 @@ public function bessEvent10():void
 	output("\n\nIt seems [bess.name] is one of those rare, selfless people who genuinely care about and thrive off other people’s happiness. Still, it doesn’t explain why [bess.heShe]’s dusting the entire ship with a primitive feather duster. You ask [bess.himHer] why exactly [bess.heShe]’s opted for something other than a hand held senso-vacuum - a device which could identify and remove each individual dust particle with ease.");
 
 	// Section for clothing.
-	if (	bess.armor is MaidOutfit
+	/*if (	bess.armor is MaidOutfit
 		||	bess.armor is SchoolgirlOutfit
 		||	bess.armor is NurseOutfit
 		||	bess.armor is Seifuku
@@ -7074,6 +7010,8 @@ public function bessEvent10():void
 		||	bess.armor is WaitressUniform
 		||	bess.armor is GothLolita
 		||	bess.armor is TankNSkirt)
+	*/
+	if (IsOneOf(bess.armor, MaidOutfit, SchoolgirlOutfit, NurseOutfit, CheerleaderUniform))
 	{
 		output("\n\n<i>“Oh, that-? I read about someone using a feather duster in an erotic novel, and it sounded like a lot of fun. I think the appeal is in watching someone do it and being watched, "+ bessPCName() +".”</i> And with that statement, [bess.name] bends over to dust something; the skirt-hem of [bess.hisHer] [bess.armor] flipping up to give you a nice, long look at [bess.hisHer]");
 		if (!(bess.lowerUndergarment is EmptySlot)) output(" [bess.lowerUndergarment]-clad ass");
@@ -7403,7 +7341,7 @@ public function bessEvent13():void
 	}
 
 	clearMenu();
-	addButton(0, "Next", bessEvent13part2);
+	addButton(0, "Next", bessEvent13Part2);
 }
 
 public function bessEvent13Part2():void
@@ -7727,7 +7665,7 @@ public function bessEvent15FollowUp(response:String):void
 	{
 		output("<i>“I’d say we’re definitely friends, [bess.name]”</i> You’re surprised you have to tell [bess.himHer] that, but then, [bess.heShe] is just coming to terms with the concept. [bess.HisHer] eyes light up as you tell [bess.himHer] this and suddenly you’re being tackle-hugged by an ecstatic android, [bess.hisHer] arms coiling tightly around you.");
 
-		output("\n\n<i>“I can’t believe it, my very first friend! You’re going to have to follow me to Mount Doom if I find a cursed ring of power, right? This is the best day of my entire product life span!”</i> [bess.HeShe] "+ bess.mf("exlaims", "gushes") +", clearly overjoyed with the news you two are buddies. Meanwhile [bess.hisHer] [bess.chestAdjective] [bess.chestNoun] "+ bess.biggestTitSize() > 0 ? "are" : "is" +" pressing against you in a very distracting way.");
+		output("\n\n<i>“I can’t believe it, my very first friend! You’re going to have to follow me to Mount Doom if I find a cursed ring of power, right? This is the best day of my entire product life span!”</i> [bess.HeShe] "+ bess.mf("exlaims", "gushes") +", clearly overjoyed with the news you two are buddies. Meanwhile [bess.hisHer] [bess.chestAdjective] [bess.chestNoun] "+ (bess.biggestTitSize() > 0 ? "are" : "is") +" pressing against you in a very distracting way.");
 
 		output("\n\nYou don’t have time to take advantage of it though, since [bess.heShe]’s running back to [bess.hisHer] duties before you know it.");
 
@@ -7777,7 +7715,7 @@ public function bessEvent15FollowUp(response:String):void
 		
 		output("\n\n<i>“... Oh my circuits! We’re BEST FRIENDS, aren’t we-? Not only are you my first friend, we’re also best buddies too-! This is the best day of my entire product life span!”</i> [bess.name] "+ bess.mf("exclaims", "gushes") +". Could it be you were just friend-zoned by a sex-bot-!?!");
 		
-		output("\n\n[bess.HeShe] seems genuinely unaware you were going to say anything else, positively overjoyed with your declaration of friendship. Meanwhile [bess.hisHer] [bess.chest] "+ bess.biggestTitSize() > 0 ? "are" : "is" +" pressing against you, making it very hard to think of a way to correct the misunderstanding.");
+		output("\n\n[bess.HeShe] seems genuinely unaware you were going to say anything else, positively overjoyed with your declaration of friendship. Meanwhile [bess.hisHer] [bess.chest] "+ (bess.biggestTitSize() > 0 ? "are" : "is") +" pressing against you, making it very hard to think of a way to correct the misunderstanding.");
 		
 		output("\n\nBefore you can clear things up [bess.heShe]’s rushing");
 		if (crew(true) > 1) output(" off to tell anyone and everyone about [bess.hisHer] new best friend.");
@@ -7803,7 +7741,7 @@ public function bessEvent16():void
 
 	output("You run across [bess.name] looking positively giddy with delight, still on a high from your declaration of friendship a while ago. As soon as [bess.heShe] spots you, [bess.heShe] quickly dashes up. <i>“Oh, there you are, "+ bessPCName() +"! I was just looking for you.”</i>");
 	
-	output("\n\n[bess.HeShe] reaches out and hands you something that looks like an intricately braided "+ bessColor() +" bracelet. <i>“Here, this is for you! I made it myself... I hope you like it. I used your favorite color!”</i> [bess.HeShe] looks at you, clearly eager to see your reaction.");
+	output("\n\n[bess.HeShe] reaches out and hands you something that looks like an intricately braided bracelet. <i>“Here, this is for you! I made it myself... I hope you like it. I used your favorite color!”</i> [bess.HeShe] looks at you, clearly eager to see your reaction.");
 	
 	output("\n\n<i>“... Before you ask, it’s a friendship bracelet. I read in a book that friends give these to each other - and since we’re friends I figured I should give one to you!”</i>");
 
@@ -7826,23 +7764,23 @@ public function bessEvent16Response(response:String):void
 
 	if (response == "love")
 	{
-		output("You immediately put the "+ bessColor() +" bracelet around your wrist. It really is well designed - it’s particularly impressive considering that [bess.heShe] probably had to learn how to weave before making it. <i>“Thanks [bess.name], I love it!”</i> You really are quite flattered by [bess.hisHer] gift.");
+		output("You immediately put the bracelet around your wrist. It really is well designed - it’s particularly impressive considering that [bess.heShe] probably had to learn how to weave before making it. <i>“Thanks [bess.name], I love it!”</i> You really are quite flattered by [bess.hisHer] gift.");
 
 		bessAffection(10);
 
 		output("\n\n[bess.name] synthetic grins uncontrollably when you say you like it and put it on, giving you another one of [bess.hisHer] impulsive hugs. Yet again you can feel [bess.hisHer] [bess.chest]  pressing against you as [bess.heShe] bounces up and down. <i>“I’m so glad you like it, "+ bessPCName() +", I worked on it for ages for you! You can take it off when you’re in the shower, but that’s it, okay?”</i>");
 
-		output("\n\nYou get the feeling you’ve just been ‘friendship collared’ by the perky AI, looking down at the "+ bessColor() +" bracelet. Surely [bess.heShe]’s joking about keeping it on at all times, right-?");
+		output("\n\nYou get the feeling you’ve just been ‘friendship collared’ by the perky AI, looking down at the bracelet. Surely [bess.heShe]’s joking about keeping it on at all times, right-?");
 	}
 	else if (response == "like")
 	{
-		output("You put the "+ bessColor() +" bracelet around your wrist. It really is well designed - it’s particularly impressive considering that [bess.heShe] probably had to learn how to weave before making it. <i>“Thanks [bess.name], I like it. Can’t say I usually wear stuff like this, but this time I’ll make an exception. <i>“");
+		output("You put the bracelet around your wrist. It really is well designed - it’s particularly impressive considering that [bess.heShe] probably had to learn how to weave before making it. <i>“Thanks [bess.name], I like it. Can’t say I usually wear stuff like this, but this time I’ll make an exception. <i>“");
 		
 		bessAffection(5);
 		
 		output("\n\n[bess.name] synthetic grins uncontrollably when you say you like it and put it on, giving you another one of [bess.hisHer] impulsive hugs. Yet again you can feel [bess.hisHer] [bess.chest]  pressing against you as [bess.heShe] bounces up and down. <i>“I’m so glad you like it, "+ bessPCName() +", I worked on it for ages for you! You can take it off when you’re in the shower, but that’s it, okay?”</i>");
 		
-		output("\n\nYou get the feeling you’ve just been ‘friendship collared’ by the perky AI, looking down at the "+ bessColor() +" bracelet. Surely [bess.heShe]’s joking about keeping it on at all times, right-?");
+		output("\n\nYou get the feeling you’ve just been ‘friendship collared’ by the perky AI, looking down at the bracelet. Surely [bess.heShe]’s joking about keeping it on at all times, right-?");
 	}
 	else if (response == "silent")
 	{
@@ -7865,9 +7803,9 @@ public function bessEvent16Response(response:String):void
 		bessAffection(-5);
 	}
 
-	output("\n\n<b> You gain [bess.name]’s "+ bessColor() +" friendship bracelet!</b>");
+	output("\n\n<b> You gain [bess.name]’s friendship bracelet!</b>");
 
-	player.createKeyItem("[bess.name]’s " + bessColor() + " Friendship Bracelet");
+	pc.createKeyItem("[bess.name]’s Friendship Bracelet");
 
 	flags["BESS_EVENT_16"] = GetGameTimestamp();
 	processTime(60+rand(5));
@@ -8006,7 +7944,7 @@ public function bessEvent18Response(response:String):void
 			
 			output("\n\n[bess.name] is a wonderful vocalist, but that’s not really surprising since [bess.hisHer] voice is naturally melodious. [bess.HeShe] seems to have masterfully synthesized qualities of all the best "+ bess.mf("male", "female") +" vocalists together into [bess.hisHer] own voice, keeping it [bess.hisHers] while improving it tenfold.");
 			
-			output("\n\nMost AI singers sound technically flawless, but lifeless and methodical. In contrast, when the"+ bess.hairLength > 0 ? " [bess.hairColor] haired" : "" +" synthetic sings, there is creativity, energy, and flair; both in [bess.hisHer] vocal timbre and movements. [bess.HeShe] sings with [bess.hisHer] entire body, letting the music flow through [bess.himHer] and course through [bess.hisHer] artificial skin.");
+			output("\n\nMost AI singers sound technically flawless, but lifeless and methodical. In contrast, when the"+ (bess.hairLength > 0 ? " [bess.hairColor] haired" : "") +" synthetic sings, there is creativity, energy, and flair; both in [bess.hisHer] vocal timbre and movements. [bess.HeShe] sings with [bess.hisHer] entire body, letting the music flow through [bess.himHer] and course through [bess.hisHer] artificial skin.");
 
 			if (flags["BESS_PC_KAREOKE_SKILL"] == 0)
 			{
@@ -8079,7 +8017,6 @@ public function bessEvent18Response(response:String):void
 		output("\n\n<i>“...I’m trying out this tiredness thing.”</i> [bess.name] explains to you; it seems the question doesn’t even need to be asked. <i>“After a while, my body induces a forced power conservation mode with vague periphery awareness, making me ‘sleep’ for a set amount of time. Don’t worry, my battery life is incredibly long; it takes weeks to actually run out.”</i>");
 		
 		output("\n\nIt seems [bess.heShe] must still be adjusting to [bess.hisHer] new ‘sleep’ cycle because later [bess.heShe] falls asleep on your shoulder, dozing happily just like anyone else. [bess.HeShe] doesn’t seem at all bothered by the");
-		if (bessMusic() != "random") output(" " + bessMusic());
 		output(" music playing.");
 		
 		output("\n\nDo you move and risk waking [bess.himHer] up?");
@@ -9258,7 +9195,7 @@ public function bessEvent28GoAfter():void
 	}
 
 	clearMenu();
-	addButton(0, "Next", bessEvent28partII);
+	addButton(0, "Next", bessEvent28PartII);
 }
 
 public function bessEvent28PartII():void
@@ -10273,7 +10210,7 @@ public function bessSexMenu():void
 	addButton(14, "Back", bessFollowerMenu);
 }
 
-public function bessGetBlow():void
+public function bessGetBlowjob():void
 {
 	clearOutput();
 	bessHeader();
@@ -10656,7 +10593,7 @@ public function bessGetBlow():void
 	}
 
 	//{PC cock size above 14 inches:
-	if (pc.biggestcockSize() > 12)
+	if ((pc as PlayerCharacter).biggestCockLength() > 12)
 	{
 		output("\n\n[bess.name] seems to want to take more of your [pc.cock "+ cockIdx +"] into her mouth, but it’s simply too <i>huge</i>. Trying a few times, [bess.heShe] gags on your incredible girth, pulling back in failure. <i>“G-gah... syntax errors! There’s no way I’m taking something </i>this<i> big without going all out. Disengaging oral safeties!”</i>");
 		
@@ -10670,7 +10607,7 @@ public function bessGetBlow():void
 		else output(" the synthetic "+ bess.mf("man", "girl") +" slides [bess.hisHer] lips around your [pc.cock "+ cockIdx +"], enveloping it in her moist warmth. You can feel your [pc.cockHead "+ cockIdx +"] travelling across [bess.hisHer] silky tongue and back into [bess.hisHer] gullet. Soon [bess.heShe]’s applying artful suction to your slickened spire, [bess.hisHer] silvery cheeks caving inward.");
 	}
 
-	pc.cockChange(true, true, false);
+	pc.cockChange(true);
 
 	output("\n\nYou groan as [bess.heShe] demonstrates [bess.hisHer] utter lack of a gag reflex. You can feel your flexing tip sliding back and forth, in and out of [bess.hisHer] throat, squeezing and teasing your [pc.cockHead "+ cockIdx +"]. The mechanical "+ bess.mf("man", "girl") +"’s face truly was fashioned to be fucked!");
 	
@@ -10822,7 +10759,7 @@ public function bessGiveDoggy():void
 {
 	if (!bess.hasVagina())
 	{
-		bessGiveDoggy(false);
+		bessGiveDoggySelected(false);
 		return;
 	}
 
@@ -10908,14 +10845,14 @@ public function bessGiveDoggySelected(bTargetVag:Boolean = false):void
 	{
 		output("\n\n<i>“Um, my insides should be nice and moist, and you seem pretty hard. Did you want to stick your cock");
 		if (pc.cocks.length > 1) output("s");
-		output(" inside me now, [bessPCSexTitle]?”</i> [bess.name] sweetly asks, at the same time pointedly rubbing your your cock-tip with [bess.hisHer] "+ bTargetVag ? "[bess.pussy]" : "[bess.ass]" +" - as if [bess.heShe] needed to tempt you!");
+		output(" inside me now, [bessPCSexTitle]?”</i> [bess.name] sweetly asks, at the same time pointedly rubbing your your cock-tip with [bess.hisHer] "+ (bTargetVag ? "[bess.pussy]" : "[bess.ass]") +" - as if [bess.heShe] needed to tempt you!");
 	}
 
-	output("\n\nWith the simplest press forward, your [pc.cockHead "+ cockIdx +"] parts [bess.hisHer] "+ bTargetVag ? "silky lower lips" : "star-shaped pucker" +". You groan as you sink your engorged length deep inside [bess.hisHer] synthetic hole - it’s so tight and slick! Even a virgin "+ bTargetVag ? "pussy" : "ass" +" wouldn’t be this wonderously tight- it’s a good thing");
+	output("\n\nWith the simplest press forward, your [pc.cockHead "+ cockIdx +"] parts [bess.hisHer] "+ (bTargetVag ? "silky lower lips" : "star-shaped pucker") +". You groan as you sink your engorged length deep inside [bess.hisHer] synthetic hole - it’s so tight and slick! Even a virgin "+ (bTargetVag ? "pussy" : "ass") +" wouldn’t be this wonderously tight- it’s a good thing");
 	if (flags["BESS_CUMDUMP"] == 1) output(" all that communal cum is");
 	else output(" her synthetic juices are");
 	output(" lubing it up!");
-	pc.cockChange(true, true, false);
+	pc.cockChange(true);
 	
 	output("\n\nAs soon as your [pc.cock "+ cockIdx +"] is completely sheathed inside of [bess.name], you begin to lustily grind your hips against [bess.hisHer] [bess.ass]. [bess.HeShe] lets out a low, sensuous moan, answering your impassioned thrusts with [bess.hisHer] own bucking hips. You can feel [bess.hisHer] silky insides rippling along your length");
 	if (pc.cocks.length > 1) output("s");
@@ -10989,7 +10926,7 @@ public function bessGiveDoggySelected(bTargetVag:Boolean = false):void
 		if (pc.hasKnot(cockIdx)) output("During your knotting, you");
 		else output("As you climax, you");
 		output(" shoot so much [pc.cumNoun] inside of [bess.himHer] that [bess.hisHer] [bess.belly] swells");
-		if (bess.bellRating() > 0) output(" even more");
+		if (bess.bellyRating() > 0) output(" even more");
 		output(" until it is utterly filled.");
 		if (bess.biggestTitSize() > 0) output(" [bess.HisHer] [bess.breasts] also begin to bloat with your seed. [bess.HisHer] hips and ass soon follow.");
 		output(" By the time your orgasm winds down, [bess.name] is completely transformed by the mammoth amounts of spunk you have dumped inside of [bess.himHer].");
@@ -11055,7 +10992,7 @@ public function bessGiveDoggySelected(bTargetVag:Boolean = false):void
 
 	for (var i:int = 0; i < 5; i++)
 	{
-		if (bTargetVag) bess.loadInCunt(0, pc);
+		if (bTargetVag) bess.loadInCunt(pc, 0);
 		else bess.loadInAss(pc);
 		pc.orgasm();
 	}
@@ -11337,9 +11274,8 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 	if (!bess.isNude())
 	{
 		if (IsOneOf(bess.armor, 
-			MaidOutfit, SchoolgirlOutfit, LibrarianOutfit, TopNSkirt, SleepShirt,
-			NurseOutfit, Seifuku, FemaleDoctorOutfit, CheerleaderUniform, WaitressUniform, 
-			GothLolitaOutfit, TankNSkirt
+			MaidOutfit, SchoolgirlOutfit, LibrarianOutfit, TopNSkirt,
+			NurseOutfit, FemaleDoctorOutfit, CheerleaderUniform
 		))
 		{
 			output("\n\n[bess.name]");
@@ -11717,7 +11653,7 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 
 	for (var i:int = 0 ; i < 5; i++)
 	{
-		if (bTargetVag) pc.loadInCunt(vagIdx, bess);
+		if (bTargetVag) pc.loadInCunt(bess, vagIdx);
 		else pc.loadInAss(bess);
 		pc.orgasm();
 	}
@@ -11806,7 +11742,7 @@ public function bessGetCunni():void
 	if (bessIsDom()) output("\n\n<i>“I'm going to stick my tongue inside you now, "+ bessPCSexName() +".”</i> [bess.name] informs you.");
 	else output("\n\n<i>“Stick your tongue inside, "+ bessSexName() +".”</i> You tell [bess.name].");
 	output(" [bess.HisHer] tongue then parts your now glistening folds and dips slowly inside of you. The sensation of [bess.hisHer] silvery tastebuds licking the inside of your slippery snatch is out of this world.");
-	if (pc.genitalSpot <= 1 && pc.legs() > 2) output(" You sigh with pleasure, subconsciously hook your legs over [bess.hisHer] shoulders and pulling [bess.hisHer] closer.");
+	if (pc.genitalSpot <= 1 && pc.legCount > 2) output(" You sigh with pleasure, subconsciously hook your legs over [bess.hisHer] shoulders and pulling [bess.hisHer] closer.");
 	else output(" You let out a low moan, your hips wiggling as [bess.hisHer] tongue delves and explores your insides.");
 
 	output("\n\nAs [bess.hisHer] tongue continues to explore your depths, [bess.heShe] lets out a low moan, clearly enjoying probing your pussy as much as you enjoy being probed. Your warm, sticky girl juices drool out and all over [bess.hisHer] lapping tongue. [bess.name] eagerly drinks this up and groans happily into your muff; to [bess.hisHer] it tastes like pure ambrosia.");
@@ -12035,7 +11971,7 @@ public function bessMilkers(opts:Array = null):void
 		output("\n\nUnable to hold back any longer, you move up behind [bess.himHer],");
 		if (!pc.isNude()) output(" strip off your [pc.gear],");
 		output(" and pull out your [pc.cocksNounSimple]. You then");
-		if (!(bess.loderUndergarment is EmptySlot)) output(" pull down [bess.hisHer] sopping wet [bess.lowerUndergarment] until they rest at [bess.hisHer] knees and");
+		if (!(bess.lowerUndergarment is EmptySlot)) output(" pull down [bess.hisHer] sopping wet [bess.lowerUndergarment] until they rest at [bess.hisHer] knees and");
 		output(" penetrate [bess.himHer] with your prick. You sink it deep into [bess.hisHer] [bess.vagOrAss]. Incapable of speech, [bess.name] whimpers and slaps [bess.hisHer] hips back against yours, encouraging you to breed [bess.hisHer] slutty synthetic");
 		if (bess.hasVagina()) output(" snatch");
 		else output(" ass");
@@ -12052,7 +11988,7 @@ public function bessMilkers(opts:Array = null):void
 
 		// PC cums. Cum and lust go down.
 		pc.orgasm();
-		if (bess.hasVagina()) bess.loadInCunt(0, pc);
+		if (bess.hasVagina()) bess.loadInCunt(pc, 0);
 		else bess.loadInAss(pc);
 	}
 
@@ -12071,7 +12007,7 @@ public function bessMilkers(opts:Array = null):void
 	processTime(45+rand(15));
 	bess.orgasm();
 
-	clearMen();
+	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
 
@@ -12197,7 +12133,7 @@ public function bessIntimateGiveDoggy(fromEvent:Boolean = false):void
 	else output(" buttocks");
 	output(".");
 
-	if (bess.hasVagina()) bess.loadInCunt(0, pc);
+	if (bess.hasVagina()) bess.loadInCunt(pc, 0);
 	else bess.loadInAss(pc);
 
 	if (flags["BESS_FUCKED"] == undefined) flags["BESS_FUCKED"] = 0;

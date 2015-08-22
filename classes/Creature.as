@@ -6401,6 +6401,10 @@
 			
 			return count;
 		}
+		public function hasClit():Boolean
+		{
+			return totalClits() > 0;
+		}
 		public function findFirstOfcType(type: Number = 0): Number {
 			var index: Number = 0;
 			if (cocks[index].cType == type) return index;
