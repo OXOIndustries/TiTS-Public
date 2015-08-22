@@ -176,13 +176,13 @@ public function turretVolleyAttackMotherFucker():void
 	output("You find yourself under a hail of gunfire, every turret in the room bearing down on you and firing full-auto, sacrificing accuracy for sheer volume of firepower. And it's working: duck and weave as you might, there's a stream of bullets crashing behind you, tearing into the walls with deafening force.\n");
 	if(foes[0].hasStatusEffect("Turret Aimhacks"))
 	{
-		rangedAttack(foes[0],pc,true,0);
+		rangedAttack(foes[0],pc,[2]);
 		output("\n");
-		rangedAttack(foes[0],pc,true,0);
+		rangedAttack(foes[0],pc,[2]);
 		output("\n");
-		rangedAttack(foes[0],pc,true,0);
+		rangedAttack(foes[0],pc,[2]);
 		output("\n");
-		rangedAttack(foes[0],pc,true,0);
+		rangedAttack(foes[0],pc,[2]);
 		foes[0].removeStatusEffect("Turret Aimhacks");
 		processCombat();
 	}
@@ -191,15 +191,15 @@ public function turretVolleyAttackMotherFucker():void
 	//Swing twice, shoot twice.
 	else
 	{
-		rangedAttack(foes[0],pc,true,1);
+		rangedAttack(foes[0],pc,[1,2]);
 		output("\n");
-		rangedAttack(foes[0],pc,true,1);
+		rangedAttack(foes[0],pc,[1,2]);
 		output("\n");
-		rangedAttack(foes[0],pc,true,1);
+		rangedAttack(foes[0],pc,[1,2]);
 		output("\n");
-		rangedAttack(foes[0],pc,true,1);
+		rangedAttack(foes[0],pc,[1,2]);
 		output("\n");
-		rangedAttack(foes[0],pc,true,1);
+		rangedAttack(foes[0],pc,[1,2]);
 		processCombat();
 	}
 }
@@ -2038,15 +2038,15 @@ public function kaskaFightAI():void
 public function shieldBustah():void
 {
 	output("Kaska flicks a switch the side of her gun, and the indicator lights on the bottom barrel dim. <i>\"Let's see how your shields like laser!\"</i> she cries.\n\n");
-	rangedAttack(foes[0],pc,true,1);
+	rangedAttack(foes[0],pc,[1,2]);
 	output("\n");
-	rangedAttack(foes[0],pc,true,1);
+	rangedAttack(foes[0],pc,[1,2]);
 	output("\n");
-	rangedAttack(foes[0],pc,true,1);
+	rangedAttack(foes[0],pc,[1,2]);
 	output("\n");
-	rangedAttack(foes[0],pc,true,1);
+	rangedAttack(foes[0],pc,[1,2]);
 	output("\n");
-	rangedAttack(foes[0],pc,true,1);
+	rangedAttack(foes[0],pc,[1,2]);
 	processCombat();
 }
 

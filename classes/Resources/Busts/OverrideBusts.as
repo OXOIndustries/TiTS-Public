@@ -81,6 +81,9 @@
 		[Embed(source = "../../../assets/images/npcs/jacques00/matron_oserre.png", mimeType = "image/png")]
 		public var Bust_MATRON_OSERRE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/mayren.png", mimeType = "image/png")]
+		public var Bust_MAYREN:Class;
+
 		[Embed(source = "../../../assets/images/npcs/millie.png", mimeType = "image/png")]
 		public var Bust_MILLIE:Class;
 		[Embed(source = "../../../assets/images/npcs/millie_nude.png", mimeType = "image/png")]
@@ -114,6 +117,9 @@
 
 		[Embed(source = "../../../assets/images/npcs/jacques00/scalla.png", mimeType = "image/png")]
 		public var Bust_SCALLA:Class;
+
+		[Embed(source = "../../../assets/images/npcs/sierva.png", mimeType = "image/png")]
+		public var Bust_SIERVA:Class;
 
 		[Embed(source = "../../../assets/images/npcs/jacques00/varmint.png", mimeType = "image/png")]
 		public var Bust_VARMINT:Class;

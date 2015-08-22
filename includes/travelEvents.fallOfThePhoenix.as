@@ -529,7 +529,7 @@ public function phoenixPiratesAI():void
 	}
 
 	// Fallback ranged attacku
-	rangedAttack(foes[0], pc, true, 1);
+	rangedAttack(foes[0], pc, [1,2]);
 	processCombat();
 }
 
@@ -549,7 +549,7 @@ public function phoenixPiratesBulletstorm():void
 	var totalAttacks:int = 2 + rand(weaponStacks);
 	for (var i:int = 0; i < totalAttacks; i++)
 	{
-		rangedAttack(foes[0], pc, true, 1);
+		rangedAttack(foes[0], pc, [1,2]);
 		output("\n");
 	}
 	processCombat();

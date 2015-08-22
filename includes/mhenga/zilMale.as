@@ -121,11 +121,11 @@ public function zilHoneyDrip():void {
 //5x standard attacks with heightened miss chance. Doesn't miss if PC is stunned.
 public function flurryOfBlows():void {
 	output("The zil launches a flurry of blows in your direction!\n");
-	attack(foes[0],pc,true,1);
+	attack(foes[0],pc,[1,2]);
 	output("\n");
-	attack(foes[0],pc,true,1);
+	attack(foes[0],pc,[1,2]);
 	output("\n");
-	attack(foes[0],pc,false,1);
+	attack(foes[0],pc,[1]);
 }
 //Flying Spinkick:
 //Stuns the PC.

@@ -870,9 +870,9 @@ public function shootFirstFromtShade(target:Creature):void
 	if(target == pc) attacker = foes[0];
 	else attacker = chars["SHADE"];
 	output("Shade opens up with a surprise volley, trying to shoot first!\n");
-	rangedAttack(foes[0],target,true,1);
+	rangedAttack(foes[0],target,[1,2]);
 	output("\n");
-	rangedAttack(foes[0],target,true,1);
+	rangedAttack(foes[0],target,[1,2]);
 }
 
 //Gas Grenade (Reduces Reflexes and Aim)

@@ -316,7 +316,7 @@ public function standardRobosexualAttack():void
 	output("Making a series of violent clacks and breathy sounds, the sexbot whips out its tentacles out at you, ");
 	if(pc.shields() > 0) output("beating with the relentlessness of a machine against your shield.\n");
 	else output("snapping at pressure points on your throat and groin, aiming to weaken and drain you.\n");
-	attack(foes[0],pc,true,0);
+	attack(foes[0],pc,[2]);
 	processCombat();
 }
 

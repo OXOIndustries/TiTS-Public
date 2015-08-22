@@ -322,11 +322,11 @@ public function lustBangOut():void {
 public function flurryOfFemBlows():void {
 	author("Savin");
 	output("The zil launches a barrage of darts in your direction!\n");
-	rangedAttack(foes[0],pc,true,1);
+	rangedAttack(foes[0],pc,[1,2]);
 	output("\n");
-	rangedAttack(foes[0],pc,true,1);
+	rangedAttack(foes[0],pc,[1,2]);
 	output("\n");
-	rangedAttack(foes[0],pc,false,1);
+	rangedAttack(foes[0],pc,[1]);
 }
 
 //Stinger:

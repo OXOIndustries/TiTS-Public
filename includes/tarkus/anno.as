@@ -2150,7 +2150,7 @@ public function securityDroidLaserBarrage():void
 	for (var i:int = 0; i < attacks; i++)
 	{
 		output("\n");
-		rangedAttack(foes[0], pc, true, 1);
+		rangedAttack(foes[0], pc, [1,2]);
 	}
 	processCombat();
 }
@@ -2161,8 +2161,8 @@ public function securityDroidChargeShot():void
 	//Two moderate laser shots (as above) + one HEAVY one
 	output("Amid several other drones lighting you up, one steps to the forefront, its laser pistol glowing red-hot as it charges up a power shot!");
 
-	rangedAttack(foes[0], pc, true, 1);
-	rangedAttack(foes[0], pc, true, 1);
+	rangedAttack(foes[0], pc, [1,2]);
+	rangedAttack(foes[0], pc, [1,2]);
 
 	// Heavy attack
 	if (rangedCombatMiss(foes[0], pc))

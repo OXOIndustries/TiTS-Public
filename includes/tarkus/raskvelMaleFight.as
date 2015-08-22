@@ -674,11 +674,11 @@ public function raskvelMobAppearanceUpdate():void
 public function raskGangAttackGo():void
 {
 	output("The big raskvel closes in on you, throwing rabbit punches and skilful stamp kicks, aiming to incapacitate and wind. As you are fending him off, the other two run in and hurl wrench haymakers at you.\n");
-	attack(foes[0],pc,true,1);
+	attack(foes[0],pc,[1,2]);
 	output("\n");
-	attack(foes[0],pc,true,1);
+	attack(foes[0],pc,[1,2]);
 	output("\n");
-	attack(foes[0],pc,false,1);
+	attack(foes[0],pc,[1,2]);
 	//Not stunned. Maybe stunned?
 	if(!pc.hasStatusEffect("Stunned"))
 	{
@@ -689,6 +689,8 @@ public function raskGangAttackGo():void
 			pc.createStatusEffect("Stunned",1,0,0,0,false,"Stun","You cannot act for one turn!",true,0);
 		}
 	}
+	output("\n");
+	processCombat();
 }
 
 //Zap!

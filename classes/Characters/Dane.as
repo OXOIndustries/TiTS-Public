@@ -170,8 +170,8 @@
 			this.ass.loosenessRaw = 1;
 
 			this.inventory.push(new ShockBlade());
-			this.createPerk("Multiple Attacks",0,0,0,0,"");
-			this.createPerk("Multiple Shots",0,0,0,0,"");
+			this.createPerk("Multiple Attacks",1,0,0,0,"");
+			this.createPerk("Multiple Shots",1,0,0,0,"");
 			this.createStatusEffect("Flee Disabled",0,0,0,0,true,"","",false,0);
 		}	
 		override public function setDefaultSexualPreferences():void
