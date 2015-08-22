@@ -37,7 +37,7 @@ package classes.Characters
 			isLustImmune = true;
 			
 			this.meleeWeapon = new Fists();
-			this.rangedWeapon.longName = "laser emitters";
+			this.rangedWeapon.longName = "laser emitter";
 			this.rangedWeapon.attack = 0;
 			rangedWeapon.baseDamage.electric.damageValue = 1;
 			rangedWeapon.baseDamage.burning.damageValue = 1;
