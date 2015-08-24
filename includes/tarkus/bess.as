@@ -5367,139 +5367,139 @@ public function bessEventHook():Boolean
 		}
 	}
 	
-	if (bessEventCheck(0) && !bessEventCheck(1))
+	if (bessEventCheck(0) && !bessEventCheck(1) && !bEvent)
 	{
-		if ((flags["BESS_EVENT_0"] + 24 * 60 <= GetGameTimestamp()) && rand(4) == 0)
+		if ((flags["BESS_EVENT_0"] + 12 * 60 <= GetGameTimestamp()) && rand(4) == 0)
 		{
 			bessEvent1();
 			bEvent = true;
 		}
 	}
 	
-	if (bessEventCheck(1) && !bessEventCheck(2))
+	if (bessEventCheck(1) && !bessEventCheck(2) && !bEvent)
 	{
-		if ((flags["BESS_EVENT_1"] + (3 * 24 * 60) <= GetGameTimestamp()) && rand(4) == 0)
+		if ((flags["BESS_EVENT_1"] + (1.5 * 24 * 60) <= GetGameTimestamp()) && rand(4) == 0)
 		{
 			bessEvent2();
 			bEvent = true;
 		}
 	}
 
-	if (bessEventCheck(2) && !bessEventCheck(3))
+	if (bessEventCheck(2) && !bessEventCheck(3) && !bEvent)
 	{
-		if (flags["BESS_EVENT_2"] + (2 * 24 * 60) <= GetGameTimestamp())
+		if (flags["BESS_EVENT_2"] + (24 * 60) <= GetGameTimestamp())
 		{
 			bessEvent3();
 			bEvent = true;
 		}
 	}
 
-	if (bessEventCheck(3) && !bessEventCheck(4))
+	if (bessEventCheck(3) && !bessEventCheck(4) && !bEvent)
 	{
-		if (flags["BESS_EVENT_3"] + (3 * 24 * 60) <= GetGameTimestamp() && rand(4) == 0)
+		if (flags["BESS_EVENT_3"] + (1.5 * 24 * 60) <= GetGameTimestamp() && rand(4) == 0)
 		{
 			bessEvent4();
 			bEvent = true;
 		}
 	}
 
-	if (bessEventCheck(4) && !bessEventCheck(5))
+	if (bessEventCheck(4) && !bessEventCheck(5) && !bEvent)
 	{
-		if (flags["BESS_EVENT_4"] + (4 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 20)
+		if (flags["BESS_EVENT_4"] + (2 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 20)
 		{
 			bessEvent5();
 			bEvent = true;
 		}
 	}
 
-	if (bessEventCheck(5) && !bessEventCheck(6))
+	if (bessEventCheck(5) && !bessEventCheck(6) && !bEvent)
 	{
-		if (flags["BESS_EVENT_5"] + (4 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 30 && rand(4) == 0)
+		if (flags["BESS_EVENT_5"] + (2 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 30 && rand(4) == 0)
 		{
 			bessEvent6();
 			bEvent = true;
 		}
 	}
 
-	if (bessEventCheck(6) && !bessEventCheck(7))
+	if (bessEventCheck(6) && !bessEventCheck(7) && !bEvent)
 	{
-		if (flags["BESS_EVENT_6"] + (4 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 40)
+		if (flags["BESS_EVENT_6"] + (2 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 40)
 		{
 			bessEvent7();
 			bEvent = true;
 		}
 	}
 
-	if (bessEventCheck(7) && !bessEventCheck(8))
+	if (bessEventCheck(7) && !bessEventCheck(8) && !bEvent)
 	{
-		if (flags["BESS_EVENT_7"] + (4 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 50)
+		if (flags["BESS_EVENT_7"] + (2 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 50)
 		{
 			bessEvent8();
 			bEvent = true;
 		}
 	}
 
-	if (bessEventCheck(8) && !bessEventCheck(9))
+	if (bessEventCheck(8) && !bessEventCheck(9) && !bEvent)
 	{
-		if (flags["BESS_EVENT_8"] + (4 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 50)
+		if (flags["BESS_EVENT_8"] + (2 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 50)
 		{
 			bessEvent9();
 			bEvent = true;
 		}
 	}
 
-	if (bessEventCheck(9) && !bessEventCheck(10))
+	if (bessEventCheck(9) && !bessEventCheck(10) && !bEvent)
 	{
-		if (flags["BESS_EVENT_9"] + (3 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 50 && rand(4) == 0)
+		if (flags["BESS_EVENT_9"] + (1.5 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 50 && rand(4) == 0)
 		{
 			bessEvent10();
 			bEvent = true;
 		}
 	}
 
-	if (bessEventCheck(10) && !bessEventCheck(11))
+	if (bessEventCheck(10) && !bessEventCheck(11) && !bEvent)
 	{
 		var e11Chance:int;
 		if (flags["BESS_EVENT_11_TIMES"] == undefined) e11Chance = 4;
 		else e11Chance = 20;
 
-		if (flags["BESS_EVENT_10"] + (3 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 50 && rand(e11Chance) == 0 && flags["VISITED_MYRELLION"] != undefined)
+		if (flags["BESS_EVENT_10"] + (1.5 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 50 && rand(e11Chance) == 0 && flags["VISITED_MYRELLION"] != undefined)
 		{
 			bessEvent11();
 			bEvent = true;
 		}
 	}
 
-	if (bessEventCheck(11) && !bessEventCheck(12))
+	if (bessEventCheck(11) && !bessEventCheck(12) && !bEvent)
 	{
-		if (flags["BESS_EVENT_11"] + (3 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 60 && rand(10) == 0)
+		if (flags["BESS_EVENT_11"] + (1.5 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 60 && rand(10) == 0)
 		{
 			bessEvent12();
 			bEvent = true;
 		}
 	}
 
-	if (bessEventCheck(12) && !bessEventCheck(13))
+	if (bessEventCheck(12) && !bessEventCheck(13) && !bEvent)
 	{
-		if (flags["BESS_EVENT_12"] + (3 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 60 && rand(10) == 0)
+		if (flags["BESS_EVENT_12"] + (1.5 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 60 && rand(10) == 0)
 		{
 			bessEvent13();
 			bEvent = true;
 		}
 	}
 
-	if (bessEventCheck(13) && !bessEventCheck(14))
+	if (bessEventCheck(13) && !bessEventCheck(14) && !bEvent)
 	{
-		if (flags["BESS_EVENT_13"] + (3 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 60 && rand(4) == 0)
+		if (flags["BESS_EVENT_13"] + (1.5 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 60 && rand(4) == 0)
 		{
 			bessEvent14();
 			bEvent = true;
 		}
 	}
 
-	if (bessEventCheck(14) && !bessEventCheck(15))
+	if (bessEventCheck(14) && !bessEventCheck(15) && !bEvent)
 	{
-		if (flags["BESS_EVENT_14"] + (3 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 60 && rand(4) == 0)
+		if (flags["BESS_EVENT_14"] + (1.5 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 60 && rand(4) == 0)
 		{
 			bessEvent15();
 			bEvent = true;
@@ -5508,40 +5508,40 @@ public function bessEventHook():Boolean
 
 	if (flags["BESS_FRIEND"] != undefined)
 	{
-		if (bessEventCheck(15) && !bessEventCheck(16))
+		if (bessEventCheck(15) && !bessEventCheck(16) && !bEvent)
 		{
-			if (flags["BESS_EVENT_15"] + (3 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 70 && rand(4) == 0)
+			if (flags["BESS_EVENT_15"] + (1.5 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 70 && rand(4) == 0)
 			{
 				bessEvent16();
 				bEvent = true;
 			}
 		}
 
-		if (bessEventCheck(16) && !bessEventCheck(17))
+		if (bessEventCheck(16) && !bessEventCheck(17) && !bEvent)
 		{
-			if (flags["BESS_EVENT_16"] + (3 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 70 && rand(4) == 0)
+			if (flags["BESS_EVENT_16"] + (1.5 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 70 && rand(4) == 0)
 			{
 				bessEvent17();
 				bEvent = true;
 			}
 		}
 
-		if (bessEventCheck(17) && !bessEventCheck(18))
+		if (bessEventCheck(17) && !bessEventCheck(18) && !bEvent)
 		{
-			if (flags["BESS_EVENT_17"] + (3 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 70 && rand(4) == 0)
+			if (flags["BESS_EVENT_17"] + (1.5 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 70 && rand(4) == 0)
 			{
 				bessEvent18();
 				bEvent = true;
 			}
 		}
 
-		if (bessEventCheck(18) && !bessEventCheck(19))
+		if (bessEventCheck(18) && !bessEventCheck(19) && !bEvent)
 		{
 			var e19Chance:int;
 			if (flags["BESS_EVENT_19_TIMES]"] == undefined) e19Chance = 1;
 			else e19Chance = 10;
 
-			if (hours >= 16 && flags["BESS_EVENT_18"] + (4 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 70 && rand(e19Chance) == 0)
+			if (hours >= 16 && flags["BESS_EVENT_18"] + (2 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 70 && rand(e19Chance) == 0)
 			{
 				bessEvent19();
 				bEvent = true;
@@ -5551,34 +5551,34 @@ public function bessEventHook():Boolean
 
 	if (flags["BESS_LOVER"] != undefined)
 	{
-		if (bessEventCheck(21) && !bessEventCheck(22))
+		if (bessEventCheck(21) && !bessEventCheck(22) && !bEvent)
 		{
-			if (flags["BESS_EVENT_21"] + (4 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 70)
+			if (flags["BESS_EVENT_21"] + (2 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 70)
 			{
 				bessEvent22();
 				bEvent = true;
 			}
 		}
 
-		if (bessEventCheck(22) && !bessEventCheck(23))
+		if (bessEventCheck(22) && !bessEventCheck(23) && !bEvent)
 		{
-			if (flags["BESS_EVENT_22"] + (4 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 80 && flags["CREWMEMBER_SLEEP_WITH"] == "BESS" && rand(4) == 0)
+			if (flags["BESS_EVENT_22"] + (2 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 80 && flags["CREWMEMBER_SLEEP_WITH"] == "BESS" && rand(4) == 0)
 			{
 				bessEvent23();
 				bEvent = true;
 			}
 		}
 
-		if (bessEventCheck(23) && !bessEventCheck(24))
+		if (bessEventCheck(23) && !bessEventCheck(24) && !bEvent)
 		{
-			if (flags["BESS_EVENT_23"] + (4 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 80 && rand(4) == 0)
+			if (flags["BESS_EVENT_23"] + (2 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 80 && rand(4) == 0)
 			{
 				bessEvent24();
 				bEvent = true;
 			}
 		}
 
-		if (bessEventCheck(24) && !bessEventCheck(25))
+		if (bessEventCheck(24) && !bessEventCheck(25) && !bEvent)
 		{
 			if (flags["BESS_DATES"] != undefined && flags["BESS_DATES"] >= 5)
 			{
@@ -5587,27 +5587,27 @@ public function bessEventHook():Boolean
 			}
 		}
 
-		if (bessEventCheck(25) && !bessEventCheck(26))
+		if (bessEventCheck(25) && !bessEventCheck(26) && !bEvent)
 		{
-			if (flags["BESS_EVENT_25"] + (7 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 80 && rand(4) == 0)
+			if (flags["BESS_EVENT_25"] + (3.5 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 80 && rand(4) == 0)
 			{
 				bessEvent26();
 				bEvent = true;
 			}
 		}
 
-		if (bessEventCheck(26) && !bessEventCheck(27))
+		if (bessEventCheck(26) && !bessEventCheck(27) && !bEvent)
 		{
-			if (flags["CREWMEMBER_SLEEP_WITH"] == "BESS" && flags["BESS_MORNING_EVENT_1"] != undefined && flags["BESS_EVENT_26"] + (7 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 80 && rand(4) == 0)
+			if (flags["CREWMEMBER_SLEEP_WITH"] == "BESS" && flags["BESS_MORNING_EVENT_1"] != undefined && flags["BESS_EVENT_26"] + (3.5 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 80 && rand(4) == 0)
 			{
 				bessEvent27();
 				bEvent = true;
 			}
 		}
 
-		if (bessEventCheck(27) && !bessEventCheck(28))
+		if (bessEventCheck(27) && !bessEventCheck(28) && !bEvent)
 		{
-			if (flags["BESS_DATES"] >=6 && flags["BESS_EVENT_27"] + (7 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 80 && (shipLocation == "SHIP HANGAR" || shipLocation == "500"))
+			if (flags["BESS_DATES"] >=6 && flags["BESS_EVENT_27"] + (3.5 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 80 && (shipLocation == "SHIP HANGAR" || shipLocation == "500"))
 			{
 				bessEvent28();
 				bEvent = true;
