@@ -35,7 +35,7 @@
 			this.plural = true;
 			isLustImmune = true;
 			this.meleeWeapon = new Fists();
-			this.rangedWeapon.longName = "guns";
+			this.rangedWeapon.longName = "gun";
 			this.rangedWeapon.attack = -2;
 			rangedWeapon.baseDamage.kinetic.damageValue = 2;
 			rangedWeapon.baseDamage.addFlag(DamageFlag.BULLET);

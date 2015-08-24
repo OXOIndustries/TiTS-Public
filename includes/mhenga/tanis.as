@@ -246,7 +246,7 @@ public function tanisBowTrainingFinaleRepeats():void
 		
 		output("\n\nHe grins. <i>“Any time, man. Let me know how they work out for you!”</i>");
 		
-		output("\n\n<b>(Perk Gained: Concussive Shot - Grants the ability to fire explosive-tipped arrows when equipped with a bow in combat. The arrows have a chance to stun for 2 to 4 combat rounds. Requires a bow-type weapon.)");
+		output("\n\n<b>(Perk Gained: Concussive Shot - Grants the ability to fire explosive-tipped arrows when equipped with a bow in combat. The arrows have a chance to stun for 2 to 4 combat rounds. Requires a bow-type weapon.)</b>");
 	
 		pc.createPerk("Concussive Shot", 0, 0, 0, 0, "Grants the ability to fire explosive-tipped arrows when equipped with a bow in combat. The arrows have a chance to stun for 2 to 4 combat rounds.");
 	}

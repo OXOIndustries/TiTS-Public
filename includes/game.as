@@ -433,7 +433,7 @@ public function crew(counter:Boolean = false):Number {
 			else if (hours >= 12 || hours <= 13) crewMessages += "\n\nAnno's busy doing a quick workout in her quarters to the beat of some fast-paced ausar heavy metal. <i>“Gotta keep in shape!”</i> she says.";
 			else crewMessages += "\n\nAnno is sitting in the common area with her nose buried in half a dozen different data slates. It looks like she's splitting her attention between the latest Warp Gate research and several different field tests of experimental shield generators.";
 		}
-	}/*
+	}
 	if (bessIsCrew())
 	{
 		count++;
@@ -441,7 +441,7 @@ public function crew(counter:Boolean = false):Number {
 		{
 			addButton(count - 1, "Bess", approachFollowerBess);
 		}
-	}*/
+	}
 	if(!counter) {
 		if(count > 0) {
 			output("Who of your crew do you wish to interact with?" + crewMessages);
@@ -543,6 +543,10 @@ public function sleep(outputs:Boolean = true):void {
 				annoSleepSexyTimes();
 				return;
 			}
+			else if (bessIsCrew() && rand(3) == 0 && flags["CREWMEMBER_SLEEP_WITH"] == "BESS")
+			{
+				flags["BESS_SLEEPWITH_DOMORNING"] = 1;
+			}
 		}
 	}
 	if(outputs) output("You lie down and sleep for about " + num2Text(Math.round(minutes/60)) + " hours.");
@@ -570,7 +574,7 @@ public function sleep(outputs:Boolean = true):void {
 	
 	this.clearMenu();
 	if (flags["ANNO_SLEEPWITH_DOMORNING"] != undefined) this.addButton(0, "Next", annoMorningRouter);
-	//if (flags["BESS_SLEEPWITH_DOMORNING"] != undefined) addButton(0, "Next", bessMorningEvents);
+	if (flags["BESS_SLEEPWITH_DOMORNING"] != undefined) addButton(0, "Next", bessMorningEvents);
 	else this.addButton(0,"Next",mainGameMenu);
 }
 

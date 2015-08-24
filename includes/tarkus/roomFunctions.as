@@ -11,6 +11,19 @@ public function bonusTubeSteak():Boolean
 	return rustPlainsEncounters();	
 }
 
+public function tryEncounterBess():Boolean
+{
+	if (!rustPlainsEncounters())
+	{
+		return findingBessBonusFunc();
+	}
+	else
+	{
+		return true;
+	}
+	
+}
+
 //Raskvel + Lapinara
 public function rustPlainsEncounters():Boolean {
 	if(flags["ENCOUNTERS_DISABLED"] != undefined) return false;

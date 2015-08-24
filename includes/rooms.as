@@ -2153,7 +2153,7 @@ public function initializeRooms():void
 	rooms["222"] = new RoomClass(this);
 	rooms["222"].roomName = "NEXT TO\nA JUNK PILE";
 	rooms["222"].description = "The air here smells vaguely of molten metal and pollution, stronger than many other places on Tarkus. The flakes of iron and other ferrous-based materials that make up the dusty soil are fine, so small you could almost mistake it for reddish-brown dirt if you didn't look too closely. You could head north around the prow of the Nova, east alongside a towering pile of junk, or west to the other side of the heap.";
-	rooms["222"].runOnEnter = rustCoastEncounters;
+	rooms["222"].runOnEnter = tryEncounterBess;
 	rooms["222"].eastExit = "221";
 	rooms["222"].northExit = "223";
 	rooms["222"].westExit = "229";

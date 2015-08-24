@@ -239,6 +239,17 @@
 		},
 		true);
 		
+	inputManager.AddBindableControl(
+		"Runamode Bess",
+		"Changes Bess' name to Runa.",
+		function():void {
+			if (chars["BESS"] != undefined)
+			{
+				chars["BESS"].short = "Runa";
+			}
+		},
+		true);
+		
 	inputManager.BindCheatSequence("Give ZilRations", 38, 40, 37, 39);
 	inputManager.BindCheatSequence("Room Transport", "idclev");
 	inputManager.BindCheatSequence("Scene Execute", "impulse");
@@ -246,6 +257,7 @@
 	inputManager.BindCheatSequence("Infinte Item Use", "furfag");
 	inputManager.BindCheatSequence("Toggle Debug", "fuckyou");
 	inputManager.BindCheatSequence("Destinations Unlocked", "marcopolo");
+	inputManager.BindCheatSequence("Runamode Bess", "insaneinthemembrane");
 	
 	// Insert the default bindings
 	inputManager.BindKeyToControl(49, "Button 1");             // case 49: pressButton(0);

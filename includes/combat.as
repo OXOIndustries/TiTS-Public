@@ -2943,7 +2943,7 @@ public function tease(target:Creature, part:String = "chest"):void {
 				output("\n<b>" + target.capitalA + target.short + " </b>");
 				if(target.plural) output("<b>don't</b>");
 				else output("<b>doesn't</b>");
-				output("<b> seem to care to care for your eroticly-charged display. (0)</b>\n");
+				output("<b> seem to care to care for your erotically-charged display. (0)</b>\n");
 			}
 			else if(part == "squirt") 
 			{
