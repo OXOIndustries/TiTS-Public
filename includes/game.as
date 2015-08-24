@@ -439,6 +439,7 @@ public function crew(counter:Boolean = false):Number {
 		count++;
 		if (!counter)
 		{
+			crewMessages += "\n\nThere's some gigantic silver blob of instanity sat in the corner. Do you want to go and bother it? Probably best to be careful though, it looks like it might do a number on your sanity. [PLACEHOLDER]";
 			addButton(count - 1, bess.short, approachFollowerBess);
 		}
 	}

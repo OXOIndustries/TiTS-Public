@@ -217,7 +217,7 @@
 			return false;
 		}
 		// Placeholder shit, sue me. Calling the ill excuse etc.
-		override public function bellyDescript(): String {
+		override public function bellyDescript(bForceSize:Boolean = false): String {
 			var sBuilder:String = "";
 
 			var belly:Number = 0;

@@ -1789,6 +1789,9 @@
 				case "belly":
 					buffer = bellyDescript();
 					break;
+				case "bellySize":
+					buffer = bellyDescript(true);
+					break;
 				case "mistress":
 				case "master":
 					buffer = this.mf("master", "mistress");
@@ -4215,7 +4218,7 @@
 			return output;
 		}
 		// Placeholder shit, sue me. Calling the ill excuse etc.
-		public function bellyDescript(): String {
+		public function bellyDescript(bForceSize:Boolean = false): String {
 			var sBuilder:String = "";
 
 			var belly:Number = bellyRating();
@@ -4332,7 +4335,7 @@
 				sizeDescripts[sizeDescripts.length] = "swollen";
 			}
 			//Size: 50%
-			if(rand(2) == 0)
+			if(rand(2) == 0 || bForceSize)
 			{
 				sBuilder += sizeDescripts[rand(sizeDescripts.length)];
 				//Pregnant stuff & Size: 50% or 25% overall odds.
@@ -4344,7 +4347,7 @@
 				else sBuilder += " ";
 			}
 			//Pregnant Stuff - 25% chance (note there's a 25% chance of occurring with belly size for 50% total)
-			else if(isPregnant() && rand(2) == 0)
+			else if(isPregnant() && (rand(2) == 0 || bForceSize))
 			{
 				sBuilder += pregDescripts[rand(pregDescripts.length)] + " ";
 			}
@@ -9526,6 +9529,16 @@
 				{
 					choices = ["dinosaur", "saurian"];
 					descript += choices[rand(choices.length)] + " ";
+				}
+				choices = ["dick", "shaft", "prick", "cock", "tool", "member"];
+				noun += choices[rand(choices.length)];
+			}
+			else if (type == GLOBAL.TYPE_SYNTHETIC)
+			{
+				if (!simple)
+				{
+					choices = ["metallic", "synthetic", "mechanical", "robotic", "sleek"];
+					descript += choices[rand(choices.llength)] + " ";
 				}
 				choices = ["dick", "shaft", "prick", "cock", "tool", "member"];
 				noun += choices[rand(choices.length)];
