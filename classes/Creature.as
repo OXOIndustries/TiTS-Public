@@ -3661,6 +3661,15 @@
 		{
 			return (skinType == GLOBAL.SKIN_TYPE_SCALES);
 		}
+		public function hasChitin():Boolean
+		{
+			return (skinType == GLOBAL.SKIN_TYPE_CHITIN);
+		}
+		public function hasGooSkin():Boolean
+		{
+			return (skinType == GLOBAL.SKIN_TYPE_GOO);
+		}
+
 		public function hasFeathers():Boolean
 		{
 			return false;
