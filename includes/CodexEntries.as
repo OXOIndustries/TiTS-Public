@@ -36,7 +36,6 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Thraggen", thraggenCodexEntry,true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Varmints", varmintCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "V-Ko", VKoCodex);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Bess13", Bess13CodexEntry);
 
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Mhen'ga", "Cunt Snakes", cuntSnakeCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Mhen'ga", "Kerokoras",kerokorasCodexEntry);
@@ -68,6 +67,7 @@ public function configureCodex():void
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Technology", "AI Systems", AISystemsCodexEntry, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Technology", "Item Mechanics", mechanicsCodex, true);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Technology", "Maia Series AI", Bess13CodexEntry);
 
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Dragon’s Hoard", dragonsHordeCodexStory, true);
 }
@@ -1342,7 +1342,7 @@ public function Bess13CodexEntry():void
 
 	outputCodex(blockHeader("Demeanor:"));
 	outputCodex("The AI and VI models share many personality traits due to their similar programming. Both are incredibly eager to please and possess a very pleasant and friendly demeanor. This is because the majority of them need to work in a hospital environment and must have a good bedside manner (as well as a good \"bedside manner\"). They are largely driven by their core directive to provide breeding relief.\n");
-	CodexManager.viewedEntry("Bess13");
+	CodexManager.viewedEntry("Maia Series AI");
 }
 
 public function panaraCodex():void
@@ -1352,7 +1352,7 @@ public function panaraCodex():void
 
 	outputCodex("<b>Name:</b> Bess-13 and Ben 14 Units");
 	outputCodex("\n<b>Sexes:</b> Female (Bess-13) or Male (Ben-14)");
-	outputCodex("\n<b>Height: 5'2\" (Bess-13), 6'1\" (Ben-14)");
+	outputCodex("\n<b>Height:</b> 5'2\" (Bess-13), 6'1\" (Ben-14)");
 
 	outputCodex("<b>Planet Name:</b> Panara");
 	outputCodex("\n<b>Size:</b> Small");
