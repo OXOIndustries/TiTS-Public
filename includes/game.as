@@ -439,7 +439,7 @@ public function crew(counter:Boolean = false):Number {
 		count++;
 		if (!counter)
 		{
-			addButton(count - 1, "Bess", approachFollowerBess);
+			addButton(count - 1, bess.short, approachFollowerBess);
 		}
 	}
 	if(!counter) {

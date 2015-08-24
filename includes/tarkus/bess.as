@@ -651,7 +651,7 @@ public function digUpAFukkinSexbat():void
 	output("\n\nIf cleaned up, this " + bess.mf("male", "female") + " unit would definitely sell for a pretty Galactic Credit, or you could keep [bess.himHer] for your own use. Either way, [bess.heShe] needs to have [bess.hisHer] batteries recharged, and the easiest way to do that is to take [bess.himHer] back to your ship.");
 	output("\n\nFinding [bess.himHer] really is like finding a gem in the rough, though you could just leave [bess.himHer] here. It doesn’t look like [bess.heShe] is going to rust anytime soon.");
 
-	CodexManager.unlockEntry("Bess13");
+	CodexManager.unlockEntry("Maia Series AI");
 	//[Take On Ship] [Leave Here] 
 	processTime(7);
 	clearMenu();
@@ -663,6 +663,8 @@ public function fuckinLeaveTheBessBot():void
 {
 	clearOutput();
 	author("Gedan");
+	
+	flags["BESS_IN_RUBBLE"] = 0;
 	
 	output("You're about to turn away and leave when something remarkably... odd happens.");
 	output("\n\nIt takes a second to realise what the odd humming noise that's been sufusing the air actually is; a figure is approaching from the north, screaming at the top of his voice from the looks of things. He's closing distance quickly, but he's still far enough away for the sound to be mostly unintelligible.");
@@ -725,7 +727,7 @@ public function plugBessesFatAssInPartII():void
 	}
 	output("\n\n<i>“Greetings, [pc.Master]! Thank you for purchasing this unit from JoyCo, the number one galactic seller of medical supplies and high-quality assist-bots!”</i> " + bess.mf("He sounds remarkably upbeat", "She sounds surprisingly happy") + " for someone who was just fished out of a junk pile. <i>“JoyCo hopes you enjoy your purchase, since your pleasure is our pleasure!”</i>");
 	output("\n\nYou ask exactly <i>who</i> and <i>what</i> [bess.heShe] is, and <i>why</i> [bess.heShe] is calling you ‘[pc.Master]’. There are an awful lot of ‘w’ questions that need to be answered until you put down your weapon.");
-	output("\n\nThe " + bess.mf("male","female") + " android looks a little confused. <i>”</i>[pc.Master], I don’t have a name yet - you haven’t given me one. " + bess.mf("I’m the Breeding Emergency Neutralizer Android Model No.14, or Ben-14,", "I’m the Breeding Emergency Sex Substitute Android Model No.13, or ‘Bess-13’,") + " that you ordered from JoyCo. You know, the one designed to relieve your pent-up breeding needs?”</i>");
+	output("\n\nThe " + bess.mf("male","female") + " android looks a little confused. <i>“[pc.Master], I don’t have a name yet - you haven’t given me one. " + bess.mf("I’m the Breeding Emergency Neutralizer Android Model No.14, or Ben-14,", "I’m the Breeding Emergency Sex Substitute Android Model No.13, or ‘Bess-13’,") + " that you ordered from JoyCo. You know, the one designed to relieve your pent-up breeding needs?”</i>");
 	output("\n\nIt seems [bess.heShe] has been reset to [bess.hisHer] factory settings, and now [bess.heShe] thinks you are [bess.hisHer] registered owner. Either that, or [bess.heshe] was fresh out of the box to begin with. Could you be lucky enough to have found your very own high-class, brand-spanking new JoyCo sex relief android?");
 	// Silly Mode && bess.gender = female
 	if(silly && bess.isFeminine()) output("\n\n...Somewhere, there’s a very unhappy looking Japanese boy, waiting for his girlfriend to arrive...");
@@ -854,7 +856,7 @@ public function keepBessYouSloot():void
 	//Tutorial / Configure 
 	output("You decide that you’ll take [bess.himHer] along after all. You don’t really want to leave [bess.himHer] on Tavros, and you don’t want to get rid of [bess.himHer] either.");
 	if (pc.isNice()) output(" <i>“Plus, it kind of seems mean to leave her alone in your hanger just because [bess.heShe]’s an android”</i>.");
-	else if (pc.isMischievous()) output(" <i>“Plus it might be kind of fun to add [bess.himHer] to your crew.”</i>");
+	else if (pc.isMischievous()) output(" Plus it might be kind of fun to add [bess.himHer] to your crew.");
 	else output(" <i>“Besides, you need every edge you can get if you’re going to find that hidden treasure stash.”</i>");
 	//Nice:
 	if(pc.isNice()) output("\n\n<i>“I guess I’ve got a new crewmate. Welcome aboard!”</i> You smile warmly, happy to have another crew member on your ship.");
@@ -990,7 +992,7 @@ public function approachFollowerBess():void
 	{
 		if(bessAffection() >= 90)
 		{
-			output("[bess.name] grins as soon as [bess.heShe] sees you, " + bess.mf("scooping you into his arms", "leaping into your arms") + " and giving you a long, sensual kiss. </i>\"... Mmmm, "+ bessPCName() +"! Have I told you how much I love you today? I'll tell you once more, just in case you forgot.\"<i> [bess.HisHer] [bess.eyes] are gleaming");
+			output("[bess.name] grins as soon as [bess.heShe] sees you, " + bess.mf("scooping you into his arms", "leaping into your arms") + " and giving you a long, sensual kiss. <i>“... Mmmm, "+ bessPCName() +"! Have I told you how much I love you today? I'll tell you once more, just in case you forgot.”</i> [bess.HisHer] [bess.eyes] are gleaming");
 			if (bessGlasses()) output(" through [bess.hisHer] glasses");
 			output(" with happiness.");
 		}
@@ -1023,7 +1025,7 @@ public function approachFollowerBess():void
 	{
 		if (bessAffection() >= 50)
 		{
-			output("[bess.name] runs " + bess.mf("at you", "up to you") + ",giving you a massive hug. <i>“... "+ bessPCName() +"! How goes my best friend in the galaxy? Great, I hope!”</i> [bess.heShe] exclaims " + bess.mf("brightly", "excitedly"));
+			output("[bess.name] runs " + bess.mf("at you", "up to you") + ", giving you a massive hug. <i>“... "+ bessPCName() +"! How goes my best friend in the galaxy? Great, I hope!”</i> [bess.heShe] exclaims " + bess.mf("brightly", "excitedly"));
 			if(bessGlasses()) output(", eyes shining behind [bess.hisHer] glasses");
 			output(".");
 		}
@@ -1042,13 +1044,37 @@ public function approachFollowerBess():void
 	}
 	else
 	{
-		output("[bess.name] wanders up, greeting you with a smile. <i>“How are you doing today, "+ bessPCName() +"? Did you want me to tend to your reproductive needs, or did you just want to talk?”</i>[bess.heShe] asks, peering at you");
-		if(bessGlasses()) output(" through [bess.hisHer] glasses");
-		else output("questioningly");
-		output(".");
+		var randVal:int = rand(4);
+		if (randVal == 0)
+		{
+			output("As you approach [bess.himHer], [bess.name] greets you with a bright smile.");
+
+			output("\n\n<i>“Hello, " + bessPCName() +"! Did you want me to tend to your reproductive needs, or did you just want to talk—?”</i> There’s a querying look in [bess.hisHer] [bess.eyeColor] eyes");
+			if (bessGlasses()) output(" as [bess.heShe] peeks over [bess.hisHer] glasses");
+			output(" it seems [bess.heShe]'s excited by the prospect of either outcome.");
+		}
+		else if (randVal == 1)
+		{
+			output("Spotting your approach, [bess.name] waves cheerily.");
+
+			output("\n\n<i>“" + bessPCName() +"! How're you doing?”</i> [bess.heShe] asks, sounding genuinely interested. ");
+			if (bessGlasses()) output(" [bess.HeShe] nudges up the bridge of [bess.hisHer] glasses.");
+		}
+		else if (randVal == 2)
+		{
+			output("When you approach, [bess.name] is stretching out, fingers laced above [bess.hisHer] head.");
+
+			output("\n\n<i>“Oh, " + bessPCName() +"—! Sorry, I didn't see you there,”</i> [bess.name] remarks, quickly lowering [bess.hisHer] arms. <i>“Can I help you with anything?”</i>");
+		}
+		else
+		{
+			output("As you approach [bess.name], [bess.heShe] pulls [bess.hisHer] JoyCord from the wall socket. There’s a lively look in [bess.hisHer] eyes, like someone who's enjoyed a good meal or nap.");
+
+			output("\n\n<i>“... Nothing like a quick recharge. Oh, "+ bessPCName() +"! It's good to see you,”</i> [bess.name] flushes. [bess.HeShe]’s acting like you’ve caught [bess.himHer] in the middle of changing.");
+		}
 	}
 
-	if(bess.hasHair()) output("\n\nThe synthetic's " + num2Text(Math.round(bess.hairLength*10)/10) + " inch [bess.hairColor] hair is done in "+ bessHairStyle() +".");
+	if(bess.hasHair()) output("\n\nToday, [bess.hisHer] "+ bessHairLength() +" [bess.hairColor] hair is styled in "+ bessHairStyle() +" -- the look suits [bess.himHer].");
 	else output("\n\nThe synthetic has a smooth, silvery scalp, completely free of hair.");
 	if(bess.earType != GLOBAL.TYPE_HUMAN || bess.horns > 0)
 	{
@@ -1061,7 +1087,26 @@ public function approachFollowerBess():void
 		if(bess.horns > 0) output("[bess.horns]");
 		output(" compliment her features.");
 	}
-	output(" [bess.HeShe] is currently wearing a [bess.armor] that accentuates [bess.hisHer] [bess.chest] and [bess.tone] body.");
+
+	output(" [bess.HeShe]'s");
+	if (bess.isNude()) output(" utterly nude");
+	else if (bess.armor is EmptySlot) output(" clad in just [bess.hisHer] [bess.gear]");
+	else output(" dressed in [bess.hisHer] [bess.armor]");
+	if (!(bess.armor is EmptySlot)) output(". It clings to [bess.hisHer]");
+	else output(", [bess.hisHer]");
+	if (bess.tone != 10 && bess.thickness != 10) output(" " + bessTone() +", " + bessThickness());
+	else output(" shapely");
+	output(" body");
+	if (bess.armor is EmptySlot) output(" on display");
+	output(".");
+	if (bess.biggestTitSize() > 0)
+	{
+		output(" [bess.HisHer] [bess.chest]");
+		if (bess.isChestGarbed()) output(" pointedly strain against the fabric");
+		else output(" and [bess.nipples] are freely on display");
+	}
+	output(".");
+
 	if (bess.wingType != GLOBAL.TYPE_HUMAN || bess.tailCount > 0)
 	{
 		output(" [bess.HisHer] ");
@@ -1104,7 +1149,7 @@ public function approachFollowerBess():void
 			}
 			else
 			{
-				if(bess.lowerUndergarment.shortName != "") output("cannot be contained by [bess.hisHer] [bess.underGarment] and dangles out defiantly.");
+				if(bess.lowerUndergarment.shortName != "") output("cannot be contained by [bess.hisHer] underwear and dangles out defiantly.");
 				else output("dangles down proudly between [bess.hisHer] [bess.thighs].");
 			}
 		}
@@ -9146,7 +9191,7 @@ public function bessEvent28GoAfter():void
 
 	output("\n\n<i>“It’s a good thing for you our employer pays so well, or else we’d be breaking the contract and selling this piece of black market tech. Harboring an illegal AI, naughty [pc.boyGirl]! Don’t you know these ones have a record of going batshit crazy?”</i>");
 
-	if (CodexManager.entryViewed("Bess13"))
+	if (CodexManager.entryViewed("Maia Series AI"))
 	{
 		output("\n\nYou grit your teeth. You’d suspected [bess.name] was an illegal AI, ever since you read the codex entry on [bess.hisHer] product line. But by the look of utter shock on [bess.hisHer] face, it seems [bess.name] was completely unaware of this.");
 		
@@ -9266,7 +9311,7 @@ public function bessEvent28ShipMerge():void
 	if (bess.isFeminine()) output(" like my knight in a shining space ship");
 	output(". Thank you.”</i> Tears well up in [bess.hisHer] eyes as [bess.heShe] kisses each of your fingertips, softly nuzzling your hand.");
 
-	if (CodexManager.entryViewed("Bess13"))
+	if (CodexManager.entryViewed("Maia Series AI"))
 	{
 		output("\n\nAfter a while, [bess.name]’s eyes seem to glaze over. You know [bess.himHer] well enough to know [bess.heShe]’s internally accessing the extranet.Eventually, [bess.hisHer] body goes limp as if all the life is taken out of it, and [bess.heShe] gives you a despairing look.");
 	}
@@ -9277,7 +9322,7 @@ public function bessEvent28ShipMerge():void
 
 	output("\n\n<i>“... It’s true. I can’t believe it. Over a decade ago, JoyCo called back all the "+ bess.mf("Ben-14", "Bess-13") +" AIs and then remarketed us with VI processors. That’s why I can still get parts that fit me and there’s no mention of "+ bess.mf("Ben-14", "Bess-13") +" units being pulled - they’re all meant for the VI model.”</i>");
 
-	if (CodexManager.entryViewed("Bess13"))
+	if (CodexManager.entryViewed("Maia Series AI"))
 	{
 		output("\n\n<i>“But there’s a record on my codex...”</i> You bring it up, along with the data on [bess.hisHer] product line.");
 		

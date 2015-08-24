@@ -98,6 +98,11 @@ public function tavrosHangarStuff():Boolean
 		output("\n\nCelise is lounging here, just as green as ever and chatting amicably with one of the station's mechanics.");
 		addButton(5,"Celise",approachNonCrewCelise);
 	}
+	if (bessAtTavros())
+	{
+		output("\n\n[bess.name] is here, waiting around and generally staying out of the way as best she can.");
+		addButton(6, bess.short, approachBessAtTavros);
+	}
 	return false;
 }
 
