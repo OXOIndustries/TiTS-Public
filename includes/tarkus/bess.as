@@ -9839,6 +9839,8 @@ public function bessMorningEvents():void
 	{
 		bessHighLustMorningScene();
 	}
+	
+	flags["BESS_SLEEPWITH_DOMORNING"] = undefined;
 }
 
 public function bessMorningMessages():void

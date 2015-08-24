@@ -543,6 +543,10 @@ public function sleep(outputs:Boolean = true):void {
 				annoSleepSexyTimes();
 				return;
 			}
+			else if (bessIsCrew() && rand(3) == 0 && flags["CREWMEMBER_SLEEP_WITH"] == "BESS")
+			{
+				flags["BESS_SLEEPWITH_DOMORNING"] = 1;
+			}
 		}
 	}
 	if(outputs) output("You lie down and sleep for about " + num2Text(Math.round(minutes/60)) + " hours.");
