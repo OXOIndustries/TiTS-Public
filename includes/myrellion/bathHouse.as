@@ -520,6 +520,7 @@ public function cleanPenisPartDues(x:int):void
 	//end and pass time
 	processTime(22);
 	pc.orgasm();
+	pc.shower();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -555,6 +556,7 @@ public function cleanMuhVaginaYo():void
 	//end and pass time
 	processTime(22);
 	pc.orgasm();
+	pc.shower();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -577,7 +579,8 @@ public function privateBathSelection():void
 	pc.credits -= 50;
 	clearMenu();
 	addButton(0,"Oserre",oserrePrivateBath,undefined,"Oserre","Ask Matron Oserre to attend you in your private bath. A stress-relieving session with such an experienced, voluptuous employee would definitely come to a very satisfactory conclusion.");
-	addButton(14,"Back",approachBathMatron);
+	addButton(1,"Solo",privateBathBathBathBathBathNotBessNoJustBath,undefined,"Solo","Get a bath by yourself, though you can always call for an attendant if the mood strikes.");
+	addButton(14,"Back",backFromPrivateBath);
 }
 
 public function backFromPrivateBath():void
@@ -612,6 +615,7 @@ public function oserrePrivateBath():void
 	if(flags["OSERRE_BATHED"] == undefined)
 	{
 		output("She walks confidently and without colliding with anything, which tells you she’s been down this route many, many times - you wonder if she’s just that popular with other bathers, or if she is, in fact, taking you to her own personal bath for some fun. Your question is answered a moment later when you enter a cozy, intimate room with a dresser against the wall and several more Oserre-sized robes hanging. A steaming pool lies in the center, just where you’d expect it.");
+		flags["OSERRE_BATHED"] = 1;
 	}
 	output("\n\n<i>“Does your spirit feel particularly weighed-down, my child? Are there any specific places I should focus on making anew?”</i> In her own way, Oserre is offering you a chance to choose which part of you receives the most attention - happy ending almost certainly implied.");
 	processTime(4);
@@ -799,6 +803,7 @@ public function treasureHunt():void
 	//end, raise libido, adjust time and lust
 	processTime(23);
 	pc.orgasm();
+	pc.shower();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -904,6 +909,7 @@ public function maleParts():void
 	}
 	processTime(24);
 	pc.orgasm();
+	pc.shower();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -961,8 +967,11 @@ public function dildoPicker(cumFrom, shown:int):void
 	if(cumFrom != ovipositorOserre) choices.push(ovipositorOserre);
 
 	if(shown >= 2) doubleEndedOserre();
-	else choices[rand(choices.length)](shown);
-	shown++;
+	else 
+	{
+		shown++;
+		choices[rand(choices.length)](shown);
+	}	
 }
 //Marble dick
 public function marbleDickOserre(shown:int):void
@@ -1057,6 +1066,246 @@ public function doubleEndedOserre():void
 	//end, adjust time and lust, lower libido or sens
 	processTime(44);
 	pc.orgasm();
+	pc.shower();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+public function privateBathBathBathBathBathNotBessNoJustBath():void
+{
+	clearOutput();
+	showName("\nBATH");
+	author("Gardeford");
+	output("One of the order’s many sisters direct you to an unused hot spring, letting you in before closing the durable curtain. You find yourself in a miniature changing room, with a sizeable chest to store your belongings. A mirror stands in the other corner to help with the removal of necklaces, along with a rag to wipe the condensation off of said mirror.");
+	output("\n\nYou stash your [pc.gear] in the containers, preparing yourself before entering the bath. The hot spring pool is surprisingly large, reaching what must be 20 feet in diameter. They must use these rooms for private parties as well. The bath appears to be hewn directly from the surrounding cave, with ornate designs chiseled into the smooth stone. A small stream trickles into the water from one end of the room, only to continue out the other end and down another small tunnel.");
+	output("\n\nA large brass bell hangs on the wall just beside the door, with a small instruction plaque beneath labeled 'Ring For Assistance.' ");
+	if(flags["BEEN_PRIVATE_BATHED"] == undefined) output("You aren’t sure what kind of assistance is available, but you imagine it comes in a pretty white robe.");
+	else output("The label brings back memories of your last encounter, and your fingers itch to ring it again.");
+	output(" You could ring the shining bell to summon the order’s assistant, or you could have this gigantic bath to yourself.");
+	processTime(2);
+	clearMenu();
+	//[alone][assistance]
+	addButton(0,"Alone",aloneBathAloneOneIsTheLoneliestNumberThatYouEverSaw);
+	addButton(1,"Assistance",assistanceWithPrivateBath,undefined,"Assistance","Ring the small bell for assistance. Having a devoted member of the order to help you bathe sounds wonderful right now. Maybe you’ll even get a happy ending out of it.");
+}
+
+//Alone
+public function aloneBathAloneOneIsTheLoneliestNumberThatYouEverSaw():void
+{
+	clearOutput();
+	showName("\nBATH");
+	author("Gardeford");
+	output("You figure bathing alone should be enough right now, and step up to the edge of the bath. The water is just shy of being too hot, but you manage to find a section shallow enough to acclimate yourself to the heat. Once you build up a resistance, you wade around to various parts of the tub, finding them to have a large variety of depths to accommodate all body sizes. Maybe some of the queens made use of these baths when the golds still controlled kressia.");
+	output("\n\nThe troughs running into and out of the pool seem to filter the water to make sure it remains clean, but where the water goes afterwards you have no idea. You rub yourself clean with the water, thinking about your travels as you bathe. Where will you go next? What will you find there? You contemplate for a few more minutes before exiting the bath.");
+	output("\n\nYou dry off, gathering your gear from the locker room before heading out. The orderlies at the door show you back to the main lobby, where you can decide what to do next.");
+	processTime(15);
+	pc.shower();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Assistance
+//tooltip: Ring the small bell for assistance. Having a devoted member of the order to help you bathe sounds wonderful right now. Maybe you’ll even get a happy ending out of it.
+public function assistanceWithPrivateBath():void
+{
+	clearOutput();
+	showName("BATH\nSERVICE");
+	author("Gardeford");
+	output("You ring the tiny brass bell to summon assistance. After all, why should you bath alone when a bevy of beautiful women are waiting to help at a moment’s notice? The chimes echo softly in the large room, and a small green light flashes on the plaque. A speaker positioned just under the instruction plaque activates to confirm your action.");
+	output("\n\n<i>“Request received. Please, situate yourself in the bath and an assistant will be with you shortly,”</i> comes a motherly voice from the radio. You nod at the prompt response, placing your towel on a stone bench nearby and moving to the edge of the large pool. You test the water with ");
+	if(pc.hasFeet()) output("a [pc.foot]");
+	else output("the tip of your tail");
+	output(" before easing yourself in.");
+
+	output("\n\nThe water is just shy of being too hot, allowing you to relax after a minute or two of getting used to it. You even try dipping your head under while you wait, but are forced up by the heat after a few seconds. A melodic giggle reaches your ears as you surface, pulling in air and shaking off the water. You rub the water out of your eyes as best you can, finding the voice to come from a scantily clad sister of the order.");
+
+	output("\n\n<i>“");
+	if(flags["BEEN_PRIVATE_BATHED"] == undefined) output("Are you trying to dive? You needn’t go to such lengths. I’ll be sure to wash your face");
+	else output("I’m glad you called again. Repeat customers are much easier than new ones");
+	output(",”</i> she says with a smile. The red myr is dressed only in a loose fitting ivory-white robe, thin enough that you can see the impressions of her nipples, and open far enough to reveal her bare pussy and smooth stomach. A silky cream veil covers her from the top of her brow to the tip of her nose.");
+	output("\n\nShe carefully sets a tray of bathing materials on the edge of the tub before letting her thin clothing slide off her shoulders. The myr girl takes some of the bathwater in a small pitcher, wetting her body with small streams of water that cascade over her curves and splash onto her toes. She gasps at the heat of the water, accentuating the fullness of her D-cup chest.");
+	output("\n\n<i>“");
+	if(flags["BEEN_PRIVATE_BATHED"] == undefined) output("Even after all the training the heat still gets me at first");
+	else output("So embarrassing, it happens every time");
+	output(",”</i> she confesses, stepping up to the edge of the pool before climbing carefully in. Her steps take her into the deeper portion at the middle of the bath, leaving everything below her collarbone submerged. Luckily the clarity of the water leaves nothing to the imagination, and you can see every curve and chitinous point beneath the ripples.");
+
+	output("\n\n<i>“Please, Join me in standing. I’ll clean up all the dirt and impurities you’ve acquired on your travels,”</i> she assures you, wading back to the assortment of bath supplies she brought. You oblige her gentle command, moving slowly to a portion of the bath that matches your height. Now that you’ve had time to adjust, the hot water feels warm and cozy on your [pc.skinFurScales].");
+
+	output("\n\n<i>“There, Isn’t that better? Today I’ll be scrubbing you down with a ");
+	if(hours <= 12) output("natural blend of hand-crafted soaps and mineral oils");
+	else output("mixture of gold myr honey and natural soaps");
+	//ifsilly: mashed mushroom body soap with just a sprinkle of cave goo, worm spit, and cave bat guano}
+	output(",”</i> she informs as she grabs a butterscotch bottle, squeezing out a ");
+	if(hours <= 12) output("white soapy liquid");
+	else output("thick, gold tinted liquid");
+	//putrid, foul smelling green gunk
+	output(" that coats her hand and drips into the pool. The soapy fluid is carried to the exit side of the softly flowing water, carried away to who knows where.");
+	output("\n\nOnce her hands are completely coated, she strides over to you through the water, leaving a small wake of ripples behind. You can feel the gentle pressure of her movement in a small wave that bumps into your body. She stops short of running into you herself, reaching out to caress your ");
+	if(pc.tone < 40) output("soft");
+	else if(pc.tone < 70) output("fit");
+	else output("toned");
+	output(" body with lotion-covered hands.");
+	if(pc.hasFur()) output(" The soap lathers easily into your [pc.furColor] fur, and she works it in thoroughly with her three fingered hands");
+	else if(pc.hasGooSkin() || pc.isGoo()) output("The soap tickles as it mixes with your gooey body, and the ant-girl tries her best to keep a straight face as her fingers accidentally find themselves wrapped in your exterior");
+	else if(pc.hasScales()) output("The soap is cool on your heated scales, bubbling up as she scrubs you with a soft brush");
+	else output(" The soap feels cool on your heated skin, quickly turning to bubbles as she scrubs it in with a silky washcloth");
+	output(".");
+	
+	output("\n\nThe orderly assistant’s hands explore your body as she rubs in the cleaning concoction. Her touches run briskly over your sex, but the movements are wholly professional for the time being. Beneath the water, she scrubs till the soap dissipates, distributing it evenly on your ");
+	if(!pc.isTaur()) output("[pc.legOrLegs]");
+	else output("tauric hindquarters");
+	output(". Once her hands are free of foam, she takes the pitcher from before, using it to clean away the suds from your body.");
+
+	output("\n\n<i>“Please close your eyes while I wash your face. I have been told the soaps can irritate the eyes of some offworlders,”</i> she asks politely. You close your eyes as she scrubs another foamy goop ");
+	if(pc.hasHair()) output("into your [pc.hair]");
+	else output("onto your scalp");
+	output(", fighting the urge to gasp when she washes it away with piping hot water. She places the pitcher back on its tray before turning to face you again.");
+
+	output("\n\n<i>“My services are fulfilled. Unless, of course, you require a <b>deeper</b> spiritual cleansing,”</i> she offers, her tone filling your mind with images of less than chaste scenarios. You could always just relax in the bath for a while longer, but why make her waste all this time without taking the full treatment.");
+	flags["BEEN_PRIVATE_BATHED"] = 1;
+	processTime(22);
+	//[decline](normal bath is enough for now)[accept](you could go for some deep cleansing)
+	clearMenu();
+	addButton(0,"Decline",declineBathHJs);
+	if(pc.hasCock()) addButton(1,"MaleService",acceptPrivateBathHJs,true,"Male Service", "Get some cleansing for your male parts.");
+	else addDisabledButton(1,"MaleService","Male Service","You don't have any male parts to service");
+	if(pc.hasVagina()) addButton(2,"FemaleService",acceptPrivateBathHJs,false,"Female Service","Get some DEEP cleansing.");
+	else addDisabledButton(2,"FemaleService","Female Service","You don't have any female parts to cleanse.");
+}
+
+//Decline
+public function declineBathHJs():void
+{
+	clearOutput();
+	showName("\nBATH");
+	author("Gardeford");
+	output("You politely decline the crimson ant-girl’s offer, stating that you’d prefer to bathe alone this time.");
+	output("\n\n<i>“Of course, " + pc.mf("sir","madam") + ", should you need further assistance just ring the bell and I’ll be available. The order tries to make sure bathers are matched with the same assistants if possible,”</i> she says, climbing out of the pool with careful movements. The sight of the water dripping off her naked body brings a few regrets to your mind, but you know what you wanted. She dries off with the towel she brought, retrieving her robe and saying her goodbyes with a bow and wave.");
+	output("\n\nYou stay and soak in the tub for a little while longer. Now that you’re totally clean, you don’t have much to do in the private bath. You wonder if anyone other than you actually pays to bathe alone, as the bath was truly meant to fit a party. After mulling for a little while longer, you decide to leave the bath. The air chills your naked body as you step out of the waters warm embrace, and you scramble for the cloth towel you were given.");
+	output("\n\nOnce you’ve dried off, you return to gather your [pc.gear] from the lockers before leaving the private bathing area. The orderlies show you back to the main lobby before continuing their duties.");
+	processTime(10);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+	//{return to savins main room menu}
+}
+
+//Accept
+public function acceptPrivateBathHJs(dick:Boolean = false):void
+{
+	clearOutput();
+	showName("BATH\nSERVICE");
+	output("<i>“Sure, why not? I’ve got time,”</i> you reply, netting yourself a knowing smile from the cloth-blinded ant-girl. She takes another smaller bottle from the tray, popping off the cap and pouring a viscous, clear liquid that trickles like honey over her breasts and belly. The bottle empties quickly, and she rubs the sweet smelling syrup into her body, giving it a slick sheen.");
+	output("\n\n<i>“This is a special oil made with honey and a hint of red myr venom, it will make it easier to expel the spiritual impurities that plague you,”</i> she says, her skin shining like copper in the dim light. After discarding the used bottle, she wades back to you, wrapping herself around you from the side and caressing your [pc.chest].");
+
+	//dickwielder
+	if(dick)
+	{
+		output("\n\nYour body tingles as the oil touches it, and you feel a sensual warmth as her slippery limbs intertwine with your own. The lotion appears waterproof, as the water does nothing to clear it from her touch. You can feel the hint of red venom bringing [pc.eachCock] to full mast, but it doesn’t seem enough to impair you mentally. It appears to similarly affect your partner, whose breath catches in her throat each time her stiffening nipples brush against your [pc.skinFurScales].");
+		output("\n\n<i>“Mmm, ");
+		if(pc.cockTotal() > 1) output("such a fine selection for me to choose from");
+		else output("such a fine instrument you have");
+		output(". I’m not like the gawking girls you’ll see in the public bath. We in the order know exactly how to work with these,”</i> she whispers, her breath almost hotter than the water in your ear. Nimble fingers ");
+		if(pc.cockTotal() > 2) output("weave through your myriad of cocks in search of one to hold");
+		else output("wrap around your [pc.cockBiggest] with practiced ease");
+		output(". Under the water her hands seem to move in slow motion, pumping your cock like the tide on a beach.");
+
+		output("\n\n<i>“It takes a lot of <b>practice</b> to be a sister of the order, and we are required to <b>know</b> what to do in case one of the rare unattached males should need <b>release</b>,”</i> she continues, timing her emphasis with rhythmic constrictions around your [pc.cockHeadBiggest]. The strength of her squeezing adapts to your reactions. The part of you that still has reason marvels at her ability to maintain her grip with such slippery oil coating her hands.");
+		output("\n\n<i>“Let me show you how long I can hold my breath,”</i> she finishes, ducking away and planting a wet kiss on your [pc.hip] before ducking into the clear pool. Even with the ripples distorting the image, you can see her glide through the water to match her lips up to your [pc.cockBiggest]. Her mouth envelopes your [pc.cockHeadBiggest] in a different kind of wetness, and you feel the ");
+		if(9999 == 9999) output("electric surge");
+		//addicted
+		else output("familiar pulse");
+		output(" of red myr venom. It’s the real thing this time, no mere diluted body oil.");
+
+		output("\n\nHer lips form a near perfect seal, and she ");
+		if(pc.biggestCockLength() <= 14) output("takes your entire length, rubbing her nose against your pelvis");
+		else output("takes as much of your length as she can handle, grazing your cockflesh with her teeth as gently as she can manage");
+		output(". The venom in her saliva gushes through your bloodstream, leaking between failsafes already weakened by the heat of the bath. The aphrodisiac moves like a living thing, starting in your loins before fanning out to your limbs. Finally it settles in your chest like the warmth of a midsummer fire before creeping into your mind with bubbly promises of release.");
+		output("\n\nYou find yourself unable to judge the ant-girl’s efforts, as her venom renders you unable to remember if she dove minutes or seconds ago. Time slips out of your comprehension, and all you can think of is the heat and the feeling of her lips on your [pc.cockBiggest]. Jets of pre-cum serve to further wetten her throat, preparing it for your load.");
+		output("\n\nAll at once the the heat in your body collects into your crotch, and you feel your ");
+		if(pc.balls > 0) output("[pc.balls]");
+		else output("prostate");
+		if(pc.balls <= 1) output(" tightens");
+		else output(" tighten");
+		output(" as ");
+		if(pc.cumQ() < 15) output("a load");
+		else if(pc.cumQ() <= 1000) output("ropes");
+		else output("a torrent");
+		output(" of your [pc.cum] fills the red myr’s eager mouth. ");
+		if(pc.cockTotal() > 1)
+		{
+			output("Your other ");
+			if(pc.cockTotal() > 2) output("cocks shoot");
+			else output("cock shoots");
+			output(" uselessly into the water, some spurts hitting her shoulders. ");
+		}
+		output("Fiery lights dance in your eyes as she continues to milk you until the spasms of orgasm let out. The fog on your mind begins to clear as the venomous coating of saliva is washed away, and you find the red ant kissing your belly as she rises from under the water. She takes a deep breath when she breaks the water, letting your [pc.cumColor] jizz pour out and into the pool.");
+		output("\n\n<i>“It’s ok, it’ll be filtered by the cave heat. If not, I guess we’ll be finding out which of the bathers in the public baths are fertile,”</i> she says with a sly grin as your seed is carried to the pool’s exit trough. After catching her breath, your assistant retreats from the bath and begins drying herself off with the towel she brought. She redresses in the same satiny robe she came in, taking her tray of bathing goods and departing with a goodbye wave.");
+		output("\n\nYou stay in the water until the high from her fluids has run its course, toweling off and retrieving your [pc.gear] from the locker room. The orderlies at the door show you back to the main lobby, where you can decide what to do next.");
+		processTime(14);
+		pc.orgasm();
+		flags["BEEN_PRIVATE_MYRBATH_SERVICED"] = 1;
+		//9999 red venom dose
+		clearMenu();
+		addButton(0,"Next",privateBathServiceEpilogue);
+	}
+	//female
+	else
+	{
+		output("\n\nThe lotion she’s using must be waterproof, because her hands remain just as slippery as they inch deeper into the bath to caress your [pc.legs]. You ");
+		if(flags["BEEN_PRIVATE_MYRBATH_SERVICED"] != undefined) output("know");
+		else output("doubt");
+		output(" that the concoction ");
+		if(flags["BEEN_PRIVATE_MYRBATH_SERVICED"] != undefined) output("isn’t");
+		else output("is");
+		output(" as powerful as real myr venom, but that doesn’t stop it from making your skin tingle at her touch. [pc.eachvagina] tingles in needful anticipation, growing stronger with the proximity of her fingers.");
+		output("\n\n<i>“To be honest I’m glad you choose this service. As fun as dicks are, I’m much more used to the normal stuff,”</i> she admits with a smile, hugging closely to your body as she talks. Graceful fingers dance over your mons and rub [pc.eachVagina] before focusing on your [pc.clit]. Her hands move with surprising speed under the water, showing just how skillful she is.");
+		output("\n\n<i>“Many of the lower ranking members of red myr command come here to cleanse themselves and relieve stress. I hear gold queens visited the baths on occasion, but if that’s true it was before my time,”</i> she continues, and you nod as you half-listen to her words, the rest of your attention snared by her touch.");
+		output("\n\nThe bathhouse adherent’s free hand slides smoothly over your body, stopping to squeeze one of your buttcheeks. You can see the flush in your partner’s face even through the silky veil over her nose, and her stiff nipples press into your [pc.chest]. She leans in close, licking your chin and prodding your lips till they part for her tongue. Any attempts to resist her are quickly calmed by a sensual warmth.");
+		output("\n\nThis is the real stuff, multitudes better than a facsimile. The diluted lotion is nothing compared to the aching lust created by the full strength venom in her saliva. You melt into her kiss, ");
+		//unaddicted/addicted:
+		if(9999 == 9999) output("wanting");
+		else output("<b>needing</b>");
+		output(" nothing more than to let it continue for the rest of your life. Her tongue lingers outside her open mouth as she pulls back, and you try your hardest to suck it back into your mouth.");
+		output("\n\nUnfortunately your hardest is weakened considerably by the venom, and she pulls gently out of your reach. The fingers massaging your [pc.clit] are now an afterthought, pushed out of your mind by the thought of another round of drunken kissing. On second thought, you don’t even need to be involved. If she’d just lick you with that wonderful tongue, all your troubles would go away.");
+		output("\n\nYou stare without focus into her veil, unable to make out distinct shapes with your heat and lust-addled mind. The pale goddess seems to read your needs, giving you a long lick up the ");
+		if(!pc.hasMuzzle()) output("bridge of your nose");
+		else output("length of your muzzle");
+		output(". Her trailing tongue ends its journey between your eyes, followed immediately by a wet smooch. By now your vision has been reduced to simple colors, and you giggle at the indistinct moving shapes.");
+		output("\n\nYour pearlescent bathing assistant says something, but her words sound like a dull hum in your ears. She kisses your collarbone, hovering for a moment before moving lower and licking the center of your stomach. The feeling of her fingers finally begins to take control of your senses, and the throbbing of your [pc.clit] pulses through every nerve.");
+		output("\n\nA slow, volcanic heat swims through your body as her expert ministrations bring you to orgasm. If your muscles tighten you feel none of it, just complete relaxation accompanied by a sense of release. You slump against the order’s sister, ");
+		if(pc.isTaur() || pc.tallness >= 84) output("forcing her to hold your larger frame for a moment before she can push you into a better position.");
+		else output("forcing her to hold you for a moment while she finds a better position.");
+		processTime(14);
+		pc.orgasm();
+		flags["BEEN_PRIVATE_MYRBATH_SERVICED"] = 1;
+		//9999 red venom dose
+		clearMenu();
+		addButton(0,"Next",femSceneWaterSploosh);
+		return;
+	}
+	//Don't do stat stuff here - female scene breaks off higher up.
+}
+
+public function femSceneWaterSploosh():void
+{
+	clearOutput();
+	showName("BATH\nSERVICE");
+	author("Gardeford");
+	output("The next thing you feel is a splash of cold liquid that swiftly clears your senses.");
+	output("\n\n<i>“Sorry about that, but you looked like your spirit was about to be cleansed a little too much. I’d like very much to keep you safe to come again,”</i> comes the red myr’s voice from behind you. You turn to see her re-dressing, slipping the ivory robe over her lotion-coated body. Muscle memory reminds you of the last hour, and you feel a hot flush run through your body.");
+	output("\n\n<i>“Please don’t hesitate to call on me again sometime,”</i> she calls as she leaves, waving a goodbye.");
+	processTime(4);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",privateBathServiceEpilogue);
+}
+
+public function privateBathServiceEpilogue():void
+{
+	clearOutput();
+	showName("\nBATH");
+	author("Gardeford");
+	output("You stay in the pool for a little while longer, waiting for the venom to work its way out of your system. When you don’t feel like fucking the next living thing you see, you hop out of the giant tub and dry off. Your [pc.gear] is exactly where you left it in the locker room, and you grab it as you head out the doors. The orderlies at the door show you back to the main lobby, where you can decide what to do next.");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

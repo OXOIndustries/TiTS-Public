@@ -3653,6 +3653,10 @@
 			output += skinNoun(skin,appearance);
 			return output;
 		}
+		public function hasMuzzle():Boolean
+		{
+			return (hasFaceFlag(GLOBAL.FLAG_MUZZLED));
+		}
 		public function hasFur():Boolean
 		{
 			return (skinType == GLOBAL.SKIN_TYPE_FUR);
