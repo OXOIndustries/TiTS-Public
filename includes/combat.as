@@ -1247,7 +1247,7 @@ public function concentratedFire(hit:Boolean = true):void
 	}
 }
 
-public function playerRangedAttack(target:Creature, process = true):void 
+public function playerRangedAttack(target:Creature, process:Boolean = true):void 
 {
 	rangedAttack(pc, target,[2]);
 	if(pc.hasPerk("Second Shot")) rangedAttack(pc, target,[0,1,2]);

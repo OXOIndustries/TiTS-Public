@@ -17,7 +17,7 @@
 		{
 			this._latestVersion = 2;
 			this.version = this._latestVersion;
-			this._neverSerialize = true;
+			this._neverSerialize = false;
 			
 			this.short = "Renvra";
 			this.originalRace = "half-nyrea";
@@ -156,7 +156,7 @@
 			this.vaginalVirgin = true;
 			this.analVirgin = false;
 			//Goo is hyper friendly!
-			this.elasticity = 1;
+			this.elasticity = 3;
 			this.clitLength = 0.25;
 			
 			this.breastRows[0].breastRatingRaw = 11;
@@ -181,6 +181,12 @@
 			// eg a Pregnancy with 10% chance and a father with 1.0 virility == 10% chance of happening (ignoring mother fertility).
 			dataObject.cumQualityRaw = 1.0;
 			dataObject.cumQualityMod = 0.0;
+		}
+		//Gotta reset 'dem balls!'
+		override public function orgasm(): void {
+			super.orgasm();
+			this.cumQualityRaw = 1;
+			
 		}
 		
 	}

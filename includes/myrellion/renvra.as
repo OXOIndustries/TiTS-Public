@@ -1,4 +1,4 @@
-﻿import classes.Characters.PlayerCharacter;
+import classes.Characters.PlayerCharacter;
 import classes.PregnancyData;
 /*Renvra
 Half-Nyrean Shopkeeper
@@ -259,8 +259,12 @@ public function fuckHerYouNancy(fromRaceTalk:int = 0):void
 	if(pc.tallness >= 78) output("up ");
 	else if(pc.tallness <= 66) output("down ");
 	output(" at you.");
+	if(renvra.cumQualityRaw >= 100)
+	{
+		output(" “<i>You still owe me a warm hole for this load of fertile eggs, spacer,</i>” she says seriously, stroking her massive prick.");
+	}
 	//if PC has a dick: 
-	if(pc.hasCock()) 
+	else if(pc.hasCock()) 
 	{
 		output(" <i>“So, what’s it going to be, spacer? Want a piece of my ass, or are you thinking about a");
 		if(pc.hasVagina()) output(" pussy");
@@ -276,6 +280,21 @@ public function fuckHerYouNancy(fromRaceTalk:int = 0):void
 	if(pc.hasCock()) addButton(0,"FuckHerButt",buttFuckRenvra,undefined,"Buttfuck Her","Flop Renvra’s oversized cock out of the way and sink your dick in her tight ass.");
 	else addDisabledButton(0,"FuckHerButt","Buttfuck Her","You need a penis to be able to put it in her butt.");
 	addButton(1,"Bend Over",bendItLikeBeckhamForRenvra,undefined,"Bend Over","Bend over Renvra’s desk and let her fuck your [pc.vagOrAss] with her ovipositor-cock.");
+	if((pc.hasCock() && pc.cockThatFits(renvra.cockCapacity(0)) >= 0) || pc.lowerUndergarment.hardLightEquipped || "PCHasDildo" == "9999") 
+	{
+		if(pc.hasCock() && pc.cockThatFits(renvra.cockCapacity(0)) >= 0) addButton(2,"Urethra Fuck",fuckRenvrasUrethra,undefined,"Urethra Fuck","Fuck Renvra by sticking your dick in her ovipositor’s slit. Cumming down her cock is likely to fertilize her eggs.");
+		else if(pc.hasCock() && pc.cockThatFits(renvra.cockCapacity(0)) >= 0) addButton(2,"Urethra Fuck",fuckRenvrasUrethra,undefined,"Urethra Fuck","Diddle Renvra with your hardlight strap-on in her dick. She’s not liable to care about your lust once the sex toy gets her off, though.");
+		else addButton(2,"Urethra Fuck",fuckRenvrasUrethra,undefined,"Urethra Fuck","Diddle Renvra with a dildo in her dick. She’s not liable to care about your lust once the sex toy gets her off, though.");
+	}
+	else if(pc.hasCock() && pc.cockThatFits(renvra.cockCapacity(0)) < 0) addDisabledButton(2,"Urethra Fuck","Urethra Fuck","Your cock is too big and you don’t own a suitable sex toy!");
+	else addDisabledButton(2,"Urethra Fuck","Urethra Fuck","You don’t have a suitable sex toy or a cock!");
+
+	if(flags["MADE_RENVRA_BEG"] == 2 && renvra.cumQualityRaw >= 100) addDisabledButton(3,"MakeHerBeg","MakeHerBeg","Renvra looks at you warily. She probably still hasn’t nutted or knotted since the last time you backed her up, and isn’t about to let you do it again.");
+	else if(flags["RENVRA_SEXED"] != undefined) addButton(3,"MakeHerBeg",makeRenvraBegYouSillyBillySlut,undefined,"MakeHerBeg","‘Encourage’ the ball-busting battle-axe to be a little nicer to you by edging her until she’s broken-down and desperate to cum - mercy is optional.");
+	else addDisabledButton(3,"MakeHerBeg","MakeHerBeg","Renvra looks like she’s itching to fuck you - she’s not going to accept being teased and toyed with right now.");
+
+	if(flags["MADE_RENVRA_BEG"] && renvra.cumQualityRaw >= 100) addButton(4,"Dbl.Trouble",renvraDoubleTrouble,undefined,"Double Trouble","Renvra’s so backed-up from your shenanigans that her girthy egg-cock could probably put <i>two</i> batches of kids in you.");
+	else addDisabledButton(4,"Dbl.Trouble","Double Trouble","Renvra looks impatient, like she wants to blow her load and get back to work - try some teasing and denial and maybe you can get her ‘full’ attention.");
 }
 
 //Bend Over
@@ -453,7 +472,9 @@ public function getEggsInShit(x:int = -1):void
 
 	output("\n\nYou try to chuckle, but only succeed in shifting the alien eggs inside you around. You put a hand on your belly and groan.");
 
-	output("\n\nRenvra pats your [pc.butt] and shifts most of her weight up onto the desk. <i>“Don’t worry, they’ll dissolve in a little while. Unless that nyrea-boy I found the other day managed to fertilize them, that is...");
+	output("\n\nRenvra pats your [pc.butt] and shifts most of her weight up onto the desk. <i>“");
+	if(renvra.cumQualityRaw < 100) output("Don’t worry, they’ll dissolve in a little while. Unless that nyrea-boy I found the other day managed to fertilize them, that is...");
+	else output("Hope you’re ready to carry my kids - after what you did before, I’m almost certainly knocked up...");
 	//if talked about kids before:
 	if(flags["RENVRA_SEXED"] == undefined) output(" If that happens, well... I have to admit, there’s something a little </i>exciting<i> about spreading my get to the stars,”</i> she laughs. As if to emphasize her point, the knot straining your hole throbs mightily.");
 	else output(".”</i>");
@@ -949,4 +970,640 @@ public function renvraFullPregnancyPublicII(pData:PregnancyData):void
 	//Put PC back at ship tile.
 	clearMenu();
 	addButton(0, "Next", move, "SHIP INTERIOR");
+}
+
+//Fuck her Urethra
+//stick dick/dildo into her ovipositor - add Renvra egg fertilization chance to up odds of fertilized eggs next time PC is knotted, more if PC cums inside
+//should count as ‘fucking’ Renvra for purposes of unlocks
+
+//tooltip: {(has suitable cock)Fuck Renvra by sticking your dick in her ovipositor’s slit. Cumming down her cock is likely to fertilize her eggs./(only dildo)Diddle Renvra with a dildo in her dick. She’s not liable to care about your lust once the sex toy gets her off, though.}
+//disabled tooltip, too big & no dildo: Your cock is too big and you don’t own a suitable sex toy!
+//disabled tooltip, no cock or dildo: You don’t have a suitable sex toy or a cock!
+public function fuckRenvrasUrethra():void
+{
+	clearOutput();
+	showRenvra();
+	author("Zeikfried");
+	//PC's gotta have a dilo.
+	// 0 = dildo
+	var dildo:int = 0;
+	// 2 = dick.
+	if(pc.hasCock() && pc.cockThatFits(renvra.cockCapacity(0)) >= 0) dildo = 2
+	// 1 = hardlight
+	else if(pc.lowerUndergarment.hardLightEquipped) dildo = 1;
+
+	//(bimbo)
+	if(pc.isBimbo()) 
+	{
+		output("<i>“Sure,”</i> you giggle");
+		//(no nudes)
+		if(!pc.isNude()) output(", removing your [pc.gear] with a sexy flourish");
+		output(", <i>“but is that ");
+		if(pc.hasCock()) output("bad boy");
+		else output("big bastard");
+		output(" ready for me?”</i>");
+
+		output("\n\nRenvra advances on you with a feral sound, rubbing her egg-cock’s flare against your [pc.belly]. ");
+		if(!pc.hasScales() && !pc.hasChitin()) output("A wave of arousal spreads through your nerves from the smear of slightly-pink pre-cum. ");
+		output("You wrap a hand around the end of her dick, and her throaty growl intensifies. <i>“I’m ready to stick this in any hole you want filled,”</i> she says huskily.");
+		//(not vis. preg and has cunt)
+		if(pc.hasVagina() && 9999) output(" <i>“Put my get in your belly, too.”</i>");
+		output(" Your [pc.vagOrAss] burns, imploring you to forget your plans and accept her offer, but you resist the fog of fuck-lust pressing at your consciousness.");
+		if(pc.libido() > 80) output(".. barely.");
+
+		output("\n\n<i>“That sounds fun,”</i> you say, licking your [pc.lips], <i>“but I had something else in mind.”</i> You raise her prick to your mouth and plant a kiss on the tip. As she shivers and squeezes another dot of pre-cum free, you dip your [pc.tongue] deeply into the hole.");
+
+		output("\n\n<i>“Wha-at might that be?”</i> Renvra grunts, knees buckling as your oral muscle probes her stretched urethra. You pull out with a shiver of your own, closing your eyes until the venomous tingle in your mouth dies down.");
+
+		output("\n\n");
+		
+		if(dildo == 0) 
+		{
+			output("You take your dildo from your equipment. ");
+		}
+		else if(dildo == 1)
+		{
+			output("You pick up your [pc.lowerUndergarment] and produce the lewd sex toy hidden within. ");
+		}
+		output("<i>“I’m gonna stick ");
+		if(dildo == 2) output("my dick in here and squirt my jizz down your big, sexy cock,”</i> you announce, eyes twinkling. <i>“Won’t that be fun?”</i>");
+		else output("my little toy in here and watch you nut,”</i> you announce. <i>“You’ll like it.”</i>");
+		output(" Your tongue slides right back into Renvra’s slit after you finish talking. You hope that’ll be enough to break down her resistance - the taste of her venom-laced pre-cum is getting you off already.");
+		output("\n\nRenvra shudders and her mouth falls open, reply dead in her throat, as you lap at the insides of her slippery, egg-depositing slit. For at least half a minute all you can hear are groans. You pull your [pc.tongue] out one final time and look up at her with your best seduction face. It feels like a long time that you stare at her, trying to seem self-assured but inwardly burning, on the verge of capitulating. <i>“F-fine,”</i> she grudgingly says, at last. <i>“Do it already.”</i>");
+	}
+	//(high emp/nice, no bimbo)
+	else if(pc.isNice())
+	{
+		output("<i>“Well, actually, I was wondering if maybe I could... make you feel like a woman,”</i> you suggest.");
+		output("\n\nRenvra looks hard at you. <i>“That doesn’t even make any sense. Either you take my eggs or a bellyful of my get,”</i> she answers. <i>“I don’t mind bending over for a big confident dick, either... but you don’t qualify, right now.”</i>");
+		output("\n\n<i>“Hey, don’t be like that,”</i> you say, soothingly, while reaching for her tool. <i>“You like having something inside you, so... I thought maybe I’d just change up the hole.”</i> As the rough, spongy flare of her cock glides under your palm, you slip a digit into the moist, pink ‘X’ that is her opening. Renvra shudders and a wave of cozy heat radiates from your fingertip as her pre-cum swells up.");
+		output("\n\n<i>“Ah-ahh,”</i> she groans. <i>“You want to finger-fuck me?”</i>");
+		output("\n\n<i>“No,”</i> you answer with a coquettish look, <i>“I think ");
+		if(dildo == 2) output("I’d like to put some of my, ah, ‘get’ in </i>your<i> belly.”</i> You rub your crotch against Renvra’s flare, making sure she feels the tip of your [pc.cock] pressing at her slit.");
+		else 
+		{
+			output("I’ll use something with a bit more length.”</i> You produce ");
+			if(dildo == 0) output("your dildo");
+			else output("the futuristic strap-on programmed into your [pc.lowerUndergarment]");
+			output(" with a flourish and rub it against Renvra’s slit.");
+		}
+		output("\n\nThe mixed-breed bitch squirms, half-heartedly twisting her flare in your hot grip while you start to unfasten your [pc.gear]. You slide a thumb over her urethra and then sink it in, all while staring at her with an expression of cherubic innocence. <i>“All right,”</i> she says, slumping down in acceptance. You smile and cast aside your equipment.");
+	}
+	//(else not nice and not bimbo)
+	else
+	{
+		output("<i>“I can do that shit with my ");
+		if(flags["FUCKED_SYRI_COUNT"] != undefined) output("pet ausar");
+		else output("butler")
+		output(",”</i> you taunt. <i>“Since I came all the way out here, why don’t you make it more interesting?”</i>");
+
+		output("\n\nRenvra doesn’t answer right away, though her eyes harden. <i>“What do you have in mind?”</i> she eventually asks, grudgingly.");
+		output("\n\nYou grab her flare with a hand and caress the tip with your thumb, trying to get her guard down. She eventually leans back and relaxes into it once you start stroking the shaft as well, producing a glob of pinkish pre-cum that sends a hot tingle through your unprotected skin. Sliding your thumb inside her slick, nerve-packed urethra causes her to shudder with pleasure.");
+		output("\n\n<i>“I’m going to stick ");
+		if(dildo == 2) output("my dick");
+		else output("a toy");
+		output(" in here,”</i> you announce abruptly.");
+
+		output("\n\nRenvra jerks upright. <i>“No way!”</i> she grunts, trying to withdraw.");
+		output("\n\n<i>“Don’t be a sissy,”</i> you scold");
+		if(dildo == 0) output(", taking out your dildo");
+		else if(dildo == 1) output(", materializing the strap-on programmed into your [pc.lowerUndergarment]");
+		output(". <i>“You pass eggs through here. Well, think about it - ");
+		if(dildo == 2) output("my penis");
+		else output("this");
+		output(" isn’t any wider. And you’re already getting off with just my thumb... aren’t you?”</i> You slip the digit in again, ringing her irregular cum-slit. Renvra’s jaw slackens when you scrape your thumb against the inside.");
+		output("\n\n<i>“Ahh! Okay, fine!”</i> the bitchy halfbreed concedes.");
+		output("\n\n<i>“Damn right,”</i> you smile, removing your [pc.gear].");
+	}
+	//cock branch - preferred if available
+	if(dildo == 2)
+	{
+		var x:int = pc.cockThatFits(renvra.cockCapacity(0));
+		output("\n\nRenvra sighs resignedly as you ");
+		if(pc.isTaur()) output("press your chest to hers, smushing her F-cups while you try blindly to line up your cocks. She reaches down and holds her knotted tool in place for you with a superior smirk.");
+		else output("steady her fat shaft and prepare to penetrate with [pc.oneCock].");
+		output(" Her attitude doesn’t last much longer than it takes to slide your [pc.cockHead " + x + "] into her; after a few inches of your hot flesh scraping along her pre-slicked urethra, her knees buckle and she falls onto her ass. You almost do the same from the aphrodisiac heat of her myr cum but manage to stay upright, acutely aware that you’ll lose control of the fuck the moment you show weakness.");
+		output("\n\n<i>“Oh fabulous fortune,”</i> she groans. <i>“It feels like I’m knotting and the egg won’t come out.”</i> You wonder what that experience is like for a nyrea, and if she means that she’s enjoying it. The latter question, at least, is answered quickly. <i>“More!”</i> she demands, pawing feebly at your [pc.hips].");
+		output("\n\nObliging with a grin, you slide the final few inches into her. ");
+		if(!pc.isTaur()) output("Gripping her wide-stretched flare in two hands, y");
+		else output("Y");
+		output("ou withdraw and thrust back in, feeling your [pc.cockNoun " + x + "] submerge in a wave of pre-cum that rushed up as you pulled out. The halfbreed’s slimy secretion starts the nerves in your prick to sizzling as it squishes around your crown and out of her slit.");
+		output("\n\n<i>“Uhn!”</i> cries Renvra. <i>“Yes!”</i> She leans back, fat tits a-wobbling, and snakes a hand under her tight ass. You thrust obliviously into her egg-sized gash, enjoying the odd, four-ridged feel on your [pc.cockNoun " + x + "] and the view of her huge, quivering rack, not thinking too hard, when you feel a wall of hot liquid against your [pc.cockHead " + x + "]. You stop thrusting, look down at Renvra, and finally notice that half of her hand is actually inside her asshole. She must be so deep that she’s able to stimulate her prostate!");
+		output("\n\n<i>“Cuh-ming!”</i> she moans, thrusting so hard against your prick that her slit slides up to ");
+		if(pc.balls > 0) output("your [pc.sack]");
+		else output("your base");
+		output(".");
+		if(pc.isTaur()) 
+		{
+			output(" You’re helpless to stop it as her burning load slurps along your [pc.cock " + x + "] and douses your ");
+			if(pc.balls > 0) output("[pc.balls]");
+			else output("[pc.thighs]");
+			output(" with the drug-laced cum squirting around the edges.");
+		}
+		//(high emp)
+		else if(pc.isNice()) 
+		{
+			output(" Eager to see her get off but not as eager to have your crotch coated in a huge load of myr aphrodisiac venom, you grab her shaft and thrust against it as well, plugging enough of her cock-hole with your body that only a little jizz is able to leak out and lick at your ");
+			if(pc.balls > 0) output("[pc.balls]");
+			else if(pc.hasVagina()) output("[pc.vaginas]");
+			else output("taint");
+			output(".");
+		}
+		//(else)
+		else output(" As the heat climbs your [pc.cock], a devilish idea flits through your head. You squeeze Renvra’s flare so tightly with your hands that not another drop of her venomous load is able to leak out of her slit, pump though she may.");
+
+		output("\n\n<i>“Gah!”</i> she yowls, frustrated. <i>“Let it out, let me cum! I’m going to fertilize my own eggs if I can’t let it all out!”</i> She jerks and shifts, trying to pull free, but you stymie her by sliding forward just after she slides back; with Renvra going crazy trying to blow the jammed-up remainder of her lust-inducing drug-jizz on you, your [pc.cockNoun" + x + "] is getting double the strokes for half the thrusts.");
+
+		output("\n\n<i>“You’re going to have fertilized eggs either way,”</i> you grunt, hilting in her egg-slit. Renvra’s eyes widen as ");
+		if(pc.balls > 0) 
+		{
+			output("she feels your [pc.sack] tighten against her flare and ");
+		}
+		output("your first squirt of [pc.cum] bubbles from your [pc.cockHead " + x + "].");
+		//(li’l and med cum)
+		if(pc.cumQ() < 200) output(" It’s hardly enough to turn the tide of Renvra’s ejaculation, and you can only imagine your poor spunk swirling and mixing with hers inside her throbbing cock.");
+		//(big cum)
+		else 
+		{
+			output(" Your body beats Renvra’s for potency, hands down, and you faintly feel the nerve-tweaking venom recede from your [pc.cockHead " + x + "] as your load pushes the halfbreed’s back, past the deflated knot and into her body. Her balls swell and swell as your [pc.balls]");
+			if(pc.balls <= 1) output(" empties");
+			else output("empty");
+			output(", until her scrotum is stretched against the floor by your [pc.cumNoun] like a big jiggly water balloon.");
+		}
+		output(" Spent, you lower yourself onto Renvra’s cushy breasts for a rest.");
+		output("\n\n<i>“Shit, spacer,”</i> she says");
+		if(pc.cumQ() >= 400) output(", prodding at her swollen, sloshing purse");
+		output(". <i>“If you don’t come back and let me lay this monster load in you, I’m sending a bounty hunter to </i>bring<i> you back.”</i>");
+
+		output("\n\nYou rest a few minutes more and then get up, sliding your [pc.cockNoun " + x + "] free with a ‘sllluck’. A river of mixed sperm runs from the end of her dick.");
+		if(pc.isNice()) output(" <i>“Sure,”</i>");
+		else output("<i>“We’ll see,”</i>");
+		output(" you say, winking playfully. Renvra flushes red, and you leave her there");
+		if(pc.cumQ() >= 10000) output(", pinned to the floor by a sack full of your spunk");
+		output(".");
+
+		//end, large lib/sens increase for taurs, minute lib/sens increase for others, adjust lust and time
+		pc.slowStatGain("libido",1);
+		processTime(33);
+		pc.orgasm();
+		//improve odds of fertilized eggs for next Renvra laying by 40-100% percent depending on PC cum and adjust dialogue in sex menu/old laying scene
+		if(renvra.cumQualityRaw < 8) renvra.cumQualityRaw += 5;
+	}
+	//dildo branch
+	else
+	{
+		if(dildo == 1) output("\n\nYou display your underwear sensually, hanging the garment in front of your crotch and wiggling the fake penis with a shake from your hips. Sporting a grin, you ");
+		else output("\n\nYou grin and ");
+		output("plug Renvra’s drooling egg-gash with the toy, making sure to angle it just a little wrongly so the tip scrapes against her ovipositor’s insides. She groans as inch after inch invades her shaft, and a flood of pink, pearly pre-cum erupts from the tip - for a moment, you think she may have ejaculated from the penetration alone, but the volume is not enough.");
+		output("\n\n<i>“More...”</i> she sighs breathlessly, wrapping her hands around her fat tool and starting to thrust through her fists. You figured on having to do the work yourself, but Renvra’s enthusiasm for the lewd sounding surprises you; you settle for holding the dildo in place for her to engulf with her monstrous, veiny almost-horsecock, watching closely and trying different angles each thrust to find one that hits the sweet spot, while half-interestedly ");
+		if(!pc.isTaur() && pc.hasVagina()) output("frigging [pc.oneVagina]");
+		else if(!pc.isTaur() && pc.hasVagina()) output("stroking [pc.oneCock]");
+		else output("tweaking your [pc.nipple]");
+		output(" with your other hand. The pre-cum from her erstwhile egg-layer is now so pervasive that the surface of her cock gleams pink and a puddle is gathering on the floor.");
+		output("\n\n<i>“She’s really into this,”</i> you think to yourself, a moment before she suddenly blows her load. A sloppy ring of rich, rosy drug-cum squirts into the air around the base of the toy, soaking your hand and wracking your arm with a mini-gasm of its own.");
+		output("\n\n<i>“Gotta cum, gotta let it out,”</i> Renvra grunts, <i>“gotta cum!”</i> The semen-slicked toy escapes from your grip before you can pull it out");
+		if(!pc.isNice()) output(" - though, you weren’t going to anyway - ");
+		else output(", ");
+		output("and the herm’s thrashing thrusts quickly take it out of your reach. <i>“Uhhhn,”</i> she moans, torn between pervertedly pumping her hips and trying to grab the dildo from the end of her impossibly far-away cockhead. <i>“Nooo...”</i>");
+
+		output("\n\nYou fold your hands primly and wait for the half-myr’s obstructed jizz fountain to shut off, wishing a little that it were inside you instead. It’s surprisingly long before she winds down - the alien’s body must allow extra orgasm time when an egg or other object is stuck in the pipe. Gradually, her monster cock deflates enough that Renvra can ");
+		if(dildo == 0) output("grab the dildo, and she flings it at you in a huff.");
+		else output("grab your [pc.lowerUndergarment], which she flings at you in a huff.");
+		output("\n\n<i>“That looked fun,”</i> you say conversationally, watching her slit ooze a river of pinkish cum.");
+		output("\n\n<i>“Fuck you,”</i> she answers, though not with any particular fire. <i>“It was amazing. Never mind that I’m probably knocked up with my own children now.”</i>");
+		output("\n\n<i>“Well,”</i> you rejoin, ");
+		if(pc.exhibitionism() >= 50)
+		{
+			output("thrilling as her gaze falls on your ");
+			if(pc.hasCock()) output("throbbing, drooling [pc.cocksLight]");
+			else if(pc.hasVagina()) output("[pc.vaginas]");
+			else output("heaving chest");
+			output(", ");
+		}
+		output("<i>“Maybe I’ll have to help you with that.”</i> The nyrean mutt glances up at you, and you wink at her. You collect your things and exit before she can make the demand right then and there.");
+		if(pc.libido() >= 66) 
+		{
+			if(dildo == 1) output(" Still, a small part of you considers putting your underwear back on, squishing and sopping with Renvra’s drugged semen.");
+			else output(" Still, a small part of you wonders if pregnancy might be worth it just to masturbate with the drug-covered toy in your hand.");
+		}
+		//end, big lust gain, pass time
+		pc.lust(50+rand(25));
+		processTime(13);
+		//improve odds of fertilized eggs in next Renvra laying by ~30% and adjust dialogue
+		if(renvra.cumQualityRaw < 8) renvra.cumQualityRaw += 3;
+	}
+	flags["RENVRA_SEXED"] = 1;
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Make the Bitch Beg
+//avail. after the PC has fucked her with one of Savin’s options or ‘Fuck her Urethra’
+//PC can optionally deny her orgasm, disabling this scene and enabling ‘Double Trouble’
+
+//tooltip: ‘Encourage’ the ball-busting battle-axe to be a little nicer to you by edging her until she’s broken-down and desperate to cum - mercy is optional.
+//disabled tooltip, hasn’t fucked normally: Renvra looks like she’s itching to fuck you - she’s not going to accept being teased and toyed with right now.
+//disabled tooltip, denied orgasm: Renvra looks at you warily. She probably still hasn’t nutted or knotted since the last time you backed her up, and isn’t about to let you do it again.
+
+public function makeRenvraBegYouSillyBillySlut():void
+{
+	clearOutput();
+	showRenvra();
+	author("Zeikfried");
+	//(first time bimbo)
+	if(flags["MADE_RENVRA_BEG"] == undefined) 
+	{
+		if(pc.isBimbo())
+		{
+			output("<i>“How come you’re so mean?”</i> you ask vacantly, pursing your [pc.lips].");
+			output("\n\nRenvra shrugs and continues to rub her package, aiming the cum-slit towards your lewd mouth. <i>“Got nothing to say ‘bout that, spacer, ‘cept that it’s everyone else who seems to need things from me, not the other way around.”</i>");
+			output("\n\nYou consider this for a moment even as your hand automatically takes hold of the cock in front of you and starts to stroke. <i>“So if you ever needed something from someone, you’d be nicer to them?”</i>");
+			output("\n\n<i>“Sure, I guess,”</i> the half-myr says absently, leaning into your palm as a splat of pre-cum drools onto the floor. <i>“But that’s not... ungh, likely.”</i>");
+		}
+		//(first time nice)
+		else if(pc.isNice())
+		{
+			output("<i>“You know, you could be kinder to me,”</i> you say, ignoring Renvra’s proposition. <i>“I don’t see a lot of other people in here bothering to spend time with you.”</i>");
+			output("\n\n<i>“Fuck ‘em,”</i> Renvra replies curtly, ignoring your ignoring and stroking her dick more. <i>“And fuck you if you think I need you. You’re the one who wanted a piece of this.”</i> A glob of pre-cum surfaces, and she jabs her flare at you, half-attempting to splatter you with it. <i>“And now you got it. So get it.”</i>");
+			output("\n\n<i>“Come on,”</i> you persist, brushing away her cock, which just wobbles back. <i>“You do need me. Or do you have some other lover who’s actually interested in you and not just your sperm?”</i>");
+			output("\n\n<i>“Hah, so now you’re interested in me?”</i> she challenges. <i>“If that were true, I might indeed be nicer to you.”</i>");
+		}
+		//(first time not nice not bimbo)
+		else
+		{
+			output("<i>“You’re a real bitch, Renvra,”</i> you say, watching her work the meaty shaft.");
+			output("\n\n<i>“Knew that already, spacer,”</i> she retorts, still masturbating. <i>“I figure I’ll learn how to be nice when someone actually has something I need, and not the other way around.”</i>");
+			output("\n\n<i>“And does ");
+			if(!pc.hasCock()) 
+			{
+				output("the only ");
+				if(pc.hasVagina()) output("pussy");
+				else output("ass");
+				output(" you can get that’s not attached to some child-crazy myr");
+			}
+			else output("the only dick you don’t have to wait a year for");
+			output(" count?”</i>");
+			output("\n\nA dribble of pre-cum slips from her ‘X’-shaped slit. <i>“A little,”</i> she admits. <i>“But I’ll get over it if you decide to go fuck yourself.”</i>");
+		}
+	}
+	//(repeat any)
+	else
+	{
+		output("<i>“I just wanna play with it again,”</i> you say sweetly, holding up a hand and working your fingers sensually. Renvra looks hard at you, half mistrust and half desire.");
+		output("\n\n<i>“Fine,”</i> she says, thrusting her almost-equine egg-cock toward you. <i>“You know what happens if you jerk me around.”</i>");
+	}
+	output("\n\nHer hard exterior melts away as you grab a handful of her. Running one hand along the underside of her slut-stretching tool, you wrap the other around the flare, working the ring with your thumb. Renvra smiles dumbly as you switch to rolling your palm over the tip, smearing her pre-cum around.");
+	output("\n\n<i>“That’s good,”</i> she sighs. You switch up again and trace an ‘X’ over her cross-shaped slit. Her breath hitches, and with it her chest, setting her magnificent breasts a-jiggle. <i>“Keep this up and I’ll cum without even putting it in.”</i>");
+	output("\n\n<i>“Is that unusual?”</i> you ask, demurely.");
+	output("\n\nRenvra only grunts as you pass her pre-glazed flare through your open fist, masturbating it with a soft ‘sllup’ sound. Her hips get into it, jerking forward as you stroke down. You allow her to fuck your palm, waiting for her to quiver and shake as though she’s about to finish. As she begins to tremble with ecstasy, you stop and remove your hand.");
+	output("\n\n<i>“Ungh...”</i> she blurts. <i>“I was almost there.”</i>");
+	output("\n\n<i>“Lie on your back,”</i> you say, changing the subject.");
+	if(pc.isNaga()) output(" You spread your coils out, making a cozy hammock.");
+
+	output("\n\nRenvra complies, getting down so fast that it causes her prick to wag in the air. The brief delay doesn’t satisfy you, and you take all the time in the world to lower yourself onto her, making sure to give her a sexy eyeful of your ");
+	if(!pc.isNude()) output("chest and crotch, flexing so that everything you have bulges under your [pc.gear]. Finally, you face away and straddle her. A hand begins to slide up your [pc.thigh].");
+	else
+	{
+		output("[pc.chest], caressing your [pc.skinFurScales] and covering your nipples playfully before turning around. You then bend over and allow her to glimpse your [pc.crotch]");
+		if(pc.hasCock()) output(", making sure she sees just how much pre-cum drips from your own stiff [pc.cocksLight].");
+		else if(pc.hasVagina()) output(", letting her get a good glimpse of your [pc.vaginas] and the drooling girl lube.");
+		else output(".");
+	}
+	output(" Renvra licks her lips in anticipation and begins to grope you, sliding a hand up your [pc.thigh]. ");
+	if(pc.isNaga()) output("Her arms are restricted suddenly when you wrap your serpentine body around her torso.");
+	else output(" Her arms are pinned under your [pc.legOrLegs] suddenly as you throw your weight atop her.");
+	output("\n\n”</i>Hey...”</i> she mumbles, taken aback.");
+	output("\n\n<i>“No touching,”</i> you admonish, shaking your [pc.butt] at her. Your hand slips back around the secret herm’s cock, and this time you bring it to your [pc.lips], softly kissing the flare. Renvra’s egg-slit twitches and contracts wetly from the affection just under your nose, suggesting itself as your target.");
+	output("\n\nYou part your [pc.lips] slowly, allowing ever-increasing wisps of breath to roll over Renvra’s tip, making sure her imagination runs wild about what’s coming. When she’s so tense that you can feel her chest lifting you and her nipples jab into you like eager little dog’s noses, you pop as much of the fat, equine flare into your mouth as you can.");
+	output("\n\n<i>“Yeah! Do it!”</i> cries Renvra, as the drug-like myrrish pre-cum numbs your lips and teeth. You suckle the end like a milky breast, feeling dollops of her male lube squeeze from her slit and into your mouth. Your [pc.tongue] slides forward, searching out the leaking opening ");
+	if(!pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output("and dipping its tip inside to ring the entrance.");
+	else output("and plunging down her drooling, egg-stretched passage. An obstruction blocks your path, and you can only guess that it’s her prostate or some other such sexual organ. Waggling the end of your tongue against it seems to make her delirious with rutting frenzy.");
+	output("\n\n<i>“Almost there,”</i> the halfbreed repeats. You pull your tongue from her and resume stroking the shaft, far enough down the base that she can’t quite get closer to climax even though she obviously enjoys it. Your mouth burns with venom, ");
+	if(pc.hasCock())
+	{
+		output("and the pre-cum you’ve ");
+		if(pc.isCrotchGarbed()) output("dripped through your [pc.lowerGarment] and ");
+		output("smeared between Renvra’s breasts with your [pc.cocks]");
+	}
+	else if(pc.hasVagina())
+	{
+		output("and the lubrication dripping ");
+		if(pc.isCrotchGarbed()) output("through your [pc.lowerGarment] ");
+		output("from your [pc.vaginas] and wetting Renvra’s breasts");
+	}
+	else output("and the racing of your blood through your crotch");
+	output(" is proof of your own lust. Renvra tries to pump her hips to get your fist high enough that her flare is engaged, but you carefully control your strokes, intent on tormenting her right up to the verge of insanity.");
+	output("\n\n<i>“Use your mouth again!”</i> the self-obsessed hybrid demands.");
+	output("\n\n" + pc.mf("Chuckling","Giggling") + " audibly, you kiss her flare once, then twice, before pulling back. She moans happily at the pressure of your lips, intensifying her pumps to scrape harder when they touch. You poke your tongue out again, diddling the very end of her slit in a charged reminder of the pleasure you visited on it before, and slide your hands up. Renvra jumps on the chance to once again satisfyingly fuck your fists with the nerve-laden end of her ovipositor. It’s not long that she’s at it before she’s sweating and moaning like a male whore at the end of a hen party. Her hands work and clench, trapped beneath you, and you can only guess at the roiling load of junk her body is getting ready to push out after your sadistic edging.");
+	output("\n\n<i>“Gonna cum!”</i> she grunts, as the veins in her cock are pressed to the skin by the dilating passageway within.");
+	output("\n\nYou stop moving. She continues trying to pump her hips, so you pull your hands away, leaving her to fuck air.");
+	output("\n\n<i>“What... don’t stop!”</i> the half-myr moans. <i>“I’m almost there! I can feel it!”</i>");
+
+	output("\n\n");
+	if(pc.isBimbo())
+	{
+		output("<i>“Then, let’s savor that yummy feeling,”</i> you say, enjoying an envious flutter in your own ");
+		if(pc.hasCock()) output("[pc.cocksLight]");
+		else output("[pc.vagOrAss]");
+		output(".");
+	}
+	output("<i>“Isn’t it a nice feeling?”</i> you ask, pulling deeply from your self-control to seem unflappably aloof despite your inflamed hands and heaving chest.");
+	output("\n\n<i>“If I don’t cum now, my eggs will be basting in my own get! I’ll have a fertilized load for sure!”</i> Renvra cries. <i>“Finish!”</i>");
+	output("\n\nYou sit up and look dead in her eyes. <i>“Oh. You </i>need<i> me to finish you off now.”</i>");
+	output("\n\n<i>“If you weren’t pinning my arms, I’d have rubbed it out already!”</i> she gripes, trying to escape you again. Her rod-like shaft bobs uselessly, stiff as a straight whiskey and flinging pre-cum everywhere but unable to finish unaided.");
+	output("\n\n<i>“So you </i>need<i> me to stop pinning your arms?”</i>");
+	output("\n\nRenvra winces as your weighted words finally sink through. <i>“Yes...”</i> she says, biting her cruel tongue. <i>“Please.”</i>");
+	processTime(16);
+	pc.lust(15);
+	clearMenu();
+	addButton(0,"Finish Her",mortalKombatFINISHHER,undefined,"Finish Her","Jack the half-myr’s egg-cock to climax.");
+	addButton(1,"Deny Her",denyDatMyrBitchYo,undefined,"Deny Her","Prevent the half-myr from climaxing, causing her eggs to swim in her backed-up cum.");
+}
+
+//Finish Her
+//space bar or quick select should default to this
+//tooltip: Jack the half-myr’s egg-cock to climax.
+public function mortalKombatFINISHHER():void
+{
+	clearOutput();
+	showRenvra();
+	author("Zeikfried");
+	output("You stare at her for a time, enough that a note of pleading enters her deranged expression. Winking, you reach out and grab the end of her ovipositor, then resume stroking. Renvra’s hips pump into your fist one last time as a throaty howl escapes, and a positive spray of spunk bursts from the slit of her abused cock. The pink geyser soaks her desk, the room, and her thighs, and your hand burns with arousal as cum drools over it.");
+	output("\n\nRenvra’s orgasm continues for almost thirty seconds - her ruddy red dick keeps squirting out aftershocks well after the lion’s share of her load is soaking into the floor. You lackadaisically work globs of cum through her flare with your finger as you watch her. Her eyes are unfocused, her mouth hangs open, and a little drool is pooling... she’s clearly out of it until her climax ends.");
+	//(first time)
+	if(flags["MADE_RENVRA_BEG"] == undefined)
+	{
+		output("\n\nIt takes a minute before she can speak. <i>“Fuck... what’s your problem, spacer? You think you’re funny?”</i>");
+		output("\n\n<i>“I was just");
+		if(pc.isBimbo()) output(", like,");
+		output(" proving a point,”</i> you reply.");
+		if(pc.isBimbo()) output(" <i>“You know?”</i>");
+		output("\n\n<i>“Well, point not taken,”</i> Renvra snaps. <i>“Don’t think you’re special just because you have hands. I can jerk my cock myself as soon as you get off of me. Speaking of which, get the fuck off of me.”</i>");
+		if(pc.isBimbo()) output("\n\n<i>“But it feels sooo much better when someone else does it,”</i> you say with conviction. Dismounting, you make sure she gets a good glimpse of your [pc.crotch].");
+		else output("\n\n<i>“I’m sure it’s just as good when you do it,”</i> you say, climbing off of the half-myr.");
+		output("\n\nRenvra makes to answer, but you point at the corner of her mouth. She touches it, and starts when she feels the drool she left while cumming her brains out through her dick. You grin as she colors with mild embarrassment.");
+		output("\n\n<i>“Okay,”</i> she admits, calming down. <i>“Maybe.”</i>");
+	}
+	else
+	{
+		output("\n\nRenvra takes a while to recover again, leaving free you to dismount and stretch. <i>“Fuck... I’m still not sure how I feel about that, but it blows my mind how good it is to come that much,”</i> she says eventually, staring at the ceiling.");
+		output("\n\nYou wipe the corner of her mouth with your thumb. <i>“Looked like fun to me,”</i> you tease gently.");
+	}
+	output(" Packing up, you pick your way out of the office");
+	if(pc.libido() < 50) output(" while dodging the puddles of myr jizz");
+	else
+	{
+		output(", enjoying the feeling of myr jizz squishing ");
+		if(pc.hasToes()) output("through your toes.");
+		else output("under your [pc.footOrFeet].");
+	}
+	//end, add lust, pass more time than usual, no change in Renvra fertility or sex buttons
+	flags["MADE_RENVRA_BEG"] = 1;
+	flags["RENVRA_SEXED"] = 1;
+	renvra.orgasm();
+	pc.lust(5);
+	processTime(7);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Deny Her
+//tooltip: Prevent the half-myr from climaxing, causing her eggs to swim in her backed-up cum.
+public function denyDatMyrBitchYo():void
+{
+	clearOutput();
+	showRenvra();
+	author("Zeikfried");
+	output("You stare at her for a while, watching her fuck-crazed expression. First resentment and then desperation creep into it as you sit indolently atop her, ignoring her so-precariously-close cock. <i>“Mmm... no,”</i> you decide.");
+	output("\n\nRenvra’s eyes bulge. <i>“Fuck you! This isn’t funny!”</i>");
+	if(pc.isBimbo()) output("\n\n<i>“You’re really mean to me,”</i> you pout. <i>“I want to play with your big dick some more, but you hurt my feelings.”</i>");
+	else if(pc.isNice()) output("\n\n<i>“I don’t feel great about this, but when we’re close and you still treat me like a disposable hole, it hurts,”</i> you say earnestly. <i>“You need to know the feeling.”</i>");
+	else output("\n\n<i>“You don’t need anything from me, right?”</i> you spit. <i>“I’ll just sit here.”</i>");
+	output("\n\n<i>“Ugh,”</i> she groans. <i>“Come onnnn, you wanted it!”</i>");
+	output("\n\nYou fold your arms and lean away from her twitching prong. <i>“Guess I’m the only one.”</i>");
+	output("\n\nRenvra continues to thrust uselessly into the air and curse you, drooling pink pre from her horsecock-alike, aching to make contact with something. It takes a long time, but eventually it goes half-limp as her temper winds down, and you can risk releasing her. She practically throws you off as soon as you shift your weight.");
+	output("\n\n<i>“You’re an asshole,”</i> she says, defeatedly rubbing her scrotum. <i>“I’m pregnant now... you made me pregnant. I can feel it in my egg sack. And I still have so much cum that my organs are swimming. Before anything else, you better take care of that.”</i>");
+	//(bim or high lib)
+	if(pc.isBimbo() || pc.libido() >= 80) output("\n\nThe thought makes you weak. <i>“I can live with that,”</i> you whisper. <i>“Want to start now?”</i>");
+	else output("\n\n<i>“So... you </i>need<i> to lay your eggs in my hole?”</i> you say, tapping your lips in mock thought.");
+	output("\n\n<i>“GET OUT!”</i> Renvra roars. You ");
+	if(!pc.isNice()) output("blow her a kiss and ");
+	output("leave obediently before she starts throwing military hardware at you.");
+	flags["MADE_RENVRA_BEG"] = 2;
+	//end, lower empathy, gain lust, pass more time than usual
+	//raise Renvra’s egg fertility to 100% for next layin
+	//disable ‘Make the Bitch Beg’ and enable ‘Double Trouble’, adjust dialogue in sex menu prompt/egging scene as above, also possibly disable Savin’s ‘Buttfuck Her’ if you want
+	renvra.cumQualityRaw = 100;
+	pc.lust(-8);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Double Trouble
+//up to you if you wanna make this unavailable until PC talks about kids with Renvra
+//only enabled after ‘Make the Bitch Beg’ orgasm denial option, disabled again after one play
+//Renvra busts a nut in PC’s vagOrAss and then eggs the ass, potentially causing double pregnancy
+
+//tooltip: Renvra’s so backed-up from your shenanigans that her girthy egg-cock could probably put <i>two</i> batches of kids in you.
+//disabled tooltip: Renvra looks impatient, like she wants to blow her load and get back to work - try some teasing and denial and maybe you can get her ‘full’ attention.
+public function renvraDoubleTrouble():void
+{
+	clearOutput();
+	showRenvra();
+	author("Zeikfried");
+	var x:int = -1;
+	if(pc.hasVagina()) 
+	{
+		x = pc.cuntThatFits(renvra.cockVolume(0));
+		if(x < 0) x = rand(pc.totalVaginas());
+	}
+	if(pc.isBimbo()) 
+	{
+		output("<i>“Oh, are you going to shove that monster in my ");
+		if(x >= 0)
+		{
+			if(pc.looseness(x) < 2) output("poor little");
+			else if(pc.looseness(x) < 4) output("hot");
+			else output("big, wet");
+			output(" pussy");
+		}
+		else
+		{
+			if(pc.looseness(x) < 3) output("poor little");
+			else output("hot");
+			output(" asshole");
+		}
+		output("?”</i> you ask, faking concern.");
+		output("\n\n<i>“Yeah, and you’re gonna deserve it too, after what you did to me last time,”</i> Renvra answers, gritting her teeth in a sick grin. <i>“And I’m not gonna stop there. Hope you’re ready to carry my eggs, because you’re not getting out of here until I knot in your ");
+		if(pc.buttRating() < 5) output("cute");
+		else if(pc.buttRating() < 10) output("round");
+		else output("big, jiggly");
+		output(" butt.”</i>");
+
+		output("\n\nYou smile, slightly turned on by her assertiveness, and start to remove your [pc.gear]. <i>“That sounds hot... were you waiting just for me? Thinking a lot about my punishment? Imagining me bent over and bound, presenting my needy ");
+		if(x >= 0) output("pussy and ");
+		output("asshole for you to ravage, helpless to stop you from filling me with whichever load you decided to deposit first?”</i>");
+		output("\n\nHer ovipositor-cock swells visibly and a pinkish tint begins to spread over the tip - she’s definitely picturing it now, at least. Completely nude, you lean over her desk and present yourself just like you described. The half-myr’s eyes cloud. and Renvra clumsily makes her way over to you, jabbing her equine member into your [pc.butt] with the jerky motions of a cock so aroused that it’s on autopilot.");
+	}
+	else if(pc.isNice())
+	{
+		output("<i>“Are you thinking to pay me back for what happened before?”</i> you ask.");
+		output("\n\n<i>“Of course I am,”</i> Renvra answers, smiling cruelly.");
+		output("\n\n<i>“You can’t really be mad that I’d like to be treated a bit better. I mean, we are lovers,”</i> you assert.");
+		output("\n\n<i>“Nah, I don’t care that much,”</i> she says. <i>“Truth is, I almost lost my mind with how good you were... right up until you fucked me over. But these fertilized eggs have to go somewhere.”</i> Her wicked smile returns. <i>“And I’ve been saving up that big batch of my get to ");
+		if(x >= 0) output("stuff in your belly - I think you’re gonna be carrying a lot of my kids when you leave here.”</i>");
+		else output("plug the hole with - just on the fraction of a chance that the eggs weren’t already fertile.”</i>");
+
+		output("\n\nShe strokes her lengthy rod with relish, spreading the rosy pre-cum around so that it promises to set your nerves afire when it enters you. The anticipation shoots through you and down to your [pc.vagOrAss " + x + "], pulling your blood in its wake, and you strip off your [pc.gear] dubiously, bending over the desk and hoping she’s as forgiving as she says... or else, your ass is in for a world of pain.");
+	}
+	else
+	{
+		output("<i>“Still toting that load?”</i> you ask, playfully.");
+		output("\n\nStormclouds gather in Renvra’s expression. <i>“Yeah I fucking am. Thanks for the reminder, but I never forgot I owed you this monster dose.”</i>");
+		output("\n\n<i>“Well, I only came back for it because you’re so unfailingly polite,”</i> you retort.");
+		output("\n\n<i>“Yuk it up, spacer,”</i> says Renvra, jerking her dick with maybe a bit too much enthusiasm. <i>“I’m coming for that ass.”</i> She approaches menacingly as you remove your [pc.gear], bend over the desk, and waggle your [pc.butt] at her.");
+	}
+	output("\n\nRenvra’s hands lock onto your [pc.hips], claw-like, and her blood-engorged flare makes contact. Your body threatens to buckle as the her alien pre-cum leaves a perfect print of her tip, etched in drugged heat on your sensitive flesh.");
+	output("\n\n<i>“I hope you had your fill of foreplay last time,”</i> Renvra says, pushing slowly forward. <i>“Because I did.”</i> ");
+	if(!pc.isTaur()) output("Your hand reaches automatically for the huge cock as it begins to spread your hole, trying ineffectually to grip the slippery, pre-coated shaft, but is no match for either her enthusiasm or your own desire. ");
+	output("With a pleased hum from the halfbreed, the spongy flare slides past your opening. She stops briefly to savor the first taste of your [pc.vagOrAss " + x + "], and you can feel more pre-cum spurt from her slit as the heat of your body begins to move her again.");
+	output("\n\nRenvra, despite her words, seems to be set on torturing you with the inch-by-inch insertion of her agonizingly hot cock. Your [pc.chest] is pressed into the desk as the sheer length of her unyielding, egg-laying rod forces your body into a more complementary position - your [pc.butt] is sticking pervertedly in the air, and you clumsily shove papers and office supplies out of the way and onto the floor, trying to give yourself a flat, even surface to push back from when the inevitable thrusting begins.");
+	output("\n\nA sloppy splat of pre-cum hits ");
+	if(x >= 0) output("your cervix");
+	else output("the deepest part of your colon");
+	output(", leaving a trail of heat where it slid down your passage");
+	var tooSmall:int = 0;
+	if(x >= 0 && pc.vaginalCapacity(x) < renvra.cockVolume(0)) tooSmall = 2;
+	else if(x < 0 && pc.analCapacity() < renvra.cockVolume(0)) tooSmall = 2;
+	//Not too small - check to see if respectable.
+	if(tooSmall == 0)
+	{
+		if(x >= 0 && pc.vaginalCapacity(x) < renvra.cockVolume(0) * 1.7) tooSmall = 1;
+		else if(x < 0 && pc.analCapacity() < renvra.cockVolume(0) * 1.7) tooSmall = 1;
+	}
+	if(tooSmall == 2) 
+	{
+		output(", but Renvra continues pushing. <i>“You’re so fuckin’ shallow, spacer,”</i> she grunts, trying to force her tool deeper. You wince with pain-tinged pleasure as her drug-dripping flare smears venom ");
+		if(x >= 0) output("on the entrance to your womb");
+		else output("into the wall of your intestine");
+		output(". <i>“No wonder you’re so good at handjobs - can’t hardly take a cock like a respectable nyrea.”</i>");
+	}
+	//(cap between 6-10in)
+	else if(tooSmall == 1) output(", and Renvra gives one last token push, smearing venom around. <i>“Respectable,”</i> she says grudgingly, stirring her equine member inside you to intensify the drug delivery. <i>“For an off-worlder. No nyrea boy would be such a shameless slut if his cunt were this shallow.”</i>");
+	else 
+	{
+		output(", and Renvra’s ballsack tickles your ");
+		if(x >= 0) output("[pc.clit]");
+		else output("taint");
+		output(". <i>“Damn, it’s unusual to find such a good breeding slut outside the Federation camps,”</i> she says, squeezing your [pc.butt] in appreciation.");
+	}
+	//{vag or anal stretch check}
+	if(x >= 0) pc.cuntChange(x,renvra.cockVolume(0));
+	else pc.buttChange(renvra.cockVolume(0));
+
+	output("\n\n");
+	if(pc.isBimbo() || pc.libido() >= 80) output("You twerk your ass mercilessly at Renvra to caress her cockflesh with your hot passageway, less interested in whatever jingoist crap she has to say than in her magnificent tool thrusting into you as soon as possible. Renvra’s knees buckle as her flare catches a stroke from your insides.");
+	else 
+	{
+		output("<i>“You’re just sheltered,”</i> you say");
+		if(pc.isNice())
+		{
+			output("politely, remembering some of the extreme bulges and toys you’ve seen");
+			if(pc.characterClass == GLOBAL.CLASS_SMUGGLER) output(" and smuggled");
+			output(".");
+		}
+		else output(" artlessly, trying to prick her pride.");
+	}
+	output("\n\nThe half-myr seems piqued. <i>“I hope you’re ready for that belly full of get,”</i> she grunts, sliding her hands from your [pc.hips] to your ");
+	if(pc.isTaur()) output("abdomen");
+	else output("waist");
+	output(". You tense with excitement, anticipating what comes next. Renvra slides back out all the way to the flare, leaving a throbbing, horsecock-shaped void of arousal where your insides have been smeared with her myrrish pre.");
+	if(pc.isBimbo() || !pc.isNice())
+	{
+		output("\n\n<i>“I’ve been ready,”</i> you tease. <i>“I was wondering when you’d get serious");
+		if(pc.isBimbo()) output(" and punish my poor, abused hole");
+		output(".”</i>");
+	}
+	//(nice)
+	else output("\n\n<i>“I’m ready,”</i> you respond, nervously.");
+
+	output("\n\n<i>“Good,”</i> says Renvra, leaning in. <i>“Because I’ve been so close to blowing since your little stunt that I could nut to a picture of an open purse.”</i> The herm slides her cock home again, more quickly this time, and then draws it out. You can feel the truth of her statement in your [pc.vagOrAss " + x + "] - her thick, horse-like tool is swollen with so much blood that you can feel the raised veins on its surface even through the heat haze of your intensifying high. She pumps, faster and faster, working your stretched hole so hard that it hardly has time to register the waves of pleasure and dumping her perverted pre-cum in you by the ounce.");
+	output("\n\nHer statement sets your brain alight with fantasy; imagining the huge load of aphrodisiac she’s about to pump into you is making your [pc.vagOrAss " + x + "]");
+	var wetHole:Boolean = false;
+	if(x >= 0 && pc.wetness(x) >= 3) wetHole = true;
+	else if(x < 0 && pc.ass.wetness() >= 2) wetHole = true;
+	if(wetHole) output(" gush with sopping lube");
+	else output("burn with eagerness");
+	output(", wetly clamping down on her fat egg-prick and tormenting her sensitive flare every time she withdraws.");
+	if(wetHole) output(" A splat of your fluid hits the floor audibly as Renvra’s cock forces it out with one final, violent thrust.");
+
+	output("\n\n<i>“Fuuck!”</i> moans your lover, just before your insides light up. Waves of myr jizz pour into your [pc.vagOrAss " + x + "] as Renvra ejaculates, making your stretched cavity feel like a bottle of liquid fire. Your [pc.belly] swells as the myr mutt’s overstocked sexual organ delivers more than a double load of addictive spooge, pain completely erased by the incomparable arousal. You clench and thrash in climax, forced right into the same ecstasy as Renvra by the power of stroke after stroke of her alien sperm");
+	if(pc.isNaga()) output("; your serpentine tail even wraps around her body, squeezing her with a vigor she either doesn’t notice or doesn’t care enough about to stop cumming");
+	output(".");
+
+	output("\n\nThe desk creaks as Renvra spends her wad and collapses onto you. The pressure of the half-myr’s heavy breasts ");
+	if(pc.biggestTitSize() >= 1) output("crushing yours might be un");
+	else output("might be quite ");
+	output("pleasant, but you can’t even parse it with your head swimming in cum-induced delirium. More than once, a red fuzz encroaches on your vision and you almost slip into unconsciousness from overstimulation.");
+	output("\n\n<i>“... Hey!”</i> shouts Renvra, slapping your face gently. You blink the fuzz away and try to slow down your mind to focus on her. <i>“You’re not done yet,”</i> she says. A lump pushes against your swollen ");
+	if(x >= 0) output("labia");
+	else output("anus");
+	output(" and you look down, only to see the alien rubbing her bulging ballsack on it, equine ovipositor swaying in the air. The red delirium returns as you watch her egg-spewing cock swell from half-hard to fully erect again, and a voice cuts into your racing thoughts.");
+	output("\n\n<i>“Time for the other load,”</i> Renvra announces. She lines her flare up with your [pc.asshole]");
+	if(x < 0) output(" again");
+	output(". Your muscles won’t even respond when you tell them to clench; the hybrid’s cock slides back into you, spreading your pucker wide and squirting aftershocks of cum into your gut that only make your drug trip worse. ");
+	if(pc.analCapacity() < renvra.cockVolume(0)) output("The euphoria-inducing jizz makes you feel like jelly all over - you’re so slack that Renvra’s able to go past your usual capacity and jam her whole length into you with only a little effort.");
+	else output("Even without the muscle-relaxing power of the half-myr’s venom-laced jizz, your deep asshole could easily take Renvra’s cock right down to the knot - with it, she slides in so fast that her egg-balls slap loudly against your [pc.butt].");
+	pc.buttChange(renvra.cockVolume(0));
+
+	output("\n\nIt gradually becomes clear that Renvra is thrusting once again... though, with your mind racing through tens of fantasies every minute, it feels like the pumps come only once an hour. The tip-off comes to you by the way the consciousness-dilating myr sperm sloshes and rolls in your ");
+	if(x >= 0 && !pc.isPregnant(x)) output("womb");
+	else output("belly");
+	output(" every time your lover slams her egg-cock home - eventually, you complete the equation and realize that Renvra has been pounding your [pc.asshole] for long enough that her super-stiff dick is trembling and ready to burst with another load. <i>“One more push,”</i> grunts a voice from a universe away.");
+	output("\n\nYour eyes widen as something other than lust finally takes hold: the very faintest, whispering protests of pain. Renvra’s knot pounds at your [pc.asshole], knocking politely yet insistently for admission. Whether you want it inside or not is irrelevant; with your body completely unresponsive, the only thing that matters is pure physics, and your stretched pucker is beaten-up and wet enough that it’s only a matter of time before... pop! The alien’s fleshy organ is inside you.");
+	output("\n\n<i>“Fuck yeah,”</i> says Renvra. <i>“Gonna put these eggs where they should’ve gone all along.”</i> Lips press against your back as your lover leans into position to deliver a gut-busting load of fertile ova, and Renvra’s hands slide up your chest");
+	if(pc.biggestTitSize() >= 1) output(", grasping and squeezing your [pc.chest] forcefully");
+	output(". <i>“You made them, now... take... </i>responsibility<i>!”</i>");
+
+	output("\n\nThe half-myr’s voice raises to a screech as eggs begin to rocket through her phallus. Her knot bulges arhythmically, pounding like a heart in a panic as lump after lump distends the flesh and shuttles down the shaft to impact in your guts with a bow wave of hot cum just ahead of it. Time unravels around you again as Renvra’s second load washes over you, and you quickly find yourself unable to count the eggs or do anything that isn’t drooling and thinking of the semen inside you spreading out infinitely and fertilizing new galaxies. Twenty eggs? Fifty? All the eggs that have ever existed in reality seem to be multiplying in your gut as your triple-dose of myr sperm expands your consciousness to infinite fuck-scenes, remembered and imagined, until it collapses to a black hole of all-consuming pleasure and you pass out.");
+	output("\n\nRenvra seems to be moving her mouth and trying to get your attention, but in your new existence as a universe teeming with life and sex, you don’t have time to listen to her. In fact, you can’t hear her anyway...");
+	processTime(55);
+	pc.orgasm();
+	pc.orgasm();
+	//place ’Next’ here if desired
+	clearMenu();
+	addButton(0,"Next",renvraSuperCumPartII);
+}
+
+public function renvraSuperCumPartII():void
+{
+	clearOutput();
+	showRenvra();
+	author("Zeikfried");
+	output("The door clicks and your eyes flutter open. Renvra is standing there, smirking at you.");
+	output("\n\n<i>“Awake now, spacer?”</i> she asks.");
+	output("\n\nYou realize you’re still bent over her desk. Your gut throbs and moving brings a twinge of dull ache; you try to stand up but you’re practically glued to the furniture by sticky pink slime. Your belly sloshes, and the enormous loads of Renvra’s sexual fluids that were pumped into you come back in an aggravating flash.");
+	output("\n\n<i>“Not that you don’t look hot draped on my desk with my cum drooling from your hole");
+	if(pc.hasVagina()) output("s");
+	output("...”</i> the half-myr begins, brushing your [pc.skinFurScales] with her fingers almost affectionately, <i>“... but you should ");
+	if(!pc.isNude()) output("throw some " + pc.mf("pants","panties") + " on and ");
+	output("get the fuck out - people in the neighborhood are starting to wonder why they never saw you leave the store.”</i>");
+	output("\n\nYou nod dumbly, still high as a kite on myr venom, and collect your gear. Renvra steps aside as you move to take the door handle, but then grabs you and pulls you into a kiss.");
+	output("\n\n<i>“Come back soon,”</i> she whispers.");
+	//end, adjust lust, pass lots of time (over an hour, pref 3+), raise libido and sens
+	pc.libido(1);
+	processTime(125);
+	//preg calc for Renvra vaginal pregnancy if vag present/not pregnant, bypass calc for guaranteed anal (egg) pregnancy
+	//disable ‘Double Trouble’ button and re-enable ‘Make the Bitch Beg’ as well as any other scenes disabled
+	//need guaranteed preggers for cunt if not already pregnant and guaranteed fertilized egg pregnancy for asshole. 
+	renvra.impregnationType = "RenvraFullPregnancy";
+	if (x >= 0) pc.loadInCunt(renvra, x);
+	renvra.impregnationType = "RenvraEggPregnancy";
+	pc.loadInAss(renvra);
+	renvra.orgasm();
+	//Set her back to normal, disable double trubble
+	flags["MADE_RENVRA_BEG"] = 1;
+	flags["RENVRA_SEXED"] = 1;
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }

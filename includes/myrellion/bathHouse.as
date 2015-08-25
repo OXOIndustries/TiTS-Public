@@ -955,7 +955,7 @@ public function oserreFemaleParts():void
 	//Continues from doubleEndedOserre()"
 }
 
-public function dildoPicker(cumFrom, shown:int):void
+public function dildoPicker(cumFrom:Function, shown:int):void
 {
 	var choices:Array = new Array();
 	if(cumFrom != marbleDickOserre) choices.push(marbleDickOserre);

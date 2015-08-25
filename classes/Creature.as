@@ -5742,6 +5742,14 @@
 		public function analCapacity(): Number {
 			return ass.capacity() * elasticity;
 		}
+		//Goddamnit Savin
+		public function cockCapacity(x:int = -1): Number
+		{
+			if(!hasCock()) return 0;
+			if (x >= cocks.length || x < 0) return 0;
+			return (cocks[x].volume() / 6 * elasticity);
+
+		}
 		public function hasTentacleNipples():Boolean {
 			var counter: Number = breastRows.length;
 			var index: Number = 0;
