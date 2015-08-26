@@ -1455,7 +1455,7 @@ public function shadeQuestNeedsTurnIn():Boolean
 }
 public function shadeAtTheBar():Boolean
 {
-	if(flags["SHADE_ON_UVETO"] != undefined) return false;
+	//9999 if(flags["SHADE_ON_UVETO"] != undefined) return false;
 	if(flags["SHADE_AND_KARA_RESOLVED_THINGS_THEMSELVES"] != undefined) return false;
 	if(flags["SHADE_DEFEATED_WITH_KARA"] != undefined) return false;
 	if(karaAndShadeUnfinished()) return false;
