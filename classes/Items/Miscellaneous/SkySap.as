@@ -327,7 +327,7 @@
 					outputB(" now " + pc.vaginas[0].vaginaColor + "!</b>");
 					changes++;
 					pc.lust(30);
-					pc.slowStatGain("lust",2);
+					pc.slowStatGain("libido",2);
 				}
 				//Squirter
 				// Must not already be a squirter
