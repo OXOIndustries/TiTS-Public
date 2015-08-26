@@ -246,7 +246,7 @@ public function adultCockvineMouthFuxAttack():void
 	{
 		output("\n\nYou struggle the best you can, but you cannot stop it pushing its dense, bulbous head into your mouth, invading it with its humid, verdant smell. Your cries of disgust turn into a muffled gargle when it tenses up and ejaculates a thick load of its white semen down your throat. Finding extra reserves of energy in response to this foul development you rip your head away, but the taste of it – heavy, sweet citrus, inescapably sexual – stays with you.");
 		output("\n\nYou groan woozily as heat rises to your skin and your heart beats faster with each passing second, seeming to pulse in time with the movement of the vines, plant pheromones flowing into your bloodstream.");
-
+		pc.loadInMouth(foes[0]);
 		pc.lust(3 + rand(5));
 	}
 }
@@ -742,6 +742,8 @@ public function adultCockvinePCLoses():void
 	{
 		pc.loadInCunt(foes[0], i);
 	}
+	pc.loadInAss(foes[0]);
+	pc.loadInMouth(foes[0]);
 	pc.orgasm();
 
 	clearMenu();
@@ -769,7 +771,9 @@ public function adultCockvineHahaFuckYouGenderless(fromCombat:Boolean = true):vo
 	}
 	else
 	{
-		output("\n\nThe cockvine winds its multitudinous, febrile grip around you as you approach its nest{, languidly shedding your [pc.gear] as you go.");
+		output("\n\nThe cockvine winds its multitudinous, febrile grip around you as you approach its nest");
+		if(!pc.isNude()) output(", languidly shedding your [pc.gear] as you go");
+		output(".");
 		if (pc.tallness > 80 || pc.thickness >= 100) output(" Despite your size it");
 		else output(" It");
 		output(" easily lifts you off your [pc.feet] when you reach the verge of the crevice; slowly you sink downwards into the dense, tropical heat, thick tentacle flesh rubbing across your [pc.skin], coiling around your arms, waist and [pc.legOrLegs], exploring you with steady, deliberate interest.");
