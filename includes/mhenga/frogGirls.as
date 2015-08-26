@@ -184,16 +184,13 @@ public function tongueLashAttack():void
 		output("\nThe tip of her tongue slams into you, ");
 		if(pc.shields() > 0) 
 		{
-			output("and you are staggered by the force of the blow hitting your shield");
-			
+			/* Fine here! */
+		}
+		else if(pc.hasArmor() && pc.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+		{
+			output("and you are slimed by her toxic saliva. Luckily your [pc.armor] is airtight enough to prevent any of the fluid from seeping into your [pc.skin], but you definitely feel the impact of the hit.");
 			var damage:TypeCollection = foes[0].meleeDamage();
-			damage.addFlag(DamageFlag.ONLY_SHIELD);
-			damageRand(damage, 15);
-			var damageResult:DamageResult = calculateDamage(damage, foes[0], pc);
-		
-			if (pc.shieldsRaw > 0) output(". It holds.");
-			else output(". Your shield is breached!");
-			
+			damageRand(damage, 5 + rand(5));
 			outputDamage(damageResult);
 		}
 		else
@@ -212,6 +209,10 @@ public function getLickedBitch():void
 {
 	output("The agile lady skirts up to you, attempting to give you a lick from waist to neck.");
 	if(combatMiss(foes[0],pc)) output(" You leap backwards, escaping her attack before she can pull it off.");
+	else if(pc.hasArmor() && pc.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+	{
+		output(" Her tongue caresses you, but your are left unaffected thanks to the impermeability of your [pc.armor].");
+	}
 	else
 	{
 		output(" Her tongue caresses you, and you feel the lust inducing venom seep into your body.");
