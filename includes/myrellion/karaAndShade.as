@@ -1629,11 +1629,11 @@ public function shadeTalkMenu(arg:Function):void
 			{
 				addButton(5, "Mods", gibShadeModItems, undefined, "Mods", "Give Shade some mod goodies.");
 			}
-			else if (!shade.milkType == GLOBAL.FLUID_TYPE_HONEY && (pc.hasItem(new Honeyizer()) || pc.hasItem(new Honeydew())))
+			else if (shade.milkType != GLOBAL.FLUID_TYPE_HONEY && (pc.hasItem(new Honeyizer()) || pc.hasItem(new Honeydew())))
 			{
 				addButton(5, "Mods", gibShadeModItems, undefined, "Mods", "Give Shade some mod goodies.");
 			}
-			else if (!shade.milkType == GLOBAL.FLUID_TYPE_CHOCOLATE_MILK && pc.hasItem(new Chocolac()))
+			else if (shade.milkType != GLOBAL.FLUID_TYPE_CHOCOLATE_MILK && pc.hasItem(new Chocolac()))
 			{
 				addButton(5, "Mods", gibShadeModItems, undefined, "Mods", "Give Shade some mod goodies.");
 			}
