@@ -1285,6 +1285,11 @@ public function processTime(arg:int):void {
 				if(flags["KIRO_DISABLED_MINUTES"] <= 0) flags["KIRO_DISABLED_MINUTES"] = undefined;
 			}
 		}
+		//Saendra's X-Pack Timer
+		if(flags["SAENDRA_XPACK1_STATUS"] == 1 || flags["SAENDRA_XPACK1_STATUS"] == 5)
+		{
+			updateSaendraXPackTimer();
+		}
 		//Tick hours!
 		if (this.minutes >= 60) {
 			
