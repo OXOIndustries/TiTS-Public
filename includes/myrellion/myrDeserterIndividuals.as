@@ -348,6 +348,7 @@ public function sexWithAntGrills(gold:Boolean = false):void
 	// Max capacity 16 inches.
 	// Max girth four inches.
 	if(pc.hasCock() && pc.cockThatFits(foes[0].vaginalCapacity(0)) >= 0) addButton(1,"DoggyStyle",doggieStyleWithMyrBitches,gold,"Doggy Style","Do her doggy style!");
+	else if(pc.hasCock()) addDisabledButton(1,"DoggyStyle","DoggyStyle","You need a penis that will fit inside her for this scene.");
 	else addDisabledButton(1,"DoggyStyle","DoggyStyle","You can't do her doggie style without a dick of your own.");
 	//Cum Splurge (Red)
 	// Pc must have a cock.
@@ -880,6 +881,7 @@ public function winVsAntGrillDeserts():void
 		// Max capacity 16 inches.
 		// Max girth four inches.
 		if(pc.hasCock() && pc.cockThatFits(foes[0].vaginalCapacity(0)) >= 0) addButton(1,"DoggyStyle",doggieStyleWithMyrBitches,gold,"Doggy Style","Do her doggy style!");
+		else if(pc.hasCock()) addDisabledButton(1,"DoggyStyle","DoggyStyle","You need a penis that will fit inside her for this scene.");
 		else addDisabledButton(1,"DoggyStyle","DoggyStyle","You can't do her doggie style without a dick of your own.");
 		//Cum Splurge (Red)
 		// Pc must have a cock.
