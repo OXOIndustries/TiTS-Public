@@ -742,8 +742,16 @@ public function grenadeThrow(gold:Boolean = false):void
 	{
 		if(!gold)
 		{
-			output("\nThere’s a loud ‘whump’ and a cloud of red mist swiftly engulfs you. Your skin prickles and your [pc.nipples] harden. Lower down, a glorious ache spreads through your [pc.groin]. All you want to do is touch yourself!");
-			applyDamage(new TypeCollection( { drug: 19 + rand(5) } ), foes[0], pc, "minimal");
+			output("\nThere’s a loud ‘whump’ and a cloud of red mist swiftly engulfs you.");
+			if (pc.hasArmor() && pc.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+			{
+				output(" Fortunately for you, the smoke doesn't leak through your airtight [pc.armor], but it obscures your vision just briefly.");
+			}
+			else
+			{
+				output("\nThere’s a loud ‘whump’ and a cloud of red mist swiftly engulfs you. Your skin prickles and your [pc.nipples] harden. Lower down, a glorious ache spreads through your [pc.groin]. All you want to do is touch yourself!");
+				applyDamage(new TypeCollection( { drug: 19 + rand(5) } ), foes[0], pc, "minimal");
+			}
 		}
 		else
 		{

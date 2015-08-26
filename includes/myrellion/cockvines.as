@@ -238,7 +238,11 @@ public function adultCockvineMouthFuxAttack():void
 	//Lust rise if success
 	output("\nOne of the tentacles reaches for your face, implacably stretching towards the wet orifice it can sense there.");
 
-	if (combatMiss(foes[0], pc))
+	if (pc.hasArmor() && pc.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+	{
+		output(" Luckily, your airtight [pc.armor] protects you from the oral invasion!");
+	}
+	else if (combatMiss(foes[0], pc))
 	{
 		output(" You grit your teeth and manage to bat it away.");
 	}

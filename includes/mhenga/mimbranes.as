@@ -2771,6 +2771,10 @@ public function mimbraneSkinContact():void
 	{
 		output("\n\nYou twist out of the path of the speeding Mimbrane at the last second!");
 	}
+	else if(pc.hasArmor() && pc.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+	{
+		output(" You’re quick enough to avoid being hit head-on, but the parasite manages to brush up against you as it sails by. Oily perspiration smears along your [pc.armor], but it is all for naught thanks to your outfit's impermeability.");
+	}
 	//{hit}
 	else
 	{
@@ -2799,8 +2803,11 @@ public function mimbraneLustCloud():void
 	//{standard miss/block text}
 	if (combatMiss(foes[0], pc))
 	{
-		output("\n\nAnticipating the Mimbranes attack, you’re already poised to avoid the creatures mist before it can take effect.");
-		if (mimbraneDebug) trace("Player dodged the lust cloud.");
+		/* Fine here! */
+	}
+	else if(pc.hasArmor() && pc.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+	{
+		output(" The parasite’s cloud envelops and consumes you, but it does so in vain. Your [pc.armor] prevents the stuff from contacting your skin, sparring your lust of wanton desires.");
 	}
 	else
 	{
@@ -2849,6 +2856,14 @@ public function mimbraneLustCloud():void
 //Constricts. Heavy lust damage every turn until free.
 public function mimbraneSmother():void
 {
+	if(pc.hasArmor() && pc.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+	{
+		output("The Mimbrane is difficult to track as it circles above and around you. You lose sight of the creature, but a shadow on the ground clues you in on its position: spread thin and wide above you. The parasite descends upon you like a fishing net! Your head is encased in the parasite’s embrace, futilely trying to smother you in its slick, salacious skin. Its secretions don't make it past your [pc.armor]; giving you a chance to breathe a sign of relief.");
+		output("\n\nThe creature quickly slides off, waiting for the opportune moment to strike you again.");
+		// Just in case:
+		pc.removeStatusEffect("Mimbrane Smother");
+		return;
+	}
 	if (!pc.hasStatusEffect("Mimbrane Smother"))
 	{
 		output("The Mimbrane is difficult to track as it circles above and around you. You lose sight of the creature, but a shadow on the ground clues you in on its position: spread thin and wide above you. The parasite descends upon you like a fishing net!");
@@ -2922,6 +2937,10 @@ public function mimbraneSpit():void
 	if (combatMiss(foes[0], pc))
 	{
 		output(" You tuck out of the way!");
+	}
+	else if(pc.hasArmor() && pc.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+	{
+		output(" The parasite’s discharge makes its mark, smothering you in a volatile mix of a supersaturated batch of its oily residue and dense cloud of prurient perspiration -- however, the airtight properties of your [pc.armor] proves such an attack completely useless.");
 	}
 	//{hit} 
 	else
@@ -3106,6 +3125,28 @@ public function playerMimbraneSpitAttack():void
 		// 40% chance to happen
 		if (rand(5) <= 1) // 2 in 5 [(0-4)]
 		{
+			// 100% chance of misfire while inside an airtight suit!
+			if(pc.hasArmor() && pc.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+			{
+				output("\nYou’re surprised when you feel an odd buildup");
+				if (eligibleMimbranes[ii] == "Mimbrane Cock") output(" along the length of your [pc.cock]");
+				else if (eligibleMimbranes[ii] == "Mimbrane Pussy") output(" pulsing around your [pc.pussy]");
+				else if (eligibleMimbranes[ii] == "Mimbrane Ass") output(" radiating from your [pc.ass]");
+				else if (eligibleMimbranes[ii] == "Mimbrane Balls") output(" concentrated around your [pc.balls]");
+				else if (eligibleMimbranes[ii] == "Mimbrane Boobs") output(" tingling your [pc.nipples]");
+				else if (eligibleMimbranes[ii].indexOf("Mimbrane Hand") != -1) output(" coming from your [pc.hand]");
+				else if (eligibleMimbranes[ii].indexOf("Mimbrane Foot") != -1) output(" emanating from your [pc.foot]");
+				else if (eligibleMimbranes[ii] == "Mimbrane Face") output(" swelling in your [pc.lips]");
+				else output(" somewhere on your body");
+				output("... The Mimbrane covering that portion of your anatomy readies a dangerous ball of lust to launch at your opponent. Unfortunately, your airtight [pc.armor] prevents the parasite’s explosive attack to go anywhere but all over yourself! You can’t help but to breathe in the lust-inducing vapors as the mimbrane finishes. <b>Maybe you should wear something less encapsulating next time!</b>\n");
+				
+				// Cost "feeds"
+				feedCost(eligibleMimbranes[ii], 5);
+				// Raises player lust
+				pc.lust(10);
+				
+				return;
+			}
 			// 10% chance to misfire
 			if (rand(10) == 0) // 1 in 10 [(0-9)]
 			{
@@ -3296,6 +3337,27 @@ public function playerMimbraneCloudAttack():void
 			//pc.setStatusValue(eligibleMimbranes[ii], 3, pc.statusEffectv3(eligibleMimbranes[ii]) - 3);
 			feedCost(eligibleMimbranes[ii], 3);
 
+			// 100% chance of misfire while inside an airtight suit!
+			if(pc.hasArmor() && pc.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+			{
+				output("\nThings are getting unusually hot and heavy in your [pc.armor]. The Mimbrane covering your");
+				if (eligibleMimbranes[ii] == "Mimbrane Cock") output(" [pc.cock]");
+				else if (eligibleMimbranes[ii] == "Mimbrane Pussy") output(" [pc.pussy]");
+				else if (eligibleMimbranes[ii] == "Mimbrane Ass") output(" [pc.ass]");
+				else if (eligibleMimbranes[ii] == "Mimbrane Balls") output(" [pc.balls]");
+				else if (eligibleMimbranes[ii] == "Mimbrane Boobs") output(" [pc.nipples]");
+				else if (eligibleMimbranes[ii].indexOf("Mimbrane Hand") != -1) output(" [pc.hand]");
+				else if (eligibleMimbranes[ii].indexOf("Mimbrane Foot") != -1) output(" [pc.foot]");
+				else if (eligibleMimbranes[ii] == "Mimbrane Face") output(" [pc.lips]");
+				else output(" body");
+				output(" reactively unleashes a cloud of lust, unknowingly - and unintentionally - trapping you inside the airtight attire with nowhere to escape its lust-triggering effects. Trying to control your inhalation, you can only hope the thick billowing mass doesn't stick around for too long... <b>Maybe you should’ve worn something a little more breathable before heading out!</b>\n");
+				
+				// Misfires!
+				applyCloudDebuff(pc);
+				// Also initially raises lust
+				pc.lust(5);
+				return;
+			}
 			// 20% chance of misfire
 			if (rand(5) == 0) // 1 in 5 (0-4)
 			{
@@ -3394,7 +3456,8 @@ public function applyCloudDebuff(target:Creature):void
 {
 	if (target.isLustImmune)
 	{
-		output("\nIt seems as though your Mimbranes' efforts to aid you might be wasted; your assailant doesn't seem the least bit hindered by the thick cloud of lust surrounding them.\n");
+		if(target == pc) output("\nIt seems your Mimbranes' thick lust cloud has no affect on you.\n");
+		else output("\nIt seems as though your Mimbranes' efforts to aid you might be wasted; your assailant doesn't seem the least bit hindered by the thick cloud of lust surrounding them.\n");
 		return;
 	}
 	
@@ -3891,7 +3954,17 @@ public function beatUpByAFuckinDishcloth():void
 {
 	clearOutput();
 	userInterface.showBust("MIMBRANE");
-
+	
+	if(pc.hasArmor() && pc.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT) && !pc.hasStatusEffect("Mimbrane Lust Cloud"))
+	{
+		if(pc.lust() >= pc.lustMax()) output("Being too turned on to fight anymore, you fall down in a heap of horniness that only a good masturbation session would cure.");
+		else output("The physical effort to fight such a small parasitic creature is just too much for you to handle and you collapse under the fatigue, falling to your [pc.knees].");
+		output("\n\nProdding you with great effort, the victorious Mimbrane attempts to break into your [pc.armor] several times but to no avail... Giving up, it leaves your defeated body in search of a more penetrable victim.");
+		
+		processTime(10 + rand(10));
+		genericLoss();
+		return;
+	}
 	output("The air around you feels so dense, so thick. Humidity chokes you. It’s become so hard to breathe. You can’t stop panting. Deep, healing breaths elude you, leaving you to your hyperventilation.");
 	if (!pc.isNude()) output(" Maybe if you strip off your [pc.armor] it’ll be easier to settle down. So you do.");
 	else output(" You feel compelled to fan yourself, hoping that the brisk forest air will help to cool your burning need.");
