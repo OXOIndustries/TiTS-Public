@@ -398,6 +398,10 @@ public function vanaeMilkSquirtBreasts():void
 
 	// [Miss]: 
 	if (combatMiss(foes[0], pc)) output(" You dodge the [monster.milk] as it shoots past your [pc.ear]. She steadies her spear, moving back into her fighting stance.");
+	else if(pc.hasArmor() && pc.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+	{
+		output(" You are splattered with her [monster.milk]! Fortunately for you, your [pc.armor] is watertight and prevents any of the lust-inducing liquid to seep into it.");
+	}
 	else
 	{
 		var critChance:int = 33;
