@@ -269,7 +269,7 @@ public function zilFemaleDartThrow():void {
 //Pheromone Fan:
 public function pheromoneFanFromZilFemale():void {
 	author("Savin");
-	output("Suddenly, the zil girl drops her combat stance, and dips her fingers right into her honeypot, masturbating furiously. You wonder what the hell she's doing, but suddenly your senses are assaulted by a potent cloud of her sex pheromones!");
+	output("Suddenly, the zil girl drops her combat stance, and dips her fingers right into her honeypot, masturbating furiously.");
 	if(pc.hasArmor() && pc.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
 	{
 		output(" You wonder what the hell she's doing, but judging by the look on her face, she is being assualted by a potent cloud of her own sex pheromones!");
