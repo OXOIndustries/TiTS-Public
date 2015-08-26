@@ -993,7 +993,7 @@ public function savinAbusesYerButtBecauseThatsHowHeLikesIt():void
 	// Breaking the machine starts here!
 
 	// The Price is Right: ONE MILLION DOLLARS!
-	var iPriceThreshold:int = 3500;
+	var iPriceThreshold:int = 150;
 
 	// If threshold is surpassed before the cumming is done. 50% Chance:
 	var cumEstimate:Number = 0;
