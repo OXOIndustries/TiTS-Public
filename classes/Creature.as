@@ -9332,11 +9332,19 @@
 				case GLOBAL.TYPE_GOOEY:
 					collection = ["gooey", "goo"];
 					break;
-				/*
-				case GLOBAL.TYPE_PLANT:
+				
+				case GLOBAL.TYPE_VENUSPITCHER:
 					collection = ["plant", "vine-like"];
 					break;
-				*/
+					
+				case GLOBAL.TYPE_SAURIAN:
+					collection = ["saurian", "dinosaur"];
+					break;
+				
+				case GLOBAL.TYPE_SYNTHETIC:
+					collection = ["synthetic", "robotic"];
+					break;
+				
 				default:
 					trace("Fallback cock shape used in cockShape() for type: " + GLOBAL.TYPE_NAMES[cock.cType]);
 					collection = ["bestial"];
@@ -9561,6 +9569,11 @@
 					descript += choices[rand(choices.length)] + " ";
 				}
 				choices = ["dick", "shaft", "prick", "cock", "tool", "member"];
+				if(silly && rand(10) == 0)
+				{
+					descript = "";
+					choices.push("dino-dick","dino-cock","penisaurus","schlongosaur");
+				}
 				noun += choices[rand(choices.length)];
 			}
 			else if (type == GLOBAL.TYPE_SYNTHETIC)
@@ -10256,7 +10269,7 @@
 			} else if(arg == GLOBAL.FLUID_TYPE_LEITHAN_MILK) {
 				collection = ["tangy","tangy","tangy","tangy","tangy","sweet","sweet","sweet","intoxicating","intoxicating"];
 			} else if (arg == GLOBAL.FLUID_TYPE_VANILLA) {
-				collection = ["tangy", "tangy", "tangy", "sweet", "sweet", "sweet", "woody", "smoky"];
+				collection = ["sweet","sugary","creamy","vanilla"];
 			}
 			
 			else collection = ["bland"];
