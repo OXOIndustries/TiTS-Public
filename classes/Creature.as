@@ -9569,10 +9569,10 @@
 					descript += choices[rand(choices.length)] + " ";
 				}
 				choices = ["dick", "shaft", "prick", "cock", "tool", "member"];
-				if(silly)
+				if(silly && rand(10) == 0)
 				{
-					if (descript != "dinosaur ") choices.push("dino-dick","dino-cock");
-					if (descript != "saurian ") choices.push("penisaurus","schlongosaur");
+					descript += "";
+					choices.push("dino-dick","dino-cock","penisaurus","schlongosaur");
 				}
 				noun += choices[rand(choices.length)];
 			}
