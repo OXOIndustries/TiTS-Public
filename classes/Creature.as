@@ -7006,9 +7006,9 @@
 			if (kaithritScore() >= 6) race = "kaithrit"
 			if (leithanScore() >= 6 && originalRace != "half-leithan") race = "leithan";
 			if (nukiScore() >= 6) race = "kui-tan";
-			if (vanaeScore() >= 4) race = "vanae-morph";
+			if (vanaeScore() >= 6) race = "vanae-morph";
 			if (raskvelScore() >= 6) race = "raskvel";
-			if (zilScore() >= 4) race = "zil";
+			if (zilScore() >= 6) race = "zil";
 			if (badgerScore() >= 4) race = "badger";
 			if (ovirScore() >= 5) race = "ovir";
 			if (myrScore() >= 4) race = "myr";
@@ -7022,22 +7022,6 @@
 			return race;
 		}
 		
-		public function ovirScore():int
-		{
-			var score:int = 0;
-			if (skinType == GLOBAL.SKIN_TYPE_SCALES && InCollection(scaleColor, "green", "purple", "red", "yellow", "brown", "tan", "olive green")) score++;
-			if (tailType == GLOBAL.TYPE_OVIR) score++;
-			if (hasCock(GLOBAL.TYPE_EQUINE) && (balls == 0 || hasStatusEffect("Uniball"))) score++;
-			if ((hasCock(GLOBAL.TYPE_EQUINE) || hasVagina()) && hasStatusEffect("Genital Slit")) score++;
-			if (eyeType == GLOBAL.TYPE_SNAKE && InCollection(eyeColor, "green", "blue", "yellow", "red", "grey")) score++;
-			if (tongueType == GLOBAL.TYPE_OVIR) score++;
-			if (legType == GLOBAL.TYPE_OVIR) score++;
-			if (armType == GLOBAL.TYPE_OVIR && legType == GLOBAL.TYPE_OVIR) score++;
-			if (score > 0 && (faceType == GLOBAL.TYPE_HUMAN && !hasFaceFlag(GLOBAL.FLAG_MUZZLED))) score++;
-
-			return score;
-		}
-		
 		public function isHuman():Boolean
 		{
 			return race() == "human";
@@ -7046,122 +7030,30 @@
 		public function isHalfHuman():Boolean
 		{
 			if (race().indexOf("half-") != -1) return true;
+			if (race().indexOf("half ") != -1) return true;
 			return false;
-		}
-		//Placeholders
-		public function cowScore():int
-		{
-			return bovineScore();
-		}
-		public function bovineScore():int
-		{
-			return 0;
-		}
-		public function tanukiScore(): int
-		{
-			return nukiScore();
-		}
-		public function badgerScore():int
-		{
-			var counter:int = 0;
-			if(tailType == GLOBAL.TYPE_BADGER && tailCount > 0) counter++;
-			if(armType == GLOBAL.TYPE_BADGER) counter++;
-			if(faceType == GLOBAL.TYPE_BADGER) counter++;
-			if(skinType == GLOBAL.SKIN_TYPE_FUR && counter > 0) counter++;
-			return counter;
-		}
-		public function vanaeScore(): int
-		{
-			var counter:int = 0;
-			if (earType == GLOBAL.TYPE_VANAE) counter++;
-			if (tailType == GLOBAL.TYPE_VANAE && hasTailFlag(GLOBAL.FLAG_LONG) && tailCount > 0) counter++;
-			if (totalVaginas(GLOBAL.TYPE_VANAE) > 0) counter++;
-			if (hasVaginaType(GLOBAL.TYPE_VANAE)) counter++;
-			if (milkType == GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK) counter++;
-			if (hasStatusEffect("Vanae Markings")) counter++;
-			return counter;
-		}
-		public function nukiScore(): int
-		{
-			var counter:int = 0;
-			if (earType == GLOBAL.TYPE_KUITAN) counter++;
-			if (tailType == GLOBAL.TYPE_KUITAN && hasTailFlag(GLOBAL.FLAG_LONG) && tailCount > 0) counter++;
-			if (faceType == GLOBAL.TYPE_KUITAN) counter++;
-			if (armType == GLOBAL.TYPE_KUITAN) counter++;
-			if (legType == GLOBAL.TYPE_KUITAN) counter++;
-			if (cockTotal(GLOBAL.TYPE_KUITAN) > 0) counter++;
-			return counter;
-		}
-		public function myrScore(): int
-		{
-			var counter:int = 0;
-			if(eyeType == GLOBAL.TYPE_MYR) counter++;
-			if(armType == GLOBAL.TYPE_MYR) counter++;
-			if(legType == GLOBAL.TYPE_MYR) counter++;
-			if(counter > 0 && earType == GLOBAL.TYPE_SYLVAN) counter++;
-			if(antennae == 2) counter++;
-			if(hasFur() || hasScales()) counter--;
-			if(counter > 0 && canLactate() && milkType == GLOBAL.FLUID_TYPE_HONEY) counter++;
-			return counter;
-		}
-		public function redMyrScore():int
-		{
-			var counter:int = myrScore();
-			if(hasPerk("Myr Venom")) counter += 3;
-			if(scaleColor == "red" && (armType == GLOBAL.TYPE_MYR || legType == GLOBAL.TYPE_MYR)) counter += 2;
-			return counter;
-		}
-		public function goldMyrScore(): int
-		{
-			var counter:int = myrScore();
-			if(hasPerk("Honeypot")) counter += 3;
-			if(tailType == GLOBAL.TYPE_MYR && tailCount == 1) counter += 4;
-			if(scaleColor == "gold" && (armType == GLOBAL.TYPE_MYR || legType == GLOBAL.TYPE_MYR)) counter += 2;
-			return counter;
-		}
-		public function orangeMyrScore():int
-		{
-			var counter:int = myrScore();
-			if(kGAMECLASS.flags["MCALLISTER_MYR_HYBRIDITY"] >= 3)
-			{
-				if(hasPerk("Honeypot") && hasPerk("Myr Venom")) counter += 4;
-				if(tailType == GLOBAL.TYPE_MYR && tailCount == 1) counter++;
-				if(scaleColor == "orange" && (armType == GLOBAL.TYPE_MYR || legType == GLOBAL.TYPE_MYR)) counter+=5;
-			}
-			return counter;
-		}
-		public function horseScore(): int
-		{
-			var counter:int = 0;
-			if (earType == GLOBAL.TYPE_EQUINE) counter++;
-			if (tailType == GLOBAL.TYPE_EQUINE && hasTailFlag(GLOBAL.FLAG_LONG)) counter++;
-			if (faceType == GLOBAL.TYPE_EQUINE) counter++;
-			if (armType == GLOBAL.TYPE_EQUINE) counter++;
-			if (legType == GLOBAL.TYPE_EQUINE) counter++;
-			if (cockTotal(GLOBAL.TYPE_EQUINE) > 0) counter++;
-			if (vaginaTotal(GLOBAL.TYPE_EQUINE) > 0) counter++;
-			return counter;
-		}
-		public function pandaScore(): int
-		{
-			var counter:int = 0;
-			if (earType == GLOBAL.TYPE_PANDA) counter++;
-			if (tailType == GLOBAL.TYPE_PANDA) counter++;
-			if (faceType == GLOBAL.TYPE_PANDA) counter++;
-			if (armType == GLOBAL.TYPE_PANDA) counter++;
-			if (legType == GLOBAL.TYPE_PANDA) counter++;
-			if (thickness >= 65 && counter > 0) counter++;
-			if (cockTotal(GLOBAL.TYPE_PANDA) > 0) counter++;
-			if (vaginaTotal(GLOBAL.TYPE_PANDA) > 0) counter++;
-			return counter;
 		}
 		public function ausarScore(): int {
 			var counter: int = 0;
 			if (earType == GLOBAL.TYPE_CANINE) counter++;
-			if (tailType == GLOBAL.TYPE_CANINE && hasTailFlag(GLOBAL.FLAG_LONG) && hasTailFlag(GLOBAL.FLAG_FLUFFY) && hasTailFlag(GLOBAL.FLAG_FURRED)) counter++;
+			if (tailType == GLOBAL.TYPE_CANINE && hasTailFlag(GLOBAL.FLAG_LONG) && hasTailFlag(GLOBAL.FLAG_FLUFFY) && hasTailFlag(GLOBAL.FLAG_FURRED) && tailCount > 0) counter++;
 			if (armType == GLOBAL.TYPE_CANINE) counter++;
-			if (legType == GLOBAL.TYPE_CANINE) counter++;
+			if (legType == GLOBAL.TYPE_CANINE && legCount == 2 && hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) counter++;
 			if (counter > 0 && faceType == GLOBAL.TYPE_HUMAN) counter++;
+			return counter;
+		}
+		public function kaithritScore(): int {
+			var counter: int = 0;
+			if (earType == GLOBAL.TYPE_FELINE) counter++;
+			if (tailType == GLOBAL.TYPE_FELINE && tailCount == 1) counter++;
+			if (tailType == GLOBAL.TYPE_FELINE && tailCount == 2) counter += 2;
+			if (counter > 0 && faceType == GLOBAL.TYPE_HUMAN) counter++;
+			if (counter > 1 && armType == GLOBAL.TYPE_FELINE && !hasArmFlag(GLOBAL.FLAG_FURRED)) counter++;
+			if (counter > 2 && legType == GLOBAL.TYPE_HUMAN && legCount == 2 && hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) counter++;
+			if (counter > 3 && eyeType == GLOBAL.TYPE_FELINE && faceType == GLOBAL.TYPE_HUMAN) counter += 2;
+			if (counter > 5 && hasCock(GLOBAL.TYPE_FELINE)) counter++;
+			if (femininity < 75) counter--;
+			if (femininity < 50 && !hasBreasts()) counter--;
 			return counter;
 		}
 		public function leithanScore():int {
@@ -7172,44 +7064,132 @@
 			if (tongueType == GLOBAL.TYPE_LEITHAN) counter++;
 			if (tailType == GLOBAL.TYPE_LIZAN && tailCount > 0) counter++;
 			if (counter > 0 && skinType == GLOBAL.SKIN_TYPE_SCALES && scaleColor == "black") counter++;
+			if (counter > 3 && eyeType == GLOBAL.TYPE_LEITHAN && faceType == GLOBAL.TYPE_HUMAN) counter += 2;
 			return counter;
 		}
-		public function kaithritScore(): int {
-			var counter: int = 0;
-			if (earType == GLOBAL.TYPE_FELINE) counter++;
-			if (legType == GLOBAL.TYPE_HUMAN && legCount == 2 && hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) counter++;
-			if (tailType == GLOBAL.TYPE_FELINE && tailCount == 1) counter++;
-			if (tailType == GLOBAL.TYPE_FELINE && tailCount == 2) counter+=2;
-			if (counter > 0 && faceType == GLOBAL.TYPE_HUMAN) counter++;
-			if (counter > 0 && armType == GLOBAL.TYPE_FELINE && !hasArmFlag(GLOBAL.FLAG_FURRED)) counter++;
-			if (hasCock(GLOBAL.TYPE_FELINE) && counter > 5) counter++;
-			if (eyeType == GLOBAL.TYPE_FELINE && faceType == GLOBAL.TYPE_HUMAN && counter > 2) counter++;
+		public function nukiScore(): int
+		{
+			var counter:int = 0;
+			if (earType == GLOBAL.TYPE_KUITAN) counter++;
+			if (tailType == GLOBAL.TYPE_KUITAN && hasTailFlag(GLOBAL.FLAG_LONG) && tailCount > 0) counter++;
+			if (faceType == GLOBAL.TYPE_KUITAN) counter++;
+			if (armType == GLOBAL.TYPE_KUITAN) counter++;
+			if (legType == GLOBAL.TYPE_KUITAN) counter++;
+			if (hasCock(GLOBAL.TYPE_KUITAN)) counter++;
 			return counter;
 		}
-		public function zilScore(): int {
-			var counter: int = 0;
-			if (cockTotal(GLOBAL.TYPE_BEE) > 0) counter++;
-			if (hasVaginaType(GLOBAL.TYPE_BEE)) counter++;
-			if (armType == GLOBAL.TYPE_BEE) counter++;
-			if (legType == GLOBAL.TYPE_BEE && legCount == 2) counter++;
-			if (wingType == GLOBAL.TYPE_SMALLBEE || wingType == GLOBAL.TYPE_BEE) counter++;
-			if (tailType == GLOBAL.TYPE_BEE && tailCount > 0) counter++;
-			if (faceType == GLOBAL.TYPE_HUMAN && counter > 0) counter++;
-			if (faceType == GLOBAL.TYPE_HUMAN && eyeType == GLOBAL.TYPE_BEE) counter++;
-			if (faceType == GLOBAL.TYPE_HUMAN && tongueType == GLOBAL.TYPE_BEE) counter++;
-			if (antennae == 2 && counter > 0) counter++;
+		/*
+		public function tanukiScore(): int
+		{
+			return nukiScore();
+		}
+		*/
+		//Placeholders
+		public function cowScore():int
+		{
+			return bovineScore();
+		}
+		public function bovineScore():int
+		{
+			return 0;
+		}
+		public function badgerScore():int
+		{
+			var counter:int = 0;
+			if (tailType == GLOBAL.TYPE_BADGER && tailCount > 0) counter++;
+			if (armType == GLOBAL.TYPE_BADGER) counter++;
+			if (faceType == GLOBAL.TYPE_BADGER) counter++;
+			if (counter > 0 && skinType == GLOBAL.SKIN_TYPE_FUR) counter++;
+			return counter;
+		}
+		public function horseScore(): int
+		{
+			var counter:int = 0;
+			if (earType == GLOBAL.TYPE_EQUINE) counter++;
+			if (tailType == GLOBAL.TYPE_EQUINE && hasTailFlag(GLOBAL.FLAG_LONG)) counter++;
+			if (faceType == GLOBAL.TYPE_EQUINE) counter++;
+			if (armType == GLOBAL.TYPE_EQUINE) counter++;
+			if (legType == GLOBAL.TYPE_EQUINE) counter++;
+			if (counter > 0 && cockTotal(GLOBAL.TYPE_EQUINE) > 0) counter++;
+			if (counter > 0 && vaginaTotal(GLOBAL.TYPE_EQUINE) > 0) counter++;
+			if (counter > 1 && hairType == GLOBAL.HAIR_TYPE_REGULAR && hasPerk("Mane")) counter++;
+			return counter;
+		}
+		public function myrScore(): int
+		{
+			var counter:int = 0;
+			if(eyeType == GLOBAL.TYPE_MYR) counter++;
+			if(armType == GLOBAL.TYPE_MYR) counter++;
+			if(legType == GLOBAL.TYPE_MYR) counter++;
+			if(antennae == 2 && antennaeType == GLOBAL.TYPE_MYR) counter++;
+			if(counter > 0 && earType == GLOBAL.TYPE_SYLVAN) counter++;
+			if(counter > 0 && canLactate() && milkType == GLOBAL.FLUID_TYPE_HONEY) counter++;
+			if(hasFur() || hasScales()) counter--;
+			return counter;
+		}
+		public function redMyrScore():int
+		{
+			var counter:int = myrScore();
+			if (hasPerk("Myr Venom")) counter += 4;
+			if (scaleColor == "red" && (armType == GLOBAL.TYPE_MYR || legType == GLOBAL.TYPE_MYR)) counter += 2;
+			return counter;
+		}
+		public function goldMyrScore(): int
+		{
+			var counter:int = myrScore();
+			if (hasPerk("Honeypot")) counter += 4;
+			if (tailType == GLOBAL.TYPE_MYR && tailCount == 1) counter += 3;
+			if (scaleColor == "gold" && (armType == GLOBAL.TYPE_MYR || legType == GLOBAL.TYPE_MYR)) counter += 2;
+			return counter;
+		}
+		public function orangeMyrScore():int
+		{
+			var counter:int = myrScore();
+			if(kGAMECLASS.flags["MCALLISTER_MYR_HYBRIDITY"] >= 3)
+			{
+				if(hasPerk("Honeypot") && hasPerk("Myr Venom")) counter += 4;
+				if(tailType == GLOBAL.TYPE_MYR && tailCount == 1) counter++;
+				if(scaleColor == "orange" && (armType == GLOBAL.TYPE_MYR || legType == GLOBAL.TYPE_MYR)) counter += 5;
+			}
 			return counter;
 		}
 		public function naleenScore(): int {
 			var counter: int = 0;
 			if (isNaga()) counter += 2;
 			if (faceType == GLOBAL.TYPE_NALEEN_FACE) counter++;
-			if (hasStatusEffect("Genital Slit")) counter++;
-			if (hasVaginaType(GLOBAL.TYPE_NAGA)) counter++;
-			if (cockTotal(GLOBAL.TYPE_NAGA) > 0) counter++;
 			if (skinType == GLOBAL.SKIN_TYPE_FUR && counter > 0) counter++;
 			if (armType == GLOBAL.TYPE_FELINE && hasArmFlag(GLOBAL.FLAG_FURRED) && counter > 0) counter++;
 			if (eyeType == GLOBAL.TYPE_NAGA && faceType == GLOBAL.TYPE_NALEEN_FACE) counter++;
+			if (hasGenitals() && hasStatusEffect("Genital Slit")) counter++;
+			if (counter > 0 && hasCock(GLOBAL.TYPE_NAGA)) counter++;
+			if (counter > 0 && hasVaginaType(GLOBAL.TYPE_NAGA)) counter++;
+			return counter;
+		}
+		public function ovirScore():int
+		{
+			var score:int = 0;
+			if (skinType == GLOBAL.SKIN_TYPE_SCALES && InCollection(scaleColor, "green", "purple", "red", "yellow", "brown", "tan", "olive green")) score++;
+			if (tailType == GLOBAL.TYPE_OVIR) score++;
+			if (eyeType == GLOBAL.TYPE_SNAKE && InCollection(eyeColor, "green", "blue", "yellow", "red", "grey")) score++;
+			if (tongueType == GLOBAL.TYPE_OVIR) score++;
+			if (legType == GLOBAL.TYPE_OVIR) score++;
+			if (armType == GLOBAL.TYPE_OVIR && legType == GLOBAL.TYPE_OVIR) score++;
+			if (hasCock(GLOBAL.TYPE_EQUINE) && (balls == 0 || hasStatusEffect("Uniball"))) score++;
+			if ((hasCock(GLOBAL.TYPE_EQUINE) || hasVagina()) && hasStatusEffect("Genital Slit")) score++;
+			if (score > 0 && (faceType == GLOBAL.TYPE_HUMAN && !hasFaceFlag(GLOBAL.FLAG_MUZZLED))) score++;
+			return score;
+		}
+		public function pandaScore(): int
+		{
+			var counter:int = 0;
+			if (earType == GLOBAL.TYPE_PANDA) counter++;
+			if (tailType == GLOBAL.TYPE_PANDA) counter++;
+			if (faceType == GLOBAL.TYPE_PANDA) counter++;
+			if (armType == GLOBAL.TYPE_PANDA) counter++;
+			if (legType == GLOBAL.TYPE_PANDA) counter++;
+			if (thickness >= 65 && counter > 0) counter++;
+			//if (cockTotal(GLOBAL.TYPE_PANDA) > 0) counter++;
+			//if (vaginaTotal(GLOBAL.TYPE_PANDA) > 0) counter++;
 			return counter;
 		}
 		public function raskvelScore(): int
@@ -7218,11 +7198,40 @@
 			if (earType == GLOBAL.TYPE_RASKVEL) counter++;
 			if (tailType == GLOBAL.TYPE_RASKVEL && hasTailFlag(GLOBAL.FLAG_SCALED) && tailCount > 0) counter++;
 			if (legType == GLOBAL.TYPE_RASKVEL) counter++;
-			if (hasCock(GLOBAL.TYPE_RASKVEL)) counter++;
 			if (counter > 0 && skinType == GLOBAL.SKIN_TYPE_SCALES) counter++;
+			if (counter > 1 && hasCock(GLOBAL.TYPE_RASKVEL)) counter++;
 			if (counter > 1 && hasVagina() && totalClits()/totalVaginas() == 2) counter++;
 			if (counter > 2 && hairType == GLOBAL.HAIR_TYPE_FEATHERS) counter++;
 			if (counter > 4 && hasTongueFlag(GLOBAL.FLAG_LONG) && hasTongueFlag(GLOBAL.FLAG_PREHENSILE)) counter++;
+			return counter;
+		}
+		public function vanaeScore(): int
+		{
+			var counter:int = 0;
+			if (earType == GLOBAL.TYPE_VANAE) counter++;
+			if (tailType == GLOBAL.TYPE_VANAE && hasTailFlag(GLOBAL.FLAG_LONG) && tailCount > 0) counter++;
+			if (hasVaginaType(GLOBAL.TYPE_VANAE)) counter++;
+			if (totalVaginas(GLOBAL.TYPE_VANAE) > totalVaginas()) counter++;
+			if (milkType == GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK) counter++;
+			if (hasStatusEffect("Vanae Markings")) counter++;
+			if (counter > 0 && hairType == GLOBAL.HAIR_TYPE_TENTACLES) counter++;
+			return counter;
+		}
+		public function zilScore(): int {
+			var counter: int = 0;
+			if (armType == GLOBAL.TYPE_BEE) counter++;
+			if (legType == GLOBAL.TYPE_BEE && legCount == 2) counter++;
+			if (antennae == 2 && antennaeType == GLOBAL.TYPE_BEE) counter++;
+			if (wingType == GLOBAL.TYPE_SMALLBEE || wingType == GLOBAL.TYPE_BEE) counter++;
+			if (tailType == GLOBAL.TYPE_BEE && tailCount > 0) counter++;
+			if (counter > 0 && faceType == GLOBAL.TYPE_HUMAN)
+			{
+				counter++;
+				if (eyeType == GLOBAL.TYPE_BEE) counter++;
+				if (tongueType == GLOBAL.TYPE_BEE) counter++;
+			}
+			if (counter > 0 && hasCock(GLOBAL.TYPE_BEE)) counter++;
+			if (counter > 0 && hasVaginaType(GLOBAL.TYPE_BEE)) counter++;
 			return counter;
 		}
 		public function isRahn(): Boolean {
