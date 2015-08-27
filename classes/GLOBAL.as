@@ -668,6 +668,7 @@
 			TYPE_KUITAN,
 			TYPE_VENUSPITCHER,
 			TYPE_SAURIAN,
+			TYPE_SYNTHETIC,
 		];
 		
 		public static const VALID_COCK_FLAGS:Array = [
