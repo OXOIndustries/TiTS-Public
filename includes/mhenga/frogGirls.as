@@ -184,7 +184,17 @@ public function tongueLashAttack():void
 		output("\nThe tip of her tongue slams into you, ");
 		if(pc.shields() > 0) 
 		{
-			/* Fine here! */
+			output("and you are staggered by the force of the blow hitting your shield");
+			
+			var damage:TypeCollection = foes[0].meleeDamage();
+			damage.addFlag(DamageFlag.ONLY_SHIELD);
+			damageRand(damage, 15);
+			var damageResult:DamageResult = calculateDamage(damage, foes[0], pc);
+			
+			if (pc.shieldsRaw > 0) output(". It holds.");
+			else output(". Your shield is breached!");
+			
+			outputDamage(damageResult);
 		}
 		else if(pc.hasArmor() && pc.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
 		{

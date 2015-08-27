@@ -2803,7 +2803,8 @@ public function mimbraneLustCloud():void
 	//{standard miss/block text}
 	if (combatMiss(foes[0], pc))
 	{
-		/* Fine here! */
+		output("\n\nAnticipating the Mimbranes attack, you’re already poised to avoid the creatures mist before it can take effect.");
+		if (mimbraneDebug) trace("Player dodged the lust cloud.");
 	}
 	else if(pc.hasArmor() && pc.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
 	{
