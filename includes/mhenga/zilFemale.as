@@ -273,7 +273,7 @@ public function pheromoneFanFromZilFemale():void {
 	if(pc.hasArmor() && pc.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
 	{
 		output(" You wonder what the hell she's doing, but judging by the look on her face, she is being assualted by a potent cloud of her own sex pheromones!");
-		output("\n\nLuckly your [pc.armor] is airtight, so you don't have to worry about being affected by it - but you can see <i>she</i> definitely is!");
+		output("\n\nLuckily your [pc.armor] is airtight, so you don't have to worry about being affected by it - but you can see <i>she</i> definitely is!");
 		foes[0].lust(8);
 	}
 	//{Moderate toughness check pass}
