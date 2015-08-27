@@ -139,7 +139,7 @@ public function sydianLickAttack():void
 	else
 	{
 		output(" He presses it to the bottom of your chin before licking up your cheek and over your forehead. The contact is hotter than you care to admit, and you certainly can't ignore the thick mass of his boner pressing against your [pc.leg].");
-	applyDamage(new TypeCollection( { tease: 15 + rand(5) } ), foes[0], pc, "minimal");
+		applyDamage(new TypeCollection( { tease: 15 + rand(5) } ), foes[0], pc, "minimal");
 	}
 	processCombat();
 }
