@@ -26,10 +26,10 @@
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a leather strap harness";
+			this.description = "a little black dress";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "A bdsm outfit made entirely from straps and metal rings, starting at a collar and ending at the groin. The straps are connected to make diamond shaped patterns with gaps in the middle. In this outfit the chest or breasts are totally exposed.";
+			this.tooltip = "This is a revealing black dress that has a low neckline and short skirt, the hem reaching down to the mid thigh. It shows a lot, but not everything.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
