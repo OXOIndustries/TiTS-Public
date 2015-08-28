@@ -34,7 +34,7 @@ package classes.Items.Transformatives
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
-			this.description = "a small bottle of bovinium";
+			this.description = "a small bottle of Bovinium";
 			
 			this.tooltip = "Created by a dissident female scientist from the garden world of New Texas, Bovinium is a designer cosmetic transformative that causes the user to gain features reminiscent of bovines, more commonly called \"cow-girls.\" The product label informs you that it is highly feminizing, even capable of complete gender transitions, and causes dramatic increases in breast size, lactation, and fertility. ";
 			
