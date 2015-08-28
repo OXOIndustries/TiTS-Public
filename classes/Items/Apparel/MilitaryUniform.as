@@ -19,13 +19,13 @@ package classes.Items.Apparel
 			this.stackSize = 1;
 			this.type = GLOBAL.ARMOR;
 			
-			this.shortName = "M. Doctor";
+			this.shortName = "Military O.";
 			
-			this.longName = "doctor's coat & pants";
+			this.longName = "military outfit";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
-			this.description = "a white doctor's coat & pants";
+			this.description = "a military issue tank top and pants";
 			
 			this.tooltip = "This military outfit is reminiscent of those worn on Earth in the 20th century. It consists of a tank top, bullet chain sling, and baggy camo pants. The top is quite tight and deliberately accentuates any natural assets. A defensive layer of nanofibers has been woven into the entire outfit.";
 			
