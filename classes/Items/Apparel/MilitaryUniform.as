@@ -19,7 +19,7 @@ package classes.Items.Apparel
 			this.stackSize = 1;
 			this.type = GLOBAL.ARMOR;
 			
-			this.shortName = "Military O.";
+			this.shortName = "MilitaryO.";
 			
 			this.longName = "military outfit";
 			
