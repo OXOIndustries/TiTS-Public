@@ -2313,6 +2313,8 @@ public function statisticsScreen(showID:String = "All"):void
 				if(pc.hasStatusEffect("Uniball")) output2(", Uniball");
 				output2("\n<b>* Testicle, Size: </b>" + prettifyLength(pc.ballDiameter()) + " across, " + prettifyLength(pc.ballSize()) + " around");
 				if(pc.balls != 1) output2(", each");
+				output2("\n<b>* Testicle, Volume: </b>" + prettifyVolume(pc.ballVolume(), 1));
+				if(pc.balls != 1) output2(", each");
 			}
 			output2("\n<b>* Penis, Virginity:</b>");
 			if(pc.cockVirgin) output2(" Virgin");
