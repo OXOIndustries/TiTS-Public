@@ -1236,7 +1236,7 @@ public function specialOrdersForTreatedGals():void
 	processTime(23);
 	pc.energy(100);
 	//pc.thickness += (1);
-	pc.modThickness(1, false);
+	pc.modThickness(1);
 	IncrementFlag("HERMAN_SPECIAL_ORDER");
 	pc.loadInMouth();
 	pc.loadInMouth();
