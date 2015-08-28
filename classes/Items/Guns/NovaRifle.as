@@ -26,7 +26,7 @@ package classes.Items.Guns
 			this.shortName = "Nova Rifle";
 			
 			//Regular name
-			this.longName = "nova rifle";
+			this.longName = "Nova rifle";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
