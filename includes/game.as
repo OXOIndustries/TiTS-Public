@@ -3252,7 +3252,11 @@ public function displayQuestLog(showID:String = "All"):void
 					if(flags["ANNO_NOVA_UPDATE"] != undefined && flags["ANNO_MISSION_OFFER"] >= 3)
 					{
 						output2("\n<b>* Nova Update:</b>");
-						if(flags["ANNO_NOVA_UPDATE"] >= 2) output2(" Acquired [goo.name]");
+						if(flags["ANNO_NOVA_UPDATE"] >= 2)
+						{
+							output2(" Acquired [goo.name]");
+							if(flags["GRAYGOO_SPESS_SKYPE"] != undefined) output2(", She chatted with Capt. Morrow");
+						}
 						else output2(" <i>In progress...</i>");
 					}
 				}
