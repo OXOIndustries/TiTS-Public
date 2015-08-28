@@ -23,12 +23,12 @@
 			//Used on inventory buttons
 			this.shortName = "H-izer";
 			//Regular name
-			this.longName = "jar of honeyizer";
+			this.longName = "jar of Honeyizer";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a jar of honeyizer";
+			this.description = "a jar of Honeyizer";
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "An experimental Xenogen treatment trial that can mod your lactating to sticky and congealed but oh-so-sweet nectar, like a myr. Strangely, the box has a picture of a busty bee-girl instead of an ant or something. Has this even been legally tested? Only way to find out is to put it in your mouth!";
 			

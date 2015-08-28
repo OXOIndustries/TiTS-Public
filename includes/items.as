@@ -214,7 +214,7 @@ public function buyItem():void {
 			output("\n");
 			temp = getBuyPrice(shopkeep,shopkeep.inventory[x].basePrice);
 			if(temp > pc.credits) output("<b>(Too Expensive)</b> ");
-			output(upperCase(shopkeep.inventory[x].description) + " - " + temp + " credits.");
+			output(upperCase(shopkeep.inventory[x].description, false) + " - " + temp + " credits.");
 			trace("DISPLAYING SHIT");
 			if(temp <= pc.credits) {
 				trace("SHOWAN BUTANS: " + x);
@@ -257,7 +257,7 @@ public function sellItem():void {
 			trace("PC inventory being checked for possible sale.");
 			//Does the shopkeep buy this type?
 			if(shopkeep.buysType(pc.inventory[x].type)) {
-				output("\n" + upperCase(pc.inventory[x].description) + " - " + getSellPrice(shopkeep,pc.inventory[x].basePrice) + " credits.");
+				output("\n" + upperCase(pc.inventory[x].description, false) + " - " + getSellPrice(shopkeep,pc.inventory[x].basePrice) + " credits.");
 				if(x <= 13) this.addItemButton(x, pc.inventory[x], sellItemGo, pc.inventory[x], null, null, pc, shopkeep);
 				if (x > 13) this.addItemButton(x + 1, pc.inventory[x], sellItemGo, pc.inventory[x], null, null, pc, shopkeep);
 			}

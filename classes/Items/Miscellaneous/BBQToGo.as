@@ -29,7 +29,7 @@
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a box of barbeque to go";
+			this.description = "a box of barbeque to-go";
 			
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "A tasty packaged meal from the Barbeque Pit on New Texas, this ever-fresh BBQ meal comes with fries and soda. Probably not great for your figure, but it’s guaranteed to give you a boost of energy in the middle of a long day at the office... or of galactic adventuring.";
@@ -61,8 +61,8 @@
 				//Effect: %Chance +thickness, +25 Energy
 				kGAMECLASS.output("You pop open the packaged BBQ To-Go meal and quickly munch down a nice, hot, fresh-tasting roast beef sandwich and fries, washing it down with a swig of sweet bottled orange soda. Delicious!");
 				target.energy(25);
-				target.modThickness(2, false);
-				if(target.thickness >= 100) target.thickness = 100;
+				target.modThickness(2);
+				//if(target.thickness >= 100) target.thickness = 100;
 			}
 			else {
 				kGAMECLASS.output(target.capitalA + target.short + " eats the food, getting a quick energy boost.");

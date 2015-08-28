@@ -29,7 +29,7 @@ package classes.Items.Melee
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "knuckle sandwich delivery device";
+			this.description = "a knuckle sandwich delivery device";
 			
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "A fleshy set of fingers balled up into fists. Generally attached at the wrist to a pair of arms, themselves connected to a person of some description.";
