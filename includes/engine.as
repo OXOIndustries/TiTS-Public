@@ -122,7 +122,7 @@ public function upperCase(str:String):String {
 }
 */
 // NEW - No need to lowercase the rest of the string unless specified.
-public function upperCase(str:String, forceLower:Boolean = false):String
+public function upperCase(str:String, forceLower:Boolean = true):String
 {
 	var firstChar:String = str.substr(0,1);
 	var restOfString:String = str.substr(1, str.length);
