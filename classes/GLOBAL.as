@@ -239,7 +239,7 @@
 			"Sylvan",
 			"Dark Sylvan",
 			"Myr",
-			"Saurian"
+			"Saurian",
 		];
 		
 		public static const VALID_FACE_TYPES:Array = [
@@ -306,6 +306,7 @@
 			FLAG_HOLLOW,
 			FLAG_LUBRICATED,
 			FLAG_SQUISHY,
+			FLAG_APHRODISIAC_LACED,
 		];
 		
 		public static const VALID_EAR_TYPES:Array = [
@@ -317,6 +318,7 @@
 			TYPE_LIZAN,
 			TYPE_LAPINE,
 			TYPE_KANGAROO,
+			TYPE_DEER,
 			TYPE_VULPINE,
 			TYPE_DRACONIC,
 			TYPE_KUITAN,
@@ -411,6 +413,7 @@
 			TYPE_DEMONIC,
 			TYPE_BOVINE,
 			TYPE_LIZAN,
+			TYPE_DRACONIC,
 			TYPE_DEER,
 			TYPE_GOAT,
 		];
@@ -454,6 +457,7 @@
 			TYPE_VULPINE,
 			TYPE_DRACONIC,
 			TYPE_KUITAN,
+			TYPE_DEER,
 			TYPE_MOUSE,
 			TYPE_BADGER,
 			TYPE_RASKVEL,
