@@ -22,7 +22,7 @@
 			this.shortName = "secureMP";
 			
 			//Regular name
-			this.longName = "secure MP";
+			this.longName = "Secure MP";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
