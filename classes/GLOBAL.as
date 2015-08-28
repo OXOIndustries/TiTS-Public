@@ -690,6 +690,7 @@
 			FLAG_SMOOTH,
 			FLAG_FORESKINNED,
 			FLAG_APHRODISIAC_LACED,
+			FLAG_STICKY,
 		];
 		
 		public static const VALID_VAGINA_TYPES:Array = [
