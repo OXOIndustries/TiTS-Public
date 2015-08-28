@@ -29,12 +29,12 @@
 			this.shortName = "EasyFit";
 			
 			//Regular name
-			this.longName = "jar of easyfit cream";
+			this.longName = "jar of Easy Fit cream";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a jar of easyfit cream";
+			this.description = "a jar of Easy Fit cream";
 			
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "Designed as an alternative for human-sized races entering into relationships with much larger alien species such as leithans and heavy modified humanoids, such as New Texans. This jar of cream will apply a permanent elasticizing effect to an orifice, and will promote increased wetness when aroused. Can be used anally or vaginally.";
