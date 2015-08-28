@@ -2225,8 +2225,11 @@ public function statisticsScreen(showID:String = "All"):void
 			}
 			output2(" " + GLOBAL.TYPE_NAMES[pc.tailType]);
 		}
-		if(pc.hasCock() || pc.hasVagina())
+		if(pc.hasTailCock()) output2("\n<b>* Tail, Genital Volume: </b>" + prettifyVolume(pc.tailCockVolume()));
+		if(pc.hasTailCunt()) output2("\n<b>* Tail, Genital Capacity: </b>" + prettifyVolume(pc.tailCuntCapacity()));
+		if(pc.hasGenitals())
 		{
+			output2("\n<b>* Genital Elasticity: </b>" + formatFloat(pc.elasticity, 3));
 			output2("\n<b>* Genital Location: </b>" + GLOBAL.GENITAL_SPOT_NAMES[pc.genitalLocation()]);
 			if(pc.hasStatusEffect("Genital Slit")) output2(", Genital Slit");
 		}
@@ -2343,6 +2346,13 @@ public function statisticsScreen(showID:String = "All"):void
 					output2("\n<b>* Length, Erect: </b>" + prettifyLength(pc.cLength(x)));
 					output2("\n<b>* Thickness: </b>" + prettifyLength(pc.cThickness(x)));
 					if(pc.hasKnot(x)) output2("\n<b>* Knot Thickness: </b>" + prettifyLength(pc.knotThickness(x)));
+					if(pc.hasCockFlag(GLOBAL.FLAG_LUBRICATED, x) || pc.hasCockFlag(GLOBAL.FLAG_STICKY, x))
+					{
+						output2("\n<b>* Volume, Physical: </b>" + prettifyVolume(pc.cockVolume(x, false)));
+						output2("\n<b>* Volume, Effective: </b>" + prettifyVolume(pc.cockVolume(x)));
+					}
+					else output2("\n<b>* Volume: </b>" + prettifyVolume(pc.cockVolume(x)));
+					output2("\n<b>* Capacity: </b>" + prettifyVolume(pc.cockCapacity(x)));
 					if(pc.cocks[x].pierced != 0) output2("\n<b>* Piercing: </b>" + pc.cocks[x].pierced + " " + StringUtil.toTitleCase(pc.cocks[x].pShort));
 					if(pc.cocks[x].sock != "") output2("\n<b>* Sock: </b>" + StringUtil.toTitleCase(pc.cocks[x].sock));
 				}
@@ -2398,7 +2408,12 @@ public function statisticsScreen(showID:String = "All"):void
 					output2("\n<b>* Hymen:</b>");
 					if(pc.vaginas[x].hymen) output2(" Virgin");
 					else output2(" Taken");
-					output2("\n<b>* Bonus Capacity: </b>" + formatFloat(pc.vaginas[x].bonusCapacity, 3));
+					if(pc.vaginas[x].bonusCapacity == 0) output2("\n<b>* Capacity: </b>" + prettifyVolume(pc.vaginalCapacity(x)));
+					else
+					{
+						output2("\n<b>* Capacity, Total: </b>" + prettifyVolume(pc.vaginalCapacity(x)));
+						output2("\n<b>* Capacity, Bonus: </b>" + prettifyVolume(pc.vaginas[x].bonusCapacity));
+					}
 					output2("\n<b>* Looseness Level: </b>" + formatFloat(pc.vaginas[x].looseness(), 3));
 					output2("\n<b>* Wetness Level: </b>" + formatFloat(pc.vaginas[x].wetness(), 3));
 					if(pc.vaginas[x].wetness() >= 4) output2(", Squirter");
@@ -2461,7 +2476,12 @@ public function statisticsScreen(showID:String = "All"):void
 		output2("\n<b>* Anus, Virginity:</b>");
 		if(pc.analVirgin) output2(" Virgin");
 		else output2(" Taken");
-		output2("\n<b>* Anus, Bonus Capacity: </b>" + formatFloat(pc.ass.bonusCapacity, 3));
+		if(pc.ass.bonusCapacity == 0) output2("\n<b>* Anus, Capacity: </b>" + prettifyVolume(pc.analCapacity(x)));
+		else
+		{
+			output2("\n<b>* Anus, Capacity, Total: </b>" + prettifyVolume(pc.analCapacity(x)));
+			output2("\n<b>* Anus, Capacity, Bonus: </b>" + prettifyVolume(pc.ass.bonusCapacity));
+		}
 		output2("\n<b>* Anus, Looseness Level: </b>" + formatFloat(pc.ass.looseness(), 3));
 		output2("\n<b>* Anus, Wetness Level: </b>" + formatFloat(pc.ass.wetness(), 3));
 		
@@ -2801,7 +2821,33 @@ public function statisticsScreen(showID:String = "All"):void
 	output2("\n\n");
 }
 
+// Prettify Volume!
+// amount: cubic inches
+// printMeters: -1 is inches, 0 is both inches and meters, 1 is meters only
+public function prettifyVolume(amount:Number, printMeters:int = -1):String
+{
+	var retStr:String = "";
+	if(printMeters < 1)
+	{
+		retStr += formatFloat(amount, 3) + " cubic inch";
+		if(amount != 1) retStr += "es";
+	}
+	// Prettified meters
+	if(printMeters > -1)
+	{
+		if(printMeters == 0) retStr += " (";
+		// Convert inches to centimeters!
+		// 1 in = 2.54 cm, (1 in)^3 = (2.54 cm)^3, 1 in^3 = 16.387064 cm^3
+		// 1 cm^3 = 1 mL
+		retStr += formatFloat((amount * 16.387064), 3) + " mLs";
+		if(printMeters == 0) retStr += ")";
+	}
+	return retStr;
+}
 
+// Prettify Lengths!
+// amount: inch length
+// printMeters: -2 is inches only, -1 is feet and inches, 0 is both inches and meters, 1 is meters only
 public function prettifyLength(amount:Number, printMeters:int = -1):String
 {
 	var retStr:String = "";
