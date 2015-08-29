@@ -39,8 +39,8 @@
 			//Information
 			this.basePrice = 6500;
 			
-			baseDamage.kinetic.damageValue = 12;
-			baseDamage.corrosive.damageValue = 12;
+			baseDamage.kinetic.damageValue = 2;
+			baseDamage.corrosive.damageValue = 10;
 			
 			
 			this.attack = 2;
