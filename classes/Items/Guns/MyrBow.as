@@ -40,7 +40,7 @@
 			this.basePrice = 6500;
 			
 			baseDamage.kinetic.damageValue = 1;
-			baseDamage.drug.damageValue = 18;
+			baseDamage.drug.damageValue = 10;
 			
 			this.defense = 0;
 			this.shieldDefense = 0;
