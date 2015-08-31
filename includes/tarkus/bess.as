@@ -8591,7 +8591,7 @@ public function bessEvent21RelationshipResponse(response:String):void
 	flags["BESS_LOVER"] = 1;
 	flags["BESS_LOVER_STATUS"] = response;
 
-	if (response == "lovers" || response == "girlfriend" || response == "boyfriend" || response == "consort" || response == "partner")
+	if (response == "lover" || response == "girlfriend" || response == "boyfriend" || response == "consort" || response == "partner")
 	{
 		output("<i>“" + StringUtil.capitalize(bessLoverStatus()) + "-?”</i> [bess.name] repeats it, a big grin spreading across [bess.hisHer] face. <i>“I’m your [bessLoverStatus]. I am "+ bessPCName() +"’s [bessLoverStatus]. I like the sound of that. I really think I could say that all day.”</i>");
 	}
@@ -9846,7 +9846,8 @@ public function bessDate6():void
 	{
 		output("\n\nYou see Celise floating through the water like a jellyfish, catching wriggling fish between her gelatinous tits. It’s a little eerie to watch, but you’re not surprised. She does love protein and there’s an abundance of it about. She waves at you and you wave back - she’s probably going to be full for the next week.");
 	}
-	else if ((celiseIsCrew && crew(true) > 2) || (!celiseIsCrew() && crew(true) > 1))
+
+	if ((celiseIsCrew() && crew(true) > 2) || (!celiseIsCrew() && crew(true) > 1))
 	{
 		output("\n\nThe other crew members are also out enjoying all that Brelia has to offer. It’s kind of like having your own personal beach resort since you don’t have to share the whole island with anyone.");
 	}

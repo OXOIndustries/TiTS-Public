@@ -1455,7 +1455,7 @@ public function shadeQuestNeedsTurnIn():Boolean
 }
 public function shadeAtTheBar():Boolean
 {
-	if(flags["SHADE_ON_UVETO"] != undefined) return false;
+	//9999 if(flags["SHADE_ON_UVETO"] != undefined) return false;
 	if(flags["SHADE_AND_KARA_RESOLVED_THINGS_THEMSELVES"] != undefined) return false;
 	if(flags["SHADE_DEFEATED_WITH_KARA"] != undefined) return false;
 	if(karaAndShadeUnfinished()) return false;
@@ -1629,11 +1629,11 @@ public function shadeTalkMenu(arg:Function):void
 			{
 				addButton(5, "Mods", gibShadeModItems, undefined, "Mods", "Give Shade some mod goodies.");
 			}
-			else if (!shade.milkType == GLOBAL.FLUID_TYPE_HONEY && (pc.hasItem(new Honeyizer()) || pc.hasItem(new Honeydew())))
+			else if (shade.milkType != GLOBAL.FLUID_TYPE_HONEY && (pc.hasItem(new Honeyizer()) || pc.hasItem(new Honeydew())))
 			{
 				addButton(5, "Mods", gibShadeModItems, undefined, "Mods", "Give Shade some mod goodies.");
 			}
-			else if (!shade.milkType == GLOBAL.FLUID_TYPE_CHOCOLATE_MILK && pc.hasItem(new Chocolac()))
+			else if (shade.milkType != GLOBAL.FLUID_TYPE_CHOCOLATE_MILK && pc.hasItem(new Chocolac()))
 			{
 				addButton(5, "Mods", gibShadeModItems, undefined, "Mods", "Give Shade some mod goodies.");
 			}
