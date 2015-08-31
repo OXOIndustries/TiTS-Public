@@ -24,12 +24,12 @@ package classes.Items.Apparel
 			this.shortName = "ST. Suit";
 			
 			//Regular name
-			this.longName = "steeletech suit";
+			this.longName = "SteeleTech suit";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a steeletech suit";
+			this.description = "a SteeleTech suit";
 			
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "The slick new uniform your Dad issued a while back. Sexy, form-fitting, and utilitarian. Doesn't provide much protection (or modesty, for that matter), but it's got a built-in shield emitter to boost your shields. Note that isn't strong enough to generate a defensive shield on its own.";

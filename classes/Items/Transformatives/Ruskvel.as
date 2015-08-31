@@ -22,12 +22,12 @@
 			//Used on inventory buttons
 			this.shortName = "Ruskvel";
 			//Regular name
-			this.longName = "greasy treat commonly called 'ruskvel'";
+			this.longName = "greasy treat commonly called 'Ruskvel'";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a greasy treat commonly called 'ruskvel'";
+			this.description = "a greasy treat commonly called 'Ruskvel'";
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "The staple of the raskvel’s diet takes the form of a round, doughy, oatmeal-coloured dumpling the size of a cauliflower, wrapped in tinfoil, dense and greasy to touch. Aerodynamic it is not but everything about it has speed in mind: How fast it takes to bake, how quickly it can be eaten, and the number of calories it contains to keep a short-legged, high-libido’d rabbit-reptile running around from dawn until dusk. Your codex warns you that eating it may well cause your microbots to physically alter you.";
 			

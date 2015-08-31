@@ -22,7 +22,7 @@ package classes.Items.Apparel
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
-			this.description = "tight tank top and mini skirt";
+			this.description = "a tight tank top and mini skirt";
 			
 			this.tooltip = "The signature outfit of a heroine from “Final Fucktacy 7”. It consists of an incredibly tight white top, black miniskirt, and asset pressing suspenders. Wearing this fills you with fighting spirit.";
 			

@@ -214,7 +214,7 @@ public function buyItem():void {
 			output("\n");
 			temp = getBuyPrice(shopkeep,shopkeep.inventory[x].basePrice);
 			if(temp > pc.credits) output("<b>(Too Expensive)</b> ");
-			output(upperCase(shopkeep.inventory[x].description) + " - " + temp + " credits.");
+			output(upperCase(shopkeep.inventory[x].description, false) + " - " + temp + " credits.");
 			trace("DISPLAYING SHIT");
 			if(temp <= pc.credits) {
 				trace("SHOWAN BUTANS: " + x);
@@ -257,7 +257,7 @@ public function sellItem():void {
 			trace("PC inventory being checked for possible sale.");
 			//Does the shopkeep buy this type?
 			if(shopkeep.buysType(pc.inventory[x].type)) {
-				output("\n" + upperCase(pc.inventory[x].description) + " - " + getSellPrice(shopkeep,pc.inventory[x].basePrice) + " credits.");
+				output("\n" + upperCase(pc.inventory[x].description, false) + " - " + getSellPrice(shopkeep,pc.inventory[x].basePrice) + " credits.");
 				if(x <= 13) this.addItemButton(x, pc.inventory[x], sellItemGo, pc.inventory[x], null, null, pc, shopkeep);
 				if (x > 13) this.addItemButton(x + 1, pc.inventory[x], sellItemGo, pc.inventory[x], null, null, pc, shopkeep);
 			}
@@ -385,27 +385,28 @@ public function inventoryDisplay():void
 	output("<b>Underwear Top:</b> " + StringUtil.toTitleCase(pc.upperUndergarment.description) + "\n\n");
 	
 	output("<b><u>Equipment Stats:</u></b>\n");
-	output("<b>" + upperCase(pc.meleeWeapon.longName) + "</b>\n");
+	output("<b>" + StringUtil.toTitleCase(pc.meleeWeapon.longName) + "</b>\n");
 	output(pc.meleeWeapon.compareTo(new EmptySlot(), null, null, true));
 	
-	output("\n<b>" + upperCase(pc.rangedWeapon.longName) + "</b>\n");
+	output("\n<b>" + StringUtil.toTitleCase(pc.rangedWeapon.longName) + "</b>\n");
 	output(pc.rangedWeapon.compareTo(new EmptySlot(), null, null, true));
 
-	output("\n<b>" + upperCase(pc.armor.longName) + "</b>\n");
+	output("\n<b>" + StringUtil.toTitleCase(pc.armor.longName) + "</b>\n");
 	output(pc.armor.compareTo(new EmptySlot(), null, null, true));
 
-	output("\n<b>" + upperCase(pc.shield.longName) + "</b>\n");
+	output("\n<b>" + StringUtil.toTitleCase(pc.shield.longName) + "</b>\n");
 	output(pc.shield.compareTo(new EmptySlot(), null, null, true));
 
-	output("\n<b>" + upperCase(pc.accessory.longName) + "</b>\n");
+	output("\n<b>" + StringUtil.toTitleCase(pc.accessory.longName) + "</b>\n");
 	output(pc.accessory.compareTo(new EmptySlot(), null, null, true));
 
-	output("\n<b>" + upperCase(pc.upperUndergarment.longName) + "</b>\n");
+	output("\n<b>" + StringUtil.toTitleCase(pc.upperUndergarment.longName) + "</b>\n");
 	output(pc.upperUndergarment.compareTo(new EmptySlot(), null, null, true));
 
-	output("\n<b>" + upperCase(pc.lowerUndergarment.longName) + "</b>\n");
+	output("\n<b>" + StringUtil.toTitleCase(pc.lowerUndergarment.longName) + "</b>\n");
 	output(pc.lowerUndergarment.compareTo(new EmptySlot(), null, null, true));
-
+	
+	output("\n");
 }
 
 public function generalInventoryMenu():void

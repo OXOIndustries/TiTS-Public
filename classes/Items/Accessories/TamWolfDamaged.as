@@ -25,12 +25,12 @@
 			this.shortName = "TamWolf";
 			
 			//Regular name
-			this.longName = "fenris-class assault drone";
+			this.longName = "Fenris-class assault drone";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a fenris-class assault drone";
+			this.description = "a Fenris-class assault drone";
 			
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "Tam-wolf is a badly damaged Fenris-class attack drone you looted from a crazed cat-girl, coincidentally also named Tam. Loyal to a fault, the patched-up cyber-pup follows you around wherever you go -- just equip him in your Accessory slot, and he'll leap into battle with you. Or fall flat on his face and explode trying to, anyway.";

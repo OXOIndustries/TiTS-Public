@@ -348,6 +348,7 @@ public function sexWithAntGrills(gold:Boolean = false):void
 	// Max capacity 16 inches.
 	// Max girth four inches.
 	if(pc.hasCock() && pc.cockThatFits(foes[0].vaginalCapacity(0)) >= 0) addButton(1,"DoggyStyle",doggieStyleWithMyrBitches,gold,"Doggy Style","Do her doggy style!");
+	else if(pc.hasCock()) addDisabledButton(1,"DoggyStyle","DoggyStyle","You need a penis that will fit inside her for this scene.");
 	else addDisabledButton(1,"DoggyStyle","DoggyStyle","You can't do her doggie style without a dick of your own.");
 	//Cum Splurge (Red)
 	// Pc must have a cock.
@@ -741,8 +742,16 @@ public function grenadeThrow(gold:Boolean = false):void
 	{
 		if(!gold)
 		{
-			output("\nThere’s a loud ‘whump’ and a cloud of red mist swiftly engulfs you. Your skin prickles and your [pc.nipples] harden. Lower down, a glorious ache spreads through your [pc.groin]. All you want to do is touch yourself!");
-			applyDamage(new TypeCollection( { drug: 19 + rand(5) } ), foes[0], pc, "minimal");
+			output("\nThere’s a loud ‘whump’ and a cloud of red mist swiftly engulfs you.");
+			if (pc.hasArmor() && pc.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+			{
+				output(" Fortunately for you, the smoke doesn't leak through your airtight [pc.armor], but it obscures your vision just briefly.");
+			}
+			else
+			{
+				output("\nThere’s a loud ‘whump’ and a cloud of red mist swiftly engulfs you. Your skin prickles and your [pc.nipples] harden. Lower down, a glorious ache spreads through your [pc.groin]. All you want to do is touch yourself!");
+				applyDamage(new TypeCollection( { drug: 19 + rand(5) } ), foes[0], pc, "minimal");
+			}
 		}
 		else
 		{
@@ -880,6 +889,7 @@ public function winVsAntGrillDeserts():void
 		// Max capacity 16 inches.
 		// Max girth four inches.
 		if(pc.hasCock() && pc.cockThatFits(foes[0].vaginalCapacity(0)) >= 0) addButton(1,"DoggyStyle",doggieStyleWithMyrBitches,gold,"Doggy Style","Do her doggy style!");
+		else if(pc.hasCock()) addDisabledButton(1,"DoggyStyle","DoggyStyle","You need a penis that will fit inside her for this scene.");
 		else addDisabledButton(1,"DoggyStyle","DoggyStyle","You can't do her doggie style without a dick of your own.");
 		//Cum Splurge (Red)
 		// Pc must have a cock.

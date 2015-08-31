@@ -130,8 +130,17 @@ public function sydianAntennaeTickle():void
 //Lick - high lust raise, only used if own lust is high
 public function sydianLickAttack():void
 {
-	output("So turned on that he's practically dripping, the big male thunders in close, grabbing one arm around your chest and hauling you up into the air. A bright orange tongue spools out of his maw, coiling this way and that, slick with his alien saliva. He presses it to the bottom of your chin before licking up your cheek and over your forehead. The contact is hotter than you care to admit, and you certainly can't ignore the thick mass of his boner pressing against your [pc.leg].");
-	applyDamage(new TypeCollection( { tease: 15 + rand(5) } ), foes[0], pc, "minimal");
+	output("So turned on that he's practically dripping, the big male thunders in close, grabbing one arm around your chest and hauling you up into the air. A bright orange tongue spools out of his maw, coiling this way and that, slick with his alien saliva.");
+	
+	if (pc.hasArmor() && pc.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+	{
+		output(" He presses it to your face, unaware that the action is useless against your airtight [pc.armor]. While this display is not affecting you directly, you certainly can't ignore the thick mass of his boner pressing against your [pc.leg].");
+	}
+	else
+	{
+		output(" He presses it to the bottom of your chin before licking up your cheek and over your forehead. The contact is hotter than you care to admit, and you certainly can't ignore the thick mass of his boner pressing against your [pc.leg].");
+		applyDamage(new TypeCollection( { tease: 15 + rand(5) } ), foes[0], pc, "minimal");
+	}
 	processCombat();
 }
 //Tackle

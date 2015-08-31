@@ -705,12 +705,7 @@ public function flyTo(arg:String):void {
 		{
 			if((annoIsCrew() && flags["ANNOxSYRI_EVENT"] != undefined) || !annoIsCrew())
 			{
-				if(syriIsAFuckbuddy() && !pc.hasKeyItem("Panties - Syri's - Sky blue, silky, and extra crotch room.")) 
-				{
-					gettingSyrisPanties();
-					return;
-				}
-				else if(syriIsAFuckbuddy() && rand(4) == 0)
+				if(syriIsAFuckbuddy() && rand(5) == 0)
 				{
 					gettingSyrisPanties();
 					return;
@@ -1289,6 +1284,11 @@ public function processTime(arg:int):void {
 				flags["KIRO_DISABLED_MINUTES"]--;
 				if(flags["KIRO_DISABLED_MINUTES"] <= 0) flags["KIRO_DISABLED_MINUTES"] = undefined;
 			}
+		}
+		//Saendra's X-Pack Timer
+		if(flags["SAENDRA_XPACK1_STATUS"] == 1 || flags["SAENDRA_XPACK1_STATUS"] == 5)
+		{
+			updateSaendraXPackTimer();
 		}
 		//Tick hours!
 		if (this.minutes >= 60) {
@@ -2089,8 +2089,8 @@ public function statisticsScreen(showID:String = "All"):void
 		if(pc.hasHair())
 		{
 			if(pc.hairColor != "no") output2(" " + StringUtil.toTitleCase(pc.hairColor) + ",");
-			output2(" " + GLOBAL.HAIR_TYPE_NAMES[pc.hairType]);
 			if(pc.hasPerk("Mane")) output2(", Mane");
+			output2(" " + GLOBAL.HAIR_TYPE_NAMES[pc.hairType]);
 			output2("\n<b>* Hair, Length:</b>");
 			if(pc.hairLength > 0.05)
 			{
@@ -2225,8 +2225,17 @@ public function statisticsScreen(showID:String = "All"):void
 			}
 			output2(" " + GLOBAL.TYPE_NAMES[pc.tailType]);
 		}
-		if(pc.hasCock() || pc.hasVagina())
+		if(pc.hasTailCock() || pc.hasTailCunt())
 		{
+			output2("\n<b>* Tail, Genital Type: </b>" + pc.tailGenitalColor + ", " + GLOBAL.TYPE_NAMES[pc.tailGenitalArg]);
+			if(pc.hasTailCock()) output2(", " + GLOBAL.TAIL_GENTIAL_TYPE_NAMES[1]);
+			if(pc.hasTailCunt()) output2(", " + GLOBAL.TAIL_GENTIAL_TYPE_NAMES[2]);
+			if(pc.hasTailCock()) output2("\n<b>* Tail, Genital Volume: </b>" + prettifyVolume(pc.tailCockVolume()));
+			if(pc.hasTailCunt()) output2("\n<b>* Tail, Genital Capacity: </b>" + prettifyVolume(pc.tailCuntCapacity()));
+		}
+		if(pc.hasGenitals())
+		{
+			output2("\n<b>* Genital Elasticity: </b>" + formatFloat(pc.elasticity, 3));
 			output2("\n<b>* Genital Location: </b>" + GLOBAL.GENITAL_SPOT_NAMES[pc.genitalLocation()]);
 			if(pc.hasStatusEffect("Genital Slit")) output2(", Genital Slit");
 		}
@@ -2277,6 +2286,8 @@ public function statisticsScreen(showID:String = "All"):void
 					output2("\n<b>* Breast, Size: </b>" + StringUtil.toTitleCase(pc.breastCup(x)));
 					if (pc.breastRows[x].breasts != 1) output2("s");
 					if(pc.breastRows[x].breastRating() >= 200) output2(" (" + formatFloat(pc.breastRows[x].breastRating(), 3) + ")");
+					if(pc.breastRows[x].breastRatingHoneypotMod != 0) output2("\n<b>* Breast, Honeypot Size Rating: </b>" + formatFloat(pc.breastRows[x].breastRatingHoneypotMod, 3));
+					if(pc.breastRows[x].breastRatingLactationMod != 0) output2("\n<b>* Breast, Lactation Size Rating: </b>" + formatFloat(pc.breastRows[x].breastRatingLactationMod, 3));
 					output2("\n<b>* Nipple, Type: </b>" + " " + GLOBAL.NIPPLE_TYPE_NAMES[pc.breastRows[x].nippleType]);
 					if(pc.breastRows[x].nippleType != GLOBAL.NIPPLE_TYPE_FUCKABLE && pc.breastRows[x].nippleType != GLOBAL.NIPPLE_TYPE_FLAT && pc.breastRows[x].nippleType != GLOBAL.NIPPLE_TYPE_INVERTED)
 					{
@@ -2307,6 +2318,8 @@ public function statisticsScreen(showID:String = "All"):void
 				if(pc.balls != 1) output2("s");
 				if(pc.hasStatusEffect("Uniball")) output2(", Uniball");
 				output2("\n<b>* Testicle, Size: </b>" + prettifyLength(pc.ballDiameter()) + " across, " + prettifyLength(pc.ballSize()) + " around");
+				if(pc.balls != 1) output2(", each");
+				output2("\n<b>* Testicle, Volume: </b>" + prettifyVolume(pc.ballVolume(), 1));
 				if(pc.balls != 1) output2(", each");
 			}
 			output2("\n<b>* Penis, Virginity:</b>");
@@ -2341,6 +2354,13 @@ public function statisticsScreen(showID:String = "All"):void
 					output2("\n<b>* Length, Erect: </b>" + prettifyLength(pc.cLength(x)));
 					output2("\n<b>* Thickness: </b>" + prettifyLength(pc.cThickness(x)));
 					if(pc.hasKnot(x)) output2("\n<b>* Knot Thickness: </b>" + prettifyLength(pc.knotThickness(x)));
+					if(pc.hasCockFlag(GLOBAL.FLAG_LUBRICATED, x) || pc.hasCockFlag(GLOBAL.FLAG_STICKY, x))
+					{
+						output2("\n<b>* Volume, Physical: </b>" + prettifyVolume(pc.cockVolume(x, false)));
+						output2("\n<b>* Volume, Effective: </b>" + prettifyVolume(pc.cockVolume(x)));
+					}
+					else output2("\n<b>* Volume: </b>" + prettifyVolume(pc.cockVolume(x)));
+					output2("\n<b>* Capacity: </b>" + prettifyVolume(pc.cockCapacity(x)));
 					if(pc.cocks[x].pierced != 0) output2("\n<b>* Piercing: </b>" + pc.cocks[x].pierced + " " + StringUtil.toTitleCase(pc.cocks[x].pShort));
 					if(pc.cocks[x].sock != "") output2("\n<b>* Sock: </b>" + StringUtil.toTitleCase(pc.cocks[x].sock));
 				}
@@ -2367,7 +2387,7 @@ public function statisticsScreen(showID:String = "All"):void
 			else output2(" Taken");
 			// Girlcum Stats
 			output2("\n<b>* Girlcum, Type: </b>" + GLOBAL.FLUID_TYPE_NAMES[pc.girlCumType]);
-			output2("\n<b>* Girlcum, Probable Ejaculation: </b> " + pc.girlCumQ() + " mLs");
+			//9999 output2("\n<b>* Girlcum, Probable Ejaculation: </b> " + pc.girlCumQ() + " mLs");
 			// Fertility
 			if(pc.hasStatusEffect("Infertile") || pc.hasStatusEffect("Sterile")) output2("\n<b>* Fertility:</b> Infertile");
 			else
@@ -2396,7 +2416,12 @@ public function statisticsScreen(showID:String = "All"):void
 					output2("\n<b>* Hymen:</b>");
 					if(pc.vaginas[x].hymen) output2(" Virgin");
 					else output2(" Taken");
-					output2("\n<b>* Bonus Capacity: </b>" + formatFloat(pc.vaginas[x].bonusCapacity, 3));
+					if(pc.vaginas[x].bonusCapacity == 0) output2("\n<b>* Capacity: </b>" + prettifyVolume(pc.vaginalCapacity(x)));
+					else
+					{
+						output2("\n<b>* Capacity, Total: </b>" + prettifyVolume(pc.vaginalCapacity(x)));
+						output2("\n<b>* Capacity, Bonus: </b>" + prettifyVolume(pc.vaginas[x].bonusCapacity));
+					}
 					output2("\n<b>* Looseness Level: </b>" + formatFloat(pc.vaginas[x].looseness(), 3));
 					output2("\n<b>* Wetness Level: </b>" + formatFloat(pc.vaginas[x].wetness(), 3));
 					if(pc.vaginas[x].wetness() >= 4) output2(", Squirter");
@@ -2408,48 +2433,45 @@ public function statisticsScreen(showID:String = "All"):void
 		}
 		
 		// Belly
-		if(pc.bellyRating() > 0 || pc.isPregnant())
+		output2("\n<b><u>Belly</u></b>");
+		if(pc.isPregnant()) output2("\n<b>* Belly, Size Rating, Total:</b>");
+		else output2("\n<b>* Belly, Size Rating:</b>");
+		output2(" " + formatFloat(pc.bellyRating(), 3));
+		if(pc.isPregnant())
 		{
-			output2("\n<b><u>Belly</u></b>");
-			if(pc.isPregnant()) output2("\n<b>* Belly, Size Rating, Total:</b>");
-			else output2("\n<b>* Belly, Size Rating:</b>");
-			output2(" " + formatFloat(pc.bellyRating(), 3));
-			if(pc.isPregnant())
+			output2("\n<b>* Active Pregnancies, Total: </b>" + pc.totalPregnancies());
+			for (x = 0; x < pc.pregnancyData.length; x++)
 			{
-				output2("\n<b>* Pregnant Wombs, Total: </b>" + pc.totalPregnancies());
-				for (x = 0; x < pc.pregnancyData.length; x++)
+				if(pc.pregnancyData[x].pregnancyType != "")
 				{
-					if(pc.hasVagina(x) && pc.pregnancyData[x].pregnancyType != "")
+					if(x != 3)
 					{
-						if(x != 3)
-						{
-							if(pc.pregnancyData.length == 2) output2("\n<b><u>Womb</u></b>");
-							else output2("\n<b><u>" + StringUtil.toTitleCase(num2Ordinal(x + 1)) + " Womb</u></b>");
-						}
-						else
-						{
-							if(silly) output2("\n<b><u>Anal Womb</u></b>");
-							else output2("\n<b><u>Bowels</u></b>");
-						}
-						output2("\n<b>* Belly, Size Rating: </b>" + formatFloat(pc.pregnancyData[x].pregnancyBellyRatingContribution, 3));
-						output2("\n<b>* Pregnancy, Type:</b>");
-						if(pc.pregnancyData[x].pregnancyType == "HumanPregnancy") output2(" Human");
-						else if(pc.pregnancyData[x].pregnancyType == "VenusPitcherSeedCarrier") output2(" Venus Pitcher, Seed");
-						else if(pc.pregnancyData[x].pregnancyType == "VenusPitcherFertilizedSeedCarrier") output2(" Venus Pitcher, Seed, Fertilized");
-						else if(pc.pregnancyData[x].pregnancyType == "NyreaEggPregnancy") output2(" Nyrean Huntress, Eggs");
-						else if(pc.pregnancyData[x].pregnancyType == "RoyalEggPregnancy") output2(" Royal Nyrea, Eggs");
-						else if(pc.pregnancyData[x].pregnancyType == "RenvraEggPregnancy") output2(" Renvra, Eggs");
-						else if(pc.pregnancyData[x].pregnancyType == "RenvraFullPregnancy") output2(" Renvra");
-						else if(pc.pregnancyData[x].pregnancyType == "CockvinePregnancy") output2(" Cockvine");
-						else if(pc.pregnancyData[x].pregnancyType == "DeepQueenPregnancy") output2(" Water Queen");
-						else output2(" <i>Unknown</i>");
-						if(pc.pregnancyData[x].pregnancyIncubation > -1)
-						{
-							output2("\n<b>* Pregnancy, Gestation Time: </b>" + prettifyMinutes(pc.pregnancyData[x].pregnancyIncubation));
-							output2("\n<b>* Pregnancy, Incubation Speed Modifier: </b>" + Math.round(pc.pregnancyData[x].pregnancyIncubationMulti*1000)/10 + "%");
-						}
-						if(pc.pregnancyData[x].pregnancyQuantity > 0) output2("\n<b>* Pregnancy, Offspring Count: </b>" + pc.pregnancyData[x].pregnancyQuantity);
+						if(pc.totalVaginas() == 1) output2("\n<b><u>Womb</u></b>");
+						else output2("\n<b><u>" + StringUtil.toTitleCase(num2Ordinal(x + 1)) + " Womb</u></b>");
 					}
+					else
+					{
+						if(silly) output2("\n<b><u>Anal Womb</u></b>");
+						else output2("\n<b><u>Bowels</u></b>");
+					}
+					output2("\n<b>* Belly, Size Rating: </b>" + formatFloat(pc.pregnancyData[x].pregnancyBellyRatingContribution, 3));
+					output2("\n<b>* Pregnancy, Type:</b>");
+					if(pc.pregnancyData[x].pregnancyType == "HumanPregnancy") output2(" Human");
+					else if(pc.pregnancyData[x].pregnancyType == "VenusPitcherSeedCarrier") output2(" Venus Pitcher, Seed");
+					else if(pc.pregnancyData[x].pregnancyType == "VenusPitcherFertilizedSeedCarrier") output2(" Venus Pitcher, Seed, Fertilized");
+					else if(pc.pregnancyData[x].pregnancyType == "NyreaEggPregnancy") output2(" Nyrean Huntress, Eggs");
+					else if(pc.pregnancyData[x].pregnancyType == "RoyalEggPregnancy") output2(" Royal Nyrea, Eggs");
+					else if(pc.pregnancyData[x].pregnancyType == "RenvraEggPregnancy") output2(" Renvra, Eggs");
+					else if(pc.pregnancyData[x].pregnancyType == "RenvraFullPregnancy") output2(" Renvra");
+					else if(pc.pregnancyData[x].pregnancyType == "CockvinePregnancy") output2(" Cockvine");
+					else if(pc.pregnancyData[x].pregnancyType == "DeepQueenPregnancy") output2(" Water Queen");
+					else output2(" <i>Unknown</i>");
+					if(pc.pregnancyData[x].pregnancyIncubation > -1)
+					{
+						output2("\n<b>* Pregnancy, Gestation Time: </b>" + prettifyMinutes(pc.pregnancyData[x].pregnancyIncubation));
+						output2("\n<b>* Pregnancy, Incubation Speed Modifier: </b>" + Math.round(pc.pregnancyData[x].pregnancyIncubationMulti*1000)/10 + "%");
+					}
+					if(pc.pregnancyData[x].pregnancyQuantity > 0) output2("\n<b>* Pregnancy, Offspring Count: </b>" + pc.pregnancyData[x].pregnancyQuantity);
 				}
 			}
 		}
@@ -2462,7 +2484,12 @@ public function statisticsScreen(showID:String = "All"):void
 		output2("\n<b>* Anus, Virginity:</b>");
 		if(pc.analVirgin) output2(" Virgin");
 		else output2(" Taken");
-		output2("\n<b>* Anus, Bonus Capacity: </b>" + formatFloat(pc.ass.bonusCapacity, 3));
+		if(pc.ass.bonusCapacity == 0) output2("\n<b>* Anus, Capacity: </b>" + prettifyVolume(pc.analCapacity(x)));
+		else
+		{
+			output2("\n<b>* Anus, Capacity, Total: </b>" + prettifyVolume(pc.analCapacity(x)));
+			output2("\n<b>* Anus, Capacity, Bonus: </b>" + prettifyVolume(pc.ass.bonusCapacity));
+		}
 		output2("\n<b>* Anus, Looseness Level: </b>" + formatFloat(pc.ass.looseness(), 3));
 		output2("\n<b>* Anus, Wetness Level: </b>" + formatFloat(pc.ass.wetness(), 3));
 		
@@ -2659,14 +2686,18 @@ public function statisticsScreen(showID:String = "All"):void
 		output2("\n<b>* Time Spent Moving From Room to Room: </b>" + prettifyMinutes(StatTracking.getStat("movement/time travelled")));
 		output2("\n<b>* Time Spent Flying: </b>" + prettifyMinutes(StatTracking.getStat("movement/time flown")));
 		// Virgin booties claimed
-		output2("\n<b><u>Sexploration</u></b>");
-		var totalVirginitiesTaken:Number = StatTracking.getStat("characters/maiden vanae/cherrys popped");
+		var totalVirginitiesTaken:Number = 0;
+		if(StatTracking.getStat("characters/maiden vanae/cherrys popped") > 0) totalVirginitiesTaken += StatTracking.getStat("characters/maiden vanae/cherrys popped");
 		if(!chars["KIRO"].vaginalVirgin) totalVirginitiesTaken++;
-		if(!embry.vaginalVirgin) totalVirginitiesTaken++;
-		if(!embry.analVirgin) totalVirginitiesTaken++;
+		if(!chars["EMBRY"].vaginalVirgin) totalVirginitiesTaken++;
+		if(!chars["EMBRY"].analVirgin) totalVirginitiesTaken++;
 		if(!chars["ANNO"].analVirgin) totalVirginitiesTaken++;
 		if(flags["TOOK_DELILAHS_BUTTGINITY"] != undefined) totalVirginitiesTaken++;
-		output2("\n<b>* Virginities Claimed: </b>" + totalVirginitiesTaken);
+		if(totalVirginitiesTaken > 0)
+		{
+			output2("\n<b><u>Sexploration</u></b>");
+			if(totalVirginitiesTaken > 0) output2("\n<b>* Virginities Claimed: </b>" + totalVirginitiesTaken);
+		}
 		
 		//Births header!
 		if(StatTracking.getStat("pregnancy/total births") > 0)
@@ -2798,7 +2829,33 @@ public function statisticsScreen(showID:String = "All"):void
 	output2("\n\n");
 }
 
+// Prettify Volume!
+// amount: cubic inches
+// printMeters: -1 is inches, 0 is both inches and meters, 1 is meters only
+public function prettifyVolume(amount:Number, printMeters:int = -1):String
+{
+	var retStr:String = "";
+	if(printMeters < 1)
+	{
+		retStr += formatFloat(amount, 3) + " cubic inch";
+		if(amount != 1) retStr += "es";
+	}
+	// Prettified meters
+	if(printMeters > -1)
+	{
+		if(printMeters == 0) retStr += " (";
+		// Convert inches to centimeters!
+		// 1 in = 2.54 cm, (1 in)^3 = (2.54 cm)^3, 1 in^3 = 16.387064 cm^3
+		// 1 cm^3 = 1 mL
+		retStr += formatFloat((amount * 16.387064), 3) + " mLs";
+		if(printMeters == 0) retStr += ")";
+	}
+	return retStr;
+}
 
+// Prettify Lengths!
+// amount: inch length
+// printMeters: -2 is inches only, -1 is feet and inches, 0 is both inches and meters, 1 is meters only
 public function prettifyLength(amount:Number, printMeters:int = -1):String
 {
 	var retStr:String = "";
@@ -2835,7 +2892,7 @@ public function prettifyLength(amount:Number, printMeters:int = -1):String
 					else if(fraction <= 0.875) { num = "7"; den = "8"; }
 					else if(fraction <= 0.9375) { num = "15"; den = "16"; }
 					// Build fractions
-					if(den != "") retStr += " " + num + "/" + den;
+					if(den != "") retStr += " <sup>" + num + "</sup>/<sub>" + den + "</sub>";
 				}
 				retStr += "\"";
 			}
@@ -2915,17 +2972,17 @@ public function questLogMenu(currentFunc:Function):Boolean
 		if(showID == "Myrellion") { output2(header("<u>Myrellion</u>", false)); addDisabledGhostButton(3, "Myrellion"); }
 		else addGhostButton(3, "Myrellion", currentFunc, "Myrellion");
 	}
-	// Uveto
-	if(flags["UVETO_UNLOCKED"] != undefined)
-	{
-		if(showID == "Uveto") { output2(header("<u>Uveto VII</u>", false)); addDisabledGhostButton(4, "Uveto"); }
-		else addGhostButton(4, "Uveto", currentFunc, "Uveto");
-	}
 	// New Texas
 	if(flags["NEW_TEXAS_COORDINATES_GAINED"] != undefined)
 	{
 		if(showID == "New Texas") { output2(header("<u>New Texas</u>", false)); addDisabledGhostButton(5, "New Texas"); }
 		else addGhostButton(5, "New Texas", currentFunc, "New Texas");
+	}
+	// Uveto
+	if(flags["UVETO_UNLOCKED"] != undefined)
+	{
+		if(showID == "Uveto") { output2(header("<u>Uveto VII</u>", false)); addDisabledGhostButton(4, "Uveto"); }
+		else addGhostButton(6, "Uveto", currentFunc, "Uveto");
 	}
 	// Other Info
 	if(showID == "Other") addDisabledGhostButton(12, "Other");
@@ -2976,8 +3033,11 @@ public function displayQuestLog(showID:String = "All"):void
 			else if(flags["LOST_TO_DANE_ON_MHENGA"] != undefined) output2(" Coordinates received, Lost against Dane");
 			else output2(" <i>In progress...</i>");
 			// Scout
-			output2("\n<b>* Scout Transport:</b> Esbeth");
-			if(flags["SALVAGED VANAE CAMP"] >= 2) output2(", Xenogen Camp");
+			if(flags["MET_FLAHNE"] == undefined)
+			{
+				output2("\n<b>* Scout Transport:</b> Esbeth");
+				if(flags["SALVAGED VANAE CAMP"] >= 2) output2(", Xenogen Camp");
+			}
 			mainCount++;
 		}
 		// Tarkus
@@ -2989,8 +3049,11 @@ public function displayQuestLog(showID:String = "All"):void
 			else output2(" <i>In progress...</i>");
 			if(flags["GAVE_SHEKKA_PROBE"] != undefined) output2(", Gave probe to Shekka");
 			// Scout
-			output2("\n<b>* Scout Transport:</b> Novahome");
-			if(flags["TARKUS_DESTROYED"] == undefined && flags["TARKUS_TAXI_STOP_UNLOCKED"] != undefined) output2(", The Lift");
+			if(flags["BEEN_ON_TARKUS"] != undefined)
+			{
+				output2("\n<b>* Scout Transport:</b> Novahome");
+				if(flags["TARKUS_DESTROYED"] == undefined && flags["TARKUS_TAXI_STOP_UNLOCKED"] != undefined) output2(", The Lift");
+			}
 			// The Stellar Tether
 			if(flags["MET_UGC_TROOPER_AT_CHASMFALL"] != undefined && flags["FOUGHT_TAM"] != undefined)
 			{
@@ -3046,9 +3109,12 @@ public function displayQuestLog(showID:String = "All"):void
 			if(flags["UVETO_UNLOCKED"] != undefined) output2(" Coordinates received");
 			else output2(" <i>In progress...</i>");
 			// Scout
-			output2("\n<b>* Scout Transport:</b> D.M.Z.");
-			if(flags["NO_ANTS_LAND_TAXI_UNLOCKED"] != undefined) output2(", No Myr’s Land");
-			if(flags["DEEP_CAVES_TAXI_UNLOCKED"] != undefined) output2(", Deep Caves");
+			if(flags["MYRELLION_EMBASSY_VISITED"] != undefined)
+			{
+				output2("\n<b>* Scout Transport:</b> D.M.Z.");
+				if(flags["NO_ANTS_LAND_TAXI_UNLOCKED"] != undefined) output2(", No Myr’s Land");
+				if(flags["DEEP_CAVES_TAXI_UNLOCKED"] != undefined) output2(", Deep Caves");
+			}
 			// Taivra's Palace (Quest)
 			if(flags["FOUGHT_PRAETORIANS"] != undefined || flags["PLAT190 USED AS NYREA BRIBE"] != undefined || flags["MET_TAIVRA"] != undefined)
 			{
@@ -3096,15 +3162,6 @@ public function displayQuestLog(showID:String = "All"):void
 					if(flags["QUEENSGUARD_STAB_TIME"] != undefined || flags["KILLED_TAIVRA"] != undefined) output2(", Escaped with [rival.name]");
 				}
 			}
-			mainCount++;
-		}
-		// Uveto
-		if(flags["UVETO_UNLOCKED"] != undefined && (showID == "Uveto" || showID == "All"))
-		{
-			output2("\n<b><u>Uveto VII</u></b>");
-			output2("\n<b>* Status:</b>");
-			if(9999 == 0) output2(" Coordinates received");
-			else output2(" <i>In progress...</i> STILL IN DEVELOPMENT");
 			mainCount++;
 		}
 		// Nothing recorded
@@ -3249,7 +3306,11 @@ public function displayQuestLog(showID:String = "All"):void
 					if(flags["ANNO_NOVA_UPDATE"] != undefined && flags["ANNO_MISSION_OFFER"] >= 3)
 					{
 						output2("\n<b>* Nova Update:</b>");
-						if(flags["ANNO_NOVA_UPDATE"] >= 2) output2(" Acquired [goo.name]");
+						if(flags["ANNO_NOVA_UPDATE"] >= 2)
+						{
+							output2(" Acquired [goo.name]");
+							if(flags["GRAYGOO_SPESS_SKYPE"] != undefined) output2(", She chatted with Capt. Morrow");
+						}
 						else output2(" <i>In progress...</i>");
 					}
 				}
@@ -3289,8 +3350,11 @@ public function displayQuestLog(showID:String = "All"):void
 							if(flags["HAND_SO_TALKED_DOWN"] != undefined) output2(" Talked down to");
 							else output2(" Defeated");
 							if(flags["HAND_SOS_CONSOLE_EXPLODED"] != undefined) output2(", Console destroyed");
-							else if(flags["HAND_SO_LOOTED"] != undefined && !pc.hasKeyItem("Hand So's Data Bead")) output2(", Disposed of data bead");
-							if(pc.hasKeyItem("Hand So's Data Bead")) output2(", Contained in data bead");
+							if(flags["HAND_SO_LOOTED"] != undefined)
+							{
+								if(pc.hasKeyItem("Hand So's Data Bead")) output2(", Contained in data bead");
+								else output2(", Disposed of data bead");
+							}
 						}
 						else output2(" <i>Active...</i>");
 					}
@@ -3414,6 +3478,15 @@ public function displayQuestLog(showID:String = "All"):void
 					else output2(" <i>Missing</i>");
 				}
 				sideCount++;
+			}
+			// Ant TFs
+			if(flags["MET_MCALLISTER"] != undefined)
+			{
+				output2("\n<b><u>Myr Transformation Experiment</u></b>");
+				output2("\n<b>* Status:</b>");
+				if(flags["MCALLISTER_MYR_TFS"] == undefined) output2(" Researching...");
+				else if(flags["MCALLISTER_MYR_TFS"] < 2) output2(" Ready to meet test subjects");
+				else output2(" Met test subjects, Successful results, Complete");
 			}
 			// Red Myr Blood Donation Drive
 			if(flags["NEVRIE_QUEST"] != undefined)
@@ -3725,9 +3798,8 @@ public function displayEncounterLog(showID:String = "All"):void
 				// Sellesy
 				if(flags["SEEN_SELLESY"] != undefined)
 				{
-					if(flags["MET_SELLESY"] != undefined) output2("\n<b>* Sellesy:</b>");
-					else output2("\n<b>* Three-Breasted Waitress:</b>");
-					output2(" Met her");
+					if(flags["MET_SELLESY"] != undefined) output2("\n<b>* Sellesy:</b> Met her");
+					else output2("\n<b>* Three-Breasted Waitress:</b> Seen her");
 				}
 				// Shelly
 				if(flags["APPROACHED_SHELLY"] != undefined)
@@ -3966,6 +4038,14 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["REPEAT_GOBBLES_MILKED"] == 1) output2(", Milked once");
 					else if(flags["REPEAT_GOBBLES_MILKED"] > 1) output2(", Milked " + flags["REPEAT_GOBBLES_MILKED"] + " times");
 				}
+				// Carrie and friends!
+				if(StatTracking.getStat("milkers/prostate milker uses") > 0 || flags["CARRIE_BLOWJOBBED"] != undefined)
+				{
+					output2("\n<b>* Carrie:</b> Met her");
+					if(flags["CARRIE_BLOWJOBBED"] != undefined) output2(", Gave you a blowjob");
+					if(flags["CARRIE_SMALLCOCK_SUX"] != undefined) output2(", Sucked your small cock");
+					if(flags["CORA_SUCKED"] != undefined) output2("\n<b>* Cora:</b> Met her, Sucked your dick with Carrie");
+				}
 				// Giannannanna
 				if(flags["MET_GIANNA"] != undefined)
 				{
@@ -3992,16 +4072,16 @@ public function displayEncounterLog(showID:String = "All"):void
 					// Talk
 					if(flags["TALKED_TO_GIANNA"] != undefined)
 					{
-						if(flags["GIANNA_ABOUT_HER_TALK_RESULT"] != undefined) output2("\n<b>* Gianna, Talk, Her Assumption About A.I. Having Emotions:</b>");
+						if(flags["GIANNA_ABOUT_HER_TALK_RESULT"] != undefined) output2("\n<b>* Gianna, Talk, A.I. Having Emotions:</b>");
 						if(flags["GIANNA_ABOUT_HER_TALK_RESULT"] == 0) output2(" Refuted her");
 						if(flags["GIANNA_ABOUT_HER_TALK_RESULT"] == 1) output2(" Agreed with her");
-						if(flags["GIANNA_AI_TALK_RESULT"] != undefined) output2("\n<b>* Gianna, Talk, Her Desire to be More Than Just a Companion:</b>");
+						if(flags["GIANNA_AI_TALK_RESULT"] != undefined) output2("\n<b>* Gianna, Talk, More Than Just a Companion:</b>");
 						if(flags["GIANNA_AI_TALK_RESULT"] == 0) output2(" Discouraged her");
 						if(flags["GIANNA_AI_TALK_RESULT"] == 1) output2(" Encouraged her");
-						if(flags["GIANNA_BODY_TALK_RESULT"] != undefined) output2("\n<b>* Gianna, Talk, The Technical Specifications of Her Body:</b>");
+						if(flags["GIANNA_BODY_TALK_RESULT"] != undefined) output2("\n<b>* Gianna, Talk, Specifications of Her Body:</b>");
 						if(flags["GIANNA_BODY_TALK_RESULT"] == 0) output2(" Changed the topic");
 						if(flags["GIANNA_BODY_TALK_RESULT"] == 1) output2(" Listened to her");
-						if(flags["GIANNA_OWNER_TALK_RESULT"] != undefined) output2("\n<b>* Gianna, Talk, About Her Previous Owner Abandoning Her:</b>");
+						if(flags["GIANNA_OWNER_TALK_RESULT"] != undefined) output2("\n<b>* Gianna, Talk, Owner Abandoning Her:</b>");
 						if(flags["GIANNA_OWNER_TALK_RESULT"] == 0) output2(" Dissuaded her");
 						if(flags["GIANNA_OWNER_TALK_RESULT"] == 1) output2(" Took a neutral stance");
 						if(flags["GIANNA_OWNER_TALK_RESULT"] == 2) output2(" Comforted her");
@@ -4522,98 +4602,140 @@ public function displayEncounterLog(showID:String = "All"):void
 				output2("\n<b>* Sgt. Decker:</b> Met him");
 				variousCount++;
 			}
-			/* HAHAHA NO Bessbots
+			// Bessbots
 			if(flags["BESS_DISABLED"] != undefined || flags["BESS_IN_RUBBLE"] != undefined)
 			{
-				output2("\n<b><u>...?!</u></b>");
-				if(flags["BESS_IN_RUBBLE"] != undefined) output2("\n<b>* [bess.name]:</b>");
-				else output2("\n<b>* Abandoned Sexbot:</b>");
+				output2("\n<b><u>A Junk Pile</u></b>");
+				if(flags["BESS_FULLY_CONFIGURED"] != undefined) output2("\n<b>* [bess.name]:</b>");
+				else if(flags["MET_SEXBOTS_ON_TARKUS"] != undefined) output2("\n<b>* Abandoned Sexbot:</b>");
+				else output2("\n<b>* Abandoned Robot:</b>");
+				if(flags["TRIED_TO_GIVE_BESS_FREEDOM"] != undefined) output2(" Tried to free,");
 				if(flags["BESS_DISABLED"] != undefined)
 				{
 					output2(" Inactive");
 					if(flags["SOLD_BESS"] != undefined) output2(", Sold for 10000 credits");
 					if(flags["BESS_GIVEN_TO_UGC"] != undefined) output2(", Handed over to the U.G.C.");
-					if(flags["BESS_DUMPED_INTO_SPAAAAAAACE"] != undefined) output2(", Dumped into space");
+					if(flags["BESS_DUMPED_INTO_SPAAAAAAACE"] != undefined) output2(", Dumped into junk pile");
 				}
-				else output2(" Active");
-				if(flags["BESS_CUMDUMP"] != undefined) output2(", Your personal cumdump");
-				if(flags["BESS_IN_RUBBLE"] != undefined)
+				else if(flags["BESS_IN_RUBBLE"] == 0) output2(" <i>Taken by an insane man with a silver-painted penis...</i>");
+				else if(flags["BESS_LOCATION"] == BESS_DISABLED)
 				{
-					if(flags["BESS_CREW_ROLE"] != undefined) output2(", " + StringUtil.toTitleCase(flags["BESS_CREW_ROLE"]));
-					else output2(", Own");
-					if(flags["BESS_LOCATION"] == BESS_ON_CREW) output2(" (Onboard Ship)");
-					if(flags["BESS_LOCATION"] == BESS_AT_TAVROS) output2(" (At Tavros Station)");
+					if(flags["BESS_EVENT_27"] != undefined) output2(" Missing");
+					else output2(" Away");
+					if(flags["BESS_EVENT_25_SPINOFF"] != undefined) output2(", Left your crew");
+					output2(", <i>(No longer able to track data on [bess.Em].)</i>");
 				}
-				if(!chars["BESS"].isNude())
+				else
 				{
-					output2("\n<b>* [bess.name], Attire:</b>");
-					if(bessGlasses()) output2(" Pair of glasses,");
-					output2(" [bess.Gear]");
-				}
-				if(!(chars["BESS"].meleeWeapon is EmptySlot)) output2("\n<b>* [bess.name], Weapon: </b>" + StringUtil.toTitleCase(chars["BESS"].meleeWeapon.shortName));
-				// Affection/Relationship
-				if(flags["BESS_AFFECTION"] != undefined) output2("\n<b>* [bess.name], Affection: </b>" + flags["BESS_AFFECTION"]);
-				if(flags["BESS_PC_NAME"] != undefined) output2("\n<b>* [bess.name], Relationship, [bess.HeShe] Calls You: </b>" + StringUtil.toTitleCase(flags["BESS_PC_NAME"]));
-				// Attachments/Customization
-				if(9999 == 0)
-				{
-					output2("\n<b>* [bess.name], Body, Tone: </b>" + chars["BESS"].tone + "/100");
-					output2("\n<b>* [bess.name], Body, Thickness: </b>" + chars["BESS"].thickness + "/100");
+					if(flags["BESS_EVENT_25_SPINOFF"] != undefined) output2(" Inactive, Confined in room");
+					else if(flags["BESS_EVENT_27"] != undefined && flags["BESS_EVENT_28"] == undefined && (GetGameTimestamp() > flags["BESS_EVENT_27"] + (3.5 * 24 * 60))) output2(" <i>MISSING!</i>");
+					else
+					{
+						output2(" Active");
+						if(flags["BESS_FRIEND"] != undefined)output2(", Friend");
+						if(flags["BESS_LOVER"] != undefined)output2(", Lover");
+						if(flags["BESS_CUMDUMP"] != undefined) output2(", Cumdump");
+						if(flags["BESS_CREW_ROLE"] != undefined) output2(", " + StringUtil.toTitleCase(flags["BESS_CREW_ROLE"]));
+						else output2(", Own");
+						if(flags["BESS_LOCATION"] == BESS_ON_CREW) output2(" (Onboard Ship)");
+						if(flags["BESS_LOCATION"] == BESS_AT_TAVROS) output2(" (At Tavros Station)");
+					}
+					if(!chars["BESS"].isNude())
+					{
+						output2("\n<b>* [bess.name], Attire:</b>");
+						if(bessGlasses()) output2(" Pair of glasses,");
+						output2(" [bess.Gear]");
+					}
+					if(bessKatana()) output2("\n<b>* [bess.name], Weapon:</b> Katana");
+					if(flags["BESS_ACCESSORY_SETS"] != undefined || flags["BESS_DREAMS"] != undefined || flags["BESS_EVENT_28"] != undefined)
+					{
+						output2("\n<b>* [bess.name], Upgrades:</b> Installed");
+						if(flags["BESS_ACCESSORY_SETS"] != undefined) output2(", Accessory set");
+						if(flags["BESS_DREAMS"] != undefined) output2(", Dream");
+						if(flags["BESS_EVENT_28"] != undefined) output2(", Taste-bud");
+					}
+					// Affection/Relationship
+					if(flags["BESS_AFFECTION"] != undefined && flags["BESS_AFFECTION"] > 0) output2("\n<b>* [bess.name], Affection: </b>" + flags["BESS_AFFECTION"] + "%");
+					output2("\n<b>* [bess.name], Relationship:</b>");
+					if(flags["BESS_JUST_A_SEXBOT"] == 1) output2(" Sexbot");
+					else if(flags["BESS_EVENT_19_REJECTION"] != undefined)
+					{
+						output2(" Rejected");
+						if(flags["BESS_EVENT_19_REJECTION"] == 2) output2(", Seperated");
+					}
+					else if(flags["BESS_POLY"] != undefined)
+					{
+						output2(" Lovers");
+						if(flags["BESS_POLY"] == 0) output2(", Closed");
+						if(flags["BESS_POLY"] == 1) output2(", Open");
+						if(flags["BESS_POLY"] == 2) output2(", Polyamorous");
+					}
+					else if(flags["BESS_JUST_A_FRIEND"] == 1) output2(" Friend");
+					else output2(" Normal");
+					if(flags["BESS_EVENT_7_APOLOGY_NEEDED"] != undefined) output2(", Needs apology");
+					if(flags["BESS_PC_NAME"] != undefined) output2("\n<b>* [bess.name], Relationship, [bess.HeShe] Calls You: </b>" + StringUtil.toTitleCase(flags["BESS_PC_NAME"]));
+					if(flags["BESS_DATES"] != undefined && flags["BESS_DATES"] > 0) output2("\n<b>* [bess.name], Relationship, Times Dated: </b>" + flags["BESS_DATES"]);
+					// Attachments/Customization
 					if(flags["BESS_BOOBCHANGED"] != undefined && chars["BESS"].hasBreasts()) output2("\n<b>* [bess.name], Body, Breast Size: </b>" + StringUtil.toTitleCase(chars["BESS"].breastCup(0)) + "s");
 					if(flags["BESS_CHANGED_CURVES"] != undefined)
 					{
-						output2("\n<b>* [bess.name], Body, Belly Size: </b>" + formatFloat(chars["BESS"].bellyRating(),3));
-						output2("\n<b>* [bess.name], Body, Hip Size: </b>" + formatFloat(chars["BESS"].hipRating(),3));
+						output2("\n<b>* [bess.name], Body, Belly Size: </b>" + formatFloat(chars["BESS"].bellyRating(), 3));
+						output2("\n<b>* [bess.name], Body, Hip Size: </b>" + formatFloat(chars["BESS"].hipRating(), 3));
 						output2("\n<b>* [bess.name], Body, Posterior Size: </b>" + formatFloat(chars["BESS"].buttRating(), 3));
 					}
 					if(flags["BESS_BOOBCHANGED"] != undefined && chars["BESS"].hasNipples()) output2("\n<b>* [bess.name], Nipple Type: </b>" + GLOBAL.NIPPLE_TYPE_NAMES[chars["BESS"].breastRows[0].nippleType]);
 					if(chars["BESS"].isLactating()) output2(", Lactation Active");
-					if(chars["BESS"].hasCock()) output2("\n<b>* [bess.name], Cum Type: </b>" + GLOBAL.FLUID_TYPE_NAMES[chars["BESS"].cumType]);
-					if(chars["BESS"].hasVagina()) output2("\n<b>* [bess.name], Girlcum Type: </b>" + GLOBAL.FLUID_TYPE_NAMES[chars["BESS"].girlCumType]);
-					output2("\n<b>* [bess.name], Simulated Sex Organs: </b>");
-					if(chars["BESS"].hasCock())
+					if(chars["BESS"].hasCock() || chars["BESS"].hasVagina() || flags["BESS_FUCKED"] != undefined)
 					{
-						if(chars["BESS"].cockVirgin) output2("Virgin ");
-						output2(GLOBAL.TYPE_NAMES[chars["BESS"].cocks[0].cType] + " cock");
-						if(chars["BESS"].hasSheath(0) || chars["BESS"].hasKnot(0))
+						if(chars["BESS"].hasCock()) output2("\n<b>* [bess.name], Cum Type: </b>" + GLOBAL.FLUID_TYPE_NAMES[chars["BESS"].cumType]);
+						if(chars["BESS"].hasVagina()) output2("\n<b>* [bess.name], Girlcum Type: </b>" + GLOBAL.FLUID_TYPE_NAMES[chars["BESS"].girlCumType]);
+						output2("\n<b>* [bess.name], Simulated Sex Organs: </b>");
+						if(chars["BESS"].hasCock())
 						{
-							output2(" (");
-							if(chars["BESS"].hasSheath(0)) output2("sheathed");
-							if(chars["BESS"].hasSheath(0) && chars["BESS"].hasKnot(0)) output2(" and ");
-							if(chars["BESS"].hasKnot(0)) output2("knotted");
-							output2(")");
+							if(chars["BESS"].cockVirgin) output2("Virgin ");
+							output2(GLOBAL.TYPE_NAMES[chars["BESS"].cocks[0].cType] + " cock");
+							if(chars["BESS"].hasSheath(0) || chars["BESS"].hasKnot(0))
+							{
+								output2(" (");
+								if(chars["BESS"].hasSheath(0)) output2("sheathed");
+								if(chars["BESS"].hasSheath(0) && chars["BESS"].hasKnot(0)) output2(" and ");
+								if(chars["BESS"].hasKnot(0)) output2("knotted");
+								output2(")");
+							}
+							if(chars["BESS"].hasStatusEffect("Uniball")) output2(" with a uniball");
+							else if(chars["BESS"].balls == 1) output2(" with a testicle");
+							else if(chars["BESS"].balls > 1) output2(" with " + num2Text(chars["BESS"].balls) + " balls");
 						}
-						if(chars["BESS"].hasStatusEffect("Uniball")) output2(" with a uniball");
-						else if(chars["BESS"].balls == 1) output2(" with a testicle");
-						else if(chars["BESS"].balls > 1) output2(" with " + num2Text(chars["BESS"].balls) + " balls");
+						if(chars["BESS"].hasVagina())
+						{
+							if(chars["BESS"].hasCock()) output2(", ");
+							if(chars["BESS"].vaginalVirgin) output2("Virgin ");
+							output2(GLOBAL.TYPE_NAMES[chars["BESS"].vaginas[0].type] + " vagina");
+							if(chars["BESS"].vaginas[0].clits == 1) output2(" with a clit");
+							else if(chars["BESS"].vaginas[0].clits > 1) output2(" with " + num2Text(chars["BESS"].vaginas[0].clits) + " clits");
+						}
+						if(chars["BESS"].hasCock() || chars["BESS"].hasVagina()) output2(", ");
+						if(chars["BESS"].analVirgin) output2("Virgin ");
+						output2("Asshole");
 					}
-					if(chars["BESS"].hasVagina())
+					// Sex-related
+					if(flags["BESS_FUCKED"] != undefined)
 					{
-						if(chars["BESS"].hasCock()) output2(", ");
-						if(chars["BESS"].vaginalVirgin) output2("Virgin ");
-						output2(GLOBAL.TYPE_NAMES[chars["BESS"].vaginas[0].type] + " vagina");
-						if(chars["BESS"].vaginas[0].clits == 1) output2(" with a clit");
-						else if(chars["BESS"].vaginas[0].clits > 1) output2(" with " + num2Text(chars["BESS"].vaginas[0].clits) + " clits");
-					}
-					if(chars["BESS"].hasCock() || chars["BESS"].hasVagina()) output2(", ");
-					if(chars["BESS"].analVirgin) output2("Virgin ");
-					output2("Asshole");
-				}
-				// Sex-related
-				if(flags["BESS_FUCKED"] != undefined)
-				{
-					if(flags["BESS_PC_SEX_NAME"] != undefined) output2("\n<b>* [bess.name], Preferred Sex Name, [bess.HeShe] Calls You: </b>" + StringUtil.toTitleCase(flags["BESS_PC_SEX_NAME"]));
-					if(flags["BESS_SEX_NAME"] != undefined) output2("\n<b>* [bess.name], Preferred Sex Name, You Call [bess.Em]: </b>" + StringUtil.toTitleCase(flags["BESS_SEX_NAME"]));
-					if(flags["BESS_SEX_ROLE"] != undefined)
-					{
-						output2("\n<b>* [bess.name], Sex Role Assumed:</b>");
-						if(flags["BESS_SEX_ROLE"] == 0) output2(" Equal Partners");
-						if(flags["BESS_SEX_ROLE"] == 1) output2(" Domianant");
-						if(flags["BESS_SEX_ROLE"] == 2) output2(" Submissive");
+						if(flags["BESS_PC_SEX_NAME"] != undefined) output2("\n<b>* [bess.name], Preferred Sex Name, [bess.HeShe] Calls You: </b>" + StringUtil.toTitleCase(flags["BESS_PC_SEX_NAME"]));
+						if(flags["BESS_SEX_NAME"] != undefined) output2("\n<b>* [bess.name], Preferred Sex Name, You Call [bess.Em]: </b>" + StringUtil.toTitleCase(flags["BESS_SEX_NAME"]));
+						if(flags["BESS_SEX_ROLE"] != undefined)
+						{
+							output2("\n<b>* [bess.name], Sex Role Assumed:</b>");
+							if(flags["BESS_SEX_ROLE"] == 0) output2(" Equal Partners");
+							if(flags["BESS_SEX_ROLE"] == 1) output2(" Domianant");
+							if(flags["BESS_SEX_ROLE"] == 2) output2(" Submissive");
+						}
+						if(flags["BESS_FUCKED"] > 0) output2("\n<b>* [bess.name], Times Sexed: </b>" + flags["BESS_FUCKED"]);
+						if(flags["BESS_INTIMATE_FUCKED"] > 0) output2("\n<b>* [bess.name], Times Intimate Fucked: </b>" + flags["BESS_INTIMATE_FUCKED"]);
 					}
 				}
 				variousCount++;
-			}*/
+			}
 			// Wastes
 			if(flags["MET_GRAY_GOO"] != undefined || flags["ENCOUNTERED_PARASITIC_LAPINARA"] != undefined || (flags["MET_FEMALE_RASKVEL"] != undefined || flags["MET_MALE_RASKVEL_GANG"] != undefined) || flags["MET_SEXBOT_FEMALE_ON_TARKUS"] != undefined || flags["MET_SEXBOT_MALE_ON_TARKUS"] != undefined || flags["MET_SYDIAN_MALE"] != undefined)
 			{
@@ -4823,12 +4945,6 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["MET_MCALLISTER"] != undefined)
 				{
 					output2("\n<b>* Dr. McAllister:</b> Met him");
-					if(flags["MCALLISTER_MYR_TFS"] != undefined)
-					{
-						output2("\n<b>* Dr. McAllister, Myr Transformation Experiment:</b>");
-						if(flags["MCALLISTER_MYR_TFS"] < 2) output2(" Ready to meet test subjects");
-						else output2(" Met test subjects, Successful results");
-					}
 				}
 				variousCount++;
 			}
@@ -4973,6 +5089,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(silly) output2("\n<b><u>Bathen Hausen</u></b>");
 				else output2("\n<b><u>Bath House</u></b>");
 				output2("\n<b>* Matron Oserre:</b> Met her");
+				if(flags["OSERRE_BATHED"] != undefined) output2(", Bathed with her");
 				variousCount++;
 			}
 			// Renvraaa
@@ -4981,6 +5098,15 @@ public function displayEncounterLog(showID:String = "All"):void
 				output2("\n<b><u>Federation Supply and Trading Post</u></b>");
 				output2("\n<b>* Renvra:</b> Met her");
 				if(flags["RENVRA_SEXED"] != undefined) output2(", Sexed her");
+				if(flags["MADE_RENVRA_BEG"] != undefined)
+				{
+					output2(", Made her beg");
+					if(flags["MADE_RENVRA_BEG"] == 2) output2(" and denied her");
+				}
+				if(flags["RENVRA_RACE_TALK"] != undefined && flags["RENVRA_KIDS_TALK"] != undefined)
+				{
+					output2("\n<b>* Renvra, Egg Fertility: </b>" + formatFloat(chars["RENVRA"].cumQualityRaw, 3) + "%");
+				}
 				variousCount++;
 			}
 			// Sellera
