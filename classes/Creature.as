@@ -1246,6 +1246,8 @@
 				case "gear":
 					buffer = gearDescript();
 					break;
+				case "clothes":
+					buffer = clothesDescript(); // isolates layer unlike gear -- armor if its there, otherwise both undergarments
 				case "short":
 				case "name":
 					buffer = short;
@@ -9170,6 +9172,17 @@
 			if (isNude()) addToList("gear");
 			return formatList();
 		}
+		public function clothesDescript():String
+		{
+			if (!(armor is EmptySlot)) return armor.longName;
+			else
+			{
+				clearList();
+				if (!(upperUndergarment is EmptySlot)) addToList(upperUndergarment.longName);
+				if (!(lowerUndergarment is EmptySlot)) addToList(lowerUndergarment.longName);
+				return formatList();
+			}
+		}
 		public function crotchDescript():String {
 
 			clearList();
@@ -9799,10 +9812,10 @@
 					else if (rando == 1) descript += "slender";
 					else descript += "narrow";
 				} else if (cocks[cockNum].thickness() <= 1.2) {
-					rando = this.rand(3);
-					if (rando == 0) descript += "ordinary";
-					else if (rando == 1) descript += "fleshy";
-					else descript += "substantial";
+					descript += RandomInCollection("modest");
+					
+					//else if (rando == 1) descript += "fleshy";
+					//else descript += "substantial";
 				} else if (cocks[cockNum].thickness() <= 1.6) {
 					rando = this.rand(3);
 					if (rando == 0) descript += "ample";
