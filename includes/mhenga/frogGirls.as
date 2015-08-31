@@ -177,6 +177,7 @@ public function frogGirlBasicLustAttack():void
 public function tongueLashAttack():void
 {
 	output("The lusty frog girl licks across her body with her long tongue, moaning as the oral muscle slips over her netherlips. Without warning she lashes it at you, whipping it like a flail.");
+	var damage:TypeCollection;
 	//miss: 
 	if(combatMiss(foes[0],pc)) output("\nThe tongue flies by you, smashing into a tree and eliciting a pained gasp from its owner");
 	else 
@@ -186,7 +187,7 @@ public function tongueLashAttack():void
 		{
 			output("and you are staggered by the force of the blow hitting your shield");
 			
-			var damage:TypeCollection = foes[0].meleeDamage();
+			damage = foes[0].meleeDamage();
 			damage.addFlag(DamageFlag.ONLY_SHIELD);
 			damageRand(damage, 15);
 			var damageResult:DamageResult = calculateDamage(damage, foes[0], pc);
@@ -199,7 +200,7 @@ public function tongueLashAttack():void
 		else if(pc.hasArmor() && pc.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
 		{
 			output("and you are slimed by her toxic saliva. Luckily your [pc.armor] is airtight enough to prevent any of the fluid from seeping into your [pc.skin], but you definitely feel the impact of the hit.");
-			var damage:TypeCollection = foes[0].meleeDamage();
+			damage = foes[0].meleeDamage();
 			damageRand(damage, 5 + rand(5));
 			outputDamage(damageResult);
 		}

@@ -259,7 +259,7 @@ public function approachSellera():void
 
 public function gatedButton(id:int, lbl:String, f:Function, arg:*, ttH:String, ttB:String, prevF:Function):void
 {
-	if (prevF != null && f == prevF)
+	if (prevF != null && f != null && f == prevF)
 	{
 		addDisabledButton(id, lbl, ttH, ttB);
 	}

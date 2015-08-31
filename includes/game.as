@@ -2484,10 +2484,10 @@ public function statisticsScreen(showID:String = "All"):void
 		output2("\n<b>* Anus, Virginity:</b>");
 		if(pc.analVirgin) output2(" Virgin");
 		else output2(" Taken");
-		if(pc.ass.bonusCapacity == 0) output2("\n<b>* Anus, Capacity: </b>" + prettifyVolume(pc.analCapacity(x)));
+		if(pc.ass.bonusCapacity == 0) output2("\n<b>* Anus, Capacity: </b>" + prettifyVolume(pc.analCapacity()));
 		else
 		{
-			output2("\n<b>* Anus, Capacity, Total: </b>" + prettifyVolume(pc.analCapacity(x)));
+			output2("\n<b>* Anus, Capacity, Total: </b>" + prettifyVolume(pc.analCapacity()));
 			output2("\n<b>* Anus, Capacity, Bonus: </b>" + prettifyVolume(pc.ass.bonusCapacity));
 		}
 		output2("\n<b>* Anus, Looseness Level: </b>" + formatFloat(pc.ass.looseness(), 3));
