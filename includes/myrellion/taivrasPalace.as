@@ -2360,7 +2360,7 @@ public function fuckTaivrasAss():void
 	else output("; then again, the idea of banging the queen in public, even for a good reason, makes your cheeks flush");
 	output(". Your free hand, meanwhile, hefts up [pc.oneCock] as you slip down behind Taivra, angling your member towards her behind.");
 
-	var x:int = pc.cockThatFits(foes[0].vaginalCapacity());
+	var x:int = pc.cockThatFits(foes[0].analCapacity());
 	if(x < 0) x = pc.smallestCockIndex();
 
 	output("\n\nYou pause just before pushing in, realizing that this high and mighty warrioress is probably not quite used to getting pounded from behind: she’ll be tight, of that you’re sure, but the idea of going at her ass without lube is less than exciting. Lucky you, Taivra has plenty of means of providing what you need.");
@@ -4143,7 +4143,8 @@ public function cowgirlDatBitch():void
 	output("\n\nYou scream like a banshee, twisting and thrashing against the eight-inch rod impaling your [pc.vagina " + x + "], helpless against the tide of orgasmic juice your alien lover floods you with and your own too-powerful bliss. Your can’t even manage to quell your quivering [pc.legOrLegs]. Instead, you continue to scream out your enjoyment to the princess’s entire harem, letting them know just how much you’ve enjoyed laying claim to their mistress.");
 	processTime(33);
 	pc.orgasm();
-	pc.loadInCunt(foes[0],x);
+	pc.loadInCunt(foes[0], x);
+	flags["PRINCESS_DEFEATED"] = 2;
 	//[Next]
 	clearMenu();
 	addButton(0,"Next",princessCowgirlPt2);
@@ -4262,6 +4263,8 @@ public function buttFuckPrincessWhileSheFucks():void
 	output("\n\nThe slave harem moves in the moment you leave their still-hard mistress, piling onto the bed with almost fanatical enthusiasm. Well... it’s not quite revenge, but at least they’re in charge for a change.\n\n");
 	processTime(22);
 	pc.orgasm();
+	flags["TOOK_PRINCESS_BUTTGINITY"] = 1;
+    flags["PRINCESS_DEFEATED"] = 3;
 	genericVictory();
 }
 
@@ -4375,6 +4378,7 @@ public function haremPolishjob():void
 	output("\n\nThey take their cummy mistress up onto the bed - and into a bondage harness - while you’re getting ready to leave the chamber. At least they’re getting a chance to be on top!\n\n");
 	processTime(33);
 	pc.orgasm();
+	flags["PRINCESS_DEFEATED"] = 4;
 	genericVictory();
 }
 

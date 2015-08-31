@@ -2692,7 +2692,8 @@ public function statisticsScreen(showID:String = "All"):void
 		if(!chars["EMBRY"].vaginalVirgin) totalVirginitiesTaken++;
 		if(!chars["EMBRY"].analVirgin) totalVirginitiesTaken++;
 		if(!chars["ANNO"].analVirgin) totalVirginitiesTaken++;
-		if(flags["TOOK_DELILAHS_BUTTGINITY"] != undefined) totalVirginitiesTaken++;
+		if (flags["TOOK_DELILAHS_BUTTGINITY"] != undefined) totalVirginitiesTaken++;
+		if(flags["TOOK_PRINCESS_BUTTGINITY"] != undefined) totalVirginitiesTaken++;
 		if(totalVirginitiesTaken > 0)
 		{
 			output2("\n<b><u>Sexploration</u></b>");
@@ -5217,10 +5218,13 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["PLAT190 USED AS NYREA BRIBE"] != undefined) output2(", Bribed them with Platinum 190");
 				}
 				// Nyrean Princess
-				if(flags["PRINCESS_DEFEATED"] != undefined)
+				if(flags["PRINCESS_DEFEATED"] != undefined || flags["TOOK_PRINCESS_BUTTGINITY"] != undefined)
 				{
 					output2("\n<b>* Nyrean Princess:</b> Met her");
-					if(9999 == 0) output2(", Sexed her");
+					if(flags["PRINCESS_DEFEATED"] > 1 || flags["TOOK_PRINCESS_BUTTGINITY"] != undefined) output2(", Sexed her");
+					if(flags["PRINCESS_DEFEATED"] == 2) output2(", You rode her ovipositor");
+					if(flags["PRINCESS_DEFEATED"] == 3 || flags["TOOK_PRINCESS_BUTTGINITY"] != undefined) output2(", Took her anal virginity");
+					if(flags["PRINCESS_DEFEATED"] == 4) output2(", She polished your penis");
 					if(flags["PRINCESS_DEFEATED"] != undefined) output2(", Defeated her");
 					if(9999 == 0) output2(" and freed harem");
 				}
