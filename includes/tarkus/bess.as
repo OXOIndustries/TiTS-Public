@@ -3538,7 +3538,7 @@ public function talkToBessAboutAccessories():void
 	clearOutput();
 	bessHeader();
 
-	output("You download the latest JoyCo product catalogue for " + bess.mf("Bess-13", "Ben-14") + " units into one of the ship’s terminals. A holographic projection of specialized clothing, accessories, and upgrades appear on the screen.");
+	output("You download the latest JoyCo product catalogue for " + bess.mf("Ben-14", "Bess-13") + " units into one of the ship’s terminals. A holographic projection of specialized clothing, accessories, and upgrades appear on the screen.");
 	
 	output("\n\nWhat are you interested in purchasing?");
 
