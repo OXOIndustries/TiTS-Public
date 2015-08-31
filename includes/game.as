@@ -396,7 +396,7 @@ public function crewRecruited():Number
 	if(flags["RECRUITED_CELISE"] > 0) counter++;
 	if(reahaRecruited()) counter++;
 	if (!annoNotRecruited()) counter++;
-	//if (bessIsFollower()) counter++;
+	if (bessIsFollower()) counter++;
 	return counter;
 }
 
