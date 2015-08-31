@@ -9717,7 +9717,7 @@ public function bessDate5Protest(bGown:Boolean):void
 	
 	output("\n\nThe customers begin clapping at the Maître d’s words as you and [bess.name] are loudly heckled. <i>“...Here-here! Just because you’re the "+ pc.mf("son", "daughter") +" of the boss of a big company doesn’t mean you can act like a depraved loon in public and get away with it!”</i>");
 	
-	output("\n\n<i>“See if I ever buy Steele products again, why I never!”</i>\n\n<i>“Throw [pc.himHer] out, the rotten toaster fucker.”</i>\n\n<i>“My food is getting cold, can’t they just throw [pc.himHer] out already?”</i>");
+	output("\n\n<i>“See if I ever buy Steele products again, why I never!”</i>\n\n<i>“My food is getting cold, can’t they just throw [pc.himHer] out already?”</i>");
 	
 	output("\n\nYou take [bess.name]’s trembling hand in your own and quickly leave before things get out of hand. Balled up napkins are thrown at you both as you make your way to the repulsor lift.");
 
@@ -9741,7 +9741,7 @@ public function bessDate5Punch(bGown:Boolean):void
 	
 	output("\n\n<i>“See if I ever buy Steele products again, why I never!”</i>");
 
-	output("\n\n<i>“Throw [pc.himHer] out, the rotten toaster fucker.”</i>\n\n<i>“My food is getting cold, can’t they just throw [pc.himHer] out already?”</i>");
+	output("\n\n<i>“My food is getting cold, can’t they just throw [pc.himHer] out already?”</i>");
 
 	clearMenu();
 	addButton(0, "Next", bessDate5p4, bGown);
@@ -9756,7 +9756,7 @@ public function bessDate5Leave(bGown:Boolean):void
 	
 	output("\n\n<i>“...Here-here! Just because you’re the "+ pc.mf("son", "daughter") +" of the boss of a big company doesn’t mean you can act like a depraved loon in public and get away with it!”</i>  Balled up napkins are being thrown at you both as you make your way to the repulsor lift.");
 	
-	output("\n\n<i>“See if I ever buy Steele products again, why I never!”</i>\n\n<i>“Get out of here, you rotten toaster fucker.”</i>\n\n<i>“My food is getting cold, can’t they just leave already?”</i>");
+	output("\n\n<i>“See if I ever buy Steele products again, why I never!”</i>\n\n<i>“My food is getting cold, can’t they just leave already?”</i>");
 
 	clearMenu();
 	addButton(0, "Next", bessDate5p4, bGown);
