@@ -839,8 +839,8 @@ public function goldMyrmedionCodexEntry():void
 {
 	clearOutputCodex();
 	userInterface.showBust("LYRALLA");
-	outputCodex(header("Gold Myrmedions"));
-	outputCodex("<b>Name (Singular):</b> Gold Myrmedion (Gold Myr)");
+	outputCodex(header("Gold Myr"));
+	outputCodex("<b>Name (Singular):</b> Gold Myrmedion");
 	outputCodex("\n<b>Sexes:</b> Females and males in a 9 to 1 ratio.");
 	outputCodex("\n<b>Height:</b> Female Myr are around the same height as terran females, while males tend towards smallness and slightness, often averaging heights around 5’ 2” - just under 1.6 meters.");
 	outputCodex("\n<b>Weight:</b> Heavy for their height thanks to numerous chitin plates and denser than average muscles and bones.");
@@ -874,8 +874,8 @@ public function redMyrmedionCodexEntry():void
 	clearOutputCodex();
 	userInterface.showBust("NEHZARA"); // aha this is going to bite me in the ass when we end up adding a race called NONE or some shit!
 
-	outputCodex(header("Red Myrmedions"));
-	outputCodex("<b>Name (Singular):</b> Red Myrmedion (Red Myr)");
+	outputCodex(header("Red Myr"));
+	outputCodex("<b>Name (Singular):</b> Red Myrmedion");
 	outputCodex("\n<b>Sexes:</b> Females and males in a 9 to 1 ratio.");
 	outputCodex("\n<b>Height:</b> Female red myr are around the same height as terran females, while males tend towards smallness and slightness, with an average height around 5’ 2” - just under 1.6 meters.");
 	outputCodex("\n<b>Weight:</b> Quite heavy for their height thanks to numerous chitin plates in addition to muscles and bones that are far denser than the humanoid average.");
