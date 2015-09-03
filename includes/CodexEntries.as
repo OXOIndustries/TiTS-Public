@@ -22,6 +22,7 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Ausar", ausarCodexEntry, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Daynar", daynarCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Dzaan", dzaanCodex,true);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Fanfir", fanfirCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Galotians", galotianCodexEntry, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Humans", humanTerranCodex, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Laquines", laquineCodexEntry);
@@ -51,8 +52,6 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Myrellion", "Myr Fungus", myrFungusCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Myrellion", "Nyrea", nyreaCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Myrellion", "Red Myr", redMyrmedionCodexEntry);
-
-	
 		
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Tarkus","Gray Goos",grayGooCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Tarkus","Lapinara",lapinaraCodexEntry);
@@ -1302,7 +1301,7 @@ public function Bess13CodexEntry():void
 	outputCodex("<b>Name:</b> Bess-13 and Ben 14 Units");
 	outputCodex("\n<b>Sexes:</b> Female (Bess-13) or Male (Ben-14)");
 	outputCodex("\n<b>Height:</b> 5'2\" (Bess-13), 6'1\" (Ben-14)");
-	outputCodex("\n<b>Weight:</b> 65kg (Bess-13), 70kg (Ben-14). These are the default factory settings.");
+	outputCodex("\n<b>Weight:</b> 65 kg (Bess-13), 70 kg (Ben-14). These are the default factory settings.");
 	outputCodex("\n<b>Hair:</b> Both unit types have retractable artificial hair that can be set by their owners. The tint is also adjustable. Factory standard is silver.");
 	outputCodex("\n<b>Eyes:</b> Both unit types have adjustable irises; color is specified by their owner. Factory standard is silver.");
 	outputCodex("\n<b>Wings:</b> None.");
@@ -2110,24 +2109,11 @@ public function dragonsHordeCodexStory():void
 public function fanfirCodexEntry():void 
 {
 	clearOutputCodex();
-	outputCodex(header("Myr Fungus"));
-	outputCodex("<i>Gross.</i>\n");
-	outputCodex("\n<b>Name:</b> Ophiocordyceps Myrmedius");
-	outputCodex("\n<b>Genders:</b> Spores are technically genderless. Upon attaching to a host, the spores develop a gender based on a number of factors within the host.");
-	outputCodex("\n<b>Height:</b> Spores are a half-inch in diameter at the most. Manifested fungi are typically around half the host’s height.");
-	outputCodex("\n<b>Weight:</b> Spores are lighter than feathers. Manifested fungi weigh about as much as a full travel backpack. Fungal <i>“queens”</i> can weigh up to a few hundred pounds at the base.");
-	outputCodex("\n<b>Hair:</b> Normal manifestations have no hair. Instead, their heads are covered by mushroom <i>“hats.”</i> Fungal queens have clear hair that pulses with colored light.");
-	outputCodex("\n<b>Skin:</b> All members of the species have chalk white skin.");
-	outputCodex("\n<b>Eyes:</b> Humanoid eyes that shift with bright colors.");
-	outputCodex("\n<b>Ears:</b> Fungal manifestations have ears shaped similarly to their host, though the shapes are only for show as they hear everything that their hosts hear and communicate telepathically.\n\n");
-	
-	
 	outputCodex(header("Fanfir"));
 	outputCodex("<b>Name:</b> Fanfir");
-
 	outputCodex("\n<b>Sexes:</b> M/F equal split");
-	outputCodex("\n<b>Height:</b> 3 metres tall, 12 metres long from head to tail tip avg.");
-	outputCodex("\n<b>Weight:</b> 280 kg avg.");
+	outputCodex("\n<b>Height:</b> 9' tall, 36' long from head to tail tip avg.");
+	outputCodex("\n<b>Weight:</b> 617 lbs or 280 kg avg.");
 	outputCodex("\n<b>Hair:</b> On the head and around the groin");
 	outputCodex("\n<b>Skin Color</b>: Many different natural variances between coal black and deep red");
 	outputCodex("\n<b>Eyes:</b> Two, variety of colors");
@@ -2166,5 +2152,6 @@ public function fanfirCodexEntry():void
 	outputCodex("\n\nFanfir have a penchant for hoarding, seemingly related to their bird-analogous evolution. Their sexual attitudes are mirrored in other walks of life, and a fanfir’s home is usually a treasure trove of items that has been centuries in the collecting, that he or she can spend hours talking about.");
 	outputCodex("\n\nTheir incredibly sophisticated and sturdy throats has lead the fanfir to have a natural love of music, singing and speech-giving, and with suitable safety equipment fanfir concerts are a rare treat, made rarer by how infrequently they occur. All travellers are warned that less scrupulous fanfir tend to be extremely persuasive, able to manipulate other’s behavioural patterns through the use of vocalized vibrations - as well as benefiting from an avaricious home culture with a rich history in the art of speech. Their love of wide open spaces and the acquisition of experience and physical treasures means the race are at their most visible and mobile during planet rushes.");
 	
+	outputCodex("\n\n");
 	CodexManager.viewedEntry("Fanfir");
 }
