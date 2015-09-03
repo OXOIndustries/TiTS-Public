@@ -123,7 +123,7 @@ public function humanTerranCodex():void
 {
 	clearOutputCodex();
 	userInterface.showBust("BURT","");
-	outputCodex(header("Human"));
+	outputCodex(header("Humans"));
 	outputCodex("<i>What does it mean to be human?</i>\n");
 	outputCodex("\n<b>Name (Singular):</b> Human");
 	outputCodex("\n<b>Sexes:</b> Male and female.");
@@ -191,8 +191,8 @@ public function sielCodexEntry():void
 
 	outputCodex("\n<b>Name (Singular & Plural):</b> Siel");
 	outputCodex("\n<b>Sexes:</b> Male, Female, Herm (See Siel Sexes and Genders)");
-	outputCodex("\n<b>Height:</b> Generally six feet high with a total body length of twelve feet.");
-	outputCodex("\n<b>Weight:</b> Over one hundred kilos.");
+	outputCodex("\n<b>Height:</b> Generally 6’ high with a total body length of 12’.");
+	outputCodex("\n<b>Weight:</b> Over one hundred kilos (220 lbs).");
 	outputCodex("\n<b>Hair:</b> Very dark or very light blue, purple, or pink, as well as black or white. Many siel choose to recolor their hair.");
 	outputCodex("\n<b>Eyes:</b> Intense blues, purples, and pinks.");
 	outputCodex("\n<b>Skin Coloration:</b> Steel Blue\n\n");
@@ -219,7 +219,7 @@ public function kerokorasCodexEntry():void
 	outputCodex("<i>U.G.C. survival guidelines recommend you do not lick them.</i>\n")
 	outputCodex("\n<b>Name (Singular & Plural):</b> Kerokoras");
 	outputCodex("\n<b>Sexes:</b> Purely Female");
-	outputCodex("\n<b>Height:</b> Between 4'6\" and 5'6\".");
+	outputCodex("\n<b>Height:</b> Between 4’ 6” and 5’ 6”.");
 	outputCodex("\n<b>Hair:</b> Hairless");
 	outputCodex("\n<b>Eyes:</b> Bulbous, featuring broad pupils and wildly varying sclera coloration.\n\n");
 
@@ -245,7 +245,7 @@ public function kaithritCodexEntry():void
 	outputCodex("<i>Cat-girls with two tails? What's not to love? ...what do you mean they have males?</i>\n");
 	outputCodex("\n<b>Name (Singular & Plural):</b> Kaithrit");
 	outputCodex("\n<b>Sexes:</b> Female, Male, statistically significant occurrence of hermaphroditism.");
-	outputCodex("\n<b>Height:</b> Males range from 5' to 6'2” tall. Females and hermaphrodites range from 5'6\" to 7'3\".");
+	outputCodex("\n<b>Height:</b> Males range from 5’ to 6’ 2” tall. Females and hermaphrodites range from 5’ 6” to 7’ 3”.");
 	outputCodex("\n<b>Hair:</b> Nominally, kaithrit only feature hair on their head and a fine layer of soft fur on their tails and ears. Fur and hair coloration is highly diverse; every color and hue seen on terran felines has been reported, but some have stranger colors.");
 	outputCodex("\n<b>Eyes:</b> Kaithrit have two eyes in the normal humanoid position. These eyes are typically colored amber, hazel, brown, blue, green, gray, yellow, orange, black, yellow-green, blue-green, violet, copper or gold. Kaithrit have a slightly higher predisposition towards heterochromia than other races. They possess slitted feline pupils which give them much keener low-light vision than humans.\n\n");
 	outputCodex(blockHeader("Features"));
@@ -354,7 +354,7 @@ public function leithanCodexEntry():void
 	outputCodex(header("Leithans"));
 	outputCodex("<b>Name (Singular):</b> Leithan");
 	outputCodex("\n<b>Sexes:</b> Male and Female");
-	outputCodex("\n<b>Height:</b> Leithans can range from 8'6\" to 10' tall, with females usually slightly shorter and lighter than males. Their tauric frames are roughly 5' at the shoulders, with their humanoid halves ranging from three and a half to five additional feet.");
+	outputCodex("\n<b>Height:</b> Leithans can range from 8’ 6” to 10’ tall, with females usually slightly shorter and lighter than males. Their tauric frames are roughly 5’ at the shoulders, with their humanoid halves ranging from three and a half to five additional feet.");
 	outputCodex("\n<b>Hair:</b> Most Leithans have dark, stringy hair. Black, dark yellow, and shades of gray and brown are all common.");
 	outputCodex("\n<b>Eyes:</b> Leithan eyes are bright and universally blue, with white storm patterns surrounding their twin irises. Leithans have exceptional eyesight, and a secondary eyelid allows them to see even in extreme brightness, as is common on their homeworld, without sacrificing their low-light vision.");
 	outputCodex("\n<b>Ears:</b> Leithans have two large, sensitive ears which grow from the center of their brows, roughly two inches apart. Their ears are alert, but are soft and frequently flop back against their heads at high speeds or in emotive response. A secondary pair of ears are located where human ears are, on the sides of the head. While larger than a human's and gently tapered (some describe them as \"elfin\"), the secondary ears are for all intents and purposes without special function.\n\n");
@@ -384,7 +384,7 @@ public function ovirCodexEntry():void
 	outputCodex(header("Ovir"));
 	outputCodex("<b>Name (Singular & Plural):</b> Ovir");
 	outputCodex("\n<b>Sexes:</b> Male & Female.");
-	outputCodex("\n<b>Height:</b> Averages between 4'6\" and 6\"");
+	outputCodex("\n<b>Height:</b> Averages between 4’ 6” and 6’.");
 	outputCodex("\n<b>Weight:</b> Averages between 90 and 160 lbs.");
 	outputCodex("\n<b>Hair:</b> Human-like hair on top of head, can be brown, black, red, blonde, or green.");
 	outputCodex("\n<b>Eyes:</b> Two vertically slit, reptilian eyes. No sclera, iris dominates the eye.");
@@ -456,8 +456,8 @@ public function laquineCodexEntry():void
 	outputCodex(header("Laquines"));
 	outputCodex("<b>Name (Singular):</b> Laquine");
 	outputCodex("\n<b>Sexes:</b> 33% Male, 33% Female, 33% Hermaphrodite");
-	outputCodex("\n<b>Height:</b> 5'6\" to 7'0\"");
-	outputCodex("\n<b>Weight:</b> 60-85 Kg");
+	outputCodex("\n<b>Height:</b> 5’ 6” to 7’");
+	outputCodex("\n<b>Weight:</b> 132 to 187 lbs (60 to 85 kg)");
 	outputCodex("\n<b>Hair:</b> Covered all over in fur, but \"hair\" grows on the top of the head in the form of especially long, lush fur.");
 	outputCodex("\n<b>Eyes:</b> Two eyes in the face, at normal human position. Laquine eyes have a fundamentally human-like structure; a visible sclera (white) surrounding a colored iris, which in turn surrounds a round black pupil. Iris colors documented include brown, varying shades of blue and gray, red and pink.\n\n");
 
@@ -557,7 +557,7 @@ public function sydianCodexEntry():void
 	outputCodex(header("Sydians"));
 	outputCodex("<b>Name (Singular):</b> Sydian");
 	outputCodex("\n<b>Sexes:</b> Male and Female");
-	outputCodex("\n<b>Height:</b> 4'6\" to 5'6\" for females and 6'3\" to 7'1\" for males.");
+	outputCodex("\n<b>Height:</b> 4’ 6” to 5’ 6” for females and 6’ 3” to 7’ 1” for males.");
 	outputCodex("\n<b>Weight:</b> 90 to 160 lbs for females and 200 to 320 lbs for males.");
 	outputCodex("\n<b>Hair:</b> Fluffy, exquisitely soft hair, ranging from earthy browns to vibrant greens and reds. Can change depending on the season and the sydian's hormones.");
 	outputCodex("\n<b>Tongue:</b> Able to extend up to six inches from the sydian's mouth, fully prehensile.");
@@ -592,7 +592,7 @@ public function lapinaraCodexEntry():void
 	userInterface.showBust("LAPINARA","LAPINARA_2");
 	outputCodex("<b>Name (Singular & Plural):</b> Lapinara");
 	outputCodex("\n<b>Sexes:</b> Female (parasitic variant), Female (non-parasitic variant), Male, Herm, and Genderless.");
-	outputCodex("\n<b>Height:</b> Anywhere between 3 and 4 ft for all genders.");
+	outputCodex("\n<b>Height:</b> Anywhere between 3 and 4 feet for all genders.");
 	outputCodex("\n<b>Weight:</b> Anywhere between 40 and 85 pounds for all genders.");
 	outputCodex("\n<b>Hair & Fur:</b> Hair is fast-growing, and typically very soft and curly. The hair and fur of parasitic females is typically white, but can sometimes be silver or gray. All Lapinara have a thin layer of fur covering the entirety of their bodies. The hair is longer and curlier on the lower legs and forearms, resembling warmers. They have a long, puffy tuft of fuzz at the end of their long, whip-like tails.");
 	outputCodex("\n<b>Eyes:</b> Large and rabbit-like; parasitic females always have glassy, cloudy, gray eyes. They resemble crystal balls.\n\n");
@@ -616,7 +616,7 @@ public function raskVelCodexEntry():void
 	outputCodex(header("Raskvel"));
 	outputCodex("<b>Name (Singular & Plural):</b> Raskvel");
 	outputCodex("\n<b>Sexes:</b> Male & Female");
-	outputCodex("\n<b>Height:</b> Average heights fall between 3’6” and 4’3”");
+	outputCodex("\n<b>Height:</b> Average heights fall between 3’ 6” and 4’ 3”.");
 	outputCodex("\n<b>Weight:</b> Somewhere between 40 and 60 pounds.");
 	outputCodex("\n<b>Hair:</b> None. They have feathery plumage instead, often light blue, red, or black.");
 	outputCodex("\n<b>Skin:</b> Scaled skin of tan, dark red, or blue.");
@@ -652,7 +652,7 @@ public function grayGooCodex():void
 {
 	clearOutputCodex();
 	userInterface.showBust("GRAY_GOO");
-	outputCodex(header("Hazard: the \"Gray Goos\""));
+	outputCodex(header("Hazard: \"Gray Goos\""));
 	outputCodex("<b>Name (Singular):</b> Gray Goo");
 	outputCodex("\n\nThe Gray Goo is an enemy seemingly unique to the junkyard wastelands of Tarkus, comprised of a network of small nanobots - mostly discarded microsurgeons and one-shot stimulants that haven't been properly disposed of. Gray goos require natural lubricants like oil in order to move around effectively, and may target living organics as potential victims for sexual assault in an attempt to use orgasmic fluids as an emergency alternative.");
 
@@ -665,10 +665,10 @@ public function rahnCodexEntry():void
 {
 	clearOutputCodex();
 	userInterface.showBust("FLAHNE");
-	outputCodex(header("Fuu’Rahn and <prefix>’Rahn"));
+	outputCodex(header("Fuu’Rahn and ’Rahn"));
 	outputCodex("<b>Name (Singular & Plural):</b> Rahn");
 	outputCodex("\n<b>Sexes:</b> “Female”");
-	outputCodex("\n<b>Height:</b> 4' to 5'8\" commonly. Most are shorter, but a rare few can attain heights as tall as six feet.");
+	outputCodex("\n<b>Height:</b> 4’ to 5’ 8” commonly. Most are shorter, but a rare few can attain heights as tall as six feet.");
 	outputCodex("\n<b>Weight:</b> 60 to 140 pounds.");
 	outputCodex("\n<b>Hair:</b> Rahn do not have hair in the traditional sense, though most will morph their body to have the appearance of hair after sufficient exposure to haired races.");
 	outputCodex("\n<b>Tongue:</b> Long and flexible, rahn tongues can often extend a good six or seven inches out of their mouths. Some subspecies of rahn or particularly well-endowed Rahn can extend their tongues up to a foot.");
@@ -713,10 +713,10 @@ public function zilCodexEntry():void
 	clearOutputCodex();
 	userInterface.showBust("ZILFEMALE", "ZIL"); // ohoho lookit dis shit!
 
-	outputCodex(header("The Zil"));
+	outputCodex(header("Zil"));
 	outputCodex("<b>Name (Singular & Plural):</b> Zil");
 	outputCodex("\n<b>Sexes:</b> Male and female.");
-	outputCodex("\n<b>Height:</b> 5’ to 5’6” commonly. They can rarely attain heights of 6’.");
+	outputCodex("\n<b>Height:</b> 5’ to 5’ 6” commonly. They can rarely attain heights of 6’.");
 	outputCodex("\n<b>Weight:</b> 80 to 140 pounds.");
 	outputCodex("\n<b>Hair:</b> Flexible spines covered in a downy-soft fuzz. They are commonly colored black, but sometimes can be yellow or yellow and black striped.");
 	outputCodex("\n<b>Tongue:</b> Bright yellow, typically extends a foot past their lips when fully extended. The tip has a tube inside it capable of gathering sweet nectar from jungle flowers or lovers.");
@@ -759,7 +759,7 @@ public function VKoCodex():void
 	outputCodex(header("V-Ko Nursedroids"));
 	outputCodex("V-Ko is the latest model to appear in JoyCo’s ‘Nursedroid’ line of universal assist-bots. The popular medical franchise travels to the very edges of the explored galaxy to place V-Ko stations around for those in need of a quick heal. For those in the know, JoyCo has also provided relief for other... tense situations.\n");
 	outputCodex("\n<b>Sexes:</b> Female in appearance but ultimately lacking any real genitalia. V-Ko nursedroid VIs are programmed to act and represent similarly to terran and ausar standard females, though they contain programming to alter their behaviors slightly in the presence of species with nonstandard breeding methods.");
-	outputCodex("\n<b>Height:</b> 5'7\" or 1.7018 meters");
+	outputCodex("\n<b>Height:</b> 5’ 7” or 1.7018 meters");
 	outputCodex("\n<b>Weight:</b> 213.214 lbs or 96.7122 kg");
 	outputCodex("\n<b>Hair:</b> V-Ko nursedroids are available in a wide variety appearance configurations with hair as the main differentiator. Artifical hair is available in all lengths, colors, and a variety of styles.");
 	outputCodex("\n<b>Eyes:</b> Much like their hair, nursedroids' eyes can come in all the colors of the rainbow and then some. One feature that does not change are the cross shaped identification patterns in the center of their ocular receptors. This helps to keep them from being confused with other types of feminine bots.");
@@ -785,7 +785,7 @@ public function ausarCodexEntry():void
 	clearOutputCodex();
 	userInterface.showBust("SYRI"); // An example of an Ausar?
 
-	outputCodex(header("The Ausar"));
+	outputCodex(header("Ausar"));
 	outputCodex("<b>Name (Singular & Plural):</b> Ausar");
 	outputCodex("\n<b>Sexes:</b> Male and female.");
 	outputCodex("\n<b>Height:</b> Varies, usually similar to humans; they commonly range from five feet to just over six, with rare specimens reaching around seven feet in height.");
@@ -839,10 +839,10 @@ public function goldMyrmedionCodexEntry():void
 {
 	clearOutputCodex();
 	userInterface.showBust("LYRALLA");
-	outputCodex(header("Gold Myr"));
-	outputCodex("<b>Name (Singular):</b> Gold Myrmedion");
+	outputCodex(header("Gold Myrmedions"));
+	outputCodex("<b>Name (Singular):</b> Gold Myrmedion (Gold Myr)");
 	outputCodex("\n<b>Sexes:</b> Females and males in a 9 to 1 ratio.");
-	outputCodex("\n<b>Height:</b> Female Myr are around the same height as terran females, while males tend towards smallness and slightness, often averaging heights around 5’2” - just under 1.6 meters.");
+	outputCodex("\n<b>Height:</b> Female Myr are around the same height as terran females, while males tend towards smallness and slightness, often averaging heights around 5’ 2” - just under 1.6 meters.");
 	outputCodex("\n<b>Weight:</b> Heavy for their height thanks to numerous chitin plates and denser than average muscles and bones.");
 	outputCodex("\n<b>Arms:</b> Four narrow but strong limbs ending with three fingers and a single thumb.");
 	outputCodex("\n<b>Abdomens:</b> All gold myr have insectile abdomens, used for storing nutrition in lean times as well as reproduction in female queens.");
@@ -874,10 +874,10 @@ public function redMyrmedionCodexEntry():void
 	clearOutputCodex();
 	userInterface.showBust("NEHZARA"); // aha this is going to bite me in the ass when we end up adding a race called NONE or some shit!
 
-	outputCodex(header("Red Myr"));
+	outputCodex(header("Red Myrmedions"));
 	outputCodex("<b>Name (Singular):</b> Red Myrmedion (Red Myr)");
 	outputCodex("\n<b>Sexes:</b> Females and males in a 9 to 1 ratio.");
-	outputCodex("\n<b>Height:</b> Female red myr are around the same height as terran females, while males tend towards smallness and slightness, with an average height around 5’2” - just under 1.6 meters.");
+	outputCodex("\n<b>Height:</b> Female red myr are around the same height as terran females, while males tend towards smallness and slightness, with an average height around 5’ 2” - just under 1.6 meters.");
 	outputCodex("\n<b>Weight:</b> Quite heavy for their height thanks to numerous chitin plates in addition to muscles and bones that are far denser than the humanoid average.");
 	outputCodex("\n<b>Limbs:</b> Two humanoid arms ending with three fingers and a single thumb, and two legs that end in chitinous \"boots\" which can end anywhere between mid-calf and mid-thigh.");
 	outputCodex("\n<b>Abdomens:</b> Red myr have evolved away from insectile abdomens. Some members of the species have small, vestigial abdomens, but most have shed them completely.");
@@ -916,7 +916,7 @@ public function mimbraneCodexEntry():void
 	userInterface.showBust("MIMBRANE");
 
 	outputCodex(header("Mimbranes"));
-	outputCodex(blockHeader("- (Graft, Epidel, Second Skin)\n"));
+	outputCodex(blockHeader("(Graft, Epidel, Second Skin)\n"));
 	outputCodex("<b>Name (Singular):</b> Mimbrane");
 	outputCodex("\n<b>Sex:</b> Asexual");
 	outputCodex("\n<b>Height:</b> 0.0004 to 0.25 inches. Typically ranges between the slightest fraction of an inch when resembling a thin film to a quarter of an inch when dense and/or well fed.");
@@ -1114,7 +1114,7 @@ public function naleenCodexEntry():void
 	clearOutputCodex();
 	userInterface.showBust("NALEEN","NALEEN_MALE");
 
-	outputCodex(header("The Naleen"));
+	outputCodex(header("Naleen"));
 	outputCodex("<b>Name (Singular & Plural):</b> Naleen");
 	outputCodex("\n<b>Sexes:</b> Male & Female");
 	outputCodex("\n<b>Height:</b> Most Naleen rise about six feet from the ground, though their full length is often more than twice that from tail to brow.");
@@ -1148,13 +1148,13 @@ public function vanaeCodexEntry():void
 
 	clearOutputCodex();
 	userInterface.showBust("VANAE_HUNTRESS", "VANAE_MAIDEN"); // Probably split this out into multiple types?
-	outputCodex(header("The Vanae"));
+	outputCodex(header("Vanae"));
 	outputCodex("'Vah-nay'");
 	outputCodex("\n<b>Name (Singular & Plural):</b> Vanae");
 	//Taxonym: Vanae
 	outputCodex("\n<b>Sexes:</b> Female");
-	outputCodex("\n<b>Height:</b> 5'2\" - 5'6\"");
-	outputCodex("\n<b>Weight:</b> 55 - 62 kg");
+	outputCodex("\n<b>Height:</b> 5’ 2” to 5’ 6”");
+	outputCodex("\n<b>Weight:</b> 55 to 62 kg (121.254 to 136.687 lbs)");
 	outputCodex("\n<b>Skin:</b> Snow white with special markings of a single, bioluminescent color (Most to least common: Indigo, violet, pink, dark red, blue or black).");
 	outputCodex("\n<b>Hair:</b> Bioluminescent tentacle locks. Ear to butt length.");
 	outputCodex("\n<b>Eyes:</b> Vanae have vestigial eyes that are typically closed. Eye color is always the same as their unique body color (See skin).");
@@ -1273,7 +1273,7 @@ public function vanaeHistoryCodexEntry():void
 {
 	clearOutputCodex();
 	userInterface.showBust("VANAE"); // Probably split this out into multiple types?
-	outputCodex(header("The Vanae"));
+	outputCodex(header("Vanae"));
 	outputCodex("'Vah-nay'");
 
 	outputCodex("\n\n");
@@ -1300,8 +1300,8 @@ public function Bess13CodexEntry():void
 
 	outputCodex("<b>Name:</b> Bess-13 and Ben 14 Units");
 	outputCodex("\n<b>Sexes:</b> Female (Bess-13) or Male (Ben-14)");
-	outputCodex("\n<b>Height:</b> 5'2\" (Bess-13), 6'1\" (Ben-14)");
-	outputCodex("\n<b>Weight:</b> 65 kg (Bess-13), 70 kg (Ben-14). These are the default factory settings.");
+	outputCodex("\n<b>Height:</b> 5’ 2” (Bess-13), 6’ 1” (Ben-14)");
+	outputCodex("\n<b>Weight:</b> 143.3 lbs or 65 kg (Bess-13), 154.324 lbs or 70 kg (Ben-14). These are the default factory settings.");
 	outputCodex("\n<b>Hair:</b> Both unit types have retractable artificial hair that can be set by their owners. The tint is also adjustable. Factory standard is silver.");
 	outputCodex("\n<b>Eyes:</b> Both unit types have adjustable irises; color is specified by their owner. Factory standard is silver.");
 	outputCodex("\n<b>Wings:</b> None.");
@@ -1349,10 +1349,6 @@ public function panaraCodex():void
 	clearOutputCodex();
 	outputCodex(header("Panara"));
 
-	outputCodex("<b>Name:</b> Bess-13 and Ben 14 Units");
-	outputCodex("\n<b>Sexes:</b> Female (Bess-13) or Male (Ben-14)");
-	outputCodex("\n<b>Height:</b> 5'2\" (Bess-13), 6'1\" (Ben-14)");
-
 	outputCodex("<b>Planet Name:</b> Panara");
 	outputCodex("\n<b>Size:</b> Small");
 	outputCodex("\n<b>Species:</b> Panaran Ausar (Thicker fur, wolf or husky-like), Humans.");
@@ -1378,8 +1374,8 @@ public function branFlazinganCodex():void
 	outputCodex("\n<b>Titles:</b> CEO of HumpHard Inc, Humphard Flazingan, The Man with the Giant Wad, Anything-Goes Flazingan, Humpty Dumpty.");
 	outputCodex("\n<b>Species:</b> Human (debatably).");
 	outputCodex("\n<b>Gender:</b> Male.");
-	outputCodex("\n<b>Height:</b> 4'11\"");
-	outputCodex("\n<b>Weight:</b> 90 kg.");
+	outputCodex("\n<b>Height:</b> 4’ 11”");
+	outputCodex("\n<b>Weight:</b> 198.416 lbs or 90 kg");
 	outputCodex("\n<b>Hair:</b> Very little.");
 	outputCodex("\n<b>Eyes:</b> Blue.");
 	outputCodex("\n<b>Genitals:</b> Depends on the weekday.");
@@ -1498,10 +1494,10 @@ public function thraggenCodexEntry():void
 {
 	clearOutputCodex();
 	userInterface.showBust("CAPTAIN_KHORGAN");
-	outputCodex(header("The Thraggen"));
+	outputCodex(header("Thraggen"));
 	outputCodex("<b>Name (Singular & Plural):</b> Thraggen");
 	outputCodex("\n<b>Sexes:</b> Male & Female");
-	outputCodex("\n<b>Height:</b> 6'0 - 7'5.");
+	outputCodex("\n<b>Height:</b> 6’ to 7’ 5”");
 	outputCodex("\n<b>Hair:</b> Naturally, thraggen hair ranges in shades from silvery grey to a vibrant orange or dark red. Warriors often paint their faces and dye their hair in woad-like patterns, passed down by family line, before combat or major ceremonies.");
 	outputCodex("\n<b>Eyes:</b> Slitted, predatory eyes, usually brightly colored -- green, blue and red are the most common.");
 	
@@ -1536,10 +1532,10 @@ public function daynarCodexEntry():void
 {
 	clearOutputCodex();
 	userInterface.showBust("LANE", "DAYNAR_MALE", "DAYNAR_FEMALE")
-	outputCodex(header("The Daynar"));
+	outputCodex(header("Daynar"));
 	outputCodex("<b>Name (Singular & Plural):</b> Daynar");
 	outputCodex("\n<b>Sexes:</b> Male & Female");
-	outputCodex("\n<b>Height:</b> Males - 5' 9\" ft, Females - 5' 7\"");
+	outputCodex("\n<b>Height:</b> Males - 5’ 9” ft, Females - 5’ 7”");
 	outputCodex("\n<b>Weight:</b> Males - 150 lbs, Females - 140 lbs");
 	outputCodex("\n<b>Hair:</b> None");
 	outputCodex("\n<b>Eyes:</b> Slit, reptilian irises. Sandy brown sclera, but self-controllable iris color.");
@@ -1595,10 +1591,10 @@ public function sionachCodexEntry():void
 {
 	clearOutputCodex();
 	showBust("SIONACH");
-	outputCodex(header("The Sionach"));
+	outputCodex(header("Sionach"));
 	outputCodex("<b>Name (Singular & Plural):</b> Sionach");
 	outputCodex("\n<b>Sexes:</b> Male and female");
-	outputCodex("\n<b>Height:</b> 4’7” to 5’10”");
+	outputCodex("\n<b>Height:</b> 4’ 7” to 5’ 10”");
 	outputCodex("\n<b>Hair:</b> Sionach hair runs the gamut from orange, black, white, grey, browns and silvers of varying shades. In addition to scalp and pubic hair, many sionach of both genders develop what are colloquially referred to as whiskers on the cheek: three bar-like patterns of short, downy hair. In addition, all have slender, shaped patterns of fur across their otherwise hairless bodies which vary from individual to individual. Some have small strips up their legs, others have tufts on knees and elbows, and some have negligee-like patterns around the chest and buttocks. These outcroppings are always very short, barely removed from the skin, and serve more as coloration than protection. ");
 	outputCodex("\n<b>Eyes:</b> Two large eyes in the normal humanoid position. Common eye colors include amber, golden, brown, crimson and yellow-green, with rare eye colors including blues, purples and blacks. Pupils are either round or vertical slits, with an equal distribution among the population. ");
 
@@ -1702,7 +1698,7 @@ public function nyreaCodexEntry():void
 	outputCodex(header("Nyrea"));
 	outputCodex("<b>Name (Singular & Plural):</b> Nyrea");
 	outputCodex("\n<b>Sexes:</b> Male & Female. Note Reproduction below.");
-	outputCodex("\n<b>Height:</b> Males range in height from 5'5 to 5'10; females, the larger of the species, from 5'8 to 6'2.");
+	outputCodex("\n<b>Height:</b> Males range in height from 5’ 5” to 5’ 10”; females, the larger of the species, from 5’ 8” to 6’ 2”.");
 	outputCodex("\n<b>Hair:</b> Nyrea have thin, wispy spine-like growths in most places humans might have hair. These vestigial barbs were once the species' primary means of defense against larger predators, but have long since evolved to be soft to the touch and harmless, usually cut short or styled in intricate braids and designs.");
 	outputCodex("\n<b>Eyes:</b> Nyrea have two mono-colored eyes, each with a small pupil in its center. Due to their almost exclusively subterranean existence, their eyesight is very poor, especially at longer ranges. For the same reason, their eyes are exceptionally sensitive to bright lights, and they can easily be blinded or stunned by sudden flashes. ");
 	outputCodex("\n<b>Ears:</b> Offsetting their poor eyesight, nyrea have exceptional hearing. They possess two large, tapered ears which can easily grow out to a foot or more from their heads. A nyrea's ears are sensitive to a wide range of sounds over great distances, and serve as their primary means of hunting. According to some daring rushers, they are also a primary erogenous zone. ");
@@ -1743,12 +1739,12 @@ public function anataeCodexEntry():void
 	clearOutputCodex();
 	showBust("ANATAE");
 	outputCodex(header("Anatae"));
-	outputCodex("<b>Name:</b> Anatae (plural), Anat (singular)");
+	outputCodex("<b>Name (Singular):</b> Anat");
 	outputCodex("\n<b>Genders:</b> Male (85%), Female (15%)");
-	outputCodex("\n<b>Height:</b> Both sexes range between 5’11” and 6’4”");
-	outputCodex("\n<b>Weight:</b> 160 - 200 pounds");
+	outputCodex("\n<b>Height:</b> Both sexes range between 5’ 11” and 6’ 4”");
+	outputCodex("\n<b>Weight:</b> 160 to 200 lbs");
 	outputCodex("\n<b>Hair:</b> Anatae males have a plume of feathers on their crowns, which can reach two feet in length. Both sexes have small tufts of feathers on the outsides of their elbows. These feathers come in many different colours, often artificial.");
-	outputCodex("\n<b>Eyes:</b> Almost universally light blue. Anatae generally have exceptionally good eye vision, in clear conditions able to discern activity over 5 kilometres away.");
+	outputCodex("\n<b>Eyes:</b> Almost universally light blue. Anatae generally have exceptionally good eye vision, in clear conditions able to discern activity over 5 kilometers away.");
 	outputCodex("\n<b>Ears:</b> In contrast, anatae do not have exterior pinna and whilst their hearing is technically about as good as a human’s, they struggle to pinpoint the source and direction of sounds through that sense alone.");
 
 	outputCodex("\n\n");
@@ -1808,7 +1804,7 @@ public function dzaanCodex():void
 	showBust("KASKA");
 	outputCodex("\n<b>Name (Singular & Plural):</b> Dzaan");
 	outputCodex("\n<b>Sexes:</b> Female (<i>“Beta”</i>) and Hermaphrodite (<i>“Alpha”</i>)");
-	outputCodex("\n<b>Height:</b> 6’2”</i> to 8’");
+	outputCodex("\n<b>Height:</b> 6’ 2”</i> to 8’");
 	outputCodex("\n<b>Weight:</b> 180 to 300 lbs, depending on build.");
 	outputCodex("\n<b>Hair:</b> Extremely varied and often colorful.");
 	outputCodex("\n<b>Eyes:</b> Extremely varied, usually matching hair color.");
@@ -1846,9 +1842,9 @@ public function dzaanCodex():void
 public function myrFungusCodex():void
 {
 	clearOutputCodex();
-	outputCodex(header("Myr Fungus"));
+	outputCodex(header("Myr Fungi"));
 	outputCodex("<i>Gross.</i>\n");
-	outputCodex("\n<b>Name:</b> Ophiocordyceps Myrmedius");
+	outputCodex("\n<b>Name:</b> Ophiocordyceps Myrmedius (Myr Fungus)");
 	outputCodex("\n<b>Genders:</b> Spores are technically genderless. Upon attaching to a host, the spores develop a gender based on a number of factors within the host.");
 	outputCodex("\n<b>Height:</b> Spores are a half-inch in diameter at the most. Manifested fungi are typically around half the host’s height.");
 	outputCodex("\n<b>Weight:</b> Spores are lighter than feathers. Manifested fungi weigh about as much as a full travel backpack. Fungal <i>“queens”</i> can weigh up to a few hundred pounds at the base.");
@@ -2112,13 +2108,13 @@ public function fanfirCodexEntry():void
 	outputCodex(header("Fanfir"));
 	outputCodex("<b>Name:</b> Fanfir");
 	outputCodex("\n<b>Sexes:</b> M/F equal split");
-	outputCodex("\n<b>Height:</b> 9' tall, 36' long from head to tail tip avg.");
-	outputCodex("\n<b>Weight:</b> 617 lbs or 280 kg avg.");
+	outputCodex("\n<b>Height:</b> About 10’ (3 meters) tall, and roughly 40’ (12 meters) long from head to tail tip on average");
+	outputCodex("\n<b>Weight:</b> 617 lbs (280 kg) on average");
 	outputCodex("\n<b>Hair:</b> On the head and around the groin");
 	outputCodex("\n<b>Skin Color</b>: Many different natural variances between coal black and deep red");
 	outputCodex("\n<b>Eyes:</b> Two, variety of colors");
 	outputCodex("\n<b>Lifespan:</b> 250 years (modern)");
-	outputCodex("\n<b>Wings:</b> Bat-like, with two clawed digits and a thumb at the limb extent. May reach 10 metres in span");
+	outputCodex("\n<b>Wings:</b> Bat-like, with two clawed digits and a thumb at the limb extent. May reach about 33’ (10 meters) in span");
 	outputCodex("\n<b>Tails:</b> 2, thin, serpentine and flexible");
 
 	outputCodex("\n\n");
