@@ -4585,12 +4585,13 @@ public function displayEncounterLog(showID:String = "All"):void
 							if(flags["ANNO_STRAPON_MODS_ENABLED"] != undefined) output2(", Strapon mods enabled");
 						}
 					}
-					if(flags["ANNO_SEXED"] != undefined)
+					if(flags["ANNO_SEXED"] != undefined && flags["ANNO_SEXED"] > 0)
 					{
 						output2("\n<b>* Anno, Sexual History:</b> Sexed her");
 						if(flags["ANNO_EVER_STRAPONED"] != undefined) output2(", Fucked her with a hardlight strapon");
 						if(flags["ANNOxSYRI_WINCEST"] != undefined) output2(", Sexed her with Syri");
 						output2("\n<b>* Anno, Times Sexed: </b>" + flags["ANNO_SEXED"]);
+						if(silly) output2("\n<b>* Anno, Times Sexed by Your Dad: </b>" + (flags["ANNO_SEXED"] + 1 + rand(20)) + " <i>(Approximation)</i>");
 					}
 					if(flags["ANNO_ANALSEXED"] != undefined) output2("\n<b>* Anno, Times Fucked Her Ass: </b>" + flags["ANNO_ANALSEXED"]);
 					if(flags["ANNO_TRIBERATOR_USED"] != undefined) output2("\n<b>* Anno, Times Used Her Vibrator: </b>" + flags["ANNO_TRIBERATOR_USED"]);
@@ -4994,7 +4995,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				output2("\n<b><u>Gene’s Mods</u></b>");
 				if(flags["GENE_TALKED_TO"] == undefined) output2("\n<b>* Fanfir Man:</b>");
 				else output2("\n<b>* Gene:</b>");
-				output2("Met him");
+				output2(" Met him");
 				if(flags["GENE_FUCKED"] != undefined) output2(", Sexed him");
 				if(flags["GENE_BLOWJOB"] != undefined) output2(", Sucked his cock");
 				if(flags["GENE_BELLYRUBS_ENABLED"] != undefined) output2(", Rubbed his belly");
