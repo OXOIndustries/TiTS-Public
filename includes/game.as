@@ -2295,14 +2295,21 @@ public function statisticsScreen(showID:String = "All"):void
 					else output2("\n<b><u>" + StringUtil.toTitleCase(num2Ordinal(x + 1)) + " Breast Row</u></b>");
 					output2("\n<b>* Breast, Count: </b>" + pc.breastRows[x].breasts);
 					output2("\n<b>* Breast, Size: </b>" + StringUtil.toTitleCase(pc.breastCup(x)));
-					if (pc.breastRows[x].breasts != 1) output2("s");
+					if(pc.breastRows[x].breasts != 1) output2("s");
 					if(pc.breastRows[x].breastRating() >= 200) output2(" (" + formatFloat(pc.breastRows[x].breastRating(), 3) + ")");
 					if(pc.breastRows[x].breastRatingHoneypotMod != 0) output2("\n<b>* Breast, Honeypot Size Rating: </b>" + formatFloat(pc.breastRows[x].breastRatingHoneypotMod, 3));
 					if(pc.breastRows[x].breastRatingLactationMod != 0) output2("\n<b>* Breast, Lactation Size Rating: </b>" + formatFloat(pc.breastRows[x].breastRatingLactationMod, 3));
 					output2("\n<b>* Nipple, Type: </b>" + " " + GLOBAL.NIPPLE_TYPE_NAMES[pc.breastRows[x].nippleType]);
+					if(breastRows[x].fuckable()) output2(", Fuckable");
+					if(breastRows[x].nippleType == GLOBAL.NIPPLE_TYPE_DICK) output2("\n<b>* Nipple, Genital Type: </b>" + GLOBAL.TYPE_NAMES[pc.breastRows[x].dickNippleType]);
 					if(pc.breastRows[x].nippleType != GLOBAL.NIPPLE_TYPE_FUCKABLE && pc.breastRows[x].nippleType != GLOBAL.NIPPLE_TYPE_FLAT && pc.breastRows[x].nippleType != GLOBAL.NIPPLE_TYPE_INVERTED)
 					{
-						output2("\n<b>* Nipple, Length: </b>" + prettifyLength(pc.nippleLength(x)));
+						if(breastRows[x].nippleType == GLOBAL.NIPPLE_TYPE_DICK)
+						{
+							output2("\n<b>* Nipple, Length, Flaccid: </b>" + prettifyLength(pc.nippleLength(x)));
+							output2("\n<b>* Nipple, Length, Erect: </b>" + prettifyLength(pc.nippleLength(x) * dickNippleMultiplier));
+						}
+						else output2("\n<b>* Nipple, Length: </b>" + prettifyLength(pc.nippleLength(x)));
 						if(pc.breastRows[x].breasts != 1) output2(" each");
 					}
 					output2("\n<b>* Areola, Size: </b>" + prettifyLength(pc.nippleWidth(x)));
@@ -2703,7 +2710,7 @@ public function statisticsScreen(showID:String = "All"):void
 		if(!chars["EMBRY"].vaginalVirgin) totalVirginitiesTaken++;
 		if(!chars["EMBRY"].analVirgin) totalVirginitiesTaken++;
 		if(!chars["ANNO"].analVirgin) totalVirginitiesTaken++;
-		if (flags["TOOK_DELILAHS_BUTTGINITY"] != undefined) totalVirginitiesTaken++;
+		if(flags["TOOK_DELILAHS_BUTTGINITY"] != undefined) totalVirginitiesTaken++;
 		if(flags["TOOK_PRINCESS_BUTTGINITY"] != undefined) totalVirginitiesTaken++;
 		if(totalVirginitiesTaken > 0)
 		{
@@ -4635,6 +4642,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["BESS_EVENT_27"] != undefined) output2(" Missing");
 					else output2(" Away");
 					if(flags["BESS_EVENT_25_SPINOFF"] != undefined) output2(", Left your crew");
+					if(flags["SOLD_BESS"] != undefined) output2(", Sold for 10000 credits");
 					output2(", <i>(No longer able to track data on [bess.Em].)</i>");
 				}
 				else
@@ -5191,7 +5199,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Taivra's Palace (Encounters)
-			if(flags["FOUGHT_PRAETORIANS"] != undefined || flags["PLAT190 USED AS NYREA BRIBE"] != undefined || flags["CRYSTAL_GOO_GLORYHOLED"] != undefined || flags["CRYSTAL_GOO_DEFEAT"] != undefined || flags["LOOTED_TAIVRAS_BEDROOM"] != undefined || flags["PRINCESS_DEFEATED"] != undefined || flags["MET_TAIVRA"] != undefined)
+			if(flags["FOUGHT_PRAETORIANS"] != undefined || flags["PLAT190 USED AS NYREA BRIBE"] != undefined || flags["CRYSTAL_GOO_GLORYHOLED"] != undefined || flags["CRYSTAL_GOO_DEFEAT"] != undefined || flags["LOOTED_TAIVRAS_BEDROOM"] != undefined || flags["PRINCESS_DEFEATED"] != undefined || flags["TOOK_PRINCESS_BUTTGINITY"] != undefined || flags["MET_TAIVRA"] != undefined)
 			{
 				// Custom-Named Palace
 				var palaceName:String = "Royal Nyrean";
