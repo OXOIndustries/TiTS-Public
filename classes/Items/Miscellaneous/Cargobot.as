@@ -47,7 +47,7 @@
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 0;
-			this.isUsable = false;
+			this.isUsable = true;
 			
 			this.version = _latestVersion;
 		}	
