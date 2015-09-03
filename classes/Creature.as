@@ -1246,6 +1246,8 @@
 				case "gear":
 					buffer = gearDescript();
 					break;
+				case "clothes":
+					buffer = clothesDescript(); // isolates layer unlike gear -- armor if its there, otherwise both undergarments
 				case "short":
 				case "name":
 					buffer = short;
@@ -4012,7 +4014,7 @@
 				{
 					if (legType == GLOBAL.TYPE_EQUINE || legType == GLOBAL.TYPE_CENTAUR) adjectives = ["equine", "equine", "horse-like", "hoof-capped"];
 					else if (legType == GLOBAL.TYPE_BOVINE) adjectives = ["bovine", "bovine", "cow-like", "hoof-capped"];
-					else if (legType == GLOBAL.TYPE_CANINE) adjectives = ["canine", "canine",, "dog-like", "paw-footed"];
+					else if (legType == GLOBAL.TYPE_CANINE) adjectives = ["canine", "canine", "dog-like", "paw-footed"];
 					else if (legType == GLOBAL.TYPE_FELINE) adjectives = ["feline", "feline", "cat-like", "graceful"];
 					else if (legType == GLOBAL.TYPE_VULPINE) adjectives = ["vulpine", "vulpine", "fox-like", "foxy"];
 					else if (legType == GLOBAL.TYPE_BEE) adjectives = ["chitinous", "armored", "insect-like", "carapace-covered"];
@@ -8169,6 +8171,14 @@
 				else if (rando == 3) description += "kissable nipple";
 				else if (rando == 4) description += "mouth-like nipple";
 			}
+			else if (breastRows[rowNum].nippleType == GLOBAL.NIPPLE_TYPE_DICK)
+			{
+				description += RandomInCollection("dick-nipple", "cock-nipple", "nipple-cock");
+			}
+			else if (breastRows[rowNum].nippleType == GLOBAL.NIPPLE_TYPE_INVERTED)
+			{
+				description += RandomInCollection("inverted nipple", "hidden nip");
+			}
 			//Normals
 			else {
 				rando = this.rand(5);
@@ -9170,6 +9180,17 @@
 			if (isNude()) addToList("gear");
 			return formatList();
 		}
+		public function clothesDescript():String
+		{
+			if (!(armor is EmptySlot)) return armor.longName;
+			else
+			{
+				clearList();
+				if (!(upperUndergarment is EmptySlot)) addToList(upperUndergarment.longName);
+				if (!(lowerUndergarment is EmptySlot)) addToList(lowerUndergarment.longName);
+				return formatList();
+			}
+		}
 		public function crotchDescript():String {
 
 			clearList();
@@ -9799,10 +9820,10 @@
 					else if (rando == 1) descript += "slender";
 					else descript += "narrow";
 				} else if (cocks[cockNum].thickness() <= 1.2) {
-					rando = this.rand(3);
-					if (rando == 0) descript += "ordinary";
-					else if (rando == 1) descript += "fleshy";
-					else descript += "substantial";
+					descript += RandomInCollection("modest");
+					
+					//else if (rando == 1) descript += "fleshy";
+					//else descript += "substantial";
 				} else if (cocks[cockNum].thickness() <= 1.6) {
 					rando = this.rand(3);
 					if (rando == 0) descript += "ample";

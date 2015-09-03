@@ -1492,7 +1492,7 @@ public function numbPussyFuck(dick:Boolean = true):void {
 		output("slide your ");
 		if(x >= 0) output("[pc.cock " + x + "]");
 		else output("[pc.clit]");
-		//[tailcock]}
+		//[tailCock]}
 		output(" into her");
 	}
 	//lift her leg and slide her onto your nipple-cock

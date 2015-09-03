@@ -396,7 +396,7 @@ public function crewRecruited():Number
 	if(flags["RECRUITED_CELISE"] > 0) counter++;
 	if(reahaRecruited()) counter++;
 	if (!annoNotRecruited()) counter++;
-	//if (bessIsFollower()) counter++;
+	if (bessIsFollower()) counter++;
 	return counter;
 }
 
@@ -439,7 +439,7 @@ public function crew(counter:Boolean = false):Number {
 		count++;
 		if (!counter)
 		{
-			crewMessages += "\n\nThere's some gigantic silver blob of instanity sat in the corner. Do you want to go and bother it? Probably best to be careful though, it looks like it might do a number on your sanity. [PLACEHOLDER]";
+			crewMessages += "\n\n[bess.name] is wandering around the ship and keeping [bess.himHer]self busy. It shouldn't be that hard to find [bess.himHer].";
 			addButton(count - 1, bess.short, approachFollowerBess);
 		}
 	}
@@ -574,9 +574,20 @@ public function sleep(outputs:Boolean = true):void {
 	}
 	
 	this.clearMenu();
-	if (flags["ANNO_SLEEPWITH_DOMORNING"] != undefined) this.addButton(0, "Next", annoMorningRouter);
-	if (flags["BESS_SLEEPWITH_DOMORNING"] != undefined) addButton(0, "Next", bessMorningEvents);
-	else this.addButton(0,"Next",mainGameMenu);
+	
+	if (flags["ANNO_SLEEPWITH_DOMORNING"] != undefined)
+	{
+		addButton(0, "Next", annoMorningRouter);
+		return;
+	}
+	
+	if (flags["BESS_SLEEPWITH_DOMORNING"] == 1)
+	{
+		addButton(0, "Next", bessMorningEvents);
+		return;
+	}
+	
+	addButton(0,"Next",mainGameMenu);
 }
 
 public function sleepHeal():void
@@ -2692,7 +2703,8 @@ public function statisticsScreen(showID:String = "All"):void
 		if(!chars["EMBRY"].vaginalVirgin) totalVirginitiesTaken++;
 		if(!chars["EMBRY"].analVirgin) totalVirginitiesTaken++;
 		if(!chars["ANNO"].analVirgin) totalVirginitiesTaken++;
-		if(flags["TOOK_DELILAHS_BUTTGINITY"] != undefined) totalVirginitiesTaken++;
+		if (flags["TOOK_DELILAHS_BUTTGINITY"] != undefined) totalVirginitiesTaken++;
+		if(flags["TOOK_PRINCESS_BUTTGINITY"] != undefined) totalVirginitiesTaken++;
 		if(totalVirginitiesTaken > 0)
 		{
 			output2("\n<b><u>Sexploration</u></b>");
@@ -5217,10 +5229,13 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["PLAT190 USED AS NYREA BRIBE"] != undefined) output2(", Bribed them with Platinum 190");
 				}
 				// Nyrean Princess
-				if(flags["PRINCESS_DEFEATED"] != undefined)
+				if(flags["PRINCESS_DEFEATED"] != undefined || flags["TOOK_PRINCESS_BUTTGINITY"] != undefined)
 				{
 					output2("\n<b>* Nyrean Princess:</b> Met her");
-					if(9999 == 0) output2(", Sexed her");
+					if(flags["PRINCESS_DEFEATED"] > 1 || flags["TOOK_PRINCESS_BUTTGINITY"] != undefined) output2(", Sexed her");
+					if(flags["PRINCESS_DEFEATED"] == 2) output2(", You rode her ovipositor");
+					if(flags["PRINCESS_DEFEATED"] == 3 || flags["TOOK_PRINCESS_BUTTGINITY"] != undefined) output2(", Took her anal virginity");
+					if(flags["PRINCESS_DEFEATED"] == 4) output2(", She polished your penis");
 					if(flags["PRINCESS_DEFEATED"] != undefined) output2(", Defeated her");
 					if(9999 == 0) output2(" and freed harem");
 				}
