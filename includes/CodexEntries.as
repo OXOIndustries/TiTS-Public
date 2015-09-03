@@ -296,7 +296,7 @@ public function simiiCodex():void
 	userInterface.showBust("EMBRY_0");
 	//Species Codex Entry
 	outputCodex(header("Simii"));
-	outputCodex("(From order name Simiiformes / Simians)");
+	outputCodex("(From order name Simiiformes / Simians)\n");
 	outputCodex("\n<b>Name (Singular & Plural):</b> Simii");
 	outputCodex("\n<b>Sexes:</b> Male, Female");
 	outputCodex("\n<b>Height, Weight, Hair, And Eyes:</b> As terrans.");
@@ -916,8 +916,8 @@ public function mimbraneCodexEntry():void
 	userInterface.showBust("MIMBRANE");
 
 	outputCodex(header("Mimbranes"));
-	outputCodex(blockHeader("(Graft, Epidel, Second Skin)\n"));
-	outputCodex("<b>Name (Singular):</b> Mimbrane");
+	outputCodex("(Graft, Epidel, Second Skin)\n"));
+	outputCodex("\n<b>Name (Singular):</b> Mimbrane");
 	outputCodex("\n<b>Sex:</b> Asexual");
 	outputCodex("\n<b>Height:</b> 0.0004 to 0.25 inches. Typically ranges between the slightest fraction of an inch when resembling a thin film to a quarter of an inch when dense and/or well fed.");
 	outputCodex("\n<b>Length:</b> 6 to 36 square inches. The parasite’s ability to distribute its mass to control its surface area can usually put it anywhere between six and thirty six square inches.");
@@ -1149,7 +1149,7 @@ public function vanaeCodexEntry():void
 	clearOutputCodex();
 	userInterface.showBust("VANAE_HUNTRESS", "VANAE_MAIDEN"); // Probably split this out into multiple types?
 	outputCodex(header("Vanae"));
-	outputCodex("'Vah-nay'");
+	outputCodex("'Vah-nay'\n");
 	outputCodex("\n<b>Name (Singular & Plural):</b> Vanae");
 	//Taxonym: Vanae
 	outputCodex("\n<b>Sexes:</b> Female");
