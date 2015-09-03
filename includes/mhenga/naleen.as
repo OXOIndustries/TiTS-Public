@@ -158,7 +158,7 @@ public function naleenStruggle():void {
 public function biteAttack():void {
 	author("Savin");
 	var attacker:Creature = foes[0];
-	output("The naleen girl lunges at you with a predatory grin, jaw opening wide as she closes. You can almost seen the glint of venom on her fangs!");
+	output("The naleen girl lunges at you with a predatory grin, jaw opening wide as she closes. You can almost see the glint of venom on her fangs!");
 	
 	//{standard dodge/miss messages}
 	if(combatMiss(foes[0],pc)) {
