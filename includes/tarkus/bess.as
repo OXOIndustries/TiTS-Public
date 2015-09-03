@@ -1222,9 +1222,33 @@ public function bessFollowerMenu():void
 		}
 	}
 
+	if (flags["BESS_EVENT_23"] != undefined)
+	{
+		if (flags["CREWMEMEBER_SLEEP_WITH"] == "BESS")
+		{
+			addButton(6, "NoSleep", bessClearSleep, undefined, "Don't Sleep With", "Tell [bess.name] you'd prefer to not share in [bess.hisHer] company whilst sleeping.");
+		}
+		else
+		{
+			addButton(6, "SleepW.", bessSleepWith, undefined, "Sleep With", "Tell [bess.name] you'd like to share [bess.hisHer] company whilst sleeping.");
+		}
+	}
+	
 	addButton(10, "Appearance", bessAppearance, undefined, "Appearance", "Bess’ Appearance");
 
 	addButton(14, "Back", bessLeaveFollowerMenu);
+}
+
+public function bessClearSleep():void
+{
+	flags["CREWMEMBER_SLEEP_WITH"] = undefined;
+	bessFollowerMenu();
+}
+
+public function bessSleepWith():void
+{
+	flags["CREWMEMBER_SLEEP_WITH"] = "BESS";
+	bessFollowerMenu();
 }
 
 // wrap exiting to mainGameMenu so we can reset a flag
@@ -9888,6 +9912,8 @@ public function bessMorningEvents():void
 	//	flags["BESS_MORNING_EVENT_NOTSLEEPINGWITH"] = 1;
 	//}
 
+	flags["BESS_SLEEPWITH_DOMORNING"] = undefined;
+	
 	if (flags["BESS_MORNING_EVENT_1"] == undefined && rand(2) == 0)
 	{
 		bessMorningEvent1();
@@ -9902,8 +9928,6 @@ public function bessMorningEvents():void
 	{
 		bessHighLustMorningScene();
 	}
-	
-	flags["BESS_SLEEPWITH_DOMORNING"] = undefined;
 }
 
 public function bessMorningMessages():void

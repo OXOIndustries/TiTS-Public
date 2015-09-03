@@ -574,9 +574,20 @@ public function sleep(outputs:Boolean = true):void {
 	}
 	
 	this.clearMenu();
-	if (flags["ANNO_SLEEPWITH_DOMORNING"] != undefined) this.addButton(0, "Next", annoMorningRouter);
-	if (flags["BESS_SLEEPWITH_DOMORNING"] != undefined) addButton(0, "Next", bessMorningEvents);
-	else this.addButton(0,"Next",mainGameMenu);
+	
+	if (flags["ANNO_SLEEPWITH_DOMORNING"] != undefined)
+	{
+		addButton(0, "Next", annoMorningRouter);
+		return;
+	}
+	
+	if (flags["BESS_SLEEPWITH_DOMORNING"] == 1)
+	{
+		addButton(0, "Next", bessMorningEvents);
+		return;
+	}
+	
+	addButton(0,"Next",mainGameMenu);
 }
 
 public function sleepHeal():void
