@@ -1646,8 +1646,8 @@ public function bessSetTitleOption(opts:Array):void
 	}
 
 	// Do the setting
-	if ( tarPC && !sex) flags["BESS_PC_SEX_NAME"] = newTitle;
-	if ( tarPC &&  sex) flags["BESS_PC_NAME"] = newTitle;
+	if ( tarPC &&  sex) flags["BESS_PC_SEX_NAME"] = newTitle;
+	if ( tarPC && !sex) flags["BESS_PC_NAME"] = newTitle;
 	if (!tarPC && !sex) flags["BESS_NAME"] = newTitle;
 	if (!tarPC &&  sex) flags["BESS_SEX_NAME"] = newTitle;
 
