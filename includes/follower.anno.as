@@ -2162,7 +2162,7 @@ public function fuckAnnoWithScienceYoFukkinLadyBoi():void
 	if(pc.armor.shortName != "")
 	{
 		output("You flash Anno a cheeky grin and drop your ");
-		output("[pc.armor], revealing your [pc.lowerUnderGarment]. Your ausar lover’s eyes go wide... and double again in size when you press the little button on the side. A beam of light bursts forth from your crotch, coalescing into a dick-shaped holographic projection that bobs over your crotch.");
+		output("[pc.armor], revealing your [pc.lowerUndergarment]. Your ausar lover’s eyes go wide... and double again in size when you press the little button on the side. A beam of light bursts forth from your crotch, coalescing into a dick-shaped holographic projection that bobs over your crotch.");
 		output("\n\n<i>“Bend over, girl,”</i> you say, reaching down to stroke the length of your hardlight erection. The neural net built into it kicks in instantly, sending a shiver of pleasure through your loins as you stroke your strapon. Giggling eagerly at your command, Anno spins on a heel and plants herself on her bed, ass invitingly in the air.");
 	}
 	//PC isn’t wearing anything over the strap:

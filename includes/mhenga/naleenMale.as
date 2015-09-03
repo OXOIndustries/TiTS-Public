@@ -304,8 +304,8 @@ public function rideDudeleensWithAPussaaaaah():void {
 		output("\n\nHe grunts in understanding as he lays down and begins to relax, acknowledging that he’s at your mercy.");
 	}
 	//Mischievous
-	else if(pc.isMischievous()) output("\n\nNow, now. If he doesn’t play nice, you might have to do something you’ll both regret. So he’d better get over himself and submit. Plus he seems to be enjoying himself too, you tease.\n\nHe grunts in pleasure as you give his shaft a firm stroke with your [pc.foot], his doubled spurts of pre signalling his undeniable enjoyment as he calms down.");
-	else output("\n\nYou warn him against fighting back. He obviously wanted sex with you. All he has to do is lie back and you can both enjoy it.\n\nHe scoffs at first, but after a moment to think he decides that to play along. With a nod of understanding he quiets down. You give him a congratulatory stroke on with your [pc.foot], earning a pleasured sigh from the increasingly aroused, alien naga.");
+	else if(pc.isMischievous()) output("\n\nNow, now. If he doesn’t play nice, you might have to do something you’ll both regret. So he’d better get over himself and submit. Plus he seems to be enjoying himself too, you tease.\n\nHe grunts in pleasure as you give his shaft a firm stroke with your [pc.foot], his doubled spurts of pre signaling his undeniable enjoyment as he calms down.");
+	else output("\n\nYou warn him against fighting back. He obviously wanted sex with you. All he has to do is lie back and you can both enjoy it.\n\nHe scoffs at first, but after a moment to think he decides to play along. With a nod of understanding he quiets down. You give him a congratulatory stroke on with your [pc.foot], earning a pleasured sigh from the increasingly aroused, alien naga.");
 
 	output("\n\nThat's better. Lowering yourself down until you are ");
 	if(pc.legCount == 1) output("positioned above");
@@ -315,7 +315,7 @@ public function rideDudeleensWithAPussaaaaah():void {
 	else output("pushing against your [pc.legOrLegs]");
 	output(". Once in position, you drag yourself up his body, sliding your [pc.vaginas]");
 	if(pc.balls > 0) output(" and [pc.balls]");
-	output(" over his form, revelling as his soft fur tickles you, slipping over his firm, defined muscles until you are resting on his collarbone with your [pc.vaginas] hovering above his face. <i>\"Lick,\"</i>  you demand before warning him that you had better not feel so much as a scratch from his teeth.");
+	output(" over his form, reveling as his soft fur tickles you, slipping over his firm, defined muscles until you are resting on his collarbone with your [pc.vaginas] hovering above his face. <i>\"Lick,\"</i>  you demand before warning him that you had better not feel so much as a scratch from his teeth.");
 
 	output("\n\nHe hesitantly extends his tongue to give [pc.oneVagina] a tentative lick, then another, and another.");
 
@@ -332,7 +332,7 @@ public function rideDudeleensWithAPussaaaaah():void {
 	output("\n\nThe pleasure washes over you; if you were to let him, why, you could probably cum from just this alone... but you don't feel like letting him just yet. Instead, you steel yourself and pull away from his face and questing tongue, dragging your now-slick and dripping cunt back over his belly towards his loins.");
 	if(pc.vaginaTotal() > 1)
 	{
-		output(" It's empty sister");
+		output(" Its empty sister");
 		if(pc.vaginaTotal() > 2) output("s quiver");
 		else output(" quivers");
 		output(" needily, but you only had time for one tongue-job.");
@@ -340,7 +340,7 @@ public function rideDudeleensWithAPussaaaaah():void {
 	output(" His dicks are hot and damp as your netherlips touch them, soaked in pre-cum wrung from him whilst he was lavishing his attention on your cunt before. You grind back against ");
 	if(pc.vaginaTotal() == 1) output("one");
 	else output("them");
-	output(", tantalisingly brushing ");
+	output(", tantalizingly brushing ");
 	if(pc.vaginaTotal() == 1) output("its");
 	else output("their");
 	output(" rubbery nubs against your outer lips but not actually allowing ");
@@ -504,7 +504,7 @@ public function getBlownByDudeleen():void {
 	//Hard:
 	if(pc.isAss()) output("\n\nYou deliver a slap across his face, immediately silencing him. You remind him of his position, and warn him that unless he fancies being left helpless for the zil, he had best cooperate.\n\nHe looks away; it’s clear that your slap hurt his ego more than it hurt him. When he gazes back at you, you observe he seems much more mellow and accepting. Good.");
 	//Mischievous:
-	else if(pc.isMischievous()) output("\n\nYou warn the little kitty to play nice. You took him down once already, and you can take him down as many times as you need. So he might as well as be good a boy and save you both the trouble.\n\nHe looks away with a scowl, but otherwise seems compliant. Now that’s much better.");
+	else if(pc.isMischievous()) output("\n\nYou warn the little kitty to play nice. You took him down once already, and you can take him down as many times as you need. So he might as well as be a good boy and save you both the trouble.\n\nHe looks away with a scowl, but otherwise seems compliant. Now that’s much better.");
 	else output("\n\nYou simply continue to look down at him, not reacting to his threatening growl at all.\n\nHe tries to struggle against his bindings, but you pin him down by his shoulders. Your message is clear, either he stays quiet and lets do your thing or you’re not budging and neither is he.\n\nHe snorts in frustration, but after a few moments he decides to comply. You release him as he goes slack, patting him on the head for his cooperation.");
 	output("\n\nNow that he’s calmed down you’re free to secure his hands behind his back so you can start with the fun stuff. After all, he seemed pretty intent on doing this kind of stuff to you. He's probably more upset about being on the bottom than he is about the sex. Stepping closer to him, you adjust your [pc.gear] to expose your ");
 	if(pc.cockTotal() == 1) output("half-erect [pc.cockNounSimple], letting it wave in the naleen's face");
@@ -678,7 +678,7 @@ public function handjobThatDudeleen():void {
 	output("Well, since he's being so enthusiastic about it, you suppose it wouldn’t hurt to give him a hand. Reaching back behind you, your fingers close around one of the naleen's lizard-like pricks, feeling the lumps adorning his shaft against your palm as your hand encircles it and makes the first stroke.");
 	output("\n\nHe lets out a hiss of pure pleasure, idly humping your hands as you tease the soft swollen bulbs of one of his shafts.");
 	output("\n\nWith a smirk you squeeze just a little tighter, enough to be firm but not painful, and start to stroke again, languidly drifting up and down his length, your fingers locked around him all the while. <i>“Ah, yeah...”</i>  you hear him whisper airily. His hips move slowly, tentatively at first, before he begins to thrust at a desirable pace.");
-	output("\n\nSince you're going to be nice, he's going to have to get off before you can. With this realisation, you release his dick and swivel around on his chest so that you're facing his twin shafts. Now seated less awkwardly, you reach forward and take hold of his prick once more, this time you grab the second one too, teasingly caressing them with your fingers before squeezing them just right and starting to pump. You time yourself so that when one hand is stroking down its shaft, the other is stroking up the other.");
+	output("\n\nSince you're going to be nice, he's going to have to get off before you can. With this realization, you release his dick and swivel around on his chest so that you're facing his twin shafts. Now seated less awkwardly, you reach forward and take hold of his prick once more; this time you grab the second one too, teasingly caressing them with your fingers before squeezing them just right and starting to pump. You time yourself so that when one hand is stroking down its shaft, the other is stroking up the other.");
 	output("\n\nThe naleen starts panting at that, a yowl of pleasure escaping his lips as you hear - and feel - the rumbling purring on his chest. Seems like he’s enjoying himself! Perhaps he's imagining a pair of lovely females, one on each of lengths, bouncing up and down to a fast, alternating tempo.");
 	output("\n\nGrinning to yourself, you press your advantage, stroking faster and faster, erratically squeezing and releasing his shafts in order to heighten his pleasure. Beads of pre-cum well from each tip, oozing down over your fingers, and you happily gather up this impromptu lube in order to increase the smoothness with which your hands fly over his dicks.");
 	output("\n\nBy this point your former foe has been reduced to a mewling, moaning pile. He struggles futilely against his bindings with each yowl you draw from his lips. His hips thrust furiously against your hands, beads of pre flying off his twin reptilian pricks with each messy slap of cock on cock on hand. His throbbing along with the rising desperation in his voice make it clear that you don’t have long before he blows.");
@@ -697,7 +697,7 @@ public function handjobThatDudeleen():void {
 	if(pc.biggestCockVolume() >= 100) output(" His throat bulges around your hugeness, but he seems totally unphased by it. Clearly there's more than a little snake in this kitten.");
 	output(" His fatigue shows in that he makes almost no effort to assist you beyond trying to keep his mouth sealed around your cock and giving you the occasional lick; it's like fucking an onahole. Still, not one to be stymied, you continue to hump his face until you can feel your climax approaching.");
 
-	output("\n\nYour dick pops wetly from his mouth and you give him a second or two to realise what you have in mind before you point your [pc.cockHeadBiggest] at his face as you stroke yourself over the edge, erupting in a spray of [pc.cum] all over his face");
+	output("\n\nYour dick pops wetly from his mouth and you give him a second or two to realize what you have in mind before you point your [pc.cockHeadBiggest] at his face as you stroke yourself over the edge, erupting in a spray of [pc.cum] all over his face");
 	if(pc.cumQ() >= 75) output(" and chest");
 	if(pc.cumQ() >= 250) output(" and stomach");
 	output(".");
@@ -757,7 +757,7 @@ public function getTakenInTheAssByDudeleen():void {
 	if(pc.biggestCockVolume() >= 200) output("huge ");
 	output("dick with effortless ease. Nerves afire with pleasure, you continue to thrust and grind, absently ordering him to go faster now.");
 
-	output("\n\nHe eagerly complies, speeding up his pace until you can hear the soft squelching of your ass being taken by his reptilian member, a deliciously lewd noise that encourages you to do the same to feline mouth wrapped around your own [pc.cockBiggest]. Whenever he thrusts into you, he hits your prostate, and you moan, instinctively pumping into his eager mouth. He purrs as he feels you feed him more of your delicious rod. The rogue vibrations send sparks of pure enjoyment up your spine, which makes you spurt a fresh gob of pre into hungry throat. As the electric pleasure dissipates, you instinctively clench your ass, drawing a pleasured grunt from your naleen partner, and he thrusts back into you.");
+	output("\n\nHe eagerly complies, speeding up his pace until you can hear the soft squelching of your ass being taken by his reptilian member, a deliciously lewd noise that encourages you to do the same to the feline mouth wrapped around your own [pc.cockBiggest]. Whenever he thrusts into you, he hits your prostate, and you moan, instinctively pumping into his eager mouth. He purrs as he feels you feed him more of your delicious rod. The rogue vibrations send sparks of pure enjoyment up your spine, which makes you spurt a fresh gob of pre into his hungry throat. As the electric pleasure dissipates, you instinctively clench your ass, drawing a pleasured grunt from your naleen partner, and he thrusts back into you.");
 
 	output("\n\nThe two of you continue in this endless cycle of pleasure like a well-oiled machine.  You can feel the tightness of impending climax welling up ");
 	if(pc.balls > 0) output("within your [pc.balls]");
@@ -777,7 +777,7 @@ public function getTakenInTheAssByDudeleen():void {
 
 	output("\n\nRewarded with delicious [pc.cum] and having a ");
 	if(pc.biggestCockVolume() >= 200) output("huge, ");
-	output("throbbing dick shoved all the way inside him, he contentedly slams your [pc.asshole] with his throbbing snakehood. With a purring gurgle, you feel him flooding your backdoor with his alien fuckslime. Spurt after warm spurt of fertile seed inflams you and stokes the fires of your lust. Similarly, his left-over shaft spurts against your lower back, drenching your ");
+	output("throbbing dick shoved all the way inside him, he contentedly slams your [pc.asshole] with his throbbing snakehood. With a purring gurgle, you feel him flooding your backdoor with his alien fuckslime. Spurt after warm spurt of fertile seed inflames you and stokes the fires of your lust. Similarly, his left-over shaft spurts against your lower back, drenching your ");
 	if(pc.tailCount > 0) output("[pc.tails]");
 	else output("back");
 	output(" and your [pc.butt] with his cum, washing you with a lewd layer of sticky release.");
@@ -805,7 +805,7 @@ public function cuntailOnDudeleen():void {
 	showBust("NALEEN_MALE");
 	showName("NALEEN\nMALE");
 	output("Well, this just seems like a perfect opportunity. Your [pc.cuntTail] writhes eagerly through the air behind you, its obscene tip opening up as you place it over one of his dripping shafts and start to greedily swallow it. You moan as the sensations hit your brain, feeling his long, rounded dick spreading your tail's pussy wide and plunging deep inside of you, pushing down and down until you have taken it all.");
-	output("\n\nHe yowls in pleasure, struggling against his bindings as he eagerly begins humping your tail end. A smirk of pleasure crosses your own lips, closing your eyes as you savor the feeling of fullness in your ever-hungry tail-cunt, squeezing down and slowly pumping up and down. You can feel your pre-cum drooling from your neglected [pc.cockBiggest] and open your eyes, time to put that mouth to good use.");
+	output("\n\nHe yowls in pleasure, struggling against his bindings as he eagerly begins humping your tail end. A smirk of pleasure crosses your own lips, closing your eyes as you savor the feeling of fullness in your ever-hungry tail-cunt, squeezing down and slowly pumping up and down. You can feel your pre-cum drooling from your neglected [pc.cockBiggest] and you open your eyes, time to put that mouth to good use.");
 	output("\n\nThe moment he opens his maw to moan in pleasure, you strike. With a powerful shove, you feed him half your cock");
 	if(pc.biggestCockVolume() >= 200) output(", too horny to care that your girth forces his jaw to dislodge in order to accept you");
 	output(".");
@@ -817,7 +817,7 @@ public function cuntailOnDudeleen():void {
 	//Hard:
 	else output("\n\nYou smirk when you’re met with no gag reflex. What a slut! He must be used to taking cocks like a good little bitch. You give him a hard thrust, forcing him to swallow around you. <i>\"That’s it, take it like a good little kitty slut.\"</i>");
 
-	output("\n\nWith your cock hilted in his mouth, and his cock hilted in your [pc.tailgina], you are finally ready to start pumping for real. You go slowly, at first, adjusting to keeping pace at both ends. The feeling is incredible: your cock in something hot and tight, pulsing flesh wrapped around your shaft and greedily taking in every inch you have to give it, but there's also something in your tail-cunt too. The symbiote’s nerves feed you every delicious twitch and pulse the naleen's prick makes inside of itself, letting you know the joy of being wrapped around someone else's girth and having it hot and wet inside of you. You start to up the pace, slamming into his mouth while your tail does the same on his reptilian cock. The friction on and inside of you building, pushing you ever onwards in your pleasure.");
+	output("\n\nWith your cock hilted in his mouth, and his cock hilted in your [pc.tailgina], you are finally ready to start pumping for real. You go slowly, at first, adjusting to keeping pace at both ends. The feeling is incredible: your cock in something hot and tight, pulsing flesh wrapped around your shaft and greedily taking in every inch you have to give it, but there's also something in your tail-cunt too. The symbiote’s nerves feed you every delicious twitch and pulse the naleen's prick makes inside of itself, letting you know the joy of being wrapped around someone else's girth and having it hot and wet inside of you. You start to up the pace, slamming into his mouth while your tail does the same on his reptilian cock. The friction on and inside of you builds, pushing you ever onwards in your pleasure.");
 
 	output("\n\nYour partner has been reduced to nothing more than a fuck-toy, mewling and moaning in pleasure whenever you pull back far enough to allow a sound to escape him. His other lizard-prick bounces, slapping enviously against your tail-cunt. Perhaps you should grant it some release too?");
 
@@ -831,7 +831,7 @@ public function cuntailOnDudeleen():void {
 
 	output("\n\nYou moan in ecstasy as you idly hump his greedy mouth, letting the last of your load slip down his throat and into his ");
 	if(pc.cumQ() >= 2500) output("bloated ");
-	output("belly. You feel, oh so deliciously full yourself, your tail-cunt gorged on his seed. Yet... you can fit more, and he has another cock. Drooling mixed fluids, your tail wetly slurps free of the naleen's lower prick and moves back to the upper one with deceptive laziness, swallowing him up once more. With practiced ease, your tail pushes him over the edge, draining this second cock of all its remaining seed as well, leaving you groaning at the delicious sensation of being so utterly and completely stuffed with predator-spunk.");
+	output("belly. You feel oh so deliciously full yourself, your tail-cunt gorged on his seed. Yet... you can fit more, and he has another cock. Drooling mixed fluids, your tail wetly slurps free of the naleen's lower prick and moves back to the upper one with deceptive laziness, swallowing him up once more. With practiced ease, your tail pushes him over the edge, draining this second cock of all its remaining seed as well, leaving you groaning at the delicious sensation of being so utterly and completely stuffed with predator-spunk.");
 
 	output("\n\nWith blissful laziness, you pull your cock free of the naleen's mouth and slide off of his midriff, tail curling back around for you to inspect it. The perverse lips at its end are drooling thick gobbets of naleen seed, the scent of sex wafting from it with each twitch. Naughty boy, he got you so very messy....");
 
@@ -1024,7 +1024,7 @@ public function loseToDudeleenSex(tailIntro:Boolean = false):void {
 	{
 		output("\n\nYou let out a mewl of disappointment as he suddenly pulls himself completely free of your cunt, your netherlips clenching down on a cock that is no longer there. You were so close....");
 		output("\n\nHe pants, growling softly as he adjusts himself, positioning his lower shaft on the entrance of your [pc.asshole] and his topmost on the entrance to your [pc.vagina].");
-		output("\n\nA thrill of desire surges through you as you realise what he intends. You don’t really have time to say or do anything else, as he begins penetrating you once more. The first few inches of his [pc.girlCumNoun]-drenched shaft penetrate your ass while his throbbing topmost tool enters your pussy. As soon as the first few inches are safely guarded within you, he bucks violently, feeding you his twin bulbous cocks at once.");
+		output("\n\nA thrill of desire surges through you as you realize what he intends. You don’t really have time to say or do anything else, as he begins penetrating you once more. The first few inches of his [pc.girlCumNoun]-drenched shaft penetrate your ass while his throbbing topmost tool enters your pussy. As soon as the first few inches are safely guarded within you, he bucks violently, feeding you his twin bulbous cocks at once.");
 
 		output("\n\nYou cry out in pleasure at the feeling of being stuffed in both holes simultaneously, stretching around his paired phalli and rubbing through your inner walls, massaging you inside with incredible intimacy.");
 		pc.buttChange(chars["NALEEN_MALE"].cockVolume(0),true,true,false);
@@ -1071,7 +1071,7 @@ public function loseToDudeleenSex(tailIntro:Boolean = false):void {
 		output("\n\nYou moan in desire as you feel him withdraw, leaving you panting in frustration as the sudden, horrible emptiness fills you. Before you can think to complain, plead, do anything, you feel his powerful coils rippling and twitching, shifting you around in his grasp until you are facing away from him, [pc.butt] up in the air and back exposed.");
 		output("\n\nThe Naleen slaps your [pc.butt], leaving a reddened stamp, as he forcefully grabs your hips and prepares for reinsertion. This time, however, he aligns his lower shaft, and before you know it he’s already shoved several inches inside you.");
 		output("\n\nYou groan, deep and low as you are filled again, clenching down on this new shaft as it spears inside of you, welcoming the feeling of being stretched out once more.");
-		output("\n\nHe fucks you with uncontained lust, his top bulbous shaft slapping against your butt-cheeks, leaving off-white marks of his pre as he approaches the edge. And with a yowl and a final lunge, he comes. Jet after jet of white, fertile naleen spunk being fed into your bowels. An equally enthusiastic stream showers over your back, partially protected by his coils, but most of it slides along the circumference of his snake half to pool at your back");
+		output("\n\nHe fucks you with uncontained lust, his top bulbous shaft slapping against your butt-cheeks, leaving off-white marks of his pre as he approaches the edge. With a yowl and a final lunge, he comes. Jet after jet of white, fertile naleen spunk being fed into your bowels. An equally enthusiastic stream showers over your back, partially protected by his coils, but most of it slides along the circumference of his snake half to pool at your back");
 		if(pc.canFly()) output(" and wings");
 		output(".");
 		output("\n\nYou arch your back, feeling his sticky seed sliding over your [pc.skin], the perverse sensation and the feeling of his warmth flooding inside of you all that you need to push you over the edge and achieve your own orgasm. Your ass squeezes and clenches for all it's worth, milking him dry and sucking his load deep inside of you, pleasure crackling through your nerves");
@@ -1122,7 +1122,7 @@ public function reverseFuckNaleenCuntTailGo():void {
 	output("\n\n<i>“I didn’t say you could go,”</i>  he says, slithering around you and stopping right before you, heavy coils pinning you down. <i>“Hunting always makes me feel... hot. And since I’m sparing your life, I expect you to at least take responsibility for these,”</i>  he moves his coils to lift your chin, and you find yourself face-to-dick with a pair of reptilian shafts, already leaking pre-cum.");
 
 	//if one Cunt-tail:
-	output("\n\nAs you stare at the dripping dicks, a pang of sudden, intense need fills your mind. You <b>have</b> to have that cum! You realise dimly that it's coming from the symbiont");
+	output("\n\nAs you stare at the dripping dicks, a pang of sudden, intense need fills your mind. You <b>have</b> to have that cum! You realize dimly that it's coming from the symbiont");
 	if(pc.tailCount > 1) output("s");
 	output(" grafted to your spine, which ");
 	if(pc.tailCount == 1) output("is");
@@ -1212,7 +1212,7 @@ public function feedYourCuntTailWithDudeleen():void {
 		output("\n\nAs the naleen's tongue plays across your [pc.nipples] and his shafts start to harden within your still-milking tails, a warm feeling washes over you. You feel strangely sleepy and content, and you can't fight back a yawn that slips up your throat. Feeling comfortable with such a soft, fuzzy cushion under you, you decide there isn't any harm in it. Laying your head down, you allow your eyes to fall closed as you drift off to sleep.");
 		output("\n\n<b>Later....</b>");
 
-		output("\n\nWith a contented yawn, you lift yourself from your impromptu bed and stretch yourself; you feel so rested now. You realise that the naleen is stretched underneath you, completely still, though a closer look confirms he's fine, just passed out. Your need for seed feels sated, the hunger of your inhuman tails no longer clawing at the back of your mind, and you look back towards his loins as you gently slip them free of the naleen's cocks. As they slide back inside his groinal slit, you notice that there isn't a single drop of seed smeared against them or your own tail-cunts; they've absorbed every last drop. Looks like your tails milked him totally dry; you idly wonder how many orgasms he must have had before unconsciousness claimed him.");
+		output("\n\nWith a contented yawn, you lift yourself from your impromptu bed and stretch yourself; you feel so rested now. You realize that the naleen is stretched underneath you, completely still, though a closer look confirms he's fine, just passed out. Your need for seed feels sated, the hunger of your inhuman tails no longer clawing at the back of your mind, and you look back towards his loins as you gently slip them free of the naleen's cocks. As they slide back inside his groinal slit, you notice that there isn't a single drop of seed smeared against them or your own tail-cunts; they've absorbed every last drop. Looks like your tails milked him totally dry; you idly wonder how many orgasms he must have had before unconsciousness claimed him.");
 		output("\n\nSatisfied with how things turned out, you remove yourself from the comatose naleen's form, gather up and reapply your [pc.gear], and continue on your way.");
 	}
 	

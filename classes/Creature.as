@@ -4014,7 +4014,7 @@
 				{
 					if (legType == GLOBAL.TYPE_EQUINE || legType == GLOBAL.TYPE_CENTAUR) adjectives = ["equine", "equine", "horse-like", "hoof-capped"];
 					else if (legType == GLOBAL.TYPE_BOVINE) adjectives = ["bovine", "bovine", "cow-like", "hoof-capped"];
-					else if (legType == GLOBAL.TYPE_CANINE) adjectives = ["canine", "canine",, "dog-like", "paw-footed"];
+					else if (legType == GLOBAL.TYPE_CANINE) adjectives = ["canine", "canine", "dog-like", "paw-footed"];
 					else if (legType == GLOBAL.TYPE_FELINE) adjectives = ["feline", "feline", "cat-like", "graceful"];
 					else if (legType == GLOBAL.TYPE_VULPINE) adjectives = ["vulpine", "vulpine", "fox-like", "foxy"];
 					else if (legType == GLOBAL.TYPE_BEE) adjectives = ["chitinous", "armored", "insect-like", "carapace-covered"];
