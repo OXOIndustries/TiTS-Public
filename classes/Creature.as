@@ -8171,6 +8171,14 @@
 				else if (rando == 3) description += "kissable nipple";
 				else if (rando == 4) description += "mouth-like nipple";
 			}
+			else if (breastRows[rowNum].nippleType == GLOBAL.NIPPLE_TYPE_DICK)
+			{
+				description += RandomInCollection("dick-nipple", "cock-nipple", "nipple-cock");
+			}
+			else if (breastRows[rowNum].nippleType == GLOBAL.NIPPLE_TYPE_INVERTED)
+			{
+				description += RandomInCollection("inverted nipple", "hidden nip");
+			}
 			//Normals
 			else {
 				rando = this.rand(5);
