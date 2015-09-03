@@ -777,7 +777,7 @@ public function sellOfBessDatWhore():void
 	//Appear back in Spaceship, story path ended. { Add 10,000 credits to PC’s credit score } 
 	pc.credits += 10000;
 	flags["SOLD_BESS"] = 1;
-	flags["BESS_DISABLED"] = 1;
+	flags["BESS_LOCATION"] = BESS_DISABLED;
 	processTime(2040);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
