@@ -3505,7 +3505,7 @@ public function displayQuestLog(showID:String = "All"):void
 				output2("\n<b>* Status:</b>");
 				if(flags["MCALLISTER_MYR_TFS"] == undefined) output2(" Researching...");
 				else if(flags["MCALLISTER_MYR_TFS"] < 2) output2(" Ready to meet test subjects");
-				else output2(" Met test subjects, Successful results, Complete");
+				else output2(" Met test subjects, Successful results, Completed");
 			}
 			// Red Myr Blood Donation Drive
 			if(flags["NEVRIE_QUEST"] != undefined)
@@ -3541,9 +3541,9 @@ public function displayQuestLog(showID:String = "All"):void
 				else if(flags["SIERVA_LATEGOODBYE_RESPONSE"] == LIEVE_LATEGOODBYE_YES)
 				{
 					if(flags["LEARNED_IAYAS_FATE"] == undefined) output2(" Accepted, Find Iaya");
-					else output2(" Accepted, Learned Iaya’s Fate, Tell Sievra");
+					else output2(" Accepted, Learned Iaya’s Fate, Tell Sierva");
 				}
-				else if(flags["SIERVA_LATEGOODBYE_RESPONSE"] == LIEVE_LATEGOODBYE_COMPLETE) output2(" Accepted, Learned Iaya’s Fate, Told Sievra, Completed");
+				else if(flags["SIERVA_LATEGOODBYE_RESPONSE"] == LIEVE_LATEGOODBYE_COMPLETE) output2(" Accepted, Learned Iaya’s Fate, Told Sierva, Completed");
 				sideCount++;
 			}
 		}
@@ -5097,7 +5097,7 @@ public function displayEncounterLog(showID:String = "All"):void
 						if(flags["SIERVA_TALK"] != undefined)
 						{
 							output2("\n<b>* Mayren:</b> Met her");
-							output2("\n<b>* Sievra:</b> Met her");
+							output2("\n<b>* Sierva:</b> Met her");
 						}
 					}
 					else output2("\n<b>* Young Woman with Purple Hair:</b> Invited to meet");
