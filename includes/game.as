@@ -3087,7 +3087,7 @@ public function displayQuestLog(showID:String = "All"):void
 				// Tam
 				if(flags["TAM_DISABLE_METHOD"] != undefined || flags["TAKEN_TAMWOLF"] != undefined)
 				{
-					output2("\n<b>* The Stellar Tether, <i>Tarasque</i>, Tam:</b> Defeated her");
+					output2("\n<b>* The Stellar Tether, Tam:</b> Defeated her");
 					if(flags["TAM_DISABLE_METHOD"] == 1) output2(", Knocked her out");
 					if(flags["TAM_DISABLE_METHOD"] == 2) output2(", Fucked her");
 					if(flags["TAKEN_TAMWOLF"] != undefined) output2(", Took Tam-wolf");
@@ -3095,7 +3095,7 @@ public function displayQuestLog(showID:String = "All"):void
 				// Rocket pods
 				if(flags["ROCKET_PODS_ENCOUNTERED"] != undefined)
 				{
-					output2("\n<b>* The Stellar Tether, <i>Tarasque</i>, Defenses:</b>");
+					output2("\n<b>* The Stellar Tether, Defenses:</b>");
 					if(flags["ROCKET_PODS_HACKED"] != undefined) output2(" Hacked rocket pods");
 					else if(flags["ROCKET_PODS_SNEAKED"] != undefined) output2(" Sneaked passed rocket pods");
 					else output2(" Destroyed rocket pods");
@@ -3103,13 +3103,13 @@ public function displayQuestLog(showID:String = "All"):void
 				// Kaska
 				if(pc.hasKeyItem("Kaska's Detonator") || flags["KASKA_FUCKED"] != undefined)
 				{
-					output2("\n<b>* The Stellar Tether, <i>Tarasque</i>, Kaska:</b> Defeated her");
+					output2("\n<b>* The Stellar Tether, Kaska:</b> Defeated her");
 					if(flags["KASKA_FUCKED"] != undefined) output2(", Fucked her");
 				}
 				// Khorgan
 				if(pc.hasKeyItem("Khorgan's Detonator") || flags["DICKFUCKED_CAPN_KHORGAN"] != undefined || flags["LESBOED_KHORGAN"] != undefined)
 				{
-					output2("\n<b>* The Stellar Tether, <i>Tarasque</i>, Capt. Khorgan:</b> Defeated her");
+					output2("\n<b>* The Stellar Tether, Capt. Khorgan:</b> Defeated her");
 					if(flags["DICKFUCKED_CAPN_KHORGAN"] != undefined) output2(", Dick-fucked her");
 					if(flags["LESBOED_KHORGAN"] != undefined) output2(", Lesbian-fucked her");
 				}
