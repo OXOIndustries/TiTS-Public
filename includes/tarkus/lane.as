@@ -169,7 +169,7 @@ public function baseHypnosisWearsOff(effectToRemove:String):void
 				{
 					flags["LANE_FIRST_HYPNO_RETURN"] = 1; // Set flag to trigger the actual first time message interaction
 					
-					output("As you walk the biomes of "+ StringUtil.toTitleCase(getPlanetName()) +", you can’t help but feel something is a little... off. Different, from when it was just a few moments ago. You flex your ears, listening for anything out of the ordinary, but you can’t hear anything. You look down your body, for anything alien that might have attached itself to you, but you’re completely clean.");
+					output("As you walk the biomes of "+ getPlanetName() +", you can’t help but feel something is a little... off. Different, from when it was just a few moments ago. You flex your ears, listening for anything out of the ordinary, but you can’t hear anything. You look down your body, for anything alien that might have attached itself to you, but you’re completely clean.");
 
 					// I don't even know what the fuck this is supposed to be implying. Considering how weird it is, and how
 					// extreneous to the actual scene, DROPPED.
