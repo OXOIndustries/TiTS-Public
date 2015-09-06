@@ -3202,8 +3202,15 @@ public function followerLaneIntervention(followerName:String):void
 	flags["FOLLOWER_LANE_INTERVENTION"] = followerName;
 
 	clearOutput();
-	showName("\n" + followerName);
-	showBust(followerName.toUpperCase());
+	if (followerName == [bess.name])
+	{
+		bessHeader();
+	}
+	else
+	{
+		showName("\n" + followerName.toUpperCase());
+		showBust(followerName.toUpperCase());
+	}
 	author("B");
 
 	// I woulda used something like:
@@ -3257,8 +3264,15 @@ public function followerLaneIntervention(followerName:String):void
 public function followerLaneInterventionConfide():void
 {
 	clearOutput();
-	showName("\n" + lFollowerName().toUpperCase());
-	showBust(lFollowerName().toUpperCase());
+	if (lFollowerName() == [bess.name])
+	{
+		bessHeader();
+	}
+	else
+	{
+		showName("\n" + lFollowerName().toUpperCase());
+		showBust(lFollowerName().toUpperCase());
+	}
 	author("B");
 
 	output("<i>“I trust you,”</i> you tell "+ lFollowerName() +" suddenly. In response, "+ lFollowerMF("his", "her") +" eyes widen slightly");
@@ -3335,8 +3349,15 @@ public function followerLaneInterventionConfide():void
 public function followerLaneInterventionFuckOff():void
 {
 	clearOutput();
-	showName("\n" + lFollowerName().toUpperCase());
-	showBust(lFollowerName().toUpperCase());
+	if (lFollowerName() == [bess.name])
+	{
+		bessHeader();
+	}
+	else
+	{
+		showName("\n" + lFollowerName().toUpperCase());
+		showBust(lFollowerName().toUpperCase());
+	}
 	author("B");
 
 	output("You look "+ lFollowerName() +" dead in the eye. <i>“It’s not any of your business,”</i> you tell "+ lFollowerMF("him", "her") +" sternly. You try to look as serious as possible, but "+ lFollowerMF("he", "she") +"’s not entirely convinced.");
