@@ -14,7 +14,8 @@ package classes.Engine.Utility
 		if (pName.indexOf(":") != -1)
 			pName = pName.split(" ")[1];
 	
-		pName = StringUtil.toTitleCase(pName);
+		if (pName == "REDACTED") pName = "<i>Unknown</i>";
+		else pName = StringUtil.toTitleCase(pName.toLowerCase());
 		
 		return pName;
 	}
