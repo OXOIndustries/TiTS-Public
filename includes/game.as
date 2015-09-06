@@ -3778,8 +3778,8 @@ public function displayEncounterLog(showID:String = "All"):void
 					output2("\n<b>* Celise:</b> Met her");
 					if(flags["GIGACELISE"] == 1)output2(", Gigaform");
 					output2(", Crewmember");
-					if(flags["CELISE_ONBOARD"] > 0) output2(" (Onboard Ship)");
-					if(flags["CELISE_ONBOARD"] == undefined) output2(" (At Tavros Station)");
+					if(celiseIsCrew()) output2(" (Onboard Ship)");
+					else if(flags["CELISE_ONBOARD"] == undefined) output2(" (At Tavros Station)");
 					if(flags["TIMES_CELISE_IN_BALLS"] != undefined)
 					{
 						output2("\n<b>* Celise, Times She’s Stimulated</b>");
@@ -3843,13 +3843,13 @@ public function displayEncounterLog(showID:String = "All"):void
 				else output2(" Whoring");
 				if(flags["REAHA_FREE"] != undefined) output2(", Free to speak");
 				if(flags["REAHA_SLAVE"] != undefined) output2(", Sex slave");
-				if(flags["REAHA_IS_CREW"] != undefined)
+				if(reahaRecruited())
 				{
 					output2(", Crewmember");
 					// Reaha Expansion
-					if(flags["REAHA_IS_CREW"] == 1) output2(" (Onboard Ship)");
-					if(flags["REAHA_IS_CREW"] == 2) output2(" (At Tavros Station)");
-					if(flags["REAHA_IS_CREW"] == 3) output2(" (At New Texas)");
+					if(reahaIsCrew()) output2(" (Onboard Ship)");
+					else if(flags["REAHA_IS_CREW"] == 2) output2(" (At Tavros Station)");
+					else if(flags["REAHA_IS_CREW"] == 3) output2(" (At New Texas)");
 					output2("\n<b>* Reaha, Confidence: </b>" + reahaConfidence() + "%");
 					if(flags["REAHA_MILKMODS_UNLOCKED"] != undefined)
 					{
@@ -4016,7 +4016,8 @@ public function displayEncounterLog(showID:String = "All"):void
 				output2("\n<b>* Yammi:</b> Met her");
 				if(yammiIsOwned())
 				{
-					output2(", Crewmember");
+					if(9999 == 0) output2(", Crewmember");
+					else output2(", Own");
 					if(9999 == 0) output2(" (Onboard Ship)");
 				}
 				// Reaha special
@@ -4297,10 +4298,10 @@ public function displayEncounterLog(showID:String = "All"):void
 					else output2(" Met her");
 					if(flags["SYRI_SEEN_PCS_SHIP_CABIN"] != undefined) output2(", She’s seen your ship’s cabin");
 					if(flags["ANNOxSYRI_WINCEST"] != undefined) output2(", Sexed her with Anno")
-					if(syriIsCrew())
+					if(9999 == 0)
 					{
 						output2(", Crewmember");
-						if(9999 == 0) output2(" (Onboard Ship)");
+						if(syriIsCrew()) output2(" (Onboard Ship)");
 					}
 					if(flags["BET_AGAINST_SYRI"] != undefined)
 					{
@@ -4564,12 +4565,12 @@ public function displayEncounterLog(showID:String = "All"):void
 				{
 					output2("\n<b>* Anno:</b> Met her");
 					if(flags["ANNO_ASLEEP"] != undefined) output2(", Currently sleeping");
-					if(flags["ANNO_CREWMEMBER"] != undefined)
+					if(!annoNotRecruited())
 					{
 						output2(", Crewmember");
 						// Follower stuff
-						if(flags["ANNO_CREWMEMBER"] == 1) output2(" (Onboard Ship)");
-						if(flags["ANNO_CREWMEMBER"] == 2) output2(" (At Tavros Station)");
+						if(annoIsCrew()) output2(" (Onboard Ship)");
+						else if(flags["ANNO_CREWMEMBER"] == 2) output2(" (At Tavros Station)");
 					}
 					if(!chars["ANNO"].isNude()) output2("\n<b>* Anno, Attire:</b> [anno.Gear]");
 					if(flags["ANNOxKAEDE_INTRODUCED"] != undefined) output2("\n<b>* Anno, Times Met with Kaede: </b>" + flags["ANNOxKAEDE_INTRODUCED"]);
@@ -4656,10 +4657,13 @@ public function displayEncounterLog(showID:String = "All"):void
 						if(flags["BESS_FRIEND"] != undefined)output2(", Friend");
 						if(flags["BESS_LOVER"] != undefined)output2(", Lover");
 						if(flags["BESS_CUMDUMP"] != undefined) output2(", Cumdump");
-						if(flags["BESS_CREW_ROLE"] != undefined) output2(", " + StringUtil.toTitleCase(flags["BESS_CREW_ROLE"]));
-						else output2(", Own");
-						if(flags["BESS_LOCATION"] == BESS_ON_CREW) output2(" (Onboard Ship)");
-						if(flags["BESS_LOCATION"] == BESS_AT_TAVROS) output2(" (At Tavros Station)");
+						if(bessIsFollower())
+						{
+							if(flags["BESS_CREW_ROLE"] != undefined) output2(", " + StringUtil.toTitleCase(flags["BESS_CREW_ROLE"]));
+							else output2(", Own");
+							if(bessIsCrew()) output2(" (Onboard Ship)");
+							else if(flags["BESS_LOCATION"] == BESS_AT_TAVROS) output2(" (At Tavros Station)");
+						}
 					}
 					if(!chars["BESS"].isNude())
 					{
@@ -5392,10 +5396,10 @@ public function displayEncounterLog(showID:String = "All"):void
 			output2("\n<b>* Dane:</b> Met him");
 			if(flags["FOUGHT_DANE_ON_MHENGA"] != undefined) output2(", Fought him on Mhen’ga");
 			if(flags["FREED_DANE_FROM_TAIVRA"] != undefined) output2(", Freed him on Myrellion");
-			if(daneIsCrew())
+			if(9999 == 0)
 			{
 				output2(", Crewmember");
-				if(9999 == 0) output2(" (Onboard Ship)");
+				if(daneIsCrew()) output2(" (Onboard Ship)");
 			}
 			roamCount++;
 		}
