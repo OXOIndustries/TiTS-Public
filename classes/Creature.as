@@ -1,4 +1,4 @@
-﻿package classes {
+package classes {
 	import classes.Characters.PlayerCharacter;
 	import classes.Characters.PregnancyPlaceholder;
 	import classes.CockClass;
@@ -9596,11 +9596,21 @@
 				cockNum = biggestCockIndex();
 				multi = true;
 			}
-
 			//Color: 1/15 chance
 			if (!multi && rand(15) == 0)
 			{
 				descript += cocks[cockNum].cockColor;
+			}
+			//Bimbo flavor - 1/6 chance
+			else if(rand(6) == 0 && isBimbo())
+			{
+				if(rand(7) == 8 && cocks[cockNum].cLength() < 6) descript += "cute";
+				else if(rand(7) == 0) descript += "mouth-watering";
+				else if(rand(6) == 0) descript += "totally sexy";
+				else if(rand(5) == 0) descript += "super hot";
+				else if(rand(4) == 0) descript += "delicious-looking";
+				else if(rand(3) == 0 && cocks[cockNum].cLength() >= 10) descript += "awe-inspiring";
+				else descript += "yummy";
 			}
 			//Pierced - 1/5 chance
 			else if (!multi && this.rand(5) == 0 && cocks[cockNum].pierced > 0) {
