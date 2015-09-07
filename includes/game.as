@@ -3862,7 +3862,7 @@ public function displayEncounterLog(showID:String = "All"):void
 						if(flags["REAHA_ADDICTION_CURED"] != undefined) output2(", Cured");
 						else output2(", Ongoing");
 					}
-					if(flags["REAHA_LAST_DOMMY_FUCK"] != undefined) output2("\n<b>* Reaha, Days Since Last Dommy Fuck: </b>" + (days - flags["REAHA_LAST_DOMMY_FUCK"]));
+					if(reahaFree() && flags["REAHA_LAST_DOMMY_FUCK"] != undefined) output2("\n<b>* Reaha, Days Since Last Dommy Fuck Attempt: </b>" + (days - flags["REAHA_LAST_DOMMY_FUCK"]));
 				}
 				variousCount++;
 			}
