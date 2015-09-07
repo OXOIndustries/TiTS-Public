@@ -67,7 +67,7 @@ public function configureCodex():void
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Technology", "AI Systems", AISystemsCodexEntry, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Technology", "Item Mechanics", mechanicsCodex, true);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Technology", "Maia Series AI", Bess13CodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Technology", "Maia Series AI", Bess13CodexEntry);
 
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Dragon’s Hoard", dragonsHordeCodexStory, true);
 }
@@ -1301,7 +1301,7 @@ public function Bess13CodexEntry():void
 
 	outputCodex("<b>Name:</b> Bess-13 and Ben 14 Units");
 	outputCodex("\n<b>Sexes:</b> Female (Bess-13) or Male (Ben-14)");
-	outputCodex("\n<b>Height: 5'2\" (Bess-13), 6'1\" (Ben-14)");
+	outputCodex("\n<b>Height:</b> 5'2\" (Bess-13), 6'1\" (Ben-14)");
 	outputCodex("\n<b>Weight:</b> 65kg (Bess-13), 70kg (Ben-14). These are the default factory settings.");
 	outputCodex("\n<b>Hair:</b> Both unit types have retractable artificial hair that can be set by their owners. The tint is also adjustable. Factory standard is silver.");
 	outputCodex("\n<b>Eyes:</b> Both unit types have adjustable irises; color is specified by their owner. Factory standard is silver.");
@@ -2107,3 +2107,64 @@ public function dragonsHordeCodexStory():void
 	CodexManager.viewedEntry("Dragon’s Hoard");
 }
 
+public function fanfirCodexEntry():void 
+{
+	clearOutputCodex();
+	outputCodex(header("Myr Fungus"));
+	outputCodex("<i>Gross.</i>\n");
+	outputCodex("\n<b>Name:</b> Ophiocordyceps Myrmedius");
+	outputCodex("\n<b>Genders:</b> Spores are technically genderless. Upon attaching to a host, the spores develop a gender based on a number of factors within the host.");
+	outputCodex("\n<b>Height:</b> Spores are a half-inch in diameter at the most. Manifested fungi are typically around half the host’s height.");
+	outputCodex("\n<b>Weight:</b> Spores are lighter than feathers. Manifested fungi weigh about as much as a full travel backpack. Fungal <i>“queens”</i> can weigh up to a few hundred pounds at the base.");
+	outputCodex("\n<b>Hair:</b> Normal manifestations have no hair. Instead, their heads are covered by mushroom <i>“hats.”</i> Fungal queens have clear hair that pulses with colored light.");
+	outputCodex("\n<b>Skin:</b> All members of the species have chalk white skin.");
+	outputCodex("\n<b>Eyes:</b> Humanoid eyes that shift with bright colors.");
+	outputCodex("\n<b>Ears:</b> Fungal manifestations have ears shaped similarly to their host, though the shapes are only for show as they hear everything that their hosts hear and communicate telepathically.\n\n");
+	
+	
+	outputCodex(header("Fanfir"));
+	outputCodex("<b>Name:</b> Fanfir");
+
+	outputCodex("\n<b>Sexes:</b> M/F equal split");
+	outputCodex("\n<b>Height:</b> 3 metres tall, 12 metres long from head to tail tip avg.");
+	outputCodex("\n<b>Weight:</b> 280 kg avg.");
+	outputCodex("\n<b>Hair:</b> On the head and around the groin");
+	outputCodex("\n<b>Skin Color</b>: Many different natural variances between coal black and deep red");
+	outputCodex("\n<b>Eyes:</b> Two, variety of colors");
+	outputCodex("\n<b>Lifespan:</b> 250 years (modern)");
+	outputCodex("\n<b>Wings:</b> Bat-like, with two clawed digits and a thumb at the limb extent. May reach 10 metres in span");
+	outputCodex("\n<b>Tails:</b> 2, thin, serpentine and flexible");
+
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Appearance"));
+
+	outputCodex("Fanfir are vast sentient creatures from the low gravity world of Haerum. They have heavy musculature in their upper bodies and back whilst are slimmer and lithe in their torso region and digitigrade legs, lending them a hunched, looming profile. Capable of flight on their home planet, they are confined to the ground in higher gravities without specialist equipment or gene-mods. On the ground, their size and shape necessitates they walk on all fours, using their tough wing claws as front legs and so proceed with a distinctive, swaggering gait. They are entirely comfortable doing this however, indeed have evolved to spend most of their lives on the ground.");
+	outputCodex("\n\nThey have recognisably human facial features - although very broad and defined by human or ausar standards - aside from the horn that plates their lips and chin that acts as a secondary set of teeth. Their skin is smooth and tough, almost scale-like in places but still elastic and porous enough to allow the growth of hair upon their heads, the regulation of body temperature and the stretching necessary to enable flight.");
+	outputCodex("\n\nFanfir are almost always found with another set of arms, smaller and nimbler than their wing claws, sometimes gene-modded on but usually taking the form of a cybernetic harness halfway down their torsos. This enables them to perform manual tasks they would otherwise struggle to do comfortably.");
+	outputCodex("\n\nRemarkable to the species are their voluminous, highly evolved throats and vocal chords. Not obvious externally beyond the broadness of their necks, fanfir have the ability to make themselves heard over many miles - and to deafen anybody nearby. They can regulate their own hearing with a secondary, flexible tympanic membrane. They also have some limited ability to manipulate thought patterns and hormone release in others through the vibrations they produce whilst talking or singing. This feeds naturally into their aptitude for music (see below).");
+
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Sexuality"));
+
+	outputCodex("Female fanfir are slightly smaller and more lithe than males. Within their genital slits they have fairly typical vaginas, if proportionately much larger than most, replete with a clitoris. Males sport four external testicles and a 14 inch long penis, with a large bulge around two thirds of the way down, housing an over-sized semen gland capable of producing almost a gallon of seed per ejaculation.");
+	outputCodex("\n\nFanfir are oviparous and, after one a half year gestation, females lay 3-4 eggs. After hatching juvenile fanfir take around twenty years to reach adulthood. Fanfir have an average libido in comparison to the rest of the galaxy, and gladly engage in sex with anybody willing and able to do so. They cannot breed with other races however, and because of the timescales and number of large children involved are very careful breeders amongst themselves besides.");
+	outputCodex("\n\nTheir cultural preponderance towards hoarding (see below) influences fanfir sexuality. The concept of harems was central to many fanfir spoken legends: a sign of a hero's virility and tact. Nowadays fanfir of both sexes take great pride in maintaining as many lovers as they can, often attempting to persuade each away from polygamy themselves at the same time. This can mean others find fanfir possessive and jealous lovers, however that they should be thought of this way is anathema to the race's sexual paragon: that is, to have many lovers of many different races, each beholden only to them, all of them fully aware and at ease with each other. That this is virtually impossible only makes it, to the fanfir's mind, all the more an irresistible, romantic goal.");
+
+	outputCodex("\n\n");
+	outputCodex(blockHeader("History"));
+
+	outputCodex("By the time Haerum was discovered during the thirteenth planet rush, the fanfir were reaching the end of their stone age, confined mostly to their world's mountain ranges where they made their aeries. Although they had existed in a sentient state suitable to reach well beyond that for aeons they had struggled to do so, despite concurrently developing a language arguably more sophisticated than the then galactic standard, thanks largely to the difficulty they had, as pseudo-quadrupeds, of developing sophisticated tools. They were a tribal society who warred frequently.");
+	outputCodex("\n\nAfter initial attempts to make contact faltered, thanks to the fanfir having no concept of written text and misunderstanding attempts to talk to them as insulting animal screeches, they were largely ignored by early settlers to the planet, who were composed of small scale human and daynar mining concerns interested in the semi-precious metals held within its crust. Taking grave exception to miners inadvertently hitting burial sites and religious proving grounds, a large number of fanfir tribes united in an attempt to drive the extra-terrestrials away. Initially killed in droves by the weaponry deployed against them by the mining companies, they displayed intelligence beyond the estimations made of them by the humans and daynar by changing tactics, fighting a guerrilla war involving sweeping isolated individuals away in hit and run assaults, collapsing dig sites by channelling heavy vibrations into the earth, and terrorizing camps with all-night banshee-like choirs.");
+	outputCodex("\n\nWhilst the materiel companies involved could counter each of these individually, together they made the cost of extracting metals and sending workers to Haerum prohibitive, and they withdrew. The planet was on the verge of being declared off-limits when the anatae intervened.");
+	outputCodex("\n\nToday the integration of the fanfir into larger galactic civilization is held up as an exemplary case to all anatae first contact parties. At the time, the amount of time and resources they poured into attempting to consolidate a monstrously sized race of primitives that had proven itself to be barbarous and bloodthirsty was ridiculed. The anatae spent years analyzing the vocalizations of the fanfir with remote drones before approaching their nesting sites with offerings of tools and medicine, leaving them in places their research concluded were neutral bartering sites, favouring no tribe more than any other. The breakthrough was made when the imperial researchers finally offered the fanfir something they would come to value more than anything else in the entire galaxy: a second pair of opposable thumbs. Outfitted with the secondary set of cybernetic arms that would come synonymous with the race, the fanfir were immediately able to manipulate the world in a way that had long been denied them. They became eager recipients of the anatae, who were able to fully integrate them within the next decade, landing their own state mining corps on Haerum at the same time.");
+	outputCodex("\n\nToday the fanfir are an integral part of the Anatae Empire, with around twenty official colonies of their own. They are often found working as bankers, merchants and entrepreneurs in the rigidly controlled business sector, go-betweens to the galaxy outside and sources of credit, acting in roles anatae themselves are not given to. Plenty can be found outside the empire, preferring to operate outside of its restrictions; many more are found within its public works and navy.");
+
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Culture and Society"));
+
+	outputCodex("Thanks largely to their size, the fanfir are a highly individualistic race that chafe in crowds, and do not particularly like the company of their own kind for lengths of time. Fanfir instead gather together in one off <i>“flings”</i>, two or three day convocations that usually involve plenty of singing and speech-giving. Such events can satiate a fanfir’s wish to be amongst his or her own kind for years.");
+	outputCodex("\n\nFanfir have a penchant for hoarding, seemingly related to their bird-analogous evolution. Their sexual attitudes are mirrored in other walks of life, and a fanfir’s home is usually a treasure trove of items that has been centuries in the collecting, that he or she can spend hours talking about.");
+	outputCodex("\n\nTheir incredibly sophisticated and sturdy throats has lead the fanfir to have a natural love of music, singing and speech-giving, and with suitable safety equipment fanfir concerts are a rare treat, made rarer by how infrequently they occur. All travellers are warned that less scrupulous fanfir tend to be extremely persuasive, able to manipulate other’s behavioural patterns through the use of vocalized vibrations - as well as benefiting from an avaricious home culture with a rich history in the art of speech. Their love of wide open spaces and the acquisition of experience and physical treasures means the race are at their most visible and mobile during planet rushes.");
+	
+	CodexManager.viewedEntry("Fanfir");
+}

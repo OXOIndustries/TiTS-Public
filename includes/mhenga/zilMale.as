@@ -71,28 +71,42 @@ public function zilCrotchGrind():void {
 	else if(foes[0].lust() <= 75) output("throbbing");
 	else if(foes[0].lust() <= 85) output("dripping");
 	else output("drooling");
-	output(" dick right into your [pc.face]. The soft shroud of his foreskin rubs hotly against you, peeling back to barely expose the ebony glans that is prodding your forehead. You gasp and stumble away, not realizing your mistake until the chemical deluge hits your senses.");
-	if(pc.lust() <= 33) output(" Uh, wow... you could probably go for another sniff of that.");
-	else if(pc.lust() <= 66) output(" Mmmm, he smells so good that you could just drop down to your knees and let him drag it all over.");
-	else if(pc.lust() <= 75) output(" Yum! You inhale another deep drag of his diminishing aroma and wonder if it wouldn't be too bad to give in to him.");
-	else output(" Ungh, why aren't you letting him fuck your mouth so that you can breathe in more?");
-	if(flags["TIMES_LOST_TO_ZIL"] == 1) output(" You've let him win before and nothing bad came of it, what's wrong with one more submission?");
-	else if(flags["TIMES_LOST_TO_ZIL"] == 2) output(" You've given into these aliens twice already. Surely the third time is the charm...");
-	else if(flags["TIMES_LOST_TO_ZIL"] == 3) output(" You've let them use you a handful of times. What's once more?");
-	else if(flags["TIMES_LOST_TO_ZIL"] != undefined) output(" You've given in countless times already, why not live it up?");
-	pc.lust(10+pc.libido()/10);
+	output(" dick right into your [pc.face]. The soft shroud of his foreskin rubs hotly against you, peeling back to barely expose the ebony glans that is prodding your forehead.");
+	if(pc.hasArmor() && pc.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+	{
+		output(" You gasp and stumble away when you see his cock produce an oily streak. Pheromones, no doubt. Fortunately for you, your [pc.armor] is airtight, so any reactions you could have had to it are assuredly blocked.");
+	}
+	else
+	{
+		output(" You gasp and stumble away, not realizing your mistake until the chemical deluge hits your senses.");
+		if(pc.lust() <= 33) output(" Uh, wow... you could probably go for another sniff of that.");
+		else if(pc.lust() <= 66) output(" Mmmm, he smells so good that you could just drop down to your knees and let him drag it all over.");
+		else if(pc.lust() <= 75) output(" Yum! You inhale another deep drag of his diminishing aroma and wonder if it wouldn't be too bad to give in to him.");
+		else output(" Ungh, why aren't you letting him fuck your mouth so that you can breathe in more?");
+		if(flags["TIMES_LOST_TO_ZIL"] == 1) output(" You've let him win before and nothing bad came of it, what's wrong with one more submission?");
+		else if(flags["TIMES_LOST_TO_ZIL"] == 2) output(" You've given into these aliens twice already. Surely the third time is the charm...");
+		else if(flags["TIMES_LOST_TO_ZIL"] == 3) output(" You've let them use you a handful of times. What's once more?");
+		else if(flags["TIMES_LOST_TO_ZIL"] != undefined) output(" You've given in countless times already, why not live it up?");
+		pc.lust(10+pc.libido()/10);
+	}
 	processCombat();
 }
 
 //Pheromone Fan:
 public function zilPheromoneFan():void {
-	output("The zil abruptly begins to fondle his [zil.cock], stimulating the organ as he alters his wingbeats to gust musk-laced air your direction. He floats up high and flies erratically enough that you doubt you could hit him. There's nothing to do but try and hold your breath!");
+	output("The zil abruptly begins to fondle his [zil.cock], stimulating the organ as he alters his wingbeats to gust musk-laced air your direction. He floats up high and flies erratically enough that you doubt you could hit him.");
+	if(pc.hasArmor() && pc.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+	{
+		output("\n\nLuckily your [pc.armor] is sealed tight, so you unaffected by it. He grumps at his failed attempt. You definitely came prepared!");
+	}
 	//{Moderate toughness check pass}
-	if(pc.physique() + rand(20) + 1 > 20) {
+	else if(pc.physique() + rand(20) + 1 > 20) {
+		output(" There's nothing to do but try and hold your breath!");
 		output("\nHe gets tired long before you do and gives up, but it still leaves a cloud of his delicious aroma floating around you. It's strong enough to make your pulse quicken.");
 		pc.lust(5+pc.libido()/20);
 	}
 	else {
+		output(" There's nothing to do but try and hold your breath!");
 		output("\nEventually, you can hold your breath no longer, and you're forced to inhale the potent cloud deep into your lungs. Your heart hammers in your chest faster and faster while your [pc.skin] flushes and your lips unconsciously purse.");
 		if(pc.lust() < 33) output(" A tingling warmth in your crotch leaves no doubts as to the effectiveness of your alien foe's 'attack'.");
 		else if(pc.lust() <= 66) output(" The warm, incessantly building heat in your loins is getting hotter and hotter with every breathe you take.");

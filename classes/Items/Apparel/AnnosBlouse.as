@@ -22,11 +22,11 @@ package classes.Items.Apparel
 			
 			this.shortName = "Annos Blouse";
 			
-			this.longName = "Annos blouse";
+			this.longName = "Anno's blouse";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
-			this.description = "a blouse and jean pair worn exclusively by anno";
+			this.description = "a blouse and jean pair worn exclusively by Anno";
 			
 			this.tooltip = "Something something this is a tooltip something.";
 			

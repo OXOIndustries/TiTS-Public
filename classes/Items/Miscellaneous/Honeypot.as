@@ -27,7 +27,7 @@
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a vaginal insertable labelled 'honeypot'";
+			this.description = "a vaginal insertable labelled 'Honeypot'";
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "A brand new Xenogen product released thanks to your... contributions, Honeypot is a localized transformation that affects vaginal secretions, rewriting the body to produce a sweet, thick honey. The first release of the new product comes in a handy, single-use <b>insertable</b> form.";
 			

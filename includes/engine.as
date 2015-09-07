@@ -113,11 +113,23 @@ public function author(arg:String):void
 	userInterface.author(arg);
 }
 
-
+/*
+// ORIGINAL
 public function upperCase(str:String):String {
 	var firstChar:String = str.substr(0,1);
 	var restOfString:String = str.substr(1,str.length);
 	return firstChar.toUpperCase()+restOfString.toLowerCase();
+}
+*/
+// NEW - No need to lowercase the rest of the string unless specified.
+public function upperCase(str:String, forceLower:Boolean = true):String
+{
+	var firstChar:String = str.substr(0,1);
+	var restOfString:String = str.substr(1, str.length);
+	
+	if(forceLower) restOfString = restOfString.toLowerCase();
+	
+	return firstChar.toUpperCase() + restOfString;
 }
 
 public function plural(str:String):String {

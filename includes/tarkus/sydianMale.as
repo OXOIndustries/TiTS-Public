@@ -130,8 +130,17 @@ public function sydianAntennaeTickle():void
 //Lick - high lust raise, only used if own lust is high
 public function sydianLickAttack():void
 {
-	output("So turned on that he's practically dripping, the big male thunders in close, grabbing one arm around your chest and hauling you up into the air. A bright orange tongue spools out of his maw, coiling this way and that, slick with his alien saliva. He presses it to the bottom of your chin before licking up your cheek and over your forehead. The contact is hotter than you care to admit, and you certainly can't ignore the thick mass of his boner pressing against your [pc.leg].");
-	applyDamage(new TypeCollection( { tease: 15 + rand(5) } ), foes[0], pc, "minimal");
+	output("So turned on that he's practically dripping, the big male thunders in close, grabbing one arm around your chest and hauling you up into the air. A bright orange tongue spools out of his maw, coiling this way and that, slick with his alien saliva.");
+	
+	if (pc.hasArmor() && pc.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+	{
+		output(" He presses it to your face, unaware that the action is useless against your airtight [pc.armor]. While this display is not affecting you directly, you certainly can't ignore the thick mass of his boner pressing against your [pc.leg].");
+	}
+	else
+	{
+		output(" He presses it to the bottom of your chin before licking up your cheek and over your forehead. The contact is hotter than you care to admit, and you certainly can't ignore the thick mass of his boner pressing against your [pc.leg].");
+		applyDamage(new TypeCollection( { tease: 15 + rand(5) } ), foes[0], pc, "minimal");
+	}
 	processCombat();
 }
 //Tackle
@@ -328,7 +337,7 @@ public function dudesButtFuckInATotallyNonGayWay():void
 	if(pc.hasKnot(x)) output(" At that point, the additional girth catches, but it's nothing a few gentle rubs of your new fuck-buddy's ass won't help him relax for. A few pushes later, and you're in.");
 	output("\n\nDroplets of what looks like pure silver slowly roll out of his lust-bloated cocktip as you ream him, liquid evidence of his enjoyment. A bass groan rumbles out of his chest as you pull back only to turn into a higher-pitched yelp when you roughly jackhammer in a second thrust. You rebound off his ass for another and another, and another... and another. Your [pc.cock " + x + "] blasts through his black hole rapid-fire, focused entirely on using him as little more than a pleasing sleeve, but he seems to enjoy it all the same.");
 	pc.cockChange(true,false);
-	output("\n\nThe sydian's tail is slaps your [pc.butt] every time you slow, spurring you to further - and harder - into your chosen cum-dumpster. The repeated strikes leave behind more of that sticky secretion. It may absorb into your [pc.skinFurScales] almost immediately, but it leaves behind a little more heat and a little excess need with every strike. [pc.EachCocks] feels overburdened with blood, so hard that it's becoming painful. With your need always on the rise, you piston harder and faster, squeezing more silvery pre-jizz out of him from the inside.");
+	output("\n\nThe sydian's tail is slaps your [pc.butt] every time you slow, spurring you to further - and harder - into your chosen cum-dumpster. The repeated strikes leave behind more of that sticky secretion. It may absorb into your [pc.skinFurScales] almost immediately, but it leaves behind a little more heat and a little excess need with every strike. [pc.EachCock] feels overburdened with blood, so hard that it's becoming painful. With your need always on the rise, you piston harder and faster, squeezing more silvery pre-jizz out of him from the inside.");
 	output("\n\n<i>\"More!\"</i> the encouraging sydian growls from below. <i>\"Harder!\"</i>");
 
 	output("\n\nYour next thrust hits him hard enough to grind his cheek into the sand. It's good enough that you can feel his ring clamping down around, spasming with wild abandon and pleasure. His cock visibly throbs and pulsates beneath him, spewing long ropes of gooey, mirrored jism, unable to contain so much pleasure any longer. Regardless of whether he's cumming or not, you redouble your efforts, using his puckered entrance to climb to an orgasm all your own.");

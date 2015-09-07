@@ -72,6 +72,8 @@ public function geneCockVolume():Number
 public function genesModsInterior():void
 {
 	geneHeader();
+	
+	CodexManager.unlockEntry("Fanfir");
 
 	if (flags["GENES_MODS_ENTERED"] == undefined)
 	{
@@ -186,7 +188,7 @@ public function genesModsMenu(cFunc:Function = null):void
 
 	if (flags["GENE_TALKED_TO"] != undefined && (pc.hasVagina() || pc.hasCock()))
 	{
-		addButton(2, "Sex", genesModsGoSex, true);
+		addButton(2, "Sex", genesModsGoSex, false);
 	}
 	else
 	{
@@ -277,9 +279,9 @@ public function geneTalk(cFunc:Function = null):void
 		output("\n\n<i>“Oh goodness me no,”</i> Gene chuckles. <i>“I am an itinerant dilettante, not a chemist! But you would not believe just how richly some companies will reward you for providing them with freshly discovered alien DNA. Particularly if, say, those aliens may not exist in a week’s time. Or if they are living in the shadow of a much larger company.”</i> He stretches his shoulders, glancing idly around his hangar bay-sized shop. <i>“I will admit I have grown fond of Myrellion, though. I have lingered here longer than I usually do. The place has... how shall I put this.");
 		if (pc.isMasculine())
 		{
-			output(" <i>“ He grins");
+			output("”</i> He grins");
 			if (pc.tallness < 120) output(" down");
-			output(" at you toothily.  <i>“I’m sure I don’t have to spell it out to you, do I? If someone as thrusting and dashing as you has not gone to sleep every night he’s been here on a bed of content, beautiful ant women, why, I don’t know what to think.”</i>");
+			output(" at you toothily. <i>“I’m sure I don’t have to spell it out to you, do I? If someone as thrusting and dashing as you has not gone to sleep every night he’s been here on a bed of content, beautiful ant women, why, I don’t know what to think.”</i>");
 		}
 		else
 		{
@@ -364,7 +366,9 @@ public function genesModsTalkMods():void
 	
 	output("\n\nHe whips his two thin, serpentine tails around, narrowly avoiding knocking over a stand, considering them proudly. You notice that each has got a fleshy bulb at the end. <i>“Naturally fanfir tails are wiry, unwieldy and finely haired. To aid with the business of flying, you know. With these I have much more control, sensitivity and can do, oh, all sorts of things. Plus they are simply a lot more fun to swing around.”</i>");
 	
-	output("\n\nHe holds your eye and allows his great, long, purple tongue to droop out, wriggling it sensually. <i>“A cutting edge transformative,”</i> the fanfir says, after he’s retracted it. <i>“Isolated from pygmy natives of a wretched-sounding planet discovered in this very rush. Deeply enjoyable and - right feeling. I must say it feels like my people should have been equipped with such tongues all along. And then, of course... <i>“ He leans backwards and waves a robotic hand at the generously sized cod-piece of his outfit. <i>“Many are the native girls who like the look of a male fanfir’s genitalia, but few and far between are they that are willing to put them anywhere near their own. Quite understandable. So I invested in another, more modestly sized one.”</i> He rocks back onto the balls of his feet. <i>“I have always enjoyed the look of human sexual organs. No unnecessary adornments, no silly little bells and whistles - elegantly and concisely designed. A phallus, bold, blunt and ready. Next to my natural endowment, outrageous to most sensitivities, it is an excellent juxtaposition. Exactly how gene-mods should be used.”</i>");
+	output("\n\nHe holds your eye and allows his great, long, purple tongue to droop out, wriggling it sensually. <i>“A cutting edge transformative,”</i> the fanfir says, after he’s retracted it. <i>“Isolated from pygmy natives of a wretched-sounding planet discovered in this very rush. Deeply enjoyable and - right feeling. I must say it feels like my people should have been equipped with such tongues all along. And then, of course...”</i>");
+	
+	output("\n\nHe leans backwards and waves a robotic hand at the generously sized cod-piece of his outfit. <i>“Many are the native girls who like the look of a male fanfir’s genitalia, but few and far between are they that are willing to put them anywhere near their own. Quite understandable. So I invested in another, more modestly sized one.”</i> He rocks back onto the balls of his feet. <i>“I have always enjoyed the look of human sexual organs. No unnecessary adornments, no silly little bells and whistles - elegantly and concisely designed. A phallus, bold, blunt and ready. Next to my natural endowment, outrageous to most sensitivities, it is an excellent juxtaposition. Exactly how gene-mods should be used.”</i>");
 	processTime(4);
 	clearMenu();
 	addButton(0, "Next", genesModsTalkModsII);
@@ -462,7 +466,7 @@ public function genesModsTalkModsYes():void
 {
 	geneSubmissionLevel(1);
 	// - goto sex
-	genesModsGoSex();
+	genesModsGoSex(true);
 }
 
 public function genesModsTalkModsNo(nFunc:Function = null):void
@@ -527,7 +531,7 @@ public function genesModsTalkOtherAliens():void
 	{
 		output("\n\n<i>“I have no idea who you’re talking about,”</i> you say. Gene stares at you as if you’d just denied existence of the sun.");
 		
-		output("\n\n<i>“Xanthe,”</i> he says, drawing out of the syllables. <i>“That is her name - although undoubtedly an alias in reference to something as surely as mine is, she of all people will know the power of names. She is a siel, a wondrous and utterly infuriating folk I was happily unaware of until she arrived here not a month ago.”</i> He shakes his head mournfully at your ignorance, revelling in his own misery. <i>“Go find her shop, here in this very city. Approach and talk to her, bask in her presence. Then, perhaps, you shall understand a small part of my pain.”</i>");
+		output("\n\n<i>“Xanthe,”</i> he says, drawing out the syllables. <i>“That is her name - although undoubtedly an alias in reference to something as surely as mine is, she of all people will know the power of names. She is a siel, a wondrous and utterly infuriating folk I was happily unaware of until she arrived here not a month ago.”</i> He shakes his head mournfully at your ignorance, revelling in his own misery. <i>“Go find her shop, here in this very city. Approach and talk to her, bask in her presence. Then, perhaps, you shall understand a small part of my pain.”</i>");
 	}
 	processTime(5);
 	geneSubmissionLevel(1);
@@ -541,6 +545,7 @@ public function genesModsTalkYou():void
 	geneHeader();
 
 	flags["GENES_MODS_TALK_YOU"] = 1;
+	CodexManager.unlockEntry("Anatae");
 
 	output("<i>“Do you know who I am?”</i> you ask.");
 
@@ -614,7 +619,16 @@ public function genesModsTalkMyr():void
 
 	output("\n\n<i>“Even if the mods I sell them don’t work, the experience I provide, the belief of a better world and the sense of belonging and specialness if they give themselves entirely to me, THAT is priceless.”</i>");
 	
-	output("\n\n<i>“What do you mean, if the mods don’t work?”</i> Gene turns and pads slowly towards you in a predatory stance, huge wings slicing into the air, tails lashing.");
+	clearMenu();
+	addButton(0, "Next", genesModsTalkMyrII);
+}
+	
+public function genesModsTalkMyrII():void
+{
+	clearOutput();
+	geneHeader();
+	
+	output("<i>“What do you mean, if the mods don’t work?”</i> Gene turns and pads slowly towards you in a predatory stance, huge wings slicing into the air, tails lashing.");
 	
 	output("\n\n<i>“Why do you think there aren’t a hundred other gene-mod companies already here, merrily undercutting me?”</i> he replies in the soft, deadly rumble of slowly shifting granite. <i>“Aside from the possible inconvenience of nuclear annihilation, I mean. Nothing currently produced has been tested on myr physiology. I am all but certain, given their obvious similarities to other bipedal, warm-blooded races, that they will work; but no, not certain.”</i> He rears up to his full height in front of you, the deep brass of his voice quaking through you. <i>“This is the frontier, Steele. It is filled with danger, rogues and disrepute, and if you want to grasp the golden opportunities it offers, you must also take chances. There is no triumph if there was no possibility of terrible failure.”</i>");
 	processTime(6);
@@ -1111,7 +1125,8 @@ public function genesModsBellyrubFirstNotTheSpot():void
 		clearMenu();
 		addButton(0, "Blowjob", genesModsBlowjob);
 		addButton(1, "Frot", genesModsFrot);
-		addButton(2, "OverCounter", genesModsOverCounter);
+		if (pc.hasVagina()) addButton(2, "OverCounter", genesModsOverCounter);
+		else addDisabledButton(2, "OverCounter");
 	}
 	else
 	{

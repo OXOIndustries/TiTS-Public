@@ -233,17 +233,24 @@ public function queenOfTheDeepTentacleBarrage():void
 	
 	output("The towering beast slips down onto its knees, almost toppling over onto its side as it exposes its back to you. At first, you think she’s tiring, finally showing a weak point. Instead, as you close the distance, you’re suddenly accosted by her mass of writhing tentacles. The venom-tipped appendages slap and jab at you, trying to cover you with their chemical payload!");
 	
-	if (numHits == 0) output(" You evade the barrage of tentacles!");
-	else if (numHits == 1) output(" One of the tentacles manages"); 
-	else if (numHits < 5) output(" Some of the tentacles manage");
-	else output(" The tentacles manage");
-	output(" to get through your defenses, slathering you with a liquid venom that quickly has your [pc.skinFurScales] burning with arousal!");
-	
-	if (numHits > 0)
+	if (pc.hasArmor() && pc.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
 	{
-		var baseDamage:TypeCollection = new TypeCollection( { drug: 2 } );
-		if (numHits > 1) baseDamage.multiply(numHits);
-		applyDamage(baseDamage, foes[0], pc, "minimal");
+		output(" The tentacles wetly slick across your [pc.armor], slathering you with copious amounts of liquid venom. Your watertight outfit prevents the stuff from affecting you, but you are sure that will be the least of your problems.");
+	}
+	else
+	{
+		if (numHits == 0) output(" You evade the barrage of tentacles!");
+		else if (numHits == 1) output(" One of the tentacles manages"); 
+		else if (numHits < 5) output(" Some of the tentacles manage");
+		else output(" The tentacles manage");
+		output(" to get through your defenses, slathering you with a liquid venom that quickly has your [pc.skinFurScales] burning with arousal!");
+		
+		if (numHits > 0)
+		{
+			var baseDamage:TypeCollection = new TypeCollection( { drug: 2 } );
+			if (numHits > 1) baseDamage.multiply(numHits);
+			applyDamage(baseDamage, foes[0], pc, "minimal");
+		}
 	}
 }
 

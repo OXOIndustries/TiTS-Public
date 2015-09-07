@@ -337,7 +337,7 @@ public function nyreaMilkRub():void
 	var damage:TypeCollection = new TypeCollection( { tease: 15 } );
 	damageRand(damage, 15);
 
-	if (rand(10) <= 3)
+	if (rand(10) <= 3 && !(pc.hasArmor() && pc.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT)))
 	{
 		output("\nGod, that smells delicious...");
 	}

@@ -993,7 +993,7 @@ public function savinAbusesYerButtBecauseThatsHowHeLikesIt():void
 	// Breaking the machine starts here!
 
 	// The Price is Right: ONE MILLION DOLLARS!
-	var iPriceThreshold:int = 3500;
+	var iPriceThreshold:int = 150;
 
 	// If threshold is surpassed before the cumming is done. 50% Chance:
 	var cumEstimate:Number = 0;
@@ -1236,7 +1236,7 @@ public function specialOrdersForTreatedGals():void
 	processTime(23);
 	pc.energy(100);
 	//pc.thickness += (1);
-	pc.modThickness(1, false);
+	pc.modThickness(1);
 	IncrementFlag("HERMAN_SPECIAL_ORDER");
 	pc.loadInMouth();
 	pc.loadInMouth();

@@ -239,7 +239,7 @@
 			"Sylvan",
 			"Dark Sylvan",
 			"Myr",
-			"Saurian"
+			"Saurian",
 		];
 		
 		public static const VALID_FACE_TYPES:Array = [
@@ -305,7 +305,8 @@
 			FLAG_PREHENSILE,
 			FLAG_HOLLOW,
 			FLAG_LUBRICATED,
-			FLAG_SQUISHY
+			FLAG_SQUISHY,
+			FLAG_APHRODISIAC_LACED,
 		];
 		
 		public static const VALID_EAR_TYPES:Array = [
@@ -317,6 +318,7 @@
 			TYPE_LIZAN,
 			TYPE_LAPINE,
 			TYPE_KANGAROO,
+			TYPE_DEER,
 			TYPE_VULPINE,
 			TYPE_DRACONIC,
 			TYPE_KUITAN,
@@ -325,6 +327,7 @@
 			TYPE_HUMAN,
 			TYPE_LEITHAN,
 			TYPE_RASKVEL,
+			TYPE_VANAE,
 			TYPE_SYLVAN,
 		];
 		
@@ -351,7 +354,7 @@
 			FLAG_FURRED,
 			FLAG_SCALED,
 			FLAG_CHITINOUS,
-			FLAG_FEATHERED
+			FLAG_FEATHERED,
 		];
 		
 		public static const VALID_LEG_TYPES:Array = [
@@ -395,7 +398,7 @@
 			FLAG_HEELS,
 			FLAG_PREHENSILE,
 			FLAG_SMOOTH,
-			FLAG_CHITINOUS
+			FLAG_CHITINOUS,
 		];
 		
 		public static const VALID_ANTENNAE_TYPES:Array = [
@@ -410,6 +413,7 @@
 			TYPE_DEMONIC,
 			TYPE_BOVINE,
 			TYPE_LIZAN,
+			TYPE_DRACONIC,
 			TYPE_DEER,
 			TYPE_GOAT,
 		];
@@ -453,12 +457,14 @@
 			TYPE_VULPINE,
 			TYPE_DRACONIC,
 			TYPE_KUITAN,
+			TYPE_DEER,
 			TYPE_MOUSE,
 			TYPE_BADGER,
 			TYPE_RASKVEL,
 			TYPE_NAGA,
 			TYPE_SYDIAN,
 			TYPE_COCKVINE,
+			TYPE_VANAE,
 			TYPE_OVIR,
 			TYPE_MYR,
 		];
@@ -532,7 +538,7 @@
 			"Dick",
 			"Flat",
 			"Inverted",
-			"Tentacled"
+			"Tentacled",
 		];
 		
 		public static const VALID_DICKNIPPLE_TYPES:Array = [
@@ -592,11 +598,13 @@
 			FLUID_TYPE_CUMSAP,
 			FLUID_TYPE_SYDIAN_CUM,
 			FLUID_TYPE_MILK,
+			FLUID_TYPE_VANILLA,
 		];
 		
 		public static const VALID_GIRLCUM_TYPES:Array = [
 			FLUID_TYPE_GIRLCUM,
 			FLUID_TYPE_HONEY,
+			FLUID_TYPE_VANILLA,
 		];
 		
 		public static const VALID_MILK_TYPES:Array = [
@@ -609,6 +617,7 @@
 			FLUID_TYPE_VANAE_HUNTRESS_MILK,
 			FLUID_TYPE_NECTAR,
 			FLUID_TYPE_LEITHAN_MILK,
+			FLUID_TYPE_VANILLA,
 		];
 		
 		// HAIRTYPES
@@ -660,7 +669,10 @@
 			TYPE_BEE,
 			TYPE_SIMII,
 			TYPE_RASKVEL,
-			TYPE_KUITAN
+			TYPE_KUITAN,
+			TYPE_VENUSPITCHER,
+			TYPE_SAURIAN,
+			TYPE_SYNTHETIC,
 		];
 		
 		public static const VALID_COCK_FLAGS:Array = [
@@ -678,6 +690,7 @@
 			FLAG_SMOOTH,
 			FLAG_FORESKINNED,
 			FLAG_APHRODISIAC_LACED,
+			FLAG_STICKY,
 		];
 		
 		public static const VALID_VAGINA_TYPES:Array = [
@@ -689,7 +702,7 @@
 			TYPE_LAPINARA,
 			TYPE_VANAE,
 			TYPE_KUITAN,
-			TYPE_NAGA
+			TYPE_NAGA,
 		];
 		
 		// As far as I can tell, at time of writing there are no flags currently used/assigned to vaginas

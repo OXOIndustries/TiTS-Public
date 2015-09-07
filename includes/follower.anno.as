@@ -2162,7 +2162,7 @@ public function fuckAnnoWithScienceYoFukkinLadyBoi():void
 	if(pc.armor.shortName != "")
 	{
 		output("You flash Anno a cheeky grin and drop your ");
-		output("[pc.armor], revealing your [pc.lowerUnderGarment]. Your ausar lover’s eyes go wide... and double again in size when you press the little button on the side. A beam of light bursts forth from your crotch, coalescing into a dick-shaped holographic projection that bobs over your crotch.");
+		output("[pc.armor], revealing your [pc.lowerUndergarment]. Your ausar lover’s eyes go wide... and double again in size when you press the little button on the side. A beam of light bursts forth from your crotch, coalescing into a dick-shaped holographic projection that bobs over your crotch.");
 		output("\n\n<i>“Bend over, girl,”</i> you say, reaching down to stroke the length of your hardlight erection. The neural net built into it kicks in instantly, sending a shiver of pleasure through your loins as you stroke your strapon. Giggling eagerly at your command, Anno spins on a heel and plants herself on her bed, ass invitingly in the air.");
 	}
 	//PC isn’t wearing anything over the strap:
@@ -2755,7 +2755,7 @@ public function grayGooArrivesAtShip():void
 
 public function grayGooSpessSkype():void
 {
-	if (flags["ANNO_NOVA_UPDATE"] == 3 && flags["GRAYGOO_SPESS_SKYPE"] == undefined && rand(5) == 0)
+	if (hasGooArmor() && flags["ANNO_NOVA_UPDATE"] == 3 && flags["GRAYGOO_SPESS_SKYPE"] == undefined && rand(5) == 0)
 	{
 		flags["GRAYGOO_SPESS_SKYPE"] = 1;
 		eventQueue.push(grayGooSpessSkypeScene);
@@ -2789,4 +2789,18 @@ public function grayGooSpessSkypeScene():void
 	output("\n\nThe screen flicks off to back, and like breathing a sigh, [goo.name] resumes her less-human gooey form. She scoots back over to where you’ve dumped your equipment and collapses into an amorphous pile, awaiting you. Smiling to yourself, you roll back over and go to sleep again...");
 
 	addButton(0, "Next", mainGameMenu);
+}
+
+public function hasGooArmor():Boolean
+{
+    if(pc.armor is GooArmor || pc.hasItemByName("Goo Armor")) return true;
+    if(currentLocation == "SHIP INTERIOR")
+    {
+        for (var i:int = 0; i < pc.ShipStorageInventory.length; i++)
+        {
+            var sItem:ItemSlotClass = pc.ShipStorageInventory[i] as ItemSlotClass;
+            if (sItem.shortName == "Goo Armor" && sItem.quantity >= 1) return true;
+        }
+    }
+    return false;
 }

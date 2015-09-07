@@ -71,9 +71,9 @@ public function unlockSaendraXPackMail():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-public function updateSaendraXPackTimer(delta:Number):void
+public function updateSaendraXPackTimer(delta:Number = 0):void
 {
-	if (flags["SAENDRA_XPACK1_STATUS"] != 1 || flags["SAENDRA_XPACK1_STATUS"] != 5)
+	if (flags["SAENDRA_XPACK1_STATUS"] == 1 || flags["SAENDRA_XPACK1_STATUS"] == 5)
 	{
 		flags["SAENDRA_XPACK1_TIMER"] += delta;
 

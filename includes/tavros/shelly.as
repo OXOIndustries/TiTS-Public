@@ -160,7 +160,7 @@ public function sexWithShelly():void
 		output("\n\nHer legs are now locked around your waist, giving her a better grip to bounce with. She holds your shoulders in both hands, allowing you to use your other hand to play with her breasts. The milk-slicked mounds shine with sugary goodness, and you give one a taste, settling on the nipple to get a drink straight from the source.");
 		output("\n\nHolding some of the sweet fluid in your mouth, you kiss Shelly again. She accepts her own sweet milk from you, swallowing the delicious mouthful and leaving a trail of sticky saliva between the two of you when the kiss ends. ");
 		if(!pc.hasTailCock()) output("You position the hand holding her ass so that you can stick a finger inside, prompting a pleased gasp from the dusky beauty.");
-		else output("You bring your [pc.tailcock] around, sliding it into her well lubed asshole. She gives a pleased gasp as you piston it in and out inside her.");
+		else output("You bring your [pc.tailCock] around, sliding it into her well lubed asshole. She gives a pleased gasp as you piston it in and out inside her.");
 		output("\n\nYou can practically feel her lust building toward the second orgasm, and can feel your own edging ever closer. She seems to sense this and tries to tell you something.");
 		output("\n\n<i>“W-wait! Shoot outside... please,”</i> she says between ecstatic moans. It looks like you have a decision to make.");
 		clearMenu();
@@ -210,7 +210,7 @@ public function humanoidsCumInsideShelly():void
 	output("Ignoring her warning, you piston several times inside her before hilting in preparation for the coming torrent. Your rapid thrusts set off her second orgasm, and you give her a kiss as her body clamps around you. Her tightened insides are too much to resist, and your dick blows its load inside her egg filled womb.");
 	if(pc.cockTotal() > 2) output(" Your other cocks spurt wildly over her legs and the underside of her stomach.");
 	else if(pc.cockTotal() == 2) output(" Your other cock spurts wildly over her legs and the underside of her stomach.");
-	if(pc.hasTailCock()) output(" Your [pc.tailcock] pumps a load of [pc.cum] into her clenching anal cavity.");
+	if(pc.hasTailCock()) output(" Your [pc.tailCock] pumps a load of [pc.cum] into her clenching anal cavity.");
 	output(" You set her gently onto the bed, popping your spent prick out of her and smiling like an idiot. She punches your shoulder, looking cross with you. You hear a muted bump and notice that her belly looks a little more pregnant than it did before.");
 	flags["CAME_INSIDE_SHELLY"] = 1;
 	pc.orgasm();
