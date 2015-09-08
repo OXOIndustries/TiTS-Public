@@ -96,7 +96,7 @@ public function genesModsInterior():void
 			output("\n\n<i>“Hmm,”</i> he purrs ruminatively, his heavy, full voice reverberating through you as he sinuously stalks out on all fours from behind his counter. He props his claws up on two glass cabinets to");
 			if (pc.tallness < 120) output(" tower over");
 			else output(" look you in the eye");
-			output(" and consider you more closely. His synthetic arms gesticulate with his words gracefully. <i>“An offworlder, curious enough to explore a frontier threatened with annihilation, curious enough to there wander into another offworlder’s shop,");
+			output(" and consider you more closely. His synthetic arms gesticulate with his words gracefully. <i>“An offworlder, curious enough to explore a frontier threatened with annihilation, curious enough to wander into another offworlder’s shop,");
 			if (CodexManager.entryUnlocked("Fanfir")) output(" yet is spooked by a fanfir?");
 			else output(" yet has never encountered a fanfir before?");
 			output(" Curious.”</i> He laughs at his own joke, making the surrounding cabinets shake. <i>“Don’t worry, I do not bite. Not customers, as a rule. I sell gene mods, many different types, many of which are not available elsewhere. Ask, fellow stranger in a strange land, and you may receive. And relax.”</i> This last word is drawn out as a low, whispery susurration. You do suddenly feel rather more relaxed.");

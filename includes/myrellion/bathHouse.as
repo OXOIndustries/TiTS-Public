@@ -614,7 +614,7 @@ public function oserrePrivateBath():void
 	output(" The stacked myr matron rallies and grasps your hand firmly, leading you toward a private room. Another attendant steps right into her place at the counter.");
 	if(flags["OSERRE_BATHED"] == undefined)
 	{
-		output("She walks confidently and without colliding with anything, which tells you she’s been down this route many, many times - you wonder if she’s just that popular with other bathers, or if she is, in fact, taking you to her own personal bath for some fun. Your question is answered a moment later when you enter a cozy, intimate room with a dresser against the wall and several more Oserre-sized robes hanging. A steaming pool lies in the center, just where you’d expect it.");
+		output(" She walks confidently and without colliding with anything, which tells you she’s been down this route many, many times - you wonder if she’s just that popular with other bathers, or if she is, in fact, taking you to her own personal bath for some fun. Your question is answered a moment later when you enter a cozy, intimate room with a dresser against the wall and several more Oserre-sized robes hanging. A steaming pool lies in the center, just where you’d expect it.");
 		flags["OSERRE_BATHED"] = 1;
 	}
 	output("\n\n<i>“Does your spirit feel particularly weighed-down, my child? Are there any specific places I should focus on making anew?”</i> In her own way, Oserre is offering you a chance to choose which part of you receives the most attention - happy ending almost certainly implied.");
@@ -740,7 +740,7 @@ public function treasureHunt():void
 		else output("[pc.vaginas]");
 		output(".");
 		if(pc.cockTotal() >= 4) output(" Your terrible tangle of pricks stuns her. <i>“How... how do you even get anything done with so many of these?”</i> she asks, fruitlessly trying to separate them.");
-		else if(pc.cockTotal() >= 2) output(" She passes lightly over one turgid shaft, then stops when she finds a second, adding more hands to make sure she didn’t miscount. ”</i>My goodness. Are you routinely expected to mate multiple females on your world?”</i>");
+		else if(pc.cockTotal() >= 2) output(" She passes lightly over one turgid shaft, then stops when she finds a second, adding more hands to make sure she didn’t miscount. “<i>My goodness. Are you routinely expected to mate multiple females on your world?”</i>");
 		else if(pc.biggestTitSize() >= 400) output(" Her hands slide up your [pc.cockBiggest], moving as if they expect to caress a crown which never comes. <i>“This is... so big. I shudder to imagine the females of your homeworld,”</i> she remarks, innocently.");
 		else output(" She strokes your cock once, then brushes your tip with her palm. <i>“Ah, so you are a male.”</i>");
 		if(pc.hasVagina()) 

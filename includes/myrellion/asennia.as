@@ -387,7 +387,7 @@ public function drinkHoneySmallerBoobsAfternoonWithADongle():void
 
 	output("\n\n<i>“Mmm, you have such a way with your mouth,”</i> Asennia moans. You can feel her chest rising and falling faster as you afflict the honeypot with pleasure, making her swollen mammaries quiver delightfully in your face. The honey ant is putty in your hands, all but melting into a lusty puddle of rut as you drink and grope and kiss your way around her tits. With no other customer currently on her, you quickly shift from one breast to the other, giving it an equal dose of pleasure as the first. From there, you make your way up her chest, letting your hands play across the tops of her breasts.");
 
-	output("\n\nThat seems to snap your partner out of her lusty haze - just enough to compel her to reach down and take your hands in her upper pair, using the lower two to wrap around your shoulders. She pulls you up, putting that legendary myr strength to use in hauling you up and over the counter. Your eyes go wide when you’re pulled along with the ant-girl’s chest as she leans back in her seat, dragging you with her until your [pc.legs] and scrambling over the counter and ");
+	output("\n\nThat seems to snap your partner out of her lusty haze - just enough to compel her to reach down and take your hands in her upper pair, using the lower two to wrap around your shoulders. She pulls you up, putting that legendary myr strength to use in hauling you up and over the counter. Your eyes go wide when you’re pulled along with the ant-girl’s chest as she leans back in her seat, dragging you with her until your [pc.legs] are scrambling over the counter and ");
 	if(!pc.isTaur()) output("into her lap.");
 	else output("into a sitting position between her spread legs.");
 
