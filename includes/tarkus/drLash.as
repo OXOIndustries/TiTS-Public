@@ -336,7 +336,7 @@ public function lashTreatment2(treatment:String):void
 			flags["CUNT_TAIL_PREGNANT_TIMER"] = undefined;
 			flags["DAYS_SINCE_FED_CUNT_TAIL"] = undefined;
 		}
-		else if (attachedMimbranes() > 0)
+		if (attachedMimbranes() > 0)
 		{
 			removeMimbranes();
 		}
