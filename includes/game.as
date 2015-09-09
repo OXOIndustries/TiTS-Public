@@ -5109,7 +5109,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["MET_LIEVE"] != undefined)
 					{
 						output2("\n<b>* Lieve:</b> Met her");
-						if(flags["LIEVE_TOWNTOUR"] != undefined) output2(", Took her Tour");
+						if(flags["LIEVE_TOWNTOUR"] != undefined) output2(", Took her tour");
 						if(flags["LIEVE_VENOM_ENABLED"] != undefined) output2(", Venom enabled");
 						if(flags["HAS_BEEN_MYR_VENOMED"] != undefined) output2(", She venom-fucked you");
 						if(flags["LIEVE_HAREM_DICKFUCK"] != undefined) output2(", Dick-fucked her harem");
@@ -5400,13 +5400,15 @@ public function displayEncounterLog(showID:String = "All"):void
 		// Rival
 		if(flags["RIVALCONFIGURED"] != undefined)
 		{
-			output2("\n<b>* [rival.name]:</b> Met [rival.em]");
-			if(flags["INSULTED_COUSIN_ON_MHENGA"] != undefined) output2(", Insulted [rival.em] on Mhen’ga");
-			output2("\n<b>* [rival.name], Status:</b>");
+			output2("\n<b>* [rival.name]:</b>");
 			if(flags["COUSIN_EXECUTED"] != undefined) output2(" Inactive, Executed on Myrellion");
 			else if(flags["COUSIN_EGGSLUT"] != undefined) output2(" Inactive, Enslaved as an eggslut on Myrellion");
 			else if(flags["COUSIN_BEDWARMER"] != undefined) output2(" Inactive, Win-cest, Your personal sex slave");
-			else output2(" Active");
+			else
+			{
+				output2(" Active");
+				if(flags["INSULTED_COUSIN_ON_MHENGA"] != undefined) output2(", Insulted [rival.em] on Mhen’ga");
+			}
 			roamCount++;
 		}
 		// Dane
