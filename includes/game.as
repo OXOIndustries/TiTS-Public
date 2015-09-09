@@ -2100,7 +2100,7 @@ public function statisticsScreen(showID:String = "All"):void
 		if(pc.hasHair())
 		{
 			if(pc.hairColor != "no") output2(" " + StringUtil.toTitleCase(pc.hairColor) + ",");
-			if(pc.hasPerk("Mane")) output2(", Mane");
+			if(pc.hasPerk("Mane")) output2(" Mane,");
 			output2(" " + GLOBAL.HAIR_TYPE_NAMES[pc.hairType]);
 			output2("\n<b>* Hair, Length:</b>");
 			if(pc.hairLength > 0.05)
