@@ -34,6 +34,10 @@ package classes.Engine.Combat.DamageTypes
 		public static const ONLY_SHIELD:uint	= 16;	// An attack with this flag will only influence shields and/or lust
 		public static const EASY:uint 			= 17;	// Basically adds an extra 50% resistance up to a maximum of 100% resistance to any given type.
 		public static const CHANCE_APPLY_BURN:uint = 18;
+		public static const DRAINING:uint 		= 19; //Steals half of shield damage dealt
+		public static const GREATER_DRAINING:uint = 20; //Steals 90% of shield damage dealt
+		public static const VAMPIRIC:uint 		= 21; //Steals 50% of HP damage dealt.
+		public static const GREATER_VAMPIRIC:uint = 22; //Steals 90% of HP damage dealt
 		
 		public static const FlagNames:Array = [];
 		
@@ -58,6 +62,10 @@ package classes.Engine.Combat.DamageTypes
 			FlagNames[ONLY_SHIELD] 			= "Targets Shield";
 			FlagNames[EASY] 				= "Easy";
 			FlagNames[CHANCE_APPLY_BURN]	= "Chance to apply Burn DoT"
+			FlagNames[DRAINING] 			= "Draining";
+			FlagNames[GREATER_DRAINING] 	= "Greater Draining";
+			FlagNames[VAMPIRIC] 			= "Vampiric";
+			FlagNames[GREATER_VAMPIRIC] 	= "Greater Vampiric";
 		}
 		
 		private var _thisFlag:uint;

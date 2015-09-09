@@ -5,6 +5,7 @@ package classes.Engine.Combat
 	import classes.Engine.Combat.DamageTypes.DamageResult;
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.Engine.Combat.DamageTypes.DamageType;
+	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	import classes.Engine.Interfaces.output;
 	import classes.Engine.Utility.possessive;
 	import classes.Items.Guns.Goovolver;
@@ -90,6 +91,20 @@ package classes.Engine.Combat
 			}
 		}
 		
+		//Magic shield drain shit
+		if (damageResult.shieldDamage >= 2 && baseDamage.hasFlag(DamageFlag.DRAINING) && attacker.shields() < attacker.shieldsMax())
+		{
+			if(attacker is PlayerCharacter) output(" Your weapon drains half of the energy into your own shield!");
+			else output(" Your foes shields strengthen at your expense!");
+			attacker.shields(Math.round(damageResult.shieldDamage * .5))
+		}
+		else if (damageResult.shieldDamage > 0 && baseDamage.hasFlag(DamageFlag.GREATER_DRAINING) && attacker.shields() < attacker.shieldsMax())
+		{
+			if(attacker is PlayerCharacter) output(" Your weapon drains most of the energy into your own shield!");
+			else output(" Your foes shields strengthen at your expense!");
+			attacker.shields(Math.round(damageResult.shieldDamage * .9))
+		}
+
 		// HP Damage
 		if (damageResult.hpDamage > 0 && damageResult.shieldDamage > 0)
 		{
@@ -108,6 +123,28 @@ package classes.Engine.Combat
 			
 		}
 		
+		//Magic HP Drain shit
+		if (damageResult.hpDamage >= 2 && baseDamage.hasFlag(DamageFlag.VAMPIRIC) && attacker.HP() < attacker.HPMax())
+		{
+			if(attacker is PlayerCharacter)
+			{
+				if(target.plural) output(" You gain vitality as your opponent's vigor is stolen.");
+				else output(" You gain vitality as your opponents' vigor is stolen.");
+			}
+			else output(" You feel weaker as your vitality is leeched away.");
+			attacker.HP(Math.round(damageResult.hpDamage * .5))
+		}
+		else if (damageResult.hpDamage > 0 && baseDamage.hasFlag(DamageFlag.GREATER_VAMPIRIC) && attacker.HP() < attacker.HPMax())
+		{
+			if(attacker is PlayerCharacter)
+			{
+				if(target.plural) output(" You gain vitality as your opponent's vigor is stolen.");
+				else output(" You gain vitality as your opponents' vigor is stolen.");
+			}
+			else output(" You feel weaker as your vitality is leeched away.");
+			attacker.HP(Math.round(damageResult.hpDamage * .9))
+		}
+
 		// Lust damage output
 		
 		// Attack included lust damage, but was resisted.
