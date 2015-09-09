@@ -1261,7 +1261,7 @@ public function tryProcDommyReahaTime(tMinutes:Number):Boolean
 
 	// Init flag.
 	if (flags["REAHA_LAST_DOMMY_FUCK"] == undefined) flags["REAHA_LAST_DOMMY_FUCK"] = days - 2;
-	if (days - flags["REAHA_LAST_DOMMY_FUCK"] > 0) return false; // Once per day at most.
+	if (days - flags["REAHA_LAST_DOMMY_FUCK"] <= 0) return false; // Once per day at most.
 	
 	// 5% chance per hour on ship? -> 0.84% per minute
 	var tChance:Number = (tMinutes / 60.0) * 5;
@@ -1327,7 +1327,7 @@ public function reahaDommyFuxTimeWait():void
 	output("Your jaw slackens at the sight of the monstrously large cow-tit jiggling so close to your face. Grinning giddily, Reaha forges ahead, pushing the pink tip of her teat straight into your mouth. The tip of your tongue traces across one of her prominent nipples as it encroaches in, making the cow-girl shudder as you take her swollen, needy nipple. Instinctively, your hands wrap around Reaha’s bum, holding the giggling cow steady as she just about crushes you under the sheer weight of milky boobflesh.");
 	if (reahaAddiction() > REAHA_ADDICTION_MED) output(" You aren’t surprised to feel an aphrodisiac patch on her hiney, but... <i>ten</i>!?");
 	else if (reahaAddiction() > REAHA_ADDICTION_LOW) output(" You aren’t surprised to feel an aphrodisiac patch on her hiney, but... <i>ten</i>!? Looks like Reaha’s having a serious regression.");
-	else if (reahaAddiction() > 0) output(" // if Low Addiction: You only feel a few patches on her hind-end, but more than there should be. Somebody’s regressing...”</i>");
+	else if (reahaAddiction() > 0) output(" You only feel a few patches on her hind-end, but more than there should be. Somebody’s regressing....");
 	
 	output("\n\nReaha shudders and groans as your fingers brush her patch-coated flesh, tits quivering over your face. <i>“Mmm, careful, captain... you might make me squirt!”</i> ");
 	
