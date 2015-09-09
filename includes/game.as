@@ -2238,7 +2238,7 @@ public function statisticsScreen(showID:String = "All"):void
 		}
 		if(pc.hasTailCock() || pc.hasTailCunt())
 		{
-			output2("\n<b>* Tail, Genital Type: </b>" + pc.tailGenitalColor + ", " + GLOBAL.TYPE_NAMES[pc.tailGenitalArg]);
+			output2("\n<b>* Tail, Genital Type: </b>" + StringUtil.toTitleCase(pc.tailGenitalColor) + ", " + GLOBAL.TYPE_NAMES[pc.tailGenitalArg]);
 			if(pc.hasTailCock()) output2(", " + GLOBAL.TAIL_GENTIAL_TYPE_NAMES[1]);
 			if(pc.hasTailCunt()) output2(", " + GLOBAL.TAIL_GENTIAL_TYPE_NAMES[2]);
 			if(pc.hasTailCock()) output2("\n<b>* Tail, Genital Volume: </b>" + prettifyVolume(pc.tailCockVolume()));
@@ -2437,8 +2437,8 @@ public function statisticsScreen(showID:String = "All"):void
 					if(pc.vaginas[x].bonusCapacity == 0) output2("\n<b>* Capacity: </b>" + prettifyVolume(pc.vaginalCapacity(x)));
 					else
 					{
-						output2("\n<b>* Capacity, Total: </b>" + prettifyVolume(pc.vaginalCapacity(x)));
 						output2("\n<b>* Capacity, Bonus: </b>" + prettifyVolume(pc.vaginas[x].bonusCapacity));
+						output2("\n<b>* Capacity, Effective: </b>" + prettifyVolume(pc.vaginalCapacity(x)));
 					}
 					output2("\n<b>* Looseness Level: </b>" + formatFloat(pc.vaginas[x].looseness(), 3));
 					output2("\n<b>* Wetness Level: </b>" + formatFloat(pc.vaginas[x].wetness(), 3));
@@ -2505,8 +2505,8 @@ public function statisticsScreen(showID:String = "All"):void
 		if(pc.ass.bonusCapacity == 0) output2("\n<b>* Anus, Capacity: </b>" + prettifyVolume(pc.analCapacity()));
 		else
 		{
-			output2("\n<b>* Anus, Capacity, Total: </b>" + prettifyVolume(pc.analCapacity()));
 			output2("\n<b>* Anus, Capacity, Bonus: </b>" + prettifyVolume(pc.ass.bonusCapacity));
+			output2("\n<b>* Anus, Capacity, Effective: </b>" + prettifyVolume(pc.analCapacity()));
 		}
 		output2("\n<b>* Anus, Looseness Level: </b>" + formatFloat(pc.ass.looseness(), 3));
 		output2("\n<b>* Anus, Wetness Level: </b>" + formatFloat(pc.ass.wetness(), 3));
