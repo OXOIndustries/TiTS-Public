@@ -4761,7 +4761,7 @@ public function displayEncounterLog(showID:String = "All"):void
 						{
 							output2("\n<b>* [bess.name], Sex Role Assumed:</b>");
 							if(flags["BESS_SEX_ROLE"] == 0) output2(" Equal Partners");
-							if(flags["BESS_SEX_ROLE"] == 1) output2(" Domianant");
+							if(flags["BESS_SEX_ROLE"] == 1) output2(" Dominant");
 							if(flags["BESS_SEX_ROLE"] == 2) output2(" Submissive");
 						}
 						if(flags["BESS_FUCKED"] > 0) output2("\n<b>* [bess.name], Times Sexed: </b>" + flags["BESS_FUCKED"]);
