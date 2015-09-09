@@ -191,6 +191,11 @@ public function shop(keeper:Creature):void {
 		genesModsGenericScene();
 		return;
 	}
+	else if(keeper is Emmy)
+	{
+		backToEmmyMain();
+		return;
+	}
 	clearOutput();
 	output(keeper.keeperGreeting);
 	shopkeep = keeper;

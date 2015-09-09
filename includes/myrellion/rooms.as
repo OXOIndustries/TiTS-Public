@@ -152,16 +152,29 @@ public function initializeMyrellionRooms():void
 	//607 Spacer's Row, S2 (Outside the Scout Authority)
 	rooms["607"] = new RoomClass(this);
 	rooms["607"].roomName = "SPACER'S\nROW";
-	rooms["607"].description = "The familiar emblem of the U.G.C. Scout Authority is bolted onto the door of this building. Several pioneers are gathered around just in the doors, and there's a constant stream of people coming and going. A street heads north and south from here: north back to the airfield, and south towards a dank alleyway";
+	rooms["607"].description = "The familiar emblem of the U.G.C. Scout Authority is bolted onto the door of the building to the east. Several pioneers are gathered around just in the doors, and there's a constant stream of people coming and going. On the other side of the alleyway stands the graceful curves of a modern, coreward structure. A street heads north and south from here: north back to the airfield, and south towards a dank alleyway";
 	rooms["607"].planet = "PLANET: MYRELLION";
 	rooms["607"].system = "SYSTEM: SINDATHU";
 	rooms["607"].northExit = "606";
 	rooms["607"].southExit = "608";
 	rooms["607"].eastExit = "610";
+	rooms["607"].westExit = "KIHASHOP";
 	rooms["607"].moveMinutes = 2;
 	rooms["607"].runOnEnter = spacersRowBonusFunc;
 	rooms["607"].addFlag(GLOBAL.OUTDOOR);
 	rooms["607"].addFlag(GLOBAL.PUBLIC);
+
+	rooms["KIHASHOP"] = new RoomClass(this);
+	rooms["KIHASHOP"].roomName = "KIHACORP\nSHOP";
+	rooms["KIHASHOP"].description = "The shop’s interior is pristine, even on the edge of a potential nuclear warzone. Flashy holograms and lights paint every piece of merchandise in the best light, and the sales terminal is a glitzy, modern thing that seems more hardlight than metal. Even the wares themselves look bright and new, machined with exquisite care for the best possible ergonomics. This place houses an awful lot of guns, swords, and hammers for a place in a DMZ.";
+	rooms["KIHASHOP"].planet = "PLANET: MYRELLION";
+	rooms["KIHASHOP"].system = "SYSTEM: SINDATHU";
+	rooms["KIHASHOP"].eastExit = "607";
+	rooms["KIHASHOP"].moveMinutes = 1;
+	rooms["KIHASHOP"].runOnEnter = emmyBonusNotes;
+	rooms["KIHASHOP"].addFlag(GLOBAL.INDOOR);
+	rooms["KIHASHOP"].addFlag(GLOBAL.PUBLIC);
+	rooms["KIHASHOP"].addFlag(GLOBAL.COMMERCE);
 
 	//608 Spacer's Row, S3 (Back Alley)
 	rooms["608"] = new RoomClass(this);

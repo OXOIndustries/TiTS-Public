@@ -247,10 +247,15 @@
 					pregDescripts[pregDescripts.length] = "gravid";
 				}
 			}
-			sizeDescripts[sizeDescripts.length] = "toned";
-			sizeDescripts[sizeDescripts.length] = "sculpted";
-			sizeDescripts[sizeDescripts.length] = "flat";
-			sizeDescripts[sizeDescripts.length] = "slim";
+			else
+			{
+				// Only show these if she ISN'T pregnant (I have no idea if she ever is, but yeah)
+				sizeDescripts[sizeDescripts.length] = "toned";
+				sizeDescripts[sizeDescripts.length] = "sculpted";
+				sizeDescripts[sizeDescripts.length] = "flat";
+				sizeDescripts[sizeDescripts.length] = "slim";
+			}
+			
 			//Bonus pregsizes
 			if(isPregnant() && belly > 50)
 			{
