@@ -3427,6 +3427,15 @@ public function displayQuestLog(showID:String = "All"):void
 				else output2(" <i>In progress... STILL IN DEVELOPMENT</i>");
 				sideCount++;
 			}
+			// EmmyQuest
+			if(flags["EMMY_QUEST"] == 9999)
+			{
+				output2("\n<b><u>EmmyQuest</u></b>");
+				output2("\n<b>* Status:</b>");
+				if(9999 == 0) output2(" Completed");
+				else output2(" <i>In progress...</i>");
+				sideCount++;
+			}
 			// IrelliaQuest
 			if(flags["IRELLIA_QUEST_STATUS"] != undefined)
 			{
@@ -4953,6 +4962,16 @@ public function displayEncounterLog(showID:String = "All"):void
 					}
 				}
 				variousCount++;
+			}
+			// KihaCorp Shop
+			if(flags["SEEN_EMMY"] != undefined)
+			{
+				output2("\n<b><u>KihaCorp Shop</u></b>");
+				// Emmy
+				if(flags["MET_EMMY"] != undefined) output2("\n<b>* Emmy:</b> Met her");
+				else if(flags["APPROACHED_EMMY"] != undefined) output2("\n<b>* Jackal Woman:</b> Met her");
+				else output2("\n<b>* Jackal Woman:</b> Seen her");
+				if(flags["EMMY_ORALED"] != undefined) output2(", Sucked her dick");
 			}
 			// Xenogen Biotech Office
 			if(flags["MET_NEVRIE"] != undefined || flags["MET_MCALLISTER"] != undefined)
