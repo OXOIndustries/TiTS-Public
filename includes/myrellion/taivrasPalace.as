@@ -3308,7 +3308,7 @@ public function cowgirlWivTaivra():void
 	output("\n\nTaivra clearly doesn’t want you to just sit there and take a ");
 	if(x >= 0) output("belly");
 	else output("womb");
-	output("-full of eggs, and so you start to move your [pc.hips]. With a moan of enjoyment, you slowly rise up, dragging Taivra’s spines back through your [pc.vagOrAss " + x + "], letting them tease and rub at your spasming, tender channel. You can feel her cock throbbing inside you, her heartbeat causing her shaft to grow and spurt its dark, vicious lube into your ");
+	output("-full of eggs, and so you start to move your [pc.hips]. With a moan of enjoyment, you slowly rise up, dragging Taivra’s spines back through your [pc.vagOrAss " + x + "], letting them tease and rub at your spasming, tender channel. You can feel her cock throbbing inside you, her heartbeat causing her shaft to grow and spurt its dark, viscous lube into your ");
 	if(x >= 0) output("twat");
 	else output("asshole");
 	output(", adding her own juices to the mix of spit");
@@ -3609,7 +3609,7 @@ public function lapRideDatQueenAllPublicLike():void
 	output("\n\nTaivra clearly doesn’t want you to just sit there and take a ");
 	if(x == -1) output("belly");
 	else output("womb");
-	output("-full of eggs, and so you start to move your [pc.hips]. With a moan of enjoyment, you slowly rise up, dragging Taivra’s spines back through your [pc.vagOrAss " + x + "], letting them tease and rub at your spasming, tender channel. You can feel her cock throbbing inside you, her heartbeat causing her shaft to grow and spurt its dark, vicious lube into your ");
+	output("-full of eggs, and so you start to move your [pc.hips]. With a moan of enjoyment, you slowly rise up, dragging Taivra’s spines back through your [pc.vagOrAss " + x + "], letting them tease and rub at your spasming, tender channel. You can feel her cock throbbing inside you, her heartbeat causing her shaft to grow and spurt its dark, viscous lube into your ");
 	if(x >= 0) output("twat");
 	else output("asshole");
 	output(", adding her own juices to the mix of spit");

@@ -22,6 +22,7 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Ausar", ausarCodexEntry, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Daynar", daynarCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Dzaan", dzaanCodex,true);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Fanfir", fanfirCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Galotians", galotianCodexEntry, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Humans", humanTerranCodex, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Laquines", laquineCodexEntry);
@@ -51,8 +52,6 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Myrellion", "Myr Fungus", myrFungusCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Myrellion", "Nyrea", nyreaCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Myrellion", "Red Myr", redMyrmedionCodexEntry);
-
-	
 		
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Tarkus","Gray Goos",grayGooCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Tarkus","Lapinara",lapinaraCodexEntry);
@@ -124,7 +123,7 @@ public function humanTerranCodex():void
 {
 	clearOutputCodex();
 	userInterface.showBust("BURT","");
-	outputCodex(header("Human"));
+	outputCodex(header("Humans"));
 	outputCodex("<i>What does it mean to be human?</i>\n");
 	outputCodex("\n<b>Name (Singular):</b> Human");
 	outputCodex("\n<b>Sexes:</b> Male and female.");
@@ -193,7 +192,7 @@ public function sielCodexEntry():void
 	outputCodex("\n<b>Name (Singular & Plural):</b> Siel");
 	outputCodex("\n<b>Sexes:</b> Male, Female, Herm (See Siel Sexes and Genders)");
 	outputCodex("\n<b>Height:</b> Generally six feet high with a total body length of twelve feet.");
-	outputCodex("\n<b>Weight:</b> Over one hundred kilos.");
+	outputCodex("\n<b>Weight:</b> Over one hundred kilos (220 lbs).");
 	outputCodex("\n<b>Hair:</b> Very dark or very light blue, purple, or pink, as well as black or white. Many siel choose to recolor their hair.");
 	outputCodex("\n<b>Eyes:</b> Intense blues, purples, and pinks.");
 	outputCodex("\n<b>Skin Coloration:</b> Steel Blue\n\n");
@@ -206,7 +205,7 @@ public function sielCodexEntry():void
 	outputCodex(blockHeader("Siel Mating and Reproduction"));
 	outputCodex("A siel's silk sac is closely tied to their reproduction and culture for several reasons. The first is that a siel's genitals and anuses are directly tied to their silk sacs.\n\nBoth a siel's anus and pussy, regardless of location, is lined with their special silk. This is also true for the outside of a siel phallus shortly after emergence, providing natural lubrication.\n\nWhether a male or female siel is engaging in intercourse, the result is the same. Usually halfway through intercourse, an aroused siel secretes a 'sticking silk' from the exterior of their phallus, or the inside of their vaginal or anal walls. This is similar to an ausar's knotting, though it is entirely liquid based. This practice is colloquially known as 'silk knotting'.\n\nOnce silk knotted, non-siel mate finds themselves stuck and unable to withdraw, trapped by the siel's sticky, silky genitals. This sticky substance tugs at the partner's inner walls or sensitive phallus from all directions, intensifying the more they thrust or try to withdraw.\n\nA siel phallus shoots copious amounts of silk-like semen, usually enough to ensure an orifice is totally packed full. Usually after mating with a pussy (and sometimes an anus), a siel will shoot a burst of their normal, sticky silk onto the partner's entrance. This ensures the semen is trapped inside and acts as both a method of ensuring impregnation and/or 'claiming' their partner.\n\nIndividuals who have been mated with and sealed in this fashion are easily identifiable by their bloated abdomens, resembling light or heavy pregnancy depending on a siel's potency. After the silk dissolves, a large portion of the semen often rushes out and the individual 'deflates'.\n\nA siel pussy, however, keeps a mate silk knotted until they have utterly flooded the insectile womb with semen, making certain eggs receive proper fertilization. All siel with a front or back pussy have a womb, though it is always located in their caterpillar-like abdomen, as semen travels either back or forward.\n\nAny siel with a womb has a monthly ovulation phase where they produce, hold, and then expel unfertilized eggs through their rearmost or frontmost vagina. If their eggs are fertilized by being washed with semen, they hold these and produce no more eggs until birth six months later.\n\nDuring pregnancy a siel's insectoid stomach, humanoid breasts and stomach swell. While the insectoid stomach swells because of the growing child, the humanoid stomach swells as this is where residual eggs are pushed during the pregnancy period. A Siel female generally gives birth to a clutch of four to eight young at a time.\n\nMost siel reach the cusp of adulthood in sixteen years, slightly shorter than the human norm. As a species, siel have a natural lifespan of up to two centuries and show very few external signs of aging.\n\nEven though siel are fairly fertile, most take contraceptives that prevent unwanted pregnancies. While unprotected sex frequently results in pregnancy, protected sex rarely does.\n\n");
 	outputCodex(blockHeader("History and Culture"));
-	outputCodex("Siel have been part of mainstream galactic society for centuries. They hail from the arid world of Xhixia, a planet with sharp, sky touching mountain peaks and deep valleys. Located in the Liliaran Nebulae, it is their birth world and the capital planet of their interstellar empire.\n\nSince the only flat parts of Xhixia are either artificial besides the oceans, the siel evolved to heavily rely on their natural silk weaving skills to survive. Siel cities are literally woven out of tightly knit silk and packed together until they become 'solid'.\n\nFrom their meticulously woven silk cities, siel culture thrived and spread across Xhixia. Later discovered by an Ausar exploratory team, the siel quickly found their niche in galactic society. Not only did they excel at providing their special silk, the Siel were gifted in any area that required fine detail and deft hands.\n\nIn the musical world, siel are incredibly gifted players of plucked string instruments. Due to their extremely sensitive six fingered hands and lifetime of working with string vibration, they are truly unparalleled in this area.\n\nOne of the most well known traits of siel is their culture of tight fitting outfits and bondage activities. Before body modding was introduced to siel society, male siel were strongly predisposed towards erectile disfunction. This led to a culture of bondage where either a female siel would tie up a male's genitals (or they would tie up their own) to increase blood circulation.\n\nOver time, bondage has become not only part of siel mainstream culture, but an integral part of their culture. Females and males alike displayed their silk-tying process on their own bodies like a peacock plumage, attempting to attract potential mates.\n\nEven after the original problem of erectile dysfunction was solved, siel still consider it 'lewd' not to tie up a mate during intercourse. Siel attitudes towards non-bondage are similar to human attitudes towards anal intercourse in the early twenty-first century.\n\nSiel as a species have wholeheartedly embraced body modding. At first, the siel used it to solve their species's disposition towards erectile disfunction. Since then they have used it to give their species an extra set of genitals between their front legs. When they are not born with them naturally, genital modding is subsidized by most siel planetary governments.\n\nIt is common for a siel to mod their natural hair, eye, and skin color. There are still small sects of conservative siel who traditionally oppose both body modding and having sex without bondage, considering it 'impure' and 'immoral' behavior.\n\n");
+	outputCodex("Siel have been part of mainstream galactic society for centuries. They hail from the arid world of Xhixia, a planet with sharp, sky touching mountain peaks and deep valleys. Located in the Liliaran Nebulae, it is their birth world and the capital planet of their interstellar empire.\n\nSince the only flat parts of Xhixia besides the oceans are artificial, the siel evolved to heavily rely on their natural silk weaving skills to survive. Siel cities are literally woven out of tightly knit silk and packed together until they become 'solid'.\n\nFrom their meticulously woven silk cities, siel culture thrived and spread across Xhixia. Later discovered by an Ausar exploratory team, the siel quickly found their niche in galactic society. Not only did they excel at providing their special silk, the Siel were gifted in any area that required fine detail and deft hands.\n\nIn the musical world, siel are incredibly gifted players of plucked string instruments. Due to their extremely sensitive six fingered hands and lifetime of working with string vibration, they are truly unparalleled in this area.\n\nOne of the most well known traits of siel is their culture of tight fitting outfits and bondage activities. Before body modding was introduced to siel society, male siel were strongly predisposed towards erectile disfunction. This led to a culture of bondage where either a female siel would tie up a male's genitals (or they would tie up their own) to increase blood circulation.\n\nOver time, bondage has become not only part of siel mainstream culture, but an integral part of their culture. Females and males alike displayed their silk-tying process on their own bodies like a peacock plumage, attempting to attract potential mates.\n\nEven after the original problem of erectile dysfunction was solved, siel still consider it 'lewd' not to tie up a mate during intercourse. Siel attitudes towards non-bondage are similar to human attitudes towards anal intercourse in the early twenty-first century.\n\nSiel as a species have wholeheartedly embraced body modding. At first, the siel used it to solve their species's disposition towards erectile disfunction. Since then they have used it to give their species an extra set of genitals between their front legs. When they are not born with them naturally, genital modding is subsidized by most siel planetary governments.\n\nIt is common for a siel to mod their natural hair, eye, and skin color. There are still small sects of conservative siel who traditionally oppose both body modding and having sex without bondage, considering it 'impure' and 'immoral' behavior.\n\n");
 	outputCodex(blockHeader("Religion"));
 	outputCodex("Siel have a native monotheistic religion called Zyism, centered around a creator-deity called \"Zyi\". The siel believe Zyi created the universe and their life spans, tying them all together in a gigantic invisible web called \"the life thread\".\n\nZyi spends their time tugging on the strings of each and every life, though their reasons are unknown. The siel believe Zyi simply does this because they are Zyi, and no other reason. The siel believe Zyi is both female and male and has many arms and legs - as many as there are people in the universe.\n\nThe siel do not worship Zyi as much as recognize them. They believe manipulating Zyi is pointless, and prayer is an attempt at manipulation.\n\nExtremist Zyi worshippers often believe that sex without bondage and body modding is impure and against nature, a byproduct of siel culture being corrupted by mainstream galactic society.\n\nMost Zyi worshippers do not share this belief, however, many non-Zyi worshippers lump them together with these much louder fanatics.\n");
 	CodexManager.viewedEntry("Siel");
@@ -220,7 +219,7 @@ public function kerokorasCodexEntry():void
 	outputCodex("<i>U.G.C. survival guidelines recommend you do not lick them.</i>\n")
 	outputCodex("\n<b>Name (Singular & Plural):</b> Kerokoras");
 	outputCodex("\n<b>Sexes:</b> Purely Female");
-	outputCodex("\n<b>Height:</b> Between 4'6\" and 5'6\".");
+	outputCodex("\n<b>Height:</b> Between 4’ 6” and 5’ 6”.");
 	outputCodex("\n<b>Hair:</b> Hairless");
 	outputCodex("\n<b>Eyes:</b> Bulbous, featuring broad pupils and wildly varying sclera coloration.\n\n");
 
@@ -246,7 +245,7 @@ public function kaithritCodexEntry():void
 	outputCodex("<i>Cat-girls with two tails? What's not to love? ...what do you mean they have males?</i>\n");
 	outputCodex("\n<b>Name (Singular & Plural):</b> Kaithrit");
 	outputCodex("\n<b>Sexes:</b> Female, Male, statistically significant occurrence of hermaphroditism.");
-	outputCodex("\n<b>Height:</b> Males range from 5' to 6'2” tall. Females and hermaphrodites range from 5'6\" to 7'3\".");
+	outputCodex("\n<b>Height:</b> Males range from 5’ to 6’ 2” tall. Females and hermaphrodites range from 5’ 6” to 7’ 3”.");
 	outputCodex("\n<b>Hair:</b> Nominally, kaithrit only feature hair on their head and a fine layer of soft fur on their tails and ears. Fur and hair coloration is highly diverse; every color and hue seen on terran felines has been reported, but some have stranger colors.");
 	outputCodex("\n<b>Eyes:</b> Kaithrit have two eyes in the normal humanoid position. These eyes are typically colored amber, hazel, brown, blue, green, gray, yellow, orange, black, yellow-green, blue-green, violet, copper or gold. Kaithrit have a slightly higher predisposition towards heterochromia than other races. They possess slitted feline pupils which give them much keener low-light vision than humans.\n\n");
 	outputCodex(blockHeader("Features"));
@@ -297,7 +296,7 @@ public function simiiCodex():void
 	userInterface.showBust("EMBRY_0");
 	//Species Codex Entry
 	outputCodex(header("Simii"));
-	outputCodex("(From order name Simiiformes / Simians)");
+	outputCodex("(From order name Simiiformes / Simians)\n");
 	outputCodex("\n<b>Name (Singular & Plural):</b> Simii");
 	outputCodex("\n<b>Sexes:</b> Male, Female");
 	outputCodex("\n<b>Height, Weight, Hair, And Eyes:</b> As terrans.");
@@ -355,7 +354,7 @@ public function leithanCodexEntry():void
 	outputCodex(header("Leithans"));
 	outputCodex("<b>Name (Singular):</b> Leithan");
 	outputCodex("\n<b>Sexes:</b> Male and Female");
-	outputCodex("\n<b>Height:</b> Leithans can range from 8'6\" to 10' tall, with females usually slightly shorter and lighter than males. Their tauric frames are roughly 5' at the shoulders, with their humanoid halves ranging from three and a half to five additional feet.");
+	outputCodex("\n<b>Height:</b> Leithans can range from 8’ 6” to 10’ tall, with females usually slightly shorter and lighter than males. Their tauric frames are roughly 5’ at the shoulders, with their humanoid halves ranging from three and a half to five additional feet.");
 	outputCodex("\n<b>Hair:</b> Most Leithans have dark, stringy hair. Black, dark yellow, and shades of gray and brown are all common.");
 	outputCodex("\n<b>Eyes:</b> Leithan eyes are bright and universally blue, with white storm patterns surrounding their twin irises. Leithans have exceptional eyesight, and a secondary eyelid allows them to see even in extreme brightness, as is common on their homeworld, without sacrificing their low-light vision.");
 	outputCodex("\n<b>Ears:</b> Leithans have two large, sensitive ears which grow from the center of their brows, roughly two inches apart. Their ears are alert, but are soft and frequently flop back against their heads at high speeds or in emotive response. A secondary pair of ears are located where human ears are, on the sides of the head. While larger than a human's and gently tapered (some describe them as \"elfin\"), the secondary ears are for all intents and purposes without special function.\n\n");
@@ -385,7 +384,7 @@ public function ovirCodexEntry():void
 	outputCodex(header("Ovir"));
 	outputCodex("<b>Name (Singular & Plural):</b> Ovir");
 	outputCodex("\n<b>Sexes:</b> Male & Female.");
-	outputCodex("\n<b>Height:</b> Averages between 4'6\" and 6\"");
+	outputCodex("\n<b>Height:</b> Averages between 4’ 6” and 6’.");
 	outputCodex("\n<b>Weight:</b> Averages between 90 and 160 lbs.");
 	outputCodex("\n<b>Hair:</b> Human-like hair on top of head, can be brown, black, red, blonde, or green.");
 	outputCodex("\n<b>Eyes:</b> Two vertically slit, reptilian eyes. No sclera, iris dominates the eye.");
@@ -457,8 +456,8 @@ public function laquineCodexEntry():void
 	outputCodex(header("Laquines"));
 	outputCodex("<b>Name (Singular):</b> Laquine");
 	outputCodex("\n<b>Sexes:</b> 33% Male, 33% Female, 33% Hermaphrodite");
-	outputCodex("\n<b>Height:</b> 5'6\" to 7'0\"");
-	outputCodex("\n<b>Weight:</b> 60-85 Kg");
+	outputCodex("\n<b>Height:</b> 5’ 6” to 7’");
+	outputCodex("\n<b>Weight:</b> 132 to 187 lbs (60 to 85 kg)");
 	outputCodex("\n<b>Hair:</b> Covered all over in fur, but \"hair\" grows on the top of the head in the form of especially long, lush fur.");
 	outputCodex("\n<b>Eyes:</b> Two eyes in the face, at normal human position. Laquine eyes have a fundamentally human-like structure; a visible sclera (white) surrounding a colored iris, which in turn surrounds a round black pupil. Iris colors documented include brown, varying shades of blue and gray, red and pink.\n\n");
 
@@ -558,7 +557,7 @@ public function sydianCodexEntry():void
 	outputCodex(header("Sydians"));
 	outputCodex("<b>Name (Singular):</b> Sydian");
 	outputCodex("\n<b>Sexes:</b> Male and Female");
-	outputCodex("\n<b>Height:</b> 4'6\" to 5'6\" for females and 6'3\" to 7'1\" for males.");
+	outputCodex("\n<b>Height:</b> 4’ 6” to 5’ 6” for females and 6’ 3” to 7’ 1” for males.");
 	outputCodex("\n<b>Weight:</b> 90 to 160 lbs for females and 200 to 320 lbs for males.");
 	outputCodex("\n<b>Hair:</b> Fluffy, exquisitely soft hair, ranging from earthy browns to vibrant greens and reds. Can change depending on the season and the sydian's hormones.");
 	outputCodex("\n<b>Tongue:</b> Able to extend up to six inches from the sydian's mouth, fully prehensile.");
@@ -593,7 +592,7 @@ public function lapinaraCodexEntry():void
 	userInterface.showBust("LAPINARA","LAPINARA_2");
 	outputCodex("<b>Name (Singular & Plural):</b> Lapinara");
 	outputCodex("\n<b>Sexes:</b> Female (parasitic variant), Female (non-parasitic variant), Male, Herm, and Genderless.");
-	outputCodex("\n<b>Height:</b> Anywhere between 3 and 4 ft for all genders.");
+	outputCodex("\n<b>Height:</b> Anywhere between 3 and 4 feet for all genders.");
 	outputCodex("\n<b>Weight:</b> Anywhere between 40 and 85 pounds for all genders.");
 	outputCodex("\n<b>Hair & Fur:</b> Hair is fast-growing, and typically very soft and curly. The hair and fur of parasitic females is typically white, but can sometimes be silver or gray. All Lapinara have a thin layer of fur covering the entirety of their bodies. The hair is longer and curlier on the lower legs and forearms, resembling warmers. They have a long, puffy tuft of fuzz at the end of their long, whip-like tails.");
 	outputCodex("\n<b>Eyes:</b> Large and rabbit-like; parasitic females always have glassy, cloudy, gray eyes. They resemble crystal balls.\n\n");
@@ -617,7 +616,7 @@ public function raskVelCodexEntry():void
 	outputCodex(header("Raskvel"));
 	outputCodex("<b>Name (Singular & Plural):</b> Raskvel");
 	outputCodex("\n<b>Sexes:</b> Male & Female");
-	outputCodex("\n<b>Height:</b> Average heights fall between 3’6” and 4’3”");
+	outputCodex("\n<b>Height:</b> Average heights fall between 3’ 6” and 4’ 3”.");
 	outputCodex("\n<b>Weight:</b> Somewhere between 40 and 60 pounds.");
 	outputCodex("\n<b>Hair:</b> None. They have feathery plumage instead, often light blue, red, or black.");
 	outputCodex("\n<b>Skin:</b> Scaled skin of tan, dark red, or blue.");
@@ -653,7 +652,7 @@ public function grayGooCodex():void
 {
 	clearOutputCodex();
 	userInterface.showBust("GRAY_GOO");
-	outputCodex(header("Hazard: the \"Gray Goos\""));
+	outputCodex(header("Hazard: \"Gray Goos\""));
 	outputCodex("<b>Name (Singular):</b> Gray Goo");
 	outputCodex("\n\nThe Gray Goo is an enemy seemingly unique to the junkyard wastelands of Tarkus, comprised of a network of small nanobots - mostly discarded microsurgeons and one-shot stimulants that haven't been properly disposed of. Gray goos require natural lubricants like oil in order to move around effectively, and may target living organics as potential victims for sexual assault in an attempt to use orgasmic fluids as an emergency alternative.");
 
@@ -666,10 +665,10 @@ public function rahnCodexEntry():void
 {
 	clearOutputCodex();
 	userInterface.showBust("FLAHNE");
-	outputCodex(header("Fuu’Rahn and <prefix>’Rahn"));
+	outputCodex(header("Fuu’Rahn and ’Rahn"));
 	outputCodex("<b>Name (Singular & Plural):</b> Rahn");
 	outputCodex("\n<b>Sexes:</b> “Female”");
-	outputCodex("\n<b>Height:</b> 4' to 5'8\" commonly. Most are shorter, but a rare few can attain heights as tall as six feet.");
+	outputCodex("\n<b>Height:</b> 4’ to 5’ 8” commonly. Most are shorter, but a rare few can attain heights as tall as six feet.");
 	outputCodex("\n<b>Weight:</b> 60 to 140 pounds.");
 	outputCodex("\n<b>Hair:</b> Rahn do not have hair in the traditional sense, though most will morph their body to have the appearance of hair after sufficient exposure to haired races.");
 	outputCodex("\n<b>Tongue:</b> Long and flexible, rahn tongues can often extend a good six or seven inches out of their mouths. Some subspecies of rahn or particularly well-endowed Rahn can extend their tongues up to a foot.");
@@ -714,10 +713,10 @@ public function zilCodexEntry():void
 	clearOutputCodex();
 	userInterface.showBust("ZILFEMALE", "ZIL"); // ohoho lookit dis shit!
 
-	outputCodex(header("The Zil"));
+	outputCodex(header("Zil"));
 	outputCodex("<b>Name (Singular & Plural):</b> Zil");
 	outputCodex("\n<b>Sexes:</b> Male and female.");
-	outputCodex("\n<b>Height:</b> 5’ to 5’6” commonly. They can rarely attain heights of 6’.");
+	outputCodex("\n<b>Height:</b> 5’ to 5’ 6” commonly. They can rarely attain heights of 6’.");
 	outputCodex("\n<b>Weight:</b> 80 to 140 pounds.");
 	outputCodex("\n<b>Hair:</b> Flexible spines covered in a downy-soft fuzz. They are commonly colored black, but sometimes can be yellow or yellow and black striped.");
 	outputCodex("\n<b>Tongue:</b> Bright yellow, typically extends a foot past their lips when fully extended. The tip has a tube inside it capable of gathering sweet nectar from jungle flowers or lovers.");
@@ -760,7 +759,7 @@ public function VKoCodex():void
 	outputCodex(header("V-Ko Nursedroids"));
 	outputCodex("V-Ko is the latest model to appear in JoyCo’s ‘Nursedroid’ line of universal assist-bots. The popular medical franchise travels to the very edges of the explored galaxy to place V-Ko stations around for those in need of a quick heal. For those in the know, JoyCo has also provided relief for other... tense situations.\n");
 	outputCodex("\n<b>Sexes:</b> Female in appearance but ultimately lacking any real genitalia. V-Ko nursedroid VIs are programmed to act and represent similarly to terran and ausar standard females, though they contain programming to alter their behaviors slightly in the presence of species with nonstandard breeding methods.");
-	outputCodex("\n<b>Height:</b> 5'7\" or 1.7018 meters");
+	outputCodex("\n<b>Height:</b> 5’ 7” or 1.7018 meters");
 	outputCodex("\n<b>Weight:</b> 213.214 lbs or 96.7122 kg");
 	outputCodex("\n<b>Hair:</b> V-Ko nursedroids are available in a wide variety appearance configurations with hair as the main differentiator. Artifical hair is available in all lengths, colors, and a variety of styles.");
 	outputCodex("\n<b>Eyes:</b> Much like their hair, nursedroids' eyes can come in all the colors of the rainbow and then some. One feature that does not change are the cross shaped identification patterns in the center of their ocular receptors. This helps to keep them from being confused with other types of feminine bots.");
@@ -786,7 +785,7 @@ public function ausarCodexEntry():void
 	clearOutputCodex();
 	userInterface.showBust("SYRI"); // An example of an Ausar?
 
-	outputCodex(header("The Ausar"));
+	outputCodex(header("Ausar"));
 	outputCodex("<b>Name (Singular & Plural):</b> Ausar");
 	outputCodex("\n<b>Sexes:</b> Male and female.");
 	outputCodex("\n<b>Height:</b> Varies, usually similar to humans; they commonly range from five feet to just over six, with rare specimens reaching around seven feet in height.");
@@ -843,7 +842,7 @@ public function goldMyrmedionCodexEntry():void
 	outputCodex(header("Gold Myr"));
 	outputCodex("<b>Name (Singular):</b> Gold Myrmedion");
 	outputCodex("\n<b>Sexes:</b> Females and males in a 9 to 1 ratio.");
-	outputCodex("\n<b>Height:</b> Female Myr are around the same height as terran females, while males tend towards smallness and slightness, often averaging heights around 5’2” - just under 1.6 meters.");
+	outputCodex("\n<b>Height:</b> Female Myr are around the same height as terran females, while males tend towards smallness and slightness, often averaging heights around 5’ 2” - just under 1.6 meters.");
 	outputCodex("\n<b>Weight:</b> Heavy for their height thanks to numerous chitin plates and denser than average muscles and bones.");
 	outputCodex("\n<b>Arms:</b> Four narrow but strong limbs ending with three fingers and a single thumb.");
 	outputCodex("\n<b>Abdomens:</b> All gold myr have insectile abdomens, used for storing nutrition in lean times as well as reproduction in female queens.");
@@ -876,9 +875,9 @@ public function redMyrmedionCodexEntry():void
 	userInterface.showBust("NEHZARA"); // aha this is going to bite me in the ass when we end up adding a race called NONE or some shit!
 
 	outputCodex(header("Red Myr"));
-	outputCodex("<b>Name (Singular):</b> Red Myrmedion (Red Myr)");
+	outputCodex("<b>Name (Singular):</b> Red Myrmedion");
 	outputCodex("\n<b>Sexes:</b> Females and males in a 9 to 1 ratio.");
-	outputCodex("\n<b>Height:</b> Female red myr are around the same height as terran females, while males tend towards smallness and slightness, with an average height around 5’2” - just under 1.6 meters.");
+	outputCodex("\n<b>Height:</b> Female red myr are around the same height as terran females, while males tend towards smallness and slightness, with an average height around 5’ 2” - just under 1.6 meters.");
 	outputCodex("\n<b>Weight:</b> Quite heavy for their height thanks to numerous chitin plates in addition to muscles and bones that are far denser than the humanoid average.");
 	outputCodex("\n<b>Limbs:</b> Two humanoid arms ending with three fingers and a single thumb, and two legs that end in chitinous \"boots\" which can end anywhere between mid-calf and mid-thigh.");
 	outputCodex("\n<b>Abdomens:</b> Red myr have evolved away from insectile abdomens. Some members of the species have small, vestigial abdomens, but most have shed them completely.");
@@ -917,8 +916,8 @@ public function mimbraneCodexEntry():void
 	userInterface.showBust("MIMBRANE");
 
 	outputCodex(header("Mimbranes"));
-	outputCodex(blockHeader("- (Graft, Epidel, Second Skin)\n"));
-	outputCodex("<b>Name (Singular):</b> Mimbrane");
+	outputCodex("(Graft, Epidel, Second Skin)\n");
+	outputCodex("\n<b>Name (Singular):</b> Mimbrane");
 	outputCodex("\n<b>Sex:</b> Asexual");
 	outputCodex("\n<b>Height:</b> 0.0004 to 0.25 inches. Typically ranges between the slightest fraction of an inch when resembling a thin film to a quarter of an inch when dense and/or well fed.");
 	outputCodex("\n<b>Length:</b> 6 to 36 square inches. The parasite’s ability to distribute its mass to control its surface area can usually put it anywhere between six and thirty six square inches.");
@@ -1115,7 +1114,7 @@ public function naleenCodexEntry():void
 	clearOutputCodex();
 	userInterface.showBust("NALEEN","NALEEN_MALE");
 
-	outputCodex(header("The Naleen"));
+	outputCodex(header("Naleen"));
 	outputCodex("<b>Name (Singular & Plural):</b> Naleen");
 	outputCodex("\n<b>Sexes:</b> Male & Female");
 	outputCodex("\n<b>Height:</b> Most Naleen rise about six feet from the ground, though their full length is often more than twice that from tail to brow.");
@@ -1149,13 +1148,13 @@ public function vanaeCodexEntry():void
 
 	clearOutputCodex();
 	userInterface.showBust("VANAE_HUNTRESS", "VANAE_MAIDEN"); // Probably split this out into multiple types?
-	outputCodex(header("The Vanae"));
-	outputCodex("'Vah-nay'");
+	outputCodex(header("Vanae"));
+	outputCodex("'Vah-nay'\n");
 	outputCodex("\n<b>Name (Singular & Plural):</b> Vanae");
 	//Taxonym: Vanae
 	outputCodex("\n<b>Sexes:</b> Female");
-	outputCodex("\n<b>Height:</b> 5'2\" - 5'6\"");
-	outputCodex("\n<b>Weight:</b> 55 - 62 kg");
+	outputCodex("\n<b>Height:</b> 5’ 2” to 5’ 6”");
+	outputCodex("\n<b>Weight:</b> 55 to 62 kg (121.254 to 136.687 lbs)");
 	outputCodex("\n<b>Skin:</b> Snow white with special markings of a single, bioluminescent color (Most to least common: Indigo, violet, pink, dark red, blue or black).");
 	outputCodex("\n<b>Hair:</b> Bioluminescent tentacle locks. Ear to butt length.");
 	outputCodex("\n<b>Eyes:</b> Vanae have vestigial eyes that are typically closed. Eye color is always the same as their unique body color (See skin).");
@@ -1274,7 +1273,7 @@ public function vanaeHistoryCodexEntry():void
 {
 	clearOutputCodex();
 	userInterface.showBust("VANAE"); // Probably split this out into multiple types?
-	outputCodex(header("The Vanae"));
+	outputCodex(header("Vanae"));
 	outputCodex("'Vah-nay'");
 
 	outputCodex("\n\n");
@@ -1301,8 +1300,8 @@ public function Bess13CodexEntry():void
 
 	outputCodex("<b>Name:</b> Bess-13 and Ben 14 Units");
 	outputCodex("\n<b>Sexes:</b> Female (Bess-13) or Male (Ben-14)");
-	outputCodex("\n<b>Height:</b> 5'2\" (Bess-13), 6'1\" (Ben-14)");
-	outputCodex("\n<b>Weight:</b> 65kg (Bess-13), 70kg (Ben-14). These are the default factory settings.");
+	outputCodex("\n<b>Height:</b> 5’ 2” (Bess-13), 6’ 1” (Ben-14)");
+	outputCodex("\n<b>Weight:</b> 143.3 lbs or 65 kg (Bess-13), 154.324 lbs or 70 kg (Ben-14). These are the default factory settings.");
 	outputCodex("\n<b>Hair:</b> Both unit types have retractable artificial hair that can be set by their owners. The tint is also adjustable. Factory standard is silver.");
 	outputCodex("\n<b>Eyes:</b> Both unit types have adjustable irises; color is specified by their owner. Factory standard is silver.");
 	outputCodex("\n<b>Wings:</b> None.");
@@ -1350,10 +1349,6 @@ public function panaraCodex():void
 	clearOutputCodex();
 	outputCodex(header("Panara"));
 
-	outputCodex("<b>Name:</b> Bess-13 and Ben 14 Units");
-	outputCodex("\n<b>Sexes:</b> Female (Bess-13) or Male (Ben-14)");
-	outputCodex("\n<b>Height:</b> 5'2\" (Bess-13), 6'1\" (Ben-14)");
-
 	outputCodex("<b>Planet Name:</b> Panara");
 	outputCodex("\n<b>Size:</b> Small");
 	outputCodex("\n<b>Species:</b> Panaran Ausar (Thicker fur, wolf or husky-like), Humans.");
@@ -1379,8 +1374,8 @@ public function branFlazinganCodex():void
 	outputCodex("\n<b>Titles:</b> CEO of HumpHard Inc, Humphard Flazingan, The Man with the Giant Wad, Anything-Goes Flazingan, Humpty Dumpty.");
 	outputCodex("\n<b>Species:</b> Human (debatably).");
 	outputCodex("\n<b>Gender:</b> Male.");
-	outputCodex("\n<b>Height:</b> 4'11\"");
-	outputCodex("\n<b>Weight:</b> 90 kg.");
+	outputCodex("\n<b>Height:</b> 4’ 11”");
+	outputCodex("\n<b>Weight:</b> 198.416 lbs or 90 kg");
 	outputCodex("\n<b>Hair:</b> Very little.");
 	outputCodex("\n<b>Eyes:</b> Blue.");
 	outputCodex("\n<b>Genitals:</b> Depends on the weekday.");
@@ -1499,10 +1494,10 @@ public function thraggenCodexEntry():void
 {
 	clearOutputCodex();
 	userInterface.showBust("CAPTAIN_KHORGAN");
-	outputCodex(header("The Thraggen"));
+	outputCodex(header("Thraggen"));
 	outputCodex("<b>Name (Singular & Plural):</b> Thraggen");
 	outputCodex("\n<b>Sexes:</b> Male & Female");
-	outputCodex("\n<b>Height:</b> 6'0 - 7'5.");
+	outputCodex("\n<b>Height:</b> 6’ to 7’ 5”");
 	outputCodex("\n<b>Hair:</b> Naturally, thraggen hair ranges in shades from silvery grey to a vibrant orange or dark red. Warriors often paint their faces and dye their hair in woad-like patterns, passed down by family line, before combat or major ceremonies.");
 	outputCodex("\n<b>Eyes:</b> Slitted, predatory eyes, usually brightly colored -- green, blue and red are the most common.");
 	
@@ -1537,10 +1532,10 @@ public function daynarCodexEntry():void
 {
 	clearOutputCodex();
 	userInterface.showBust("LANE", "DAYNAR_MALE", "DAYNAR_FEMALE")
-	outputCodex(header("The Daynar"));
+	outputCodex(header("Daynar"));
 	outputCodex("<b>Name (Singular & Plural):</b> Daynar");
 	outputCodex("\n<b>Sexes:</b> Male & Female");
-	outputCodex("\n<b>Height:</b> Males - 5' 9\" ft, Females - 5' 7\"");
+	outputCodex("\n<b>Height:</b> Males - 5’ 9” ft, Females - 5’ 7”");
 	outputCodex("\n<b>Weight:</b> Males - 150 lbs, Females - 140 lbs");
 	outputCodex("\n<b>Hair:</b> None");
 	outputCodex("\n<b>Eyes:</b> Slit, reptilian irises. Sandy brown sclera, but self-controllable iris color.");
@@ -1596,10 +1591,10 @@ public function sionachCodexEntry():void
 {
 	clearOutputCodex();
 	showBust("SIONACH");
-	outputCodex(header("The Sionach"));
+	outputCodex(header("Sionach"));
 	outputCodex("<b>Name (Singular & Plural):</b> Sionach");
 	outputCodex("\n<b>Sexes:</b> Male and female");
-	outputCodex("\n<b>Height:</b> 4’7” to 5’10”");
+	outputCodex("\n<b>Height:</b> 4’ 7” to 5’ 10”");
 	outputCodex("\n<b>Hair:</b> Sionach hair runs the gamut from orange, black, white, grey, browns and silvers of varying shades. In addition to scalp and pubic hair, many sionach of both genders develop what are colloquially referred to as whiskers on the cheek: three bar-like patterns of short, downy hair. In addition, all have slender, shaped patterns of fur across their otherwise hairless bodies which vary from individual to individual. Some have small strips up their legs, others have tufts on knees and elbows, and some have negligee-like patterns around the chest and buttocks. These outcroppings are always very short, barely removed from the skin, and serve more as coloration than protection. ");
 	outputCodex("\n<b>Eyes:</b> Two large eyes in the normal humanoid position. Common eye colors include amber, golden, brown, crimson and yellow-green, with rare eye colors including blues, purples and blacks. Pupils are either round or vertical slits, with an equal distribution among the population. ");
 
@@ -1703,7 +1698,7 @@ public function nyreaCodexEntry():void
 	outputCodex(header("Nyrea"));
 	outputCodex("<b>Name (Singular & Plural):</b> Nyrea");
 	outputCodex("\n<b>Sexes:</b> Male & Female. Note Reproduction below.");
-	outputCodex("\n<b>Height:</b> Males range in height from 5'5 to 5'10; females, the larger of the species, from 5'8 to 6'2.");
+	outputCodex("\n<b>Height:</b> Males range in height from 5’ 5” to 5’ 10”; females, the larger of the species, from 5’ 8” to 6’ 2”.");
 	outputCodex("\n<b>Hair:</b> Nyrea have thin, wispy spine-like growths in most places humans might have hair. These vestigial barbs were once the species' primary means of defense against larger predators, but have long since evolved to be soft to the touch and harmless, usually cut short or styled in intricate braids and designs.");
 	outputCodex("\n<b>Eyes:</b> Nyrea have two mono-colored eyes, each with a small pupil in its center. Due to their almost exclusively subterranean existence, their eyesight is very poor, especially at longer ranges. For the same reason, their eyes are exceptionally sensitive to bright lights, and they can easily be blinded or stunned by sudden flashes. ");
 	outputCodex("\n<b>Ears:</b> Offsetting their poor eyesight, nyrea have exceptional hearing. They possess two large, tapered ears which can easily grow out to a foot or more from their heads. A nyrea's ears are sensitive to a wide range of sounds over great distances, and serve as their primary means of hunting. According to some daring rushers, they are also a primary erogenous zone. ");
@@ -1744,12 +1739,12 @@ public function anataeCodexEntry():void
 	clearOutputCodex();
 	showBust("ANATAE");
 	outputCodex(header("Anatae"));
-	outputCodex("<b>Name:</b> Anatae (plural), Anat (singular)");
+	outputCodex("<b>Name (Singular):</b> Anat");
 	outputCodex("\n<b>Genders:</b> Male (85%), Female (15%)");
-	outputCodex("\n<b>Height:</b> Both sexes range between 5’11” and 6’4”");
-	outputCodex("\n<b>Weight:</b> 160 - 200 pounds");
+	outputCodex("\n<b>Height:</b> Both sexes range between 5’ 11” and 6’ 4”");
+	outputCodex("\n<b>Weight:</b> 160 to 200 lbs");
 	outputCodex("\n<b>Hair:</b> Anatae males have a plume of feathers on their crowns, which can reach two feet in length. Both sexes have small tufts of feathers on the outsides of their elbows. These feathers come in many different colours, often artificial.");
-	outputCodex("\n<b>Eyes:</b> Almost universally light blue. Anatae generally have exceptionally good eye vision, in clear conditions able to discern activity over 5 kilometres away.");
+	outputCodex("\n<b>Eyes:</b> Almost universally light blue. Anatae generally have exceptionally good eye vision, in clear conditions able to discern activity over 5 kilometers away.");
 	outputCodex("\n<b>Ears:</b> In contrast, anatae do not have exterior pinna and whilst their hearing is technically about as good as a human’s, they struggle to pinpoint the source and direction of sounds through that sense alone.");
 
 	outputCodex("\n\n");
@@ -1809,7 +1804,7 @@ public function dzaanCodex():void
 	showBust("KASKA");
 	outputCodex("\n<b>Name (Singular & Plural):</b> Dzaan");
 	outputCodex("\n<b>Sexes:</b> Female (<i>“Beta”</i>) and Hermaphrodite (<i>“Alpha”</i>)");
-	outputCodex("\n<b>Height:</b> 6’2”</i> to 8’");
+	outputCodex("\n<b>Height:</b> 6’ 2”</i> to 8’");
 	outputCodex("\n<b>Weight:</b> 180 to 300 lbs, depending on build.");
 	outputCodex("\n<b>Hair:</b> Extremely varied and often colorful.");
 	outputCodex("\n<b>Eyes:</b> Extremely varied, usually matching hair color.");
@@ -1847,9 +1842,9 @@ public function dzaanCodex():void
 public function myrFungusCodex():void
 {
 	clearOutputCodex();
-	outputCodex(header("Myr Fungus"));
+	outputCodex(header("Myr Fungi"));
 	outputCodex("<i>Gross.</i>\n");
-	outputCodex("\n<b>Name:</b> Ophiocordyceps Myrmedius");
+	outputCodex("\n<b>Name:</b> Ophiocordyceps Myrmedius (Myr Fungus)");
 	outputCodex("\n<b>Genders:</b> Spores are technically genderless. Upon attaching to a host, the spores develop a gender based on a number of factors within the host.");
 	outputCodex("\n<b>Height:</b> Spores are a half-inch in diameter at the most. Manifested fungi are typically around half the host’s height.");
 	outputCodex("\n<b>Weight:</b> Spores are lighter than feathers. Manifested fungi weigh about as much as a full travel backpack. Fungal <i>“queens”</i> can weigh up to a few hundred pounds at the base.");
@@ -1874,6 +1869,55 @@ public function myrFungusCodex():void
 	CodexManager.viewedEntry("Myr Fungus");
 }
 
+public function fanfirCodexEntry():void 
+{
+	clearOutputCodex();
+	outputCodex(header("Fanfir"));
+	outputCodex("<b>Name:</b> Fanfir");
+	outputCodex("\n<b>Sexes:</b> Male and female, equally split.");
+	outputCodex("\n<b>Height:</b> About 10’ (3 meters) tall, and roughly 40’ (12 meters) long from head to tail tip on average.");
+	outputCodex("\n<b>Weight:</b> 617 lbs (280 kg) on average.");
+	outputCodex("\n<b>Hair:</b> On the head and around the groin.");
+	outputCodex("\n<b>Skin Color</b>: Many different natural variances between coal black and deep red.");
+	outputCodex("\n<b>Eyes:</b> Two, variety of colors.");
+	outputCodex("\n<b>Lifespan:</b> 250 years (modern)");
+	outputCodex("\n<b>Wings:</b> Bat-like, with two clawed digits and a thumb at the limb extent. May reach about 33’ (10 meters) in span.");
+	outputCodex("\n<b>Tails:</b> 2, thin, serpentine and flexible.");
+
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Appearance"));
+
+	outputCodex("Fanfir are vast sentient creatures from the low gravity world of Haerum. They have heavy musculature in their upper bodies and back whilst are slimmer and lithe in their torso region and digitigrade legs, lending them a hunched, looming profile. Capable of flight on their home planet, they are confined to the ground in higher gravities without specialist equipment or gene-mods. On the ground, their size and shape necessitates they walk on all fours, using their tough wing claws as front legs and so proceed with a distinctive, swaggering gait. They are entirely comfortable doing this however, indeed have evolved to spend most of their lives on the ground.");
+	outputCodex("\n\nThey have recognisably human facial features - although very broad and defined by human or ausar standards - aside from the horn that plates their lips and chin that acts as a secondary set of teeth. Their skin is smooth and tough, almost scale-like in places but still elastic and porous enough to allow the growth of hair upon their heads, the regulation of body temperature and the stretching necessary to enable flight.");
+	outputCodex("\n\nFanfir are almost always found with another set of arms, smaller and nimbler than their wing claws, sometimes gene-modded on but usually taking the form of a cybernetic harness halfway down their torsos. This enables them to perform manual tasks they would otherwise struggle to do comfortably.");
+	outputCodex("\n\nRemarkable to the species are their voluminous, highly evolved throats and vocal chords. Not obvious externally beyond the broadness of their necks, fanfir have the ability to make themselves heard over many miles - and to deafen anybody nearby. They can regulate their own hearing with a secondary, flexible tympanic membrane. They also have some limited ability to manipulate thought patterns and hormone release in others through the vibrations they produce whilst talking or singing. This feeds naturally into their aptitude for music (see below).");
+
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Sexuality"));
+
+	outputCodex("Female fanfir are slightly smaller and more lithe than males. Within their genital slits they have fairly typical vaginas, if proportionately much larger than most, replete with a clitoris. Males sport four external testicles and a 14 inch long penis, with a large bulge around two thirds of the way down, housing an over-sized semen gland capable of producing almost a gallon of seed per ejaculation.");
+	outputCodex("\n\nFanfir are oviparous and, after one a half year gestation, females lay 3-4 eggs. After hatching juvenile fanfir take around twenty years to reach adulthood. Fanfir have an average libido in comparison to the rest of the galaxy, and gladly engage in sex with anybody willing and able to do so. They cannot breed with other races however, and because of the timescales and number of large children involved are very careful breeders amongst themselves besides.");
+	outputCodex("\n\nTheir cultural preponderance towards hoarding (see below) influences fanfir sexuality. The concept of harems was central to many fanfir spoken legends: a sign of a hero's virility and tact. Nowadays fanfir of both sexes take great pride in maintaining as many lovers as they can, often attempting to persuade each away from polygamy themselves at the same time. This can mean others find fanfir possessive and jealous lovers, however that they should be thought of this way is anathema to the race's sexual paragon: that is, to have many lovers of many different races, each beholden only to them, all of them fully aware and at ease with each other. That this is virtually impossible only makes it, to the fanfir's mind, all the more an irresistible, romantic goal.");
+
+	outputCodex("\n\n");
+	outputCodex(blockHeader("History"));
+
+	outputCodex("By the time Haerum was discovered during the thirteenth planet rush, the fanfir were reaching the end of their stone age, confined mostly to their world's mountain ranges where they made their aeries. Although they had existed in a sentient state suitable to reach well beyond that for aeons they had struggled to do so, despite concurrently developing a language arguably more sophisticated than the then galactic standard, thanks largely to the difficulty they had, as pseudo-quadrupeds, of developing sophisticated tools. They were a tribal society who warred frequently.");
+	outputCodex("\n\nAfter initial attempts to make contact faltered, thanks to the fanfir having no concept of written text and misunderstanding attempts to talk to them as insulting animal screeches, they were largely ignored by early settlers to the planet, who were composed of small scale human and daynar mining concerns interested in the semi-precious metals held within its crust. Taking grave exception to miners inadvertently hitting burial sites and religious proving grounds, a large number of fanfir tribes united in an attempt to drive the extra-terrestrials away. Initially killed in droves by the weaponry deployed against them by the mining companies, they displayed intelligence beyond the estimations made of them by the humans and daynar by changing tactics, fighting a guerrilla war involving sweeping isolated individuals away in hit and run assaults, collapsing dig sites by channelling heavy vibrations into the earth, and terrorizing camps with all-night banshee-like choirs.");
+	outputCodex("\n\nWhilst the materiel companies involved could counter each of these individually, together they made the cost of extracting metals and sending workers to Haerum prohibitive, and they withdrew. The planet was on the verge of being declared off-limits when the anatae intervened.");
+	outputCodex("\n\nToday the integration of the fanfir into larger galactic civilization is held up as an exemplary case to all anatae first contact parties. At the time, the amount of time and resources they poured into attempting to consolidate a monstrously sized race of primitives that had proven itself to be barbarous and bloodthirsty was ridiculed. The anatae spent years analyzing the vocalizations of the fanfir with remote drones before approaching their nesting sites with offerings of tools and medicine, leaving them in places their research concluded were neutral bartering sites, favouring no tribe more than any other. The breakthrough was made when the imperial researchers finally offered the fanfir something they would come to value more than anything else in the entire galaxy: a second pair of opposable thumbs. Outfitted with the secondary set of cybernetic arms that would come synonymous with the race, the fanfir were immediately able to manipulate the world in a way that had long been denied them. They became eager recipients of the anatae, who were able to fully integrate them within the next decade, landing their own state mining corps on Haerum at the same time.");
+	outputCodex("\n\nToday the fanfir are an integral part of the Anatae Empire, with around twenty official colonies of their own. They are often found working as bankers, merchants and entrepreneurs in the rigidly controlled business sector, go-betweens to the galaxy outside and sources of credit, acting in roles anatae themselves are not given to. Plenty can be found outside the empire, preferring to operate outside of its restrictions; many more are found within its public works and navy.");
+
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Culture and Society"));
+
+	outputCodex("Thanks largely to their size, the fanfir are a highly individualistic race that chafe in crowds, and do not particularly like the company of their own kind for lengths of time. Fanfir instead gather together in one off <i>“flings”</i>, two or three day convocations that usually involve plenty of singing and speech-giving. Such events can satiate a fanfir’s wish to be amongst his or her own kind for years.");
+	outputCodex("\n\nFanfir have a penchant for hoarding, seemingly related to their bird-analogous evolution. Their sexual attitudes are mirrored in other walks of life, and a fanfir’s home is usually a treasure trove of items that has been centuries in the collecting, that he or she can spend hours talking about.");
+	outputCodex("\n\nTheir incredibly sophisticated and sturdy throats has lead the fanfir to have a natural love of music, singing and speech-giving, and with suitable safety equipment fanfir concerts are a rare treat, made rarer by how infrequently they occur. All travellers are warned that less scrupulous fanfir tend to be extremely persuasive, able to manipulate other’s behavioural patterns through the use of vocalized vibrations - as well as benefiting from an avaricious home culture with a rich history in the art of speech. Their love of wide open spaces and the acquisition of experience and physical treasures means the race are at their most visible and mobile during planet rushes.");
+	
+	outputCodex("\n\n");
+	CodexManager.viewedEntry("Fanfir");
+}
 
 public function dragonsHordeCodexStory():void
 {
@@ -2105,66 +2149,4 @@ public function dragonsHordeCodexStory():void
 
 	outputCodex("\n\nThis was a true dragon’s hoard: not riches of gold and gems, but of her lover’s constant affection, and the feeling of a second egg taking inside her as she yet warmed the first...\n");
 	CodexManager.viewedEntry("Dragon’s Hoard");
-}
-
-public function fanfirCodexEntry():void 
-{
-	clearOutputCodex();
-	outputCodex(header("Myr Fungus"));
-	outputCodex("<i>Gross.</i>\n");
-	outputCodex("\n<b>Name:</b> Ophiocordyceps Myrmedius");
-	outputCodex("\n<b>Genders:</b> Spores are technically genderless. Upon attaching to a host, the spores develop a gender based on a number of factors within the host.");
-	outputCodex("\n<b>Height:</b> Spores are a half-inch in diameter at the most. Manifested fungi are typically around half the host’s height.");
-	outputCodex("\n<b>Weight:</b> Spores are lighter than feathers. Manifested fungi weigh about as much as a full travel backpack. Fungal <i>“queens”</i> can weigh up to a few hundred pounds at the base.");
-	outputCodex("\n<b>Hair:</b> Normal manifestations have no hair. Instead, their heads are covered by mushroom <i>“hats.”</i> Fungal queens have clear hair that pulses with colored light.");
-	outputCodex("\n<b>Skin:</b> All members of the species have chalk white skin.");
-	outputCodex("\n<b>Eyes:</b> Humanoid eyes that shift with bright colors.");
-	outputCodex("\n<b>Ears:</b> Fungal manifestations have ears shaped similarly to their host, though the shapes are only for show as they hear everything that their hosts hear and communicate telepathically.\n\n");
-	
-	
-	outputCodex(header("Fanfir"));
-	outputCodex("<b>Name:</b> Fanfir");
-
-	outputCodex("\n<b>Sexes:</b> M/F equal split");
-	outputCodex("\n<b>Height:</b> 3 metres tall, 12 metres long from head to tail tip avg.");
-	outputCodex("\n<b>Weight:</b> 280 kg avg.");
-	outputCodex("\n<b>Hair:</b> On the head and around the groin");
-	outputCodex("\n<b>Skin Color</b>: Many different natural variances between coal black and deep red");
-	outputCodex("\n<b>Eyes:</b> Two, variety of colors");
-	outputCodex("\n<b>Lifespan:</b> 250 years (modern)");
-	outputCodex("\n<b>Wings:</b> Bat-like, with two clawed digits and a thumb at the limb extent. May reach 10 metres in span");
-	outputCodex("\n<b>Tails:</b> 2, thin, serpentine and flexible");
-
-	outputCodex("\n\n");
-	outputCodex(blockHeader("Appearance"));
-
-	outputCodex("Fanfir are vast sentient creatures from the low gravity world of Haerum. They have heavy musculature in their upper bodies and back whilst are slimmer and lithe in their torso region and digitigrade legs, lending them a hunched, looming profile. Capable of flight on their home planet, they are confined to the ground in higher gravities without specialist equipment or gene-mods. On the ground, their size and shape necessitates they walk on all fours, using their tough wing claws as front legs and so proceed with a distinctive, swaggering gait. They are entirely comfortable doing this however, indeed have evolved to spend most of their lives on the ground.");
-	outputCodex("\n\nThey have recognisably human facial features - although very broad and defined by human or ausar standards - aside from the horn that plates their lips and chin that acts as a secondary set of teeth. Their skin is smooth and tough, almost scale-like in places but still elastic and porous enough to allow the growth of hair upon their heads, the regulation of body temperature and the stretching necessary to enable flight.");
-	outputCodex("\n\nFanfir are almost always found with another set of arms, smaller and nimbler than their wing claws, sometimes gene-modded on but usually taking the form of a cybernetic harness halfway down their torsos. This enables them to perform manual tasks they would otherwise struggle to do comfortably.");
-	outputCodex("\n\nRemarkable to the species are their voluminous, highly evolved throats and vocal chords. Not obvious externally beyond the broadness of their necks, fanfir have the ability to make themselves heard over many miles - and to deafen anybody nearby. They can regulate their own hearing with a secondary, flexible tympanic membrane. They also have some limited ability to manipulate thought patterns and hormone release in others through the vibrations they produce whilst talking or singing. This feeds naturally into their aptitude for music (see below).");
-
-	outputCodex("\n\n");
-	outputCodex(blockHeader("Sexuality"));
-
-	outputCodex("Female fanfir are slightly smaller and more lithe than males. Within their genital slits they have fairly typical vaginas, if proportionately much larger than most, replete with a clitoris. Males sport four external testicles and a 14 inch long penis, with a large bulge around two thirds of the way down, housing an over-sized semen gland capable of producing almost a gallon of seed per ejaculation.");
-	outputCodex("\n\nFanfir are oviparous and, after one a half year gestation, females lay 3-4 eggs. After hatching juvenile fanfir take around twenty years to reach adulthood. Fanfir have an average libido in comparison to the rest of the galaxy, and gladly engage in sex with anybody willing and able to do so. They cannot breed with other races however, and because of the timescales and number of large children involved are very careful breeders amongst themselves besides.");
-	outputCodex("\n\nTheir cultural preponderance towards hoarding (see below) influences fanfir sexuality. The concept of harems was central to many fanfir spoken legends: a sign of a hero's virility and tact. Nowadays fanfir of both sexes take great pride in maintaining as many lovers as they can, often attempting to persuade each away from polygamy themselves at the same time. This can mean others find fanfir possessive and jealous lovers, however that they should be thought of this way is anathema to the race's sexual paragon: that is, to have many lovers of many different races, each beholden only to them, all of them fully aware and at ease with each other. That this is virtually impossible only makes it, to the fanfir's mind, all the more an irresistible, romantic goal.");
-
-	outputCodex("\n\n");
-	outputCodex(blockHeader("History"));
-
-	outputCodex("By the time Haerum was discovered during the thirteenth planet rush, the fanfir were reaching the end of their stone age, confined mostly to their world's mountain ranges where they made their aeries. Although they had existed in a sentient state suitable to reach well beyond that for aeons they had struggled to do so, despite concurrently developing a language arguably more sophisticated than the then galactic standard, thanks largely to the difficulty they had, as pseudo-quadrupeds, of developing sophisticated tools. They were a tribal society who warred frequently.");
-	outputCodex("\n\nAfter initial attempts to make contact faltered, thanks to the fanfir having no concept of written text and misunderstanding attempts to talk to them as insulting animal screeches, they were largely ignored by early settlers to the planet, who were composed of small scale human and daynar mining concerns interested in the semi-precious metals held within its crust. Taking grave exception to miners inadvertently hitting burial sites and religious proving grounds, a large number of fanfir tribes united in an attempt to drive the extra-terrestrials away. Initially killed in droves by the weaponry deployed against them by the mining companies, they displayed intelligence beyond the estimations made of them by the humans and daynar by changing tactics, fighting a guerrilla war involving sweeping isolated individuals away in hit and run assaults, collapsing dig sites by channelling heavy vibrations into the earth, and terrorizing camps with all-night banshee-like choirs.");
-	outputCodex("\n\nWhilst the materiel companies involved could counter each of these individually, together they made the cost of extracting metals and sending workers to Haerum prohibitive, and they withdrew. The planet was on the verge of being declared off-limits when the anatae intervened.");
-	outputCodex("\n\nToday the integration of the fanfir into larger galactic civilization is held up as an exemplary case to all anatae first contact parties. At the time, the amount of time and resources they poured into attempting to consolidate a monstrously sized race of primitives that had proven itself to be barbarous and bloodthirsty was ridiculed. The anatae spent years analyzing the vocalizations of the fanfir with remote drones before approaching their nesting sites with offerings of tools and medicine, leaving them in places their research concluded were neutral bartering sites, favouring no tribe more than any other. The breakthrough was made when the imperial researchers finally offered the fanfir something they would come to value more than anything else in the entire galaxy: a second pair of opposable thumbs. Outfitted with the secondary set of cybernetic arms that would come synonymous with the race, the fanfir were immediately able to manipulate the world in a way that had long been denied them. They became eager recipients of the anatae, who were able to fully integrate them within the next decade, landing their own state mining corps on Haerum at the same time.");
-	outputCodex("\n\nToday the fanfir are an integral part of the Anatae Empire, with around twenty official colonies of their own. They are often found working as bankers, merchants and entrepreneurs in the rigidly controlled business sector, go-betweens to the galaxy outside and sources of credit, acting in roles anatae themselves are not given to. Plenty can be found outside the empire, preferring to operate outside of its restrictions; many more are found within its public works and navy.");
-
-	outputCodex("\n\n");
-	outputCodex(blockHeader("Culture and Society"));
-
-	outputCodex("Thanks largely to their size, the fanfir are a highly individualistic race that chafe in crowds, and do not particularly like the company of their own kind for lengths of time. Fanfir instead gather together in one off <i>“flings”</i>, two or three day convocations that usually involve plenty of singing and speech-giving. Such events can satiate a fanfir’s wish to be amongst his or her own kind for years.");
-	outputCodex("\n\nFanfir have a penchant for hoarding, seemingly related to their bird-analogous evolution. Their sexual attitudes are mirrored in other walks of life, and a fanfir’s home is usually a treasure trove of items that has been centuries in the collecting, that he or she can spend hours talking about.");
-	outputCodex("\n\nTheir incredibly sophisticated and sturdy throats has lead the fanfir to have a natural love of music, singing and speech-giving, and with suitable safety equipment fanfir concerts are a rare treat, made rarer by how infrequently they occur. All travellers are warned that less scrupulous fanfir tend to be extremely persuasive, able to manipulate other’s behavioural patterns through the use of vocalized vibrations - as well as benefiting from an avaricious home culture with a rich history in the art of speech. Their love of wide open spaces and the acquisition of experience and physical treasures means the race are at their most visible and mobile during planet rushes.");
-	
-	CodexManager.viewedEntry("Fanfir");
 }

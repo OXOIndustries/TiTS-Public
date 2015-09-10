@@ -481,7 +481,7 @@ public function cleanPenisPartDues(x:int):void
 			output("as if to stop it, but her inner slut wins out and she allows you to blow your fertile load inside her.");
 		}
 		//(much cum)
-		if(pc.cumQ() >= 2500) output(" Your cum quickly fills your leggy lover and continues to gush out; her belly bumps into yours as the stream of seed stiffens her insectile backside like an over-inflated condom, and eventually, streamers of {cum color} spurt back out of her pussy, decorating the water.");
+		if(pc.cumQ() >= 2500) output(" Your cum quickly fills your leggy lover and continues to gush out; her belly bumps into yours as the stream of seed stiffens her insectile backside like an over-inflated condom, and eventually, streamers of [pc.cumColor] spurt back out of her pussy, decorating the water.");
 		output("\n\nShe heaves a long-drawn-out sigh of satisfaction as your session ends, and the other myr look on with envy as she slowly rises up from your dick with a stream of [pc.cum] drooling from her abused opening. Grudgingly, they finish cleaning you, even wiping the cum and pussy juice from your twitching manhood. The tall myr tries to curl her abdomen to hold in your ");
 		if(pc.cumQ() >= 2500) output("massive ");
 		output("dose of sperm as she addresses you.");
@@ -817,7 +817,7 @@ public function maleParts():void
 	showOserre();
 	author("Zeikfried");
 	var x:int = pc.biggestCockIndex();
-	if(pc.isNice()) output("D’you think you could maybe have a go at this?”</i> you mumble, rubbing your [pc.cocks]. When Oserre holds out her hands, you’re briefly at a loss... before you realize she means for you to place them where you want her to focus. Nervously, you put them on your [pc.cocksLight].");
+	if(pc.isNice()) output("<i>“D’you think you could maybe have a go at this?”</i> you mumble, rubbing your [pc.cocks]. When Oserre holds out her hands, you’re briefly at a loss... before you realize she means for you to place them where you want her to focus. Nervously, you put them on your [pc.cocksLight].");
 	else 
 	{
 		output("<i>“Right here, baby,”</i> you assert, stroking your [pc.cocks]. Oserre holds out her palms, and you don’t even wait for instructions - you f");
@@ -865,7 +865,8 @@ public function maleParts():void
 		//(2+ cock)
 		else
 		{
-			output(" Each cock is clenched in a slippery fist{5+ cocks}; Oserre continues to pick tools from your bouquet until she runs out of hands.");
+			output(" Each cock is clenched in a slippery fist.");
+			if (pc.cocks.length >= 5) output(" Oserre continues to pick tools from your bouquet until she runs out of hands.");
 		}
 		output(" The sensation of having so many hot palms jerking your cocks makes you glad you came to Kressia - you wonder if you could get a four-armed myr maidservant to take with you when you leave. The fantasy of despoiling your own private jerk-off girl fills your thoughts as Oserre teases and tickles your cockheads.");
 		
@@ -882,7 +883,8 @@ public function maleParts():void
 
 		output("\n\nYou sigh as your climax ends and your muscles unlock, and Oserre politely cleans your spooge-dribbling pricks in the hot spring. Her motions have gone from disarmingly sensual to positively prudish: she covers her ");
 		//(nipcock)
-		if(pc.hasNippleCocks()) output("cum-splattered }breasts with her hands and moves without jiggle or sway, unwilling to arouse your libido by displaying her sex-bomb body after suppressing it so thoroughly. Her words belie her true feelings when she finally speaks again, however: <i>“Traveler, it would be my pleasure to oversee your spiritual matters if you should return to Kressia once more.”</i>");
+		if (pc.hasNippleCocks()) output("cum-splattered");
+		output(" breasts with her hands and moves without jiggle or sway, unwilling to arouse your libido by displaying her sex-bomb body after suppressing it so thoroughly. Her words belie her true feelings when she finally speaks again, however: <i>“Traveler, it would be my pleasure to oversee your spiritual matters if you should return to Kressia once more.”</i>");
 		output("\n\nYour memory returns to the picture of her groping her breasts and moaning as she says ‘pleasure’, and this stays with you as you towel off and collect your gear...");
 		//end, small reduce libido, adjust time and lust
 	}
@@ -1146,8 +1148,8 @@ public function assistanceWithPrivateBath():void
 	else output("toned");
 	output(" body with lotion-covered hands.");
 	if(pc.hasFur()) output(" The soap lathers easily into your [pc.furColor] fur, and she works it in thoroughly with her three fingered hands");
-	else if(pc.hasGooSkin() || pc.isGoo()) output("The soap tickles as it mixes with your gooey body, and the ant-girl tries her best to keep a straight face as her fingers accidentally find themselves wrapped in your exterior");
-	else if(pc.hasScales()) output("The soap is cool on your heated scales, bubbling up as she scrubs you with a soft brush");
+	else if(pc.hasGooSkin() || pc.isGoo()) output(" The soap tickles as it mixes with your gooey body, and the ant-girl tries her best to keep a straight face as her fingers accidentally find themselves wrapped in your exterior");
+	else if(pc.hasScales()) output(" The soap is cool on your heated scales, bubbling up as she scrubs you with a soft brush");
 	else output(" The soap feels cool on your heated skin, quickly turning to bubbles as she scrubs it in with a silky washcloth");
 	output(".");
 	
@@ -1257,7 +1259,7 @@ public function acceptPrivateBathHJs(dick:Boolean = false):void
 		output(" that the concoction ");
 		if(flags["BEEN_PRIVATE_MYRBATH_SERVICED"] != undefined) output("isn’t");
 		else output("is");
-		output(" as powerful as real myr venom, but that doesn’t stop it from making your skin tingle at her touch. [pc.eachvagina] tingles in needful anticipation, growing stronger with the proximity of her fingers.");
+		output(" as powerful as real myr venom, but that doesn’t stop it from making your skin tingle at her touch. [pc.eachVagina] tingles in needful anticipation, growing stronger with the proximity of her fingers.");
 		output("\n\n<i>“To be honest I’m glad you choose this service. As fun as dicks are, I’m much more used to the normal stuff,”</i> she admits with a smile, hugging closely to your body as she talks. Graceful fingers dance over your mons and rub [pc.eachVagina] before focusing on your [pc.clit]. Her hands move with surprising speed under the water, showing just how skillful she is.");
 		output("\n\n<i>“Many of the lower ranking members of red myr command come here to cleanse themselves and relieve stress. I hear gold queens visited the baths on occasion, but if that’s true it was before my time,”</i> she continues, and you nod as you half-listen to her words, the rest of your attention snared by her touch.");
 		output("\n\nThe bathhouse adherent’s free hand slides smoothly over your body, stopping to squeeze one of your buttcheeks. You can see the flush in your partner’s face even through the silky veil over her nose, and her stiff nipples press into your [pc.chest]. She leans in close, licking your chin and prodding your lips till they part for her tongue. Any attempts to resist her are quickly calmed by a sensual warmth.");

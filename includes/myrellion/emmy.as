@@ -1,4 +1,5 @@
-﻿//Emmy, by Fenfuckso
+﻿import classes.Characters.PlayerCharacter;
+//Emmy, by Fenfuckso
 //APPROACHED_EMMY = walked up to her.
 //MET_EMMY = you know each other's name
 //SEEN_EMMY = only used for her room description.
@@ -296,7 +297,7 @@ public function kihaCorpGeneral():void
 	else output("the company rep");
 	output(" replies, <i>“Not much for the details, eh? Guess you must be more of a big picture type. Alright... where to start...”</i> She rubs thoughtfully at her jaw, drumming her other hand idly on the machine surface of her store’s countertop. Her eyes light up a moment later, and she starts in, <i>“I guess I’d best cover how they got so big in the first place. It’s as good a starting point as any.”</i>");
 	output("\n\nYou nod appreciatively.");
-	output("\n\n<i>“Right, so the way I understand it, KihaCorp started out pretty small, making VI’s and even a few AI’s, but there scientists got damned good at making AI-G’s - grown AI’s that is, the ones that act more like organics than the rest of ‘em. Those AI-D’s can be real cunts to have to deal with on a daily basis, let me tell you, and don’t even get me started on the ones that decided that the best way to complete their programmatic directives was to eliminate or confine their masters. As you can guess, damn near everybody uses AI-G’s now.”</i>");
+	output("\n\n<i>“Right, so the way I understand it, KihaCorp started out pretty small, making VI’s and even a few AI’s, but their scientists got damned good at making AI-G’s - grown AI’s that is, the ones that act more like organics than the rest of ‘em. Those AI-D’s can be real cunts to have to deal with on a daily basis, let me tell you, and don’t even get me started on the ones that decided that the best way to complete their programmatic directives was to eliminate or confine their masters. As you can guess, damn near everybody uses AI-G’s now.”</i>");
 	output("\n\nGaining confidence in her speech, ");
 	if(flags["MET_EMMY"] == undefined) output("Emmy");
 	else output("the furry dick-girl");
@@ -304,7 +305,7 @@ public function kihaCorpGeneral():void
 	output("\n\nYou quirk an eyebrow at that but let her continue.");
 	output("\n\n<i>“That was just the start. They figured out how to weave more and more quirks into their products until they absolutely dominated the AI market. Nowadays you can get an AI that’s anything from syrupy sweet to brusque and standoffish.”</i>");
 	output("\n\nLooking around the shop, you note the displays covered in weaponry. <i>“I don’t see any AI’s for sale.”</i>");
-	output("\n\n<i>“That’s because you have to order those off the extranet. They take a while to make, and the eggheads at corporate don’t like to leave AI’s sitting in storage, even if they do get put in a sleep mode. Something about rampancy or insanity or some other such problem. I guess sitting in a virtual coma for a few years isn’t great for a virtual brain either.”</i> She pulls up the Xenogen website to show you the online portal. <i>“That’s where you’d want to go to buy yourself a little artificial companionship. Brick and mortal stores like this are for the newer products.”</i>");
+	output("\n\n<i>“That’s because you have to order those off the extranet. They take a while to make, and the eggheads at corporate don’t like to leave AI’s sitting in storage, even if they do get put in a sleep mode. Something about rampancy or insanity or some other such problem. I guess sitting in a virtual coma for a few years isn’t great for a virtual brain either.”</i> She pulls up the KihaCorp website to show you the online portal. <i>“That’s where you’d want to go to buy yourself a little artificial companionship. Brick and mortar stores like this are for the newer products.”</i>");
 	processTime(4);
 	clearMenu();
 	//[Listen] [Enough]
@@ -330,8 +331,10 @@ public function listenToEmmyRamble():void
 	output("By now, ");
 	if(flags["MET_EMMY"] != undefined) output("Emmy");
 	else output("the Jackaless");
-	output(" is talking at full steam and barely looking at you to confirm your comprehension. <i>“Which brings me around to the newer products. We sell laser weapons and high-quality shield belts for the civilian market here, but the reason we’re able to do so is the other new business - building ships.”</i> She pauses for dramatic effect, taking the time to suck in a huge breath of air, making her bosom quietly jiggle. <i>“No matter what kind of ship you’re building, you need to provide it with some degree of shielding and sufficient shielding to discourage privateers in the less than lawful sections of space, and KihaCorp had the R&D budget to succeed at both. What’s more, they were able integrate their ships far more tightly with their AI’s than most of their competitors.”</i>");
-	output("\n\nYou let out a low whistle as you {try to }imagine the benefits of such synergy.");
+	output(" is talking at full steam and barely looking at you to confirm your comprehension. <i>“Which brings me around to the newer products. We sell laser weapons and high-quality shield belts for the civilian market here, but the reason we’re able to do so is the other new business - building ships.”</i> She pauses for dramatic effect, taking the time to suck in a huge breath of air, making her bosom quietly jiggle. <i>“No matter what kind of ship you’re building, you need to provide it with some degree of shielding and sufficient armaments to discourage privateers in the less than lawful sections of space, and KihaCorp had the R&D budget to succeed at both. What’s more, they were able to integrate their ships far more tightly with their AI’s than most of their competitors.”</i>");
+	output("\n\nYou let out a low whistle as you");
+	if ((pc as PlayerCharacter).characterClass != GLOBAL.CLASS_ENGINEER) output(" try to");
+	output(" imagine the benefits of such synergy.");
 	output("\n\n<i>“Yeah,”</i> ");
 	if(flags["MET_EMMY"] != undefined) output("Emmy");
 	else output("the anthropomorphic vendor purrs");
@@ -376,7 +379,7 @@ public function askEmmyIfKihaCorpIsDoingWell():void
 	output("\n\n<i>“Yeah... I guess that about covers it then, doesn’t it?”</i> ");
 	if(flags["MET_EMMY"] != undefined) output("Emmy");
 	else output("the shopkeep");
-	output(" muses. <i>“Did have any other concerns that needed addressing?”</i> She hops up onto the edge of the counter and leans back, showing off a half-hard bulge big enough to shame most ausar. <i>“Anything you wanted a look at?”</i>");
+	output(" muses. <i>“Did you have any other concerns that needed addressing?”</i> She hops up onto the edge of the counter and leans back, showing off a half-hard bulge big enough to shame most ausar. <i>“Anything you wanted a look at?”</i>");
 	processTime(5);
 	emmyMainMenu();
 }
@@ -387,17 +390,17 @@ public function askAboutTheOwnerOfKihaCorp():void
 	clearOutput();
 	showEmmy();
 	output("<i>“Who owns it?”</i> you ask.");
-	if(flags["MET_EMMY"] != undefined)  output("Emmy");
-	else output("The curvy company rep");
-	output(" taps her at her onyx lips and regards you silently for a long moment. Finally, she shrugs and breaks the silence, <i>“I don’t know. I doubt anyone but the company heads and the high-ups in the U.G.C. tax collection offices do. Rumor has it that she’s some kind of scaly recluse. Something reptilian... or maybe a gene-modded terran who’s turned too hideous to let herself be seen. Whatever the case, she stays out of the spotlight... and ahead of the paparazzi.”</i>");
+	if(flags["MET_EMMY"] != undefined)  output(" Emmy");
+	else output(" The curvy company rep");
+	output(" taps at her onyx lips and regards you silently for a long moment. Finally, she shrugs and breaks the silence, <i>“I don’t know. I doubt anyone but the company heads and the high-ups in the U.G.C. tax collection offices do. Rumor has it that she’s some kind of scaly recluse. Something reptilian... or maybe a gene-modded terran who’s turned too hideous to let herself be seen. Whatever the case, she stays out of the spotlight... and ahead of the paparazzi.”</i>");
 	output("\n\nLeaning close, so close her breasts brush your shoulder");
 	if(!pc.hasScales() && !pc.hasChitin()) output(", letting you feel her nipples digging into your [pc.skin]");
 	output(", she asks, <i>“Do ya wanna know my theory?”</i>");
 	output("\n\n<i>“Sure.”</i>");
 	output("\n\n<i>“I don’t think there is a Kiha anymore. That or there never was. I figure some genius programmer with a beard that starts off at about collarbone height used her as a persona, and when his company took off, he kept using the name as a front for his business, deflecting attention away from his personal life so that he could blow his trillions on four-breasted myr hookers or something.”</i> The ranting jackaless continues, <i>“And if that’s not the case, then she probably died or wandered off into obscurity. The company just kept using her name rather than rebranding.”</i>");
 	output("\n\n<i>“You really think so?”</i> You give her a probing look.");
-	if(flags["MET_EMMY"] != undefined) output("Emmy");
-	else output("The fuzzy rep");
+	if(flags["MET_EMMY"] != undefined) output(" Emmy");
+	else output(" The fuzzy rep");
 	output(" shrugs noncommittally, her breasts jostling each other inside her jumpsuit like overfilled waterballoons in a cargo hold. <i>“Nah. How the fuck would I know anything about something like that? I’m about as low on the the totem pole as you can get without having a mouthful of dirt. Nobody tells me anything, so all I’ve got to go on are my hunches and storylines from daytime holo-dramas.”</i> Hopping back up onto the edge of the counter, she resumes idly swinging her feet. <i>“Go any more questions?”</i>");
 	processTime(3);
 	emmyTalkMenu(talkToEmmyAboutKihaCorp);
@@ -451,7 +454,7 @@ public function askEmmyBoutMeleeShit():void
 	else output("The horn-dog of a shopkeeper");
 	output(" giggles, <i>“I think the idea of clocking someone with a hammer or slashing ‘em with a sword just seems so... silly, doncha think?”</i> She presses herself against you and lightly strokes at your ");
 	if(pc.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT)) output("covered ");
-	output("bicep. <i>“Sure, you can show off your muscles by swinging some giant hammer like a kaithrit sphynx warrior" + pc.mf("","ess") + ", but nothing beats the shivery hum of a high-powered energy rifle vibrating through your teeth as you aim down the holosights.”</i> Her whole body quivers, leaving you uncomfortable aware of the presence of her hard nipples digging into your side like bullets. <i>“But if you really want to hit something, you might as well do it with fucking lava. Or a hammer that hits with the force of a lightning strike. You have those where you’re from, right?”</i>");
+	output("bicep. <i>“Sure, you can show off your muscles by swinging some giant hammer like a kaithrit sphynx warrior" + pc.mf("","ess") + ", but nothing beats the shivery hum of a high-powered energy rifle vibrating through your teeth as you aim down the holosights.”</i> Her whole body quivers, leaving you uncomfortably aware of the presence of her hard nipples digging into your side like bullets. <i>“But if you really want to hit something, you might as well do it with fucking lava. Or a hammer that hits with the force of a lightning strike. You have those where you’re from, right?”</i>");
 	output("\n\n<i>“");
 	if(pc.isBimbo()) output("Yeah! They’re super loud!");
 	else if(pc.isBro()) output("Yup.");
