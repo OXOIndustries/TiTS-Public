@@ -514,9 +514,19 @@ public function suckleDatCowtaurTeat():void
 	pc.energy(200);
 	//yes/no
 	clearMenu();
-	if(pc.hasCock()) addButton(0,"Yes-HJ",getAHandyFromEllie,undefined,"Yes-HJ","Get a handjob while you drink.");
-	else addDisabledButton(0,"Yes-HJ","Yes-HJ","You need a penis to get a handjob.");
-	addButton(1,"Yes-Finger",getFingerByEllieDuringMilkDrinking,undefined,"Yes-Finger","Get fingered while you drink.");
+	if(pc.genitalLocation() >= 2 && pc.tallness >= ((2 * chars["ELLIE"].tallness) / 3))
+	{
+		if(pc.hasCock() && pc.cocks[0].cLength() >= (pc.tallness / 2)) addButton(0,"Yes-HJ",getAHandyFromEllie,undefined,"Yes-HJ","Get a handjob while you drink.");
+		else if(pc.hasCock()) addDisabledButton(0,"Yes-HJ","Yes-HJ","Ellie can't seem to reach your [pc.cock] in this position.");
+		else addDisabledButton(0,"Yes-HJ","Yes-HJ","You need a penis to get a handjob.");
+		addDisabledButton(1,"Yes-Finger","Yes-Finger","Ellie can't seem to reach around you in this position.");
+	}
+	else
+	{
+		if(pc.hasCock()) addButton(0,"Yes-HJ",getAHandyFromEllie,undefined,"Yes-HJ","Get a handjob while you drink.");
+		else addDisabledButton(0,"Yes-HJ","Yes-HJ","You need a penis to get a handjob.");
+		addButton(1,"Yes-Finger",getFingerByEllieDuringMilkDrinking,undefined,"Yes-Finger","Get fingered while you drink.");
+	}
 	if(pc.isTaur()) addButton(2,"PublicUse",publicUseForBullsByCentaurians,undefined,"PublicUse","Put yourself up for public use while you're drinking. You're horny enough to fuck just about anyone anyway.");
 	else addDisabledButton(2,"PublicUse","PublicUse","You need to be a taur to offer up your hindquarters for public use.");
 	addButton(3,"No",turnDownDatLustReliefFroMElliebuns);

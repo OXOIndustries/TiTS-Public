@@ -999,7 +999,9 @@ public function femaleFirstTimePennyLesboz():void {
 	{
 		output(" Your [pc.nipples] are achingly hard by this point, ");
 		if(pc.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_FLAT) output("even though they have no proper tips, only engorged areolae, ");
-		output("and Penny begins to properly work them, gliding her fingers in circles over their soft surface, gripping them between her thumb and index finger, gently tugging or rolling them in between. You gasp, arching your back to allow her better access, and the fox is more than happy to oblige, purring, <i>“A pity you don’t lactate, like proper prey.”</i>  She pinches, <i>“But, perhaps you might be a worthy mate after all.”</i>  Her digits hurriedly work your box, making you moan again. <i>“Maybe not.”</i>");
+		output("and Penny begins to properly work them, gliding her fingers in circles over their soft surface, gripping them between her thumb and index finger, gently tugging or rolling them in between. You gasp, arching your back to allow her better access, and the fox is more than happy to oblige");
+		if(!pc.isLactating()) output(", purring, <i>“A pity you don’t lactate, like proper prey.”</i>  She pinches, <i>“But, perhaps you might be a worthy mate after all.”</i>  Her digits hurriedly work your box, making you moan again. <i>“Maybe not.”</i>");
+		else output(". She pinches them and licks her lips as a rivulet of [pc.milkColor] runs down your flesh and dilutes itself in the falling water. Her digits hurriedly work your box, making you moan again.");
 	}
 	output("\n\nThe fox-girl pushes onward, guiding you down to the base of the tub. She quickly arranges your [pc.legs] to allow her the best possible access to [pc.oneVagina]");
 	if(pc.totalVaginas() > 1)
