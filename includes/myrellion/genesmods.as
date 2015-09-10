@@ -1315,7 +1315,7 @@ public function genesModsOverCounter():void
 		output("\n\n<i>“Ah, there it is: the perfect timbre,”</i> he smiles at you proudly. <i>“Shamelessly slutty, yet earnestly polite.”</i>");
 	}
 
-	output("\n\nGene lowers you down and flips you over with strong, careful sweeps of his claws, shifting himself forward as he does, the great shadow of his form looming over you, the cool, earthy smell of him in your nostrils. You shudder as you feel the swell of his chest touch you between the shoulder-blades; the sheer weight of him could easily keep you pinned here, naked with your [pc.butt] in the air, if he so wished. You bite your lip as grey, warm digits caress and test the slick folds of your [pc.vagina " + x + "]; the hot, oak-like girth of his fanfir cock rides up between your buttocks, the ribs of its underside brushing over your [pc.anus].");
+	output("\n\nGene lowers you down and flips you over with strong, careful sweeps of his claws, shifting himself forward as he does, the great shadow of his form looming over you, the cool, earthy smell of him in your nostrils. You shudder as you feel the swell of his chest touch you between the shoulder-blades; the sheer weight of him could easily keep you pinned here, naked with your [pc.butt] in the air, if he so wished. You bite your lip as grey, warm digits caress and test the slick folds of your [pc.vagina " + x + "]; the hot, oak-like girth of his fanfir cock rides up between your buttocks, the ribs of its underside brushing over your [pc.asshole].");
 
 	if (pc.biggestVaginalCapacity() <= geneCockVolume())
 	{
@@ -1370,14 +1370,14 @@ public function genesModsOverCounter():void
 			output("?”</i>");
 		}
 		
-		output("\n\n<i>“No talking now,”</i> you reply. It is inexplicable and infuriating to you that, laid out and ready to get the big, hard dicking your body is constantly crying out for, he is wasting time with words. <i>“I should not be able to talk right now you’re fucking me that good, k?”</i>  Gene readily responds by shoving his cock right up to the quick in you, and everything becomes a deep, golden, mooing bliss again for you.}");
+		output("\n\n<i>“No talking now,”</i> you reply. It is inexplicable and infuriating to you that, laid out and ready to get the big, hard dicking your body is constantly crying out for, he is wasting time with words. <i>“I should not be able to talk right now you’re fucking me that good, ‘kay?”</i> Gene readily responds by shoving his cock right up to the quick in you, and everything becomes a deep, golden, mooing bliss again.");
 		
 		output("\n\nOnce he has spent a moment glorying in it, the fanfir pulls almost all the way out, so the ribbed bulge is distending your lips, before ramming all sixteen inches succulently home, his hard hips patting against your [pc.butt] as he quickly finds a good rhythm. The way it arches makes the tip of his massive cock drags across the roof of your sopping tunnel, sending tingles of pure pleasure run up your spine with every");
 		if (pc.thickness <= 10) output(" shiver of your taut");
 		else output(" jiggle of your generous");
 		output(" flesh.");
 		
-		output("\n\n<i>“Of course,”</i> he murmurs, <i>“one of the best things about doing it like this is... <i>“ You feel a hard protrusion slide between the cheeks of your [pc.butt] and press demandingly against your [pc.anus]. In the dizziness of the moment you cannot immediately think what it is. You remember a moment later when, with a harsh groan, Gene thrusts forward, packing your [pc.vagina " + x + "] full of cock at the same time as spreading and penetrating your butthole with his human dick. It’s much smaller than his fanfir organ but, oh void, it feels anything but small as it drives into your colon...");
+		output("\n\n<i>“Of course,”</i> he murmurs, <i>“one of the best things about doing it like this is... <i>“ You feel a hard protrusion slide between the cheeks of your [pc.butt] and press demandingly against your [pc.asshole]. In the dizziness of the moment you cannot immediately think what it is. You remember a moment later when, with a harsh groan, Gene thrusts forward, packing your [pc.vagina " + x + "] full of cock at the same time as spreading and penetrating your butthole with his human dick. It’s much smaller than his fanfir organ but, oh void, it feels anything but small as it drives into your colon...");
 		
 		output("\n\nGasps escape your mouth, hands clutching at the hard glass, your whole body shaking to the force of the massive beast completely stuffing you, his hot, bullish dicks pressing together through your tender walls. Gasps become wanton moans as his robot hands clasp your [pc.chest] and fondle your [pc.nipples],");
 		if (!pc.hasFuckableNipples()) output(" stroking and pinching them until they are erect and inflamed");
@@ -1389,7 +1389,7 @@ public function genesModsOverCounter():void
 		if (pc.isLactating()) output(" and [pc.milk] spurting freely from your kneaded [pc.nipples]");
 		output(".");
 		
-		output("\n\nGene laughs his soft, deep enjoyment to watching your squirm and squirt yourself silly around him, slowing his pace down a bit in the aftermath of your orgasm - but he’s still hard as rock, and he continues to push himself into your oozing [pc.vagina " + x + "] and opened [pc.anus], bending them this way and that to stir and strain you, making you twitch and groan anew. He murmurs something under his breath which you don’t catch, his heavy susurrations trembling through your core, and suddenly you feel both refreshed and extra tender, your [pc.nipples] and [pc.clit] puffing up as blood rushes to them, ready and needy for extra fucking. Your [pc.tongue] hangs out of your mouth as he picks up the pace again");
+		output("\n\nGene laughs his soft, deep enjoyment to watching your squirm and squirt yourself silly around him, slowing his pace down a bit in the aftermath of your orgasm - but he’s still hard as rock, and he continues to push himself into your oozing [pc.vagina " + x + "] and opened [pc.asshole], bending them this way and that to stir and strain you, making you twitch and groan anew. He murmurs something under his breath which you don’t catch, his heavy susurrations trembling through your core, and suddenly you feel both refreshed and extra tender, your [pc.nipples] and [pc.clit] puffing up as blood rushes to them, ready and needy for extra fucking. Your [pc.tongue] hangs out of your mouth as he picks up the pace again");
 		if (geneSubmissionLevel() >= 8) output(", whining your approval as he gives your [pc.butt] a hard swat for good measure");
 		output(".");
 		
