@@ -172,7 +172,9 @@ public function backToEmmyMain():void
 {
 	clearOutput();
 	showEmmy();
-	output("Emmy smiles coyly and paces between holograms of a huge-barreled laser weapon and a hammer that crackles with phantom electricity. <i>\"Well, what now?\"</i>");
+	if(flags["MET_EMMY"] != undefined) output("Emmy");
+	else output("The jackal-woman");
+    output(" smiles coyly and paces between holograms of a huge-barreled laser weapon and a hammer that crackles with phantom electricity. <i>\"Well, what now?\"</i>");
 	emmyMainMenu();
 }
 
