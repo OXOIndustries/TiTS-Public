@@ -481,7 +481,7 @@ public function cleanPenisPartDues(x:int):void
 			output("as if to stop it, but her inner slut wins out and she allows you to blow your fertile load inside her.");
 		}
 		//(much cum)
-		if(pc.cumQ() >= 2500) output(" Your cum quickly fills your leggy lover and continues to gush out; her belly bumps into yours as the stream of seed stiffens her insectile backside like an over-inflated condom, and eventually, streamers of {cum color} spurt back out of her pussy, decorating the water.");
+		if(pc.cumQ() >= 2500) output(" Your cum quickly fills your leggy lover and continues to gush out; her belly bumps into yours as the stream of seed stiffens her insectile backside like an over-inflated condom, and eventually, streamers of [pc.cumColor] spurt back out of her pussy, decorating the water.");
 		output("\n\nShe heaves a long-drawn-out sigh of satisfaction as your session ends, and the other myr look on with envy as she slowly rises up from your dick with a stream of [pc.cum] drooling from her abused opening. Grudgingly, they finish cleaning you, even wiping the cum and pussy juice from your twitching manhood. The tall myr tries to curl her abdomen to hold in your ");
 		if(pc.cumQ() >= 2500) output("massive ");
 		output("dose of sperm as she addresses you.");
