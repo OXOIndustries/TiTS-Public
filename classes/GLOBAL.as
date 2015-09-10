@@ -544,6 +544,7 @@
 		public static const VALID_DICKNIPPLE_TYPES:Array = [
 			TYPE_HUMAN,
 			TYPE_EQUINE,
+			TYPE_CANINE,
 			TYPE_FELINE,
 		];
 		

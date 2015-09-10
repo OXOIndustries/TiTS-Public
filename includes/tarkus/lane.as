@@ -3169,12 +3169,14 @@ public function tryFollowerLaneIntervention():Boolean
 	{
 		// Figure out which follower is actually gonna take lead on this.
 		var availFollowers:Array = [];
-
+		
 		if (annoIsCrew()) availFollowers.push("Anno");
 		if (celiseIsCrew()) availFollowers.push("Celise");
 		if (daneIsCrew()) availFollowers.push("Dane");
 		if (reahaIsCrew() && reahaIsCured()) availFollowers.push("Reaha");
-
+		if (bessIsCrew() && flags["BESS_JUST_A_SEXBOT"] != 1 && (flags["BESS_LOVER"] != undefined || flags["BESS_IS_FRIEND"] != undefined || bessAffection() >= 30)) availFollowers.push(chars["BESS"].mf("Ben-14","Bess-13"));
+		if (syriIsCrew()) availFollowers.push("Syri");
+		
 		if (availFollowers.length > 0)
 		{
 			followerLaneIntervention(availFollowers[rand(availFollowers.length)]);
@@ -3184,14 +3186,18 @@ public function tryFollowerLaneIntervention():Boolean
 	return false;
 }
 
-public function lFollowerName():String
+public function lFollowerName(customName:Boolean = true):String
 {
+	if (customName)
+	{
+		if (InCollection(flags["FOLLOWER_LANE_INTERVENTION"], "Ben-14", "Bess-13")) return "[bess.name]";
+	}
 	return flags["FOLLOWER_LANE_INTERVENTION"];
 }
 
 public function lFollowerMF(m:String, f:String):String
 {
-	if (flags["FOLLOWER_LANE_INTERVENTION"] == "Dane") return m;
+	if (InCollection(flags["FOLLOWER_LANE_INTERVENTION"], "Dane", "Ben-14")) return m;
 	return f;
 }
 
@@ -3200,7 +3206,7 @@ public function followerLaneIntervention(followerName:String):void
 	flags["FOLLOWER_LANE_INTERVENTION"] = followerName;
 
 	clearOutput();
-	showName("\n" + followerName);
+	showName("\n" + followerName.toUpperCase());
 	showBust(followerName.toUpperCase());
 	author("B");
 
@@ -3255,8 +3261,8 @@ public function followerLaneIntervention(followerName:String):void
 public function followerLaneInterventionConfide():void
 {
 	clearOutput();
-	showName("\n" + lFollowerName());
-	showBust(lFollowerName().toUpperCase());
+	showName("\n" + lFollowerName(false).toUpperCase());
+	showBust(lFollowerName(false).toUpperCase());
 	author("B");
 
 	output("<i>“I trust you,”</i> you tell "+ lFollowerName() +" suddenly. In response, "+ lFollowerMF("his", "her") +" eyes widen slightly");
@@ -3333,8 +3339,8 @@ public function followerLaneInterventionConfide():void
 public function followerLaneInterventionFuckOff():void
 {
 	clearOutput();
-	showName("\n" + lFollowerName());
-	showBust(lFollowerName().toUpperCase());
+	showName("\n" + lFollowerName(false).toUpperCase());
+	showBust(lFollowerName(false).toUpperCase());
 	author("B");
 
 	output("You look "+ lFollowerName() +" dead in the eye. <i>“It’s not any of your business,”</i> you tell "+ lFollowerMF("him", "her") +" sternly. You try to look as serious as possible, but "+ lFollowerMF("he", "she") +"’s not entirely convinced.");

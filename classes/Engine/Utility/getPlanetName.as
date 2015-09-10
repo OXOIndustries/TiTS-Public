@@ -14,7 +14,7 @@
 		if (pName.indexOf(":") != -1)
 			pName = pName.split(" ")[1];
 	
-		pName = StringUtil.toTitleCase(pName);
+		pName = StringUtil.toTitleCase(pName.toLowerCase());
 		
 		return pName;
 	}
