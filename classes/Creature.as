@@ -9955,7 +9955,7 @@ package classes {
 					else if (rando == 1) descript += "slender";
 					else descript += "narrow";
 				} else if (cocks[cockNum].thickness() <= 1.2) {
-					descript += RandomInCollection("modest");
+					descript += "modest";
 					
 					//else if (rando == 1) descript += "fleshy";
 					//else descript += "substantial";
