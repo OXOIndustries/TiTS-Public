@@ -6618,27 +6618,27 @@ package classes {
 			{
 				vaginas[slot].vaginaColor = "black";
 			}
-			if (type == TYPE_SYNTHETIC)
+			if (type == GLOBAL.TYPE_SYNTHETIC)
 			{
 				vaginas[slot].vaginaColor = RandomInCollection(["silver", "gray", "black"]);
 			}
-			if (type == TYPE_LAPINARA)
+			if (type == GLOBAL.TYPE_LAPINARA)
 			{
 				vaginas[slot].vaginaColor = RandomInCollection(["pink", "pink", "purple"]);
 			}
-			if (type == TYPE_CANINE)
+			if (type == GLOBAL.TYPE_CANINE)
 			{
 				vaginas[slot].clits = 1;
 				vaginas[slot].vaginaColor = "pink";
 				vaginas[slot].wetnessRaw = 3;
 				vaginas[slot].minLooseness = 3;
 			}
-			if (type == TYPE_GOOEY)
+			if (type == GLOBAL.TYPE_GOOEY)
 			{
 				vaginas[slot].vaginaColor = skinTone;
 				vaginas[slot].addFlag(GLOBAL.FLAG_LUBRICATED);
 			}
-			if (type == TYPE_SIREN)
+			if (type == GLOBAL.TYPE_SIREN)
 			{
 				vaginas[slot].vaginaColor = "blue";
 				vaginas[slot].addFlag(GLOBAL.FLAG_NUBBY);
@@ -8707,7 +8707,6 @@ package classes {
 					vag += RandomInCollection(["slimey vagina", "gooey pussy", "slimy cunt", "syrupy hole", "juicy twat", "slimy gash", "gooey honeypot", "slimey snatch"]);
 				else
 					vag += RandomInCollection(["slime-gina", "goo-pussy", "slime-cunt", "fuck-hole", "goo-twat", "slime-gash", "honeypot", "slime-snatch"]);
-				}
 			}
 			else if (type == GLOBAL.TYPE_SIREN || type == GLOBAL.TYPE_ANEMONE)
 			{
@@ -8756,9 +8755,9 @@ package classes {
 				if (!simple)
 				{
 					if(type == GLOBAL.TYPE_HUMAN)
-						vag += RandomInCollection(["human ", "human ", "terran ", "terran ", "terran "];
+						vag += RandomInCollection(["human ", "human ", "terran ", "terran ", "terran "]);
 					else
-						vag += RandomInCollection(["human-like ", "human-like ", "exotic ", "exotic ", "inhuman "];
+						vag += RandomInCollection(["human-like ", "human-like ", "exotic ", "exotic ", "inhuman "]);
 				}
 				vag += RandomInCollection(["vagina", "pussy", "cunt", "fuck-hole", "slit", "twat", "gash", "cunny", "honeypot", "snatch"]);
 			}
