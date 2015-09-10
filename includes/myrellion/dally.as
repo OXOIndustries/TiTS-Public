@@ -163,6 +163,7 @@ public function askDallyForADanceYaDunce():void
 	else if(pc.isBimbo()) 
 	{
 		output(" Like there was ever a choice! You giggle and bite your [pc.lip] as you prepare to handle this prancing studmuffin.");
+		clearMenu();
 		addButton(0,"Next",dallyDanceWithTheBadTouchYouAndMeBabyArentNothinButMammalsNoWaitInsects,undefined,"Touch","Get a hands-on dance. It might be a little messy.");
 	}
 	else

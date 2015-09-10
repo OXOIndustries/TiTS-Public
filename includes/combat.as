@@ -1307,12 +1307,13 @@ public function attack(attacker:Creature, target:Creature, specials:Array = unde
 		//Set up Riposte ability
 		if (attacker.hasPerk("Riposte") && !attacker.hasStatusEffect("Riposting")) attacker.createStatusEffect("Riposting", 0, 0, 0, 0, true, "", "", true, 0);
 		//Shoot first bonus! Only procs on the first round of combat from the first "normal" swing.
+		/* REMOVED. Only supposed to be a ranged thing
 		if (attacker.hasPerk("Shoot First") && !attacker.hasStatusEffect("Shot First") && !attacker.hasStatusEffect("Multiple Attacks") && attacker.statusEffectv1("Round") <= 1 && !InCollection(1,specials) && !InCollection(3,specials)) {
 			output("<b>Struck first!</b>\n");
 			attacker.createStatusEffect("Shot First");
 			attack(pc,target,[0,2,3]);
 			attacker.removeStatusEffect("Shot First");
-		}
+		}*/
 	}
 	//Attack prevented by disarm
 	if(attacker.hasStatusEffect("Disarmed")) {
