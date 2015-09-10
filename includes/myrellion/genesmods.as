@@ -72,8 +72,6 @@ public function geneCockVolume():Number
 public function genesModsInterior():void
 {
 	geneHeader();
-	
-	CodexManager.unlockEntry("Fanfir");
 
 	if (flags["GENES_MODS_ENTERED"] == undefined)
 	{
@@ -101,10 +99,15 @@ public function genesModsInterior():void
 			else output(" yet has never encountered a fanfir before?");
 			output(" Curious.”</i> He laughs at his own joke, making the surrounding cabinets shake. <i>“Don’t worry, I do not bite. Not customers, as a rule. I sell gene mods, many different types, many of which are not available elsewhere. Ask, fellow stranger in a strange land, and you may receive. And relax.”</i> This last word is drawn out as a low, whispery susurration. You do suddenly feel rather more relaxed.");
 		}
+		
+		CodexManager.unlockEntry("Fanfir");
+		
 		processTime(3);
 	}
 	else
 	{
+		CodexManager.unlockEntry("Fanfir");
+		
 		if (geneSubmissionLevel() >= 0 && geneSubmissionLevel() <= 2)
 		{
 			output("\n\n<i>“Captain Steele!”</i> Gene grins hugely when you step back into his airy shop. <i>“To what do I owe this rare pleasure?”</i>");
@@ -493,7 +496,7 @@ public function genesModsTalkBackOff(nFunc:Function = null):void
 	output("You shrug the fanfir’s claw off irritably.");
 	
 	output("\n\n<i>“It’s strange, I’m pretty certain I told you not to do that once,”</i> you say. <i>“And here I am telling you again. Next time you aren’t getting that paw of yours back.");
-	if (pc.IQ() >= 50 && CodexManager.hasUnlockedEntry("Fanfir")) output(" And don’t think I don’t know what you’re trying to pull with that treacly voice of yours either.");
+	if (pc.IQ() >= 50 && CodexManager.entryViewed("Fanfir")) output(" And don’t think I don’t know what you’re trying to pull with that treacly voice of yours either.");
 	output(" So knock it off, alright?”</i>");
 	
 	output("\n\nGene looks stunned by this - and then, momentarily, thunderously angry. Finally though, he takes several steps back and groans theatrical despair at the ceiling.");
