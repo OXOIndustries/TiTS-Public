@@ -2300,14 +2300,14 @@ public function statisticsScreen(showID:String = "All"):void
 					if(pc.breastRows[x].breastRatingHoneypotMod != 0) output2("\n<b>* Breast, Honeypot Size Rating: </b>" + formatFloat(pc.breastRows[x].breastRatingHoneypotMod, 3));
 					if(pc.breastRows[x].breastRatingLactationMod != 0) output2("\n<b>* Breast, Lactation Size Rating: </b>" + formatFloat(pc.breastRows[x].breastRatingLactationMod, 3));
 					output2("\n<b>* Nipple, Type: </b>" + " " + GLOBAL.NIPPLE_TYPE_NAMES[pc.breastRows[x].nippleType]);
-					if(breastRows[x].fuckable()) output2(", Fuckable");
-					if(breastRows[x].nippleType == GLOBAL.NIPPLE_TYPE_DICK) output2("\n<b>* Nipple, Genital Type: </b>" + GLOBAL.TYPE_NAMES[pc.breastRows[x].dickNippleType]);
+					if(pc.breastRows[x].fuckable()) output2(", Fuckable");
+					if(pc.breastRows[x].nippleType == GLOBAL.NIPPLE_TYPE_DICK) output2("\n<b>* Nipple, Genital Type: </b>" + GLOBAL.TYPE_NAMES[pc.breastRows[x].dickNippleType]);
 					if(pc.breastRows[x].nippleType != GLOBAL.NIPPLE_TYPE_FUCKABLE && pc.breastRows[x].nippleType != GLOBAL.NIPPLE_TYPE_FLAT && pc.breastRows[x].nippleType != GLOBAL.NIPPLE_TYPE_INVERTED)
 					{
-						if(breastRows[x].nippleType == GLOBAL.NIPPLE_TYPE_DICK)
+						if(pc.breastRows[x].nippleType == GLOBAL.NIPPLE_TYPE_DICK)
 						{
 							output2("\n<b>* Nipple, Length, Flaccid: </b>" + prettifyLength(pc.nippleLength(x)));
-							output2("\n<b>* Nipple, Length, Erect: </b>" + prettifyLength(pc.nippleLength(x) * dickNippleMultiplier));
+							output2("\n<b>* Nipple, Length, Erect: </b>" + prettifyLength(pc.nippleLength(x) * pc.dickNippleMultiplier));
 						}
 						else output2("\n<b>* Nipple, Length: </b>" + prettifyLength(pc.nippleLength(x)));
 						if(pc.breastRows[x].breasts != 1) output2(" each");

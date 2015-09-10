@@ -333,7 +333,7 @@ public function listenToEmmyRamble():void
 	else output("the Jackaless");
 	output(" is talking at full steam and barely looking at you to confirm your comprehension. <i>“Which brings me around to the newer products. We sell laser weapons and high-quality shield belts for the civilian market here, but the reason we’re able to do so is the other new business - building ships.”</i> She pauses for dramatic effect, taking the time to suck in a huge breath of air, making her bosom quietly jiggle. <i>“No matter what kind of ship you’re building, you need to provide it with some degree of shielding and sufficient armaments to discourage privateers in the less than lawful sections of space, and KihaCorp had the R&D budget to succeed at both. What’s more, they were able to integrate their ships far more tightly with their AI’s than most of their competitors.”</i>");
 	output("\n\nYou let out a low whistle as you");
-	if ((pc as PlayerCharacter).characterClass != GLOBAL.CLASS_CLASS_ENGINEER) output(" try to");
+	if ((pc as PlayerCharacter).characterClass != GLOBAL.CLASS_ENGINEER) output(" try to");
 	output(" imagine the benefits of such synergy.");
 	output("\n\n<i>“Yeah,”</i> ");
 	if(flags["MET_EMMY"] != undefined) output("Emmy");
