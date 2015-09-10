@@ -129,6 +129,16 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/ogram.png", mimeType = "image/png")]
 		public var Bust_OGRAM:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/praetorian.png", mimeType = "image/png")]
+		public var Bust_PRAETORIAN:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/praetorian_nude.png", mimeType = "image/png")]
+		public var Bust_PRAETORIAN_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/princess.png", mimeType = "image/png")]
+		public var Bust_PRINCESS:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/princess_bandoleer.png", mimeType = "image/png")]
+		public var Bust_PRINCESS_BANDOLEER:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/saendra.png", mimeType = "image/png")]
 		public var Bust_SAENDRA:Class;
 
@@ -147,6 +157,9 @@
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/tanis.png", mimeType = "image/png")]
 		public var Bust_TANIS:Class;
+
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/taivra.png", mimeType = "image/png")]
+		public var Bust_TAIVRA:Class;
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/valeria.png", mimeType = "image/png")]
 		public var Bust_VALERIA:Class;

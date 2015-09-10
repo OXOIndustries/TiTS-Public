@@ -9,6 +9,7 @@
 	import classes.Items.Melee.Jolthammer;
 	import classes.Items.Protection.SalamanderShield;
 	import classes.Items.Protection.OzoneAegis;
+	import classes.Items.Accessories.SalamanderDuster;
 	import classes.kGAMECLASS;
 	import classes.rand;
 	
@@ -28,11 +29,13 @@
 			
 			inventory.push(new SalamanderRifle());
 			inventory.push(new SalamanderPistol());
+			inventory.push(new SalamanderDuster());
+			inventory.push(new SalamanderShield());
 			inventory.push(new VampBlade());
 			inventory.push(new LavaSaber());
 			inventory.push(new Jolthammer());
-			inventory.push(new SalamanderShield());
 			inventory.push(new OzoneAegis());
+
 			
 			this.typesBought = [GLOBAL.MELEE_WEAPON,GLOBAL.RANGED_WEAPON,GLOBAL.SHIELD,GLOBAL.ACCESSORY];
 			

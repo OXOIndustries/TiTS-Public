@@ -24,6 +24,13 @@ public function showRival():void
 	userInterface.showBust(chars["RIVAL"].short.toUpperCase());
 	userInterface.showName(chars["RIVAL"].short.toUpperCase());
 }
+public function showPraetorians(nude:Boolean = false):void
+{
+	if(inCombat()) showName("FIGHT: NYREAN\nGUARDS");
+	else showName("NYREAN\nGUARDS");
+	if(!nude) showBust("PRAETORIAN","PRAETORIAN","PRAETORIAN");
+	else showBust("PRAETORIAN_NUDE","PRAETORIAN_NUDE","PRAETORIAN_NUDE");
+}
 
 public function nyreaDungeonFinished():Boolean
 {
@@ -105,7 +112,7 @@ public function taivrasPalaceSquareBonus():Boolean
 public function approachNyreanGuardsFirstTime():void
 {
 	clearOutput();
-	showName("NYREAN\nGUARDS");
+	showPraetorians();
 	author("Savin");
 	output("You walk over to the guards, hoping to talk to them. Instead, the guardswomen plant their feet and cross their spears over the heavy stone gate, an unnecessary but obvious sign that you’re about to be refused passage.");
 	output("\n\n<i>“Turn back, star-walker,”</i> one of the women says; the other twists her black lips into a distinct frown. <i>“Queen Taivra has decreed no more offworlders are to be permitted in the palace. Your kind have done us enough insult.”</i>");
@@ -126,7 +133,7 @@ public function approachNyreanGuardsFirstTime():void
 public function attackDemAntBiyotches():void
 {
 	clearOutput();
-	showName("NYREAN\nGUARDS");
+	showPraetorians();
 	author("Savin");
 	output("<i>“I’m going in. Like it or not,”</i> you tell the guards, drawing your [pc.weapon].");
 	output("\n\nThe guards lower their spears at you, and one of them grabs a rope behind her, leading into the wall. A bell resounds inside, and a moment later the gate is creaking open and several more nyrean huntresses are pouring out. And suddenly, your odds look a little less great...");
@@ -141,7 +148,7 @@ public function attackDemAntBiyotches():void
 public function tryAndPerseudeFutaBugSlootsToMooooove():void
 {
 	clearOutput();
-	showName("NYREAN\nGUARDS");
+	showPraetorians();
 	author("Savin");
 	output("<i>“Come on, can’t we work something out?”</i> you ask, putting on your most diplomatic smile.");
 	output("\n\nThe two guards exchange a glance, and one of them puts a hand on her hip. <i>“Hmm, at least this one understands parley. Very well, perhaps we could convince the queen to see you. If you have something of sufficient value...”</i>");
@@ -158,7 +165,7 @@ public function tryAndPerseudeFutaBugSlootsToMooooove():void
 public function sexYourWayIntoTaivras():void
 {
 	clearOutput();
-	showName("NYREAN\nGUARDS");
+	showPraetorians();
 	author("Savin");
 	output("<i>“No,”</i> one of the guards scowls when you offer to let them have their way with you. <i>“We’ve an entire village of virile males down below. Exotic... and attractive... as you are, pleasures of the flesh aren’t worth the queen’s ire.”</i>");
 	output("\n\n<i>“If that’s the best you have to offer, begone,”</i> the other guard says.");
@@ -173,7 +180,7 @@ public function sexYourWayIntoTaivras():void
 public function bribeTaivrasGateGuards():void
 {
 	clearOutput();
-	showName("NYREAN\nGUARDS");
+	showPraetorians();
 	author("Savin");
 	output("You pull out your credit stick invitingly, only to receive confused looks from the guards. <i>“What’s that?”</i> one asks, snatching it and looking it over. <i>“Some kind of weapon?”</i>");
 	output("\n\n<i>“No, no,”</i> you say, condensing an economics lesson into as few words as possible: you tell her that credits are star-walker money, and they can buy whatever they want that way.");
@@ -200,7 +207,7 @@ public function bribeTaivrasGateGuards():void
 public function offerTaivraGuardsPlat190():void
 {
 	clearOutput();
-	showName("NYREAN\nGUARDS");
+	showPraetorians();
 	author("Savin");
 	output("<i>“How about this?”</i> you ask, taking the chunk of gleaming platinum out of your pack.");
 	output("\n\nThe huntresses’ eyes go wide, and one of them takes hold of the shard of ore and looks it over. <i>“It’s beautiful,”</i> she says, waving her comrade over. <i>“Where did you get this?”</i>");
@@ -317,6 +324,7 @@ public function spearWallGoooo():void
 
 public function praetorianAI():void
 {
+	showPraetorians();
 	if(!foes[0].hasStatusEffect("Evasion Boost") && foes[0].energy() >= 20 && (rand(4) == 0 || foes[0].HP() < 100)) spearWallGoooo();
 	else if(foes[0].energy() >= 5 && rand(6) == 0) nyreanSpearButt();
 	else if(foes[0].energy() >= 5 && rand(4) == 0) poisonBlade();
@@ -328,7 +336,7 @@ public function praetorianAI():void
 //Not a bad end! Huntresses gang-bang you and dump you in town. Have to attempt Praetorian fight again. Lose some credits, of course.
 public function loseToPraetorianNyreaGangbangu():void
 {
-	showName("NYREAN\nGUARDS");
+	showPraetorians(true);
 	author("Savin");
 	output("You stumble to your [pc.knees], ");
 	if(pc.lust() >= pc.lustMax()) output("too horny to resist the buxom babes trying to bring you down");
@@ -391,7 +399,6 @@ public function loseToPraetorianNyreaGangbangu():void
 public function loseToPraetorianNyreaPt2():void
 {
 	clearOutput();
-	showName("NYREAN\nGUARDS");
 	author("Savin");
 	var lostCreds:int = 0;
 	if(pc.credits > 0) 
@@ -413,7 +420,7 @@ public function loseToPraetorianNyreaPt2():void
 //Disables Praetorian fight for 12 hours. If PC clears dungeon, never fight them again. Otherwise they recover eventually.
 public function spankDaShitOuttaPraetorians():void
 {
-	showName("NYREAN\nGUARDS");
+	showPraetorians();
 	author("Savin");
 	output("<i>“Enough, enough,”</i> the lead guard says, stumbling to a knee and leaning heavily on her spear. <i>“We yield... no more, please.”</i>");
 	output("\n\nThe other nyrea similarly show their submission, throwing down their spears and kneeling - those who can still manage to stand, anyway. You don’t want to risk staying here too long, or the guards might try and jump you: there’s far too many for you to keep an eye on all of them!\n\n");
@@ -545,7 +552,7 @@ public function taivrasStairwellBonus():Boolean
 	author("Savin");
 	output("A curving path connects the rest of the palace grounds to a large set of stairs, leading up to a pair of heavy stone doors flanked by brilliantly glowing blue lanterns. Through the door, you can hear the sounds of pleasure echoing, moans and cries of sexual ecstasy. Several of them, in fact.");
 	//if Princess Defeated:
-	if (flags["PRINCESS_DEFEATED"] == 1) output(" You're surprised the harem is still going, even after freeing them from the queen's daughter.");
+	if (flags["PRINCESS_DEFEATED"] != undefined) output(" You're surprised the harem is still going, even after freeing them from the queen's daughter.");
 	return false;
 }
 
@@ -556,7 +563,7 @@ public function haremChamberBonusFunc():Boolean
 	output("The harem chamber is a wide open stone room covered with pillows, cushions, and other comforts for the feminine males kept within it. An all but obscene amount of bondage gear - leather, cuffs, whips, and chains, plus no small number of dildos and plugs - sits in racks along the walls. Several dozen \"male\" nyrea - all with plump bosoms, girly figures, and drooling vaginal slits - make up their queen's harem.");
 
 	//Post Princess battle:
-	if(flags["PRINCESS_DEFEATED"] == 1)
+	if(flags["PRINCESS_DEFEATED"] != undefined)
 	{
 		output("\n\nThe nyrean princess is down in the middle of her swarming harem, pinned by some of that very same bondage gear to the wall. Her eyes are glassy and fogged, her lips flopping and confused, yet her unseemly prick is still rock hard and oozing a thick, purple paste as if recently used. The harem males aren’t giving her much rest, it seems.");
 		//output("\n\nThe harem is currently taking their lusts and aggression out on the nyrean princess. Moans and cries of pleasure echo through the chamber, and the floor is covered with writhing bodies and squirting cum.");
@@ -1467,7 +1474,7 @@ public function dealWithTaivra(plat190:Boolean = false):void
 	if(flags["OFFERED_TAIVRA_AN_ALLIANCE"] == undefined) addButton(2,"Alliance",offerTaivraAnAlliance,plat190,"Alliance","Offer Queen Taivra an alliance. There’s not much you can do to cement it beyond your word at this point, but being the partner of an interstellar business mogul is a hell of an advantage when your world is on the brink, and you’re just a stone age tribe. Steele Tech could offer her help, protection...");
 	else addButton(2,"Partnership",partnershipWithTaivra,plat190,"Partnership","Your father was the biggest interstellar playboy in the galaxy. He left a trail of lovers in his wake. What are you, if not your father’s child? You offered the nyrea partnership, so make it official: take Queen Taivra as your wife, with all the responsibility and vulnerability that brings.");
 
-	if(flags["PRINCESS_DEFEATED"] == 1) addButton(3,"Princess",princessChoice,plat190,"Princess","Offer to take the rambunctious princess under your care. Marry her, if you have to. Surely Taivra wouldn’t object to her daughter being at the side of a galactic super-star like you’ll soon be.");
+	if(flags["PRINCESS_DEFEATED"] != undefined) addButton(3,"Princess",princessChoice,plat190,"Princess","Offer to take the rambunctious princess under your care. Marry her, if you have to. Surely Taivra wouldn’t object to her daughter being at the side of a galactic super-star like you’ll soon be.");
 	else addDisabledButton(3,"Locked","Locked","You haven't met who you need to meet to unlock this option.");
 	addButton(4,"Weapon",giveTaivraGunsForPeace,plat190,"Weapons","Offer the nyrean queen futuristic weapons from Steele Tech. Imagine going from the literal stone age to rocking modern ray guns. Goodbye, balance of power... Though you’ll be trading your reward for recovering the probe in exchange for the guns.");
 }
@@ -2999,7 +3006,7 @@ public function nyreaKingReturnGreeting():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("NYREA_ALPHA");
+	showPraetorians();
 	showName("ROYAL\nSPOILS");
 	output("As you make your way back into the nyrean palace, you see several of Taivra’s praetorian soldiers stepping out of their guardpost, all carrying their barbed longspears with crimson capes fluttering behind them. For a moment, you’re afraid that the queen’s intending to go back on her word - that her soldiers mean to challenge you again - until the group of soldiers slip onto their knees before you, bowing low.");
 	output("\n\n<i>“Queen Taivra sent word of your agreement throughout her domain,”</i> their leader says. <i>“All her subjects know to treat you as if you were the queen herself. We are at your service, my " + pc.mf("lord","lady") + ".”</i>");
@@ -3023,7 +3030,7 @@ public function nyreaKingReturnGreeting():void
 //Stockpiles weekly gains until PC picks them up.
 public function getRoyalSpoils():void
 {
-	showBust("NYREA_ALPHA");
+	showBust("PRAETORIAN");
 	showName("ROYAL\nSPOILS");
 	author("Savin");
 	output("\n\n<i>“Ah, my " + pc.mf("lord","lady") + ",”</i> a voice says as you enter the palace proper. You turn and see the captain of the gate guard jogging towards you. She gives you a respectful nod and produces a small pouch from her belt. <i>“Queen Taivra asked us to give you this when you arrived. Our mines and traders have been working tirelessly since your last visit. Prosperity reigns throughout the queenship, and we’re only expanding. Taivra has, of course, set aside some of our growing wealth for her mate.”</i>");
@@ -3727,7 +3734,8 @@ public function showPrincess():void
 {
 	if(inCombat()) showName("FIGHT:\nPRINCESS");
 	else showName("NYREAN\nPRINCESS");
-	showBust("PRINCESS");
+	if(inCombat()) showBust("PRINCESS_BANDOLEER");
+	else showBust("PRINCESS");
 }
 
 //Princess Bonus

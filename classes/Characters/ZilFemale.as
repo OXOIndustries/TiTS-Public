@@ -207,7 +207,11 @@
 			// Codex shit
 			CodexManager.unlockEntry("Zil");
 			
-			if (rand(3) == 0)
+			if(rand(10) == 0)
+			{
+				combatZilFemale.inventory.push(new PrimitiveBow());
+			}
+			else if (rand(3) == 0)
 			{
 				combatZilFemale.inventory.push(new ZilHoney());
 			}

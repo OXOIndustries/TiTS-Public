@@ -4333,6 +4333,11 @@ public function rapidFire(target:Creature):void {
 	rangedAttack(pc,target,[0,1,2]);
 	rangedAttack(pc,target,[0,1,2]);
 	processCombat();
+
+	//Do normal attacks
+	playerRangedAttack(target,false);
+	//Do the bonus flurry shot!
+	rangedAttack(pc,target,[0,1,2]);
 }
 
 public function powerStrike(target:Creature):void {
