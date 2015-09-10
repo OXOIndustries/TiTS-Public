@@ -58,12 +58,13 @@ public function nyreaDungeonGateOpen():Boolean
 	return false;
 }
 
-//Add to the Gates of Taivra’s Palace square”</i>
+//Add to the Gates of Taivra’s Palace square
 public function taivrasPalaceSquareBonus():Boolean
 {
 	author("Savin");
 	//Officially become King Nyrea!
-	if(!pc.hasPerk("Nyrean Royal") && flags["KING_NYREA"] == 1) 
+	//if(!pc.hasPerk("Nyrean Royal") && flags["KING_NYREA"] == 1) 
+	if(!pc.hasPerk("Nyrean Royal") && flags["KING_NYREA"] == 1 && flags["BEAT_TAIVRA_TIMESTAMP"] + (60 * 12) <= GetGameTimestamp())
 	{
 		nyreaKingReturnGreeting();
 		return true;
