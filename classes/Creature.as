@@ -5925,7 +5925,7 @@ package classes {
 			//if arg == -1, mLs produced by biggest row.
 			if(arg == -1)
 			{
-				capacity = (400 + breastRows[biggestTitRow()].breastRatingRaw / 2 * 100) * milkStorageMultiplier;
+				capacity = (400 + (breastRows[biggestTitRow()].breastRatingRaw + breastRows[biggestTitRow()].breastRatingHoneypotMod) / 2 * 100) * milkStorageMultiplier;
 			}
 			//if arg == 99, total mLs produced by all rows
 			else if(arg == 99)
@@ -5933,7 +5933,7 @@ package classes {
 				//Total it up!
 				for(var x:int = 0; x < breastRows.length; x++)
 				{
-					capacity += (400 + breastRows[x].breastRatingRaw / 2 * 100);
+					capacity += (400 + (breastRows[x].breastRatingRaw + breastRows[x].breastRatingHoneypotMod)/ 2 * 100);
 				}
 				capacity *= milkStorageMultiplier;
 			}
@@ -5941,7 +5941,7 @@ package classes {
 			else
 			{
 				if(arg < 0 || arg >= breastRows.length) return 0;
-				else capacity = (400 + breastRows[arg].breastRatingRaw / 2 * 100) * milkStorageMultiplier;
+				else capacity = (400 + (breastRows[arg].breastRatingRaw + breastRows[arg].breastRatingHoneypotMod)/ 2 * 100) * milkStorageMultiplier;
 			}
 			return capacity;
 		}
@@ -6618,6 +6618,33 @@ package classes {
 			{
 				vaginas[slot].vaginaColor = "black";
 			}
+			if (type == GLOBAL.TYPE_SYNTHETIC)
+			{
+				vaginas[slot].vaginaColor = RandomInCollection(["silver", "gray", "black"]);
+			}
+			if (type == GLOBAL.TYPE_LAPINARA)
+			{
+				vaginas[slot].vaginaColor = RandomInCollection(["pink", "pink", "purple"]);
+			}
+			if (type == GLOBAL.TYPE_CANINE)
+			{
+				vaginas[slot].clits = 1;
+				vaginas[slot].vaginaColor = "pink";
+				vaginas[slot].wetnessRaw = 3;
+				vaginas[slot].minLooseness = 3;
+			}
+			if (type == GLOBAL.TYPE_GOOEY)
+			{
+				vaginas[slot].vaginaColor = skinTone;
+				vaginas[slot].addFlag(GLOBAL.FLAG_LUBRICATED);
+			}
+			if (type == GLOBAL.TYPE_SIREN)
+			{
+				vaginas[slot].vaginaColor = "blue";
+				vaginas[slot].addFlag(GLOBAL.FLAG_NUBBY);
+				vaginas[slot].addFlag(GLOBAL.FLAG_TENDRIL);
+				vaginas[slot].addFlag(GLOBAL.FLAG_APHRODISIAC_LACED);
+			}
 		}
 		//Change cock type
 		public function shiftCock(slot: int = 0, type: int = -1): void {
@@ -6715,7 +6742,24 @@ package classes {
 				cocks[slot].cockColor = skinTone;
 				cocks[slot].addFlag(GLOBAL.FLAG_SMOOTH);
 				cocks[slot].addFlag(GLOBAL.FLAG_LUBRICATED);
-			}/*
+			}
+			if (type == GLOBAL.TYPE_SIMII)
+			{
+				cocks[slot].knotMultiplier = 1;
+				cocks[slot].cockColor = "pink";
+			}
+			if (type == GLOBAL.TYPE_SAURIAN)
+			{
+				cocks[slot].knotMultiplier = 1;
+				cocks[slot].cockColor = "pink";
+				if(cocks[slot].cLengthRaw < 20) cocks[slot].cLengthRaw = 20;
+				if(cocks[slot].cThicknessRatioRaw < 3) cocks[slot].cThicknessRatioRaw = 3;
+			}
+			if (type == GLOBAL.TYPE_SYNTHETIC)
+			{
+				cocks[slot].cockColor = RandomInCollection(["silver", "gray", "black"]);
+			}
+			/*
 			if (type == GLOBAL.TYPE_PLANT) {
 				if (rand(3) == 0) cocks[slot].cockColor = "purple";
 				else if (rand(3) == 0) cocks[slot].cockColor = "olive green";
@@ -8641,6 +8685,87 @@ package classes {
 		}
 		public function vaginaNoun(type: int = 0, simple: Boolean = false): String {
 			var vag: String = "";
+			if (type == GLOBAL.TYPE_EQUINE)
+			{
+				if (!simple)
+					vag += RandomInCollection(["equine gash", "animalistic vagina", "animalistic cunny", "equine honeypot", "dusky snatch", "equine cunt", "pheromone-laden pussy", "musky mare-cunt"]);
+				else
+					vag += RandomInCollection(["horse-pussy", "mare-cunt", "fuck-hole", "horse-twat", "mare-twat", "centaur-snatch", "animal-pussy", "mare-pussy", "horse-cunt"]);
+			}
+			//Maybe doge?
+			else if (type == GLOBAL.TYPE_CANINE)
+			{
+				if (!simple)
+					vag += RandomInCollection(["canine gash", "small-lipped vagina", "animalistic cunny", "canine honeypot", "canine snatch", "canine cunt", "animalistic pussy", "fragrant dog-cunt"]);
+				else
+					vag += RandomInCollection(["dog-pussy", "bitch-cunt", "fuck-hole", "dog-twat", "animal-twat", "animal-pussy", "dog-pussy", "dog-cunt"]);
+			}
+			//Slimgina?
+			else if (type == GLOBAL.TYPE_GOOEY)
+			{
+				if (!simple)
+					vag += RandomInCollection(["slimey vagina", "gooey pussy", "slimy cunt", "syrupy hole", "juicy twat", "slimy gash", "gooey honeypot", "slimey snatch"]);
+				else
+					vag += RandomInCollection(["slime-gina", "goo-pussy", "slime-cunt", "fuck-hole", "goo-twat", "slime-gash", "honeypot", "slime-snatch"]);
+			}
+			else if (type == GLOBAL.TYPE_SIREN || type == GLOBAL.TYPE_ANEMONE)
+			{
+				if (!simple)
+					vag += RandomInCollection(["wriggling gash", "stinger-ringed vagina", "cilia-filled cunny", "siren-like honeypot", "aphrodisiac-laced snatch", "tentacle-filled cunt", "alien pussy", "wiggly cunt"]);
+				else
+					vag += RandomInCollection(["siren-pussy", "siren-snatch", "fuck-hole", "venom-twat", "twat", "snatch", "venom-pussy", "siren-pussy", "cunt"]);
+			}
+			else if (type == GLOBAL.TYPE_BEE)
+			{
+				if (!simple)
+					vag += RandomInCollection(["thick-lipped gash", "alien vagina", "inhuman cunt", "zil-like honeypot", "exceptionally smooth pussy", "exotic slit", "thick-lipped pussy", "seductive snatch"]);
+				else
+					vag += RandomInCollection(["zil-pussy", "honey-cunt", "honey-box", "zil-twat", "pussy", "xeno-snatch", "pussy", "zil-cunt", "twat"]);
+			}
+			else if (type == GLOBAL.TYPE_NAGA)
+			{
+				if (!simple)
+					vag += RandomInCollection(["reptilian gash", "naleen-like slit", "snake-like cunt", "semi-concealed pussy", "supple pussy", "snake-like box", "alien cunt", "half-hidden twat"]);
+				else
+					vag += RandomInCollection(["naleen-cunt", "snake-pussy", "box", "snake-twat", "pussy", "xeno-cunt", "pussy", "slit", "slit"]);
+			}
+			else if (type == GLOBAL.TYPE_VANAE)
+			{
+				if (!simple)
+					vag += RandomInCollection(["tentacle-laden gash", "writhing pussy", "human-like cunt", "vanae pussy", "supple pussy", "xeno-cunt", "alien pussy", "feeler-lined pussy", "caressing cunt", "stroking snatch", "massaging cunny", "licker-lined pussy", "silky twat"]);
+				else
+					vag += RandomInCollection(["vanae-cunt", "tenta-pussy", "box", "vanae-twat", "pussy", "xeno-cunt", "pussy", "twat", "cunt"]);
+			}
+			else if (type == GLOBAL.TYPE_LEITHAN)
+			{
+				if (!simple)
+					vag += RandomInCollection(["puffy gash", "thick-lipped vagina", "leithan cunny", "inhuman honeypot", "dusky snatch", "swollen cunt", "pheromone-laden pussy", "musky mare-cunt"]);
+				else
+					vag += RandomInCollection(["taur-pussy", "mare-cunt", "fuck-hole", "xeno-twat", "mare-twat", "centaur-snatch", "alien-pussy", "mare-pussy", "leith-cunt"]);
+			}
+			if (type == GLOBAL.TYPE_SYNTHETIC)
+			{
+				if (!simple)
+					vag += RandomInCollection(["synth gash", "synthetic vagina", "robotic cunny", "robot honeypot", "synthetic snatch", "robotic cunt", "artificial pussy", "robo-cunt"]);
+				else
+					vag += RandomInCollection(["synth-pussy", "robo-cunt", "fuck-hole", "synth-twat", "robo-twat", "synth-snatch", "mecha-pussy", "robo-pussy", "synth-cunt"]);
+			}
+			else
+			{
+				if (!simple)
+				{
+					if(type == GLOBAL.TYPE_HUMAN)
+						vag += RandomInCollection(["human ", "human ", "terran ", "terran ", "terran "]);
+					else
+						vag += RandomInCollection(["human-like ", "human-like ", "exotic ", "exotic ", "inhuman "]);
+				}
+				vag += RandomInCollection(["vagina", "pussy", "cunt", "fuck-hole", "slit", "twat", "gash", "cunny", "honeypot", "snatch"]);
+			}
+			return vag;
+		}
+		/* OLD Version.
+		public function vaginaNoun(type: int = 0, simple: Boolean = false): String {
+			var vag: String = "";
 			var temp: int = 0;
 			if (type == GLOBAL.TYPE_EQUINE) {
 				if (!simple) {
@@ -8865,7 +8990,7 @@ package classes {
 				else if (temp <= 15) vag += "snatch";
 			}
 			return vag;
-		}
+		}*/
 		
 		//Vaginas + Descript
 		public function vaginaDescript(vaginaNum: Number = 0, forceAdjectives: Boolean = false, adjectives: Boolean = true): String {
@@ -9830,7 +9955,7 @@ package classes {
 					else if (rando == 1) descript += "slender";
 					else descript += "narrow";
 				} else if (cocks[cockNum].thickness() <= 1.2) {
-					descript += RandomInCollection("modest");
+					descript += "modest";
 					
 					//else if (rando == 1) descript += "fleshy";
 					//else descript += "substantial";
@@ -10644,21 +10769,21 @@ package classes {
 			}
 			//C-D
 			else if (val <= 4) {
-				choice = this.rand(5);
+				choice = this.rand(4);
 				if (choice == 0) descript += "nice";
-				else if (choice == 1) descript += "hand-filling";
-				else if (choice == 2) descript += "well-rounded";
-				else if (choice == 3) descript += "supple";
+				else if (choice <= 1) descript += "hand-filling";
+				else if (choice <= 2) descript += "well-rounded";
+				else descript += "supple";
 				//else if(choice == 4) descript += "softball-sized ";
 			}
 			//DD->big EE
 			else if (val < 11) {
 				choice = this.rand(5);
 				if (choice == 0) descript += "big";
-				if (choice == 1) descript += "large";
-				if (choice == 2) descript += "pillowy";
-				if (choice == 3) descript += "jiggly";
-				if (choice == 4) descript += "volleyball-sized";
+				else if (choice == 1) descript += "large";
+				else if (choice == 2) descript += "pillowy";
+				else if (choice == 3) descript += "jiggly";
+				else if (choice == 4) descript += "volleyball-sized";
 			}
 			//F->big FF
 			else if (val < 15) {
@@ -10714,7 +10839,7 @@ package classes {
 				descript += breastSize(breastRows[rowNum].breastRating());
 				descripted = true;
 			}
-			if (isLactating() > 1.5) {
+			if (isLactating()) {
 				if (descripted) descript += ", ";
 				if (milkType == GLOBAL.FLUID_TYPE_MILK) {
 					temp = this.rand(4);

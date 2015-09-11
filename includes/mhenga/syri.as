@@ -1165,6 +1165,7 @@ public function blowSyriYouFukkinSlut(postScene:Function = null):void {
 //Shipboard Sex Outro: Syri hits the Road
 public function syriSexOutro():void {
 	processTime(120+rand(60));
+	sleepHeal();
 	clearOutput();
 	userInterface.showBust("SYRI_NUDE");
 	showSyriName();

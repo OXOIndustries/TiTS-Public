@@ -7143,7 +7143,7 @@ public function bessEvent11():void
 
 		output("While [bess.name] is busy cleaning up around the ship, you find a small holopad with a list of books on it. It seems to be a site that sells cheap synth paper copies of famous literature. [bess.HeShe] is clearly interested in them, but [bess.heShe] hasn’t purchased a single thing.");
 		
-		output("\n\nIt occurs to you that since [bess.name] doesn’t earn any money, [bess.heShe] can’t buy anything for [bess.himHers]elf. The idea of paying an android is a laughable concept in almost every part of the known galaxy.");
+		output("\n\nIt occurs to you that since [bess.name] doesn’t earn any money, [bess.heShe] can’t buy anything for [bess.himHer]self. The idea of paying an android is a laughable concept in almost every part of the known galaxy.");
 		
 		output("\n\nThe question is, do you want to give [bess.himHer] a wage? Nobody else is going to do it. Everywhere else [bess.heShe]’s treated as a slave - even indentured servants have more rights than an AI. You could put in an invoice to Steele Corp for [bess.hisHer] paycheck - after all, they were willing to pay for the pod on Tarkus.");
 		
@@ -12168,7 +12168,7 @@ public function bessIntimateGiveDoggy(fromEvent:Boolean = false):void
 	}
 	else
 	{
-		output("\n\nYour lips pull apart as both of your breathing comes out in short desperate gasps. [bess.name] gazes at you with [bess.hisHer] beautiful [bess.eyeColor] eyes. <i>“... Make love to me, [bNamePC]. I want you inside of me.”</i>");
+		output("\n\nYour lips pull apart as both of your breathing comes out in short desperate gasps. [bess.name] gazes at you with [bess.hisHer] beautiful [bess.eyeColor] eyes. <i>“... Make love to me, " + bessPCName() + ". I want you inside of me.”</i>");
 		
 		output("\n\n[bess.HeShe] shifts herself so your [pc.cockhead] is lined up with [bess.hisHer]");
 		if (bess.hasVagina()) output(" wetness");

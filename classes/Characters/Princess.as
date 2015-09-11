@@ -201,7 +201,7 @@
 			//else if (rand(20) == 0)	nyrea.inventory.push(nyrea.rangedWeapon.makeCopy());
 			//else if (rand(20) == 0) nyrea.inventory.push(nyrea.meleeWeapon.makeCopy());
 			kGAMECLASS.showName("FIGHT:\nPRINCESS");
-			kGAMECLASS.showBust("PRINCESS");
+			kGAMECLASS.showBust("PRINCESS_BANDOLEER");
 			kGAMECLASS.foes.push(nyrea);
 		}
 		

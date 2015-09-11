@@ -481,6 +481,10 @@
 			FLAG_THICK,
 			FLAG_STINGER_TIPPED,
 			FLAG_CHITINOUS,
+			FLAG_FLARED,
+			FLAG_SHEATHED,
+			FLAG_KNOTTED,
+			FLAG_RIBBED,
 		];
 		
 		public static const TAIL_GENITAL_NONE:int 	= 0;
@@ -505,6 +509,7 @@
 			TYPE_CANINE,
 			TYPE_GOOEY,
 			TYPE_SIREN,
+			TYPE_COCKVINE,
 		];
 		
 		//SKINTYPES
@@ -704,6 +709,9 @@
 			TYPE_VANAE,
 			TYPE_KUITAN,
 			TYPE_NAGA,
+			TYPE_CANINE,
+			TYPE_GOOEY,
+			TYPE_SIREN,
 		];
 		
 		// As far as I can tell, at time of writing there are no flags currently used/assigned to vaginas

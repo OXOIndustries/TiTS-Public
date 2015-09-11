@@ -839,12 +839,7 @@ public function yesSnuggleWifZatNaleen():void {
 		if(rand(3) == 0) pc.orgasm();
 		if(rand(3) == 0) pc.orgasm();
 	}
-	if(this.chars["PC"].HPRaw < this.chars["PC"].HPMax()) {
-		this.chars["PC"].HP(Math.round(this.chars["PC"].HPMax()));
-	}
-	if(this.chars["PC"].energy() < this.chars["PC"].energyMax()) {
-		this.chars["PC"].energy(Math.round(this.chars["PC"].energyMax()));
-	}
+	sleepHeal();
 	processTime(420+rand(60));
 	clearMenu();
 	addButton(0,"Next",finishNaleenSnuggles);

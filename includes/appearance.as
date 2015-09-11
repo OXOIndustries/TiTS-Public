@@ -529,17 +529,17 @@ public function appearance(target:Creature):void {
 				if(target.buttRating() >= 6 && target.buttRating() <10) output2(" is fairly plump and healthy.");
 				if(target.buttRating() >= 10 && target.buttRating() < 15) output2(" jiggles a bit as you trot around.");
 				if(target.buttRating() >= 15 && target.buttRating() < 20) output2(" jiggles and wobbles as you trot about.");
-				if(target.buttRating() >= 20) output2(" is obscenely large, bordering freakish, even for a horse.");
+				if(target.buttRating() >= 20) output2(" is obscenely large, bordering freakish, even for a tauric being.");
 			}
 			//GIRL LOOK AT DAT BOOTY
 			else {
 				output2(" Your " + target.buttDescript());
 				if(target.buttRating() < 4) output2(" is barely noticable, showing off the muscles of your haunches.");
-				if(target.buttRating() >= 4 && target.buttRating() < 6) output2(" matches your toned equine frame quite well.");
+				if(target.buttRating() >= 4 && target.buttRating() < 6) output2(" matches your toned, tauric frame quite well.");
 				if(target.buttRating() >= 6 && target.buttRating() <10) output2(" gives hints of just how much muscle you could put into a kick.");
 				if(target.buttRating() >= 10 && target.buttRating() < 15) output2(" surges with muscle whenever you trot about.");
 				if(target.buttRating() >= 15 && target.buttRating() < 20) output2(" flexes its considerable mass as you move.");
-				if(target.buttRating() >= 20) output2(" is stacked with layers of muscle, huge even for a horse.");
+				if(target.buttRating() >= 20) output2(" is stacked with layers of muscle, huge even for a tauric being.");
 			}
 		}
 		//Non-horse PCs

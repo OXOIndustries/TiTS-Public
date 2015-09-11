@@ -574,17 +574,19 @@ public function sleep(outputs:Boolean = true):void {
 	}
 	
 	this.clearMenu();
-	
-	if (flags["ANNO_SLEEPWITH_DOMORNING"] != undefined)
+	if(currentLocation == "SHIP INTERIOR")
 	{
-		addButton(0, "Next", annoMorningRouter);
-		return;
-	}
-	
-	if (flags["BESS_SLEEPWITH_DOMORNING"] == 1)
-	{
-		addButton(0, "Next", bessMorningEvents);
-		return;
+		if (flags["ANNO_SLEEPWITH_DOMORNING"] != undefined)
+		{
+			addButton(0, "Next", annoMorningRouter);
+			return;
+		}
+		
+		if (flags["BESS_SLEEPWITH_DOMORNING"] == 1)
+		{
+			addButton(0, "Next", bessMorningEvents);
+			return;
+		}
 	}
 	
 	addButton(0,"Next",mainGameMenu);
@@ -1560,11 +1562,11 @@ public function honeyPotBump(cumShot:Boolean = false):void
 			pc.thickness -= 10;
 		}
 		boobDiff /= 10;
-		if(pc.milkFullness < 100) pc.milkFullness = 100;
 		for(var bb:int = 0; bb < pc.bRows(); bb++)
 		{
 			pc.breastRows[bb].breastRatingHoneypotMod += boobDiff;
 		}
+		if(pc.milkFullness < 100) pc.milkFullness = 100;
 		eventBuffer += "\n\nYour body tightens as the honeypot gene goes to work, diverting your excess bodymass into your [pc.chest], building you bigger and fuller of [pc.milkNoun].";
 	}
 	else if(pc.breastRows[0].breastRatingHoneypotMod == 0)
@@ -1597,7 +1599,9 @@ public function honeyPotBump(cumShot:Boolean = false):void
 	for(var cc:int = 0; cc < pc.bRows(); cc++)
 	{
 		pc.breastRows[cc].breastRatingHoneypotMod += 1;
-	}
+		//Drinking cum refills milk most of the way
+		if(cumShot) if(pc.milkFullness < 81) pc.milkFullness = 81;
+	}	
 }
 
 public function racialPerkUpdateCheck():void
@@ -2300,14 +2304,14 @@ public function statisticsScreen(showID:String = "All"):void
 					if(pc.breastRows[x].breastRatingHoneypotMod != 0) output2("\n<b>* Breast, Honeypot Size Rating: </b>" + formatFloat(pc.breastRows[x].breastRatingHoneypotMod, 3));
 					if(pc.breastRows[x].breastRatingLactationMod != 0) output2("\n<b>* Breast, Lactation Size Rating: </b>" + formatFloat(pc.breastRows[x].breastRatingLactationMod, 3));
 					output2("\n<b>* Nipple, Type: </b>" + " " + GLOBAL.NIPPLE_TYPE_NAMES[pc.breastRows[x].nippleType]);
-					if(breastRows[x].fuckable()) output2(", Fuckable");
-					if(breastRows[x].nippleType == GLOBAL.NIPPLE_TYPE_DICK) output2("\n<b>* Nipple, Genital Type: </b>" + GLOBAL.TYPE_NAMES[pc.breastRows[x].dickNippleType]);
+					if(pc.breastRows[x].fuckable()) output2(", Fuckable");
+					if(pc.breastRows[x].nippleType == GLOBAL.NIPPLE_TYPE_DICK) output2("\n<b>* Nipple, Genital Type: </b>" + GLOBAL.TYPE_NAMES[pc.breastRows[x].dickNippleType]);
 					if(pc.breastRows[x].nippleType != GLOBAL.NIPPLE_TYPE_FUCKABLE && pc.breastRows[x].nippleType != GLOBAL.NIPPLE_TYPE_FLAT && pc.breastRows[x].nippleType != GLOBAL.NIPPLE_TYPE_INVERTED)
 					{
-						if(breastRows[x].nippleType == GLOBAL.NIPPLE_TYPE_DICK)
+						if(pc.breastRows[x].nippleType == GLOBAL.NIPPLE_TYPE_DICK)
 						{
 							output2("\n<b>* Nipple, Length, Flaccid: </b>" + prettifyLength(pc.nippleLength(x)));
-							output2("\n<b>* Nipple, Length, Erect: </b>" + prettifyLength(pc.nippleLength(x) * dickNippleMultiplier));
+							output2("\n<b>* Nipple, Length, Erect: </b>" + prettifyLength(pc.nippleLength(x) * pc.dickNippleMultiplier));
 						}
 						else output2("\n<b>* Nipple, Length: </b>" + prettifyLength(pc.nippleLength(x)));
 						if(pc.breastRows[x].breasts != 1) output2(" each");

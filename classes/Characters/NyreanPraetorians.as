@@ -210,7 +210,7 @@
 			else if (rand(20) == 0)	nyrea.inventory.push(nyrea.rangedWeapon.makeCopy());
 			else if (rand(20) == 0) nyrea.inventory.push(nyrea.meleeWeapon.makeCopy());*/
 			kGAMECLASS.showName("FIGHT: NYREAN\nGUARDS");
-			kGAMECLASS.showBust("NYREAN_PRAETORIAN","NYREAN_PRAETORIAN","NYREAN_PRAETORIAN");
+			kGAMECLASS.showBust("PRAETORIAN","PRAETORIAN","PRAETORIAN");
 			kGAMECLASS.flags["FOUGHT_PRAETORIANS"] = 1;
 			kGAMECLASS.foes.push(nyrea);
 		}

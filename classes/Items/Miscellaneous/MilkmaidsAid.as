@@ -72,7 +72,8 @@
 				else
 				{
 					kGAMECLASS.output("You pop the bottle open and tap a few of the milk-colored pills into your hand, and swallow them down. They go down easily, small as they are, and leave a creamy after-taste as they make their way down. A few moments pass before you feel a slight, weighty shift in your chest. You give a little gasp a liquid rush surges in your tits. Your breasts seem to swell with [pc.milk], heavier and heavier until they feel about as full as they’ve ever been! <b>Your breasts are now completely swollen with [pc.milk]!</b> Time to find a nice, vigorous milker....");
-					target.milkFullness = 175;
+					if(target.milkFullness <= 165) target.milkFullness = 175;
+    				else target.milkFullness += 10;
 				}
 			}
 			else {

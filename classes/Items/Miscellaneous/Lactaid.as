@@ -84,7 +84,7 @@ package classes.Items.Miscellaneous
 
 				if (target.milkStorageMultiplier < 4)
 				{
-					output("\n\nYou giggle to yourself as you tits squirt and fill up again, swelling to their full capacity and ejecting a great deal more milk than that! When the shower stops, you heft your breasts up and give them an affectionate squeeze - <b>they definitely feel fuller than before!</b>");
+					output("\n\nYou giggle to yourself as your tits squirt and fill up again, swelling to their full capacity and ejecting a great deal more milk than that! When the shower stops, you heft your breasts up and give them an affectionate squeeze - <b>they definitely feel fuller than before!</b>");
 					target.milkStorageMultiplier += 0.5;
 					if (target.milkStorageMultiplier > 4) target.milkStorageMultiplier = 4;
 				}
@@ -93,7 +93,7 @@ package classes.Items.Miscellaneous
 			{
 				//{If PC is lactating already, not milk tho:
 				//Chance milkType to milk. Fill to capacity.
-				output("\n\nNow that you’ve filled yourself with the nanomachine treatment, you toss the pen aside and grope at your chest, waiting for them to take effect. Doesn’t take long, it turns out - mere moments later, you feel an intense clenching in your [p.chest], and you barely have enough time to squeeze your breasts before they start to geyser out, splattering you and the ground and everything around you in [pc.milk].");
+				output("\n\nNow that you’ve filled yourself with the nanomachine treatment, you toss the pen aside and grope at your chest, waiting for them to take effect. Doesn’t take long, it turns out - mere moments later, you feel an intense clenching in your [pc.chest], and you barely have enough time to squeeze your breasts before they start to geyser out, splattering you and the ground and everything around you in [pc.milk].");
 
 				output("\n\nThe shower just keeps going - there’s so much pressure in your chest you think you’re surely going to be left <i>empty</i> by the Lactaid! This isn’t what you signed up for!");
 
@@ -117,7 +117,7 @@ package classes.Items.Miscellaneous
 			}
 			else
 			{
-				output("\n\nA few moments after you’ve injected yourself, you feel a clenching in your [pc.chest], followed by a stretching sensation that leaves you groaning. After a few moments, you glance down at your [pc.nipples] and see that they’re beading with [pc.milk]. You giggle to yourself as you tits squirt and fill up again, swelling to their full capacity!");
+				output("\n\nA few moments after you’ve injected yourself, you feel a clenching in your [pc.chest], followed by a stretching sensation that leaves you groaning. After a few moments, you glance down at your [pc.nipples] and see that they’re beading with [pc.milk]. You giggle to yourself as your tits squirt and fill up again, swelling to their full capacity!");
 				target.milkFullness = 100;
 			}
 

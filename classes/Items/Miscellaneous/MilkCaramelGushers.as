@@ -63,11 +63,11 @@
 				//First use
 				kGAMECLASS.author("Savin");
 				kGAMECLASS.output("You greedily unwrap the creamy brown candies and pop them into your mouth. It’s as sweet as you imagined, the taste thick and rich and... well, caramelly. You suck and lick at the thick, round candies, enjoying the taste and texture over several minutes as they slowly dissolve. As they do, the first trickles of nanomachines and hormone-laced sugar glide down your eager throat, and begin to work their magic inside of you.");
-				if(target.milkFullness >= 75) kGAMECLASS.output(" You feel a mild tingle in your already full chest and little else. Perhaps these things aren't very useful to someone already so full of [pc.milk].");
+				if(target.milkFullness >= 75) kGAMECLASS.output("\n\nYou feel a mild tingle in your already full chest and little else. Perhaps these things aren't very useful to someone already so full of [pc.milk].");
 				else
 				{
 					target.milkFullness = 75;
-					kGAMECLASS.output(" Your [pc.breasts] suddenly begin to swell out, feeling weightier and... and fuller! You cup your burgeoning titflesh as your chest expands under the weight of [pc.milk] welling up inside you.");
+					kGAMECLASS.output("\n\nYour [pc.breasts] suddenly begin to swell out, feeling weightier and... and fuller! You cup your burgeoning titflesh as your chest expands under the weight of [pc.milk] welling up inside you.");
 					//Bump size!
 					for(x = 0; x < target.bRows(); x++)
 					{

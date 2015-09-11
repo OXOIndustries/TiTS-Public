@@ -31,7 +31,7 @@
 			this.description = "a Lava Saber";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "Feared for their relentless, burning strikes, Lava Sabers use shaped hardlight fields to constrain reservoir of liquid metal into a blade-like shape. Their heavy, insulated sheaths use kinetic energy capture to recharge the top-end capacitors in the hilt and minimize their power draw when not in use.";
+			this.tooltip = "Feared for their relentless, burning strikes, Lava Sabers use directed hardlight fields to constrain a reservoir of liquid metal into a blade-like shape. Their heavy, insulated sheaths use kinetic energy capture to recharge the top-end capacitors in the hilt and minimize their power draw when not in use.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

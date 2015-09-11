@@ -531,6 +531,7 @@ public function lostDrankinContestToKiroz():void
 		pc.loadInCunt(chars["KIRO"],rand(pc.totalVaginas()));
 	}
 	processTime(1380);
+	sleepHeal();
 	pc.orgasm();
 	pc.orgasm();
 	kiro.orgasm();

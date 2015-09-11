@@ -4,6 +4,7 @@
 	import classes.GLOBAL;
 	import classes.Items.Melee.Fists;
 	import classes.Items.Miscellaneous.*
+	import classes.Items.Guns.PrimitiveBow;
 	import classes.kGAMECLASS;
 	import classes.rand;
 	import classes.GameData.CodexManager;
@@ -191,6 +192,10 @@
 				combatZilMale.cocks[0].cockColor = "gold";
 			}
 			combatZilMale.long += ".";
+			if(rand(5) == 0)
+			{
+				combatZilMale.inventory.push(new PrimitiveBow());
+			}
 			
 			kGAMECLASS.foes.push(combatZilMale);
 		}
