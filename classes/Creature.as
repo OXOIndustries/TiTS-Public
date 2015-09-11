@@ -5925,7 +5925,7 @@ package classes {
 			//if arg == -1, mLs produced by biggest row.
 			if(arg == -1)
 			{
-				capacity = (400 + breastRows[biggestTitRow()].breastRatingRaw / 2 * 100) * milkStorageMultiplier;
+				capacity = (400 + (breastRows[biggestTitRow()].breastRatingRaw + breastRows[biggestTitRow()].breastRatingHoneypotMod) / 2 * 100) * milkStorageMultiplier;
 			}
 			//if arg == 99, total mLs produced by all rows
 			else if(arg == 99)
@@ -5933,7 +5933,7 @@ package classes {
 				//Total it up!
 				for(var x:int = 0; x < breastRows.length; x++)
 				{
-					capacity += (400 + breastRows[x].breastRatingRaw / 2 * 100);
+					capacity += (400 + (breastRows[x].breastRatingRaw + breastRows[x].breastRatingHoneypotMod)/ 2 * 100);
 				}
 				capacity *= milkStorageMultiplier;
 			}
@@ -5941,7 +5941,7 @@ package classes {
 			else
 			{
 				if(arg < 0 || arg >= breastRows.length) return 0;
-				else capacity = (400 + breastRows[arg].breastRatingRaw / 2 * 100) * milkStorageMultiplier;
+				else capacity = (400 + (breastRows[arg].breastRatingRaw + breastRows[arg].breastRatingHoneypotMod)/ 2 * 100) * milkStorageMultiplier;
 			}
 			return capacity;
 		}

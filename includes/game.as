@@ -1562,11 +1562,11 @@ public function honeyPotBump(cumShot:Boolean = false):void
 			pc.thickness -= 10;
 		}
 		boobDiff /= 10;
-		if(pc.milkFullness < 100) pc.milkFullness = 100;
 		for(var bb:int = 0; bb < pc.bRows(); bb++)
 		{
 			pc.breastRows[bb].breastRatingHoneypotMod += boobDiff;
 		}
+		if(pc.milkFullness < 100) pc.milkFullness = 100;
 		eventBuffer += "\n\nYour body tightens as the honeypot gene goes to work, diverting your excess bodymass into your [pc.chest], building you bigger and fuller of [pc.milkNoun].";
 	}
 	else if(pc.breastRows[0].breastRatingHoneypotMod == 0)
@@ -1599,7 +1599,9 @@ public function honeyPotBump(cumShot:Boolean = false):void
 	for(var cc:int = 0; cc < pc.bRows(); cc++)
 	{
 		pc.breastRows[cc].breastRatingHoneypotMod += 1;
-	}
+		//Drinking cum refills milk most of the way
+		if(cumShot) if(pc.milkFullness < 81) pc.milkFullness = 81;
+	}	
 }
 
 public function racialPerkUpdateCheck():void
