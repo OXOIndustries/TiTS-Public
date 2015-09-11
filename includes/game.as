@@ -574,17 +574,19 @@ public function sleep(outputs:Boolean = true):void {
 	}
 	
 	this.clearMenu();
-	
-	if (flags["ANNO_SLEEPWITH_DOMORNING"] != undefined)
+	if(currentLocation == "SHIP INTERIOR")
 	{
-		addButton(0, "Next", annoMorningRouter);
-		return;
-	}
-	
-	if (flags["BESS_SLEEPWITH_DOMORNING"] == 1)
-	{
-		addButton(0, "Next", bessMorningEvents);
-		return;
+		if (flags["ANNO_SLEEPWITH_DOMORNING"] != undefined)
+		{
+			addButton(0, "Next", annoMorningRouter);
+			return;
+		}
+		
+		if (flags["BESS_SLEEPWITH_DOMORNING"] == 1)
+		{
+			addButton(0, "Next", bessMorningEvents);
+			return;
+		}
 	}
 	
 	addButton(0,"Next",mainGameMenu);

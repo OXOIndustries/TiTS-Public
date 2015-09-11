@@ -1549,6 +1549,7 @@ public function lieveSoloFucktimeWindup():void
 	}
 
 	processTime(60 * 6);
+	sleepHeal();
 
 	//Bunker menu here
 	clearMenu();

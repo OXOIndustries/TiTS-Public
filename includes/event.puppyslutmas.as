@@ -1466,7 +1466,7 @@ public function puppyslutmasMeetTheDornasHueAnno():void
 	
 	output("\n\nYour auto-pilot beeps that you’ve returned to " + getPlanetName() + ". Anno lazily reaches out of bed and smacks the alert button, shutting the damn thing up.");
 	
-	output("\n\n<i>“So, what’s next?”</i> you lover asks, rolling over on top of you, pressing her big, soft chest against your own.");
+	output("\n\n<i>“So, what’s next?”</i> your lover asks, rolling over on top of you, pressing her big, soft chest against your own.");
 	
 	output("\n\n<i>“Next...”</i> you say, grabbing the ausar girl’s spankable behind in both hands, hard enough to make her squeal. <i>“We’ve got more probes to find.”</i>");
 	
@@ -1477,6 +1477,7 @@ public function puppyslutmasMeetTheDornasHueAnno():void
 	currentLocation = "SHIP INTERIOR";
 	
 	processTime(360);
+	sleepHeal();
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);

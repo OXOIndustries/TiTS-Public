@@ -1954,6 +1954,7 @@ public function stayWithShadeAfterLayingAnEgg2():void
 	showShade();
 	//Pass 8 hours
 	processTime(477);
+	sleepHeal();
 	output("You wake up a good while later, rested and relaxed, with a great big yawn to announce your waking. After a moment, you note a distinct absence of busty cat-girl in the bed, and the faint sound of running water beating down nearby. You take the opportunity to gather your [pc.gear] scattered all through the ship and get ");
 	if(!pc.isNude()) output("dressed");
 	else output("yourself re-equipped");

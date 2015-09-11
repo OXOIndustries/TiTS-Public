@@ -779,7 +779,8 @@ public function useDaMilkar():void
 		//[Okay] [No thanks]
 		addButton(0,"Okay",okayEllieYaCuntLetsMilkMeFirstTime);
 		addButton(1,"No Thanks",FirstManMilkUseNoThanks);
-		addButton(2,"Blowjob",carrieBlowjobIntro,undefined,"Blowjob","Why have the harsh embrace of a machine when there's a perfectly developed cow-girl close at hand?");
+		if(!pc.isTreated()) addDisabledButton(2,"Blowjob","Blowjob","Only Treated males can ask Carrie for a blowjob.");
+		else addButton(2,"Blowjob",carrieBlowjobIntro,undefined,"Blowjob","Why have the harsh embrace of a machine when there's a perfectly developed cow-girl close at hand?");
 		addButton(14,"Leave",mainGameMenu);
 	}
 	//Repeat
@@ -791,7 +792,8 @@ public function useDaMilkar():void
 		addButton(0,"w/Carrie",okayEllieYaCuntLetsMilkMeFirstTime,undefined,"w/Carrie","Ask Carrie to help you out in the milking stall. A little companionship never hurt, either.");
 		//Use w/o Carrie
 		addButton(1,"w/o Carrie",useTheMilkerWithoutCarrieYaSkag,undefined,"w/o Carrie","Tell Carrie you can get yourself situated.");
-		addButton(2,"Blowjob",carrieBlowjobIntro,undefined,"Blowjob","Why have the harsh embrace of a machine when there's a perfectly developed cow-girl close at hand?");
+		 if(!pc.isTreated()) addDisabledButton(2,"Blowjob","Blowjob","Only Treated males can ask Carrie for a blowjob.");
+		else addButton(2,"Blowjob",carrieBlowjobIntro,undefined,"Blowjob","Why have the harsh embrace of a machine when there's a perfectly developed cow-girl close at hand?");
 		addButton(14,"Leave",mainGameMenu);
 	}
 }

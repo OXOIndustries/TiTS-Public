@@ -360,12 +360,7 @@ public function sleepInRuinedCamp():void
 	//Standard sleep messages, etc. 
 	var minutes:int = 420 + rand(80) + 1
 	output(" for about " + num2Text(Math.round(minutes/60)) + " hours.");
-	if (this.chars["PC"].HPRaw < this.chars["PC"].HPMax()) 
-	{
-		this.chars["PC"].HP(Math.round(this.chars["PC"].HPMax()));
-	}
-	
-	if (this.chars["PC"].energy() < this.chars["PC"].energyMax()) this.chars["PC"].energyRaw = this.chars["PC"].energyMax();
+	sleepHeal();
 	processTime(minutes);
 	mimbraneSleepEvents();
 	//Chance for a Vanae Attack! - can't be first time

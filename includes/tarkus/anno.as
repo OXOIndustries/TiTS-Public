@@ -536,8 +536,9 @@ public function snuggleWithAnnoAfterWhuppinHerAss2():void
 	output("You wake up with a yawn, struggling to open your eyes. When you do, you're glad to find Anno's still napping in your arms, snoring ever so softly, with her tail tucked comfortably");
 	if(pc.legCount > 1) output(" between");
 	else output(" around");
-	output(" your [pc.legs]. You run your hands through her soft, snowy hair, brushing a few stray strands from her face. Anno mewls in her sleep, a soft, pathetic little noise of comfort as she rubs her cheek against your chest. You stay like that few a few more pleasant minutes before realizing that you still have a quest to complete. You gently nudge Anno off you, resting her back under the blanket once you've stood up. You tuck your ausar friend back in before making your way back to the shop front, content to let her finish her nap.");
+	output(" your [pc.legs]. You run your hands through her soft, snowy hair, brushing a few stray strands from her face. Anno mewls in her sleep, a soft, pathetic little noise of comfort as she rubs her cheek against your chest. You stay like that for a few more pleasant minutes before realizing that you still have a quest to complete. You gently nudge Anno off you, resting her back under the blanket once you've stood up. You tuck your ausar friend back in before making your way back to the shop front, content to let her finish her nap.");
 	processTime(122);
+	sleepHeal();
 	flags["ANNO_ASLEEP"] = 2;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

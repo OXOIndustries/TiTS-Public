@@ -10769,21 +10769,21 @@ package classes {
 			}
 			//C-D
 			else if (val <= 4) {
-				choice = this.rand(5);
+				choice = this.rand(4);
 				if (choice == 0) descript += "nice";
-				else if (choice == 1) descript += "hand-filling";
-				else if (choice == 2) descript += "well-rounded";
-				else if (choice == 3) descript += "supple";
+				else if (choice <= 1) descript += "hand-filling";
+				else if (choice <= 2) descript += "well-rounded";
+				else descript += "supple";
 				//else if(choice == 4) descript += "softball-sized ";
 			}
 			//DD->big EE
 			else if (val < 11) {
 				choice = this.rand(5);
 				if (choice == 0) descript += "big";
-				if (choice == 1) descript += "large";
-				if (choice == 2) descript += "pillowy";
-				if (choice == 3) descript += "jiggly";
-				if (choice == 4) descript += "volleyball-sized";
+				else if (choice == 1) descript += "large";
+				else if (choice == 2) descript += "pillowy";
+				else if (choice == 3) descript += "jiggly";
+				else if (choice == 4) descript += "volleyball-sized";
 			}
 			//F->big FF
 			else if (val < 15) {
@@ -10839,7 +10839,7 @@ package classes {
 				descript += breastSize(breastRows[rowNum].breastRating());
 				descripted = true;
 			}
-			if (isLactating() > 1.5) {
+			if (isLactating()) {
 				if (descripted) descript += ", ";
 				if (milkType == GLOBAL.FLUID_TYPE_MILK) {
 					temp = this.rand(4);
