@@ -3886,7 +3886,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				output2("\n<b>* Sera:</b> Met her");
 				if(flags["SERA_TALKED_ABOUT_BEING_PISSED_OFF"] == undefined) output2(", Pissed off");
 				else output2(", Vented her frustrations");
-				if(flags["FUCKED SERA"] != undefined)
+				if(flags["FUCKED SERA"] != undefined && flags["FUCKED SERA"] > 0)
 				{
 					initSeraFuckFlags();
 					output2("\n<b>* Sera, Times Sexed: </b>" + timesFuckedSera());
@@ -3935,12 +3935,8 @@ public function displayEncounterLog(showID:String = "All"):void
 			{
 				output2("\n<b><u>Shear Beauty</u></b>");
 				output2("\n<b>* Ceria:</b> Met her");
-				if(flags["CERIA_EAR_TOUCH_UNLOCKED"] != undefined)
-				{
-					output2(", Touched her ears");
-					if(flags["EATEN_CERIA_OUT"] != undefined) output2(", Ate her pussy");
-					if(flags["CERIA_MOUTH_FLOOD"] != undefined) output2(", Flooded her mouth with semen");
-				}
+				if(flags["EATEN_CERIA_OUT"] != undefined) output2(", Ate her pussy");
+				if(flags["CERIA_MOUTH_FLOOD"] != undefined) output2(", Flooded her mouth with semen");
 				if(flags["HEARD_OF_NAHRI"] != undefined || 9999 == 0)
 				{
 					output2("\n<b>* Nahri:</b>");
