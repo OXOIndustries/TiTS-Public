@@ -1313,7 +1313,7 @@ public function genesModsOverCounter():void
 		
 		output("\n\n<i>“How?”</i> he murmurs, his deep voice shaking you right down to your pussy, intensifying the helpless heat there. <i>“You’re going to have to say how, or this is as far as we go.”</i>");
 		
-		output("\n\n<i>“Bend me over and fuck me stupid!”</i> you find yourself wailing, your [pc.lowerBody] tensing in pure frustration to his slow, teasing fingers. <i>“Please!”</i>");
+		output("\n\n<i>“Bend me over and fuck me stupid!”</i> you find yourself wailing, your [pc.vagOrAss] tensing in pure frustration to his slow, teasing fingers. <i>“Please!”</i>");
 		
 		output("\n\n<i>“Ah, there it is: the perfect timbre,”</i> he smiles at you proudly. <i>“Shamelessly slutty, yet earnestly polite.”</i>");
 	}
@@ -1371,16 +1371,16 @@ public function genesModsOverCounter():void
 			// 9999
 			// {and you suck it down so well, too");
 			output("?”</i>");
+			
+			output("\n\n<i>“No talking now,”</i> you reply. It is inexplicable and infuriating to you that, laid out and ready to get the big, hard dicking your body is constantly crying out for, he is wasting time with words. <i>“I should not be able to talk right now you’re fucking me that good, ‘kay?”</i> Gene readily responds by shoving his cock right up to its base, reaching your most sensitive spot- and everything becomes a deep, golden, mooing bliss again."); 
 		}
-		
-		output("\n\n<i>“No talking now,”</i> you reply. It is inexplicable and infuriating to you that, laid out and ready to get the big, hard dicking your body is constantly crying out for, he is wasting time with words. <i>“I should not be able to talk right now you’re fucking me that good, ‘kay?”</i> Gene readily responds by shoving his cock right up to the quick in you, and everything becomes a deep, golden, mooing bliss again.");
 		
 		output("\n\nOnce he has spent a moment glorying in it, the fanfir pulls almost all the way out, so the ribbed bulge is distending your lips, before ramming all sixteen inches succulently home, his hard hips patting against your [pc.butt] as he quickly finds a good rhythm. The way it arches makes the tip of his massive cock drags across the roof of your sopping tunnel, sending tingles of pure pleasure run up your spine with every");
 		if (pc.thickness <= 10) output(" shiver of your taut");
 		else output(" jiggle of your generous");
 		output(" flesh.");
 		
-		output("\n\n<i>“Of course,”</i> he murmurs, <i>“one of the best things about doing it like this is... <i>“ You feel a hard protrusion slide between the cheeks of your [pc.butt] and press demandingly against your [pc.asshole]. In the dizziness of the moment you cannot immediately think what it is. You remember a moment later when, with a harsh groan, Gene thrusts forward, packing your [pc.vagina " + x + "] full of cock at the same time as spreading and penetrating your butthole with his human dick. It’s much smaller than his fanfir organ but, oh void, it feels anything but small as it drives into your colon...");
+		output("\n\n<i>“Of course,”</i> he murmurs, <i>“one of the best things about doing it like this is...”</i> You feel a hard protrusion slide between the cheeks of your [pc.butt] and press demandingly against your [pc.asshole]. In the dizziness of the moment you cannot immediately think what it is. You remember a moment later when, with a harsh groan, Gene thrusts forward, packing your [pc.vagina " + x + "] full of cock at the same time as spreading and penetrating your butthole with his human dick. It’s much smaller than his fanfir organ but, oh void, it feels anything but small as it drives into your colon...");
 		
 		output("\n\nGasps escape your mouth, hands clutching at the hard glass, your whole body shaking to the force of the massive beast completely stuffing you, his hot, bullish dicks pressing together through your tender walls. Gasps become wanton moans as his robot hands clasp your [pc.chest] and fondle your [pc.nipples],");
 		if (!pc.hasFuckableNipples()) output(" stroking and pinching them until they are erect and inflamed");
