@@ -957,7 +957,7 @@ public function initializeMyrellionRooms():void
 
 	rooms["748"] = new RoomClass(this);
 	rooms["748"].roomName = "THE\nHONEY NOZZLE";
-	rooms["748"].description = "Flickering fluorescent tubes illuminate this surprisingly well-kept club, bathing its stone-worked interior in hues that range from dulcet to garish. Plenty of tables have been set up, but most are empty. The bulk of the crowd is over by the bars - all three of them, served by dapper-looking males, or surrounding the expansive, stone-carved stage that protrudes into the center of the chamber. A sturdy set of stores leads east back to the street.";
+	rooms["748"].description = "Flickering fluorescent tubes illuminate this surprisingly well-kept club, bathing its stone-worked interior in hues that range from dulcet to garish. Plenty of tables have been set up, but most are empty. The bulk of the crowd is over by the bars - all three of them, served by dapper-looking males, or surrounding the expansive, stone-carved stage that protrudes into the center of the chamber. A sturdy set of stones leads east back to the street.";
 	rooms["748"].planet = "PLANET: MYRELLION";
 	rooms["748"].system = "SYSTEM: SINDATHU";
 	rooms["748"].eastExit = "727";

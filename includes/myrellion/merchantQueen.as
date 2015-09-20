@@ -36,7 +36,7 @@ public function introductionToMerchantQueenSloot():void
 		showMerchantQueen();
 		flags["MET_MERCHANT_QUEEN"] = 1;
 		
-		output("\n\nYour eyes get a scant moment of reprieve to adjust to the shop’s interior before you’re forcefully stopped in your tracks. A pair of metallic clings ring in your ears as the way in front of you is barred. After a brief stint of bewilderment, you figure out the cause: a pair of lengthy bayonets are uncomfortably close to your face, coming from two rifles held by soldiers at either side of the doorway, covered in a lot more of that blackened chitinous plate than the average myr. Both of the bulky women give you a sidelong stare, a curt scowl on either of their lips. Their symmetry is rather impressive.");
+		output("\n\nYour eyes get a scant moment of reprieve to adjust to the shop’s interior before you’re forcefully stopped in your tracks. A pair of metallic clinks ring in your ears as the way in front of you is barred. After a brief stint of bewilderment, you figure out the cause: a pair of lengthy bayonets are uncomfortably close to your face, coming from two rifles held by soldiers at either side of the doorway, covered in a lot more of that blackened chitinous plate than the average myr. Both of the bulky women give you a sidelong stare, a curt scowl on either of their lips. Their symmetry is rather impressive.");
 		output("\n\n<i>“Ladies!”</i> A pair of haughty sounding claps brings your attention away from the two guards, both of whom reluctantly shift their weapons away from your person. <i>“I apologize profusely for my guards! They’re rather... mm,");
 		if(silly) output(" antsy");
 		else output(" hair-triggered");
