@@ -69,7 +69,7 @@ public function tanisBowTrainingFirstTime():void
 	
 	output("\n\n<i>“’Sup,”</i> he answers, eyes wandering over your bow. <i>“Gotta say, if you’re trying to hold up the place, you could have picked a little less conspicuous weapon.”</i>");
 	
-	output("\n\nYou chuckle and counter, <i>“Actually, I was wondering you’ve got some pointers for me. Never exactly get a lot of training using something like this before.”</i>");
+	output("\n\nYou chuckle and counter, <i>“Actually, I was wondering you’ve got some pointers for me. Haven't exactly had a lot of training using something like this before.”</i>");
 	
 	output("\n\nHe smiles and rises to his feet, six bestial legs stretching out from under his centaur-like body. <i>“Sure, I guess I could show you the basics. Not much else to do");
 	if (flags["SALVAGED VANAE CAMP"] != 2) output(" with the nav beacons down anyway");
@@ -203,7 +203,7 @@ public function tanisBowTrainingFinaleRepeats():void
 	
 	output("\n\n<i>“So let’s go,”</i> you say, nodding towards to the door. Tanis grins and grabs his bow, along with several targets, and leads you out into the back lot. The two of you go through the usual drill, tacking targets to trees and stretching out your muscles with a few practice shots.");
 	
-	output("\n\nWhen the warm-up’s done, though, Tanis doesn’t start you on the same drills as your first few sessions. Instead, the towering leithan hunter rolls his shoulders and pulls a strange arrow off of his back, tipped with something blinking and clearly electronic. You cock an eyebrow and, at Tanis’s beckoning, step back.He flashes you a grin, nocks the arrow, and lets fly at a tree near the back of the lot.");
+	output("\n\nWhen the warm-up’s done, though, Tanis doesn’t start you on the same drills as your first few sessions. Instead, the towering leithan hunter rolls his shoulders and pulls a strange arrow off of his back, tipped with something blinking and clearly electronic. You cock an eyebrow and, at Tanis’s beckoning, step back. He flashes you a grin, nocks the arrow, and lets fly at a tree near the back of the lot.");
 	
 	output("\n\nThe arrow slams home, quivering audibly as it sticks into the bark of the tree. A moment passes, and then a deafening roar blasts through the woods, kicking up leaves and grass in a explosive bubble.");
 	

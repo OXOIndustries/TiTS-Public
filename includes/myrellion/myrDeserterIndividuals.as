@@ -188,7 +188,7 @@ public function approachMyrDesertersNonCombatShit(gold:Boolean = false):void
 	//Encounter is pregnant red myr deserter:
 	if(flags["BRIHA_INCUBATION_TIMER"] != undefined && !gold)
 	{
-		output("\n\nYou’re walking through the desolate and war-torn wasteland. Nearby, you spot a ragged looking red deserter. Under her partially torn uniform, she has a [monster.belly].");
+		output("\n\nYou’re walking through the desolate and war-torn wasteland. Nearby, you spot a ragged looking red deserter. Under her partially torn uniform, she has a [monster.bellySize].");
 		if(flags["SEEN_RED_DESERTER_PREGGERS"] == undefined) output(" She’s pregnant?");
 		output("\n\nRaising a nail-chipped hand, ");
 		if(flags["KNOW_RED_MYR_NAME"] != undefined) output("Briha");
@@ -1011,15 +1011,15 @@ public function handPlayForGoldWaifusInTraining():void
 	output(". One of her hands slides ");
 	if(pc.legCount > 1) output("between your [pc.legs]");
 	else output("around your waist");
-	output(". A single finger presses between your buttocks and slides inside of your [pc.asshole]. You moan in delight as ");
+	output(". A single finger presses between your buttocks and slides inside of your [pc.asshole]. You moan in delight as");
 	if(pc.hasCock()) 
 	{
-		output("you’re jerked off and fingered");
+		output(" you’re jerked off and fingered");
 		if(pc.balls > 0) output(", the while having your [pc.sack] simultaneously fondled");
 	}
 	if(pc.hasVagina()) 
 	{
-		output("you’re simultaneously fingered in both your [pc.pussy] and ass, all the while having your [pc.clits] rubbed");
+		output( "you’re simultaneously fingered in both your [pc.pussy] and ass, all the while having your [pc.clits] rubbed");
 	}
 	output(".");
 
@@ -1290,7 +1290,7 @@ public function cumSplurgeForRedAntSloots():void
 	if(pc.cockTotal() > 1) output("s");
 	output(".");
 
-	output("\n\n... After several orgasms, your entire body feels like lead. Your world spins and your [pc.cocksNoun] ");
+	output("\n\n... After several orgasms, your entire body feels like lead. Your world spins and your [pc.cocks] ");
 	if(pc.balls > 0) output("and [pc.ballsNoun] ");
 	output("are filled with a hot, throbbing ache. Your loins are utterly [pc.cumNoun]-splattered. You can barely see ");
 	if(foes[0].short != "Briha") output("the ");
@@ -1662,7 +1662,7 @@ public function redDildoScrew():void
 	if(!(pc.lowerUndergarment is EmptySlot))
 	{
 		if(inCombat() && (pc.HP() <= 0 || pc.lust() >= pc.lustMax())) output(" No longer caring about your loss, you aid her as she");
-		else output("She");
+		else output(" She");
 		output(" strips off your ");
 		if(x >= 0) output("damp ");
 		output("[pc.lowerUndergarment] and tosses the offending garment aside. Afterwards, you");
@@ -1931,7 +1931,7 @@ public function sitAndScrewGoldMyr():void
 	if(pc.hasGenitals()) 
 	{
 		output("\n\nAt the same time, her dripping lower lips are gently teasing your ");
-		if(pc.hasCock()) output("[pc.cockHead " + x + "]");
+		if(pc.hasCock()) output("[pc.cockHead " + x + "].");
 		else output("fake cock-head and stirring up your own pussy in the process.");
 		output(" You moan as she lowers herself onto your shaft, swallowing it whole inside her sopping wet honeypot.");
 

@@ -297,7 +297,7 @@ public function naleenFucksBoysScene():void {
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
-	processTime(30+rand(10));
+	processTime(120+rand(50));
 	naleenSexed(false);
 	genericLoss();
 }

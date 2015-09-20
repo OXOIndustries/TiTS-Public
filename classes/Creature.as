@@ -1248,6 +1248,7 @@ package classes {
 					break;
 				case "clothes":
 					buffer = clothesDescript(); // isolates layer unlike gear -- armor if its there, otherwise both undergarments
+					break;
 				case "short":
 				case "name":
 					buffer = short;
