@@ -5690,7 +5690,7 @@ public function fixPcUpbringing():void
 	showName("CODEX\nALERT");
 	author("Gedan");
 	
-	output("Your trusty codex vibrates incessantly, demanding your attention for something. The means are unusual, which piques your interest; you’ve been wearing the thing for long enough now to have most of it’s features down pat, and whatever it’s doing right now is most certainly out of the ordinary.");
+	output("Your trusty codex vibrates incessantly, demanding your attention for something. The means are unusual, which piques your interest; you’ve been wearing the thing for long enough now to have most of its features down pat, and whatever it’s doing right now is most certainly out of the ordinary.");
 	
 	output("\n\nSafely shuffled off to one side, hopefully out of the way - and out of sight - of any one or any thing that might come by, you bring your handy forearm-mounted helper to the fore to see exactly what it’s complaining about....");
 	
