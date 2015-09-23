@@ -30,6 +30,7 @@ import classes.Items.Accessories.JungleRepel;
 import classes.Items.Transformatives.Bovinium;
 import classes.Items.Transformatives.OvirAce;
 import classes.Util.RandomInCollection;
+import classes.VaginaClass;
 
 public function mhengaShipHangarFunc():Boolean
 {
@@ -132,10 +133,14 @@ public function debugMenus():void
 	clearMenu();
 	output("The room of debug. Where am I? How did I get here? What do you want?!\n\n");
 	
-	for (var i:int = 0; i < 100; i++)
+	for (var i:int = 0; i < 10; i++)
 	{
-		output("[bess.chest]\n");
+		output("[pc.cunt]\n[pc.cunts]\n");
 	}
+	
+	addButton(1, "AddVag", function():void {
+		pc.vaginas.push(new VaginaClass());
+	});
 	
 	// Need the buttons back to test other stuff.
 	// NO END OF FUCKING COMPLAINTS I AM FUCKING CALLING IT NOW.
