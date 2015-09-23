@@ -8689,17 +8689,25 @@ package classes {
 			if (type == GLOBAL.TYPE_EQUINE)
 			{
 				if (!simple)
+				{
 					vag += RandomInCollection(["equine gash", "animalistic vagina", "animalistic cunny", "equine honeypot", "dusky snatch", "equine cunt", "pheromone-laden pussy", "musky mare-cunt"]);
+				}
 				else
+				{
 					vag += RandomInCollection(["horse-pussy", "mare-cunt", "fuck-hole", "horse-twat", "mare-twat", "centaur-snatch", "animal-pussy", "mare-pussy", "horse-cunt"]);
+				}
 			}
 			//Maybe doge?
 			else if (type == GLOBAL.TYPE_CANINE)
 			{
 				if (!simple)
+				{
 					vag += RandomInCollection(["canine gash", "small-lipped vagina", "animalistic cunny", "canine honeypot", "canine snatch", "canine cunt", "animalistic pussy", "fragrant dog-cunt"]);
+				}
 				else
+				{
 					vag += RandomInCollection(["dog-pussy", "bitch-cunt", "fuck-hole", "dog-twat", "animal-twat", "animal-pussy", "dog-pussy", "dog-cunt"]);
+				}
 			}
 			//Slimgina?
 			else if (type == GLOBAL.TYPE_GOOEY)
@@ -8744,7 +8752,7 @@ package classes {
 				else
 					vag += RandomInCollection(["taur-pussy", "mare-cunt", "fuck-hole", "xeno-twat", "mare-twat", "centaur-snatch", "alien-pussy", "mare-pussy", "leith-cunt"]);
 			}
-			if (type == GLOBAL.TYPE_SYNTHETIC)
+			else if (type == GLOBAL.TYPE_SYNTHETIC)
 			{
 				if (!simple)
 					vag += RandomInCollection(["synth gash", "synthetic vagina", "robotic cunny", "robot honeypot", "synthetic snatch", "robotic cunt", "artificial pussy", "robo-cunt"]);
@@ -8755,12 +8763,19 @@ package classes {
 			{
 				if (!simple)
 				{
-					if(type == GLOBAL.TYPE_HUMAN)
+					if (type == GLOBAL.TYPE_HUMAN)
+					{
 						vag += RandomInCollection(["human ", "human ", "terran ", "terran ", "terran "]);
+					}
 					else
+					{
 						vag += RandomInCollection(["human-like ", "human-like ", "exotic ", "exotic ", "inhuman "]);
+					}
 				}
-				vag += RandomInCollection(["vagina", "pussy", "cunt", "fuck-hole", "slit", "twat", "gash", "cunny", "honeypot", "snatch"]);
+				else
+				{
+					vag += RandomInCollection(["vagina", "pussy", "cunt", "fuck-hole", "slit", "twat", "gash", "cunny", "honeypot", "snatch"]);
+				}
 			}
 			return vag;
 		}
