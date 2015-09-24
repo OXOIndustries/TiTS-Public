@@ -8772,10 +8772,7 @@ package classes {
 						vag += RandomInCollection(["human-like ", "human-like ", "exotic ", "exotic ", "inhuman "]);
 					}
 				}
-				else
-				{
-					vag += RandomInCollection(["vagina", "pussy", "cunt", "fuck-hole", "slit", "twat", "gash", "cunny", "honeypot", "snatch"]);
-				}
+				vag += RandomInCollection(["vagina", "pussy", "cunt", "fuck-hole", "slit", "twat", "gash", "cunny", "honeypot", "snatch"]);
 			}
 			return vag;
 		}
