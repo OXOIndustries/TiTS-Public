@@ -728,6 +728,23 @@
 		
 		public function restoreLocation():void
 		{
+			if (cachePlanet == "CODEX")
+			{
+				if (kGAMECLASS.currentLocation == "SHIP INTERIOR")
+				{
+					roomText = "SHIP\nINTERIOR";
+					planetText = kGAMECLASS.rooms[kGAMECLASS.rooms["SHIP INTERIOR"].outExit].planet;
+					systemText = kGAMECLASS.rooms[kGAMECLASS.rooms["SHIP INTERIOR"].outExit].system;
+				}
+				else
+				{
+					roomText = kGAMECLASS.rooms[kGAMECLASS.currentLocation].roomName;
+					planetText = kGAMECLASS.rooms[kGAMECLASS.currentLocation].planet;
+					systemText = kGAMECLASS.rooms[kGAMECLASS.currentLocation].system;
+				}
+				return;
+			}
+			
 			if (cacheRoom != null) roomText = cacheRoom;
 			if (cachePlanet != null) planetText = cachePlanet;
 			if (cacheSystem != null) systemText = cacheSystem;

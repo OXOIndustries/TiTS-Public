@@ -8517,17 +8517,18 @@ public function bessEvent20More(response:String):void
 	output("\n\n<i>“... I want to do it like lovers do. I’ve never done it like that before.”</i> [bess.HeShe] asks you, for once completely unabashed. [bess.HisHer] eyes stare at you full of honest feelings, as [bess.heShe] pulls you into [bess.hisHer] quarters.");
 		
 	// An intimate sex scene is now played from the sex doc, and the intimate sex is unlocked for the player.
+	clearMenu();
 	if (pc.hasCock())
 	{
-		bessIntimateGiveDoggy(true);
+		addButton(0, "Next", bessIntimateGiveDoggy, true);
 	}
 	else if (bess.hasCock())
 	{
-		bessIntimateGetDoggy(true);
+		addButton(0, "Next", bessIntimateGetDoggy, true);
 	}
 	else
 	{
-		bessIntimateGetOral(true);
+		addButton(0, "Next", bessIntimateGetOral, true);
 	}
 }
 
@@ -11405,7 +11406,7 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 
 	if (bess.hasVagina() && pc.hasCock() && bess.hasTailCunt())
 	{
-		output("\n\nAs you’re enjoying this sensation, you feel something velvety and soft brushing against your [pc.cockHeadNoun]! You suddenly realise [bess.heShe] has detached [bess.hisHer] mechanical pussy. It now lingers below your loins, attached to a long, prehensile cable [bess.heShe] can seemingly control at will.");
+		output("\n\nAs you’re enjoying this sensation, you feel something velvety and soft brushing against your [pc.cockHead]! You suddenly realise [bess.heShe] has detached [bess.hisHer] mechanical pussy. It now lingers below your loins, attached to a long, prehensile cable [bess.heShe] can seemingly control at will.");
 		
 		output("\n\nYou can barely contain your surprise as it slides onto [pc.oneCock], enveloping it in [bess.hisHer] warm depths. The silvery onahole-on-a-cable milks your defenseless member for all it’s worth as you are deliciously double-teamed by  [bess.name]!");
 	}
@@ -12300,7 +12301,8 @@ public function bessIntimateGetDoggy(fromEvent:Boolean = false):void
 	output("\n\nThe delicious smell of synthetic vanilla, [bess.hisHer] particular scent, fills your senses. You’re utterly wrapped up in [bess.hisHer] in more ways than you can count. There is nothing other than [bess.name] as all else is swept away by the power of [bess.hisHer] sweetly pressing lips.");
 
 	output("\n\nYour make-out session naturally grows from soft sensuality to frantic tongue dancing as your lungs near their limit. Finally out of oxygen, you stubbornly pull away from [bess.name] to take short, desperate gasps of the sweet, vanilla-scented air. [bess.name] gazes at you with [bess.hisHer] beautiful [bess.eyeColor] eyes.");
-	if (pc.genitalSpot <= 1) output(" Not a word needs to be said as [bess.heShe] spreads open your [pc.legs] wide until your nethers are completely exposed./Else: Not a word needs to be said as [bess.heShe] positions [bess.himHer]self to enter you.");
+	if (pc.isBiped()) output(" Not a word needs to be said as [bess.heShe] spreads open your [pc.legs] wide until your nethers are completely exposed.");
+	else output(" Not a word needs to be said as [bess.heShe] positions [bess.himHer]self to enter you.");
 
 	output("\n\n[bess.HeShe] presses the head of [bess.hisHer] [bess.cock] against your");
 	if (pc.hasVagina()) output(" lower lips");
@@ -12315,7 +12317,7 @@ public function bessIntimateGetDoggy(fromEvent:Boolean = false):void
 	
 	output("\n\n[bess.HeShe] leans in deep, sensually sliding the whole of [bess.hisHer] body against yours and whispers into your ear, <i>“I love being so deep inside of you; it makes me feel, just for a little while, like we’ve become one.”</i>");
 	
-	output("\n\n[bess.HeShe] begins to rock [bess.hisHer] hips; you moan and cling tightly to [bess.hisHer] pulsing phallus. Every single inch of [bess.himHer] is hitting the exact right spot, It all feels so incredibly sensual and intense. Before you know it, you’re cumming already. You tremble and cling to [bess.hisHer] as you let out a shuddering moan.");
+	output("\n\n[bess.HeShe] begins to rock [bess.hisHer] hips; you moan and cling tightly to [bess.hisHer] pulsing phallus. Every single inch of [bess.himHer] is hitting the exact right spot, It all feels so incredibly sensual and intense. Before you know it, you’re cumming already. You tremble and cling to [bess.himHer] as you let out a shuddering moan.");
 
 	output("\n\nEven as you come, your lover does not let up. [bess.name] now sets into a wet grind, probing every inch of your [pc.vagOrAss "+ vagIdx +"] with a practiced hip roll You frantically reciprocate, grinding your rump into [bess.hisHer] hips with a heated fervor until you’re a moaning, shuddering mess. [bess.HisHer] breathing heavy and grinding near-predatory, [bess.name] grabs your [pc.hips] and huskily moans, holding herself deep inside your hungry hole.");
 	if (pc.isBiped() && pc.hasKnees()) output(" Your [pc.legs] instinctively lock in a crisscross position behind [bess.hisHer] and you feel your partner tense up.");
