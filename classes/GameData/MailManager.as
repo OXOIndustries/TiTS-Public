@@ -252,6 +252,16 @@ package classes.GameData
 			return false;
 		}
 		
+		//Added by Fen! Kill me if needed, Geddy
+		public static function isEntryViewed(entryName:String):Boolean
+		{
+			if (MailManager.ENTRIES[entryName] === undefined) throw new Error("Specified entry name '" + entryName + "' is not in the datastore.");
+			
+			if (MailManager.ENTRIES[entryName].ViewedTimestamp !== undefined) return true;
+			
+			return false;
+		}
+
 		public static function getEntry(entryName:String):Object
 		{
 			if (MailManager.ENTRIES[entryName] === undefined) throw new Error("Specified entry name '" + entryName + "' was not found in the datastore.");

@@ -1765,7 +1765,7 @@ public function newFutaSaendraScenes():void
 
 	output("\n\n<i>“That’s more like it!”</i> Saendra cheers, slapping your ass and earning a muted yelp as her panties absorb the sounds of your screams. <i>“Unf! Yeah, now you’re gonna get it");
 	if(pc.race() == "ausar" || pc.race() == "half-ausar") output(", my favorite little bottom bitch");
-	output("!");
+	output("!”</i>");
 
 	output("\n\nNow that you’re not going to be waking the neighbors - or at least, not the ones three doors down - Saen starts to move faster and harder, hammering your ");
 	if(pc.hasVagina()) output("pussy");

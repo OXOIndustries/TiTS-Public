@@ -107,6 +107,7 @@ public function configureMails():void
 	MailManager.addMailEntry("cuzfuckball", cuzFuckball, "Jealous?", cuzName, cuzMail, quickPCTo, quickPCToAddress);
 	
 	MailManager.addMailEntry("saendraxpack1", "Hey, hero, are you anywhere near Tavros? Please say yes! If you are, I could really use a hand. I'm on Deck 92, up in the construction wing. Expect trouble. Hope I see you soon!\n\n<3", "Hey Hero", "Saendra", "flygirl@phoenixcargo.net", quickPCTo, quickPCToAddress); 
+	MailManager.addMailEntry("emmy_apology", emmyApologyEmail,"Sorry!","Emmy Astarte","emmy_astarte@cmail.com",quickPCTo,quickPCToAddress);
 }
 
 public function cuzName():String
@@ -210,6 +211,14 @@ public function xenogenBlowjobReminder():String
 	//Notification Email
 	//Get when Doc McAllister's done researching Red/Gold pills after NevrieQuest (such as it is).
 	var ret:String = "Hey, " + pc.short + ". Been a while. So I thought I'd write through the official Xenogen account they graciously <i>let</i> me use to inform you of an exciting special we're running. On discounts. For returning customers that haven't been with us in a while.\n\nIf you know what I mean.\n\n:3\n\n-Nev";
+	return ret;
+}
+
+//Sex Quest Email Start for You->You
+//emmy_astarte@cmail.com
+public function emmyApologyEmail():String
+{
+	var ret:String = "Hey, " + pc.short + "!\n\nI hope I didn’t drive you off by turning into such a prude after getting you all worked up. I can’t help being so turned on all the time - I really can’t! You should see how bad I get when I’m watching a saucy holo. But that’s beside the point. I got you hot and bothered, and even after you were so nice to me, I acted like some kind of ice queen. I know, it’d be hard to imagine if you didn’t experience it firsthand.\n\nAnyway, I wanted to apologize for being so thoughtless. The truth is that I really like you, and I think I can bend my rules a little if you’re willing to put up with my hangups. A girl like me has gotta be careful she doesn’t turn into a rampant slut, ya know? Can’t do all my thinking with my junk.\n\nSo visit, and if you want, I’ll give you an oral apology with more tongue than you can handle ;)\n\nSincerely,\nEmmy";
 	return ret;
 }
 
