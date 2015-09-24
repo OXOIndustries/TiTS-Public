@@ -139,6 +139,11 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/princess_bandoleer.png", mimeType = "image/png")]
 		public var Bust_PRINCESS_BANDOLEER:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/queensguard.png", mimeType = "image/png")]
+		public var Bust_QUEENSGUARD:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/queensguard_nude.png", mimeType = "image/png")]
+		public var Bust_QUEENSGUARD_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/saendra.png", mimeType = "image/png")]
 		public var Bust_SAENDRA:Class;
 

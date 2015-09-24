@@ -241,6 +241,9 @@ public function buyItemGo(arg:ItemSlotClass):void {
 	var price:Number = getBuyPrice(shopkeep,arg.basePrice);
 	output("You purchase " + arg.description  + " for " + num2Text(price) + " credits.\n\n");
 	
+	//Emmy magic!
+	if(shopkeep is Emmy) flags["PURCHASED_FROM_EMS"] = 1;
+
 	// Renamed from lootList so I can distinguish old vs new uses
 	var purchasedItems:Array = new Array();
 	purchasedItems[purchasedItems.length] = arg.makeCopy();

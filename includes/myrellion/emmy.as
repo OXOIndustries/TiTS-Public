@@ -24,6 +24,11 @@ public function showEmmy():void
 //In-Room Bonus Notes
 public function emmyBonusNotes():Boolean
 {
+	if(flags["EMMY_BANNED"] == 1)
+	{
+		output("\n\nThe shopkeeper shoos you toward the door. She won't even look you in the eye, and one of her fingers is poised above a call button should you make trouble. It'd be best to leave.");
+		return true;
+	}
 	//First time
 	if(flags["SEEN_EMMY"] == undefined)
 	{
@@ -95,7 +100,11 @@ public function emmyMainMenu():void
 	else if(pc.lust() >= 33) addButton(3,"SexRequest",sexAttemptStart);
 	else addDisabledButton(3,"SexRequest","SexRequest","You aren't turned on enough for that.");
 	//Flower overwrites
-	if(flags["EMMY_QUEST"] == 0 && pc.hasItem(new VenusBloom())) addButton(3,"GiveFlower",bringEmmyVenusBloom,undefined,"Give Flower","Give Emmy the flower you brought her.");
+	if(flags["EMMY_QUEST"] == 0 && pc.hasItem(new VenusBloom())) 
+	{
+		if(pc.hasGenitals()) addButton(3,"GiveFlower",bringEmmyVenusBloom,undefined,"Give Flower","Give Emmy the flower you brought her.");
+		else addDisabledButton(3,"GiveFlower","Give Flower","You should probably get some genitals before doing that...");
+	}
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -617,7 +626,7 @@ public function askEmmyAboutEmmy():void
 		output("”</i>");
 	}
 	//Not known well enough:
-	if(9999 == 0)
+	if(flags["PURCHASED_FROM_EMS"] == undefined)
 	{
 		output("\n\nThe jackal-woman fidgets and says, <i>“That’s not important right now. What is important is.... uh.... getting your the right equipment for your adventures. So, what will you be buying?”</i>");
 		//Reskin menu and go to shop interface
@@ -849,7 +858,7 @@ public function venusPitcherBonusFlower():void
 {
 	clearOutput();
 	showEmmy();
-	output("Ever since Emmy asked you for an exotic flower, you’ve kept your eyes open for a good one, and now there’s on laying on the ground right in front of you! The venus pitcher must have shed this one in her hurry to escape underground, leaving a pink and purple bloom that’s sure the dazzle the eye and delight the nostrils. You even sniff it a few times to make sure it doesn’t have any of that sneezy pollen that clouds the air around the plant-women.");
+	output("Ever since Emmy asked you for an exotic flower, you’ve kept your eyes open for a good one, and now there’s one laying on the ground right in front of you! The venus pitcher must have shed this one in her hurry to escape underground, leaving a pink and purple bloom that’s sure the dazzle the eye and delight the nostrils. You even sniff it a few times to make sure it doesn’t have any of that sneezy pollen that clouds the air around the plant-women.");
 	if(venusSubmission() >= 40) output(" Sadly, it doesn’t.");
 	//Acquire bloom
 	output("\n\n");
@@ -878,6 +887,7 @@ public function bringEmmyVenusBloom():void
 	output("\n\nHow do you respond?");
 	//[Pleased] [Polyamorous] [Negative]
 	processTime(5);
+	flags["EMMY_QUEST"] = 1;
 	clearMenu();
 	addButton(2,"Negative",negativeEmmy,undefined,"Negative","You just did this for a little oral - you didn't want any strings attached. You'll sound a bit like a dick...");
 	addButton(1,"Polyamorous",polyamorousEmmy,undefined,"Polyamorous","Let her know that you tend to have more than one lover - you hope she can handle it.");
@@ -890,6 +900,7 @@ public function negativeEmmy():void
 {
 	clearOutput();
 	showEmmy();
+	flags["EMMY_BANNED"] = 1;
 	output("You shake your head. <i>“It doesn’t make us anything.”</i>");
 	output("\n\nYou can hear the sound of Emmy’s heart breaking in the quiet hitching of her throat. <i>“B-b-but... you... you brought me this...”</i> She wrings the stem in her hands, nearly breaking it.");
 	output("\n\n<i>“Yeah, I was told if I brought you a flower, I’d get ");
@@ -909,6 +920,7 @@ public function polyamorousEmmy():void
 {
 	clearOutput();
 	showEmmy();
+	flags["EMMY_POLY"] = 1;
 	output("You grin and answer, <i>“Sounds good, so long as you don’t mind me spreading my love around.”</i>");
 	output("\n\nEmmy is literally taken aback by the statement. She pauses to consider you for a moment, then speaks hesitantly, choosing her words carefully, <i>“So you’re saying that you have other boyfriends or girlfriends?”</i>");
 	output("\n\n<i>“More or less. I ");
@@ -936,6 +948,7 @@ public function emmyPleased():void
 {
 	clearOutput();
 	showEmmy();
+	flags["EMMY_BF"] = 1;
 	output("\n\n<i>“It does,”</i> you answer with a smile and squeeze against Emmy’s padded fingers. <i>“As long as you can keep yourself from jumping me");
 	if(pc.isBimbo()) output(" and fucking me with that yummy cock. Gawd, it looks like it needs relief soooo bad!");
 	else output(".");
@@ -1054,7 +1067,7 @@ public function muzzlefuckingCunnilingus():void
 	if(pc.isSquirter()) output(", allowing you to gush unimpeded");
 	output(". You slump flat on the countertop and tremble weakly. The aftershocks wrack your body, but your face is draped behind a manic smile, fed by a river of satisfaction that feels like it will never end.");
 	processTime(22);
-	IncrementFlag(flags["EMMY_ORALED"]);
+	IncrementFlag("EMMY_ORALED");
 	pc.orgasm();
 	//[Next]
 	clearMenu();
@@ -1182,7 +1195,7 @@ public function getBlownByEmmy():void
 	}
 	var jizzbomb:Boolean = false;
 	if (pc.cumQ() >= 4000) jizzbomb = true;
-	IncrementFlag(flags["EMMY_ORALED"]);
+	IncrementFlag("EMMY_ORALED");
 	//Next
 	processTime(34);
 	pc.orgasm();

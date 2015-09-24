@@ -369,8 +369,8 @@ public function sx1ShieldBooster():void
 public function sx1DisarmingShot():void
 {
 	//Disarming Shot
-	output("Saendra takes careful aim with her Hammer pistol, aiming for");
-	if (foes[0].plural == true) output(" one of");
+	output("Saendra takes careful aim with her Hammer pistol, aiming for ");
+	if (foes[0].plural == true) output(" one of ");
 	output(foes[0].a + foes[0].short);
 	output("’s weapon. She squeezes off a shot");
 
@@ -1313,7 +1313,7 @@ public function sx1TechguardTease():void
 	// Tease
 	//Basic lust attack
 
-	output("Hey, come on,”</i> the tech says, pressing her back to the wall and zipping down the front of her flight suit, revealing the perky mounds of her tits. <i>“Why don’t you put those weapons down, huh? We can work something out...”</i> she groans, running a hand up her chest.");
+	output("<i>“Hey, come on,”</i> the tech says, pressing her back to the wall and zipping down the front of her flight suit, revealing the perky mounds of her tits. <i>“Why don’t you put those weapons down, huh? We can work something out...”</i> she groans, running a hand up her chest.");
 
 	if (pc.willpower() + rand(30) + 1 < 30)
 	{
@@ -1322,7 +1322,7 @@ public function sx1TechguardTease():void
 	}
 	else
 	{
-		output("\n\nYou respond with a polite, and obviously fake, cough. The ausar womans sensual show ends as abruptly as it started. <i>“Hey, don’t stop now!.”</i> You shoot a glare at Saen. <i>“What? I'm not going to turn down a free show.”</i> Touché.");
+		output("\n\nYou respond with a polite, and obviously fake, cough. The ausar womans sensual show ends as abruptly as it started. <i>“Hey, don’t stop now!”</i> You shoot a glare at Saen. <i>“What? I'm not going to turn down a free show.”</i> Touché.");
 		applyDamage(new TypeCollection({ tease: 2 }), foes[0], pc, "minimal");
 	}
 }
