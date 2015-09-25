@@ -3434,12 +3434,27 @@ public function displayQuestLog(showID:String = "All"):void
 				sideCount++;
 			}
 			// EmmyQuest
-			if(flags["EMMY_QUEST"] == 9999)
+			if(flags["EMMY_QUEST"] != undefined)
 			{
 				output2("\n<b><u>EmmyQuest</u></b>");
 				output2("\n<b>* Status:</b>");
-				if(9999 == 0) output2(" Completed");
-				else output2(" <i>In progress...</i>");
+				if(flags["EMMY_QUEST"] == 0)
+				{
+					output2(" Requested a flower");
+					if(!pc.hasItem(new VenusBloom())) output2(", <i>Find her a flower!</i>");
+					else output2(", Flower found, <i>Give her a flower!</i>");
+				}
+				if(flags["EMMY_QUEST"] >= 1)
+				{
+					if(flags["EMMY_EMAIL_TIMER"] != undefined && flags["EMMY_APOLOGIZED"] != undefined) output2(" Accepted her ‘oral apology’");
+					else output2(" Gave her a flower");
+				}
+				if(flags["EMMY_QUEST"] >= 2)
+				{
+					output2(", <i>In progress...</i>");
+				}
+				if(flags["EMMY_BANNED"] != undefined) output2(", Banned from her shop, Failed");
+				else if(9999 == 0) output2(", Completed");
 				sideCount++;
 			}
 			// IrelliaQuest
@@ -4973,7 +4988,14 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["MET_EMMY"] != undefined) output2("\n<b>* Emmy:</b> Met her");
 				else if(flags["APPROACHED_EMMY"] != undefined) output2("\n<b>* Jackal Woman:</b> Met her");
 				else output2("\n<b>* Jackal Woman:</b> Seen her");
-				if(flags["EMMY_ORALED"] != undefined) output2(", Sucked her dick");
+				if(flags["EMMY_BANNED"] != undefined || flags["EMMY_POLY"] != undefined || flags["EMMY_BF"] != undefined)
+				{
+					output2("\n<b>* Emmy, Relationship:</b>");
+					if(flags["EMMY_BANNED"] != undefined) output2(" You’ve been banned by her");
+					if(flags["EMMY_POLY"] != undefined) output2(" You’ve both agreed to be polyamorous");
+					if(flags["EMMY_BF"] != undefined) output2(" You’re her [pc.boy]friend");
+				}
+				if(flags["EMMY_ORALED"] != undefined) output2("\n<b>* Emmy, Times She Oral Sexed You: </b>" + flags["EMMY_ORALED"]);
 			}
 			// Xenogen Biotech Office
 			if(flags["MET_NEVRIE"] != undefined || flags["MET_MCALLISTER"] != undefined)
