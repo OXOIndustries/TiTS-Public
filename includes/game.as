@@ -3862,38 +3862,46 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				variousCount++;
 			}
-			// Reaha stuffs
-			if(flags["TALK_TO_LADY_1ST"] != undefined)
+			// Beth's Busty Broads
+			if(flags["TALK_TO_LADY_1ST"] != undefined || flags["OVIR_TEASED"] != undefined || flags["MET_VAANDE"] != undefined)
 			{
 				output2("\n<b><u>Beth’s Busty Broads</u></b>");
-				output2("\n<b>* Brothel Mistress:</b> Met her");
-				if(pc.isAss()) output2("\n<b>* Cow-Slut:</b>");
-				else output2("\n<b>* Reaha:</b>");
-				if(flags["REAHA_BOUGHT"] != undefined) output2(" Bought");
-				else output2(" Whoring");
-				if(flags["REAHA_FREE"] != undefined) output2(", Free to speak");
-				if(flags["REAHA_SLAVE"] != undefined) output2(", Sex slave");
-				if(reahaRecruited())
+				// Reaha stuffs
+				if(flags["TALK_TO_LADY_1ST"] != undefined)
 				{
-					output2(", Crewmember");
-					// Reaha Expansion
-					if(reahaIsCrew()) output2(" (Onboard Ship)");
-					else if(flags["REAHA_IS_CREW"] == 2) output2(" (At Tavros Station)");
-					else if(flags["REAHA_IS_CREW"] == 3) output2(" (At New Texas)");
-					output2("\n<b>* Reaha, Confidence: </b>" + reahaConfidence() + "%");
-					if(flags["REAHA_MILKMODS_UNLOCKED"] != undefined)
+					output2("\n<b>* Brothel Mistress:</b> Met her");
+					if(pc.isAss()) output2("\n<b>* Cow-Slut:</b>");
+					else output2("\n<b>* Reaha:</b>");
+					if(flags["REAHA_BOUGHT"] != undefined) output2(" Bought");
+					else output2(" Whoring");
+					if(flags["REAHA_FREE"] != undefined) output2(", Free to speak");
+					if(flags["REAHA_SLAVE"] != undefined) output2(", Sex slave");
+					if(reahaRecruited())
 					{
-						output2("\n<b>* Reaha, Milk Type: </b>" + GLOBAL.FLUID_TYPE_NAMES[chars["REAHA"].milkType]);
-						if(flags["REAHA_MILK_CHANGED"] != undefined) output2("\n<b>* Reaha, Milk Type, Times Changed: </b>" + flags["REAHA_MILK_CHANGED"]);
+						output2(", Crewmember");
+						// Reaha Expansion
+						if(reahaIsCrew()) output2(" (Onboard Ship)");
+						else if(flags["REAHA_IS_CREW"] == 2) output2(" (At Tavros Station)");
+						else if(flags["REAHA_IS_CREW"] == 3) output2(" (At New Texas)");
+						output2("\n<b>* Reaha, Confidence: </b>" + reahaConfidence() + "%");
+						if(flags["REAHA_MILKMODS_UNLOCKED"] != undefined)
+						{
+							output2("\n<b>* Reaha, Milk Type: </b>" + GLOBAL.FLUID_TYPE_NAMES[chars["REAHA"].milkType]);
+							if(flags["REAHA_MILK_CHANGED"] != undefined) output2("\n<b>* Reaha, Milk Type, Times Changed: </b>" + flags["REAHA_MILK_CHANGED"]);
+						}
+						if(flags["REAHA_TALK_ADDICTION_CURE"] != undefined)
+						{
+							output2("\n<b>* Reaha, Patch Addiction: </b>" + reahaAddiction() + "%");
+							if(flags["REAHA_ADDICTION_CURED"] != undefined) output2(", Cured");
+							else output2(", Ongoing");
+						}
+						if(reahaFree() && flags["REAHA_LAST_DOMMY_FUCK"] != undefined) output2("\n<b>* Reaha, Days Since Last Dommy Fuck Attempt: </b>" + (days - flags["REAHA_LAST_DOMMY_FUCK"]));
 					}
-					if(flags["REAHA_TALK_ADDICTION_CURE"] != undefined)
-					{
-						output2("\n<b>* Reaha, Patch Addiction: </b>" + reahaAddiction() + "%");
-						if(flags["REAHA_ADDICTION_CURED"] != undefined) output2(", Cured");
-						else output2(", Ongoing");
-					}
-					if(reahaFree() && flags["REAHA_LAST_DOMMY_FUCK"] != undefined) output2("\n<b>* Reaha, Days Since Last Dommy Fuck Attempt: </b>" + (days - flags["REAHA_LAST_DOMMY_FUCK"]));
 				}
+				// Ovir Gurrrl
+				if(flags["OVIR_TEASED"] != undefined) output2("\n<b>* Ovir ‘Girl’:</b> Teased her");
+				// Vaande
+				if(flags["MET_VAANDE"] != undefined) output2("\n<b>* Vaande:</b> Met her");
 				variousCount++;
 			}
 			// Serabutts
