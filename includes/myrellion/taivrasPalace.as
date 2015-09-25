@@ -201,6 +201,31 @@ public function bribeTaivrasGateGuards():void
 		addButton(0,"Plat. 190",offerTaivraGuardsPlat190,undefined,"Plat. 190","Offer your chunk of Platinum 190. Surely these ladies can appreciate the rare beauty of precious metals!");
 		addButton(4,"Back",mainGameMenu);
 	}
+	var gems:int = 0;
+	//Check if PC has any "GEM" type items.
+	for(var x:int = 0; x < pc.inventory.length; x++)
+	{
+		if(pc.inventory[x].type == GLOBAL.GEM) gems++;
+	}
+	if(gems == 0) addDisabledButton(1,"Gems","Gems","You don't have any gems.");
+	else if(gems == 1) addButton(1,"Gem",giveDemAGem,gems,"Gem","Offer the gem you're carrying.");
+	else addButton(2,"Gems",giveDemAGem,gems,"Gems","Maybe they'd be interested in one of the gems you're carrying...");
+}
+
+public function giveDemAGem(gems:int):void
+{
+	clearOutput();
+	showPraetorians();
+	output("You take out a pouch ");
+	if(gems > 1) output("laden with gemstones");
+	else if(pc.hasItem(new GemSatchel())) output("laden with gemstones");
+	else output("with a gemstone");
+	output(" and offer them to the guards, hoping to appeal to their avarice. The guards approach, their dark eyes glinting with greed as you reveal your briberous payload. When they get a good look at the stones, though, their lips curl, and the lead guard plants her hands on her hips.");
+	output("\n\n<i>“Is that it?”</i> she scowls, squinting at your offering. <i>“No, no, I’m not going to risk Queen Taivra’s wrath for </i>that<i>,”</i> she scoffs, shoving your hand back.");
+	output("\n\n<i>“We can get those anywhere,”</i> the other nyrea says. <i>“Come on, if you want to buy your way in, cough up something really </i>unique<i>. Something special!”</i>");
+	output("\n\nSomething special, huh? Maybe some precious metals or gems from another world would suit them better...");
+	clearMenu();
+	addButton(4,"Back",bribeTaivrasGateGuards);
 }
 
 //[Plat190]
@@ -630,6 +655,12 @@ public function taivrasThroneBonusFunc():Boolean
 	else if(flags["KILLED_TAIVRA"] == 1)
 	{
 		output("Queensguard, despite her wounds, is kneeling over the body of her queen and weeping quietly. As you demanded, she’s gathered the remnants of her soldiers - those who haven’t deserted into the caves - and ordered them to dismantle the queen’s throne from around your father’s probe, ready to deliver the probe outside for a Steele Tech team.");
+	}
+	//PC is KingNyrea vis Peace:
+	//First 12 hours after fight:
+	else if(flags["KING_NYREA"] != undefined && flags["BEAT_TAIVRA_TIMESTAMP"] == undefined && flags["QUEENSGUARD_STAB_TIME"] != undefined && flags["QUEENSGUARD_STAB_TIME"] + 12*60 > GetGameTimestamp())
+	{
+		output("Your newly-minted mate is sitting on the edge of her throne's dias, tending to the wounds her bodyguard suffered at Dane's hands. Taivra looks at you with something between fear and admiration, and she keeps her hands well clear of her weapons. Your father's probe remains where it was, acting as your wife's throne. It flashes occasionally, reacting to your presence.");
 	}
 	//PC spared Taivra:
 	else if(flags["KING_NYREA"] == undefined)
