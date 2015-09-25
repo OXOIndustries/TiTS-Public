@@ -247,7 +247,7 @@ public function initializeRooms():void
 	rooms["BETHS BROADS"].addFlag(GLOBAL.INDOOR);
 	rooms["BETHS BROADS"].addFlag(GLOBAL.NPC);
 	rooms["BETHS BROADS"].addFlag(GLOBAL.PUBLIC);
-	rooms["BETHS BROADS"].runOnEnter = reahaBonusFunction;
+	rooms["BETHS BROADS"].runOnEnter = bethsBonusFunction;
 
 	//109 "BETHS BROADS" Beth's Busty Broads
 	rooms["MI AMOUR"] = new RoomClass(this);

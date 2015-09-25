@@ -9310,6 +9310,10 @@ package classes {
 			list = new Array();
 			return stuff;
 		}
+		public function isPsionic():Boolean
+		{
+			return false;
+		}
 		public function gearDescript(): String {
 			clearList();
 			if (armor.shortName != "") addToList(armor.longName);

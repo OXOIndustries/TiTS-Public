@@ -121,6 +121,7 @@
 		//Tavros Station
 		include "../includes/tavros/aliss.as";
 		include "../includes/tavros/alex.as";
+		include "../includes/tavros/beths.as";
 		include "../includes/tavros/jade.as";
 		include "../includes/tavros/reaha.as";
 		include "../includes/tavros/reaha.expansion.as";

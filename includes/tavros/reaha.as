@@ -568,11 +568,37 @@ public function brothelMainMenu():void {
 		//If Ovir on stage
 		if(hours == 18 || hours == 19 || hours == 21 || hours == 22 || hours == 24 || hours == 1 || hours == 3 || hours == 4)
 		{
-			if(knowBethsOvir()) addButton(3,"Ovir 'Girl'",ovirGirlInBeths,undefined,"Ovir 'Girl'","Though advertised as a ‘broad’, this busty ovir is probably a male, judging by her colors. You could test the theory, if you wanted....");
-			else addButton(3,"Ovir Girl",ovirGirlInBeths,undefined,"Ovir Girl","Watch the pretty ovir dance.");
+			if(pc.credits >= 100)
+			{
+				if(knowBethsOvir()) addButton(3,"Ovir 'Girl'",ovirGirlInBeths,undefined,"Ovir 'Girl'","Though advertised as a ‘broad’, this busty ovir is probably a male, judging by her colors. You could test the theory, if you wanted....");
+				else addButton(3,"Ovir Girl",ovirGirlInBeths,undefined,"Ovir Girl","Watch the pretty ovir dance.");
+			}
+			else addDisabledButton(3,"Ovir Girl","Ovir Girl","You need 100 credits for conjugals, and you don’t have the money!");
 		}
 		else addDisabledButton(3,"Ovir Girl","Ovir Girl","The ovir’s not on stage right now. She works in the evenings, alternating dances with the ausar.");
+		if(hours == 10 || hours == 13 || hours == 16)
+		{
+			addDisabledButton(4,"Doh'rahn","Doh'rahn","The doh’rahn is on stage right now. She only dances for an hour at a time, so you could just come back in a bit if you’d like to buy her services. Have 100 credits handy.");
+		}
+		else
+		{
+			if(pc.credits >= 100)
+			{
+				if(flags["MET_VAANDE"] == undefined) addButton(4,"Doh'rahn",vaandeGo,undefined,"Doh'rahn","Visit the doh’rahn in her room and contract out some wet-work for 100 credits.");
+				else addButton(4,"Vaande",vaandeGo,undefined,"Vaande","Visit the doh’rahn in her room and contract out some wet-work for 100 credits.");
+			}
+			else addDisabledButton(4,"Doh'rahn","Doh'rahn","You need 100 credits for conjugals, and you don’t have the money!");
+		}
 	}
+	//Doh’rahn/Vaande
+	//name on button changes after first time
+	//avail whenever doh’rahn is not on center stage (21 hours a day)
+	//employs pheromones to charm and loves to be sniffed, very PC subby
+	//usable by any sex and leg config
+	//tooltip: Visit the doh’rahn in her room and contract out some wet-work for 100 credits.
+	//tooltip disabled, hour 1000, 1300, 1600: The doh’rahn is on stage right now. She only dances for an hour at a time, so you could just come back in a bit if you’d like to buy her services. Have 100 credits handy.
+	//tooltip disabled, no money: You need 100 credits for conjugals, and you don’t have the money!
+
 
 	addButton(14,"Leave",mainGameMenu);
 }
@@ -683,7 +709,7 @@ public function askAboutBusinessLikeASir():void
 	output("\n\nShe shrugs. \"<i>New madame's whipped up a lot of new customers. Old one didn't do much, let the place fall to shit. I was about to put in my two-weeks' when she up and left. Dunno why. But things are picking up again. New popular girls coming in, old ones going out. Even fixed the surround sound.</i>\"")
 	//GET RID OF ZIS BUTTON U CUNT
 	flags["HOWS_BUSINESS_BITCH"] = 1;
-	removeButton(2);
+	brothelMainMenu();
 }
 
 //The Girls - new button for ‘Woman’/’Desk’ menu

@@ -63,6 +63,7 @@ public function ovirGirlInBeths():void
 	if(pc.tallness < 60) output(", and you have to kick a number of shins to clear enough people from your path that you can see her and she you, without obstruction");
 	output(". Frequent hoots erupt whenever she does a particularly impressive maneuver, along with the odd request for her to <i>“show us your boobs”</i> or <i>“get naked”</i>.");
 	//if relevant stat >= threshold, present options ‘Watch’, ‘Tease’; else if < threshold shunt directly to ‘Watch’ text without buttons or output clear
+	clearMenu();
 	if(knowBethsOvir())
 	{
 		if(flags["OVIR_TEASED"] == 1) output("\n\nYou know from experiencce that she's actually a male ovir.");
@@ -134,7 +135,7 @@ public function teaseTheOvir():void
 		output(" Managing to keep her stage sense, she doesn’t stare long enough to distract the audience, but she can’t help but sneak a glance at you every turn around the pole as you surreptitiously stroke off your prick, looking right into her eyes and smiling a come-hither smile.");
 	}
 	//66+% exhib score fork, female/unsex/taur
-	else if(pc.exhibition() >= 66)
+	else if(pc.exhibitionism() >= 66)
 	{
 		output("\n\nMaking sure the ovir is aware of your presence in the back of the crowd, you ");
 		if(pc.isChestGarbed()) 
@@ -174,7 +175,7 @@ public function teaseTheOvir():void
 	flags["OVIR_TEASED"] = 1;
 }
 
-public funtion knowBethsOvir():Boolean
+public function knowBethsOvir():Boolean
 {
 	if(flags["OVIR_TEASED"] == 1) return true;
 	var knowOvir:Boolean = false;
@@ -222,6 +223,7 @@ public function vaandeGo():void
 		output("\n\nShe pulls you into the room and kisses you deeply, arms around your neck. <i>“How would you like to have me?”</i> The rahn’s servile word choice is far at odds with what you know will happen once you yield to her pheromone storm....");
 	}
 	pc.credits -= 100;
+	clearMenu();
 	//mark Vaande as met if first time, either intro branch present buttons ‘Fuck Pussy’,‘Ride Ovi’, ‘Back’
 	addButton(4,"Back",talkToBrothelLadyNewOmni);
 	if((pc.hasCock() && pc.cockThatFits(500) >= 0) || pc.hasTailCock() || pc.hasDickNipples()) addButton(0,"Fuck Pussy",fuckVaandesPuss,undefined,"Fuck Pussy","Use your cock on her.");
@@ -242,7 +244,7 @@ public function vaandeCockChoice():String
 {
 	if(pc.hasCock() && pc.cockThatFits(500) >= 0) return "[pc.cock " + pc.cockThatFits(500) + "]";
 	else if(pc.hasTailCock()) return "[pc.tailCock]";
-	else if(pc.hasNippleCock()) return "[pc.nippleCock]";
+	else if(pc.hasNippleCocks()) return "[pc.nippleCock]";
 	return "<b>--ERROR - NO APPROPRIATE COCK TO DESCRIBE--</b>";
 }
 
@@ -303,6 +305,8 @@ public function rideDatRahnBitchsOvi():void
 {
 	clearOutput();
 	showName("\nVAANDE");
+	var x:int = rand(pc.totalVaginas());
+	if(!pc.hasVagina()) x = -1;
 	output("Vaande receives your request with equanimity. <i>“Oh, is that so?”</i> the doh’rahn asks, seating herself on the bed and crossing her legs. <i>“Why don’t you show me just how much you want my egg-cock?”</i>");
 	output("\n\nShe breathes out a heavy breath, and the air in the room thickens palpably with the smell of rain. Your [pc.vagOrAss " + x + "]");
 	if(x < 0) output(", compelling you to do whatever it takes to get her inside you.");
