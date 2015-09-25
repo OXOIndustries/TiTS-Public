@@ -293,7 +293,7 @@ public function fuckHerYouNancy(fromRaceTalk:int = 0):void
 	else if(flags["RENVRA_SEXED"] != undefined) addButton(3,"MakeHerBeg",makeRenvraBegYouSillyBillySlut,undefined,"MakeHerBeg","‘Encourage’ the ball-busting battle-axe to be a little nicer to you by edging her until she’s broken-down and desperate to cum - mercy is optional.");
 	else addDisabledButton(3,"MakeHerBeg","MakeHerBeg","Renvra looks like she’s itching to fuck you - she’s not going to accept being teased and toyed with right now.");
 
-	if(flags["MADE_RENVRA_BEG"] && renvra.cumQualityRaw >= 100) addButton(4,"Dbl.Trouble",renvraDoubleTrouble,undefined,"Double Trouble","Renvra’s so backed-up from your shenanigans that her girthy egg-cock could probably put <i>two</i> batches of kids in you.");
+	if(flags["MADE_RENVRA_BEG"] == 2 && renvra.cumQualityRaw >= 100) addButton(4,"Dbl.Trouble",renvraDoubleTrouble,undefined,"Double Trouble","Renvra’s so backed-up from your shenanigans that her girthy egg-cock could probably put <i>two</i> batches of kids in you.");
 	else addDisabledButton(4,"Dbl.Trouble","Double Trouble","Renvra looks impatient, like she wants to blow her load and get back to work - try some teasing and denial and maybe you can get her ‘full’ attention.");
 }
 

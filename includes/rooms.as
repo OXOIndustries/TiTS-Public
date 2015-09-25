@@ -239,7 +239,7 @@ public function initializeRooms():void
 	//109 "BETHS BROADS" Beth's Busty Broads
 	rooms["BETHS BROADS"] = new RoomClass(this);
 	rooms["BETHS BROADS"].roomName = "BETH'S\nBUSTY BROADS";
-	rooms["BETHS BROADS"].description = "You're inside Beth's Busty Broads, which seems to be doing good business for itself. Several patrons are gathered around the stage in the center of the show floor, watching a particularly well-endowed ausar girl strut her stuff on the pole. A desk has been set up near the door, where a bored-looking human woman is flipping through a data-slate, barely acknowledging your presence.";
+	rooms["BETHS BROADS"].description = "";
 	rooms["BETHS BROADS"].planet = "TAVROS STATION";
 	rooms["BETHS BROADS"].system = "SYSTEM: KALAS";
 	rooms["BETHS BROADS"].northExit = "MERCHANT'S THOROUGHFARE2";

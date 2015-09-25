@@ -1,12 +1,5 @@
 ﻿public function reahaBonusFunction():void
 {
-	if(flags["REAHA_IS_CREW"] == undefined) {
-		author("Savin")
-		if(flags["TALK_TO_LADY_1ST"] == undefined) addButton(0,"Woman",talkToBrothelLady);
-		else if (flags["REAHA_BOUGHT"] == undefined && flags["TALK_TO_LADY_1ST"] == 1) addButton(0, "Woman", talkToBrothelLadyRepeat);
-		else addButton(0,"Woman",talkToBrothelLadyRepeatAgain);
-	}
-	else addButton(0, "Woman", talkToBrothelLadyRepeatAgain);
 	if (reahaAtBeths())
 	{
 		author("Savin");
@@ -556,20 +549,82 @@ public function talkToBrothelLady():void
 
 public function brothelMainMenu():void {
 	clearMenu();
-	addButton(0,"Cow-slut Sex",ReahaBrothelSexMenu);
-	addButton(1,"Contract",buyYourselfACowslut);
-	if(flags["HOWS_BUSINESS_BITCH"] == undefined) addButton(2, "How's Business", askAboutBusinessLikeASir);
+	//present buttons ‘Cow-slut Sex’, ‘Ovir Girl’/’Ovir ‘Girl’, ‘Doh’rahn’, ‘Contract’, ‘How’s Business’/’The Girls’; disable/hide buttons according to time or locking or whatev
+	if(flags["REAHA_BOUGHT"] == undefined) addButton(0,"Cow-slut Sex",ReahaBrothelSexMenu);
+	else addDisabledButton(0,"Cow-slut Sex","Cow-slut Sex","You already bought that slut.");
+	if(hours >= 6 && hours < 10) addDisabledButton(1,"Contract","Contract","The brothel mistress is napping in the office right now. You could wake her, but it would just get you a burst of profanity."); 
+	else if(flags["REAHA_BOUGHT"] == undefined) addButton(1,"Contract",buyYourselfACowslut);
+	else addDisabledButton(1,"Contract","Contract","You already bought that slut.");
+	if(flags["HOWS_BUSINESS_BITCH"] == undefined) 
+	{
+		if(hours >= 6 && hours < 10) addDisabledButton(2,"How's Business","How's Business","The brothel mistress is napping in the office right now. You could wake her, but it would just get you a burst of profanity.");
+		else addButton(2, "How's Business", askAboutBusinessLikeASir);
+	}
+	//The Girls - new button for ‘Woman’/’Desk’ menu
+	else if(hours >= 6 && hours < 10) addDisabledButton(2,"The Girls","The Girls","The brothel mistress is napping in the office right now. You could wake her, but it would just get you a burst of profanity.");
+	else addButton(2,"The Girls",newGirlsGroooooovy,undefined,"The Girls","Inquire about the ‘new girls’ that the mistress mentioned.");
+	if(flags["ASKED_AFTER_THE_GIRLS"] == 1)
+	{
+		//If Ovir on stage
+		if(hours == 18 || hours == 19 || hours == 21 || hours == 22 || hours == 24 || hours == 1 || hours == 3 || hours == 4)
+		{
+			if(knowBethsOvir()) addButton(3,"Ovir 'Girl'",ovirGirlInBeths,undefined,"Ovir 'Girl'","Though advertised as a ‘broad’, this busty ovir is probably a male, judging by her colors. You could test the theory, if you wanted....");
+			else addButton(3,"Ovir Girl",ovirGirlInBeths,undefined,"Ovir Girl","Watch the pretty ovir dance.");
+		}
+		else addDisabledButton(3,"Ovir Girl","Ovir Girl","The ovir’s not on stage right now. She works in the evenings, alternating dances with the ausar.");
+	}
+
 	addButton(14,"Leave",mainGameMenu);
 }
 
-public function talkToBrothelLadyRepeat():void
+public function talkToBrothelLadyNewOmni():void
 {
 	clearOutput();
-	author("Savin");
+	author("Savin & Zeik");
 	userInterface.showName("BROTHEL\nMISTRESS");
 	userInterface.showBust("BORING_MISTRESS");
 	output("You approach the mistress, clearing your throat to get her attention. With marked boredom, she intones, \"<i>Welcome to Beth's Busty Broads. If you're here for our going out of business sale, you're out of luck. The selection's... pretty limited. And by that I mean we've still got just the one cow-slut left, and she's a handful.</i>\"");
 
+	//time 0600-0959, replace first paragraph of first meeting (or entire intro if repeat)
+	if(hours >= 6 && hours < 10)
+	{
+		output("You approach the unattended desk. The holo-sign proudly displays, <i>Welcome to Beth’s Busty Broads! Our hostess is currently engaged elsewhere, but don’t let that stop you from enjoying any of our sensual, eager-to-please girls! Simply step through the velvet curtain and swipe in at the credit box of the room you’d like!</i> A loud snore from the small adjoining office tells you just how and where the hostess is ‘engaged’.");
+		//(first time)
+		if(flags["TALK_TO_LADY_1ST"] == undefined) output("\n\nYou step inside and nudge her with a [pc.foot] to wake her, desirous of a bit more explanation. The hostess looks like she’s about to cuss you out until she realizes she’s never seen you before. <i>“Yeah, what? If you’re here for the ‘going out of business’ sale, you’re too late. We only have one slut left, and she’s such a bitch I can’t imagine you’d want her contract. Otherwise, go down the hall and swipe in at one of the rooms if you want to visit a girl.”</i>");
+	}
+	//other times, same first paragraph, modified for new girls and Reaha’s possible absence
+	else
+	{
+		output("You approach the mistress, clearing your throat to get her attention. With marked boredom, she intones, <i>“Welcome to Beth's Busty Broads. If you're here for our ‘going out of business’ sale, you're out of luck.");
+		if(flags["REAHA_BOUGHT"] == undefined) output(" The selection's... pretty limited. And by that I mean we've got one slut left for sale, and she's a handful.");
+		output(" Otherwise, feel free to enjoy the floor show or visit any of the other girls, who are </i>not<i> for sale, so don’t ask.”</i>");
+	}
+	if(flags["TALK_TO_LADY_1ST"] == undefined)
+	{
+		output("\n\n<i>“There was a sale?”</i>"); 
+		output("\n\nShe cocks an eyebrow at you");
+		if(hours >= 22 || hours < 6) output(", finally bothering to look up from her slate");
+		output(". <i>“Boss was using indentured labor, but she had some kinda crisis, whatever. Had to sell most of the contracts out. A lot of the regulars bought up their favorite sluts to keep 'em forever. Or close enough to forever as money can buy.”</i>");
+		//nice or misch
+		if(pc.isNice() || pc.isMischievous())
+		{
+			output("\n\n<i>“Indentured labor... you mean slaves?”</i>");
+			output("\n\n<i>\"People go into debt they can't work off, so they sell themselves. They volunteer, and we've got contracts of debt for it. Half of these dumb bimbos bought ultra-grade mods to please their beaus, but what do you know, nobody put a ring on them. Saddest story in the galaxy.\"</i>");
+		}
+		output("\n\nShe ");
+		//(time 0600-0959)
+		if(hours >= 6 && hours < 10) output(" frowns and rubs sleep from her eyes.");
+		else output(" sets her slate down, steepling her fingers.");
+		output(" <i>\"We've got one girl left for sale right now. She's an ornery slut, made herself up to be some kinda cow. Have to keep her patched up on aphrodisiacs or she gets wonky. If that's your thing, it's 100 credits a fling. Unless you're generous or horny enough to want some dumb cow's contract, anyway");
+		if(hours >= 6 && hours < 10) output("... in which case come back when I’m awake enough to decipher the legal papers");
+		output(". I wouldn't if I were you, though; had to drag her off more than one burly sailor she didn't take to.”</i>");
+		output("\n\nLooking you up and down, she adds, <i>“Hate to see what she'd do to you, given half the chance.\"</i>");
+		//(time 0600-0959)
+		if(hours >= 6 && hours < 10) output(" She shoos you from the office and closes the door.");
+
+		flags["TALK_TO_LADY_1ST"] = 1;
+
+	}
 	brothelMainMenu();
 }
 
@@ -579,10 +634,25 @@ public function ReahaBrothelSexMenu():void
 	author("Savin");
 	userInterface.showName("MISTRESS AND\nREAHA");
 	userInterface.showBust("BORING_MISTRESS","REAHA");
-	output("You tell the mistress that you'd like to spend some time with this cow of hers. She shrugs and tucks her data slate under her arm, leading you past a drawn velvet curtain into a long, dark hall. You follow her down a winding stair to a dimly-lit hall flanked by perhaps a dozen sealed doors, each with a small slit in the center, revealing the sparse accommodations: most have been emptied out, left as nothing but bare steel chambers. The last door, though, still has a light on inside.");
-	output("\n\nThe mistress stops at the last door on the right, indicating the view slit beneath the nameplate \"Reaha.\" Looking through, you see an overly-busty woman, clearly human once, with her wrists chained to a steel bar, several tubes poking into her back from a vent in the ceiling, pumping her full of some misty pink liquid. Aphrodisiacs, you'd guess. From your vantage point, you can see her over-sized ass pointed toward the door, giving you a perfect view of her sodden cunt and a long, swishing tail tipped with a cute tuft of fur. Her tiny microskirt does nothing to hide her sundered modesty. With a pair of tiny ivory horns growing from her head, a pair of floppy bovine ears, and a pair of absolutely massive tits, it isn't hard to see why the brothel mistress calls her a cow.");
-	output("\n\nAs if reading your mind, the mistress says, \"<i>Gene mods. Crazy, right? Why someone'd want to turn herself into a stupid cow, I'll never guess. Anyway, you want a go at her, there's the credit scan,</i>\"  she nods to a box on the wall. \"<i>I'll leave you to it.</i>\"");
-	output("\n\nWith that, you're left alone in the long hall.");
+	
+
+	//time 0600-0959
+	if(hours >= 6 && hours < 10) output("You follow the instructions on the sign, passing the velvet curtain to find a long, dark hall. A winding stair at the end opens to a dimly-lit corridor lined with perhaps a dozen sealed doors, each bearing a small slit. A few still glow with light from inside, and you eventually locate the ‘cow’ the mistress mentioned at the very end of the hall. A nameplate over the slit says <i>Reaha</i>.");
+	else 
+	{
+		output("You tell the mistress that you'd like to spend some time with this cow of hers. She shrugs and tucks her data slate under her arm, leading you past a drawn velvet curtain into a long, dark hall. You follow her down a winding stair to a dimly-lit corridor flanked by perhaps a dozen sealed doors, each with a small slit in the center, revealing the sparse accommodations: most have been emptied out, left as nothing but bare steel chambers. Some, though, still have lights on inside.");
+		output("\n\nThe mistress stops at the last door on the right, indicating the nameplate: \"Reaha.\"");
+	}
+	output("\n\nLooking through, you see an overly-busty woman, clearly human once, with her wrists chained to a steel bar, several tubes poking into her back from a vent in the ceiling, pumping her full of some misty pink liquid. Aphrodisiacs, you'd guess. From your vantage point, you can see her over-sized ass pointed toward the door, giving you a perfect view of her sodden cunt and a long, swishing tail tipped with a cute tuft of fur. Her tiny microskirt does nothing to hide her sundered modesty. With a pair of tiny ivory horns growing from her head, a pair of floppy bovine ears, and a pair of absolutely massive tits, it isn't hard to see why the brothel mistress calls her a cow.");
+	if(hours >= 6 && hours < 10)
+	{
+		output("\n\nA box-like, last-gen credit scanner rests by the door. If you want to visit the cow-girl, you’ll need to swipe in.");
+	}
+	else 
+	{
+		output("\n\nAs if reading your mind, the mistress says, \"<i>Gene mods. Crazy, right? Why someone'd want to turn herself into a stupid cow, I'll never guess. Anyway, you want a go at her, there's the credit scan,</i>\"  she nods to a box on the wall. \"<i>I'll leave you to it.</i>\"");
+		output("\n\nWith that, you're left alone in the long hall.");
+	}
 	processTime(1);
 	clearMenu();
 	pc.lust(33);
@@ -609,13 +679,66 @@ public function askAboutBusinessLikeASir():void
 	author("Savin");
 	userInterface.showName("BROTHEL\nMISTRESS");
 	userInterface.showBust("BORING_MISTRESS");
-	output("You ask the mistress how business is doing, exactly. There's enough people sitting around enjoying the girls on the floor alone to suggest Beth's is doing well.");
-	output("\n\nShe shrugs. \"<i>New madame's whipped up a lot of new customers. Old one didn't do much, let the place fall to shit. I was about to put in my two-weeks' when she up and left. Dunno why. But things are picking up again. New girls coming in, old ones going out. Even fixed the surround sound.</i>\"")
+	output("You ask the mistress how business is doing. There are enough people on the floor with drinks in hand to suggest Beth's is in no danger of shutting down.");
+	output("\n\nShe shrugs. \"<i>New madame's whipped up a lot of new customers. Old one didn't do much, let the place fall to shit. I was about to put in my two-weeks' when she up and left. Dunno why. But things are picking up again. New popular girls coming in, old ones going out. Even fixed the surround sound.</i>\"")
 	//GET RID OF ZIS BUTTON U CUNT
 	flags["HOWS_BUSINESS_BITCH"] = 1;
 	removeButton(2);
 }
 
+//The Girls - new button for ‘Woman’/’Desk’ menu
+//unlocked by selecting ‘How’s Business’, replaces ‘How’s Business’ after it’s removed
+//disabled while mistress sleeps
+//gives background info on new girls and schedule overview to player; seeing once is required to make the new scene buttons appear
+//tooltip: Inquire about the ‘new girls’ that the mistress mentioned.
+//tooltip disabled, 0600-0959: The brothel mistress is napping in the office right now. You could wake her, but it would just get you a burst of profanity.
+
+public function newGirlsGroooooovy():void
+{
+	clearOutput();
+	userInterface.showName("BROTHEL\nMISTRESS");
+	userInterface.showBust("BORING_MISTRESS");
+	author("Zeikfried");
+	//first time only
+	if(flags["ASKED_AFTER_THE_GIRLS"] == undefined)
+	{
+		if(pc.isBimbo() || pc.isBro()) 
+		{
+			output("<i>“So, like, you said somethin’ about some new girls?”</i> you ask.");
+			output("\n\nThe mistress nods.");
+		}
+		//(nice)
+		else if(pc.isNice()) 
+		{
+			output("<i>“Are the new girls all slaves too?”</i> you ask.");
+			output("\n\n<i>“Some of them,”</i> answers the mistress.");
+		}
+		//(misch)
+		else if(pc.isMischievous())
+		{
+			output("<i>“Do you pay the new girls a living wage?”</i> you jeer.\n\n<i>“One of them,”</i> replies the mistress, unflapped.");
+		}
+		//(mean)
+		else
+		{
+			output("<i>“Why aren’t you selling any of the new girls?”</i> you demand.\n\n<i>“Don’t need to,”</i> answers the mistress.");
+		}
+		output(" <i>“The new madam made enough off of the last sale to pick up some contracts for cheap, and one ovir girl even came in and asked for a dancing job. Imagine that.”</i>\n\n");
+		flags["ASKED_AFTER_THE_GIRLS"] = 1;
+	}
+	//all times
+	//(bimbro)
+	if(pc.isBro() || pc.isBimbo()) output("<i>“So, like, can");
+	else output("<i>\"May");
+	output(" I have a list of the girls?”</i>");
+
+	output("\n\nThe petulant hostess sighs and puts her slate down. <i>“Right... dances start on the center stage at ten-hundred hours station time. The first shift has the doh’rahn, the human, and the vanae. The second shift starts at eighteen-hundred, and features the ovir and the ausar. They alternate until oh-six-hundred, when we close the floor for cleaning. You can still visit a girl in her room if you want... except the ovir, I guess, since she goes back to her own place.”</i>");
+
+	//(if Reaha not bought)
+	if(flags["REAHA_BOUGHT"] == undefined) output("\n\nShe rests her chin on her hand. <i>“There’s also that cow hopped up on aphrodisiacs, if you’re crazy enough to want her. We don’t let her out to dance.”</i>");
+	//redisplay ‘Woman’/’Desk’ menu buttons
+	brothelMainMenu();
+}
 
 //EXPANSION TIME BITCHES.
 //Gettin' you a find slab of MARBLED BEEF

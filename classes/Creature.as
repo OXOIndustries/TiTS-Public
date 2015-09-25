@@ -8772,10 +8772,7 @@ package classes {
 						vag += RandomInCollection(["human-like ", "human-like ", "exotic ", "exotic ", "inhuman "]);
 					}
 				}
-				else
-				{
-					vag += RandomInCollection(["vagina", "pussy", "cunt", "fuck-hole", "slit", "twat", "gash", "cunny", "honeypot", "snatch"]);
-				}
+				vag += RandomInCollection(["vagina", "pussy", "cunt", "fuck-hole", "slit", "twat", "gash", "cunny", "honeypot", "snatch"]);
 			}
 			return vag;
 		}
@@ -10509,6 +10506,17 @@ package classes {
 			else collection = ["ERROR, INVALID FLUID TYPE."];
 			
 			return RandomInCollection(collection);
+		}
+		public function fluidColorSimple(arg: int):String
+		{
+			if(arg == GLOBAL.FLUID_TYPE_LEITHAN_MILK || arg == GLOBAL.FLUID_TYPE_CUMSAP || GLOBAL.FLUID_TYPE_MILK == arg || arg == GLOBAL.FLUID_TYPE_CUM || arg == GLOBAL.FLUID_TYPE_VANILLA || arg == GLOBAL.FLUID_TYPE_MILKSAP) return "white";
+			else if (arg == GLOBAL.FLUID_TYPE_HONEY || arg == GLOBAL.FLUID_TYPE_NECTAR) return "yellow";
+			else if (arg == GLOBAL.FLUID_TYPE_OIL || arg == GLOBAL.FLUID_TYPE_GIRLCUM) return "transparent";
+			else if(arg == GLOBAL.FLUID_TYPE_CHOCOLATE_MILK) return "brown";
+			else if(arg == GLOBAL.FLUID_TYPE_STRAWBERRY_MILK || arg == GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK) return "pink";
+			else if (arg == GLOBAL.FLUID_TYPE_SYDIAN_CUM) return "silver";
+			else if(arg == GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK) return "purple";
+			return "white";
 		}
 		public function fluidNoun(arg: int): String {
 			var collection:Array = [];

@@ -1294,7 +1294,7 @@ public function reahaDommyFuxTime():void
 	
 	output("\n\n<i>“You don’t need this futzy old thing,”</i> she teases, flipping the humming device off with a flick of her fluffy tail. <i>“After all, what did you buy me for?”</i> ");
 	
-	output("\n\nGiggling, the cow-girl slips down over you, straddling your [hips] and flipping her strawberry hair back, hands running between her small horns and through her long locks. As she does so, she gives her shoulders a little wiggle, which translates into her massive mammaries swinging like pendulums over you, drawing dangerously close to your mouth.");
+	output("\n\nGiggling, the cow-girl slips down over you, straddling your [pc.hips] and flipping her strawberry hair back, hands running between her small horns and through her long locks. As she does so, she gives her shoulders a little wiggle, which translates into her massive mammaries swinging like pendulums over you, drawing dangerously close to your mouth.");
 	
 	output("\n\n<i>“Open wide, "+ pc.mf("master","mistress") + "!”</i> Reaha teases, pushing your head back against the bulkhead in expectation of her encroaching teat.");
 

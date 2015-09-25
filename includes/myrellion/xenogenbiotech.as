@@ -817,7 +817,7 @@ public function mcallisterMeetThemIII():void
 	
 	output("\n\n<i>“That was </i>awful<i>,”</i> the red giggles, moaning and leaning into McAllister’s hand. <i>“You owe us one for that!”</i>");
 	
-	output("\n\nThe gold manages to finally work up the energy to say something intelligable: <i>“And your friend, [pc.name], too!”</i>");
+	output("\n\nThe gold manages to finally work up the energy to say something intelligible: <i>“And your friend, [pc.name], too!”</i>");
 	
 	output("\n\nThe red pries one of her hands off of the other ant’s breast, only to grab the front of Doctor McAllister’s robe-coat, pulling it open and grabbing his modded cock. From beneath the red-plated babe, the goldie reaches one of her long, chitinous legs out to the front of your robe and starts to tug at the belt holding it closed.");
 

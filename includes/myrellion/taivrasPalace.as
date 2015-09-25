@@ -1698,7 +1698,7 @@ public function badDealWithTaivra():void
 	showBust("QUEENSGUARD","TAIVRA");
 	output("<i>“I think I’ve heard enough,”</i> Taivra yawns, leaning back in her seat and drumming her fingers on the haft of her spear. <i>“Queensguard, I tired of our intruder. [pc.name] clearly has nothing to offer me...”</i>");
 	output("\n\n<i>“Aye, my queen,”</i> the dutiful nyrean knight answers, stepping between you and her queen. <i>“You had your chance, star-walker. A pity you squandered it.”</i>");
-	output("\n\nYou guess this only could have ended one way. You draw your [pc.weapon] and level it at Queensguard. Time to show the queen what you’re made of.”</i>");
+	output("\n\nYou guess this only could have ended one way. You draw your [pc.weapon] and level it at Queensguard. Time to show the queen what you’re made of.");
 	output("\n\n<i>“Tear that bitch up!”</i> your cousin shouts, rattling [rival.hisHer] cage.");
 	processTime(2);
 	clearMenu();
@@ -1994,6 +1994,7 @@ public function breakOutDane():void
 //PC solo’d dat bitch.
 public function spankedQueensguardsAss():void
 {
+	clearOutput();
 	author("Savin");
 	if(foes[0].HP() <= 0) 
 	{
@@ -2012,7 +2013,7 @@ public function spankedQueensguardsAss():void
 	else output("these star-walkers truly have no honor.");
 	output(" Very well, it’s been much too long since I’ve bloodied my spear.”</i>");
 
-	if(flags["FREED_DANE_FROM_TAIVRA"] == 1) output("\n\n<i>“You won't get the chance!”</i> the over-sized ausar grunts.”</i>");
+	if(flags["FREED_DANE_FROM_TAIVRA"] == 1) output("\n\n<i>“You won't get the chance!”</i> the over-sized ausar grunts.");
 	processTime(2);
 	clearMenu();
 	addButton(0,"Next",startCombat,"Taivra");
@@ -2375,7 +2376,7 @@ public function fuckTaivra():void
 	author("Savin");
 	output("You grab the defeated queen’s spear and levels its jagged tip at her chest. She’d have made you her sex slave had you lost, so it’s only fair you at least get to sample her at least he once. You curtly tell her that you’ll leave her people in peace if she surrenders her body to you - a prospect she should be intimately familiar with.");
 	output("\n\n<i>“I suppose you’ve earned it,”</i> the queen admits, beckoning one of her submissives over to tend to Queensguard. She stands after that, geting pushing the tip of your spear out of the way. <i>“I’ll come willingly. To my chambers, then?”</i>");
-	output("\n\nOh, no. You want every last one of Taivra’s followers to see what happens when you get between a Steel and [pc.hisHer] prize. You grab the queen’s wrist and twist her around, shoving her down onto the dias at the foot of her throne. She grunts, biting back a yelp of surprise as she’s forced down, and your hands grab the hem of her mail panties. One good yank and she’s bared to the air, her full cheeks swaying and a forearm-length shaft of pink ovipositor dangling between her legs. You grin, seeing a dark ring of asshole winking at you between her cheeks, though no feminine sex in sight");
+	output("\n\nOh, no. You want every last one of Taivra’s followers to see what happens when you get between a Steele and [pc.hisHer] prize. You grab the queen’s wrist and twist her around, shoving her down onto the dias at the foot of her throne. She grunts, biting back a yelp of surprise as she’s forced down, and your hands grab the hem of her mail panties. One good yank and she’s bared to the air, her full cheeks swaying and a forearm-length shaft of pink ovipositor dangling between her legs. You grin, seeing a dark ring of asshole winking at you between her cheeks, though no feminine sex in sight");
 	//if read codex:
 	if(CodexManager.entryViewed("Nyrea")) output(", as you would expect for her race");
 	output(". She gives you a darkly reproachful look over her shoulder, but does not resist as you decide just how to take your pent-up lusts out on the amazonian insect...");
@@ -2500,7 +2501,7 @@ public function takeTentaclesForTaivra():void
 	if(pc.isBimbo()) output(" You tell yourself you want to lube ‘em up, but really you find yourself deep throating the throbbing lengths, barely able to tear yourself away from them when another demands your attention.");
 	output(" Your hands eventually find their way between the queen’s legs, following the curves of her ass down to the tumescing shaft of her ovipositor cock.");
 
-	output("\n\nTaivra gasps as you grab her dick, sucking in her breath as you massage her shaft from the knotty base to her spiny tip. Your hand comes back covered in brightly-colored, hot slime - the nyrean equivalent of jem-lube, no doubt. You grin to yourself and reach down between your [pc.legs], smearing the sticky substance all over your [pc.vagOrAss " + x + "], using Taivra’s own juices to lube yourself up. Grinning happily, you grab a few of Taivra’s squirming tails into a bushel and drag them back towards your slicked-up hole, finally ready to have some fun!");
+	output("\n\nTaivra gasps as you grab her dick, sucking in her breath as you massage her shaft from the knotty base to her spiny tip. Your hand comes back covered in brightly-colored, hot slime - the nyrean equivalent of fem-lube, no doubt. You grin to yourself and reach down between your [pc.legs], smearing the sticky substance all over your [pc.vagOrAss " + x + "], using Taivra’s own juices to lube yourself up. Grinning happily, you grab a few of Taivra’s squirming tails into a bushel and drag them back towards your slicked-up hole, finally ready to have some fun!");
 
 	output("\n\nLooking over her shoulder at you, the queen flashes you a surprisingly lustful purple-lipped smile. <i>“I wonder how many you can take?”</i>");
 
@@ -3314,7 +3315,7 @@ public function cowgirlWivTaivra():void
 	output("\n\nHer ovipositor is hot and throbbing against your thigh, demanding your attention. Rising up on your ");
 	if(pc.hasKnees()) output("[pc.knees]");
 	else output("[pc.legOrLeg]");
-	output(", you grab Taivra’s thick alien dong and stroke to full hardness as you align the flat head with your [pc.vagOrAss " + x + "]. The pressure against your hole is immense and instantaneous, her girth more like a horse’s than anything a girl her size should be packing! You start to press down, but Taivra’s hands stop you, firmly holding up your [pc.butt]. <i>“How about a little lube, first? I think things might be a little more pleasurable for us both that way...”</i>");
+	output(", you grab Taivra’s thick alien dong and stroke it to full hardness as you align the flat head with your [pc.vagOrAss " + x + "]. The pressure against your hole is immense and instantaneous, her girth more like a horse’s than anything a girl her size should be packing! You start to press down, but Taivra’s hands stop you, firmly holding up your [pc.butt]. <i>“How about a little lube, first? I think things might be a little more pleasurable for us both that way...”</i>");
 	output("\n\nYou give her a quick nod, and the queen reaches into her nightstand to retrieve a small vial of a familiar green goop - doubtless shed from her gloryhole goo-girl. Taivra drinks in a deep whiff of it before reaching down and smearing the vial’s contents onto the X-shaped slit of her huge dick. You smell it too: the sweetly musky, wet odor of goo that she slathers onto her prick and your thighs, all around your waiting hole.");
 	output("\n\nWith a lusty smile, Taivra presses her cockhead against your [pc.vagOrAss " + x + "], letting the hefty glaze of goo on both your bodies ease her initial entry. A moan escapes your lips as you lower yourself down onto her royal rod, Taivra’s hips thrusting up to meet you in a moment of overwhelming pressure... and then echoing screams of pleasure as she pushes inside you. You’re hit with a sudden fullness, completely and totally stretching your [pc.vagOrAss " + x + "] around Taivra’s blunted cockhead. You can feel her spiny pleasure-nubs digging into your tender flesh, scraping along your inner walls until you’re screaming with ecstasy, rubbing your [pc.butt] on the queen’s thighs as moisture drools down onto her lap.");
 	if(x >= 0) pc.cuntChange(x,chars["TAIVRA"].cockVolume(0));
@@ -3614,7 +3615,7 @@ public function lapRideDatQueenAllPublicLike():void
 
 	output("\n\nYou do so, rising up on your [pc.knees] and grabbing Taivra’s thick alien dong, stroking it as you align the flat head with your [pc.vagOrAss " + x + "]. The pressure against your hole is immense and instantaneous, her girth more like a horse’s than anything a girl her size should be packing! You start to press down, but Taivra’s hands stop you, firmly holding up your [pc.butt]. <i>“How about a little lube, first? I think things might be a little more pleasurable for us both that way...”</i>");
 
-	output("\n\nCan’t deny that logic - especially when Taivra beckons over a couple of her harem sluts The pair scamper over and kneel between their queen’s legs, immediately starting to lavish her oversized egg-layer with their tongues. Your lover’s clearly got her betas well-trained! Taivra rolls her head back and moans, arching her back into the two horny beta’s oral ministrations. They’ll have her ready to go in seconds, but you want a piece of that action!");
+	output("\n\nCan’t deny that logic - especially when Taivra beckons over a couple of her harem sluts. The pair scamper over and kneel between their queen’s legs, immediately starting to lavish her oversized egg-layer with their tongues. Your lover’s clearly got her betas well-trained! Taivra rolls her head back and moans, arching her back into the two horny beta’s oral ministrations. They’ll have her ready to go in seconds, but you want a piece of that action!");
 
 	output("\n\nWith a little awkwardness, you twist around in Taivra’s lap and pat your thighs to get the betas’ attention. Their big black eyes look up at you and your [pc.vagOrAss " + x + "], and with a few encouraging words, you urge them to ply their talented tongues on your hole, too. The pair slowly reach their tongues out towards your ");
 	if(x >= 0) output("bare crotch");
@@ -3987,7 +3988,9 @@ public function loseToPrincessYeGit(willing:Boolean = false):void
 	//Merge
 	output("\n\nThe selfish prattle still sounds like music to your ears. Your former foe’s eyes are sparkling gemstones, her skin finer than the finest woven silk. You feel oddly compelled to touch and caress it, to submit yourself wholly to her pleasure. Why? You briefly ponder the question, but your whole body feels so good, practically thrumming with dull, red heat, that the only thing that makes any sense at all is holding yourself against her and allowing her to use you as she will.");
 	output("\n\n<i>“You can call me Princess or Mistress. I don’t really care which, so long as you don’t dare to disgrace yourself by offering my proper name,”</i> Princess explains");
-	if(!pc.isNude()) output(" while carelessly stripping away your [pc.gear]. She smiles when you help her pull away the offending garments, giving her better access to your form/ while brazenly appraising your nude form. She smiles when you stroke your hands along your body, accentuating the lewdest sections of your body for her pleasure.");
+	if (!pc.isNude()) output(" while carelessly stripping away your [pc.gear]. She smiles when you help her pull away the offending garments, giving her better access to your form");
+	else output(" while brazenly appraising your nude form");
+	output(". She smiles when you stroke your hands along your body, accentuating the lewdest sections of your body for her pleasure.");
 	output(" <i>“But do you really need to use your mouth for talking?”</i> She presents the throbbing hard length of her alien cock to you, stopping only to pour a vial of crimson aphrodisiac across it. It stiffens immediately, throbbing powerfully a scant few inches away from you while its precious coating drips away.");
 	output("\n\nYou try to think of a reason to talk... but her cock is <i>right there</i>. You lick your lips, fumbling for words, but now your lips are all slick, practically ready to slip around Princess’ egg-depositor. Fuck, what did you want to say? Your eyes flick to her nub-lined flare, and any less-than-obscene notions flee your " + pc.mf("mind","pretty little head") + ". Words seem so distant, like half-shrouded figures buried behind a wall of too-thick mist, and every time you reach out for one, Princess’ nubby flare is right there, clear as day and tastier than the sweetest lollipop.");
 	output("\n\nThe wet sound of your tongue slurping across its surface reaches your ears before you’re conscious of what you’re doing, what your body is doing, but it feels too good to stop. Your tongue fizzles and pops with the crimson-coated flavor of Princess’ all-too-lewd flesh. Sparkles of erotic electricity radiate from your flexing, licking muscle down to ");
@@ -4388,7 +4391,8 @@ public function haremPolishjob():void
 	if(pc.hasKnot(x)) 
 	{
 		output(" Your knot is already a little bigger");
-		if(pc.cocks[x].hasFlag(GLOBAL.FLAG_FLARED)) output(", and y");
+		if (pc.cocks[x].hasFlag(GLOBAL.FLAG_FLARED)) output(", and y");
+		else output(".");
 	}
 	else if(pc.cocks[x].hasFlag(GLOBAL.FLAG_FLARED)) output(" Y");
 	if(pc.cocks[x].hasFlag(GLOBAL.FLAG_FLARED)) output("our flare bulges out warningly with each beat of your rapidly hammering heart.");
@@ -4414,7 +4418,7 @@ public function haremPolishjob():void
 		output("\n\nThe princess lies in a growing puddle as you hose her down. The harem helps you back up to evenly coat the rest of her, still squeezing and stroking to maximize the volume of your ejaculate. The royal breasts soon look like polished [pc.cumColor] globes. A flat belly becomes a canvas of [pc.cumVisc] spunk. And the princess’s cock? The princess’s cock is buried in your superior juices, lightly diluting them with her pathetic, pink-squirting production.");
 	}
 	//Merge
-	output("\n\nYou struggle to remain standing as you climb down from your orgasmic high, letting the princess lick at your still-swollen [pc.cockHeadNoun " + x + "] a few moments more. Tender hands gradually migrate from your sensitive length to your arms and shoulders, helping you to seat yourself until you recover. Your equipment is placed at your feet, and a number of happy-looking harem girls take turns hugging or kissing at you. Sometimes they target your face, other times your cock. The only constant is their gratefulness.");
+	output("\n\nYou struggle to remain standing as you climb down from your orgasmic high, letting the princess lick at your still-swollen [pc.cockHead " + x + "] a few moments more. Tender hands gradually migrate from your sensitive length to your arms and shoulders, helping you to seat yourself until you recover. Your equipment is placed at your feet, and a number of happy-looking harem girls take turns hugging or kissing at you. Sometimes they target your face, other times your cock. The only constant is their gratefulness.");
 	output("\n\nThey take their cummy mistress up onto the bed - and into a bondage harness - while you’re getting ready to leave the chamber. At least they’re getting a chance to be on top!\n\n");
 	processTime(33);
 	pc.orgasm();
