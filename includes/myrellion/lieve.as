@@ -611,7 +611,7 @@ public function lieveTalkRedPrisoners():void
 	{
 		output(" Still, you have to point out, <i>“Don’t the golds need their queens to reproduce? There wouldn’t be much of a race left if you killed all their breeders.”</i>");
 	
-		output("\n\nLieve scoffs. <i>“Not every gold breeder can be a queen. Most of them never see a drone in their lives - how would they know?");
+		output("\n\nLieve scoffs. <i>“Not every gold breeder can be a queen. Most of them never see a drone in their lives - how would they know? ");
 		if (pc.hasCock()) 
 		{
 			output(" Sierva mentioned she’s never seen a dick before yours. She might very well be a goldie breeder just waiting for her chance.");
@@ -622,7 +622,7 @@ public function lieveTalkRedPrisoners():void
 	
 			output("\n\nMust be a local expression, you guess. Lieve continues: <i>“");
 		}
-		output(" Besides, you offworlders are here now. I’ve heard stories about what your medicine can do. Amazing things from the troops that took your fleet’s offer for medical help. A lot of the girls think you might be the cure for our... fertility problems.”</i>");
+		output("Besides, you offworlders are here now. I’ve heard stories about what your medicine can do. Amazing things from the troops that took your fleet’s offer for medical help. A lot of the girls think you might be the cure for our... fertility problems.”</i>");
 	
 		if (pc.hasCock() && pc.isMischievous())
 		{
@@ -1411,7 +1411,7 @@ public function lieveSoloFucktime(tempVenomEnabled:Boolean = false):void
 	
 	output("\n\n<i>“Please,”</i> you murmur around a mouthful of myr pussy, driven to say anything by your mounting desperation. The rest of the thought is drowned out in mindless, lustful noises between eager, almost pleading, licks of Lieve’s sex.");
 	
-	output("\n\nLieve stifles a laugh into a moan, barely manage <i>“Please what?”</i> around a particularly deep lick that has her legs tensing fiercely around your head.");
+	output("\n\nLieve stifles a laugh into a moan, barely managing <i>“Please what?”</i> around a particularly deep lick that has her legs tensing fiercely around your head.");
 	
 	output("\n\nThe heady mix of lust-drug in your veins and Lieve’s rosy sex in your face makes thinking up a more cogent response than a pitiful moan a near impossibility. It takes a great deal of your waning willpower to finally blurt out <i>“");
 	if (pc.isBimbo()) output("Just, like, fuck me already!");
@@ -1447,7 +1447,7 @@ public function lieveSoloFucktimeII(tempVenomEnabled:Boolean = false):void
 	}
 	if (pc.hasVagina())
 	{
-		output(" Your [pc.cunt] contracts around the air, desperate for a cock to milk - anything to grab onto as orgasm thunders through you. Juices squirt out over your thighs, drooling onto the floor in a messy, glossy swamp that pools sloppily between your ass cheeks.");
+		output(" Your [pc.cunt] contracts around the air, desperate for a cock to milk - anything to grab onto as an orgasm thunders through you. Juices squirt out over your thighs, drooling onto the floor in a messy, glossy swamp that pools sloppily between your ass cheeks.");
 	}
 	if (!pc.hasCock() && !pc.hasVagina())
 	{
@@ -1814,7 +1814,7 @@ public function lieveTourTheTownII():void
 	
 	output("\n\nShe falls uncharacteristically silent for a little while after that, until you arrive at the promised merchant row on the western side of town. Suddenly, her cheer comes back with a vengeance as she announces: <i>“Anyway! This is merchant row, where you can buy pretty much anything that’s not restricted. Not much in the way of weapons available, sorry, but clothes and general items are on offer. Most of the shops here in town square are open again, and even some offworlders are starting to come down and open businesses here. We’ve even got a captured Goldie queen who’s generously put her merchant collective at the city’s disposal.”</i>");
 	
-	output("\n\nLieve gives you a mischievous wink at that, and nods to a very lavishly decorated storefront across the way. Several offworlders, mostly male, are eagerly making their way inside as you approach. <i>“There’s also a great dress shop around here, run by some sort of alien, I think. Haven’t had a chance to go there myself, by Mayren and Sierva both raved about it last time I gave them some spending money - dresses were a little too skin-showing for me to wear, but I sure enjoyed seeing them in ‘em!”</i>");
+	output("\n\nLieve gives you a mischievous wink at that, and nods to a very lavishly decorated storefront across the way. Several offworlders, mostly male, are eagerly making their way inside as you approach. <i>“There’s also a great dress shop around here, run by some sort of alien, I think. Haven’t had a chance to go there myself, but Mayren and Sierva both raved about it last time I gave them some spending money - dresses were a little too skin-showing for me to wear, but I sure enjoyed seeing them in ‘em!”</i>");
 	
 	output("\n\nYou can’t help but chuckle at the lascivious myr’s lusty smile as she leads you on down the road. <i>“Of course, the big attraction of this part of town is the bath house. We don’t have anything like it back in Federation territory: public baths, where everyone gets together to scrub down, socialize, just... relax, I guess. Being naked around strangers would normally be unthinkable to a red myr, it’s embarrassing and dishonoring - just for slaves and among lovers. But the Goldies, and some offworlders, seem to love it. My trench wives made me go after a while - well, talked me into it, really - and it was so different than anything I’d done before. I can definitely see why the Goldies flock to the place!”</i>");
 	

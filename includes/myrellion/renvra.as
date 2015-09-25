@@ -293,7 +293,7 @@ public function fuckHerYouNancy(fromRaceTalk:int = 0):void
 	else if(flags["RENVRA_SEXED"] != undefined) addButton(3,"MakeHerBeg",makeRenvraBegYouSillyBillySlut,undefined,"MakeHerBeg","‘Encourage’ the ball-busting battle-axe to be a little nicer to you by edging her until she’s broken-down and desperate to cum - mercy is optional.");
 	else addDisabledButton(3,"MakeHerBeg","MakeHerBeg","Renvra looks like she’s itching to fuck you - she’s not going to accept being teased and toyed with right now.");
 
-	if(flags["MADE_RENVRA_BEG"] && renvra.cumQualityRaw >= 100) addButton(4,"Dbl.Trouble",renvraDoubleTrouble,undefined,"Double Trouble","Renvra’s so backed-up from your shenanigans that her girthy egg-cock could probably put <i>two</i> batches of kids in you.");
+	if(flags["MADE_RENVRA_BEG"] == 2 && renvra.cumQualityRaw >= 100) addButton(4,"Dbl.Trouble",renvraDoubleTrouble,undefined,"Double Trouble","Renvra’s so backed-up from your shenanigans that her girthy egg-cock could probably put <i>two</i> batches of kids in you.");
 	else addDisabledButton(4,"Dbl.Trouble","Double Trouble","Renvra looks impatient, like she wants to blow her load and get back to work - try some teasing and denial and maybe you can get her ‘full’ attention.");
 }
 
@@ -1112,7 +1112,7 @@ public function fuckRenvrasUrethra():void
 		//(else)
 		else output(" As the heat climbs your [pc.cock], a devilish idea flits through your head. You squeeze Renvra’s flare so tightly with your hands that not another drop of her venomous load is able to leak out of her slit, pump though she may.");
 
-		output("\n\n<i>“Gah!”</i> she yowls, frustrated. <i>“Let it out, let me cum! I’m going to fertilize my own eggs if I can’t let it all out!”</i> She jerks and shifts, trying to pull free, but you stymie her by sliding forward just after she slides back; with Renvra going crazy trying to blow the jammed-up remainder of her lust-inducing drug-jizz on you, your [pc.cockNoun" + x + "] is getting double the strokes for half the thrusts.");
+		output("\n\n<i>“Gah!”</i> she yowls, frustrated. <i>“Let it out, let me cum! I’m going to fertilize my own eggs if I can’t let it all out!”</i> She jerks and shifts, trying to pull free, but you stymie her by sliding forward just after she slides back; with Renvra going crazy trying to blow the jammed-up remainder of her lust-inducing drug-jizz on you, your [pc.cockNoun " + x + "] is getting double the strokes for half the thrusts.");
 
 		output("\n\n<i>“You’re going to have fertilized eggs either way,”</i> you grunt, hilting in her egg-slit. Renvra’s eyes widen as ");
 		if(pc.balls > 0) 
@@ -1127,7 +1127,7 @@ public function fuckRenvrasUrethra():void
 		{
 			output(" Your body beats Renvra’s for potency, hands down, and you faintly feel the nerve-tweaking venom recede from your [pc.cockHead " + x + "] as your load pushes the halfbreed’s back, past the deflated knot and into her body. Her balls swell and swell as your [pc.balls]");
 			if(pc.balls <= 1) output(" empties");
-			else output("empty");
+			else output(" empty");
 			output(", until her scrotum is stretched against the floor by your [pc.cumNoun] like a big jiggly water balloon.");
 		}
 		output(" Spent, you lower yourself onto Renvra’s cushy breasts for a rest.");

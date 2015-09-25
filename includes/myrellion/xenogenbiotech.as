@@ -396,7 +396,7 @@ public function myrellionNevrieCoworkers():void
 	
 	output("\n\nAfter a moment’s consideration, Nevrie laughs and adds, <i>“Well, I’d take a pass on it, anyway. Wouldn’t mind getting my hands on a couple of girls modded like that for my harem. Uh, if I had a harem, anyway. Someday!”</i>");
 	
-	output("\n\nShe gives a dreamy sigh and leans back in her chair, crossing a leg over the other. <i>“I don’t know when Doc. McAllister’s gonna be back. And when he does, he probably won’t stick around long. Keeps saying he can’t find one of the red ants to get samples from. Don’t know how she expects to find a red myr between a goldie Queen’s tits, but whatever. I guess the hospital and the Red embassy don’t feel like helping.");
+	output("\n\nShe gives a dreamy sigh and leans back in her chair, crossing a leg over the other. <i>“I don’t know when Doc. McAllister’s gonna be back. And when he does, he probably won’t stick around long. Keeps saying he can’t find one of the red ants to get samples from. Don’t know how she expects to find a red myr between a goldie Queen’s tits, but whatever. I guess the hospital and the Red embassy don’t feel like helping.”</i>");
 	
 	output("\n\n<i>“If you want to talk to Doc. McAllister, maybe </i>you<i> should go find the stupid samples. Otherwise, I guess I’ll just have to sit here getting paid to do nothing all day. Woe is me.”</i>");
 	
@@ -434,19 +434,19 @@ public function myrellionNevrieBloodVial():void
 
 public function nevriMailGet():void
 {
-	eventBuffer += "\n\n<b>New Email From Nevri Redarra (N_Redarra@Xenogen.net)!";
+	eventBuffer += "\n\n<b>New Email From Nevri Redarra (N_Redarra@Xenogen.net)!</b>";
 
 	MailManager.unlockEntry("myrpills", GetGameTimestamp());
 }
 public function nevriOrangeMailGet():void
 {
-	eventBuffer += "\n\n<b>New Email From Nevri Redarra (N_Redarra@Xenogen.net)!";
+	eventBuffer += "\n\n<b>New Email From Nevri Redarra (N_Redarra@Xenogen.net)!</b>";
 
 	MailManager.unlockEntry("orangepills", GetGameTimestamp());
 }
 public function nevriBJMailGet():void
 {
-	eventBuffer += "\n\n<b>New Email From Nevri Redarra (N_Redarra@Xenogen.net)!";
+	eventBuffer += "\n\n<b>New Email From Nevri Redarra (N_Redarra@Xenogen.net)!</b>";
 
 	MailManager.unlockEntry("bjreminder", GetGameTimestamp());
 }
@@ -817,7 +817,7 @@ public function mcallisterMeetThemIII():void
 	
 	output("\n\n<i>“That was </i>awful<i>,”</i> the red giggles, moaning and leaning into McAllister’s hand. <i>“You owe us one for that!”</i>");
 	
-	output("\n\nThe gold manages to finally work up the energy to say something intelligable: <i>“And your friend, [pc.name], too!”</i>");
+	output("\n\nThe gold manages to finally work up the energy to say something intelligible: <i>“And your friend, [pc.name], too!”</i>");
 	
 	output("\n\nThe red pries one of her hands off of the other ant’s breast, only to grab the front of Doctor McAllister’s robe-coat, pulling it open and grabbing his modded cock. From beneath the red-plated babe, the goldie reaches one of her long, chitinous legs out to the front of your robe and starts to tug at the belt holding it closed.");
 

@@ -6,6 +6,7 @@
 	import classes.UIComponents.UIStyleSettings;
 	import flash.geom.ColorTransform;
 	import flash.geom.Transform;
+	import flash.accessibility.Accessibility;
 	
 	/**
 	 * ...
@@ -45,6 +46,8 @@
 			_iconClass = iconClass;
 			_iconPadding = iconPadding;
 			_glowLayer = hasGlow;
+			
+			if (Accessibility.active) accessibilityProperties.forceSimple = true;
 			
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
 		}

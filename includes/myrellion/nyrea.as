@@ -798,7 +798,7 @@ public function fuckNyreaButtsGetHerOff():void
 	if (foes[0].hasStatusEffect("Nyrea Eggs"))
 	{
 		output(" - but that’s just the beginning. You watch with alarm as her cock seems to distend in your hands, a huge ovoid shape rising up along its length to the blunted head. Your eyes widen a bit as you find yourself fucking a fist-sized white egg out of the huntress: her cock engorges as the hefty orb flows through it, before the blunt head of her shaft spreads open like a mini-vagina, letting the slimy white egg roll out onto the new mother’s belly in a puddle of her own cum.");
-		if (foes[0] is NyreaBeta) output(" <i>“Oh, no... I didn’t want... now I have to take care of it,”</i> she whines, taking hold of her accidental discharge.”</i>");
+		if (foes[0] is NyreaBeta) output(" <i>“Oh, no... I didn’t want... now I have to take care of it,”</i> she whines, taking hold of her accidental discharge.");
 		else if (foes[0] is NyreaAlpha) output(" <i>“Ah, damn, I guess it was really ready to come out...”</i> she sighs, picking up the accidental discharge and cradling it against her breast, <i>“Unless you wanna little nyrea for yourself, I guess I’ll try and shove this up one of my harem boys’ slits till it hatches. That’s what I get for losing, huh?”</i>");
 	}
 	else output(".");

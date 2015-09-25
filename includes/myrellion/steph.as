@@ -97,7 +97,7 @@ public function stephEncounterWork():void
 
 	output("\n\nThe Huntress makes a face and grunts. <i>“Bunch of network suits tryin’ to tell me how to run my show. Tell me I’m not, like, allowed to go armed or fight back against anything. I remember ‘fore the rush I’d wrestle me a six-tailed trax hound till it ripped all my clothes off and beat me bloody, or I could go grab syrax snakes straight outta the trees on Ausaril and give ‘em big ol’ hugs on camera till they squirted egg-sap out. Now we got some new CEO who’s all like, ‘Oh no, don’t hurt the poor creatures,’ like I don’t know what I’m doing!”</i>");
 
-	output("\n\nGiven what you’ve seen on camera thus far, you’re not entirely she DOES know what she’s doing.");
+	output("\n\nGiven what you’ve seen on camera thus far, you’re not entirely sure she DOES know what she’s doing.");
 
 	output("\n\n<i>“So now I basically gotta just get all in the critters’ faces and try and talk about ‘em, but everything Network tells me to do an expo... uh, expo... an episode! Episode on don’t wanna bite or scratch or poison, it’s all sex, sex, sex with everything! Have to throw out half the shows I shoot cuz even the Network’s all like, ‘Oh that’s too ex... uh, too lewd.’”</i>");
 

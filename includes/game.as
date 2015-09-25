@@ -1519,6 +1519,8 @@ public function processTime(arg:int):void {
 	if (!MailManager.isEntryUnlocked("myrpills") && flags["MCALLISTER_MEETING_TIMESTAMP"] <= (GetGameTimestamp() - (24 * 60))) nevriMailGet();
 	if (!MailManager.isEntryUnlocked("orangepills") && flags["MCALLISTER_MYR_HYBRIDITY"] == 2 && GetGameTimestamp() >= (flags["MCALLISTER_MYR_HYBRIDITY_START"] + (7 * 24 * 60))) nevriOrangeMailGet();
 	if (!MailManager.isEntryUnlocked("bjreminder") && flags["NEVRIE_FIRST_DISCOUNT_DATE"] != undefined && days >= flags["NEVRIE_FIRST_DISCOUNT_DATE"]+20) nevriBJMailGet();
+	//Emmy Mail
+	if (!MailManager.isEntryUnlocked("emmy_apology") && flags["EMMY_EMAIL_TIMER"] <= (GetGameTimestamp() - (24*60))) emmyMailGet();
 	flags["HYPNO_EFFECT_OUTPUT_DONE"] = undefined;
 	variableRoomUpdateCheck();
 	updatePCStats();
@@ -3886,7 +3888,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				output2("\n<b>* Sera:</b> Met her");
 				if(flags["SERA_TALKED_ABOUT_BEING_PISSED_OFF"] == undefined) output2(", Pissed off");
 				else output2(", Vented her frustrations");
-				if(flags["FUCKED SERA"] != undefined)
+				if(flags["FUCKED SERA"] != undefined && flags["FUCKED SERA"] > 0)
 				{
 					initSeraFuckFlags();
 					output2("\n<b>* Sera, Times Sexed: </b>" + timesFuckedSera());
@@ -3935,12 +3937,8 @@ public function displayEncounterLog(showID:String = "All"):void
 			{
 				output2("\n<b><u>Shear Beauty</u></b>");
 				output2("\n<b>* Ceria:</b> Met her");
-				if(flags["CERIA_EAR_TOUCH_UNLOCKED"] != undefined)
-				{
-					output2(", Touched her ears");
-					if(flags["EATEN_CERIA_OUT"] != undefined) output2(", Ate her pussy");
-					if(flags["CERIA_MOUTH_FLOOD"] != undefined) output2(", Flooded her mouth with semen");
-				}
+				if(flags["EATEN_CERIA_OUT"] != undefined) output2(", Ate her pussy");
+				if(flags["CERIA_MOUTH_FLOOD"] != undefined) output2(", Flooded her mouth with semen");
 				if(flags["HEARD_OF_NAHRI"] != undefined || 9999 == 0)
 				{
 					output2("\n<b>* Nahri:</b>");
@@ -5694,7 +5692,7 @@ public function fixPcUpbringing():void
 	showName("CODEX\nALERT");
 	author("Gedan");
 	
-	output("Your trusty codex vibrates incessantly, demanding your attention for something. The means are unusual, which piques your interest; you’ve been wearing the thing for long enough now to have most of it’s features down pat, and whatever it’s doing right now is most certainly out of the ordinary.");
+	output("Your trusty codex vibrates incessantly, demanding your attention for something. The means are unusual, which piques your interest; you’ve been wearing the thing for long enough now to have most of its features down pat, and whatever it’s doing right now is most certainly out of the ordinary.");
 	
 	output("\n\nSafely shuffled off to one side, hopefully out of the way - and out of sight - of any one or any thing that might come by, you bring your handy forearm-mounted helper to the fore to see exactly what it’s complaining about....");
 	

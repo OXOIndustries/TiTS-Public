@@ -957,7 +957,7 @@ public function initializeMyrellionRooms():void
 
 	rooms["748"] = new RoomClass(this);
 	rooms["748"].roomName = "THE\nHONEY NOZZLE";
-	rooms["748"].description = "Flickering fluorescent tubes illuminate this surprisingly well-kept club, bathing its stone-worked interior in hues that range from dulcet to garish. Plenty of tables have been set up, but most are empty. The bulk of the crowd is over by the bars - all three of them, served by dapper-looking males, or surrounding the expansive, stone-carved stage that protrudes into the center of the chamber. A sturdy set of stores leads east back to the street.";
+	rooms["748"].description = "Flickering fluorescent tubes illuminate this surprisingly well-kept club, bathing its stone-worked interior in hues that range from dulcet to garish. Plenty of tables have been set up, but most are empty. The bulk of the crowd is over by the bars - all three of them, served by dapper-looking males, or surrounding the expansive, stone-carved stage that protrudes into the center of the chamber. A sturdy set of stones leads east back to the street.";
 	rooms["748"].planet = "PLANET: MYRELLION";
 	rooms["748"].system = "SYSTEM: SINDATHU";
 	rooms["748"].eastExit = "727";
@@ -2234,7 +2234,7 @@ public function initializeMyrellionRooms():void
 
 	rooms["1F20"] = new RoomClass(this);
 	rooms["1F20"].roomName = "LONG\nCORRIDOR";
-	rooms["1F20"].description = "The caverns are wide and open, connecting the long passage going east to west. You can see a faint glimmer of light to the west, coming down from the myr tunnels above. Several pillars of rough stone connect the ceiling and floor, many of which are covered in glowing moss and crude cave drawings.";
+	rooms["1F20"].description = "The caverns are wide and open, connecting the long passage going east to west. You can see a faint glimmer of light to the east, coming down from the myr tunnels above. Several pillars of rough stone connect the ceiling and floor, many of which are covered in glowing moss and crude cave drawings.";
 	rooms["1F20"].planet = "PLANET: MYRELLION";
 	rooms["1F20"].system = "SYSTEM: SINDATHU";
 	rooms["1F20"].eastExit = "1H20";

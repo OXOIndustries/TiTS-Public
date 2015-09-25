@@ -1443,7 +1443,7 @@ public function mimbranesComplainAndShit():void
 			if (mimbraneDebug) trace("Mimbrane Ass is sweating!");
 			var textBuffer:String = "Coated in oily Mimbrane persuasion, your [pc.ass]";
 			if(pc.armor.shortName != "") textBuffer += " no longer seems to form any sort of traction against your [pc.armor]. Instead, each of your steps merely glides each cheek against the surface, tantalizing you with each whimsical caress.";
-			else textBuffer += " gleams dully in the slight, so slick that any garment you were to put on would glide effortlessly across its cheeks, tantalizing you with whimsical caresses.";
+			else textBuffer += " gleams dully in the light, so slick that any garment you were to put on would glide effortlessly across its cheeks, tantalizing you with whimsical caresses.";
 			textBuffer += " Occasionally small pink clouds of moist, humid, dense lust will escape out into the open, showing a fairly clear trail of where you’ve been. You suspect the parasitic [pc.asshole] is enjoying itself.";
 			addMimbraneEvent(textBuffer);
 		}

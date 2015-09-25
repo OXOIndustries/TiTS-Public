@@ -510,7 +510,8 @@ public function tentacleJamAftermath(knockUpPass:Number = 0):void {
 	pc.orgasm();
 	processTime(200+rand(60));
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	if(flags["EMMY_QUEST"] == 0) addButton(0,"Next",venusPitcherBonusFlower);
+	else addButton(0,"Next",mainGameMenu);
 }
 	
 
@@ -1214,7 +1215,8 @@ public function elderVenusPitcherEpilogue():void {
 	if(rand(3) == 0) pc.orgasm();
 	processTime(20+rand(20));
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	if(flags["EMMY_QUEST"] == 0) addButton(0,"Next",venusPitcherBonusFlower);
+	else addButton(0,"Next",mainGameMenu);
 }
 
 public function venusSubmission(arg:Number = 0):Number {
