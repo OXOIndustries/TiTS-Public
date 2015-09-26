@@ -4171,8 +4171,8 @@ public function displayEncounterLog(showID:String = "All"):void
 						output2("\n<b>* Gianna, Simulated Sex Organs: </b>");
 						if(chars["GIANNA"].hasCock())
 						{
-							if(chars["GIANNA"].cockVirgin) output2("Virgin ");
-							output2(GLOBAL.TYPE_NAMES[chars["GIANNA"].cocks[0].cType] + " cock");
+							if(chars["GIANNA"].cockVirgin) output2("Virgin " + GLOBAL.TYPE_NAMES[chars["GIANNA"].cocks[0].cType].toLowerCase() + " cock");
+							else output2(GLOBAL.TYPE_NAMES[chars["GIANNA"].cocks[0].cType] + " cock");
 							if(chars["GIANNA"].hasSheath(0) || chars["GIANNA"].hasKnot(0))
 							{
 								output2(" (");
@@ -4188,14 +4188,14 @@ public function displayEncounterLog(showID:String = "All"):void
 						if(chars["GIANNA"].hasVagina())
 						{
 							if(chars["GIANNA"].hasCock()) output2(", ");
-							if(chars["GIANNA"].vaginalVirgin) output2("Virgin ");
-							output2(GLOBAL.TYPE_NAMES[chars["GIANNA"].vaginas[0].type] + " vagina");
+							if(chars["GIANNA"].vaginalVirgin) output2("Virgin " + GLOBAL.TYPE_NAMES[chars["GIANNA"].vaginas[0].type].toLowerCase() + " vagina");
+							else output2(GLOBAL.TYPE_NAMES[chars["GIANNA"].vaginas[0].type] + " vagina");
 							if(chars["GIANNA"].vaginas[0].clits == 1) output2(" with a clit");
 							else if(chars["GIANNA"].vaginas[0].clits > 1) output2(" with " + num2Text(chars["GIANNA"].vaginas[0].clits) + " clits");
 						}
 						if(chars["GIANNA"].hasCock() || chars["GIANNA"].hasVagina()) output2(", ");
-						if(chars["GIANNA"].analVirgin) output2("Virgin ");
-						output2("Asshole");
+						if(chars["GIANNA"].analVirgin) output2("Virgin asshole");
+						else output2("Asshole");
 					}
 					// Sex stuff
 					if(flags["GIANNA_STALL_SEEN"] != undefined || flags["GIANNA_TITFUCKS"] != undefined || flags["GIANNA_GIVEN_GIRLY_ORAL_YET"] != undefined || flags["SIXTYNINED_GIANNA"] != undefined || flags["FUCKED_GIANNA_VAGINALLY"] != undefined || flags["GIANNA_CUMFLATION_DISABLED"] != undefined)
@@ -4401,8 +4401,8 @@ public function displayEncounterLog(showID:String = "All"):void
 					output2("\n<b>* Penny, Sexual Organs: </b>");
 					if(chars["PENNY"].hasCock())
 					{
-						if(chars["PENNY"].cockVirgin) output2("Virgin ");
-						output2(GLOBAL.TYPE_NAMES[chars["PENNY"].cocks[0].cType] + " cock");
+						if(chars["PENNY"].cockVirgin) output2("Virgin " + GLOBAL.TYPE_NAMES[chars["PENNY"].cocks[0].cType].toLowerCase() + " cock");
+						else output2(GLOBAL.TYPE_NAMES[chars["PENNY"].cocks[0].cType] + " cock");
 						if(chars["PENNY"].hasSheath(0) || chars["PENNY"].hasKnot(0))
 						{
 							output2(" (");
@@ -4418,14 +4418,14 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(chars["PENNY"].hasVagina())
 					{
 						if(chars["PENNY"].hasCock()) output2(", ");
-						if(chars["PENNY"].vaginalVirgin) output2("Virgin ");
-						output2(GLOBAL.TYPE_NAMES[chars["PENNY"].vaginas[0].type] + " vagina");
+						if(chars["PENNY"].vaginalVirgin) output2("Virgin " + GLOBAL.TYPE_NAMES[chars["PENNY"].vaginas[0].type].toLowerCase() + " vagina");
+						else output2(GLOBAL.TYPE_NAMES[chars["PENNY"].vaginas[0].type] + " vagina");
 						if(chars["PENNY"].vaginas[0].clits == 1) output2(" with a clit");
 						else if(chars["PENNY"].vaginas[0].clits > 1) output2(" with " + num2Text(chars["PENNY"].vaginas[0].clits) + " clits");
 					}
 					if(chars["PENNY"].hasCock() || chars["PENNY"].hasVagina()) output2(", ");
-					if(chars["PENNY"].analVirgin) output2("Virgin ");
-					output2("Asshole");
+					if(chars["PENNY"].analVirgin) output2("Virgin asshole");
+					else output2("Asshole");
 					output2("\n<b>* Penny, Sexual History:</b> Sexed her");
 					if(flags["TIMES_FROTTAGED_PENNY"] != undefined) output2(", Frottaged her");
 					if(flags["TIMES_PENNY_PAWJOBBED"] != undefined) output2(", She gave a pawjob");
@@ -4751,8 +4751,8 @@ public function displayEncounterLog(showID:String = "All"):void
 						output2("\n<b>* [bess.name], Simulated Sex Organs: </b>");
 						if(chars["BESS"].hasCock())
 						{
-							if(chars["BESS"].cockVirgin) output2("Virgin ");
-							output2(GLOBAL.TYPE_NAMES[chars["BESS"].cocks[0].cType] + " cock");
+							if(chars["BESS"].cockVirgin) output2("Virgin " + GLOBAL.TYPE_NAMES[chars["BESS"].cocks[0].cType].toLowerCase() + " cock");
+							else output2(GLOBAL.TYPE_NAMES[chars["BESS"].cocks[0].cType] + " cock");
 							if(chars["BESS"].hasSheath(0) || chars["BESS"].hasKnot(0))
 							{
 								output2(" (");
@@ -4768,14 +4768,14 @@ public function displayEncounterLog(showID:String = "All"):void
 						if(chars["BESS"].hasVagina())
 						{
 							if(chars["BESS"].hasCock()) output2(", ");
-							if(chars["BESS"].vaginalVirgin) output2("Virgin ");
-							output2(GLOBAL.TYPE_NAMES[chars["BESS"].vaginas[0].type] + " vagina");
+							if(chars["BESS"].vaginalVirgin) output2("Virgin " + GLOBAL.TYPE_NAMES[chars["BESS"].cocks[0].cType].toLowerCase() + " vagina");
+							else output2(GLOBAL.TYPE_NAMES[chars["BESS"].vaginas[0].type] + " vagina");
 							if(chars["BESS"].vaginas[0].clits == 1) output2(" with a clit");
 							else if(chars["BESS"].vaginas[0].clits > 1) output2(" with " + num2Text(chars["BESS"].vaginas[0].clits) + " clits");
 						}
 						if(chars["BESS"].hasCock() || chars["BESS"].hasVagina()) output2(", ");
-						if(chars["BESS"].analVirgin) output2("Virgin ");
-						output2("Asshole");
+						if(chars["BESS"].analVirgin) output2("Virgin asshole");
+						else output2("Asshole");
 					}
 					// Sex-related
 					if(flags["BESS_FUCKED"] != undefined)
@@ -4926,8 +4926,8 @@ public function displayEncounterLog(showID:String = "All"):void
 						output2("\n<b>* [embry.name], Sexual Organs: </b>");
 						if(chars["EMBRY"].hasCock())
 						{
-							if(chars["EMBRY"].cockVirgin) output2("Virgin ");
-							output2(GLOBAL.TYPE_NAMES[chars["EMBRY"].cocks[0].cType] + " cock");
+							if(chars["EMBRY"].cockVirgin) output2("Virgin " + GLOBAL.TYPE_NAMES[chars["EMBRY"].cocks[0].cType].toLowerCase() + " cock");
+							else output2(GLOBAL.TYPE_NAMES[chars["EMBRY"].cocks[0].cType] + " cock");
 							if(chars["EMBRY"].hasSheath(0) || chars["EMBRY"].hasKnot(0))
 							{
 								output2(" (");
@@ -4943,14 +4943,14 @@ public function displayEncounterLog(showID:String = "All"):void
 						if(chars["EMBRY"].hasVagina())
 						{
 							if(chars["EMBRY"].hasCock()) output2(", ");
-							if(chars["EMBRY"].vaginalVirgin) output2("Virgin ");
-							output2(GLOBAL.TYPE_NAMES[chars["EMBRY"].vaginas[0].type] + " vagina");
+							if(chars["EMBRY"].vaginalVirgin) output2("Virgin " + GLOBAL.TYPE_NAMES[chars["EMBRY"].vaginas[0].type].toLowerCase() + " vagina");
+							else output2(GLOBAL.TYPE_NAMES[chars["EMBRY"].vaginas[0].type] + " vagina");
 							if(chars["EMBRY"].vaginas[0].clits == 1) output2(" with a clit");
 							else if(chars["EMBRY"].vaginas[0].clits > 1) output2(" with " + num2Text(chars["EMBRY"].vaginas[0].clits) + " clits");
 						}
 						if(chars["EMBRY"].hasCock() || chars["EMBRY"].hasVagina()) output2(", ");
-						if(chars["EMBRY"].analVirgin) output2("Virgin ");
-						output2("Asshole");
+						if(chars["EMBRY"].analVirgin) output2("Virgin asshole");
+						else output2("Asshole");
 						output2("\n<b>* [embry.name], Sexual History:</b> Sexed her");
 						if(flags["EMBRY_VAGINAL_SEX_UNLOCKED"] != undefined) output2(", Fucked her pussy");
 						if(flags["GOTTEN_TO_FUCK_EMBRYBUTT"] != undefined) output2(", Fucked her ass");
@@ -5103,9 +5103,9 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["IRELLIA_QUEST_STATUS"] == -1) output2(", Refuses to interact");
 					output2("\n<b>* Queen Scalla:</b> Met her");
 					if(flags["IRELLIA_QUEST_STATUS"] == -1) output2(", Refuses to interact");
-					if(flags["MET_AURIN"] != undefined) output2("\n<b>* Aurin:</b> Met him, You both paired up and fucked Irellia");
-					if(flags["MET_ETHELN"] != undefined) output2("\n<b>* Etheln:</b> Met him, You both paired up and fucked Irellia");
-					if(flags["MET_ILODEN"] != undefined) output2("\n<b>* Iloden:</b> Met him, You both paired up and fucked Irellia");
+					if(flags["MET_AURIN"] != undefined) output2("\n<b>* Aurin:</b> Met him, Fucked Irellia");
+					if(flags["MET_ETHELN"] != undefined) output2("\n<b>* Etheln:</b> Met him, Fucked Irellia");
+					if(flags["MET_ILODEN"] != undefined) output2("\n<b>* Iloden:</b> Met him, Fucked Irellia");
 				}
 				else if(flags["LYRALLA_DISCUSSED_HER_QUEEN"] != undefined) output2(" Know of her");
 				variousCount++;
@@ -5493,8 +5493,8 @@ public function displayEncounterLog(showID:String = "All"):void
 				output2("\n<b>* Kiro, Sexual Organs: </b>");
 				if(chars["KIRO"].hasCock())
 				{
-					if(chars["KIRO"].cockVirgin) output2("Virgin ");
-					output2(GLOBAL.TYPE_NAMES[chars["KIRO"].cocks[0].cType] + " cock");
+					if(chars["KIRO"].cockVirgin) output2("Virgin " + GLOBAL.TYPE_NAMES[chars["KIRO"].cocks[0].cType].toLowerCase() + " cock");
+					else output2(GLOBAL.TYPE_NAMES[chars["KIRO"].cocks[0].cType] + " cock");
 					if(chars["KIRO"].hasSheath(0) || chars["KIRO"].hasKnot(0))
 					{
 						output2(" (");
@@ -5510,14 +5510,14 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(chars["KIRO"].hasVagina())
 				{
 					if(chars["KIRO"].hasCock()) output2(", ");
-					if(chars["KIRO"].vaginalVirgin) output2("Virgin ");
-					output2(GLOBAL.TYPE_NAMES[chars["KIRO"].vaginas[0].type] + " vagina");
+					if(chars["KIRO"].vaginalVirgin) output2("Virgin " + GLOBAL.TYPE_NAMES[chars["KIRO"].vaginas[0].type].toLowerCase() + " vagina");
+					else output2(GLOBAL.TYPE_NAMES[chars["KIRO"].vaginas[0].type] + " vagina");
 					if(chars["KIRO"].vaginas[0].clits == 1) output2(" with a clit");
 					else if(chars["KIRO"].vaginas[0].clits > 1) output2(" with " + num2Text(chars["KIRO"].vaginas[0].clits) + " clits");
 				}
 				if(chars["KIRO"].hasCock() || chars["KIRO"].hasVagina()) output2(", ");
-				if(chars["KIRO"].analVirgin) output2("Virgin ");
-				output2("Asshole");
+				if(chars["KIRO"].analVirgin) output2("Virgin asshole");
+				else output2("Asshole");
 				output2("\n<b>* Kiro, Sexual History:</b> Sexed her");
 				if(flags["KIRO_X_SAEN_HAPPENED"] != undefined) output2(", Sexed her with Saendra");
 				if(flags["KIRO_DEEPTHROATED_YOU"] != undefined) output2(", She deepthroated you");
@@ -5560,8 +5560,8 @@ public function displayEncounterLog(showID:String = "All"):void
 				output2("\n<b>* Saendra, Sexual Organs: </b>");
 				if(chars["SAENDRA"].hasCock())
 				{
-					if(chars["SAENDRA"].cockVirgin) output2("Virgin ");
-					output2(GLOBAL.TYPE_NAMES[chars["SAENDRA"].cocks[0].cType] + " cock");
+					if(chars["SAENDRA"].cockVirgin) output2("Virgin " + GLOBAL.TYPE_NAMES[chars["SAENDRA"].cocks[0].cType].toLowerCase() + " cock");
+					else output2(GLOBAL.TYPE_NAMES[chars["SAENDRA"].cocks[0].cType] + " cock");
 					if(chars["SAENDRA"].hasSheath(0) || chars["SAENDRA"].hasKnot(0))
 					{
 						output2(" (");
@@ -5577,14 +5577,14 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(chars["SAENDRA"].hasVagina())
 				{
 					if(chars["SAENDRA"].hasCock()) output2(", ");
-					if(chars["SAENDRA"].vaginalVirgin) output2("Virgin ");
-					output2(GLOBAL.TYPE_NAMES[chars["SAENDRA"].vaginas[0].type] + " vagina");
+					if(chars["SAENDRA"].vaginalVirgin) output2("Virgin " + GLOBAL.TYPE_NAMES[chars["SAENDRA"].vaginas[0].type].toLowerCase() + " vagina");
+					else output2(GLOBAL.TYPE_NAMES[chars["SAENDRA"].vaginas[0].type] + " vagina");
 					if(chars["SAENDRA"].vaginas[0].clits == 1) output2(" with a clit");
 					else if(chars["SAENDRA"].vaginas[0].clits > 1) output2(" with " + num2Text(chars["SAENDRA"].vaginas[0].clits) + " clits");
 				}
 				if(chars["SAENDRA"].hasCock() || chars["SAENDRA"].hasVagina()) output2(", ");
-				if(chars["SAENDRA"].analVirgin) output2("Virgin ");
-				output2("Asshole");
+				if(chars["SAENDRA"].analVirgin) output2("Virgin asshole");
+				else output2("Asshole");
 				output2("\n<b>* Saendra, Sexual History:</b> Sexed her");
 				if(flags["KIRO_X_SAEN_HAPPENED"] != undefined) output2(", Sexed her with Kiro");
 				output2("\n<b>* Saendra, Times Sexed: </b>" + flags["SAENDRA TIMES SEXED"]);
