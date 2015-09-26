@@ -153,7 +153,7 @@ package classes.Items.Transformatives
 					//Adjust iLoss for display
 					lLoss = Math.round(lLoss);
 					//We don't want to say "0".
-					if(lLoss = 0) lLoss = Math.ceil(lLoss*10)/10;
+					if(lLoss == 0) lLoss = Math.ceil(lLoss*10)/10;
 					if (cCocks.length == 0)
 					{
 						output(" " + target.cockLengthLockedMessage() + "\n\n");
