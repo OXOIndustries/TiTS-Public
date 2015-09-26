@@ -3552,7 +3552,7 @@ package classes {
 				if (rand(4) == 0)
 				{
 					if (beardLength < 1) adjectives = RandomInCollection("trim", "short");
-					else adjectives = [num2Text(beardLength) + "-inch long"];
+					else adjectives = [num2Text(Math.round(beardLength)) + "-inch long"];
 					if (beardLength >= 6) adjectives.push("lengthy", "long");
 				}
 				if (adjectives.length > 0) description += RandomInCollection(adjectives) + " ";
