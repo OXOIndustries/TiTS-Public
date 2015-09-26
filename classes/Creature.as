@@ -3284,7 +3284,6 @@ package classes {
 					types[types.length] = "terran";
 				}
 				else types[types.length] = "humanoid";
-				if(race() == "raskvel") types[types.length] = "raskvel";
 			}
 			else if(tongueType == GLOBAL.TYPE_NAGA)
 			{
@@ -3545,7 +3544,22 @@ package classes {
 			else return false;
 		}
 		public function beard(): String {
-			if (hasBeard()) return "beard";
+			if (hasBeard())
+			{
+				var description: String = "";
+				var adjectives: Array = [];
+				if (beardLength > 0.001 && beardLength <= 0.125) return RandomInCollection("stubble", "five o’clock shadow", "beard");
+				if (rand(4) == 0)
+				{
+					if (beardLength < 1) adjectives = RandomInCollection("trim", "short");
+					else adjectives = [num2Text(beardLength) + "-inch long"];
+					if (beardLength >= 6) adjectives.push("lengthy", "long");
+				}
+				if (adjectives.length > 0) description += RandomInCollection(adjectives) + " ";
+				if (beardStyle == 0) description += "beard";
+				else description += "beard";
+				return description;
+			}
 			else return "ERROR: NO BEARD! <b>YOU ARE NOT A VIKING AND SHOULD TELL FEN IMMEDIATELY.</b>";
 		}
 		public function modThickness(change: Number, display:Boolean = true): String 
