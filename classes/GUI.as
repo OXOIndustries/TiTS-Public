@@ -732,15 +732,15 @@
 			{
 				if (kGAMECLASS.currentLocation == "SHIP INTERIOR")
 				{
-					cacheRoom = "SHIP\nINTERIOR";
-					cachePlanet = kGAMECLASS.rooms[kGAMECLASS.rooms["SHIP INTERIOR"].outExit].planet;
-					cacheSystem = kGAMECLASS.rooms[kGAMECLASS.rooms["SHIP INTERIOR"].outExit].system;
+					roomText = "SHIP\nINTERIOR";
+					planetText = kGAMECLASS.rooms[kGAMECLASS.rooms["SHIP INTERIOR"].outExit].planet;
+					systemText = kGAMECLASS.rooms[kGAMECLASS.rooms["SHIP INTERIOR"].outExit].system;
 				}
 				else
 				{
-					cacheRoom = kGAMECLASS.rooms[kGAMECLASS.currentLocation].roomName;
-					cachePlanet = kGAMECLASS.rooms[kGAMECLASS.currentLocation].planet;
-					cacheSystem = kGAMECLASS.rooms[kGAMECLASS.currentLocation].system;
+					roomText = kGAMECLASS.rooms[kGAMECLASS.currentLocation].roomName;
+					planetText = kGAMECLASS.rooms[kGAMECLASS.currentLocation].planet;
+					systemText = kGAMECLASS.rooms[kGAMECLASS.currentLocation].system;
 				}
 				return;
 			}
