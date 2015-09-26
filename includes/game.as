@@ -2092,7 +2092,7 @@ public function statisticsScreen(showID:String = "All"):void
 		if(pc.hasBeard())
 		{
 			output2("\n<b>* Beard, Length:</b>");
-			if(pc.beardLength > 0.01)
+			if(pc.beardLength > 0.125)
 			{
 				output2(" " + prettifyLength(pc.beardLength));
 				if(pc.beardStyle != 0) output2("\n<b>* Beard, Style: </b>" + pc.beardStyle);
