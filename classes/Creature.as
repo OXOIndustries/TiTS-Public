@@ -3898,7 +3898,7 @@ package classes {
 			switch (wingType)
 			{
 				default:
-					adjectives.push("none-existant");
+					adjectives.push("non-existent");
 					break;
 					
 				case GLOBAL.TYPE_SMALLBEE:
@@ -3949,7 +3949,7 @@ package classes {
 			}
 
 			if (rand(2) == 0 && adjectives.length > 0) description += RandomInCollection(adjectives) + " ";
-			description += (nouns.length > 0 ? RandomInCollection(nouns) : "wings");
+			description += (nouns.length > 0 ? RandomInCollection(nouns) : "wing");
 			return description;
 		}
 		public function wingsDescript():String
@@ -8303,7 +8303,7 @@ package classes {
 			//Define areola size description by nippleWidth
 			var areolasize: String = "";
 			
-			if(nippleWidth() <= 0) areolasize = "non-existant";
+			if(nippleWidth() <= 0) areolasize = "non-existent";
 			else if(nippleWidth() <= .375) areolasize = "fairly tiny";
 			else if(nippleWidth() <= .75) areolasize = "average-sized";
 			else if(nippleWidth() <= 1.5) areolasize = "coin-sized";
@@ -10550,7 +10550,7 @@ package classes {
 			} else if (arg == GLOBAL.FLUID_TYPE_GIRLCUM) {
 				collection = ["transluscent","transluscent","transluscent","transluscent","transluscent","clear","clear","clear","semi-transparent","semi-transparent"];
 			} else if (arg == GLOBAL.FLUID_TYPE_CUMSAP) {
-				collection = ["off white","off white","off white","off white","off white","pearl-marbled amber","pearl-marbled amber","pearl-marbled amber","ivory-amber","ivory-amber"];
+				collection = ["off-white","off-white","off-white","off-white","off-white","pearl-marbled amber","pearl-marbled amber","pearl-marbled amber","ivory-amber","ivory-amber"];
 			} else if(arg == GLOBAL.FLUID_TYPE_CHOCOLATE_MILK) {
 				collection = ["chocolate","chocolate","chocolate","chocolate","chocolate","creamy brown, chocolate","creamy brown, chocolate","creamy brown, chocolate","dark, chocolate","dark, chocolate"];
 			} else if(arg == GLOBAL.FLUID_TYPE_STRAWBERRY_MILK) {
@@ -10917,7 +10917,7 @@ package classes {
 			if (breastRows[rowNum].breastRating() < 1) {
 				temp = this.rand(10);
 				if (temp <= 3) return "pecs";
-				else if (temp <= 6) return "flat, almost non-existant breasts";
+				else if (temp <= 6) return "flat, almost non-existent breasts";
 				else return "pectoral muscles";
 			}
 			//50% of the time size-descript them
