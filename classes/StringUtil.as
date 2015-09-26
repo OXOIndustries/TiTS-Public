@@ -35,6 +35,28 @@ package  classes
 		}
 		
 		/**
+		 * Convert the input string into a nicely formatted display string- similar to title case, but avoiding capitalization of certain words
+		 * @param	value
+		 * @return
+		 */
+		public static function toDisplayCase(value:String):String
+		{
+			if (value == null) return "Null String? :(";
+			if (value.length == 0) return "Length 0 String? :(";
+			
+			var w:Array = value.split(" ");
+			for (var i:int = 0; i < w.length; i++)
+			{
+				if (i == 0 || (w[i] != "the" && w[i] != "of" && w[i] != "a" && w[i] != "an" && w[i] != "and" && w[i] != "or" && w[i] != "nor" && w[i] != "but" && w[i] != "yet" && w[i] != "so" && w[i] != "to" && w[i] != "for" && w[i] != "from" && w[i] != "with" && w[i] != "at" && w[i] != "by"))
+				{
+					w[i] = capitalize(w[i], false);
+				}
+			}
+			
+			return w.join(" ");
+		}
+		
+		/**
 		 * Capitalize the first letter in the input string
 		 * @param	value
 		 * @return
