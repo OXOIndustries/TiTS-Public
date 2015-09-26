@@ -759,18 +759,37 @@ public function hasShipStorage():Boolean
 
 public function shipStorageMenuRoot():void
 {
+	clearOutput();
+    output("You turn to your ship's storage.");
+	
 	clearMenu();
 	
-	if (flags["SHIP_STORAGE_WARDROBE"] != undefined) addButton(0, "Wardrobe", shipStorageMenuType, "WARDROBE");
+	if (flags["SHIP_STORAGE_WARDROBE"] != undefined) 
+	{
+		 output(" A wardrobe closet lines a section of the wall, reminding you where you keep all your clothes, outfits and armors.");
+		 addButton(0, "Wardrobe", shipStorageMenuType, "WARDROBE");
+	}
 	else addDisabledButton(0, "Wardrobe");
 	
-	if (flags["SHIP_STORAGE_EQUIPMENT"] != undefined) addButton(1, "Equipment", shipStorageMenuType, "EQUIPMENT");
+	if (flags["SHIP_STORAGE_EQUIPMENT"] != undefined)
+	{
+		output(" Various cabinets, shelves and weapon racks designate the equipment area.");
+		addButton(1, "Equipment", shipStorageMenuType, "EQUIPMENT");
+	}
 	else addDisabledButton(1, "Equipment");
 	
-	if (flags["SHIP_STORAGE_CONSUMABLES"] != undefined) addButton(2, "Consumables", shipStorageMenuType, "CONSUMABLES");
+	if (flags["SHIP_STORAGE_CONSUMABLES"] != undefined)
+	{
+		output(" A chest with multiple compartments is located below, meant for storing consumable items.");
+		addButton(2, "Consumables", shipStorageMenuType, "CONSUMABLES");
+	}
 	else addDisabledButton(2, "Consumables");
 
-	if(kGAMECLASS.flags["DONG_DESIGNER_INSTALLED"] == 1) addButton(5,"D.Designer",useInstalledDickBox,undefined,"Dong Designer","Use the TamaniCorp Hora Series Dong Designer you found on Tarkus.");
+	if (kGAMECLASS.flags["DONG_DESIGNER_INSTALLED"] == 1)
+	{
+		output("\n\nNearby, the TamaniCorp Dong Designer hums with life.");
+		addButton(5,"D.Designer",useInstalledDickBox,undefined,"Dong Designer","Use the TamaniCorp Hora Series Dong Designer you found on Tarkus.");
+	}
 	
 	addButton(14, "Back", mainGameMenu);
 }
@@ -890,7 +909,7 @@ public function outputStorageListForType(type:String):Array
 {
 	var items:Array = getListOfType(pc.ShipStorageInventory, type);
 	
-	output("<b>" + StringUtil.toTitleCase(type) + " Storage:</b>\n");
+	output("<b>" + StringUtil.toDisplayCase(type.toLowerCase()) + " Storage:</b>\n");
 	
 	if (items.length == 0) output("\nNothing stored!");
 	else
@@ -901,7 +920,7 @@ public function outputStorageListForType(type:String):Array
 			
 			output("\n");
 			if (item.stackSize > 1) output(item.quantity + "x ");
-			output(StringUtil.toTitleCase(item.longName));
+			output(StringUtil.toDisplayCase(item.longName));
 		}
 	}
 	
