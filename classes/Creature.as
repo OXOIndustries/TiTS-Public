@@ -3188,7 +3188,7 @@ package classes {
 					adjectives = ["raskvel", "obscenely long", "oh-so sensitive", "smooth-scaled", "lengthy"];
 					break;
 				case GLOBAL.TYPE_SYLVAN:
-					adjectives = ["elven", num2Text(Math.round(earLength)) + "-inch long", "sensitive", "pointy", "elvish"];
+					adjectives = ["elven", "sensitive", "pointy", "elvish"];
 					break;
 				case GLOBAL.TYPE_VANAE:
 					adjectives = ["pointy", "vanae", "fin-like", "inhuman"];
@@ -3891,8 +3891,66 @@ package classes {
 		}
 		public function wingDescript():String
 		{
-			if(wingType == GLOBAL.TYPE_SHARK) return "dorsal fin";
-			return "wing";
+			var adjectives:Array = new Array();
+			var nouns: Array = ["wing"];
+			var description:String = "";
+			
+			switch (wingType)
+			{
+				default:
+					adjectives.push("none-existant");
+					break;
+					
+				case GLOBAL.TYPE_SMALLBEE:
+				case GLOBAL.TYPE_MYR:
+					adjectives.push("small", mf("tiny", "cute"), "insect-like", "insectile", "shimmering");
+					break;
+					
+				case GLOBAL.TYPE_BEE:
+					adjectives.push("large", "insect-like", "insectile", "bee", "membrane-covered", "transparent");
+					break;
+					
+				case GLOBAL.TYPE_SMALLDEMONIC:
+					adjectives.push("small", mf("tiny", "cute"), "bat-like", "demon-like");
+					break;
+					
+				case GLOBAL.TYPE_DEMONIC:
+					adjectives.push("large", "bat-like", "demon-like", "demonic", "wicked", mf("incubus", "succubus"));
+					break;
+					
+				case GLOBAL.TYPE_SHARK:
+					adjectives.push("large", "shark-like");
+					nouns = ["dorsal fin"];
+					break;
+					
+				case GLOBAL.TYPE_AVIAN:
+					adjectives.push("large", "bird-like", "avian", "feathery");
+					break;
+
+				case GLOBAL.TYPE_SMALLDRACONIC:
+					adjectives.push("small", mf("tiny","cute"), "bat-like", "dragon-like", "scaled");
+					break;
+
+				case GLOBAL.TYPE_DRACONIC:
+					adjectives.push("large", "bat-like", "dragon-like", "draconic", "scaled", "wicked", "magnificent", mf("mighty","majestic"));
+					break;
+
+				case GLOBAL.TYPE_DRAGONFLY:
+					adjectives.push("large", "giant", "insectile", "dragonfly", "transparent", "iridescent");
+					break;
+
+				case GLOBAL.TYPE_SYLVAN:
+					adjectives.push("sylvan", "delicate", "blue gossamer", "iridescent");
+					break;
+
+				case GLOBAL.TYPE_DARK_SYLVAN:
+					adjectives.push("dark sylvan", "delicate", "black gossamer", "shadowy");
+					break;
+			}
+
+			if (rand(2) == 0 && adjectives.length > 0) description += RandomInCollection(adjectives) + " ";
+			description += (nouns.length > 0 ? RandomInCollection(nouns) : "wings");
+			return description;
 		}
 		public function wingsDescript():String
 		{

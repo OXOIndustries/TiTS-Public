@@ -1,4 +1,5 @@
-﻿import classes.Characters.Bess;
+﻿import classes.BreastRowClass;
+import classes.Characters.Bess;
 import classes.Characters.PlayerCharacter;
 import classes.Creature;
 import classes.ItemSlotClass;
@@ -924,7 +925,7 @@ public function nameBessResult():void
 	output("\n\n<i>“I can retract, grow or recolor my hair, change eye color or grow appendages in order to fulfill your sexual needs. I also have several special modes that can be activated or deactivated, such as sexual roles or the flavor of my cum.”</i>");
 	output("\n\n<i>“You can also purchase certain special modifications, clothes, and accessories for me through the JoyCo catalogue. These items will be delivered to you within one to three earth days, excluding public holidays and weekends.”</i>");
 	output("\n\nAfter [bess.hisHer] lengthy explanation of [bess.hisHer] various features, [bess.name] takes a deep breath. It’s probably a programmed gesture, since [bess.heShe] doesn’t actually <i>need</i> to breathe.");
-	output("\n\n<i>“I doubt I’m your perfect mate fresh out of the box, so feel free to change my settings at any time. I’ve got a lot of them, so please be patient with me.”</i> [bess.name] then bows in a very " + bess.mf("well-mannered way", "subservient manner") + ". <i>”</i>... I look forward to serving your needs, [pc.Master]!”</i>");
+	output("\n\n<i>“I doubt I’m your perfect mate fresh out of the box, so feel free to change my settings at any time. I’ve got a lot of them, so please be patient with me.”</i> [bess.name] then bows in a very " + bess.mf("well-mannered way", "subservient manner") + ". <i>“... I look forward to serving your needs, [pc.Master]!”</i>");
 	//Appear back in ship with Bess added to the Followers menu. 
 	processTime(2);
 	clearMenu();
@@ -1084,15 +1085,15 @@ public function approachFollowerBess():void
 
 	if(bess.hasHair()) output("\n\nToday, [bess.hisHer] "+ bessHairLength() +" [bess.hairColor] hair is styled in "+ bessHairStyle() +" -- the look suits [bess.himHer].");
 	else output("\n\nThe synthetic has a smooth, silvery scalp, completely free of hair.");
-	if(bess.earType != GLOBAL.TYPE_HUMAN || bess.horns > 0)
+	if(bess.earType != GLOBAL.TYPE_HUMAN || bess.hornType != 0)
 	{
 		output(" [bess.HisHer] ");
 		if(bess.earType != GLOBAL.TYPE_HUMAN) 
 		{
 			output("[bess.ears]");
-			if(bess.horns > 0) output(" and ");
+			if (bess.hornType != 0) output(" and ");
 		}
-		if(bess.horns > 0) output("[bess.horns]");
+		if (bess.hornType != 0) output("[bess.horns]");
 		output(" compliment [bess.hisHer] features.");
 	}
 
@@ -1277,7 +1278,7 @@ public function bessAppearance():void
 	output(" [bess.HisHer] [bess.eyeColor] eyes, framed by " + bess.mf("brooding brows", "thick black lashes"));
 	if (bessGlasses()) output(" as well as the glasses [bess.heShe] is currently wearing");
 	output(", are even more detailed and faceted than those of a human.");
-	if (bess.horns != 0) output(" On top of [bess.hisHer] head are [bess.horns].");
+	if (bess.hornType != 0) output(" On top of [bess.hisHer] head are [bess.horns].");
 	if (bess.earType != GLOBAL.TYPE_HUMAN) output(" [bess.HeShe] has a pair of [bess.ears].");
 	if (bess.wingType != GLOBAL.TYPE_HUMAN) output(" Behind [bess.hisHer] back is a pair of [bess.wings]");
 	if (bess.tailCount > 0) 
@@ -2266,7 +2267,7 @@ public function bessStartLactation():void
 	bess.milkMultiplier = 50;
 	bess.milkFullness = 100;
 
-	if (bessIsSub()) output("You order [[bess.name] to start lactating");
+	if (bessIsSub()) output("You order [bess.name] to start lactating");
 	else output("You request that [bess.name] start lactating");
 	output(" and [bess.heShe] seems happy to");
 	if (bessIsDom()) output(" indulge you.");
@@ -2943,13 +2944,20 @@ public function setBessCockType(newType:int):void
 
 		if (newType == -2)
 		{
+			bess.cocks[0].cType = GLOBAL.TYPE_HUMAN;
+			bess.balls = 0;
+			bess.ballSizeRaw = 0;
+		}
+		else if (newType == GLOBAL.TYPE_HUMAN)
+		{
+			bess.cocks[0].cType = GLOBAL.TYPE_HUMAN;
 			bess.balls = 0;
 			bess.ballSizeRaw = 0;
 		}
 
 		output("\n\n<i>“Just one second, "+ bessPCName() +", while I make the adjustments.”</i> [bess.name] darts off and when [bess.heShe] comes back,");
 		if (newType == -1) output(" [bess.hisHer] cock is gone - though where [bess.heShe]’s stored it is a mystery. <i>“Do you like me better this way, "+ bessPCName() +"?”</i>\n\n<b>[bess.name] has removed [bess.hisHer] cock!</b>");
-		else output(" she’s sporting "+ bessCockType() +"! [bess.HeShe] eagerly models it off for you. <i>“Do you like it, "+ bessPCName() +"?”</i> <b>[bess.name] now has a [bess.cock]!</b>”</i>");
+		else output(" she’s sporting "+ indefiniteArticle(bessCockType()) +" cock! [bess.HeShe] eagerly models it off for you. <i>“Do you like it, "+ bessPCName() +"?”</i> <b>[bess.name] now has a [bess.cock]!</b>”</i>");
 	}
 
 	bessFunctionsMenu();
@@ -3367,7 +3375,7 @@ public function talkToBessAboutEars():void
 	{
 		if (opts[i].bType == uint.MAX_VALUE || bessHasAccessorySet(opts[i].bType))
 		{
-			addButton(i, opts[i].l, setBessAccessory, [BESS_ACS_EAR, opts[i].v]);
+			addButton(i, opts[i].l, setBessAccessory, [BESS_ACS_EAR, opts[i].v, opts[i].bType]);
 		}
 		else
 		{
@@ -3394,7 +3402,7 @@ public function talkToBessAboutHorns():void
 	{
 		if (opts[i].bType == uint.MAX_VALUE || bessHasAccessorySet(opts[i].bType))
 		{
-			addButton(i, opts[i].l, setBessAccessory, [BESS_ACS_HORNS, opts[i].v]);
+			addButton(i, opts[i].l, setBessAccessory, [BESS_ACS_HORNS, opts[i].v, opts[i].bType]);
 		}
 		else
 		{
@@ -3458,7 +3466,7 @@ public function talkToBessAboutWings():void
 	{
 		if (opts[i].bType == uint.MAX_VALUE || bessHasAccessorySet(opts[i].bType))
 		{
-			addButton(i, opts[i].l, setBessAccessory, [BESS_ACS_WINGS, opts[i].v]);
+			addButton(i, opts[i].l, setBessAccessory, [BESS_ACS_WINGS, opts[i].v, opts[i].bType]);
 		}
 		else
 		{
@@ -3503,12 +3511,28 @@ public function setBessAccessory(opts:Array):void
 		{
 			bess.horns = 0;
 			bess.hornLength = 0;
+			bess.hornType = 0;
 			output("<b>[bess.name] has removed [bess.hisHer] horns!</b>");
 		}
 		else
 		{
-			bess.horns = 2;
-			bess.hornType = 4;
+			var pBess:Bess = bess;
+			
+			switch (newType)
+			{
+				case GLOBAL.TYPE_HUMAN:
+					pBess.horns = 0;
+					pBess.hornType = 0;
+					pBess.hornLength = 0;
+					break;
+				
+				default:
+					pBess.horns = 2;
+					pBess.hornLength = 4;
+					pBess.hornType = newType;
+					break;
+			}
+			
 			output("<b>[bess.name] now has [bess.horns]!</b>");
 		}
 	}
@@ -11957,6 +11981,8 @@ public function bessBreastFeed(opts:Array = null):void
 
 	if (newRating != -1)
 	{
+		((bess as Bess).breastRows as BreastRowClass).breastRatingRaw = newRating;
+		
 		output("\n\n<b>[bess.name] now has ");
 		if (newRating > 0) output(bess.breastCup(0, newRating) +" breasts!");
 		else output(" a flat chest!");
@@ -12104,6 +12130,8 @@ public function bessMilkers(opts:Array = null):void
 		if (newRating > 0) output(" gone down a size and are now visibly smaller.");
 		else output(" been completely milked dry. [bess.name] now has a flat chest.");
 		output("</b>");
+		
+		((bess as Bess).breastRows[0] as BreastRowClass).breastRatingRaw = newRating;
 	}
 	else
 	{
