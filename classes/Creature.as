@@ -6818,14 +6818,13 @@ package classes {
 			{
 				cocks[slot].cockColor = RandomInCollection(["silver", "gray", "black"]);
 			}
-			/*
-			if (type == GLOBAL.TYPE_PLANT) {
+			if (type == GLOBAL.TYPE_VENUSPITCHER) {
 				if (rand(3) == 0) cocks[slot].cockColor = "purple";
 				else if (rand(3) == 0) cocks[slot].cockColor = "olive green";
 				else cocks[slot].cockColor = "green";
 				cocks[slot].addFlag(GLOBAL.FLAG_PREHENSILE);
 				cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
-			}*/
+			}
 		}
 		//PC can fly?
 		public function canFly(): Boolean {
