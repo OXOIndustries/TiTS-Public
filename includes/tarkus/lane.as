@@ -1156,7 +1156,7 @@ public function laneServices():void
 				output(" <i>“Of course, this isn’t counting the ‘tax’ I’ll be charging you when we’re done.</i>");
 			}
 
-			output("\n\nYou thank [lane.hisHer] for [lane.hisHer] ‘generosity’ again.");
+			output("\n\nYou thank [lane.hi,Her] for [lane.hisHer] ‘generosity’ again.");
 
 			processTime(10);
 
@@ -1664,7 +1664,7 @@ public function suckLanesDick():void
 	output("\n\nYou proceed as you are for several minutes, with him feeding you his cock and his precum, until the familiar, bestial quickening of his motions and his breath makes his orgasm obviously close. You don’t stop – in fact, you go faster, eager to taste your master again.");
 	if (pc.biggestTitSize() >= 3 && pc.biggestTitSize() <= 14) output(" You pull your [pc.chest] away and engulf him in your mouth once more. No sense in letting any of it go to waste on you when it would go so much better <i>in</i> you.");
 
-	output("\n\nHis hands go to the edge of the bed for stability as he fucks your throat until he ejaculates. His shaft as rock hard and thick enough to graze your front teeth if you didn’t stretch your jaw to accommodate him. You hear his moans of bliss before you feel the warmth of his cum blossom in the back of your throat, pooling into your cheeks and submerging your tonsils in his ambrosia. He humps into your mouth erratically several times, each one accentuated with another giving of his cream, each blast getting weaker than the one before it until he’s cumming nothing.");
+	output("\n\nHis hands go to the edge of the bed for stability as he fucks your throat until he ejaculates. His shaft is rock hard and thick enough to graze your front teeth if you didn’t stretch your jaw to accommodate him. You hear his moans of bliss before you feel the warmth of his cum blossom in the back of your throat, pooling into your cheeks and submerging your tonsils in his ambrosia. He humps into your mouth erratically several times, each one accentuated with another giving of his cream, each blast getting weaker than the one before it until he’s cumming nothing.");
 
 	output("\n\nWhatever doesn’t immediately get swallowed bathes your tongue and your gums for a moment before you gulp it down. He moans, enjoying the afterglow of his release; you take the time to bathe and wash his cock, which is still hard and has a warm home in your mouth, but is shrinking. After a minute, it begins to recede into himself; you follow it every inch of the way, washing him lovingly and even hoping to go for another round, but it’s no use. You’re kissing and licking at his genital slit before he pushes you away.");
 
@@ -1781,7 +1781,7 @@ public function fuckedByMaleLane():void
 	laneHeader(true);
 	output("Lane approaches you, his cock in one hand and his other reaching out to grip onto your [pc.hair]. <i>“Have a taste, [pc.name],”</i> he says, jacking himself, his dick pointed right at your face.");
 
-	output("\n\nYou’d be glad to. You sink to your [pc.knees] in front of him and lick your [pc.lips] in anticipation, gently gripping onto his waist and kneading the hard scales there. You pucker your lips, waiting for him to stop touching himself; he takes the hint and, without much warning or preparation, he thrusts forward, sliding his thin dick into your thirst throat.");
+	output("\n\nYou’d be glad to. You sink to your [pc.knees] in front of him and lick your [pc.lips] in anticipation, gently gripping onto his waist and kneading the hard scales there. You pucker your lips, waiting for him to stop touching himself; he takes the hint and, without much warning or preparation, he thrusts forward, sliding his thin dick into your thirsty throat.");
 
 	output("\n\nIts thin girth makes it easy to take for the moment, but you know that’s not going to last long. You suck and lick on the tasty, smooth, soft skin of his alien cock – although he’s ‘erect’, he feels flaccid compared to most other penises you know. You look up across his chest and into his eyes, letting them absorb you a little more, making it all the more pleasurable for you.");
 
@@ -1803,7 +1803,7 @@ public function fuckedByMaleLane():void
 	if (!pc.hasVagina() && !pc.hasCock()) output(" it humps against your blank crotch, and Lane grunts in disappointment. He keeps at it, but it’s clear he’s not deriving as much pleasure from it as he’d like");
 	output(".");
 
-	output("\n\n<i>“I love [pc.race] asses,”</i> he says. He leans forward, pressing his chest and stomach against your upper and lower back. His tongue slips out and licks along the back of your ear, and you swoon. <i>“So much better than Daynarian asses. Ours are all hard and boney; but, with an ass like yours...”</i> He draws his cock against you once more");
+	output("\n\n<i>“I love [pc.race] asses,”</i> he says. He leans forward, pressing his chest and stomach against your upper and lower back. His tongue slips out and licks along the back of your ear, and you swoon. <i>“So much better than Daynarian asses. Ours are all hard and boney, but with an ass like yours...”</i> He draws his cock against you once more");
 	if (pc.hasVagina()) output(", soaking it in more of your juices");
 	output(". <i>“I feel like I could fuck it for days. Would you like that? Would you like to spend the weekend on my dick?”</i>");
 
@@ -2548,7 +2548,7 @@ public function firstTimeLaneMPCFH():void
 	}
 	else if (pc.isLactating())
 	{
-		output("\n\nYou sigh as his administrations cause your [pc.milk] to flow from the tips of your [pc.nipples]. Whenever he gropes at a particularly sensitive spot, a splurt of it shoots out a few centimeters and then dribbles down your supple [pc.skinfurScales]. When he first tastes it, he pauses, unfamiliar with the taste or the sensation. He reaches up and squeezes one of your tits, and is surprised when some more begins to flow from you. He otherwise pays it no mind, though – he cleans wherever your milk lands, but he doesn’t seek it out.");
+		output("\n\nYou sigh as his administrations cause your [pc.milk] to flow from the tips of your [pc.nipples]. Whenever he gropes at a particularly sensitive spot, a splurt of it shoots out a few centimeters and then dribbles down your supple [pc.skinFurScales]. When [lane.heShe] first tastes it, he pauses, unfamiliar with the taste or the sensation. He reaches up and squeezes one of your tits, and is surprised when some more begins to flow from you. He otherwise pays it no mind, though – he cleans wherever your milk lands, but he doesn’t seek it out.");
 	}
 	if (pc.breastRows.length == 1)
 	{
@@ -2567,7 +2567,7 @@ public function firstTimeLaneMPCFH():void
 		output(" to the side and rubs against his hip rather than his stomach.");
 	}
 
-	output("\n\nHis licking eventually trails upward, across your neck and up to your jaw. He body begins to cover you as he finds his way up, pressing against you possessively, and you moan in appreciation. His tongue begins to lap up your chin and across your [pc.lips], and you open them, knowing what he wants. His kiss is very dominant and almost affectionless: the raw sexuality of the way his tongue presses and pins yours while he bears down on you, forcing you deeper into the mattress, makes you so melt. The way he controls you so effectively makes you shudder in ecstasy.");
+	output("\n\nHis licking eventually trails upward, across your neck and up to your jaw. [lane.HisHer] body begins to cover you as he finds his way up, pressing against you possessively, and you moan in appreciation. His tongue begins to lap up your chin and across your [pc.lips], and you open them, knowing what he wants. His kiss is very dominant and almost affectionless: the raw sexuality of the way his tongue presses and pins yours while he bears down on you, forcing you deeper into the mattress, makes you so melt. The way he controls you so effectively makes you shudder in ecstasy.");
 
 	output("\n\nJust as the tip of his tongue begins caressing your palate, he withdraws, much to your chagrin. Instead, he sits up and onto his knees, towering his body over yours. His tassels are flared wide open, and his pulse is quick and excited, but unfocused; the lights of his piercings and the swirls of his tattoos sink you into him, just as, from the way he adjusts his pelvis and begins aligning his with yours, he will soon be sinking into you.");
 
@@ -2618,7 +2618,7 @@ public function firstTimeLaneMPCFH():void
 		}
 	}
 
-	output("\n\nEventually, his orgasm tapers to nothing inside you. You groan out load, wishing he had just a little bit more to give, to douse the last few embers inside you, although you actually doubt you’ll ever be satisfied. He collapses forward");
+	output("\n\nEventually, his orgasm tapers to nothing inside you. You groan out loud, wishing he had just a little bit more to give, to douse the last few embers inside you, although you actually doubt you’ll ever be satisfied. He collapses forward");
 	if (pc.hasCock()) output(", crushing your softening cock");
 	if (pc.cocks.length > 1) output("s");
 	output(" between you both and flopping into the puddles of [pc.cum] you’ve covered yourself in");
@@ -3132,9 +3132,9 @@ public function lanesAppearance():void
 	{
 		output("You sit across from Lane, on the opposite side of his table. He has a warm, disarming smile on his Daynarian face.");
 
-		output("\n\nHe is just shy of 182cm tall, which, as you understand, is slightly above-average for Daynarians. He is covered in a layer of fine, brown scales, each of them meticulously groomed, going from the top of his head, to the tips of his shoulders, to, presumably, the base of his tail. The front of her body is very light brown skin, undeniably different from the scales going across her back: soft and smooth to the touch. He looks at you with calm, brown eyes – but sometimes, when you’re not looking right at them, he changes their colour, just to mess with your head. He is slouched forward, his elbows on his table, resting his broad jaw on the back of his four-‘fingered’ hands. Each of them is webbed between the joints of his fingers.");
+		output("\n\nHe is just shy of 182cm tall, which, as you understand, is slightly above-average for Daynarians. He is covered in a layer of fine, brown scales, each of them meticulously groomed, going from the top of his head, to the tips of his shoulders, to, presumably, the base of his tail. The front of [lane.hisHer] body is very light brown skin, undeniably different from the scales going across [lane.hisHer] back: soft and smooth to the touch. He looks at you with calm, brown eyes – but sometimes, when you’re not looking right at them, he changes their colour, just to mess with your head. He is slouched forward, his elbows on his table, resting his broad jaw on the back of his four-‘fingered’ hands. Each of them is webbed between the joints of his fingers.");
 
-		output("\n\nHis form is slender and not especially masculine, but his chest is just a little thicker around the ribs; one of the few hints of the gender dimorphism of his species. His arms are a little thick around where the biceps: it looks like Lane works out a little on his off-time. Adorned across his torso is a light, thin, airy shirt, clinging dutifully to his form but is designed to be removed in an instant. The material is practically see-through, although his chest and belly are completely featureless, lacking a belly-button and pecs and even nipples. Though you don’t see him stand too often, you know his pants are woven of the same material: light and breezy. They do not hide the pitch-white underwear covering what the rest of his clothes do not. Although you have to beg the question why he might want pants that are designed to be removed in a hurry....");
+		output("\n\nHis form is slender and not especially masculine, but his chest is just a little thicker around the ribs; one of the few hints of the gender dimorphism of his species. His arms are a little thick around the biceps: it looks like Lane works out a little on his off-time. Adorned across his torso is a light, thin, airy shirt, clinging dutifully to his form but is designed to be removed in an instant. The material is practically see-through, although his chest and belly are completely featureless, lacking a belly-button and pecs and even nipples. Though you don’t see him stand too often, you know his pants are woven of the same material: light and breezy. They do not hide the pitch-white underwear covering what the rest of his clothes do not. Although you have to beg the question why he might want pants that are designed to be removed in a hurry....");
 
 		output("\n\nAttaching his shoulders to his neck are a pair of membranes on either side of his head. The Daynarians call them ‘tassels’, if you remember correctly. Lane’s tassels are currently closed and pressed against the skin of his neck, but they can flare open whenever he wants them to. His tassels are adorned with inks of all colours and intensities, painting swirls and patterns on his skin, and clinging to the tassels are all manner of piercings, each glinting in the light of his little hut.");
 
