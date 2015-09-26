@@ -1,5 +1,6 @@
 ﻿import classes.Characters.Bess;
 import classes.Characters.PlayerCharacter;
+import classes.Creature;
 import classes.ItemSlotClass;
 /* TODOS:
 make sure sleep events etc are wired up
@@ -5118,7 +5119,7 @@ public function talkToBessAboutHerJob():void
 		output(
 			RandomInCollection(
 				"working on Spidey. I’m hoping to have him up and running soon!",
-				"adjusting the output of your [pc.shield]. It should be more efficient now!",
+				"adjusting the output of your shield. It should be more efficient now!",
 				"fixing up the ship. There were a few parts that needed replacing.",
 				"fixing up the ship’s water recycling system. It’s been playing up again.",
 				"recalibrating the ship’s engines - they were making that high pitched noise again."
@@ -5996,7 +5997,7 @@ public function bessEvent2():void
 		output("\n\n[bess.name] wanders in and boldly decides to sit down, looking at you for post-facto approval. You nod and [bess.heShe] visibly relaxes back");
 		if (bess.hasWings()) output(" against [bess.hisHer] [bess.wings]");
 		output(", trying to figure out what you are watching.");
-		if (bess.earType != GLOBAL.TYPE_HUMAN) output(" Her [bess.ears] are visibly perked as [bess.heShe] peers at the screen.");
+		if (bess.earType != GLOBAL.TYPE_HUMAN) output(" [bess.HisHer] [bess.ears] are visibly perked as [bess.heShe] peers at the screen.");
 		
 		output("\n\nThe movie turns out to be a fictional story based around an early planet rush. It is an action blockbuster with a bit of romance thrown in, revolving around the heroic explorer saving a native species and his new-found lover from an evil corporation.");
 		
@@ -6245,12 +6246,12 @@ public function bessEvent3OwnPath():void
 
 	output("You tell [bess.name] that [bess.heShe] should decide [bess.hisHer] own path, no matter how hard it is, otherwise [bess.hisHer] choice will be less meaningful.");
 	
-	output("\n\nYou can tell by [bess.name]’s expression that [bess.heShe] was hoping you’d give [bess.hisHer] the answer. [bess.HeShe] pauses for a long time; [bess.heShe] appears as if [bess.heShe]’s musing about what [bess.heShe]’s going to do. Even doing nothing is making a decision to follow [bess.hisHer] old ways.");
+	output("\n\nYou can tell by [bess.name]’s expression that [bess.heShe] was hoping you’d give [bess.himHer] the answer. [bess.HeShe] pauses for a long time; [bess.heShe] appears as if [bess.heShe]’s musing about what [bess.heShe]’s going to do. Even doing nothing is making a decision to follow [bess.hisHer] old ways.");
 	
 	output("\n\nEventually though, [bess.name] does come to a decision. <i>“... I want people to be happy. If I don’t make people happy, administering sexual relief is meaningless. If the original founders of JoyCo didn’t want me to administer joy to the galaxy they wouldn’t have put it in their name or made it one of my directives.”</i>");
 	
 	output("\n\nIt seems [bess.heShe]’s come to a decision. While [bess.heShe]’s still clinging to the idea that it is because [bess.heShe] wants to be true to one of [bess.hisHer] core directives, you’re certain [bess.heShe]’s already begun to move beyond [bess.hisHer] programming.");
-	if (bess.earType != GLOBAL.TYPE_HUMAN) output(" Her [bess.ears] are now perked.");
+	if (bess.earType != GLOBAL.TYPE_HUMAN) output(" [bess.HisHer] [bess.ears] are now perked.");
 	
 	output("\n\n[bess.HeShe] pauses for a moment and then bows to you. <i>“Thank you for taking the time to listen to my problems. I know that you didn’t have to... I um... I really appreciate it.”</i>");
 	
@@ -7328,7 +7329,7 @@ public function bessEvent12():void
 	
 	output("\n\n<i>“Hi there, Boss! I didn’t see you there. Just let me finish up and I’ll be free to chat.”</i> [bess.name] wraps up what [bess.heShe]’s doing and then walks up, giving you a playful salute. <i>“"+ bessCrewRole() +" [bess.name] at your service, Captain!”</i>");
 	
-	output("\n\n<i>“I thought we decided you were going to call me "+ bessPCName() +"; and which one is it, Boss or Captain?”</i> You seem to have acquired a few more titles since you employed [bess.hisHer] as part of your crew.");
+	output("\n\n<i>“I thought we decided you were going to call me "+ bessPCName() +"; and which one is it, Boss or Captain?”</i> You seem to have acquired a few more titles since you employed [bess.himHer] as part of your crew.");
 	
 	output("\n\n[bess.name] seems to muse on that, pressing a finger against [bess.hisHer] chin. <i>“... Hmm, you’re right. How about ‘Skipper’ or ‘Chief’? Those were also on the cards. Oh, I know! How about ‘Captain, my Captain’?”</i> [bess.HisHer] [bess.eyeColor] eyes mischievously glitter - it’s clear [bess.heShe] expects you to shoot that one down.");
 	
@@ -7651,7 +7652,7 @@ public function bessEvent15Merge():void
 {
 	output("\n\n<i>“AHHHHHH! Oh wait, it’s you, "+ bessPCName() +". Don’t scare me like that!”</i> [bess.HeShe] clutches at [bess.hisHer] chest in a surprisingly human fashion. <i>“...You almost caused me to have an emergency shut-down!”</i>");
 	
-	output("\n\nYou ask [bess.himHer] if [bess.heShe] was really going to shut down from shock, and [bess.heShe] smiles, wiggling a finger.”</i>...Of course not, it’s just a hyperbole. Like that time that you said you almost had a heart attack when I jumped out and surveyed you - I figured it was the right response to express my shock!”</i>");
+	output("\n\nYou ask [bess.himHer] if [bess.heShe] was really going to shut down from shock, and [bess.heShe] smiles, wiggling a finger. <i>“...Of course not, it’s just a hyperbole. Like that time that you said you almost had a heart attack when I jumped out and surveyed you - I figured it was the right response to express my shock!”</i>");
 	
 	output("\n\nOnce [bess.heShe]’s composed [bess.himHer]self, [bess.heShe] shows you the book [bess.heShe] was reading, even though you’ve already seen it. <i>“Have you read this book, "+ bessPCName() +"? It’s really good. It’s much longer than most books I’ve read!”</i>");
 
@@ -8954,7 +8955,7 @@ public function bessEvent24():void
 
 	output("\n\n<i>“However, just like the fruit, I would like our date to be sweet. The high potassium content is, of course, completely optional.”</i>");
 
-	output("\n\n<b>You can now go on dates with Bess by going to [bess.hisHer] Discussion Menu and selecting ‘Date’.</b>");
+	output("\n\n<b>You can now go on dates with [bess.name] by going to [bess.hisHer] Discussion Menu and selecting ‘Date’.</b>");
 
 	flags["BESS_EVENT_24"] = GetGameTimestamp();
 	processTime(55+rand(10));
@@ -9003,8 +9004,8 @@ public function bessEvent25():void
 
 	//[NotImp] [Matters] [ILoveIt] [Silence]
 	clearMenu();
-	addButton(0, "NotImp.", bessEvent25NotImportant, undefined, "Not Important", "You tell [bess.name] that skin color does matter.");
-	addButton(1, "Matters", bessEvent25Matters, undefined, "It Matters", "You tell [bess.name] that skin color doesn't matter.");
+	addButton(0, "NotImp.", bessEvent25NotImportant, undefined, "Not Important", "You tell [bess.name] that skin color doesn't matter.");
+	addButton(1, "Matters", bessEvent25Matters, undefined, "It Matters", "You tell [bess.name] that skin color does matter.");
 	addButton(2, "LoveIt", bessEvent25LoveIt, undefined, "I Love It", "You tell [bess.name] that you love the color of [bess.hisHer] skin.");
 	addButton(3, "Silence", bessEvent25Silence, undefined, "Remain Silent", "You remain silent. You're not really sure what to say...");
 }

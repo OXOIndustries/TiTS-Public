@@ -101,7 +101,7 @@ public function tavrosHangarStuff():Boolean
 	}
 	if (bessAtTavros())
 	{
-		output("\n\n[bess.name] is here, waiting around and generally staying out of the way as best she can.");
+		output("\n\n[bess.name] is here, waiting around and generally staying out of the way as best [bess.heShe] can.");
 		addButton(6, bess.short, approachBessAtTavros);
 	}
 	return false;
