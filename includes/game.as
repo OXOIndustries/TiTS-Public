@@ -3857,10 +3857,11 @@ public function displayEncounterLog(showID:String = "All"):void
 				{
 					if(flags["KNOW_SHELLYS_NAME"] != undefined) output2("\n<b>* Shelly:</b>");
 					else output2("\n<b>* Bunny Woman:</b>");
-					if(flags["TALKED_TO_SHELLY"] != undefined) output2(" Talked to");
-					else output2(" Approached");
+					if(flags["TALKED_TO_SHELLY"] != undefined) output2(" Met her");
+					else output2(" Seen her");
 					if(flags["ASSISTED_SHELLY_WITH_LAYING"] != undefined) output2(", Assisted her egg laying");
-					if(flags["CAME_INSIDE_SHELLY"] != undefined) output2(", Came inside her during sex");
+					if(flags["CAME_INSIDE_SHELLY"] != undefined) output2(", Came inside her");
+					if(flags["KNOWS_ABOUT_SHELLY_CUM_REACTION"] != undefined) output2(", Semen makes her eggs multiply!");
 				}
 				variousCount++;
 			}
