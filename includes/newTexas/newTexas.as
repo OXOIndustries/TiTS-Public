@@ -1240,9 +1240,10 @@ public function specialOrdersForTreatedGals():void
 	//pc.thickness += (1);
 	pc.modThickness(1);
 	IncrementFlag("HERMAN_SPECIAL_ORDER");
-	pc.loadInMouth();
-	pc.loadInMouth();
-	pc.loadInMouth();
+	var ppHerman:PregnancyPlaceholder = new PregnancyPlaceholder();
+	pc.loadInMouth(ppHerman);
+	pc.loadInMouth(ppHerman);
+	pc.loadInMouth(ppHerman);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
