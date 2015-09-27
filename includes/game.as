@@ -2244,7 +2244,9 @@ public function statisticsScreen(showID:String = "All"):void
 		}
 		if(pc.hasTailCock() || pc.hasTailCunt())
 		{
-			output2("\n<b>* Tail, Genital Type: </b>" + StringUtil.toTitleCase(pc.tailGenitalColor) + ", " + GLOBAL.TYPE_NAMES[pc.tailGenitalArg]);
+			output2("\n<b>* Tail, Genital Type: </b>");
+			if(pc.tailGenitalColor != "") output2(StringUtil.toTitleCase(pc.tailGenitalColor) + ", ");
+			output2(GLOBAL.TYPE_NAMES[pc.tailGenitalArg]);
 			if(pc.hasTailCock()) output2(", " + GLOBAL.TAIL_GENTIAL_TYPE_NAMES[1]);
 			if(pc.hasTailCunt()) output2(", " + GLOBAL.TAIL_GENTIAL_TYPE_NAMES[2]);
 			if(pc.hasTailCock()) output2("\n<b>* Tail, Genital Volume: </b>" + prettifyVolume(pc.tailCockVolume()));
