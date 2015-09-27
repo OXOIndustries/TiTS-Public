@@ -3197,6 +3197,7 @@ package classes {
 					adjectives = ["deer", "pointed", "oval-shaped", "pointy", "softly furred"];
 					break;
 			}
+			if (earLength >= 1 && earType == GLOBAL.TYPE_SYLVAN) adjectives.push(num2Text(Math.round(earLength)) + "-inch long");
 			//Pick an adjective about 75% of the time
 			if (rand(4) < 3 && adjectives.length > 0) description = adjectives[rand(adjectives.length)] + " ";
 			//Pick a noun.
