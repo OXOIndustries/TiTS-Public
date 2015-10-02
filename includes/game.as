@@ -3143,7 +3143,7 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["DEEP_CAVES_TAXI_UNLOCKED"] != undefined) output2(", Deep Caves");
 			}
 			// Taivra's Palace (Quest)
-			if(flags["FOUGHT_PRAETORIANS"] != undefined || flags["PLAT190 USED AS NYREA BRIBE"] != undefined || flags["MET_TAIVRA"] != undefined)
+			if(flags["FOUGHT_PRAETORIANS"] != undefined || flags["PLAT190 USED AS NYREA BRIBE"] != undefined || metTaivra())
 			{
 				output2("\n<b>* Royal Nyrean Palace:</b>");
 				if(nyreaDungeonFinished())
@@ -3174,7 +3174,7 @@ public function displayQuestLog(showID:String = "All"):void
 						output2(" Offered alliance");
 					}
 				}
-				if(flags["MET_TAIVRA"] != undefined)
+				if(metTaivra())
 				{
 					// Rival
 					output2("\n<b>* Royal Nyrean Palace, [rival.name]:</b> Seen");
@@ -3185,7 +3185,6 @@ public function displayQuestLog(showID:String = "All"):void
 					// Dane
 					output2("\n<b>* Royal Nyrean Palace, Dane:</b> Seen");
 					if(flags["FREED_DANE_FROM_TAIVRA"] != undefined) output2(", Freed him from Taivra");
-					if(flags["QUEENSGUARD_STAB_TIME"] != undefined) output2(", Broke free");
 					if(flags["QUEENSGUARD_STAB_TIME"] != undefined || flags["KILLED_TAIVRA"] != undefined) output2(", Escaped with [rival.name]");
 				}
 			}
@@ -5258,12 +5257,12 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Taivra's Palace (Encounters)
-			if(flags["FOUGHT_PRAETORIANS"] != undefined || flags["PLAT190 USED AS NYREA BRIBE"] != undefined || flags["CRYSTAL_GOO_GLORYHOLED"] != undefined || flags["CRYSTAL_GOO_DEFEAT"] != undefined || flags["LOOTED_TAIVRAS_BEDROOM"] != undefined || flags["PRINCESS_DEFEATED"] != undefined || flags["TOOK_PRINCESS_BUTTGINITY"] != undefined || flags["MET_TAIVRA"] != undefined)
+			if(flags["FOUGHT_PRAETORIANS"] != undefined || flags["PLAT190 USED AS NYREA BRIBE"] != undefined || flags["CRYSTAL_GOO_GLORYHOLED"] != undefined || flags["CRYSTAL_GOO_DEFEAT"] != undefined || flags["LOOTED_TAIVRAS_BEDROOM"] != undefined || flags["PRINCESS_DEFEATED"] != undefined || flags["TOOK_PRINCESS_BUTTGINITY"] != undefined || metTaivra())
 			{
 				// Custom-Named Palace
 				var palaceName:String = "Royal Nyrean";
 				if(flags["KING_NYREA"] != undefined && pc.hasPerk("Nyrean Royal")) palaceName = pc.mf("King ", "Queen ") + possessive(pc.short);
-				else if(flags["MET_TAIVRA"] != undefined) palaceName = "Queen Taivra’s";
+				else if(metTaivra()) palaceName = "Queen Taivra’s";
 				
 				output2("\n<b><u>" + palaceName + " Palace</u></b>");
 				// Gates
@@ -5307,7 +5306,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(9999 == 0) output2(" and freed harem");
 				}
 				// Taivra
-				if(flags["MET_TAIVRA"] != undefined)
+				if(metTaivra())
 				{
 					output2("\n<b>* Queen Taivra:</b> Met her");
 					if(flags["FUCKED_TAIVRA"] != undefined) output2(", Sexed her");
@@ -5322,7 +5321,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					}
 				}
 				// Queensguard
-				if(flags["MET_TAIVRA"] != undefined)
+				if(metTaivra())
 				{
 					if(flags["MET_CERRES"] == undefined) output2("\n<b>* Queensguard:</b>");
 					else output2("\n<b>* Cerres:</b>");
