@@ -34,7 +34,7 @@ public function showPraetorians(nude:Boolean = false):void
 
 public function metTaivra():Boolean
 {
-	if(flags["BEAT_TAIVRA_TIMESTAMP"] != undefined || flags["KING_NYREA"] != undefined) return true;
+	if(flags["BEAT_TAIVRA_TIMESTAMP"] != undefined || flags["KING_NYREA"] != undefined || flags["MET_TAIVRA"] != undefined) return true;
 	return false;
 }
 
@@ -1360,6 +1360,7 @@ public function queenTaivrasThrone(plat190:Boolean = false):void
 	else output("fought your way through");
 	output(" my guards. I can see now your kind really is nothing but trouble. How you’ve duped the myrmedion into accepting you, I can’t imagine.”</i>");
 	output("\n\n<i>“So,”</i> she says, leaning forward in her seat and smiling at you with purple-painted lips. <i>“I do hope you have something to say for yourself. Before my darling bodyguard puts you in a cage with your cousin, that is.”</i>");
+	flags["MET_TAIVRA"] = 1;
 	processTime(5);
 	//[Fight] [Rivals] [Peace] [Probe]
 	taivraTalk(plat190);
