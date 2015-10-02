@@ -32,6 +32,12 @@ public function showPraetorians(nude:Boolean = false):void
 	else showBust("PRAETORIAN_NUDE","PRAETORIAN_NUDE","PRAETORIAN_NUDE");
 }
 
+public function metTaivra():Boolean
+{
+	if(flags["BEAT_TAIVRA_TIMESTAMP"] != undefined || flags["KING_NYREA"] != undefined) return true;
+	return false;
+}
+
 public function nyreaDungeonFinished():Boolean
 {
 	//Are you king? No.
@@ -490,7 +496,7 @@ public function palaceThoroughfareBonus():Boolean
 {
 	author("Savin");
 	output("A long tunnel runs east to west, T-boning north back towards the gates. A painted mural decorates the southern wall, showing ");
-	if(flags["MET_TAIVRA"] != undefined) output("Queen Taivra");
+	if(metTaivra()) output("Queen Taivra");
 	else output("an especially buxom, powerful-looking huntress");
 	output(" wielding a spear and driving back a horde of horrible worm-like creatures in a darkened cavern. Several naked, afraid male nyrea cling to her plated legs, cowering behind the amazonian warrior woman.");
 	return false;
