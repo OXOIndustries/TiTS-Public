@@ -467,6 +467,7 @@
 					tfSize++;
 					target.cocks[i].cLengthRaw += 6;
 					if (target.cocks[i].cLengthRaw > 36) target.cocks[i].cLengthRaw = 36;
+					if (target.hasPerk("Hung")) target.cocks[i].cLengthRaw += Math.round(target.cocks[i].cLengthRaw / 3);
 				}
 			}
 
