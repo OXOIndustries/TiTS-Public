@@ -393,7 +393,7 @@
 					kGAMECLASS.output(", you feel a sudden shifting. [pc.oneCock] is half hard and tingling all over, but it won't come out. The feeling is pleasurable but at the same time disconcerting, like the interior of your sheath is fellating you while your length reshapes to accommodate it better. You lower yourself down to the ground before the exotic pleasure strips the strength from your [pc.legOrLegs], just in time to feel your [pc.cock " + x+ "] start spasming in ecstasy, dragging a moan from your throat as it suddenly rams its way up and out of your slit.");
 					if(target.cumQ() < 5) kGAMECLASS.output("\n\nDribbles of [pc.cum] leak from your twitching length, the only seed your body is able to eject in your spasms of pleasure.");
 					else kGAMECLASS.output("\n\nArcs of [pc.cum] fly from you twitching length out in front of you, launched in thick, wet volleys.");
-					kGAMECLASS.output(" Your [pc.hips] wildly hump the air against an invisible lover as the abrupt bliss works its way through you. Hanging out of your [pc.lips], you [pc.tongue] drools down your chin in satisfaction. The surprise climax ends, leaving you panting and regarding the source of it all.");
+					kGAMECLASS.output(" Your [pc.hips] wildly hump the air against an invisible lover as the abrupt bliss works its way through you. Hanging out of your [pc.lips], your [pc.tongue] drools down your chin in satisfaction. The surprise climax ends, leaving you panting and regarding the source of it all.");
 					kGAMECLASS.output("\n\n<b>In place of your [pc.cock " + x + "], you have a purple, snake-like length, somewhat bulbous up to its tapered tip.</b>");
 					target.orgasm();
 					target.shiftCock(x,GLOBAL.TYPE_NAGA);
