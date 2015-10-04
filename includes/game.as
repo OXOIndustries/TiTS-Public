@@ -2720,9 +2720,10 @@ public function statisticsScreen(showID:String = "All"):void
 		if(!chars["ANNO"].analVirgin) totalVirginitiesTaken++;
 		if(flags["TOOK_DELILAHS_BUTTGINITY"] != undefined) totalVirginitiesTaken++;
 		if(flags["TOOK_PRINCESS_BUTTGINITY"] != undefined) totalVirginitiesTaken++;
-		if(totalVirginitiesTaken > 0)
+		if(flags["CREWMEMBER_SLEEP_WITH"] != undefined || totalVirginitiesTaken > 0)
 		{
 			output2("\n<b><u>Sexploration</u></b>");
+			if(flags["CREWMEMBER_SLEEP_WITH"] != undefined) output2("\n<b>* Sleeping With: </b>" + StringUtil.toTitleCase(flags["CREWMEMBER_SLEEP_WITH"]));
 			if(totalVirginitiesTaken > 0) output2("\n<b>* Virginities Claimed: </b>" + totalVirginitiesTaken);
 		}
 		
@@ -4695,7 +4696,7 @@ public function displayEncounterLog(showID:String = "All"):void
 						if(flags["BESS_CUMDUMP"] != undefined) output2(", Cumdump");
 						if(bessIsFollower())
 						{
-							if(flags["BESS_CREW_ROLE"] != undefined) output2(", " + StringUtil.toTitleCase(flags["BESS_CREW_ROLE"]));
+							if(flags["BESS_CREW_ROLE"] != undefined) output2(", " + StringUtil.toTitleCase(bessCrewRole()));
 							else output2(", Own");
 							if(bessIsCrew()) output2(" (Onboard Ship)");
 							else if(flags["BESS_LOCATION"] == BESS_AT_TAVROS) output2(" (At Tavros Station)");
@@ -4733,7 +4734,12 @@ public function displayEncounterLog(showID:String = "All"):void
 					}
 					else if(flags["BESS_JUST_A_FRIEND"] == 1) output2(" Friend");
 					else output2(" Normal");
-					if(flags["BESS_EVENT_7_APOLOGY_NEEDED"] != undefined) output2(", Needs apology");
+					if(flags["BESS_JUST_A_SEXBOT"] == undefined) 
+					{
+						if(flags["BESS_EVENT_3_CHOICE"] == BESS_E3_MORE) output2(", Sex is optional");
+						if(flags["BESS_EVENT_3_CHOICE"] == BESS_E3_PATH) output2(", Fully autonomous");
+						if(flags["BESS_EVENT_7_APOLOGY_NEEDED"] != undefined) output2(", Needs apology");
+					}
 					if(flags["BESS_PC_NAME"] != undefined) output2("\n<b>* [bess.name], Relationship, [bess.HeShe] Calls You: </b>" + StringUtil.toTitleCase(flags["BESS_PC_NAME"]));
 					if(flags["BESS_DATES"] != undefined && flags["BESS_DATES"] > 0) output2("\n<b>* [bess.name], Relationship, Times Dated: </b>" + flags["BESS_DATES"]);
 					// Attachments/Customization
