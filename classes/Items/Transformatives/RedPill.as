@@ -261,9 +261,10 @@ package classes.Items.Transformatives
 				{
 					var x:int = pc.smallestCockIndex();
 					//Gain 3-6 inches per use. 
-					if(pc.cocks[x].cLength() < 18 && rand(2) == 0)
+					if(((if(pc.hasPerk("Hung")) && pc.cocks[x].cLength() < 36) || pc.cocks[x].cLength() < 18) && rand(2) == 0)
 					{
 						var newLength:int = pc.cocks[x].cLengthRaw + 3 + rand(4);
+						if(pc.hasPerk("Hung")) newLength += 3 + rand(4);
 						if(pc.cockLengthUnlocked(x, newLength))
 						{
 							output("\n\nYou feel a tightness swelling in your [pc.cock " + x + "], making your junk feel bloated and swollen. You reach down to grab your prick, and find that it feels <i>much</i> bigger than before. Stiffening under your ministrations, your dick stretches out to new lengths - a hefty ");
