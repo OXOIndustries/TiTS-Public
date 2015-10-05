@@ -291,6 +291,7 @@ public function bessGirlCumFlavor():String
 		case GLOBAL.FLUID_TYPE_CHOCOLATE_MILK: return "chocolate";
 		case GLOBAL.FLUID_TYPE_VANILLA: return "vanilla";
 		case GLOBAL.FLUID_TYPE_STRAWBERRY_MILK: return "strawberry";
+		case GLOBAL.FLUID_TYPE_HONEY: return "honey";
 		default: return "normal";
 	}
 }
@@ -842,7 +843,7 @@ public function waitAtTavrosBess():void
 	clearOutput();
 	output("You decide you don’t have a place for [bess.himHer] on the ship at the moment and you don’t want to get rid of [bess.himHer]. You do have a space dock at Tavros Station though.");
 	output("\n\nIt is a bit out of your way, but you fly all the way back and drop [bess.himHer] there for the time being. That way, you can pick [bess.himHer] up once you know what you want to do with [bess.himHer].");
-	output("\n\nThe " + bess.mf("Ben-14", "Bess-13") + " unit has been dropped at Tavros Station! You can pick [bess.himHer] up later if you want to have [bess.himHer] join your crew.");
+	output("\n\n<b>The " + bess.mf("Ben-14", "Bess-13") + " unit has been dropped at Tavros Station! You can pick [bess.himHer] up later if you want to have [bess.himHer] join your crew.</b>");
 	//See Tavros Station section for more information.
 	processTime(2040);
 	currentLocation = shipLocation;
@@ -1228,7 +1229,7 @@ public function bessFollowerMenu():void
 
 	if (flags["BESS_EVENT_23"] != undefined)
 	{
-		if (flags["CREWMEMEBER_SLEEP_WITH"] == "BESS")
+		if (flags["CREWMEMBER_SLEEP_WITH"] == "BESS")
 		{
 			addButton(6, "NoSleep", bessClearSleep, undefined, "Don't Sleep With", "Tell [bess.name] you'd prefer to not share in [bess.hisHer] company whilst sleeping.");
 		}
@@ -1245,12 +1246,20 @@ public function bessFollowerMenu():void
 
 public function bessClearSleep():void
 {
+	clearOutput();
+	bessHeader();
+	output("You tell [bess.name] that you want more room in your bed to sleep in. [bess.HeShe] nods and moves [bess.hisHer] things out of the way to give you the space you requested.");
+	output("\n\n<b>You are no longer sleeping with anyone.</b>");
 	flags["CREWMEMBER_SLEEP_WITH"] = undefined;
 	bessFollowerMenu();
 }
 
 public function bessSleepWith():void
 {
+	clearOutput();
+	bessHeader();
+	output("You tell [bess.name] that you want [bess.himHer] to sleep with you. [bess.HeShe] nods and moves some of [bess.hisHer] things into your sleeping quarters, making sure not to clutter the place up too much.");
+	output("\n\n<b>You are now sleeping with [bess.name]!</b>");
 	flags["CREWMEMBER_SLEEP_WITH"] = "BESS";
 	bessFollowerMenu();
 }
@@ -2537,17 +2546,17 @@ public function changeBessToneThickness(newValue:int, asTone:Boolean):void
 	if (asTone)
 	{
 		if (newValue == 100) output(" is completely ripped");
-		if (newValue == 70) output(" has a nice set of muscles");
-		if (newValue == 50) output(" is a nice mix of soft curves and toned muscle");
-		if (newValue == 30) output(" is nice and plushy, without being overly so");
+		else if (newValue == 70) output(" has a nice set of muscles");
+		else if (newValue == 50) output(" is a nice mix of soft curves and toned muscle");
+		else if (newValue == 30) output(" is nice and plushy, without being overly so");
 		else output(" is soft and fleshy");
 	}
 	else
 	{
 		if (newValue == 100) output(" is incredibly broad");
-		if (newValue == 70) output(" is thicker than average");
-		if (newValue == 50) output(" is of average size");
-		if (newValue == 30) output(" is thinner than average");
+		else if (newValue == 70) output(" is thicker than average");
+		else if (newValue == 50) output(" is of average size");
+		else if (newValue == 30) output(" is thinner than average");
 		else output(" is incredibly thin");
 	}
 	output(".");
@@ -2943,12 +2952,14 @@ public function setBessCockType(newType:int):void
 	}
 	else
 	{
+		// None
 		if (newType == -1)
 		{
 			if (bess.hasCock()) bess.cocks = [];
 			bess.balls = 0;
 			bess.ballSizeRaw = 0;
 		}
+		// Normal and Normal+Balls
 		else
 		{
 			if (!bess.hasCock()) bess.cocks.push(new CockClass());
@@ -2960,13 +2971,15 @@ public function setBessCockType(newType:int):void
 			bess.balls = 2;
 			bess.ballSizeRaw = 4;
 		}
-
+		
+		// With balls
 		if (newType == -2)
 		{
 			bess.cocks[0].cType = GLOBAL.TYPE_HUMAN;
-			bess.balls = 0;
-			bess.ballSizeRaw = 0;
+			//bess.balls = 0;
+			//bess.ballSizeRaw = 0;
 		}
+		// Without balls
 		else if (newType == GLOBAL.TYPE_HUMAN)
 		{
 			bess.cocks[0].cType = GLOBAL.TYPE_HUMAN;
@@ -4269,7 +4282,7 @@ public function bessSpendTime11():void
 	clearOutput();
 	bessHeader();
 
-	output("You decide to chill a bit with [bess.name]. You throw on a your favorite movie and watch it while having a drink with her.");
+	output("You decide to chill a bit with [bess.name]. You throw on your favorite movie and watch it while having a drink with [bess.himHer].");
 
 	bessAffectionGain(BESS_AFFECTION_SPENDTIME);
 	processTime(100+rand(20));
@@ -4283,7 +4296,7 @@ public function bessSpendTime12():void
 	clearOutput();
 	bessHeader();
 
-	output("You decide to chill a bit with [bess.name].  You sit back and relax listening to some music with her, drinking some of your favorite tipple all the while.");
+	output("You decide to chill a bit with [bess.name].  You sit back and relax listening to some music with [bess.himHer], drinking some of your favorite tipple all the while.");
 
 	bessAffectionGain(BESS_AFFECTION_SPENDTIME);
 	processTime(30+rand(15));
@@ -5793,7 +5806,7 @@ public function bessEvent0():void
 
 	output("You find [bess.name] stretching [bess.hisHer] arms out from [bess.hisHer] body. [bess.HeShe] seems to be doing some sort of aerobic routine. But, why would a synthetic even need to do exercise? ");
 	
-	output("\n\nQuestioning [bess.hisHer] on this, [bess.heShe] grins and stretches [bess.himHer]self out. You can see [bess.hisHer] [bess.chest]");
+	output("\n\nQuestioning [bess.himHer] on this, [bess.heShe] grins and stretches [bess.himHer]self out. You can see [bess.hisHer] [bess.chest]");
 	if (bess.isChestGarbed()) output(" straining against [bess.hisHer] [bess.upperGarments].");
 	else output(" as [bess.heShe] deliberately shows "+ (bess.biggestTitSize() > 0 ? "them" : "it") + " off for your viewing pleasure.");
 	
@@ -6409,7 +6422,7 @@ public function bessEvent4Bigger():void
 	{
 		output("\n\n<i>“Kid, sometimes in life you’ve got to think outside the box. You’re still in your safe place doing dirty laundry. If you think all the problems in the galaxy can be solved by a fresh pair of underwear, you’ve got another thing coming,”</i> you break the bad news to [bess.himHer].");
 		
-		output("\n\n[bess.name] seems genuinely surprised to hear that particular piece of news, stumbling over [bess.hisHer] words in an attempt to explain [bess.hisHer] reasoning.”</i>... But... I’m not programmed to do anything else. What should I do? I just want to make people happy...”</i>");
+		output("\n\n[bess.name] seems genuinely surprised to hear that particular piece of news, stumbling over [bess.hisHer] words in an attempt to explain [bess.hisHer] reasoning. <i>“... But... I’m not programmed to do anything else. What should I do? I just want to make people happy...”</i>");
 		
 		output("\n\n<i>“My problems are a lot bigger than if my bed sheets are clean, same goes for the problems of everyone else. If you really want to find the answers you’re looking for, you need to think outside the rules, outside your programming,”</i> you casually explain to [bess.himHer].");
 		
@@ -6482,7 +6495,7 @@ public function bessEvent5():void
 	
 	output("\n\nOut of every answer [bess.heShe] could have come to you with, that was not the one you were expecting. [bess.HeShe] takes your stunned silence as consent and whips out a small bunch of cards, coughing almost ritualistically.");
 	
-	output("\n\n<i>“Okay. Well, I’ve just flown in from Tavros - boy are my arms tired! Anybody here from Tavros? Great! Hey, what about those JoyCo V-ko Units, huh? Anyone seen one of those? Anyone? What’s the difference between a V-ko Unit and a "+ bess.mf("Bess-13", "Ben-14") +" Unit? ... </i>Funding and quality<i>! Am I right, folks?”</i>");
+	output("\n\n<i>“Okay. Well, I’ve just flown in from Tavros - boy are my arms tired! Anybody here from Tavros? Great! Hey, what about those JoyCo V-ko Units, huh? Anyone seen one of those? Anyone? What’s the difference between a V-ko Unit and a "+ bess.mf("Ben-14", "Bess-13") +" Unit? ... </i>Funding and quality<i>! Am I right, folks?”</i>");
 	
 	output("\n\nYup. This is what happens when you encourage an AI to go outside of their programming. They start addressing an imaginary audience in a starship corridor, that’s what.");
 	
@@ -6952,7 +6965,7 @@ public function bessEvent9():void
 
 	if (pc.intelligence() >= 25 && pc.IQ() >= 75 || flags["PC_UPBRINGING"] == GLOBAL.UPBRINGING_BOOKWORM)
 	{
-		output("\n\nIntimately familiar with the works [bess.heShe] is reading, you have a long discussion with [bess.hisHer] about The Time Machine and several other similar works. [bess.name] is incredibly impressed by your knowledge and listens with rapt attention, absorbing every word.");
+		output("\n\nIntimately familiar with the works [bess.heShe] is reading, you have a long discussion with [bess.himHer] about The Time Machine and several other similar works. [bess.name] is incredibly impressed by your knowledge and listens with rapt attention, absorbing every word.");
 		
 		output("\n\n<i>“Wow, you’re so smart, "+ bessPCName() +"! Are you sure you’re not secretly an AI?”</i> [bess.heShe] queries, a reverent look on [bess.hisHer] face.");
 	}
@@ -7842,7 +7855,7 @@ public function bessEvent15FollowUp(response:String):void
 		if (bess.hairLength > 0) output(" [bess.hairColor] haired, ");
 		output(bess.mf("handsomely", "beautifully") +" dense synthetic, as you grab [bess.hisHer] hand in your own. You’ve felt something burning inside you for a long time for [bess.name] - forbidden feelings that the galactic society would frown upon - but you’ve never had a time to tell [bess.himHer] that felt quite right.");
 		
-		output("\n\nYou’re sure now is the time to tell [bess.hisHer] how you truly feel. Taking a deep breath, you take the plunge. <i>“... [bess.name], the feelings that I have for you are greater than friendship. I...”</i> You’re cut off as you’re tackle-hugged by an ecstatic android, barely having time to register as [bess.hisHer] arms are coiled tightly around you.");
+		output("\n\nYou’re sure now is the time to tell [bess.himHer] how you truly feel. Taking a deep breath, you take the plunge. <i>“... [bess.name], the feelings that I have for you are greater than friendship. I...”</i> You’re cut off as you’re tackle-hugged by an ecstatic android, barely having time to register as [bess.hisHer] arms are coiled tightly around you.");
 		
 		output("\n\n<i>“... Oh my circuits! We’re BEST FRIENDS, aren’t we? Not only are you my first friend, we’re also best buddies too! This is the best day of my entire product life span!”</i> [bess.name] "+ bess.mf("exclaims", "gushes") +". Could it be you were just friend-zoned by a sex-bot!?!");
 		
@@ -8075,7 +8088,7 @@ public function bessEvent18Response(response:String):void
 			
 			output("\n\n[bess.name] is a wonderful vocalist, but that’s not really surprising since [bess.hisHer] voice is naturally melodious. [bess.HeShe] seems to have masterfully synthesized qualities of all the best "+ bess.mf("male", "female") +" vocalists together into [bess.hisHer] own voice, keeping it [bess.hisHers] while improving it tenfold.");
 			
-			output("\n\nMost AI singers sound technically flawless, but lifeless and methodical. In contrast, when the"+ (bess.hairLength > 0 ? " [bess.hairColor] haired" : "") +" synthetic sings, there is creativity, energy, and flair; both in [bess.hisHer] vocal timbre and movements. [bess.HeShe] sings with [bess.hisHer] entire body, letting the music flow through [bess.himHer] and course through [bess.hisHer] artificial skin.");
+			output("\n\nMost AI singers sound technically flawless, but lifeless and methodical. In contrast, when the" + (bess.hairLength > 0 ? " [bess.hairColor] haired" : "") + " synthetic sings, there is creativity, energy, and flair; both in [bess.hisHer] vocal timbre and movements. [bess.HeShe] sings with [bess.hisHer] entire body, letting the music flow through [bess.himHer] and course through [bess.hisHer] artificial skin.");
 
 			if (flags["BESS_PC_KAREOKE_SKILL"] == 0)
 			{
@@ -8126,11 +8139,35 @@ public function bessEvent18Response(response:String):void
 		{
 			output("\n\nYou tell [bess.name] you’d rather watch [bess.himHer] sing than participate. [bess.HeShe] smiles coyly at you, touching the head of [bess.hisHer] microphone. <i>“... Oh, then should I sing slowly and call you ‘Mr President’?”</i>");
 
-			output("\n\n{if (pc.intelligence >= 60): You’re pretty sure only you would get that archaic Marilyn Monroe reference./Else: You’re pretty sure it’s a joke, but you have no idea what [bess.heShe]’s referencing.}");
+			output("\n\n You’re pretty sure");
+			if (pc.IQ() >= 60) output(" only you would get that archaic Marilyn Monroe reference.");
+			else output(" it’s a joke, but you have no idea what [bess.heShe]’s referencing.");
 
-			output("\n\n[bess.HeShe] throws in a [bessMusic] song and begins to sing to it, clutching the microphone to [bess.hisHer] chest. You relax back and watch [bess.himHer] go - while you’re not going to get up and sing, it doesn’t mean you can’t enjoy the karaoke machine in other ways. ");
+			output("\n\n[bess.HeShe] throws in ");
+			output(indefiniteArticle(
+				RandomInCollection(
+					"alternative",
+					"anime",
+					"blues",
+					"classical",
+					"country",
+					"dance",
+					"electronic",
+					"folk",
+					"hip-hop",
+					"holiday",
+					"inspirational",
+					"opera",
+					"pop",
+					"rhythm & blues",
+					"rock",
+					"movie theme",
+					"random"
+				)
+			));
+			output(" song and begins to sing to it, clutching the microphone to [bess.hisHer] chest. You relax back and watch [bess.himHer] go - while you’re not going to get up and sing, it doesn’t mean you can’t enjoy the karaoke machine in other ways. ");
 
-			output("\n\n[bess.name] is a wonderful vocalist, but that’s not really surprising since [bess.hisHer] voice is naturally melodious. [bess.HeShe] seems to have masterfully synthesized qualities of all the best "+ bess.mf("male", "female") +" vocalists together into [bess.hisHer] own voice, keeping it [bess.himHers]  while improving it tenfold. Most AI singers sound technically flawless, but lifeless and methodical. In contrast, when the {Not bald: [bess.hairColor] haired} synthetic sings, there is creativity, energy, and flair both in [bess.hisHer] timbre and movements. [bess.HeShe] sings with [bess.hisHer] entire body, letting the music flow through [bess.himHer] and course through [bess.hisHer] artificial skin.");
+			output("\n\n[bess.name] is a wonderful vocalist, but that’s not really surprising since [bess.hisHer] voice is naturally melodious. [bess.HeShe] seems to have masterfully synthesized qualities of all the best "+ bess.mf("male", "female") +" vocalists together into [bess.hisHer] own voice, keeping it [bess.himHers]  while improving it tenfold. Most AI singers sound technically flawless, but lifeless and methodical. In contrast, when the" + (bess.hairLength > 0 ? " [bess.hairColor] haired" : "") + " synthetic sings, there is creativity, energy, and flair both in [bess.hisHer] timbre and movements. [bess.HeShe] sings with [bess.hisHer] entire body, letting the music flow through [bess.himHer] and course through [bess.hisHer] artificial skin.");
 
 			output("\n\nYou can see [bess.hisHer] [bess.eyeColor] eyes flicking to you every now and then, eager to see the reaction on your face to [bess.hisHer] singing. You’re sure that if you weren’t here [bess.heShe]’d sing anyway, but since you are, [bess.heShe]’s singing some of these songs for your benefit. It’s different from when [bess.heShe] was programmed to bring happiness - [bess.heShe]’s doing it as a friend who wants to see you smile.");
 
@@ -8147,7 +8184,28 @@ public function bessEvent18Response(response:String):void
 
 		output("\n\n<i>“...I’m trying out this tiredness thing.”</i> [bess.name] explains to you; it seems the question doesn’t even need to be asked. <i>“After a while, my body induces a forced power conservation mode with vague periphery awareness, making me ‘sleep’ for a set amount of time. Don’t worry, my battery life is incredibly long; it takes weeks to actually run out.”</i>");
 		
-		output("\n\nIt seems [bess.heShe] must still be adjusting to [bess.hisHer] new ‘sleep’ cycle because later [bess.heShe] falls asleep on your shoulder, dozing happily just like anyone else. [bess.HeShe] doesn’t seem at all bothered by the");
+		output("\n\nIt seems [bess.heShe] must still be adjusting to [bess.hisHer] new ‘sleep’ cycle because later [bess.heShe] falls asleep on your shoulder, dozing happily just like anyone else. [bess.HeShe] doesn’t seem at all bothered by the ");
+		output(
+			RandomInCollection(
+				"alternative",
+				"anime",
+				"blues",
+				"classical",
+				"country",
+				"dance",
+				"electronic",
+				"folk",
+				"hip-hop",
+				"holiday",
+				"inspirational",
+				"opera",
+				"pop",
+				"rhythm & blues",
+				"rock",
+				"movie theme",
+				"random"
+			)
+		);
 		output(" music playing.");
 		
 		output("\n\nDo you move and risk waking [bess.himHer] up?");
@@ -8166,7 +8224,7 @@ public function bessEvent18Yes():void
 
 	output("You really have things to do, and you have no idea how long [bess.heShe]’s going to be like this. As you pull away, [bess.name] falls predictably sideways, ‘waking up’ with a sudden jolt. <i>“Zzz-wha?! What’s going on...?”</i>");
 	
-	output("\n\nYou take off and leave [bess.hinHer] to get re-oriented with a small chuckle. [bess.name] rubs [bess.hisHer] sleepy eyes before promptly curling up and going back to sleep.");
+	output("\n\nYou take off and leave [bess.himHer] to get re-oriented with a small chuckle. [bess.name] rubs [bess.hisHer] sleepy eyes before promptly curling up and going back to sleep.");
 
 	flags["BESS_EVENT_18"] = GetGameTimestamp();
 	processTime(180+rand(15));
@@ -8598,7 +8656,7 @@ public function bessEvent21():void
 		output("\n\n[bess.name]’s [bess.hairColor] hair is gently brushing up against you, right now looking wild and untamed. The faint scent of synth-vanilla, satisfyingly mild yet smooth, fills the air.");
 	}
 
-	output("\n\nIt seems like such a shame to wake [bess.hisHer] up, but you DO need to get up sooner or later. Eventually you’re going to need to go to the bathroom, though thankfully you don’t need to go right now. The question is, how to wake [bess.himHer] up?");
+	output("\n\nIt seems like such a shame to wake [bess.himHer] up, but you DO need to get up sooner or later. Eventually you’re going to need to go to the bathroom, though thankfully you don’t need to go right now. The question is, how to wake [bess.himHer] up?");
 
 	//[Kiss] [Nudge] [Talk] [LetSleep]
 	clearMenu();
@@ -8667,7 +8725,7 @@ public function bessEvent21Merge():void
 		output("\n\nYou chuckle a little bit and [bess.heShe] scowls, hitting you with a pillow. [bess.HisHer] cute attempts to chastise you make you grin even more, which leads to even more pillow batting until [bess.heShe] gives up in a huff. <i>“I’m too sore to hit you any longer!”</i> [bess.name] whines. [bess.HeShe] could always turn [bess.hisHer] pain sensors off, but [bess.heShe] is far too stubborn for that.");
 	}
 
-	output("\n\nBefore you both get up and get dressed, [bess.name] looks at you as if [bess.heShe] wants to talk about something. You ask [bess.hisHer] what [bess.heShe] wants to talk about - whatever it is, it seems kind of important.");
+	output("\n\nBefore you both get up and get dressed, [bess.name] looks at you as if [bess.heShe] wants to talk about something. You ask [bess.himHer] what [bess.heShe] wants to talk about - whatever it is, it seems kind of important.");
 	
 	output("\n\n<i>“... Well, um... I’m new to this whole relationship thing... but from what I’ve read, we’re supposed to have ‘a talk’ about what exactly ‘this’ is.”</i> [bess.name] looks at you quite seriously; [bess.heShe]’s sitting on the bed with [bess.hisHer] hands in [bess.hisHer] lap. <i>“My research showed there are a number of relationship definitions, and I was wondering which one we fall under.”</i>");
 	
@@ -8906,7 +8964,7 @@ public function bessEvent22DontSleepWith():void
 	
 	output("\n\nYou sense that you’ve hurt [bess.hisHer] feelings, and this may impact your relationship a little.");
 	
-	output("\n\n<b>You can now select to sleep with Bess via [bess.hisHer] discussion menu!</b>");
+	output("\n\n<b>You can now select to sleep with [bess.name] via [bess.hisHer] discussion menu!</b>");
 
 	flags["BESS_EVENT_22"] = GetGameTimestamp();
 	bessAffection(-5);
@@ -9031,7 +9089,7 @@ public function bessEvent25():void
 
 	output("\n\nYou realise things are getting really bad when you catch [bess.name] looking through a non-JoyCo product guide. [bess.name] is fiercely loyal to the company that built [bess.himHer] - [bess.heShe] gets angry whenever KihaCorp stocks go up in the business news - so the fact [bess.heShe]’s browsing through their AI extension guide is fairly shocking to say the least.");
 	
-	output("\n\nYou call [bess.hisHer] on it and it takes three tries to get your [bessLoverStatus]’s attention, [bess.hisHer] eyes look distant as [bess.heShe] looks at you - it takes a few seconds for them to come into focus. <i>“... Oh, "+ bessPCName() +". I didn’t see you there. What is it...?”</i>");
+	output("\n\nYou call [bess.himHer] on it and it takes three tries to get your [bessLoverStatus]’s attention, [bess.hisHer] eyes look distant as [bess.heShe] looks at you - it takes a few seconds for them to come into focus. <i>“... Oh, "+ bessPCName() +". I didn’t see you there. What is it...?”</i>");
 	
 	output("\n\nYou ask [bess.himHer] what exactly [bess.heShe]’s doing going through a KihaCorp product catalogue, and [bess.heShe] strokes one of the pages, letting out a heavy sigh. <i>“... I was checking to see if they had any skin pigmentation upgrades I would be compatible with... but it doesn’t look like they do.”</i>");
 	
@@ -9039,7 +9097,7 @@ public function bessEvent25():void
 	if (bess.hairLength > 0) output(" [bess.hairColor] haired");
 	output(" android hangs [bess.hisHer] head as you sit down. [bess.HeShe] shows you the catalogue, clearly ashamed of what you found [bess.himHer] doing.  <i>“It’s a terrible joke... a horrible, awful joke. I was built to be completely customizable, every inch of me can be changed due to my FlexMetal skin. The only thing that can’t be changed is the color - the one thing that makes me stand out as a synthetic. What makes me so malleable is also the reason I can’t change myself.”</i>");
 	
-	output("\n\n[bess.name]’s eyes begin to water as [bess.heShe] throws away the catalogue. It smacks against the wall as [bess.heShe] buries [bess.hisHer] face in [bess.hisHer] hands. <i>“... JoyCo doesn’t do any skin upgrades that are compatible with a "+ bess.mf("Bes-14", "Bess-13") +" unit - nobody does. And my AI brain needs a FlexMetal body in order to function, without one, I can’t feel anything... my sensory feedback is tied to it. So it’s not like I can just change to a non-compatible shell casing unless I redesign my entire brain; I’m good, but I’m not that good!”</i>");
+	output("\n\n[bess.name]’s eyes begin to water as [bess.heShe] throws away the catalogue. It smacks against the wall as [bess.heShe] buries [bess.hisHer] face in [bess.hisHer] hands. <i>“... JoyCo doesn’t do any skin upgrades that are compatible with a "+ bess.mf("Ben-14", "Bess-13") +" unit - nobody does. And my AI brain needs a FlexMetal body in order to function, without one, I can’t feel anything... my sensory feedback is tied to it. So it’s not like I can just change to a non-compatible shell casing unless I redesign my entire brain; I’m good, but I’m not that good!”</i>");
 	
 	output("\n\n[bess.HisHer] breathing becomes frantic as you reach out and stroke [bess.hisHer] arm, trying to calm [bess.himHer] down. It seems to help as [bess.heShe] stops short of going into a panic attack. <i>“... If only my skin was a different color, then people wouldn’t even know I was a synthetic. Does it really make so much of a difference that I was built differently from them?”</i>");
 	
@@ -9753,7 +9811,7 @@ public function bessDate5p2(bGown:Boolean):void
 	
 	output("\n\nYou and [bess.name] are completely dressed up for your dinner date. Your [bessLoverStatus], inspired by a holo, is wearing a");
 	if (bGown) output(" beautiful princess-style evening gown. It flares out from [bess.hisHer] hips rather showily - just enough to be spectacular without looking overdone. The dress is midnight blue to match [bess.hisHer] silver skin.");
-	else output(" suave black and white formal suit. [bess.HisHer] silk lapel jacket fits [bess,himHer] form perfectly and [bess.heShe] looks quite dashing in it.");
+	else output(" suave black and white formal suit. [bess.HisHer] silk lapel jacket fits [bess.himHer] form perfectly and [bess.heShe] looks quite dashing in it.");
 	if (bess.hairLength > 0) output(" [bess.HisHer] [bess.hairColor] hair, styled in [bessHairStyle], has been given a chic edge to match [bess.hisHer] outfit.");
 	
 	output("\n\n[bess.HeShe] kisses your cheek as the ship comes down to land in one of the city’s many public landing zones. It seems Ekurana is fairly lax when it comes to visitors and red tape, which probably means it has a thriving black market. A planetary official checks your details when you walk out, but otherwise you’re free to walk right off your ship and into the city proper.");
@@ -9931,7 +9989,7 @@ public function bessDate5p5(opts:Array):void
 	output("\n\n<i>“... I was built to bring joy to people, but... what I saw tonight was just cruelty and scorn. It was so far from anything I’ve ever known that I don’t even... I just don’t have the words.”</i> [bess.name] lets out a dejected sigh. <i>“I never realised organics could get so much joy from... well, from hate. One moment they were disgusted with us, then they were overjoyed to see us suffer.”</i>");
 
 	output("\n\nThe silver skinned synthetic leans back and looks at you with moist eyes. <i>“... I’m sorry, I wanted a perfect date. I dragged us out here and it was so horrible, I should have known better.”</i> You");
-	if (pc.PQ() >= 30) output(" pick her up and carry her as you");
+	if (pc.PQ() >= 30) output(" pick [bess.himHer] up and carry [bess.himHer] as you");
 	else output(" help [bess.himHer] get back on [bess.hisHer] feet and then you");
 	output(" both return to the ship. You pointedly ignore the stares of onlookers on your way out.");
 
@@ -10266,7 +10324,7 @@ public function bessAtTavrosYes():void
 
 	output("<i>“... That’s... that’s all I ever wanted!”</i> [bess.name] begins to tear up; clearly being off the ship has been an incredibly trying experience. [bess.HisHer] brave face crumbles all at once as [bess.heShe] gives you a hug, glad to be back on board again.");
 	
-	output("\n\n<b> Bess has now returned to the ship as a follower! </b>");
+	output("\n\n<b>[bess.name] has now returned to the ship as a follower!</b>");
 
 	flags["BESS_AFFECTION"] = 10;
 	flags["BESS_LOCATION"] = BESS_ON_CREW;
@@ -12226,7 +12284,7 @@ public function bessIntimateGiveDoggy(fromEvent:Boolean = false):void
 	
 	output("\n\n[bess.name]’s lips sensuously travel along your jawline and reach your own. As [bess.heShe] tilts [bess.hisHer] head [bess.heShe] kisses you softly, yet urgently. You can taste the sweetness of [bess.hisHer] mouth as [bess.hisHer] tongue mingles with yours, all the while [bess.hisHer] eyes are gently closed.");
 
-	output("\n\nThe delicious smell of synthetic vanilla, [bess.hisHer] particular scent, fills your senses. You’re utterly wrapped up in [bess.hisHer] in more ways than you can count. There is nothing other than [bess.name] as all else is swept away by the power of [bess.hisHer] sweetly pressing lips.");
+	output("\n\nThe delicious smell of synthetic vanilla, [bess.hisHer] particular scent, fills your senses. You’re utterly wrapped up in [bess.himHer] in more ways than you can count. There is nothing other than [bess.name] as all else is swept away by the power of [bess.hisHer] sweetly pressing lips.");
 
 	// {If this sex scene is being played as part of Scene 20 AND Bess has a vagina:
 	if (fromEvent && bess.hasVagina())
@@ -12346,7 +12404,7 @@ public function bessIntimateGetDoggy(fromEvent:Boolean = false):void
 
 	output("\n\n[bess.name]’s lips sensuously travel along your jawline and reach your own. As [bess.heShe] tilts [bess.hisHer] head [bess.heShe] kisses you softly, yet urgently. You can taste the sweetness of [bess.hisHer] mouth as [bess.hisHer] tongue mingles with yours, all the while [bess.hisHer] eyes are gently closed.");
 
-	output("\n\nThe delicious smell of synthetic vanilla, [bess.hisHer] particular scent, fills your senses. You’re utterly wrapped up in [bess.hisHer] in more ways than you can count. There is nothing other than [bess.name] as all else is swept away by the power of [bess.hisHer] sweetly pressing lips.");
+	output("\n\nThe delicious smell of synthetic vanilla, [bess.hisHer] particular scent, fills your senses. You’re utterly wrapped up in [bess.himHer] in more ways than you can count. There is nothing other than [bess.name] as all else is swept away by the power of [bess.hisHer] sweetly pressing lips.");
 
 	output("\n\nYour make-out session naturally grows from soft sensuality to frantic tongue dancing as your lungs near their limit. Finally out of oxygen, you stubbornly pull away from [bess.name] to take short, desperate gasps of the sweet, vanilla-scented air. [bess.name] gazes at you with [bess.hisHer] beautiful [bess.eyeColor] eyes.");
 	if (pc.isBiped()) output(" Not a word needs to be said as [bess.heShe] spreads open your [pc.legs] wide until your nethers are completely exposed.");
@@ -12367,7 +12425,7 @@ public function bessIntimateGetDoggy(fromEvent:Boolean = false):void
 	
 	output("\n\n[bess.HeShe] begins to rock [bess.hisHer] hips; you moan and cling tightly to [bess.hisHer] pulsing phallus. Every single inch of [bess.himHer] is hitting the exact right spot, It all feels so incredibly sensual and intense. Before you know it, you’re cumming already. You tremble and cling to [bess.himHer] as you let out a shuddering moan.");
 
-	output("\n\nEven as you come, your lover does not let up. [bess.name] now sets into a wet grind, probing every inch of your [pc.vagOrAss "+ vagIdx +"] with a practiced hip roll You frantically reciprocate, grinding your rump into [bess.hisHer] hips with a heated fervor until you’re a moaning, shuddering mess. [bess.HisHer] breathing heavy and grinding near-predatory, [bess.name] grabs your [pc.hips] and huskily moans, holding herself deep inside your hungry hole.");
+	output("\n\nEven as you cum, your lover does not let up. [bess.name] now sets into a wet grind, probing every inch of your [pc.vagOrAss "+ vagIdx +"] with a practiced hip roll. You frantically reciprocate, grinding your rump into [bess.hisHer] hips with a heated fervor until you’re a moaning, shuddering mess. [bess.HisHer] breathing heavy and grinding near-predatory, [bess.name] grabs your [pc.hips] and huskily moans, holding [bess.himHer]self deep inside your hungry hole.");
 	if (pc.isBiped() && pc.hasKnees()) output(" Your [pc.legs] instinctively lock in a crisscross position behind [bess.hisHer] and you feel your partner tense up.");
 	
 	output("\n\nFinally [bess.name] can’t hold out much longer as you wildly stroke [bess.hisHer] cock with your inner muscles. Without warning, you feel [bess.hisHer] thick sticky cum shooting inside your");
