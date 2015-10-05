@@ -244,7 +244,10 @@ public function tradeWivEmmy():void
 	shopkeep = chars["EMMY"];
 	if(flags["EMMY_TRADE_OFFERED"] == undefined)
 	{
-		shopkeep.keeperSell = "<i>“You buy equipment too?”</i> you ask, pulling out your things.\n\n<i>“Whoah, whoah whoah whoah! What kind of shop do you think we’re running here, [pc.name]? KihaCorp is one of the leading companies in nearly every field of technological advancement,”</i> ";
+		shopkeep.keeperSell = "<i>“You buy equipment too?”</i> you ask, pulling out your things.\n\n<i>“Whoah, whoah whoah whoah! What kind of shop do you think we’re running here, ";
+		if(flags["MET_EMMY"] != undefined) shopkeep.keeperSell += "[pc.name]";
+		else shopkeep.keeperSell += "stranger";
+		shopkeep.keeperSell += "? KihaCorp is one of the leading companies in nearly every field of technological advancement,”</i> ";
 		if(flags["MET_EMMY"] != undefined) shopkeep.keeperSell += "Emmy";
 		else shopkeep.keeperSell += "The jackal-woman";
 		shopkeep.keeperSell += " growls. <i>“We aren’t exactly a pawn shop, ya know?”</i>\n\nYou";
