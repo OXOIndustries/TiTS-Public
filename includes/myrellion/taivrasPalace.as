@@ -38,6 +38,13 @@ public function metTaivra():Boolean
 	return false;
 }
 
+public function reclaimedProbeMyrellion():Boolean
+{
+	// Used for checking whether or not the probe was reclaimed!
+	if(flags["MYRELLION_PROBE_CASH_GOT"] != undefined) return true;
+	return false;
+}
+
 public function nyreaDungeonFinished():Boolean
 {
 	//Are you king? No.
