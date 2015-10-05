@@ -1474,7 +1474,7 @@ public function processTime(arg:int):void {
 				if(flags["BRIHA_INCUBATION_TIMER"] != undefined) flags["BRIHA_INCUBATION_TIMER"]++;
 				if(flags["BRIHA_LATEST_SPAWN_AGE"] != undefined) flags["BRIHA_LATEST_SPAWN_AGE"]++;
 				if(flags["BRIHA_SECOND_OLDEST_SPAWN_AGE"] != undefined) flags["BRIHA_SECOND_OLDEST_SPAWN_AGE"]++;
-				if(flags["BRIHA_OLDEST_SPAWN_AGE"] != undefined) flags["BRIHA_SECOND_OLDEST_SPAWN_AGE"]++;
+				if(flags["BRIHA_OLDEST_SPAWN_AGE"] != undefined) flags["BRIHA_OLDEST_SPAWN_AGE"]++;
 
 				// Tick up all of the attached mimbranes days since last fed
 				mimbranesIncreaseDaysSinceFed();
@@ -2772,7 +2772,29 @@ public function statisticsScreen(showID:String = "All"):void
 			if(StatTracking.getStat("pregnancy/raskvel sired/day care") > 0)
 				output2("\n<b>* Fathered, Raskvel @ Daycare: </b>" + StatTracking.getStat("pregnancy/raskvel sired/day care"));
 			if(StatTracking.getStat("pregnancy/briha kids") > 0)
-				output2("\n<b>* Fathered, Briha’s Children: </b>" + StatTracking.getStat("pregnancy/briha kids"));
+			{
+				output2("\n<b>* Fathered, Briha’s Children:</b>");
+				var unnamedBrihaKids:Number = StatTracking.getStat("pregnancy/briha kids");
+				if(flags["BRIHA_OLDEST_SPAWN_AGE"] != undefined)
+				{
+					output2(" Aya");
+					unnamedBrihaKids--;
+					if(unnamedBrihaKids > 1) output2(",");
+				}
+				if(flags["BRIHA_SECOND_OLDEST_SPAWN_AGE"] != undefined)
+				{
+					if(unnamedBrihaKids == 1) output2(" and");
+					output2(" Brahn");
+					unnamedBrihaKids--;
+					if(unnamedBrihaKids > 0) output2(",");
+				}
+				if(unnamedBrihaKids < StatTracking.getStat("pregnancy/briha kids"))
+				{
+					output2(" and " + num2Text(unnamedBrihaKids) + " other");
+					if(unnamedBrihaKids != 1) output2("s");
+				}
+				else output2(" " + unnamedBrihaKids);
+			}
 			if(StatTracking.getStat("pregnancy/briha sons") > 0)
 				output2("\n<b>* Fathered, Briha’s Sons: </b>" + StatTracking.getStat("pregnancy/briha sons"));
 			if(StatTracking.getStat("pregnancy/briha daughters") > 0)
