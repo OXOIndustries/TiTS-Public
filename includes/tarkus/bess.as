@@ -10744,7 +10744,7 @@ public function bessGetBlowjob():void
 		}
 		else
 		{
-			output("As you inch closer to climax, your [pc.knot "+ cockIdx +"] begins to swell in [bess.hisHer] mouth. [bess.name] doesn’t move an inch, letting your lump lock in place and force [bess.hisHer] jaw wide open. [bess.HeShe] lets out a deep, throaty moan, a look of delirious pleasure on [bess.hisHer] face as you mate with [bess.hisHer] mouth.");
+			output(" As you inch closer to climax, your [pc.knot "+ cockIdx +"] begins to swell in [bess.hisHer] mouth. [bess.name] doesn’t move an inch, letting your lump lock in place and force [bess.hisHer] jaw wide open. [bess.HeShe] lets out a deep, throaty moan, a look of delirious pleasure on [bess.hisHer] face as you mate with [bess.hisHer] mouth.");
 		}
 	}
 
