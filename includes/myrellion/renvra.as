@@ -1572,10 +1572,10 @@ public function renvraDoubleTrouble():void
 	pc.orgasm();
 	//place ’Next’ here if desired
 	clearMenu();
-	addButton(0,"Next",renvraSuperCumPartII);
+	addButton(0, "Next", renvraSuperCumPartII, x);
 }
 
-public function renvraSuperCumPartII():void
+public function renvraSuperCumPartII(x:int = -1):void
 {
 	clearOutput();
 	showRenvra();
