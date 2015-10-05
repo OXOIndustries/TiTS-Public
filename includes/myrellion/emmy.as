@@ -700,7 +700,7 @@ public function tellEmmyShesTheBelleOfTheBalls():void
 	output("\n\nGrinning, you nod back.");
 	output("\n\n<i>“Oooh, you are just the cutest!”</i> the jackaless cries, throwing her arms around your neck and pulling you into the squishy embrace of her pillowy bosom.");
 	if(pc.biggestTitSize() >= 1) output(" Your own [pc.chest] declare war on their opposite number, pressing your [pc.nipples] against her hardened tips until you very nearly moan in delight.");
-	output(" She slathers you cheek with with an unashamedly enthusiastic lick and roughly gropes at your [pc.butt]");
+	output(" She slathers your cheek with with an unashamedly enthusiastic lick and roughly gropes at your [pc.butt]");
 	if(pc.tailCount > 0) output(", gently stroking the base of your tail with a rogue index finger");
 	else if(pc.buttRating() >= 6) output(", digging her fingers into your cheeks with such gusto that you momentarily worry she’ll slip a finger in between");
 	else output(", squeezing the pert flesh on offer");
@@ -734,7 +734,7 @@ public function tellEmmyShesTheBelleOfTheBalls():void
 
 public function emmyMailGet():void
 {
-	eventBuffer += "\n\n<b>New Email From Emmy Astarte (emmy_astarte@cmail.com)!";
+	eventBuffer += "\n\n<b>New Email From Emmy Astarte (emmy_astarte@cmail.com)!</b>";
 
 	MailManager.unlockEntry("emmy_apology", GetGameTimestamp());
 }
