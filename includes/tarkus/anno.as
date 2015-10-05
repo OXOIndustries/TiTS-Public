@@ -2626,7 +2626,7 @@ public function nameThaGooII():void
 	
 	output("\n\nShe lunges at you! For a moment, you’re afraid for your life (or at least, your sexual integrity)... but thankfully her arms settle around your shoulders, and [goo.name] pulls herself");
 	if (pc.tallness > goo.tallness + 6) output(" up");
-	else if (pc.tallness < goo.tallness - 6) output("down");
+	else if (pc.tallness < goo.tallness - 6) output(" down");
 	output(" into a tight hug, squeezing her massive tits against you. You chuckle nervously and pat the goo on the head, your fingers coming away slightly wet and sticky.");
 	
 	output("\n\nAfter a moment, she peels herself off of you and grins. <i>“So, um, what’s </i>your<i> name?”</i>");
