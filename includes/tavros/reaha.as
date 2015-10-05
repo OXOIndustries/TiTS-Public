@@ -609,8 +609,7 @@ public function talkToBrothelLadyNewOmni():void
 	author("Savin & Zeik");
 	userInterface.showName("BROTHEL\nMISTRESS");
 	userInterface.showBust("BORING_MISTRESS");
-	output("You approach the mistress, clearing your throat to get her attention. With marked boredom, she intones, \"<i>Welcome to Beth's Busty Broads. If you're here for our going out of business sale, you're out of luck. The selection's... pretty limited. And by that I mean we've still got just the one cow-slut left, and she's a handful.</i>\"");
-
+	
 	//time 0600-0959, replace first paragraph of first meeting (or entire intro if repeat)
 	if(hours >= 6 && hours < 10)
 	{
@@ -621,8 +620,14 @@ public function talkToBrothelLadyNewOmni():void
 	//other times, same first paragraph, modified for new girls and Reaha’s possible absence
 	else
 	{
-		output("You approach the mistress, clearing your throat to get her attention. With marked boredom, she intones, <i>“Welcome to Beth's Busty Broads. If you're here for our ‘going out of business’ sale, you're out of luck.");
+		if(flags["TALK_TO_LADY_1ST"] == undefined || rand(2) == 0) output("You approach the mistress, clearing your throat to get her attention. With marked boredom, she intones");
+		else output("You decide to approach the mistress again. Your entrance diverts her attention as she sets her tablet down and turns to greet you. With unremarkable boredom, she drones");
+		output(", <i>“Welcome to Beth's Busty Broads. If you're here for our");
+		if(silly && rand(2) == 0) output(" ‘big ass, blow-out sale-a-thon’");
+		else output(" ‘going out of business’ sale");
+		output(", you're out of luck.");
 		if(flags["REAHA_BOUGHT"] == undefined) output(" The selection's... pretty limited. And by that I mean we've got one slut left for sale, and she's a handful.");
+		else (" The selection of available sluts have dried up.");
 		output(" Otherwise, feel free to enjoy the floor show or visit any of the other girls, who are </i>not<i> for sale, so don’t ask.”</i>");
 	}
 	if(flags["TALK_TO_LADY_1ST"] == undefined)
@@ -647,9 +652,9 @@ public function talkToBrothelLadyNewOmni():void
 		output("\n\nLooking you up and down, she adds, <i>“Hate to see what she'd do to you, given half the chance.\"</i>");
 		//(time 0600-0959)
 		if(hours >= 6 && hours < 10) output(" She shoos you from the office and closes the door.");
-
+		
 		flags["TALK_TO_LADY_1ST"] = 1;
-
+		
 	}
 	brothelMainMenu();
 }
@@ -1030,6 +1035,7 @@ public function RideReahasStraponAtTheBrothel():void
 
 }
 
+/*
 public function talkToBrothelLadyRepeatAgain():void
 {
     clearOutput();
@@ -1045,3 +1051,4 @@ public function talkToBrothelLadyRepeatAgain():void
     clearMenu();
     addButton(14,"Leave",mainGameMenu);
 }
+*/
