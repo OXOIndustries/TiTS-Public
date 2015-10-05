@@ -196,27 +196,41 @@
 			if(rand(5) == 0) 
 			{
 				combatCSnake.tailGenitalArg = GLOBAL.TYPE_HUMAN;
-				combatCSnake.long += "<b>slippery, terran-like cunt</b>";
+				combatCSnake.tailGenitalColor = "pink";
+				combatCSnake.long += "<b>slippery, " + combatCSnake.tailGenitalColor + " terran-like cunt</b>";
 			}
 			else if(rand(4) == 0) 
 			{
 				combatCSnake.tailGenitalArg = GLOBAL.TYPE_EQUINE;
-				combatCSnake.long += "<b>puffy, horse-like gash</b>";
+				if(rand(2) == 0) combatCSnake.tailGenitalColor = "black";
+				else combatCSnake.tailGenitalColor = "pink";
+				combatCSnake.long += "<b>puffy, " + combatCSnake.tailGenitalColor + " horse-like gash</b>";
 			}
 			else if(rand(3) == 0) 
 			{
 				combatCSnake.tailGenitalArg = GLOBAL.TYPE_CANINE;
-				combatCSnake.long += "<b>slippery, dog-like slit</b>";
+				combatCSnake.tailGenitalColor = "pink";
+				combatCSnake.long += "<b>slippery, " + combatCSnake.tailGenitalColor + " dog-like slit</b>";
 			}
 			else if(rand(2) == 0) 
 			{
 				combatCSnake.tailGenitalArg = GLOBAL.TYPE_GOOEY;
-				combatCSnake.long += "<b>slippery slime creature's cunt</b>";
+				if(rand(10) == 0 && pc.skinTone != "") combatCSnake.tailGenitalColor = "semi-transparent " + pc.skinTone;
+				else if(rand(4) == 0) combatCSnake.tailGenitalColor = "semi-transparent red";
+				else if(rand(3) == 0) combatCSnake.tailGenitalColor = "semi-transparent yellow";
+				else if(rand(2) == 0) combatCSnake.tailGenitalColor = "semi-transparent green";
+				else combatCSnake.tailGenitalColor = "semi-transparent pink";
+				combatCSnake.long += "<b>slippery slime creature's " + combatCSnake.tailGenitalColor + " cunt</b>";
 			}
 			else 
 			{
 				combatCSnake.tailGenitalArg = GLOBAL.TYPE_SIREN;
-				combatCSnake.long += "<b>cilia-filled tunnel</b>";
+				if(rand(10) == 0 && pc.skinAccent != "") combatCSnake.tailGenitalColor = pc.skinAccent;
+				else if(rand(4) == 0) combatCSnake.tailGenitalColor = "luminous purple";
+				else if(rand(3) == 0) combatCSnake.tailGenitalColor = "luminous blue";
+				else if(rand(2) == 0) combatCSnake.tailGenitalColor = "luminous pink";
+				else combatCSnake.tailGenitalColor = "blue";
+				combatCSnake.long += "<b>" + combatCSnake.tailGenitalColor + " cilia-filled tunnel</b>";
 			}	
 
 			combatCSnake.long += " is visible at the end of its body. It often shifts to point it towards you so that you can see just how sopping wet the hole is.";
