@@ -8739,6 +8739,11 @@ package classes {
 				else vag += "slimy";
 				descripted++;
 			}
+			//10% of time, mention color.
+			if (this.rand(10) == 0 && tailGenitalColor != "") {
+				if (descripted > 0) vag += ", ";
+				vag += tailGenitalColor;
+			}
 			//50% of time, simple cunt.
 			if (this.rand(2) == 0) {
 				if (descripted > 0) vag += " ";
@@ -10812,6 +10817,8 @@ package classes {
 				descript += statCockAdjective(8, 2);
 				//50% of the time add supplimental cock adjective with the noun.
 				if (this.rand(2) == 0) descript += ", " + cockNoun(tailGenitalArg, false, true);
+				//or 10% of that time, mention color.
+				else if (this.rand(10) == 0 && tailGenitalColor != "") descript += ", " + tailGenitalColor + " " + cockNoun(tailGenitalArg, false, true);
 				//Otherwise normal
 				else descript += " " + cockNoun(tailGenitalArg, false, true);
 			}
