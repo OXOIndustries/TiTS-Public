@@ -1850,7 +1850,8 @@ public function talkToBessAboutHairStyle():void
 	// 9999 -- this would probably be a good idea
 	// If you really need to, you could attach an automatic hair reduction to a hair style change (I.e. if Ankle Length Hair and pick bob, reduce hair length to shoulder length). Your call.
 
-	var options:Array = ["simple part", "spikes", "messy chignon", "tight chignon", "ponytail", "bob", "single braid", "mess of curls", "crown braid", "set of twintails", "side plait", "pigtail buns", "hime cut", "ruffled layers", "front wave", "side part", "backwards slick"];
+	var options:Array = ["spikes", "mess of curls", "front wave", "backwards slick", "ruffled layers"];
+	if(bess.hairLength >= 5) options.push("simple part", "side part", "bob", "hime cut", "messy chignon", "tight chignon", "ponytail", "side plait", "single braid", "crown braid", "pigtail buns", "set of twintails");
 
 	var optSlot:int = -1;
 	for (var i:int = 0; optSlot < options.length - 1; i++)
@@ -1882,7 +1883,7 @@ public function bessSetHairStyle(newStyle:String):void
 	} 
 	else
 	{
-		newStyle = "a " + newStyle;
+		newStyle = indefiniteArticle(newStyle);
 	}
 
 	flags["BESS_HAIRSTYLE"] = newStyle;
