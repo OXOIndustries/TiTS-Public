@@ -578,7 +578,7 @@ public function queenOfTheDeepPCLoss():void
 	output("\n\nPleasure hammers through you in shockwaves, a new quake born every time the queen’s sinuous");
 	if (bMultiTentacle) output(" tendrils move");
 	else output(" tendril moves");
-	output(" inside you, assailing your venom-burned body with mind-breaking sensation. She wrings orgasms from you as easily as she does moans and cries, keeping you suspended in wave after wave of pleasure until your body is crammed as full of her spawn as it can possibly be, your belly bloated with writhing masses of the translucent jellyfish you saw before.");
+	output(" inside you, assailing your venom-burned body with mind-breaking sensation. She wrings orgasms from you as easily as she does your moans and cries, keeping you suspended in wave after wave of pleasure until your body is crammed as full of her spawn as it can possibly be, your belly bloated with writhing masses of the translucent jellyfish you saw before.");
 
 	output("\n\nOnly then does she release you, slowly drawing her tendril");
 	if (bMultiTentacle) output("s");
