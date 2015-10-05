@@ -651,27 +651,40 @@ public function appearance(target:Creature):void {
 			// Cockvine
 			if (target.tailGenitalArg == GLOBAL.TYPE_COCKVINE && !target.hasTailFlag(GLOBAL.FLAG_RIBBED))
 			{
-				output2(" Most of the length of the thing is coated in "+ (target as PlayerCharacter).skinTone +" skin, culminating in a proud purple head that's distinctly cock-shaped in nature.");
+				output2(" Most of the length of the thing is coated in "+ (target as PlayerCharacter).skinTone +" skin, culminating in");
+				if(target.tailGenitalColor != "" && rand(2) == 0) output2(" " + indefiniteArticle(target.tailGenitalColor) + " shaft with");
+				output2(" a proud purple head that's distinctly cock-shaped in nature.");
 			}
 			// Horse
 			else if (target.tailGenitalArg == GLOBAL.TYPE_EQUINE)
 			{
-				output2(" Most of the length of the thing is coated in "+ (target as PlayerCharacter).skinTone +" skin, culminating in a girthy, flared tip, distinctly reminiscent of a horse-cock.");
+				output2(" Most of the length of the thing is coated in "+ (target as PlayerCharacter).skinTone +" skin, culminating in a girthy, flared tip, distinctly reminiscent of");
+				if(target.tailGenitalColor != "" && rand(2) == 0) output2(" " + indefiniteArticle(target.tailGenitalColor));
+				else output2(" a");
+				output2(" horse-cock.");
 			}
 			// Human
 			else if (target.tailGenitalArg == GLOBAL.TYPE_HUMAN)
 			{
-				output2(" Most of the length of the thing is coated in "+ (target as PlayerCharacter).skinTone +" skin, culminating in a fleshy pink head that's distinctly cock-shaped in nature.");
+				output2(" Most of the length of the thing is coated in "+ (target as PlayerCharacter).skinTone +" skin, culminating in a fleshy");
+				if(target.tailGenitalColor != "") output2(" " + target.tailGenitalColor);
+				else output2(" pink");
+				output2(" head that's distinctly cock-shaped in nature.");
 			}
 			// Bulbous
 			else if (target.tailGenitalArg == GLOBAL.TYPE_CANINE)
 			{
-				output2(" Most of the length of the thing is coated in "+ (target as PlayerCharacter).skinTone +" skin, culminating in a thick bulge a few inches below a tapered, dark-red tip.");
+				output2(" Most of the length of the thing is coated in "+ (target as PlayerCharacter).skinTone +" skin, culminating in a thick bulge a few inches below a tapered,");
+				if(target.tailGenitalColor != "") output2(" " + target.tailGenitalColor);
+				else output2(" dark-red");
+				output2(" tip.");
 			}
 			// Ribbed
 			else
 			{
-				output2(" Most of the length of the thing is coated in "+ (target as PlayerCharacter).skinTone +" skin, culminating in a series of noticeable ridges that gradually thin as they appear closer to the tip.");
+				output2(" Most of the length of the thing is coated in "+ (target as PlayerCharacter).skinTone +" skin, culminating in");
+				if(target.tailGenitalColor != "" && rand(2) == 0) output2(" " + indefiniteArticle(target.tailGenitalColor) + " shaft with");
+				output2(" a series of noticeable ridges that gradually thin as they appear closer to the tip.");
 			}
 		}
 		
