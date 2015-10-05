@@ -2728,7 +2728,7 @@ public function statisticsScreen(showID:String = "All"):void
 		if(sleepingPartner != "" || totalVirginitiesTaken > 0)
 		{
 			output2("\n<b><u>Sexploration</u></b>");
-			if(sleepingPartner != "") output2("\n<b>* Sleeping With: </b>" + sleepingPartner));
+			if(sleepingPartner != "") output2("\n<b>* Sleeping With: </b>" + sleepingPartner);
 			if(totalVirginitiesTaken > 0) output2("\n<b>* Virginities Claimed: </b>" + totalVirginitiesTaken);
 		}
 		
