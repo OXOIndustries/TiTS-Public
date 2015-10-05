@@ -890,6 +890,8 @@ public function queenOfTheDeepClimb():void
 		output("\n\nYou leap forward, running straight at the creature, hoping to take her by surprise. She shrieks and jabs one of her huge legs at you, slamming it into the water just inches from you. You bob and weave, evading her strikes until you’re just under her carapaced lower body. Gritting your teeth, you grab hold of one of her legs’ spikey outcroppings and start to haul yourself up, scrambling out of the water and up onto the creature’s back.");
 		
 		output("\n\n<i>“UNHAND ME!”</i> she bellows, thrashing about in an attempt to dislodge you. You scream and dig your fingers into her plated back, finding handholds to grab onto as she tries to shake you off!");
+		
+		pc.removeStatusEffect("Watered Down");
 	}
 	else
 	{
@@ -910,7 +912,7 @@ public function queenOfTheDeepPCVictory():void
 	{
 		output("The creature’s legs give out beneath her, dropping her into the water before you with a husky grunt from its woman-half. She stumbles a bit, clutching at her heavy breasts and letting her tentacles squirm all over her body, digging into the hole between her lower and upper body and wrapping around her torso to tease every inch of over-sensitive flesh.");
 
-		output("\n\n<i>“You refused my pleasure,”</i> she gasps between moans of arousal. <i>“Now you seem intent on inflicting your own.");
+		output("\n\n<i>“You refused my pleasure,”</i> she gasps between moans of arousal. <i>“Now you seem intent on inflicting your own.”</i>");
 	}
 
 	output("\n\n<i>“Tell me what you desire, star-walker,”</i> the creature says, trying to hold herself steady for you. <i>“I am the queen of this place. A queen of pleasures of the flesh, as well. If that is what you desire, you may take it freely. Or perhaps there is something else?”</i>");
