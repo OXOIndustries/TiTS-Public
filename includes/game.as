@@ -2711,6 +2711,11 @@ public function statisticsScreen(showID:String = "All"):void
 		output2("\n<b><u>Travel</u></b>");
 		output2("\n<b>* Time Spent Moving From Room to Room: </b>" + prettifyMinutes(StatTracking.getStat("movement/time travelled")));
 		output2("\n<b>* Time Spent Flying: </b>" + prettifyMinutes(StatTracking.getStat("movement/time flown")));
+		// Sleeping partner
+		var sleepingPartner:String = "";
+		if(flags["CREWMEMBER_SLEEP_WITH"] == undefined) sleepingPartner = "";
+		else if(flags["CREWMEMBER_SLEEP_WITH"] == "BESS") sleepingPartner = "[bess.name]";
+		else sleepingPartner = StringUtil.toTitleCase(flags["CREWMEMBER_SLEEP_WITH"]);
 		// Virgin booties claimed
 		var totalVirginitiesTaken:Number = 0;
 		if(StatTracking.getStat("characters/maiden vanae/cherrys popped") > 0) totalVirginitiesTaken += StatTracking.getStat("characters/maiden vanae/cherrys popped");
@@ -2720,10 +2725,10 @@ public function statisticsScreen(showID:String = "All"):void
 		if(!chars["ANNO"].analVirgin) totalVirginitiesTaken++;
 		if(flags["TOOK_DELILAHS_BUTTGINITY"] != undefined) totalVirginitiesTaken++;
 		if(flags["TOOK_PRINCESS_BUTTGINITY"] != undefined) totalVirginitiesTaken++;
-		if(flags["CREWMEMBER_SLEEP_WITH"] != undefined || totalVirginitiesTaken > 0)
+		if(sleepingPartner != "" || totalVirginitiesTaken > 0)
 		{
 			output2("\n<b><u>Sexploration</u></b>");
-			if(flags["CREWMEMBER_SLEEP_WITH"] != undefined) output2("\n<b>* Sleeping With: </b>" + StringUtil.toTitleCase(flags["CREWMEMBER_SLEEP_WITH"]));
+			if(sleepingPartner != "") output2("\n<b>* Sleeping With: </b>" + sleepingPartner));
 			if(totalVirginitiesTaken > 0) output2("\n<b>* Virginities Claimed: </b>" + totalVirginitiesTaken);
 		}
 		
