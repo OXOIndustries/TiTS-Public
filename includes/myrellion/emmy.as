@@ -27,7 +27,7 @@ public function emmyBonusNotes():Boolean
 	if(flags["EMMY_BANNED"] == 1)
 	{
 		output("\n\nThe shopkeeper shoos you toward the door. She won't even look you in the eye, and one of her fingers is poised above a call button should you make trouble. It'd be best to leave.");
-		return true;
+		return false;
 	}
 	//First time
 	if(flags["SEEN_EMMY"] == undefined)
