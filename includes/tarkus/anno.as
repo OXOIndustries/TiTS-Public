@@ -2538,7 +2538,12 @@ public function deck13ShieldControlFunc():Boolean
 	{
 		if (flags["ANNO_MISSION_OFFER"] == 2) output("\n\nAnno is slumped against one of the bulkheads, catching her breath after the fight with the gray prime.");
 
-		if(flags["DECK13_SHIELDS_ON"] != 1) addButton(0, "Shields", deck13Shields);
+		if(flags["DECK13_SHIELDS_ON"] != 1 && flags["TARKUS_DESTROYED"] != undefined)
+		{
+			output("\n\nOut of all the active computers, the shield control console sits powerless and doesn't appear to be of any use. It must have been internally damaged during the big explosion.");
+			addDisabledButton(0,"Shields", "Shields", "It's no use, the controls are fried.");
+		}
+		else if(flags["DECK13_SHIELDS_ON"] != 1) addButton(0, "Shields", deck13Shields);
 		else addDisabledButton(0,"Shields","Shields","You've already enabled the shields.");
 		addButton(1, "Breach", deck13Breach);
 
