@@ -538,8 +538,8 @@ public function specialRedAntPreggosShitEvent():void
 	if(flags["RED_MYR_BIRTHS"] == undefined)
 	{
 		flags["RED_MYR_BIRTHS"] = 1;
-		flags["BRIHA_LATEST_SPAWN_AGE"] = 0;
-		flags["BRIHA_OLDEST_SPAWN_AGE"] = 0;
+		flags["BRIHA_LATEST_SPAWN_AGE"] = flags["BRIHA_INCUBATION_TIMER"] - 120;
+		flags["BRIHA_OLDEST_SPAWN_AGE"] = flags["BRIHA_INCUBATION_TIMER"] - 120;
 		son = false;
 		output("\n\nBriha lowers the bundle with a warm, motherly smile. You edge forward, feeling your heart thumping madly in your chest.");
 		if(flags["BRIHA_INCUBATION_TIMER"] < 120) output(" The egg is partially see-through, so you can see your own half-myr child floating within - defenseless, unborn, and truly precious. Even in her semi opaque shell, you can see a glimpse of " + flags["BRIHA_SPAWN_1_DEETS"][0] + " hair.");
@@ -565,8 +565,8 @@ public function specialRedAntPreggosShitEvent():void
 	else if(flags["RED_MYR_BIRTHS"] == 1)
 	{
 		flags["RED_MYR_BIRTHS"] = 2;
-		flags["BRIHA_LATEST_SPAWN_AGE"] = 0;
-		flags["BRIHA_SECOND_OLDEST_SPAWN_AGE"] = 0;
+		flags["BRIHA_LATEST_SPAWN_AGE"] = flags["BRIHA_INCUBATION_TIMER"] - 120;
+		flags["BRIHA_SECOND_OLDEST_SPAWN_AGE"] = flags["BRIHA_INCUBATION_TIMER"] - 120;
 		son = true;
 		output("\n\nBriha lowers the bundle with a warm, motherly smile. You edge forward, feeling your heart thumping madly in your chest. ");
 		if(flags["BRIHA_INCUBATION_TIMER"] < 120) output("The egg is partially see-through, so you can see your own half-myr child floating within - defenseless, unborn, and truly precious. Even in his semi opaque shell, you can see a glimpse of " + flags["BRIHA_SPAWN_2_DEETS"][0] + " hair.");
@@ -579,7 +579,7 @@ public function specialRedAntPreggosShitEvent():void
 	else 
 	{
 		flags["RED_MYR_BIRTHS"]++;
-		flags["BRIHA_LATEST_SPAWN_AGE"] = 0;
+		flags["BRIHA_LATEST_SPAWN_AGE"] = flags["BRIHA_INCUBATION_TIMER"] - 120;
 		output("\n\nBriha lowers the bundle with a warm, motherly smile. You edge forward, feeling your heart thumping madly in your chest. ");
 		if(flags["BRIHA_INCUBATION_TIMER"] < 120) 
 		{
