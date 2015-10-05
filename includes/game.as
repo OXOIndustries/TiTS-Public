@@ -4732,7 +4732,7 @@ public function displayEncounterLog(showID:String = "All"):void
 						if(flags["BESS_POLY"] == 1) output2(", Open");
 						if(flags["BESS_POLY"] == 2) output2(", Polyamorous");
 					}
-					else if(flags["BESS_JUST_A_FRIEND"] == 1) output2(" Friend");
+					else if(flags["BESS_JUST_A_FRIEND"] == 1) output2(" Just a friend");
 					else output2(" Normal");
 					if(flags["BESS_JUST_A_SEXBOT"] == undefined) 
 					{
