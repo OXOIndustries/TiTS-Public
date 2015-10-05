@@ -1829,6 +1829,12 @@ public function bessSetHairLength(newLength:int):void
 	else if (newLength == 18) output(" long haired");
 	else output(" really long haired");
 	output(" " + bess.mf("guys", "girls") + " your ‘jam’?”</i> [bess.name] inquires, a twinkle in [bess.hisHer] [bess.eyeColor] eyes.");
+	
+	if (bess.hairLength > 0 && bess.hairLength < 6) flags["BESS_HAIRSTYLE"] = "a backwards slick";
+	else if (bess.hairLength >= 6 && bess.hairLength < 24) flags["BESS_HAIRSTYLE"] = "a messy chignon";
+	else if (bess.hairLength >= 24) flags["BESS_HAIRSTYLE"] = "a simple part";
+	else flags["BESS_HAIRSTYLE"] = "a bald head";
+	
 	if (bess.hairLength > 0) output(" [bess.HeShe] then adjusts it to be in [bessHairStyle].");
 
 	output("\n\n<b>[bess.name]");
