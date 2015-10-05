@@ -11981,7 +11981,7 @@ public function bessBreastFeed(opts:Array = null):void
 
 	if (newRating != -1)
 	{
-		((bess as Bess).breastRows as BreastRowClass).breastRatingRaw = newRating;
+		((bess as Bess).breastRows[0] as BreastRowClass).breastRatingRaw = newRating;
 		
 		output("\n\n<b>[bess.name] now has ");
 		if (newRating > 0) output(bess.breastCup(0, newRating) +" breasts!");
