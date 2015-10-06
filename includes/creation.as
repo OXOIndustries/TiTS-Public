@@ -42,9 +42,26 @@ public function startCharacterCreation(e:Event = null):void
 	clearOutput();
 	if(stage.contains(this.userInterface.textInput)) this.removeInput();
 	setLocation("THE\nPAST","PLANET: TERRA","SYSTEM: SOL");
+	
+	//OLD
+	/*
 	output("Victor Steele is one of the richest men in the galaxy. His fortune was gained through years of adventuring during the Thirteenth Great Planet Rush, almost two hundred years ago. Trillions of credits and a massive corporation grew up around him. To this day, Steele Industrial Technologies and Production, or Steele Tech, is one of the most respected names in its field. Unfortunately, the many mutations Victor underwent during his journeys wreaked havoc on his genome. Anti-agathic treatments have been decreasing in effectiveness as of late, and his doctors tell him that after two full centuries of life, he has a measly two decades left. This news is unwelcome, but he’s lived a rich, full life - fuller than most. With twenty years ahead of him, the suddenly old industrialite is looking toward finding a successor... or creating one.");
 	output("\n\nThat’s the solution. Victor can sire an heir or heiress to carry on his legacy and to ensure that the Steele name is honored throughout all of history. Perhaps he’ll even manage to raise them wisely enough to avoid the pitfalls he ran into as a youth. The next Planet Rush is a scant nineteen years ahead, so the timing is perfect. The United Galactic Confederacy has already sent out hundreds of warp gates, staggered so that they’ll all go online at the same time. These rushes are performed every century or two, expanding the reach of civilization light years into the stars, resulting in a galactic free-for-all. The concordant economic boom will be the perfect opportunity for Victor’s offspring to rise to greatness. They could become richer and more powerful than he ever was, and perhaps a better person as well.");
 	output("\n\nThe real question is, who should the lucky mother be? A lifelong accumulation of lovers has resulted in no shortage of potential mates eager for the opportunity to provide Victor an heir. Should he choose a pure human, like himself, or perhaps a dog-like Ausar, famed for their loyal and friendly dispositions, fluffy tails, and pointed ears? Or would something else be a better choice? Decisions, decisions...");
+	*/
+	
+	//NEW
+	author("Fenoxo & JimThermic");
+	// This part was written in a very messy fashion in the original and came in big chunks. Not the best first impression for readers. I've broken it up and ordered information in a certain way to emphasise Victor is a temporary character. The original text doesn't really portray this and leaves the reader temporarily confused as to what they're reading. It starts with 'Twenty years ago' for emphasis. I've tried to keep as much of the original text as possible, keeping the flavor and feel you intended. Notice that the page ends with 'What species would you like your character to be', emphasizing that you, the player, are now in character selection from the get go rather than guessing this via context. This is repeated through the rest of the intro, as the ending sentences were all inconsistently styled.
+	output("<i>... Twenty Years Ago ...</i>");
+	output("\n\nVictor Steele is one of the richest men in the galaxy. His fortune was gained through years of adventuring during the Thirteenth Great Planet Rush, almost two hundred years ago. His trillion dollar company, Steele Industrial Technologies and Production, or Steele Tech, is one of the most respected names in its field.");
+	output("\n\nUnfortunately, during his adventures, Victor underwent many mutations that wreaked havoc on his genome. After two centuries of life due to longevity treatments, the mining magnate’s doctors have told him he has a measly two decades left.");
+	output("\n\nThe news is unwelcome. Still, he’s lived a rich, full life — fuller than most. With twenty years ahead of him, the suddenly old industrialite looks toward siring a successor; an heir or heiress to carry on his legacy and to ensure that the Steele name is honored throughout all of history.");
+	output("\n\nWith the next Planet Rush a scant nineteen years ahead, the timing is ideal. Just as his offspring reaches adulthood, the United Galactic Confederacy will be expanding its borders, turning on the hundreds of warp gates it has shot out into unexplored space. The rushes — performed every century or so — always result in a galactic free-for-all.");
+	output("\n\nIt’s perfect, Victor thinks. His child could rise to greatness, becoming richer and more powerful than he ever was. And perhaps, with a bit of luck, a better person as well.");
+	output("\n\nThe real question is, who should the mother be? Many lovers spring to mind, both human and alien. After all, he has no shortage of them. Should his offspring be a pure human, like himself, or perhaps something a little more exotic? Decisions, decisions...");
+	output("\n\n<b>What species would you like your character to be?</b>");
+	
 	hidePCStats();
 	this.userInterface.hideMinimap();
 	this.userInterface.setGuiPlayerNameText("");
@@ -89,9 +106,23 @@ public function chooseStartingRace(race:String = "human"):void {
 	pc.removeCocks();
 	pc.removeVaginas();
 	setLocation("NAME AND\nRACE","PLANET: TERRA","SYSTEM: SOL");
+	
+	//OLD
+	/*
 	output("Yes, " + race + " would be the best choice. A smile breaks across Victor’s face as he recalls some very... useful traits that might be beneficial to a soon-to-be galactic explorer.");
 	output("\n\nHe approaches the lady in question, and of course, she agrees. The sex is as mindblowing as anyone could want from a lover who’s about to have her child be the heir to an intergalactic megacorp, and with all the Tamani-brand fertility enhancers they both took, pregnancy is assured. The only thing left to do is for the two lovebirds to go to Victor’s private clinic and make sure that only the best genes take hold in his future heir. He holds hands with his chosen partner, a knowing grin on both their faces as the skycar takes them to their destination. She doesn’t know about his pending mortality. Victor doesn’t want to spoil the mood.");
 	output("\n\nVictor’s doctor sits him down while his chosen wife is taken to the medbay, and he tucks his holo-glasses into his coat pocket as he starts to grill Victor on the attributes he’d like the embryo to have, beginning with the sex. Should his heir be ");
+	*/
+	
+	//NEW
+	author("Fenoxo & JimThermic");
+	// Removed the part where Victor is thinking about death and gloriously happy at the same time, it was a mixed focus. I've just neatened things up and spaced things out.
+	output("Victor approaches the lady in question. Without hesitation, she agrees, quite flattered to be chosen to sire his child and heir. The sex is amazing, and with the use of special Tamani-brand fertility agents, pregnancy is assured.");
+	output("\n\nOnly wanting the best for their future child, the two lovebirds head to Victor’s private clinic, eager to make sure only the best genes take hold in his future heir. On route, the mining magnate holds hands with the mother of his child, a knowing grin on both their faces.");
+	output("\n\nWhen they arrive, Victor’s doctor sits him down, while his chosen wife is taken to the medbay. He ducks his holo-glasses in his pocket, looking at the expectant father with a warm smile.");
+	output("\n\n<i>“So, Victor, what sex did you want the child to be?”</i> the doctor asks, <i>“Given that grin, I bet you and the lucky girl even have a name picked out.”</i>");
+	output("\n\n<b>What name and sex would you like your character to have?</b>");
+	
 	//Set da race!
 	if(race == "human") pc.originalRace = race;
 	else if(race == "kui-tan") pc.originalRace = "half " + race;
@@ -287,6 +318,9 @@ public function setStartingSex(sex:int = 1):void {
 public function chooseHeight():void {
 	clearOutput();
 	setLocation("CHOOSING\nHEIGHT","PLANET: TERRA","SYSTEM: SOL");
+	
+	//OLD
+	/*
 	output("The doctor asks <i>“So, you’re going to have a </i>");
 	if(pc.hasCock()) {
 		if(pc.hasVagina()) output("<i>herm</i>");
@@ -296,7 +330,23 @@ public function chooseHeight():void {
 	output("<i> child, then? Very well. How tall should " + pc.mf("he","she") + " grow up to be? Please, give it in Imperial inches.”</i></i>");
 	output("\n\nVictor raises an eyebrow and quips, <i>“Seriously? Inches? What is this, the 20th century?”</i></i>");
 	output("\n\n<i>“Victor, I’ve known you for eighty years. We both know you’re a sucker for the classics. Don’t pretend you don’t use that archaic system just to screw with your acquaintances.”</i> The doctor smiles and continues, <i>“Now, the height?”</i></i>\n\n<b>Please give your height in inches.</b> For reference, six feet tall is 72 inches.");
-
+	*/
+	
+	//NEW
+	author("Fenoxo & JimThermic");
+	// This is just neatened up and spaced better.
+	output("The doctor asks <i>“So, you’re going to have a </i>");
+	if(pc.hasCock())
+	{
+		if(pc.hasVagina()) output("<i>herm</i>");
+		else output("<i>male</i>");
+	}
+	else output("<i>female</i>");
+	output("<i> child, then? Very well. How tall should [pc.heShe] grow up to be? Please, give it in Imperial inches.”</i>");
+	output("\n\nVictor raises an eyebrow and quips, <i>“Seriously? Inches? What is this, the 20th century?”</i>");
+	output("\n\n<i>“Victor, I’ve known you for eighty years. We both know you’re a sucker for the classics. Don’t pretend you don’t use that archaic system just to screw with your acquaintances.”</i> The doctor smiles and continues, <i>“Now, the height?”</i>");
+	output("\n\n<b>Please give your character’s height in inches. For reference, six feet tall is 72 inches.</b>");
+	
 	this.displayInput();
 	//[Height Box]
 	this.clearMenu();
@@ -343,7 +393,18 @@ public function applyHeight():void {
 public function chooseThickness():void {
 	clearOutput();
 	setLocation("CHOOSING\nTHICKNESS","PLANET: TERRA","SYSTEM: SOL");
+	
+	//OLD
+	/*
 	output("Marking his pad, he chuckles and clears his throat. The doctor asks, <i>“How thickset should " + pc.mf("he","she") + " be? Please note that I’m not referring to weight so much as the broadness of their overall frame - hips and shoulders, you know.”</i>");
+	*/
+	
+	//NEW
+	author("Fenoxo & JimThermic");
+	// Just neatened this up and made the description of thickset more clear. The original explanation was a bit roundabout.
+	output("The doctor notes that down on his holopad, a light chuckle escaping his lips. <i>“Okay, noted. Glad to see you’ve got this well thought out.”</i>");
+	output("\n\n<i>“Alright, let’s eliminate some of the variables. How thickset would you like [pc.himHer] to be? We're talking broadness of [pc.hisHer] overall frame — hips, shoulders, and so forth — not [pc.hisHer] weight.”</i>");
+	output("\n\n<b>How thickset would you like your character to be?</b>");
 	
 	//[Height Box]
 	this.clearMenu();
@@ -367,7 +428,19 @@ public function applyThickness(arg:Number):void {
 public function chooseHairColor():void {
 	clearOutput();
 	setLocation("SELECTING HAIR\nPIGMENT","PLANET: TERRA","SYSTEM: SOL");
+	
+	//OLD
+	/*
 	output("<i>“Great,”</i> he says absently, entering the information with his stylus. <i>“I thought of asking for " + pc.mf("his","her") + " adult weight in pounds, but knowing you, you would have taken me seriously. Obviously, your kitchen staff will be the ones who control that.”</i> He clears his throat, sombering slightly. <i>“How about hair color? We could do black, like yours was, or any of the other natural colors pretty easily.”</i>");
+	*/
+	
+	//NEW
+	author("Fenoxo & JimThermic");
+	// More neatening and spacing.
+	output("<i>“Great,”</i> the doctor nods, entering the information with his stylus. <i>“I thought of asking for his adult weight in pounds, but knowing you, you would have taken me seriously. Your kitchen staff will be the ones who control </i>that<i>.”</i>");
+	output("\n\n<i>“Okaaay... what about hair color? We can do black, like yours was, or any other natural colors pretty easily.”</i>");
+	output("\n\n<b>What color is your character’s hair?</b>");
+	
 	//[CoC-like choices with bonus options for certain half-races].
 	this.clearMenu();
 	if(pc.originalRace == "half-leithan")
@@ -415,7 +488,18 @@ public function applyHairColor(arg:String = "black"):void {
 public function chooseEyeColor():void {
 	clearOutput();
 	setLocation("SELECTING EYE\nPIGMENT","PLANET: TERRA","SYSTEM: SOL");
+	
+	//OLD
+	/*
 	output("<i>“I thought you’d choose " + pc.hairColor + ", boss. How about eye color? Got anything in mind?”</i> The doctor glances up from his tablet and awaits Victor’s response.");
+	*/
+	
+	//NEW
+	author("Fenoxo & JimThermic");
+	// More neatening and spacing.
+	output("<i>“I thought you’d choose [pc.hairColor],”</i> the doctor smiles, looking up from his tablet. <i>“Another easy one, eye color. Got anything in mind?”</i>");
+	output("\n\n<b>What color is your character’s eyes?</b>");
+	
 	//[Normal Eye colors + bonus half race ones]
 	this.clearMenu();
 	if(pc.originalRace == "half kui-tan")
@@ -496,6 +580,9 @@ public function applySkinTone(skinTone:String = "pale"):void {
 public function chooseBreastSize():void {
 	clearOutput();
 	setLocation("SELECTING\nBREAST SIZE","PLANET: TERRA","SYSTEM: SOL");
+	
+	//OLD
+	/*
 	output("<i>“Breasts?”</i>");
 	//{If female, pick a cup size!}
 	//{If male, more dialogue}
@@ -503,6 +590,22 @@ public function chooseBreastSize():void {
 		output("\n\nVictor folds his arms and raises an eyebrow.");
 		output("\n\nThe doctor rubs the bridge of his nose in exasperation. <i>“We both know you’re a sexual deviant. How do I know you don’t want your kid to grow up into the universe’s hottest tranz? Just pick flat if you don’t want them.”</i>");
 	}
+	*/
+	
+	//NEW
+	author("Fenoxo & JimThermic");
+	// This one was de-creepified and mentions the normality of breast selection by a father in this era of human history. Also neatened.
+	output("<i>“Breasts?”</i>");
+	output("\n\nVictor folds his arms and raises an eyebrow.");
+	output("\n\nThe doctor rubs the bridge of his nose in exasperation. <i>“Look, it’s not that weird a thing for parents to choose these days — it’s practically like hair or eye color.”</i>");
+	if(!pc.hasVagina())
+	{
+		output("\n\n<i>“Plus, how do I know you don’t want your kid to grow up as the universe’s hottest tranz? It’s you were talking about after all, Victor.”</i>");
+		output("\n\n<i>“Remind me why I pay you again?”</i> Victor retorts.");
+		output("\n\n<i>“Not for my sense of humor, obviously,”</i> the doctor clears his throat. <i>“Ahem. Well, just pick flat if you don't want them.”</i>");
+	}
+	output("\n\n<b>What size would you like your character’s breasts to be?</b>");
+	
 	this.clearMenu();
 	this.addButton(0,"Flat",applyBreastSize,0);
 	this.addButton(1,"A",applyBreastSize,1);
@@ -540,7 +643,16 @@ public function applyBreastSize(size:int = 0):void {
 public function chooseYourJunkSize():void {
 	clearOutput();
 	setLocation("SETTING PENIS\nLENGTH","PLANET: TERRA","SYSTEM: SOL");
+	
+	//OLD
+	/*
 	output("The doctor smiles knowingly and moves on, <i>“All right, now what about the penis? It looks like we could pretty easily have it be anywhere from ");
+	*/
+	
+	//NEW
+	author("Fenoxo & JimThermic");
+	// Neatened a tiny bit. Nothing major.
+	output("<i>“All right. So, what about the penis? It looks like we could pretty easily have it be anywhere from ");
 	
 	clearMenu();
 	
@@ -590,6 +702,9 @@ public function chooseYourJunkSize():void {
 
 	output("inches. How long do you want it?”</i> He rolls his eyes. <i>“You’re gonna make your kid a stallion here, aren’t you? Why do I even ask?”</i>");
 	
+	//NEW (cont.)
+	output("\n\n<b>How long do you want your character’s penis to be?</b>");
+	
 	this.addButton(14,"Back",chooseBreastSize);
 }
 
@@ -609,7 +724,19 @@ public function applyJunkSize(arg:int = 0):void {
 public function chooseYourVagina():void {
 	clearOutput();
 	setLocation("SELECT VAGINAL\nTRAITS","PLANET: TERRA","SYSTEM: SOL");
+	
+	//OLD
+	/*
 	output("<i>“All right, I can specialize the vagina for capacity, extra lubrication, both, or neither. If we do both, the effects won’t be as pronounced as focusing on a single choice. I know that’s probably not the first thing you want to think about as a dad, but if the kid is gonna be taking after you, it’d be wise to tweak up at least one of those.”</i> The doctor looks at Victor expectantly.");
+	*/
+	
+	//NEW
+	author("Fenoxo & JimThermic");
+	// De-creepified and given a bit of context as to why anyone would select this for their kid. Also neatening.
+	output("<i>“All right, I can specialize the vagina for capacity, extra lubrication, both, or neither,”</i> the doctor explains, tweaking his glasses. <i>“The thing is, if we do both, the effects won’t be as pronounced as just one of those things.”</i>");
+	output("\n\n<i>“I know, I know, it’s the last thing you want to think of as a dad. But if she’s going to take after you, it would be wise to tweak at least </i>one<i> of those things. Trust me, it saves on a lot of doctor visits.”</i>");
+	output("\n\n<b>Do you want your character’s vagina to have extra capacity or lubrication?</b>");
+	
 	this.clearMenu();
 	this.addButton(0,"Capacity",upgradeCapacity);
 	this.addButton(1,"Lubrication",upgradeLubricants);
@@ -640,11 +767,26 @@ public function fullyUpgradeCunt():void {
 public function chooseSexualGift():void {
 	clearOutput();
 	setLocation("CHOOSING A\nSEXUAL GIFT","PLANET: TERRA","SYSTEM: SOL");
+	
+	//OLD
+	/*
 	output("<i>“Great!”</i> Your personal physician notes your choice and says, <i>“This is one of the tougher choices future parents have to make. We can work some tweaks into your successor’s genome that’ll give them a bit of a gift, if you know what I mean - even beyond the choices you’ve made so far. The downside is that we can only safely insert one of these options into your child's genome.”</i>");
 	output("\n\n<i>“I’ll give you the quick rundown of all the choices. ‘Virile’ increases the quality of sperm produced by your offspring, even if she’s a girl that splices on a dick later. ‘Potent’ is similar to virile, but it impacts the quantity produced, rather than quality. This one seems to be pretty popular among those who can afford these kinds of modifications. ‘Elasticity’ allows for bigger insertions with less chance of, uh... stretching.”</i>");
 	output("\n\nThe doctor coughs a bit nervously. <i>“‘Fertility’ enhances the chances of becoming pregnant. ‘Milky’ causes lactation to be more easily induced and much harder to stop. ‘Incubator’... well, it makes pregnancies a little faster. ‘Hung’ would enlarge the size of male organs and cause them be more receptive to future splices. Conversely, ‘mini’ would, uh, cause masculine organs to tend towards smallness - as the name implies.”</i>");
 	output("\n\nVictor sighs as the doctor drones on, knowing that these could be important but a little tired of the total volume of the information.");
 	output("\n\n<i>“‘Bulgy’ would cause an increase in the size of any testes as well as increased receptiveness to gonad enhancement. ‘Extra Ardor’ will cause an increase in sex drive after maturity. I bet your parents gave you that, huh? ‘Ice Cold’ would be the opposite, reducing natural sex drive. It doesn’t have any effect on aphrodisiacs or receptiveness to touch, however.”</i> The doctor touches his fingers as if counting and purses his lips, <i>“Huh, I guess that’s all of them. What’ll it be?”</i>");
+	*/
+	
+	//NEW
+	author("Fenoxo & JimThermic");
+	// Almost completely rewritten to accommodate for tooltips, future-proof against new traits, and reduce the utter yawn factor from throwing a million descriptions of traits at the PC. Also some lore mentioning of why the PC might get more cool traits later on but for some reason can only get one at birth. Tooltips added.
+	output("<i>“Great!”</i> Your personal physician notes the choice, then hands Victor the datapad. <i>“... We’re almost done, but I’ve left the trickiest for last.”</i>");
+	output("\n\n<i>“What’s this?”</i> The mining magnate asks, looking downward. <i>“... A list of specialized treatments?”</i>");
+	output("\n\n<i>“Sort of,”</i> the doctor explains, <i>“One of the things we can do is work a special tweak into your successor’s genome; something that will give them a special gift, even beyond the choices you’ve made thus far.”</i>");
+	output("\n\n<i>“Are they safe?”</i>");
+	output("\n\n<i>“Perfectly — so long as only one is inserted into your child’s genome. Any more than that risks instability. Perhaps by the time your child is an adult, we’ll have made more advances in that area. For now, though, one’s the limit.”</i>");
+	output("\n\n<b>What special trait would you like your character to have?</b>");
+	
 	//Make sure there is a none option.
 	this.clearMenu();
 	if(pc.hasPerk("Virile"))
@@ -707,17 +849,17 @@ public function chooseSexualGift():void {
 	{
 		pc.removePerk("Ice Cold");
 	}
-	this.addButton(0,"Virile",applySexualGift,"virile");
-	this.addButton(1,"Potent",applySexualGift,"potent");
-	this.addButton(2,"Elasticity",applySexualGift,"elasticity");
-	this.addButton(3,"Fertility",applySexualGift,"fertility");
-	this.addButton(4,"Milky",applySexualGift,"milky");
-	this.addButton(5,"Incubator",applySexualGift,"incubator");
-	this.addButton(6,"Hung",applySexualGift,"hung");
-	this.addButton(7,"Mini",applySexualGift,"mini");
-	this.addButton(8,"Bulgy",applySexualGift,"bulgy");
-	this.addButton(9,"Extra Ardor",applySexualGift,"extra ardor");
-	this.addButton(10,"Ice Cold",applySexualGift,"ice cold");
+	this.addButton(0,"Virile",applySexualGift,"virile","Virile","Increases the quality, or impregnation chance, of the sperm you produce. <i>This perk also applies if your character is female and gains a penis in the future.</i>");
+	this.addButton(1,"Potent",applySexualGift,"potent","Potent","Increases the quantity — the sheer amount — of sperm you produce. <i>This perk also applies if your character is female and gains a penis in the future.</i>");
+	this.addButton(2,"Elasticity",applySexualGift,"elasticity","‘Elasticity","Allows you to take larger insertions, both vaginally and anally, with less chance of permanent orifice stretching.");
+	this.addButton(3,"Fertility",applySexualGift,"fertility","Fertility","Increases your chances of getting pregnant. <i>This perk also applies if your character is male and gains a vagina in the future.</i>");
+	this.addButton(4,"Milky",applySexualGift,"milky","Milky","Ensures that your lactation is more easily induced and much harder to stop.");
+	this.addButton(5,"Incubator",applySexualGift,"incubator","Incubator","Shortens your pregnancy time, making pregnancies come to term quicker. <i>This perk applies to both vaginal and anal pregnancies.</i>");
+	this.addButton(6,"Hung",applySexualGift,"hung","Hung","Increases the size of your male organs and causes them to be more receptive to future size-increasing modifications. <i>This perk also applies if your character is female and gains a penis in the future.</i>");
+	this.addButton(7,"Mini",applySexualGift,"mini","Mini","Decreases the size of your male organs and causes them to be more receptive to future size-decreasing modifications. <i>This perk also applies if your character is female and gains a penis in the future.</i>");
+	this.addButton(8,"Bulgy",applySexualGift,"bulgy","Bulgy","Increases the size of your testicles and causes them to be more receptive to future size-increasing modifications. <i>This perk also applies if your character is female and gains testicles in the future.</i>");
+	this.addButton(9,"Extra Ardor",applySexualGift,"extra ardor","Extra Ardor","Ensures that you will have a higher sex drive than normal.");
+	this.addButton(10,"Ice Cold",applySexualGift,"ice cold","Ice Cold","Ensures that you will have a lower sex drive than normal.");
 	this.addButton(11,"None",applySexualGift,"none");
 	if(pc.hasVagina()) 
 		this.addButton(14,"Back",chooseYourVagina);
@@ -785,14 +927,26 @@ public function applySexualGift(arg:String = "none"):void {
 public function chooseAPhysicalAffinity():void {
 	clearOutput();
 	setLocation("CHOOSING AN\nAFFINITY","PLANET: TERRA","SYSTEM: SOL");
+	
+	//OLD
+	/*
 	output("<i>“Grrrreat,”</i> the doctor muses as he checks your selection. <i>“Just one more thing: I can slip in affinity for a certain attribute. These are all pretty self explanatory, so I won’t have to bore you overmuch. Suffice to say, your " + pc.mf("son","daughter") + " will be able to increase the chosen attribute more easily. We can do physique, reflexes, aim, intelligence, or willpower. Personally, I recommend intelligence.”</i>");
 	output("\n\nThese ability scores are capped at five to start, though certain things like current level, starting race, cybernetic enhancements, and specific mutations can increase the maximum.\n\n<b>Physique</b> is a measurement of a character's strength and endurance. Its primary usage to land melee strikes and increase the damage of said strikes.\n\n<b>Reflexes</b> are a measurement of piloting aptitude, but they also come in handy when having to avoid a surprise attack or trap.\n\n<b>Aim</b> is a representation of how well one can aim both hand-held and ship-board ranged weaponry.\n\n<b>Intelligence</b> increases the effectiveness of technology-based attacks, primarily those used by tech specialists. It is also useful any time one has to deal with sophisticated machinery.\n\n<b>Willpower</b> is used to counter sexual urges and addictions, resist psionics, and strengthen one's own psionics, should a person of human descent somehow gain mind powers.\n\n<b>Libido</b>, while not an option the doc is giving, deals with how fast lust increases over time and susceptible to incidental lusts and perversions one is. It is not capped by level and scales from 1 to 100.");
+	*/
+	
+	//NEW
+	author("Fenoxo & JimThermic");
+	// Neatened and reworded for ease of understanding. Tooltips added.
+	output("<i>“Fantastic,”</i> the doctor exclaims as he checks the selection. <i>“Just one more thing: I can slip in affinity for a certain attribute. These are all pretty self explanatory, so I won’t have to bore you overmuch. Suffice to say, your " + pc.mf("son","daughter") + " will be able to increase the chosen attribute more easily. We can do physique, reflexes, aim, intelligence, or willpower. Personally, I recommend intelligence.”</i>");
+	output("\n\nThese ability scores are capped at five to start, though certain things like current level, starting race, cybernetic enhancements, and specific mutations can increase the maximum. Libido, while not an option the doc is giving, deals with how fast lust increases over time and how susceptible to incidental lusts and perversions one is. It is not capped by level and scales from 1 to 100.");
+	output("\n\n<b>What ability score affinity would you like to have?</b>");
+	
 	this.clearMenu();
-	this.addButton(0,"Intelligence",applyAffinity,"intelligence");
-	this.addButton(1,"Physique",applyAffinity,"physique");
-	this.addButton(2,"Reflexes",applyAffinity,"reflexes");
-	this.addButton(3,"Aim",applyAffinity,"aim");
-	this.addButton(4,"Willpower",applyAffinity,"willpower");
+	this.addButton(0,"Intelligence",applyAffinity,"intelligence","Intelligence","Increases the effectiveness of your technology-based attacks, primarily those used by tech specialists. It is also useful any time you have to deal with sophisticated machinery.");
+	this.addButton(1,"Physique",applyAffinity,"physique","Physique","Increases your strength and endurance. It is especially useful for increasing the damage of any melee strikes you may land on an opponent.");
+	this.addButton(2,"Reflexes",applyAffinity,"reflexes","Reflexes","Increases your reaction time. It is a measurement of your piloting aptitude, but also comes in handy when having to avoid a surprise attack or trap.");
+	this.addButton(3,"Aim",applyAffinity,"aim","Aim","Increases your accuracy and how well you can aim both hand-held and ship-board ranged weaponry.");
+	this.addButton(4,"Willpower",applyAffinity,"willpower","Willpower","Increases your ability to counter sexual urges and addictions, resist psionics, and strengthen your own psionics, should a person of human descent somehow gain mind powers.");
 	this.addButton(14,"Back",chooseSexualGift);
 }
 
@@ -816,15 +970,31 @@ public function chooseHowPCIsRaised():void {
 	if(pc.affinity == "aim") pc.aimRaw++;
 	if(pc.affinity == "willpower") pc.willpowerRaw++;
 	setLocation("CHOOSING\nUPBRINGING","PLANET: TERRA","SYSTEM: SOL");
+	
+	//OLD
+	/*
 	output("<b>Some time later...</b>");
 	output("\n" + pc.short + " was born without complications, but now Victor is faced with a new quandary. Just how is he going to raise his potential successor? If he pampers " + pc.mf("him","her") + ", " + pc.mf("he","she") + "’ll have a head start on life, but will likely be lacking in willpower. If Victor pushes " + pc.mf("him","her") + " into athletics, " + pc.mf("he","she") + "’ll likely develop " + pc.mf("his","her") + " physical skills over " + pc.mf("his","her") + " mental ones. Of course, the father could push his progeny towards being a bit of a bookworm, as knowledge is power, but " + pc.mf("he","she") + "’d wind up physically weaker. An austere upbringing would result in higher willpower but a little less of a financial, helping hand. The alternative to those options would be a balanced upbringing that favors nothing in particular.");
+	*/
+	
+	//NEW
+	author("Fenoxo & JimThermic");
+	// This bit was partially re-written to give context to Victor's parenthood choices and his decisions to plan out Steele Jr's life. It also gives some extra description to the impact of this particular choice. Also mandatory neatening. Tooltips added.
+	output("<b>... Some time later ...</b>");
+	output("\n\nThankfully, [pc.name] was born without complications. But, as any parent knows, the real work has just begun.");
+	output("\n\nVictor pondered on just how he would raise his " + pc.mf("son","daughter") + " and future heir. His first instinct was to pamper [pc.himHer] and give [pc.himHer] a head start on life. Still, that could lead to his " + pc.mf("son","daughter") + " lacking willpower, since [pc.heShe] never would have worked for what [pc.heShe] has.");
+	output("\n\nThe mining magnate could make his heir work for everything. An austere upbringing would certainly result in a strong will, but less of a financial, helping hand. It would be tough on both of them, but it might just pay off.");
+	output("\n\nIf his " + pc.mf("son","daughter") + " spend too much time working or playing, however, [pc.heShe] would have no time for extracurricular activities. If Victor encouraged [pc.himHer] to nurture [pc.hisHer] physical skills, [pc.heShe] would probably grow up strong and well rounded, but not so book-smart. The opposite was also true — if he pushed his child towards study, [pc.heShe] would come out mentally strong, but perhaps physically weaker.");
+	output("\n\nPerhaps the best approach was to practice moderation, and give a little time to everything. Favoring nothing in particular would mean his child wouldn’t specialize in anything, but it would also mean [pc.heShe] wasn’t lacking in anything, either.");
+	output("\n\n<b>What kind of upbringing does your character have?</b>");
+	
 	//[Pampered][Athletic][Bookworm][Austere][Balanced]
 	this.clearMenu();
-	this.addButton(0,"Pampered",applyUpbringing,0);
-	this.addButton(1,"Athletic",applyUpbringing,1);
-	this.addButton(2,"Bookworm",applyUpbringing,2);
-	this.addButton(3,"Austere",applyUpbringing,3);
-	this.addButton(4,"Balanced",applyUpbringing,4);
+	this.addButton(0,"Pampered",applyUpbringing,0,"Pampered","You begin with more starting money, but lower willpower.");
+	this.addButton(1,"Athletic",applyUpbringing,1,"Athletic","You begin with higher physical skills but lower mental ones.");
+	this.addButton(2,"Bookworm",applyUpbringing,2,"Bookworm","You begin with higher mental skills but lower physical ones.");
+	this.addButton(3,"Austere",applyUpbringing,3,"Austere","You begin with less starting money, but higher willpower.");
+	this.addButton(4,"Balanced",applyUpbringing,4,"Balanced","You begin well rounded, not specialized or lacking in anything.");
 	this.addButton(14,"Back",chooseAPhysicalAffinity);
 }
 
@@ -870,20 +1040,96 @@ public function chooseAlignment():void {
 	clearOutput();
 	//Neutral neutral. Filthy neutrals.
 	setLocation("SELECT\nA NATURE","PLANET: TERRA","SYSTEM: SOL");
+	
+	//OLD
+	/*
 	output("<b>You are " + pc.short + "</b> now, but the question remains, what kind of person will you be?");
 	output("\n\n(This choice will affect how your character reacts to the challenges and situations " + pc.mf("he","she") + " finds " + pc.mf("him","her") + "self in. Ultimately choice will still remain with you, the player, but the way [pc.name] goes through those choices may vary with personality.)");
+	*/
+	
+	//NEW
+	author("JimThermic");
+	// This was pretty much written from scratch. It gives a common vision and resource for players and writers to draw upon regarding the PC's upbringing, making them able to identify with them from the get-go, rather than 'I was born and now I'm 20 and at my dad's funeral'. Tooltips added.
+	output("<b>... Some time later ...</b>");
+	output("\n\nAs you, [pc.name], grow up, you");
+	if(flags["PC_UPBRINGING"] == GLOBAL.UPBRINGING_PAMPERED)
+	{
+		output(" live in the lap of luxury. Things are quite easy for you, but at the same time, you feel the warmth of being provided for by your trillionare father.");
+	}
+	else if(flags["PC_UPBRINGING"] == GLOBAL.UPBRINGING_ATHLETIC)
+	{
+		output("’re gently encouraged to take part in physical activity. Taking to it like a duck to water, you spend much of your youth sweating and putting your body to work.");
+	}
+	else if(flags["PC_UPBRINGING"] == GLOBAL.UPBRINGING_BOOKWORM)
+	{
+		output("’re gently encouraged to take up more mental pursuits. Taking to it like a duck to water, you spend most of your time reading or expanding your thinking. Your test scores are the envy of your academy.");
+	}
+	else if(flags["PC_UPBRINGING"] == GLOBAL.UPBRINGING_AUSTERE)
+	{
+		output(" don’t experience the luxuries one might expect from the heir to Steele Tech. Just like your father, you work for everything you have. Forged from adversity, you learn to value what you’ve earned, rather than expecting it to be given to you for free.");
+	}
+	else if(flags["PC_UPBRINGING"] == GLOBAL.UPBRINGING_BALANCED)
+	{
+		output("’re always trying a bit of everything and anything. In the end, you come out quite balanced for it, just as your father had hoped you would.");
+	}
+	else
+	{
+		output(" live your life as an enimga. There is nothing particularly worth mentioning about your early upbringing in life whatsoever...");
+	}
+	output("\n\nStill, the one thing a parent can never choose is exactly what kind of person their children will be. <b>When your friends talk about you, what word do they use to describe your personality?</b>");
+	output("\n\n<i>(This choice will affect how your character reacts to the challenges and situations [pc.heShe] finds [pc.himHer]self in. Ultimately, the choice will still remain with you, the player, but the way [pc.name] goes through those choices may vary with personality.)</i>");
+	
 	this.clearMenu();
-	this.addButton(0,"Kind",alignConfirm,17);
-	this.addButton(1,"Mischievous",alignConfirm,50);
-	this.addButton(2,"Hard",alignConfirm,85);
+	this.addButton(0,"Kind",alignConfirm,17,"Kind","You react to most things in a kind manner, favoring compassion.");
+	this.addButton(1,"Mischievous",alignConfirm,50,"Mischievous","You’re a light-hearted sort, neither too kind or too hard.");
+	this.addButton(2,"Hard",alignConfirm,85,"Hard","Let’s face it, you’re a bit, no, a lot of an ass. Not that you care.");
 	this.addButton(14,"Back",chooseHowPCIsRaised);
 }
 
 public function alignConfirm(arg:int):void {
 	pc.personality = arg;
+	//chooseClass();
+	chooseGenderIdentity();
+}
+
+public function chooseGenderIdentity():void 
+{
+	pc.removeStatusEffect("Force Male Gender");
+	pc.removeStatusEffect("Force Fem Gender");
+	clearOutput();
+	setLocation("SELECT\nA GENDER","PLANET: TERRA","SYSTEM: SOL");
+	
+	author("JimThermic");
+	// Figured it'd be nice to give people this option straight up from the tutorial, instead of having to find it later via the appearance screen.
+	output("<b>... And what gender do you identify as?</b>");
+	output("\n\n<i>(This choice determines your character’s preferred gender and can be changed at any time in the <b>Character Appearance</b> menu.)</i>");
+	
+	this.clearMenu();
+	this.addButton(0,"Female",genderConfirm,"female","Female","No matter your masculinity level, genitalia presence, or any other contributing factors, you will be considered female, where possible.");
+	this.addButton(1,"Male",genderConfirm,"male","Male","No matter your femininity level, genitalia presence, or any other contributing factors, you will be considered male, where possible.");
+	this.addButton(2,"Auto",genderConfirm,"auto","Automatic","Pronouns used to address you will be based on contributions from a number of your personal appearance properties, switching between male and female pronouns as appropriate.");
+	this.addButton(14,"Back",chooseAlignment);
+}
+public function genderConfirm(pref:String):void
+{
+	if (pref == "auto")
+	{
+		pc.removeStatusEffect("Force Male Gender");
+		pc.removeStatusEffect("Force Fem Gender");
+	}
+	else if (pref == "male")
+	{
+		pc.removeStatusEffect("Force Fem Gender");
+		pc.createStatusEffect("Force Male Gender");
+	}
+	else if (pref == "female")
+	{
+		pc.removeStatusEffect("Force Male Gender");
+		pc.createStatusEffect("Force Fem Gender");
+	}
 	chooseClass();
 }
-	
+
 public function chooseClass():void {
 	clearOutput();
 	showPCStats();
@@ -891,12 +1137,26 @@ public function chooseClass():void {
 	pc.maxOutEnergy();
 	updatePCStats();
 	setLocation("SELECT\nA CLASS","PLANET: TERRA","SYSTEM: SOL");
+	
+	//OLD
+	/*
 	output("You're all grown up and finished with your schooling. Dad pushed you hard, which makes sense. He accomplished a lot and wants you to follow in his footsteps, but for whatever reason, he insisted you take on an occupation, and an odd one at that.");
+	*/
+	
+	//NEW
+	author("JimThermic");
+	// Given a kinder spin on your dad's hands on upbringing. Also made the choice of your career yours rather than your dad's, since you're old enough by this point. Pretty much written from scratch.
+	output("You let out a long sigh. Now that you’ve finished your schooling, your whole life is ahead of you. Memories of your dad pushing you forward spring to mind. After all, you’ve got a whole mega-corp to take over one day.");
+	output("\n\nStill, before you take over the reins, it seems he wants you to take up a profession. He’s got some suggestions — your dad <i>always</i> does — and they’re pretty odd ones at that.");
+	output("\n\nYou stare at the list. Smuggler, Mercenary, Tech Specialist? As intriguing as these choices are, are they really okay job prospects for a future CEO?");
+	output("\n\n<b>What kind of class would you like your character to be?</b>");
+	
 	this.clearMenu();
 	this.addButton(0,"Smuggler",classConfirm,GLOBAL.CLASS_SMUGGLER);
 	this.addButton(1,"Mercenary",classConfirm,GLOBAL.CLASS_MERCENARY);
 	this.addButton(2,"TechSpecialist",classConfirm,GLOBAL.CLASS_ENGINEER);
-	this.addButton(14,"Back",chooseAlignment);
+	//this.addButton(14,"Back",chooseAlignment);
+	this.addButton(14,"Back",chooseGenderIdentity);
 }
 public function classConfirm(arg:int = 0):void {
 	clearOutput();
