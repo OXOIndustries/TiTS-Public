@@ -12353,6 +12353,7 @@ public function bessIntimateGiveDoggy(fromEvent:Boolean = false):void
 	if (flags["BESS_INTIMATE_FUCKED"] == undefined) flags["BESS_INTIMATE_FUCKED"];
 	flags["BESS_INTIMATE_FUCKED"]++
 
+	bess.orgasm();
 	pc.orgasm();
 
 	if (fromEvent)
@@ -12361,6 +12362,7 @@ public function bessIntimateGiveDoggy(fromEvent:Boolean = false):void
 	}
 	else
 	{
+		processTime(30 + rand(10) + 1);
 		clearMenu();
 		addButton(0, "Next", mainGameMenu);
 	}
@@ -12438,12 +12440,19 @@ public function bessIntimateGetDoggy(fromEvent:Boolean = false):void
 		output("\n\nMeanwhile the knot of [bess.hisHer] cock has swollen and stuck in your now cum filled hole. [bess.HeShe] continues to fire spurt after spurt of [bess.hisHer] hot sticky love juice inside of you for a good half hour,");
 		if (pc.genitalSpot <= 1) output(" kissing you all the while,");
 		output(" before [bess.hisHer] knot finally deflates. ");
+		for(var i:int = 0; i < 3; i++)
+		{
+			if (pc.hasVagina()) pc.loadInCunt(bess, vagIdx);
+			else pc.loadInAss(bess);
+			bess.orgasm();
+			processTime(5);
+		}
 	}
 	else output("\n\n");
 
 	output("You clench your");
 	if (pc.hasVagina()) output(" [pc.pussy "+ vagIdx +"]");
-	else output(" [pc.asshole "+ vagIdx +"]");
+	else output(" [pc.asshole]");
 	output(" around the messy aftermath of your lovemaking, pressing your lips against [bess.hisHers] in thanks. You enjoy your post-orgasmic haze with sensual kissing until falling to exhaustion in each other’s arms.");
 
 	if (pc.hasVagina()) pc.loadInCunt(bess, vagIdx);
@@ -12455,6 +12464,8 @@ public function bessIntimateGetDoggy(fromEvent:Boolean = false):void
 	if (flags["BESS_INTIMATE_FUCKED"] == undefined) flags["BESS_INTIMATE_FUCKED"];
 	flags["BESS_INTIMATE_FUCKED"]++
 
+	bess.orgasm();
+	pc.orgasm();
 	pc.orgasm();
 
 	if (fromEvent)
@@ -12463,6 +12474,7 @@ public function bessIntimateGetDoggy(fromEvent:Boolean = false):void
 	}
 	else
 	{
+		processTime(30 + rand(10) + 1);
 		clearMenu();
 		addButton(0, "Next", mainGameMenu);
 	}
@@ -12488,6 +12500,11 @@ public function bessIntimateGiveOral(fromEvent:Boolean = false):void
 	
 	output("\n\nEventually [bess.heShe] simply cannot cum any more and [bess.heShe] falls down beside you, [bess.hisHer] legs completely useless as [bess.heShe] looks at you in a post-orgasmic haze. You feverishly kiss as [bess.heShe] happily laps up the taste of herself off your tongue. You eventually fall asleep in each other’s arms.");
 
+	pc.girlCumInMouth("BESS");
+	bess.orgasm();
+	pc.girlCumInMouth("BESS");
+	bess.orgasm();
+	pc.girlCumInMouth("BESS");
 	bess.orgasm();
 	pc.lust(30);
 
@@ -12503,6 +12520,7 @@ public function bessIntimateGiveOral(fromEvent:Boolean = false):void
 	}
 	else
 	{
+		processTime(30 + rand(10) + 1);
 		clearMenu();
 		addButton(0, "Next", mainGameMenu);
 	}
@@ -12561,6 +12579,8 @@ public function bessIntimateGetOral(fromEvent:Boolean = false):void
 	output("\n\nEventually you simply cannot cum any more and you fall down beside [bess.himHer], yours legs completely useless as you look at [bess.name] in a post-orgasmic haze. You both feverishly kiss each other and you can taste yourself on [bess.hisHer] tongue. You eventually fall asleep in each other’s arms.");
 
 	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
 
 	if (flags["BESS_FUCKED"] == undefined) flags["BESS_FUCKED"] = 0;
 	flags["BESS_FUCKED"]++;
@@ -12574,6 +12594,7 @@ public function bessIntimateGetOral(fromEvent:Boolean = false):void
 	}
 	else
 	{
+		processTime(30 + rand(10) + 1);
 		clearMenu();
 		addButton(0, "Next", mainGameMenu);
 	}
