@@ -509,6 +509,8 @@ public function frogGirlFootJoerb():void
 	output("\n\nYou collect your [pc.gear], leaving the beleaguered frog-girl to rest. A flush runs through your body as you return to your mission. Her venomous sweat must not have completely worn off.\n\n");
 	processTime(45+rand(15));
 	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
 	genericVictory();
 }
 
