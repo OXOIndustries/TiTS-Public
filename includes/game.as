@@ -2057,6 +2057,7 @@ public function statisticsScreen(showID:String = "All"):void
 		output2("\n<b>* Name:</b> [pc.fullName]");
 		output2("\n<b>* Occupation: </b>" + GLOBAL.CLASS_NAMES[pc.characterClass]);
 		if(flags["PC_UPBRINGING"] != undefined) output2("\n<b>* Upbringing: </b>" + GLOBAL.UPBRINGING_NAMES[flags["PC_UPBRINGING"]]);
+		if(pc.affinity != "") output2("\n<b>* Affinity: </b>" + StringUtil.toTitleCase(pc.affinity));
 		if(pc.originalRace != pc.race())
 		{
 			output2("\n<b>* Initial Race: </b>" + StringUtil.toTitleCase(pc.originalRace));
