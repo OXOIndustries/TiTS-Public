@@ -831,7 +831,8 @@ public function cockvinePregnancyBirthing(pregSlot:int):void
 	{
 		output(" You birthed "+ pData.pregnancyQuantity +" cockvines, however you can’t even see most of them anymore – the ones that remain are swiftly winding their way out of your room, insinuating their way into the darkest holes your ship has to offer. The little buggers really hit the ground running! You suppose most of them will perish on here without food or soil – some might be able to sneak off-board next time you land. If you’re quick though you might be able to catch one and send it to the nursery.");
 	}
-
+	
+	pc.orgasm();
 	//[Catch One] [Leave Them]
 	clearMenu();
 	addButton(0, "Catch One", cockvinePregnancyCatch);
