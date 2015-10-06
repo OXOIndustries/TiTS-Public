@@ -397,6 +397,10 @@ public function treatedPCsSuckYancysDickForMilkPartIII():void
 	output("\n\nYou let your mouth hang open, catching as much as you can in there while he continues to soak your [pc.face] with spooge. You savor the taste and smell of it, slowly realizing that your tits have finally calmed, emptied of all [pc.milk].");
 	if(silly) output(" You finally did it! YOU CALMED YOUR TITS! The galaxy could benefit from this discovery.");
 	processTime(20);
+	var ppYancy:PregnancyPlaceholder = new PregnancyPlaceholder();
+	pc.loadInMouth(ppYancy);
+	pc.loadInMouth(ppYancy);
+	pc.loadInMouth(ppYancy);
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
@@ -528,6 +532,19 @@ public function treatedPCsGetCuntFilledAndMilkedPtII():void
 	output("\n\nIt comes naturally to you. ");
 	//Pass 35 minutes.
 	processTime(35);
+	var ppYancy:PregnancyPlaceholder = new PregnancyPlaceholder();
+	if(pc.hasVagina())
+	{
+		pc.loadInCunt(ppYancy, 0);
+		pc.loadInCunt(ppYancy, 0);
+		pc.loadInCunt(ppYancy, 0);
+	}
+	else
+	{
+		pc.loadInAss(ppYancy);
+		pc.loadInAss(ppYancy);
+		pc.loadInAss(ppYancy);
+	}
 	//Cum 10 ten times.
 	pc.orgasm();
 	pc.orgasm();
@@ -697,6 +714,19 @@ public function untreatedMilkedAndFucked():void
 	output("\n\nYour eyes roll back at the blissful sensation and you instinctively press your [pc.hips] against his. Your mind is out to lunch, and your animal instincts take over - and all you want is to be mated and milked by this virile bull. And the bull is more than happy to oblige.");
 	//Pass 35 minutes.
 	processTime(35);
+	var ppYancy:PregnancyPlaceholder = new PregnancyPlaceholder();
+	if(pc.hasVagina())
+	{
+		pc.loadInCunt(ppYancy, 0);
+		pc.loadInCunt(ppYancy, 0);
+		pc.loadInCunt(ppYancy, 0);
+	}
+	else
+	{
+		pc.loadInAss(ppYancy);
+		pc.loadInAss(ppYancy);
+		pc.loadInAss(ppYancy);
+	}
 	//Cum 10 ten times.
 	pc.orgasm();
 	pc.orgasm();
@@ -797,6 +827,10 @@ public function untreatedGirlsSuckYancyOffAndShit():void
 	milkResultDisplay();
 
 	processTime(30);
+	var ppYancy:PregnancyPlaceholder = new PregnancyPlaceholder();
+	pc.loadInMouth(ppYancy);
+	pc.loadInMouth(ppYancy);
+	pc.loadInMouth(ppYancy);
 	pc.orgasm();
 	flags["YANCY_PREVIOUS_ENCOUNTER_RESULT"] = "milked & sucked";
 	IncrementFlag("YANCY_MILKED_PC");
@@ -841,7 +875,7 @@ public function untreatedTittyFucksForYancy():void
 	// Five more cums.
 	processTime(20);
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	addButton(0,"Next",tittyFuckingYancyUntreatedEpilogue);
 }
 
 public function tittyFuckingYancyUntreatedEpilogue():void
@@ -861,6 +895,23 @@ public function tittyFuckingYancyUntreatedEpilogue():void
 	flags["YANCY_PREVIOUS_ENCOUNTER_RESULT"] = "milked & titfucked";
 	flags["YANCY_SEXED"] = 1;
 	processTime(10);
+	var ppYancy:PregnancyPlaceholder = new PregnancyPlaceholder();
+	if(pc.hasVagina())
+	{
+		pc.loadInCunt(ppYancy, 0);
+		pc.loadInCunt(ppYancy, 0);
+		pc.loadInCunt(ppYancy, 0);
+		pc.loadInCunt(ppYancy, 0);
+		pc.loadInCunt(ppYancy, 0);
+	}
+	else
+	{
+		pc.loadInAss(ppYancy);
+		pc.loadInAss(ppYancy);
+		pc.loadInAss(ppYancy);
+		pc.loadInAss(ppYancy);
+		pc.loadInAss(ppYancy);
+	}
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
