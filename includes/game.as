@@ -3893,7 +3893,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Beth's Busty Broads
-			if(flags["TALK_TO_LADY_1ST"] != undefined || flags["OVIR_TEASED"] != undefined || flags["MET_VAANDE"] != undefined)
+			if(flags["TALK_TO_LADY_1ST"] != undefined || flags["BETHS_OVIR_SEEN"] != undefined || flags["OVIR_TEASED"] != undefined || flags["MET_VAANDE"] != undefined)
 			{
 				output2("\n<b><u>Beth’s Busty Broads</u></b>");
 				// Reaha stuffs
@@ -3929,9 +3929,21 @@ public function displayEncounterLog(showID:String = "All"):void
 					}
 				}
 				// Ovir Gurrrl
-				if(flags["OVIR_TEASED"] != undefined) output2("\n<b>* Ovir ‘Girl’:</b> Teased her");
+				if(flags["BETHS_OVIR_SEEN"] != undefined || flags["OVIR_TEASED"] != undefined)
+				{
+					var bethsOvirGirl:String = "Ovir Girl";
+					if(knowBethsOvir()) bethsOvirGirl = "Ovir ‘Girl’";
+					output2("\n<b>* " + bethsOvirGirl + ":</b> Seen her");
+					if(flags["ASKED_AFTER_THE_GIRLS"] != undefined && (hours == 18 || hours == 19 || hours == 21 || hours == 22 || hours == 24 || hours == 1 || hours == 3 || hours == 4)) output2(", Currently performing");
+					if(flags["OVIR_TEASED"] != undefined) output2("\n<b>* " + bethsOvirGirl + ", Times Teased: </b>" + flags["OVIR_TEASED"]);
+				}
 				// Vaande
-				if(flags["MET_VAANDE"] != undefined) output2("\n<b>* Vaande:</b> Met her");
+				if(flags["MET_VAANDE"] != undefined)
+				{
+					output2("\n<b>* Vaande:</b> Met her");
+					if(flags["ASKED_AFTER_THE_GIRLS"] != undefined && (hours == 10 || hours == 13 || hours == 16)) output2(", Currently performing");
+					if(flags["SEXED_VAANDE"] != undefined) output2("\n<b>* Vaande, Times Sexed: </b>" + flags["SEXED_VAANDE"]);
+				}
 				variousCount++;
 			}
 			// Serabutts
