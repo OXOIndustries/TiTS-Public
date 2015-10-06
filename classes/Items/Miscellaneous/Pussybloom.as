@@ -98,6 +98,7 @@
 					{
 						kGAMECLASS.output("You’ve got a pretty, pink pussy.");
 					}
+					pc.orgasm();
 					kGAMECLASS.output("</b> You’ll have to spend some quality time with it soon.");
 				}
 				else if(pc.hasVagina())
