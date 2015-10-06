@@ -1757,6 +1757,7 @@ public function thraggenAreABunchOfGreenLesboSlutsGardefordToldMeSo():void
 	if(flags["TARKUS_BOMB_TIMER"] != 0) output("\n\nGetting back to the matter at hand, there’s a bomb that requires your attention.");
 	processTime(20+rand(10));
 	pc.orgasm();
+	pc.girlCumInMouth("CAPTAINKHORGAN");
 	if(inCombat()) 
 	{
 		output("\n\n");
@@ -1832,6 +1833,14 @@ public function loseToCaptainKhorganBadEnd():void
 	output("\n\nYou recoil as the captain plants her foot back on the deck, now spotless, and hauls you up by the nape of your neck");
 	if(pc.tallness < foes[0].tallness) output(", leaving your [pc.feet] dangling beneath you");
 	output(". You stare into her fiery red eyes, and realize that this is your place now, your life. Nothing but the captain's personal stud.");
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
 	output("\n\n<b>GAME OVER</b>");
 	clearMenu();
 }
