@@ -5923,7 +5923,6 @@ package classes {
 			if(milkMultiplier > 50 || milkFullness >= 50) return true;
 			return false;
 		}
-
 		public function isLactating(): Boolean {
 			//PC can't be lactating unless they canLactate!
 			if(canLactate())
@@ -5941,6 +5940,13 @@ package classes {
 		public function canMilkSquirt():Boolean
 		{
 			if(milkFullness >= 80) return true;
+			return false;
+		}
+		public function isMilkTank():Boolean
+		{
+			//Check for infinite lactation perks!
+			if(hasPerk("Honeypot") return true;
+			if(hasPerk("Milky") && hasPerk("Treated Milk")) return true;
 			return false;
 		}
 		public function milkProduced(minutes: Number): Number {
