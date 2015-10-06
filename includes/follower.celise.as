@@ -650,6 +650,9 @@ public function feedCeliseBySavin():void {
 	
 	processTime(35 + rand(10));
 	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
 	this.clearMenu();
 	this.addButton(0,"Next",mainGameMenu);
 }
@@ -1476,6 +1479,7 @@ public function zeiksCeliseSubmersionTechnique():void
 	output("\n\n“<i>Yummy cummy, all mine. Can we do it again?</i>” she grins, shamelessly.");
 	//end scene; increase sensitivity and decrease libido
 	processTime(20+rand(15));
+	celise.orgasm();
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -1654,7 +1658,8 @@ public function zDomCeliseGo():void
 				output(" onto the bay floor. With difficulty you aim your spasming groin straight up, causing the semen to rain down on Celise’s creamy skin.");
 			}
 			output("\n\n“<i>Ah... ah...”</i> the woman moans, causing vibrations around your slit. “<i>It feels good... when you cum.”</i> Her hands fall to hang limply at her sides as the last globs of spunk dribble from her lips. Carefully, you stand up and aim your [pc.cockBiggest] toward the floor. Celise, too drunk on pleasure and jizz to control her form or anything else, slides slowly off the end");
-			if(pc.cumQ() >= 500) output(" and lands face-down in the puddle of semen}, resembling nothing so much as a used condom in her insensible stupor.");
+			if(pc.cumQ() >= 500) output(" and lands face-down in the puddle of semen");
+			output(", resembling nothing so much as a used condom in her insensible stupor.");
 			//end, adjust time and lust
 		}
 		//non-hypercocks and tailcock fork
@@ -1688,6 +1693,7 @@ public function zDomCeliseGo():void
 			output("\n\nYou slide out from under the thoroughly-fucked woman, leaving her a pair of tits and a face floating in a satisfied puddle on the floor.");
 			//end, adjust time and lust
 		}
+		celise.orgasm();
 	}
 	processTime(33);
 	pc.orgasm();
