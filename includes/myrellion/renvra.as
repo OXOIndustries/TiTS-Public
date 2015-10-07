@@ -1082,6 +1082,7 @@ public function fuckRenvrasUrethra():void
 	if(dildo == 2)
 	{
 		var x:int = pc.cockThatFits(renvra.cockCapacity(0));
+		if(x < 0) x = pc.smallestCockIndex();
 		output("\n\nRenvra sighs resignedly as you ");
 		if(pc.isTaur()) output("press your chest to hers, smushing her F-cups while you try blindly to line up your cocks. She reaches down and holds her knotted tool in place for you with a superior smirk.");
 		else output("steady her fat shaft and prepare to penetrate with [pc.oneCock].");
