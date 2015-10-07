@@ -1002,6 +1002,7 @@ public function vanaeVictorySexIntro(scene:String):void
 public function vanaeMaidenTakeVirginity():void
 {
 	var selCock:int = pc.cockThatFits(217);
+	if(selCock < 0) selCock = pc.smallestCockIndex();
 	var pcWonFight:Boolean = false;
 	
 	
@@ -1214,6 +1215,7 @@ public function vanaeHuntressVaginalSex():void
 	vanaeHeader("VICTORY: VANAE\n");
 
 	var selCock:int = pc.cockThatFits(217);
+	if(selCock < 0) selCock = pc.smallestCockIndex();
 
 	output("Warming you up first, the blind huntress gets down on all fours and grabs [pc.oneCock] in her webbed hands. You can feel flattened suckers on her palms brushing lightly against your flesh, your [pc.cock " + selCock + "] stiffening and swelling at her gentle touch.");
 
@@ -1425,7 +1427,11 @@ public function vanaeHuntress69(selScene:String):void
 
 	var selCock:int;
 
-	if (isBj) selCock = pc.cockThatFits(217);
+	if (isBj)
+	{
+		selCock = pc.cockThatFits(217);
+		if(selCock < 0) selCock = pc.smallestCockIndex();
+	}
 
 	clearOutput();
 
@@ -1938,6 +1944,7 @@ public function vanaeHuntressPCDefeatCuntFux():void
 	output(". I'm fertile and raring to go.”</i>");
 
 	var selCock:int = pc.cockThatFits(217);
+	if(selCock < 0) selCock = pc.smallestCockIndex();
 
 	// If first time breeding with a Vanae huntress.
 	if (flags["VANAE_HUNTRESS_BRED"] == undefined)
@@ -2612,6 +2619,7 @@ public function vanaeMaidenPCDefeatTakeVirginity():void
 	// Max Length 12 inches.
 
 	var selCock:int = pc.cockThatFits(217);
+	if(selCock < 0) selCock = pc.smallestCockIndex();
 
 	output("\n\nGetting down on all fours, the youthful huntress reaches down and tentatively touches [pc.oneCock]. She lets out a surprised noise as her slender fingers dance along your length. It is clearly the first time she's ever felt a cock, let alone one like yours.");
 
