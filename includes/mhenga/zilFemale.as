@@ -1036,7 +1036,9 @@ public function dudesGetStangRoad():void {
 		if(pc.hasTailCunt())
 		{
 			var y:int = pc.cockThatFits(pc.tailVaginaCapacity());
+			if(y < 0) y = pc.smallestCockIndex();
 			if(y == x) y = pc.cockThatFits2(pc.tailVaginaCapacity());
+			if(y < 0) y = pc.smallestCockIndex2();
 			if(y >= 0)
 			{
 				gobbled = true;
