@@ -1224,7 +1224,7 @@ public function genesModsLickedOut():void
 	else if (pc.hasTail()) output(" whip of the tail");
 	else if (pc.hasFeet()) output(" kick");
 	else output(" smack upside the face");
-	output(" from here - but that line of thought runs right out of you, your [pc.lowerBody] going limp, the moment the fanfir opens his mouth and trails his hot, wet, rough tongue between the lips of your [pc.vagina].");
+	output(" from here - but that line of thought runs right out of you, your [pc.legOrLegs] going limp, the moment the fanfir opens his mouth and trails his hot, wet, rough tongue between the lips of your [pc.vagina].");
 	
 	output("\n\nHe gazes up at you, drinking in your expression as he sends the tip of it slathering between your folds, sending pulses of heat coursing up your tunnel and wetness");
 	if (pc.wettestVaginalWetness() <= 2) output(" dripping");
@@ -1245,7 +1245,7 @@ public function genesModsLickedOut():void
 	if (pc.totalClits() > 1) output("s");
 	output(" pulse");
 	if (pc.totalClits() == 1) output("s"); 
-	output(" uncontrollably, writhing your [pc.lowerBody] and");
+	output(" uncontrollably, writhing your [pc.legOrLegs] and");
 	if (pc.wettestVaginalWetness() <= 2) output(" dribbling");
 	else output(" gushing");
 	output(" [pc.girlCum] deliriously, unable to comprehend anything but that wet, rough lapping at your sensitive [pc.cuntColor]. When it’s finally over you sag in the fanfir’s claws, [pc.chest] heaving.");
@@ -1268,7 +1268,7 @@ public function genesModsLickedOut():void
 	
 	output("\n\nWhenever you gaze down from your stocks-like perch you meet his yellow eyes, gloatingly drinking in every moment of the over-fucked delirium he’s causing you. His heavy breath resonates through you, making you feel soft and simple, and eventually you completely surrender yourself to it, bouncing, moaning and squealing gleefully to the fanfir’s masterful, sadistic touch, feeling like nothing more than a piece of ripe, dangling fruit, leaking a steady stream of your slutty juices in deference to his thirsty, powerful mouth.");
 	
-	output("\n\nAt long, long last, way after keeping count of the number of times you came ceases to be of any importance, the wet friction recedes from your [pc.eachVagina]. You loll, open-mouthed and gazing blearily at the ceiling as you are lowered carefully to the ground, where there is no power in your [pc.lowerBody] to do anything but puddle onto it at Gene’s feet. The way your");
+	output("\n\nAt long, long last, way after keeping count of the number of times you came ceases to be of any importance, the wet friction recedes from your [pc.eachVagina]. You loll, open-mouthed and gazing blearily at the ceiling as you are lowered carefully to the ground, where there is no power in your [pc.legOrLegs] to do anything but puddle onto it at Gene’s feet. The way your");
 	if (pc.vaginas.length == 1) output(" pussy");
 	else output(" pussies");
 	output(" feel, you are vaguely surprised there isn’t steam coming from between your [pc.hips].");
@@ -1347,7 +1347,7 @@ public function genesModsOverCounter():void
 		else output(" [pc.chest]");
 		output(" jouncing, letting this monstrously sized creature have his way with you, and the thought makes you tighten up ecstatically again around his stern, hot cocks.");
 		
-		output("\n\nGene grunts hoarsely, tightens his grip on your [pc.nipples] and rams himself up to the quick in your [pc.vagina " + x + "]. You groan long and low as he swells your tunnel and womb with copious, orange cum, surge after surge until you feel utterly stuffed with its thickness; can almost taste its spicy, musky tang on your limp [pc.tongue]. You can hear it hit the counter side below you, spurting unheeded from his bigger dick as well.");
+		output("\n\nGene grunts hoarsely, tightens his grip on your [pc.nipples] and rams himself up to the hilt in your [pc.vagina " + x + "]. You groan long and low as he swells your tunnel and womb with copious, orange cum, surge after surge until you feel utterly stuffed with its thickness; can almost taste its spicy, musky tang on your limp [pc.tongue]. You can hear it hit the counter side below you, spurting unheeded from his bigger dick as well.");
 		if (isGeneSubmissionLevelMaxed()) output(" The sound almost manages to sober you out of the golden dizziness you are experiencing for taking Master’s cock and getting him off so well. All of that wonderful, endorphin-tingling cum, going to waste... perhaps you could lick it up afterwards? Only if he asks.");
 		
 		output("\n\nIt oozes out of you when he finally withdraws from your hard-ridden pussy in a thick, steady stream, enough still inside to round your [pc.belly] with packed warmth. You loll on the counter, too fucked to do anything but quietly enjoy copious amounts of male juices slide slowly over your [pc.clit] and onto the floor.");
@@ -1404,7 +1404,7 @@ public function genesModsOverCounter():void
 		else output(" streaming");
 		output(" freely down your insides of your thighs.");
 		
-		output("\n\nGene grunts hoarsely, tightens his grip on your [pc.nipples] and rams himself up to the quick in your [pc.vagina " + x + "] and [pc.butt]. You groan long and low as he swells your colon and womb with copious, orange cum, surge after surge until you feel utterly stuffed with its thickness; can almost taste its spicy, musky tang on your limp [pc.tongue]. It is soon spurting out of your utterly packed holes, dripping onto the faux-wooden floor below.");
+		output("\n\nGene grunts hoarsely, tightens his grip on your [pc.nipples] and rams himself up to the hilt in your [pc.vagina " + x + "] and [pc.butt]. You groan long and low as he swells your colon and womb with copious, orange cum, surge after surge until you feel utterly stuffed with its thickness; can almost taste its spicy, musky tang on your limp [pc.tongue]. It is soon spurting out of your utterly packed holes, dripping onto the faux-wooden floor below.");
 		if (isGeneSubmissionLevelMaxed()) output(" The sound almost manages to sober you out of the golden dizziness you are experiencing for taking Master’s cock and getting him off so well. All of that wonderful, endorphin-tingling cum, going to waste... perhaps you could lick it up afterwards? Only if he asks.");
 		
 		output("\n\nIt oozes out of you when he finally withdraws from your hard-ridden pussy and ass in a thick, steady stream, enough still inside to round your [pc.belly] with packed warmth. You loll on the counter, too fucked to do anything but quietly enjoy copious amounts of male juices slide slowly over your [pc.clit] and onto the floor.");
