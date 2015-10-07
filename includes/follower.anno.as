@@ -1538,7 +1538,7 @@ public function annoFollowerEatDatDogslootOut():void
 
 	processTime(20+rand(10));
 
-	pc.girlCumInMouth("ANNO");
+	pc.girlCumInMouth(chars["ANNO"]);
 	anno.orgasm();
 	pc.lust(15);
 	annoSexed(1);
@@ -1631,7 +1631,7 @@ public function annoFollowerSixtyNineSex():void
 	output("\n\nPanting with exhaustion and staggered by errant bursts of ecstasy in the afterglow of your lovemaking, you slump down, resting your head in the soft, wet valley of Anno’s thighs, trying to catch your breath. You can’t stop a smile, though, as you see Anno’s tail wagging happily, especially as you reach out and stroke the soft white appendage, sending another shiver of bliss through your lover as you rest in each other’s arms.");
 
 	pc.orgasm();
-	pc.girlCumInMouth("ANNO");
+	pc.girlCumInMouth(chars["ANNO"]);
 	anno.orgasm();
 	annoSexed(1);
 

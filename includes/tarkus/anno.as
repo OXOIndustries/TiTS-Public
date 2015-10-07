@@ -1343,7 +1343,7 @@ public function getSlurpedOnByAnnoz():void
 	processTime(30+rand(5));
 	annoSexed(1);
 	pc.orgasm();
-	pc.girlCumInMouth("ANNO");
+	pc.girlCumInMouth(chars["ANNO"]);
 	anno.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -3753,7 +3753,7 @@ public function annoPostQuestSexytimes():void
 	output("\n\nWith that, Anno grabs a fresh catsuit out of her closet and slips out of sight, which leaves you to collect your scattered [pc.gear] and return topside.");
 
 	pc.orgasm();
-	pc.girlCumInMouth("ANNO");
+	pc.girlCumInMouth(chars["ANNO"]);
 	anno.orgasm();
 
 	processTime(20+rand(5));

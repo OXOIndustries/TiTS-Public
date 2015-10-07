@@ -217,7 +217,7 @@
 				combatCSnake.tailGenitalArg = GLOBAL.TYPE_GOOEY;
 				if(rand(5) == 0) combatCSnake.tailGenitalColor = "semi-transparent ";
 				else combatCSnake.tailGenitalColor = "";
-				if(rand(10) == 0 && pc.skinTone != "") combatCSnake.tailGenitalColor = pc.skinTone;
+				if(rand(10) == 0 && kGAMECLASS.pc.skinTone != "") combatCSnake.tailGenitalColor = kGAMECLASS.pc.skinTone;
 				else combatCSnake.tailGenitalColor += RandomInCollection("red", "orange", "yellow", "green", "blue", "purple", "white", "pink");
 				combatCSnake.long += "<b>slippery slime creature's " + combatCSnake.tailGenitalColor + " cunt</b>";
 			}
@@ -226,7 +226,7 @@
 				combatCSnake.tailGenitalArg = GLOBAL.TYPE_SIREN;
 				if(rand(5) == 0) combatCSnake.tailGenitalColor = "luminous ";
 				else combatCSnake.tailGenitalColor = "";
-				if(rand(10) == 0 && pc.skinAccent != "") combatCSnake.tailGenitalColor = pc.skinAccent;
+				if(rand(10) == 0 && kGAMECLASS.pc.skinAccent != "") combatCSnake.tailGenitalColor = kGAMECLASS.pc.skinAccent;
 				else combatCSnake.tailGenitalColor += RandomInCollection("purple", "blue", "pink");
 				combatCSnake.long += "<b>slick, " + combatCSnake.tailGenitalColor + " cilia-filled tunnel</b>";
 			}	

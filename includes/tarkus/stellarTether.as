@@ -1757,7 +1757,7 @@ public function thraggenAreABunchOfGreenLesboSlutsGardefordToldMeSo():void
 	if(flags["TARKUS_BOMB_TIMER"] != 0) output("\n\nGetting back to the matter at hand, there’s a bomb that requires your attention.");
 	processTime(20+rand(10));
 	pc.orgasm();
-	pc.girlCumInMouth("CAPTAINKHORGAN");
+	pc.girlCumInMouth(chars["CAPTAINKHORGAN"]);
 	if(inCombat()) 
 	{
 		output("\n\n");

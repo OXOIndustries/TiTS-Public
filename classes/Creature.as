@@ -5945,7 +5945,7 @@ package classes {
 		public function isMilkTank():Boolean
 		{
 			//Check for infinite lactation perks!
-			if(hasPerk("Honeypot") return true;
+			if(hasPerk("Honeypot")) return true;
 			if(hasPerk("Milky") && hasPerk("Treated Milk")) return true;
 			return false;
 		}
