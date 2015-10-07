@@ -330,6 +330,7 @@ public function raskVelBabeGetsDoggieStyled():void
 	userInterface.showBust("RASKVEL_FEMALE_NUDE");
 	userInterface.showName("DEFEATED: F.\nRASKVEL");
 	var x:int = pc.cockThatFits(foes[0].vaginalCapacity());
+	if(x < 0) x = pc.smallestCockIndex();
 	output("As you eye your ");
 	if(foes[0].HP() < 1) output("defeated");
 	else output("defeated");
@@ -915,7 +916,9 @@ public function getPeggedWhileDoublePenetrate():void
 	userInterface.showBust("RASKVEL_FEMALE_NUDE");
 	userInterface.showName("LOST VS: F.\nRASKVEL");
 	var x:int = pc.cockThatFits(foes[0].vaginalCapacity());
+	if(x < 0) x = pc.smallestCockIndex();
 	var y:int = pc.cockThatFits2(foes[0].vaginalCapacity());
+	if(y < 0) y = pc.smallestCockIndex2();
 	//HP: 
 	if(pc.HP() < 1)
 	{
