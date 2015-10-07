@@ -1140,7 +1140,7 @@ public function doubleTeamingWithTheJimTOnSomeAntSlutQueenMayhapIDunno():void
 	if(flags["IRELLIA_DOUBLE_TEAM_EVER_DONE"] == undefined)
 	{
 		output("It's rather hard to find a myr male who hasn't been taken, and you're sure the Queen gets the cream of the crop. You suggest that perhaps she shouldn't dismiss all the drones, also asking her if she has a favorite male servant.");
-		output("\n\nQueen Irellia touches her chin and shoots you a salacious smile. \"<i>I don't have a favorite, rather, I have <i>favorites</i>. It's too hard to pick just one.</i>\" Realising this doesn't help you narrow it down, she airily waves her hand. \"<i>I can recommend one if you've got a preference. Are you a fan of muscles, feminine men, something in between-?</i>\"");
+		output("\n\nQueen Irellia touches her chin and shoots you a salacious smile. \"<i>I don't have a favorite, rather, I have <i>favorites</i>. It's too hard to pick just one.</i>\" Realizing this doesn't help you narrow it down, she airily waves her hand. \"<i>I can recommend one if you've got a preference. Are you a fan of muscles, feminine men, something in between-?</i>\"");
 		output("\n\nShe almost sounds like she's describing a buffet. Perhaps for a Myr queen, men really <i>are</i> a buffet item. You get the impression she might pick them entirely by her mood.");
 		output("\n\nA tingling sensation spreads through your lower abdomen. From the sound of things, you've got a queen's harem at your beck and call right now. The thought alone is thoroughly intoxicating ");
 		if(pc.hasCock()) output("and your [pc.cocks] naturally stiffen");
