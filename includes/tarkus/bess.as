@@ -12500,11 +12500,11 @@ public function bessIntimateGiveOral(fromEvent:Boolean = false):void
 	
 	output("\n\nEventually [bess.heShe] simply cannot cum any more and [bess.heShe] falls down beside you, [bess.hisHer] legs completely useless as [bess.heShe] looks at you in a post-orgasmic haze. You feverishly kiss as [bess.heShe] happily laps up the taste of herself off your tongue. You eventually fall asleep in each other’s arms.");
 
-	pc.girlCumInMouth("BESS");
+	pc.girlCumInMouth(chars["BESS"]);
 	bess.orgasm();
-	pc.girlCumInMouth("BESS");
+	pc.girlCumInMouth(chars["BESS"]);
 	bess.orgasm();
-	pc.girlCumInMouth("BESS");
+	pc.girlCumInMouth(chars["BESS"]);
 	bess.orgasm();
 	pc.lust(30);
 

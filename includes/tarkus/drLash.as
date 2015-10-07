@@ -427,7 +427,7 @@ public function lashTreatment2(treatment:String):void
 	{
 		if(pc.hasStatusEffect("Genital Slit")) pc.removeStatusEffect("Genital Slit");
 	}
-	if(balls == 0)
+	if(pc.balls == 0)
 	{
 		if(pc.hasStatusEffect("Uniball")) pc.removeStatusEffect("Uniball");
 	}
