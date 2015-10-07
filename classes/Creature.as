@@ -1731,10 +1731,10 @@ package classes {
 					buffer = armsDescript();
 					break;
 				case "armFull":
-					buffer = armDescript(true, true);
+					buffer = armDescript(true);
 					break;
 				case "armsFull":
-					buffer = armsDescript(true, true);
+					buffer = armsDescript(true);
 					break;
 				case "armNoun":
 					buffer = armNoun();
@@ -3313,15 +3313,14 @@ package classes {
 			}
 			else if (tongueType == GLOBAL.TYPE_OVIR)
 			{
-				types.push("smooth");
-				types.push("ovir");
-				types.push("thick");
+				types[types.length] = "smooth";
+				types[types.length] = "ovir";
+				types[types.length] = "thick";
 			}
 			else if(tongueType == GLOBAL.TYPE_LAPINE)
 			{
 				types[types.length] = "rabbit-like";
 				types[types.length] = "cute";
-				//types[types.length] = "tiny"; //but what if got long flag? ERROR ERROR
 				types[types.length] = "lapine";
 			}
 			else if(tongueType == GLOBAL.TYPE_EQUINE)
@@ -3342,7 +3341,6 @@ package classes {
 				types[types.length] = "cat-like";
 				types[types.length] = "feline";
 				types[types.length] = "cute";
-				//types[types.length] = "tiny"; //See aforementioned bunnytongue
 				if(race() == "kaithrit") types[types.length] = "kaithrit";
 			}
 			else if(tongueType == GLOBAL.TYPE_BOVINE)
@@ -3838,7 +3836,7 @@ package classes {
 			else if (tailType == GLOBAL.TYPE_MOUSE)
 				adjectives = ["mouse", "mousy", "mouse-like", "cute"];
 			else if (tailType == GLOBAL.TYPE_BADGER)
-				adjectives = ["badger", "mustelid", "tuft"];
+				adjectives = ["badger", "mustelid", "tufted"];
 			else if (tailType == GLOBAL.TYPE_RASKVEL)
 				adjectives = ["raskvel", "reptilian"];
 			else if (tailType == GLOBAL.TYPE_SYDIAN)
@@ -3852,7 +3850,7 @@ package classes {
 			else if (tailType == GLOBAL.TYPE_VANAE)
 				adjectives = ["vanae", "tentacled-like", "sucker-lined"];
 			else if (tailType == GLOBAL.TYPE_DEER)
-				adjectives = ["deer", "tuft", "cute"];
+				adjectives = ["deer", "tufted", "cute"];
 			// Flags
 			if (hasTailFlag(GLOBAL.FLAG_PREHENSILE))
 				adjectives.push("talented", "nimble");
@@ -3972,10 +3970,10 @@ package classes {
 			if(wingType == GLOBAL.TYPE_SHARK) return wingDescript();
 			return pluralize(wingDescript());
 		}
-		public function armsDescript(forceType: Boolean = false, forceAdjective: Boolean = false):String {
-			return pluralize(armDescript(forceType, forceAdjective));
+		public function armsDescript(forceAdjective: Boolean = false):String {
+			return pluralize(armDescript(forceAdjective));
 		}
-		public function armDescript(forceType: Boolean = false, forceAdjective: Boolean = false):String
+		public function armDescript(forceAdjective: Boolean = false):String
 		{
 			var output: String = "";
 			var adjective:Array = [];
@@ -3983,42 +3981,14 @@ package classes {
 			
 			// Adjectives
 			if (hasArmFlag(GLOBAL.FLAG_SMOOTH)) adjective.push("smooth");
-			if (hasArmFlag(GLOBAL.FLAG_AMORPHOUS)) { adjective.push("amorphous"); adjective.push("gooey"); }
-			if (hasArmFlag(GLOBAL.FLAG_FURRED)) { adjective.push("furred"); adjective.push("furry"); }
-			if (hasArmFlag(GLOBAL.FLAG_SCALED)) { adjective.push("scaled"); adjective.push("scaly"); }
-			if (hasArmFlag(GLOBAL.FLAG_CHITINOUS)) { adjective.push("chitinous"); adjective.push("armored"); }
-			if (hasArmFlag(GLOBAL.FLAG_FEATHERED)) { adjective.push("feathered"); adjective.push("feathery"); }
+			if (hasArmFlag(GLOBAL.FLAG_AMORPHOUS)) adjective.push("amorphous", "gooey");
+			if (hasArmFlag(GLOBAL.FLAG_FURRED)) adjective.push("furred", "furry");
+			if (hasArmFlag(GLOBAL.FLAG_SCALED)) adjective.push("scaled", "scaly");
+			if (hasArmFlag(GLOBAL.FLAG_CHITINOUS)) adjective.push("chitinous", "armored");
+			if (hasArmFlag(GLOBAL.FLAG_FEATHERED)) adjective.push("feathered", "feathery");
 			
-			// Types
-			/* -- Sorry, Jacques00, but type-descs just don't read right on arms. "Kaithrit arms, Ausar arms? Doesn't work. --
-			if (armType == GLOBAL.TYPE_HUMAN) type = ["human", ""];
-			else if (armType == GLOBAL.TYPE_CANINE) type = ["canine", "ausar"];
-			else if (armType == GLOBAL.TYPE_FELINE) {
-				type = ["feline"];
-				if(!hasArmFlag(GLOBAL.FLAG_FURRED)) type.push("kaithrit");
-			}
-			else if (armType == GLOBAL.TYPE_LEITHAN) type = ["leithan"];
-			else if (armType == GLOBAL.TYPE_KUITAN) type = ["tanuki", "kui-tan"];
-			else if (armType == GLOBAL.TYPE_EQUINE) type = ["equine"];
-			else if (armType == GLOBAL.TYPE_PANDA) type = ["panda"];
-			else if (armType == GLOBAL.TYPE_BEE) type = ["bee-like", "zil"];
-			else if (armType == GLOBAL.TYPE_AVIAN) type = ["bird-like", "avian"];
-			else if (armType == GLOBAL.TYPE_ARACHNID || armType == GLOBAL.TYPE_DRIDER) type = ["spider-like", "arachnid"];
-			else if (armType == GLOBAL.TYPE_BADGER) type = ["mustelid", "badger"];
-			else if (armType == GLOBAL.TYPE_OVIR) type = ["ovir"];
-			else if (armType == GLOBAL.TYPE_MYR) type = ["myr"];
-			else type = ["humanoid"];
-			*/
 			// Build
 			if ((forceAdjective || rand(2) == 0) && adjective.length > 0) output += RandomInCollection(adjective);
-			if (forceType || rand(4) == 0)
-			{
-				if(type.length > 0)
-				{
-					if (output != "") output += " ";
-					output += RandomInCollection(type);
-				}
-			}
 			// Noun
 			if (output != "") output += " ";
 			output += armNoun();
@@ -4116,7 +4086,7 @@ package classes {
 					if (pluralAdjective && legCount > 2 && this.rand(2) == 0) { adjectives.push("numerous"); }
 					//Coulda sworn there was a reason I didn't include these originally, but it's slipping away from me now.
 					if (hasLegFlag(GLOBAL.FLAG_AMORPHOUS)) adjectives.push("amorphous", "fluid", "ever-changing");
-					if (hasLegFlag(GLOBAL.FLAG_SCALED)) adjectives.push("scaled", "scaley");
+					if (hasLegFlag(GLOBAL.FLAG_SCALED)) adjectives.push("scaled", "scaly");
 					if (hasLegFlag(GLOBAL.FLAG_FURRED)) adjectives.push("furry", "fuzzy", "fur-covered");
 					if (hasLegFlag(GLOBAL.FLAG_TENDRIL)) adjectives.push("wiggling", "wriggling", "tendril-like");
 					if (hasLegFlag(GLOBAL.FLAG_PREHENSILE)) adjectives.push("prehensile");
@@ -4149,10 +4119,10 @@ package classes {
 			//ADJECTIVE!
 			if (this.rand(3) == 0 || forceAdjective)
 			{
-				if (hasLegFlag(GLOBAL.FLAG_SCALED)) { adjectives.push("scaled"); adjectives.push("scaley"); }
-				else if (hasLegFlag(GLOBAL.FLAG_FURRED)) { adjectives.push("furry"); adjectives.push("fuzzy"); adjectives.push("fur-covered"); }
-				else if (hasLegFlag(GLOBAL.FLAG_TENDRIL)) { adjectives.push("wiggling"); }
-				else if (hasLegFlag(GLOBAL.FLAG_CHITINOUS)) { adjectives.push("chitinous"); adjectives.push("armored"); adjectives.push("carapace-covered"); }
+				if (hasLegFlag(GLOBAL.FLAG_SCALED)) adjectives.push("scaled", "scaly");
+				else if (hasLegFlag(GLOBAL.FLAG_FURRED)) adjectives.push("furry", "fuzzy", "fur-covered");
+				else if (hasLegFlag(GLOBAL.FLAG_TENDRIL)) adjectives.push("wiggling");
+				else if (hasLegFlag(GLOBAL.FLAG_CHITINOUS)) adjectives.push("chitinous", "armored", "carapace-covered");
 				//Random goes here!
 				if (adjectives.length > 0) output += RandomInCollection(adjectives);
 			}
@@ -7638,9 +7608,9 @@ package classes {
 			else if (rando <= 10) desc += "asshole";
 			else if (rando == 11) desc += "bum";
 			else if (rando == 12) desc += "butthole";
-			else if (rando <= 13) desc += "sphincter";
+			else if (rando == 13) desc += "sphincter";
 			else if (rando <= 15) desc += "backdoor";
-			else if (rando <= 17) {
+			else {
 				if (tailType > 0) desc += "tailhole";
 				else desc += "butthole";
 			}
@@ -9605,8 +9575,6 @@ package classes {
 			if (cock.hasFlag(GLOBAL.FLAG_TAPERED)) collection.push("tapered");
 			if (cock.hasFlag(GLOBAL.FLAG_STINGER_BASED)) collection.push("stinger-based");
 			if (cock.hasFlag(GLOBAL.FLAG_STINGER_TIPPED)) collection.push("stinger-tipped");
-			//No, Jacques00. This doesn't work when a dick is jutting out of its sheath.
-			//if (cock.hasFlag(GLOBAL.FLAG_SHEATHED)) collection.push("sheathed");
 			if (cock.hasFlag(GLOBAL.FLAG_NUBBY)) collection.push("nubby");
 			if (cock.hasFlag(GLOBAL.FLAG_AMORPHOUS)) collection.push("amorphous");
 			if (cock.hasFlag(GLOBAL.FLAG_SMOOTH)) collection.push("smooth");
@@ -9815,7 +9783,7 @@ package classes {
 					descript += choices[rand(choices.length)] + " ";
 				}
 				choices = ["dick", "shaft", "prick", "cock", "tool", "member"];
-				if(kGAMECLASS.silly && rand(10) == 0)
+				if(simple && kGAMECLASS.silly && rand(5) == 0)
 				{
 					descript = "";
 					choices.push("dino-dick","dino-cock","penisaurus","schlongosaur");
