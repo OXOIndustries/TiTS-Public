@@ -525,7 +525,7 @@ public function xantheTalkUsloot():void
 	{
 		flags["XANTHE_TALK_HAPPENED"] = 1;
 		output("Xanthe seems to be peering at you rather intently, as if she’s trying to figure something out. Those electric blues of hers are even more intense than usual.");
-		output("\n\n\"<i>... Now where have I seen you before...?”</i> she muses aloud. Suddenly, realisation sets in, and her eyebrows shoot up. <i>\"Oh, by Zyi! You’re [pc.fullName], aren’t you...?”</i>");
+		output("\n\n\"<i>... Now where have I seen you before...?”</i> she muses aloud. Suddenly, realization sets in, and her eyebrows shoot up. <i>\"Oh, by Zyi! You’re [pc.fullName], aren’t you...?”</i>");
 		//normal:
 		if(!pc.isBimbo()) output("\n\nYou swiftly look over your shoulder, to make sure nobody heard that. You then ask her <i>how</i> she knows who you are.");
 		//ditz:
@@ -1237,12 +1237,12 @@ public function letsDoAlienBondageMating():void
 		if(!pc.isTaur() && pc.tallness < 96)
 		{
 			output("Mistress Xanthe leans back against her own body and hooks up her stocking clad knees as if she’s sitting in a chair. She then looks at you and pats her lap.");
-			output("\n\nRealising she’s giving you an instruction, you rush over and hop into her lap like a good little sub. Wrapping your arms around her neck, you resist the urge to do anything else until ordered to.");
+			output("\n\nRealizing she’s giving you an instruction, you rush over and hop into her lap like a good little sub. Wrapping your arms around her neck, you resist the urge to do anything else until ordered to.");
 		}
 		else
 		{
 			output("Mistress Xanthe leans back against her own body and hooks up her stocking clad knees as if she’s sitting in a chair. She then looks at you and pats the side of her leg.");
-			output("\n\nRealising she’s giving you an instruction, you rush over and bow by her side a good little sub. You resist the urge to do anything else until ordered to.");
+			output("\n\nRealizing she’s giving you an instruction, you rush over and bow by her side a good little sub. You resist the urge to do anything else until ordered to.");
 		}
 		output("\n\n<i>\"Good " + pc.mf("boy","girl") + ".”</i> Xanthe’s husky words of praise cause your heart to soar, especially since they’re followed by a sweet kiss on your [pc.lips].");
 		output("\n\nYou spend some time basking in her powerful presence and obeying her commands. Does she get you to do anything - or do anything to you - today...?");
