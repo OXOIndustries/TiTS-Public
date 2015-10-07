@@ -1717,7 +1717,7 @@ public function carrieBlowjobIntro():void
 	//First
 	if(flags["CARRIE_BLOWJOBBED"] == undefined)
 	{
-		output("To you, the steel of the milking machine is a grey background detail next to the fleshy, milky curves of the machine’s operator, displayed brazenly in her skimpy, skin-tight cow outfit. They radiate summery, dreamy arousal to you, drowning everything else out, [pc.eachCock] hardening as you simply stand and drink her in. Carrie grins sheepishly, looking away; dimly you realise a good five seconds have crawled by in which you’ve simply stared at her.");
+		output("To you, the steel of the milking machine is a grey background detail next to the fleshy, milky curves of the machine’s operator, displayed brazenly in her skimpy, skin-tight cow outfit. They radiate summery, dreamy arousal to you, drowning everything else out, [pc.eachCock] hardening as you simply stand and drink her in. Carrie grins sheepishly, looking away; dimly you realize a good five seconds have crawled by in which you’ve simply stared at her.");
 		output("\n\n<i>“You ok, " + pc.mf("guy","girl") + "?”</i> she says.");
 
 		output("\n\n<i>“Yeah,”</i> you grin. You can practically feel the pheromones pouring off of you, and your heady tunnel vision allows you to see the effect they are having on the auburn-headed cow - the way her lips slowly part, her pupils dilating, her smile growing softer.");
