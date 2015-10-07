@@ -3197,6 +3197,7 @@ package classes {
 					adjectives = ["deer", "pointed", "oval-shaped", "pointy", "softly furred"];
 					break;
 			}
+			if (earLength >= 1 && earType == GLOBAL.TYPE_SYLVAN) adjectives.push(num2Text(Math.round(earLength)) + "-inch long");
 			//Pick an adjective about 75% of the time
 			if (rand(4) < 3 && adjectives.length > 0) description = adjectives[rand(adjectives.length)] + " ";
 			//Pick a noun.
@@ -3284,7 +3285,6 @@ package classes {
 					types[types.length] = "terran";
 				}
 				else types[types.length] = "humanoid";
-				if(race() == "raskvel") types[types.length] = "raskvel";
 			}
 			else if(tongueType == GLOBAL.TYPE_NAGA)
 			{
@@ -3545,7 +3545,22 @@ package classes {
 			else return false;
 		}
 		public function beard(): String {
-			if (hasBeard()) return "beard";
+			if (hasBeard())
+			{
+				var description: String = "";
+				var adjectives: Array = [];
+				if (beardLength > 0.001 && beardLength <= 0.125) return RandomInCollection("stubble", "five o’clock shadow", "beard");
+				if (rand(4) == 0)
+				{
+					if (beardLength < 1) adjectives = RandomInCollection("trim", "short");
+					else adjectives = [num2Text(Math.round(beardLength)) + "-inch long"];
+					if (beardLength >= 6) adjectives.push("lengthy", "long");
+				}
+				if (adjectives.length > 0) description += RandomInCollection(adjectives) + " ";
+				if (beardStyle == 0) description += "beard";
+				else description += "beard";
+				return description;
+			}
 			else return "ERROR: NO BEARD! <b>YOU ARE NOT A VIKING AND SHOULD TELL FEN IMMEDIATELY.</b>";
 		}
 		public function modThickness(change: Number, display:Boolean = true): String 
@@ -3898,7 +3913,7 @@ package classes {
 			switch (wingType)
 			{
 				default:
-					adjectives.push("none-existant");
+					adjectives.push("non-existent");
 					break;
 					
 				case GLOBAL.TYPE_SMALLBEE:
@@ -3949,7 +3964,7 @@ package classes {
 			}
 
 			if (rand(2) == 0 && adjectives.length > 0) description += RandomInCollection(adjectives) + " ";
-			description += (nouns.length > 0 ? RandomInCollection(nouns) : "wings");
+			description += (nouns.length > 0 ? RandomInCollection(nouns) : "wing");
 			return description;
 		}
 		public function wingsDescript():String
@@ -5908,7 +5923,6 @@ package classes {
 			if(milkMultiplier > 50 || milkFullness >= 50) return true;
 			return false;
 		}
-
 		public function isLactating(): Boolean {
 			//PC can't be lactating unless they canLactate!
 			if(canLactate())
@@ -5926,6 +5940,13 @@ package classes {
 		public function canMilkSquirt():Boolean
 		{
 			if(milkFullness >= 80) return true;
+			return false;
+		}
+		public function isMilkTank():Boolean
+		{
+			//Check for infinite lactation perks!
+			if(hasPerk("Honeypot") return true;
+			if(hasPerk("Milky") && hasPerk("Treated Milk")) return true;
 			return false;
 		}
 		public function milkProduced(minutes: Number): Number {
@@ -6818,14 +6839,13 @@ package classes {
 			{
 				cocks[slot].cockColor = RandomInCollection(["silver", "gray", "black"]);
 			}
-			/*
-			if (type == GLOBAL.TYPE_PLANT) {
+			if (type == GLOBAL.TYPE_VENUSPITCHER) {
 				if (rand(3) == 0) cocks[slot].cockColor = "purple";
 				else if (rand(3) == 0) cocks[slot].cockColor = "olive green";
 				else cocks[slot].cockColor = "green";
 				cocks[slot].addFlag(GLOBAL.FLAG_PREHENSILE);
 				cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
-			}*/
+			}
 		}
 		//PC can fly?
 		public function canFly(): Boolean {
@@ -8303,7 +8323,7 @@ package classes {
 			//Define areola size description by nippleWidth
 			var areolasize: String = "";
 			
-			if(nippleWidth() <= 0) areolasize = "non-existant";
+			if(nippleWidth() <= 0) areolasize = "non-existent";
 			else if(nippleWidth() <= .375) areolasize = "fairly tiny";
 			else if(nippleWidth() <= .75) areolasize = "average-sized";
 			else if(nippleWidth() <= 1.5) areolasize = "coin-sized";
@@ -8724,6 +8744,11 @@ package classes {
 				if (this.rand(2) == 0) vag += "gooey";
 				else vag += "slimy";
 				descripted++;
+			}
+			//10% of time, mention color.
+			if (this.rand(10) == 0 && tailGenitalColor != "") {
+				if (descripted > 0) vag += ", ";
+				vag += tailGenitalColor;
 			}
 			//50% of time, simple cunt.
 			if (this.rand(2) == 0) {
@@ -10550,7 +10575,7 @@ package classes {
 			} else if (arg == GLOBAL.FLUID_TYPE_GIRLCUM) {
 				collection = ["transluscent","transluscent","transluscent","transluscent","transluscent","clear","clear","clear","semi-transparent","semi-transparent"];
 			} else if (arg == GLOBAL.FLUID_TYPE_CUMSAP) {
-				collection = ["off white","off white","off white","off white","off white","pearl-marbled amber","pearl-marbled amber","pearl-marbled amber","ivory-amber","ivory-amber"];
+				collection = ["off-white","off-white","off-white","off-white","off-white","pearl-marbled amber","pearl-marbled amber","pearl-marbled amber","ivory-amber","ivory-amber"];
 			} else if(arg == GLOBAL.FLUID_TYPE_CHOCOLATE_MILK) {
 				collection = ["chocolate","chocolate","chocolate","chocolate","chocolate","creamy brown, chocolate","creamy brown, chocolate","creamy brown, chocolate","dark, chocolate","dark, chocolate"];
 			} else if(arg == GLOBAL.FLUID_TYPE_STRAWBERRY_MILK) {
@@ -10798,6 +10823,8 @@ package classes {
 				descript += statCockAdjective(8, 2);
 				//50% of the time add supplimental cock adjective with the noun.
 				if (this.rand(2) == 0) descript += ", " + cockNoun(tailGenitalArg, false, true);
+				//or 10% of that time, mention color.
+				else if (this.rand(10) == 0 && tailGenitalColor != "") descript += ", " + tailGenitalColor + " " + cockNoun(tailGenitalArg, false, true);
 				//Otherwise normal
 				else descript += " " + cockNoun(tailGenitalArg, false, true);
 			}
@@ -10917,7 +10944,7 @@ package classes {
 			if (breastRows[rowNum].breastRating() < 1) {
 				temp = this.rand(10);
 				if (temp <= 3) return "pecs";
-				else if (temp <= 6) return "flat, almost non-existant breasts";
+				else if (temp <= 6) return "flat, almost non-existent breasts";
 				else return "pectoral muscles";
 			}
 			//50% of the time size-descript them

@@ -278,6 +278,7 @@ package classes.Items.Transformatives
 				var hasLongCock:Boolean = false;
 				targetCock = -1;
 				tCockLen = 11;
+				if (target.hasPerk("Hung")) tCockLen = 22;
 
 				for (ci = 0; ci < target.cocks.length; ci++)
 				{
@@ -295,8 +296,8 @@ package classes.Items.Transformatives
 					output("\n\nYour hefty [pc.cock " + targetCock + "] suddenly feels very... tight. You frown and grip you dick carefully. Pain shoots through you and you can <i>feel</i> your dick shrinking. <b>Thankfully the discomfort eases after a moment, and you're left with a dick about two inches shorter!</b>");
 
 					target.cocks[targetCock].cLengthRaw -= 2;
-
-					if (target.cocks[targetCock].cLengthRaw < 8) target.cocks[targetCock].cLengthRaw = 8;
+					if (target.hasPerk("Mini") && target.cocks[targetCock].cLengthRaw < 4) target.cocks[targetCock].cLengthRaw = 4;
+					else if (target.cocks[targetCock].cLengthRaw < 8) target.cocks[targetCock].cLengthRaw = 8;
 
 					changes++;
 					hasChangedCock = true;
@@ -305,6 +306,7 @@ package classes.Items.Transformatives
 				var hasShortCock:Boolean = false;
 				targetCock = -1;
 				tCockLen = 8;
+				if (target.hasPerk("Mini")) tCockLen = 4;
 
 				for (ci = 0; ci < target.cocks.length; ci++)
 				{
@@ -322,7 +324,8 @@ package classes.Items.Transformatives
 					output("\n\nYour tiny [pc.cock " + targetCock + "] aches for a moment. Blood rushes to it, and before long it is positively throbbing, almost painfully. You clench your teeth and wince. Your hands dart to your cock, and realize your manhood is <i>growing</i>. You watch in rapt fascination as your cock pulses, growing larger and larger. <b>By the time it stops, you're left with a penis about two inches longer!</b>");
 
 					target.cocks[targetCock].cLengthRaw += 2;
-					if (target.cocks[targetCock].cLengthRaw > 11) target.cocks[targetCock].cLengthRaw = 11;
+					if (target.hasPerk("Hung") && target.cocks[targetCock].cLengthRaw > 22) target.cocks[targetCock].cLengthRaw = 22;
+					else if (target.cocks[targetCock].cLengthRaw > 11) target.cocks[targetCock].cLengthRaw = 11;
 
 					changes++;
 					hasChangedCock = true;

@@ -1343,6 +1343,8 @@ public function getSlurpedOnByAnnoz():void
 	processTime(30+rand(5));
 	annoSexed(1);
 	pc.orgasm();
+	pc.girlCumInMouth("ANNO");
+	anno.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -2538,7 +2540,12 @@ public function deck13ShieldControlFunc():Boolean
 	{
 		if (flags["ANNO_MISSION_OFFER"] == 2) output("\n\nAnno is slumped against one of the bulkheads, catching her breath after the fight with the gray prime.");
 
-		if(flags["DECK13_SHIELDS_ON"] != 1) addButton(0, "Shields", deck13Shields);
+		if(flags["DECK13_SHIELDS_ON"] != 1 && flags["TARKUS_DESTROYED"] != undefined)
+		{
+			output("\n\nOut of all the active computers, the shield control console sits powerless and doesn't appear to be of any use. It must have been internally damaged during the big explosion.");
+			addDisabledButton(0,"Shields", "Shields", "It's no use, the controls are fried.");
+		}
+		else if(flags["DECK13_SHIELDS_ON"] != 1) addButton(0, "Shields", deck13Shields);
 		else addDisabledButton(0,"Shields","Shields","You've already enabled the shields.");
 		addButton(1, "Breach", deck13Breach);
 
@@ -2626,7 +2633,7 @@ public function nameThaGooII():void
 	
 	output("\n\nShe lunges at you! For a moment, you’re afraid for your life (or at least, your sexual integrity)... but thankfully her arms settle around your shoulders, and [goo.name] pulls herself");
 	if (pc.tallness > goo.tallness + 6) output(" up");
-	else if (pc.tallness < goo.tallness - 6) output("down");
+	else if (pc.tallness < goo.tallness - 6) output(" down");
 	output(" into a tight hug, squeezing her massive tits against you. You chuckle nervously and pat the goo on the head, your fingers coming away slightly wet and sticky.");
 	
 	output("\n\nAfter a moment, she peels herself off of you and grins. <i>“So, um, what’s </i>your<i> name?”</i>");
@@ -3746,6 +3753,7 @@ public function annoPostQuestSexytimes():void
 	output("\n\nWith that, Anno grabs a fresh catsuit out of her closet and slips out of sight, which leaves you to collect your scattered [pc.gear] and return topside.");
 
 	pc.orgasm();
+	pc.girlCumInMouth("ANNO");
 	anno.orgasm();
 
 	processTime(20+rand(5));

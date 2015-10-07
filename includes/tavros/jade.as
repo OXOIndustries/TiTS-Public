@@ -385,6 +385,9 @@ public function jadeGetsAGropeGasm():void {
 	}
 	sexedJade();
 	processTime(20+rand(10));
+	chars["JADE"].orgasm();
+	chars["JADE"].orgasm();
+	chars["JADE"].orgasm();
 	pc.lust(30+rand(10));
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -530,7 +533,9 @@ public function titfuckJade():void {
 	else output("with a smirk");
 	output(". Making yourself presentable, you gather up your " + pc.armor.longName + " and dress before heading out into public. Jade follows not longer after, looking radiant and smelling vaguely of your tryst.");
 	processTime(20+rand(10));
+	chars["JADE"].orgasm();
 	pc.orgasm();
+	pc.shower();
 	sexedJade();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -586,7 +591,9 @@ public function sitOnjadesFace():void {
 	output("\n\nThere's a bathroom around a corner where you wash your face alongside the panda. You catch her lapping your juices off her face and fingers when she thinks you aren't looking.");
 	//Woo woo! Done.
 	processTime(30+rand(10));
+	chars["JADE"].orgasm();
 	pc.orgasm();
+	pc.shower();
 	sexedJade();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -805,6 +812,7 @@ public function jadeUsesNippleMod():void {
 
 	chars["JADE"].breastRows[0].nippleType = GLOBAL.NIPPLE_TYPE_TENTACLED;
 	processTime(10+rand(5));
+	chars["JADE"].orgasm();
 	clearMenu();
 	addButton(0,"Help Her",helpJadeWithHerNewNipples);
 	addButton(1,"Watch Her",watchJadesNewNipplesMolestHer);
@@ -821,6 +829,7 @@ public function helpJadeWithHerNewNipples():void {
 	output("\n\nA fleshy tip strokes your [pc.lips] and you look down to see that one of Jade’s nips seem to have made their way around your arm and up to your face. Having no reason to deny it, you open your mouth and let it crawl inside. This is... quite a weird way to lick someone’s nipples, but you suppose there are weirder ways to do it.");
 	output("\n\nYou lose track of time as you watch Jade writhe under your ministrations....");
 	processTime(5);
+	chars["JADE"].orgasm();
 	pc.lust(20+rand(15));
 	clearMenu();
 	addButton(0,"Next",jadesNippleTFEpilogue,true);
@@ -835,6 +844,7 @@ public function watchJadesNewNipplesMolestHer():void {
 	output("\n\nAs Jade opens her mouth in yet another moan, her nipples uncoil from around her boobs and spring back into action, evidently not sated yet. One squirms through the air and plunges boldly into her open mouth, plugging it up and muffling her voice as it forcefeeds itself into her. The other creeps down her belly, almost invisible against the black parts of her fur, and heads for her skirt, worming its way underneath. The lewd bulge it spreads downward through the green fabric, leaving no doubt as its progress, and a muffled cry manages to escape her mouth as it penetrates her. Within seconds of it doing so, she arches her back, her whole body quaking mightily in a second, heavy orgasm, drenching her skirt once more with her female cream.");
 	output("\n\nJade seems to be stuck in nirvana.The sensitive nipples are rubbing all over her body and granting her unimaginable pleasure, reducing her to nothing more than a pile of moans, groans and cries of pleasure. The ever expanding puddle underneath her a testament to the amazing pleasure she’s been bound to. Frankly, the sight is quite hot. You feel yourself getting aroused as you watch her cum again and again....");
 	processTime(5);
+	chars["JADE"].orgasm();
 	pc.lust(20+rand(15));
 	clearMenu();
 	addButton(0,"Next",jadesNippleTFEpilogue);
@@ -1094,6 +1104,7 @@ public function boobToBoobSexathon():void {
 	else output("\n\nYou really need to be going. But you’d be lying if you said you’re not even a bit tired. Maybe a short nap oughta help. Yes, a nap sounds good....");
 	//[Next Page]
 	processTime(15+rand(10));
+	chars["JADE"].orgasm();
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",epilogueOfNippleOnNippleJadeSex);

@@ -122,7 +122,7 @@ public function lyrallaTalks():void
 	//Hard
 	else output("<i>“I have a few things I need to discuss with you,”</i> you explain.");
 	output("\n\nLyralla");
-	if(!pc.isBro() && !pc.isMischievous() && !pc.isNice() && pc.isMischievous()) output("‘s antennae wiggle nervously. <i>“I’m afraid you’d need to be a dignitary of some rank to have access to my diplomatic connections.”</i> She smiles, her artificial eye twitching. Was that an attempt at a wink? <i>“But I’d love to answer some of your more mundane questions.”</i>");
+	if(!pc.isBro() && !pc.isBimbo() && pc.isMischievous()) output("’s antennae wiggle nervously. <i>“I’m afraid you’d need to be a dignitary of some rank to have access to my diplomatic connections.”</i> She smiles, her artificial eye twitching. Was that an attempt at a wink? <i>“But I’d love to answer some of your more mundane questions.”</i>");
 	else output(" nods eagerly. <i>“Certainly. Sharing knowledge is my passion. It was even before I became an ambassador.”</i>");
 	//Topic list
 	lyrallaTalkMenu();

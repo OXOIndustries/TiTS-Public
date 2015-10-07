@@ -338,7 +338,7 @@ public function bigTHasABigDDeskBlowjob():void
 	{
 		output("\n\nThere’s a beeping on Tee’s console, but you’re too high from sucking his glorious cock to notice. You’re barely aware of him groaning and ushering you underneath the desk, or the governor pressing the accept call button. You keep happily sucking him off, greedily worshipping his cock from between those powerful muscled thighs.");
 		output("\n\n\"<i>Governor Tee! I’m glad I got ahold of you. A shipment of milk has gone missing. The ship hands got distracted in the milking pen again!”</i> An irritated voice exclaims from above your head.");
-		output("\n\nIs someone distracting him from your wonderful blowjob, and more importantly, from getting your delicious bull cream? You crade his massive, virile balls in your hands and bob your head back and forth, deliberately trying to distract Big T from the call, feeling a naughty, possessive instinct overtake you. Your eyes flick upwards, eagerly watching his reaction.");
+		output("\n\nIs someone distracting him from your wonderful blowjob, and more importantly, from getting your delicious bull cream? You cradle his massive, virile balls in your hands and bob your head back and forth, deliberately trying to distract Big T from the call, feeling a naughty, possessive instinct overtake you. Your eyes flick upwards, eagerly watching his reaction.");
 		output("\n\nBig Tee can’t help himself, roughly thrusting his hips to meet your every motion. His flat tip flares in your throat as he struggles to control himself. \"<i>A-ah heck! I’m sure that milk’ll show up soon enough, maybe sooner than you think--?”</i> He grabs your head and grinds you against his base, and your [pc.thighs] tremble with delight.");
 		output("\n\nAs the man on the screen complains more, you slide your tongue teasingly along the underside of his mammoth cock, and Tee’s eyes roll back. \"<i>Tee, are you rolling your eyes at me--?!?”</i> The man yells. ");
 		output("\n\nCompletely ignoring him, Tee suddenly grabs your head and shoves forward, letting out a bellowing roar. \"<i>... I’M COMING--!”</i> You utterly bliss out as he buries his flat-tipped horse cock down your throat, where it flares and explodes. Thick jets of hot bull semen slides down your gullet and you swallow Tee’s cum eagerly, trembling as it slides into your eager belly.");
@@ -346,7 +346,7 @@ public function bigTHasABigDDeskBlowjob():void
 	}
 	else // No phone call
 	{
-		output("\n\nDesperate for more of his spunk, you greedily worship his cock from between those powerful muscled thighs. With a spare hand you crade his massive, virile balls in your hands, all the while bobing your head back and forth on his delicious meatstick. Your eyes flick upwards, eagerly watching his reaction.");
+		output("\n\nDesperate for more of his spunk, you greedily worship his cock from between those powerful muscled thighs. With a spare hand you cradle his massive, virile balls in your hands, all the while bobbing your head back and forth on his delicious meatstick. Your eyes flick upwards, eagerly watching his reaction.");
 		output("\n\nBig Tee can’t help himself, roughly thrusting his hips to meet your every motion. His flat tip flares in your throat as he struggles to control himself. He grabs your head and grinds you against his base, and your [pc.thighs] tremble with delight. You up the ante, sliding your tongue teasingly along the underside of his mammoth cock, and his eyes roll back.");
 		output("\n\nUnable to hold out any longer, Tee suddenly grabs your head and shoves forward, letting out a bellowing roar. You utterly bliss out as he buries his flat-tipped horse cock down your throat, where it flares and explodes. Thick jets of hot bull semen slides down your gullet and you swallow Tee’s cum eagerly, trembling as it slides into your eager belly.");
 	}
@@ -362,17 +362,21 @@ public function bigTHasABigDDeskBlowjob():void
 		else output("[pc.cum] and [pc.girlCum]");
 	}
 	else output("thoroughly cream yourself");
-	output(". Every inch of your body trembles as an indescribable joy fills every inch of your entire being, and you know it has to do with Tee’s gooey cream spurting and sliding down your throat.");
+	output(". Every inch of your body trembles as an indescribable joy fills your entire being, and you know it has to do with Tee’s gooey cream spurting and sliding down your throat.");
 	output("\n\nYou hold out for as long as you can, before his sheer potency makes you pull back and slide his spasming horse-cock from your semen-slick mouth. Tee’s thick creamy jizz splatters all over your [pc.face] and [pc.chest], coating them in his sloppy spooge. You look up at him with dazed [pc.eyeColor] eyes, your cheeks and front slathered with his glorious seed, ");
 	if(pc.lowerUndergarment.shortName != "") output("and your [pc.underGarment] utterly soaked.");
 	else output("quivering with delight.");
 
 	output("\n\n");
 	//If called: 
-	if(called) output("You dreamily realise the man on the line has logged off, apparently thinking he was being yelled at. ");
+	if(called) output("You dreamily realize the man on the line has logged off, apparently thinking he was being yelled at. ");
 	output("A little giggle rises from your throat as you rub Tee’s slick, musky seed into your [pc.skin], utterly drunk off the warmth and smell of his zesty spunk. You’re not the only one turned on by your state, as Tee lets out an animalistic rumble.");
 	output("\n\n\"<i>Oooh, " + pc.mf("boy","girl") + ", you have NO idea how sexy you look right now. I could fuck those [pc.lips] all over again,”</i> Tee lustily growls. His sticky stallion is stirring once more between those powerful thighs, and you swoon with delight. Another round--?");
 	processTime(12);
+	var ppBigT:PregnancyPlaceholder = new PregnancyPlaceholder();
+	pc.loadInMouth(ppBigT);
+	pc.loadInMouth(ppBigT);
+	pc.loadInMouth(ppBigT);
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",bigTCockSuckPartII);
@@ -502,6 +506,19 @@ public function drunkenCowgirlBoy():void
 	output("\n\nWhen you finally leave Big T’s office, you’re barely able to put one foot in front of the other without tripping. You hold your [pc.gear] to your chest, your [pc.thighs] utterly coated in bull cum. You giddily past his receptionist, half naked and too spaced out to care. What a ride!");
 	// Might want to kick the player two squares south after this. 
 	processTime(70);
+	var ppBigT:PregnancyPlaceholder = new PregnancyPlaceholder();
+	if(x >= 0)
+	{
+		pc.loadInCunt(ppBigT, x);
+		pc.loadInCunt(ppBigT, x);
+		pc.loadInCunt(ppBigT, x);
+	}
+	else
+	{
+		pc.loadInAss(ppBigT);
+		pc.loadInAss(ppBigT);
+		pc.loadInAss(ppBigT);
+	}
 	pc.orgasm();
 	sexedBigT();
 	currentLocation = "526";
@@ -534,7 +551,7 @@ public function pitchTOverATable():void
 	output(" completely in the buff -- with the exception of his stetson -- the huge, heavyset bull bends over the desk. You run your fingers down his impressively defined back. Each muscle is so perfect and well defined - it’s quite the sight to see him bent over like this!");
 
 	output("\n\nLetting your digits descend, you firmly grab his posterior in both hands. His hard asscheeks are built for thrusting and squeezing - he’s truly a perfect stallion of a man. Tee trembles as you squeeze and tease his well developed rump, clearly getting off on your forceful grip. Between his thick thighs, you can see the bull’s gigantic flat-tip horsecock beating against the desk - someone’s raring to go!");
-	output("\n\n\"<i>Oh, you’re really getting into this. I wouldn’t think you were the sort, governor,”</i> you cheekily tease. At the same time, you slip one of your fingers between his buttocks. His pucker is so large compared to your finger that it’s a cinch to slip it inside. Once you realise how easy it is, you slip in two more fingers.");
+	output("\n\n\"<i>Oh, you’re really getting into this. I wouldn’t think you were the sort, governor,”</i> you cheekily tease. At the same time, you slip one of your fingers between his buttocks. His pucker is so large compared to your finger that it’s a cinch to slip it inside. Once you realize how easy it is, you slip in two more fingers.");
 	output("\n\nTee groans with pleasure as you wiggle your digits around inside of his massive ass. \"<i>Ain’t got no problems with pleasure, darlin’. I reckon we bulls wouldn’t such sensitive butts if we ain’t supposed to poke around in ‘em!”</i>");
 	output("\n\nYou reach down between Tee’s thighs and tease his hefty sack with your fingers. At the same time you massage and milk his prostate. The low, rugged noise of pleasure and his clenching anus tells you you’re definitely hitting the right spot. What a large sweet zone this big man has!");
 	output("\n\n\"<i>Your fingers are great, darlin’, but how’s about you try something a little deeper?”</i> The bare-assed bull leans over his desk, presenting himself to you. Seeing the powerful male governor offer himself to you wearing nothing but a cowboy hat gets your blood flowing, especially to your [pc.cocks]! You grab his hips and grind yourself between those massive asscheeks. A single clench of his cheeks makes you groan out loud. He has amazing control of his glutes and sure knows how to use them!");
@@ -572,7 +589,7 @@ public function pitchTOverATable():void
 	if(teesButt > 1) output("s");
 	output(" in his ass sends you right over the edge as well, and you climax hard with him.");
 
-	output("\n\nYour orgasm is throttled, however, as your [pc.cum] surges up your [pc.cocks] only to be obstructed by his clenching ring. You’re kept utterly consumed by mind-numbing pleasure as you’re forcefully kept at the pinnacle of your climax. Pleasure-pain seizes your loins, your release denied, until Tee’s ass finally lets up. Your [pc.cum] explodes into his ass all at once and you nearly black out, holding onto his horns for dear life.");
+	output("\n\nYour orgasm is throttled, however, as your [pc.cum] surges up your [pc.cocks] only to be obstructed by his clenching ring. You’re utterly consumed by mind-numbing pleasure as you’re forcefully kept at the pinnacle of your climax. Pleasure-pain seizes your loins, your release denied, until Tee’s ass finally lets up. Your [pc.cum] explodes into his ass all at once and you nearly black out, holding onto his horns for dear life.");
 
 	output("\n\nYou cling to them and spurt burst after burst of spunk into the big bull’s ass. Finally you can hold yourself up no more and fall against his muscular back. You can feel yourself quivering, and he too, both of you absolutely wrecked from your respective orgasms. It takes you a long time to slide off, and when you finally do, your [pc.cumVisc] [pc.cumNoun] drools down his barrel-like thighs, coating them in [pc.cumColor].");
 	output("\n\n\"<i>... Hot damn. It’s been a long time since I’ve came like that from a bull ride!”</i> Tee guffaws. It takes him a while to turn around on his wobbly legs and seat himself in his chair. \"<i>Ahh--! I don’t think I’m going to be walking anywhere for the rest of the day, no siree.”</i>");
@@ -623,7 +640,7 @@ public function getRiddenByBigWheee(target:int = -1):void
 	output("until your [pc.lips are] inches away from his loins.");
 
 	output("\n\n<i>“Lick it,”</i> Tee commands you, his voice rumbling like thunder.The order makes your heart flutter a little, and you find yourself obediently inching forward. You reach out and run your [pc.tongue] along his fleshy sheath. Each and every tastebud meekly brushes along the alpha male’s manhood. You worship it with your mouth, lapping up and down, slathering it with your sticky saliva in the process.");
-	output("\n\nHis prodigious prick begins to thicken and inch upwards. A rush of pride rises within your chest as you realise you’re doing a good job. Spurred on by his arousal - and turned on yourself - you suckle gently on his low-hanging spheres. There, his bullish scent is dizzyingly rich. Without thinking, you find yourself burying your face in his balls - drinking in his musky masculine smell - and letting out a muffled moan of delight.");
+	output("\n\nHis prodigious prick begins to thicken and inch upwards. A rush of pride rises within your chest as you realize you’re doing a good job. Spurred on by his arousal - and turned on yourself - you suckle gently on his low-hanging spheres. There, his bullish scent is dizzyingly rich. Without thinking, you find yourself burying your face in his balls - drinking in his musky masculine smell - and letting out a muffled moan of delight.");
 	output("\n\n<i>“Mmm, like the smell of a home-grown bull, darlin’?”</i> His powerful digits ");
 	if(pc.hasHair()) output("run through your [pc.hair]");
 	else output("stroke the top of your head");
@@ -715,6 +732,19 @@ public function getRiddenByBigWheee(target:int = -1):void
 	output(". You turn your head, and see his slickened rod hardening once more - what stamina!");
 	output("\n\n\"<i>Darlin’, you look damn sexy right now bent over my desk. I’m thinking of keeping you there a little longer, properly mounted...”</i> Tee lustily growls. His powerful hands press down on your buttocks and you swoon with delight. How can you say no to another round-?");
 	processTime(19);
+	var ppBigT:PregnancyPlaceholder = new PregnancyPlaceholder();
+	if(target >= 0)
+	{
+		pc.loadInCunt(ppBigT, target);
+		pc.loadInCunt(ppBigT, target);
+		pc.loadInCunt(ppBigT, target);
+	}
+	else
+	{
+		pc.loadInAss(ppBigT);
+		pc.loadInAss(ppBigT);
+		pc.loadInAss(ppBigT);
+	}
 	pc.orgasm();
 	sexedBigT();
 	clearMenu();

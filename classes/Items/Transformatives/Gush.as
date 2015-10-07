@@ -262,6 +262,7 @@ package classes.Items.Transformatives
 					//New PG
 					output("\n\nYou need to find someone to fuck you and suckle the [pc.milk] that’s pouring out in streams!");
 					pc.milkMultiplier = 100;
+					pc.orgasm();
 				}
 				//2. Lactating? Lactate harder
 				else

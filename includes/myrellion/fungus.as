@@ -231,6 +231,7 @@ public function girlyCompassionVictoryWithInfectedMyr():void
 	output("\n\n");
 	processTime(22);
 	pc.orgasm();
+	pc.orgasm();
 	genericVictory();
 }
 

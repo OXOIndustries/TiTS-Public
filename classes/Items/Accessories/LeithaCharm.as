@@ -467,6 +467,7 @@
 					tfSize++;
 					target.cocks[i].cLengthRaw += 6;
 					if (target.cocks[i].cLengthRaw > 36) target.cocks[i].cLengthRaw = 36;
+					if (target.hasPerk("Hung")) target.cocks[i].cLengthRaw += Math.round(target.cocks[i].cLengthRaw / 3);
 				}
 			}
 
@@ -559,7 +560,7 @@
 				if (!target.hasLegs()) output(" between your [pc.legs]");
 				else output(" on the face of your naga body");
 				output(". A quick touch and feel tells you that that's exactly the case: <b>your feminine sex is now just like a horse's</b>.");
-
+				target.orgasm();
 				output("\n\nNow to find a nice, long leithan cock to break your new marecunt in...");
 			}
 

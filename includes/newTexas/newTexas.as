@@ -5,7 +5,7 @@ public function newTexasEmail():void
 {
 	flags["NEW_TEXAS_COORDINATES_GAINED"] = 1;
 	MailManager.unlockEntry("newtexas", GetGameTimestamp());
-	eventBuffer += "\n\n<b>New Email From Benjamin Tiberius Tee (NoReply@NewTexas.gov)!";
+	eventBuffer += "\n\n<b>New Email From Benjamin Tiberius Tee (NoReply@NewTexas.gov)!</b>";
 }
 
 //Landing on New Texas (First Time)
@@ -1240,9 +1240,10 @@ public function specialOrdersForTreatedGals():void
 	//pc.thickness += (1);
 	pc.modThickness(1);
 	IncrementFlag("HERMAN_SPECIAL_ORDER");
-	pc.loadInMouth();
-	pc.loadInMouth();
-	pc.loadInMouth();
+	var ppHerman:PregnancyPlaceholder = new PregnancyPlaceholder();
+	pc.loadInMouth(ppHerman);
+	pc.loadInMouth(ppHerman);
+	pc.loadInMouth(ppHerman);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1397,7 +1398,7 @@ public function yesGoMilkarGo(amount:Number = 0):void
 	showName("\nCARRIE");
 	showBust("CARRIE");
 
-	output("Ignoring the milker's obvious protest, you decide to stay strapped in and try to ride it out.");
+	output("Ignoring the milker’s obvious protest, you decide to stay strapped in and try to ride it out.");
 
 	output("\n\nBad idea.");
 
@@ -1408,17 +1409,17 @@ public function yesGoMilkarGo(amount:Number = 0):void
 	output("\n\nYou can only nod slightly as the dildo continues to ream your anus and prod your prostate, forcing your to arch your back and stiffen your limbs.");
 	if(pc.isTreated()) output(" You can feel yourself mindlessly drooling in the moment, your [pc.tongue] lolling out from the corner of your mouth. This is just too good!");
 
-	output("\n\nSeeing that you were not immediately hurt in the commotion, she instantly turns to the milker to see if she can stop it from completely breaking down. Turning the knobs to equalize the pressure, pumping levers to drop the excess back-flow, and pressing buttons to shut off the power supply sources in a systematical order. You can hear the milker's engines slow to a halt, but the pressure around [pc.eachCock] is unabated. The machine lets out an angry internal thud right before its engines are completely silenced. <i>“Oh, no,”</i> Carrie mewls, and with graceful aptitude, the cow-girl presses the emergency release button on a panel. Releasing a hiss, the connected tubes unlatch and fall off your [pc.cocks].");
+	output("\n\nSeeing that you were not immediately hurt in the commotion, she instantly turns to the milker to see if she can stop it from completely breaking down. Turning the knobs to equalize the pressure, pumping levers to drop the excess back-flow, and pressing buttons to shut off the power supply sources in a systematical order. You can hear the milker’s engines slow to a halt, but the pressure around [pc.eachCock] is unabated. The machine lets out an angry internal thud right before its engines are completely silenced. <i>“Oh, no,”</i> Carrie mewls, and with graceful aptitude, the cow-girl presses the emergency release button on a panel. Releasing a hiss, the connected tubes unlatch and fall off your [pc.cocks].");
 
-	output("\n\nIt takes a few more thrusts before Mister Floppycock finally manages to draw down to a creeping stop, still half-lodged in your [pc.asshole], the full brunt of the cock’s crown pressing down on your poor, battered prostate. You can't take it anymore and flex your rectal muscles, launching the large pink dildo from your abused ass. Like a lewd pendulum, it pivots up and swings back, giving you a big, wet slap on your [pc.butts]. The impact is the proverbial straw that broke the camel's back as you cannot hold the pressure any longer, letting the flood gates open and shooting");
+	output("\n\nIt takes a few more thrusts before Mister Floppycock finally manages to draw down to a creeping stop, still half-lodged in your [pc.asshole], the full brunt of the cock’s crown pressing down on your poor, battered prostate. You can’t take it anymore and flex your rectal muscles, launching the large pink dildo from your abused ass. Like a lewd pendulum, it pivots up and swings back, giving you a big, wet slap on your [pc.butts]. The impact is the proverbial straw that broke the camel’s back as you cannot hold the pressure any longer, letting the flood gates open and shooting");
 	if(silly && pc.cumQ() >= 50)
 	{
-		output(" the rest of your [pc.cumColor] load right into Carrie's face");
+		output(" the rest of your [pc.cumColor] load right into Carrie’s face");
 		if(pc.cumQ() >= 200 && pc.cumQ() < 500) output(" and");
 		else if(pc.cumQ() >= 200) output(", lathering her");
 		if(pc.cumQ() >= 200) output(" chest");
 		if(pc.cumQ() >= 500) output(", and drenching her entire body");
-		output("! You didn't actually notice her in your range of fire, but it looks like she just got a faceful of your [pc.cum]!");
+		output("! You didn’t actually notice her in your range of fire, but it looks like she just got a faceful of your [pc.cum]!");
 		output("\n\nEmbarassed by the sudden facial, she wipes the [pc.cumVisc] fluid off her face with a spare rag. ");
 	}
 	else
@@ -1461,7 +1462,7 @@ public function yesGoMilkarGo(amount:Number = 0):void
 	// Fixit? [Yes] [No]
 	else
 	{
-		output("\n\nThat's a good question. Would you like to fix it?");
+		output("\n\nThat’s a good question. Would you like to fix it?");
 		
 		addButton(0,"Yes",yesFixDaMilkar);
 		addButton(1,"No",noFixDaMilkar);
@@ -1477,9 +1478,9 @@ public function noStahpMilkarStahp(amount:Number = 0):void
 
 	output("You decide to play it safe and holler for Carrie like she said, flailing your arms wildly to get her attention.");
 
-	output("\n\nThe lights return to their normal brightness as the auburn-haired cow-girl steps from her stool and approaches you. <i>“What's wrong, stud?”</i>");
+	output("\n\nThe lights return to their normal brightness as the auburn-haired cow-girl steps from her stool and approaches you. <i>“What’s wrong, stud?”</i>");
 
-	output("\n\nWith the floppy latex cock up your [pc.asshole] and the pressure on your prostate, you can't gather much besides long exaggerated " + pc.mf("groans","moans") + ". Taking a deep breath, you try again, but only lewd noises escape your mouth.");
+	output("\n\nWith the floppy latex cock up your [pc.asshole] and the pressure on your prostate, you can’t gather much besides long exaggerated " + pc.mf("groans","moans") + ". Taking a deep breath, you try again, but only lewd noises escape your mouth.");
 
 	output("\n\n<i>“There, there [pc.boy], just calm down. What is it you need?”</i> Noting the desperation in your voice she quickly sputters out some guesses, <i>“More lube?”</i>");
 
@@ -1489,7 +1490,7 @@ public function noStahpMilkarStahp(amount:Number = 0):void
 
 	output("\n\nYou strain to to get the words out of your mouth, but a sudden creak in the milker and a blaring alarm with flashing lights make your situation apparent.");
 
-	output("\n\n<i>“Oh, heaven's to Betsy!”</i> Carrie jumps up and immediately turns the dials down, relieving you of the pressure on [pc.eachCock].");
+	output("\n\n<i>“Oh, heaven’s to Betsy!”</i> Carrie jumps up and immediately turns the dials down, relieving you of the pressure on [pc.eachCock].");
 
 	output("\n\nWhen the alarm subsides and the milking machine powers down, Carrie pats your [pc.butt] and your rectum reflexively launches the dildo from your ass. Like a lewd pendulum, it pivots up and swings back, giving you a big, wet slap on your ass cheeks. The impact triggers you to");
 	if(pc.cumQ() <= 0) output(" shoot blanks into the empty air.");
@@ -1503,7 +1504,7 @@ public function noStahpMilkarStahp(amount:Number = 0):void
 	pc.orgasm();
 	pc.orgasm();
 
-	output("\n\nCarrie giggles, <i>“Seems like you were enjoying Mister Floppycock a little too much there. Then again, when I said you should be ready to cum buckets, I didn't mean aerial firefighting buckets!”</i> After she presses the red button again, the milker shudders and withdraws back up into the ceiling. Carrie taps your ass again and comments, <i>“I didn't think it was  possible to overload the milkers, especially the ones here in the barn. Good thing you warned me when you did - we could have lost a milker back there!”</i> She pecks your cheek with a kiss of praise for your impressive virility. <i>“Here, let's get you out of this...”</i>");
+	output("\n\nCarrie giggles, <i>“Seems like you were enjoying Mister Floppycock a little too much there. Then again, when I said you should be ready to cum buckets, I didn’t mean aerial firefighting buckets!”</i> After she presses the red button again, the milker shudders and withdraws back up into the ceiling. Carrie taps your ass again and comments, <i>“I didn’t think it was  possible to overload the milkers, especially the ones here in the barn. Good thing you warned me when you did - we could have lost a milker back there!”</i> She pecks your cheek with a kiss of praise for your impressive virility. <i>“Here, let’s get you out of this...”</i>");
 
 	output("\n\nNodding weakly, you use whatever strength you have left to stand high enough for her to access the restraints.");
 
@@ -1517,49 +1518,69 @@ public function yesFixDaMilkar(bGiannaScans:Boolean = true):void
 	clearOutput();
 	showName("\nCARRIE");
 	showBust("CARRIE");
-
+	
 	// How much does it cost to fix?
 	var nCost:Number = 10000;
-
+	
 	output("You tell Carrie that you will repair the milker.");
-
+	
 	// For right after you borked it. Hello, Gianna!
 	if(bGiannaScans)
 	{
-		output("\n\nShe sighs, <i>“Sorry hun, but I can't let you fix it");
+		output("\n\nShe sighs, <i>“Sorry hun, but I can’t let you fix it");
 		if(pc.characterClass == GLOBAL.CLASS_SMUGGLER) output(" with any old part you can grab from the black market, you know");
 		else if(pc.characterClass == GLOBAL.CLASS_MERCENARY) output(" with bullets and brute force - even if you are good with your hands");
 		else if(pc.characterClass == GLOBAL.CLASS_ENGINEER) output(" yourself - no matter how smart or talented you may be with gadgets");
 		else output(" if you are thinking about fixing it yourself");
-		output(". There's a policy here that says if you're not an official farm hand, you're not allowed to touch the equipment. Boss's orders. Besides, we need to make sure there aren't any troublemakers planning to sabotage the machinery and take off with the goods. I hope you understand.”</i>");
-
+		output(". There’s a policy here that says if you’re not an official farm hand, you’re not allowed to touch the equipment. Boss’s orders. Besides, we need to make sure there aren’t any troublemakers planning to sabotage the machinery and take off with the goods. I hope you understand.”</i>");
+		
 		output("\n\nYou nod and ask how much it will cost to pay for the damages.");
-
-		output("\n\n<i>“Now you're catching on,”</i> the auburn-headed bovine smiles. She turns her view to the far corner of the barn and calls, <i>“'Anna, baby, can you give me some help over here?”</i> Not soon after, a");
-		if(flags["MET_GIANNA"] != undefined) output(" familiar face");
-		else output(" milky-white, woman-shaped android");
-		output(" scurries over, her raven-black ponytail braid swishing behind her. Carrie pulls out a device from her back pocket and unfolds it, revealing it to be a holo-tablet. She carefully connects a thin cord to the fembot's plug located on the seventh cervical vertebrae, feeding data directly to the tablet. Carrie then glides her fingers across the projected screen to access an application. She continues, <i>“I'll need to assess any internal damages for that milker there,”</i> she points, <i>“Please give it a nice thorough scan.”</i>");
-		output("\n\n");
-		if(flags["MET_GIANNA"] != undefined) output("Gianna");
-		else output("The gynoid");
-		output(" nods obediently and heads to the broken milker with a cute, girlish skip in her step. Kneeling over, quite seductively so, she gently places the fingertips of one of her hands on the metal surface of the male milker. Her eyes light up and glow as Carrie's tablet screen flickers with animated charts, rotating diagrams, and running various numerical meters. It only takes a minute or two and the scan is finally complete. After an acknowledging beep from the device,");
-		if(flags["MET_GIANNA"] != undefined) output(" Gianna");
-		else output(" the android");
-		output(" removes her hand and stands up with a little hop");
-		if(flags["MET_GIANNA"] != undefined) output(", her soft anatomy jiggling in response");
-		output(".");
-
-		processTime(5);
-
-		output("\n\n<i>“Thanks sweetie, you're a doll.”</i> With that, the perky android is disconnected from the device and dismissed, giving you a quick wave before continuing her other duties around the barn. Carrie then turns to you after reading the numbers displayed on the tablet. <i>“Looks like, with all the internal moisture damage and broken specialty parts, the repairs are going to run you about " + nCost + " credits to get this machine to function like new again.”</i>");
-
+		
+		output("\n\n<i>“Now you’re catching on,”</i> the auburn-headed bovine smiles. She turns her view to the far corner of the barn");
+		
+		// Ohnoes, Gianna isn't there!
+		if(giannaAWOL())
+		{
+			output(" as if looking for someone. She furrows her brows and shakes her head, <i>“Aw darn, looks like ‘Anna isn’t around, so this scan might take a little longer than usual... I hope ya don’t mind a little wait!”</i> Carrie pulls out a device from her back pocket and unfolds it, revealing it to be a holo-tablet. She then glides her fingers across the projected screen to access a series of applications. A beam of light projects from the device and onto the milker. It oscillates up, down, left, and right as the device beeps and clicks - audible signs of it scanning and evaluating the machine’s damage. Keeping up her professionalism, Carrie flashes you a close-mouthed smile and focuses on the graphs and charts on the screen, rapidly checking boxes and filling out info as the prompts fly by.");
+			
+			output("\n\nYou sit on a nearby stool and wait... and wait... and wait. At one point, Carrie even props the scanner up on another stool and pulls out a");
+			if(hours >= 10 && hours < 14) output(" lunchtime sandwich");
+			else if(hours >= 22 && hours < 2) output(" midnight snack");
+			else output(" bag of chips");
+			output(" and a bottle of sarsaparilla and shares them with you. After a good hour, an affirming beep eminates from her tablet.");
+			
+			processTime(65);
+			
+			output("\n\nCarrie gives you a wink, <i>“Alrighty! Sorry that took a bit, but thanks for being a patient cow[pc.boy].”</i> Grabbing her data slate and tapping its screen, she carefully reads the numbers displayed on it, <i>“Hmm... Looks like, with all the internal moisture damage and broken specialty parts, the repairs are going to run you about " + nCost + " credits to get this machine working like brand spanking new again.”</i>");
+		}
+		else
+		{
+			output(" and calls, <i>“‘Anna, baby, can you give me some help over here?”</i> Not soon after, a");
+			if(flags["MET_GIANNA"] != undefined) output(" familiar face");
+			else output(" milky-white, woman-shaped android");
+			output(" scurries over, her raven-black ponytail braid swishing behind her. Carrie pulls out a device from her back pocket and unfolds it, revealing it to be a holo-tablet. She carefully connects a thin cord to the fembot’s plug located on the seventh cervical vertebrae, feeding data directly to the tablet. Carrie then glides her fingers across the projected screen to access an application. She continues, <i>“I’ll need to assess any internal damages for that milker there,”</i> she points, <i>“Please give it a nice thorough scan.”</i>");
+			output("\n\n");
+			if(flags["MET_GIANNA"] != undefined) output("Gianna");
+			else output("The gynoid");
+			output(" nods obediently and heads to the broken milker with a cute, girlish skip in her step. Kneeling over, quite seductively so, she gently places the fingertips of one of her hands on the metal surface of the male milker. Her eyes light up and glow as Carrie’s tablet screen flickers with animated charts, rotating diagrams, and running various numerical meters. It only takes a minute or two and the scan is finally complete. After an acknowledging beep from the device,");
+			if(flags["MET_GIANNA"] != undefined) output(" Gianna");
+			else output(" the android");
+			output(" removes her hand and stands up with a little hop");
+			if(flags["MET_GIANNA"] != undefined) output(", her soft anatomy jiggling in response");
+			output(".");
+			
+			processTime(5);
+			
+			output("\n\n<i>“Thanks sweetie, you’re a doll.”</i> With that, the perky android is disconnected from the device and dismissed, giving you a quick wave before continuing her other duties around the barn. Carrie then turns to you after reading the numbers displayed on the tablet. <i>“Looks like, with all the internal moisture damage and broken specialty parts, the repairs are going to run you about " + nCost + " credits to get this machine to function like new again.”</i>");
+		}
+		
 		output("\n\nYou");
 		if(pc.isBimbo()) output(" make a surprised pout in response.");
-		else if(pc.isBro()) output("r face contorts into a unsurprising 'huh?' face after what you just heard.");
+		else if(pc.isBro()) output("r face contorts into a unsurprising ‘huh?’ face after what you just heard.");
 		else if(pc.isNice()) output(" gasp aloud, concerned about the amount of damage you caused.");
 		else if(pc.isMischievous()) output("r smirk visibly melts into a discontented frown at the price tag.");
 		else if(pc.isAss()) output(" curse under your breath as you let that number seep in.");
-		else output("'re somewhat shocked by the bill. Must be some pretty unique parts, you figure.");
+		else output("’re somewhat shocked by the bill. Must be some pretty unique parts, you figure.");
 
 		// Keep track if price has been scanned!
 		if(flags["MILK_BARN_COCKMILKER_SCANNED"] == undefined) flags["MILK_BARN_COCKMILKER_SCANNED"] = 1;
@@ -1567,22 +1588,22 @@ public function yesFixDaMilkar(bGiannaScans:Boolean = true):void
 	// For repeat scenes.
 	else
 	{
-		output("\n\n<i>“Right, you know the drill, hun.”</i> Flipping out her tablet, she quickly reads the figure and reports the cost to you. <i>“That'll be " + nCost + " credits for the repairs.”</i>");
+		output("\n\n<i>“Right, you know the drill, hun.”</i> Flipping out her tablet, she quickly reads the figure and reports the cost to you. <i>“That’ll be " + nCost + " credits for the repairs.”</i>");
 
 		output("\n\nYou flip your wrist and look at your current funds. You");
 		if(pc.credits <= 0) output(" are not sure you could afford anything, much less pay for the damages...");
-		else if(pc.credits < nCost) output(" don't quite have enough credits to pay for the damages...");
+		else if(pc.credits < nCost) output(" don’t quite have enough credits to pay for the damages...");
 		else if(pc.credits == nCost) output(" have that exact amount, what a coincidence!");
-		else if(pc.credits >= (nCost * 10)) output("'re not even phased by that. You have way more than enough to spend on repairs if you wanted to.");
+		else if(pc.credits >= (nCost * 10)) output("’re not even phased by that. You have way more than enough to spend on repairs if you wanted to.");
 		else if(pc.credits >= (nCost * 4)) output("r wallet can survive that, thankfully.");
-		else if(pc.credits >= (nCost * 2)) output("'ll have to split your spending money, but it's not too bad.");
+		else if(pc.credits >= (nCost * 2)) output("’ll have to split your spending money, but it’s not too bad.");
 		else output(" know this will make a pretty sizable dent in your wallet, but at least you can afford it.");
 
 		processTime(1);
 	}
-
+	
 	output("\n\n<i>“So, what do you say?”</i>");
-
+	
 	// Pay if you got enough.
 	clearMenu();
 	if(pc.credits >= nCost) addButton(0,"Pay2Fix",fixDaMilkar,nCost,"Pay to Repair","Pay " + nCost + " credits to fix the milker.");
@@ -1596,19 +1617,19 @@ public function noFixDaMilkar(bForPay:Boolean = false):void
 	clearOutput();
 	showName("\nCARRIE");
 	showBust("CARRIE");
-
-	output("You shake your head, letting the cow-girl know that you can't");
+	
+	output("You shake your head, letting the cow-girl know that you can’t");
 	if(!bForPay) output(" help her repair the milker");
 	else output(" pay her");
 	output(" at the moment.");
-
-	output("\n\nCarrie replies with a frown, <i>“I guess it can't be helped. Just know that I can't");
+	
+	output("\n\nCarrie replies with a frown, <i>“I guess it can’t be helped. Just know that I can’t");
 	if(!bForPay) output(" allow you to use the milker again until it is fully repaired");
-	else output(" do any repairs unless you hand in the payment first; so the sooner you pay the repair bill, the sooner you'll be able to use the milker again");
+	else output(" do any repairs unless you hand in the payment first; so the sooner you pay the repair bill, the sooner you’ll be able to use the milker again");
 	output(". Sorry for the inconvenience, babe.”</i>");
-
+	
 	processTime(1);
-
+	
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1619,26 +1640,26 @@ public function fixDaMilkar(amount:Number = 0):void
 	clearOutput();
 	showName("\nCARRIE");
 	showBust("CARRIE");
-
-	output("The cowbell around Carrie's neck clunks as she switches her posture. She contorts her lips and blows upwards to get a loose bang of hair away from her face. Looking down, she quickly taps a few things on her tablet's interface. Waving the scanner end of the control tablet above your Codex, it gives a couple beeps, alerting you that " + amount + " credits have been transferred over. ");
-
-	if(pc.isBimbo()) output("You could have used that money for like, an manicure or something! Oh well, you guess you'll have to make it up by sucking cocks for creds now. Ooh... that actually sounds yummy!");
+	
+	output("The cowbell around Carrie’s neck clunks as she switches her posture. She contorts her lips and blows upwards to get a loose bang of hair away from her face. Looking down, she quickly taps a few things on her tablet’s interface. Waving the scanner end of the control tablet above your Codex, it gives a couple beeps, alerting you that " + amount + " credits have been transferred over. ");
+	
+	if(pc.isBimbo()) output("You could have used that money for like, a manicure or something! Oh well, you guess you’ll have to make it up by sucking cocks for creds now. Ooh... that actually sounds yummy!");
 	else if(pc.isBro()) output("Dude, what a waste of money. But you totally wrecked that machine with your splooge! Maybe you can get a higher score next time?");
-	else if(pc.isNice()) output("Smiling nervously, you can't help but feel a little embarrassed about the situation. Though you did pay back your debt, so you'll no longer have that on your conscience to worry about.");
-	else if(pc.isMischievous()) output("Well, that's a prime example of how your sexual body organs could dig a deep hole through your cred wallet. Best be more careful next time...");
+	else if(pc.isNice()) output("Smiling nervously, you can’t help but feel a little embarrassed about the situation. Though you did pay back your debt, so you’ll no longer have that on your conscience to worry about.");
+	else if(pc.isMischievous()) output("Well, that’s a prime example of how your sexual body organs could dig a deep hole through your cred wallet. Best be more careful next time....");
 	else if(pc.isAss()) output("Damnit. This fucking machine was made for the expressed purpose of getting screwed, not the other way around!");
-
+	
 	// Take dat money
 	pc.credits -= amount;
 	if(flags["MILK_BARN_COCKMILKER_BROKEN"] != undefined) flags["MILK_BARN_COCKMILKER_BROKEN"] = undefined;
-
+	
 	// Set the flag! 5 days...
 	flags["MILK_BARN_COCKMILKER_REPAIR_DAYS"] = 5;
-
-	output("\n\nThe cow-girl gives you an approving glance and then winks, <i>“All set! Now you just need wait about " + num2Text(flags["MILK_BARN_COCKMILKER_REPAIR_DAYS"]) + " days until the milker is in working condition. Until then, try not to go blue balls on me, otherwise I'll have to sick Mister Floppycock on you without the milker, okay sugar?”</i>");
-
+	
+	output("\n\nThe cow-girl gives you an approving glance and then winks, <i>“All set! Now you just need wait about " + num2Text(flags["MILK_BARN_COCKMILKER_REPAIR_DAYS"]) + " days until the milker is in working condition. Until then, try not to go blue balls on me, otherwise I’ll have to sick Mister Floppycock on you without the milker, okay sugar?”</i>");
+	
 	processTime(2);
-
+	
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1652,7 +1673,7 @@ public function ohNoSillyCumFloods():void
     
     output("The creaks get louder as you and Carrie meet eye-to-eye, knowing all too well what is to come.");
     
-    output("\n\n<i>“I'm not paid enough for this!”</i> are Carrie's final words before an overloaded tank bursts behind her with " + indefiniteArticle(pc.cumColor()) + " explosion. As predicted, all the tanks simultaneously explode like New Years fireworks, the copious amounts of cum swirling and mixing into one giant semen tsunami. The wave of [pc.cum] barrels down on the two of you and the room quickly floods. You can see Carrie flail about, trying to find her bearings. When she is in swimming position, she finds the button to unlock the door. Punching it as hard as she can, the locked door opens without resistance. You and Carrie are swept up by the current and launched outside in a torrential river of cum!");
+    output("\n\n<i>“I’m not paid enough for this!”</i> are Carrie’s final words before an overloaded tank bursts behind her with " + indefiniteArticle(pc.cumColor()) + " explosion. As predicted, all the tanks simultaneously explode like New Years fireworks, the copious amounts of cum swirling and mixing into one giant semen tsunami. The wave of [pc.cum] barrels down on the two of you and the room quickly floods. You can see Carrie flail about, trying to find her bearings. When she is in swimming position, she finds the button to unlock the door. Punching it as hard as she can, the locked door opens without resistance. You and Carrie are swept up by the current and launched outside in a torrential river of cum!");
     
     output("\n\nYou close your eyes and your vision hazes...");
     
@@ -1675,7 +1696,7 @@ public function ohNoSillyCumFloodsPtII():void
     
     output("\n\nYou turn to find Carrie with a towel around her neck. She has obviously taken a shower and dried herself off not too long ago. Looking at your Codex, you realize a good deal of time has passed.");
     
-    output("\n\nYou try to ask what happened, but Carrie cuts you off, already expecting the question, <i>“Trust me, you really don't want to know the details...”</i> She flashes a smirk. <i>“Let's just say that varmints are horrible swimmers. Oh, and you owe me big time for getting your heiny off of Big T.'s roof.”</i>");
+    output("\n\nYou try to ask what happened, but Carrie cuts you off, already expecting the question, <i>“Trust me, you really don’t want to know the details...”</i> She flashes a smirk. <i>“Let’s just say that varmints are horrible swimmers. Oh, and you owe me big time for getting your heiny off of Big T.’s roof.”</i>");
     
     output("\n\nShaking your head, you pull yourself together. You thank Carrie for the help and she allows you to wash off in her shower. As soon as you dry up, you wear your [pc.gear] and are on your way.");
     

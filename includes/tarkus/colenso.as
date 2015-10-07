@@ -444,6 +444,18 @@ public function yesIVolunteerForBadEndsBecauseImBadAtSexGames():void {
 	output("\n\nWithin a week she accomplishes what neither the goblins nor the raskvel could in their entire history – unite them in peace. The orgies you have in those days - slithering naked through whole rooms of shortstacks who laugh and cry out with glee as they thrust and suck and lick and pump in rolling landscapes of shared ecstasy, all orchestrated from above by So, who enervates and whispers and twitches particular glands wherever the action lags - are amazing, astonishing, a dawn of intense tranquillity that you gleefully immerse yourself in. But there is much work ahead, and soon enough you get to it.");
 	output("\n\nSo spreads her reach across the stars. Powered by the technological know-how of Tarkus, she invades the extranet, swallowing satellites and comm buoys whole, system after system taken by her calm brilliance, confusion on every surface touched swiftly replaced by an all-uniting ecstasy. For those planets that manage to secure themselves against her, she has you. You, who she can twist into any shape with a signal to your micro-bots, you who gladly infiltrate locked down worlds and introduce her to their closed systems, then finding likely individuals to continue the good work.");
 	output("\n\nAfter such missions she delights in taking you alone and changing your shape over and over, every night finding exotic new ways of bringing you to orgasm. Dimly during these sessions you can hear the moans and exultant cries of everyone else she is connected to, an ever-expanding choir of millions. You have had an impact on the galaxy that your father could never have dreamed of, and you are very pleased about that. You cannot help but be.");
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
 	output("\n\n<b>THE END</b>");
 	clearMenu();
 }
@@ -598,6 +610,18 @@ public function pcLosesToHanSoSosBot():void
 
 	output("\n\nSo spreads her reach across the stars. Powered by the technological know-how of Tarkus, she invades the extranet, swallowing satellites and comb buoys whole, system after system taken by her calm brilliance, confusion on every surface touched swiftly replaced by an all-uniting ecstasy. For those planets that manage to secure themselves against her, she has you. You, who she can twist into any shape with a signal to your micro-bots, you who gladly infiltrate locked down worlds and introduce her to their closed systems, then finding likely individuals to continue the good work.");
 	output("\n\nAfter such missions she delights in taking you alone and changing your shape over and over, every night finding exotic new ways of bringing you to orgasm. Dimly during these sessions you can hear the moans and exultant cries of everyone else she is connected to, an ever-expanding choir of millions. You have had an impact on the galaxy that your father could never have dreamed of, and you are very pleased about that. You cannot help but be.");
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
 	output("\n\n<b>THE END</b>");
 	clearMenu();
 }

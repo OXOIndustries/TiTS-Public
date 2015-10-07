@@ -503,6 +503,7 @@ public function getACuntTail():void {
 	pc.addTailFlag(GLOBAL.FLAG_LONG);
 	pc.addTailFlag(GLOBAL.FLAG_THICK);
 	pc.tailGenitalArg = foes[0].tailGenitalArg;
+	pc.tailGenitalColor = foes[0].tailGenitalColor;
 	genericLoss();
 }
 

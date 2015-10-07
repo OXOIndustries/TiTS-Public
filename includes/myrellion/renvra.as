@@ -862,7 +862,10 @@ public function renvraMilkyTittiesGo():void
 	}
 	else
 	{
-		eventBuffer += "\n\nYou notice that your [pc.chest] is starting to grow, swelling with the beginnings of milk production. You find someplace quiet and pull your gear off, cupping your";
+		eventBuffer += "\n\nYou notice that your [pc.chest]";
+		if (pc.biggestTitSize() < 1 || pc.totalBreasts() == 1) eventBuffer += " is";
+		else eventBuffer += " are";
+		eventBuffer += " starting to grow, swelling with the beginnings of milk production. You find someplace quiet and pull your gear off, cupping your";
 		if (tBoobies) eventBuffer += " freshly engorged";
 		eventBuffer += " breasts and squeezing out a trickle of [pc.milk] from your teat.\n\n<b>It appears you're lactating now!</b>";
 	}
@@ -1467,7 +1470,10 @@ public function renvraDoubleTrouble():void
 	output("\n\n<i>“I hope you had your fill of foreplay last time,”</i> Renvra says, pushing slowly forward. <i>“Because I did.”</i> ");
 	if(!pc.isTaur()) output("Your hand reaches automatically for the huge cock as it begins to spread your hole, trying ineffectually to grip the slippery, pre-coated shaft, but is no match for either her enthusiasm or your own desire. ");
 	output("With a pleased hum from the halfbreed, the spongy flare slides past your opening. She stops briefly to savor the first taste of your [pc.vagOrAss " + x + "], and you can feel more pre-cum spurt from her slit as the heat of your body begins to move her again.");
-	output("\n\nRenvra, despite her words, seems to be set on torturing you with the inch-by-inch insertion of her agonizingly hot cock. Your [pc.chest] is pressed into the desk as the sheer length of her unyielding, egg-laying rod forces your body into a more complementary position - your [pc.butt] is sticking pervertedly in the air, and you clumsily shove papers and office supplies out of the way and onto the floor, trying to give yourself a flat, even surface to push back from when the inevitable thrusting begins.");
+	output("\n\nRenvra, despite her words, seems to be set on torturing you with the inch-by-inch insertion of her agonizingly hot cock. Your [pc.chest]");
+	if(pc.biggestTitSize() < 1 || pc.totalBreasts() == 1) output(" is");
+	else output(" are");
+	output(" pressed into the desk as the sheer length of her unyielding, egg-laying rod forces your body into a more complementary position - your [pc.butt] is sticking pervertedly in the air, and you clumsily shove papers and office supplies out of the way and onto the floor, trying to give yourself a flat, even surface to push back from when the inevitable thrusting begins.");
 	output("\n\nA sloppy splat of pre-cum hits ");
 	if(x >= 0) output("your cervix");
 	else output("the deepest part of your colon");
@@ -1572,10 +1578,10 @@ public function renvraDoubleTrouble():void
 	pc.orgasm();
 	//place ’Next’ here if desired
 	clearMenu();
-	addButton(0,"Next",renvraSuperCumPartII);
+	addButton(0, "Next", renvraSuperCumPartII, x);
 }
 
-public function renvraSuperCumPartII():void
+public function renvraSuperCumPartII(x:int = -1):void
 {
 	clearOutput();
 	showRenvra();

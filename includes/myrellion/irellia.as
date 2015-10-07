@@ -989,6 +989,8 @@ public function lady69Epilogue4PassedOutFolks():void
 	showIrellia();
 	output("You come to just as one of Irellia’s attendants is finishing sponging you off. Your whole body gleams from the wash, and the blushing attendant hands you your things with a knowing smile. Irellia lies a short distance away, giggling while you dress.\n\n<i>“Good job, Captain Steele. Don’t be a stranger!”</i>");
 	processTime(33);
+	var ppIrellia:PregnancyPlaceholder = new PregnancyPlaceholder();
+	pc.girlCumInMouth(ppIrellia);
 	irelliaSexBreak(8);
 	pc.exhibitionism(1);
 	pc.shower();

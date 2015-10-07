@@ -264,6 +264,7 @@ package classes.Items.Transformatives
 					if(pc.cocks[x].cLength() < 18 && rand(2) == 0)
 					{
 						var newLength:int = pc.cocks[x].cLengthRaw + 3 + rand(4);
+						if(pc.hasPerk("Hung")) newLength += 1 + rand(6);
 						if(pc.cockLengthUnlocked(x, newLength))
 						{
 							output("\n\nYou feel a tightness swelling in your [pc.cock " + x + "], making your junk feel bloated and swollen. You reach down to grab your prick, and find that it feels <i>much</i> bigger than before. Stiffening under your ministrations, your dick stretches out to new lengths - a hefty ");

@@ -137,7 +137,7 @@ public function tanisBowTrainingRepeat():void
 	//PC must have a bow in inventory or equipped. Pass ~30 minutes.
 	//{50-Aim %} Chance to increase Aim by a point, up to level max.
 
-	if (rand(100) >= 50 && pc.aim() < 25 && pc.AQ() < 0.5)
+	if (rand(100) >= 50 && pc.aim() < 25 && pc.AQ() < 50)
 	{
 		pc.slowStatGain("aim",1);
 	}
@@ -189,7 +189,7 @@ public function tanisBowTrainingFinaleRepeats():void
 	//PC must have a bow in inventory or equipped. Pass ~30 minutes.
 	//{80-Aim %} Chance to increase Aim by a point, up to level max.
 
-	if (rand(100) >= 80 && pc.aim() < 25 && pc.AQ() < 0.5)
+	if (rand(100) >= 80 && pc.aim() < 25 && pc.AQ() < 50)
 	{
 		pc.slowStatGain("aim",1);
 	}
