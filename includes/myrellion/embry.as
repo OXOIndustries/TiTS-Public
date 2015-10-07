@@ -5,7 +5,7 @@ Written by JimThermic, edited by Frogapus
 
 Embry Outline
 
-Embry is a young waitress that works in the spaceport bar on Myrellion. On first meeting her, the PC does not realise she is a transgirl. She has no breasts (flat chested), yet has petite features.
+Embry is a young waitress that works in the spaceport bar on Myrellion. On first meeting her, the PC does not realize she is a transgirl. She has no breasts (flat chested), yet has petite features.
  She has pink, chin-length hair that covers one eye and the other side is swept behind one ear. Her eyes are baby blue. She also has a pink monkey tail, monkey-like ears and feet. She also has pink fur on her forearms and lower legs. Otherwise she looks human. 
 She is wearing puffy waitress clothes that cover the shoulders with lots of frills. She is also wearing cute choker. 
 Monkey penis, but with pink skin instead of red. After transition, she retains her sensitivity down there, but she gets a soft trappy sack (if dick doesn't disappear) and her cock becomes small.
@@ -572,7 +572,7 @@ public function mockEmbryYouAss():void
 public function secondTimeEmbryMeetingContinuation():void
 {
 	output("\n\nSadly, in her attempt to leave, she doesn’t watch where she’s going, and collides into a myr customer. Both of them are sent sprawling to the floor. [embry.name] lands with her butt in the air, her long skirt flipped up to her ears.");
-	output("\n\nIt’s hard not to notice the girly panties flashed at you and her cute butt poking up in the air. There’s something off, though, between her leg. You realise she has a modest bulge where her female parts should be!");
+	output("\n\nIt’s hard not to notice the girly panties flashed at you and her cute butt poking up in the air. There’s something off, though, between her leg. You realize she has a modest bulge where her female parts should be!");
 	output("\n\n<i>“Oh god, I’m so sorry!”</i> [embry.name] pushes her skirt down and apologises profusely to the customer.");
 	output("\n\nAfter the damage is dealt with, she turns to you, looking rather mortified.");
 	output("\n\n<i>“... You saw it, didn’t you? My thing...”</i> she mumbles. Right now she looks like she’s going to die from embarrassment. <i>\"It wasn’t on purpose--I wasn’t flashing you! It wasn’t a sexual thing at all. Not that I DO sexual things. I’m actually a virgin... not that I... oh... my god.”</i> [embry.name] then facepalms. Clearly she didn’t mean to say that.");
@@ -804,7 +804,7 @@ public function myrellionDiscussionWithEmbry():void
 	showSimii();
 	flags["EMBRY_TALKED_ABOUT_MYRELLION"] = 1;
 	output("You ask [embry.name] how she ended up on Myrellion, of all places. Surely there were more peaceful planets?");
-	output("\n\n<i>\"W-well, yeah, but transport to Myrellion was all I could afford,”</i> she lets out a little sigh, and continues, <i>“I didn’t realise why it was so cheap at the time, I was just excited there were cheap flights off my home planet. I’m stuck here until I get enough money for passage off-world.”</i>");
+	output("\n\n<i>\"W-well, yeah, but transport to Myrellion was all I could afford,”</i> she lets out a little sigh, and continues, <i>“I didn’t realize why it was so cheap at the time, I was just excited there were cheap flights off my home planet. I’m stuck here until I get enough money for passage off-world.”</i>");
 	output("\n\nThere are more jobs in Gildenmere than there are at the spaceport, and you say as much. [embry.name] flushes a bit and shakes her head.");
 	output("\n\n<i>\"What, are you crazy? I’m not moving further from the embassy than I need to. If war breaks out, at least they’ll give me free passage off world. Probably to Omorii, but that can’t be helped... it’s better than being taken as a prisoner of war.”</i>");
 	processTime(2);
@@ -1604,7 +1604,7 @@ public function doneWivGlassesChatGuvnah():void
 	clearOutput();
 	showSimii(true);
 	output("[embry.name] coughs and nervously rubs the back of her neck. <i>\"U-um, anyway, my appearance aside, I was going to message you because my final treatment is here!”</i> she gestures to the familiar looking package.");
-	output("\n\nYou both press your thumbs against the fingerpad and she removes the sealed canister. She holds it in both hands, a serious look in her baby blue eyes. You realise her [embry.lips] are pursed and her hands are trembling.");
+	output("\n\nYou both press your thumbs against the fingerpad and she removes the sealed canister. She holds it in both hands, a serious look in her baby blue eyes. You realize her [embry.lips] are pursed and her hands are trembling.");
 	output("\n\n<i>\"T-this... this is the moment. It’s finally here. It doesn’t feel real--?”</i> [embry.name] whispers. Tears are welling in her eyes and she tightly clasps the metal cylinder. <i>“... When I take this, I’ll be a girl, a really, real girl. I won’t have to fight anymore...”</i>");
 	output("\n\nYou pull her into your arms, and hold her tight to your chest. She sobs and wails in your arms. Her body violently trembles - the silent stress and pain of eighteen years all comes out at once.");
 	output("\n\nWhen she finally calms down, your front is soaked with her tears, and her fingers are curled and clutching at your [pc.skinFurScalesNoun]. <i>“... I-I’m sorry, I thought I’d be happy, b-but what I am most of all is </i>relieved<i>. I’m just... so relieved.”</i>");
@@ -2366,7 +2366,7 @@ public function cunnilingusWithEmbry():void
 	else output("squirting");
 	output(" your [pc.girlCum] all over her tongue. You almost pass out from sheer pleasure, as you are reduced to a conduit for the pleasurable explosion wracking your body.");
 
-	output("\n\nWhen your powerful climax finally subsides, you realise the monkey girl is lapping lovingly at your [pc.pussy], thoroughly cleaning it of your [pc.girlCum]. She makes sure not to waste a single drop, and lets out happy little noises as she cleans your muff.");
+	output("\n\nWhen your powerful climax finally subsides, you realize the monkey girl is lapping lovingly at your [pc.pussy], thoroughly cleaning it of your [pc.girlCum]. She makes sure not to waste a single drop, and lets out happy little noises as she cleans your muff.");
 
 	output("\n\nOnce she’s finished, she pulls herself up to you and gives you a long, passionate kiss on the lips. You can taste your own [pc.girlCumFlavor] juice on her lips and her tongue. You make out for a while, before she snuggles happily into you.");
 	output("\n\n<i>“... I... I liked that a lot...</i> [embry.name] shyly admits, all the while stroking your cheek with her fingers. <i>“... I kind of feel like you marked my face with your cum... and your smell, and taste...”</i> she flushes, <i>“... Just that thought fills me with a happy, warm feeling. It feels right.”</i>");
