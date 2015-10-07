@@ -789,7 +789,7 @@ public function waitressingWithEmbryTalk():void
 	flags["EMBRY_TALKED_ABOUT_WAITRESSING"] = 1;
 	output("You ask [embry.name] how she came to be a waitress, and she tugs at the sides of her outfit.");
 	output("\n\n<i>\"Um, it was the only job I could find once I got to Myrellion. Actually, I didn’t know the planet was so... uh... hostile,”</i> she diplomatically states. <i>“... Can you believe they fly prop rotors here? It’s crazy!”</i>");
-	output("\n\nRealising she’s getting off topic, she blushes, and continues. <i>\"I saw a sign, and I walked in to ask for a job. I was wearing this outfit, actually, and they told me to stop slacking off and get to work... I guess I must have looked like I already worked there. So... I just started waiting tables.”</i>");
+	output("\n\nRealizing she’s getting off topic, she blushes, and continues. <i>\"I saw a sign, and I walked in to ask for a job. I was wearing this outfit, actually, and they told me to stop slacking off and get to work... I guess I must have looked like I already worked there. So... I just started waiting tables.”</i>");
 	output("\n\nYou look at her outfit. She wore something like that <i>before</i> she got the job? You ask her why she didn’t correct them.");
 	output("\n\n<i>\"Um... well, I kind of like being told what to do. It’s simpler, you know? And I was after the job anyway, so, no interview. Right?”</i>");
 	processTime(2);
@@ -976,7 +976,7 @@ public function justCuriousOrLikeEmbryWhateverFollowup():void
 {
 	output("\n\n<i>“... Um... that isn’t to say I won’t answer you though. I mean, since you’re interested.”</i> She peeks up at you through her bubblegum fringe, blinking at you shyly.");
 	output("\n\n<i>\"My experience is... none at all. Whatsoever. I’ve never been kissed, or even really hugged. So... yeah. I guess nobody wants to?”</i> she shrugs shyly. <i>\"I mean, I’m kind of stuck between sexes, so I’m not sure who’d go for... you know... this. What I am.”</i>");
-	output("\n\nRealising that she’s being a bit down, she quickly tries to lighten the air. <i>\"T-that’s not to say I don’t want it! I </i>do<i> spend a lot of time thinking about love. Probably too much,”</i> she blushes. <i>“... I mean, you’ve seen my notepad. I haven’t given up totally!”</i>");
+	output("\n\nRealizing that she’s being a bit down, she quickly tries to lighten the air. <i>\"T-that’s not to say I don’t want it! I </i>do<i> spend a lot of time thinking about love. Probably too much,”</i> she blushes. <i>“... I mean, you’ve seen my notepad. I haven’t given up totally!”</i>");
 	processTime(3);
 	clearMenu();
 	addButton(0,"Next",talkToEmbry);
@@ -1964,7 +1964,7 @@ public function tellEmbrahYourHereForHer():void
 	clearOutput();
 	showSimii();
 	output("You tell her you’re here just for her, and [embry.name] lets out a high pitched squeak. She looks up, wearing an expression like a stunned deer.");
-	output("\n\nAfter realising she’s unable to form words, she picks up her drink, and bashfully sips at it. You tell her she looks cute, and she gets even more flustered, spluttering in her drink. <i>\"Y-you, I--you... you’re impossible--!”</i> It takes her a while to compose herself again.");
+	output("\n\nAfter realizing she’s unable to form words, she picks up her drink, and bashfully sips at it. You tell her she looks cute, and she gets even more flustered, spluttering in her drink. <i>\"Y-you, I--you... you’re impossible--!”</i> It takes her a while to compose herself again.");
 	mergeSomeEmbryStuffIDontEvenKnowAnymore();
 
 }
