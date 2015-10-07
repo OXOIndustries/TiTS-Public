@@ -683,7 +683,7 @@ public function talkToJadeAboutHerNipples():void {
 			else
 			{
 				output("\n\nNo sense beating around the bush. You ask her if she knows of any mods that could cause nipple growth. If her breasts feel this good without a pair of sensitive nubs for you to pinch, you were wondering what they’d feel like if she did have them.");
-				output("\n\n<i>\"Probably wonderful,\"</i>  she admits absently, smiling wistfully as she imagines it. Her fingers brush where nipples should be and her boobs ripple deliciously at the resultant shudder of pleasure. <i>\"Oh! Uh, yes, I know of a mod that could give them to me,\"</i>  she informs you, realising you asked her another question first.");
+				output("\n\n<i>\"Probably wonderful,\"</i>  she admits absently, smiling wistfully as she imagines it. Her fingers brush where nipples should be and her boobs ripple deliciously at the resultant shudder of pleasure. <i>\"Oh! Uh, yes, I know of a mod that could give them to me,\"</i>  she informs you, realizing you asked her another question first.");
 			}
 			output("\n\nIf she knows of something, then you’re willing to help her secure some of it.");
 			output("\n\n<i>\"Oh, but it's so expensive - I can't afford to buy a pack for myself, even with the profits this shop makes,\"</i>  Jade laments, shaking her head at the thought of it.");
