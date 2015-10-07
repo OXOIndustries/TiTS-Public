@@ -895,7 +895,7 @@ public function getABJFromAManzil():void
 	}
 	else if(pc.hasVagina()) output("playing with your [pc.clit]");
 	else output("fingering your hole");
-	output(" moves to your waist and pushes, sliding off of your cock. Your last few spurts of [pc.cumColor] shower his face. A sweet, intoxicating aroma hits you as you realise that the zil-boy has painted his thighs with his species’ signature honey-like ejaculate.");
+	output(" moves to your waist and pushes, sliding off of your cock. Your last few spurts of [pc.cumColor] shower his face. A sweet, intoxicating aroma hits you as you realize that the zil-boy has painted his thighs with his species’ signature honey-like ejaculate.");
 	output("\n\nThe zil-boy lazily cleans your cock off with his tongue before you collect your [pc.gear] and dress yourself. You leave him on the ground, still panting, taking occasional sips from the mixture of honey and [pc.cum] on his chitin-covered thighs.\n\n");
 	processTime(20+rand(10));
 	pc.orgasm();
