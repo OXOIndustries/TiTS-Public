@@ -1199,6 +1199,7 @@ public function annoFollowerSuckAndFuckSexPartII():void
 	showBust("ANNO_NUDE");
 	
 	var selCock:int = pc.cockThatFits(anno.vaginalCapacity());
+	if(selCock < 0) selCock = pc.smallestCockIndex();
 
 	output("<i>“I think I can manage that,”</i> you grin, slipping up onto the bed and taking hold of Anno’s flared hips, fingers digging into the");
 	if (anno.armor is AnnosCatsuit) output(" elastic material of her sheer, flesh-hugging catsuit");
@@ -1275,6 +1276,7 @@ public function annoFollowerAnalSex():void
 	showBust("ANNO_NUDE");
 
 	var selCock:int = pc.cockThatFits(anno.analCapacity());
+	if(selCock < 0) selCock = pc.smallestCockIndex();
 	
 	output("You grin at the eager ausar and twirl a finger around, indicating for her to turn. She does so, shimmying onto the bed and resting on her knees, hands braced on the bulkhead beside it. Anno flicks her tail up, giving you a good view of her [anno.butt], the");
 	if (anno.armor is AnnosCatsuit) output(" sheer material of her uniform");
