@@ -388,7 +388,7 @@ public function annoMorningShower():void
 
 	output("You sleepily toss and turn in your bed, but you can't quite shake the feeling that something is missing. It takes a few minutes for your brain to actually kick back in to gear, slowly beginning to wake up, but you can't quite figure out what it is that’s wrong. You keep trying to wrap your arm around something that just isn't there, trying to snuggle in against a body that, for some reason, you expect to be tucked up against your [pc.chest].");
 
-	output("\n\nYou shoot upright when you realise somebody’s missing - an empty spot on your mattress, still warm from the heat of a body recently occupying it.");
+	output("\n\nYou shoot upright when you realize somebody’s missing - an empty spot on your mattress, still warm from the heat of a body recently occupying it.");
 
 	output("\n\n<i>“Oh hey [pc.name],”</i> echos a greeting from your side. You turn to look and find Anno having just stepped out of your shower. She’s stood in the doorway to your bathroom, a towel wrapped around her body and another balled up around her hair. <i>“Sorry, I'm kind of an early riser - you don't mind me using your shower right?”</i>");
 
