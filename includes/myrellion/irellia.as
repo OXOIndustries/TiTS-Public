@@ -1249,8 +1249,8 @@ public function tellIrelliaYouLikeEmGirly():void
 		flags["MET_ETHELN"] = 1;
 		output("You're curious - and more than a little titillated - by the thought of a feminine male myr. You tell Irellia as much.");
 		output("\n\n\"<i>I know <i>just</i> who to call then,</i>\" she tells you before turning to one of her handmaidens. \"<i>Go fetch Etheln!</i>\"");
-		output("\n\nThere's a little wait before two handmaidens return. It's not until they get closer that you realise one of them has a golden cock between her legs, and not a small one either. It's dangling halfway down her legs, barely hiding an equally low and large set of balls.");
-		output("\n\nIt's only when she kneels before you that you realise <i>this</i> must be Etheln, but... he has breasts! Modest ones, to be sure, but he definitely has a pair of well-rounded B-cups.");
+		output("\n\nThere's a little wait before two handmaidens return. It's not until they get closer that you realize one of them has a golden cock between her legs, and not a small one either. It's dangling halfway down her legs, barely hiding an equally low and large set of balls.");
+		output("\n\nIt's only when she kneels before you that you realize <i>this</i> must be Etheln, but... he has breasts! Modest ones, to be sure, but he definitely has a pair of well-rounded B-cups.");
 		output("\n\n\"<i>You're a boy!</i>\" you accidentally shout out. Etheln furiously blushes. His bright orange hair is silky and shoulder length, just like a woman. In fact, the only things that aren't incredibly feminine about him are his slender hips and extremely large phallus.");
 		output("\n\n\"<i>Y-yes I am, " + pc.mf("s-sir!","m-ma'am!") + "</i>\" The girly-boy stammers back, clearly flustered by your blurted words. The queen laughs, but then composes herself with a quick cough.");
 		output("\n\n\"<i>My apologies, dear Etheln. I didn't mean to laugh,</i>\" she flushes. \"<i>Etheln is a rare occurrence among we gold myr. Just like me, he is a 'honeypot myr'. A male honeypot myr is exceedingly rare.</i>\"");
@@ -1391,7 +1391,7 @@ public function partThreeOfAntOnPCOnAntAction(partner:String = ""):void
 
 	var x:int = rand(pc.totalVaginas());
 	if(!pc.hasVagina()) x = -1;
-	output("\n\n\"<i>How do you like his cock, dear?</i>\" Irellia huskily inquires. She's raising her hips insistently, and you realise the moment he thrust into your [pc.vagOrAss " + x + "] you rudely stopped licking. You bury yourself in her golden royal muff once more, making sure you give just as much as you receive. Wrapping your [pc.lips] around her sizable clit, you suckle and lick on it as he eases his hot flesh deep inside of your");
+	output("\n\n\"<i>How do you like his cock, dear?</i>\" Irellia huskily inquires. She's raising her hips insistently, and you realize the moment he thrust into your [pc.vagOrAss " + x + "] you rudely stopped licking. You bury yourself in her golden royal muff once more, making sure you give just as much as you receive. Wrapping your [pc.lips] around her sizable clit, you suckle and lick on it as he eases his hot flesh deep inside of your");
 	if(pc.hasVagina()) output(" sopping wet cunny");
 	else output(" [pc.asshole]");
 	output(". His massive glans bottoms out inside of your ");
