@@ -10578,7 +10578,7 @@ public function bessGetBlowjob():void
 		else output(" [pc.lowerUndergarment]");
 		output(".");
 		
-		output("\n\nYou blush self-onsciously, but at the same time, a delicious little shiver runs up your spine. [bess.HeShe]’s taking notice of you! At the same time, the timing is really inconvenient.");
+		output("\n\nYou blush self-consciously, but at the same time, a delicious little shiver runs up your spine. [bess.HeShe]’s taking notice of you! At the same time, the timing is really inconvenient.");
 		
 		output("\n\n<i>“... B-but "+ bessSexName() +", I was going to--”</i> You trail off as [bess.hisHer] literally iron gaze fixates on you. You gulp. There’s no point telling [bess.hisHer] you were going to do something <i>else</i>, since [bess.hisHer] orders take first priority.");
 		
