@@ -284,6 +284,7 @@ public function rideDickWithRedMyrSloot():void
 	showRedMyrOfficer();
 	author("Savin");
 	var x:int = pc.cockThatFits(100);
+	if(x < 0) x = pc.smallestCockIndex();
 	output("<i>“If you don’t want it in the water, how about in you?”</i> you grin, reaching over and grabbing your virginal lover under the arms. She has just enough time to gasp and squeal before you’ve spun her around and into your lap, her slit grinding tantalizingly against your cockhead. Not much time left...");
 	output("\n\nShe blinks at you, black eyes looking so awe-filled that they might just pop out at any moment. <i>“You want to cum inside me?”</i> she murmurs, still pumping your prick hard enough that she’s got to be battering her fist against her own crotch. <i>“I’ve never had...”</i>");
 	output("\n\n<i>“Just slide it in!”</i> you groan, using your grasp on her underarms to try and guide her down onto your rod. She gives you a nervous look, but slowly allows you to move her down. You just about lose what’s left of your willpower when your [pc.cockHead " + x + "] brushes the quivering lips of her sex, pushing firmly against her tight little box. You can tell she was serious about never having handled a cock before: it’s a struggle to get her to loosen up enough for you to actually enter her.");
