@@ -1485,7 +1485,7 @@ public function loseToRaskvelAndGetGangBangued():void
 	if(pc.hasVagina()) output("your clenching [pc.vagina] practically frothing to the energetic press of your conquerors");
 	output(".");
 
-	output("\n\nYou realise suddenly that the smallest raskvel has been flopped on the ground this whole time, lazily masturbating to the one-sided threesome in front of him, evidently biding his time; the knowledge you’ve got plenty more fucking ahead of you combines with the forceful sensation of being doubly penetrated into a heady delirium of involuntary pleasure and suddenly you are cumming, the muffled sound of your moans combining with the beat of the raskvel’s tight muscles against your face and [pc.butt], ");
+	output("\n\nYou realize suddenly that the smallest raskvel has been flopped on the ground this whole time, lazily masturbating to the one-sided threesome in front of him, evidently biding his time; the knowledge you’ve got plenty more fucking ahead of you combines with the forceful sensation of being doubly penetrated into a heady delirium of involuntary pleasure and suddenly you are cumming, the muffled sound of your moans combining with the beat of the raskvel’s tight muscles against your face and [pc.butt], ");
 	if(pc.hasVagina()) 
 	{
 		output("[pc.eachVagina] clenching up ");
