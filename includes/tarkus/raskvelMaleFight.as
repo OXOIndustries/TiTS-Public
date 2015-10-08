@@ -968,7 +968,6 @@ public function raskMaleButtfuckery():void
 	var x:int = pc.cockThatFits(foes[0].analCapacity());
 	if(x < 0) x = pc.smallestCockIndex();
 	var y:int = pc.cockThatFits2(foes[0].analCapacity());
-	if(y < 0) y = pc.smallestCockIndex2();
 	output("<i>“You!”</i> you say imperiously to the smallest one");
 	if(!pc.isNude())
 	{
