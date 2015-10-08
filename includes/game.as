@@ -4769,7 +4769,7 @@ public function displayEncounterLog(showID:String = "All"):void
 						output2(" Rejected");
 						if(flags["BESS_EVENT_19_REJECTION"] == 2) output2(", Seperated");
 					}
-					else if(flags["BESS_POLY"] != undefined)
+					else if(flags["BESS_EVENT_21"] != undefined)
 					{
 						output2(" Lovers");
 						if(flags["BESS_POLY"] == 0) output2(", Closed");
