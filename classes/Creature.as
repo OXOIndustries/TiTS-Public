@@ -9783,7 +9783,7 @@ package classes {
 					descript += choices[rand(choices.length)] + " ";
 				}
 				choices = ["dick", "shaft", "prick", "cock", "tool", "member"];
-				if(simple && kGAMECLASS.silly && rand(5) == 0)
+				if(kGAMECLASS.silly && rand(5) == 0)
 				{
 					descript = "";
 					choices.push("dino-dick","dino-cock","penisaurus","schlongosaur");
