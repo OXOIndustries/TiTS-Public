@@ -1036,9 +1036,7 @@ public function dudesGetStangRoad():void {
 		if(pc.hasTailCunt())
 		{
 			var y:int = pc.cockThatFits(pc.tailVaginaCapacity());
-			if(y < 0) y = pc.smallestCockIndex();
 			if(y == x) y = pc.cockThatFits2(pc.tailVaginaCapacity());
-			if(y < 0) y = pc.smallestCockIndex2();
 			if(y >= 0)
 			{
 				gobbled = true;
@@ -1050,6 +1048,8 @@ public function dudesGetStangRoad():void {
 				else output("bloat with [pc.cum]. It doesn't even try to drink it all down. It just holds itself on your cock, letting the phallus pack every single internal fold and crevasse while the excess pressure drains out over your already slicked loins.");
 				output(" It's like being able to fuck two women at once while being fucked yourself, and the sensations assault your mind, making it difficult to focus on anything but feeding both pussies full.");
 			}
+			else y = pc.smallestCockIndex();
+			if(y == x) y = pc.smallestCockIndex2();
 		}
 		//TO DO: Add extra dick cumshot. (Not gobbled by cunt tail or 2 and 1 gobbled)
 		if((!gobbled && pc.cockTotal() == 2) || (gobbled && pc.cockTotal() == 3))
