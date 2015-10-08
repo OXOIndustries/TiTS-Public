@@ -11317,7 +11317,7 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 		
 		output("\n\nYou watch [bess.name] as [bess.heShe] paces around you, shivering as [bess.heShe] trails a finger up your side, [bess.hisHer] sharp eyes seeking even the slightest sign of poor posture. A single bead of sweat travels down your neck - you can feel it stroking every pore as it travels downward.");
 		
-		output("\n\nThe smallest smile passes over [bess.name’s] lips. It seems [bess.heShe] noticed, tracing [bess.hisHer] finger up and collecting the moisture on [bess.hisHer] fingertip. [bess.HeShe] brings it to [bess.hisHer] mouth, kissing your salty sweatdrop away. Is "+ bessSexName() +" pleased with your posture? You’re trying ever so hard!");
+		output("\n\nThe smallest smile passes over [bess.name]’s lips. It seems [bess.heShe] noticed, tracing [bess.hisHer] finger up and collecting the moisture on [bess.hisHer] fingertip. [bess.HeShe] brings it to [bess.hisHer] mouth, kissing your salty sweatdrop away. Is "+ bessSexName() +" pleased with your posture? You’re trying ever so hard!");
 
 		if (!pc.isNude())
 		{
