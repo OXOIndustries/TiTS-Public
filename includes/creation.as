@@ -1,4 +1,4 @@
-﻿import classes.Characters.PlayerCharacter;
+import classes.Characters.PlayerCharacter;
 import flash.events.Event;
 import classes.GameData.MailManager;
 
@@ -56,8 +56,8 @@ public function startCharacterCreation(e:Event = null):void
 	output("<i>... Twenty Years Ago ...</i>");
 	output("\n\nVictor Steele is one of the richest men in the galaxy. His fortune was gained through years of adventuring during the Thirteenth Great Planet Rush, almost two hundred years ago. His trillion dollar company, Steele Industrial Technologies and Production, or Steele Tech, is one of the most respected names in its field.");
 	output("\n\nUnfortunately, during his adventures, Victor underwent many mutations that wreaked havoc on his genome. After two centuries of life due to longevity treatments, the mining magnate’s doctors have told him he has a measly two decades left.");
-	output("\n\nThe news is unwelcome. Still, he’s lived a rich, full life — fuller than most. With twenty years ahead of him, the suddenly old industrialite looks toward siring a successor; an heir or heiress to carry on his legacy and to ensure that the Steele name is honored throughout all of history.");
-	output("\n\nWith the next Planet Rush a scant nineteen years ahead, the timing is ideal. Just as his offspring reaches adulthood, the United Galactic Confederacy will be expanding its borders, turning on the hundreds of warp gates it has shot out into unexplored space. The rushes — performed every century or so — always result in a galactic free-for-all.");
+	output("\n\nThe news is unwelcome. Still, he’s lived a rich, full life - fuller than most. With twenty years ahead of him, the suddenly old industrialite looks toward siring a successor; an heir or heiress to carry on his legacy and to ensure that the Steele name is honored throughout all of history.");
+	output("\n\nWith the next Planet Rush a scant nineteen years ahead, the timing is ideal. Just as his offspring reaches adulthood, the United Galactic Confederacy will be expanding its borders, turning on the hundreds of warp gates it has shot out into unexplored space. The rushes - performed every century or so - always result in a galactic free-for-all.");
 	output("\n\nIt’s perfect, Victor thinks. His child could rise to greatness, becoming richer and more powerful than he ever was. And perhaps, with a bit of luck, a better person as well.");
 	output("\n\nThe real question is, who should the mother be? Many lovers spring to mind, both human and alien. After all, he has no shortage of them. Should his offspring be a pure human, like himself, or perhaps something a little more exotic? Decisions, decisions...");
 	output("\n\n<b>What species would you like your character to be?</b>");
@@ -403,7 +403,7 @@ public function chooseThickness():void {
 	author("Fenoxo & JimThermic");
 	// Just neatened this up and made the description of thickset more clear. The original explanation was a bit roundabout.
 	output("The doctor notes that down on his holopad, a light chuckle escaping his lips. <i>“Okay, noted. Glad to see you’ve got this well thought out.”</i>");
-	output("\n\n<i>“Alright, let’s eliminate some of the variables. How thickset would you like [pc.himHer] to be? We're talking broadness of [pc.hisHer] overall frame — hips, shoulders, and so forth — not [pc.hisHer] weight.”</i>");
+	output("\n\n<i>“Alright, let’s eliminate some of the variables. How thickset would you like [pc.himHer] to be? We're talking broadness of [pc.hisHer] overall frame - hips, shoulders, and so forth - not [pc.hisHer] weight.”</i>");
 	output("\n\n<b>How thickset would you like your character to be?</b>");
 	
 	//[Height Box]
@@ -498,7 +498,7 @@ public function chooseEyeColor():void {
 	author("Fenoxo & JimThermic");
 	// More neatening and spacing.
 	output("<i>“I thought you’d choose [pc.hairColor],”</i> the doctor smiles, looking up from his tablet. <i>“Another easy one, eye color. Got anything in mind?”</i>");
-	output("\n\n<b>What color is your character’s eyes?</b>");
+	output("\n\n<b>What color are your character’s eyes?</b>");
 	
 	//[Normal Eye colors + bonus half race ones]
 	this.clearMenu();
@@ -597,7 +597,7 @@ public function chooseBreastSize():void {
 	// This one was de-creepified and mentions the normality of breast selection by a father in this era of human history. Also neatened.
 	output("<i>“Breasts?”</i>");
 	output("\n\nVictor folds his arms and raises an eyebrow.");
-	output("\n\nThe doctor rubs the bridge of his nose in exasperation. <i>“Look, it’s not that weird a thing for parents to choose these days — it’s practically like hair or eye color.”</i>");
+	output("\n\nThe doctor rubs the bridge of his nose in exasperation. <i>“Look, it’s not that weird a thing for parents to choose these days - it’s practically like hair or eye color.”</i>");
 	if(!pc.hasVagina())
 	{
 		output("\n\n<i>“Plus, how do I know you don’t want your kid to grow up as the universe’s hottest tranz? It’s you were talking about after all, Victor.”</i>");
@@ -784,7 +784,7 @@ public function chooseSexualGift():void {
 	output("\n\n<i>“What’s this?”</i> The mining magnate asks, looking downward. <i>“... A list of specialized treatments?”</i>");
 	output("\n\n<i>“Sort of,”</i> the doctor explains, <i>“One of the things we can do is work a special tweak into your successor’s genome; something that will give them a special gift, even beyond the choices you’ve made thus far.”</i>");
 	output("\n\n<i>“Are they safe?”</i>");
-	output("\n\n<i>“Perfectly — so long as only one is inserted into your child’s genome. Any more than that risks instability. Perhaps by the time your child is an adult, we’ll have made more advances in that area. For now, though, one’s the limit.”</i>");
+	output("\n\n<i>“Perfectly - so long as only one is inserted into your child’s genome. Any more than that risks instability. Perhaps by the time your child is an adult, we’ll have made more advances in that area. For now, though, one’s the limit.”</i>");
 	output("\n\n<b>What special trait would you like your character to have?</b>");
 	
 	//Make sure there is a none option.
@@ -850,7 +850,7 @@ public function chooseSexualGift():void {
 		pc.removePerk("Ice Cold");
 	}
 	this.addButton(0,"Virile",applySexualGift,"virile","Virile","Increases the quality, or impregnation chance, of the sperm you produce. <i>This perk also applies if your character is female and gains a penis in the future.</i>");
-	this.addButton(1,"Potent",applySexualGift,"potent","Potent","Increases the quantity — the sheer amount — of sperm you produce. <i>This perk also applies if your character is female and gains a penis in the future.</i>");
+	this.addButton(1,"Potent",applySexualGift,"potent","Potent","Increases the quantity - the sheer amount - of sperm you produce. <i>This perk also applies if your character is female and gains a penis in the future.</i>");
 	this.addButton(2,"Elasticity",applySexualGift,"elasticity","‘Elasticity","Allows you to take larger insertions, both vaginally and anally, with less chance of permanent orifice stretching.");
 	this.addButton(3,"Fertility",applySexualGift,"fertility","Fertility","Increases your chances of getting pregnant. <i>This perk also applies if your character is male and gains a vagina in the future.</i>");
 	this.addButton(4,"Milky",applySexualGift,"milky","Milky","Ensures that your lactation is more easily induced and much harder to stop.");
@@ -938,7 +938,7 @@ public function chooseAPhysicalAffinity():void {
 	author("Fenoxo & JimThermic");
 	// Neatened and reworded for ease of understanding. Tooltips added.
 	output("<i>“Fantastic,”</i> the doctor exclaims as he checks the selection. <i>“Just one more thing: I can slip in affinity for a certain attribute. These are all pretty self explanatory, so I won’t have to bore you overmuch. Suffice to say, your " + pc.mf("son","daughter") + " will be able to increase the chosen attribute more easily. We can do physique, reflexes, aim, intelligence, or willpower. Personally, I recommend intelligence.”</i>");
-	output("\n\nThese ability scores are capped at five to start, though certain things like current level, starting race, cybernetic enhancements, and specific mutations can increase the maximum. Libido, while not an option the doc is giving, deals with how fast lust increases over time and how susceptible to incidental lusts and perversions one is. It is not capped by level and scales from 1 to 100.");
+	output("\n\nThese ability scores are capped at five to start, though certain things like current level, starting race, cybernetic enhancements, and specific mutations can increase the maximum. Libido, while not an option the doc is giving, deals with how fast lust increases over time. It is not capped by level and scales from 1 to 100.");
 	output("\n\n<b>What ability score affinity would you like to have?</b>");
 	
 	this.clearMenu();
@@ -984,7 +984,7 @@ public function chooseHowPCIsRaised():void {
 	output("\n\nThankfully, [pc.name] was born without complications. But, as any parent knows, the real work has just begun.");
 	output("\n\nVictor pondered on just how he would raise his " + pc.mf("son","daughter") + " and future heir. His first instinct was to pamper [pc.himHer] and give [pc.himHer] a head start on life. Still, that could lead to his " + pc.mf("son","daughter") + " lacking willpower, since [pc.heShe] never would have worked for what [pc.heShe] has.");
 	output("\n\nThe mining magnate could make his heir work for everything. An austere upbringing would certainly result in a strong will, but less of a financial, helping hand. It would be tough on both of them, but it might just pay off.");
-	output("\n\nIf his " + pc.mf("son","daughter") + " spend too much time working or playing, however, [pc.heShe] would have no time for extracurricular activities. If Victor encouraged [pc.himHer] to nurture [pc.hisHer] physical skills, [pc.heShe] would probably grow up strong and well rounded, but not so book-smart. The opposite was also true — if he pushed his child towards study, [pc.heShe] would come out mentally strong, but perhaps physically weaker.");
+	output("\n\nIf his " + pc.mf("son","daughter") + " spend too much time working or playing, however, [pc.heShe] would have no time for extracurricular activities. If Victor encouraged [pc.himHer] to nurture [pc.hisHer] physical skills, [pc.heShe] would probably grow up strong and well rounded, but not so book-smart. The opposite was also true - if he pushed his child towards study, [pc.heShe] would come out mentally strong, but perhaps physically weaker.");
 	output("\n\nPerhaps the best approach was to practice moderation, and give a little time to everything. Favoring nothing in particular would mean his child wouldn’t specialize in anything, but it would also mean [pc.heShe] wasn’t lacking in anything, either.");
 	output("\n\n<b>What kind of upbringing does your character have?</b>");
 	
@@ -1088,8 +1088,8 @@ public function chooseAlignment():void {
 
 public function alignConfirm(arg:int):void {
 	pc.personality = arg;
-	//chooseClass();
-	chooseGenderIdentity();
+	chooseClass();
+	//chooseGenderIdentity();
 }
 
 public function chooseGenderIdentity():void 
@@ -1110,6 +1110,7 @@ public function chooseGenderIdentity():void
 	this.addButton(2,"Auto",genderConfirm,"auto","Automatic","Pronouns used to address you will be based on contributions from a number of your personal appearance properties, switching between male and female pronouns as appropriate.");
 	this.addButton(14,"Back",chooseAlignment);
 }
+
 public function genderConfirm(pref:String):void
 {
 	if (pref == "auto")
@@ -1147,7 +1148,7 @@ public function chooseClass():void {
 	author("JimThermic");
 	// Given a kinder spin on your dad's hands on upbringing. Also made the choice of your career yours rather than your dad's, since you're old enough by this point. Pretty much written from scratch.
 	output("You let out a long sigh. Now that you’ve finished your schooling, your whole life is ahead of you. Memories of your dad pushing you forward spring to mind. After all, you’ve got a whole mega-corp to take over one day.");
-	output("\n\nStill, before you take over the reins, it seems he wants you to take up a profession. He’s got some suggestions — your dad <i>always</i> does — and they’re pretty odd ones at that.");
+	output("\n\nStill, before you take over the reins, it seems he wants you to take up a profession. He’s got some suggestions - your dad <i>always</i> does - and they’re pretty odd ones at that.");
 	output("\n\nYou stare at the list. Smuggler, Mercenary, Tech Specialist? As intriguing as these choices are, are they really okay job prospects for a future CEO?");
 	output("\n\n<b>What kind of class would you like your character to be?</b>");
 	
