@@ -296,19 +296,44 @@ public function cutHair(hairInches:Number):void
 	clearOutput();
 	showCeria();
 	author("Couch");
-	if(!fuckedCeria()) output("Ceria sits you down in one of the salon chairs, pulling out a simple razor and pair of scissors before setting to work cutting, shearing and trimming away at your hair. Her work is impeccable, and by the time she’s finished you’re left with a fresh, clean look. <b>Your hair is now " + num2Text(Math.round(hairInches)) + " inches long!</b>");
+	if(!fuckedCeria())
+	{
+		if(pc.hasLivingHair())
+		{
+			output("Ceria sits you down in one of the salon chairs, eyeing your living [pc.hair].");
+			output("\n\n<i>“Okay, scissors aren’t going to work here, but fortunately...”</i> The elf reaches into the drawers at her station and pulls out a bottle of some pale yellow gel. <i>“You're not the only one who comes in here with hair that’s alive.”</i>");
+			output("\n\nCeria carefully measures out the gel and sets to working it into your hair, providing you with a gentle tingle and the sensation of your exotic tresses shortening bit by bit to the length you requested. Her work is impeccable, making sure no part gets too much or too little gel");
+		}
+		else
+		{
+			output("Ceria sits you down in one of the salon chairs, pulling out a simple razor and pair of scissors before setting to work cutting, shearing and trimming away at your hair. Her work is impeccable");
+		}
+		output(", and by the time she’s finished you’re left with a fresh, clean look. <b>Your hair is now " + num2Text(Math.round(hairInches)) + " inches long!</b>");
+	}
 	else
 	{
-		output("Ceria sits you down in one of the salon chairs, pulling out a simple razor and a pair of scissors.");
-		output("\n\n<i>“The simplest tools are the best ones. You really need to be able to feel the customer’s hair...get close.”</i> Ceria leans forward a bit as she says this, in the midst of trimming the front of your hair and making sure you get a good, deep look down the front of her cleavage. You’re tempted to reach out and touch if not for the delicacy with which she’s working the scissors, making sure no strand is left out of place. When she’s done Ceria gives you a kiss on the cheek before stepping behind you and drawing your attention to the mirror.");
+		if(pc.hasLivingHair())
+		{
+			output("Ceria sits you down in one of the salon chairs, looking over your living [pc.hair].");
+			output("\n\n<i>“Normally living hair’s a big pain to deal with. You can’t use scissors on it, so you have to use this stuff instead.”</i> The elf turns to get something out of the drawers at her station, giving you a good look at the way her ass almost peeks out of those jeans she wears.");
+			output("\n\nJust as you’re contemplating reaching for a feel Ceria turns back around, now holding a bottle of pale yellow gel. You watch as she carefully measures out the right amount of gel and puts it on her hands, showcasing the utility of her natural fairy gloves. Once her palms and fingers are evenly coated she leans forward and reaches into your hair, starting to caress each of the living strands.");
+			output("\n\n<i>“Hold real still, [pc.name]. I need to get each and every one.”</i>");
+			output("\n\nYou do your best to obey, but stars if the sight of those tanned elven tits hanging right in front of your eyes, teasing you with the swirls of tribal marks disappearing under her shirt and into her cleavage, doesn't make it a challenge. Not to mention her hands, smooth as silk and cool as a breeze, working each and every one of your living, sensitive strands of hair. You feel like you could cum right here in the salon chair if she kept it up for long enough, cum from your exotic hair and her exotic hands alone.");
+			output("\n\nSadly she doesn’t take nearly long enough, the gel soon running dry and with it leaving your hair feeling distinctly shorter. Ceria gives you a kiss on the cheek before stepping behind you and drawing your attention to the mirror.");
+		}
+		else
+		{
+			output("Ceria sits you down in one of the salon chairs, pulling out a simple razor and a pair of scissors.");
+			output("\n\n<i>“The simplest tools are the best ones. You really need to be able to feel the customer’s hair...get close.”</i> Ceria leans forward a bit as she says this, in the midst of trimming the front of your hair and making sure you get a good, deep look down the front of her cleavage. You’re tempted to reach out and touch if not for the delicacy with which she’s working the scissors, making sure no strand is left out of place. When she’s done Ceria gives you a kiss on the cheek before stepping behind you and drawing your attention to the mirror.");
+		}
 		output("\n\n<i>“There you go, [pc.name], nice and neat. You look " + pc.mf("a lot more rugged","pretty cute") + " with shorter hair if you ask me.”</i>");
 		output("\n\nCeria pulls away to deposit her tools, giving you some time to admire your new look. <b>Your hair is now " + num2Text(Math.round(hairInches)) + " inches long!</b>");
 		pc.lust(5);
 	}
 	//[Next] Set [pc.hairstyle] to null and go to Ceria Main
-	//pc.hairStyle = "null";
 	processTime(7);
 	pc.hairLength = hairInches;
+	pc.hairStyle = "null";
 	pc.credits -= 200;
 	clearMenu();
 	addButton(0,"Next",approachCeria);
@@ -812,8 +837,9 @@ public function ceriaAppearance():void
 	author("Couch");
 	output("If you had to sum Ceria up in a phrase, it would be <i>“sparkly bubblegum elf”</i>. Practically everything about her, save for her well-tanned skin, is some shade of pink or blue, and most of it metallic at that. Her rose gold hair would hang down to just over her cleavage if it wasn’t tied back into a ponytail, while her eyes are a bright sapphire color with an unnatural gleam, both visibly the product of gene-modding. Her lips too are rose gold, either by mods or by lipstick. They’re just plump enough to be enticing without being slutty, and emphasized by the bubblegum you frequently see her blowing when she’s not doing someone’s hair.");
 	output("\n\nA luminous pink arrowhead-like marking adorns each of Ceria’s cheeks, drawing attention to her other notable facial feature, the pair of seven-inch triangular ears that stick out horizontally from either side of her head. Each is as long as her head is wide, twitching and drooping to emphasize - indeed, dramatize - every shift of her expression.");
-	output("\n\nBoth of Ceria’s arms are covered in what look like long metallic blue gloves, her legs sporting matching coverings that have replaced her feet with natural slippers. The elven girl’s white top and blue jeans are cut just daringly enough that you can see the luminous pink body markings along her lean belly and cleavage, and of course plenty daring enough that you can get a good look at her cleavage itself. Ceria’s sporting a hefty DD-cup rack that sits high and proud on her chest, and as soon as she spots you looking her over she crosses her arms underneath them to push those twin volleyballs up higher still, giving you a playful wink. Her hips are no less impressive, and her butt is just big enough to give her jeans something to stretch nice and tight around.");
-	output("\n\nStanding at 5’8”</i> tall, she’s just a touch on the tall side for a human female, though far from imposingly so.");
+	output("\n\nBoth of Ceria’s arms are covered in what look like long metallic blue gloves, but they're far too form-fitting to really be gloves. They must be the product of transformation as well, replacing her skin with a glistening lapis material that flows and shimmers every time her fingers flex. They come to gently pointed tips with no distinct fingernails, just flawless metal all the way from her hands to halfway up her upper arms. Her legs, though you can't see them at the moment under her jeans, sport matching coverings from the thigh down. Unlike her hands, her feet forgo toes outright, instead being fused together and shaped in such a way that it looks as though she were wearing slippers with delicately pointed tips.");
+	output("\n\nThe elven girl’s white top and blue jeans are cut just daringly enough that you can see the luminous pink body markings along her lean belly and cleavage, and of course plenty daring enough that you can get a good look at her cleavage itself. Ceria’s sporting a hefty DD-cup rack that sits high and proud on her chest, and as soon as she spots you looking her over she crosses her arms underneath them to push those twin volleyballs up higher still, giving you a playful wink. Her hips are no less impressive, and her butt is just big enough to give her jeans something nice and tight to stretch around.");
+	output("\n\nStanding at 5’8” tall, she’s just a touch on the tall side for a human female, though far from imposingly so.");
 	if(fuckedCeria()) output(" You know from experience that she has a bubblegum-pink terran pussy between her legs, plus a cute little asshole between her cheeks right where it belongs.");
 	//[Next] Go to Ceria Main
 	clearMenu();
