@@ -2110,12 +2110,12 @@ public function statisticsScreen(showID:String = "All"):void
 			if(pc.hasPerk("Mane")) output2(" Mane,");
 			output2(" " + GLOBAL.HAIR_TYPE_NAMES[pc.hairType]);
 			output2("\n<b>* Hair, Length:</b>");
-			if(pc.hairLength > 0.05)
+			if(pc.hairLength > 0.125)
 			{
 				output2(" " + prettifyLength(pc.hairLength));
 				if(pc.hairStyle != "null") output2("\n<b>* Hair, Style: </b>" + StringUtil.toTitleCase(pc.hairStyle));
 			}
-			else if(pc.hairLength > 0.0125) output2(" Shaved");
+			else if(pc.hairLength > 0) output2(" Shaved");
 		}
 		else if(pc.skinType == GLOBAL.SKIN_TYPE_FUR) output2(" Fur");
 		else output2(" None");
