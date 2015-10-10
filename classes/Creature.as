@@ -6577,6 +6577,13 @@ package classes {
 		public function hasHair(): Boolean {
 			return (hairLength > 0);
 		}
+		public function hasLivingHair(): Boolean {
+			if (hasHair())
+			{
+				if (hairType == GLOBAL.HAIR_TYPE_TENTACLES) return true;
+			}
+			return false;
+		}
 		public function hasSockRoom(): Boolean {
 			var index: int = cockTotal();
 			while (index > 0) {
