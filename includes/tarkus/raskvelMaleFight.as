@@ -836,7 +836,13 @@ public function consensualGangBang():void
 	output("swaddle you in their tight, burnished scales, their increasingly urgent erections pressing into your [pc.skinFurScales].");
 
 	output("\n\nYou feel leisured and sensuous at the centre of attention, happy to allow your partners the initiative and bask in the impression of being treasured. You hump yourself up onto the lap of one, curling your hand around his neck whilst surrounding his thick, purple penis with your [pc.butt], smirking provocatively as you splay your thighs to the other two, displaying your [pc.crotch]. They don’t need any further encouragement.");
-	if(pc.hasVagina()) output(" One of them wraps his hands around your thighs, slides his long, brightly colored tongue over your [pc.clit] teasingly before lapping at [pc.oneVagina] with it enthusiastically, quickly making it shine with pleasure.");
+	if(pc.hasVagina())
+	{
+		output(" One of them wraps his hands around your thighs, slides his long, brightly colored tongue over your");
+		if(pc.hasClit()) output(" [pc.clit]");
+		else output(" labia");
+		output(" teasingly before lapping at [pc.oneVagina] with it enthusiastically, quickly making it shine with pleasure.");
+	}
 	else output(" One of them wraps his hand around [pc.oneCock] and unspools his long, purple tongue. With a few teasing licks he’s got it sternly erect, and he wastes no time in sinking it into his mouth, running the soft, thin rasp of his mouth muscle along its sensitive underside.");
 	output(" The other clambers over his brethren – earning him a muffled grunt of irritation as he manages to knee him in the head in his impatience – and sits his dense weight down on your [pc.belly]. You find yourself deeply appreciative of how long and flexible raskvel tongues are as this one’s flicks over your [pc.nipples], quickly making them ");
 	if(pc.hasFuckableNipples()) output("wet");
@@ -1189,7 +1195,13 @@ public function redRidingRaskvel():void
 	if(pc.vaginas[x].looseness() >= 4) output("Your capacious, man-eating cunt easily gloves him and aside from the intense satisfaction of taking his cock within you there’s the further sadistic knowledge that you’re really going to have to work him to get what you need.");
 	else output("You feel faintly dizzy with pleasure as his thick, lizard cock stretches and rubs your tight cunt all the way down, laced with triumph when your [pc.thighs] touch his again, absolutely stuffing you to the brim with obedient dick.");
 	pc.cuntChange(x,foes[0].cockVolume(0),true,true,false);
-	if(pc.totalVaginas() > 1) output(" The medium one waits patiently for you to finish before going back to licking your clit, your sex inundated with hot, shifting pleasure outside and in.");
+	if(pc.totalVaginas() > 1)
+	{
+		output(" The medium one waits patiently for you to finish before going back to licking your");
+		if(pc.hasClit()) output(" clit");
+		else output(" labia");
+		output(", your sex inundated with hot, shifting pleasure outside and in.");
+	}
 
 	output("\n\n<i>“Rusting hell... </i>\" the big one groans, tensing up as you begin to work your hips, bending his cock into you, squeezing it deep, pressing your ");
 	if(pc.totalVaginas() == 1) output("groin forwards");
@@ -1231,10 +1243,10 @@ public function feedRaskGangMalk(args:Array):void
 	output(" your [pc.chest]. What with you thoroughly embedded in his two friends he could easily run away if he wanted – but instead he obeys, meekly trotting over, placing his perky bottom on the chest of the biggest and giving you the same, solemn puppy-dog eyes the medium one did, awaiting further instruction. Still slowly riding the big one’s cock, you curl your arm around the small one’s shoulder and silently direct him to your [pc.nipple].");
 
 	output("\n\nYou sigh as he spreads his lips over it, lapping and smoothing his tongue over it with the same motion the medium one is using on your ");
-	if(pc.clitLength < 2) output("pussy");
+	if(!pc.hasClit() || pc.clitLength < 2) output("pussy");
 	else output("clit");
 	output(" until it is ");
-	if(pc.clitLength >= 2) output("tenderly standing on end");
+	if(pc.hasClit() && pc.clitLength >= 2) output("tenderly standing on end");
 	else output("oozing fluid freely");
 	output(". He spreads his fingers over your other ");
 	if(pc.biggestTitSize() < 1) output("nipple");
@@ -1365,7 +1377,11 @@ public function vaginaRaskStuffEpilogus(args:Array):void
 
 	output("\n\nYou then release the raskvel’s dick – still pointing needily at the sky, thickly pasted in cum, when you allow it to schlorp out of your steaming [pc.vagina " + x + "] – and, with a few taps of your hand and whispered instructions, reposition them. You leer down at the second raskvel as you slide your cum-slicked pussy down his eager, purple length, tightening up as much as you can as you do so, enjoying every inch that fill your depths. On his back, snared and overwhelmed by the taste on his lips and texture on his dick, he simply cannot take it. He clenches up and grunts in helpless orgasm when your [pc.hips] touch his, a single spurt of fresh warmth deep within you.");
 	output("\n\nIt makes no difference to you. Like his friend, now ");
-	if(pc.vaginaTotal() == 1) output(" crouched in front of you and licking fervently at your [pc.clit]");
+	if(pc.vaginaTotal() == 1)
+	{
+		output(" crouched in front of you");
+		if(pc.hasClit()) output(" and licking fervently at your [pc.clit]");
+	}
 	else output(" buried beneath your [pc.ass], licking fervently at your [pc.vagina " + y + "]");
 	output(", he stays rock hard and ready to use - which you do, clenching and riding him demandingly. The third raskvel doesn’t even need instruction.");
 
@@ -1489,7 +1505,8 @@ public function loseToRaskvelAndGetGangBangued():void
 	{
 		output("[pc.eachVagina] clenching up ");
 		if(pc.isSquirter()) output("and spurting gleeful amounts of fluid ");
-		output("around its hard intrusion, your [pc.clits] pulsing wickedly");
+		output("around its hard intrusion");
+		if(pc.hasClit()) output(", your [pc.clits] pulsing wickedly");
 	}
 	else if(pc.hasCock()) 
 	{
@@ -1705,7 +1722,10 @@ public function lickPussyRaskButt(raskWinner:String = "big"):void
 
 	output("\n\nYou sigh as he hooks his arms around your thighs – more for support than anything, poor boy – and sinks his face into your crotch. He pauses before your opening, gathering his breath, the warmth of his exhalations wafting over your sex, increasing your anticipation so that [pc.eachClit] plumps up, practically demanding attention. You rub behind his feathers encouragingly – finding a spot underneath his ear that makes him tense and exhale raggedly, his tail flopping this way and that – and finally he bends forward and spreads his broad tongue over your sex.");
 
-	output("\n\nThe sodden, rhythmic sound of cunnilingus fills the dusty air as he laps at you, his long, ever-so-slightly rough mouth muscle shifting across your [pc.vagina " + x + "], thrills shooting up your spine every time the warm, wet texture of it blankets over your [pc.clit]. You tighten the ");
+	output("\n\nThe sodden, rhythmic sound of cunnilingus fills the dusty air as he laps at you, his long, ever-so-slightly rough mouth muscle shifting across your [pc.vagina " + x + "], thrills shooting up your spine every time the warm, wet texture of it blankets over your");
+	if(pc.hasClit()) output(" [pc.clit]");
+	else output(" labia");
+	output(". You tighten the ");
 	if(pc.legCount > 1) output("grip of your [pc.hips] around the sides of his head");
 	else output("grip of your hand on his feathers");
 	output(", ensuring that worshipful mouth goes nowhere.");
@@ -1720,9 +1740,14 @@ public function lickPussyRaskButt(raskWinner:String = "big"):void
 	}
 	output(" His eyes are closed as he does it, dizzily lost in the “prize” he’s won.");
 
-	output("\n\nYou sit there, gasping quietly, luxuriating in the pleasure shimmering and tingling through you as long as you possibly can; when the urge to do so gets too much, you grasp his long ears and bury his face firmly into your cunt, pumping your thighs hard into his head, pushing towards your fast approaching high. You exhale exultantly when you reach it, the pulses clenching up [pc.eachVagina] and your [pc.legOrLegs] made all the better by the steady warm rasp moving across your throbbing clit");
-	if(pc.totalClits() > 1) output("s");
-	output(" and inner walls. As well as coating his cheeks and nose in it you make sure he drinks down as much of your [pc.girlCum] as you can make him; it’s sheer gratification spurting your inordinate amount of juices down an obedient, thirsty throat.");
+	output("\n\nYou sit there, gasping quietly, luxuriating in the pleasure shimmering and tingling through you as long as you possibly can; when the urge to do so gets too much, you grasp his long ears and bury his face firmly into your cunt, pumping your thighs hard into his head, pushing towards your fast approaching high. You exhale exultantly when you reach it, the pulses clenching up [pc.eachVagina] and your [pc.legOrLegs] made all the better by the steady warm rasp moving across your");
+	if(pc.hasClit())
+	{
+		output(" throbbing clit");
+		if(pc.totalClits() > 1) output("s");
+		output(" and");
+	}
+	output(" inner walls. As well as coating his cheeks and nose in it you make sure he drinks down as much of your [pc.girlCum] as you can make him; it’s sheer gratification spurting your inordinate amount of juices down an obedient, thirsty throat.");
 
 	output("\n\nYou release your grip when you’re done, letting him flop onto his back, allowing yourself a good wallow in the afterglow whilst you look down at your toy. If anything, he’s harder than he was than when he started; his ");
 	if(raskWinner != "small") output("broad, purple dick");
