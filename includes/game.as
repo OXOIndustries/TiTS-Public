@@ -2099,7 +2099,7 @@ public function statisticsScreen(showID:String = "All"):void
 				if(pc.beardStyle != 0) output2("\n<b>* Beard, Style: </b>" + pc.beardStyle);
 			}
 			else if(pc.skinType == GLOBAL.SKIN_TYPE_FUR) output2(" Short, Fur");
-			else if(pc.beardLength > 0.001) output2(" Stubble");
+			else if(pc.beardLength > 0.0625) output2(" Stubble");
 			else output2(" Shaved");
 		}
 		if(pc.gills) output2("\n<b>* Neck:</b> Gills");
@@ -2115,7 +2115,7 @@ public function statisticsScreen(showID:String = "All"):void
 				output2(" " + prettifyLength(pc.hairLength));
 				if(pc.hairStyle != "null") output2("\n<b>* Hair, Style: </b>" + StringUtil.toTitleCase(pc.hairStyle));
 			}
-			else if(pc.hairLength > 0) output2(" Shaved");
+			else output2(" Shaved");
 		}
 		else if(pc.skinType == GLOBAL.SKIN_TYPE_FUR) output2(" Fur");
 		else output2(" None");
