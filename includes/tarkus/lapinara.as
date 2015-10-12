@@ -207,7 +207,10 @@ public function loseToLapinaraAndGetEggplantedChicks():void
 	author("WorldOfDrakan");
 	lapinaraBust();
 	var x:int = rand(pc.vaginaTotal());
-	output("\n\nYour lapinara assailant grins wickedly as she admires you, her prize. She approaches you, forcibly removing your [pc.gear]. The sex-crazed bunny-girl takes a moment to inspect your [pc.crotch]. You see her nodding in silent approval. She then moves a hand down to play with [pc.oneVagina], licking her lips in anticipation as she gently rubs your [pc.clits] with her thumb, another finger prodding at your entrance.");
+	output("\n\nYour lapinara assailant grins wickedly as she admires you, her prize. She approaches you, forcibly removing your [pc.gear]. The sex-crazed bunny-girl takes a moment to inspect your [pc.crotch]. You see her nodding in silent approval. She then moves a hand down to play with [pc.oneVagina], licking her lips in anticipation as she gently");
+	if(pc.hasClit()) output(" rubs your [pc.clits] with her thumb, another finger prodding");
+	else output(" prods");
+	output(" at your entrance.");
 	output("\n\n<i>“You got ");
 	if(pc.vaginaTotal() == 1) output("a pretty pussy");
 	else output("some pretty pussies");
@@ -226,7 +229,9 @@ public function loseToLapinaraAndGetEggplantedChicks():void
 	if(pc.legCount < 2) output(" 'em");
 	output(",”</i> she orders once more, waving a syringe in your face.");
 	output("\n\nYou really don’t want to experience whatever it is she has in that syringe. It can’t be pleasant. At all. You do as the bunny says, albeit rolling your eyes as you do.");
-	output("\n\n<i>“That’s a good " + pc.mf("boy","girl") + ",”</i> she coos, giving your [pc.clits] a rewarding touch before grabbing ahold of your [pc.legOrLegs]. You won’t be moving");
+	output("\n\n<i>“That’s a good " + pc.mf("boy","girl") + ",”</i> she coos");
+	if(pc.hasClit()) output(", giving your [pc.clits] a rewarding touch");
+	output(" before grabbing ahold of your [pc.legOrLegs]. You won’t be moving");
 	if(pc.legCount > 1) output(" them");
 	output(" anytime soon.");
 	output("\n\nStarting off slow, the lapinara gently works her dong over your crack until a dollop of pre forms at the tip. It is then that she presses her wet tip against ");
@@ -422,9 +427,13 @@ public function getLickedByLapinara():void
 	output("\n\n<i>“Ahem!”</i> you interrupt. Skip the banter, you’re ready to get down to business!");
 	output("\n\n<i>“Oh, right. Sorry,”</i> she apologizes.");
 
-	output("\n\nWithout further interruption, the lapinara gets to licking. She starts by gingerly tracing your outer lips with her tongue, pulling them apart to expose your labia, taking a moment to gently nibble on the folds. She then moves on to [pc.oneClit], kissing it lovingly before cusping her mouth over it, suckling.");
+	output("\n\nWithout further interruption, the lapinara gets to licking. She starts by gingerly tracing your outer lips with her tongue, pulling them apart to expose your labia, taking a moment to gently nibble on the folds.");
+	if(pc.hasClit()) output(" She then moves on to [pc.oneClit], kissing it lovingly before cusping her mouth over it, suckling.");
 	output("\n\nYou gasp in surprise as you feel one of your partner’s fingers slipping into your vag, then two, then three... With her free hand, she furiously pumps her pseudocock, eliciting girly moans from deep within her throat. You swear that you can make out words in her muffled moans. Something about eggs, you think.");
-	output("\n\nIt isn’t much longer before you reach orgasm, your inner walls reflexively clamping down on the lapinara’s skilled fingers. She releases her mouth from your clit, wailing to the sky as a strange popping sound originates from under her. A quick glance reveals two soft-shelled eggs on the ground that weren’t there before.");
+	output("\n\nIt isn’t much longer before you reach orgasm, your inner walls reflexively clamping down on the lapinara’s skilled fingers. She releases her mouth from your");
+	if(pc.hasClit()) output(" clit");
+	else output(" groin");
+	output(", wailing to the sky as a strange popping sound originates from under her. A quick glance reveals two soft-shelled eggs on the ground that weren’t there before.");
 	output("\n\n<i>“That was fun!”</i> she comments, catching her breath. <i>“Do you think that we could do that again sometime?”</i>");
 	output("\n\nYou very well might like to do that again someday.\n\n");
 	processTime(20+rand(5));
