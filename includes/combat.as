@@ -3165,9 +3165,13 @@ public function crotchTeaseText(target:Creature):void {
 		}
 		if(target.plural) output(possessive(target.capitalA + target.short) + " gazes are riveted on your groin as you run your fingers up and down your folds seductively.");
 		else output(possessive(target.capitalA + target.short)  + "'s gaze is riveted on your groin as you run your fingers up and down your folds seductively.");
-		if(pc.clitLength > 3) output("  You smile as [pc.eachClit] swells out from the folds and stands proudly, begging to be touched.");
-		else output("  You smile and pull apart your lower lips to expose your [pc.clits], giving the perfect view.");
-		if(pc.cockTotal() > 0) output("  Meanwhile, [pc.eachCock] bobs back and forth with your gyrating hips, adding to the display.");
+		if(pc.hasClit())
+		{
+			if(pc.clitLength > 3) output(" You smile as [pc.eachClit] swells out from the folds and stands proudly, begging to be touched.");
+			else output(" You smile and pull apart your lower lips to expose your [pc.clits], giving the perfect view.");
+		}
+		else output(" You smile and pull apart your lower lips to expose your sex, giving the perfect view.");
+		if(pc.cockTotal() > 0) output(" Meanwhile, [pc.eachCock] bobs back and forth with your gyrating hips, adding to the display.");
 	}
 	//4 Horsecock centaur tease
 	else if(select == 4) {
