@@ -2360,7 +2360,9 @@ public function cunnilingusWithEmbry():void
 
 	output("\n\nAfter several long licks, the tip of her tongue slides inside of your [pc.pussy], and you gasp with pleasure. It roams deeper inside, teasing your sensitive entryway, and savoring your slick inner walls. You tremble with pleasure, and bite your lower lip hard. A delicious coiling sensation pools in your lower abdomen, and you let out a pleasured whine.");
 	output("\n\nYour hips tremble and rock against her as you seek further heights, desperate to get off against her soft, searching tongue. The monkey girl buries her face in your muff and lets out a delicious moan, while her tongue travels deep into your slickened passage and roams about. It’s unbearably good, and your whole body arches, your eyes fluttering back.");
-	output("\n\nYour mind goes blank, and you become a slave to the pleasure, mindlessly grinding against her face as you whimper with pleasure. There is only her tongue roaming around inside of your snatch, teasing your [pc.clits], and her hot breath on your sex - everything else just ceases to be.");
+	output("\n\nYour mind goes blank, and you become a slave to the pleasure, mindlessly grinding against her face as you whimper with pleasure. There is only her tongue roaming around inside of your snatch");
+	if(pc.hasClit()) output(", teasing your [pc.clits],");
+	output(" and her hot breath on your sex - everything else just ceases to be.");
 	output("\n\nJust when you think you can’t handle any more, you let out a sweet cry, and you achieve divine release. Your body is wracked with spastic shudders and you thoroughly cream yourself against her mouth, deliciously trembling and ");
 	if(!pc.isSquirter()) output("dribbling");
 	else output("squirting");
