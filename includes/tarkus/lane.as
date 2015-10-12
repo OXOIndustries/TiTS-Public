@@ -1796,7 +1796,8 @@ public function fuckedByMaleLane():void
 	output("\n\nHe claps his hands down on your [pc.ass] painfully. The sound of his hands slapping you echo off the wall, followed by your pained yell. He thrusts his hips forward, his cock jamming between your thighs;");
 	if (pc.hasVagina()) 
 	{
-		output(" he slides his smooth tool between your labia and kisses your [pc.clit] with his tip");
+		output(" he slides his smooth tool between your labia");
+		if (pc.hasClit()) output(" and kisses your [pc.clit] with his tip");
 		if (pc.balls > 0) output(", and");
 	}
 	if (pc.balls > 0) output(" his hot length tucks itself between your [pc.balls] and massages along the taut skin of your [pc.sack]");
@@ -2023,7 +2024,12 @@ public function fuckedByFemLane():void
 
 	output("\n\n<i>“Ooh, such passion!”</i> She slides her cunny up your body just a little bit");
 	if (pc.hasCock()) output(", leaving a slimy trail along the shaft of your cock");
-	else if (pc.hasVagina()) output(", the heat of her vulva radiating just enough to tease your engorged [pc.clit]");
+	else if (pc.hasVagina())
+	{
+		output(", the heat of her vulva radiating just enough to tease your engorged");
+			if (pc.hasClit()) output(" [pc.clit]");
+			else output(" folds");
+	}
 	output(". <i>“You don’t waste any time getting to your point. I like that.”</i>");
 	if (pc.hasCock())
 	{
@@ -2133,7 +2139,13 @@ public function fuckedByFemLane():void
 		if (pc.hasVagina())
 		{
 			output("\n\nLane keeps her tail tucked in between your legs, and you can feel the heat of her tail radiate just enough to tickle your own quivering feminine sex.");
-			if (pc.balls == 0) output(" The juices from her own leaking cunt trail from down the rest of your length and onto your [pc.clit], mingling with your own girly secretions.");
+			if (pc.balls == 0)
+			{
+				output(" The juices from her own leaking cunt trail from down the rest of your length and onto your");
+				if (pc.hasClit()) output(" [pc.clit]");
+				else output(" folds");
+				output(", mingling with your own girly secretions.");
+			}
 			output(" You clench your thighs, idly wishing for something to penetrate you. Lane’s tail swishes lazily behind her – she does not grant your unspoken wish.");
 		}
 
@@ -2171,7 +2183,12 @@ public function fuckedByFemLane():void
 
 		output("\n\n<i>“You’re a good pet,”</i> Lane says through staggered breaths. Her masturbating herself against your cock grows frantic, and her scaly boobs hang loose and low, surrounding your [pc.cock] rather than smothering it. <i>“You do exactly as you’re told.”</i> With that, her body tenses and she takes a long, deep breath through her clenched teeth. You feel the same wetness from before begin to flood down the shaft of your dick and pool at your groin");
 		if (pc.balls > 0) output(", glazing over each of your [pc.balls] and dripping off them towards the quilt beneath you");
-		if (pc.hasVagina() && pc.balls == 0) output(", dripping down across your [pc.vagina], soaking your [pc.clit] and drenching your thighs in more than your own femcum");
+		if (pc.hasVagina() && pc.balls == 0)
+		{
+			output(", dripping down across your [pc.vagina]");
+			if (pc.hasClit()) output(", soaking your [pc.clit]");
+			output(" and drenching your thighs in more than your own femcum");
+		}
 		output(". <i>“Cum with me, [pc.name],”</i> she demands. She’s barely able to form the words. <i>“Let me see what that cock is capable of!”</i>");
 
 		output("\n\nYou don’t hesitate to ‘do as your told,’ and, almost before you’re even ready, you feel your [pc.cum] surging through you, burning a trail up your massive shaft.");
@@ -2287,7 +2304,12 @@ public function fuckedByFemLane():void
 
 	output("\n\nShe turns back to you");
 	if (pc.hasCock()) output(" and sees your flagging erection, slowly fighting to stay erect and go another time");
-	else if (pc.hasVagina()) output(" and sees you idly playing with your [pc.vagina], gently rubbing at your [pc.clit] as you stare at her");
+	else if (pc.hasVagina())
+	{
+		output(" and sees you idly playing with your [pc.vagina]");
+		if (pc.hasClit()) output(", gently rubbing at your [pc.clit]");
+		output(" as you stare at her");
+	}
 	output(". She knows the look on your face. <i>“Already? Do you love your mistress just that much?”</i> You don’t reply, and you’re too unfocused at the moment to realize what messages you’re sending her. <i>“Don’t worry, pet. We have all the time in the world to go as many times as we like.”</i>");
 
 	output("\n\nShe turns back to her dresser and pulls out an exact set of her light, thin, airy clothing, fresh and clean as could be. <i>“But,”</i> she says as she casually dresses herself - taking her time with her shirt, for your benefit - <i>“I’m afraid sucking and fucking all day doesn’t pay for my bills. We both have some work to do, [pc.name]. Take your time getting dressed, but just remember that you have some money to make.”</i>");
@@ -2521,7 +2543,12 @@ public function firstTimeLaneMPCFH():void
 
 	output("Lane is quick to flop his body atop yours and roughly grip onto your [pc.fullChest]. You wince at the way his claws dig into your skin, but the feeling of him pressing himself against you is far more pleasurable than any pain he might inflict. You squeeze your legs together");
 	if (pc.hasCock()) output(", enjoying the way [pc.eachCock] grows and inflates against his warm, smooth, lower-belly scales. You get a warm spike of pleasure with every movement you both make against each other.");
-	else output(" and you raise your [pc.hips], humping your [pc.cunt] against his warm, smooth lower-belly scales. It’s a difficult angle to get, but with every push you get against your [pc.clit], your eyes cross and your mouth gets a little drier.");
+	else
+	{
+		output(" and you raise your [pc.hips], humping your [pc.cunt] against his warm, smooth lower-belly scales. It’s a difficult angle to get, but with every push");
+		if (pc.hasClit()) output(" you get against your [pc.clit]");
+		output(", your eyes cross and your mouth gets a little drier.");
+	}
 
 	output("\n\nLane mauls at your [pc.fullChest], squeezing and pulling at your flesh. He growls at you predatorily, bearing his dripping teeth and showing his flapping tongue in his elongated mouth. As much as you want him, you don’t want him to bite you... he lunges forward, startling you, and you brace yourself for the pain (sexy as it would be, coming from Lane), but what you feel instead is the hungry licking and sucking on your [pc.nipples].");
 
@@ -2571,7 +2598,9 @@ public function firstTimeLaneMPCFH():void
 
 	output("\n\nJust as the tip of his tongue begins caressing your palate, he withdraws, much to your chagrin. Instead, he sits up and onto his knees, towering his body over yours. His tassels are flared wide open, and his pulse is quick and excited, but unfocused; the lights of his piercings and the swirls of his tattoos sink you into him, just as, from the way he adjusts his pelvis and begins aligning his with yours, he will soon be sinking into you.");
 
-	output("\n\nHe sits on his knees, rubbing his pink, smooth, tapered Daynarian cock against your waiting mound. He grinds it against your [pc.clit]");
+	output("\n\nHe sits on his knees, rubbing his pink, smooth, tapered Daynarian cock against your waiting mound. He grinds it against your");
+	if (pc.hasClit()) output(" [pc.clit]");
+	else output(" labia");
 	if (pc.balls > 0) output(" and up the crease between your [pc.balls]");
 	output(" like he had against your thigh; with each thrust, an electric, exciting jolt goes through your body, but it’s not enough to satisfy you. He moans out every time the base of his dick brushes against your vulva, and he lets his thick base rest there for a moment before he backs up and teases you again. It’s frustrating and teasing, but you love every bit of it.");
 
@@ -2758,7 +2787,10 @@ public function firstTimeLaneFPCMH():void
 			}
 			if (pc.hasVagina())
 			{
-				output("Her tail continues to slide ever downward, until it finds your [pc.vagina], alone and neglected in the activities. She gently slides her tail between your uvula, teasing your tunnel by dipping her very tip just beyond your lips but no farther. You yelp in pleasure whenever he smooth scales draw over your [pc.clit], and you feel another surge through both your sexes. Lane looks down at you, almost contemptuous that you’re experiencing more pleasure than her; you return her look with absolute devotion and adoration that she would go through the effort, despite your ‘greed’.");
+				output("Her tail continues to slide ever downward, until it finds your [pc.vagina], alone and neglected in the activities. She gently slides her tail between your uvula, teasing your tunnel by dipping her very tip just beyond your lips but no farther. You yelp in pleasure");
+				if (pc.hasClit()) output(" whenever his smooth scales draw over your [pc.clit], and you");
+				else output(" and");
+				output(" feel another surge through both your sexes. Lane looks down at you, almost contemptuous that you’re experiencing more pleasure than her; you return her look with absolute devotion and adoration that she would go through the effort, despite your ‘greed’.");
 			}
 
 			output("\n\nEventually, your hard work begins to pay off. Lane becomes more frantic and less focused; her humping becomes more forceful, pressing her body against your [pc.cock] while her tail tightens its grip, keeping it from swaying. She begins to gasp as her body rocks against you. You thrust your hips upward in time to her humping; your hands stop having any sense to their groping and default to simply rubbing the butts of their palms against her skin. She tenses and lets out a quiet wail, and you feel a hot liquid start coating the skin of your [pc.cock].");
@@ -2816,7 +2848,12 @@ public function firstTimeLaneFPCMH():void
 		else output(" over your perineum");
 		output(", in search of something to entertain it;");
 		if (!pc.hasVagina()) output(" despite its groping and feeling, it finds nothing, and you can hear Lane click her tongue in disappointment.");
-		else output(" it finds the vulva of your [pc.oneVagina] and, without hesitation, begins sliding between your lips relentlessly, rubbing over your [pc.clit] and pressing its silky-smooth scales against you, but Lane doesn’t penetrate you, which frustrates you into fucking her harder.");
+		else
+		{
+			output(" it finds the vulva of your [pc.oneVagina] and, without hesitation, begins sliding between your lips relentlessly");
+			if (pc.hasClit()) output(", rubbing over your [pc.clit]");
+			output(" and pressing its silky-smooth scales against you, but Lane doesn’t penetrate you, which frustrates you into fucking her harder.");
+		}
 		output(" With its surplus length, her tail continues onward, wrapping the rest of itself around the fat of your thigh, for equal parts stability and sensuality.");
 
 		output("\n\nLane pants as she ruts against you, slapping her hips on top of yours and claiming you in the most physical way she can, and you love every second of it. The pulses of light under her skin grow in frequency and intensity, along with her gasps of pleasure. Her hands drop from behind her head and slam onto your chest");
@@ -3025,7 +3062,9 @@ public function firstTimeLaneFPCFGenderless():void
 		output("\n\n");
 		if (pc.isNaga()) output("She straddles your open waist");
 		else output(" She hooks her right hand underneath your left leg and hoists it above her shoulder, pressing you into the bamboo position beneath her, and straddles your waist");
-		output(". Her pussy is just above yours, pressed against the bone of your pelvis, her body heat <i>just</i> stimulating your clitoris. You pant, her taste still on your tongue, as you watch her rapturously, waiting for her to fuck you the way only a");
+		output(". Her pussy is just above yours, pressed against the bone of your pelvis");
+		if (pc.hasClit()) output(", her body heat <i>just</i> stimulating your clitoris");
+		output(". You pant, her taste still on your tongue, as you watch her rapturously, waiting for her to fuck you the way only a");
 		if (pc.hasVagina()) output("nother");
 		output(" woman could. The lights emanating from her body provide some relief, but your lust can’t be ignored.");
 
