@@ -441,8 +441,12 @@
 					//If you've got a cunt needing palette swapped
 					if(cuntToBe >= 0)
 					{
-						kGAMECLASS.output("\n\nWetness escapes your pussy as it seems to shimmer with heat, your lips and clit");
-						if(pc.vaginas[cuntToBe].clits > 1) kGAMECLASS.output("s");
+						kGAMECLASS.output("\n\nWetness escapes your pussy as it seems to shimmer with heat, your lips");
+						if(pc.vaginas[cuntToBe].clits > 0)
+						{
+							kGAMECLASS.output(" and clit");
+							if(pc.vaginas[cuntToBe].clits > 1) kGAMECLASS.output("s");
+						}
 						kGAMECLASS.output(" puffing up to the energy cycling through them. It eventually dissipates, but when you check downstairs you find that whilst your mons retained its pigmentation your vagina proper has shifted to a brilliant purple color, shining in its own excitement.");
 						pc.vaginas[cuntToBe].vaginaColor = "purple";
 						pc.lust(10);
