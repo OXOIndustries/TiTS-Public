@@ -1227,6 +1227,7 @@ public function flahneIfMalesFitTheySitExhibitionism():void {
 	output("\n\nAs soon as the door shuts, Flahne lets out a moan that sputters out as she comes, her whole body shuddering as her pussy tightens around your [pc.cock " + x + "]. You cum along with her, your [pc.cock " + x + "] splattering her insides with [pc.cumColor] spooge as you hug her tight to your body");
 	if(pc.biggestTitSize() >= 1) output(", your [pc.chest] pressing into her back");
 	output(".");
+	pc.cockChange();
 	if(pc.cockTotal() > 1)
 	{
 		if(pc.cockTotal() > 2) output(" Each of your unused cocks");
