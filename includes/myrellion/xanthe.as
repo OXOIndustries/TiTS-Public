@@ -1671,7 +1671,8 @@ public function shePaysAttentionToYouSlut():void
 		{
 			output("\n\n<i>\"It’s for weaving between your legs and against your cute [pc.pussyColor] pussy. Let me show you.</i> Your Mistress informs you. She then drapes the silky cord down your belly and between your [pc.thighs].");
 			output("\n\nIf you weren’t already swooning from her kiss, you’d be doing so at her complimenting your [pc.pussy]. When she threads it around and gives it a tight tug, the soft cord slides between your pussy lips and you let out a sharp gasp.");
-			output("\n\nOnce she’s finished doing you up, the silk rope is tied to your neck, running between your thighs and attached to a hook behind you on the floor. Even the slightest head movement causes it to gloriously rub against your [pc.clits] and makes you swoon with pleasure.");
+			output("\n\nOnce she’s finished doing you up, the silk rope is tied to your neck, running between your thighs and attached to a hook behind you on the floor.");
+			if(pc.hasClit()) output(" Even the slightest head movement causes it to gloriously rub against your [pc.clits] and makes you swoon with pleasure.");
 		}
 	}
 	output("\n\nYou are then robbed of your sight when a silky blindfold is thrown over your eyes. Engulfed in darkness, each and every tactile sensation and noise intensifies. You acutely feel and hear the fabric as it tightens against your [pc.skinFurScales]. A ball gag soon follows, depriving you of speech.");
@@ -1688,7 +1689,7 @@ public function shePaysAttentionToYouSlut():void
 		else if(pc.biggestTitSize() < 1 && pc.hasCock()) output("[pc.cocksLight]");
 		else if(pc.biggestTitSize() >= 1 && pc.hasCock()) output("[pc.breastsNoun] and [pc.cocksNounSimple]");
 	}
-	else output(" - grinding and stimulating your [pc.clits] in the process");
+	else if(pc.hasClit()) output(" - grinding and stimulating your [pc.clits] in the process");
 	output(".");
 
 	output("\n\n<i>\"If only people could see you now - [pc.fullName], the young scion of the Steele financial empire, bound and gagged in my dungeon as my submissive little ");
@@ -1722,7 +1723,7 @@ public function notASlutXanthe():void
 		}
 		output("[pc.breastsNoun]");
 	}
-	else if(pc.legCount > 1 && pc.hasVagina()) output(", in turn deliciously rubbing your [pc.clits]");
+	else if(pc.legCount > 1 && pc.hasClit()) output(", in turn deliciously rubbing your [pc.clits]");
 	else output("in pleasure");
 	output(". You let out a raspy moan then immediately flush, knowing it doesn’t help your case.");
 	processTime(5);
@@ -1744,7 +1745,7 @@ public function yesXantheImTotesMyGoatsASlut():void
 	output("\n\n\"<i>... Oh, you </i>like<i> being called a slut? Make sure you remember that you’re</i> my<i> property. Even as you’re sucking down some spacer’s spunk or burying your face in some bitch’s pussy, don’t forget who you </i>really<i> belong to.”</i> Xanthe reminds you, all the while lavishing another stinging spank on your [pc.butt].");
 	output("\n\nEach crack causes your whole body to arch and your head to instinctively loll back");
 	if(pc.biggestTitSize() >= 1 && pc.hasCock()) output(", in turn pulling at your [pc.cocks] and [pc.chestNoun]");
-	else if (pc.legCount > 1 && pc.hasVagina()) output(", in turn deliciously rubbing your [pc.clits]");
+	else if (pc.legCount > 1 && pc.hasClit()) output(", in turn deliciously rubbing your [pc.clits]");
 	else output(" in pleasure");
 	output(". You let out a raspy moan, knowing deep down that you are definitely her special property.");
 	processTime(5);
@@ -1777,12 +1778,12 @@ public function slutNotASlutEpilogue():void
 	if(pc.biggestTitSize() >= 1) output("bound up breasts");
 	else output("chest");
 	output(" are assaulted with her soft and hard floggers, paddles, and crops.");
-	if(pc.biggestTitSize() >= 1 || pc.hasCock() || pc.hasVagina())
+	if(pc.biggestTitSize() >= 1 || pc.hasCock() || pc.hasClit())
 	{
 		output(" Each crack in turn caresses your captured ");
 		if(pc.biggestTitSize() >= 1) output("chest");
 		else if(pc.hasCock()) output("[pc.cocksNounSimple]");
-		else if(pc.hasVagina()) output("[pc.clits]");
+		else if(pc.hasClit()) output("[pc.clits]");
 		output(" and you reel with dizzying pleasure.");
 	}
 	output(" Every now and then she stops to tease your back with her fingers or a feather, catching you completely off guard.");
