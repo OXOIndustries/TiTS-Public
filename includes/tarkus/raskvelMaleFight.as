@@ -1181,11 +1181,19 @@ public function redRidingRaskvel():void
 	output("sit down unceremoniously on the reptile’s wide, muscular thighs, riding your [pc.vagina " + x + "] up onto the base of his prick, making him gasp and instinctively draw his hand away. You catch it and clasp it firmly back on his dick.");
 
 	output("\n\n<i>“Look at me and keep rubbing,”</i> you order. You snap your fingers at the other two, who are awkwardly frozen nearby. <i>“You! Come here and lick. Do a good job and who knows... you might get as lucky as this guy’s going to get.”</i>");
-	if(pc.totalVaginas() == 1) output(" After a moment’s pause the medium-sized one obediently trots over, delicately places his hands on your [pc.thighs] as best he can and bends over your [pc.vagina " + x + "]. You sigh as long, wet reptile tongue is slathered over [pc.oneClit] and upper lips, pleasure beginning to pulse freely through your sex.");
+	if(pc.totalVaginas() == 1)
+	{
+		output(" After a moment’s pause the medium-sized one obediently trots over, delicately places his hands on your [pc.thighs] as best he can and bends over your [pc.vagina " + x + "]. You sigh as a long, wet reptile tongue is slathered over");
+		if(pc.hasClit()) output(" [pc.oneClit] and");
+		else output(" your");
+		output(" upper lips, pleasure beginning to pulse freely through your sex.");
+	}
 	else 
 	{
 		output(" After a moment’s pause the medium-sized one trots over. He squats by your side and makes to bend over your [pc.vagina " + x + "]. Your callous laugh stops him.");
-		output("\n\n<i>“No, no. I’m going to be using </i>that<i> one, silly. Underneath.”</i> He looks up at you with soulful, overawed eyes as understanding dawns, and then he slowly crawls behind you. You raise and flare your [pc.butt] a bit to allow him to shift his way in, his hot breath billowing over [pc.eachVagina], and then you sit down on his face with a satisfying fleshy sound. Long, wet reptile tongue laps desperately over your [pc.vagina " + y + "], blanketing attention across [pc.eachClit] and causing pleasure to pulse freely through you as he reaches deeper into your sensitive depths.");
+		output("\n\n<i>“No, no. I’m going to be using </i>that<i> one, silly. Underneath.”</i> He looks up at you with soulful, overawed eyes as understanding dawns, and then he slowly crawls behind you. You raise and flare your [pc.butt] a bit to allow him to shift his way in, his hot breath billowing over [pc.eachVagina], and then you sit down on his face with a satisfying fleshy sound. Long, wet reptile tongue laps desperately over your [pc.vagina " + y + "]");
+		if(pc.hasClit()) output(", blanketing attention across [pc.eachClit]");
+		output(" and causing pleasure to pulse freely through you as he reaches deeper into your sensitive depths.");
 	}
 	output("\n\nYou grunt with fervour as the second raskvel lavishes servile attention on you, dabbing and rasping his ever-so-slightly rough, hot tongue across your sex, holding your own magisterial attention on the raskvel you have trapped ");
 	if(pc.legCount > 1) output("between your [pc.thighs]");
@@ -1550,7 +1558,9 @@ public function loseToRaskvelAndGetGangBangued():void
 	//1 < Vagina:
 	if(pc.totalVaginas() > 1) 
 	{
-		output("\n\n<i>“Oh man, you never said [pc.heShe] had more than one of them!”</i> the raskvel at your back exclaims, his fingers tracing the outer lips of your [pc.vagina " + 1 + "] and caressing [pc.oneClit]. <i>“I LOVE aliens!”</i>\n\nYou moan as with one excited movement he thrusts into your wet hole deep, masses of nerves within your core firing in frothy response, your oversexed body delighting in the anticipation of getting another creamy, virile filling.");
+		output("\n\n<i>“Oh man, you never said [pc.heShe] had more than one of them!”</i> the raskvel at your back exclaims, his fingers tracing the outer lips of your [pc.vagina " + 1 + "]");
+		if(pc.hasClit()) output(" and caressing [pc.oneClit]");
+		output(". <i>“I LOVE aliens!”</i>\n\nYou moan as with one excited movement he thrusts into your wet hole deep, masses of nerves within your core firing in frothy response, your oversexed body delighting in the anticipation of getting another creamy, virile filling.");
 		pc.cuntChange(1,foes[0].cockVolume(0),true,true,false);
 	}
 
@@ -1720,7 +1730,9 @@ public function lickPussyRaskButt(raskWinner:String = "big"):void
 	if(pc.hasCock()) output(", shifting [pc.eachCock] out of the way to properly present yourself");
 	output(". From his position on the ground raskvel dazedly gazes in at the moist, parting veil of [pc.oneVagina], mouth slightly ajar, panting quietly. <i>“I suppose you’ve earned the right to have a taste. Just a taste...</i>\"");
 
-	output("\n\nYou sigh as he hooks his arms around your thighs – more for support than anything, poor boy – and sinks his face into your crotch. He pauses before your opening, gathering his breath, the warmth of his exhalations wafting over your sex, increasing your anticipation so that [pc.eachClit] plumps up, practically demanding attention. You rub behind his feathers encouragingly – finding a spot underneath his ear that makes him tense and exhale raggedly, his tail flopping this way and that – and finally he bends forward and spreads his broad tongue over your sex.");
+	output("\n\nYou sigh as he hooks his arms around your thighs – more for support than anything, poor boy – and sinks his face into your crotch. He pauses before your opening, gathering his breath, the warmth of his exhalations wafting over your sex, increasing your anticipation");
+	if(pc.hasClit()) output(" so that [pc.eachClit] plumps up, practically demanding attention");
+	output(". You rub behind his feathers encouragingly – finding a spot underneath his ear that makes him tense and exhale raggedly, his tail flopping this way and that – and finally he bends forward and spreads his broad tongue over your sex.");
 
 	output("\n\nThe sodden, rhythmic sound of cunnilingus fills the dusty air as he laps at you, his long, ever-so-slightly rough mouth muscle shifting across your [pc.vagina " + x + "], thrills shooting up your spine every time the warm, wet texture of it blankets over your");
 	if(pc.hasClit()) output(" [pc.clit]");
