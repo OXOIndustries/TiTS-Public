@@ -484,7 +484,9 @@ public function girlsGetZeAntGurlSexWithLilianaNotLyrallaNoTheyreTotallyDifferen
 	output("\n\nAfter a moment you transition, licking up her chest and neck, over her chin and all the way into a kiss. You guide ");
 	if(lilianaArms() >= 4) output("one of her lower hands");
 	else output("her lower hand");
-	output(" to your [pc.vagina " + x + "] and she begins dutifully rubbing it, teasing your clit between her middle and pointer fingers. Her movements are expert, hitting all the right places of your mons. You guess that it makes sense considering she comes from a planet whose population is near entirely female.");
+	output(" to your [pc.vagina " + x + "] and she begins dutifully rubbing it");
+	if(pc.vaginas[x].clits > 0) output(", teasing your clit between her middle and pointer fingers");
+	output(". Her movements are expert, hitting all the right places of your mons. You guess that it makes sense considering she comes from a planet whose population is near entirely female.");
 
 	output("\n\n<i>“I’m kinda glad ");
 	if(!pc.hasCock()) output("you’re a girl");
