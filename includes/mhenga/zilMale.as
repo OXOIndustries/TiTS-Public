@@ -414,8 +414,10 @@ public function rideDatZilCawk():void {
 	output(". There's no way to conceal the turgid stiffness of his member, bouncing slightly above his smooth abdominals.  You actually have to stop him from tugging on the almost phimotic tool - the only way he's getting pleasure is when you stuff it in [pc.oneVagina].");
 	
 	output("\n\nSlowly and with deliberate sensuality, you lower yourself down so that [pc.oneVagina] is just above his groin, the hot heat of your puffy slit steaming the base of the aggressive alien boy's shaft.  He shifts nervously below you, but remains meek and submissive, unwilling or unable to force himself upward after being so humiliated in a fight. You lean forward to meet his exotic, black gaze while your [pc.hips] drag your ready quim against him. Letting out an anguished sigh, the zil twitches underneath you and releases a tiny dribble of gold pre-ejaculate onto his tight tummy.");
-	output("\n\nThe sight of his liquified ardor combined with the sweet wasp-boy's scent is enough to drive you to distraction, and you begin to grind yourself against him unashamedly until [pc.eachClit] peeks out of its hood, stiff and moist with your own lubrication.");
-	if(pc.clitLength >= .5) {
+	output("\n\nThe sight of his liquified ardor combined with the sweet wasp-boy's scent is enough to drive you to distraction, and you begin to grind yourself against him unashamedly");
+	if(pc.hasClit()) output(" until [pc.eachClit] peeks out of its hood, stiff and moist with your own lubrication");
+	output(".");
+	if(pc.hasClit() && pc.clitLength >= .5) {
 		if(pc.totalClits() == 1) {
 			output(" It swells ");
 		}
@@ -477,11 +479,15 @@ public function rideDatZilCawk():void {
 	if(foes[0].cockVolume(0) > pc.vaginalCapacity(x)) {
 		output("\n\nWincing, you push his lubricated member against your ");
 		if(!pc.vaginalVirgin) output("almost ");
-		output("virginally-tight entrance.  He's just so... so big, that you can't seem to fit him!  You push and grind, allowing his warm pre-cum to slather across your labia, letting him bump into your [pc.clits] again and again as you slowly loosen yourself to allow him entrance.  Slowly, you work his concealed tip inside you, then, the first two... three inches.  The tight friction peels his skin back to expose his sensitive glans to your silken walls, and between that and his gushing pre, you find the motivation to push down the rest of the way, fully embedding your onyx lover in your depths. He groans quietly once he realizes you've completely taken his member.");
+		output("virginally-tight entrance.  He's just so... so big, that you can't seem to fit him!  You push and grind, allowing his warm pre-cum to slather across your labia");
+		if(pc.hasClit()) output(", letting him bump into your [pc.clits] again and again as you slowly loosen yourself to allow him entrance");
+		output(".  Slowly, you work his concealed tip inside you, then, the first two... three inches.  The tight friction peels his skin back to expose his sensitive glans to your silken walls, and between that and his gushing pre, you find the motivation to push down the rest of the way, fully embedding your onyx lover in your depths. He groans quietly once he realizes you've completely taken his member.");
 	}
 	//{Just rite}
 	else if(foes[0].cockVolume(0) * .6 > pc.vaginalCapacity(x)) {
-		output("\n\nYou slowly slide his lubricated member into your slick entrance, your honeypot swallowing up his tool as if it was made to accept it. Pushing against you, the submissive zil meets you motion for motion, embedding himself fully inside you.  You push yourself violently against him, hard enough for your [pc.clits] to grind up on your impromptu lover's groin.  He settles down under the forceful pressure and completely submits to your will. There's nothing in his eyes but hope and subservience, which as far as your [pc.vagina " + x + "] is concerned, is just perfect. As a bonus, his foreskin is quickly peeled back by your silken channel, and his glans begins to exude pre in larger globs than before.");
+		output("\n\nYou slowly slide his lubricated member into your slick entrance, your honeypot swallowing up his tool as if it was made to accept it. Pushing against you, the submissive zil meets you motion for motion, embedding himself fully inside you.  You push yourself violently against him");
+		if(pc.hasClit()) output(", hard enough for your [pc.clits] to grind up on your impromptu lover's groin");
+		output(". He settles down under the forceful pressure and completely submits to your will. There's nothing in his eyes but hope and subservience, which as far as your [pc.vagina " + x + "] is concerned, is just perfect. As a bonus, his foreskin is quickly peeled back by your silken channel, and his glans begins to exude pre in larger globs than before.");
 	}
 	//{Loosey Goosey}
 	else {
@@ -497,17 +503,20 @@ public function rideDatZilCawk():void {
 		if(pc.biggestTitSize() >= 1) output(" while groping your [pc.chest]");
 		output(". It feels too good to care about that minor rebellion, but a moment later you grab him by the wrist and shove his hand down to your impaled womanhood.");
 	}
-	output("\n\nImpatiently, you put his hand on [pc.oneClit], and order, <i>“Play with it,”</i> in between lascivious moans. ");
-	//{small clits}
-	if(pc.clitLength < .5) output("It takes him a few moments to isolate the diminutive button, but when he does, damn, does it feel good!  His fingertips are similarly textured to a human's, unarmored but textured a bit more strongly than your own.  The zil is soon expertly rubbing your buzzer.  The proof of his dexterity is dripping out all over him.  Soon, your walls are convulsing around him unintentionally, and orgasm is just a breath away.");
-	//{medium clit}
-	else if(pc.clitLength < 3) output("He quickly finds your over-engorged buzzer.  It's actually big enough that two of the wasp-man's fingers can easily pinch it from either side.  The finger-sized protrusion pulses pleasantly in his grip, and soon the zill has you squirming and writhing atop him.  Cunt-clenching spasms wrack your quim as you try to hold it together, but your orgasm hangs on the edge of your consciousness, just one breath away.");
-	//{huge clit}
-	else output("He tentatively grasps your cock-like buzzer, and it feels powerfully good.  You don't even have to tell him what to do.  The zil just starts to pump, slowly at first but with increasing certainty.  Up and down, up and down, he strokes your lady-prick faster and faster. You can barely stay conscious through the haze of pleasure it's forcing upon you. Orgasm is but a breath away, but you wish you could lay here and let him jerk on your giant clit for hours.  It feels so good!");
+	if(pc.hasClit())
+	{
+		output("\n\nImpatiently, you put his hand on [pc.oneClit], and order, <i>“Play with it,”</i> in between lascivious moans. ");
+		//{small clits}
+		if(pc.clitLength < .5) output("It takes him a few moments to isolate the diminutive button, but when he does, damn, does it feel good!  His fingertips are similarly textured to a human's, unarmored but textured a bit more strongly than your own.  The zil is soon expertly rubbing your buzzer.  The proof of his dexterity is dripping out all over him.  Soon, your walls are convulsing around him unintentionally, and orgasm is just a breath away.");
+		//{medium clit}
+		else if(pc.clitLength < 3) output("He quickly finds your over-engorged buzzer.  It's actually big enough that two of the wasp-man's fingers can easily pinch it from either side.  The finger-sized protrusion pulses pleasantly in his grip, and soon the zill has you squirming and writhing atop him.  Cunt-clenching spasms wrack your quim as you try to hold it together, but your orgasm hangs on the edge of your consciousness, just one breath away.");
+		//{huge clit}
+		else output("He tentatively grasps your cock-like buzzer, and it feels powerfully good.  You don't even have to tell him what to do.  The zil just starts to pump, slowly at first but with increasing certainty.  Up and down, up and down, he strokes your lady-prick faster and faster. You can barely stay conscious through the haze of pleasure it's forcing upon you. Orgasm is but a breath away, but you wish you could lay here and let him jerk on your giant clit for hours.  It feels so good!");
+	}
 	
-	output("\n\nThe pulsating wasp-cock swells with an impending load inside you, the extra friction just what you need to get off yourself.  You grab hold of his shoulders, arching your back, and you cum all over his twitching, sable member.  Wringing that cock with slow ripples, your [pc.vagina " + x + "] does it's best to pull it deeper inside you, stroking the foreskin back up over the glans a split-second before it begins to spurt. Sweet, sticky wasp-boy cum splatters into your cervix in squirt after squirt");
+	output("\n\nThe pulsating wasp-cock swells with an impending load inside you, the extra friction is just what you need to get off yourself.  You grab hold of his shoulders, arching your back, and you cum all over his twitching, sable member.  Wringing that cock with slow ripples, your [pc.vagina " + x + "] does it's best to pull it deeper inside you, stroking the foreskin back up over the glans a split-second before it begins to spurt. Sweet, sticky wasp-boy cum splatters into your cervix in squirt after squirt");
 	if(!pc.isPregnant(x)) output(", already trickling into your unoccupied womb");
-	output(".  The heavy, spunky honey-sludge floods your passage while you shiver in ecstasy, getting a nice, long, slit-filling cum thanks to your partner's sweet scent and lovely dong.");
+	output(". The heavy, spunky honey-sludge floods your passage while you shiver in ecstasy, getting a nice, long, slit-filling cum thanks to your partner's sweet scent and lovely dong.");
 	if(pc.vaginaTotal() > 1) {
 		if(pc.vaginaTotal() > 2) {
 			output("  Your extra vaginas ");
@@ -650,7 +659,8 @@ public function alkahestsForeskinOralPlay():void {
 		output(" with the same heat as the rest of you; boiling juices flow freely down the inside of your thighs. You");
 		if(pc.legCount > 1) output(" squeeze your [pc.legs] together");
 		else output(" wriggle your [pc.legOrLegs]");
-		output(" to increase the stimulation on your sopping [pc.vaginas]. [pc.EachClit] strains against its hood, throbbing with need.");
+		output(" to increase the stimulation on your sopping [pc.vaginas].");
+		if(pc.hasClit()) output(" [pc.EachClit] strains against its hood, throbbing with need.");
 	}
 	//{IF NIPPLECOCKS}
 	if(pc.hasDickNipples()) {
@@ -728,7 +738,9 @@ public function foreskinWorshipWithPussyCum():void {
 	clearOutput();
 	userInterface.showBust("ZIL");
 	userInterface.showName("MALE\nZIL");
-	output("Deciding on pleasing your lady parts, you plop on the ground and your hands glide over your pussy-lips, teasing your folds and stroking your clit. Feeling slightly more adventurous, you insert a number of fingers into your sopping cunt and piston in and out. With your remaining hand you tease and pinch [pc.oneVagina]. As you continue your ministrations your body becomes hotter and hotter, sexual fluids in a flood pouring out of your pussy.");
+	output("Deciding on pleasing your lady parts, you plop on the ground and your hands glide over your pussy-lips, teasing your folds");
+	if(pc.hasClit()) output(" and stroking your clit");
+	output(". Feeling slightly more adventurous, you insert a number of fingers into your sopping cunt and piston in and out. With your remaining hand you tease and pinch [pc.oneVagina]. As you continue your ministrations your body becomes hotter and hotter, sexual fluids in a flood pouring out of your pussy.");
 	output("\n\nYou feel your release building and building until suddenly the dam breaks and your orgasm floods over your body, wave after wave of electric pleasure passing through you. Having robbed the strength from your [pc.legOrLegs], the force of your orgasm causes you to fall on your back, your back arched in pleasure. Your moistened passage ripples and contracts around your invading finger as you scream in pleasure at your release. After the waves of your orgasm subside, you lay in your warm afterglow for a minute before standing and stretching.");
 	didntCumOnZilForeskinPlay();
 }
@@ -885,7 +897,11 @@ public function getABJFromAManzil():void
 
 	output("\n\nJust as you think you’re going to have to slap him to get his full attention back, the hand on your [pc.ass] moves back to ");
 	if(pc.balls > 0) output("your [pc.sack] and gives it a squeeze");
-	else if(pc.hasVagina()) output("your [pc.vagina] and squeezes [pc.oneClit]");
+	else if(pc.hasVagina())
+	{
+		output("your [pc.vagina]");
+		if(pc.hasClit()) output(" and squeezes [pc.oneClit]");
+	}
 	else output("your waiting [pc.asshole]");
 	output(", right as his throat contracts around what portion of your length is inside him. It pushes you over the edge and your [pc.cockBiggest] explodes. For a second, you almost think he’s going to be able to swallow everything you’re pumping into him, but the hand ");
 	if(pc.balls > 0)
@@ -893,7 +909,11 @@ public function getABJFromAManzil():void
 		output("on your ball");
 		if(pc.balls > 1) output("s");
 	}
-	else if(pc.hasVagina()) output("playing with your [pc.clit]");
+	else if(pc.hasVagina())
+	{
+		if(pc.hasClit()) output("playing with your [pc.clit]");
+		else output("playing with your slit");
+	}
 	else output("fingering your hole");
 	output(" moves to your waist and pushes, sliding off of your cock. Your last few spurts of [pc.cumColor] shower his face. A sweet, intoxicating aroma hits you as you realize that the zil-boy has painted his thighs with his species’ signature honey-like ejaculate.");
 	output("\n\nThe zil-boy lazily cleans your cock off with his tongue before you collect your [pc.gear] and dress yourself. You leave him on the ground, still panting, taking occasional sips from the mixture of honey and [pc.cum] on his chitin-covered thighs.\n\n");
@@ -1008,25 +1028,38 @@ public function getBredByZil():void {
 	//HOARSE VERSION.
 	if(pc.isTaur())
 	{
-		output("\n\nHe exhales against your ear, <i>“A shame you can't reach [pc.eachClit] from up there, isn't it? I want to see you make yourself cum for me.”</i>");
-		output("\n\nShuddering as his dick pistons through your sloppy channel, you whimper at the aching coming from your hindquarters. He's right of course; you desperately desire to slip a hand into your folds, plowing yourself wide open, perhaps fondling [pc.eachClit] just to give the Zil the show he desires. The fantasy and desire is so intense that [pc.eachVagina] clenches with need, fluttering anxiously.");
+		output("\n\nHe exhales against your ear, <i>“A shame you can't reach");
+		if(pc.hasClit()) output(" [pc.eachClit]");
+		else output(" your slit");
+		output(" from up there, isn't it? I want to see you make yourself cum for me.”</i>");
+		output("\n\nShuddering as his dick pistons through your sloppy channel, you whimper at the aching coming from your hindquarters. He's right of course; you desperately desire to slip a hand into your folds, plowing yourself wide open");
+		if(pc.hasClit()) output(", perhaps fondling [pc.eachClit]");
+		output(" just to give the Zil the show he desires. The fantasy and desire is so intense that [pc.eachVagina] clenches with need, fluttering anxiously.");
 	}
 	//NON HOARSE
 	else 
 	{
 		output("\n\nHe exhales against your ear, <i>“Touch </i>");
-		if(pc.vaginaTotal() > 1) output("<i>one of your clits</i>");
-		else output("<i>your clit</i>");
+		if(pc.vaginaTotal() > 1 && pc.hasClit()) output("<i>one of your clits</i>");
+		else if(pc.hasClit()) output("<i>your clit</i>");
+		else output("<i>yourself</i>");
 		output("<i>, little flower, I want to see you bloom.”</i>");
-		output("\n\nShuddering as his dick pistons through your sloppy channel, you obey. [pc.EachClit] pulses pleasantly as if it senses what's to come.");
-		if(pc.clitLength >= 3) {
-			output("  You immediately wrap your hand around ");
-			if(pc.totalClits() > 1) output("one of them");
-			else output("it");
-			output(" and begin to stroke it, pulling and squeezing slowly.  The sensitive, cock-sized pleasure-buzzer trembles in your grip, and you nearly black out from the bliss that it brings.");
+		if(pc.hasClit()) 
+		{
+			output("\n\nShuddering as his dick pistons through your sloppy channel, you obey. [pc.EachClit] pulses pleasantly as if it senses what's to come.");
+			if(pc.clitLength >= 3) {
+				output(" You immediately wrap your hand around ");
+				if(pc.totalClits() > 1) output("one of them");
+				else output("it");
+				output(" and begin to stroke it, pulling and squeezing slowly. The sensitive, cock-sized pleasure-buzzer trembles in your grip, and you nearly black out from the bliss that it brings.");
+			}
+			else if(pc.clitLength >= .75) output("  You immediately reach up and begin to caress [pc.oneClit], squeezing and caressing it's swollen surface. The sensitive organ seems to inflate, growing larger in response to your touches, and you nearly black out from the bliss that it brings.");
+			else output(" You immediately reach up and begin to thumb at [pc.oneClit], rubbing around its small surface with familiar touches. The sensitive organ is so pleasant to touch that it nearly blacks you out with the bliss your affections bring.");
 		}
-		else if(pc.clitLength >= .75) output("  You immediately reach up and begin to caress [pc.oneClit], squeezing and caressing it's swollen surface. The sensitive organ seems to inflate, growing larger in response to your touches, and you nearly black out from the bliss that it brings.");
-		else output(" You immediately reach up and begin to thumb at [pc.oneClit], rubbing around its small surface with familiar touches. The sensitive organ is so pleasant to touch that it nearly blacks you out with the bliss your affections bring.");
+		else
+		{
+			output("\n\nShuddering as his dick pistons through your sloppy channel, you obey. [pc.EachVagina] pulses pleasantly as if it senses what's to come and you nearly black out from the bliss that it brings.");
+		}
 	}
 	//MERGE
 	output("\n\nThe zil ");
@@ -1157,13 +1190,18 @@ public function getTailPussyFuckedByZil():void {
 		else if(pc.wetness() <= 3) output("a small stream");
 		else if(pc.wetness() <= 4) output("a stream");
 		else output("a gushing river");
-		output(" of your girl-cum. Your throbbing hard clit feels fantastic as you hump the ground below, mashing it into the mud your juicy snatch");
-		if(pc.vaginaTotal() > 1) output("es are");
-		else output(" is");
-		output(" so willing to provide. Fruitlessly humping, you writhe your way through your tail’s orgasm, wishing you had something inside the entire time.");
+		output(" of your girl-cum.");
+		if(pc.hasClit())
+		{
+			output(" Your throbbing hard clit feels fantastic as you hump the ground below, mashing it into the mud your juicy snatch");
+			if(pc.vaginaTotal() > 1) output("es are");
+			else output(" is");
+			output(" so willing to provide.");
+		}
+		output(" Fruitlessly humping, you writhe your way through your tail’s orgasm, wishing you had something inside the entire time.");
 		if(pc.hasNippleCocks() || pc.canMilkSquirt()) {
 			output(" At the same time, your ");
-				if(pc.hasNippleCocks()) output("[pc.nippleCocks]");
+			if(pc.hasNippleCocks()) output("[pc.nippleCocks]");
 			else output("[pc.nipples]");
 			output(" are adding to the deluge. If you had any sense, you'd grab hold to ");
 			if(!pc.hasNippleCocks()) output("milk them");
@@ -1326,7 +1364,9 @@ public function theZilPretendToBeHelia():void {
 	output("\n\nThe female bites her lips and shudders while your tongue polishes her clit, gathering every drop of her hot honey, sliding deeper into her folds where it can properly tickle the rest of her nerve endings. You dole out cunnilingus with no thought but eagerness for the taste in your mouth, instinctively improving your technique whenever you discover something that gets you a fresh dribble of her juices. Her legs are quaking lustily around your head as she rides you towards a much-needed cum. If your mouth weren't muff-deep in cunt, a dopey smile would be visible on it.");
 	//{Vagina}
 	if(pc.hasVagina()) {
-		output("\n\n[pc.EachClit] is throbbing, beaded with honeyed moisture and your own secretions. The dick inside you is sliding perfectly through you while your tunnel flutters around with unadulterated pleasure, spurred on by the scents locking your body into a breeding frenzy.");
+		output("\n\n");
+		if(pc.hasClit()) output("[pc.EachClit] is throbbing, beaded with honeyed moisture and your own secretions. ");
+		output("The dick inside you is sliding perfectly through you while your tunnel flutters around with unadulterated pleasure, spurred on by the scents locking your body into a breeding frenzy.");
 		if(pc.hasPregnancy()) output(" Were your womb empty, you're sure you could feel your eggs descending, hungry for fertilization.");
 		output(" A needy whimper slips out around the quim stuffing your gob, and find yourself cumming, creaming messily about the modest alien-cock inside you. The honey-spewing dong is just what you needed to get off, and you wiggle your [pc.butt] at the alien as you convulse around him, milking him with slow squeezes while you ");
 		if(!pc.isSquirter()) output("drip with love.");
