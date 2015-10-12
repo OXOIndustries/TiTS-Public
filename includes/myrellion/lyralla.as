@@ -680,7 +680,8 @@ public function juroXLyrallPartIV():void
 				output("press your ");
 				if(pc.hasKnees()) output("[pc.knees]");
 				else output("[pc.thighs]");
-				output(" together, squeezing your folds around your [pc.clits]");
+				output(" together");
+				if(pc.hasClit()) output(", squeezing your folds around your [pc.clits]");
 			}
 			else output("wiggle instinctively, feeling every gentle breeze across your lips");
 			output(", only making your [pc.vaginas] that much more eager. Juro’s dick would feel so good inside you - all hot and wet and slick and so perfectly ready to cum.");
@@ -696,7 +697,10 @@ public function juroXLyrallPartIV():void
 		//soaking
 		else if(pc.girlCumQ() < 2000)
 		{
-			output("Streams of [pc.girlCum] run down your [pc.thighs], the visible evidence of your unchecked and unsated desires. You shift position, battling the urge to touch yourself - maybe slip a finger or two... or three inside. Ultimately, you resist, but every movement has your [pc.clits] buzzing happily and yet more [pc.girlCumNoun] journeying toward the deepening puddle below. Why does Juro’s dick have to look so ");
+			output("Streams of [pc.girlCum] run down your [pc.thighs], the visible evidence of your unchecked and unsated desires. You shift position, battling the urge to touch yourself - maybe slip a finger or two... or three inside. Ultimately, you resist, but every movement has your");
+			if(pc.hasClit()) output(" [pc.clits] buzzing");
+			else output(" girl-lips humming");
+			output(" happily and yet more [pc.girlCumNoun] journeying toward the deepening puddle below. Why does Juro’s dick have to look so ");
 			if(!pc.isBimbo()) output("delicious");
 			else output("yummy");
 			output(", and Lyralla’s tits could really use a mouth back on them.");
