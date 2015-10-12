@@ -8622,13 +8622,14 @@ package classes {
 					descripted++;
 				}
 			}
-			if (hasVagina()) {
-				if (vaginas[0].clitPierced > 0 && descripted < 2 && this.rand(3) < 2) {
+			if (hasClit()) {
+				if (vaginas[pussy].clitPierced > 0 && descripted < 2 && this.rand(3) < 2) {
 					if (descripted > 0) descript += ", ";
 					descript += "pierced";
 					descripted++;
 				}
-			} else return ("ERROR: CLITDESCRIPT WITH NO CLIT");
+			}
+			else return ("ERROR: CLITDESCRIPT WITH NO CLIT");
 			//Clit nouns
 			if (descripted > 0) descript += " ";
 			//HYPHENING SHIT ONTO DOSE NOUNS, YO!
@@ -8638,7 +8639,8 @@ package classes {
 			randt = this.rand(10);
 			if (randt == 0) 
 			{
-				if(clitLength >= 5) descript += "girl-pole";
+				if (kGAMECLASS.silly && clitLength >= 12 && rand(2) == 0) descript += "clitosaurus";
+				else if (clitLength >= 5) descript += "girl-pole";
 				else descript += "clit";
 			}
 			else if (randt == 1) descript += "clitty";
