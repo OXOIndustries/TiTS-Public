@@ -4909,7 +4909,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["SEXED_NEHZARA"] != undefined) output2(", Sexed her");
 					if(flags["NEHZ_PREGGO_RUB_HAPPENED"] != undefined) output2(", She rubbed your pregnant belly");
 					if(flags["NEHZ_WARRIORS_HONOR_SCENE_HAPPENED"] != undefined) output2(", Proved her warrior’s honor");
-					if(flags["NEHZARA_CLOSET_FUKKED"] != undefined) output2("\n<b>* Nehzara, Times Closet Fucked With: </b>" + flags["NEHZARA_CLOSET_FUKKED"]);
+					if(flags["NEHZARA_CLOSET_FUCKED"] != undefined) output2("\n<b>* Nehzara, Times Closet Fucked With: </b>" + flags["NEHZARA_CLOSET_FUCKED"]);
 				}
 				variousCount++;
 			}
