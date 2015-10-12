@@ -459,11 +459,13 @@ public function chicksRideASydian():void
 	}
 	output("fuckdoll, slapping his bitch-breaking girth into you with bruising force. Your composure slips once more, and this time, you're sure you're going to cum.");
 	output("\n\nThe sydian must sense this because he grabs hold of ");
-	if(pc.hasCock()) {
-		output("[pc.oneCock] and starts pumping you towards your orgasm, seemingly comfortable with handling another's member so long as he's hilt-deep in a pussy.");
+	if(pc.hasCock() || pc.hasClit())
+	{
+		if(pc.hasCock()) output("[pc.oneCock] and starts pumping you towards your orgasm, seemingly comfortable with handling another's member so long as he's hilt-deep in a pussy.");
+		else if(pc.clitLength > 4) output("[pc.oneClit] and starts pumping the enormous lady-boner, wracking you with intense sensation.");
+		else output("[pc.oneClit] and starts rubbing against it, wracking you with intense sensation.");
 	}
-	else if(pc.clitLength > 4) output("[pc.oneClit] and starts pumping the enormous lady-boner, wracking you with intense sensation.");
-	else output("[pc.oneClit] and starts rubbing against it, wracking you with intense sensation.");
+	else output(" your groin and deeply massages your mons, wracking you with intense sensation.")
 	output(" You give in, eyes crossed, and let it happen. You let the heat in your [pc.vaginas] blossom into a wonderful, glowing bloom. [pc.GirlCum]");
 	if(pc.isSquirter()) output(" washes out of you in a tide");
 	else if(pc.wetness(x) >= 3) output(" soaks your mate");
