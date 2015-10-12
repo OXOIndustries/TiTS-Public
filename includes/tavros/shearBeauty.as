@@ -934,12 +934,14 @@ public function getOralFromCeria():void
 	{
 		output("\n\nCeria starts off by licking two of her own fingers, showing off her glittering fairy gloves in the process. <i>“Mmm...totally worth not having nails, these are way better.”</i> Once the metallic blue is glistening with a thin layer of saliva, she slips her fingers into your pussy, gently working them around to help loosen you up a bit and give her a feel for your snatch’s shape. She also takes a moment to rub ");
 		x = rand(pc.vaginas.length - 1);
-		if(pc.vaginas[x].clits == 1) output("your clit");
+		if(pc.vaginas[x].clits < 1) output("your labia");
+		else if(pc.vaginas[x].clits == 1) output("your clit");
 		else output("each of your clits, with a level of familiarity that suggests she’s no stranger to alien pussy");
 		output(", stopping only when her fingers have a nice coating of your [pc.girlCumNoun] for her to taste.");
 
-		output("\n\n<i>“Mmm...nice and [pc.girlCumFlavor]. Now then....”</i> Ceria dips her head down and runs her tongue up your feminine slit, all the way from the bottom edge to the top. Seeing you shudder prompts her to do it again. Each lick digs a little deeper than the one before, the tip of her tongue gradually sinking into your [pc.vaginaColor " + x + "] folds where it can start sliding back and forth over your ");
-		if(pc.vaginas[x].clits == 1) output("clit.");
+		output("\n\n<i>“Mmm... nice and [pc.girlCumFlavor]. Now then....”</i> Ceria dips her head down and runs her tongue up your feminine slit, all the way from the bottom edge to the top. Seeing you shudder prompts her to do it again. Each lick digs a little deeper than the one before, the tip of her tongue gradually sinking into your [pc.vaginaColor " + x + "] folds where it can start sliding back and forth over your ");
+		if(pc.vaginas[x].clits < 1) output("labia.");
+		else if(pc.vaginas[x].clits == 1) output("clit.");
 		else output("clits.");
 
 		output("\n\nIn your pleasure you reach down to the sides of the elf girl’s head, and she immediately gives a muffled gasp as your fingers brush her ears.");
