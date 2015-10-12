@@ -8623,8 +8623,8 @@ package classes {
 					descripted++;
 				}
 			}
-			if (vaginas[pussy].clits > 0) {
-				if (vaginas[pussy].clitPierced > 0 && descripted < 2 && this.rand(3) < 2) {
+			if (hasClit()) {
+				if (vaginas[pussy].clits > 0 && vaginas[pussy].clitPierced > 0 && descripted < 2 && this.rand(3) < 2) {
 					if (descripted > 0) descript += ", ";
 					descript += "pierced";
 					descripted++;
