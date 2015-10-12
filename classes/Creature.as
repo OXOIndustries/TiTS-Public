@@ -6468,6 +6468,7 @@ package classes {
 		}
 		public function totalClits(): Number {
 			if (vaginas.length == 0) return 0;
+			if (clitLength <= 0) return 0;
 			var count: int = 0;
 			
 			for (var x:int = 0; x < vaginas.length; x++)
@@ -8622,7 +8623,7 @@ package classes {
 					descripted++;
 				}
 			}
-			if (hasClit()) {
+			if (vaginas[pussy].clits > 0) {
 				if (vaginas[pussy].clitPierced > 0 && descripted < 2 && this.rand(3) < 2) {
 					if (descripted > 0) descript += ", ";
 					descript += "pierced";
