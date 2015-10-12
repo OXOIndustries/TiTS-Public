@@ -202,6 +202,7 @@ public function tongueLashAttack():void
 			output("and you are slimed by her toxic saliva. Luckily your [pc.armor] is airtight enough to prevent any of the fluid from seeping into your [pc.skin], but you definitely feel the impact of the hit.");
 			damage = foes[0].meleeDamage();
 			damageRand(damage, 5 + rand(5));
+			var damageResult:DamageResult = calculateDamage(damage, foes[0], pc);
 			outputDamage(damageResult);
 		}
 		else
