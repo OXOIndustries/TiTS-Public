@@ -7086,7 +7086,7 @@ package classes {
 		public function removeBreastRowLockedMessage():String
 		{
 			if (breastRows.length == 1 && this.hasStatusEffect("Mimbrane Boobs")) return "Your " + allChestDesc() + " pulls from your body with a tremendous force, resisting the attempt to flatten your girlish curves. The Mimbrane mounds refuse to be deflated, it seems.";
-			else return "Your body practically glows with chest-focused effort, keeping you from losing your [pc.chest].";;
+			else return "Your body practically glows with chest-focused effort, keeping you from losing your [pc.chest].";
 		}
 
 		public function race(): String {
@@ -7376,11 +7376,45 @@ package classes {
 			else return "base";
 		}
 		public function chestDesc(): String {
-			if (biggestTitSize() < 1) return "chest";
+			if (biggestTitSize() < 1)
+			{
+				var adjective:String = "";
+				if(tone >= 100)
+				{
+					if(rand(4) == 0) adjective += mf("extremely pronounced","very pronounced");
+					else if(thickness > 70) adjective += "immense";
+					else if(thickness >= 30) adjective += "robust";
+					else adjective += "chisled";
+				}
+				else if(tone > 70)
+				{
+					if(rand(4) == 0) adjective += mf("well-defined","well-toned");
+					else if(thickness > 70) adjective += "broad";
+					else if(thickness >= 30) adjective += "healthy";
+					else adjective += "fit";
+				}
+				else if(tone >= 30)
+				{
+					if(rand(4) == 0) adjective += mf("toned","lightly-toned");
+					else if(thickness > 70) adjective += "thick";
+					else if(thickness >= 30) adjective += "average";
+					else adjective += "soft";
+				}
+				else
+				{
+					if(rand(4) == 0) adjective += "unremarkable";
+					else if(thickness > 70) adjective += "wide";
+					else if(thickness >= 30) adjective += "passable";
+					else adjective += "flat";
+				}
+				if(rand(4) > 0 && adjective.length > 0) return (adjective + " chest");
+				
+				return "chest";
+			}
 			else return biggestBreastDescript();
 		}
 		public function allChestDesc(): String {
-			if (biggestTitSize() < 1) return "chest";
+			if (biggestTitSize() < 1) return chestDesc();
 			else return allBreastsDescript();
 		}
 		public function eachCock(): String {
@@ -10818,10 +10852,10 @@ package classes {
 			var temp: int;
 			if (breastRows.length == 0) {
 				temp = this.rand(5);
-				if (temp == 0) return "unremarkable chest muscles";
+				if (temp == 0 && tone < 30) return "unremarkable chest muscles";
 				else if (temp == 1) return "chest";
 				else if (temp == 2) return "pectorals";
-				else if (temp == 3) return "flat chest";
+				else if (temp == 3 && tone < 30 && thickness < 30) return "flat chest";
 				else return mf("manly", "boyish") + " chest";
 			}
 			if (breastRows.length == 2) {
