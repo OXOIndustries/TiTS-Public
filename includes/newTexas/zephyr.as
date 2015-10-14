@@ -463,7 +463,7 @@ public function getFuckedByZephyrIV():void
 
 	output("Zephyr is growling in the back of her throat now, each slap of her hips against your abused ass accompanied by a slight grunt. Beads of sweat stream down her face from the effort of giving you the fucking you deserve. You moan once more, encouragingly, squeezing your muscles around her, coaxing her to go ahead and drop a big, wet orgasm into your depths.");
 	output("\n\nYou’re dangerously close to cumming as it is. All you’d have to do");
-	if(x >= 0) output(" is catch [pc.oneClit] on the edge of the desk and you’d go.");
+	if(x >= 0 && pc.vaginas[x].clits > 0) output(" is catch [pc.oneClit] on the edge of the desk and you’d go.");
 	else output(" arch your back and squeeze along with one of her thrusts and you’d go off.");
 	output(" But, you try to avoid the onrushing orgasm tide for now, wanting to cum to the feel of her flooding your ");
 	if(x >= 0 && !pc.isPregnant(x)) output("womb");

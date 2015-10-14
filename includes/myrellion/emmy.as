@@ -1004,26 +1004,33 @@ public function muzzlefuckingCunnilingus():void
 	else output(" caresses your exposed [pc.skinFurScalesNoun], making love by touch alone");
 	output(", that she’s more pent up than an overloaded fusion core. You don’t know how she’s managed to hold back thus far, but she has - and will. Neither hand strays to the seam of her suit or her perky, jutting nipples. Every ounce of her erotic intensity is focused on one thing - the junction between your thighs.");
 	output("\n\nHer hot breath flutters across your juicing folds like the beats of a butterfly’s wings: gentle but fast, excited. Emmy’s blunted claw-tips dig into your [pc.thighs] as she leans in close, inhaling your scent, flaring her black-lined nostrils to drink it up all the faster. When the jackaless’s tongue emerges, it does so under the cover of her sable locks, stealthily catching your leaking droplets one second and lapping at your labia the next. Her unseen undulations delicately yet passionately stir your lust.");
-	output("\n\nYou slump back on the counter from the sensation. Emmy’s tongue is as long as it is slick, the texture of her tastebuds an ecstatic salve for your lust-achened nerves. You didn’t even realize it a moment ago, when you were shivery from anticipation, but you needed this. You needed Emmy’s tongue against your most sensitive places, rubbing against your clitoral hood");
-	if(pc.totalClits() > 1) output("s");
-	output(" until your polished pleasure bead");
-	if(pc.totalClits() > 1) output("s");
-	output(" emerge");
-	if(pc.totalClits() == 1) output("s");
-	output(" to be caressed by her waiting lips. The pussy-pleasers seal around ");
-	if(pc.totalClits() > 1) output("one");
-	else output("your [pc.clit]");
-	output(", subjecting it to enough suction to wrack your ");
-	if(pc.tone >= 70) output("ripped");
-	else if(pc.tone >= 30) output("quivering");
-	else output("nubile");
-	output(" form with bliss, to steal your breath and fill your lungs with nothing but eager, lurid moans.");
+	output("\n\nYou slump back on the counter from the sensation. Emmy’s tongue is as long as it is slick, the texture of her tastebuds an ecstatic salve for your lust-achened nerves. You didn’t even realize it a moment ago, when you were shivery from anticipation, but you needed this. You needed Emmy’s tongue against your most sensitive places");
+	if(pc.hasClit())
+	{
+		output(", rubbing against your clitoral hood");
+		if(pc.totalClits() > 1) output("s");
+		output(" until your polished pleasure bead");
+		if(pc.totalClits() > 1) output("s");
+		output(" emerge");
+		if(pc.totalClits() == 1) output("s");
+		output(" to be caressed by her waiting lips. The pussy-pleasers seal around ");
+		if(pc.totalClits() > 1) output("one");
+		else output("your [pc.clit]");
+		output(", subjecting it to enough suction to wrack your ");
+		if(pc.tone >= 70) output("ripped");
+		else if(pc.tone >= 30) output("quivering");
+		else output("nubile");
+		output(" form with bliss, to steal your breath and fill your lungs with nothing but eager, lurid moans.");
+	}
+	else output("and to be carresed by her waiting lips. The pussy-pleasers seal around your sex and fills your form with bliss, stealing your breath and filling your lungs with nothing but eager, lurid moans.");
 	output("\n\nYour concentration and focus are drawn into Emmy’s greedy maw, drop by steaming drop, offered to her mouth as payment for the pleasure she now brings you. You grind your hips against her face without meaning to. The idea of stopping your wanton motions, of controlling your rebellious gyrations, never enters your mind. Your cunt");
 	if(pc.totalVaginas() > 1) output("s are");
 	else output(" is");
 	output(" wholly charmed by the frustrated jackal’s thirsty tongue, and you wouldn’t have it any other way. She has you in the palm of her hand until she decides to drive you past the point of no return.");
 	output("\n\nAnd it gets better.");
-	output("\n\nYou didn’t think it could, not with how magnificently her mouth’s muscle tended to your feminine needs, but it does. Emmy’s tongue plunges deep, so deep you wonder if she’ll ever run out, if there’s anything behind her feminine muzzle but acres and acres of additional tongue. Then her nose, moist with your drippings, kisses [pc.oneClit] a moment before spreading your folds. Strong fingers dig into your [pc.butt], but only so that Emmy’s snout can plunge inside you. She’s literally fucking you with her face, all while her tongue does the tango in your deepest passage.");
+	output("\n\nYou didn’t think it could, not with how magnificently her mouth’s muscle tended to your feminine needs, but it does. Emmy’s tongue plunges deep, so deep you wonder if she’ll ever run out, if there’s anything behind her feminine muzzle but acres and acres of additional tongue.");
+	if(pc.hasClit()) output(" Then her nose, moist with your drippings, kisses [pc.oneClit] a moment before spreading your folds.");
+	output(" Strong fingers dig into your [pc.butt], but only so that Emmy’s snout can plunge inside you. She’s literally fucking you with her face, all while her tongue does the tango in your deepest passage.");
 	if(pc.wettestVaginalWetness() >= 4) output(" Her throat has to work double time to keep up with all the [pc.girlCum] you’re feeding her.");
 	output("\n\nEmmy pulls back, leaving you momentarily vacant. The hollowness inside you aches with palpable need. It’s not fair that she stoked your passion into such a bonfire then stole away with the fuel you craved, leaving you a guttered husk of unfulfilled want. You groan whorishly, begging for her to return to the worship of your womanhood, to the endless strumming of your nerves. You’ll accept nothing less. <i>“Please!”</i> The word is etched into your expression and your tone.");
 	output("\n\nGrinning up at you");
@@ -1059,7 +1066,8 @@ public function muzzlefuckingCunnilingus():void
 	//Multicunt
 	if(pc.totalVaginas())
 	{
-		output("\n\nAll of this... you could endure if that were it, if that were the only deluge of sensation you had to stomach, but it isn’t. Emmy’s fingertips have buried themselves into your extra folds, discovering yet untouched channels to nestle into. Knuckles press at the underside of your [pc.clits], strumming you until you’re thrashing bonelessly to Emmy’s will.");
+		output("\n\nAll of this... you could endure if that were it, if that were the only deluge of sensation you had to stomach, but it isn’t. Emmy’s fingertips have buried themselves into your extra folds, discovering yet untouched channels to nestle into.");
+		if(pc.hasClit()) output(" Knuckles press at the underside of your [pc.clits], strumming you until you’re thrashing bonelessly to Emmy’s will.");
 	}
 	//Merge
 	output("\n\nSometime between paroxysms of pleasure and the slippery cascade between your thighs, the ");

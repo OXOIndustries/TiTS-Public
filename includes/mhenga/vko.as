@@ -550,7 +550,8 @@ public function VKoStressReliefForLadyginas():void
 		else if(pc.wetness(x) <= 3) output("get even wetter");
 		else if(pc.wetness(x) <= 4) output("drool even harder");
 		else output("spatter moisture to the ground");
-		output(". She is sure to make sure a fingertip brushes [pc.oneClit] until you shudder in excitement.");
+		output(".");
+		if(pc.hasClit()) output(" She is sure to make sure a fingertip brushes [pc.oneClit] until you shudder in excitement.");
 	}
 	//Select appropriate comment
 	//Super-wet
@@ -572,8 +573,13 @@ public function VKoStressReliefForLadyginas():void
 	else output("\n\nV-Ko examines you with a knowing smile. <i>\"A pussy like this can be easily brought to full and proper satiation with the proper techniques. Five minutes of my mouth should be more than enough to reduce you to a quivering, stress-free wreck.\"</i>");
 
 	output("\n\nThe nursedroid licks her lips one more time, leaving them glossy and shining with artificial slipperiness, then pulls her tongue back inside. She gives you a tender smile and advances, placing her hands on your [pc.butt] before pressing her face against your cleft to give it a kiss. V-Ko's lips have the perfect amount of warmth for pressing against a lusty pussy, and they are sinfully slick, coaxing shivers of pure delight with each slobbery kiss. She noisily gulps, and you hear something click deep within the artificial nurse.");
-	output("\n\nWhen she opens her mouth, you're immediately made aware that she's done something with her tongue. Instead of a narrow tongue pressing into your gates, it's something hard, thick, phallic, and even warmer than her lips. It wiggles slightly to change its alignment, earning an appreciate gasp from you, and slowly, inexorably works its way inside, filling you with its springy firmness. It goes in an inch at a time, slowly suffusing you with synthetic cock until you can bear no more. At that point, her lips brush [pc.oneClit] meaningfully.");
-	output("\n\n<i>\"We're just getting started,\"</i> promises V-Ko's surprisingly clear but slightly muffled voice. <i>\"Just relax and get used to it.\"</i> She wiggles the fake cock she has in place of her tongue against your inner walls while your [pc.clit] disappears into her maw, immediately placed under a gentle, pulsating suction. Your [pc.legOrLegs] go");
+	output("\n\nWhen she opens her mouth, you're immediately made aware that she's done something with her tongue. Instead of a narrow tongue pressing into your gates, it's something hard, thick, phallic, and even warmer than her lips. It wiggles slightly to change its alignment, earning an appreciate gasp from you, and slowly, inexorably works its way inside, filling you with its springy firmness. It goes in an inch at a time, slowly suffusing you with synthetic cock until you can bear no more. At that point, her lips brush");
+	if(pc.hasClit()) output(" [pc.oneClit]");
+	else output(" your labia");
+	output(" meaningfully.");
+	output("\n\n<i>\"We're just getting started,\"</i> promises V-Ko's surprisingly clear but slightly muffled voice. <i>\"Just relax and get used to it.\"</i> She wiggles the fake cock she has in place of her tongue against your inner walls");
+	if(pc.hasClit()) output(" while your [pc.clit] disappears into her maw, immediately placed under a gentle, pulsating suction");
+	output(". Your [pc.legOrLegs] go");
 	if(pc.legCount == 1) output("es");
 	output(" weak, but the nursedroid's hold on your [pc.butt] supports you, holding you firmly in place as she pleases you.");
 	output("\n\nYour fingers go to the back of her head to grab up fistfulls of her lustrous, pink hair. You wind up with both hands around her pigtails, and you enthusiastically tug on them, mashing her face more firmly against your thoroughly-filled slit. She's thick and squirming, and it feels so fucking good that you can't help but drip all over her pink cheeks as you ride her.");
@@ -870,7 +876,9 @@ public function agreeToElectroStim():void
 		if(pc.vaginaTotal() > 1) output("s");
 		output(" buried in your [pc.cunts] roar");
 		if(pc.vaginaTotal() == 1) output("s");
-		output(" into life, buzzing around madly, repeatedly flicking your [pc.clits], more by accident than design. It is only a machine - but the sensation is enthralling.");
+		output(" into life, buzzing around madly");
+		if(pc.hasClit()) output(", repeatedly flicking your [pc.clits], more by accident than design");
+		output(". It is only a machine - but the sensation is enthralling.");
 	}
 
 	output("\n\nThe clamps attached to your [pc.nipples] almost audibly hum as their voltage increases, sharp surges of electricity coursing over your sensitive flesh. Pleasure washes through you, your body jolting against your restraints with each spark that strokes your nerves.");

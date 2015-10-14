@@ -304,11 +304,21 @@ public function celiseSucksYouDry():void {
 	output("\n\nBefore your muscles can properly clench to release your lusty payload, you feel some of it sliding through your urethra, burning a hot, passionate trail through your not-quite-ready cock before spilling into the hot, wet slickness of the vacuum-chamber. The stream of [pc.cum] doesn’t come in spurts or jets, like a normal orgasm. Instead, it’s one long rope of [pc.cumColor] food for the galotian to devour. You haven’t even reached your peak, but your [pc.hips] and [pc.legOrLegs] are shaking wildly, almost like you’ve gone past orgasm without ever actually experiencing it. Pleasure washes through you, but it’s a needy, aching pleasure, the pleasure of orgasm without the salve of release.");
 	//{Multivag}
 	if(pc.vaginaTotal() > 1) {
-		output("\n\nYour multiple vaginas, bereft of proper penetration, spasm against a multitude of unbound tongues that rove across their engorged vulvae. Sometimes, they touch your clits, other times, they remain firmly affixed to your labia, dexterously twirling across your sex maddenly, but never plunging in or connecting with a clit properly enough to set you off. You’re kept writhing and dripping on the edge of orgasm while the constant pulling upon your other genitals drains you dry. Right about now, you’ve give anything to be properly penetrated, to properly cum.");
+		output("\n\nYour multiple vaginas, bereft of proper penetration, spasm against a multitude of unbound tongues that rove across their engorged vulvae.");
+		if(pc.hasClit()) output(" Sometimes, they touch your clits, other times, t");
+		else output(" T");
+		output("hey remain firmly affixed to your labia, dexterously twirling across your sex maddenly, but never plunging in");
+		if(pc.hasClit()) output(" or connecting with a clit properly");
+		output(" enough to set you off. You’re kept writhing and dripping on the edge of orgasm while the constant pulling upon your other genitals drains you dry. Right about now, you’ve give anything to be properly penetrated, to properly cum.");
 	}
 	//{Singlevag}
 	else if(pc.hasVagina()) {
-		output("\n\nYour [pc.vagina], bereft of proper penetration, spasms against a multitude of unbound tongues that rove across its engorged vulvae. Sometimes, they touch your clit, other times, they remain firmly affixed to your labia, dexterously twirling across your sex maddenly, but never plunging in or connecting with a clit properly enough to set you off. You’re kept writhing and dripping on the edge of orgasm while the constant pulling upon your other genitals drains you dry. Right about now, you’ve give anything to be properly penetrated, to properly cum.");
+		output("\n\nYour [pc.vagina], bereft of proper penetration, spasms against a multitude of unbound tongues that rove across its engorged vulvae.");
+		if(pc.hasClit()) output(" Sometimes, they touch your clit, other times, t");
+		else output(" T");
+		output("hey remain firmly affixed to your labia, dexterously twirling across your sex maddenly, but never plunging in");
+		if(pc.hasClit()) output(" or connecting with a clit properly");
+		 output(" enough to set you off. You’re kept writhing and dripping on the edge of orgasm while the constant pulling upon your other genitals drains you dry. Right about now, you’ve give anything to be properly penetrated, to properly cum.");
 	}
 	//{Tailcock}
 	if(pc.hasTailCock()) {
@@ -613,11 +623,17 @@ public function feedCeliseBySavin():void {
 	output(". The galotian girl beams as you set your kit aside, and quickly surges toward you, her body literally stretching out to grab your arms, drawing you into her gooey embrace. Being drawn into her feels like falling continuously, your body half-enveloped in her gel-like mass that bubbles and sloshes around your [pc.legOrLegs]. Celise's amorphous lower half ebbs and flows across your bare [pc.skin], seeking across every inch of flesh as her more human parts press against your [pc.chest], smearing you with her green quasi-liquid skin.");
 	output("\n\nWarm and relaxing, you let the goo-girl wrap around you, stripping away the last of your kit. She giggles girlishly as her big, alien eyes gaze between your [pc.legOrLegs] to your [pc.pussies], and she makes a show of licking her lips as she bends her body almost double to put her face right in your crotch. You can't help but shudder as Celise's steamy breath washes over your bare sex");
 	if(pc.hasCock() || pc.vaginaTotal() > 1) output("es");
-	output(", her cute little nose practically brushing [pc.oneClit].  The way she watches you, studying your cunt");
+	output(", her cute little nose practically brushing");
+	if(pc.hasClit()) output(" [pc.oneClit]");
+	else if(pc.vaginaTotal() > 1) output(" one of your slits");
+	else output(" your slit");
+	output(". The way she watches you, studying your cunt");
 	if(pc.vaginaTotal() > 1) output("s");
 	output(", soon has your own excitement building, and the hungry goo gives a delighted squeal as a little bead of lubricant escapes the lips of your [pc.pussy].");
 	output("\n\n<i>“Wow, you're already dripping just from me looking. Naughty!”</i> Celise laughs, her long tongue flicking out to lap the little drop up. The feeling of her gel-tongue sliding across your vulnerable twat, the very tip parting your lips to suckle up that lonesome drop, nearly has your [pc.knees] buckling under you. With a devilish grin, she adds, <i>“Mmm, tasty.”</i>");
-	output("\n\nSeeing the galotian girl about to get busy, you try to lean back - standing's no way to get eaten out, after all - but in the blink of an eye you're tumbling down, caught at the last moment by the great shapeless blob of Celise's lower half. She looks more like a beanbag chair than a human as you float and bob atop her, sinking several inches into her before she hardens up just enough to keep you steady. A shift in her gooey body spreads your [pc.legOrLegs] as she looms over you, licking her lips with a feral hunger. You shudder with involuntary pleasure as her gooey body shifts and squirms around your bare [pc.skin], the sensation alien and yet oddly comforting. You feel an odd, but not unpleasant sense of ease and calm whilst enveloped in the warm, sticky goo; though that hardly stops you from tensing as her delicate, slender fingers reach down to trail across your thigh, leaving wet streaks across your [pc.skin] as she slides her hands toward your bared [pc.pussies]. As her fingertips trail around your [pc.vagina], one brushing the tip of your [pc.clit], you try and relax yourself, readying for penetration.");
+	output("\n\nSeeing the galotian girl about to get busy, you try to lean back - standing's no way to get eaten out, after all - but in the blink of an eye you're tumbling down, caught at the last moment by the great shapeless blob of Celise's lower half. She looks more like a beanbag chair than a human as you float and bob atop her, sinking several inches into her before she hardens up just enough to keep you steady. A shift in her gooey body spreads your [pc.legOrLegs] as she looms over you, licking her lips with a feral hunger. You shudder with involuntary pleasure as her gooey body shifts and squirms around your bare [pc.skin], the sensation alien and yet oddly comforting. You feel an odd, but not unpleasant sense of ease and calm whilst enveloped in the warm, sticky goo; though that hardly stops you from tensing as her delicate, slender fingers reach down to trail across your thigh, leaving wet streaks across your [pc.skin] as she slides her hands toward your bared [pc.pussies]. As her fingertips trail around your [pc.vagina]");
+	if(pc.hasClit()) output(", one brushing the tip of your [pc.clit]");
+	output(", you try and relax yourself, readying for penetration.");
 	output("\n\nInstead, the playful goo just takes your " + possessive(pc.vaginaDescript()) + " lips and spreads them apart. You yelp as she stretches you out, peering down to look right into your gaping pussy. You start to ask what she's doing, but she just giggles, <i>“Gotta make sure it's juuuust the right size!”</i>");
 	output("\n\n<i>“It?”</i>");
 	output("\n\nShe gives you a grin. <i>“You'll see!”</i>");
@@ -758,11 +774,16 @@ public function celiseSleezeLactation():void {
 	if(pc.hasCock() && pc.hasVagina())
 	{
 		output("\n\nIt doesn’t take her long to find and envelop your semi-erect [pc.cockBiggest] in warm kneading gel, and as her flesh wraps around it she flows further into your delta, sliding and oozing over your");
-		if(pc.balls > 0) output("[pc.balls] and ");
-		output("[pc.clits] as she reaches your wet entrance and pushes hungrily into [pc.oneVagina]. Within a few seconds you are packed full of goo, working up and down your sensitive tunnel whilst a mound of slime coils around your cock until you are dribbling excitement and urgent with desire. The goo is insatiable - ");
+		if(pc.balls > 0) output(" [pc.balls]");
+		if(pc.balls > 0 && pc.hasClit()) output(" and");
+		if(pc.hasClit()) output(" [pc.clits]");
+		else output(" sex");
+		output(" as she reaches your wet entrance and pushes hungrily into [pc.oneVagina]. Within a few seconds you are packed full of goo, working up and down your sensitive tunnel whilst a mound of slime coils around your cock until you are dribbling excitement and urgent with desire. The goo is insatiable - ");
 		//High cum:
 		if(pc.wetness() >= 3) output("though you are as ever tapping femcum eagerly, ");
-		output("it is difficult not to lose control and buck against the warm softness of it because it absorbs every drop of wetness you produce the instant it forms, gently but insistently pressing on your clit and your tunnel to force you to form more and more. All the while, she continues to lick and suckle on your [pc.nipples].");
+		output("it is difficult not to lose control and buck against the warm softness of it because it absorbs every drop of wetness you produce the instant it forms, gently but insistently pressing on");
+		if(pc.hasClit()) output(" your clit and");
+		output(" your tunnel to force you to form more and more. All the while, she continues to lick and suckle on your [pc.nipples].");
 	}
 	//PC has cock:
 	else if(pc.hasCock())
@@ -773,9 +794,13 @@ public function celiseSleezeLactation():void {
 	//PC has vagina: 
 	else if(pc.hasVagina())
 	{
-		output("\n\nThe warm, kneading gel flows deep into your delta, sliding and oozing over your [pc.clits] as it reaches your wet entrance and pushes hungrily into [pc.oneVagina]. Within a few seconds you are packed full of goo, working up and down your sensitive tunnel until you are dribbling excitement, urgent with desire. You move your [pc.hips] with measured motion, letting Celise do most of the work. The goo is insatiable - ");
+		output("\n\nThe warm, kneading gel flows deep into your delta, sliding and oozing over you");
+		if(pc.hasClit()) output("r [pc.clits]");
+		output(" as it reaches your wet entrance and pushes hungrily into [pc.oneVagina]. Within a few seconds you are packed full of goo, working up and down your sensitive tunnel until you are dribbling excitement, urgent with desire. You move your [pc.hips] with measured motion, letting Celise do most of the work. The goo is insatiable - ");
 		if(pc.wetness() >= 3) output("though you are as ever tapping femcum eagerly, ");
-		output("it is difficult not to lose control and buck against the warm softness of it because it absorbs every drop of wetness you produce the instant it forms, gently but insistently pressing on your [pc.clits] and your tunnel to force more and more from you. All the while, she continues to lick and suckle on your [pc.nipples].");
+		output("it is difficult not to lose control and buck against the warm softness of it because it absorbs every drop of wetness you produce the instant it forms, gently but insistently pressing on");
+		if(pc.hasClit()) output(" your [pc.clits] and");
+		output(" your tunnel to force more and more from you. All the while, she continues to lick and suckle on your [pc.nipples].");
 		pc.cuntChange(rand(pc.totalVaginas()),5,true,true,false);
 	}
 	//[merge]
@@ -1128,7 +1153,8 @@ public function getDrainedSexyTimes():void {
 	{
 		//if (PC has at least one vagina)
 		output("\n\nThe protrusion rubbing against your [pc.vagina] pushes more and more firmly before finally passing inside you. The small invader splits into a multitude of filaments wriggling around inside your womanhood, eager to tease your insides.");
-		output(" Simultaneously, two of the tendrils grasp at the [pc.clit] above your invaded entrance to heighten your pleasure to the best of their ability. You’re certain that every drop of lubrication you release is being eagerly absorbed by the greedy green gelatinous girl.");
+		if(pc.hasClit()) output(" Simultaneously, two of the tendrils grasp at the [pc.clit] above your invaded entrance to heighten your pleasure to the best of their ability.");
+		output(" You’re certain that every drop of lubrication you release is being eagerly absorbed by the greedy green gelatinous girl.");
 		//(if multi vagina):
 		if(pc.totalVaginas() > 1)
 		{
@@ -1340,10 +1366,15 @@ public function zeiksCeliseSubmersionTechnique():void
 		else output(" The column taunts you with its closeness, and you reach for it. It’s wet and thick, hard in your hand, with a pleasant warmth, and it’s obvious what she intends you to do with it. Suppressing a sigh, you slide the green rod into your [pc.vagina], savoring the way Celise thickens it to a perfect fit. Each inch is better than the last as she refines the shape, and the tool grows new bumps and ridges whenever Celise finds a spot that makes you moan and shudder. Her head lolls against yours, and you suspect that she’s enjoying the initial penetration as much as you are.");
 		//virgin check
 		pc.cuntChange(0,pc.vaginalCapacity(0),true,true,false);
-		output("\n\n“<i>How’s this?</i>” she asks, rolling the tool slightly. You hum in reply, finally pulling the toy back out. It slides back in easily, too easily, and Celise sighs as it does. It occurs to you that she must be ‘helping’ you on the in-stroke, eager to keep it inside you where your wetness is most concentrated, but this thought is chased away quickly. [pc.OneClit] ");
-		if(pc.clitLength < 1) output("rubs a groove");
-		else output("fucks a hole");
-		output(" in its surface when you change angle, and Celise thoughtfully peels her layer of goo away from your button to give you the full sensation. A bulge forms above your ");
+		output("\n\n“<i>How’s this?</i>” she asks, rolling the tool slightly. You hum in reply, finally pulling the toy back out. It slides back in easily, too easily, and Celise sighs as it does. It occurs to you that she must be ‘helping’ you on the in-stroke, eager to keep it inside you where your wetness is most concentrated, but this thought is chased away quickly.");
+		if(pc.hasClit())
+		{
+			output(" [pc.OneClit] ");
+			if(pc.clitLength < 1) output("rubs a groove");
+			else output("fucks a hole");
+			output(" in its surface when you change angle, and Celise thoughtfully peels her layer of goo away from your button to give you the full sensation.");
+		}
+		output(" A bulge forms above your ");
 		if(pc.isTaur()) output("surrogate ");
 		output("hand, preventing you from shoving the toy all the way in, but you pay it little mind... until the bulge branches and another rod presses up to your goo-slicked asshole. Celise giggles as you freeze, deciding whether to push, but soon makes the decision for you. The toy slides in again under her own impulse, giving you the incomparable sensation of having both holes filled with warm, firm, pulsing flesh.");
 		//buttvirg check
@@ -1550,7 +1581,9 @@ public function zDomCeliseGo():void
 		if(pc.hasTailCock() && !pc.hasCock()) output("now-unfolding tail-");
 		output("prick. Her open-mouthed smile widens even further as she slides up the tumescent shaft, moving her wet slit into position.");
 	}
-	else output("the hot, wet skin of her groin grinds against your [pc.clits]. The ravenous woman’s mouth opens slightly as her crotch contacts the heat of your own.");
+	else output("the hot, wet skin of her groin grinds against you");
+	if(pc.hasClit()) output("r [pc.clits]");
+	output(". The ravenous woman’s mouth opens slightly as her crotch contacts the heat of your own.");
 
 	//females with no cocks anywhere split
 	if(!pc.hasCock() && !pc.hasTailCock())
@@ -1573,7 +1606,10 @@ public function zDomCeliseGo():void
 			output("nipples in her slippery, hot grip}, it becomes clear that the hungry alien isn’t going to offer you any control over the fuck unless you take it.");
 		}
 		output("\n\nGrasping her wrists in your hands, you unbalance Celise with a mighty pelvic thrust and roll over until the galotian is pinned underneath you, eyes wide with surprise. Before she can speak, you lean in and press your lips together. Her shock fades as your tongue slides over hers, and her arms reflexively push against your grip, trying to drape around your neck. When you pull back from the kiss, Celise’s eyes open slowly.");
-		output("\n\nYou place a finger over her lips to shush her, and sit up atop your lover. Straddling a goopy thigh, you begin to slide back and forth along it, teasing your [pc.vaginas] with Celise’s slick skin. She even gets into it as the heat of your crotch begins to radiate through her. Small, soft nodules and ridges pop into existence along her thigh while her newly-freed hands play with her tits. It feels as though Celise’s leg is lapping at your clitoris with a carpet of tiny cillia, and your [pc.tongue] lolls from your mouth as you grind her thigh over and over.");
+		output("\n\nYou place a finger over her lips to shush her, and sit up atop your lover. Straddling a goopy thigh, you begin to slide back and forth along it, teasing your [pc.vaginas] with Celise’s slick skin. She even gets into it as the heat of your crotch begins to radiate through her. Small, soft nodules and ridges pop into existence along her thigh while her newly-freed hands play with her tits. It feels as though Celise’s leg is lapping at your");
+		if(pc.hasClit()) output(" clitoris");
+		else output(" sex");
+		output(" with a carpet of tiny cillia, and your [pc.tongue] lolls from your mouth as you grind her thigh over and over.");
 		output("\n\nSuddenly, a pair of cool hands break you from your trance - Celise has gripped your hips to hold you even closer and is staring at your crotch like it’s bringing her a cold lemonade. You know that she would gladly and inevitably tease your puss");
 		if(pc.totalVaginas() == 1) output("y");
 		else output("ies");

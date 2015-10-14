@@ -401,8 +401,11 @@ public function adultCockvineConsentacles():void
 	output(".");
 
 	output("\n\nThe cockvine’s progress is slow - implacable but gentle - completely at odds to the manner in which it swiped at you in the first place. Innately you understand that it acts in direct proportion to its captive; because you happily stepped into it and are willing it on, its movements are sensual, almost peaceful. Smiling amorously, you reach your head forward and teasingly lick the nearest vine. Like a cat’s tail it rises and curls upwards in response, letting you run your tongue all along its pliant, sleek girth to its leaking tip. Beneath your dangling lower body another tentacle curves its long length along your groin");
-	if (!pc.hasCock() && !pc.hasVagina()) output(".");
-	if (pc.hasVagina()) output(", [pc.eachVagina] seeping excitement to the deliberate, slimy friction across [pc.eachClit]");
+	if (pc.hasVagina())
+	{
+		output(", [pc.eachVagina] seeping excitement");
+		if(pc.hasClit()) output(" to the deliberate, slimy friction across [pc.eachClit]");
+	}
 	if (pc.hasVagina() && pc.hasCock()) output(" and");
 	if (pc.hasCock())
 	{

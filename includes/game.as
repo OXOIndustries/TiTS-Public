@@ -2099,7 +2099,7 @@ public function statisticsScreen(showID:String = "All"):void
 				if(pc.beardStyle != 0) output2("\n<b>* Beard, Style: </b>" + pc.beardStyle);
 			}
 			else if(pc.skinType == GLOBAL.SKIN_TYPE_FUR) output2(" Short, Fur");
-			else if(pc.beardLength > 0.001) output2(" Stubble");
+			else if(pc.beardLength > 0.0625) output2(" Stubble");
 			else output2(" Shaved");
 		}
 		if(pc.gills) output2("\n<b>* Neck:</b> Gills");
@@ -2110,12 +2110,12 @@ public function statisticsScreen(showID:String = "All"):void
 			if(pc.hasPerk("Mane")) output2(" Mane,");
 			output2(" " + GLOBAL.HAIR_TYPE_NAMES[pc.hairType]);
 			output2("\n<b>* Hair, Length:</b>");
-			if(pc.hairLength > 0.05)
+			if(pc.hairLength > 0.125)
 			{
 				output2(" " + prettifyLength(pc.hairLength));
 				if(pc.hairStyle != "null") output2("\n<b>* Hair, Style: </b>" + StringUtil.toTitleCase(pc.hairStyle));
 			}
-			else if(pc.hairLength > 0.0125) output2(" Shaved");
+			else output2(" Shaved");
 		}
 		else if(pc.skinType == GLOBAL.SKIN_TYPE_FUR) output2(" Fur");
 		else output2(" None");
@@ -2716,7 +2716,7 @@ public function statisticsScreen(showID:String = "All"):void
 		var sleepingPartner:String = "";
 		if(flags["CREWMEMBER_SLEEP_WITH"] == undefined) sleepingPartner = "";
 		else if(flags["CREWMEMBER_SLEEP_WITH"] == "BESS") sleepingPartner = "[bess.name]";
-		else sleepingPartner = StringUtil.toTitleCase(flags["CREWMEMBER_SLEEP_WITH"]);
+		else sleepingPartner = StringUtil.toTitleCase(flags["CREWMEMBER_SLEEP_WITH"].toLowerCase());
 		// Virgin booties claimed
 		var totalVirginitiesTaken:Number = 0;
 		if(StatTracking.getStat("characters/maiden vanae/cherrys popped") > 0) totalVirginitiesTaken += StatTracking.getStat("characters/maiden vanae/cherrys popped");
@@ -3988,6 +3988,27 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["TIMES_SAT_ON_JADES_FACE"] != undefined) output2("\n<b>* Jade, Times Sat on Her Face: </b>" + flags["TIMES_SAT_ON_JADES_FACE"]);
 				variousCount++;
 			}
+			// Inessassassa
+			if(flags["MET_INESSA"] != undefined)
+			{
+				output2("\n<b><u>Happy Tails</u></b>");
+				output2("\n<b>* Inessa:</b> Met her");
+				if(flags["INESSA_BELTED"] != undefined) output2(", Trapped in chastity belt");
+				if(flags["INESSA_BEING_DOMMED"] != undefined || flags["INESSA_SHOT_DOWN"] != undefined)
+				{
+					output2("\n<b>* Inessa, Submission:</b>");
+					if(flags["INESSA_BEING_DOMMED"] != undefined) output2(" Accepted");
+					else if(flags["INESSA_SHOT_DOWN"] != undefined) output2(" Refused");
+				}
+				if(flags["INESSA_BDSM_SETTING"] != undefined) output2("\n<b>* Inessa, Your BDSM Role:</b>" + StringUtil.capitalize(flags["INESSA_BDSM_SETTING"]));
+				if(flags["INESSA_BJED"] != undefined || flags["INESSA_TITTYSQUIRT"] != undefined)
+				{
+					output2("\n<b>* Inessa, Sexual History:</b> Sexed her");
+					if(flags["INESSA_BJED"] != undefined) output2(", Gave you a blowjob");
+					if(flags["INESSA_TITTYSQUIRT"] != undefined) output2(", She squirted you");
+				}
+				variousCount++;
+			}
 			// Alissiness
 			if(flags["MET_ALICE"] != undefined)
 			{
@@ -4769,7 +4790,7 @@ public function displayEncounterLog(showID:String = "All"):void
 						output2(" Rejected");
 						if(flags["BESS_EVENT_19_REJECTION"] == 2) output2(", Seperated");
 					}
-					else if(flags["BESS_POLY"] != undefined)
+					else if(flags["BESS_EVENT_21"] != undefined)
 					{
 						output2(" Lovers");
 						if(flags["BESS_POLY"] == 0) output2(", Closed");
@@ -4909,7 +4930,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["SEXED_NEHZARA"] != undefined) output2(", Sexed her");
 					if(flags["NEHZ_PREGGO_RUB_HAPPENED"] != undefined) output2(", She rubbed your pregnant belly");
 					if(flags["NEHZ_WARRIORS_HONOR_SCENE_HAPPENED"] != undefined) output2(", Proved her warrior’s honor");
-					if(flags["NEHZARA_CLOSET_FUKKED"] != undefined) output2("\n<b>* Nehzara, Times Closet Fucked With: </b>" + flags["NEHZARA_CLOSET_FUKKED"]);
+					if(flags["NEHZARA_CLOSET_FUCKED"] != undefined) output2("\n<b>* Nehzara, Times Closet Fucked With: </b>" + flags["NEHZARA_CLOSET_FUCKED"]);
 				}
 				variousCount++;
 			}
@@ -5754,6 +5775,16 @@ public function displayEncounterLog(showID:String = "All"):void
 				output2("\n<b>* The Treatment:</b> Known");
 				if(pc.hasStatusEffect("Treated")) output2(", Used");
 			}
+			miscCount++;
+		}
+		// Sexploration: The Sex Toys
+		if(flags["GRAVCUFFS_USES"] != undefined || flags["HOVERHOLE_USES"] != undefined || 9999 == 0)
+		{
+			output2("\n<b><u>Sex Toys</u></b>");
+			// Grav-Cuffs
+			if(flags["GRAVCUFFS_USES"] != undefined) output2("\n<b>* Grav-Cuffs, Times Used: </b>" + flags["GRAVCUFFS_USES"]);
+			// Hover Hole
+			if(flags["HOVERHOLE_USES"] != undefined) output2("\n<b>* Hovering Pocket-Pussy, Times Used: </b>" + flags["HOVERHOLE_USES"]);
 			miscCount++;
 		}
 		

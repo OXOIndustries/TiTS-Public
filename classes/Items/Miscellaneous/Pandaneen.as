@@ -494,7 +494,7 @@
 							}
 						}
 						//Superlong clits are shrunk by half their length or 1" to a minimum of .5" - req single clit
-						if(target.clitLength > 1 && target.clitLengthUnlocked(0.5) && rand(2) == 0 && changes < changeLimit)
+						if(target.totalClits() > 0 && target.clitLength > 1 && target.clitLengthUnlocked(0.5) && rand(2) == 0 && changes < changeLimit)
 						{
 							y = Math.round(target.clitLength/2);
 							if(y < 0) y = .5;

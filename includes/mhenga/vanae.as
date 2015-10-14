@@ -1017,6 +1017,7 @@ public function vanaeVictorySexIntro(scene:String):void
 public function vanaeMaidenTakeVirginity():void
 {
 	var selCock:int = pc.cockThatFits(217);
+	if(selCock < 0) selCock = pc.smallestCockIndex();
 	var pcWonFight:Boolean = false;
 	
 	
@@ -1229,6 +1230,7 @@ public function vanaeHuntressVaginalSex():void
 	vanaeHeader("VICTORY: VANAE\n");
 
 	var selCock:int = pc.cockThatFits(217);
+	if(selCock < 0) selCock = pc.smallestCockIndex();
 
 	output("Warming you up first, the blind huntress gets down on all fours and grabs [pc.oneCock] in her webbed hands. You can feel flattened suckers on her palms brushing lightly against your flesh, your [pc.cock " + selCock + "] stiffening and swelling at her gentle touch.");
 
@@ -1397,9 +1399,14 @@ public function vanaeHuntressEatsPCCunt():void
 
 	output("\n\nThe busty amazon parts the lips of your sex with her webbed fingers, massaging your passage with her masterful tongue. It's not long before her mouth is full of your juices. You groan and raise your [pc.hips], allowing her further access as she laps at your insides.");
 
-	output("\n\nAs her webbed hand reaches up and strokes your [pc.clits] you let out a delirious cry, reaching up and running your fingers through her [monster.hair]. You dig them in as she eagerly delves inside of you, moaning as her [monster.tongue] presses deep inside of your [pc.pussy].");
+	output("\n\nAs her webbed hand reaches up and strokes your");
+	if(pc.hasClit()) output(" [pc.clits]");
+	else output(" labia");
+	output(" you let out a delirious cry, reaching up and running your fingers through her [monster.hair]. You dig them in as she eagerly delves inside of you, moaning as her [monster.tongue] presses deep inside of your [pc.pussy].");
 
-	output("\n\nWhen she pulls out you let out a disappointed noise, only to have it turn to a husky moan as her [monster.lips] slip around your [pc.oneClit]. As she suckles on it, her webbed fingers slip up and into your [pc.pussy], spreading your folds and slipping deep inside. Suddenly you're enduring a two pronged assault, your pearl swirled and flicked in her mouth as her magical fingers sinfully screw your sex.");
+	output("\n\nWhen she pulls out you let out a disappointed noise, only to have it turn to a husky moan as");
+	if(pc.hasClit()) output(" her [monster.lips] slip around your [pc.oneClit]. As she suckles on it,");
+	output(" her webbed fingers slip up and into your [pc.pussy], spreading your folds and slipping deep inside. Suddenly you're enduring a two pronged assault, your pearl swirled and flicked in her mouth as her magical fingers sinfully screw your sex.");
 
 	output("\n\nYour insides clench around her plunging fingers as you let out a sweet cry. Your [pc.legOrLegs] spasm");
 	if(pc.legCount == 1) output("s");
@@ -1440,7 +1447,11 @@ public function vanaeHuntress69(selScene:String):void
 
 	var selCock:int;
 
-	if (isBj) selCock = pc.cockThatFits(217);
+	if (isBj)
+	{
+		selCock = pc.cockThatFits(217);
+		if(selCock < 0) selCock = pc.smallestCockIndex();
+	}
 
 	clearOutput();
 
@@ -1472,9 +1483,14 @@ public function vanaeHuntress69(selScene:String):void
 	{
 		output("\n\nSoon her amazonian fingers are parting your dewy lower lips and delving sensuously into your slit. A sweet moan escapes your lips as she wiggles her tongue deep inside of you, lovingly lashing the insides of your [pc.pussy] and lapping up your leaking wetness. You shift your hips and allow her alien tongue to roam even deeper inside of you. It coaxes you to spasm and drool your hot honey all over her eagerly awaiting taste buds.");
 
-		output("\n\nJust as you begin grinding your [pc.hips] excitedly against her face, she pulls her tongue out of your [pc.pussy]. You let out a disappointed noise only to have it transform into a husky moan as her [monster.lips] travel upwards, suckling on [pc.oneClit] and pulling it into her mouth. Your breath hitches as her slender fingers slip up and into your [pc.vaginaNounSimple], plunging deep inside your [pc.pussyColor] folds.");
+		output("\n\nJust as you begin grinding your [pc.hips] excitedly against her face, she pulls her tongue out of your [pc.pussy]. You let out a disappointed noise only to have it transform into a husky moan as her [monster.lips] travel upwards");
+		if(pc.hasClit()) output(", suckling on [pc.oneClit] and pulling it into her mouth. Your breath hitches as");
+		else output(" and");
+		output(" her slender fingers slip up and into your [pc.vaginaNounSimple], plunging deep inside your [pc.pussyColor] folds.");
 
-		output("\n\nYou groan and whimper as her magical digits stir up and sinfully screw your sex, all the while sucking on and lashing [pc.oneClit]. Reduced to primal instinct, you hone in on the intoxicating smell of her [monster.pussy], burying your [pc.face] between her [monster.thighs].");
+		output("\n\nYou groan and whimper as her magical digits stir up and sinfully screw your sex");
+		if(pc.hasClit()) output(", all the while sucking on and lashing [pc.oneClit]");
+		output(". Reduced to primal instinct, you hone in on the intoxicating smell of her [monster.pussy], burying your [pc.face] between her [monster.thighs].");
 	}
 
 	output("\n\nEager to claim her alien muff, you lap at her glistening lips and taste her sweet nectar rolling across your tongue. Hungry for more, you nuzzle your [pc.face] into her [monster.pussy] and breach it with your ravenous tongue.");
@@ -1485,9 +1501,14 @@ public function vanaeHuntress69(selScene:String):void
 	{
 		output("\n\nThe busty amazon lets out a sweet, shivering cry as you lewdly fuck her bald, dewy mound with your tongue, her [monster.ass] quivering madly as she edges closer to the brink. You can feel her [monster.thighs] pressing needily against your cheeks, trembling against your [pc.skinFurScales] as she struggles to contain the coiling pleasure within.");
 
-		output("\n\nNot one to be outdone, she presses against that glorious spot deep inside of your inner walls, coaxing and milking it with her fingers as she suckles upon your [pc.clits]. You whimper with pleasure as her fingers furiously fuck your [pc.pussy], thoroughly coating them in your wetness as you get even more hot and bothered. God, she knows how to get" + pc.mf(" someone", " a girl") + " off!");
+		output("\n\nNot one to be outdone, she presses against that glorious spot deep inside of your inner walls, coaxing and milking it with her fingers");
+		if(pc.hasClit()) output(" as she suckles upon your [pc.clits]. You whimper with pleasure as her fingers furiously fuck your [pc.pussy]");
+		output(", thoroughly coating them in your wetness as you get even more hot and bothered. God, she knows how to get" + pc.mf(" someone", " a girl") + " off!");
 
-		output("\n\nYou copy her movements, and you both suck on each others clits, feverishly fingering each other and lapping at each other's pussies. Soon your voices rise in pitch, and your movements grow increasingly frantic and heated as you grind your hips against each other's hands and mouths. You both reach that magical moment together, creaming yourselves literally at each other's hands.");
+		output("\n\nYou copy her movements,");
+		if(pc.hasClit()) output(" and you both suck on each others clits,");
+		else output(" both");
+		output(" feverishly fingering each other and lapping at each other's pussies. Soon your voices rise in pitch, and your movements grow increasingly frantic and heated as you grind your hips against each other's hands and mouths. You both reach that magical moment together, creaming yourselves literally at each other's hands.");
 	}
 	else
 	{
@@ -1953,6 +1974,7 @@ public function vanaeHuntressPCDefeatCuntFux():void
 	output(". I'm fertile and raring to go.”</i>");
 
 	var selCock:int = pc.cockThatFits(217);
+	if(selCock < 0) selCock = pc.smallestCockIndex();
 
 	// If first time breeding with a Vanae huntress.
 	if (flags["VANAE_HUNTRESS_BRED"] == undefined)
@@ -2381,17 +2403,25 @@ public function vanaeHuntressPCDefeatCunnilingus():void
 	}
 	output(" Soon the alien woman's tongue is nestled inside your slavering snatch, gloriously lapping at your insides.");
 
-	output("\n\nWhen her long prehensile tail hooks around and rubs [pc.oneClit] at the same time, you let out a sharp cry of pleasure and spasm, instantly creaming yourself in her mouth.");
+	output("\n\nWhen her long prehensile tail hooks around");
+	if(pc.hasClit()) output(" and rubs [pc.oneClit] at the same time");
+	output(", you let out a sharp cry of pleasure and spasm, instantly creaming yourself in her mouth.");
 	if (pc.hasCock()) output(" [pc.EachCock] spurts your [pc.cum] all over the place in an erotic fanfare.");
 	output(" Rather than stop, the vanae huntress thoroughly lashes your now overly sensitive snatch, eagerly scooping up your [pc.girlCum] with her skillful tongue. You're quickly fired back up again and bucking your hips wildly against her gorgeous face.");
 
 	pc.orgasm();
 
-	output("\n\n<i>“Mmm, it's as if your pussy was made to fit my mouth, my dear.”</i> The alien huntress exclaims, shortly before lapping up another helping of your [pc.cumNoun]. You shake and tremble wildly, experiencing several small explosive orgasms. One of her tail's suckers clamp onto your [pc.clit]. As she gently tugs on it, you feel your loins explode in a gooey gush right into her inviting mouth and your mind absolutely shatters.");
+	output("\n\n<i>“Mmm, it's as if your pussy was made to fit my mouth, my dear.”</i> The alien huntress exclaims, shortly before lapping up another helping of your [pc.cumNoun]. You shake and tremble wildly, experiencing several small explosive orgasms.");
+	if(pc.hasClit()) output(" One of her tail's suckers clamp onto your [pc.clit]. As she gently tugs on it");
+	else output(" As her oral assault seems to end");
+	output(", you feel your loins explode in a gooey gush right into her inviting mouth and your mind absolutely shatters.");
 
 	output("\n\n... An hour later ...");
 
-	output("\n\nYour mind is spinning in a deliciously delirious haze. Forced to orgasm countless times, your entire body feels impossibly heavy. [pc.EachVagina] and [pc.clits] have been worked over in every way imaginable. All the while your forceful lover has lapped up every last drop of");
+	output("\n\nYour mind is spinning in a deliciously delirious haze. Forced to orgasm countless times, your entire body feels impossibly heavy. [pc.EachVagina]");
+	if(pc.hasClit()) output(" and [pc.clits] have");
+	else output(" has");
+	output(" been worked over in every way imaginable. All the while your forceful lover has lapped up every last drop of");
 	if (pc.hasCock()) output(" [pc.cum] and");
 	output(" [pc.girlcum] you had to give with fervor. There's simply no more left to give.");
 
@@ -2627,6 +2657,7 @@ public function vanaeMaidenPCDefeatTakeVirginity():void
 	// Max Length 12 inches.
 
 	var selCock:int = pc.cockThatFits(217);
+	if(selCock < 0) selCock = pc.smallestCockIndex();
 
 	output("\n\nGetting down on all fours, the youthful huntress reaches down and tentatively touches [pc.oneCock]. She lets out a surprised noise as her slender fingers dance along your length. It is clearly the first time she's ever felt a cock, let alone one like yours.");
 

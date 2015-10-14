@@ -289,7 +289,7 @@
 			newClitLength = Math.round((rand(newClitLength / 4 * 10) / 10 + newClitLength / 4 + .2) * 10) / 10;
 			newClitLength = target.clitLength - newClitLength;
 			
-			if(target.clitLength > 1 && target.clitLengthUnlocked(newClitLength) && changes < changeLimit && rand(3) == 0) {
+			if(target.totalClits() > 0 && target.clitLength > 1 && target.clitLengthUnlocked(newClitLength) && changes < changeLimit && rand(3) == 0) {
 				kGAMECLASS.output("\n\nTickles of tingling pleasure race up and down your [pc.clits] until ");
 				if(target.totalClits() == 1) kGAMECLASS.output("it peeks out of its hood");
 				else kGAMECLASS.output("they peek out of their hoods");
@@ -309,7 +309,7 @@
 				target.clitLength = newClitLength;
 				changes++;
 			}
-			else if (!target.clitLengthUnlocked(newClitLength))
+			else if (target.totalClits() > 0 && !target.clitLengthUnlocked(newClitLength))
 			{
 				kGAMECLASS.output("\n\n" + target.clitLengthLockedMessage());
 			}

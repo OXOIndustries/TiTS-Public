@@ -1223,6 +1223,7 @@ public function fuckAnnoAfterBeeJay():void
 	userInterface.showName("\nANNO");
 
 	var x:int = pc.cockThatFits(chars["ANNO"].vaginalCapacity());
+	if(x < 0) x = pc.smallestCockIndex();
 	output("<i>\"I think I can manage that,\"</i> you grin, slipping around behind the counter and taking hold of Anno's flared hips, fingers digging into the elastic material of her sheer, flesh-hugging catsuit. Before you can get carried away, Anno's fluffy tail reaches up, its tip tickling your nose as its owner looks over her shoulder expectantly.");
 
 	output("\n\nYou mock rolling your eyes as you take hold of the wriggling appendage, stroking it gently as you guide it out of the way. Anno visibly shudders at the sensation, clearly enjoying a little affection on her canid parts. You give the tail a little push back through the hole in her catsuit's rear end before pulling the whole outfit down in one easy stroke, letting it ball around your ausar lover's spread legs, leaving her nice and bare for you. She gives a happy moan as the last of her clothing falls free, wiggling her butt back into your bare, cum-slathered groin. You answer with a quick slap on one of her rounded cheeks, eliciting a startled squeak from her as her flesh jiggles in response.");
@@ -3869,7 +3870,11 @@ public function annoxKaedeFuckThem(inShop:Boolean = true):void
 		if (anno.vaginalCapacity() < tarVolume) tarVolume = anno.vaginalCapacity();
 		
 		selCock = pc.cockThatFits(tarVolume);
-		if(selCock < 0) output("<b>ERROR: " + pc.smallestCockIndex() + " " + pc.smallestCockVolume() + " " + pc.hasCock() + " THIS SHOULDN'T HAPPEN. ERROR CODE: PEANUTBUTTER. PLEASE COPY PASTE THIS IN A BUG REPORT SO THAT IT CAN BE FIXED.</b>");
+		if(selCock < 0)
+		{
+			output("<b>ERROR: " + pc.smallestCockIndex() + " " + pc.smallestCockVolume() + " " + pc.hasCock() + " THIS SHOULDN'T HAPPEN. ERROR CODE: PEANUTBUTTER. PLEASE COPY PASTE THIS IN A BUG REPORT SO THAT IT CAN BE FIXED.</b>");
+			selCock = pc.smallestCockIndex();
+		}
 	}
 
 	output("<i>“What do you say, girls?”</i> you say, indicating the rapidly-growing");
