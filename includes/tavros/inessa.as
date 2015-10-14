@@ -1122,6 +1122,7 @@ public function hoverholeFapFapFap():void
 	}
 	processTime(22+rand(8));
 	pc.orgasm();
+	IncrementFlag("HOVERHOLE_USES");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1284,6 +1285,7 @@ public function cuffNFuck():void
 	processTime(33);
 	pc.orgasm();
 	foes[0].orgasm();
+	IncrementFlag("GRAVCUFFS_USES");
 	output("\n\n");
 	genericVictory();
 }
