@@ -9610,6 +9610,10 @@ package classes {
 					collection = ["synthetic", "robotic"];
 					break;
 				
+				case GLOBAL.TYPE_NYREA:
+					collection = ["nyrean", "insectile"];
+					break;
+				
 				default:
 					trace("Fallback cock shape used in cockShape() for type: " + GLOBAL.TYPE_NAMES[cock.cType]);
 					collection = ["bestial"];
@@ -9787,8 +9791,7 @@ package classes {
 				if (tail && rand(2) == 0) noun += "tail-";
 				else if(descript != "alien ") choices.push("xeno-cock");
 				noun += choices[rand(choices.length)];
-			}
-			else if (type == GLOBAL.TYPE_SIMII) {
+			} else if (type == GLOBAL.TYPE_SIMII) {
 				if (!simple) {
 					descript += "simian ";
 				}
@@ -9796,15 +9799,13 @@ package classes {
 				if (tail && rand(2) == 0) noun += "tail-";
 				else if(descript != "simian ") choices.push("simii-dick","simii-cock");
 				noun += choices[rand(choices.length)];
-			}
-			else if (type == GLOBAL.TYPE_RASKVEL) {
+			} else if (type == GLOBAL.TYPE_RASKVEL) {
 				if (!simple) descript += "raskvel ";
 				choices = ["dick","shaft","prick","cock","tool","member","cock","pecker","phallus"];
 				if (tail && rand(2) == 0) noun += "tail-";
 				else if (descript != "raskvel ") choices.push("rask-dick","rask-cock");
 				noun += choices[rand(choices.length)];
-			}
-			else if (type == GLOBAL.TYPE_GOOEY) {
+			} else if (type == GLOBAL.TYPE_GOOEY) {
 				if (!simple) {
 					choices = ["gooey","self-lubricating","slick"];
 					descript += choices[rand(choices.length)] + " ";
@@ -9813,8 +9814,7 @@ package classes {
 				if (tail && rand(2) == 0) noun += "tail-";
 				else if (descript != "gooey ") choices.push("goo-dick","goo-cock");
 				noun += choices[rand(choices.length)];
-			}
-			else if (type == GLOBAL.TYPE_VENUSPITCHER) {
+			} else if (type == GLOBAL.TYPE_VENUSPITCHER) {
 				if (!simple) {
 					choices = ["floral","plant"];
 					descript += choices[rand(choices.length)] + " ";
@@ -9823,48 +9823,52 @@ package classes {
 				if (tail && rand(2) == 0) noun += "tail-";
 				else if (descript != "plant ") choices.push("plant-dick","plant-cock","vine-dick","vine-cock");
 				noun += choices[rand(choices.length)];
-			}
-			else if (type == GLOBAL.TYPE_SAURIAN)
-			{
+			} else if (type == GLOBAL.TYPE_SAURIAN) {
 				if (!simple)
 				{
 					choices = ["dinosaur", "saurian"];
 					descript += choices[rand(choices.length)] + " ";
 				}
 				choices = ["dick", "shaft", "prick", "cock", "tool", "member"];
-				if(kGAMECLASS.silly && rand(5) == 0)
+				if (tail && rand(2) == 0) noun += "tail-";
+				else if(kGAMECLASS.silly && rand(5) == 0)
 				{
 					descript = "";
 					choices.push("dino-dick","dino-cock","penisaurus","schlongosaur");
 				}
 				noun += choices[rand(choices.length)];
-			}
-			else if (type == GLOBAL.TYPE_SYNTHETIC)
-			{
+			} else if (type == GLOBAL.TYPE_SYNTHETIC) {
 				if (!simple)
 				{
 					choices = ["metallic", "synthetic", "mechanical", "robotic", "sleek"];
-					descript += choices[rand(choices.llength)] + " ";
+					descript += choices[rand(choices.length)] + " ";
 				}
 				choices = ["dick", "shaft", "prick", "cock", "tool", "member"];
+				if (tail && rand(2) == 0) noun += "tail-";
+				else if (descript != "robotic ") choices.push("robo-dick","robo-cock");
+				else if (descript != "mechanical ") choices.push("mecha-dick","mecha-cock");
+				noun += choices[rand(choices.length)];
+			} else if (type == GLOBAL.TYPE_NYREA) {
+				if (!simple)
+				{
+					choices = ["nyrean", "insectile", "egg-laying", "nyrean", "insectile"];
+					descript += choices[rand(choices.length)] + " ";
+				}
+				if (tail && rand(2) == 0) noun += "tail-";
+				choices = ["ovipositor", "organ", "tool", "member", "tube"];
 				noun += choices[rand(choices.length)];
 			}
 			/* To return if Third writes it!
-			else if(type == 10) {
-				rando = this.rand(12);
-				if(rando == 0) descript+="coerl cock";
-				if(rando == 1) descript+="tentacle-tipped phallus";
-				if(rando == 2) descript+="starfish-tipped shaft";
-				if(rando == 3) descript+="alien member";
-				if(rando == 4) descript+="almost-canine dick";
-				if(rando == 5) descript+="bizarre prick";
-				if(rando == 6) descript+="beastly cock";
-				if(rando == 7) descript+="cthulhu-tier cock";
-				if(rando == 8) descript+="coerl cock";
-				if(rando == 9) descript+="animal dong";
-				if(rando == 10) descript+="star-capped tool";
-				if(rando == 11) descript+="knotted erection";
-			}*/
+			 else if (type == 9999) {
+				if (!simple) {
+					choices = ["coerl","tentacle-tipped","starfish-tipped","alien","almost-canine","bizarre","beastly","cthulhu-tier","animal","star-capped"];
+					descript += choices[rand(choices.length)] + " ";
+				}
+				choices = ["dick","shaft","prick","cock","tool","member","cock","pecker","dong","phallus"];
+				if (tail && rand(2) == 0) noun += "tail-";
+				else choices.push("coerl-dick","coerl-prick");
+				noun += choices[rand(choices.length)];
+			} */
 			else {
 				noun += "Error. Cock type does not have a cock noun configuration.";
 			}
