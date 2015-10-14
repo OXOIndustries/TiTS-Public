@@ -3988,6 +3988,27 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["TIMES_SAT_ON_JADES_FACE"] != undefined) output2("\n<b>* Jade, Times Sat on Her Face: </b>" + flags["TIMES_SAT_ON_JADES_FACE"]);
 				variousCount++;
 			}
+			// Inessassassa
+			if(flags["MET_INESSA"] != undefined)
+			{
+				output2("\n<b><u>Happy Tails</u></b>");
+				output2("\n<b>* Inessa:</b> Met her");
+				if(flags["INESSA_BELTED"] != undefined) output2(", Trapped in chastity belt");
+				if(flags["INESSA_BEING_DOMMED"] != undefined || flags["INESSA_SHOT_DOWN"] != undefined)
+				{
+					output2("\n<b>* Inessa, Submission:</b>");
+					if(flags["INESSA_BEING_DOMMED"] != undefined) output2(" Accepted");
+					else if(flags["INESSA_SHOT_DOWN"] != undefined) output2(" Refused");
+				}
+				if(flags["INESSA_BDSM_SETTING"] != undefined) output2("\n<b>* Inessa, Your BDSM Role:</b>" + StringUtil.capitalize(flags["INESSA_BDSM_SETTING"]));
+				if(flags["INESSA_BJED"] != undefined || flags["INESSA_TITTYSQUIRT"] != undefined)
+				{
+					output2("\n<b>* Inessa, Sexual History:</b> Sexed her");
+					if(flags["INESSA_BJED"] != undefined) output2(", Gave you a blowjob");
+					if(flags["INESSA_TITTYSQUIRT"] != undefined) output2(", She squirted you");
+				}
+				variousCount++;
+			}
 			// Alissiness
 			if(flags["MET_ALICE"] != undefined)
 			{
