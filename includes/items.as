@@ -196,6 +196,11 @@ public function shop(keeper:Creature):void {
 		backToEmmyMain();
 		return;
 	}
+	else if(keeper is Inessa)
+	{
+		approachIness();
+		return;
+	}
 	clearOutput();
 	output(keeper.keeperGreeting);
 	shopkeep = keeper;

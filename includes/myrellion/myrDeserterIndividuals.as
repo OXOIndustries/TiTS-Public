@@ -919,6 +919,15 @@ public function winVsAntGrillDeserts():void
 			else addDisabledButton(4,"Hand-Play","Hand-Play","Tauric creatures cannot enjoy this scene.");
 		}
 		else addDisabledButton(4,"Hand-Play","Hand-Play","Only a gold myr deserter has enough hands for this scene...");
+		if(pc.hasItem(new GravCuffs()) && pc.lust() >= 33)
+		{
+			var fitsInside:Boolean = false;
+			if(foes[0].hasVagina()) fitsInside = (pc.cockThatFits(foes[0].vaginalCapacity(0)) >= 0);
+			else fitsInside = (pc.cockThatFits(foes[0].analCapacity()) >= 0);
+			if(pc.hasCock() && fitsInside) addButton(5,"Cuff&Fuck",cuffNFuck,undefined,"Cuff & Fuck","Use your grav-cuffs to pin down [monster.name] and have your way with [monster.hisHer] [pc.vagOrAssNoun]! Requires Grav-cuffs and a penis.");
+			else if(pc.hasCock()) addDisabledButton(5,"Cuff&Fuck","Cuff & Fuck","You can cuff [monster.himHer] down, but you wouldn't be able to fit inside.");
+			else addDisabledButton(5,"Cuff&Fuck","Cuff & Fuck","You need a penis to make use of your grav-cuffs this way.");
+		}
 	}
 	else
 	{

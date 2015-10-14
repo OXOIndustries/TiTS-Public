@@ -1251,7 +1251,7 @@ package classes {
 					break;
 				case "short":
 				case "name":
-					buffer = short;
+					buffer = nameDisplay();
 					break;
 				case "fullName":
 				case "fullname":
@@ -1886,6 +1886,11 @@ package classes {
 			if (arg.charCodeAt(0) > 64 && arg.charCodeAt(0) < 90) buffer = upperCase(buffer);
 			// trace("BUFFER OUT: " + buffer);
 			return buffer;
+		}
+		public function nameDisplay():String
+		{
+			if(this is PlayerCharacter) return short;
+			else return a + short;
 		}
 		public function Num2Text(number: int): String {
 			return upperCase(num2Text(number));

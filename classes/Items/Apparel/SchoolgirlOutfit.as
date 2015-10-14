@@ -25,7 +25,7 @@ package classes.Items.Apparel
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
-			this.description = " a sexy schoolgirl outfit";
+			this.description = "a sexy schoolgirl outfit";
 			
 			this.tooltip = "This is a highly fetishized western school girl outfit. It consists of an incredibly tight white blouse, short tartan skirt and low hanging tie. Nobody would ever mistake this for a real school outfit!";
 			
