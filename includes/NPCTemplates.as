@@ -90,6 +90,7 @@
 	prepChar(justUpdate, "GENE", Gene);
 	prepChar(justUpdate, "BESS", Bess);
 	prepChar(justUpdate, "EMMY", Emmy);
+	prepChar(justUpdate, "INESSA", Inessa);
 	
 	// Check all characters have version information set
 	for (var prop:String in chars)

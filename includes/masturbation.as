@@ -2,6 +2,7 @@
 import classes.Items.Armor.GooArmor;
 import classes.Items.Miscellaneous.MilkBag;
 import classes.Items.Miscellaneous.MagicMilker;
+import classes.Items.Toys.HoverHole;
 
 public function availableFaps(roundTwo:Boolean = false):Array
 {
@@ -75,6 +76,13 @@ public function availableFaps(roundTwo:Boolean = false):Array
 		fap = new FapCommandContainer();
 		fap.text = "Penises";
 		fap.func = multiCockFap;
+		faps.push(fap);
+	}
+	if (pc.hasCock() && pc.hasItem(new HoverHole()))
+	{
+		fap = new FapCommandContainer();
+		fap.text = "HoverHole";
+		fap.func = hoverholeFapFapFap;
 		faps.push(fap);
 	}
 	

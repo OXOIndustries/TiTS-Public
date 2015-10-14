@@ -310,6 +310,15 @@ public function victoryVsRaskvel():void
 			output(" If you had a pussy, you could ride her face. Sadly, you don't.");
 			addDisabledButton(2,"RideHerFace");
 		}
+		if(pc.hasItem(new GravCuffs()) && pc.lust() >= 33)
+		{
+			var fitsInside:Boolean = false;
+			if(foes[0].hasVagina()) fitsInside = (pc.cockThatFits(foes[0].vaginalCapacity(0)) >= 0);
+			else fitsInside = (pc.cockThatFits(foes[0].analCapacity()) >= 0);
+			if(pc.hasCock() && fitsInside) addButton(3,"Cuff&Fuck",cuffNFuck,undefined,"Cuff & Fuck","Use your grav-cuffs to pin down [monster.name] and have your way with [monster.hisHer] [pc.vagOrAssNoun]! Requires Grav-cuffs and a penis.");
+			else if(pc.hasCock()) addDisabledButton(3,"Cuff&Fuck","Cuff & Fuck","You can cuff [monster.himHer] down, but you wouldn't be able to fit inside.");
+			else addDisabledButton(3,"Cuff&Fuck","Cuff & Fuck","You need a penis to make use of your grav-cuffs this way.");
+		}
 	}
 	else
 	{
