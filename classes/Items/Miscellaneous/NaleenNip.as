@@ -257,10 +257,16 @@
 				kGAMECLASS.output("\n\nA hot flash assaults your body, leaving you panting, sweating, and drooling from your [pc.vaginas]. ");
 				if(target.vaginaTotal() > 1) kGAMECLASS.output("Each");
 				else kGAMECLASS.output("It");
-				kGAMECLASS.output(" is near-instantly engorged and wanting, your [pc.clits] hard and easy to spot. You gasp and double over, bringing your hand up to start masturbating when you see [pc.oneVagina] changing before your eyes. It's getting longer vertically while the vulva, even aroused, become less noticeable.");
-				if(target.vaginas[x].clits > 1) {
+				kGAMECLASS.output(" is near-instantly engorged and wanting");
+				if(target.vaginas[x].clits > 0) kGAMECLASS.output(", your [pc.clits] hard and easy to spot");
+				kGAMECLASS.output(". You gasp and double over, bringing your hand up to start masturbating when you see [pc.oneVagina] changing before your eyes. It's getting longer vertically while the vulva, even aroused, become less noticeable.");
+				if(target.vaginas[x].clits <= 0) kGAMECLASS.output(" A sensitive nub grows from the top, forming a pulsing, needy clit.");
+				else if(target.vaginas[x].clits > 1) {
 					if(target.vaginas[x].clits == 2) kGAMECLASS.output(" A clit vanishes");
-					else kGAMECLASS.output(" A few clits vanish");
+					else if(target.vaginas[x].clits == 3) kGAMECLASS.output(" A couple of clits vanish");
+					else if(target.vaginas[x].clits == 4) kGAMECLASS.output(" A few clits vanish");
+					else if(target.vaginas[x].clits == 5) kGAMECLASS.output(" Some clits vanish");
+					else kGAMECLASS.output(" A number of clits vanish");
 					kGAMECLASS.output(", leaving only the one at the top.");
 				}
 				if(target.totalVaginas() == 2) kGAMECLASS.output(" Your other entrance soon follows after the first, reshaping to match.");

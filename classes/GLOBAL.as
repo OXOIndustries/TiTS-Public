@@ -679,6 +679,7 @@
 			TYPE_VENUSPITCHER,
 			TYPE_SAURIAN,
 			TYPE_SYNTHETIC,
+			TYPE_NYREA,
 		];
 		
 		public static const VALID_COCK_FLAGS:Array = [
@@ -697,6 +698,7 @@
 			FLAG_FORESKINNED,
 			FLAG_APHRODISIAC_LACED,
 			FLAG_STICKY,
+			FLAG_OVIPOSITOR,
 		];
 		
 		public static const VALID_VAGINA_TYPES:Array = [
@@ -721,6 +723,7 @@
 			FLAG_APHRODISIAC_LACED,
 			FLAG_TENDRIL,
 			FLAG_NUBBY,
+			FLAG_OVIPOSITOR,
 		];
 		
 		//ROOM FLAGS

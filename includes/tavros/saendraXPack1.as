@@ -830,9 +830,13 @@ public function sx1CallgirlOkay():void
 		output("\n\nYou smile down at the exotic beauty and use a pair of fingers to spread your pussylips open, inviting the");
 		if (CodexManager.entryViewed("Zil")) output(" zil");
 		else output(" alien");
-		output(" to explore your depths with that lengthy tongue of hers. She does so eagerly, flicking it along your inner lip and tracing her way around your [pc.clit]. You shiver with pleasure, moaning and groping at your [pc.chest] as she works her lascivious art.");
+		output(" to explore your depths with that lengthy tongue of hers. She does so eagerly, flicking it along your inner lip");
+		if(pc.hasClit()) output(" and tracing her way around your [pc.clit]");
+		output(". You shiver with pleasure, moaning and groping at your [pc.chest] as she works her lascivious art.");
 		
-		output("\n\n<i>“What a lovely taste!”</i> the yellow wasp-girl coos, kissing her way from your clit down to the gently-throbbing passage of your sex. You drink in a deep, long breath of air that twists into a husky moan when the alien babe’s tongue slithers into you. Ohhh, that’s the stuff! You bite your lower lip and gently rock your hips, riding her face and that writhing, thick tongue of hers.");
+		output("\n\n<i>“What a lovely taste!”</i> the yellow wasp-girl coos, kissing her way");
+		if(pc.hasClit()) output(" from your clit");
+		output(" down to the gently-throbbing passage of your sex. You drink in a deep, long breath of air that twists into a husky moan when the alien babe’s tongue slithers into you. Ohhh, that’s the stuff! You bite your lower lip and gently rock your hips, riding her face and that writhing, thick tongue of hers.");
 		
 		output("\n\nThe callgirl controls her tongue with a serpentine grace, wiggling it against your juicy walls and hitting all the tenderest spots along the way. Your hand runs through her spiney, raven-black hair, urging her deeper and deeper into your quivering quim. Juices trickle down onto her face, smearing her black lips and chin with a glistening sheen of your mounting excitement.");
 		

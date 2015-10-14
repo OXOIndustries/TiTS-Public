@@ -679,7 +679,8 @@ public function catchVaginalFromAlex():void {
 		output(", but you’re a little disappointed to note that it seems like Alex is going to come first, at least until he reaches down and");
 	}
 	if(pc.hasCock()) output(" starts to jack off [pc.oneCock]");
-	else output(" starts to play with [pc.oneClit]");
+	else if(pc.hasClit()) output(" starts to play with [pc.oneClit]");
+	else output(" starts to play with your folds");
 	output(". Slamming your hips down onto his one last time, you come, hard");
 	if(pc.hasCock() && pc.hasTailCock()) output(", your [pc.cocks] and tail-cock");
 	else if(pc.hasCock()) output(", your [pc.cocks]");
@@ -944,7 +945,8 @@ public function frottageWithAlex():void {
 		//if herm:
 		else if(pc.hasVagina())
 		{
-			output(" as he slides a hand up the inside of your thigh and rubs his fingers over the lips of your [pc.vaginas], teasing your [pc.clits]");
+			output(" as he slides a hand up the inside of your thigh and rubs his fingers over the lips of your [pc.vaginas]");
+			if(pc.hasClit()) output(", teasing your [pc.clits]");
 		}
 		output(".");
 	}
@@ -963,8 +965,10 @@ public function frottageWithAlex():void {
 		else if(!pc.hasVagina()) output("hands darting between your members as he kisses and sucks at the length of each in turn, multitasking skillfully and letting no cock go neglected for too long.");
 		else
 		{
-			output("sparing a hand to toy with your [pc.clits]");
-			if(pc.cockTotal() > 1) output("while the other tends to your spare rod");
+			output("sparing a hand to toy with your");
+			if(pc.hasClit()) output(" [pc.clits]");
+			else output(" labia");
+			if(pc.cockTotal() > 1) output(" while the other tends to your spare rod");
 			if(pc.cockTotal() > 2) output("s");
 			output(". His fingers dance over your slick folds");
 			if(pc.cockTotal() == 2) output(" and hard cock");
@@ -987,8 +991,18 @@ public function frottageWithAlex():void {
 			output(". His lips and hands are wonderfully soft as he works you over, ");
 			if(pc.cockTotal() == 1 && !pc.hasVagina()) output("delivering immense pleasure despite not even being enough to fully wrap around your titanic tool");
 			else if(!pc.hasVagina()) output("darting from cock to cock, tracing over veins and pressing insistently at sensitive spots to try to distribute the pleasure evenly");
-			else if(pc.cockTotal() == 1) output("fingers rubbing insistently at your [pc.clits] and over your netherlips as he continues to lavish your cock with affection");
-			else output("darting from cock to cock and rubbing insistently at your [pc.clits], making sure no part of you goes neglected for too long");
+			else if(pc.cockTotal() == 1)
+			{
+				output("fingers rubbing insistently");
+				if(pc.hasClit()) output(" at your [pc.clits] and");
+				output(" over your netherlips as he continues to lavish your cock with affection");
+			}
+			else
+			{
+				output("darting from cock to cock");
+				if(pc.hasClit()) output(" and rubbing insistently at your [pc.clits]");
+				output(", making sure no part of you goes neglected for too long");
+			}
 		}
 		output(".");
 	}

@@ -166,7 +166,12 @@ public function malePartsTentacruelFun():void
 	if(pc.analVirgin) output(", albeit feeling very awkward,");
 	output(" as it slides through your insides. Another set of tentacles ");
 	if(pc.balls > 0) output("brushes and gently prods your [pc.balls]");
-	else if(pc.hasVagina()) output("teases [pc.eachVagina], coiling and rubbing your [pc.eachClit]");
+	else if(pc.hasVagina())
+	{
+		output("teases [pc.eachVagina]");
+		if(pc.hasClit()) output(", coiling and rubbing your [pc.eachClit]");
+		else output(", ensuring constant stimulation");
+	}
 	else output("massages the base of your pelvis");
 	output(". All the while, the emerald beauty plays with your upper half. She appears to be experiencing some of the fun her tentacles are having: her breathing is labored and her tongue lolls out of her mouth. She grasps one of your hands and places it against her chest. Your fingers nearly sink into the soft goo-flesh, and you can feel the hardness of one of her nipples against your palm.");
 	pc.buttChange(9,true,true,false);
@@ -224,27 +229,43 @@ public function celiseFemalePartsTentacleFun():void
 	//(if [pc.legs]=snake)
 	if(pc.isNaga())
 	{
-		output("The emerald goo-girl slides her hands and tentacles sensually across your snake-like tail. Celise draws her upper body back until she’s looking down at you, hands rubbing and twiddling with the tip of your tail before they begin to slowly inch their way up it. Her viscid body is warm, and the heat inside your body intensifies when she reaches your sex. You moan softly as she kisses [pc.oneClit]. Her tongue strays to lick at your entrance for a moment before returning its focus to your sensitive bundle of nerves, licking and gently biting it until you can’t contain yourself. Your body tenses, and you cum into Celise’s mouth, your juices dribbling down her chin and neck. She happily laps up all the fluids before she continues.");
+		output("The emerald goo-girl slides her hands and tentacles sensually across your snake-like tail. Celise draws her upper body back until she’s looking down at you, hands rubbing and twiddling with the tip of your tail before they begin to slowly inch their way up it. Her viscid body is warm, and the heat inside your body intensifies when she reaches your sex.");
+		if(pc.hasClit()) output(" You moan softly as she kisses [pc.oneClit].");
+		output(" Her tongue strays to lick at your entrance for a moment before returning its focus to your sensitive bundle of nerves, licking and gently biting it until you can’t contain yourself. Your body tenses, and you cum into Celise’s mouth, your juices dribbling down her chin and neck. She happily laps up all the fluids before she continues.");
 	}
 	//(if [pc.legs]=taur)
 	else if(pc.isTaur())
 	{
-		output("The emerald goo-girl circles behind you, brushing your lower body with hands and tendrils. A gooey hand slaps your rump, an action which elicits a gasp and short moan from you as you crane your neck to look. Celise parts your cheeks and buries her face in your [pc.vaginaNoun]. You forget about looking at her and clench your teeth whilst she assaults [pc.oneClit]. Her nose rubs against your hole, causing small spasms of pleasure to rock your body. You ");
+		output("The emerald goo-girl circles behind you, brushing your lower body with hands and tendrils. A gooey hand slaps your rump, an action which elicits a gasp and short moan from you as you crane your neck to look. Celise parts your cheeks and buries her face in your [pc.vaginaNoun]. You forget about looking at her and clench your teeth whilst she assaults");
+		if(pc.hasClit()) output(" [pc.oneClit]");
+		else output(" your folds");
+		output(". Her nose rubs against your hole, causing small spasms of pleasure to rock your body. You ");
 		if(pc.hasHair()) output("run a hand through your [pc.hair]");
 		else output("run your hand over your scalp");
-		output(", containing your lust for as long as you can. A well-timed suckle on your [pc.clit] ruins those efforts, and your grip melts along with the rest of you in a body-rocking orgasm. Celise laps at your juices as they cascade into her waiting mouth and drip off her chin to land on a waiting tendril.");
+		output(", containing your lust for as long as you can. A well-timed");
+		if(pc.hasClit()) output(" suckle on your [pc.clit]");
+		else output(" vaginal lick");
+		if(pc.hasClit()) output(" ruins those efforts, and your grip melts along with the rest of you in a body-rocking orgasm. Celise laps at your juices as they cascade into her waiting mouth and drip off her chin to land on a waiting tendril.");
 	}
 	else
 	{
-		output("The emerald goo-girl licks her lips, gripping your [pc.butt] in her hands while her tentacles separate your [pc.legs]. You moan softly as she lowers her head to kiss your [pc.clit]. Her tongue snakes out to lick around your entrance, its tip running a circuit about the ");
+		output("The emerald goo-girl licks her lips, gripping your [pc.butt] in her hands while her tentacles separate your [pc.legs].");
+		if(pc.hasClit()) output(" You moan softly as she lowers her head to kiss your [pc.clit].");
+		output(" Her tongue snakes out to lick around your entrance, its tip running a circuit about the ");
 		if(pc.looseness() < 2) output("tight");
 		else if(pc.looseness() < 3) output("ready");
 		else if(pc.looseness() < 4) output("slightly parted");
 		else if(pc.looseness() < 5) output("welcoming");
 		else output("gaped");
-		output(" hole. After a moment her attention returns to your ");
-		if(pc.totalClits() > 1) output("first ");
-		output("[pc.clit], licking and gently biting it until you can’t hold on any longer. Your body tenses, and you cum into Celise’s mouth, your juices dribbling down her chin and neck. She happily laps up all the fluids before she continues.");
+		output(" hole.");
+		if(pc.hasClit())
+		{
+			output(" After a moment her attention returns to your ");
+			if(pc.totalClits() > 1) output("first ");
+			output("[pc.clit], licking and gently biting it until you can’t hold on any longer.");
+		}
+		else output(" After a moment, her oral attention becomes too much and you can’t hold on any longer.");
+		output(" Your body tenses, and you cum into Celise’s mouth, your juices dribbling down her chin and neck. She happily laps up all the fluids before she continues.");
 	}
 	if(pc.hasCock())
 	{
@@ -257,7 +278,9 @@ public function celiseFemalePartsTentacleFun():void
 	output(" suspending you a few feet from the ground. Velvety wet kisses batter your [pc.chest], cocooning ");
 	if(pc.biggestTitSize() < 1) output("it");
 	else output("them");
-	output(" in warm moistness. Celise lowers herself to your pelvis and makes sure to lick along the length of your body as she goes. This time, instead of her tongue, an array of tentacles teases the entrance to your [pc.vagina], the smaller ones holding it open slightly as a larger one slides along it, tickling your [pc.clit].");
+	output(" in warm moistness. Celise lowers herself to your pelvis and makes sure to lick along the length of your body as she goes. This time, instead of her tongue, an array of tentacles teases the entrance to your [pc.vagina], the smaller ones holding it open slightly as a larger one slides along it");
+	if(pc.hasClit()) output(", tickling your [pc.clit]");
+	output(".");
 
 	output("\n\nThe tickling tendril loops around and slips inside you to slowly push its way into your [pc.vaginaNoun]. Your insides clench around the invading appendage, trying to force it out and pull it in at the same time. The goo-girl happily goes with the flow, pushing softly whenever you suck her in. Algid tentacles do nothing to abate the fiery lust building in your nethers, so Celise simply picks up the pace. Shivers run down your body as you lose hold of your resistance. You numbly register your partner kissing you as your insides spasm with pleasure");
 	if(pc.hasCock())
@@ -266,7 +289,9 @@ public function celiseFemalePartsTentacleFun():void
 	}
 	output(".");
 	pc.cuntChange(0,20,true,true,false);
-	output("\n\nYou’re given no downtime before the fucking begins anew. The gelatinous tendril inside you reforms itself into a notched variation that expands your [pc.vaginaNoun] as it works. Numerous smaller tentacles appear to assist it, playing with your [pc.clit] and hotdogging themselves between the two fleshy halves of your [pc.butt].");
+	output("\n\nYou’re given no downtime before the fucking begins anew. The gelatinous tendril inside you reforms itself into a notched variation that expands your [pc.vaginaNoun] as it works. Numerous smaller tentacles appear to assist it,");
+	if(pc.hasClit()) output(" playing with your [pc.clit] and");
+	output(" hotdogging themselves between the two fleshy halves of your [pc.butt].");
 	if(pc.totalBreasts() == 2 && pc.biggestTitSize() > 1) output(" Two of them trail upwards to encircle your [pc.breasts] and give alternating rough squeezes and soft rubbings.");
 	else if(pc.totalBreasts() == 4 && pc.biggestTitSize() > 1) output("Four of them travel upward, weaving through and squeezing your [pc.fullChest].");
 	else output("A number of them travel up your body and fondle your [pc.fullChest].");
@@ -424,7 +449,8 @@ public function tentacleMassageFunShit():void
 	if(!pc.isNude()) output("manage to strip out of your garments and ");
 	output("glare at your ");
 	if(pc.hasCock()) output("hardening [pc.cocksNounSimple]");
-	else output("throbbing [pc.clits]");
+	else if(pc.hasClit()) output("throbbing [pc.clits]");
+	else output("naked and aroused sex");
 	output(". You briefly think of searching the extranet for porn, but don’t feel like putting forth any sort of strenuous effort. What you need is something relaxing to take care of both of your problems at once. Through the tired haze you remember your currently tentacle-laden goo-girl crew member.");
 	output("\n\nYou hit the button for Celise’s room on the ship’s intercom to ask if she could come up for something special. Shortly afterwards your door opens and a slew of tentacles slides through the open portal. Celise ducks under the door and gives you a radiant smile, obviously happy you called her up. She gives an excited gasp as she notices your obvious lack of clothing, her eyes trailing down your body.");
 	output("\n\n<i>“What... What did you have in mind?”</i> she asks. Her smile is replaced by a slack-jawed stare as you ");
@@ -432,7 +458,8 @@ public function tentacleMassageFunShit():void
 	else output("adjust your [pc.leg]");
 	output(" and her gaze fixes on your ");
 	if(pc.hasCock()) output("rock hard [pc.cocksNounSimple]");
-	else output("throbbing [pc.clits]");
+	else if(pc.hasClit()) output("throbbing [pc.clits]");
+	else output("naked and aroused sex");
 	output(". You kindly ask if she wouldn’t mind giving you a massage. Her attention snaps back to your face and she replies that she would very much like it. You hold up a finger before she begins, telling her to be careful not to hurt your overworked muscles.");
 	output("\n\n<i>\"Don’t worry. I can be careful,”</i> she says with a lusty smile before gently lifting you and placing you on your stomach. You see hands forming at the ends of her tentacles within your vision and close your eyes as lukewarm goo begins to caress your body.");
 
@@ -440,9 +467,18 @@ public function tentacleMassageFunShit():void
 	if(pc.isTaur())
 	{
 		output("\n\nThe forest of Celise’s hands begins massaging your alien lower body. They begin with your rump, kneading the stress out like tiny rolling pins. You feel short pangs of pressure followed by sweet, sweet bliss as the pliant digits slowly brush up against every part of your lower body’s [pc.skinFurScales] and press all the right places to make you melt into the bedsheets. After a few moments, you feel some of the hands sneak underneath you, ");
-		if(pc.hasCock() && pc.hasVagina()) output("squeezing your delicious [pc.ass] as they gently rub [pc.eachClit] and suck at [pc.eachCock]");
+		if(pc.hasCock() && pc.hasVagina())
+		{
+			output("squeezing your delicious [pc.ass]");
+			if(pc.hasClit()) output(" as they gently rub [pc.eachClit]");
+			output(" and suck at [pc.eachCock]");
+		}
 		else if(pc.hasCock()) output("forming a heavenly suction hold on your [pc.eachCock]");
-		else output(" rubbing around the entrance to [pc.eachVagina], and playing with [pc.eachClit]");
+		else
+		{
+			output(" rubbing around the entrance to [pc.eachVagina]");
+			if(pc.hasClit()) output(", and playing with [pc.eachClit]");
+		}
 		output(". You sigh contentedly while the legion of fingers prods your every part.");
 		if(pc.hasTail()) output(" Celise brushes one gooey hand along the length of [pc.oneTail], giggling at your soft noises of pleasure her act elicits.");
 
@@ -492,7 +528,9 @@ public function tentacleMassageFunShit():void
 		else output("\n\n");
 		output("Your tension melts as gooey fingers gently massage every muscle in your worn out [pc.legs]. Soon they reach your waist, and Celise ");
 		if(pc.hasCock() && pc.hasVagina()) {
-			output("squeezes your [pc.ass] as she travels down to play with [pc.eachClit], letting one hand continue down to ");
+			output("squeezes your [pc.ass]");
+			if(pc.hasClit()) output(" as she travels down to play with [pc.eachClit]");
+			output(", letting one hand continue down to ");
 			if(pc.balls > 0) output("fondle your [pc.balls]");
 			else output("brush across your groin");
 			output(" and gently stroke your [pc.cocks]");
@@ -500,10 +538,14 @@ public function tentacleMassageFunShit():void
 		else if(pc.hasCock()) output("maneuvers some of them underneath you, slowly stroking [pc.eachCock] from every angle.");
 		else
 		{
-			output("slides one down through your ass-cheeks to rub your [pc.vaginas] and ");
-			if(pc.totalClits() == 1) output("play with");
-			else output("multiply to play with");
-			output(" your [pc.clits]");
+			output("slides one down through your ass-cheeks to rub your [pc.vaginas]");
+			if(pc.hasClit())
+			{
+				output(" and ");
+				if(pc.totalClits() == 1) output("play with");
+				else output("multiply to play with");
+				output(" your [pc.clits]");
+			}
 		}
 		output(". You moan with pleasure as the pliant digits work on your sex");
 		if((pc.hasCock() && pc.hasVagina()) || pc.totalCocks() > 1 || pc.totalVaginas() > 1) output("es");
@@ -512,7 +554,9 @@ public function tentacleMassageFunShit():void
 		output("\n\n<i>“Don’t hold back. Just let out all the stress for me. All that tasty stress,”</i> Celise whispers as she continues working. In your state you hardly feel up to holding it in as ");
 		if(pc.hasVagina() && !pc.hasCock()) 
 		{
-			output("her fingers rub your [pc.clits] and tease the entrance");
+			output("her fingers");
+			if(pc.hasClit()) output(" rub your [pc.clits] and");
+			output(" tease the entrance");
 			if(pc.totalVaginas() > 1) output("s");
 			output(" to [pc.eachVagina]");
 		}

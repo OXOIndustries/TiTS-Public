@@ -146,8 +146,8 @@
 				{
 					if(target.tailTypeUnlocked(GLOBAL.TYPE_VANAE))
 					{
-						if(pc.tailCount == 1) outputB("\n\nYou hear a 'whumph' behind you, and realise that your " + pc.tailsDescript() + " has fallen off!");
-						else if(pc.tailCount > 1) outputB("\n\nYou hear a 'whumph' behind you, and realise that your " + pc.tailsDescript() + " have fallen off!");
+						if(pc.tailCount == 1) outputB("\n\nYou hear a 'whumph' behind you, and realize that your " + pc.tailsDescript() + " has fallen off!");
+						else if(pc.tailCount > 1) outputB("\n\nYou hear a 'whumph' behind you, and realize that your " + pc.tailsDescript() + " have fallen off!");
 						outputB(" From just above your [pc.butt], a protrusion forms and snakes outwards. After growing a few metres out, it falls to the ground from its own weight.");
 						outputB("\n\nWhen it finally stops growing, you tentatively wiggle it about. It seems to be a prehensile tail with octopus-like suckers on the bottom. It feels quite powerful, too, like you could knock someone over with a single sweep. <b>You now have a Vanae tail!</b>");
 						pc.tailCount = 1;
@@ -177,7 +177,7 @@
 					pc.hairColor = getVanaeAccentColor(pc);
 					if(!pc.hasHair()) pc.hairLength = 2;
 
-					outputB("\n\nRealization hits you as your new locks fall in front of your eyes - you've sprouted [pc.hairColor] tentacle hair! What's even stranger is you can lift and move around each length as easily as your arms; they're prehensile!  Twisting them about, you realise they have little octopus-like suckers facing inward. <b>You now have [pc.hairColor] tentacle hair!</b>");
+					outputB("\n\nRealization hits you as your new locks fall in front of your eyes - you've sprouted [pc.hairColor] tentacle hair! What's even stranger is you can lift and move around each length as easily as your arms; they're prehensile!  Twisting them about, you realize they have little octopus-like suckers facing inward. <b>You now have [pc.hairColor] tentacle hair!</b>");
 					changes++;
 				}
 				//Finned Ears 
@@ -314,7 +314,7 @@
 					if(pc.totalVaginas() > 1) outputB("es");
 					outputB(". When it dies away, you're left a little bit frustrated, and you let out a disappointed whine.");
 
-					outputB("\n\nChecking [pc.eachPussy], you realise ");
+					outputB("\n\nChecking [pc.eachPussy], you realize ");
 					if(pc.totalVaginas() == 1) outputB("it looks");
 					else outputB("they look");
 					outputB(" different from before. <b>Your ");
@@ -385,13 +385,13 @@
 				if(pc.eyeColor != getVanaeAccentColor(pc) && changes < changeLimit && rand(4) == 0 && hasVanaeSkinColor(pc))
 				{
 					pc.eyeColor = getVanaeAccentColor(pc);
-					outputB("\n\nYour vision goes a little fuzzy. A few seconds later, you regain your eyesight. When you check to see if there's anything in them, you realise your eyes have changed color. <b>Your eyes are now [pc.eyeColor]!</b>");
+					outputB("\n\nYour vision goes a little fuzzy. A few seconds later, you regain your eyesight. When you check to see if there's anything in them, you realize your eyes have changed color. <b>Your eyes are now [pc.eyeColor]!</b>");
 				}
 				//Dick Reduction / Loss
 				// If PC has dicks, shrink. If smallest, remove.
 				if(pc.hasCock() && changes < changeLimit && rand(4) == 0)
 				{
-					outputB("\n\nYou feel a tingling along " + pc.eachCock() + " and a slight withdrawal back into your " + pc.skinFurScales() + ". Looking down, you realise ");
+					outputB("\n\nYou feel a tingling along " + pc.eachCock() + " and a slight withdrawal back into your " + pc.skinFurScales() + ". Looking down, you realize ");
 					if(pc.smallestCockLength() >= 4) outputB("" + pc.eachCock() + " has reduced in size by an inch!");
 					else outputB("your " + pc.cockDescript(pc.smallestCockIndex()) + " has disappeared!");
 					outputB("<b>");

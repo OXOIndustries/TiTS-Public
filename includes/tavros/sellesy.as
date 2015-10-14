@@ -447,7 +447,9 @@ public function sellesyTribadismIsBadYoByZ():void
 		if(pc.legCount == 2) output(" and moving back into position against your [pc.vagina]");
 		output(".");
 	}
-	output("\n\nHer spiraling tease with vigorous strokes begins to smother your own [pc.clits] and labia. The bumps drag on longer with every pass; indeed, it seems as if the motion of Sellesy’s hips is exaggerated, gliding in one direction for seconds before she slides onto a new tangent. Before much longer, it feels like she’s gliding along on a cushion that sits between you. The merest hints of sensation reach your own desperate depths, but Sellesy’s head whips around with obvious pleasure, and she hums constantly.");
+	output("\n\nHer spiraling tease with vigorous strokes begins to smother your own");
+	if(pc.hasClit()) output(" [pc.clits] and");
+	output(" labia. The bumps drag on longer with every pass; indeed, it seems as if the motion of Sellesy’s hips is exaggerated, gliding in one direction for seconds before she slides onto a new tangent. Before much longer, it feels like she’s gliding along on a cushion that sits between you. The merest hints of sensation reach your own desperate depths, but Sellesy’s head whips around with obvious pleasure, and she hums constantly.");
 	output("\n\n<i>“Hey,”</i> you interrupt drunkenly. Sellesy seems not to notice, beginning a new slide to the side, so you ");
 	if(!pc.isTaur()) output("grab her hips");
 	else output("buck your rump");
@@ -456,13 +458,18 @@ public function sellesyTribadismIsBadYoByZ():void
 	output("\n\n<i>“I can’t feel anything,”</i> you reply, thrusting your pelvis into the pliant mass between you. The server blushes and, at length, pulls away. A fleshy swirl on her underside untwists rapidly, revealing Sellesy’s three clitorises, fully extended and shiny with lubrication.");
 	output("\n\n<i>“Oops.”</i> The foremost clitoris curls and flexes on itself. <i>“We’ll just have to find a way to help you feel.”</i> Her vagina presses up to yours once again, and her clitorises lap at your pelvis, one caressing your mons and others teasing your ");
 	if(!pc.isTaur()) output("thighs and ");
-	output("backside. <i>“How about this?”</i> she challenges. A hot, slippery grip winds around your ");
-	if(pc.hasCock()) output("dick");
-	else output("[pc.clit]");
-	output(", curling and uncurling along ");
-	if(pc.hasCock() || pc.clitLength > 6) output("its length as she gyrates, like a lewd barber pole");
-	else output("your button, slurping and sucking like a needy mouth");
-	output(". The tentacle furthest from your view slides between the cheeks of your [pc.butt]. teasing and probing your [pc.asshole] with its tip");
+	output("backside. <i>“How about this?”</i> she challenges.");
+	if(pc.hasCock() || pc.hasClit())
+	{
+		output(" A hot, slippery grip winds around your ");
+		if(pc.hasCock()) output("dick");
+		else output("[pc.clit]");
+		output(", curling and uncurling along ");
+		if(pc.hasCock() || pc.clitLength > 6) output("its length as she gyrates, like a lewd barber pole");
+		else output("your button, slurping and sucking like a needy mouth");
+		output(".");
+	}
+	output(" The tentacle furthest from your view slides between the cheeks of your [pc.butt]. teasing and probing your [pc.asshole] with its tip");
 	if(pc.analCapacity() < 100) output(", but cannot find its way inside");
 	output(".");
 	//[(loose butt)
@@ -518,13 +525,18 @@ public function sellesyTribadismIsBadYoByZ():void
 	output("\n\n<i>“Much better,”</i> you mumble, flopping onto your side.");
 
 	output("\n\n<i>“Oh, are we done?”</i> Sellesy asks innocently. The ");
-	if(pc.hasCock() || pc.clitLength > 6) 
+	if(pc.hasCock() || (pc.hasClit() && pc.clitLength > 6))
 	{
 		output("tight squeeze on your ");
 		if(pc.hasCock()) output("dick");
 		else output("clitoris");
 	}
-	else output("slow, smooth scrape on your clitoris");
+	else
+	{
+		output("slow, smooth scrape on your");
+		if(pc.hasClit()) output(" clitoris");
+		else output(" sex");
+	}
 	output(" is the only alarm you get before she cozies all the way up to your post-coital glow. Her clitoral tentacle slides between your labia again, and she leans low one more time. <i>“I find that the best thing about ");
 	if(!pc.hasCock()) output("women");
 	else output("hermaphrodites");
@@ -665,7 +677,7 @@ public function ladyType69WithSellesy():void
 			output(" Your lover giggles into your crotch as the hair of your face tickles her most sensitive organs, and they quickly retreat to flirt with your lips and tongue again.");
 		}
 		//(clit>12in)
-		if(pc.clitLength >= 12) 
+		if(pc.hasClit() && pc.clitLength >= 12) 
 		{
 			output("Your own elongated ");
 			if(pc.totalClits() == 1) output("button swells");
@@ -677,14 +689,19 @@ public function ladyType69WithSellesy():void
 			if(pc.totalClits() == 1) output("it");
 			else output("them");
 			output(" to receive an increasingly sloppy boobjob as she continues to pinch and milk her teats.");
-			//Below doesn't exist at present!
+			//9999 Below doesn't exist at present!
 			//[(prehensile clit) Not to be outdone, your flexible [clitoris coils/clitorises coil] around her breasts, gently rubbing her nipples, coaxing out yet more of Sellesy’s reserve. She sighs in bliss as you feel a squirt of fluid hit your stomach. ]]");
 		}
 		output("\n\nAs your own efforts redouble, so too do Sellesy’s; first her tongue and then her fingers enter your [pc.vagina].");
 		if(pc.looseness(0) > 3) output(" Even this is not enough: with fingers and tongue alone, she still can’t fill your stretched-out hole. When this becomes apparent, Sellesy shoves a whole hand into your gaping gash, halfway up to the elbow.");
-		output(" She begins to pump, pushing in and out with her hand as she uses her tongue to caress your labia and ");
-		if(pc.clitLength >= 12) output("the base of ");
-		output("your [pc.clit]. You answer with a similar assault on her own entrance, ");
+		output(" She begins to pump, pushing in and out with her hand as she uses her tongue to caress your labia");
+		if(pc.hasClit())
+		{
+			output(" and ");
+			if(pc.clitLength >= 12) output("the base of ");
+			output("your [pc.clit]");
+		}
+		output(". You answer with a similar assault on her own entrance, ");
 		if(pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output("though your inhuman tongue is long enough to caress all three of her clitorises and penetrate her of itself.");
 		else output("sticking your fingers in as far as they will go while kissing, licking, and even gingerly biting the surface of any clitoris that gets in range.");
 
@@ -701,7 +718,7 @@ public function ladyType69WithSellesy():void
 		output(" turns into a hot, dry oven. The alien woman’s hips buck several times, thrusting against a missing lover, and she collapses. You pull your hand free and stare at your pruney fingers, pussy still burning for release that you’re no longer sure Sellesy’s hand will deliver.");
 
 		//(clit>12in)
-		if(pc.clitLength > 12) 
+		if(pc.hasClit() && pc.clitLength > 12) 
 		{
 			output("\n\nWhen that hand slips from your [pc.vagina], to be replaced with nothing, you decide to take your climax into your own hands, semi-literally. Reaching under your stomach, you take Sellesy’s breasts into your hands, squeezing them around your [pc.clit], and begin to thrust your hips like a man. The liquid-soaked tits feel hot and amazing on your nerve-packed organ, and it’s less than a minute before you convulse in orgasm.");
 			if(pc.isSquirter()) 
@@ -722,10 +739,15 @@ public function ladyType69WithSellesy():void
 			output(". <i>“Lick,”</i> you insist, echoing her earlier demand. Sellesy’s mumbled reply is inaudible through the [pc.butt] covering her head, but the pleasant vibrations do send a tingle to the base of your spine before she opens her lips and a wet muscle forces its way between your labia again. Her fingernails dig into your hips with such force that they ");
 			if(pc.skinType == GLOBAL.SKIN_TYPE_SKIN) output("mark the skin");
 			else output("would leave a mark on bare skin");
-			output(", and she stimulates your slit with a surprisingly long tongue, stroking the inside of your hole and darting out to pop your clitoris into her mouth like a ");
-			if(pc.clitLength < 3) output("cherry");
-			else if(pc.clitLength < 5.5) output("small penis");
-			else output("throbbing phallus");
+			output(", and she stimulates your slit with a surprisingly long tongue, stroking the inside of your hole");
+			if(pc.hasClit())
+			{
+				output(" and darting out to pop your clitoris into her mouth like a ");
+				if(pc.clitLength < 3) output("cherry");
+				else if(pc.clitLength < 5.5) output("small penis");
+				else output("throbbing phallus");
+			}
+			output(" with great skill");
 			output(". The borderline abuse of your vagina by the re-energized Sellesy is enough to bring you to climax in minutes, and your pussy sputters out an orgasm");
 			if(pc.isSquirter()) output(" and a gob of [pc.girlCum] that lands right in Sellesy’s mouth. She coughs as you continue to drench her face with your ejaculation");
 			output(". Satisfied, you release Sellesy’s head.");

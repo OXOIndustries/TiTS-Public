@@ -520,7 +520,10 @@ public function takeAShotOJizzInZeWomb(x:int = -1):void
 
 	output("\n\nOn the cusp of responding, you find yourself being hauled up by Renvra’s startlingly strong arms. She hefts you up and flips you onto your back, letting your [pc.legOrLegs] wrap around her. She kisses you, pulling you tight as you feel the contractions of her hefty member start, and the flood of pink, creamy pre growing thicker inside your stretched-out hole.");
 	output("\n\n<i>“Here we go,”</i> she moans, speaking in perfect cadence with her thrusts. <i>“Get ready!”</i>");
-	output("\n\nYou’re as ready as you’re going to be, and tell her as much with another orgasmic scream, letting your body carry you to the peaks of pleasure as its filled with a sudden, massive load of aphrodisiacs. Every touch seems to send you shivering and screaming to climax again, and Renvra’s pounding thrusts make your whole body feel as sensitive as [pc.oneClit], awash in sensation. Your hands instinctively go to your [pc.belly], wandering across the taut flesh there as you’re filled with your lover’s wonderfully thick semen.");
+	output("\n\nYou’re as ready as you’re going to be, and tell her as much with another orgasmic scream, letting your body carry you to the peaks of pleasure as its filled with a sudden, massive load of aphrodisiacs. Every touch seems to send you shivering and screaming to climax again");
+	if(pc.hasClit()) output(", and Renvra’s pounding thrusts make your whole body feel as sensitive as [pc.oneClit], awash in sensation");
+	else output(" and again");
+	output(". Your hands instinctively go to your [pc.belly], wandering across the taut flesh there as you’re filled with your lover’s wonderfully thick semen.");
 	output("\n\nWhen she’s finally spent, Renvra gives a weak moan and falls forward, head collapsing into your [pc.chest]. You smile and run a hand through her spine-like hair, stroking her as her cock twitches and drools inside you.");
 	output("\n\n<i>“There’s nothing in the world like that,”</i> Ren finally manages to say, reaching up to cup your [pc.breastNoun], fingers squeezing one of your [pc.nipples]. Slowly, she starts to withdraw from you, stepping back to pull the huge length of her ovicock from your slit. She does so with a moan, and unleashes of a torrent of pent-up pink spooge in the process that floods down onto the concrete floor. Still, you can feel more than enough of her lust-riddled spunk sloshing around deep inside you that you’re sure her swimmers have a fair chance of reaching their goal.");
 	output("\n\n<i>“Yuck,”</i> Ren sneers, patting your thigh affectionately and taking a wide step around the puddle to grab a towel from a drawer nearby. You watch her clean up, drying off her dick and thighs before turning her attention to you. It’s hard not to wince as the warrior woman leans back into your abused sex, but she’s surprisingly tender as she wipes away the mess she’s made of you.");
@@ -1082,6 +1085,7 @@ public function fuckRenvrasUrethra():void
 	if(dildo == 2)
 	{
 		var x:int = pc.cockThatFits(renvra.cockCapacity(0));
+		if(x < 0) x = pc.smallestCockIndex();
 		output("\n\nRenvra sighs resignedly as you ");
 		if(pc.isTaur()) output("press your chest to hers, smushing her F-cups while you try blindly to line up your cocks. She reaches down and holds her knotted tool in place for you with a superior smirk.");
 		else output("steady her fat shaft and prepare to penetrate with [pc.oneCock].");
@@ -1499,7 +1503,8 @@ public function renvraDoubleTrouble():void
 	else 
 	{
 		output(", and Renvra’s ballsack tickles your ");
-		if(x >= 0) output("[pc.clit]");
+		if(x >= 0 && pc.vaginas[x].clits > 0) output(pc.clitDescript(x));
+		else if(x >= 0) output("labia");
 		else output("taint");
 		output(". <i>“Damn, it’s unusual to find such a good breeding slut outside the Federation camps,”</i> she says, squeezing your [pc.butt] in appreciation.");
 	}

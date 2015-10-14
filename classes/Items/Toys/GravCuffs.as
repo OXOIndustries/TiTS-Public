@@ -56,11 +56,12 @@ package classes.Items.Toys
 			if(!kGAMECLASS.infiniteItems()) quantity++;
 			if(target is PlayerCharacter) {
 				//Consume:
-				kGAMECLASS.hoverholeFapFapFap();
+				kGAMECLASS.clearOutput();
+				kGAMECLASS.output("You cannot use the grav-cuffs at this time!");
 			}
 			else {
 				kGAMECLASS.clearOutput();
-				kGAMECLASS.output(target.capitalA + target.short + " cannot use the Hoverhole.");
+				kGAMECLASS.output(target.capitalA + target.short + " cannot use the grav-cuffs.");
 			}
 			return true;
 		}

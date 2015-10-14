@@ -512,7 +512,11 @@
 					kGAMECLASS.output(". <b>Your [pc.vaginas] ");
 					if(pc.totalVaginas() == 1) kGAMECLASS.output("is");
 					else kGAMECLASS.output("are");
-					kGAMECLASS.output(" black!</b> Everything from the lips to the clit is a dusky onyx that glistens in the light. Nothing else changed at least.");
+					kGAMECLASS.output(" black!</b> Everything");
+					if(pc.totalClits() > 0) kGAMECLASS.output(" from the lips to the clit is");
+					else if(pc.totalVaginas() == 1) kGAMECLASS.output(" about it is covered in");
+					else kGAMECLASS.output(" about them is covered in");
+					kGAMECLASS.output(" a dusky onyx that glistens in the light. Nothing else changed at least.");
 					//Go through the list of unblack vags and make 'em black!
 					while(choices.length > 0)
 					{

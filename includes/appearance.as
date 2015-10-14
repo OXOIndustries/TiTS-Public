@@ -185,25 +185,28 @@ public function appearance(target:Creature):void {
 		//M/F stuff!
 		output2(" Overall, your visage has " + target.faceDesc() + ".");
 		//Eyes
+		var hasMetallicEyes:Boolean = InCollection(target.eyeColor, "copper", "silver", "gold", "platinum", "sable");
+		var hasGemstoneEyes:Boolean = InCollection(target.eyeColor, "crimson", "garnet", "ruby", "citrine", "topaz", "amber", "peridot", "emerald", "jade", "turquoise", "aquamarine", "lapis", "sapphire", "violet", "amethyst", "opal", "pearl");
+		var hasLuminousEyes:Boolean = InCollection(target.eyeColor, "luminous violet", "luminous purple", "luminous blue", "luminous pink", "luminous orange", "luminous green", "luminous silver", "glowing gold");
 		if(target.eyeType == GLOBAL.TYPE_ARACHNID) 
 		{
 			output2(" In addition to your primary two eyes, you have a second, smaller pair on your forehead");
-			if(target.eyeColor == "silver" || target.eyeColor == "copper" || target.eyeColor == "gold" || target.eyeColor == "sable") output2(", all of which reflect back a metallic " + target.eyeColor + " in the light.");
-			else if(target.eyeColor == "emerald" || target.eyeColor == "crimson" || target.eyeColor == "violet" || target.eyeColor == "amber") output2(", all of which shimmer " + target.eyeColor + " in the light like jewels.");
+			if (hasMetallicEyes) output2(", all of which reflect back a metallic " + target.eyeColor + " in the light.");
+			else if (hasGemstoneEyes) output2(", all of which shimmer " + target.eyeColor + " in the light like jewels.");
 			else output2(", all of which are " + target.eyeColor + ".");
 		}
 		else if (target.eyeType == GLOBAL.TYPE_BEE)
 		{
-			if(target.eyeColor == "gold") output2(" Your eyes are completely pitch black with the exception of your vibrant golden irises.");
-			else if(target.eyeColor != "black") output2(" Your eyes are pitch black with " + target.eyeColor + " irises.");
+			if (target.eyeColor == "gold") output2(" Your eyes are completely pitch black with the exception of your vibrant golden irises.");
+			else if (target.eyeColor != "black") output2(" Your eyes are pitch black with " + target.eyeColor + " irises.");
 			else output2(" The black sclera and iris of both of your eyes make them appear as solid black and very alien.");
 			output2(" Their structure allows you to have a larger angle of vision as well as detecting the fastest of movements.");
 		}
 		else if(target.eyeType == GLOBAL.TYPE_FELINE || target.eyeType == GLOBAL.TYPE_SNAKE) 
 		{
 			output2(" Your eyes bear a vertical slit instead of rounded pupils, ");
-			if(target.eyeColor == "silver" || target.eyeColor == "copper" || target.eyeColor == "gold" || target.eyeColor == "sable") output2("surrounded by a metallically glistening " + target.eyeColor + " iris.");
-			else if(target.eyeColor == "emerald" || target.eyeColor == "crimson" || target.eyeColor == "violet" || target.eyeColor == "amber") output2("surrounded by a gem-like shimmering " + target.eyeColor + " iris.");
+			if (hasMetallicEyes) output2("surrounded by a metallically glistening " + target.eyeColor + " iris.");
+			else if (hasGemstoneEyes) output2("surrounded by a gem-like shimmering " + target.eyeColor + " iris.");
 			else output2("surrounded by " + indefiniteArticle(target.eyeColor) + " iris.");
 		}
 		else if (target.eyeType == GLOBAL.TYPE_LEITHAN)
@@ -213,8 +216,8 @@ public function appearance(target:Creature):void {
 			{
 				output2("forming an intensely striking symbol of infinity nestled as they are amongst a single brilliantly bright blue iris.");
 			}
-			else if(target.eyeColor == "silver" || target.eyeColor == "copper" || target.eyeColor == "gold" || target.eyeColor == "sable") output2("both embedded in a single, overly large metallical " + target.eyeColor + " iris.");
-			else if(target.eyeColor == "emerald" || target.eyeColor == "crimson" || target.eyeColor == "violet" || target.eyeColor == "amber") output2("both embedded in a single shimmering " + target.eyeColor + " iris.");
+			else if (hasMetallicEyes) output2("both embedded in a single, overly large metallical " + target.eyeColor + " iris.");
+			else if (hasGemstoneEyes) output2("both embedded in a single shimmering " + target.eyeColor + " iris.");
 			else output2("surrounded by a single " + target.eyeColor + " iris.");
 		}
 		else if (target.eyeType == GLOBAL.TYPE_MYR)
@@ -223,11 +226,18 @@ public function appearance(target:Creature):void {
 		}
 		else 
 		{
-			if (target.eyeColor == "silver" || target.eyeColor == "copper" || target.eyeColor == "gold" || target.eyeColor == "sable") output2(" Metallically glistening " + target.eyeColor + " eyes allow you to take in your surroundings without trouble.");
-			else if (target.eyeColor == "emerald" || target.eyeColor == "crimson" || target.eyeColor == "violet" || target.eyeColor == "amber") output2(" Like jewels, shimmering " + target.eyeColor + " eyes allow you to take in your surroundings without trouble.");
+			if (hasMetallicEyes) output2(" Metallically glistening " + target.eyeColor + " eyes allow you to take in your surroundings without trouble.");
+			else if (hasGemstoneEyes) output2(" Like jewels, shimmering " + target.eyeColor + " eyes allow you to take in your surroundings without trouble.");
 			//Vanae eyes
-			else if(target.eyeColor == "luminous violet" || target.eyeColor == "luminous purple" || target.eyeColor == "luminous blue" || target.eyeColor == "luminous pink" || target.eyeColor == "luminous orange" || target.eyeColor == "luminous green" || target.eyeColor == "luminous silver" || target.eyeColor == "glowing gold") output2(" Like twinkling beacons, " + target.eyeColor + " eyes seem to draw the attention of everyone around you.");
-			else output2(" Fairly unremarkable " + target.eyeColor + " eyes allow you to take in your surroundings without trouble.");
+			else if (hasLuminousEyes) output2(" Like twinkling beacons, " + target.eyeColor + " eyes seem to draw the attention of everyone around you.");
+			else
+			{
+				if (rand (10) == 0) output2(" Fairly unremarkable " + target.eyeColor);
+				else if (rand(3) == 0) output2(" Regular " + target.eyeColor);
+				else if (rand(2) == 0) output2(" Normal-looking " + target.eyeColor);
+				else output2(StringUtil.capitalize(target.eyeColor) + "-colored");
+				output2(" eyes allow you to take in your surroundings without trouble.");
+			}
 		}
 		//Hair
 		//if bald
@@ -913,7 +923,35 @@ public function appearance(target:Creature):void {
 		//Chesticles..I mean bewbz.
 		if(target.breastRows.length == 1) {
 			if(target.biggestTitSize() >= 1) output2("You have " + num2Text(target.breastRows[0].breasts) + " " + target.chestDesc() + ", capped with ");
-			else output2("You have a flat chest with unremarkable pectoral muscles, capped with ");
+			else
+			{
+				output2("You have a");
+				if(target.tone >= 100)
+				{
+					if(target.thickness > 70) output2("n immense chest with " + target.mf("extremely pronounced","very pronounced") + " pectoral muscles");
+					else if(target.thickness >= 30) output2(" robust chest with " + target.mf("extremely pronounced","very pronounced") + " pectoral muscles");
+					else output2(" chisled chest with " + target.mf("extremely pronounced","very pronounced") + " pectoral muscles");
+				}
+				else if(target.tone > 70)
+				{
+					if(target.thickness > 70) output2(" broad chest with " + target.mf("well defined","well toned") + " pectoral muscles");
+					else if(target.thickness >= 30) output2(" healthy chest with " + target.mf("well defined","well toned") + " pectoral muscles");
+					else output2(" fit chest with " + target.mf("well defined","well toned") + " pectoral muscles");
+				}
+				else if(target.tone >= 30)
+				{
+					if(target.thickness > 70) output2(" thick chest with " + target.mf("toned","lightly toned") + " pectoral muscles");
+					else if(target.thickness >= 30) output2("n average chest with " + target.mf("toned","lightly toned") + " pectoral muscles");
+					else output2(" soft chest with " + target.mf("toned","lightly toned") + " pectoral muscles");
+				}
+				else
+				{
+					if(target.thickness > 70) output2(" wide chest with unremarkable pectoral muscles");
+					else if(target.thickness >= 30) output2(" passable chest with unremarkable pectoral muscles");
+					else output2(" flat chest with unremarkable pectoral muscles");
+				}
+				output2(", capped with ");
+			}
 			//Normal nips
 			if(target.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_DICK || target.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_NORMAL)
 			{ 

@@ -1115,7 +1115,7 @@ public function analRedButtStuffMcStuffinButts():void
 	{
 		output("\n\nShe lets out a squeal of protest when she realizes what you’re doing. <i>“W-w-w-what are you doing? N-not in </i>there<i>, that’s the wrong hole-!”</i>");
 	}
-	else output("\n\nShe shivers as she realises what you’re doing. <i>“Y-you’re going to stick it in </i>there<i> again? But that’s so naughty...”</i>");
+	else output("\n\nShe shivers as she realizes what you’re doing. <i>“Y-you’re going to stick it in </i>there<i> again? But that’s so naughty...”</i>");
 
 	output("\n\nYou tease her extremely cuppable breasts some more. Her protests lessen, until at last she caves, <i>“... O-o-oh all right. B-but be gentle, all right?");
 	if(flags["FUCKED_RED_DESERTBUTT"] == undefined)
@@ -1756,9 +1756,9 @@ public function redDildoScrew():void
 	//PC Loss:
 	if(inCombat() && (pc.HP() <= 0 || pc.lust() >= pc.lustMax()))
 	{
-		output("\n\nSome time later, when you finally come to, you realise ");
+		output("\n\nSome time later, when you finally come to, you realize ");
 		if(DontKnowName) output("the ");
-		output("[monster.name] has already taken her leave. Shivering, you realise you’re covered in hickies.");
+		output("[monster.name] has already taken her leave. Shivering, you realize you’re covered in hickies.");
 		if(pc.credits > 1)
 		{
 			output(" Not only that, you’ve lost some of your credits!");

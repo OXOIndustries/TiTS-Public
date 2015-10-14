@@ -446,7 +446,13 @@ public function treatedPCsGetCuntFilledAndMilkedPtI():void
 	output("\n\nWhat’s the hunk talking about? You were busy inhaling his scent and admiring the way his sweat let your [pc.butt] rub against his six-pack, hoping he’d go ahead and shove it on in. Your [pc.vagOrAss] is all tingly and hot, eager for an injection of hot, Texan meat, and for that matter, so is the rest of you.");
 	output("\n\nSpreading your buttcheeks with two fingers, Yancy ");
 	if(!pc.hasVagina()) output("circles your pucker a few times, just for fun.");
-	else output("slips a sausage-sized finger past them to prod [pc.oneClit], earning him a thorough glaze of [pc.girlCum].");
+	else
+	{
+		output("slips a sausage-sized finger past them to prod");
+		if(pc.hasClit()) output(" [pc.oneClit]");
+		else output(" your female sex");
+		output(", earning him a thorough glaze of [pc.girlCum].");
+	}
 	output("\n\n<i>“Knew it.”</i> The big bull doesn’t delay a moment later, lowering you down while you’re still trying to deal with the aftermath of his lazy probing, filling your brain with a hot, sticky mess of penetration-induced endorphins. Your eyelids droop, and your [pc.tongue] lolls out, drooling while you moan. His blunt-headed instrument slips right in, widening your passage as if to make room for the subsequent column of flesh. <i>“You Treated [pc.boy]s are so transparent. The merest hint of a dick, and it’s all you can think about.”</i>");
 
 	if(pc.hasVagina() && x >= 0) pc.cuntChange(x,400);
@@ -517,7 +523,13 @@ public function treatedPCsGetCuntFilledAndMilkedPtII():void
 	output(" stimulation triggers a response firmly wired into your brain, left behind by busy machines not too long ago.");
 
 	output("\n\nYou let out something between a moo and a cry of pleasure while Yancy pulls you back up for another gravity-assisted fuck.");
-	if(pc.hasVagina()) output(" The next drop presses a firm nub against [pc.oneClit] on its way past, and you nearly black out from the awesome, cunny-pleasing pleasure of it all.");
+	if(pc.hasVagina())
+	{
+		output(" The next drop presses");
+		if(pc.hasClit()) output(" a firm nub against [pc.oneClit]");
+		else output(" a collection of nubs along your labia");
+		output(" on its way past, and you nearly black out from the awesome, cunny-pleasing pleasure of it all.");
+	}
 	else output(" The next drop caresses your sorely taxed bottom’s nervous system once more, wrapping you in so much butt-clenching pleasure that you nearly black out from the ecstasy of it all.");
 	output(" Giggling dopily, you moo again. The vocalization is instinctive and automatic. The harder your [pc.nipples] gush, the more enthusiastically you do it.");
 	output("\n\nOf course you cum by the third drop. How could you not? Yancy’s dick is like a pre-cum hose too, and the head just keeps getting wider! By the time you hit drop number five, it’s easily the fattest part of his shaft by a fair margin, and your walls are painted with a thick layer of pre-emptive stud-cream");
