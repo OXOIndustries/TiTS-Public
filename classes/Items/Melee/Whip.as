@@ -14,7 +14,7 @@ package classes.Items.Melee
 
 			this.quantity = 1;
 			this.stackSize = 1;
-			this.type = GLOBAL.RANGED_WEAPON;
+			this.type = GLOBAL.MELEE_WEAPON;
 			
 			//Used on inventory buttons
 			this.shortName = "Whip";
@@ -38,11 +38,7 @@ package classes.Items.Melee
 			//Information
 			this.basePrice = 250;
 			this.attack = 5;
-			/*
-			 Goovolver needs to be unwound from combat code. We can now convey lust damage as a damage type on weapons.
-			this.damage = 0;
-			this.damageType = GLOBAL.NO_TYPE;
-			*/
+			
 			baseDamage.kinetic.damageValue = 2;
 			
 			this.defense = 0;
