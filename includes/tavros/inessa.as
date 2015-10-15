@@ -78,11 +78,12 @@ public function inessaMenu():void
 		if(pc.lust() >= 33) addButton(3,"Order",inessaSexApproach);
 		else addDisabledButton(3,"Order","Order","You aren't turned on enough to pursue some sex.");
 	}
-	else
+	else if(flags["INESSA_INESSAED"] != undefined)
 	{
 		if(pc.lust() >= 33) addButton(3,"Sex",inessaSexApproach);
 		else addDisabledButton(3,"Sex","Sex","You aren't turned on enough to pursue some sex.");
 	}
+	else addDisabledButton(3,"Sex","Sex","You don't know her well enough for that.");
 	addButton(14,"Leave",mainGameMenu);
 }
 
