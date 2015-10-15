@@ -275,7 +275,12 @@ public function masturbateMenu(roundTwo:Boolean = false):void {
 		clearOutput();
 		output("Out here? In public?\n\n...Yeah, that'll do nicely.");
 		clearMenu();
-		addButton(0,"Next",goddamnitJimTAndYourExhibitionism);
+		addButton(0,"Exhibitionism",goddamnitJimTAndYourExhibitionism);
+		//Special new texas shit
+		if(pc.hasItem(new GravCuffs()) && rooms[currentLocation].planet == "PLANET: NEW TEXAS" && rooms[currentLocation].hasFlag(GLOBAL.PUBLIC))
+		{
+			addButton(1,"CuffSelf",newTexanGanguBangu,undefined,"Cuff Yourself","You bet that if you cuffed yourself naked somewhere public, there'd be at least one randy bull to give you a reaming.");
+		}
 		return;
 	}
 	//Low Exhibitionist fap! - overrides all other faps
