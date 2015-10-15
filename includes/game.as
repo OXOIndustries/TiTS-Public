@@ -587,6 +587,11 @@ public function sleep(outputs:Boolean = true):void {
 			addButton(0, "Next", bessMorningEvents);
 			return;
 		}
+		if (tryProcDommyReahaTime(minutes - rand(301)))
+        {
+            addButton(0, "Next", reahaDommyFuxTime);
+            return;
+        }
 	}
 	
 	addButton(0,"Next",mainGameMenu);
@@ -1210,11 +1215,6 @@ public function processTime(arg:int):void {
 
 	//Laneshit
 	processLaneDetoxEvents(arg);
-	
-	if (tryProcDommyReahaTime(arg))
-	{
-		eventQueue.push(reahaDommyFuxTime);
-	}
 	
 	// Extra special handler for Renvra's egg messages
 	if (pc.hasStatusEffect("Renvra Eggs Messages Available") || pc.hasStatusEffect("Nyrea Eggs Messages Available") || pc.hasStatusEffect("Royal Eggs Messages Available"))

@@ -5,6 +5,7 @@
 	import classes.Items.Miscellaneous.Throbb;
 	import classes.Items.Miscellaneous.Dumbfuck;
 	import classes.Items.Transformatives.Gush;
+	import classes.Items.Guns.SlutRay;
 	public class DrBadger extends Creature
 	{
 		//constructor
@@ -17,6 +18,7 @@
 			this.inventory.push(new Dumbfuck());
 			this.inventory.push(new Gush());
 			this.inventory.push(new Throbb());
+			this.inventory.push(new SlutRay());
 			this.typesBought[this.typesBought.length] = GLOBAL.PILL;
 			this.typesBought[this.typesBought.length] = GLOBAL.POTION;
 			this.typesBought[this.typesBought.length] = GLOBAL.DRUG;

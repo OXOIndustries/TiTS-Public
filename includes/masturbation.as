@@ -166,7 +166,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 		fap.ignoreRandomSelection = true;
 		faps.push(fap);
 	}
-	
+
 	if (pc.armor is GooArmor)
 	{
 		fap = new FapCommandContainer();
@@ -218,6 +218,16 @@ public function availableFaps(roundTwo:Boolean = false):Array
 			faps.push(fap);
 		}
 	}
+	//Special new texas shit
+	if(pc.hasItem(new GravCuffs()) && rooms[currentLocation].planet == "PLANET: NEW TEXAS" && rooms[currentLocation].hasFlag(GLOBAL.PUBLIC))
+	{
+		fap = new FapCommandContainer();
+		fap.text = "CuffSelf";
+		fap.ttHeader = "Cuff Yourself"
+		fap.ttBody = "You bet that if you cuffed yourself naked somewhere public, there'd be at least one randy bull to give you a reaming.";
+		fap.func = newTexanGanguBangu;
+		faps.push(fap);
+	}
 	return faps;
 }
 
@@ -265,7 +275,12 @@ public function masturbateMenu(roundTwo:Boolean = false):void {
 		clearOutput();
 		output("Out here? In public?\n\n...Yeah, that'll do nicely.");
 		clearMenu();
-		addButton(0,"Next",goddamnitJimTAndYourExhibitionism);
+		addButton(0,"Exhibitionism",goddamnitJimTAndYourExhibitionism);
+		//Special new texas shit
+		if(pc.hasItem(new GravCuffs()) && rooms[currentLocation].planet == "PLANET: NEW TEXAS" && rooms[currentLocation].hasFlag(GLOBAL.PUBLIC))
+		{
+			addButton(1,"CuffSelf",newTexanGanguBangu,undefined,"Cuff Yourself","You bet that if you cuffed yourself naked somewhere public, there'd be at least one randy bull to give you a reaming.");
+		}
 		return;
 	}
 	//Low Exhibitionist fap! - overrides all other faps

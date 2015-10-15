@@ -8,6 +8,9 @@ package classes {
 	import classes.Items.Melee.Fists;
 	import classes.Items.Melee.Rock;
 	import classes.Items.Miscellaneous.EmptySlot;
+	import classes.Items.Accessories.TamWolf;
+	import classes.Items.Accessories.TamWolfDamaged;
+	import classes.Items.Accessories.Allure;
 	import classes.VaginaClass;
 	import classes.BreastRowClass;
 	import classes.StorageClass;
@@ -18,8 +21,7 @@ package classes {
 	import flash.utils.getQualifiedClassName;
 	import flash.utils.getDefinitionByName;
 	import classes.GameData.StatTracking;
-	import classes.Items.Accessories.TamWolf;
-	import classes.Items.Accessories.TamWolfDamaged;
+	
 	import flash.utils.ByteArray;
 	import classes.GLOBAL;
 	import classes.GameData.Pregnancy.PregnancyManager;
@@ -2621,6 +2623,7 @@ package classes {
 			
 			var currLib:int = libidoMod + libidoRaw;
 			if (hasStatusEffect("Myr Venom")) currLib += Math.floor(currLib * 0.15);
+			if (accessory is Allure) currLib += 20;
 			
 			if (currLib > libidoMax())
 			{
@@ -10547,6 +10550,8 @@ package classes {
 				collection = ["tangy","tangy","tangy","tangy","tangy","sweet","sweet","sweet","intoxicating","intoxicating"];
 			} else if (arg == GLOBAL.FLUID_TYPE_VANILLA) {
 				collection = ["sweet","sugary","creamy","vanilla"];
+			} else if(arg == GLOBAL.FLUID_TYPE_NYREA_CUM) {
+				collection = ["salty","salty","salty","salty","salty","salty","salty","potent","potent","potent"];
 			}
 			
 			else collection = ["bland"];
@@ -10575,6 +10580,8 @@ package classes {
 				collection = ["creamy","creamy","creamy","sticky","sticky"];
 			} else if (arg == GLOBAL.FLUID_TYPE_LEITHAN_MILK) {
 				collection = ["thick","thick","thick","creamy","creamy"];
+			} else if(arg == GLOBAL.FLUID_TYPE_NYREA_CUM) {
+				collection = ["thick","thick","thick","slick","creamy"];
 			}
 			
 			else collection = ["fluid"];
@@ -10609,6 +10616,8 @@ package classes {
 				collection = ["violet","violet","violet","violet","violet","milky-violet","milky-violet","milky-violet","violet-marbled cream","violet-marbled cream"];
 			} else if (arg == GLOBAL.FLUID_TYPE_LEITHAN_MILK) {
 				collection = ["alabaster","alabaster","alabaster","alabaster","alabaster","semi-transparent","semi-transparent","semi-transparent","off-white","off-white"];
+			} else if (arg == GLOBAL.FLUID_TYPE_NYREA_CUM) {
+				collection = ["purple","purple"];
 			}
 			
 			else collection = ["ERROR, INVALID FLUID TYPE."];
@@ -10624,6 +10633,7 @@ package classes {
 			else if(arg == GLOBAL.FLUID_TYPE_STRAWBERRY_MILK || arg == GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK) return "pink";
 			else if (arg == GLOBAL.FLUID_TYPE_SYDIAN_CUM) return "silver";
 			else if(arg == GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK) return "purple";
+			else if (arg == GLOBAL.FLUID_TYPE_NYREA_CUM) return "purple";
 			return "white";
 		}
 		public function fluidNoun(arg: int): String {
@@ -10632,7 +10642,7 @@ package classes {
 			//CUM & MILK TYPES
 			if (arg == GLOBAL.FLUID_TYPE_MILK) {
 				collection = ["milk","cream"];
-			} else if (arg == GLOBAL.FLUID_TYPE_CUM || arg == GLOBAL.FLUID_TYPE_SYDIAN_CUM) {
+			} else if (arg == GLOBAL.FLUID_TYPE_CUM || arg == GLOBAL.FLUID_TYPE_SYDIAN_CUM || arg == GLOBAL.FLUID_TYPE_NYREA_CUM) {
 				collection = ["cum"];
 			} else if (arg == GLOBAL.FLUID_TYPE_HONEY) {
 				collection = ["honey"];
