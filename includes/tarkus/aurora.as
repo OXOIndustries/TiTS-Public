@@ -38,7 +38,7 @@ Interior
 
 public function auroroMessInRoomText():void
 {
-	if(flags["TARKUS_DESTROYED"] != undefined && flags["MET_AURORA"] != undefined)
+	if(flags["TARKUS_DESTROYED"] != undefined && flags["MET_AURORA"] != undefined && flags["DECK13_SHIELDS_ON"] == 1)
 	{
 		output("\n\nIn a quiet corner of the too-large room you see a familiar dangling figure enjoying a peach. Looks like Aurora is about the same as ever.");
 		addButton(1,"Aurora",approachAurora);
@@ -116,15 +116,23 @@ public function approachAurora():void
 	if(!pc.isCrotchGarbed())
 	{
 		author("Fenoxo");
+		/*
 		output("As soon as you step inside, a howling, screeching alarm goes off. Did you trigger some kind of anti-intrusion system? The sound of a fist hitting metal jars you out of your reverie, and you at last identify the inhuman tone as coming from ");
 		if(flags["MET_AURORA"] == undefined) output("the small bat-girl in the back of the chamber.");
 		else output("Aurora.");
 		output(" Her knuckles have depressed a big, red button, and she screeches, <i>\"Creep!\"</i> as a mechanism in the wall kicks into gear.");
 		output("\n\nIn the blink of an eye, a giant metallic palm swings out of the wall on strength from a dozen pneumatic cylinders, bowling you right out the doorway. A shrill voice chases you, calling, <i>\"Put some pants on!\"</i>");
 		output("\n\n<b>It looks like you need clothes to go in that shop....</b>");
+		*/
+		
+		output("As soon as you approach the bat, a howling, screeching alarm goes off all around you. What the--?! Seemingly out of nowhere, she quickly draws an intimidating-looking flare gun, heavily holding it with both hands. Making certain to aim the firearm directly between your eyes, she screeches, <i>“Creep!”</i> You hear the click of the depressed trigger followed by a loud, pneumatic hiss.");
+		output("\n\nYour vision is suddenly obscured by what appears to be a giant, red punching glove before your world goes entirely black and you are instantly knocked off your [pc.feet] and pushed out of the room. A shrill voice chases you, calling, <i>“Put some pants on!”</i>");
+		output("\n\n<b>It looks like you need to be wearing some clothes before talking to her....</b>");
+		
 		pc.HP(-1);
 		clearMenu();
-		addButton(0,"Next",move,"213");
+		if(currentLocation == "301") addButton(0,"Next",move,"212");
+		else addButton(0,"Next",move,"213");
 		return;
 	}
 	//First meeting

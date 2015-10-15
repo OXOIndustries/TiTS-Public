@@ -219,7 +219,7 @@
 					kGAMECLASS.output("\n\nThe flesh on your chest ripples, your boobs condensing as your body readjusts its mass downwards.");
 					if(pc.bRows() > 1)
 					{
-						kGAMECLASS.output(" A few minutes later you realise you are walking with a new lightness of step; a pat around your ribcage reveals the ruskvel has completely removed ");
+						kGAMECLASS.output(" A few minutes later you realize you are walking with a new lightness of step; a pat around your ribcage reveals the ruskvel has completely removed ");
 						if(pc.bRows() > 2) kGAMECLASS.output("the lowest of your sets");
 						else if(pc.bRows() == 2) kGAMECLASS.output("your secondary set");
 						kGAMECLASS.output(" of breasts, nipples and all.");
@@ -263,7 +263,7 @@
 				//Grow raskvel ears - req no fur and nonmuzzle!
 				if(!pc.hasFur() && !(pc.hasFaceFlag(GLOBAL.FLAG_MUZZLED) || pc.hasFaceFlag(GLOBAL.FLAG_ANGULAR)) && pc.earType != GLOBAL.TYPE_RASKVEL && rand(4) == 0 && changes < changeLimit)
 				{
-					kGAMECLASS.output("\n\nWhat is happening to your ears? They’re getting bigger, you can feel that, but should they really feel this loose? It’s as if they’ve gone well past their sell-by date, hanging limply off the side of your head. That’s when the real growth begins. You can practically hear your flesh crackle and sprout as your pinna blossom outwards and downwards at a remarkable rate, flattening into long, plump sheets that finally reach well below your waist.\n\nYou run slightly stunned fingers over them once the transformation seems to be over, shivering as you feel how sensitive their undersides are. You can hear more or less the same, but... you coo as you flex muscles that formerly would have made your ears crane slightly, and instead cause your massive new flaps to curl up dexterously. You find, with a few experimental twitches, you are able to move them almost as surely as if they were a new set of limbs. Which is just as well, because when you set off again you realise, with a jerk of the neck, you’re carrying a hell of a lot of weight off the back of your head now.\n\nBetter work on your posture - <b>your new raskvel-like ears will need you to!</b>");
+					kGAMECLASS.output("\n\nWhat is happening to your ears? They’re getting bigger, you can feel that, but should they really feel this loose? It’s as if they’ve gone well past their sell-by date, hanging limply off the side of your head. That’s when the real growth begins. You can practically hear your flesh crackle and sprout as your pinna blossom outwards and downwards at a remarkable rate, flattening into long, plump sheets that finally reach well below your waist.\n\nYou run slightly stunned fingers over them once the transformation seems to be over, shivering as you feel how sensitive their undersides are. You can hear more or less the same, but... you coo as you flex muscles that formerly would have made your ears crane slightly, and instead cause your massive new flaps to curl up dexterously. You find, with a few experimental twitches, you are able to move them almost as surely as if they were a new set of limbs. Which is just as well, because when you set off again you realize, with a jerk of the neck, you’re carrying a hell of a lot of weight off the back of your head now.\n\nBetter work on your posture - <b>your new raskvel-like ears will need you to!</b>");
 					pc.earType = GLOBAL.TYPE_RASKVEL;
 					changes++;
 				}
@@ -441,8 +441,12 @@
 					//If you've got a cunt needing palette swapped
 					if(cuntToBe >= 0)
 					{
-						kGAMECLASS.output("\n\nWetness escapes your pussy as it seems to shimmer with heat, your lips and clit");
-						if(pc.vaginas[cuntToBe].clits > 1) kGAMECLASS.output("s");
+						kGAMECLASS.output("\n\nWetness escapes your pussy as it seems to shimmer with heat, your lips");
+						if(pc.vaginas[cuntToBe].clits > 0)
+						{
+							kGAMECLASS.output(" and clit");
+							if(pc.vaginas[cuntToBe].clits > 1) kGAMECLASS.output("s");
+						}
 						kGAMECLASS.output(" puffing up to the energy cycling through them. It eventually dissipates, but when you check downstairs you find that whilst your mons retained its pigmentation your vagina proper has shifted to a brilliant purple color, shining in its own excitement.");
 						pc.vaginas[cuntToBe].vaginaColor = "purple";
 						pc.lust(10);

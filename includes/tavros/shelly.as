@@ -255,6 +255,7 @@ public function omniShellyEpilogueBlurb():void
 	//if first time: 
 	if(flags["KNOWS_ABOUT_SHELLY_CUM_REACTION"] == undefined)
 	{
+		flags["KNOWS_ABOUT_SHELLY_CUM_REACTION"] = 1;
 		output("\n\n<i>“Semen makes the eggs multiply. Thats why it’s not good to cum inside,”</i> she says, patting her stomach.");
 		if(flags["CAME_INSIDE_SHELLY"] == undefined) output(" You mention you’re glad you didn’t make it any harder for her, but if you did happen to forget you’d be happy to relieve her of the extra eggs.");
 		else output(" You apologize for not listening, but mention that you would be happy to help relieve her of those new extra eggs if she wants.");

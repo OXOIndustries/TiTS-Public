@@ -459,11 +459,13 @@ public function chicksRideASydian():void
 	}
 	output("fuckdoll, slapping his bitch-breaking girth into you with bruising force. Your composure slips once more, and this time, you're sure you're going to cum.");
 	output("\n\nThe sydian must sense this because he grabs hold of ");
-	if(pc.hasCock()) {
-		output("[pc.oneCock] and starts pumping you towards your orgasm, seemingly comfortable with handling another's member so long as he's hilt-deep in a pussy.");
+	if(pc.hasCock() || pc.hasClit())
+	{
+		if(pc.hasCock()) output("[pc.oneCock] and starts pumping you towards your orgasm, seemingly comfortable with handling another's member so long as he's hilt-deep in a pussy.");
+		else if(pc.clitLength > 4) output("[pc.oneClit] and starts pumping the enormous lady-boner, wracking you with intense sensation.");
+		else output("[pc.oneClit] and starts rubbing against it, wracking you with intense sensation.");
 	}
-	else if(pc.clitLength > 4) output("[pc.oneClit] and starts pumping the enormous lady-boner, wracking you with intense sensation.");
-	else output("[pc.oneClit] and starts rubbing against it, wracking you with intense sensation.");
+	else output(" your groin and deeply massages your mons, wracking you with intense sensation.")
 	output(" You give in, eyes crossed, and let it happen. You let the heat in your [pc.vaginas] blossom into a wonderful, glowing bloom. [pc.GirlCum]");
 	if(pc.isSquirter()) output(" washes out of you in a tide");
 	else if(pc.wetness(x) >= 3) output(" soaks your mate");
@@ -897,7 +899,7 @@ public function getPeggedToOrgasmByRustBro():void
 	output(" But first, you are going to need a little bit of preparation, I think.\"</i>");
 	output("\n\nSuddenly, his long tail curls around your [pc.hip], and you can feel the soft antennae brushing against your [pc.ass]. You try to wiggle away in vain as a a gooey, viscous substance is being smeared all over your buttcheeks, though for what purpose you do not know. His tail also slips between your [pc.thighs] and slathers [pc.eachCock] with the sticky liquid. Whatever he's doing, you're sure the handsome sydian has something sexual in mind.");
 
-	output("\n\nAs an exquisite heat travels up from your saturated loins, you realise the sticky solution is an aphrodisiac. Suddenly [pc.oneCock] feels incredibly hypersensitive, your [pc.legOrLegs] quiver");
+	output("\n\nAs an exquisite heat travels up from your saturated loins, you realize the sticky solution is an aphrodisiac. Suddenly [pc.oneCock] feels incredibly hypersensitive, your [pc.legOrLegs] quiver");
 	if(pc.legCount == 1) output("s");
 	output(" as he grabs your tool in one of his powerful hands and begins to gently stroke it.");
 
@@ -922,7 +924,7 @@ public function getPeggedToOrgasmByRustBro():void
 	output(" as he buries his raging manhood deep within your rear tunnel. You begin to drool and moan as the thousands of feathery cilia along the length of his cock brush along your inner walls. They flit and flutter inside of you, massaging starbursts of pleasure into your nerves, moving like one thousand little tongues.");
 	pc.orgasm();
 	output("\n\nAs the powerful male syndian begins to mercilessly rut you, you can feel him secreting even more of his aphrodisiac inside your fuck chasm. As he pistons back and forth his brush like cilia rub it into your inner walls, causing your innards to become even more sensitive.");
-	output("\n\nAs the male sydian pushes up against your prostate, you scream with pleasure and climax for the third time in a row. Your eyes roll back, your tongue lolls out, and you simply moan like a fuck-addled whore. You're so into it that you don't even realise your ");
+	output("\n\nAs the male sydian pushes up against your prostate, you scream with pleasure and climax for the third time in a row. Your eyes roll back, your tongue lolls out, and you simply moan like a fuck-addled whore. You're so into it that you don't even realize your ");
 	if(pc.legCount > 1) output("[pc.legs] have given out");
 	else output("[pc.leg] gave out]");
 	output(", and you are being held up by the muscular sydian as he pounds your pucker from behind.");

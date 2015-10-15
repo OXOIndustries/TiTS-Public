@@ -303,7 +303,9 @@ public function loseToDane():void {
 	{
 		output("\n\nYour [pc.vaginas] drench");
 		if(pc.vaginaTotal() == 1) output("es");
-		output(" your hand with moisture as you impulsively fill yourself as full as possible, thumb pressed hard on [pc.clit]. Somehow, as wonderful as it feels, it can't compare to the ass-filling ecstasy of Dane's superlative length plowing your through your backdoor. You whimper all the same, overwhelmed from multiple sources.");
+		output(" your hand with moisture as you impulsively fill yourself as full as possible");
+		if(pc.hasClit()) output(", thumb pressed hard on [pc.oneClit]");
+		output(". Somehow, as wonderful as it feels, it can't compare to the ass-filling ecstasy of Dane's superlative length plowing your through your backdoor. You whimper all the same, overwhelmed from multiple sources.");
 	}
 	//Cocks
 	if(pc.hasCock())

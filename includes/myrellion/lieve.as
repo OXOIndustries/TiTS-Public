@@ -1023,13 +1023,18 @@ public function lieveVenomFuck(tempVenomEnabled:Boolean = false):void
 	
 	output("\n\nYou hear a voice begging Lieve to fuck you, to thrust her tongue deep into your [pc.cunt]. It takes a long moment for you to recognize the slurring voice as your own.");
 	
-	output("\n\nLieve smiles up at you, planting her plated fingers on your thighs and spreading you nice and wide for her inspection. <i>“I see my girls did a good job down here,”</i> she teases, one of her fingers caressing the tender flesh leading up to your groin. Just the feeling of her finger sliding up your thigh sends you into another orgasm, every inch of your body easily as sensitive as your [pc.clit] ever could be. You scream and dig your hands into your lovers, holding tight as Lieve teases you through a second climax.");
+	output("\n\nLieve smiles up at you, planting her plated fingers on your thighs and spreading you nice and wide for her inspection. <i>“I see my girls did a good job down here,”</i> she teases, one of her fingers caressing the tender flesh leading up to your groin. Just the feeling of her finger sliding up your thigh sends you into another orgasm");
+	if(pc.hasClit()) output(", every inch of your body easily as sensitive as your [pc.clit] ever could be");
+	output(". You scream and dig your hands into your lovers, holding tight as Lieve teases you through a second climax.");
 	
 	output("\n\n<i>“I guess I forgot, you’re not as used to my venom as the girls are,”</i> your red myr lover laughs, her lone finger still tracing up to the lips of your [pc.cunt]. You thought it was intense before, but God, the sensation of Lieve’s fingertip flicking your lip sends pleasure crashing through you in waves so strong you think you’ll faint.");
 	
 	output("\n\n<i>“Fuck,”</i> you manage to groan, body going limp.");
 	
-	output("\n\nWith a wink, Lieve circles her finger around your [pc.clit], just far enough to keep you from going completely insane from overwhelming pleasure. <i>“Like my venom?”</i> she asks, sliding her finger in between your pussylips.");
+	output("\n\nWith a wink, Lieve");
+	if(pc.hasClit()) output(" circles her finger around your [pc.clit], just far enough");
+	else output(" presses her fingers around your labia with just enough pressure");
+	output(" to keep you from going completely insane from overwhelming pleasure. <i>“Like my venom?”</i> she asks, sliding her finger in between your pussylips.");
 	
 	output("\n\nYou shriek out something that Lieve takes as a <i>“yes,”</i> and you feel two more fingers join the first, plunging into your twat.");
 	
@@ -1087,7 +1092,9 @@ public function lieveNoVenomFuck():void
 	
 	output("\n\n<i>“Have it your way, Steele,”</i> she says in mock disappointment. She runs her thumb under her lip, wiping away a little trickle of pink, venomous saliva. She extends her hand, and one of her wives dutifully laps the extra drug up, moaning as she suckles on Lieve’s thumb before returning to eating out her partner.");
 	
-	output("\n\nWith her hand cleansed, Lieve slips it down between your bodies, teasing her fingertips around the bud of your [pc.clit]. In turn, you lace your arms around her, pulling her a little closer until her small breasts are wonderfully near to your lips. She doesn’t seem to mind when you reach out and kiss one of them, teasing the stiff peak with your [pc.tongue], but when you try and suckle from her, Lieve roughly pushes you back against the wall, tsking her tongue and driving her fingers deep into your sex.");
+	output("\n\nWith her hand cleansed, Lieve slips it down between your bodies");
+	if(pc.hasClit()) output(", teasing her fingertips around the bud of your [pc.clit]");
+	output(". In turn, you lace your arms around her, pulling her a little closer until her small breasts are wonderfully near to your lips. She doesn’t seem to mind when you reach out and kiss one of them, teasing the stiff peak with your [pc.tongue], but when you try and suckle from her, Lieve roughly pushes you back against the wall, tsking her tongue and driving her fingers deep into your sex.");
 	
 	output("\n\n<i>“Ask a girl, first!”</i> she scowls, holding you firmly against the wall. <i>“I’m not a honeypot just waiting to drip nectar for you, Steele.”</i>");
 	
@@ -1490,11 +1497,21 @@ public function lieveSoloFucktimeII(tempVenomEnabled:Boolean = false):void
 	
 	if (pc.hasVagina())
 	{
-		output("\n\nYou shiver as Lieve leans into your crotch, caressing your sex and teasing her way around your pussylips until her tongue finds its way to the very tip of your [pc.clit]. You suck in a panicked breath as the crimson ant-girl licks your rosebud, slathering it with a thick coating of saliva. The second lick is almost too much for you to bear.");
+		output("\n\nYou shiver as Lieve leans into your crotch, caressing your sex and teasing her way around your pussylips until her tongue finds its way to the very");
+		if(pc.hasClit()) output(" tip of your [pc.clit]. You suck in a panicked breath as the crimson ant-girl licks your rosebud");
+		if(pc.hasClit()) output(" edge of your female sex");
+		output(", slathering it with a thick coating of saliva. The second lick is almost too much for you to bear.");
 		
-		output("\n\nShe takes her time, slowly circling your clit again and again, wrapping it in an irresistible coat of venomous wetness that seeps steadily into your sex. Your whole lower body tingles, and every hair you have stands on end as your lover lavishes your pleasure buzzer with her mouth.");
+		output("\n\nShe takes her time, slowly circling your");
+		if(pc.hasClit()) output(" clit");
+		else output(" groin");
+		output(" again and again, wrapping it in an irresistible coat of venomous wetness that seeps steadily into your sex. Your whole lower body tingles, and every hair you have stands on end as your lover lavishes you");
+		if(pc.hasClit()) output("r pleasure buzzer");
+		output(" with her mouth.");
 		
-		output("\n\nIt doesn’t take much of that treatment to wring another orgasm out of you. Her only recognition of your body’s sudden tension, and the wetness gushing between your [pc.legs], is a muted moan. She just keeps licking and kissing around your clit, brushing your pussylips but never quite pushing into you. You try to beg her to stop - that it’s too much - but all that comes out is a squealing <i>“Fuck me! Harder!”</i>");
+		output("\n\nIt doesn’t take much of that treatment to wring another orgasm out of you. Her only recognition of your body’s sudden tension, and the wetness gushing between your [pc.legs], is a muted moan. She just keeps licking and kissing");
+		if(pc.hasClit()) output(" around your clit");
+		output(", brushing your pussylips but never quite pushing into you. You try to beg her to stop - that it’s too much - but all that comes out is a squealing <i>“Fuck me! Harder!”</i>");
 	}
 	
 	if (!pc.hasCock() && !pc.hasVagina())
@@ -1627,7 +1644,13 @@ public function lieveBodyWorship():void
 	output("\n\nThe next thing to break your lust-addled stupor is Lieve’s hand grabbing your [pc.hair], pushing you deeper and deeper into her twat as she screams out in pleasure. A moment later and you’re on your back, flailing across the scattered pillows and blankets on the bunker floor. Lieve leaps on you, pulling your [pc.legs] up around her shoulders and burying her face into your crotch. Your eyes roll back, succumbing to overwhelming ecstasy - the venom in your veins responding to her lips and hands roaming all over your [pc.crotch].");
 
 	output("\n\nYour back arches, [pc.hips] thrusting against Lieve’s lips as she");
-	if (pc.hasVagina()) output(" kisses and licks at your [pc.clit], working hard to bring you to climax in her wake");
+	if (pc.hasVagina())
+	{
+		output(" kisses and licks at your");
+		if(pc.hasClit()) output(" [pc.clit]");
+		else output(" labia");
+		output(", working hard to bring you to climax in her wake");
+	}
 	else if (pc.hasCock()) output(" runs her tongue along your [pc.cock]’s undershaft, using her fingers to jack your ladydick off with startling skill");
 	else output(" traces kisses and licks on your barren crotch");
 	output(". You’re on the receiving end of a direct hit of red myr venom, straight to your groin. The venom seeps in quickly, spreading out through your [pc.skin] until your lover’s every touch sends orgasmic shockwaves through you. A scream tears through your throat, echoing off the barren bunker walls - you’re sure the whole town can hear you, the whole <i>planet</i> probably, but that doesn’t matter to you: all you can think about is your overwhelming, orgasmic pleasure.");

@@ -32,6 +32,7 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Ovir", ovirCodexEntry,true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Rahn", rahnCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Siel", sielCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Saeri", saeriCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Simii", simiiCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Sionach", sionachCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Thraggen", thraggenCodexEntry,true);
@@ -158,7 +159,34 @@ public function humanTerranCodex():void
 }
 
 
+public function saeriCodexEntry():void
+{
+	clearOutputCodex();
+	outputCodex(header("Saeri"));
+	outputCodex("<i>Butterfly girls. Second form of caterpillar-like siel.</i>\n");
+	outputCodex("\n<b>Name (Singular):</b> Saeri");
+	outputCodex("\n<b>Taxonym:</b> Saeri");
+	outputCodex("\n<b>Genders:</b> Male, Female");
+	outputCodex("\n<b>Sex:</b> Male, Female");
+	outputCodex("\n<b>Height:</b> Fully matured saeri commonly range from five feet to just over six.");
+	outputCodex("\n<b>Weight:</b> Saeri are very light for their size, ranging between forty to sixty kilos.");
+	outputCodex("\n<b>Hair:</b> Light and dark variations of blue, purple, and pink, as well as black or white.");
+	outputCodex("\n<b>Eyes:</b> Intense blues, purples, and pinks.");
+	outputCodex("\n<b>Skin Color:</b> Dusky Blue\n\n");
 
+	outputCodex(blockHeader("Features"));
+	outputCodex("Saeri are butterfly-winged humanoid bipeds. They have dusky steel-blue skin and slender, elfin bodies. Two bug-like antennae protrude from their head and they have six fingers per hand.\n\nBesides their wings, the most immediately noticeable trait of a saeri are their distinctive eyes. While their sclera are white—much like a Human's or Ausar's—their irises look like exploding stars; bright flashes exploding in black, thick-rimmed circles.\n\nThe one exception to the rule of saeri slenderness is the female bust, which may range anywhere from a A to DD-cup.\n\n");
+	outputCodex(blockHeader("Genitals"));
+	outputCodex("Saeri genitals are near identical to siel genitals. Females have labial lips shaped in a Y-shaped fold, with the top of the Y facing toward the navel. Saeri have a great deal of muscular control over their vaginal walls, which are internally segmented.\n\nA saeri male's penis is segmented and rippled, ending in a small, pink, fleshy tip. They have two meatus (colloquially known as \"cock holes\") that ejaculate twin streams of sticky, silk-like semen. Unlike siel males, their penis and testicles are always external.\n\n");
+	outputCodex(blockHeader("Species Polymorphism"));
+	outputCodex("The saeri is a polymorph of the siel species—a potential form the species may take during their life-cycle.\n\nAt any time after puberty starts to the end of their life-cycle, a siel may feel the urge to undergo the transition from siel to saeri, though they do not need to act on this urge. This calling is characterized by the sudden need to eat excessive amounts of food, a sudden spike in silk production, and the desire to weave a cocoon around one's body and hide from the world.\n\nShould the siel indulge in this urge, they undergo a process of metamorphosis in which their body breaks down and transforms within the cocoon. When they emerge a month later, they come out as saeri.\n\nWhile ninety percent of siel feel this calling sometime in their lives, only a third of the species acts on it. Not only does the siel lose one set of their genitals, they also lose their large abdomens and silk shooters—both needed to produce weavable silk.\n\nThe transformation is not a total loss. In place of their silk-weaving capacity, the saeri gain the ability to fly. There are many theories as to the evolutionary purpose of this secondary form—colonization, hunting-and-gathering—but nothing xenologists can definitively agree on. What is known is that with the advance of civilization and gene-therapies, this supposed role is now redundant.\n\nThere is currently research being conducted by various corporations into helping siel regain or keep their silk-weaving capacity upon becoming saeri.\n\n");
+	outputCodex(blockHeader("Mating and Reproduction"));
+	outputCodex("Saeri male and female seminal fluid is extremely sticky. When mating with a partner, this stickiness tugs at the genitals of their partner, heightening sensual pleasure. Unlike the siel, however, this stickiness is not so great as to 'knot' their partner.\n\nA saeri phallus shoots copious amounts of this sticky semen, enough to pack an orifice completely full. Along with its clinging qualities, this ensures semen is trapped inside a partner, heightening the chance of impregnation. It is also difficult for rival males to displace this semen with their own, serving an evolutionary purpose.\n\nA saeri female can give birth to anywhere between four to six young at a time, held for three months until birth. Saeri children are typically born as siel. However, there is a small chance of them being born as a 'pure saeri'—a child born a saeri without having to become a siel first. This chance is significantly increased when mating occurs between two saeri partners.\n\nLike the siel, saeri have a natural lifespan of up to two centuries and show very few external signs of aging. While they are extremely fertile, most  take contraceptives that prevent unwanted pregnancies.\n\n");
+	outputCodex(blockHeader("History, Culture and Religion"));
+	outputCodex("As siel and saeri are different morphs of the same species, their history, culture, and religion is the same. (See the Siel codex entry)");
+	CodexManager.unlockEntry("Siel");
+	CodexManager.viewedEntry("Saeri");
+}
 public function gushCodexEntry():void
 {
 	clearOutputCodex();
@@ -1315,7 +1343,7 @@ public function Bess13CodexEntry():void
 	outputCodex("\n\nBoth Bess-13 and Ben-14 units come with male and female genital attachments. They can have one, both, or neither attached at any given time.");
 	outputCodex("\n\nBoth units have the ability to equip a pussy and have it extend out from a prehensile tail growing from between their legs. This is particularly useful for users with unusual body types or for offering vaginal penetration while being pegged from behind. Some users find this ability unsettling and never make use of it.");
 	outputCodex("\n\nTheir FlexMetal bodies allows them to incorporate all but the largest of individuals in any orifice. Since Bess-13 and Ben-14 Units are marketed as breeding relief androids, they can easily take huge amounts of liquid inside of them and in a pinch swell their bodies to compensate.");
-	outputCodex("\n\nNeedless to say, these units were extremely popular with inflation fans and pregophiles across the galaxy. Bran Flazingan, the galaxy’s eight richest man and eccentric tycoon, called the Bess-13’s and Ben-14's \"the most enticing object you’ll ever feel the need to fuck.\"\n\n");
+	outputCodex("\n\nNeedless to say, these units were extremely popular with inflation fans and pregophiles across the galaxy. Bran Flazingan, the galaxy’s eighth richest man and eccentric tycoon, called the Bess-13’s and Ben-14's \"the most enticing object you’ll ever feel the need to fuck.\"\n\n");
 	// * Totally changable of course. Sixth might be too big a spot for this NPC.
 
 	outputCodex(blockHeader("History:"));

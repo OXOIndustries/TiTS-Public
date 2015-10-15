@@ -42,7 +42,7 @@ Xanthe, like most siel, is very mod-happy.*/
 
 public function silkenSerenityExteriorShitz():Boolean
 {
-	output("You spot an extravagant looking store with sheek marble pillars alongside the entrance. A crowd of stunningly beautiful beings are gathered out the front in a line. They are modelling various garments, armor, and lingerie. Peering closer, you realise they are holograms.\n\nAbove the store is a glimmering, glitzy sign that reads: \"Silken Serenity\". Through the throng of holo-models, you notice the windows are made of mirrored glass.");
+	output("You spot an extravagant looking store with sheek marble pillars alongside the entrance. A crowd of stunningly beautiful beings are gathered out the front in a line. They are modelling various garments, armor, and lingerie. Peering closer, you realize they are holograms.\n\nAbove the store is a glimmering, glitzy sign that reads: \"Silken Serenity\". Through the throng of holo-models, you notice the windows are made of mirrored glass.");
 	// The last paragraph of the description is randomly picked. Below are the seven random paragraphs. The race in the paragraph is also picked at random.
 	var choice:int = rand(7);
 	//Message 1
@@ -453,8 +453,8 @@ public function stareDontStareEpilogue():void
 	// First time meeting a Siel.
 	if(!CodexManager.entryUnlocked("Siel"))
 	{
-		output("\n\nAll of her...? You suddenly realise there’s more of her body hidden behind the clothes rack, and peer warily past her curvaceous hips. As promised, the Siel pulls it out... and out... and out. Void, how much of her IS there?");
-		output("\n\nWhen you finally get a good look at her, you realise she has six more sets of legs - eight in total - all clad in lacy black stockings. They’re attached to a long bulbous body that resembles that of a giant blue caterpillar. She wears a second set of underwear on her hindquarters. A segmented tail with a slit on the end is jutting out from her rump.");
+		output("\n\nAll of her...? You suddenly realize there’s more of her body hidden behind the clothes rack, and peer warily past her curvaceous hips. As promised, the Siel pulls it out... and out... and out. Void, how much of her IS there?");
+		output("\n\nWhen you finally get a good look at her, you realize she has six more sets of legs - eight in total - all clad in lacy black stockings. They’re attached to a long bulbous body that resembles that of a giant blue caterpillar. She wears a second set of underwear on her hindquarters. A segmented tail with a slit on the end is jutting out from her rump.");
 		output("\n\nNoticing your puzzlement, realization dawns on the alien woman. <i>\"Oh! It’s your first time meeting a siel. And here I was thinking you were just that interested... what a shame.</i>”");
 		output("\n\nThe siel woman then moves past you, making sure to brush against your side. There, right near your ear, she stops for a brief moment and leans in to whisper. \"<i>... If you </i>are<i>, though, I’ll just have to do something about that. I really do excel at ‘customer service’.”</i>");
 		CodexManager.unlockEntry("Siel");
@@ -463,7 +463,7 @@ public function stareDontStareEpilogue():void
 	// else (met Siel before
 	else
 	{
-		output("\n\nAll of her...? You suddenly realise there’s more of her body hidden behind the clothes rack, and peer warily past her curvaceous hips. As promised, she pulls it out... and out... and out.... She’s a siel!");
+		output("\n\nAll of her...? You suddenly realize there’s more of her body hidden behind the clothes rack, and peer warily past her curvaceous hips. As promised, she pulls it out... and out... and out.... She’s a siel!");
 		output("\n\nThe blue-skinned woman notices the glimmer of recognition in your eyes, and quirks an eyebrow. <i>\"Oh? Seems you’ve met my kind before. I hope it was a pleasant encounter.”</i>\</i>");
 		output("\n\nThe siel then moves past you, making sure to brush against your side. There, right near your ear, she stops for a brief moment and leans in to whisper. <i>\"If it wasn’t, I’ll have to make things right, you know. By ");
 		if(!pc.isNude()) output("stripping off that [pc.gear] of yours");
@@ -525,7 +525,7 @@ public function xantheTalkUsloot():void
 	{
 		flags["XANTHE_TALK_HAPPENED"] = 1;
 		output("Xanthe seems to be peering at you rather intently, as if she’s trying to figure something out. Those electric blues of hers are even more intense than usual.");
-		output("\n\n\"<i>... Now where have I seen you before...?”</i> she muses aloud. Suddenly, realisation sets in, and her eyebrows shoot up. <i>\"Oh, by Zyi! You’re [pc.fullName], aren’t you...?”</i>");
+		output("\n\n\"<i>... Now where have I seen you before...?”</i> she muses aloud. Suddenly, realization sets in, and her eyebrows shoot up. <i>\"Oh, by Zyi! You’re [pc.fullName], aren’t you...?”</i>");
 		//normal:
 		if(!pc.isBimbo()) output("\n\nYou swiftly look over your shoulder, to make sure nobody heard that. You then ask her <i>how</i> she knows who you are.");
 		//ditz:
@@ -727,8 +727,8 @@ public function sielCityTalkEpilogue():void
 	showXanthe();
 	output("You remark that it must be hard to destroy an old building to make way for a new one, then.");
 	output("\n\n<i>\"It’s not really done on Xhixia or any siel world, not unless it’s an exceptional circumstance. We’d rather leave an empty building than destroy someone’s work. That is, unless they’re alive to give permission. In some rare cases the family can approve it, but it’s very rarely done and most aren’t thoughtless enough to ask.”</i>");
-	if(!pc.isBimbo()) output("\n\nLooking around, you now realise just how much pride Xanthe must take in her clothing. Each one is woven from her own body, and therefore more than just an expression of herself. No wonder she puts so much detail into them.");
-	else output("\n\nLooking around, you realise she really takes pride in this stuff! You like the lingerie and tight stuff too. It looks fun to wear! Maybe you can model some for her, and she’ll play with you...?");
+	if(!pc.isBimbo()) output("\n\nLooking around, you now realize just how much pride Xanthe must take in her clothing. Each one is woven from her own body, and therefore more than just an expression of herself. No wonder she puts so much detail into them.");
+	else output("\n\nLooking around, you realize she really takes pride in this stuff! You like the lingerie and tight stuff too. It looks fun to wear! Maybe you can model some for her, and she’ll play with you...?");
 	processTime(1);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -757,7 +757,7 @@ public function xantheTalksAbootXanthe():void
 	else output("\n\n<i>\"What? You’ve got those wonderful boobs sticking out. You’re not, like, a boring modest person!”</i> You exclaim. Those kind of people are the worst!");
 	output("\n\n<i>\"Oh, but for a siel, this </i>is<i> modest! From my people’s point of view, wearing too much clothing is considered inappropriate. It’s most of the other species who have things backwards. The gold myr have the right idea, though. They know how to dress respectfully.”</i>");
 	//Normal (not ditz)
-	if(!pc.isBimbo()) output("\n\nYou realise things have gotten a little off topic, and you say as much. She coughs and nods, fully agreeing with you.");
+	if(!pc.isBimbo()) output("\n\nYou realize things have gotten a little off topic, and you say as much. She coughs and nods, fully agreeing with you.");
 	output("\n\n<i>\"Ah yes, enough about gratuitous concealment! Where to start, really? My full name is Xanthe O’Anyalicia, and I was born in the planet capital of Rhian.”</i>");
 	output("\n\n<i>\"I’m the sixteenth daughter of a family of twenty four. I’ve got a <i>lot</i> of sisters. My mother is a Xhixian senior senate advisor, and my father is a senate clerk. Needless to say, that’s how they first met.”</i>");
 	output("\n\nXanthe seems to take a moment to think about what to add, pressing a fingetip against her chin. \"<i>... I’m 82 years old - still pretty young for a siel. Never had a clutch of my own. Graduated from Rhian University with one Masters degree in cloth weaving and another in being a Mistress.”</i>");
@@ -798,7 +798,7 @@ public function askXantheWhyFoxCancelledFirefly():void
 	output("\n\n\"<i>... Right now, the rulers of Gildenmere - some say Goddesses - are creaming themselves in panties literally woven from my body. Pretty neat, hmm?”</i>");
 
 	if(!pc.isBimbo()) output("\n\nThat’s another bold claim! Sure, there’s no price tags on anything, but everything you’ve asked about has been very affortable. Surely her clothes can’t be <i>that</i> exclusive.");
-	else output("\n\nThe thought of a bunch of myr queens creaming themselves in their panties gets you hot and bothered, and you let out a little moan. A second later, you realise something doesn’t add up. \"<i>.... But, like, your clothes don’t seem that expensive to me. I mean, I can afford them.”</i>");
+	else output("\n\nThe thought of a bunch of myr queens creaming themselves in their panties gets you hot and bothered, and you let out a little moan. A second later, you realize something doesn’t add up. \"<i>.... But, like, your clothes don’t seem that expensive to me. I mean, I can afford them.”</i>");
 	output("\n\nWith a conspiratorial gleam in her electric blue colored eyes, Xanthe grins at you. <i>\"Oh, but my dear, they ARE expensive. I always give a special ninety per cent discount to the especially cute ones...”</i>");
 	output("\n\nShe’s definitely not joking. It seems you’ve been getting a hefty discount on everything in the store on account of how " + pc.mfn("handsome","beautiful","cute") + " she finds you. She must really find you attractive!");
 
@@ -1237,12 +1237,12 @@ public function letsDoAlienBondageMating():void
 		if(!pc.isTaur() && pc.tallness < 96)
 		{
 			output("Mistress Xanthe leans back against her own body and hooks up her stocking clad knees as if she’s sitting in a chair. She then looks at you and pats her lap.");
-			output("\n\nRealising she’s giving you an instruction, you rush over and hop into her lap like a good little sub. Wrapping your arms around her neck, you resist the urge to do anything else until ordered to.");
+			output("\n\nRealizing she’s giving you an instruction, you rush over and hop into her lap like a good little sub. Wrapping your arms around her neck, you resist the urge to do anything else until ordered to.");
 		}
 		else
 		{
 			output("Mistress Xanthe leans back against her own body and hooks up her stocking clad knees as if she’s sitting in a chair. She then looks at you and pats the side of her leg.");
-			output("\n\nRealising she’s giving you an instruction, you rush over and bow by her side a good little sub. You resist the urge to do anything else until ordered to.");
+			output("\n\nRealizing she’s giving you an instruction, you rush over and bow by her side a good little sub. You resist the urge to do anything else until ordered to.");
 		}
 		output("\n\n<i>\"Good " + pc.mf("boy","girl") + ".”</i> Xanthe’s husky words of praise cause your heart to soar, especially since they’re followed by a sweet kiss on your [pc.lips].");
 		output("\n\nYou spend some time basking in her powerful presence and obeying her commands. Does she get you to do anything - or do anything to you - today...?");
@@ -1457,7 +1457,7 @@ public function getLeftAloneByXanthePartDues(x:int = 0):void
 	else output("prostate");
 	output(".");
 
-	output("\n\nIt doesn’t take you long to realise there is a full sized mirror mounted on the wall and pointing directly at you, giving you a good look at how lewd you look right now. You stare at the [pc.race] in the mirror with [pc.hisHer] [pc.nipples]");
+	output("\n\nIt doesn’t take you long to realize there is a full sized mirror mounted on the wall and pointing directly at you, giving you a good look at how lewd you look right now. You stare at the [pc.race] in the mirror with [pc.hisHer] [pc.nipples]");
 	if(pc.hasCock()) output(" and [pc.cocks]");
 	output(" all bound and pulled downwards, arms upwards and [pc.legOrLegs] bound.");
 
@@ -1567,7 +1567,7 @@ public function leftTeasedForEver(x:int = 0):void
 		output(". You’re soon filled to the brim with her silky warmth, feeling fulfilled in so many ways.");
 	}
 	// PC sings ‘let it go’ from Frozen right about here.
-	output("\n\nWhen your Mistress finally pulls out of you and lovingly undoes your binds, you’re so enraptured in your subspace that you don’t realise what’s happening. You’re simply floating in your own private bliss-filled universe as you’re slowly laid down in the nearby bed, wrapped in a blanket, and held tight until you finally come back down from your endorphin high.");
+	output("\n\nWhen your Mistress finally pulls out of you and lovingly undoes your binds, you’re so enraptured in your subspace that you don’t realize what’s happening. You’re simply floating in your own private bliss-filled universe as you’re slowly laid down in the nearby bed, wrapped in a blanket, and held tight until you finally come back down from your endorphin high.");
 	output("\n\nThe first sensation that returns to you is that of your Mistress’s arms tightly wrapped around you and your [pc.hair] being gently stroked. You nuzzle into the warmth and smell of fresh rain that is obviously her. Soon you can feel your body shiver and tremble spasmodically from the following emotional and physical crash.");
 	output("\n\n<i>\"There there, pet, it’s okay. You’re safe and in my arms.”</i> Her husky, reassuring words fill your heart with an indescribably intense and heart wrenching sense of love. It’s not long before you fall into the most incredibly deep sleep in her arms.");
 	processTime(30);
@@ -1671,7 +1671,8 @@ public function shePaysAttentionToYouSlut():void
 		{
 			output("\n\n<i>\"It’s for weaving between your legs and against your cute [pc.pussyColor] pussy. Let me show you.</i> Your Mistress informs you. She then drapes the silky cord down your belly and between your [pc.thighs].");
 			output("\n\nIf you weren’t already swooning from her kiss, you’d be doing so at her complimenting your [pc.pussy]. When she threads it around and gives it a tight tug, the soft cord slides between your pussy lips and you let out a sharp gasp.");
-			output("\n\nOnce she’s finished doing you up, the silk rope is tied to your neck, running between your thighs and attached to a hook behind you on the floor. Even the slightest head movement causes it to gloriously rub against your [pc.clits] and makes you swoon with pleasure.");
+			output("\n\nOnce she’s finished doing you up, the silk rope is tied to your neck, running between your thighs and attached to a hook behind you on the floor.");
+			if(pc.hasClit()) output(" Even the slightest head movement causes it to gloriously rub against your [pc.clits] and makes you swoon with pleasure.");
 		}
 	}
 	output("\n\nYou are then robbed of your sight when a silky blindfold is thrown over your eyes. Engulfed in darkness, each and every tactile sensation and noise intensifies. You acutely feel and hear the fabric as it tightens against your [pc.skinFurScales]. A ball gag soon follows, depriving you of speech.");
@@ -1688,7 +1689,7 @@ public function shePaysAttentionToYouSlut():void
 		else if(pc.biggestTitSize() < 1 && pc.hasCock()) output("[pc.cocksLight]");
 		else if(pc.biggestTitSize() >= 1 && pc.hasCock()) output("[pc.breastsNoun] and [pc.cocksNounSimple]");
 	}
-	else output(" - grinding and stimulating your [pc.clits] in the process");
+	else if(pc.hasClit()) output(" - grinding and stimulating your [pc.clits] in the process");
 	output(".");
 
 	output("\n\n<i>\"If only people could see you now - [pc.fullName], the young scion of the Steele financial empire, bound and gagged in my dungeon as my submissive little ");
@@ -1722,7 +1723,7 @@ public function notASlutXanthe():void
 		}
 		output("[pc.breastsNoun]");
 	}
-	else if(pc.legCount > 1 && pc.hasVagina()) output(", in turn deliciously rubbing your [pc.clits]");
+	else if(pc.legCount > 1 && pc.hasClit()) output(", in turn deliciously rubbing your [pc.clits]");
 	else output("in pleasure");
 	output(". You let out a raspy moan then immediately flush, knowing it doesn’t help your case.");
 	processTime(5);
@@ -1744,7 +1745,7 @@ public function yesXantheImTotesMyGoatsASlut():void
 	output("\n\n\"<i>... Oh, you </i>like<i> being called a slut? Make sure you remember that you’re</i> my<i> property. Even as you’re sucking down some spacer’s spunk or burying your face in some bitch’s pussy, don’t forget who you </i>really<i> belong to.”</i> Xanthe reminds you, all the while lavishing another stinging spank on your [pc.butt].");
 	output("\n\nEach crack causes your whole body to arch and your head to instinctively loll back");
 	if(pc.biggestTitSize() >= 1 && pc.hasCock()) output(", in turn pulling at your [pc.cocks] and [pc.chestNoun]");
-	else if (pc.legCount > 1 && pc.hasVagina()) output(", in turn deliciously rubbing your [pc.clits]");
+	else if (pc.legCount > 1 && pc.hasClit()) output(", in turn deliciously rubbing your [pc.clits]");
 	else output(" in pleasure");
 	output(". You let out a raspy moan, knowing deep down that you are definitely her special property.");
 	processTime(5);
@@ -1777,12 +1778,12 @@ public function slutNotASlutEpilogue():void
 	if(pc.biggestTitSize() >= 1) output("bound up breasts");
 	else output("chest");
 	output(" are assaulted with her soft and hard floggers, paddles, and crops.");
-	if(pc.biggestTitSize() >= 1 || pc.hasCock() || pc.hasVagina())
+	if(pc.biggestTitSize() >= 1 || pc.hasCock() || pc.hasClit())
 	{
 		output(" Each crack in turn caresses your captured ");
 		if(pc.biggestTitSize() >= 1) output("chest");
 		else if(pc.hasCock()) output("[pc.cocksNounSimple]");
-		else if(pc.hasVagina()) output("[pc.clits]");
+		else if(pc.hasClit()) output("[pc.clits]");
 		output(" and you reel with dizzying pleasure.");
 	}
 	output(" Every now and then she stops to tease your back with her fingers or a feather, catching you completely off guard.");

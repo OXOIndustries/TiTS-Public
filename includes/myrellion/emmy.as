@@ -27,7 +27,7 @@ public function emmyBonusNotes():Boolean
 	if(flags["EMMY_BANNED"] == 1)
 	{
 		output("\n\nThe shopkeeper shoos you toward the door. She won't even look you in the eye, and one of her fingers is poised above a call button should you make trouble. It'd be best to leave.");
-		return true;
+		return false;
 	}
 	//First time
 	if(flags["SEEN_EMMY"] == undefined)
@@ -160,7 +160,7 @@ public function emmyRepeatGreetings():void
 		if(flags["EMMY_ORALED"] != undefined) output("doing your best not to imagine the overtly sexual jackaless putting her lips to work on an hour-long, enthusiastic “apology.”");
 		else output("doing  your best to ignore her overt displays of sexuality.");
 		output(" Her white and black, KihaCorp-branded jumpsuit seems perfectly painted to her every curve, designed to reveal far more than it manages it conceal. When she shifts position, her tail wagging behind her, you can even make out the pebbly texture of her nipples.");
-		output("\n\n<i>“Welcome back, [pc.name]! It’s always nice to have a repeat customer come visit. If you need any help with any of the merchandise, I’m happy to give you a hands-on demonstration with a show model.”</i> Emmy glances around to make sure noone else is in the store and adds, <i>“");
+		output("\n\n<i>“Welcome back, [pc.name]! It’s always nice to have a repeat customer come visit. If you need any help with any of the merchandise, I’m happy to give you a hands-on demonstration with a show model.”</i> Emmy glances around to make sure no one else is in the store and adds, <i>“");
 		if(flags["EMMY_QUEST"] == 0) output("Did you find that flower? I haven’t been able to stop thinking about your reward...”</i>");
 		else 
 		{
@@ -244,7 +244,10 @@ public function tradeWivEmmy():void
 	shopkeep = chars["EMMY"];
 	if(flags["EMMY_TRADE_OFFERED"] == undefined)
 	{
-		shopkeep.keeperSell = "<i>“You buy equipment too?”</i> you ask, pulling out your things.\n\n<i>“Whoah, whoah whoah whoah! What kind of shop do you think we’re running here, [pc.name]? KihaCorp is one of the leading companies in nearly every field of technological advancement,”</i> ";
+		shopkeep.keeperSell = "<i>“You buy equipment too?”</i> you ask, pulling out your things.\n\n<i>“Whoah, whoah whoah whoah! What kind of shop do you think we’re running here, ";
+		if(flags["MET_EMMY"] != undefined) shopkeep.keeperSell += "[pc.name]";
+		else shopkeep.keeperSell += "stranger";
+		shopkeep.keeperSell += "? KihaCorp is one of the leading companies in nearly every field of technological advancement,”</i> ";
 		if(flags["MET_EMMY"] != undefined) shopkeep.keeperSell += "Emmy";
 		else shopkeep.keeperSell += "The jackal-woman";
 		shopkeep.keeperSell += " growls. <i>“We aren’t exactly a pawn shop, ya know?”</i>\n\nYou";
@@ -654,7 +657,7 @@ public function askEmmyAboutEmmy():void
 	output("\n\n<i>“So, is that why you’re out here, on the frontier?”</i> you hazard.");
 	output("\n\nEmmy nods. <i>“Out here, nobody cares. Populations are mixed up enough that it’s pretty hard to rage over somebody having a long face, and even if they did figure that I used to be an ausar, they’d be unlikely to care. I mean, we’re on a planet where ant-girls are threatening to blast themselves off the face of the planet. You’d have to be pretty bigoted to make an enemy of the only person selling decent weapons on this mudball, even if she’s a ‘furry’ or a ‘herm’.”</i>");
 	output("\n\nIt’s a little galling how right she is. Even if you didn’t approve of her lifestyle choices, it’d be pointless to alienate such a useful resource. You give an affirming chuckle.");
-	output("\n\nSmiling a little more broadly, Emmy puts her hand on a waist that looks a little too broad to be attached to a waist that narrow. <i>“So now that I’ve showed you my baggage and told you things that would get a lesser woman fired, why don’t we move to a lighter topic. Like what you think the prettiest piece of hardware in the whole store is");
+	output("\n\nSmiling a little more broadly, Emmy puts her hand on a hip that looks a little too broad to be attached to a waist that narrow. <i>“So now that I’ve showed you my baggage and told you things that would get a lesser woman fired, why don’t we move to a lighter topic. Like what you think the prettiest piece of hardware in the whole store is");
 	if(flags["EMMY_QUEST"] != undefined || flags["EMMY_EMAIL_TIMER"] != undefined) output(" - besides me");
 	output(".”</i>");
 	flags["MET_EMMY"] = 1;
@@ -697,7 +700,7 @@ public function tellEmmyShesTheBelleOfTheBalls():void
 	output("\n\nGrinning, you nod back.");
 	output("\n\n<i>“Oooh, you are just the cutest!”</i> the jackaless cries, throwing her arms around your neck and pulling you into the squishy embrace of her pillowy bosom.");
 	if(pc.biggestTitSize() >= 1) output(" Your own [pc.chest] declare war on their opposite number, pressing your [pc.nipples] against her hardened tips until you very nearly moan in delight.");
-	output(" She slathers you cheek with with an unashamedly enthusiastic lick and roughly gropes at your [pc.butt]");
+	output(" She slathers your cheek with with an unashamedly enthusiastic lick and roughly gropes at your [pc.butt]");
 	if(pc.tailCount > 0) output(", gently stroking the base of your tail with a rogue index finger");
 	else if(pc.buttRating() >= 6) output(", digging her fingers into your cheeks with such gusto that you momentarily worry she’ll slip a finger in between");
 	else output(", squeezing the pert flesh on offer");
@@ -731,7 +734,7 @@ public function tellEmmyShesTheBelleOfTheBalls():void
 
 public function emmyMailGet():void
 {
-	eventBuffer += "\n\n<b>New Email From Emmy Astarte (emmy_astarte@cmail.com)!";
+	eventBuffer += "\n\n<b>New Email From Emmy Astarte (emmy_astarte@cmail.com)!</b>";
 
 	MailManager.unlockEntry("emmy_apology", GetGameTimestamp());
 }
@@ -1001,26 +1004,33 @@ public function muzzlefuckingCunnilingus():void
 	else output(" caresses your exposed [pc.skinFurScalesNoun], making love by touch alone");
 	output(", that she’s more pent up than an overloaded fusion core. You don’t know how she’s managed to hold back thus far, but she has - and will. Neither hand strays to the seam of her suit or her perky, jutting nipples. Every ounce of her erotic intensity is focused on one thing - the junction between your thighs.");
 	output("\n\nHer hot breath flutters across your juicing folds like the beats of a butterfly’s wings: gentle but fast, excited. Emmy’s blunted claw-tips dig into your [pc.thighs] as she leans in close, inhaling your scent, flaring her black-lined nostrils to drink it up all the faster. When the jackaless’s tongue emerges, it does so under the cover of her sable locks, stealthily catching your leaking droplets one second and lapping at your labia the next. Her unseen undulations delicately yet passionately stir your lust.");
-	output("\n\nYou slump back on the counter from the sensation. Emmy’s tongue is as long as it is slick, the texture of her tastebuds an ecstatic salve for your lust-achened nerves. You didn’t even realize it a moment ago, when you were shivery from anticipation, but you needed this. You needed Emmy’s tongue against your most sensitive places, rubbing against your clitoral hood");
-	if(pc.totalClits() > 1) output("s");
-	output(" until your polished pleasure bead");
-	if(pc.totalClits() > 1) output("s");
-	output(" emerge");
-	if(pc.totalClits() == 1) output("s");
-	output(" to be caressed by her waiting lips. The pussy-pleasers seal around ");
-	if(pc.totalClits() > 1) output("one");
-	else output("your [pc.clit]");
-	output(", subjecting it to enough suction to wrack your ");
-	if(pc.tone >= 70) output("ripped");
-	else if(pc.tone >= 30) output("quivering");
-	else output("nubile");
-	output(" form with bliss, to steal your breath and fill your lungs with nothing but eager, lurid moans.");
+	output("\n\nYou slump back on the counter from the sensation. Emmy’s tongue is as long as it is slick, the texture of her tastebuds an ecstatic salve for your lust-achened nerves. You didn’t even realize it a moment ago, when you were shivery from anticipation, but you needed this. You needed Emmy’s tongue against your most sensitive places");
+	if(pc.hasClit())
+	{
+		output(", rubbing against your clitoral hood");
+		if(pc.totalClits() > 1) output("s");
+		output(" until your polished pleasure bead");
+		if(pc.totalClits() > 1) output("s");
+		output(" emerge");
+		if(pc.totalClits() == 1) output("s");
+		output(" to be caressed by her waiting lips. The pussy-pleasers seal around ");
+		if(pc.totalClits() > 1) output("one");
+		else output("your [pc.clit]");
+		output(", subjecting it to enough suction to wrack your ");
+		if(pc.tone >= 70) output("ripped");
+		else if(pc.tone >= 30) output("quivering");
+		else output("nubile");
+		output(" form with bliss, to steal your breath and fill your lungs with nothing but eager, lurid moans.");
+	}
+	else output("and to be carresed by her waiting lips. The pussy-pleasers seal around your sex and fills your form with bliss, stealing your breath and filling your lungs with nothing but eager, lurid moans.");
 	output("\n\nYour concentration and focus are drawn into Emmy’s greedy maw, drop by steaming drop, offered to her mouth as payment for the pleasure she now brings you. You grind your hips against her face without meaning to. The idea of stopping your wanton motions, of controlling your rebellious gyrations, never enters your mind. Your cunt");
 	if(pc.totalVaginas() > 1) output("s are");
 	else output(" is");
 	output(" wholly charmed by the frustrated jackal’s thirsty tongue, and you wouldn’t have it any other way. She has you in the palm of her hand until she decides to drive you past the point of no return.");
 	output("\n\nAnd it gets better.");
-	output("\n\nYou didn’t think it could, not with how magnificently her mouth’s muscle tended to your feminine needs, but it does. Emmy’s tongue plunges deep, so deep you wonder if she’ll ever run out, if there’s anything behind her feminine muzzle but acres and acres of additional tongue. Then her nose, moist with your drippings, kisses [pc.oneClit] a moment before spreading your folds. Strong fingers dig into your [pc.butt], but only so that Emmy’s snout can plunge inside you. She’s literally fucking you with her face, all while her tongue does the tango in your deepest passage.");
+	output("\n\nYou didn’t think it could, not with how magnificently her mouth’s muscle tended to your feminine needs, but it does. Emmy’s tongue plunges deep, so deep you wonder if she’ll ever run out, if there’s anything behind her feminine muzzle but acres and acres of additional tongue.");
+	if(pc.hasClit()) output(" Then her nose, moist with your drippings, kisses [pc.oneClit] a moment before spreading your folds.");
+	output(" Strong fingers dig into your [pc.butt], but only so that Emmy’s snout can plunge inside you. She’s literally fucking you with her face, all while her tongue does the tango in your deepest passage.");
 	if(pc.wettestVaginalWetness() >= 4) output(" Her throat has to work double time to keep up with all the [pc.girlCum] you’re feeding her.");
 	output("\n\nEmmy pulls back, leaving you momentarily vacant. The hollowness inside you aches with palpable need. It’s not fair that she stoked your passion into such a bonfire then stole away with the fuel you craved, leaving you a guttered husk of unfulfilled want. You groan whorishly, begging for her to return to the worship of your womanhood, to the endless strumming of your nerves. You’ll accept nothing less. <i>“Please!”</i> The word is etched into your expression and your tone.");
 	output("\n\nGrinning up at you");
@@ -1056,7 +1066,8 @@ public function muzzlefuckingCunnilingus():void
 	//Multicunt
 	if(pc.totalVaginas())
 	{
-		output("\n\nAll of this... you could endure if that were it, if that were the only deluge of sensation you had to stomach, but it isn’t. Emmy’s fingertips have buried themselves into your extra folds, discovering yet untouched channels to nestle into. Knuckles press at the underside of your [pc.clits], strumming you until you’re thrashing bonelessly to Emmy’s will.");
+		output("\n\nAll of this... you could endure if that were it, if that were the only deluge of sensation you had to stomach, but it isn’t. Emmy’s fingertips have buried themselves into your extra folds, discovering yet untouched channels to nestle into.");
+		if(pc.hasClit()) output(" Knuckles press at the underside of your [pc.clits], strumming you until you’re thrashing bonelessly to Emmy’s will.");
 	}
 	//Merge
 	output("\n\nSometime between paroxysms of pleasure and the slippery cascade between your thighs, the ");

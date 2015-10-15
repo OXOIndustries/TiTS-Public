@@ -406,7 +406,7 @@
 			
 			output("Your mouth is starting to feel a little... strange. Numb perhaps, but that's not just it. It feels a little more... cramped? It definitely seems more full than usual. Maybe you've eaten something recently that hasn't been all that agreeable? Before you can think much more about what the cause might be a sudden shooting pain along the underside of your jaw strikes, and you open your mouth reflexively -- allowing a long, forked tongue to roll free from your mouth.");
 
-			output("\n\nYou lash it around experimentally as the feeling in your mouth gradually returns to normal. Slurping it back home with a wet pop, you realise <b>you now have a forked leithan tongue!<b>");
+			output("\n\nYou lash it around experimentally as the feeling in your mouth gradually returns to normal. Slurping it back home with a wet pop, you realize <b>you now have a forked leithan tongue!<b>");
 			
 			target.tongueType = GLOBAL.TYPE_LEITHAN;
 			target.tongueFlags = [GLOBAL.FLAG_PREHENSILE, GLOBAL.FLAG_LONG];
@@ -420,7 +420,7 @@
 			
 			output("A strange itch tickles at the tips of your fingers, slowly building in intensity until it feels as though your hands are throbbing in time to the beat of your heart. You flex your digits to the beat, the activity helping to mask the discomfort, and slowly fall into an automatic pattern -- until the throbbing seems to skip a beat.");
 
-			output("\n\nAs the next throb hits the sensation doubles down, far more intense, and you look toward your fingertips -- they seem thicker, and marginally more difficult to articulate. A thick layer of chitinous plates is growing around your fingers, pulsing its way higher and higher up your arms every few seconds! When slight cracks begin to form in the tough surface, luminous streaks breaking apart the large plates, that's when you realise <b>you now have leithan-like arms!</b>");
+			output("\n\nAs the next throb hits the sensation doubles down, far more intense, and you look toward your fingertips -- they seem thicker, and marginally more difficult to articulate. A thick layer of chitinous plates is growing around your fingers, pulsing its way higher and higher up your arms every few seconds! When slight cracks begin to form in the tough surface, luminous streaks breaking apart the large plates, that's when you realize <b>you now have leithan-like arms!</b>");
 			
 			target.armType = GLOBAL.TYPE_LEITHAN;
 			target.clearArmFlags();
@@ -467,6 +467,7 @@
 					tfSize++;
 					target.cocks[i].cLengthRaw += 6;
 					if (target.cocks[i].cLengthRaw > 36) target.cocks[i].cLengthRaw = 36;
+					if (target.hasPerk("Hung")) target.cocks[i].cLengthRaw += Math.round(target.cocks[i].cLengthRaw / 3);
 				}
 			}
 
@@ -559,7 +560,7 @@
 				if (!target.hasLegs()) output(" between your [pc.legs]");
 				else output(" on the face of your naga body");
 				output(". A quick touch and feel tells you that that's exactly the case: <b>your feminine sex is now just like a horse's</b>.");
-
+				target.orgasm();
 				output("\n\nNow to find a nice, long leithan cock to break your new marecunt in...");
 			}
 

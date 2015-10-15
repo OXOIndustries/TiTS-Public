@@ -201,18 +201,26 @@ public function girlyCompassionVictoryWithInfectedMyr():void
 	{
 		output("\n\nThoughts won’t help you to cum however, so you stand on shaky legs, spinning your tauric frame around to show off [pc.eachVagina]. The fascinated formicidae stares at your [pc.butt] for a few seconds before tentatively gripping each cheek, and her fingers feel pleasantly warm as they spread your lips for a better look at your dripping entrance.");
 		output("\n\nJust looking isn’t getting you off any faster, so you scoot back further, bopping the unsuspecting myrmedion on the nose with your [pc.vagina]. She gives a yelp of surprise, but dives into your sex at your prodding. A lusty moan escapes you as pleasure courses through your veins, finally having a conduit to work through. Her tongue isn’t very big, but she uses it expertly to search for any weak spots near your entrance.");
-		output("\n\nWhile the crimson-haired ant-girl laps hungrily at your insides, her fingers prod and tweak your [pc.clit], rubbing relentlessly in her efforts to pay you back. Heated breaths feel cool on the venom drenched surface of your fuckhole, and in hindsight, having a girl with aphrodisiac saliva eat you out may not have been the best method of relief.");
+		output("\n\nWhile the crimson-haired ant-girl laps hungrily at your insides");
+		if(pc.hasClit()) output(", her fingers prod and tweak your [pc.clit], rubbing relentlessly in her efforts to pay you back");
+		output(". Heated breaths feel cool on the venom drenched surface of your fuckhole, and in hindsight, having a girl with aphrodisiac saliva eat you out may not have been the best method of relief.");
 		output("\n\nYour drug addled brain dismisses such thoughts, declaring this to be your best idea ever with every brush from her lust laced lips. In their restless motions your hands find their way to your [pc.chest], massaging your breasts before playing with your [pc.nipples]. Pleasure circuits fire off sporadically as they’re overloaded by the myrmedion’s ministrations.");
-		output("\n\n<i>“F-fuck yesss,”</i> you slur as you cum, unable to do anything more than moan after the words leave your mouth. The alluring ant-girl lowers her mouth, sucking on your clit to keep you riding the waves of bliss for as long as possible. Even her venom can’t keep you going forever, and eventually you’re reduced to periodic twitches as the effects of the drug are flushed out.");
+		output("\n\n<i>“F-fuck yesss,”</i> you slur as you cum, unable to do anything more than moan after the words leave your mouth. The alluring ant-girl lowers her mouth,");
+		if(pc.hasClit()) output(" sucking on your clit");
+		else output(" trying");
+		output(" to keep you riding the waves of bliss for as long as possible. Even her venom can’t keep you going forever, and eventually you’re reduced to periodic twitches as the effects of the drug are flushed out.");
 		output("\n\nWhen you regain control of your body, you spin yourself back to face the red myr. To your surprise she lies asleep on the cave floor, face coated in shiny femcum. Her mushroom partner lies under her, acting as a bed for the exhausted ant. You lean down and give her a kiss, on the cheek this time, before gathering your [pc.gear] and heading back to your explorations.");
 	}
 	//pcnottaur
 	else
 	{
 		var x:int = rand(pc.totalVaginas());
-		output("\n\nThinking about it won’t make anything happen, so you lie back, making sure to show off [pc.eachVagina]. The absorbed ant-girl stares for a moment before she realizes what you want, looking at your sex and spreading your lips with her fingers. Her breath tickles your [pc.clit], but you want more than just her breath.");
-		output("\n\nTaking the initiative, you pull her face first into your nethers, wrapping your [pc.legs] around her neck. She gives a surprised yelp in response, but quickly adjusts to lapping at your [pc.vagina " + x + "]. The enamored myr quickly homes in on your [pc.clit], alternating between sucking and licking at regular intervals.");
-		output("\n\nIn hindsight, having a girl with aphrodisiac saliva eat you out might not have been the best method of release, but you dismiss such thoughts as her fingers push into your passage. The myrmedion fungal host gets into a rhythm, stroking your insides with her fingers while she gently bites at [pc.oneClit].");
+		output("\n\nThinking about it won’t make anything happen, so you lie back, making sure to show off [pc.eachVagina]. The absorbed ant-girl stares for a moment before she realizes what you want, looking at your sex and spreading your lips with her fingers.");
+		if(pc.vaginas[x].clits > 0) output(" Her breath tickles your " + pc.clitDescript(x) + ", but you want more than just her breath.");
+		output("\n\nTaking the initiative, you pull her face first into your nethers, wrapping your [pc.legs] around her neck. She gives a surprised yelp in response, but quickly adjusts to lapping at your [pc.vagina " + x + "].");
+		if(pc.vaginas[x].clits > 0) output(" The enamored myr quickly homes in on your " + pc.clitDescript(x) + ", alternating between sucking and licking at regular intervals.");
+		output("\n\nIn hindsight, having a girl with aphrodisiac saliva eat you out might not have been the best method of release, but you dismiss such thoughts as her fingers push into your passage. The myrmedion fungal host gets into a rhythm, stroking your insides with her fingers");
+		if(pc.hasClit()) output(" while she gently bites at [pc.oneClit].");
 		output("\n\nYou thread your fingers through the redhead’s crimson locks, holding her in place and futilely trying to pull her closer. Your efforts reward you with blissful shocks as she slips down, plunging her tongue into your [pc.vagina " + x + "]");
 		if(pc.totalVaginas() > 1) 
 		{
@@ -230,6 +238,7 @@ public function girlyCompassionVictoryWithInfectedMyr():void
 	}
 	output("\n\n");
 	processTime(22);
+	pc.orgasm();
 	pc.orgasm();
 	genericVictory();
 }
@@ -505,7 +514,15 @@ output("\n\n<i>“Not so strong without your mushroom thing, are you? I think I�
 output("\n\nThe lavender-skinned nyrea scoots away from him, posing for you and making sure her body is prominently on display. She looks at you inquisitively, waiting for your response to her sideways request.");
 output("\n\n(malemyr option menu)");
 output("\n\nYou saunter over to her half-prone form, taking in the smooth looking curves of her corset-like carapace, and you notice her pseudo-penis beginning to stiffen as she eyes you in return. It would appear the lilac skinned huntress likes what she sees.");
-output("\n\n<i>“{I’d love to teach him a lesson with someone as beautiful as you/I don’t see why not. Chances like this are rare after all/I’m sure we can work something out. It’s not often an alpha predator gives you free rein of her body},”</i> you tell her as you {tentacle and snake/goo/other/[pc.hasKnees()]} {coil/slip across her feet, reforming/position yourself/kneel} between her legs. She eyes you with eager anticipation, obviously waiting for you to take the lead. You lean in and kiss her to begin with, and her tongue jets into your mouth once yours pierces her lips, causing you to stiffen slightly as she plays around in your mouth. A small amount of venom must have been left over from the bite. There isn’t enough to fully paralyze you, but there’s plenty enough to get your [pc.eachClit] {and [pc.eachCock]} stiff as your body would’ve been.");
+output("\n\n<i>“{I’d love to teach him a lesson with someone as beautiful as you/I don’t see why not. Chances like this are rare after all/I’m sure we can work something out. It’s not often an alpha predator gives you free rein of her body},”</i> you tell her as you {tentacle and snake/goo/other/[pc.hasKnees()]} {coil/slip across her feet, reforming/position yourself/kneel} between her legs. She eyes you with eager anticipation, obviously waiting for you to take the lead. You lean in and kiss her to begin with, and her tongue jets into your mouth once yours pierces her lips, causing you to stiffen slightly as she plays around in your mouth. A small amount of venom must have been left over from the bite. There isn’t enough to fully paralyze you, but there’s plenty enough to get");
+if(pc.hasClit() || pc.hasCock())
+{
+	if(pc.hasClit()) output(" [pc.eachClit]");
+	if(pc.hasClit() && pc.hasCock()) output(" and");
+	if(pc.hasCock()) output(" [pc.eachCock]");
+	output(" stiff as your body would’ve been.");
+}
+else output(" your body as aroused as ever.");
 output("\n\nYou pull back from the kiss, giving the nyrea a lusty gaze that she returns for a few seconds, before tackling her with another kiss. She catches you, and the two of you fall to the cavern floor, pressing into each other’s bodies as the lust inducing portion of the venom floods your veins. You moan as her firm E-cups press into your [pc.chest], the space between you growing tighter with each breath");
 output("\n\nBoth of your voices escape as {your nipples brush together/her hard nipples graze your flesh}, the heat of your passion keeping you warm in the cool cave air. Your partner matches you breath for breath as you devour her essence, locking to your lips with wild fervor. Her lilac-colored melons press snugly against your {flat chest/ {larger/smaller/equally enjoyable} [pc.cupSize]’s}, keeping every bit of the heat between your bodies in its place.");
 output("\n\nAfter what seems like an eternity, you manage to pull away from her intense kisses and duck lower along her body. Your lips touch her skin and chitinous carapace as you go, leaving remnants of desire that dot her frame from head to waist. She stares on longingly as you take her pseudo-penis in both hands, gripping it between them. A thin line of lubricant escapes its tip, trickling down to your hands where it creates a smooth sheen as you softly work the slippery liquid into her skin.");

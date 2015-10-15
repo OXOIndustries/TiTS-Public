@@ -538,8 +538,8 @@ public function specialRedAntPreggosShitEvent():void
 	if(flags["RED_MYR_BIRTHS"] == undefined)
 	{
 		flags["RED_MYR_BIRTHS"] = 1;
-		flags["BRIHA_LATEST_SPAWN_AGE"] = 0;
-		flags["BRIHA_OLDEST_SPAWN_AGE"] = 0;
+		flags["BRIHA_LATEST_SPAWN_AGE"] = flags["BRIHA_INCUBATION_TIMER"] - 120;
+		flags["BRIHA_OLDEST_SPAWN_AGE"] = flags["BRIHA_INCUBATION_TIMER"] - 120;
 		son = false;
 		output("\n\nBriha lowers the bundle with a warm, motherly smile. You edge forward, feeling your heart thumping madly in your chest.");
 		if(flags["BRIHA_INCUBATION_TIMER"] < 120) output(" The egg is partially see-through, so you can see your own half-myr child floating within - defenseless, unborn, and truly precious. Even in her semi opaque shell, you can see a glimpse of " + flags["BRIHA_SPAWN_1_DEETS"][0] + " hair.");
@@ -557,7 +557,7 @@ public function specialRedAntPreggosShitEvent():void
 		output("\n\nCoughing a little, Briha hugs her waist. There’s a tense look on her face. <i>“... Look. I’m a deserter. It-it breaks my heart into a million pieces, but you should take Aya. This place - not just the wastelands, but Myrellion - I don’t want her growing up here.”</i>");
 		output("\n\nYou look at her intently. Her words are heavy, like each one is an effort to push out. Motherly concern is written all over her scarred face.");
 		output("\n\n<i>“It’s a no-brainer, right? This world might end any moment, and even if it doesn’t, I’m a deserter. The Scarlet Federation will never take me back and I can never go to the Golds. What kind of future can she have here?”</i> She strokes ");
-		if(flags["BRIHA_LATEST_SPAWN_AGE"] < 120) output("the fragile shell");
+		if(flags["BRIHA_INCUBATION_TIMER"] < 120) output("the fragile shell");
 		else output("her baby’s cheek");
 		output(", a tear running down her half-lidded eye. <i>“... With you, off-worlder, she can have a real future. Something better than this scarred dustball. She can make her mother proud.”</i>");
 	}
@@ -565,11 +565,11 @@ public function specialRedAntPreggosShitEvent():void
 	else if(flags["RED_MYR_BIRTHS"] == 1)
 	{
 		flags["RED_MYR_BIRTHS"] = 2;
-		flags["BRIHA_LATEST_SPAWN_AGE"] = 0;
-		flags["BRIHA_SECOND_OLDEST_SPAWN_AGE"] = 0;
+		flags["BRIHA_LATEST_SPAWN_AGE"] = flags["BRIHA_INCUBATION_TIMER"] - 120;
+		flags["BRIHA_SECOND_OLDEST_SPAWN_AGE"] = flags["BRIHA_INCUBATION_TIMER"] - 120;
 		son = true;
 		output("\n\nBriha lowers the bundle with a warm, motherly smile. You edge forward, feeling your heart thumping madly in your chest. ");
-		if(flags["BRIHA_LATEST_SPAWN_AGE"] < 120) output("The egg is partially see-through, so you can see your own half-myr child floating within - defenseless, unborn, and truly precious. Even in his semi opaque shell, you can see a glimpse of " + flags["BRIHA_SPAWN_2_DEETS"][0] + " hair.");
+		if(flags["BRIHA_INCUBATION_TIMER"] < 120) output("The egg is partially see-through, so you can see your own half-myr child floating within - defenseless, unborn, and truly precious. Even in his semi opaque shell, you can see a glimpse of " + flags["BRIHA_SPAWN_2_DEETS"][0] + " hair.");
 		else output("The world stops as you look down at your precious little son. His hair, sparse and babyish, is a mess of " + flags["BRIHA_SPAWN_2_DEETS"][0] + ", and two gorgeous " + flags["BRIHA_SPAWN_2_DEETS"][1] + " eyes stare up at you.");
 		output("\n\n<i>“Just like Aya, he takes after you. His name is Brahn, after my grandfather,”</i> Briha smiles, then adds, <i>“You know the rules. I do all the work, I get to name them.”</i>");
 		output("\n\nA son! You have a son named Brahn Steele. And Aya has a little brother!");
@@ -579,9 +579,9 @@ public function specialRedAntPreggosShitEvent():void
 	else 
 	{
 		flags["RED_MYR_BIRTHS"]++;
-		flags["BRIHA_LATEST_SPAWN_AGE"] = 0;
+		flags["BRIHA_LATEST_SPAWN_AGE"] = flags["BRIHA_INCUBATION_TIMER"] - 120;
 		output("\n\nBriha lowers the bundle with a warm, motherly smile. You edge forward, feeling your heart thumping madly in your chest. ");
-		if(flags["BRIHA_LATEST_SPAWN_AGE"] < 120) 
+		if(flags["BRIHA_INCUBATION_TIMER"] < 120) 
 		{
 			output("The egg is partially see-through, so you can see your own half-myr ");
 			if(son) output("son");
@@ -919,6 +919,15 @@ public function winVsAntGrillDeserts():void
 			else addDisabledButton(4,"Hand-Play","Hand-Play","Tauric creatures cannot enjoy this scene.");
 		}
 		else addDisabledButton(4,"Hand-Play","Hand-Play","Only a gold myr deserter has enough hands for this scene...");
+		if(pc.hasItem(new GravCuffs()) && pc.lust() >= 33)
+		{
+			var fitsInside:Boolean = false;
+			if(foes[0].hasVagina()) fitsInside = (pc.cockThatFits(foes[0].vaginalCapacity(0)) >= 0);
+			else fitsInside = (pc.cockThatFits(foes[0].analCapacity()) >= 0);
+			if(pc.hasCock() && fitsInside) addButton(5,"Cuff&Fuck",cuffNFuck,undefined,"Cuff & Fuck","Use your grav-cuffs to pin down [monster.name] and have your way with [monster.hisHer] [pc.vagOrAssNoun]! Requires Grav-cuffs and a penis.");
+			else if(pc.hasCock()) addDisabledButton(5,"Cuff&Fuck","Cuff & Fuck","You can cuff [monster.himHer] down, but you wouldn't be able to fit inside.");
+			else addDisabledButton(5,"Cuff&Fuck","Cuff & Fuck","You need a penis to make use of your grav-cuffs this way.");
+		}
 	}
 	else
 	{
@@ -1106,7 +1115,7 @@ public function analRedButtStuffMcStuffinButts():void
 	{
 		output("\n\nShe lets out a squeal of protest when she realizes what you’re doing. <i>“W-w-w-what are you doing? N-not in </i>there<i>, that’s the wrong hole-!”</i>");
 	}
-	else output("\n\nShe shivers as she realises what you’re doing. <i>“Y-you’re going to stick it in </i>there<i> again? But that’s so naughty...”</i>");
+	else output("\n\nShe shivers as she realizes what you’re doing. <i>“Y-you’re going to stick it in </i>there<i> again? But that’s so naughty...”</i>");
 
 	output("\n\nYou tease her extremely cuppable breasts some more. Her protests lessen, until at last she caves, <i>“... O-o-oh all right. B-but be gentle, all right?");
 	if(flags["FUCKED_RED_DESERTBUTT"] == undefined)
@@ -1747,9 +1756,9 @@ public function redDildoScrew():void
 	//PC Loss:
 	if(inCombat() && (pc.HP() <= 0 || pc.lust() >= pc.lustMax()))
 	{
-		output("\n\nSome time later, when you finally come to, you realise ");
+		output("\n\nSome time later, when you finally come to, you realize ");
 		if(DontKnowName) output("the ");
-		output("[monster.name] has already taken her leave. Shivering, you realise you’re covered in hickies.");
+		output("[monster.name] has already taken her leave. Shivering, you realize you’re covered in hickies.");
 		if(pc.credits > 1)
 		{
 			output(" Not only that, you’ve lost some of your credits!");

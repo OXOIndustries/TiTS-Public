@@ -2,6 +2,7 @@
 import classes.Items.Armor.GooArmor;
 import classes.Items.Miscellaneous.MilkBag;
 import classes.Items.Miscellaneous.MagicMilker;
+import classes.Items.Toys.HoverHole;
 
 public function availableFaps(roundTwo:Boolean = false):Array
 {
@@ -75,6 +76,13 @@ public function availableFaps(roundTwo:Boolean = false):Array
 		fap = new FapCommandContainer();
 		fap.text = "Penises";
 		fap.func = multiCockFap;
+		faps.push(fap);
+	}
+	if (pc.hasCock() && pc.hasItem(new HoverHole()))
+	{
+		fap = new FapCommandContainer();
+		fap.text = "HoverHole";
+		fap.func = hoverholeFapFapFap;
 		faps.push(fap);
 	}
 	
@@ -1949,7 +1957,7 @@ public function grayGooCockSleeveII(allowIt:Boolean = false):void
 
 	if (allowIt)
 	{
-		output("With a gasp, you feel the slender tendril of goo slip inside you. [goo.name] keeps it short and small, focusing more on control that just filling you with goo-cock. She hones in on the tiny little bulb of your prostate with unerring accuracy, putting just enough pressure on it to make your [pc.cock] leap and start to leak. The moment a drop of pre-cum pours into her, your gooey companion coos happily, licking her lips hungrily.");
+		output("With a gasp, you feel the slender tendril of goo slip inside you. [goo.name] keeps it short and small, focusing more on control than just filling you with goo-cock. She hones in on the tiny little bulb of your prostate with unerring accuracy, putting just enough pressure on it to make your [pc.cock] leap and start to leak. The moment a drop of pre-cum pours into her, your gooey companion coos happily, licking her lips hungrily.");
 	}
 	else
 	{
@@ -2612,7 +2620,7 @@ public function moderateExhibitionOmniFap():void
 		else output("onlookers");
 		output(" gasping as you groan and rub your [pc.vaginas] and [pc.asshole], perversely stretching out your orgasmic high for as long as you can!");
 	}
-	output("\n\nAfter the afterglow wears off, your cheeks burn as you realise just how much of a spectacle you made. You really didn’t mean to touch yourself that much! For some reason, you’re filled with a fuzzy sense of fulfilment. You’d better not do this kind of thing too often - it feels like it could be addictive!");
+	output("\n\nAfter the afterglow wears off, your cheeks burn as you realize just how much of a spectacle you made. You really didn’t mean to touch yourself that much! For some reason, you’re filled with a fuzzy sense of fulfilment. You’d better not do this kind of thing too often - it feels like it could be addictive!");
 	if(pc.exhibitionism() >= 75) output(" Could... could you secretly be an exhibitionist, perhaps-?");
 	processTime(20+rand(10));
 	pc.exhibitionism(1);

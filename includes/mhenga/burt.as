@@ -674,7 +674,9 @@ public function getOralFromBurt():void {
 		//[if (gender = herm)] 
 		else if(pc.hasCock() && pc.hasVagina()) 
 		{
-			output("\n\nBurt smiles up at you as his hands caress your [pc.legOrLegs], letting one wrap around your [pc.cockBiggest] and the other tease across [pc.eachVagina] gently. It is clear what his focus is though, as he lowers his head to [pc.eachVagina] and begins to kiss and lick across those feminine folds while his hand slowly strokes and teases your dick. His tongue explores your most intimate of flesh, digging into you and spiraling around as deep as he can reach, while the stubble of his five o’clock shadow scratches at your belly and [pc.asshole]. He wants you to cum, and cum hard, and does his best to bring you to that edge, showing great skill with his practiced tongue. When you start to hunch and undulate with your pending orgasm, he starts to stroke your cock harder, catching [pc.oneClit] in his mouth and sucking hard at it.");
+			output("\n\nBurt smiles up at you as his hands caress your [pc.legOrLegs], letting one wrap around your [pc.cockBiggest] and the other tease across [pc.eachVagina] gently. It is clear what his focus is though, as he lowers his head to [pc.eachVagina] and begins to kiss and lick across those feminine folds while his hand slowly strokes and teases your dick. His tongue explores your most intimate of flesh, digging into you and spiraling around as deep as he can reach, while the stubble of his five o’clock shadow scratches at your belly and [pc.asshole]. He wants you to cum, and cum hard, and does his best to bring you to that edge, showing great skill with his practiced tongue. When you start to hunch and undulate with your pending orgasm, he starts to stroke your cock harder");
+			if(pc.hasClit()) output(", catching [pc.oneClit] in his mouth and sucking hard at it");
+			output(".");
 			if(pc.isSquirter()) output(" He gasps around your pleasure bud as you hit your climax and your juices surge from within you, splashing across his face and your [pc.legOrLegs] in a hot and musky mess.");
 			else output(" He gasps around your pleasure bud as your body bucks and lurches in bliss beneath him in the throes of your orgasm.");
 			output(" He keeps your maleness pointed up towards you, watching ");
@@ -760,7 +762,9 @@ public function getOralFromBurt():void {
 			//if (tail > 0)
 			if(pc.tailCount > 0) output("\n\nHis arm shifts to brush your [pc.tails] out of the way gently, allowing him to see everything that rests between your hind [pc.legs].");
 			else output("\n\nHe takes a moment to look you over, smiling as he admires the view of everything between your hind legs.");
-			output(" Burt smiles up at you as his hands caress your flanks, letting one reach beneath you to wrap around your [pc.cockBiggest] and the other tease across [pc.eachVagina] gently. It is clear what his focus is though, as he lifts his head to [pc.eachVagina] and begins to kiss and lick across those feminine folds while his hand slowly strokes and teases your dick. His tongue explores your most intimate of flesh, digging into you and spiraling around as deep as he can reach. He wants you to cum, and cum hard, and does his best to bring you to that edge, showing great skill with his practiced tongue. When you start to hunch and undulate with your pending orgasm, he starts to stroke your cock harder, catching your [clit] in his mouth and sucking hard at it. ");
+			output(" Burt smiles up at you as his hands caress your flanks, letting one reach beneath you to wrap around your [pc.cockBiggest] and the other tease across [pc.eachVagina] gently. It is clear what his focus is though, as he lifts his head to [pc.eachVagina] and begins to kiss and lick across those feminine folds while his hand slowly strokes and teases your dick. His tongue explores your most intimate of flesh, digging into you and spiraling around as deep as he can reach. He wants you to cum, and cum hard, and does his best to bring you to that edge, showing great skill with his practiced tongue. When you start to hunch and undulate with your pending orgasm, he starts to stroke your cock harder");
+			if(pc.hasClit()) output(", catching your [pc.clit] in his mouth and sucking hard at it");
+			output(". ");
 			if(pc.isSquirter()) output("He gasps around your pleasure bud as you hit your climax and your juices surge from within you, splashing across his face and chest in a hot and musky mess.");
 			else output("He gasps around your pleasure bud as your body bucks and lurches in bliss before him in the throes of your orgasm.");
 			output(" He keeps your maleness pointed straight, unable to watch as ");
@@ -812,7 +816,9 @@ public function getOralFromBurt():void {
 		}
 		//[if (gender = herm)]
 		else if(pc.hasCock() && pc.hasVagina()) {
-			output("\n\nBurt smiles up at you as his hands caress your [pc.legs], letting one wrap around your [pc.cockBiggest] and the other tease across [pc.eachVagina] gently. It is clear what his focus is though, as he lowers his head to [pc.eachVagina] and begins to kiss and lick across those feminine folds while his hand slowly strokes and teases your dick. His tongue explores your most intimate of flesh, digging into you and spiraling around as deep as he can reach, while the stubble of his five o’clock shadow scratches at your inner thighs and [pc.butt]. He wants you to cum, and cum hard, and does his best to bring you to that edge, showing great skill with his practiced tongue. When you start to hunch and undulate with your pending orgasm, he starts to stroke your cock harder, catching [pc.oneClit] in his mouth and sucking hard at it.");
+			output("\n\nBurt smiles up at you as his hands caress your [pc.legs], letting one wrap around your [pc.cockBiggest] and the other tease across [pc.eachVagina] gently. It is clear what his focus is though, as he lowers his head to [pc.eachVagina] and begins to kiss and lick across those feminine folds while his hand slowly strokes and teases your dick. His tongue explores your most intimate of flesh, digging into you and spiraling around as deep as he can reach, while the stubble of his five o’clock shadow scratches at your inner thighs and [pc.butt]. He wants you to cum, and cum hard, and does his best to bring you to that edge, showing great skill with his practiced tongue. When you start to hunch and undulate with your pending orgasm, he starts to stroke your cock harder");
+			if(pc.hasClit()) output(", catching [pc.oneClit] in his mouth and sucking hard at it");
+			output(".");
 			if(pc.isSquirter()) output(" He gasps around your pleasure bud as you hit your climax and your juices surge from within you, splashing across his face and chest in a hot and musky mess.");
 			else output(" He gasps around your pleasure bud as your body bucks and lurches in bliss beneath him in the throes of your orgasm.");
 			output(" He keeps your maleness pointed up towards you, watching ");
@@ -1040,7 +1046,13 @@ public function burtHandyPartDeux():void {
 	userInterface.showBust("BURT_NUDE");
 	output("Listening to the sounds Burt makes, and the way he moves, you figure out his ideal speed, your hands driving up and down that hard equine length over and over, in an almost exhausting pace. The smell of aroused male fills your nostrils and you can see Burt’s toned abdomen flex and bounce with his quickened breaths.");
 	//if (hasVagina = true)
-	if(pc.hasVagina()) output(" You can feel your pussy flush with heat, thoughts of taking Burt’s intimidating tool internally rushing through your head. A trickle of moisture begins to drool out of your [pc.vaginas] and a tingle of pleasure teases through your [pc.clits].");
+	if(pc.hasVagina())
+	{
+		output(" You can feel your pussy flush with heat, thoughts of taking Burt’s intimidating tool internally rushing through your head. A trickle of moisture begins to drool out of your [pc.vaginas] and a tingle of pleasure teases");
+		if(pc.hasClit()) output(" through your [pc.clits]");
+		else output(" your nethers");
+		output(".");
+	}
 	//if (hasCock = true) 
 	if(pc.hasCock()) output(" Giving the intimate massage to Burt’s erection causes a sympathetic reaction in your own loins, as [pc.eachCock] swells erect and pulses with need.");
 	
@@ -1229,7 +1241,10 @@ public function threeDSurprise():void {
 	//if (vagina > 0)
 	if(pc.hasVagina())
 	{
-		output("\n\nYour feminine flower doesn’t get overlooked, as tentacles pull the lips of [pc.eachVagina] apart and probe at you in intimate ways. [pc.OneClit] is teased and coiled around, and your depths filled with numerous spinning tentacles.");
+		output("\n\nYour feminine flower doesn’t get overlooked, as tentacles pull the lips of [pc.eachVagina] apart and probe at you in intimate ways.");
+		if(pc.hasClit()) output(" [pc.OneClit] is teased and coiled around, and your depths are");
+		else output(" Your depths are then");
+		output(" filled with numerous spinning tentacles.");
 		//[if (pregnant = true)]
 		if(pc.isPregnant())
 		{

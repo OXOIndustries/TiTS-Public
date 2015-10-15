@@ -1254,7 +1254,10 @@ public function saendraProbesYourCuntWithHerMechaArm():void
 	{
 		if (pc.hasVagina()) output("\n\n");
 		output("As you suck Saen’s probe, the pretty fluffball slips down to your groin, her smooth, clawed hand running across your thighs, caressing your tender [pc.skin].");
-		if (pc.hasVagina()) output(" She leans her head against your [pc.leg], her hot breath searing across your womanhood. She takes a great, deep breath, exhaling with a groan of satisfaction. <i>“You smell incredible, hero. So strong, so potent... oh god it gets my heart racing,”</i> she says with a grin, running a knuckle around the lips of your womanhood before leaning in to plant a tender little kiss on the nub of your [pc.clit]. <i>“Maybe next time I’ll get to play with this hole, hmm?”</i> she adds, her long tongue flickering out and diving into your unprotected [pc.cunt]. You gasp at the sudden penetration, at the feeling of her slender tongue caressing your inner walls.");
+		if (pc.hasVagina()) output(" She leans her head against your [pc.leg], her hot breath searing across your womanhood. She takes a great, deep breath, exhaling with a groan of satisfaction. <i>“You smell incredible, hero. So strong, so potent... oh god it gets my heart racing,”</i> she says with a grin, running a knuckle around the lips of your womanhood before leaning in to plant a tender little kiss on");
+		if (pc.hasClit()) output(" the nub of your [pc.clit]");
+		else output(" your slit");
+		output(". <i>“Maybe next time I’ll get to play with this hole, hmm?”</i> she adds, her long tongue flickering out and diving into your unprotected [pc.cunt]. You gasp at the sudden penetration, at the feeling of her slender tongue caressing your inner walls.");
 	}
 
 	output("\n\nThe foreplay continues for a few long, blissful minutes that blend into a symphony of pleasures as Saendra tends to your loins, getting you nice and ready for the main event. Gently, she retracts the probe from your mouth, leaving you feeling suddenly empty as the sultry redhead stands,");

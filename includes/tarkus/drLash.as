@@ -423,6 +423,14 @@ public function lashTreatment2(treatment:String):void
 		pc.nippleWidthRatio = 1;
 		if(pc.breastRows[0].nippleType != GLOBAL.NIPPLE_TYPE_FLAT && pc.nipplesPerBreast > 0) pc.nipplesPerBreast = 1;
 	}
+	if(!pc.hasGenitals())
+	{
+		if(pc.hasStatusEffect("Genital Slit")) pc.removeStatusEffect("Genital Slit");
+	}
+	if(pc.balls == 0)
+	{
+		if(pc.hasStatusEffect("Uniball")) pc.removeStatusEffect("Uniball");
+	}
 	output("</b>");
 
 	output("\n\n<i>“Oh, you’re awake.”</i> Doctor Lash tosses your equipment none-too-gently onto your [pc.belly]. <i>“");

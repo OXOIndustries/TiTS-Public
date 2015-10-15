@@ -641,7 +641,9 @@ public function youWinAContestAndKiroSlobbersYerPussy():void
 		if(pc.totalVaginas() > 1) output("s");
 		output(".");
 	}
-	output("\n\n<i>“For starters,</i>” you begin, <i>“you could drink something down that’s nonalcoholic, for a change.</i>” You smile knowingly. <i>“I’ve got just the thing.</i>” You edge forward, hips swaying, and grab Kiro by the ears, tugging her face-first into [pc.oneVagina]. Her moist, button nose pressing gently against [pc.oneClit] while her lips inadvertently compress against your lower ones. A lusty flush rises through your frame, starting at your crotch and pouring down into your feet before flooding every crack and crevice of your being. You let out a moan of pleasure as you work your [pc.hips] in slow circles, dragging your heated entrance back and forth over her lips.");
+	output("\n\n<i>“For starters,</i>” you begin, <i>“you could drink something down that’s nonalcoholic, for a change.</i>” You smile knowingly. <i>“I’ve got just the thing.</i>” You edge forward, hips swaying, and grab Kiro by the ears, tugging her face-first into [pc.oneVagina]. Her");
+	if(pc.hasClit()) output(" moist, button nose presses gently against [pc.oneClit] while her");
+	output(" lips inadvertently compress against your lower ones. A lusty flush rises through your frame, starting at your crotch and pouring down into your feet before flooding every crack and crevice of your being. You let out a moan of pleasure as you work your [pc.hips] in slow circles, dragging your heated entrance back and forth over her lips.");
 	output("\n\nKiro flushes, mumbling, <i>“Yes, [pc.Mistress],</i>” as you avail yourself to her face. Your [pc.girlCum] soon gives her mouth a lovely slick sheen, and you pull her back by her fluffy, rounded ears to have a look at her. She’s panting, mouth agape and eyelids heavy, her expression unfocused and undoubtedly aroused. Lending even further credence to your assessment of her ardor, you spy a cylindrical distention straining through her outfit, outlined in stark relief by the elastic fabric. It has risen right up between her breasts, pushing them apart to make room for its pulsating mass. The top of it is capped by a flaring, blunted tip that pulsates and twitches whenever her breasts shift around it.");
 	output("\n\n<i>“Is this what you want?</i>” Kiro asks while licking her lips. Her body sways a little as she asks. The ability to sensuously lap up [pc.girlCum] while simultaneously maintaining balance appears to be a little beyond her intoxicated state, but she’s trying anyway. Her tongue is slipping, sliding, and caressing the cunt-slicked curves of her mouth, her eyes locked on you, searching for approval.");
 	output("\n\nMerely being in the presence of this hyper-sexed hermaphrodite is enough to send twinges of pleasure through [pc.eachVagina], but having her like this, on her knees and begging for another taste of you, is enough to make you sopping wet with excitement");
@@ -653,16 +655,23 @@ public function youWinAContestAndKiroSlobbersYerPussy():void
 		output(" Her thumbs squeeze in to press in on your other ");
 		if(pc.totalVaginas() == 2) output("entrance");
 		else output(num2Text(pc.totalVaginas()-1) + " entrances");
-		output(", rubbing and squeezing across the slickening flesh, bumping repeatedly against your clit");
-		if(pc.totalClits() > 2) output("s");
+		output(", rubbing and squeezing across the slickening flesh");
+		if(pc.hasClit())
+		{
+			output(", bumping repeatedly against your clit");
+			if(pc.totalClits() > 2) output("s");
+		}
 		output(" with slow circling motions.");
 	}
-	output(" She tips her head back just far enough to slip your ");
-	if(pc.vaginas[0].clits > 1) output("uppermost ");
-	output("clit into her mouth and starts to suck.");
+	if(pc.hasClit())
+	{
+		output(" She tips her head back just far enough to slip your ");
+		if(pc.vaginas[0].clits > 1) output("uppermost ");
+		output("clit into her mouth and starts to suck.");
+	}
 
 	//Huge clit bonus!
-	if(pc.clitLength > 6)
+	if(pc.hasClit() && pc.clitLength > 6)
 	{
 		output("\n\nKiro’s cheeks bulge as the feminine organ puffs and swells up inside her mouth. Before she knows it, your stiff clit has swollen to a thick, throbbing pole. Panting around in excitement, she lets it push her off of your [pc.vagina], though her lips stretch out, as if they could still maintain contact with your netherlips by force of will alone. Smooth, nigh-infinite pleasure wicks up along the underside of your [pc.clit] when Kiro’s tongue goes to work. The sides of it fold up on either side to to try and encircle it, not quite able to cover the top but still managing to make your dense nerve endings fire off like firecrackers thrown into a bonfire. You start to slip into her throat one gasping breath later, and the curvaceous raccoon-girl’s lips glide closer to your [pc.vagina], finally making contact once your [pc.clit] is lodged securely in her throat.");
 	}
@@ -1369,7 +1378,9 @@ public function catchVaginalFromKiro():void
 		if(pc.vaginas[x].wetness() <= 1) output("dewy");
 		else if(pc.vaginas[x].wetness() <= 3) output("sodden");
 		else output("dripping");
-		output(" mound. Obligingly, she lines her fat, slightly flared dicktip up with your proferred entrance and pushes forward, smearing your outermost lips and [pc.clits] with a thick layer of tanuki pre. No matter how that fat crown rubs against you, it just can’t quite find purchase, slipping and sliding across arousal-swollen vulva, spreading you totally open and yet hopelessly unable to enter your too-tight flower.");
+		output(" mound. Obligingly, she lines her fat, slightly flared dicktip up with your proferred entrance and pushes forward, smearing your outermost lips");
+		if(pc.hasClit()) output(" and [pc.clits]");
+		output(" with a thick layer of tanuki pre. No matter how that fat crown rubs against you, it just can’t quite find purchase, slipping and sliding across arousal-swollen vulva, spreading you totally open and yet hopelessly unable to enter your too-tight flower.");
 		if(pc.totalVaginas() == 2) output(" Your other pussy spasms");
 		if(pc.totalVaginas() > 2) output(" Your other pussies spasm");
 		if(pc.totalVaginas() >= 2) output(" sympathetically, equally unable to handle your alien lover’s girth.");
@@ -1402,13 +1413,17 @@ public function catchVaginalFromKiro():void
 		else output("womb");
 		output(" with her sticky pirate-spunk. If you’re lucky.");
 
-		output("\n\n<i>“Oh, I’ll give you more,”</i> Kiro adds, rubbing more of the oil onto her rigid horse-cock. <i>“I’ll give you more than you can handle, babe.”</i> She nudges her pulsating flare against your netherlips. You may have more elasticity than a galotian matron, but the fat, flat tip isn’t really made for spreading anything open, let alone your dewy delta. It rubs up and down your slit, bumping");
-		if(pc.vaginas[x].clits == 1) output(" against your [pc.clit]");
-		else
+		output("\n\n<i>“Oh, I’ll give you more,”</i> Kiro adds, rubbing more of the oil onto her rigid horse-cock. <i>“I’ll give you more than you can handle, babe.”</i> She nudges her pulsating flare against your netherlips. You may have more elasticity than a galotian matron, but the fat, flat tip isn’t really made for spreading anything open, let alone your dewy delta. It rubs up and down your slit");
+		if(pc.hasClit())
 		{
-			output(" against one [pc.clit] and then ");
-			if(pc.vaginas[x].clits == 2) output("the other");
-			else output("another");
+			output(", bumping");
+			if(pc.vaginas[x].clits == 1) output(" against your [pc.clit]");
+			else
+			{
+				output(" against one [pc.clit] and then ");
+				if(pc.vaginas[x].clits == 2) output("the other");
+				else output("another");
+			}
 		}
 		output(", making you quiver and gasp.");
 		output("\n\n<i>“Just fuck me!”</i> your voice calls out irrespective of your brain’s reasoning. Even if you had stopped to consider your words, you would’ve said roughly the same thing. <i>“I can take it!”</i>");
@@ -1487,7 +1502,10 @@ public function kiroFucksYourCuntPartII(x:int = 0):void
 	output("You come to a little later. Kiro’s still plowing you with vigorous force, and your [pc.vaginas] ");
 	if(pc.totalVaginas() == 1) output("is");
 	else output("are");
-	output(" still clenching from the aftershocks of a recent orgasm, though it got hard to count after the second landed right on the first’s heels. It isn’t a change in tempo that drew your attention; it’s the way the hermaphrodite’s balls are slapping against [pc.oneClit] and mound. They’re getting bigger, swelling even.");
+	output(" still clenching from the aftershocks of a recent orgasm, though it got hard to count after the second landed right on the first’s heels. It isn’t a change in tempo that drew your attention; it’s the way the hermaphrodite’s balls are slapping against");
+	if(pc.hasClit()) output(" [pc.oneClit] and");
+	else output(" your");
+	output(" mound. They’re getting bigger, swelling even.");
 	output("\n\nKiro’s eyes are closed, and she’s panting breathily, her hands still mindlessly groping and squeezing at your ass as if it was her only anchor to this world.");
 	output("\n\nYou look back over your shoulder, watching her through your own delirious haze as you try to remember how to move your lips - the ones that aren’t bucking and dripping around a dick. <i>“Kiro.”</i> Your voice sounds hoarse and raw from too much screaming and moaning. <i>“Cum. Please.”</i> ");
 	if(pc.isBimbo()) output("Your face effortlessly flows into a perfectly enticing fuck-me look, the kind your sex-obsessed mind flashes at guys without thinking.");
@@ -2398,10 +2416,14 @@ public function tribDemLips():void
 	if(pc.legCount > 1) output(", splitting your [pc.legs] to either side of the upraised one so that your [pc.vaginas] will line up");
 	else output(", wrapping your [pc.leg] around her torso so that your [pc.vaginas] will line up");
 	output(" with the kui-tan’s own super-sized entrance, the superheated pussies just inches apart and getting closer with every passing second. There’s so much sexjuice simmering in your soon-to-be-paired twats that the air practically fogs with it, saturated with what could only be the scent of two bitches locked firmly in the throes of sexual heat. Kiro’s length twitches and stiffens up once more as she wallows in it, vulnerable even to the scent of her own snatch.");
-	output("\n\nKiro is whimpering with barely-contained need by this point. Her want is painted as clearly across her face as the ivory mask of spunk she’s spurted onto herself. The libidinous slut is trembling like a leaf in the wind, helpless before you, pleading with quiet whimpers and lewd looks. You reward her for her honesty by giving her exactly what she wants - [pc.oneVagina] pressed tightly against hers. Her pump-swollen lips dwarf your own to such a degree that you briefly imagine them bathing your entire crotch in their enhanced mass. Grinding back against you, Kiro moans helplessly as she’s tormented by her box’s extreme oversensitivity. Her slick, rubbery twat slides back and forth over you, and you return the favor by slowly undulating your hips, making your [pc.clits] catch on one side of her pussy and then the other.");
+	output("\n\nKiro is whimpering with barely-contained need by this point. Her want is painted as clearly across her face as the ivory mask of spunk she’s spurted onto herself. The libidinous slut is trembling like a leaf in the wind, helpless before you, pleading with quiet whimpers and lewd looks. You reward her for her honesty by giving her exactly what she wants - [pc.oneVagina] pressed tightly against hers. Her pump-swollen lips dwarf your own to such a degree that you briefly imagine them bathing your entire crotch in their enhanced mass. Grinding back against you, Kiro moans helplessly as she’s tormented by her box’s extreme oversensitivity. Her slick, rubbery twat slides back and forth over you, and you return the favor by slowly undulating your hips");
+	if(pc.hasClit()) output(", making your [pc.clits] catch on one side of her pussy and then the other");
+	output(".");
 	output("\n\n<i>“F-f-f-fuck! It’s so good!”</i> the pirate bubbles. Her arms fly to her wobbling breasts and grab hold of her dusky nipples, tugging the rigid buds, pinching and pulling in excited spasms. <i>“They feel so good, [pc.name]!”</i> She rolls one of her nipples between her fingertips. <i>\"When the fuck did being girly start feeling so goddamn great?”</i> You feel a gush of girlhoney splatter against your netherlips, and with a skillful twist of your [pc.hips], you rub the fresh lubrication against her convulsing entrance, making her quiver in uncontrolled orgasm.");
 	output("\n\nMashing her tits down around her length, Kiro pulls hard enough on her ebony nipples to distort her tits into teardrops while her cock erupts between them, adding a fresh coat of sticky bliss to her body as her orgasm claims her. The tanuki titfucks her wildly spasming member, dragging her well-rounded breasts up and down her length with rough tugs on her sore teats. Her pussy gushes against yours, so puffy and wet that you feel like you’re grinding against some kind of pillowy sextoy.");
-	output("\n\nYou grab the lust-drunk pirate by her hips and push yourself down harder, trying to get more friction on your [pc.clits]. Judging by the spasms of tremendous pleasure that seem to be transforming your [pc.legs] into a puddle of jello, you’ve succeeded. You gasp loud enough to briefly drown out Kiro’s own frenzied, lust-filled howls. Her balls are bouncing against you as they pump out thick waves of kui-tan cream, and you do your best to guide your own pleasant spasms into bouncing into them with each body-soaking convulsion.");
+	output("\n\nYou grab the lust-drunk pirate by her hips and push yourself down harder");
+	if(pc.hasClit()) output(", trying to get more friction on your [pc.clits]");
+	output(". Judging by the spasms of tremendous pleasure that seem to be transforming your [pc.legs] into a puddle of jello, you’ve succeeded. You gasp loud enough to briefly drown out Kiro’s own frenzied, lust-filled howls. Her balls are bouncing against you as they pump out thick waves of kui-tan cream, and you do your best to guide your own pleasant spasms into bouncing into them with each body-soaking convulsion.");
 	output("\n\nThe air fills with twinned calls of pleasure. Kiro has by far the messiest climax, but your calls of bliss are by far the louder.");
 	if(pc.isSquirter()) output(" Gushes of [pc.girlCum] spray out,");
 	else output(" Trickles of [pc.girlCum] leak out,");

@@ -468,7 +468,9 @@ public function pcLossToNyrea():void
 		{
 			output("\n\n<i>“I suppose your womb will have to suffice,”</i> she grins, rolling you onto your back and spreading your [pc.legOrLegs] apart, revealing the slick slit of your sex.");
 			
-			output("\n\nGrinning down at you, the huntress shimmies down to her knees and grabs the heavy shaft of her ovicock. You wince as the barbed crown brushes against the lips of your sex, teasing at your [pc.clit]. Your breath catches, sending shivers down your spine until the huntress’s flared cockhead presses against your [pc.cunt "+ tHole +"]. The sensation of her spines teasing at the inside of your cunt is almost too much to bear.");
+			output("\n\nGrinning down at you, the huntress shimmies down to her knees and grabs the heavy shaft of her ovicock. You wince as the barbed crown brushes against the lips of your sex");
+			if(pc.vaginas[tHole].clits > 0) output(", teasing at your " + pc.clitDescript(tHole));
+			output(". Your breath catches, sending shivers down your spine until the huntress’s flared cockhead presses against your [pc.cunt "+ tHole +"]. The sensation of her spines teasing at the inside of your cunt is almost too much to bear.");
 			
 			output("\n\nWhen she thrusts in, you can’t help but scream. ");
 
@@ -726,6 +728,18 @@ public function pcVictoryOverNyrea():void
 	if (pc.hasTailCock()) addButton(2, "Docking", nyreaTailcockDocking); //Needs a tailcock less than 3 inches thick. Length is irrelevant.
 	else addDisabledButton(2, "Docking", "Docking", "Requires a tailcock.");
 	
+	if(pc.hasItem(new GravCuffs()) && pc.lust() >= 33)
+	{
+		var fitsInside:Boolean = false;
+		if(foes[0].hasVagina()) fitsInside = (pc.cockThatFits(foes[0].vaginalCapacity(0)) >= 0);
+		else fitsInside = (pc.cockThatFits(foes[0].analCapacity()) >= 0);
+
+		if(pc.hasCock() && fitsInside) addButton(3,"Cuff&Fuck",cuffNFuck,undefined,"Cuff & Fuck","Use your grav-cuffs to pin down [monster.name] and have your way with [monster.hisHer] [pc.vagOrAssNoun]! Requires Grav-cuffs and a penis.");
+		else if(pc.hasCock()) addDisabledButton(3,"Cuff&Fuck","Cuff & Fuck","You can cuff [monster.himHer] down, but you wouldn't be able to fit inside.");
+		else addDisabledButton(3,"Cuff&Fuck","Cuff & Fuck","You need a penis to make use of your grav-cuffs this way.");
+		output("CUFFIES");
+	}
+	else output(" NO CUFFIES");
 	// 9999 territory - need something decent for leaving after victory without fucking
 	addButton(14, "Leave", function():void {
 		clearOutput();

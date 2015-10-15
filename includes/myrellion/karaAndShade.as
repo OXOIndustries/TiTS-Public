@@ -1225,8 +1225,8 @@ public function rimAndWankOrLickAndWankWhoKnowsSloot():void
 	else 
 	{
 		output("on the bare space between your cock and [pc.vagOrAss " + y + "] where your balls might have been, her tongue rolling out to caress ");
-		if(pc.hasVagina()) output("[pc.oneClit]");
-		else output("taint");
+		if(pc.hasVagina() && pc.hasClit()) output("[pc.oneClit]");
+		else output("your taint");
 	}
 	output(". You curl your arms under the pillow, resting your head against it, and give your [pc.hips] an enticing little wiggle.");
 
@@ -2057,7 +2057,10 @@ public function shadeBoobWorship():void
 	{
 		output(" As she plays with you, Shade’s cunt-tipped tail slips up between her legs and eagerly seeks out a little pleasure for itself. <i>“Ah, wanna play, do you?”</i> she laughs, scratching the bulb at her tail’s tip under what passes for a chin before guiding it to your sex. The huntress favors you with a wink as she runs the wet tip of her tail against your [pc.cunt], sending shockwaves of pleasure through the both of you.");
 
-		output("\n\n<i>“That’s more like it,”</i> Shade moans, rubbing her tail’s clit against your own. You have to agree - and show your appreciation by running your tongue all over her breast, slathering her in a glistening glaze of spit");
+		output("\n\n<i>“That’s more like it,”</i> Shade moans, rubbing her tail’s clit against your");
+		if(pc.hasClit()) output(" own");
+		else output(" slit");
+		output(". You have to agree - and show your appreciation by running your tongue all over her breast, slathering her in a glistening glaze of spit");
 		if (shade.canLactate()) output(" and [shade.milkNoun]");
 		output(". Indeed, there’s a lot more to the amazonian’s perfect bust than just those nipples you’ve been worshipping.");
 	}

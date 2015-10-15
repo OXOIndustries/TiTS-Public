@@ -397,6 +397,10 @@ public function treatedPCsSuckYancysDickForMilkPartIII():void
 	output("\n\nYou let your mouth hang open, catching as much as you can in there while he continues to soak your [pc.face] with spooge. You savor the taste and smell of it, slowly realizing that your tits have finally calmed, emptied of all [pc.milk].");
 	if(silly) output(" You finally did it! YOU CALMED YOUR TITS! The galaxy could benefit from this discovery.");
 	processTime(20);
+	var ppYancy:PregnancyPlaceholder = new PregnancyPlaceholder();
+	pc.loadInMouth(ppYancy);
+	pc.loadInMouth(ppYancy);
+	pc.loadInMouth(ppYancy);
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
@@ -442,7 +446,13 @@ public function treatedPCsGetCuntFilledAndMilkedPtI():void
 	output("\n\nWhat’s the hunk talking about? You were busy inhaling his scent and admiring the way his sweat let your [pc.butt] rub against his six-pack, hoping he’d go ahead and shove it on in. Your [pc.vagOrAss] is all tingly and hot, eager for an injection of hot, Texan meat, and for that matter, so is the rest of you.");
 	output("\n\nSpreading your buttcheeks with two fingers, Yancy ");
 	if(!pc.hasVagina()) output("circles your pucker a few times, just for fun.");
-	else output("slips a sausage-sized finger past them to prod [pc.oneClit], earning him a thorough glaze of [pc.girlCum].");
+	else
+	{
+		output("slips a sausage-sized finger past them to prod");
+		if(pc.hasClit()) output(" [pc.oneClit]");
+		else output(" your female sex");
+		output(", earning him a thorough glaze of [pc.girlCum].");
+	}
 	output("\n\n<i>“Knew it.”</i> The big bull doesn’t delay a moment later, lowering you down while you’re still trying to deal with the aftermath of his lazy probing, filling your brain with a hot, sticky mess of penetration-induced endorphins. Your eyelids droop, and your [pc.tongue] lolls out, drooling while you moan. His blunt-headed instrument slips right in, widening your passage as if to make room for the subsequent column of flesh. <i>“You Treated [pc.boy]s are so transparent. The merest hint of a dick, and it’s all you can think about.”</i>");
 
 	if(pc.hasVagina() && x >= 0) pc.cuntChange(x,400);
@@ -513,7 +523,13 @@ public function treatedPCsGetCuntFilledAndMilkedPtII():void
 	output(" stimulation triggers a response firmly wired into your brain, left behind by busy machines not too long ago.");
 
 	output("\n\nYou let out something between a moo and a cry of pleasure while Yancy pulls you back up for another gravity-assisted fuck.");
-	if(pc.hasVagina()) output(" The next drop presses a firm nub against [pc.oneClit] on its way past, and you nearly black out from the awesome, cunny-pleasing pleasure of it all.");
+	if(pc.hasVagina())
+	{
+		output(" The next drop presses");
+		if(pc.hasClit()) output(" a firm nub against [pc.oneClit]");
+		else output(" a collection of nubs along your labia");
+		output(" on its way past, and you nearly black out from the awesome, cunny-pleasing pleasure of it all.");
+	}
 	else output(" The next drop caresses your sorely taxed bottom’s nervous system once more, wrapping you in so much butt-clenching pleasure that you nearly black out from the ecstasy of it all.");
 	output(" Giggling dopily, you moo again. The vocalization is instinctive and automatic. The harder your [pc.nipples] gush, the more enthusiastically you do it.");
 	output("\n\nOf course you cum by the third drop. How could you not? Yancy’s dick is like a pre-cum hose too, and the head just keeps getting wider! By the time you hit drop number five, it’s easily the fattest part of his shaft by a fair margin, and your walls are painted with a thick layer of pre-emptive stud-cream");
@@ -528,6 +544,19 @@ public function treatedPCsGetCuntFilledAndMilkedPtII():void
 	output("\n\nIt comes naturally to you. ");
 	//Pass 35 minutes.
 	processTime(35);
+	var ppYancy:PregnancyPlaceholder = new PregnancyPlaceholder();
+	if(pc.hasVagina())
+	{
+		pc.loadInCunt(ppYancy, 0);
+		pc.loadInCunt(ppYancy, 0);
+		pc.loadInCunt(ppYancy, 0);
+	}
+	else
+	{
+		pc.loadInAss(ppYancy);
+		pc.loadInAss(ppYancy);
+		pc.loadInAss(ppYancy);
+	}
 	//Cum 10 ten times.
 	pc.orgasm();
 	pc.orgasm();
@@ -697,6 +726,19 @@ public function untreatedMilkedAndFucked():void
 	output("\n\nYour eyes roll back at the blissful sensation and you instinctively press your [pc.hips] against his. Your mind is out to lunch, and your animal instincts take over - and all you want is to be mated and milked by this virile bull. And the bull is more than happy to oblige.");
 	//Pass 35 minutes.
 	processTime(35);
+	var ppYancy:PregnancyPlaceholder = new PregnancyPlaceholder();
+	if(pc.hasVagina())
+	{
+		pc.loadInCunt(ppYancy, 0);
+		pc.loadInCunt(ppYancy, 0);
+		pc.loadInCunt(ppYancy, 0);
+	}
+	else
+	{
+		pc.loadInAss(ppYancy);
+		pc.loadInAss(ppYancy);
+		pc.loadInAss(ppYancy);
+	}
 	//Cum 10 ten times.
 	pc.orgasm();
 	pc.orgasm();
@@ -797,6 +839,10 @@ public function untreatedGirlsSuckYancyOffAndShit():void
 	milkResultDisplay();
 
 	processTime(30);
+	var ppYancy:PregnancyPlaceholder = new PregnancyPlaceholder();
+	pc.loadInMouth(ppYancy);
+	pc.loadInMouth(ppYancy);
+	pc.loadInMouth(ppYancy);
 	pc.orgasm();
 	flags["YANCY_PREVIOUS_ENCOUNTER_RESULT"] = "milked & sucked";
 	IncrementFlag("YANCY_MILKED_PC");
@@ -841,7 +887,7 @@ public function untreatedTittyFucksForYancy():void
 	// Five more cums.
 	processTime(20);
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	addButton(0,"Next",tittyFuckingYancyUntreatedEpilogue);
 }
 
 public function tittyFuckingYancyUntreatedEpilogue():void
@@ -861,6 +907,23 @@ public function tittyFuckingYancyUntreatedEpilogue():void
 	flags["YANCY_PREVIOUS_ENCOUNTER_RESULT"] = "milked & titfucked";
 	flags["YANCY_SEXED"] = 1;
 	processTime(10);
+	var ppYancy:PregnancyPlaceholder = new PregnancyPlaceholder();
+	if(pc.hasVagina())
+	{
+		pc.loadInCunt(ppYancy, 0);
+		pc.loadInCunt(ppYancy, 0);
+		pc.loadInCunt(ppYancy, 0);
+		pc.loadInCunt(ppYancy, 0);
+		pc.loadInCunt(ppYancy, 0);
+	}
+	else
+	{
+		pc.loadInAss(ppYancy);
+		pc.loadInAss(ppYancy);
+		pc.loadInAss(ppYancy);
+		pc.loadInAss(ppYancy);
+		pc.loadInAss(ppYancy);
+	}
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();

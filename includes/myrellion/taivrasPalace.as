@@ -32,6 +32,19 @@ public function showPraetorians(nude:Boolean = false):void
 	else showBust("PRAETORIAN_NUDE","PRAETORIAN_NUDE","PRAETORIAN_NUDE");
 }
 
+public function metTaivra():Boolean
+{
+	if(flags["BEAT_TAIVRA_TIMESTAMP"] != undefined || flags["KING_NYREA"] != undefined || flags["MET_TAIVRA"] != undefined) return true;
+	return false;
+}
+
+public function reclaimedProbeMyrellion():Boolean
+{
+	// Used for checking whether or not the probe was reclaimed!
+	if(flags["MYRELLION_PROBE_CASH_GOT"] != undefined) return true;
+	return false;
+}
+
 public function nyreaDungeonFinished():Boolean
 {
 	//Are you king? No.
@@ -490,7 +503,7 @@ public function palaceThoroughfareBonus():Boolean
 {
 	author("Savin");
 	output("A long tunnel runs east to west, T-boning north back towards the gates. A painted mural decorates the southern wall, showing ");
-	if(flags["MET_TAIVRA"] != undefined) output("Queen Taivra");
+	if(metTaivra()) output("Queen Taivra");
 	else output("an especially buxom, powerful-looking huntress");
 	output(" wielding a spear and driving back a horde of horrible worm-like creatures in a darkened cavern. Several naked, afraid male nyrea cling to her plated legs, cowering behind the amazonian warrior woman.");
 	return false;
@@ -1354,6 +1367,7 @@ public function queenTaivrasThrone(plat190:Boolean = false):void
 	else output("fought your way through");
 	output(" my guards. I can see now your kind really is nothing but trouble. How you’ve duped the myrmedion into accepting you, I can’t imagine.”</i>");
 	output("\n\n<i>“So,”</i> she says, leaning forward in her seat and smiling at you with purple-painted lips. <i>“I do hope you have something to say for yourself. Before my darling bodyguard puts you in a cage with your cousin, that is.”</i>");
+	flags["MET_TAIVRA"] = 1;
 	processTime(5);
 	//[Fight] [Rivals] [Peace] [Probe]
 	taivraTalk(plat190);

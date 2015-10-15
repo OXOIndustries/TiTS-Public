@@ -6,6 +6,7 @@
 	import classes.kGAMECLASS;	
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
+	import classes.Util.InCollection;
 	import classes.StringUtil;
 	
 	public class ZilRation extends ItemSlotClass
@@ -221,11 +222,37 @@
 					target.addTongueFlag(GLOBAL.FLAG_HOLLOW);
 					changes++;
 				}
+				//Black gold
 				else if (!target.tongueTypeUnlocked(GLOBAL.TYPE_BEE))
 				{
 					kGAMECLASS.output("\n\n" + target.tongueTypeLockedMessage());
 				}
 				//END JCUP INSERT
+				//Black nipslips!
+				if(target.skinTone == "yellow" && target.nippleColor != "black" && changes < changeLimit && rand(3) == 0)
+				{
+					kGAMECLASS.output("\n\nYou nearly miss your [pc.nipples] turning black");
+					if(target.isChestGarbed()) kGAMECLASS.output(" underneath your [pc.upperGarment]");
+					kGAMECLASS.output(", but there's no ignoring the almost glossy shine that your chest has gained. It certainly draws the eye....");
+					target.nippleColor = "black";
+					changes++;
+				}
+				if(target.skinTone != "yellow" && changes < changeLimit && changes < changeLimit && rand(3) == 0)
+				{
+					if(target.hasFur() || target.hasFeathers()) kGAMECLASS.output("\n\nLike water flowing through reeds, an amber hue spreads across the skin beneath your [pc.skinFurScales], racing outward along your limbs toward your fingertips. It doesn't feel any different, <b>but your skin has turned quite yellow.</b>");
+					else if(target.hasScales()) kGAMECLASS.output("\n\nYou nearly miss what would've been an obvious change: yellow skin pigmentation. Your [pc.skinFurScales] do a fine job of covering up your new, wasp-like coloration in most places, but here and <b>there is an unmistakable glint of goldenrod.</b>");
+					else kGAMECLASS.output("\n\nYour [pc.skin] begins to change color before your eyes. There's no tingling or sudden pain from your once-" + target.skinTone + " skin turning goldenrod, just the sweeping march of amber pigment across your dermis. In no time at all, <b>you're a wasp-like yellow!</b>");
+					target.skinTone = "yellow";
+					changes++;
+				}
+				var hairColors:Array = ["gold", "black"];
+				if(!InCollection(target.hairColor, hairColors) && changes < changeLimit && rand(3) == 0 && target.hasHair())
+				{
+					var newColor:String = hairColors[rand(2)];
+					kGAMECLASS.output("\n\nNo more than a few seconds pass before you feel your scalp tingling. Fearing something has gone wrong, you yank out your Codex, worried that you'll be shedding every single lock of [pc.hair]. Instead, you discover that <b>your pigmentation has changed to " + newColor + "</b>. You can always dye it back if you don't want to look like some sort of waspy native.");
+					target.hairColor = newColor;
+					changes++;
+				}			
 				
 				if(changes == 0) {
 					kGAMECLASS.output("\n\nNothing special happened, though you do feel a bit fuller.")
@@ -289,7 +316,7 @@
 			newClitLength = Math.round((rand(newClitLength / 4 * 10) / 10 + newClitLength / 4 + .2) * 10) / 10;
 			newClitLength = target.clitLength - newClitLength;
 			
-			if(target.clitLength > 1 && target.clitLengthUnlocked(newClitLength) && changes < changeLimit && rand(3) == 0) {
+			if(target.totalClits() > 0 && target.clitLength > 1 && target.clitLengthUnlocked(newClitLength) && changes < changeLimit && rand(3) == 0) {
 				kGAMECLASS.output("\n\nTickles of tingling pleasure race up and down your [pc.clits] until ");
 				if(target.totalClits() == 1) kGAMECLASS.output("it peeks out of its hood");
 				else kGAMECLASS.output("they peek out of their hoods");
@@ -309,7 +336,7 @@
 				target.clitLength = newClitLength;
 				changes++;
 			}
-			else if (!target.clitLengthUnlocked(newClitLength))
+			else if (target.totalClits() > 0 && !target.clitLengthUnlocked(newClitLength))
 			{
 				kGAMECLASS.output("\n\n" + target.clitLengthLockedMessage());
 			}

@@ -321,11 +321,15 @@ public function rideDudeleensWithAPussaaaaah():void {
 
 	output("\n\nYou shudder a little as his tongue's touch sends the most delicious tingles up your spine, but stay quiet, casting a stern gaze down at him to make sure he continues.");
 
-	output("\n\nYou feel his tongue circling your labia, teasing your [pc.clits], then backing down as he licks your opening. As moisture gathers, he eagerly laps it up.");
+	output("\n\nYou feel his tongue circling your labia");
+	if(pc.hasClit()) output(", teasing your [pc.clits], then backing down");
+	 output(" as he licks your opening. As moisture gathers, he eagerly laps it up.");
 
 	output("\n\nAmusement mingles with your pleasure; the once-stern expression on the naleen's face has softened, swept aside by his concentration on the task so literally in front of him. You reach down with one hand and caress his head, scratching gently between his ears, smiling as you praise him for his efforts.");
 
-	output("\n\nHe begins purring, sending rumbling vibrations through your canal. Slowly he inches closer, lifting himself slightly off the ground until his nose bumps against [pc.oneClit]. You moan appreciatively, bucking slightly as you encourage him to go faster.");
+	output("\n\nHe begins purring, sending rumbling vibrations through your canal. Slowly he inches closer, lifting himself slightly off the ground");
+	if(pc.hasClit()) output(" until his nose bumps against [pc.oneClit]");
+	output(". You moan appreciatively, bucking slightly as you encourage him to go faster.");
 
 	output("\n\nHis tongue is a blur on your [pc.vagina " + x + "], earnestly licking all around and inside you with apparent hunger, quite a turn from the previously hesitant feline-snake.");
 
@@ -923,9 +927,14 @@ public function loseToDudeleenSex(tailIntro:Boolean = false):void {
 	//if one Vagina:
 	if(pc.totalVaginas() == 1)
 	{
-		output("\n\nYou jump within his coils as he licks you, from the bottom of your nethers to the tip of [pc.oneClit].");
+		output("\n\nYou jump within his coils as he licks you, from the bottom of your nethers to the tip of");
+		if(pc.hasClit()) output(" [pc.oneClit].");
+		else output(" your womanhood.");
 
-		output("\n\nYou bite back a moan as his tongue circles your pleasure-button, nether-lips starting to grow damp in anticipation, unconsciously wriggling closer to his face in hopes of another lick.");
+		output("\n\nYou bite back a moan as his tongue circles your");
+		if(pc.hasClit()) output(" pleasure-button");
+		else output(" labia");
+		output(", nether-lips starting to grow damp in anticipation, unconsciously wriggling closer to his face in hopes of another lick.");
 
 		output("\n\n<i>“Delicious, and eager too. Prey like you are the best,”</i>  he says, licking his lips.");
 	}

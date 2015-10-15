@@ -1118,7 +1118,9 @@ public function offerPussyYouSloot():void
 	else if(pc.isNaga()) output("\n\nAliss straddles your serpentine body, her shaft in hand as she lines it up with your vagina.");
 	else if(pc.isBiped()) output("\n\nShe sits up, straddling the bench as you splay your [pc.legs] wide, granting her entrance to your waiting hole.");
 	else output("\n\nShe sits up, straddling the bench as you spread your [pc.legOrLegs], granting her entrance to your waiting hole.");
-	output(" Her slick purple rod tantalizes your nethers for a moment as she rubs the flat tip across your folds and clit. This teasing continues for another minute, until your [pc.legOrLegs]");
+	output(" Her slick purple rod tantalizes your nethers for a moment as she rubs the flat tip across your folds");
+	if(pc.hasClit()) output(" and clit");
+	output(". This teasing continues for another minute, until your [pc.legOrLegs]");
 	if(pc.legCount == 1) output(" is");
 	else output(" are");
 	output(" dripping with arousal. You groan loudly and tell her to just stick it in already.");
@@ -1132,7 +1134,9 @@ public function offerPussyYouSloot():void
 
 	output("\n\nMiniature tremors flow throughout your body, making you quiver this way and that. Your body grows hotter with every thrust, with every pussy-stretching moment. You shut your eyes and lick your lips. A whine escapes your lips as you ache to touch yourself. You can feel orgasms building, but the way Aliss is going seems to keep you on the edge rather than push you over it. The panties binding you seem to be stronger than you'd thought. The more you struggle against them the tighter they feel.");
 
-	output("\n\nNoticing your battle with the bindings, Aliss slides the hand on your nipple downward to your crotch. Between thrusts she rubs her thumb along your [pc.clits], sending spikes of pleasure all over your body. Your plaintive cries grow louder and louder. You no longer care about the rest of the store hearing you in here. You just need some kind of relief!");
+	output("\n\nNoticing your battle with the bindings, Aliss slides the hand on your nipple downward to your crotch");
+	if(pc.hasClit()) output(". Between thrusts she rubs her thumb along your [pc.clits]");
+	output(", sending spikes of pleasure all over your body. Your plaintive cries grow louder and louder. You no longer care about the rest of the store hearing you in here. You just need some kind of relief!");
 
 	output("\n\nAliss' pace picks up, her hips undulating in time with some unheard beat. You notice her bulky tail slipping forward between her legs to flick over ");
 	if(pc.totalVaginas() == 2) output("your other neglected pussy");

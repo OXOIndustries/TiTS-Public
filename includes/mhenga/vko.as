@@ -194,7 +194,7 @@ public function treatDisease(diseaseName:String = ""):void
 	output("\n\nV-Ko folds her arms in front of her and once more assumes an immobile pose. It's moments like this when she isn't moving at all that you're aware of just how artificial she is. People move to breathe or to adjust their position. There's always a little bit of idle motion, but V-Ko... V-Ko simply moved to a stable stance and ceased all simulation of life, revealing her for the automaton she is.");
 	output("\n\nFaint electronic hums emanate from inside her torso as some concealed bit of machinery comes to life. The humming from inside V-Ko grows louder and louder before abruptly cutting off. Then, you hear a faint, liquid bubbling that only lasts a few seconds. You can't help but wonder if she's crammed a whole chemistry lab inside herself; it certainly sounds like one.");
 	output("\n\nExhaling a puff of steam, V-Ko announces, <i>\"All done! Are you ready for your medicine, big " + pc.mf("boy","girl") + "?\"</i>");
-	output("\n\nYou tentatively nod, hoping its nothing too extreme.");
+	output("\n\nYou tentatively nod, hoping it’s nothing too extreme.");
 	output("\n\nShe extends a hand to you, fingers outstretched. You assume you're meant to take it, but she shakes her head as you reach for it. <i>\"Your treatment is ready.\"</i> A seam forms around the first knuckle joint of V-Ko's hand, wrapping around most of the digit. Then, with another hiss of steam, her finger opens, lifting up to expose a hollow, metallic interior beneath the artificially pink skin. A pill appears in the opened digit on a 'pomf' of pneumatic pressure, the capsule's surface protruding far enough beyond her opened finger to make taking it easy.");
 	output("\n\nYou take the proffered pill, watching as V-Ko's finger seals up once more. She hands you water to take it with and promises. <i>\"That should clear your " + diseaseName + " up within the hour. If you have any other symptoms, please see me or a proper medical professional. You may have other untreated diseases whose presence was masked by your current infection.\"</i>");
 	output("\n\nYou nod.");
@@ -220,7 +220,7 @@ public function removeParasiteII(name:String):void {
 	clearOutput();
 	userInterface.showBust("VKO");
 	userInterface.showName("\nV-KO");
-	output("<i>\"...complete success... ... vitals normal...\"</i>");
+	output("<i>\"...complete success... vitals normal...\"</i>");
 	output("\n\nBits and pieces of V-Ko's voice pierce the murky haze that's fogging your thoughts. You blink your eyes open but immediately shut them against the harsh glare of the artificial lighting.");
 	output("\n\n<i>\"The chemicals should be metabolizing out of your bloodstream in a few seconds. Please be careful until then. It would not do for you to injure yourself so soon after having your ailments tended to.\"</i>");
 	output("\n\nYou open your eyes once more, this time slowly enough to let them adjust. V-Ko is looking over you with what looks like concern on her face, but when she sees you looking back at her, she beams with pride.");
@@ -237,7 +237,7 @@ public function removeParasiteII(name:String):void {
 	output("\n\nV-Ko helps you down off the table. <i>\"There is no charge. Flahne has authorized me to deduct the requisite fees from this planet's health and wellness budget, paid for by local business taxes. Parasitism is taken very seriously across U.G.C. space and fully 90% of the member planets offer free treatments to remove them.\"</i>");
 	
 	if (name == "cuntsnake" || name == "cockvine") output("\n\nYou thank her and scratch at the irritated scar just above your butt. It's as if you never had a tail at all.");
-	else if (name == "mimbrane") output("\n\nYou thank her the service; it's as if you never had any mimbranes on you at all.");
+	else if (name == "mimbrane") output("\n\nYou thank her for the service; it's as if you never had any mimbranes on you at all.");
 	
 	output("\n\n<i>\"Now then, would you like to pursue some of my other services or will you be on your way?\"</i> V-Ko asks. <i>\"It has been a pleasure to serve.\"</i>");
 	//Menu
@@ -396,7 +396,7 @@ public function stressReliefGo():void
 	output(" as bloodflow rockets to your crotch. ");
 	if(pc.lust() >= pc.lustMax() * .8) output("You didn't think you could get any lustier than you already were, but somehow this wanton wench has taken your need to a whole new level.");
 	else if(pc.lust() >= pc.lustMax() * .4) output("You didn't think you were that horny yet, but somehow this wanton wench has brought you to complete and total arousal.");
-	else output("You weren't really that horny before, but the sight of this wanton wench on her knees has brought to a full and ready state of engorgement.");
+	else output("You weren't really that horny before, but the sight of this wanton wench on her knees has brought you to a full and ready state of engorgement.");
 	if(pc.isCrotchGarbed()) 
 	{
 		output(" The strain your member");
@@ -449,7 +449,7 @@ public function stressReliefGo():void
 		output("\n\nV-Ko's eyes nearly pop out of their sockets at the size of your mammoth member. <i>\"I am not rated to handle such... prodigious genitalia, but my programming informs me that I am going to absolutely adore ruining myself for your pleasure. I suspect you will be overfilling me with genetic material in no more than five minutes.\"</i>");
 	}
 	//Merge
-	output("\n\nThe nursedroid's inhumanly soft fingers encircle your girth as she leans forward. Her eyes look up to meet your own, fading to a dimmer purple as her mouth stretches wide in anticipation. Her lips feel like oiled latex cushions pressing against your [pc.cockHead " + x + "], encircling it in airtight pleasure. They slowly slide up your length, engulfing it an inch at a time. Each passing second brings with it a exquisite tremors of slippery, suckling pleasure as new nerves are exposed to the android's rapacious maw. The more she the devours, the harder she sucks, and soon, you feel like your [pc.cock " + x + "] is swelling beyond all reason, trapped in a combination fuck-sleeve and cock-pump.");
+	output("\n\nThe nursedroid's inhumanly soft fingers encircle your girth as she leans forward. Her eyes look up to meet your own, fading to a dimmer purple as her mouth stretches wide in anticipation. Her lips feel like oiled latex cushions pressing against your [pc.cockHead " + x + "], encircling it in airtight pleasure. They slowly slide up your length, engulfing it an inch at a time. Each passing second brings with it exquisite tremors of slippery, suckling pleasure as new nerves are exposed to the android's rapacious maw. The more she devours, the harder she sucks, and soon, you feel like your [pc.cock " + x + "] is swelling beyond all reason, trapped in a combination fuck-sleeve and cock-pump.");
 	output("\n\nV-Ko's lips touch down against the [pc.skinFurScales] of your crotch");
 	if(pc.cocks[x].thickness() >= 4) output(", distended beyond all reason to accept the incredible size you've offered her");
 	if(pc.cocks[x].thickness() >= 10) output(", stretching her neck around you so tightly that you can see every vein and ridge through her throat");
@@ -458,13 +458,13 @@ public function stressReliefGo():void
 	output(" feel just like they should - warm and wet as they cling to your dickskin. The synthetic flesh is even slowly undulating against you, rippling in ways that human anatomy could never match.");
 
 	output("\n\nThe nursedroid doesn't need to breathe, but somehow, she keeps on sucking. She's staggering the vacuum pressure into pleasant, rhythmic pulsations so that even when she's sitting with her face buried in your crotch, your [pc.cock " + x + "] in awash in bliss. You moan and tremble inside her, harder than you could ever get unaided, your pre-cum leaking out with startling immediacy. V-Ko's voice, slightly muffled but otherwise still impressively comprehensible, states, <i>\"Now that I've gotten you ready, it's time to drain all that nasty stress. Frequent orgasms are proven to extend lifespan by up to ten percent in terrans and even longer in some other species.\"</i>");
-	output("\n\nClosing her eyelids, the nursedroid slides back partway off your dick. Her lips are so tightly sealed that every departing inch fills the air with lurid-sounding slurps before revealing how slathered in lubricant it has become. V-Ko stops when only your head remains inside her, and her tongue goes into overdrive, slipping and sliding against the sensitive underside, covering it so much slippery droid-spit that droplets of it are rolling down your shaft to your ");
+	output("\n\nClosing her eyelids, the nursedroid slides back partway off your dick. Her lips are so tightly sealed that every departing inch fills the air with lurid-sounding slurps before revealing how slathered in lubricant it has become. V-Ko stops when only your head remains inside her, and her tongue goes into overdrive, slipping and sliding against the sensitive underside, covering it with so much slippery droid-spit that droplets of it are rolling down your shaft to your ");
 	if(pc.balls > 0) output("[pc.balls]");
 	else if(pc.hasVagina()) output("[pc.vaginas]");
 	else output("taint");
 	output(". [pc.EachCock] trembles and lurches from involuntary pleasure-spasms, excreting tremendously fat drops of pre-cum.");
 
-	output("\n\nA quiver of delight works through V-Ko's form as her tongue collects your stray moisture and wraps it around you, mixing it into the copious lubrication. You could watch her oral 'organ' slipping out to caress the glistening surface of your exposed shaft all day long if it didn't feel so good that felt about to pop. When the droid slides forward to engulf you once more, her eyes stay alert and attentive, looking at you, watching your [pc.face] contort with the pleasure she's giving you. Her throat tightens, sucking harder, and she bottoms out once more.");
+	output("\n\nA quiver of delight works through V-Ko's form as her tongue collects your stray moisture and wraps it around you, mixing it into the copious lubrication. You could watch her oral 'organ' slipping out to caress the glistening surface of your exposed shaft all day long if it didn't feel so good that it felt about to pop. When the droid slides forward to engulf you once more, her eyes stay alert and attentive, looking at you, watching your [pc.face] contort with the pleasure she's giving you. Her throat tightens, sucking harder, and she bottoms out once more.");
 	if(pc.balls > 0)
 	{
 		output(" Her hands reach below to grab your [pc.balls] and gently squeeze ");
@@ -550,7 +550,8 @@ public function VKoStressReliefForLadyginas():void
 		else if(pc.wetness(x) <= 3) output("get even wetter");
 		else if(pc.wetness(x) <= 4) output("drool even harder");
 		else output("spatter moisture to the ground");
-		output(". She is sure to make sure a fingertip brushes [pc.oneClit] until you shudder in excitement.");
+		output(".");
+		if(pc.hasClit()) output(" She is sure to make sure a fingertip brushes [pc.oneClit] until you shudder in excitement.");
 	}
 	//Select appropriate comment
 	//Super-wet
@@ -572,8 +573,13 @@ public function VKoStressReliefForLadyginas():void
 	else output("\n\nV-Ko examines you with a knowing smile. <i>\"A pussy like this can be easily brought to full and proper satiation with the proper techniques. Five minutes of my mouth should be more than enough to reduce you to a quivering, stress-free wreck.\"</i>");
 
 	output("\n\nThe nursedroid licks her lips one more time, leaving them glossy and shining with artificial slipperiness, then pulls her tongue back inside. She gives you a tender smile and advances, placing her hands on your [pc.butt] before pressing her face against your cleft to give it a kiss. V-Ko's lips have the perfect amount of warmth for pressing against a lusty pussy, and they are sinfully slick, coaxing shivers of pure delight with each slobbery kiss. She noisily gulps, and you hear something click deep within the artificial nurse.");
-	output("\n\nWhen she opens her mouth, you're immediately made aware that she's done something with her tongue. Instead of a narrow tongue pressing into your gates, it's something hard, thick, phallic, and even warmer than her lips. It wiggles slightly to change its alignment, earning an appreciate gasp from you, and slowly, inexorably works its way inside, filling you with its springy firmness. It goes in an inch at a time, slowly suffusing you with synthetic cock until you can bear no more. At that point, her lips brush [pc.oneClit] meaningfully.");
-	output("\n\n<i>\"We're just getting started,\"</i> promises V-Ko's surprisingly clear but slightly muffled voice. <i>\"Just relax and get used to it.\"</i> She wiggles the fake cock she has in place of her tongue against your inner walls while your [pc.clit] disappears into her maw, immediately placed under a gentle, pulsating suction. Your [pc.legOrLegs] go");
+	output("\n\nWhen she opens her mouth, you're immediately made aware that she's done something with her tongue. Instead of a narrow tongue pressing into your gates, it's something hard, thick, phallic, and even warmer than her lips. It wiggles slightly to change its alignment, earning an appreciate gasp from you, and slowly, inexorably works its way inside, filling you with its springy firmness. It goes in an inch at a time, slowly suffusing you with synthetic cock until you can bear no more. At that point, her lips brush");
+	if(pc.hasClit()) output(" [pc.oneClit]");
+	else output(" your labia");
+	output(" meaningfully.");
+	output("\n\n<i>\"We're just getting started,\"</i> promises V-Ko's surprisingly clear but slightly muffled voice. <i>\"Just relax and get used to it.\"</i> She wiggles the fake cock she has in place of her tongue against your inner walls");
+	if(pc.hasClit()) output(" while your [pc.clit] disappears into her maw, immediately placed under a gentle, pulsating suction");
+	output(". Your [pc.legOrLegs] go");
 	if(pc.legCount == 1) output("es");
 	output(" weak, but the nursedroid's hold on your [pc.butt] supports you, holding you firmly in place as she pleases you.");
 	output("\n\nYour fingers go to the back of her head to grab up fistfulls of her lustrous, pink hair. You wind up with both hands around her pigtails, and you enthusiastically tug on them, mashing her face more firmly against your thoroughly-filled slit. She's thick and squirming, and it feels so fucking good that you can't help but drip all over her pink cheeks as you ride her.");
@@ -711,7 +717,9 @@ public function agreeToElectroStim():void
 		else output("there are");
 		output(" small connector");
 		if(pc.cockTotal() > 1) output("s");
-		output(" whose wire V-Ko connects to the console.");
+		output(" whose wire");
+		if(pc.cockTotal() > 1) output("s");
+		output(" V-Ko connects to the console.");
 
 		output("\n\nShe approaches you and begins stroking [pc.eachCock] until you’re rock hard and leaking pre. Then she inserts the ");
 		if(pc.cockTotal() > 1) output("first ");
@@ -768,7 +776,7 @@ public function agreeToElectroStim():void
 		else output("each ");
 		output("ring.");
 	}
-	output("\n\nFinally, she finds a ring. <i>“Please open your mouth, " + pc.mf("sir","madam") + ",”</i> she requests. And you comply.");
+	output("\n\nFinally, she finds a ring. <i>“Please open your mouth, " + pc.mf("sir","madam") + ",”</i> she requests. You comply.");
 	output("\n\nThe ring prevents you from biting down and it’s tied up behind your head, ensuring you have no way to dispose of it.");
 	if(pc.hasFaceFlag(GLOBAL.FLAG_MUZZLED)) output(" A few straps hold your [pc.face] shut to prevent any possible accidents.");
 
@@ -777,7 +785,7 @@ public function agreeToElectroStim():void
 
 	output("\n\nYou nod, grunting your assent.");
 
-	output("\n\nA small beep confirms that V-Ko’s turned on the toys. Each of them vibrating and stimulating you as you begin panting in arousal.");
+	output("\n\nA small beep confirms that V-Ko’s turned on the toys, each of them vibrating and stimulating you as you begin panting in arousal.");
 
 	//if nipples are big enough:
 	if(pc.nippleLength(0) >= .5)
@@ -804,7 +812,7 @@ public function agreeToElectroStim():void
 	output("\n\nThe strange gel tentacle inside your maw begins moving, massaging your tongue. You begin <i>kissing</i> it back, your moans muffled by its girth.");
 
 	//if balls:
-	if(pc.balls > 1) output("\n\nThe suction cups on your balls continue their ministrations. They never apply too much or too little pressure. Always keeping you on edge. Frustration builds up inside your balls into a nice, thick load of [pc.cum], just awaiting the inevitable rise that will bring you over the edge.");
+	if(pc.balls > 1) output("\n\nThe suction cups on your balls continue their ministrations. They never apply too much or too little pressure, always keeping you on edge. Frustration builds up inside your balls into a nice, thick load of [pc.cum], just awaiting the inevitable rise that will bring you over the edge.");
 	//if tails:
 	if(pc.tailCount > 0)
 	{
@@ -813,8 +821,9 @@ public function agreeToElectroStim():void
 		else output(" doesn’t");
 		output(" seem to be doing anything, though you do feel some micro-vibrations emanating from the ring.");
 	}
-	output("\n\nSlowly, but surely, the toys become more lively. Your anal plug begins a series of contractions and expansions. ");
-	if(pc.hasCock()) output(" Each expansion stimulating your prostate and pressing fatter gobs of pre from your [pc.cocks].");
+	output("\n\nSlowly, but surely, the toys become more lively. Your anal plug begins a series of contractions and expansions");
+	if(pc.hasCock()) output(", each expansion stimulating your prostate and pressing fatter gobs of pre from your [pc.cocks]");
+	output(".");
 
 	output("\n\nYour mock kisser loops around your own [pc.tongue] like a lover’s. For a machine, it’s quite proficient. It takes advantages of your muffled moans to probe deeper inside you, almost throat-fucking you. If it had the length, you have no doubt that this is exactly what it’d be doing.");
 	output("\n\nThe other <i>attachments</i> you’re hooked up to don’t seem to be doing much of anything at the moment...");
@@ -867,7 +876,9 @@ public function agreeToElectroStim():void
 		if(pc.vaginaTotal() > 1) output("s");
 		output(" buried in your [pc.cunts] roar");
 		if(pc.vaginaTotal() == 1) output("s");
-		output(" into life, buzzing around madly, repeatedly flicking your [pc.clits], more by accident than design. It is only a machine - but the sensation is enthralling.");
+		output(" into life, buzzing around madly");
+		if(pc.hasClit()) output(", repeatedly flicking your [pc.clits], more by accident than design");
+		output(". It is only a machine - but the sensation is enthralling.");
 	}
 
 	output("\n\nThe clamps attached to your [pc.nipples] almost audibly hum as their voltage increases, sharp surges of electricity coursing over your sensitive flesh. Pleasure washes through you, your body jolting against your restraints with each spark that strokes your nerves.");
@@ -893,7 +904,7 @@ public function agreeToElectroStim():void
 	}
 	output("! Gagged by the mechanical tongue in your mouth, your back arches as your whole body clamps down in orgasm, climax washing across of you.");
 
-	output("\n\nAnd still the machines play with you, already sensitive nerves pushed to their limit as they continue to mechanically manipulate you even mid-climax, your orgasm just going on and on, growing ever more intense until you cannot take it anymore. In the midst the most literally mind-blowing climax you can ever remember having, you lose consciousness.");
+	output("\n\nStill the machines play with you, already sensitive nerves pushed to their limit as they continue to mechanically manipulate you even mid-climax, your orgasm just going on and on, growing ever more intense until you cannot take it anymore. In the midst of the most literally mind-blowing climax you can ever remember having, you lose consciousness.");
 
 	output("\n\nWhen you wake, you are lying atop the mattress. You're still naked, but also clean as a whistle; it looks like V-Ko took care of you after you passed out. At the thought, a smile unthinkingly washes over your face; you're still tingling with delight at what you just experienced.");
 
@@ -968,12 +979,12 @@ public function agreeToVKoBoobSucks():void
 	output("\n\nV-Ko approaches you, and you note the red crosses on her chest moving. They retract inward, sinking in to expose a pair of prehensile, hose-like protrusions. The crosses themselves have melted into concave, parabolic arcs perfectly sized to fit your [pc.breasts]. Without further ado, the cups align themselves with your [pc.nipples] and give each an experimental pump.");
 
 	output("\n\nA shudder ripples across your skin and you bite back a moan as you feel your [pc.nipples] pop into place, encapsulated by the suctioning cups.");
-	if(pc.hasFuckableNipples()) output(" Though your [nipples] have no protrusions to play with, that doesn't stop the cups fashioning themselves around you areolas and ensuring that your [pc.milk] will go inside of the nursedroid.");
+	if(pc.hasFuckableNipples()) output(" Though your [nipples] have no protrusions to play with, that doesn't stop the cups from fashioning themselves around your areolas and ensuring that your [pc.milk] will go inside of the nursedroid.");
 	if(pc.bRows() > 1) output(" Below your primary tits, your remaining breasts practically tingle with anticipation of their turn.");
 
 	output("\n\nHer chest starts emitting a low pumping noise, and you feel the cups begin to drain your of your [pc.milk]. You breathe a sigh of relief, humming in pleasure as the suction cups stimulate you in a most delightful manner. It's not quite sexual, at least not so much that you're going to cum over the seats any moment now, but still very satisfying on a deep level.");
 
-	output("\n\nSo relaxed you are that you find yourself slipping into an almost trance-like state. The steady pumping of your breasts almost lulling you to sleep. You can’t help but groan in disappointment when the cups pop from your breasts, some of the excess [pc.milkNoun] leaking from V-Ko. Her own chest looks ");
+	output("\n\nYou’re so relaxed that you find yourself slipping into an almost trance-like state, the steady pumping of your breasts almost lulling you to sleep. You can’t help but groan in disappointment when the cups pop from your breasts, some of the excess [pc.milkNoun] leaking from V-Ko. Her own chest looks ");
 	if(pc.milkQ() < 500) output("at least a little inflated.");
 	else if(pc.milkQ() < 5000) output("bloated.");
 	else if(pc.milkQ() < 10000) output("enormous, she must’ve drained quite a bit from you.");

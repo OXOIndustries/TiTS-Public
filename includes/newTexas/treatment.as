@@ -976,7 +976,7 @@ public function treatmentHourProcs():void
 			pc.addLegFlag(GLOBAL.FLAG_HOOVES);
 		}
 		//Clit Expanding
-		if(pc.clitLength < .75 && (treatedHours == 113 || treatedHours == 127))
+		if(pc.totalClits() > 0 && pc.clitLength < .75 && (treatedHours == 113 || treatedHours == 127))
 		{
 			if(treatedHours == 113)
 			{
@@ -1221,7 +1221,9 @@ public function treatmentHourProcs():void
 			//Pussah
 			else if(pc.hasVagina())
 			{
-				eventBuffer += "\n\nYou growl in dissatisfaction. You can’t seem to quell the rioting heat in your loins or the constant dripping. [pc.EachClit] is achingly hard, like a bullet on a hair-trigger. The weirdest part is that you don’t really crave penetration - at least not your own. No, you want to push yourself against someone soft and yielding, really grind your weeping slit";
+				eventBuffer += "\n\nYou growl in dissatisfaction. You can’t seem to quell the rioting heat in your loins or the constant dripping.";
+				if(pc.totalClits() > 0) eventBuffer += " [pc.EachClit] is achingly hard, like a bullet on a hair-trigger.";
+				eventBuffer += " The weirdest part is that you don’t really crave penetration - at least not your own. No, you want to push yourself against someone soft and yielding, really grind your weeping slit";
 				if(pc.totalVaginas() > 1) eventBuffer += "s";
 				eventBuffer += " against them until you’re both covered in sweat and sexual effluvia, panting breathily with you on top.";
 			}
@@ -1280,7 +1282,14 @@ public function treatmentHourProcs():void
 			//Cooches!
 			else if(pc.hasVagina())
 			{
-				eventBuffer += "\n\nYou find yourself just kind of idly rubbing at [pc.oneClit] whenever you have a spare moment. At first, you’d stop yourself and blush, but more and more, you don’t see the logic in stopping. Your clit is there. It’s hard and wants touched. So you touch it. What’s the big deal? You aren’t masturbating, just keeping yourself ready is all. Why, everyone should be pleased that you’re keeping yourself so sexually ready all the time. Your lucky ";
+				eventBuffer += "\n\nYou find yourself just kind of idly rubbing at";
+				if(pc.totalClits() > 0) eventBuffer += " [pc.oneClit]";
+				else if(pc.totalVaginas() != 1) eventBuffer += " one of your slits";
+				else eventBuffer += " your slit";
+				eventBuffer += " whenever you have a spare moment. At first, you’d stop yourself and blush, but more and more, you don’t see the logic in stopping. Your";
+				if(pc.totalClits() > 0) eventBuffer += " clit is there. It’s hard";
+				else eventBuffer += " slit is there";
+				if(pc.totalClits() > 0) eventBuffer += " and wants to be touched. So you touch it. What’s the big deal? You aren’t masturbating, just keeping yourself ready is all. Why, everyone should be pleased that you’re keeping yourself so sexually ready all the time. Your lucky ";
 				if(pc.hasVirginCock()) eventBuffer += "first";
 				else eventBuffer += "next";
 				eventBuffer += " partner will be the one to reap the rewards of slippery-sweet sex, after all.";

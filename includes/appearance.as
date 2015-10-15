@@ -185,25 +185,28 @@ public function appearance(target:Creature):void {
 		//M/F stuff!
 		output2(" Overall, your visage has " + target.faceDesc() + ".");
 		//Eyes
+		var hasMetallicEyes:Boolean = InCollection(target.eyeColor, "copper", "silver", "gold", "platinum", "sable");
+		var hasGemstoneEyes:Boolean = InCollection(target.eyeColor, "crimson", "garnet", "ruby", "citrine", "topaz", "amber", "peridot", "emerald", "jade", "turquoise", "aquamarine", "lapis", "sapphire", "violet", "amethyst", "opal", "pearl");
+		var hasLuminousEyes:Boolean = InCollection(target.eyeColor, "luminous violet", "luminous purple", "luminous blue", "luminous pink", "luminous orange", "luminous green", "luminous silver", "glowing gold");
 		if(target.eyeType == GLOBAL.TYPE_ARACHNID) 
 		{
 			output2(" In addition to your primary two eyes, you have a second, smaller pair on your forehead");
-			if(target.eyeColor == "silver" || target.eyeColor == "copper" || target.eyeColor == "gold" || target.eyeColor == "sable") output2(", all of which reflect back a metallic " + target.eyeColor + " in the light.");
-			else if(target.eyeColor == "emerald" || target.eyeColor == "crimson" || target.eyeColor == "violet" || target.eyeColor == "amber") output2(", all of which shimmer " + target.eyeColor + " in the light like jewels.");
+			if (hasMetallicEyes) output2(", all of which reflect back a metallic " + target.eyeColor + " in the light.");
+			else if (hasGemstoneEyes) output2(", all of which shimmer " + target.eyeColor + " in the light like jewels.");
 			else output2(", all of which are " + target.eyeColor + ".");
 		}
 		else if (target.eyeType == GLOBAL.TYPE_BEE)
 		{
-			if(target.eyeColor == "gold") output2(" Your eyes are completely pitch black with the exception of your vibrant golden irises.");
-			else if(target.eyeColor != "black") output2(" Your eyes are pitch black with " + target.eyeColor + " irises.");
+			if (target.eyeColor == "gold") output2(" Your eyes are completely pitch black with the exception of your vibrant golden irises.");
+			else if (target.eyeColor != "black") output2(" Your eyes are pitch black with " + target.eyeColor + " irises.");
 			else output2(" The black sclera and iris of both of your eyes make them appear as solid black and very alien.");
 			output2(" Their structure allows you to have a larger angle of vision as well as detecting the fastest of movements.");
 		}
 		else if(target.eyeType == GLOBAL.TYPE_FELINE || target.eyeType == GLOBAL.TYPE_SNAKE) 
 		{
 			output2(" Your eyes bear a vertical slit instead of rounded pupils, ");
-			if(target.eyeColor == "silver" || target.eyeColor == "copper" || target.eyeColor == "gold" || target.eyeColor == "sable") output2("surrounded by a metallically glistening " + target.eyeColor + " iris.");
-			else if(target.eyeColor == "emerald" || target.eyeColor == "crimson" || target.eyeColor == "violet" || target.eyeColor == "amber") output2("surrounded by a gem-like shimmering " + target.eyeColor + " iris.");
+			if (hasMetallicEyes) output2("surrounded by a metallically glistening " + target.eyeColor + " iris.");
+			else if (hasGemstoneEyes) output2("surrounded by a gem-like shimmering " + target.eyeColor + " iris.");
 			else output2("surrounded by " + indefiniteArticle(target.eyeColor) + " iris.");
 		}
 		else if (target.eyeType == GLOBAL.TYPE_LEITHAN)
@@ -213,8 +216,8 @@ public function appearance(target:Creature):void {
 			{
 				output2("forming an intensely striking symbol of infinity nestled as they are amongst a single brilliantly bright blue iris.");
 			}
-			else if(target.eyeColor == "silver" || target.eyeColor == "copper" || target.eyeColor == "gold" || target.eyeColor == "sable") output2("both embedded in a single, overly large metallical " + target.eyeColor + " iris.");
-			else if(target.eyeColor == "emerald" || target.eyeColor == "crimson" || target.eyeColor == "violet" || target.eyeColor == "amber") output2("both embedded in a single shimmering " + target.eyeColor + " iris.");
+			else if (hasMetallicEyes) output2("both embedded in a single, overly large metallical " + target.eyeColor + " iris.");
+			else if (hasGemstoneEyes) output2("both embedded in a single shimmering " + target.eyeColor + " iris.");
 			else output2("surrounded by a single " + target.eyeColor + " iris.");
 		}
 		else if (target.eyeType == GLOBAL.TYPE_MYR)
@@ -223,11 +226,18 @@ public function appearance(target:Creature):void {
 		}
 		else 
 		{
-			if (target.eyeColor == "silver" || target.eyeColor == "copper" || target.eyeColor == "gold" || target.eyeColor == "sable") output2(" Metallically glistening " + target.eyeColor + " eyes allow you to take in your surroundings without trouble.");
-			else if (target.eyeColor == "emerald" || target.eyeColor == "crimson" || target.eyeColor == "violet" || target.eyeColor == "amber") output2(" Like jewels, shimmering " + target.eyeColor + " eyes allow you to take in your surroundings without trouble.");
+			if (hasMetallicEyes) output2(" Metallically glistening " + target.eyeColor + " eyes allow you to take in your surroundings without trouble.");
+			else if (hasGemstoneEyes) output2(" Like jewels, shimmering " + target.eyeColor + " eyes allow you to take in your surroundings without trouble.");
 			//Vanae eyes
-			else if(target.eyeColor == "luminous violet" || target.eyeColor == "luminous purple" || target.eyeColor == "luminous blue" || target.eyeColor == "luminous pink" || target.eyeColor == "luminous orange" || target.eyeColor == "luminous green" || target.eyeColor == "luminous silver" || target.eyeColor == "glowing gold") output2(" Like twinkling beacons, " + target.eyeColor + " eyes seem to draw the attention of everyone around you.");
-			else output2(" Fairly unremarkable " + target.eyeColor + " eyes allow you to take in your surroundings without trouble.");
+			else if (hasLuminousEyes) output2(" Like twinkling beacons, " + target.eyeColor + " eyes seem to draw the attention of everyone around you.");
+			else
+			{
+				if (rand (10) == 0) output2(" Fairly unremarkable " + target.eyeColor);
+				else if (rand(3) == 0) output2(" Regular " + target.eyeColor);
+				else if (rand(2) == 0) output2(" Normal-looking " + target.eyeColor);
+				else output2(StringUtil.capitalize(target.eyeColor) + "-colored");
+				output2(" eyes allow you to take in your surroundings without trouble.");
+			}
 		}
 		//Hair
 		//if bald
@@ -651,27 +661,40 @@ public function appearance(target:Creature):void {
 			// Cockvine
 			if (target.tailGenitalArg == GLOBAL.TYPE_COCKVINE && !target.hasTailFlag(GLOBAL.FLAG_RIBBED))
 			{
-				output2(" Most of the length of the thing is coated in "+ (target as PlayerCharacter).skinTone +" skin, culminating in a proud purple head that's distinctly cock-shaped in nature.");
+				output2(" Most of the length of the thing is coated in "+ (target as PlayerCharacter).skinTone +" skin, culminating in");
+				if(target.tailGenitalColor != "" && rand(2) == 0) output2(" " + indefiniteArticle(target.tailGenitalColor) + " shaft with");
+				output2(" a proud purple head that's distinctly cock-shaped in nature.");
 			}
 			// Horse
 			else if (target.tailGenitalArg == GLOBAL.TYPE_EQUINE)
 			{
-				output2(" Most of the length of the thing is coated in "+ (target as PlayerCharacter).skinTone +" skin, culminating in a girthy, flared tip, distinctly reminiscent of a horse-cock.");
+				output2(" Most of the length of the thing is coated in "+ (target as PlayerCharacter).skinTone +" skin, culminating in a girthy, flared tip, distinctly reminiscent of");
+				if(target.tailGenitalColor != "" && rand(2) == 0) output2(" " + indefiniteArticle(target.tailGenitalColor));
+				else output2(" a");
+				output2(" horse-cock.");
 			}
 			// Human
 			else if (target.tailGenitalArg == GLOBAL.TYPE_HUMAN)
 			{
-				output2(" Most of the length of the thing is coated in "+ (target as PlayerCharacter).skinTone +" skin, culminating in a fleshy pink head that's distinctly cock-shaped in nature.");
+				output2(" Most of the length of the thing is coated in "+ (target as PlayerCharacter).skinTone +" skin, culminating in a fleshy");
+				if(target.tailGenitalColor != "") output2(" " + target.tailGenitalColor);
+				else output2(" pink");
+				output2(" head that's distinctly cock-shaped in nature.");
 			}
 			// Bulbous
 			else if (target.tailGenitalArg == GLOBAL.TYPE_CANINE)
 			{
-				output2(" Most of the length of the thing is coated in "+ (target as PlayerCharacter).skinTone +" skin, culminating in a thick bulge a few inches below a tapered, dark-red tip.");
+				output2(" Most of the length of the thing is coated in "+ (target as PlayerCharacter).skinTone +" skin, culminating in a thick bulge a few inches below a tapered,");
+				if(target.tailGenitalColor != "") output2(" " + target.tailGenitalColor);
+				else output2(" dark-red");
+				output2(" tip.");
 			}
 			// Ribbed
 			else
 			{
-				output2(" Most of the length of the thing is coated in "+ (target as PlayerCharacter).skinTone +" skin, culminating in a series of noticeable ridges that gradually thin as they appear closer to the tip.");
+				output2(" Most of the length of the thing is coated in "+ (target as PlayerCharacter).skinTone +" skin, culminating in");
+				if(target.tailGenitalColor != "" && rand(2) == 0) output2(" " + indefiniteArticle(target.tailGenitalColor) + " shaft with");
+				output2(" a series of noticeable ridges that gradually thin as they appear closer to the tip.");
 			}
 		}
 		
@@ -900,7 +923,35 @@ public function appearance(target:Creature):void {
 		//Chesticles..I mean bewbz.
 		if(target.breastRows.length == 1) {
 			if(target.biggestTitSize() >= 1) output2("You have " + num2Text(target.breastRows[0].breasts) + " " + target.chestDesc() + ", capped with ");
-			else output2("You have a flat chest with unremarkable pectoral muscles, capped with ");
+			else
+			{
+				output2("You have a");
+				if(target.tone >= 100)
+				{
+					if(target.thickness > 70) output2("n immense chest with " + target.mf("extremely pronounced","very pronounced") + " pectoral muscles");
+					else if(target.thickness >= 30) output2(" robust chest with " + target.mf("extremely pronounced","very pronounced") + " pectoral muscles");
+					else output2(" chisled chest with " + target.mf("extremely pronounced","very pronounced") + " pectoral muscles");
+				}
+				else if(target.tone > 70)
+				{
+					if(target.thickness > 70) output2(" broad chest with " + target.mf("well defined","well toned") + " pectoral muscles");
+					else if(target.thickness >= 30) output2(" healthy chest with " + target.mf("well defined","well toned") + " pectoral muscles");
+					else output2(" fit chest with " + target.mf("well defined","well toned") + " pectoral muscles");
+				}
+				else if(target.tone >= 30)
+				{
+					if(target.thickness > 70) output2(" thick chest with " + target.mf("toned","lightly toned") + " pectoral muscles");
+					else if(target.thickness >= 30) output2("n average chest with " + target.mf("toned","lightly toned") + " pectoral muscles");
+					else output2(" soft chest with " + target.mf("toned","lightly toned") + " pectoral muscles");
+				}
+				else
+				{
+					if(target.thickness > 70) output2(" wide chest with unremarkable pectoral muscles");
+					else if(target.thickness >= 30) output2(" passable chest with unremarkable pectoral muscles");
+					else output2(" flat chest with unremarkable pectoral muscles");
+				}
+				output2(", capped with ");
+			}
 			//Normal nips
 			if(target.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_DICK || target.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_NORMAL)
 			{ 
@@ -942,21 +993,20 @@ public function appearance(target:Creature):void {
 				else if(target.milkFullness < 150) output2(" Your " + target.breastDescript(0) + " are sore and sensitive from being so stuffed with [target.milk]. You should release the pressure soon.");
 				else if(target.milkFullness < 200)    
 				{
-					if(target.hasPerk("Milky") && target.hasPerk("Treated Milk") && this.rand(2) == 0) output2(" Your " + target.breastDescript(0) + " are incredibly swollen with [target.milk], so much that they're much bigger than normal. Your lactation shows no signs of slowing down in the slightest.");
-					else if(target.hasPerk("Milky") && target.hasPerk("Treated Milk")) output2(" At least you are certain your enhanced [target.fullChest] will never stop lactating, no matter what.");
+					if(target.isMilkTank() && rand(2) == 0) output2(" Your " + target.breastDescript(0) + " are incredibly swollen with [target.milk], so much that they're much bigger than normal. Your lactation shows no signs of slowing down in the slightest.");
+					else if(target.isMilkTank()) output2(" At least you are certain your enhanced [target.fullChest] will never stop lactating, no matter what.");
 					else output2(" Your " + target.breastDescript(0) + " are painfully swollen with [target.milk], so much that they're much bigger than normal. The longer they stay like this, the more your lactation will slow.");
 				}
 				else 
 				{
-					if(target.hasPerk("Milky") && target.hasPerk("Treated Milk") && this.rand(2) == 0) output2(" <b>Your " + target.breastDescript(0) + " are so full that they might burst! They radiate a constant yet rhythmic pulse of pressure, a sign that you are quite the productive [target.milk] factory!</b>");
-					else if(target.hasPerk("Milky") && target.hasPerk("Treated Milk")) output2(" Despite the uncomfortable fullness, you are at ease - you know your enhanced [target.fullChest] will never stop lactating, no matter what.");
+					if(target.isMilkTank() && rand(2) == 0) output2(" <b>Your " + target.breastDescript(0) + " are so full that they might burst! They radiate a constant yet rhythmic pulse of pressure, a sign that you are quite the productive [target.milk] factory!</b>");
+					else if(target.isMilkTank()) output2(" Despite the uncomfortable fullness, you are at ease - you know your enhanced [target.fullChest] will never stop lactating, no matter what.");
 					else output2(" <b>Your " + target.breastDescript(0) + " are so full that they feel about to burst! Spending time like this is going to slow your milk production.</b>");
 				}
-				
 				//Don't forget about the bras! Primarily when mentioning the slowing of milk production.
 				if(target.milkFullness > 150 && target.upperUndergarment.shortName != "")
 				{
-					if(target.upperUndergarment.shortName == "Bounty Bra" && (target.hasPerk("Milky") && target.hasPerk("Treated Milk"))) output2(" The massaging vibrations eminating from your JoyCo maternity bra reminds you that you'll never stop lactating, but you wonder if it is really necessary since your lactation seems to be on an endless outflow.");
+					if(target.upperUndergarment.shortName == "Bounty Bra" && target.isMilkTank()) output2(" The massaging vibrations eminating from your JoyCo maternity bra reminds you that you'll never stop lactating, but you wonder if it is really necessary since your lactation seems to be on an endless outflow.");
 					else if(target.upperUndergarment.shortName == "Bounty Bra") output2(" Luckily, the massaging vibrations emanating from your JoyCo maternity bra reminds you that you'll never stop lactating as long as you continue to wear the " + target.upperUndergarment.shortName + ".");
 					else output2(" Unfortunately, a bit of [target.milk] leaks out onto your " + target.upperUndergarment.description + "... Maybe you should invest in a maternity bra?");
 				}
@@ -1029,8 +1079,25 @@ public function appearance(target:Creature):void {
 				else if(target.milkFullness < 75) output2(" Your [target.fullChest] have a noticable amount of [target.milk] inside them now. Before long, they'll start swelling.");
 				else if(target.milkFullness < 100) output2(" Your [target.fullChest] are fairly full of [target.milk] and noticeably swollen.")
 				else if(target.milkFullness < 150) output2(" Your [target.fullChest] are sore and sensitive from being so stuffed with [target.milk]. You should release the pressure soon.");
-				else if(target.milkFullness < 200) output2(" Your [target.fullChest] are painfully swollen with [target.milk], so much that they're much bigger than normal. The longer they stay like this, the more your lactation will slow.");
-				else output2(" <b>Your [target.fullChest] are so full that they feel about to burst! Spending time like this is going to slow your milk production.</b>");
+				else if(target.milkFullness < 200)
+				{
+					if(target.isMilkTank() && rand(2) == 0) output2(" Your [target.fullChest] are incredibly swollen with [target.milk], so much that they're much bigger than normal. Your lactation shows no signs of slowing down in the slightest.");
+					else if(target.isMilkTank()) output2(" At least you are certain your enhanced [target.fullChest] will never stop lactating, no matter what.");
+					else output2(" Your [target.fullChest] are painfully swollen with [target.milk], so much that they're much bigger than normal. The longer they stay like this, the more your lactation will slow.");
+				}
+				else
+				{
+					if(target.isMilkTank() && rand(2) == 0) output2(" <b>Your [target.fullChest] are so full that they might burst! They radiate a constant yet rhythmic pulse of pressure, a sign that you are quite the productive [target.milk] factory!</b>");
+					else if(target.isMilkTank()) output2(" Despite the uncomfortable fullness, you are at ease - you know your enhanced [target.fullChest] will never stop lactating, no matter what.");
+					else output2(" <b>Your [target.fullChest] are so full that they feel about to burst! Spending time like this is going to slow your milk production.</b>");
+				}
+				//Bra specials
+				if(target.milkFullness > 150 && target.upperUndergarment.shortName != "")
+				{
+					if(target.upperUndergarment.shortName == "Bounty Bra" && target.isMilkTank()) output2(" The massaging vibrations eminating from your JoyCo maternity bra reminds you that you'll never stop lactating, but you wonder if it is really necessary since your lactation seems to be on an endless outflow.");
+					else if(target.upperUndergarment.shortName == "Bounty Bra") output2(" Luckily, the massaging vibrations emanating from your JoyCo maternity bra reminds you that you'll never stop lactating as long as you continue to wear the " + target.upperUndergarment.shortName + ".");
+					else output2(" Unfortunately, a bit of [target.milk] leaks out onto your " + target.upperUndergarment.description + "... Maybe you should invest in a maternity bra?");
+				}
 			}
 		}
 		//CROTCH STUFF!

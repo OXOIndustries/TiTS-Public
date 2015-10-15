@@ -122,6 +122,7 @@
 		include "../includes/tavros/aliss.as";
 		include "../includes/tavros/alex.as";
 		include "../includes/tavros/beths.as";
+		include "../includes/tavros/inessa.as";
 		include "../includes/tavros/jade.as";
 		include "../includes/tavros/reaha.as";
 		include "../includes/tavros/reaha.expansion.as";
@@ -320,7 +321,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.6.6";
+			version = "0.6.8";
 
 			//temporary nonsense variables.
 			temp = 0;

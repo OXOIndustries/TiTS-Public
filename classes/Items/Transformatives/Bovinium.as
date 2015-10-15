@@ -651,7 +651,7 @@ package classes.Items.Transformatives
 			
 			if (tChanges > 0)
 			{
-				changes = t3Changes(target, tChanges);
+				changes = t4Changes(target, tChanges);
 				totalChanges += changes;
 				tChanges -= changes;
 			}
