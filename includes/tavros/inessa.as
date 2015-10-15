@@ -1142,7 +1142,7 @@ public function cuffNFuck():void
 {
 	clearOutput();
 	author("JimThermic");
-	output("Now that you’ve defeated the [monster.name], you know exactly what to do with [pc.himHer]. As [pc.heShe] reels from the effects your battle, you pull out your grav-cuffs. With a commanding whistle, you toss them up and out in front of you. They immediately hone in and clamp on your felled opponent’s wrists and [pc.legsNoun]. Within seconds, [monster.Name] is forced to the ground, [monster.hisHer] [monster.ass] shamefully pressed in the air.");
+	output("Now that you’ve defeated [monster.name], you know exactly what to do with [monster.himHer]. As [monster.heShe] reels from the effects your battle, you pull out your grav-cuffs. With a commanding whistle, you toss them up and out in front of you. They immediately hone in and clamp on your felled opponent’s wrists and [pc.legsNoun]. Within seconds, [monster.name] is forced to the ground, [monster.hisHer] [monster.ass] shamefully pressed in the air.");
 	// One in three chance of pumping out one of the dialogue chunks below, just to keep the scene fresh.
 	//Random text output (⅓ chance):
 	if(rand(3) == 0)
@@ -1158,7 +1158,7 @@ public function cuffNFuck():void
 	//Random text output (⅓ chance):
 	else if(rand(2) == 0)
 	{
-		output("\n\n<i>“Wha-what did you do to me--?!”</i> the [monster.name] splutters. [monster.HisHer] [monster.ass] wiggles about enticingly as [monster.heShe] tries to tug free of the cuffs to no avail.");
+		output("\n\n<i>“Wha-what did you do to me~?!”</i> the [monster.name] splutters. [monster.HisHer] [monster.ass] wiggles about enticingly as [monster.heShe] tries to tug free of the cuffs to no avail.");
 		output("\n\nStriding up to your prostrate opponent, you stroke [monster.hisHer] [monster.ass] and give it a ");
 		if(pc.isNice()) output("playful pat");
 		else if(pc.isMischievous()) output("cheeky slap");
@@ -1180,7 +1180,7 @@ public function cuffNFuck():void
 	output("\n\n");
 	if(!pc.isNude()) output("You strip off your gear, then");
 	else output("Once you’re ready, you");
-	output(" grab [monster.hisHer] wiggling hips from behind, unceremoniously flopping [pc.oneCock] onto [monster.hisHer] [monster.ass]. Teasing [monster.himHer] for a bit, you grind it back and forth between [monster.hisHer] buttocks, getting yourself nice and hard before sliding it in [monster.hisHer] [monster.vagOrAssNoun].");
+	output(" grab [monster.hisHer] wiggling hips from behind, unceremoniously flopping [pc.oneCock] onto [monster.hisHer] [monster.ass]. Teasing [monster.himHer] for a bit, you grind it back and forth between [monster.hisHer] buttocks, getting yourself nice and hard before sliding it in [monster.hisHer] [monster.vagOrAss].");
 
 	pc.cockChange();
 	output("\n\n[monster.Name] gasps and arches [monster.hisHer] back, trembling at your sudden entry. [monster.HisHer] insides clench tightly around the foreign intruder suddenly ");
