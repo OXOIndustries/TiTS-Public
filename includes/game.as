@@ -3994,13 +3994,9 @@ public function displayEncounterLog(showID:String = "All"):void
 				output2("\n<b><u>Happy Tails</u></b>");
 				output2("\n<b>* Inessa:</b> Met her");
 				if(flags["INESSA_BELTED"] != undefined) output2(", Trapped in chastity belt");
-				if(flags["INESSA_BEING_DOMMED"] != undefined || flags["INESSA_SHOT_DOWN"] != undefined)
-				{
-					output2("\n<b>* Inessa, Submission:</b>");
-					if(flags["INESSA_BEING_DOMMED"] != undefined) output2(" Accepted");
-					else if(flags["INESSA_SHOT_DOWN"] != undefined) output2(" Refused");
-				}
-				if(flags["INESSA_BDSM_SETTING"] != undefined) output2("\n<b>* Inessa, Your BDSM Role:</b>" + StringUtil.capitalize(flags["INESSA_BDSM_SETTING"]));
+				if(flags["INESSA_BEING_DOMMED"] != undefined) output2(", You’ve accepted her submission");
+				else if(flags["INESSA_SHOT_DOWN"] != undefined) output2(", You’ve refused her submission");
+				if(flags["INESSA_BDSM_SETTING"] != undefined) output2("\n<b>* Inessa, Your BDSM Role: </b>" + StringUtil.capitalize(flags["INESSA_BDSM_SETTING"]));
 				if(flags["INESSA_BJED"] != undefined || flags["INESSA_TITTYSQUIRT"] != undefined)
 				{
 					output2("\n<b>* Inessa, Sexual History:</b> Sexed her");
