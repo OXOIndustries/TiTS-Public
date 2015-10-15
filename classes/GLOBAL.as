@@ -579,6 +579,7 @@
 		public static const FLUID_TYPE_NECTAR:int 								= 12;
 		public static const FLUID_TYPE_LEITHAN_MILK:int							= 13;
 		public static const FLUID_TYPE_VANILLA:int								= 16;
+		public static const FLUID_TYPE_NYREA_CUM:int							= 17;
 		
 		public static const FLUID_TYPE_NAMES:Array = [
 			"Milk",
@@ -595,7 +596,8 @@
 			"Vanae Huntress Milk",
 			"Nectar",
 			"Leithan Milk",
-			"Vanilla"
+			"Vanilla",
+			"Nyrea Cum",
 		];
 		
 		public static const VALID_CUM_TYPES:Array = [
@@ -605,6 +607,7 @@
 			FLUID_TYPE_SYDIAN_CUM,
 			FLUID_TYPE_MILK,
 			FLUID_TYPE_VANILLA,
+			FLUID_TYPE_NYREA_CUM,
 		];
 		
 		public static const VALID_GIRLCUM_TYPES:Array = [

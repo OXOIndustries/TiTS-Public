@@ -203,7 +203,6 @@ public function chooseStartingRace(race:String = "human"):void {
 		addDisabledButton(1,"Female","Female","Kui-tan cannot be female.")
 		this.addButton(2,"Herm",setStartingSex,2);
 	}
-	output(", and what should the unborn child be named?");
 	this.displayInput();
 	this.userInterface.textInput.text = "";
 	this.userInterface.textInput.maxChars = 12;
@@ -541,6 +540,7 @@ public function chooseSkinTone():void
 	clearOutput();
 	setLocation("SELECTING\nSKIN PIGMENT","PLANET: TERRA","SYSTEM: SOL");
 	output("<i>“Great. How about skin pigmentation?”</i>");
+	output("\n\n<b>What color is your character’s skin?</b>");
 	this.clearMenu();
 	if(pc.originalRace == "half-leithan")
 	{
@@ -611,6 +611,7 @@ public function chooseBreastSize():void {
 	this.addButton(1,"A",applyBreastSize,1);
 	this.addButton(2,"B",applyBreastSize,2);
 	this.addButton(3,"C",applyBreastSize,3);
+	addButton(13,"Whatever",applyBreastSize,rand(4));
 	if(pc.hasVagina()) {
 		this.addButton(4,"D",applyBreastSize,4);
 		if(pc.originalRace != "half kui-tan") this.addButton(5,"DD",applyBreastSize,5);
@@ -619,13 +620,16 @@ public function chooseBreastSize():void {
 			this.addButton(6,"Big DD",applyBreastSize,6);
 			this.addButton(7,"E",applyBreastSize,7);
 		}
+		addButton(13,"Whatever",applyBreastSize,rand(6));
 	}
 	if (pc.originalRace ==  "half-kaithrit" && pc.hasVagina()) {
 		this.addButton(6,"Big DD",applyBreastSize,6);
 		this.addButton(7,"E",applyBreastSize,7);
 		this.addButton(8,"Big E",applyBreastSize,8);
 		this.addButton(9,"EE",applyBreastSize,9);
+		addButton(13,"Whatever",applyBreastSize,rand(10));
 	}
+
 	this.addButton(14,"Back",chooseSkinTone);
 }
 
@@ -665,7 +669,7 @@ public function chooseYourJunkSize():void {
 			{
 				addButton(i, String(13 + i) + "”", applyJunkSize, 13 + i);
 			}
-			
+			addButton(13,"Whatever",applyJunkSize,13+rand(8));
 			break;
 			
 		case "half kui-tan":
@@ -675,7 +679,7 @@ public function chooseYourJunkSize():void {
 			{
 				addButton(i, String(5 + i) + "”", applyJunkSize, 5 + i);
 			}
-			
+			addButton(13,"Whatever",applyJunkSize,5+rand(10));
 			break;
 		
 		case "half-kaithrit":
@@ -685,7 +689,7 @@ public function chooseYourJunkSize():void {
 			{
 				addButton(i, String(4 + i) + "”", applyJunkSize, 4 + i);
 			}
-			
+			addButton(13,"Whatever",applyJunkSize,4+rand(3));
 			break;
 			
 		default:
@@ -695,9 +699,8 @@ public function chooseYourJunkSize():void {
 			{
 				addButton(i, String(4 + i) + "”", applyJunkSize, 4 + i);
 			}
-			
+			addButton(13,"Whatever",applyJunkSize,4+rand(5));
 			break;
-			
 	}
 
 	output("inches. How long do you want it?”</i> He rolls his eyes. <i>“You’re gonna make your kid a stallion here, aren’t you? Why do I even ask?”</i>");
