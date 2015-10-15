@@ -604,40 +604,6 @@ public function inessaClothingGo():void
 	*/
 }
 /*
-//Other
-public function iness
-
-"Something else then? What did you have in mind?" 
-
-[Whip] [Allure] [Chaste] [*Bio Whip] 
-
-// * Unlocked when PC has reached Myrellion
-
-Whip
-
-this._latestVersion = 1;
-this.quantity = 1;
-this.stackSize = 1;
-this.type = GLOBAL.MELEE_WEAPON;
-this.shortName = "Whip";
-this.longName = "bullwhip";
-this.description = "a single-tailed bullwhip";
-this.tooltip = "This simple, single-tailed bullwhip is made from black, braided leather. It's length, flexibility, and tapered design allows it to be thrown in such a way that part of the whip can exceed the speed of sound, letting out a small sonic boom in the form of a satisfying 'crack'. Very accurate, but deals very little real damage compared to modern weapons. Still favored among adventuring archeologists.";
-this.attackVerb = "whip";
-attackNoun = "whip";
-this.basePrice = 250;
-this.attack = 5;
-baseDamage.kinetic.damageValue = 2;
-this.defense = 0;
-this.shieldDefense = 0
-this.shields = 0;
-this.sexiness = 1;
-this.evasion = 0;
-this.fortification = 0;
-
-
-
-
 Allure
 
 this.quantity = 1;
@@ -819,6 +785,13 @@ public function inessaSexMenu():void
 	//Breast Tease
 	// No Taurs. That’s it.
 	if(!pc.isTaur()) addButton(2,"BreastTease",breastTeaseInessaShit,undefined,"BreastTease","Tease the subbie little fuckterfly's boobs.");
+
+	//Face Strap-On
+	// If pussy, vag. Else ass.
+	addButton(3,"FaceStrap-On",faceStrapOnShitForInessa,undefined,"Face Strap-On","Inessa has a mask with a slot for a dildo over the mouth hanging from the wall. You could make her use it on you...");
+	//Hand Job
+	// PC must have cock.
+	if(pc.hasCock()) addButton(4,"Handjob",getAHandjobFromInessy,undefined,"Handjob","Get a handjob from the slutty, sex-shop supplying sub.");
 	addButton(14,"Back",noYoureASlut);
 }
 
@@ -1540,6 +1513,7 @@ public function newTexanGanguBangu():void
 	output("\n\n<i>“Don’t worry, slut. You can ‘hang’ here anytime - we’ll never turn down a chance to tap that fine ass of yours,”</i> the bull grins. Your heart leaps in your chest. <i>“... But right now we’ve got to get back to work.”</i>");
 	output("\n\nOnce they’ve left, the cuffs automatically unlock, as if sensing their absence. They fall and clatter on the ground. Picking them up, you stare at your wrists and ankles - the only parts of you uncovered by bull cum! You flush and pack them away, feeling more than a little wobbly on your feet!");
 
+	IncrementFlag("NEW_TEXAS_GANGBANGED");
 	processTime(130+rand(10));
 	// Lots of vaginal (if applicable) and anal stretch.
 	// Lots of exhibition points.
@@ -1559,37 +1533,166 @@ public function newTexanGanguBangu():void
 	addButton(0,"Next",mainGameMenu);
 }
 
+//Hand Job
+// PC must have cock.
+public function getAHandjobFromInessy():void
+{
+	clearOutput();
+	showInessa();
+	author("JimThermic");
+	output("Feeling a little horny, you decide to do something about it–or rather, get someone <i>else</i> to. ");
+	if(pc.isCrotchGarbed() && !pc.isTaur()) output("You strip off your [pc.lowerGarments] and");
+	else output("You");
+	output(" whistle loudly like you’re calling a bitch.");
+	if(flags["INESSA_HJ"] == undefined) output(" Funnily enough,");
+	else output(" Just like last time,");
+	output(" it <i>works</i>... Inessa comes bounding over to see what the fuss is about.");
 
-/*
+	output("\n\n<i>“...Is there something I can help you with?”</i> The butterfly-winged girl asks, an eager look in her innocent eyes. You gesture down to your untended-to [pc.cocksNounSimple] and clear your throat.");
 
+	output("\n\n<i>“Jerk ");
+	if(pc.cockTotal() == 1) output("it");
+	else output("them");
+	output(" off, slut,”</i> you sternly order Inessa, and she blushes <i>hard</i>, her slender thighs visibly wiggling as you verbally debase her. Instead of biting back, she swoons instead. Dropping to her knees before your flaccid member");
+	if(pc.cockTotal() > 1) output("s");
+	output(". Her dainty hands wrap around ");
+	if(pc.cockTotal() > 1) output("one of them");
+	else output("your tender flesh");
+	output(", lightly squeezing, constricting the blood flow to your [pc.cockHead]. It slowly grows in fitful little jerks. Low, thrumming pleasure warms your loins, a mere prelude to the pleasure to come.");
 
-Additional Content
+	output("\n\nThe snowy-haired siel girl blows lightly on your sensitive tip, teasing it with tiny pointed breaths. At the same time, she slowly but firmly jerks your base, another hand reaching down to ");
+	if(pc.balls > 0) output("cup and fondle your [pc.sack]");
+	else output("stroke between it and your [pc.asshole]");
+	output(". You let out an appreciative groan as the subby storekeeper works over your [pc.cock].");
+
+	output("\n\nA tiny bead of pre dribbles out of your cock hole and down your flexing shaft, rolling down until it brushes her girlish fingers. Leaning forward, she gives your drip-slickened underside a long upwards lick, looking up at you with a lusty, subservient look at the same time. Just the look in her eyes is enough for you to eagerly spill out more of your spunk, which she eagerly licks and suckles up. Her dusky blue lips are slowly painted [pc.cumColor], glistening with your [pc.cumVisc], [pc.cumFlavor] fluid.");
+
+	//Pc’s dick is 4 inches or smaller: 
+	if(pc.cocks[0].cLength() <= 4) output("\n\nWith your compact-sized dick, she’s easily able to jerk most of your length off with a single hand, wrapping her warm palm around your entire length.");
+	else if(pc.cocks[x].cLength() <= 10) output("\n\nWrapping both her warm hands around your [pc.cockSimple], she’s able to completely encompass and jerk off your entire length.");
+	else output("\n\nYour incredibly long dick is so super-sized that even with both hands, she’s hard pressed to jerk even half of it off. Still, just having her grip <i>part</i> of it is pleasurable enough!");
+	output(" Her focused, yet soft finger force blows away the tightness of most terran pussies, winding you up until you’re actively thrusting against her hand");
+	if(pc.cocks[x].cLength() >= 5) output("s");
+	output(". Your thoughts begin to swim in a muddled mess, and you <i>know</i> that you’re reaching your peak. With a throaty groan, you give one final thrust... and shoot a ");
+	if(pc.cumQ() < 8) output("pleasurable little splatter");
+	else if(pc.cumQ() < 100) output("thin stream");
+	else if(pc.cumQ() < 1000) output("thick stream");
+	else output("gooey gush");
+	output(" of your hot [pc.cumNoun] all over her face! Rather than flinch, the fae-like girl shivers with delight as you use her pretty face as a canvas, marking it pointedly with your precious seed.");
+
+	output("\n\nOnce she’s finished milking out every single drop your [pc.cocks] have to give, Inessa’s ");
+	if(pc.cumQ() >= 100) output("eyes are the only thing not covered in your [pc.cumColor] spunk, and even then, it’s clinging to her long lashes!");
+	else output("cheeks and chin are visibly dripping with your [pc.cumColor] spunk.");
+
+	output("\n\n<i>“I hope you enjoyed yourself?”</i> The siel girl nervously asks. When you nod, she lets out a relieved sigh, pressing a hand to her petite breasts. <i>“That’s good! You know, I pride myself on my customer service.”</i>");
+
+	output("\n\nYou grin. If this is how she treats all her customers, she’s probably up for employee of the year. Not that there’s any competitors in the tiny store, of course.");
+	processTime(22);
+	pc.orgasm();
+	IncrementFlag("INESSA_HJ");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Face Strap-On
+// If pussy, vag. Else ass.
+public function faceStrapOnShitForInessa():void
+{
+	clearOutput();
+	showInessa();
+	if(flags["INESSA_FACE_STRAPPED"] == undefined) output("You notice a leather face-mask on the shelves that covers the mouth and cheeks, but leaves the eyes and nose wide open. There’s a slot for a strapon to attach to the mouth. You pick up the mask and a");
+	else output("Remembering how much fun the face-mask was on Inessa last time, you seek it one out with a wicked grin. When you find it, you pick it up and a");
+	//pc.isTaur:
+	if(pc.isTaur()) output(" mottled stallion schlong, connecting it in place.");
+	else output(" girthy, black schlong, connecting it into place.");
+	//pc is clothed + PC.isTaur != true:
+	if(!pc.isNude() && !pc.isTaur()) output(" After stripping off your things, you");
+	else output(" You");
+	if(flags["INESSA_FACE_STRAPPED"] == undefined) output(" decide to find someone to wear it...");
+	else output(" call for your all-too-willing supplicant.");
+
+	output("\n\n<i>“Inessa!”</i> you bark, and the snowy haired sub practically bounds over. As soon as she’s close enough, you hand her the phallic face-mask. <i>“Put this on. Now!”</i>");
+
+	output("\n\nWithout so much as a second’s hesitation, the slender saerie-girl grabs the mask and begins strapping it to her face. Her cheeks burn bright red as she connects it behind her neck. She looks positively absurd with a ");
+	if(pc.isTaur()) output("twelve-inch horsecock");
+	else output("six inch strap-on");
+	output(" sticking out from her covered mouth, but in a way, just watching her squirm with embarrassment gets you hot and heavy.");
+	if(pc.isTaur()) 
+	{
+		output(" Must be <i>hell</i> on her neck, though. Perhaps you should hold up the other end... perhaps with your ");
+		if(pc.hasVagina()) output("snatch");
+		else output("ass");
+		output("?");
+	}
+
+	output("\n\nAfter ordering her to get on her knees, which she promptly does, you turn around and back your body against her cutely flushing face. Inessa lets out a muffled noise as you press the ");
+	if(pc.isTaur()) output("flat-headed horse-tip");
+	else output("stiff, rounded tip");
+	output(" against your [pc.vagOrAss]. Slowly, you press your [pc.hips] back against the submissive girl’s leatherbound face, forcing it closer and closer to your ");
+	if(pc.hasVagina()) 
+	{
+		output("slippery snatch. She’s soon literally muffled against your muff, her high cheeks pressed ");
+		if(pc.legCount == 1) output("against your crotch");
+		else output("between your [pc.thighs]");
+	}
+	else output("butt");
+	output(". She’s soon got her face almost literally kissing your ass, her face-dildo buried hilt-deep in your gaping hole.");
+
+	output("\n\n<i>“Gooood girl. Now move,”</i> you command her. Slowly and with concerted effort, Inessa pulls back her head and mouth, then thrusts forward, pistoning you with her ");
+	if(pc.isTaur()) output("equine");
+	else output("midnight");
+	output(" face-dildo. Each time, her nose wedges itself ");
+	if(pc.hasVagina()) output("between your snatch and asshole");
+	else output("between your buttocks");
+	output(". So obedient! You grind shamelessly back against her money-maker, forcing her to fuck you deeper and lewder with her lip-schlong. <i>“Come ooon, fuck me. You can do it harder than that!”</i>");
+
+	var volume:Number = 150;
+	if(pc.isTaur()) volume = 500;
+	if(pc.hasVagina()) pc.cuntChange(0,volume,true,true,false);
+	else pc.buttChange(volume);
+
+	output("\n\nCoaxed by your words, Inessa grabs at your [pc.legs], face-fucking your [pc.vagOrAss] with even more enthusiasm. You groan and arch your back, ");
+	if(pc.isTaur()) output("feeling the long stallion cock stimulate your deep hole in the way that nature intended, the flared dick rubbing against your deep, needy depths");
+	else output("slapping your [pc.skinFurScalesColor] cheeks back against her ");
+	if(pc.hasVagina()) output("forehead");
+	else output("own");
+	output(". She lets out a little muffled whimper, and when you look back, you see her legs shaking. Down her thighs, twin streams of slick fluid are running down as she quivers and quakes; did she just cream herself?!");
+
+	output("\n\n<i>“Naughty girl. You should have waited for permission! For that, I’m going allll out,”</i> you warn her, and she nods, pressing her engorged tip against your ");
+	if(pc.hasVagina()) output("sweet g-spot");
+	else output("prostate");
+	output(" in the process. With merciless abandon, you slap ");
+	if(pc.isTaur()) output("your gigantic tauric hips");
+	else output("backward");
+	output(" against her poor face, forcing her to endure your lust-driven humping. She clings desperate to your [pc.legs] to steady herself, her own silky thighs still twitching in the throes of her sloppy orgasm.");
+
+	output("\n\nUnable to hold out any longer, you give a sweet cry, pushing yourself back on the ");
+	if(pc.isTaur()) output("equine");
+	else output("slick");
+	output(" face-dildo, right up to the hilt! Quivering against her cute prostrate face, you cum <i>hard</i>, ");
+	if(pc.hasVagina())
+	{
+		//pc.isSquirter:
+		if(pc.isSquirter()) output("spraying a long, shaming spray of your [pc.girlCum] right there on her face! She’s  absolutely bathed in it, and you can hear her whimpering and cumming <i>again</i>, totally getting off on her debasement.");
+		else output("drooling your [pc.girlCum] all over her cheeks. With an inward grin, you quiver and deliberately <i>rub</i> yourself back against her face, smearing as much of your lady juice as you can all over her face. As she’s absolutely bathed in it, ayou can hear her whimpering and cumming <i>again</i>, totally getting off on her debasement.");
+	}
+	else if(pc.hasCock()) output("shooting your [pc.cum] all over your [pc.belly].");
+	else output("letting out a long, drawn out groan.");
+
+	output("\n\nWhen you pull yourself up and off her strapped-on face-dick, Inessa nearly falls to the floor, totally wiped out by her orgasm{pc.hasPussy: s} and your merciless fucking of her face. You reach out and stroke her head, telling her she did a good job, and she lets out a satisfied, if spacy little purr, nuzzling into your hand. There is a rather obvious puddle between her twitching thighs, marking her delight despite her gleaming chastity belt. You then pull off the mask and toss it aside.");
+	output("\n\n<i>“D-did you want anything else–?”</i> Inessa asks, and you shake your head. As if she could do anything else right now! After a little while, she gets to her feet, and stumbles to grab a mop.");
+	IncrementFlag("INESSA_FACE_STRAPPED");
+	// Return to shop menu.
+	processTime(29);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
 
 // Please put these two items in Doctor Badger's inventory. Wrote them while doing Inessa, but they probably fit better in her store.
 // BTW, also rewrote the Doctor Badger X-pack to be a third the size and far less dumb.
 
-Slut Ray
-
-this.quantity = 1;
-this.stackSize = 1;
-this.type = GLOBAL.RANGED_WEAPON;
-this.shortName = "Slut Ray";
-this.longName = "slut ray";
-this.description = "a compact 'slut ray' gun";
-this.tooltip = "This tiny, unassuming handgun-like device is designed to be hidden. When fired at a subject, it causes their mind to be flooded with graphic sexual fantasies, though they still retain free will. The fantasies can be custom selected by the user or set to random. Nobody knows how it works; the gun's contents are hidden behind a tamper-proof black casing."
-this.attackVerb = "beam";
-attackNoun = "sexual fantasy";
-TooltipManager.addTooltip(this.shortName, this.tooltip);
-this.basePrice = 1500;
-baseDamage.psionic.damageValue = 10;
-this.defense = 0;
-this.shieldDefense = 0;
-this.shields = 0;
-this.sexiness = 0;
-this.critBonus = 0;
-this.evasion = 0;
-this.fortification = 0;
-
+/*Decided not to code this one for now. Maybe it can show up later.
 Slut Ray, Advanced
 
 // Unlocked for sale once PC reaches Myrellion
