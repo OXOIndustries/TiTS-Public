@@ -109,7 +109,8 @@ public function raskvelGangEncounter():void
 		//No Tooltip: They can’t make you have fun.
 		clearMenu();
 		addButton(1,"No",noIDontWantFunRaskGang,undefined,"No","They can't make you have fun.");
-		addButton(0,"Yes",sureRaskLetsHaveFun,undefined,"Yes","You suspect by 'fun' they mean sex.");
+		if(pc.hasGenitals()) addButton(0,"Yes",sureRaskLetsHaveFun,undefined,"Yes","You suspect by 'fun' they mean sex.");
+		else addDisabledButton(0,"Yes","Yes","You need genitals to have fun!");
 	}
 	//Wants a Bribe
 	//30% chance
@@ -130,7 +131,8 @@ public function raskvelGangEncounter():void
 		if(pc.credits >= bribeAmount) addButton(0,"Pay",payRaskGangForSafePassage,bribeAmount,"Pay","Pay them the money.");
 		else addDisabledButton(0,"Pay","Pay","You can't afford that!");
 		addButton(1,"Don't Pay",dontPayForSafePassageSlut,undefined,"Don't Pay","It's clobberin' time!");
-		addButton(2,"PayWithSex",pay4SafetyWivSmex,undefined,"Pay With Sex","Maybe you can pay them off with some some sex.");
+		if(pc.hasGenitals()) addButton(2,"PayWithSex",pay4SafetyWivSmex,undefined,"Pay With Sex","Maybe you can pay them off with some sex.");
+		else addDisabledButton(2,"PayWithSex","Pay With Sex","You need genitals to pay them off with sex!");
 	}
 }
 
