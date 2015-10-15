@@ -12008,5 +12008,20 @@ package classes {
 			if(hornType == GLOBAL.TYPE_DEER) return "antler";
 			return "horn";
 		}
+		
+		public function isDefeated():Boolean
+		{
+			
+		}
+		
+		/**
+		 * Argument names are in context to _this_ creature.
+		 * @param	friendlies
+		 * @param	hostiles
+		 */
+		public function CombatAI(friendlies:Array, hostiles:Array):void
+		{
+			
+		}
 	}
 }
