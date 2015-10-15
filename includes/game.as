@@ -3997,11 +3997,13 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["INESSA_BEING_DOMMED"] != undefined) output2(", You’ve accepted her submission");
 				else if(flags["INESSA_SHOT_DOWN"] != undefined) output2(", You’ve refused her submission");
 				if(flags["INESSA_BDSM_SETTING"] != undefined) output2("\n<b>* Inessa, Your BDSM Role: </b>" + StringUtil.capitalize(flags["INESSA_BDSM_SETTING"]));
-				if(flags["INESSA_BJED"] != undefined || flags["INESSA_TITTYSQUIRT"] != undefined)
+				if(flags["INESSA_BJED"] != undefined || flags["INESSA_TITTYSQUIRT"] != undefined || flags["INESSA_HJ"] != undefined || flags["INESSA_FACE_STRAPPED"] != undefined)
 				{
 					output2("\n<b>* Inessa, Sexual History:</b> Sexed her");
 					if(flags["INESSA_BJED"] != undefined) output2(", Gave you a blowjob");
 					if(flags["INESSA_TITTYSQUIRT"] != undefined) output2(", She squirted you");
+					if(flags["INESSA_HJ"] != undefined) output2("\n<b>* Inessa, Times She’s Given You a Handjob: </b>" + StringUtil.capitalize(flags["INESSA_HJ"]));
+					if(flags["INESSA_FACE_STRAPPED"] != undefined) output2("\n<b>* Inessa, Times She’s Used Her Face Strap-On: </b>" + StringUtil.capitalize(flags["INESSA_FACE_STRAPPED"]));
 				}
 				variousCount++;
 			}
@@ -4041,6 +4043,13 @@ public function displayEncounterLog(showID:String = "All"):void
 				// Ogram and Amma
 				output2("\n<b>* Ogram and Amma:</b> Met them");
 				if(flags["FUCKED_TEXAN_CUSTOMS"] != undefined) output2(", Sexed them");
+				variousCount++;
+			}
+			// Public
+			if(flags["NEW_TEXAS_GANGBANGED"] != undefined) 
+			{
+				output2("\n<b><u>New Texas Public</u></b>");
+				if(flags["NEW_TEXAS_GANGBANGED"] != undefined) output2("\n<b>* Times Gangbanged By: </b>" + flags["NEW_TEXAS_GANGBANGED"]);
 				variousCount++;
 			}
 			// Big T's Ranch
