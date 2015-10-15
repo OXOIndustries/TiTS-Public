@@ -1290,7 +1290,7 @@ public function cuffNFuck():void
 	output("\n\n");
 	genericVictory();
 }
-/*
+
 //New Texan Gang-Bang
 // PC must have grav-cuffs in their inventory and be on New Texas.
 // It’s up to you if you tie this scene to a static room, or have it as a masturbation option on-planet when the PC has grav-cuffs in their inventory.
@@ -1307,8 +1307,8 @@ public function newTexanGanguBangu():void
 		output(" If you were to strip and tie yourself up here, what with your ");
 		if(pc.hasCock() && pc.hasVagina()) output("different sets");
 		else output("lack");
+		output(" of genitals, you wonder what they would make of you?");
 	}
-	output(" of genitals, you wonder what they would make of you?");
 
 	if(!pc.isNude()) output("\n\nYou excitedly strip off your things, then pull out and toss");
 	else output("\n\nNaked as the day you were born, you pull out and toss");
@@ -1406,7 +1406,7 @@ public function newTexanGanguBangu():void
 	}
 
 	output("\n\n<i>“Oh, we will. Prepare to have your ass fucked, slut!”</i> You cry out as a flat equine head forces its way into your [pc.asshole]. Oh god, your [pc.ass] is totally impaled on his fleshy rod!");
-	var virgin:Boolean = pc.analVirginity;
+	var virgin:Boolean = pc.analVirgin;
 	pc.buttChange(500);
 
 	output("\n\n<i>“How does it feel to have a bull dick inside of that [pc.ass] of yours?”</i> The bull behind you asks, flexing his massive manhood. You feel his equine head flaring inside of you - you swear he’s buried right up in your belly. <i>“");
@@ -1428,51 +1428,139 @@ public function newTexanGanguBangu():void
 		output(" pucker. The muscular male flexes and flares inside of you in happy response - he clearly loves what you’re doing!");
 	}
 
+	output("\n\nYou grind against each other, his powerful hips slapping against your well-packed posterior, his prodigious prick sliding back and forth, in and out of your quaking [pc.skinFurScalesColor] buttocks. Hanging from your wrist cuffs, all you can do is tremble and moan as your [pc.ass] is deliciously abused by the burly bull!");
 
-output("\n\nYou grind against each other, his powerful hips slapping against your well-packed posterior, his prodigious prick sliding back and forth, in and out of your quaking [pc.skinColor] buttocks. Hanging from your wrist cuffs, all you can do is tremble and moan as your [pc.ass] is deliciously abused by the burly bull!");
+	//if PchasFrontPussy:
+	if(pc.hasVagina() && !pc.isTaur())
+	{
+		output("\n\n<i>“Time for me to get some of that action.”</i> His broad-chested brother grins, also grabbing your [pc.hips], this time from the front. Rubbing his own flaring tip against your dribbling nethers, he thrusts upwards, keen to claim your [pc.vaginaColor] pussy! It takes very little effort; your slick twat excitedly parts around his flaring tip, yielding happily to the thick, fleshy intruder!");
+		pc.cuntChange(x,500,true,true,false);
 
-output("\n\n{if PchasFrontPussy:");
+		output("\n\nYou cry out in exquisite pleasure as both bulls practically rub their manhoods together deep inside of you, one stroking all the way to your womb and the other your rectum. Both of their hot, hard bodies rub against your [pc.chest] and back as you’re wonderfully sandwiched.");
+		//FirstTime: 
+		if(flags["NEW_TEXAS_GANGBANGED"] == undefined) output(" Your poor pussy and pucker are never going to be the same after this - you can already feel your insides molding to the shape of their unforgettable girth, wringing and clenching");
+		else output(" Your pussy and pucker have not forgotten their shapes - already they’re wringing and clenching their familiar girths");
+		output(", eager to squeeze their bullish seed out deep inside of your needy holes and fill you up with their hot, fertile seed.");
+	}
+	else
+	{
+		output("\n\nAs you’re pistoned from behind, the broad-chested bull before you grabs your [pc.hips] and keeps rubbing his glorious hardness against you");
+		if(pc.hasCock() && !pc.isTaur()) output("rs");
+		else output("r bare loins");
+		output(". You cry out in exquisite pleasure as you’re fantastically sandwiched between both bulls, one stroking against ");
+		if(frontCock) output("[pc.oneCock]");
+		else output("you");
+		output(" as the other fills up your [pc.ass]. ");
+		if(flags["NEW_TEXAS_GANGBANGED"] == undefined) output("Your poor pucker is never going to be the same after this - you can already feel your insides molding to the shape of the back bull’s unforgettable girth, wringing and clenching");
+		else output("All the while your rectum wrings and clenches the familiar girth, eager to squeeze out it’s bullish seed inside of your needy hole and fill you up to the brink with frothing cum.");
+	}
+	output("\n\n<i>“I-I’m going to cum!”</i> You squeal out, trembling and shaking against them. You can’t hold out much longer - already, you’re reaching that all consuming peak!");
+	output("\n\n<i>“Cum for us, slut!”</i> The bull in your butt bellows");
+	if(frontPussy) output(" as they bounce you up and down on their throbbing equine dicks.");
+	else output(" all the while bouncing your [pc.ass] on his throbbing equine shaft.");
 
-output("\n\n<i>“Time for me to get some of that action.”</i> His broad-chested brother grins, also grabbing your [pc.hips], this time from the front. Rubbing his own flaring tip against your dribbling nethers, he thrusts upwards, keen to claim your [pc.vaginaColor] pussy! It takes very little effort; your slick twat excitedly parts around his flaring tip, yielding happily to the thick, fleshy intruder! {Virgin: A thin trail of red runs down his pink, equine shaft - <b>he has just taken your precious virginity!</b>");
+	output("\n\nUnable to hold out even if you tried, you throw back your head and cry out ecstatically, utterly creaming yourself between them.");
+	if(frontPussy) 
+	{
+		output(" You gloriously gush [pc.girlCum] around the pulsing prick buried in your [pc.vagina]");
+		if(pc.totalVaginas() > 2) output(", while your others emptily dribble, sharing in the excitement.");
+		if(pc.totalVaginas() == 2) output(", while your other emptily dribbles, sharing in the excitement.");
+	}
+	//pc.hasCock:
+	if(frontCock) 
+	{
+		output(" Your [pc.cockHead] flexes and ");
+		if(pc.cumQ() < 5) output("a single thick, [pc.cumVisc] rope of [pc.cumNoun] spurts");
+		else if(pc.cumQ() < 300) output("thick, [pc.cumVisc] ropes of [pc.cumNoun] spurt");
+		else if(pc.cumQ() < 2000) output("a hose-blast of thick, [pc.cumVisc] [pc.cumNoun] spurts");
+		else output("a geyser of thick, [pc.cumVisc] [pc.cumNoun] spurt");
+		output(" up on the front bulls’ strapping chest, coating it ");
+		//largeOrMoreCum:
+		if(pc.cumQ() >= 300) output(" and his face");
+		output(" in your sloppy [pc.cumColor] seed");
+		if(pc.cockTotal() > 1)
+		{
+			output(" - your other soon cock");
+			if(pc.cockTotal() > 2) output("s");
+			output(" following suit!");
+		}
+		else output(".");
+	}
+	output(" All the while, you excitedly spasm and clench around ");
+	if(frontPussy) output("their flat-tipped pillars, wringing them for all they’re worth.");
+	else output("the flat-tipped pillar buried in your butt, wringing it for all it’s worth.");
 
-output("\n\nYou cry out in exquisite pleasure as both bulls practically rub their manhoods together deep inside of you, one stroking all the way to your womb and the other your rectum. Both of their hot, hard bodies rub against your [pc.chest] and back as you’re wonderfully sandwiched. {FirstTime: Your poor pussy and pucker are never going to be the same after this - you can already feel your insides molding to the shape of their unforgettable girth, wringing and clenching/Repeat: Your pussy and pucker have not forgotten their shapes - already they’re wringing and clenching their familiar girths}, eager to squeeze their bullish seed out deep inside of your needy holes and fill you up with their hot, fertile seed.");
+	output("\n\nIn your orgasmic throes, you set the two burly bulls off, and suddenly you can feel them flexing inside of you, grabbing and pressing deep against your [pc.hips] and ass. Suddenly there’s a glorious, gooey spurting ");
+	if(!frontPussy) output("on your [pc.chest] and ");
+	output("deep inside of you, flooding up inside your ");
+	if(frontPussy) output("[pc.vagina] and ");
+	output("rectum. Hot, fertile bull-seed quickly fills up your ");
+	//GotFrontPussy:
+	if(frontPussy) 
+	{
+		if(!pc.isPregnant(0)) output("eager womb to the brink, bathing your unprotected eggs in hyper-virility");
+		else output("channel to the brink, bathing your rippling walls in wasted virility.");
+	}
+	else 
+	{
+		output("bowels, bloating out your [pc.belly]");
+		if(!pc.isPregnant()) output(" as if you were pregnant.");
+		else output(" and making you look even <i>more</i> pregnant.");
+	}
 
-output("\n\n}");
+	output("\n\nWhen the back bull pulls out, hot, sloppy cum drools out of your well-stretched ");
+	if(frontPussy) output("pussy and ");
+	output("pucker and down the ");
+	if(frontPussy) output("front and ");
+	output("back of your [pc.thighs]. Your [pc.belly] and [pc.ass] feel so warm, like you’re filled to the brim with liquid love!");
 
-output("\n\n{else:");
-output("\n\nAs you’re pistoned from behind, the broad-chested bull before you grabs your [pc.hips] and keeps rubbing his glorious hardness against you{male: rs/else: r bare loins} . You cry out in exquisite pleasure as you’re fantastically sandwiched between both bulls, one stroking against {[pc.oneCock]/you} as the other fills up your [pc.ass]. {FirstTime: Your poor pucker is never going to be the same after this -- you can already feel your insides molding to the shape of the back bull’s unforgettable girth, wringing and clenching/Repeat: All the while your rectum wrings and clenches the familiar girth, eager to squeeze out it’s bullish seed inside of your needy hole and fill you up to the brink with frothing cum.");
-output("\n\n}");
+	if(!frontPussy) 
+	{
+		output("\n\nYou spacily stare over at the third bull - he’s been stroking his flat-tipped prick this entire time! Just a few more strokes and a groan later, and a thick, gooey rope spurts through the air and wetly splatters your [pc.skinColor] cheeks. His salty goo drools down to your [pc.lips], and you sluttily lick it up, relishing in his heady musk and thick, gooey taste.");
+		output("\n\n<i>“Marked [pc.himHer]!”</i> He grins, stroking out a few more lazy ropes that splatter against your ");
+		if(frontCock) output("already well-splattered ");
+		output("[pc.chest].");
+	}
+	output("\n\nNow that you’ve all came, you expect to be let go. But the breeding bulls are nowhere near finished with you yet! Switching places, it’s not long before your ");
+	if(frontPussy) output("[pc.vagina] and ");
+	output("[pc.ass] ");
+	if(frontPussy) output("are");
+	else output("is");
+	output(" being filled once again, this time by a different one!");
 
-output("\n\n<i>“I-I’m going to cum!”</i> You squeal out, trembling and shaking against them. You can’t hold out much longer - already, you’re reaching that all consuming peak!");
+	output("\n\nAll you can do is hang there, cuffed and helpless, as you’re fucked mercilessly by the burly bovines over the next two hours. When they’re done with you, your belly is ");
+	if(!pc.isPregnant()) output("gravid");
+	else output("even bigger than before");
+	output(" and hanging heavily with bull semen, your entire body slick with their seed. From head to toe, you look and smell like a cum-dumpster - which is exactly what you were used as!");
+	output("\n\n<i>“Thanks for the good time, darlin’.”</i> One of the bulls slaps you on your well-used ass, now thoroughly gaping in the shape of their girthy cocks. Slick, wet spunk liberally drools out of your rectum, and you feel so empty! Whining out loud, you beg them to fuck you again - ");
+	if(flags["NEW_TEXAS_GANGBANGED"] == undefined) output("even though it’s only been two hours,");
+	else output("you can’t imagine living without their dicks inside of you!");
 
-output("\n\n<i>“Cum for us, slut!”</i> The bull in your butt bellows{ gotFrontPussy: as they bounce you up and down on their throbbing equine dicks/else: all the while bouncing your [pc.ass] on his throbbing equine shaft.}");
+	output("\n\nHearing your plaintive cry, one of the bulls lifts your chin and gives you a sloppy, cum-covered kiss, making you melt in your cuffs. When he pulls back, you’re swooning in delight!");
+	output("\n\n<i>“Don’t worry, slut. You can ‘hang’ here anytime - we’ll never turn down a chance to tap that fine ass of yours,”</i> the bull grins. Your heart leaps in your chest. <i>“... But right now we’ve got to get back to work.”</i>");
+	output("\n\nOnce they’ve left, the cuffs automatically unlock, as if sensing their absence. They fall and clatter on the ground. Picking them up, you stare at your wrists and ankles - the only parts of you uncovered by bull cum! You flush and pack them away, feeling more than a little wobbly on your feet!");
 
-output("\n\nUnable to hold out even if you tried, you throw back your head and cry out ecstatically, utterly creaming yourself between them. {Pc.hasPussy: You gloriously gush [pc.girlCum] around the pulsing prick buried in your [pc.vagina]{MoreThanOnePussy:, while your others emptily dribble, sharing in the excitement.}{pc.hasCock: Your [pc.cockHead] flexes and {smallCums: a single thick, [pc.cumVisc] rope of/Mid: thick, [pc.cumVisc] ropes of/Large: a hose-blast of thick, [pc.cumVisc]/Huge: a geyser of thick, [pc.cumVisc]} [pc.cumNoun] spurt{s} up on the front bulls’ strapping chest, coating it {largeOrMoreCum: and his face} in your sloppy [pc.cumColor] seed{MultiCocks - your other soon cock{s} following suit!} All the while, you excitedly spasm and clench around {GotFrontPussy: their flat-tipped pillars, wringing them for all they’re worth/else: the flat-tipped pillar buried in your butt, wringing it for all it’s worth}.");
+	processTime(130+rand(10));
+	// Lots of vaginal (if applicable) and anal stretch.
+	// Lots of exhibition points.
+	// Filled with bull cum, anally and vaginally. Inflation.
+	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
+	pc.exhibitionism(1);
+	if(pc.hasVagina()) 
+	{
+		pc.loadInCunt(pp,0);
+		pc.loadInCunt(pp,0);
+	}
+	else  pc.loadInAss(pp);
+	pc.exhibitionism(2);
+	pc.exhibitionism(2);
+	pc.exhibitionism(2);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
 
-output("\n\nIn your orgasmic throes, you set the two burly bulls off, and suddenly you can feel them flexing inside of you, grabbing and pressing deep against your [pc.hips] and ass. Suddenly there’s a glorious, gooey spurting {NoFrontPussy: on your [pc.chest] and} deep inside of you, flooding up inside your {[pc.vagina] and} rectum}. Hot, fertile bull-seed quickly fills up your {GotFrontPussy: eager womb to the brink, bathing your unprotected eggs in hyper-virility/bowels, bloating out your [pc.belly] {notPregnant: as if you were pregnant/else: and making you look even <i>more</i> pregnant}.");
 
-output("\n\nWhen {the back bull pulls out, hot, sloppy cum drools out of your well-stretched {pussy and} pucker and down the {front and} back of your [pc.thighs]. Your [pc.belly] and [pc.ass] feel so warm, like you’re filled to the brim with liquid love!");
-
-output("\n\nYou spacily stare over at the third bull - he’s been stroking his flat-tipped prick this entire time! Just a few more strokes and a groan later, and a thick, gooey rope spurts through the air and wetly splatters your [pc.skinColor] cheeks. His salty goo drools down to your [pc.lips], and you sluttily lick it up, relishing in his heady musk and thick, gooey taste.");
-
-output("\n\n<i>“Marked [pc.himHer]!”</i> He grins, stroking out a few more lazy ropes that splatter against your {pcDoesNotHaveFrontPussy: already well-splattered} [pc.chest}.");
-
-output("\n\nNow that you’ve all came, you expect to be let go. But the breeding bulls are nowhere near finished with you yet! Switching places, it’s not long before your {[pc.vagina] and} [pc.ass] {is/are} being filled once again, this time by a different one!");
-
-output("\n\nAll you can do is hang there, cuffed and helpless, as you’re fucked mercilessly by the burly bovines over the next two hours. When they’re done with you, your belly is {Norm: gravid/AlreadyGravid: even bigger than before} and hanging heavily with bull semen, your entire body slick with their seed. From head to toe, you look and smell like a cum-dumpster - which is exactly what you were used as!");
-
-output("\n\n<i>“Thanks for the good time, darlin’.”</i> One of the bulls slaps you on your well-used ass, now thoroughly gaping in the shape of their girthy cocks. Slick, wet spunk liberally drools out of your rectum, and you feel so empty! Whining out loud, you beg them to fuck you again - {FirstTime: even though it’s only been two hours, }you can’t imagine living without their dicks inside of you!}");
-
-output("\n\nHearing your plaintive cry, one of the bulls lifts your chin and gives you a sloppy, cum-covered kiss, making you melt in your cuffs. When he pulls back, you’re swooning in delight!");
-
-output("\n\n<i>“Don’t worry, slut. You can ‘hang’ here anytime - we’ll never turn down a chance to tap that fine ass of yours,”</i> the bull grins. Your heart leaps in your chest. <i>“... But right now we’ve got to get back to work.”</i>");
-
-output("\n\nOnce they’ve left, the cuffs automatically unlock, as if sensing their absence. They fall and clatter on the ground. Picking them up, you stare at your wrists and ankles - the only parts of you uncovered by bull cum! You flush and pack them away, feeling more than a little wobbly on your feet!");
-
-// Lots of vaginal (if applicable) and anal stretch.
-// Lots of exhibition points.
-// Filled with bull cum, anally and vaginally. Inflation.
-
+/*
 
 
 Additional Content
