@@ -4002,8 +4002,8 @@ public function displayEncounterLog(showID:String = "All"):void
 					output2("\n<b>* Inessa, Sexual History:</b> Sexed her");
 					if(flags["INESSA_BJED"] != undefined) output2(", Gave you a blowjob");
 					if(flags["INESSA_TITTYSQUIRT"] != undefined) output2(", She squirted you");
-					if(flags["INESSA_HJ"] != undefined) output2("\n<b>* Inessa, Times She’s Given You a Handjob: </b>" + StringUtil.capitalize(flags["INESSA_HJ"]));
-					if(flags["INESSA_FACE_STRAPPED"] != undefined) output2("\n<b>* Inessa, Times She’s Used Her Face Strap-On: </b>" + StringUtil.capitalize(flags["INESSA_FACE_STRAPPED"]));
+					if(flags["INESSA_HJ"] != undefined) output2("\n<b>* Inessa, Times She’s Given You a Handjob: </b>" + flags["INESSA_HJ"]);
+					if(flags["INESSA_FACE_STRAPPED"] != undefined) output2("\n<b>* Inessa, Times She’s Used Her Face Strap-On: </b>" + flags["INESSA_FACE_STRAPPED"]);
 				}
 				variousCount++;
 			}
