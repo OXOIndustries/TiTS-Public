@@ -3437,7 +3437,8 @@ package classes {
 				faceo = "a rugged looking " + face() + " ";
 				if (hasBeard()) faceo += "and " + beard() + " that are";
 				else if(lipRating() > 2) faceo += "and " + pluralize(lipDescript(true)) + faceLipMimbraneDescript() + " that are";
-				else faceo += "that's surely handsome";
+				else faceo += "that's";
+				faceo += " surely handsome";
 			}
 			//21-28
 			else if (femininity < 28) faceo = "a well-defined jawline, a pair of " + pluralize(lipDescript(true)) + faceLipMimbraneDescript() + ", and a fairly masculine profile";

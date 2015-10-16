@@ -64,6 +64,7 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items","The Treatment",treatmentCodexEntry);
 
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "SynthSheath", synthSheathCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "BionaHoles", bionaholeCodex);
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Technology", "AI Systems", AISystemsCodexEntry, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Technology", "Item Mechanics", mechanicsCodex, true);
@@ -209,6 +210,23 @@ public function gushCodexEntry():void
 	CodexManager.viewedEntry("Gush");
 }
 
+//Codex: BionaHole
+//Technology Category
+public function bionaholeCodex():void
+{
+	clearOutputCodex();
+	showBust("");
+	outputCodex(header("BionaHoles"));
+	outputCodex("<i>For thousands of years, sapients have concealed their dicks in boxes. Now, with the TamaniCorp Bionahole, the reverse is just as possible.</i>\n\n");
+	outputCodex("Perhaps the most controversial of TamaniCorp’s wide range of products, the BionaHole came about after a failed venture into all-natural artificial wombs. Though the main project went grossly over budget due to the insistence of the company CEO personally sampling a huge number of paid male test candidates, the scientists working on the artificial wombs managed to salvage some of the tech behind it and turn it into a high-end sex toy: the BionaHole.");
+
+	outputCodex("\n\nAt its core, the BionaHole is a cloned vagina - complete with lips, clitoris, and channel... and the ability to become excited when played with - suspended in a thick black tube laden with life-support tech to keep the sex organ alive, wet, and warm. The vaginal passage is designed with greatly increased sensitivity compared to its natural base, and will actually achieve orgasm through vigorous use. All BionaHoles are equipped with self-cleaning abilities and the capacity for minor self-repair thanks to a healthy dose of microsurgeons. So long as the owner regularly changes out the proprietary nutrient packs and keeps the flask charged (either through a small solar battery or a conventional electrical port), the cloned pussy can remain healthy and enjoyable for decades.");
+
+	outputCodex("\n\nBionaHoles reached their peak popularity shortly after launch with their modelled line, featuring cloned vaginas of recognizable sex symbols; like the galaxy’s number one hyperporn actress Nivas Oxonef to TamaniCorp’s own lascivious CEO. Since the product line’s introduction, several additional models have come out, modelled after mouths, anuses, and several exotic alien sexual organs.");
+
+	outputCodex("\n\nOf course, the BionaHole met with a great deal of controversy after its introduction, especially from anti-cloning political groups. Even today, the product remains fairly niche and is regarded as being fairly <i>“deviant”</i> by the mainstream sex industry, due to the living nature of the toy. However, it has certainly found a market for itself, especially among wealthy playboys who won’t settle for anything less than the <i>“real thing”</i> as a safer and more convenient alternative to intercourse - or simply a practice tool for their sexual escapades.\n\n");
+	CodexManager.viewedEntry("BionaHoles");
+}
 
 public function sielCodexEntry():void
 {

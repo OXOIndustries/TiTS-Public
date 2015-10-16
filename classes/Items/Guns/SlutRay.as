@@ -39,6 +39,7 @@ package classes.Items.Guns
 			this.basePrice = 1500;
 			this.attack = 0;
 			baseDamage.tease.damageValue = 6;
+			addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
 			
 			this.defense = 0;
 			this.shieldDefense = 0;
