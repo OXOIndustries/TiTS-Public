@@ -11,7 +11,7 @@
 		//constructor
 		public function DrBadger()
 		{
-			this._latestVersion = 3;
+			this._latestVersion = 4;
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
@@ -178,7 +178,10 @@
 			
 			this._isLoading = false;
 		}
-		
+		public function UpgradeVersion3(dataObject:Object):void
+		{
+			dataObject.inventory.push(new SlutRay().getSaveObject());
+		}
 		public function UpgradeVersion2(d:Object):void
 		{
 			delete d.meleeWeapon;

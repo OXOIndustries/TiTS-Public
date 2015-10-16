@@ -5,6 +5,7 @@
 	import classes.kGAMECLASS;
 	import classes.Items.Toys.HoverHole;
 	import classes.Items.Toys.GravCuffs;
+	import classes.Items.Toys.NivasBionaHole;
 	import classes.Items.Melee.Whip;
 	import classes.Items.Melee.BioWhip;
 	import classes.Items.Apparel.MaidOutfit;
@@ -30,6 +31,7 @@
 			
 			this.inventory.push(new HoverHole());
 			this.inventory.push(new GravCuffs());
+			this.inventory.push(new NivasBionaHole());
 
 			this.inventory.push(new Whip());
 			//Unlocks at Myrellion unlock~
