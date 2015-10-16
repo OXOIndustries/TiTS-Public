@@ -9,6 +9,9 @@ package classes {
 	import classes.Items.Melee.Fists;
 	import classes.Items.Melee.Rock;
 	import classes.Items.Miscellaneous.EmptySlot;
+	import classes.Items.Accessories.TamWolf;
+	import classes.Items.Accessories.TamWolfDamaged;
+	import classes.Items.Accessories.Allure;
 	import classes.VaginaClass;
 	import classes.BreastRowClass;
 	import classes.StorageClass;
@@ -19,8 +22,7 @@ package classes {
 	import flash.utils.getQualifiedClassName;
 	import flash.utils.getDefinitionByName;
 	import classes.GameData.StatTracking;
-	import classes.Items.Accessories.TamWolf;
-	import classes.Items.Accessories.TamWolfDamaged;
+	
 	import flash.utils.ByteArray;
 	import classes.GLOBAL;
 	import classes.GameData.Pregnancy.PregnancyManager;
@@ -2622,6 +2624,7 @@ package classes {
 			
 			var currLib:int = libidoMod + libidoRaw;
 			if (hasStatusEffect("Myr Venom")) currLib += Math.floor(currLib * 0.15);
+			if (accessory is Allure) currLib += 20;
 			
 			if (currLib > libidoMax())
 			{
@@ -3435,7 +3438,8 @@ package classes {
 				faceo = "a rugged looking " + face() + " ";
 				if (hasBeard()) faceo += "and " + beard() + " that are";
 				else if(lipRating() > 2) faceo += "and " + pluralize(lipDescript(true)) + faceLipMimbraneDescript() + " that are";
-				else faceo += "that's surely handsome";
+				else faceo += "that's";
+				faceo += " surely handsome";
 			}
 			//21-28
 			else if (femininity < 28) faceo = "a well-defined jawline, a pair of " + pluralize(lipDescript(true)) + faceLipMimbraneDescript() + ", and a fairly masculine profile";

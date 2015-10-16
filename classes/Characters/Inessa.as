@@ -5,6 +5,7 @@
 	import classes.kGAMECLASS;
 	import classes.Items.Toys.HoverHole;
 	import classes.Items.Toys.GravCuffs;
+	import classes.Items.Toys.NivasBionaHole;
 	import classes.Items.Melee.Whip;
 	import classes.Items.Melee.BioWhip;
 	import classes.Items.Apparel.MaidOutfit;
@@ -14,6 +15,7 @@
 	import classes.Items.Apparel.CheerleaderUniform;
 	import classes.Items.Apparel.BunnyOutfit;
 	import classes.Items.Apparel.SchoolgirlOutfit;
+	import classes.Items.Accessories.Allure;
 	import classes.rand;
 	
 	public class Inessa extends Creature
@@ -29,10 +31,13 @@
 			
 			this.inventory.push(new HoverHole());
 			this.inventory.push(new GravCuffs());
+			this.inventory.push(new NivasBionaHole());
 
 			this.inventory.push(new Whip());
 			//Unlocks at Myrellion unlock~
 			this.inventory.push(new BioWhip());
+
+			this.inventory.push(new Allure());
 
 			this.inventory.push(new MaidOutfit());
 			this.inventory.push(new LeatherStrapHarness());
