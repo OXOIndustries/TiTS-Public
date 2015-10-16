@@ -1571,7 +1571,7 @@ public function getAHandjobFromInessy():void
 
 	//Pc’s dick is 4 inches or smaller: 
 	if(pc.cocks[0].cLength() <= 4) output("\n\nWith your compact-sized dick, she’s easily able to jerk most of your length off with a single hand, wrapping her warm palm around your entire length.");
-	else if(pc.cocks[x].cLength() <= 10) output("\n\nWrapping both her warm hands around your [pc.cockSimple], she’s able to completely encompass and jerk off your entire length.");
+	else if(pc.cocks[x].cLength() <= 10) output("\n\nWrapping both her warm hands around your [pc.cockNoun " + x + "], she’s able to completely encompass and jerk off your entire length.");
 	else output("\n\nYour incredibly long dick is so super-sized that even with both hands, she’s hard pressed to jerk even half of it off. Still, just having her grip <i>part</i> of it is pleasurable enough!");
 	output(" Her focused, yet soft finger force blows away the tightness of most terran pussies, winding you up until you’re actively thrusting against her hand");
 	if(pc.cocks[x].cLength() >= 5) output("s");
@@ -1681,7 +1681,9 @@ public function faceStrapOnShitForInessa():void
 	else if(pc.hasCock()) output("shooting your [pc.cum] all over your [pc.belly].");
 	else output("letting out a long, drawn out groan.");
 
-	output("\n\nWhen you pull yourself up and off her strapped-on face-dick, Inessa nearly falls to the floor, totally wiped out by her orgasm{pc.hasPussy: s} and your merciless fucking of her face. You reach out and stroke her head, telling her she did a good job, and she lets out a satisfied, if spacy little purr, nuzzling into your hand. There is a rather obvious puddle between her twitching thighs, marking her delight despite her gleaming chastity belt. You then pull off the mask and toss it aside.");
+	output("\n\nWhen you pull yourself up and off her strapped-on face-dick, Inessa nearly falls to the floor, totally wiped out by her orgasm");
+	if(pc.hasVagina()) output("s");
+	output(" and your merciless fucking of her face. You reach out and stroke her head, telling her she did a good job, and she lets out a satisfied, if spacy little purr, nuzzling into your hand. There is a rather obvious puddle between her twitching thighs, marking her delight despite her gleaming chastity belt. You then pull off the mask and toss it aside.");
 	output("\n\n<i>“D-did you want anything else–?”</i> Inessa asks, and you shake your head. As if she could do anything else right now! After a little while, she gets to her feet, and stumbles to grab a mop.");
 	IncrementFlag("INESSA_FACE_STRAPPED");
 	// Return to shop menu.
