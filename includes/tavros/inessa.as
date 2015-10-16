@@ -572,6 +572,7 @@ public function inessaBuyGo():void
 	//[Sex Gear] [Clothes] [Other]
 	buyItem();
 }
+
 /*Sex Gear
 public function inessaSexGearGo():void
 {

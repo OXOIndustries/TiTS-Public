@@ -11,6 +11,7 @@
 	import classes.Items.Armor.NyreanChain;
 	import classes.Items.Transformatives.Bovinium;
 	import classes.Items.Transformatives.Nepeta;
+	import classes.Items.Transformatives.ManUp;
 	import classes.kGAMECLASS;
 	import classes.rand;
 	
@@ -28,6 +29,7 @@
 			keeperBuy = "You tell Nevrie you’d like to see what the Xenogen store has in stock.";
 			keeperSell = "";
 			
+			inventory.push(new ManUp());
 			inventory.push(new Bovinium());
 			inventory.push(new Chocolac());
 			inventory.push(new FocusPill());
