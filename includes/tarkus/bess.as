@@ -1683,7 +1683,7 @@ public function talkToBessAboutRoles():void
 	var sRole:int = 0;
 	if (flags["BESS_SEX_ROLE"] != undefined) sRole = flags["BESS_SEX_ROLE"];
 
-	output("\n\n(Bess is currently assuming");
+	output("\n\n([bess.name] is currently assuming");
 	if (sRole == 0) output(" a role of equal partners.)");
 	else if (sRole == 1) output(" the role of a dominant partner.)")
 	else if (sRole == 2) output(" the role of a submissive partner.)");
@@ -10462,14 +10462,14 @@ public function bessGetBlowjob():void
 			}
 			
 			output("\n\n[bess.name] turns to you and quirks an eyebrow. However, instead of immediately answering, [bess.heShe] slowly strides up to you");
-			if (bess.isNude()) output(", wearing not a thing -");
-			else if (bess.armor is EmptySlot) output(", wearing nothing but [bess.gear] -");
+			if (bess.isNude()) output(", wearing not a thing");
+			else if (bess.armor is EmptySlot) output(", wearing nothing but [bess.gear]");
 			else output(" in [bess.hisHer] [bess.armor]");
 			output(". [bess.HeShe] then presses [bess.hisHer] chest sensuously against you.");
 			
 			output("\n\n<i>“... So, "+ bessPCSexName() +", let me get this straight. You want me to get down on my knees, place [pc.oneCock] in my");
 			if (flags["BESS_CUMDUMP"] == 1) output(" already cum-filled");
-			output(" mouth, and give you oral pleasure... is that it? There’s a "+ bess.mf("devilish glint", "playful glimmer") +" in [bess.hisHer] [bess.eyeColor] eyes.");
+			output(" mouth, and give you oral pleasure... is that it?”</i> There’s a "+ bess.mf("devilish glint", "playful glimmer") +" in [bess.hisHer] [bess.eyeColor] eyes.");
 			
 			if (pc.isNice())
 			{
@@ -11291,7 +11291,7 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 			
 			output("\n\nYou try to stand perfectly still as [bess.heShe] slips another slick finger inside of your back door, stretching you open that much more. You can’t help but shiver as your poor pucker is toyed with from behind, penetrating your forbidden place. You clench around [bess.hisHer] fingers and let out a breathy moan, wondering how long it’ll be before you hit that inevitable peak.");
 			
-			output("\n\nBefore you can, however, [bess.name] removes her sticky fingers from your ass. You let out a cry of protest - only to have them swiftly plunged back inside of you. You let out a delighted moan as they plunge even <i>deeper</i> into your well lubed butt. If this is what [bess.heShe] can do with [bess.hisHer] fingers, what is [bess.hisHer] cock going to feel like?");
+			output("\n\nBefore you can, however, [bess.name] removes [bess.hisHer] sticky fingers from your ass. You let out a cry of protest - only to have them swiftly plunged back inside of you. You let out a delighted moan as they plunge even <i>deeper</i> into your well lubed butt. If this is what [bess.heShe] can do with [bess.hisHer] fingers, what is [bess.hisHer] cock going to feel like?");
 			
 			output("\n\n<i>“Mmm, that’s just for starters. How about we go all the way to dessert?”</i> [bess.name] seductively offers, pistoning your ass with [bess.hisHer] fingers as you feel the most delicious sensations running up from your rump.");
 			
