@@ -3994,18 +3994,16 @@ public function displayEncounterLog(showID:String = "All"):void
 				output2("\n<b><u>Happy Tails</u></b>");
 				output2("\n<b>* Inessa:</b> Met her");
 				if(flags["INESSA_BELTED"] != undefined) output2(", Trapped in chastity belt");
-				if(flags["INESSA_BEING_DOMMED"] != undefined || flags["INESSA_SHOT_DOWN"] != undefined)
-				{
-					output2("\n<b>* Inessa, Submission:</b>");
-					if(flags["INESSA_BEING_DOMMED"] != undefined) output2(" Accepted");
-					else if(flags["INESSA_SHOT_DOWN"] != undefined) output2(" Refused");
-				}
-				if(flags["INESSA_BDSM_SETTING"] != undefined) output2("\n<b>* Inessa, Your BDSM Role:</b>" + StringUtil.capitalize(flags["INESSA_BDSM_SETTING"]));
-				if(flags["INESSA_BJED"] != undefined || flags["INESSA_TITTYSQUIRT"] != undefined)
+				if(flags["INESSA_BEING_DOMMED"] != undefined) output2(", You’ve accepted her submission");
+				else if(flags["INESSA_SHOT_DOWN"] != undefined) output2(", You’ve refused her submission");
+				if(flags["INESSA_BDSM_SETTING"] != undefined) output2("\n<b>* Inessa, Your BDSM Role: </b>" + StringUtil.capitalize(flags["INESSA_BDSM_SETTING"]));
+				if(flags["INESSA_BJED"] != undefined || flags["INESSA_TITTYSQUIRT"] != undefined || flags["INESSA_HJ"] != undefined || flags["INESSA_FACE_STRAPPED"] != undefined)
 				{
 					output2("\n<b>* Inessa, Sexual History:</b> Sexed her");
 					if(flags["INESSA_BJED"] != undefined) output2(", Gave you a blowjob");
 					if(flags["INESSA_TITTYSQUIRT"] != undefined) output2(", She squirted you");
+					if(flags["INESSA_HJ"] != undefined) output2("\n<b>* Inessa, Times She’s Given You a Handjob: </b>" + flags["INESSA_HJ"]);
+					if(flags["INESSA_FACE_STRAPPED"] != undefined) output2("\n<b>* Inessa, Times She’s Used Her Face Strap-On: </b>" + flags["INESSA_FACE_STRAPPED"]);
 				}
 				variousCount++;
 			}
@@ -4016,7 +4014,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				output2("\n<b>* Aliss:</b> Met her");
 				if(flags["TALKED_TO_ALIIS_ABOUT_LIBIDO"] != undefined) output2("\n<b>* Aliss, Lust: </b>" + chars["ALISS"].lust());
 				if(flags["TIMES_SEXED_ALISS"] != undefined) output2("\n<b>* Aliss, Times Sexed: </b>" + flags["TIMES_SEXED_ALISS"]);
-				if(flags["ANNO_OWNS_LIGHT_STRAPON"] != undefined) output2("\n<b>* Aliss, Unique Sale:</b> Anno’s hardlight strapon");
+				if(flags["ANNO_OWNS_LIGHT_STRAPON"] != undefined) output2("\n<b>* Aliss, Unique Sale:</b> Anno’s hardlight strap-on");
 				variousCount++;
 			}
 			// Shear Beauty!
@@ -4045,6 +4043,13 @@ public function displayEncounterLog(showID:String = "All"):void
 				// Ogram and Amma
 				output2("\n<b>* Ogram and Amma:</b> Met them");
 				if(flags["FUCKED_TEXAN_CUSTOMS"] != undefined) output2(", Sexed them");
+				variousCount++;
+			}
+			// Public
+			if(flags["NEW_TEXAS_GANGBANGED"] != undefined) 
+			{
+				output2("\n<b><u>New Texas Public</u></b>");
+				if(flags["NEW_TEXAS_GANGBANGED"] != undefined) output2("\n<b>* Times Gangbanged By: </b>" + flags["NEW_TEXAS_GANGBANGED"]);
 				variousCount++;
 			}
 			// Big T's Ranch
@@ -4684,14 +4689,14 @@ public function displayEncounterLog(showID:String = "All"):void
 						if(flags["ANNO_OWNS_LIGHT_STRAPON"] != undefined)
 						{
 							if(flags["ANNO_TRIBERATOR_USED"] != undefined) output2(",");
-							output2(" Hardlight strapon");
-							if(flags["ANNO_STRAPON_MODS_ENABLED"] != undefined) output2(", Strapon mods enabled");
+							output2(" Hardlight strap-on");
+							if(flags["ANNO_STRAPON_MODS_ENABLED"] != undefined) output2(", Strap-on mods enabled");
 						}
 					}
 					if(flags["ANNO_SEXED"] != undefined && flags["ANNO_SEXED"] > 0)
 					{
 						output2("\n<b>* Anno, Sexual History:</b> Sexed her");
-						if(flags["ANNO_EVER_STRAPONED"] != undefined) output2(", Fucked her with a hardlight strapon");
+						if(flags["ANNO_EVER_STRAPONED"] != undefined) output2(", Fucked her with a hardlight strap-on");
 						if(flags["ANNOxSYRI_WINCEST"] != undefined) output2(", Sexed her with Syri");
 						output2("\n<b>* Anno, Times Sexed: </b>" + flags["ANNO_SEXED"]);
 						if(silly) output2("\n<b>* Anno, Times Sexed by Your Dad: </b>" + (flags["ANNO_SEXED"] + 1 + rand(20)) + " <i>(Approximation)</i>");
@@ -4943,7 +4948,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				{
 					output2("\n<b>* [embry.name]:</b> Met her");
 					if(flags["EMBRY_LOVERS_SCENE_HAPPENED"] != undefined && flags["CRUSHED_EMBRYS_HEART"] == undefined) output2(", She loves you");
-					if(flags["SEEN_MONKEY_STRAPON"] != undefined) output2(", Seen her strapon");
+					if(flags["SEEN_MONKEY_STRAPON"] != undefined) output2(", Seen her strap-on");
 					if(!chars["EMBRY"].isNude())
 					{
 						output2("\n<b>* [embry.name], Attire:</b>");
@@ -5681,7 +5686,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			if(flags["SEXED_SHADE"] != undefined)
 			{
 				output2("\n<b>* Shade, Sexual History:</b> Sexed her");
-				if(flags["TAKEN_SHADES_HARDLIGHT"] != undefined) output2(", Fucked by her hardlight strapon");
+				if(flags["TAKEN_SHADES_HARDLIGHT"] != undefined) output2(", Fucked by her hardlight strap-on");
 				if(flags["SHADE_BOOBWORSHIP"] != undefined) output2(", Worshipped her boobs");
 			}
 			roamCount++;
