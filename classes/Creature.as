@@ -4,6 +4,7 @@ package classes {
 	import classes.CockClass;
 	import classes.DataManager.Errors.VersionUpgraderError;
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
+	import classes.GameData.SingleCombatAttack;
 	import classes.Items.Guns.MyrBow;
 	import classes.Items.Melee.Fists;
 	import classes.Items.Melee.Rock;
@@ -12066,7 +12067,8 @@ package classes {
 		
 		public function isDefeated():Boolean
 		{
-			
+			if (HP() <= 0 || lust() >= lustMax()) return true;
+			return false;
 		}
 		
 		/**
@@ -12077,6 +12079,16 @@ package classes {
 		public function CombatAI(friendlies:Array, hostiles:Array):void
 		{
 			
+		}
+		
+		/**
+		 * Allow the energy cost of an attack to be potentially modified.
+		 * @param	inCost
+		 * @return
+		 */
+		public function CalculateEnergyCost(attack:SingleCombatAttack):Number
+		{
+			return attack.EnergyCost;
 		}
 	}
 }

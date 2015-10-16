@@ -2,6 +2,8 @@ package classes.GameData
 {
 	import classes.Creature;
 	import classes.StorageClass;
+	import classes.Engine.Interfaces.*;
+	
 	/**
 	 * Documentation on things!
 	 * 
