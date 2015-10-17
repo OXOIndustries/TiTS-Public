@@ -131,7 +131,7 @@ public function chooseStartingRace(race:String = "human"):void {
 	this.clearMenu();
 	if(race == "human") {
 		pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
-		output("male or female");
+		//output("male or female");
 		this.addButton(0,"Male",setStartingSex,1);
 		this.addButton(1,"Female",setStartingSex,3);
 	}
@@ -143,7 +143,7 @@ public function chooseStartingRace(race:String = "human"):void {
 		pc.addTailFlag(GLOBAL.FLAG_FLUFFY);
 		pc.addTailFlag(GLOBAL.FLAG_FURRED);
 		pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
-		output("male or female");
+		//output("male or female");
 		this.addButton(0,"Male",setStartingSex,1);
 		this.addButton(1,"Female",setStartingSex,3);
 		//addButton(2,"Herm.",setStartingSex,2);
@@ -155,7 +155,7 @@ public function chooseStartingRace(race:String = "human"):void {
 		pc.addTailFlag(GLOBAL.FLAG_LONG);
 		pc.addTailFlag(GLOBAL.FLAG_FURRED);
 		pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
-		output("male or female");
+		//output("male or female");
 		this.addButton(0,"Male",setStartingSex,1);
 		this.addButton(1,"Female",setStartingSex,3);
 		//addButton(2,"Herm.",setStartingSex,2);
@@ -198,7 +198,7 @@ public function chooseStartingRace(race:String = "human"):void {
 		pc.faceType = GLOBAL.TYPE_HUMANMASKED;
 		pc.armType = GLOBAL.TYPE_KUITAN;
 		pc.addArmFlag(GLOBAL.FLAG_FURRED);
-		output("male or hermaphroditic");
+		//output("male or hermaphroditic");
 		this.addButton(0,"Male",setStartingSex,1);
 		addDisabledButton(1,"Female","Female","Kui-tan cannot be female.")
 		this.addButton(2,"Herm",setStartingSex,2);
@@ -1159,8 +1159,8 @@ public function chooseClass():void {
 	this.addButton(0,"Smuggler",classConfirm,GLOBAL.CLASS_SMUGGLER);
 	this.addButton(1,"Mercenary",classConfirm,GLOBAL.CLASS_MERCENARY);
 	this.addButton(2,"TechSpecialist",classConfirm,GLOBAL.CLASS_ENGINEER);
-	//this.addButton(14,"Back",chooseAlignment);
-	this.addButton(14,"Back",chooseGenderIdentity);
+	this.addButton(14,"Back",chooseAlignment);
+	//this.addButton(14,"Back",chooseGenderIdentity);
 }
 public function classConfirm(arg:int = 0):void {
 	clearOutput();
