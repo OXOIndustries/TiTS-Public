@@ -58,7 +58,7 @@ package classes.Items.Toys
 				if(!target.hasCock())
 				{
 					kGAMECLASS.clearOutput();
-					kGAMECLASS.output("You do not possess the genitals to use this!");
+					kGAMECLASS.output("You don’t have the proper genitals to use this!");
 				}
 				else if(kGAMECLASS.rooms[currentLocation].hasFlag(GLOBAL.NOFAP))
 				{
@@ -70,7 +70,7 @@ package classes.Items.Toys
 					kGAMECLASS.clearOutput();
 					kGAMECLASS.output("Public masturbation is illegal here. Trying to masturbate would almost certainly land you in jail.");
 				}
-				else if(target.lust() < 33 || (kGAMECLASS.rooms[currentLocation].hasFlag(GLOBAL.PUBLIC) && (target.exhibitionism() < 33 || target.libido() < 70)))
+				else if(target.lust() < 33 || (kGAMECLASS.rooms[currentLocation].hasFlag(GLOBAL.PUBLIC) && target.exhibitionism() < 33 && target.libido() < 70))
 				{
 					kGAMECLASS.clearOutput();
 					kGAMECLASS.output("You cannot use the BionaHole at this time!");
