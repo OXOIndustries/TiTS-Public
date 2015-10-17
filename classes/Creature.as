@@ -2683,6 +2683,17 @@ package classes {
 		public function slowStatGain(stat:String, arg:Number = 0):Number {
 			var statCurrent: Number = 0;
 			var change: Number = 0;
+			// Affinity
+			if(stat == affinity)
+			{
+				if (stat == "physique") return physique(arg);
+				else if (stat == "reflexes") return reflexes(arg);
+				else if (stat == "aim") return aim(arg);
+				else if (stat == "intelligence") return intelligence(arg);
+				else if (stat == "willpower") return willpower(arg);
+				else if (stat == "libido") return libido(arg);
+			}
+			// Normal
 			if (stat == "physique") statCurrent = physique();
 			else if (stat == "reflexes") statCurrent = reflexes();
 			else if (stat == "aim") statCurrent = aim();
