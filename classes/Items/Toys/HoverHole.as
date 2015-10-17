@@ -55,8 +55,25 @@ package classes.Items.Toys
 		{
 			if(!kGAMECLASS.infiniteItems()) quantity++;
 			if(target is PlayerCharacter) {
-				//Consume:
-				kGAMECLASS.hoverholeFapFapFap();
+				if(kGAMECLASS.rooms[currentLocation].hasFlag(GLOBAL.NOFAP))
+				{
+					kGAMECLASS.clearOutput();
+					kGAMECLASS.output("Masturbating here would be impossible.");
+				}
+				else if(kGAMECLASS.rooms[currentLocation].hasFlag(GLOBAL.FAPPING_ILLEGAL))
+				{
+					kGAMECLASS.clearOutput();
+					kGAMECLASS.output("Public masturbation is illegal here. Trying to masturbate would almost certainly land you in jail.");
+				}
+				else if(target.lust() < 33 || (kGAMECLASS.rooms[currentLocation].hasFlag(GLOBAL.PUBLIC) && (target.exhibitionism() < 33 || target.libido() < 70)))
+				{
+					kGAMECLASS.clearOutput();
+					kGAMECLASS.output("You cannot use the Hoverhole at this time!");
+				}
+				else
+				{
+					kGAMECLASS.hoverholeFapFapFap();
+				}
 			}
 			else {
 				kGAMECLASS.clearOutput();
