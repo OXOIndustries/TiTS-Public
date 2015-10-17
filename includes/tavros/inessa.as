@@ -1326,7 +1326,7 @@ public function newTexanGanguBangu():void
 		output("\n\nYou’re utterly shocked when one of the bulls suddenly kisses you, your [pc.lips] locked in a passionate, tongue-filled kiss. Yielding to his insistent tongue and rubbing loins, you find yourself pressing your hips right back, needily rubbing ");
 		if(pc.hasCock() && !pc.isTaur()) 
 		{
-			output("your dick against his. You blush as you realise ");
+			output("your dick against his. You blush as you realize ");
 			if(pc.biggestCockLength() < 14) output("yours is tiny in comparison!");
 			else if(pc.biggestCockLength() < 15) output("you’re exactly the same size!");
 			else if(pc.biggestCockLength() <= 17) output("yours is a bit larger!");
@@ -1341,19 +1341,19 @@ public function newTexanGanguBangu():void
 
 	//if Pc.hasFrontCock:
 	var frontCock:Boolean = false;
-	if(pc.hasCock() && !pc.isTaur()) frontCock = true;
+	if(pc.hasCock() && pc.genitalLocation() <= 1) frontCock = true;
 	if(frontCock) 
 	{
 		output("\n\n<i>“Look at this - [pc.heShe]’s already about to blow!”</i> The first bull reaches down and caresses your [pc.cockHead]. You whimper with delight as he rubs your cock hole with his thick, calloused thumb.");
 		output("\n\n<i>“Your [pc.cocksLight] and [pc.ass] belong to us now, slut.”</i>");
 	}
 	var frontPussy:Boolean = false;
-	if(pc.hasVagina() && !pc.isTaur()) frontPussy = true;
-	if(frontPussy)
+	if(pc.hasVagina() && pc.genitalLocation() <= 1) frontPussy = true;
+	if(!frontCock && frontPussy)
 	{
 		//else if PchasFrontPussy:
 		output("\n\n<i>“Look at this - [pc.heShe]’s getting all wet!”</i> The first bull strokes your soppy slit with his thick, calloused fingers. He slips one inside of you and wiggles it about, causing you to whimper with pleasure - he’s <i>inside</i> of you!");
-		output("\n\n<i>“Your [pc.pussiesLight] and [pc.ass] belong to us now, slut.”</i>");
+		output("\n\n<i>“Your [pc.pussies] and [pc.ass] belong to us now, slut.”</i>");
 	}
 	//else // No front genitals:
 	if(!frontPussy && !frontCock)
@@ -1473,7 +1473,7 @@ public function newTexanGanguBangu():void
 	//GotFrontPussy:
 	if(frontPussy) 
 	{
-		if(!pc.isPregnant(0)) output("eager womb to the brink, bathing your unprotected eggs in hyper-virility");
+		if(!pc.isPregnant(0)) output("eager womb to the brink, bathing your unprotected eggs in hyper-virility.");
 		else output("channel to the brink, bathing your rippling walls in wasted virility.");
 	}
 	else 
@@ -1528,6 +1528,21 @@ public function newTexanGanguBangu():void
 		pc.loadInCunt(pp,0);
 	}
 	else  pc.loadInAss(pp);
+	if(frontCock)
+	{
+		pc.orgasm();
+		pc.orgasm();
+		pc.orgasm();
+	}
+	if(frontPussy)
+	{
+		pc.orgasm();
+		pc.orgasm();
+		pc.orgasm();
+	}
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
 	pc.exhibitionism(2);
 	pc.exhibitionism(2);
 	pc.exhibitionism(2);
