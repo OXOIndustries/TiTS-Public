@@ -4049,7 +4049,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			if(flags["NEW_TEXAS_GANGBANGED"] != undefined) 
 			{
 				output2("\n<b><u>New Texas Public</u></b>");
-				if(flags["NEW_TEXAS_GANGBANGED"] != undefined) output2("\n<b>* Times Gangbanged By: </b>" + flags["NEW_TEXAS_GANGBANGED"]);
+				if(flags["NEW_TEXAS_GANGBANGED"] != undefined) output2("\n<b>* Alpha Bull-Men, Times Gangbanged By: </b>" + flags["NEW_TEXAS_GANGBANGED"]);
 				variousCount++;
 			}
 			// Big T's Ranch
