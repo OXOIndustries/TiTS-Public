@@ -1038,6 +1038,8 @@ package classes {
 
 		public function clitsUnlocked(vagIndex:int, newClitNumber:int):Boolean
 		{
+			// Vaginas always have one clit?
+			if(vaginas[vagIndex].clits == 1 && newClitNumber < 1) return false;
 			return true;
 		}
 		public function clitsLockedMessage():String
@@ -6789,7 +6791,8 @@ package classes {
 				cocks[slot].addFlag(GLOBAL.FLAG_SMOOTH);
 			}
 			if (type == GLOBAL.TYPE_DEMONIC) {
-				cocks[slot].cockColor = "red";
+				if(rand(2) == 0) cocks[slot].cockColor = "red";
+				else cocks[slot].cockColor = "dark purple";
 				cocks[slot].knotMultiplier = 1.4;
 				cocks[slot].addFlag(GLOBAL.FLAG_KNOTTED);
 				cocks[slot].addFlag(GLOBAL.FLAG_NUBBY);
@@ -6798,9 +6801,11 @@ package classes {
 				if (rand(2) == 0) cocks[slot].cockColor = "purple";
 				else cocks[slot].cockColor = "green";
 				cocks[slot].addFlag(GLOBAL.FLAG_PREHENSILE);
+				cocks[slot].addFlag(GLOBAL.FLAG_FLARED);
 			}
 			if (type == GLOBAL.TYPE_ANEMONE || type == GLOBAL.TYPE_SIREN) {
-				cocks[slot].cockColor = "blue";
+				if (rand(2) == 0) cocks[slot].cockColor = "blue";
+				else cocks[slot].cockColor = "aquamarine";
 				cocks[slot].addFlag(GLOBAL.FLAG_APHRODISIAC_LACED);
 				cocks[slot].addFlag(GLOBAL.FLAG_STINGER_BASED);
 			}
@@ -6812,7 +6817,8 @@ package classes {
 			}
 			if (type == GLOBAL.TYPE_DRACONIC) {
 				cocks[slot].cockColor = "blue";
-				cocks[slot].knotMultiplier = 1.25;
+				if (rand(2) == 0) cocks[slot].knotMultiplier = 1.25;
+				else cocks[slot].knotMultiplier = 1.3;
 				cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
 				cocks[slot].addFlag(GLOBAL.FLAG_KNOTTED);
 			}
@@ -6821,20 +6827,17 @@ package classes {
 				cocks[slot].addFlag(GLOBAL.FLAG_SMOOTH);
 				cocks[slot].addFlag(GLOBAL.FLAG_LUBRICATED);
 			}
-			if (type == GLOBAL.TYPE_SIMII)
-			{
+			if (type == GLOBAL.TYPE_SIMII) {
 				cocks[slot].knotMultiplier = 1;
 				cocks[slot].cockColor = "pink";
 			}
-			if (type == GLOBAL.TYPE_SAURIAN)
-			{
+			if (type == GLOBAL.TYPE_SAURIAN) {
 				cocks[slot].knotMultiplier = 1;
 				cocks[slot].cockColor = "pink";
 				if(cocks[slot].cLengthRaw < 20) cocks[slot].cLengthRaw = 20;
 				if(cocks[slot].cThicknessRatioRaw < 3) cocks[slot].cThicknessRatioRaw = 3;
 			}
-			if (type == GLOBAL.TYPE_SYNTHETIC)
-			{
+			if (type == GLOBAL.TYPE_SYNTHETIC) {
 				cocks[slot].cockColor = RandomInCollection(["silver", "gray", "black"]);
 			}
 			if (type == GLOBAL.TYPE_VENUSPITCHER) {
