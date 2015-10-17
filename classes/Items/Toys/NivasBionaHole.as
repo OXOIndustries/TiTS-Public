@@ -55,7 +55,12 @@ package classes.Items.Toys
 		{
 			if(!kGAMECLASS.infiniteItems()) quantity++;
 			if(target is PlayerCharacter) {
-				if(kGAMECLASS.rooms[currentLocation].hasFlag(GLOBAL.NOFAP))
+				if(!target.hasCock())
+				{
+					kGAMECLASS.clearOutput();
+					kGAMECLASS.output("You do not possess the genitals to use this!");
+				}
+				else if(kGAMECLASS.rooms[currentLocation].hasFlag(GLOBAL.NOFAP))
 				{
 					kGAMECLASS.clearOutput();
 					kGAMECLASS.output("Masturbating here would be impossible.");
