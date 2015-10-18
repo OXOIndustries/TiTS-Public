@@ -880,7 +880,7 @@ public function blowjobFromInessa():void
 	if(pc.cockTotal() > 1) output("s");
 	output(" and lovingly scooping up every single drop.");
 	output("\n\n<i>“Good girl,”</i> you " + pc.mf("huskily","breathily") + " praise her, reaching out and stroking the top of her head. Like a kitten, Inessa instinctively leans into the palm of your hand, her soft hair rubbing against your fingers. There’s a blissfully happy look in her bright eyes.");
-	output("\n\n<i>“D-did you want anything else–?”</i> The butterfly-winged girl asks, your [pc.cum] dribbling down her chin and dripping on her small blue breasts. You shake your head");
+	output("\n\n<i>“D-did you want anything else~?”</i> The butterfly-winged girl asks, your [pc.cum] dribbling down her chin and dripping on her small blue breasts. You shake your head");
 	if(pc.isCrotchGarbed()) output(" and tuck your [pc.cocksLight] away");
 	output(", thoroughly satisfied.");
 	// Return to shop menu.
@@ -1317,7 +1317,7 @@ public function newTexanGanguBangu():void
 	if(flags["NEW_TEXAS_GANGBANGED"] == undefined) output(" Fancy a ride with some real alphas?");
 	else output(" Couldn’t stay away from us, eh?");
 	output("”</i> One of the bulls seizes your hips in his large, powerful hands. Moments later, ");
-	if(pc.hasCock() && !pc.isTaur()) output("[pc.oneCock] is grinded against the girthy underside of his cock! Your own [pc.cockHead] excitedly leaks pre out and down between your rubbing shafts, slickening your sensuous dick-friction.");
+	if(pc.hasCock() && !pc.isTaur()) output("[pc.oneCock] is grinding against the girthy underside of his cock! Your own [pc.cockHead] excitedly leaks pre out and down between your rubbing shafts, slickening your sensuous dick-friction.");
 	else if(pc.hasVagina() && !pc.isTaur()) output("[pc.oneVagina] is grinded against the girthy underside of his cock! Your sloppy folds eagerly part against his equine cock and liberally slicken it with your excitement.");
 	else output("your bare loins are grinded against the girthy underside of his cock!");
 
@@ -1386,7 +1386,8 @@ public function newTexanGanguBangu():void
 
 	output("\n\n<i>“How does it feel to have a bull dick inside of that [pc.ass] of yours?”</i> The bull behind you asks, flexing his massive manhood. You feel his equine head flaring inside of you - you swear he’s buried right up in your belly. <i>“");
 	if(pc.analCapacity() < 300) output(" You’re so tight - just like a virgin!");
-	else output("I can tell your [pc.asshole] missed me!");
+	else if(flags["NEW_TEXAS_GANGBANGED"] != undefined) output("I can tell your [pc.asshole] misses me!");
+	else output("I can tell your [pc.asshole] has been put to good use!");
 	output("”</i>");
 
 	if(virgin) output("\n\nYou blush - you <i>are</i> a virgin, or at least - this is the first time you’ve had anything, let alone a girthy cock like his, up your [pc.ass]! Just the thought of having your anal cherry plucked by him makes your heart flutter.");
@@ -1455,9 +1456,9 @@ public function newTexanGanguBangu():void
 		output(" in your sloppy [pc.cumColor] seed");
 		if(pc.cockTotal() > 1)
 		{
-			output(" - your other soon cock");
+			output(" - your other cock");
 			if(pc.cockTotal() > 2) output("s");
-			output(" following suit!");
+			output(" soon following suit!");
 		}
 		else output(".");
 	}
@@ -1699,7 +1700,7 @@ public function faceStrapOnShitForInessa():void
 	output("\n\nWhen you pull yourself up and off her strapped-on face-dick, Inessa nearly falls to the floor, totally wiped out by her orgasm");
 	if(pc.hasVagina()) output("s");
 	output(" and your merciless fucking of her face. You reach out and stroke her head, telling her she did a good job, and she lets out a satisfied, if spacy little purr, nuzzling into your hand. There is a rather obvious puddle between her twitching thighs, marking her delight despite her gleaming chastity belt. You then pull off the mask and toss it aside.");
-	output("\n\n<i>“D-did you want anything else–?”</i> Inessa asks, and you shake your head. As if she could do anything else right now! After a little while, she gets to her feet, and stumbles to grab a mop.");
+	output("\n\n<i>“D-did you want anything else~?”</i> Inessa asks, and you shake your head. As if she could do anything else right now! After a little while, she gets to her feet, and stumbles to grab a mop.");
 	IncrementFlag("INESSA_FACE_STRAPPED");
 	// Return to shop menu.
 	processTime(29);
