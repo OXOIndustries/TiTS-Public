@@ -255,6 +255,13 @@ public function confirmMailConfig():void
 		output2("\n\n\n<b>You must input something.</b>");
 		return;
 	}
+	// Illegal characters check. Just in case...
+	if (hasIllegalInput(userInterface.textInput.text))
+	{
+		initialMailConfiguration();
+		output("\n\n\n<b>To prevent complications, please avoid using code characters.</b>");
+		return;
+	}
 	if (userInterface.textInput.text.indexOf(" ") != -1)
 	{
 		initialMailConfiguration();
