@@ -2688,12 +2688,15 @@ package classes {
 			// Affinity
 			if(stat == affinity)
 			{
+
+				/*No, JCup. 2Gud.
 				if (stat == "physique") return physique(arg);
 				else if (stat == "reflexes") return reflexes(arg);
 				else if (stat == "aim") return aim(arg);
 				else if (stat == "intelligence") return intelligence(arg);
 				else if (stat == "willpower") return willpower(arg);
-				else if (stat == "libido") return libido(arg);
+				else if (stat == "libido") return libido(arg);*/
+				arg *= 1.5;
 			}
 			// Normal
 			if (stat == "physique") statCurrent = physique();
