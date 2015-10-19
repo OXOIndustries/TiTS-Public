@@ -3475,15 +3475,15 @@ package classes {
 			else if (femininity <= 90)
 			{
 				faceo = "a gorgeous profile with " + pluralize(lipDescript(true)) + faceLipMimbraneDescript();
-				if (hasSmallNose) faceo += ", a button nose";
-				faceo += ", and noticeable eyelashes";
+				if (hasSmallNose) faceo += ", a button nose,";
+				faceo += " and noticeable eyelashes";
 			}
 			//91-100
 			else
 			{
 				faceo = "a jaw-droppingly feminine shape with " + pluralize(lipDescript(true)) + faceLipMimbraneDescript();
-				if (hasSmallNose) faceo += ", an adorable nose";
-				faceo += ", and long, beautiful eyelashes";
+				if (hasSmallNose) faceo += ", an adorable nose,";
+				faceo += " and long, beautiful eyelashes";
 			}
 			return faceo;
 		}
@@ -3780,7 +3780,7 @@ package classes {
 				if (faceType == GLOBAL.TYPE_LAPINE) adjectives.push("lapine", "rabbit-like", "bunny");
 				if (faceType == GLOBAL.TYPE_NAGA) adjectives.push("naga", "snake-like");
 				if (faceType == GLOBAL.TYPE_HUMANMASKED) adjectives.push("masked");
-				if (faceType == GLOBAL.TYPE_KUITAN) adjectives.push("kui-tan", "tanuki-like");
+				if (faceType == GLOBAL.TYPE_KUITAN) adjectives.push("kui-tan", "tanuki-like", "raccoon-like");
 				if (faceType == GLOBAL.TYPE_VULPINE) adjectives.push("vulpine", "fox-like", "foxy");
 				if (faceType == GLOBAL.TYPE_MOUSEMAN) adjectives.push("mousey", "mouse-like");
 				if (faceType == GLOBAL.TYPE_MOUSE) adjectives.push("mouse", "mousey", "mouse-like");
