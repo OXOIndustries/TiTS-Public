@@ -3774,7 +3774,7 @@ package classes {
 				if (faceType == GLOBAL.TYPE_CANINE) adjectives.push("canine", "dog-like");
 				if (faceType == GLOBAL.TYPE_FELINE) adjectives.push("feline", "cat-like");
 				if (faceType == GLOBAL.TYPE_EQUINE) adjectives.push("equine", "horse-like", "bestial");
-				if (faceType == GLOBAL.TYPE_BOVINE) adjectives.push("bovine", "cow-like", "bestial"]);
+				if (faceType == GLOBAL.TYPE_BOVINE) adjectives.push("bovine", "cow-like", "bestial");
 				if (faceType == GLOBAL.TYPE_LIZAN) adjectives.push("lizan", "reptilian");
 				if (faceType == GLOBAL.TYPE_DRACONIC) adjectives.push("draconic", "reptilian");
 				if (faceType == GLOBAL.TYPE_LAPINE) adjectives.push("lapine", "rabbit-like", "bunny");
