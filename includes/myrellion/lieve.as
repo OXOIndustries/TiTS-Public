@@ -432,7 +432,7 @@ public function lieveTalkNoMansLand():void
 	
 	output("\n\n<i>“Anything else I should be aware of?”</i>");
 	
-	output("\n\n<i>“There are other creatures out there, but the nyrea and fungal myr are the most common in No Myrs’s. If you go down in the deep caves, you’ll start seeing bothrioc, wetraxxal, creatures made of a living goo called the ganrael. Any of them can be bad news. Stay clear of them if you can. If not, well, I hope you’re as tough as you look.”</i>");
+	output("\n\n<i>“There are other creatures out there, but the nyrea and fungal myr are the most common in No Myrs’s. If you go down in the deep caves, you’ll start seeing wetraxxal and creatures made of a living goo called the ganrael. Any of them can be bad news. Stay clear of them if you can. If not, well, I hope you’re as tough as you look.”</i>");
 
 	processTime(10 + rand(5));
 	
