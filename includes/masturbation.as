@@ -312,7 +312,12 @@ public function masturbateMenu(roundTwo:Boolean = false):void {
 		clearOutput();
 		output("Out here? In public?\n\n...<b>it'll have to do</b>.");
 		clearMenu();
-		addButton(0,"Next",moderateExhibitionOmniFap);
+		addButton(0,"Exhibitionism",moderateExhibitionOmniFap);
+		//Special new texas shit
+		if(pc.hasItem(new GravCuffs()) && rooms[currentLocation].planet == "PLANET: NEW TEXAS" && rooms[currentLocation].hasFlag(GLOBAL.PUBLIC))
+		{
+			addButton(1,"CuffSelf",newTexanGanguBangu,undefined,"Cuff Yourself","You bet that if you cuffed yourself naked somewhere public, there'd be at least one randy bull to give you a reaming.");
+		}
 		return;
 	}
 	//Pussy out, unless you're being force-fapped.
