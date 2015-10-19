@@ -217,15 +217,7 @@ public function setStartingSex(sex:int = 1):void {
 		return;
 	}
 	// Illegal characters check. Just in case...
-	else if(
-		this.userInterface.textInput.text.indexOf("<") != -1 || 
-		this.userInterface.textInput.text.indexOf(">") != -1 || 
-		this.userInterface.textInput.text.indexOf("[") != -1 || 
-		this.userInterface.textInput.text.indexOf("]") != -1 || 
-		this.userInterface.textInput.text.indexOf("\n") != -1 || 
-		this.userInterface.textInput.text.indexOf("\t") != -1
-		)
-	{
+	if(hasIllegalInput(this.userInterface.textInput.text)) {
 		chooseStartingRace(race);
 		output("\n\n\n<b>To prevent complications, please avoid using code in the name.</b>");
 		return;
