@@ -216,6 +216,20 @@ public function setStartingSex(sex:int = 1):void {
 		output("\n\n\n<b>You must input a name.</b>");
 		return;
 	}
+	// Illegal characters check. Just in case...
+	else if(
+		this.userInterface.textInput.text.indexOf("<") != -1 || 
+		this.userInterface.textInput.text.indexOf(">") != -1 || 
+		this.userInterface.textInput.text.indexOf("[") != -1 || 
+		this.userInterface.textInput.text.indexOf("]") != -1 || 
+		this.userInterface.textInput.text.indexOf("\n") != -1 || 
+		this.userInterface.textInput.text.indexOf("\t") != -1
+		)
+	{
+		chooseStartingRace(race);
+		output("\n\n\n<b>To prevent complications, please avoid using code in the name.</b>");
+		return;
+	}
 	if(this.userInterface.textInput.length > 14) {
 		chooseStartingRace(race);
 		output("\n\n\n<b>Please select a name no more than fourteen characters long.</b>");
