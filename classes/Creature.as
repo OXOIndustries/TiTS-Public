@@ -3197,7 +3197,7 @@ package classes {
 					adjectives = ["tanuki", "egg-shaped", "rounded", "furry", "beastial"];
 					break;
 				case GLOBAL.TYPE_MOUSE:
-					adjectives = ["mousy", "mouse-like", "rounded", "furry", "circular"];
+					adjectives = ["mousey", "mouse-like", "rounded", "furry", "circular"];
 					break;
 				case GLOBAL.TYPE_PANDA:
 					adjectives = ["panda", "bear-like", "rounded", "furry", "softly furred"];
@@ -3438,6 +3438,7 @@ package classes {
 		}
 		public function faceDesc(): String {
 			var faceo: String = "";
+			var hasSmallNose: Boolean = InCollection(faceType, GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_NALEEN_FACE, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_HUMANMASKED, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_MOUSEMAN, GLOBAL.TYPE_MOUSE);
 			//0-10
 			if (femininity < 10) {
 				faceo = "a square chin";
@@ -3468,9 +3469,19 @@ package classes {
 			//72+-80
 			else if (femininity <= 80) faceo = "a beautiful, feminine shapeliness that's sure to draw attention and " + pluralize(lipDescript(true)) + faceLipMimbraneDescript() + "";
 			//81-90
-			else if (femininity <= 90) faceo = "a gorgeous profile with " + pluralize(lipDescript(true)) + faceLipMimbraneDescript() + ", a button nose, and noticeable eyelashes";
+			else if (femininity <= 90)
+			{
+				faceo = "a gorgeous profile with " + pluralize(lipDescript(true)) + faceLipMimbraneDescript();
+				if (hasSmallNose) faceo += ", a button nose";
+				faceo += ", and noticeable eyelashes";
+			}
 			//91-100
-			else faceo = "a jaw-droppingly feminine shape with " + pluralize(lipDescript(true)) + faceLipMimbraneDescript() + ", an adorable nose, and long, beautiful eyelashes";
+			else
+			{
+				faceo = "a jaw-droppingly feminine shape with " + pluralize(lipDescript(true)) + faceLipMimbraneDescript();
+				if (hasSmallNose) faceo += ", an adorable nose";
+				faceo += ", and long, beautiful eyelashes";
+			}
 			return faceo;
 		}
 
@@ -3754,23 +3765,37 @@ package classes {
 		}
 		public function face(forceAdjectives: Boolean = false): String {
 			var output: String = "";
+			var adjectives:Array = [];
 			//1 in 4 chance unless forcing adjectives
 			if (this.rand(4) == 0 || forceAdjectives) {
-				if (faceType == GLOBAL.TYPE_FELINE) output += "feline";
-				if (faceType == GLOBAL.TYPE_EQUINE) output += "long";
-				if (faceType == GLOBAL.TYPE_BOVINE) output += "bovine";
-				if (hasFaceFlag(GLOBAL.FLAG_ANGULAR)) output += "angular";
-				if (faceType == GLOBAL.TYPE_LIZAN || faceType == GLOBAL.TYPE_DRACONIC) output += "reptilian";
+				if (faceType == GLOBAL.TYPE_CANINE) adjectives.push("canine", "dog-like");
+				if (faceType == GLOBAL.TYPE_FELINE) adjectives.push("feline", "cat-like");
+				if (faceType == GLOBAL.TYPE_EQUINE) adjectives.push("equine", "horse-like", "bestial");
+				if (faceType == GLOBAL.TYPE_BOVINE) adjectives.push("bovine", "cow-like", "bestial"]);
+				if (faceType == GLOBAL.TYPE_LIZAN) adjectives.push("lizan", "reptilian");
+				if (faceType == GLOBAL.TYPE_DRACONIC) adjectives.push("draconic", "reptilian");
+				if (faceType == GLOBAL.TYPE_LAPINE) adjectives.push("lapine", "rabbit-like", "bunny");
+				if (faceType == GLOBAL.TYPE_NAGA) adjectives.push("naga", "snake-like");
+				if (faceType == GLOBAL.TYPE_HUMANMASKED) adjectives.push("masked");
+				if (faceType == GLOBAL.TYPE_KUITAN) adjectives.push("kui-tan", "tanuki-like");
+				if (faceType == GLOBAL.TYPE_VULPINE) adjectives.push("vulpine", "fox-like", "foxy");
+				if (faceType == GLOBAL.TYPE_MOUSEMAN) adjectives.push("mousey", "mouse-like");
+				if (faceType == GLOBAL.TYPE_MOUSE) adjectives.push("mouse", "mousey", "mouse-like");
+				if (faceType == GLOBAL.TYPE_PANDA) adjectives.push("panda", "bear-like");
+				if (faceType == GLOBAL.TYPE_BADGER) adjectives.push("badger", "mustelid");
+				if (faceType == GLOBAL.TYPE_KANGAROO) adjectives.push("kangaroo", "‘roo-like");
+				if (hasFaceFlag(GLOBAL.FLAG_ANGULAR)) adjectives.push("angular");
+				if (hasFaceFlag(GLOBAL.FLAG_LONG)) adjectives.push("long");
 			}
 			//Space if adjective'd
-			if (output != "") output += " ";
-
+			if (adjectives.length > 0) output += " " + RandomInCollection(adjectives);
+			
 			//Add Noun
 			if (hasFaceFlag(GLOBAL.FLAG_MUZZLED) && this.rand(2) == 0) output += "muzzle";
-			else if (this.rand(2) == 0 && hasFaceFlag(GLOBAL.FLAG_MUZZLED) && (faceType == GLOBAL.TYPE_LIZAN || faceType == GLOBAL.TYPE_DRACONIC))
+			else if (this.rand(2) == 0 && hasFaceFlag(GLOBAL.FLAG_MUZZLED) && (faceType == GLOBAL.TYPE_LIZAN || faceType == GLOBAL.TYPE_DRACONIC || faceType == GLOBAL.TYPE_NAGA))
 				output += "snout";
 			else output += "face";
-
+			
 			return output;
 		}
 		public function isBiped(): Boolean {
@@ -3848,7 +3873,7 @@ package classes {
 			else if (tailType == GLOBAL.TYPE_AVIAN)
 				adjectives = ["avian", "bird-like"];
 			else if (tailType == GLOBAL.TYPE_KANGAROO)
-				adjectives = ["kangaroo", "roo-like"];
+				adjectives = ["kangaroo", "‘roo-like"];
 			else if (tailType == GLOBAL.TYPE_VULPINE)
 				adjectives = ["vulpine", "fox-like", "fox"];
 			else if (tailType == GLOBAL.TYPE_DRACONIC)
@@ -3856,7 +3881,7 @@ package classes {
 			else if (tailType == GLOBAL.TYPE_KUITAN)
 				adjectives = ["tanuki", "racoon-like", "kui-tan"];
 			else if (tailType == GLOBAL.TYPE_MOUSE)
-				adjectives = ["mouse", "mousy", "mouse-like", "cute"];
+				adjectives = ["mouse", "mousey", "mouse-like", "cute"];
 			else if (tailType == GLOBAL.TYPE_BADGER)
 				adjectives = ["badger", "mustelid", "tufted"];
 			else if (tailType == GLOBAL.TYPE_RASKVEL)
@@ -4153,9 +4178,9 @@ package classes {
 			{
 				if(output != "") output += ", ";
 				if (legType == GLOBAL.TYPE_EQUINE || legType == GLOBAL.TYPE_CENTAUR)
-					adjectives = ["equine", "horse-like"];
+					adjectives = ["equine", "horse-like", "bestial"];
 				else if (legType == GLOBAL.TYPE_BOVINE)
-					adjectives = ["bovine", "cow-like"];
+					adjectives = ["bovine", "cow-like", "bestial"];
 				else if (legType == GLOBAL.TYPE_CANINE)
 					adjectives = ["canine", "dog-like"];
 				else if (legType == GLOBAL.TYPE_FELINE)
@@ -4183,7 +4208,7 @@ package classes {
 				else if (legType == GLOBAL.TYPE_GOOEY)
 					adjectives = ["gooey", "semi-solid", "gelatinous", "jiggly"];
 				else if (legType == GLOBAL.TYPE_KANGAROO)
-					adjectives = ["kangaroo-like", "powerful", "'roo"];
+					adjectives = ["kangaroo-like", "powerful", "‘roo"];
 				else if (legType == GLOBAL.TYPE_TANUKI)
 					adjectives = ["tanuki-like", "dexterous", "nimble"];
 				else if (legType == GLOBAL.TYPE_DEER)
