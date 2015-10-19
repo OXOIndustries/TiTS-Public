@@ -55,11 +55,34 @@ package classes.Items.Toys
 		{
 			if(!kGAMECLASS.infiniteItems()) quantity++;
 			if(target is PlayerCharacter) {
-				kGAMECLASS.bionaholeUse("Nivas");
+				if(!target.hasCock())
+				{
+					kGAMECLASS.clearOutput();
+					kGAMECLASS.output("You don’t have the proper genitals to use this!");
+				}
+				else if(kGAMECLASS.rooms[kGAMECLASS.currentLocation].hasFlag(GLOBAL.NOFAP))
+				{
+					kGAMECLASS.clearOutput();
+					kGAMECLASS.output("Masturbating here would be impossible.");
+				}
+				else if(kGAMECLASS.rooms[kGAMECLASS.currentLocation].hasFlag(GLOBAL.FAPPING_ILLEGAL))
+				{
+					kGAMECLASS.clearOutput();
+					kGAMECLASS.output("Public masturbation is illegal here. Trying to masturbate would almost certainly land you in jail.");
+				}
+				else if(target.lust() < 33 || (kGAMECLASS.rooms[kGAMECLASS.currentLocation].hasFlag(GLOBAL.PUBLIC) && target.exhibitionism() < 33 && target.libido() < 70))
+				{
+					kGAMECLASS.clearOutput();
+					kGAMECLASS.output("You cannot use the BionaHole at this time!");
+				}
+				else
+				{
+					kGAMECLASS.bionaholeUse("Nivas");
+				}
 			}
 			else {
 				kGAMECLASS.clearOutput();
-				kGAMECLASS.output(target.capitalA + target.short + " cannot use the grav-cuffs.");
+				kGAMECLASS.output(target.capitalA + target.short + " cannot use the BionaHole.");
 			}
 			return true;
 		}

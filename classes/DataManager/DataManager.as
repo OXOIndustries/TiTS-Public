@@ -876,7 +876,14 @@
 			if (kGAMECLASS.userInterface.currentPCNotes == null || kGAMECLASS.userInterface.currentPCNotes.length == 0 || kGAMECLASS.userInterface.currentPCNotes == "") dataFile.saveNotes = "No notes available.";
 			else dataFile.saveNotes = kGAMECLASS.userInterface.currentPCNotes;
 			
-			dataFile.playerGender 	= kGAMECLASS.chars["PC"].mfn("M", "F", "A");
+			var gender:String = "N";
+			if(kGAMECLASS.chars["PC"].hasCock() && kGAMECLASS.chars["PC"].hasVagina()) gender = "H";
+			else if(kGAMECLASS.chars["PC"].hasCock() && kGAMECLASS.chars["PC"].femininity >= 50) gender = "T";
+			else if(kGAMECLASS.chars["PC"].hasCock()) gender = "M";
+			else if(kGAMECLASS.chars["PC"].hasVagina()) gender = "F";
+			//OLD AND BUSTED: dataFile.playerGender 	= kGAMECLASS.chars["PC"].mfn("M", "F", "A");
+			//NEW HOTNESS:
+			dataFile.playerGender = gender;
 
 			// Game state
 			dataFile.playerLocation 	= kGAMECLASS.currentLocation;

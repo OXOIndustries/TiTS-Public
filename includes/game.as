@@ -4049,7 +4049,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			if(flags["NEW_TEXAS_GANGBANGED"] != undefined) 
 			{
 				output2("\n<b><u>New Texas Public</u></b>");
-				if(flags["NEW_TEXAS_GANGBANGED"] != undefined) output2("\n<b>* Times Gangbanged By: </b>" + flags["NEW_TEXAS_GANGBANGED"]);
+				if(flags["NEW_TEXAS_GANGBANGED"] != undefined) output2("\n<b>* Alpha Bull-Men, Times Gangbanged By: </b>" + flags["NEW_TEXAS_GANGBANGED"]);
 				variousCount++;
 			}
 			// Big T's Ranch
@@ -5786,6 +5786,8 @@ public function displayEncounterLog(showID:String = "All"):void
 		if(flags["GRAVCUFFS_USES"] != undefined || flags["HOVERHOLE_USES"] != undefined || 9999 == 0)
 		{
 			output2("\n<b><u>Sex Toys</u></b>");
+			// BionaHoles
+			if(flags["NIVAS_BIONAHOLE_USES"] != undefined) output2("\n<b>* BionaHole, Nivas Oxonef, Times Used: </b>" + flags["NIVAS_BIONAHOLE_USES"]);
 			// Grav-Cuffs
 			if(flags["GRAVCUFFS_USES"] != undefined) output2("\n<b>* Grav-Cuffs, Times Used: </b>" + flags["GRAVCUFFS_USES"]);
 			// Hover Hole

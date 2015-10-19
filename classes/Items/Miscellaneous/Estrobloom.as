@@ -215,6 +215,11 @@
 					choices[choices.length] = 8;
 					choices[choices.length] = 8;
 				}
+				//Lose beard!
+				if(target.hasBeard())
+				{
+					choices[choices.length] = 10;
+				}
 
 				//Default to no changes, then roll on the array for a change if some are available.
 				var select:int = 9;
@@ -339,6 +344,15 @@
 					if(target.hasStatusEffect("Uniball")) kGAMECLASS.output(" like a vacuum-sealed bag");
 					if(target.ballSizeRaw < 1) target.ballSizeRaw = 1;
 					kGAMECLASS.output(". <b>You've got " + target.ballsDescript(false,true) + " now.</b>");
+				}
+				//Lose beard!
+				else if(select == 10)
+				{
+					kGAMECLASS.output("\n\nAn irritating sensation centers on your chin and you can't help but to scratch the itch with your [pc.fingers]. You notice that pieces of what was once your [pc.beard] are now littering your hands and falling to your [pc.feet]. It seems that the facial feminization also causes beard loss... <b>");
+					if(kGAMECLASS.silly) kGAMECLASS.output("No matter how much of a viking you once were, now y");
+					else kGAMECLASS.output("Y");
+					kGAMECLASS.output("ou no longer have a beard!</b>");
+					target.beardLength = 0;
 				}
 				else if(select == 9)
 				{

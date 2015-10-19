@@ -880,7 +880,7 @@ public function blowjobFromInessa():void
 	if(pc.cockTotal() > 1) output("s");
 	output(" and lovingly scooping up every single drop.");
 	output("\n\n<i>“Good girl,”</i> you " + pc.mf("huskily","breathily") + " praise her, reaching out and stroking the top of her head. Like a kitten, Inessa instinctively leans into the palm of your hand, her soft hair rubbing against your fingers. There’s a blissfully happy look in her bright eyes.");
-	output("\n\n<i>“D-did you want anything else–?”</i> The butterfly-winged girl asks, your [pc.cum] dribbling down her chin and dripping on her small blue breasts. You shake your head");
+	output("\n\n<i>“D-did you want anything else~?”</i> The butterfly-winged girl asks, your [pc.cum] dribbling down her chin and dripping on her small blue breasts. You shake your head");
 	if(pc.isCrotchGarbed()) output(" and tuck your [pc.cocksLight] away");
 	output(", thoroughly satisfied.");
 	// Return to shop menu.
@@ -1317,7 +1317,7 @@ public function newTexanGanguBangu():void
 	if(flags["NEW_TEXAS_GANGBANGED"] == undefined) output(" Fancy a ride with some real alphas?");
 	else output(" Couldn’t stay away from us, eh?");
 	output("”</i> One of the bulls seizes your hips in his large, powerful hands. Moments later, ");
-	if(pc.hasCock() && !pc.isTaur()) output("[pc.oneCock] is grinded against the girthy underside of his cock! Your own [pc.cockHead] excitedly leaks pre out and down between your rubbing shafts, slickening your sensuous dick-friction.");
+	if(pc.hasCock() && !pc.isTaur()) output("[pc.oneCock] is grinding against the girthy underside of his cock! Your own [pc.cockHead] excitedly leaks pre out and down between your rubbing shafts, slickening your sensuous dick-friction.");
 	else if(pc.hasVagina() && !pc.isTaur()) output("[pc.oneVagina] is grinded against the girthy underside of his cock! Your sloppy folds eagerly part against his equine cock and liberally slicken it with your excitement.");
 	else output("your bare loins are grinded against the girthy underside of his cock!");
 
@@ -1326,7 +1326,7 @@ public function newTexanGanguBangu():void
 		output("\n\nYou’re utterly shocked when one of the bulls suddenly kisses you, your [pc.lips] locked in a passionate, tongue-filled kiss. Yielding to his insistent tongue and rubbing loins, you find yourself pressing your hips right back, needily rubbing ");
 		if(pc.hasCock() && !pc.isTaur()) 
 		{
-			output("your dick against his. You blush as you realise ");
+			output("your dick against his. You blush as you realize ");
 			if(pc.biggestCockLength() < 14) output("yours is tiny in comparison!");
 			else if(pc.biggestCockLength() < 15) output("you’re exactly the same size!");
 			else if(pc.biggestCockLength() <= 17) output("yours is a bit larger!");
@@ -1341,19 +1341,19 @@ public function newTexanGanguBangu():void
 
 	//if Pc.hasFrontCock:
 	var frontCock:Boolean = false;
-	if(pc.hasCock() && !pc.isTaur()) frontCock = true;
+	if(pc.hasCock() && pc.genitalLocation() <= 1) frontCock = true;
 	if(frontCock) 
 	{
 		output("\n\n<i>“Look at this - [pc.heShe]’s already about to blow!”</i> The first bull reaches down and caresses your [pc.cockHead]. You whimper with delight as he rubs your cock hole with his thick, calloused thumb.");
 		output("\n\n<i>“Your [pc.cocksLight] and [pc.ass] belong to us now, slut.”</i>");
 	}
 	var frontPussy:Boolean = false;
-	if(pc.hasVagina() && !pc.isTaur()) frontPussy = true;
-	if(frontPussy)
+	if(pc.hasVagina() && pc.genitalLocation() <= 1) frontPussy = true;
+	if(!frontCock && frontPussy)
 	{
 		//else if PchasFrontPussy:
 		output("\n\n<i>“Look at this - [pc.heShe]’s getting all wet!”</i> The first bull strokes your soppy slit with his thick, calloused fingers. He slips one inside of you and wiggles it about, causing you to whimper with pleasure - he’s <i>inside</i> of you!");
-		output("\n\n<i>“Your [pc.pussiesLight] and [pc.ass] belong to us now, slut.”</i>");
+		output("\n\n<i>“Your [pc.pussies] and [pc.ass] belong to us now, slut.”</i>");
 	}
 	//else // No front genitals:
 	if(!frontPussy && !frontCock)
@@ -1386,7 +1386,8 @@ public function newTexanGanguBangu():void
 
 	output("\n\n<i>“How does it feel to have a bull dick inside of that [pc.ass] of yours?”</i> The bull behind you asks, flexing his massive manhood. You feel his equine head flaring inside of you - you swear he’s buried right up in your belly. <i>“");
 	if(pc.analCapacity() < 300) output(" You’re so tight - just like a virgin!");
-	else output("I can tell your [pc.asshole] missed me!");
+	else if(flags["NEW_TEXAS_GANGBANGED"] != undefined) output("I can tell your [pc.asshole] misses me!");
+	else output("I can tell your [pc.asshole] has been put to good use!");
 	output("”</i>");
 
 	if(virgin) output("\n\nYou blush - you <i>are</i> a virgin, or at least - this is the first time you’ve had anything, let alone a girthy cock like his, up your [pc.ass]! Just the thought of having your anal cherry plucked by him makes your heart flutter.");
@@ -1455,9 +1456,9 @@ public function newTexanGanguBangu():void
 		output(" in your sloppy [pc.cumColor] seed");
 		if(pc.cockTotal() > 1)
 		{
-			output(" - your other soon cock");
+			output(" - your other cock");
 			if(pc.cockTotal() > 2) output("s");
-			output(" following suit!");
+			output(" soon following suit!");
 		}
 		else output(".");
 	}
@@ -1473,7 +1474,7 @@ public function newTexanGanguBangu():void
 	//GotFrontPussy:
 	if(frontPussy) 
 	{
-		if(!pc.isPregnant(0)) output("eager womb to the brink, bathing your unprotected eggs in hyper-virility");
+		if(!pc.isPregnant(0)) output("eager womb to the brink, bathing your unprotected eggs in hyper-virility.");
 		else output("channel to the brink, bathing your rippling walls in wasted virility.");
 	}
 	else 
@@ -1528,6 +1529,21 @@ public function newTexanGanguBangu():void
 		pc.loadInCunt(pp,0);
 	}
 	else  pc.loadInAss(pp);
+	if(frontCock)
+	{
+		pc.orgasm();
+		pc.orgasm();
+		pc.orgasm();
+	}
+	if(frontPussy)
+	{
+		pc.orgasm();
+		pc.orgasm();
+		pc.orgasm();
+	}
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
 	pc.exhibitionism(2);
 	pc.exhibitionism(2);
 	pc.exhibitionism(2);
@@ -1571,7 +1587,7 @@ public function getAHandjobFromInessy():void
 
 	//Pc’s dick is 4 inches or smaller: 
 	if(pc.cocks[0].cLength() <= 4) output("\n\nWith your compact-sized dick, she’s easily able to jerk most of your length off with a single hand, wrapping her warm palm around your entire length.");
-	else if(pc.cocks[x].cLength() <= 10) output("\n\nWrapping both her warm hands around your [pc.cockSimple], she’s able to completely encompass and jerk off your entire length.");
+	else if(pc.cocks[x].cLength() <= 10) output("\n\nWrapping both her warm hands around your [pc.cockNoun " + x + "], she’s able to completely encompass and jerk off your entire length.");
 	else output("\n\nYour incredibly long dick is so super-sized that even with both hands, she’s hard pressed to jerk even half of it off. Still, just having her grip <i>part</i> of it is pleasurable enough!");
 	output(" Her focused, yet soft finger force blows away the tightness of most terran pussies, winding you up until you’re actively thrusting against her hand");
 	if(pc.cocks[x].cLength() >= 5) output("s");
@@ -1681,8 +1697,10 @@ public function faceStrapOnShitForInessa():void
 	else if(pc.hasCock()) output("shooting your [pc.cum] all over your [pc.belly].");
 	else output("letting out a long, drawn out groan.");
 
-	output("\n\nWhen you pull yourself up and off her strapped-on face-dick, Inessa nearly falls to the floor, totally wiped out by her orgasm{pc.hasPussy: s} and your merciless fucking of her face. You reach out and stroke her head, telling her she did a good job, and she lets out a satisfied, if spacy little purr, nuzzling into your hand. There is a rather obvious puddle between her twitching thighs, marking her delight despite her gleaming chastity belt. You then pull off the mask and toss it aside.");
-	output("\n\n<i>“D-did you want anything else–?”</i> Inessa asks, and you shake your head. As if she could do anything else right now! After a little while, she gets to her feet, and stumbles to grab a mop.");
+	output("\n\nWhen you pull yourself up and off her strapped-on face-dick, Inessa nearly falls to the floor, totally wiped out by her orgasm");
+	if(pc.hasVagina()) output("s");
+	output(" and your merciless fucking of her face. You reach out and stroke her head, telling her she did a good job, and she lets out a satisfied, if spacy little purr, nuzzling into your hand. There is a rather obvious puddle between her twitching thighs, marking her delight despite her gleaming chastity belt. You then pull off the mask and toss it aside.");
+	output("\n\n<i>“D-did you want anything else~?”</i> Inessa asks, and you shake your head. As if she could do anything else right now! After a little while, she gets to her feet, and stumbles to grab a mop.");
 	IncrementFlag("INESSA_FACE_STRAPPED");
 	// Return to shop menu.
 	processTime(29);

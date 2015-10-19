@@ -3,6 +3,23 @@ import flash.events.Event;
 import classes.GameData.MailManager;
 
 
+// Illegal character input check
+public function hasIllegalInput(sText:String = ""):Boolean 
+{
+	if(
+		sText.indexOf("<") != -1 || 
+		sText.indexOf(">") != -1 || 
+		sText.indexOf("[") != -1 || 
+		sText.indexOf("]") != -1 || 
+		sText.indexOf("\n") != -1 || 
+		sText.indexOf("\t") != -1
+		)
+	{
+		return true;
+	}
+	return false;
+}
+
 public function creationRouter(e:Event = null):void {
 	if(chars["PC"].short.length >= 1) {
 		this.userInterface.warningText.htmlText = "<b>Are you sure you want to create a new character?</b>";
@@ -131,7 +148,7 @@ public function chooseStartingRace(race:String = "human"):void {
 	this.clearMenu();
 	if(race == "human") {
 		pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
-		output("male or female");
+		//output("male or female");
 		this.addButton(0,"Male",setStartingSex,1);
 		this.addButton(1,"Female",setStartingSex,3);
 	}
@@ -143,7 +160,7 @@ public function chooseStartingRace(race:String = "human"):void {
 		pc.addTailFlag(GLOBAL.FLAG_FLUFFY);
 		pc.addTailFlag(GLOBAL.FLAG_FURRED);
 		pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
-		output("male or female");
+		//output("male or female");
 		this.addButton(0,"Male",setStartingSex,1);
 		this.addButton(1,"Female",setStartingSex,3);
 		//addButton(2,"Herm.",setStartingSex,2);
@@ -155,7 +172,7 @@ public function chooseStartingRace(race:String = "human"):void {
 		pc.addTailFlag(GLOBAL.FLAG_LONG);
 		pc.addTailFlag(GLOBAL.FLAG_FURRED);
 		pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
-		output("male or female");
+		//output("male or female");
 		this.addButton(0,"Male",setStartingSex,1);
 		this.addButton(1,"Female",setStartingSex,3);
 		//addButton(2,"Herm.",setStartingSex,2);
@@ -198,7 +215,7 @@ public function chooseStartingRace(race:String = "human"):void {
 		pc.faceType = GLOBAL.TYPE_HUMANMASKED;
 		pc.armType = GLOBAL.TYPE_KUITAN;
 		pc.addArmFlag(GLOBAL.FLAG_FURRED);
-		output("male or hermaphroditic");
+		//output("male or hermaphroditic");
 		this.addButton(0,"Male",setStartingSex,1);
 		addDisabledButton(1,"Female","Female","Kui-tan cannot be female.")
 		this.addButton(2,"Herm",setStartingSex,2);
@@ -214,6 +231,12 @@ public function setStartingSex(sex:int = 1):void {
 	if(this.userInterface.textInput.text == "") {
 		chooseStartingRace(race);
 		output("\n\n\n<b>You must input a name.</b>");
+		return;
+	}
+	// Illegal characters check. Just in case...
+	if(hasIllegalInput(this.userInterface.textInput.text)) {
+		chooseStartingRace(race);
+		output("\n\n\n<b>To prevent complications, please avoid using code in the name.</b>");
 		return;
 	}
 	if(this.userInterface.textInput.length > 14) {
@@ -1159,8 +1182,8 @@ public function chooseClass():void {
 	this.addButton(0,"Smuggler",classConfirm,GLOBAL.CLASS_SMUGGLER);
 	this.addButton(1,"Mercenary",classConfirm,GLOBAL.CLASS_MERCENARY);
 	this.addButton(2,"TechSpecialist",classConfirm,GLOBAL.CLASS_ENGINEER);
-	//this.addButton(14,"Back",chooseAlignment);
-	this.addButton(14,"Back",chooseGenderIdentity);
+	this.addButton(14,"Back",chooseAlignment);
+	//this.addButton(14,"Back",chooseGenderIdentity);
 }
 public function classConfirm(arg:int = 0):void {
 	clearOutput();

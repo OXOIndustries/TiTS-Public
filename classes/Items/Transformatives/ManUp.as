@@ -94,7 +94,7 @@
 				// Fem mod -5/-8 points:
 				else if(rand(2) == 0)
 				{
-					kGAMECLASS.output("\n\nYour jaw begins to ache as you feel the nanomachines rework its bones into a squarer form. Slowly, this feeling climbs upwards to work some changes on your nose, brows and cheeks, undeniably turning you more manly.");
+					kGAMECLASS.output("\n\nYour jaw begins to ache as you feel the nanomachines reworking your bones into a squarer form. Slowly, this feeling climbs upwards to work some changes on your nose, brows and cheeks, undeniably turning you more manly.");
 					x -= (5+rand(4));
 					target.modFem(x);
 				}
@@ -108,7 +108,7 @@
 				// Announce when passing a threshold:
 				if(y > 10 && target.femininity <= 10)
 				{
-					kGAMECLASS.output(" <b>As you stare into your holocam, you see your reflection and can't help but to smile. With its chiseled features, your [pc.face] is a paragon of masculinity. Even your neck has an eye-catching adam's apple. ");
+					kGAMECLASS.output(" <b>As you stare into your holocam, you see your reflection and can't help but smile. With its chiseled features, your [pc.face] is a paragon of masculinity. Even your neck has an eye-catching adam's apple. ");
 					if(kGAMECLASS.silly) kGAMECLASS.output("Total sploosh!");
 					else kGAMECLASS.output("You're so hot you make all the panties wet.");
 					kGAMECLASS.output("</b>");
@@ -136,14 +136,12 @@
 				{
 					choices[choices.length] = 1;
 				}
-				
 				// First Pair of Balls
 				// Effect: Less than 2 balls - Increases testicle count until 2
 				if(target.balls < 2 && target.ballsUnlocked(2))
 				{
 					choices[choices.length] = 2;
 				}
-				
 				// Lip
 				// Effect: Lipmod more than 1 - Decrease by 1
 				if(target.lipMod > 1 && target.lipModUnlocked(target.lipMod - 1))
@@ -151,7 +149,6 @@
 					choices[choices.length] = 3;
 					choices[choices.length] = 3;
 				}
-				
 				// Hip
 				// Effect: If hips more than 1 point - Decrease by 1
 				if(target.hipRatingRaw > 1 && target.hipRatingUnlocked(target.hipRatingRaw - 1))
@@ -214,45 +211,37 @@
 					if(!target.hasVagina() && !target.hasCock()) kGAMECLASS.output(" the middle of");
 					kGAMECLASS.output(" your crotch");
 					if(target.hasVagina()) kGAMECLASS.output(", right above your vagina");
-					if(target.hasVagina() && target.vaginas[0].clits >= 1)
+					if(target.hasVagina())
 					{
-						kGAMECLASS.output(". Soon it becomes hotter, the heat centers on [pc.oneClit] as it engorges");
-						if(target.isCrotchGarbed()) kGAMECLASS.output(" uncomfortably, rubbing against your [pc.lowerGarments]");
+						kGAMECLASS.output(". Soon it becomes hotter, the heat centered above [pc.oneClit], bulging uncomfortably");
+						if(target.isCrotchGarbed()) kGAMECLASS.output(", rubbing against your [pc.lowerGarments]");
 					}
 					else
 					{
-						kGAMECLASS.output(". Soon it becomes hotter, the heat centers on a tiny lump that is beginning to form on your [pc.crotch]");
-						if(target.isCrotchGarbed()) kGAMECLASS.output(", its growth rubbing it against your [pc.lowerGarments]");
+						kGAMECLASS.output(". Soon it becomes hotter, the heat centered on a tiny lump that is beginning to form on your [pc.crotch]");
+						if(target.isCrotchGarbed()) kGAMECLASS.output(", rubbing against your [pc.lowerGarments]");
 					}
-					kGAMECLASS.output(".\n\n");
-					
-					if(target.hasVagina() && target.vaginas[0].clits >= 1 && target.clitLength < 4) kGAMECLASS.output("[pc.OneClit]");
-					else kGAMECLASS.output("The bump");
+					kGAMECLASS.output(".\n\nThe");
+					kGAMECLASS.output(" bump");
 					
 					// Grow 4" long, 1" thick wiener.
 					target.createCock(4, 1);
 					// Length modifications
 					if(target.hasPerk("Mini")) target.cocks[0].cLengthRaw -= 1;
-					if(target.hasVagina() && target.vaginas[0].clits >= 1)
-					{
-						if(target.clitLength >= 4) target.cocks[0].cLengthRaw = target.clitLength;
-						// Lose a clit to gain a penis.
-						target.vaginas[0].clits -= 1;
-					}
-					if(target.hasPerk("Hung")) target.cocks[0].cLengthRaw *= 2;
+					if(target.hasPerk("Hung")) target.cocks[0].cLengthRaw += 3+rand(4);
 					
-					kGAMECLASS.output(" bulges with flesh, stretching your skin around it to uncomfortable limits. Once it's " + num2Text(target.cocks[0].cLengthRaw) + " inches long it stops growing. Instead, the tip of the limp tube of flesh suddenly twists into a new form, shaping itself into a cockhead. You can’t stop yourself from");
+					kGAMECLASS.output(" bulges with flesh, stretching the skin around it to uncomfortable limits. Once it's " + num2Text(target.cocks[0].cLengthRaw) + " inches long it stops growing. Instead, the tip of the limp tube of flesh suddenly twists into a new form, shaping itself into a cockhead. You can’t stop yourself from");
 					if(target.isCrotchGarbed()) kGAMECLASS.output(" pulling down your [pc.lowerUndergarment] and admire");
 					else kGAMECLASS.output(" admiring");
 					kGAMECLASS.output(" your new phallus.");
 					if(target.cocks[0].cLengthRaw <= 4) kGAMECLASS.output("\n\nIt’s tiny and flaccid, hardly worth any admiration, but y");
 					else kGAMECLASS.output("\n\nY");
 					kGAMECLASS.output("ou can't resist grabbing it in your hands. It feels amazing. The transformative heat passes through it as you begin to stroke your new fuckstick. Slowly but steadily, it gradually fills with blood, growing engorged and erect. You release a small gasp of surprise at your new cock's first boner, increasing the pace of your stroking.");
-					kGAMECLASS.output("\n\nAfter a while you begin to grow frustrated. No matter how much you keep beating you just can't seem to orgasm. As you tease its head with your finger, trying desperately to trigger your release to ecstacy, you find out that not only is the cockhole missing, there isn't a cum-vein either. You don't feel any different inside, so you're probably missing a prostate too.");
-					kGAMECLASS.output("\n\nJust as you finish the thought, the heat moves deeper into your body, right next to your rectum. You can feel it bloating, transforming the area of flesh into a productive cum-factory. You can feel a pending orgasm as a cum-vein forms along your");
+					kGAMECLASS.output("\n\nAfter a while you begin to grow frustrated. No matter how much you keep beating you just can't seem to orgasm. As you tease its head with your finger, trying desperately to trigger your release to ecstacy, you find out that not only is the cockhole missing, there isn't a urethra either. You don't feel any different inside, so you're probably missing a prostate too.");
+					kGAMECLASS.output("\n\nJust as you finish that thought, the heat moves deeper into your body, right next to your rectum. You can feel it bloating, transforming the area of flesh into a productive spunk-factory. You can feel a pending orgasm as a cum-vein forms along your");
 					if(target.cocks[0].cLengthRaw <= 4) kGAMECLASS.output(" tiny");
 					else kGAMECLASS.output(" turgid");
-					kGAMECLASS.output(" shaft. The transformation itself accelerates by the onset of rushing cum through the newly-formed conduit. It climbs through the bottom of your shaft until it reaches the tip. One, two, three shots of cum burst forth from your newly formed cumslit onto the floor below. With a beep, your codex confirms that the fluid contains sperm.");
+					kGAMECLASS.output(" shaft. The transformation itself accelerates by the onset of rushing cum through the newly-formed conduit. It climbs through the bottom of your shaft until it reaches the tip. One, two, three shots of cum burst forth from your newly formed cumslit onto the floor below. Your codex confirms that it has sperm.");
 					if(kGAMECLASS.silly && target.balls == 0) kGAMECLASS.output(" How does that even work?");
 					
 					// Morph the wieners to proper type based on race
@@ -260,7 +249,7 @@
 					if(target.race() == "horse-morph" || target.race() == "part horse-morph" || target.race() == "laquine" || target.race() == "ovir" || target.race() == "half-ovir")
 					{
 						target.shiftCock(0, GLOBAL.TYPE_EQUINE);
-						kGAMECLASS.output("Your [pc.cockColor] cock has a medial ring and a flares like a horse");
+						kGAMECLASS.output("Your [pc.cockColor] cock has a medial ring and flares like a horse");
 					}
 					else if(target.race() == "ausar" || target.race() == "half-ausar" || target.race() == "canine-morph" || target.race() == "vulpine") 
 					{
@@ -296,56 +285,64 @@
 						target.shiftCock(0, GLOBAL.TYPE_RASKVEL);
 						kGAMECLASS.output("Your [pc.cockColor] cock is pointed and hides inside a sheath most of the time");
 					}
-					
-					/* I dunno about these... */
 					else if(target.race() == "fanfir" || target.race() == "dragon-morph")
 					{
-						target.cocks[0].cType = GLOBAL.TYPE_DRACONIC;
-						target.cocks[0].knotMultiplier = 1.3;
-						target.cocks[0].addFlag(GLOBAL.FLAG_KNOTTED);
+						target.shiftCock(0, GLOBAL.TYPE_DRACONIC);
 						kGAMECLASS.output("Your [pc.cockColor] dick is tapered with a knot like bulb at its base");
-					}
-					else if(target.race() == "sydian")
-					{
-						target.cocks[0].cType = GLOBAL.TYPE_SYDIAN;
-						target.cocks[0].cockColor = "bright orange";
-						kGAMECLASS.output("Your [pc.cockColor] cock is covered in tiny brushes");
 					}
 					else if(target.race() == "demon-morph")
 					{
-						target.cocks[0].cType = GLOBAL.TYPE_DEMONIC;
-						target.cocks[0].cockColor = "dark purple";
-						target.cocks[0].addFlag(GLOBAL.FLAG_NUBBY);
+						target.shiftCock(0, GLOBAL.TYPE_DEMONIC);
 						kGAMECLASS.output("Your [pc.cockColor] cock is shiny, covered in sensitive nodules and the head has rubbery protrusions, like the one of a demon");
 					}
 					else if(target.race() == "tentacle beast")
 					{
-						target.cocks[0].cType = GLOBAL.TYPE_TENTACLE;
-						target.cocks[0].cockColor = "green";
-						target.cocks[0].addFlag(GLOBAL.FLAG_PREHENSILE);
-						target.cocks[0].addFlag(GLOBAL.FLAG_FLARED);
+						target.shiftCock(0, GLOBAL.TYPE_TENTACLE);
 						kGAMECLASS.output("Your [pc.cockColor] cock is constantly moist and moving with a slightly oversized mushroom-like head");
 					}
 					else if(target.race() == "siren" || target.race() == "anemone")
 					{
-						if(target.race() == "siren") target.cocks[0].cType = GLOBAL.TYPE_ANEMONE;
-						else target.cocks[0].cType = GLOBAL.TYPE_SIREN;
-						target.cocks[0].cockColor = "aquamarine";
-						target.cocks[0].addFlag(GLOBAL.FLAG_STINGER_BASED);
-						target.cocks[0].addFlag(GLOBAL.FLAG_NUBBY);
+						if(target.race() == "siren") target.shiftCock(0, GLOBAL.TYPE_ANEMONE);
+						else target.shiftCock(0, GLOBAL.TYPE_SIREN);
 						kGAMECLASS.output("Your [pc.cockColor]-colored cock is covered in tentacles riddled with poisonous aphrodisiac");
 					}
 					else if(target.race() == "kangaroo-morph")
 					{
-						target.cocks[0].cType = GLOBAL.TYPE_KANGAROO;
-						target.cocks[0].cockColor = "red";
-						target.cocks[0].addFlag(GLOBAL.FLAG_PREHENSILE);
-						target.cocks[0].addFlag(GLOBAL.FLAG_TAPERED);
+						target.shiftCock(0, GLOBAL.TYPE_KANGAROO);
 						kGAMECLASS.output("Your [pc.cockColor] dick is much like a taproot that undulates gently and tapers to a point when erect");
+					}
+					else if(target.race() == "simii")
+					{
+						target.shiftCock(0, GLOBAL.TYPE_SIMII);
+						kGAMECLASS.output("Your dick has a [pc.cockColor] mushroom-like head and the shaft is covered in [pc.skinColor] [pc.skinNoun]");
+					}
+					else if(target.race() == "saurian")
+					{
+						if(target.cocks[0].cLengthRaw < 20 || target.cocks[0].cThicknessRatioRaw < 3) kGAMECLASS.output("The throbbing sensation hits you again and your new phallus continues to grow bigger... ");
+						target.shiftCock(0, GLOBAL.TYPE_SAURIAN);
+						kGAMECLASS.output("Your [pc.cockColor]-colored dick is gigantic and massively thick, like that of a prehistoric thunder lizard");
+					}
+					else if(target.race() == "synthetic" || target.race() == "robot" || target.race() == "companion droid")
+					{
+						target.shiftCock(0, GLOBAL.TYPE_SYNTHETIC);
+						kGAMECLASS.output("Your new appendage changes into a more [pc.cockColor] color at its tip, making it appear very synthetic");
+					}
+					else if(target.race() == "venus pitcher")
+					{
+						target.shiftCock(0, GLOBAL.TYPE_VENUSPITCHER);
+						kGAMECLASS.output("Your [pc.cockColor] cock appears very vine-like, moving to and fro like some kind of sentient plant");
+					}
+					
+					/* I dunno about these... */
+					else if(target.race() == "sydian")
+					{
+						target.cocks[0].cType = GLOBAL.TYPE_INHUMAN;
+						target.cocks[0].cockColor = "bright orange";
+						kGAMECLASS.output("Your [pc.cockColor] cock is covered in tiny brushes");
 					}
 					else if(target.race() == "daynar")
 					{
-						target.cocks[0].cType = GLOBAL.TYPE_DAYNAR;
+						target.cocks[0].cType = GLOBAL.TYPE_INHUMAN;
 						target.cocks[0].addFlag(GLOBAL.FLAG_TAPERED);
 						kGAMECLASS.output("Your [pc.cockColor] cock has thick enough skin to obscure the veins and a tapered tip");
 					}
@@ -369,24 +366,26 @@
 					{
 						target.cocks[0].cType = GLOBAL.TYPE_INHUMAN;
 						target.cocks[0].cockColor = "pink";
-						
 						kGAMECLASS.output("Your cock looks like a lumpy caterpillar with a small [pc.cockColor] tip");
 					}
-					/* ... since they are non-standard or not yet defined, especially with races. */
+					/* ... since they are non-standard or not yet defined, especially with the current races. */
 					
 					else
 					{
 						target.shiftCock(0, GLOBAL.TYPE_HUMAN);
-						
 						if(target.skinType == GLOBAL.SKIN_TYPE_GOO)
 						{
 							target.cocks[0].addFlag(GLOBAL.FLAG_AMORPHOUS);
 							target.cocks[0].cockColor = target.skinTone;
 						}
-						
 						kGAMECLASS.output("Your dick has a [pc.cockColor] mushroom-like head and the shaft is covered in [pc.skinColor] [pc.skinNoun]");
 					}
 					kGAMECLASS.output("!</b>");
+					
+					//Cum thrice!
+					target.orgasm();
+					target.orgasm();
+					target.orgasm();
 				}
 				// Effect: Less than 2 balls - Increases testicle count until 2
 				else if(select == 2)
@@ -400,7 +399,7 @@
 					else if(target.hasVagina()) kGAMECLASS.output(" right above your [pc.vagina].");
 					else kGAMECLASS.output(" right in the middle of your crotch.");
 					if(target.balls <= 0) kGAMECLASS.output(" The skin of that area bulges out and proceeds to loosen, thicken, and loosen again. It continues this sluggish process for several minutes, until the empty skin is large enough, upon which it finally scrunches up into an empty scrotum. <b>Seems like you have grown a [pc.furSkinScales] ballsack.</b>");
-					else kGAMECLASS.output(" The transformation begins in your ballsack. Slowly it scrunches inward, the skin aggregating and holding your balls painfully tight against your body. Then, all at once, it loosens quickly. Your balls breathe in relief; now hanging much lower due to your looser sack.");
+					else kGAMECLASS.output(" The transformation begins in your ballsack. Slowly it scrunches inward, the skin aggregating and holding your balls painfully tight against your body. Then, all at once, it loosens quickly. Your ball breathes in relief; now hanging much lower due to your looser sack.");
 					kGAMECLASS.output("\n\nNow that your sack is ready, the feverish sensation builds again and concentrates on the flesh behind it. You bring your fingers toward it and feel a tiny lump forming inside. Slowly the lump turns into a small oval, sensitive to your touch. A");
 					if(target.balls <= 0) kGAMECLASS.output("nother");
 					kGAMECLASS.output(" testicle, no doubt. The new testicle");
@@ -444,9 +443,9 @@
 				else if(select == 4)
 				{
 					// If garbed:
-					if(target.isCrotchGarbed()) kGAMECLASS.output("\n\nSuddenly your [pc.lowerGarments] slips a bit from your waist. As you adjust your clothing back, you find that your [pc.hips] have straightened out slightly.");
+					if(target.isCrotchGarbed()) kGAMECLASS.output("\n\nSuddenly your [pc.lowerGarments] slips a bit from your waist. As you adjust your clothing back, <b>you find that your [pc.hips] have straightened out slightly.</b>");
 					// If nude:
-					else kGAMECLASS.output("\n\nYour stance feels slightly uncomfortable and, after adjusting it several times, you realize that your [pc.hips] are straighter than before.");
+					else kGAMECLASS.output("\n\nYour stance feels slightly uncomfortable and, after adjusting it several times, <b>you realize that your [pc.hips] are straighter than before.</b>");
 					target.hipRatingRaw--;
 				}
 				// If butt not 1 point - Decrease by 1
@@ -458,9 +457,7 @@
 				// If tone less than 60 points - Increase by 3 to 5
 				else if(select == 6)
 				{
-					kGAMECLASS.output("\n\nYour muscles have gained some definition and feel a bit firmer, too. You look a little tougher than you were a moment ago.");
-					target.tone += 3 + rand(3);
-					if(target.tone > 100) target.tone = 100;
+					target.modTone(3 + rand(3));
 				}
 				// Effect: If beard not chest-length - Increase by 1" to 2"
 				else if(select == 7)
@@ -468,14 +465,32 @@
 					// No beard: Grow one--length is thickness of a dime, I guess.
 					if(!target.hasBeard())
 					{
-						kGAMECLASS.output("\n\nYour [pc.jaw] tingles for a bit before turning into a maddening itch. You bring your fingers to scratch it only to find your chin covered in a thin mat of hair. <b>Seems like you’ve the beginnings of a beard!</b>");
+						kGAMECLASS.output("\n\nYour jaw tingles for a bit before turning into a maddening itch. You bring your fingers to scratch it only to find your chin covered in a thin mat of hair. <b>Seems like you’ve the beginnings of a beard!</b>");
 						target.beardLength = 0.05;
+					}
+					// For the stubble.
+					else if(target.beardLength < 0.125)
+					{
+						target.beardLength = 0.125;
+						kGAMECLASS.output("\n\nYour [pc.beard] tickles your jaw for a little bit, bringing yourself to scratch it. As soon as it begins, the sensation abruptly stops. You experimentally run your fingers along it, feeling its very rugged surface. <b>Your beard has now grown into a fine five o’clock shadow.</b>");
+					}
+					// For just half-inch.
+					else if(target.beardLength < 0.5)
+					{
+						target.beardLength = 0.5;
+						kGAMECLASS.output("\n\nWithout touching it, you can feel your [pc.beard] physically grow on your face. Reflexily, you brush your hand across it and can confirm that <b>it's now a half-inch long beard.</b>");
+					}
+					// For whole numbers.
+					else if(target.beardLength < 1)
+					{
+						target.beardLength = 1;
+						kGAMECLASS.output("\n\nYour [pc.beard] suddenly feels itchy and you quickly give it a scratch. The sensation passes and you can feel that it is definitely longer than it was previously. <b>Your beard is now 1-inch long.</b>");
 					}
 					// Has beard: Grow 1" to 2"
 					else
 					{
 						x = 1 + rand(2);
-						kGAMECLASS.output("\n\nYour [pc.beard] tickles your jaw for a little bit, bringing yourself to scratch it. After a while, the sensation stops and you pass your fingers through it. You can confirm that it's slightly longer than it was before, gaining about " + kGAMECLASS.num2Text(x) + " inches of beard.");
+						kGAMECLASS.output("\n\nYour [pc.beard] tickles your jaw for a little bit, bringing yourself to scratch it. After a while, the sensation stops and you pass your fingers through it. <b>You can confirm that it's slightly longer than it was before, gaining about " + kGAMECLASS.num2Text(x) + " inches of beard.</b>");
 						target.beardLength += x;
 					}
 				}
@@ -531,7 +546,7 @@
 				}
 				else if(select == 9)
 				{
-					kGAMECLASS.output("\n\nAfter a while you realize that you aren't get anything more out of this dose. ManUp must be running out of transformations to make you manlier.");
+					kGAMECLASS.output("\n\nAfter a while you realize that you aren't get anything more out of this dose. ManUp must be running out of ways to make you manlier.");
 				}
 			}
 			else {
