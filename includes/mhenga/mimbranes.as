@@ -4501,12 +4501,12 @@ public function mimbraneMenu():void
 		if (flags["PLAYER_MIMBRANE_SWEAT_ENABLED"] == undefined)
 		{
 			sweatText += "On";
-			output2("\nMimbrane sweating is currently <b>Disabled</b>");
+			output2("\nMimbrane sweating is currently <b>Disabled</b>.");
 		}
 		else
 		{
 			sweatText += "Off";
-			output2("\nMimbrane sweating is currently <b>Enabled</b>");
+			output2("\nMimbrane sweating is currently <b>Enabled</b>.");
 		}
 
 		addGhostButton(5, sweatText, toggleMimbraneSweat);
@@ -4525,12 +4525,12 @@ public function mimbraneMenu():void
 		if (flags["PLAYER_MIMBRANE_SPIT_ENABLED"] == undefined)
 		{
 			spitText += "On";
-			output2("\nSpit attacks are currently <b>Disabled</b>");
+			output2("\nSpit attacks are currently <b>Disabled</b>.");
 		}
 		else
 		{
 			spitText += "Off";
-			output2("\nSpit attacks are currently <b>Enabled</b>");
+			output2("\nSpit attacks are currently <b>Enabled</b>.");
 		}
 
 		addGhostButton(6, spitText, toggleMimbraneSpit);

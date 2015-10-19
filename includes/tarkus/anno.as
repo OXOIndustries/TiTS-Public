@@ -2606,6 +2606,13 @@ public function nameThaGoo():void
 		output("\n\n\n<b>You must enter a name.</b>");
 		return;
 	}
+	// Illegal characters check. Just in case...
+	if (hasIllegalInput(userInterface.textInput.text))
+	{
+		deck13MakeGoo();
+		output("\n\n\n<b>To prevent complications, please avoid using code in the name.</b>");
+		return;
+	}
 	if (userInterface.textInput.text.length > 14)
 	{
 		deck13MakeGoo();

@@ -55,9 +55,15 @@ package classes.Items.Toys
 		{
 			if(!kGAMECLASS.infiniteItems()) quantity++;
 			if(target is PlayerCharacter) {
-				//Consume:
-				kGAMECLASS.clearOutput();
-				kGAMECLASS.output("You cannot use the grav-cuffs at this time!");
+				if(kGAMECLASS.rooms[currentLocation].planet == "PLANET: NEW TEXAS" && kGAMECLASS.rooms[currentLocation].hasFlag(GLOBAL.PUBLIC) && kGAMECLASS.flags["NEW_TEXAS_GANGBANGED"] != undefined && target.lust() >= 33)
+				{
+					kGAMECLASS.newTexanGanguBangu();
+				}
+				else
+				{
+					kGAMECLASS.clearOutput();
+					kGAMECLASS.output("You cannot use the grav-cuffs at this time!");
+				}
 			}
 			else {
 				kGAMECLASS.clearOutput();
