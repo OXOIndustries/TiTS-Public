@@ -1113,6 +1113,23 @@
 			_buttonTray.showKeyBinds();
 		}
 
+		// Illegal character input check
+		public function hasIllegalInput(sText:String = ""):Boolean 
+		{
+			if(
+				sText.indexOf("<") != -1 || 
+				sText.indexOf(">") != -1 || 
+				sText.indexOf("[") != -1 || 
+				sText.indexOf("]") != -1 || 
+				sText.indexOf("\n") != -1 || 
+				sText.indexOf("\t") != -1
+				)
+			{
+				return true;
+			}
+			return false;
+		}
+
 		//4. MIAN MENU STUFF
 		public function mainMenuButtonOn():void 
 		{
