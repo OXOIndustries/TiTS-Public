@@ -194,21 +194,21 @@ public function bessNippleType():String
 
 public function bessAssSize():String
 {
-	if (bess.buttRatingRaw <= 2) return "boyish";
-	if (bess.buttRatingRaw <= 5) return "slender";
-	if (bess.buttRatingRaw <= 8) return "average";
-	if (bess.buttRatingRaw <= 16) return "ample";
-	if (bess.buttRatingRaw <= 20) return "voluptuous";
+	if (bess.buttRatingRaw <= 0) return "boyish";
+	if (bess.buttRatingRaw <= 2) return "slender";
+	if (bess.buttRatingRaw <= 5) return "average";
+	if (bess.buttRatingRaw <= 8) return "ample";
+	if (bess.buttRatingRaw <= 16) return "voluptuous";
 	return "massive";
 }
 
 public function bessThighSize():String
 {
-	if (bess.hipRatingRaw <= 2) return "boyish";
-	if (bess.hipRatingRaw <= 5) return "slender";
-	if (bess.hipRatingRaw <= 8) return "average";
-	if (bess.hipRatingRaw <= 16) return "ample";
-	if (bess.hipRatingRaw <= 20) return "voluptuous";
+	if (bess.hipRatingRaw <= 0) return "boyish";
+	if (bess.hipRatingRaw <= 2) return "slender";
+	if (bess.hipRatingRaw <= 5) return "average";
+	if (bess.hipRatingRaw <= 8) return "ample";
+	if (bess.hipRatingRaw <= 16) return "voluptuous";
 	return "massive";
 }
 
