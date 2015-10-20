@@ -2688,12 +2688,15 @@ package classes {
 			// Affinity
 			if(stat == affinity)
 			{
+
+				/*No, JCup. 2Gud.
 				if (stat == "physique") return physique(arg);
 				else if (stat == "reflexes") return reflexes(arg);
 				else if (stat == "aim") return aim(arg);
 				else if (stat == "intelligence") return intelligence(arg);
 				else if (stat == "willpower") return willpower(arg);
-				else if (stat == "libido") return libido(arg);
+				else if (stat == "libido") return libido(arg);*/
+				arg *= 1.5;
 			}
 			// Normal
 			if (stat == "physique") statCurrent = physique();
@@ -3472,15 +3475,15 @@ package classes {
 			else if (femininity <= 90)
 			{
 				faceo = "a gorgeous profile with " + pluralize(lipDescript(true)) + faceLipMimbraneDescript();
-				if (hasSmallNose) faceo += ", a button nose";
-				faceo += ", and noticeable eyelashes";
+				if (hasSmallNose) faceo += ", a button nose,";
+				faceo += " and noticeable eyelashes";
 			}
 			//91-100
 			else
 			{
 				faceo = "a jaw-droppingly feminine shape with " + pluralize(lipDescript(true)) + faceLipMimbraneDescript();
-				if (hasSmallNose) faceo += ", an adorable nose";
-				faceo += ", and long, beautiful eyelashes";
+				if (hasSmallNose) faceo += ", an adorable nose,";
+				faceo += " and long, beautiful eyelashes";
 			}
 			return faceo;
 		}
@@ -3771,13 +3774,13 @@ package classes {
 				if (faceType == GLOBAL.TYPE_CANINE) adjectives.push("canine", "dog-like");
 				if (faceType == GLOBAL.TYPE_FELINE) adjectives.push("feline", "cat-like");
 				if (faceType == GLOBAL.TYPE_EQUINE) adjectives.push("equine", "horse-like", "bestial");
-				if (faceType == GLOBAL.TYPE_BOVINE) adjectives.push("bovine", "cow-like", "bestial"]);
+				if (faceType == GLOBAL.TYPE_BOVINE) adjectives.push("bovine", "cow-like", "bestial");
 				if (faceType == GLOBAL.TYPE_LIZAN) adjectives.push("lizan", "reptilian");
 				if (faceType == GLOBAL.TYPE_DRACONIC) adjectives.push("draconic", "reptilian");
 				if (faceType == GLOBAL.TYPE_LAPINE) adjectives.push("lapine", "rabbit-like", "bunny");
 				if (faceType == GLOBAL.TYPE_NAGA) adjectives.push("naga", "snake-like");
 				if (faceType == GLOBAL.TYPE_HUMANMASKED) adjectives.push("masked");
-				if (faceType == GLOBAL.TYPE_KUITAN) adjectives.push("kui-tan", "tanuki-like");
+				if (faceType == GLOBAL.TYPE_KUITAN) adjectives.push("kui-tan", "tanuki-like", "raccoon-like");
 				if (faceType == GLOBAL.TYPE_VULPINE) adjectives.push("vulpine", "fox-like", "foxy");
 				if (faceType == GLOBAL.TYPE_MOUSEMAN) adjectives.push("mousey", "mouse-like");
 				if (faceType == GLOBAL.TYPE_MOUSE) adjectives.push("mouse", "mousey", "mouse-like");

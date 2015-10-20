@@ -3,6 +3,23 @@ import flash.events.Event;
 import classes.GameData.MailManager;
 
 
+// Illegal character input check
+public function hasIllegalInput(sText:String = ""):Boolean 
+{
+	if(
+		sText.indexOf("<") != -1 || 
+		sText.indexOf(">") != -1 || 
+		sText.indexOf("[") != -1 || 
+		sText.indexOf("]") != -1 || 
+		sText.indexOf("\n") != -1 || 
+		sText.indexOf("\t") != -1
+		)
+	{
+		return true;
+	}
+	return false;
+}
+
 public function creationRouter(e:Event = null):void {
 	if(chars["PC"].short.length >= 1) {
 		this.userInterface.warningText.htmlText = "<b>Are you sure you want to create a new character?</b>";

@@ -207,38 +207,28 @@
 				// Effect: Lack cock - Increases cock by 1, 4 inch long, 1 inch thick cock. Penis type decided by race.
 				if(select == 1)
 				{
-					var clitTFs:Boolean = false;
-					if(target.hasVagina() && target.vaginas[0].clits >= 1 && target.clitsUnlocked(0, target.vaginas[0].clits - 1)) clitTFs = true;
-					
 					kGAMECLASS.output("\n\nIt starts with a subtle warmth, sparking off in");
 					if(!target.hasVagina() && !target.hasCock()) kGAMECLASS.output(" the middle of");
 					kGAMECLASS.output(" your crotch");
 					if(target.hasVagina()) kGAMECLASS.output(", right above your vagina");
-					if(clitTFs)
+					if(target.hasVagina())
 					{
-						kGAMECLASS.output(". Soon it becomes hotter, the heat centered on [pc.oneClit] as it engorges");
-						if(target.isCrotchGarbed()) kGAMECLASS.output(" uncomfortably, rubbing against your [pc.lowerGarments]");
+						kGAMECLASS.output(". Soon it becomes hotter, the heat centered above [pc.oneClit], bulging uncomfortably");
+						if(target.isCrotchGarbed()) kGAMECLASS.output(", rubbing against your [pc.lowerGarments]");
 					}
 					else
 					{
 						kGAMECLASS.output(". Soon it becomes hotter, the heat centered on a tiny lump that is beginning to form on your [pc.crotch]");
-						if(target.isCrotchGarbed()) kGAMECLASS.output(", its growth rubbing it against your [pc.lowerGarments]");
+						if(target.isCrotchGarbed()) kGAMECLASS.output(", rubbing against your [pc.lowerGarments]");
 					}
 					kGAMECLASS.output(".\n\nThe");
-					if(clitTFs) kGAMECLASS.output(" clit");
-					else kGAMECLASS.output(" bump");
+					kGAMECLASS.output(" bump");
 					
 					// Grow 4" long, 1" thick wiener.
 					target.createCock(4, 1);
 					// Length modifications
 					if(target.hasPerk("Mini")) target.cocks[0].cLengthRaw -= 1;
-					if(clitTFs)
-					{
-						if(target.clitLength > target.cocks[0].cLengthRaw) target.cocks[0].cLengthRaw = target.clitLength;
-						// Lose a clit to gain a penis.
-						target.vaginas[0].clits -= 1;
-					}
-					if(target.hasPerk("Hung")) target.cocks[0].cLengthRaw *= 2;
+					if(target.hasPerk("Hung")) target.cocks[0].cLengthRaw += 3+rand(4);
 					
 					kGAMECLASS.output(" bulges with flesh, stretching the skin around it to uncomfortable limits. Once it's " + num2Text(target.cocks[0].cLengthRaw) + " inches long it stops growing. Instead, the tip of the limp tube of flesh suddenly twists into a new form, shaping itself into a cockhead. You can’t stop yourself from");
 					if(target.isCrotchGarbed()) kGAMECLASS.output(" pulling down your [pc.lowerUndergarment] and admire");
@@ -247,8 +237,8 @@
 					if(target.cocks[0].cLengthRaw <= 4) kGAMECLASS.output("\n\nIt’s tiny and flaccid, hardly worth any admiration, but y");
 					else kGAMECLASS.output("\n\nY");
 					kGAMECLASS.output("ou can't resist grabbing it in your hands. It feels amazing. The transformative heat passes through it as you begin to stroke your new fuckstick. Slowly but steadily, it gradually fills with blood, growing engorged and erect. You release a small gasp of surprise at your new cock's first boner, increasing the pace of your stroking.");
-					kGAMECLASS.output("\n\nAfter a while you begin to grow frustrated. No matter how much you keep beating you just can't seem to orgasm. As you tease its head with your finger, trying desperately to trigger your release to ecstacy, you find out that not only is the cockhole missing, there isn't a cum-vein either. You don't feel any different inside, so you're probably missing a prostate too.");
-					kGAMECLASS.output("\n\nJust as you finish that thought, the heat moves deeper into your body, right next to your rectum. You can feel it bloating, transforming the area of flesh into a productive cum-factory. You can feel a pending orgasm as a cum-vein forms along your");
+					kGAMECLASS.output("\n\nAfter a while you begin to grow frustrated. No matter how much you keep beating you just can't seem to orgasm. As you tease its head with your finger, trying desperately to trigger your release to ecstacy, you find out that not only is the cockhole missing, there isn't a urethra either. You don't feel any different inside, so you're probably missing a prostate too.");
+					kGAMECLASS.output("\n\nJust as you finish that thought, the heat moves deeper into your body, right next to your rectum. You can feel it bloating, transforming the area of flesh into a productive spunk-factory. You can feel a pending orgasm as a cum-vein forms along your");
 					if(target.cocks[0].cLengthRaw <= 4) kGAMECLASS.output(" tiny");
 					else kGAMECLASS.output(" turgid");
 					kGAMECLASS.output(" shaft. The transformation itself accelerates by the onset of rushing cum through the newly-formed conduit. It climbs through the bottom of your shaft until it reaches the tip. One, two, three shots of cum burst forth from your newly formed cumslit onto the floor below. Your codex confirms that it has sperm.");

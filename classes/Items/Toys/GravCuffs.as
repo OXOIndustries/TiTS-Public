@@ -55,7 +55,7 @@ package classes.Items.Toys
 		{
 			if(!kGAMECLASS.infiniteItems()) quantity++;
 			if(target is PlayerCharacter) {
-				if(kGAMECLASS.rooms[currentLocation].planet == "PLANET: NEW TEXAS" && kGAMECLASS.rooms[currentLocation].hasFlag(GLOBAL.PUBLIC) && kGAMECLASS.flags["NEW_TEXAS_GANGBANGED"] != undefined && target.lust() >= 33)
+				if(kGAMECLASS.rooms[kGAMECLASS.currentLocation].planet == "PLANET: NEW TEXAS" && kGAMECLASS.rooms[kGAMECLASS.currentLocation].hasFlag(GLOBAL.PUBLIC) && kGAMECLASS.flags["NEW_TEXAS_GANGBANGED"] != undefined && target.lust() >= 33)
 				{
 					kGAMECLASS.newTexanGanguBangu();
 				}

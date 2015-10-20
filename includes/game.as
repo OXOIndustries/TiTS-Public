@@ -5349,7 +5349,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					else output2(" Closed");
 				}
 				// Spoils
-				if(flags["NYREAN_SPOILS"] != undefined) output2("\n<b>* Palace, Last Received Royal Spoils: </b>" + prettifyMinutes(GetGameTimestamp() - flags["QUEENSGUARD_STAB_TIME"]) + " ago");
+				if(flags["NYREAN_SPOILS"] != undefined) output2("\n<b>* Palace, Last Received Royal Spoils: </b>" + prettifyMinutes(GetGameTimestamp() - flags["NYREAN_SPOILS"]) + " ago");
 				// Chambers and Goo Incubator
 				if(flags["CRYSTAL_GOO_GLORYHOLED"] != undefined || flags["CRYSTAL_GOO_DEFEAT"] != undefined || flags["LOOTED_TAIVRAS_BEDROOM"] != undefined)
 				{
