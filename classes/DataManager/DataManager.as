@@ -410,8 +410,8 @@
 			returnString += ": <b>" + dataFile.data.saveName + "</b>";
 			returnString += " - <i>" + dataFile.data.saveNotes + "</i>\n";
 			returnString += "\t<b>Days:</b> " + dataFile.data.daysPassed;
-			returnString += "  <b>Gender:</b> " + dataFile.data.playerGender;
-			returnString += "  <b>Location:</b> " + StringUtil.toTitleCase(dataFile.data.saveLocation);
+			returnString += " - <b>Gender:</b> " + dataFile.data.playerGender;
+			returnString += " - <b>Location:</b> " + StringUtil.toTitleCase(dataFile.data.saveLocation);
 			
 			returnString += "\n";
 			return returnString;
