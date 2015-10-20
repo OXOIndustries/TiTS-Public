@@ -4,6 +4,7 @@ package classes.Items.Guns
 	import classes.GLOBAL;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
+	import classes.GameData.CombatAttacks;
 	
 	public class Goovolver extends ItemSlotClass
 	{
@@ -54,6 +55,8 @@ package classes.Items.Guns
 			this.fortification = 0;
 
 			this.version = _latestVersion;
+			
+			this.attackImplementor = CombatAttacks.GoovolverAttackImpl;
 		}
 		
 		protected function rand(max:Number):Number

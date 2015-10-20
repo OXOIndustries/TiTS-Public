@@ -79,11 +79,6 @@ package classes.Engine.Combat
 					baseHPDamage.add(attacker.statusEffectv1("Concentrated Fire"));
 				}
 				
-				if (attacker is PlayerCharacter)
-				{
-					kGAMECLASS.concentratedFire();
-				}
-				
 				// Ranged crit 
 				if(attacker.critBonus(false) >= rand(100) + 1 && attacker is PlayerCharacter)
 				{

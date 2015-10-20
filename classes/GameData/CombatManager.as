@@ -1,6 +1,7 @@
 package classes.GameData 
 {
 	import classes.Creature;
+	import fl.events.InteractionInputType;
 	/**
 	 * ...
 	 * @author Gedan
@@ -108,6 +109,12 @@ package classes.GameData
 		{
 			if (combatContainer) combatContainer.showCombatUI();
 		}
+		public static function getRoundCount():int
+		{
+			if (combatContainer) return combatContainer.roundCounter;
+			return -1;
+		}
+
 	}
 
 }

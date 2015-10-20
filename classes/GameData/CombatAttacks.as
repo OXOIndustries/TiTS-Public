@@ -1,9 +1,17 @@
 package classes.GameData 
 {
+	import classes.Characters.Celise;
+	import classes.Characters.PlayerCharacter;
 	import classes.Creature;
 	import classes.GLOBAL;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	import classes.kGAMECLASS;
+	import fl.events.InteractionInputType;
+	
+	import classes.Engine.Interfaces.*;
+	import classes.Engine.Combat.*;
+	import classes.Engine.Combat.DamageTypes.TypeCollection;
+	import classes.Engine.Utility.rand;
 	
 	/**
 	 * Static library of combat attack implementations
@@ -319,10 +327,169 @@ package classes.GameData
 			a.push(ConcussiveShot);
 		}
 		
+		/**
+		 * This is a SINGLE ranged attack with no "before" or "after" stuff.
+		 * It does not call or repeat itself- this is a single application of damage
+		 * following basic ranged attack rules.
+		 * @param	attacker
+		 * @param	target
+		 */
+		public static function SingleRangedAttackImpl(attacker:Creature, target:Creature):Boolean
+		{
+			if (rangedCombatMiss(attacker, target))
+			{
+				if (target.customDodge.length > 0) output(target.customDodge);
+				else if (attacker is PlayerCharacter) output("You " + attacker.rangedWeapon.attackVerb + " at " + target.a + target.short + " with your " + attacker.rangedWeapon.longName + ", but just can't connect.");
+				else if (target is PlayerCharacter) output("You manage to avoid " + attacker.a + possessive(attacker.short) + " " + attacker.rangedWeapon.attackNoun + ".");
+				else output(target.capitalA + target.short + " manages to avoid " + attacker.a + possessive(attacker.short) + " " + attacker.rangedWeapon.attackNoun + ".");
+				return false;
+			}
+			else if ((attacker.hasStatusEffect("Blinded") || attacker.hasStatusEffect("Smoke Grenade")) && rand(4) > 0)
+			{
+				if (attacker is PlayerCharacter) output("Your blind-fired shot doesn't manage to connect.");
+				else output(attacker.capitalA + possessive(attacker.short) + " blinded shot fails to connect!");
+				return false;
+			}
+			else if (attacker.hasStatusEffect("Flurry") && rand(100) <= 45 && !target.isImmobilized() && !attacker.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_EFFECT_FLURRYBONUS))
+			{
+				if (target.customDodge.length > 0) output(target.customDodge); 
+				else if (attacker is PlayerCharacter) output("You " + attacker.rangedWeapon.attackVerb + " at " + target.a + target.short + " with your " + attacker.rangedWeapon.longName + ", but just can't connect.");
+				else if (target is PlayerCharacter) output("You manage to avoid " + attacker.a + possessive(attacker.short) + " " + attacker.rangedWeapon.attackNoun + ".");
+				else output(target.capitalA + target.short + " manages to avoid " + attacker.a + possessive(attacker.short) + " " + attacker.rangedWeapon.attackNoun + ".");
+				return false;
+			}
+			
+			// We made it here, the attack landed
+			
+			if (attacker is PlayerCharacter) output("You land a hit on " + target.a + target.short + " with your " + pc.rangedWeapon.longName + "!");
+			else if (attacker.plural) output(attacker.capitalA + attacker.short + " connect with their " + plural(attacker.rangedWeapon.longName) + "!");
+			else if (target is PlayerCharacter) output(attacker.capitalA + attacker.short + " hits you with " + attacker.mfn("his", "her", "its") + " " + attacker.rangedWeapon.longName + "!");
+			else output(attacker.capitalA + attacker.short + " connects with " + attacker.mfn("his", "her", "its") + " " + attacker.rangedWeapon.longName + "!");
+			
+			var damage:TypeCollection = attacker.rangedDamage();
+			damageRand(damage, 15);
+			applyDamage(damage, attacker, target, "ranged");
+			return true;
+		}
+		
+		/**
+		 * This is a "regular" ranged attack.
+		 * It handles various statuses that can cause a total failure (Disarm, Gunlock)
+		 * and handles Multiple Shots by default. It should NOT be called by special attacks-
+		 * they should call the SingleRangedAttackImpl themselves _directly_, which makes no
+		 * assumptions.
+		 * @param	attacker
+		 * @param	target
+		 */
+		public static function RangedAttack(attacker:Creature, target:Creature):void
+		{
+			if (attacker.hasDrone())
+			{
+				attacker.droneTarget = target;
+			}
+			
+			// Tutorial hook
+			if (target is Celise)
+			{
+				output("Celise takes the hit, the wound instantly closing in with fresh, green goop. Her surface remains perfectly smooth and unmarred afterwards.");
+				return;
+			}
+			
+			if (attacker.hasStatusEffect("Disarmed"))
+			{
+				if (attacker is PlayerCharacter) output("You try to attack until you remember that you’ve been disarmed!");
+				else output(attacker.capitalA + attacker.short + " scrabbles about, trying to find " + attacker.mfn("his", "her", "its") + " missing weapon.");
+				return;
+			}
+			
+			if (attacker.hasStatusEffect("Gunlock"))
+			{
+				if (attacker is PlayerCharacter) output("Your " + attacker.rangedWeapon.longName + " is currently disabled and unable to be used!");
+				else output(attacker.capitalA + attacker.short + " + fiddles fruitlessly with " + attacker.mfn("his", "her", "its") + " disabled weapon.");
+			}
+			
+			if (attacker.hasPerk("Shoot First") && !attacker.hasStatusEffect("Multiple Shots") && CombatManager.getRoundCount() == 0 && attacker.rangedWeapon.attackImplementor == null)
+			{
+				output("<b>Shot first!</b>\n");
+				concentratedFire(attacker, target, SingleRangedAttackImpl(attacker, target));
+				return;
+			}
+			
+			var numShots = 1;
+			if (attacker.hasPerk("Multiple Shots")) numShots = attacker.perkv1("Multiple Shots");
+			
+			for (var n:int = 0; n < numShots; n++)
+			{
+				if (n != 0) output("\n");
+				
+				// concentratedFire(true) was buried in calculate damage- moved here
+				// as makes way more sense to control it from here.
+				concentratedFire(attacker, target, SingleRangedAttackImpl(attacker, target, n));
+			}
+		}
+		
+		//{ region Item Attack Implementors
+		public static function GoovolverAttackImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
+		{
+			
+		}
+		//} endregion
+		
+		
 		public static const Headbutt:SingleCombatAttack;
 		private static function HeadbuttImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
-			
+			if (attacker is PlayerCharacter)
+			{
+				output("You lean back before whipping your head forward in a sudden headbutt.\n");
+			}
+			else
+			{
+				output(attacker.capitalA + attacker.short + " leans back before whipping " + attacker.mfn("his","her","its") + " head forward in a sudden headbutt.\n");
+			}
+	
+			if (combatMiss(attacker, target))
+			{
+				if (attacker is PlayerCharacter)
+				{
+					if(target.customDodge.length == 0) output("You miss!");
+					else output(target.customDodge);
+				}
+				else
+				{
+					output(attacker.mfn("He","She","It") + " he misses.");
+				}
+			}
+			//Extra miss for blind
+			else if (attacker.hasStatusEffect("Blind") && rand(2) > 0)
+			{
+				if (attacker is PlayerCharacter) output("Your blind strike fails to connect.");
+				else output(attacker.mfn("His","Her","Its") + " blind strike fails to connect.");
+			}
+			//Attack connected!
+			else
+			{
+				if (attacker is PlayerCharacter) output("You connect with your target!");
+				else output(attacker.mfn("He", "She", "It") + " connects with you.");
+		
+				applyDamage(damageRand(new TypeCollection( { kinetic: attacker.physique() / 2 + attacker.level } ), 15), attacker, target, "headbutt");
+
+				if (attacker.physique() / 2 + rand(20) + 1 >= target.physique() / 2 + 10 && !target.hasStatusEffect("Stunned") && !target.hasStatusEffect("Stun Immune")) 
+				{
+					if(target is PlayerCharacter) output("\n<b>You are stunned.</b>");
+					else
+					{
+						if (target.plural) output("\n<b>" + target.capitalA + target.short + " are stunned.</b>");
+						else output("\n<b>" + target.capitalA + target.short + " is stunned.</b>");
+					}
+					target.createStatusEffect("Stunned", 2, 0, 0, 0, false, "Stun", "Cannot act for a turn.", true, 0);
+				}
+				else
+				{
+					if(attacker is PlayerCharacter) output("\nIt doesn't look to have stunned your foe!");
+					else output("\nIt didn't manage to stun you.");
+				}
+			}
 		}
 		
 		public static const RapidFire:SingleCombatAttack;

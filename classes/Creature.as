@@ -61,7 +61,12 @@ package classes {
 		
 		//Constructor
 		public function Creature() {
-			this.addIgnoredField("neverSerialize");
+			this.addIgnoredField(
+				"neverSerialize", 
+				"droneTarget", 
+				"concentratedFireTarget",
+				"uniqueName"
+			);
 
 			cocks = new Array();
 			vaginas = new Array();
@@ -4563,6 +4568,9 @@ package classes {
 				}
 				//else trace("Not a combat status: " + statusEffects[x].storageName + " at position " + x + ".");
 			}
+			
+			droneTarget = null;
+			concentratedFireTarget = null;
 		}
 		//perk
 		public function removePerk(perkName: String): void {
@@ -12136,5 +12144,15 @@ package classes {
 		{
 			return attack.EnergyCost;
 		}
+		
+		public function hasDrone():Boolean
+		{
+			return (hasPerk("Attack Drone") || accessory is TamWolf || accessory is TamWolfDamaged);
+		}
+		
+		public var droneTarget:Creature = null; // Transient
+		public var concentratedFireTarget:Creature = null; // Transient
+		public var isUniqueInFight:Boolean = false;
+		public var uniqueName:String = null; // Transient
 	}
 }
