@@ -5630,7 +5630,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					else output2(", Have 2000 credits to pay");
 				}
 				if(flags["SAENDRA GONNA GO GET A COCK"] == 1) output2(", Paid for, Go to The Dark Chrysalis");
-				if(flags["SAENDRA GONNA GO GET A COCK"] == 2) output2(", Paid for, Seen Sera, Use drug");
+				if(flags["SAENDRA GONNA GO GET A COCK"] == 2) output2(", Paid for, Seen Sera, Meet her at the <i>Phoenix</i>");
 				if(flags["SAENDRA GONNA GO GET A COCK"] == 3) output2(", Paid for, Seen Sera, Used drug, Completed");
 			}
 			if(flags["SAENDRA TIMES SEXED"] != undefined)
