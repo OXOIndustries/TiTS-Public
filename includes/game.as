@@ -5077,9 +5077,9 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["EMMY_BANNED"] != undefined || flags["EMMY_POLY"] != undefined || flags["EMMY_BF"] != undefined)
 				{
 					output2("\n<b>* Emmy, Relationship:</b>");
-					if(flags["EMMY_BANNED"] != undefined) output2(" You’ve been banned by her");
 					if(flags["EMMY_POLY"] != undefined) output2(" You’ve both agreed to be polyamorous");
-					if(flags["EMMY_BF"] != undefined) output2(" You’re her [pc.boy]friend");
+					else if(flags["EMMY_BF"] != undefined) output2(" You’re her [pc.boy]friend");
+					else output2(" You’ve been banned by her");
 				}
 				if(flags["EMMY_ORALED"] != undefined) output2("\n<b>* Emmy, Times She Oral Sexed You: </b>" + flags["EMMY_ORALED"]);
 			}
@@ -5783,11 +5783,12 @@ public function displayEncounterLog(showID:String = "All"):void
 			miscCount++;
 		}
 		// Sexploration: The Sex Toys
-		if(flags["GRAVCUFFS_USES"] != undefined || flags["HOVERHOLE_USES"] != undefined || 9999 == 0)
+		if(flags["NIVAS_BIONAHOLE_USES"] != undefined || flags["TAMANI_BIONAHOLE_USES"] != undefined || flags["GRAVCUFFS_USES"] != undefined || flags["HOVERHOLE_USES"] != undefined || 9999 == 0)
 		{
 			output2("\n<b><u>Sex Toys</u></b>");
 			// BionaHoles
 			if(flags["NIVAS_BIONAHOLE_USES"] != undefined) output2("\n<b>* BionaHole, Nivas Oxonef, Times Used: </b>" + flags["NIVAS_BIONAHOLE_USES"]);
+			if(flags["TAMANI_BIONAHOLE_USES"] != undefined) output2("\n<b>* BionaHole, Tamani, Times Used: </b>" + flags["TAMANI_BIONAHOLE_USES"]);
 			// Grav-Cuffs
 			if(flags["GRAVCUFFS_USES"] != undefined) output2("\n<b>* Grav-Cuffs, Times Used: </b>" + flags["GRAVCUFFS_USES"]);
 			// Hover Hole
