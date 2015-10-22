@@ -4327,7 +4327,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					output2("\n<b>* Flahne, Ovipositor:</b>");
 					if(flags["FLAHNE_LIKE_OVIPOSITOR"] < 1) output2(" Hidden");
 					else if(flags["FLAHNE_LIKE_OVIPOSITOR"] > 0) output2(" Exposed");
-					else output2(" Unknown");
+					else output2(" <i>Unknown</i>");
 				}
 				if(flags["FLAHNE_SEXED"] != undefined) output2("\n<b>* Flahne, Times Sexed: </b>" + flags["FLAHNE_SEXED"]);
 				variousCount++;
@@ -5061,7 +5061,7 @@ public function displayEncounterLog(showID:String = "All"):void
 						if(flags["LILIANA_ARMS"] < 1) output2(" None");
 						if(flags["LILIANA_ARMS"] == 1) output2(" Robotic");
 						if(flags["LILIANA_ARMS"] == 2) output2(" Regenerated");
-						if(flags["LILIANA_ARMS"] > 2) output2(" Unknown");
+						if(flags["LILIANA_ARMS"] > 2) output2(" <i>Unknown</i>");
 					}
 				}
 				variousCount++;
@@ -5077,9 +5077,10 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["EMMY_BANNED"] != undefined || flags["EMMY_POLY"] != undefined || flags["EMMY_BF"] != undefined)
 				{
 					output2("\n<b>* Emmy, Relationship:</b>");
-					if(flags["EMMY_POLY"] != undefined) output2(" You’ve both agreed to be polyamorous");
+					if(flags["EMMY_BANNED"] != undefined) output2(" You’ve been banned by her");
+					else if(flags["EMMY_POLY"] != undefined) output2(" You’ve both agreed to be polyamorous");
 					else if(flags["EMMY_BF"] != undefined) output2(" You’re her [pc.boy]friend");
-					else output2(" You’ve been banned by her");
+					else output2(" <i>Unknown</i>");
 				}
 				if(flags["EMMY_ORALED"] != undefined) output2("\n<b>* Emmy, Times She Oral Sexed You: </b>" + flags["EMMY_ORALED"]);
 			}
