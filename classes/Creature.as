@@ -12145,9 +12145,15 @@ package classes {
 			return attack.EnergyCost;
 		}
 		
-		public function hasDrone():Boolean
+		public function DroneDamage():TypeCollection
 		{
-			return (hasPerk("Attack Drone") || accessory is TamWolf || accessory is TamWolfDamaged);
+			var d:Number = 1 + level + rand(2 + level / 2);
+			if (accessory is TamWolfDamaged)
+			{
+				d -= -1;
+				return new TypeCollection( { kinetic: d } );
+			}
+			return new TypeCollection( { electric: d } );
 		}
 		
 		public var droneTarget:Creature = null; // Transient
