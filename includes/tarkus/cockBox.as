@@ -287,7 +287,7 @@ public function cockBoxDickDoublingHijinx(args:Array):void
 	if(pc.balls > 0) output(" Even your [pc.sack] feels pulled tight.");
 	if(pc.cockTotal() == 2) output(" Your other dick - the one not in the machine - unashamedly weeps strands of pre-cum down the side of the box.");
 	else if(pc.cockTotal() > 2) output(" Your other dicks - the ones not in the machine - unashamedly weep strands of pre-cum down the side of the box.");
-	output("\n\nThe sensuous CEO visibly shudders and cums when she tugs on her violaceous nipples, her piercing flashing bright to announce her orgasm’s arrive. And you climax right on with her, suddenly screaming and thrashing as you unload [pc.cum] through one more dick than you expected to have to today, so drenched in orgiastic ecstasy that your body can’t even keep your ejaculation from being trembling, misfiring things.");
+	output("\n\nThe sensuous CEO visibly shudders and cums when she tugs on her violaceous nipples, her piercing flashing bright to announce her orgasm’s arrival. And you climax right on with her, suddenly screaming and thrashing as you unload [pc.cum] through one more dick than you expected to have to today, so drenched in orgiastic ecstasy that your body can’t even keep your ejaculation from being trembling, misfiring things.");
 	output("\n\nYou flop your torso through the busty hologram and over the top of the machine, bonelessly ejaculating for what feels like hours but must only be a minute at the most.");
 	if(pc.cumQ() >= 1000) 
 	{
