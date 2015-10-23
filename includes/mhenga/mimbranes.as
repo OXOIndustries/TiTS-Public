@@ -618,9 +618,12 @@ public function resetMimbraneEffects(effectName:String):void
 		if (pc.statusEffectv3(effectName) >= 12) pussyMod++;
 		if (pc.statusEffectv3(effectName) >= 15) pussyMod++;
 		
+		pc.vaginas[0].loosenessMod -= pussyMod;
+		pc.vaginas[0].wetnessMod -= pussyMod;
+		
 		//The sub-zero checks are all supposed to be temporary. Remove these after a patch or 2.
-		if(pc.vaginas[0].loosenessMod < 0) pc.vaginas[0].loosenessMod = 0;
-		if(pc.vaginas[0].wetnessMod < 0) pc.vaginas[0].wetnessMod = 0;
+		//if(pc.vaginas[0].loosenessMod < 0) pc.vaginas[0].loosenessMod = 0;
+		//if(pc.vaginas[0].wetnessMod < 0) pc.vaginas[0].wetnessMod = 0;
 	}
 	else if (effectName == "Mimbrane Ass")
 	{
@@ -631,10 +634,13 @@ public function resetMimbraneEffects(effectName:String):void
 		if (pc.statusEffectv3(effectName) >= 12) buttMod++;
 		if (pc.statusEffectv3(effectName) >= 15) buttMod++;
 		
-		//The sub-zero checks are all supposed to be temporary. Remove these after a patch or 2.
 		pc.ass.loosenessMod -= buttMod;
 		pc.ass.wetnessMod -= buttMod;
 		pc.buttRatingMod -= Number(pc.statusEffectv3(effectName)) / 2.0;
+		
+		//The sub-zero checks are all supposed to be temporary. Remove these after a patch or 2.
+		//if(pc.ass.loosenessMod < 0) pc.ass.loosenessMod = 0;
+		//if(pc.ass.wetnessMod < 0) pc.ass.wetnessMod = 0;
 	}
 	else if (effectName == "Mimbrane Balls")
 	{
