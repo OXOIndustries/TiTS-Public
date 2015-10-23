@@ -4623,7 +4623,7 @@ public function mimbraneMenu():void
 	
 	if 
 	(
-		(pc.hasVagina() && (pc.vaginas[0].loosenessMod < -5 || pc.vaginas[0].wetnessMod < -5))
+		(pc.hasVagina() && (pc.vaginas[0].loosenessMod < -5 || pc.vaginas[0].wetnessMod < -5 || pc.vaginas[0].loosenessMod > 5 || pc.vaginas[0].wetnessMod > 5))
 	||	(pc.hasCock() && (pc.cocks[0].cLengthMod < -5 || pc.cocks[0].cThicknessRatioMod < -5))
 	||	(pc.lipMod < -4)
 	||	(pc.ass.loosenessMod < -5 || pc.ass.wetnessMod < -5 || pc.buttRatingMod < -5)
