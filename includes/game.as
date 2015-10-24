@@ -581,17 +581,16 @@ public function sleep(outputs:Boolean = true):void {
 			addButton(0, "Next", annoMorningRouter);
 			return;
 		}
-		
 		if (flags["BESS_SLEEPWITH_DOMORNING"] == 1)
 		{
 			addButton(0, "Next", bessMorningEvents);
 			return;
 		}
 		if (tryProcDommyReahaTime(minutes - rand(301)))
-        {
-            addButton(0, "Next", reahaDommyFuxTime);
-            return;
-        }
+		{
+			addButton(0, "Next", reahaDommyFuxTime);
+			return;
+		}
 	}
 	
 	addButton(0,"Next",mainGameMenu);
