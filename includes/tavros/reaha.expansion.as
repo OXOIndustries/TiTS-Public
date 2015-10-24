@@ -1258,17 +1258,23 @@ public function tryProcDommyReahaTime(tMinutes:Number):Boolean
 	if (currentLocation != "SHIP INTERIOR") return false; // Only care about processTime calls onboard the ship
 	if (!reahaFree()) return false; // Free only
 	if (!pc.hasCock()) return false; // No cock? Fuck off.
-
+	
 	// Init flag.
 	if (flags["REAHA_LAST_DOMMY_FUCK"] == undefined) flags["REAHA_LAST_DOMMY_FUCK"] = days - 2;
 	if (days - flags["REAHA_LAST_DOMMY_FUCK"] <= 0) return false; // Once per day at most.
 	
 	// 5% chance per hour on ship? -> 0.84% per minute
 	var tChance:Number = (tMinutes / 60.0) * 5;
-
+	
+	// Vary chances by addiction level
+	if (reahaAddiction() >= REAHA_ADDICTION_HIGH) tChance = Math.round(tChance * 1.50);
+	else if (reahaAddiction() >= REAHA_ADDICTION_MED) tChance = tChance;
+	else if (reahaAddiction() >= REAHA_ADDICTION_LOW) tChance = Math.round(tChance * 0.50);
+	else tChance = Math.round(tChance * 0.25);
+	
 	// Cap to 33% per "event"?
 	if (tChance > 33) tChance = 33;
-
+	
 	if (rand(100) < tChance)
 	{
 		flags["REAHA_LAST_DOMMY_FUCK"] = days;
