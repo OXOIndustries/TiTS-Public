@@ -3901,7 +3901,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["BETHS_TIMES_WHORED"] != undefined)
 				{
 					output2("\n<b>* Brothel, Times Whored: </b>" + flags["BETHS_TIMES_WHORED"]);
-					if(flags["BETHS_CONTRACT_WHORE"] != undefined) output2(", Licensed)");
+					if(flags["BETHS_CONTRACT_WHORE"] != undefined) output2(", Licensed");
 				}
 				// Reaha stuffs
 				if(flags["TALK_TO_LADY_1ST"] != undefined)
