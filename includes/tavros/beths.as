@@ -541,6 +541,7 @@ public function brothelTurnTrixContract(choice:int = 0):void
 		
 		flags["KAT_MET"] = 1;
 		flags["BETHS_CONTRACT_WHORE"] = 1;
+		if(flags["BETHS_TIMES_WHORED"] == undefined) flags["BETHS_TIMES_WHORED"] = 0;
 		// [Yes] [Later]
 		// Go to licensed menu
 		addButton(0, "Yes", brothelTurnTrixLicensedMenu);
