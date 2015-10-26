@@ -273,6 +273,9 @@
 				else if(pc.race() == "saurian") pc.shiftCock(arg, GLOBAL.TYPE_SAURIAN);
 				else if(pc.race() == "synthetic" || pc.race() == "robot" || pc.race() == "companion droid") pc.shiftCock(arg, GLOBAL.TYPE_SYNTHETIC);
 				else if(pc.race() == "venus pitcher") pc.shiftCock(arg, GLOBAL.TYPE_VENUSPITCHER);
+				else if(pc.race() == "sydian") pc.shiftCock(arg, GLOBAL.TYPE_SYDIAN);
+				else if(pc.race() == "daynar") pc.shiftCock(arg, GLOBAL.TYPE_DAYNAR);
+				else if(pc.race() == "cockvine") pc.shiftCock(arg, GLOBAL.TYPE_COCKVINE);
 				
 				kGAMECLASS.output("<b>your hand is wrapped around a " + kGAMECLASS.num2Text(Math.round(pc.cocks[arg].cLengthRaw*10)/10) + "-inch long, twitching [pc.cockNounSimple " + arg + "].</b>");
 				changes++;
