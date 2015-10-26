@@ -735,11 +735,11 @@ public function brothelTurnTrixFreelanceWhore(service:String = "none"):void
 		}
 	}
 	
-	// PC = Jaded for next 6 hours
-	brothelWhored((6 * 60), service);
-	
 	if(totalEarnings > 0) output("\n\nYou have been paid " + totalEarnings + " credits for your efforts.");
 	pc.credits += totalEarnings;
+	
+	// PC = Jaded for next 6 hours
+	brothelWhored((6 * 60), service);
 	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -851,11 +851,11 @@ public function brothelTurnTrixLicensedWhore(service:String = "none"):void
 		else output("<i>“You’re a good little earner,”</i> she goes on, raising an eyebrow at what you’ve brought in. <i>“Admirable lack of standards, too. Going to have to look into setting you up with a more permanent type of contract, one of these days.”</i>");
 	}
 	
-	// PC = Jaded for next 6 hours
-	brothelWhored((6 * 60), service);
-	
 	if(totalEarnings > 0) output("\n\nYou have been paid " + totalEarnings + " credits for your efforts.");
 	pc.credits += totalEarnings;
+	
+	// PC = Jaded for next 6 hours
+	brothelWhored((6 * 60), service);
 	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
