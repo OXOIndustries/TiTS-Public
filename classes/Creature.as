@@ -1579,6 +1579,7 @@ package classes {
 				case "cockClit":
 					buffer = cockClit(arg2);
 					break;
+				case "anus":
 				case "assholeDescript":
 				case "asshole":
 					buffer = assholeDescript();
@@ -1684,6 +1685,8 @@ package classes {
 				case "cum":
 					buffer = cumDescript();
 					break;
+				case "femCum":
+				case "femcum":
 				case "girlCumDescript":
 				case "girlCum":
 				case "girlcum":
@@ -1757,6 +1760,9 @@ package classes {
 					break;
 				case "fingers":
 					buffer = fingers();
+					break;
+				case "lowerBody":
+					buffer = lowerBody();
 					break;
 				case "leg":
 					buffer = leg();
@@ -3804,10 +3810,12 @@ package classes {
 		public function isBiped(): Boolean {
 			//Naga/Centaur
 			if (legCount != 2) return false;
+			if (legType == GLOBAL.TYPE_NAGA) return false;
 			return true;
 		}
 		public function isNaga(): Boolean {
-			if (legCount == 1 && legType == GLOBAL.TYPE_NAGA) return true;
+			//if (legCount == 1 && legType == GLOBAL.TYPE_NAGA) return true;
+			if (legCount >= 1 && legType == GLOBAL.TYPE_NAGA) return true;
 			return false;
 		}
 		public function isTaur(): Boolean {
@@ -4092,6 +4100,13 @@ package classes {
 			if (output != "") output += " ";
 			output += "finger";
 			return output;
+		}
+		public function lowerBody():String {
+			if (isGoo()) return RandomInCollection(["gooey base", "lower half of goo", "lower body"]);
+			if (isNaga()) return RandomInCollection(["snake-like half", "slithery lower half", "lower body"]);
+			if (isTaur()) return RandomInCollection(["tauric half", "bestial lower half", "lower body"]);
+			if (isDrider()) return RandomInCollection(["drider half", "arachnid lower half", "lower body"]);
+			return "lower body";
 		}
 		public function leg(forceType: Boolean = false, forceAdjective: Boolean = false, pluralAdjective: Boolean = false): String
 		{
@@ -6768,7 +6783,7 @@ package classes {
 			cocks[slot].clearFlags();
 
 			//Add bonus flags and shit.
-			if (type == GLOBAL.TYPE_HUMAN)
+			if (type == GLOBAL.TYPE_HUMAN || type == GLOBAL.TYPE_INHUMAN)
 			{
 				cocks[slot].knotMultiplier = 1;
 				cocks[slot].cockColor = "pink";
@@ -6874,6 +6889,25 @@ package classes {
 				else cocks[slot].cockColor = "green";
 				cocks[slot].addFlag(GLOBAL.FLAG_PREHENSILE);
 				cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
+			}
+			if (type == GLOBAL.TYPE_NYREA) {
+				cocks[slot].cockColor = RandomInCollection(["silver", "gray", "black"]);
+				else cocks[slot].knotMultiplier = 1;
+			}
+			if (type == GLOBAL.TYPE_DAYNAR) {
+				cocks[slot].cockColor = "purple";
+				else cocks[slot].knotMultiplier = 1;
+				cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
+			}
+			if (type == GLOBAL.TYPE_SYDIAN) {
+				cocks[slot].cockColor = RandomInCollection(["orange", "bright orange", "red orange"]);
+				else cocks[slot].knotMultiplier = 1;
+			}
+			if (type == GLOBAL.TYPE_COCKVINE) {
+				if (rand(2) == 0) cocks[slot].cockColor = "purple";
+				else cocks[slot].cockColor = "green";
+				else cocks[slot].knotMultiplier = 1;
+				cocks[slot].addFlag(GLOBAL.FLAG_PREHENSILE);
 			}
 		}
 		//PC can fly?
@@ -9575,7 +9609,6 @@ package classes {
 		public function cockShape(cockIndex:int):String
 		{
 			var cock:CockClass = cocks[cockIndex];
-			
 			var collection:Array = [];
 			
 			// main shapes
@@ -9584,80 +9617,74 @@ package classes {
 				case GLOBAL.TYPE_HUMAN:
 					collection = ["terran"];
 					break;
-					
 				case GLOBAL.TYPE_CANINE:
 					collection = ["canine"];
-					break;					
-					
+					break;
 				case GLOBAL.TYPE_VULPINE:
 					collection = ["vulpine"];
 					break;
-					
 				case GLOBAL.TYPE_EQUINE:
 				case GLOBAL.TYPE_KUITAN:
 					collection = ["equine"];
 					break;
-					
 				case GLOBAL.TYPE_DEMONIC:
 					collection = ["demonic", "nodule-laden"]
 					break;
-					
 				case GLOBAL.TYPE_TENTACLE:
 					collection = ["tentacle"];
 					break;
-					
 				case GLOBAL.TYPE_FELINE:
 					collection = ["feline", "barbed"];
 					break;
-					
 				case GLOBAL.TYPE_NAGA:
 				case GLOBAL.TYPE_SNAKE:
 					collection = ["snake", "reptilian"];
 					break;
-					
 				case GLOBAL.TYPE_DRACONIC:
 					collection = ["draconic"];
 					break;
-					
 				case GLOBAL.TYPE_BEE:
 					collection = ["zil"];
 					break;
-					
 				case GLOBAL.TYPE_KANGAROO:
 					collection = ["kangaroo"];
 					break;
-
 				case GLOBAL.TYPE_ANEMONE:
 					case GLOBAL.TYPE_SIREN:
 					collection = ["tentacled"];
 					break;
-
 				case GLOBAL.TYPE_SIMII:
 					collection = ["simii"];
 					break;
-
 				case GLOBAL.TYPE_RASKVEL:
 					collection = ["raskvel"];
 					break;
-
 				case GLOBAL.TYPE_GOOEY:
 					collection = ["gooey", "goo"];
 					break;
-				
 				case GLOBAL.TYPE_VENUSPITCHER:
 					collection = ["plant", "vine-like"];
 					break;
-					
 				case GLOBAL.TYPE_SAURIAN:
 					collection = ["saurian", "dinosaur"];
 					break;
-				
 				case GLOBAL.TYPE_SYNTHETIC:
 					collection = ["synthetic", "robotic"];
 					break;
-				
 				case GLOBAL.TYPE_NYREA:
 					collection = ["nyrean", "insectile"];
+					break;
+				case GLOBAL.TYPE_DAYNAR:
+					collection = ["daynarian", "reptilian"];
+					break;
+				case GLOBAL.TYPE_SYDIAN:
+					collection = ["sydian", "insectile"];
+					break;
+				case GLOBAL.TYPE_COCKVINE:
+					collection = ["plant", "vine-like"];
+					break;
+				case GLOBAL.TYPE_INHUMAN:
+					collection = ["inhuman", "human-like", "alien"];
 					break;
 				
 				default:
@@ -9902,6 +9929,32 @@ package classes {
 				}
 				if (tail && rand(2) == 0) noun += "tail-";
 				choices = ["ovipositor", "organ", "tool", "member", "tube"];
+				noun += choices[rand(choices.length)];
+			} else if (type == GLOBAL.TYPE_DAYNAR) {
+				if (!simple) {
+					choices = ["daynarian", "reptilian", "inhuman", "reptilian"];
+					descript += choices[rand(choices.length)] + " ";
+				}
+				choices = ["dick", "shaft", "prick", "cock", "tool", "member", "cock", "pecker", "dong", "phallus"];
+				if (tail && rand(2) == 0) noun += "tail-";
+				else if(descript != "daynarian ") choices.push("daynar-cock", "daynar-shaft", "daynar-dick");
+				noun += choices[rand(choices.length)];
+			} else if (type == GLOBAL.TYPE_SYDIAN) {
+				if (!simple) {
+					choices = ["sydian", "insectile", "inhuman", "bristly", "brush-like"];
+					descript += choices[rand(choices.length)] + " ";
+				}
+				choices = ["dick", "shaft", "prick", "cock", "tool", "member", "cock", "pecker", "dong", "phallus"];
+				if (tail && rand(2) == 0) noun += "tail-";
+				else if(descript != "insectile ") choices.push("bug-cock", "bug-shaft", "bug-dick");
+				noun += choices[rand(choices.length)];
+			} else if (type == GLOBAL.TYPE_INHUMAN) {
+				if (!simple) {
+					choices = ["inhuman", "human-like", "almost-human", "alien"];
+					descript += choices[rand(choices.length)] + " ";
+				}
+				choices = ["dick", "shaft", "prick", "cock", "tool", "member", "cock", "pecker", "dong", "phallus"];
+				if (tail && rand(2) == 0) noun += "tail-";
 				noun += choices[rand(choices.length)];
 			}
 			/* To return if Third writes it!
