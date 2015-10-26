@@ -604,6 +604,7 @@ public function sleepHeal():void
 	}
 	pc.removeStatusEffect("Sore");
 	pc.removeStatusEffect("Sore Counter");
+	pc.removeStatusEffect("Jaded");
 	
 	if (pc.energy() < pc.energyMax()) pc.energyRaw = pc.energyMax();
 }
@@ -3893,13 +3894,20 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Beth's Busty Broads
-			if(flags["TALK_TO_LADY_1ST"] != undefined || flags["BETHS_OVIR_SEEN"] != undefined || flags["OVIR_TEASED"] != undefined || flags["MET_VAANDE"] != undefined)
+			if(flags["TALK_TO_LADY_1ST"] != undefined || flags["BETHS_TIMES_WHORED"] != undefined || flags["BETHS_OVIR_SEEN"] != undefined || flags["OVIR_TEASED"] != undefined || flags["MET_VAANDE"] != undefined)
 			{
 				output2("\n<b><u>Beth’s Busty Broads</u></b>");
+				// Turn Tricks
+				if(flags["BETHS_TIMES_WHORED"] != undefined)
+				{
+					output2("\n<b>* Brothel, Times Whored: </b>" + flags["BETHS_TIMES_WHORED"]);
+					if(flags["BETHS_CONTRACT_WHORE"] != undefined) output2(", Licensed)");
+				}
 				// Reaha stuffs
 				if(flags["TALK_TO_LADY_1ST"] != undefined)
 				{
-					output2("\n<b>* Brothel Mistress:</b> Met her");
+					if(flags["KAT_MET"] == undefined) output2("\n<b>* Brothel Mistress:</b> Met her");
+					else output2("\n<b>* Kat:</b> Met her");
 					if(pc.isAss()) output2("\n<b>* Cow-Slut:</b>");
 					else output2("\n<b>* Reaha:</b>");
 					if(flags["REAHA_BOUGHT"] != undefined) output2(" Bought");
@@ -4641,13 +4649,13 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// The Mess!
-			if(flags["SHEKKA_TALKED_THE_MESS"] != undefined || flags["MET_DEL"] != undefined || flags["HAS_ORDERED_FOOD_AT_THE_MESS"] != undefined)
+			if(flags["SHEKKA_TALKED_THE_MESS"] != undefined || metBeth() || flags["MET_DEL"] != undefined || flags["HAS_ORDERED_FOOD_AT_THE_MESS"] != undefined)
 			{
 				output2("\n<b><u>The Mess</u></b>");
 				// Rumors
 				if(flags["SHEKKA_TALKED_THE_MESS"] != undefined) output2("\n<b>* Rumors, Shekka:</b> <i>She believes the catering company is abducting people.</i>");
 				// Beth
-				if(flags["MET_DEL"] != undefined) output2("\n<b>* Beth:</b> Met her");
+				if(metBeth()) output2("\n<b>* Beth:</b> Met her");
 				// Delilah
 				if(flags["MET_DEL"] != undefined)
 				{
