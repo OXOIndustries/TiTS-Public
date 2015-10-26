@@ -332,20 +332,23 @@
 						target.shiftCock(0, GLOBAL.TYPE_VENUSPITCHER);
 						kGAMECLASS.output("Your [pc.cockColor] cock appears very vine-like, moving to and fro like some kind of sentient plant");
 					}
-					
-					/* I dunno about these... */
 					else if(target.race() == "sydian")
 					{
-						target.cocks[0].cType = GLOBAL.TYPE_INHUMAN;
-						target.cocks[0].cockColor = "bright orange";
+						target.shiftCock(0, GLOBAL.TYPE_SYDIAN);
 						kGAMECLASS.output("Your [pc.cockColor] cock is covered in tiny brushes");
 					}
 					else if(target.race() == "daynar")
 					{
-						target.cocks[0].cType = GLOBAL.TYPE_INHUMAN;
-						target.cocks[0].addFlag(GLOBAL.FLAG_TAPERED);
+						target.shiftCock(0, GLOBAL.TYPE_DAYNAR);
 						kGAMECLASS.output("Your [pc.cockColor] cock has thick enough skin to obscure the veins and a tapered tip");
 					}
+					else if(target.race() == "cockvine")
+					{
+						target.shiftCock(0, GLOBAL.TYPE_COCKVINE);
+						kGAMECLASS.output("Your [pc.cockColor] cock wriggles around restlessly, looking for the nearest wet hole to fill");
+					}
+					
+					/* I dunno about these... */
 					else if(target.race() == "gabilani" || target.race() == "goblin")
 					{
 						target.cocks[0].cType = GLOBAL.TYPE_INHUMAN;
