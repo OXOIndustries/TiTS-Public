@@ -1021,7 +1021,7 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 			}
 			// Massive capacity:
 			pp.cocks[0].cLengthRaw = 36;
-			cocks[slot].addFlag(GLOBAL.FLAG_BLUNT);
+			pp.cocks[0].addFlag(GLOBAL.FLAG_BLUNT);
 			if(!InCollection(scenesIndex, [2]) && pc.vaginalCapacity(x) >= pp.cockVolume(0) && scenesLimit > 0 && rand(scenesTotal) == 0)
 			{
 				output("\n\nA particularly huge alien is delighted to discover your voluminous twat is capable of taking his 3-foot long blunt breeding prong, and you spend an eye-crossing ten minutes riding him to a womb-swelling high. You have to waddle to the bathroom and release a full gallon of purple cum from your [pc.vagina " + x + "] afterwards.");
@@ -1136,7 +1136,7 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 				pp.cocks[0].cLengthRaw = 36;
 				pp.createCock();
 				pp.shiftCock(1, GLOBAL.TYPE_NAGA);
-				pp.cocks[1].cLengthRaw = cocks[0].cLengthRaw;
+				pp.cocks[1].cLengthRaw = pp.cocks[0].cLengthRaw;
 				pp.ballSizeRaw = 5;
 				output("\n\nA leithan has resigned himself to a night of blowjobs - before he spots you. He clutches your [pc.chest] as tightly as you clutch the pole, his undercarriage rubbing frenetically over your [pc.lowerBody], one cock deep in your [pc.vagina " + x + "], the other in your [pc.ass]. The sex is hot and rough, the tip is generous - although you have to get somebody else to hand it to you, since he leaves it wedged in your cum-filled [pc.asshole].");
 				processTime(10);
@@ -1248,8 +1248,8 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 			{
 				pp.cocks[0].cLengthRaw = 9;
 				pp.cocks[0].cthickness = .75;
-				cocks[slot].addFlag(GLOBAL.FLAG_FLARED);
-				cocks[slot].addFlag(GLOBAL.FLAG_NUBBY);
+				pp.cocks[0].addFlag(GLOBAL.FLAG_FLARED);
+				pp.cocks[0].addFlag(GLOBAL.FLAG_NUBBY);
 				output("\n\nAn anat naval officer - pretty high-ranking, going off his feathers and the cut of his uniform - gruffly asks for you and Room 21. When you open Room 21, you’re momentarily baffled: it looks like a simple, tidy flat, complete with a kitchenette. It’s only when you see the house dress and apron laid out on the bed, note attached, that you understand.");
 				output("\n\nYou take the anat’s coat at the door, give him a kiss on the mask, and ask him how his day was. He sits down at the table wearily and talks about how the admiralty are breaking his balls over this and that, whilst you make him a simple supper. After you’ve finished that you have a mild tiff over whose turn it is to take out the garbage. You make it up with some gentle missionary. Anat cocks are quite thin but have a bulbous, bluntly spiked tip which give you tingles deep inside your [pc.vagina " + x + "].");
 				
