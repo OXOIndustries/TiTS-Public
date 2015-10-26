@@ -1105,9 +1105,9 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 			// Any: Daynar Male
 			if(!InCollection(scenesIndex, [8]) && scenesLimit > 0 && rand(scenesTotal) == 0)
 			{
+				pp.shiftCock(0, GLOBAL.TYPE_DAYNAR);
 				pp.cocks[0].cLengthRaw = 8;
 				pp.cocks[0].cthickness = 1.5;
-				cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
 				output("\n\nThe big spenders - gangsters and businessmen out celebrating particularly lucrative scores, for the most part - pay very well to have multiple girls tending to them. A suited, broad-shouldered daynar sits back, watching the ovir on stage slowly twist and gyrate around her pole, his neck stretched so the kaithrit girl sat behind can massage his tender neck-membranes, whilst you bounce on his lap, squeezing and bending his eight inch lizard cock in your [pc.vagina " + x + "], stroking and teasing your [pc.chest] at his throaty request.");
 				
 				pc.cuntChange(x, pp.cockVolume(0));
