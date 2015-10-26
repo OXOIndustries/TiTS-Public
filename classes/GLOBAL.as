@@ -196,7 +196,7 @@
 			"Demonic",
 			"Gooey",
 			"Kangaroo",
-			"UNUSED",
+			"(Name Index 18)",
 			"Shark",
 			"Siren",
 			"Deer",
@@ -596,6 +596,8 @@
 			"Vanae Huntress Milk",
 			"Nectar",
 			"Leithan Milk",
+			"(Name Index 14)",
+			"(Name Index 15)",
 			"Vanilla",
 			"Nyrea Cum",
 		];
@@ -627,6 +629,8 @@
 			FLUID_TYPE_NECTAR,
 			FLUID_TYPE_LEITHAN_MILK,
 			FLUID_TYPE_VANILLA,
+			FLUID_TYPE_CUM,
+			FLUID_TYPE_GIRLCUM,
 		];
 		
 		// HAIRTYPES
@@ -683,6 +687,10 @@
 			TYPE_SAURIAN,
 			TYPE_SYNTHETIC,
 			TYPE_NYREA,
+			TYPE_DAYNAR,
+			TYPE_SYDIAN,
+			TYPE_COCKVINE,
+			TYPE_INHUMAN,
 		];
 		
 		public static const VALID_COCK_FLAGS:Array = [
