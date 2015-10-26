@@ -3908,7 +3908,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				{
 					if(flags["KAT_MET"] == undefined) output2("\n<b>* Brothel Mistress:</b> Met her");
 					else output2("\n<b>* Kat:</b> Met her");
-					if(pc.isAss()) output2("\n<b>* Cow-Slut:</b>");
+					if(pc.isAss() && !reahaRecruited()) output2("\n<b>* Cow-Slut:</b>");
 					else output2("\n<b>* Reaha:</b>");
 					if(flags["REAHA_BOUGHT"] != undefined) output2(" Bought");
 					else output2(" Whoring");
