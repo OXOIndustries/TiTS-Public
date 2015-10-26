@@ -93,7 +93,7 @@ public function ovirGirlInBeths():void
 	if(knowBethsOvir())
 	{
 		if(flags["OVIR_TEASED"] >= 1 || flags["TIMES_SEXED_ALISS"] >= 1) output("\n\nYou know from experience that she's actually a male ovir.");
-		else  output("\n\nOvir females aren't usually so stacked. She must actually be a male...");
+		else output("\n\nOvir females aren't usually so stacked. She must actually be a male...");
 		clearMenu();
 		addButton(0,"Watch",watchOvirDancer,undefined,"Watch","Ogle the ovir.");
 		addButton(1,"Tease",teaseTheOvir,undefined,"Tease","Tease the ovir until she gets a boner.");
@@ -191,7 +191,7 @@ public function teaseTheOvir():void
 	output("\n\nThe ovir lowers her hand from her face and looks around the room at the excited patrons, surprised, embarrassed, and excited in equal measure. Haltingly at first, like a lamb taking its first steps, the feminine boy places both hands on the pole again and begins to spin. As the crowd’s enthusiasm for her lewd, indecent show continues to surge, she gains confidence, picking up her former routine until she’s whipping ‘round the stage like a dervish. Her thick, blunted cock swings blithely and frots the pole whenever she stretches a leg, causing a shiver in the dancer and a swell of hoots and hollers from her watchers.");
 	output("\n\nThe more she spins, the faster her erect dick strokes the pole, until beads and then steady streams of pre begin to form at the slit. No sooner does she secrete them than they’re flung from her flare by her momentum, falling in overlapping rings on the stage. Veins come to the surface of her shaft and her hips start to buck on their own, but the ovir, brilliant in showmanship, works her pelvic twitches right into her act. She draws back and saws into the pole, fucking it with exaggerated motions that throw her knees toward the ceiling in ballet-like poses and lean her so far back that her D-cup tits bounce wildly on her chest. At one point, she even turns completely upside-down, suspending herself by her arms and splaying her crotch wide against the pole so that her throbbing cock drools precum on the underside of her breasts. The mob roars as she leans in and kisses the tip of her own slimy dick before righting herself again. She stares right at you as her pink tongue dabs her cumslit, making sure you see everything you’ve inspired, and a blush of hard arousal runs up your spine.");
 	output("\n\nHer panties and bra are soaked with sexual fluids and sweat, turning from red to crimson, and she can’t possibly be far from blowing her huge wad of jizz onstage. The thought seems to excite her as much as it does you, and her acrobatic twirls devolve into simple circles around the stripper pole, caressing the sensitive underside and crown of her cock with the increasingly pre-smeared and hot metal. The ovir grunts and thrusts, turning again, grinding the pole with her whole body. Her chest heaves so wildly against it that her front-clasp bra unhooks, abruptly spilling her breasts from their cups and provoking another wild cheer. Little orange-red nipples stand erect on her jiggling mounds, but the ovir is so sexually aroused that she continues frotting and dancing, either not caring or actually enjoying flashing the room full of horny patrons. Several of the crowd have slipped their own hands into their clothing, and most of those that haven’t are sporting noticeable tents in their coverings all the same.");
-	output("\n\nHalfway into another cock-stroking ring around the pole the ovir comes to a slow stop, as do the voices of the watchers soon after. Everyone in the room seems to have guessed why, and is staring with anticipation. Shaking slightly with built-up tension, the dancer’s face scrunches cutely and her hips twitch. A moment later, she loses the fight to hold back, and a stroke of white cum erupts from her cock, flying into the air and arcing to splat on the stage. The crowd cheers wildly, and two more shots shortly follow, both stretching higher than the first. The ovir’s buckled knees wobble in climax and she lowers herself to the floor, still gripping the pole with both hands and softly pumping her hips.  Aftershocks drool from her slit as she leans forward, resting her forehead against the pole and breathing heavily.\n\nWhile the assembled patrons continue to hoot and stamp and more than a few let out orgasmic grunts of their own, the ovir makes eye contact with you from behind the pole. Lowering her lids seductively, she blows a kiss, then hauls herself upright and begins to dance again, satisfied and confident in her body as she was before you exposed her. Feeling more than a little horny and exhilarated enough to do a dance of your own, you separate from the crowd and leave.");
+	output("\n\nHalfway into another cock-stroking ring around the pole the ovir comes to a slow stop, as do the voices of the watchers soon after. Everyone in the room seems to have guessed why, and is staring with anticipation. Shaking slightly with built-up tension, the dancer’s face scrunches cutely and her hips twitch. A moment later, she loses the fight to hold back, and a stroke of white cum erupts from her cock, flying into the air and arcing to splat on the stage. The crowd cheers wildly, and two more shots shortly follow, both stretching higher than the first. The ovir’s buckled knees wobble in climax and she lowers herself to the floor, still gripping the pole with both hands and softly pumping her hips. Aftershocks drool from her slit as she leans forward, resting her forehead against the pole and breathing heavily.\n\nWhile the assembled patrons continue to hoot and stamp and more than a few let out orgasmic grunts of their own, the ovir makes eye contact with you from behind the pole. Lowering her lids seductively, she blows a kiss, then hauls herself upright and begins to dance again, satisfied and confident in her body as she was before you exposed her. Feeling more than a little horny and exhilarated enough to do a dance of your own, you separate from the crowd and leave.");
 	//end, add lust, add 1% exhib if below 66% threshold or 2% if above, pass time
 	pc.exhibitionism(2);
 	pc.lust(27);
@@ -430,8 +430,16 @@ public function brothelTurnTrixLady():void
 	showBrothelLady();
 	author("Nonesuch");
 	
+	// If PC is licensed
+	if(flags["BETHS_CONTRACT_WHORE"] != undefined)
+	{
+		output("<i>“Hey [pc.name],”</i> Kat smiles thinly when you sashay up. <i>“You going on shift?”</i>");
+		//[Yep] [No]
+		addButton(0, "Yep", brothelTurnTrixLicensedMenu);
+		addButton(1, "No", brothelTurnTrixAnswer, 3);
+	}
 	// If PC hasn't whored
-	if(flags["BETHS_TIMES_WHORED"] == undefined)
+	else if(flags["BETHS_TIMES_WHORED"] == undefined)
 	{
 		// First
 		if(flags["BETHS_ASKED_TO_WHORE"] == undefined)
@@ -455,14 +463,6 @@ public function brothelTurnTrixLady():void
 		addButton(1, "License?", brothelTurnTrixAnswer, 2, "License?", "Ask about the license.");
 		addButton(2, "Nah", brothelTurnTrixAnswer, 0, "Nah", "Maybe next time.");
 		return;
-	}
-	// If PC is licensed
-	else if(flags["BETHS_CONTRACT_WHORE"] == undefined)
-	{
-		output("<i>“Hey [pc.name],”</i> Kat smiles thinly when you sashay up. <i>“You going on shift?”</i>");
-		//[Yep] [No]
-		addButton(0, "Yep", brothelTurnTrixLicensedMenu);
-		addButton(1, "No", brothelTurnTrixAnswer, 3);
 	}
 	// If PC has freelanced
 	else
@@ -577,40 +577,40 @@ public function brothelTurnTrixContract(choice:int = 0):void
 }
 
 // Payment calculation
-public function brothelWhorePayment(baseAmount:int = 0):int
+public function brothelWhorePayment(baseAmount:Number = 0):Number
 {
 	// Whoring Formulas
 	// All numbers are suggestions. Basic premise: the more the PC offers, and the more enticing their body is, the more they earn.
 	
-	var returnAmount:int = 0;
+	var returnAmount:Number = 0;
 	// PC is D-F Cup: + 25% of base
 	if(pc.biggestTitSize() >= 4 && pc.biggestTitSize() <= 12)
 		returnAmount += baseAmount * 0.25;
-	// PC is ass 5-8:  “    “
+	// PC is ass 5-8: + 25% of base
 	if(pc.buttRating() >= 5 && pc.buttRating() <= 8)
 		returnAmount += baseAmount * 0.25;
-	// PC is lips 6 or above: “   “
+	// PC is lips 6 or above: + 25% of base
 	if(pc.lipRating() >= 6)
 		returnAmount += baseAmount * 0.25;
-	// PC is female treated: “   “
+	// PC is female treated: + 25% of base
 	if(pc.isTreated() && pc.isBimbo())
 		returnAmount += baseAmount * 0.25;
-	// PC's holes are not all gaped: “     “
+	// PC's holes are not all gaped: + 25% of base
 	if(pc.gapestVaginaLooseness() <= 4)
 		returnAmount += baseAmount * 0.25;
-	// PC’s clothing is sexiness 5+: “    “
+	// PC’s clothing is sexiness 5+: + 25% of base
 	if((pc.armor.sexiness + pc.upperUndergarment.sexiness + pc.lowerUndergarment.sexiness) >= 5)
 		returnAmount += baseAmount * 0.25;
-	// PC has 30 or more tease points across the board: “    “
+	// PC has 30 or more tease points across the board: + 25% of base
 	if(flags["TIMES_BUTT_TEASED"] >= 30 && flags["TIMES_CHEST_TEASED"] >= 30 && flags["TIMES_CROTCH_TEASED"] >= 30 && flags["TIMES_HIPS_TEASED"] >= 30)
 		returnAmount += baseAmount * 0.25;
-	// PC has maxed tease points across the board: “    “
+	// PC has maxed tease points across the board: + 25% of base
 	if(flags["TIMES_BUTT_TEASED"] >= 100 && flags["TIMES_CHEST_TEASED"] >= 100 && flags["TIMES_CROTCH_TEASED"] >= 100 && flags["TIMES_HIPS_TEASED"] >= 100)
 		returnAmount += baseAmount * 0.25;
 	
 	returnAmount = (returnAmount + baseAmount);
 	// If Licensed, - 0.2 of total off total
-	if(flags["BETHS_CONTRACT_WHORE"] != undefined) returnCredit = Math.floor(returnAmount * 0.8);
+	if(flags["BETHS_CONTRACT_WHORE"] != undefined) returnAmount = Math.floor(returnAmount * 0.8);
 	// If Freelance, /2 total
 	else returnAmount = Math.floor(returnAmount * 0.5);
 	
@@ -631,7 +631,7 @@ public function brothelWhored(setMinutes:int = 360, service:String = "none"):voi
 	if(service == "mouth") IncrementFlag("BETHS_TIMES_WHORED_MOUTH");
 	if(service == "vagina") IncrementFlag("BETHS_TIMES_WHORED_VAGINA");
 	if(service == "all") IncrementFlag("BETHS_TIMES_WHORED_ALL");
-	if(service == "rooms") IncrementFlag("BETHS_TIMES_WHORED_ALL");
+	if(service == "rooms") IncrementFlag("BETHS_TIMES_WHORED_ROOMS");
 	IncrementFlag("BETHS_TIMES_WHORED");
 	
 	// Unlock message:
@@ -671,8 +671,8 @@ public function brothelTurnTrixFreelanceWhore(service:String = "none"):void
 	clearOutput();
 	showBrothelLady();
 	author("Nonesuch");
-	var totalEarnings = 0;
-	var baseEarnings = 0;
+	var totalEarnings:Number = 0;
+	var baseEarnings:Number = 0;
 	
 	baseEarnings = brothelTurnTrixWhoring(service);
 	
@@ -725,7 +725,7 @@ public function brothelTurnTrixFreelanceWhore(service:String = "none"):void
 			else if(pc.biggestTitSize() > 12 || pc.buttRating() > 8) output("Slim your assets down a little. You’re kinda big, for the average punter’s tastes anyway. ");
 			if(service == "vagina") output("More money to be had if you’re willing to get that prissy can of yours stuffed, once in a while.");
 			else output("Don’t be so picky about what you do.");
-			output(" And get yourself licensed. You know it makes sense.”</i>  She strides off towards the back office.");
+			output(" And get yourself licensed. You know it makes sense.”</i> She strides off towards the back office.");
 		}
 		else
 		{
@@ -737,6 +737,7 @@ public function brothelTurnTrixFreelanceWhore(service:String = "none"):void
 	// PC = Jaded for next 6 hours
 	brothelWhored((6 * 60), service);
 	
+	if(totalEarnings > 0) output("\n\nYou have been paid " + totalEarnings + " credits for your efforts.");
 	pc.credits += totalEarnings;
 	
 	clearMenu();
@@ -767,8 +768,8 @@ public function brothelTurnTrixLicensedWhore(service:String = "none"):void
 	clearOutput();
 	showBrothelLady();
 	author("Nonesuch");
-	var totalEarnings = 0;
-	var baseEarnings = 0;
+	var totalEarnings:Number = 0;
+	var baseEarnings:Number = 0;
 	
 	baseEarnings = brothelTurnTrixWhoring(service);
 	
@@ -838,9 +839,9 @@ public function brothelTurnTrixLicensedWhore(service:String = "none"):void
 			else if(pc.buttRating() < 5) output("Look into putting some junk into that trunk. Skinny hoes never earn as much as big booty pros. ");
 			// PC boobs and/or butt too big:
 			else if(pc.biggestTitSize() > 12 || pc.buttRating() > 8) output("Slim your assets down a little. You’re kinda big, for the average punter’s tastes anyway. ");
-			if(service == "vagina") output("More money to be had if you’re willing to get that prissy can of yours stuffed, once in a while.");
+			if(service == "rooms") output("Work your ass off and make that license count for something.");
 			else output("Don’t be so picky about what you do.");
-			output(" And get yourself licensed. You know it makes sense.”</i>  She strides off towards the back office.");
+			output("”</i> She strides off towards the back office.");
 		}
 	}
 	else
@@ -852,6 +853,7 @@ public function brothelTurnTrixLicensedWhore(service:String = "none"):void
 	// PC = Jaded for next 6 hours
 	brothelWhored((6 * 60), service);
 	
+	if(totalEarnings > 0) output("\n\nYou have been paid " + totalEarnings + " credits for your efforts.");
 	pc.credits += totalEarnings;
 	
 	clearMenu();
@@ -859,11 +861,11 @@ public function brothelTurnTrixLicensedWhore(service:String = "none"):void
 }
 
 // Whoring main text
-public function brothelTurnTrixWhoring(service:String = "none"):int
+public function brothelTurnTrixWhoring(service:String = "none"):Number
 {
 	var x:int = rand(pc.totalVaginas());
 	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
-	var baseEarnings = 0;
+	var baseEarnings:Number = 0;
 	
 	// Hands
 	if(service == "hands")
@@ -993,149 +995,147 @@ public function brothelTurnTrixWhoring(service:String = "none"):int
 		output("\n\nStill, there’s a few special requests.");
 		
 		//Scene takes form of 3 of these that the PC meets the requirements for, randomized and joined together.
-		var scenesTotal = 3;
-		var anyScenes = 4;
+		var scenesTotal:int = 3;
 		
-		// Cunt-tail:
-		if(pc.hasTailCunt() && tailType == GLOBAL.TYPE_CUNTSNAKE && scenesTotal > 0 && rand(scenesTotal + anyScenes) == 0)
+		while(scenesTotal > 0)
 		{
-			output("\n\nYour parasitic tail, spreading itself eagerly in the presence of so much male musk, attracts some attention, and a few clients happily pay a bit extra for you to fasten it wetly on their cocks and pump them absolutely silly with it, pleasure and the sensation of cum being siphoned hungrily away tingling up to you.");
-			processTime(10);
-			pc.loadInCuntTail(pp);
-			pc.loadInCuntTail(pp);
-			pc.loadInCuntTail(pp);
-			pc.exhibitionism(1);
-			scenesTotal--;
-		}
-		// Massive capacity:
-		pp.cocks[0].cLengthRaw = 36;
-		cocks[slot].addFlag(GLOBAL.FLAG_BLUNT);
-		if(pc.vaginalCapacity(x) > pp.cockVolume(0) && scenesTotal > 0 && rand(scenesTotal + anyScenes) == 0)
-		{
-			output("\n\nA particularly huge alien is delighted to discover your voluminous twat is capable of taking his 3-foot long blunt breeding prong, and you spend an eye-crossing ten minutes riding him to a womb-swelling high. You have to waddle to the bathroom and release a full gallon of purple cum from your [pc.vagina " + x + "] afterwards.");
-			processTime(10);
-			pc.cuntChange(x, pp.cockVolume(0));
-			pc.loadInCunt(pp, x);
-			pc.loadInCunt(pp, x);
-			pc.loadInCunt(pp, x);
-			pc.loadInCunt(pp, x);
-			pc.loadInCunt(pp, x);
-			pc.orgasm();
-			cuntChanged = true;
-			scenesTotal--;
-		}
-		pp.removeCocks();
-		pp.createCock();
-		// Any: Ausar Male
-		if(scenesTotal > 0 && anyScenes > 0 && rand(anyScenes) == 0)
-		{
-			pp.shiftCock(0, GLOBAL.TYPE_CANINE);
-			output("\n\nIn one corner booth a burly ausar turns you around and gives you a hard ass-fucking, pounding your [pc.asshole] with his hot knotted cock with relentless pumps of his thick hips whilst you grit your teeth, being used like the whore you are. He dismisses you with a grunt and a slap on the [pc.ass], leaving you to hobble away with doggie semen leaking down your [pc.hip].");
-			processTime(10);
-			pc.buttChange(pp.cockVolume(0));
-			pc.loadInAss(pp);
-			pc.orgasm();
-			anusChanged = true;
-			pp.removeCocks();
-			pp.createCock();
-			scenesTotal--;
-			anyScenes--;
-		}
-		// Any: Kaitrit Male Pirate
-		if(scenesTotal > 0 && anyScenes > 0 && rand(anyScenes) == 0)
-		{
-			output("\n\nA flinty-looking kaithrit pirate pulls you to one side and fumblingly tells you that he’s homesick. Away from his macho human friends, you briskly jerk his small pink cock off from behind, murmuring all the while in his pointy ear what a good boy he’s being for mommy, spearing into his tight ass with two fingers for emphasis.");
-			processTime(10);
-			scenesTotal--;
-			anyScenes--;
-		}
-		// Any: Dzaan Druggies
-		if(scenesTotal > 0 && anyScenes > 0 && rand(anyScenes) == 0)
-		{
-			output("\n\nA group of dzaan call you over and imperiously demand you get on top of their table and present your [pc.ass]. Mentally steeling yourself for a hard session of anal, you do as they ask - and then feel lines of powder being formed on the bare [pc.skin] of your buttocks, followed by hefty snorts and husky hermaphroditic crows of enjoyment. Any form of drug tastes better if it’s taken off the backside of a hooker, it turns out.");
-			processTime(10);
-			pc.exhibitionism(1);
-			scenesTotal--;
-			anyScenes--;
-		}
-		// D cups or larger:
-		if(pc.canTitFuck() && scenesTotal > 0 && rand(scenesTotal + anyScenes) == 0)
-		{
-			output("\n\nA human businessman watches you rub lube into your [pc.chest] down in front of him, swirling your hands over your big boobs, brushing over your [pc.nipples] until they ");
-			if(pc.hasNipples() && !pc.hasFlatNipples() && !pc.hasCuntNipples() && !pc.hasLipples() && !pc.hasInvertedNipples()) output("are as hard and protuberant as cherries");
-			else output("seep wet excitement");
-			output(". You keep your eyes and smile on him, giving him a lightly exaggerated soundtrack of gasps and sighs as you pleasure your breasts. You follow it up by fitting his hard cock into your well-oiled cleavage and giving him a long, luscious titjob, giving his beading head the occasional lap with your [pc.tongue]. You leave him with a very happy expression on his face, wiping the cum off your own and picking your payment out from between your [pc.chest].");
-			processTime(10);
-			scenesTotal--;
-		}
-		// Cunt/mouth nipples:
-		if(pc.hasBreasts() && pc.hasFuckableNipples() && scenesTotal > 0 && rand(scenesTotal + anyScenes) == 0)
-		{
-			var boobs:Number = pc.totalBreasts();
-			
-			output("\n\nYour [pc.nipples] generate interest, particularly when you start to finger them and wink at those watching. You kneel in front of a drunken fuu’rahn and let her grip your shoulders and excitedly thrust her well-extended blue ovipositor into the sensitive, [pc.milkNoun]-leaking innards of your boob, her cheering friends having paid for the treatment. She enjoys sliding herself between your slick, puffy ");
-			if(pc.hasLipples()) output("lipples");
-			else if(pc.hasCuntNipples()) output("cunt nipples");
-			else output("nipples");
-			output(" so much that, after resting for a few seconds, she stuffs your other breast");
-			if(boobs > 2) output("s");
-			output(" full of rahn eggs too.");
-			processTime(10);
-			for(var b:int = 0; b < boobs; b++)
+			// Cunt-tail:
+			if(pc.hasTailCunt() && tailType == GLOBAL.TYPE_CUNTSNAKE && scenesTotal > 0 && rand(scenesTotal) == 0)
 			{
-				pc.loadInNipples(pp);
+				output("\n\nYour parasitic tail, spreading itself eagerly in the presence of so much male musk, attracts some attention, and a few clients happily pay a bit extra for you to fasten it wetly on their cocks and pump them absolutely silly with it, pleasure and the sensation of cum being siphoned hungrily away tingling up to you.");
+				processTime(10);
+				pc.loadInCuntTail(pp);
+				pc.loadInCuntTail(pp);
+				pc.loadInCuntTail(pp);
+				pc.exhibitionism(1);
+				scenesTotal--;
 			}
-			scenesTotal--;
-		}
-		// Any: Daynar Male
-		if(scenesTotal > 0 && anyScenes > 0 && rand(anyScenes) == 0)
-		{
-			pp.cocks[0].cLengthRaw = 8;
-			pp.cocks[0].cthickness = 1.5;
-			cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
-			output("\n\nThe big spenders - gangsters and businessmen out celebrating particularly lucrative scores, for the most part - pay very well to have multiple girls tending to them. A suited, broad-shouldered daynar sits back, watching the ovir on stage slowly twist and gyrate around her pole, his neck stretched so the kaithrit girl sat behind can massage his tender neck-membranes, whilst you bounce on his lap, squeezing and bending his eight inch lizard cock in your [pc.vagina " + x + "], stroking and teasing your [pc.chest] at his throaty request.");
-			
-			pc.cuntChange(x, pp.cockVolume(0));
-			
-			output(" Beneath the jounce of your bare [pc.ass] you can feel the hair of the human girl sucking his balls. The expression on the daynar’s long face tells you that this is just Tuesday to him - but a pretty good Tuesday, nonetheless.");
-			processTime(10);
-			cuntChanged = true;
-			pp.removeCocks();
-			pp.createCock();
-			scenesTotal--;
-			anyScenes--;
-		}
-		// Naga
-		if(pc.isNaga() && scenesTotal > 0 && rand(scenesTotal + anyScenes) == 0)
-		{
-			output("\n\nA credit chit is trailed up your scales. A genetically modified something-or-other asks, in a high, breathy voice, if you will dance with the vanae on-stage. You curl yourself around and around the pink-tentacled blind girl, tightening and loosening around her flat abdomen and plush boobs, giving her the odd teasing lick and fondle. She plays along but her primal fear of you is palpable. The customer enjoys it immensely, clapping four hands excitedly and ordering a supplementary blowjob from a waitress. You finish it off by holding her tight and frenching the vanae, feeling her mouth quiver around you. Everyone gets tipped well - but you rather suspect your partner would trade hers for not having to go anywhere near you again.");
-			processTime(10);
-			pc.exhibitionism(1);
-			scenesTotal--;
-		}
-		// Centaur:
-		if(pc.isTaur() && scenesTotal > 0 && rand(scenesTotal + anyScenes) == 0)
-		{
-			pp.shiftCock(0, GLOBAL.TYPE_NAGA);
+			// Massive capacity:
 			pp.cocks[0].cLengthRaw = 36;
-			pp.createCock();
-			pp.shiftCock(1, GLOBAL.TYPE_NAGA);
-			pp.cocks[1].cLengthRaw = cocks[0].cLengthRaw;
-			pp.ballSizeRaw = 5;
-			output("\n\nA leithan has resigned himself to a night of blowjobs - before he spots you. He clutches your [pc.chest] as tightly as you clutch the pole, his undercarriage rubbing frenetically over your [pc.lowerBody], one cock deep in your [pc.vagina " + x + "], the other in your [pc.ass]. The sex is hot and rough, the tip is generous - although you have to get somebody else to hand it to you, since he leaves it wedged in your cum-filled [pc.asshole].");
-			processTime(10);
-			pc.cuntChange(x, pp.cockVolume(0));
-			pc.loadInCunt(pp, x);
-			pc.buttChange(pp.cockVolume(1));
-			pc.loadInAss(pp);
-			pc.orgasm();
-			pc.orgasm();
-			cuntChanged = true;
-			anusChanged = true;
+			cocks[slot].addFlag(GLOBAL.FLAG_BLUNT);
+			if(pc.vaginalCapacity(x) > pp.cockVolume(0) && scenesTotal > 0 && rand(scenesTotal) == 0)
+			{
+				output("\n\nA particularly huge alien is delighted to discover your voluminous twat is capable of taking his 3-foot long blunt breeding prong, and you spend an eye-crossing ten minutes riding him to a womb-swelling high. You have to waddle to the bathroom and release a full gallon of purple cum from your [pc.vagina " + x + "] afterwards.");
+				processTime(10);
+				pc.cuntChange(x, pp.cockVolume(0));
+				pc.loadInCunt(pp, x);
+				pc.loadInCunt(pp, x);
+				pc.loadInCunt(pp, x);
+				pc.loadInCunt(pp, x);
+				pc.loadInCunt(pp, x);
+				pc.orgasm();
+				cuntChanged = true;
+				scenesTotal--;
+			}
 			pp.removeCocks();
 			pp.createCock();
-			pp.ballSizeRaw = 0;
-			scenesTotal--;
+			// Any: Ausar Male
+			if(scenesTotal > 0 && rand(scenesTotal) == 0)
+			{
+				pp.shiftCock(0, GLOBAL.TYPE_CANINE);
+				output("\n\nIn one corner booth a burly ausar turns you around and gives you a hard ass-fucking, pounding your [pc.asshole] with his hot knotted cock with relentless pumps of his thick hips whilst you grit your teeth, being used like the whore you are. He dismisses you with a grunt and a slap on the [pc.ass], leaving you to hobble away with doggie semen leaking down your [pc.hip].");
+				processTime(10);
+				pc.buttChange(pp.cockVolume(0));
+				pc.loadInAss(pp);
+				pc.orgasm();
+				anusChanged = true;
+				pp.removeCocks();
+				pp.createCock();
+				scenesTotal--;
+			}
+			// Any: Kaitrit Male Pirate
+			if(scenesTotal > 0 && rand(scenesTotal) == 0)
+			{
+				output("\n\nA flinty-looking kaithrit pirate pulls you to one side and fumblingly tells you that he’s homesick. Away from his macho human friends, you briskly jerk his small pink cock off from behind, murmuring all the while in his pointy ear what a good boy he’s being for mommy, spearing into his tight ass with two fingers for emphasis.");
+				processTime(10);
+				scenesTotal--;
+			}
+			// Any: Dzaan Druggies
+			if(scenesTotal > 0 && rand(scenesTotal) == 0)
+			{
+				output("\n\nA group of dzaan call you over and imperiously demand you get on top of their table and present your [pc.ass]. Mentally steeling yourself for a hard session of anal, you do as they ask - and then feel lines of powder being formed on the bare [pc.skin] of your buttocks, followed by hefty snorts and husky hermaphroditic crows of enjoyment. Any form of drug tastes better if it’s taken off the backside of a hooker, it turns out.");
+				processTime(10);
+				pc.exhibitionism(1);
+				scenesTotal--;
+			}
+			// D cups or larger:
+			if(pc.canTitFuck() && scenesTotal > 0 && rand(scenesTotal) == 0)
+			{
+				output("\n\nA human businessman watches you rub lube into your [pc.chest] down in front of him, swirling your hands over your big boobs, brushing over your [pc.nipples] until they ");
+				if(pc.hasNipples() && !pc.hasFlatNipples() && !pc.hasCuntNipples() && !pc.hasLipples() && !pc.hasInvertedNipples()) output("are as hard and protuberant as cherries");
+				else output("seep wet excitement");
+				output(". You keep your eyes and smile on him, giving him a lightly exaggerated soundtrack of gasps and sighs as you pleasure your breasts. You follow it up by fitting his hard cock into your well-oiled cleavage and giving him a long, luscious titjob, giving his beading head the occasional lap with your [pc.tongue]. You leave him with a very happy expression on his face, wiping the cum off your own and picking your payment out from between your [pc.chest].");
+				processTime(10);
+				scenesTotal--;
+			}
+			// Cunt/mouth nipples:
+			if(pc.hasBreasts() && pc.hasFuckableNipples() && scenesTotal > 0 && rand(scenesTotal) == 0)
+			{
+				var boobs:int = pc.totalBreasts();
+				
+				output("\n\nYour [pc.nipples] generate interest, particularly when you start to finger them and wink at those watching. You kneel in front of a drunken fuu’rahn and let her grip your shoulders and excitedly thrust her well-extended blue ovipositor into the sensitive, [pc.milkNoun]-leaking innards of your boob, her cheering friends having paid for the treatment. She enjoys sliding herself between your slick, puffy ");
+				if(pc.hasLipples()) output("lipples");
+				else if(pc.hasCuntNipples()) output("cunt nipples");
+				else output("nipples");
+				output(" so much that, after resting for a few seconds, she stuffs your other breast");
+				if(boobs > 2) output("s");
+				output(" full of rahn eggs too.");
+				processTime(10);
+				for(var b:int = 0; b < boobs; b++)
+				{
+					pc.loadInNipples(pp);
+				}
+				scenesTotal--;
+			}
+			// Any: Daynar Male
+			if(scenesTotal > 0 && rand(scenesTotal) == 0)
+			{
+				pp.cocks[0].cLengthRaw = 8;
+				pp.cocks[0].cthickness = 1.5;
+				cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
+				output("\n\nThe big spenders - gangsters and businessmen out celebrating particularly lucrative scores, for the most part - pay very well to have multiple girls tending to them. A suited, broad-shouldered daynar sits back, watching the ovir on stage slowly twist and gyrate around her pole, his neck stretched so the kaithrit girl sat behind can massage his tender neck-membranes, whilst you bounce on his lap, squeezing and bending his eight inch lizard cock in your [pc.vagina " + x + "], stroking and teasing your [pc.chest] at his throaty request.");
+				
+				pc.cuntChange(x, pp.cockVolume(0));
+				
+				output(" Beneath the jounce of your bare [pc.ass] you can feel the hair of the human girl sucking his balls. The expression on the daynar’s long face tells you that this is just Tuesday to him - but a pretty good Tuesday, nonetheless.");
+				processTime(10);
+				cuntChanged = true;
+				pp.removeCocks();
+				pp.createCock();
+				scenesTotal--;
+			}
+			// Naga
+			if(pc.isNaga() && scenesTotal > 0 && rand(scenesTotal) == 0)
+			{
+				output("\n\nA credit chit is trailed up your scales. A genetically modified something-or-other asks, in a high, breathy voice, if you will dance with the vanae on-stage. You curl yourself around and around the pink-tentacled blind girl, tightening and loosening around her flat abdomen and plush boobs, giving her the odd teasing lick and fondle. She plays along but her primal fear of you is palpable. The customer enjoys it immensely, clapping four hands excitedly and ordering a supplementary blowjob from a waitress. You finish it off by holding her tight and frenching the vanae, feeling her mouth quiver around you. Everyone gets tipped well - but you rather suspect your partner would trade hers for not having to go anywhere near you again.");
+				processTime(10);
+				pc.exhibitionism(1);
+				scenesTotal--;
+			}
+			// Centaur:
+			if(pc.isTaur() && scenesTotal > 0 && rand(scenesTotal) == 0)
+			{
+				pp.shiftCock(0, GLOBAL.TYPE_NAGA);
+				pp.cocks[0].cLengthRaw = 36;
+				pp.createCock();
+				pp.shiftCock(1, GLOBAL.TYPE_NAGA);
+				pp.cocks[1].cLengthRaw = cocks[0].cLengthRaw;
+				pp.ballSizeRaw = 5;
+				output("\n\nA leithan has resigned himself to a night of blowjobs - before he spots you. He clutches your [pc.chest] as tightly as you clutch the pole, his undercarriage rubbing frenetically over your [pc.lowerBody], one cock deep in your [pc.vagina " + x + "], the other in your [pc.ass]. The sex is hot and rough, the tip is generous - although you have to get somebody else to hand it to you, since he leaves it wedged in your cum-filled [pc.asshole].");
+				processTime(10);
+				pc.cuntChange(x, pp.cockVolume(0));
+				pc.loadInCunt(pp, x);
+				pc.buttChange(pp.cockVolume(1));
+				pc.loadInAss(pp);
+				pc.orgasm();
+				pc.orgasm();
+				cuntChanged = true;
+				anusChanged = true;
+				pp.removeCocks();
+				pp.createCock();
+				pp.ballSizeRaw = 0;
+				scenesTotal--;
+			}
 		}
 		
 		// gape on vag up
@@ -1166,147 +1166,145 @@ public function brothelTurnTrixWhoring(service:String = "none"):int
 		output("You head across and chat with some of the other floozies hanging around near the curtained-off section of the brothel. There’s quite a few requests for room specials, it turns out, and the other whores are happy for fresh meat to help out and take a cut.");
 		
 		//Scene takes form of 2 of these that the PC meets the requirements for, randomized.
-		var scenesTotal = 2;
-		var anyScenes = 4;
+		var scenesTotal:int = 2;
 		
-		// Any: Human Male Masochist
-		if(scenesTotal > 0 && anyScenes > 0 && rand(anyScenes) == 0)
+		while(scenesTotal > 0)
 		{
-			output("\n\nA big, gruff human tough, tattoos festooned down both arms, wants some one-on-one... and very discrete... treatment. He barks and groans, blindfolded and hands tied to the ceiling by magnetic hard-points, as you apply the lash to his muscular back and ass, casually telling him what a bad boy he’s been. Honestly, given the amount of unsolicited fondles and pinches to the [pc.ass] you’ve received whilst you’ve been here from guys who look exactly like this, it’s a pretty satisfying hour.");
-			pc.lust(10);
-			processTime(60);
-			scenesTotal--;
-			anyScenes--;
-		}
-		// Any: Female Scientist's Sexperiment
-		if(scenesTotal > 0 && anyScenes > 0 && rand(anyScenes) == 0)
-		{
-			output("\n\nA bookish woman dressed in a lab-coat asks, with fluttering nervousness, if she can borrow you and another girl for a time. You and the female ausar lounge on the bed together and accept the tablets she gives you.");
-			output("\n\n<i>“Nothing to worry about, nothing to worry about,”</i> she insists, sitting down on the far side of the room with her clipboard. <i>“Definitely not toxic. It just, um, it just needs to be tested in a non-lab environment. Tell me how you feel.”</i>");
-			output("\n\nNothing happens for twenty minutes. Then you feel slightly ill. Then you are seized by such an overwhelming Sapphic lust that it is impossible to do anything but violently fuck the ausar, who makes it quite clear she feels the same way. You desperately clinch your [pc.hip] around hers, your [pc.chest] mashed into hers, scissoring frenetically to orgasms which only seem to make the need to reach another more urgent. The only time when you aren’t fastened to her small, hard nipples is when you are passionately twining your [pc.tongue] with hers. There is only her heaving breasts, and her wonderful wet slit, and her reddened, beautiful face, and oh there is nothing but the joy of being joined with her heaving female curves, which makes you want to love her more and more and...");
-			output("\n\n<i>“Alright, that’s enough,”</i> snaps Kat, striding through the door. <i>“You’ve been in here for three hours. Tie up your “research”, sicko.”</i>");
-			output("\n\n<i>“Yes! Yes, of course,”</i> says the woman, hurrying across and applying a white pad to each of your brows. Slowly, the burning urge fades. You look at each other, dazed and embarrassed.");
-			output("\n\n<i>“Just. Um. I think it needs more testing. Definitely more testing.”</i> the researcher says, heading to the door, almost as red-faced as the ausar is.");
-			output("\n\n<i>“See you next week,”</i> snarks Kat.");
-			processTime(30);
-			pc.lust(9000);
-			scenesTotal--;
-			anyScenes--;
-		}
-		// Female treated: Human Male, Dragon Dick
-		if(pc.isTreated() && pc.isBimbo() && scenesTotal > 0 && rand(scenesTotal + anyScenes) == 0)
-		{
-			pp.shiftCock(0, GLOBAL.TYPE_DRACONIC);
-			pp.cocks[0].cLengthRaw = 12;
-			pp.cocks[0].cthickness = 1.5;
-			output("\n\n<i>“You!”</i> says a well-heeled olive-skinned human, delighted eyes fastening upon your face. <i>“You’re Treated, aren’t you? Yes, yes, I can tell. How much for her, a room, and a supply of Insta-rect for two hours?”</i>");
-			output("\n\nHe hurries you into a room and proceeds to fuck you absolutely stupid, using your [pc.vagina " + x + "] and your [pc.lips] in quick succession, mainlining Insta-rect the moment he orgasms to instantly regain his knotted, dragon-like erection so he can keep thrusting its hardness into your eager, sensitive holes. You finish it off with a");
-			if(pc.canTitFuck()) output(" long tit-job, rubbing his cock lovingly between your lubed-up [pc.chest].");
-			else output(" long jerk, polishing his cock lovingly between your [pc.fingers].");
-			
-			pc.cuntChange(x, pp.cockVolume(0));
-			
-			output(" When he tenses up and begins to groan and flex into you again, nothing emerges from his dilated cum-slit, despite your encouraging squeezes; every last drop he has to offer has disappeared into your slick, clinging pussy and your hungry throat.");
-			output("\n\n<i>“Whole galaxy full of beautiful alien women,”</i> he sighs, lying back on the bed at long last, your fingers trailing down his chest. <i>“And not a single one of them is as good a lay as a New Texan.”</i>");
-			processTime(120);
-			pc.loadInCunt(pp, x);
-			pc.loadInCunt(pp, x);
-			pc.loadInMouth(pp);
-			pc.loadInMouth(pp);
-			pc.orgasm();
-			pp.removeCocks();
-			pp.createCock();
-			scenesTotal--;
-		}
-		// Any: Anat Male Navel Officer
-		if(scenesTotal > 0 && anyScenes > 0 && rand(anyScenes) == 0)
-		{
-			pp.cocks[0].cLengthRaw = 9;
-			pp.cocks[0].cthickness = .75;
-			cocks[slot].addFlag(GLOBAL.FLAG_FLARED);
-			cocks[slot].addFlag(GLOBAL.FLAG_NUBBY);
-			output("\n\nAn anat naval officer - pretty high-ranking, going off his feathers and the cut of his uniform - gruffly asks for you and Room 21. When you open Room 21, you’re momentarily baffled: it looks like a simple, tidy flat, complete with a kitchenette. It’s only when you see the house dress and apron laid out on the bed, note attached, that you understand.");
-			output("\n\nYou take the anat’s coat at the door, give him a kiss on the mask, and ask him how his day was. He sits down at the table wearily and talks about how the admiralty are breaking his balls over this and that, whilst you make him a simple supper. After you’ve finished that you have a mild tiff over whose turn it is to take out the garbage. You make it up with some gentle missionary. Anat cocks are quite thin but have a bulbous, bluntly spiked tip which give you tingles deep inside your [pc.vagina " + x + "].");
-			
-			pc.cuntChange(x, pp.cockVolume(0));
-			
-			output("\n\nOnce that’s over, he takes his coat, thanks you gruffly but sincerely, and leaves hurriedly.");
-			processTime(60);
-			pc.loadInCunt(pp, x);
-			pc.orgasm();
-			pp.removeCocks();
-			pp.createCock();
-			scenesTotal--;
-			anyScenes--;
-		}
-		// Any: Kui-Tan Herm
-		if(scenesTotal > 0 && anyScenes > 0 && rand(anyScenes) == 0)
-		{
-			pp.shiftCock(0, GLOBAL.TYPE_KUITAN);
-			pp.cocks[0].cLengthRaw = 12;
-			pp.ballSizeRaw = 18;
-			output("\n\nA female kui-tan, a colony raider going off her brands and cybernetic eye, orders the premium deluxe.");
-			output("\n\nShe sits back on the king-sized bed, bottle of prosecco in hand, watching you grope, lick and kiss the doh’rahn at the other end, two other whores worshipping her giant erection whilst a final one buries beneath it all, attacking her pussy with her genetically enhanced long tongue. Behind you, a whole wall of vid screens silently blares out several terabytes of porn. Whenever the urge takes her, she grabs one of you and fucks you hard doggie style, leaving the rest of you to form a lesbian orgy for her delectation.");
-			
-			pc.cuntChange(x, pp.cockVolume(0));
-			
-			output("\n\nShe’s got enough cum backed up to keep this up for a good two hours. When finally every pussy in the room except hers is stuffed and leaking kui-tan cream, she gets up and tosses a single credit chit onto the bed without a word. She only looks mildly disappointed that you don’t all fight over it.");
-			processTime(120);
-			pc.loadInCunt(pp, x);
-			pc.loadInCunt(pp, x);
-			pc.loadInCunt(pp, x);
-			pc.orgasm();
-			pc.orgasm();
-			pc.orgasm();
-			pp.removeCocks();
-			pp.createCock();
-			pp.ballSizeRaw = 0;
-			scenesTotal--;
-			anyScenes--;
-		}
-		// Biped:
-		if(pc.isBiped() && scenesTotal > 0 && rand(scenesTotal + anyScenes) == 0)
-		{
-			pp.shiftCock(0, GLOBAL.TYPE_EQUINE);
-			pp.cocks[0].cLengthRaw = 10;
-			output("\n\nA tall naga whore every bit as pinch-lipped as Kat leads you and a human girl into an immaculately decorated room, done up entirely in black and white. Without saying a word she applies wet black lipstick and white nail varnish to you, the opposite to the other girl. She then has you kneel down, ass to ass, inserts a double-ended dildo into your [pc.vagina " + x + "], and firmly straps your hips together. She follows this up with a buttplug in your [pc.asshole]. You can’t see it, but you’re willing to bet anything yours is black, the other girl’s white.");
-			
-			pc.cuntChange(x, 50);
-			pc.buttChange(50);
-			
-			output("\n\nFinally, she brings out a large, flat, glass surface top, and carefully lays it on top of your shoulder blades and [pc.ass]. You shiver around the insertions stretching your holes, making the glass shift slightly; the naga raises a single warning finger to you and then opens the door.");
-			output("\n\n<i>“Ah, excellent!”</i> says one of the two Asian men who enter, handing their menus to the naga. <i>“We’ll have the scallops, the gnocchi and the ass-fuck for afters.”</i> He strides towards the chair in front of you, unzipping his fly and letting his ten inch horse prick flop out as he comes.");
-			
-			pc.buttChange(pp.cockVolume(0));
-			
-			processTime(60);
-			pc.buttChange(pp.cockVolume(0));
-			pc.loadInAss(pp);
-			pc.orgasm();
-			pp.removeCocks();
-			pp.createCock();
-			scenesTotal--;
-		}
-		// Goo:
-		if(pc.isGoo() && scenesTotal > 0 && rand(scenesTotal + anyScenes) == 0)
-		{
-			pp.shiftCock(0, GLOBAL.TYPE_CANINE);
-			output("\n\n<i>“Hmm,”</i> says an ovir pro, eyeing your slimy, ectoplasmic bottom half thoughtfully. <i>“That looks... useful.”</i>");
-			output("\n\nYou and a galotian puddle into a large jacuzzi together. You both coo as the bubble-streams are turned on, sending vibrations juddering through you, making you lose some of your surface tension. The ovir leads a laughing ausar couple in, a lean guy and his chubby girlfriend.");
-			output("\n\nThe two of them have fun on the bed first, taking turns with the ovir’s thick, brightly-colored cock, leaving you and the galotian to gasp and giggle together over the copious amount of sex toys that have been laid out on the side. Finally, the other three splash into you, drunk with lust. The guy bends your [pc.ass] over and firmly knots himself into your [pc.vagina " + x + "], the heavy thrust of his hips sending waves of your goo slapping against the sides.");
-			
-			pc.cuntChange(x, pp.cockVolume(0));
-			
-			output(" The hard girth of his dick combine with the vibrations drives you to clenching orgasm after orgasm; it requires no acting on your part to squeal with simple-minded joy until you are hoarse. You and the galotian’s gooey flesh travel up and down the three writhing bodies, worshipping them, your reward the salt on their skins and the copious amount of slut-feed they spurt into you.");
-			output("\n\n<i>“He always persuades me to come to this sleaze-hole for our anniversaries,”</i> sighs the girl later, leaning over the side as you massage her shoulders, layered on top of her generous hams, tracing the lips of her pussy with gooey tendrils. <i>“I always regret caving in at the time. Never while I’m here.”</i>");
-			processTime(60);
-			pc.loadInAss(pp);
-			pc.orgasm();
-			pc.orgasm();
-			pc.orgasm();
-			pp.removeCocks();
-			pp.createCock();
-			scenesTotal--;
+			// Any: Human Male Masochist
+			if(scenesTotal > 0 && rand(scenesTotal) == 0)
+			{
+				output("\n\nA big, gruff human tough, tattoos festooned down both arms, wants some one-on-one... and very discrete... treatment. He barks and groans, blindfolded and hands tied to the ceiling by magnetic hard-points, as you apply the lash to his muscular back and ass, casually telling him what a bad boy he’s been. Honestly, given the amount of unsolicited fondles and pinches to the [pc.ass] you’ve received whilst you’ve been here from guys who look exactly like this, it’s a pretty satisfying hour.");
+				pc.lust(10);
+				processTime(60);
+				scenesTotal--;
+			}
+			// Any: Female Scientist's Sexperiment
+			if(scenesTotal > 0 && rand(scenesTotal) == 0)
+			{
+				output("\n\nA bookish woman dressed in a lab-coat asks, with fluttering nervousness, if she can borrow you and another girl for a time. You and the female ausar lounge on the bed together and accept the tablets she gives you.");
+				output("\n\n<i>“Nothing to worry about, nothing to worry about,”</i> she insists, sitting down on the far side of the room with her clipboard. <i>“Definitely not toxic. It just, um, it just needs to be tested in a non-lab environment. Tell me how you feel.”</i>");
+				output("\n\nNothing happens for twenty minutes. Then you feel slightly ill. Then you are seized by such an overwhelming Sapphic lust that it is impossible to do anything but violently fuck the ausar, who makes it quite clear she feels the same way. You desperately clinch your [pc.hip] around hers, your [pc.chest] mashed into hers, scissoring frenetically to orgasms which only seem to make the need to reach another more urgent. The only time when you aren’t fastened to her small, hard nipples is when you are passionately twining your [pc.tongue] with hers. There is only her heaving breasts, and her wonderful wet slit, and her reddened, beautiful face, and oh there is nothing but the joy of being joined with her heaving female curves, which makes you want to love her more and more and...");
+				output("\n\n<i>“Alright, that’s enough,”</i> snaps Kat, striding through the door. <i>“You’ve been in here for three hours. Tie up your “research”, sicko.”</i>");
+				output("\n\n<i>“Yes! Yes, of course,”</i> says the woman, hurrying across and applying a white pad to each of your brows. Slowly, the burning urge fades. You look at each other, dazed and embarrassed.");
+				output("\n\n<i>“Just. Um. I think it needs more testing. Definitely more testing.”</i> the researcher says, heading to the door, almost as red-faced as the ausar is.");
+				output("\n\n<i>“See you next week,”</i> snarks Kat.");
+				processTime(30);
+				pc.lust(9000);
+				scenesTotal--;
+			}
+			// Female treated: Human Male, Dragon Dick
+			if(pc.isTreated() && pc.isBimbo() && scenesTotal > 0 && rand(scenesTotal) == 0)
+			{
+				pp.shiftCock(0, GLOBAL.TYPE_DRACONIC);
+				pp.cocks[0].cLengthRaw = 12;
+				pp.cocks[0].cthickness = 1.5;
+				output("\n\n<i>“You!”</i> says a well-heeled olive-skinned human, delighted eyes fastening upon your face. <i>“You’re Treated, aren’t you? Yes, yes, I can tell. How much for her, a room, and a supply of Insta-rect for two hours?”</i>");
+				output("\n\nHe hurries you into a room and proceeds to fuck you absolutely stupid, using your [pc.vagina " + x + "] and your [pc.lips] in quick succession, mainlining Insta-rect the moment he orgasms to instantly regain his knotted, dragon-like erection so he can keep thrusting its hardness into your eager, sensitive holes. You finish it off with a");
+				if(pc.canTitFuck()) output(" long tit-job, rubbing his cock lovingly between your lubed-up [pc.chest].");
+				else output(" long jerk, polishing his cock lovingly between your [pc.fingers].");
+				
+				pc.cuntChange(x, pp.cockVolume(0));
+				
+				output(" When he tenses up and begins to groan and flex into you again, nothing emerges from his dilated cum-slit, despite your encouraging squeezes; every last drop he has to offer has disappeared into your slick, clinging pussy and your hungry throat.");
+				output("\n\n<i>“Whole galaxy full of beautiful alien women,”</i> he sighs, lying back on the bed at long last, your fingers trailing down his chest. <i>“And not a single one of them is as good a lay as a New Texan.”</i>");
+				processTime(120);
+				pc.loadInCunt(pp, x);
+				pc.loadInCunt(pp, x);
+				pc.loadInMouth(pp);
+				pc.loadInMouth(pp);
+				pc.orgasm();
+				pp.removeCocks();
+				pp.createCock();
+				scenesTotal--;
+			}
+			// Any: Anat Male Navel Officer
+			if(scenesTotal > 0 && rand(scenesTotal) == 0)
+			{
+				pp.cocks[0].cLengthRaw = 9;
+				pp.cocks[0].cthickness = .75;
+				cocks[slot].addFlag(GLOBAL.FLAG_FLARED);
+				cocks[slot].addFlag(GLOBAL.FLAG_NUBBY);
+				output("\n\nAn anat naval officer - pretty high-ranking, going off his feathers and the cut of his uniform - gruffly asks for you and Room 21. When you open Room 21, you’re momentarily baffled: it looks like a simple, tidy flat, complete with a kitchenette. It’s only when you see the house dress and apron laid out on the bed, note attached, that you understand.");
+				output("\n\nYou take the anat’s coat at the door, give him a kiss on the mask, and ask him how his day was. He sits down at the table wearily and talks about how the admiralty are breaking his balls over this and that, whilst you make him a simple supper. After you’ve finished that you have a mild tiff over whose turn it is to take out the garbage. You make it up with some gentle missionary. Anat cocks are quite thin but have a bulbous, bluntly spiked tip which give you tingles deep inside your [pc.vagina " + x + "].");
+				
+				pc.cuntChange(x, pp.cockVolume(0));
+				
+				output("\n\nOnce that’s over, he takes his coat, thanks you gruffly but sincerely, and leaves hurriedly.");
+				processTime(60);
+				pc.loadInCunt(pp, x);
+				pc.orgasm();
+				pp.removeCocks();
+				pp.createCock();
+				scenesTotal--;
+			}
+			// Any: Kui-Tan Herm
+			if(scenesTotal > 0 && rand(scenesTotal) == 0)
+			{
+				pp.shiftCock(0, GLOBAL.TYPE_KUITAN);
+				pp.cocks[0].cLengthRaw = 12;
+				pp.ballSizeRaw = 18;
+				output("\n\nA female kui-tan, a colony raider going off her brands and cybernetic eye, orders the premium deluxe.");
+				output("\n\nShe sits back on the king-sized bed, bottle of prosecco in hand, watching you grope, lick and kiss the doh’rahn at the other end, two other whores worshipping her giant erection whilst a final one buries beneath it all, attacking her pussy with her genetically enhanced long tongue. Behind you, a whole wall of vid screens silently blares out several terabytes of porn. Whenever the urge takes her, she grabs one of you and fucks you hard doggie style, leaving the rest of you to form a lesbian orgy for her delectation.");
+				
+				pc.cuntChange(x, pp.cockVolume(0));
+				
+				output("\n\nShe’s got enough cum backed up to keep this up for a good two hours. When finally every pussy in the room except hers is stuffed and leaking kui-tan cream, she gets up and tosses a single credit chit onto the bed without a word. She only looks mildly disappointed that you don’t all fight over it.");
+				processTime(120);
+				pc.loadInCunt(pp, x);
+				pc.loadInCunt(pp, x);
+				pc.loadInCunt(pp, x);
+				pc.orgasm();
+				pc.orgasm();
+				pc.orgasm();
+				pp.removeCocks();
+				pp.createCock();
+				pp.ballSizeRaw = 0;
+				scenesTotal--;
+			}
+			// Biped:
+			if(pc.isBiped() && scenesTotal > 0 && rand(scenesTotal) == 0)
+			{
+				pp.shiftCock(0, GLOBAL.TYPE_EQUINE);
+				pp.cocks[0].cLengthRaw = 10;
+				output("\n\nA tall naga whore every bit as pinch-lipped as Kat leads you and a human girl into an immaculately decorated room, done up entirely in black and white. Without saying a word she applies wet black lipstick and white nail varnish to you, the opposite to the other girl. She then has you kneel down, ass to ass, inserts a double-ended dildo into your [pc.vagina " + x + "], and firmly straps your hips together. She follows this up with a buttplug in your [pc.asshole]. You can’t see it, but you’re willing to bet anything yours is black, the other girl’s white.");
+				
+				pc.cuntChange(x, 50);
+				pc.buttChange(50);
+				
+				output("\n\nFinally, she brings out a large, flat, glass surface top, and carefully lays it on top of your shoulder blades and [pc.ass]. You shiver around the insertions stretching your holes, making the glass shift slightly; the naga raises a single warning finger to you and then opens the door.");
+				output("\n\n<i>“Ah, excellent!”</i> says one of the two Asian men who enter, handing their menus to the naga. <i>“We’ll have the scallops, the gnocchi and the ass-fuck for afters.”</i> He strides towards the chair in front of you, unzipping his fly and letting his ten inch horse prick flop out as he comes.");
+				
+				pc.buttChange(pp.cockVolume(0));
+				
+				processTime(60);
+				pc.buttChange(pp.cockVolume(0));
+				pc.loadInAss(pp);
+				pc.orgasm();
+				pp.removeCocks();
+				pp.createCock();
+				scenesTotal--;
+			}
+			// Goo:
+			if(pc.isGoo() && scenesTotal > 0 && rand(scenesTotal) == 0)
+			{
+				pp.shiftCock(0, GLOBAL.TYPE_CANINE);
+				output("\n\n<i>“Hmm,”</i> says an ovir pro, eyeing your slimy, ectoplasmic bottom half thoughtfully. <i>“That looks... useful.”</i>");
+				output("\n\nYou and a galotian puddle into a large jacuzzi together. You both coo as the bubble-streams are turned on, sending vibrations juddering through you, making you lose some of your surface tension. The ovir leads a laughing ausar couple in, a lean guy and his chubby girlfriend.");
+				output("\n\nThe two of them have fun on the bed first, taking turns with the ovir’s thick, brightly-colored cock, leaving you and the galotian to gasp and giggle together over the copious amount of sex toys that have been laid out on the side. Finally, the other three splash into you, drunk with lust. The guy bends your [pc.ass] over and firmly knots himself into your [pc.vagina " + x + "], the heavy thrust of his hips sending waves of your goo slapping against the sides.");
+				
+				pc.cuntChange(x, pp.cockVolume(0));
+				
+				output(" The hard girth of his dick combine with the vibrations drives you to clenching orgasm after orgasm; it requires no acting on your part to squeal with simple-minded joy until you are hoarse. You and the galotian’s gooey flesh travel up and down the three writhing bodies, worshipping them, your reward the salt on their skins and the copious amount of slut-feed they spurt into you.");
+				output("\n\n<i>“He always persuades me to come to this sleaze-hole for our anniversaries,”</i> sighs the girl later, leaning over the side as you massage her shoulders, layered on top of her generous hams, tracing the lips of her pussy with gooey tendrils. <i>“I always regret caving in at the time. Never while I’m here.”</i>");
+				processTime(60);
+				pc.loadInAss(pp);
+				pc.orgasm();
+				pc.orgasm();
+				pc.orgasm();
+				pp.removeCocks();
+				pp.createCock();
+				scenesTotal--;
+			}
 		}
 		
 		// + hours
