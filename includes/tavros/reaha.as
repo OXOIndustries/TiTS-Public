@@ -596,7 +596,7 @@ public function brothelMainMenu():void {
 	else if((pc.armor.sexiness + pc.upperUndergarment.sexiness + pc.lowerUndergarment.sexiness) <= 2 || !pc.hasVagina()) addDisabledButton(5, "Turn Tricks", "Turn Tricks", "You need to be a female dressed in something sexy in order to try this.");
 	else if(pc.hasStatusEffect("Jaded")) addDisabledButton(5, "Turn Tricks", "Turn Tricks", "You’re too wiped from last time to contemplate that right now.");
 	else if(pc.hasStatusEffect("Sore")) addDisabledButton(5, "Turn Tricks", "Turn Tricks", "You’re too sore to think about doing that right now.");
-	else addButton(5, "Turn Tricks", brothelTurnTrixLady);
+	else addButton(5, "Turn Tricks", brothelTurnTrixLady, undefined, "Turn Tricks", "See if you can’t earn some money in the most time-honored of fashions.");
 
 	addButton(14,"Leave",mainGameMenu);
 }
