@@ -707,7 +707,7 @@ public function brothelTurnTrixFreelanceWhore(service:String = "none"):void
 		output("\n\nAfter the couple hours of work, you turn up empty handed.");
 		output("\n\nSighing heavily, the mistress scolds you. <i>“Why did I hire you again?”</i>");
 		output("\n\nBefore you can utter a response she cuts you off, slamming her hand on the table. Her once bored, emotionless face changes into a slight scowl as she stares at you dead in the eyes.");
-		output("\n\n<i>“This place is a whorehouse, do you understand? Whore. House. Only two kinds of people come in here to do business and they are: the clients... and the <b>WHORES</b>. Which one of those are you?”</i> Turning her head down towards the desk, she takes a moment for a mental breather until her expression relaxes. She then continues, <i>“Listen, if you’re not going to whore yourself properly on the floor, then don’t bother wasting my time. Please see yourself out of my office.”</i>");
+		output("\n\n<i>“This place is a whorehouse, do you understand? Whore. House. Only two kinds of people come in here to do business and they are: the clients... and the <b>WHORES</b>. Which one of those are you?”</i> Turning her head down towards the desk, she takes a moment for a mental breather until her expression relaxes. She then continues, <i>“Listen, if you’re not going to whore yourself properly on the floor, then don’t bother wasting my time. Please see yourself out.”</i>");
 	}
 	else if(totalEarnings <= baseEarnings)
 	{
@@ -823,7 +823,7 @@ public function brothelTurnTrixLicensedWhore(service:String = "none"):void
 		output("\n\nAfter the couple hours of work, you turn up empty handed.");
 		output("\n\nSighing heavily, the mistress interrogates you. <i>“What. Are you serious?”</i>");
 		output("\n\nBefore you can utter a response she cuts you off, slamming her hand on the table. Her once bored, emotionless face changes into a slight scowl as she stares at you dead in the eyes.");
-		output("\n\n<i>“This place is a whorehouse, do you understand? Whore. House. Only two kinds of people come in here to do business and they are: the clients... and the <b>WHORES</b>. Which one of those did you sign up for again?”</i> Turning her head down towards the desk, she takes a moment for a mental breather until her expression relaxes. She then continues, <i>“Listen, if you’re not going to whore yourself properly on the floor, then don’t bother wasting my time. Please see yourself out of my office.”</i>");
+		output("\n\n<i>“This place is a whorehouse, do you understand? Whore. House. Only two kinds of people come in here to do business and they are: the clients... and the <b>WHORES</b>. Which one of those did you sign up for again?”</i> Turning her head down towards the desk, she takes a moment for a mental breather until her expression relaxes. She then continues, <i>“Listen, if you’re not going to whore yourself properly on the floor, then don’t bother wasting my time. Please see yourself out.”</i>");
 	}
 	else if(totalEarnings <= baseEarnings)
 	{
