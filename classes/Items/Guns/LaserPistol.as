@@ -31,7 +31,8 @@
 			this.description = "a mark III laser pistol";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "The mark III laser pistol carries many refinements over previous models that make it far less likely to explode than its predecessors. It's the perfect weapon for a tech specialist to start with.";
+			this.tooltip = "The mark III laser pistol carries many refinements over previous models that make it far less likely to explode than its predecessors.";
+			//if(kGAMECLASS.chars["PC"].characterClass == GLOBAL.CLASS_ENGINEER) this.tooltip += " It's the perfect weapon for a tech specialist to start with.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
