@@ -1043,9 +1043,10 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 			if(!InCollection(scenesIndex, [3]) && scenesLimit > 0 && rand(scenesTotal) == 0)
 			{
 				pp.shiftCock(0, GLOBAL.TYPE_CANINE);
-				output("\n\nIn one corner booth a burly ausar turns you around and gives you a hard ass-fucking, pounding your [pc.asshole] with his hot knotted cock with relentless pumps of his thick hips whilst you grit your teeth, being used like the whore you are. He dismisses you with a grunt and a slap on the [pc.ass], leaving you to hobble away with doggie semen leaking down your [pc.hip].");
-				processTime(10);
+				output("\n\nIn one corner booth a burly ausar turns you around and gives you a hard ass-fucking, pounding your [pc.asshole] with his hot knotted cock with relentless pumps of his thick hips whilst you grit your teeth, being used like the whore you are.");
 				pc.buttChange(pp.cockVolume(0));
+				output(" He dismisses you with a grunt and a slap on the [pc.ass], leaving you to hobble away with doggie semen leaking down your [pc.hip].");
+				processTime(10);
 				pc.loadInAss(pp);
 				pc.orgasm();
 				anusChanged = true;
@@ -1109,9 +1110,7 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 				pp.cocks[0].cLengthRaw = 8;
 				pp.cocks[0].cthickness = 1.5;
 				output("\n\nThe big spenders - gangsters and businessmen out celebrating particularly lucrative scores, for the most part - pay very well to have multiple girls tending to them. A suited, broad-shouldered daynar sits back, watching the ovir on stage slowly twist and gyrate around her pole, his neck stretched so the kaithrit girl sat behind can massage his tender neck-membranes, whilst you bounce on his lap, squeezing and bending his eight inch lizard cock in your [pc.vagina " + x + "], stroking and teasing your [pc.chest] at his throaty request.");
-				
 				pc.cuntChange(x, pp.cockVolume(0));
-				
 				output(" Beneath the jounce of your bare [pc.ass] you can feel the hair of the human girl sucking his balls. The expression on the daynar’s long face tells you that this is just Tuesday to him - but a pretty good Tuesday, nonetheless.");
 				processTime(10);
 				cuntChanged = true;
@@ -1138,11 +1137,12 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 				pp.shiftCock(1, GLOBAL.TYPE_NAGA);
 				pp.cocks[1].cLengthRaw = pp.cocks[0].cLengthRaw;
 				pp.ballSizeRaw = 5;
-				output("\n\nA leithan has resigned himself to a night of blowjobs - before he spots you. He clutches your [pc.chest] as tightly as you clutch the pole, his undercarriage rubbing frenetically over your [pc.lowerBody], one cock deep in your [pc.vagina " + x + "], the other in your [pc.ass]. The sex is hot and rough, the tip is generous - although you have to get somebody else to hand it to you, since he leaves it wedged in your cum-filled [pc.asshole].");
-				processTime(10);
+				output("\n\nA leithan has resigned himself to a night of blowjobs - before he spots you. He clutches your [pc.chest] as tightly as you clutch the pole, his undercarriage rubbing frenetically over your [pc.lowerBody], one cock deep in your [pc.vagina " + x + "], the other in your [pc.ass].");
 				pc.cuntChange(x, pp.cockVolume(0));
-				pc.loadInCunt(pp, x);
 				pc.buttChange(pp.cockVolume(1));
+				output(" The sex is hot and rough, the tip is generous - although you have to get somebody else to hand it to you, since he leaves it wedged in your cum-filled [pc.asshole].");
+				processTime(10);
+				pc.loadInCunt(pp, x);
 				pc.loadInAss(pp);
 				pc.orgasm();
 				pc.orgasm();
@@ -1227,9 +1227,7 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 				output("\n\nHe hurries you into a room and proceeds to fuck you absolutely stupid, using your [pc.vagina " + x + "] and your [pc.lips] in quick succession, mainlining Insta-rect the moment he orgasms to instantly regain his knotted, dragon-like erection so he can keep thrusting its hardness into your eager, sensitive holes. You finish it off with a");
 				if(pc.canTitFuck()) output(" long tit-job, rubbing his cock lovingly between your lubed-up [pc.chest].");
 				else output(" long jerk, polishing his cock lovingly between your [pc.fingers].");
-				
 				pc.cuntChange(x, pp.cockVolume(0));
-				
 				output(" When he tenses up and begins to groan and flex into you again, nothing emerges from his dilated cum-slit, despite your encouraging squeezes; every last drop he has to offer has disappeared into your slick, clinging pussy and your hungry throat.");
 				output("\n\n<i>“Whole galaxy full of beautiful alien women,”</i> he sighs, lying back on the bed at long last, your fingers trailing down his chest. <i>“And not a single one of them is as good a lay as a New Texan.”</i>");
 				processTime(120);
@@ -1252,9 +1250,7 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 				pp.cocks[0].addFlag(GLOBAL.FLAG_NUBBY);
 				output("\n\nAn anat naval officer - pretty high-ranking, going off his feathers and the cut of his uniform - gruffly asks for you and Room 21. When you open Room 21, you’re momentarily baffled: it looks like a simple, tidy flat, complete with a kitchenette. It’s only when you see the house dress and apron laid out on the bed, note attached, that you understand.");
 				output("\n\nYou take the anat’s coat at the door, give him a kiss on the mask, and ask him how his day was. He sits down at the table wearily and talks about how the admiralty are breaking his balls over this and that, whilst you make him a simple supper. After you’ve finished that you have a mild tiff over whose turn it is to take out the garbage. You make it up with some gentle missionary. Anat cocks are quite thin but have a bulbous, bluntly spiked tip which give you tingles deep inside your [pc.vagina " + x + "].");
-				
 				pc.cuntChange(x, pp.cockVolume(0));
-				
 				output("\n\nOnce that’s over, he takes his coat, thanks you gruffly but sincerely, and leaves hurriedly.");
 				processTime(60);
 				pc.loadInCunt(pp, x);
@@ -1272,9 +1268,7 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 				pp.ballSizeRaw = 18;
 				output("\n\nA female kui-tan, a colony raider going off her brands and cybernetic eye, orders the premium deluxe.");
 				output("\n\nShe sits back on the king-sized bed, bottle of prosecco in hand, watching you grope, lick and kiss the doh’rahn at the other end, two other whores worshipping her giant erection whilst a final one buries beneath it all, attacking her pussy with her genetically enhanced long tongue. Behind you, a whole wall of vid screens silently blares out several terabytes of porn. Whenever the urge takes her, she grabs one of you and fucks you hard doggie style, leaving the rest of you to form a lesbian orgy for her delectation.");
-				
 				pc.cuntChange(x, pp.cockVolume(0));
-				
 				output("\n\nShe’s got enough cum backed up to keep this up for a good two hours. When finally every pussy in the room except hers is stuffed and leaking kui-tan cream, she gets up and tosses a single credit chit onto the bed without a word. She only looks mildly disappointed that you don’t all fight over it.");
 				processTime(120);
 				pc.loadInCunt(pp, x);
@@ -1295,17 +1289,12 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 				pp.shiftCock(0, GLOBAL.TYPE_EQUINE);
 				pp.cocks[0].cLengthRaw = 10;
 				output("\n\nA tall naga whore every bit as pinch-lipped as Kat leads you and a human girl into an immaculately decorated room, done up entirely in black and white. Without saying a word she applies wet black lipstick and white nail varnish to you, the opposite to the other girl. She then has you kneel down, ass to ass, inserts a double-ended dildo into your [pc.vagina " + x + "], and firmly straps your hips together. She follows this up with a buttplug in your [pc.asshole]. You can’t see it, but you’re willing to bet anything yours is black, the other girl’s white.");
-				
 				pc.cuntChange(x, 50);
 				pc.buttChange(50);
-				
 				output("\n\nFinally, she brings out a large, flat, glass surface top, and carefully lays it on top of your shoulder blades and [pc.ass]. You shiver around the insertions stretching your holes, making the glass shift slightly; the naga raises a single warning finger to you and then opens the door.");
 				output("\n\n<i>“Ah, excellent!”</i> says one of the two Asian men who enter, handing their menus to the naga. <i>“We’ll have the scallops, the gnocchi and the ass-fuck for afters.”</i> He strides towards the chair in front of you, unzipping his fly and letting his ten inch horse prick flop out as he comes.");
-				
 				pc.buttChange(pp.cockVolume(0));
-				
 				processTime(60);
-				pc.buttChange(pp.cockVolume(0));
 				pc.loadInAss(pp);
 				pc.orgasm();
 				pp.removeCocks();
@@ -1320,9 +1309,7 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 				output("\n\n<i>“Hmm,”</i> says an ovir pro, eyeing your slimy, ectoplasmic bottom half thoughtfully. <i>“That looks... useful.”</i>");
 				output("\n\nYou and a galotian puddle into a large jacuzzi together. You both coo as the bubble-streams are turned on, sending vibrations juddering through you, making you lose some of your surface tension. The ovir leads a laughing ausar couple in, a lean guy and his chubby girlfriend.");
 				output("\n\nThe two of them have fun on the bed first, taking turns with the ovir’s thick, brightly-colored cock, leaving you and the galotian to gasp and giggle together over the copious amount of sex toys that have been laid out on the side. Finally, the other three splash into you, drunk with lust. The guy bends your [pc.ass] over and firmly knots himself into your [pc.vagina " + x + "], the heavy thrust of his hips sending waves of your goo slapping against the sides.");
-				
 				pc.cuntChange(x, pp.cockVolume(0));
-				
 				output(" The hard girth of his dick combine with the vibrations drives you to clenching orgasm after orgasm; it requires no acting on your part to squeal with simple-minded joy until you are hoarse. You and the galotian’s gooey flesh travel up and down the three writhing bodies, worshipping them, your reward the salt on their skins and the copious amount of slut-feed they spurt into you.");
 				output("\n\n<i>“He always persuades me to come to this sleaze-hole for our anniversaries,”</i> sighs the girl later, leaning over the side as you massage her shoulders, layered on top of her generous hams, tracing the lips of her pussy with gooey tendrils. <i>“I always regret caving in at the time. Never while I’m here.”</i>");
 				processTime(60);
