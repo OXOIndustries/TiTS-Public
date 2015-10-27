@@ -30,7 +30,8 @@
 			this.description = "an eagle handgun";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "A large barreled fifty caliber handgun. This particular pistol packs a wallop for such a compact weapon. It's the perfect weapon for a mercenary on the go.";
+			this.tooltip = "A large barreled fifty caliber handgun. This particular pistol packs a wallop for such a compact weapon.";
+			if(kGAMECLASS.chars["PC"].characterClass == GLOBAL.CLASS_MERCENARY) this.tooltip += " It's the perfect weapon for a mercenary on the go.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
