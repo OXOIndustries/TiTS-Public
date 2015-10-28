@@ -738,9 +738,10 @@ public function appearance(target:Creature):void {
 		}
 		else if(target.legType == GLOBAL.TYPE_NAGA) 
 		{
-			if(target.legCount == 1) output2(" Below your thighs, your flesh is fused together into a very long, snake-like tail, leaving a narrow, connecting gap between your crotch and [target.asshole].");
-			else if(target.legCount < 4) output2(" Below your thighs, " + num2Text(target.legCount) + " wiggling, snake-like appendages allow you to slither around.");
-			else output2(" You have wiggling snake-like appendages to propel yourself around on.");
+			if(target.legCount == 1) output2(" Below your thighs, your flesh is fused together into a very long, snake-like tail, leaving a narrow, connecting gap between your crotch and [target.asshole]. It is");
+			else if(target.legCount < 4) output2(" Below your thighs, " + num2Text(target.legCount) + " wiggling, snake-like appendages allow you to slither around. They are");
+			else output2(" You have wiggling snake-like appendages to propel yourself around on, all");
+			output2(" covered in " + target.scaleColor + "-colored scales.");
 		}
 		//Horse body is placed higher for readability purposes
 		else if(target.legType == GLOBAL.TYPE_SUCCUBUS) 
