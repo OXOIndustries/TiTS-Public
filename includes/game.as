@@ -2414,7 +2414,7 @@ public function statisticsScreen(showID:String = "All"):void
 			else output2(" Taken");
 			// Girlcum Stats
 			output2("\n<b>* Girlcum, Type: </b>" + GLOBAL.FLUID_TYPE_NAMES[pc.girlCumType]);
-			//9999 output2("\n<b>* Girlcum, Probable Ejaculation: </b> " + pc.girlCumQ() + " mLs");
+			output2("\n<b>* Girlcum, Probable Ejaculation: </b> " + pc.girlCumQ() + " mLs");
 			// Fertility
 			if(pc.hasStatusEffect("Infertile") || pc.hasStatusEffect("Sterile")) output2("\n<b>* Fertility:</b> Infertile");
 			else
