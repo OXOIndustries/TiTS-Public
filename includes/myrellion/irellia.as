@@ -655,10 +655,10 @@ public function cumInsideIrellia(x:int):void
 	else if(pc.isNice()) output("Your wish is my command, mi’lady.");
 	else output("Works for me.");
 	output("”</i>");
-	output("\n\nThe ecstatic monarch groans throatily in response, her insectile abdomen twitching wildly behind her. Her finger pushes more firmly against ");
-	if(pc.elasticity < 3 || pc.ass.looseness() <= 3) output("your ring");
-	else output("your elastic ring");
-	output(". With all pussy-juice coating it, it could slip inside more easily than a galotian’s pinkie. She shifts it just when your asshole is about to give, circling the very edge of your pucker with gentle, prodding strokes that seem designed to guide the tempo of your thrusts.");
+	output("\n\nThe ecstatic monarch groans throatily in response, her insectile abdomen twitching wildly behind her. Her finger pushes more firmly against your");
+	if(pc.elasticity >= 3) output(" elastic");
+	else if(pc.ass.looseness() > 3) output(" loose");
+	output(" ring. With all the pussy-juice coating it, it could slip inside more easily than a galotian’s pinkie. She shifts it just when your asshole is about to give, circling the very edge of your pucker with gentle, prodding strokes that seem designed to guide the tempo of your thrusts.");
 	output("\n\nIf that’s her plan, it’s working. You pick up the pace while the Queen giggles and coos encouragement. <i>“More! Fuck me harder! Faster!”</i> One hand traces ");
 	if(pc.biggestTitSize() < 1) output("down the middle of your chest");
 	else output("between your bouncing [pc.breastsNoun]");
