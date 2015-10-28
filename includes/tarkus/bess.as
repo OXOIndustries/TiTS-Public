@@ -908,7 +908,7 @@ public function nameBessProcessing():void
 		output("\n\n\n<b>To prevent complications, please avoid using code in the name.</b>");
 		return;
 	}
-	if (userInterface.textInput.text.length > 14) {
+	if (this.userInterface.textInput.text.length > 14) {
 		output("\n\n\n<b>You must enter a name no more than fourteen characters long.</b>");
 		return;
 	}
@@ -1463,9 +1463,17 @@ public function bessTitlesTheirName():void
 
 public function bessTitlesTryChangeName():void
 {
-	if(this.userInterface.textInput.text == "")
-	{
-		output("<b>You must input a name.</b>");
+	if (this.userInterface.textInput.text == "") {
+		output("\n\n\n<b>You must input a name.</b>");
+		return;
+	}
+	// Illegal characters check. Just in case...
+	if (hasIllegalInput(this.userInterface.textInput.text)) {
+		output("\n\n\n<b>To prevent complications, please avoid using code in the name.</b>");
+		return;
+	}
+	if (this.userInterface.textInput.text.length > 14) {
+		output("\n\n\n<b>You must enter a name no more than fourteen characters long.</b>");
 		return;
 	}
 	chars["BESS"].short = this.userInterface.textInput.text;
@@ -6107,7 +6115,7 @@ public function bessEvent2Encourage():void
 
 	if (pc.isAss())
 	{
-		output("<i>“Spit it out, [bes.name], I don’t have all day.”</i> You simply can’t take it anymore, giving [bess.himHer] a stern look. The "+ bess.mf("male synthetic", "synthetic girl") +" literally jumps at your tone and then bounces back down onto [bess.hisHer] seat.");
+		output("<i>“Spit it out, [bess.name], I don’t have all day.”</i> You simply can’t take it anymore, giving [bess.himHer] a stern look. The "+ bess.mf("male synthetic", "synthetic girl") +" literally jumps at your tone and then bounces back down onto [bess.hisHer] seat.");
 		
 		output("\n\n<i>“U-um... I was just curious as to why organics find the need to watch stories about things that didn’t actually happen. It seems different from when you were watching the news.”</i> [bess.HeShe] nervously queries you. Despite [bess.hisHer] "+ bess.mf("obvious bashfulness", "apparent shyness") +", [bess.hisHer] [bess.eyeColor] eyes are gleaming");
 		if (bessGlasses()) output(" behind her glasses.");
