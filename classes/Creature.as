@@ -106,7 +106,7 @@ package classes {
 		public var typesBought: Array = new Array();
 		public var sellMarkup: Number = 1;
 		public var buyMarkdown: Number = 1;
-		public var keeperGreeting: String = "<i>“Hello and welcome to my shop. Take a gander and let me know if you see anything you like,”</i>  " + a + short + " says with a smile.";
+		public var keeperGreeting: String = "<i>“Hello and welcome to my shop. Take a gander and let me know if you see anything you like,”</i> " + a + short + " says with a smile.";
 		public var keeperBuy: String = "What would you like to buy?";
 		public var keeperSell: String = "What would you like to sell?";
 
@@ -933,7 +933,7 @@ package classes {
 		}
 		public function ballsLockedMessage():String
 		{
-			if (this.hasStatusEffect("Mimbrane Balls")) return "A powerful tug around your " + ballsDescript() + " keeps them from disappearing into your body. The Mimbrane encapsulating your " +  sackDescript() + " seems poised to act against any attempts to fully remove your cum factories.";
+			if (this.hasStatusEffect("Mimbrane Balls")) return "A powerful tug around your " + ballsDescript() + " keeps them from disappearing into your body. The Mimbrane encapsulating your " + sackDescript() + " seems poised to act against any attempts to fully remove your cum factories.";
 			if(balls > 0) return "Despite the heat in your [pc.balls], nothing changed down there.";
 			else return "Despite the heat in your groin, nothing changed down there.";
 		}
@@ -2286,7 +2286,7 @@ package classes {
 						else exhibitionismRaw += arg;
 					}
 				}
-				if(originalExhibtionism < 10 && exhibitionismRaw >= 10) kGAMECLASS.eventBuffer += "\n\nMaybe having sex in front of an audience wouldn't  be that bad.";
+				if(originalExhibtionism < 10 && exhibitionismRaw >= 10) kGAMECLASS.eventBuffer += "\n\nMaybe having sex in front of an audience wouldn't be that bad.";
 				else if(originalExhibtionism < 20 && exhibitionismRaw >= 20) kGAMECLASS.eventBuffer += "\n\nYou're still feeling a little bit of residual thrill. Who knew audiences could be so... intriguing.";
 				else if(originalExhibtionism < 33 && exhibitionismRaw >= 33) kGAMECLASS.eventBuffer += "\n\nYou've got to admit to yourself that you're developing a bit of an <b>exhibitionism fetish</b>. Sure, you get nervous as hell about the idea of showing yourself off, but you get horny as hell too. At least it's a pretty common, socially accepted fetish... in most places.";
 				else if(originalExhibtionism < 50 && exhibitionismRaw >= 50) kGAMECLASS.eventBuffer += "\n\nYour mind keeps supplying you with excuses to bare a little [pc.skinFurScales] around others, or ways to risk getting caught mid-coitus. <b>If you don't stop caving into those thoughts you're going to wind up being a hard-core exhibitionist!</b>";
@@ -3560,7 +3560,7 @@ package classes {
 			if (femininity < femininityMin()) {
 				output += "\n\n<b>Your incredibly masculine, chiseled features become a little bit softer from your body's changing hormones.";
 				if (hasBeard()) {
-					output += "  As if that wasn't bad enough, your " + beard() + " falls out too!";
+					output += " As if that wasn't bad enough, your " + beard() + " falls out too!";
 					beardLength = 0;
 					beardStyle = 0;
 				}
@@ -4102,11 +4102,16 @@ package classes {
 			return output;
 		}
 		public function lowerBody():String {
-			if (isGoo()) return RandomInCollection(["gooey base", "lower half of goo", "lower body"]);
-			if (isNaga()) return RandomInCollection(["snake-like half", "slithery lower half", "lower body"]);
-			if (isTaur()) return RandomInCollection(["tauric half", "bestial lower half", "lower body"]);
-			if (isDrider()) return RandomInCollection(["drider half", "arachnid lower half", "lower body"]);
-			return "lower body";
+			var output: String = "";
+			// Status
+			if (isImmobilized()) output += "immobilized ";
+			// Variants
+			if (isGoo()) output += RandomInCollection(["gooey base", "lower half of goo", "lower body"]);
+			else if (isNaga()) output += RandomInCollection(["snake-like half", "slithery lower half", "lower body"]);
+			else if (isTaur()) output += RandomInCollection(["tauric half", "bestial lower half", "lower body"]);
+			else if (isDrider()) output += RandomInCollection(["drider half", "arachnid lower half", "lower body"]);
+			else output += "lower body";
+			return output;
 		}
 		public function leg(forceType: Boolean = false, forceAdjective: Boolean = false, pluralAdjective: Boolean = false): String
 		{
@@ -6409,11 +6414,11 @@ package classes {
 		public function cumQ(): Number {
 			if (!hasCock()) return 0;
 			var quantity: Number = 0;
-			//lust - 50% = normal output.  0 = 75%. 100 = +125% output.
+			//lust - 50% = normal output. 0 = 75%. 100 = +125% output.
 			var lustCoefficient: Number = (lust() / 2 + 75) / 100;
 			quantity = cumMultiplier() * lustCoefficient * maxCum() / ballEfficiency;
 			//Rut means bigger, ball-draining orgasms.
-			quantity += statusEffectv1("rut");
+			quantity += statusEffectv1("Rut");
 			if (quantity > currentCum()) quantity = currentCum();
 			//Round dat shit.
 			quantity = Math.round(quantity / 10) * 10;
@@ -6438,7 +6443,7 @@ package classes {
 			var quantity: Number = 0;
 			//Base value is ballsize*ballQ*cumefficiency by a factor of 2.
 			//Other things that affect it: 
-			//lust - 50% = normal output.  0 = 75%. 100 = +125% output.
+			//lust - 50% = normal output. 0 = 75%. 100 = +125% output.
 			var lustCoefficient: Number = (lust() / 2 + 75) / 100;
 
 			//Figure on 3x a cumshot value?
@@ -6507,7 +6512,7 @@ package classes {
 				{
 					//Figure out a % of normal size to add based on %s.
 					var nutChange:Number = ballFullness/100 - 1;
-					//Get the actual bonus number to add.  Keep it to 2 decimals.
+					//Get the actual bonus number to add. Keep it to 2 decimals.
 					var nutBonus:Number = Math.round(ballSizeRaw * nutChange * 100)/100;
 					trace("NUT BONUS: " + nutBonus);
 					//Apply nutbonus and track in v1 of the perk
@@ -6526,10 +6531,46 @@ package classes {
 			return false;
 		}
 		//Placeholder
-		public function girlCumQ():Number
+		public function girlCumQ(arg: int = -1):Number
 		{
 			// 9999
-			return 1;
+			if (!hasVagina()) return 0;
+			var quantity: Number = 0;
+			// lust - 50% = normal output. 0 = 75%. 100 = +125% output.
+			var lustCoefficient: Number = (lust() / 2 + 75) / 100;
+			var girlCumMultiplier: Number = 0;
+			var girlCumAmount: Number = 0;
+			var squirterBonus: Number = 0;
+			// For targetting a specific vagina, otherwise it's all inclusive.
+			if (arg < 0)
+			{
+				for (arg = 0; arg < vaginas.length; arg++)
+				{
+					girlCumMultiplier += vaginas[arg].wetness();
+					if (isSquirter(arg)) squirterBonus += vaginas[arg].wetness() * 0.5;
+					girlCumAmount++;
+				}
+			}
+			else
+			{
+				girlCumMultiplier += vaginas[arg].wetness();
+				if (isSquirter(arg)) squirterBonus += vaginas[arg].wetness() * 0.5;
+				girlCumAmount++;
+			}
+			// Scale values.
+			girlCumMultiplier *= 1; // 1x per vagina's wetness level
+			girlCumAmount *= 5; // 5 ml produced per vagina
+			squirterBonus *= 10; // extra 10 mL produced per extra squirter bonus
+			// Estimate initial quantity.
+			quantity = girlCumMultiplier * lustCoefficient * (girlCumAmount + squirterBonus);
+			// Heat means wetter orgasms.
+			quantity += statusEffectv1("Heat");
+			// Round values.
+			quantity = Math.round(quantity / 10) * 10;
+			trace("Girl-cum produced: " + quantity);
+			// Default minimum of 1mL
+			if (quantity < 1) quantity = 1;
+			return quantity;
 		}
 		public function totalClits(): Number {
 			if (vaginas.length == 0) return 0;
@@ -6763,7 +6804,7 @@ package classes {
 			}
 			if (type == GLOBAL.TYPE_SIREN)
 			{
-				vaginas[slot].vaginaColor = "blue";
+				vaginas[slot].vaginaColor = RandomInCollection(["blue", "aquamarine"]);
 				vaginas[slot].addFlag(GLOBAL.FLAG_NUBBY);
 				vaginas[slot].addFlag(GLOBAL.FLAG_TENDRIL);
 				vaginas[slot].addFlag(GLOBAL.FLAG_APHRODISIAC_LACED);
@@ -6802,16 +6843,13 @@ package classes {
 			}
 			if (type == GLOBAL.TYPE_EQUINE) {
 				cocks[slot].knotMultiplier = 1;
-				if(rand(3) == 0) cocks[slot].cockColor = "black";
-				else if(rand(3) == 0) cocks[slot].cockColor = "mottled pink and black";
-				else cocks[slot].cockColor = "pink";
+				cocks[slot].cockColor = RandomInCollection(["pink", "black", "mottled pink and black"]);
 				cocks[slot].addFlag(GLOBAL.FLAG_BLUNT);
 				cocks[slot].addFlag(GLOBAL.FLAG_FLARED);
 				cocks[slot].addFlag(GLOBAL.FLAG_SHEATHED);
 			}
 			if (type == GLOBAL.TYPE_BEE) {
-				if(rand(2) == 0) cocks[slot].cockColor = "black";
-				else cocks[slot].cockColor = "amber";
+				cocks[slot].cockColor = RandomInCollection(["amber", "black"]);
 				cocks[slot].knotMultiplier = 1;
 				cocks[slot].addFlag(GLOBAL.FLAG_SMOOTH);
 				cocks[slot].addFlag(GLOBAL.FLAG_FORESKINNED);
@@ -6834,21 +6872,18 @@ package classes {
 				cocks[slot].addFlag(GLOBAL.FLAG_SMOOTH);
 			}
 			if (type == GLOBAL.TYPE_DEMONIC) {
-				if(rand(2) == 0) cocks[slot].cockColor = "red";
-				else cocks[slot].cockColor = "dark purple";
+				cocks[slot].cockColor = RandomInCollection(["red", "dark purple"]);
 				cocks[slot].knotMultiplier = 1.4;
 				cocks[slot].addFlag(GLOBAL.FLAG_KNOTTED);
 				cocks[slot].addFlag(GLOBAL.FLAG_NUBBY);
 			}
 			if (type == GLOBAL.TYPE_TENTACLE) {
-				if (rand(2) == 0) cocks[slot].cockColor = "purple";
-				else cocks[slot].cockColor = "green";
+				cocks[slot].cockColor = RandomInCollection(["green", "purple"]);
 				cocks[slot].addFlag(GLOBAL.FLAG_PREHENSILE);
 				cocks[slot].addFlag(GLOBAL.FLAG_FLARED);
 			}
 			if (type == GLOBAL.TYPE_ANEMONE || type == GLOBAL.TYPE_SIREN) {
-				if (rand(2) == 0) cocks[slot].cockColor = "blue";
-				else cocks[slot].cockColor = "aquamarine";
+				cocks[slot].cockColor = RandomInCollection(["blue", "aquamarine"]);
 				cocks[slot].addFlag(GLOBAL.FLAG_APHRODISIAC_LACED);
 				cocks[slot].addFlag(GLOBAL.FLAG_STINGER_BASED);
 			}
@@ -6884,9 +6919,7 @@ package classes {
 				cocks[slot].cockColor = RandomInCollection(["silver", "gray", "black"]);
 			}
 			if (type == GLOBAL.TYPE_VENUSPITCHER) {
-				if (rand(3) == 0) cocks[slot].cockColor = "purple";
-				else if (rand(3) == 0) cocks[slot].cockColor = "olive green";
-				else cocks[slot].cockColor = "green";
+				cocks[slot].cockColor = RandomInCollection(["green", "purple", "olive green"]);
 				cocks[slot].addFlag(GLOBAL.FLAG_PREHENSILE);
 				cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
 			}
@@ -8685,7 +8718,7 @@ package classes {
 					else descript += "miniature";
 					descripted++;
 				}
-				//"average".  
+				//"average".
 				else if (clitLength < 1) {
 					//no size comment
 				}
@@ -9973,7 +10006,7 @@ package classes {
 			}
 			return descript + noun;
 		}
-		//New cock adjectives.  The old one sucked dicks
+		//New cock adjectives. The old one sucked dicks
 		public function cockAdjective(cockNum: Number = -1):String {
 			var descript: String = "";
 			var rando: Number = 0;
@@ -10025,7 +10058,7 @@ package classes {
 			//canine nouns.
 			else if(rand(5) == 0 && cocks[cockNum].hasFlag(GLOBAL.FLAG_KNOTTED) && cocks[cockNum].cType != GLOBAL.TYPE_CANINE && cocks[cockNum].cType != GLOBAL.TYPE_SNAKE && cocks[cockNum].cType != GLOBAL.TYPE_NAGA)
 			{
-				if(rand(3) == 0)  descript += "knotted";
+				if(rand(3) == 0) descript += "knotted";
 				else if(rand(2) == 0) descript += "bulbous";
 				else descript += "knotty";
 			}
@@ -10206,7 +10239,7 @@ package classes {
 			}
 			return descript;
 		}
-		//New cock adjectives.  The old one sucked dicks
+		//New cock adjectives. The old one sucked dicks
 		public function statCockAdjective(l: int, w: int, type: int = 0):String {
 			var descript: String = "";
 			var rando: Number = 0;
@@ -10407,7 +10440,7 @@ package classes {
 			else if (row < 0) return 0;
 			else return nippleWidthRatio * .5 * ((10 + breastRows[row].breastRating()) / 10)
 		}
-		//New cock adjectives.  The old one sucked dicks
+		//New cock adjectives. The old one sucked dicks
 		public function nippleCockAdjective(plural: Boolean = false):String {
 			var descript: String = "";
 			var rando: Number = 0;
@@ -11230,24 +11263,27 @@ package classes {
 				temp = this.rand(6);
 				if (temp == 0) return "point";
 				else if (temp <= 1) return "narrow tip";
-				else if (temp <= 2) return "purple, pointed glans";
+				//else if (temp <= 2) return "purple, pointed glans";
+				else if (temp <= 2) return "pointed glans";
 				else if (temp <= 3) return "tip";
-				else if (temp <= 4) return "violet tip";
+				//else if (temp <= 4) return "violet tip";
+				else if (temp <= 4) return "pointed tip";
 				else return "reptilian crown";
 			} else if (type == GLOBAL.TYPE_ANEMONE || type == GLOBAL.TYPE_SIREN) {
 				temp = this.rand(6);
-				if (temp == 0) return "blue tip";
+				//if (temp == 0) return "blue tip";
+				if (temp == 0) return "eye-catching tip";
 				else if (temp == 1) return "tentacle-ringed glans";
 				else if (temp == 2) return "exotic cock-head";
 				else if (temp == 3) return "aphrodisiac-laced head";
 				else return "wiggling crown";
 			}
-			/*if(cocks[cockNum].cType == 10) {
+			/*else if (type == 9999) {
 				temp = this.rand(5);
-				if(temp == 0) return "star tip";
-				else if(temp == 1) return "blooming cock-head";
-				else if(temp == 2) return "open crown";
-				else if(temp == 3) return "alien tip";
+				if (temp == 0) return "star tip";
+				else if (temp == 1) return "blooming cock-head";
+				else if (temp == 2) return "open crown";
+				else if (temp == 3) return "alien tip";
 				else return "bizarre head";
 			}*/
 			else {
@@ -11590,7 +11626,7 @@ package classes {
 		 * Try to impregnate this creature.
 		 * @param	cumFrom
 		 * @param	pregSlot
-		 * @return  success/failure
+		 * @return	success/failure
 		 */
 		public function tryKnockUp(cumFrom:Creature, pregSlot:int = -1):Boolean
 		{
