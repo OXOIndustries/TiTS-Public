@@ -105,16 +105,33 @@ package classes.GameData
 		{
 			combatContainer();
 		}
+		public static function showCombatMenu():void
+		{
+			if (combatContainer) combatContainer.showCombatMenu();
+		}
 		public static function showCombatUI():void
 		{
 			if (combatContainer) combatContainer.showCombatUI();
+		}
+		public static function processCombat():void
+		{
+			if (combatContainer) combatContainer.processCombat();
 		}
 		public static function getRoundCount():int
 		{
 			if (combatContainer) return combatContainer.roundCounter;
 			return -1;
 		}
-
+		public static function getCreaturesGroup(c:Creature):Array
+		{
+			if (_hostileCharacters.indexOf(c) == -1) return _friendlyCharacters;
+			return _hostileCharacters;
+		}
+		public static function getCreaturesOpposition(c:Creature):Array
+		{
+			if (_hostileCharacters.indexOf(c) != -1) return _friendlyCharacters;
+			return _hostileCharacters;
+		}
 	}
 
 }

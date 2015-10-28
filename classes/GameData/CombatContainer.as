@@ -1,8 +1,12 @@
 package classes.GameData 
 {
+	import classes.Characters.PlayerCharacter;
 	import classes.Creature;
 	import classes.StorageClass;
 	import classes.Engine.Interfaces.*;
+	import classes.Characters.*;
+	import classes.kGAMECLASS;
+	import fl.events.SliderEventClickTarget;
 	
 	/**
 	 * Documentation on things!
@@ -20,8 +24,7 @@ package classes.GameData
 	 */
 	public class CombatContainer 
 	{
-		private var _selectedTarget:Creature = null;
-		private var _selectedAttack:*;
+		private function get pc():PlayerCharacter { return kGAMECLASS.pc; }
 		
 		/**
 		 * Hook function.
@@ -61,8 +64,8 @@ package classes.GameData
 			
 			showCombatUI();
 			
-			generateCombatMenu();
 			showCombatDescriptions();
+			generateCombatMenu();
 			
 			_initForRound = _roundCounter;
 		}
@@ -72,34 +75,132 @@ package classes.GameData
 		 */
 		private function generateCombatMenu():void
 		{
+			if (pc.hasStatusEffect("Stunned") || pc.hasStatusEffect("Paralyzed"))
+			{
+				if (pc.hasStatusEffect("Stunned")) output("\n<b>You're still stunned!</b>");
+				addButton(0, "Recover", doStunRecover, pc);
+				return;
+			}
 			
+			if (pc.hasStatusEffect("Naleen Coiled") || pc.hasStatusEffect("Mimbrane Smother") || pc.hasStatusEffect("Grappled"))
+			{
+				if (pc.hasStatusEffect("Naleen Coiled"))
+				{
+					output("\n<b>You are wrapped up in coils!</b>");
+				}
+				else if (pc.hasStatusEffect("Mimbrane Smother"))
+				{
+					output("\n\n<b>You are being smothered by a Mimbrane!</b>");
+				}
+				else
+				{
+					output("\n<b>You are grappled and unable to fight normally!</b>");
+				}
+				
+				addButton(0, "Struggle", doGrappleStruggle); // 9999 - merge naleen coil struggle && mimbranesmother
+				
+				if (pc.hasPerk("Static Burst") && (!hasEnemyOfClass(NyreaAlpha) && !hasEnemyOfClass(NyreaBeta)))
+				{
+					if(pc.shields() <= 0) addDisabledButton(3,"StaticBurst","StaticBurst","You need shields available to overload in order for static burst to function.");
+					else if(pc.energy() >= 5) this.addButton(3,"StaticBurst", doStaticBurst);
+					else this.addDisabledButton(3,"StaticBurst");
+				}
+				
+				if (hasEnemyOfClass(Kaska))
+				{
+					addButton(10, "Nip-Pinch", pinchKaskaNipple, undefined, "Nip-Pinch", "Maybe pinching Kaska's nipple will get her to release you.");
+				}
+				
+				addButton(4, "Do Nothing", doWait);
+				return;
+			}
+			
+			// attack
+			var af:Function = pc.meleeWeapon.attackImplementor == null ? CombatAttacks.MeleeAttack : pc.meleeWeapon.attackImplementor;
+			addButton(0, "Attack", selectSimpleAttack, af, "Attack", "Attack a single enemy with a melee strike. Damage is based on physique.");
+			
+			// shoot
+			var sf:Function = pc.rangedWeapon.attackImplementor == null ? CombatAttacks.RangedAttack : pc.rangedWeapon.attackImplementor;
+			addButton(1, upperCase(pc.rangedWeapon.attackVerb), selectSimpleAttack, sf, "Ranged Attack", "Attack a single enemy with a ranged weapon. Damage is based on aim.");
+			
+			//
+			// inventory
+			addButton(3, "Inventory", kGAMECLASS.inventory, undefined, "Inventory", "Use items in combat.");
+			// specials
+			addButton(4, "Specials", generateSpecialsMenu, undefined, "Specials", "The special attacks you have available to you are listed in this menu.");
+			
+			// tease
+			// sense
+			// 
+			//
+			// fantasize
+			
+			//
+			//
+			//
+			//
+			// run
 		}
 		
-		private function targetSelectionMenu():void
+		private function generateSpecialsMenu():void
+		{
+			var attacks:Array = CombatAttacks.GetAttacksFor(pc);
+		}
+		
+		private function selectSimpleAttack(f:Function):void
+		{
+			var t:Creature = null;
+			
+			if (_hostiles.length == 1)
+			{
+				t = _hostiles[0];
+			}
+			else if (enemiesAlive() == 1)
+			{
+				for (var i:int = 0; i < _hostiles.length; i++)
+				{
+					if (!_hostiles[i].isDefeated())
+					{
+						t = _hostiles[i];
+						break;
+					}
+				}
+			}
+			
+			if (t == null)
+			{
+				selectSimpleTarget(f);
+			}
+			else
+			{
+				executeSimpleAttack({func: f, tar: t});
+			}
+		}
+		
+		private function selectSimpleTarget(f:Function):void
 		{
 			clearMenu();
-			// btn1 - show selected attack?
 			
-			removeAllButtonHighlights();
-			
-			var btnOffset:int = 0;
-			
+			var bOff:int = 0;
 			for (var i:int = 0; i < _hostiles.length; i++)
 			{
 				if (!_hostiles[i].isDefeated())
 				{
-					addButton(btnOffset, _hostiles[i].btnTargetText, selectTarget, _hostiles[i]);
-					btnOffset++;
+					addButton(bOff, _hostiles[i].uniqueName, executeSimpleAttack, { func:f, tar: _hostiles[i] } );
 				}
 			}
+			
+			addButton(14, "Back", generateCombatMenu);
 		}
 		
-		private function selectTarget(target:Creature):void
+		private function executeSimpleAttack(opts:Object):void
 		{
-			_selectedTarget = target;
-			
+			clearOutput();
 			clearMenu();
-			showCombatMenu();
+			
+			opts.func(pc, opts.tar);
+			
+			processCombat();
 		}
 		
 		private function checkForLoss():Boolean
@@ -110,6 +211,16 @@ package classes.GameData
 				clearMenu();
 				addButton(0, "Defeat", _lossFunction);
 				return true;
+			}
+			else if (hasEnemyOfClass(Naleen) || hasEnemyOfClass(NaleenMale))
+			{
+				if (pc.hasStatusEffect("Naleen Venom") && (pc.physique() == 0 || pc.willpower() == 0))
+				{
+					showCombatUI();
+					clearMenu();
+					addButton(0, "Defeat", _lossFunction);
+					return true;
+				}
 			}
 			return false;
 		}
@@ -602,6 +713,15 @@ package classes.GameData
 				if (!_hostiles[i].isDefeated()) num++;
 			}
 			return num;
+		}
+		
+		public function hasEnemyOfClass(classT:Class):Boolean
+		{
+			for (var i:int = 0; i < _hostiles.length; i++)
+			{
+				if (_hostiles is classT) return true;
+			}
+			return false;
 		}
 	}
 

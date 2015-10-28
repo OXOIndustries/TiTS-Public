@@ -3,6 +3,7 @@ package classes.GameData
 	import classes.Characters.Celise;
 	import classes.Characters.Kaska;
 	import classes.Characters.PlayerCharacter;
+	import classes.Characters.ZilFemale;
 	import classes.Creature;
 	import classes.Engine.Combat.DamageTypes.DamageResult;
 	import classes.GLOBAL;
@@ -25,7 +26,12 @@ package classes.GameData
 	{
 		public static function GetAttacksFor(target:Creature):Array
 		{
+			var atks:Array = [];
 			
+			for (var i:int = 0; i < a.length; i++)
+			{
+				
+			}
 		}
 		
 		private static var o:CombatAttacks;
@@ -348,13 +354,15 @@ package classes.GameData
 				else output(target.capitalA + target.short + " manages to avoid " + attacker.a + possessive(attacker.short) + " " + attacker.rangedWeapon.attackNoun + ".");
 				return false;
 			}
-			else if ((attacker.hasStatusEffect("Blinded") || attacker.hasStatusEffect("Smoke Grenade")) && rand(4) > 0)
+			
+			if ((attacker.hasStatusEffect("Blinded") || attacker.hasStatusEffect("Smoke Grenade")) && rand(4) > 0)
 			{
 				if (attacker is PlayerCharacter) output("Your blind-fired shot doesn't manage to connect.");
-				else output(attacker.capitalA + possessive(attacker.short) + " blinded shot fails to connect!");
+				else output(attacker.capitalA + possessive(attacker.short) + " blind "+ attacker.rangedWeapon.attackNoun +" fails to connect!");
 				return false;
 			}
-			else if (asFlurry && rand(100) <= 45 && !target.isImmobilized() && !attacker.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_EFFECT_FLURRYBONUS))
+			
+			if (asFlurry && rand(100) <= 45 && !target.isImmobilized() && !attacker.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_EFFECT_FLURRYBONUS))
 			{
 				if (target.customDodge.length > 0) output(target.customDodge); 
 				else if (attacker is PlayerCharacter) output("You " + attacker.rangedWeapon.attackVerb + " at " + target.a + target.short + " with your " + attacker.rangedWeapon.longName + ", but just can't connect.");
@@ -373,6 +381,52 @@ package classes.GameData
 			var damage:TypeCollection = attacker.rangedDamage();
 			damageRand(damage, 15);
 			applyDamage(damage, attacker, target, "ranged");
+			return true;
+		}
+		
+		public static function SingleMeleeAttackImpl(attacker:Creature, target:Creature, asFlurry:Boolean = false):Boolean
+		{
+			if (combatMiss(attacker, target))
+			{
+				if (target.customDodge.length > 1) output(target.customDodge);
+				else if (attacker is PlayerCharacter) output("You " + attacker.meleeWeapon.attackVerb + " at " + target.a + target.short + " with your " + attacker.meleeWeapon.longName + ", but just can't connect.");
+				else if (target is PlayerCharacter) output("You manage to avoid " + attacker.a + possessive(attacker.short) + " " + attacker.meleeWeapon.attackNoun + ".");
+				else output(target.capitalA + target.short + " manages to avoid " + attacker.a + possessive(attacker.short) + " " + attacker.meleeWeapon.attackNoun + ".");
+				return false;
+			}
+			
+			if ((attacker.hasStatusEffect("Blind") || attacker.hasStatusEffect("Smoke Grenade")) && rand(2) > 0)
+			{
+				if (attacker is PlayerCharacter) output("Your blind strike doesn't manage to connect.");
+				else output(attacker.capitalA + possessive(attacker.short) + " blind " + attacker.meleeWeapon.attackNoun + " fails to connect!");
+				return false;
+			}
+			
+			if (asFlurry && rand(100) <= 45 && !target.isImmobilized() && !attacker.meleeWeapon.hasFlag(GLOBAL.ITEM_FLAG_EFFECT_FLURRYBONUS))
+			{
+				if (target.customDodge.length > 0) output(target.customDodge); 
+				else if (attacker is PlayerCharacter) output("You " + attacker.meleeWeapon.attackVerb + " at " + target.a + target.short + " with your " + attacker.meleeWeapon.longName + ", but just can't connect.");
+				else if (target is PlayerCharacter) output("You manage to avoid " + attacker.a + possessive(attacker.short) + " " + attacker.meleeWeapon.attackNoun + ".");
+				else output(target.capitalA + target.short + " manages to avoid " + attacker.a + possessive(attacker.short) + " " + attacker.meleeWeapon.attackNoun + ".");
+				return false;
+			}
+			
+			if (target is PlayerCharacter && kGAMECLASS.mimbraneFeetBonusEvade(target))
+			{
+				output("\nYou’re taken by surprise as your [pc.foot] suddenly acts on its own, right as you’re about be attacked. The action is intense enough to slide you right out of the face of danger. Seems your Mimbrane is even more attentive than you are!\n");
+				return false;
+			}
+			
+			if (target is ZilFemale) flags["HIT_A_ZILGIRL"] = 1;
+			
+			if (attacker is PlayerCharacter) output("You land a hit on " + target.a + target.short + " with your " + attacker.meleeWeapon.longName + "!");
+			else if (attacker.plural) output(attacker.capitalA + attacker.short + " connects with their " + plural(attacker.meleeWeapon.longName) + "!");
+			else if (target is PlayerCharacter) output(attacker.capitalA + attacker.short + " hits you with " + attacker.mfn("his", "her", "its") + " " + attacker.meleeWeapon.longName + "!");
+			else output(attacker.capitalA + attacker.short + " connects with " + attacker.mfn("his", "her", "its") + " " + attacker.meleeWeapon.longName + "!");
+			
+			var d:TypeCollection = attacker.meleeDamage();
+			damageRand(d, 15);
+			applyDamage(d, attacker, target, "melee");
 			return true;
 		}
 		
@@ -425,7 +479,8 @@ package classes.GameData
 			var numFlurries = 0;
 			if (attacker.hasPerk("Second Shot")) numFlurries++;
 			
-			for (var n:int = 0; n < numShots; n++)
+			var totalShots:int = numShots + numFlurries;
+			for (var n:int = 0; n < totalShots; n++)
 			{
 				var asFlurry:Boolean = false;
 				if (n != 0)
@@ -444,6 +499,102 @@ package classes.GameData
 			}
 			
 			kGAMECLASS.playerMimbraneCloudAttack();
+		}
+		
+		public static function MeleeAttack(attacker:Creature, target:Creature):void
+		{
+			if (attacker.hasCombatDrone())
+			{
+				attacker.droneTarget = target;
+			}
+			
+			if (target is Celise)
+			{
+				output(target.customDodge);
+				return;
+			}
+			
+			if (attacker.hasStatusEffect("Disarmed"))
+			{
+				if (attacker is PlayerCharacter) output("You try to attack until you remember you got disarmed!");
+				else output(attacker.capitalA + attacker.short + " scrabbles about, trying to find " + attacker.mfn("his", "her", "its") + " missing weapon.");
+				return;
+			}
+			
+			if (attacker.hasPerk("Riposte") && !attacker.hasStatusEffect("Riposting"))
+			{
+				attacker.createStatusEffect("Riposting", 0, 0, 0, 0, true, "", "", true, 0);
+			}
+			
+			var numSwings:int = 1;
+			
+			var numFlurries:int = 0;
+			if (attacker.hasPerk("Second Attack")) numFlurries++;
+			
+			var numHits:int = 0;
+			if (attacker.hasPerk("Multiple Attacks")) numSwings = attacker.perkv1("Multiple Attacks");
+			
+			var totalSwings:int = numSwings + numFlurries;
+			for (var i:int = 0; i < totalSwings; i++)
+			{
+				var asFlurry:Boolean = false;
+				if (n != 0)
+				{
+					output("\n");
+					if (numFlurries > 0)
+					{
+						numFlurries--;
+						asFlurry = true;
+					}
+				}
+				
+				if (SingleMeleeAttackImpl(attacker, target, asFlurry)) numHits++;
+			}
+			
+			if (attacker.hasPerk("Cleave"))
+			{
+				var others:Array = CombatManager.getCreaturesGroup(target);
+				
+				for (var i:int = 0; i < others.length; i++)
+				{
+					if (!others[i].isDefeated())
+					{
+						if (SingleMeleeAttackImpl(attacker, others[i], false)) numHits++;
+					}
+				}
+			}
+			
+			if (attacker.hasPerk("Myr Venom"))
+			{
+				if (combatMiss(attacker, target))
+				{
+					if (attacker is PlayerCharacter) output("You can't manage to sneak in a bite!");
+					else if (target is PlayerCharacter) output("You narrowly avoid " + attacker.a + possessive(attacker.short) + " lunging bite!");
+					else output(target.capitalA + target.short + " narrowly avoids " + attacker.a + possessive(attacker.short) + " lunging bite!");
+				}
+				else
+				{
+					if (attacker is PlayerCharacter) output("To finish off your attack, you lean in and deliver a surprise bite, injecting a healthy dose of your red myrmedion venom!");
+					else if (target is PlayerCharacter) output("A spike of pain lances through your arm as " + attacker.a + attacker.short + " clamps their jaws around your bicep, venom quickly coursing through your veins!");
+					else output(target.capitalA + target.short + " " + target.mfn("growls", "squeals", "grunts") + " aloud as " + attacker.a + attacker.short + " clamps their jaws around a limb!");
+					
+					applyDamage(new TypeCollection( { tease: 3 + rand(3) } ), attacker, target, "minimal");
+				}
+			}
+			
+			if (numHits > 0)
+			{
+				if (attacker.hasPerk("Bloodthirsty"))
+				{
+					attacker.energy(2 + rand(3));
+				}
+			}
+			
+			if (attacker is PlayerCharacter)
+			{
+				kGAMECLASS.mimbraneHandBonusAttack(target);
+				kGAMECLASS.playerMimbraneCloudAttack();
+			}
 		}
 		
 		//{ region Item Attack Implementors
@@ -671,7 +822,7 @@ package classes.GameData
 		public static const Volley:SingleCombatAttack;
 		private static function VolleyImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
-			RangedAttack(attacker, target);
+			RangedAttackImpl(attacker, target);
 			SingleRangedAttackImpl(attacker, target, true);
 			
 			if (attacker.aim() / 2 + rand(20) + 1 >= target.reflexes() / 2 + 10 && !target.hasStatusEffect("Blinded") && attacker.hasRangedEnergyWeapon())
@@ -932,8 +1083,29 @@ package classes.GameData
 					if (target is Kaska)
 					{
 						output("\nKaska's eyes cross from the overwhelming pain. She sways back and forth like a drunken sailor before hitting the floor with all the grace of a felled tree. A high pitched squeak of pain rolls out of her plump lips. <b>She's very, very stunned.</b>");
-						target.createStatusEffect("Stunned", 3 + rand(2), 0, 0, 0, false, "Stun", "Cannot act for a while. You hit her balls pretty ahrd!", true, 0);
+						target.createStatusEffect("Stunned", 3 + rand(2), 0, 0, 0, false, "Stun", "Cannot act for a while. You hit her balls pretty hard!", true, 0);
 					}
+					else
+					{
+						if (target is PlayerCharacter)
+						{
+							output("\n<b>You are stunned!</b>");
+						}
+						else
+						{
+							output("\n<b>" + target.capitalA + target.short + " is stunned.</b>");
+						}
+						
+						target.createStatusEffect("Stunned", 2 + rand(2), 0, 0, 0, false, "Stun", "Cannot act for a while.", true, 0);
+					}
+				}
+				else
+				{
+					if (attacker is PlayerCharacter)
+					{
+						output("\nIt doesn't look like you accomplished much more than hitting your target.");
+					}
+					// potential outputs for other targets/the player not getting stunned
 				}
 			}
 		}
@@ -941,43 +1113,150 @@ package classes.GameData
 		public static const DisarmingShot:SingleCombatAttack;
 		private static function DisarmingShotImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
+			if (target.hasStatusEffect("Disarm Immune"))
+			{
+				if (attacker is PlayerCharacter) output("You try to disarm " + target.a + target.short + " but can't. <b>It's physically impossible!</b>");
+				else if (target is PlayerCharacter) output(attacker.capitalA + attacker.short + " tries to disarm you but can't!");
+				else output(attacker.capitalA + attacker.short + " tries to disarm " + target.a + target.short + " but can't. <b>It's physically impossible!</b>");
+				return;
+			}
 			
+			if (target.hasStatusEffect("Disarmed"))
+			{
+				if (attacker is PlayerCharacter) output("You try to disarm " + target.a + target.short + " but can't. <b>They've already been disarmed!</b>");
+				else if (target is PlayerCharacter) output(attacker.capitalA + attacker.short + " tries to disarm you but can't!");
+				else output(attacker.capitalA + attacker.short + " tries to disarm " + target.a + target.short + " but can't. <b>They've already been disarmed!</b>");
+				return;
+			}
+			
+			if (rangedCombatMiss(attacker, target))
+			{
+				if (attacker is PlayerCharacter) output("You try to disarm " + target.a + target.short + " but miss.");
+				else if (target is PlayerCharacter) output(attacker.capitalA + attacker.short + " tries to disarm you but they narrowly miss the opportunity!");
+				else output(attacker.capitalA + attacker.short + " tries to disarm " + target.a + target.short + " but they miss the shot!");
+				return;
+			}
+			
+			if ((attacker.hasStatusEffect("Blinded") || attacker.hasStatusEffect("Smoke Grenade")) && rand(10) > 0)
+			{
+				if (attacker is PlayerCharacter) output("Your blind-fired shot fails to connect.");
+				else output(attacker.capitalA + possessive(attacker.short) + " blind-fired shot fails to connect.");
+				return;
+			}
+			
+			// Hits
+			if (attacker is PlayerCharacter) output("You land a crack shot on " + target.a + possessive(target.short) + " weapon, disarming them.");
+			else if (target is PlayerCharacter) output(attacker.capitalA + attacker.short + " shoots your weapons away with well-placed shots!");
+			else output(attacker.capitalA + attacker.short + " shoots " + target.a + possessive(attacker.short) + " weapons away with well-placed shots!");
+			
+			target.createStatusEffect("Disarmed", 4, 0, 0, 0, false, "Blocked", "Cannot use normal melee or ranged attacks!", true, 0);
 		}
 		
 		public static const StealthFieldGenerator:SingleCombatAttack;
 		private static function StealthFieldGeneratorImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
+			var rounds:int = 0;
 			
+			if (attacker is PlayerCharacter)
+			{
+				output("You activate your stealth field generator, fading into nigh-invisibility.");
+				rounds = 2;
+			}
+			else
+			{
+				output(attacker.capitalA + attacker.short + " activates a stealth field generator, fading into nigh-invisibility.");
+				rounds = 3;
+			}
+			
+			attacker.createStatusEffect("Stealth Field Generator", rounds, 0, 0, 0, false, "Stealth Field", "Provides a massive bonus to evasion chances!", true, 0);
 		}
 		
 		public static const Grenade:SingleCombatAttack;
 		private static function GrenadeImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
+			if (attacker is PlayerCharacter) output("Tossing an explosive in the general direction of your target, you unleash an explosive blast of heat on " + target.a + target.short + "!");
+			else if (target is PlayerCharacter) output(attacker.capitalA + attacker.short + " hucks a small device in your direction, unleashing an explosive blast scant inches from your body!");
+			else output(attacker.capitalA + attacker.shprt + " hucks a small device in " + target.a + possessive(target.short) + " direction, unleashing an explosive blast scant inches from " + target.mfn("his", "her", "its") + " form!");
 			
+			
+			var d:int = Math.round(7.5 + attacker.level * 2 + attacker.intelligence() / 2);
+			var damage:TypeCollection = damageRand(new TypeCollection( { kinetic: d, burning: d } ), 15);
+			
+			// 9999 => adultCockvineGrenadesInEnclosedSpaces()
+			
+			applyDamage(damage, attacker, target);
 		}
 		
 		public static const GasGrenade:SingleCombatAttack;
 		private static function GasGrenadeImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
+			if (attacker is PlayerCharacter) output("Tossing a hissing grenade in the general direction of your target, you watch the gaseous stuff do its trick.");
+			else if (target is PlayerCharacter) output(attacker.capitalA + attacker.short + " tosses a small device in your direction, great clouds of thick, gaseous vapour pouring from within its body.");
+			else output(attacker.capitalA + attacker.short + " tosses a small device in " + target.a + possessive(target.short) + " direction, a thick trail of gasous vapour hanging heavily in the air to demark the arcing path taken.");
 			
+			var d:int = 14 + attacker.level * 2;
+			var damage:TypeCollection = damageRand(new TypeCollection( { drug: d } ), 15);
+			
+			// 9999 => adultCockvineGrenadesInEnclosedSpaces()
+			
+			applyDamage(damage, attacker, target, "minimal");
 		}
 		
 		public static const SmuggledStimulant:SingleCombatAttack;
 		private static function SmuggleStimulatImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
+			attacker.createStatusEffect("Used Smuggled Stimulant", 3, 0, 0, 0, true, "", "", true, 0);
 			
+			if (attacker is PlayerCharacter) output("You inject yourself with a smuggled stimulant.");
+			else output(attacker.capitalA + attacker.short + " jams a small injector deep into their thigh, the stature visibly filling with energy!");
 		}
 		
 		public static const BurstOfEnergy:SingleCombatAttack;
 		private static function BurstOfEnergyImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
+			attacker.energy(60);
+			attacker.createStatusEffect("Used Burst of Energy", 0, 0, 0, 0, true, "", "", true, 0);
 			
+			if (attacker is PlayerCharacter) output("You dig deep and find a reserve of energy from deep within yourself!\n");
+			else output(attacker.capitalA + attacker.short + " visibly steels " + attacker.mfn("himself", "herself", "itself") + ", reaching deep and finding a reserve of energy!");
 		}
 		
 		public static const ConcussiveShot:SingleCombatAttack;
 		private static function ConcussiveShotImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
+			if (attacker is PlayerCharacter) output("You nock one of your concussive arrows and draw your bowstring back, taking careful aim at the space just ahead of " + target.a + target.short + ".");
+			else throw new Error("Concussive Shot does not support a non-player attacker!");
 			
+			if (rangedCombatMiss(attacker, target, 0))
+			{
+				if (attacker is PlayerCharacter) output(" You let fly, but the arrow sails clean past your intended target.");
+			}
+			else if (pc.hasStatusEffect("Blind") && rand(10) > 0)
+			{
+				if (attacker is PlayerCharacter) output(" Your blind <b>concussion shot</b> missed.");
+			}
+			else
+			{
+				if (attacker is PlayerCharacter) output(" You let fly, and a moment later, the arrow explodes in a shockwave of force");
+				
+				if (target.physique()/2 + rand(20) + 1 >= pc.aim()/2 + 10)
+				{
+					output(" though " + target.a + target.short + " resists the blast. Your stun-shot failed!");
+				}
+				else
+				{
+					output(", stunning your enemy!");
+					
+					var rounds:int = 1 + rand(2);
+					target.createStatusEffect("Stunned",rounds,0,0,0,false,"Stun","Cannot act for "+ rounds +" turns.",true,0);
+				}
+				
+				// Add some burning damage for the explosion
+				var damage:TypeCollection = attacker.rangedDamage();
+				damage.add(new TypeCollection( { burning: 10 } ));
+				damage = damageRand(damage,15);
+				applyDamage(damage, attacker, target, "ranged");
+			}
 		}
 	}
 

@@ -121,7 +121,7 @@ public function combatUseItem(item:ItemSlotClass, targetCreature:Creature = null
 		clearMenu();
 		addButton(0,"Next",combatInventoryMenu);
 	}
-	else processCombat();
+	else CombatManager.processCombat();
 }
 
 public var shopkeepBackFunctor:Function = null;
@@ -470,12 +470,12 @@ public function combatInventoryMenu():void
 		(this as TiTS).addItemButton((i < 14) ? i : i + 1, pc.inventory[i], combatUseItem, pc.inventory[i]);
 	}
 	
-	addButton(14, "Back", combatMainMenu);
+	addButton(14, "Back", CombatManager.showCombatMenu);
 }
 
 public function inventory():void 
 {
-	if (!inCombat())
+	if (!CombatManager.inCombat)
 	{
 		generalInventoryMenu();
 	}
