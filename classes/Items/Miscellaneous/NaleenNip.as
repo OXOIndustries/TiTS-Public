@@ -105,6 +105,7 @@
 						target.addLegFlag(GLOBAL.FLAG_TAPERED);
 						target.addLegFlag(GLOBAL.FLAG_SMOOTH);
 						target.addLegFlag(GLOBAL.FLAG_TENDRIL);
+						target.addLegFlag(GLOBAL.FLAG_SCALED);
 						target.legType = GLOBAL.TYPE_NAGA;
 						kGAMECLASS.output("\n\nSlithering back up atop it is practically second nature to you, as easy as walking or running ever was.");
 						
