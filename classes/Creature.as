@@ -3168,6 +3168,12 @@ package classes {
 			result += nouns[rand(nouns.length)];
 			return result;
 		}
+		public function hasLongEars(): Boolean
+		{
+			// For ear types that support the earLength value. At least 1 inch long or more to count.
+			if(earLength >= 1 && InCollection(earType, GLOBAL.TYPE_SYLVAN, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_LAPINE)) return true;
+			return false;
+		}
 		public function earDescript(): String
 		{
 			var adjectives:Array = new Array();
@@ -3227,7 +3233,7 @@ package classes {
 					adjectives = ["deer", "pointed", "oval-shaped", "pointy", "softly furred"];
 					break;
 			}
-			if (earLength >= 1 && earType == GLOBAL.TYPE_SYLVAN) adjectives.push(num2Text(Math.round(earLength)) + "-inch long");
+			if (hasLongEars()) adjectives.push(num2Text(Math.round(earLength)) + "-inch long");
 			//Pick an adjective about 75% of the time
 			if (rand(4) < 3 && adjectives.length > 0) description = adjectives[rand(adjectives.length)] + " ";
 			//Pick a noun.
