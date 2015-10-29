@@ -6553,14 +6553,14 @@ package classes {
 				for (arg = 0; arg < vaginas.length; arg++)
 				{
 					girlCumMultiplier += vaginas[arg].wetness();
-					if (isSquirter(arg)) squirterBonus += vaginas[arg].wetness() * 0.5;
+					if (isSquirter(arg)) squirterBonus += vaginas[arg].wetness();
 					girlCumAmount++;
 				}
 			}
 			else
 			{
 				girlCumMultiplier += vaginas[arg].wetness();
-				if (isSquirter(arg)) squirterBonus += vaginas[arg].wetness() * 0.5;
+				if (isSquirter(arg)) squirterBonus += vaginas[arg].wetness();
 				girlCumAmount++;
 			}
 			// Scale values.
@@ -6894,8 +6894,7 @@ package classes {
 				cocks[slot].addFlag(GLOBAL.FLAG_STINGER_BASED);
 			}
 			if (type == GLOBAL.TYPE_KANGAROO) {
-				if (rand(2) == 0) cocks[slot].cockColor = "pink";
-				else cocks[slot].cockColor = "red";
+				cocks[slot].cockColor = RandomInCollection(["red", "pink"]);
 				cocks[slot].addFlag(GLOBAL.FLAG_PREHENSILE);
 				cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
 			}
@@ -6931,21 +6930,20 @@ package classes {
 			}
 			if (type == GLOBAL.TYPE_NYREA) {
 				cocks[slot].cockColor = RandomInCollection(["silver", "gray", "black"]);
-				else cocks[slot].knotMultiplier = 1;
+				cocks[slot].knotMultiplier = 1;
 			}
 			if (type == GLOBAL.TYPE_DAYNAR) {
 				cocks[slot].cockColor = "purple";
-				else cocks[slot].knotMultiplier = 1;
+				cocks[slot].knotMultiplier = 1;
 				cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
 			}
 			if (type == GLOBAL.TYPE_SYDIAN) {
 				cocks[slot].cockColor = RandomInCollection(["orange", "bright orange", "red orange"]);
-				else cocks[slot].knotMultiplier = 1;
+				cocks[slot].knotMultiplier = 1;
 			}
 			if (type == GLOBAL.TYPE_COCKVINE) {
-				if (rand(2) == 0) cocks[slot].cockColor = "purple";
-				else cocks[slot].cockColor = "green";
-				else cocks[slot].knotMultiplier = 1;
+				cocks[slot].cockColor = RandomInCollection(["green", "purple"]);
+				cocks[slot].knotMultiplier = 1;
 				cocks[slot].addFlag(GLOBAL.FLAG_PREHENSILE);
 			}
 		}
