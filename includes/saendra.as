@@ -35,6 +35,16 @@ public function saendraBarAddendum():Boolean
 
 public function saendraAtBar():Boolean
 {
+	if (flags["SAENDRA_DISABLED"] != undefined)
+	{
+		return false;
+	}
+	
+	if (flags["SAENDRA GONNA GO GET A COCK"] == 1 || flags["SAENDRA GONNA GO GET A COCK"] == 2)
+	{
+		return false;
+	}
+	
 	if (flags["SAENDRA_XPACK1_CREDITTIME"] != undefined && (GetGameTimestamp() - flags["SAENDRA_XPACK1_CREDITTIME"] <= (24 * 60)))
 	{
 		return false;
@@ -62,19 +72,9 @@ public function saendraAtBar():Boolean
 				break;
 		}
 	}
-
+	
 	if (flags["FALL OF THE PHOENIX STATUS"] == 1)
 	{
-		if (flags["SAEN MET AT THE BAR"] == undefined)
-		{
-			return true;
-		}
-
-		if (flags["SAENDRA GONNA GO GET A COCK"] == 1 || flags["SAENDRA GONNA GO GET A COCK"] == 2)
-		{
-			return false;
-		}
-
 		return true;
 	}
 	else
@@ -327,13 +327,13 @@ public function talkToSaendraAboutStuffAndThings(doOutput:Boolean = true):void
 
 		output("\n\n<i>“Sure, hero,”</i> she says with a warm smile. <i>“What’s on your mind?”</i>");
 	}
-
+	
 	clearMenu();
 	addButton(0, "How's Work", saendraHowsWork);
 	addButton(1, "Hobbies", saendraHobbies);
 	addButton(2, "Valeria Work", saendraValeriaWork);
 	addButton(3, "Her Race", saendraHerRace);
-
+	
 	if (days != flags["SAENDRA TALK PHOENIX STATUS"]) addButton(4, "Phoenix Status", saendraPhoenixStatus);
 	else addDisabledButton(4, "Phoenix Status", "Phoenix Status", "You've already talked to Saendra about the status of her ship today.");
 
@@ -348,9 +348,7 @@ public function talkToSaendraAboutStuffAndThings(doOutput:Boolean = true):void
 		else if (flags["SAENDRA CREDITS TALK AVAILABLE"] != undefined && flags["SAENDRA OFFERED CREDITS"] != undefined) addDisabledButton(5, "Offer Credits", "Offer Credits", "You've already offered her credits, but she politely declined.");
 		else addDisabledButton(5, "OfferCreds", "Offer Credits", "Maybe if you can find out about the problems she's been having in a little more detail, you could offer to help her out with some credits.");
 	}
-
 	
-
 	if (!saendra.hasCock())
 	{
 		if (flags["SAENDRA TIMES SEXED"] != undefined) addButton(6, "Futafication", saendraFutification, undefined, "Futafication", "Ask Saendra if she's ever thought about growing a dick.");
@@ -1615,7 +1613,7 @@ public function saendraButteFuckeTailwank():void
 	else output(" third");
 	output(" load of spunk. Saen grins and takes it like the cum-hungry slut she is, leaning back and letting you blow your whole load across her tits and stomach, eagerly rubbing the hot spooge in as you deliver the finale of your one-"+ pc.mf("man", "woman") +" bukkake. ");
 
-	output("\n\nThe money-shot ends with Saen’s body slathered with your cum, looking more [pc.cumColor] than pink. With a sated sigh, the lusty halfbreed flops back in the bed, idly rubbing the coating of cum sticking to her skin. She <i>reeks</i> of sex now, a heady aroma of your cum and hers mixing around her. <i>“Oh, that’s nice,”</i> she grins, eyes fluttering closed. One of her hands hooks under your arm, tugging you down.  <i>“C’mere, hero, unless you you wanna go for number four.”</i>");
+	output("\n\nThe money-shot ends with Saen’s body slathered with your cum, looking more [pc.cumColor] than pink. With a sated sigh, the lusty halfbreed flops back in the bed, idly rubbing the coating of cum sticking to her skin. She <i>reeks</i> of sex now, a heady aroma of your cum and hers mixing around her. <i>“Oh, that’s nice,”</i> she grins, eyes fluttering closed. One of her hands hooks under your arm, tugging you down. <i>“C’mere, hero, unless you you wanna go for number four.”</i>");
 
 	output("\n\nYou obediently collapse beside your lover, more exhausted than she is from your sexual ordeal. Sleep overtakes you in moments.");
 
@@ -1726,7 +1724,7 @@ public function newFutaSaendraScenes():void
 
 	output("\n\n<i>“Oooh, that’s good,”</i> Saen purrs. <i>“");
 	if(pc.buttRating() <= 5) output("I love tight little butts. Gonna smack this ass till you scream");
-	else if(pc.buttRating()  <= 10) output("You’ve got a great little bubble butt back here, Hero. I’m gonna enjoy making it bounce.");
+	else if(pc.buttRating() <= 10) output("You’ve got a great little bubble butt back here, Hero. I’m gonna enjoy making it bounce.");
 	else output("Oh man, you have such a huge fuckin’ ass. Gonna make it bounce like jelly in a second.");
 	output("”</i>");
 
