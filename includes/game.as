@@ -2121,7 +2121,7 @@ public function statisticsScreen(showID:String = "All"):void
 		else output2(" None");
 		if(pc.antennae > 0 && pc.antennaeType != 0) output2("\n<b>* Antennae:</b> " + pc.antennae + ", " + GLOBAL.TYPE_NAMES[pc.antennaeType]);
 		output2("\n<b>* Ears:</b>");
-		if(pc.earType == GLOBAL.TYPE_SYLVAN && pc.earLength > 0) output2(" " + prettifyLength(pc.earLength) + ",");
+		if(pc.hasLongEars()) output2(" " + prettifyLength(pc.earLength) + ",");
 		output2(" " + GLOBAL.TYPE_NAMES[pc.earType]);
 		if(pc.earsPierced != 0) output2("\n<b>* Ear Piercing: </b>" + pc.earsPierced + " " + StringUtil.toTitleCase(pc.earsPShort));
 		output2("\n<b>* Eyes:</b>");
