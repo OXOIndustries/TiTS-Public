@@ -261,7 +261,7 @@ public function setStartingSex(sex:int = 1):void {
 			//Get rid of sheath for reasons
 			pc.cocks[0].delFlag(GLOBAL.FLAG_SHEATHED);
 		}
-		if (pc.originalRace ==  "half-kaithrit") {
+		if (pc.originalRace == "half-kaithrit") {
 			pc.shiftCock(0,GLOBAL.TYPE_FELINE);
 		}
 		if (pc.originalRace == "half kui-tan")
@@ -278,7 +278,7 @@ public function setStartingSex(sex:int = 1):void {
 			pc.buttRatingRaw = 2;
 			pc.tone = 65;
 			pc.hairLength = 1;
-			if (pc.originalRace ==  "half-kaithrit") {
+			if (pc.originalRace == "half-kaithrit") {
 				pc.femininity = 50;
 				pc.hipRatingRaw = 6;
 			}
@@ -291,7 +291,7 @@ public function setStartingSex(sex:int = 1):void {
 			pc.tone = 45;
 			pc.breastRows[0].breastRatingRaw = 3;
 			pc.hairLength = 6;
-			if (pc.originalRace ==  "half-kaithrit") {
+			if (pc.originalRace == "half-kaithrit") {
 				pc.femininity = 75;
 				pc.hipRatingRaw = 7;
 				pc.buttRatingRaw = 5;
@@ -325,7 +325,7 @@ public function setStartingSex(sex:int = 1):void {
 			pc.tone = 45;
 			pc.breastRows[0].breastRatingRaw = 3;
 			pc.hairLength = 10;
-			if (pc.originalRace ==  "half-kaithrit") {
+			if (pc.originalRace == "half-kaithrit") {
 				pc.femininity = 85;
 				pc.hipRatingRaw = 7;
 				pc.buttRatingRaw = 5;
@@ -489,7 +489,7 @@ public function chooseHairColor():void {
 		this.addButton(4,"Auburn",applyHairColor,"auburn");
 		this.addButton(5,"Red",applyHairColor,"red");
 		this.addButton(6,"Gray",applyHairColor,"gray");
-		if (pc.originalRace ==  "half-kaithrit") {
+		if (pc.originalRace == "half-kaithrit") {
 			this.addButton(7,"Blue",applyHairColor,"blue");
 			this.addButton(8,"Green",applyHairColor,"green");
 			this.addButton(9,"Purple",applyHairColor,"purple");
@@ -540,7 +540,7 @@ public function chooseEyeColor():void {
 		this.addButton(1,"Green",applyeEyeColor,"green");
 		this.addButton(2,"Hazel",applyeEyeColor,"hazel");
 		this.addButton(3,"Brown",applyeEyeColor,"brown");
-		if (pc.originalRace ==  "half-kaithrit") {
+		if (pc.originalRace == "half-kaithrit") {
 			this.addButton(4,"Amber",applyeEyeColor,"amber");
 			this.addButton(5,"Yellow",applyeEyeColor,"yellow");
 			this.addButton(6,"Orange",applyeEyeColor,"orange");
@@ -646,7 +646,7 @@ public function chooseBreastSize():void {
 		}
 		addButton(13,"Whatever",applyBreastSize,rand(6));
 	}
-	if (pc.originalRace ==  "half-kaithrit" && pc.hasVagina()) {
+	if (pc.originalRace == "half-kaithrit" && pc.hasVagina()) {
 		this.addButton(6,"Big DD",applyBreastSize,6);
 		this.addButton(7,"E",applyBreastSize,7);
 		this.addButton(8,"Big E",applyBreastSize,8);
@@ -738,7 +738,7 @@ public function chooseYourJunkSize():void {
 public function applyJunkSize(arg:int = 0):void {
 	pc.cocks[0].cLengthRaw = arg;
 	pc.cocks[0].cThicknessRatioRaw = 1;
-	if (pc.originalRace ==  "half-kaithrit") {
+	if (pc.originalRace == "half-kaithrit") {
 		pc.createStatusEffect("Uniball",0,0,0,0);
 		pc.ballSizeRaw = .75;
 	}
@@ -1210,17 +1210,17 @@ public function setClass(arg:int = 0):void {
 		pc.rangedWeapon = new classes.Items.Guns.ScopedPistol();
 		pc.shield = new classes.Items.Protection.DecentShield();
 	}
-	pc.meleeWeapon =  new classes.Items.Melee.Knife();
+	pc.meleeWeapon = new classes.Items.Melee.Knife();
 	pc.armor = new classes.Items.Apparel.DressClothes();
 	pc.shieldsRaw = pc.shieldsMax();
 	if(!pc.hasVagina()) 
-		pc.lowerUndergarment = new classes.Items.Apparel.PlainBriefs() //   (items["9"]);
+		pc.lowerUndergarment = new classes.Items.Apparel.PlainBriefs() // (items["9"]);
 	else 
-		pc.lowerUndergarment = new classes.Items.Apparel.PlainPanties() //   (items["8"]);
+		pc.lowerUndergarment = new classes.Items.Apparel.PlainPanties() // (items["8"]);
 	if(pc.biggestTitSize() < 1) 
-		pc.upperUndergarment = new classes.Items.Apparel.PlainUndershirt() //   (items["11"]);
+		pc.upperUndergarment = new classes.Items.Apparel.PlainUndershirt() // (items["11"]);
 	else 
-		pc.upperUndergarment = new classes.Items.Apparel.PlainBra() //   (items["10"]);
+		pc.upperUndergarment = new classes.Items.Apparel.PlainBra() // (items["10"]);
 	tutorialSkipOption();
 	pc.maxOutHP();
 }
@@ -1297,7 +1297,7 @@ public function tutorialIntro4():void {
 	clearOutput();
 	setLocation("THE\nWILL","TAVROS STATION","SYSTEM: KALAS");
 	output("The next room is empty, save for a comfy looking, leather recliner. You actually recognize it as one of your father’s favorites. The arm rests are only a little more worn than you remember. A holo projector protrudes from the ceiling, aimed at the empty space in front of the chair. With nothing else to do, you seat yourself. The projector kicks on and your Dad’s face appears.");
-	output("\n\n<i>“Hey there, " + pc.mf("sport","princess") + ".  If you’re seeing this, then my wrinkled old ass has finally kicked the bucket. I hope you aren’t too torn up over it; I’ve lived a long full life, longer than most people are lucky enough to live. Do me a favor and knock back a whiskey for me after this,”</i> the phantom image of your father says. A hand clips in front of his face as he rubs at his age-silvered goatee. <i>“Unfortunately, while I am seeing that your mother is taken care of, I’m not just handing the company over to you. Not yet, anyway.”</i>");
+	output("\n\n<i>“Hey there, " + pc.mf("sport","princess") + ". If you’re seeing this, then my wrinkled old ass has finally kicked the bucket. I hope you aren’t too torn up over it; I’ve lived a long full life, longer than most people are lucky enough to live. Do me a favor and knock back a whiskey for me after this,”</i> the phantom image of your father says. A hand clips in front of his face as he rubs at his age-silvered goatee. <i>“Unfortunately, while I am seeing that your mother is taken care of, I’m not just handing the company over to you. Not yet, anyway.”</i>");
 	output("\n\nYou glance down at the Codex and the vial in your hand. What did the old coot plan for you?");
 	output("\n\n<i>“I know you’ve probably been too busy to keep up on the news, with the work I’ve pushed you into, but the fourteenth planet rush ought to be starting about now.”</i> A note appears over the recording, indicating the planet rush started almost two months ago, though most gates have only started going online in the past few weeks. <i>“I have to make sure you’ve grown into a " + pc.mf("man","woman") + " worthy of running the business, " + pc.short + ", so I’m putting you through what I went through, after a fashion. If you want to take over the company, you’re going on the planet rush!”</i>");
 	output("\n\nHuh. Well, you suppose the careers he pushed you towards make a bit more sense in light of that. Your father made his fortune during the thirteenth planet rush, and he obviously intends for you to prove your mettle in the same way.");
@@ -1418,7 +1418,7 @@ public function ignoreCelise():void {
 }
 //Feed Celise [Male]
 public function takeCelise():void {
-	pc.removeStatusEffect("Round");  // Uh, this was removed in the previous function. Duplicate?
+	pc.removeStatusEffect("Round"); // Uh, this was removed in the previous function. Duplicate?
 	clearOutput();
 	this.userInterface.showBust("CELISE");
 	this.userInterface.showName("\nCELISE");
@@ -1429,7 +1429,9 @@ public function takeCelise():void {
 		if(pc.cockTotal() == 1) output(" is");
 		else output(" are");
 		output(" out, she gasps in delight, pulling her hand away from her frenzied self-pleasure to stretch towards you, extending far longer than you would have thought possible given the size of her limb. Her palm immediately envelops " + pc.oneCock() + " with sticky goo, not grasping you with fingers but completely taking you into her moist, slippery insides.");
-		output("\n\nYour " + pc.legs() + " wobble from the sensation assaulting you, and you grab hold of the shelf for support, watching the emerald blob slide across the floor until it squishes up against you. Celise gushes, <i>“Ohh, look at it! It’s nice and hard and veiny and it tastes so good inside me! Thank you for deigning to feed me... " + pc.short + ", was it?”</i>");
+		output("\n\nYour " + pc.legOrLegs() + " wobble");
+		if(pc.legCount == 1) output("s");
+		output(" from the sensation assaulting you, and you grab hold of the shelf for support, watching the emerald blob slide across the floor until it squishes up against you. Celise gushes, <i>“Ohh, look at it! It’s nice and hard and veiny and it tastes so good inside me! Thank you for deigning to feed me... " + pc.short + ", was it?”</i>");
 		output("\n\nYou nod and try to stay upright. Fluid weight roils around your " + pc.cockDescript(pc.biggestCockIndex()) + " with slow, gentle undulations, tickling every square inch of its surface with perfect pressure. Somehow, despite its glorious slipperiness, there’s just enough friction for your body to make your nerves fire one after the other, forcing your internal muscles to flutter and squeeze fat drops of pre-cum into the goo-girl’s wrist. She arches her back to raise her titanic breasts into her arm, absorbing her own elbow, forearm, and then wrist, drawing your dick deep into her swollen teat. You gasp and drip a bit more freely in response.");
 		var x:int = pc.biggestCockIndex();
 		output("\n\n<i>“Yum! Even your pre-cum is tasty. Can I just keep milking that out of you, or would you rather I get you off? Unless you can cum hard enough to make my tit turn white, I think I’d prefer the former,”</i> Celise giggles as her arm exits out the bottom of her tit, appearing to hold it up, though it’s made of the same material as the jiggling, gelatinous mammary. Her free hand is buried to the wrist in her gooey undercarriage, pumping low and slow into a massive, over-engorged honeypot.");
@@ -1450,7 +1452,7 @@ public function takeCelise():void {
 		if(pc.cockTotal() > 1) output("s");
 		output(" as she twists and twirls all around you, and you realize you can hold back no longer. Her tongue is sweet on yours, swirling around your mouth as you throw your head back and cum, pumping a thick batch of protein straight into her dick-suckling snatch. The quivering slit tugs harder on your boner");
 		if(pc.cockTotal() > 1) output("s");
-		output(", eagerly pulling more fresh ejaculations inside where they dilute her green into an opaque " + pc.cumColor() + ".  Your " + pc.hipsDescript() + " jerk and shake while your " + pc.cockDescript(x) + " flexes inside its gooey prison, throwing long ropes of suppressed lust for what feels like ages.  Whenever you think it's about to end, the tugging starts again, and you whimper as the endless orgasm renews itself.");
+		output(", eagerly pulling more fresh ejaculations inside where they dilute her green into an opaque " + pc.cumColor() + ". Your " + pc.hipsDescript() + " jerk and shake while your " + pc.cockDescript(x) + " flexes inside its gooey prison, throwing long ropes of suppressed lust for what feels like ages. Whenever you think it's about to end, the tugging starts again, and you whimper as the endless orgasm renews itself.");
 		output("\n\nAt some point");
 		if(pc.balls > 0) output(", your " + pc.ballsDescript() + " start to hurt. Not long after");
 		output(", the juicy pleasure-flow dries up, and Celise allows your orgasm to finish. She’s shuddering herself as she detaches, so wracked by pleasure that one of her arms liqueifies, dropping to the floor for a moment until it slithers over to rejoin the rest of her. Her hair is melting, her tits are sagging, and her whole body shudders from time to time, shaking with post-orgasm spasms. She burbles, <i>“That was great! You’re gonna take me on your ship now, right?”</i>");
@@ -1465,9 +1467,12 @@ public function takeCelise():void {
 		else if(pc.isMischievous()) output("<i>So, is this your first time or what?</i>");
 		else output("<i>Here’s my cunt. Why aren’t you licking it yet? I thought that’s what you wanted!</i>");
 		output("”</i>");
-		output("\n\nThe glittering, hungry slut composes herself enough to surge towards you, ignoring your question completely. Instead, she rolls at you like a wave, if a wave could be capped with bloating bimbo lips and a slithering tongue that could put a snake to shame. You let her crash into you, knowing that she doesn’t pose any real threat at this point, and simply enjoy the sensation of her warm body sliding around your " + pc.legs() + ". In a way, it’s like slipping into a nice bath, only the bath is a bit thicker and strokes you everywhere, like an army of phantasmal tongues, all worshipping you at once.");
+		output("\n\nThe glittering, hungry slut composes herself enough to surge towards you, ignoring your question completely. Instead, she rolls at you like a wave, if a wave could be capped with bloating bimbo lips and a slithering tongue that could put a snake to shame. You let her crash into you, knowing that she doesn’t pose any real threat at this point, and simply enjoy the sensation of her warm body sliding around your " + pc.legOrLegs() + ". In a way, it’s like slipping into a nice bath, only the bath is a bit thicker and strokes you everywhere, like an army of phantasmal tongues, all worshipping you at once.");
 		output("\n\nThe real tongue comes into contact with " + pc.oneVagina() + " a moment before two plush pillows compress against your mons, smothering your labia in sloppy-wet kisses. The tongue slithers over the folded flesh, drawing gasps and moans from you as your pussy goes ten kinds of juicy. Your " + pc.clitDescript() + " engorges and peeks out from its hood in response, hard and sensitive against the slippery, gooey mouth. You grab hold of the shelf to try remain upright, briefly fearing that you’ll fall inside her and drown as the pleasure takes you, but the way Celise’s eyes look up at you while she tends to your " + pc.vaginaDescript() + " leaves no doubt in your mind: she’d never let that happen. She’s far too busy worshipping you orally, sucking down your juices even as hers turn your exterior genitalia into a swampy, green mess.");
-		output("\n\nYou give up your grip even as your " + pc.legs() + " give out, lewdly splaying wide inside their gelatinous prisons. Instead, your hands secure themselves on the back of Celise’s head, pushing her harder and more urgently into your " + pc.vaginaDescript() + ". A muffled cry of excitement vibrates through your vulvae as the goo-girl finds herself between a rock-hard grip and a wet place. Her tongue wriggles and writhes unguided at first, then it draws back, suddenly controlled. As you hump the moist fuck-pillows perched on your oozing quim, the wiggling probe pierces through your sensitive curtains, ");
+		output("\n\nYou give up your grip even as your " + pc.legOrLegs() + " give");
+		if(pc.legCount == 1) output("s out, lewdly wriggling inside its gelatinous prison");
+		else output(" out, lewdly splaying wide inside their gelatinous prisons");
+		output(". Instead, your hands secure themselves on the back of Celise’s head, pushing her harder and more urgently into your " + pc.vaginaDescript() + ". A muffled cry of excitement vibrates through your vulvae as the goo-girl finds herself between a rock-hard grip and a wet place. Her tongue wriggles and writhes unguided at first, then it draws back, suddenly controlled. As you hump the moist fuck-pillows perched on your oozing quim, the wiggling probe pierces through your sensitive curtains, ");
 		if(pc.vaginas[0].hymen) output("sliding past your hymen without tearing it and thickening on the other side");
 		else output("flooding your unprotected channel with gradually increasing thickness");
 		output(". The tendril rolls in wet little circles inside you, smashing into one nerve-cluster after another, relentlessly searching for your G-spot.");
@@ -1479,7 +1484,7 @@ public function takeCelise():void {
 		output("\n\nA mouth forms on Celise’s shoulder while she guzzles your secretions, asking, <i>“How am I doing?”</i>");
 		output("\n\nYour only reaction is to grind your " + pc.hipsDescript() + " more forcefully into her face, whimpering as " + pc.eachVagina() + " begins to spasm. You’re so very close to orgasm that it’s getting hard to control your movements. You jerk and shake whenever Celise’s tongue finds your G-spot, something she does with increasing regularity, and you’re glad to be supported by her as she pushes and rubs against it, increasing the pressure.");
 		output("\n\nMind-numbing explosions of bliss erupt from the cunt-shattering orgasm that wracks your body; you arch your back so violently that you almost crack your head on the shelf above. Luckily, Celise’s arms pop out to grab you around the waist, steadying your lusty thrashing. She gleefully swallows, her throat bobbing as she drinks down your juices. A reverse imprint of your pussy forms on her lips, caressing your entire mound with perfect green synchronicity while her tongue swells wider inside you. As it expands, there’s a sudden shift inside you along with the sensation of something draining away, almost like she’s turned her busy pseudopod into a quim-sucking straw, ensuring that her feeding continues uninterrupted while you’re brought to new heights of climax. The pleasure continues with no end in sight. Your genitals ache, tender after an eternity of stimulation. Whenever you think relief is at hand, the inverse hood around the tip of your " + pc.clitDescript() + " vibrates and sets you off in a blaze of fresh orgasm all over again.");
-		output("\n\nBy the time you piece your consciousness back together, you find yourself babbling incoherently in the midst of a continuous, mind-shattering orgasm.  Once Celise has her fill, you’re an incoherent mess. Aftershocks of pleasure quake through your still-twitching body as she detaches. She slowly separates from you, shuddering a little bit herself as you’re pulled out of her gooey embrace. The sucking holes holding your " + pc.legs() + " close up, but not before you get a glimpse of vaginal lips topped with soaked nubs. This goo-girl was fucking herself on your " + pc.legs() + " as she ate you out! The whole of your lower body is soaked and dripping with her jade moisture, particularly your " + pc.feet() + ". Your " + pc.buttDescript() + " touches the cold, metal floor as she daintily wipes her mouth on the back of a juicy palm, allowing you a moment to recover..");
+		output("\n\nBy the time you piece your consciousness back together, you find yourself babbling incoherently in the midst of a continuous, mind-shattering orgasm. Once Celise has her fill, you’re an incoherent mess. Aftershocks of pleasure quake through your still-twitching body as she detaches. She slowly separates from you, shuddering a little bit herself as you’re pulled out of her gooey embrace. The sucking holes holding your " + pc.legOrLegs() + " close up, but not before you get a glimpse of vaginal lips topped with soaked nubs. This goo-girl was fucking herself on your " + pc.legOrLegs() + " as she ate you out! The whole of your lower body is soaked and dripping with her jade moisture, particularly your " + pc.feet() + ". Your " + pc.buttDescript() + " touches the cold, metal floor as she daintily wipes her mouth on the back of a juicy palm, allowing you a moment to recover.");
 		output("\n\n<i>“That was great, and your cunny was super tasty, too! Can I come on your ship? Like Vik said, I’m super thankful you stopped to feed me!”</i> Celes bubbles.");
 		output("\n\nDespite your exhaustion, you manage to give her a stern look.");
 		output("\n\n<i>“I promise not to try and force myself on you or nothing! ‘Sides, you know just how to make me melt anyhow! I can get by on water and protein paste, but if a mean ol’ alien ever gets you all wet and juicy...”</i> Celise nibbles on her lower lip, and with every tiny bite, it grows puffier and poutier, looking softer by the minute. <i>“...I’ll be the perfect little lesbian, girlspunk-dump. Or, if you grow a dick I’ll be totally happy to suck on that,”</i> she adds, nodding enthusiastically. <i>“You’ll be yummy either way!”</i>");
@@ -1603,7 +1608,7 @@ public function rivalSpillsTheBeans():void {
 	else if(pc.isMischievous()) output("you say with less humor than you usually bring to a conversation");
 	else output("you say with spite in your voice");
 	output(", <i>“What brings you to my table?”</i>");
-	output("\n\n" + chars["RIVAL"].short + " smirks and takes a swig of " + chars["RIVAL"].mf("his","her") + " drink. <i>“I just thought I’d let you know that Uncle Vic made a huge mistake. No, a gigantic one.”</i> " + chars["RIVAL"].mf("He","She") + "  laughs and continues, <i>“The best part is that neither of you even know it! Let me elucidate for you, simple cousin.”</i> " + chars["RIVAL"].short + " produces a simple touch tablet from " + chars["RIVAL"].mf("his","her") + " pocket and a tiny, chit-sized disk.");
+	output("\n\n" + chars["RIVAL"].short + " smirks and takes a swig of " + chars["RIVAL"].mf("his","her") + " drink. <i>“I just thought I’d let you know that Uncle Vic made a huge mistake. No, a gigantic one.”</i> " + chars["RIVAL"].mf("He","She") + " laughs and continues, <i>“The best part is that neither of you even know it! Let me elucidate for you, simple cousin.”</i> " + chars["RIVAL"].short + " produces a simple touch tablet from " + chars["RIVAL"].mf("his","her") + " pocket and a tiny, chit-sized disk.");
 	output("\n\n<i>“This is a pretty standard handheld computer, but this,”</i> " + chars["RIVAL"].mf("he","she") + " says holding the miniature device aloft, <i>“is a sophisticated tracking and eavesdropping device - just like the one in your pocket.”</i>");
 	output("\n\nNo.... You reach into your pocket and turn it out, catching an identical device when it falls into your hand. You immediately drop it on the floor and crush it under" + pc.foot() + ", but that merely earns a derisive snort from your unfriendly dinner companion.");
 	output("\n\n<i>“The data was already transmitted. I know everything, " + pc.short + ". Best of all, I’m part of the family, so your father’s precious gene-locked probes will handily divulge their secrets to me.”</i> " + chars["RIVAL"].short + " gives an ingratiating smile. <i>“My ship is already good to go, but I think I’d rather depart on a good night’s rest. Besides, why should I need to rush when your clunker is in pieces all over your hangar? Good luck, cuz.”</i>");
@@ -1641,7 +1646,7 @@ public function ohShitGameStarts():void {
 public function demoOver():void {
 	clearOutput();
 	setLocation("DEMO\nCOMPLETE","THANKS FOR PLAYING","AND SUPPORTING ME.");
-	output("This concludes the full TiTS introductory sequence.  Keep your eyes peeled for supporter-only releases and the eventual public pre-releases as I get more done.");
+	output("This concludes the full TiTS introductory sequence. Keep your eyes peeled for supporter-only releases and the eventual public pre-releases as I get more done.");
 	this.clearMenu();
 	this.addButton(0,"Appearance",appearanceTest);
 }
