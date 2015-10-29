@@ -188,6 +188,7 @@ public function chooseStartingRace(race:String = "human"):void {
 		pc.armType = GLOBAL.TYPE_LEITHAN;
 		//>Four ears: two elfin ears on the side, two bunny ears on top. Probably need a new ear-type for this.
 		pc.earType = GLOBAL.TYPE_LEITHAN;
+		pc.earLength = 3;
 		//>Reptilian, forked tongues
 		pc.tongueType = GLOBAL.TYPE_LEITHAN;
 		pc.addTongueFlag(GLOBAL.FLAG_PREHENSILE);
