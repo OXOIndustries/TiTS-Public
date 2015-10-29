@@ -301,7 +301,12 @@ public function appearance(target:Creature):void {
 				else output2(" Floppy antennae also grow from just behind your hairline, bouncing and swaying in the breeze.");
 			}
 		}
-		if(target.earType == GLOBAL.TYPE_LEITHAN) output2(" In addition, pointed elfin ears jut out below them, giving you exceptional hearing.");
+		if(target.earType == GLOBAL.TYPE_LEITHAN)
+		{
+			output2(" In addition, ");
+			if(target.earLength > 1) output2(" " + num2Text(target.earLength) + "-inch long ");
+			output2("pointed elfin ears jut out below them, giving you exceptional hearing.");
+		}
 		//Tongue
 		if(target.tongueType == GLOBAL.TYPE_NAGA || target.tongueType == GLOBAL.TYPE_SNAKE) output2(" A snake-like [target.tongueNoun] occasionally flits between your lips, tasting the air.");
 		else if(target.tongueType == GLOBAL.TYPE_DEMONIC) output2(" A slowly undulating [target.tongueNoun] occasionally slips from between your lips. It hangs nearly two feet long when you let the whole thing slide out, though you can retract it to appear normal.");
