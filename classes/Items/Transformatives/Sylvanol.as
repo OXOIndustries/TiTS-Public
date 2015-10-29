@@ -99,7 +99,7 @@
 		public function sylvanolEarGrow(pc:Creature):void
 		{
 			//Grow ears, initial value of 1 inch:
-			if(pc.earLength == 0)
+			if(pc.earLength == 0 && pc.earType == GLOBAL.TYPE_SYLVAN)
 			{
 				pc.earLength = 1;
 				output("\n\nWhile formerly your ears could have been mistaken for a human’s at a glance, that soon fades as they stretch outward, gaining a much more visibly triangular shape that’s distinctively elven and much more sensitive to the air when it blows across them. <b>You now have one-inch elf ears!</b>");
@@ -664,7 +664,7 @@
 			//Consumption Text
 			output("You apply the medipen to the base of your neck, as instructed, and feel the Sylvanol’s payload get to work.");
 			//Get elf ears:
-			if(pc.earType != GLOBAL.TYPE_SYLVAN)
+			if((pc.hasLongEars() && rand(2) == 0) || pc.earType != GLOBAL.TYPE_SYLVAN)
 			{
 				sylvanolEarTF(pc);
 			}
