@@ -480,8 +480,8 @@ public function amazonTFShitApplied():void
 	else pc.tallness += 12;
 	pc.cumQualityRaw += .2;
 	pc.fertilityRaw += .2;
-	if(pc.biggestTitSize() + 5 >= 17 && pc.biggestTitSize() < 5) pc.breastRows[0].breastRatingRaw = 17;
-	else if(pc.biggestTitSize() <= 13) pc.breastRows[0].breastRatingRaw += 5;
+	if(pc.breastRows[0].breastRatingRaw < 17 && pc.breastRows[0].breastRatingRaw + 5 > 17) pc.breastRows[0].breastRatingRaw = 17;
+	else pc.breastRows[0].breastRatingRaw += 5;
 	if(pc.hipRating() < 20) pc.hipRating(2);
 	if(pc.hasCock())
 	{
