@@ -882,8 +882,8 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 		// + Lust
 		pc.lust(5);
 		pc.exhibitionism(1);
-		// Base hands pay-out: 50 credits
-		baseEarnings += 50;
+		// Base hands pay-out: 50 credits + 30
+		baseEarnings += 80;
 	}
 	// Mouth
 	else if(service == "mouth")
@@ -916,8 +916,8 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 		// + Lust
 		pc.lust(10);
 		pc.exhibitionism(1);
-		// Base mouth pay-out: 70 credits
-		baseEarnings += 70;
+		// Base mouth pay-out: 70 credits + 30
+		baseEarnings += 100;
 	}
 	// Vag
 	else if(service == "vagina")
@@ -970,8 +970,8 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 		pc.orgasm();
 		pc.orgasm();
 		pc.exhibitionism(1);
-		// Base vag pay-out: 90 credits
-		baseEarnings += 90;
+		// Base vag pay-out: 90 credits + 30
+		baseEarnings += 120;
 	}
 	// Everything
 	else if(service == "all")
@@ -1175,8 +1175,8 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 		
 		// + 2 hours
 		processTime(90);
-		// Base everything pay-out: 130 credits
-		baseEarnings += 130;
+		// Base everything pay-out: 130 credits + 30
+		baseEarnings += 160;
 	}
 	// Rooms Specials
 	else if(service == "rooms")
@@ -1326,8 +1326,8 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 		
 		// + hours
 		processTime(60);
-		// Base room specials pay-out: 140 credits
-		baseEarnings += 140;
+		// Base room specials pay-out: 140 credits + 30
+		baseEarnings += 170;
 	}
 	// Nothing
 	else
