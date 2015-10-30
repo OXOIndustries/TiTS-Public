@@ -79,11 +79,11 @@ public function holidayMenu():void
 	addButton(0,"Talk",talkToHoliday);
 	if(pc.credits >= 1000)
 	{
-		addButton(1,"GoblinSuit",goblinCostume,undefined,"Goblin","You could dress up as some kind of fantasy goblin.\n\nPrice: 1,000 credits");
+		addButton(1,"GoblinSuit",goblinCostume,undefined,"Goblin","You could dress up as some kind of fantasy goblin.\n\nPrice: 1000 credits");
 		addButton(2,"Helmet",metroidMaskParody,undefined,"Helmet","This helmet looks pretty spacy! Rad!\n\nPrice: 1000 credits");
 		if(!pc.hasGenitals()) addDisabledButton(3,"Armor","Armor","Looks like that outfit is for people with genitalia.");
-		else if(flags["MET_SYRI"] == undefined) addButton(3,"Armor",greenArmor,undefined,"Armor","There's a suit of dark green armor on the rack, with a black bodysuit underneath holding the skimpy green plates together. You're pretty sure it's modeled after some video game character. The armor's probably not real, but it'll make a decent enough cosplay for a night on the town!\n\nPrice: 1,000 credits");
-		else addButton(3,"Armor",greenArmor,undefined,"Armor","There's a suit of dark green armor on the rack, with a black bodysuit underneath holding the skimpy green plates together. You're pretty sure it's modeled after some video game character... didn't you see Syri playing as this chick once? The armor's probably not real, but it'll make a decent enough cosplay for a night on the town!\n\nPrice: 1,000 credits");
+		else if(flags["MET_SYRI"] == undefined) addButton(3,"Armor",greenArmor,undefined,"Armor","There's a suit of dark green armor on the rack, with a black bodysuit underneath holding the skimpy green plates together. You're pretty sure it's modeled after some video game character. The armor's probably not real, but it'll make a decent enough cosplay for a night on the town!\n\nPrice: 1000 credits");
+		else addButton(3,"Armor",greenArmor,undefined,"Armor","There's a suit of dark green armor on the rack, with a black bodysuit underneath holding the skimpy green plates together. You're pretty sure it's modeled after some video game character... didn't you see Syri playing as this chick once? The armor's probably not real, but it'll make a decent enough cosplay for a night on the town!\n\nPrice: 1000 credits");
 		if(pc.hasGenitals() && flags["UNLOCKED_JUNKYARD_PLANET"] != undefined) addButton(4,"HorseSuit",centaurBunsBunsBuns,undefined,"Horse Suit","It looks like the bottom half of a centaur. Must be robotic.\n\nPrice: 1000 credits");
 		else if(pc.isTaur())addDisabledButton(4,"HorseSuit","HorseSuit","You must not already have a tauric lower half.");
 		else addDisabledButton(4,"HorseSuit","HorseSuit","You need to have made it to the second planet (and have genitals) for this choice.");
