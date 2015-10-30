@@ -427,9 +427,9 @@ public function bountyHuntEpilogue():void
 	output("\n\nWhen you glance back up at the monitor, the reporter has a little green blob on her head that wiggles and vibrates in pulsing squeaks. Her bust has grown four or five cups and is on the verge of busting out of her top. Her hair grows before you eyes, fading from brown to blonde to platinum white. Her expression of shock quickly becomes one of oozing, sexual delight as her lips puff into a thick, whorish pucker and her eyes soften to a pale and empty blue. Switching the news feed off, you take stock of your own transformations. It’s a good thing you had that helmet on! Who knows how much more of a bimbo-bloated sex doll you would’ve turned into if that thing had been parked right on top of you all night! You entertain the thought of trying to turn in Holiday for keeping dangerous organisms in crates and boxes, but considering your own role in their release was more than just incidental, decide that would be a very bad idea. Plus, she did get you off-world before the shit really hit the fan.");
 
 	output("\n\nAnd, you realize with a groan, maybe the prop she meant for you to grab was the blue latex suit, not the multiplying brain parasite under it. Oops.");
-	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
-	pc.loadInAss(pp);
-	pc.loadInMouth(pp);
+	// Kiro stand-in, for consistency!
+	pc.loadInAss(chars["KIRO"]);
+	pc.loadInMouth(chars["KIRO"]);
 	if(pc.femininity < 70) pc.femininity = 70;
 	if(pc.lipMod < 5) pc.lipMod++;
 	processTime(560);
@@ -683,7 +683,9 @@ public function partyHardWivSavin():void
 	if(!pc.hasCock()) output("slipping her hands firmly onto your butt. One of them slinks a little lower, teasing a claw around your unprotected [pc.vagOrAss] until the sensation makes you gasp, so tense on the edge of penetration that your mouth hands open.");
 	else output("slipping a hand around to firmly grab your ass... and using the other to gently brush your throbbing erection, cupping the shaft up until it’s pressed against your belly. Then she dances closer, pressing herself against you... and trapping your package between two slick, hot bodies. You moan something like <i>“God, yes!”</i> as she starts to grind, masturbating you with gleeful abandon.");
 
-	output("\n\nYou smile despite yourself, grabbing the smaller girl by the ass and picking her up. She squeals with delight, happily wrapping her legs around your hips and pressing her tits against your [pc.face]. And she never even flinches from her masturbratory movements{, though she finally plunges a finger into your wanton hole}, making you throw back your head and howl in pleasure.");
+	output("\n\nYou smile despite yourself, grabbing the smaller girl by the ass and picking her up. She squeals with delight, happily wrapping her legs around your hips and pressing her tits against your [pc.face]. And she never even flinches from her masturbratory movements");
+	if(pc.hasVagina()) output(", though she finally plunges a finger into your wanton hole");
+	output(", making you throw back your head and howl in pleasure.");
 
 	output("\n\n<i>“What’s your name, hot shot?”</i> you’re forced to ask, slamming her back against a pillar on the dance floor and shoving a hand under her panties.");
 
@@ -852,7 +854,8 @@ public function hotelPartyPartyParty():void
 	if(pc.hasCock()) output("spraying a thick rope of white cream over his own belly");
 	else 
 	{
-		output("announcing his climax with a shudder, and a wet heat spraying into your [pc.vagOrAss] as he spills his seed. You grin down at him, and he blushes apologetically, still twitching{ inside you");
+		output("announcing his climax with a shudder, and a wet heat spraying into your [pc.vagOrAss] as he spills his seed. You grin down at him, and he blushes apologetically, still twitching");
+		if(pc.hasVagina()) output(" inside you");
 	}
 	output(". You push him down on his back, dismount him, and turn your attentions towards his lady-friend. She’s still happily tending to your tit, right up until you thrust her on her back and spread her legs. tail stands straight up, but you quickly have her at ease when you guide her boyfriend’s face towards her crotch. She’s a musky, murky mess down there already - her pussy’s rosy red and glistening with lube, which the cat-boy’s all too happy to lap up her sweet juices ");
 	if(pc.hasCock()) output("while you line your [pc.cock] up with her ruby lips. \n\nHe just keeps licking the whole time, occasionally flicking his tongue across your shaft while you slide into the ausar slut’s sultry depths.");
@@ -919,10 +922,14 @@ public function buyTaurSuit():void
 	clearOutput();
 	showHoliday();
 	output("It might not be very spooky, but it is imposing. It’d probably get you past all those creepy stares better than something a little less bombastic, and once you rejoin the party, you’ll be sure to be a popular figure. Who wouldn’t want to party with a centaur? <i>“I’ll take it.”</i>");
-	output("\n\nHoliday smirks and has you transfer the credits to a dubious-looking holding account. The bank is some rimward corp you’ve never heard of. <i>“Great. You can change here. Unless you plan on dragging four hundred pounds of horse butt all the way home. I doubt you could even fit it in the changing room. Just shuck your bottoms and climb. It won’t work without skin contact");
-	if(pc.hasFur() || pc.hasScales() || pc.hasFeathers()) output(", or [pc.skinFurScalesNoun], I guess");
-	output(".");
-	if(pc.isNude()) output(" That’s not a problem for you, since you’re a nudist or something, right? Just climb on in and let the servos do the rest. It’ll be a lot easier than trying to drag four hundred pounds of horse butt into the little changing room.");
+	output("\n\nHoliday smirks and has you transfer the credits to a dubious-looking holding account. The bank is some rimward corp you’ve never heard of. <i>“Great. You can change here.");
+	if(!pc.isCrotchGarbed())
+	{
+		output(" Unless you plan on dragging four hundred pounds of horse butt all the way home. I doubt you could even fit it in the changing room. Just shuck your bottoms and climb. It won’t work without skin contact");
+		if(pc.hasFur() || pc.hasScales() || pc.hasFeathers()) output(", or [pc.skinFurScalesNoun], I guess");
+		output(".");
+	}
+	else output(" That’s not a problem for you, since you’re a nudist or something, right? Just climb on in and let the servos do the rest. It’ll be a lot easier than trying to drag four hundred pounds of horse butt into the little changing room.");
 	output("”</i>");
 
 	if(pc.isCrotchGarbed()) output("\n\nYou protest. What are you supposed to do with your [pc.lowerGarments]? This costume doesn’t exactly come with anywhere to store your stuff.");
@@ -932,7 +939,7 @@ public function buyTaurSuit():void
 	output("\n\n<i>“I’ll watch your shit for you. Just stick it in a corner, and you can pick it up in the morning after you’re done partying.”</i> She tilts her head to the side, pink hair falling across her cat-like yellow eyes. <i>“Don’t you trust me?”</i> The crate she’s sitting on lets out a deep, rumbling growl, which she silences with a crunching blow from her knuckles on the container’s reinforced lid.");
 	output("\n\nShe’s about as trustworthy as a prom date’s purity promise, yet you don’t have a lot of other options. Wandering around without a costume seems a good way to flag yourself as a tourist and an easy mark. At least with your stuff in the store, you can get out and have some fun before the party ends for the night. Fuck it; you may as well have some fun.");
 	processTime(4);
-	flags["HOLIDAY_OWEEN_PURCHASE"] = "equine taur suit";
+	flags["HOLIDAY_OWEEN_PURCHASE"] = "equine centaur suit";
 	pc.credits -= 1000;
 	//[Next]
 	clearMenu();
@@ -1278,7 +1285,10 @@ public function finalLadyTaurCostumeEpilogue():void
 	clearOutput();
 	showName("SHIP\nINTERIOR");
 	output("No matter how hard you search, you can’t find a single catch or release. Worse still, attempts to peel away the border between your top and bottom half hurts. You can’t even feel your old [pc.legOrLegs], just the four, hoof-capped limbs below. It’s as if that equine shape has become a part of you for good. Is that what the peacekeepers meant by symbiosis tech? Are you a centaur forever?");
-	output("\n\nWell, at least you’ll be well-equipped for riding now. You doubt any sapient this side of the spiral arm would be too big for you, and better still, {your cunt can probably keep up with Kiro now. Just the thought of taking her bitch-breaker of a dick has your pussy on a slow boil./your cunt can squeeze down even tighter on littler dicks. Every little drop counts when you’re questing to fill up the nursery you inherited.} Something seems off about those thoughts, but you’re hard pressed to pin it down when your pussy is so puffy and sensitive.");
+	output("\n\nWell, at least you’ll be well-equipped for riding now. You doubt any sapient this side of the spiral arm would be too big for you, and better still, ");
+	if(flags["RESCUE KIRO FROM BLUEBALLS"] == 1) output("your cunt can probably keep up with Kiro now. Just the thought of taking her bitch-breaker of a dick has your pussy on a slow boil.");
+	else output("your cunt can squeeze down even tighter on littler dicks. Every little drop counts when you’re questing to fill up the nursery you inherited.");
+	output(" Something seems off about those thoughts, but you’re hard pressed to pin it down when your pussy is so puffy and sensitive.");
 	output("\n\n<b>Looks like you’re a horny");
 	if(!pc.hasCock()) output(", biologically female");
 	output(" centaur now.</b>");
