@@ -431,6 +431,8 @@ public function bountyHuntEpilogue():void
 	pc.loadInAss(chars["KIRO"]);
 	pc.loadInMouth(chars["KIRO"]);
 	if(pc.femininity < 70) pc.femininity = 70;
+	if(pc.lipMod < 5 && pc.femininity >= 100) pc.lipMod++;
+	if(pc.lipMod < 5 && pc.femininity >= 75) pc.lipMod++;
 	if(pc.lipMod < 5) pc.lipMod++;
 	processTime(560);
 	halloweenShipMove();
