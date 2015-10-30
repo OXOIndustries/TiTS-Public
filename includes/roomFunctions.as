@@ -42,7 +42,24 @@ public function mhengaShipHangarFunc():Boolean
 	
 	return false;
 }
-
+public function puntToShip():Boolean
+{
+	clearOutput();
+	if(currentLocation == "POESPACE" && flags["POE_A_DISABLED"] == undefined)
+	{
+		landingOnPoeA();
+		return true;
+	}
+	output("You really don't want to step out into the cold void of space. Maybe you should land somewhere?");
+	currentLocation = "SHIP INTERIOR";
+	var map:* = mapper.generateMap(currentLocation);
+  	this.userInterface.setMapData(map);
+  	showName("SHIP\nINTERIOR");
+	processTime(1);
+	clearMenu();
+	addButton(4,"Back",mainGameMenu);
+	return true;
+}
 public function xenogenOutsideBlurb():Boolean
 {
 	variableRoomUpdateCheck();

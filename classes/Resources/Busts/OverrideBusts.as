@@ -45,6 +45,13 @@
 		[Embed(source = "../../../assets/images/npcs/hand_so.png", mimeType = "image/png")]
 		public var Bust_HAND_SO:Class;
 
+		[Embed(source = "../../../assets/images/npcs/holiday.png", mimeType = "image/png")]
+		public var Bust_HOLIDAY:Class;
+		[Embed(source = "../../../assets/images/npcs/holiday_horse.png", mimeType = "image/png")]
+		public var Bust_HOLIDAY_HORSE:Class;
+		[Embed(source = "../../../assets/images/npcs/holiday_trap.png", mimeType = "image/png")]
+		public var Bust_HOLIDAY_TRAP:Class;
+
 		[Embed(source = "../../../assets/images/npcs/jacques00/irellia.png", mimeType = "image/png")]
 		public var Bust_IRELLIA:Class;
 		

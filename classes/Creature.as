@@ -3815,6 +3815,10 @@ package classes {
 			if (legCount == 6) return true;
 			return false;
 		}
+		public function isCentaur(): Boolean
+		{
+			return(legCount == 4 && legType == GLOBAL.TYPE_EQUINE);
+		}
 		public function isDrider(): Boolean {
 			return (legCount >= 4 && (legType == GLOBAL.TYPE_DRIDER || legType == GLOBAL.TYPE_ARACHNID));
 		}
