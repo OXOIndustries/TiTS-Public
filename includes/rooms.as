@@ -41,6 +41,29 @@ public function initializeRooms():void
 	rooms["SHIP INTERIOR"].addFlag(GLOBAL.BED);
 	rooms["SHIP INTERIOR"].addFlag(GLOBAL.PRIVATE);
 
+	rooms["SPACE"] = new RoomClass(this);
+	rooms["SPACE"].roomName = "SPACE";
+	rooms["SPACE"].description = "";
+	rooms["SPACE"].planet = "PLANET: NONE";
+	rooms["SPACE"].system = "SYSTEM: ARA ARA";
+	//rooms["SPACE"].outExit = shipLocation;
+	//rooms["SPACE"].outText = "Exit";
+	rooms["SPACE"].moveMinutes = 1;
+	rooms["SPACE"].runOnEnter = puntToShip;
+	rooms["SPACE"].addFlag(GLOBAL.OUTDOOR);
+
+	rooms["POESPACE"] = new RoomClass(this);
+	rooms["POESPACE"].roomName = "SPACE";
+	rooms["POESPACE"].description = "";
+	rooms["POESPACE"].planet = "PLANET: POE A";
+	rooms["POESPACE"].system = "SYSTEM: POE";
+	//rooms["POESPACE"].outExit = shipLocation;
+	//rooms["POESPACE"].outText = "Exit";
+	rooms["POESPACE"].moveMinutes = 1;
+	rooms["POESPACE"].runOnEnter = puntToShip;
+	rooms["POESPACE"].addFlag(GLOBAL.OUTDOOR);
+
+
 	//100. Hotel Room
 	rooms["HOTEL ROOM"] = new RoomClass(this);
 	rooms["HOTEL ROOM"].roomName = "HOTEL\nROOM";

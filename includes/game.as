@@ -693,6 +693,14 @@ public function flyMenu():void {
 		else addDisabledButton(5,"New Texas","New Texas","You're already there.");
 	}
 	else addDisabledButton(5,"Locked","Locked","You have not yet learned of this planet's coordinates.");
+	//POE A
+	if(flags["HOLIDAY_OWEEN_ACTIVATED"] != undefined)
+	{
+		if(flags["POE_A_DISABLED"] == 1) addDisabledButton(6,"Poe A","Poe A","You probably shouldn't go back there after your last trip to 'The Masque.'")
+		else if(shipLocation != "POESPACE") addButton(6,"Poe A",flyTo,"Poe A");
+		else addDisabledButton(6,"Poe A","Poe A","You're already there.");
+	}
+	else addDisabledButton(6,"Locked","Locked","You have not yet learned of this planet.");
 	this.addButton(14,"Back",mainGameMenu);
 }
 
@@ -702,7 +710,7 @@ public function flyTo(arg:String):void {
 	{
 		flags["SUPRESS TRAVEL EVENTS"] = 0;
 	}
-	else
+	else if(arg != "Poe A")
 	{
 		var tEvent:Function = tryProcTravelEvent();
 		if (tEvent != null)
@@ -757,6 +765,12 @@ public function flyTo(arg:String):void {
 		shipLocation = "600";
 		currentLocation = "600";
 		flyToMyrellion();
+	}
+	else if(arg == "Poe A")
+	{
+		shipLocation = "POESPACE";
+		currentLocation = "POESPACE";
+		output("Electing to have a little fun, you set a course for Poe A and before long, the planet looms before you on the display. It’s not particularly large, for a civilized world, but the traffic for landing vehicles is a little ridiculous. Thousands of craft are coming in every minute, with no sign of the influx slowing down. They’re from all over the galaxy too, even models you’ve never heard of before. Taking your place in the landing queue, you look around at some of the other visitors, eyes watering with envy as you spot a few ships that probably cost as much as this whole planet. Apparently the stories of stars slumming it up during the festival weren’t exaggerated!");
 	}
 	var timeFlown:Number = 600 + rand(30);
 	StatTracking.track("movement/time flown", timeFlown);
@@ -1427,6 +1441,8 @@ public function processTime(arg:int):void {
 			//Days ticks here!
 			if(this.hours >= 24) {
 				this.days++;
+				//Unlock dat shiiit
+				if(flags["HOLIDAY_OWEEN_ACTIVATED"] == undefined && (isHalloweenish() || rand(100) == 0)) eventQueue.push(hollidayOweenAlert);
 				if(pc.hasPerk("Honeypot") && days % 3 == 0) honeyPotBump();
 				//Exhibitionism reduction!
 				if(!(pc.armor is EmptySlot) && !(pc.lowerUndergarment is EmptySlot) && !(pc.upperUndergarment is EmptySlot))
