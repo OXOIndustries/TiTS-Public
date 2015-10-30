@@ -3673,15 +3673,17 @@ public function displayQuestLog(showID:String = "All"):void
 				output2("\n<b><u>The Masque</u></b>");
 				output2("\n<b>* Status:</b>"]);
 				// Holiday Hallowieners!
-				if(flags["HOLIDAY_OWEEN_LEFT"] != undefined)
-					output2(" Obtained a sabotaged mask from Holiday, Left the party, Completed");
-				else if(flags["HOLIDAY_OWEEN_PURCHASE"] != undefined)
-					output2(" Purchased " + indefiniteArticle(flags["HOLIDAY_OWEEN_PURCHASE"]) + " from Holiday, Celebrated at the party, Completed");
+				if(flags["POE_A_DISABLED"] != undefined)
+				{
+					if(flags["HOLIDAY_OWEEN_LEFT"] != undefined) output2(" Obtained a sabotaged mask from Holiday, Left the party,");
+					if(flags["HOLIDAY_OWEEN_PURCHASE"] != undefined) output2(" Purchased " + indefiniteArticle(flags["HOLIDAY_OWEEN_PURCHASE"]) + " from Holiday, Celebrated at the party,");
+					output2(" Completed");
+				}
 				else
 				{
-					output2(" Received invitation from ‘Wet & Waiting’");
+					output2(" Invite received from ‘Wet & Waiting’");
 					if(isHalloweenish()) output2(", <i>In progress...</i>");
-					else output2(", <i>Out-of-season...</i>");
+					else output2(", <i>Out of season...</i>");
 				}
 				sideCount++;
 			}
