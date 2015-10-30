@@ -3050,11 +3050,17 @@ public function questLogMenu(currentFunc:Function):Boolean
 		if(showID == "New Texas") { output2(header("<u>New Texas</u>", false)); addDisabledGhostButton(5, "New Texas"); }
 		else addGhostButton(5, "New Texas", currentFunc, "New Texas");
 	}
+	// Poe A
+	if(flags["HOLIDAY_OWEEN_ACTIVATED"] != undefined)
+	{
+		if(showID == "Poe A") { output2(header("<u>Poe A</u>", false)); addDisabledGhostButton(4, "Poe A"); }
+		else addGhostButton(6, "Poe A", currentFunc, "Poe A");
+	}
 	// Uveto
 	if(flags["UVETO_UNLOCKED"] != undefined)
 	{
 		if(showID == "Uveto") { output2(header("<u>Uveto VII</u>", false)); addDisabledGhostButton(4, "Uveto"); }
-		else addGhostButton(6, "Uveto", currentFunc, "Uveto");
+		else addGhostButton(7, "Uveto", currentFunc, "Uveto");
 	}
 	// Other Info
 	if(showID == "Other") addDisabledGhostButton(12, "Other");
@@ -3654,6 +3660,28 @@ public function displayQuestLog(showID:String = "All"):void
 					else if(flags["PUPPYSLUTMAS_2014_DRINKS"] >= 2) output2(", Drunk");
 					else if(flags["PUPPYSLUTMAS_2014_DRINKS"] >= 1) output2(", Buzzed");
 					else output2(", Sober");
+				}
+				sideCount++;
+			}
+		}
+		
+		if(showID == "Poe A" || showID == "All")
+		{
+			// The Masque
+			if(flags["HOLIDAY_OWEEN_ACTIVATED"] != undefined)
+			{
+				output2("\n<b><u>The Masque</u></b>");
+				output2("\n<b>* Status:</b>"]);
+				// Holiday Hallowieners!
+				if(flags["HOLIDAY_OWEEN_LEFT"] != undefined)
+					output2(" Obtained a sabotaged mask from Holiday, Left the party, Completed");
+				else if(flags["HOLIDAY_OWEEN_PURCHASE"] != undefined)
+					output2(" Purchased " + indefiniteArticle(flags["HOLIDAY_OWEEN_PURCHASE"]) + " from Holiday, Celebrated at the party, Completed");
+				else
+				{
+					output2(" Received invitation from ‘Wet & Waiting’");
+					if(isHalloweenish()) output2(", <i>In progress...</i>");
+					else output2(", <i>Out-of-season...</i>");
 				}
 				sideCount++;
 			}
