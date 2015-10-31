@@ -196,7 +196,7 @@ public function chooseDatGobboCostume():void
 	output(" she chides, heels slowly kicking against the crate. <i>“It’d look all lumpy and dumb. Have a little class. I’ll watch your shit for you tonight and you can pick it up after you’re done partying.”</i> She tilts her head to the side, pink hair falling across her cat-like yellow eyes. <i>“Don’t you trust me?”</i> The crate she’s sitting on lets out a deep, rumbling growl, which she silences with a crunching blow from her knuckles on the container’s reinforced lid.");
 	output("\n\nYou haven’t met very many people less trustworthy than this woman, but the alternative is another long trip back to your ship and your time to enjoy the festivities is running out. Fuck it, you decide. Grabbing your costume in both arms, you head to the curtained corner,");
 	if(!pc.isNude()) output(" stripping out of your [pc.gear] and");
-	output(" opening up the rubber-like suit. A large zipper down the front of the costume opens it from neck to crotch, giving you plenty of room to wiggle your way in, the peculiar inner texture sucking at your skin as you stretch it over your legs and hips. It seems a bit small, but luckily it’s got plenty of give, stretching as you slide your arms in and hoist the mask over your face. Shifting it around to get the eye and mouth holes right, you give another wiggling shake to smooth out all the air pockets before grabbing the large, thick loop of the zipper and pulling it up to the neck. The front flaps seal over to hide everything but the zipper itself, which now that you look at it, seems to have been designed to resemble some kind of antique slave collar. Cute.");
+	output(" opening up the rubber-like suit. A large zipper down the front of the costume opens it from neck to crotch, giving you plenty of room to wiggle your way in, the peculiar inner texture sucking at your skin as you stretch it over your [pc.legOrLegs] and hips. It seems a bit small, but luckily it’s got plenty of give, stretching as you slide your arms in and hoist the mask over your face. Shifting it around to get the eye and mouth holes right, you give another wiggling shake to smooth out all the air pockets before grabbing the large, thick loop of the zipper and pulling it up to the neck. The front flaps seal over to hide everything but the zipper itself, which now that you look at it, seems to have been designed to resemble some kind of antique slave collar. Cute.");
 	output("\n\nNow that you’re inside, you look around to see what kind of a suit you’ve got. It proves to be less spooky than you were expecting - green skin sure, but supple curves around hefty hips and bountiful breasts that are only barely covered by slick, leather straps. Getting a better look at yourself in the reflection of a shiny steel container, you’re a little surprised to see a woman’s heart-shaped face look back at you, a wry smile curled on her plump emerald lips. Tousled black hair frames your full, dimpled cheeks, a shock of pink wafting above your left eye. Your large, pointed ears are full of silver piercings, studs, earrings, and clasps, while a single ring pierces your left nostril. You play with the ring for a moment, marvelling at the detail in the bodysuit - everything’s so realistic! Not at all the goofy rubber farce you’d been expecting.");
 	output("\n\nWhen you step out from behind the curtain, Holiday looks up with an uncharacteristically disarmed grin. Letting out a slow whistle, she arches one eyebrow. <i>“Now there’s a goblin I wouldn’t mind putting through her paces. Come on, sexy, give us a twirl. Let’s see the rumpus.”</i>");
 	output("\n\nWith a small laugh, you spin in place, feeling a bit dizzy. The unfamiliar proportions of your costume add so much momentum to your spin that you end up going around a few times before losing your footing and falling on your ass. Still laughing, you rub your rotund rear, ample cheeks smarting from the fleshy impact. Weird that something with so much padding wouldn’t protect you from a tiny fall! Holiday helps you up and you look up at her, a little surprised by how much the shopkeeper towers over you. <i>“Looks like you’re ready to party,”</i> she decides, nodding in confirmation to her own declaration. She guides you out the door and sends you on your way with a smack on the ass. <i>“Don’t do anything I wouldn’t do!”</i> she offers as her parting advice before slamming the door shut, locking it, and turning out all the lights.");
@@ -215,7 +215,7 @@ public function goblinPartTwo():void
 	output("\n\nThe one who bumped you seems to be a kui-tan girl holding some kind of large diorama of a solar system. She’s hoisting a huge, yellow sun in a belt around her waist, with a variety of small planets bobbing around it. She mutters an apology, but your body has already told you what your mind is slowly working its way toward. You move in close again, pressing your palms against the sun and are rewarded with a soft, yielding pressure that sloshes with liquid weight.");
 	output("\n\n<i>“Hey, careful down there,”</i> she protests, a little embarrassed by being openly groped. <i>“It took me months to save up enough for this costume.”</i> You look up at the blushing futa girl, a slow smile spreading across your face. Frankly, her costume would look better as a supernova and you tell her as much. A few eavesdroppers nearby chuckle, but the kui-tan turns about, trying to make her way away from the aggressive olive woman.");
 	output("\n\nAs she turns her back, you sidestep her huge, bushy tail and wrap your arms around her waist, hands pushing under the sunny latex costume to grab for her fuzzy sheath. She lets out a gasp of surprise and pushes her hands down, to cover up your solar exploration. The pliant folds of her sheath roll and squish under your groping assault and in no time you’re rewarded with the sight of the nuki-girl’s crimson shaft peaking up from under the tawny covering. Squishing your breasts against the small of her back, you stroke the emerging shaft with both hands, coaxing her on with a husky voice that sounds very little like your own.");
-	output("\n\nMoaning and unable to resist your needful kneading, she sinks to her knees, the monumental sun resting with wobbling thickness on the ground. Pulling at the straps around your waist, you clear a path for your viridian cooch to breath free, puffy emerald lips swollen with your impatient yearning. You circle around, pulling her hands down to your dense hips and grin with hungry zest. No longer caring about the growing circle of onlookers around the two of you, the kui-tan girl lifts you easily into the air and positions you over the pulsing length of her twelve-inch shaft. Circling your pudgy legs around her waist, you lean forward and nip at one of her nipples through the black fabric of her dress. With a small ‘Eek!’ she loses her grip, dumping your hungry cunt directly onto the girl’s swollen member.");
+	output("\n\nMoaning and unable to resist your needful kneading, she sinks to her knees, the monumental sun resting with wobbling thickness on the ground. Pulling at the straps around your waist, you clear a path for your viridian cooch to breath free, puffy emerald lips swollen with your impatient yearning. You circle around, pulling her hands down to your dense hips and grin with hungry zest. No longer caring about the growing circle of onlookers around the two of you, the kui-tan girl lifts you easily into the air and positions you over the pulsing length of her twelve-inch shaft. Circling your pudgy [pc.legOrLegs] around her waist, you lean forward and nip at one of her nipples through the black fabric of her dress. With a small ‘Eek!’ she loses her grip, dumping your hungry cunt directly onto the girl’s swollen member.");
 	output("\n\nA swell of light and heat blinds you momentarily, the suit’s... no, your cunny squeezing down on the throbbing flesh that slid so perfectly into your gap, filling an emptiness you hadn’t realized you’d had before. With a whorish moan of rapture, you pump your hips up and down the shaft, fingers digging into the girl’s fur as you milk her for every ounce of her backed up load. It’s not just the electric pressure of her fat slut-fucker pounding your suckling pussy, nor even the churning heat of your own rolling orgasm alternately robbing you of muscle control and clenching your body in a tight knot of slattern ecstasy. No, the fervid hysteria driving your hips to a piston’s pace is entirely focused on the bloated ballsac beneath you, its fruitful bounty twisting your head into a tangled coil of desperate urgency. You flash the women around you dark looks that both threaten and gloat, your virile prey obediently thrusting womb-deep in your fertile depths.");
 	output("\n\nWhen at last her overstocked testicles discharge their torrid load, a geyser of exquisite seed surging into your taut tunnel like a gushing thermal spring, you bite your emerald lip hard enough to draw a trickle of blood, clenching down to hold on for every bucking spout of seething spunk. The kui-tan cries out in the throes of her climax, fingers digging into your breeder’s hips, the force of each contracting cum spurt pushing your upward while she does her best to pull you back down, knotted base inflating too late to keep the two of you locked together. Each spunk blast is more powerful than the last, your gut filling with her buttery spoo, abdomen swelling outward in fattened excess. Scrambling to remain mounted for every last ounce, you lock your ankles and loop your arms under hers, your swollen cunt greedily drinking in pressurized gallons.");
 	output("\n\nThe suppressed flow builds within you, cock-milk ballooning your belly until, muscles aching and body trembling from the endless orgasm, your concentration slips and the pressure breaks your embrace. Like a rocket, you launch off of the kui-tan’s supernova, arcing through the air in delirious bliss. The planet’s lower gravity takes you over the heads of the leering onlookers, who are immediately soaked in the splashing spunk of the explosive release. Those directly beneath you are coated in a thick glaze of pearl goo as you fly overhead, spasming slit unable to hold in the nectar bloating your body to spherical proportions.");
@@ -404,7 +404,10 @@ public function bountyHuntsPart2():void
 
 	output("\n\nAnother orgasm tightens your body at both ends, provoking a roar from Ripply and a gasp from Holiday. The two thrust in time, driving toward meeting in the middle, your body taut and electric, every nerve firing on overdrive. The fluid of your messy and seemingly endless orgasms has filled so much of the body suit that a massive and expanding bubble has formed in the blue latex underneath you, giving you the appearance of heavy, liquid pregnancy. Your [pc.nipples] burn with the friction of the rocking suit, pressure flooding your chest as even they too surrender to the alien assault, milk spewing from your [pc.breasts] in sympathetic response to the gushing orgasms that pile one on top of the other.");
 
-	output("\n\nGradually, darkness builds around the periphery of your eyes, orgasms coming so quickly that it seems you are trapped in one, endless moment. Holiday’s horseshaft fucking your throat in short, quickening strokes, you can feel her thick jizz pumping into your belly just as Ripply’s slut-taming tentacle cock widens to nearly twice its original girth, its narrow cum-slit dilating into a hose that releases a streaming geyser of breeding spunk into your spasming body. The blue latex bodysuit bulges obscenely with the accumulated weight of your climaxes, no longer skin-tight, but almost a huge blueberry, fluid spilling out of the tear between your legs. Practically swimming in your own lust juices, you surrender to the sweet oblivion of your spit-roasted rapture.");
+	output("\n\nGradually, darkness builds around the periphery of your eyes, orgasms coming so quickly that it seems you are trapped in one, endless moment. Holiday’s horseshaft fucking your throat in short, quickening strokes, you can feel her thick jizz pumping into your belly just as Ripply’s slut-taming tentacle cock widens to nearly twice its original girth, its narrow cum-slit dilating into a hose that releases a streaming geyser of breeding spunk into your spasming body. The blue latex bodysuit bulges obscenely with the accumulated weight of your climaxes, no longer skin-tight, but almost a huge blueberry, fluid spilling out of the tear between your");
+	if(pc.hasLegs()) output(" [pc.legOrLegs]");
+	else output(" [pc.butts]");
+	output(". Practically swimming in your own lust juices, you surrender to the sweet oblivion of your spit-roasted rapture.");
 	pc.buttChange(400);
 	pc.intelligence(-1);
 	pc.libido(5);
@@ -578,7 +581,10 @@ public function barbariannaCosplay():void
 {
 	clearOutput();
 	showName("OUT ON\nTHE TOWN");
-	output("You laugh it off and strut your stuff, swaying your hips and affecting all the cool self-assurity that a giant amazon ought to have among a throng of people so much smaller and weaker than you are. The act works better than you could have hoped and soon the crowd is parting for you like the Red Sea, the lustful gazes of dozens of men and women firmly settled on your ultra-generous cleavage, firm ass, and powerful legs. You absolutely fucking <b>bask</b> in the erotic attention, tempted to start showing off for the gathering crowd.");
+	output("You laugh it off and strut your stuff, swaying your hips and affecting all the cool self-assurity that a giant amazon ought to have among a throng of people so much smaller and weaker than you are. The act works better than you could have hoped and soon the crowd is parting for you like the Red Sea, the lustful gazes of dozens of men and women firmly settled on your ultra-generous cleavage, firm ass, and powerful");
+	if(pc.legCount == 1) output(" [pc.legNoun]");
+	else output(" [pc.legsNoun]");
+	output(". You absolutely fucking <b>bask</b> in the erotic attention, tempted to start showing off for the gathering crowd.");
 	if(pc.hasCock()) 
 	{
 		output("\n\nOf course, as you parade down the street in search of something worth your time, you can help feeling a little breezier than normal, and something hot and heavy battering your thighs. You cast a glance down, past your impressively enhanced rack, and feel an unbidden flush burn your cheeks as you see your [pc.cocks] hanging free through your <i>“armor”</i>’s groin. Damn, how did you not realize the jumpsuit was crotchless!? The green plate that should have been acting like a codpiece seems to have fallen off at some point, leaving you dangling loose");
@@ -665,7 +671,9 @@ public function partyHardWivSavin():void
 		if(pc.hairLength < 14)  pc.hairLength = 14;
 		pc.hairType = GLOBAL.HAIR_TYPE_REGULAR;
 	}
-	output(" before sauntering onto the crowded dance floor, pushing through a throng of inebriated, costumed revelers. You don’t have much of a costume left on now, save for the skin-tight bodysuit and the armored leggings, but nobody gives that a second thought now that you’re a disguised as a towering, powerful amazon.");
+	output(" before sauntering onto the crowded dance floor, pushing through a throng of inebriated, costumed revelers. You don’t have much of a costume left on now, save for the skin-tight bodysuit");
+	if(pc.hasLegs()) output(" and the armored leggings");
+	output(", but nobody gives that a second thought now that you’re disguised as a towering, powerful amazon.");
 
 	output("\n\nAn amazon that fuckin’ conquers the dance floor.");
 
@@ -738,7 +746,7 @@ public function annoPartyEpiloooogue():void
 	//if no cock:
 	if(!pc.hasCock())
 	{
-		output("\n\nYou swing your legs around and hike hers up, giving yourself perfect access to her, and her to you. She’s as talented with her tongue as you could hope for from a randy puppy-slut, but with all the fire and passion of a dragon. You return the favor with all your strength, drilling deep into her sodden twat until she’s cumming again and again, bucking and screaming beneath you.");
+		output("\n\nYou swing your [pc.legOrLegs] around and hike hers up, giving yourself perfect access to her, and her to you. She’s as talented with her tongue as you could hope for from a randy puppy-slut, but with all the fire and passion of a dragon. You return the favor with all your strength, drilling deep into her sodden twat until she’s cumming again and again, bucking and screaming beneath you.");
 	}
 	else output("\n\nYou thrust your [pc.cock] deep into her mouth, thrusting in until she’s slathered your members with spittle before rolling the randy bitch over and hiking her ass in the air. You thrust in. earning a delighted cry. You yourself howl and grunt with pleasure, vigorously hammering into the tight, sloppy grip of the puppy’s pussy until she’s screaming and cumming, gushing juices down her thighs until your sheets are a mess. You’re going to be sleeping in her scent for weeks... and you’ll love every second of it!");
 
@@ -995,7 +1003,7 @@ public function horsecockForHorseButts(config:int = 1):void
 	else output("You do! This horse body is fully functional and more than anatomically correct! Both sets of genitalia are there in full form, from weighty swaying balls to plush, wet lips. You can feel the former bouncing between your hind legs and the latter puffing up with excitement at the revelation, revealing a cherry-sized pleasure organ ripe for the touching. If just thinking about it feels this good, how good must centaur sex feel?");
 
 	//MERGE
-	output("\n\nWhen Holiday pushes you out the door, you stop to wiggle your ass in her direction, amazed at the astounding levels of sensation this suit is capable of. You’re barely aware of the presence of your real legs at all. You’d probably wind up moving your horse legs instead if you tried to move them around. Not much point in it while they’re locked up in the suit anyway.");
+	output("\n\nWhen Holiday pushes you out the door, you stop to wiggle your ass in her direction, amazed at the astounding levels of sensation this suit is capable of. You’re barely aware of the presence of your real [pc.legOrLegs] at all. You’d probably wind up moving your horse legs instead if you tried to move them around. Not much point in it while they’re locked up in the suit anyway.");
 	output("\n\nHoliday brazenly ");
 	if(config != 2) output("grabs hold of your centaur sack and rolls the weighty orbs between her fingers");
 	else output("caresses your folds and slips a finger in between.");
@@ -1287,7 +1295,7 @@ public function finalLadyTaurCostumeEpilogue():void
 {
 	clearOutput();
 	showName("SHIP\nINTERIOR");
-	output("No matter how hard you search, you can’t find a single catch or release. Worse still, attempts to peel away the border between your top and bottom half hurts. You can’t even feel your old [pc.legOrLegs], just the four, hoof-capped limbs below. It’s as if that equine shape has become a part of you for good. Is that what the peacekeepers meant by symbiosis tech? Are you a centaur forever?");
+	output("No matter how hard you search, you can’t find a single catch or release. Worse still, attempts to peel away the border between your top and bottom half hurts. You can’t even feel your old lower half anymore - just the four, hoof-capped limbs below. It’s as if that equine shape has become a part of you for good. Is that what the peacekeepers meant by symbiosis tech? Are you a centaur forever?");
 	output("\n\nWell, at least you’ll be well-equipped for riding now. You doubt any sapient this side of the spiral arm would be too big for you, and better still, ");
 	if(flags["RESCUE KIRO FROM BLUEBALLS"] == 1) output("your cunt can probably keep up with Kiro now. Just the thought of taking her bitch-breaker of a dick has your pussy on a slow boil.");
 	else output("your cunt can squeeze down even tighter on littler dicks. Every little drop counts when you’re questing to fill up the nursery you inherited.");
@@ -1295,6 +1303,7 @@ public function finalLadyTaurCostumeEpilogue():void
 	output("\n\n<b>Looks like you’re a horny");
 	if(!pc.hasCock()) output(", biologically female");
 	output(" centaur now.</b>");
+	pc.lust(50);
 	halloweenShipMove();
 	flags["TAURFUCKED_DANE"] = 1;
 	clearMenu();
@@ -1410,7 +1419,7 @@ public function mailTaurCostumeEpilogue():void
 public function maleTaurCostumeFinale():void
 {
 	clearOutput();
-	output("No matter how hard you search, you can’t find a single catch or release. Worse still, attempts to peel away the border between your top and bottom half hurts. You can’t even feel your old [pc.legOrLegs], just the four, hoof-capped limbs below. It’s as if that equine shape has become a part of you for good. Is that what the peacekeepers meant by symbiosis tech? Are you a centaur forever?");
+	output("No matter how hard you search, you can’t find a single catch or release. Worse still, attempts to peel away the border between your top and bottom half hurts. You can’t even feel your old lower half anymore - just the four, hoof-capped limbs below. It’s as if that equine shape has become a part of you for good. Is that what the peacekeepers meant by symbiosis tech? Are you a centaur forever?");
 	output("\n\nWell, at least you’ll be well-equipped to mate with some mares");
 	if(flags["MET_ELLIE"] != undefined) output(", like Ellie. She’s sure to be down for a quick filling..");
 	output(". ");
@@ -1424,15 +1433,7 @@ public function maleTaurCostumeFinale():void
 	output("\n\n<b>Looks like you’re a horny");
 	if(!pc.hasVagina()) output(", male");
 	output(" centaur now.</b>");
-	//Get rid of all vagooz and oldcocks	
-	//22”</i> horsecock.
-	//orange-sized balls.
-	//Tallness boost to 6’ if below.
-	//Taurbody, ofcourse.
-	//Libido to 70 or plus a minimum of 10.
-	//Orgasm 20 times.
-	//All tails gone.
-	//Strip mimbranes.
+	pc.lust(50);
 	halloweenShipMove();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
