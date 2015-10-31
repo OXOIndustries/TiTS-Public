@@ -30,7 +30,11 @@ package classes.GameData
 			
 			for (var i:int = 0; i < a.length; i++)
 			{
+				var atk:SingleCombatAttack = a[i];
 				
+				if (!atk.IsDisplayable(target)) continue;
+				
+				atks.push(atk);
 			}
 		}
 		

@@ -114,5 +114,10 @@ package classes.GameData
 			
 			return true;
 		}
+		
+		public function execute(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
+		{
+			
+		}
 	}
 }

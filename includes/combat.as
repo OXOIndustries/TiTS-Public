@@ -59,8 +59,7 @@ public function combatMainMenu():void
 	{
 		//Combat menu
 
-		this.addButton(5,"Tease",attackRouter,teaseMenu,"Tease Menu","Opens up your menu of available lust targetting attacks. It is recommended that the \"Sense\" option be used beforehand.");
-		this.addButton(6,"Sense",attackRouter,sense,"Sense","Attempts to get a feel for a foe's likes and dislikes. Absolutely critical for someone who plans on seducing " + pc.mf("his","her") + " way out of a fight.");
+
 		if(pc.hasStatusEffect("Trip")) this.addButton(8,"Stand Up",standUp,undefined,"Stand Up","Stand up, getting rid of the \"Trip\" status effect. This will consume your offensive action for this turn.");
 		this.addButton(9,"Fantasize",fantasize,undefined,"Fantasize","Fantasize about your foe until you're helpless and on your [pc.knees] before them.");
 		
@@ -1868,7 +1867,7 @@ public function wait():void {
 public function tease(target:Creature, part:String = "chest"):void {
 	var damage:Number = 0;
 	var teaseCount:Number = 0;
-	var randomizer:Number = (rand(31)+ 85)/100;
+	
 	var likeAdjustments:Array = new Array();
 	var totalFactor:Number = 1;
 	var x:int = 0;
@@ -2068,60 +2067,15 @@ public function tease(target:Creature, part:String = "chest"):void {
 		}
 		//Success!
 		else {
-			//Calc base damage
-			damage += 10 * (teaseCount/100 + 1) + pc.sexiness()/2 + sweatyBonus/2;
-			if(part == "squirt") damage += 5;
-			//Any perks or shit go below here.
-			if(pc.hasPerk("Pheromone Cloud")) damage += 1+rand(4);
-			//Apply randomization
-			damage *= randomizer;
-			//Base cap dependant on level:
-			if(damage > 15 + pc.level*2) damage = 15 + pc.level*2;
+			
 
-			//Apply like adjustments
-			damage *= totalFactor;
 			
-			// Resistances
-			damage = (1 - (target.getLustResistances().tease.damageValue / 100)) * damage;
-			
-			//Cap possible damage.
-			if(damage > 25 + pc.level*2) damage = 25 + pc.level*2;
-			
-			//Prevent lust from being over total damage.
-			if(target.lust() + damage > target.lustMax()) damage = target.lustMax() - target.lust();
-			damage = Math.ceil(damage);
-
-			output("\n");
-			if(part == "squirt") 
-			{
-				if(target.plural) output(target.capitalA + target.short + " are splattered with your [pc.milk], unable to get it off. All of a sudden, their faces begin to flush, and they look quite aroused.");
-				else output(target.capitalA + target.short + " is splattered with your [pc.milk], unable to get it off. All of a sudden, " + target.mfn("his","her","its") + " " + target.face() + " begins to flush, and " + target.mfn("he","she","it") + " looks quite aroused.");
-			}
-			else output(teaseReactions(damage,target));
-			target.lust(damage);
-			output(" ("+ damage + ")\n");
-			teaseSkillUp(part);
-			if(foes[0] is MyrInfectedFemale && damage >= 10)
-			{
-				output("<b>Your teasing has the poor girl in a shuddering mess as she tries to regain control of her lust addled nerves.</b>\n");
-				var stunDur:int = 1 + rand(2);
-				foes[0].createStatusEffect("Stunned",stunDur,0,0,0,false,"Stun","Cannot take action!",true,0);
-				foes[0].createStatusEffect("Lust Stunned",stunDur,0,0,0,true,"Stun","Cannot take action!",true,0);
-			}
 		}
 	}
 	else output("\n");
 	
 	playerMimbraneSpitAttack();
 	processCombat();
-}
-
-public function teaseSkillUp(part:String):void {
-	if(part == "crotch") flags["TIMES_CROTCH_TEASED"]++;
-	else if(part == "butt") flags["TIMES_BUTT_TEASED"]++;
-	else if(part == "hips") flags["TIMES_HIPS_TEASED"]++;
-	else if(part == "chest") flags["TIMES_CHEST_TEASED"]++;
-	else if(part == "squirt") flags["TIMES_CHEST_TEASED"]++;
 }
 
 public function teaseReactions(damage:Number,target:Creature):String {
