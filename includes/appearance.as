@@ -258,7 +258,12 @@ public function appearance(target:Creature):void {
 			else if(target.earType == GLOBAL.TYPE_MOUSE) output2(" A pair of large, dish-shaped mouse ears tops your skull.");
 			else if(target.earType == GLOBAL.TYPE_VANAE) output2(" A pair of pointed, finned ears tops your skull.");
 			else if(target.earType == GLOBAL.TYPE_PANDA) output2(" A pair of rounded, panda-like ears protrude from your skull, " + target.mf("standing tall and proud","looking absolutely adorable") + ".");
-			else if(target.earType == GLOBAL.TYPE_RASKVEL) output2(" A pair of long raskvel ears dangle from your skull down past your waist.");
+			else if(target.earType == GLOBAL.TYPE_RASKVEL)
+			{
+				output2(" A pair of");
+				if(target.earLength >= (target.tallness * 0.6)) output2(" " + num2Text(target.earLength) + "-inch");
+				output2(" long raskvel ears dangle from your skull down past your waist.");
+			}
 			else if(target.earType == GLOBAL.TYPE_SYLVAN) 
 			{
 				if(target.earLength <= 1) output2(" A pair of mostly-human ears with slightly pointed tips protrude from the sides of your skull, just like a fantasy elf's.");
@@ -287,7 +292,12 @@ public function appearance(target:Creature):void {
 			else if(target.earType == GLOBAL.TYPE_MOUSE) output2(" The " + target.hairDescript(true,true) + " atop your head is funneled between and around a pair of large, dish-shaped mouse ears that stick up prominently.");
 			else if(target.earType == GLOBAL.TYPE_VANAE) output2(" The " + target.hairDescript(true,true) + " atop your head is parted by a pair of pointed, fin-like ears, sensitive to the slightest sound.");
 			else if(target.earType == GLOBAL.TYPE_PANDA) output2(" The " + target.hairDescript(true,true) + " on your head is parted by a pair of round panda ears.");
-			else if(target.earType == GLOBAL.TYPE_RASKVEL) output2(" The " + target.hairDescript(true,true) + " atop your head is parted by a long pair of raskvel ears that dangle down past your waist.");
+			else if(target.earType == GLOBAL.TYPE_RASKVEL)
+			{
+				output2(" The " + target.hairDescript(true,true) + " atop your head is parted by a pair of");
+				if(target.earLength >= (target.tallness * 0.6)) output2(" " + num2Text(target.earLength) + "-inch");
+				output2(" long raskvel ears that dangle down past your waist.");
+			}
 			else if(target.earType == GLOBAL.TYPE_SYLVAN) 
 			{
 				if(target.earLength <= 1) output2(" The " + target.hairDescript(true,true) + " on your head nearly conceals a pair of mostly-human ears with slightly pointed tips, just like a fantasy elf's.");
@@ -301,7 +311,12 @@ public function appearance(target:Creature):void {
 				else output2(" Floppy antennae also grow from just behind your hairline, bouncing and swaying in the breeze.");
 			}
 		}
-		if(target.earType == GLOBAL.TYPE_LEITHAN) output2(" In addition, pointed elfin ears jut out below them, giving you exceptional hearing.");
+		if(target.earType == GLOBAL.TYPE_LEITHAN)
+		{
+			output2(" In addition, ");
+			if(target.earLength > 1) output2(" " + num2Text(target.earLength) + "-inch long ");
+			output2("pointed elfin ears jut out below them, giving you exceptional hearing.");
+		}
 		//Tongue
 		if(target.tongueType == GLOBAL.TYPE_NAGA || target.tongueType == GLOBAL.TYPE_SNAKE) output2(" A snake-like [target.tongueNoun] occasionally flits between your lips, tasting the air.");
 		else if(target.tongueType == GLOBAL.TYPE_DEMONIC) output2(" A slowly undulating [target.tongueNoun] occasionally slips from between your lips. It hangs nearly two feet long when you let the whole thing slide out, though you can retract it to appear normal.");
@@ -656,7 +671,7 @@ public function appearance(target:Creature):void {
 		else if(target.tailType == GLOBAL.TYPE_OVIR)
 		{
 			if(target.tailCount == 1) output2(" A thick, reptilian tail dangles behind you, swaying as a living counterbalance.");
-			else output2(upperCase(num2Text(target.tailCount))  + " thick, reptilian tails dangle behind you, swaying like living counterbalance. It's difficult to keep the thick appendages from idly squirming their scales against one another.");
+			else output2(upperCase(num2Text(target.tailCount)) + " thick, reptilian tails dangle behind you, swaying like living counterbalance. It's difficult to keep the thick appendages from idly squirming their scales against one another.");
 		}
 		else if (target.tailType == GLOBAL.TYPE_COCKVINE)
 		{
@@ -738,9 +753,10 @@ public function appearance(target:Creature):void {
 		}
 		else if(target.legType == GLOBAL.TYPE_NAGA) 
 		{
-			if(target.legCount == 1) output2(" Below your thighs, your flesh is fused together into a very long, snake-like tail, leaving a narrow, connecting gap between your crotch and [target.asshole].");
-			else if(target.legCount < 4) output2(" Below your thighs, " + num2Text(target.legCount) + " wiggling, snake-like appendages allow you to slither around.");
-			else output2(" You have wiggling snake-like appendages to propel yourself around on.");
+			if(target.legCount == 1) output2(" Below your thighs, your flesh is fused together into a very long, snake-like tail, leaving a narrow, connecting gap between your crotch and [target.asshole]. It is");
+			else if(target.legCount < 4) output2(" Below your thighs, " + num2Text(target.legCount) + " wiggling, snake-like appendages allow you to slither around. They are");
+			else output2(" You have wiggling snake-like appendages to propel yourself around on, all");
+			output2(" covered in " + target.scaleColor + "-colored scales.");
 		}
 		//Horse body is placed higher for readability purposes
 		else if(target.legType == GLOBAL.TYPE_SUCCUBUS) 
@@ -997,13 +1013,13 @@ public function appearance(target:Creature):void {
 				else if(target.milkFullness < 75) output2(" Your " + target.breastDescript(0) + " have a noticable amount of [target.milk] inside them now. Before long, they'll start swelling.");
 				else if(target.milkFullness < 100) output2(" Your " + target.breastDescript(0) + " are fairly full of [target.milk] and noticeably swollen.");
 				else if(target.milkFullness < 150) output2(" Your " + target.breastDescript(0) + " are sore and sensitive from being so stuffed with [target.milk]. You should release the pressure soon.");
-				else if(target.milkFullness < 200)    
+				else if(target.milkFullness < 200)
 				{
 					if(target.isMilkTank() && rand(2) == 0) output2(" Your " + target.breastDescript(0) + " are incredibly swollen with [target.milk], so much that they're much bigger than normal. Your lactation shows no signs of slowing down in the slightest.");
 					else if(target.isMilkTank()) output2(" At least you are certain your enhanced [target.fullChest] will never stop lactating, no matter what.");
 					else output2(" Your " + target.breastDescript(0) + " are painfully swollen with [target.milk], so much that they're much bigger than normal. The longer they stay like this, the more your lactation will slow.");
 				}
-				else 
+				else
 				{
 					if(target.isMilkTank() && rand(2) == 0) output2(" <b>Your " + target.breastDescript(0) + " are so full that they might burst! They radiate a constant yet rhythmic pulse of pressure, a sign that you are quite the productive [target.milk] factory!</b>");
 					else if(target.isMilkTank()) output2(" Despite the uncomfortable fullness, you are at ease - you know your enhanced [target.fullChest] will never stop lactating, no matter what.");

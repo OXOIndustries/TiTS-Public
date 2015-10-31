@@ -129,8 +129,8 @@ package classes.TITSSaveEdit.Data
 			returnString += ": <b>" + data.data.saveName + "</b>";
 			returnString += " - <i>" + data.data.saveNotes + "</i>\n";
 			returnString += "\t<b>Days:</b> " + data.data.daysPassed;
-			returnString += "  <b>Gender:</b> " + data.data.playerGender;
-			returnString += "  <b>Location:</b>" + StringUtil.toTitleCase(data.data.saveLocation);
+			returnString += " - <b>Gender:</b> " + data.data.playerGender;
+			returnString += " - <b>Location:</b>" + StringUtil.toTitleCase(data.data.saveLocation);
 			
 			returnString += "\n";
 			return returnString;
@@ -244,7 +244,15 @@ package classes.TITSSaveEdit.Data
 				
 				// Update the static lookup values used for save ident
 				dataObject.saveName = _storedCharacter.short;
-				dataObject.playerGender = _storedCharacter.mfn("M", "F", "A");
+				//OLD
+				//dataObject.playerGender = _storedCharacter.mfn("M", "F", "A");
+				//NEW
+				var gender:String = "N";
+				if(_storedCharacter.hasCock() && _storedCharacter.hasVagina()) gender = "H";
+				else if(_storedCharacter.hasCock() && _storedCharacter.femininity >= 50) gender = "T";
+				else if(_storedCharacter.hasCock()) gender = "M";
+				else if(_storedCharacter.hasVagina()) gender = "F";
+				dataObject.playerGender = gender;
 				
 				var targetSO:SharedObject;
 				

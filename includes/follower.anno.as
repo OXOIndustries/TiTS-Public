@@ -2721,7 +2721,7 @@ public function grayGooArrivesAtShip():void
 	author("Savin");
 	showName("\nGRAY GOO");
 	showBust("GRAYGOO");
-
+	
 	output("<i>“So, [goo.name], think you can help me out with something?”</i> you ask as you make your way aboard. The gray girl’s eyes are wide with awe as she surveys your ship, squirming around and poking her head right up next to several of your computer systems, poking at the door mechanics, or bending way over to look at something on the floor. Or to show off her big, jiggling booty... hard to tell. You tap her on the back to get her attention, and repeat your request.");
 	
 	output("\n\n<i>“Oh! Sure, bestest buddy. Anything you want!”</i> she says with a grin, bouncing up uncomfortably close to you. She presents her tits to you and wiggles her behind, clearly expecting your desire to be entirely sexual.");
@@ -2735,7 +2735,7 @@ public function grayGooArrivesAtShip():void
 	output("\n\nYou have to admit, it actually <i>is</i> very comfortable. Nice and cool, and the goo flows around you like a full-body glove... that just happens to be hardened against weapons fire whenever you need it to be. You tell [goo.name] that this is going to work out just fine... especially if she’s as eager to help you between fights as well.");
 	
 	output("\n\n<i>“I was hoping you’d ask!”</i> she giggles, shifting herself around your [pc.crotch].");
-
+	
 	flags["ANNO_NOVA_UPDATE"] = 3;
 	
 	processTime(10+rand(5));
@@ -2751,10 +2751,43 @@ public function grayGooArrivesAtShip():void
 		});
 	}
 	else pc.armor = new GooArmor();
-
+	
 	clearMenu();
 	addButton(0, "Goo Dicks", gooDickFap, undefined, "Goo Dicks", "Have [goo.name] fill all of your holes and fuck you.");
 	if (pc.hasCock()) addButton(1, "GooSleeve", grayGooCockSleeve, undefined, "Goo Cocksleeve", "Have [goo.name] jack you off.");
+	addButton(2, "No Sex", gooFapNope, undefined, "No Sex", "You are not in the mood to sex [goo.name] at this time.");
+}
+
+public function gooFapNope():void
+{
+	clearOutput();
+	showName("\nGRAY GOO");
+	showBust("GRAYGOO");
+	
+	output("With that, you");
+	if(pc.isBimbo()) output(" giggle back and tell [goo.name] that you two will be the bestest of friends! You blurt, <i>“Like, we should <b>totally</b> get facials together, okay?”</i>");
+	else if(pc.isBro()) output(" grunt and comment that [goo.name] is welcome to help you take a load off anytime she wants--that is, if she can handle you.");
+	else if(pc.isMischievous()) output(" jokingly warn [goo.name] not to try anything funny.");
+	else if(pc.isAss()) output(" sternly warn [goo.name] not to get all up in your personal business.");
+	else output(" thank [goo.name] for being so cooperative.");
+	// Extra goo notes for having goo followers!
+	if(celiseIsCrew())
+	{
+		if(pc.isBimbo()) output(" And maybe you can invite another yummy goo-mate to join the party too!");
+		else if(pc.isBro()) output(" But of course, if she needs help, you’re sure you can find another goo that could lend a hand too...");
+		else if(pc.isMischievous()) output(" You then take a pause. Hm, you might be developing some kind of goo fetish here...");
+		else if(pc.isAss()) output(" And as long as she doesn't make trouble with the other goo, you guess it’ll be fine to have her around.");
+		else output(" It would definitely be nice to have another goo-form around the place, you ponder.");
+	}
+	output("\n\n<i>“Mm-hm!”</i> she excitedly responds, though she is obviously too focused on your crotch to communicate with actual words at the moment.");
+	
+	pc.lust(5);
+	if(pc.hasPerk("Inhuman Desire")) pc.lust(5);
+	if(pc.hasPerk("Fuck Sense")) pc.lust(5);
+	if(pc.isTreated()) pc.lust(5);
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
 
 public function grayGooSpessSkype():void

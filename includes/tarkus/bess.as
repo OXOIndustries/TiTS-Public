@@ -194,21 +194,21 @@ public function bessNippleType():String
 
 public function bessAssSize():String
 {
-	if (bess.buttRatingRaw <= 2) return "boyish";
-	if (bess.buttRatingRaw <= 5) return "slender";
-	if (bess.buttRatingRaw <= 8) return "average";
-	if (bess.buttRatingRaw <= 16) return "ample";
-	if (bess.buttRatingRaw <= 20) return "voluptuous";
+	if (bess.buttRatingRaw <= 0) return "boyish";
+	if (bess.buttRatingRaw <= 2) return "slender";
+	if (bess.buttRatingRaw <= 5) return "average";
+	if (bess.buttRatingRaw <= 8) return "ample";
+	if (bess.buttRatingRaw <= 16) return "voluptuous";
 	return "massive";
 }
 
 public function bessThighSize():String
 {
-	if (bess.hipRatingRaw <= 2) return "boyish";
-	if (bess.hipRatingRaw <= 5) return "slender";
-	if (bess.hipRatingRaw <= 8) return "average";
-	if (bess.hipRatingRaw <= 16) return "ample";
-	if (bess.hipRatingRaw <= 20) return "voluptuous";
+	if (bess.hipRatingRaw <= 0) return "boyish";
+	if (bess.hipRatingRaw <= 2) return "slender";
+	if (bess.hipRatingRaw <= 5) return "average";
+	if (bess.hipRatingRaw <= 8) return "ample";
+	if (bess.hipRatingRaw <= 16) return "voluptuous";
 	return "massive";
 }
 
@@ -908,7 +908,7 @@ public function nameBessProcessing():void
 		output("\n\n\n<b>To prevent complications, please avoid using code in the name.</b>");
 		return;
 	}
-	if (userInterface.textInput.text.length > 14) {
+	if (this.userInterface.textInput.text.length > 14) {
 		output("\n\n\n<b>You must enter a name no more than fourteen characters long.</b>");
 		return;
 	}
@@ -1463,9 +1463,17 @@ public function bessTitlesTheirName():void
 
 public function bessTitlesTryChangeName():void
 {
-	if(this.userInterface.textInput.text == "")
-	{
-		output("<b>You must input a name.</b>");
+	if (this.userInterface.textInput.text == "") {
+		output("\n\n\n<b>You must input a name.</b>");
+		return;
+	}
+	// Illegal characters check. Just in case...
+	if (hasIllegalInput(this.userInterface.textInput.text)) {
+		output("\n\n\n<b>To prevent complications, please avoid using code in the name.</b>");
+		return;
+	}
+	if (this.userInterface.textInput.text.length > 14) {
+		output("\n\n\n<b>You must enter a name no more than fourteen characters long.</b>");
 		return;
 	}
 	chars["BESS"].short = this.userInterface.textInput.text;
@@ -5534,10 +5542,15 @@ public function bessEventHook():Boolean
 	}
 
 	var bEvent:Boolean = false;
+	
+	// Universal control over the event chances
+	var iChance:int = 4;
+	// New chance
+	iChance = 2;
 
 	if (!bessEventCheck(0))
 	{
-		if (rand(4) == 0)
+		if (rand(iChance) == 0)
 		{
 			bessEvent0();
 			bEvent = true;
@@ -5546,7 +5559,7 @@ public function bessEventHook():Boolean
 	
 	if (bessEventCheck(0) && !bessEventCheck(1) && !bEvent)
 	{
-		if ((flags["BESS_EVENT_0"] + 12 * 60 <= GetGameTimestamp()) && rand(4) == 0)
+		if ((flags["BESS_EVENT_0"] + 12 * 60 <= GetGameTimestamp()) && rand(iChance) == 0)
 		{
 			bessEvent1();
 			bEvent = true;
@@ -5555,7 +5568,7 @@ public function bessEventHook():Boolean
 	
 	if (bessEventCheck(1) && !bessEventCheck(2) && !bEvent)
 	{
-		if ((flags["BESS_EVENT_1"] + (1.5 * 24 * 60) <= GetGameTimestamp()) && rand(4) == 0)
+		if ((flags["BESS_EVENT_1"] + (1.5 * 24 * 60) <= GetGameTimestamp()) && rand(iChance) == 0)
 		{
 			bessEvent2();
 			bEvent = true;
@@ -5573,7 +5586,7 @@ public function bessEventHook():Boolean
 
 	if (bessEventCheck(3) && !bessEventCheck(4) && !bEvent)
 	{
-		if (flags["BESS_EVENT_3"] + (1.5 * 24 * 60) <= GetGameTimestamp() && rand(4) == 0)
+		if (flags["BESS_EVENT_3"] + (1.5 * 24 * 60) <= GetGameTimestamp() && rand(iChance) == 0)
 		{
 			bessEvent4();
 			bEvent = true;
@@ -5591,7 +5604,7 @@ public function bessEventHook():Boolean
 
 	if (bessEventCheck(5) && !bessEventCheck(6) && !bEvent)
 	{
-		if (flags["BESS_EVENT_5"] + (2 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 30 && rand(4) == 0)
+		if (flags["BESS_EVENT_5"] + (2 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 30 && rand(iChance) == 0)
 		{
 			bessEvent6();
 			bEvent = true;
@@ -5627,7 +5640,7 @@ public function bessEventHook():Boolean
 
 	if (bessEventCheck(9) && !bessEventCheck(10) && !bEvent)
 	{
-		if (flags["BESS_EVENT_9"] + (1.5 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 50 && rand(4) == 0)
+		if (flags["BESS_EVENT_9"] + (1.5 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 50 && rand(iChance) == 0)
 		{
 			bessEvent10();
 			bEvent = true;
@@ -5637,8 +5650,8 @@ public function bessEventHook():Boolean
 	if (bessEventCheck(10) && !bessEventCheck(11) && !bEvent)
 	{
 		var e11Chance:int;
-		if (flags["BESS_EVENT_11_TIMES"] == undefined) e11Chance = 4;
-		else e11Chance = 20;
+		if (flags["BESS_EVENT_11_TIMES"] == undefined) e11Chance = iChance;
+		else e11Chance = iChance * 5;
 
 		if (flags["BESS_EVENT_10"] + (1.5 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 50 && rand(e11Chance) == 0 && flags["VISITED_MYRELLION"] != undefined)
 		{
@@ -5649,7 +5662,7 @@ public function bessEventHook():Boolean
 
 	if (bessEventCheck(11) && !bessEventCheck(12) && !bEvent)
 	{
-		if (flags["BESS_EVENT_11"] + (1.5 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 60 && rand(10) == 0)
+		if (flags["BESS_EVENT_11"] + (1.5 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 60 && rand(Math.floor(iChance * 2.5)) == 0)
 		{
 			bessEvent12();
 			bEvent = true;
@@ -5658,7 +5671,7 @@ public function bessEventHook():Boolean
 
 	if (bessEventCheck(12) && !bessEventCheck(13) && !bEvent)
 	{
-		if (flags["BESS_EVENT_12"] + (1.5 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 60 && rand(10) == 0)
+		if (flags["BESS_EVENT_12"] + (1.5 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 60 && rand(Math.floor(iChance * 2.5)) == 0)
 		{
 			bessEvent13();
 			bEvent = true;
@@ -5667,7 +5680,7 @@ public function bessEventHook():Boolean
 
 	if (bessEventCheck(13) && !bessEventCheck(14) && !bEvent)
 	{
-		if (flags["BESS_EVENT_13"] + (1.5 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 60 && rand(4) == 0)
+		if (flags["BESS_EVENT_13"] + (1.5 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 60 && rand(iChance) == 0)
 		{
 			bessEvent14();
 			bEvent = true;
@@ -5676,7 +5689,7 @@ public function bessEventHook():Boolean
 
 	if (bessEventCheck(14) && !bessEventCheck(15) && !bEvent)
 	{
-		if (flags["BESS_EVENT_14"] + (1.5 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 60 && rand(4) == 0)
+		if (flags["BESS_EVENT_14"] + (1.5 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 60 && rand(iChance) == 0)
 		{
 			bessEvent15();
 			bEvent = true;
@@ -5687,7 +5700,7 @@ public function bessEventHook():Boolean
 	{
 		if (bessEventCheck(15) && !bessEventCheck(16) && !bEvent)
 		{
-			if (flags["BESS_EVENT_15"] + (1.5 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 70 && rand(4) == 0)
+			if (flags["BESS_EVENT_15"] + (1.5 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 70 && rand(iChance) == 0)
 			{
 				bessEvent16();
 				bEvent = true;
@@ -5696,7 +5709,7 @@ public function bessEventHook():Boolean
 
 		if (bessEventCheck(16) && !bessEventCheck(17) && !bEvent)
 		{
-			if (flags["BESS_EVENT_16"] + (1.5 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 70 && rand(4) == 0)
+			if (flags["BESS_EVENT_16"] + (1.5 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 70 && rand(iChance) == 0)
 			{
 				bessEvent17();
 				bEvent = true;
@@ -5705,7 +5718,7 @@ public function bessEventHook():Boolean
 
 		if (bessEventCheck(17) && !bessEventCheck(18) && !bEvent)
 		{
-			if (flags["BESS_EVENT_17"] + (1.5 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 70 && rand(4) == 0)
+			if (flags["BESS_EVENT_17"] + (1.5 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 70 && rand(iChance) == 0)
 			{
 				bessEvent18();
 				bEvent = true;
@@ -5716,7 +5729,7 @@ public function bessEventHook():Boolean
 		{
 			var e19Chance:int;
 			if (flags["BESS_EVENT_19_TIMES]"] == undefined) e19Chance = 1;
-			else e19Chance = 10;
+			else e19Chance = Math.floor(iChance * 2.5);
 
 			if (hours >= 16 && flags["BESS_EVENT_18"] + (2 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 70 && rand(e19Chance) == 0)
 			{
@@ -5739,7 +5752,7 @@ public function bessEventHook():Boolean
 
 		if (bessEventCheck(22) && !bessEventCheck(23) && !bEvent)
 		{
-			if (flags["BESS_EVENT_22"] + (2 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 80 && flags["CREWMEMBER_SLEEP_WITH"] == "BESS" && rand(4) == 0)
+			if (flags["BESS_EVENT_22"] + (2 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 80 && flags["CREWMEMBER_SLEEP_WITH"] == "BESS" && rand(iChance) == 0)
 			{
 				bessEvent23();
 				bEvent = true;
@@ -5748,7 +5761,7 @@ public function bessEventHook():Boolean
 
 		if (bessEventCheck(23) && !bessEventCheck(24) && !bEvent)
 		{
-			if (flags["BESS_EVENT_23"] + (2 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 80 && rand(4) == 0)
+			if (flags["BESS_EVENT_23"] + (2 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 80 && rand(iChance) == 0)
 			{
 				bessEvent24();
 				bEvent = true;
@@ -5766,7 +5779,7 @@ public function bessEventHook():Boolean
 
 		if (bessEventCheck(25) && !bessEventCheck(26) && !bEvent)
 		{
-			if (flags["BESS_EVENT_25"] + (3.5 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 80 && rand(4) == 0)
+			if (flags["BESS_EVENT_25"] + (3.5 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 80 && rand(iChance) == 0)
 			{
 				bessEvent26();
 				bEvent = true;
@@ -5775,7 +5788,7 @@ public function bessEventHook():Boolean
 
 		if (bessEventCheck(26) && !bessEventCheck(27) && !bEvent)
 		{
-			if (flags["CREWMEMBER_SLEEP_WITH"] == "BESS" && flags["BESS_MORNING_EVENT_1"] != undefined && flags["BESS_EVENT_26"] + (3.5 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 80 && rand(4) == 0)
+			if (flags["CREWMEMBER_SLEEP_WITH"] == "BESS" && flags["BESS_MORNING_EVENT_1"] != undefined && flags["BESS_EVENT_26"] + (3.5 * 24 * 60) <= GetGameTimestamp() && bessAffection() >= 80 && rand(iChance) == 0)
 			{
 				bessEvent27();
 				bEvent = true;
@@ -6102,7 +6115,7 @@ public function bessEvent2Encourage():void
 
 	if (pc.isAss())
 	{
-		output("<i>“Spit it out, [bes.name], I don’t have all day.”</i> You simply can’t take it anymore, giving [bess.himHer] a stern look. The "+ bess.mf("male synthetic", "synthetic girl") +" literally jumps at your tone and then bounces back down onto [bess.hisHer] seat.");
+		output("<i>“Spit it out, [bess.name], I don’t have all day.”</i> You simply can’t take it anymore, giving [bess.himHer] a stern look. The "+ bess.mf("male synthetic", "synthetic girl") +" literally jumps at your tone and then bounces back down onto [bess.hisHer] seat.");
 		
 		output("\n\n<i>“U-um... I was just curious as to why organics find the need to watch stories about things that didn’t actually happen. It seems different from when you were watching the news.”</i> [bess.HeShe] nervously queries you. Despite [bess.hisHer] "+ bess.mf("obvious bashfulness", "apparent shyness") +", [bess.hisHer] [bess.eyeColor] eyes are gleaming");
 		if (bessGlasses()) output(" behind her glasses.");

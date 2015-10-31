@@ -521,8 +521,7 @@ public function talkToBrothelLady():void
 {
 	clearOutput();
 	author("Savin");
-	userInterface.showName("BROTHEL\nMISTRESS");
-	userInterface.showBust("BORING_MISTRESS");
+	showBrothelLady();
 	output("You approach the mistress, clearing your throat to get her attention. With marked boredom, she intones, \"<i>Welcome to Beth's Busty Broads. If you're here for our going out of business sale, you're out of luck. The selection's... pretty limited. And by that I mean we've got one slut left, and she's a handful.</i>\"");
 	output("\n\n\"<i>What happened to all the others?</i>\"");
 	output("\n\nShe cocks an eyebrow at you, finally bothering to look up from her slate. \"<i>Boss was using indentured labor, but she had some kinda crisis, whatever. Had to sell most of the contracts out. A lot of the regulars bought up their favorite sluts to keep 'em forever. Or close enough to forever as money can buy.</i>\"");
@@ -590,15 +589,14 @@ public function brothelMainMenu():void {
 			else addDisabledButton(4,"Doh'rahn","Doh'rahn","You need 100 credits for conjugals, and you don’t have the money!");
 		}
 	}
-	//Doh’rahn/Vaande
-	//name on button changes after first time
-	//avail whenever doh’rahn is not on center stage (21 hours a day)
-	//employs pheromones to charm and loves to be sniffed, very PC subby
-	//usable by any sex and leg config
-	//tooltip: Visit the doh’rahn in her room and contract out some wet-work for 100 credits.
-	//tooltip disabled, hour 1000, 1300, 1600: The doh’rahn is on stage right now. She only dances for an hour at a time, so you could just come back in a bit if you’d like to buy her services. Have 100 credits handy.
-	//tooltip disabled, no money: You need 100 credits for conjugals, and you don’t have the money!
-
+	// Turn Tricks
+	// Feminine female wearing something sexiness > 2 only for now.
+	// "Jaded" status, prevents whoring plus minor stat penalties for 6 hours. Prevents players spamming it for essentially free money. Yeah they can just wait, but that won't make it any different from the milker.
+	if(hours >= 6 && hours < 10) addDisabledButton(5, "Turn Tricks", "Turn Tricks", "The brothel mistress is currently sleeping. You don’t think it’ll be a good idea to wake her right now.");
+	else if((pc.armor.sexiness + pc.upperUndergarment.sexiness + pc.lowerUndergarment.sexiness) <= 2 || !pc.hasVagina()) addDisabledButton(5, "Turn Tricks", "Turn Tricks", "You need to be a female dressed in something sexy in order to try this.");
+	else if(pc.hasStatusEffect("Jaded")) addDisabledButton(5, "Turn Tricks", "Turn Tricks", "You’re too wiped from last time to contemplate that right now.");
+	else if(pc.hasStatusEffect("Sore")) addDisabledButton(5, "Turn Tricks", "Turn Tricks", "You’re too sore to think about doing that right now.");
+	else addButton(5, "Turn Tricks", brothelTurnTrixLady, undefined, "Turn Tricks", "See if you can’t earn some money in the most time-honored of fashions.");
 
 	addButton(14,"Leave",mainGameMenu);
 }
@@ -607,8 +605,7 @@ public function talkToBrothelLadyNewOmni():void
 {
 	clearOutput();
 	author("Savin & Zeik");
-	userInterface.showName("BROTHEL\nMISTRESS");
-	userInterface.showBust("BORING_MISTRESS");
+	showBrothelLady();
 	
 	//time 0600-0959, replace first paragraph of first meeting (or entire intro if repeat)
 	if(hours >= 6 && hours < 10)
@@ -663,7 +660,8 @@ public function ReahaBrothelSexMenu():void
 {
 	clearOutput();
 	author("Savin");
-	userInterface.showName("MISTRESS AND\nREAHA");
+	if(flags["KAT_MET"] != undefined) userInterface.showName("KAT AND\nREAHA");
+	else userInterface.showName("MISTRESS AND\nREAHA");
 	userInterface.showBust("BORING_MISTRESS","REAHA");
 	
 
@@ -708,8 +706,7 @@ public function askAboutBusinessLikeASir():void
 {
 	clearOutput();
 	author("Savin");
-	userInterface.showName("BROTHEL\nMISTRESS");
-	userInterface.showBust("BORING_MISTRESS");
+	showBrothelLady();
 	output("You ask the mistress how business is doing. There are enough people on the floor with drinks in hand to suggest Beth's is in no danger of shutting down.");
 	output("\n\nShe shrugs. \"<i>New madame's whipped up a lot of new customers. Old one didn't do much, let the place fall to shit. I was about to put in my two-weeks' when she up and left. Dunno why. But things are picking up again. New popular girls coming in, old ones going out. Even fixed the surround sound.</i>\"")
 	//GET RID OF ZIS BUTTON U CUNT
