@@ -158,7 +158,7 @@ public function leaveLikeABitch():void
 	if(pc.hairLength < 12) pc.hairLength = 12;
 	pc.hairColor = "pink";
 	pc.hairType = GLOBAL.HAIR_TYPE_REGULAR;
-	pc.removeStatusEffect("Horn Bumps");
+	pc.removeHorns();
 	pc.horns = 2;
 	pc.hornLength = 2;
 	pc.hornType = GLOBAL.TYPE_DEMONIC;
