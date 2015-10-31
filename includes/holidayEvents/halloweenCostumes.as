@@ -142,7 +142,7 @@ public function leaveLikeABitch():void
 	output("\n\nYou think back on the strange, strangled, chanting cry that the masked creatures had been yelling. Now that you think of it, they may have been saying <i>“GPD! Freeze!”</i> Grabbing the mask and tearing it open, you find a small chip buried in the velvet lining with itty, bitty, tiny prongs barely poking through on the inside.");
 	output("\n\nNo wonder they were chasing you: <b>thanks to her sabotaged mask, you look like Holiday!</b>");
 	processTime(44);
-	if(pc.hasTailCock() || hasTailCunt())
+	if(pc.hasTailCock() || pc.hasTailCunt())
 	{
 		pc.tailGenital = 0;
 		pc.tailGenitalArg = 0;
@@ -153,8 +153,8 @@ public function leaveLikeABitch():void
 	pc.tailCount = 1;
 	pc.tailType = GLOBAL.TYPE_DEMONIC;
 	pc.clearTailFlags();
-	pc.addTailFlag("GLOBAL.FLAG_PREHENSILE");
-	pc.addTailFlag("GLOBAL.FLAG_LONG");
+	pc.addTailFlag(GLOBAL.FLAG_PREHENSILE);
+	pc.addTailFlag(GLOBAL.FLAG_LONG);
 	if(pc.hairLength < 12) pc.hairLength = 12;
 	pc.hairColor = "pink";
 	pc.hairType = GLOBAL.HAIR_TYPE_REGULAR;
@@ -1118,8 +1118,6 @@ public function taurBarAdventures(config:int = 1):void
 
 public function taurTFs(arg:int = 1):void
 {
-	//Strip mimbranes.
-	removeMimbranes();
 	//1 - dude, 2 chick, 3 herm
 	//Get rid of all vagooz and oldcocks	
 	pc.removeCocks();
@@ -1142,7 +1140,7 @@ public function taurTFs(arg:int = 1):void
 	if(70-pc.libido() < 10) pc.libido(10);
 	else pc.libido(70,true);
 	//All tails gone.
-	if(pc.hasTailCock() || hasTailCunt())
+	if(pc.hasTailCock() || pc.hasTailCunt())
 	{
 		pc.tailGenital = 0;
 		pc.tailGenitalArg = 0;
@@ -1154,6 +1152,8 @@ public function taurTFs(arg:int = 1):void
 	pc.tailType = GLOBAL.TYPE_EQUINE;
 	pc.clearTailFlags();
 	pc.addTailFlag(GLOBAL.FLAG_LONG);
+	//Strip mimbranes.
+	removeMimbranes();
 	if(arg == 1 || arg == 3)
 	{
 		//22”</i> horsecock.

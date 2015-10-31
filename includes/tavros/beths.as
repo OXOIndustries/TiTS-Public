@@ -555,7 +555,7 @@ public function brothelTurnTrixContract(choice:int = 0):void
 		brothelMainMenu();
 	}
 	// Wait
-	else
+	else if(choice == 4)
 	{
 		output("Before you are able to read the contract, the mistress covers it with one hand.");
 		output("\n\n<i>“Wait a minute... As much as I like the eager ones, you don’t look quite experienced for this.”</i> she says as she withdraws the stylus. <i>“I’ve been in this business long enough to read a girl who knows how to shake her money maker. Either you get experienced in twerking all your body parts; or you do some supervised freelance until you can see a dick");
@@ -783,7 +783,7 @@ public function brothelTurnTrixLicensedWhore(service:String = "none"):void
 		else output("squat down");
 		output(" for the bartenders and dancers, both male and female. You finish off your shift behind the front desk.");
 		output("\n\n<i>“Ungh! Nice,”</i> Kat grunts, clutching the wood hard and grinding her landing-stripped pussy into your face. A small trickle of femcum makes its way down your chin. <i>“Nothing like a well-trained tongue at the end of a long ");
-		if(hours >) output("morning");
+		if(hours < 15) output("morning");
 		else output("evening");
 		output(".”</i> You get up wiping your mouth, and wait for her to zip herself back up before splitting the earnings with her.");
 	}
@@ -796,7 +796,7 @@ public function brothelTurnTrixLicensedWhore(service:String = "none"):void
 		else output("squat down");
 		output(" for the bartenders and dancers, both male and female. You finish off your shift behind the front desk.");
 		output("\n\n<i>“Ungh! Nice,”</i> Kat grunts, clutching the wood hard and grinding her landing-stripped pussy into your face. A small trickle of femcum makes its way down your chin. <i>“Nothing like a well-trained tongue at the end of a long ");
-		if(hours >) output("morning");
+		if(hours < 15) output("morning");
 		else output("evening");
 		output(".”</i> You get up wiping your mouth, and wait for her to zip herself back up before splitting the earnings with her.");
 	}
@@ -812,7 +812,7 @@ public function brothelTurnTrixLicensedWhore(service:String = "none"):void
 		showBrothelLady(true);
 		output("After a frazzling few hours, you finish your shift under the front desk.");
 		output("\n\n<i>“Ungh! Nice,”</i> Kat grunts, clutching the wood hard and grinding her landing-stripped pussy into your face. A small trickle of femcum makes its way down your chin. <i>“Nothing like a well-trained tongue at the end of a long ");
-		if(hours >) output("morning");
+		if(hours < 15) output("morning");
 		else output("evening");
 		output(".”</i> You get up wiping your mouth, and wait for her to zip herself back up before splitting the earnings with her.");
 	}
@@ -867,6 +867,11 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 	var x:int = rand(pc.totalVaginas());
 	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
 	var baseEarnings:Number = 0;
+	
+	//Declare once! Fuck warnings.
+	var scenesIndex:Array = [];
+	var scenesLimit:int = 3;
+	var scenesTotal:int = 5;
 	
 	// Hands
 	if(service == "hands")
@@ -996,10 +1001,10 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 		output("\n\nStill, there’s a few special requests.");
 		
 		//Scene takes form of 3 of these that the PC meets the requirements for, randomized and joined together.
-		var scenesIndex:Array = [];
-		var scenesLimit:int = 3;
-		var scenesTotal:int = 5;
-		if(pc.hasTailCunt() && tailType == GLOBAL.TYPE_CUNTSNAKE) scenesTotal++;
+		scenesIndex = [];
+		scenesLimit = 3;
+		scenesTotal = 5;
+		if(pc.hasTailCunt() && pc.tailType == GLOBAL.TYPE_CUNTSNAKE) scenesTotal++;
 		if(pc.canTitFuck()) scenesTotal++;
 		if(pc.hasBreasts() && pc.hasFuckableNipples()) scenesTotal++;
 		if(pc.isNaga()) scenesTotal++;
@@ -1008,7 +1013,7 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 		while(scenesLimit > 0)
 		{
 			// Cunt-tail:
-			if(!InCollection(scenesIndex, [1]) && pc.hasTailCunt() && tailType == GLOBAL.TYPE_CUNTSNAKE && scenesLimit > 0 && rand(scenesTotal) == 0)
+			if(!InCollection(scenesIndex, [1]) && pc.hasTailCunt() && pc.tailType == GLOBAL.TYPE_CUNTSNAKE && scenesLimit > 0 && rand(scenesTotal) == 0)
 			{
 				output("\n\nYour parasitic tail, spreading itself eagerly in the presence of so much male musk, attracts some attention, and a few clients happily pay a bit extra for you to fasten it wetly on their cocks and pump them absolutely silly with it, pleasure and the sensation of cum being siphoned hungrily away tingling up to you.");
 				processTime(10);
@@ -1184,9 +1189,9 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 		output("You head across and chat with some of the other floozies hanging around near the curtained-off section of the brothel. There’s quite a few requests for room specials, it turns out, and the other whores are happy for fresh meat to help out and take a cut.");
 		
 		//Scene takes form of 2 of these that the PC meets the requirements for, randomized.
-		var scenesIndex:Array = [];
-		var scenesLimit:int = 2;
-		var scenesTotal:int = 4;
+		scenesIndex = [];
+		scenesLimit = 2;
+		scenesTotal = 4;
 		if(pc.isTreated() && pc.isBimbo()) scenesTotal++;
 		if(pc.isBiped()) scenesTotal++;
 		if(pc.isGoo()) scenesTotal++;

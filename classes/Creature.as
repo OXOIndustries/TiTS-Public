@@ -3816,7 +3816,6 @@ package classes {
 		public function isBiped(): Boolean {
 			//Naga/Centaur
 			if (legCount != 2) return false;
-			if (legType == GLOBAL.TYPE_NAGA) return false;
 			return true;
 		}
 		public function isNaga(): Boolean {
