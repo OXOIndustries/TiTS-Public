@@ -7,6 +7,7 @@
 	import classes.GLOBAL;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
+	import classes.kGAMECLASS;
 	
 	public class HoldOutPistol extends ItemSlotClass
 	{

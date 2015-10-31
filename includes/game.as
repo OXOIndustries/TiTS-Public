@@ -3671,7 +3671,7 @@ public function displayQuestLog(showID:String = "All"):void
 			if(flags["HOLIDAY_OWEEN_ACTIVATED"] != undefined)
 			{
 				output2("\n<b><u>The Masque</u></b>");
-				output2("\n<b>* Status:</b>"]);
+				output2("\n<b>* Status:</b>");
 				// Holiday Hallowieners!
 				if(flags["POE_A_DISABLED"] != undefined)
 				{
