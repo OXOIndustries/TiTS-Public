@@ -342,12 +342,6 @@
 						target.shiftCock(0, GLOBAL.TYPE_DAYNAR);
 						kGAMECLASS.output("Your [pc.cockColor] cock has thick enough skin to obscure the veins and a tapered tip");
 					}
-					else if(target.race() == "cockvine")
-					{
-						target.shiftCock(0, GLOBAL.TYPE_COCKVINE);
-						kGAMECLASS.output("Your [pc.cockColor] cock wriggles around restlessly, looking for the nearest wet hole to fill");
-					}
-					
 					/* I dunno about these... */
 					else if(target.race() == "gabilani" || target.race() == "goblin")
 					{
