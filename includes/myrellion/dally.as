@@ -846,8 +846,13 @@ public function getDallyLicked():void
 	output(" to ");
 	if(!pc.isTaur() && pc.legCount != 2) output("better present your [pc.vaginas] to the ant-boy.");
 	else output("to better allow the ant-boy to crawl between them");
-	output(". You’re uncomfortably aware of your own wetness, exposed as you are in the center of the stage. Dally’s so close to you too, and getting close by the second. He licks his golden licks and openly ogles [pc.oneVagina]. You can almost feel his stare. It sends shivers of delight and anxiety up your spine, and makes you entirely too aware of how your [pc.clits] feel");
-	if(pc.totalClits() == 1) output("s");
+	output(". You’re uncomfortably aware of your own wetness, exposed as you are in the center of the stage. Dally’s so close to you too, and getting close by the second. He licks his golden licks and openly ogles [pc.oneVagina]. You can almost feel his stare. It sends shivers of delight and anxiety up your spine");
+	if(pc.hasClit())
+	{
+		output(", and makes you entirely too aware of how your [pc.clits] feel");
+		if(pc.totalClits() == 1) output("s");
+	}
+	else output(" and");
 	output(" between your lips. Your [pc.nipples]");
 
 	if(pc.hasLipples()) output(" practically drool with excitement, their lips parting ever-so-slightly.");
@@ -865,12 +870,19 @@ public function getDallyLicked():void
 		if(pc.totalVaginas() > 1) output("es");
 		output(".");
 	}
-	output(" You shift to put yourself closer to the source of your arousal, but he edges away at the last minute, blowing against [pc.oneClit].");
+	output(" You shift to put yourself closer to the source of your arousal, but he edges away at the last minute");
+	if(pc.hasClit()) output(", blowing against [pc.oneClit]");
+	output(".");
 	output("\n\nYou whimper, earning you a cheer from the assembled female myr. Most of them, you note, have placed themselves so that their abdomens are upraised and exposed to the myr behind them, and more than one inquisitive finger has slipped into its neighbor’s nectar-scented pocket. It’s not fair that they get more stimulation than you! You look back at Dally imploringly, batting your eyelashes for effect.");
 	output("\n\nThe impertinent stripper doesn’t even bother to look at your face. He’s too busy nosing around your [pc.vagina " + x + "] for that, quite literally so. You gasp at the sudden intrusion and buck against him. He grabs you by the [pc.butt] to steady you and shifts, dragging his face past ");
-	if(pc.totalClits() > 1) output("a");
-	else output("your");
-	output(" clit to properly align his lips to yours. His kiss radiates electric tingles through your [pc.vagina " + x + "], making you hungry for more - hungry for his tongue inside you. You look enviously down at his loincloth-tenting boner. You should’ve requested that!");
+	if(pc.hasClit())
+	{
+		if(pc.totalClits() > 1) output("a");
+		else output("your");
+		output(" clit");
+	}
+	else output("your mound");
+	output(" to properly align his lips to yours. His kiss radiates electric tingles through your [pc.vagina " + x + "], making you hungry for more - hungry for his tongue inside you. You look enviously down at his loincloth-tenting boner. You should’ve requested that!");
 	output("\n\nThrowing your head back, you moan at the feeling of Dally’s kissing growing more eager. His tongue plunges inside of you, french-kissing your pussy, rhythmically exploring the interior. That thick muscle presses here and there, searching with snake-like wriggles. Finally, it presses against something inside you, and you see stars. Dimly, you hear your own voice lilting in an ecstatic scream, but the raw volume of tactile bliss flooding from your drenched cunt overwhelms all other sensory input.");
 	output("\n\n");
 	if(pc.isTaur()) output("If it weren’t for your inhuman instincts, you’d have collapsed. As it is, your torso is leaning dangerously, back arched to better present your [pc.chest], ");
@@ -878,7 +890,9 @@ public function getDallyLicked():void
 	{
 		output("You collapse into a twitching heap, ");
 	}
-	output("but your oral accomplice never abandons his duty, keeping his lips sealed to yours, brushing his tongue back and forth against [pc.oneClit] until your ");
+	output("but your oral accomplice never abandons his duty, keeping his lips sealed to yours, brushing his tongue back and forth");
+	if(pc.hasClit()) output(" against [pc.oneClit]");
+	output(" until your ");
 	if(pc.isSquirter()) output("spraying juices have thoroughly soaked his face and the stage both. Rivulets of the stuff drip from his shoulders.");
 	else output("juices dribble down his cheeks and fill his mouth with your flavor.");
 	output(" He drinks from you like thirsty man at an oasis, unable to conceive of anything but the [pc.girlCumFlavor] taste on his tongue.");
@@ -887,7 +901,10 @@ public function getDallyLicked():void
 	if(pc.isTaur())
 	{
 		output("\n\nYou take a half-step back to better bury his face in your [pc.vagina " + x + "], wiggling your rear for that extra bit of friction. He keeps right on licking, of course. The cunt-hungry ant acts like he’s in love with your rear-mounted twat, so hungry for something new that the opportunity to eat out an offworlder has him going wild. His cock has transformed his loincloth into a crudely-pitched, pre-soaked tent. Girls in the crowd are screaming out, offering to suck it, but he doesn’t answer.");
-		output("\n\nThen, with sudden shift, he suckles [pc.oneClit] directly, fluttering his tongue along it, bombarding you with mind-blanking bliss.");
+		output("\n\nThen, with sudden shift, he");
+		if(pc.hasClit()) output(" suckles [pc.oneClit]");
+		else output(" nibbles your libia");
+		output(" directly, fluttering his tongue along it, bombarding you with mind-blanking bliss.");
 		output("\n\nYou cream yourself all over his face and scream yourself raw at the same time. Dally’s face is drenched with [pc.girlCum]");
 		if(pc.isSquirter()) output(", so much so that it cascades down his shoulders and puddles on the floor around him, scenting his whole body with your pussy");
 		output(". He keeps stimulating you for what feels like hours, but it must only be a few seconds at the most. Your [pc.legs] shake unsteadily, and the tongue-happy stripper wisely evacuates, pulling a way a second before you drop onto the stage, twisting in climax.");

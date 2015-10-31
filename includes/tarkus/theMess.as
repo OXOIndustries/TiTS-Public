@@ -380,7 +380,9 @@ public function sitOnDelilahsFace():void
 	}
 	output("\n\nNice and slow, your subby slut starts to do as you commanded, tongue working out a great big \"A\" in the lips of your [pc.vagina " + x + "]. You glance over your shoulder, to the rigid stiffy poking out from beneath the hem of Deliliah's skirt. Something in your memory jogs a thought about positive reinforcement, and you reach under the bar to pick up the feather duster hanging on a nail. Nice. You reach behind your [pc.hips], teasing along her flat stomach until you feel the soft feathers brushing the silky skirt... and then something nice and hard.");
 	output("\n\nDelilah reacts instantly, legs twitching and tongue freezing as you brush her little cock. <i>\"Who told you to stop?\"</i>");
-	output("\n\nIn return, you stop your brush mid-stroke, the head of her cock entombed in a bed of feathers. With a soft groan, the trappy bartender starts to move her tongue again, forming \"M\" and \"N\", the tops of those letters treading awful close to your [pc.clit], sending shivers up your spine. You return the favor, circling her cock with your duster, even reaching back to tease her balls and thighs when she gets to a delightfully slow \"Q\" and \"R.\"");
+	output("\n\nIn return, you stop your brush mid-stroke, the head of her cock entombed in a bed of feathers. With a soft groan, the trappy bartender starts to move her tongue again, forming \"M\" and \"N\",");
+	if(pc.hasClit()) output(" the tops of those letters treading awful close to your [pc.clit],");
+	output(" sending shivers up your spine. You return the favor, circling her cock with your duster, even reaching back to tease her balls and thighs when she gets to a delightfully slow \"Q\" and \"R.\"");
 	//if 1st time:
 	if(timesDelilahAteOut() < 1) output("\n\n<i>\"Getting the hang of this, aren't you?\"</i> you grin, taking the time to stroke the lady-boy's hair. <i>\"Keep this up, and I might just let you cum.\"</i>");
 	//2+ time:

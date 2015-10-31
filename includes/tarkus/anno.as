@@ -1223,6 +1223,7 @@ public function fuckAnnoAfterBeeJay():void
 	userInterface.showName("\nANNO");
 
 	var x:int = pc.cockThatFits(chars["ANNO"].vaginalCapacity());
+	if(x < 0) x = pc.smallestCockIndex();
 	output("<i>\"I think I can manage that,\"</i> you grin, slipping around behind the counter and taking hold of Anno's flared hips, fingers digging into the elastic material of her sheer, flesh-hugging catsuit. Before you can get carried away, Anno's fluffy tail reaches up, its tip tickling your nose as its owner looks over her shoulder expectantly.");
 
 	output("\n\nYou mock rolling your eyes as you take hold of the wriggling appendage, stroking it gently as you guide it out of the way. Anno visibly shudders at the sensation, clearly enjoying a little affection on her canid parts. You give the tail a little push back through the hole in her catsuit's rear end before pulling the whole outfit down in one easy stroke, letting it ball around your ausar lover's spread legs, leaving her nice and bare for you. She gives a happy moan as the last of her clothing falls free, wiggling her butt back into your bare, cum-slathered groin. You answer with a quick slap on one of her rounded cheeks, eliciting a startled squeak from her as her flesh jiggles in response.");
@@ -1343,6 +1344,8 @@ public function getSlurpedOnByAnnoz():void
 	processTime(30+rand(5));
 	annoSexed(1);
 	pc.orgasm();
+	pc.girlCumInMouth(chars["ANNO"]);
+	anno.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -2538,7 +2541,12 @@ public function deck13ShieldControlFunc():Boolean
 	{
 		if (flags["ANNO_MISSION_OFFER"] == 2) output("\n\nAnno is slumped against one of the bulkheads, catching her breath after the fight with the gray prime.");
 
-		if(flags["DECK13_SHIELDS_ON"] != 1) addButton(0, "Shields", deck13Shields);
+		if(flags["DECK13_SHIELDS_ON"] != 1 && flags["TARKUS_DESTROYED"] != undefined)
+		{
+			output("\n\nOut of all the active computers, the shield control console sits powerless and doesn't appear to be of any use. It must have been internally damaged during the big explosion.");
+			addDisabledButton(0,"Shields", "Shields", "It's no use, the controls are fried.");
+		}
+		else if(flags["DECK13_SHIELDS_ON"] != 1) addButton(0, "Shields", deck13Shields);
 		else addDisabledButton(0,"Shields","Shields","You've already enabled the shields.");
 		addButton(1, "Breach", deck13Breach);
 
@@ -2598,6 +2606,13 @@ public function nameThaGoo():void
 		output("\n\n\n<b>You must enter a name.</b>");
 		return;
 	}
+	// Illegal characters check. Just in case...
+	if (hasIllegalInput(userInterface.textInput.text))
+	{
+		deck13MakeGoo();
+		output("\n\n\n<b>To prevent complications, please avoid using code in the name.</b>");
+		return;
+	}
 	if (userInterface.textInput.text.length > 14)
 	{
 		deck13MakeGoo();
@@ -2626,7 +2641,7 @@ public function nameThaGooII():void
 	
 	output("\n\nShe lunges at you! For a moment, you’re afraid for your life (or at least, your sexual integrity)... but thankfully her arms settle around your shoulders, and [goo.name] pulls herself");
 	if (pc.tallness > goo.tallness + 6) output(" up");
-	else if (pc.tallness < goo.tallness - 6) output("down");
+	else if (pc.tallness < goo.tallness - 6) output(" down");
 	output(" into a tight hug, squeezing her massive tits against you. You chuckle nervously and pat the goo on the head, your fingers coming away slightly wet and sticky.");
 	
 	output("\n\nAfter a moment, she peels herself off of you and grins. <i>“So, um, what’s </i>your<i> name?”</i>");
@@ -3746,6 +3761,7 @@ public function annoPostQuestSexytimes():void
 	output("\n\nWith that, Anno grabs a fresh catsuit out of her closet and slips out of sight, which leaves you to collect your scattered [pc.gear] and return topside.");
 
 	pc.orgasm();
+	pc.girlCumInMouth(chars["ANNO"]);
 	anno.orgasm();
 
 	processTime(20+rand(5));
@@ -3861,7 +3877,11 @@ public function annoxKaedeFuckThem(inShop:Boolean = true):void
 		if (anno.vaginalCapacity() < tarVolume) tarVolume = anno.vaginalCapacity();
 		
 		selCock = pc.cockThatFits(tarVolume);
-		if(selCock < 0) output("<b>ERROR: " + pc.smallestCockIndex() + " " + pc.smallestCockVolume() + " " + pc.hasCock() + " THIS SHOULDN'T HAPPEN. ERROR CODE: PEANUTBUTTER. PLEASE COPY PASTE THIS IN A BUG REPORT SO THAT IT CAN BE FIXED.</b>");
+		if(selCock < 0)
+		{
+			output("<b>ERROR: " + pc.smallestCockIndex() + " " + pc.smallestCockVolume() + " " + pc.hasCock() + " THIS SHOULDN'T HAPPEN. ERROR CODE: PEANUTBUTTER. PLEASE COPY PASTE THIS IN A BUG REPORT SO THAT IT CAN BE FIXED.</b>");
+			selCock = pc.smallestCockIndex();
+		}
 	}
 
 	output("<i>“What do you say, girls?”</i> you say, indicating the rapidly-growing");

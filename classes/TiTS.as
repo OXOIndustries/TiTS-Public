@@ -101,6 +101,9 @@
 		include "../includes/roomFunctions.as";
 		include "../includes/StubbedFunctions.as";
 
+		//Holiday shit
+		include "../includes/holidayEvents/halloweenCostumes.as";
+
 		//Followers
 		include "../includes/follower.anno.as";
 		include "../includes/follower.celise.as";
@@ -122,6 +125,7 @@
 		include "../includes/tavros/aliss.as";
 		include "../includes/tavros/alex.as";
 		include "../includes/tavros/beths.as";
+		include "../includes/tavros/inessa.as";
 		include "../includes/tavros/jade.as";
 		include "../includes/tavros/reaha.as";
 		include "../includes/tavros/reaha.expansion.as";
@@ -320,7 +324,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.6.6";
+			version = "0.6.11";
 
 			//temporary nonsense variables.
 			temp = 0;

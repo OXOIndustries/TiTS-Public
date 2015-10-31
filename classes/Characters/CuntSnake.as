@@ -9,6 +9,7 @@
 	import classes.rand;
 	
 	import classes.Engine.Utility.num2Text;
+	import classes.Util.RandomInCollection;
 	
 	public class CuntSnake extends Creature
 	{
@@ -196,27 +197,38 @@
 			if(rand(5) == 0) 
 			{
 				combatCSnake.tailGenitalArg = GLOBAL.TYPE_HUMAN;
-				combatCSnake.long += "<b>slippery, terran-like cunt</b>";
+				combatCSnake.tailGenitalColor = "pink";
+				combatCSnake.long += "<b>slippery, " + combatCSnake.tailGenitalColor + " terran-like cunt</b>";
 			}
 			else if(rand(4) == 0) 
 			{
 				combatCSnake.tailGenitalArg = GLOBAL.TYPE_EQUINE;
-				combatCSnake.long += "<b>puffy, horse-like gash</b>";
+				combatCSnake.tailGenitalColor = RandomInCollection("pink", "black");
+				combatCSnake.long += "<b>puffy, " + combatCSnake.tailGenitalColor + " horse-like gash</b>";
 			}
 			else if(rand(3) == 0) 
 			{
 				combatCSnake.tailGenitalArg = GLOBAL.TYPE_CANINE;
-				combatCSnake.long += "<b>slippery, dog-like slit</b>";
+				combatCSnake.tailGenitalColor = "pink";
+				combatCSnake.long += "<b>slippery, " + combatCSnake.tailGenitalColor + " dog-like slit</b>";
 			}
 			else if(rand(2) == 0) 
 			{
 				combatCSnake.tailGenitalArg = GLOBAL.TYPE_GOOEY;
-				combatCSnake.long += "<b>slippery slime creature's cunt</b>";
+				if(rand(5) == 0) combatCSnake.tailGenitalColor = "semi-transparent ";
+				else combatCSnake.tailGenitalColor = "";
+				if(rand(10) == 0 && kGAMECLASS.pc.skinTone != "") combatCSnake.tailGenitalColor = kGAMECLASS.pc.skinTone;
+				else combatCSnake.tailGenitalColor += RandomInCollection("red", "orange", "yellow", "green", "blue", "purple", "white", "pink");
+				combatCSnake.long += "<b>slippery slime creature's " + combatCSnake.tailGenitalColor + " cunt</b>";
 			}
 			else 
 			{
 				combatCSnake.tailGenitalArg = GLOBAL.TYPE_SIREN;
-				combatCSnake.long += "<b>cilia-filled tunnel</b>";
+				if(rand(5) == 0) combatCSnake.tailGenitalColor = "luminous ";
+				else combatCSnake.tailGenitalColor = "";
+				if(rand(10) == 0 && kGAMECLASS.pc.skinAccent != "") combatCSnake.tailGenitalColor = kGAMECLASS.pc.skinAccent;
+				else combatCSnake.tailGenitalColor += RandomInCollection("purple", "blue", "pink");
+				combatCSnake.long += "<b>slick, " + combatCSnake.tailGenitalColor + " cilia-filled tunnel</b>";
 			}	
 
 			combatCSnake.long += " is visible at the end of its body. It often shifts to point it towards you so that you can see just how sopping wet the hole is.";

@@ -223,7 +223,7 @@ public function cockvineSeedlingJoin(sCockType:int):void
 	{
 		pc.tailGenitalArg = GLOBAL.TYPE_COCKVINE;
 		pc.tailGenitalColor = "green";
-		output(" Your own skin pigment is swiftly spreading up it, fading off into the vines natural coloring towards the tip; a thick, green appendage with a proud purple head, leaving no doubt as to its plant origin.");
+		output(" Your own skin pigment is swiftly spreading up it, fading off into the vines natural coloring towards the tip; a thick, [pc.tailCockColor] appendage with a proud purple head, leaving no doubt as to its plant origin.");
 	}
 	else if (sCockType == Seedling_Type_Human)
 	{
@@ -245,7 +245,7 @@ public function cockvineSeedlingJoin(sCockType:int):void
 	{
 		pc.tailGenitalArg = GLOBAL.TYPE_CANINE;
 		pc.addTailFlag(GLOBAL.FLAG_KNOTTED);
-		pc.tailGenitalColor = "red";
+		pc.tailGenitalColor = RandomInCollection("red", "dark red", "bright red");
 		
 		output(" Your own skin pigment is swiftly spreading up it; it is a thick, bulbous [pc.tailCockColor] appendage, arrestingly alien with its bean pod-like bulges, culminating in a big hole-filling swelling halfway up it. Bizarre it might look but you don’t doubt you could cause some lucky someone serious pleasure with this thing.");
 	}

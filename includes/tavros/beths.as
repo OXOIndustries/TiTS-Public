@@ -35,7 +35,8 @@
 		output("You're inside Beth's Busty Broads, which seems to be doing good business for itself. Several patrons are gathered around the stage in the center of the show floor, watching a particularly well-endowed ausar girl strut her stuff on the pole. A desk has been set up near the door, where a bored-looking human woman is flipping through a data-slate, barely acknowledging your presence.");
 	}
 	addButton(0,"Desk",talkToBrothelLadyNewOmni);
-	return reahaBonusFunction();
+	reahaBonusFunction();
+	return false;
 }
 
 //Ovir Girl/Ovir ‘Girl’
@@ -52,12 +53,13 @@
 public function ovirGirlInBeths():void
 {
 	clearOutput();
+	flags["BETHS_OVIR_SEEN"] = 1;
 	showName("OVIR\nGIRL");
 	author("Zeikfried");
 	output("You make your way over to the center stage and join the customers watching the ovir. A trifornifilia waitress offers you a drink from a tray, but you wave her off and she lopes away looking peevish. Without the distraction, you’re free to focus on the dancer.");
 	output("\n\nThe ");
 	if(!knowBethsOvir()) output("girl");
-	else output("’girl’");
+	else output("‘girl’");
 	output(" is of average height, with carrot-yellow hair tied in a long ponytail that flips around eye-catchingly as she circles the pole, and dressed in a lacy red-and-black stocking-and-garter ensemble with a matching, front-clasped bra to contain her D-cup breasts. Her scales are pale yellow in most places, but densely freckled orange ones decorate her scalp, around her hairline, and partway down the back of her neck. An orange, reptilian tail sticks from a hole in the back of her red panties, just below the band, and close-set orange freckle-scales rise ever-so-slightly into a peak above it. Bright yellow eyes, outlined with dark make-up, drink in the attention of the onlookers.");
 	output("\n\nAnd quite a lot of attention there is. The ovir seems to be a darling of the crowd; the patrons are two-and-three deep in places");
 	if(pc.tallness < 60) output(", and you have to kick a number of shins to clear enough people from your path that you can see her and she you, without obstruction");
@@ -66,7 +68,7 @@ public function ovirGirlInBeths():void
 	clearMenu();
 	if(knowBethsOvir())
 	{
-		if(flags["OVIR_TEASED"] == 1) output("\n\nYou know from experiencce that she's actually a male ovir.");
+		if(flags["OVIR_TEASED"] >= 1 || flags["TIMES_SEXED_ALISS"] >= 1) output("\n\nYou know from experience that she's actually a male ovir.");
 		else  output("\n\nOvir females aren't usually so stacked. She must actually be a male...");
 		clearMenu();
 		addButton(0,"Watch",watchOvirDancer,undefined,"Watch","Ogle the ovir.");
@@ -172,15 +174,17 @@ public function teaseTheOvir():void
 	processTime(20);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
-	flags["OVIR_TEASED"] = 1;
+	//flags["OVIR_TEASED"] = 1;
+	IncrementFlag("OVIR_TEASED");
 }
 
 public function knowBethsOvir():Boolean
 {
-	if(flags["OVIR_TEASED"] == 1) return true;
+	if(flags["OVIR_TEASED"] >= 1) return true;
 	var knowOvir:Boolean = false;
 	if(pc.hasPerk("Fuck Sense") && pc.libido() >= 40) knowOvir = true;
-	if(pc.IQ() >= 80 || pc.intelligence() >= 40) knowOvir = true;
+	else if(pc.IQ() >= 80 || pc.intelligence() >= 40) knowOvir = true;
+	else if(flags["TIMES_SEXED_ALISS"] >= 1) knowOvir = true;
 	return knowOvir;
 }
 
@@ -389,6 +393,7 @@ public function rideDatRahnBitchsOvi():void
 	output("\n\nThe dream-like, painted-on colors of the encounter fade from your vision, leaving you in the stark cell. The doh’rahn on top of you breaks eye contact to kiss your [pc.skinFurScales], and her ovipositor, quickly deflating, slides from you with a ‘sssuck’ when you pull apart. Vaande hands you your gear and politely holds the door.\n\nAs you re-equip, you note with pleasure that the rahn’s intoxicating, faintly leathery odor lingers on you....");
 	//end, subtract money, lust, time, whatever
 	processTime(40);
+	IncrementFlag("SEXED_VAANDE");
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

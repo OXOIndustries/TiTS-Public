@@ -41,6 +41,29 @@ public function initializeRooms():void
 	rooms["SHIP INTERIOR"].addFlag(GLOBAL.BED);
 	rooms["SHIP INTERIOR"].addFlag(GLOBAL.PRIVATE);
 
+	rooms["SPACE"] = new RoomClass(this);
+	rooms["SPACE"].roomName = "SPACE";
+	rooms["SPACE"].description = "";
+	rooms["SPACE"].planet = "PLANET: NONE";
+	rooms["SPACE"].system = "SYSTEM: ARA ARA";
+	//rooms["SPACE"].outExit = shipLocation;
+	//rooms["SPACE"].outText = "Exit";
+	rooms["SPACE"].moveMinutes = 1;
+	rooms["SPACE"].runOnEnter = puntToShip;
+	rooms["SPACE"].addFlag(GLOBAL.OUTDOOR);
+
+	rooms["POESPACE"] = new RoomClass(this);
+	rooms["POESPACE"].roomName = "SPACE";
+	rooms["POESPACE"].description = "";
+	rooms["POESPACE"].planet = "PLANET: POE A";
+	rooms["POESPACE"].system = "SYSTEM: POE";
+	//rooms["POESPACE"].outExit = shipLocation;
+	//rooms["POESPACE"].outText = "Exit";
+	rooms["POESPACE"].moveMinutes = 1;
+	rooms["POESPACE"].runOnEnter = puntToShip;
+	rooms["POESPACE"].addFlag(GLOBAL.OUTDOOR);
+
+
 	//100. Hotel Room
 	rooms["HOTEL ROOM"] = new RoomClass(this);
 	rooms["HOTEL ROOM"].roomName = "HOTEL\nROOM";
@@ -94,7 +117,7 @@ public function initializeRooms():void
 	//101. Anon's Board Hall
 	rooms["ANON'S BOARD HALL"] = new RoomClass(this);
 	rooms["ANON'S BOARD HALL"].roomName = "ANON'S BOARD\nHALL";
-	rooms["ANON'S BOARD HALL"].description = "Located at the top of a stairway above the bar, this short hallway stretches briefly to the north before coming to an unremarkable, metallic dead-end. Automated portals line the east and west sides, connecting to different rooms, their surfaces kept moderately clean but pitted with rust here or there. This isn't the kind of place you'd want to stay for long, if you could help it. Anon's Bar and Board lies down the steel-grated stairwell to the south.";
+	rooms["ANON'S BOARD HALL"].description = "Located at the top of a stairway above the bar, this short hallway stretches briefly to the north before coming to an unremarkable, metallic dead-end. Automated doorways line the east and west sides, connecting to different rooms, their surfaces kept moderately clean but pitted with rust here or there. This isn't the kind of place you'd want to stay for long, if you could help it. Anon's Bar and Board lies down the steel-grated stairwell to the south.";
 	rooms["ANON'S BOARD HALL"].planet = "TAVROS STATION";
 	rooms["ANON'S BOARD HALL"].system = "SYSTEM: KALAS";
 	rooms["ANON'S BOARD HALL"].southExit = "ANON'S BAR AND BOARD";
@@ -121,11 +144,11 @@ public function initializeRooms():void
 	//103 "MERCHANT'S THOROUGHFARE". Merchant's Thoroughfare
 	rooms["MERCHANT'S THOROUGHFARE"] = new RoomClass(this);
 	rooms["MERCHANT'S THOROUGHFARE"].roomName = "MERCHANT'S\nTHOROUGHFARE";
-	rooms["MERCHANT'S THOROUGHFARE"].description = "The crowds in this part of the station are particularly thick thanks to the rush. You hear talk of old shops closing, their owners out trawling the rim, trying to strike it rich, while newer stores have opened their doors to take their place. For now, Anon's Bar and Board is ready for your business to the east. Its interior promises cheap but delicious foods likely to broaden the waistline, but then again, what are you to expect from bar food? The Dark Chrysalis, a shop that specializes in targeted, cosmetic transformatives is doing business to the west.";
+	rooms["MERCHANT'S THOROUGHFARE"].description = "The crowds in this part of the station are particularly thick thanks to the rush. You hear talk of old shops closing, their owners out trawling the rim, trying to strike it rich, while newer stores have opened their doors to take their place. For now, Anon's Bar and Board is ready for your business to the east. Its interior promises cheap but delicious foods likely to broaden the waistline, but then again, what are you to expect from bar food?";
 	rooms["MERCHANT'S THOROUGHFARE"].planet = "TAVROS STATION";
 	rooms["MERCHANT'S THOROUGHFARE"].system = "SYSTEM: KALAS";
 	rooms["MERCHANT'S THOROUGHFARE"].eastExit = "ANON'S BAR AND BOARD";
-	rooms["MERCHANT'S THOROUGHFARE"].westExit = "DARK CHRYSALIS";
+	rooms["MERCHANT'S THOROUGHFARE"].westExit = "";
 	rooms["MERCHANT'S THOROUGHFARE"].southExit = "MERCHANT'S THOROUGHFARE2";
 	rooms["MERCHANT'S THOROUGHFARE"].northExit = "110";
 	rooms["MERCHANT'S THOROUGHFARE"].moveMinutes = 2;
@@ -137,15 +160,15 @@ public function initializeRooms():void
 
 	rooms["MERCHANT'S THOROUGHFARE2"] = new RoomClass(this);
 	rooms["MERCHANT'S THOROUGHFARE2"].roomName = "MERCHANT'S\nTHOROUGHFARE";
-	rooms["MERCHANT'S THOROUGHFARE2"].description = "The busy merchant's deck sprawls out before you. Arranged in a circular pattern, it winds its way around the entire station filled with shops of every style and variety. A cornucopia of races attend to their business here, forming a crowd as dense and multicultered as any you've seen before. People of all walks of life have come together here, united by the Rush, or at least united by a desire to eke a profit out of it.\n\nA neon sign displaying a pair of scissors sits next to a small store entrance with its doors propped open to the east, allowing you a glimpse of the salon inside. The sign above the door labels it as Shear Beauty.\n\nThe station's express lifts have entrances to the west.\n\nA glowing pink sign announces that \"Beth's Busty Broads\" is open for business to the south, and that it never closes.";
+	rooms["MERCHANT'S THOROUGHFARE2"].description = "The busy merchant's deck sprawls out before you. Arranged in a circular pattern, it winds its way around the entire station filled with shops of every style and variety. A cornucopia of races attend to their business here, forming a crowd as dense and multicultered as any you've seen before. People of all walks of life have come together here, united by the Rush, or at least united by a desire to eke a profit out of it.";
 
-	//9999 OLD DESC: UPDATE WITH TAVROS EXPACKThe station curves away to the north and east from here, though the eastern passages are presently shuttered for maintenance. ";
+	//OLD DESC: UPDATE WITH TAVROS EXPACKThe station curves away to the north and east from here, though the eastern passages are presently shuttered for maintenance. ";
 	rooms["MERCHANT'S THOROUGHFARE2"].planet = "TAVROS STATION";
 	rooms["MERCHANT'S THOROUGHFARE2"].system = "SYSTEM: KALAS";
 	rooms["MERCHANT'S THOROUGHFARE2"].westExit = "LIFT: MERCHANT DECK";
 	rooms["MERCHANT'S THOROUGHFARE2"].northExit = "MERCHANT'S THOROUGHFARE";
-	rooms["MERCHANT'S THOROUGHFARE2"].southExit = "BETHS BROADS";
-	rooms["MERCHANT'S THOROUGHFARE2"].eastExit = "SHEAR BEAUTY";
+	rooms["MERCHANT'S THOROUGHFARE2"].southExit = "9018";
+	rooms["MERCHANT'S THOROUGHFARE2"].eastExit = "";
 	rooms["MERCHANT'S THOROUGHFARE2"].moveMinutes = 2;
 	//rooms["MERCHANT'S THOROUGHFARE2"].inExit = "LIFT: MERCHANT DECK";
 	//rooms["MERCHANT'S THOROUGHFARE2"].inText = "Lift";
@@ -158,7 +181,7 @@ public function initializeRooms():void
 	rooms["SHEAR BEAUTY"].description = "";
 	rooms["SHEAR BEAUTY"].planet = "TAVROS STATION";
 	rooms["SHEAR BEAUTY"].system = "SYSTEM: KALAS";
-	rooms["SHEAR BEAUTY"].westExit = "MERCHANT'S THOROUGHFARE2";
+	rooms["SHEAR BEAUTY"].southExit = "9015";
 	rooms["SHEAR BEAUTY"].moveMinutes = 1;
 	rooms["SHEAR BEAUTY"].runOnEnter = shearBeautyBonusFunc;
 	rooms["SHEAR BEAUTY"].addFlag(GLOBAL.INDOOR);
@@ -216,7 +239,7 @@ public function initializeRooms():void
 	rooms["DARK CHRYSALIS"].description = "The interior of this shop is difficult to make out thanks to a combination of dim lighting and a smoky haze that smells vaguely of walnuts. Looking around, you manage to locate the source of the illumination - four custom glowbulbs pumping out an unnatural-looking blue-black aura. The walls are covered in shelves with dozens of perverted-looking nicknames, many of them demonic in theme, and the lone counter in the back of the store is similarly decorated.";
 	rooms["DARK CHRYSALIS"].planet = "TAVROS STATION";
 	rooms["DARK CHRYSALIS"].system = "SYSTEM: KALAS";
-	rooms["DARK CHRYSALIS"].eastExit = "MERCHANT'S THOROUGHFARE";
+	rooms["DARK CHRYSALIS"].westExit = "9018";
 	rooms["DARK CHRYSALIS"].moveMinutes = 1;
 	rooms["DARK CHRYSALIS"].addFlag(GLOBAL.INDOOR);
 	rooms["DARK CHRYSALIS"].addFlag(GLOBAL.COMMERCE);
@@ -229,7 +252,7 @@ public function initializeRooms():void
 	rooms["FUR EFFECT"].description = "";
 	rooms["FUR EFFECT"].planet = "TAVROS STATION";
 	rooms["FUR EFFECT"].system = "SYSTEM: KALAS";
-	rooms["FUR EFFECT"].eastExit = "110";
+	rooms["FUR EFFECT"].eastExit = "9018";
 	rooms["FUR EFFECT"].moveMinutes = 1;
 	rooms["FUR EFFECT"].addFlag(GLOBAL.INDOOR);
 	rooms["FUR EFFECT"].addFlag(GLOBAL.COMMERCE);
@@ -242,7 +265,7 @@ public function initializeRooms():void
 	rooms["BETHS BROADS"].description = "";
 	rooms["BETHS BROADS"].planet = "TAVROS STATION";
 	rooms["BETHS BROADS"].system = "SYSTEM: KALAS";
-	rooms["BETHS BROADS"].northExit = "MERCHANT'S THOROUGHFARE2";
+	rooms["BETHS BROADS"].westExit = "9012";
 	rooms["BETHS BROADS"].moveMinutes = 1;
 	rooms["BETHS BROADS"].addFlag(GLOBAL.INDOOR);
 	rooms["BETHS BROADS"].addFlag(GLOBAL.NPC);
@@ -255,28 +278,254 @@ public function initializeRooms():void
 	rooms["MI AMOUR"].description = "";
 	rooms["MI AMOUR"].planet = "TAVROS STATION";
 	rooms["MI AMOUR"].system = "SYSTEM: KALAS";
-	rooms["MI AMOUR"].southExit = "110";
+	rooms["MI AMOUR"].southExit = "9005";
 	rooms["MI AMOUR"].moveMinutes = 1;
 	rooms["MI AMOUR"].addFlag(GLOBAL.INDOOR);
 	rooms["MI AMOUR"].addFlag(GLOBAL.NPC);
 	rooms["MI AMOUR"].addFlag(GLOBAL.PUBLIC);
 	rooms["MI AMOUR"].runOnEnter = miAmoreBonusShit;
 
-	//110 MERCHANT'S THOROUGHFARE
+	//9003 - 110 MERCHANT'S THOROUGHFARE
 	rooms["110"] = new RoomClass(this);
 	rooms["110"].roomName = "MERCHANT'S\nTHOROUGHFARE";
-	rooms["110"].description = "The merchant's thoroughfare twists through the center of the station in a circular pattern, though the way north of here is blocked off for now by a shop called \"Mi Amour\". To the west, you see a brightly-lit shop labelled as \"Fur Effect.\" The east wall is bare, likely filled by a side room from one of the larger businesses.";
+	rooms["110"].description = "The merchant’s thoroughfare twists through the station on its circular route, bending gradually to the east the further north you go. The shops in the immediate area have all been shuttered for now, left vacant until a brave soul makes an attempt at mercantilism.";
 	rooms["110"].planet = "TAVROS STATION";
 	rooms["110"].system = "SYSTEM: KALAS";
-	rooms["110"].northExit = "MI AMOUR";
+	rooms["110"].northExit = "9004";
 	rooms["110"].southExit = "MERCHANT'S THOROUGHFARE";
-	rooms["110"].westExit = "FUR EFFECT";
+	rooms["110"].westExit = "";
 	rooms["110"].moveMinutes = 1;
 	//rooms["110"].westExit = "DARK CHRYSALIS";
 	rooms["110"].addFlag(GLOBAL.INDOOR);
 	rooms["110"].addFlag(GLOBAL.PUBLIC);
 	rooms["110"].addFlag(GLOBAL.NUDITY_ILLEGAL);
 	rooms["110"].runOnEnter = undefined;
+
+	//9004
+	rooms["9004"] = new RoomClass(this);
+	rooms["9004"].roomName = "MERCHANT'S\nTHOROUGHFARE";
+	rooms["9004"].description = "The walls in this section of the merchant deck are suspiciously bare, though you wager the lack of open storefronts has more to do with the awkward curvature of the station hall than a lack of business. Sapients of all descriptions pass by on all sides, hurrying along to their destinations. You’re very clearly reminded of why they call it a “rush.”";
+	rooms["9004"].planet = "TAVROS STATION";
+	rooms["9004"].system = "SYSTEM: KALAS";
+	rooms["9004"].eastExit = "9005";
+	rooms["9004"].southExit = "110";
+	rooms["9004"].westExit = "";
+	rooms["9004"].moveMinutes = 1;
+	rooms["9004"].addFlag(GLOBAL.INDOOR);
+	rooms["9004"].addFlag(GLOBAL.PUBLIC);
+	rooms["9004"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["9004"].runOnEnter = undefined;
+
+	//9005
+	rooms["9005"] = new RoomClass(this);
+	rooms["9005"].roomName = "MERCHANT'S\nTHOROUGHFARE";
+	rooms["9005"].description = "Glass windows along the north of the passage brazenly display a series of mannequins in undergarments both fashionable and enticing. “Mi Amour” is the name of it, judging by the red-glowing sign above. It’s door is open for business, but there are many other shops to peruse on the merchant deck.";
+	rooms["9005"].planet = "TAVROS STATION";
+	rooms["9005"].system = "SYSTEM: KALAS";
+	rooms["9005"].northExit = "MI AMOUR";
+	rooms["9005"].eastExit = "9006";
+	rooms["9005"].westExit = "9004";
+	rooms["9005"].moveMinutes = 1;
+	rooms["9005"].addFlag(GLOBAL.INDOOR);
+	rooms["9005"].addFlag(GLOBAL.PUBLIC);
+	rooms["9005"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["9005"].runOnEnter = undefined;
+
+	//9006
+	rooms["9006"] = new RoomClass(this);
+	rooms["9006"].roomName = "MERCHANT'S\nTHOROUGHFARE";
+	rooms["9006"].description = "A spacious window (or convincing display) lines the curving wall to the north. The view is magnificent. You can see the sun drift across your view as the station spins, and just as it passes beyond sight, the faint sparkles of the system’s ice belt light up like shining diamonds against the glimmering starfield behind. A few kaithrit have their noses pressed up against the glass, their doubled tails curled up in excitement.";
+	rooms["9006"].planet = "TAVROS STATION";
+	rooms["9006"].system = "SYSTEM: KALAS";
+	rooms["9006"].eastExit = "9007";
+	rooms["9006"].westExit = "9005";
+	rooms["9006"].moveMinutes = 1;
+	rooms["9006"].addFlag(GLOBAL.INDOOR);
+	rooms["9006"].addFlag(GLOBAL.PUBLIC);
+	rooms["9006"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["9006"].runOnEnter = undefined;
+
+	//9007
+	rooms["9007"] = new RoomClass(this);
+	rooms["9007"].roomName = "MERCHANT'S\nTHOROUGHFARE";
+	rooms["9007"].description = "Holographic cow-girls cover the walls of this passage, imploring you to visit scenic New Texas, “The reason they call this galaxy the milky way!” A display with buff-looking bull-boys flanks the bovine lasses, unsubtly appealing to another demographic. Both sections of hall have attentive crowds of curious onlookers.";
+	rooms["9007"].planet = "TAVROS STATION";
+	rooms["9007"].system = "SYSTEM: KALAS";
+	rooms["9007"].eastExit = "9008";
+	rooms["9007"].westExit = "9006";
+	rooms["9007"].moveMinutes = 1;
+	rooms["9007"].addFlag(GLOBAL.INDOOR);
+	rooms["9007"].addFlag(GLOBAL.PUBLIC);
+	rooms["9007"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["9007"].runOnEnter = undefined;
+
+	//9008
+	rooms["9008"] = new RoomClass(this);
+	rooms["9008"].roomName = "MERCHANT'S\nTHOROUGHFARE";
+	rooms["9008"].description = "Bending away to the south and west, the merchant’s thoroughfare snakes its way around the circumference of the station, blazing a wide path between seemingly endless storefronts. Many in the immediate area are closed, shuttered and covered with temporary advertisements. \"Visit beautiful Bogrum 12! Luxurious mud baths, sulfer springs, and exotic slug women await you!\"";
+	rooms["9008"].planet = "TAVROS STATION";
+	rooms["9008"].system = "SYSTEM: KALAS";
+	rooms["9008"].southExit = "9009";
+	rooms["9008"].westExit = "9007";
+	rooms["9008"].moveMinutes = 1;
+	rooms["9008"].addFlag(GLOBAL.INDOOR);
+	rooms["9008"].addFlag(GLOBAL.PUBLIC);
+	rooms["9008"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["9008"].runOnEnter = undefined;
+
+	//9009
+	rooms["9009"] = new RoomClass(this);
+	rooms["9009"].roomName = "RED\nLIGHT ZONE";
+	rooms["9009"].description = "No matter how far along the merchant deck you travel, the crowds never really dissipate. Rahn shoulder by ausar while grinning leithans threaten to trample over everyone else. Crimson luminance spills from plastic stripes along the corners of the passage to the south, bathing this otherwise dim segment of the merchant’s thoroughfare in hazy, bedroom lighting.";
+	rooms["9009"].planet = "TAVROS STATION";
+	rooms["9009"].system = "SYSTEM: KALAS";
+	rooms["9009"].southExit = "9010";
+	rooms["9009"].northExit = "9008";
+	rooms["9009"].moveMinutes = 1;
+	rooms["9009"].addFlag(GLOBAL.INDOOR);
+	rooms["9009"].addFlag(GLOBAL.PUBLIC);
+	rooms["9009"].runOnEnter = undefined;
+
+	//9010
+	rooms["9010"] = new RoomClass(this);
+	rooms["9010"].roomName = "RED\nLIGHT ZONE";
+	rooms["9010"].description = "You’re deep in Tavros Station’s red light district now. Foot traffic here is a little thinner than elsewhere on the merchant deck, but what’s here is far more lurid. Nude or barely-clothed bodies are frequently on display, stretching the taboo against public sex to the breaking point.\n\nThere is a long storefront here, though you cannot see inside. Instead, the walls to either side of the door are lined with holo projections wearing risque BDSM outfits. They're paddling each other or playing with long, phallic objects for your pleasure. As you watch on, a shimmering model gives you a cottettish wink, gesturing for you to get inside.\n\nThe sign over the door reads 'The Happy Tails', with the name underlined by a gigantic glowing whip.";
+	rooms["9010"].planet = "TAVROS STATION";
+	rooms["9010"].system = "SYSTEM: KALAS";
+	rooms["9010"].southExit = "9011";
+	rooms["9010"].northExit = "9009";
+	rooms["9010"].eastExit = "INESSA";
+	rooms["9010"].moveMinutes = 1;
+	rooms["9010"].addFlag(GLOBAL.INDOOR);
+	rooms["9010"].addFlag(GLOBAL.PUBLIC);
+	rooms["9010"].runOnEnter = undefined;
+
+	//9011
+	rooms["9011"] = new RoomClass(this);
+	rooms["9011"].roomName = "RED\nLIGHT ZONE";
+	rooms["9011"].description = "One of the displays catches your attention, glaring and purple: \"De-Stress For Less! Beth’s Broads: They’re built to please!\" It’s quite clear what they’re selling: a service that would be illegal in more prudish places. Here on the frontier? Companionship can be had few credits - or a few thousand. Crimson lighting paves the way north and south through the red light section of the merchant deck.";
+	rooms["9011"].planet = "TAVROS STATION";
+	rooms["9011"].system = "SYSTEM: KALAS";
+	rooms["9011"].southExit = "9012";
+	rooms["9011"].northExit = "9010";
+	rooms["9011"].moveMinutes = 1;
+	rooms["9011"].addFlag(GLOBAL.INDOOR);
+	rooms["9011"].addFlag(GLOBAL.PUBLIC);
+	rooms["9011"].runOnEnter = undefined;
+
+	//9012
+	rooms["9012"] = new RoomClass(this);
+	rooms["9012"].roomName = "RED\nLIGHT ZONE";
+	rooms["9012"].description = "A glowing pink sign announces that \"Beth's Busty Broads\" is open for business to the east. Skimpy girls and broad-chested males alike pass through doors that proudly proclaim “Never closed!” You can imagine why. Sexual needs don’t keep hours of operation, and neither does this brothel. The other side of the passage houses a simplistic laser light show and thumping sound system, designed to draw the eye to Beth’s.";
+	rooms["9012"].planet = "TAVROS STATION";
+	rooms["9012"].system = "SYSTEM: KALAS";
+	rooms["9012"].southExit = "9013";
+	rooms["9012"].northExit = "9011";
+	rooms["9012"].eastExit = "BETHS BROADS";
+	rooms["9012"].moveMinutes = 1;
+	rooms["9012"].addFlag(GLOBAL.INDOOR);
+	rooms["9012"].addFlag(GLOBAL.PUBLIC);
+	rooms["9012"].runOnEnter = undefined;
+
+	//9013
+	rooms["9013"] = new RoomClass(this);
+	rooms["9013"].roomName = "MERCHANT'S\nTHOROUGHFARE";
+	rooms["9013"].description = "The gradually arcing curve of the merchant deck bends away to the north and the west from here. In the former direction is a tunnel lighted in a hazy, ruby glow - the red light zone. Many shops of ill repute conduct business in that area, and holograms warn away any sapients below their species’ age of consent. The other direction wraps back around, eventually leading to the lift, where more mundane boutiques ply their wares.";
+	rooms["9013"].planet = "TAVROS STATION";
+	rooms["9013"].system = "SYSTEM: KALAS";
+	rooms["9013"].westExit = "9014";
+	rooms["9013"].northExit = "9012";
+	rooms["9013"].moveMinutes = 1;
+	rooms["9013"].addFlag(GLOBAL.INDOOR);
+	rooms["9013"].addFlag(GLOBAL.PUBLIC);
+	rooms["9013"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["9013"].runOnEnter = undefined;
+
+	//9014
+	rooms["9014"] = new RoomClass(this);
+	rooms["9014"].roomName = "MERCHANT'S\nTHOROUGHFARE";
+	rooms["9014"].description = "There’s no substitute for seeing the kind of racial diversity that the rush brings on. Daynar and ovir alike fill the corridor, mixed with more humans and ausar than you care to count. A party of burly thraggen part the mismatched races more effectively than any wall of hardlight ever could. Nobody wants to mess with a few hundred pounds of green-skinned fury. The shops in the immediate area are all shut down, barricaded up by the health department, but glowing signs still declare, \"Reduce protonic thruster buildup with SKREMULAX! Now in blue!\"";
+	rooms["9014"].planet = "TAVROS STATION";
+	rooms["9014"].system = "SYSTEM: KALAS";
+	rooms["9014"].westExit = "9015";
+	rooms["9014"].eastExit = "9013";
+	rooms["9014"].moveMinutes = 1;
+	rooms["9014"].addFlag(GLOBAL.INDOOR);
+	rooms["9014"].addFlag(GLOBAL.PUBLIC);
+	rooms["9014"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["9014"].runOnEnter = undefined;
+
+	//9015
+	rooms["9015"] = new RoomClass(this);
+	rooms["9015"].roomName = "MERCHANT'S\nTHOROUGHFARE";
+	rooms["9015"].description = "A neon sign displaying a pair of scissors sits next to a small store entrance with its doors propped open to the east, allowing you a glimpse of the salon inside. The sign above the door labels it as “Shear Beauty.” The lifts aren’t too far down the merchant deck to the west, but if you falling the arcing thoroughfare east, you could visit the red light zone.";
+	rooms["9015"].planet = "TAVROS STATION";
+	rooms["9015"].system = "SYSTEM: KALAS";
+	rooms["9015"].westExit = "9016";
+	rooms["9015"].eastExit = "9014";
+	rooms["9015"].northExit = "SHEAR BEAUTY";
+	rooms["9015"].moveMinutes = 1;
+	rooms["9015"].addFlag(GLOBAL.INDOOR);
+	rooms["9015"].addFlag(GLOBAL.PUBLIC);
+	rooms["9015"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["9015"].runOnEnter = undefined;
+
+	//9016
+	rooms["9016"] = new RoomClass(this);
+	rooms["9016"].roomName = "MERCHANT'S\nTHOROUGHFARE";
+	rooms["9016"].description = "The cold metal flooring gives way to a high-dollar screen under your [pc.feet], advertising the latest “Sphinxes of Arachnu” flick, subtitled, “This Time, It’s Purrsonal.” It looks like the kind of movie that spent half its budget on special effects and the other half on feminine eye-candy. You doubt they spend more than twenty credits on the script.";
+	rooms["9016"].planet = "TAVROS STATION";
+	rooms["9016"].system = "SYSTEM: KALAS";
+	rooms["9016"].westExit = "9017";
+	rooms["9016"].eastExit = "9015";
+	rooms["9016"].moveMinutes = 1;
+	rooms["9016"].addFlag(GLOBAL.INDOOR);
+	rooms["9016"].addFlag(GLOBAL.PUBLIC);
+	rooms["9016"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["9016"].runOnEnter = undefined;
+
+	//9017
+	rooms["9017"] = new RoomClass(this);
+	rooms["9017"].roomName = "MERCHANT'S\nTHOROUGHFARE";
+	rooms["9017"].description = "You’ve reached the epicenter of north and east on Tavros Station’s merchant deck. The curving gray corridor arcs away in both directions, filled with the sights and sounds of a hundred different worlds. Gleaming holograms advertise, \"You can keep scrubbing, but you'll never erase those drives the way E-Horizons can!\" while women in skimpy leotards offer free samples of something only a galotian or rahn could hope to digest.";
+	rooms["9017"].planet = "TAVROS STATION";
+	rooms["9017"].system = "SYSTEM: KALAS";
+	rooms["9017"].northExit = "9018";
+	rooms["9017"].eastExit = "9016";
+	rooms["9017"].moveMinutes = 1;
+	rooms["9017"].addFlag(GLOBAL.INDOOR);
+	rooms["9017"].addFlag(GLOBAL.PUBLIC);
+	rooms["9017"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["9017"].runOnEnter = undefined;
+
+	//9018
+	rooms["9018"] = new RoomClass(this);
+	rooms["9018"].roomName = "MERCHANT'S\nTHOROUGHFARE";
+	rooms["9018"].description = "Crowds are thick this close to the lifts, and the preponderance of nearby shops isn’t helping matters. Most stores closed down, either to get away from the Rush madness or to try to strike it rich themselves. Yet the storefronts in this area are as lively as ever. New businesses have sprung up in the bones of the old, and there’s more than enough clientele to keep them busy.\n\nThe Dark Chrysalis, a shop that specializes in targeted, cosmetic transformatives is doing business to the east. To the west, you see a brightly-lit shop labelled as “Fur Effect.”";
+	rooms["9018"].planet = "TAVROS STATION";
+	rooms["9018"].system = "SYSTEM: KALAS";
+	rooms["9018"].northExit = "MERCHANT'S THOROUGHFARE2";
+	rooms["9018"].southExit = "9017";
+	rooms["9018"].westExit = "FUR EFFECT";
+	rooms["9018"].eastExit = "DARK CHRYSALIS";
+	rooms["9018"].moveMinutes = 1;
+	rooms["9018"].addFlag(GLOBAL.INDOOR);
+	rooms["9018"].addFlag(GLOBAL.PUBLIC);
+	rooms["9018"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["9018"].runOnEnter = undefined;
+
+	//INESSA
+	rooms["INESSA"] = new RoomClass(this);
+	rooms["INESSA"].roomName = "SHOP:\nHAPPY TAILS";
+	rooms["INESSA"].description = "";
+	rooms["INESSA"].planet = "TAVROS STATION";
+	rooms["INESSA"].system = "SYSTEM: KALAS";
+	rooms["INESSA"].westExit = "9010";
+	rooms["INESSA"].moveMinutes = 1;
+	rooms["INESSA"].addFlag(GLOBAL.INDOOR);
+	rooms["INESSA"].addFlag(GLOBAL.PUBLIC);
+	rooms["INESSA"].addFlag(GLOBAL.COMMERCE);
+	rooms["INESSA"].runOnEnter = happyTailsBonus;
 
 	//0. Ship Hanger
 	rooms["SHIP HANGAR"] = new RoomClass(this);

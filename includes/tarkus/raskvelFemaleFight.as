@@ -310,6 +310,15 @@ public function victoryVsRaskvel():void
 			output(" If you had a pussy, you could ride her face. Sadly, you don't.");
 			addDisabledButton(2,"RideHerFace");
 		}
+		if(pc.hasItem(new GravCuffs()) && pc.lust() >= 33)
+		{
+			var fitsInside:Boolean = false;
+			if(foes[0].hasVagina()) fitsInside = (pc.cockThatFits(foes[0].vaginalCapacity(0)) >= 0);
+			else fitsInside = (pc.cockThatFits(foes[0].analCapacity()) >= 0);
+			if(pc.hasCock() && fitsInside) addButton(3,"Cuff&Fuck",cuffNFuck,undefined,"Cuff & Fuck","Use your grav-cuffs to pin down [monster.name] and have your way with [monster.hisHer] [pc.vagOrAssNoun]! Requires Grav-cuffs and a penis.");
+			else if(pc.hasCock()) addDisabledButton(3,"Cuff&Fuck","Cuff & Fuck","You can cuff [monster.himHer] down, but you wouldn't be able to fit inside.");
+			else addDisabledButton(3,"Cuff&Fuck","Cuff & Fuck","You need a penis to make use of your grav-cuffs this way.");
+		}
 	}
 	else
 	{
@@ -330,6 +339,7 @@ public function raskVelBabeGetsDoggieStyled():void
 	userInterface.showBust("RASKVEL_FEMALE_NUDE");
 	userInterface.showName("DEFEATED: F.\nRASKVEL");
 	var x:int = pc.cockThatFits(foes[0].vaginalCapacity());
+	if(x < 0) x = pc.smallestCockIndex();
 	output("As you eye your ");
 	if(foes[0].HP() < 1) output("defeated");
 	else output("defeated");
@@ -495,7 +505,9 @@ public function faceRidingRaskvelLadies():void
 	output("\n\nShe does. That thick oral organ plays across your exterior folds for a moment, slathering them in even more hot alien spit, mixing with your secretions as they begin to leak out of you.");
 	if(pc.vaginaTotal() > 1) output(" The raskvel takes time to touch on each of your [pc.vaginas], giving all of them an equal share in tongue-love. One after another, she bounces between them until they're all shining with a veneer of oral affection.");
 	else output(" She slathers all over until you're shining with a veneer of oral affection.");
-	output(" Encouraged by this, you grab hold of her big, floppy ears and grind your [pc.hips] against her face, smearing her with your juices, shuddering when her nose bumps [pc.oneClit].");
+	output(" Encouraged by this, you grab hold of her big, floppy ears and grind your [pc.hips] against her face, smearing her with your juices");
+	if(pc.hasClit()) output(", shuddering when her nose bumps [pc.oneClit]");
+	output(".");
 	output("\n\nThe raskvel tries to say something, but all she accomplishes is sending lovely vibrations through your femine tinderbox, stoking the flames of passion higher and higher. After a particularly pleasant, face-creaming twinge of excitement, you back off enough to let the pussy-painted girl talk.");
 	output("\n\n\"<i>Please be gentle with my ears,</i>\" she begs, \"<i>They're sensitive.</i>\"");
 	output("\n\nThese things? You idly run your thumb along the inner lining of her long, flat ears. Her body shakes, and her pussy practically blooms, turning a deeper, darker purple while the lips open to reveal an entrance. A wicked idea strikes you then. A sexually stimulated partner will lick better than a bored one, after all. You begin to rhythmically caress her inner ear, watching the fluids leak down her legs and tail. She whimpers and trembles, lost in lost, panting out cute little no's while her body says yes. Once she's practically gushing juices, you grab hold of her thick tail and bend it double, plunging straight into her sodden box. The little slut's pussy clamps down so tightly that you don't think she could pull her tail out if she wanted to.");
@@ -505,7 +517,9 @@ public function faceRidingRaskvelLadies():void
 	output("\n\nNodding to her, you release her tail and resume your rubbing of her ears, watching the twitches of pleasure shudder through her muscles. \"<i>This is the reward for being honest,</i>\" you coo as you press [pc.oneVagina] back into her face");
 	if(pc.balls > 0) output(", letting your [pc.sack] cover the rest of her head, forcing her to breathe in your musky aroma");
 	output(". She sniffs at your sex for a moment before her tongue lashes out, whiplike, burying itself between your folds with the vigor of a soldier's spear-thrust. Your channel goes from empty steaming box to stuffed quim in no time flat, and it couldn't be happier about it.");
-	output("\n\nThe raskvel's tail begins to pump in an out of her vagina as she works. You're surprised to see it disappear past the halfway point, where it's something like six inches wide, into the petite creature. Her wide hips seem to have more uses than simple seduction, if the immense insertion is anything to go by. The faster her tail goes, the faster her tongue works, and she's soon fucking your " + pc.vaginaDescript(x) + " with wanton abandon, piercing your lips one moment, slapping your [pc.clit] the next, and slathering your vulva with licks before going back inside. The joining of cleft to mouth is so wet with spit and girlcum that sticky, bubbly strands connect the two of you at all times, even when your hips shake and pull away from the pleasure.");
+	output("\n\nThe raskvel's tail begins to pump in an out of her vagina as she works. You're surprised to see it disappear past the halfway point, where it's something like six inches wide, into the petite creature. Her wide hips seem to have more uses than simple seduction, if the immense insertion is anything to go by. The faster her tail goes, the faster her tongue works, and she's soon fucking your " + pc.vaginaDescript(x) + " with wanton abandon");
+	if(pc.hasClit()) output(", piercing your lips one moment, slapping your [pc.clit] the next, and slathering your vulva with licks before going back inside");
+	output(". The joining of cleft to mouth is so wet with spit and girlcum that sticky, bubbly strands connect the two of you at all times, even when your hips shake and pull away from the pleasure.");
 	output("\n\n\"<i>Atta girl,</i>\" you coo as you let your body do as it will. Your [pc.hips] jerk in tiny little convulsions of pleasure against the cute raskvel's face, slathering her from nose to neck in girlish goo. Meanwhile, you continue to play with her ears. You actually have one in each hand, teasing the edges, stroking the insides, and sometimes even pinching at them. Whenever you pinch, you can feel her thrust her tail inside herself hard enough to send a jolt through her whole body.");
 	output("\n\nThe air is rife with the scent of aroused femininity, so thick that every cock in a four mile radius is likely erecting in tribute. Ecstasy is rising through your trembling honeypot");
 	if(pc.totalVaginas() > 1) output("s");
@@ -915,7 +929,9 @@ public function getPeggedWhileDoublePenetrate():void
 	userInterface.showBust("RASKVEL_FEMALE_NUDE");
 	userInterface.showName("LOST VS: F.\nRASKVEL");
 	var x:int = pc.cockThatFits(foes[0].vaginalCapacity());
+	if(x < 0) x = pc.smallestCockIndex();
 	var y:int = pc.cockThatFits2(foes[0].vaginalCapacity());
+	if(y < 0) y = pc.smallestCockIndex2();
 	//HP: 
 	if(pc.HP() < 1)
 	{
@@ -1136,13 +1152,18 @@ public function giveHerSumthinToLickSloot():void
 	if(pc.totalVaginas() > 1) output("There’s so many...”</i> Her voice sounds almost breathless with wonderment. <i>“I think... I think I’ve got to get these for myself someday.");
 	else if(pc.totalClits() > 2) output("Wow, you’ve got so many clits! I bet it feels fabulous when you lay, huh?");
 	else if(pc.totalClits() == 2) output("It looks just like one of ours...");
-	else output("Aww, you only have one clit? No wonder you offworlders hardly lay any eggs!");
+	else if(pc.totalClits() > 0) output("Aww, you only have one clit? No wonder you offworlders hardly lay any eggs!");
+	else output("Wha-? You have no clits! You offworlders sure are strange--how do you even lay any eggs without one?!");
 	output("”</i> Her tongue stops wasting time on words and slithers out, snake-like toward your ");
 	if(pc.wetness(x) < 3) output("dewy");
 	else output("dripping");
 	output(" mound. The first contact is electric, enough for you to lurch forward and plant your cunt against her face, nether-lips to lips. Resting one hand on the back of her head, you stroke down her sensitive ears, encouraging her muscular organ to plunge deeper, further inside you.");
-	output("\n\nThe gravid slut’s lips brush [pc.oneClit], gently sucking on it while her tongue slithers deeper, caressing your innermost folds. At the same time, she moans, and, though the vibrations are muffled, it’s obvious that she’s creaming herself to eating you out and laying another member of your brood. You can actually hear the egg slopping out of her inflamed cunt and into the sex-scented mud below.");
-	output("\n\nAgain and again, you hear the sound of her pussy slurping around another outsized orb as it passes one egg after another. She whimpers into your pussy but never stops her feverish licking, greedily devouring the [pc.girlCum] your [pc.vagina " + x + "] so freely offers her. You can feel your internal muscles fluttering, fed by the pleasure sparking through your [pc.clits] like electricity through a live wire.");
+	output("\n\nThe gravid slut’s lips");
+	if(pc.hasClit()) output(" brush [pc.oneClit], gently sucking on it");
+	else output(" kiss your labia");
+	output(" while her tongue slithers deeper, caressing your innermost folds. At the same time, she moans, and, though the vibrations are muffled, it’s obvious that she’s creaming herself to eating you out and laying another member of your brood. You can actually hear the egg slopping out of her inflamed cunt and into the sex-scented mud below.");
+	output("\n\nAgain and again, you hear the sound of her pussy slurping around another outsized orb as it passes one egg after another. She whimpers into your pussy but never stops her feverish licking, greedily devouring the [pc.girlCum] your [pc.vagina " + x + "] so freely offers her.");
+	if(pc.hasClit()) output(" You can feel your internal muscles fluttering, fed by the pleasure sparking through your [pc.clits] like electricity through a live wire.");
 	output("\n\nYou and the raskvel maiden both moan at the same time");
 	if(pc.hasCock()) output(", and before you know what you’re doing, you wrap her ear around your [pc.cocks] and jerk them, milking your way to a cunt-shattering, dick-draining orgasm");
 	else output(", and before you can really register what’s going on, her moan turns into a scream, vibrating your pussy into a cunt-shattering orgasm");

@@ -417,7 +417,10 @@ package classes.Items.Transformatives
 		private function cockShrinkTF(target:Creature):void
 		{
 			//Rarest reaction. Reduce cocksize. 2-4 inches per.
-
+			
+			output("You feel a strange, contracting sensation in your [pc.cocks]. While not altogether unpleasant, you're not sure you could really call it pleasure either. You reach a hand down to inspect your member");
+			if (target.cocks.length > 1) output("s");
+			
 			for (var ci:int = 0; ci < target.cocks.length; ci++)
 			{
 				if (target.cockLengthUnlocked(ci, 4) && target.cocks[ci].cLengthRaw > 4)
@@ -428,6 +431,7 @@ package classes.Items.Transformatives
 					if (sizeOver < 1)
 					{
 						sizeOver = 4 - target.cocks[ci].cLengthRaw;
+						if (sizeOver < 1) sizeOver = 1;
 					}
 					else
 					{
@@ -436,13 +440,16 @@ package classes.Items.Transformatives
 						// Similarly cap to max 3" loss
 						if (sizeOver > 3) sizeOver = 3;
 					}
+					if (target.hasPerk("Mini"))
+					{
+						sizeOver *= 2;
+					}
 					
 					target.cocks[ci].cLengthRaw -= sizeOver;
+					if (target.cocks[ci].cLengthRaw < 1) target.cocks[ci].cLengthRaw = 1;
 				}
 			}
-
-			output("You feel a strange, contracting sensation in your [pc.cocks]. While not altogether unpleasant, you're not sure you could really call it pleasure either. You reach a hand down to inspect your member");
-			if (target.cocks.length > 1) output("s");
+			
 			output(", and instantly realize");
 			if (target.cocks.length == 1) output(" it seems");
 			else output(" they seem")

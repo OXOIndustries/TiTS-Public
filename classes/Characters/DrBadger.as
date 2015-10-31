@@ -5,18 +5,20 @@
 	import classes.Items.Miscellaneous.Throbb;
 	import classes.Items.Miscellaneous.Dumbfuck;
 	import classes.Items.Transformatives.Gush;
+	import classes.Items.Guns.SlutRay;
 	public class DrBadger extends Creature
 	{
 		//constructor
 		public function DrBadger()
 		{
-			this._latestVersion = 3;
+			this._latestVersion = 4;
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
 			this.inventory.push(new Dumbfuck());
 			this.inventory.push(new Gush());
 			this.inventory.push(new Throbb());
+			this.inventory.push(new SlutRay());
 			this.typesBought[this.typesBought.length] = GLOBAL.PILL;
 			this.typesBought[this.typesBought.length] = GLOBAL.POTION;
 			this.typesBought[this.typesBought.length] = GLOBAL.DRUG;
@@ -176,7 +178,10 @@
 			
 			this._isLoading = false;
 		}
-		
+		public function UpgradeVersion3(dataObject:Object):void
+		{
+			dataObject.inventory.push(new SlutRay().getSaveObject());
+		}
 		public function UpgradeVersion2(d:Object):void
 		{
 			delete d.meleeWeapon;

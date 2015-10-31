@@ -257,10 +257,16 @@
 				kGAMECLASS.output("\n\nA hot flash assaults your body, leaving you panting, sweating, and drooling from your [pc.vaginas]. ");
 				if(target.vaginaTotal() > 1) kGAMECLASS.output("Each");
 				else kGAMECLASS.output("It");
-				kGAMECLASS.output(" is near-instantly engorged and wanting, your [pc.clits] hard and easy to spot. You gasp and double over, bringing your hand up to start masturbating when you see [pc.oneVagina] changing before your eyes. It's getting longer vertically while the vulva, even aroused, become less noticeable.");
-				if(target.vaginas[x].clits > 1) {
+				kGAMECLASS.output(" is near-instantly engorged and wanting");
+				if(target.vaginas[x].clits > 0) kGAMECLASS.output(", your [pc.clits] hard and easy to spot");
+				kGAMECLASS.output(". You gasp and double over, bringing your hand up to start masturbating when you see [pc.oneVagina] changing before your eyes. It's getting longer vertically while the vulva, even aroused, become less noticeable.");
+				if(target.vaginas[x].clits <= 0) kGAMECLASS.output(" A sensitive nub grows from the top, forming a pulsing, needy clit.");
+				else if(target.vaginas[x].clits > 1) {
 					if(target.vaginas[x].clits == 2) kGAMECLASS.output(" A clit vanishes");
-					else kGAMECLASS.output(" A few clits vanish");
+					else if(target.vaginas[x].clits == 3) kGAMECLASS.output(" A couple of clits vanish");
+					else if(target.vaginas[x].clits == 4) kGAMECLASS.output(" A few clits vanish");
+					else if(target.vaginas[x].clits == 5) kGAMECLASS.output(" Some clits vanish");
+					else kGAMECLASS.output(" A number of clits vanish");
 					kGAMECLASS.output(", leaving only the one at the top.");
 				}
 				if(target.totalVaginas() == 2) kGAMECLASS.output(" Your other entrance soon follows after the first, reshaping to match.");
@@ -393,7 +399,7 @@
 					kGAMECLASS.output(", you feel a sudden shifting. [pc.oneCock] is half hard and tingling all over, but it won't come out. The feeling is pleasurable but at the same time disconcerting, like the interior of your sheath is fellating you while your length reshapes to accommodate it better. You lower yourself down to the ground before the exotic pleasure strips the strength from your [pc.legOrLegs], just in time to feel your [pc.cock " + x+ "] start spasming in ecstasy, dragging a moan from your throat as it suddenly rams its way up and out of your slit.");
 					if(target.cumQ() < 5) kGAMECLASS.output("\n\nDribbles of [pc.cum] leak from your twitching length, the only seed your body is able to eject in your spasms of pleasure.");
 					else kGAMECLASS.output("\n\nArcs of [pc.cum] fly from you twitching length out in front of you, launched in thick, wet volleys.");
-					kGAMECLASS.output(" Your [pc.hips] wildly hump the air against an invisible lover as the abrupt bliss works its way through you. Hanging out of your [pc.lips], you [pc.tongue] drools down your chin in satisfaction. The surprise climax ends, leaving you panting and regarding the source of it all.");
+					kGAMECLASS.output(" Your [pc.hips] wildly hump the air against an invisible lover as the abrupt bliss works its way through you. Hanging out of your [pc.lips], your [pc.tongue] drools down your chin in satisfaction. The surprise climax ends, leaving you panting and regarding the source of it all.");
 					kGAMECLASS.output("\n\n<b>In place of your [pc.cock " + x + "], you have a purple, snake-like length, somewhat bulbous up to its tapered tip.</b>");
 					target.orgasm();
 					target.shiftCock(x,GLOBAL.TYPE_NAGA);

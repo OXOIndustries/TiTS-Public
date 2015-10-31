@@ -416,21 +416,28 @@ public function loseToCuntSnakeAndDontGetSucked():void {
 			output(" [pc.nipple] with the other, anything to sate the burning need within you. Your whole body aches to be touched, stroked, and penetrated.");
 			output("\n\nThe serpent slithers lamely around your [pc.legOrLegs] as you submit to your needs, snuffling noisily around you. It’s clearly searching for something, but it turns away after a moment, curling up a few feet away with its vaginal entrance hidden from view. You groan as your digits stroke a particularly sensitive fold, squelching noisily as you begin to vigorously fuck yourself a few feet from the creature responsible for your state. It doesn't even move or help, it just sits there, watching you debase yourself.");
 			//{big clit}
-			if(select == 0 && pc.clitLength >= 3.5) {
+			if(select == 0 && pc.totalClits() > 0 && pc.clitLength >= 3.5) {
 				output("\n\nYou grab hold of ");
 				if(pc.totalClits() > 1) output("a");
 				else output("your");
 				output(" swollen love-button and begin to pump it, leaving your poor vulvae and inner passage alone long enough to indulge in some phallic-style pleasure. The slippery lube from your cunt is all you need to please the nerve-packed, feminine length, allowing you to stroke it so fast that your eyes cross. Your other hand drifts away from the [pc.nipple] to plunder your vacant vagina, fingering your squeezing, wet hole to the same tempo. It feels so good that your [pc.hips] start to shudder and shake on every downstroke, fucking an imaginary lover and dripping girl-cum everywhere.");
 			}
 			//{nope but a vagina}
-			else if(select == 0) output("\n\nYou press your palm down hard on your mons, dragging it across the sloppy mess that is your [pc.vagina] with enough firmness to squeeze [pc.oneClit] pleasurably into the rest of your womanhood. You stab your fingers into that lusty hole again and again, stirring your engorged honeypot to ever-higher levels of excitement. Your [pc.hips] begin to hump back against your palm while you manhandle your [pc.nipple], trembling as they shudder and shake your [pc.butt] off the ground. You work yourself faster and faster, into a masturbatory frenzy, getting sweat and girl-spunk everywhere.");
+			else if(select == 0)
+			{
+				output("\n\nYou press your palm down hard on your mons, dragging it across the sloppy mess that is your [pc.vagina]");
+				if(pc.hasClit()) output(" with enough firmness to squeeze [pc.oneClit] pleasurably into the rest of your womanhood");
+				output(". You stab your fingers into that lusty hole again and again, stirring your engorged honeypot to ever-higher levels of excitement. Your [pc.hips] begin to hump back against your palm while you manhandle your [pc.nipple], trembling as they shudder and shake your [pc.butt] off the ground. You work yourself faster and faster, into a masturbatory frenzy, getting sweat and girl-spunk everywhere.");
+			}
 			//{buttholes}
 			else output("\n\nYou press deeper into your sensitive butthole. Your sphincter clamps down around your fingers at first, but after a few fevered pushes inside, the ring begins to relax and allow you to truly masturbate your [pc.asshole]. Working a third finger into the loosening passage, you increase the tempo until your [pc.butt] is bouncing in the palm of your hand (and on the ground), going faster and faster with every passing moment.");
 		}
 		//CUM
 		//cunt tail
 		if(select == 1) {
-			output("\n\nPressing the palm of your hand firmly down upon your exoticly-placed mons, you drag and back and forth with enough firmness to squeeze the inhuman clitty pleasurably against your folds. You stab your fingers deep inside with rhythmic, audible squelches, shooting bliss straight up your spine. After mere moments of this, your [pc.hips] are lurching forward and backward in wasted humping motions, your body's instincts clearly unable to adapt to a new source of pleasure beyond your groin. You work yourself faster in faster, lost in a masturbatory frenzy, dripping sweat and girl-spunk everywhere.");
+			output("\n\nPressing the palm of your hand firmly down upon your exoticly-placed mons, you drag it back and forth");
+			if(pc.hasClit()) output(" with enough firmness to squeeze the inhuman clitty");
+			output(" pleasurably against your folds. You stab your fingers deep inside with rhythmic, audible squelches, shooting bliss straight up your spine. After mere moments of this, your [pc.hips] are lurching forward and backward in wasted humping motions, your body's instincts clearly unable to adapt to a new source of pleasure beyond your groin. You work yourself faster in faster, lost in a masturbatory frenzy, dripping sweat and girl-spunk everywhere.");
 			output("\n\nJuices spray over your [pc.chest], [pc.belly], and the ground around you as your climax makes you squirt everywhere, glossing your surroundings in a sheen of spent lust. The inner lining of your squirming slit contracts down around your fingers and squeezes, wringing them for every drop of imaginary cum that it can.");
 		}
 		//Cock tail
@@ -503,6 +510,7 @@ public function getACuntTail():void {
 	pc.addTailFlag(GLOBAL.FLAG_LONG);
 	pc.addTailFlag(GLOBAL.FLAG_THICK);
 	pc.tailGenitalArg = foes[0].tailGenitalArg;
+	pc.tailGenitalColor = foes[0].tailGenitalColor;
 	genericLoss();
 }
 

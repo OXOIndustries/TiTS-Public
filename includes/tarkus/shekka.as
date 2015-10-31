@@ -1034,7 +1034,10 @@ public function tailbadism():void
 	output(" <i>\"Just a little bit.\"</i>");
 
 	output("\n\nThe slowly opening divide in the alabaster fabric widens with torturous slowness, but it affords you a detailed view of Shekka's reddish scales and well-formed breasts. You grab hold of it on both sides and tug. It gives as if there was never anything holding it at all, allowing you to to yank it down to her flared hips in an instant. The raskvel's puffy nipples pebble in the cool air, and you let go of her suit to brush one with your thumb, eliciting a gasp of delight from the tiny alien.");
-	output("\n\nShekka giggles and squirms, but she lifts her shapely bottom up off of you to to aid you in disrobing her. You tug it down her legs to her knees before giving up on the current positioning and rolling, pinning her underneath you so that you pull the offending garment entirely away. You toss it over your shoulder, and it lands in a shimmery heap, it's owner naked and vulnerable below. You echo, <i>\"A little fun,\"</i> now that you're above her, your [pc.vaginas] close enough to hers to kiss, the glittering wetness of your anticipation hanging from a [pc.clit] like a drop of dew.");
+	output("\n\nShekka giggles and squirms, but she lifts her shapely bottom up off of you to to aid you in disrobing her. You tug it down her legs to her knees before giving up on the current positioning and rolling, pinning her underneath you so that you pull the offending garment entirely away. You toss it over your shoulder, and it lands in a shimmery heap, it's owner naked and vulnerable below. You echo, <i>\"A little fun,\"</i> now that you're above her, your [pc.vaginas] close enough to hers to kiss, the glittering wetness of your anticipation hanging from");
+	if(pc.hasClit()) output(" a [pc.clit]");
+	else output(" you");
+	output(" like a drop of dew.");
 	output("\n\nHer tail curls up between your bodies to bar her violet entrance from sight. She giggles playfully, then bucks her hips upward, slamming the slightly-ridged texture of her tail into [pc.oneVagina]. You gasp in surprise and pleasure. The sudden press of her warm body against your entrance is at once tantalizing and mildly painful - more the former than the latter. Then, with a knowing grin, Shekka closes her eyes, an expression of pleased focus on her features.");
 	//Happened before
 	if(flags["TIMES_TAILVIBED_WITH_SHEKKA"] != undefined)
@@ -1049,13 +1052,18 @@ public function tailbadism():void
 	else output("equally small");
 	output(" mechanic to the ground with your creaming-wet pussy, wrapping half of her tail with your folds. On the other side, her immensely engorged labia spread until you can feel them kissing around the trembling intruder. Both pussies lock into a sopping-wet embrace around her vibrating tail; you barely seem to be different creatures. Where once there were two aroused beings, there remains only a single, writhing beast of sapphic desire.");
 	output("\n\nThe buzz quiets, drowned in a sea of feminine lubricants, but you are far from idle. Supporting yourself with one hand, you reach for one of Shekka's breasts, grabbing on for dear life. It's soft and supple, blushing hotly. You can feel the little raskvel's tiny heart hammering in her chest as you squeeze. The eager pushes and prods of her own fingers against your [pc.chest] abate. Instead, her arms close around your neck and pull you into her, kissing you once more. Her nails dig into your back, but your sense of pain is deadened by white hot bar of pleasure assailing your loins.");
-	output("\n\nDamn, Shekka's tongue is long. She could probably loop it around your tonsils if she wanted to, but she seems content to slide it against your mouth's muscle, curling and squeezing it, sometimes constricting, boa-like around it. You lose yourself in the tangle of limbs, the ecstasy of one body pressed against another and the constant vibrations torturing your [pc.clit] with pleasure. The room seems to be spinning.... Wait, it is spinning!");
+	output("\n\nDamn, Shekka's tongue is long. She could probably loop it around your tonsils if she wanted to, but she seems content to slide it against your mouth's muscle, curling and squeezing it, sometimes constricting, boa-like around it. You lose yourself in the tangle of limbs, the ecstasy of one body pressed against another and the constant vibrations torturing your");
+	if(pc.hasClit()) output(" [pc.clit]");
+	else output(" inner walls");
+	output(" with pleasure. The room seems to be spinning.... Wait, it is spinning!");
 	output("\n\nShekka pins you flat on your back, but it frees you to reach down and grab her ass, to feel her cheeks twitch and her muscles dance when a spasm of uncontrollable sexual energy convulses through her hips. She squirms, moaning into you. Your hands pull her harder against you, increasing the force of the tremors wracking your cunt - and hers. The scaley slut screams into your mouth and finally breaks the kiss, shrieking into your shoulder as she cums. Her juices spatter over your [pc.legOrLegs] like rain from a typhoon. It's all you can do to steady her thrashing form from tumbling to the floor while avoiding a cunt-wrenching cum all your own.");
 	output("\n\nNervelessly fluttering, Shekka's fingers telegraph her orgasm directly into your ");
 	if(pc.biggestTitSize() >= 1) output("breasts");
 	else output("chest");
 	output(", catching on your [pc.nipples] and pressing into the soft, nerve-packed tips. You close your eyes and grit your teeth, holding yourself back from the edge by sheer force of will. The petite beauty above twists and wiggles through euphoric spasms, secure in your arms, juicing twat still pressed to yours around the intrusive wiggling of her tail. You press your lips to hers in a tender kiss, and she slowly stills, only occasionally trembling through aftershocks.");
-	output("\n\nStill holding tight to her, you feel the heated waves of ecstasy fluttering in your nethers, as irresistible as the ocean tides. The cunt-clenching tsunami crashes over your crumbling wall of willpower, bathing everything in tidepools of pleasure. Your eyes roll back a second before Shekka's clear. The crafty girl acts as soon as she realizes what's going on. Her tail, once a passive participant for you to grind against, slithers into your [pc.vagina " + x + "], still vibrating. Your convulsing, bliss-filled walls clamp onto it. You can feel the vibrations carry through your pliant, clinging flesh all the way to your [pc.clits].");
+	output("\n\nStill holding tight to her, you feel the heated waves of ecstasy fluttering in your nethers, as irresistible as the ocean tides. The cunt-clenching tsunami crashes over your crumbling wall of willpower, bathing everything in tidepools of pleasure. Your eyes roll back a second before Shekka's clear. The crafty girl acts as soon as she realizes what's going on. Her tail, once a passive participant for you to grind against, slithers into your [pc.vagina " + x + "], still vibrating. Your convulsing, bliss-filled walls clamp onto it. You can feel the vibrations carry through your pliant, clinging flesh");
+	if(pc.hasClit()) output(" all the way to your [pc.clits]");
+	output(".");
 	if(pc.hasCock()) 
 	{
 		output(" Your [pc.cocks], pinned between the two of you, spurt");
@@ -1064,7 +1072,10 @@ public function tailbadism():void
 	}
 	//Cuntchange
 	pc.cuntChange(x,5,true,true,false);
-	output("\n\nYou twist on the floor, the raskvel riding you, pumping you wildly. The air fills with the high-pitched sounds of your passion and the scent of your mixed secretions almost seems to steam the air around your sweaty, entwined bodies. Shekka pulls partway out to hold her tip against [pc.oneClit], and the vibrating length drives your consciousness away in an explosion of ecstasy.");
+	output("\n\nYou twist on the floor, the raskvel riding you, pumping you wildly. The air fills with the high-pitched sounds of your passion and the scent of your mixed secretions almost seems to steam the air around your sweaty, entwined bodies. Shekka pulls partway out to hold her tip against");
+	if(pc.hasClit()) output(" [pc.oneClit]");
+	else output(" your lips");
+	output(", and the vibrating length drives your consciousness away in an explosion of ecstasy.");
 	processTime(40+rand(10));
 	pc.orgasm();
 	chars["SHEKKA"].orgasm();

@@ -132,7 +132,7 @@ public function brynnsStallFunc():Boolean
 		
 		output("\n\nThe literal giant of a man seems cramped, almost cooped up in such a tiny little space. His presence absolutely dominates the interior of the stall, his scale so massive that everything appears to be only a fraction of its usual size. He looks as though he could easily reach out and touch both walls of the stall at the same time without much trouble, only further magnifying the effect and leaving you subtly uncomfortable. You know the stall is nowhere near as tiny as it feels right now, but you can’t shake the feeling of being slightly claustrophobic because of it. Shit, even the tiny little maintenance ducts meandering their way all over your ship seem bigger than <i>this</i>.");
 		
-		output("\n\nA deep, bassy grunt vibrates from deep within his chest, and it’s only then, with his vocal approval of his current predicament, that you realise he isn’t in here on his own. So enraptured by his appearance as you’ve been you had completely neglected to notice the pair of curvaceous cowgirls also residing within the stall. Each one is wrapped around one the chiseled adonis’ powerful legs and are worshipping the");
+		output("\n\nA deep, bassy grunt vibrates from deep within his chest, and it’s only then, with his vocal approval of his current predicament, that you realize he isn’t in here on his own. So enraptured by his appearance as you’ve been you had completely neglected to notice the pair of curvaceous cowgirls also residing within the stall. Each one is wrapped around one the chiseled adonis’ powerful legs and are worshipping the");
 		if (pc.isTreated()) output(" prime beef");
 		output(" thick, equine cock");
 		output(" drooping from the bull-stud’s crotch with admittedly well-deserved praise. They alternate between planting their pouty lips along the heavy length of cock, kissing deeply along its length from base to flared head, and lavishing the flesh before them with their wide, wet tongues. As one licks toward the thickly flared head to kiss a bead of precum from the tip of the cock, the other nuzzles in against the base, lapping around the weighty root of dick to tease at the heavily laden balls below.");
@@ -413,7 +413,7 @@ public function suckThatMassiveStudlyBrynnDick():void
 	else
 	{
 		// Treated
-		output("\n\nNo longer having to dedicate precious thinking power to the task of figuring out just how best to bring pleasure to the virile stud with his cock lodged between your lips, you've finally got chance to realise just how needy your own");
+		output("\n\nNo longer having to dedicate precious thinking power to the task of figuring out just how best to bring pleasure to the virile stud with his cock lodged between your lips, you've finally got chance to realize just how needy your own");
 		if (pc.hasVagina()) output(" [pc.cunts]");
 		else if (pc.hasCock()) output(" [pc.cocks]");
 		else output(" loins");

@@ -468,7 +468,9 @@ public function pcLossToNyrea():void
 		{
 			output("\n\n<i>“I suppose your womb will have to suffice,”</i> she grins, rolling you onto your back and spreading your [pc.legOrLegs] apart, revealing the slick slit of your sex.");
 			
-			output("\n\nGrinning down at you, the huntress shimmies down to her knees and grabs the heavy shaft of her ovicock. You wince as the barbed crown brushes against the lips of your sex, teasing at your [pc.clit]. Your breath catches, sending shivers down your spine until the huntress’s flared cockhead presses against your [pc.cunt "+ tHole +"]. The sensation of her spines teasing at the inside of your cunt is almost too much to bear.");
+			output("\n\nGrinning down at you, the huntress shimmies down to her knees and grabs the heavy shaft of her ovicock. You wince as the barbed crown brushes against the lips of your sex");
+			if(pc.vaginas[tHole].clits > 0) output(", teasing at your " + pc.clitDescript(tHole));
+			output(". Your breath catches, sending shivers down your spine until the huntress’s flared cockhead presses against your [pc.cunt "+ tHole +"]. The sensation of her spines teasing at the inside of your cunt is almost too much to bear.");
 			
 			output("\n\nWhen she thrusts in, you can’t help but scream. ");
 
@@ -726,6 +728,18 @@ public function pcVictoryOverNyrea():void
 	if (pc.hasTailCock()) addButton(2, "Docking", nyreaTailcockDocking); //Needs a tailcock less than 3 inches thick. Length is irrelevant.
 	else addDisabledButton(2, "Docking", "Docking", "Requires a tailcock.");
 	
+	if(pc.hasItem(new GravCuffs()) && pc.lust() >= 33)
+	{
+		var fitsInside:Boolean = false;
+		if(foes[0].hasVagina()) fitsInside = (pc.cockThatFits(foes[0].vaginalCapacity(0)) >= 0);
+		else fitsInside = (pc.cockThatFits(foes[0].analCapacity()) >= 0);
+
+		if(pc.hasCock() && fitsInside) addButton(3,"Cuff&Fuck",cuffNFuck,undefined,"Cuff & Fuck","Use your grav-cuffs to pin down [monster.name] and have your way with [monster.hisHer] [pc.vagOrAssNoun]! Requires Grav-cuffs and a penis.");
+		else if(pc.hasCock()) addDisabledButton(3,"Cuff&Fuck","Cuff & Fuck","You can cuff [monster.himHer] down, but you wouldn't be able to fit inside.");
+		else addDisabledButton(3,"Cuff&Fuck","Cuff & Fuck","You need a penis to make use of your grav-cuffs this way.");
+		output("CUFFIES");
+	}
+	else output(" NO CUFFIES");
 	// 9999 territory - need something decent for leaving after victory without fucking
 	addButton(14, "Leave", function():void {
 		clearOutput();
@@ -1036,7 +1050,10 @@ public function nyreaTailcockDocking():void
 {
 	clearOutput();
 	nyreaHeaderFromCreature(foes[0], "VICTORY:");
-
+	
+	var isParasiteTail:Boolean = false;
+	if (InCollection(pc.tailType, GLOBAL.TYPE_CUNTSNAKE, GLOBAL.TYPE_COCKVINE)) isParasiteTail = true;
+	
 	output("\n\nYou lick your lips, eyes wandering over the defeated huntress, taking in the lovely curves and taut muscles of her athletic body. The nyrea");
 	if (foes[0] is NyreaAlpha) output(" stares defiantly into your eyes, visage full of fire");
 	else if (foes[0] is NyreaBeta) output(" whimpers slightly, refusing to meet your gaze as you drink in her body");
@@ -1049,11 +1066,17 @@ public function nyreaTailcockDocking():void
 	
 	output("\n\nYou let your hands wander down, slipping into the hem of her bottom and down her plated legs, letting the hefty pseudo-cock between her legs slip free and into your waiting hand. You give her thick, flared shaft a few experimental strokes, and are instantly rewarded with a girlish gasp from your would-be attacker, followed by a steady increase in the flow of milk into your mouth. Oh, she likes that! You move your wrist faster, pumping the huntress’s prick until she’s openly moaning, desperately thrusting her hips into your hand.");
 	
-	output("\n\nTorn between continuing to enjoy the delicious meal on offer from her breasts or giving that thick, turgid shaft of pseudo-cock a little loving, you feel a familiar rise of tension at the tip of your parasitic tail. Now that’s an idea... you flex your tail muscles, bringing the thick appendage down");
+	output("\n\nTorn between continuing to enjoy the delicious meal on offer from her breasts or giving that thick, turgid shaft of pseudo-cock a little loving, you feel a familiar rise of tension at the tip of your");
+	if(isParasiteTail) output(" parasitic");
+	else output(" phallic");
+	output(" tail. Now that’s an idea... you flex your tail muscles, bringing the thick appendage down");
 	if(pc.legCount > 1) output(" between");
 	output(" your [pc.legOrLegs] like a prehensile dick to wrap around the huntress’s own member. She gasps as your [pc.tail] coils around her, trembling as you give her just enough of a squeeze to milk out a little moisture from her X-shaped cumslit. Good, you’ll need that for what’s coming next. ");
 	
-	output("\n\nYou continue to coil your cocktail around her like a serpent, slithering it along her long, thick shaft until the slender tip of your parasitic appendage brushes against her own phallic opening, teasing the rim so that your own cockhead pokes out, stiffening to the heat and throbbing proximity of the nyrea’s shaft. Her eyes go wide when she sees it, then lull nearly closed as understanding washes over her. ");
+	output("\n\nYou continue to coil your cocktail around her like a serpent, slithering it along her long, thick shaft until the slender tip of your");
+	if(isParasiteTail) output(" parasitic");
+	else output(" tail’s");
+	output(" appendage brushes against her own phallic opening, teasing the rim so that your own cockhead pokes out, stiffening to the heat and throbbing proximity of the nyrea’s shaft. Her eyes go wide when she sees it, then lull nearly closed as understanding washes over her. ");
 	
 	output("\n\n<i>“You’ve got one of </i>them<i>,”</i> she murmurs, and you can feel her prick relaxing in your grasp, the X-shaped slit almost begging for you to enter her. ");
 	

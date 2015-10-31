@@ -323,12 +323,18 @@ public function millieMilkersPartDues():void
 			if(pc.totalVaginas() > 1) output("one of ");
 			output("your moist juncture");
 			if(pc.totalVaginas() > 1) output("s");
-			output(", spreading your folds with effortless, probing strokes. Her thumb circles around the edge of your clitoral hood, and your hapless pleasure buzzer is helpless but to expose itself");
-			if(pc.totalClits() > 1) output(", soon joined by its identical sister");
-			if(pc.totalClits() > 2) output("s");
+			output(", spreading your folds with effortless, probing strokes");
+			if(pc.hasClit())
+			{
+				output(". Her thumb circles around the edge of your clitoral hood, and your hapless pleasure buzzer is helpless but to expose itself");
+				if(pc.totalClits() > 1) output(", soon joined by its identical sister");
+				if(pc.totalClits() > 2) output("s");
+			}
 			output(". You wriggle like a fish on a hook, sometimes trying to ease away from the wonderful sensations Millie’s probing fingertips incite, othertimes trying to ease them into just the right spot.");
 			output("\n\nThe cow-girl climbs atop you, one hand still busy with [pc.oneVagina], and she leans in close, her face just above yours, her gray-blue eyes gazing deep into your own. The weight of her breasts nearly dislodges the pumps until she giggles and threads them through her cleavage. Then, bending around the hoses, she kisses you full on the lips, letting her tongue dance across your own until you finally push back, tasting the sweetness of her flavored lipgloss.");
-			output("\n\nMillie breaks the kiss, still connected to you by an errant strand of saliva, her fingers still industrially wiggling, her heavy, milk-seeping nipples dragged up and down your emptying tits by the force of her rapid breathing. She twists those wonderful, [pc.girlCumNoun]-stained digits inside you, arching them just so. Her thumb finally presses on [pc.oneClit] in just the right way, shaking just enough that it’s practically vibrating. Your abdomen clenches. Your [pc.legOrLegs] quiver");
+			output("\n\nMillie breaks the kiss, still connected to you by an errant strand of saliva, her fingers still industrially wiggling, her heavy, milk-seeping nipples dragged up and down your emptying tits by the force of her rapid breathing. She twists those wonderful, [pc.girlCumNoun]-stained digits inside you, arching them");
+			if(pc.hasClit()) output(" just so. Her thumb finally presses on [pc.oneClit]");
+			output(" in just the right way, shaking just enough that it’s practically vibrating. Your abdomen clenches. Your [pc.legOrLegs] quiver");
 			if(pc.legCount == 1) output("s");
 			output(" on the table, and you cum. You cum like like water pours from a shattered dam. You cum like like an avalanche down a mountain.");
 			output("\n\nYou cum so hard you lose all track of everything but the fireworks going off behind your eyelids and the gutteral love-sounds pouring out of your throat in one unbroken stream. Your body is but a quivering vessel for a cascade of bliss beyond reason or understanding. All you can die is hope to ride the ecstasy while every last drop of [pc.milk] is extracted from your [pc.fullChest], your body helplessly offering up every ounce in hopes of prolonging the physical reward.");
@@ -379,7 +385,9 @@ public function millieMilkersPartDues():void
 		//Cooches
 		else if(pc.hasVagina())
 		{
-			output("\n\nA forceful, slippery sensation intrudes on your lactic paradise, forcing the feelings of soaked fingers wriggling through sensitive folds to occupy your mind. Your body responds on autopilot, gushing yet more [pc.milkNoun] for an imaginary mate while your nerves are strummed into bliss-inducing chords. Millie has your hips wriggling up onto the cusp. She hooks them, pushing just the right spot inside while her thumb comes to rest on your [pc.clit], and you cum.");
+			output("\n\nA forceful, slippery sensation intrudes on your lactic paradise, forcing the feelings of soaked fingers wriggling through sensitive folds to occupy your mind. Your body responds on autopilot, gushing yet more [pc.milkNoun] for an imaginary mate while your nerves are strummed into bliss-inducing chords. Millie has your hips wriggling up onto the cusp. She hooks them, pushing just the right spot inside");
+			if(pc.hasClit()) output(" while her thumb comes to rest on your [pc.clit], and you cum.");
+			else output(" that it forces you to cum.");
 			output("\n\nIt isn’t the kind of quivering climax you’re used to, though. It’s a controlled demolition of your consciousness, set off by every sensitive place in your body in unison. The pleasure from your [pc.vaginas] rebounds off the wonderful release your tits are experiencing. Even your [pc.asshole] is clenching with every boneless jerk of your [pc.legOrLegs]. Someone is mooing, again and again, each louder than the one before. It sounds so wonderful and right - the perfect vocalization of what you need and feel distilled into a single, awesome sound.");
 			output("\n\nComforted by your own vocalizations, you slip into a sea of ecstasy, only aware of the rhythmic suckling against your boobs, the [pc.milkNoun] sloshing against your [pc.nipples] inside the cups, and the skillful, powerful pistoning of those soaked digits sliding into your nethers.");
 		}
@@ -953,7 +961,10 @@ public function milliePersonallyDrainsYerTiTS():void
 			output("\n\nAnd your tits aren’t the only things dripping. You’re wet enough to feel it pooling under your [pc.butt]. Your [pc.vaginas] ");
 			if(pc.totalVaginas() > 1) output("are");
 			else output("is");
-			output(" hungry. If Millie wasn’t blocking your access, you’d probably be three fingers deep and trying to see how much friction your thumb could generate on [pc.oneClit]. It’s not fair that your nipples are the only ones getting any love! You wriggle and squirm until Millie gets tired of it and pins you down, surprisingly strong for a cow-girl.");
+			output(" hungry. If Millie wasn’t blocking your access, you’d probably be three fingers deep and trying to see how much friction your thumb could generate on");
+			if(pc.hasClit()) output(" [pc.oneClit]");
+			else output(" your inner walls");
+			output(". It’s not fair that your nipples are the only ones getting any love! You wriggle and squirm until Millie gets tired of it and pins you down, surprisingly strong for a cow-girl.");
 			output("\n\nShe breaks the seal on your [pc.nipple] to say, <i>“Just settle and try and enjoy it,”</i> before returning to her eager nuzzling of your chest. It’s torture and ecstasy all mixed together, unfilled desire rubbing elbows with lactic bliss. Your [pc.legOrLegs] tremble");
 			if(pc.legCount == 1) output("s");
 			output(", awash in at all, your muscles twitching just to award your [pc.vaginas] the barest measure of friction. Just as you begin to fear that you’ll go mad from it all, your body caves in to what its red-hot, lactic pleasure-buzzers are demanding, setting off a full body, titty-quaking boobgasm.");

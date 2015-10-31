@@ -68,7 +68,7 @@ public function myrellionManorGoInside():Boolean
 
 	output("While you’re here in Kressia, you figure it’d be prudent to meet with the occupation force’s commander.");
 	// Not found the probe yet
-	if (9999 == 9999) output(" She may have information on any alien technology that’s gone through here, like one of your father’s probes.");
+	if (reclaimedProbeMyrellion()) output(" She may have information on any alien technology that’s gone through here, like one of your father’s probes.");
 	output(" After all, you’re a visiting UGC citizen, and a high-profile one at that. What’s the worst they could do to you?");
 	
 	output("\n\nYou move past the sentry and step through the wide doorway. The scene that greets you upon entering certainly suits the hubbub you heard from outside. The first comparison that comes to mind is a kicked anthill, which brings a small smile to your face. Uniformed red myr rush back and forth around the office-like room, carrying papers and boxes while hurriedly making their way through the maze of desks and workspaces. Decorated officers move about, picking up files or delivering instructions. Though everyone is speaking in a low voice, the presence of so much activity, even in a large room like this, is almost deafening. It’s putting you on edge, and you wonder how the myr are able to function like this.");
@@ -180,13 +180,13 @@ public function selleraYourMission():void
 	else if (pc.isMischievous()) output(" a comically exaggerated cough");
 	else output(" a blunt and straightforward clearing of your throat");
 	output(", you ask if she knows anything about");
-	if (9999 == 9999) output(" where the probe could be");
+	if (reclaimedProbeMyrellion()) output(" where the probe could be");
 	else output(" how the probe made it all the way into the caverns");
 	output(". If anyone would know, the commander of every single soldier in Kressia is a very likely candidate.");
 	
 	output("\n\n<i>“I cannot say that I have any information on the topic,”</i> Sellera replies. Her response seems genuine; if she’s lying, she’s doing a very good job of it. You can’t think of a reason for her to lie, though. It’s not as if your father’s probe has any military use, so it’s doubtful the marshal would be interested in it.");
 	
-	output("\n\nAfter a moment of silent thought, the marshal seems to remember something. Leaning forward, she says, <i>“Shortly before First Contact, we received reports from our surface scouts of a massive impact in the plains west of the Kressia airfield. We assumed it was Republic artillery, though the blast was much larger, and buried deeper, than their guns normally do. The lead scout, one of my more... liberated... commandos by the name of Thyrsa, mentioned it had created a tunnel that appeared to lead deeper underground than our standard tunnels. It is possible that impact was your probe landing. I cannot guarantee that, however.");
+	output("\n\nAfter a moment of silent thought, the marshal seems to remember something. Leaning forward, she says, <i>“Shortly before First Contact, we received reports from our surface scouts of a massive impact in the plains west of the Kressia airfield. We assumed it was Republic artillery, though the blast was much larger, and buried deeper, than their guns normally do. The lead scout, one of my more... liberated... commandos by the name of Thyrsa, mentioned it had created a tunnel that appeared to lead deeper underground than our standard tunnels. It is possible that impact was your probe landing. I cannot guarantee that, however.</i>");
 	
 	output("\n\n<i>“I’m sorry I can’t answer your questions on that front, Steele,”</i> she says in what comes close to an actual tone of regret. <i>“Is there anything else you’d like to know?”</i>");
 
@@ -290,7 +290,7 @@ public function selleraMenu(prevFunc:Function = null):void
 
 
 	gatedButton(10, "Appearance", selleraAppearance, undefined, "Sellera's Appearance", "The general appearance of Field Marshal Sellera.", prevFunc);
-	addButton(14, "Leave", selleraLeave, undefined, "Leave", "Big Sellera farewell and go back upstairs.");
+	addButton(14, "Leave", selleraLeave, undefined, "Leave", "Bid Sellera farewell and go back upstairs.");
 }
 
 public function selleraTheWar():void
@@ -425,7 +425,7 @@ public function selleraRebels():void
 	
 	output("\n\n<i>“Now, Steele,”</i> the uniformed woman says in a tone dripping with poisonous saccharine,");
 	//" {(if pc has met merchant queen:)
-	if (9999 == 9999) output(" <i>“I know you’re fully aware that I don’t have... </i>total<i> control of this city yet. Some troublesome elements aside from the rebels still remain.”</i> You’re pretty sure you know what she’s talking about, too: there’s still an independent Gold queen dwelling within the city, flaunting her freedom and thumbing her nose at the occupation commander. Wait, what did she mean about you being fully aware? Has she really been watching you that closely since your arrival?");
+	if (flags["MET_MERCHANT_QUEEN"] != undefined) output(" <i>“I know you’re fully aware that I don’t have... </i>total<i> control of this city yet. Some troublesome elements aside from the rebels still remain.”</i> You’re pretty sure you know what she’s talking about, too: there’s still an independent Gold queen dwelling within the city, flaunting her freedom and thumbing her nose at the occupation commander. Wait, what did she mean about you being fully aware? Has she really been watching you that closely since your arrival?");
 	else output(" <i>“It’s unfortunate, but the Queens have not entirely relinquished their hold on this city. One still remains, and plays off her ability to keep the masses placid just to make sure she’s more valuable to me independent and alive. And yet she undoubtedly has dealings with certain troublesome elements.”</i> You think to yourself that any high-profile Gold able to flaunt Sellera’s authority must be very crafty to have survived this long.");
 	
 	output("\n\n<i>“I can’t move openly against these elements if I wish to maintain what control I </i>do<i> have.”</i> The menacing myr pulls away as quickly as she’d darted forward, straightening back up and placing one hand on your chest. <i>“But that, Steele, is where you come in... I could reward you if you were to make yourself useful to me... perhaps my army’s materiel is unimpressive to you, but I have other resources at my disposal, too.”</i> One of her hands makes its way down to her skirt, slowly pulling it up and directing your attention down to her thighs and abdomen.");

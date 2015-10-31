@@ -673,8 +673,8 @@ public function kaedeMyrellionSucknRide():void
 	output("\n\nYou give her a wink, settling your [pc.butt] down on the halfbreed’s lap. Your arms lace around her neck and shoulders, helping to steady you overtop her. Kaede smiles prettily at you, her fingers gently squeezing your [pc.hips], urging you to motion. Following the half-ausar’s movements, you start to rise up on your [pc.knees], shivering at the sensation of her throbbing length sliding out of you to the tip. You hold at the top, making Kaede moan in anticipation before letting gravity carry you back down into her lap until your ass rubs against her tight pouch of a sack. A few more movements like that and you’ve worked yourself up to a quick and playful bounce, shifting your hands down to her breasts for support, squeezing and pinching Kaede’s nipples until her voice is nothing but a stream of husky moans.");
 	
 	output("\n\nThe way she’s going, you don’t expect your lover to last much longer. While you can, you do everything in your power to speed your way to orgasm: guiding her hands up to play with your [pc.chest], rubbing at");
-	if (!pc.hasVagina()) output(" your own sensitive spots");
-	else output(" the bud of your [pc.clit]");
+	if (pc.hasClit()) output(" the bud of your [pc.clit]");
+	else output(" your own sensitive spots");
 	output(", and shifting your [pc.hips] to make sure Kaede’s cock is grinding against the most tender parts of your slick passage. It’s a desperate race to catch up to your partner, but as she starts to murmur warnings of her impending orgasm, you’re able to answer her with a simple <i>“Me too,”</i> and pull her into a kiss.");
 	
 	output("\n\nA moment later, you feel Kaede’s knot pressing into your [pc.vagOrAss], and the first spurt of hot seed shooting into your");

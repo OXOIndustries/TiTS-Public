@@ -1337,7 +1337,10 @@ public function rideSyriInYerCoochYaWinner():void
 		//(else) 
 		output("You might as well be in heat with all this girlcum");
 
-		output(".</i>\" A slender fingertip reaches toward your inner gate. \"<i>You really want a hard fucking, don't you? You want a hard, knotted cock to reach that special spot deep inside.</i>\" Now the finger rubs against [pc.oneClit]. Another joins it, strumming your sex while your back arches and your pelvis grinds into her hand. \"<i>You want to feel my hot, thick ausar spunk shoot so hard into your belly that you're sore from the inside out.</i>\"");
+		output(".</i>\" A slender fingertip reaches toward your inner gate. \"<i>You really want a hard fucking, don't you? You want a hard, knotted cock to reach that special spot deep inside.</i>\" Now the finger rubs against");
+		if(pc.hasClit()) output(" [pc.oneClit]");
+		else output(" your slit");
+		output(". Another joins it, strumming your sex while your back arches and your pelvis grinds into her hand. \"<i>You want to feel my hot, thick ausar spunk shoot so hard into your belly that you're sore from the inside out.</i>\"");
 		output("\n\nYou think it's time for another, deeper kiss... but the dog-girl twists in your arms, breaks free of your embrace, and dances around an empty table. \"<i>Too bad for you I'm strictly a butt lover, huh, captain? I'm not touching any other holes today.</i>\"");
 		output("\n\nYou follow and she continues to sidestep, using the furniture to stay just beyond reach. The excited crowd hollers, some in favor of her escape and some cheering for her capture and the show to follow.");
 		//(if FWB)
@@ -1529,7 +1532,10 @@ public function allVaginalPathsMergeHere():void
 		//(FWB and not Hard)
 		if(syriFriendsWithBenefits() && !pc.isAss()) output("reassuring yourself that she understands your game when you glimpse her grinning eyes. She");
 		else output("jeering at her until she");
-		output(" pulls her body up onto your back; now she's resting her weight atop your torso, properly mounted to ravish your [pc.vagina " + x + "]. The difference is explosive: Syri pumps her unencumbered hips in rapid strokes that slam into you faster than you can count. If she had a blunter tool this jackhammer pace might be overwhelming, but her steel-hard rod slides smoothly through your twat thanks to the narrow tip. It is the other end of her equipment that hurts you – in the nicest possible way – when her thick red knot crashes into your [pc.clit] several times each second. Every strike sends a shower of sparks up your nerves, churning your pussy around her cock and robbing you of breath.");
+		output(" pulls her body up onto your back; now she's resting her weight atop your torso, properly mounted to ravish your [pc.vagina " + x + "]. The difference is explosive: Syri pumps her unencumbered hips in rapid strokes that slam into you faster than you can count. If she had a blunter tool this jackhammer pace might be overwhelming, but her steel-hard rod slides smoothly through your twat thanks to the narrow tip. It is the other end of her equipment that hurts you – in the nicest possible way – when her thick red knot crashes into your");
+		if(pc.hasClit()) output(" [pc.clit]");
+		else output(" your sensitive walls");
+		output(" several times each second. Every strike sends a shower of sparks up your nerves, churning your pussy around her cock and robbing you of breath.");
 		output("\n\nAs best you can under this assault, you continue to antagonize the gamer by ordering her to go faster and reminding her that you are the winner around here. The two of you are shouting and cursing at each other when suddenly you feel her pull back for one ultimate thrust. Perhaps you shouldn't be surprised that she came so easily going doggie style – but still it catches you unaware. For a moment the frantic action stops. You swear you can see the expression of each witness frozen in time. Then you and Syri are shouting \"<i>Oohh!</i>\" in synchrony as you both explode in pleasure.");
 
 		output("\n\nYou feel the condom expanding with ausar jizz even while your [pc.vagina " + x + "] clamps down around it.");
@@ -1548,16 +1554,29 @@ public function allVaginalPathsMergeHere():void
 			output(".");
 		}
 		output(" Yet for all the energy in your mutual climax, it quickly vanishes into ragged, deep breaths as you desperately try to replace all the oxygen you just spent. The video gamer has fallen against your back, her lack of motion contributing to your own rapid decline. You're not even sure if she can walk right now.");
-		output("\n\nThe occasional aftershock in your pussy squishes the full sack of spooge occupying your nethers, and you briefly toy with the idea of squeezing until it bursts – what would Syri think of that? – but even the cheap brands are tougher than they look these days. So you just wait for her stand up to pull herself out.  She does so quite gently, brushing your sensitized [pc.clit] as she carefully extricates the used condom. You gasp, but her touch is not a prelude to any more action.");
+		output("\n\nThe occasional aftershock in your pussy squishes the full sack of spooge occupying your nethers, and you briefly toy with the idea of squeezing until it bursts – what would Syri think of that? – but even the cheap brands are tougher than they look these days. So you just wait for her stand up to pull herself out.  She does so quite gently");
+		if(pc.hasClit()) output(", brushing your sensitized [pc.clit]");
+		output(" as she carefully extricates the used condom. You gasp, but her touch is not a prelude to any more action.");
 	}
 	//Variation 2B: else (front-to-front sex)
 	else
 	{
 		output("\n\nYou clamber onto the tabletop with Syri, praying that Burt's furniture will hold up despite its seedy condition. You assume a position hovering just above her groin, and then you rub her length ");
 		//(if PC has exactly 1 vagina)
-		if(pc.vaginaTotal() == 1) output("up and down your [pc.vagina " + x + "], working your [pc.clit] into a frenzy before taking the plunge.");
+		if(pc.vaginaTotal() == 1)
+		{
+			output("up and down your [pc.vagina " + x + "], working you");
+			if(pc.hasClit()) output("r [pc.clit]");
+			output(" into a frenzy before taking the plunge.");
+		}
 		//(else more)
-		else output("between each pair of labia, stimulating [pc.eachClit] before lining up her pointed tip with your chosen [pc.vagina " + x + "].");
+		else
+		{
+			output("between each pair of labia, stimulating");
+			if(pc.hasClit()) output(" [pc.eachClit]");
+			else output(" yourself");
+			output(" before lining up her pointed tip with your chosen [pc.vagina " + x + "].");
+		}
 		output("\n\nYou ease yourself down the length of the ausar gamer's big cock with a long sigh. Her fat manhood radiates a nearly burning heat inside your cunt. When you reach the swelling knot at its base, you playfully grind your pelvis to deliver a squelching nether kiss to Syri's bulge.");
 		//Processing: PC is penetrated.//
 		pc.cuntChange(x,chars["SYRI"].cockVolume(0),true,true,false);
@@ -1574,12 +1593,17 @@ public function allVaginalPathsMergeHere():void
 		output("\n\nYou laugh as the naked ausar beneath you responds to your power game");
 		//(FWB and not Hard)
 		if(syriFriendsWithBenefits() && !pc.isAss()) output(" – she reassures you that she understands your ploy by returning your wink");
-		output(". She's doing her best to use your body as a cock sleeve, fiercely gripping your [pc.skinFurScales] to jerk you up and down. You will yourself to relax your [pc.legOrLegs] and surrender as she leads your tryst from below. Syri chooses a medium pace at first, wary of tugging you too deeply onto her expanding knot; instead, the bright reddish bulge delightfully grazes your [pc.clit] on each stroke. With Syri handling the vertical motion well enough on her own, you begin to gyrate in circles that press her thick dog prick against every ridge and crevice inside your [pc.vagina " + x + "].");
+		output(". She's doing her best to use your body as a cock sleeve, fiercely gripping your [pc.skinFurScales] to jerk you up and down. You will yourself to relax your [pc.legOrLegs] and surrender as she leads your tryst from below. Syri chooses a medium pace at first, wary of tugging you too deeply onto her expanding knot; instead, the bright reddish bulge delightfully grazes your");
+		if(pc.hasClit()) output(" [pc.clit]");
+		else output(" sensitive walls");
+		output(" on each stroke. With Syri handling the vertical motion well enough on her own, you begin to gyrate in circles that press her thick dog prick against every ridge and crevice inside your [pc.vagina " + x + "].");
 		output("\n\nYou continue to antagonize the gamer by ordering her to go faster and reminding her that you are the winner around here. The two of you are shouting and cursing at each other, and the");
 		if (syriFriendsWithBenefits()) output(" ex-military");
 		output(" wolf-woman impresses you with the breadth of her dirty vocabulary. Despite the resemblance to a brawl, there's no danger of slipping off her wolf-cock because her insistent hands shorten the stroke as the action accelerates. Before long she's withdrawing just the second half of her eight inches while the first four constantly slide across a very excited bundle of nerves inside your cunt. Her steel-hard rod drives you to a wild plateau: an invisible line that you don't know has been crossed until you are shouting out the last molecules of your breath and sucking in more.");
 		output("\n\nSyri continues pumping until a new source of heat suddenly flows into your pussy in the middle of your fourth \"<i>Yes!</i>\" In the confusion of orgasm, nearly two seconds tick away before you work out that the ausar's big cock is filling you with dog-girl seed – and with that realization a second climax blossoms atop the first.");
-		output("\n\nThe double dose of bliss fills you with keen awareness of every nuance of your body, as if even your fingertips were suddenly as sensitive as your [pc.clits]. You try to wiggle them to increase your sensation, but it seems your body is no longer under your own command, responding only to Syri's thrusts. She keeps fucking in powerful, if somewhat ragged, strokes while her canine testes empty themselves into your sucking twat. Into the condom, actually, but the difference is trivial right now.");
+		output("\n\nThe double dose of bliss fills you with keen awareness of every nuance of your body");
+		if(pc.hasClit()) output(", as if even your fingertips were suddenly as sensitive as your [pc.clits]");
+		output(". You try to wiggle them to increase your sensation, but it seems your body is no longer under your own command, responding only to Syri's thrusts. She keeps fucking in powerful, if somewhat ragged, strokes while her canine testes empty themselves into your sucking twat. Into the condom, actually, but the difference is trivial right now.");
 		output("\n\nEventually the busty slut beneath you shudders to a halt. You push yourself off her rod, barely clearing the swollen sack of cum on its end, and stagger over to the gaming couch. Your [pc.vagina " + x + "] is still twitching sporadically as your mind clears, no doubt hoping to reconnect with a certain wolfish wang.");
 		output("\n\nIf it's any help, Syri appears to be recovering as slowly as you. \"<i>Damn. That was... uh, not half bad,</i>\" she breathes.");
 

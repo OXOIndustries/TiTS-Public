@@ -833,7 +833,7 @@ public function ladyTimeSixtyNinesByFenbroxicoTheDestroyer():void
 	{
 		output("it’s not that different from my own");
 		if(pc.totalClits() / pc.totalVaginas() > 1) output(", just with more clits");
-		else if(pc.clitLength > 4) output(", just with a bigger clit");
+		else if(pc.hasClit() && pc.clitLength > 4) output(", just with a bigger clit");
 		output(".");
 	}
 	output(" I just hope you taste half as good as you look, little star-walker.”</i>");
@@ -863,7 +863,7 @@ public function ladyTimeSixtyNinesByFenbroxicoTheDestroyer():void
 	output(" A scent somewhere between maple, honey, and raw sex filters up to your nose, released by the queen’s fore cleft. A hand strokes your back affectionately, causing you to sigh from the contact of her warm chitin on your [pc.skinFurScales].");
 
 	output("\n\nIt’s the only warning you get before the queen’s tongue makes contact with [pc.oneVagina], whirling slowly over the exterior lips");
-	if(pc.clitLength > 1) output(" and dodging around your sensitive [pc.clits]");
+	if(pc.hasClit() && pc.clitLength > 1) output(" and dodging around your sensitive [pc.clits]");
 	output(". You gasp in surprise and pleasure, quivering slightly the attention to your most delicate of areas. You wrap your arms around her waist in a hug, holding her tight while she warms you up.");
 
 	output("\n\nNectar slicks your [pc.belly] in gold, expelled by the Queen in her own excitement. You rock forward, before you know what you’re doing, planting a kiss square on her syrupy slit, wanting to spread the physical ecstasy she’s forced upon you. The press of your [pc.lips] causes Irellia’s movements to falter, but not for long. She presses her tongue between your lips in response, tasting your passage’s [pc.girlCumFlavor] taste.");
@@ -887,9 +887,13 @@ public function ladyTimeSixtyNinesByFenbroxicoTheDestroyer():void
 	output("”</i> She buries her lips back into ");
 	if(pc.totalVaginas() > 1) output("a different pussy");
 	else output("your pussy");
-	output(" without another word. You can feel the corners of her mouth quirking upward against you while she dives deep, only occasionally allowing her oral organ to curl back to poke at [pc.oneClit]’s hood.");
+	output(" without another word. You can feel the corners of her mouth quirking upward against you while she dives deep");
+	if(pc.hasClit()) output(", only occasionally allowing her oral organ to curl back to poke at [pc.oneClit]’s hood");
+	output(".");
 
-	output("\n\nYou wiggle excitedly, feeling altogether <i>juicy</i>, inside and out from her words. She likes how you taste! And her tongue is marvellous, slipping and sliding around as if it was inside a second home, providing just enough stimulation to your clit without overdoing it. You don’t have to ask her for anything - by the time you think of it, she’s already doing it!");
+	output("\n\nYou wiggle excitedly, feeling altogether <i>juicy</i>, inside and out from her words. She likes how you taste! And her tongue is marvellous, slipping and sliding around as if it was inside a second home");
+	if(pc.hasClit()) output(", providing just enough stimulation to your clit without overdoing it");
+	output(". You don’t have to ask her for anything - by the time you think of it, she’s already doing it!");
 	output("\n\nPulling back and subbing in your fingertips to give your tired tongue a rest, you call back while strands of honey dangle from your [pc.lips], <i>“");
 	if(pc.isBimbo()) output("You’re like, super sweet! I could eat you out all day! Do the boys taste like this too? I’d totally eat you out after they go in you... and then they could have a go at me while I do it!");
 	else output("You’re not so bad either! I might have to come back for seconds!");
@@ -898,29 +902,30 @@ public function ladyTimeSixtyNinesByFenbroxicoTheDestroyer():void
 	output("\n\nThe scent of her nectar is all you can smell, and her tongue and mouth on your [pc.vagina " + x + "] are all you can feel. You’re only tangentially aware of the sweetness pouring from her four tits or the fact that she’s coated your entire front with it. You feel like a tongue trying to surf across a tidal-wave of pleasure - little more than a few loosely associated organs begging for input from a brain taxed beyond its means by desire.");
 
 	//Hugeclit
-	if(pc.clitLength >= 11)
+	if(pc.hasClit() && pc.clitLength >= 4)
 	{
-		output("\n\nWhen Queen Irellia withdraws from your [pc.vagina " + x + "], you nearly cry from unfulfilled need. When she instead opens wide to try and handle ");
-		if(pc.totalClits() == 1) output("your");
-		else output("an");
-		output(" immense clitoris, you nearly black out from pleasure. It’s too much! There’s too much flesh containing too many nerves. By the time she’s engulfed a few inches, you’re thrashing wildly, creaming yourself");
-		if(pc.isSquirter()) output(" and splattering your [pc.girlCum] across her neck and chest. Streams of it run down her shoulders to puddle on the floor as she makes you cum over and over, each time more violently draining than the last.");
-	}
-	//Cocksuck-sized clit
-	else if(pc.clitLength >= 4)
-	{
-		output("\n\nWhen Queen Irellia withdraws from your [pc.vagina " + x + "], you nearly cry from unfulfilled need. When she instead opens wide and dives onto your over-sized clitoris, you nearly black out from pleasure. Those blue-painted lips slide down the entire length in short order, kissing your vulva while her tongue dances figure eights across the bottom of your nerve-packed pleasure-pole.");
-		output("\n\nYou thrash wildly, your eyes rolled back and yet somehow seeing white starbursts. If she didn’t have four hands to wrangle you with, you’d probably slip off and onto the floor. Instead, you twitch like Queen Irellia’s hapless meat-puppet, dancing on strings of overwhelming bliss.");
-		if(pc.isSquirter()) output(" [pc.girlCum] is fountaining from your [pc.vaginas] almost nonstop. Waterfalls of it run down the gold myr’s shoulders to the floor. There, a puddle grows deeper with each twat-draining climax.");
-	}
-	//Either of the above and at least one dick?
-	if(pc.clitLength >= 4 && pc.hasCock())
-	{
-		output("\n\nYou’re vaguely aware of fluid erupting from your [pc.cocks] at the same time, a different yet sympathetic pleasure brought on by the Queen’s masterful stimulation of your " + num2Text(Math.round(pc.clitLength)) + "-inch button. Fingers have wrapped around [pc.eachCock] to stroke you through it. Your body can barely handle it; two different sets of abdominal muscles convulsing against one another, and neither shows any signs of stopping.");
-	}
-	//All hugeclit end
-	if(pc.clitLength >= 4)
-	{
+		//Hugeclit
+		if(pc.clitLength >= 11)
+		{
+			output("\n\nWhen Queen Irellia withdraws from your [pc.vagina " + x + "], you nearly cry from unfulfilled need. When she instead opens wide to try and handle ");
+			if(pc.totalClits() == 1) output("your");
+			else output("an");
+			output(" immense clitoris, you nearly black out from pleasure. It’s too much! There’s too much flesh containing too many nerves. By the time she’s engulfed a few inches, you’re thrashing wildly, creaming yourself");
+			if(pc.isSquirter()) output(" and splattering your [pc.girlCum] across her neck and chest. Streams of it run down her shoulders to puddle on the floor as she makes you cum over and over, each time more violently draining than the last.");
+		}
+		//Cocksuck-sized clit
+		else
+		{
+			output("\n\nWhen Queen Irellia withdraws from your [pc.vagina " + x + "], you nearly cry from unfulfilled need. When she instead opens wide and dives onto your over-sized clitoris, you nearly black out from pleasure. Those blue-painted lips slide down the entire length in short order, kissing your vulva while her tongue dances figure eights across the bottom of your nerve-packed pleasure-pole.");
+			output("\n\nYou thrash wildly, your eyes rolled back and yet somehow seeing white starbursts. If she didn’t have four hands to wrangle you with, you’d probably slip off and onto the floor. Instead, you twitch like Queen Irellia’s hapless meat-puppet, dancing on strings of overwhelming bliss.");
+			if(pc.isSquirter()) output(" [pc.girlCum] is fountaining from your [pc.vaginas] almost nonstop. Waterfalls of it run down the gold myr’s shoulders to the floor. There, a puddle grows deeper with each twat-draining climax.");
+		}
+		//Either of the above and at least one dick?
+		if(pc.hasCock())
+		{
+			output("\n\nYou’re vaguely aware of fluid erupting from your [pc.cocks] at the same time, a different yet sympathetic pleasure brought on by the Queen’s masterful stimulation of your " + num2Text(Math.round(pc.clitLength)) + "-inch button. Fingers have wrapped around [pc.eachCock] to stroke you through it. Your body can barely handle it; two different sets of abdominal muscles convulsing against one another, and neither shows any signs of stopping.");
+		}
+		//All hugeclit end
 		output("\n\nYou black out to the feeling of honey splattering your face, a lazy smile on your [pc.face] from the knowledge that you got her off once.");
 		processTime(22);
 		//Cum like, five times.
@@ -929,7 +934,6 @@ public function ladyTimeSixtyNinesByFenbroxicoTheDestroyer():void
 		pc.orgasm();
 		pc.orgasm();
 		pc.orgasm();
-
 	}
 	//Okay, you didn’t have a huge clit. Let’s do something else.
 	//But you did have dicks. Herms superior.
@@ -989,6 +993,8 @@ public function lady69Epilogue4PassedOutFolks():void
 	showIrellia();
 	output("You come to just as one of Irellia’s attendants is finishing sponging you off. Your whole body gleams from the wash, and the blushing attendant hands you your things with a knowing smile. Irellia lies a short distance away, giggling while you dress.\n\n<i>“Good job, Captain Steele. Don’t be a stranger!”</i>");
 	processTime(33);
+	var ppIrellia:PregnancyPlaceholder = new PregnancyPlaceholder();
+	pc.girlCumInMouth(ppIrellia);
 	irelliaSexBreak(8);
 	pc.exhibitionism(1);
 	pc.shower();
@@ -1138,7 +1144,7 @@ public function doubleTeamingWithTheJimTOnSomeAntSlutQueenMayhapIDunno():void
 	if(flags["IRELLIA_DOUBLE_TEAM_EVER_DONE"] == undefined)
 	{
 		output("It's rather hard to find a myr male who hasn't been taken, and you're sure the Queen gets the cream of the crop. You suggest that perhaps she shouldn't dismiss all the drones, also asking her if she has a favorite male servant.");
-		output("\n\nQueen Irellia touches her chin and shoots you a salacious smile. \"<i>I don't have a favorite, rather, I have <i>favorites</i>. It's too hard to pick just one.</i>\" Realising this doesn't help you narrow it down, she airily waves her hand. \"<i>I can recommend one if you've got a preference. Are you a fan of muscles, feminine men, something in between-?</i>\"");
+		output("\n\nQueen Irellia touches her chin and shoots you a salacious smile. \"<i>I don't have a favorite, rather, I have <i>favorites</i>. It's too hard to pick just one.</i>\" Realizing this doesn't help you narrow it down, she airily waves her hand. \"<i>I can recommend one if you've got a preference. Are you a fan of muscles, feminine men, something in between-?</i>\"");
 		output("\n\nShe almost sounds like she's describing a buffet. Perhaps for a Myr queen, men really <i>are</i> a buffet item. You get the impression she might pick them entirely by her mood.");
 		output("\n\nA tingling sensation spreads through your lower abdomen. From the sound of things, you've got a queen's harem at your beck and call right now. The thought alone is thoroughly intoxicating ");
 		if(pc.hasCock()) output("and your [pc.cocks] naturally stiffen");
@@ -1247,8 +1253,8 @@ public function tellIrelliaYouLikeEmGirly():void
 		flags["MET_ETHELN"] = 1;
 		output("You're curious - and more than a little titillated - by the thought of a feminine male myr. You tell Irellia as much.");
 		output("\n\n\"<i>I know <i>just</i> who to call then,</i>\" she tells you before turning to one of her handmaidens. \"<i>Go fetch Etheln!</i>\"");
-		output("\n\nThere's a little wait before two handmaidens return. It's not until they get closer that you realise one of them has a golden cock between her legs, and not a small one either. It's dangling halfway down her legs, barely hiding an equally low and large set of balls.");
-		output("\n\nIt's only when she kneels before you that you realise <i>this</i> must be Etheln, but... he has breasts! Modest ones, to be sure, but he definitely has a pair of well-rounded B-cups.");
+		output("\n\nThere's a little wait before two handmaidens return. It's not until they get closer that you realize one of them has a golden cock between her legs, and not a small one either. It's dangling halfway down her legs, barely hiding an equally low and large set of balls.");
+		output("\n\nIt's only when she kneels before you that you realize <i>this</i> must be Etheln, but... he has breasts! Modest ones, to be sure, but he definitely has a pair of well-rounded B-cups.");
 		output("\n\n\"<i>You're a boy!</i>\" you accidentally shout out. Etheln furiously blushes. His bright orange hair is silky and shoulder length, just like a woman. In fact, the only things that aren't incredibly feminine about him are his slender hips and extremely large phallus.");
 		output("\n\n\"<i>Y-yes I am, " + pc.mf("s-sir!","m-ma'am!") + "</i>\" The girly-boy stammers back, clearly flustered by your blurted words. The queen laughs, but then composes herself with a quick cough.");
 		output("\n\n\"<i>My apologies, dear Etheln. I didn't mean to laugh,</i>\" she flushes. \"<i>Etheln is a rare occurrence among we gold myr. Just like me, he is a 'honeypot myr'. A male honeypot myr is exceedingly rare.</i>\"");
@@ -1389,7 +1395,7 @@ public function partThreeOfAntOnPCOnAntAction(partner:String = ""):void
 
 	var x:int = rand(pc.totalVaginas());
 	if(!pc.hasVagina()) x = -1;
-	output("\n\n\"<i>How do you like his cock, dear?</i>\" Irellia huskily inquires. She's raising her hips insistently, and you realise the moment he thrust into your [pc.vagOrAss " + x + "] you rudely stopped licking. You bury yourself in her golden royal muff once more, making sure you give just as much as you receive. Wrapping your [pc.lips] around her sizable clit, you suckle and lick on it as he eases his hot flesh deep inside of your");
+	output("\n\n\"<i>How do you like his cock, dear?</i>\" Irellia huskily inquires. She's raising her hips insistently, and you realize the moment he thrust into your [pc.vagOrAss " + x + "] you rudely stopped licking. You bury yourself in her golden royal muff once more, making sure you give just as much as you receive. Wrapping your [pc.lips] around her sizable clit, you suckle and lick on it as he eases his hot flesh deep inside of your");
 	if(pc.hasVagina()) output(" sopping wet cunny");
 	else output(" [pc.asshole]");
 	output(". His massive glans bottoms out inside of your ");

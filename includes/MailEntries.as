@@ -82,6 +82,9 @@ public function configureMails():void
 	MailManager.addMailEntry("estrobloom", "<i>This message is a blinding array of soft pinks and whites, with a vaguely floral pattern to it.</i>\n\nAre you tired of a life of rigid, defined masculinity? Have you ever felt out of place among ‘the boys,’ as if you didn’t belong? Perhaps Estrobloom can show you the way to a fuller, feminine future. As the galaxy's leading product in genetic and nanomachine feminization, Estrobloom can help alleviate your masculinity, leaving a fresher, healthier, more feminine you.\n\nEstrobloom, now available in several major genetic-customization retailers.\n\n<i>Included at the bottom of the spam message is actually a 10% off coupon for Estrobloom. Most shops would probably take this.</i>", "Estrobloom: Bring out the woman in you", "JoyCo Newsletter", "Marketing@JoyCo.corp", quickPCTo, quickPCToAddress);
 	SpamEmailKeys.push("estrobloom");
 	
+	MailManager.addMailEntry("hugedicktoday", "Dear MR. STEELE,\n\nHave you been having the trouble with ladies? Here at betterday.go, we pride ourself in providing wonderous care for all our customer. Is your member not getting you free membership in the clubs? did you lose it in the fightings? Well you do not need to be afraid any longer with Better Days Ultronic Bio-cock complete with undermounted turbo, left and right side handlebars, and real CUM action! Guarantee to keep female SPECIES DETECTION ERROR coming back for more! Order now for only 5 simple payments of 20,000 credits.\n\nBetter day not response for injury caused by undermounted turbo, does not include betterday POWERGLOW capability advertised in some offers.", "You can HUGE dick TODAY!", "Rojaz@betterday.go", "Rojaz@betterday.go", quickPCTo, quickPCToAddress);
+	SpamEmailKeys.push("hugedicktoday");
+	
 	MailManager.addMailEntry("burtsmeadhall", "<i>This message is adorned with crude images of barely-clothed wasp-like aliens, seemingly all slathered with honey. Lewd.</i>\n\nPlanet rusher? Coming out to the awesome expanse of Mhen'ga to seek your fortune? Awesome! But you're going to need a place to crash, and to grab a drink! There's no place better than BURT'S BADASS MEADHALL for that. We serve the best all-honey mead on the planet, made from the real thing: the biggest Zil breasts you've ever seen!\n\nCome check it out. And enjoy the taste of the WILDER side of life!", "Heading to Mhen'ga? Come check out BURT'S BADASS MEADHALL!!!", "Burt", "Burt@BurtsMeadhall.com", quickPCTo, quickPCToAddress);
 	
 	MailManager.addMailEntry("kihaai", kihaaiMailMessage, "Need an AI with some FIRE? Check out the new Kiha lines!", "NoReply@Kiha.corp", "NoReply@Kiha.corp", quickPCTo, quickPCToAddress);
@@ -250,6 +253,13 @@ public function confirmMailConfig():void
 	{
 		initialMailConfiguration();
 		output2("\n\n\n<b>You must input something.</b>");
+		return;
+	}
+	// Illegal characters check. Just in case...
+	if (hasIllegalInput(userInterface.textInput.text))
+	{
+		initialMailConfiguration();
+		output("\n\n\n<b>To prevent complications, please avoid using code characters.</b>");
 		return;
 	}
 	if (userInterface.textInput.text.indexOf(" ") != -1)

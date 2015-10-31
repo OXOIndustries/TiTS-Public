@@ -385,6 +385,9 @@ public function jadeGetsAGropeGasm():void {
 	}
 	sexedJade();
 	processTime(20+rand(10));
+	chars["JADE"].orgasm();
+	chars["JADE"].orgasm();
+	chars["JADE"].orgasm();
 	pc.lust(30+rand(10));
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -485,7 +488,12 @@ public function titfuckJade():void {
 	//Balls
 	if(pc.balls > 0) output("One of her hands finds its way to your [pc.balls] to give a reassuring squeeze. Your [pc.sack] clenches tight, starting the process of releasing your load.");
 	//Pussy
-	else if(pc.hasVagina()) output("One of her hands finds its way to [pc.oneVagina], penetrating it with two thick fingers and resting a thumb upon [pc.oneClit]. The sympathetic female pleasure is enough to make your body clench, starting the process of releasing your load.");
+	else if(pc.hasVagina())
+	{
+		output("One of her hands finds its way to [pc.oneVagina], penetrating it with two thick fingers");
+		if(pc.hasClit()) output(" and resting a thumb upon [pc.oneClit]");
+		output(". The sympathetic female pleasure is enough to make your body clench, starting the process of releasing your load.");
+	}
 	//Nothing
 	else output("One of her hands finds its way to your [pc.butt] and worms a finger inside your [pc.asshole]. It twitches around inside, pressing against something exquisitely sensitive, and suddenly, your body is clenching, starting the process of releasing your load.");
 	//Merge
@@ -530,7 +538,9 @@ public function titfuckJade():void {
 	else output("with a smirk");
 	output(". Making yourself presentable, you gather up your " + pc.armor.longName + " and dress before heading out into public. Jade follows not longer after, looking radiant and smelling vaguely of your tryst.");
 	processTime(20+rand(10));
+	chars["JADE"].orgasm();
 	pc.orgasm();
+	pc.shower();
 	sexedJade();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -565,12 +575,20 @@ public function sitOnjadesFace():void {
 	if(pc.vaginaTotal() > 1) output("s");
 	output(" just before you touch down, feeling her hot breath a moment before her cold nose brushes against you.");
 	output("\n\nThe contrasting temperatures momentarily paralyze you, but Jade's softly padded paws pull you down by the [pc.hips], firmly pressing your womanly entrance against her hungry muzzle. Her girthy organ emerges from between her luscious lips to dive into yours, and you gasp in surprise at how nicely its warmth fills you. You start rubbing and squeezing the plush shopkeeper's sizeable bust before you lose yourself in pleasure, letting your fingers sink deep into her soft flesh when you squeeze.");
-	output("\n\nJade rewards you with a throaty purr of excitement. It isn't feline in origin but it is enough to make her tongue vibrate pleasantly inside your increasingly wet channel. The panda works her short, thick length as far in as she can, then rapidly withdraws it before punching it in once more, fucking the first two inches of sensitive pussy. She twists and adjusts herself to make sure that her sable kissers get to brush [pc.eachClit] again and again, and soon, she has you whimpering and moaning, your juices running free and unrestrained.");
+	output("\n\nJade rewards you with a throaty purr of excitement. It isn't feline in origin but it is enough to make her tongue vibrate pleasantly inside your increasingly wet channel. The panda works her short, thick length as far in as she can, then rapidly withdraws it before punching it in once more, fucking the first two inches of sensitive pussy. She twists and adjusts herself to make sure that her sable kissers get to brush");
+	if(pc.hasClit()) output(" [pc.eachClit]");
+	else output(" your female lips");
+	output(" again and again, and soon, she has you whimpering and moaning, your juices running free and unrestrained.");
 	output("\n\nLikewise, your palms are doing quite a number on her sensitive bosom. When you aren't squeezing, you're stroking, or caressing... or even pressing them together while your thumbs slide over her fur. You can see from your vantage just how much your curvy lover is appreciating the attention; her pussy practically gleams with leaking lust. Her hips are even beginning to undulate against an imaginary lover, though you are doing little better. You begin to grope her more aggressively in an effort to get her to cum first.");
-	output("\n\nJade trembles beneath you, holding onto your [pc.hips] with such passion that the tips of her claws are pricking at your skin. She varies her movements, sometimes tongue-fucking you, other times dragging her slippery organ up and down across your entrance, sometimes suckling ");
-	if(pc.totalClits() > 1) output("a ");
-	else output("your ");
-	output("bud, humming her muffled sounds of excitement into your mound. You're grinding back against her in short order, watching her pussy leak in a way that likely mirrors your own until climax interposes itself between you and your rational thoughts.");
+	output("\n\nJade trembles beneath you, holding onto your [pc.hips] with such passion that the tips of her claws are pricking at your skin. She varies her movements, sometimes tongue-fucking you, other times dragging her slippery organ up and down across your entrance");
+	if(pc.hasClit())
+	{
+		output(", sometimes suckling ");
+		if(pc.totalClits() > 1) output("a ");
+		else output("your ");
+		output("bud");
+	}
+	output(", humming her muffled sounds of excitement into your mound. You're grinding back against her in short order, watching her pussy leak in a way that likely mirrors your own until climax interposes itself between you and your rational thoughts.");
 	output("\n\nYour back arches, but so does Jade's, keeping her melons firmly in your spasming fingers for further molestation. [pc.EachVagina] ");
 	if(pc.isSquirter()) output("erupts in gushes of [pc.girlCum], splattering the poor panda's face.");
 	else if(pc.wetness() <= 2) output("drips");
@@ -586,7 +604,9 @@ public function sitOnjadesFace():void {
 	output("\n\nThere's a bathroom around a corner where you wash your face alongside the panda. You catch her lapping your juices off her face and fingers when she thinks you aren't looking.");
 	//Woo woo! Done.
 	processTime(30+rand(10));
+	chars["JADE"].orgasm();
 	pc.orgasm();
+	pc.shower();
 	sexedJade();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -676,7 +696,7 @@ public function talkToJadeAboutHerNipples():void {
 			else
 			{
 				output("\n\nNo sense beating around the bush. You ask her if she knows of any mods that could cause nipple growth. If her breasts feel this good without a pair of sensitive nubs for you to pinch, you were wondering what they’d feel like if she did have them.");
-				output("\n\n<i>\"Probably wonderful,\"</i>  she admits absently, smiling wistfully as she imagines it. Her fingers brush where nipples should be and her boobs ripple deliciously at the resultant shudder of pleasure. <i>\"Oh! Uh, yes, I know of a mod that could give them to me,\"</i>  she informs you, realising you asked her another question first.");
+				output("\n\n<i>\"Probably wonderful,\"</i>  she admits absently, smiling wistfully as she imagines it. Her fingers brush where nipples should be and her boobs ripple deliciously at the resultant shudder of pleasure. <i>\"Oh! Uh, yes, I know of a mod that could give them to me,\"</i>  she informs you, realizing you asked her another question first.");
 			}
 			output("\n\nIf she knows of something, then you’re willing to help her secure some of it.");
 			output("\n\n<i>\"Oh, but it's so expensive - I can't afford to buy a pack for myself, even with the profits this shop makes,\"</i>  Jade laments, shaking her head at the thought of it.");
@@ -805,6 +825,7 @@ public function jadeUsesNippleMod():void {
 
 	chars["JADE"].breastRows[0].nippleType = GLOBAL.NIPPLE_TYPE_TENTACLED;
 	processTime(10+rand(5));
+	chars["JADE"].orgasm();
 	clearMenu();
 	addButton(0,"Help Her",helpJadeWithHerNewNipples);
 	addButton(1,"Watch Her",watchJadesNewNipplesMolestHer);
@@ -821,6 +842,7 @@ public function helpJadeWithHerNewNipples():void {
 	output("\n\nA fleshy tip strokes your [pc.lips] and you look down to see that one of Jade’s nips seem to have made their way around your arm and up to your face. Having no reason to deny it, you open your mouth and let it crawl inside. This is... quite a weird way to lick someone’s nipples, but you suppose there are weirder ways to do it.");
 	output("\n\nYou lose track of time as you watch Jade writhe under your ministrations....");
 	processTime(5);
+	chars["JADE"].orgasm();
 	pc.lust(20+rand(15));
 	clearMenu();
 	addButton(0,"Next",jadesNippleTFEpilogue,true);
@@ -835,6 +857,7 @@ public function watchJadesNewNipplesMolestHer():void {
 	output("\n\nAs Jade opens her mouth in yet another moan, her nipples uncoil from around her boobs and spring back into action, evidently not sated yet. One squirms through the air and plunges boldly into her open mouth, plugging it up and muffling her voice as it forcefeeds itself into her. The other creeps down her belly, almost invisible against the black parts of her fur, and heads for her skirt, worming its way underneath. The lewd bulge it spreads downward through the green fabric, leaving no doubt as its progress, and a muffled cry manages to escape her mouth as it penetrates her. Within seconds of it doing so, she arches her back, her whole body quaking mightily in a second, heavy orgasm, drenching her skirt once more with her female cream.");
 	output("\n\nJade seems to be stuck in nirvana.The sensitive nipples are rubbing all over her body and granting her unimaginable pleasure, reducing her to nothing more than a pile of moans, groans and cries of pleasure. The ever expanding puddle underneath her a testament to the amazing pleasure she’s been bound to. Frankly, the sight is quite hot. You feel yourself getting aroused as you watch her cum again and again....");
 	processTime(5);
+	chars["JADE"].orgasm();
 	pc.lust(20+rand(15));
 	clearMenu();
 	addButton(0,"Next",jadesNippleTFEpilogue);
@@ -967,7 +990,7 @@ public function boobToBoobSexathon():void {
 		pc.cockChange();
 	}
 	//else if PC.clit=BigEnough:
-	else if(pc.hasVagina() && pc.clitLength >= 4)
+	else if(pc.hasVagina() && pc.hasClit() && pc.clitLength >= 4)
 	{
 		output("\n\nShe shakes her head gently from side to side, a playful grin on her lips. <i>\"I'd personally prefer a cock... but I think this bad girl here might do the trick,\"</i>  she declares, tickling the tip of [pc.oneClit] with an index figure. Before you say anything, she steps forward, muffling your words and blocking your vision with her impressive cleavage as she slides in to straddle your waist.");
 		output("\n\nYou can't see it, but you can certainly feel it as her warm vulva tickles over your [pc.belly] and drops down to envelop your [pc.clit]. Clearly no virgin, she swallows you to the hilt, groaning with pleasure as she seats herself firmly in your lap. You can feel her squeeze you a little, on instinct, but she makes no active move to ride you, instead letting your feminine erection nestle comfortably in her warm love-canal.");
@@ -975,7 +998,9 @@ public function boobToBoobSexathon():void {
 	//else if PC.pussy:
 	else if(pc.hasVagina())
 	{
-		output("\n\nA click of her tongue and she looks at you with an understanding smile. <i>\"Cock's fun to play with, but the two of us can have plenty of fun with just us girls, right?\"</i>  she declares, playfully pinching your [pc.clit]. Before you say anything, she steps forward, muffling your words and blocking your vision with her impressive cleavage as she slides in to straddle your waist. The plush panda-girl slides in until she's quite comfortablly seated atop you, her warm feminine treasure pressed plush and firm against your own.");
+		output("\n\nA click of her tongue and she looks at you with an understanding smile. <i>\"Cock's fun to play with, but the two of us can have plenty of fun with just us girls, right?\"</i>  she declares");
+		if(pc.hasClit()) output(", playfully pinching your [pc.clit]");
+		output(". Before you say anything, she steps forward, muffling your words and blocking your vision with her impressive cleavage as she slides in to straddle your waist. The plush panda-girl slides in until she's quite comfortablly seated atop you, her warm feminine treasure pressed plush and firm against your own.");
 	}
 	//genderless!
 	else
@@ -986,7 +1011,7 @@ public function boobToBoobSexathon():void {
 	output("\n\nWith a smile, Jade wraps her arms around your back as best she can, squeezing her own voluptuous tits against your [pc.boobs], gently rubbing them together. Her mouth opens into an O-shape, a soft moan echoing up from her throat as her tentacle-like nipples stretch out and out, sliding up and down the valleys of your respective cleavages to wrap themselves around both of pairs of pressed tits like perverse pythons encircling their prey.");
 
 	output("\n\nYou join her with your own moans of pleasure. ");
-	if(pc.hasCock() || (pc.hasVagina() && pc.clitLength >= 4))
+	if(pc.hasCock() || (pc.hasVagina() && pc.hasClit() && pc.clitLength >= 4))
 	{
 		output(" Her pussy contracts around your ");
 		if(pc.hasCock()) 
@@ -1076,7 +1101,7 @@ public function boobToBoobSexathon():void {
 	else if(pc.hasVagina())
 	{
 		output("\n\n[pc.EachVagina] clenches in sympathetic orgasm.");
-		if(pc.clitLength >= 4) output(" You didn’t count on her pussy squeezing your [pc.clit] so tightly, tight enough to send you reeling as you scream to the heavens in a perverted symphony that is your orgasm.");
+		if(pc.hasClit() && pc.clitLength >= 4) output(" You didn’t count on her pussy squeezing your [pc.clit] so tightly, tight enough to send you reeling as you scream to the heavens in a perverted symphony that is your orgasm.");
 		output(" [pc.GirlCum] dampens the couch as the two of you contribute in equal parts to soil it with your excess fluids.");
 	}
 	//else
@@ -1094,6 +1119,7 @@ public function boobToBoobSexathon():void {
 	else output("\n\nYou really need to be going. But you’d be lying if you said you’re not even a bit tired. Maybe a short nap oughta help. Yes, a nap sounds good....");
 	//[Next Page]
 	processTime(15+rand(10));
+	chars["JADE"].orgasm();
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",epilogueOfNippleOnNippleJadeSex);

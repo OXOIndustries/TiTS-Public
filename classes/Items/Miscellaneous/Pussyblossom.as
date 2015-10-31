@@ -98,6 +98,7 @@
 					{
 						kGAMECLASS.output("You’ve got a pretty, pink pussy.");
 					}
+					pc.orgasm();
 					kGAMECLASS.output("</b> You’ll have to spend some quality time with it soon.");
 				}
 				else if(pc.hasVagina())
@@ -114,6 +115,8 @@
 						kGAMECLASS.output("\n\nA pair of doubled orgasms washes over you, stripping away the budding knowledge of this transformation and leaving you with nothing to focus on but quivering folds and spasming tunnels. You lie there, quaking, fingers rammed into twinned boxes for what feels like hours.\n\nIt isn’t until a few minutes later that you manage to pull your [pc.girlCumNoun]-soaked digits free and discover that <b>you now have two identical vaginas.</b>");
 						pc.createVagina();
 						pc.copyVagina(1,0);
+						pc.orgasm();
+						pc.orgasm();
 					}
 					//Grow a third hotpocket
 					else if(pc.totalVaginas() < 3)
@@ -133,6 +136,9 @@
 						kGAMECLASS.output("\n\nThen, your thumb brushes an extra clit, shocking you from your ardor-induced haze. There’s another [pc.vagina " + x + "] there, positioned perfectly for you to rub with your thumbs. Thrusting your [pc.hips], you bring yourself off in a triple-bang orgasm. You writhe and squirm, lost in fantasies of being filled with pulsating, cum-drizzling tentacles.\n\n<b>You’ve got three vaginas now.</b> Maybe sometime you’ll find the perfect mate... or three... to deal with them.");
 						pc.createVagina();
 						pc.copyVagina(2,x);
+						pc.orgasm();
+						pc.orgasm();
+						pc.orgasm();
 					}
 					//Hymen restoration
 					else if(!pc.vaginas[x].hymen)

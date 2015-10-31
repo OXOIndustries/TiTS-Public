@@ -41,7 +41,7 @@ public function encounterRegularTentaclePitcherYouGay():void {
 		else {
 			output("\n\nSneezing, you wipe your nose and shake your head, feeling a little dizzy in the moist jungle heat. You stumble a little bit and catch yourself on what you think is a tree. When the “tree’s” breast compresses oh so pleasantly under your hand, accompanied by a pleasured moan, you realize that you’ve woefully underestimated your surroundings.");
 			output("\n\n<i>“Hey there, good lookin’. You say hi to all the girls that way?”</i>  a musically sweet voice playfully teases. The boob you’re currently palming presses harder into your digits, allowing them to sink deeply into the sizeable mammary. <i>“Enjoy it, sugar. Just come around front here so I can properly show my appreciation.”</i>");
-			output("\n\nYou recoil with surprising dexterity, gaping almost slack-jawed at the lewd, pale green beauty eyeing you. Her gaze is extraordinarily predatory, though you are unsure if it’s the lewd and salacious kind or something far more dangerous. She’s clearly a venus pitcher. Getting closer to her would undoubtedly be a goo-no... bad idea.");
+			output("\n\nYou recoil with surprising dexterity, gaping almost slack-jawed at the lewd, pale green beauty eyeing you. Her gaze is extraordinarily predatory, though you are unsure if it’s the lewd and salacious kind or something far more dangerous. She’s clearly a venus pitcher. Getting closer to her would undoubtedly be a goo--no... bad idea.");
 			output("\n\nYou sneeze again and weigh your options.");
 		}
 		//Plus lust!
@@ -60,7 +60,8 @@ public function venusRepeatRefuse():void {
 	output("You shake your head and say, <i>“Nope.”</i>");
 	output("\n\nThe plant, seeing the firmness of your stare, pouts but doesn't move, immobile as she is. You look around for any other trouble, and when you glance back, she's gone, vanished into the ground below.");
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	if(flags["EMMY_QUEST"] == 0) addButton(0,"Next",venusPitcherBonusFlower);
+	else addButton(0,"Next",mainGameMenu);
 }
 
 //*Approach and Fall In
@@ -106,7 +107,7 @@ public function repeatStamenScene():void {
 	output("\n\n<i>“Now, which of you two will feel the best rammed down " + pc.mfn("his","her","its") + " throat?”</i> the pale-green nymph asks. <i>“Today... I think that you’ll be my special boy...”</i>  She nuzzles against her chosen tentacle affectionately. The other droops disconsolately.");
 	
 	output("\n\n<i>“In you go!”</i>  the venus pitcher cheers as she thrusts her arm out, allowing the tentacle to slide along her arm like a pet snake. It writhes up slowly, rising in front of your face and leaking clear drool all over your [pc.chest]. The wide, blunt plant-phallus smears its juices across your face as it nuzzles up to you, sliding across your cheeks, bumping your nose, and even sliding across your forehead as it nuzzles up to you. You feel a little bad for the pent-up, horny little vine and snag it with your [pc.tongue] the next time it slides by. Its skin is slippery, wet with its own nectar-like lubricants, but it stops and holds still for your oral caresses, gushing a thick dollop of off-white cream onto your busy muscle.");
-	output("\n\nSome of the lusty leakings run off the sides of your [pc.tongue] as the puddled secretions pile higher, and with dull, vacant look on your [pc.face], you swallow them. The taste is surprisingly sweet and tangy, not unpleasant at all. It burns a little as it goes down, but the burning spreads as it travels through your esophagus, inflaming your body with lust even as it dulls your reasoning further. Denied your licks, the tentacle butts itself up against your lips, pushing insistently until your relaxed jaw stretches wide enough for it to pop inside, the edges of the flare catching just inside your mouth to ensure that you won’t be letting it out anytime soon.");
+	output("\n\nSome of the lusty leakings run off the sides of your [pc.tongue] as the puddled secretions pile higher, and with a dull, vacant look on your [pc.face], you swallow them. The taste is surprisingly sweet and tangy, not unpleasant at all. It burns a little as it goes down, but the burning spreads as it travels through your esophagus, inflaming your body with lust even as it dulls your reasoning further. Denied your licks, the tentacle butts itself up against your lips, pushing insistently until your relaxed jaw stretches wide enough for it to pop inside, the edges of the flare catching just inside your mouth to ensure that you won’t be letting it out anytime soon.");
 	output("\n\nThat tentacle bulges wider in your mouth and slides deeper, so big that it feels like it's steamrolling your [pc.tongue] flat against the bottom of your mouth as it goes. Soon, it reaches the entrance of your throat. It pulsates happily from the snug grip that your stretched opening is providing it and gushes thicker, longer flows of its mystery fluid straight into your ready gullet. You gulp it down instinctively, throat working to keep up with the heady flow, and it begins to rock back and forth, grinding its most sensitive places against your tongue to ease the passage of its fluids.");
 	output("\n\nYou gurgle happily and keep swallowing. The drink is setting your body aflame with desire while simultaneously denying you the control to do anything about it. Honestly, the forced fellatio is kind of comforting. It’s a simple rhythm - pump, gulp, and swallow - repeated over and over and again while you become more and more aroused.");
 	//To tentacle jam
@@ -151,7 +152,8 @@ public function noVenusPitcherPlz():void {
 	userInterface.showName("VENUS\nPITCHER");
 	output("You decline again. The venus pitcher woman petulantly blows a frond of her hair up and folds her arms, no longer bothering to attempt to seduce you.\n\nYou regard your other surroundings, and when you look back, she's gone, almost as if by magic.");
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	if(flags["EMMY_QUEST"] == 0) addButton(0,"Next",venusPitcherBonusFlower);
+	else addButton(0,"Next",mainGameMenu);
 }
 
 //*First time entering a pitcher plant!
@@ -288,7 +290,7 @@ public function tentacleJamTime(stamen:Boolean = true):void {
 	userInterface.showName("VENUS\nPITCHER");
 	output("The other tentacles are not idle during this time, and they casually caress and explore your body, coating you with their secretions until you shine in the dim, pulsing lights. They nudge your [pc.asshole] and [pc.nipples] carefully, even switching to hollow tendrils on the latter in order to fully test them.");
 	//{Nippledicks}
-	if(pc.hasDickNipples()) output("\n\nYour nipples strain as soon as they're presented with those empty cavities, the pebbly texture of their outer coverings parting to reveal your " + num2Text(pc.totalNippleCocks()) + " concealed dick-nipples, the shiny glandes slipping forth in a rush to greet the supple, undulating tentacle interiors with eager tumescence. The sides of the green vines bulge out in dick-deformed outlines. Meanwhile, the entrances seal down around the edges of your areolae with a short slurping sound, causing your nipple-cocks to swell larger inside their vacuum-sealed chambers, just in time to experience the hellishly pleasurable sensation of dozens of folds and hundreds of wriggling cilia playing along your lengths, sucking, sliding, and squeezing hard enough to make you dribble milky pre already.");
+	if(pc.hasDickNipples()) output("\n\nYour nipples strain as soon as they're presented with those empty cavities, the pebbly texture of their outer coverings parting to reveal your " + num2Text(pc.totalNippleCocks()) + " concealed dick-nipples, the shiny glands slipping forth in a rush to greet the supple, undulating tentacle interiors with eager tumescence. The sides of the green vines bulge out in dick-deformed outlines. Meanwhile, the entrances seal down around the edges of your areolae with a short slurping sound, causing your nipple-cocks to swell larger inside their vacuum-sealed chambers, just in time to experience the hellishly pleasurable sensation of dozens of folds and hundreds of wriggling cilia playing along your lengths, sucking, sliding, and squeezing hard enough to make you dribble milky pre already.");
 	//{Nipplecunts}
 	else if(pc.hasFuckableNipples()) output("\n\nYour nipples drip lubrication sympathetically against the exploratory tentacle-cunts, causing the semi-feminine members to withdraw from your sight and leave you hanging there. A moment later, a pair of flared plant-phalluses appear in their place, leaking sappy pre-cum as they nuzzle against your pliant, barely concealed nipple-holes. Luckily, these are some of the smallest of such tentacles in the chamber, so when they press on your chest-pussies, your pleasantly wet nipple-cunts give easily, swallowing the flared dongs up and into their mammary affections. The chlorophyll-laced cocks quickly reach the bottom of your chest channels and pull back, setting themselves up for a steady rhythm that makes your [pc.fullChest] wobble and shake while you hang suspended and twitching, watching the green lengths undulate in front of your eyes as they work you over.");
 	//{Regular Nipples}
@@ -296,7 +298,7 @@ public function tentacleJamTime(stamen:Boolean = true):void {
 	{
 		output("\n\nYour [pc.nipples] are so hard that the feel of moisture running down them is something you're VERY keenly aware of. The suckling tubes latch onto them at once and start to pulsate, rippling up and down their lengths as they rhythmically tug and pull, trying to milk your poor nips dry.");
 		if(!pc.canLactate()) {
-			output(" Unfortunately for this plant lady, you aren't lacta.... Ooohhh, why does that feel so good! Something is coming out of your breasts in drips and dribbles, sometimes even small bursts. The flow gradually increases whenever you gulp down another throat-full of sticky plant-juice, and your [pc.chest] puffs up slightly, expanding under the weight of your burgeoning milk supply. It feels good enough that you're thankful for the restraints - without them, you'd be flopping around like fish out of water.");
+			output(" Unfortunately for this plant lady, you aren't lacta.... Ooohhh, why does that feel so good?! Something is coming out of your breasts in drips and dribbles, sometimes even small bursts. The flow gradually increases whenever you gulp down another throat-full of sticky plant-juice, and your [pc.chest] puffs up slightly, expanding under the weight of your burgeoning milk supply. It feels good enough that you're thankful for the restraints - without them, you'd be flopping around like a fish out of water.");
 		}
 		else 
 		{
@@ -354,13 +356,17 @@ public function tentacleJamTime(stamen:Boolean = true):void {
 	//{Vaguyna}
 	if(pc.totalVaginas() == 1)
 	{
-		output("\n\nA sinuous slithering can be felt along your [pc.leg], curling slowly around your limb as it winds its way higher, inexorably closing the distance between itself and your [pc.vagina]. You sigh and slump down, but the tentacles holding your arms and [pc.legOrLegs] don't let you any closer to the crawling promise of penetration. Thankfully, it continues its dogged ascent up your body, sliding along the exterior of your vulva and [pc.clits] a few times as it slowly parts your labia with the curvature of its shaft. It slides back down whilst still pushing against you, angling the cockhead to begin prying you the rest of the way open, pushing insistently as it bathes your lips in lubricants.");
+		output("\n\nA sinuous slithering can be felt along your [pc.leg], curling slowly around your limb as it winds its way higher, inexorably closing the distance between itself and your [pc.vagina]. You sigh and slump down, but the tentacles holding your arms and [pc.legOrLegs] don't let you any closer to the crawling promise of penetration. Thankfully, it continues its dogged ascent up your body, sliding along the exterior of your vulva");
+		if(pc.hasClit()) output(" and [pc.clits]");
+		output(" a few times as it slowly parts your labia with the curvature of its shaft. It slides back down whilst still pushing against you, angling the cockhead to begin prying you the rest of the way open, pushing insistently as it bathes your lips in lubricants.");
 		output("\n\nYour squeal of pleasure and pain at being forced wide is muffled by the tendril in your mouth. The cock-tentacle impales you. It plows you wide open. Your passage is pulled wide by the large, flared cock as it pushes in all the way to your cervix, bubbling its hot fluids against the slight barrier as it adjusts to your tightness. You instinctively try to move your [pc.legOrLegs], though whether to wrap around an imaginary lover or curl up away from the discomfort, you aren't sure. One thing you are sure of is that you're full. The tendril starts to move, and you whimper as it scrapes along your walls, firing off every nerve in your cunt as it pulls out, only to thrust back in, just starting to properly fuck you.");
 		pc.cuntChange(0,chars["VENUSPITCHER"].cockVolume(0));
 	}
 	//{MultiVaguyna}
 	else if(pc.totalVaginas() > 1) {
-		output("\n\nSinuous slithering can be felt all along your [pc.legOrLegs], curling slowly as they wind their way higher, inexorably closing the distance between themselves and your [pc.vaginas]. You sigh and slump down to get them closer, but the tentacles suspending you inside this plant pod don't give you enough slack to get any closer to the crawling promises of penetration below. Thankfully, they continue their dogged ascent up your body, sliding along the exterior of your multiple vulvae and [pc.clits] a few times as they slowly part your labia with the curvature of their shafts. They slide back down whilst pushing against you, angling their cockheads up to start prying you the rest of the way open, stretching all your cunts at once as they shove insistently on your entrances, bathing them in lubricant.");
+		output("\n\nSinuous slithering can be felt all along your [pc.legOrLegs], curling slowly as they wind their way higher, inexorably closing the distance between themselves and your [pc.vaginas]. You sigh and slump down to get them closer, but the tentacles suspending you inside this plant pod don't give you enough slack to get any closer to the crawling promises of penetration below. Thankfully, they continue their dogged ascent up your body, sliding along the exterior of your multiple vulvae");
+		if(pc.hasClit()) output(" and [pc.clits]");
+		output(" a few times as they slowly part your labia with the curvature of their shafts. They slide back down whilst pushing against you, angling their cockheads up to start prying you the rest of the way open, stretching all your cunts at once as they shove insistently on your entrances, bathing them in lubricant.");
 		output("\n\nYour squeal of pleasure and pain at being forced wide open in more than one place at once is muffled by the tendril in your mouth. The cock-tentacles impale you, plowing you wide open. They stretch your passages wide open around their large, flared cocks, pushing them all the way to your cervixes, bubbling their hot fluids against the slight barrier as they adjust to your tightness. You instinctively try to move your [pc.legOrLegs], though whether to wrap around your imagination partners or curl away in discomfort, you aren't sure. One thing you're sure of is that you are incontrovertibly full. The tendrils start to move, and you whimper as they scrape along your walls, firing off every nerve ending in your cunts as they pull out, only to thrust back in, just starting to properly fuck you.");
 		//[cunt stretchin' checks]
 		for(var b:int = 0; b < pc.totalVaginas(); b++) {
@@ -599,7 +605,8 @@ public function noRepeatElderVenusPitcher():void {
 	userInterface.showName("VENUS\nPITCHER");
 	output("You turn away before she snares you with her looks, stepping a few extra feet away for good measure. There’s a muffled thump, and when you glance back, you realize she’s disappeared into the ground, unlikely to be seen again.");
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	if(flags["EMMY_QUEST"] == 0) addButton(0,"Next",venusPitcherBonusFlower);
+	else addButton(0,"Next",mainGameMenu);
 }
 //[Yes]
 public function yesRepeatElderVenusPitcher():void {
@@ -685,7 +692,8 @@ public function lookAwayFromElderVenusPitcher():void {
 	output("You turn away, much to the indignity of the leafy succubus behind you. After a few pleading statements fail to entice your attention, she curses loudly then goes silent. There is a rather final sounding “sklultch” from behind you. Perhaps she went back into her pod?");
 	//To room desc, no venus proc.
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	if(flags["EMMY_QUEST"] == 0) addButton(0,"Next",venusPitcherBonusFlower);
+	else addButton(0,"Next",mainGameMenu);
 }
 
 public function watchElderVenusPitcher():void {
@@ -878,7 +886,9 @@ public function elderVenusPitchersPlayWithCooches():void {
 	else output("over your lips");
 	output(" repeatedly and flaring wider in response. It withdraws and leaves your labia soaked and eager. Unfortunately, its blunted head is so massive that there’s no way it could it actually fit inside you, much as you want it to. You’re left to whine and writhe every time it tries again, caressing your vulvae with lewd but unsatisfied attentions.");
 	
-	output("\n\n<i>“Don’t worry about its size, pet. I know one size doesn’t fit all, and I’ve got the perfect fit, just for you,”</i> the venus pitcher giggles as she smears her gigantic tool across [pc.eachVagina] again, catching your [pc.clits] repeatedly. Another tentacle slithers up alongside it, rubbing across its bigger brother’s length and eventually supplanting it at the entrance of ");
+	output("\n\n<i>“Don’t worry about its size, pet. I know one size doesn’t fit all, and I’ve got the perfect fit, just for you,”</i> the venus pitcher giggles as she smears her gigantic tool across [pc.eachVagina] again");
+	if(pc.hasClit()) output(", catching your [pc.clits] repeatedly");
+	output(". Another tentacle slithers up alongside it, rubbing across its bigger brother’s length and eventually supplanting it at the entrance of ");
 	if(pc.totalVaginas() > 1) output("a");
 	else output("your");
 	output(" [pc.vagina " + x + "], already slick with the lewd plant’s secretions.");
@@ -891,7 +901,7 @@ public function elderVenusPitchersPlayWithCooches():void {
 	output("\n\nA rigid, blunt tip slowly spreads your folds, sliding between ");
 	if(pc.totalVaginas()) output("your ");
 	else output("a set of ");
-	output(" labia with deliberate, firm force, dilating your entrance with its swollen head and compressing slightly to fit. This makes the friction inside your channel that much more powerful; every fold, nook, and cranny of your cunt receives its fair share of cock to squeeze against. Gushing as it goes deeper, the tendril worms more deeply inside of you, plundering your [pc.vagina " + x + "] with a greedy lunge. The warm pre that seems from it tingles nicely as it lubricates the passage of this elephantine-feeling member, so copious that some of it drips from your opened entrance in long strands.");
+	output(" labia with deliberate, firm force, dilating your entrance with its swollen head and compressing slightly to fit. This makes the friction inside your channel that much more powerful; every fold, nook, and cranny of your cunt receives its fair share of cock to squeeze against. Gushing as it goes deeper, the tendril worms more deeply inside of you, plundering your [pc.vagina " + x + "] with a greedy lunge. The warm pre that seeps from it tingles nicely as it lubricates the passage of this elephantine-feeling member, so copious that some of it drips from your opened entrance in long strands.");
 	
 	//Vag change.
 	pc.cuntChange(x,chars["ELDERVENUSPITCHER"].cockVolume(0));
@@ -907,7 +917,7 @@ public function elderVenusPitchersPlayWithCooches():void {
 	else output("<i> The feel of it swelling your belly with my seeds is going to be so addictive, matched only by the motherly bliss of laying my seeds in fertile soil.</i>");
 	output("<i>”</i>");
 	output("\n\nThe tentacle buried in your [pc.vagina " + x + "] bottoms out while the larger, massive tentacle mashes itself against your pubic mound");
-	if(pc.clitLength >= 3) output(", allowing your [pc.clit] to slide up its convulsing urethra");
+	if(pc.hasClit() && pc.clitLength >= 3) output(", allowing your [pc.clit] to slide up its convulsing urethra");
 	output(". Both stalks flex, thickening slightly, and rounded bulges begin to gather at their bases, launching through the tubular plant-cocks one after another. ");
 	if(!pc.isPregnant(x)) 
 	{
@@ -932,8 +942,14 @@ public function elderVenusPitchersPlayWithCooches():void {
 	output(" A waterfall of musky jism rolls out of your [pc.vagina " + x + "] seemingly without end.");
 	if(pc.isPregnant(x)) output(" You actually find yourself wishing you weren’t pregnant, so that you can feel it filling you, stuffing your womb with new life.");
 	output(" The bigger tentacle fires cum out like a cannon, ");
-	if(pc.clitLength < 3) output("splattering it directly off your [pc.clit].");
-	else output("forced off your cum-soaked clit as it dumps a deluge of spooge over your most sensitive organ.");
+	if(pc.hasClit() && pc.clitLength < 3) output("splattering it directly off your [pc.clit].");
+	else
+	{
+		output("forced off your cum-soaked");
+		if(pc.hasClit()) output(" clit");
+		else output(" slit");
+		output(" as it dumps a deluge of spooge over your most sensitive organ.");
+	}
 	
 	output("\n\nYour eyes roll back as the orgasm drags on and on, [pc.eachVagina] writhing in ecstasy");
 	if(pc.vaginaTotal() >= 1) output(", even though some are empty");
@@ -1264,7 +1280,9 @@ public function venusPitcherLayUnfertilizedEgg():void {
 	}
 	
 	output("\n\nThe slime dripping from your lips thickens into a sticky deluge as muscles inside you relax, opening the way for the pod's lubricant to escape in a rush. You can feel the bulbous seed start sliding inside you, shifting and stretching, forcing you open in ways that would make even the biggest dicks ache with jealousy. It should hurt, but for some reason, there's blessedly little pain - just a sense of the slick form gliding down your nerve-laden channel as if it was made to lay these things all along.");
-	output("\n\nA rounded, green-hued surface appears between your spread lips, momentarily reminding you of a flower blooming until a muscular contraction hits. Then, they stretch so obscenely that you have a hard time understanding exactly what you're seeing. The pod is so big that you can feel it pressing on the nerves in your [pc.clits] from behind. Sexual pleasure blitzkriegs through your brain to war with wonder at what you're body is doing. When the pod finally makes the second half of its journey, the pleasure wins out.");
+	output("\n\nA rounded, green-hued surface appears between your spread lips, momentarily reminding you of a flower blooming until a muscular contraction hits. Then, they stretch so obscenely that you have a hard time understanding exactly what you're seeing.");
+	if(pc.hasClit()) output(" The pod is so big that you can feel it pressing on the nerves in your [pc.clits] from behind.");
+	output(" Sexual pleasure blitzkriegs through your brain to war with wonder at what your body is doing. When the pod finally makes the second half of its journey, the pleasure wins out.");
 	output("\n\nYou grunt unthinkingly as the slick, alien seed emerges from your [pc.vagina " + pSlot + "] and wetly plops into the puddled slime. A trickle of the slippery stuff escapes after it, drizzling over the verdant orb like icing in the brief moments before you muscles give out and drop you onto your back");
 	if(pc.legCount > 1) output(", [pc.legOrLegs] splayed");
 	output(".");
@@ -1368,7 +1386,9 @@ public function layFertilizedVenusPitcherEgg():void
 	else output(" your [pc.legs]");
 	output(" over a flat spot and let instinct guide you.");
 
-	output("\n\nGushing out of you, a wave of viscous birth-slime prepares the way of the seed, lubricating your channel and providing a soft, warm place for it to land. Your [pc.vagina " + pSlot + "] ripples in excitement when your cervix dilates, just enough for flexible tendrils to squeeze through. They flail around the inside of your birth canal before stretching out to your entrance and hooking over your labia, one even finding purchase on [pc.oneClit]. You swoon and gasp, your [pc.hips] gently twisting and thrusting, reacting to an entirely different, more libidinous set of instincts.");
+	output("\n\nGushing out of you, a wave of viscous birth-slime prepares the way of the seed, lubricating your channel and providing a soft, warm place for it to land. Your [pc.vagina " + pSlot + "] ripples in excitement when your cervix dilates, just enough for flexible tendrils to squeeze through. They flail around the inside of your birth canal before stretching out to your entrance and hooking over your labia");
+	if(pc.hasClit()) output(", one even finding purchase on [pc.oneClit]");
+	output(". You swoon and gasp, your [pc.hips] gently twisting and thrusting, reacting to an entirely different, more libidinous set of instincts.");
 
 	output("\n\nIt feels good to play mother for the pitchers, and every passing second reinforces that belief a hundred-fold. The pleasant, pliable expansion of your womb's entrance, the wriggling tentacles slipping and sliding across the surface and interior of your [pc.vagina " + pSlot + "], it's all too much. Grunting and on the verge of cumming already, you feel the pod slide through your tightly-stretched cervix to stretch your tunnel wide, pulled that far by the verdant, squirming vines reaching for the outside.");
 	output("\n\nEach time the egg-like pod moves another inch, you grunt louder than the last time. Sometimes a feverish moan escapes your [pc.lips], but the bulk of your vocalizations carry the force of your body's birthing effort rather than the pleasure it gives you, not that the pleasure is any less overwhelming. Indeed, your [pc.girlCum] mixes with the copious slime as you the egg parts your netherlips. There is a sexual component to your enjoyment, yet it mixes with a certain sublime satisfaction.");

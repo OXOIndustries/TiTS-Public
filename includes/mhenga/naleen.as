@@ -1,6 +1,7 @@
 ﻿import classes.Creature;
 import classes.Engine.Combat.DamageTypes.DamageResult;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
+import classes.Items.Toys.GravCuffs;
 
 //UNLESS OTHERWISE NOTED, ALL SCENES BY SAVINOXO
 //Female Naleen Encounter
@@ -397,7 +398,15 @@ public function beatDatCatNaga():void {
 	}
 	if(pc.isLactating() && chars["PC"].milkType == GLOBAL.FLUID_TYPE_MILK) addButton(3,"Breastfeed",feedDatNaleenSumMilk);
 	else addDisabledButton(3,"Breastfeed","Breastfeed","You need to actually be lactating real milk.");
-
+	if(pc.hasItem(new GravCuffs()) && pc.lust() >= 33)
+	{
+		var fitsInside:Boolean = false;
+		if(foes[0].hasVagina()) fitsInside = (pc.cockThatFits(foes[0].vaginalCapacity(0)) >= 0);
+		else fitsInside = (pc.cockThatFits(foes[0].analCapacity()) >= 0);
+		if(pc.hasCock() && fitsInside) addButton(5,"Cuff&Fuck",cuffNFuck,undefined,"Cuff & Fuck","Use your grav-cuffs to pin down [monster.name] and have your way with [monster.hisHer] [pc.vagOrAss]! Requires Grav-cuffs and a penis.");
+		else if(pc.hasCock()) addDisabledButton(5,"Cuff&Fuck","Cuff & Fuck","You can cuff [monster.himHer] down, but you wouldn't be able to fit inside.");
+		else addDisabledButton(5,"Cuff&Fuck","Cuff & Fuck","You need a penis to make use of your grav-cuffs this way.");
+	}
 	addButton(14,"Leave",genericVictory);
 }
 /*

@@ -108,7 +108,7 @@ package classes.UIComponents.ContentModules
 			kGAMECLASS.updateMailStatus();
 			
 			clearGhostMenu();
-			addButton(4, "Back", kGAMECLASS.showMails);
+			addGhostButton(4, "Back", kGAMECLASS.showMails);
 		}
 	}
 }

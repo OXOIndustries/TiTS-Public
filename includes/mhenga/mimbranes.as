@@ -1574,7 +1574,9 @@ public function mimbraneSleepEvents():void
 				output("\n\nStrained little chirps and squeaks escape your folds as they stretch and clench. The puffed-up pussy looks to be going through some ordeal, clearly. For a brief moment you figure the parasite is up to no good, but then you remember your codex’s valuable information. The little creature is reproducing!");
 				if (flags["MIMBRANE_PUSSY_REPRODUCTION_NOTICED"] != undefined) output(" The vestiges of sleep must be why you forgot.");
 				output(" The reason you aren’t being traumatized or being artificially thrusted to lust’s end is due to the parasite’s natural inclination to not alert its host to its actions. This one apparently isn’t entirely too concerned whether or not you’re awake for its performance.");
-				output("\n\nThe traumatized gaze of the Mimbrane goes blank. You wave a hand past to confirm the absence of life. In the process of waving, another realization crawls up into daylight: your [pc.pussy] is numb. It looks normal and healthy, other than perhaps an overly plump appearance, but any attempts to manhandle it only feel like you’re tapping away at a fleshy shell. Prodding at your [pc.clit] is a fruitless effort. It’s a relief that you recalled your electronic encyclopedia, otherwise you may be freaking the fuck out! Regardless, this is still disconcerting to say the least.");
+				output("\n\nThe traumatized gaze of the Mimbrane goes blank. You wave a hand past to confirm the absence of life. In the process of waving, another realization crawls up into daylight: your [pc.pussy] is numb. It looks normal and healthy, other than perhaps an overly plump appearance, but any attempts to manhandle it only feel like you’re tapping away at a fleshy shell.");
+				if(pc.hasClit()) output(" Prodding at your [pc.clit] is a fruitless effort.");
+				output(" It’s a relief that you recalled your electronic encyclopedia, otherwise you may be freaking the fuck out! Regardless, this is still disconcerting to say the least.");
 				output("\n\nLiquid starts drooling out of your snatch suddenly, causing your wandering digits to back off. Swirls of clear and pink liquids make it look like a mixture of sexual fluids and Mimbrane sweat. You get a few moments to stare at the concoction before your snatch stirs yet again. Amongst all the contracting, straining and flexing you can make out a peeling sensation. It’s as if your pussy were trapped under a rather bloated replica, struggling to free itself.");
 				output("\n\nThe liquid stream starts and stops in time with the convulsions. Each time you can make out a little more feminine flesh casting off from the hollow love box atop it. Should you help? The bizarre process is a little mesmerizing as it plays out, your half-awake senses too hypnotized to try and aid in the parasite’s natural cycle. Said senses do get a little jolt once the decidedly cool air seeps under your pussy-coating. It can be difficult to make out the finer details in the dim lighting of your quarters, so the mystery of where the parasite ends and your own [pc.skin] begins remains just that.");
 				output("\n\nSoon the unorthodox movements of your vagina stop perfectly reflecting those of your outward flesh. The air makes it plainly obvious that your buried pussy is soaking wet, lubricating itself to cleanly rid itself of the second skin – or would this make it a third skin? The [pc.pussy] keeps getting looser, confusing you as its visual movements continue to not match up with what you can feel. It gets easier to perceive the box as a covering when more and more air sneaks in under the ever-expanding opening, kissing the underlying skin. ");
@@ -2346,7 +2348,10 @@ public function friendlyMimbraneEvents():void
 			}
 
 			msgArray.push("Your [pc.pussy] nips at your [pc.armor], throwing you for a surprise. The Mimbrane must be feeling playful you imagine.");
-			msgArray.push("Your [pc.legOrLegs] about melt to jello all of a sudden. Your Mimbrane is messing with your [pc.clit], moving the little fun button around in provocative ways beneath your [pc.armor].");
+			if (pc.hasClit())
+			{
+				msgArray.push("Your [pc.legOrLegs] about melt to jello all of a sudden. Your Mimbrane is messing with your [pc.clit], moving the little fun button around in provocative ways beneath your [pc.armor].");
+			}
 			msgArray.push("A sudden pressure against your [pc.pussy] about knocks you over. You know there’s nothing there.... Is your Mimbrane just messing around with you?");
 
 			addMimbraneEvent(messageArray[rand(messageArray.length)]);
@@ -4079,7 +4084,9 @@ public function attachVagMimbrane():void
 	if(pc.legCount > 1) output(" between");
 	else output(" against");
 	output(" your [pc.legOrLegs] to your feminine crevice. Its moist, smooth skin gently brushing up against your [pc.skinTone] thighs definitely doesn’t help your currently precarious mental state. A meager mouth teases you as it explores your folds, eager to lap up any fluids you may already have let free in your ecstasy.");
-	output("\n\nIts paltry appetite sated, the Mimbrane goes to work smothering your groin, tiny face – or what meager options it has to constitute a face – sinking into the thin sheet. Excited gasps muscle in through your panting when your [pc.clit] is stimulated beyond belief. The sheet covers little else beyond your snatch, uninterested in serving double duty as a sentient bikini. You can feel it shift and push its way into every part of your cooch. Every detail - every opening - is coated in parasitic paint, as it were.");
+	output("\n\nIts paltry appetite sated, the Mimbrane goes to work smothering your groin, tiny face – or what meager options it has to constitute a face – sinking into the thin sheet.");
+	if(pc.hasClit()) output(" Excited gasps muscle in through your panting when your [pc.clit] is stimulated beyond belief.");
+	output(" The sheet covers little else beyond your snatch, uninterested in serving double duty as a sentient bikini. You can feel it shift and push its way into every part of your cooch. Every detail - every opening - is coated in parasitic paint, as it were.");
 	output("\n\nThe Mimbrane splits itself to accommodate your own fissure, mimicking its every facet. In your throes of wanton desire and uncomfortable tension, you can’t even discern just how far into your box the creature goes. What you do feel, though, is the parasite melding with your nervous system. There is no pain; only mounting confusion at the mixed messages coming from both your nerve endings and your <i>new</i> nerve endings. For a moment, you can’t picture your pussy. A nebulous region exists in its place, one where a clit is as familiar as a deity’s true intentions.");
 	output("\n\nThen nothing. Well, you feel normal. Suddenly you’re fine, albeit laying naked on the jungle floor. Your hands rush to investigate your [pc.pussy], eager to find something amiss. But it's the same as before you ran into that blanket with a grudge. ");
 	output("\n\nNo... Further examination clues you in on a new development. Two, in fact. A pair of tiny little bumps sit just above your pussy. You get no response from pressing and prodding at them. But the instant you try and squeeze one of them, a debilitating pain blasts through you, lasting only as long as your fingers are poised to squeeze the blemish. The second they’re free is the second you feel fine again. That’s when you clue in on the barely-discernable lump of flesh outlining a little ways around your vagina. You try and work your way around it, but it feels as if you were trying to pry open a wrinkle. ");
@@ -4312,7 +4319,9 @@ public function acceptFaceMimbrane():void
 	{
 		output("\n\nBut you’re still panting. Still horny. Still hot, still paralyzed, still confused. This is anything but normal now! Not snapping free of this hell is the most abnormal thing ever in this process that you had once thought you had become so accustomed to. Now what?");
 		output("\n\nThe light red haze crushing you starts to dissipate. Actually...it seems to be sucking into you. More accurately, the Mimbranes are absorbing it! Your whole body feels as if it's taking in a deep breath, somehow. Soon, the cloud is clear, and with it goes the boiling humidity! That’s one nuisance down. The next is your searing libido, aching for release. What would be the best way to take care of that?");
-		output("\n\nYour [pc.pussy] knows, apparently; it’s going crazy! The Mimbrane folds are exciting themselves into a soaked frenzy. Even your [pc.clit] is stimulating itself, flesh pushing and teasing the love button with exacting precision. The parasite knows itself – and by extension you – down to seemingly every last cell. A");
+		output("\n\nYour [pc.pussy] knows, apparently; it’s going crazy! The Mimbrane folds are exciting themselves into a soaked frenzy.");
+		if(pc.hasClit()) output(" Even your [pc.clit] is stimulating itself, flesh pushing and teasing the love button with exacting precision.");
+		output(" The parasite knows itself – and by extension you – down to seemingly every last cell. A");
 
 		if (pc.wetness() < 2) output(" splash");
 		else if (pc.wetness() <= 3) output(" wave");
@@ -4492,12 +4501,12 @@ public function mimbraneMenu():void
 		if (flags["PLAYER_MIMBRANE_SWEAT_ENABLED"] == undefined)
 		{
 			sweatText += "On";
-			output2("\nMimbrane sweating is currently <b>Disabled</b>");
+			output2("\nMimbrane sweating is currently <b>Disabled</b>.");
 		}
 		else
 		{
 			sweatText += "Off";
-			output2("\nMimbrane sweating is currently <b>Enabled</b>");
+			output2("\nMimbrane sweating is currently <b>Enabled</b>.");
 		}
 
 		addGhostButton(5, sweatText, toggleMimbraneSweat);
@@ -4516,12 +4525,12 @@ public function mimbraneMenu():void
 		if (flags["PLAYER_MIMBRANE_SPIT_ENABLED"] == undefined)
 		{
 			spitText += "On";
-			output2("\nSpit attacks are currently <b>Disabled</b>");
+			output2("\nSpit attacks are currently <b>Disabled</b>.");
 		}
 		else
 		{
 			spitText += "Off";
-			output2("\nSpit attacks are currently <b>Enabled</b>");
+			output2("\nSpit attacks are currently <b>Enabled</b>.");
 		}
 
 		addGhostButton(6, spitText, toggleMimbraneSpit);
@@ -4942,7 +4951,9 @@ public function feedMimbranesWithPussy():void
 	output(" more than capable of exaggerating your stimulation when ");
 	if(attachedMimbranes() > 1) output("they aren’t");
 	else output("it isn't");
-	output(" trying to hide. Your [pc.clit] may as well be a hardline to any sense of pleasure your being has ever known. Merely a few minutes is all it takes to get your juices");
+	output(" trying to hide.");
+	if(pc.hasClit()) output(" Your [pc.clit] may as well be a hardline to any sense of pleasure your being has ever known.");
+	output(" Merely a few minutes is all it takes to get your juices");
 	if (pc.wetness() <= 1) output(" dripping");
 	else if (pc.wetness() == 2) output(" flowing");
 	else if (pc.wetness() <= 3) output(" gushing");
@@ -4952,7 +4963,9 @@ public function feedMimbranesWithPussy():void
 
 	if (pc.hasStatusEffect("Mimbrane Pussy"))
 	{
-		output("\n\nYour [pc.pussy] needn’t work hard for its take of your offering. The Mimbrane maw undulates slowly, absorbing what it would consider a hearty portion directly back into your pussy. It’s fairly breathtaking. Were you pressed to describe the feeling, “deep breathing” may be the most adequate description. Each little intake of femspunk back into your canyon is a radiating wave of bliss, crashing into your [pc.clit]. The parasite exaggerates the movement, making it that much more difficult to even consider overlooking the provocative experience.");
+		output("\n\nYour [pc.pussy] needn’t work hard for its take of your offering. The Mimbrane maw undulates slowly, absorbing what it would consider a hearty portion directly back into your pussy. It’s fairly breathtaking. Were you pressed to describe the feeling, “deep breathing” may be the most adequate description. Each little intake of femspunk back into your canyon is a radiating wave of bliss");
+		if(pc.hasClit()) output(", crashing into your [pc.clit]");
+		output(". The parasite exaggerates the movement, making it that much more difficult to even consider overlooking the provocative experience.");
 	}
 
 	if ((pc.hasStatusEffect("Mimbrane Hand Left") && !pc.hasStatusEffect("Mimbrane Hand Right")) || (pc.hasStatusEffect("Mimbrane Hand Right") && !pc.hasStatusEffect("Mimbrane Hand Left")))

@@ -431,18 +431,26 @@ public function femlustWithQueen():void
 	clearOutput();
 	showMerchantQueen();
 	output("The next few moments pass in a blur, the queen an eager and all-too-experienced partner; she’s already clutching you possessively with her many hands, one pair cradling your thighs while the other squeezes your [pc.butt]. You find yourself facing away from her, half-hoisted up in the air like it was nothing. Ant people, gah! Trying to stifle any embarrassment you feel at the guards’ imperious gazes, you merely look down to the floor and helplessly squirm, feeling the ticklish sensation as her feelers dance and bounce along your bottom and lower back.");
-	output("\n\nDespite the practical blur of her putting you in this compromising, somewhat uncomfortable position, the merchant queen isn’t exactly racing to make use of it. Her breath merely washes over your exposed [pc.vaginas], occasionally leaning forward to brush her thin lower lip along your [pc.clit], eliciting a short gasp from you and further squirming. Discomfort practically oozes away as the myr’s simple-yet-continuous touches and teases start to make you messy, and it’s not long before you’re quivering and spasming with each little touch. You know your back will be smarting after all this is done and the blood is <i>kinda</i> rushing to your head, but... this isn’t so bad.");
+	output("\n\nDespite the practical blur of her putting you in this compromising, somewhat uncomfortable position, the merchant queen isn’t exactly racing to make use of it. Her breath merely washes over your exposed [pc.vaginas]");
+	if(pc.hasClit()) output(", occasionally leaning forward to brush her thin lower lip along your [pc.clit]");
+	output(", eliciting a short gasp from you and further squirming. Discomfort practically oozes away as the myr’s simple-yet-continuous touches and teases start to make you messy, and it’s not long before you’re quivering and spasming with each little touch. You know your back will be smarting after all this is done and the blood is <i>kinda</i> rushing to your head, but... this isn’t so bad.");
 	output("\n\nReally, this must be a natural position for them, what with that big abdomen hanging off their backside. The queen certainly seemed com-");
 	output("\n\nA squeal slips out of you into the hollowed-out dome of the room as you jump and go rigid, thoughts completely interrupted by a slender, spit-sloppy tongue spearing into your depths without warning. The surprised reaction nets a low, throaty chuckle from your ‘captor’ while she slowly rocks her head side to side between your exposed thighs, gradually stirring the length of muscle between your folds as the utmost tip curls and tickles within your depths, making your breath catch in your throat constantly. The queen knows full well how to please and you’re left merely writhing in place, constantly whimpering and gasping from the delightful sensation. Already your eyes start rolling into the back of your head as you hear the guards in front of you barely stifle a chuckle at your expense.");
 	output("\n\nYou completely underestimated the merchant, so now you’re getting teased and toyed around with, and oh <i>fuck</i> you don’t care! Your ");
 	if(pc.hasToes()) output("toes curl");
 	else if(pc.legCount > 1) output("[pc.feet] curl");
 	else output("[pc.foot] curls")
-	output(" up tightly as you start to kick back and forth, clutching your arms close to your chest with a hand clasped firmly to your mouth in some vain attempt to muffle yourself. Your whole body goes honey-sweet at the simple ministrations of the woman’s dexterous tongue intermixed with the electric pangs of her lips rolling around your sensitive button.");
+	output(" up tightly as you start to kick back and forth, clutching your arms close to your chest with a hand clasped firmly to your mouth in some vain attempt to muffle yourself. Your whole body goes honey-sweet at the simple ministrations of the woman’s dexterous tongue intermixed with the electric pangs of her lips");
+	if(pc.hasClit()) output(" rolling around your sensitive button");
+	else output(" pressing against your aroused labia");
+	output(".");
 
 	output("\n\nPressure starts to build within you, your thoughts growing gradually hazy as you feel yourself start to grow <i>close</i>. Your back arches sharply, head yanking backwards up in the air with one final, deep gasp of air and -");
 
-	output("\n\nThe queen stops. Her tongue slips out from your sloppy depths and her lips pulling away from your saliva-coated clit. The only sensation is the now-cruel feeling of her warm, ragged breath over your dampened labia, which drags a few frigid shivers out of you. <i>“You know, I think I have a few products you might be interested in. Off-worlders such as yourself are always enamored with various firearms, no?”</i> Her words come abruptly as she starts speaking in a casual, conversational tone.");
+	output("\n\nThe queen stops. Her tongue slips out from your sloppy depths and her lips pulling away from your saliva-coated");
+	if(pc.hasClit()) output(" clit");
+	else output(" slit");
+	output(". The only sensation is the now-cruel feeling of her warm, ragged breath over your dampened labia, which drags a few frigid shivers out of you. <i>“You know, I think I have a few products you might be interested in. Off-worlders such as yourself are always enamored with various firearms, no?”</i> Her words come abruptly as she starts speaking in a casual, conversational tone.");
 
 	output("\n\nWh-what? Another, less-stifled laugh from the otherwise quiet guards brings you out of your near-orgasmic haze, realization finally sinking in. You know what the woman behind you is up to. She’s denying you - edging you!");
 

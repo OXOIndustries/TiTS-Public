@@ -2,6 +2,9 @@
 import classes.Items.Armor.GooArmor;
 import classes.Items.Miscellaneous.MilkBag;
 import classes.Items.Miscellaneous.MagicMilker;
+import classes.Items.Toys.HoverHole;
+import classes.Items.Toys.NivasBionaHole;
+import classes.Items.Toys.TamaniBionaHole;
 
 public function availableFaps(roundTwo:Boolean = false):Array
 {
@@ -75,6 +78,13 @@ public function availableFaps(roundTwo:Boolean = false):Array
 		fap = new FapCommandContainer();
 		fap.text = "Penises";
 		fap.func = multiCockFap;
+		faps.push(fap);
+	}
+	if (pc.hasCock() && pc.hasItem(new HoverHole()))
+	{
+		fap = new FapCommandContainer();
+		fap.text = "HoverHole";
+		fap.func = hoverholeFapFapFap;
 		faps.push(fap);
 	}
 	
@@ -158,7 +168,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 		fap.ignoreRandomSelection = true;
 		faps.push(fap);
 	}
-	
+
 	if (pc.armor is GooArmor)
 	{
 		fap = new FapCommandContainer();
@@ -210,9 +220,64 @@ public function availableFaps(roundTwo:Boolean = false):Array
 			faps.push(fap);
 		}
 	}
+	if(pc.hasItem(new NivasBionaHole()) && pc.hasCock())
+	{
+		fap = new FapCommandContainer();
+		fap.text = "NivasB.Hole";
+		fap.ttHeader = "Nivas Oxonef BionaHole"
+		fap.ttBody = "Take the Nivas Oxonef Bionahole for a spin.";
+		fap.func = nivasFapSetup;
+		faps.push(fap);
+	}
+	if(pc.hasItem(new NivasBionaHole()) && pc.hasCock() && flags["NIVAS_TUTORIAL"] != undefined)
+	{
+		fap = new FapCommandContainer();
+		fap.text = "NivasTutorial";
+		fap.ttHeader = "Nivas Tutorial"
+		fap.ttBody = "Run through the tutorial for your Nivas Oxonef BionaHole once more.";
+		fap.func = bionaHoleInstructionalBullshit;
+		faps.push(fap);
+	}
+	if(pc.hasItem(new TamaniBionaHole()) && pc.hasCock())
+	{
+		fap = new FapCommandContainer();
+		fap.text = "Tamani B.H,";
+		fap.ttHeader = "Tamani BionaHole"
+		fap.ttBody = "Take the Tamani Ultralux edition BionaHole for a spin.";
+		fap.func = TamaniFapSetup;
+		faps.push(fap);
+	}
+	if(pc.hasItem(new TamaniBionaHole()) && pc.hasCock() && flags["TAMANI_HOLED"] != undefined)
+	{
+		fap = new FapCommandContainer();
+		fap.text = "Tamani Tut.";
+		fap.ttHeader = "Tamani Tutorial"
+		fap.ttBody = "Run through the tutorial for your Tamani Ultralux edition BionaHole once more.";
+		fap.func = tamaniBionaholeInstruction;
+		faps.push(fap);
+	}
+
+	//Special new texas shit
+	if(pc.hasItem(new GravCuffs()) && rooms[currentLocation].planet == "PLANET: NEW TEXAS" && rooms[currentLocation].hasFlag(GLOBAL.PUBLIC))
+	{
+		fap = new FapCommandContainer();
+		fap.text = "CuffSelf";
+		fap.ttHeader = "Cuff Yourself"
+		fap.ttBody = "You bet that if you cuffed yourself naked somewhere public, there'd be at least one randy bull to give you a reaming.";
+		fap.func = newTexanGanguBangu;
+		faps.push(fap);
+	}
 	return faps;
 }
 
+public function nivasFapSetup():void
+{
+	bionaholeUse("Nivas");
+}
+public function TamaniFapSetup():void
+{
+	bionaholeUse("Tamani");
+}
 public function pantyFapCount():Number
 {
 	var count:int = 0;
@@ -257,7 +322,12 @@ public function masturbateMenu(roundTwo:Boolean = false):void {
 		clearOutput();
 		output("Out here? In public?\n\n...Yeah, that'll do nicely.");
 		clearMenu();
-		addButton(0,"Next",goddamnitJimTAndYourExhibitionism);
+		addButton(0,"Exhibitionism",goddamnitJimTAndYourExhibitionism);
+		//Special new texas shit
+		if(pc.hasItem(new GravCuffs()) && rooms[currentLocation].planet == "PLANET: NEW TEXAS" && rooms[currentLocation].hasFlag(GLOBAL.PUBLIC))
+		{
+			addButton(1,"CuffSelf",newTexanGanguBangu,undefined,"Cuff Yourself","You bet that if you cuffed yourself naked somewhere public, there'd be at least one randy bull to give you a reaming.");
+		}
 		return;
 	}
 	//Low Exhibitionist fap! - overrides all other faps
@@ -266,7 +336,12 @@ public function masturbateMenu(roundTwo:Boolean = false):void {
 		clearOutput();
 		output("Out here? In public?\n\n...<b>it'll have to do</b>.");
 		clearMenu();
-		addButton(0,"Next",moderateExhibitionOmniFap);
+		addButton(0,"Exhibitionism",moderateExhibitionOmniFap);
+		//Special new texas shit
+		if(pc.hasItem(new GravCuffs()) && rooms[currentLocation].planet == "PLANET: NEW TEXAS" && rooms[currentLocation].hasFlag(GLOBAL.PUBLIC))
+		{
+			addButton(1,"CuffSelf",newTexanGanguBangu,undefined,"Cuff Yourself","You bet that if you cuffed yourself naked somewhere public, there'd be at least one randy bull to give you a reaming.");
+		}
 		return;
 	}
 	//Pussy out, unless you're being force-fapped.
@@ -1949,7 +2024,7 @@ public function grayGooCockSleeveII(allowIt:Boolean = false):void
 
 	if (allowIt)
 	{
-		output("With a gasp, you feel the slender tendril of goo slip inside you. [goo.name] keeps it short and small, focusing more on control that just filling you with goo-cock. She hones in on the tiny little bulb of your prostate with unerring accuracy, putting just enough pressure on it to make your [pc.cock] leap and start to leak. The moment a drop of pre-cum pours into her, your gooey companion coos happily, licking her lips hungrily.");
+		output("With a gasp, you feel the slender tendril of goo slip inside you. [goo.name] keeps it short and small, focusing more on control than just filling you with goo-cock. She hones in on the tiny little bulb of your prostate with unerring accuracy, putting just enough pressure on it to make your [pc.cock] leap and start to leak. The moment a drop of pre-cum pours into her, your gooey companion coos happily, licking her lips hungrily.");
 	}
 	else
 	{
@@ -2612,7 +2687,7 @@ public function moderateExhibitionOmniFap():void
 		else output("onlookers");
 		output(" gasping as you groan and rub your [pc.vaginas] and [pc.asshole], perversely stretching out your orgasmic high for as long as you can!");
 	}
-	output("\n\nAfter the afterglow wears off, your cheeks burn as you realise just how much of a spectacle you made. You really didn’t mean to touch yourself that much! For some reason, you’re filled with a fuzzy sense of fulfilment. You’d better not do this kind of thing too often - it feels like it could be addictive!");
+	output("\n\nAfter the afterglow wears off, your cheeks burn as you realize just how much of a spectacle you made. You really didn’t mean to touch yourself that much! For some reason, you’re filled with a fuzzy sense of fulfilment. You’d better not do this kind of thing too often - it feels like it could be addictive!");
 	if(pc.exhibitionism() >= 75) output(" Could... could you secretly be an exhibitionist, perhaps-?");
 	processTime(20+rand(10));
 	pc.exhibitionism(1);
@@ -2621,3 +2696,338 @@ public function moderateExhibitionOmniFap():void
 	addButton(0,"Next",mainGameMenu);
 }
 
+
+/*BIONAHOLE SHIT
+Tamani BionaHole
+//Tooltip: A living sextoy, BionaHoles are cloned vaginas in advanced life-support sheaths. This particular model has a bright pink sheath with a sparkly silver signature on the side, and its label indicates it’s cloned and modded to be exactly like the vagina of TamaniCorp’s oversexed CEO.
+//Cost: 5,000 C.
+//biona.color = pink
+//biona.sheathColor = pink
+//biona.texture = Nubby
+
+Nivas BionaHole
+//Tooltip: A living sextoy, BionaHoles are cloned vaginas in advanced life-support sheaths. This particular model has a sheath so dark blue that it’s almost black, with a big red lipstick kiss on the side. The label tells you it’s cloned directly from galaxy-famous hyperporn starlet Nivas Oxonef.
+//Cost: 5,000 C.
+//biona.color = creamy
+//bionaSheath.color = dark blue
+//biona.texture = smooth
+*/
+
+public function bionaColor(arg:String = "Nivas"):String
+{
+	if(arg == "Nivas") return "creamy";
+	else if(arg == "Tamani") return "pink";
+	return "<b>ERROR UNDEFINED COLOR</b>";
+}
+public function bionaSheathColor(arg:String = "Nivas"):String
+{
+	if(arg == "Nivas") return "dark blue";
+	else if(arg == "Tamani") return "black";
+	return "<b>ERROR UNDEFINED SHEATH COLOR</b>";
+}
+public function bionaTexture(arg:String = "Nivas"):String
+{
+	if(arg == "Nivas") return "smooth";
+	else if(arg == "Tamani") return "silken";
+	return "<b>ERROR UNDEFINED TEXTURE</b>";
+}
+
+//Using a BionaHole
+//Add each owned to Masturbation menu
+public function bionaholeUse(arg:String = "Nivas"):void
+{
+	CodexManager.unlockEntry("BionaHoles");
+	//Always tutorial firsttime.
+	if(arg == "Nivas" && flags["NIVAS_TUTORIAL"] == undefined)
+	{
+		bionaHoleInstructionalBullshit();
+		return;
+	}
+	else if(arg == "Tamani" && flags["TAMANI_HOLED"] == undefined)
+	{
+		tamaniBionaholeInstruction();
+		return;
+	}
+	clearOutput();
+	var x:int = pc.cockThatFits(500);
+	if(x < 0) x = pc.smallestCockIndex();
+	showName("BIONAHOLE\nUSAGE");
+	author("Savin");
+	output("Deciding to have a little fun with your living sextoy, you ");
+	if(currentLocation == "SHIP INTERIOR") output("pop the BionaHole off its charger");
+	else output("fish the BionaHole out of your pack");
+	output(" and twist off the vented cap, revealing the " + bionaColor(arg) + " flesh beneath. The visible part of the toy looks exactly like a perfectly shaved woman’s vulva, complete with mons and lips that glisten with just a hint of moisture. The cloned cunt looks positively delicious - enough so that you bring it up to your [pc.lips] and give it an experimental lick. The taste is lush and <i>alive</i>, warm and sweet in the same way any other pussy ought to be. And like a real cunt, the lips flush with arousal when you touch them, gently clenching around your [pc.tongue] as it passes between them.");
+	output("\n\nGrinning to yourself, you ");
+	if(!pc.isNude()) output("slip out of your clothes");
+	else output("toss your gear aside");
+	output(" and slip down ");
+	if(currentLocation != "SHIP INTERIOR") output("onto the ground");
+	else output("onto your cabin’s chair");
+	output(", wrapping a hand around your [pc.cock " + x + "]. There’s no sense in foreplay with a sextoy, even a living one like this, so you give yourself a few quick strokes to hardness before aligning the " + bionaSheathColor(arg) + " sheath with your [pc.cockHead " + x + "], brushing the dark lips of the cloned pussy. Beads of moisture reach out to caress your crown, radiating a musky heat onto your [pc.cock " + x + "] that all but draws you in. The lips part effortlessly");
+	//if bigcock:
+	if(pc.cockVolume(x) >= 600) output(", inhumanly elastic for your pleasure");
+	output(", letting you easily push the " + bionaSheathColor(arg) + " package down your rock-hard rod. The inside is as hot and wet as you’d expect from any girl, with " + bionaTexture(arg) + " walls that squeeze tightly around your schlong, throbbing in their own right as you stimulate the pussy’s tenderest spots.");
+	output("\n\nYou sink the sheath down ");
+	if(pc.cockVolume(x) < 500) output("until it’s pressing against your groin, completely enveloping your [pc.cock " + x + "] in its sultry embrace");
+	else output("until your [pc.cockHead " + x + "] is battering against the sealed back of the pussy’s channel, wrapped so tightly by " + bionaTexture(arg) + " wetness that you can barely think");
+	output(". Leaning back, you let your eyes roll closed and start to piston the BionaHole up and down your lube-slicked shaft. The toy is everything you’d expect it to be, reacting as if it was mounted between its owner’s legs, clenching and drooling and flushing with its own arousal. You can see its clit swelling, so sensitive that you can’t help but twist your thumb down to caress it. The pussy trembles at your touch, drenching you in sweet fem-cum at the apex of every thrust between its lips.");
+	output("\n\nThe warmth and wetness shrouding your prick, the way the toy squeezes lovingly around your thrusting length, is enough to easily bring you over the edge. You gasp, sucking in a sharp breath as your whole body clenches in preparation, forcing you to arch your back");
+	if(pc.tailCount > 0)
+	{
+		output(" and fling your tail");
+		if(pc.tailCount > 1) output("s");
+		output(" straight-out behind you");
+	}
+	output(" as you cum. A geyser of [pc.cumNoun] floods from your [pc.cockHead " + x + "] into the living sextoy’s waiting reservoir, filling the cloned cunny with your seed ");
+	if(pc.cumQ() < 400) output("until you’re utterly spent.");
+	else if(pc.cumQ() <= 1500) output("until the toy’s so full you’re afraid it will burst.");
+	else output("as wave after wave of [pc.cumNoun] fills it with inhuman magnitude, quickly overwhelming the poor toy’s ability to cope. Spunk gushes out of its tight pussylips and onto your lap, washing you down in spooge.");
+
+	output("\n\nWith a heavy sigh, you flop back and release your grip on the BionaHole, letting the " + bionaSheathColor(arg) + " case hang from your slowly deflating member");
+	if(pc.hasKnot(x)) output(", caught on the bulk of your [pc.knot " + x + "]");
+	output(". It takes a moment for you to catch your breath");
+	if(pc.cumQ() > 1500) output(" and clean up the generous mess you’ve made");
+	output(" before you pop the well-fucked toy off your cock and put its seal back on - lucky for you, it’s self cleaning.");
+
+	output("\n\nYou ");
+	if(currentLocation == "SHIP LOCATION") output("return it to its power charger");
+	else output("toss it back in your pack");
+	output(" and get ready to return to work.");
+	IncrementFlag("NIVAS_BIONAHOLE_USES");
+	processTime(25+rand(10));
+	pc.orgasm();
+
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Using Tamani’s BionaHole
+//By Fenoxo
+//purple hair
+//Pointy ears
+//Punky
+//Corset(leather)-straining breasts - purple nips
+//Violet eyes
+//One nip pierced with hardlight ring
+public function tamaniBionaholeInstruction():void
+{
+	clearOutput();
+	showBust("TAMANI_NUDE");
+	author("Fenoxo Fenbutt");
+	output("Excited to fuck a perfect copy of one of the galaxy’s top CEOs, you pull the protective cap off the Tamani Ultralux Edition BionaHole. Inside is as perfect a pubic mound as you’ve ever seen. Flawless, bubblegum-pink skin surrounds a puffy slit so vibrantly purple that it would look at home on an old-fashioned neon light. Moisture beads on the flush petals like morning dew, ensuring it’ll be lubricated and ready to go at a moment’s notice. You could probably pull it out of its case at any time, night or day, and Tamani’s cunt would be drooling for you all the same.");
+	output("\n\nThere’s no need to rush into this, however. The high-tech sex-toy came with a holovid featuring the corporate tart herself, titled <i>“Fucking My Pussy,”</i> and ");
+	if(flags["TAMANI_HOLED"] == undefined) output("you can think of no better time to watch it than now.");
+	else output("it should be just as fun to watch as it was the first time.");
+	if(currentLocation != "SHIP INTERIOR") output(" You load it up on your Codex and prop it up so that you can get a good look at it while your hands are busy.");
+	else output(" You load it up on your ship’s console. It beats the hell out of trying to use the tiny projectors in your Codex.");
+	output(" A crack of static splits the air a moment before the hologram resolves into the unmistakable owner of the cloned cunt in your palm.");
+	output("\n\nA vision of fushia curves gift-wrapped in lace gazes down somewhere to the left of you, a knowing smile across her purple-veneered lips. <i>“Hey there, " + pc.mf("stud","cutie") + ". If you’re watching me, then you’ve got the hottest, wettest, best-feeling pussy on this side of the core in your hands, but before you get started, please calibrate your projectors so that I’m appropriately positioned. I want you to get the complete experience, and it just wouldn’t be the same if it sounded like I was moaning for some");
+	var x:int = pc.cockThatFits(400);
+	if(x < 0) x = pc.smallestCockIndex();
+	if(pc.mf("m","") == "m")
+	{
+		if(pc.cocks[x].cLength() >= 12) output(" other big-dicked boy");
+		else output("one else’s delicious dick");
+	}
+	else
+	{
+		if(pc.cocks[x].cLength() >= 12) output(" other big-dicked breeder");
+		else if(pc.hasVagina()) output(" other herm with a needy, pent-up dick");
+		else output("");
+	}
+	output(". Just give the ‘enter’ key a smack when you’re all done, and pretend it’s my ass.”</i>");
+
+	output("\n\nYou tap a few buttons to rotate her to face you, then align her to be just above your crotch.");
+	if(currentLocation != "SHIP INTERIOR")
+	{
+		output(" Sure, the miniature holo-projectors make her look a little small, ");
+		if(CodexManager.entryUnlocked("Raskvel")) output("like a raskvel");
+		else output("like some kind of oversized-pixie");
+		output(", but you’re already pushing the limits of your Codex’s abilities.");
+	}
+	else output(" Her wide hips almost perfectly straddle your own, giving a convincing approximation of coitus with the dolled-up, executive slut.");
+	output(" If it wasn’t for your arm disappearing into her holographic midsection, you could almost imagine the real Tamani was right here, on top of you and slowly dripping moisture onto your crotch. You smack the enter button, satisfied that her mischievous, violet eyes are meeting your own.");
+	output("\n\n<i>“All finished? But we’re just getting started!”</i> Tamani feigns a pout while squeezing her tits together into a valley of cleavage. <i>“I’m sure you’ve got more of that warm, sticky stuff for me and my pretty, purple pussy, doncha?”</i> She bites her lower lip and looks over your [pc.chest]. <i>“Fuck, I can’t wait anymore. Go ahead and stick it in. Shove your cock in my pussy, " + pc.mf("stud","slut") + ". I promise, I won’t mind.”</i>");
+	output("\n\nLining the BionaHole up with your [pc.cockNoun " + x + "] is surprisingly difficult when you can’t see either through the taut belly of your simulated sex partner, forcing you to rely on touch alone. Your [pc.cockHead " + x + "] bounces off the edge of the slippery flesh two or three times before you blindly hit paydirt, spreading the slippery entrance open with your turgid length. The buttery-slick curtains part around you, welcoming you, begging you to slide deeper, and you do, nestling yourself firmly into the slippery crevice. It’s just as warm as the real thing.");
+	output("\n\nSlowly gyrating her hips in counterclockwise circles, Tamani quietly moans, obviously enjoying the feeling of something entering her snatch. <i>“Oooh, somebody’s eager to get inside. And here I thought you’d have the self control not to plunge in straightaway.”</i> She giggles, her projected breasts jiggling just before your eyes. <i>“But I guess my pussy really is irresistible, isn’t it? Once you’ve tasted it, you can’t think about anything else but nutting inside. I bet you’d enjoy that, right? The inside is just </i>so<i> warm and wet, so utterly and completely cum-hungry. You’ve just got to give it what it wants!”</i>");
+	output("\n\nThere’s no point in arguing with her. Aside from the fact that she’s a holographic projection, she’s right - her cunt is squeezing down around your [pc.cock " + x + "] like a long lost lover, smothering you in velvety caresses, lashing your veiny length with whip-cracks of erotic sensation. You very nearly cum for her already, but you hold out for now. You’re just getting started, and you don’t want to cum before you get to the climax of this recording.");
+	output("\n\nBouncing and gyrating atop you, Tamani coos, <i>“Come on, " + pc.mf("stud","slut") + ", really let me have it. Don’t hold back!”</i> She moans, high-pitched and feminine, an enticement to continue your ravaging of her vagina, holographic or otherwise. She’s all too happy to have you buried deep inside. <i>“It feels great, right? You know, the harder you fuck me, the wetter I’ll get. Make sure you bottom out every time, just like... just like that~”</i> Her voice lilts almost musically, driven to the upper register by the unsubtle intrusion of a too-eager phallus.");
+	output("\n\nYour up-and-down stroking synced to the tempo of the bouncing harlot long ago. There’s no better way to do it really. It feels so much better when the quivering slit in your hand is pumping your cock right along with the moaning mess above. It’s so much more <i>real</i> that way, like you’re really fucking Tamani - like that lush, lewd body is trembling with the pleasure of mounting you. You groan and lift your hips to meet the downward sliding pocket-cunt. It splatters its libidinous drippings across your crotch");
+	if(pc.balls > 0) output(", drenching your [pc.balls]");
+	else if(pc.hasVagina())
+	{
+		output(", coating your cunt");
+		if(pc.totalVaginas() > 0) output("s");
+		output(" with foreign moisture");
+	}
+	output(". The real Tamani must drink gallons of water, just to feed her soaking quim.");
+	output("\n\n<i>“Oh! Harder!”</i> the purple-haired hussy cries. <i>“Take me harder!”</i> Her skin has broken out in a fine sheen of sweat. Small droplets roll down her curves, beading off her amaranthine nipples. She glistens wetly, her narrow waist and wide hips allowing you to watch her gleaming ass flex with the effort of riding you. Tamani’s pussy clutches desperately to your cock when you bottom out, undulating up and down your shaft until you feel delirious with pleasure. She leans low, her tits swaying just in front of your face. You can pick out every bit of pebbly texture on her areolae, but it’s hard to keep your eyes from rolling back.");
+	output("\n\nYou can feel your [pc.cocks] tightening and flexing from pleasure now.");
+	if(pc.hasVagina()) 
+	{
+		output(" Juice dribbles down your [pc.thighs] - not just hers, but yours as well. You slide a few fingers into ");
+		if(pc.totalVaginas() > 1) output("a");
+		else output("the");
+		output(" needy slit, strumming your own feminine folds and wishing you could somehow fuck them as well.");
+	}
+	output(" A rhythmic tightening ache wells up inside you, burning hot with the need for release. Tamani was right. You really do want to creampie her pussy. UGC peacekeepers could ");
+	if(currentLocation == "SHIP INTERIOR") output("break down your cabin door");
+	else output("catch you in the act right now");
+	output(", and you wouldn’t care. They’d have to pry the lewdly slurping sex-toy out of your hands with a crowbar.");
+
+	output("\n\nTamani visibly shudders, sending her breasts bouncing, slapping and jostling for far longer than you’d expect. You desperately wish you could reach up and grab hold of one, and vow to do just that should you ever get to fuck her for real. She moans, <i>“Mmmm, nothing like a little micro-orgasm to remind me of why I do this.”</i> Giving you a serious glance (but not slowing her gyrations in the slightest), Tamani asks, <i>“You haven’t cum yet, have you?”</i> Her pussy makes a lurid squelch as it bottoms out once more, fully engulfing your [pc.cock " + x + "]. <i>“No little orgasms for you, " + pc.mf("stud","slut") + ". I’m gonna give you a big one, and-mmm.... You’re gonna make it extra gooey for me.”</i> She gropes her own tit, twisting her hardlight nipple ring, any further words turned incoherent by libidinous moans.");
+	output("\n\nThe elfin-eared woman is right. You can feel the heat of a powerful orgasm welling up from inside you, engorging your [pc.cocks] with almost painful amounts of blood. Right now, you’re as hard and as thick as you’ve ever been, and ");
+	if(pc.cumQ() < 100) output("you’re definitely leaking pre-cum into her drooling depths");
+	else if(pc.cumQ() < 1000) output("you’re definitely spilling streams of pre-cum into her sodden depths");
+	else output("you’re practically pissing pre-cum into her sodden depths, flushing her lube out with your own virile excesses");
+	output(". You could push yourself over the edge right now with a few too-quick pumps, but you hold off, letting the pleasure rise with maddening slowness to crescendo, building that ball of need within you until it feels white-hot and molten.");
+	output("\n\n<i>“You’re getting so big inside me! I bet you want to cum now, right?”</i> Tamani shivers and grabs her boobs in both hands, none-too-gently kneading her pillowy mammaries. <i>“I think that’s a pretty good idea.”</i> She bites her lip to stifle a moan. <i>“It’s not healthy to hold it in </i>too<i> long. You should make sure you bottom out when you cum and give my cunt a spunk bath.”</i> She leans down, phantom breasts squishing down an inch above your [pc.fullChest]. <i>“I can’t imagine any of my pretty pussies going without a gooey filling, so you had better cum long and hard.”</i>");
+	output("\n\nYou groan, your climax being coaxed out one filthy word at a time. Every nerve on your [pc.cockNoun " + x + "] is tingling and primed, ready to deliver waves of ejaculatory bliss.");
+	output("\n\n<i>“Come on, {stud/slut}, cum for me. Give me every drop~”</i> Tamani arches her back and howls in delight. <i>“That’s it, you just lie back and squirt squirt squirt~”</i>");
+	output("\n\nYou do just that, lancing [pc.cumNoun] arc after arc of [pc.cum] into the silk-textured depths of Tamani’s BionaHole. The slutty CEO doesn’t miss a beat, even though she’s obviously getting a filling of her own. Her belly visibly pudges out with some nameless pornstar’s seed, giving her a supple roundness that only enhances her feminine appeal. You easily imagine that it’s your own [pc.cumNoun] doing the inflating,");
+	if(pc.cumQ() < 200) output(" even though the creampie you’re delivering is nowhere near stuffed enough for that.");
+	else if(pc.cumQ() < 2000) output(" a task made easier by the way your ejaculate has pressurized her interior, causing your [pc.cumColor] spunk to spill out over your crotch in thick waves.");
+	else output(" even though you could manage that from a single, potent squirt. Rivers of your [pc.cumColor] stuff boil out around your seizing member, running over your [pc.hips] and [pc.thighs] like flows from an erupting volcano.");
+	output("\n\nTamani coos, gathering a strand of suspiciously white fluid from between her legs to suckle. <i>“Mmm!”</i> She shudders and shakes, eyelids fluttering in a cum-triggered orgasm.");
+	if(pc.fluidColorSimple(pc.cumType) != "white") output(" A shame they couldn’t design the holo to color-correct the fluids to match your own.");
+	output(" <i>“Good job, " + pc.mf("stud","slut") + ". Be sure to get some Spunkbuster supplements from your local TamaniCorp store, okay? I want you to take good care of my hungry little clone-cunt and bathe it in cum daily, okay?”</i>");
+	output("\n\nShe blows you a kiss, and the projection fades away, leaving you flat on your back with a ");
+	if(pc.cumQ() < 200) output("creampied pussy impaled on your [pc.cockNoun " + x + "].");
+	else if(pc.cumQ() < 2000) output("absolutely flooded pussy impaled on your [pc.cockNoun " + x + "].");
+	else output("flooded pussy impaled on your [pc.cockNoun " + x + "] and a puddle of [pc.cum] under your [pc.butt].");
+	if(pc.cockTotal() == 2) output(" Your other penis went off too, painting your [pc.chest] with a thick layer of free-flying [pc.cumNoun].");
+	else if(pc.cockTotal() > 2) output(" Your other penises went off too, painting your [pc.chest] with a thick layer of free-flying [pc.cumNoun].");
+	output("\n\nDamn, what a slut.");
+	IncrementFlag("TAMANI_HOLED");
+	processTime(27);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//BionaHole Instructional Holodisk: Nivas Oxonef
+//Get when you buy her bionahole. Stick in Key Items, access via Codex. Gotta have a cock for this scene.
+//Always play this scene the first time you try and use her bionahole.
+public function bionaHoleInstructionalBullshit():void
+{
+	clearOutput();
+	author("Savin");
+	showBust("NIVAS");
+	showName("NIVAS\nOXONEF");
+	var x:int = pc.cockThatFits(500);
+	if(x < 0) x = pc.smallestCockIndex();
+	output("Deciding you want to see what it’s like to fuck the galaxy’s most famous pornstar, you grab your ");
+	if(flags["NIVAS_TUTORIAL"] == undefined) output("new");
+	else output("trusty");
+	output(" BionaHole and pull off its cap, revealing the perfectly smooth, creamy ausar mons mounted in the dark blue sheath. You immediately feel the warmth radiating off of Nivas Oxonef’s puffy pink pussylips; they seem to wink at you as you drink in its lush smell and heat, gently glistening with feminine moisture.");
+	output("\n\nBut you don’t want to just sit down and jam your dick into the toy’s lips... at least, not without a little extra stimulation. As you get rid of your [pc.gear], you grab your Codex and prop it up where you can see the screen from ");
+	if(currentLocation != "SHIP INTERIOR") output("somewhere comfortable on the ground");
+	else output("your bed");
+	output(". Satisfied, you scroll through your stored media until you alight on the <i>“instructional”</i> holovid that came with the toy and punch it on.");
+
+	output("\n\nYou sit and and start to gently caress your [pc.cock " + x + "] as the vid starts to play, scrolling quickly through a bunch of multi-language legalese and credits before opening to a shot of Nivas herself, sitting back and relaxing on a plush leather couch. She’s as smoking hot an ausar babe as you could expect: long hair dyed a lustrous dark blue parting around a pair of tall canid ears. She’s got a cutely feminine face with big almond-shaped blue eyes under a hint of aqua shadow, and full pink-painted lips. Nivas is rocking a pair of tight black latex booty shorts that show off a lot of long, slender leg, and a too-tight latex top revealing a very, very generous amount of creamy cleavage. Several colorful silk ribbons adorn her dark blue tail, swishing beside her on the seat as the camera pans up and down her half-bare body.");
+	output("\n\n<i>“Hey there,”</i> the starlet purrs seductively as the camera drone settles on her face. She blows it - and you - a rosy-lipped kiss, wrapping her arms around the back of the couch and thrusting out her ample chest.");
+	output("\n\n<i>“Hey,”</i> a disembodied masculine voice says from behind the camera. <i>“Why don’t you introduce yourself, beautiful?”</i>");
+	output("\n\nNivas chuckles and rolls her eyes. <i>“I think we all know the answer. Why don’t you look at the side of that toy you’ve got there, big boy?”</i>");
+	output("\n\nShe reaches under the camera’s view and retrieves a dark-cased BionaHole, the same as the one you’re holding in your hand. <i>“I’m Nivas Oxonef, and this is my pretty little pussy,”</i> she smiles, holding the sheathed twat up lips-first to the camera, giving you a good look at the clone of the toy in your hands. She brushes a blue-furred finger across one of its lips, using her long nail to peel them apart and reveal the dark, wet passage between them.");
+	output("\n\n<i>“I’m here to show you just how to get the most out of </i>your<i> brand new TamaniCorp BionaHole, a perfect clone of the galaxy’s most well-fucked piece of ausar tail,”</i> Nivas says, running a pair of fingers from the lips of her BionaHole down to her latex shorts, rubbing the material just over her crotch. <i>“Guaranteed to satisfy you again and again and again, or... well, take the entire industry’s word for it: it will.”</i>");
+	output("\n\nShe gives the camera another playful wink and stands up; her shorts ride high, digging into the crevice between her legs so tightly you’re sure you can see excitement glistening on her upper thighs. The porn star takes a few leggy strides, reaching out and grabbing the camera. It follows her back to one of the couch’s armrests, looking down the naked body of a human man who’s just laid down, hands wrapped around his thick cock. Nivas lets the drone go and climbs back onto the couch, straddling the man’s legs, putting chest and crotch right in the screen’s focus. You can’t even see much of the man from the drone, just his chest and erect cock - you’re in POV mode now!");
+	output("\n\n<i>“I want you to just lay back, relax, and let my pussy do aaallll the work for you,”</i> she purrs at you, gently brushing the man’s hand aside to leave his cock standing straight up like a great big pole of meat. You mimic his position as best as you can, lying straight back and willing your cock to hardness.");
+	output("\n\n<i>“You want to be nice and hard before we get started,”</i> she tells you, reaching out to grab the man’s cock in her furry hand. He gasps and grunts as she starts to stroke, saying, <i>“I like to use my hands for that part, but if you want to imagine my big, soft breasts wrapping around your meat...”</i> one hand reaches up to cup a tit through her latex top, squeezing hard through the creaking material. <i>“Well, I won’t blame you. Whatever gets you nice and hard for me...”</i>");
+	output("\n\nLetting your imagination run wild, you wrap your hand around your [pc.cock " + x + "] and start to stroke, matching the motions of the seductive starlet on screen. It doesn’t take long before you’re at full mast, and as by some perfectly timed coincidence, Nivas decides her partner’s ready too. <i>“Mmm, that’s a tasty-looking cock. My pussy’s practically soaking itself already... it just can’t wait to feel you deep inside it.”</i>");
+	output("\n\nYou watch eagerly as the starlet takes the dark blue sheath in her hands and angles it directly over her partner’s thick crown. <i>“Now here comes the best part... or the second best, anyway,”</i> Nivas croons, rocking the lips of her toy back and forth around the man’s cock; you mirror her movements, letting your [pc.cockHead " + x + "] bathe in the wet warmth of Nivas’s cloned cunny. Slowly, you and the dyed ausar babe both lower the toy down, agonizingly slow, letting you wallow in just how hot she is, so smooth and slick that you feel like you could fall it. She’s ");
+	if(pc.cockVolume(x) < 200) output("not tight");
+	else if(pc.cockVolume(x) < 400) output("actually kind of tight, but nowhere as much so as most girls would be");
+	else output("blissfully tight");
+	output(". Clearly the TamaniCorp designers made sure to capture the whole Nivas Oxonef experience - after all, she’s basically the galaxy’s biggest size queen! You moan in pleasure as the toy slowly sinks down ");
+	if(pc.cockVolume(x) < 500) output("to encapsulate your entire shaft");
+	else output("until your [pc.cockHead " + x + "] is battering the back of its throbbing canal");
+	output("; all the while it throbs and clenches down around you like a pussy ought to, responding to your stimulation with lurid squeezes and drooling musky lube down your cock.");
+
+	output("\n\n<i>“Mmm, you’re stretching me out sooo nice,”</i> Nivas moans, arching her back and wagging her tail frantically behind her. <i>“Nothing my pussy loves more than a big, thick cock. God, I’m so wet... aren’t I?”</i>");
+
+	output("\n\nThe man grunts in affirmation, bucking his hips into the toy’s warm embrace. <i>“Mmm, now that you’re nice and deep, I want you to put your hands down. That’s right, let my pussy work... feel it squeezing down around you, so hot and wet... it’s so much more sensitive than you can imagine, like one big, throbbing clit. Feel it? Goooood, let it sit there, get used to you... enjoy that big cock inside it.”</i> Oh, you can feel it alright. The BionaHole feels like it might just be cumming, spurting juices down your rod and squeezing rhythmically all along your length. God damn, it feels good, even when it’s not moving...");
+
+	output("\n\nYou don’t doubt the living toy could make you cum just like that, but Nivas has other plans in mind. Winking at the camera, she shifts forward, pressing her crotch up against the side of the sheath and groaning lowly. <i>“Alright. I think I’m nice and ready for you, huh? Now let’s get moving...”</i>");
+
+	output("\n\nSlowly, Nivas rises on her knees, taking her drooling, cloned cunny up her partner’s shaft in sync with her hips, just as if it were her real pussy. The man moans, just like you do when you drag the toy all the way up until its lips are squeezing your [pc.cockHead]. Nivas smiles and bucks her hips, down and up and down again, vicariously bouncing on her partner’s cock. Her latex gear creaks and groans as she moves, trying valiantly to keep her big breasts from bouncing around under her top - and failing in the most alluring way, making her tits jiggle hypnotically beneath the dark latex.");
+
+	output("\n\n<i>“Don’t hold back, now,”</i> she murmurs, moving her hips and toy faster. <i>“You don’t have to impress me... this is all about you, baby. All about how amazing my pussy feels for you, and how much you enjoy it draining all the cum from you! Now give me every drop, okay?”</i>");
+
+	output("\n\nYou can’t argue with that logic - what’s to stop you from just surrendering to the pleasure? You ram your hips into the pistoning sextoy, letting the sodden twat milk your [pc.cock] for all its worth. It doesn’t take long to bring yourself to the brink, mimicking Nivas’s skillful ministrations on-screen that has her partner groaning and squirming, trying desperately not to cum - <i>“Naughty dick,”</i> Nivas chides, moving her hips faster. <i>“I told you to cum!”</i>");
+
+	output("\n\nYou cum.");
+
+	output("\n\nExplosively, violently, orgasmically, you unleash a torrent of seed into the cloned cunt in your hands, flooding the dark sheath with as much spunk as you can offer. As if she knows what’s going on in the real world, Nivas moans for the camera, grinding her hips as she milks out her partner’s spunk until it’s drooling back down his shaft, staining his crotch into a sloppy white mess.");
+	if(pc.cumQ() < 200) output(" Damn, that’s a lot!");
+	else if(pc.cumQ() < 1500) output(" Just like what you’re doing!");
+	else output(" This guy’s got nothing on you, though - you’re going to be reeking of this lake of cum for hours!");
+
+	output("\n\n<i>“Ohh, you must have been sooo pent up,”</i> Nivas coos, running a hand through the spunk on the man’s crotch and bringing it up to her lips, sampling the salty seed. <i>“Saving it all up for me, were you? How sweet... but now that you’ve got 24/7 access to this pussy, you never need to go blue-balled again.”</i>");
+
+	output("\n\nGlancing up at the camera, Nivas relishes the bit of cum she’s cleaning off her wolfish claw. <i>“Feel free to use my pussy as much as you want. Every day... ten times a day... even more. I can take everything you can give me and then some, baby. Just plug this holo in and fap away...”</i>");
+
+	output("\n\nShe blows the camera a kiss and pulls the BionaHole off her partner’s cock, letting a gush of spunk drool out from its lips. <i>“Now if you’ll excuse me, I’ve gotta clean up this awful mess I’ve made. See you around, cutey.”</i>");
+
+	output("\n\nThe vid flicks off, leaving you to clean yourself up - probably the biggest difference between the toy and having a real cum-hungry whore to tongue-clean your [pc.cock " + x + "]...");
+	flags["NIVAS_TUTORIAL"] = 1;
+	IncrementFlag("NIVAS_BIONAHOLE_USES");
+	processTime(37+rand(6));
+	pc.orgasm();
+	//[Next]
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+/*output("\n\n");
+output("\n\nUsing Syri’s BionaHole");
+output("\n\n//Must have follower Syri, have gotten her twat-in-a-box. PC must have a cock that can fit.");
+output("\n\n//Add [BionaHole] to Syri’s menu.");
+output("\n\n//Tooltip: Ask Syri if you can borrow her perfectly packaged pussy for a little playtime.");
+
+output("\n\nYou take a step towards your asuar lover, slipping one hand around Syri’s supple waist... and the other around behind her, to the hefty black pipe sitting on her desk. <i>“Mind if I borrow this?”</i> you ask with a coy smile, showing the randy pup what you’ve got in mind.");
+
+output("\n\n<i>“What? My ass not good enough for you, Steele?”</i> she teases, grabbing your [pc.butt]{ through your clothes} while you’re still so close. The way she moves against you, you can feel a very familiar stiffness growing against your {thigh // belly // chest} through Syri’s jeans. <i>“Yeah, I guess you can use it... if you don’t mind sloppy seconds. Let me tell you, I’ve been enjoying the hell out of it. Something just gets me going like crazy about fucking myself like that, watching those rosy red lips of mine quiver around my knot... mmf!”</i>");
+
+output("\n\nSyri chews her lip, blue eyes tracing you up and down. <i>“And one more thing. You can use it, but I get to watch. Deal?”</i>");
+
+output("\n\nWow, she really gets off on this! After a moment’s mock consideration, you agree to your lover’s terms and give her a gentle push back against the desk, a perfect place to perch while you sprawl out on her bed and get to work. Syri’s raven tail thumps audibly against the desk’s legs as she leans back against it, one hand supporting herself, the other starting to zip her fly down. Well, if that’s the way she wants it, you suppose you can put on a bit of show for the horny voyeur. You {pull off your clothes piece by piece, turning around to give Syri a good look at your [pc.butt] before showing off the half-hard rod of your [pc.cock], ready to plunge it into the wet vice of her erstwhile pussy. // don’t have much to strip off, and so spend a good deal of time crawling into the bed, showing off your bare ass and emphasizing your [pc.cock] - the last she’ll see of it before you sheath it in her erstwhile twat.} Glancing over your shoulder, you see that even the barest bit of teasing has Syri breathing hard, her double-Ds pressing against the front of her T-shirt with a pair of very obvious promontories at the crest of the perfect mounds.");
+
+output("\n\nWinking at your lover, you lie back on her bed and pop the ventilated lid from her custom-made BionaHole, revealing the smooth pink flesh beneath. A pair of rose-red lips gently reach up from the surface, glistening with moisture. You can feel the heat radiating off of the bio-preserved pussy, a sultry, muggy warmth that begs for you to slip a finger in and play. It’s hard to pass up the opportunity, and you quickly shift your grip around the black sheath to let you brush a pair of fingers gently across Syri’s pussylips. Just like you’d expect, the crimson lips twitch in response to your touch, squeezing down ever so slightly around a fingertip that you slip inside.");
+
+output("\n\n<i>“Mmm, you really know how to treat a pussy right,”</i> Syri teases from her perch, sitting on the edge of the desk. Glancing her way, you see the lusty ausar’s fished her broad red puppy-cock out from her pants, and with her legs splayed wide open, you’re treated to a picture-perfect view of her pillar of dogmeat. Her black-furred hand is wrapped around the still-slender base, slowly rubbing her fuzzy fingertips around where her knot will soon appear. Given what you’re about to do, you’re surprised she’s playing with her cock and not, say, a thick dildo - is she fantasizing about being in your place, or her pussy’s?");
+
+output("\n\nEither way, you’re going to give her a hell of a lot of fapping fuel! You plunge a pair of fingers deep into the BionaHole: the preserved pussy makes a lurid, wet noise as you finger-fuck it, drooling moisture around your digits as it feebly clenches. It’s amazing how sensitive it seems... especially when you run your thumb across its tiny little clit, brushing back the hood and caressing the swollen nub. If the toy were attached to a person, you’re sure she’d be moaning and squirming around you. Instead, though, all Syri’s twat can do is quiver and drool its warm juices all over your hand, giving you plenty of lube for what’s to come.");
+
+output("\n\nSatisfied with your efforts, you pop your fingers out and shift the black sheath down towards your crotch. You {spread your legs // move to emphasize your cock for Syri}, making sure your lover has a good view of the action. She certainly shows her appreciation, chewing her lower lip and fixing her big blue eyes on your [pc.cock]. Her hand moves faster around her own red prick, and you can see a faint glisten of white moisture on her pointed crown.");
+
+output("\n\nEmboldened by the effect you’re having on your lover, you press ahead, aligning your [pc.cockhead] with the sodden lips of her twat. The heat’s almost unbearable - her lips are hotter than any human girl’s could be, burning with alien desire even disembodied as it is. You’ve thoroughly turned her BionaHole on, and its flush lips draw you imperiously onward to penetration. Your breath catches as your {if flared: flared head presses against the pussylips, pushing in against them in demand of entrance //else: crown brushes between the lips of her pussy, hovering on the brink}. A second later and you’re in, pushing the hard black sheath down the length of your shaft.");
+
+output("\n\nGod damn, Syri was tight back in the day! Her cunt squeezes you {as tight as Syri’s ass ever has // like a soaked, smooth vice of flesh}. You slowly slide her BionaHole down, enveloping {your entire // the first eight inches or so} of your cock in her wet hole. As if it were still a part of her, Syri moans huskily, arching her back and furiously stroking herself; she’s definitely enjoying the show! <i>“Don’t be gentle, Steele,”</i> she grunts, taking her own advice as she beats her meat. <i>“I wanna see you pounding that filthy hole in!”</i>");
+
+output("\n\nYou’re more than happy to oblige. You stir the sheath around your [pc.cock], making sure you’re totally coated in her steamy juices before starting to pump it up and down your length; slowly at first, but you start to pick up the pace quickly enough, almost matching Syri’s own manic masturbation. She moans louder, her eyes narrowing until they’re almost closed, signaling her complete surrender to her primal urges. You don’t think your lover’s going to hold out much longer, and you’ve barely gotten started!");
+
+output("\n\nNot wanting let Syri get too far ahead, you prop up your [pc.legs] on the foot of the bed, giving you just enough leverage to start thrusting into her BionaHole’s slit. It clenches hard around you, a primitive reaction to a sudden onslaught of pleasure. Fem-juices drool down your shaft between thrusts, splattering your crotch{ and other cocks} with Syri’s own musky blend of girl-cum. The way the toy is twitching and squirming around you, you’re sure you’ve made it orgasm - if only it could talk! What you wouldn’t do to hear Syri’s screams if she were mounted on it.");
+
+output("\n\nYou’ll have to make do with the cries and moans she’s urging out of herself, pumping her shaft and groping her breasts. While you were distracted with her cunt, Syri’s ditched her coat and t-shirt, leaving those big, beautiful breasts of her bare for your gaze. Her dark little nipples look so stiff, eliciting a sharp gasp every time her furred hands move across them, pinching and pulling until she’s all but screaming.");
+
+output("\n\nJust like that, the dam breaks. Syri throws her head back at the peak of one of your thrusts, just as you’re {hammering her pussy to the limit // going balls deep in her pussy}. She shrieks and bucks her hips into her hand, joining her BionaHole-bound twat in spraying her juices all over. You recoil as a geyser of pearly ausar cream splatters onto the bed, missing you by inches. A second wave falls short, dirtying Syri’s fingers and thighs with drooling spunk.");
+
+output("\n\n<i>“Oh, fuck,”</i> she gasps, stumbling back against the desk. Her knot is flush with the bottom of her fist, and little trickles of white cream are still spurting out of her pointed top, rolling down her shaft and into her hand-fur like creamy lava. <i>“Y-you came too, right?”</i>");
+
+output("\n\nYou shake your head apologetically, still fucking yourself full force with her pussy. Syri curses and drops her jeans, letting them clatter to the floor as she strides towards you. <i>“Shit. Guess I’ll just have to make sure you’re not far behind!”</i>");
+
+output("\n\nYou give her a quizzical look, but she makes her intentions known quick enough: your lover slips down onto her knees, nuzzling up {under your balls // to the base of your cock} and running her tongue along your underside{ until she’s got her lips around your sack. She gives you one hard, long suck before popping off to tend to your shaft}. You gasp as she licks all the way up to the lips of her twat, wrapping her hands around the base and starting to massage {your nuts // your [pc.cunt] // the skin over your prostate}. Between her lips, tongue, and fingers and the pussy squeezing down on your cock, there’s not much you can do to hold back the tide of rising pleasure.");
+
+output("\n\n<i>“Gonna... gonna...”</i> you stammer, furiously stroking yourself off. Syri answers with a lusty moan muffled in cock, licking all the harder. She only urges you on, until with a gasp of pleasure you feel your climax shooting up through your shaft and into the waiting reservoir of Syri’s disembodied cunt. The living sextoy responds with a gush of its own juices, making a creamy mire of its tight channel as you {shoot your wad deep inside it // flood the BionaHole’s reservoir with your massive load // blast the BionaHole with more cum than even it can withstand, quickly covering yourself and Syri in a deluge of backwashed cum. Syri just laughs and licks her lips, cleaning herself off and swallowing down as much of your [pc.cumNoun] as she can get}. No sooner have you let loose into the flesh-filled sheath before Syri grabs it out of your hands, popping it wetly off your well-spent cock and bringing her rosey pussy-lips up to her mouth. Your eyes widen in surprise as Syri’s rough tongue vanishes into her own cunt, and she drinks down your steamy load from her juicy twat.");
+
+output("\n\n<i>“Mmm, delicious,”</i> she laughs, flashing you a cum-stained grin as she finishes her vulgar drink. <i>“Nothing better than cleaning up an epic creampie!”</i>");
+
+output("\n\nIf that’s how she likes it, you can only imagine the shenanigans she gets up to all by herself...");
+
+output("\n\nYou smile at Syri as she caps off her sheathed cunt and sets it aside before crawling into bed with you. Her tongue flicks across your [pc.cock], lapping up a bit of excess spooge before she curls up beside you, head resting on your [pc.chest]. <i>“I think that turned out to be a pretty fair deal...”</i>");
+
+output("\n\n<i>“Definitely,”</i> you agree, wrapping an arm around the ausar’s shoulders and pulling her close. The two of you enjoy the afterglow together for a long few minutes, nestled in each other’s arms, before you finally work up the strength to haul yourself out of bed and grab your gear. Syri gives you a playful swat on the [pc.butt] as you get up, telling you that <i>“Next time, {your pussy’s getting fucked // maybe I’ll drill </i>you<i> instead}!”</i>");
+
+output("\n\n[Next]");
+*/
