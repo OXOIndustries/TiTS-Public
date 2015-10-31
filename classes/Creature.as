@@ -12043,6 +12043,14 @@ package classes {
 		{
 			return (horns != 0 || hasStatusEffect("Horn Bumps")); 
 		}
+		public function removeHorns():void
+		{
+			hornType = 0;
+			horns = 0;
+			hornLength = 0;
+			removeStatusEffect("Horn Bumps");
+			return;
+		}
 		
 		public function eachHorn():String
 		{
