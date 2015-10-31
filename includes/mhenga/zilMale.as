@@ -4,7 +4,7 @@ import classes.Engine.Combat.DamageTypes.TypeCollection;
 //Male Zil Encounter
 
 // Flags:
-// TIMES_LOST_TO_ZIL  : TODO - FIXME
+// TIMES_LOST_TO_ZIL : TODO - FIXME
 
 public function maleZilEncounter():void {
 	userInterface.showBust("ZIL");
@@ -24,7 +24,7 @@ public function maleZilEncounter():void {
 	//[Repeat]
 	else
 	{
-		output("\n\nA faint buzz is the only warning you get before a male zil flutters out of the sky in front of you, crotch plate retracted and dick waving at head-height, just a few feet away. He winks and says, <i>“Hey, I brought a snack,”</i> while pulling his foreskin back just far enough to see an ebony tip peek through. <i>“You hungry?”</i>");
+		output("\n\nA faint buzz is the only warning you get before a male zil flutters out of the sky in front of you, crotch plate retracted and dick waving at head-height, just a few feet away. He winks and says, <i>“Hey, I brought a snack,”</i> while pulling his foreskin back just far enough for you to see an ebony tip peek through. <i>“You hungry?”</i>");
 		output("\n\n<b>It's a fight!</b>");
 		flags["ENCOUNTERED_ZIL"]++;
 	}
@@ -39,7 +39,7 @@ Combat Description:
 Combat Techniques:
 	Miss Text: The zil zips out of the way with a swift contortion of his agile frame.
 	Block Text: The zil's chitinous armor deflects your attack.
-	AI: Utilizes lust attacks unless damaged. Then has physical probability of 2 * missing HP (50% HP = 100% physical attacks). Flurry of blows or facehump if PC is stunned.  50% chance of using harden when below 75% HP.
+	AI: Utilizes lust attacks unless damaged. Then has physical probability of 2 * missing HP (50% HP = 100% physical attacks). Flurry of blows or facehump if PC is stunned. 50% chance of using harden when below 75% HP.
 */
 
 //	AI: Utilizes lust attacks unless damaged. Then has physical probability of 2 * missing HP (50% HP = 100% physical attacks). Flurry of blows or facehump if PC is stunned. 50% chance of using harden when below 75% HP.
@@ -94,7 +94,7 @@ public function zilCrotchGrind():void {
 
 //Pheromone Fan:
 public function zilPheromoneFan():void {
-	output("The zil abruptly begins to fondle his [zil.cock], stimulating the organ as he alters his wingbeats to gust musk-laced air your direction. He floats up high and flies erratically enough that you doubt you could hit him.");
+	output("The zil abruptly begins to fondle his [zil.cock], stimulating the organ as he alters his wingbeats to gust musk-laced air in your direction. He floats up high and flies erratically enough that you doubt you could hit him.");
 	if(pc.hasArmor() && pc.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
 	{
 		output("\n\nLuckily your [pc.armor] is sealed tight, so you unaffected by it. He grumps at his failed attempt. You definitely came prepared!");
@@ -109,7 +109,7 @@ public function zilPheromoneFan():void {
 		output(" There's nothing to do but try and hold your breath!");
 		output("\nEventually, you can hold your breath no longer, and you're forced to inhale the potent cloud deep into your lungs. Your heart hammers in your chest faster and faster while your [pc.skin] flushes and your lips unconsciously purse.");
 		if(pc.lust() < 33) output(" A tingling warmth in your crotch leaves no doubts as to the effectiveness of your alien foe's 'attack'.");
-		else if(pc.lust() <= 66) output(" The warm, incessantly building heat in your loins is getting hotter and hotter with every breathe you take.");
+		else if(pc.lust() <= 66) output(" The warm, incessantly building heat in your loins is getting hotter and hotter with every breath you take.");
 		else
 		{
 			output(" Your crotch feels so hot that you know you just HAVE to touch it soon. Damn this alien and his ");
@@ -230,15 +230,15 @@ public function winVsZil():void {
 		output("The zil gives one last feeble shudder as he struggles to remain upright, but the damage is simply too much. His wings cease their incessant buzzing and drop him straight onto his ass, causing him to wince in pain and discomfort. Looking up hesitantly, he slouches his shoulders in submission and admits, <i>“I'm yours, </i>");
 		if(pc.hasVagina()) output("<i>to breed</i>");
 		else output("<i>to play with</i>");
-		output("<i>, I guess.”</i> He cannot conceal the way his maleness swells inside its sheath-like skin.  What do you do?\n\n");
+		output("<i>, I guess.”</i> He cannot conceal the way his maleness swells inside its sheath-like skin. What do you do?\n\n");
 	}
 	//{Lust}
 	else
 	{
-		output("The zil tugs on his his boner almost feverishly by this point, throwing back his head and whimpering when amber juices begin to roll out of his concealed crown, beading on his knuckles before dripping free. His wings cease their fluttering and drop him to the ground.  Kneeling, he looks up at you eagerly and admits, <i>“I've never lost to an alien before. Are you going to </i>");
+		output("The zil tugs on his his boner almost feverishly by this point, throwing back his head and whimpering when amber juices begin to roll out of his concealed crown, beading on his knuckles before dripping free. His wings cease their fluttering and drop him to the ground. Kneeling, he looks up at you eagerly and admits, <i>“I've never lost to an alien before. Are you going to </i>");
 		if(pc.hasVagina()) output("<i>breed me</i>");
 		else output("<i>fuck me</i>");
-		output("<i>?”</i>  Regardless of your choice, his essence is flooding the air between you and driving your body to take him up on his offer.  What do you do?\n\n");
+		output("<i>?”</i> Regardless of your choice, his essence is flooding the air between you and driving your body to take him up on his offer. What do you do?\n\n");
 	}
 	//Raise lust to 33 minimum, menu.
 	if(pc.lust() < 33) pc.lust(33-pc.lust());
@@ -291,9 +291,9 @@ public function buttfuckDefeatedZil():void {
 	if(pc.isNice()) output("Chuckling happily, you tell the zil that you have every intention of playing with him for as long as possible.");
 	else if(pc.isMischievous()) output("Grinning mischievously, you inform the poor zil that you're going to have quite a bit of fun with him.");
 	else output("Lording a cruel smile over your latest prey, you let him know that you're going to have quite a lot of fun with him.");
-	output(" He looks up hopefully at your statement, but you grab him by his shoulders and spin him around, pushing him forward so that he's on his hands and knees, ass in the air.  His cute little ball-sack glistens with sweat from your recent exchange, connected by a narrow strip of soft taint to his tight, winking anus.  Combined with his well-filled foreskin, the male's softest, most vulnerable points are all lined up and displayed for you, one erotic line of pliant flesh sandwiched between the glossy, chitinous plates of his cheeks.");
+	output(" He looks up hopefully at your statement, but you grab him by his shoulders and spin him around, pushing him forward so that he's on his hands and knees, ass in the air. His cute little ball-sack glistens with sweat from your recent exchange, connected by a narrow strip of soft taint to his tight, winking anus. Combined with his well-filled foreskin, the male's softest, most vulnerable points are all lined up and displayed for you, one erotic line of pliant flesh sandwiched between the glossy, chitinous plates of his cheeks.");
 	
-	output("\n\nYou slap one of the zil's butt-plates and admire the way it compresses his asscheek down, distorting his anus slowly.  Spitting on his smooth pucker to lubricate it, you ");
+	output("\n\nYou slap one of the zil's butt-plates and admire the way it compresses his asscheek down, distorting his anus slowly. Spitting on his smooth pucker to lubricate it, you ");
 	if(pc.isTaur()) output("step forward to align ");
 	else output("handle ");
 	output("[pc.oneCock], pushing your ");
@@ -307,20 +307,20 @@ public function buttfuckDefeatedZil():void {
 	//{Sub 7":}
 	if(pc.cocks[x].cLength() <= 7) {
 		output("\n\nAlmost immediately, the wasp-boy's tight little hole lets you slide right in thanks to your saliva, perfectly tight around your " + pc.cockDescript(x) + " and reflexively squeezing down around you like a warm sleeve.");
-		if(pc.cockTotal() == 2) output("  Your other penis slides across his strip of exposed flesh, sawing through his crack with your pushes, far from neglected.");
-		else if(pc.cockTotal() > 2) output("  Your other penises slide across his exposed flesh and plated bottom, gaining what friction they can.");
-		output(" He sighs once you've bottomed out, and he slowly begins to leak, honey-like, from his bouncing boner, ribbons of the stuff dripping out of his covered cock.  Grabbing hold of his hips, you massage your fluttering, anal toy and make ready to truly plumb his depths.");
+		if(pc.cockTotal() == 2) output(" Your other penis slides across his strip of exposed flesh, sawing through his crack with your pushes, far from neglected.");
+		else if(pc.cockTotal() > 2) output(" Your other penises slide across his exposed flesh and plated bottom, gaining what friction they can.");
+		output(" He sighs once you've bottomed out, and he slowly begins to leak, honey-like, from his bouncing boner, ribbons of the stuff dripping out of his covered cock. Grabbing hold of his hips, you massage your fluttering, anal toy and make ready to truly plumb his depths.");
 	}
 	//{Sub 15":}
 	else if(pc.cocks[x].cLength() <= 15) {
-		output("\n\nYour " + pc.cockDescript(x) + " batters at the wasp-boy's tight little hole again and again, but it refuses to yield to your stubborn thrusts at first.  He obviously hasn't seen much action, as his butt just isn't used to stretching for a big, stiff cock like yours. You keep at it, and his anal defenses slowly fall before your amorous assault, at first just allowing your " + pc.cockHead(x) + " to slip inside and then almost gleefully accepting inch after inch of throbbing, " + pc.mf("male","herm") + " lust.");
+		output("\n\nYour " + pc.cockDescript(x) + " batters at the wasp-boy's tight little hole again and again, but it refuses to yield to your stubborn thrusts at first. He obviously hasn't seen much action, as his butt just isn't used to stretching for a big, stiff cock like yours. You keep at it, and his anal defenses slowly fall before your amorous assault, at first just allowing your " + pc.cockHead(x) + " to slip inside and then almost gleefully accepting inch after inch of throbbing, " + pc.mf("male","herm") + " lust.");
 		if(pc.cockTotal() == 2) output(" Your other penis slides across his strip of exposed flesh, sawing through his crack with your pushes, far from neglected.");
 		else if(pc.cockTotal() > 2) output(" Your other penises slide across his exposed flesh and plated bottom, gaining what friction they can.");
-		output(" It takes some time completely bottom yourself out.  The zil's rectum is well and truly stuffed, so you grab hold of his hips and make ready to start fucking your anal toy.");
+		output(" It takes some time to completely bottom yourself out. The zil's rectum is well and truly stuffed, so you grab hold of his hips and make ready to start fucking your anal toy.");
 	}
 	//{HUGE SCENE STARTS HERE}
 	else {
-		output("\n\nYou try to line yourself up with his tight little hole, but no matter how you arrange it, there's way you can make this work without splitting him two.  The simple truth of the situation is that you can't fuck his ass as big you are.  You push your thumb into the little asshole to buy yourself some time, rubbing around until you feel a hard little knot.  Pushing on it, your efforts are rewarded by a torrent of thick wasp-pre from your submissive lover, pouring out of his defenseless dong and down his nubile, glossy armored thighs. An idea comes to you while you watch the amber fluid shine...");
+		output("\n\nYou try to line yourself up with his tight little hole, but no matter how you arrange it, there's way you can make this work without splitting him in two. The simple truth of the situation is that you can't fuck his ass while you're as big you are. You push your thumb into the little asshole to buy yourself some time, rubbing around until you feel a hard little knot. Pushing on it, your efforts are rewarded by a torrent of thick wasp-pre from your submissive lover, pouring out of his defenseless dong and down his nubile, glossy armored thighs. An idea comes to you while you watch the amber fluid shine...");
 		if(pc.isTaur()) output("\n\nShifting back to mount him again,");
 		else output("\n\nDipping down,");
 		output(" you place [pc.eachCock] in between his legs and slide through the smooth, slick area, feeling his musky, scented cock sliding and rubbing against your own. His balls twitch on top of you, helplessly bound up by the sweet, sweet friction of dick-on-dick.");
@@ -336,7 +336,7 @@ public function buttfuckDefeatedZil():void {
 	else output("tug on his fleshy phallus");
 	output(". His potent, musky scent fills the air when you pull back, suffusing the air around with you honeyed aroma. You suck in a deep lungful of it, admiring the way it makes [pc.eachCock] thicken with fresh excitement while your head swims. The zil smiles gleefully as you give in to his pheromones and begin to move faster and faster.");
 	
-	output("\n\nYou eye your carapace-coated lover's almost heart-shaped ass as you clap against it over and over.  Your [pc.hips] seem to move of their own volition while you tilt your head back and sigh, watching nothing with half-closed, dilated eyes.  With so much pleasure coursing through your [pc.cock " + x + "] and such a wonderful scent all around, you can barely think well enough to remain upright.");
+	output("\n\nYou eye your carapace-coated lover's almost heart-shaped ass as you clap against it over and over. Your [pc.hips] seem to move of their own volition while you tilt your head back and sigh, watching nothing with half-closed, dilated eyes. With so much pleasure coursing through your [pc.cock " + x + "] and such a wonderful scent all around, you can barely think well enough to remain upright.");
 	
 	output("\n\nYour lusty reprieve is ended by a high-pitched whine from the Zil, one that culminates in explosive");
 	if(pc.cocks[x].cLength() <= 15) output(", squeezing tightness in his rectum");
@@ -345,24 +345,24 @@ public function buttfuckDefeatedZil():void {
 	if(pc.cocks[x].cLength() > 15) output(" pooling on your own mammoth erection, further lubricating your thorough thigh-fucking.");
 	else output(" pooling beneath him, wastefully filling a depression in the ground with oodles of viscous boy-honey.");
 	
-	output("\n\n<i>“Unghhh.... yes!”</i> the orgasmic waspling blurts while his wings buzz with uncoordinated movements, and you have to agree with his assessment.  You fuck him harder and faster while he comes, letting his climactic jerks and spasms assist you in getting your own pleasure.");
-	if(pc.cocks[x].cLength() <= 15) output(" At this point, his asshole is getting nice and stretched around your girth, to the point where when you pull back you can see it gape.  Then, you fill it back up with the dick it needs.");
-	else output("  At this point, his thighs are getting nice and sloppy from all the cum he's spurted, but it just makes them feel hotter and wetter.  You pull back to admire them before filling his legs up with a real cock, unintentionally frotting with his still-dripping prick while you do it.");
+	output("\n\n<i>“Unghhh.... yes!”</i> the orgasmic waspling blurts while his wings buzz with uncoordinated movements, and you have to agree with his assessment. You fuck him harder and faster while he comes, letting his climactic jerks and spasms assist you in getting your own pleasure.");
+	if(pc.cocks[x].cLength() <= 15) output(" At this point, his asshole is getting nice and stretched around your girth, to the point where when you pull back you can see it gape. Then, you fill it back up with the dick it needs.");
+	else output("  At this point, his thighs are getting nice and sloppy from all the cum he's spurted, but it just makes them feel hotter and wetter. You pull back to admire them before filling his legs up with a real cock, unintentionally frotting with his still-dripping prick while you do it.");
 	
 	output("\n\nThe zil goes completely nervous under your assault, and with a quick glance, you confirm your suspicions: he's smiling dopily and sagging into your grip. If you'd cum first, you'd probably be doing the same thing, but for now, the only thing on your mind is ");
 	if(pc.isNice()) output("cumming just as hard as he did");
 	else if(pc.isMischievous()) output("making sure your orgasm is even better than his was");
 	else output("using him to cum as fast possible");
-	output(".  The cacophonous smacks of [pc.skinFurScales] on armored bottom fills the air, accompanied by the sloppy slurps ");
+	output(". The cacophonous smacks of [pc.skinFurScales] on armored bottom fills the air, accompanied by the sloppy slurps ");
 	if(pc.cocks[x].cLength() > 15) output("you make as you saw through his thighs");
 	else output("his stretched-out asshole makes as you unceasingly sink in and out of it");
 	output(". Like a broken machine, you go faster and faster until a tiny part of you worries that you'll fly apart into a million pieces. The heat of friction and your own passions climbs to intolerable levels, gathering in your [pc.balls] like molten-hot metal.");
 	
-	output("\n\nSeizing up, your muscles plunge you into your target's backside with enough force to nearly topple him over, and the sweltering, liquid deluge erupts from [pc.eachCock] almost without warning.  Your eyes roll back and your body shudders as you push the zil's cheek into the dirt with the force of your orgasm");
+	output("\n\nSeizing up, your muscles plunge you into your target's backside with enough force to nearly topple him over, and the sweltering, liquid deluge erupts from [pc.eachCock] almost without warning. Your eyes roll back and your body shudders as you push the zil's cheek into the dirt with the force of your orgasm");
 	if(pc.cumQ() >= 50) {
 		if(pc.cocks[x].cLength() > 15) output(", rope after rope splattering onto the ground, mixed with the waves of amber honey your pet has already produced.");
 		else output(", splattering the inside of his rectum with thick spooge.");
-		if(pc.cumQ() >= 500) output("  Your [pc.cum] seems to come out almost without end, extending your pleasure for as long as the tide will last.");
+		if(pc.cumQ() >= 500) output(" Your [pc.cum] seems to come out almost without end, extending your pleasure for as long as the tide will last.");
 		if(pc.cumQ() >= 7000) {
 			output(" It must be enough to fill a ");
 			if(pc.cumQ() <= 14000) output("few gallon jugs");
@@ -386,7 +386,7 @@ public function buttfuckDefeatedZil():void {
 	}
 	//{Nice}
 	if(pc.isNice()) {
-		output("\n\nYou pull away, clearheaded for the first time since you smelled your foe.  Oddly, though you are aware of his scent, it doesn't seem to affect you as it did before.  You catch the zil before he falls down into the cum puddled below and gently rest him down on the ground, patting him ");
+		output("\n\nYou pull away, clearheaded for the first time since you smelled your foe. Oddly, though you are aware of his scent, it doesn't seem to affect you as it did before. You catch the zil before he falls down into the cum puddled below and gently rest him down on the ground, patting him ");
 		if(pc.cocks[x].cLength() <= 15) output("while your cum pours out of his ass unimpeded");
 		else output("while he gathers your cum from his thighs and licks it off your fingers");
 		output(". The armored male lounges, fondling himself while you get dressed, and by the time you leave, he's openly masturbating himself towards a second orgasm.\n\n");
@@ -401,7 +401,7 @@ public function buttfuckDefeatedZil():void {
 	}
 	//{Asshole}
 	else {
-		output("\n\nYou smirk and pull out, pushing him down into the puddled cum as you do.  Oddly, his pheromones don't seem to be affecting you now that you've blown your load, so you're able to focus with a clear head as you put your [pc.foot] on his back and push him down into it. You get tired of debasing him pretty quickly and get dressed.  By the time you finish, the wasp-boy has started masturbating shamelessly, so you make sure slap his balls before you go. Surprisingly, that sets him off, and you leave him squirting behind you.\n\n");
+		output("\n\nYou smirk and pull out, pushing him down into the puddled cum as you do. Oddly, his pheromones don't seem to be affecting you now that you've blown your load, so you're able to focus with a clear head as you put your [pc.foot] on his back and push him down into it. You get tired of debasing him pretty quickly and get dressed. By the time you finish, the wasp-boy has started masturbating shamelessly, so you make sure to slap his balls before you go. Surprisingly, that sets him off, and you leave him squirting behind you.\n\n");
 	}
 	processTime(30+rand(10));
 	pc.orgasm();
@@ -420,9 +420,9 @@ public function rideDatZilCawk():void {
 	output(" The zil gasps as you push him flat on his back, and he openly ogles your [pc.chest]");
 	if(!pc.isNice()) output(" as you strip off your [pc.gear]");
 	else output(" as you admire his smooth, polished figure");
-	output(". There's no way to conceal the turgid stiffness of his member, bouncing slightly above his smooth abdominals.  You actually have to stop him from tugging on the almost phimotic tool - the only way he's getting pleasure is when you stuff it in [pc.oneVagina].");
+	output(". There's no way to conceal the turgid stiffness of his member, bouncing slightly above his smooth abdominals. You actually have to stop him from tugging on the almost phimotic tool - the only way he's getting pleasure is when you stuff it in [pc.oneVagina].");
 	
-	output("\n\nSlowly and with deliberate sensuality, you lower yourself down so that [pc.oneVagina] is just above his groin, the hot heat of your puffy slit steaming the base of the aggressive alien boy's shaft.  He shifts nervously below you, but remains meek and submissive, unwilling or unable to force himself upward after being so humiliated in a fight. You lean forward to meet his exotic, black gaze while your [pc.hips] drag your ready quim against him. Letting out an anguished sigh, the zil twitches underneath you and releases a tiny dribble of gold pre-ejaculate onto his tight tummy.");
+	output("\n\nSlowly and with deliberate sensuality, you lower yourself down so that [pc.oneVagina] is just above his groin, the hot heat of your puffy slit steaming the base of the aggressive alien boy's shaft. He shifts nervously below you, but remains meek and submissive, unwilling or unable to force himself upward after being so humiliated in a fight. You lean forward to meet his exotic, black gaze while your [pc.hips] drag your ready quim against him. Letting out an anguished sigh, the zil twitches underneath you and releases a tiny dribble of gold pre-ejaculate onto his tight tummy.");
 	output("\n\nThe sight of his liquified ardor combined with the sweet wasp-boy's scent is enough to drive you to distraction, and you begin to grind yourself against him unashamedly");
 	if(pc.hasClit()) output(" until [pc.eachClit] peeks out of its hood, stiff and moist with your own lubrication");
 	output(".");
@@ -456,29 +456,29 @@ public function rideDatZilCawk():void {
 		output("saying, <i>“Beg me for it.”</i>");
 		output("\n\n<i>“Please! Please! Fuck me, offworlder. You're so sexy... and exotic!”</i> the zil cries in answer while casting his eyes down submissively.");
 		output("\n\n<i>“Not convinced,”</i> you chide. <i>“I guess you don't want a nice, hot pussy to sink this stinky ol' dick into, huh?”</i>");
-		output("\n\nThe chitinous male shudders and groans, turning his head to the side as his hips futilely strike upward, trying to press into you.  <i>“I... I'll do anything. Do you want to know where my village is so you can fuck me every day? I'll do it.  You can come and put me in a collar, then parade me around in front of my friends.  Please, just let me cum first!”</i>");
+		output("\n\nThe chitinous male shudders and groans, turning his head to the side as his hips futilely strike upward, trying to press into you. <i>“I... I'll do anything. Do you want to know where my village is so you can fuck me every day? I'll do it. You can come and put me in a collar, then parade me around in front of my friends. Please, just let me cum first!”</i>");
 		output("\n\n<i>“Better,”</i> you purr.");
 	}
 	//{Mischievous PCs}
 	else if(pc.isMischievous()) {
 		output("\n\nHis plea rouses you from the sexual haze, and you pull back to expose his dick, now coated thoroughly with vaginal secretions.");
-		if(!pc.isTaur()) output("  You pump it lewdly a few times, slowly teasing him with long slow tugs that stretch his foreskin before peeling it back from his glistening crown, exposing the leaking cum-slit to your rapacious gaze.");
+		if(!pc.isTaur()) output(" You pump it lewdly a few times, slowly teasing him with long slow tugs that stretch his foreskin before peeling it back from his glistening crown, exposing the leaking cum-slit to your rapacious gaze.");
 		output("\n\n<i>“How deliciously decadent,”</i> you purr");
 		if(!pc.isTaur()) output(" with a few last tugs");
-		output(".  The zil whimpers again and futilely tries to snap his loins up into yours, but the positioning is all wrong. His face contorts in the cutest way as he tries to fight towards orgasm, his mouth opening with his tongue lolling out. Giggling, you tease, <i>“Of all the bug-boys in these woods, I get the shuddering submissive. Lucky for you, I wanna feel just how hard you can squirt inside me.”</i>");
+		output(". The zil whimpers again and futilely tries to snap his loins up into yours, but the positioning is all wrong. His face contorts in the cutest way as he tries to fight towards orgasm, his mouth opening with his tongue lolling out. Giggling, you tease, <i>“Of all the bug-boys in these woods, I get the shuddering submissive. Lucky for you, I wanna feel just how hard you can squirt inside me.”</i>");
 	}
 	//{Nice PC}
 	else {
 		output("\n\nHis plea rouses you from the sexual haze, and you pull back to expose his dick, now coated thoroughly with vaginal secretions.");
 		//HORSE: 
-		if(!pc.isTaur()) output("  You smile warmly,");
-		else output("  You stroke it with your hand while you bend down to purr into his ear,");
+		if(!pc.isTaur()) output(" You smile warmly,");
+		else output(" You stroke it with your hand while you bend down to purr into his ear,");
 		output(" whispering, <i>“Ohh, a sexy </i>");
 		if(pc.tallness >= 80) output("<i>little </i>");
-		output("<i>guy like you?  Of course I'm gonna let you pop inside me. I bet you have a thick, sticky load in these shuddering balls of yours just waiting to baste my cunny, huh?”</i>  He nods vigorously, his tool clenching");
+		output("<i>guy like you? Of course I'm gonna let you pop inside me. I bet you have a thick, sticky load in these shuddering balls of yours just waiting to baste my cunny, huh?”</i>  He nods vigorously, his tool clenching");
 		if(!pc.isTaur()) output(" in your hand");
 		output(" as it nears orgasm.");
-		output("\n\nYou pinch him tightly around his base, bottling up his cum before he can release it and chasing away the relief he so desperately sought.  <i>“Sorry, cutie.  I just want to make sure we both get to cum together, hard.  I'll put you inside now, okay?”</i>");
+		output("\n\nYou pinch him tightly around his base, bottling up his cum before he can release it and chasing away the relief he so desperately sought. <i>“Sorry, cutie. I just want to make sure we both get to cum together, hard. I'll put you inside now, okay?”</i>");
 		output("\n\nThe zil nods and smiles.");
 	}
 	var x:int = pc.cuntThatFits(foes[0].cockVolume(0));
@@ -494,19 +494,19 @@ public function rideDatZilCawk():void {
 	}
 	//{Just rite}
 	else if(foes[0].cockVolume(0) * .6 > pc.vaginalCapacity(x)) {
-		output("\n\nYou slowly slide his lubricated member into your slick entrance, your honeypot swallowing up his tool as if it was made to accept it. Pushing against you, the submissive zil meets you motion for motion, embedding himself fully inside you.  You push yourself violently against him");
+		output("\n\nYou slowly slide his lubricated member into your slick entrance, your honeypot swallowing up his tool as if it was made to accept it. Pushing against you, the submissive zil meets you motion for motion, embedding himself fully inside you. You push yourself violently against him");
 		if(pc.hasClit()) output(", hard enough for your [pc.clits] to grind up on your impromptu lover's groin");
 		output(". He settles down under the forceful pressure and completely submits to your will. There's nothing in his eyes but hope and subservience, which as far as your [pc.vagina " + x + "] is concerned, is just perfect. As a bonus, his foreskin is quickly peeled back by your silken channel, and his glans begins to exude pre in larger globs than before.");
 	}
 	//{Loosey Goosey}
 	else {
-		output("\n\nYou swifly burrow his shaft inside you, reveling in the feeling of it spreading your capacitative cunny wide.  He's surprisingly thick given his relatively average length, but that doesn't even phase you.  The sloppy sound of your snatch swallowing him is accompanied by both sets of voices groaning with unadulterated pleasure.  You swing your hips back and forth to ensure that his foreskin peels back and his head presses against a sensitive nerve-bundle inside you, blasting your brain with stars of pleasure until you feel like your IQ is dripping out your twat.");
+		output("\n\nYou swiftly burrow his shaft inside you, reveling in the feeling of it spreading your capacitative cunny wide. He's surprisingly thick given his relatively average length, but that doesn't even phase you. The sloppy sound of your snatch swallowing him is accompanied by both sets of voices groaning with unadulterated pleasure. You swing your hips back and forth to ensure that his foreskin peels back and his head presses against a sensitive nerve-bundle inside you, blasting your brain with stars of pleasure until you feel like your IQ is dripping out your twat.");
 	}
 	//{end cunt forks}
 	//{stretch check.}
 	pc.cuntChange(x,foes[0].cockVolume(0),true,true,false);
 	
-	output("\n\nMoving faster now, you pivot your hips in small circles in order to grind every millimeter of your interior against his lovely, ebony shaft, your cunt clenching unintentionally whenever he hits a sensitive spot, squeezing just hard enough to make him feel as if you're milking him.  Then, you switch tempos, bouncing on his cock, letting your [pc.butt] compress against him each time you bottom out.");
+	output("\n\nMoving faster now, you pivot your hips in small circles in order to grind every millimeter of your interior against his lovely, ebony shaft, your cunt clenching unintentionally whenever he hits a sensitive spot, squeezing just hard enough to make him feel as if you're milking him. Then, you switch tempos, bouncing on his cock, letting your [pc.butt] compress against him each time you bottom out.");
 	if(!pc.isTaur()) {
 		output(" The zil's hands zero in on your [pc.nipples] in an instant, and he begins to pinch and squeeze them");
 		if(pc.biggestTitSize() >= 1) output(" while groping your [pc.chest]");
@@ -516,25 +516,25 @@ public function rideDatZilCawk():void {
 	{
 		output("\n\nImpatiently, you put his hand on [pc.oneClit], and order, <i>“Play with it,”</i> in between lascivious moans. ");
 		//{small clits}
-		if(pc.clitLength < .5) output("It takes him a few moments to isolate the diminutive button, but when he does, damn, does it feel good!  His fingertips are similarly textured to a human's, unarmored but textured a bit more strongly than your own.  The zil is soon expertly rubbing your buzzer.  The proof of his dexterity is dripping out all over him.  Soon, your walls are convulsing around him unintentionally, and orgasm is just a breath away.");
+		if(pc.clitLength < .5) output("It takes him a few moments to isolate the diminutive button, but when he does, damn, does it feel good! His fingertips are similarly textured to a human's, unarmored but textured a bit more strongly than your own.  The zil is soon expertly rubbing your buzzer. The proof of his dexterity is dripping out all over him. Soon, your walls are convulsing around him unintentionally, and orgasm is just a breath away.");
 		//{medium clit}
-		else if(pc.clitLength < 3) output("He quickly finds your over-engorged buzzer.  It's actually big enough that two of the wasp-man's fingers can easily pinch it from either side.  The finger-sized protrusion pulses pleasantly in his grip, and soon the zill has you squirming and writhing atop him.  Cunt-clenching spasms wrack your quim as you try to hold it together, but your orgasm hangs on the edge of your consciousness, just one breath away.");
+		else if(pc.clitLength < 3) output("He quickly finds your over-engorged buzzer. It's actually big enough that two of the wasp-man's fingers can easily pinch it from either side. The finger-sized protrusion pulses pleasantly in his grip, and soon the zill has you squirming and writhing atop him. Cunt-clenching spasms wrack your quim as you try to hold it together, but your orgasm hangs on the edge of your consciousness, just one breath away.");
 		//{huge clit}
-		else output("He tentatively grasps your cock-like buzzer, and it feels powerfully good.  You don't even have to tell him what to do.  The zil just starts to pump, slowly at first but with increasing certainty.  Up and down, up and down, he strokes your lady-prick faster and faster. You can barely stay conscious through the haze of pleasure it's forcing upon you. Orgasm is but a breath away, but you wish you could lay here and let him jerk on your giant clit for hours.  It feels so good!");
+		else output("He tentatively grasps your cock-like buzzer, and it feels powerfully good. You don't even have to tell him what to do. The zil just starts to pump, slowly at first but with increasing certainty. Up and down, up and down, he strokes your lady-prick faster and faster. You can barely stay conscious through the haze of pleasure it's forcing upon you. Orgasm is but a breath away, but you wish you could lay here and let him jerk on your giant clit for hours. It feels so good!");
 	}
 	
-	output("\n\nThe pulsating wasp-cock swells with an impending load inside you, the extra friction is just what you need to get off yourself.  You grab hold of his shoulders, arching your back, and you cum all over his twitching, sable member.  Wringing that cock with slow ripples, your [pc.vagina " + x + "] does it's best to pull it deeper inside you, stroking the foreskin back up over the glans a split-second before it begins to spurt. Sweet, sticky wasp-boy cum splatters into your cervix in squirt after squirt");
+	output("\n\nThe pulsating wasp-cock swells with an impending load inside you, the extra friction is just what you need to get off yourself. You grab hold of his shoulders, arching your back, and you cum all over his twitching, sable member. Wringing that cock with slow ripples, your [pc.vagina " + x + "] does its best to pull it deeper inside you, stroking the foreskin back up over the glans a split-second before it begins to spurt. Sweet, sticky wasp-boy cum splatters into your cervix in squirt after squirt");
 	if(!pc.isPregnant(x)) output(", already trickling into your unoccupied womb");
 	output(". The heavy, spunky honey-sludge floods your passage while you shiver in ecstasy, getting a nice, long, slit-filling cum thanks to your partner's sweet scent and lovely dong.");
 	if(pc.vaginaTotal() > 1) {
 		if(pc.vaginaTotal() > 2) {
-			output("  Your extra vaginas ");
+			output(" Your extra vaginas ");
 			if(!pc.isSquirter()) output("dribble");
 			else output("squirt");
 			output(" along with the lucky winner, hugging phantom cocks that only exist in your bliss-addled mind.");
 		}
 		else {
-			output("  Your extra vagina ");
+			output(" Your extra vagina ");
 			if(!pc.isSquirter()) output("dribbles");
 			else output("squirts");
 			output(" along with the lucky winner, hugging phantom cocks that only exist in your bliss-addled mind.");
@@ -605,7 +605,7 @@ public function alkahestsForeskinOralPlay():void {
 	if(pc.isNice()) output("\n\nLocking eyes on his dripping cock, you take another lungful of the intoxicating aroma emanating from the pretty little wasp-boy’s thick shaft and, with a longing smile on your face, tell your defeated foe you have no plans on passing up so lovely a treat.");
 	//{MISCHEVIOUS}
 	else if(pc.isMischievous()) {
-		output("\n\nWith a sly grin you eye his throbbing dong. taking another whiff of his delectable scent, you inform the incapacitated zil that you're not going to let him get away without having at least a nice snack.");
+		output("\n\nWith a sly grin you eye his throbbing dong. Taking another whiff of his delectable scent, you inform the incapacitated zil that you're not going to let him get away without having at least a nice snack.");
 	}
 	//{MEAN}
 	else output("\n\nYou leer at his pulsating rod, still dripping with pre. With a cruel smirk you tell your little wasp-toy that you have no intention of letting such a fine fuck-toy escape you unused.");
@@ -623,12 +623,12 @@ public function alkahestsForeskinOralPlay():void {
 	
 	output("\n\nYour delicious treat secured, you decide to have some fun with your Wasp-toy’s fat dong, diving two of your fingers into his sensitive band and pulling them apart, stretching the zil’s tight rubbery opening of his foreskin wide as he screams in a mix of pleasure and pain. You swirl your tongue around his exposed glans, drinking down the amber fluid that continues to flow out of his cum-slit and suck on the thick head of your captive’s sturdy pulsating cock. Removing your fingers from his foreskin, it snaps back into place with an audible slap, a new spurt of pre-ejaculate, and a loud moan from the zil.");
 	
-	output("\n\nYou grab the edge of his foreskin in your teeth and gently tug upwards eliciting another moan from the poor wasp-boy. You feel it’s about time to finish this up, your captive’s breathing has become ragged and his pre-cum is flowing faster than ever. You insert a finger into the stretched out band at the tip of his cock, and pump it in and out of the tight pocket, scraping the underside of the zil’s glans on each upstroke. You furiously finger-fuck the captive zil’s foreskin, swirling your finger around the head, a loud squelching noise emanates from his sopping glans.");
+	output("\n\nYou grab the edge of his foreskin in your teeth and gently tug upwards eliciting another moan from the poor wasp-boy. You feel it’s about time to finish this up, your captive’s breathing has become ragged and his pre-cum is flowing faster than ever. You insert a finger into the stretched out band at the tip of his cock, and pump it in and out of the tight pocket, scraping the underside of the zil’s glans on each upstroke. You furiously finger-fuck the captive zil’s foreskin, swirling your finger around the head; a loud squelching noise emanates from his sopping glans.");
 	
 	//{Random Wasp-Boy Butt fingering}
 	if(rand(3) == 0) {
-		output("\n\nAs you do so you sneak a sticky golden hand under the zil’s shiny smooth sack which is gurgling and churning with need to release. Lightly shoving it out of the way you proceed back towards your goal, the wasp-boy’s cute chitinous backside, until your hand runs into an obstruction in front of his puckered asshole. You smile at your captive as you move the finger from his trapped hand that had been stroking the outside of his hole. With a wicked grin you shove two of your pre-slicked fingers up to the knuckle in his ebony backside; the Wasp-boy’s face lights up in a mixture of surprise, pain, and intense pleasure.");
-		output("\n\nYou quest around his warm rippling insides looking for the supple knot of flesh that you’re sure is there. Before long your finger locates the hard lump and presses down hard, eliciting a loud gasp from your captive zil; the golden pre seeping out of his cock doubles its flow. You idly think to yourself in your lust addled haze where he’s keeping it all.");
+		output("\n\nAs you do so you sneak a sticky golden hand under the zil’s shiny smooth sack which is gurgling and churning with the need to release. Lightly shoving it out of the way you proceed back towards your goal, the wasp-boy’s cute chitinous backside, until your hand runs into an obstruction in front of his puckered asshole. You smile at your captive as you move the finger from his trapped hand that had been stroking the outside of his hole. With a wicked grin you shove two of your pre-slicked fingers up to the knuckle in his ebony backside; the Wasp-boy’s face lights up in a mixture of surprise, pain, and intense pleasure.");
+		output("\n\nYou quest around his warm rippling insides looking for the supple knot of flesh that you’re sure is there. Before long your finger locates the hard lump and presses down hard, eliciting a loud gasp from your captive zil; the golden pre seeping out of his cock doubles its flow. You idly wonder to yourself in your lust addled haze where he’s keeping it all.");
 	}
 	//{End Random Butt Fingering}
 	
@@ -714,14 +714,14 @@ public function foreskinWorshipCumWithDick():void {
 		output("\n\nAs you bob up and down on your [pc.cock " + x + "], you pump your other ");
 		if(pc.cockTotal() > 2) output("[pc.cocks]");
 		else output("dick");
-		output(" with vigor. Your own slick pre leaking from the heads mixing with the zil’s syrupy offering. You alternate your pumps with your sucking, creating a rhythm as you fellate yourself. After a minute of this you feel your [pc.balls] clench up you gargle a moan of ecstasy through your dick-stuffed throat. Your zil-drenched lolipop begins firing blast after blast of your own [pc.cum] down your gullet into your stomach, stretching it further and further with each shot of ejaculate.");
+		output(" with vigor. Your own slick pre leaking from the heads mixing with the zil’s syrupy offering. You alternate your pumps with your sucking, creating a rhythm as you fellate yourself. After a minute of this you feel your [pc.balls] clench up as you gargle a moan of ecstasy through your dick-stuffed throat. Your zil-drenched lolipop begins firing blast after blast of your own [pc.cum] down your gullet into your stomach, stretching it further and further with each shot of ejaculate.");
 		output("\n\nAs the throbbing dong stuffed down your throat begins firing into you, you feel your other [pc.cocks] begin ");
 		if(pc.cockTotal() == 2) output("its");
 		else output("their");
 		output(" orgasm as well ");
 		if(pc.cockTotal() == 2) output("its");
 		else output("their");
-		output(" cumslit dilating widely as you feel a load of cum travelling from your balls. With all the thought you can muster in your lust-soaked mind, you aim your ");
+		output(" cumslit dilating widely as you feel a load of cum traveling from your balls. With all the thought you can muster in your lust-soaked mind, you aim your ");
 		if(pc.cockTotal() == 2) output("dick");
 		else output("dicks");
 		output(" at the pretty little wasp-boy at your feet, basting him from head to toe with your [pc.cum]. After a while your orgasm winds down and your [pc.cock] pops from your mouth and slaps wetly against your thigh. Your [pc.cocks] soften and sway gently in the open air, dripping with the mixture of saliva, [pc.cum] and the remnants of the zil’s own orgasm.");
@@ -759,9 +759,9 @@ public function foreskinWorshipWithNippleCocks():void {
 	clearOutput();
 	userInterface.showBust("ZIL");
 	userInterface.showName("MALE\nZIL");
-	output("You tentatively reach up and grasp the [pc.nippleCocks] jutting out of your [pc.chest], you think to yourself you’ll never get one-hundred percent used to the sight or sensation of this, but at the moment you honestly don’t care. You jack your tits off with reckless abandon, your hands flying up and down the slick lengths of your freakish appendages, gasping at the sensation.");
+	output("You tentatively reach up and grasp the [pc.nippleCocks] jutting out of your [pc.chest]; you think to yourself you’ll never get one-hundred percent used to the sight or sensation of this, but at the moment you honestly don’t care. You jack your tits off with reckless abandon, your hands flying up and down the slick lengths of your freakish appendages, gasping at the sensation.");
 	
-	output("\n\nAs you leak more and more precum from your [pc.nippleCocks], you shove one into your mouth and take it as far down your throat as you possibly can. You suck the [pc.nippleCock] in your mouth as though you were trying to take it off, bobbing your head back in forth, as you jack off the remaining [pc.nippleCock] in your free hand.");
+	output("\n\nAs you leak more and more precum from your [pc.nippleCocks], you shove one into your mouth and take it as far down your throat as you possibly can. You suck the [pc.nippleCock] in your mouth as though you were trying to take it off, bobbing your head back and forth as you jack off the remaining [pc.nippleCock] in your free hand.");
 	
 	output("\n\nAfter a minute you feel something tense up deep inside your [pc.chest] and popping the [pc.nippleCock] from your mouth you aim your freakish nipples at the zil laying on the ground as your boobgasm takes over your thoughts. You cup your hands around your [pc.chest] and squeeze hard with each blast of cum. Without your hands to guide them, your [pc.nippleCocks] begin firing wildly in the zil’s general direction painting the little wasp-boy with your own sticky ejaculate.");
 	
@@ -848,7 +848,7 @@ public function tailCockPegTheZil():void {
 		pc.milked(25);
 	}
 	
-	output("\n\nAfter the first few pumps, your [pc.tailCock] seems to develop a mind of it's own, and it begins to rock back and forth, plowing through it's own ejaculate in its incessant quest for enjoyment.  You keep fucking the zil until his asshole is gaping and frothing with your [pc.cum]. He doesn't seem to mind, if the puddle of honey soaking his legs is any indications. Shuddering, you pull out and let your [pc.tail] close back up.");
+	output("\n\nAfter the first few pumps, your [pc.tailCock] seems to develop a mind of its own, and it begins to rock back and forth, plowing through it's own ejaculate in its incessant quest for enjoyment.  You keep fucking the zil until his asshole is gaping and frothing with your [pc.cum]. He doesn't seem to mind, if the puddle of honey soaking his legs is any indications. Shuddering, you pull out and let your [pc.tail] close back up.");
 	output("\n\nThe zil is lying there lamely, twitching his rump from time to time with a dopey smile on his face. This is an encounter he won't soon forget.\n\n");
 	processTime(20+rand(10));
 	pc.orgasm();
@@ -1062,7 +1062,7 @@ public function getBredByZil():void {
 				else output("it");
 				output(" and begin to stroke it, pulling and squeezing slowly. The sensitive, cock-sized pleasure-buzzer trembles in your grip, and you nearly black out from the bliss that it brings.");
 			}
-			else if(pc.clitLength >= .75) output("  You immediately reach up and begin to caress [pc.oneClit], squeezing and caressing it's swollen surface. The sensitive organ seems to inflate, growing larger in response to your touches, and you nearly black out from the bliss that it brings.");
+			else if(pc.clitLength >= .75) output("  You immediately reach up and begin to caress [pc.oneClit], squeezing and caressing its swollen surface. The sensitive organ seems to inflate, growing larger in response to your touches, and you nearly black out from the bliss that it brings.");
 			else output(" You immediately reach up and begin to thumb at [pc.oneClit], rubbing around its small surface with familiar touches. The sensitive organ is so pleasant to touch that it nearly blacks you out with the bliss your affections bring.");
 		}
 		else
@@ -1098,7 +1098,7 @@ public function getBredByZil():void {
 	output("\n\n<i>“Such an obedient alien. You will make a fine mother,”</i> the zil compliments as you slowly sink back down from the heights of ecstasy. His movements intensify to the point where his hips are jackhammering your cunt almost as fast as his wingers are fluttering. Your juices are splattering out onto his crotch with each ass-jiggling impact, thick with the bug-man's sweet pre-cum. There's a constant trickle of his warm love-juice in your [pc.vagina " + x + "] now, and you can feel his tight, smooth ballsack clenching underneath him as he mounts you.");
 	
 	output("\n\nThis male is going to fill your juicy, oversensitive slit with cum until you're pregnant! A voice in the back of your mind tries to warn you that there's something wrong with that, but you just... you can't bring yourself to care. He's so wonderful, and he smells... so... GOOD. You find the strength to swivel your hips on the zil's soaked crotch, and you look over your shoulder at the slender male, egging him on with your eyes, begging him to fertilize you, to spend his musky, honeyed cum deep into your waiting womb.");
-	output("\n\nA powerful twitch works its way through the wasp-guy's more-than-ample cock in that moment, filling you delightfully for a half-second before a gush of warmth spouts from the end to spray against your cervix. You can feel some of it slip inside, causing a wrinkle of worry to cross your brow, but that that thought is obliterated by a fresh deposit of wasp-spunk. His cum thoroughly seeds [pc.oneVagina]. You regret not getting a sample of it to taste until he begins to thrust once more, pushing his thick juices deeper inside to more effectively inseminate you.");
+	output("\n\nA powerful twitch works its way through the wasp-guy's more-than-ample cock in that moment, filling you delightfully for a half-second before a gush of warmth spouts from the end to spray against your cervix. You can feel some of it slip inside, causing a wrinkle of worry to cross your brow, but that thought is obliterated by a fresh deposit of wasp-spunk. His cum thoroughly seeds [pc.oneVagina]. You regret not getting a sample of it to taste until he begins to thrust once more, pushing his thick juices deeper inside to more effectively inseminate you.");
 	output("\n\n[pc.EachVagina] convulses in a second climax, brought on by the feeling of simultaneous fucking and filling. Pistoning back and forth, the zil seems heedless of your pleasure, and he focuses entirely on fucking your [pc.vagina " + x + "] as hard and fast as possible in order to prolong his own orgasm. Strings of honey and girl-cum dangle between your matched genitals when he pulls back. Your eyes rolls back under the decadent sexual assault");
 	if(pc.cockTotal() > 1) {
 		output(", while [pc.eachCock] dumps a wasted load on the ground");
@@ -1141,7 +1141,7 @@ public function getTailPussyFuckedByZil():void {
 		output("\n\nYour [pc.cocks] ");
 		if(pc.cockTotal() == 1) output("is");
 		else output("are");
-		output(" pleasantly full down below.  The ripples of pleasure from your prehensile quim seem to vibrate through your middle straight into your the stiff dick");
+		output(" pleasantly full down below.  The ripples of pleasure from your prehensile quim seem to vibrate through your middle straight into your stiff dick");
 		if(pc.cockTotal() > 1) output("s");
 		output(", and you begin to leak pre-cum quite freely. Your efflux turns the dirt to mud, which makes your grinding that much more pleasurable, causing yet more to escape your urethra. The sexual sludge adheres to your [pc.cocks]");
 		if(pc.balls > 0) output(" and [pc.balls]");
@@ -1168,7 +1168,7 @@ public function getTailPussyFuckedByZil():void {
 	output("\n\nThe zil's rutting motions slowly increase in speed and force until you can feel his smooth thighs smacking off your [pc.butt].  Slipping and sliding, your tail barely hangs on it, actually coming partway off his cock before vacuuming tight to his hairless nethers. You exhale loudly at the new sensations this brings to you and rest your head on your arms, luxiriating in the feelings pulsing through your back-facing sex organ and groin.");
 	if(pc.hasNippleCocks()) output(" Your [pc.nipples] even get in on the act, leaking their own pre despite being compressed by your [pc.fullChest].");
 	
-	output("\n\nEventually, even supporting himself becomes too much for the frenzied zil. He flops down and rolls aside, grabbing your tail in both hands for leverage. Your slick, inner passage feels almost violently hot. It convulses around the honey-leaking cock inside it whenever the wasp-boy bottoms out inside it. He's fucking your tailslit like some kind of cheap sex-toy, not attempting to pleasure you in least. Of course, the way you're starting to pant and moan, there's no way you can conceal just how good your gushing, squeezing snatch makes this feel. That little cunt is just packed full of nerves, and you know that all it's going to take to make you cream yourself is one good squirt from your lover's dick.");
+	output("\n\nEventually, even supporting himself becomes too much for the frenzied zil. He flops down and rolls aside, grabbing your tail in both hands for leverage. Your slick, inner passage feels almost violently hot. It convulses around the honey-leaking cock inside it whenever the wasp-boy bottoms out inside it. He's fucking your tailslit like some kind of cheap sex-toy, not attempting to pleasure you in the least. Of course, the way you're starting to pant and moan, there's no way you can conceal just how good your gushing, squeezing snatch makes this feel. That little cunt is just packed full of nerves, and you know that all it's going to take to make you cream yourself is one good squirt from your lover's dick.");
 	output("\n\nYou flex muscles you're barely aware of controlling. The concentric rings of pleasant, cock-draining pressure ripple along the musky wasp-dong faster and faster, pleasuring your honey-scented lover while he uses you as little more than a hungry, disposable pussy. Your juices run so freely that every pull up is matched by a lewd 'schlorp' and followed by a squirt of your girl-spunk as it bottoms back out. You squeeze tighter, just around his base, feeling his urethra expand, filling up with hot, sticky boy-honey mere moments before it explodes inside you.");
 	output("\n\nA supernova of white-hot ecstasy explodes in your tail-bound canal, and as the heat dissipates into a nebula of pleasure, you feel the zil's foreskin stretch tight for a millisecond before another cosmic anomaly is battering your confused nervous system. The contractions before... they were nothing compared to what's going on in your tailcunt now. If you didn't have your eyes slammed shut while you writhe in the dirt, you'd see massive distensions along your flexible, pseudo-female anatomy, greedily siphoning the fresh honey deeply inside you. The only thing to escape around the puffy lips of your [pc.tailCunt] are a few drizzles of your own fresh lubricant. Every single drop of spooge is devoured by your alien anatomy, feeding its insatiable cum hunger.");
 	//{cocks}
@@ -1271,7 +1271,7 @@ public function zilSticksItInYourBoot():void {
 		output("\n\nYou moan and raise your ass higher, overcome with lust. He's right.");
 	}
 	//{Both}
-	output("\n\nAn alien palm gently grips your chin and lifts your head so that his spongy, dripping skin is wrinkling, pushed against your lips. The sheer softness of his hand and his organic cocksleeve surprises you, considering the chitin that covers the rest of his body. As your lips open and his velvety, honeyed boner slips inside you, you suppose that a creature with such a hard outside must have a soft, beautiful center. You slide your tongue into the tip of his dickskin to collect the fresh honey, circling the glans while you slobber all over the rest of his length, gratefully soaking this alien boner with your spit. The taste and the smell combine into brain-breaking deluge of foreign, sexual excitement, and you're beginning to feel almost utterly addicted to the way this is making you feel.");
+	output("\n\nAn alien palm gently grips your chin and lifts your head so that his spongy, dripping skin is wrinkling, pushed against your lips. The sheer softness of his hand and his organic cocksleeve surprises you, considering the chitin that covers the rest of his body. As your lips open and his velvety, honeyed boner slips inside you, you suppose that a creature with such a hard outside must have a soft, beautiful center. You slide your tongue into the tip of his dickskin to collect the fresh honey, circling the glans while you slobber all over the rest of his length, gratefully soaking this alien boner with your spit. The taste and the smell combine into a brain-breaking deluge of foreign, sexual excitement, and you're beginning to feel almost utterly addicted to the way this is making you feel.");
 	output("\n\n<i>“Ohhh, not so fast,”</i> the zil moans, rocking his boyish hips back and forth in your lips without meaning to. <i>“We're both going to have fun!”</i>");
 	output("\n\nThe sable seductor pushes you away almost regretfully, connected to your broad, unthinking smile by a strand of your eager, bubbling saliva. The web of clear spit eventually breaks with an abruptness that startles you from your dick-sucking daze, though the scent remains heavy on your mind.");
 	output("\n\n<i>“Hold that pose,”</i> the onyx-armored male coos as he circles you, passing beyond the edges of your vision. You shiver nervously and try to obey. If you didn't, he might not make you cum your brains out, or let you scent his heavenly erection anymore!");
@@ -1282,7 +1282,7 @@ public function zilSticksItInYourBoot():void {
 		output("\n\nThe alien blinks his black eyes and cocks his head to the side. <i>“You have not... played with this hole?”</i>");
 		output("\n\nYou bite your lip and nod, finding yourself almost eager to please him in spite of your earlier reservations. You're so fucking horny for him, but you just can't imagine that sex this way would feel good at all!");
 		output("\n\nThe zil reassuringly strokes his hand along your back, gently pulling you towards him as he buzzes, <i>“Relax and it'll feel good. You made me nice and slippery, remember?”</i>");
-		output("\n\nYou lick your lips and nod, biting your lips as the zil brings his cock closer to your unprotected anus.  His palms press on each side of your upturned rump while his thumbs reach inward, spreading your [pc.butt] nice and wide to give his spit-dripping cock an easy, puckered target. The zil smushes his himself against you, the dickskin bunching up and folding back as spreads your sphincter, inch after inch slowly sliding into your virginal asshole. You groin in a mixture of pain and discomfort; the sensations are completely foreign to you, and it's hard to make yourself relax.");
+		output("\n\nYou lick your lips and nod, biting your lips as the zil brings his cock closer to your unprotected anus.  His palms press on each side of your upturned rump while his thumbs reach inward, spreading your [pc.butt] nice and wide to give his spit-dripping cock an easy, puckered target. The zil smushes his himself against you, the dickskin bunching up and folding back as spreads your sphincter, inch after inch slowly sliding into your virginal asshole. You groan in a mixture of pain and discomfort; the sensations are completely foreign to you, and it's hard to make yourself relax.");
 		output("\n\n<i>“You're tight!”</i> the zil chirps as he continues to slide inside you, able to plunder your once-virgin ass thanks to your own slobber. Spasming around him, your sphincter flutters on the edge of control. You're trying so hard to relax, but this is all so... so odd! Slowly, you're becoming aware of another sensation, a pleasant one, that's building up in your crotch. [pc.EachCock] had softened, but now, ");
 		if(pc.cockTotal() == 1) output("it's");
 		else output("they're");
