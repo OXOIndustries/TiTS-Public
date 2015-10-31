@@ -84,8 +84,9 @@ public function holidayMenu():void
 		if(!pc.hasGenitals()) addDisabledButton(3,"Armor","Armor","Looks like that outfit is for people with genitalia.");
 		else if(flags["MET_SYRI"] == undefined) addButton(3,"Armor",greenArmor,undefined,"Armor","There's a suit of dark green armor on the rack, with a black bodysuit underneath holding the skimpy green plates together. You're pretty sure it's modeled after some video game character. The armor's probably not real, but it'll make a decent enough cosplay for a night on the town!\n\nPrice: 1000 credits");
 		else addButton(3,"Armor",greenArmor,undefined,"Armor","There's a suit of dark green armor on the rack, with a black bodysuit underneath holding the skimpy green plates together. You're pretty sure it's modeled after some video game character... didn't you see Syri playing as this chick once? The armor's probably not real, but it'll make a decent enough cosplay for a night on the town!\n\nPrice: 1000 credits");
-		if(pc.hasGenitals() && flags["UNLOCKED_JUNKYARD_PLANET"] != undefined) addButton(4,"HorseSuit",centaurBunsBunsBuns,undefined,"Horse Suit","It looks like the bottom half of a centaur. Must be robotic.\n\nPrice: 1000 credits");
-		else if(pc.isTaur())addDisabledButton(4,"HorseSuit","HorseSuit","You must not already have a tauric lower half.");
+		if(pc.isTaur()) addDisabledButton(4,"HorseSuit","HorseSuit","It looks like the bottom half of a centaur... though you have a tauric lower half already.");
+		else if(pc.isPregnant()) addDisabledButton(4,"HorseSuit","HorseSuit","It looks like the bottom half of a centaur. To avoid complications, you probably shouldn't wear this while pregnant.");
+		else if(pc.hasGenitals() && flags["UNLOCKED_JUNKYARD_PLANET"] != undefined) addButton(4,"HorseSuit",centaurBunsBunsBuns,undefined,"Horse Suit","It looks like the bottom half of a centaur. Must be robotic.\n\nPrice: 1000 credits");
 		else addDisabledButton(4,"HorseSuit","HorseSuit","You need to have made it to the second planet (and have genitals) for this choice.");
 	}
 	else
@@ -531,7 +532,7 @@ public function chooseToBeMissChief():void
 	pc.credits -= 1000;
 	output("Well, you wouldn’t call this get-up spooky, but the thought of masquerading as a big, buff amazon in power armor is pretty sexy. You turn to Holiday and give her your payment: you’ve found the perfect costume.");
 	output("\n\n<i>“Cool. Feel free to change over there,”</i> she says, pointing to a curtained section of the shop. An impromptu dressing room, you guess. <i>“");
-	if(!pc.isNude()) output("Can’t exactly wear your clothes under that bodysuit. Would look weird, and the chameleon weave would probably turn weird colors. You can leave you stuff here if you want; I’ll take good care of it until you’re done partying. ");
+	if(!pc.isNude()) output("Can’t exactly wear your clothes under that bodysuit. Would look awkward, and the chameleon weave would probably turn weird colors. You can leave your stuff here if you want; I’ll take good care of it until you’re done partying. ");
 	output("Can pick up your stuff in the morning or whenever.”</i>");
 
 	output("\n\nShe tilts her head to the side, pink hair falling across her cat-like yellow eyes. <i>“Don’t you trust me?”</i> The crate she’s sitting on lets out a deep, rumbling growl, which she silences with a crunching blow from her knuckles on the container’s reinforced lid.");
@@ -550,7 +551,7 @@ public function chooseToBeMissChief():void
 
 	output("\n\nYou glance down past your ample boob-plates in time to see the bodysuit’s black surface start changing color, spreading [pc.skinFurScalesColor] patches out from your belly-button out until the whole thing’s the same color as your body underneath. With how close it’s molded against you, even around the neck, it’s barely noticeable that you’re wearing one at all - just the sexy green plates!");
 
-	output("\n\nHoliday grins and pokes one of your abs. <i>“That worked better than I was expected. Which is saying something. Come on, strike a pose for me, space marine. Let’s see the goods.”</i>");
+	output("\n\nHoliday grins and pokes one of your abs. <i>“That worked better than I expected. Which is saying something. Come on, strike a pose for me, space marine. Let’s see the goods.”</i>");
 
 	output("\n\nYou roll your eyes but play along, striking a heroic position with muscles flexed and chest thrust-out. To your surprise and delight, the bodysuit flexes even harder than you could have, bulging around the arms and thighs like some sort of muscle suit. You look totally ripped, and totally stacked too! Holiday steps out of your way, letting you take a look in the mirror: you’re positively amazonian now, looking tall and powerful and heroic.... and like you could wrestle anybody who crossed you down and smother them in your rockin’ tits.");
 
@@ -723,7 +724,7 @@ public function annoPartyEpiloooogue():void
 	//if Anno Recruited:
 	if(annoIsCrew()) output("<i>“Woah, this place looks...”</i>");
 	else if(silly) output("<i>“D-damn, this feels familiar!”</i>");
-	else output("<i>“Your [pc.tongue] is fucking-”</i>");
+	else output("<i>“Your [pc.tongue] is fucking--”</i>");
 	output(" the girl starts to say, cut off as you lean up and peel her panties off");
 	if(flags["ANNO_ANALSEXED"] != undefined) output(", taking the tail-plug with them! She arches her back in a cry of pleasure as the knotted toy is yanked out of her ass, leaving it nice and gaped open!");
 	else output(".");
