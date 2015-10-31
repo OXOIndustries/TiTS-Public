@@ -1126,6 +1126,8 @@ public function taurBarAdventures(config:int = 1):void
 
 public function taurTFs(arg:int = 1):void
 {
+	//Strip mimbranes.
+	removeMimbranes();
 	//1 - dude, 2 chick, 3 herm
 	//Get rid of all vagooz and oldcocks	
 	pc.removeCocks();
@@ -1160,8 +1162,6 @@ public function taurTFs(arg:int = 1):void
 	pc.tailType = GLOBAL.TYPE_EQUINE;
 	pc.clearTailFlags();
 	pc.addTailFlag(GLOBAL.FLAG_LONG);
-	//Strip mimbranes.
-	removeMimbranes();
 	if(arg == 1 || arg == 3)
 	{
 		//22”</i> horsecock.
