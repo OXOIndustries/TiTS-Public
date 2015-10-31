@@ -36,7 +36,7 @@
 			this.tooltip = "This compact laser pistol is equipped with a rather impressive scope and energy cell";
 			//if(kGAMECLASS.chars["PC"].characterClass == GLOBAL.CLASS_ENGINEER) this.tooltip += " of your own manufacture";
 			this.tooltip += ". It is quite accurate but relatively low-powered";
-			if(kGAMECLASS.chars["PC"].characterClass == GLOBAL.CLASS_ENGINEER) this.tooltip += " - the perfect weapon for a tech specialist to start with";
+			//if(kGAMECLASS.chars["PC"].characterClass == GLOBAL.CLASS_ENGINEER) this.tooltip += " - the perfect weapon for a tech specialist to start with";
 			this.tooltip += ".";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
