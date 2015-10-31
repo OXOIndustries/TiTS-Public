@@ -615,7 +615,7 @@ public function barbariannaCosplay():void
 
 	output("\n\nShe blinks, eyes wide. The crowd of revelers gets a little thicker around you, murmuring and watching with interest - and a few tented trousers - as you squeeze the mis-matched couple tight enough to make them squirm. You take the tiny pressure of the kaithrit’s boy-cock pressing into your shin as your answer from him, but the ausar girl... well, she’s got a lot less to show for herself, you you take the initiative, grabbing her ass through the seat of her skin-tight bellbottoms, squeezing so hard she jumps in your grasp. Her tail starts swishing hard, but she forcefully looks away from you, grabbing her boy-toy’s hand and trying to pull him back.");
 
-	output("\n\n<i>“Stop being a spoil-sport, babe,”</i> you growl, shifting your grip on her ass to grab her crotch, feeling right through her pants into her damp little mound. Oh, she’s <b>wet</b> alright. Hot damn, she must be smuggling a swamp in her pants. She squeals, pulling hard at her boyfriend’s hand until they botch manage to pull out of your grasp; you let them go with a laugh.");
+	output("\n\n<i>“Stop being a spoil-sport, babe,”</i> you growl, shifting your grip on her ass to grab her crotch, feeling right through her pants into her damp little mound. Oh, she’s <b>wet</b> alright. Hot damn, she must be smuggling a swamp in her pants. She squeals, pulling hard at her boyfriend’s hand until they both manage to pull out of your grasp; you let them go with a laugh.");
 
 	output("\n\nBut now your blood’s pumping");
 	if(pc.hasCock()) output(", especially into your naked prick. You’re throbbing hard, cock thrust forward in front of you like a flagpole.");
@@ -1057,7 +1057,7 @@ public function taurStreetAdventure(config:int = 1):void
 	{
 		output("\n\nThe first indication that you might be in trouble is the feeling of cool air against the flare of your artificial erection, now exposed just beyond the edge of your sheath. With that realization comes the knowledge that you can also feel every breeze against your rapidly moistening cuntlips. Sure, they were already wet, but you can feel beads of moisture trickling down them down them. That sensation feeds right back into your cock, the thought of a wet pussy forcing heartbeat after heartbeat worth of new blood into your swelling erection.");
 		output("\n\n");
-		if(pc.hasCock()) output("Did getting an erection ever feel this good with your old [pc.cocksNounLight]?");
+		if(pc.hasCock()) output("Did getting an erection ever feel this good with your old [pc.cocksNounSimple]?");
 		else output("Does getting an erection always feel like this?");
 		output(" The surging cockflesh drags its way out of a sheath that suddenly feels almost too tight. The soft interior skin grips your expanding shaft in a velvety caress, one that is agonizingly dragged across every inch of horse dong as it is revealed to the open air - and the other partygoers.");
 		output("\n\nDozens of curious onlookers are watching you, admiring your costume, and discovering the show that’s happening just between your hindlegs. Their eyes are like tongues around the rim of your flare, like fingers probing your hungry inner folds. You prance in place while enduring the exquisite pleasure of your own erection, dripping so much girlcum from your plush, swollen quim that it sounds like a rainstorm has broken out behind you.");
@@ -1109,6 +1109,8 @@ public function taurBarAdventures(config:int = 1):void
 
 public function taurTFs(arg:int = 1):void
 {
+	//Strip mimbranes.
+	removeMimbranes();
 	//1 - dude, 2 chick, 3 herm
 	//Get rid of all vagooz and oldcocks	
 	pc.removeCocks();
@@ -1121,12 +1123,12 @@ public function taurTFs(arg:int = 1):void
 	if(pc.tallness < 72) pc.tallness = 72;
 	//Taurbody, ofcourse.
 	pc.legType = GLOBAL.TYPE_EQUINE;
-	pc.genitalSpot = 2;
 	pc.legCount = 4;
 	pc.clearLegFlags();
 	pc.addLegFlag(GLOBAL.FLAG_FURRED);
 	pc.addLegFlag(GLOBAL.FLAG_HOOVES);
 	pc.addLegFlag(GLOBAL.FLAG_DIGITIGRADE);
+	pc.genitalSpot = 2;
 	//Libido to 70 or plus a minimum of 10.
 	if(70-pc.libido() < 10) pc.libido(10);
 	else pc.libido(70,true);
@@ -1143,8 +1145,6 @@ public function taurTFs(arg:int = 1):void
 	pc.tailType = GLOBAL.TYPE_EQUINE;
 	pc.clearTailFlags();
 	pc.addTailFlag(GLOBAL.FLAG_LONG);
-	//Strip mimbranes.
-	removeMimbranes();
 	if(arg == 1 || arg == 3)
 	{
 		//22”</i> horsecock.
@@ -1269,7 +1269,7 @@ public function femTaurCostumeEpilogue():void
 {
 	clearOutput();
 	showName("MORNING\nAFTER");
-	output("You wake up with a pounding headache back on your ship, and out in space. You don’t remember anything about taking off - letting Holiday ride your back and slap your ass while Dane hs you up against the wall? Sure, but nothing about the trip back to your ship. Heck, you’re even pretty sure white-furred ausar lass had a scoreboard to keep track of how many creampies you got. You came harder than ever, but you’re feeling pretty sore now.");
+	output("You wake up with a pounding headache back on your ship, and out in space. You don’t remember anything about taking off - letting Holiday ride your back and slap your ass while Dane has you up against the wall? Sure, but nothing about the trip back to your ship. Heck, you’re even pretty sure white-furred ausar lass had a scoreboard to keep track of how many creampies you got. You came harder than ever, but you’re feeling pretty sore now.");
 	output("\n\nIt isn’t until you check your ship’s logs that you stumble upon some clarity. There’s a new message, one you didn’t put in there. You hit play, bringing it up on the main screen. A cute, white-furred kaithrit pops up on screen, waving nervously.");
 	output("\n\n<i>“Hey, I don’t know what you were on about when you said that the whole centaur thing was just a costume. I mean... damn, you must have been slipped something at the bar. It’s pretty obvious you got some high-quality mods to produce that piece of work.”</i> He chuckles and looks behind herself at your slumbering form. <i>“You might not remember me from the party. It was pretty fun - you can fuck like a goddamn freighter, by the way - but shit got real there at the end.”</i>");
 	output("\n\nThe kaithrit rubs his distended crotch and sighs. <i>“You were super out of it by the time the cops busted up the party. You should’ve seen the gear those peacekeepers were fitted with. They looked more like soldiers than officers of the law. From what I heard while me and that pink-haired girl were dragging you out the back, they were looking for some thief that made off with a bunch of symbiosis tech. Crazy shit, right?”</i> He tucks his hair behind a flicking cat ear and smiles.");
