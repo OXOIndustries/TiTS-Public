@@ -394,6 +394,7 @@ package classes.Items.Transformatives
 			{
 				output("A tingling sensation comes from your forehead. You reach up and pat at your brow, and find a pair of growing lumps growing from your head. After a few moments, they become very hard, and covered with a velvety softness. <b>They're a pair of small, cow-like horns!</b>\n\n");
 				
+				target.removeHorns();
 				target.hornType = GLOBAL.TYPE_BOVINE;
 				target.hornLength = 3;
 				target.horns = 2;
