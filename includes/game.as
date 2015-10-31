@@ -3053,13 +3053,13 @@ public function questLogMenu(currentFunc:Function):Boolean
 	// Poe A
 	if(flags["HOLIDAY_OWEEN_ACTIVATED"] != undefined)
 	{
-		if(showID == "Poe A") { output2(header("<u>Poe A</u>", false)); addDisabledGhostButton(4, "Poe A"); }
+		if(showID == "Poe A") { output2(header("<u>Poe A</u>", false)); addDisabledGhostButton(6, "Poe A"); }
 		else addGhostButton(6, "Poe A", currentFunc, "Poe A");
 	}
 	// Uveto
 	if(flags["UVETO_UNLOCKED"] != undefined)
 	{
-		if(showID == "Uveto") { output2(header("<u>Uveto VII</u>", false)); addDisabledGhostButton(4, "Uveto"); }
+		if(showID == "Uveto") { output2(header("<u>Uveto VII</u>", false)); addDisabledGhostButton(7, "Uveto"); }
 		else addGhostButton(7, "Uveto", currentFunc, "Uveto");
 	}
 	// Other Info
