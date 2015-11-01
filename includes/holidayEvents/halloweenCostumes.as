@@ -502,6 +502,7 @@ public function amazonTFShitApplied():void
 		{
 			if(pc.cocks[x].cLengthRaw < 12 && pc.cocks[x].cLengthRaw + 4 > 12) pc.cocks[x].cLengthRaw = 12;
 			else pc.cocks[x].cLengthRaw += 4;
+			if(pc.hasPerk("Hung")) pc.cocks[x].cLengthRaw += 4;
 		}
 	}
 	if(pc.femininity < 70) pc.femininity = 70;
@@ -1208,7 +1209,7 @@ public function taurTFs(arg:int = 1):void
 		// Perks!
 		if(pc.hasPerk("Mini")) pc.cocks[0].cLengthRaw -= 4;
 		if(pc.hasPerk("Hung")) pc.cocks[0].cLengthRaw += 8;
-		if(pc.hasPerk("Bulgy")) pc.ballSizeRaw += 2.1;
+		if(pc.hasPerk("Bulgy")) pc.ballSizeRaw += 5;
 	}
 	if(arg == 2 || arg == 3)
 	{
