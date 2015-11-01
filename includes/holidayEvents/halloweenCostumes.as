@@ -385,10 +385,15 @@ public function bountyHuntsPart2():void
 
 	output("\n\n<i>“No help for it now,”</i> Holiday mutters. <i>“Better just let nature take its course.”</i> Stepping up to you, she gently pushes your head down, lifting your [pc.ass] higher into the air. Ripply lets out a tiny roar and feeds more of his breeding shaft into your suit, its firm head finally locating the entrance to your [pc.asshole]. Liquid oozes from his member, greasing up your cheeks, the warm lube dripping down your [pc.thighs] and spreading his tingling heat through your whole lower body. You squirm in the latex bodysuit, tugging at the too-tight surface straining against your [pc.breasts] ");
 	if(pc.hasCock()) output("and your [pc.cocks]");
-	output(". You shake your head, hair spilling across your eyes in full, blonde tresses.");
-	if(pc.hairLength < pc.tallness / 1.8) output(" Has your hair always been that long?");
-	if(pc.hairColor != "blonde") output(" Or that golden?");
-	output(" You giggle, nervously, beginning to think somebody’s playing a trick on you.");
+	output(". You shake your head, hair spilling across your eyes in full, blonde tresses. Has your hair always been");
+	if(pc.hairLength < pc.tallness / 1.8)
+	{
+		output(" that long");
+		if(pc.hairColor != "blonde") output("? Or that golden");
+	}
+	else if(pc.hairColor != "blonde") output(" that golden");
+	else output(" like that");
+	output("? You giggle, nervously, beginning to think somebody’s playing a trick on you.");
 	
 	//[pc.hair becomes blonde and grows to ass-length without outputting any text.]
 	pc.hairColor = "blonde";
