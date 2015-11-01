@@ -2058,6 +2058,7 @@ public function annoFollowerFirstTimeOnMhengaPartII():void
 	
 	output("\n\nYou nod, and tell the ravenette ausar you’ll think about it. She grins, and buys you both another round. The next couple hours go by pleasantly, with Anno and Syri regaling you with the misadventures of their youth, their various petty rivalries and in-jokes. Finally, several beers later, a slightly-inebriated, companionable silence falls over the trio of you. You excuse yourself then, leaving the two ausars to privately catch up.");
 
+	pc.imbibeAlcohol(35);
 	processTime(120+rand(30));
 
 	// Booze!
