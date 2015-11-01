@@ -3353,12 +3353,13 @@ public function displayQuestLog(showID:String = "All"):void
 			// Deck 13
 			if(flags["ANNO_MISSION_OFFER"] != undefined)
 			{
-				output2("\n<b><u>The Ghost Deck</u></b>");
+				if(flags["DECK13_COMPLETE"] != undefined) output2("\n<b><u>Ghost in the Machine</u></b>");
+				else output2("\n<b><u>The Ghost Deck</u></b>");
 				output2("\n<b>* Status:</b>");
 				if(flags["ANNO_MISSION_OFFER"] <= 1) output2(" Offered");
 				else
 				{
-					if(flags["DECK13_COMPLETE"] != undefined) 
+					if(flags["DECK13_COMPLETE"] != undefined)
 					{
 						if(flags["DECK13_GRAY_PRIME_DECISION"] == 1) output2(" Helped Nova with cybernetic bodies");
 						if(flags["DECK13_GRAY_PRIME_DECISION"] == 2) output2(" Convinced Nova to make use of gray goo");
@@ -3532,7 +3533,7 @@ public function displayQuestLog(showID:String = "All"):void
 			if(flags["BEEN_TO_MYRELLION_BAR"] != undefined && flags["MET_KARA"] != undefined)
 			{
 				output2("\n<b><u>KaraQuest</u></b>");
-				output2("\n<b>* First Encounter:</b>");
+				output2("\n<b>* Status:</b>");
 				if(flags["LET_SHADE_AND_KARA_DUKE_IT_OUT"] != undefined) output2(" Ignored Kara and Shade");
 				else if(flags["DISTRACTED_SHADE"] != undefined) output2(" Distracted Shade");
 				else if(flags["TRIPPED_ON_SHADE"] != undefined) output2(" Tripped on Shade");
@@ -3544,6 +3545,66 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["LOST_TO_SHADE_WITH_KARA"] != undefined) output2(", Lost against Shade");
 				if(flags["SHADE_PAID_YOU"] != undefined) output2(", Rewarded by Shade, Completed");
 				if(flags["KARA_PAID_YOU"] != undefined) output2(", Rewarded by Kara, Completed");
+				sideCount++;
+			}
+			// Kara's Big Adventure! - Pt.2
+			if(flags["KQ2_QUEST_OFFER"] != undefined)
+			{
+				output2("\n<b><u>KaraQuest 2: Eye of the Beholder</u></b>");
+				output2("\n<b>* Status:</b>");
+				if(flags["KQ2_QUEST_DETAILED"] == undefined)
+				{
+					output2(" Mission offered, Invited to meet Kara");
+				}
+				else
+				{
+					output2(" Met Kara");
+					if(flags["KQ2_QUEST_BEGIN"] == 1) output2(", Accepted mission");
+					else if(flags["KQ2_QUEST_BEGIN"] == 2) output2(", Rejected mission");
+					else output2(", Undecided about mission");
+					if(flags["KQ2_SEX_PAY"] != undefined) output2(", Kara sexed you");
+					if(flags["KQ2_CREDS_FIRST"] != undefined) output2(", Kara paid you");
+					if(flags["KQ2_KHANS_FILES"] != undefined) output2(", Took Khan’s files");
+					// Pirate Base
+					if(9999 == 0)
+					{
+						output2("\n<b>* Pirate Base, Kara, Status:</b>");
+						if(flags["KQ2_KARA_WITH_PC"] == 1) output2(" At your side");
+						if(flags["KQ2_KARA_WITH_PC"] == 2) output2(" At the radio tower");
+						else output2(" <i>Unknown</i>");
+					}
+					if(9999 == 0)
+					{
+						output2("\n<b>* Pirate Base, Entrance:</b>");
+						if(flags["KQ2_RND_ENTRANCE_OPEN"] == 1) output2(" Blown open with tank");
+						else if(flags["KQ2_RND_ENTRANCE_OPEN"] == 2) output2(" Opened with keycard");
+						else if(flags["KQ2_RND_ENTRANCE_OPEN"] == 3) output2(" Opened with manual override");
+						else if(flags["KQ2_RND_ENTRANCE_OPEN"] == 4) output2(" Opened by Kara");
+						else output2(" Closed");
+					}
+					if(flags["KQ2_RF_KENNEL_USED"] != undefined)
+					{
+						output2("\n<b>* Pirate Base, RF Kennel:</b>");
+						if(flags["KQ2_RF_KENNEL_USED"] == 1) output2(" Used to fix Tam-wolf");
+						else if(flags["KQ2_RF_KENNEL_USED"] == 2) output2(" Used to upgrade Tam-wolf");
+						else output2(" Unused");
+					}
+					if(flags["KQ2_WATSTON_MET"] != undefined) output2("\n<b>* Pirate Base, Watston:</b> Met it");
+					if(flags["KQ2_DEFEATED_ENGINEER"] != undefined) output2("\n<b>* Pirate Base, Engineer:</b> Defeated her");
+					if(flags["KQ2_DEFEATED_JUGGERNAUT"] != undefined) output2("\n<b>* Pirate Base, Juggernaut:</b> Defeated him");
+					if(flags["KQ2_DEFEATED_KHAN"] != undefined)
+					{
+						output2("\n<b>* Pirate Base, Dr.Khan:</b> Met him, Defeated him");
+						if(9999 == 0) output2(", Sexed him with Kara");
+					}
+					// Nuke 'em, Rico!
+					if(flags["KQ2_NUKE_STARTED"] != undefined)
+					{
+						output2("\n<b>* Pirate Base, Nuke:</b>");
+						if(9999 == 0) output2(" Activated, Detonated, Destroyed Myrellion");
+						else output2(" Activated " + prettifyMinutes(GetGameTimestamp() - flags["KQ2_NUKE_STARTED"]) + " ago");
+					}
+				}
 				sideCount++;
 			}
 			// MarshalQuestuuuuuu
@@ -3725,6 +3786,7 @@ public function displayQuestLog(showID:String = "All"):void
 			else output2(" <i>In progress...</i>");
 			if(flags["SAEN MET AT THE BAR"] != undefined)
 			{
+				output2("\n<b><u>Phoenix Rising</u></b>");
 				output2("\n<b>* The <i>Phoenix</i>, Status:</b>");
 				if(flags["SAENDRA PHOENIX AVAILABLE"] == undefined) output2(" Locked");
 				else output2(" Unlocked");
@@ -3733,7 +3795,11 @@ public function displayQuestLog(showID:String = "All"):void
 				else
 				{
 					output2(", Undergoing repairs");
-					if(flags["SAENDRA PHOENIX STATUS TIMES"] != undefined) output2("\n<b>* The <i>Phoenix</i>, Times Checked Status: </b>" + flags["SAENDRA PHOENIX STATUS TIMES"]);
+					if(flags["SAENDRA PHOENIX STATUS TIMES"] != undefined)
+					{
+						output2(", Status checked");
+						if(flags["SAENDRA PHOENIX STATUS TIMES"] != 1) output2(" " + num2Text(flags["SAENDRA PHOENIX STATUS TIMES"]) + " times");
+					}
 				}
 			}
 			distressCount++;
@@ -3811,6 +3877,18 @@ public function displayQuestLog(showID:String = "All"):void
 				output2("\n<b>* Valeria:</b> Asked her for help");
 				if(flags["SAENDRA_XPACK1_ASKEDVAL"] == 2) output2(", Couldn’t hack security");
 			}
+			distressCount++;
+		}
+		// Operation: Spooky Aliens
+		if(9999 == 0)
+		{
+			output2("\n<b><u>The Kashima Incident</u></b>");
+			output2("\n<b>* Status:</b>");
+			if(9999 == 0)
+			{
+				output2(" Completed");
+			}
+			else output2(" <i>In progress...</i>");
 			distressCount++;
 		}
 		// Operation: Tanuki Problems #69
