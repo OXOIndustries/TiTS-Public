@@ -738,7 +738,7 @@ public function annoPartyEpiloooogue():void
 
 	output("\n\n");
 	//if Anno Recruited:
-	if(annoIsCrew()) output("<i>“Woah, this place looks...”</i>");
+	if(!annoNotRecruited()) output("<i>“Woah, this place looks...”</i>");
 	else if(silly) output("<i>“D-damn, this feels familiar!”</i>");
 	else output("<i>“Your [pc.tongue] is fucking--”</i>");
 	output(" the girl starts to say, cut off as you lean up and peel her panties off");
@@ -758,8 +758,8 @@ public function annoPartyEpiloooogue():void
 	}
 	else output("\n\nYou thrust your [pc.cock] deep into her mouth, thrusting in until she’s slathered your members with spittle before rolling the randy bitch over and hiking her ass in the air. You thrust in, earning a delighted cry. You yourself howl and grunt with pleasure, vigorously hammering into the tight, sloppy grip of the puppy’s pussy until she’s screaming and cumming, gushing juices down her thighs until your sheets are a mess. You’re going to be sleeping in her scent for weeks... and you’ll love every second of it!");
 
-	//if Anno recruited:
-	if(annoIsCrew()) 
+	//if Anno recruited/met:
+	if(flags["MET_ANNO"] != undefined) 
 	{
 		output("\n\nThe two of you keep going for hours beyond counting, long after the celebrations outside have ended, until the dawn comes and find you leaning against your headboard, gently stroking the ausar-dragon’s rust-red hair. Your cabin has been utterly sullied by the stench of ");
 		if(!pc.hasCock()) output("fem-");
@@ -773,8 +773,15 @@ public function annoPartyEpiloooogue():void
 
 		output("\n\nShe yelps. <i>“Hey, you know my... wait... [pc.name]!?”</i> she blinks, eyes wide. <i>“What happened to you? You look totally... totally hot, and strong, and...”</i>");
 
-		output("\n\n<i>“Shush,”</i> you say, pulling your lover in for a kiss. <i>“It’s just a suit.”</i>");
-		output("\n\nShe murmurs happily, but when you break it, says, <i>“Feels like skin to me, babe. I think you might have found one of those old synth-suits. The ones that merge with your skin, make you strong enough to use old-school powered armor?”</i>");
+		output("\n\n<i>“Shush,”</i> you say, pulling");
+		if(flags["ANNO_SEXED"] > 0) output(" your lover");
+		else if(!annoNotRecruited()) output(" your crew mate");
+		else output(" the ausar");
+		output(" in for a kiss. <i>“It’s just a suit.”</i>");
+		output("\n\nShe murmurs happily, but when you break it, says, <i>“Feels like skin to me,");
+		if(flags["ANNO_SEXED"] > 0) output(" babe");
+		else output(" boss");
+		output(". I think you might have found one of those old synth-suits. The ones that merge with your skin, make you strong enough to use old-school powered armor?”</i>");
 
 		output("\n\nNo, no. You reach back and grab the... the zipper... that should be right on your neck... and isn’t. For a moment, you blanche. And then you realize, fuck it, this was about the best night of your life. If you’re a giant, big-titted amazon now, well, that’s not so bad. Especially if it makes Anno fall for you");
 		if(flags["ANNO_SEXED"] != undefined) output(" all over again");
@@ -804,10 +811,17 @@ public function annoPartyEpiloooogue():void
 	}
 	amazonTFShitApplied();
 	processTime(666);
+	annoSexed(1);
+	anno.orgasm();
+	anno.orgasm();
+	anno.orgasm();
+	anno.orgasm();
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
+	pc.girlCumInMouth(chars["ANNO"]);
+	pc.girlCumInMouth(chars["ANNO"]);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
