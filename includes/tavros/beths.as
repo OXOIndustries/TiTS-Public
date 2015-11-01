@@ -1318,7 +1318,14 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 				output(" The hard girth of his dick combine with the vibrations drives you to clenching orgasm after orgasm; it requires no acting on your part to squeal with simple-minded joy until you are hoarse. You and the galotian’s gooey flesh travel up and down the three writhing bodies, worshipping them, your reward the salt on their skins and the copious amount of slut-feed they spurt into you.");
 				output("\n\n<i>“He always persuades me to come to this sleaze-hole for our anniversaries,”</i> sighs the girl later, leaning over the side as you massage her shoulders, layered on top of her generous hams, tracing the lips of her pussy with gooey tendrils. <i>“I always regret caving in at the time. Never while I’m here.”</i>");
 				processTime(60);
+				pc.loadInCunt(pp, x);
+				pc.loadInCunt(pp, x);
 				pc.loadInAss(pp);
+				pc.loadInAss(pp);
+				pc.loadInMouth(pp);
+				pc.loadInMouth(pp);
+				pc.girlCumInMouth(pp);
+				pc.girlCumInMouth(pp);
 				pc.orgasm();
 				pc.orgasm();
 				pc.orgasm();
