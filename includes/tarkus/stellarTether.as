@@ -505,11 +505,11 @@ public function takeTamWulf():void
 	clearOutput();
 	author("Savin");
 	showBust("TAMWOLF");
-	showName("\nTAMWOLF");
+	showName("\nTAM-WOLF");
 	output("With the psychotic cat-girl incapacitated, you take a gander at the damaged drone dog on the work table. Looking just like a sleek black doberman, the drone is certainly quite powerful -- and those teeth can take a bite right out of you. With a little re-working, you could probably turn him into your new best friend.");
 	if(silly) output(" Then again, stealing is wrong... even from pirates.");
 	//If PC is a Tech w/ drone:
-	else if(pc.characterClass == GLOBAL.CLASS_ENGINEER) output(" <b>Taking Tamwolf would let you replace your shock-slinging default drone with a bitey attack drone by equipping it as an accessory</b>.");
+	else if(pc.characterClass == GLOBAL.CLASS_ENGINEER) output(" <b>Taking Tam-wolf would let you replace your shock-slinging default drone with a bitey attack drone by equipping it as an accessory</b>.");
 	else output(" If only you had the expertise and experience to work with drones, you could probably get Tam-wolf up to peak form -- as is, he's still pretty damaged, and might be unreliable.");
 	output("\n\nTake him?");
 	processTime(1);
@@ -525,7 +525,7 @@ public function dontTakeTamWulf():void
 	clearOutput();
 	author("Savin");
 	showBust("TAMWOLF");
-	showName("\nTAMWOLF");
+	showName("\nTAM-WOLF");
 	output("Nah. You'd hate to deprive the crazy cat-girl of her pet pooch, anyway. She'd be heartbroken!");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -538,7 +538,7 @@ public function yesTechSpecialistsTakeTamWulf():void
 	clearOutput();
 	author("Savin");
 	showBust("TAMWOLF");
-	showName("\nTAMWOLF");
+	showName("\nTAM-WOLF");
 	var foundLootItems:Array = new Array();
 	//Drone techs!
 	if(pc.hasPerk("Attack Drone"))
@@ -612,7 +612,7 @@ public function tamtamBadEndPetPooch():void
 {
 	author("Savin");
 	showBust("TAMTAM","TAMWOLF");
-	showName("\nTAMWOLF");
+	showName("\nTAM-WOLF");
 	//If During phase 1:
 	if(!foes[0].hasStatusEffect("Phase 2"))
 	{
@@ -622,7 +622,7 @@ public function tamtamBadEndPetPooch():void
 	else output("Under a withering hail of bullets and a ceaseless assault from the cyber-dog, you find yourself slipping, only narrowing dodging streams of lead. Suddenly, you feel a set of dangerously pointed teeth on your neck as a powerful robotic body barrels you onto the ground.");
 	output("\n\nTam the cat-girl is over you in an instant, kicking your [pc.rangedWeapon] away and leveling her own laser pistol at you. <i>\"On your knees!\"</i> she demands, before noticing that you're flat on your back");
 	if(!pc.hasKnees()) output(", much less that you don't even have knees");
-	output(". <i>\"Yeah! Suck it, bitch. High-five, Tamwolf!\"</i>");
+	output(". <i>\"Yeah! Suck it, bitch. High-five, Tam-wolf!\"</i>");
 	output("\n\n<i>\"High-five, mistress Tam,\"</i> Tam-wolf agrees, reaching a steel paw up and swatting her outstretched hand.");
 	output("\n\n<i>\"That'll teach you for messing with Captain Khorgan's pirate crew, and especially Tam-Tam!\"</i> Tam cheers, pumping a victorious fist in the air. <i>\"So... uh... what do I do now?\"</i>");
 	output("\n\n<i>\"Captain Khorgan ordered all trespassers be attacked on sight,\"</i> Tam-wolf offers, growling at you.");
@@ -663,7 +663,7 @@ public function badEndToTamWulfAndTamAndMaybeAlsoTamPartII():void
 	clearOutput();
 	author("Savin");
 	showBust("TAMTAM","TAMWOLF");
-	showName("\nTAMWOLF");
+	showName("\nTAM-WOLF");
 	output("<b>Months pass</b>");
 	output("\n\nYou can barely feel your extremities. The leather outfit is restraining, tight against your nude body, holding you onto ");
 	if(!pc.hasKnees()) output("your newly grown ");
