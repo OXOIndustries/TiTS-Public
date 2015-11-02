@@ -362,7 +362,7 @@ public function initializeRooms():void
 	//9008
 	rooms["9008"] = new RoomClass(this);
 	rooms["9008"].roomName = "MERCHANT'S\nTHOROUGHFARE";
-	rooms["9008"].description = "Bending away to the south and west, the merchant’s thoroughfare snakes its way around the circumference of the station, blazing a wide path between seemingly endless storefronts. Many in the immediate area are closed, shuttered and covered with temporary advertisements. \"Visit beautiful Bogrum 12! Luxurious mud baths, sulfer springs, and exotic slug women await you!\"";
+	rooms["9008"].description = "Bending away to the south and west, the merchant’s thoroughfare snakes its way around the circumference of the station, blazing a wide path between seemingly endless storefronts. Many in the immediate area are closed, shuttered and covered with temporary advertisements. \"Visit beautiful Bogrum 12! Luxurious mud baths, sulfur springs, and exotic slug women await you!\"";
 	rooms["9008"].planet = "TAVROS STATION";
 	rooms["9008"].system = "SYSTEM: KALAS";
 	rooms["9008"].southExit = "9009";
