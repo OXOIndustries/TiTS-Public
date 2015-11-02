@@ -877,9 +877,9 @@ public function getABJFromAManzil():void
 	output("\n\n<i>“Well?”</i> you say. <i>“Suck.”</i>");
 	output("\n\nHe manages to pull some semblance of a stupid, lusty grin onto his face before getting up on his knees and pulling your [pc.cockBiggest] towards his lips, using it to part them with just the right amount of force. He’s clearly not new to this. The [pc.cockHeadBiggest] of your member is treated to a brief massage from the zil’s expert lips before being pulled into his wet mouth.");
 	output("\n\nHis hands begin to explore your shaft, his fingers tracing up your cock towards its base before breaking into a steady pumping action.");
-	if(pc.balls > 0) output("One hand slips underneath to your [pc.balls], where it starts to rub, tug and tease.");
-	else if(pc.hasVagina()) output("One hand slips behind your [pc.cockBiggest] to start working its sensitive fingers into [pc.oneVagina].");
-	else output("One hand slips behind your cock, feeling around your taint for something else to play with. Finding nothing, it moves on undeterred to your [pc.asshole] where it starts to make itself useful.");
+	if(pc.balls > 0) output(" One hand slips underneath to your [pc.balls], where it starts to rub, tug and tease.");
+	else if(pc.hasVagina()) output(" One hand slips behind your [pc.cockBiggest] to start working its sensitive fingers into [pc.oneVagina].");
+	else output( "One hand slips behind your cock, feeling around your taint for something else to play with. Finding nothing, it moves on undeterred to your [pc.asshole] where it starts to make itself useful.");
 	output(" It seems you’ve happened upon quite the competent slut. Smiling, you jerk your hips forward, pushing further into his mouth and startling the zil-boy. He looks up at you and flutters his pretty wings lightly, looking straight into your [pc.eyes] as he teases you with his tongue.");
 
 	output("\n\nThe zil-boy’s tongue is exquisite, rolling around the tip of your increasingly horny member and collecting every bit of pre that you so graciously release. It soon slips out from between your [pc.cockBiggest] and his lower lip, managing to lick all the way along the bottom of your shaft and almost to the base. The bright yellow organ’s tube is normally used for collecting nectar, but this zil-boy slut uses it expertly to plant tiny kisses all across your length as it makes its journey.");
