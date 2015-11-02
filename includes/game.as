@@ -2326,7 +2326,7 @@ public function statisticsScreen(showID:String = "All"):void
 					if(pc.breastRows[x].breastRatingLactationMod != 0) output2("\n<b>* Breast, Lactation Size Rating: </b>" + formatFloat(pc.breastRows[x].breastRatingLactationMod, 3));
 					output2("\n<b>* Nipple, Type: </b>" + " " + GLOBAL.NIPPLE_TYPE_NAMES[pc.breastRows[x].nippleType]);
 					if(pc.breastRows[x].fuckable()) output2(", Fuckable");
-					if(pc.breastRows[x].nippleType == GLOBAL.NIPPLE_TYPE_DICK) output2("\n<b>* Nipple, Genital Type: </b>" + GLOBAL.TYPE_NAMES[pc.breastRows[x].dickNippleType]);
+					if(pc.breastRows[x].nippleType == GLOBAL.NIPPLE_TYPE_DICK) output2("\n<b>* Nipple, Genital Type: </b>" + GLOBAL.TYPE_NAMES[pc.dickNippleType]);
 					if(pc.breastRows[x].nippleType != GLOBAL.NIPPLE_TYPE_FUCKABLE && pc.breastRows[x].nippleType != GLOBAL.NIPPLE_TYPE_FLAT && pc.breastRows[x].nippleType != GLOBAL.NIPPLE_TYPE_INVERTED)
 					{
 						if(pc.breastRows[x].nippleType == GLOBAL.NIPPLE_TYPE_DICK)
