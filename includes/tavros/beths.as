@@ -430,6 +430,7 @@ public function brothelTurnTrixLady():void
 	showBrothelLady();
 	author("Nonesuch");
 	
+	processTime(1);
 	// If PC is licensed
 	if(flags["BETHS_CONTRACT_WHORE"] != undefined)
 	{
@@ -437,6 +438,7 @@ public function brothelTurnTrixLady():void
 		//[Yep] [No]
 		addButton(0, "Yep", brothelTurnTrixLicensedMenu);
 		addButton(1, "No", brothelTurnTrixAnswer, 3);
+		return;
 	}
 	// If PC hasn't whored
 	else if(flags["BETHS_TIMES_WHORED"] == undefined)
@@ -472,6 +474,7 @@ public function brothelTurnTrixLady():void
 		// [Freelance] [License?]
 		addButton(0, "Freelance", brothelTurnTrixFreelanceMenu);
 		addButton(1, "License?", brothelTurnTrixAnswer, 2, "License?", "Ask about the license.");
+		return;
 	}
 }
 
@@ -490,6 +493,7 @@ public function brothelTurnTrixAnswer(choice:int = 0):void
 		if(rand(2) == 0) output(" fingers");
 		else output(" nails");
 		output(". <i>“But remember: 50% of whatever you earn here, and if there’s trouble it’s you out the door, not them.”</i>");
+		processTime(1);
 		// Go to freelancing menu
 		brothelTurnTrixFreelanceMenu();
 	}
@@ -499,6 +503,7 @@ public function brothelTurnTrixAnswer(choice:int = 0):void
 		output("<i>“What’s this about a license?”</i> you ask.");
 		output("\n\n<i>“If you license yourself with us, you can keep 80% of what you earn,”</i> she replies, rummaging around behind the desk. <i>“But you gotta agree to the terms.”</i> She brings out an electronic form and tap-pencil, pointing out each clause as he goes along.");
 		output("\n\n<i>“You’ve got to hit a certain number of johns on a shift. Not worth our while otherwise. You gotta look presentable, obviously. You got to agree to at least suck. Don’t have to do anything more if you don’t want. And, most importantly...”</i> she looks up and catches your eye with a dry smirk. <i>“You’ve got to see to the staff from time to time, pro bono. Pretty frustrating, watching the dancers do their thing when you’re stuck behind the bar.”</i> She taps the signature box at the bottom. <i>“Agree to all that and you get an 80/20 cut, the use of the rooms, and a promise that if there’s trouble, someone will be along to break the guy’s face in two.”</i>");
+		processTime(2);
 		// [Sign] [No]
 		if(flags["BETHS_TIMES_WHORED_MOUTH"] != undefined || (flags["TIMES_BUTT_TEASED"] >= 1 && flags["TIMES_CHEST_TEASED"] >= 1 && flags["TIMES_CROTCH_TEASED"] >= 1 && flags["TIMES_HIPS_TEASED"] >= 1)) addButton(0, "Sign", brothelTurnTrixContract, 1);
 		else addButton(0, "Sign", brothelTurnTrixContract, 4);
@@ -512,12 +517,14 @@ public function brothelTurnTrixAnswer(choice:int = 0):void
 		if(!pc.isAss()) output("\n\nYou wiggle your fingers at her teasingly");
 		else output("\n\nYou give her a look of pure, smirking evil");
 		output(" and return to the floor.");
+		processTime(1);
 		addButton(0, "Next", mainGameMenu);
 	}
 	// Nah
 	else
 	{
 		output("<i>“Suit yourself,”</i> she shrugs. <i>“Doubt you’ll find fairer rates for freelancers anywhere else on this station.”</i>");
+		processTime(1);
 		addButton(0, "Next", mainGameMenu);
 	}
 }
@@ -542,6 +549,7 @@ public function brothelTurnTrixContract(choice:int = 0):void
 		flags["KAT_MET"] = 1;
 		flags["BETHS_CONTRACT_WHORE"] = 1;
 		if(flags["BETHS_TIMES_WHORED"] == undefined) flags["BETHS_TIMES_WHORED"] = 0;
+		processTime(10);
 		// [Yes] [Later]
 		// Go to licensed menu
 		addButton(0, "Yes", brothelTurnTrixLicensedMenu);
@@ -551,6 +559,7 @@ public function brothelTurnTrixContract(choice:int = 0):void
 	else if(choice == 3)
 	{
 		output("<i>“Later, maybe,”</i> you grin, stepping back.");
+		processTime(1);
 		// Go to Beth’s main menu
 		brothelMainMenu();
 	}
@@ -563,6 +572,7 @@ public function brothelTurnTrixContract(choice:int = 0):void
 		output(" and polish it with those lips of yours.”</i>");
 		output("\n\nYou look at her bored, almost expressionless, face and you can tell that she is pretty serious.");
 		output("\n\n<i>“This is a business after all and whichever you choose to do, I can’t have you dropping this establishment’s reputation before you are able to drop your panties.”</i>");
+		processTime(5);
 		// [Freelance] [Nah]
 		addButton(0, "Freelance", brothelTurnTrixAnswer, 1, "Freelance", "Choose to be a freelance whore instead.");
 		addButton(1, "Later", brothelTurnTrixContract, 3);
@@ -571,6 +581,7 @@ public function brothelTurnTrixContract(choice:int = 0):void
 	else
 	{
 		output("<i>“Offer’s always open,”</i> she shrugs, taking the form back. <i>“Least if you remain looking as slutty as you do now. You fixing to go solo, then?”</i>");
+		processTime(1);
 		// [Freelance] [Nah]
 		addButton(0, "Freelance", brothelTurnTrixAnswer, 1, "Freelance", "Choose to be a freelance whore instead.");
 		addButton(1, "Nah", mainGameMenu);
