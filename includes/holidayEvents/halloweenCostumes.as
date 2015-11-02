@@ -30,10 +30,16 @@ public function hollidayOweenAlert():void
 	author("Adjatha");
 	output("A familiar sound alerts you to a new message in your email. Weird, it’s from somebody you don’t recognize. Has somebody sold your address to a scammer? You run a cursory virus scan, but when it comes up clean, the temptation to see the message outweighs the sensible precaution of just deleting it.");
 	output("\n\n<i>“Hey, where are you? I thought we agreed to meet up for The Masque? I keep trying to call you, but you’re not answering, so this is my last try. Dude, this shit is wicked. I’m gonna be on the west side of Craven city, but you’ve only got a few days left, so get your ass over here!”</i>");
-
+	
 	output("\n\nIt’s signed <i>“Wet & Waiting,”</i> you note with a small smirk. Must’ve been sent to you by accident. You’ve never heard of ‘The Masque,’ but a cursory search solves that problem in a heartbeat. Apparently, it’s some kind of month-long festival on Poe A, a fairly advanced planet you’ve never really given a second thought to. The event started as some kind of Autumn celebration way back when, but now it’s some kind of huge, bacchanalian party. You spend a few minutes browsing some anecdotes of previous years’ carousing and you’ve got to admit, it does sound interesting. Parties that go on all month, the most famous actors and athletes in the galaxy bumping elbows with nobodies, and legendary orgies that have to be seen to be believed.");
 	output("\n\nLooking up from the explicit accounts, you eyeball your navigation system thoughtfully. You’ve been working too hard recently - a little break would be good for you. Maybe you can even meet up with ‘Wet & Waiting.’ Then again, <b>things can get out of hand at parties like that - with permanent consequences.</b>");
-
+	
+	if (!MailManager.isEntryUnlocked("the_masque"))
+	{
+		eventBuffer += "\n\n<b>New Email From Wet & Waiting (Wet.N.Waiting@GalLink.org)!</b>";
+		MailManager.unlockEntry("the_masque", GetGameTimestamp());
+	}
+	
 	//// Adds <i>“Poe A”</i> to navigation list
 	processTime(3);
 	flags["HOLIDAY_OWEEN_ACTIVATED"] = GetGameTimestamp();
