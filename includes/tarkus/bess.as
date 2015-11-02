@@ -753,7 +753,7 @@ public function plugBessesFatAssInPartII():void
 	}
 	output("\n\n<i>“Greetings, [pc.Master]! Thank you for purchasing this unit from JoyCo, the number one galactic seller of medical supplies and high-quality assist-bots!”</i> " + bess.mf("He sounds remarkably upbeat", "She sounds surprisingly happy") + " for someone who was just fished out of a junk pile. <i>“JoyCo hopes you enjoy your purchase, since your pleasure is our pleasure!”</i>");
 	output("\n\nYou ask exactly <i>who</i> and <i>what</i> [bess.heShe] is, and <i>why</i> [bess.heShe] is calling you ‘[pc.Master]’. There are an awful lot of ‘w’ questions that need to be answered until you put down your weapon.");
-	output("\n\nThe " + bess.mf("male","female") + " android looks a little confused. <i>“[pc.Master], I don’t have a name yet - you haven’t given me one. " + bess.mf("I’m the Breeding Emergency Neutralizer Android Model No.14, or Ben-14,", "I’m the Breeding Emergency Sex Substitute Android Model No.13, or ‘Bess-13’,") + " that you ordered from JoyCo. You know, the one designed to relieve your pent-up breeding needs?”</i>");
+	output("\n\nThe " + bess.mf("male","female") + " android looks a little confused. <i>“[pc.Master], I don’t have a name yet - you haven’t given me one. " + bess.mf("I’m the Breeding Emergency Neutralizer Android Model No.14, or ‘Ben-14’,", "I’m the Breeding Emergency Sex Substitute Android Model No.13, or ‘Bess-13’,") + " that you ordered from JoyCo. You know, the one designed to relieve your pent-up breeding needs?”</i>");
 	output("\n\nIt seems [bess.heShe] has been reset to [bess.hisHer] factory settings, and now [bess.heShe] thinks you are [bess.hisHer] registered owner. Either that, or [bess.heShe] was fresh out of the box to begin with. Could you be lucky enough to have found your very own high-class, brand-spanking new JoyCo sex relief android?");
 	// Silly Mode && bess.gender = female
 	if(silly && bess.isFeminine()) output("\n\n...Somewhere, there’s a very unhappy looking Japanese boy, waiting for his girlfriend to arrive...");
@@ -1014,20 +1014,89 @@ public function followerBessRoom():void
 	// Just a suggestion - maybe an option in the room to deactivate Bess/Ben's picture portrait? Might irk some people that the pic doesn't match the dialogue, but they might not want to deactivate *all* the pics. This way the option isn't always in your face, either.
 }
 
+public function verifyBessModel():void
+{
+	clearOutput();
+	bessHeader();
+	
+	output("As you approach [bess.name], [bess.heShe] greets you with wave and a bright smile.");
+	output("\n\nAll of a sudden, [bess.heShe] is suspended in mid air and out of nowhere, a huge bubble of light engulfs [bess.hisHer] body. The last you see is [bess.hisHer] surprised face before [bess.heShe] is completely covered in a sheet of semi-transparent, light-refractive energy.");
+	output("\n\nYou walk up to the strange hex-patterned dome and notice no heat radiating off of it. You give it an experimental touch with a [pc.finger] and confirm that it is some kind of hardlight force field. Slamming your fist against it feels like knocking on thick bulletproof glass.");
+	output("\n\nBefore you could figure out an alternate means of bypassing the shield, a holographic console appears in front of you.");
+	output("\n\n<i>“Welcome to the JoyCo Personal Maintenance App.”</i> A soothing electronic female voice announces.");
+	output("\n\nIs this some kind of software package you weren’t aware of?");
+	output("\n\n<i>“It seems that your product is missing some essential configuration data. I will need to do a simple scan to correct the issue. Don’t worry, this is a completely normal personal maintenance operation. In order to undergo this one-time maintenance check, I need to verify your product’s make and model to ensure that the necessary changes are being made. Please tap ‘Next’ to proceed.”</i>");
+	output("\n\nLooks like you don’t have much choice but to go through with it.");
+	
+	processTime(2);
+	clearMenu();
+	addButton(0, "Next", verifyBessModelMenu);
+}
+public function verifyBessModelMenu(sGender = "auto"):void
+{
+	setBessGender(sGender);
+	
+	clearOutput();
+	bessHeader();
+	
+	if (sGender = "auto")
+	{
+		output("You comply by pressing the button on the interface and then you are lead to a new screen.");
+		output("\n\n<i>“Please select your product’s model name.”</i> the voice politely asks.");
+	}
+	else
+	{
+		output("<i>“Great! The model you have chosen is the Mood Articulate Intelligence Android: " + bess.mf("Breeding Emergency Neutralizer Android Model No.14, or ‘Ben-14’", "Breeding Emergency Sex Substitute Android Model No.13, or ‘Bess-13’") + ". If this is correct, please tap ‘Confirm’ to initiate the personal maintenance scan.”</i>");
+	}
+	
+	clearMenu();
+	addButton(0, "Ben-14", verifyBessModelMenu, "male");
+	addButton(1, "Bess-13", verifyBessModelMenu, "female");
+	if (sGender == "auto") addDisabledButton(2, "Confirm", "Confirm", "You need to select the appropriate model to proceed.");
+	else addButton(2, "Confirm", verifyBessModelFinish);
+}
+public function verifyBessModelFinish():void
+{
+	clearOutput();
+	bessHeader();
+	
+	output("<i>“Excellent! I’m initializing the personal maintenance scan for the Mood Articulate Intelligence Android: " + bess.mf("Breeding Emergency Neutralizer Android Model No.14", "Breeding Emergency Sex Substitute Android Model No.13") + " now. Please wait...”</i>");
+	output("\n\nYou patiently wait as a series of graphs, bars, and numbers appear on the console, flashing by at a million times a second.");
+	output("\n\n<i>“System Integrity ..... check.”</i>");
+	output("\n\n<i>“Motor Functions ..... normal.”</i>");
+	output("\n\n<i>“Gender Setting ..... corrected: " + bess.mf("male", "female") + ".”</i>");
+	output("\n\n<i>“Scan Status ...”</i>");
+	output("\n\n<i>“... Complete.”</i>");
+	output("\n\nDone already? Well that was fast.");
+	output("\n\n<i>“Thank you for using JoyCo, and please enjoy your product!”</i> With that sign-off, the hexagonal shapes making up the bubble shield break apart and vanish one by one.");
+	output("\n\n[bess.name] is gently dropped from [bess.hisHer] suspended animation and sits on the floor looking quite confused. You approach [bess.himHer] and ask if [bess.heShe] is okay.");
+	output("\n\n<i>“Oh, hello " + bessPCName() +"! Sorry, that kind of hit me by surprise there,”</i> [bess.heShe] apologizes, quickly getting up on [bess.hisHer] [bess.feet]. <i>“Do you need help with anything?”</i>");
+	
+	processTime(3);
+	addButton(0, "Next", bessFollowerMenu);
+}
+
 //Greeting Dialogues
 public function approachFollowerBess():void
 {
 	// Dialogues initiated by hitting the [bess.name] button under companions. Or if they has a button under the normal ship stuff. Wherever you place it - just probably not in their room for story/sex consistency reasons.
 	clearOutput();
 	bessHeader();
-
+	
 	if (flags["BESS_NO_EVENT"] == undefined) // Stop events from firing without totally leaving her menu and re-entering.
 	{
 		if (bessEventHook()) return;
 	}
 
 	flags["BESS_NO_EVENT"] = 1;
-
+	
+	// Gender model-type hotfix!
+	if(!hasStatusEffect("Force Male Gender") && !hasStatusEffect("Force Fem Gender"))
+	{
+		verifyBessModel();
+		return;
+	}
+	
 	if (flags["BESS_LOVER"] == 1)
 	{
 		if(bessAffection() >= 90)
@@ -5265,7 +5334,7 @@ public function talkToBessPlayGraviball():void
 	else output(" the rest of the crew and a computer generated team to play with.");
 	output(" Of course you have your own allies to play with - you selected them personally before the match and now you feel you have the perfect team.");
 	
-	output("\n\nThe program has provided you with league issue pulse gear needed to play the game. Your [pc.feetNoun] and hands are outfitted with special gloves and boots that allow you to jump incredibly high, fly through the air and kick the z-g ball (or opponents) away at incredible speeds. It also allows you to easily catch fast flying balls just like a high-tech catching mitt.");
+	output("\n\nThe program has provided you with league issue pulse gear needed to play the game. Your [pc.feet] and hands are outfitted with special gloves and boots that allow you to jump incredibly high, fly through the air and kick the z-g ball (or opponents) away at incredible speeds. It also allows you to easily catch fast flying balls just like a high-tech catching mitt.");
 	
 	output("\n\nOn either side of the stadium are two hovering circular nets suspended twenty feet above the ground, manned by a goalie constantly using their pulse boots to stay afloat. The entire ring lights up with an incredible fanfare when a goal is scored.");
 	
