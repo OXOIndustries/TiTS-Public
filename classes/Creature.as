@@ -8446,6 +8446,11 @@ package classes {
 			{
 				description += RandomInCollection("inverted nipple", "hidden nip");
 			}
+			else if (breastRows[rowNum].nippleType == GLOBAL.NIPPLE_TYPE_FLAT)
+			{
+				description += RandomInCollection("tipless ", "flat ", "puffy ", "pebbly ");
+				description += RandomInCollection("nipple", "nip");
+			}
 			//Normals
 			else {
 				rando = this.rand(5);
