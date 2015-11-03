@@ -431,12 +431,12 @@ public function brothelTurnTrixLady():void
 	author("Nonesuch");
 	
 	processTime(1);
+	clearMenu();
 	// If PC is licensed
 	if(flags["BETHS_CONTRACT_WHORE"] != undefined)
 	{
 		output("<i>“Hey [pc.name],”</i> Kat smiles thinly when you sashay up. <i>“You going on shift?”</i>");
 		//[Yep] [No]
-		clearMenu();
 		addButton(0, "Yep", brothelTurnTrixLicensedMenu);
 		addButton(1, "No", brothelTurnTrixAnswer, 3);
 		return;
@@ -461,7 +461,6 @@ public function brothelTurnTrixLady():void
 		}
 		
 		// [Agree] [License?] [Nah]
-		clearMenu();
 		addButton(0, "Agree", brothelTurnTrixAnswer, 1, "Agree", "Whore as a freelancer.");
 		addButton(1, "License?", brothelTurnTrixAnswer, 2, "License?", "Ask about the license.");
 		addButton(2, "Nah", brothelTurnTrixAnswer, 0, "Nah", "Maybe next time.");
@@ -526,7 +525,7 @@ public function brothelTurnTrixAnswer(choice:int = 0):void
 	{
 		output("<i>“Suit yourself,”</i> she shrugs. <i>“Doubt you’ll find fairer rates for freelancers anywhere else on this station.”</i>");
 		processTime(1);
-		addButton(0, "Next", mainGameMenu);
+		addButton(0, "Next", brothelMainMenu);
 	}
 }
 
@@ -562,7 +561,7 @@ public function brothelTurnTrixContract(choice:int = 0):void
 		output("<i>“Later, maybe,”</i> you grin, stepping back.");
 		processTime(1);
 		// Go to Beth’s main menu
-		brothelMainMenu();
+		addButton(0, "Next", brothelMainMenu);
 	}
 	// Wait
 	else if(choice == 4)
@@ -585,7 +584,7 @@ public function brothelTurnTrixContract(choice:int = 0):void
 		processTime(1);
 		// [Freelance] [Nah]
 		addButton(0, "Freelance", brothelTurnTrixAnswer, 1, "Freelance", "Choose to be a freelance whore instead.");
-		addButton(1, "Nah", mainGameMenu);
+		addButton(1, "Nah", brothelMainMenu);
 	}
 }
 
