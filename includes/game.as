@@ -2790,10 +2790,6 @@ public function statisticsScreen(showID:String = "All"):void
 			if(StatTracking.getStat("pregnancy/queen of the deep eggs") > 0)
 				output2("\n<b>* Births, Water Queen Young: </b>" + StatTracking.getStat("pregnancy/queen of the deep eggs"));
 			// Father
-			if(StatTracking.getStat("pregnancy/raskvel sired/total") > 0)
-				output2("\n<b>* Fathered, Raskvel Eggs: </b>" + StatTracking.getStat("pregnancy/raskvel sired/total"));
-			if(StatTracking.getStat("pregnancy/raskvel sired/day care") > 0)
-				output2("\n<b>* Fathered, Raskvel @ Daycare: </b>" + StatTracking.getStat("pregnancy/raskvel sired/day care"));
 			if(StatTracking.getStat("pregnancy/briha kids") > 0)
 			{
 				output2("\n<b>* Fathered, Briha’s Children:</b>");
@@ -2822,6 +2818,12 @@ public function statisticsScreen(showID:String = "All"):void
 				output2("\n<b>* Fathered, Briha’s Sons: </b>" + StatTracking.getStat("pregnancy/briha sons"));
 			if(StatTracking.getStat("pregnancy/briha daughters") > 0)
 				output2("\n<b>* Fathered, Briha’s Daughters: </b>" + StatTracking.getStat("pregnancy/briha daughters"));
+			if(StatTracking.getStat("pregnancy/raskvel sired/total") > 0)
+				output2("\n<b>* Fathered, Raskvel Eggs: </b>" + StatTracking.getStat("pregnancy/raskvel sired/total"));
+			if(StatTracking.getStat("pregnancy/raskvel sired/day care") > 0)
+				output2("\n<b>* Fathered, Raskvel @ Daycare: </b>" + StatTracking.getStat("pregnancy/raskvel sired/day care"));
+			if(StatTracking.getStat("pregnancy/zil callgirl kids") > 0)
+				output2("\n<b>* Fathered, Zil Call Girl Children: </b>" + StatTracking.getStat("pregnancy/zil callgirl kids"));
 		}
 		
 		//======PARASITE STATISTICS=====//
@@ -3843,6 +3845,7 @@ public function displayQuestLog(showID:String = "All"):void
 			{
 				output2(" Responded, Cleared Deck 92, Rescue time expired, Peter died");
 				if(flags["SAENDRA_XPACK1_CREDITOFFER"] == 2) output2(", Paid for the <i>Phoenix</i>, Completed");
+				if(flags["ZIL_CALLGIRL_SEXED"] != undefined && flags["ZIL_CALLGIRL_SEXED"] > 0) output2("\n<b>* Call Girl, Times Sexed: </b>" + zilCallGirlSexed());
 			}
 			
 			if(flags["SAENDRA_XPACK1_CALLGIRLSTATE"] != undefined)
@@ -4178,10 +4181,11 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Public
-			if(flags["NEW_TEXAS_GANGBANGED"] != undefined) 
+			if(flags["NEW_TEXAS_GANGBANGED"] != undefined || flags["TEXAS_GRAVCUFFS_COWORGY"] != undefined) 
 			{
 				output2("\n<b><u>New Texas Public</u></b>");
 				if(flags["NEW_TEXAS_GANGBANGED"] != undefined) output2("\n<b>* Alpha Bull-Men, Times Gangbanged By: </b>" + flags["NEW_TEXAS_GANGBANGED"]);
+				if(flags["TEXAS_GRAVCUFFS_COWORGY"] != undefined) output2("\n<b>* Curvy Cowgirls, Times Gangbanged By: </b>" + flags["TEXAS_GRAVCUFFS_COWORGY"]);
 				variousCount++;
 			}
 			// Big T's Ranch
