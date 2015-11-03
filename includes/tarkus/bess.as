@@ -793,7 +793,7 @@ public function decisionTimeForBessMenu():void
 public function sellOfBessDatWhore():void
 {
 	clearOutput();
-	output("You decide you’d rather sell [bess.himHer] on the black market for some quick credits than keep [bess.himHer]. After making a discreet listing on the extranet, you eventually find a willing buyer for your Bess-13 unit.");
+	output("You decide you’d rather sell [bess.himHer] on the black market for some quick credits than keep [bess.himHer]. After making a discreet listing on the extranet, you eventually find a willing buyer for your " + bess.mf("Ben-14", "Bess-13") + " unit.");
 	output("\n\nThe handoff takes place in a secluded section of a nearby planet, barren enough to land the ship and avoid any contact with any locals. When you get to the meeting place, another starship is already waiting for you. ");
 	output("\n\nThe hull of the spacecraft has clearly seen better days; either the owner is blowing more money on your " + bess.mf("Ben", "Bess") + " Unit than on their starship, or they actually like it looking like a flying garbage heap.");
 	output("\n\nThe owner of the ship is just as pleasant to look at as his starship is. Coming out to meet you and wringing their hands all the while, he hardly makes eye contact. He’s far too busy ogling the merchandise.");
@@ -1478,7 +1478,7 @@ public function bessFunctionsMenu():void
 	clearMenu();
 	addButton(0, "Titles", talkToBessAboutTitles, undefined, "Titles", "Change [bess.name]'s name or what you call each other in sexual and non-sexual encounters.");
 
-	if (flags["BESS_LOVER_STATUS"] != undefined && (flags["BESS_LOVER_STATUS"].indexOf("dom") != -1 || flags["BESS_LOVER_STATUS"] == "pet" || flags["BESS_LOVER_STATUS"] == "sub")) addDisabledButton(1, "Role", "Bess’ Role", "Since making things ‘official’ with Bess, you’re unable to change [bess.hisHer] role!");
+	if (flags["BESS_LOVER_STATUS"] != undefined && (flags["BESS_LOVER_STATUS"].indexOf("dom") != -1 || flags["BESS_LOVER_STATUS"] == "pet" || flags["BESS_LOVER_STATUS"] == "sub")) addDisabledButton(1, "Role", "Bess’ Role", "Since making things ‘official’ with [bess.name], you’re unable to change [bess.hisHer] role!");
 	else addButton(1, "Role", talkToBessAboutRoles, undefined, "Roles", "Change [bess.name]'s various roles, such as if [bess.heShe]'s dominant or not during sex.");
 	
 
@@ -2919,48 +2919,48 @@ public function talkToBessAboutCock():void
 	clearMenu();
 	if (!bess.hasCock()) addDisabledButton(0, "None");
 	else addButton(0, "None", setBessCockType, -1);
-	if (bess.hasCock() && bess.cocks[0].cType = GLOBAL.TYPE_HUMAN && bess.balls == 0) addDisabledButton(1, "Normal");
+	if (bess.hasCock() && bess.cocks[0].cType == GLOBAL.TYPE_HUMAN && bess.balls == 0) addDisabledButton(1, "Normal");
 	else addButton(1, "Normal", setBessCockType, GLOBAL.TYPE_HUMAN);
-	if (bess.hasCock() && bess.cocks[0].cType = GLOBAL.TYPE_HUMAN && bess.balls == 2) addDisabledButton(2, "Normal+Balls");
+	if (bess.hasCock() && bess.cocks[0].cType == GLOBAL.TYPE_HUMAN && bess.balls == 2) addDisabledButton(2, "Normal+Balls");
 	else addButton(2, "Normal+Balls", setBessCockType, -2);
 	
-	if (bess.hasCock() && bess.cocks[0].cType = GLOBAL.TYPE_SAURIAN) addDisabledButton(3, "Dino");
+	if (bess.hasCock() && bess.cocks[0].cType == GLOBAL.TYPE_SAURIAN) addDisabledButton(3, "Dino");
 	else if (bessHasCockType(BESS_COCKTYPE_DINO)) addButton(3, "Dino", setBessCockType, GLOBAL.TYPE_SAURIAN);
 	else addDisabledButton(3, "Dino", "Dinosaur", "[bess.name] doesn’t have access to this cock style!");
 
-	if (bess.hasCock() && bess.cocks[0].cType = GLOBAL.TYPE_EQUINE) addDisabledButton(4, "Equine");
+	if (bess.hasCock() && bess.cocks[0].cType == GLOBAL.TYPE_EQUINE) addDisabledButton(4, "Equine");
 	else if (bessHasCockType(BESS_COCKTYPE_HORSE)) addButton(4, "Equine", setBessCockType, GLOBAL.TYPE_EQUINE);
 	else addDisabledButton(4, "Equine", "Equine", "[bess.name] doesn’t have access to this cock style!");
 
-	if (bess.hasCock() && bess.cocks[0].cType = GLOBAL.TYPE_CANINE) addDisabledButton(5, "Canine");
+	if (bess.hasCock() && bess.cocks[0].cType == GLOBAL.TYPE_CANINE) addDisabledButton(5, "Canine");
 	else if (bessHasCockType(BESS_COCKTYPE_DOG)) addButton(5, "Canine", setBessCockType, GLOBAL.TYPE_CANINE);
 	else addDisabledButton(5, "Canine", "Canine", "[bess.name] doesn’t have access to this cock style!");
 
-	if (bess.hasCock() && bess.cocks[0].cType = GLOBAL.TYPE_VULPINE) addDisabledButton(6, "Vulpine");
+	if (bess.hasCock() && bess.cocks[0].cType == GLOBAL.TYPE_VULPINE) addDisabledButton(6, "Vulpine");
 	else if (bessHasCockType(BESS_COCKTYPE_FOX)) addButton(6, "Vulpine", setBessCockType, GLOBAL.TYPE_VULPINE);
 	else addDisabledButton(6, "Vulpine", "Vulpine", "[bess.name] doesn’t have access to this cock style!");
 
-	if (bess.hasCock() && bess.cocks[0].cType = GLOBAL.TYPE_DEMONIC) addDisabledButton(7, "Demonic");
+	if (bess.hasCock() && bess.cocks[0].cType == GLOBAL.TYPE_DEMONIC) addDisabledButton(7, "Demonic");
 	else if (bessHasCockType(BESS_COCKTYPE_DEMON))addButton(7, "Demonic", setBessCockType, GLOBAL.TYPE_DEMONIC);
 	else addDisabledButton(7, "Demonic", "Demonic", "[bess.name] doesn’t have access to this cock style!");
 
-	if (bess.hasCock() && bess.cocks[0].cType = GLOBAL.TYPE_TENTACLE) addDisabledButton(8, "Tentacle");
+	if (bess.hasCock() && bess.cocks[0].cType == GLOBAL.TYPE_TENTACLE) addDisabledButton(8, "Tentacle");
 	else if (bessHasCockType(BESS_COCKTYPE_TENTACLE)) addButton(8, "Tentacle", setBessCockType, GLOBAL.TYPE_TENTACLE);
 	else addDisabledButton(8, "Tentacle", "Tentacle", "[bess.name] doesn’t have access to this cock style!");
 
-	if (bess.hasCock() && bess.cocks[0].cType = GLOBAL.TYPE_FELINE) addDisabledButton(9, "Feline");
+	if (bess.hasCock() && bess.cocks[0].cType == GLOBAL.TYPE_FELINE) addDisabledButton(9, "Feline");
 	else if (bessHasCockType(BESS_COCKTYPE_CAT)) addButton(9, "Feline", setBessCockType, GLOBAL.TYPE_FELINE);
 	else addDisabledButton(9, "Feline", "Feline", "[bess.name] doesn’t have access to this cock style!");
 
-	if (bess.hasCock() && bess.cocks[0].cType = GLOBAL.TYPE_DRACONIC) addDisabledButton(10, "Draconic");
+	if (bess.hasCock() && bess.cocks[0].cType == GLOBAL.TYPE_DRACONIC) addDisabledButton(10, "Draconic");
 	else if (bessHasCockType(BESS_COCKTYPE_DRAGON)) addButton(10, "Draconic", setBessCockType, GLOBAL.TYPE_DRACONIC);
 	else addDisabledButton(10, "Draconic", "Draconic", "[bess.name] doesn’t have access to this cock style!");
 
-	if (bess.hasCock() && bess.cocks[0].cType = GLOBAL.TYPE_GOOEY) addDisabledButton(11, "Goo");
+	if (bess.hasCock() && bess.cocks[0].cType == GLOBAL.TYPE_GOOEY) addDisabledButton(11, "Goo");
 	else if (bessHasCockType(BESS_COCKTYPE_GOOEY)) addButton(11, "Goo", setBessCockType, GLOBAL.TYPE_GOOEY);
 	else addDisabledButton(11, "Goo", "Goo", "[bess.name] doesn’t have access to this cock style!");
 
-	if (bess.hasCock() && bess.cocks[0].cType = GLOBAL.TYPE_VENUSPITCHER) addDisabledButton(12, "Plant");
+	if (bess.hasCock() && bess.cocks[0].cType == GLOBAL.TYPE_VENUSPITCHER) addDisabledButton(12, "Plant");
 	else if (bessHasCockType(BESS_COCKTYPE_VENUSPITCHER)) addButton(12, "Plant", setBessCockType, GLOBAL.TYPE_VENUSPITCHER);
 	else addDisabledButton(12, "Plant", "Plant", "[bess.name] doesn’t have access to this cock style!");
 
@@ -4067,8 +4067,8 @@ public function bessBuyShitItems():void
 
 	output("What JoyCo product would you like to purchase for [bess.name]?");
 	
-	output("\n\nGlasses (Allows Bess to equip Glasses in Accessory Menu) - 500 Creds");
-	output("\nKatana (Allows Bess to equip Katana in Accessory Menu) - 1000 Creds");
+	output("\n\nGlasses (Allows [bess.name] to equip Glasses in Accessory Menu) - 500 Creds");
+	output("\nKatana (Allows [bess.name] to equip Katana in Accessory Menu) - 1000 Creds");
 
 	clearMenu();
 	
@@ -8008,7 +8008,7 @@ public function bessEvent15FollowUp(response:String):void
 
 		output("\n\nYou don’t have time to take advantage of it though, since [bess.heShe]’s running back to [bess.hisHer] duties before you know it.");
 
-		output("\n\n<b>You and Bess are now Friends! The Friend, My Friend, Buddy and Partner titles have been unlocked in the [bess.name] title menu!</b>");
+		output("\n\n<b>You and [bess.name] are now Friends! The Friend, My Friend, Buddy and Partner titles have been unlocked in the [bess.name] title menu!</b>");
 
 		flags["BESS_FRIEND"] = 1;
 		flags["BESS_EVENT_15"] = GetGameTimestamp();
@@ -8034,7 +8034,7 @@ public function bessEvent15FollowUp(response:String):void
 		
 		output("\n\nOnce [bess.heShe] calms down, which takes a considerable while, [bess.heShe] hugs you once more before running off back to [bess.hisHer] duties. You clean up [bess.hisHer] new books and put them on the shelf - seems [bess.heShe] was so happy [bess.heShe] forgot to put [bess.hisHer] precious new books away.");
 		
-		output("\n\n<b>You and Bess are now Friends! The Friend, My Friend, Buddy and Partner titles have been unlocked in the [bess.name] title menu!</b>");
+		output("\n\n<b>You and [bess.name] are now Friends! The Friend, My Friend, Buddy and Partner titles have been unlocked in the [bess.name] title menu!</b>");
 
 		flags["BESS_FRIEND"] = 1;
 		flags["BESS_EVENT_15"] = GetGameTimestamp();
@@ -8061,7 +8061,7 @@ public function bessEvent15FollowUp(response:String):void
 		else output(" back to [bess.hisHer] duties, declaring [bess.heShe] only set [bess.himHer]self a small reading break since you’re the only two running the entire ship.");
 		output(" Perhaps there will be a chance to clear things up with the scatterbrained android later?");
 		
-		output("\n\n<b>You and Bess are now Best Friends! The Friend, My Friend, Buddy, Partner and Best Friend titles have been unlocked in the [bess.name] title menu!</b>");
+		output("\n\n<b>You and [bess.name] are now Best Friends! The Friend, My Friend, Buddy, Partner and Best Friend titles have been unlocked in the [bess.name] title menu!</b>");
 
 		flags["BESS_FRIEND"] = 1;
 		flags["BESS_EVENT_15"] = GetGameTimestamp();
@@ -9908,7 +9908,7 @@ public function bessDate4():void
 
 	if (celiseIsCrew())
 	{
-		output("\n\nFor once, Celise doesn’t want to be left out, even if it is supposed to be a date between just you and Bess. She wiggles down the ship ramp wearing a thick puffy waterproof jacket, looking at you both. Clearly this is a far cry from the heat transfer pipes she likes to sleep next to.");
+		output("\n\nFor once, Celise doesn’t want to be left out, even if it is supposed to be a date between just you and [bess.name]. She wiggles down the ship ramp wearing a thick puffy waterproof jacket, looking at you both. Clearly this is a far cry from the heat transfer pipes she likes to sleep next to.");
 		
 		output("\n\n<i>“... I hear the frozen lakes here have a lot of delicious fish, and I hear fish is full of protein.”</i> The gooey huntress is already on the prowl; sliding across the snow without sinking into it. Her ability to move without leaving tracks is truly impressive to behold.");
 		
