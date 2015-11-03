@@ -1151,7 +1151,13 @@ public function taurBarAdventures(config:int = 1):void
 	//TRANSFORMSHIT HERE
 	taurTFs(config);
 	//FORK DIS SHIT.
-	if(config == 1) addButton(0,"Next",taurDickSexScene);
+	if(config == 1) 
+	{
+		output("\n\nNow, are you going to get some breeding done or submissively wait for a woman to take interest?")
+		clearMenu();
+		addButton(0,"Breed",taurDickSexScene);
+		addButton(1,"S.Wait",centaurShitFromAlkahest);
+	}
 	else if(config == 2) addButton(0,"Next",femaleTaurLadySex);
 	else
 	{
@@ -1494,6 +1500,67 @@ public function maleTaurCostumeFinale():void
 		else output("Ellie dragging her pregnant belly"); 
 		output(" on the ground has your cock threatening to rear it's flaring head all over again, and who are you gonna find to knock up in the cold void of space?");
 	}
+	output("\n\n<b>Looks like you’re a horny");
+	if(!pc.hasVagina()) output(", male");
+	output(" centaur now.</b>");
+	pc.lust(50);
+	halloweenShipMove();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+public function centaurShitFromAlkahest():void
+{
+	clearOutput();
+	showName("THE\nBAR");
+	author("Alkahest");
+	output("You bite your lip as you trot over to the bar, hooves clacking on the tiles; your heavy, pulsing genitals sway back and forth, sending a pleasant tingling up your back with each jostle of your ponderous sack and prodigious pole. A meandering silvery trail of liquid arousal drools from you as you go. You shudder as you reach the bartop, your swinging equipment coming to a rest, gently throbbing and dripping your shimmering slime in a small pool beneath you. A busty blonde waitress approaches from back of the bar, you ogle her oversized tits straining a tight white t-shirt, your cock seeming to throb even harder if it were possible. She looks you up and down, her eyes resting on your meaty cock for more than a few uncomfortable seconds before pinching one of her turgid nipples, winking seductively and sauntering off to the other side of the bar.");
+	output("\n\nYou yelp in surprise as one of the more adventurous woman saunters up behind you and gropes your swaying testicles, drunkenly tugging and rolling the pliant flesh in her hands. A slimy glob of pre-come pours from the flared tip of your throbbing horsecock. With alcohol fueled courage, more and more drunken women of various species approach your backside and appreciatively fondle your aching cock and balls, tugging on your leathery sack and pulling your enormous phallus only to release it and watch it ponderously sway back and forth as they giggle at your impotent attempts to contain your arousal and cease their ministrations.");
+	output("\n\nYou hear a click and a flash of light illuminates the wall in front of you. Twisting your torso you see one of the ladies torturing your engorged genitals levelling a holocam at your crotch. Your face heats up with embarrassment as the rest of the group strikes a pose with your cock and balls, their lips and tongues questing all over your prodigious bulk. Another click and another flash captures your arousal for the extranet to enjoy and the women disperse, giggling and drunkenly weaving their way away from you.");
+	output("\n\nYour cock throbs with a dull ache, your foreleg nervously stamping into your pooling pre-cum, splashing the musky goo about. Your eyes quest around the bar for someone to help you with your problem. However, you don’t spy anyone free, everyone else seems to be busy sucking and fucking their own partners. Turning your attention back towards your overwhelming arousal, you moan as you feel your sensitive cock bob up and down, and you stamp your hooves in frustration, your swollen, seed-filled sack jostling and tingling with need. You gasp as your thick horse-cock lightly slaps against the underside of your belly, sending a pleasurable jolt along your spine. You look around in apprehension before discretely thrusting your hips harder and with erotic purpose. Your cock smacks your stomach and you nearly pass out at the sensation of your massive pole overwhelming your senses with pleasure.");
+	output("\n\nYou whine and trot in place, thinking of your situation before you sigh and give into your bestial needs. You begin to rhythmically roll your hips, your big horsecock flopping around before you find the right rhythm and your cock begins smacking into the underside of your belly. Your huge, heavy nuts tug at your groin with each thrust of your equine backside, and you lick your lips as you feel them churn with their pent up load. You see other bar patrons discreetly and not so discreetly watching you.");
+	output("\n\nYou buck your hips harder and harder, your massive horsedong bouncing madly and throwing shining ribbons of equine pre in a wide arc before you. Your weighty orbs smack into your haunches with each undulation of your wide backside and tug at your crotch, firing a twinge of pleasure through your body before your cock makes its impact, washing over the eddy of ardor with a wave of sensation. You stroke your furry back and moan as you feel your pleasure mounting higher and higher. You fantasize about countless women, and even some men being mounted by your huge bouncing cock. You can almost feel their ministrations on your thick length before you throw open your eyes and let out a whinny of pleasure.");
+	output("\n\nYour big, heavy nuts tense up, and your cock bucks and pulses as a massive load of equine cum flows up your prodigious length and rockets from your flared tip, splattering into the smooth metal of the bar in front of you. Gout after gout of thick horse seed flies from your dick, painting the scene a rich and creamy white. Your forelegs buckle with pleasure and you collapse into your pool of cum, your cock still firing and painting your belly with your liquid ardor. Your whole body tingles as you feel your cock sliding backwards along the floor and back into your sheathe, your deflated balls laying in a lake of your seed. You look up exhaustedly to see the barmaid staring at you exasperatedly, handing you a mop and bucket. You blush before struggling back onto your hooves, taking the offered cleaning implements and mopping up your emissions.");
+	//Fen additions:
+	output("\n\nMore than one costumed woman applauds your performance, and a giggling galotian tears the mop from your hands, sliding across the puddled spunk and leaving nothing but clean floor in her wake. The color of her body lightens thanks to your voluminous deposit while you watch, spellbound. She burps cutely, then scoots away, drunkenly weaving through the crowd with the mop floating inside her.");
+	output("\n\nA raucous voice calls from the back of the room, <i>“Do it again!”</i> and is immediately joined by wolf-whistles and cheers. There’s so many women watching you, and a few guys as well, drooling over the sheer size and virility of your stiffening mast. Someone cups your balls and rolls them in feminine fingers, cooing, <i>“I bet you can give us even more...”</i>");
+	output("\n\n<i>SLAP!</i>");
+	output("\n\nYour cock thumps off your belly, and you resolve to live up to her expectations. If you can show off an impressive enough cumshot, surely someone will let you impregnate them...");
+	for(var x:int = 0; x < 15; x++)
+	{
+		pc.orgasm();
+	}
+	pc.exhibitionism(2);
+	pc.exhibitionism(2);
+	pc.exhibitionism(2);
+	clearMenu();
+	addButton(0,"Next",maleTaurSubbyEpilogue);
+}
+
+//Epilogue Male
+public function maleTaurSubbyEpilogue():void
+{
+	clearOutput();
+	showName("HOURS\nLATER...")
+	output("Your memories of the night are an indistinct blur humping, drinking, and cumming. No matter how times you did your best to paint the bar, you never got more than a few hands on your cock, draining your oozy horse-cock into laughing mouths or sloshing cups. You aren't even sure how many times you came, just that your balls ache like they've been pumped dry.");
+	output("\n\nMore disturbing is the fact that you woke up onboard your ship... and that you aren’t on the planet any longer. You don’t remember anything about setting out into space - rearing up on a table and letting a galotian squeeze your load out onto Holidays tits? Sure, but nothing about the trip back to your ship. Heck, you’re even pretty sure that Ma’andi snuck her tail up your ass while you were mounting some white-furred ausar lass. You came harder than ever, but you’re feeling pretty sore now.");
+	output("\n\nIt isn’t until you check your ship’s logs that you stumble upon some clarity. There’s a new message, one you didn’t put in there. You hit play, bringing it up on the main screen. A cute, white-furred kaithrit pops up on screen, waving nervously.");
+	output("\n\n<i>“Hey, I don’t know what you were on about when you said that the whole centaur thing was just a costume. I mean... damn, you must have been slipped something at the bar. It’s pretty obvious you got some high-quality mods to produce that piece of work.”</i> She chuckles and looks behind herself at your slumbering form. <i>“You might not remember me from the party. It was pretty fun - you can cum like a void-cursed geyser with the right encouragement, right show-pony?”</i>");
+	output("\n\nThe kaithrit rubs her belly and burps. <i>“You were super out of it by the time the cops busted up the party. You should’ve seen the gear those peacekeepers were fitted with. They looked more like soldiers than officers of the law. From what I heard while me and that pink-haired girl were dragging you out the back, they were looking for some thief that made off with a bunch of symbiosis tech. Crazy shit, right?”</i> She tucks her hair behind a flicking cat ear and smiles.");
+	output("\n\n<i>“Lucky for you, I work in customs. Between me and your friend, Christmas or Halloday or whatever she called herself, we got you back to your ship, and I’ll be sending you off world in a minute. You seemed to nice, and well... submissive to do anything wrong. Don't let the other girls be too mean to you out there, okay?”</i> The kaithrit nervously smiles. <i>“Oh, and your friend says she stashed your stuff in the compartments under your bunk. Uhmm... goodbye, in case I don’t see you again, you sexy centaur, you.”</i>");
+	output("\n\nBlushing one last time, the cat-girl cuts off the recording, leaving you alone with your thoughts.");
+	output("\n\nWait! <b>You’re still wearing the costume...</b>");
+	processTime(450);
+	clearMenu();
+	addButton(0,"Next",maleTaurSubCostumeFinale);
+}
+
+public function maleTaurSubCostumeFinale():void
+{
+	clearOutput();
+	output("No matter how hard you search, you can’t find a single catch or release. Worse still, attempts to peel away the border between your top and bottom half hurts. You can’t even feel your old lower half anymore - just the four, hoof-capped limbs below. It’s as if that equine shape has become a part of you for good. Is that what the peacekeepers meant by symbiosis tech? Are you a centaur forever?");
+	output("\n\nWell, at least you’ll be well-equipped to mate with some mares, if they'll let you near their pussies. Maybe they'll let you flood a few milkers to prove your worth...");
+	output("Something seems a little off about that thought, but the mental image of a half-dozen girls crouching beneath you, giggling while they handle your jizz-swollen orbs has your cock threatening to rear it's flaring head all over again, and who are you gonna find to help you get off in the cold void of space?");
 	output("\n\n<b>Looks like you’re a horny");
 	if(!pc.hasVagina()) output(", male");
 	output(" centaur now.</b>");

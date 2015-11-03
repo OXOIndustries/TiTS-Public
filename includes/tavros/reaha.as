@@ -592,12 +592,12 @@ public function brothelMainMenu():void {
 	// Turn Tricks
 	// Feminine female wearing something sexiness > 2 only for now.
 	// "Jaded" status, prevents whoring plus minor stat penalties for 6 hours. Prevents players spamming it for essentially free money. Yeah they can just wait, but that won't make it any different from the milker.
-	/*9999 DISABLED TILL I CAN TEST IT
 	if(hours >= 6 && hours < 10) addDisabledButton(5, "Turn Tricks", "Turn Tricks", "The brothel mistress is currently sleeping. You don’t think it’ll be a good idea to wake her right now.");
-	else if((pc.armor.sexiness + pc.upperUndergarment.sexiness + pc.lowerUndergarment.sexiness) <= 2 || !pc.hasVagina()) addDisabledButton(5, "Turn Tricks", "Turn Tricks", "You need to be a female dressed in something sexy in order to try this.");
+	else if(!pc.hasVagina()) addDisabledButton(5, "Turn Tricks", "Turn Tricks", "You need to have a vagina in order to try this.");
+	else if((pc.armor.sexiness + pc.upperUndergarment.sexiness + pc.lowerUndergarment.sexiness) <= 2) addDisabledButton(5,"Turn Tricks","Turn Tricks","You need sexier clothing in order to try this.");
 	else if(pc.hasStatusEffect("Jaded")) addDisabledButton(5, "Turn Tricks", "Turn Tricks", "You’re too wiped from last time to contemplate that right now.");
 	else if(pc.hasStatusEffect("Sore")) addDisabledButton(5, "Turn Tricks", "Turn Tricks", "You’re too sore to think about doing that right now.");
-	else addButton(5, "Turn Tricks", brothelTurnTrixLady, undefined, "Turn Tricks", "See if you can’t earn some money in the most time-honored of fashions.");*/
+	else addButton(5, "Turn Tricks", brothelTurnTrixLady, undefined, "Turn Tricks", "See if you can’t earn some money in the most time-honored of fashions.");
 
 	addButton(14,"Leave",mainGameMenu);
 }

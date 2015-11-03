@@ -436,6 +436,7 @@ public function brothelTurnTrixLady():void
 	{
 		output("<i>“Hey [pc.name],”</i> Kat smiles thinly when you sashay up. <i>“You going on shift?”</i>");
 		//[Yep] [No]
+		clearMenu();
 		addButton(0, "Yep", brothelTurnTrixLicensedMenu);
 		addButton(1, "No", brothelTurnTrixAnswer, 3);
 		return;
@@ -906,8 +907,8 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 	{
 		output("You sashay through the room, letting your hand trail along muscular arms, bending the warm weight of your [pc.chest] into seated gamblers, offering your friendliest smile and most lascivious lick of the [pc.lips] to anyone who looks at you, coming across at the faintest sign of interest.");
 		output("\n\nYou soon find takers. Many of the men here are actually just pleased to hear a friendly female voice in their ear; deep space miners or mercenaries coming back from one ugly incident or another. They tip you healthily just to sit with them and laugh at their stupid jokes. Others want a little more.");
-		output("\n\nYour warm hand slides its way past belts and buckles, it undoes zips, it clicks buttons which release armored compartments; you become pretty adept at the art of one-handed undressing. You grip hot dick after dick - mostly big and girthy; penis enhancers are widely available, after all - and gently, rhythmically bring them to full mast, knead and coil hot meat until the guy’s eyes are closed and leant back, ");
-		if(pc.biggestTitSize() > 0) output("letting the plush softness of your [pc.chest] press into their chests as you work");
+		output("\n\nYour warm hand slides its way past belts and buckles, it undoes zips, it clicks buttons which release armored compartments; you become pretty adept at the art of one-handed undressing. You grip hot dick after dick - mostly big and girthy; penis enhancers are widely available, after all - and gently, rhythmically bring them to full mast, knead and coil hot meat until the guy’s eyes are closed and leant back");
+		if(pc.biggestTitSize() > 0) output(", letting the plush softness of your [pc.chest] press into their chests as you work");
 		output(". You keep the movement of your hand slow and murmur in their ear that you will do more, if they’re willing to pay a little extra... the dick does all the thinking in these situations and more often than not, it’s exactly what they do. You give them a big, lusty smile, sink beneath the table and finish them off with a nice, deep suck.");
 		output("\n\nSome of the clients are more to the point; they pay you and point at their crotch, often without even breaking conversation with whoever they’re with. Their thighs tensing up around your gently bobbing head and their balls doing likewise against your chin, a groaning exhalation as they fountain hot cum down your throat and maybe a <i>“thanks doll”</i> after you’ve licked their bulging, oozing cock clean is the most you get from such guys.");
 		output("\n\nA popular combo is to get a blowjob whilst watching a dance. You find yourself ");
@@ -1124,7 +1125,6 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 			{
 				pp.shiftCock(0, GLOBAL.TYPE_DAYNAR);
 				pp.cocks[0].cLengthRaw = 8;
-				pp.cocks[0].cthickness = 1.5;
 				output("\n\nThe big spenders - gangsters and businessmen out celebrating particularly lucrative scores, for the most part - pay very well to have multiple girls tending to them. A suited, broad-shouldered daynar sits back, watching the ovir on stage slowly twist and gyrate around her pole, his neck stretched so the kaithrit girl sat behind can massage his tender neck-membranes, whilst you bounce on his lap, squeezing and bending his eight inch lizard cock in your [pc.vagina " + x + "], stroking and teasing your [pc.chest] at his throaty request.");
 				pc.cuntChange(x, pp.cockVolume(0));
 				output(" Beneath the jounce of your bare [pc.ass] you can feel the hair of the human girl sucking his balls. The expression on the daynar’s long face tells you that this is just Tuesday to him - but a pretty good Tuesday, nonetheless.");
@@ -1238,7 +1238,6 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 			{
 				pp.shiftCock(0, GLOBAL.TYPE_DRACONIC);
 				pp.cocks[0].cLengthRaw = 12;
-				pp.cocks[0].cthickness = 1.5;
 				output("\n\n<i>“You!”</i> says a well-heeled olive-skinned human, delighted eyes fastening upon your face. <i>“You’re Treated, aren’t you? Yes, yes, I can tell. How much for her, a room, and a supply of Insta-rect for two hours?”</i>");
 				output("\n\nHe hurries you into a room and proceeds to fuck you absolutely stupid, using your [pc.vagina " + x + "] and your [pc.lips] in quick succession, mainlining Insta-rect the moment he orgasms to instantly regain his knotted, dragon-like erection so he can keep thrusting its hardness into your eager, sensitive holes. You finish it off with a");
 				if(pc.canTitFuck()) output(" long tit-job, rubbing his cock lovingly between your lubed-up [pc.chest].");
@@ -1261,7 +1260,6 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 			if(!InCollection(scenesIndex, [4]) && scenesLimit > 0 && rand(scenesTotal) == 0)
 			{
 				pp.cocks[0].cLengthRaw = 9;
-				pp.cocks[0].cthickness = .75;
 				pp.cocks[0].addFlag(GLOBAL.FLAG_FLARED);
 				pp.cocks[0].addFlag(GLOBAL.FLAG_NUBBY);
 				output("\n\nAn anat naval officer - pretty high-ranking, going off his feathers and the cut of his uniform - gruffly asks for you and Room 21. When you open Room 21, you’re momentarily baffled: it looks like a simple, tidy flat, complete with a kitchenette. It’s only when you see the house dress and apron laid out on the bed, note attached, that you understand.");

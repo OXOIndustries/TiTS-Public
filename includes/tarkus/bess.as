@@ -1032,14 +1032,14 @@ public function verifyBessModel():void
 	clearMenu();
 	addButton(0, "Next", verifyBessModelMenu);
 }
-public function verifyBessModelMenu(sGender = "auto"):void
+public function verifyBessModelMenu(sGender:String = "auto"):void
 {
 	setBessGender(sGender);
 	
 	clearOutput();
 	bessHeader();
 	
-	if (sGender = "auto")
+	if (sGender == "auto")
 	{
 		output("You comply by pressing the button on the interface and then you are lead to a new screen.");
 		output("\n\n<i>“Please select your product’s model name.”</i> the voice politely asks.");
@@ -1091,7 +1091,7 @@ public function approachFollowerBess():void
 	flags["BESS_NO_EVENT"] = 1;
 	
 	// Gender model-type hotfix!
-	if(!hasStatusEffect("Force Male Gender") && !hasStatusEffect("Force Fem Gender"))
+	if(!chars["BESS"].hasStatusEffect("Force Male Gender") && !chars["BESS"].hasStatusEffect("Force Fem Gender"))
 	{
 		verifyBessModel();
 		return;
