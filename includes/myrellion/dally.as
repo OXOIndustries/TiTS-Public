@@ -150,7 +150,7 @@ public function askDallyForADanceYaDunce():void
 	output("\n\nIt’s hard not to swoon; it’s hard to do much at all, other than nuzzle into it, pressing your lips against his meat in a sideways half-kiss. Drops of honey have left dark spots on his loincloth, and they’re wet against your lips, wet and sweet, as his golden rod rises, lifting it out of the way.");
 	output("\n\n<i>“We don’t mind a little touching here,”</i> Dally confidently explains, his deft fingers twisting a snap on his hip. The once-white loincloth falls away, smeared with a liberal amount of sticky nectar. Strings of honey trail from his glans to his smooth, glistening sack, and before your eyes, something begins to leak from his tip. A thinner, clear slick has forced out the last of the nectar. Its aroma not as sweet, but far more like... like the rest of him - rich and inviting.");
 	output("\n\nYour reply with a sigh of relief. You can let your inhibitions fall down around you like a house of cards in an earthquake, one the myr boy is all too happy to dance along to. There’s nothing to stop you from touching him if you want. You can enjoy his efforts as fully as you like, whether it’s exercising self-restraint and sitting on your hands or letting them flow along his length like steady, gentle waves.");
-	output("\n\nDally, full erect, grinds himself against you once more. Do you get handsy or let him continue to dance unmolested?");
+	output("\n\nDally, now completely erect, grinds himself against you once more. Do you get handsy or let him continue to dance unmolested?");
 	processTime(10);
 	pc.lust(10+rand(4));
 	if(pc.hasCuntTail() && flags["DAYS_SINCE_FED_CUNT_TAIL"] != undefined && flags["DAYS_SINCE_FED_CUNT_TAIL"] >= 7)

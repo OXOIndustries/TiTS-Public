@@ -20,7 +20,9 @@ public function quickPCToAddress():String
 {
 	if (flags["PC_EMAIL_ADDRESS"] == undefined)
 	{
-		return pc.short + "_Steele@SteeleTech.corp";
+		//Space conversion!
+		var eName:String = pc.short.replace(/\s+/g, '_');
+		return eName + "_Steele@SteeleTech.corp";
 	}
 	else
 	{
@@ -109,8 +111,10 @@ public function configureMails():void
 	
 	MailManager.addMailEntry("cuzfuckball", cuzFuckball, "Jealous?", cuzName, cuzMail, quickPCTo, quickPCToAddress);
 	
-	MailManager.addMailEntry("saendraxpack1", "Hey, hero, are you anywhere near Tavros? Please say yes! If you are, I could really use a hand. I'm on Deck 92, up in the construction wing. Expect trouble. Hope I see you soon!\n\n<3", "Hey Hero", "Saendra", "flygirl@phoenixcargo.net", quickPCTo, quickPCToAddress); 
+	MailManager.addMailEntry("tanisarrows", "What’s better than letting loose arrows...?\n\nLetting loose arrows <b>that EXPLODE</b>.\n\n<i>Embedded to the message are a series of step-by-step instruction graphics on how to build explosive-tipped arrows.</i>\n\nHave at it!\n\nMhen’ga U.G.C. Scout Authority\n - Tanis", "Here you go!", "Tanisaran Alhelvan", "Tanis_Alhelvan@UGC.gov", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("saendraxpack1", "Hey, hero, are you anywhere near Tavros? Please say yes! If you are, I could really use a hand. I'm on Deck 92, up in the construction wing. Expect trouble. Hope I see you soon!\n\n<3", "Hey Hero", "Saendra en Illya", "FlyGirl@PhoenixCargo.net", quickPCTo, quickPCToAddress); 
 	MailManager.addMailEntry("emmy_apology", emmyApologyEmail,"Sorry!","Emmy Astarte","emmy_astarte@cmail.com",quickPCTo,quickPCToAddress);
+	MailManager.addMailEntry("the_masque", "Hey, where are you? I thought we agreed to meet up for The Masque? I keep trying to call you, but you’re not answering, so this is my last try. Dude, this shit is wicked. I’m gonna be on the west side of Craven city, but you’ve only got a few days left, so get your ass over here!\n\nWet & Waiting", "The Masque", "Wet & Waiting", "Wet.N.Waiting@GalLink.org", quickPCTo, quickPCToAddress);
 }
 
 public function cuzName():String
@@ -237,7 +241,9 @@ public function initialMailConfiguration():void
 	output2("\n\nPlease enter your desired address prefix now:\n");
 	
 	displayInput();
-	userInterface.textInput.text = pc.short + "_Steele";
+	//Space conversion!
+	var eName:String = pc.short.replace(/\s+/g, '_');
+	userInterface.textInput.text = eName + "_Steele";
 
 	clearGhostMenu();
 	addGhostButton(0, "Confirm", confirmMailConfig);

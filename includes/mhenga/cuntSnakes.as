@@ -525,13 +525,13 @@ public function defeatACuntSnake():void {
 		if(pc.cockThatFits(80) >= 0) output("You could grab it and fuck it, though.");
 		else output("You're too big to fuck this thing, unfortunately.");
 		clearMenu();
-		addButton(0,"Fuck It",fuckACuntSnake);
-		addButton(1,"Kill It",killACuntSnake);
+		addButton(0,"Kill It",killACuntSnake);
+		addButton(1,"Fuck It",fuckACuntSnake);
 		addButton(14,"Leave",leaveIt);
 	}
 	else {
 		clearMenu();
-		addButton(1,"Kill It",killACuntSnake);
+		addButton(0,"Kill It",killACuntSnake);
 		addButton(14,"Leave",leaveIt);
 	}
 }

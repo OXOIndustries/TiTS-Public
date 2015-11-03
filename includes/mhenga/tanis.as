@@ -13,10 +13,10 @@ public function hasMetTanis():Boolean
 public function tanisBowIntro():void
 {
 	flags["TANIS_BOW_INTRO"] = 1;
-
+	
 	clearOutput();
 	tanisHeader();
-
+	
 	output("You wander up to the leithan man’s desk, and he looks up from a steaming cup of coffee with <i>“Galaxy’s Best Dad”</i> printed on it in big, friendly letters and gives you a welcoming smile.");
 	
 	output("\n\n<i>“Hey!”</i> he says, setting the mug aside. <i>“Welcome back. Anything I can... hey, " + pc.mf("man", "lady") + ", that’s a badass bow you’ve got there!”</i>");
@@ -30,7 +30,13 @@ public function tanisBowIntro():void
 	output("\n\nHe grins, extending a hand to you. <i>“Pretty much. Name’s Tanisaran, by the way. Tanisaran Alhelvan. Tanis for short.”</i>");
 	
 	output("\n\nYou shake it, noticing his grip is surprisingly gentle - though that may just be him trying not to score your hand with his sharpened claws. <i>“Anyway! You probably wanted to rent a shuttle, right? Something tells me you didn’t just come around to gab about bows.”</i>");
-
+	
+	if (!MailManager.isEntryUnlocked("tanisarrows") && flags["TANIS_BOW_TRAINING"] >= 8)
+	{
+		eventBuffer += "\n\n<b>New Email From Tanisaran Alhelvan (Tanis_Alhelvan@UGC.gov)!</b>";
+		MailManager.unlockEntry("tanisarrows", GetGameTimestamp());
+	}
+	
 	//Add [Bow Training] to Tanis's menu. Rename him to Tanis in menu/bust/etc.
 	clearMenu();
 	addButton(0, "Next", mhengaScoutAuthority);
@@ -240,14 +246,16 @@ public function tanisBowTrainingFinaleRepeats():void
 	{
 		output("\n\nAfter you get inside, Tanis grabs a data slate off his desk. <i>“Oh, hey, hold up a second [pc.name]. Lemme give you something. What’s your e-mail address?”</i>");
 		
-		output("\n\nYou tell it to him, and after he hits a few keys on his pad, your Codex beeps out that it’s received a new message. <i>“Cool. So, there’s the plans to make concussive arrows like we were just using. If you’ve got some technical expertise, or a couple hours to dick around on the extranet, you should be able to fix some up for yourself.”</i>");
+		output("\n\nYou tell it to him, and after he hits a few keys on his pad, your Codex beeps out that it’s received a new message. <i>“Cool. So, those are the plans to make concussive arrows like the ones we were just using. If you’ve got some technical expertise, or a couple hours to dick around on the extranet, you should be able to fix some up for yourself.”</i>");
 		
 		output("\n\n<i>“Wow, thanks,”</i> you say, pocketing your Codex after a quick look. The plans seem simple enough.");
 		
 		output("\n\nHe grins. <i>“Any time, man. Let me know how they work out for you!”</i>");
 		
+		if (!MailManager.isEntryUnlocked("tanisarrows")) MailManager.unlockEntry("tanisarrows", GetGameTimestamp());
+		
 		output("\n\n<b>(Perk Gained: Concussive Shot - Grants the ability to fire explosive-tipped arrows when equipped with a bow in combat. The arrows have a chance to stun for 2 to 4 combat rounds. Requires a bow-type weapon.)</b>");
-	
+		
 		pc.createPerk("Concussive Shot", 0, 0, 0, 0, "Grants the ability to fire explosive-tipped arrows when equipped with a bow in combat. The arrows have a chance to stun for 2 to 4 combat rounds.");
 	}
 

@@ -105,8 +105,8 @@ public function getAGlassOfMilkFromReapersCowsona():void {
 	userInterface.showName("\nREAHA");
 	userInterface.showBust("REAHA");
 	output("Cupping one of the cow's hefty tits, you ask if she's ready for a good milking. ");
-	if(flags["REAHA_FREE"] == 1) output("<i>\"From you? Always, [pc.name],\"</i>");
-	else output("<i>\"If that's what </i>you<i> want,\"</i>");
+	if(flags["REAHA_FREE"] == 1) output("\n\n<i>\"From you? Always, [pc.name],\"</i>");
+	else output("\n\n<i>\"If that's what </i>you<i> want,\"</i>");
 	output("  she says, a thin smile pursing her lips. Reaha slips in your arms, breasts pressing against you as she reaches toward her bed, grabbing a handful of fresh aphrodisiac patches. You take them from her, spinning her around until her big butt is grinding against your [pc.crotch], shoulders bared to you; one by one you rip the patches out of their packets, pasting them onto the cow-girl's back like stickers. With each one, her skin flushes a dark, hot red, radiating out around the drugged patches until you can feel Reaha's breath catching, her whole body trembling with shameless lust. Her cunt is drooling on just the second patch, and you can see her perky nipples stiffening, beading the first tiny drops of milk from her sheer arousal.");
 	output("\n\nYou apply the last patch with a rough slap on her ass, leaving her tattooed flesh red and jiggling as the lusty venom seeps into her behind. She whines a pathetic little whimper, hips pushing back against your ");
 	if(pc.hasCock() && pc.isCrotchGarbed()) output("growing bulge");

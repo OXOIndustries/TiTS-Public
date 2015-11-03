@@ -290,13 +290,13 @@
 					pc.tongueType = GLOBAL.TYPE_HUMAN;
 				}
 				//Horns/antennae:
-				if((pc.horns > 0 || pc.antennae > 0) && rand(4) == 0 && changes < changeLimit)
+				if((pc.hasHorns() || pc.antennae > 0) && rand(4) == 0 && changes < changeLimit)
 				{
 					kGAMECLASS.output("\n\nThere’s a sucking feeling on the top of your head, as it draws its extra appendages inward. By the time it’s done, <b>your ");
-					if(pc.horns > 0) 
+					if(pc.hasHorns()) 
 					{
 						kGAMECLASS.output("[pc.horns]");
-						pc.horns = 0;
+						pc.removeHorns();
 					}
 					else 
 					{

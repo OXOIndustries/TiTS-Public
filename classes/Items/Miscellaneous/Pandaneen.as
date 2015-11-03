@@ -394,7 +394,7 @@
 									if(target.breastRows[x].breastRatingRaw <= 0)
 									{
 										target.breastRows[x].breastRatingRaw = 0;
-										target.breastRows[x].breastRatingMod = 0;
+										//target.breastRows[x].breastRatingMod = 0;
 									}
 								}
 							}
@@ -412,7 +412,7 @@
 									if(target.breastRows[x].breastRatingRaw <= 0)
 									{
 										target.breastRows[x].breastRatingRaw = 0;
-										target.breastRows[x].breastRatingMod = 0;
+										//target.breastRows[x].breastRatingMod = 0;
 									}
 								}
 							}
