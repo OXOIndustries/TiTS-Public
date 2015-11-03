@@ -57,7 +57,7 @@ public function metBeth():Boolean
 
 public function showBrothelLady(nude:Boolean = false):void
 {
-	if(flags["KAT_MET"] != undefined) userInterface.showName("KAT");
+	if(flags["KAT_MET"] != undefined) userInterface.showName("\nKAT");
 	else userInterface.showName("BROTHEL\nMISTRESS");
 	if(!nude) userInterface.showBust("BORING_MISTRESS");
 	else userInterface.showBust("BORING_MISTRESS_NUDE");
@@ -675,7 +675,7 @@ public function brothelTurnTrixFreelanceMenu():void
 	// [Hands] [Mouth] [Vag] [Everything]
 	addButton(0, "Hands", brothelTurnTrixFreelanceWhore, "hands", "Hands", "Just your warm company and grip.");
 	if(flags["BETHS_TIMES_WHORED_HANDS"] >= 2) addButton(1, "Mouth", brothelTurnTrixFreelanceWhore, "mouth", "Mouth", "Handjobs and blowjobs.");
-	if(flags["BETHS_TIMES_WHORED_MOUTH"] >= 2) addButton(2, "Vag", brothelTurnTrixFreelanceWhore, "vagina", "Vag", "Almost the whole package.");
+	if(flags["BETHS_TIMES_WHORED_MOUTH"] >= 2) addButton(2, "Vag", brothelTurnTrixFreelanceWhore, "vagina", "Vagina", "Almost the whole package.");
 	if(flags["BETHS_TIMES_WHORED_VAGINA"] >= 2) addButton(3, "Everything", brothelTurnTrixFreelanceWhore, "all", "Everything", "Why be fussy? Whatever the client wants, within reason.");
 }
 
@@ -771,7 +771,7 @@ public function brothelTurnTrixLicensedMenu():void
 	clearMenu();
 	// [Mouth] [Vag] [Everything] [Rooms]
 	addButton(0, "Mouth", brothelTurnTrixLicensedWhore, "mouth", "Mouth", "Handjobs and blowjobs.");
-	if(flags["BETHS_TIMES_WHORED_MOUTH"] >= 2) addButton(1, "Vag", brothelTurnTrixLicensedWhore, "vagina", "Vag", "Almost the whole package.");
+	if(flags["BETHS_TIMES_WHORED_MOUTH"] >= 2) addButton(1, "Vag", brothelTurnTrixLicensedWhore, "vagina", "Vagina", "Almost the whole package.");
 	if(flags["BETHS_TIMES_WHORED_VAGINA"] >= 2) addButton(2, "Everything", brothelTurnTrixLicensedWhore, "all", "Everything", "Why be fussy? Whatever the client wants, within reason.");
 	if(flags["BETHS_TIMES_WHORED_ALL"] >= 2) addButton(3, "Rooms", brothelTurnTrixLicensedWhore, "rooms", "Rooms", "See if you can’t get in on the action of the downstairs rooms.");
 }
