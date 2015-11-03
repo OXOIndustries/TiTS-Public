@@ -1935,7 +1935,7 @@ public function zilCallGirlFuckHer():void
 	
 	// Select wiener!
 	var x:int = pc.cockThatFits(chars["ZILFEMALE"].vaginalCapacity());
-	if (x < 0) x = pc.smallestCock();
+	if (x < 0) x = pc.smallestCockIndex();
 	
 	output("You smile lustfully around the waspy alien’s tongue-filled kiss, giving her breast a rough squeeze until she’s moaning, arching her back and squeezing her long legs around your waist. The whore’s reaction only serves to make you want her more, sending shivers of raw, animal lust through you until you’re bucking your hips against her sodden crotch, using your [pc.cockHead] to search out the lips of her black twat. Her hand slips down and grasps your member, giving you a quick stroke as she guides you lower, aligning your dick with the black lips of her sex.");
 	// 1st time:
