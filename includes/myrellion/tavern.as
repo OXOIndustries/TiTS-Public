@@ -14,7 +14,7 @@ public function goldenPeakBonusFunction():Boolean
 		karaFirstTimeBarStuff();
 		return true;
 	}
-	vendingMachineButton(6);
+	vendingMachineButton(7);
 	if(shadeAtTheBar())
 	{
 		//Shade Repeat Encounters
@@ -29,14 +29,8 @@ public function goldenPeakBonusFunction():Boolean
 	if(flags["MET_EMBRY"] == undefined) addButton(0,"Waitress",callWaitress,undefined,"Waitress","Call a waitress to order some food.");
 	else addButton(0,embry.short,callWaitress,undefined,embry.short,"Call her over. Maybe you can get some food or something.");
 	//Add Liliana's shit to the bar.
-	lilianaBonusShits();
-	
-	if (flags["DECK13_GRAY_PRIME_DECISION"] == 1 && flags["ANNO_NOVA_UPDATE"] == 1) // "Help: Bodies" option, has had an update from Anno about the Nova.
-	{
-		output("\n\nOf all the things, there's a gray goo-girl bouncing around the bar, her eyes saucer-like and full of wonder as she stares at the myr and other aliens.");
-		addButton(8, "Gray Goo", grayGooAtBar);
-	}
-	roamingBarEncounter(9);
+	lilianaBonusShits(2);
+	roamingBarEncounter(3);
 	
 	return false;
 }
@@ -405,6 +399,11 @@ public function stephIrsonEpisode4Part5():void
 	addButton(0,"Next",mainGameMenu);
 }
 
+public function grayGooAtBarSetup(slot:int = 8):void
+{
+	output("\n\nOf all the things, there's a gray goo-girl bouncing around the bar, her eyes saucer-like and full of wonder as she stares at the myr and other aliens.");
+	addButton(slot, "Gray Goo", grayGooAtBar);
+}
 public function grayGooAtBar():void
 {
 	clearOutput();
@@ -511,7 +510,7 @@ public function vendingMachineButton(arg:int = 0):Boolean
 	if(rooms[currentLocation].planet == "PLANET: MHEN'GA") output("\n\nA vending machine sits next to the door, advertising <i>JoyCo Power-up Potions</i>.");
 	else if(rooms[currentLocation].planet == "PLANET: TARKUS") output("\n\nA long line of raskvel are crowded around a big, yellow vending machine. A big, in-your-face logo on it advertises <i>JoyCo Power-up Potions</i>.");
 	else if(rooms[currentLocation].planet == "PLANET: NEW TEXAS") output("\n\nA row of vending machines sit at the back of the gift shop, advertising <i>JoyCo Power-up Potions</i>.");
-	else if(rooms[currentLocation].planet == "PLANET: MYRELLION") output("\n\nA dinged-up vending machine has been shoved into the corner. A big, in-your-face logo on it advertises <i>JoyCo Power-up Potions</i>. ");
+	else if(rooms[currentLocation].planet == "PLANET: MYRELLION") output("\n\nA dinged-up vending machine has been shoved into the corner. A big, in-your-face logo on it advertises <i>JoyCo Power-up Potions</i>.");
 	return false;
 }
 public function vendingMachineMenu():void

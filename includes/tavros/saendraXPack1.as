@@ -686,7 +686,7 @@ public function sx1AskSaendra():void
 public function sx1SeeCallgirl():void
 {
 	clearOutput();
-
+	showZilCallGirl();
 	generateMapForLocation("CALLGIRL ROOM");
 
 	if (flags["SAENDRA_XPACK1_CALLGIRLSTATE"] == undefined)
@@ -749,7 +749,7 @@ public function sx1CallgirlMenu():void
 public function sx1CallgirlNevermind():void
 {
 	clearOutput();
-
+	showZilCallGirl();
 	generateMapForLocation("CALLGIRL ROOM");
 
 	output("<i>“Aww. Nervous, hun?”</i> the callgirl coos, blowing you a kiss. <i>“Go ahead and take your time. I’ll be here.”</i>");
@@ -760,7 +760,7 @@ public function sx1CallgirlNevermind():void
 public function sx1CallgirlOkay():void
 {
 	clearOutput();
-
+	showZilCallGirl();
 	generateMapForLocation("CALLGIRL ROOM");
 
 	flags["SAENDRA_XPACK1_CALLGIRLSTATE"] = 2;
@@ -864,7 +864,7 @@ public function sx1CallgirlOfferJob():void
 {
 	clearOutput();
 	pc.credits -= 500;
-
+	showZilCallGirl();
 	generateMapForLocation("CALLGIRL ROOM");
 
 	output("<i>“Hey, so, my buddy is over in the next room,”</i> you lie, pulling a credstick out of your pocket. <i>“It’s his birthday, you know, and I was thinking maybe...”</i>");
@@ -1799,7 +1799,8 @@ public function zilCallGirlCall(rentHer:Boolean = false):void
 	if (!rentHer)
 	{
 		output("<i>“Aww. Nervous, hun?”</i> the callgirl coos, blowing you a kiss. <i>“Go ahead and take your time. I’ll be here.”</i>");
-		mainGameMenu();
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
 		return;
 	}
 	// Rent Her
@@ -1934,7 +1935,7 @@ public function zilCallGirlFuckHer():void
 	
 	// Select wiener!
 	var x:int = pc.cockThatFits(chars["ZILFEMALE"].vaginalCapacity());
-	if (x < 0) x = pc.smallestCock();
+	if (x < 0) x = pc.smallestCockIndex();
 	
 	output("You smile lustfully around the waspy alien’s tongue-filled kiss, giving her breast a rough squeeze until she’s moaning, arching her back and squeezing her long legs around your waist. The whore’s reaction only serves to make you want her more, sending shivers of raw, animal lust through you until you’re bucking your hips against her sodden crotch, using your [pc.cockHead] to search out the lips of her black twat. Her hand slips down and grasps your member, giving you a quick stroke as she guides you lower, aligning your dick with the black lips of her sex.");
 	// 1st time:
@@ -2009,7 +2010,10 @@ public function zilCallGirlSuckleHoney():void
 	showZilCallGirl();
 	author("Savin");
 	
-	output("You grin up at the golden-skinned beauty, squeezing her full, swollen breast. She’s so full of sweet nectar in there that groping her feels like you’re sinking your fingers into a full water balloon{if preg: , so swollen with honey that it might just pop at any moment}. The ");
+	output("You grin up at the golden-skinned beauty, squeezing her full, swollen breast. She’s so full of sweet nectar in there that groping her feels like you’re sinking your fingers into a full water balloon");
+	// if preg:
+	if (zilCallGirlPregnant()) output(", so swollen with honey that it might just pop at any moment");
+	output(". The ");
 	if (CodexManager.entryViewed("Zil")) output("zil");
 	else output("waspy alien");
 	output(" moans quietly, letting her head roll back as you play with her chest. <i>“Mmm, hungry, darling?”</i> she buzzes. <i>“With all the wonderful food on this station, I’ve got more than enough honey to feed all of my friends.”</i>");

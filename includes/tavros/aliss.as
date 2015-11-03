@@ -36,7 +36,7 @@ public function miAmoreBonusShit():Boolean
 	//[Upper Body] [Lower Body] [Cocksocks] [Aliss] [Leave]
 	addButton(0,"Upper Body",upperBodyAlice,undefined,"Upper Body","See what tops Aliss has for sale.");
 	addButton(1,"Lower Body",lowerBodyAlice,undefined,"Lower Body","See what bottoms Aliss has for sale.");
-	addButton(5,"Aliss",alissDiscussionsInsteadOfPanties,undefined,"Aliss","Visit with the shopkeeper herself.");
+	addButton(2,"Aliss",alissDiscussionsInsteadOfPanties,undefined,"Aliss","Visit with the shopkeeper herself.");
 	return false;
 }
 

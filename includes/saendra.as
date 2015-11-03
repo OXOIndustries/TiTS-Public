@@ -7,7 +7,7 @@
 	showName("\nSAENDRA");
 }
 
-public function saendraBarAddendum():Boolean
+public function saendraBarAddendum(slot:int = 7):Boolean
 {
 	if (saendraAtBar())
 	{
@@ -21,11 +21,11 @@ public function saendraBarAddendum():Boolean
 			output("\n\nThe firey red-head you saved from the pirates aboard <i>The Phoenix</i> is here tucked away in one of the many booths available throughout the bar.");
 			if (flags["SAENDRA_XPACK1_STATUS"] == 5)
 			{
-				addButton(7, "Saendra", sx1TalkFriend, undefined, "Saendra", "Talk to Saen about her friend. Can you help her out?");
+				addButton(slot, "Saendra", sx1TalkFriend, undefined, "Saendra", "Talk to Saen about her friend. Can you help her out?");
 			}
 			else
 			{
-				addButton(7, "Saendra", meetSaenAtTheBar);
+				addButton(slot, "Saendra", meetSaenAtTheBar);
 			}
 			return false;
 		}

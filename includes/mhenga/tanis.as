@@ -31,12 +31,6 @@ public function tanisBowIntro():void
 	
 	output("\n\nYou shake it, noticing his grip is surprisingly gentle - though that may just be him trying not to score your hand with his sharpened claws. <i>“Anyway! You probably wanted to rent a shuttle, right? Something tells me you didn’t just come around to gab about bows.”</i>");
 	
-	if (!MailManager.isEntryUnlocked("tanisarrows") && flags["TANIS_BOW_TRAINING"] >= 8)
-	{
-		eventBuffer += "\n\n<b>New Email From Tanisaran Alhelvan (Tanis_Alhelvan@UGC.gov)!</b>";
-		MailManager.unlockEntry("tanisarrows", GetGameTimestamp());
-	}
-	
 	//Add [Bow Training] to Tanis's menu. Rename him to Tanis in menu/bust/etc.
 	clearMenu();
 	addButton(0, "Next", mhengaScoutAuthority);
@@ -252,14 +246,19 @@ public function tanisBowTrainingFinaleRepeats():void
 		
 		output("\n\nHe grins. <i>“Any time, man. Let me know how they work out for you!”</i>");
 		
-		if (!MailManager.isEntryUnlocked("tanisarrows")) MailManager.unlockEntry("tanisarrows", GetGameTimestamp());
-		
 		output("\n\n<b>(Perk Gained: Concussive Shot - Grants the ability to fire explosive-tipped arrows when equipped with a bow in combat. The arrows have a chance to stun for 2 to 4 combat rounds. Requires a bow-type weapon.)</b>");
 		
 		pc.createPerk("Concussive Shot", 0, 0, 0, 0, "Grants the ability to fire explosive-tipped arrows when equipped with a bow in combat. The arrows have a chance to stun for 2 to 4 combat rounds.");
 	}
+	
+	if (flags["TANIS_BOW_TRAINING"] >= 8 && !MailManager.isEntryUnlocked("tanisarrows"))
+	{
+		eventBuffer += "\n\n<b>New Email From Tanisaran Alhelvan (Tanis_Alhelvan@UGC.gov)!</b>";
+		MailManager.unlockEntry("tanisarrows", GetGameTimestamp());
+	}
 
 	processTime(25+rand(5));
+	pc.shower();
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);

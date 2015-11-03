@@ -139,20 +139,20 @@ public function mainGameMenu():void {
 	//Inventory shit
 	itemScreen = mainGameMenu;
 	lootScreen = inventory;
-	this.addButton(2,"Inventory",inventory);
+	this.addButton(13,"Inventory",inventory);
 	//Other standard buttons
 
 	if(pc.lust() < 33) {
-		if(pc.canLactate()) addButton(3,"Hand Milk",milkturbation);
-		else this.addDisabledButton(3,"Masturbate");
+		if(pc.canLactate()) addButton(8,"Hand Milk",milkturbation);
+		else this.addDisabledButton(8,"Masturbate");
 	}
 	else {
-		this.addButton(3,"Masturbate",masturbateMenu);
+		this.addButton(8,"Masturbate",masturbateMenu);
 	}
 	if(!this.rooms[this.currentLocation].hasFlag(GLOBAL.BED)) 
-		this.addButton(4,"Rest",rest);
+		this.addButton(9,"Rest",rest);
 	else 
-		this.addButton(4,"Sleep",sleep);
+		this.addButton(9,"Sleep",sleep);
 	//Display movement shits - after clear menu for extra options!
 	if(this.rooms[this.currentLocation].runOnEnter != undefined) {
 		if(this.rooms[this.currentLocation].runOnEnter()) return;
@@ -634,14 +634,14 @@ public function shipMenu():Boolean {
 		return true;
 	}
 
-	this.addButton(9,"Fly",flyMenu);
+	this.addButton(4,"Fly",flyMenu);
 	if(currentLocation == "SHIP INTERIOR") {
 		if(crew(true) > 0) {
-			this.addButton(8,"Crew",crew);
+			this.addButton(3,"Crew",crew);
 		}
 	}
-	if (hasShipStorage()) addButton(5, "Storage", shipStorageMenuRoot);
-	else addDisabledButton(5, "Storage");
+	if (hasShipStorage()) addButton(2, "Storage", shipStorageMenuRoot);
+	else addDisabledButton(2, "Storage");
 
 	return false;
 }

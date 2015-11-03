@@ -438,13 +438,13 @@ public function annoFollowerBootOff():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-public function annoAtAnonsAddendum():void
+public function annoAtAnonsAddendum(slot:int = 8):void
 {
 	// Recruited but booted off da ship
 	if (flags["ANNO_CREWMEMBER"] == 2)
 	{
 		output("\n\nAnno is sitting at the bar, nursing a whiskey and working on a glowing datapad.");
-		addButton(8, "Anno", annoFindingALostPooch);
+		addButton(slot, "Anno", annoFindingALostPooch);
 	}
 	// Is an active crewmember - see if we can proc the Kaede event.
 	else if (flags["ANNO_CREWMEMBER"] == 1)
@@ -455,7 +455,7 @@ public function annoAtAnonsAddendum():void
 		{
 			if (rand(3) == 0)
 			{
-				addButton(8, "Anno", annoxKaedeFollowerMeeting);
+				addButton(slot, "Anno", annoxKaedeFollowerMeeting);
 			}
 		}
 	}

@@ -96,30 +96,30 @@ public function tavrosHangarStuff():Boolean
 {
 	if(flags["MET_VAHN"] == undefined) {
 		output("\n\nYou spot a blond, half-ausar technician standing next to your ship, looking down at a datapad.");
-		addButton(0,"Tech",VahnTheMechanic);
+		addButton(2,"Tech",VahnTheMechanic);
 	}
 	else
 	{
 		output("\n\nVahn's around here somewhere, if you want to look for him.");
-		addButton(0,"Vahn",VahnTheMechanic);
+		addButton(2,"Vahn",VahnTheMechanic);
+	}
+	//Celise In Tavros
+	if(celiseIsFollower() && !celiseIsCrew())
+	{
+		output("\n\nCelise is lounging here, just as green as ever and chatting amicably with one of the station's mechanics.");
+		addButton(3,"Celise",approachNonCrewCelise);
+	}
+	if (bessAtTavros())
+	{
+		output("\n\n[bess.name] is here, waiting around and generally staying out of the way as best [bess.heShe] can.");
+		addButton(4, bess.short, approachBessAtTavros);
 	}
 	if (flags["FALL OF THE PHOENIX STATUS"] == 1)
 	{
 		output("\n\n<i>The Phoenix</i> is nearby, only a stones-throw away from your own ship, docked in a much smaller neighboring hangar.");
 		
 		if (flags["SAENDRA TALK PHOENIX STATUS"] != undefined)
-			addButton(7, "The Phoenix", move, "PHOENIX RECROOM");
-	}
-	//Celise In Tavros
-	if(celiseIsFollower() && !celiseIsCrew())
-	{
-		output("\n\nCelise is lounging here, just as green as ever and chatting amicably with one of the station's mechanics.");
-		addButton(5,"Celise",approachNonCrewCelise);
-	}
-	if (bessAtTavros())
-	{
-		output("\n\n[bess.name] is here, waiting around and generally staying out of the way as best [bess.heShe] can.");
-		addButton(6, bess.short, approachBessAtTavros);
+			addButton(5, "The Phoenix", move, "PHOENIX RECROOM");
 	}
 	return false;
 }
@@ -314,21 +314,15 @@ public function barBackRoomBonus():Boolean
 }
 
 public function anonsBarAddendums():Boolean {
-	//Button #7
-	if (saendraBarAddendum())
+	if (saendraBarAddendum(3))
 	{
 		return true;
 	}
-	//Button #0
-	anonsBarWaitressAddendum();
-	//Button #1
-	alexManHermIntro();
-	//Button #5
-	ShellyBlurb();
-	//#8
-	annoAtAnonsAddendum();
-	//#6 it is!
-	roamingBarEncounter(9);
+	anonsBarWaitressAddendum(0);
+	alexManHermIntro(1);
+	ShellyBlurb(2);
+	annoAtAnonsAddendum(4);
+	roamingBarEncounter(5);
 	return false;
 }
 
