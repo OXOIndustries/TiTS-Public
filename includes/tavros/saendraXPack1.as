@@ -1799,7 +1799,8 @@ public function zilCallGirlCall(rentHer:Boolean = false):void
 	if (!rentHer)
 	{
 		output("<i>“Aww. Nervous, hun?”</i> the callgirl coos, blowing you a kiss. <i>“Go ahead and take your time. I’ll be here.”</i>");
-		mainGameMenu();
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
 		return;
 	}
 	// Rent Her
