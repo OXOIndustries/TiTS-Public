@@ -314,21 +314,15 @@ public function barBackRoomBonus():Boolean
 }
 
 public function anonsBarAddendums():Boolean {
-	//Button #7
-	if (saendraBarAddendum())
+	if (saendraBarAddendum(3))
 	{
 		return true;
 	}
-	//Button #0
-	anonsBarWaitressAddendum();
-	//Button #1
-	alexManHermIntro();
-	//Button #5
-	ShellyBlurb();
-	//#8
-	annoAtAnonsAddendum();
-	//#6 it is!
-	roamingBarEncounter(9);
+	anonsBarWaitressAddendum(0);
+	alexManHermIntro(1);
+	ShellyBlurb(2);
+	annoAtAnonsAddendum(4);
+	roamingBarEncounter(5);
 	return false;
 }
 
