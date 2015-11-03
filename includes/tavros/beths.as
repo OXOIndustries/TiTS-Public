@@ -253,8 +253,9 @@ public function vaandeGo():void
 	pc.credits -= 100;
 	clearMenu();
 	//mark Vaande as met if first time, either intro branch present buttons ‘Fuck Pussy’,‘Ride Ovi’, ‘Back’
-	addButton(4,"Back",talkToBrothelLadyNewOmni);
+	addButton(14,"Back",talkToBrothelLadyNewOmni);
 	if((pc.hasCock() && pc.cockThatFits(500) >= 0) || pc.hasTailCock() || pc.hasDickNipples()) addButton(0,"Fuck Pussy",fuckVaandesPuss,undefined,"Fuck Pussy","Use your cock on her.");
+	else if(pc.hasCock() && pc.cockThatFits(500) < 0) addDisabledButton(0,"Fuck Pussy","Fuck Pussy","Here’s where you’d put your cock in her, if you had any that fit.");
 	else addDisabledButton(0,"Fuck Pussy","Fuck Pussy","Here’s where you’d put your cock in her, if you had one.");
 	//Ride Ovi
 	//for vagOrAss
