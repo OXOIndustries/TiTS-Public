@@ -1708,13 +1708,13 @@ public function bessTitleList(tarPC:Boolean, sex:Boolean):void
 	var ttBody:String;
 	if (tarPC)
 	{
-		if (sex) ttBody = "Set how Bess refers to you during sex.";
-		else ttBody = "Set how Bess refers to you in general."
+		if (sex) ttBody = "Set how [bess.name] refers to you during sex.";
+		else ttBody = "Set how [bess.name] refers to you in general."
 	}
 	else
 	{
-		if (sex) ttBody = "Set how you refer to Bess during sex.";
-		else ttBody = "Set how you refer to Bess in general."
+		if (sex) ttBody = "Set how you refer to [bess.name] during sex.";
+		else ttBody = "Set how you refer to [bess.name] in general."
 	}
 
 
@@ -1730,8 +1730,20 @@ public function bessTitleList(tarPC:Boolean, sex:Boolean):void
 		{
 			optSlot++;
 		}
-
-		addButton(i, StringUtil.toTitleCase(options[optSlot]), bessSetTitleOption, [tarPC, sex, options[optSlot]], StringUtil.toTitleCase(options[optSlot]), ttBody)
+		
+		if
+		(	( tarPC &&  sex && flags["BESS_PC_SEX_NAME"] == options[optSlot])
+		||	( tarPC && !sex && flags["BESS_PC_NAME"] == options[optSlot])
+		||	(!tarPC && !sex && flags["BESS_NAME"] == options[optSlot])
+		||	(!tarPC &&  sex && flags["BESS_SEX_NAME"] == options[optSlot])
+		)
+		{
+			addDisabledButton(i, StringUtil.toTitleCase(options[optSlot]));
+		}
+		else
+		{
+			addButton(i, StringUtil.toTitleCase(options[optSlot]), bessSetTitleOption, [tarPC, sex, options[optSlot]], StringUtil.toTitleCase(options[optSlot]), ttBody);
+		}
 	}
 }
 
@@ -1783,9 +1795,12 @@ public function talkToBessAboutRoles():void
 
 	//[Equal] [Dominant] [Submissive]
 	clearMenu();
-	addButton(0, "Equals", setBessRole, 0);
-	addButton(1, "Dominant", setBessRole, 1);
-	addButton(2, "Submissive", setBessRole, 2);
+	if (flags["BESS_SEX_ROLE"] == 0) addDisabledButton(0, "Equals"); 
+	else addButton(0, "Equals", setBessRole, 0);
+	if (flags["BESS_SEX_ROLE"] == 1) addDisabledButton(1, "Dominant");
+	else addButton(1, "Dominant", setBessRole, 1);
+	if (flags["BESS_SEX_ROLE"] == 2) addDisabledButton(2, "Submissive");
+	else addButton(2, "Submissive", setBessRole, 2);
 
 	var sRole:int = 0;
 	if (flags["BESS_SEX_ROLE"] != undefined) sRole = flags["BESS_SEX_ROLE"];
@@ -1856,7 +1871,7 @@ public function talkToBessAboutHairColor():void
 		{
 			optSlot++;
 		}
-
+		
 		if (options[optSlot] == bess.hairColor)
 		{
 			addDisabledButton(i, StringUtil.toTitleCase(options[optSlot]));
@@ -1900,7 +1915,14 @@ public function talkToBessAboutHairLength():void
 
 	for (var i:int = 0; i < options.length; i++)
 	{
-		addButton(i, lbls[i], bessSetHairLength, options[i]);
+		if (options[i] == bess.hairLength)
+		{
+			addDisabledButton(i, lbls[i]);
+		}
+		else
+		{
+			addButton(i, lbls[i], bessSetHairLength, options[i]);
+		}
 	}
 
 	addButton(14, "Back", bessFunctionsMenu);
@@ -2352,11 +2374,16 @@ public function talkToBessAboutNipples():void
 	*/
 
 	clearMenu();
-	addButton(0, "Normal", bessSetNippleType, GLOBAL.NIPPLE_TYPE_NORMAL);
-	addButton(1, "Fuckable", bessSetNippleType, GLOBAL.NIPPLE_TYPE_FUCKABLE);
-	addButton(2, "Dick", bessSetNippleType, GLOBAL.NIPPLE_TYPE_DICK);
-	addButton(3, "Flat", bessSetNippleType, GLOBAL.NIPPLE_TYPE_FLAT);
-	addButton(4, "Inverted", bessSetNippleType, GLOBAL.NIPPLE_TYPE_INVERTED);
+	if (bess.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_NORMAL) addDisabledButton(0, "Normal");
+	else addButton(0, "Normal", bessSetNippleType, GLOBAL.NIPPLE_TYPE_NORMAL);
+	if (bess.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_FUCKABLE) addDisabledButton(0, "Fuckable");
+	else addButton(1, "Fuckable", bessSetNippleType, GLOBAL.NIPPLE_TYPE_FUCKABLE);
+	if (bess.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_DICK) addDisabledButton(0, "Dick");
+	else addButton(2, "Dick", bessSetNippleType, GLOBAL.NIPPLE_TYPE_DICK);
+	if (bess.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_FLAT) addDisabledButton(0, "Flat");
+	else addButton(3, "Flat", bessSetNippleType, GLOBAL.NIPPLE_TYPE_FLAT);
+	if (bess.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_INVERTED) addDisabledButton(0, "Inverted");
+	else addButton(4, "Inverted", bessSetNippleType, GLOBAL.NIPPLE_TYPE_INVERTED);
 
 	addButton(14, "Back", bessFunctionsMenu);
 }
@@ -2562,12 +2589,18 @@ public function talkToBessAboutHips():void
 	output("<i>“You know what they say; it’s all in the hips! What size were you thinking of, "+ bessPCName() +"?”</i>");
 
 	clearMenu();
-	addButton(0, "Boyish", setBessHipSize, 0);
-	addButton(1, "Slender", setBessHipSize, 2);
-	addButton(2, "Average", setBessHipSize, 5);
-	addButton(3, "Ample", setBessHipSize, 8);
-	addButton(4, "Voluptuous", setBessHipSize, 16);
-	addButton(5, "Massive", setBessHipSize, 20);
+	if (bess.hipRatingRaw == 0) addDisabledButton(0, "Boyish");
+	else addButton(0, "Boyish", setBessHipSize, 0);
+	if (bess.hipRatingRaw == 2) addDisabledButton(1, "Slender");
+	else addButton(1, "Slender", setBessHipSize, 2);
+	if (bess.hipRatingRaw == 5) addDisabledButton(2, "Average");
+	else addButton(2, "Average", setBessHipSize, 5);
+	if (bess.hipRatingRaw == 8) addDisabledButton(3, "Ample");
+	else addButton(3, "Ample", setBessHipSize, 8);
+	if (bess.hipRatingRaw == 16) addDisabledButton(4, "Voluptuous");
+	else addButton(4, "Voluptuous", setBessHipSize, 16);
+	if (bess.hipRatingRaw == 20) addDisabledButton(5, "Massive");
+	else addButton(5, "Massive", setBessHipSize, 20);
 
 	addButton(14, "Back", bessFunctionsMenu);
 }
@@ -2585,12 +2618,18 @@ public function talkToBessAboutButt():void
 	output("<i>“My ass, huh? Were you thinking of putting some junk in this trunk, or taking some out, "+ bessPCName() +"?”</i>");
 
 	clearMenu();
-	addButton(0, "Boyish", setBessButtSize, 0);
-	addButton(1, "Slender", setBessButtSize, 2);
-	addButton(2, "Average", setBessButtSize, 5);
-	addButton(3, "Ample", setBessButtSize, 8);
-	addButton(4, "Voluptuous", setBessButtSize, 16);
-	addButton(5, "Massive", setBessButtSize, 20);
+	if (bess.buttRatingRaw == 0) addDisabledButton(0, "Boyish");
+	else addButton(0, "Boyish", setBessButtSize, 0);
+	if (bess.buttRatingRaw == 2) addDisabledButton(1, "Slender");
+	else addButton(1, "Slender", setBessButtSize, 2);
+	if (bess.buttRatingRaw == 5) addDisabledButton(2, "Average");
+	else addButton(2, "Average", setBessButtSize, 5);
+	if (bess.buttRatingRaw == 8) addDisabledButton(3, "Ample");
+	else addButton(3, "Ample", setBessButtSize, 8);
+	if (bess.buttRatingRaw == 16) addDisabledButton(4, "Voluptuous");
+	else addButton(4, "Voluptuous", setBessButtSize, 16);
+	if (bess.buttRatingRaw == 20) addDisabledButton(5, "Massive");
+	else addButton(5, "Massive", setBessButtSize, 20);
 
 	addButton(14, "Back", bessFunctionsMenu);
 }
@@ -2608,12 +2647,17 @@ public function talkToBessAboutTone():void
 	output("<i>“Good thing I don’t have to do things the hard way like you organics. How toned were you thinking, "+ bessPCName() +"?”</i>");
 
 	clearMenu();
-	addButton(0, "Muscular", setBessTone, 100);
-	addButton(1, "SemiMuscular", setBessTone, 70);
-	addButton(2, "Average", setBessTone, 50);
-	addButton(3, "SemiSoft", setBessTone, 30)
-	addButton(4, "Soft", setBessTone, 0);
-
+	if (bess.tone == 100) addDisabledButton(0, "Muscular");
+	else addButton(0, "Muscular", setBessTone, 100);
+	if (bess.tone == 70) addDisabledButton(1, "SemiMuscular");
+	else addButton(1, "SemiMuscular", setBessTone, 70);
+	if (bess.tone == 50) addDisabledButton(2, "Average");
+	else addButton(2, "Average", setBessTone, 50);
+	if (bess.tone == 30) addDisabledButton(3, "SemiSoft");
+	else addButton(3, "SemiSoft", setBessTone, 30);
+	if (bess.tone == 0) addDisabledButton(4, "Soft");
+	else addButton(4, "Soft", setBessTone, 0);
+	
 	addButton(14, "Back", bessFunctionsMenu);
 }
 
@@ -2630,12 +2674,17 @@ public function talkToBessAboutThickness():void
 	output("<i>“Good thing I don’t have to do things the hard way like you organics. How thick were you thinking, "+ bessPCName() +"?”</i>");
 
 	clearOutput();
-	addButton(0, "Thick", setBessThickness, 100);
-	addButton(1, "SemiThick", setBessThickness, 70);
-	addButton(2, "Average", setBessThickness, 50);
-	addButton(3, "SemiThin", setBessThickness, 30);
-	addButton(4, "Thin", setBessThickness, 0);
-
+	if (bess.thickness == 100) addDisabledButton(0, "Thick");
+	else addButton(0, "Thick", setBessThickness, 100);
+	if (bess.thickness == 70) addDisabledButton(1, "SemiThick");
+	else addButton(1, "SemiThick", setBessThickness, 70);
+	if (bess.thickness == 50) addDisabledButton(2, "Average");
+	else addButton(2, "Average", setBessThickness, 50);
+	if (bess.thickness == 30) addDisabledButton(3, "SemiThin");
+	else addButton(3, "SemiThin", setBessThickness, 30);
+	if (bess.thickness == 0) addDisabledButton(4, "Thin");
+	else addButton(4, "Thin", setBessThickness, 0);
+	
 	addButton(14, "Back", bessFunctionsMenu);
 }
 
@@ -2687,17 +2736,28 @@ public function talkToBessAboutStomach():void
 	output("<i>“My stomach, huh? Well, I can change that fairly easily. What size were you thinking, , "+ bessPCName() +"?”</i>");
 
 	clearMenu();
-	addButton(0, "Normal", setBessBelly, 0);
-	addButton(1, "Cushy", setBessBelly, 10);
-	addButton(2, "Pudgy", setBessBelly, 15);
-	addButton(3, "Large", setBessBelly, 20);
-	addButton(4, "Pregnant", setBessBelly, 30);
-	addButton(5, "Full", setBessBelly, 40);
-	addButton(6, "Expansive", setBessBelly, 50);
-	addButton(7, "Excessive", setBessBelly, 60);
-	addButton(8, "Over-inflated", setBessBelly, 80);
-	addButton(9, "Massive", setBessBelly, 90);
-	addButton(10, "StupidlyHuge", setBessBelly, 100);
+	if (bess.bellyRatingRaw == 0) addDisabledButton(0, "Normal");
+	else addButton(0, "Normal", setBessBelly, 0);
+	if (bess.bellyRatingRaw == 10) addDisabledButton(1, "Cushy");
+	else addButton(1, "Cushy", setBessBelly, 10);
+	if (bess.bellyRatingRaw == 15) addDisabledButton(2, "Pudgy");
+	else addButton(2, "Pudgy", setBessBelly, 15);
+	if (bess.bellyRatingRaw == 20) addDisabledButton(3, "Large");
+	else addButton(3, "Large", setBessBelly, 20);
+	if (bess.bellyRatingRaw == 30) addDisabledButton(4, "Pregnant");
+	else addButton(4, "Pregnant", setBessBelly, 30);
+	if (bess.bellyRatingRaw == 40) addDisabledButton(5, "Full");
+	else addButton(5, "Full", setBessBelly, 40);
+	if (bess.bellyRatingRaw == 50) addDisabledButton(6, "Expansive");
+	else addButton(6, "Expansive", setBessBelly, 50);
+	if (bess.bellyRatingRaw == 60) addDisabledButton(7, "Excessive");
+	else addButton(7, "Excessive", setBessBelly, 60);
+	if (bess.bellyRatingRaw == 80) addDisabledButton(8, "Over-inflated");
+	else addButton(8, "Over-inflated", setBessBelly, 80);
+	if (bess.bellyRatingRaw == 90) addDisabledButton(9, "Massive");
+	else addButton(9, "Massive", setBessBelly, 90);
+	if (bess.bellyRatingRaw == 100) addDisabledButton(10, "StupidlyHuge");
+	else addButton(10, "StupidlyHuge", setBessBelly, 100);
 	
 	addButton(14, "Back", bessFunctionsMenu);
 }
@@ -2857,38 +2917,51 @@ public function talkToBessAboutCock():void
 	// All cocks except for Dino cock have girth and length = ½ pc orifice capacity.
 
 	clearMenu();
-	addButton(0, "None", 			setBessCockType, -1);
-	addButton(1, "Normal", 			setBessCockType, GLOBAL.TYPE_HUMAN);
-	addButton(2, "Normal+Balls", 	setBessCockType, -2);
+	if (!bess.hasCock()) addDisabledButton(0, "None");
+	else addButton(0, "None", setBessCockType, -1);
+	if (bess.hasCock() && bess.cocks[0].cType = GLOBAL.TYPE_HUMAN && bess.balls == 0) addDisabledButton(1, "Normal");
+	else addButton(1, "Normal", setBessCockType, GLOBAL.TYPE_HUMAN);
+	if (bess.hasCock() && bess.cocks[0].cType = GLOBAL.TYPE_HUMAN && bess.balls == 2) addDisabledButton(2, "Normal+Balls");
+	else addButton(2, "Normal+Balls", setBessCockType, -2);
 	
-	if (bessHasCockType(BESS_COCKTYPE_DINO)) addButton(3, "Dino", setBessCockType, GLOBAL.TYPE_SAURIAN);
+	if (bess.hasCock() && bess.cocks[0].cType = GLOBAL.TYPE_SAURIAN) addDisabledButton(3, "Dino");
+	else if (bessHasCockType(BESS_COCKTYPE_DINO)) addButton(3, "Dino", setBessCockType, GLOBAL.TYPE_SAURIAN);
 	else addDisabledButton(3, "Dino", "Dinosaur", "[bess.name] doesn’t have access to this cock style!");
 
-	if (bessHasCockType(BESS_COCKTYPE_HORSE)) addButton(4, "Equine", setBessCockType, GLOBAL.TYPE_EQUINE);
+	if (bess.hasCock() && bess.cocks[0].cType = GLOBAL.TYPE_EQUINE) addDisabledButton(4, "Equine");
+	else if (bessHasCockType(BESS_COCKTYPE_HORSE)) addButton(4, "Equine", setBessCockType, GLOBAL.TYPE_EQUINE);
 	else addDisabledButton(4, "Equine", "Equine", "[bess.name] doesn’t have access to this cock style!");
 
-	if (bessHasCockType(BESS_COCKTYPE_DOG)) addButton(5, "Canine", setBessCockType, GLOBAL.TYPE_CANINE);
+	if (bess.hasCock() && bess.cocks[0].cType = GLOBAL.TYPE_CANINE) addDisabledButton(5, "Canine");
+	else if (bessHasCockType(BESS_COCKTYPE_DOG)) addButton(5, "Canine", setBessCockType, GLOBAL.TYPE_CANINE);
 	else addDisabledButton(5, "Canine", "Canine", "[bess.name] doesn’t have access to this cock style!");
 
-	if (bessHasCockType(BESS_COCKTYPE_FOX)) addButton(6, "Vulpine", setBessCockType, GLOBAL.TYPE_VULPINE);
+	if (bess.hasCock() && bess.cocks[0].cType = GLOBAL.TYPE_VULPINE) addDisabledButton(6, "Vulpine");
+	else if (bessHasCockType(BESS_COCKTYPE_FOX)) addButton(6, "Vulpine", setBessCockType, GLOBAL.TYPE_VULPINE);
 	else addDisabledButton(6, "Vulpine", "Vulpine", "[bess.name] doesn’t have access to this cock style!");
 
-	if (bessHasCockType(BESS_COCKTYPE_DEMON))addButton(7, "Demonic", setBessCockType, GLOBAL.TYPE_DEMONIC);
+	if (bess.hasCock() && bess.cocks[0].cType = GLOBAL.TYPE_DEMONIC) addDisabledButton(7, "Demonic");
+	else if (bessHasCockType(BESS_COCKTYPE_DEMON))addButton(7, "Demonic", setBessCockType, GLOBAL.TYPE_DEMONIC);
 	else addDisabledButton(7, "Demonic", "Demonic", "[bess.name] doesn’t have access to this cock style!");
 
-	if (bessHasCockType(BESS_COCKTYPE_TENTACLE)) addButton(8, "Tentacle", setBessCockType, GLOBAL.TYPE_TENTACLE);
+	if (bess.hasCock() && bess.cocks[0].cType = GLOBAL.TYPE_TENTACLE) addDisabledButton(8, "Tentacle");
+	else if (bessHasCockType(BESS_COCKTYPE_TENTACLE)) addButton(8, "Tentacle", setBessCockType, GLOBAL.TYPE_TENTACLE);
 	else addDisabledButton(8, "Tentacle", "Tentacle", "[bess.name] doesn’t have access to this cock style!");
 
-	if (bessHasCockType(BESS_COCKTYPE_CAT)) addButton(9, "Feline", setBessCockType, GLOBAL.TYPE_FELINE);
+	if (bess.hasCock() && bess.cocks[0].cType = GLOBAL.TYPE_FELINE) addDisabledButton(9, "Feline");
+	else if (bessHasCockType(BESS_COCKTYPE_CAT)) addButton(9, "Feline", setBessCockType, GLOBAL.TYPE_FELINE);
 	else addDisabledButton(9, "Feline", "Feline", "[bess.name] doesn’t have access to this cock style!");
 
-	if (bessHasCockType(BESS_COCKTYPE_DRAGON)) addButton(10, "Draconic", setBessCockType, GLOBAL.TYPE_DRACONIC);
-	else addDisabledButton(10, "Dragonic", "Dragonic", "[bess.name] doesn’t have access to this cock style!");
+	if (bess.hasCock() && bess.cocks[0].cType = GLOBAL.TYPE_DRACONIC) addDisabledButton(10, "Draconic");
+	else if (bessHasCockType(BESS_COCKTYPE_DRAGON)) addButton(10, "Draconic", setBessCockType, GLOBAL.TYPE_DRACONIC);
+	else addDisabledButton(10, "Draconic", "Draconic", "[bess.name] doesn’t have access to this cock style!");
 
-	if (bessHasCockType(BESS_COCKTYPE_GOOEY)) addButton(11, "Goo", setBessCockType, GLOBAL.TYPE_GOOEY);
+	if (bess.hasCock() && bess.cocks[0].cType = GLOBAL.TYPE_GOOEY) addDisabledButton(11, "Goo");
+	else if (bessHasCockType(BESS_COCKTYPE_GOOEY)) addButton(11, "Goo", setBessCockType, GLOBAL.TYPE_GOOEY);
 	else addDisabledButton(11, "Goo", "Goo", "[bess.name] doesn’t have access to this cock style!");
 
-	if (bessHasCockType(BESS_COCKTYPE_VENUSPITCHER)) addButton(12, "Plant", setBessCockType, GLOBAL.TYPE_VENUSPITCHER);
+	if (bess.hasCock() && bess.cocks[0].cType = GLOBAL.TYPE_VENUSPITCHER) addDisabledButton(12, "Plant");
+	else if (bessHasCockType(BESS_COCKTYPE_VENUSPITCHER)) addButton(12, "Plant", setBessCockType, GLOBAL.TYPE_VENUSPITCHER);
 	else addDisabledButton(12, "Plant", "Plant", "[bess.name] doesn’t have access to this cock style!");
 
 	addButton(14, "Back", bessFunctionsMenu);
@@ -3250,7 +3323,17 @@ public function talkToBessAboutCumFlavour(asCock:Boolean):void
 			optSlot++;
 		}
 
-		addButton(i, StringUtil.toTitleCase(opts[optSlot]), bessSetCumFlavor, [asCock, vals[optSlot]]);
+		if
+		(	(asCock && bess.cumType == vals[optSlot])
+		||	(!asCock && bess.girlCumType == vals[optSlot])
+		)
+		{
+			addDisabledButton(i, StringUtil.toTitleCase(opts[optSlot]));
+		}
+		else
+		{
+			addButton(i, StringUtil.toTitleCase(opts[optSlot]), bessSetCumFlavor, [asCock, vals[optSlot]]);
+		}
 	}
 }
 
