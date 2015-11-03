@@ -13,10 +13,11 @@ Myr girls who like it are constantly all over her dick, which lacks the spines o
 Renvra is a functional hermaphrodite, but in a different way. She's only got a cock and balls, but her balls hold a pair of eggs, which she oviposits when she knots somebody. When not knotting, she cums an aphrodisiac-laden semen. Potentially, she could end up fertilizing her own eggs that way. Attack of the Clones, etc. 
 Spiky, spiny red hair cropped short. Black eyes. Big, sensitive feelers. F-cup breasts, milky.*/
 
-public function showRenvra():void
+public function showRenvra(nude:Boolean = false):void
 {
 	showName("\nRENVRA");
-	showBust("RENVRA");
+	if(nude) showBust("RENVRA_NUDE");
+	else showBust("RENVRA");
 	author("Savin");
 }
 
@@ -231,7 +232,7 @@ public function sellItemsToRenvra():void
 public function fuckHerYouNancy(fromRaceTalk:int = 0):void
 {
 	clearOutput();
-	showRenvra();
+	showRenvra(true);
 	if(fromRaceTalk == 1) 
 	{
 		output("<i>“Lets,”</i> you say, nodding towards the back room.");
@@ -302,7 +303,7 @@ public function fuckHerYouNancy(fromRaceTalk:int = 0):void
 public function bendItLikeBeckhamForRenvra():void
 {
 	clearOutput();
-	showRenvra();
+	showRenvra(true);
 	output("The sight of all that cockmeat on display is too much to resist, and you quickly find yourself sinking down onto your [pc.knees], putting yourself on level with the one-eyed monster between Renvra’s legs.");
 	output("\n\n<i>“Gonna get me nice and ready, are you?”</i> she coos, stroking the girthy shaft. <i>“Good idea...”</i>");
 	output("\n\nThe sheer length of Ren’s shaft demands that you wrap your hands around the crown, helping to hold it rigid while it would otherwise droop under its own mammoth weight. In your grasp, though, it’s easy to angle her X-shaped cumslit right to your lips. A hungry beast all its own, your [pc.tongue] slithers past your [pc.lips] to caress Renvra’s crown, probing the four folds of her flared cockhead. To your delight, the thick flaps of flesh at the crown part easily, granting you unobstructed access to the halfbreed’s sensitive insides.");
@@ -394,7 +395,7 @@ public function bendItLikeBeckhamForRenvra():void
 public function getRenvraFuckedPart2():void
 {
 	clearOutput();
-	showRenvra();
+	showRenvra(true);
 	var x:int = -1;
 	if(pc.hasVagina()) x = pc.findEmptyPregnancySlot(Creature.PREGSLOT_VAG);
 	//if Bimbo:
@@ -446,6 +447,7 @@ public function getRenvraFuckedPart2():void
 
 public function getEggsInShit(x:int = -1):void
 {
+	showRenvra(true);
 	output("\n\n<i>“Brace yourself,”</i> Renvra grunts through clenched teeth, battering the growing swell of her knot against your ");
 	if(x >= 0) output("[pc.vagina " + x + "]");
 	else output("[pc.asshole]");
@@ -515,7 +517,7 @@ public function getEggsInShit(x:int = -1):void
 public function takeAShotOJizzInZeWomb(x:int = -1):void
 {
 	clearOutput();
-	showRenvra();
+	showRenvra(true);
 	output("<i>“That’s what I like to hear!”</i> Renvra growls, shifting her stance back slightly, bringing her nyrean knot away from the lips of your cunt. <i>“Just lie back and relax, spacer. I’ll get you nice and full of my young...”</i>");
 
 	output("\n\nOn the cusp of responding, you find yourself being hauled up by Renvra’s startlingly strong arms. She hefts you up and flips you onto your back, letting your [pc.legOrLegs] wrap around her. She kisses you, pulling you tight as you feel the contractions of her hefty member start, and the flood of pink, creamy pre growing thicker inside your stretched-out hole.");
@@ -555,7 +557,7 @@ public function takeAShotOJizzInZeWomb(x:int = -1):void
 public function takeSomeEggs(x:int = -1):void
 {
 	clearOutput();
-	showRenvra();
+	showRenvra(true);
 	output("You desperately shake your head. You’re not to keen on the idea of playing mother to Ren’s offspring just now!");
 	output("\n\nShe grunts, but nods. <i>“Fine. I won’t force it on you. More than enough myr clamouring for my spunk as it is. But you’re getting a bellyful of my eggs, though. Consider it a tax for getting my hopes up.”</i>");
 	output("\n\nFair trade, you suppose....");
@@ -568,7 +570,7 @@ public function takeSomeEggs(x:int = -1):void
 public function buttFuckRenvra():void
 {
 	clearOutput();
-	showRenvra();
+	showRenvra(true);
 	output("You answer Ren’s unsubtle question by wrapping your hands under her firm ass and pulling her off the ground. She gasps and laughs, her legs wrapping around your waist and arms around your neck. An unsteady step takes the two of you up against a wall, pressing Renvra’s back against it. She moans as your mouth finds one of her rosy nipples, and her back arches into your embraces as you lick and kiss and gently suckle. After a few moments of that treatment, you start to feel a trickle of a candy-sweet moisture beading from her teat, and you’re eager to drink it down. It tastes wonderful!");
 	output("\n\n<i>“You’re lucky I’m not like other reds,”</i> Renvra laughs, stroking your [pc.hair] while you suckle from her. <i>“Most would punch you right in the face for that...”</i>");
 	output("\n\nShe rolls her eyes when you look up at her -- a strange sight with round, pitch-black eyes like hers. You answer her exasperated gesture by switching from one breast to the other, greedily suckling the halfbreed’s sweet nectar just as fast as you can get it. The more your [pc.tongue] teases her teats, though, the more urgently you can feel the huge slab of ovipositing meat between her legs throb. A trickle of hot, creamy pink pre drools down your [pc.leg], leaking from the halfbreed’s apple-sized gonads and through her pony-sized pecker. You shift slightly, hefting Renvra’s weight up onto the edge of her desk, and grab her cock by the shaft.");
@@ -988,7 +990,7 @@ public function renvraFullPregnancyPublicII(pData:PregnancyData):void
 public function fuckRenvrasUrethra():void
 {
 	clearOutput();
-	showRenvra();
+	showRenvra(true);
 	author("Zeikfried");
 	//PC's gotta have a dilo.
 	// 0 = dildo
@@ -1215,7 +1217,7 @@ public function fuckRenvrasUrethra():void
 public function makeRenvraBegYouSillyBillySlut():void
 {
 	clearOutput();
-	showRenvra();
+	showRenvra(true);
 	author("Zeikfried");
 	//(first time bimbo)
 	if(flags["MADE_RENVRA_BEG"] == undefined) 
@@ -1333,7 +1335,7 @@ public function makeRenvraBegYouSillyBillySlut():void
 public function mortalKombatFINISHHER():void
 {
 	clearOutput();
-	showRenvra();
+	showRenvra(true);
 	author("Zeikfried");
 	output("You stare at her for a time, enough that a note of pleading enters her deranged expression. Winking, you reach out and grab the end of her ovipositor, then resume stroking. Renvra’s hips pump into your fist one last time as a throaty howl escapes, and a positive spray of spunk bursts from the slit of her abused cock. The pink geyser soaks her desk, the room, and her thighs, and your hand burns with arousal as cum drools over it.");
 	output("\n\nRenvra’s orgasm continues for almost thirty seconds - her ruddy red dick keeps squirting out aftershocks well after the lion’s share of her load is soaking into the floor. You lackadaisically work globs of cum through her flare with your finger as you watch her. Her eyes are unfocused, her mouth hangs open, and a little drool is pooling... she’s clearly out of it until her climax ends.");
@@ -1379,7 +1381,7 @@ public function mortalKombatFINISHHER():void
 public function denyDatMyrBitchYo():void
 {
 	clearOutput();
-	showRenvra();
+	showRenvra(true);
 	author("Zeikfried");
 	output("You stare at her for a while, watching her fuck-crazed expression. First resentment and then desperation creep into it as you sit indolently atop her, ignoring her so-precariously-close cock. <i>“Mmm... no,”</i> you decide.");
 	output("\n\nRenvra’s eyes bulge. <i>“Fuck you! This isn’t funny!”</i>");
@@ -1416,7 +1418,7 @@ public function denyDatMyrBitchYo():void
 public function renvraDoubleTrouble():void
 {
 	clearOutput();
-	showRenvra();
+	showRenvra(true);
 	author("Zeikfried");
 	var x:int = -1;
 	if(pc.hasVagina()) 
@@ -1589,7 +1591,7 @@ public function renvraDoubleTrouble():void
 public function renvraSuperCumPartII(x:int = -1):void
 {
 	clearOutput();
-	showRenvra();
+	showRenvra(true);
 	author("Zeikfried");
 	output("The door clicks and your eyes flutter open. Renvra is standing there, smirking at you.");
 	output("\n\n<i>“Awake now, spacer?”</i> she asks.");
