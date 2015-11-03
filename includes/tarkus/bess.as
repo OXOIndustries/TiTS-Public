@@ -653,11 +653,11 @@ public function digUpAFukkinSexbat():void
 
 	if (bess.hasVagina())
 	{
-		output("\n\nOnce you have, you notice [bess.hisHer] silvery artificial hair draping across [bess.hisHer] face. It is tied back in a loose, messy chignon, knotted at [bess.hisHer] lower neck. Her eyes are closed, full womanly lips pursed as if merely asleep.");
-		output("\n\nThose sleeping eyes are lined with thick artificial lashes that are marred with dirt, but even now look full and luscious. Her face is marked with two groove-like lines that start at [bess.hisHer] forehead, trail across [bess.hisHer] eyelids, and pass below [bess.hisHer] narrow chin.");
-		output("\n\nLooking down, your eyes are met by a truly wondrous set of breasts. The swelling curve of [bess.hisHer] perfect peaks easily captures your attention, drawing them inevitably towards [bess.hisHer] perky, silver hued nipples.");
-		output("\n\nDrawing your eyes away from <i>those</i> is difficult. Looking down, [bess.hisHer] stomach is a slender sterling expanse, [bess.hisHer] belly rising softly with all the right curves and grooves accentuating [bess.hisHer] feminine appeal.");
-		output("\n\nMoving south, your eyes are rewarded by the sight of [bess.hisHer] glistening, utterly hairless crotch replete with plump pussy lips. Her thighs and folds are slightly parted, [bess.hisHer] soft inner lips on display.");
+		output("\n\nOnce you have, you notice her silvery artificial hair draping across her face. It is tied back in a loose, messy chignon, knotted at her lower neck. Her eyes are closed, full womanly lips pursed as if merely asleep.");
+		output("\n\nThose sleeping eyes are lined with thick artificial lashes that are marred with dirt, but even now look full and luscious. Her face is marked with two groove-like lines that start at her forehead, trail across her eyelids, and pass below her narrow chin.");
+		output("\n\nLooking down, your eyes are met by a truly wondrous set of breasts. The swelling curve of her perfect peaks easily captures your attention, drawing them inevitably towards her perky, silver hued nipples.");
+		output("\n\nDrawing your eyes away from <i>those</i> is difficult. Looking down, her stomach is a slender sterling expanse, her belly rising softly with all the right curves and grooves accentuating her feminine appeal.");
+		output("\n\nMoving south, your eyes are rewarded by the sight of her glistening, utterly hairless crotch replete with plump pussy lips. Her thighs and folds are slightly parted, her soft inner lips on display.");
 	}
 	else // man bot!
 	{
@@ -713,7 +713,7 @@ public function takeBessToZeShip():void
 	clearOutput();
 	if (bess.hasVagina())
 	{
-		output("It’s a good thing the female unit is so light - it takes you far less time to get [bess.himHer] back to the ship than you first thought. She’s so soft to the touch that it is hard to believe she’s really a machine.");
+		output("It’s a good thing the female unit is so light - it takes you far less time to get her back to the ship than you first thought. She’s so soft to the touch that it is hard to believe she’s really a machine.");
 	}
 	else // male
 	{
@@ -829,7 +829,7 @@ public function handBessOverToAuthorities():void
 public function releaseBessBenWhatever():void
 {
 	clearOutput();
-	output("You tell the " + bess.mf("male", "female") + " synthetic that [bess.heShe] is free to do as she pleases, and that you are not [bess.hisHer] [pc.Master]. It seems like the right thing to do.");
+	output("You tell the " + bess.mf("male", "female") + " synthetic that [bess.heShe] is free to do as [bess.heShe] pleases, and that you are not [bess.hisHer] [pc.Master]. It seems like the right thing to do.");
 	output("\n\nHowever, [bess.heShe] seems to have difficulty processing what you are saying, almost as if you were speaking a foreign language.");
 	output("\n\n<i>“What do you mean, [pc.Master]? I am a " + bess.mf("Ben-14", "Bess-13") + " unit, and I belong to you! I am your personal unit. I am not designed to belong to myself.”</i> " + bess.mf("He furrows his brow, looking perplexed by your statement", "Her voice seems to quiver a little") + ". The concept of not belonging to someone seems to be outside of [bess.hisHer] programming.");
 	output("\n\nWhat exactly are you going to do? [bess.HeShe]'ll probably get caught in a logic loop if you push the point.");
@@ -2258,7 +2258,7 @@ public function bessSetBoobSize(newSize:int):void
 		}
 		output(" it seems [bess.name] has generated more than [bess.heShe] needed. Like a farm animal, you squeeze and massage [bess.hisHer] drooling udders until they spurt out the excess fluid.");
 
-		output("\n\n[bess.name]'s [bess.thighs] shake spastically as [bess.heShe] utterly creams himself");
+		output("\n\n[bess.name]'s [bess.thighs] shake spastically as [bess.heShe] utterly creams [bess.himHer]self");
 		if (pc.hasCock() && pc.genitalSpot <= 1) output(" for a second time");
 		output(", overstimulated by the frothy streams from [bess.hisHer] [bess.nipple].");
 		if (bess.hasCock()) output(" [bess.HeShe] shoots a thick, steaming load of [bess.hisHer] spunk all over the ship's floor, splattering the surface beneath [bess.hisHer] feet.");
@@ -3096,7 +3096,7 @@ public function setBessCockType(newType:int):void
 
 		output("\n\n<i>“Just one second, "+ bessPCName() +", while I make the adjustments.”</i> [bess.name] darts off and when [bess.heShe] comes back,");
 		if (newType == -1) output(" [bess.hisHer] cock is gone - though where [bess.heShe]’s stored it is a mystery. <i>“Do you like me better this way, "+ bessPCName() +"?”</i>\n\n<b>[bess.name] has removed [bess.hisHer] cock!</b>");
-		else output(" she’s sporting "+ indefiniteArticle(bessCockType()) +" cock! [bess.HeShe] eagerly models it off for you. <i>“Do you like it, "+ bessPCName() +"?”</i> <b>[bess.name] now has a [bess.cock]!</b>”</i>");
+		else output(" [bess.heShe]’s sporting "+ indefiniteArticle(bessCockType()) +" cock! [bess.HeShe] eagerly models it off for you. <i>“Do you like it, "+ bessPCName() +"?”</i> <b>[bess.name] now has a [bess.cock]!</b>”</i>");
 	}
 
 	bessFunctionsMenu();
@@ -7543,7 +7543,7 @@ public function bessEvent12SetTitle(title:String):void
 		
 		output("\n\n[bess.HeShe] salutes loyally and grins, clearly playing with you. <i>“Really? Great! If you want to be called ‘"+title+"’, your wish is my command!”</i>");
 		
-		output("\n\nHopefully that put an end to it, but you never know what ideas she’ll pick up from the next book.");
+		output("\n\nHopefully that put an end to it, but you never know what ideas [bess.heShe]’ll pick up from the next book.");
 		
 		output("\n\n<b>Captain, Boss, Skipper, Chief, Captain My Captain and Big Boss titles have been unlocked in the [bess.name] title menu!</b>");
 	}
@@ -10482,7 +10482,7 @@ public function bessSexMenu():void
 		if (bess.cocks[0].cType == GLOBAL.TYPE_SAURIAN)
 		{
 			if ((pc.hasVagina() && pc.cuntThatFits(1360) >= 0) || pc.analCapacity() >= 1360) addButton(2, "GetDoggy", bessGetDoggy, undefined, "Get Doggystyle", "Take it from [bess.name], doggy style! [bess.HeShe] must have a cock.");
-			else addDisabledButton(2, "GetDoggy", "Get Doggystyle", "Take it from [bess.name], doggy style! [bess.HeShe] must have a cock that she can squeeze into you!");
+			else addDisabledButton(2, "GetDoggy", "Get Doggystyle", "Take it from [bess.name], doggy style! [bess.HeShe] must have a cock that [bess.heShe] can squeeze into you!");
 		}
 		else
 		{
@@ -10585,8 +10585,8 @@ public function bessGetBlowjob():void
 			
 			if (pc.isNice())
 			{
-				output("\n\n<i>“Oh, well, did you not want to?”</i> You ask. Far be it from you to force her into something");
-				if (flags["BESS_LOVER"] != 1 && flags["BESS_FRIEND"] != 1) output(", even if she is a sex bot!");
+				output("\n\n<i>“Oh, well, did you not want to?”</i> You ask. Far be it from you to force [bess.himHer] into something");
+				if (flags["BESS_LOVER"] != 1 && flags["BESS_FRIEND"] != 1) output(", even if [bess.heShe] is a sex bot!");
 			}
 			else if (pc.isMischievous())
 			{
@@ -10602,7 +10602,7 @@ public function bessGetBlowjob():void
 				output("\n\n<i>“... I’m just teasing, "+ bessPCSexName() +"! I am your [bessLoverStatus], giving you blowjobs on demand is part of that - right?”</i> [bess.HeShe] playfully winks, cupping your cheeks in her hands, and stealing a quick kiss.");
 				if (!bess.isNude() && !pc.isNude()) output(" Both of you then begin");
 				else if (!pc.isNude()) output(" You then begin");
-				else output(" She then begins");
+				else output(" [bess.HeShe] then begins");
 				output(" to strip.");
 			}
 			else if (flags["BESS_FRIEND"] == 1)
@@ -10613,7 +10613,7 @@ public function bessGetBlowjob():void
 				output("”</i> [bess.name] winks and gives you a swift kiss.");
 				if (!bess.isNude() && !pc.isNude()) output(" Both of you then begin");
 				else if (!pc.isNude()) output(" You then begin");
-				else output(" She then begins");
+				else output(" [bess.HeShe] then begins");
 				output(" to strip.");
 			}
 			else
@@ -10621,7 +10621,7 @@ public function bessGetBlowjob():void
 				output("\n\n<i>“I would love to suck your cock, "+ bessPCSexName() +" - nothing would make me happier.”</i> [bess.name] bashfully admits.");
 				if (!bess.isNude() && !pc.isNude()) output(" Both of you then begin");
 				else if (!pc.isNude()) output(" You then begin");
-				else output(" She then begins");
+				else output(" [bess.HeShe] then begins");
 				output(" to strip.");
 			}
 		}
@@ -10807,10 +10807,10 @@ public function bessGetBlowjob():void
 		output(" an eager look in [bess.hisHer] [bess.eyeColor] eyes.");
 		if (flags["BESS_CUMDUMP"] == 1) output(" [bess.HisHer] lips are positively smeared with thick globs of semen, deposited from countless cocks. Time to add to the tally...");
 		
-		output("\n\n<i>“On your knees,”</i> You command, all the while shooting her a steely stare.");
+		output("\n\n<i>“On your knees,”</i> You command, all the while shooting [bess.himHer] a steely stare.");
 		if (!pc.isNude()) output(" At the same time, you purposefully strip off your things and toss them lazily aside.");
 		
-		output("\n\n[bess.name] gulps and immediately drops to [bess.hisHer] knees. With no idea what you have planned, [bess.heShe] diligently kneels before you. [bess.HisHer] hands are neatly balled up in [bess.hisHer] lap, [bess.hisHer] back arched and adoring eyes directed downward at your [pc.feet].");
+		output("\n\n[bess.name] gulps and immediately drops to [bess.hisHer] knees. With no idea what you have planned, [bess.heShe] diligently kneels before you. [bess.HisHer] hands are neatly balled up in [bess.hisHer] lap, [bess.hisHer] back arched and adoring eyes directed downwards at your [pc.feet].");
 		
 		if (bess.isChestGarbed()) output("<i>“Now, strip off your clothes. Just the top - nothing else.”</i>");
 
@@ -10823,11 +10823,11 @@ public function bessGetBlowjob():void
 
 		output("\n\n<i>“Wrists - present them to me, now.”</i>");
 		
-		output("\n\n[bess.Name] obediently stretches out [bess.hisHer] wrists, offering them up to you. You wrap the black leather cuffs around her wrists. Once you are sure they are snug and tight, you connect them together by their metal fasteners, binding her hands together. You finish by sliding a collar around her neck and clicking it in place.");
+		output("\n\n[bess.Name] obediently stretches out [bess.hisHer] wrists, offering them up to you. You wrap the black leather cuffs around [bess.hisHer] wrists. Once you are sure they are snug and tight, you connect them together by their metal fasteners, binding [bess.hisHer] hands together. You finish by sliding a collar around [bess.hisHer] neck and clicking it in place.");
 		
-		output("\n\n<i>“M-my collar... I love my collar,”</i> [bess.name] whispers. [bess.HeShe] raises her bound hands and touches the dark leather, blushing furiously.");
+		output("\n\n<i>“M-my collar... I love my collar,”</i> [bess.name] whispers. [bess.HeShe] raises [bess.hisHer] bound hands and touches the dark leather, blushing furiously.");
 		
-		output("\n\nCute! You hook your fingers through the metal ring dangling from her collar. With the slightest of tugs, you force [bess.himHer] to look you in the eyes, mesmerizing [bess.himHer] with your stare.");
+		output("\n\nCute! You hook your fingers through the metal ring dangling from [bess.hisHer] collar. With the slightest of tugs, you force [bess.himHer] to look you in the eyes, mesmerizing [bess.himHer] with your stare.");
 		
 		output("\n\n<i>“You’re properly adorned now. If I want you to bark like a dog, you will bark. If I want you to get on all fours, you will do so. You will obey all my instructions immediately and without complaint. Is that understood?”</i>");
 		
@@ -10879,7 +10879,7 @@ public function bessGetBlowjob():void
 	if (flags["BESS_CUMDUMP"] == 1) output(" The droid’s lusty lick also leaves your prick utterly drenched in warm, second-hand spunk.");
 	
 	
-	output("\n\nGreedily spotting the [pc.cumVisc], [pc.cumFlavor] pre-cum dribbling from your tip, [bess.name] inches closer, [bess.hisHer] hot breath tickling your [pc.cockHead]. [bess.HeShe] eagerly wraps her [bess.lips] around your cock hole, [bess.hisHer] tongue lashing up to lap up your [pc.cumNoun]. ");
+	output("\n\nGreedily spotting the [pc.cumVisc], [pc.cumFlavor] pre-cum dribbling from your tip, [bess.name] inches closer, [bess.hisHer] hot breath tickling your [pc.cockHead]. [bess.HeShe] eagerly wraps [bess.hisHer] [bess.lips] around your cock hole, [bess.hisHer] tongue lashing up to lap up your [pc.cumNoun]. ");
 	
 	output("\n\nUnsatisfied with such a small smidgeon, [bess.heShe] eagerly sucks on your crown until [bess.hisHer] silvery cheeks hollow inward - [bess.heShe]’s trying to slurp your cum out by force! All the while [bess.hisHer]");
 	if (flags["BESS_CUMDUMP"] == 1) output(" jism-loving");
@@ -10942,11 +10942,11 @@ public function bessGetBlowjob():void
 		output("\n\nWith one last squeeze of [bess.name]’s throat, you’re sent careening over the edge. Seizing [bess.hisHer] head in your hands, you moan and buck against [bess.hisHer] face. Your [pc.cockHead "+ cockIdx +"] flexes and spurts hot, [pc.cumVisc] ropes of your [pc.cumFlavor] [pc.cumNoun] down [bess.hisHer] defenseless throat.");
 		if (bessIsDom())
 		{
-			output(" Knotted like that, your eyes roll back into your head as you remain there, locked against [bess.hisHer] [bess.lips]. You twitch and shoot your spunk into her stomach for the next half hour.");
+			output(" Knotted like that, your eyes roll back into your head as you remain there, locked against [bess.hisHer] [bess.lips]. You twitch and shoot your spunk into [bess.hisHer] stomach for the next half hour.");
 		}
 		else
 		{
-			output(" [bess.Name]’s eyes roll into the back of [bess.hisHer] head and [bess.heShe] lets out a delirious groan as you continuously mate with [bess.hisHer] lips, intermittently shooting your spunk into her stomach for the next half-hour.");
+			output(" [bess.Name]’s eyes roll into the back of [bess.hisHer] head and [bess.heShe] lets out a delirious groan as you continuously mate with [bess.hisHer] lips, intermittently shooting your spunk into [bess.hisHer] stomach for the next half-hour.");
 		}
 
 		// if (any but hyper cums)
@@ -11125,7 +11125,7 @@ public function bessGiveDoggySelected(bTargetVag:Boolean = false):void
 		output("\n\n<i>“Yes, "+ bessPCSexName() +"!”</i> [bess.name] meekly replies, though you can see in [bess.hisHer] eyes that [bess.heShe]’s jumping for joy inside. [bess.HeShe] looks thrilled that [bess.hisHer] [pc.Master] wants to make use of [bess.himHer] and [bess.hisHer] "+ (bTargetVag ? "pussy" : "ass") +". You");
 		if (!pc.isNude()) output(" take off your gear and [bess.heShe] similarly");
 		else output(" watch as [bess.hisHer]");
-		output(" prepares herself for you.");
+		output(" prepares [bess.himHer]self for you.");
 	}
 
 	// MERGE ALL VERSIONS
@@ -11139,8 +11139,8 @@ public function bessGiveDoggySelected(bTargetVag:Boolean = false):void
 	output("\n\nYou groan as [bess.name] lewdly jerks off your cock");
 	if (pc.cocks.length > 1) output("s");
 	output(" between [bess.hisHer] [bess.ass].");
-	if (bessIsDom()) output(" You really want to let yourself go - to shoot your [pc.cumColor] spunk all over her buttocks and back - but you haven’t been given permission!");
-	else if (bessIsSub()) output(" As much as you can imagine yourself shooting your spunk all over her buttocks and back, that’s not what you’re after. Tugging on [bess.hisHer] leash, you make sure your synthetic sub doesn’t get <i>too</i> carried away.");
+	if (bessIsDom()) output(" You really want to let yourself go - to shoot your [pc.cumColor] spunk all over [bess.hisHer] buttocks and back - but you haven’t been given permission!");
+	else if (bessIsSub()) output(" As much as you can imagine yourself shooting your spunk all over [bess.hisHer] buttocks and back, that’s not what you’re after. Tugging on [bess.hisHer] leash, you make sure your synthetic sub doesn’t get <i>too</i> carried away.");
 	else output(" As much as you can imagine shooting your spunk all over [bess.hisHer] buttocks and back, you have <i>other</i> plans.");
 
 	output("\n\nAll of a sudden, [bess.name] pulls away from your [pc.cocks]. [bess.HeShe] reaches back and spreads open [bess.hisHer] "+ (bTargetVag ? "thighs. With two fingers, [bess.heShe] parts [bess.hisHer] slick, silvery folds" : "buttocks. [bess.HisHer] clean, stretched pucker winks at you"));
@@ -11197,13 +11197,13 @@ public function bessGiveDoggySelected(bTargetVag:Boolean = false):void
 		{
 			output("\n\nActing on impure instinct, your [pc.tailCock] begins to move on its own. It slides up [bess.name]’s chest. It catches [bess.himHer] off guard when you slip it inside [bess.hisHer] half open-mouth, [bess.hisHer] eyes shooting wide in sudden shock.");
 			
-			output("\n\n<i>“Mffh! Mffph... mfflrrrgh!”</i> You silence [bess.name]’s complaint with a mouth full of [pc.tailCock], stuffing it deep into [bess.hisHer] gullet. [bess.HisHer] muffled protests turn into moans as you bury it deep inside of her warm, wet gullet, taking advantage of [bess.hisHer] complete lack of a gag reflex.");
+			output("\n\n<i>“Mffh! Mffph... mfflrrrgh!”</i> You silence [bess.name]’s complaint with a mouth full of [pc.tailCock], stuffing it deep into [bess.hisHer] gullet. [bess.HisHer] muffled protests turn into moans as you bury it deep inside of [bess.hisHer] warm, wet gullet, taking advantage of [bess.hisHer] complete lack of a gag reflex.");
 		}
 	}
 
 	if (bess.hasCockTail())
 	{
-		output("\n\nYou feel a sudden sliding around your [pc.hip]. Suddenly something is pushing pointedly against your pucker - it’s [bess.name]’s JoyCord! Apparently unsatisfied with such a one-sided fucking, [bess.heShe] mischievously plunges [bess.hisHer] prehensile phallus into your [pc.ass], sliding it up to sweetly meet and pulse against your prostate. You tremble with delight as you’re filled from behind, relishing in her rubbing deep inside of your rump.");
+		output("\n\nYou feel a sudden sliding around your [pc.hip]. Suddenly something is pushing pointedly against your pucker - it’s [bess.name]’s JoyCord! Apparently unsatisfied with such a one-sided fucking, [bess.heShe] mischievously plunges [bess.hisHer] prehensile phallus into your [pc.ass], sliding it up to sweetly meet and pulse against your prostate. You tremble with delight as you’re filled from behind, relishing in [bess.hisHer] rubbing deep inside of your rump.");
 	}
 
 	output("\n\nAs you heartily fuck [bess.name] from behind, [bess.heShe] reaches up and caresses [bess.hisHer] [bess.chest]. A sinful little moan escapes [bess.hisHer] lips as [bess.heShe] toys with [bess.hisHer] nipples. As [bess.heShe] pinches and teases them, [bess.hisHer] insides spasm, squeezing and wringing your thrusting length.");
@@ -11223,7 +11223,7 @@ public function bessGiveDoggySelected(bTargetVag:Boolean = false):void
 	else if (pc.cumQ() <= 500) output(" spurt your");
 	else output(" unload your");
 	output(" [pc.cum] deep inside of [bess.hisHer] twitching, cock-filled "+ (bTargetVag ? "cunny" : "butt") +".");
-	if (pc.cumQ() > 100 && bTargetVag) output(" It rushes up and fills her mechanical womb, your seed stirring around inside of [bess.hisHer] [bess.belly].");
+	if (pc.cumQ() > 100 && bTargetVag) output(" It rushes up and fills [bess.hisHer] mechanical womb, your seed stirring around inside of [bess.hisHer] [bess.belly].");
 	output(" Your twitching [pc.cockNounSimple " + cockIdx +"] pushes [bess.himHer] over the edge, and [bess.heShe] utterly creams [bess.himHer]self around your pulsing shaft. Both of you dissolve into pleasure, trembling against each other’s bodies.");
 	if (bTargetVag) output(" [bess.HisHer] leaking pussy-juice mixes with your [pc.cumNoun] and drools down [bess.hisHer] trembling thighs.");
 
@@ -11528,13 +11528,13 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 	{
 		output("You walk up to [bess.name], an assertive gleam in your eyes. <i>“Stand to attention, "+ bessSexName() +"!”</i> You command [bess.himHer], slapping [bess.hisHer] [bess.ass] to make sure [bess.heShe] gets the message.");
 		
-		output("\n\n[bess.name] immediately jumps into [bess.hisHer] ‘attention’ position, a shiver of pleasure running up [bess.hisHer] spine. [bess.HeShe] spreads [bess.hisHer] legs, stands on tippitoes and puts [bess.hisHer] hands behind [bess.hisHer] head. [bess.HisHer] eyes are focused, waiting for further instructions. [bess.HeShe]’s trying [bess.hisHer] best to be a perfect little slave [bess.boyGirl].");
+		output("\n\n[bess.name] immediately jumps into [bess.hisHer] ‘attention’ position, a shiver of pleasure running up [bess.hisHer] spine. [bess.HeShe] spreads [bess.hisHer] legs, stands on " + bess.mf("tiptoes", "tippitoes") + " and puts [bess.hisHer] hands behind [bess.hisHer] head. [bess.HisHer] eyes are focused, waiting for further instructions. [bess.HeShe]’s trying [bess.hisHer] best to be a perfect little slave [bess.boyGirl].");
 		
 		output("\n\nThe first thing you do is pull out [bess.hisHer] collar and snap it around [bess.hisHer] neck. You can see the submissive switch click in [bess.hisHer] head the very <i>second</i> you click it in place, as well as the longing look in [bess.hisHer] [bess.eyeColor] eyes.");
 		
 		output("\n\nAfter you have fastened [bess.hisHer] collar you inspect [bess.himHer] slowly, feeling your dominance over this silver skinned"+ bess.mf("sissy", "strumpet") +". The smallest smile passes over your lips and [bess.heShe] trembles, trying to keep perfectly still - probably wondering what instructions you’re going to give [bess.himHer] today.");
 		
-		output("\n\n<i>“"+ bessSexName() +"! I am going to give you the immeasurable honor of fucking my "+ (bTargetVag ? "[pc.pussy "+ vagIdx +"]" : "[pc.ass]") +" from behind. If you fail to pleasure me, you will be punished - understood?”</i> You inform [bess.himHer] in a no nonsense voice");
+		output("\n\n<i>“"+ StringUtil.capitalize(bessSexName()) +"! I am going to give you the immeasurable honor of fucking my "+ (bTargetVag ? "[pc.pussy "+ vagIdx +"]" : "[pc.ass]") +" from behind. If you fail to pleasure me, you will be punished - understood?”</i> You inform [bess.himHer] in a no nonsense voice");
 		if (!pc.isNude()) output(", at the same time stripping off your gear.");
 		else output(".");
 		
@@ -11669,7 +11669,7 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 			
 			output("\n\n<i>“You’re not pulling out until I’ve finished mating with you, and I might take a while. You synthetics have a lot of stamina, right? I want to be fucked until I forget my own name, "+ bessSexName() +".”</i>");
 			
-			output("\n\n[bess.name] shivers with delighted anticipation at your orders, [bess.hisHer] [bess.cock] swelling instinctively inside of you. <i>“Yes, "+ bessPCSexName() +"!”</i> Even if [bess.heShe] didn’t want to, [bess.heShe] can’t move now until [bess.heShe] [bess.cums] and [bess.hisHer] knot deswells.");
+			output("\n\n[bess.name] shivers with delighted anticipation at your orders, [bess.hisHer] [bess.cock] swelling instinctively inside of you. <i>“Yes, "+ bessPCSexName() +"!”</i> Even if [bess.heShe] didn’t want to, [bess.heShe] can’t move now until [bess.heShe] cums and [bess.hisHer] knot deswells.");
 		}
 		else
 		{
@@ -11738,7 +11738,7 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 			output(" if you love using that");
 			if (bess.cocks[0].cType == GLOBAL.TYPE_CANINE) output(" doggie");
 			else output(" knotted");
-			output(" dick so much!”</i> You tease [bess.name] as you tug away from [bess.himHer], forcing [bess.himHer] to follow you and show just how much [bess.heShe] is your little breeding bitch right now. [bess.HisHer] face burns with embarrassment and arousal, as she is unable to remove [bess.hisHer] swollen knot.");
+			output(" dick so much!”</i> You tease [bess.name] as you tug away from [bess.himHer], forcing [bess.himHer] to follow you and show just how much [bess.heShe] is your little breeding bitch right now. [bess.HisHer] face burns with embarrassment and arousal, as [bess.heShe] is unable to remove [bess.hisHer] swollen knot.");
 			
 			output("\n\nFor a full half hour [bess.hisHer] [bess.hisHer] hot, sticky cum pours inside of your");
 			if (bTargetVag) output(" hungry uterus");
@@ -12167,7 +12167,7 @@ public function bessBreastFeed(opts:Array = null):void
 		if (bess.hasCock()) output(" [bess.cum]");
 		if (bess.hasCock() && bess.hasVagina()) output(" and");
 		if (bess.hasVagina()) output(" [bess.girlCum]");
-		output(", occasionally twitching as she falls back on the ground. [bess.HisHer] nipples really are sensitive!");
+		output(", occasionally twitching as [bess.heShe] falls back on the ground. [bess.HisHer] nipples really are sensitive!");
 	}
 
 	if (newRating != -1)
@@ -12217,7 +12217,7 @@ public function bessMilkers(opts:Array = null):void
 		output("\n\nDespite any verbal objection,");
 		if (bess.isChestGarbed()) output(" [bess.name] slips off [bess.hisHer] [bess.UpperGarments]. [bess.HeShe] then");
 		else output(" [bess.heShe]");
-		output(" gets on all fours on a nearby bench, positioning herself to be the perfect height for you. [bess.HisHer] [bess.breasts] dangle below [bess.himHer].");
+		output(" gets on all fours on a nearby bench, positioning [bess.himHer]self to be the perfect height for you. [bess.HisHer] [bess.breasts] dangle below [bess.himHer].");
 	}
 	else
 	{
@@ -12225,7 +12225,7 @@ public function bessMilkers(opts:Array = null):void
 		output("\n\nA blush dusts the synthetics cheeks, recalling [bess.hisHer] previous encounter with the milking machine.");
 		if (bess.isChestGarbed()) output("[bess.name] slips off [bess.hisHer] [bess.UpperGarments]. [bess.HeShe] then");
 		else output(" [bess.heShe]");
-		output(" gets on all fours on a nearby bench, positioning herself to be the perfect height for you. [bess.HisHer] [bess.breasts] dangle below [bess.himHer].");
+		output(" gets on all fours on a nearby bench, positioning [bess.himHer]self to be the perfect height for you. [bess.HisHer] [bess.breasts] dangle below [bess.himHer].");
 	}
 
 	output("\n\nYou click the milker on and a sucking air noise immediately comes from one the teat cups. Out of the corner of your eye you see [bess.name] shiver pleasantly at the noise");
@@ -12276,7 +12276,7 @@ public function bessMilkers(opts:Array = null):void
 	output("\n\n[bess.name] arches [bess.hisHer] back like a cat at your teasing words and presses [bess.hisHer] squelching");
 	if (!(bess.lowerUndergarment is EmptySlot)) output(" underwear");
 	else output(" loins");
-	output(" against your hand. Her [bess.breasts] practically burst into the canisters, [bess.nipples] firing off like milky machine guns. You turn up the suction to max and watch as [bess.name]’s eyes roll back into [bess.hisHer] head, thick streams of [bess.milk] filling up the transparent tubes. It’s more than [bess.name]’s processors can take, and soon [bess.heShe] mentally regresses to a gibbering mess.");
+	output(" against your hand. [bess.HisHer] [bess.breasts] practically burst into the canisters, [bess.nipples] firing off like milky machine guns. You turn up the suction to max and watch as [bess.name]’s eyes roll back into [bess.hisHer] head, thick streams of [bess.milk] filling up the transparent tubes. It’s more than [bess.name]’s processors can take, and soon [bess.heShe] mentally regresses to a gibbering mess.");
 	
 	output("\n\nDrooling in near comatose pleasure, [bess.name]’s upper body falls against the bench as [bess.heShe] pokes out [bess.hisHer] ass like a common farm animal.");
 	if (bess.hasCock() || bess.hasVagina())
@@ -12355,7 +12355,7 @@ public function bessIntimateSexMenu():void
 		if (bess.cocks[0].cType == GLOBAL.TYPE_SAURIAN)
 		{
 			if ((pc.hasVagina() && pc.cuntThatFits(1360) >= 0) || pc.analCapacity() >= 1360) addButton(2, "GetDoggy", bessIntimateGetDoggy, false, "Get Doggystyle", "Take it from [bess.name], doggy style! [bess.HeShe] must have a cock.");
-			else addDisabledButton(1, "GetDoggy", "Get Doggystyle", "Take it from [bess.name], doggy style! [bess.HeShe] must have a cock that she can squeeze into you!");
+			else addDisabledButton(1, "GetDoggy", "Get Doggystyle", "Take it from [bess.name], doggy style! [bess.HeShe] must have a cock that [bess.heShe] can squeeze into you!");
 		}
 		else
 		{
@@ -12423,10 +12423,10 @@ public function bessIntimateGiveDoggy(fromEvent:Boolean = false):void
 	{
 		output("\n\nYour lips pull apart as both of your breathing comes out in short desperate gasps. [bess.name] gazes at you with [bess.hisHer] beautiful [bess.eyeColor] eyes. <i>“... Make love to me, " + bessPCName() + ". I want you inside of me.”</i>");
 		
-		output("\n\n[bess.HeShe] shifts herself so your [pc.cockhead] is lined up with [bess.hisHer]");
+		output("\n\n[bess.HeShe] shifts [bess.himHer]self so your [pc.cockhead] is lined up with [bess.hisHer]");
 		if (bess.hasVagina()) output(" wetness");
 		else output(" entrance");
-		output(", sliding you slowly inside of herself as [bess.heShe] descends on your length. As you push deeper inside of [bess.hisHer] incredibly narrow passage [bess.heShe] cling to you with a velvety grip.");
+		output(", sliding you slowly inside of [bess.himHer]self as [bess.heShe] descends on your length. As you push deeper inside of [bess.hisHer] incredibly narrow passage [bess.heShe] cling to you with a velvety grip.");
 		
 		output("\n\nOnce you are fully inside of [bess.himHer], [bess.name] kisses you softly, pulling you against [bess.hisHer] as your [pc.cockNoun] twitches inside of [bess.himHer]. <i>“...I love the feeling of you deep inside of me. It makes me feel so complete.”</i>");
 		
@@ -12610,9 +12610,9 @@ public function bessIntimateGiveOral(fromEvent:Boolean = false):void
 	output("\n\nAs [bess.heShe] gushes and squirts right into your open mouth you eagerly lap up [bess.hisHer] [bess.girlCumFlavor] nectar, taking everything [bess.heShe] has to give. [bess.HisHer] hands run");
 	if (pc.hairLength == 0) output(" across your bald scalp");
 	else output(" through your [pc.hair]");
-	output(" as [bess.hisHer] thighs quake against the sides of your face. Even though [bess.heShe] already came, every time you lap at [bess.hisHer] [bess.pussy] [bess.heShe] cries out with delirious pleasure, [bess.hisHer] nethers seem to be incredibly sensitive right after [bess.heShe] cums. So sensitive that with a little bit of teasing [bess.heShe] creams herself all over again, giving you another helping of [bess.hisHer] tasty girl cum.");
+	output(" as [bess.hisHer] thighs quake against the sides of your face. Even though [bess.heShe] already came, every time you lap at [bess.hisHer] [bess.pussy] [bess.heShe] cries out with delirious pleasure, [bess.hisHer] nethers seem to be incredibly sensitive right after [bess.heShe] cums. So sensitive that with a little bit of teasing [bess.heShe] creams [bess.himHer]self all over again, giving you another helping of [bess.hisHer] tasty girl cum.");
 	
-	output("\n\nEventually [bess.heShe] simply cannot cum any more and [bess.heShe] falls down beside you, [bess.hisHer] legs completely useless as [bess.heShe] looks at you in a post-orgasmic haze. You feverishly kiss as [bess.heShe] happily laps up the taste of herself off your tongue. You eventually fall asleep in each other’s arms.");
+	output("\n\nEventually [bess.heShe] simply cannot cum any more and [bess.heShe] falls down beside you, [bess.hisHer] legs completely useless as [bess.heShe] looks at you in a post-orgasmic haze. You feverishly kiss as [bess.heShe] happily laps up the taste of [bess.himHer]self off your tongue. You eventually fall asleep in each other’s arms.");
 
 	pc.girlCumInMouth(chars["BESS"]);
 	bess.orgasm();
