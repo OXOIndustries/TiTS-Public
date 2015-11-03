@@ -686,7 +686,7 @@ public function sx1AskSaendra():void
 public function sx1SeeCallgirl():void
 {
 	clearOutput();
-
+	showZilCallGirl();
 	generateMapForLocation("CALLGIRL ROOM");
 
 	if (flags["SAENDRA_XPACK1_CALLGIRLSTATE"] == undefined)
@@ -749,7 +749,7 @@ public function sx1CallgirlMenu():void
 public function sx1CallgirlNevermind():void
 {
 	clearOutput();
-
+	showZilCallGirl();
 	generateMapForLocation("CALLGIRL ROOM");
 
 	output("<i>“Aww. Nervous, hun?”</i> the callgirl coos, blowing you a kiss. <i>“Go ahead and take your time. I’ll be here.”</i>");
@@ -760,7 +760,7 @@ public function sx1CallgirlNevermind():void
 public function sx1CallgirlOkay():void
 {
 	clearOutput();
-
+	showZilCallGirl();
 	generateMapForLocation("CALLGIRL ROOM");
 
 	flags["SAENDRA_XPACK1_CALLGIRLSTATE"] = 2;
@@ -864,7 +864,7 @@ public function sx1CallgirlOfferJob():void
 {
 	clearOutput();
 	pc.credits -= 500;
-
+	showZilCallGirl();
 	generateMapForLocation("CALLGIRL ROOM");
 
 	output("<i>“Hey, so, my buddy is over in the next room,”</i> you lie, pulling a credstick out of your pocket. <i>“It’s his birthday, you know, and I was thinking maybe...”</i>");
