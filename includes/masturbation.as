@@ -263,11 +263,17 @@ public function availableFaps(roundTwo:Boolean = false):Array
 		fap = new FapCommandContainer();
 		fap.text = "CuffSelf";
 		fap.ttHeader = "Cuff Yourself"
-		fap.ttBody = "You bet that if you cuffed yourself naked somewhere public, there'd be at least one randy bull to give you a reaming.";
-		fap.func = newTexanGanguBangu;
+		fap.ttBody = "You bet that if you cuffed yourself naked somewhere public, there'd be at least one randy bull or cow to give you a reaming.";
+		fap.func = cuffSelfRouter;
 		faps.push(fap);
 	}
 	return faps;
+}
+
+public function cuffSelfRouter():void
+{
+	if(pc.hasCock() && rand(2) == 0) gravCuffsCowgirlBangu();
+	else newTexanGanguBangu();
 }
 
 public function nivasFapSetup():void
@@ -326,7 +332,7 @@ public function masturbateMenu(roundTwo:Boolean = false):void {
 		//Special new texas shit
 		if(pc.hasItem(new GravCuffs()) && rooms[currentLocation].planet == "PLANET: NEW TEXAS" && rooms[currentLocation].hasFlag(GLOBAL.PUBLIC))
 		{
-			addButton(1,"CuffSelf",newTexanGanguBangu,undefined,"Cuff Yourself","You bet that if you cuffed yourself naked somewhere public, there'd be at least one randy bull to give you a reaming.");
+			addButton(1,"CuffSelf",cuffSelfRouter,undefined,"Cuff Yourself","You bet that if you cuffed yourself naked somewhere public, there'd be at least one randy bull to give you a reaming.");
 		}
 		return;
 	}
@@ -340,7 +346,7 @@ public function masturbateMenu(roundTwo:Boolean = false):void {
 		//Special new texas shit
 		if(pc.hasItem(new GravCuffs()) && rooms[currentLocation].planet == "PLANET: NEW TEXAS" && rooms[currentLocation].hasFlag(GLOBAL.PUBLIC))
 		{
-			addButton(1,"CuffSelf",newTexanGanguBangu,undefined,"Cuff Yourself","You bet that if you cuffed yourself naked somewhere public, there'd be at least one randy bull to give you a reaming.");
+			addButton(1,"CuffSelf",cuffSelfRouter,undefined,"Cuff Yourself","You bet that if you cuffed yourself naked somewhere public, there'd be at least one randy bull to give you a reaming.");
 		}
 		return;
 	}
@@ -2978,6 +2984,7 @@ public function bionaHoleInstructionalBullshit():void
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
+
 
 /*output("\n\n");
 output("\n\nUsing Syri’s BionaHole");

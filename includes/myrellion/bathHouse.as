@@ -740,7 +740,7 @@ public function treasureHunt():void
 	else
 	{
 		output("zeroes in on your ");
-		if(pc.hasCocks()) output("[pc.cocks]");
+		if(pc.hasCock()) output("[pc.cocks]");
 		else output("[pc.vaginas]");
 		output(".");
 		if(pc.cockTotal() >= 4) output(" Your terrible tangle of pricks stuns her. <i>“How... how do you even get anything done with so many of these?”</i> she asks, fruitlessly trying to separate them.");
