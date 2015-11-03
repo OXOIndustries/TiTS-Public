@@ -88,6 +88,7 @@
 		include "../includes/combat.as";
 		include "../includes/ControlBindings.as";
 		include "../includes/CodexEntries.as";
+		include "../includes/CodexFiction.as";
 		include "../includes/creation.as";
 		include "../includes/debug.as";
 		include "../includes/engine.as";
