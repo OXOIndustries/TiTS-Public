@@ -38,6 +38,7 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Thraggen", thraggenCodexEntry,true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Varmints", varmintCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "V-Ko", VKoCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Gryvain", gryvainCodexEntry, true);
 
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Mhen'ga", "Cunt Snakes", cuntSnakeCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Mhen'ga", "Kerokoras",kerokorasCodexEntry);
@@ -1964,4 +1965,76 @@ public function fanfirCodexEntry():void
 	
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Fanfir");
+}
+
+public function gryvainCodexEntry():void 
+{
+	clearOutputCodex();
+	outputCodex(header("Gryvain"));
+	outputCodex("<b>Name:</b> Gryvain (plural and singular)");
+	outputCodex("\n<b>Sexes:</b> Hermaphrodites");
+	outputCodex("\n<b>Height:</b> 5'10 - 7'2");
+	outputCodex("\n<b>Hair:</b> Gryvain have human-style hair, usually worn long, which varies in color from blue, black, gray, and some shades of dark green.");
+	outputCodex("\n<b>Skin Color</b>: From the waist up, gryvain have smooth skin, usually pale pink or a light red in color, though some rare specimens have a lush, almost plant-green or a dark, blood-red skin tone.");
+	outputCodex("\n<b>Eyes:</b> Yellow eyes with vertical slits, reptilian in nature.");
+	outputCodex("\n<b>Feet & Legs:</b> Gryvain lower bodies are coated in blue, green, or black scales from the waist down, with feet ending in supple, smooth leathery soles. They have five toes, each tipped with a sharp claw (though most gryvain file these down for convenience and comfort). As a race primarily accustomed to flight over walking, the soles and arches of a gryvain's foot are noted to be a common erogenous zone.");
+	outputCodex("\n<b>Wings:</b> Gryvain have four reptilian wings sprouting from their backs, on and just below the shoulders. The thicker-than-normal atmosphere of the gryvain homeworld allowed them to develop true flight, though their wings aren't capable of supporting them for more than short burts or flutters in most human-friendly conditions. Many gryvain-crewed vessels have specialized chambers to simulate their homeworld's atmosphere, allowing them to exercise their wing muscles and relax their legs.");
+	outputCodex("\n<b>Lifespan:</b> Gryvain naturally live for 350-400 years, though they achieve adulthood at a brisk 20 years. Modern medicine suggests that their lifespan could easily be expanded to nearly a millenium. Most gryvain currently retain their natural lifespans, commonly citing that they already live far longer than most species, and loneliness and constantly-advancing technology begin to vex them after a few centuries.");
+
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Necessary Adaptations"));
+
+	outputCodex("In order to survive in terrestrial atmosphere, all space-going gryvain receive simple genetic modifications that allow them to breathe oxygen. These are provided at no cost by the Gryvain Heartland Republic. Many gryvain also choose to have modification work done to allow them true flight in standard atmospheres or to strengthen their legs to better support themselves for extended durations.");
+	
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Appearance"));
+
+	outputCodex("The gryvain are large reptilian humanoids, standing larger and heavier than humans/ausar on average. Gryvain have scale-covered lower bodies, with upper bodies sporting supple, often-colorful skin. In addition to two pairs of large, leathery wings, each gryvain has a pair of curling horns growing from her brow, and slitted reptilian eyes with brilliant yellow irises. As an all-hermaphrodite race, gryvain are universally feminine in appearance with very large, egg-bearing hips and full breasts. Gryvain have sinuous tails growing from just over their behinds, fully prehensile and tapered to a fine point. Their tails are covered with smalls, soft scales, and are smooth from tip to base. Gryvain tails help with balance, in flgiht and on the ground, and can be controlled precisely enough to operate tools and assist in other activities. While the base of the tail is heavily scaled and rather dull, the tapered tip is quite thin and has as much sensitivity as some species' sex organs.");
+	
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Sexuality"));
+
+	outputCodex("A race of hermaphrodites, all gryvain are capable of both bearing and siring children -- and many choose to take both routes during their lifetimes. Gryvain have reptilian-style phalluses, ranging from 8-12 inches in length and are fairly broad for their size, usually mimicking the color of the owner's scales. Their phalluses have tapered tips and thick, bulbous bases that resemble canid knots, though they lack the same growth and knotting function. They have a set of six large large internal testes near where the human prostate would be, three on either side of the anal passage. Because of these extra testes, gryvain seminal fluid production is notably larger and faster-replenishing than most other races.");
+
+	outputCodex("\n\nA gryvain's phallus grows just over her feminine sex, which is rather unlike its terran or ausar equivalents. While a gryvain's vagina superficially resembles the galactic norm, with external lips the same color as their scales and a high amount of internal lubrication, gryvain lack clitorises. Instead, they have several concentric rings of small nubs lining the walls of the vagina, each roughly as sensitive as a human clitoris would be. This makes both sexual intercourse and oviposition incredibly pleasurable. Most gryvain repeated repeated and extremely intense orgasm immediately upon penetration, and as their refractory period is nearly non-existent, will often be in a continuous state of climax through the entire penetrated-mating or birthing process.");
+
+	outputCodex("\n\nGryvain vaginas are much larger than their host's size would suggest, as they bear the duty of laying fairly large eggs; they are usually lipped with thick labia of the same color as the individual's scales. In order to ease egg-laying, gryvain vaginas are both highly elastic and extraordinarily well-lubricated, which has made them very popular both in the underground ultraporn industry and as mates for leithans and other races with much larger than average male endowments. Due to the incredible sensitivity and orgasmic abilities of their feminine sexes, most gryvain note extremely high satisfaction in both of these roles.");
+	
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Reproduction"));
+
+	outputCodex("Like many reptilian-origin races, gryvain are infertile except in regular cycles of oestrus lasting about one month out of every year. Gryvain heat cycles are not tied to any particular seasonal or atmospheric condition, and each individual has a different time of the year she will go into heat. Notably, gryvain heat does not end after successful mating: the cycle lasts for the full month. During this period, the gryvain's sex drive is markedly increased, and both her sexes are in a state of near-constant arousal, preventing her from easily hiding her state from others, and the sensitivity of her entire body increases dramatically. Simple acts such as brushing a tail or groping a breast or buttock can cause immediate ejaculation, and most gryvain at this point find it nearly impossible to resist offers for sex, especially to be bred.");
+
+	outputCodex("\n\nGryvain have a wide variety of reactions to their heat periods. Some, especially those not desirous of children, will resort to medication to suppress their heat, or will isolate themselves and attempt to sate themselves with vigorous and regular masturbation for the duration of their cycle. Others will gleefully attempt to have as much sex with as many partners as possible, virtually ensuring impregnation. The most common reaction is to retreat to home life with a partner (or several, for polyamorous gryvain) and simply mate whenever the urge becomes unbearable, with or without birth control as they choose.");
+
+	outputCodex("\n\nOnce impregnated, a gryvain will quickly begin to lactate a thick, sweet pink-colored milk. Their milk production (as with other sexual fluids) is considerably higher than the galactic average, and gryvain breasts tend to swell by several cup sizes once they start. Unlike many other races, once a gryvain begins to lactate, she will not stop for the duration of her life, and the increase is the size and sensitivity of her breasts is permanent. While the average cup size is roughly a C-cup among non-mothers, the average tends toward E to F-cups among those who have borne children. Multiple pregnancies can sometimes lead to increased milk production, and a commensurate increase in size. The largest recorded natural cup-size for a gryvain was a tremendous L-cup after fifty separate pregnancies, with the mother in question producing many gallons of milk each day and requiring special assistance to move.");
+
+	outputCodex("\n\nAfter successful conception, a pregnant gryvain will have her belly quickly swell with a growing egg until she's nearly as gravid as a human female in her third trimester. After six weeks of carrying the egg the expectant mother will lay it, after which it must be kept warm and safe for an additional six weeks whereupon the newborn gryvain will hatch. Gryvains are always born singularly, with no instances of multiple births recorded. Newborns are incredibly small and helpless after birth, and rely on their mother to nurse from. They grow much like human children for the next several years, able to fly, walk, and communicate after two to three years, and reaching sexual maturity at 20 years of age.");
+
+	outputCodex("\n\nNotably, gryvain are perfectly capable of inseminating a partner when they themselves are not in heat. Gryvain sex drive is fairly average outside of their heat cycle, and while they are not known to have particularly sharp senses of smell, it is noticeably higher in the presences of a member of any species in heat -- not just their own. Being in the presence of a leithan female in oestrus can be nigh-debilitating to gryvain, at least as much as to the famously-vulnerable ausar.");
+	
+	outputCodex("\n\n");
+	outputCodex(blockHeader("History & Society"));
+
+	outputCodex("Originally hailing from the hot, humid moon of Vendiko, the gryvain arose in the shadow of a massive blue gas giant, on a world wracked by storms and with an atmosphere so thick that their wings allowed them the natural gift of flight. While predatory carnivores by nature, gryvain eventually domesticated several prey species, and began the long process of growing from small hunter tribes to great cities that spanned their world.");
+
+	outputCodex("\n\nOnce settled, the gryvain proved to have a natural knack for science and discovery. Modern gryvain technology is easily the rival of the ausar and other advanced races, and their culture has adapted to highly prize ingenuity and creativity. Manual labor and violence are seen equally as being “barbaric,” fit for younger races and drones; gryvain are much more strongly inclined towards the arts and sciences, as well as flight and interstellar exploration.");
+
+	outputCodex("\n\nThey achieved spaceflight roughly 1,000 years before humanity did, and within a few centuries set about colonizing their star system under strong and unified democratic government, the Gryvain Heartland Republic. During this period of exploration and settlement, the gryvain encountered another sapient race in their system, the tauric ehmris, who were still at a tribal level of technology and were quickly put through the gryvain equivalent of the U.G.C.'s Upliftment program that has resulted in the ehmris joining the gryvain in a near-equal status in society and military roles, though they possess little political power in the Republic.");
+
+	outputCodex("\n\nWhile the gryvain were constrained to their home system for over a thousand years after achieving space flight, they nevertheless developed highly advanced starships -- rivaling that of the U.G.C. Fleet -- for use within their territory, though largely of a mercantile or scientific role. When a Warp Gate first arrived in the gryvain's system, they were given several decades to study the device and prepare their defenses for alien contact: when the first Confederate scouts poured through the gate during the 10th Great Planet Rush, they were met head-on by a fleet of converted warships, as well as a large and heavily militarized space station that had been hastily constructed at the nearest lagrange point. Thankfully, both the Confederacy and Republic desired peace, and the tense First Contact was resolved through diplomacy rather than force of arms.");
+
+	outputCodex("\n\nThe gryvain were quickly and easily accepted into the Confederacy, and soon joined their interstellar neighbors in a mutually-beneficial cultural exchange. Since first contact, they have greatly expanded their nation's colonies outside their home system. This, and the gryvain's relatively strong and unified central government in the form of the G.H.R., has helped the relative new-comer race to gain some foothold in galactic politics.");
+	
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Technology"));
+
+	outputCodex("The gryvain have advanced starship technology, equal to or slightly better than that of most Confederate member states, as well as highly refined terraforming processes and their own strain of gene-therapy, nanomachine, and cosmetic transformative research that has allowed them to find a strong place economically in the greater galaxy. Gryvain-produced starships are always in high demand, especially among those seeking vessels well-suited to research, high-yield trading, and passenger capacity.");
+
+	outputCodex("\n\nAfter several planet rushes, the G.H.R. has made terraforming a veritable art form, and are notable for having created several beautiful resort and luxury planets from otherwise desolate worlds. The Republic frequently contracts with the Confederacy to sculpt or refine worlds to spec, and their diplomatic corp has become quite adept at making contact with and uplifting native populations. While the gryvain enjoy the image of them spreading civilization and beauty across the galaxy, their rapid perfection of planetary renovation and inhabitation has an entirely selfish cause. Unlike most long-lived races, the gryvain have an exceptionally high birthrate and reproductive drive, which means that new worlds are in constant demand to counteract the growing populace. Thanks to the regular Planet Rushes, the gryvain have been able to relax their previously-stringent governmental population control, instead allowing their expanding generations to inhabit distant stars as colonizers, settlers, and immigrants in equal measure.");
+
+	outputCodex("\n\nDespite their rapid expansion, gryvain military technology is notably lacking. They have fairly advanced plasma and laser weapons, but no standing military to speak of, and much of their green-collar work is privatized to Nova Securities or their home-grown robotics companies. Gryvain security, both on and off-world, is largely handled by drones and A.I.-controlled craft, as unlike most human societies, gryvain appear to have no paranoia about a supposed “robot uprising,” and happily let A.I. control any aspect of their security or infrastructure they themselves cannot be bothered with, especially in remote colonies. Gryvain-made A.I. is generally regarded to be among the most convincingly life-like and emotive, and among the most reliable technologically and personally. It's no surprise that KihaCorp has a strong presence on their homeworld, and employs a large number of gryvain.");
+	
+	outputCodex("\n\n");
+	CodexManager.viewedEntry("Gryvain");
 }

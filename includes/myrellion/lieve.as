@@ -378,7 +378,7 @@ public function lieveTalkMenu():void
 	if (hasFuckedLieveSolo() && flags["LIEVE_TALK_THEWAR"] != undefined) addButton(3, "Her Scars", lieveTalkScars, undefined, "Her Scars", "Ask Lieve about those brutal scars on her back.");
 	else addDisabledButton(3, "Her Scars");
 
-	if (flags["LIEVE_TALK_SCARS"] != undefined) addButton(4, "Red Prisoners?", lieveTalkRedPrisoners, undefined, "Red Prisoners?", "Push Lieve for more details about the prisoners.");
+	if (flags["LIEVE_TALK_SCARS"] != undefined) addButton(4, "RedPrisoners?", lieveTalkRedPrisoners, undefined, "Red Prisoners?", "Push Lieve for more details about the prisoners.");
 	else addDisabledButton(4, "Red Prisoners");
 
 	if (flags["LIEVE_TALK_PRISONERS"] != undefined) addButton(5, "Myr Fertility", lieveTalkMyrFertility, undefined, "Myr Fertility", "Ask Lieve for more details about the state of Myr fertility.");
@@ -388,9 +388,13 @@ public function lieveTalkMenu():void
 
 	addButton(7, "Fed.Army", lieveTalkFedArmy, undefined, "Federation Army", "Have Lieve tell you a little about the Scarlet Federation's military.");
 	
+	//9999 = if has talked to Jim's Warmedic ant about "Her Past"
+	if (flags["LIEVE_TALK_THEWAR"] != undefined && (9999 == 0 || CodexManager.hasViewedEntry("Red Myr"))) addButton(8, "Citizenship", lieveTalkCitizenship, undefined, "Citizenship", "Ask Lieve about Federal Citizenship. From what you understand, it's very different from how the Confederate government handles things.");
+	else addDisabledButton(8, "Citizenship");
+
 	if (flags["NEVRIE_QUEST"] == 1 && flags["LIEVE_BLOOD_SAMPLE"] == undefined && !pc.hasKeyItem("Red Myr Blood"))
 	{
-		addButton(8, "BloodSample", lieveBloodSample, undefined, "Blood Sample", "Ask Lieve if you could get a sample of her blood for Nevrie.");
+		addButton(9, "BloodSample", lieveBloodSample, undefined, "Blood Sample", "Ask Lieve if you could get a sample of her blood for Nevrie.");
 	}
 	
 	addButton(14, "Back", lieveMenu);
@@ -467,6 +471,46 @@ public function lieveTalkFungalMyr():void
 	
 	lieveTalkMenu();
 	addDisabledButton(1, "FungalMyr");
+}
+
+public function lieveTalkCitizenship():void
+{
+	clearOutput();
+	lieveHeader();
+
+	output("You ask Lieve if she’d be willing to tell you a little more about the Scarlet Federation’s concept of <i>“citizenship.”</i> From what you’ve heard, it’s very different from being a Confederate citizen, or the citizen of a planet elsewhere in the galaxy, where your citizenship is determined at birth.");
+
+	output("\n\nLieve has a half-smile the entire time you’re talking, drinking up the details of your government and society you divulge with an eager curiosity. When you’re finished, she answers immediately: <i>“No, you’re right. The word means something entirely different for you off-worlders... and for golds... than it does to a red myr. I’m not exactly rated as a Moral Philosophy teacher, but I can try and explain if you’d like. That’s why I’m here, after all.”</i>");
+
+	output("\n\nGiving her an encouraging nod, you ask Lieve to do her best.");
+
+	output("\n\n<i>“I’ll try,”</i> she says with a wink. <i>“Right. The first thing to understand is that nobody is <i>born</i> a citizen of the Federation. Not even the children of the High Commanders. The Scarlet Federation was originally founded by warriors, veterans from our unification wars and the conflict with the nyrea queens around us. The early years were hard, and we survived and stayed together because good people made hard decisions. The Federation doesn’t have the luxury of assured safety and prosperity, and we couldn’t afford to let petty grievances and political machinations get in the way of survival. So the idea of veteran leadership took hold: the idea that the people most qualified to lead us were the people that had fought and bled to bring us together - the people that risked life and limb already for the safety of the Federation.”</i>");
+
+	output("\n\nYou nod slowly. <i>“Wouldn’t that"); 
+	if (pc.isBimbo()) output(", like,");
+	output(" make your government pretty militaristic?”</i> you ask.");
+
+	output("\n\nLieve smirks. <i>“That’s what the Republic would tell you. But the idea’s the opposite: if you’ve seen combat, you’re going to be the last person in the world to order more girls into the fire unless it’s absolutely necessary. You don’t get to make decisions in the Federation until you’ve proven that you’re willing to lay your life on the line, just like any of the troopers whose lives are in your hands.”</i>");
+
+	output("\n\nThat makes sense, you suppose. Though you have to wonder how the Federation government would work in peace time. Just because you’re a veteran doesn’t mean you’re a capable politician, does it?");
+
+	output("\n\n<i>“I hope we’ll find out someday,”</i> Lieve sighs, leaning against the bunker wall. <i>“Even outside of total war, the Federation’s been in some sort of conflict pretty much constantly. Our homeland’s a rough, unforgiving place, and we’ve always been surrounded by enemies. But this war... I hope it will be the last. Through victory, peace.");
+	//if war is still on
+	if (9999 == 9999) 
+	{
+		output(" Or through diplomacy, if we veterans have anything to say about it.”</i>");
+
+		output("\n\n<i>“Oh?”</i> you ask. <i>“What do you mean?”</i>");
+
+		output("\n\n<i>“Between you and me,”</i> Lieve says, giving her captive gold audience a stern look, <i>“rumor has it that High Command is going to issue a referendum on the war soon. With the cease fire looking like it could drag on indefinitely, I think we all just want this to end. If it comes to a vote, the question will be do we re-issue our declaration of war, or do we relent and accept peace? And if we pursue peace, what kind will it be? I think High Command will try and make the Republic a client state, like the nyrean city-states near our territory, but with the star-walkers looming over us... I don’t know. The Republic might squeak out intact in that case, but I’m not sure the Federal government - or its citizens - will settle for that after near total victory. Especially after so much loss to get here.”</i>");
+
+		output("\n\nHeavy stuff. You wonder how the vote will go...");
+	}
+	else output("”</i>");
+
+	processTime(10 + rand(5));
+	lieveTalkMenu();
+	addDisabledButton(8, "Citizenship");
 }
 
 public function lieveTalkTheWar():void
