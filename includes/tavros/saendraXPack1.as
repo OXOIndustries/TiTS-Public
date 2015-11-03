@@ -1664,7 +1664,7 @@ public function zilCallGirlKnockUp(nVirility:Number = 0):void
 		// ZIL_CALLGIRL_EGG_COUNT : Total children to be born. Chance for more than triplets if virile enough! (rare!)
 		flags["ZIL_CALLGIRL_EGG_COUNT"] = 2;
 		if (nVirility >= 1.75 || (nVirility >= 1.5 && rand(2) == 0)) flags["ZIL_CALLGIRL_EGG_COUNT"]++;
-		if (nVirility >= 2 && rand(10) == 0)) flags["ZIL_CALLGIRL_EGG_COUNT"] += rand(4);
+		if (nVirility >= 2 && rand(10) == 0) flags["ZIL_CALLGIRL_EGG_COUNT"] += rand(4);
 		// ZIL_CALLGIRL_GESTATION : Total gestation time.
 		flags["ZIL_CALLGIRL_GESTATION"] = ((180 + rand(31)) * 24 * 60);
 		// ZIL_CALLGIRL_PREG : Impregnated timestamp.
@@ -1726,7 +1726,7 @@ public function zilCallGirlGo(hasSeen:Boolean = false):void
 			if (pc.hasLegFlag(GLOBAL.FLAG_HOOVES)) output(" clop");
 			else if (pc.isNaga()) output(" slither");
 			else if (pc.isGoo()) output(" slide");
-			else if (ps.isDrider()) output(" skitter");
+			else if (pc.isDrider()) output(" skitter");
 			else output(" step");
 			output(" inside anyway. It seems the door was left unlocked like she was expecting you...");
 			
