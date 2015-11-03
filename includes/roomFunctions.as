@@ -332,6 +332,13 @@ public function anonsBarAddendums():Boolean {
 	return false;
 }
 
+public function anonsBoardBonus():Boolean
+{
+	//If PC has done Fools Rush In: Part 2 (ie, helping Saendra rescue her friend), add [Call Girl] to Anon's Bar.
+	zilCallGirlAddendum(0);
+	return false;
+}
+
 public function firstTimeOnTarkusBonus():Boolean
 {
 	if(flags["BEEN_ON_TARKUS"] == undefined)

@@ -878,7 +878,7 @@ public function chooseSexualGift():void {
 	}
 	this.addButton(0,"Virile",applySexualGift,"virile","Virile","Increases the quality, or impregnation chance, of the sperm you produce. <i>This perk also applies if your character is female and gains a penis in the future.</i>");
 	this.addButton(1,"Potent",applySexualGift,"potent","Potent","Increases the quantity - the sheer amount - of sperm you produce. <i>This perk also applies if your character is female and gains a penis in the future.</i>");
-	this.addButton(2,"Elasticity",applySexualGift,"elasticity","‘Elasticity","Allows you to take larger insertions, both vaginally and anally, with less chance of permanent orifice stretching.");
+	this.addButton(2,"Elasticity",applySexualGift,"elasticity","Elasticity","Allows you to take larger insertions, both vaginally and anally, with less chance of permanent orifice stretching.");
 	this.addButton(3,"Fertility",applySexualGift,"fertility","Fertility","Increases your chances of getting pregnant. <i>This perk also applies if your character is male and gains a vagina in the future.</i>");
 	this.addButton(4,"Milky",applySexualGift,"milky","Milky","Ensures that your lactation is more easily induced and much harder to stop.");
 	this.addButton(5,"Incubator",applySexualGift,"incubator","Incubator","Shortens your pregnancy time, making pregnancies come to term quicker. <i>This perk applies to both vaginal and anal pregnancies.</i>");

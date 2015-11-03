@@ -6651,7 +6651,9 @@ package classes {
 
 		public function hasGenitals():Boolean
 		{
-			return (hasCock() || hasVagina());
+			if (hasCock()) return true;
+			if (hasVagina()) return true;
+			return false;
 		}
 		public function hasTailCock(): Boolean {
 			if (hasTailFlag(GLOBAL.FLAG_TAILCOCK) && tailCount > 0) return true;
@@ -7243,7 +7245,10 @@ package classes {
 			if (race == "myr" && goldMyrScore() >= 8) race = "gold myr";
 			if (race == "myr" && redMyrScore() >= 8) race = "red myr";
 			if (orangeMyrScore() >= 9) race = "orange myr";
-			//Keep these two together, dipshit!
+			// Centaur-morphs
+			if (horseScore() >= 2 && isCentaur()) race == "horse-taur";
+			else if (race == "human" && isCentaur()) race = "centaur";
+			// Naga-morphs
 			if (naleenScore() >= 5 && isNaga()) race = "naleen";
 			else if (isNaga()) race = "naga";
 
@@ -7306,20 +7311,22 @@ package classes {
 			if (hasCock(GLOBAL.TYPE_KUITAN)) counter++;
 			return counter;
 		}
-		/*
-		public function tanukiScore(): int
-		{
-			return nukiScore();
-		}
-		*/
-		//Placeholders
 		public function cowScore():int
 		{
 			return bovineScore();
 		}
 		public function bovineScore():int
 		{
-			return 0;
+			var counter:int = 0;
+			if (earType == GLOBAL.TYPE_BOVINE) counter++;
+			if (hasHorns() && hornType == GLOBAL.TYPE_BOVINE) counter++;
+			if (tailType == GLOBAL.TYPE_BOVINE && hasTailFlag(GLOBAL.FLAG_LONG) && hasTailFlag(GLOBAL.FLAG_FLUFFY) && tailCount > 0) counter++;
+			if (armType == GLOBAL.TYPE_BOVINE) counter++;
+			if (legType == GLOBAL.TYPE_BOVINE) counter++;
+			if (faceType == GLOBAL.TYPE_BOVINE) counter++;
+			if (tongueType == GLOBAL.TYPE_BOVINE && hasTongueFlag(GLOBAL.FLAG_LONG)) counter++;
+			if (hasScales()) counter--;
+			return counter;
 		}
 		public function badgerScore():int
 		{
@@ -7346,13 +7353,13 @@ package classes {
 		public function myrScore(): int
 		{
 			var counter:int = 0;
-			if(eyeType == GLOBAL.TYPE_MYR) counter++;
-			if(armType == GLOBAL.TYPE_MYR) counter++;
-			if(legType == GLOBAL.TYPE_MYR) counter++;
-			if(antennae == 2 && antennaeType == GLOBAL.TYPE_MYR) counter++;
-			if(counter > 0 && earType == GLOBAL.TYPE_SYLVAN) counter++;
-			if(counter > 0 && canLactate() && milkType == GLOBAL.FLUID_TYPE_HONEY) counter++;
-			if(hasFur() || hasScales()) counter--;
+			if (eyeType == GLOBAL.TYPE_MYR) counter++;
+			if (armType == GLOBAL.TYPE_MYR) counter++;
+			if (legType == GLOBAL.TYPE_MYR) counter++;
+			if (antennae == 2 && antennaeType == GLOBAL.TYPE_MYR) counter++;
+			if (counter > 0 && earType == GLOBAL.TYPE_SYLVAN) counter++;
+			if (counter > 0 && canLactate() && milkType == GLOBAL.FLUID_TYPE_HONEY) counter++;
+			if (hasFur() || hasScales()) counter--;
 			return counter;
 		}
 		public function redMyrScore():int
@@ -7373,11 +7380,11 @@ package classes {
 		public function orangeMyrScore():int
 		{
 			var counter:int = myrScore();
-			if(kGAMECLASS.flags["MCALLISTER_MYR_HYBRIDITY"] >= 3)
+			if (kGAMECLASS.flags["MCALLISTER_MYR_HYBRIDITY"] >= 3)
 			{
-				if(hasPerk("Honeypot") && hasPerk("Myr Venom")) counter += 4;
-				if(tailType == GLOBAL.TYPE_MYR && tailCount == 1) counter++;
-				if(scaleColor == "orange" && (armType == GLOBAL.TYPE_MYR || legType == GLOBAL.TYPE_MYR)) counter += 5;
+				if (hasPerk("Honeypot") && hasPerk("Myr Venom")) counter += 4;
+				if (tailType == GLOBAL.TYPE_MYR && tailCount == 1) counter++;
+				if (scaleColor == "orange" && (armType == GLOBAL.TYPE_MYR || legType == GLOBAL.TYPE_MYR)) counter += 5;
 			}
 			return counter;
 		}
@@ -8438,6 +8445,11 @@ package classes {
 			else if (breastRows[rowNum].nippleType == GLOBAL.NIPPLE_TYPE_INVERTED)
 			{
 				description += RandomInCollection("inverted nipple", "hidden nip");
+			}
+			else if (breastRows[rowNum].nippleType == GLOBAL.NIPPLE_TYPE_FLAT)
+			{
+				description += RandomInCollection("tipless ", "flat ", "puffy ", "pebbly ");
+				description += RandomInCollection("nipple", "nip");
 			}
 			//Normals
 			else {
@@ -12042,6 +12054,14 @@ package classes {
 		public function hasHorns():Boolean
 		{
 			return (horns != 0 || hasStatusEffect("Horn Bumps")); 
+		}
+		public function removeHorns():void
+		{
+			hornType = 0;
+			horns = 0;
+			hornLength = 0;
+			removeStatusEffect("Horn Bumps");
+			return;
 		}
 		
 		public function eachHorn():String

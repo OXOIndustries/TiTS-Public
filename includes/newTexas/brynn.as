@@ -552,7 +552,7 @@ public function suckThatMassiveStudlyBrynnDick():void
 		output("\n\nThat doesn’t stop you though; it only serves to encourage you all the more, to cut out the middleman of swallowing the lustrous fluid entirely- just swallow the cock and let it pump the proof of the stud’s virility directly into you. With the next mouthful, you do just that. Or at least, that’s what you attempt to do; you push forward in time with the suction, the wide tip of Brynn’s cock just too fat to easily swallow down.");
 		
 		output("\n\nHe catches your intent though, and quickly takes action to help out, wrapping his powerful hands around the");
-		if (pc.hornType != 0) output(" convenient [pc.horns] jutting from your head as if they were handlebars provided just for this purpose");
+		if (pc.hasHorns() && pc.hornLength >= 2) output(" convenient [pc.horns] jutting from your head as if they were handlebars provided just for this purpose");
 		else if (pc.hairLength > 5) output(" entwining his powerful fingers with your [pc.hair] and using it to gain the needed leverage");
 		else output(" surrounding the back of your head with his powerful fingers to gain the needed leverage");
 		output(". You swallow again, and the stud tugs your head firmly towards his crotch, the flat battering ram of his cock prising your throat open in the process. With a resounding wet slurp, the slightly fatter tip of his cock settles into your throat.");
@@ -564,11 +564,11 @@ public function suckThatMassiveStudlyBrynnDick():void
 		flags["DEEPTHROATED_BRYNN"] = 1;
 		
 		output(" He gives another firm tug");
-		if (pc.hornType != 0) output(" on your [pc.horns]");
+		if (pc.hasHorns() && pc.hornLength >= 2) output(" on your [pc.horns]");
 		output(" and slides his iron-hard, throbbing cock another few inches deeper into your greedy gullet.");
 		
 		output("\n\nWith such a fat slab of dickmeat stuffed deep into your throat, you can’t stop the involuntary reaction to swallow; your gullet pulsing and undulating, pulling the stud’s cock ever deeper into the warm, oh so tight embrace of your body. Between the induced swallowing, and the carefully measured pull on your");
-		if (pc.hornType != 0) output(" [pc.horns]");
+		if (pc.hasHorns() && pc.hornLength >= 2) output(" [pc.horns]");
 		if (pc.hairLength > 5) output(" [pc.hair]");
 		else output(" head");
 		output(", his dick quickly disappears into your body, forcing you to");
@@ -591,7 +591,7 @@ public function suckThatMassiveStudlyBrynnDick():void
 		output("\n\nSomething warm and soft gently presses against the [pc.skinFurScales] of your neck, right in the middle of the bulge of cock distorting the usually much slimmer profile. A second later, the delicate touch is replaced by something much wetter and rougher swiping along the same area. A pair of incredibly smooth-skinned arms wrap around you, quickly followed by a sensually soft presence almost melting against the left side of your body. <i>“Keep going, stud, I wanna see if [pc.heShe] can take all of you,”</i> left-girl says, an obvious lusty tone dripping from her words. Licking. She’s licking your neck, continuing to pay reverence to the stud’s cock despite the fact that it’s busy being swallowed whole!");
 		
 		output("\n\nWith the challenge set, Brynn wastes no time; his calculated force");
-		if (pc.hornType != 0) output(" around your [pc.horns]");
+		if (pc.hasHorns() && pc.hornLength >= 2) output(" around your [pc.horns]");
 		else if (pc.hairLength > 5) output(" applied to your scalp");
 		else output(" applied to the back of your skull");
 		output(" increases, quickly sliding more of his cock deep into your mouth. Very quickly though, he runs into a roadblock. Or more accurately, your [pc.lips] run into the fat ridge marking the two-thirds point of his dick. With what little play you have, you slowly manage to wriggle your lips around and over the ridge with care, slowly working past the widest part of his cock so that he can continue.");

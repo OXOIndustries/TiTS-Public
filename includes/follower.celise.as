@@ -1002,7 +1002,12 @@ public function sleepWithCeliseNotNaked():void {
 	output("You tell her that you’re fine the way you are; you’d rather sleep in her clothed.");
 	output("\n\nThe ditzy green girl pouts for a bit before grudgingly agreeing. <i>“Fine, but next time you gotta try it naked!”</i>");
 	output("\n\nYou lower yourself onto the green bed of ooze, and lean back onto the Galotian’s massive mock mammaries. The owner of these mounds giggles as your head settles into the valley created by them");
-	if(pc.horns > 0) output(", and your horns slip inside her breasts");
+	if(pc.hasHorns())
+	{
+		output(", and your [pc.horns] slip");
+		if(pc.horns == 1) output("s");
+		output(" inside her breasts");
+	}
 	output(". While a little wobbly, Celise’s body is incredibly comfortable to rest on; it’s essentially the ultimate water bed. You switch off the lights, and in no time at all, are drifting off into a pleasant rest atop a living pool of goo.");
 	//scene ends
 	sleep(false);

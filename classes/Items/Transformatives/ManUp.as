@@ -251,13 +251,11 @@
 						target.shiftCock(0, GLOBAL.TYPE_EQUINE);
 						kGAMECLASS.output("Your [pc.cockColor] cock has a medial ring and flares like a horse");
 					}
-					else if(target.race() == "ausar" || target.race() == "half-ausar" || target.race() == "canine-morph" || target.race() == "vulpine") 
+					else if(target.race() == "ausar" || target.race() == "half-ausar" || target.race() == "canine-morph" || target.race() == "vulpine-morph") 
 					{
-						if(target.race() == "vulpine") target.shiftCock(0, GLOBAL.TYPE_VULPINE);
-						else target.shiftCock(0, GLOBAL.TYPE_CANINE);
+						target.shiftCock(0, GLOBAL.TYPE_CANINE);
 						kGAMECLASS.output("Your [pc.cockColor], veiny cock has a tapered head and a knot");
 						if(target.race() == "ausar" || target.race() == "half-ausar") kGAMECLASS.output(" like an ausar");
-						else if(target.race() == "vulpine") kGAMECLASS.output(" like a fox");
 						else kGAMECLASS.output(" like a canine");
 					}
 					else if(target.race() == "kaithrit" || target.race() == "half-kaithrit" || target.race() == "feline-morph")
@@ -280,6 +278,11 @@
 						target.shiftCock(0, GLOBAL.TYPE_KUITAN);
 						kGAMECLASS.output("Your [pc.cockColor] dick has one large knot at the base followed by two smaller ones");
 					}
+					else if(target.race() == "vulpine-morph") 
+					{
+						target.shiftCock(0, GLOBAL.TYPE_VULPINE);
+						kGAMECLASS.output("Your [pc.cockColor], veiny cock has a tapered head and a knot like a fox");
+					}
 					else if(target.race() == "raskvel" || target.race() == "raskvel-morph" || target.race() == "rask-morph")
 					{
 						target.shiftCock(0, GLOBAL.TYPE_RASKVEL);
@@ -294,17 +297,6 @@
 					{
 						target.shiftCock(0, GLOBAL.TYPE_DEMONIC);
 						kGAMECLASS.output("Your [pc.cockColor] cock is shiny, covered in sensitive nodules and the head has rubbery protrusions, like the one of a demon");
-					}
-					else if(target.race() == "tentacle beast")
-					{
-						target.shiftCock(0, GLOBAL.TYPE_TENTACLE);
-						kGAMECLASS.output("Your [pc.cockColor] cock is constantly moist and moving with a slightly oversized mushroom-like head");
-					}
-					else if(target.race() == "siren" || target.race() == "anemone")
-					{
-						if(target.race() == "siren") target.shiftCock(0, GLOBAL.TYPE_ANEMONE);
-						else target.shiftCock(0, GLOBAL.TYPE_SIREN);
-						kGAMECLASS.output("Your [pc.cockColor]-colored cock is covered in tentacles riddled with poisonous aphrodisiac");
 					}
 					else if(target.race() == "kangaroo-morph")
 					{
@@ -321,11 +313,6 @@
 						if(target.cocks[0].cLengthRaw < 20 || target.cocks[0].cThicknessRatioRaw < 3) kGAMECLASS.output("The throbbing sensation hits you again and your new phallus continues to grow bigger... ");
 						target.shiftCock(0, GLOBAL.TYPE_SAURIAN);
 						kGAMECLASS.output("Your [pc.cockColor]-colored dick is gigantic and massively thick, like that of a prehistoric thunder lizard");
-					}
-					else if(target.race() == "synthetic" || target.race() == "robot" || target.race() == "companion droid")
-					{
-						target.shiftCock(0, GLOBAL.TYPE_SYNTHETIC);
-						kGAMECLASS.output("Your new appendage changes into a more [pc.cockColor] color at its tip, making it appear very synthetic");
 					}
 					else if(target.race() == "venus pitcher")
 					{
@@ -366,6 +353,25 @@
 						kGAMECLASS.output("Your cock looks like a lumpy caterpillar with a small [pc.cockColor] tip");
 					}
 					/* ... since they are non-standard or not yet defined, especially with the current races. */
+					
+					/*
+					else if(target.race() == "tentacle beast")
+					{
+						target.shiftCock(0, GLOBAL.TYPE_TENTACLE);
+						kGAMECLASS.output("Your [pc.cockColor] cock is constantly moist and moving with a slightly oversized mushroom-like head");
+					}
+					else if(target.race() == "siren" || target.race() == "anemone")
+					{
+						if(target.race() == "siren") target.shiftCock(0, GLOBAL.TYPE_ANEMONE);
+						else target.shiftCock(0, GLOBAL.TYPE_SIREN);
+						kGAMECLASS.output("Your [pc.cockColor]-colored cock is covered in tentacles riddled with poisonous aphrodisiac");
+					}
+					else if(target.race() == "synthetic" || target.race() == "robot" || target.race() == "companion droid")
+					{
+						target.shiftCock(0, GLOBAL.TYPE_SYNTHETIC);
+						kGAMECLASS.output("Your new appendage changes into a more [pc.cockColor] color at its tip, making it appear very synthetic");
+					}
+					*/
 					
 					else
 					{
