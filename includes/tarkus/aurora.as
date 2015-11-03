@@ -36,12 +36,12 @@ Interior
     rooms["AURORA’S SHOP"].addFlag(GLOBAL.COMMERCE);
 */
 
-public function auroroMessInRoomText():void
+public function auroroMessInRoomText(slot:int = 1):void
 {
 	if(flags["TARKUS_DESTROYED"] != undefined && flags["MET_AURORA"] != undefined && flags["DECK13_SHIELDS_ON"] == 1)
 	{
 		output("\n\nIn a quiet corner of the too-large room you see a familiar dangling figure enjoying a peach. Looks like Aurora is about the same as ever.");
-		addButton(1,"Aurora",approachAurora);
+		addButton(slot,"Aurora",approachAurora);
 	}
 }
 
