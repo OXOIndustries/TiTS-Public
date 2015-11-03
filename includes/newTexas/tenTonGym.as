@@ -211,7 +211,7 @@ public function swimmingPoolBonus():Boolean
 	if(pc.energy() >= 50 && !pc.hasStatusEffect("Sore")) addButton(1,"Swim Laps",swimLapsAtZePool,undefined,"Swim Laps","Swim laps in the pool. It'll burn fat and build muscle but leave you tired as a dog.");
 	else addDisabledButton(1,"Swim Laps","Swim Laps","You're too tired for that workout.");
 	//[Spa] Go to Spa
-	addButton(5,"Spa",spaTimesFunStuff,undefined,"Spa","Relax in the spa and recover some energy.");
+	addButton(3,"Spa",spaTimesFunStuff,undefined,"Spa","Relax in the spa and recover some energy.");
 	//[Swimmer] Go to Lola
 
 	return false;
