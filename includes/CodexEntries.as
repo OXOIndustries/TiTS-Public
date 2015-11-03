@@ -38,6 +38,7 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Thraggen", thraggenCodexEntry,true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Varmints", varmintCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "V-Ko", VKoCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Gryvain", gryvainCodexEntry, true);
 
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Mhen'ga", "Cunt Snakes", cuntSnakeCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Mhen'ga", "Kerokoras",kerokorasCodexEntry);
@@ -71,6 +72,7 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Technology", "Maia Series AI", Bess13CodexEntry);
 
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Dragon’s Hoard", dragonsHordeCodexStory, true);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Bull’s Strength", bullsStrength, true);
 }
 
 public function codexHomeFunction():void
@@ -1965,234 +1967,74 @@ public function fanfirCodexEntry():void
 	CodexManager.viewedEntry("Fanfir");
 }
 
-public function dragonsHordeCodexStory():void
+public function gryvainCodexEntry():void 
 {
 	clearOutputCodex();
-	outputCodex(header("The Dragon's Hoard"));
-	outputCodex("<i>By Nivas Oxonef</i>");
+	outputCodex(header("Gryvain"));
+	outputCodex("<b>Name:</b> Gryvain (plural and singular)");
+	outputCodex("\n<b>Sexes:</b> Hermaphrodites");
+	outputCodex("\n<b>Height:</b> 5'10 - 7'2");
+	outputCodex("\n<b>Hair:</b> Gryvain have human-style hair, usually worn long, which varies in color from blue, black, gray, and some shades of dark green.");
+	outputCodex("\n<b>Skin Color</b>: From the waist up, gryvain have smooth skin, usually pale pink or a light red in color, though some rare specimens have a lush, almost plant-green or a dark, blood-red skin tone.");
+	outputCodex("\n<b>Eyes:</b> Yellow eyes with vertical slits, reptilian in nature.");
+	outputCodex("\n<b>Feet & Legs:</b> Gryvain lower bodies are coated in blue, green, or black scales from the waist down, with feet ending in supple, smooth leathery soles. They have five toes, each tipped with a sharp claw (though most gryvain file these down for convenience and comfort). As a race primarily accustomed to flight over walking, the soles and arches of a gryvain's foot are noted to be a common erogenous zone.");
+	outputCodex("\n<b>Wings:</b> Gryvain have four reptilian wings sprouting from their backs, on and just below the shoulders. The thicker-than-normal atmosphere of the gryvain homeworld allowed them to develop true flight, though their wings aren't capable of supporting them for more than short burts or flutters in most human-friendly conditions. Many gryvain-crewed vessels have specialized chambers to simulate their homeworld's atmosphere, allowing them to exercise their wing muscles and relax their legs.");
+	outputCodex("\n<b>Lifespan:</b> Gryvain naturally live for 350-400 years, though they achieve adulthood at a brisk 20 years. Modern medicine suggests that their lifespan could easily be expanded to nearly a millenium. Most gryvain currently retain their natural lifespans, commonly citing that they already live far longer than most species, and loneliness and constantly-advancing technology begin to vex them after a few centuries.");
 
-	outputCodex("\n\nThey said a dragon lived in the mountains. Raythek, the plainsmen chief, had spread word that he would pay ten thousand silver coins for the creature’s head. The promise of treasure had drawn hunters in from the realm over like moths to a flame. Literally, in the case of the winged, white-fuzzed young woman heading up the packed-dirt path to the foothills with hands shoved into her pockets, whistling a jaunty tune as she walked.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Necessary Adaptations"));
 
-	outputCodex("\n\nIn a land teeming with centaurs and dog-folk and graceful elves, the moth-like woman wouldn’t have drawn a second glance... save for the two-handed sword sheathed between her wings, and the fact that she was clad in dark breeches and scale armor from the waist down, but bare above. The tremulous globes of her breasts bounced with every step, mirroring the motions of the branching feelers growing from just above her elfin ears. More than once on her trip a passing merchant or mercenary would stop and stare, just long enough for Lusina to get flirtatiously close... and lighten their pockets a bit before she was on her way again.");
+	outputCodex("In order to survive in terrestrial atmosphere, all space-going gryvain receive simple genetic modifications that allow them to breathe oxygen. These are provided at no cost by the Gryvain Heartland Republic. Many gryvain also choose to have modification work done to allow them true flight in standard atmospheres or to strengthen their legs to better support themselves for extended durations.");
+	
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Appearance"));
 
-	outputCodex("\n\nGrinning to herself, Lusina ran a finger along the swollen mass of her coin purse. She’d only left her home in the forest a few days ago, and already had doubled her meager funds. <i>“Not a bad way to start an adventure!”</i> she laughed, letting the bag drop into her pocket and running a hand back through her snowy hair. <i>“Maybe this dragon will have himself a horde of treasure, just like in mom’s old stories. All mine once I’ve got his head!”</i>");
+	outputCodex("The gryvain are large reptilian humanoids, standing larger and heavier than humans/ausar on average. Gryvain have scale-covered lower bodies, with upper bodies sporting supple, often-colorful skin. In addition to two pairs of large, leathery wings, each gryvain has a pair of curling horns growing from her brow, and slitted reptilian eyes with brilliant yellow irises. As an all-hermaphrodite race, gryvain are universally feminine in appearance with very large, egg-bearing hips and full breasts. Gryvain have sinuous tails growing from just over their behinds, fully prehensile and tapered to a fine point. Their tails are covered with smalls, soft scales, and are smooth from tip to base. Gryvain tails help with balance, in flgiht and on the ground, and can be controlled precisely enough to operate tools and assist in other activities. While the base of the tail is heavily scaled and rather dull, the tapered tip is quite thin and has as much sensitivity as some species' sex organs.");
+	
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Sexuality"));
 
-	outputCodex("\n\nThe thought of swimming in a sea of gold and jewels carried the buxom thief all the way to the roots of the mountains. From there, her wings carried her onto the winds and up the craggy mountainside. While every other hunter after the chieftain’s bounty was busy scrambling up the cliffs and scouring the labyrinthine valleys, Lusina merely took wing and fluttered towards the peaks. A dragon’s lair should be easy to spot from above, right?");
+	outputCodex("A race of hermaphrodites, all gryvain are capable of both bearing and siring children -- and many choose to take both routes during their lifetimes. Gryvain have reptilian-style phalluses, ranging from 8-12 inches in length and are fairly broad for their size, usually mimicking the color of the owner's scales. Their phalluses have tapered tips and thick, bulbous bases that resemble canid knots, though they lack the same growth and knotting function. They have a set of six large large internal testes near where the human prostate would be, three on either side of the anal passage. Because of these extra testes, gryvain seminal fluid production is notably larger and faster-replenishing than most other races.");
 
-	outputCodex("\n\nThe weight of her blade, armor, coins, and cleavage made the ascent slower than the moth-girl would have liked, and twice she had to find an outcropping of rock to land on and catch her breath.");
+	outputCodex("\n\nA gryvain's phallus grows just over her feminine sex, which is rather unlike its terran or ausar equivalents. While a gryvain's vagina superficially resembles the galactic norm, with external lips the same color as their scales and a high amount of internal lubrication, gryvain lack clitorises. Instead, they have several concentric rings of small nubs lining the walls of the vagina, each roughly as sensitive as a human clitoris would be. This makes both sexual intercourse and oviposition incredibly pleasurable. Most gryvain repeated repeated and extremely intense orgasm immediately upon penetration, and as their refractory period is nearly non-existent, will often be in a continuous state of climax through the entire penetrated-mating or birthing process.");
 
-	outputCodex("\n\n<i>“Nobody said this was going to be work,”</i> she said to herself between heavy breaths. She leaned forward, hands on her knees and legs dangling over the side of the mountain. From her angle, it looked to Lusina like she could reach down and step on the little villages and scattered tribes clinging to the foothills far below.");
+	outputCodex("\n\nGryvain vaginas are much larger than their host's size would suggest, as they bear the duty of laying fairly large eggs; they are usually lipped with thick labia of the same color as the individual's scales. In order to ease egg-laying, gryvain vaginas are both highly elastic and extraordinarily well-lubricated, which has made them very popular both in the underground ultraporn industry and as mates for leithans and other races with much larger than average male endowments. Due to the incredible sensitivity and orgasmic abilities of their feminine sexes, most gryvain note extremely high satisfaction in both of these roles.");
+	
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Reproduction"));
 
-	outputCodex("\n\nAfter her second break, and a few moments spent cursing the cold, she rose to her feet slipped off the cliffside, letting her wings taste the air again and glide out into the open sky. In the distance she spotted a pair of blue-skinned giantesses clawing their way down from the frozen peaks of the mountains, then a female manticore taking flight from a hidden cave, her tanned body bare and glistening in the afternoon sun. Lusina waved, smiling at her sister in the sky... right up until the manticore’s black wings took her swooping down onto an unsuspecting canid ranger camping on the side of the mountain. She barreled him to the ground with an exultant roar, and Lusina’s eyes grew wide as the ranger’s armor was ripped asunder, and the manticore mounted him like a beast in heat.");
+	outputCodex("Like many reptilian-origin races, gryvain are infertile except in regular cycles of oestrus lasting about one month out of every year. Gryvain heat cycles are not tied to any particular seasonal or atmospheric condition, and each individual has a different time of the year she will go into heat. Notably, gryvain heat does not end after successful mating: the cycle lasts for the full month. During this period, the gryvain's sex drive is markedly increased, and both her sexes are in a state of near-constant arousal, preventing her from easily hiding her state from others, and the sensitivity of her entire body increases dramatically. Simple acts such as brushing a tail or groping a breast or buttock can cause immediate ejaculation, and most gryvain at this point find it nearly impossible to resist offers for sex, especially to be bred.");
 
-	outputCodex("\n\nWhich she probably was, Lusina thought to herself, quickly flying off to another face of the mountain.");
+	outputCodex("\n\nGryvain have a wide variety of reactions to their heat periods. Some, especially those not desirous of children, will resort to medication to suppress their heat, or will isolate themselves and attempt to sate themselves with vigorous and regular masturbation for the duration of their cycle. Others will gleefully attempt to have as much sex with as many partners as possible, virtually ensuring impregnation. The most common reaction is to retreat to home life with a partner (or several, for polyamorous gryvain) and simply mate whenever the urge becomes unbearable, with or without birth control as they choose.");
 
-	outputCodex("\n\nThat first day in the mountains yielded nothing but frustration. The moon loomed large and blue in the darkened sky by the time Lusina gave up the hunt with a heavy sigh, gliding down to a small shelf of dusty rock and sprawling out on it. <i>“Stupid dragon,”</i> she mumbled to herself as she unstrapped her claymore’s sheath from her back and leaned the heavy, ancient blade against the sheer side of the mountain. Her armor followed, clattering to the ground around her until she was in nothing but her breeches and the patchy old blanket she pulled from her satchel.");
+	outputCodex("\n\nOnce impregnated, a gryvain will quickly begin to lactate a thick, sweet pink-colored milk. Their milk production (as with other sexual fluids) is considerably higher than the galactic average, and gryvain breasts tend to swell by several cup sizes once they start. Unlike many other races, once a gryvain begins to lactate, she will not stop for the duration of her life, and the increase is the size and sensitivity of her breasts is permanent. While the average cup size is roughly a C-cup among non-mothers, the average tends toward E to F-cups among those who have borne children. Multiple pregnancies can sometimes lead to increased milk production, and a commensurate increase in size. The largest recorded natural cup-size for a gryvain was a tremendous L-cup after fifty separate pregnancies, with the mother in question producing many gallons of milk each day and requiring special assistance to move.");
 
-	outputCodex("\n\n<i>“I’ll find you tomorrow. You and a horde that’ll make me a queen!”</i>");
+	outputCodex("\n\nAfter successful conception, a pregnant gryvain will have her belly quickly swell with a growing egg until she's nearly as gravid as a human female in her third trimester. After six weeks of carrying the egg the expectant mother will lay it, after which it must be kept warm and safe for an additional six weeks whereupon the newborn gryvain will hatch. Gryvains are always born singularly, with no instances of multiple births recorded. Newborns are incredibly small and helpless after birth, and rely on their mother to nurse from. They grow much like human children for the next several years, able to fly, walk, and communicate after two to three years, and reaching sexual maturity at 20 years of age.");
 
-	outputCodex("\n\nExhaustion carried her off to sleep, and dreams filled with treasure and glory and the awe of the people. Dreams that soon changed to vignettes of pleasure - of Lusina at the top of a pile of writhing bodies, hands and cocks and other things wrapped between the undulating forms of beautiful men and women - the harem Queen Lusina kept, sprawling out around her throne of gold. The dreams shifted again, to a wide canopied bed befitting her imperial majesty. Queen Lusina lay on her back, wings and legs splayed, fluff-clad digits digging into silken sheets as a nubile girl with bronze skin and breeding hips slid her hand into her majesty’s royal cunt, licking her way across Lusina’s clit until she sat upright with a scream of pleasure...");
+	outputCodex("\n\nNotably, gryvain are perfectly capable of inseminating a partner when they themselves are not in heat. Gryvain sex drive is fairly average outside of their heat cycle, and while they are not known to have particularly sharp senses of smell, it is noticeably higher in the presences of a member of any species in heat -- not just their own. Being in the presence of a leithan female in oestrus can be nigh-debilitating to gryvain, at least as much as to the famously-vulnerable ausar.");
+	
+	outputCodex("\n\n");
+	outputCodex(blockHeader("History & Society"));
 
-	outputCodex("\n\n... and found that there really was a pair of fingers buried into her pussy, and a rough tongue caressing the bud of her throbbing clit.");
+	outputCodex("Originally hailing from the hot, humid moon of Vendiko, the gryvain arose in the shadow of a massive blue gas giant, on a world wracked by storms and with an atmosphere so thick that their wings allowed them the natural gift of flight. While predatory carnivores by nature, gryvain eventually domesticated several prey species, and began the long process of growing from small hunter tribes to great cities that spanned their world.");
 
-	outputCodex("\n\nLusina gasped and squirmed, unable to get far with her pants hooked around her soaked thighs. A voice shushed her, and the fingers in her went rigid, relaxing, as if allowing Lusina to pull off of them... if she wanted. In that moment, though, the moth-girl’s eyes adjusted to the moonlit night, and saw a back of clenched, strong muscles and sweeping wings bent over her lower body. A thick, curling tail sprouted from the figure’s behind, coiling around Lusina’s leg with a warm, wet insistence.");
+	outputCodex("\n\nOnce settled, the gryvain proved to have a natural knack for science and discovery. Modern gryvain technology is easily the rival of the ausar and other advanced races, and their culture has adapted to highly prize ingenuity and creativity. Manual labor and violence are seen equally as being “barbaric,” fit for younger races and drones; gryvain are much more strongly inclined towards the arts and sciences, as well as flight and interstellar exploration.");
 
-	outputCodex("\n\n<i>“M-m-manticore,”</i> Lusina stammered between orgasmic shocks of pleasure.");
+	outputCodex("\n\nThey achieved spaceflight roughly 1,000 years before humanity did, and within a few centuries set about colonizing their star system under strong and unified democratic government, the Gryvain Heartland Republic. During this period of exploration and settlement, the gryvain encountered another sapient race in their system, the tauric ehmris, who were still at a tribal level of technology and were quickly put through the gryvain equivalent of the U.G.C.'s Upliftment program that has resulted in the ehmris joining the gryvain in a near-equal status in society and military roles, though they possess little political power in the Republic.");
 
-	outputCodex("\n\nA human face with feline ears and pronounced fangs looked up from between her legs and made a languid purr, nuzzling its cheeks into her femcum-slick thigh. <i>“You don’t mind, do you?”</i> the creature said with a playful smile, running its rough tongue along Lusina’s leg and teasing around the lips of her sex. <i>“You looked positively too good to pass up, lying out here like this...”</i>");
+	outputCodex("\n\nWhile the gryvain were constrained to their home system for over a thousand years after achieving space flight, they nevertheless developed highly advanced starships -- rivaling that of the U.G.C. Fleet -- for use within their territory, though largely of a mercantile or scientific role. When a Warp Gate first arrived in the gryvain's system, they were given several decades to study the device and prepare their defenses for alien contact: when the first Confederate scouts poured through the gate during the 10th Great Planet Rush, they were met head-on by a fleet of converted warships, as well as a large and heavily militarized space station that had been hastily constructed at the nearest lagrange point. Thankfully, both the Confederacy and Republic desired peace, and the tense First Contact was resolved through diplomacy rather than force of arms.");
 
-	outputCodex("\n\nLusina gulped, glancing between the amorous feline, the edge of the cliff bare inches away, and the sheathed blade just out of reach. <i>“No? Good,”</i> the manticore growled, planting both hands on Lusina’s tits and squeezing, hard enough to make the moth arch her back and let out a cry of pleasure that echoed through the mountains for miles around. She collapsed onto her back, squirming and moaning as the manticore’s tongue probed into her, fingers roughly massaging the heavy swells of Lusina’s breasts until the inverted tips of her pink nipples peeked out to rub maddeningly against the manticore’s soft glove of fur.");
+	outputCodex("\n\nThe gryvain were quickly and easily accepted into the Confederacy, and soon joined their interstellar neighbors in a mutually-beneficial cultural exchange. Since first contact, they have greatly expanded their nation's colonies outside their home system. This, and the gryvain's relatively strong and unified central government in the form of the G.H.R., has helped the relative new-comer race to gain some foothold in galactic politics.");
+	
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Technology"));
 
-	outputCodex("\n\n<i>“Be quiet,”</i> the manticore snapped between deep licks. <i>“You’ll wake my sisters. And I want you all to myself.”</i>");
+	outputCodex("The gryvain have advanced starship technology, equal to or slightly better than that of most Confederate member states, as well as highly refined terraforming processes and their own strain of gene-therapy, nanomachine, and cosmetic transformative research that has allowed them to find a strong place economically in the greater galaxy. Gryvain-produced starships are always in high demand, especially among those seeking vessels well-suited to research, high-yield trading, and passenger capacity.");
 
-	outputCodex("\n\nThe thought of being sandwiched between three or four of the lustful felines made Lusina bite her lip, trying not to give voice to her pleasure. Another deep lick, circling the spasming walls of her pussy until the manticore’s face was drenched with Lusina’s juices, destroyed any hope of keeping her cries pent in. The manticore huffed, narrowing her crimson eyes at Lusina, though the view was blocked almost entirely by the moth’s heaving chest.");
+	outputCodex("\n\nAfter several planet rushes, the G.H.R. has made terraforming a veritable art form, and are notable for having created several beautiful resort and luxury planets from otherwise desolate worlds. The Republic frequently contracts with the Confederacy to sculpt or refine worlds to spec, and their diplomatic corp has become quite adept at making contact with and uplifting native populations. While the gryvain enjoy the image of them spreading civilization and beauty across the galaxy, their rapid perfection of planetary renovation and inhabitation has an entirely selfish cause. Unlike most long-lived races, the gryvain have an exceptionally high birthrate and reproductive drive, which means that new worlds are in constant demand to counteract the growing populace. Thanks to the regular Planet Rushes, the gryvain have been able to relax their previously-stringent governmental population control, instead allowing their expanding generations to inhabit distant stars as colonizers, settlers, and immigrants in equal measure.");
 
-	outputCodex("\n\nAfter a moment’s thought, though, a devilish grin formed on the beast’s lips and her inhuman body moved to better silence Lusina.");
-
-	outputCodex("\n\nThe moth-girl gasped as her lips brushed against something hot, wet, and moving. Her eyes flicked open again, settling on the thick, bulbous head of the manticore’s tail, now pressed against her face. It looked like a black melon, almost, open at one end and showing a wet, pink depth ringed with dark nubs. Around the four-fold lips of the manticore’s tail, though, were rings of boney spikes that made Lusina’s heart skip a beat - the manticore’s tail was a weapon of battle and of passion, it seemed.");
-
-	outputCodex("\n\n<i>“Lick it,”</i> the manticore commanded, savagely squeezing Lusina’s tits as if for emphasis. Lusina cursed, groaned, and forced her tongue out between trembling lips. The four folds of the manticore’s pussy-tail opened wide for her, latching around Lusina’s mouth and inviting her tongue to explore the depths of her captor’s tail. It was the manticore’s turn to shudder and purr, firm body suddenly seeming much more vulnerable as Lusina licked her way deeper into the deep passage of tail-cunt affixed to her mouth. The moth’s hand wrapped around the tail’s wriggling haft, pulling it down and into deeper throes of bliss.");
-
-	outputCodex("\n\n<i>“Oh... oh goddess...”</i> the manticore purred, eyes rolling back in her head. <i>“I knew you were a good choice! That’s what I like... just like that!”</i>");
-
-	outputCodex("\n\nLusina answered by wrapping her legs around the manticore’s shoulders, burying the feline’s head back into her drooling slit. She was getting close, so agonizingly close to climax... ecstasy drove her to lick faster, to urge the manticore on with more impassioned use of her tongue, rubbing it along every single cock-pleasing nub she could find in the shaft of her captor’s tail.");
-
-	outputCodex("\n\nWith a ferocious growl, the manticore buried her tongue as deep into Lusina’s spasming twat as it could, searching out every tender spot until Lusina was screaming into the musky wet depths of her feline partner’s tail, body going wild with overwhelming sensation. Orgasm hit the moth-girl like a tidal wave, knocking her flat on her back and draining what little remaining of her will. She was a twitching, drooling, pussy-eating mess in the span of minutes, barely able to think of anything other than the swirling cat-tongue playing across the walls of her sex.");
-
-	outputCodex("\n\n<i>“Good kitty,”</i> Lusina finally managed to gasp out between after-shocks of pleasure, running a hand through the manticore’s auburn hair.");
-
-	outputCodex("\n\nThe manticore purred and stretched, sitting up from between Lusina’s numb legs and revealing a face soaked and gleaming with the moth-girl’s orgasmic juices. <i>“Kitty?”</i> she huffed, crawling up Lusina’s prone body until their breasts were pressed against each other, drawing another moan of arousal from the moth. <i>“You’re lucky you’ve got such a talented tongue...”</i>");
-
-	outputCodex("\n\nLusina managed a smile and murmured, <i>“Shut up,”</i> followed by a long and tongue-filled kiss, letting the two beast-kin taste their sexes, still hot one each other’s lips.");
-
-	outputCodex("\n\nThe well-sated moth fell back asleep, still lost in the hot embrace of her feline lover, dreams rife again with images of treasure and debauchery... and of an amorous manticore, the moth-queen’s personal chief pussylicker.... A girl can only dream.");
-
-
-
-	outputCodex("\n\nLusina was up at the crack of dawn, strapping on scales of armor and affixing her blade to back as the first hint of the golden disc crested the distant horizon. She left the manticore sprawled out and sleeping soundly on the rocky outcropping where they’d spent their night of passion - though not before finding the aggressive kitten had a small pouch strung on her hip full of small gem shards and coins, which Lusina deftly pocketed. A fair trade for ambushing her in the middle of the night, she thought.");
-
-	outputCodex("\n\nThe morning went in a haze, each hour blending into the next as Lusina swooped across the mountains, searching for any sign of a great firewyrm. She found nothing but more of the mountain’s monstrous residents: a blue-hued ice giant playing her harp in an ancient ruin, a pair of brutish orc tribes squabbling for dominance of a shallow vale, a weather-beaten creature of stone that tried to grab her out of the air and into its slavering maw.");
-
-	outputCodex("\n\n<i>“Where are you, dragon?”</i> Lusina started to sing as the afternoon drew near. <i>“Come out, come out, wherever you are...”</i>");
-
-	outputCodex("\n\nHours passed in searching, until Lusina was forced to land and rest her wings. She found a small, perfectly semi-circular ridge to plop down on, and set her back to rest against the smooth face of the mountain. With a heavy sigh, she fished her canteen out and drank deep, letting the mid-afternoon sun warm her bare skin. It would have been so easy to fall asleep again there, her body eager to make up for lost time in the arms of the manticore. Only the wishful echo of her dream, of swimming through a sea of treasure and enjoying all the pleasures such opulent and imperial wealth brought with it, kept Lusina’s eyes open.");
-
-	outputCodex("\n\nThat, and a sudden rush of scalding-hot air blowing against her back.");
-
-	outputCodex("\n\nWith a startled yelp, Lusina rolled forward and took wing, drawing the dagger off her hip as she spun around to see what she hoped to be the fearsome dragon. Instead, she watched as the smooth rock face slid back into the mountainside, and then with a grinding roar that made her ears ache, slid down to reveal a small, hidden passage beyond.");
-
-	outputCodex("\n\n<i>“Holy shit,”</i> Lusina breathed, flying back onto the semi-circle of rock. Her breasts bounced as her boots touched down, and her insectile feels fluttered as hot wind blew them about. She warily peered into the dark passage, and saw that it led down into the mountain, through a tunnel so perfectly rounded and smooth that it could be nothing but the work of gifted hands and strong tools.");
-
-	outputCodex("\n\n<i>“Dwarves, maybe?”</i> she mused, trading her dagger out for the two-handed blade  carried on her back. <i>“Or kobolds... and where kobolds go...”</i>");
-
-	outputCodex("\n\n<i>“Where dragons go, kobolds follow,”</i> her mother had taught her, what seemed like a lifetime ago. Lusina took in a deep breath, tightened her grip around her mother’s blade, and took a step past the threshold.");
-
-	outputCodex("\n\nShe fell immediately.");
-
-	outputCodex("\n\nA scrape echoed through the passage, then the grinding of stone, and suddenly Lusina was falling - fast and uncontrollable, so sudden she didn’t have time to think, only to react. She batted her wings, throwing all her energy into an emergency burst of strength that stopped her descent and left her fluttering inches over a pit of barbed spikes, gasping to catch her breath.");
-
-	outputCodex("\n\nShe cursed, sighed, almost ready faint from fright. <i>“Goddess,”</i> she finally managed to breath, twisting her flight down another off to the side of the square crusty spikes, and setting down. Anybody without wings or quick enough reflexes with their spells would have been skewered. Lucky her. <i>“Definitely kobolds. Definitely.”</i>");
-
-	outputCodex("\n\nKobolds meant she was on the right track. The little scaly creatures worshipped dragons like living gods, and colonies lived off of great wyrms like symbiotes, cleaning and serving it in exchange for protection. A slave’s life, Lusina thought, but she could hardly blame them - it wasn’t that different between peasants and lords in her homeland, long abandoned.");
-
-	outputCodex("\n\nTaking a deep breath to steady her frayed nerves, Lusina started down the side passage. Careful where she tread, now, and keeping her blade in a low guard ahead of herself, she followed the corridor down for what seemed like hours. No more traps presented themselves: clearly the designers were sure the first would be enough to keep anyone out, and the side passage would serve for easy looting of the bodies.");
-
-	outputCodex("\n\nEventually, Lusina spotted a distant light ahead, a faint pinprick of gold against the darkness even her beast-kin eyes struggled to penetrate. Lusina’s pace quickened, carrying her towards the growing beacon of light until the lengthy tunnel gave way to an open chamber, not more than ten feet across, lit by a pair of torches held in knee-high sconces. A wooden door sat on the other side of the chamber, daring her to approach.");
-
-	outputCodex("\n\nShe stepped up to it and tried the handle. The door didn’t budge. There was no lock for her to pick - not that she had any picks anyway - nor any sign of mechanism. Probably barred from the other side. Lusina sighed. She didn’t trust her strength to kick the door in, and...");
-
-	outputCodex("\n\n...And the door opened of its own accord, revealing the face of a rather bewildered-looking kobold. The creature came up to maybe three feet high, including its tiny horns poking up above its smooth, scaly face. It blinked, squawked something in a language Lusina couldn’t understand, and went running down the passage it had just opened with its hands over its head.");
-
-	outputCodex("\n\n<i>“Shit!”</i> Lusina screamed, hefting up her blade and charging in after it.");
-
-	outputCodex("\n\nThe kobold lead her on a chase down through the warrens beneath the mountain’s flesh, deeper and deeper into the depths. It was faster than a creature of its size ought to have been, deftly dodging every swordswipe and grab the moth-girl made for it, until the two of them came bursting out into a huge, wide-open chamber set some five feet down from the tunnel’s ledge.");
-
-	outputCodex("\n\nThe chamber was crawling with kobolds, over a dozen of the diminutive dragon-worshippers, gathered throughout the torch-lit hall. All were gathered around a dais in the chamber’s center, on which sat an opulent throne like that of a great king. Like one single-minded entity, every kobold in the chamber turned its head to face the tunnel Lusina and their comrade burst out of.");
-
-	outputCodex("\n\n<i>“Skree! Skree!”</i> the kobold she was chasing yelled, leaping down into the chamber. A couple of the kobolds grabbed spears and daggers from their backs, but most start to... to waddle away.");
-
-	outputCodex("\n\nIt took Lusina a moment to adjust her eyes to the brighter light, and to see the kobolds clearly. All but a few of the creatures had bellies bloated to almost obscene levels, huge plump things that were barely able to move around on their stumpy little legs. The ones still able to move freely quickly formed up protectively around the swollen creatures, gibbering and screeching at Lusina with as much menace as their tiny voices could command.");
-
-	outputCodex("\n\nLusina faltered for a moment, wide eyes watching the swollen kobolds waddle away in a panic as the others jabbed their spears towards her. They were almost cute, these kobolds. Shaking the thought out of her mind, Lusina put her war face on and flew down towards the armed mass of kobolds, blade outreached towards the nearest of them.");
-
-	outputCodex("\n\nThey broke immediately. One good thrust from her sword tore into the nearest kobold’s spear, breaking it when he tried to parry her. The others backpedaled, suddenly aware they were much shorter and weaker than she was; they scrambled back as Lusina swung her blade in an arc, clearing out some room to maneuver.");
-
-	outputCodex("\n\nThe creatures squawked and squabbled at her, but made no move to attack her - all their efforts were spent retreating slowly, warding her back with their simple weapons when she got too aggressive. Behind them, their swollen kin stumbled away as fast as they could - slower than Lusina could walk. As they retreated, Lusina started to look closer at them: small, scaly, naked creatures that kept their hands firmly affixed to their bellies, protective shielding their... their offspring. Lusina sucked in a sharp breath as she realized these were the females of the tribe: as flat-chested as their armed males, but all heavily swollen with eggs, their tiny twats naked in the torchlight.");
-
-	outputCodex("\n\n<i>“No way their eggs are that big,”</i> Lusina hissed under her breath, between spear-shattering swipes of her claymore that constantly drove the little reptiles back. Louder, she bellowed, <i>“Where’s your dragon, huh? Tell it to come on out!”</i>");
-
-	outputCodex("\n\nAs if on command, a wall of heat hit Lusina’s back, and the meager torchlight in the cave was washed away in a brilliant jet of flame, as bright as the morning sun. The kobolds squealed and turned tail, tripping over each other to flee. Even Lusina was forced to flinch, ducking down over the gout of fire spilling over her head, close enough to singe her feelers.");
-
-	outputCodex("\n\nShe spun around, brade raised to a high guard, ready to face down a bestial wyrm - a creature straight out of legend.");
-
-	outputCodex("\n\nInstead, her eyes went wide as she stared down what at first glance was a woman. Pale and beautiful and nearly human... save for the furling wings behind her, the russet scales covering her lower limbs, and the pair of sweeping horns growing from her brow and back over her scalp. Dagger-like claws clicked across the smooth stone as the scaly woman strode towards Lusina, long legs bringing her dangerously near the warrior-moth.");
-
-	outputCodex("\n\nThe woman was stunning. Ivory skin growing from crimson limbs, perfectly smooth and soft, with just a faint trace of firm muscle beneath. A simple brown cloth hung to her hips, garbing her down to the knees, but like Lusina the woman went bare-chested, proudly displaying a pair of breasts every bit as big, soft, and succulent as Lusina’s own. The moth-girl felt a sudden rush of arousal boil through her loins, hammering in her heart in the same beat her fear and apprehension did.");
-
-	outputCodex("\n\n<i>“What,”</i> Lusina gulped, taking a defensive step back. <i>“What are...”</i>");
-
-	outputCodex("\n\nThe woman smiled, revealing a quartet of long incisors. Her thick tail swayed behind her, dragging along after her. <i>“I...”</i> she said, resting a scaled digit on the tip of Lusina’s claymore, <i>“am the dragon you just called out.”</i>");
-
-	outputCodex("\n\nLusina gasped and staggered back, out of the creature’s reach. The <i>“dragon”</i> tsked her tongue and followed her, backing the moth-girl up against the cavern wall. Lusina gasped as her back pressed against jagged, rough stone, leaving her nowhere to go. Opposite the dragon, the kobolds chittered and cheered, dancing around their spears as their mistress cornered their would-be attacker.");
-
-	outputCodex("\n\nSeeing the moth’s back against the wall, the dragon-girl took another confident stride forward, placing herself easily inside Lusina’s reach, seemingly without a care in the world. <i>“You may call me Eryxienne,”</i> she purred, punctuating the thought with a breath that burst into a ball of flame in her hand, roiling and lapping at the air inches from Lusina’s nose. <i>“Now, was there something you wanted, little moth?”</i>");
-
-	outputCodex("\n\nLusina stood transfixed, silent, eyes locked on the roiling flame held like a living thing in the dragon’s claws. It was a ball of rolling flame that seemed to dance between her fingers, drawing Lusina’s eyes back and forth, side to side. The dragon cooed after what might have been a moment or an eternity, tilting her horned head to the side.");
-
-	outputCodex("\n\n<i>“I guess what they say about moths is true,”</i> the dragon said with a smirk, curling her fingers around the flame until it was almost out of sight.");
-
-	outputCodex("\n\nLusina blinked, putting a hand to her chest as if to steady her hammering heart. <i>“You’re not a dragon,”</i> she gasped, eying the semi-humanoid woman, following the curves of her hips and across a flat, pale belly and up to her heavy breasts, each tipped with a rose-red teat. Dragons don’t have tits, do they? <i>“The reward... it was for a dragon’s head.”</i>");
-
-	outputCodex("\n\nEryxienne smiled at that. <i>“Ah, that explains the hunters crawling all over my mountain. I suppose Chief Raythek took offense at my nightly visits with his daughters. Or at least, that one of them grew heavy with eggs. Still, it’s his fault for moving his tribe near my lair. He should have known we dragons demand certain privileges among mortals. Tribute, some wyrms might call it.”</i>");
-
-	outputCodex("\n\nLusina gulped down her fear and pulled her blade back from the dragon-girl’s claw, angling the silver-gray edge at her neck instead. Eryxienne made no move to stop her, except to unfurl her fingers from around the ball of flame burning in her hand. <i>“I could incinerate you with a sneeze, little moth. Don’t be crass.”</i>");
-
-	outputCodex("\n\nLusina fought to keep her eyes on the woman rather than her dancing flames. Eryxienne’s grin only widened on seeing Lusina’s resistance and she clenched her fist, smiting the flame out of existence. With fingers still glowing like embers, Eryxienne reached forward and grabbed the front of the moth-girl’s pants.");
-
-	outputCodex("\n\nLusina winced, feeling heat spreading through her loins of a completely different type, and watched in awe as her pants burned away, leaving the cream-colored flesh beneath totally unblemished. <i>“What’re you... stop that!”</i> she barked as the last charred scraps of cloth fell away, leaving only her armor and boots to clothe her. <i>“Stop it and fight!”</i>");
-
-	outputCodex("\n\n<i>“Why would I fight you?”</i> Eryxienne laughed, running one of her too-hot claws up Lusina’s thigh, pretending as if there wasn’t a blade pressed against her throat. <i>“If you really wanted my head, moth, you’d have taken it. But I think we both know you’re not like those other hunters - a rogue, perhaps, but not a cold-blooded killer. Besides, I think you’re more lover than fighter.”</i>");
-
-	outputCodex("\n\nLusina’s eyes went wide as one of the wyrm’s long, clawed digits snaked its way around the lips of her cunt, still tender from the manticore’s ministrations the previous night. She looked down as the dragon-woman pulled back, rubbing a slimy mess of Lusina’s own excitement between her russet digits. <i>“See?”</i> Eryxienne cooed, stepping past the moth’s guard and close enough that her soft bosom brushed Lusina’s own, her stiff red nipples coaxing the moth’s pink buds out of hiding.");
-
-	outputCodex("\n\nFlame lapped at Eryxienne’s tongue as it neared Lusina’s lips, breathing a whisper before pressing against the moth-girl’s trembling mouth. <i>“Go ahead and drop your blade. Let me take my tribute.”</i>");
-
-	outputCodex("\n\nHer will broke like a dam, spilling out a tidal wave of lust and fear and confusion into her mind. Lusina felt her hand let go of the sword, heard it clatter on the stone floor of the caver as she reached down and grabbed Eryxienne’s ass, fingers digging into the dragon babe’s soft, creamy skin. She opened her mouth, accepting the probing tongue battered against her lips, and found it to be slender and forked, moving with speed and grace that she couldn’t hope to match.");
-
-	outputCodex("\n\nAs quickly as it started, though, the dragon’s amorous advances abated. Eryxienne stepped back, her tapered tail flicking the sword far away from them as she moved. The dragoness stopped just out of arm’s reach, slitted eyes wandering over the moth’s now-bare body, gleefully watching her tremble with excitement and stain her thighs with arousal. Eryxienne planted her hands on her hips, hooking her thumbs under the meager strong that held her skirt to her body, and tore it apart with a relish.");
-
-	outputCodex("\n\nThe cloth fell limply to the ground, revealing toned thighs freckled with scales, leading up to a sex gleaming with the dragon’s own ardor, red lips parted ever so slightly as if begging for some probing mass to assert itself.");
-
-	outputCodex("\n\nOvertop it, though, hung a throbbing red cock.");
-
-	outputCodex("\n\nLusina gasped when she saw it. The dragon’s member stood nearly a foot, and not fully hard yet. It was animalistic in shape, tapered at the tip and growing thicker into a bulbous, purple base not unlike a canid knot. The base grew from just over the dragon-girl’s clit, a second pillar of pleasure growing from her serpentine sex, twitching with the beat of its owner’s draconic heart.");
-
-	outputCodex("\n\n<i>“Like what you see?”</i> Eryxienne laughed, kicking away her torn skirt. She planted her legs wide apart, giving Lusina a good look at her hermaphroditic package, and started to fondle her breasts, lifting one up to her mouth for a lick. <i>“Come have a taste then.”</i>");
-
-	outputCodex("\n\nWhen Lusina didn’t immediately step forward, the dragoness rolled her eyes and grabbed the top of the moth’s head, planting her hand right between the sensitive stalks of Lusina’s feelers and pushing down. The moth fell to her knees, resting on her scale greaves as the dragon’s heft prick bopped her on the nose, rubbing its musky crown across her cheeks. She breathed deep of its intoxicating aroma, letting it burn into her memory. The odor was thick, as heavy as the prideful member producing it, yet tinged with sweetness - a feminine twist on a thoroughly  masculine erection that made Lusina’s heart flutter.");
-
-	outputCodex("\n\nShe tasted it eagerly, opening her mouth to accept the dragon’s dick. That’s all she needed to do - all she could, with Eryxienne’s hand firmly grasping the crown of her head. The dragoness thrusted her hips in, letting her reptilian cock glide across Lusina’s tongue and batter against the back of her throat. The moth-girl swooned at the taste, hands falling to her own drooling sex when the first thick drops of salty pre graced her tongue.");
-
-	outputCodex("\n\n<i>“Good girl,”</i> Eryxienne moaned, slowly rocking her hips in and out, letting her moth-like lover get used to her incredible size. Hard, she was just past twelve inches, disproportionate to her six-foot frame, yet feeling so right in Lusina’s mouth. The moth-girl found her lips wrapping around the swollen knot of the base, opening her throat for the dragon to fuck - an offer that was immediately accepted. The dragoness’s hips started to piston, battering at Lusina’s lips and smearing the moth’s chin with the growing need of her cunt.");
-
-	outputCodex("\n\nBetween hammer-thrusts of dragon cock into her mouth, Lusina’s fingers fell upon her own cunt, diving down between her kneeling legs and eagerly sliding into their owner’s body. She took in a long, deep breath - no mean feat while getting face-fucked - and let her lust take over. One hand delving into her twat, massaging her clit and inner walls with fuzzy fingers, while the other snaked its way up Eryxienne’s thigh, teasing the dragon’s sweet-smelling slit until she was able to slip a pair of fingers inside. Once past the dragon’s lips, Lusina’s fingers all but fell in to the knuckle, burying themselves in the dragon-girl’s thrusting crotch until Eryxienne threw her head back with an exultant cry.");
-
-	outputCodex("\n\nAt least I give as good as I get, Lusina thought to herself, wrapping her tongue around Eryxienne’s crown.");
-
-	outputCodex("\n\n<i>“How about you put those big, beautiful tits of yours to use?”</i> the dragon said with a moan, pulling herself out of Lusina’s mouth until just her tip was brushing the moth’s lip. <i>“They look like they were made for fucking.”</i>");
-
-	outputCodex("\n\nLusina blushed, but obediently cupped her breasts and presented them to the dragoness. Her pink nipples were fully erect, standing as proud little islands in two rounded seas of creamy titflesh, big enough that she couldn’t get her hands all the way around her cleavage. Eryxienne smiled, giving Lusina a gentle push against the cave wall and let her prick drop into the valley between the moth’s ample rack, smearing it with the spittle still clinging to her rose-red pecker. Lusina pressed her tits together around it, leaning back and closing her eyes, content to feel the dragoness’s cock slide between her boobs, teasing the over-sensitive titflesh until she was ready to cum.");
-
-	outputCodex("\n\nEryxienne wasted no time in taking advantage of the soft, jiggling rack wrapped around her draconic dick. With no mouth to worry about hurting, her hips quickly picked up to a fever pitch, pounding away at the undersides of Lusina’s tits, making them bounce and quake with every thrust. The moth found herself smiling between pleasured moans, listening to the dragon-girl’s breath become more and more ragged with every piston of her hips, moans turning into cries, and then into yelps of orgasmic pleasure. <i>“Cumming! I’m cumming!”</i>");
-
-	outputCodex("\n\nLusina just leaned back and let it happen, squeezing her tits tighter around the hammering dragon-dick until she felt a sudden surge of heat, and then a burst of wetness splattering across her chin and cheeks, then squirting out onto the tops of her tits. She let out a squeaking moan as Eryxienne slammed herself to the hilt between Lusina’s breasts and held there, groaning and squirting and slathering the moth’s tits with dragon spunk until Lusina’s head swam with the rich, alluring scent of it. She hadn’t thought she could get more turned on, but the smell of semen slathering her body just made her want the dragoness’s cock all the more...");
-
-	outputCodex("\n\n<i>“I hope that wasn’t it,”</i> Lusina moaned, opening her eyes and taking in the sight of her spunk-coated body. Mindlessly, her fingers started to run through the puddles of spunk, smearing it around - a little part of her brain quietly told her that she liked being covered in cum. Especially when it came from a big, beautiful wyrm with a big, beautiful cock between her legs...");
-
-	outputCodex("\n\n<i>“It? Not by a long shot,”</i> Eryxienne assured her, slipping down to her knees and running her tongue along the swell of her lover’s breast, licking up a swathe of her own spunk. <i>“I’m a dragon, after all. Our stamina is legendary.”</i>");
-
-	outputCodex("\n\nLusina moaned, arching her back and pressing her rack into the dragon-girl’s face. She found her hand reaching down, fluffy fingers wrapping around the half-hard member between her partner’s legs, urging it back to turgidity. <i>“Is that so?”</i>");
-
-	outputCodex("\n\n<i>“I’ll prove it,”</i> the dragon purred between licks, slowly cleaning off Lusina’s breasts... before reaching up for a kiss, pressing their lips together, and depositing a mouthful of hot cum onto Lusina’s tongue. The moth’s eyes went wide, wings and heart fluttering as the taste hit her before going limp in Eryxienne’s arms, surrendering to the dragon’s will. <i>“Good girl...”</i>");
-
-	outputCodex("\n\nA pair of clawed hands found their way under Lusina’s taut little butt and hefted her up, first to her feet, then back against the wall. She moaned, wrapping her arms around Eryxienne’s neck, and her legs around the dragoness’s hips, guiding their bodies together until Eryxienne’s prick rubbed against the slit of her sex.");
-
-	outputCodex("\n\n<i>“That was quick,”</i> Lusina managed to murmur, sucking in a sharp breath as her lover’s cock gently nudged its way past her lower lips.");
-
-	outputCodex("\n\nEryxienne smiled, said <i>“Legendary stamina, little moth,”</i> and pressed her lips and hips forward at once, stifling Lusina’s moans in a kiss. Lusina’s whole body went rigid at the moment of penetration, every nerve turning wholesale towards the feeling of cockflesh spearing her womanhood, stretching her slick walls out. Eryxienne’s cock glided in easily, helped along by Lusina’s spit and arousal, and the thick glaze of cum still clinging to the shaft.");
-
-	outputCodex("\n\nThe kiss persisted, punctuated by Eryxienne hilting herself in the depths of Lusina’s sex. The moth-girl moaned, fingers digging into the dragoness’s shoulders, trying to steady herself as her body was stretched out around a foot of wet dick - and her lips were battered by its swollen, reptilian base.");
-
-	outputCodex("\n\nEryxienne’s wings curled around her, bathing the two of them in darkness in the same moment her turgid base pushed into Lusina’s cunt, eliciting a scream of pleasure from the bouncing moth. <i>“Fuck!”</i> Lusina cried, throwing her head back and squirming against the dragon’s grasp. <i>“Too much! Too much!”</i>");
-
-	outputCodex("\n\n<i>“Shh,”</i> Eryxienne cooed, kissing one of the moth-girl’s nipples. <i>“Just hold on to me, and let yourself go...”</i>");
-
-	outputCodex("\n\nLike she needed the dragon to tell her that! The feeling of being spread out so wide was nearly enough to make Lusina cum on the spot, and a few short, jerky thrusts from the knotted wyrm sent her screaming over the edge. Lusina felt climax tear through her, welling up in her gut and exploding downwards in a rain of pussyjuice around the dragoness’s hilted dick. Eryxienne moaned, digging her hands into Lusina’s ass and thrusting deeper, fucking right through the heat of her lover’s climax. Her movements only served to stir the moth up even more, churning her pussy like a vat of boiling girl-spunk until it popped in another rain of fem-cum, one orgasm on the back of the first. She screamed until her lungs ached, bucking her hips against the thick pole of dragon-meat tearing her apart, batting her wings against Eryxienne’s until she thought the two of them would take flight.");
-
-	outputCodex("\n\nInstead, they pressed hard against the back of the cavern, panting and gasping and moaning into each other’s lips. Lusina felt a third orgasm well up, hitting her at the same time she felt Eryxienne’s cock discharge inside her, flooding her womb with more of that intoxicating dragon spunk. Caution flew to the wind, and Lusina found herself helping her lover to fuck her deeper, to get that draconic member as deep inside as it could go, all the better to fill her cunt until she was positively packed, and creamy white started to drool out around even the tight fit of Eryxienne’s knot plugging her hole.");
-
-	outputCodex("\n\n<i>“Oh goddess,”</i> Lusina whispered, feeling all volition drain out of her limbs. <i>“Oh my goddess...”</i>");
-
-	outputCodex("\n\n<i>“Better than your little bounty, isn’t it?”</i> the dragon purred, kissing Lusina again and again, trailing her lips down across her lover’s breasts and caressing her still-hard nipples. <i>“I think you’ve more than paid your tribute, my dear moth.”</i>");
-
-	outputCodex("\n\nEryxienne smiled, still holding Lusina tight as she walked back from the cavern wall with confident strides that quickly had the two of them at the foot of the throne. She sat back upon it, unfurling her wings and letting Lusina rest in her lap - and driving her cock just a little deeper into the moth’s pussy as she did.");
-
-	outputCodex("\n\n<i>“I can’t get up,”</i> Lusina admitted what seemed like an eternity later, still resting her cheek on Eryxienne’s shoulder. The knot of her lover’s cock was still inside her, though Lusina secretly knew it was her own limp legs that betrayed her, keeping her bound to her lover. She couldn’t stand if she wanted it.");
-
-	outputCodex("\n\nEryxienne only smiled, running a hand along her cheek. <i>“I know, love. Just relax and sleep... let your tribute take hold inside you.”</i>");
-
-	outputCodex("\n\n<i>“Wha...”</i> Lusina managed to breathe, a moment before her eyes fluttered closed.");
-
-
-
-	outputCodex("\n\nIt wasn’t until the next week that Lusina finally realized what her draconic lover’s <i>“tribute”</i> had really meant. By then she had grown accustomed to the dragon’s lair, to waking each morning in the wyrm’s tender embrace, and falling asleep again to the rough pounding of Eryxienne’s massive cock filling her womb again and again.");
-
-	outputCodex("\n\nThe dragoness had never offered to show Lusina a way out of her lair, never given her permission to leave, but in the same way that Lusina had never asked for it. Something told her that she could have left at any time, but the urge never struck. Whenever her thoughts turned to the forest, to her home far away in the distance, her draconic lover would always remind her why she stayed: with a kiss, a caress, and soon carrying her into the nest she called a bed to make passionate love.");
-
-	outputCodex("\n\nIt was only when Lusina’s belly started to swell that she realized what her tribute meant. It grew and grew over the span of days, until by the end of the second week she looked like a woman ready to deliver. Eryxienne told her between fucking and cuddling that she was carrying a dragon egg inside her, that she’d been gifted with a rare and precious honor.");
-
-	outputCodex("\n\nShe laid it in the third week, screaming in pleasure as Eryxienne and her kobold minions tended to her. The little reptiles had all delivered eggs of their own during Lusina’s stay, filling Eryxienne’s nest with more and more nascent young - though the moth took pride in seeing that her egg was by far the largest and most colorful of the clutch, and as she curled up to sleep with her arms around it, legs spread for the inevitable arrival of her egg’s father ready to put another in her, she felt more like a queen than she’d ever felt in her silly dreams.");
-
-	outputCodex("\n\nThis was a true dragon’s hoard: not riches of gold and gems, but of her lover’s constant affection, and the feeling of a second egg taking inside her as she yet warmed the first...\n");
-	CodexManager.viewedEntry("Dragon’s Hoard");
+	outputCodex("\n\nDespite their rapid expansion, gryvain military technology is notably lacking. They have fairly advanced plasma and laser weapons, but no standing military to speak of, and much of their green-collar work is privatized to Nova Securities or their home-grown robotics companies. Gryvain security, both on and off-world, is largely handled by drones and A.I.-controlled craft, as unlike most human societies, gryvain appear to have no paranoia about a supposed “robot uprising,” and happily let A.I. control any aspect of their security or infrastructure they themselves cannot be bothered with, especially in remote colonies. Gryvain-made A.I. is generally regarded to be among the most convincingly life-like and emotive, and among the most reliable technologically and personally. It's no surprise that KihaCorp has a strong presence on their homeworld, and employs a large number of gryvain.");
+	
+	outputCodex("\n\n");
+	CodexManager.viewedEntry("Gryvain");
 }
