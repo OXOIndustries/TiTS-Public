@@ -2010,7 +2010,10 @@ public function zilCallGirlSuckleHoney():void
 	showZilCallGirl();
 	author("Savin");
 	
-	output("You grin up at the golden-skinned beauty, squeezing her full, swollen breast. She’s so full of sweet nectar in there that groping her feels like you’re sinking your fingers into a full water balloon{if preg: , so swollen with honey that it might just pop at any moment}. The ");
+	output("You grin up at the golden-skinned beauty, squeezing her full, swollen breast. She’s so full of sweet nectar in there that groping her feels like you’re sinking your fingers into a full water balloon");
+	// if preg:
+	if (zilCallGirlPregnant()) output(", so swollen with honey that it might just pop at any moment");
+	output(". The ");
 	if (CodexManager.entryViewed("Zil")) output("zil");
 	else output("waspy alien");
 	output(" moans quietly, letting her head roll back as you play with her chest. <i>“Mmm, hungry, darling?”</i> she buzzes. <i>“With all the wonderful food on this station, I’ve got more than enough honey to feed all of my friends.”</i>");
