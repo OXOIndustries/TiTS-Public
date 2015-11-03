@@ -50,6 +50,12 @@
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/carrie.png", mimeType = "image/png")]
 		public var Bust_CARRIE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/ceria.png", mimeType = "image/png")]
+		public var Bust_CERIA:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/ceria_NUDE.png", mimeType = "image/png")]
+		public var Bust_CERIA_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/cockvine.png", mimeType = "image/png")]
 		public var Bust_ADULTCOCKVINE:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/cockvine.png", mimeType = "image/png")]
@@ -95,6 +101,11 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/frog_8.png", mimeType = "image/png")]
 		public var Bust_FROG_8:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/fungal_myr_spores.png", mimeType = "image/png")]
+		public var Bust_MYR_INFECTED_FEMALE:Class;
+		/*ALT [Embed(source = "../../../assets/images/npcs/shou_puppy/fungal_myr.png", mimeType = "image/png")]
+		public var Bust_MYR_INFECTED_FEMALE:Class;*/
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/gianna.png", mimeType = "image/png")]
 		public var Bust_GIANNA_NUDE:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/gianna_med.png", mimeType = "image/png")]
@@ -121,6 +132,11 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/kara_nude.png", mimeType = "image/png")]
 		public var Bust_KARA_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/lieve.png", mimeType = "image/png")]
+		public var Bust_LIEVE:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/lieve_nude.png", mimeType = "image/png")]
+		public var Bust_LIEVE_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/nyrea_beta.png", mimeType = "image/png")]
 		public var Bust_NYREA_BETA:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/nyrea_alpha.png", mimeType = "image/png")]
@@ -143,6 +159,11 @@
 		public var Bust_QUEENSGUARD:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/queensguard_nude.png", mimeType = "image/png")]
 		public var Bust_QUEENSGUARD_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/renvra.png", mimeType = "image/png")]
+		public var Bust_RENVRA:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/renvra_nude.png", mimeType = "image/png")]
+		public var Bust_RENVRA_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/saendra.png", mimeType = "image/png")]
 		public var Bust_SAENDRA:Class;
