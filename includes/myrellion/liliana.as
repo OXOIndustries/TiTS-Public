@@ -4,17 +4,17 @@
 
 //Sight blurb
 //(in the bar from 12pm equivalent to 9 pm equivalent because not everyone can be eternally awake.)
-public function lilianaBonusShits():void
+public function lilianaBonusShits(slot:int = 7):void
 {
 	if(flags["MET_LILIANA"] == undefined)
 	{
 		output("\n\nA sandy blonde ant-girl sits at a table near the back of the bar, stealing glances at the door every time someone enters and looking visibly worried.");
-		addButton(7,"Ant-Girl",approachLiliana);
+		addButton(slot,"Ant-Girl",approachLiliana);
 	}
 	else
 	{
 		output("\n\nLiliana sits at a table near the back of the bar, still glancing at everyone who enters and looking fretful. She visibly relaxes when she sees you, and gives you a timid smile.");
-		addButton(7,"Liliana",approachLiliana);
+		addButton(slot,"Liliana",approachLiliana);
 	}
 }
 
