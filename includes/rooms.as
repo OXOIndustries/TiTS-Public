@@ -121,6 +121,7 @@ public function initializeRooms():void
 	rooms["ANON'S BOARD HALL"].planet = "TAVROS STATION";
 	rooms["ANON'S BOARD HALL"].system = "SYSTEM: KALAS";
 	rooms["ANON'S BOARD HALL"].southExit = "ANON'S BAR AND BOARD";
+	rooms["ANON'S BOARD HALL"].runOnEnter = anonsBoardBonus;
 	rooms["ANON'S BOARD HALL"].moveMinutes = 1;
 	rooms["ANON'S BOARD HALL"].addFlag(GLOBAL.INDOOR);
 	rooms["ANON'S BOARD HALL"].addFlag(GLOBAL.PUBLIC);
