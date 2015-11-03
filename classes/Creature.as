@@ -6651,9 +6651,7 @@ package classes {
 
 		public function hasGenitals():Boolean
 		{
-			if (hasCock()) return true;
-			if (hasVagina()) return true;
-			return false;
+			return (hasCock() || hasVagina());
 		}
 		public function hasTailCock(): Boolean {
 			if (hasTailFlag(GLOBAL.FLAG_TAILCOCK) && tailCount > 0) return true;

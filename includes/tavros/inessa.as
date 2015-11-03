@@ -1273,6 +1273,7 @@ public function newTexanGanguBangu():void
 {
 	clearOutput();
 	author("JimThermic");
+	showName("PUBLIC\nUSE");
 	output("Looking around the New Texan landscape, your cheeks burn bright red as you watch the exquisite display of the perfectly masculine and feminine walking about. No other planet is so <i>extreme</i> in their separation of gender.");
 	if(pc.hasCock() && !pc.hasVagina()) output(" So what if you were to tie yourself up in an unmanly fashion and let them have their way with you?");
 	else if(pc.hasVagina() && !pc.hasCock()) {
@@ -1547,6 +1548,161 @@ public function newTexanGanguBangu():void
 	pc.exhibitionism(2);
 	pc.exhibitionism(2);
 	pc.exhibitionism(2);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Grav Cuff New Texan Gangu Bangu #2: The Bovining
+// High exhibition level.
+// Got Grav-cuffs
+// New Texas public area
+// Must have dick
+public function gravCuffsCowgirlBangu():void
+{
+	clearOutput();
+	author("JimThermic");
+	showName("PUBLIC\nUSE");
+
+	output("You’re unbelievably horny right now. Thankfully, you’re on the <i>perfect</i> planet to relieve your frustrations. If there’s one thing New Texas is good for, it’s getting a  [pc.guyGirl] off.");
+	if(!pc.isNude()) output(" You take a moment to strip off your things, ditching everything you own bar a set of solid grav-cuffs.");
+	else output(" You’re already naked and carrying a set of solid grav-cuffs. Really, what else does a  " + pc.mf("man","womanl") + " need?");
+
+	output("\n\nAfter taking a moment to click the cuffs onto ‘auto’, you toss them up in the air. The metal shackles soar around in a circle then swoop back towards you, making a bee-line for your wrists and [pc.footOrFeet]. There’s loud snaps as they fasten around them, followed by a hum, before you’re pulled ");
+	if(pc.isTaur()) output("up, ");
+	output("rearward and straight to the ground! Lying on your back, you try to tug free from your fetters, to no avail.");
+	//PC.strength >= 50%
+	if(pc.PQ() >= 50) output(" Even with your considerable strength, you’re unable to budge an inch.");
+
+	output("\n\nStraining for a sidewards glance, the digital display on the smart shackles reads two hours; it seems you’re stuck here until the timer runs out. Two hours of public use, you think, during which time <i>anyone</i> could use you as they please. Lying back, all you can do is wonder who will come across you first, naked [pc.cocksLight]");
+	if(pc.hasVagina()) output(" and [pc.vaginasLight]");
+	output(" tingling in aroused anticipation.");
+
+	output("\n\nYou don’t need to wait long. Out of the corner of your eye, you see a gaggle of giggling cowgirls walking in your general direction. With a rosy flush on their cheeks, they’re rubbing their heavy, pink-tipped breasts.");
+	output("\n\n<i>“It’s time for a milking. I’m so full, I feel like my nipples are going to start squirting any minute!”</i>");
+	output("\n\n<i>“I wonder if we’ll get fucked when we’re in the milker? I sure hope so. It’s been SO long since I’ve gotten knocked up.”</i>");
+
+	output("\n\n<i>“Oh hey, who’s that~?”</i> one of the beauties excitedly exclaims, pointing directly at you. <i>“");
+	if(flags["TEXAS_GRAVCUFFS_COWORGY"] == undefined) output("Is it a new [pc.guyGirl]? I’ve never seen [pc.himHer] before!");
+	else output("It’s that [pc.guyGirl] from last time - [pc.heShe]’s all cuffed down again!");
+	output("”</i>");
+
+	output("\n\nThe daintily horned girls skip up to you, bountiful breasts bouncing with every footstep. Thin streaks of milk are leaking from their puffy nipples. Crouching down around your lower half, they ogle your loins with wide, fluttering eyes.");
+
+	output("\n\n<i>“...Look at [pc.hisHer] cock");
+	if(pc.cockTotal() > 1) output("s");
+	output("! ");
+	if(flags["TEXAS_GRAVCUFFS_COWORGY"] == undefined) 
+	{
+		output("I wonder what ");
+		if(pc.cockTotal() == 1) output("it");
+		else output("they");
+		output(" look like when ");
+		if(pc.cockTotal() == 1) output("it’s");
+		else output("they’re");
+		output(" bigger?");
+	}
+	else
+	{
+		output("Maybe we should make ");
+		if(pc.cockTotal() == 1) output("it");
+		else output("them");
+		output(" bigger?");
+	}
+	output("”</i> one of the naked heifers asks. She then reaches forward and lightly grasps ");
+	if(pc.cockTotal() > 1) output("one of ");
+	output("your defenseless prick");
+	if(pc.cockTotal() > 1) output("s");
+	output(". All it takes is a few eager strokes. Electric pleasure courses through your loins and you groan with delight, [pc.biggestCockHead] ");
+	if(pc.hasCockFlag(GLOBAL.FLAG_FLARED,pc.biggestCockIndex())) output("flaring");
+	else output("swelling");
+	output(" in her dainty grasp.");
+
+	output("\n\n<i>“Oh, here, give me a try!”</i> <i>“No, me!”</i> The gaggle of girls all rush at once to touch and tease your [pc.cocksLight]. Your bared loins are stroked and fondled without restraint.");
+	if(pc.balls == 1) output(" As your [pc.balls] is cupped and squeezed");
+	else if(pc.balls > 1) output(" As your [pc.balls] are cupped and squeezed");
+	else if(pc.hasVagina()) output(" As your pussy-lips are also stroked");
+	else output(" As the ridge between your base and butt is stroked as well");
+	output(", you can’t stop quivering with pleasure. Your entire body is being wracked with the most delectable kind of twitching fit!");
+
+	output("\n\nJust as you feel like you’re going to go mad with pleasure, you’re given release with a final jerk of ");
+	if(pc.cockTotal() > 1) output("one of ");
+	output("your joystick");
+	if(pc.cockTotal() > 1) output("s");
+	output(". With an ecstatic cry, you shiver and shoot shoot ");
+	if(pc.cumQ() < 5) output("a tiny little splatter of");
+	else if(pc.cumQ() < 10) output("a thin stream of");
+	else if(pc.cumQ() < 500) output("a thick stream of");
+	else if(pc.cumQ() < 5000) output("a bucket’s worth of");
+	else output("a seemingly endless tide of");
+	output(" [pc.cumVisc] [pc.cumColor] right on your [pc.belly]. The cowgirls giggle as you moan and continue to twitch in your cuffs, [pc.cumNoun] dribbling out of your flexing cockhole");
+	if(pc.cockTotal() > 1) output("s");
+	output(".\n\n<i>“Wow, that ");
+	if(pc.cumQ() < 10) output("wasn’t much");
+	else if(pc.cumQ() < 500) output("was a bit");
+	else if(pc.cumQ() < 5000) output("was a lot");
+	else output("was a ton");
+	output(", wasn’t it?”</i> <i>“I wonder if that’s all [pc.heShe], like, has.”</i> <i>“It’s kinda fun to do the milking for once~!”</i> They excitedly exclaim, running their feminine fingers all through the moist seed");
+	if(pc.hasFur()) output(" matting");
+	else output(" coating");
+	output(" your [pc.skinFurScalesNoun]. A brunette bovine-girl thoughtlessly licks it off her fingers. You watch as her soft pink tongue is coated in your [pc.cumColor] [pc.cumNoun]. <i>“... Mmm! Tastes [pc.cumFlavor].");
+	if(pc.cumType == GLOBAL.FLUID_TYPE_CUM) output(" Just");
+	else output(" Nothing");
+	output(" like the bulls around here!”</i> she reviews. Eager to share in your taste, her friends start licking off your [pc.belly]. You groan as their soft and sizable breasts brush up against your sides, their puffy nipples rubbing back and forth against your [pc.skinFurScales] as they lick you off. It’s almost enough to make you cum all over again!");
+
+	output("\n\n<i>“It’s so delicious! But I’d rather have it inside, you know?”</i> One of the curvy cow-girls giggles, lifting her butt over your still twitching prick");
+	if(pc.cockTotal() > 1) output("s");
+	output(". ");
+	if(pc.biggestTitSize() > 1) output("After picking out the largest one, she");
+	else output("She then");
+	output(" lowers herself onto it, pressing her soft pussy-lips down on your [pc.biggestCockHead]. It slowly slips inside her warm moistness, your sensitive tip alight with pleasure. She doesn’t stop until her plushy posterior is resting happily on top of your [pc.legs], her erect clit pressed neatly against your ");
+	if(pc.hasKnot(x)) output("knotted ");
+	output("base. As she wiggles her womanly hips, you can <i>feel</i> your hypersensitive head caressing her womb-mouth–you’re primed for point blank mating!");
+	pc.cockChange();
+
+	output("\n\n<i>“You’re going to give me cute little calves, right?”</i> She coos, reaching up to stroke your cheek, cow-tail swishing back and forth. Pinned like this with your [pc.cockLight] inside of her, it’s not like you have a choice! As the bovine beauty begins to rock back and forth, a look of dreamy ecstasy on her face, all you can do is ‘endure’ the sensation of her incredibly wet lips clinging to your [pc.cockLight]. The more excited she gets, the more her wet walls clench and squeeze your [pc.cockColor] rod–even though she’s been fucked by countless bulls, she’s still so <i>hot</i> and <i>tight</i>. Burgeoning pleasure swells out from your loins and utterly sizzles out your senses. Already, your [pc.cumNoun]-slicked prick is dribbling more of your sloppy seed inside of her New Texan honeypot, resisting any attempts to keep it in.");
+
+	output("\n\n<i>“You’re about to blow, right? Let it allll out in my pussy,”</i> the full-figured cowgirl coaxes you, lifting and teasing her tremendously huge tits right before your eyes. Adding to your encouragement, the other girls reach up and begin rub their own massive mammaries against your sides, accidentally squirting warm milk all over your [pc.chest] in the process. You groan as you’re literally caressed with their silky soft skin from every direction, while being given a breast-milk bath, and having your [pc.cocksLight] ridden");
+	if(pc.cockTotal() > 1) output(" and jerked");
+	output(". You’re in heaven!");
+
+	output("\n\nUnable to last under such pleasurable duress, you quickly reach your peak. With a loud, shivering cry, you shoot your virile load inside the busty bovine’s pussy. With each groaning flex of your shaft, you feel your hot spunk shooting up and out of your prick, basting the inside of her fertile womb in [pc.cumColor] and seeding it with your sperm. As you tremble in the throes of your second orgasm in mere minutes, the cow girl lifts her hefty butt off you and parts her lower lips, giving you a nice, long look at her now [pc.cumVisc] pussy. Talk about a creampie!");
+
+	output("\n\n<i>“...[pc.HeShe] came again? Okay, my turn~!”</i> another busty beauty chimes in. Not even waiting for your most recent orgasm to subside, she switches with the first, reaching for your ");
+	if(pc.cockTotal() == 1) output("your well used dick");
+	else if(pc.cockTotal() == 2) output("your second, unused cock");
+	else output("one of your unused cocks");
+	output(". Without delay, she excitedly slips it inside of her sopping wet quim, already pre-warmed by the display. You groan as she falls in your lap with a flat-butted ‘whumph’, burying your [pc.cockLight] in her right up to the hilt. Unable to wait her turn, a second chubby-thighed cowgirl mounts your face, pushing her dripping wet slit right against your [pc.face]! Her sweet feminine scent makes your already overstimulated senses reel, your sheathed prick twitching reflexively inside the first!");
+
+	output("\n\nThe two busty beauties ride you both up top and down below, taking advantage of your cuff-bound state. After two back-to-back orgasms, your [pc.cocksNounSimple] are <i>extremely</i> sensitive. The intensity shooting up from your [pc.cockHeads] is so intense you feel like you’re going to lose your mind! All you can do is make muffled noises against the slippery sex being pressed up against your lips. Every time you open it, musky girl-juice drools down onto your tongue, lighting up your tastebuds. There’s a shivering against your [pc.face] and a high-pitched squeal, and your face is suddenly splattered with a sticky warmth. She just came on your face! It’s followed by another, trembling cry further down, as your straining length is yet again basted with sweet nectar.");
+
+	processTime(45);
+	IncrementFlag("TEXAS_GRAVCUFFS_COWORGY");
+	
+	pc.loadInMouth();
+	pc.loadInMouth();
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
+	pc.exhibitionism(2);
+	pc.exhibitionism(2);
+	pc.exhibitionism(2);
+	pc.exhibitionism(2);
+	clearMenu();
+	addButton(0,"Next",cowGirlGanguBanguEpilogue);
+}
+
+public function cowGirlGanguBanguEpilogue():void
+{
+	clearOutput();
+	showName("PUBLIC\nUSE");
+	author("JimThermic");
+	output("\n\n<b>... Some Time Later...</b>");
+	output("\n\n<i>Buzz-buzz-buzz!</i> Dimly and distantly, you realise there’s a noise going off not too far from your [pc.ear]. Every inch of you is filled with diffused, fizzling ecstasy, like you’ve been hollowed out and filled with pure high. There’s a clicking from your wrist and [pc.legOrLegs], and a sudden sense of fresh air around your [pc.skinFurScalesNoun] there.");
+	output("\n\nYou realise it’s the timer, and look down at your splayed, sticky, and thoroughly <i>spent</i> form. The cow-girls are gone, having utterly used and abused you over the last two hours, until your [pc.cocksLight] didn’t have anything left to give. You smile; your face is utterly coated in their girl cum, and your chest is splattered in their sopping wet milk. You’re definitely going to need a shower after this... but part of you doesn’t want to yet clean away the spoils of such a special, near-transcendent experience.");
+
+	output("\n\nWhen your muscles are able and you’re getting cold, you stand up and collect the cuffs. That’s the great thing about New Texas; nobody’s ever going to tell you to move along!");
+	processTime(95);
+	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
