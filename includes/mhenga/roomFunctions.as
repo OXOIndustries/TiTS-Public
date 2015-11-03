@@ -324,7 +324,7 @@ public function mhengaVanaeAbandonedCamp():Boolean
 		if(pc.credits >= 40) addButton(0,"Call Taxi",fastTravelToEsbeth,undefined,"Call Taxi","Call a taxi from the transit authority. It'll cost you 40 credits to ride back to Mhen'ga.");
 		else addDisabledButton(0,"Call Taxi","Call Taxi","You can't afford the 40 credits for a taxi. Damn.");
 	}
-	addButton(5,"Sleep",sleepInRuinedCamp,undefined,"Sleep","The camp is a wreck, but if you cleaned it up, you might be able to bed down here.");
+	addButton(4,"Sleep",sleepInRuinedCamp,undefined,"Sleep","The camp is a wreck, but if you cleaned it up, you might be able to bed down here.");
 	return false;
 }
 
