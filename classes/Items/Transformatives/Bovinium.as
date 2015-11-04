@@ -2,6 +2,7 @@ package classes.Items.Transformatives
 {
 	import classes.CockClass;
 	import classes.Creature;
+	import classes.Characters.PlayerCharacter;
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
 	import classes.GameData.TooltipManager;
@@ -573,7 +574,7 @@ package classes.Items.Transformatives
 			{
 				for (var i:int = 0; i < target.vaginas.length; i++)
 				{
-					if ((target.vaginas[i] as VaginaClass).wetnessRaw <= 3) target.vaginas[i].wetness += 1;
+					if (target.vaginas[i].wetnessRaw <= 3) target.vaginas[i].wetnessRaw += 1;
 				}
 				
 				changes++;
@@ -626,6 +627,13 @@ package classes.Items.Transformatives
 			var changes:int = 0;
 			
 			clearOutput();
+			
+			if (!(target is PlayerCharacter))
+			{
+				output(target.capitalA + target.short + " swollows the candy but to no effect.");
+				return false;
+			}
+			
 			output("You take the small bottle labeled \"Bovinium\" out and crack it open. A single, small, cow-shaped gummy candy drops into your palm when you up-end it. You pick the bovine-themed treat up and squint at it: it's even got little black spots on its white mass, making it look just like a dairy cow. Is that it? It's cute, at least.");
 
 			output("\n\nWell, here goes nothing! You give yourself an experimental \"moo!\" and down the transformative candy. It's sweet, and goes down easily. Tastes almost like milk, though tinged with a strange rusty flavor. Finished with your treat, you toss the bottle aside and wait for the changes to begin...\n\n");
