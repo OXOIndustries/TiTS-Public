@@ -188,7 +188,6 @@ public function chooseStartingRace(race:String = "human"):void {
 		pc.addLegFlag(GLOBAL.FLAG_PAWS);
 		//Non-chitinous leithan arms
 		pc.armType = GLOBAL.TYPE_LEITHAN;
-		pc.addArmFlag(GLOBAL.FLAG_SCALED);
 		//>Four ears: two elfin ears on the side, two bunny ears on top. Probably need a new ear-type for this.
 		pc.earType = GLOBAL.TYPE_LEITHAN;
 		pc.earLength = 3;
