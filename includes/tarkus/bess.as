@@ -2499,7 +2499,7 @@ public function bessStartLactation():void
 
 		output("\n\nDropping to [bess.hisHer] knees in front of you, [bess.name] continues to stroke [bess.hisHer] freshly lactating tits, caressing [bess.hisHer] [bess.nipples] with [bess.hisHer] fingers. At the same time, [bess.heShe]");
 		if (pc.hasCock()) output(" takes [pc.oneCock] into [bess.hisHer] mouth, sucking on it <i>long</i> and <i>hard</i>.");
-		else output(" buries [bess.hisHer] face in your [bess.pussyNoun], sticking [bess.hisHer] tongue and lapping hungrily inside.");
+		else output(" buries [bess.hisHer] face in your [pc.pussyNoun], sticking [bess.hisHer] tongue and lapping hungrily inside.");
 
 		output("\n\nTaken aback by [bess.hisHer] boldness, you reel in the sensations of [bess.himHer] going down on your");
 		if (pc.hasCock()) output(" achingly erect cock");

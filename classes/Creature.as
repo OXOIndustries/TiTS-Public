@@ -7232,7 +7232,7 @@ package classes {
 			if (pandaScore() >= 4) race = "panda-morph";
 			if (ausarScore() >= 4) race = "ausar"
 			if (kaithritScore() >= 6) race = "kaithrit"
-			if (leithanScore() >= 6 && originalRace != "half-leithan") race = "leithan";
+			if (leithanScore() >= 6) race = "leithan";
 			if (nukiScore() >= 6) race = "kui-tan";
 			if (vanaeScore() >= 6) race = "vanae-morph";
 			if (raskvelScore() >= 6) race = "raskvel";
@@ -7290,12 +7290,13 @@ package classes {
 		public function leithanScore():int {
 			var counter:int = 0;
 			if (earType == GLOBAL.TYPE_LEITHAN) counter++;
-			if (legType == GLOBAL.TYPE_LIZAN && legCount == 6) counter+= 2;
-			if (armType == GLOBAL.TYPE_LEITHAN) counter++;
+			if (legType == GLOBAL.TYPE_LIZAN && legCount == 6) counter += 2;
+			if (armType == GLOBAL.TYPE_LEITHAN && hasArmFlag(GLOBAL.FLAG_CHITINOUS)) counter++;
 			if (tongueType == GLOBAL.TYPE_LEITHAN) counter++;
 			if (tailType == GLOBAL.TYPE_LIZAN && tailCount > 0) counter++;
 			if (counter > 0 && skinType == GLOBAL.SKIN_TYPE_SCALES && scaleColor == "black") counter++;
 			if (counter > 3 && eyeType == GLOBAL.TYPE_LEITHAN && faceType == GLOBAL.TYPE_HUMAN) counter += 2;
+			if (eyeType != GLOBAL.TYPE_LEITHAN) counter--;
 			return counter;
 		}
 		public function nukiScore(): int

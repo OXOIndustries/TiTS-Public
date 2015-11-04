@@ -61,12 +61,12 @@ public function nyreaDungeonGateOpen():Boolean
 	//Has taivra been down 12+ hours? If yes, seal the gates
 	if(flags["BEAT_TAIVRA_TIMESTAMP"] != undefined)
 	{
-		if(flags["BEAT_TAIVRA_TIMESTAMP"] + 60 * 12 <= GetGameTimestamp()) return false;
+		if(flags["BEAT_TAIVRA_TIMESTAMP"] + (12 * 60) <= GetGameTimestamp()) return false;
 	}
 	//Otherwise, Gate is open if praetorians are in recovery mode
 	else if(flags["FOUGHT_PRAETORIANS"] != undefined)
 	{
-		if(flags["PRAETORIAN_RESPAWN"] != undefined && flags["PRAETORIAN_RESPAWN"] + 60*12 > GetGameTimestamp()) return true;
+		if(flags["PRAETORIAN_RESPAWN"] != undefined && flags["PRAETORIAN_RESPAWN"] + (12 * 60) > GetGameTimestamp()) return true;
 	}
 	return false;
 }
@@ -77,7 +77,7 @@ public function taivrasPalaceSquareBonus():Boolean
 	author("Savin");
 	//Officially become King Nyrea!
 	//if(!pc.hasPerk("Nyrean Royal") && flags["KING_NYREA"] == 1) 
-	if(!pc.hasPerk("Nyrean Royal") && flags["KING_NYREA"] == 1 && flags["BEAT_TAIVRA_TIMESTAMP"] + (60 * 12) <= GetGameTimestamp())
+	if(!pc.hasPerk("Nyrean Royal") && flags["KING_NYREA"] == 1 && flags["BEAT_TAIVRA_TIMESTAMP"] + (12 * 60) <= GetGameTimestamp())
 	{
 		nyreaKingReturnGreeting();
 		return true;
@@ -91,7 +91,7 @@ public function taivrasPalaceSquareBonus():Boolean
 	else
 	{
 		//Gate sealed for defeating Taivra
-		if(flags["BEAT_TAIVRA_TIMESTAMP"] != undefined && flags["BEAT_TAIVRA_TIMESTAMP"] + 60 * 12 <= GetGameTimestamp())
+		if(flags["BEAT_TAIVRA_TIMESTAMP"] != undefined && flags["BEAT_TAIVRA_TIMESTAMP"] + (12 * 60) <= GetGameTimestamp())
 		{
 			output("\n\nThe gates are sealed, and nobody is standing outside. There doesn’t seem to be any way you can get the gate open without a lot of help...");
 		}
@@ -106,7 +106,7 @@ public function taivrasPalaceSquareBonus():Boolean
 		else
 		{
 			//within 12 hours:
-			if(flags["PRAETORIAN_RESPAWN"] != undefined && flags["PRAETORIAN_RESPAWN"] + 60*12 > GetGameTimestamp()) output("\n\nA squad of armed and armored nyrean huntresses are scattered around the ground, recovering from the ass-kicking you gave them earlier. When they see you standing around, they either get small or play dead in a hurry.");
+			if(flags["PRAETORIAN_RESPAWN"] != undefined && flags["PRAETORIAN_RESPAWN"] + (12 * 60) > GetGameTimestamp()) output("\n\nA squad of armed and armored nyrean huntresses are scattered around the ground, recovering from the ass-kicking you gave them earlier. When they see you standing around, they either get small or play dead in a hurry.");
 			//13+ hours, PC hasn’t finished dungeon OR PC got rekt by the Praetorian last time:
 			else
 			{
@@ -490,7 +490,7 @@ public function taivrasGateInteriorBonus():Boolean
 	else output(" The place has been cleared out, thanks to your forceful entrance.");
 	//SPOILS! Happens on entering the interior gate room
 	//Not a menu-producing event. Append to description?
-	if(pc.hasPerk("Nyrean Royal") && (flags["NYREAN_SPOILS"] == undefined || flags["NYREAN_SPOILS"] + 60*24*7 < GetGameTimestamp()))
+	if(pc.hasPerk("Nyrean Royal") && (flags["NYREAN_SPOILS"] == undefined || flags["NYREAN_SPOILS"] + (7 * 24 * 60) < GetGameTimestamp()))
 	{
 		getRoyalSpoils();
 		return true;
@@ -526,7 +526,7 @@ public function queensFountainBonusShit():Boolean
 
 public function queensguardAtFountain():Boolean
 {
-	if(pc.hasPerk("Nyrean Royal") && (flags["QUEENSGUARD_STAB_TIME"] != undefined && flags["QUEENSGUARD_STAB_TIME"] + 12*60 < GetGameTimestamp())) return true;
+	if(pc.hasPerk("Nyrean Royal") && flags["QUEENSGUARD_STAB_TIME"] != undefined && flags["QUEENSGUARD_STAB_TIME"] + (12 * 60) < GetGameTimestamp()) return true;
 	return false;
 }
 
@@ -665,21 +665,20 @@ public function taivrasThroneBonusFunc():Boolean
 		return true;
 	}
 	//PC executed Taivra:
-	else if(flags["KILLED_TAIVRA"] == 1)
+	else if(flags["KILLED_TAIVRA"] != undefined)
 	{
 		output("Queensguard, despite her wounds, is kneeling over the body of her queen and weeping quietly. As you demanded, she’s gathered the remnants of her soldiers - those who haven’t deserted into the caves - and ordered them to dismantle the queen’s throne from around your father’s probe, ready to deliver the probe outside for a Steele Tech team.");
 	}
 	//PC is KingNyrea vis Peace:
 	//First 12 hours after fight:
-	else if(flags["KING_NYREA"] != undefined && flags["BEAT_TAIVRA_TIMESTAMP"] == undefined && flags["QUEENSGUARD_STAB_TIME"] != undefined && flags["QUEENSGUARD_STAB_TIME"] + 12*60 > GetGameTimestamp())
+	else if(flags["KING_NYREA"] != undefined && flags["BEAT_TAIVRA_TIMESTAMP"] == undefined && flags["QUEENSGUARD_STAB_TIME"] != undefined && flags["QUEENSGUARD_STAB_TIME"] + (12 * 60) > GetGameTimestamp())
 	{
 		output("Your newly-minted mate is sitting on the edge of her throne's dias, tending to the wounds her bodyguard suffered at Dane's hands. Taivra looks at you with something between fear and admiration, and she keeps her hands well clear of her weapons. Your father's probe remains where it was, acting as your wife's throne. It flashes occasionally, reacting to your presence.");
 	}
 	//PC spared Taivra:
 	else if(flags["KING_NYREA"] == undefined)
 	{
-		output("Queen Taivra is sitting on the edge of her throne’s dais, tending to the wounds her bodyguard suffered at ");
-		output("Dane’s hands.");
+		output("Queen Taivra is sitting on the edge of her throne’s dais, tending to the wounds her bodyguard suffered at Dane’s hands.");
 		if(flags["BEAT_TAIVRA_TIMESTAMP"] != undefined) output(" As you demanded, some of her warriors are dismantling her probe-throne, getting ready to dump it out into the village.");
 		output(" The queen glowers at you, not in hatred, but in what you would almost call admiration. Clearly your ability to best her has made an impression on the nyrean queen.");
 	}
@@ -687,10 +686,9 @@ public function taivrasThroneBonusFunc():Boolean
 	else
 	{
 		//First 12 hours after a bitch got shanked
-		if(flags["QUEENSGUARD_STAB_TIME"] != undefined && flags["QUEENSGUARD_STAB_TIME"] + 12*60 > GetGameTimestamp())
+		if(flags["QUEENSGUARD_STAB_TIME"] != undefined && flags["QUEENSGUARD_STAB_TIME"] + (12 * 60) > GetGameTimestamp())
 		{
-			output("Your newly-minted mate is sitting on the edge of her throne’s dais, tending to the wounds her bodyguard suffered at ");
-			output("Dane’s hands.");
+			output("Your newly-minted mate is sitting on the edge of her throne’s dais, tending to the wounds her bodyguard suffered at Dane’s hands.");
 			if(flags["BEAT_TAIVRA_TIMESTAMP"] != undefined) output(" As you demanded, some of her warriors are dismantling her probe-throne, getting ready to dump it out into the village.");
 			output(" Taivra looks at you with something between fear and admiration, and she keeps her hands well clear of her weapons.");
 		}
@@ -2593,7 +2591,7 @@ public function subjugateQueenTaivra():void
 	flags["KING_NYREA"] = 1;
 	flags["BEAT_TAIVRA_TIMESTAMP"] = GetGameTimestamp();
 	//Should make queen nyreabuns ready to go immediately
-	flags["QUEENSGUARD_STAB_TIME"] = GetGameTimestamp() - (60*13);
+	flags["QUEENSGUARD_STAB_TIME"] = GetGameTimestamp() - (60 * 13);
 	genericVictory();
 }
 
@@ -2834,7 +2832,7 @@ public function leaderShipDeadTaivraConvo():void
 	clearOutput();
 	showSeifyn();
 	author("Savin");
-	if(flags["KILLED_TAIVRA"] == 1)
+	if(flags["KILLED_TAIVRA"] != undefined)
 	{
 		output("<i>“So, who’s in charge these days?”</i> you ask, glancing at the ground of armed huntresses near the middle of the small village.");
 		output("\n\nSeifyn sighs heavily, wrapping her arms around herself. <i>“Taivra’s eldest daughter. She’s the heir, after all... but she’s locked herself in the palace, surrounded by her elite guard. Barely comes out now, except to send soldiers to take mates or bring in food.”</i>");
@@ -2852,7 +2850,7 @@ public function leaderShipDeadTaivraConvo():void
 		else output("admit that it was, yes.");
 		output(" Siefyn nods slowly. <i>“Well, she’s locked herself in her palace now. Says she doesn’t want anything else to do with off-worlders. I can see why, but... we need the trade. I don’t want to be the one with sticks and stones when the myr have magic guns from space.”</i>");
 
-		output("\n\n<i>“So Taivra doesn’t want you trading us now?”</i>");
+		output("\n\n<i>“So Taivra doesn’t want you trading with us now?”</i>");
 
 		output("\n\n<i>“No, but...”</i> Siefyn chuckles, flicking back a stray lock of hair. <i>“You’re way too valuable to turn away.”</i>");
 
@@ -3179,7 +3177,7 @@ public function taivraFertilize():void
 public function taivraHasFertileEggs():Boolean
 {
 	//Did PC fertilize her?
-	if(flags["TAIVRA_FERTILE"] + 24*60 > GetGameTimestamp()) return true;
+	if(flags["TAIVRA_FERTILE"] + (24 * 60) > GetGameTimestamp()) return true;
 	//Otherwise fertile 1/4 hours.
 	else if(hours % 4 == 0) return true;
 	return false;
