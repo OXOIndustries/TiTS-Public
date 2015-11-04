@@ -562,9 +562,9 @@ public function inessaBuyGo():void
 	shopkeep = chars["INESSA"];
 	shopkeep.keeperBuy = "You tell Inessa that you’d like to buy something. She beams and brings up a holographic stock guide.\n\n<i>“Sure! What would you like - clothes, sex gear, something else..?”</i>";
 	//Have biowhip if gotten to Myrellion.
-	if(flags["PLANET_3_UNLOCKED"] != undefined && !chars["INESSA"].hasItem(new BioWhip()))
+	if(flags["PLANET_3_UNLOCKED"] != undefined)
 	{
-		chars["INESSA"].inventory.push(new BioWhip());
+		if(!chars["INESSA"].hasItem(new BioWhip())) chars["INESSA"].inventory.push(new BioWhip());
 	}
 	//Else no whip
 	else chars["INESSA"].destroyItem(new BioWhip());
