@@ -57,7 +57,7 @@ public function puntToShip():Boolean
   	showName("SHIP\nINTERIOR");
 	processTime(1);
 	clearMenu();
-	addButton(4,"Back",mainGameMenu);
+	addButton(14,"Back",mainGameMenu);
 	return true;
 }
 public function xenogenOutsideBlurb():Boolean
