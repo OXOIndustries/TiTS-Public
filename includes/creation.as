@@ -180,6 +180,7 @@ public function chooseStartingRace(race:String = "human"):void {
 	//Half-leithan Starting Goods
 	else if(pc.originalRace == "half-leithan") {
 		pc.legCount = 6;
+		pc.genitalSpot = 2;
 		//Clawed lizardfeet
 		pc.legType = GLOBAL.TYPE_LIZAN;
 		pc.addLegFlag(GLOBAL.FLAG_DIGITIGRADE);
@@ -199,9 +200,8 @@ public function chooseStartingRace(race:String = "human"):void {
 		pc.addTailFlag(GLOBAL.FLAG_SCALED);
 		pc.addTailFlag(GLOBAL.FLAG_PREHENSILE);
 		pc.skinType = GLOBAL.SKIN_TYPE_SCALES;
-		pc.genitalSpot = 2;
-		CodexManager.unlockEntry("Leithan");
 		pc.scaleColor = "black";
+		CodexManager.unlockEntry("Leithan");
 		this.addButton(0,"Male",setStartingSex,1);
 		this.addButton(1,"Female",setStartingSex,3);
 	}
