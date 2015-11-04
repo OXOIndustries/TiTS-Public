@@ -44,10 +44,15 @@ public function annoNotCrew():Boolean
 	return false;
 }
 
-public function annoFollowerHeader():void
+public function annoFollowerHeader(nude:Boolean = false):void
 {
 	author("Savin");
-	showBust("ANNO");
+	// Naked Anno
+	if(nude) showBust("ANNO_NUDE");
+	// Blouse Anno
+	else if (anno.armor is AnnosBlouse) showBust("ANNO");
+	// Catsuit Anno
+	else showBust("ANNO");
 	showName("\nANNO");
 }
 
@@ -1031,8 +1036,7 @@ public function annoFollowerSexMenu():void
 public function annoFollowerTailjobSex():void
 {
 	clearOutput();
-	annoFollowerHeader();
-	showBust("ANNO_NUDE");
+	annoFollowerHeader(true);
 
 	output("You pull the snowy-haired ausar close, your hands running up her slender arms and waist, and enjoy the feeling of her big, soft, hot breasts pressing against your own [pc.chest] and straining against the sheer fabric of her");
 	if (anno.armor is AnnosCatsuit) output(" catsuit");
@@ -1106,8 +1110,7 @@ public function annoFollowerTailjobSex():void
 public function annoFollowerSuckAndFuckSex():void
 {
 	clearOutput();
-	annoFollowerHeader();
-	showBust("ANNO_NUDE");
+	annoFollowerHeader(true);
 
 	var selCock:int = pc.cockThatFits(anno.vaginalCapacity());
 	
@@ -1195,8 +1198,7 @@ public function annoFollowerSuckAndFuckSex():void
 public function annoFollowerSuckAndFuckSexPartII():void
 {
 	clearOutput();
-	annoFollowerHeader();
-	showBust("ANNO_NUDE");
+	annoFollowerHeader(true);
 	
 	var selCock:int = pc.cockThatFits(anno.vaginalCapacity());
 	if(selCock < 0) selCock = pc.smallestCockIndex();
@@ -1272,8 +1274,7 @@ public function annoFollowerSuckAndFuckSexPartII():void
 public function annoFollowerAnalSex():void
 {
 	clearOutput();
-	annoFollowerHeader();
-	showBust("ANNO_NUDE");
+	annoFollowerHeader(true);
 
 	var selCock:int = pc.cockThatFits(anno.analCapacity());
 	if(selCock < 0) selCock = pc.smallestCockIndex();
@@ -1377,8 +1378,7 @@ public function annoFollowerAnalSex():void
 public function annoFollowerAnalSexCum(selCock:int):void
 {
 	clearOutput();
-	annoFollowerHeader();
-	showBust("ANNO_NUDE");
+	annoFollowerHeader(true);
 	
 	output("No reason to hold back the inevitable. You give Anno one last slap on the ass and slam yourself deep inside, just in time to get the full effect of her muscles going wild around your cock, milking you for all you’re worth. You don’t try to resist your body’s urges as Anno works you, instead reveling in the tightness of her quivering passage, savoring the warmth and wetness and exhilarating in the feeling of your cum rushing up through your [pc.cock " + selCock + "], hurtling into the dark embrace of Anno’s bowels. Your whole body lurches forward when the first orgasmic wave of bliss hits you, nearly throwing you over as your own excitement is left to run rampant. ");
 	
@@ -1408,8 +1408,7 @@ public function annoFollowerAnalSexCum(selCock:int):void
 public function annoFollowerAnalSexAnnoOnTop(selCock:int):void
 {
 	clearOutput();
-	annoFollowerHeader();
-	showBust("ANNO_NUDE");
+	annoFollowerHeader(true);
 
 	output("Time for a change of pace. Between hilt-deep thrusts into your ausar lover’s spasming ass, you catch her attention with a gentle hair-pull and whisper into one of her towering canid ears, <i>“What do you think about getting on top for a bit?”</i>");
 	
@@ -1452,8 +1451,7 @@ public function annoFollowerAnalSexAnnoOnTop(selCock:int):void
 public function annoFollowerEatDatDogslootOut():void
 {
 	clearOutput();
-	annoFollowerHeader();
-	showBust("ANNO_NUDE");
+	annoFollowerHeader(true);
 
 	output("<i>“What do you say about helping me relieve some tension?”</i> Anno coos, slowly stepping around you, slipping behind your back. You give a slight shudder of excitement, feeling her ample chest tight against your back, stiff nipples poking through her");
 	if (anno.armor is AnnosCatsuit) output(" sheer uniform");
@@ -1552,8 +1550,7 @@ public function annoFollowerEatDatDogslootOut():void
 public function annoFollowerSixtyNineSex():void
 {
 	clearOutput();
-	annoFollowerMenu();
-	showBust("ANNO_NUDE");
+	annoFollowerHeader(true);
 
 	output("With one sure motion, you pull Anno down into the bed, hands slowly moving down from her perky wolf-ears and starting to work at her shoulders and the base of her neck, massaging the taut skin underneath her");
 	if (anno.armor is AnnosCatsuit) output(" slick catsuit of a uniform");
@@ -1646,8 +1643,7 @@ public function annoFollowerSixtyNineSex():void
 public function annoFollowerShowerSex():void
 {
 	clearOutput();
-	annoFollowerHeader();
-	showBust("ANNO_NUDE");
+	annoFollowerHeader(true);
 
 	output("<i>“You know, I was just going to hit the shower, boss,”</i> Anno says, slowly");
 	if (anno.armor is AnnosCatsuit) output(" drawing the zipper on her catsuit down");
@@ -1952,7 +1948,8 @@ public function annoFollowerGoozookaTesting():void
 public function annoFollowerFirstTimeOnMhenga():void
 {
 	clearOutput();
-	annoFollowerHeader();
+	//annoFollowerHeader();
+	showName("\nANNO");
 	showBust("ANNO", "SYRI");
 
 	output("As you dock at Mhen’ga, you feel a pair of familiar, fluffy arms wrap around your neck and shoulders as a big pair of");
@@ -2013,7 +2010,9 @@ public function annoFollowerFirstTimeOnMhenga():void
 public function annoFollowerFirstTimeOnMhengaPartII():void
 {
 	clearOutput();
-	annoFollowerHeader();
+	//annoFollowerHeader();
+	showName("ANNO &\nSYRI");
+	showBust("ANNO", "SYRI");
 
 	output("<i>“Hey! Over here!”</i> you hear, just as soon as you and Anno walk into <i>“Burt’s Badass Meadhall.”</i> Syri’s sitting at the bar next to two empty stools and three beers, a great big grin on her face. ");
 	
@@ -2028,6 +2027,8 @@ public function annoFollowerFirstTimeOnMhengaPartII():void
 		output("\n\nShe turns to you with a wolfish grin that shows off her pointed teeth. <i>“So you’re the one who pulled my sister off that rust bucket on Tarkus, huh? Name’s Syri,”</i> she says, giving you a vigorous handshake.");
 	
 		output("\n\n<i>“Steele. [pc.name] Steele,”</i> you answer, returning it before she ushers you and Anno into the empty seats.");
+		
+		flags["MET_SYRI"] = 1;
 	}
 	
 	output("\n\n<i>“God damn, it’s been ages,”</i> Syri says after a long swig of her beer. <i>“How’ve you been, Anno?”</i>");
@@ -2082,7 +2083,7 @@ public function annoFollowerAppearance():void
 {
 	clearOutput();
 	annoFollowerHeader();
-
+	
 	output("Anno Dorna is a six-foot-tall ausar girl with long, snow-white hair and a pair of huge, perky wolf ears perched atop her head. Though she is distinctly humanoid in face and form, the silky fur on her arms and legs, along with the swishing, bushy tail, give her a playfully alien appearance, more like a perky little puppy than a fearsome predator. She’s wearing");
 	if (anno.armor is AnnosCatsuit) output(" the distinctive Steele Tech field uniform: an ultra-sheer black and yellow catsuit that hugs her frame and accentuates her curves in all the right places, supporting her ample bust so that it looks almost impossibly perky for its size.");
 	else output(" a civilian outfit, relatively simple compared to her usual slick catsuit: she’s got a pair of jeans, a button-up blouse, and a pair of tall work boots on. She’s not wearing a bra that you can see, which means you can get a nice look at her ample titflesh through the sheet fabric of her shirt.");
@@ -2091,9 +2092,13 @@ public function annoFollowerAppearance():void
 	else output(" tight, curve-hugging outfit she’s wearing");
 	output(", you can see the full expanse of her fleshy body: a big, bouncy butt only barely hidden by her tail, a sizable rack, and a pair of long, toned legs. ");
 	
-	output("\n\nAnno has a pair of full DD-cup breasts, big and bouncy and oh so soft, each tipped with a big, sensitive nipple that’s perfect to tug and squeeze.");
-	
-	output("\n\nBetween her legs, Anno has a tight little pussy. Naturally stretchier and so much wetter than a human’s, her sex is perfect for taking thick knots and great big cocks with ease. It’s topped with a trimmed landing strip of downy white fuzz. Opposite that, she has a nice, inviting little asshole between her firm cheeks, right where it belongs.");
+	if(annoSexed() > 0)
+	{
+		//annoFollowerHeader(true);
+		output("\n\nAnno has a pair of full DD-cup breasts, big and bouncy and oh so soft, each tipped with a big, sensitive nipple that’s perfect to tug and squeeze.");
+		output("\n\nBetween her legs, Anno has a tight little pussy. Naturally stretchier and so much wetter than a human’s, her sex is perfect for taking thick knots and great big cocks with ease. It’s topped with a trimmed landing strip of downy white fuzz. Opposite that, she has a nice, inviting little asshole between her firm cheeks, right where it belongs.");
+	}
+	//else annoFollowerHeader();
 
 	addDisabledButton(10, "Appearance");
 }
@@ -2161,8 +2166,7 @@ public function fuckAnnoWithScienceYoFukkinLadyBoi():void
 {
 	clearOutput();
 	author("Savin");
-	showName("\nANNO");
-	showBust("ANNO");
+	annoFollowerHeader(true);
 	//if PC is wearing any kind of clothes/armor over the strap:
 	if(pc.armor.shortName != "")
 	{
@@ -2375,8 +2379,7 @@ public function annoPegsYouWivStraponsPtII(annoDickType:int = 0):void
 {
 	clearOutput();
 	author("Savin");
-	showName("\nANNO");
-	showBust("ANNO");
+	annoFollowerHeader(true);
 	output("<i>“I knew it,”</i> Anno teases, flicking the power on her panties. The tiny projectors on her panties flicker to life, and a radiant yellow shaft begins to grow from her groin. The light coalesces into a ");
 
 	if(annoDickType == 0) output("thick, footlong human cock");
@@ -2491,8 +2494,7 @@ public function annoStraponMods():void
 {
 	clearOutput();
 	author("Savin");
-	showName("\nANNO");
-	showBust("ANNO");
+	annoFollowerHeader();
 	output("<i>“Oh, hey, check this out,”</i> Anno says, waving you over to her work bench. Amid a clutter of broken-down guns, tools, and electrical equipment sits, of all things, the pair of lacy orange panties she bought from <i>Mi Amour</i>. <i>“Remember these?”</i> ");
 	output("\n\nYou nod, and your lover continues. <i>“Well, I’ve been tweaking ‘em a little. I mean, a hardlight cock is cool and all, but we can do better than that, right? I totally voided the warranty on these, but check it out!”</i>");
 	output("\n\nAnno picks her panties up and slips them on over her [anno.lowerGarment]. After a moment of adjusting, she keys the little button hidden on her hip, and the hardlight projectors spring to life. Rather than the hefty human cock that Aliss showed off at the shop, Anno’s crotch erupts into a gargantuan equine cock, thicker around than her arm and near as long as her leg. The over-sized horsecock throbs and flops down under its own imagined weight, hanging menacingly between Anno’s legs.");
@@ -2525,7 +2527,7 @@ Anno plops down on the side of her bed, arms spread back to support her... which
 public function annosTriberatorGatorMatorHater():void
 {
 	clearOutput();
-	showAnno();
+	annoFollowerHeader(true);
 	author("JimThermic");
 	//First Time:
 	if(flags["ANNO_TRIBERATOR_USED"] == undefined)
