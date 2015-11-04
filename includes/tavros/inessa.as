@@ -1687,8 +1687,8 @@ public function gravCuffsCowgirlBangu():void
 	IncrementFlag("TEXAS_GRAVCUFFS_COWORGY");
 	
 	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
-	pc.loadInMouth(pp);
-	pc.loadInMouth(pp);
+	pc.girlCumInMouth(pp);
+	pc.girlCumInMouth(pp);
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
