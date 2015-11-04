@@ -1654,7 +1654,7 @@ public function gravCuffsCowgirlBangu():void
 	output("\n\n<i>“It’s so delicious! But I’d rather have it inside, you know?”</i> One of the curvy cow-girls giggles, lifting her butt over your still twitching prick");
 	if(pc.cockTotal() > 1) output("s");
 	output(". ");
-	if(pc.cockTotal() > 1 && biggestCockIndex() != smallestCockIndex()) output("After picking out the largest one, she");
+	if(pc.cockTotal() > 1 && pc.biggestCockIndex() != pc.smallestCockIndex()) output("After picking out the largest one, she");
 	else output("She then");
 	output(" lowers herself onto ");
 	if(pc.cockTotal() > 1) output("one of them");
