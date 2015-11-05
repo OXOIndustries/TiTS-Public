@@ -1651,31 +1651,37 @@ public function zDomCeliseGo():void
 	//cock/tailcock fork
 	else
 	{
+		var cockSum:Number = 0;
+		if(pc.hasCock()) cockSum += pc.cockTotal();
+		if(pc.hasTailCock()) cockSum += pc.tailCount;
+		
 		output("\n\nThe ravenous look in Celise’s eye is as good as a guarantee that unless you take control of the fuck, she’ll roll over you like a runaway glazed doughnut, leaving you sticky everywhere but ultimately unfulfilled. ");
 		if(pc.biggestCockLength() > 60) output("She practically oozes her way up your [pc.cockBiggest], stretching her body to match your enormous meat and stopping when the tip is just under her breasts. Her stomach ripples and parts around the gargantuan tool, engulfing it in her hot, gooey flesh.");
 		else 
 		{
 			output("Her stomach ripples around your ");
-			if(!pc.hasCock() && pc.hasTailCock()) output("mutant tail, half-coaxing and half-sucking its secret out");
+			if(pc.hasCock() && pc.hasTailCock()) output("mutant tail and [pc.cocks], half-coaxing and half-sucking their secret out");
+			else if(!pc.hasCock() && pc.hasTailCock()) output("mutant tail, half-coaxing and half-sucking its secret out");
 			else output("[pc.cocks]");
 			output(", drawing the hot shaft");
-			if(pc.cockTotal() > 1) output("s");
+			if(cockSum > 1) output("s");
 			output(" right through her body wall.");
 		}
 		output(" She pauses with ");
-		if(pc.cockTotal() > 1 && pc.biggestCockLength() < 60) output("one");
+		if(cockSum > 1 && pc.biggestCockLength() < 60) output("one");
 		else output("the");
 		output(" crown exposed and, when you look up at her, gives you a sly wink and uses her fingertips to push your tool the rest of the way through her hot, velvety skin. You groan as the sides of the opening lick at your too-aroused cockhead.");
 		if(pc.cumColor() != "green") output(" A small string of [pc.cumColor] precum floats suspended in Celise’s green stomach, marking the point of entry.");
 
 		output("\n\n“<i>The package is secured,”</i> she giggles, pleased with herself. Your horny galotian begins to gyrate around your shaft, swirling her fluid hips. This is it: take control now, before she builds up momentum. You buck fiercely, startling Celise. She stops rolling her gooey ass over your crotch, and you seize the moment by thrusting powerfully upward into her. Her head rolls back as ");
 		var x:int = pc.biggestCockIndex();
-		if(pc.cocks[x].cLength() > 40) output("40 inches");
-		else output(num2Text(Math.floor(pc.cocks[x].cLength())) + " inches");
+		if(pc.hasCock() && pc.cocks[x].cLength() > 40) output("40 inches");
+		else if(pc.hasCock()) output(num2Text(Math.floor(pc.cocks[x].cLength())) + " inches");
+		else output(" inches");
 		output(" of dick slide deeply into her, touching parts of her yet unstimulated.");
 
 		//hyper fork - for biggest dicks longer than 40in - assign biggest cock to x
-		if(pc.cocks[x].cLength() > 40)
+		if(pc.hasCock() && pc.cocks[x].cLength() > 40)
 		{
 			output("\n\nWith her already stretching herself just to fit your [pc.cockBiggest], every new thrust deforms Celise’s body further, until she resembles a slimy cast of ");
 			var doubleGigantoDick:int = -1;
@@ -1708,10 +1714,10 @@ public function zDomCeliseGo():void
 		{
 			output("\n\n“<i>Ohhh...”</i> she sighs. “<i>I love it when you push deep inside.”</i>");
 			output("\n\nNot relenting, you squeeze her tightly and thrust again and again, with the aim of going even deeper. The force of your crotch impacting hers actually staggers Celise, and her usually-shapely ass actually begins to splay and lose cohesion as your ");
-			if(pc.cockTotal() < 2) output("dick literally parts");
+			if(cockSum < 2) output("dick literally parts");
 			else output("dicks literally part");
 			output(" her fluid form in a quest to touch the deepest reaches of her sex.");
-			pc.cockChange();
+			if(pc.hasCock()) pc.cockChange();
 			output("\n\nCelise flops forwards, ");
 			if(pc.biggestTitSize() < 1) output("barely able to hold herself upright through your savage strokes by pressing against your [pc.chest]");
 			else output("smooshing your tits as she tries to hold herself upright through your savage strokes");
