@@ -8,6 +8,7 @@
 	import classes.Items.Melee.MilitaryPick;
 	import classes.Items.Armor.ChitinArmor;
 	import classes.Items.Armor.NyreanChain;
+	import classes.Items.Accessories.MuskRepel;
 	import classes.kGAMECLASS;
 	import classes.rand;
 	
@@ -28,6 +29,7 @@
 			this.inventory.push(new NyreanChain());
 			this.inventory.push(new CrystalShard());
 			this.inventory.push(new FungalExtract());
+			this.inventory.push(new MuskRepel());
 			//this.inventory.push(new ());
 			this.typesBought[this.typesBought.length] = GLOBAL.ARMOR;
 			this.typesBought[this.typesBought.length] = GLOBAL.MELEE_WEAPON;
