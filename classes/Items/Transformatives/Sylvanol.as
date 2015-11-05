@@ -663,10 +663,16 @@
 			kGAMECLASS.author("Couch");
 			//Consumption Text
 			output("You apply the medipen to the base of your neck, as instructed, and feel the Sylvanol’s payload get to work.");
+			
 			//Get elf ears:
-			if((pc.hasLongEars() && rand(2) == 0) || pc.earType != GLOBAL.TYPE_SYLVAN)
+			if(pc.earType != GLOBAL.TYPE_SYLVAN)
 			{
-				sylvanolEarTF(pc);
+				// Maybe lengthen long, non-elf-like eartypes
+				if(pc.hasLongEars() && rand(2) == 0)
+				{
+					sylvanolEarGrow(pc);
+				}
+				else sylvanolEarTF(pc);
 			}
 			//Grow ears
 			else if(pc.earLength < 12)
