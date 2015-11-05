@@ -58,15 +58,24 @@ public function upperBodyAlice():void
 	/Undershirt
 	/Shibari Top*/
 	clearMenu();
-	addButton(0, "Plain Bra", plainBraOptions);
-	addButton(1, "Lacy Bra", lacyBraAliss);
-	addButton(2, "Sports Bra", sportsSwimBraAliss);
-	addButton(3, "Corset", tellMeAboutYerCorsetAlice);
-	addButton(4, "U.Corset", underbustCorsetOptionsAliss);
-	addButton(5, "Babydoll", babydollsAtAliss);
-	addButton(6, "Pasties", pastiesAndAliss);
-	addButton(7, "Undershirt", undershirtWithAliss);
-	addButton(8, "ShibariTop", shibariTopForAliss);
+	//addButton(0, "Plain Bra", plainBraOptions);
+	addOverrideItemButton(0, new PlainBra(), "Plain Bra", plainBraOptions);
+	//addButton(1, "Lacy Bra", lacyBraAliss);
+	addOverrideItemButton(1, new LacyBra(), "Lacy Bra", lacyBraAliss);
+	//addButton(2, "Sports Bra", sportsSwimBraAliss);
+	addOverrideItemButton(2, new SportsBra(), "Sports Bra", sportsSwimBraAliss);
+	//addButton(3, "Corset", tellMeAboutYerCorsetAlice);
+	addOverrideItemButton(3, new Corset(), "Corset", tellMeAboutYerCorsetAlice);
+	//addButton(4, "U.Corset", underbustCorsetOptionsAliss);
+	addOverrideItemButton(4, new UnderbustCorset(), "U.Corset", underbustCorsetOptionsAliss);
+	//addButton(5, "Babydoll", babydollsAtAliss);
+	addOverrideItemButton(5, new Babydoll(), "Babydoll", babydollsAtAliss);
+	//addButton(6, "Pasties", pastiesAndAliss);
+	addOverrideItemButton(6, new Pasties(), "Pasties", pastiesAndAliss);
+	//addButton(7, "Undershirt", undershirtWithAliss);
+	addOverrideItemButton(7, new Undershirt(), "Undershirt", undershirtWithAliss);
+	//addButton(8, "ShibariTop", shibariTopForAliss);
+	addOverrideItemButton(8, new ShibariTop(), "ShibariTop", shibariTopForAliss);
 	addButton(14,"Back",mainGameMenu);
 }
 
@@ -483,12 +492,18 @@ public function lowerBodyAlice():void
 	/Shibari Bottom
 	*/
 	clearMenu();
-	addButton(0, "Plain Panties", alissPlainPantiesForNerds);
-	addButton(1, "Thong", thongWithAliss);
-	addButton(2, "Boyshorts", boyShortsWithAliss);
-	addButton(3, "Boxers", boxersWithAliss);
-	addButton(4, "Stockings Set", stockingSetWithAliss);
-	addButton(5, "Shibari Bottom", shibariBottomAliss);
+	//addButton(0, "Plain Panties", alissPlainPantiesForNerds);
+	addOverrideItemButton(0, new PlainPanties(), "Panties", alissPlainPantiesForNerds);
+	//addButton(1, "Thong", thongWithAliss);
+	addOverrideItemButton(1, new Thong(), "Thong", thongWithAliss);
+	//addButton(2, "Boyshorts", boyShortsWithAliss);
+	addOverrideItemButton(2, new Boyshorts(), "Boyshorts", boyShortsWithAliss);
+	//addButton(3, "Boxers", boxersWithAliss);
+	addOverrideItemButton(3, new Boxers(), "Boxers", boxersWithAliss);
+	//addButton(4, "Stockings Set", stockingSetWithAliss);
+	addOverrideItemButton(4, new Stockings(), "Stockings", stockingSetWithAliss);
+	//addButton(5, "Shibari Bottom", shibariBottomAliss);
+	addOverrideItemButton(5, new ShibariBottom(), "Shib. Bottom", shibariBottomAliss);
 	
 	addButton(14,"Back",mainGameMenu);
 }

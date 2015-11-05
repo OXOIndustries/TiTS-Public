@@ -94,6 +94,7 @@ public function taivrasPalaceSquareBonus():Boolean
 		if(flags["BEAT_TAIVRA_TIMESTAMP"] != undefined && flags["BEAT_TAIVRA_TIMESTAMP"] + (12 * 60) <= GetGameTimestamp())
 		{
 			output("\n\nThe gates are sealed, and nobody is standing outside. There doesn’t seem to be any way you can get the gate open without a lot of help...");
+			if(flags["KING_NYREA"] == 1) output("\n\n<b>Perhaps you should wait a day or so for the new power structure to sort itself out before returning.</b>");
 		}
 		//if Praetorian fight not won:
 		else if(flags["FOUGHT_PRAETORIANS"] == undefined)
@@ -673,7 +674,7 @@ public function taivrasThroneBonusFunc():Boolean
 	//First 12 hours after fight:
 	else if(flags["KING_NYREA"] != undefined && flags["BEAT_TAIVRA_TIMESTAMP"] == undefined && flags["QUEENSGUARD_STAB_TIME"] != undefined && flags["QUEENSGUARD_STAB_TIME"] + (12 * 60) > GetGameTimestamp())
 	{
-		output("Your newly-minted mate is sitting on the edge of her throne's dias, tending to the wounds her bodyguard suffered at Dane's hands. Taivra looks at you with something between fear and admiration, and she keeps her hands well clear of her weapons. Your father's probe remains where it was, acting as your wife's throne. It flashes occasionally, reacting to your presence.");
+		output("Your newly-minted mate is sitting on the edge of her throne's dias, tending to the wounds her bodyguard suffered at Dane's hands. Taivra looks at you with something between fear and admiration, and she keeps her hands well clear of her weapons. Your father's probe remains where it was, acting as your wife's throne. It flashes occasionally, reacting to your presence.\n\n<b>You should come back in a day or so if you'd like to interact her. Hopefully someone will remember to tell the gate guards about you. It'd suck to have to fight them again on the way out - but it might happen.</b>");
 	}
 	//PC spared Taivra:
 	else if(flags["KING_NYREA"] == undefined)
