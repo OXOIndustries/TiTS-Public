@@ -11007,7 +11007,7 @@ public function bessGetBlowjob():void
 		output(" slides [bess.hisHer] lips around your [pc.cock " + cockIdx +"], enveloping it in [bess.hisHer] moist warmth. You can feel your [pc.cockHead " + cockIdx +"] travelling across [bess.hisHer] silky tongue and back into [bess.hisHer] gullet. Soon [bess.heShe]’s applying artful suction to your slickened spire, [bess.hisHer] silvery cheeks caving inward.");
 	}
 
-	pc.cockChange(true);
+	//pc.cockChange(true);
 
 	output("\n\nYou groan as [bess.heShe] demonstrates [bess.hisHer] utter lack of a gag reflex. You can feel your flexing tip sliding back and forth, in and out of [bess.hisHer] throat, squeezing and teasing your [pc.cockHead "+ cockIdx +"]. The mechanical "+ bess.mf("man", "girl") +"’s face truly was fashioned to be fucked!");
 	
@@ -11537,7 +11537,7 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 			}
 			output(".");
 			
-			output("\n\nOnce you’re fully undressed, [bess.name] lets out an almost predatory noise of pleasure. [bess.HeShe] then runs [bess.hisHer] fingers along your [bess.skinFurScalesNoun], following the paths [bess.hisHer] eyes were wandering. You let out a low moan, relishing in [bess.hisHer] attentions.");
+			//output("\n\nOnce you’re fully undressed, [bess.name] lets out an almost predatory noise of pleasure. [bess.HeShe] then runs [bess.hisHer] fingers along your [bess.skinFurScalesNoun], following the paths [bess.hisHer] eyes were wandering. You let out a low moan, relishing in [bess.hisHer] attentions.");
 		}
 		else
 		{
@@ -11709,6 +11709,9 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 	else output(" [pc.asshole]");
 	output(". You groan as [bess.heShe] presses forward, slowly sinking [bess.himHer]self inside of you, right up to the hilt.");
 	if (bess.balls > 0) output(" As [bess.heShe] bottoms out, you feel [bess.hisHer] [bess.balls] deliciously brushing against your [bess.thighs], and your whole body flushes with excitement.");
+	
+	if (bTargetVag) pc.cuntChange(vagIdx, bess.cockVolume(0));
+	else pc.buttChange(bess.cockVolume(0));
 
 	if (bess.hasVagina() && pc.hasCock() && bess.hasTailCunt())
 	{
@@ -12059,8 +12062,6 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 	}
 
 	processTime(45+rand(15));
-	if (bTargetVag) pc.cuntChange(vagIdx, bess.cockVolume(0), false, false, false); // 9999 shift change calls into the scene itself, and allow output
-	else pc.buttChange(bess.cockVolume(0), false, false, false);
 
 	for (var i:int = 0 ; i < 5; i++)
 	{
