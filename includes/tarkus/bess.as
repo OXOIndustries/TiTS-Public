@@ -1684,7 +1684,8 @@ public function bessTitleList(tarPC:Boolean, sex:Boolean):void
 
 		if (flags["BESS_EVENT_11"] != undefined)
 		{
-			options.push(flags["BESS_CREW_ROLE"]);
+			//options.push(flags["BESS_CREW_ROLE"]);
+			options.push(bessCrewRole());
 		}
 
 		if (flags["BESS_LOVER"] == 1)
@@ -6570,7 +6571,7 @@ public function bessEvent4Nothing():void
 	clearOutput();
 	bessHeader();
 
-	output("You decide to say nothing and just leave [bess.hisHer] be, [bess.heShe] looks pretty happy doing what bess.heShe]’s doing. [bess.HeShe] hums the JoyCo jingle as [bess.heShe] puts a pile of your bedding in the ship’s dryer.");
+	output("You decide to say nothing and just leave [bess.hisHer] be, [bess.heShe] looks pretty happy doing what [bess.heShe]’s doing. [bess.HeShe] hums the JoyCo jingle as [bess.heShe] puts a pile of your bedding in the ship’s dryer.");
 
 	processTime(60+rand(5));
 
