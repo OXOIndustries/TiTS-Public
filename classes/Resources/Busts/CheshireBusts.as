@@ -29,6 +29,7 @@ package classes.Resources.Busts
 		public var Bust_EMBRY_1:Class;
 		[Embed(source = "../../../assets/images/npcs/cheshire/embry_1_nude.png", mimeType = "image/png")]
 		public var Bust_EMBRY_1_NUDE:Class;
+		//No appropriate bust for this. Use size 3 as filler rather than jar with a different style
 		[Embed(source = "../../../assets/images/npcs/cheshire/embry_3_nude.png", mimeType = "image/png")]
 		public var Bust_EMBRY_2_NUDE:Class;
 		[Embed(source = "../../../assets/images/npcs/cheshire/embry_3.png", mimeType = "image/png")]
