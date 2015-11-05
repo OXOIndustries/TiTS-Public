@@ -6,14 +6,17 @@ import classes.GameData.MailManager;
 // Illegal character input check
 public function hasIllegalInput(sText:String = ""):Boolean 
 {
-	if(
-		sText.indexOf("<") != -1 || 
-		sText.indexOf(">") != -1 || 
-		sText.indexOf("[") != -1 || 
-		sText.indexOf("]") != -1 || 
-		sText.indexOf("\n") != -1 || 
-		sText.indexOf("\t") != -1
-		)
+	if
+	(	sText.indexOf("<") != -1
+	||	sText.indexOf(">") != -1
+	||	sText.indexOf("[") != -1
+	||	sText.indexOf("]") != -1
+	||	sText.indexOf("\n") != -1
+	||	sText.indexOf("\r") != -1
+	||	sText.indexOf("\t") != -1
+	||	sText.indexOf("\b") != -1
+	||	sText.indexOf("\f") != -1
+	)
 	{
 		return true;
 	}

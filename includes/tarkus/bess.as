@@ -1684,7 +1684,8 @@ public function bessTitleList(tarPC:Boolean, sex:Boolean):void
 
 		if (flags["BESS_EVENT_11"] != undefined)
 		{
-			options.push(flags["BESS_CREW_ROLE"]);
+			//options.push(flags["BESS_CREW_ROLE"]);
+			options.push(bessCrewRole());
 		}
 
 		if (flags["BESS_LOVER"] == 1)
@@ -1809,6 +1810,8 @@ public function talkToBessAboutRoles():void
 	if (sRole == 0) output(" a role of equal partners.)");
 	else if (sRole == 1) output(" the role of a dominant partner.)")
 	else if (sRole == 2) output(" the role of a submissive partner.)");
+	
+	addButton(14, "Back", bessFunctionsMenu);
 }
 
 public function setBessRole(newRole:int):void
@@ -2134,6 +2137,8 @@ public function talkToBessAboutBoobs():void
 	addButton(1, "Lactation", talkToBessAboutLactation);
 	if (flags["BESS_BOOBCHANGED"] == undefined) addDisabledButton(2, "Nipples");
 	else addButton(2, "Nipples", talkToBessAboutNipples);
+	
+	addButton(14, "Back", bessFunctionsMenu);
 }
 
 public function talkToBessAboutBoobSize():void
@@ -2175,7 +2180,7 @@ public function talkToBessAboutBoobSize():void
 
 	if (options.length < 15)
 	{
-		addButton(14, "Back", bessFunctionsMenu);
+		addButton(14, "Back", talkToBessAboutBoobs);
 	}
 }
 
@@ -2385,7 +2390,7 @@ public function talkToBessAboutNipples():void
 	if (bess.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_INVERTED) addDisabledButton(0, "Inverted");
 	else addButton(4, "Inverted", bessSetNippleType, GLOBAL.NIPPLE_TYPE_INVERTED);
 
-	addButton(14, "Back", bessFunctionsMenu);
+	addButton(14, "Back", talkToBessAboutBoobs);
 }
 
 public function bessSetNippleType(newType:int):void
@@ -2413,12 +2418,14 @@ public function talkToBessAboutLactation():void
 
 	clearMenu();
 
-	if (bess.biggestTitSize() > 0) addButton(0, "Lactate", bessStartLactation);
+	if (!bess.isLactating()) addDisabledButton(0, "Lactate", "Start Lactation", "[bess.name] is already able to lactate.");
+	else if (bess.biggestTitSize() > 0) addButton(0, "Lactate", bessStartLactation);
 	else addDisabledButton(0, "Lactate", "Start Lactation", "[bess.name] first needs at least some breastflesh in order to lactate.");
 
-	addButton(1, "StopLactate", bessStopLactation);
+	if (bess.isLactating()) addDisabledButton(0, "StopLactate", "Stop Lactation", "[bess.name] needs to be lactating in order to stop it.");
+	else addButton(1, "StopLactate", bessStopLactation);
 
-	addButton(14, "Back", bessFunctionsMenu);
+	addButton(14, "Back", talkToBessAboutBoobs);
 }
 
 public function bessStartLactation():void
@@ -6570,7 +6577,7 @@ public function bessEvent4Nothing():void
 	clearOutput();
 	bessHeader();
 
-	output("You decide to say nothing and just leave [bess.hisHer] be, [bess.heShe] looks pretty happy doing what bess.heShe]’s doing. [bess.HeShe] hums the JoyCo jingle as [bess.heShe] puts a pile of your bedding in the ship’s dryer.");
+	output("You decide to say nothing and just leave [bess.hisHer] be, [bess.heShe] looks pretty happy doing what [bess.heShe]’s doing. [bess.HeShe] hums the JoyCo jingle as [bess.heShe] puts a pile of your bedding in the ship’s dryer.");
 
 	processTime(60+rand(5));
 
@@ -11000,7 +11007,7 @@ public function bessGetBlowjob():void
 		output(" slides [bess.hisHer] lips around your [pc.cock " + cockIdx +"], enveloping it in [bess.hisHer] moist warmth. You can feel your [pc.cockHead " + cockIdx +"] travelling across [bess.hisHer] silky tongue and back into [bess.hisHer] gullet. Soon [bess.heShe]’s applying artful suction to your slickened spire, [bess.hisHer] silvery cheeks caving inward.");
 	}
 
-	pc.cockChange(true);
+	//pc.cockChange(true);
 
 	output("\n\nYou groan as [bess.heShe] demonstrates [bess.hisHer] utter lack of a gag reflex. You can feel your flexing tip sliding back and forth, in and out of [bess.hisHer] throat, squeezing and teasing your [pc.cockHead "+ cockIdx +"]. The mechanical "+ bess.mf("man", "girl") +"’s face truly was fashioned to be fucked!");
 	
@@ -11530,7 +11537,7 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 			}
 			output(".");
 			
-			output("\n\nOnce you’re fully undressed, [bess.name] lets out an almost predatory noise of pleasure. [bess.HeShe] then runs [bess.hisHer] fingers along your [bess.skinFurScalesNoun], following the paths [bess.hisHer] eyes were wandering. You let out a low moan, relishing in [bess.hisHer] attentions.");
+			//output("\n\nOnce you’re fully undressed, [bess.name] lets out an almost predatory noise of pleasure. [bess.HeShe] then runs [bess.hisHer] fingers along your [bess.skinFurScalesNoun], following the paths [bess.hisHer] eyes were wandering. You let out a low moan, relishing in [bess.hisHer] attentions.");
 		}
 		else
 		{
@@ -11702,6 +11709,9 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 	else output(" [pc.asshole]");
 	output(". You groan as [bess.heShe] presses forward, slowly sinking [bess.himHer]self inside of you, right up to the hilt.");
 	if (bess.balls > 0) output(" As [bess.heShe] bottoms out, you feel [bess.hisHer] [bess.balls] deliciously brushing against your [bess.thighs], and your whole body flushes with excitement.");
+	
+	if (bTargetVag) pc.cuntChange(vagIdx, bess.cockVolume(0));
+	else pc.buttChange(bess.cockVolume(0));
 
 	if (bess.hasVagina() && pc.hasCock() && bess.hasTailCunt())
 	{
@@ -12052,8 +12062,6 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 	}
 
 	processTime(45+rand(15));
-	if (bTargetVag) pc.cuntChange(vagIdx, bess.cockVolume(0), false, false, false); // 9999 shift change calls into the scene itself, and allow output
-	else pc.buttChange(bess.cockVolume(0), false, false, false);
 
 	for (var i:int = 0 ; i < 5; i++)
 	{

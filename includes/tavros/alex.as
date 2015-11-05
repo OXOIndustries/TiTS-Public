@@ -1105,7 +1105,7 @@ public function catchAnalFromAlex():void {
 		output(" beneath you, ");
 		if(pc.isLactating()) output("making the sheets wet and sticky with your [pc.milk]");
 		else output("adding greatly to the wild ride");
-		if(pc.biggestTitSize() > 25) output(" as your [nipples] rub against the bedspread");
+		if(pc.biggestTitSize() > 25) output(" as your [pc.nipples] rub against the bedspread");
 		output(".");
 	}
 	//if tailcock: 

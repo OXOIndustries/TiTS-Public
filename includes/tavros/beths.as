@@ -743,7 +743,7 @@ public function brothelTurnTrixFreelanceWhore(service:String = "none"):void
 		else
 		{
 			output("\n\nIt seems a pretty pathetic amount for what feels like a considerable amount of hard, honest work.");
-			output("<i>“\n\nGet yourself licensed is my advice,”</i> the mistress says, pocketing the handful of credit chits. <i>“Seems a real shame to lose half, seeing some of the things you did for it.”</i>");
+			output("\n\n<i>“Get yourself licensed is my advice,”</i> the mistress says, pocketing the handful of credit chits. <i>“Seems a real shame to lose half, seeing some of the things you did for it.”</i>");
 		}
 	}
 	

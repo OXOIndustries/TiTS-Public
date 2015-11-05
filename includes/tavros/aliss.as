@@ -36,7 +36,7 @@ public function miAmoreBonusShit():Boolean
 	//[Upper Body] [Lower Body] [Cocksocks] [Aliss] [Leave]
 	addButton(0,"Upper Body",upperBodyAlice,undefined,"Upper Body","See what tops Aliss has for sale.");
 	addButton(1,"Lower Body",lowerBodyAlice,undefined,"Lower Body","See what bottoms Aliss has for sale.");
-	addButton(2,"Aliss",alissDiscussionsInsteadOfPanties,undefined,"Aliss","Visit with the shopkeeper herself.");
+	addButton(5,"Aliss",alissDiscussionsInsteadOfPanties,undefined,"Aliss","Visit with the shopkeeper herself.");
 	return false;
 }
 
@@ -144,6 +144,7 @@ public function tryOnBraAlice():void
 	clearMenu();
 	if(pc.credits >= getAlissPrice(new PlainBra())) addButton(0,"Buy", purchaseSomethingFromAliss, new PlainBra());
 	else addDisabledButton(0,"Buy","Buy","You cannot afford this item.");
+	addDisabledButton(1,"Try On");
 	addButton(14,"Back",upperBodyAlice);
 }
 
@@ -183,6 +184,7 @@ public function tryTheLacyBraAlice():void
 	clearMenu();
 	if(pc.credits >= getAlissPrice(new LacyBra())) addButton(0,"Buy", purchaseSomethingFromAliss, new LacyBra());
 	else addDisabledButton(0,"Buy","Buy","You cannot afford this item.");
+	addDisabledButton(1,"Try On");
 	addButton(14,"Back",upperBodyAlice);
 }
 
@@ -225,6 +227,7 @@ public function tryOnTheSwimBraAlice():void
 	clearMenu();
 	if(pc.credits >= getAlissPrice(new SportsBra())) addButton(0,"Buy", purchaseSomethingFromAliss, new SportsBra());
 	else addDisabledButton(0,"Buy","Buy","You cannot afford this item.");
+	addDisabledButton(1,"Try On");
 	addButton(14,"Back",upperBodyAlice);
 }
 
@@ -268,6 +271,7 @@ public function tryDatCorsetOnAlice():void
 	clearMenu();
 	if(pc.credits >= getAlissPrice(new Corset())) addButton(0,"Buy", purchaseSomethingFromAliss, new Corset());
 	else addDisabledButton(0,"Buy","Buy","You cannot afford this item.");
+	addDisabledButton(1,"Try On");
 	addButton(14,"Back",upperBodyAlice);
 }
 
@@ -310,6 +314,7 @@ public function tryOnDisUnderBoobCorsetThingAliss():void
 	clearMenu();
 	if(pc.credits >= getAlissPrice(new UnderbustCorset())) addButton(0,"Buy", purchaseSomethingFromAliss, new UnderbustCorset());
 	else addDisabledButton(0,"Buy","Buy","You cannot afford this item.");
+	addDisabledButton(1,"Try On");
 	addButton(14,"Back",upperBodyAlice);
 }
 
@@ -352,6 +357,7 @@ public function tryOnTheBabydollAliss():void
 	clearMenu();
 	if(pc.credits >= getAlissPrice(new Babydoll())) addButton(0,"Buy", purchaseSomethingFromAliss, new Babydoll());
 	else addDisabledButton(0,"Buy","Buy","You cannot afford this item.");
+	addDisabledButton(1,"Try On");
 	addButton(14,"Back",upperBodyAlice);
 }
 
@@ -393,6 +399,7 @@ public function tryOnPastiesAliss():void
 	clearMenu();
 	if(pc.credits >= getAlissPrice(new Pasties())) addButton(0,"Buy", purchaseSomethingFromAliss, new Pasties());
 	else addDisabledButton(0,"Buy","Buy","You cannot afford this item.");
+	addDisabledButton(1,"Try On");
 	addButton(14,"Back",upperBodyAlice);
 }
 
@@ -433,6 +440,7 @@ public function tryOnAnUndershirtAliss():void
 	clearMenu();
 	if(pc.credits >= getAlissPrice(new Undershirt())) addButton(0,"Buy", purchaseSomethingFromAliss, new Undershirt());
 	else addDisabledButton(0,"Buy","Buy","You cannot afford this item.");
+	addDisabledButton(1,"Try On");
 	addButton(14,"Back",upperBodyAlice);
 }
 
@@ -473,6 +481,7 @@ public function tryOnAShibariTopAliss():void
 	clearMenu();
 	if(pc.credits >= getAlissPrice(new ShibariTop())) addButton(0,"Buy", purchaseSomethingFromAliss, new ShibariTop());
 	else addDisabledButton(0,"Buy","Buy","You cannot afford this item.");
+	addDisabledButton(1,"Try On");
 	addButton(14,"Back",upperBodyAlice);
 }
 
@@ -546,6 +555,8 @@ public function tryOnHardlightPantiesAliss():void
 	clearMenu();
 	if(pc.credits >= getAlissPrice(new PlainPanties())) addButton(0,"Buy", purchaseSomethingFromAliss, new PlainPanties());
 	else addDisabledButton(0,"Buy","Buy","You cannot afford this item.");
+	addDisabledButton(1,"Try On");
+	addButton(2,"Hardlight",hardLightDiscussion,new PlainPanties());
 	addButton(14,"Back",lowerBodyAlice);
 }
 
@@ -587,6 +598,8 @@ public function tryOnTheThong():void
 	clearMenu();
 	if(pc.credits >= getAlissPrice(new Thong())) addButton(0,"Buy", purchaseSomethingFromAliss, new Thong());
 	else addDisabledButton(0,"Buy","Buy","You cannot afford this item.");
+	addDisabledButton(1,"Try On");
+	addButton(2,"Hardlight",hardLightDiscussion,new Thong());
 	addButton(14,"Back",lowerBodyAlice);
 }
 
@@ -628,6 +641,8 @@ public function tryOnBoyShortsAliss():void
 	clearMenu();
 	if(pc.credits >= getAlissPrice(new Boyshorts())) addButton(0,"Buy", purchaseSomethingFromAliss, new Boyshorts());
 	else addDisabledButton(0,"Buy","Buy","You cannot afford this item.");
+	addDisabledButton(1,"Try On");
+	addButton(2,"Hardlight",hardLightDiscussion,new Boyshorts());
 	addButton(14,"Back",lowerBodyAlice);
 }
 
@@ -668,6 +683,7 @@ public function tryOnBoxersAliss():void
 	clearMenu();
 	if(pc.credits >= getAlissPrice(new Boxers())) addButton(0,"Buy", purchaseSomethingFromAliss, new Boxers());
 	else addDisabledButton(0,"Buy","Buy","You cannot afford this item.");
+	addDisabledButton(1,"Try On");
 	addButton(14,"Back",lowerBodyAlice);
 }
 
@@ -708,6 +724,8 @@ public function tryOnTheStockingsAliss():void
 	clearMenu();
 	if(pc.credits >= getAlissPrice(new Stockings())) addButton(0,"Buy", purchaseSomethingFromAliss, new Stockings());
 	else addDisabledButton(0,"Buy","Buy","You cannot afford this item.");
+	addDisabledButton(1,"Try On");
+	addButton(2,"Hardlight",hardLightDiscussion,new Stockings());
 	addButton(14,"Back",lowerBodyAlice);
 }
 
@@ -748,6 +766,7 @@ public function tryOnShibariBottoms():void
 	clearMenu();
 	if(pc.credits >= getAlissPrice(new ShibariBottom())) addButton(0,"Buy", purchaseSomethingFromAliss, new ShibariBottom());
 	else addDisabledButton(0,"Buy","Buy","You cannot afford this item.");
+	addDisabledButton(1,"Try On");
 	addButton(14,"Back",lowerBodyAlice);
 }
 
@@ -856,6 +875,7 @@ public function questionAlissAboutHerHorsecock():void
 	//[Help] [Nope]
 	clearMenu();
 	addButton(0,"Help",helpAlissWithSexyTiems,undefined,"Help","Helping Aliss with her \"problem\" is likely to include sex.");
+	addDisabledButton(1,"Question");
 	addButton(2,"Nope",nopeDafuqOut,undefined,"Nope","Nope. Nope! NOPE! Nope-nope-nopenope!!!");
 }
 

@@ -527,7 +527,7 @@ public function styleConfirmation(hStyle:String = ""):void
 	output("<i>“Okay, so you want your hair ");
 	if(hStyle == "ponytail") output("in a ");
 	else if(hStyle == "pigtails") output("in ");
-	else if(hStyle == "curls") output("curls ");
+	else if(hStyle == "curls") output("in ");
 	else if(hStyle == "braided") output("in a ");
 	else if(hStyle == "afro") output("in an ");
 	else if(hStyle == "mohawk") output("in a ");
