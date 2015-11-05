@@ -241,7 +241,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 	if(pc.hasItem(new TamaniBionaHole()) && pc.hasCock())
 	{
 		fap = new FapCommandContainer();
-		fap.text = "Tamani B.H,";
+		fap.text = "Tamani B.H.";
 		fap.ttHeader = "Tamani BionaHole"
 		fap.ttBody = "Take the Tamani Ultralux edition BionaHole for a spin.";
 		fap.func = TamaniFapSetup;
@@ -2839,7 +2839,7 @@ public function tamaniBionaholeInstruction():void
 	{
 		if(pc.cocks[x].cLength() >= 12) output(" other big-dicked breeder");
 		else if(pc.hasVagina()) output(" other herm with a needy, pent-up dick");
-		else output("");
+		else output("one else’s delicious dick");
 	}
 	output(". Just give the ‘enter’ key a smack when you’re all done, and pretend it’s my ass.”</i>");
 
@@ -2889,7 +2889,7 @@ public function tamaniBionaholeInstruction():void
 	output(". You could push yourself over the edge right now with a few too-quick pumps, but you hold off, letting the pleasure rise with maddening slowness to crescendo, building that ball of need within you until it feels white-hot and molten.");
 	output("\n\n<i>“You’re getting so big inside me! I bet you want to cum now, right?”</i> Tamani shivers and grabs her boobs in both hands, none-too-gently kneading her pillowy mammaries. <i>“I think that’s a pretty good idea.”</i> She bites her lip to stifle a moan. <i>“It’s not healthy to hold it in </i>too<i> long. You should make sure you bottom out when you cum and give my cunt a spunk bath.”</i> She leans down, phantom breasts squishing down an inch above your [pc.fullChest]. <i>“I can’t imagine any of my pretty pussies going without a gooey filling, so you had better cum long and hard.”</i>");
 	output("\n\nYou groan, your climax being coaxed out one filthy word at a time. Every nerve on your [pc.cockNoun " + x + "] is tingling and primed, ready to deliver waves of ejaculatory bliss.");
-	output("\n\n<i>“Come on, {stud/slut}, cum for me. Give me every drop~”</i> Tamani arches her back and howls in delight. <i>“That’s it, you just lie back and squirt squirt squirt~”</i>");
+	output("\n\n<i>“Come on, " + pc.mf("stud", "slut") + ", cum for me. Give me every drop~”</i> Tamani arches her back and howls in delight. <i>“That’s it, you just lie back and squirt squirt squirt~”</i>");
 	output("\n\nYou do just that, lancing [pc.cumNoun] arc after arc of [pc.cum] into the silk-textured depths of Tamani’s BionaHole. The slutty CEO doesn’t miss a beat, even though she’s obviously getting a filling of her own. Her belly visibly pudges out with some nameless pornstar’s seed, giving her a supple roundness that only enhances her feminine appeal. You easily imagine that it’s your own [pc.cumNoun] doing the inflating,");
 	if(pc.cumQ() < 200) output(" even though the creampie you’re delivering is nowhere near stuffed enough for that.");
 	else if(pc.cumQ() < 2000) output(" a task made easier by the way your ejaculate has pressurized her interior, causing your [pc.cumColor] spunk to spill out over your crotch in thick waves.");
@@ -2941,7 +2941,7 @@ public function bionaHoleInstructionalBullshit():void
 	output("\n\n<i>“I want you to just lay back, relax, and let my pussy do aaallll the work for you,”</i> she purrs at you, gently brushing the man’s hand aside to leave his cock standing straight up like a great big pole of meat. You mimic his position as best as you can, lying straight back and willing your cock to hardness.");
 	output("\n\n<i>“You want to be nice and hard before we get started,”</i> she tells you, reaching out to grab the man’s cock in her furry hand. He gasps and grunts as she starts to stroke, saying, <i>“I like to use my hands for that part, but if you want to imagine my big, soft breasts wrapping around your meat...”</i> one hand reaches up to cup a tit through her latex top, squeezing hard through the creaking material. <i>“Well, I won’t blame you. Whatever gets you nice and hard for me...”</i>");
 	output("\n\nLetting your imagination run wild, you wrap your hand around your [pc.cock " + x + "] and start to stroke, matching the motions of the seductive starlet on screen. It doesn’t take long before you’re at full mast, and as by some perfectly timed coincidence, Nivas decides her partner’s ready too. <i>“Mmm, that’s a tasty-looking cock. My pussy’s practically soaking itself already... it just can’t wait to feel you deep inside it.”</i>");
-	output("\n\nYou watch eagerly as the starlet takes the dark blue sheath in her hands and angles it directly over her partner’s thick crown. <i>“Now here comes the best part... or the second best, anyway,”</i> Nivas croons, rocking the lips of her toy back and forth around the man’s cock; you mirror her movements, letting your [pc.cockHead " + x + "] bathe in the wet warmth of Nivas’s cloned cunny. Slowly, you and the dyed ausar babe both lower the toy down, agonizingly slow, letting you wallow in just how hot she is, so smooth and slick that you feel like you could fall it. She’s ");
+	output("\n\nYou watch eagerly as the starlet takes the dark blue sheath in her hands and angles it directly over her partner’s thick crown. <i>“Now here comes the best part... or the second best, anyway,”</i> Nivas croons, rocking the lips of her toy back and forth around the man’s cock; you mirror her movements, letting your [pc.cockHead " + x + "] bathe in the wet warmth of Nivas’s cloned cunny. Slowly, you and the dyed ausar babe both lower the toy down, agonizingly slow, letting you wallow in just how hot she is, so smooth and slick that you feel like you could fall into it. She’s ");
 	if(pc.cockVolume(x) < 200) output("not tight");
 	else if(pc.cockVolume(x) < 400) output("actually kind of tight, but nowhere as much so as most girls would be");
 	else output("blissfully tight");
