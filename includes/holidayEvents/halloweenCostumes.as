@@ -645,7 +645,7 @@ public function barbariannaCosplay():void
 	output("\n\n<i>“Stop being a spoil-sport, babe,”</i> you growl, shifting your grip on her ass to grab her crotch, feeling right through her pants into her damp little mound. Oh, she’s <b>wet</b> alright. Hot damn, she must be smuggling a swamp in her pants. She squeals, pulling hard at her boyfriend’s hand until they both manage to pull out of your grasp; you let them go with a laugh.");
 
 	output("\n\nBut now your blood’s pumping");
-	if(pc.hasCock()) output(", especially into your naked prick. Your throbbing hard, cock thrust forward in front of you like a flagpole.");
+	if(pc.hasCock()) output(", especially into your naked prick. You are throbbing hard, your cock thrust forward in front of you like a flagpole.");
 	else output(" hard into your needy twat. No way you’re going to be satisfied with just a tease like that.");
 	output(" You need satisfaction, <b>now</b>!");
 
