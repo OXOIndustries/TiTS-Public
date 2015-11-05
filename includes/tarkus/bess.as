@@ -1810,6 +1810,8 @@ public function talkToBessAboutRoles():void
 	if (sRole == 0) output(" a role of equal partners.)");
 	else if (sRole == 1) output(" the role of a dominant partner.)")
 	else if (sRole == 2) output(" the role of a submissive partner.)");
+	
+	addButton(14, "Back", bessFunctionsMenu);
 }
 
 public function setBessRole(newRole:int):void
@@ -2135,6 +2137,8 @@ public function talkToBessAboutBoobs():void
 	addButton(1, "Lactation", talkToBessAboutLactation);
 	if (flags["BESS_BOOBCHANGED"] == undefined) addDisabledButton(2, "Nipples");
 	else addButton(2, "Nipples", talkToBessAboutNipples);
+	
+	addButton(14, "Back", bessFunctionsMenu);
 }
 
 public function talkToBessAboutBoobSize():void
@@ -2176,7 +2180,7 @@ public function talkToBessAboutBoobSize():void
 
 	if (options.length < 15)
 	{
-		addButton(14, "Back", bessFunctionsMenu);
+		addButton(14, "Back", talkToBessAboutBoobs);
 	}
 }
 
@@ -2386,7 +2390,7 @@ public function talkToBessAboutNipples():void
 	if (bess.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_INVERTED) addDisabledButton(0, "Inverted");
 	else addButton(4, "Inverted", bessSetNippleType, GLOBAL.NIPPLE_TYPE_INVERTED);
 
-	addButton(14, "Back", bessFunctionsMenu);
+	addButton(14, "Back", talkToBessAboutBoobs);
 }
 
 public function bessSetNippleType(newType:int):void
@@ -2414,12 +2418,14 @@ public function talkToBessAboutLactation():void
 
 	clearMenu();
 
-	if (bess.biggestTitSize() > 0) addButton(0, "Lactate", bessStartLactation);
+	if (!bess.isLactating()) addDisabledButton(0, "Lactate", "Start Lactation", "[bess.name] is already able to lactate.");
+	else if (bess.biggestTitSize() > 0) addButton(0, "Lactate", bessStartLactation);
 	else addDisabledButton(0, "Lactate", "Start Lactation", "[bess.name] first needs at least some breastflesh in order to lactate.");
 
-	addButton(1, "StopLactate", bessStopLactation);
+	if (bess.isLactating()) addDisabledButton(0, "StopLactate", "Stop Lactation", "[bess.name] needs to be lactating in order to stop it.");
+	else addButton(1, "StopLactate", bessStopLactation);
 
-	addButton(14, "Back", bessFunctionsMenu);
+	addButton(14, "Back", talkToBessAboutBoobs);
 }
 
 public function bessStartLactation():void
