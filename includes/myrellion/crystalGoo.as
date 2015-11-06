@@ -9,6 +9,7 @@ public function crystalGooFenBurps():void
 	{
 		output("\n\nAs you wander through the damp caves, you hear someone running behind you. You turn just in time to dodge a sword that might’ve done some major damage. The [9999.skinTone] blade clangs into the stone floor, sending small chips flying in every direction. When you recover enough to examine the sword’s owner, you find it to be a tall knight wearing armor of similar color to its sword. Your codex beeps, alerting you that the knight is a ganrael, a species of goo-creature.");
 		output("\n\n<i>“En-garde, star creature! I will defeat you!”</i> it yells, revealing a high pitched, feminine voice. You take up a battle stance, Preparing yourself for another blow from the sword. She circles you, her helmet and armor hiding any useful information that you could use. Her chest plate compresses her chest so tightly that you would never tell her gender by looking at her. You ready your weapons, preparing for the fight ahead.");
+		CodexManager.unlockEntry("Ganrael");
 	}
 	//Repeat
 	else
