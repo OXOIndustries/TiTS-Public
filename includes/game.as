@@ -3145,7 +3145,9 @@ public function displayQuestLog(showID:String = "All"):void
 			else
 			{
 				output2(" <i>In progress...</i>");
-				output2("\n<b>* Probe Location:</b> <i>No indication of where the probe fell.</i>");
+				output2("\n<b>* Probe Location:</b>");
+				if(flags["GAVE_SHEKKA_PROBE"] != undefined) output2(" <i>Probe located in Shekka’s shop.</i>");
+				else output2(" <i>No indication of where the probe fell.</i>");
 				if(flags["MET_UGC_TROOPER_AT_CHASMFALL"] == undefined)
 				{
 					output2("\n<b>* Scanner Feed:</b> <i>There is a lot of activity around the planetary tether.</i>");
@@ -3162,18 +3164,19 @@ public function displayQuestLog(showID:String = "All"):void
 			// The Stellar Tether
 			if(flags["MET_UGC_TROOPER_AT_CHASMFALL"] != undefined && flags["FOUGHT_TAM"] != undefined)
 			{
-				output2("\n<b>* The Stellar Tether:</b>");
+				output2("\n<b><u>The Stellar Tether</u></b>");
+				output2("\n<b>* Status:</b>");
 				if(flags["STELLAR_TETHER_CLOSED"] != undefined && flags["TARKUS_BOMB_TIMER"] != undefined && flags["TARKUS_BOMB_TIMER"] <= 0)
 				{
-					if(!pc.hasKeyItem("Kaska's Detonator") && !pc.hasKeyItem("Khorgan's Detonator")) output2(" Planet spared, <i>Tarasque</i> pirates escaped, Completed?");
-					else if(flags["TARKUS_DESTROYED"] != undefined) output2(" Planet destroyed by pirates of the <i>Tarasque</i>, Completed");
-					else output2(" Planet saved from pirates of the <i>Tarasque</i>, Completed");
+					if(!pc.hasKeyItem("Kaska's Detonator") && !pc.hasKeyItem("Khorgan's Detonator")) output2(" Tarkus spared, <i>Tarasque</i> pirates escaped, Completed?");
+					else if(flags["TARKUS_DESTROYED"] != undefined) output2(" Tarkus destroyed by pirates of the <i>Tarasque</i>, Completed");
+					else output2(" Tarkus saved from pirates of the <i>Tarasque</i>, Completed");
 				}
 				else output2(" <i>In progress...</i>");
 				// Tam
 				if(flags["TAM_DISABLE_METHOD"] != undefined || flags["TAKEN_TAMWOLF"] != undefined)
 				{
-					output2("\n<b>* The Stellar Tether, Tam:</b> Defeated her");
+					output2("\n<b>* Tam:</b> Defeated her");
 					if(flags["TAM_DISABLE_METHOD"] == 1) output2(", Knocked her out");
 					if(flags["TAM_DISABLE_METHOD"] == 2) output2(", Fucked her");
 					if(flags["TAKEN_TAMWOLF"] != undefined) output2(", Took Tam-wolf");
@@ -3181,7 +3184,7 @@ public function displayQuestLog(showID:String = "All"):void
 				// Rocket pods
 				if(flags["ROCKET_PODS_ENCOUNTERED"] != undefined)
 				{
-					output2("\n<b>* The Stellar Tether, Defenses:</b>");
+					output2("\n<b>* Defenses:</b>");
 					if(flags["ROCKET_PODS_HACKED"] != undefined) output2(" Hacked rocket pods");
 					else if(flags["ROCKET_PODS_SNEAKED"] != undefined) output2(" Sneaked passed rocket pods");
 					else output2(" Destroyed rocket pods");
@@ -3189,20 +3192,20 @@ public function displayQuestLog(showID:String = "All"):void
 				// Kaska
 				if(pc.hasKeyItem("Kaska's Detonator") || flags["KASKA_FUCKED"] != undefined)
 				{
-					output2("\n<b>* The Stellar Tether, Kaska:</b> Defeated her");
+					output2("\n<b>* Kaska:</b> Defeated her");
 					if(flags["KASKA_FUCKED"] != undefined) output2(", Fucked her");
 				}
 				// Khorgan
 				if(pc.hasKeyItem("Khorgan's Detonator") || flags["DICKFUCKED_CAPN_KHORGAN"] != undefined || flags["LESBOED_KHORGAN"] != undefined)
 				{
-					output2("\n<b>* The Stellar Tether, Capt. Khorgan:</b> Defeated her");
+					output2("\n<b>* Capt. Khorgan:</b> Defeated her");
 					if(flags["DICKFUCKED_CAPN_KHORGAN"] != undefined) output2(", Dick-fucked her");
 					if(flags["LESBOED_KHORGAN"] != undefined) output2(", Lesbian-fucked her");
 				}
 				// Resources
-				if(flags["PLATINUM_TAKEN"] != undefined) output2("\n<b>* The Stellar Tether, Resources:</b> Taken Platinum 190");
+				if(flags["PLATINUM_TAKEN"] != undefined) output2("\n<b>* Resources:</b> Platinum 190 taken");
 				// Bomb
-				if(flags["TARKUS_BOMB_TIMER"] != undefined && flags["TARKUS_BOMB_TIMER"] > 0) output2("\n<b>* The Stellar Tether, Time-Bomb Countdown: </b>" + prettifyMinutes(flags["TARKUS_BOMB_TIMER"]));
+				if(flags["TARKUS_BOMB_TIMER"] != undefined && flags["TARKUS_BOMB_TIMER"] > 0) output2("\n<b>* Time-Bomb Countdown: </b>" + prettifyMinutes(flags["TARKUS_BOMB_TIMER"]));
 			}
 			mainCount++;
 		}
@@ -5488,6 +5491,21 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(StatTracking.getStat("pregnancy/queen of the deep eggs") > 0) output2(", Progenitor of race");
 				variousCount++;
 			}
+			// Fungus Queen
+			if(flags["SUCKED_FUNGUS"] != undefined || flags["FUNGUS_QUEEN_SAVED"] != undefined || flags["LET_FUNGUS_QUEEN_DIE"] != undefined)
+			{
+				output2("\n<b><u>Fungal Passage</u></b>");
+				// Fungus Queen
+				output2("\n<b>* Fungus Queen:</b> Encountered");
+				if(flags["SUCKED_FUNGUS"] != undefined) output2(", Suckled from her");
+				if(flags["FUNGUS_QUEEN_SAVED"] != undefined) output2(", Saved her");
+				if(flags["LET_FUNGUS_QUEEN_DIE"] != undefined) output2(", Abandoned her, Let her die");
+				// Rogue Robot
+				if(flags["FUNGUS_QUEEN_SAVED"] != undefined) output2("\n<b>* Rogue KihaCorp Deconstruction Unit:</b> Destroyed");
+				// Resources
+				if(flags["FUNGUS_QUEEN_SAVED"] != undefined) output2("\n<b>* Resources:</b> Crystallized Sophinol claimed");
+				variousCount++;
+			}
 			// ReallyJustSpaceSavin
 			if(flags["MET_SEIFYN"] != undefined)
 			{
@@ -5631,7 +5649,9 @@ public function displayEncounterLog(showID:String = "All"):void
 			if(flags["MET_INFECTED_MYR_FEMALE"] != undefined || flags["MET_NYREA_ALPHA"] != undefined || flags["MET_NYREA_BETA"] != undefined)
 			{
 				output2("\n<b><u>The Deep Caverns</u></b>");
+				if(flags["MET_GANRAEL"] != undefined) output2("\n<b>* Ganrael Knight, Times Encountered: </b>" + flags["MET_GANRAEL"]);
 				if(flags["MET_INFECTED_MYR_FEMALE"] != undefined) output2("\n<b>* Female Infected Myr, Times Encountered: </b>" + flags["MET_INFECTED_MYR_FEMALE"]);
+				if(flags["MET_INFECTED_MYR_MALE"] != undefined) output2("\n<b>* Male Infected Myr, Times Encountered: </b>" + flags["MET_INFECTED_MYR_MALE"]);
 				if(flags["MET_NYREA_ALPHA"] != undefined) output2("\n<b>* Alpha Nyrean Huntress, Times Encountered: </b>" + flags["MET_NYREA_ALPHA"]);
 				if(flags["MET_NYREA_BETA"] != undefined) output2("\n<b>* Beta Nyrean Huntress, Times Encountered: </b>" + flags["MET_NYREA_BETA"]);
 				variousCount++;
@@ -6039,7 +6059,7 @@ public function emailRoulette():void
 	var mailEmail:Object = MailManager.ENTRIES[mailKey];
 	var mailFrom:String = "<i>Unknown Sender</i>";
 	var mailFromAdress:String = "<i>Unknown Address</i>";
-	var mailSubject:String = "[No Subject]";
+	var mailSubject:String = "\\\[No Subject\\\]";
 	var mailContent:String = "<i>This message turns up empty...</i>";
 	
 	// Character/Event specific:
