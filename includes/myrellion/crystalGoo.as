@@ -3,6 +3,7 @@ public function crystalGooFenBurps():void
 {
 	author("Gardeford");
 	showGardeGoo();
+	IncrementFlag("MET_GANRAEL");
 	//9999 load encounter to determine color, for reasons.
 	if(CodexManager.entryUnlocked("Ganrael"))
 	{
