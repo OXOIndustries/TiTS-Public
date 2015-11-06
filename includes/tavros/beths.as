@@ -182,7 +182,7 @@ public function teaseTheOvir():void
 	}
 	//merge all
 	output("\n\nAs you reach the height of your little demonstration, the ovir is rubbing her thighs together and whining softly");
-	if(pc.exhibitionism() >= 66) output(" along with you");
+	if(pc.exhibitionism() >= 66 && !pc.isPsionic()) output(" along with you");
 	output(". A bulge forms in her lacy red panties as she fidgets, swelling larger and more oblong by the second, until it peeks from the low-cut fringe. The orange-and-yellow crescent moon grows and strains against the yielding waistband, silencing the crowd. As the patrons watch, the flared tip slips free, allowing her half-erect cock to swing out. Like the poor ovir, it’s yellow at the base and shifts in color close to the end.");
 	output("\n\nThe girl, rather, the boy, freezes as her thick tool bobs. One hand still clings to the pole while the other covers her face in shame. None of the stifled patrons seems to know how to react, staring dumbly at the revealed penis.");
 	output("\n\n<i>“Dance!”</i> you cheer, shattering the stillness. <i>“Dance, dance!”</i>");
