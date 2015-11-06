@@ -1534,9 +1534,11 @@ public function processTime(arg:int):void {
 	//NEVRIE MAIL!
 	if (!MailManager.isEntryUnlocked("myrpills") && flags["MCALLISTER_MEETING_TIMESTAMP"] <= (GetGameTimestamp() - (24 * 60))) nevriMailGet();
 	if (!MailManager.isEntryUnlocked("orangepills") && flags["MCALLISTER_MYR_HYBRIDITY"] == 2 && GetGameTimestamp() >= (flags["MCALLISTER_MYR_HYBRIDITY_START"] + (7 * 24 * 60))) nevriOrangeMailGet();
-	if (!MailManager.isEntryUnlocked("bjreminder") && flags["NEVRIE_FIRST_DISCOUNT_DATE"] != undefined && days >= flags["NEVRIE_FIRST_DISCOUNT_DATE"]+20) nevriBJMailGet();
+	if (!MailManager.isEntryUnlocked("bjreminder") && flags["NEVRIE_FIRST_DISCOUNT_DATE"] != undefined && days >= flags["NEVRIE_FIRST_DISCOUNT_DATE"] + 20) nevriBJMailGet();
 	//Emmy Mail
-	if (!MailManager.isEntryUnlocked("emmy_apology") && flags["EMMY_EMAIL_TIMER"] <= (GetGameTimestamp() - (24*60))) emmyMailGet();
+	if (!MailManager.isEntryUnlocked("emmy_apology") && flags["EMMY_EMAIL_TIMER"] <= (GetGameTimestamp() - (24 * 60))) emmyMailGet();
+	//Other Email Checks!
+	if (rand(60) == 0 || (rand(24) == hours && rand(60) == minutes)) emailRoulette();
 	flags["HYPNO_EFFECT_OUTPUT_DONE"] = undefined;
 	variableRoomUpdateCheck();
 	updatePCStats();
@@ -3138,7 +3140,7 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["MET_UGC_TROOPER_AT_CHASMFALL"] == undefined)
 				{
 					output2("\n<b>* Scanner Feed:</b> <i>There is a lot of activity around the planetary tether.</i>");
-					if(9999 == 0) output2(" <i>Anno confirms this.</i>");
+					if(MailManager.isEntryViewed("annoweirdshit")) output2(" <i>Anno confirms this.</i>");
 				}
 			}
 			if(flags["GAVE_SHEKKA_PROBE"] != undefined) output2(", Gave probe to Shekka");
@@ -6019,4 +6021,100 @@ public function fixPcUpbringingSetNew(upType:uint):void
 	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
+}
+
+// Random Emails!
+public function emailRoulette():void
+{
+	var mailKey:String = "";
+	var mailEmail:Object = MailManager.ENTRIES[mailKey];
+	var mailFrom:String = "<i>Unknown Sender</i>";
+	var mailFromAdress:String = "<i>Unknown Address</i>";
+	var mailSubject:String = "[No Subject]";
+	var mailContent:String = "<i>This message turns up empty...</i>";
+	
+	// Character/Event specific:
+	if(!MailManager.isEntryUnlocked("messageFromDad") && days > 0)
+		mailKey = "messageFromDad";
+	else if(!MailManager.isEntryUnlocked("burtsmeadhall") && rand(4) == 0)
+		mailKey = "burtsmeadhall";
+	else if(!MailManager.isEntryUnlocked("kihaai") && rand(4) == 0)
+		mailKey = "kihaai";
+	else if(!MailManager.isEntryUnlocked("syrividja") && rand(2) == 0 && flags["SPAM_MSG_COV8"] != undefined && syriIsAFuckbuddy())
+		mailKey = "syrividja";
+	else if(!MailManager.isEntryUnlocked("annoweirdshit") && rand(2) == 0 && flags["MET_ANNO"] != undefined && flags["FOUGHT_TAM"] == undefined)
+		mailKey = "annoweirdshit";
+	else if(!MailManager.isEntryUnlocked("fuckinggoosloots") && rand(4) == 0 && celiseIsCrew())
+		mailKey = "fuckinggoosloots";
+	else if(!MailManager.isEntryUnlocked("fuckinggooslootsII") && rand(4) == 0 && celiseIsCrew())
+		mailKey = "fuckinggooslootsII";
+	else if(!MailManager.isEntryUnlocked("kirofucknet") && rand(2) == 0 && flags["RESCUE KIRO FROM BLUEBALLS"] == 1)
+		mailKey = "kirofucknet";
+	else if(!MailManager.isEntryUnlocked("saendrathanks") && flags["FALL OF THE PHOENIX STATUS"] >= 1 && flags["SAENDRA_DISABLED"] != 1)
+		mailKey = "saendrathanks";
+	else if(!MailManager.isEntryUnlocked("cuzfuckball") && flags["BEEN_ON_TARKUS"] != undefined)
+		mailKey = "cuzfuckball";
+	
+	if(mailKey != "" && !MailManager.isEntryUnlocked(mailKey))
+	{
+		if(mailEmail.From != null) mailFrom = mailEmail.From();
+		if(mailEmail.FromAddress != null) mailFromAdress = mailEmail.FromAddress();
+		if(mailEmail.Subject != null) mailSubject = mailEmail.Subject();
+		if(mailEmail.Content != null) mailContent = mailEmail.Content();
+		
+		eventBuffer += "\n\n<b>New Email from " + mailFrom + " ("+ FromAddress +")!</b>";
+		MailManager.unlockEntry(mailKey, GetGameTimestamp());
+		
+		// Any special actions/unlocks
+		if(mailKey == "kirofucknet" && (pc.isBimbo() || pc.isBro() || !pc.hasStatusEffect("Focus Pill") || pc.IQ() < 50 || pc.WQ() < 50))
+		{
+			eventBuffer += " The subject line reads <i>“" + mailSubject + "”</i>. Curiously, you open the letter to see what it could be...";
+			eventBuffer += "\n\nThe message is headed by a big holo-image of Kiro with her massive equine dong shoved to the hilt up some girl's backside, stretching her sphincter like a rubber band. Kiro's holding the camera and giving you a big, goofy grin and a thumb's-up.\n\n<i>Kiro Tamahime wants you to join the GalLink group “GalLink Fuckmeet.”\n\nGalLink Fuckmeet: Bone random citizens of the galaxy with no hassle, no commitment, just fun!\n\nSuggested Members: Kiro Tamahime, Saendra en Illya, BigBooty Flahne, Sera Succubus, GirlBoy Alex</i>";
+			eventBuffer += "\n\nYou shrug and click “Join”...\n\nAnd are instantly flooded with several THOUSAND pictures of the group's members (mostly Kiro) engaged in lewd acts.\n\nWell, at least you won't need to look for new porn for a while.";
+			pc.lust(20);
+		}
+	}
+	/*
+	// SPAM: (9999: If does not have spamblocker upgrade toggled on for CODEX.)
+	if(rand(5) == 0 && SpamEmailKeys.length > 0 && (flags["CODEX_SPAM_BLOCKER"] == undefined || flags["CODEX_SPAM_BLOCKER"] == 0))
+	{
+		var spamKey:String = SpamEmailKeys[rand(SpamEmailKeys.length)];
+		var spamEmail:Object = MailManager.ENTRIES[spamKey];
+		var spamFrom:String = "<i>Unknown Sender</i>";
+		var spamFromAdress:String = "<i>Unknown Address</i>";
+		var spamSubject:String = "[No Subject]";
+		var spamContent:String = "<i>This message turns up empty...</i>";
+		
+		if(spamEmail.From != null) spamFrom = spamEmail.From();
+		if(spamEmail.FromAddress != null) spamFromAdress = spamEmail.FromAddress();
+		if(spamEmail.Subject != null) spamSubject = spamEmail.Subject();
+		if(spamEmail.Content != null) spamContent = spamEmail.Content();
+		
+		if(!MailManager.isEntryUnlocked(spamKey))
+		{
+			eventBuffer += "\n\n<b>New Email from " + spamFrom + " (" + spamFromAdress + ")!</b>";
+			MailManager.unlockEntry(spamKey, GetGameTimestamp());
+			
+			// Any special actions/unlocks
+			if(spamKey == "cov8" && flags["SPAM_MSG_COV8"] == undefined)
+				flags["SPAM_MSG_COV8"] = 1;
+			if(spamKey == "fatloss" && pc.isBimbo())
+			{
+				eventBuffer += " The subject line reads <i>“" + spamSubject + "”</i>. Ooo, secrets and stuff! You eagerly open the message and the codex lights up with the display:";
+				eventBuffer += "\n\n<i>" + spamContent + "</i>";
+				eventBuffer += "\n\nMmm, that sounds yummy!";
+				pc.lust(20);
+			}
+			if(spamKey == "estrobloom" && !pc.hasKeyItem("Coupon - Estrobloom"))
+				createKeyItem("Coupon - Estrobloom", 0.9, 0, 0, 0, "Save 10% on your next purchase of Estrobloom!");
+			if(spamKey == "hugedicktoday" && pc.isBro() && pc.hasCock())
+			{
+				eventBuffer += " The subject line reads <i>“" + spamSubject + "”</i>. Hell yeah--who wouldn't want a bigger dick? You quicky open the message to read its contents and the codex lights up with the display:";
+				eventBuffer += "\n\n<i>" + spamContent + "</i>";
+				eventBuffer += "\n\nYou're not quite sure you understood all that, but your dick did.";
+				pc.lust(20);
+			}
+		}
+	}
+	*/
 }
