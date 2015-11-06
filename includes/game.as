@@ -5497,7 +5497,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				output2("\n<b><u>Fungal Passage</u></b>");
 				// Fungus Queen
 				output2("\n<b>* Fungus Queen:</b> Encountered");
-				if(flags["SUCKED_FUNGUS"] != undefined) output2(", Suckled from her");
+				if(flags["SUCKED_FUNGUS"] != undefined) output2(", Sucked her tits");
 				if(flags["FUNGUS_QUEEN_SAVED"] != undefined) output2(", Saved her");
 				if(flags["LET_FUNGUS_QUEEN_DIE"] != undefined) output2(", Abandoned her, Let her die");
 				// Rogue Robot
