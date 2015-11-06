@@ -3112,7 +3112,11 @@ public function displayQuestLog(showID:String = "All"):void
 			if(flags["DIDNT_ENGAGE_RIVAL_ON_MHENGA"] != undefined) output2(" Coordinates received, Did not engage [rival.name]");
 			else if(flags["WHUPPED_DANES_ASS_ON_MHENGA"] != undefined) output2(" Coordinates received, Won against Dane");
 			else if(flags["LOST_TO_DANE_ON_MHENGA"] != undefined) output2(" Coordinates received, Lost against Dane");
-			else output2(" <i>In progress...</i>");
+			else
+			{
+				output2(" <i>In progress...</i>");
+				output2("\n<b>* Probe Location:</b> <i>It seems the probe fell deep into the jungles.</i>");
+			}
 			// Scout
 			if(flags["MET_FLAHNE"] == undefined)
 			{
@@ -3127,7 +3131,16 @@ public function displayQuestLog(showID:String = "All"):void
 			output2("\n<b><u>Tarkus</u></b>");
 			output2("\n<b>* Status:</b>");
 			if(flags["PLANET_3_UNLOCKED"] != undefined) output2(" Coordinates received");
-			else output2(" <i>In progress...</i>");
+			else
+			{
+				output2(" <i>In progress...</i>");
+				output2("\n<b>* Probe Location:</b> <i>No indication of where the probe fell.</i>");
+				if(flags["MET_UGC_TROOPER_AT_CHASMFALL"] == undefined)
+				{
+					output2("\n<b>* Scanner Feed:</b> <i>There is a lot of activity around the planetary tether.</i>");
+					if(9999 == 0) output2(" <i>Anno confirms this.</i>");
+				}
+			}
 			if(flags["GAVE_SHEKKA_PROBE"] != undefined) output2(", Gave probe to Shekka");
 			// Scout
 			if(flags["BEEN_ON_TARKUS"] != undefined)
@@ -3187,8 +3200,15 @@ public function displayQuestLog(showID:String = "All"):void
 		{
 			output2("\n<b><u>Myrellion</u></b>");
 			output2("\n<b>* Status:</b>");
-			if(flags["UVETO_UNLOCKED"] != undefined) output2(" Coordinates received");
-			else output2(" <i>In progress...</i>");
+			if(nyreaDungeonFinished() && 9999 == 0) output2(" Coordinates received");
+			else
+			{
+				output2(" <i>In progress...</i>");
+				output2("\n<b>* Probe Location:</b>");
+				if(reclaimedProbeMyrellion()) output2(" <i>Probe has been reclaimed.</i>");
+				else if(nyreaDungeonFinished()) output2(" <i>Probe has been located.</i>");
+				else output2(" <i>Probe appears to be in some kind of royal throneroom.</i>");
+			}
 			// Scout
 			if(flags["MYRELLION_EMBASSY_VISITED"] != undefined)
 			{
@@ -3208,7 +3228,6 @@ public function displayQuestLog(showID:String = "All"):void
 						else output2(" Spared Taivra,");
 					}
 					if(flags["KING_NYREA"] != undefined) output2(" Succeeded the throne as " + pc.mf("king","queen") + ",");
-					if(flags["MYRELLION_PROBE_CASH_GOT"] != undefined) output2(" Reclaimed probe,");
 					output2(" Completed");
 				}
 				else output2(" <i>In progress...</i>");
