@@ -92,6 +92,10 @@ public function combatMainMenu():void
 		{
 			coverUpdateDisplay();
 		}
+		if(foes[0] is GardeBot)
+		{
+			gardeBotCoverUpdate();
+		}
 		updateCombatStatuses();
 	}
 	
@@ -187,8 +191,9 @@ public function combatMainMenu():void
 		if(foes[0] is classes.Characters.Varmint && pc.hasKeyItem("Lasso")) addButton(0,"Lasso",lassoAVarmint,undefined,"Lasso","Use the lasso you've been provided with to properly down this varmint.");
 		//Bonus shit for stuff!
 		if (foes[0] is CaptainKhorganMech) khorganMechBonusMenu();
-		if (foes[0] is QueenOfTheDeep) queenOfTheDeepCombatMenuAddition();
-		if (foes[0] is Queensguard || foes[0] is Taivra) 
+		else if (foes[0] is GardeBot) gardeBotBonusButtons();
+		else if (foes[0] is QueenOfTheDeep) queenOfTheDeepCombatMenuAddition();
+		else if (foes[0] is Queensguard || foes[0] is Taivra) 
 		{
 			if(flags["FREED_DANE_FROM_TAIVRA"] == undefined)
 			{
@@ -1947,6 +1952,7 @@ public function enemyAI(aggressor:Creature):void
 	else if (aggressor is Queensguard) queensguardAI();
 	else if (aggressor is Taivra) taivraAI();
 	else if (aggressor is Princess) princessAI();
+	else if (aggressor is GardeBot) gardenforkRoboAI();
 	else enemyAttack(aggressor);
 }
 public function victoryRouting():void 
@@ -2112,6 +2118,7 @@ public function victoryRouting():void
 	else if (foes[0] is Queensguard) spankedQueensguardsAss();
 	else if (foes[0] is Taivra) whupTaivrasAss();
 	else if (foes[0] is Princess) beatUpPrincessYeSlut();
+	else if (foes[0] is GardeBot) beatUpConstructoBot();
 	else genericVictory();
 }
 
@@ -2119,123 +2126,38 @@ public function defeatRouting():void
 {
 	hideNPCStats();
 	if(foes[0].short == "BONERS") {}
-	else if(foes[0].short == "two zil") {
-		loseToZilPair();
-	}
-	else if(foes[0].short == "zil male") {
-		zilLossRouter();
-	}
-	else if(foes[0].short == "female zil") {
-		girlZilLossRouter();
-	}
-	else if(foes[0].short == "cunt snake") {
-		loseToCuntSnake();
-	}
-	else if(foes[0].short == "naleen") {
-		pcLosesToNaleenLiekABitch();
-	}
-	else if(foes[0].short == "naleen male")
-	{
-		loseToDudeleenRouter();
-	}
-	else if(foes[0].short == "machina")
-	{
-		ohShitLoseToRobot();
-	}
-	else if(foes[0].short == "Dane")
-	{
-		loseToDane();
-	}
-	else if (foes[0] is Mimbrane)
-	{
-		beatUpByAFuckinDishcloth();
-	}
-	else if(foes[0] is RaskvelFemale)
-	{
-		defeatRoutingForFemRasks();
-	}
-	else if(foes[0] is RaskvelMale)
-	{
-		lossVsRaskGang();
-	}
-	else if(foes[0] is SexBot)
-	{
-		loseToSexBotRouter();
-	}
-	else if(foes[0] is GrayGoo)
-	{
-		loseToGrayGooRouter();
-	}
-	else if(foes[0] is LapinaraFemale)
-	{
-		loseToFemaleLapinara();
-	}
-	else if(foes[0] is SydianMale)
-	{
-		loseToSydianMaleRouter();
-	}
-	else if(foes[0] is HandSoBot)
-	{
-		pcLosesToHanSoSosBot();
-	}
-	else if (foes[0] is PhoenixPirates)
-	{
-		loseToPhoenixPirates();
-	}
-	else if (foes[0] is GunTurrets)
-	{
-		tamtamBadEndPetPooch();
-	}
-	else if (foes[0] is RocketTurrets)
-	{
-		pcLosesToRocketPods();
-	}
-	else if(foes[0] is CaptainKhorganMech)
-	{
-		loseToCaptainKhorganBadEnd();
-	}
-	else if(foes[0] is CaptainKhorgan)
-	{
-		loseToCaptainKhorganBadEnd();
-	}
-	else if(foes[0] is Kaska)
-	{
-		defeatedByKaska();
-	}
-	else if (foes[0] is MaidenVanae)
-	{
-		vanaeMaidenPCDefeat();
-	}
-	else if (foes[0] is HuntressVanae)
-	{
-		vanaeHuntressPCDefeat();
-	}
-	else if (foes[0] is SecurityDroids)
-	{
-		lossToSecurityDroid();
-	}
-	else if (foes[0] is GrayPrime)
-	{
-		lossToGrayPrime();
-	}
-	else if (foes[0] is GigaGoo)
-	{
-		loseToGigaGoo();
-	}
-	else if (foes[0] is Varmint)
-	{
-		pcLosesToVarmint();
-	}
-	else if(foes[0] is Shade)
-	{
-		//PC + Kara Defeated
-		loseWithKaraYouSlut()
-	}
-	else if(foes[0] is Kara)
-	{
-		//PC + Shade Defeated
-		pcAndShadeDefeated();
-	}
+	else if (foes[0] is ZilPack) loseToZilPair();
+	else if (foes[0] is ZilMale) zilLossRouter();
+	else if (foes[0] is ZilFemale) girlZilLossRouter();
+	else if (foes[0] is CuntSnake) loseToCuntSnake();
+	else if (foes[0] is Naleen) pcLosesToNaleenLiekABitch();
+	else if (foes[0] is NaleenMale) loseToDudeleenRouter();
+	else if (foes[0] is CarlsRobot) ohShitLoseToRobot();
+	else if (foes[0] is Dane) loseToDane();
+	else if (foes[0] is Mimbrane) beatUpByAFuckinDishcloth();
+	else if (foes[0] is RaskvelFemale) defeatRoutingForFemRasks();
+	else if (foes[0] is RaskvelMale) lossVsRaskGang();
+	else if (foes[0] is SexBot) loseToSexBotRouter();
+	else if (foes[0] is GrayGoo) loseToGrayGooRouter();
+	else if (foes[0] is LapinaraFemale) loseToFemaleLapinara();
+	else if (foes[0] is SydianMale) loseToSydianMaleRouter();
+	else if (foes[0] is HandSoBot) pcLosesToHanSoSosBot();
+	else if (foes[0] is PhoenixPirates) loseToPhoenixPirates();
+	else if (foes[0] is GunTurrets) tamtamBadEndPetPooch();
+	else if (foes[0] is RocketTurrets) pcLosesToRocketPods();
+	else if (foes[0] is CaptainKhorganMech) loseToCaptainKhorganBadEnd();
+	else if (foes[0] is CaptainKhorgan) loseToCaptainKhorganBadEnd();
+	else if (foes[0] is Kaska) defeatedByKaska();
+	else if (foes[0] is MaidenVanae) vanaeMaidenPCDefeat();
+	else if (foes[0] is HuntressVanae) vanaeHuntressPCDefeat();
+	else if (foes[0] is SecurityDroids) lossToSecurityDroid();
+	else if (foes[0] is GrayPrime) lossToGrayPrime();
+	else if (foes[0] is GigaGoo) loseToGigaGoo();
+	else if (foes[0] is Varmint) pcLosesToVarmint();
+	//PC + Kara Defeated
+	else if (foes[0] is Shade) loseWithKaraYouSlut()
+	//PC + Shade Defeated
+	else if (foes[0] is Kara) pcAndShadeDefeated();
 	else if (foes[0] is Cockvine)
 	{
 		if (pc.hasCock() || pc.hasVagina())
@@ -2243,37 +2165,23 @@ public function defeatRouting():void
 		else
 			adultCockvineHahaFuckYouGenderless(true);
 	}
-	else if (foes[0] is NyreaAlpha || foes[0] is NyreaBeta)
-	{
-		pcLossToNyrea();
-	}
+	else if (foes[0] is NyreaAlpha || foes[0] is NyreaBeta)	pcLossToNyrea();
 	else if (foes[0] is FrogGirl) loseAgainstTheFrogs();
 	else if (foes[0] is WetraHound) wetraHoundPCLoss();
 	else if (foes[0] is WetraxxelBrawler) wetraxxelBrawlerPCLoss();
-	else if (foes[0] is MyrInfectedFemale)
-	{
-		loseToInfectedMyrYouSubbieSloot();
-	}
-	else if(foes[0] is DoctorLash)
-	{
-		loseToDoctorLash();
-	}
-	else if (foes[0] is QueenOfTheDeep)
-	{
-		queenOfTheDeepPCLoss();
-	}
-	else if (foes[0] is MyrRedFemaleDeserter || foes[0] is MyrGoldFemaleDeserter)
-	{
-		loseToAntGrillDeserts();
-	}
-	else if(foes[0] is NyreanPraetorians) loseToPraetorianNyreaGangbangu();
-	else if(foes[0] is Goocubator) loseToRoyalIncuGoo();
+	else if (foes[0] is MyrInfectedFemale) loseToInfectedMyrYouSubbieSloot();
+	else if (foes[0] is DoctorLash) loseToDoctorLash();
+	else if (foes[0] is QueenOfTheDeep) queenOfTheDeepPCLoss();
+	else if (foes[0] is MyrRedFemaleDeserter || foes[0] is MyrGoldFemaleDeserter) loseToAntGrillDeserts();
+	else if (foes[0] is NyreanPraetorians) loseToPraetorianNyreaGangbangu();
+	else if (foes[0] is Goocubator) loseToRoyalIncuGoo();
 	else if (foes[0] is SX1GroupPirates) sx1PirateGroupPCLoss();
 	else if (foes[0] is SX1Shotguard) sx1ShotguardPCLoss();
 	else if (foes[0] is SX1Techguard) sx1TechguardPCLoss();
 	else if (foes[0] is Queensguard) loseToQueensTaivra();
 	else if (foes[0] is Taivra) loseToQueensTaivra();
 	else if (foes[0] is Princess) loseToPrincessYeGit();
+	else if (foes[0] is GardeBot) roboQueenFightPCLoss();
 	else {
 		output("You lost!  You rouse yourself after an hour and a half, quite bloodied.");
 		processTime(90);
@@ -2633,6 +2541,9 @@ public function startCombat(encounter:String):void
 			break;
 		case "princess":
 			chars["PRINCESS"].prepForCombat();
+			break;
+		case "GardeBot":
+			chars["GARDEBOT"].prepForCombat();
 			break;
 		default:
 			throw new Error("Tried to configure combat encounter for '" + encounter + "' but couldn't find an appropriate setup method!");

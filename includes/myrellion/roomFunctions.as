@@ -562,7 +562,7 @@ public function deepCavesEntranceBonus():Boolean
 public function fungus1Bonus():Boolean
 {
 	output("To the north ");
-	if(9999 == 9999) output("is a passage all but buried in glowing fungus, making it hard to see what exactly lies beyond the gently-pulsing curtain");
+	if(flags["FUNGUS_QUEEN_SAVED"] == undefined && flags["LET_FUNGUS_QUEEN_DIE"] == undefined) output("is a passage all but buried in glowing fungus, making it hard to see what exactly lies beyond the gently-pulsing curtain");
 	else output("is a cascade of rock and jagged burn scars that marks what used to be a glowing cavern");
 	output(". South lies a short passage, starting with the dessicated corpse of a giant insect.\n\nWest lies a much longer passage, the end lost in darkness.");
 	return DeepCavesBonus();
@@ -670,9 +670,12 @@ public function DeepCavesBonus():Boolean
 		//Build possible encounters
 		choices[choices.length] = encounterNyreaAlpha;
 		choices[choices.length] = encounterNyreaBeta;
-		choices[choices.length] = infectedMyrmedionShit;
-		choices[choices.length] = infectedMyrmedionShit;
-		choices[choices.length] = infectedMyrmedionShit;
+		if(flags["LET_FUNGUS_QUEEN_DIE"] != undefined) 
+		{
+			choices[choices.length] = infectedMyrmedionShit;
+			choices[choices.length] = infectedMyrmedionShit;
+			choices[choices.length] = infectedMyrmedionShit;
+		}
 		choices[choices.length] = infectedMyrmedionShit;
 
 		//Run the event

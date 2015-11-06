@@ -955,6 +955,15 @@ public function statusTick():void {
 
 public function variableRoomUpdateCheck():void
 {
+	//Fungus area open:
+	if(flags["FUNGUS_QUEEN_SAVED"] == undefined && flags["LET_FUNGUS_QUEEN_DIE"] == undefined)
+	{
+		rooms["2S11"].northExit = "2S9";
+	}
+	else 
+	{
+		rooms["2S11"].northExit = "";
+	}
 	//Nyrea gate should be open
 	if(nyreaDungeonGateOpen()) 
 	{
