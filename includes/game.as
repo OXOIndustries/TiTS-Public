@@ -3207,7 +3207,7 @@ public function displayQuestLog(showID:String = "All"):void
 				output2("\n<b>* Probe Location:</b>");
 				if(reclaimedProbeMyrellion()) output2(" <i>Probe has been reclaimed.</i>");
 				else if(nyreaDungeonFinished()) output2(" <i>Probe has been located.</i>");
-				else output2(" <i>Probe appears to be in some kind of royal throneroom.</i>");
+				else output2(" <i>Probe appears to be in some kind of royal throne room.</i>");
 			}
 			// Scout
 			if(flags["MYRELLION_EMBASSY_VISITED"] != undefined)
