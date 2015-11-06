@@ -2996,8 +2996,8 @@ public function setBessCockType(newType:int):void
 
 		output("\n\n<i>“Umm, "+ bessPCName() +", I’m not sure this is going to fit inside you. It seems like it’s used for insemination of city-destroying monsters...”</i> [bess.name] voices [bess.hisHer] concerns about the size of [bess.hisHer] positively preposterous phallus. <i>“Have you checked to see if your health insurance covers this kind of thing?”</i><b> [bess.name] now has a dino cock and balls!</b>");
 
-		if (silly) output("\n\n<b>[bess.name] now has a gigantic ogre cock!</b>");
-		else output("\n\n<b>[bess.name] now has a saurian cock!</b>")
+		if (silly) output("\n\n<b>[bess.name] now has a gigantic ogre cock and balls!</b>");
+		else output("\n\n<b>[bess.name] now has a saurian cock and balls!</b>")
 	}
 	else if (newType == GLOBAL.TYPE_EQUINE)
 	{
@@ -3105,8 +3105,7 @@ public function setBessCockType(newType:int):void
 		
 		output("\n\n<i>“It kind of tingles, "+ bessPCName() +". I can feel it suckling off me - I can’t say it’s unpleasant.”</i> [bess.name] informs you, testing and flexing [bess.hisHer] symbiotic rod. <i>“I can’t believe they grew this; isn’t JoyCo just amazing?”</i>");
 		
-		
-		output("\n\n<b> [bess.name] now has a Plant Cock!</b>");
+		output("\n\n<b> [bess.name] now has a plant cock!</b>");
 	}
 	else if (newType == GLOBAL.TYPE_DRACONIC)
 	{
