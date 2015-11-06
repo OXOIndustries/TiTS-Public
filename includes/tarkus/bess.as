@@ -1073,6 +1073,7 @@ public function verifyBessModelFinish():void
 	output("\n\n<i>“Oh, hello " + bessPCName() +"! Sorry, that kind of hit me by surprise there,”</i> [bess.heShe] apologizes, quickly getting up on [bess.hisHer] [bess.feet]. <i>“Do you need help with anything?”</i>");
 	
 	processTime(3);
+	clearMenu();
 	addButton(0, "Next", bessFollowerMenu);
 }
 
