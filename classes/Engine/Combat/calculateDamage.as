@@ -71,6 +71,9 @@ package classes.Engine.Combat
 					if (attacker.hasStatusEffect("Take Advantage")) baseHPDamage.add(attacker.level * 2);
 					if	(target.hasStatusEffect("Stunned") && target.hasStatusEffect("Blind")) baseHPDamage.add(attacker.level);
 				}
+
+				//Special counter - added when PC melees something. Eaten at the end of the round.
+				if(attacker is PlayerCharacter && !target.hasStatusEffect("Melee Counter")) target.createStatusEffect("Melee Counter",0,0,0,0);
 			}
 			else
 			{	

@@ -2716,7 +2716,7 @@ public function initializeMyrellionRooms():void
 	//Garde Here
 	rooms["2S7"] = new RoomClass(this);
 	rooms["2S7"].roomName = "FUNGAL\nPASSAGE";
-	rooms["2S7"].description = "Mushrooms the size of buildings pulse with soft colors that match the pale blue of the abandoned chambers. Clouds of tiny spores flutter around in the open air, reminding you of what happened here.";
+	rooms["2S7"].description = "Immense crystal monoliths lie in the background of this giant chamber. Mushrooms the size of buildings pulse with soft colors that reflect in the transparent gems. Clouds of tiny spores flutter around in the open air.";
 	rooms["2S7"].planet = "PLANET: MYRELLION";
 	rooms["2S7"].system = "SYSTEM: SINDATHU";
 	rooms["2S7"].northExit = "";
@@ -2724,7 +2724,7 @@ public function initializeMyrellionRooms():void
 	rooms["2S7"].southExit = "2S9";
 	rooms["2S7"].westExit = "";
 	rooms["2S7"].moveMinutes = 5;
-	rooms["2S7"].runOnEnter = DeepCavesBonus;
+	rooms["2S7"].runOnEnter = fungusQueenRoomBonus;
 	rooms["2S7"].addFlag(GLOBAL.CAVE);
 	rooms["2S7"].addFlag(GLOBAL.INDOOR);
 	rooms["2S7"].addFlag(GLOBAL.HAZARD);
