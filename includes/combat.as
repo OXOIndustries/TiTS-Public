@@ -3367,7 +3367,7 @@ public function buttTeaseText():void {
 	choices.push(3);
 	if(flags["TIMES_BUTT_TEASED"] >= 75) choices.push(0);
 	if(flags["TIMES_BUTT_TEASED"] >= 50 && pc.armor.shortName != "") choices.push(1);
-	if(pc.analCapacity() >= 450 && (pc.ass.looseness() >= 5 || rand(Math.round((5/pc.ass.looseness()) + 1)) == 0) choices.push(2);
+	if(pc.analCapacity() >= 450) choices.push(2);
 	if(pc.hasTail() && pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) choices.push(4);
 	if(pc.hasCuntTail()) choices.push(5);
 	if(pc.hasCuntTail() && flags["TIMES_BUTT_TEASED"] > 25) choices.push(6);
@@ -3410,9 +3410,9 @@ public function buttTeaseText():void {
 			output(" struggle to pry open your ass, but due to its");
 			if(pc.ass.looseness() <= 0) output(" extreme tightness, you find it incredibly hard to even finger.");
 			else output(" tightness, you find it a bit more difficult to penetrate.");
-			if(pc.ass.wetness() >= 2) output(" Thankfully, your rectum’s natural lube makes the action easier and");
-			else output(" Regardless, after some struggling,");
-			output(" you manage to");
+			if(pc.ass.wetness() >= 2) output(" Thankfully, your rectum’s natural lube makes the action easier");
+			else output(" Regardless, the heat of battle boosts your confidence");
+			output(" and you manage to");
 		}
 		else if(pc.ass.looseness() <= 4) output(" manage to");
 		else output(" easily");
