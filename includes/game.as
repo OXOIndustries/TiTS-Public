@@ -1547,7 +1547,7 @@ public function processTime(arg:int):void {
 	//Emmy Mail
 	if (!MailManager.isEntryUnlocked("emmy_apology") && flags["EMMY_EMAIL_TIMER"] <= (GetGameTimestamp() - (24 * 60))) emmyMailGet();
 	//Other Email Checks!
-	if (rand(60) == 0 || (rand(24) == hours && rand(60) == minutes)) emailRoulette();
+	if (rand(20) == 0 || (rand(24) == hours && rand(60) == minutes)) emailRoulette();
 	flags["HYPNO_EFFECT_OUTPUT_DONE"] = undefined;
 	variableRoomUpdateCheck();
 	updatePCStats();
@@ -6055,6 +6055,7 @@ public function fixPcUpbringingSetNew(upType:uint):void
 // Random Emails!
 public function emailRoulette():void
 {
+	var mailList:Array = [];
 	var mailKey:String = "";
 	var mailEmail:Object = MailManager.ENTRIES[mailKey];
 	var mailFrom:String = "<i>Unknown Sender</i>";
@@ -6064,25 +6065,27 @@ public function emailRoulette():void
 	
 	// Character/Event specific:
 	if(!MailManager.isEntryUnlocked("messageFromDad") && days > 0)
-		mailKey = "messageFromDad";
-	else if(!MailManager.isEntryUnlocked("burtsmeadhall") && rand(4) == 0)
-		mailKey = "burtsmeadhall";
-	else if(!MailManager.isEntryUnlocked("kihaai") && rand(4) == 0)
-		mailKey = "kihaai";
-	else if(!MailManager.isEntryUnlocked("syrividja") && rand(2) == 0 && flags["SPAM_MSG_COV8"] != undefined && syriIsAFuckbuddy())
-		mailKey = "syrividja";
-	else if(!MailManager.isEntryUnlocked("annoweirdshit") && rand(2) == 0 && flags["MET_ANNO"] != undefined && flags["FOUGHT_TAM"] == undefined)
-		mailKey = "annoweirdshit";
-	else if(!MailManager.isEntryUnlocked("fuckinggoosloots") && rand(4) == 0 && celiseIsCrew())
-		mailKey = "fuckinggoosloots";
-	else if(!MailManager.isEntryUnlocked("fuckinggooslootsII") && rand(4) == 0 && celiseIsCrew())
-		mailKey = "fuckinggooslootsII";
-	else if(!MailManager.isEntryUnlocked("kirofucknet") && rand(2) == 0 && flags["RESCUE KIRO FROM BLUEBALLS"] == 1)
-		mailKey = "kirofucknet";
+		mailList.push("messageFromDad");
+	else if(!MailManager.isEntryUnlocked("burtsmeadhall") && pc.level >= 1)
+		mailList.push("burtsmeadhall");
+	else if(!MailManager.isEntryUnlocked("kihaai") && flags["UNLOCKED_JUNKYARD_PLANET"] != undefined)
+		mailList.push("kihaai");
+	else if(!MailManager.isEntryUnlocked("syrividja") && flags["SPAM_MSG_COV8"] != undefined && syriIsAFuckbuddy() && (flags["TIMES_WON_AGAINST_SYRI"] != undefined || flags["TIMES_LOST_TO_SYRI"] != undefined))
+		mailList.push("syrividja");
+	else if(!MailManager.isEntryUnlocked("annoweirdshit") && flags["MET_ANNO"] != undefined && flags["FOUGHT_TAM"] == undefined)
+		mailList.push("annoweirdshit");
+	else if(!MailManager.isEntryUnlocked("fuckinggoosloots") && celiseIsCrew() && pc.level >= 2)
+		mailList.push("fuckinggoosloots");
+	else if(!MailManager.isEntryUnlocked("fuckinggooslootsII") && MailManager.isEntryUnlocked("fuckinggoosloots") && celiseIsCrew() && pc.level >= 5)
+		mailList.push("fuckinggooslootsII");
+	else if(!MailManager.isEntryUnlocked("kirofucknet") && flags["RESCUE KIRO FROM BLUEBALLS"] == 1 && kiroTrust() >= 50)
+		mailList.push("kirofucknet");
 	else if(!MailManager.isEntryUnlocked("saendrathanks") && flags["FALL OF THE PHOENIX STATUS"] >= 1 && flags["SAENDRA_DISABLED"] != 1)
-		mailKey = "saendrathanks";
-	else if(!MailManager.isEntryUnlocked("cuzfuckball") && flags["BEEN_ON_TARKUS"] != undefined)
-		mailKey = "cuzfuckball";
+		mailList.push("saendrathanks");
+	else if(!MailManager.isEntryUnlocked("cuzfuckball") && flags["TIMES_MET_FEMZIL"] != undefined && flags["BEEN_ON_TARKUS"] != undefined && pc.level >= 2)
+		mailList.push("cuzfuckball");
+	
+	if(mailList.length > 0 && rand(4) == 0) mailKey = mailList[rand(mailList.length)];
 	
 	if(mailKey != "" && !MailManager.isEntryUnlocked(mailKey))
 	{
