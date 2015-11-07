@@ -2195,7 +2195,7 @@ public function statisticsScreen(showID:String = "All"):void
 			if(pc.hasStatusEffect("Horn Bumps")) output2(" Horn Bumps");
 			else
 			{
-				if(pc.hornType == GLOBAL.TYPE_DEER) output2(" 2, " + GLOBAL.TYPE_NAMES[pc.hornType] + ", " + pc.horns + " Points");
+				if(pc.hornType == GLOBAL.TYPE_DEER) output2(" 2, " + prettifyLength(pc.hornLength) + ", " + GLOBAL.TYPE_NAMES[pc.hornType] + ", " + pc.horns + " Points");
 				else 
 				{
 					output2(" " + pc.horns + ",");
