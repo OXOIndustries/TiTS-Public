@@ -7515,7 +7515,7 @@ package classes {
 					if(rand(4) == 0) adjective += mf("extremely pronounced","very pronounced");
 					else if(thickness > 70) adjective += "immense";
 					else if(thickness >= 30) adjective += "robust";
-					else adjective += "chisled";
+					else adjective += "chiseled";
 				}
 				else if(tone > 70)
 				{
