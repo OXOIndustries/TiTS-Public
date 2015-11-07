@@ -752,7 +752,7 @@ public function stepBackFromGloryHoles():void
 	output("\n\nYou don’t exactly know how to respond to that, and in the couple of moments you spend flubbing for some response that will keep the creature placated, you hear something clicking behind the stone. You manage to scramble back just in time to avoid falling in as a trap door pops open from underneath a shaggy rug, and a glistening green figure pulls herself up from below.");
 	output("\n\n");
 	//if seen a Crystalgu b4:
-	if(flags["MET_GANRAEL"] != undefined) output("You instantly recognize the familiar form of a ganrael, the planet’s crystal-hemmed goo race, but something’s very different about this specimen. ");
+	if(CodexManager.entryUnlocked("Ganrael")) output("You instantly recognize the familiar form of a ganrael, the planet’s crystal-hemmed goo race, but something’s very different about this specimen. ");
 	else 
 	{
 		output("It’s a green goo-girl, just like Celise, but covered with bits of glistening crystal. Your Codex beeps, identifying it as a gan’rael, a myrellion native species. ");
@@ -812,7 +812,7 @@ public function useDatGloryhole():void
 
 	output("\n\nIs that a goo-girl on the other side? It has to be, you tell yourself");
 	//if seen a Crystalgu b4:
-	if(flags["MET_GANRAEL"] != undefined) output(" - probably a ganrael in the queen’s service");
+	if(CodexManager.entryUnlocked("Ganrael")) output(" - probably a ganrael in the queen’s service");
 	output(". The way the semi-liquid slurps and squeezes, sucks and caresses your cockflesh is amazing, better than any mouth or sex toy could ever be. An irrepressible grin spreads across your face as you sink every inch of your [pc.cock] into the gooey sheath on the other side of the hole, surrounding your manhood in a constant cavalcade of pleasures.");
 	pc.cockChange();
 	output("\n\n<i>“Wow, this feels totally different!”</i> the voice on the other side giggles, quivering wonderfully around your dick. <i>“Did you, like, get a whole new cock? Just for me, right?”</i>");
@@ -831,7 +831,7 @@ public function useDatGloryhole():void
 
 	output("\n\n");
 	//if seen a Crystalgu b4:
-	if(flags["MET_GANRAEL"] != undefined) output("You instantly recognize the familiar form of a ganrael, the planet’s crystal-hemmed goo race, but something’s very different about this specimen.");
+	if(CodexManager.entryUnlocked("Ganrael")) output("You instantly recognize the familiar form of a ganrael, the planet’s crystal-hemmed goo race, but something’s very different about this specimen.");
 	//else
 	else output("It’s a green goo-girl, just like Celise, as you expected. Unlike your dad’s favorite pet, though, this one’s  covered with bits of glistening crystal. Your Codex beeps, identifying it as a gan’rael, a myrellion native species.");
 	output(" She’s adopted a relatively humanoid form, probably based off of a gooey interpretation of the nyrea she’s living besides: she’s got two arms, a human-like head with big elfin ears, and a curvaceous body with big tits and hips that fold down into a solid base of goo instead of legs. Her crystals, though, are what tip you off to what you’re really dealing with here: a thick dome of emerald crystal has formed around her belly, shielding a massively pregnant gut filled to the brim with what looks like hundreds of fist-sized eggs! Her middle is hugely bloated, swollen with eggs and plated with as much crystal as the goo could possibly churn out, protecting her charges rather than herself. Beneath the gemstone shield, though, you see a ");
@@ -3124,7 +3124,7 @@ public function useRepeatGloryhole():void
 	if(flags["CRYSTAL_GOO_DEFEAT"] == undefined) 
 	{
 		output("Is that a goo-girl on the other side? It has to be, you tell yourself");
-		if(flags["MET_GANRAEL"] != undefined) output(" - probably a ganrael in the queen’s service");
+		if(CodexManager.entryUnlocked("Ganrael")) output(" - probably a ganrael in the queen’s service");
 	}
 	else output("You smile as the familiar sensation of the ganrael broodmare’s gooey body surrounds you");
 	output(". The way the semi-liquid slurps and squeezes, sucks and caresses your cockflesh is amazing, better than any mouth or sex toy could ever be. An irrepressible grin spreads across your face as you sink every inch of [pc.oneCock] into the gooey sheath on the other side of the hole, surrounding your manhood in a constant cavalcade of pleasures.");
