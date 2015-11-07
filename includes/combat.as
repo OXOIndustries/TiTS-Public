@@ -3367,7 +3367,7 @@ public function buttTeaseText():void {
 	choices.push(3);
 	if(flags["TIMES_BUTT_TEASED"] >= 75) choices.push(0);
 	if(flags["TIMES_BUTT_TEASED"] >= 50 && pc.armor.shortName != "") choices.push(1);
-	if(pc.analCapacity() >= 450) choices.push(2);
+	if(pc.analCapacity() >= 450 && pc.ass.looseness() >= 4) choices.push(2);
 	if(pc.hasTail() && pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) choices.push(4);
 	if(pc.hasCuntTail()) choices.push(5);
 	if(pc.hasCuntTail() && flags["TIMES_BUTT_TEASED"] > 25) choices.push(6);
@@ -3405,6 +3405,7 @@ public function buttTeaseText():void {
 	else if(select == 2)
 	{
 		output("You quickly strip out of your [pc.armor] and turn around, giving your [pc.butt] a hard slap and showing your enemy the real prize: your [pc.asshole]. With a smirk, you");
+		/*
 		if(pc.ass.looseness() <= 2)
 		{
 			output(" struggle to pry open your ass, but due to its");
@@ -3414,7 +3415,9 @@ public function buttTeaseText():void {
 			else output(" Regardless, the heat of battle boosts your confidence");
 			output(" and you manage to");
 		}
-		else if(pc.ass.looseness() <= 4) output(" manage to");
+		else 
+		*/
+		if(pc.ass.looseness() <= 4) output(" manage to");
 		else output(" easily");
 		output(" plunge your [pc.hand] inside, burying yourself up to the wrist inside your anus.");
 		//pc.buttChange(450); // Not sure to add, but optional gaping for consistency.
