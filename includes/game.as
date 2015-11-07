@@ -2747,11 +2747,14 @@ public function statisticsScreen(showID:String = "All"):void
 		// Virgin booties claimed
 		var totalVirginitiesTaken:Number = 0;
 		if(StatTracking.getStat("characters/maiden vanae/cherrys popped") > 0) totalVirginitiesTaken += StatTracking.getStat("characters/maiden vanae/cherrys popped");
-		if(!chars["KIRO"].vaginalVirgin) totalVirginitiesTaken++;
-		if(!chars["EMBRY"].vaginalVirgin) totalVirginitiesTaken++;
-		if(!chars["EMBRY"].analVirgin) totalVirginitiesTaken++;
 		if(!chars["ANNO"].analVirgin) totalVirginitiesTaken++;
+		if(!chars["EMBRY"].analVirgin) totalVirginitiesTaken++;
+		if(!chars["EMBRY"].cockVirgin) totalVirginitiesTaken++;
+		if(!chars["EMBRY"].vaginalVirgin) totalVirginitiesTaken++;
 		if(!chars["GEOFF"].analVirgin || flags["GEOFF_TOPPED"] != undefined) totalVirginitiesTaken++;
+		if(!chars["KIRO"].vaginalVirgin) totalVirginitiesTaken++;
+		if(!chars["PENNY"].cockVirgin) totalVirginitiesTaken++;
+		if(!chars["SAENDRA"].cockVirgin) totalVirginitiesTaken++;
 		if(flags["TOOK_DELILAHS_BUTTGINITY"] != undefined) totalVirginitiesTaken++;
 		if(flags["TOOK_PRINCESS_BUTTGINITY"] != undefined) totalVirginitiesTaken++;
 		if(sleepingPartner != "" || totalVirginitiesTaken > 0)
