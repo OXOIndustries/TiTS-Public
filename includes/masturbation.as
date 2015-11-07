@@ -2191,8 +2191,8 @@ public function goddamnitJimTAndYourExhibitionism():void
 
 	output("\n\nYour sense of excitement skyrockets as they begin to whip out recording devices. Here you are, [pc.name], ");
 	if(pc.isTaur()) output("playing with your [pc.nipples]");
-	else if(pc.hasCock()) output("jerking and fingering your ass");
-	else if(pc.hasVagina()) output("frigging and fingering your ass");
+	else if(pc.hasCock()) output("jerking your [pc.cocks] and fingering your ass");
+	else if(pc.hasVagina()) output("frigging your [pc.vaginas] and fingering your ass");
 	else output("fingering your ass");
 	output(" in public, and everyone can see it - it's such a rush!");
 
