@@ -96,7 +96,7 @@ public function configureMails():void
 	MailManager.addMailEntry("myrpills", myrPillsEmailMessage,"Pills Here!","Nevri Redarra","N_Redarra@Xenogen.net",quickPCTo,quickPCToAddress);
 	MailManager.addMailEntry("orangepills", myrOrangePillsEmailMessage,"Ding! Pills Are Done!","Nevri Redarra","N_Redarra@Xenogen.net",quickPCTo,quickPCToAddress);
 	MailManager.addMailEntry("bjreminder", xenogenBlowjobReminder,"Xenogen Discount Program!","Nevri Redarra","N_Redarra@Xenogen.net",quickPCTo,quickPCToAddress);
-		
+	
 	MailManager.addMailEntry("syrividja", "Hey, Steele\n\nBeen a while! I'm guessing you're off-world, right? Chasing the next piece of your big puzzle -- or chasing the next cute skirt? :P Well if you get a break in your quest, swing back by Mhen'ga sometime. I'll buy you a drink and treat you right for an evening~\n\nMaybe play some games, too? >_> CoV 7 just came out... and I'm the only person in this shithole with a rig that can handle it. Ugh.\n\nMiss you!\n-your favorite ausar", "Hang out sometime?", "Syri Dorna", "BlastMaster@GalLink.org", quickPCTo, quickPCToAddress);
 	
 	MailManager.addMailEntry("annoweirdshit", "Hey, boss,\n\nJust a heads up. Something weird's going on here. I saw a bunch of Peacekeeper dropships coming down on the east on Nova, over by the Rift. Thought I heard gunshots, too, but....\n\nCould be something worth checking out. Alternatively: get me the fuck out of here before Novahome explodes or something.\n\n:|\n\nAnno E. Dorna\nPlanetary Branch Manager, Tarkus\nSteele Tech Applied Sciences Division", "Tarkus: Weirder than usual", "Anno Dorna", "Anno_Dorna@SteeleTech.corp", quickPCTo, quickPCToAddress);
@@ -115,6 +115,7 @@ public function configureMails():void
 	MailManager.addMailEntry("saendraxpack1", "Hey, hero, are you anywhere near Tavros? Please say yes! If you are, I could really use a hand. I'm on Deck 92, up in the construction wing. Expect trouble. Hope I see you soon!\n\n<3", "Hey Hero", "Saendra en Illya", "FlyGirl@PhoenixCargo.net", quickPCTo, quickPCToAddress); 
 	MailManager.addMailEntry("emmy_apology", emmyApologyEmail,"Sorry!","Emmy Astarte","emmy_astarte@cmail.com",quickPCTo,quickPCToAddress);
 	MailManager.addMailEntry("the_masque", "Hey, where are you? I thought we agreed to meet up for The Masque? I keep trying to call you, but you’re not answering, so this is my last try. Dude, this shit is wicked. I’m gonna be on the west side of Craven city, but you’ve only got a few days left, so get your ass over here!\n\nWet & Waiting", "The Masque", "Wet & Waiting", "Wet.N.Waiting@GalLink.org", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("syribooks", "Hey, Steele\n\nHere are some books to jump start your reading adventure:\n\n<i>Below is a link to a download archive with numerous books by various authors, most notably: Rondell Ramus, Capser van Beck and Imono Flaest.</i>\n\nEnjoy!\n-Syri", "Read More.", "Syri Dorna", "BlastMaster@GalLink.org", quickPCTo, quickPCToAddress);
 }
 
 public function cuzName():String
