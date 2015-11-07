@@ -3465,40 +3465,29 @@ public function talkToBessAboutOutfits():void
 	bessCIW(7, "LatexBSuit", LatexBodysuit, "Latex Bodysuit", "Latex Bodysuit");
 	bessCIW(8, "Maid", MaidOutfit, "Maid Outfit", "Maid Outfit");
 	bessCIW(9, "Nurse", NurseOutfit, "Nurse Outfit", "Nurse Outfit");
-
+	
 	bessCIW(10, "Schoolgirl", SchoolgirlOutfit, "Schoolgirl", "Schoolgirl");
 	bessCIW(11, "Cheerleader", CheerleaderUniform, "Cheerleader Uniform", "CheerleaderUniform");
 	bessCIW(12, "Bunnygirl", BunnyOutfit, "Bunnygirl Outfit", "Bunnygirl Outfit");
 	bessCIW(13, "Military", MilitaryUniform, "Military Uniform", "Military Uniform");
 	
 	addButton(14, "Back", talkToBessAboutClothes);
-
-	bessCIW(15, "Schoolgirl", SchoolgirlOutfit, "Schoolgirl", "Schoolgirl");
-	bessCIW(16, "Cheerleader", CheerleaderUniform, "Cheerleader Uniform", "CheerleaderUniform");
-	bessCIW(17, "Bunnygirl", BunnyOutfit, "Bunnygirl Outfit", "Bunnygirl Outfit");
-	bessCIW(18, "Military", MilitaryUniform, "Military Uniform", "Military Uniform");
-	bessCIW(19, "Pirate", SpacePirateOutfit, "Space Pirate", "Space Pirate");
 	
-	bessCIW(20, "R.Fem Armor", RevealingFemaleArmor, "Revealing Female Armor", "Revealing Female Armor");
-	bessCIW(21, "R.Male Armor", RevealingMaleArmor, "Revealing Male Armor", "Revealing Male Armor");
-	bessCIW(22, "T.Zipsuit", TransparentZipsuit, "Transparent Zipsuit", "Transparent Zipsuit");
-	bessCIW(23, "Butler", ButlerOutfit, "Butler Outfit", "Butler Outfit");
-	bessCIW(24, "M.Doctor", MaleDoctorOutfit, "Male Doctor Outfit", "Male Doctor Outfit");
-
-	bessCIW(25, "R.Fem Armor", RevealingFemaleArmor, "Revealing Female Armor", "Revealing Female Armor");
-	bessCIW(26, "R.Male Armor", RevealingMaleArmor, "Revealing Male Armor", "Revealing Male Armor");
-	bessCIW(27, "T.Zipsuit", TransparentZipsuit, "Transparent Zipsuit", "Transparent Zipsuit");
-	bessCIW(28, "Butler", ButlerOutfit, "Butler Outfit", "Butler Outfit");
+	bessCIW(15, "Pirate", SpacePirateOutfit, "Space Pirate", "Space Pirate");
+	bessCIW(16, "R.Fem Armor", RevealingFemaleArmor, "Revealing Female Armor", "Revealing Female Armor");
+	bessCIW(17, "R.Male Armor", RevealingMaleArmor, "Revealing Male Armor", "Revealing Male Armor");
+	bessCIW(18, "T.Zipsuit", TransparentZipsuit, "Transparent Zipsuit", "Transparent Zipsuit");
+	bessCIW(19, "Butler", ButlerOutfit, "Butler Outfit", "Butler Outfit");
+	
+	bessCIW(20, "M.Doctor", MaleDoctorOutfit, "Male Doctor Outfit", "Male Doctor Outfit");
+	bessCIW(21, "F.Doctor", FemaleDoctorOutfit, "Female Doctor Outfit", "Female Doctor Outfit");
+	bessCIW(22, "Schoolboy", SchoolboyOutfit, "Schoolboy Outfit", "Schoolboy Outfit");
+	bessCIW(23, "StrapHarness", LeatherStrapHarness, "Leather Strap Harness", "Leather Strap Harness");
+	bessCIW(24, "BlackDress", LittleBlackDress, "Little Black Dress", "Little Black Dress");
 	
 	addButton(29, "Back", talkToBessAboutClothes);
-
-	bessCIW(30, "M.Doctor", MaleDoctorOutfit, "Male Doctor Outfit", "Male Doctor Outfit");
-	bessCIW(31, "F.Doctor", FemaleDoctorOutfit, "Female Doctor Outfit", "Female Doctor Outfit");
-	bessCIW(32, "Schoolboy", SchoolboyOutfit, "Schoolboy Outfit", "Schoolboy Outfit");
-	bessCIW(33, "StrapHarness", LeatherStrapHarness, "Leather Strap Harness", "Leather Strap Harness");
-	bessCIW(34, "BlackDress", LittleBlackDress, "Little Black Dress", "Little Black Dress");
-
-	addButton(44, "Back", talkToBessAboutClothes);
+	
+	//addButton(44, "Back", talkToBessAboutClothes);
 }
 
 /**
