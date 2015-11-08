@@ -17,7 +17,7 @@
 			this._latestVersion = 1;
 			
 			this.quantity = 1;
-			this.stackSize = 10;
+			this.stackSize = 12;
 			this.type = GLOBAL.FOOD;
 			//Used on inventory buttons
 			this.shortName = "SmallEgg";
@@ -45,6 +45,9 @@
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 0;
+			
+			this.combatUsable = true;
+			this.targetsSelf = true;
 			
 			this.version = this._latestVersion;
 		}
