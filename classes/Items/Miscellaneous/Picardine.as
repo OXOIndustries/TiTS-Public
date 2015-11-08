@@ -50,6 +50,21 @@
 			this.isUsable = false;
 			
 			this.version = _latestVersion;
-		}	
+		}
+		override public function useFunction(target:Creature, usingCreature:Creature = null):Boolean
+		{
+			if(!kGAMECLASS.infiniteItems()) quantity++;
+			if(target is PlayerCharacter)
+			{
+				kGAMECLASS.clearOutput();
+				kGAMECLASS.output("You have no use for the gem at present.");
+			}
+			else
+			{
+				kGAMECLASS.clearOutput();
+				kGAMECLASS.output(target.capitalA + target.short + " cannot use the gem.");
+			}
+			return true;
+		}
 	}
 }
