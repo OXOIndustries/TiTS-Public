@@ -1519,6 +1519,7 @@ public function newTexanGanguBangu():void
 	output("\n\nOnce they’ve left, the cuffs automatically unlock, as if sensing their absence. They fall and clatter on the ground. Picking them up, you stare at your wrists and ankles - the only parts of you uncovered by bull cum! You flush and pack them away, feeling more than a little wobbly on your feet!");
 
 	IncrementFlag("NEW_TEXAS_GANGBANGED");
+	IncrementFlag("GRAVCUFFS_USES");
 	processTime(130+rand(10));
 	// Lots of vaginal (if applicable) and anal stretch.
 	// Lots of exhibition points.
@@ -1691,6 +1692,7 @@ public function gravCuffsCowgirlBangu():void
 
 	processTime(45);
 	IncrementFlag("TEXAS_GRAVCUFFS_COWORGY");
+	IncrementFlag("GRAVCUFFS_USES");
 	
 	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
 	pc.girlCumInMouth(pp);
