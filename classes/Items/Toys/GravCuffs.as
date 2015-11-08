@@ -55,9 +55,10 @@ package classes.Items.Toys
 		{
 			if(!kGAMECLASS.infiniteItems()) quantity++;
 			if(target is PlayerCharacter) {
-				if(kGAMECLASS.rooms[kGAMECLASS.currentLocation].planet == "PLANET: NEW TEXAS" && kGAMECLASS.rooms[kGAMECLASS.currentLocation].hasFlag(GLOBAL.PUBLIC) && kGAMECLASS.flags["NEW_TEXAS_GANGBANGED"] != undefined && target.lust() >= 33)
+				CodexManager.unlockEntry("Grav Cuffs");
+				if(kGAMECLASS.rooms[kGAMECLASS.currentLocation].planet == "PLANET: NEW TEXAS" && kGAMECLASS.rooms[kGAMECLASS.currentLocation].hasFlag(GLOBAL.PUBLIC) && target.exhibitionism() >= 33 && target.lust() >= 33 && kGAMECLASS.flags["GRAVCUFFS_USES"] != undefined)
 				{
-					kGAMECLASS.newTexanGanguBangu();
+					kGAMECLASS.cuffSelfRouter();
 				}
 				else
 				{
