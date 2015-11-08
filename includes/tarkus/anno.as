@@ -26,8 +26,12 @@ public function haveFuckedAnno():Boolean
 
 public function showAnno(nude:Boolean = false):void
 {
-	if(!nude) userInterface.showBust("ANNO");
-	else userInterface.showBust("ANNO_NUDE");
+	// Naked Anno
+	if(nude) showBust("ANNO_NUDE");
+	// Blouse Anno
+	else if (anno.armor is AnnosBlouse) showBust("ANNO");
+	// Catsuit Anno
+	else showBust("ANNO");
 	userInterface.showName("\nANNO");
 }
 
