@@ -55,14 +55,16 @@
 			if(targetCreature.shield.shortName == "")
 			{
 				kGAMECLASS.clearOutput();
-				kGAMECLASS.output("You need to have a shield generator in order to use a shield booster.\n");
+				if (targetCreature == kGAMECLASS.pc)kGAMECLASS.output("You need to have a shield generator in order to use a shield booster.\n");
+				else kGAMECLASS.output(targetCreature.capitalA + targetCreature.short + " can't use a shield booster without a shield generator!\n");
 				if(!kGAMECLASS.infiniteItems()) quantity++;
 				return false;
 			}
 			else if (targetCreature.hasStatusEffect("Shield Boosted"))
 			{
 				kGAMECLASS.clearOutput();
-				kGAMECLASS.output("Using another shield booster would probably destroy your shield generator.\n");
+				if (targetCreature == kGAMECLASS.pc) kGAMECLASS.output("Using another shield booster would probably destroy your shield generator.\n");
+				else kGAMECLASS.output(targetCreature.capitalA + targetCreature.short + " cannot use another shield booster--doing so will risk destroying " + targetCreature.mfn("his","her","its") + " shield generator.\n");
 				if(!kGAMECLASS.infiniteItems()) quantity++;
 				return false;
 			}
