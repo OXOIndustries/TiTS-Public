@@ -5505,12 +5505,15 @@ public function displayEncounterLog(showID:String = "All"):void
 				// Fungus Queen
 				output2("\n<b>* Fungus Queen:</b> Encountered");
 				if(flags["SUCKED_FUNGUS"] != undefined) output2(", Sucked her tits");
-				if(flags["FUNGUS_QUEEN_SAVED"] != undefined) output2(", Saved her");
 				if(flags["LET_FUNGUS_QUEEN_DIE"] != undefined) output2(", Abandoned her, Let her die");
-				// Rogue Robot
-				if(flags["FUNGUS_QUEEN_SAVED"] != undefined) output2("\n<b>* Rogue KihaCorp Deconstruction Unit:</b> Destroyed");
-				// Resources
-				if(flags["FUNGUS_QUEEN_SAVED"] != undefined) output2("\n<b>* Resources:</b> Crystallized Sophinol claimed");
+				if(flags["FUNGUS_QUEEN_SAVED"] != undefined)
+				{
+					output2(", Saved her");
+					// Rogue Robot
+					output2("\n<b>* Rogue KihaCorp Deconstruction Unit:</b> Destroyed");
+					// Resources
+					output2("\n<b>* Resources:</b> Crystallized Sophinol claimed");
+				}
 				variousCount++;
 			}
 			// ReallyJustSpaceSavin
