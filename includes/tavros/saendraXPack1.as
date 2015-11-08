@@ -42,9 +42,10 @@ SAENDRA_XPACK1_CREDITOFFER:
 
 public function tryProcSaendraXPackEmail():void
 {
+	if (flags["SAENDRA_XPACK1_STATUS"] != undefined) return;
 	if (shipLocation != "TAVROS HANGAR") return;
 	if (saendraAffection() < 60) return;
-	if (MailManager.isEntryUnlocked("saendraxpack1")) return;
+	if (MailManager.isEntryUnlocked("saendraxpack1") && flags["SAENDRA_XPACK1_STATUS"] != undefined) return;
 	if (eventQueue.indexOf(unlockSaendraXPackMail) != -1) return;
 
 	eventQueue.push(unlockSaendraXPackMail);
@@ -62,7 +63,7 @@ public function unlockSaendraXPackMail():void
 	
 	output("\n\nYou glance over in the direction of the elevator. Wouldn’t be too hard to answer her request.");
 
-	MailManager.unlockEntry("saendraxpack1", GetGameTimestamp());
+	if (!MailManager.isEntryUnlocked("saendraxpack1")) MailManager.unlockEntry("saendraxpack1", GetGameTimestamp());
 
 	flags["SAENDRA_XPACK1_STATUS"] = 1;
 	flags["SAENDRA_XPACK1_TIMER"] = GetGameTimestamp();
