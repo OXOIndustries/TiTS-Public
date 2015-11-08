@@ -56,16 +56,6 @@
 		//METHOD ACTING!
 		override public function useFunction(target:Creature, usingCreature:Creature = null):Boolean
 		{
-			var changes:int = 0;
-			var changeLimit:int = 1;
-			var pc:Creature = target;
-			var x:int = 0;
-			var y:int = 0;
-			var choices:Array;
-			if(rand(2) == 0) changeLimit++;
-			if(rand(3) == 0) changeLimit++;
-			if(rand(4) == 0) changeLimit++;
-			if(rand(5) == 0) changeLimit++;
 			kGAMECLASS.clearOutput();
 			if(target is PlayerCharacter) {
 				//Usage text:
@@ -77,7 +67,10 @@
 			//Not player!
 			else
 			{
-				kGAMECLASS.output(target.capitalA + target.short + " eats the rations to no effect.");
+				kGAMECLASS.output(target.capitalA + target.short + " eats the egg");
+				if(target.HP() < target.HPMax()) kGAMECLASS.output(" and immediately feels a little better!");
+				else kGAMECLASS.output(" to no effect.");
+				target.HP(10);
 			}
 			return false;
 		}
