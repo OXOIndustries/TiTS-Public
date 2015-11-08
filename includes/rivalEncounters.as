@@ -17,14 +17,25 @@ Uses two high caliber pistols and a two electrified blades.
 [Lose] Dane violates the PC then hops on the gunship.
 */
 
+public function showRival(nude:Boolean = false):void
+{
+	showName("\n" + chars["RIVAL"].short.toUpperCase());
+	showBust(chars["RIVAL"].short.toUpperCase());
+}
+public function showDane(nude:Boolean = false):void
+{
+	showName("\nDANE");
+	if(nude!) showBust("DANE");
+	else showBust("DANE_NUDE");
+}
+
 //Approach
 public function approachRivalOnMhenga():Boolean 
 {
 	if(flags["UNLOCKED_JUNKYARD_PLANET"] == undefined)
 	{
 		flags["UNLOCKED_JUNKYARD_PLANET"] = 1;
-		userInterface.showBust(chars["RIVAL"].short.toUpperCase());
-		userInterface.showName(chars["RIVAL"].short.toUpperCase());
+		showRival();
 		output("\n\nYour cousin is here! [rival.Ey] was kneeling over the pod, but at the sound of your approach, [rival.ey] rises to [rival.eir] full height, trim form on full display under a simple, white bodysuit. [rival.Eir] hands fall on [rival.eir] hips. <i>\"It looks like the slowest horse finally finished the race. That's about what I'd expect from Uncle Vic's kid.\"</i> [rival.Ey] tosses [rival.eir] head, laughing uproariously. <i>\"Don't worry, cousin, I've copied the coordinates onto this data-chit. We are family, after all.\"</i> [rival.Ey] smiles broadly at you. <i>\"How else would you follow along to witness my glory?\"</i>");
 		output("\n\n[rival.short] tosses the chit over [rival.eir] shoulder into a bush. <i>\"Whoops! I slipped. Guess you'll have to scrabble around in the dirt for it, like one of the filthy locals.\"</i> Shrugging, your cousin turns away. <i>\"See ya at the next pod - if your weakass genes will let you stumble there in decent time. I can always leave you a love note if you don't make it.\"</i> [rival.Ey] snickers.");
 		output("\n\nIf you wait, [rival.ey]'s going to leave! What do you do?");
@@ -45,8 +56,7 @@ public function approachRivalOnMhenga():Boolean
 //Fight
 public function fightYerRivalOnMhenga():void {
 	clearOutput();
-	userInterface.showBust(chars["RIVAL"].short.toUpperCase());
-	userInterface.showName(chars["RIVAL"].short.toUpperCase());
+	showRival();
 	output("<i>\"");
 	if(pc.isNice()) output("I won't just sit here and take your insults. Why don't we just settle this here and now? Fight me!");
 	else if(pc.isMischievous()) output("You expect me to sit here and take your lame insults sitting down? I don't think so, you cheating sack of crap, we're fighting!");
@@ -70,8 +80,7 @@ public function fightYerRivalOnMhenga():void {
 //Insult
 public function insultYourRivalOnMhenga():void {
 	clearOutput();
-	userInterface.showBust(chars["RIVAL"].short.toUpperCase());
-	userInterface.showName(chars["RIVAL"].short.toUpperCase());
+	showRival();
 	output("<i>\"So first you cheat your way into a shot at stealing my inheritance, and now you have the gall to insult my father? Fuck you, you whiny, worthless little cheater.\"</i> You can't keep the hate out of your voice. <i>\"I'd call you a conceited asshole, but that would make the conceited assholes of the universe look bad. You keep hiding behind your wealth, but you're nothing more than a common thief and a thug.\"</i>");
 
 	//Track if the PC chose this incase of later bro expack
@@ -88,8 +97,7 @@ public function daneOmniExplanation():void {
 	flags["MET_DANE"] = 1;
 	flags["FOUGHT_DANE_ON_MHENGA"] = 1;
 	clearOutput();
-	userInterface.showBust("DANE");
-	userInterface.showName("\nDANE");
+	showDane();
 	output("It's huge, standing nearly eight feet tall, and as it steps into the light, your mouth drops. This creature, Dane, has four arms, each corded with thick muscle under his shining, white fur. For armor, he wears a silvery harness over his chest and upper legs, covered in glowing lights. A large, illuminated core sits square in the middle of it, glowing like a miniature sun. The ausar's hair is as white as his fur, and his skin is paler than cream. Eyes like burning coals glare out at you from his sockets. He's an albino.");
 	output("\n\nYour cousin passes into the shadows, saying <i>\"I'll send a gunship to pick you up when you finish disciplining my uppity cousin. Don't kill " + pc.mfn("him","her","it") + ", okay?\"</i>");
 	output("\n\nDane smiles, his pointed ears twitching. <i>\"Wouldn't think of it, boss. I've got better uses for a piece of meat like this.\"</i>");
@@ -240,8 +248,7 @@ public function defeatDane():void
 //Buttfuck!
 public function loseToDane():void {
 	clearOutput();
-	userInterface.showName("\nDANE");
-	userInterface.showBust("DANE_NUDE");
+	showDane(true);
 	//HP
 	if(pc.HP() <= 0) 
 	{
