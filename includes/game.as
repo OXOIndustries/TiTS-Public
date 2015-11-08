@@ -215,7 +215,7 @@ public function mainGameMenu():void {
 		}
 	}
 	if(this.currentLocation == shipLocation) 
-		this.addButton(1,"Enter Ship",move,"SHIP INTERIOR");
+		this.addButton(5,"Enter Ship",move,"SHIP INTERIOR");
 
 	flags["NAV_DISABLED"] = undefined; // Clear disabled directions.
 
