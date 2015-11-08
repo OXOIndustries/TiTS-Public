@@ -49,6 +49,9 @@
 			this.evasion = 0;
 			this.fortification = 0;
 			
+			this.combatUsable = true;
+			this.targetsSelf = true;
+			
 			this.version = _latestVersion;
 		}
 		
