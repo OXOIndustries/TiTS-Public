@@ -49,6 +49,9 @@
 			this.evasion = 0;
 			this.fortification = 0;
 			
+			this.combatUsable = true;
+			this.targetsSelf = true;
+			
 			this.version = _latestVersion;
 		}
 		
@@ -63,7 +66,7 @@
 				kGAMECLASS.output(" You even feel like you could go longer before needing to sleep. Is there caffeine in this stuff?");
 			}
 			else {
-				kGAMECLASS.output(target.capitalA + target.short + " drinks the honey, getting a quick energy boost.");
+				kGAMECLASS.output(target.capitalA + target.short + " drinks the nectar, getting a quick energy boost.");
 				target.energy(35);
 			}
 			return false;
