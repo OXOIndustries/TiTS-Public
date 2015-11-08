@@ -47,6 +47,9 @@
 			this.evasion = 0;
 			this.fortification = 0;
 			
+			this.combatUsable = true;
+			this.targetsSelf = true;
+			
 			this.version = this._latestVersion;
 		}
 		
@@ -71,7 +74,7 @@
 			//Not player!
 			else
 			{
-				output(target.capitalA + target.short + " uses the cream to no effect.");
+				output(target.capitalA + target.short + " swallows the pill to no effect.");
 			}
 			return false;
 		}
