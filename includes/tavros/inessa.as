@@ -569,6 +569,7 @@ public function inessaBuyGo():void
 	//Else no whip
 	else chars["INESSA"].destroyItem(new BioWhip());
 	CodexManager.unlockEntry("BionaHoles");
+	CodexManager.unlockEntry("Grav Cuffs");
 	//[Sex Gear] [Clothes] [Other]
 	buyItem();
 }
