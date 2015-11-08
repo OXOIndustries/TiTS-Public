@@ -63,7 +63,8 @@
 				if (targetCreature == kGAMECLASS.pc)
 				{
 					kGAMECLASS.clearOutput();
-					kGAMECLASS.output("Any more crystals and you'd be lucky to move, let alone fight.\n");
+					if (targetCreature == kGAMECLASS.pc) kGAMECLASS.output("Any more crystals and you'd be lucky to move, let alone fight.\n");
+					kGAMECLASS.output(targetCreature.capitalA + targetCreature.short + " considers it unwise to use another crystal on " + usingCreature.mfn("him","her","it") + "self.\n");
 				}
 				if(!kGAMECLASS.infiniteItems()) quantity++;
 				return false;
