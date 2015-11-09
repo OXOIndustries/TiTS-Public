@@ -54,18 +54,36 @@
 		{
 			if(targetCreature.shield.shortName == "")
 			{
-				kGAMECLASS.clearOutput();
-				if (targetCreature == kGAMECLASS.pc)kGAMECLASS.output("You need to have a shield generator in order to use a shield booster.\n");
-				else kGAMECLASS.output(targetCreature.capitalA + targetCreature.short + " can't use a shield booster without a shield generator!\n");
 				if(!kGAMECLASS.infiniteItems()) quantity++;
+				if (targetCreature == kGAMECLASS.pc)
+				{
+					kGAMECLASS.clearOutput();
+					kGAMECLASS.output("You need to have a shield generator in order to use a shield booster.\n");
+				}
+				else
+				{
+					if(kGAMECLASS.inCombat()) kGAMECLASS.output("\n");
+					else kGAMECLASS.clearOutput();
+					kGAMECLASS.output(targetCreature.capitalA + targetCreature.short + " can't use a shield booster without a shield generator!\n");
+					kGAMECLASS.output("\n");
+				}
 				return false;
 			}
 			else if (targetCreature.hasStatusEffect("Shield Boosted"))
 			{
-				kGAMECLASS.clearOutput();
-				if (targetCreature == kGAMECLASS.pc) kGAMECLASS.output("Using another shield booster would probably destroy your shield generator.\n");
-				else kGAMECLASS.output(targetCreature.capitalA + targetCreature.short + " cannot use another shield booster--doing so will risk destroying " + targetCreature.mfn("his","her","its") + " shield generator.\n");
 				if(!kGAMECLASS.infiniteItems()) quantity++;
+				if (targetCreature == kGAMECLASS.pc)
+				{
+					kGAMECLASS.clearOutput();
+					kGAMECLASS.output("Using another shield booster would probably destroy your shield generator.\n");
+				}
+				else
+				{
+					if(kGAMECLASS.inCombat()) kGAMECLASS.output("\n");
+					else kGAMECLASS.clearOutput();
+					kGAMECLASS.output(targetCreature.capitalA + targetCreature.short + " cannot use another shield booster--doing so will risk destroying " + targetCreature.mfn("his","her","its") + " shield generator.\n");
+					kGAMECLASS.output("\n");
+				}
 				return false;
 			}
 			else
@@ -79,7 +97,8 @@
 				// Enemy used an item on the PC
 				else if (targetCreature != kGAMECLASS.pc && usingCreature != kGAMECLASS.pc)
 				{
-					kGAMECLASS.output("\n");
+					if(kGAMECLASS.inCombat()) kGAMECLASS.output("\n");
+					else kGAMECLASS.clearOutput();
 					npcUsed(targetCreature, usingCreature);
 				}
 				else
