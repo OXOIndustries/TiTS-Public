@@ -59,21 +59,27 @@
 		//METHOD ACTING!
 		override public function useFunction(target:Creature, usingCreature:Creature = null):Boolean
 		{
-			kGAMECLASS.clearOutput();
-			if(target is PlayerCharacter) {
+			var healing:int = 10;
+			if(target is PlayerCharacter)
+			{
+				kGAMECLASS.clearOutput();
 				//Usage text:
 				kGAMECLASS.output("You chomp down on the delicious, almost sugary egg.");
-				if(target.HP() < target.HPMax()) kGAMECLASS.output(" You feel better almost immediately!");
+				if(target.HP() < target.HPMax()) kGAMECLASS.output(" You feel better almost immediately! (<b>+" + healing + " HP</b>)");
 				else kGAMECLASS.output(" Nothing changes except for the taste in your mouth.");
-				target.HP(10);
+				target.HP(healing);
+				kGAMECLASS.output("\n");
 			}
 			//Not player!
 			else
 			{
-				kGAMECLASS.output(target.capitalA + target.short + " eats the egg");
-				if(target.HP() < target.HPMax()) kGAMECLASS.output(" and immediately feels a little better!");
+				if(kGAMECLASS.inCombat()) kGAMECLASS.output("\n");
+				else kGAMECLASS.clearOutput();
+				kGAMECLASS.output(target.capitalA + target.short + " eats a brightly-colored egg");
+				if(target.HP() < target.HPMax()) kGAMECLASS.output(" and instantly regains a little health! (<b>+" + healing + " HP</b>)");
 				else kGAMECLASS.output(" to no effect.");
-				target.HP(10);
+				target.HP(healing);
+				kGAMECLASS.output("\n");
 			}
 			return false;
 		}
