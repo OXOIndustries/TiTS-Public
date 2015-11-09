@@ -51,6 +51,7 @@ public function useItem(item:ItemSlotClass):Boolean {
 					addButton(0,"Next",useItemFunction);
 				}
 				output("\n");
+				if (item.combatUsable == false) output("\n");
 			}
 			//else: Error checking
 			else 
