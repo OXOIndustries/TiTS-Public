@@ -50,7 +50,7 @@ public function useItem(item:ItemSlotClass):Boolean {
 					clearMenu();
 					addButton(0,"Next",useItemFunction);
 				}
-				output("\n\n");
+				output("\n");
 			}
 			//else: Error checking
 			else 
@@ -79,13 +79,8 @@ public function useItem(item:ItemSlotClass):Boolean {
 // A call with just an item will 
 public function combatUseItem(item:ItemSlotClass, targetCreature:Creature = null, usingCreature:Creature = null):void
 {
-	if (item.isUsable == false)
-	{
-		clearOutput();
-		output("Unable to use " + item.longName + ".\n");
-	}
 	// If we're looking at an equippable item, equip it
-	else if (item.type == GLOBAL.ARMOR || item.type == GLOBAL.CLOTHING || item.type == GLOBAL.SHIELD || item.type == GLOBAL.ACCESSORY || item.type == GLOBAL.UPPER_UNDERGARMENT 
+	if (item.type == GLOBAL.ARMOR || item.type == GLOBAL.CLOTHING || item.type == GLOBAL.SHIELD || item.type == GLOBAL.ACCESSORY || item.type == GLOBAL.UPPER_UNDERGARMENT 
 		|| item.type == GLOBAL.LOWER_UNDERGARMENT || item.type == GLOBAL.RANGED_WEAPON || item.type == GLOBAL.MELEE_WEAPON)
 	{
 		if (pc.inventory.indexOf(item) != -1) pc.inventory.splice(pc.inventory.indexOf(item), 1);
@@ -115,24 +110,14 @@ public function combatUseItem(item:ItemSlotClass, targetCreature:Creature = null
 			usingCreature = pc;
 		}
 		
-		// Combat check
-		if (item.combatUsable == false)
+		item.useFunction(targetCreature, usingCreature);
+		
+		if (!infiniteItems() && !item.hasFlag(GLOBAL.NOT_CONSUMED_BY_DEFAULT))
 		{
-			clearOutput();
-			output(StringUtil.capitalize(item.longName, false) + " cannot be used while in combat!\n");
-		}
-		else
-		{
-			item.useFunction(targetCreature, usingCreature);
-			output("\n");
-			
-			if (!infiniteItems() && !item.hasFlag(GLOBAL.NOT_CONSUMED_BY_DEFAULT))
+			item.quantity--;
+			if (item.quantity <= 0)
 			{
-				item.quantity--;
-				if (item.quantity <= 0)
-				{
-					usingCreature.inventory.splice(usingCreature.inventory.indexOf(item), 1);
-				}
+				usingCreature.inventory.splice(usingCreature.inventory.indexOf(item), 1);
 			}
 		}
 	}
@@ -438,25 +423,25 @@ public function inventoryDisplay():void
 	output("<b>Underwear Top:</b> " + StringUtil.toTitleCase(pc.upperUndergarment.description) + "\n\n");
 	
 	output("<b><u>Equipment Stats:</u></b>\n");
-	output("<b>" + StringUtil.toTitleCase(pc.meleeWeapon.longName) + "</b>\n");
+	output("<b>" + StringUtil.toDisplayCase(pc.meleeWeapon.longName) + "</b>\n");
 	output(pc.meleeWeapon.compareTo(new EmptySlot(), null, null, true));
 	
-	output("\n<b>" + StringUtil.toTitleCase(pc.rangedWeapon.longName) + "</b>\n");
+	output("\n<b>" + StringUtil.toDisplayCase(pc.rangedWeapon.longName) + "</b>\n");
 	output(pc.rangedWeapon.compareTo(new EmptySlot(), null, null, true));
 
-	output("\n<b>" + StringUtil.toTitleCase(pc.armor.longName) + "</b>\n");
+	output("\n<b>" + StringUtil.toDisplayCase(pc.armor.longName) + "</b>\n");
 	output(pc.armor.compareTo(new EmptySlot(), null, null, true));
 
-	output("\n<b>" + StringUtil.toTitleCase(pc.shield.longName) + "</b>\n");
+	output("\n<b>" + StringUtil.toDisplayCase(pc.shield.longName) + "</b>\n");
 	output(pc.shield.compareTo(new EmptySlot(), null, null, true));
 
-	output("\n<b>" + StringUtil.toTitleCase(pc.accessory.longName) + "</b>\n");
+	output("\n<b>" + StringUtil.toDisplayCase(pc.accessory.longName) + "</b>\n");
 	output(pc.accessory.compareTo(new EmptySlot(), null, null, true));
 
-	output("\n<b>" + StringUtil.toTitleCase(pc.upperUndergarment.longName) + "</b>\n");
+	output("\n<b>" + StringUtil.toDisplayCase(pc.upperUndergarment.longName) + "</b>\n");
 	output(pc.upperUndergarment.compareTo(new EmptySlot(), null, null, true));
 
-	output("\n<b>" + StringUtil.toTitleCase(pc.lowerUndergarment.longName) + "</b>\n");
+	output("\n<b>" + StringUtil.toDisplayCase(pc.lowerUndergarment.longName) + "</b>\n");
 	output(pc.lowerUndergarment.compareTo(new EmptySlot(), null, null, true));
 	
 	output("\n");
@@ -507,7 +492,14 @@ public function combatInventoryMenu():void
 	
 	for (var i:int = 0; i < pc.inventory.length; i++)
 	{
-		(this as TiTS).addItemButton((i < 14) ? i : i + 1, pc.inventory[i], combatUseItem, pc.inventory[i]);
+		if (pc.inventory[i].isUsable == false || pc.inventory[i].combatUsable == false)
+		{
+			(this as TiTS).addDisabledButton((i < 14) ? i : i + 1, pc.inventory[i].shortName + " x" + pc.inventory[i].quantity, StringUtil.toDisplayCase(pc.inventory[i].longName), "Cannot be used in combat.");
+		}
+		else
+		{
+			(this as TiTS).addItemButton((i < 14) ? i : i + 1, pc.inventory[i], combatUseItem, pc.inventory[i]);
+		}
 	}
 	
 	addButton(14, "Back", combatMainMenu);
