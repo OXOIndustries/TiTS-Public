@@ -68,7 +68,7 @@
 				kGAMECLASS.output(" (<b>+" + healing + "</b>)\n");
 			}
 			else {
-				kGAMECLASS.output(target.capitalA + target.short + " drinks the nectar, getting a quick energy boost.");
+				kGAMECLASS.output(target.capitalA + target.short + " drinks the honey, getting a quick energy boost.");
 				target.energy(healing);
 				kGAMECLASS.output(" (<b>+" + healing + "</b>)\n");
 			}
