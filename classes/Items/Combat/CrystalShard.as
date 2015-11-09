@@ -64,7 +64,7 @@
 				if (targetCreature == kGAMECLASS.pc)
 				{
 					kGAMECLASS.clearOutput();
-					if (targetCreature == kGAMECLASS.pc) kGAMECLASS.output("Any more crystals and you'd be lucky to move, let alone fight.\n");
+					kGAMECLASS.output("Any more crystals and you'd be lucky to move, let alone fight.\n");
 				}
 				else
 				{
