@@ -63,7 +63,7 @@
 			}
 			else {
 				kGAMECLASS.clearOutput();
-				kGAMECLASS.output(target.capitalA + target.short + " cannot use the creature.");
+				kGAMECLASS.output(target.capitalA + target.short + " cannot use a varmint.");
 			}
 			return true;
 		}
