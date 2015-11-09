@@ -59,15 +59,18 @@
 		override public function useFunction(target:Creature, usingCreature:Creature = null):Boolean
 		{
 			kGAMECLASS.clearOutput();
+			var healing:int = 35;
 			if(target is PlayerCharacter) {
 				//Consume:
 				kGAMECLASS.output("You knock back the gooey, sweet-tasting stuff with ease, finding it more than palatable to your tongue. It tingles pleasantly on your taste buds as it invigorates you.");
-				target.energy(35);
+				target.energy(healing);
 				kGAMECLASS.output(" You even feel like you could go longer before needing to sleep. Is there caffeine in this stuff?");
+				kGAMECLASS.output(" (<b>+" + healing + "</b>)\n");
 			}
 			else {
 				kGAMECLASS.output(target.capitalA + target.short + " drinks the nectar, getting a quick energy boost.");
-				target.energy(35);
+				target.energy(healing);
+				kGAMECLASS.output(" (<b>+" + healing + "</b>)\n");
 			}
 			return false;
 		}
