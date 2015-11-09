@@ -59,17 +59,22 @@
 		override public function useFunction(target:Creature, usingCreature:Creature = null):Boolean
 		{
 			kGAMECLASS.clearOutput();
+			var healing:int = 25;
+			var nThick:Number = target.thickness;
 			if(target is PlayerCharacter) {
 				//Consume:
 				//Effect: %Chance +thickness, +25 Energy
 				kGAMECLASS.output("You pop open the packaged BBQ To-Go meal and quickly munch down a nice, hot, fresh-tasting roast beef sandwich and fries, washing it down with a swig of sweet bottled orange soda. Delicious!");
-				target.energy(25);
+				target.energy(healing);
+				kGAMECLASS.output(" (<b>+" + healing + "</b>)\n");
 				target.modThickness(2);
-				//if(target.thickness >= 100) target.thickness = 100;
+				if(target.thickness != nThick) kGAMECLASS.output("\n");
 			}
 			else {
+				healing = 35;
 				kGAMECLASS.output(target.capitalA + target.short + " eats the food, getting a quick energy boost.");
-				target.energy(35);
+				target.energy(healing);
+				kGAMECLASS.output(" (<b>+" + healing + "</b>)\n");
 			}
 			return false;
 		}
