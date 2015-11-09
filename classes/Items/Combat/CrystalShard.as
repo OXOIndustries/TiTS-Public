@@ -60,13 +60,19 @@
 		{
 			if (targetCreature.hasStatusEffect("Crystal Coated"))
 			{
+				if(!kGAMECLASS.infiniteItems()) quantity++;
 				if (targetCreature == kGAMECLASS.pc)
 				{
 					kGAMECLASS.clearOutput();
 					if (targetCreature == kGAMECLASS.pc) kGAMECLASS.output("Any more crystals and you'd be lucky to move, let alone fight.\n");
-					kGAMECLASS.output(targetCreature.capitalA + targetCreature.short + " considers it unwise to use another crystal on " + usingCreature.mfn("him","her","it") + "self.\n");
 				}
-				if(!kGAMECLASS.infiniteItems()) quantity++;
+				else
+				{
+					if(kGAMECLASS.inCombat()) kGAMECLASS.output("\n");
+					else kGAMECLASS.clearOutput();
+					kGAMECLASS.output(targetCreature.capitalA + targetCreature.short + " considers it unwise to use another crystal on " + usingCreature.mfn("him","her","it") + "self.\n");
+					kGAMECLASS.output("\n");
+				}
 				return false;
 			}
 			else
@@ -80,7 +86,8 @@
 				// Enemy used an item on the PC
 				else if (targetCreature != kGAMECLASS.pc && usingCreature != kGAMECLASS.pc)
 				{
-					kGAMECLASS.output("\n");
+					if(kGAMECLASS.inCombat()) kGAMECLASS.output("\n");
+					else kGAMECLASS.clearOutput();
 					npcUsed(targetCreature, usingCreature);
 				}
 				else
