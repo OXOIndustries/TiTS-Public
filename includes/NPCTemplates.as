@@ -92,6 +92,8 @@
 	prepChar(justUpdate, "EMMY", Emmy);
 	prepChar(justUpdate, "INESSA", Inessa);
 	prepChar(justUpdate, "GARDEBOT", GardeBot);
+	prepChar(justUpdate, "CRYSTALSHOPKEEP",CrystalShopkeep);
+	prepChar(justUpdate, "CRYSTALKNIGHT",GooKnight);
 	
 	// Check all characters have version information set
 	for (var prop:String in chars)

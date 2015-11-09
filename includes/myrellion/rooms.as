@@ -3303,29 +3303,84 @@ public function initializeMyrellionRooms():void
 	rooms["2O25"].system = "SYSTEM: SINDATHU";
 	rooms["2O25"].northExit = "";
 	rooms["2O25"].eastExit = "2Q25";
-	rooms["2O25"].southExit = "";
+	rooms["2O25"].southExit = "2O27";
 	rooms["2O25"].westExit = "2M25";
 	rooms["2O25"].moveMinutes = 5;
-	rooms["2O25"].runOnEnter = DeepCavesBonus;
+	rooms["2O25"].runOnEnter = emergencyMapCorrector;
 	rooms["2O25"].addFlag(GLOBAL.CAVE);
 	rooms["2O25"].addFlag(GLOBAL.INDOOR);
 	rooms["2O25"].addFlag(GLOBAL.HAZARD);
 	 
-	/*O27 -- 
+	//O27 -- 
 	//Garde Here
+	rooms["2O27"] = new RoomClass(this);
+	rooms["2O27"].roomName = "SLIMY\nPASSAGE";
+	rooms["2O27"].description = "";
+	rooms["2O27"].planet = "PLANET: MYRELLION";
+	rooms["2O27"].system = "SYSTEM: SINDATHU";
+	rooms["2O27"].northExit = "2O25";
+	rooms["2O27"].eastExit = "";
+	rooms["2O27"].southExit = "2O29";
+	rooms["2O27"].westExit = "";
+	rooms["2O27"].moveMinutes = 5;
+	rooms["2O27"].runOnEnter = slimyPassageBonus;
+	rooms["2O27"].addFlag(GLOBAL.CAVE);
+	rooms["2O27"].addFlag(GLOBAL.INDOOR);
+	rooms["2O27"].addFlag(GLOBAL.HAZARD);
 
-
-	O29 --
+	//O29 --
 	//Garde Here
+	rooms["2O29"] = new RoomClass(this);
+	rooms["2O29"].roomName = "GOOEY\nSLUICE";
+	rooms["2O29"].description = "This passage is much thinner than the rest, and the ground is coating with a trickling river of slippery liquid. You tread carefully, remembering what happened on your first trip through the passage as you make your way to the crystal goo village.";
+	rooms["2O29"].planet = "PLANET: MYRELLION";
+	rooms["2O29"].system = "SYSTEM: SINDATHU";
+	rooms["2O29"].northExit = "2O27";
+	rooms["2O29"].eastExit = "2Q29";
+	rooms["2O29"].southExit = "";
+	rooms["2O29"].westExit = "";
+	rooms["2O29"].moveMinutes = 5;
+	rooms["2O29"].runOnEnter = DeepCavesBonus;
+	rooms["2O29"].addFlag(GLOBAL.CAVE);
+	rooms["2O29"].addFlag(GLOBAL.INDOOR);
+	rooms["2O29"].addFlag(GLOBAL.HAZARD);
 
 
-	Q29 -- 
+	//Q29 -- 
 	//Garde Here
+	rooms["2Q29"] = new RoomClass(this);
+	rooms["2Q29"].roomName = "CRYSTAL GOO\nVILLAGE";
+	rooms["2Q29"].description = "";
+	rooms["2Q29"].planet = "PLANET: MYRELLION";
+	rooms["2Q29"].system = "SYSTEM: SINDATHU";
+	rooms["2Q29"].northExit = "";
+	rooms["2Q29"].eastExit = "2S29";
+	rooms["2Q29"].southExit = "";
+	rooms["2Q29"].westExit = "2O29";
+	rooms["2Q29"].moveMinutes = 5;
+	rooms["2Q29"].runOnEnter = goovillageExtraShit;
+	rooms["2Q29"].addFlag(GLOBAL.CAVE);
+	rooms["2Q29"].addFlag(GLOBAL.INDOOR);
+	rooms["2Q29"].addFlag(GLOBAL.NPC);
+	rooms["2Q29"].addFlag(GLOBAL.PUBLIC);
 
-
-	S29 --
+	//S29 --
 	//Garde Here
-	*/
+	rooms["2S29"] = new RoomClass(this);
+	rooms["2S29"].roomName = "GANRAEN\nPRISON";
+	rooms["2S29"].description = "Crystalline cages hold a number of myr of varying colors, along with some of the more exotic myrmedion life forms. You know from personal experience that the ganraen harvest fluids from their captives before releasing them back to where they came from.";
+	rooms["2S29"].planet = "PLANET: MYRELLION";
+	rooms["2S29"].system = "SYSTEM: SINDATHU";
+	rooms["2S29"].northExit = "";
+	rooms["2S29"].eastExit = "";
+	rooms["2S29"].southExit = "";
+	rooms["2S29"].westExit = "2Q29";
+	rooms["2S29"].moveMinutes = 5;
+	rooms["2S29"].runOnEnter = DeepCavesBonus;
+	rooms["2S29"].addFlag(GLOBAL.INDOOR);
+	rooms["2S29"].addFlag(GLOBAL.BED);
+	rooms["2S29"].addFlag(GLOBAL.PRIVATE);
+	rooms["2S29"].addFlag(GLOBAL.COMMERCE);
 
 	//Q25 -- Southern Turn
 	rooms["2Q25"] = new RoomClass(this);

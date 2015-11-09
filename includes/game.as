@@ -964,6 +964,8 @@ public function variableRoomUpdateCheck():void
 	{
 		rooms["2S11"].northExit = "";
 	}
+	if(silly) rooms["2O25"].southExit = "2O27";
+	else rooms["2O25"].southExit = "";
 	//Nyrea gate should be open
 	if(nyreaDungeonGateOpen()) 
 	{
