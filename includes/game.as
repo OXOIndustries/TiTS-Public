@@ -1546,10 +1546,10 @@ public function processTime(arg:int):void {
 	if (!MailManager.isEntryUnlocked("bjreminder") && flags["NEVRIE_FIRST_DISCOUNT_DATE"] != undefined && days >= flags["NEVRIE_FIRST_DISCOUNT_DATE"] + 20) nevriBJMailGet();
 	//Emmy Mail
 	if (!MailManager.isEntryUnlocked("emmy_apology") && flags["EMMY_EMAIL_TIMER"] <= (GetGameTimestamp() - (24 * 60))) emmyMailGet();
+	//Saendra Mail
+	if (!MailManager.isEntryUnlocked("saendrathanks") && flags["FALL OF THE PHOENIX STATUS"] >= 1 && flags["SAENDRA_DISABLED"] != 1) saendraPhoenixMailGet();
 	//Anno Mail
 	if (!MailManager.isEntryUnlocked("annoweirdshit") && flags["MET_ANNO"] != undefined && flags["FOUGHT_TAM"] == undefined && rand(10) == 0 && flags["RUST_STEP"] != undefined) goMailGet("annoweirdshit");
-	//Saendra Mail
-	if (!MailManager.isEntryUnlocked("saendrathanks") && flags["FALL OF THE PHOENIX STATUS"] >= 1 && flags["SAENDRA_DISABLED"] != 1) goMailGet("saendrathanks");
 	//Other Email Checks!
 	if (rand(20) == 0 || (rand(24) == hours && rand(60) == minutes)) emailRoulette();
 	flags["HYPNO_EFFECT_OUTPUT_DONE"] = undefined;
@@ -6062,10 +6062,11 @@ public function fixPcUpbringingSetNew(upType:uint):void
 }
 
 // Checkin' da E-mails
-public function goMailGet(mailKey:String = ""):void
+public function goMailGet(mailKey:String = "", timeStamp:int = -1):void
 {
 	var mailFrom:String = "<i>Unknown Sender</i>";
 	var mailFromAdress:String = "<i>Unknown Address</i>";
+	if(timeStamp < 0) timeStamp = GetGameTimestamp();
 	if(mailKey != "")
 	{
 		var mailEmail:Object = MailManager.ENTRIES[mailKey];
@@ -6073,7 +6074,7 @@ public function goMailGet(mailKey:String = ""):void
 		if(mailEmail.FromAddress != null) mailFromAdress = mailEmail.FromAddress();
 		
 		eventBuffer += "\n\n<b>New Email from " + mailFrom + " ("+ mailFromAdress +")!</b>";
-		MailManager.unlockEntry(mailKey, GetGameTimestamp());
+		MailManager.unlockEntry(mailKey, timeStamp);
 	}
 }
 // Random Emails!
