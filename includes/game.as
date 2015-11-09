@@ -3221,13 +3221,12 @@ public function displayQuestLog(showID:String = "All"):void
 		{
 			output2("\n<b><u>Myrellion</u></b>");
 			output2("\n<b>* Status:</b>");
-			if(nyreaDungeonFinished() && 9999 == 0) output2(" Coordinates received");
+			if(reclaimedProbeMyrellion()) output2(" Coordinates received");
 			else
 			{
 				output2(" <i>In progress...</i>");
 				output2("\n<b>* Probe Location:</b>");
-				if(reclaimedProbeMyrellion()) output2(" <i>Probe has been reclaimed.</i>");
-				else if(nyreaDungeonFinished()) output2(" <i>Probe has been located.</i>");
+				if(nyreaDungeonFinished()) output2(" <i>Probe has been located.</i>");
 				else output2(" <i>Probe appears to be in some kind of royal throne room.</i>");
 			}
 			// Scout
