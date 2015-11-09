@@ -58,21 +58,25 @@
 		//METHOD ACTING!
 		override public function useFunction(target:Creature, usingCreature:Creature = null):Boolean
 		{
-			kGAMECLASS.clearOutput();
 			var healing:int = 25;
 			var nThick:Number = target.thickness;
-			if(target is PlayerCharacter) {
+			if(target is PlayerCharacter)
+			{
+				kGAMECLASS.clearOutput();
 				//Consume:
 				//Effect: %Chance +thickness, +25 Energy
 				kGAMECLASS.output("You pop open the packaged BBQ To-Go meal and quickly munch down a nice, hot, fresh-tasting roast beef sandwich and fries, washing it down with a swig of sweet bottled orange soda. Delicious!");
 				target.energy(healing);
-				kGAMECLASS.output(" (<b>+" + healing + "</b>)\n");
+				kGAMECLASS.output(" (<b>+" + healing + "</b>)");
 				target.modThickness(2);
-				if(target.thickness != nThick) kGAMECLASS.output("\n");
+				kGAMECLASS.output("\n");
 			}
-			else {
+			else
+			{
 				healing = 35;
-				kGAMECLASS.output(target.capitalA + target.short + " eats the food, getting a quick energy boost.");
+				if(kGAMECLASS.inCombat()) kGAMECLASS.output("\n");
+				else kGAMECLASS.clearOutput();
+				kGAMECLASS.output(target.capitalA + target.short + " opens a BBQ To-Go box and wolfs down the contents, getting a quick energy boost.");
 				target.energy(healing);
 				kGAMECLASS.output(" (<b>+" + healing + "</b>)\n");
 			}
