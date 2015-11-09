@@ -56,10 +56,9 @@
 		//METHOD ACTING!
 		override public function useFunction(target:Creature, usingCreature:Creature = null):Boolean
 		{
-			clearOutput();
 			if (target is PlayerCharacter) 
 			{
-				target.lust( -25);
+				target.lust(-25);
 				if (!target.hasStatusEffect("Focus Pill"))
 				{
 					target.createStatusEffect("Focus Pill", 0, 0, 0, 0, false, "Pill", "You feel shaper, more able to focus and process your senses.", false, 60);
@@ -68,13 +67,16 @@
 				{
 					target.setStatusMinutes("Focus Pill", 60);
 				}
-				
+				clearOutput();
 				output("You pop a Focus Pill out of your pack and into your mouth. It’s completely tasteless, and all but dissolves in your mouth.\n\nAfter a moment’s wait, you start to feel a little calmer. You let out a breath you didn't know you were holding, and focus in on the task at hand.");
+				output("\n");
 			}
 			//Not player!
 			else
 			{
-				output(target.capitalA + target.short + " swallows the pill to no effect.");
+				if(inCombat()) output("\n");
+				else clearOutput();
+				output(target.capitalA + target.short + " swallows a focus pill to no effect.\n");
 			}
 			return false;
 		}
