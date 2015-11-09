@@ -2,9 +2,22 @@
 {
 	clearOutput();
 	author("Savin");
+	showSaendra(nude);
+}
+public function showSaendra(nude:Boolean = false):void
+{
 	if (!nude) showBust("SAENDRA");
 	else showBust("SAENDRA_NUDE");
 	showName("\nSAENDRA");
+}
+
+public function saendraPhoenixMailGet():void
+{
+	var timeStamp = GetGameTimestamp();
+	// Keep unlock in chronological order from her later mail!
+	if (MailManager.isEntryUnlocked("saendraxpack1")) timeStamp = MailManager.ENTRIES["saendraxpack1"].UnlockedTimestamp - 1;
+	// Unlock mail!
+	goMailGet("saendrathanks", timeStamp);
 }
 
 public function saendraBarAddendum(slot:int = 7):Boolean
