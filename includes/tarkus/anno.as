@@ -29,7 +29,7 @@ public function showAnno(nude:Boolean = false):void
 	// Naked Anno
 	if(nude) showBust("ANNO_NUDE");
 	// Blouse Anno
-	else if (anno.armor is AnnosBlouse) showBust("ANNO");
+	//else if (anno.armor is AnnosBlouse) showBust("ANNO");
 	// Catsuit Anno
 	else showBust("ANNO");
 	userInterface.showName("\nANNO");
