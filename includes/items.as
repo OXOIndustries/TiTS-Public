@@ -13,8 +13,8 @@ public function useItem(item:ItemSlotClass):Boolean {
 		trace("Need to find where the use button for this item was generated and disable it with isUsable == false checks.");
 		clearOutput();
 		output("Unable to use " + item.longName + ".");
-		clearMenu();
-		addButton(14,"Back",useItemFunction);
+		//clearMenu();
+		//addButton(14,"Back",useItemFunction);
 		return false;
 	}
 	if (item.quantity == 0) 
