@@ -128,7 +128,12 @@ public function gooKnightLossScene():void
 	//hp
 	if(pc.HP() < 1) output("You collapse to the ground, unable to hold yourself up any longer. Your body is too weak to respond to your commands.");
 	//lust
-	else output("Your legs buckle underneath you, taking you to the floor. Your body is flushed with heat and doesn’t respond to your commands.");
+	else
+	{
+		output("Your [pc.legOrLegs] buckle");
+		if(pc.legCount == 1) output("s");
+		output(" underneath you, taking you to the floor. Your body is flushed with heat and doesn’t respond to your commands.");
+	}
 	//merge
 	output("\n\nThe ganraen knight walks over to your helpless body, dropping her sword and shield into a pile as she walks. She pulls off her helmet, revealing a cute face with an imitation of lengthy hair. You remember the codex mentioning that this race usually affects the facial features of races it sees, but this one seems to have gone the extra mile. If it weren’t for the fact that her body was opaque goo you might’ve been convinced she was a human. Her eyes, lips, and nose are picture perfect, and she even has a strand of hair falling over her forehead.");
 	output("\n\nBy the time she reaches you, all that covers her humanoid shaped body is the chestplate. Her pussy is in plain sight between a pair of curvy thighs. She pulls the last concealing garment away, setting free a pair of jiggly DD’s with puffy nipples a shade darker than the rest of her body. With the armor on the knight had looked like an ironclad warrior, but now that it’s gone, she embodies a sensual ");
@@ -140,7 +145,7 @@ public function gooKnightLossScene():void
 	if(pc.hasCock()) output("smiles");
 	else output("frowns");
 	output(" as she ");
-	if(pc.isCrotchGarbed()) output("pulls off your [pc.undergarment]");
+	if(pc.isCrotchGarbed()) output("pulls off your [pc.lowerGarment]");
 	else output("looks at your naked crotch");
 	output(".");
 	var fauxCock:Boolean = false;
@@ -248,12 +253,17 @@ public function genderlessLossToGooCrystals():void
 	//hp
 	if(pc.HP() < 1) output("You collapse to the ground, unable to hold yourself up any longer. Your body is too weak to respond to your commands.");
 	//lust
-	else output("Your legs buckle underneath you, taking you to the floor. Your body is flushed with heat and doesn’t respond to your commands.");
+	else
+	{
+		output("Your [pc.legOrLegs] buckle");
+		if(pc.legCount == 1) output("s");
+		output(" underneath you, taking you to the floor. Your body is flushed with heat and doesn’t respond to your commands.");
+	}
 
 	//merge
 	output("\n\nThe victorious knight saunters over to your defeated frame, leveling a lusty gaze that sweeps over you. When she reaches you she ");
 	if(pc.isCrotchGarbed()) output("pulls off your [pc.lowerGarment] to get at your crotch");
-	else if(pc.legCount > 1) output("pulls apart your [pc.legOrLegs to reveal your crotch");
+	else if(pc.legCount != 1) output("pulls apart your [pc.legOrLegs] to reveal your crotch");
 	else output("pulls you into a position that makes your crotch visible");
 	output(". A look of shock covers her face as she discovers your abscence of genitals, followed quickly by a frustrated frown.");
 
@@ -469,7 +479,7 @@ public function centaurRideSpecialVictory():void
 		if(pc.balls > 0) output("cup your [pc.balls], massaging them gently to coax their contents.");
 		else output("between your legs, winding up circling your [pc.asshole].");
 
-		output("\n\nA jolt of sexual energy causes you to buck your hips, and you feel a rush of cold air on your [pc.cockHeadBiggest]. You lean over to find out what happened, only to see your member sticking out of the semisolid slut’s head. She doesn’t seem perturbed in the slightest, using the opportunity to suction her lips all the way to your [pc.sheathBiggest]. The rapid movement sends shudders through your [pc.legOrLegs], and you quiver for a moment before they buckle.");
+		output("\n\nA jolt of sexual energy causes you to buck your hips, and you feel a rush of cold air on your [pc.cockHeadBiggest]. You lean over to find out what happened, only to see your member sticking out of the semisolid slut’s head. She doesn’t seem perturbed in the slightest, using the opportunity to suction her lips all the way to your [pc.sheathBiggest]. The rapid movement sends shudders through your legs, and you quiver for a moment before they buckle.");
 		output("\n\nAll of your weight falls atop the unsuspecting ganraen, causing a splash of [monster.skinTone] liquid. You try to stand, only to fall again as the jellied gladiator sucks even harder. She’s been reduced to a puddle beneath your tauric frame, but now she covers ");
 		if(pc.cockTotal() > 1) output("the entirety of [pc.eachCock]");
 		else output("enough of your [pc.cockBiggest] to give it a full body massage");
@@ -693,7 +703,7 @@ public function acceptStupidoopyPunishment(dongus:Boolean = false):void
 	//female
 	else
 	{
-		output("\n\nThe apricot-colored arbiter gives you an excited smile, drawing her hands closer to your crotch. She wastes no time in parting the folds of [pc.oneVagina], licking it from back to front before focusing on the [pc.clit]. Her semifluid fingers massage the muscles in your [pc.legs], holding you steady with a firmer grip than you would’ve thought capable.");
+		output("\n\nThe apricot-colored arbiter gives you an excited smile, drawing her hands closer to your crotch. She wastes no time in parting the folds of [pc.oneVagina], licking it from back to front before focusing on the [pc.clit]. Her semifluid fingers massage the muscles in your [pc.legOrLegs], holding you steady with a firmer grip than you would’ve thought capable.");
 		output("\n\n<i>“I’m so glad you’re like the myr and not those pesky nyrea! These parts are much easier to work with,”</i> she says, pausing her efforts to talk for a moment. Once she finishes she returns to her work, ");
 		//pc.clit smallormedium/large/dicksize/wtf: 
 		if(pc.clitLength < 0.5) output("lapping at your [pc.clit] with renewed fervor");
