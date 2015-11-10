@@ -215,7 +215,7 @@ public function mainGameMenu():void {
 		}
 	}
 	if(this.currentLocation == shipLocation) 
-		this.addButton(1,"Enter Ship",move,"SHIP INTERIOR");
+		this.addButton(5,"Enter Ship",move,"SHIP INTERIOR");
 
 	flags["NAV_DISABLED"] = undefined; // Clear disabled directions.
 
@@ -1545,9 +1545,15 @@ public function processTime(arg:int):void {
 	//NEVRIE MAIL!
 	if (!MailManager.isEntryUnlocked("myrpills") && flags["MCALLISTER_MEETING_TIMESTAMP"] <= (GetGameTimestamp() - (24 * 60))) nevriMailGet();
 	if (!MailManager.isEntryUnlocked("orangepills") && flags["MCALLISTER_MYR_HYBRIDITY"] == 2 && GetGameTimestamp() >= (flags["MCALLISTER_MYR_HYBRIDITY_START"] + (7 * 24 * 60))) nevriOrangeMailGet();
-	if (!MailManager.isEntryUnlocked("bjreminder") && flags["NEVRIE_FIRST_DISCOUNT_DATE"] != undefined && days >= flags["NEVRIE_FIRST_DISCOUNT_DATE"]+20) nevriBJMailGet();
+	if (!MailManager.isEntryUnlocked("bjreminder") && flags["NEVRIE_FIRST_DISCOUNT_DATE"] != undefined && days >= flags["NEVRIE_FIRST_DISCOUNT_DATE"] + 20) nevriBJMailGet();
 	//Emmy Mail
-	if (!MailManager.isEntryUnlocked("emmy_apology") && flags["EMMY_EMAIL_TIMER"] <= (GetGameTimestamp() - (24*60))) emmyMailGet();
+	if (!MailManager.isEntryUnlocked("emmy_apology") && flags["EMMY_EMAIL_TIMER"] <= (GetGameTimestamp() - (24 * 60))) emmyMailGet();
+	//Saendra Mail
+	if (!MailManager.isEntryUnlocked("saendrathanks") && flags["FALL OF THE PHOENIX STATUS"] >= 1 && flags["SAENDRA_DISABLED"] != 1) saendraPhoenixMailGet();
+	//Anno Mail
+	if (!MailManager.isEntryUnlocked("annoweirdshit") && flags["MET_ANNO"] != undefined && flags["FOUGHT_TAM"] == undefined && rand(10) == 0 && flags["RUST_STEP"] != undefined) goMailGet("annoweirdshit");
+	//Other Email Checks!
+	if (rand(20) == 0 || (rand(24) == hours && rand(60) == minutes)) emailRoulette();
 	flags["HYPNO_EFFECT_OUTPUT_DONE"] = undefined;
 	variableRoomUpdateCheck();
 	updatePCStats();
@@ -2195,7 +2201,7 @@ public function statisticsScreen(showID:String = "All"):void
 			if(pc.hasStatusEffect("Horn Bumps")) output2(" Horn Bumps");
 			else
 			{
-				if(pc.hornType == GLOBAL.TYPE_DEER) output2(" 2, " + GLOBAL.TYPE_NAMES[pc.hornType] + ", " + pc.horns + " Points");
+				if(pc.hornType == GLOBAL.TYPE_DEER) output2(" 2, " + prettifyLength(pc.hornLength) + ", " + GLOBAL.TYPE_NAMES[pc.hornType] + ", " + pc.horns + " Points");
 				else 
 				{
 					output2(" " + pc.horns + ",");
@@ -2747,11 +2753,14 @@ public function statisticsScreen(showID:String = "All"):void
 		// Virgin booties claimed
 		var totalVirginitiesTaken:Number = 0;
 		if(StatTracking.getStat("characters/maiden vanae/cherrys popped") > 0) totalVirginitiesTaken += StatTracking.getStat("characters/maiden vanae/cherrys popped");
-		if(!chars["KIRO"].vaginalVirgin) totalVirginitiesTaken++;
-		if(!chars["EMBRY"].vaginalVirgin) totalVirginitiesTaken++;
-		if(!chars["EMBRY"].analVirgin) totalVirginitiesTaken++;
 		if(!chars["ANNO"].analVirgin) totalVirginitiesTaken++;
+		if(!chars["EMBRY"].analVirgin) totalVirginitiesTaken++;
+		if(!chars["EMBRY"].cockVirgin) totalVirginitiesTaken++;
+		if(!chars["EMBRY"].vaginalVirgin) totalVirginitiesTaken++;
 		if(!chars["GEOFF"].analVirgin || flags["GEOFF_TOPPED"] != undefined) totalVirginitiesTaken++;
+		if(!chars["KIRO"].vaginalVirgin) totalVirginitiesTaken++;
+		if(!chars["PENNY"].cockVirgin) totalVirginitiesTaken++;
+		if(!chars["SAENDRA"].cockVirgin) totalVirginitiesTaken++;
 		if(flags["TOOK_DELILAHS_BUTTGINITY"] != undefined) totalVirginitiesTaken++;
 		if(flags["TOOK_PRINCESS_BUTTGINITY"] != undefined) totalVirginitiesTaken++;
 		if(sleepingPartner != "" || totalVirginitiesTaken > 0)
@@ -3123,7 +3132,11 @@ public function displayQuestLog(showID:String = "All"):void
 			if(flags["DIDNT_ENGAGE_RIVAL_ON_MHENGA"] != undefined) output2(" Coordinates received, Did not engage [rival.name]");
 			else if(flags["WHUPPED_DANES_ASS_ON_MHENGA"] != undefined) output2(" Coordinates received, Won against Dane");
 			else if(flags["LOST_TO_DANE_ON_MHENGA"] != undefined) output2(" Coordinates received, Lost against Dane");
-			else output2(" <i>In progress...</i>");
+			else
+			{
+				output2(" <i>In progress...</i>");
+				output2("\n<b>* Probe Location:</b> <i>It seems the probe fell deep into the jungles.</i>");
+			}
 			// Scout
 			if(flags["MET_FLAHNE"] == undefined)
 			{
@@ -3138,7 +3151,18 @@ public function displayQuestLog(showID:String = "All"):void
 			output2("\n<b><u>Tarkus</u></b>");
 			output2("\n<b>* Status:</b>");
 			if(flags["PLANET_3_UNLOCKED"] != undefined) output2(" Coordinates received");
-			else output2(" <i>In progress...</i>");
+			else
+			{
+				output2(" <i>In progress...</i>");
+				output2("\n<b>* Probe Location:</b>");
+				if(flags["GAVE_SHEKKA_PROBE"] != undefined) output2(" <i>Probe located in Shekka’s shop.</i>");
+				else output2(" <i>No indication of where the probe fell.</i>");
+				if(flags["MET_UGC_TROOPER_AT_CHASMFALL"] == undefined)
+				{
+					output2("\n<b>* Scanner Feed:</b> <i>There is a lot of activity around the planetary tether.</i>");
+					if(MailManager.isEntryViewed("annoweirdshit")) output2(" <i>Anno confirms this.</i>");
+				}
+			}
 			if(flags["GAVE_SHEKKA_PROBE"] != undefined) output2(", Gave probe to Shekka");
 			// Scout
 			if(flags["BEEN_ON_TARKUS"] != undefined)
@@ -3149,18 +3173,19 @@ public function displayQuestLog(showID:String = "All"):void
 			// The Stellar Tether
 			if(flags["MET_UGC_TROOPER_AT_CHASMFALL"] != undefined && flags["FOUGHT_TAM"] != undefined)
 			{
-				output2("\n<b>* The Stellar Tether:</b>");
+				output2("\n<b><u>The Stellar Tether</u></b>");
+				output2("\n<b>* Status:</b>");
 				if(flags["STELLAR_TETHER_CLOSED"] != undefined && flags["TARKUS_BOMB_TIMER"] != undefined && flags["TARKUS_BOMB_TIMER"] <= 0)
 				{
-					if(!pc.hasKeyItem("Kaska's Detonator") && !pc.hasKeyItem("Khorgan's Detonator")) output2(" Planet spared, <i>Tarasque</i> pirates escaped, Completed?");
-					else if(flags["TARKUS_DESTROYED"] != undefined) output2(" Planet destroyed by pirates of the <i>Tarasque</i>, Completed");
-					else output2(" Planet saved from pirates of the <i>Tarasque</i>, Completed");
+					if(!pc.hasKeyItem("Kaska's Detonator") && !pc.hasKeyItem("Khorgan's Detonator")) output2(" Tarkus spared, <i>Tarasque</i> pirates escaped, Completed?");
+					else if(flags["TARKUS_DESTROYED"] != undefined) output2(" Tarkus destroyed by pirates of the <i>Tarasque</i>, Completed");
+					else output2(" Tarkus saved from pirates of the <i>Tarasque</i>, Completed");
 				}
 				else output2(" <i>In progress...</i>");
 				// Tam
 				if(flags["TAM_DISABLE_METHOD"] != undefined || flags["TAKEN_TAMWOLF"] != undefined)
 				{
-					output2("\n<b>* The Stellar Tether, Tam:</b> Defeated her");
+					output2("\n<b>* Tam:</b> Defeated her");
 					if(flags["TAM_DISABLE_METHOD"] == 1) output2(", Knocked her out");
 					if(flags["TAM_DISABLE_METHOD"] == 2) output2(", Fucked her");
 					if(flags["TAKEN_TAMWOLF"] != undefined) output2(", Took Tam-wolf");
@@ -3168,7 +3193,7 @@ public function displayQuestLog(showID:String = "All"):void
 				// Rocket pods
 				if(flags["ROCKET_PODS_ENCOUNTERED"] != undefined)
 				{
-					output2("\n<b>* The Stellar Tether, Defenses:</b>");
+					output2("\n<b>* Defenses:</b>");
 					if(flags["ROCKET_PODS_HACKED"] != undefined) output2(" Hacked rocket pods");
 					else if(flags["ROCKET_PODS_SNEAKED"] != undefined) output2(" Sneaked passed rocket pods");
 					else output2(" Destroyed rocket pods");
@@ -3176,20 +3201,20 @@ public function displayQuestLog(showID:String = "All"):void
 				// Kaska
 				if(pc.hasKeyItem("Kaska's Detonator") || flags["KASKA_FUCKED"] != undefined)
 				{
-					output2("\n<b>* The Stellar Tether, Kaska:</b> Defeated her");
+					output2("\n<b>* Kaska:</b> Defeated her");
 					if(flags["KASKA_FUCKED"] != undefined) output2(", Fucked her");
 				}
 				// Khorgan
 				if(pc.hasKeyItem("Khorgan's Detonator") || flags["DICKFUCKED_CAPN_KHORGAN"] != undefined || flags["LESBOED_KHORGAN"] != undefined)
 				{
-					output2("\n<b>* The Stellar Tether, Capt. Khorgan:</b> Defeated her");
+					output2("\n<b>* Capt. Khorgan:</b> Defeated her");
 					if(flags["DICKFUCKED_CAPN_KHORGAN"] != undefined) output2(", Dick-fucked her");
 					if(flags["LESBOED_KHORGAN"] != undefined) output2(", Lesbian-fucked her");
 				}
 				// Resources
-				if(flags["PLATINUM_TAKEN"] != undefined) output2("\n<b>* The Stellar Tether, Resources:</b> Taken Platinum 190");
+				if(flags["PLATINUM_TAKEN"] != undefined) output2("\n<b>* Resources:</b> Platinum 190 taken");
 				// Bomb
-				if(flags["TARKUS_BOMB_TIMER"] != undefined && flags["TARKUS_BOMB_TIMER"] > 0) output2("\n<b>* The Stellar Tether, Time-Bomb Countdown: </b>" + prettifyMinutes(flags["TARKUS_BOMB_TIMER"]));
+				if(flags["TARKUS_BOMB_TIMER"] != undefined && flags["TARKUS_BOMB_TIMER"] > 0) output2("\n<b>* Time-Bomb Countdown: </b>" + prettifyMinutes(flags["TARKUS_BOMB_TIMER"]));
 			}
 			mainCount++;
 		}
@@ -3198,8 +3223,14 @@ public function displayQuestLog(showID:String = "All"):void
 		{
 			output2("\n<b><u>Myrellion</u></b>");
 			output2("\n<b>* Status:</b>");
-			if(flags["UVETO_UNLOCKED"] != undefined) output2(" Coordinates received");
-			else output2(" <i>In progress...</i>");
+			if(reclaimedProbeMyrellion()) output2(" Coordinates received");
+			else
+			{
+				output2(" <i>In progress...</i>");
+				output2("\n<b>* Probe Location:</b>");
+				if(nyreaDungeonFinished()) output2(" <i>Probe has been located.</i>");
+				else output2(" <i>Probe appears to be in some kind of royal throne room.</i>");
+			}
 			// Scout
 			if(flags["MYRELLION_EMBASSY_VISITED"] != undefined)
 			{
@@ -3219,7 +3250,6 @@ public function displayQuestLog(showID:String = "All"):void
 						else output2(" Spared Taivra,");
 					}
 					if(flags["KING_NYREA"] != undefined) output2(" Succeeded the throne as " + pc.mf("king","queen") + ",");
-					if(flags["MYRELLION_PROBE_CASH_GOT"] != undefined) output2(" Reclaimed probe,");
 					output2(" Completed");
 				}
 				else output2(" <i>In progress...</i>");
@@ -5469,6 +5499,24 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(StatTracking.getStat("pregnancy/queen of the deep eggs") > 0) output2(", Progenitor of race");
 				variousCount++;
 			}
+			// Fungus Queen
+			if(flags["SUCKED_FUNGUS"] != undefined || flags["FUNGUS_QUEEN_SAVED"] != undefined || flags["LET_FUNGUS_QUEEN_DIE"] != undefined)
+			{
+				output2("\n<b><u>Fungal Passage</u></b>");
+				// Fungus Queen
+				output2("\n<b>* Fungus Queen:</b> Encountered");
+				if(flags["SUCKED_FUNGUS"] != undefined) output2(", Sucked her tits");
+				if(flags["LET_FUNGUS_QUEEN_DIE"] != undefined) output2(", Abandoned her, Let her die");
+				if(flags["FUNGUS_QUEEN_SAVED"] != undefined)
+				{
+					output2(", Saved her");
+					// Rogue Robot
+					output2("\n<b>* Rogue KihaCorp Deconstruction Unit:</b> Destroyed");
+					// Resources
+					output2("\n<b>* Resources:</b> Crystallized Sophinol claimed");
+				}
+				variousCount++;
+			}
 			// ReallyJustSpaceSavin
 			if(flags["MET_SEIFYN"] != undefined)
 			{
@@ -5609,10 +5657,12 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Deep Caverns
-			if(flags["MET_INFECTED_MYR_FEMALE"] != undefined || flags["MET_NYREA_ALPHA"] != undefined || flags["MET_NYREA_BETA"] != undefined)
+			if(flags["MET_GOO_KNIGHT"] != undefined || flags["MET_INFECTED_MYR_FEMALE"] != undefined || flags["MET_INFECTED_MYR_MALE"] != undefined || flags["MET_NYREA_ALPHA"] != undefined || flags["MET_NYREA_BETA"] != undefined)
 			{
 				output2("\n<b><u>The Deep Caverns</u></b>");
+				if(flags["MET_GOO_KNIGHT"] != undefined) output2("\n<b>* Ganrael Knight, Times Encountered: </b>" + flags["MET_GOO_KNIGHT"]);
 				if(flags["MET_INFECTED_MYR_FEMALE"] != undefined) output2("\n<b>* Female Infected Myr, Times Encountered: </b>" + flags["MET_INFECTED_MYR_FEMALE"]);
+				if(flags["MET_INFECTED_MYR_MALE"] != undefined) output2("\n<b>* Male Infected Myr, Times Encountered: </b>" + flags["MET_INFECTED_MYR_MALE"]);
 				if(flags["MET_NYREA_ALPHA"] != undefined) output2("\n<b>* Alpha Nyrean Huntress, Times Encountered: </b>" + flags["MET_NYREA_ALPHA"]);
 				if(flags["MET_NYREA_BETA"] != undefined) output2("\n<b>* Beta Nyrean Huntress, Times Encountered: </b>" + flags["MET_NYREA_BETA"]);
 				variousCount++;
@@ -5937,7 +5987,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			miscCount++;
 		}
 		// Sexploration: The Sex Toys
-		if(flags["NIVAS_BIONAHOLE_USES"] != undefined || flags["TAMANI_BIONAHOLE_USES"] != undefined || flags["GRAVCUFFS_USES"] != undefined || flags["HOVERHOLE_USES"] != undefined || 9999 == 0)
+		if(flags["NIVAS_BIONAHOLE_USES"] != undefined || flags["TAMANI_HOLED"] != undefined || flags["GRAVCUFFS_USES"] != undefined || flags["HOVERHOLE_USES"] != undefined || 9999 == 0)
 		{
 			output2("\n<b><u>Sex Toys</u></b>");
 			// BionaHoles
@@ -6011,4 +6061,91 @@ public function fixPcUpbringingSetNew(upType:uint):void
 	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
+}
+
+// Checkin' da E-mails
+public function goMailGet(mailKey:String = "", timeStamp:int = -1):void
+{
+	var mailFrom:String = "<i>Unknown Sender</i>";
+	var mailFromAdress:String = "<i>Unknown Address</i>";
+	if(timeStamp < 0) timeStamp = GetGameTimestamp();
+	if(mailKey != "")
+	{
+		var mailEmail:Object = MailManager.ENTRIES[mailKey];
+		if(mailEmail.From != null) mailFrom = mailEmail.From();
+		if(mailEmail.FromAddress != null) mailFromAdress = mailEmail.FromAddress();
+		
+		eventBuffer += "\n\n<b>New Email from " + mailFrom + " ("+ mailFromAdress +")!</b>";
+		MailManager.unlockEntry(mailKey, timeStamp);
+	}
+}
+// Random Emails!
+public function emailRoulette():void
+{
+	var mailList:Array = [];
+	var mailKey:String = "";
+	var mailSubject:String = "\\\[No Subject\\\]";
+	var mailContent:String = "<i>This message turns up empty...</i>";
+	
+	// Character/Event specific:
+	if(!MailManager.isEntryUnlocked("burtsmeadhall") && pc.level >= 1)
+		mailList.push("burtsmeadhall");
+	else if(!MailManager.isEntryUnlocked("kihaai") && flags["UNLOCKED_JUNKYARD_PLANET"] != undefined)
+		mailList.push("kihaai");
+	else if(!MailManager.isEntryUnlocked("syrividja") && flags["SPAM_MSG_COV8"] != undefined && syriIsAFuckbuddy() && (flags["TIMES_WON_AGAINST_SYRI"] != undefined || flags["TIMES_LOST_TO_SYRI"] != undefined))
+		mailList.push("syrividja");
+	else if(!MailManager.isEntryUnlocked("fuckinggoosloots") && celiseIsCrew() && pc.level >= 2)
+		mailList.push("fuckinggoosloots");
+	else if(!MailManager.isEntryUnlocked("fuckinggooslootsII") && MailManager.isEntryUnlocked("fuckinggoosloots") && celiseIsCrew() && pc.level >= 5)
+		mailList.push("fuckinggooslootsII");
+	else if(!MailManager.isEntryUnlocked("kirofucknet") && flags["RESCUE KIRO FROM BLUEBALLS"] == 1 && kiroTrust() >= 50)
+		mailList.push("kirofucknet");
+	else if(!MailManager.isEntryUnlocked("cuzfuckball") && flags["TIMES_MET_FEMZIL"] != undefined && flags["BEEN_ON_TARKUS"] != undefined && pc.level >= 2)
+		mailList.push("cuzfuckball");
+	
+	/*
+	// SPAM: (9999: If does not have spamblocker upgrade toggled on for CODEX.)
+	if(SpamEmailKeys.length > 0 && flags["CODEX_SPAM_BLOCKER"] == undefined)
+		mailList.push(SpamEmailKeys);
+	*/
+	
+	if(mailList.length > 0 && rand(4) == 0) mailKey = mailList[rand(mailList.length)];
+	
+	if(mailKey != "")
+	{
+		goMailGet(mailKey);
+		
+		// Any special actions/unlocks
+		var mailEmail:Object = MailManager.ENTRIES[mailKey];
+		if(mailEmail.Subject != null) mailSubject = mailEmail.Subject();
+		if(mailEmail.Content != null) mailContent = mailEmail.Content();
+		
+		// Regular:
+		if(mailKey == "kirofucknet" && (pc.isBimbo() || pc.isBro() || !pc.hasStatusEffect("Focus Pill") || pc.IQ() < 50 || pc.WQ() < 50))
+		{
+			eventBuffer += " The subject line reads <i>“" + mailSubject + "”</i>. Curiously, you open the letter to see what it could be...";
+			eventBuffer += "\n\nThe message is headed by a big holo-image of Kiro with her massive equine dong shoved to the hilt up some girl’s backside, stretching her sphincter like a rubber band. Kiro’s holding the camera and giving you a big, goofy grin and a thumb’s-up.\n\n<i>Kiro Tamahime wants you to join the GalLink group “GalLink Fuckmeet.”\n\nGalLink Fuckmeet: Bone random citizens of the galaxy with no hassle, no commitment, just fun!\n\nSuggested Members: Kiro Tamahime, Saendra en Illya, BigBooty Flahne, Sera Succubus, GirlBoy Alex</i>";
+			eventBuffer += "\n\nYou shrug and click “Join”...\n\nAnd are instantly flooded with several THOUSAND pictures of the group’s members (mostly Kiro) engaged in lewd acts.\n\nWell, at least you won’t need to look for new porn for a while.";
+			pc.lust(20);
+		}
+		// Spam:
+		if(mailKey == "cov8" && flags["SPAM_MSG_COV8"] == undefined)
+			flags["SPAM_MSG_COV8"] = 1;
+		if(mailKey == "fatloss" && pc.isBimbo())
+		{
+			eventBuffer += " The subject line reads <i>“" + mailSubject + "”</i>. Ooo, secrets and stuff! You eagerly open the message and the codex lights up with the display:";
+			eventBuffer += "\n\n<i>" + mailContent + "</i>";
+			eventBuffer += "\n\nMmm, that sounds yummy!";
+			pc.lust(20);
+		}
+		if(mailKey == "estrobloom" && !pc.hasKeyItem("Coupon - Estrobloom"))
+			createKeyItem("Coupon - Estrobloom", 0.9, 0, 0, 0, "Save 10% on your next purchase of Estrobloom!");
+		if(mailKey == "hugedicktoday" && pc.isBro() && pc.hasCock())
+		{
+			eventBuffer += " The subject line reads <i>“" + mailSubject + "”</i>. Hell yeah--who wouldn’t want a bigger dick? You quicky open the message to read its contents and the codex lights up with the display:";
+			eventBuffer += "\n\n<i>" + mailContent + "</i>";
+			eventBuffer += "\n\nYou’re not quite sure you understood all that, but your dick did.";
+			pc.lust(20);
+		}
+	}
 }

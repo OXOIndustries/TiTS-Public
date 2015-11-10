@@ -57,13 +57,13 @@ package classes.Items.Miscellaneous
 			if(target is PlayerCharacter)
 			{
 				kGAMECLASS.clearOutput();
-				kGAMECLASS.output("There is nothing you can do with this yet.");
+				kGAMECLASS.output("There is nothing you can do with the seed pod yet.");
 				if(!kGAMECLASS.infiniteItems()) this.quantity++;
 			}
 			// Not the player!
 			else
 			{
-				kGAMECLASS.output("\n\n");
+				kGAMECLASS.clearOutput();
 				kGAMECLASS.output(target.capitalA + target.short + " fails to use the seed correctly and inadvertently destroys it in the process.");
 			}
 			return false;

@@ -50,6 +50,6 @@
 			this.isUsable = false;
 			
 			this.version = _latestVersion;
-		}	
+		}
 	}
 }

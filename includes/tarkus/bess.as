@@ -1073,6 +1073,7 @@ public function verifyBessModelFinish():void
 	output("\n\n<i>“Oh, hello " + bessPCName() +"! Sorry, that kind of hit me by surprise there,”</i> [bess.heShe] apologizes, quickly getting up on [bess.hisHer] [bess.feet]. <i>“Do you need help with anything?”</i>");
 	
 	processTime(3);
+	clearMenu();
 	addButton(0, "Next", bessFollowerMenu);
 }
 
@@ -2928,7 +2929,7 @@ public function talkToBessAboutCock():void
 	else addButton(0, "None", setBessCockType, -1);
 	if (bess.hasCock() && bess.cocks[0].cType == GLOBAL.TYPE_HUMAN && bess.balls == 0) addDisabledButton(1, "Normal");
 	else addButton(1, "Normal", setBessCockType, GLOBAL.TYPE_HUMAN);
-	if (bess.hasCock() && bess.cocks[0].cType == GLOBAL.TYPE_HUMAN && bess.balls == 2) addDisabledButton(2, "Normal+Balls");
+	if (bess.hasCock() && bess.cocks[0].cType == GLOBAL.TYPE_HUMAN && bess.balls > 0) addDisabledButton(2, "Normal+Balls");
 	else addButton(2, "Normal+Balls", setBessCockType, -2);
 	
 	if (bess.hasCock() && bess.cocks[0].cType == GLOBAL.TYPE_SAURIAN) addDisabledButton(3, "Dino");
@@ -2994,10 +2995,11 @@ public function setBessCockType(newType:int):void
 
 		output("\n\nThe head of the cock is entirely covered in rounded spikes or nubs. They’re big enough that they look like you could hold on to them. [bess.HisHer] urethra is so big that a regular cock could fit inside of it. The shaft is segmented; each part looks like it has a muscle for squeezing or stretching.");
 
-		output("\n\n<i>“Umm, "+ bessPCName() +", I’m not sure this is going to fit inside you. It seems like it’s used for insemination of city-destroying monsters...”</i> [bess.name] voices [bess.hisHer] concerns about the size of [bess.hisHer] positively preposterous phallus. <i>“Have you checked to see if your health insurance covers this kind of thing?”</i><b> [bess.name] now has a dino cock and balls!</b>");
+		output("\n\n<i>“Umm, "+ bessPCName() +", I’m not sure this is going to fit inside you. It seems like it’s used for insemination of city-destroying monsters...”</i> [bess.name] voices [bess.hisHer] concerns about the size of [bess.hisHer] positively preposterous phallus. <i>“Have you checked to see if your health insurance covers this kind of thing?”</i>");
 
-		if (silly) output("\n\n<b>[bess.name] now has a gigantic ogre cock!</b>");
-		else output("\n\n<b>[bess.name] now has a saurian cock!</b>")
+		if (silly) output("\n\n<b>[bess.name] now has a gigantic ogre cock and balls!</b>");
+		//else output("\n\n<b>[bess.name] now has a saurian cock and balls!</b>");
+		else output("\n\n<b>[bess.name] now has a dino cock and balls!</b>");
 	}
 	else if (newType == GLOBAL.TYPE_EQUINE)
 	{
@@ -3013,9 +3015,10 @@ public function setBessCockType(newType:int):void
 
 		output("You decide you’d like to equip [bess.name] with the horse cock attachment you purchased from JoyCo. It takes some work to equip [bess.name] with it, it’s a two-person effort just to get it attached. Once you’re done, [bess.heShe] models off [bess.hisHer] newly fastened horse phallus and balls for your enjoyment.");
 		
-		output("\n\n[bess.HisHer] new equine cock flares at you, it looks ready and raring to go. <i>“What do you think, "+ bessPCName() +", did you want to take a ride?”</i><b> [bess.name] now has a horse cock and balls!</b>");
+		output("\n\n[bess.HisHer] new equine cock flares at you, it looks ready and raring to go. <i>“What do you think, "+ bessPCName() +", did you want to take a ride?”</i>");
 
-		output("\n\n<b>[bess.name] now has an equine cock and balls!</b>");
+		//output("\n\n<b>[bess.name] now has an equine cock and balls!</b>");
+		output("\n\n<b>[bess.name] now has a horse cock and balls!</b>");
 	}
 	else if (newType == GLOBAL.TYPE_CANINE)
 	{
@@ -3063,7 +3066,7 @@ public function setBessCockType(newType:int):void
 		
 		output("\n\n<i>“Wow, where’s a school-girl when you need one, eh, "+ bessPCName() +"?”</i> [bess.name] cheekily remarks, marvelling at [bess.hisHer] prehensile phallus.");
 		
-		output("\n\n<b> [bess.name] now has a dangerous looking tentacle cock!</b>");
+		output("\n\n<b>[bess.name] now has a dangerous looking tentacle cock!</b>");
 	}
 	else if (newType == GLOBAL.TYPE_GOOEY)
 	{
@@ -3105,8 +3108,7 @@ public function setBessCockType(newType:int):void
 		
 		output("\n\n<i>“It kind of tingles, "+ bessPCName() +". I can feel it suckling off me - I can’t say it’s unpleasant.”</i> [bess.name] informs you, testing and flexing [bess.hisHer] symbiotic rod. <i>“I can’t believe they grew this; isn’t JoyCo just amazing?”</i>");
 		
-		
-		output("\n\n<b> [bess.name] now has a Plant Cock!</b>");
+		output("\n\n<b> [bess.name] now has a plant cock!</b>");
 	}
 	else if (newType == GLOBAL.TYPE_DRACONIC)
 	{
@@ -3176,9 +3178,36 @@ public function setBessCockType(newType:int):void
 
 		output("\n\n<i>“Just one second, "+ bessPCName() +", while I make the adjustments.”</i> [bess.name] darts off and when [bess.heShe] comes back,");
 		if (newType == -1) output(" [bess.hisHer] cock is gone - though where [bess.heShe]’s stored it is a mystery. <i>“Do you like me better this way, "+ bessPCName() +"?”</i>\n\n<b>[bess.name] has removed [bess.hisHer] cock!</b>");
-		else output(" [bess.heShe]’s sporting "+ indefiniteArticle(bessCockType()) +" cock! [bess.HeShe] eagerly models it off for you. <i>“Do you like it, "+ bessPCName() +"?”</i> <b>[bess.name] now has a [bess.cock]!</b>”</i>");
+		else
+		{
+			output(" [bess.heShe]’s sporting "+ indefiniteArticle(bessCockType()) +" cock! [bess.HeShe] eagerly models it off for you. <i>“Do you like it, "+ bessPCName() +"?”</i>\n\n<b>[bess.name] now has a [bess.cock]");
+			if (bess.balls > 0) output(" and balls");
+			output("!</b>");
+		}
 	}
 
+	//bessFunctionsMenu();
+	clearMenu();
+	addButton(0, "Next", bessFunctionsMenu);
+	if (bess.balls > 0 && newType > GLOBAL.TYPE_HUMAN)
+	{
+		addButton(1, "No Balls", setBessNoBalls, "Remove Balls", "Ask [bess.name] to remove [bess.hisHer] balls.");
+	}
+}
+
+public function setBessNoBalls():void
+{
+	clearOutput();
+	bessHeader();
+	output("You ask [bess.name] if [bess.heShe] could get rid of [bess.hisHer] balls.");
+	output("\n\n<i>“You want me to remove them? Very well, "+ bessPCName() +".”</i>");
+	output("\n\nRight before your eyes, [bess.hisHer] [bess.balls] begins to deflate, shrink, and receed back into [bess.hisHer] pelvis.");
+	output("\n\n<i>“Should you change your mind, just swap between my cock extensions and I will be re-equipped with balls again.”</i>");
+	output("\n\n<b>[bess.name] has removed [bess.hisHer] balls!</b>");
+	
+	bess.balls = 0;
+	bess.ballSizeRaw = 0;
+	
 	bessFunctionsMenu();
 }
 
@@ -3436,40 +3465,29 @@ public function talkToBessAboutOutfits():void
 	bessCIW(7, "LatexBSuit", LatexBodysuit, "Latex Bodysuit", "Latex Bodysuit");
 	bessCIW(8, "Maid", MaidOutfit, "Maid Outfit", "Maid Outfit");
 	bessCIW(9, "Nurse", NurseOutfit, "Nurse Outfit", "Nurse Outfit");
-
+	
 	bessCIW(10, "Schoolgirl", SchoolgirlOutfit, "Schoolgirl", "Schoolgirl");
 	bessCIW(11, "Cheerleader", CheerleaderUniform, "Cheerleader Uniform", "CheerleaderUniform");
 	bessCIW(12, "Bunnygirl", BunnyOutfit, "Bunnygirl Outfit", "Bunnygirl Outfit");
 	bessCIW(13, "Military", MilitaryUniform, "Military Uniform", "Military Uniform");
 	
 	addButton(14, "Back", talkToBessAboutClothes);
-
-	bessCIW(15, "Schoolgirl", SchoolgirlOutfit, "Schoolgirl", "Schoolgirl");
-	bessCIW(16, "Cheerleader", CheerleaderUniform, "Cheerleader Uniform", "CheerleaderUniform");
-	bessCIW(17, "Bunnygirl", BunnyOutfit, "Bunnygirl Outfit", "Bunnygirl Outfit");
-	bessCIW(18, "Military", MilitaryUniform, "Military Uniform", "Military Uniform");
-	bessCIW(19, "Pirate", SpacePirateOutfit, "Space Pirate", "Space Pirate");
 	
-	bessCIW(20, "R.Fem Armor", RevealingFemaleArmor, "Revealing Female Armor", "Revealing Female Armor");
-	bessCIW(21, "R.Male Armor", RevealingMaleArmor, "Revealing Male Armor", "Revealing Male Armor");
-	bessCIW(22, "T.Zipsuit", TransparentZipsuit, "Transparent Zipsuit", "Transparent Zipsuit");
-	bessCIW(23, "Butler", ButlerOutfit, "Butler Outfit", "Butler Outfit");
-	bessCIW(24, "M.Doctor", MaleDoctorOutfit, "Male Doctor Outfit", "Male Doctor Outfit");
-
-	bessCIW(25, "R.Fem Armor", RevealingFemaleArmor, "Revealing Female Armor", "Revealing Female Armor");
-	bessCIW(26, "R.Male Armor", RevealingMaleArmor, "Revealing Male Armor", "Revealing Male Armor");
-	bessCIW(27, "T.Zipsuit", TransparentZipsuit, "Transparent Zipsuit", "Transparent Zipsuit");
-	bessCIW(28, "Butler", ButlerOutfit, "Butler Outfit", "Butler Outfit");
+	bessCIW(15, "Pirate", SpacePirateOutfit, "Space Pirate", "Space Pirate");
+	bessCIW(16, "R.Fem Armor", RevealingFemaleArmor, "Revealing Female Armor", "Revealing Female Armor");
+	bessCIW(17, "R.Male Armor", RevealingMaleArmor, "Revealing Male Armor", "Revealing Male Armor");
+	bessCIW(18, "T.Zipsuit", TransparentZipsuit, "Transparent Zipsuit", "Transparent Zipsuit");
+	bessCIW(19, "Butler", ButlerOutfit, "Butler Outfit", "Butler Outfit");
+	
+	bessCIW(20, "M.Doctor", MaleDoctorOutfit, "Male Doctor Outfit", "Male Doctor Outfit");
+	bessCIW(21, "F.Doctor", FemaleDoctorOutfit, "Female Doctor Outfit", "Female Doctor Outfit");
+	bessCIW(22, "Schoolboy", SchoolboyOutfit, "Schoolboy Outfit", "Schoolboy Outfit");
+	bessCIW(23, "StrapHarness", LeatherStrapHarness, "Leather Strap Harness", "Leather Strap Harness");
+	bessCIW(24, "BlackDress", LittleBlackDress, "Little Black Dress", "Little Black Dress");
 	
 	addButton(29, "Back", talkToBessAboutClothes);
-
-	bessCIW(30, "M.Doctor", MaleDoctorOutfit, "Male Doctor Outfit", "Male Doctor Outfit");
-	bessCIW(31, "F.Doctor", FemaleDoctorOutfit, "Female Doctor Outfit", "Female Doctor Outfit");
-	bessCIW(32, "Schoolboy", SchoolboyOutfit, "Schoolboy Outfit", "Schoolboy Outfit");
-	bessCIW(33, "StrapHarness", LeatherStrapHarness, "Leather Strap Harness", "Leather Strap Harness");
-	bessCIW(34, "BlackDress", LittleBlackDress, "Little Black Dress", "Little Black Dress");
-
-	addButton(44, "Back", talkToBessAboutClothes);
+	
+	//addButton(44, "Back", talkToBessAboutClothes);
 }
 
 /**

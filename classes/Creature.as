@@ -7515,7 +7515,7 @@ package classes {
 					if(rand(4) == 0) adjective += mf("extremely pronounced","very pronounced");
 					else if(thickness > 70) adjective += "immense";
 					else if(thickness >= 30) adjective += "robust";
-					else adjective += "chisled";
+					else adjective += "chiseled";
 				}
 				else if(tone > 70)
 				{
@@ -7723,19 +7723,19 @@ package classes {
 					if (this.rand(3) == 0) desc += "virgin";
 					else if (this.rand(2) == 0) desc += "unspoiled";
 					else desc += "unclaimed";
-				} else if (ass.looseness() == 1) {
+				} else if (ass.looseness() <= 1) {
 					if (this.rand(2) == 0) desc += "tight";
 					else desc += "narrow";
-				} else if (ass.looseness() == 2) {
+				} else if (ass.looseness() <= 2) {
 					if (this.rand(2) == 0) desc += "pliant";
 					else desc += "supple";
-				} else if (ass.looseness() == 3) {
+				} else if (ass.looseness() <= 3) {
 					if (this.rand(2) == 0) desc += "loose";
 					else desc += "welcoming";
-				} else if (ass.looseness() == 4) {
+				} else if (ass.looseness() <= 4) {
 					if (this.rand(2) == 0) desc += "stretched";
 					else desc += "broad";
-				} else if (ass.looseness() == 5) {
+				} else if (ass.looseness() <= 5) {
 					if (this.rand(3) == 0) desc += "gaping";
 					else if (this.rand(2) == 0) desc += "wide-open";
 					else desc += "expansive";
@@ -7751,16 +7751,16 @@ package classes {
 			//66% wetness description
 			if (this.rand(3) <= 1 && ass.wetness() >= 2) {
 				if (descripted > 0) desc += ", ";
-				if (ass.wetness() == 2) {
+				if (ass.wetness() <= 2) {
 					if (this.rand(2) == 0) desc += "moist";
 					else desc += "lubricated";
-				} else if (ass.wetness() == 3) {
+				} else if (ass.wetness() <= 3) {
 					if (this.rand(2) == 0) desc += "slimy";
 					else desc += "slick";
-				} else if (ass.wetness() == 4) {
+				} else if (ass.wetness() <= 4) {
 					if (this.rand(2) == 0) desc += "lube-drooling";
 					else desc += "soaked";
-				} else if (ass.wetness() == 5) {
+				} else if (ass.wetness() <= 5) {
 					if (this.rand(2) == 0) desc += "slime-drooling";
 					else desc += "immaculately lubricated";
 				}
@@ -9315,7 +9315,7 @@ package classes {
 			//wetness descript - 30% display rate
 			if (descripted < 2 && ((adjectives && this.rand(100) > 70) || forceAdjectives)) {
 				if (descripted > 0) vag += ", ";
-				if (vaginas[vaginaNum].wetness() == 0) {
+				if (vaginas[vaginaNum].wetness() <= 0) {
 					temp = this.rand(10);
 					if (temp <= 4) vag += "dry";
 					else if (temp <= 7) vag += "unlubricated";

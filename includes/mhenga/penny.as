@@ -2085,7 +2085,7 @@ public function faceFuckPenny():void {
 	//[Fuck her butt] [Get ass fucked] [Nah, girl]
 	this.clearMenu();
 	if(pc.hasCock()) this.addButton(0,"Fuck Her Butt",fuckPennyButtFromFraceFuckSceneNyahhhh,undefined,"Fuck Her Butt","Fuck Penny's ass.");
-	else if(pc.hasCock()) addDisabledButton(0,"Fuck Her Butt","Fuck Her Butt","You need a dick to fuck Penny's ass.")
+	else addDisabledButton(0,"Fuck Her Butt","Fuck Her Butt","You need a dick to fuck Penny's ass.")
 	if(penny.hasCock()) this.addButton(1,"GetButtFucked",getAssFuckedByPenny,undefined,"Get Butt Fucked","Let Penny drill you in the ass.");
 	else addDisabledButton(1,"GetButtFucked","Get Butt Fucked","Penny needs to have a dick for this scene.")
 	this.addButton(2,"Nah, girl",nahhhhGurrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrllllllllllllllllllllllllllllllllllll,undefined,"Nah, girl","You're too tired for that right now.");
@@ -2153,7 +2153,7 @@ public function getAssFuckedByPenny():void {
 	output("\n\nGrabbing the fox's lithe shoulders for support, you start to move your hips, gently sliding along the length of her " + num2Text(Math.round(penny.cocks[0].cLength())) + "-inch shaft. You take every inch slowly, tenderly squeezing and rubbing her thick pole's entire length until just the head is parting your cheeks before you slide back down. Penny cries out, practically trembling in your grasp as your [pc.butt] pleasures her prick, humping away until you can feel her [penny.cock] twitch violently, practically spasming as it spurts a glob of pre right on your [pc.asshole]. Warm and wet and oh so sinfully sticky, you shudder with pleasure as Penny gives you her very own lube, adding to the slick coating you've given her cock already. Well, she's clearly ready and raring to go, and you can't deny the burning need growing in your loins.");
 	
 	output("\n\nYou press your lips to hers, locking Penny in a kiss as you rear up, grabbing her cock and holding it steady. Her fingers lock around yours, holding you for a brief second before spreading your cheeks wide, letting you glide down her throbbing shaft. It parts your walls with a second of mind-numbing pressure, her head spearing past your sphincter a second later. You both moan with shared breathless pleasure as your [pc.hips] slide down, taking inch after inch of [penny.cock], feeling your stomach churn as the thick member spreads you wide. Penny's hands lock on your hips, guiding your descent until your butt's on her lap, balancing on her legs as her cock twitches and spurts inside you, filling your ass with juicy fox-pre.");
-	
+	penny.cockChange();
 	
 	output("\n\n<i>“So good...”</i>  Penny whimpers, ");
 	//if PC is tight

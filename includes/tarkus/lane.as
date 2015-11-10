@@ -17,10 +17,10 @@ Hypnosis level increases by "decreasing" a seeded value by some modifier of the 
 
 	=> 50 + (level * 25)
 
-	On event   => current power += math.round(1.5 - pc.WQ() * 50)
+	On event => current power += math.round(1.5 - pc.WQ() * 50)
 
-	@ <= 25%  will == 5  events to go from 0 to level 3
-	@ <= 50%  will == 7 events to go from 0 to level 3
+	@ <= 25% will == 5 events to go from 0 to level 3
+	@ <= 50% will == 7 events to go from 0 to level 3
 	@ <= 100% will == 12 events to go from 0 to level 3
 
 Once hypnosis level has increased, it will not decay outside of special events. I think there are some crew-related things that this will be hinged upon.
@@ -1156,7 +1156,7 @@ public function laneServices():void
 				output(" <i>“Of course, this isn’t counting the ‘tax’ I’ll be charging you when we’re done.</i>");
 			}
 
-			output("\n\nYou thank [lane.hi,Her] for [lane.hisHer] ‘generosity’ again.");
+			output("\n\nYou thank [lane.himHer] for [lane.hisHer] ‘generosity’ again.");
 
 			processTime(10);
 

@@ -18,12 +18,6 @@ public function showQueensguard():void
 	showName("\nQUEENSGUARD");
 	showBust("QUEENSGUARD");
 }
-
-public function showRival():void
-{
-	userInterface.showBust(chars["RIVAL"].short.toUpperCase());
-	userInterface.showName(chars["RIVAL"].short.toUpperCase());
-}
 public function showPraetorians(nude:Boolean = false):void
 {
 	if(inCombat()) showName("FIGHT: NYREAN\nGUARDS");
@@ -41,7 +35,14 @@ public function metTaivra():Boolean
 public function reclaimedProbeMyrellion():Boolean
 {
 	// Used for checking whether or not the probe was reclaimed!
+	// Coordinates to next planet seems to be taken after the probe has been reclaimed/touched.
+	// After getting the lucky bucks
 	if(flags["MYRELLION_PROBE_CASH_GOT"] != undefined) return true;
+	// For marrying Taivra
+	if(flags["BEAT_TAIVRA_TIMESTAMP"] == undefined && flags["KING_NYREA"] != undefined && 9999 == 0) return true;
+	// For beating Taivra (Leave/Kill/Subjugate)
+	if(flags["BEAT_TAIVRA_TIMESTAMP"] != undefined) return true;
+	// else
 	return false;
 }
 
@@ -752,11 +753,12 @@ public function stepBackFromGloryHoles():void
 	output("\n\nYou don’t exactly know how to respond to that, and in the couple of moments you spend flubbing for some response that will keep the creature placated, you hear something clicking behind the stone. You manage to scramble back just in time to avoid falling in as a trap door pops open from underneath a shaggy rug, and a glistening green figure pulls herself up from below.");
 	output("\n\n");
 	//if seen a Crystalgu b4:
-	if(9999 == 0) output("You instantly recognize the familiar form of a ganrael, the planet’s crystal-hemmed goo race, but something’s very different about this specimen. ");
+	if(CodexManager.entryUnlocked("Ganrael")) output("You instantly recognize the familiar form of a ganrael, the planet’s crystal-hemmed goo race, but something’s very different about this specimen. ");
 	else 
 	{
-		output("It’s a green goo-girl, just like Celise, but covered with bits of glistening crystal. Your Codex beeps, identifying it as a gan’rael, a myrellion native species. ");
+		output("It’s a green goo-girl, just like Celise, but covered with bits of glistening crystal. Your Codex beeps, identifying it as a ganrael, a myrellion native species. ");
 		//CODEX UNLOCK!
+		CodexManager.unlockEntry("Ganrael");
 	}
 	output("She’s adopted a relatively humanoid form, probably based off of a gooey interpretation of the nyrea she’s living besides: she’s got two arms, a human-like head with big elfin ears, and a curvaceous body with big tits and hips that fold down into a solid base of goo instead of legs. Her crystals, though, are what tip you off to what you’re really dealing with here: a thick dome of emerald crystal has formed around her belly, shielding a massively pregnant gut filled to the brim with what looks like hundreds of fist-sized eggs! Her middle is hugely bloated, swollen with eggs and plated with as much crystal as the goo could possibly churn out, protecting her charges rather than herself.");
 
@@ -811,7 +813,7 @@ public function useDatGloryhole():void
 
 	output("\n\nIs that a goo-girl on the other side? It has to be, you tell yourself");
 	//if seen a Crystalgu b4:
-	if(9999 == 0) output(" - probably a ganrael in the queen’s service");
+	if(CodexManager.entryUnlocked("Ganrael")) output(" - probably a ganrael in the queen’s service");
 	output(". The way the semi-liquid slurps and squeezes, sucks and caresses your cockflesh is amazing, better than any mouth or sex toy could ever be. An irrepressible grin spreads across your face as you sink every inch of your [pc.cock] into the gooey sheath on the other side of the hole, surrounding your manhood in a constant cavalcade of pleasures.");
 	pc.cockChange();
 	output("\n\n<i>“Wow, this feels totally different!”</i> the voice on the other side giggles, quivering wonderfully around your dick. <i>“Did you, like, get a whole new cock? Just for me, right?”</i>");
@@ -830,9 +832,13 @@ public function useDatGloryhole():void
 
 	output("\n\n");
 	//if seen a Crystalgu b4:
-	if(9999 == 0) output("You instantly recognize the familiar form of a ganrael, the planet’s crystal-hemmed goo race, but something’s very different about this specimen.");
+	if(CodexManager.entryUnlocked("Ganrael")) output("You instantly recognize the familiar form of a ganrael, the planet’s crystal-hemmed goo race, but something’s very different about this specimen.");
 	//else
-	else output("It’s a green goo-girl, just like Celise, as you expected. Unlike your dad’s favorite pet, though, this one’s  covered with bits of glistening crystal. Your Codex beeps, identifying it as a gan’rael, a myrellion native species.");
+	else
+	{
+		output("It’s a green goo-girl, just like Celise, as you expected. Unlike your dad’s favorite pet, though, this one’s  covered with bits of glistening crystal. Your Codex beeps, identifying it as a ganrael, a myrellion native species.");
+		CodexManager.unlockEntry("Ganrael");
+	}
 	output(" She’s adopted a relatively humanoid form, probably based off of a gooey interpretation of the nyrea she’s living besides: she’s got two arms, a human-like head with big elfin ears, and a curvaceous body with big tits and hips that fold down into a solid base of goo instead of legs. Her crystals, though, are what tip you off to what you’re really dealing with here: a thick dome of emerald crystal has formed around her belly, shielding a massively pregnant gut filled to the brim with what looks like hundreds of fist-sized eggs! Her middle is hugely bloated, swollen with eggs and plated with as much crystal as the goo could possibly churn out, protecting her charges rather than herself. Beneath the gemstone shield, though, you see a ");
 	if(pc.cumQ() < 40) output("small");
 	else if(pc.cumQ() <= 550) output("big");
@@ -3123,7 +3129,7 @@ public function useRepeatGloryhole():void
 	if(flags["CRYSTAL_GOO_DEFEAT"] == undefined) 
 	{
 		output("Is that a goo-girl on the other side? It has to be, you tell yourself");
-		if(9999 == 0) output(" - probably a ganrael in the queen’s service");
+		if(CodexManager.entryUnlocked("Ganrael")) output(" - probably a ganrael in the queen’s service");
 	}
 	else output("You smile as the familiar sensation of the ganrael broodmare’s gooey body surrounds you");
 	output(". The way the semi-liquid slurps and squeezes, sucks and caresses your cockflesh is amazing, better than any mouth or sex toy could ever be. An irrepressible grin spreads across your face as you sink every inch of [pc.oneCock] into the gooey sheath on the other side of the hole, surrounding your manhood in a constant cavalcade of pleasures.");

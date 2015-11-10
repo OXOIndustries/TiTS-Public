@@ -569,6 +569,7 @@ public function inessaBuyGo():void
 	//Else no whip
 	else chars["INESSA"].destroyItem(new BioWhip());
 	CodexManager.unlockEntry("BionaHoles");
+	CodexManager.unlockEntry("Grav Cuffs");
 	//[Sex Gear] [Clothes] [Other]
 	buyItem();
 }
@@ -1383,10 +1384,11 @@ public function newTexanGanguBangu():void
 
 	output("\n\n<i>“Oh, we will. Prepare to have your ass fucked, slut!”</i> You cry out as a flat equine head forces its way into your [pc.asshole]. Oh god, your [pc.ass] is totally impaled on his fleshy rod!");
 	var virgin:Boolean = pc.analVirgin;
+	var assLooseness:Number = pc.ass.looseness();
 	pc.buttChange(500);
 
 	output("\n\n<i>“How does it feel to have a bull dick inside of that [pc.ass] of yours?”</i> The bull behind you asks, flexing his massive manhood. You feel his equine head flaring inside of you - you swear he’s buried right up in your belly. <i>“");
-	if(pc.analCapacity() < 300) output(" You’re so tight - just like a virgin!");
+	if(virgin || assLooseness <= 1) output(" You’re so tight - just like a virgin!");
 	else if(flags["NEW_TEXAS_GANGBANGED"] != undefined) output("I can tell your [pc.asshole] misses me!");
 	else output("I can tell your [pc.asshole] has been put to good use!");
 	output("”</i>");
@@ -1518,6 +1520,7 @@ public function newTexanGanguBangu():void
 	output("\n\nOnce they’ve left, the cuffs automatically unlock, as if sensing their absence. They fall and clatter on the ground. Picking them up, you stare at your wrists and ankles - the only parts of you uncovered by bull cum! You flush and pack them away, feeling more than a little wobbly on your feet!");
 
 	IncrementFlag("NEW_TEXAS_GANGBANGED");
+	IncrementFlag("GRAVCUFFS_USES");
 	processTime(130+rand(10));
 	// Lots of vaginal (if applicable) and anal stretch.
 	// Lots of exhibition points.
@@ -1529,7 +1532,12 @@ public function newTexanGanguBangu():void
 		pc.loadInCunt(pp,0);
 		pc.loadInCunt(pp,0);
 	}
-	else  pc.loadInAss(pp);
+	else
+	{
+		pc.loadInAss(pp);
+		pc.loadInAss(pp);
+	}
+	pc.loadInAss(pp);
 	if(frontCock)
 	{
 		pc.orgasm();
@@ -1685,6 +1693,7 @@ public function gravCuffsCowgirlBangu():void
 
 	processTime(45);
 	IncrementFlag("TEXAS_GRAVCUFFS_COWORGY");
+	IncrementFlag("GRAVCUFFS_USES");
 	
 	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
 	pc.girlCumInMouth(pp);

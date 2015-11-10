@@ -1239,16 +1239,10 @@ public function taurTFs(arg:int = 1):void
 	}
 }
 
-public function showDane():void
-{
-	showName("\nDANE");
-	showBust("DANE_NUDE");
-}
-
 public function femaleTaurLadySex():void
 {
 	clearOutput();
-	showDane();
+	showDane(true);
 	output("<i>“Holy shit... is that you, [pc.name]?”</i> calls a familiar-sounding voice.");
 	output("\n\nYou turn suddenly alarmed to see the familiar, four-armed figure of your cousin’s guard dog, Dane. Instead of glowing armor and weapons, he’s wrapped in dozens of glowing bands. The ones on his biceps look like they’d snap off if his mighty muscle bothered to flex. A purple-glowing rope holds a black panel of silk across his groin and an identical weave over his ass, barely protecting his modesty. If the breeze blew the wrong way, you’d be able to see his dick snaking out of his sheath.");
 	output("\n\nYou yank your gaze up to the grinning ausar’s face, unsure if you should run. <i>“Dane?! What are you doing here?”</i>");

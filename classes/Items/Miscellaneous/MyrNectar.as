@@ -49,22 +49,32 @@
 			this.evasion = 0;
 			this.fortification = 0;
 			
+			this.combatUsable = true;
+			this.targetsSelf = true;
+			
 			this.version = _latestVersion;
 		}
 		
 		//METHOD ACTING!
 		override public function useFunction(target:Creature, usingCreature:Creature = null):Boolean
 		{
-			kGAMECLASS.clearOutput();
-			if(target is PlayerCharacter) {
+			var healing:int = 55;
+			if(target is PlayerCharacter)
+			{
+				kGAMECLASS.clearOutput();
 				//Consume:
 				kGAMECLASS.output("You flip up the top of the thermos and bring the container up to your mouth. The substance inside is almost painfully sweet, burning your nose until your [pc.lips] wrap around the tip and you start sucking the contents down.");
-				target.energy(55);
+				target.energy(healing);
 				kGAMECLASS.output(" When you’ve finished the thermos off, you suck in a sharp breath as the sweet nectar drools down your throat like syrup. You feel thoroughly refreshed, energized by the delicious alien nectar.");
+				kGAMECLASS.output(" (<b>+" + healing + "</b>)\n");
 			}
-			else {
-				kGAMECLASS.output(target.capitalA + target.short + " drinks the honey, getting a quick energy boost.");
-				target.energy(55);
+			else
+			{
+				if(kGAMECLASS.inCombat()) kGAMECLASS.output("\n");
+				else kGAMECLASS.clearOutput();
+				kGAMECLASS.output(target.capitalA + target.short + " opens a thermos of nectar and drinks it, getting a quick energy boost.");
+				target.energy(healing);
+				kGAMECLASS.output(" (<b>+" + healing + "</b>)\n");
 			}
 			return false;
 		}

@@ -46,14 +46,8 @@ public function annoNotCrew():Boolean
 
 public function annoFollowerHeader(nude:Boolean = false):void
 {
+	showAnno(nude);
 	author("Savin");
-	// Naked Anno
-	if(nude) showBust("ANNO_NUDE");
-	// Blouse Anno
-	else if (anno.armor is AnnosBlouse) showBust("ANNO");
-	// Catsuit Anno
-	else showBust("ANNO");
-	showName("\nANNO");
 }
 
 // Hook this into Tarkus' ship hangar room
@@ -2805,19 +2799,21 @@ public function grayGooSpessSkype():void
 public function grayGooSpessSkypeScene():void
 {
 	clearOutput();
-
+	showName("\n" + goo.short.toUpperCase());
+	showBust("GRAY_GOO_PRIME");
+	
 	output("The sound of talking beckons you awake. You blink your eyes open, and see that your cabin’s holoterminal is open, flashing brightly... and [goo.name] is parked in your chair, her body molded in an even more human form than normal. She looks like the old [goo.name] you encountered on Deck 13, complete with uniform and long hair pulled back in a ponytail, sitting on her legs and talking happily at the computer screen.");
-		
+	
 	output("\n\n<i>“I’m having so much fun!”</i> she grins, jiggling excitedly at the screen. <i>“Space is amazing. There are so many cool people and weird places and adventures. So many adventures! I never thought I’d be, like, a real life adventurer. Well, kind of. [pc.name] is the real adventurer, but [pc.heShe]’s been nice enough to let me tag along.”</i>");
-		
+	
 	output("\n\nYou hear a noble, reserved laugh from the screen, and a woman’s voice answer. <i>“That’s lovely, [goo.name]. I’m glad you’re being taken care of.”</i>");
-		
+	
 	output("\n\n<i>“How’s the new body? Everything where it’s supposed to be?”</i> [goo.name] teases, making her big ol’ tits bounce.");
-		
+	
 	output("\n\n<i>“I am... fully functional, yes,”</i> the voice says with another laugh. <i>“The new body’s quite nice, actually. I do admit, I miss the flexibility and convenience we used to have, but I shouldn’t complain. Sometimes I even forget that I’m not... me.”</i>");
-		
+	
 	output("\n\n[goo.name] pouts. <i>“Aww, don’t be like that. You’re gonna make </i>me<i> sad. Oh, didn’t you get that super duper awesome job, anyway?”</i>");
-		
+	
 	output("\n\n<i>“I did!”</i> the woman says, her tone changing immediately. <i>“Steele Tech offered me a captain’s post aboard one of their transports. They said I had sufficient ‘prior experience.’ Ha! Still, it’s something to do. Most of the crew is still in re-education classes to bring them up to speed on all the advances in the last few centuries.”</i>");
 	
 	output("\n\n[goo.name] beams. <i>“Super cool! I guess I can still call you ‘captain,’ then?”</i>");
@@ -2827,7 +2823,7 @@ public function grayGooSpessSkypeScene():void
 	output("\n\n<i>“Aw. Okay! See you later, Captain Morrow. Love you. Bye.”</i>");
 	
 	output("\n\nThe screen flicks off to back, and like breathing a sigh, [goo.name] resumes her less-human gooey form. She scoots back over to where you’ve dumped your equipment and collapses into an amorphous pile, awaiting you. Smiling to yourself, you roll back over and go to sleep again...");
-
+	
 	addButton(0, "Next", mainGameMenu);
 }
 

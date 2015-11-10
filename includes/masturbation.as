@@ -2191,8 +2191,8 @@ public function goddamnitJimTAndYourExhibitionism():void
 
 	output("\n\nYour sense of excitement skyrockets as they begin to whip out recording devices. Here you are, [pc.name], ");
 	if(pc.isTaur()) output("playing with your [pc.nipples]");
-	else if(pc.hasCock()) output("jerking");
-	else if(pc.hasVagina()) output("frigging");
+	else if(pc.hasCock()) output("jerking your [pc.cocks] and fingering your ass");
+	else if(pc.hasVagina()) output("frigging your [pc.vaginas] and fingering your ass");
 	else output("fingering your ass");
 	output(" in public, and everyone can see it - it's such a rush!");
 
@@ -2215,7 +2215,7 @@ public function goddamnitJimTAndYourExhibitionism():void
 	if(pc.hasCock())
 	{
 		output(" [pc.EachCock] flexes and fires");
-		if(pc.cumQ() < 5) output(" blank shots, only the smallest droplets of [pc.cum] escaping your [pc.cockHeads]");
+		if(pc.cumQ() < 5) output(" blank shots, only the smallest droplets of [pc.cum] escaping your [pc.cockHeads].");
 		else if(pc.cumQ() < 100) output(" thick spurts of [pc.cum] up and into the air. Some of shoot into the crowd. Your spunk splatters on one of their faces, and they let out a shocked noise!");
 		else output(" fountainous gushes of [pc.cum]. It surges forth from your [pc.cockHeads], splattering into the crowd and raising shocked cries.");
 	}

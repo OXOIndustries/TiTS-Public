@@ -2,9 +2,22 @@
 {
 	clearOutput();
 	author("Savin");
+	showSaendra(nude);
+}
+public function showSaendra(nude:Boolean = false):void
+{
 	if (!nude) showBust("SAENDRA");
 	else showBust("SAENDRA_NUDE");
 	showName("\nSAENDRA");
+}
+
+public function saendraPhoenixMailGet():void
+{
+	var timeStamp = GetGameTimestamp();
+	// Keep unlock in chronological order from her later mail!
+	if (MailManager.isEntryUnlocked("saendraxpack1")) timeStamp = MailManager.ENTRIES["saendraxpack1"].UnlockedTimestamp - 1;
+	// Unlock mail!
+	goMailGet("saendrathanks", timeStamp);
 }
 
 public function saendraBarAddendum(slot:int = 7):Boolean
@@ -1373,8 +1386,8 @@ public function saendraStuffsHerFutacockInYourCunt():void
 
 	output("\n\nYou stick your tongue out at the lusty slut, punctuating the action by pushing your fingers in to the knuckle. Saen’s back arches, her hands clutching fistfuls of the sheets as you ram yourself home inside her. Her cock reacts, too, going rigid against your lapping tongue and ejecting a thick dollop of pre, ballooning the tip of the condom in the process."); // Yum! You lick it off, reveling in the strong, salty taste of her seed... oh, you need more of that.");
 
-	output("\n\nEnough of this foreplay shit - you want it now! You surge forward, grabbing Saen’s cock and straddling her hips. <i>“Now we’re talking!”</i> she grins, reaching up to steady you as you move overtop her, angling her slick schlong towards the lips of your [pc.cunt "+ selCunt +"]. You hold there, just a moment, savoring the anticipation; but you can’t deny your mounting lust much longer than that, and slide yourself down onto Saen’s turgid cock. ");
-
+	output("\n\nEnough of this foreplay shit - you want it now! You surge forward, grabbing Saen’s cock and straddling her hips. <i>“Now we’re talking!”</i> she grins, reaching up to steady you as you move overtop her, angling her slick schlong towards the lips of your [pc.cunt "+ selCunt +"]. You hold there, just a moment, savoring the anticipation; but you can’t deny your mounting lust much longer than that, and slide yourself down onto Saen’s turgid cock.");
+	saendra.cockChange();
 	output("\n\nYou’d almost forgotten about the ring of barbs surrounding her crown, but they make themselves readily apparent as Saen’s thick rod slides into you. You scream your pleasure as you’re lowered onto the bristly cock, stretched wide and left to feel every one of those nodules pressing tight into the sensitive walls of your eager pussy.");
 	pc.cuntChange(selCunt, saendra.cockVolume(0), true, true, false);
 	output(" The alien feeling nearly drives you to orgasm in moments as her bristly cock scrapes along your cunt’s walls, the very tip of her tapered cock pressing insistently into your womb. You swoon, barely able to stay upright over Saen without her hands firmly locked on your hips, rooting you in place as you adjust to her unique shape and size.");
@@ -1445,6 +1458,7 @@ public function takeSaensCompletelyReasonablyProportionedFutaCock():void
 	output("\n\n<i>“You wanted it, hero,”</i> she teases, her hands gripping your [pc.hips]. Her cock drags down until the tapered tip is resting against your well-lubed hole, wet and hot and so very hard against your [pc.asshole]. She leans in close, her chest almost against your back, and whispers, <i>“So take it.”</i>");
 
 	output("\n\nShe thrusts in, her spiny kitten-dick spearing your ass open around its rounded barbs. The feeling is incredible, countless tiny bulbs caressing the very rim of your hole, teasing the over-sensitive flesh as she pushes in. She only goes easy for the briefest second, just long enough to let her tip spread you open, before she rams herself hilt-deep into you slick hole.");
+	saendra.cockChange();
 	pc.buttChange(saendra.cockVolume(0), true, true, false);
 	output(" You stop yourself from screaming only by biting down hard on Saen’s pillow, fingers clawing at the bedsheets as you’re anally violated by the thick, meaty girth of her kittycock. Once she gets into you, her prick feels more like a fist forcing its way into you, stretching your spasming walls wide open around its rounded point, making sure you feel every bump and ridge of her spiney feline member. ");
 

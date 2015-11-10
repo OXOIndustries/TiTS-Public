@@ -11,6 +11,10 @@ public function useItem(item:ItemSlotClass):Boolean {
 	if (item.isUsable == false)
 	{
 		trace("Need to find where the use button for this item was generated and disable it with isUsable == false checks.");
+		clearOutput();
+		output("Unable to use " + item.longName + ".");
+		//clearMenu();
+		//addButton(14,"Back",useItemFunction);
 		return false;
 	}
 	if (item.quantity == 0) 
@@ -46,6 +50,8 @@ public function useItem(item:ItemSlotClass):Boolean {
 					clearMenu();
 					addButton(0,"Next",useItemFunction);
 				}
+				output("\n");
+				if (item.combatUsable == false) output("\n");
 			}
 			//else: Error checking
 			else 
@@ -107,7 +113,7 @@ public function combatUseItem(item:ItemSlotClass, targetCreature:Creature = null
 		
 		item.useFunction(targetCreature, usingCreature);
 		
-		if (!infiniteItems())
+		if (!infiniteItems() && !item.hasFlag(GLOBAL.NOT_CONSUMED_BY_DEFAULT))
 		{
 			item.quantity--;
 			if (item.quantity <= 0)
@@ -228,6 +234,14 @@ public function buyItem():void {
 		if(shopkeep.inventory[x].quantity > 0) {
 			output("\n");
 			temp = getBuyPrice(shopkeep,shopkeep.inventory[x].basePrice);
+			/*
+			// Coupons (only affects buy price--not sell price.)
+			var couponName:String = "Coupon - " + shopkeep.inventory[x].shortName;
+			if(pc.hasKeyItem(couponName))
+			{
+				temp = Math.round(temp * keyItemv1(couponName));
+			}
+			*/
 			if(temp > pc.credits) output("<b>(Too Expensive)</b> ");
 			output(upperCase(shopkeep.inventory[x].description, false) + " - " + temp + " credits.");
 			trace("DISPLAYING SHIT");
@@ -249,7 +263,19 @@ public function buyItem():void {
 public function buyItemGo(arg:ItemSlotClass):void {
 	clearOutput();
 	var price:Number = getBuyPrice(shopkeep,arg.basePrice);
-	output("You purchase " + arg.description  + " for " + num2Text(price) + " credits.\n\n");
+	/*
+	// Apply and destroy coupons!
+	var usedCoupon:Boolean = false;
+	var couponName:String = "Coupon - " + arg.shortName;
+	if(pc.hasKeyItem(couponName))
+	{
+		price = Math.round(price * keyItemv1(couponName));
+		pc.removeKeyItem(couponName);
+		usedCoupon = true;
+	}
+	if(usedCoupon) output("The coupon saved on your codex is used and instantly changes the final price. ");
+	*/
+	output("You purchase " + arg.description + " for " + num2Text(price) + " credits.\n\n");
 	
 	//Emmy magic!
 	if(shopkeep is Emmy) flags["PURCHASED_FROM_EMS"] = 1;
@@ -288,7 +314,7 @@ public function sellItemGo(arg:ItemSlotClass):void {
 	clearOutput();
 	var price:Number = getSellPrice(shopkeep,arg.basePrice);
 	pc.credits += price;
-	output("You sell " + arg.description  + " for " + num2Text(price) + " credits.");
+	output("You sell " + arg.description + " for " + num2Text(price) + " credits.");
 	arg.quantity--;
 	if (arg.quantity == 0) pc.inventory.splice(pc.inventory.indexOf(arg), 1);
 	this.clearMenu();
@@ -403,25 +429,25 @@ public function inventoryDisplay():void
 	output("<b>Underwear Top:</b> " + StringUtil.toTitleCase(pc.upperUndergarment.description) + "\n\n");
 	
 	output("<b><u>Equipment Stats:</u></b>\n");
-	output("<b>" + StringUtil.toTitleCase(pc.meleeWeapon.longName) + "</b>\n");
+	output("<b>" + StringUtil.toDisplayCase(pc.meleeWeapon.longName) + "</b>\n");
 	output(pc.meleeWeapon.compareTo(new EmptySlot(), null, null, true));
 	
-	output("\n<b>" + StringUtil.toTitleCase(pc.rangedWeapon.longName) + "</b>\n");
+	output("\n<b>" + StringUtil.toDisplayCase(pc.rangedWeapon.longName) + "</b>\n");
 	output(pc.rangedWeapon.compareTo(new EmptySlot(), null, null, true));
 
-	output("\n<b>" + StringUtil.toTitleCase(pc.armor.longName) + "</b>\n");
+	output("\n<b>" + StringUtil.toDisplayCase(pc.armor.longName) + "</b>\n");
 	output(pc.armor.compareTo(new EmptySlot(), null, null, true));
 
-	output("\n<b>" + StringUtil.toTitleCase(pc.shield.longName) + "</b>\n");
+	output("\n<b>" + StringUtil.toDisplayCase(pc.shield.longName) + "</b>\n");
 	output(pc.shield.compareTo(new EmptySlot(), null, null, true));
 
-	output("\n<b>" + StringUtil.toTitleCase(pc.accessory.longName) + "</b>\n");
+	output("\n<b>" + StringUtil.toDisplayCase(pc.accessory.longName) + "</b>\n");
 	output(pc.accessory.compareTo(new EmptySlot(), null, null, true));
 
-	output("\n<b>" + StringUtil.toTitleCase(pc.upperUndergarment.longName) + "</b>\n");
+	output("\n<b>" + StringUtil.toDisplayCase(pc.upperUndergarment.longName) + "</b>\n");
 	output(pc.upperUndergarment.compareTo(new EmptySlot(), null, null, true));
 
-	output("\n<b>" + StringUtil.toTitleCase(pc.lowerUndergarment.longName) + "</b>\n");
+	output("\n<b>" + StringUtil.toDisplayCase(pc.lowerUndergarment.longName) + "</b>\n");
 	output(pc.lowerUndergarment.compareTo(new EmptySlot(), null, null, true));
 	
 	output("\n");
@@ -472,7 +498,14 @@ public function combatInventoryMenu():void
 	
 	for (var i:int = 0; i < pc.inventory.length; i++)
 	{
-		(this as TiTS).addItemButton((i < 14) ? i : i + 1, pc.inventory[i], combatUseItem, pc.inventory[i]);
+		if (pc.inventory[i].isUsable == false || pc.inventory[i].combatUsable == false)
+		{
+			(this as TiTS).addDisabledButton((i < 14) ? i : i + 1, pc.inventory[i].shortName + " x" + pc.inventory[i].quantity, StringUtil.toDisplayCase(pc.inventory[i].longName), "Cannot be used in combat.");
+		}
+		else
+		{
+			(this as TiTS).addItemButton((i < 14) ? i : i + 1, pc.inventory[i], combatUseItem, pc.inventory[i]);
+		}
 	}
 	
 	addButton(14, "Back", combatMainMenu);
@@ -594,7 +627,7 @@ public function equipItem(arg:ItemSlotClass):void {
 		removedItem = pc.upperUndergarment;
 		pc.upperUndergarment = arg;
 	}
-	else output("  <b>AN ERROR HAS OCCURRED: Equipped invalid item type. Item: " + arg.longName + "</b>  ");
+	else output(" <b>AN ERROR HAS OCCURRED: Equipped invalid item type. Item: " + arg.longName + "</b> ");
 	
 	removedItem.onRemove(pc);
 	arg.onEquip(pc);
@@ -663,11 +696,11 @@ public function itemCollect(newLootList:Array, clearScreen:Boolean = false):void
 	{
 		output(". There is no room in your inventory for your new acquisition. Do you discard the item or replace a filled item slot?");
 		this.clearMenu();
-		this.addButton(0,"Replace", replaceItemPicker, newLootList);  // ReplaceItem is a actionscript keyword. Let's not override it, mmkay?
-		this.addButton(1,"Discard", discardItem,       newLootList);
+		this.addButton(0,"Replace", replaceItemPicker, newLootList); // ReplaceItem is a actionscript keyword. Let's not override it, mmkay?
+		this.addButton(1,"Discard", discardItem, newLootList);
 		//Hacky fix. If you hit useLoot with stuff that has its own submenus, it'll overwrite the submenu with the loot info for the next item. For instance, if you loot a hand cannon and a spear, then equip the hand cannon, your old ZK rifle will vanish into the ether while the game jumps over it to the spear.
 		if ((newLootList.length >= 2)) addDisabledButton(2,"Use","Use","You cannot use an item while there are more items in the loot queue.");
-		else if ((newLootList[0] as ItemSlotClass).isUsable == true) this.addButton(2,"Use",     useLoot,           newLootList);
+		else if ((newLootList[0] as ItemSlotClass).isUsable == true) this.addButton(2,"Use", useLoot, newLootList);
 	}
 	else
 	{			
@@ -700,7 +733,7 @@ public function replaceItemPicker(lootList:Array):void {
 		if(pc.inventory[x].shortName != "" && pc.inventory[x].quantity > 0) 
 		{
 			var butDesc:String = pc.inventory[x].shortName + " x" + pc.inventory[x].quantity
-			this.addButton(x,butDesc,replaceItemGo,[x, lootList]);  // HAAACK. We can only pass one arg, so shove the two args into an array
+			this.addButton(x,butDesc,replaceItemGo,[x, lootList]); // HAAACK. We can only pass one arg, so shove the two args into an array
 		}
 	}
 	
@@ -770,7 +803,7 @@ public function hasShipStorage():Boolean
 public function shipStorageMenuRoot():void
 {
 	clearOutput();
-    output("You turn to your ship's storage.");
+	output("You turn to your ship's storage.");
 	
 	clearMenu();
 	
