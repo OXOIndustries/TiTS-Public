@@ -740,7 +740,7 @@ public function acceptStupidoopyPunishment(dongus:Boolean = false):void
 		else output("letting nothing escape");
 		output(". When you finally manage to relax, the ganraen warden pulls back and lets you slump to the ground.");
 		output("\n\n<i>“Wonderful! Another successful punishment. When you feel able to stand please join me at the door so you can rejoin society as a nicer person!”</i> she says, reshaping herself to a humanoid form. The red myr woman gives you a smug look and crosses her arms.");
-		output("\n\n<i>“See, isn’t it great. After the first time they aren’t quite as quick about it either, all it takes is a knock on one of their less sound structures and boom, free mind-shattering sex. If you get caught again ask to be locked up with Issett, thats me. They can be pretty accommodating,”</i> she explains with a smile. You make a note to try and remember this if you ever end up down here again before ");
+		output("\n\n<i>“See, isn’t it great? After the first time they aren’t quite as quick about it either, all it takes is a knock on one of their less sound structures and boom, free mind-shattering sex. If you get caught again ask to be locked up with Issett, thats me. They can be pretty accommodating,”</i> she explains with a smile. You make a note to try and remember this if you ever end up down here again before ");
 		if(pc.isCrotchGarbed()) output("gathering your [pc.lowerGarment] and ");
 		output("heading to the door. You turn and give the dark haired ant-girl your name before returning to the village proper.");
 	}
