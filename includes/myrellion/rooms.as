@@ -3376,11 +3376,12 @@ public function initializeMyrellionRooms():void
 	rooms["2S29"].southExit = "";
 	rooms["2S29"].westExit = "2Q29";
 	rooms["2S29"].moveMinutes = 5;
-	rooms["2S29"].runOnEnter = DeepCavesBonus;
+	//rooms["2S29"].runOnEnter = DeepCavesBonus;
 	rooms["2S29"].addFlag(GLOBAL.INDOOR);
 	rooms["2S29"].addFlag(GLOBAL.BED);
 	rooms["2S29"].addFlag(GLOBAL.PRIVATE);
-	rooms["2S29"].addFlag(GLOBAL.COMMERCE);
+	//rooms["2S29"].addFlag(GLOBAL.COMMERCE);
+	rooms["2S29"].addFlag(GLOBAL.OBJECTIVE);
 
 	//Q25 -- Southern Turn
 	rooms["2Q25"] = new RoomClass(this);
