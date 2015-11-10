@@ -20,14 +20,20 @@ public function crystalGooFenBurps():void
 	//load encounter to determine color, for reasons.
 	if(flags["MET_GOO_KNIGHT"] == undefined)
 	{
-		output("\n\nAs you wander through the damp caves, you hear someone running behind you. You turn just in time to dodge a sword that might’ve done some major damage. The [monster.skinTone] blade clangs into the stone floor, sending small chips flying in every direction. When you recover enough to examine the sword’s owner, you find it to be a tall knight wearing armor of similar color to its sword. Your codex beeps, alerting you that the knight is a ganrael, a species of goo-creature.");
+		output("\n\nAs you wander through the damp caves, you hear someone running behind you. You turn just in time to dodge a sword that might’ve done some major damage. The [monster.skinTone] blade clangs into the stone floor, sending small chips flying in every direction. When you recover enough to examine the sword’s owner, you find it to be a tall knight wearing armor of similar color to its sword.");
+		if(!CodexManager.entryUnlocked("Ganrael"))
+		{
+			output(" Your codex beeps, alerting you that the knight is a ganrael, a species of goo-creature.");
+			CodexManager.unlockEntry("Ganrael");
+		}
+		else output(" It’s a ganrael!");
 		output("\n\n<i>“En-garde, star creature! I will defeat you!”</i> it yells, revealing a high pitched, feminine voice. You take up a battle stance, Preparing yourself for another blow from the sword. She circles you, her helmet and armor hiding any useful information that you could use. Her chest plate compresses her chest so tightly that you would never tell her gender by looking at her. You ready your weapons, preparing for the fight ahead.");
-		CodexManager.unlockEntry("Ganrael");
 		flags["MET_GOO_KNIGHT"] = 1;
 	}
 	//Repeat
 	else
 	{
+		IncrementFlag("MET_GOO_KNIGHT");
 		output("\n\nYou hear clanking on the rocks just in time to avoid a slash from a ganraen knight. It looks like you’re a popular choice for their attacks. You ready your weapons and prepare to fight.");
 	}
 	clearMenu();
@@ -199,7 +205,7 @@ public function gooKnightLossScene():void
 		if(pc.balls > 0) output("[pc.balls]");
 		else if(pc.hasVagina()) output("[pc.eachVagina]");
 		else output("[pc.asshole]");
-		output(". [pc.cumColor] jizz pulses into her in strings, and some droplets fall out, dripping onto her tits as she gulps down what she can handle.");
+		output(". [pc.CumColor] jizz pulses into her in strings, and some droplets fall out, dripping onto her tits as she gulps down what she can handle.");
 	}
 	else output("Another shot of the buzzer draws your [pc.girlCum] right up into her throat, giving her the meal she desires while she melts your mind with pleasure. Her long tongue zips out to lick your [pc.vaginas] and [pc.asshole]. By now the fake cock she’s given you is nearly as solid as the plates she was wearing for armor, and each touch affects the buzzer even more sensitively.");
 	output(" She pulls away from you, licking her lips and staring into your eyes. You doubt she sees anything but sex at the moment.");
@@ -284,14 +290,14 @@ public function beatUpCrystalGoo():void
 		else addDisabledButton(0,"Dick Fuck","Dick Fuck","You do not have a penis to fuck her with.");
 		if(pc.hasVagina()) addButton(1,"Vag Fuck",femaleCrystalGooWin,undefined,"Vagina Fuck","Use your girlybits on the fallen warrior.");
 		else addDisabledButton(1,"Vag Fuck","Vagina Fuck","You do not have a vagina to fuck her with.");
-		if(pc.isTaur()) addButton(2,"Centaur Ride",centaurRideSpecialVictory,undefined,"Centaur Ride","Give her a ride she won't soon forget.");
+		if(pc.isTaur()) addButton(2,"Centaur Ride",centaurRideSpecialVictory,undefined,"Centaur Ride","Give her a ride she won’t soon forget.");
 		else addDisabledButton(2,"Centaur Ride","Centaur Ride","You need to be a tauric creature, like a leithan, to do this action.");
 	}
 	else
 	{
-		addDisabledButton(0,"Dick Fuck","Dick Fuck","You aren't turned on enough for that.");
-		addDisabledButton(1,"Vag Fuck","Vagina Fuck","You aren't turned on enough for that.");
-		addDisabledButton(2,"Centaur Ride","Centaur Ride","You aren't turned on enough for that.");
+		addDisabledButton(0,"Dick Fuck","Dick Fuck","You aren’t turned on enough for that.");
+		addDisabledButton(1,"Vag Fuck","Vagina Fuck","You aren’t turned on enough for that.");
+		addDisabledButton(2,"Centaur Ride","Centaur Ride","You aren’t turned on enough for that.");
 	}
 	addButton(14,"Leave",genericVictory);
 }
@@ -325,10 +331,10 @@ public function malesBeatGoo():void
 	pc.cockChange();
 	output("\n\nYour [pc.cockBiggest] is enveloped in liquid pressure, milking along its surface with alien fervor. Whenever you pull back, the chaotically formed goo hardens to prevent your movement, only to melt back into jelly when you thrust back in. The girl’s knight roleplay has been given up completely, and she molds her body into your actions, mimicking them in reverse as she moans into your mouth.");
 	output("\n\nSuddenly the semiliquid lady jerks her head back, shouting in orgasm as her jellied flesh sticks to your [pc.skinFurScales]. As she cums her body becomes slightly more solid for a second, the outer layer of her hardening slightly. The event gives you an idea, and you continue to pound her toughening body.");
-	output("\n\nThe ganrean girl makes unintelligible attempts at speech as you give her no chance to rest. She cums again in rapid succession, your [pc.cockNounBiggest] rubbing her cluster of pleasure sensing nerves. A shudder runs through her body, and you feel part of her thigh solidify under your fingers. She gives a whimpering moan as she looks at her arm, seeing portions of it freeze into the diamond hard crystal that her armor was made of.");
+	output("\n\nThe ganraen girl makes unintelligible attempts at speech as you give her no chance to rest. She cums again in rapid succession, your [pc.cockNounBiggest] rubbing her cluster of pleasure sensing nerves. A shudder runs through her body, and you feel part of her thigh solidify under your fingers. She gives a whimpering moan as she looks at her arm, seeing portions of it freeze into the diamond hard crystal that her armor was made of.");
 	output("\n\nYou focus your efforts, stroking her budding clit till it becomes as rigid as a gemstone. You kiss her neck, licking up to one of her squishy goo ears. A laugh escapes your lips as you go, prompted by your tongue leaving a trail of solidified [monster.skinTone] crystal in its wake. Despite her predicament, the hardening harlot can’t resist her baser urges.");
 	output("\n\nShe lathers the side of your face with kisses, even as her body slowly hardens. Whatever control centers decide how to form her plates seem to be gradually overridden by the ones that decide how hard she should be cumming. You wonder what both kinds of receptors would think of a hot injection of your seed.");
-	output("\n\nYou dont have to think for long. You join in the sensual moaning as your lust boils over the edge. [pc.eachCock] blows it’s load into her hungry form. You look down to see spurts of your [pc.cum] clouding the [monster.skinTone] insides. The lust drugged goo-girl’s limbs stretch and tense, fingers and toes splaying as she frantically searches for something to hold.");
+	output("\n\nYou dont have to think for long. You join in the sensual moaning as your lust boils over the edge. [pc.EachCock] blows it’s load into her hungry form. You look down to see spurts of your [pc.cum] clouding the [monster.skinTone] insides. The lust drugged goo-girl’s limbs stretch and tense, fingers and toes splaying as she frantically searches for something to hold.");
 	output("\n\nHer efforts wind up being in vain, as a great shiver winds its way over her body. She lets out a final echoing moan that is cut off half way as her entire body solidifies into a crystal statue. Her cunt remains just liquid enough for you to pull away before it too hardens into a perfect crystalline imitation of a woman in orgasm.");
 	output("\n\nYou stare at the frozen beauty for a moment, wondering whether you should just leave her there or not.");
 	//pc nice/naughty: 
@@ -369,7 +375,7 @@ public function femaleCrystalGooWin():void
 	if(pc.hasCock()) output("Shouldn’t you use a");
 	else output("Don’t you want me to give you a");
 	output(" dick, since I’m shaped like a girl?”</i> She asks as you rub her fingers over your folds. You smile coyly and slip your fingers over the edge of her chestplate. The top of her bust is squashed down by the offending garment, and you pull it off. Her thankful DD-cups spring free, jiggling in the cave air.");
-	output("\n\n<i>“Don’t you know? Some princesses prefer the female knights,”</i> you tell her before taking one of her gooey nipples between your teeth. The jellied nub is slightly tougher than its surroundings, and offers a little resistance when you press it down with your tongue. The ganrean girl coos in resignation, brushing a hand ");
+	output("\n\n<i>“Don’t you know? Some princesses prefer the female knights,”</i> you tell her before taking one of her gooey nipples between your teeth. The jellied nub is slightly tougher than its surroundings, and offers a little resistance when you press it down with your tongue. The ganraen girl coos in resignation, brushing a hand ");
 	if(!pc.isBald()) output("through your [pc.hair]");
 	else output("over your bare head");
 	output(". You cease your guidance, and she continues to rub your [pc.vagina] with her other hand.");
@@ -463,7 +469,7 @@ public function centaurRideSpecialVictory():void
 		if(pc.balls > 0) output("cup your [pc.balls], massaging them gently to coax their contents.");
 		else output("between your legs, winding up circling your [pc.asshole].");
 
-		output("\n\nA jolt of sexual energy causes you to buck your hips, and you feel a rush of cold air on your [pc.cockHeadBiggest]. You lean over to find out what happened, only to see your member sticking out of the semisolid slut's head. She doesn’t seem perturbed in the slightest, using the opportunity to suction her lips all the way to your [pc.sheathBiggest]. The rapid movement sends shudders through your [pc.legOrLegs], and you quiver for a moment before they buckle.");
+		output("\n\nA jolt of sexual energy causes you to buck your hips, and you feel a rush of cold air on your [pc.cockHeadBiggest]. You lean over to find out what happened, only to see your member sticking out of the semisolid slut’s head. She doesn’t seem perturbed in the slightest, using the opportunity to suction her lips all the way to your [pc.sheathBiggest]. The rapid movement sends shudders through your [pc.legOrLegs], and you quiver for a moment before they buckle.");
 		output("\n\nAll of your weight falls atop the unsuspecting ganraen, causing a splash of [monster.skinTone] liquid. You try to stand, only to fall again as the jellied gladiator sucks even harder. She’s been reduced to a puddle beneath your tauric frame, but now she covers ");
 		if(pc.cockTotal() > 1) output("the entirety of [pc.eachCock]");
 		else output("enough of your [pc.cockBiggest] to give it a full body massage");
@@ -535,7 +541,7 @@ public function gooVillageThinger():void
 	if(CodexManager.entryUnlocked("Ganrael")) output("but you already knew that");
 	else output("a race of crystal forming goos");
 	output(".");
-	output("\n\nYou look around, noticing a number of small huts formed from crystaline panels. A bad feeling about the gemstone plates that covered you crosses your mind before the sticky gel that covers you solidifies, trapping you in place. The formerly surprised expressions shift to annoyed glares as your new captors close in around you. An orange-colored girl with a braid secured by citrines looms over you, and the others halt.");
+	output("\n\nYou look around, noticing a number of small huts formed from crystalline panels. A bad feeling about the gemstone plates that covered you crosses your mind before the sticky gel that covers you solidifies, trapping you in place. The formerly surprised expressions shift to annoyed glares as your new captors close in around you. An orange-colored girl with a braid secured by citrines looms over you, and the others halt.");
 	output("\n\n<i>“You knocked over my house,”</i> she states with heated fervor. Her frame looks incredibly tense for being less than fully solid, and she gives you a soul withering frown. The rest of her kin shake their heads and furrow their brows, looking ready to deliver mob justice. Heat flushes through your face as you try to think of a way out.");
 	output("\n\n<i>“[pc.heShe] must be punished! One day in jail and nominal discipline!”</i> the amber ganraen shouts, and the mob replies with smiles and exclamations of joy. What have you gotten yourself into? Three village members lift the entire crystal formation that encases you and carry it through the cavern. It looks like there are maybe six members total unless there are still some sleeping in the huts.");
 	output("\n\nThe procession carries you past a handful of other small buildings, none any larger than ");
@@ -558,7 +564,7 @@ public function ganraelVillagePartTwo():void
 	output("\n\n<i>“Easy for you to say, since you live here or something! My girlfriend is a queen’s handmaiden, I shouldn’t have to deal with this,”</i> the rich woman snaps, tucking herself even more tightly into her corner. Her cellmate laughs at this, stretching out and getting to her feet in order to move closer to you.");
 	output("\n\n<i>“So, what are you in here for? Richie rich over there tried to vaporize one of the knights with one of those fancy space- farer guns when she got separated from her cave tour group. I stole from the shop. Best way to get in without causing too much trouble,”</i> she says with a wink, whispering the last part. You tell her about your fall down the tunnel and knocking over the building, earning a laugh that she tries -and fails- to suppress.");
 	output("\n\n<i>“I’m sorry, but that’s pretty hilarious. Don’t worry though, even the most hardened looking offworlders fall sometimes. It’s a good thing you didn’t get hurt running into that building, I broke an arm the first time I ran into the ganrael. Luckily their crystals are just as useful as splints as they are for breaking things,”</i> She says, smiling and rapping on one of the colorful bars. You ask her what miss princess meant when she talked about her living here.");
-	output("\n\n<i>“Let me put it this way: I have the choice to go back to a war torn city that might not have even been part of my countryculture in the first place. I might have gotten drafted, guilted into service, or settled down to live a boring life. Or... I come down here, make a little bit of trouble or try to take some meaningless balls of slime. In a matter of minutes I’m sitting in a sizeable room with soft bedding and as many cave berries or mushrooms as I can eat. Not to mention the guards are a lot of fun, in a silly goo creature kind of way. I can’t be the only person who would pick that as the better option,”</i> she says, her careless demeanor turning serious as she talks. When she’s finished she takes a deep breath before smiling again.");
+	output("\n\n<i>“Let me put it this way: I have the choice to go back to a war torn city that might not have even been part of my country-side culture in the first place. I might have gotten drafted, guilted into service, or settled down to live a boring life. Or... I come down here, make a little bit of trouble or try to take some meaningless balls of slime. In a matter of minutes I’m sitting in a sizeable room with soft bedding and as many cave berries or mushrooms as I can eat. Not to mention the guards are a lot of fun, in a silly goo creature kind of way. I can’t be the only person who would pick that as the better option,”</i> she says, her careless demeanor turning serious as she talks. When she’s finished she takes a deep breath before smiling again.");
 	output("\n\n<i>“Anyway, I come down here all the time. I still go back and visit friends whenever I get out, and at least some of them know my general location when I disappear for a while. Little do they know I’m a repeat law-breaker in a crystal goo village,”</i> she laughs, leaning back against the cell bars.");
 	output("\n\n<i>“That’s what will happen if her kind wins the war you know,”</i> comes the voice of the gold from her corner. <i>“Crime rates will jump up, and people’s wives will be stolen away by those sluts and their toxic spit that makes you crazy for sex! Our poor queens will be locked away forever.”</i> The red myr twirls her black hair as she listens, giving you an incredulous glance once the tirade is over.");
 	output("\n\n<i>“I don’t know about them being locked up. I’m sure your queens would just love some of our delicious service,”</i> she jokes, making an exaggerated show of licking her lips in the gold’s direction.");
@@ -566,13 +572,13 @@ public function ganraelVillagePartTwo():void
 	output("\n\n<i>“Of course we get propaganda that says all of their lot who aren’t posh higher ups are brainwashed into mindless slaves by their queens and have no sense of free will. I don’t believe a word of it. As much as she seems to prove them right, I’ve seen some perfectly willful individuals come out of those trenches only to be recruited directly to our side without much choice.”</i>");
 	output("\n\nA racket from the door interrupts your conversation, and you turn to see an armored goo soldier opening the cage. He looks to be carrying a large platter, with a medium sized satchel draped over one of the gemstone plates on his arm. The platter is covered in an assortment of tiny mushrooms and dark berries, some occasionally pulsing with brighter colors.");
 	output("\n\n<i>“Time to eat!”</i> the guard exclaims in a jovial and surprisingly deep voice. He shuts the door behind him and strides over to your corner of the room, handing the platter to the red myr and the satchel to you.");
-	output("\n\n<i>“There are foods from above in that. It was confiscated from that one,”</i> he says, looking in the direction of the gold myr before prompting you to open the bag. <i>“ so yYou can eat them since your offense was only minor.,”</i> he says, looking in the direction of the gold myr before prompting you to open the bag. She looks as if she wants to say something, but reconsiders when she meets his gaze. He turns to her again as he reaches the door.");
+	output("\n\n<i>“There are foods from above in that. It was confiscated from that one,”</i> he says, looking in the direction of the gold myr before prompting you to open the bag. <i>“So you can eat them since your offense was only minor.”</i> he says, looking in the direction of the gold myr before prompting you to open the bag. She looks as if she wants to say something, but reconsiders when she meets his gaze. He turns to her again as he reaches the door.");
 	output("\n\n<i>“Your punishment will be later tonight, you should eat before-hand,”</i> he states sternly, closing the door behind him before returning to the village. As soon as he is out of sight the four-armed brat scoots as close as she can to the taller red girl, mumbling about how that was her food and that her life is terrible.");
 	output("\n\nYou open the pack to find a number of rations from a JoyCo standard exploration care package, each emblazoned with the company’s simple logo. ");
 	if(pc.isNice()) output("Not wanting to incense her ill attitude, you hand the blond ant one of the ration packs. She snatches it out of your hand, getting it halfway open before pausing and thanking you sheepishly.");
 	else if(pc.isMischievous()) output("You hand the blond ant one of the ration packs, yanking it away as she grasps for it before dropping it into her hands. A fierce blush covers her features as she opens it, eating the contents in silence.");
 	else output("You open and devour one of the ration packs, not even looking in the blond ant’s direction.");
-	output(" The raven haired woman picks various berries and fungi to eat. She hands some to her cellmate as she picks through them, swatting the younger womans hand when she tries to reach for some herself.");
+	output(" The raven haired woman picks various berries and fungi to eat. She hands some to her cellmate as she picks through them, swatting the younger woman’s hand when she tries to reach for some herself.");
 	output("\n\n<i>“Those are poisonous! The crystal goo people try hard, but they aren’t exactly the best judges of what’s healthy. Just sit back and I’ll make sure you get fed,”</i> she explains with a curt tone, passing over a handful of food. The pampered gold looks ashamed, eating her food slowly as she shifts around. The fair-skinned myr sighs, wrapping an arm around her counterpart.");
 	output("\n\n<i>“Look, it’s not gonna be that bad. Their punishments won’t involve chopping you up or anything like that, and we’ll be here the whole time. I can’t tell you exactly what will happen, but I’m sure it’ll be over before you know it,”</i> she says in a much more comforting voice. For the first time since you arrived the sun-tanned girl relaxes, sitting more comfortably while she finishes her meal.");
 	pc.energy(35);
@@ -592,7 +598,7 @@ public function ganraelJail3():void
 	output("\n\n<i>“I-I don’t even have a girlfriend. None of this jewelry is worth much, and I was just trying to sound important so they wouldn’t treat me badly. This is my f-first time, what if they ruin me so I’ll never feel good from anything except their goo cocks. O-or what if I’m fucked so senseless that I just become a sex slave here forever!”</i> You swear you can see her drooling as she goes on to describe other things that could happen, and you see the red myr’s expression move from compassion to bewilderment.");
 	output("\n\nThe dark haired woman rolls up the base of her shirt, letting her close to E-cup breasts free from their containment. She pulls the gold out of her daydreams mid sentence, silencing her with a nipple. She signals the crew of goo-knights to start when she’s done, covering the golds ears with her palms before turning in your direction.");
 	output("\n\n<i>“I swear she exists to prove all of our propaganda correct. Who even does that kind of thing,”</i> she asks, obviously not expecting an answer. A purple knight pulls the presenting myr’s pants down to her knees, and you see her eyes close tightly in preparation. The first ganrael up to bat is the bright orange female who first spoke, kneeling behind her and shaping a semi-solid cock from the coalesced goo above her pelvis.");
-	output("\n\nThe ganrean judge rubs her bitch-breaking member between the ant-girls asscheeks, eliciting a muted moan from the deafened recipient. The freshly crafted cock slips up her abdomen to reach her pussy, pausing for a moment before pressing in hard. Her whole body is pushed forward as the inconstant dick enters her body, and she shudders with pleasure as her face is squeezed tighter to the red’s chest.");
+	output("\n\nThe ganraen judge rubs her bitch-breaking member between the ant-girl’s ass cheeks, eliciting a muted moan from the deafened recipient. The freshly crafted cock slips up her abdomen to reach her pussy, pausing for a moment before pressing in hard. Her whole body is pushed forward as the inconstant dick enters her body, and she shudders with pleasure as her face is squeezed tighter to the red’s chest.");
 	output("\n\nDespite her imposing figure, the head judge appears to be quite the quick shot. Hardly more than a minute after she begins pistoning she falls atop the golden myr’s back, humping wildly as her massive bust soaks the smaller girl’s clothing. With one final thrust, she buries herself as deeply as she can reach and cums. You see her overall body size shrink as steaming orange ‘jizz’ floods back out from the ant-girl’s pussy. When she finally pulls out her massive breasts have been reduced to measly C-cups, and her stature has been reduced to almost cuddly proportions.");
 	output("\n\nShe backs away, steadily reforming herself from the puddle of faux-cum that still drips out of the myr prisoner’s pussy. The purple knight comes second, removing some of his armor to reveal a male shape. He already has a fully solidified amethyst cock, and plunges it into her waiting cunt as soon as his partner is out of the way. The red ant makes sure her punished cellmate is situated before turning back to you.");
 	output("\n\n<i>“So yeah, this is basically what punishment is around here. Though I must say it’s a bit less forceful when you haven’t nearly killed one of the villagers. The first time I came down here, when I broke my arm, they treated me so nicely I thought I must have felt what the gold queens feel with their constant pampering. I’m ashamed to say it felt kind of addict-OW! HEY,”</i> she shouts suddenly, swatting the gold myr on the head before covering her ear again.");
@@ -619,11 +625,11 @@ public function ganJail4():void
 	processTime(333);
 	//[Acceptmale][acceptfemale]]{take the usual, it can’t be that bad} [Deny]{goo sex doesn’t sound like your cup of tea right now}
 	clearMenu();
-	if(pc.hasCock()) addButton(0,"Accept (Dick)",acceptStupidoopyPunishment,true,"Accept (Dick)","Let her collect all the genetic material she wants from your penis. It can't be that bad.");
+	if(pc.hasCock()) addButton(0,"Accept (Dick)",acceptStupidoopyPunishment,true,"Accept (Dick)","Let her collect all the genetic material she wants from your penis. It can’t be that bad.");
 	else addDisabledButton(0,"Accept (Dick)","Accept (Dick)","You have no dick to accept with.");
-	if(pc.hasVagina()) addButton(1,"Accept (Vag)",acceptStupidoopyPunishment,false,"Accept (Vagina)","Let her collect fluids from your vagina. It can't be that bad.");
+	if(pc.hasVagina()) addButton(1,"Accept (Vag)",acceptStupidoopyPunishment,false,"Accept (Vagina)","Let her collect fluids from your vagina. It can’t be that bad.");
 	else addDisabledButton(1,"Accept (Vag)","Accept (Vag)","You have no vag to accept with!");
-	addButton(2,"Deny",fuckGooSexThatsForGays,undefined,"Deny","Goo sex doesn't sound like your cup of tea right now.");
+	addButton(2,"Deny",fuckGooSexThatsForGays,undefined,"Deny","Goo sex doesn’t sound like your cup of tea right now.");
 }
 
 //[Accept]
@@ -750,7 +756,7 @@ public function fuckGooSexThatsForGays():void
 	output("\n\nYou ");
 	if(!pc.isGoo()) output("hiss at the sting as she collects a small portion of your blood, leaving a glob of goo that rapidly seals the wound");
 	else output("smile jovially as she collects a small portion of your gooey body, wondering why this was such a big deal");
-	output(". You watch as part of you dissolves into the ganreal’s sunny colored figure. That wasn’t so bad.");
+	output(". You watch as part of you dissolves into the ganrael’s sunny colored figure. That wasn’t so bad.");
 	output("\n\n<i>“Alright. Now if you come with me I’ll take you back to the village proper where you can be on your way. Unless there was something you wanted, then you can do that,”</i> she says, beckoning for you to join her. You stand and walk to the door with her, turning back before leaving to say goodbye to your recent friends.");
 	output("\n\n<i>“You know where to find me. I’ll probably be back down here after I make sure this one gets back to her city-folk life. My name is Issett by the way, since we were never properly introduced,”</i> she says as she waves goodbye. You give her your name as you leave, returning to the front of the cave.");
 	processTime(5);
@@ -793,6 +799,7 @@ public function visitCrystalGooShop():void
 	if(!pc.isGoo()) output("mention that you arent made of goo, so most of those things won’t help you");
 	else output("clap happily, wondering which of the blobs you should get");
 	output(".");
+	flags["MET_CGOO_SHOPKEEP"] = 1;
 	//The shopkeeps wares include purple, yellow, orange, green, black, red, blue, white, and pink. alternating every day in groups of 4
 	//[buy goo ball][talk][leave]
 	clearMenu();
@@ -831,7 +838,7 @@ public function talkToGanraelAboutVillage():void
 	showGooKeep();
 	//option 1: Village
 	output("You ask the goo shopkeeper about the village, seeing as your codex says ganrael don’t usually work together.");
-	output("\n\n<i>“Of course we don’t, silly! If they stay here for too long they know I’ll steal their ideas, but who else are they going to show off to? None of us stay here all the time, except maybe me I suppose...,”</i> she explains cheerily");
+	output("\n\n<i>“Of course we don’t, silly! If they stay here for too long they know I’ll steal their ideas, but who else are they going to show off to? None of us stay here all the time, except maybe me I suppose...,”</i> she explains cheerily.");
 	output("\n\n<i>“The houses are kept up all the time, but the occupants change every couple of days. Sometimes people from other races come to talk and play with us, and that’s always fun, but I’m too busy to go anywhere else,”</i> she states with an obstinate tone. You ask her what she’s so busy doing, and why the store can’t just change owners like everything else.");
 	output("\n\n<i>“What? well, loads of stuff. Who else is gonna sort these rocks, or count the number of houses. It’s most definitely not because I don’t remember how to change my shape and am stuck to the ground here. I could leave at any time, but I’d rather do this,”</i> she says adamantly. You aren’t sure you believe her, but she doesn’t seem to be interested in talking anymore.");
 	processTime(2);
@@ -847,8 +854,8 @@ public function talkToGooCrystalsAboutWar():void
 	showGooKeep();
 	output("You ask the spunky shopkeep what she thinks of the war, obtaining a grumpy scowl in response. She crosses her arms and huffs.");
 	output("\n\n<i>“It’s so dumb. Why do they have to kill each other when they could be having sex instead. I know that’s what I would do. One side has giant girls with tits full of succulent honey, and the other has tasty venom that makes sex even better! Why have they not combined those things yet?”</i> she asks. You nod and act interested, prompting even more explanation from the opinionated lady.");
-	output("\n\n<i>“Like, we sometimes get some backed up honey ants down here, and it’s really fun when we have sex with them and the red myr at the same time. Once they’ve been fucked till they can’t think straight neither of them care that they’re screwing the enemy. If that’s all it takes then why shouldn’t they just do that all the time. I think deep down that’s what they really want, and they could just stop at any time if the other side does it at the same time,”</i> she rants, her body shifting to darker shades as she grows angrier.");
-	output("\n\n<i>“Mainly I just want them to come down here more often. if it weren’t for the war they could come down here and have all the sex I wanted. Maybe even with ALL the ants at the same time. can you imagine it!”</i> she continues, sinking into her thoughts when she finishes. You suppose you weren’t expecting much opinion regarding the war, and she doesn’t seem to be interested in talking about this subject anymore.");
+	output("\n\n<i>“Like, we sometimes get some backed up honey ants down here, and it’s really fun when we have sex with them and the red myr at the same time. Once they’ve been fucked till they can’t think straight neither of them care that they’re screwing the enemy. If that’s all it takes then why shouldn’t they just do that all the time? I think deep down that’s what they really want, and they could just stop at any time if the other side does it at the same time,”</i> she rants, her body shifting to darker shades as she grows angrier.");
+	output("\n\n<i>“Mainly I just want them to come down here more often. If it weren’t for the war, they could come down here and have all the sex I wanted. Maybe even with ALL the ants at the same time. Can you imagine it!”</i> She continues, sinking into her thoughts when she finishes. You suppose you weren’t expecting much opinion regarding the war, and she doesn’t seem to be interested in talking about this subject anymore.");
 	processTime(4);
 	clearMenu();
 	addButton(0,"Next",talkToGooVillagers);
@@ -861,13 +868,13 @@ public function spaceGooTalk():void
 	author("Gardeford");
 	showGooKeep();
 	output("You ask the crystal plated goo-girl if she has seen any of the <i>“star-walking”</i> goo races, and what she thinks of them. She gives you a confused stare for a few seconds before recollection coats her features.");
-	output("\n\n<i>“Oh I know I know. I saw one of them the other day. She was with uhh, xenagem biotimes, must’ve been a news person. She wasn’t really the same as me though. I could see through her, but her body was too hard. She said something about being a ran, but she didn’t seem like she was gonna run away,”</i> the semi-solid girl explains, continuing to talk as you process the information.");
+	output("\n\n<i>“Oh I know I know. I saw one of them the other day. She was with uhh, xenagem biotimes, must’ve been a news person. She wasn’t really the same as me though. I could see through her, but her body was too hard. She said something about being a ‘ran’, but she didn’t seem like she was gonna run away,”</i> the semi-solid girl explains, continuing to talk as you process the information.");
 	output("\n\n<i>“There were also some who were like us, but they couldn’t make crystals at all. They were with a man in a shiny white suit, just hanging all over him. At least I think it was a man, he had lots of tentacles instead of a head. I didn’t get to talk to them cause there were too many people around, but it was very interesting. I had no idea that sky people had so many different shapes,”</i> she confesses sheepishly.");
 	//if pc goo: 
 	if(pc.isGoo()) 
 	{
 		output(" You ask her how she makes crystals, part of you hoping that it’s a magic trick that you can learn.");
-		output("\n\n<i>“well, i just think about it and it happens. But I do know that newly split members of our race can’t make crystals until they have sex at least once, so maybe they get it from older people? But if that’s how it is then how did it start? It’s really confusing,”</i> she says, rubbing her temples and frowning at the thought.");
+		output("\n\n<i>“Well, I just think about it and it happens. But I do know that newly split members of our race can’t make crystals until they have sex at least once, so maybe they get it from older people? But if that’s how it is, then how did it start? It’s really confusing,”</i> she says, rubbing her temples and frowning at the thought.");
 	}
 	processTime(3);
 	clearMenu();
