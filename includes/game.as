@@ -5517,6 +5517,15 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				variousCount++;
 			}
+			// Village of the Goos
+			if(flags["MET_CGOOS"] != undefined)
+			{
+				output2("\n<b><u>Ganraen Village</u></b>");
+				output2("\n<b>* Village:</b> Visited, Imprisoned and freed from jail");
+				output2("\n<b>* Issett:</b> Met her");
+				if(flags["MET_CGOO_SHOPKEEP"] != undefined) output2("\n<b>* Ganraen Shopkeeper:</b> Met her");
+				variousCount++;
+			}
 			// ReallyJustSpaceSavin
 			if(flags["MET_SEIFYN"] != undefined)
 			{
