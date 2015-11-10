@@ -652,6 +652,26 @@ public function queensRoadTradingPost():Boolean
 	return queensRoadBonusShit();
 }
 
+//Handles fixing up the map if silly mode is toggled and not yet updated!
+public function emergencyMapCorrector():Boolean
+{
+	variableRoomUpdateCheck();
+	return DeepCavesBonus();
+}
+public function slimyPassageBonus():Boolean
+{
+	output("Droplets of goo pelt the floor around you, dripping from the cave ceiling at irregular intervals. Your ");
+	if(pc.isChestGarbed()) output("[pc.upperGarment]");
+	else output("[pc.chest]");
+	output(" catches some of the blobs, splattering harmlessly but making you shiver nonetheless.");
+	if(flags["MET_CGOOS"] == undefined) 
+	{
+		gooVillageThinger();
+		return true;
+	}
+	return false;
+}
+
 public function DeepCavesBonus():Boolean
 {
 	if(flags["ENCOUNTERS_DISABLED"] != undefined) return false;
@@ -677,6 +697,13 @@ public function DeepCavesBonus():Boolean
 			choices[choices.length] = infectedMyrmedionShit;
 		}
 		choices[choices.length] = infectedMyrmedionShit;
+		if(silly)
+		{
+			choices[choices.length] = crystalGooFenBurps;
+			choices[choices.length] = crystalGooFenBurps;
+			//crystalGooFenBurps();
+			//return true;
+		}
 
 		//Run the event
 		choices[rand(choices.length)]();

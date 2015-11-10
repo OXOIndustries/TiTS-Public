@@ -200,6 +200,7 @@
 		include "../includes/myrellion/bathHouse.as";
 		include "../includes/myrellion/cockvines.as";
 		include "../includes/myrellion/cockvineseedling.as";
+		include "../includes/myrellion/crystalGoo.as";
 		include "../includes/myrellion/dally.as";
 		include "../includes/myrellion/embassy.as";
 		include "../includes/myrellion/embry.as";
@@ -325,7 +326,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.6.14";
+			version = "0.6.15";
 
 			//temporary nonsense variables.
 			temp = 0;

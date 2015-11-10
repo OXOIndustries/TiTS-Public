@@ -1,7 +1,7 @@
 package classes.Characters 
 {
-	import classes.BreastRowClass;
 	import classes.Creature;
+	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.GameData.Pregnancy.PregnancyStageProgression;
 	import classes.GLOBAL;
 	import classes.Items.Apparel.GooeyCoverings;
@@ -13,16 +13,16 @@ package classes.Characters
 	import classes.kGAMECLASS;
 	import classes.rand;
 	import classes.GameData.CodexManager;
-	import classes.VaginaClass;
 	
 	/**
 	 * ...
-	 * @author Gedan
+	 * @Author Fenoxo
+	 * Stolen from Gedan a bit...
 	 */
-	public class GrayPrime extends Creature
+	public class GooKnight extends Creature
 	{
 		
-		public function GrayPrime() 
+		public function GooKnight() 
 		{
 			this._latestVersion = 1;
 			this.version = _latestVersion;
@@ -30,27 +30,34 @@ package classes.Characters
 			
 			// Originally a clone of the zilpack
 			// Needs a few things checked.
-			this.short = "gray prime";
-			this.originalRace = "gray goo";
+			this.short = "ganraen knight";
+			this.originalRace = "ganrael";
 			this.a = "the ";
 			this.capitalA = "The ";
-			this.long = "This glistening gray goo-girl isn't like her sisters. Tall, well-built, and realistically proportioned, she's almost human. The gray goo has modeled herself on a human woman, with a long ponytail and a hefty shirt-straining rack that bounces with every step she takes. She's even made clothes out of her goo: a knee-skirt and blouse over tall boots and stockings. Her shirt has a Bell-Isle/Grunmann patch stitched onto the shoulders, the field of stars on the logo rippling and shining as she moves. A sword of glistening goo extends seamlessly from her hand, cutting through the air with an audible <i>zing</i> as she advances.";
-			this.customDodge = "The goo's liquid flexibility allows it to handily avoid your attack.";
+			this.long = "";
+			this.customDodge = "The goo's liquid flexibility allows her to handily avoid your attack.";
 			this.customBlock = "The goo's liquidity absorbs a great deal of punishment - without taking damage.";
 			this.plural = false;
 			
-			meleeWeapon = new GooeyPsuedopod();
-			meleeWeapon.attack = 2;
-			meleeWeapon.baseDamage.kinetic.damageValue = 11;
-			meleeWeapon.hasRandomProperties = true;
+			baseHPResistances = new TypeCollection();
+			baseHPResistances.kinetic.resistanceValue = 10.0;
+			baseHPResistances.pheromone.resistanceValue = 100.0;
+			baseHPResistances.drug.resistanceValue = 100.0;
+			baseHPResistances.tease.resistanceValue = -25.0;
+			
+			this.meleeWeapon.attack = 1;
+			this.meleeWeapon.longName = "gooey sword";
+			this.meleeWeapon.attackVerb = "slash";
+			this.meleeWeapon.attackNoun = "slash";
+			this.meleeWeapon.hasRandomProperties = true;
 			
 			armor = new GooeyCoverings();
-			armor.defense = 3;
+			armor.defense = 10;
 			armor.hasRandomProperties = true;
 			
 			this.rangedWeapon = new EmptySlot();
 			
-			this.physiqueRaw = 16;
+			this.physiqueRaw = 30;
 			this.reflexesRaw = 19;
 			this.aimRaw = 12;
 			this.intelligenceRaw = 1;
@@ -58,21 +65,22 @@ package classes.Characters
 			this.libidoRaw = 50;
 			this.shieldsRaw = 0;
 			this.energyRaw = 100;
-			this.lustRaw = 15;
-			this.XPRaw = 250;
-			this.level = 5;
+			this.lustRaw = 20;
+			
+			this.XPRaw = 450;
+			this.level = 7;
 			this.credits = 0;
-			this.HPMod = 20;
+			this.HPMod = 100;
 			this.shieldsRaw = this.shieldsMax();
 			this.HPRaw = this.HPMax();
 			
 			
-			this.femininity = 85;
+			this.femininity = 50;
 			this.eyeType = GLOBAL.TYPE_HUMAN;
-			this.eyeColor = "black";
+			this.eyeColor = "green";
 			this.tallness = 24;
 			this.thickness = 70;
-			this.tone = 60;
+			this.tone = 80;
 			this.hairColor = "none";
 			this.scaleColor = "none";
 			this.furColor = "none";
@@ -81,7 +89,7 @@ package classes.Characters
 			this.beardLength = 0;
 			this.beardStyle = 0;
 			this.skinType = GLOBAL.TYPE_HUMAN;
-			this.skinTone = "steel gray";
+			this.skinTone = "green";
 			this.skinFlags = new Array();
 			this.faceType = GLOBAL.TYPE_HUMAN;
 			this.faceFlags = new Array();
@@ -125,7 +133,7 @@ package classes.Characters
 			//10 - curvy//flaring
 			//15 - child-bearing/fertile
 			//20 - inhumanly wide
-			this.hipRatingRaw = 10;
+			this.hipRatingRaw = 2;
 			//buttRating
 			//0 - buttless
 			//2 - tight
@@ -136,39 +144,31 @@ package classes.Characters
 			//13 - expansive
 			//16 - huge
 			//20 - inconceivably large/big/huge etc
-			this.buttRatingRaw = 6;
-			
-			var pCunt:VaginaClass = new VaginaClass(true);
-			pCunt.hymen = false;
-			pCunt.loosenessRaw = 3;
-			pCunt.wetnessRaw = 3;
-			this.vaginas = [pCunt];
-			
-			var pTits:BreastRowClass = new BreastRowClass();
-			pTits.breastRatingRaw = 14;
-			pTits.breasts = 2;			
-			this.breastRows = [pTits];
-			
+			this.buttRatingRaw = 2;
 			//No dicks here!
 			this.cocks = new Array();
 			
 			this.createStatusEffect("Disarm Immune");
 			this.createStatusEffect("Stun Immune");
-			this.createStatusEffect("Flee Disabled",0,0,0,0,true,"","",false,0);
 			
 			this._isLoading = false;
 		}
 		
 		override public function prepForCombat():void
 		{
-			var gooPrime:GrayPrime = this.makeCopy();
+			var gigaGoo:GooKnight = this.makeCopy();
 			
-			kGAMECLASS.userInterface.showBust("GRAY_GOO_PRIME_2");
-			kGAMECLASS.userInterface.showName("FIGHT:\nGRAY PRIME");
+			kGAMECLASS.userInterface.showBust("CRYSTAL_GOO");
+			kGAMECLASS.userInterface.showName("FIGHT:\nGOO KNIGHT");
 			
-			//combatGunTurrets.sexualPreferences.setRandomPrefs(2 + rand(3));
+			gigaGoo.sexualPreferences.setRandomPrefs(2 + rand(3));
+
+			if(rand(2) == 0) gigaGoo.skinTone = "green";
+			else gigaGoo.skinTone = "blue";
+
+			gigaGoo.long = "You’re fighting a ganraen knight. Her " + gigaGoo.skinTone + " armor shines in the dimly lit cave, reflecting the pale glow of the pulsing fungi that cover the walls. She holds a simply shaped shield and sword, though the blade looks a bit more like a sharpened slab. Strategically placed joints prevent the armor from slowing her swift movements.";
 			
-			kGAMECLASS.foes.push(gooPrime);
+			kGAMECLASS.foes.push(gigaGoo);
 		}
 		
 	}

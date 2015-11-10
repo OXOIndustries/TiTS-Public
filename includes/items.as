@@ -207,6 +207,11 @@ public function shop(keeper:Creature):void {
 		approachIness();
 		return;
 	}
+	else if(keeper is CrystalShopkeep)
+	{
+		visitCrystalGooShop();
+		return;
+	}
 	clearOutput();
 	output(keeper.keeperGreeting);
 	shopkeep = keeper;

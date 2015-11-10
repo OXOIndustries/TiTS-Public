@@ -1903,29 +1903,29 @@ public function enemyAI(aggressor:Creature):void
 		processCombat();
 		return;
 	}
-	if(aggressor is Celise) celiseAI();
-	else if(aggressor is ZilPack) zilpackAI();
-	else if(aggressor is ZilMale) zilMaleAI();
-	else if(aggressor is ZilFemale) zilGirlAI();
-	else if(aggressor is CuntSnake) cuntSnakeAI();
-	else if(aggressor is Naleen) naleenAI();
-	else if(aggressor is NaleenMale) naleenMaleAI();
-	else if(aggressor is CarlsRobot) machinaAI();
-	else if(aggressor is Dane) daneAI();
-	else if(aggressor is Mimbrane) mimbraneAI();
-	else if(aggressor is RaskvelFemale) raskvelChickAI();
-	else if(aggressor is RaskvelMale) raskGangAI();
-	else if(aggressor is SexBot) sexbotAI();
-	else if(aggressor is GrayGoo) grayGooAI();
-	else if(aggressor is LapinaraFemale) lapinaraAI();
-	else if(aggressor is SydianMale) sydianMaleAI();
-	else if(aggressor is HandSoBot) firewallAI();
-	else if(aggressor is PhoenixPirates) phoenixPiratesAI();
-	else if(aggressor is GunTurrets) tamtamtamtamtamtamAI();
-	else if(aggressor is RocketTurrets) rocketPodAI();
-	else if(aggressor is CaptainKhorganMech) khorganSuitAI();
-	else if(aggressor is CaptainKhorgan) actualKhorganAI();
-	else if(aggressor is Kaska) kaskaFightAI();
+	if (aggressor is Celise) celiseAI();
+	else if (aggressor is ZilPack) zilpackAI();
+	else if (aggressor is ZilMale) zilMaleAI();
+	else if (aggressor is ZilFemale) zilGirlAI();
+	else if (aggressor is CuntSnake) cuntSnakeAI();
+	else if (aggressor is Naleen) naleenAI();
+	else if (aggressor is NaleenMale) naleenMaleAI();
+	else if (aggressor is CarlsRobot) machinaAI();
+	else if (aggressor is Dane) daneAI();
+	else if (aggressor is Mimbrane) mimbraneAI();
+	else if (aggressor is RaskvelFemale) raskvelChickAI();
+	else if (aggressor is RaskvelMale) raskGangAI();
+	else if (aggressor is SexBot) sexbotAI();
+	else if (aggressor is GrayGoo) grayGooAI();
+	else if (aggressor is LapinaraFemale) lapinaraAI();
+	else if (aggressor is SydianMale) sydianMaleAI();
+	else if (aggressor is HandSoBot) firewallAI();
+	else if (aggressor is PhoenixPirates) phoenixPiratesAI();
+	else if (aggressor is GunTurrets) tamtamtamtamtamtamAI();
+	else if (aggressor is RocketTurrets) rocketPodAI();
+	else if (aggressor is CaptainKhorganMech) khorganSuitAI();
+	else if (aggressor is CaptainKhorgan) actualKhorganAI();
+	else if (aggressor is Kaska) kaskaFightAI();
 	else if (aggressor is MaidenVanae || aggressor is HuntressVanae) vanaeAI();
 	else if (aggressor is SecurityDroids) securityDroidAI();
 	else if (aggressor is GrayPrime) grayPrimeAI();
@@ -1953,6 +1953,7 @@ public function enemyAI(aggressor:Creature):void
 	else if (aggressor is Taivra) taivraAI();
 	else if (aggressor is Princess) princessAI();
 	else if (aggressor is GardeBot) gardenforkRoboAI();
+	else if (aggressor is GooKnight) crystalGooAI();
 	else enemyAttack(aggressor);
 }
 public function victoryRouting():void 
@@ -2119,6 +2120,7 @@ public function victoryRouting():void
 	else if (foes[0] is Taivra) whupTaivrasAss();
 	else if (foes[0] is Princess) beatUpPrincessYeSlut();
 	else if (foes[0] is GardeBot) beatUpConstructoBot();
+	else if (foes[0] is GooKnight) beatUpCrystalGoo();
 	else genericVictory();
 }
 
@@ -2182,6 +2184,7 @@ public function defeatRouting():void
 	else if (foes[0] is Taivra) loseToQueensTaivra();
 	else if (foes[0] is Princess) loseToPrincessYeGit();
 	else if (foes[0] is GardeBot) roboQueenFightPCLoss();
+	else if (foes[0] is GooKnight) gooKnightLossRouter();
 	else {
 		output("You lost! You rouse yourself after an hour and a half, quite bloodied.");
 		processTime(90);
@@ -2544,6 +2547,9 @@ public function startCombat(encounter:String):void
 			break;
 		case "GardeBot":
 			chars["GARDEBOT"].prepForCombat();
+			break;
+		case "GooKnight":
+			chars["CRYSTALKNIGHT"].prepForCombat();
 			break;
 		default:
 			throw new Error("Tried to configure combat encounter for '" + encounter + "' but couldn't find an appropriate setup method!");
