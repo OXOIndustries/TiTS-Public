@@ -35,7 +35,7 @@ public function infectedMyrmedionShit():void
 		output("\n\n<i>“Physical contact inadvisable");
 		if(silly) output(". The hormones will not actually come later");
 		output(".”</i> Your Codex beeps, alerting you that this is a fungus that affects insectile races. The portion about effects on other races is sparse, but it gives the usual fluid contact warning for dangerous parasites. The afflicted ant-girl looks up at you when she hears the noise, her eyes narrowing and zeroing in on your own. Every few moments her gaze slips down to your crotch before she corrects it.");
-		output("\n\n<i>“W-what are you looking at!? I’ll f-f-fuck you, I mean fight you! I meant fight!”</i> she says, obviously struggling with her words and prompting the ghostly mushroom to pat her on the head, congratulating her for managing to talk that much. As she talks she shakily rises to her feet,  leaning against the cave wall to support herself. A rigid cock with the same coloration as her fungus, but decidedly more solid looking, lies just above her naked cunt, sporting an erection stiff enough that it stands nearly straight up. Above that the tattered remains of a shirt barely cover her above the midriff, leaving her own B-cups almost totally visible beneath.");
+		output("\n\n<i>“W-what are you looking at!? I’ll f-f-fuck you, I mean fight you! I meant fight!”</i> she says, obviously struggling with her words and prompting the ghostly mushroom to pat her on the head, congratulating her for managing to talk that much. As she talks she shakily rises to her feet, leaning against the cave wall to support herself. A rigid cock with the same coloration as her fungus, but decidedly more solid looking, lies just above her naked cunt, sporting an erection stiff enough that it stands nearly straight up. Above that the tattered remains of a shirt barely cover her above the midriff, leaving her own B-cups almost totally visible beneath.");
 		output("\n\nThe pale white dick throbs as she moves, and you see her quiver when it bumps into her belly. You can see striations at the base where the new member apparently grew from her pelvis, no doubt a symptom of this fungal infection. The myr seems to gain a second wind, stepping into an offensive stance despite her weakened condition. It looks like there’s no way you’re getting out of this without a fight.");
 		//Unlock not-cordecepts
 		CodexManager.unlockEntry("Myr Fungus");
@@ -125,7 +125,7 @@ public function winVsInfectedMyr():void
 	//accounts for male and female. Not taur friendly, yes naga friendly
 	if(pc.lust() >= 33)
 	{
-		if(pc.hasCock() || pc.hasVagina()) addButton(0,"Fuck Her",infectedMyrFuckSlashLossSlashButtstuffNotReally,false,"Fuck Her","Have sex with the needy ant-woman now that you've secured your place on top.");
+		if(pc.hasCock() || pc.hasVagina()) addButton(0,"Fuck Her",infectedMyrFuckSlashLossSlashButtstuffNotReally,false,"Fuck Her","Have sex with the needy ant-woman now that you’ve secured your place on top.");
 		else addDisabledButton(0,"Fuck Her","Fuck Her","This action requires at least one standard genital.");
 		//Red femyr win watch
 		//no requirements
@@ -168,7 +168,7 @@ public function watchInfectedMyrVictoryScene():void
 	output("\n\nIt doesn’t skip a beat once her orgasm ends. Just as it begins to fade its fingers join hers in teasing and fucking her cunt, and its brow furrows in concentration as it continues to suck her off, bringing her back to rigidity before her previous hard-on can fully soften. The poor girl closes her eyes, tensing as the reprieve that was about to come is snatched away. She gets no break as her second orgasm in as many seconds shatters her control.");
 	output("\n\nCreamy jizz bubbles out of the mushroom creature’s mouth. Its body flashes with a rainbow of colors. This time when its host falls limp it remains fully solid, suckling her rod as if to make sure it’s truly still there. When it pulls up finally it gives you a happy smile and turns back to its host. The grateful ant-girl smiles as it touches her face and snuggles in close, squeezing various parts of its body to make sure it is going to remaining solid before gently rubbing its back.");
 	output("\n\n<i>“T-thanks, I guess. I don’t think he will become like that again, and the constant horniness seems to be gone,”</i> she says with a contented grin. You aren’t sure what you did, but you nod and smile. The fungus attached to her looks at you, beaming with happiness, and tries to say something. No words come out, but it seems happy. After finishing, it gasps in a large breath and turns to kiss and hug its host, reveling in the touch it seems to have been denied for so long.");
-	output("\n\n<i>“He said you looked strong, and he didn’t want to stay a burden. I’ll probably stay here a little longer and then I guess I’ll head back to the city. I hope I didn’t get fired while I was away,”</i>  she says before leaning back for what you assume is a short nap. You decide to go back to your former endeavours, but after a show like that you might need to take a detour.\n\n");
+	output("\n\n<i>“He said you looked strong, and he didn’t want to stay a burden. I’ll probably stay here a little longer and then I guess I’ll head back to the city. I hope I didn’t get fired while I was away,”</i> she says before leaning back for what you assume is a short nap. You decide to go back to your former endeavours, but after a show like that you might need to take a detour.\n\n");
 	processTime(9);
 	pc.lust(20+rand(10));
 	//(lust+30)
@@ -504,7 +504,7 @@ output("\n\nShe presses back into you as you continue, looking over her shoulder
 output("\n\nThe nyrea alpha is the first to cum, burying herself in the myrmedion cocksock and shuddering in pleasure. Her passage to constrict your [pc.cock " + x + "] with heavenly pressure, pulling you along into blissful oblivion. You blast her insides{multicock:, and outsides too}, with an injection of [pc.cum], and not a single drop escapes while the two of you share an earth shattering pair of orgasms.{lotsacum: After you’re finished the nyrea is left with a pregnant looking belly-full of [pc.cum].} The ant-man sighs with pleasure, apparently having cum himself from the ordeal.");
 output("\n\nYou extract yourself from the nyrea’s tight passage with some difficulty, as she resumed fucking the poor myrmedion the moment she came off the previous orgasmic high, and as a result you’ve returned to full hardness before you make it out of her anal love tunnel. {Your [pc.cum] dribbles out in pulses as she humps her prey with a satisfied smile. }She must be in a very good mood, because as you move around to her front she uses her long tongue to pull [pc.cockBiggest] up to her mouth.");
 output("\n\n{lowcum: <i>“Good to go again, are you? This fool can barely go once,”</i>/cumfill: <i>“Enough cum to make me look full of eggs and you can still go again? This fool could learn something from you,”</i>} the nyrea dotes as she cleans you, inhaling your essence like an aphrodisiac as she slowly works her prey’s ass. Once you’re nice and spit-shined she grasps your hip with one hand, sucking your [pc.cockHeadBiggest] between her lips. The suction and her tongue work at the same time, creating a wonderful pleasure vacuum that threatens to have you in the heavens for a second time in as many minutes.");
-output("\n\nYou manage to hang on with sheer willpower, wanting to get as much of this wonderful feeling as possible. The sensation of her warm tongue on your cumslit and her exhaled breath on your shaft is heavenly, but your need for release rises with her own, and her moans increase in volume as her cocktrap becomes too tight for her to resist.  Her grip tightens while she sucks your [pc.cockHeadBiggest] with all she has, and you see the gold myr coat the ground with another shade of white.");
+output("\n\nYou manage to hang on with sheer willpower, wanting to get as much of this wonderful feeling as possible. The sensation of her warm tongue on your cumslit and her exhaled breath on your shaft is heavenly, but your need for release rises with her own, and her moans increase in volume as her cocktrap becomes too tight for her to resist. Her grip tightens while she sucks your [pc.cockHeadBiggest] with all she has, and you see the gold myr coat the ground with another shade of white.");
 output("\n\nYou paint the nyrea’s throat a {pcwhitecum: similar/othercolor: different} shade, pouring rope after rope of [pc.cum] into her eager receptacle as you steady yourself with her needle-like hair.{lowcum: When your flow eases, the alpha slips a finger into your backside, massaging your prostate until another couple spurts join the rest.} Your [pc.cum] dribbles out of her lips and down the sides of her chin, meeting under her jaw to drop onto her bouncing breasts. The [pc.cumColor] rivers flow around her nipples till they drip into puddles on the myrmedion’s back.");
 output("\n\nOnce your flow has stopped, she pulls back, licking her lips and grinning as she stands, pulling her softening member out of her chosen hole and picking up said hole’s owner by the waist. The hapless ant-man stays resigned to his fate for the moment, and the nyrea takes him {for/back to} her harem.");
 output("\n\n<i>“One of these days I’ll have to get you to fertilize some of my eggs. They could use a strong father like you,”</i> she says as she carries her acquisition back to the caves. As you gather your gear and follow her you think you hear something in the larger expanse of the cavern. You look back warily, seeing nothing but the occasional floating spore and glowing mushrooms on the larger crystals. You shrug and head back to your previous endeavors.");
@@ -630,12 +630,12 @@ public function fungalQueenEncounter():void
 	output("\n\nUnlike the other fungal manifestations you’ve seen");
 	if(flags["MET_INFECTED_MYR_FEMALE"] == undefined || flags["MET_INFECTED_MYR_MALE"] == undefined) output(" (pictures of on the codex)");
 	output(", she appears to be wearing a translucent gown that flows from her shoulders down to the base of the stalk that connects her to the myr. The gown flows as spores collide and brush along its length, and it glows with a rainbow of colors as it is touched. Another very noticeable difference is the flower-like nipples that tip her E-cup breasts, easily visible beneath the fluttering dress. Her figure is curvy and full, but below the butt her legs meld into a single mushroom stalk. Her hair, unlike the caps of the other mushroom creatures, falls to the middle of her back. It seems totally transparent, more like strands of glass than hair, but flashes with colors that match her dress.");
-	output("\n\nShe notices you staring and returns your gaze with a smile, her eyes glowing with a welcoming blue light. The song stops as she does so, and you take a step back, or at least attempt to as a cloud of spores pushes you onward, closer to this queen-like fungus. The snowy spores around the two of you obscure your view of the cavern, and the queen beckons for you to come closer. you feel yourself stagger toward her despite the situation, and nothing about her seems frightening, but part of you feels like she should be. When you get close enough she turns to the gold myr, brushing her hair and holding her chin.");
+	output("\n\nShe notices you staring and returns your gaze with a smile, her eyes glowing with a welcoming blue light. The song stops as she does so, and you take a step back, or at least attempt to as a cloud of spores pushes you onward, closer to this queen-like fungus. The snowy spores around the two of you obscure your view of the cavern, and the queen beckons for you to come closer. You feel yourself stagger toward her despite the situation, and nothing about her seems frightening, but part of you feels like she should be. When you get close enough she turns to the gold myr, brushing her hair and holding her chin.");
 	output("\n\n<i>“Don’t be overwhelmed. I couldn’t help but notice you, and I think we both have things that can help one another,”</i> her words come slowly and haltingly through the mouth of the myr. After she finishes she turns back to you, steepling her fingers and waiting patiently for your response. You ask her what she means, and one of her hands returns to the myr.");
 	output("\n\n<i>“This cave has... something you look for. I don’t know what you call it, a metal material. There is a deposit. This one’s superior officers let slip about it, so now I know. I have something I wish for you to do. If you do not wish for this metal, I am sure I can share other things with you that may make my offer more appealing. I hope you will at least consider what I ask,”</i> her tone is more serious than before, but her face remains as sincere as it was when she first glanced your way.");
 	output("\n\nYou ask her what exactly she wants you to do. She rubs the gold myr gently, as if to prompt a faster tone.");
 
-	output("\n\n<i>“The red ones biological sister is coming with something to get rid of this place. Normally this would not be a problem, but what she is using is technology from your people. Some kind of forest wrecking machine. I wish for you to protect me from this machine while I disperse. I can provide you with assistance, but will be unable to do anything by myself. Please defend these two girls. I will deal with what comes after,”</i> she says pleadingly.");
+	output("\n\n<i>“The red one’s biological sister is coming with something to get rid of this place. Normally this would not be a problem, but what she is using is technology from your people. Some kind of forest wrecking machine. I wish for you to protect me from this machine while I disperse. I can provide you with assistance, but will be unable to do anything by myself. Please defend these two girls. I will deal with what comes after,”</i> she says pleadingly.");
 	output("\n\nIt looks like you have a decision to make.");
 
 	//[Accept] [Talk] [Sex] [leave that shit]
@@ -643,8 +643,8 @@ public function fungalQueenEncounter():void
 	clearMenu();
 	addButton(0,"Accept",fuckYesPlantLadyIllSaveYou,undefined,"Accept","Defend this lady.");
 	addButton(1,"Talk",fungusQueenTalkShit,undefined,"Talk","Get some answers.");
-	addButton(2,"Sexytime",queenFungusBoobsuck,undefined,"Sexytime","Mushroom queen or not, she's got a rockin' bod. Throw caution to the wind for some fun.");
-	addButton(3,"Abandon",fuckOffQueenAndDie,undefined,"Abandon","Abandon these spore-addled fools to their fate. It's not your problem.");
+	addButton(2,"Sexytime",queenFungusBoobsuck,undefined,"Sexytime","Mushroom queen or not, she’s got a rockin’ bod. Throw caution to the wind for some fun.");
+	addButton(3,"Abandon",fuckOffQueenAndDie,undefined,"Abandon","Abandon these spore-addled fools to their fate. It’s not your problem.");
 }
 
 //Talk
@@ -666,8 +666,8 @@ public function fungusQueenTalkShit():void
 	addButton(0,"Accept",fuckYesPlantLadyIllSaveYou,undefined,"Accept","Defend this lady.");
 	//addButton(1,"Talk",fungusQueenTalkShit,undefined,"Talk","Get some answers.");
 	addDisabledButton(1,"Talk","Talk","You just did that.");
-	addButton(2,"Sexytime",queenFungusBoobsuck,undefined,"Sexytime","Mushroom queen or not, she's got a rockin' bod. Throw caution to the wind for some fun.");
-	addButton(3,"Abandon",fuckOffQueenAndDie,undefined,"Abandon","Abandon these spore-addled fools to their fate. It's not your problem.");
+	addButton(2,"Sexytime",queenFungusBoobsuck,undefined,"Sexytime","Mushroom queen or not, she’s got a rockin’ bod. Throw caution to the wind for some fun.");
+	addButton(3,"Abandon",fuckOffQueenAndDie,undefined,"Abandon","Abandon these spore-addled fools to their fate. It’s not your problem.");
 
 }
 
@@ -679,7 +679,7 @@ public function queenFungusBoobsuck():void
 	author("Gardeford");
 	output("You ask the fungal library if you can have some fun with her massive tits. She looks surprised for a moment and you ask why, as anyone would love to play with them.");
 	output("\n\n<i>“Are you sure? You might come out of it with something <i>“bad”</i>");
-	//(/, but it seems something like that is already inside you,”</i>)
+	//output(", but it seems something like that is already inside you,”</i>");
 	output(",”</i> she says with a smile. She beckons for you to come closer, letting the flashing dress drop from her shoulders. The flowery petals that surround her nipples are a deep shade of purple, looking almost wet in the light. Curiously, you don’t see any nipples at their centers, just blackened holes.");
 	output("\n\n<i>“You might have to play with them a bit for the nipples to come out,”</i> she says informatively. You step closer for a better position, being careful to avoid the legs of her myr host. The fungal queen’s breasts are free in the air before you, lining up perfectly with the curves of the rest of her upper body. You reach out and grasp them gently, one in each hand, and at once are nearly sucked into their spongy softness, your fingers almost swallowed whole by the marshmallowy masses.");
 	output("\n\nHer breasts feel like memory gel, remaining indented for a few seconds when you pull your hands back, and gradually return to their original bouncy forms after each squeeze. You take them from the sides, letting your hands sink in an inch or two before kneading them forcefully and squishing them together. Suddenly, you hear a moan from somewhere you can’t quite detect.");
@@ -714,7 +714,7 @@ public function queenFungusBoobsuck():void
 	addButton(1,"Talk",fungusQueenTalkShit,undefined,"Talk","Get some answers.");
 	//addButton(2,"Sexytime",queenFungusBoobsuck,undefined,"Sexytime","Mushroom queen or not, she's got a rockin' bod. Throw caution to the wind for some fun.");
 	addDisabledButton(2,"Sexytime","Sexytime","You just finished up some sexytime hijinx. You need to make a decision.");
-	addButton(3,"Abandon",fuckOffQueenAndDie,undefined,"Abandon","Abandon these spore-addled fools to their fate. It's not your problem.");
+	addButton(3,"Abandon",fuckOffQueenAndDie,undefined,"Abandon","Abandon these spore-addled fools to their fate. It’s not your problem.");
 }
 
 //Accept
@@ -727,7 +727,7 @@ public function fuckYesPlantLadyIllSaveYou():void
 	output("\n\n<i>“Thank you. You help us more than you may know,”</i> she says before her entire body begins to dissolve. The amount of spores in the room seems to double, thickly clouding the air and surrounding you like a tornado wherever you move. A similar barrier surrounds the gold myr and her sister, who now lies on the ground with a normal looking belly. From behind you comes an immense explosion, and you turn to find its source.");
 	output("\n\nFlames wreath the corridor that leads to the cavern, and the mushrooms change from soothing blue to a panicked red strobe. A titanic construct walks through the fire on eight spidery legs, stopping at the door to stare at you. Its mechanical parts are covered in flashy plastic-looking tiles, but you can see a denser metal plating beneath them. A company label you don’t recognize is openly emblazoned on its shoulder, consisting of a number of erratic lightning bolts spreading from a thumbs up. A large flamethrower replaces a hand on one of its arms, while the other has a menacing diamond tipped pneumatic hammer. It notices you standing and releases what you assume is a pre-recorded message.");
 	output("\n\n<i>“Innocent civilian. Move away from this area with haste. This Deconstruction Unit has been designated to purge all life in this section of the caves. If you stay, ERROR will hold no responsibility for your injuries,”</i> it drones in a jovial voice. Afterwards it pauses, giving you time to leave. It’s too late for that now, so you ready your weapons and prepare to defend the queen’s ritual. The next time it talks it does so without the jovial warning tone.");
-	output("\n\n<i>“Brandishing weaponry against construction robots is a violation of U.G.C. property damage law, and this unit is authorized to engage in lethal self-defense. Engage and die,”</i> it says, readying its tools to destroy you and your surroundings. The pilot flame of his arm bursts to life as a menacing addition to its statement. Suddenly a second voice joins in, apparently through a comm link attached to the machine.");
+	output("\n\n<i>“Brandishing weaponry against construction robots is a violation of U.G.C. property damage law, and this unit is authorized to engage in lethal self-defense. Engage and die,”</i> it says, readying its tools to destroy you and your surroundings. The pilot flame of its arm bursts to life as a menacing addition to its statement. Suddenly a second voice joins in, apparently through a comm link attached to the machine.");
 	output("\n\n<i>“Sabine! Are you there?! Don’t worry, this thing’s gonna get you out of there. Your sister has some connections with these space farers, though I never guessed it would be this easy to get something this big. They all think with their loins,”</i> comes a womanly voice from atop the robot. You guess it must be a relation of one of the two myr girls, but luckily it doesnt seem she’s come in person. You have no reason to hold back.");
 
 	processTime(5);
@@ -746,19 +746,19 @@ public function gardeBotCoverUpdate():void
 {
 	if(foes[0].statusEffectv1("Sporebutt") == 1) 
 	{
-		output("\nYou're to the left of the robot.");
-		if(foes[0].statusEffectv2("Sporebutt") > 0) output(" There's enough intact spores and crystals in the area to shield you from much of its damage.");
+		output("\nYou’re to the left of the robot.");
+		if(foes[0].statusEffectv2("Sporebutt") > 0) output(" There’s enough intact spores and crystals in the area to shield you from much of its damage.");
 		
 	}
 	else if(foes[0].statusEffectv1("Sporebutt") == 2) 
 	{
-		output("\nYou're positioned roughly in front of the robot.");
-		if(foes[0].statusEffectv3("Sporebutt") > 0) output(" There's enough intact spores and crystals in the area to shield you from much of its damage.");
+		output("\nYou’re positioned roughly in front of the robot.");
+		if(foes[0].statusEffectv3("Sporebutt") > 0) output(" There’s enough intact spores and crystals in the area to shield you from much of its damage.");
 	}
 	else 
 	{
-		output("\nYou're to the right of the robot.");
-		if(foes[0].statusEffectv4("Sporebutt") > 0) output(" There's enough intact spores and crystals in the area to shield you from much of its damage.");
+		output("\nYou’re to the right of the robot.");
+		if(foes[0].statusEffectv4("Sporebutt") > 0) output(" There’s enough intact spores and crystals in the area to shield you from much of its damage.");
 	}
 	output("\n");
 }
@@ -767,7 +767,7 @@ public function gardeBotBonusButtons():void
 {
 	if(foes[0].statusEffectv1("Sporebutt") == 1) 
 	{
-		addDisabledButton(10,"Left","Left","You can't move any farther in that direction.");
+		addDisabledButton(10,"Left","Left","You can’t move any farther in that direction.");
 		addButton(12,"Right",gardeBotMove,2,"Right","Circle toward the cover to the right. Perhaps it will offer more protection.");
 	}
 	else if(foes[0].statusEffectv1("Sporebutt") == 2) 
@@ -778,7 +778,7 @@ public function gardeBotBonusButtons():void
 	else
 	{
 		addButton(10,"Left",gardeBotMove,2,"Left","Circle toward the cover to the left. Perhaps it will offer more protection.");
-		addDisabledButton(12,"Right","Right","You can't move any farther in that direction.");
+		addDisabledButton(12,"Right","Right","You can’t move any farther in that direction.");
 	}
 }
 
@@ -821,7 +821,7 @@ public function gardenforkRoboAI():void
 //basic ranged attack, hits for incredibly low damage against shields, medium damage against armor.
 public function pressureStreamAttack():void
 {
-	output("The giant 'bot aims its pilot fire at you, unleashing a gout of flames that flies through the cavern toward you.");
+	output("The giant ‘bot aims its pilot fire at you, unleashing a gout of flames that flies through the cavern toward you.");
 	if(rangedCombatMiss(foes[0], pc)) output("\nThe flames miss you, burning some of the mushrooms at your feet to a crisp.");
 	else
 	{
@@ -934,10 +934,10 @@ public function beatUpConstructoBot():void
 	author("Gardeford");
 	output("The machine clicks and sputters a few times, its flamethrower releasing gouts of fuel with no flame. The lighting mechanism clicks but malfunctions, and the robot’s entire arm and torso explode in a pressurized pop. You stagger over to the area where the myr sisters are still sitting and check to make sure they are uninjured. The spores seem to have protected them from any burning.");
 	output("\n\nYou watch as all of the spores in the room zoom in and swirl around the gold myr, surrounding her till you can’t see her anymore. A bright flash of light forces you to shield your eyes for a few seconds, and when you can see again you see the red myr standing with the queen, now placed atop the gold myr. She turns to you, holding the red ant-girl’s hand to keep steady.");
-	output("\n\n<i>“Thank you. You may take your material now. Please help this girl back to the surface if you wouldn’t mind,”</i> she says through the eager redhead. You walk behind her to find the material she was talking about. A few meters back is a small spire of crystalline rock. Your codex scans the formation and identifies it as crystallized sophinol, a prized fuel source. If that robot’s flames had touched it you might not be standing here right now. In a few minutes you’ve filed a claim on the fuel crystals through SteeleTech’s central servers.");
+	output("\n\n<i>“Thank you. You may take your material now. Please help this girl back to the surface, if you wouldn’t mind,”</i> she says through the eager redhead. You walk behind her to find the material she was talking about. A few meters back is a small spire of crystalline rock. Your codex scans the formation and identifies it as crystallized sophinol, a prized fuel source. If that robot’s flames had touched it you might not be standing here right now. In a few minutes you’ve filed a claim on the fuel crystals through SteeleTech’s central servers.");
 	output("\n\nWhile you walk through the caves, you want to ask her what her time as host to the queen was like, but the words do not come. She talks at great length about what she’s going to do to her sister when she next sees her, and how much of a lesson she’s going to give her. She could’ve gotten people killed because of her stupid misguided actions.");
 	output("\n\nAs you leave the cave there’s a commotion outside; a man in a biohazard safety suit moves up to you, grasping your shoulder. At first your hand goes for your weapon, but then he pulls off the mask, revealing an unassuming middle-aged man.");
-	output("\n\n<i>“You there! I work with KihaCorp’s interplanetary shipping department. I was looking at the books this morning and it seems one of our deconstruction units was sent here without permission. You wouldn’t happen to have seen one recently would you? It’s a spider-legged thing with a flamethrower and a big pnuematic hammer, kinda hard to miss”</i> he asks, looking thoroughly serious. You reply that you just destroyed one to stop it from igniting a cluster of fossilized fuel that might have altered a good amount of the caves infrastructure.");
+	output("\n\n<i>“You there! I work with KihaCorp’s interplanetary shipping department. I was looking at the books this morning and it seems one of our deconstruction units was sent here without permission. You wouldn’t happen to have seen one recently would you? It’s a spider-legged thing with a flamethrower and a big pnuematic hammer, kinda hard to miss,”</i> he asks, looking thoroughly serious. You reply that you just destroyed one to stop it from igniting a cluster of fossilized fuel that might have altered a good amount of the caves infrastructure.");
 	output("\n\n<i>“Shit fucking... Fuck! Those things cost a fortune. Sorry, I’m just having waking nightmares imagining the paperwork I’m going to be filling out later. Well, I’ll send in a drone to recover the diamond bit. It sucks I’ll have to report this to the higher ups, but I’m sure they’ll be mollified when we find the fucker who sent it out. Dont worry about getting charged for the damage or anything. It’ll be coming out of his or her paycheck,”</i> he says, going back to a small shuttle that takes off toward the DMZ. You wonder if they’ll find him for a moment before continuing on your own way.");
 	//(pc get 2-3000 credits)
 	output("\n\n<b>You make 15,000 credits from your mineral claim!</b>\n\n");
@@ -954,7 +954,7 @@ public function fuckOffQueenAndDie():void
 	clearOutput();
 	showFungusQueen();
 	author("Gardeford");
-	output("You decline the queen's call for help. The fungal woman looks saddened, but nods.");
+	output("You decline the queen’s call for help. The fungal woman looks saddened, but nods.");
 	output("\n\n<i>“Please take these girls with you at least, they should not have to share my fate,”</i> she says before slowly dissolving into a cloud of tiny spores. The myr she had formerly been attached to sits up groggily, smiling when her eyes settle on her sister. You motion for them to follow you out of the cave, but the two stay in their place.");
 	output("\n\n<i>“No, we’ll stay with the queen. If you’re fine with a little blood on your hands, you should be ok with a river of it. Were I strong enough to hold you here I would have you share our fate, but I am not, so leave us,”</i> The gold myr says, her red sister nodding emphatically. You turn away, heading out through the mouth of the mini-cave. On your way out, you hear a mechanical commotion. A large construct walks by you on your way back to the normal caves, releasing a jovial message as you pass it.");
 	output("\n\n<i>“Good evening Innocent civilain! Do not worry, soon this section of the caves will soon be purged of contaminants! This Deconstruction Unit will make sure of that. Continue on with your explorations,”</i> it says loudly, continuing toward the cavern you came from. You head back to the deep caves, leaving that mess behind you.");
