@@ -687,7 +687,7 @@ public function sx1AskSaendra():void
 public function sx1SeeCallgirl():void
 {
 	clearOutput();
-	showZilCallGirl();
+	showBust("ZILFEMALE");
 	generateMapForLocation("CALLGIRL ROOM");
 
 	if (flags["SAENDRA_XPACK1_CALLGIRLSTATE"] == undefined)
@@ -750,7 +750,7 @@ public function sx1CallgirlMenu():void
 public function sx1CallgirlNevermind():void
 {
 	clearOutput();
-	showZilCallGirl();
+	showBust("ZILFEMALE");
 	generateMapForLocation("CALLGIRL ROOM");
 
 	output("<i>“Aww. Nervous, hun?”</i> the callgirl coos, blowing you a kiss. <i>“Go ahead and take your time. I’ll be here.”</i>");
@@ -761,7 +761,7 @@ public function sx1CallgirlNevermind():void
 public function sx1CallgirlOkay():void
 {
 	clearOutput();
-	showZilCallGirl();
+	showBust("ZILFEMALE");
 	generateMapForLocation("CALLGIRL ROOM");
 
 	flags["SAENDRA_XPACK1_CALLGIRLSTATE"] = 2;
@@ -865,7 +865,7 @@ public function sx1CallgirlOfferJob():void
 {
 	clearOutput();
 	pc.credits -= 500;
-	showZilCallGirl();
+	showBust("ZILFEMALE");
 	generateMapForLocation("CALLGIRL ROOM");
 
 	output("<i>“Hey, so, my buddy is over in the next room,”</i> you lie, pulling a credstick out of your pocket. <i>“It’s his birthday, you know, and I was thinking maybe...”</i>");
@@ -1615,9 +1615,9 @@ public function zilCallGirlAddendum(slot:int = 0):void
 
 public function showZilCallGirl(nude:Boolean = true):void
 {
-	if (CodexManager.entryViewed("Zil")) userInterface.showName("ZIL\nCALL GIRL");
-	else userInterface.showName("ALIEN\nCALL GIRL");
-	userInterface.showBust("ZILFEMALE");
+	if (CodexManager.entryViewed("Zil")) showName("ZIL\nCALL GIRL");
+	else showName("ALIEN\nCALL GIRL");
+	showBust("ZILFEMALE");
 }
 public function zilCallGirlSexed(count:Boolean = false):int
 {
