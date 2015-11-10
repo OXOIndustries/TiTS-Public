@@ -4,11 +4,6 @@
 	import classes.GLOBAL;
 	import classes.Items.Miscellaneous.*;
 	import classes.Items.Combat.CrystalShard;
-	import classes.Items.Melee.NyreanSpear;
-	import classes.Items.Melee.MilitaryPick;
-	import classes.Items.Armor.ChitinArmor;
-	import classes.Items.Armor.NyreanChain;
-	import classes.Items.Accessories.MuskRepel;
 	import classes.kGAMECLASS;
 	import classes.rand;
 	
@@ -21,7 +16,7 @@
 			this.version = _latestVersion;
 			this._neverSerialize = true;
 			
-			this.short = "crystalline shopkeep";;
+			this.short = "crystalline shopkeep";
 			
 			this.inventory.push(new CrystalShard());
 			this.inventory.push(new FungalExtract());
