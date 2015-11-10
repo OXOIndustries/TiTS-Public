@@ -5502,12 +5502,12 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(StatTracking.getStat("pregnancy/queen of the deep eggs") > 0) output2(", Progenitor of race");
 				variousCount++;
 			}
-			// Fungus Queen
+			// Fungus Passage
 			if(flags["SUCKED_FUNGUS"] != undefined || flags["FUNGUS_QUEEN_SAVED"] != undefined || flags["LET_FUNGUS_QUEEN_DIE"] != undefined)
 			{
 				output2("\n<b><u>Fungal Passage</u></b>");
-				// Fungus Queen
-				output2("\n<b>* Fungus Queen:</b> Encountered");
+				// Fungal Queen
+				output2("\n<b>* Infected Myr Queen:</b> Encountered");
 				if(flags["SUCKED_FUNGUS"] != undefined) output2(", Sucked her tits");
 				if(flags["LET_FUNGUS_QUEEN_DIE"] != undefined) output2(", Abandoned her, Let her die");
 				if(flags["FUNGUS_QUEEN_SAVED"] != undefined)
