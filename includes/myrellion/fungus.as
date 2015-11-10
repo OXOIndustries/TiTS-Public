@@ -183,7 +183,7 @@ public function girlyCompassionVictoryWithInfectedMyr():void
 	showInfectedMyr(true);
 	author("Gardeford");
 	output("The disheveled myrmedion backs away from your assault, collapsing against the cave wall.");
-	output("\n\n<i>“Stupid dick! I never wanted this. I just want to go back to Kressia and be normal,”</i> She confesses shakily, covering her face with her hands. The fungal manifestation at her shoulders looks on nervously, unsure of how to help her.");
+	output("\n\n<i>“Stupid dick! I never wanted this. I just want to go back to Kressia and be normal,”</i> she confesses shakily, covering her face with her hands. The fungal manifestation at her shoulders looks on nervously, unsure of how to help her.");
 	output("\n\nA part of you feels sad for the conflicted ant-girl, and you think of a perfect way to help her. You saunter over to the defeated myr, pulling apart her hands as gently as you can. The tearful girl looks at you in confusion before you pull her into a kiss, but relents to your advances almost immediately.");
 	output("\n\nAs your [pc.tongue] dances with hers you feel a flush of pleasure in your neck, spreading to the rest of your body as the chemical lust in her saliva works its magic. It takes nearly a minute for you to work up the willpower to pull away from her ensnaring kiss, and even more to not return for seconds at the sight of her abandoned lips.");
 	output("\n\n<i>“");
@@ -679,7 +679,7 @@ public function queenFungusBoobsuck():void
 	author("Gardeford");
 	output("You ask the fungal library if you can have some fun with her massive tits. She looks surprised for a moment and you ask why, as anyone would love to play with them.");
 	output("\n\n<i>“Are you sure? You might come out of it with something <i>“bad”</i>");
-	//output(", but it seems something like that is already inside you,”</i>");
+	//output(", but it seems something like that is already inside you");
 	output(",”</i> she says with a smile. She beckons for you to come closer, letting the flashing dress drop from her shoulders. The flowery petals that surround her nipples are a deep shade of purple, looking almost wet in the light. Curiously, you don’t see any nipples at their centers, just blackened holes.");
 	output("\n\n<i>“You might have to play with them a bit for the nipples to come out,”</i> she says informatively. You step closer for a better position, being careful to avoid the legs of her myr host. The fungal queen’s breasts are free in the air before you, lining up perfectly with the curves of the rest of her upper body. You reach out and grasp them gently, one in each hand, and at once are nearly sucked into their spongy softness, your fingers almost swallowed whole by the marshmallowy masses.");
 	output("\n\nHer breasts feel like memory gel, remaining indented for a few seconds when you pull your hands back, and gradually return to their original bouncy forms after each squeeze. You take them from the sides, letting your hands sink in an inch or two before kneading them forcefully and squishing them together. Suddenly, you hear a moan from somewhere you can’t quite detect.");
@@ -957,8 +957,14 @@ public function fuckOffQueenAndDie():void
 	output("You decline the queen’s call for help. The fungal woman looks saddened, but nods.");
 	output("\n\n<i>“Please take these girls with you at least, they should not have to share my fate,”</i> she says before slowly dissolving into a cloud of tiny spores. The myr she had formerly been attached to sits up groggily, smiling when her eyes settle on her sister. You motion for them to follow you out of the cave, but the two stay in their place.");
 	output("\n\n<i>“No, we’ll stay with the queen. If you’re fine with a little blood on your hands, you should be ok with a river of it. Were I strong enough to hold you here I would have you share our fate, but I am not, so leave us,”</i> The gold myr says, her red sister nodding emphatically. You turn away, heading out through the mouth of the mini-cave. On your way out, you hear a mechanical commotion. A large construct walks by you on your way back to the normal caves, releasing a jovial message as you pass it.");
-	output("\n\n<i>“Good evening Innocent civilain! Do not worry, soon this section of the caves will soon be purged of contaminants! This Deconstruction Unit will make sure of that. Continue on with your explorations,”</i> it says loudly, continuing toward the cavern you came from. You head back to the deep caves, leaving that mess behind you.");
-	output("\n\nOr you would have, if not for the cacophonous explosion that rocks the caves a few moments later. You’re knocked to your knees, your shield fizzling out as the shockwave and thunderous noise batter your body. When you recover enough to stand you turn to see that the entrance to the cavern has been caved in completely, with scorch marks radiating outward from the former tunnel.");
+	output("\n\n<i>“Good evening, innocent civilian! Do not worry, soon this section of the caves will soon be purged of contaminants! This Deconstruction Unit will make sure of that. Continue on with your explorations,”</i> it says loudly, continuing toward the cavern you came from. You head back to the deep caves, leaving that mess behind you.");
+	output("\n\nOr you would have, if not for the cacophonous explosion that rocks the caves a few moments later. You’re knocked to your knee");
+	if(pc.shields() > 0)
+	{
+		output("s, your shield fizzling out");
+		pc.shields(-200);
+	}
+	output(" as the shockwave and thunderous noise batter your body. When you recover enough to stand you turn to see that the entrance to the cavern has been caved in completely, with scorch marks radiating outward from the former tunnel.");
 	output("\n\nYou continue on your way, steeling yourself against what happened.");
 	pc.addHard(5);
 	//(pc can’t go there no more.)
