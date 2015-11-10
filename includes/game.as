@@ -637,11 +637,11 @@ public function shipMenu():Boolean {
 	this.addButton(4,"Fly",flyMenu);
 	if(currentLocation == "SHIP INTERIOR") {
 		if(crew(true) > 0) {
-			this.addButton(3,"Crew",crew);
+			this.addButton(2,"Crew",crew);
 		}
 	}
-	if (hasShipStorage()) addButton(2, "Storage", shipStorageMenuRoot);
-	else addDisabledButton(2, "Storage");
+	if (hasShipStorage()) addButton(3, "Storage", shipStorageMenuRoot);
+	else addDisabledButton(3, "Storage");
 
 	return false;
 }
