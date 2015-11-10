@@ -2111,6 +2111,8 @@ public function statisticsScreen(showID:String = "All"):void
 		if(pc.isNice()) output2(", Kind");
 		if(pc.isMischievous()) output2(", Mischievous");
 		if(pc.isAss()) output2(", Hard");
+		if(pc.isBimbo()) output2(", Ditz");
+		if(pc.isBro()) output2(", Brute");
 		output2("\n<b>* Alcohol Tolerance: </b>" + pc.tolerance() + "/100");
 		output2("\n<b>* Exhibitionism: </b>" + formatFloat(pc.exhibitionism(), 1) + "/100");
 		// Head
@@ -2130,6 +2132,7 @@ public function statisticsScreen(showID:String = "All"):void
 			{
 				output2(" " + prettifyLength(pc.beardLength));
 				if(pc.beardStyle != 0) output2("\n<b>* Beard, Style: </b>" + pc.beardStyle);
+				//if(pc.beardStyle != "null") output2("\n<b>* Beard, Style: </b>" + StringUtil.toDisplayCase(pc.beardStyle));
 			}
 			else if(pc.skinType == GLOBAL.SKIN_TYPE_FUR) output2(" Short, Fur");
 			else if(pc.beardLength > 0.0625) output2(" Stubble");
@@ -2139,14 +2142,14 @@ public function statisticsScreen(showID:String = "All"):void
 		output2("\n<b>* Hair:</b>");
 		if(pc.hasHair())
 		{
-			if(pc.hairColor != "no") output2(" " + StringUtil.toTitleCase(pc.hairColor) + ",");
+			if(pc.hairColor != "no") output2(" " + StringUtil.toDisplayCase(pc.hairColor) + ",");
 			if(pc.hasPerk("Mane")) output2(" Mane,");
 			output2(" " + GLOBAL.HAIR_TYPE_NAMES[pc.hairType]);
 			output2("\n<b>* Hair, Length:</b>");
 			if(pc.hairLength > 0.125)
 			{
 				output2(" " + prettifyLength(pc.hairLength));
-				if(pc.hairStyle != "null") output2("\n<b>* Hair, Style: </b>" + StringUtil.toTitleCase(pc.hairStyle));
+				if(pc.hairStyle != "null") output2("\n<b>* Hair, Style: </b>" + StringUtil.toDisplayCase(pc.hairStyle));
 			}
 			else output2(" Shaved");
 		}
@@ -2156,12 +2159,12 @@ public function statisticsScreen(showID:String = "All"):void
 		output2("\n<b>* Ears:</b>");
 		if(pc.hasLongEars()) output2(" " + prettifyLength(pc.earLength) + ",");
 		output2(" " + GLOBAL.TYPE_NAMES[pc.earType]);
-		if(pc.earsPierced != 0) output2("\n<b>* Ear Piercing: </b>" + pc.earsPierced + " " + StringUtil.toTitleCase(pc.earsPShort));
+		if(pc.earsPierced != 0) output2("\n<b>* Ear Piercing: </b>" + pc.earsPierced + " " + StringUtil.toDisplayCase(pc.earsPShort));
 		output2("\n<b>* Eyes:</b>");
-		if(pc.eyeColor != "") output2(" " + StringUtil.toTitleCase(pc.eyeColor) + ",");
+		if(pc.eyeColor != "") output2(" " + StringUtil.toDisplayCase(pc.eyeColor) + ",");
 		output2(" " + GLOBAL.TYPE_NAMES[pc.eyeType]);
-		if(pc.eyebrowPierced != 0) output2("\n<b>* Eyebrow Piercing: </b>" + pc.eyebrowPierced + " " + StringUtil.toTitleCase(pc.eyebrowPShort));
-		if(pc.nosePierced != 0) output2("\n<b>* Nose Piercing: </b>" + pc.nosePierced + " " + StringUtil.toTitleCase(pc.nosePShort));
+		if(pc.eyebrowPierced != 0) output2("\n<b>* Eyebrow Piercing: </b>" + pc.eyebrowPierced + " " + StringUtil.toDisplayCase(pc.eyebrowPShort));
+		if(pc.nosePierced != 0) output2("\n<b>* Nose Piercing: </b>" + pc.nosePierced + " " + StringUtil.toDisplayCase(pc.nosePShort));
 		output2("\n<b>* Lips:</b>");
 		var lipsize:int = pc.lipRating();
 		if(lipsize <= 1) output2(" Pencil-thin");
@@ -2173,7 +2176,7 @@ public function statisticsScreen(showID:String = "All"):void
 		else if(lipsize <= 7) output2(" Bloated");
 		else if(lipsize <= 8) output2(" Whorish");
 		else output2(" Universe-distorting");
-		if(pc.lipColor != "") output2(", " + StringUtil.toTitleCase(pc.lipColor));
+		if(pc.lipColor != "") output2(", " + StringUtil.toDisplayCase(pc.lipColor));
 		if(pc.lipPierced != 0 || flags["MIMBRANE_FACE_APPEARANCE"] == 1 || flags["MIMBRANE_FACE_APPEARANCE"] == 2)
 		{
 			output2("\n<b>* Lip Accent:</b>");
@@ -2182,7 +2185,7 @@ public function statisticsScreen(showID:String = "All"):void
 			if(pc.lipPierced != 0)
 			{
 				if(flags["MIMBRANE_FACE_APPEARANCE"] == 1 || flags["MIMBRANE_FACE_APPEARANCE"] == 2) output2(",");
-				output2(" " + pc.lipPierced + " " + StringUtil.toTitleCase(pc.lipPShort));
+				output2(" " + pc.lipPierced + " " + StringUtil.toDisplayCase(pc.lipPShort));
 			}
 		}
 		output2("\n<b>* Tongue:</b>");
@@ -2194,7 +2197,7 @@ public function statisticsScreen(showID:String = "All"):void
 			}
 		}
 		output2(" " + GLOBAL.TYPE_NAMES[pc.tongueType]);
-		if(pc.tonguePierced != 0) output2("\n<b>* Tongue Piercing: </b>" + pc.tonguePierced + " " + StringUtil.toTitleCase(pc.tonguePShort));
+		if(pc.tonguePierced != 0) output2("\n<b>* Tongue Piercing: </b>" + pc.tonguePierced + " " + StringUtil.toDisplayCase(pc.tonguePShort));
 		if(pc.hasHorns())
 		{
 			output2("\n<b>* [pc.HornsNoun]:</b>");
@@ -2232,11 +2235,11 @@ public function statisticsScreen(showID:String = "All"):void
 			}
 		}
 		output2(" " + GLOBAL.SKIN_TYPE_NAMES[pc.skinType]);
-		output2("\n<b>* Skin Tone: </b>" + StringUtil.toTitleCase(pc.skinTone));
-		if(pc.hasStatusEffect("Vanae Markings")) output2(", " + StringUtil.toTitleCase(pc.skinAccent) + " Markings");
-		if(pc.hasFur() || pc.hasLegFur() || pc.hasArmFlag(GLOBAL.FLAG_FURRED) || pc.hasTailFlag(GLOBAL.FLAG_FURRED)) output2("\n<b>* Fur Color: </b>" + StringUtil.toTitleCase(pc.furColor));
-		if(pc.hasScales() || pc.hasLegFlag(GLOBAL.FLAG_SCALED) || pc.hasArmFlag(GLOBAL.FLAG_SCALED) || pc.hasTailFlag(GLOBAL.FLAG_SCALED)) output2("\n<b>* Scale Color: </b>" + StringUtil.toTitleCase(pc.scaleColor));
-		if((pc.armType == GLOBAL.TYPE_MYR && pc.hasArmFlag(GLOBAL.FLAG_CHITINOUS)) || (pc.legType == GLOBAL.TYPE_MYR && pc.hasLegFlag(GLOBAL.FLAG_CHITINOUS))) output2("\n<b>* Chitin Color: </b>" + StringUtil.toTitleCase(pc.scaleColor));
+		output2("\n<b>* Skin Tone: </b>" + StringUtil.toDisplayCase(pc.skinTone));
+		if(pc.hasStatusEffect("Vanae Markings")) output2(", " + StringUtil.toDisplayCase(pc.skinAccent) + " Markings");
+		if(pc.hasFur() || pc.hasLegFur() || pc.hasArmFlag(GLOBAL.FLAG_FURRED) || pc.hasTailFlag(GLOBAL.FLAG_FURRED)) output2("\n<b>* Fur Color: </b>" + StringUtil.toDisplayCase(pc.furColor));
+		if(pc.hasScales() || pc.hasLegFlag(GLOBAL.FLAG_SCALED) || pc.hasArmFlag(GLOBAL.FLAG_SCALED) || pc.hasTailFlag(GLOBAL.FLAG_SCALED)) output2("\n<b>* Scale Color: </b>" + StringUtil.toDisplayCase(pc.scaleColor));
+		if(pc.skinType = GLOBAL.SKIN_TYPE_CHITIN || pc.hasArmFlag(GLOBAL.FLAG_CHITINOUS) || pc.hasLegFlag(GLOBAL.FLAG_CHITINOUS)) output2("\n<b>* Chitin Color: </b>" + StringUtil.toDisplayCase(pc.scaleColor));
 		output2("\n<b>* Arms:</b> 2,");
 		if(pc.armFlags.length > 0)
 		{
@@ -2261,7 +2264,7 @@ public function statisticsScreen(showID:String = "All"):void
 			}
 		}
 		output2(" " + GLOBAL.TYPE_NAMES[pc.legType]);
-		if(pc.wingType != 0) output2("\n<b>* Back: </b>" + GLOBAL.TYPE_NAMES[pc.wingType] + " " + StringUtil.toTitleCase(pc.wingsDescript()));
+		if(pc.wingType != 0) output2("\n<b>* Back: </b>" + GLOBAL.TYPE_NAMES[pc.wingType] + " " + StringUtil.toDisplayCase(pc.wingsDescript()));
 		if(pc.tailCount > 0)
 		{
 			if(pc.tailCount == 1) output2("\n<b>* Tail:</b>");
@@ -2279,7 +2282,7 @@ public function statisticsScreen(showID:String = "All"):void
 		if(pc.hasTailCock() || pc.hasTailCunt())
 		{
 			output2("\n<b>* Tail, Genital Type: </b>");
-			if(pc.tailGenitalColor != "") output2(StringUtil.toTitleCase(pc.tailGenitalColor) + ", ");
+			if(pc.tailGenitalColor != "") output2(StringUtil.toDisplayCase(pc.tailGenitalColor) + ", ");
 			output2(GLOBAL.TYPE_NAMES[pc.tailGenitalArg]);
 			if(pc.hasTailCock()) output2(", " + GLOBAL.TAIL_GENTIAL_TYPE_NAMES[1]);
 			if(pc.hasTailCunt()) output2(", " + GLOBAL.TAIL_GENTIAL_TYPE_NAMES[2]);
@@ -2307,12 +2310,12 @@ public function statisticsScreen(showID:String = "All"):void
 			{
 				output2("\n<b>* Nipples:</b>");
 				output2(" " + pc.totalNipples());
-				if(pc.nippleColor != "") output2(" " + StringUtil.toTitleCase(pc.nippleColor));
+				if(pc.nippleColor != "") output2(" " + StringUtil.toDisplayCase(pc.nippleColor));
 				output2(" Nipple");
 				if(pc.totalNipples() != 1) output2("s");
 				if(pc.totalNipples() > 1) output2(", " + pc.nipplesPerBreast + " per Breast");
 				if(pc.isLactating()) output2(", Lactation Active");
-				if(pc.nipplesPierced != 0) output2("\n<b>* Nipple Piercing: </b>" + pc.nipplesPierced + " " + StringUtil.toTitleCase(pc.nipplesPShort));
+				if(pc.nipplesPierced != 0) output2("\n<b>* Nipple Piercing: </b>" + pc.nipplesPierced + " " + StringUtil.toDisplayCase(pc.nipplesPShort));
 			}
 			// Lactation
 			if(pc.canLactate())
@@ -2408,7 +2411,7 @@ public function statisticsScreen(showID:String = "All"):void
 							output2(" " + GLOBAL.FLAG_NAMES[pc.cocks[x].cockFlags[i]] + ",");
 						}
 					}
-					if(pc.cocks[x].cockColor != "") output2(" " + StringUtil.toTitleCase(pc.cocks[x].cockColor) + ",");
+					if(pc.cocks[x].cockColor != "") output2(" " + StringUtil.toDisplayCase(pc.cocks[x].cockColor) + ",");
 					output2(" " + GLOBAL.TYPE_NAMES[pc.cocks[x].cType]);
 					output2("\n<b>* Length, Flaccid: </b>" + prettifyLength(pc.cLength(x) * pc.cocks[x].flaccidMultiplier));
 					output2("\n<b>* Length, Erect: </b>" + prettifyLength(pc.cLength(x)));
@@ -2421,8 +2424,8 @@ public function statisticsScreen(showID:String = "All"):void
 					}
 					else output2("\n<b>* Volume: </b>" + prettifyVolume(pc.cockVolume(x)));
 					output2("\n<b>* Capacity: </b>" + prettifyVolume(pc.cockCapacity(x)));
-					if(pc.cocks[x].pierced != 0) output2("\n<b>* Piercing: </b>" + pc.cocks[x].pierced + " " + StringUtil.toTitleCase(pc.cocks[x].pShort));
-					if(pc.cocks[x].sock != "") output2("\n<b>* Sock: </b>" + StringUtil.toTitleCase(pc.cocks[x].sock));
+					if(pc.cocks[x].pierced != 0) output2("\n<b>* Piercing: </b>" + pc.cocks[x].pierced + " " + StringUtil.toDisplayCase(pc.cocks[x].pShort));
+					if(pc.cocks[x].sock != "") output2("\n<b>* Sock: </b>" + StringUtil.toDisplayCase(pc.cocks[x].sock));
 				}
 			}
 		}
@@ -2471,7 +2474,7 @@ public function statisticsScreen(showID:String = "All"):void
 							output2(" " + GLOBAL.FLAG_NAMES[pc.vaginas[x].vagooFlags[i]] + ",");
 						}
 					}
-					if(pc.vaginas[x].vaginaColor != "") output2(" " + StringUtil.toTitleCase(pc.vaginas[x].vaginaColor) + ",");
+					if(pc.vaginas[x].vaginaColor != "") output2(" " + StringUtil.toDisplayCase(pc.vaginas[x].vaginaColor) + ",");
 					output2(" " + GLOBAL.TYPE_NAMES[pc.vaginas[x].type]);
 					output2("\n<b>* Hymen:</b>");
 					if(pc.vaginas[x].hymen) output2(" Virgin");
@@ -2486,8 +2489,8 @@ public function statisticsScreen(showID:String = "All"):void
 					output2("\n<b>* Wetness Level: </b>" + formatFloat(pc.vaginas[x].wetness(), 3));
 					if(pc.vaginas[x].wetness() >= 4) output2(", Squirter");
 					if(pc.vaginas[x].clits > 0) output2("\n<b>* Clitoris: </b>" + pc.vaginas[x].clits);
-					if(pc.vaginas[x].clitPierced != 0) output2("\n<b>* Clit Piercing: </b>" + pc.vaginas[x].clitPierced + " " + StringUtil.toTitleCase(pc.vaginas[x].clitPShort));
-					if(pc.vaginas[x].labiaPierced != 0) output2("\n<b>* Labia Piercing: </b>" + pc.vaginas[x].labiaPierced + " " + StringUtil.toTitleCase(pc.vaginas[x].labiaPShort));
+					if(pc.vaginas[x].clitPierced != 0) output2("\n<b>* Clit Piercing: </b>" + pc.vaginas[x].clitPierced + " " + StringUtil.toDisplayCase(pc.vaginas[x].clitPShort));
+					if(pc.vaginas[x].labiaPierced != 0) output2("\n<b>* Labia Piercing: </b>" + pc.vaginas[x].labiaPierced + " " + StringUtil.toDisplayCase(pc.vaginas[x].labiaPShort));
 				}
 			}
 		}
@@ -2562,7 +2565,7 @@ public function statisticsScreen(showID:String = "All"):void
 			{
 				if(pc.sexualPreferences.getPref(i) != 0)
 				{
-					output2("\n<b>* Preferences, " + StringUtil.toTitleCase(GLOBAL.SEXPREF_DESCRIPTORS[i]) + ":</b>");
+					output2("\n<b>* Preferences, " + StringUtil.toDisplayCase(GLOBAL.SEXPREF_DESCRIPTORS[i]) + ":</b>");
 					if(pc.sexualPreferences.getPref(i) >= GLOBAL.REALLY_LIKES_SEXPREF - 0.33335) output2(" Really likes!");
 					else if(pc.sexualPreferences.getPref(i) >= GLOBAL.KINDA_LIKES_SEXPREF - 0.29165) output2(" Kinda likes!");
 					else if(pc.sexualPreferences.getPref(i) >= GLOBAL.KINDA_DISLIKES_SEXPREF - 0.125) output2(" Dislikes!");
