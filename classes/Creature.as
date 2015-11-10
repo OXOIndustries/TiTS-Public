@@ -1321,6 +1321,13 @@ package classes {
 				case "skinTone":
 					buffer = skinTone;
 					break;
+				case "furColor":
+					buffer = furColor;
+					break;
+				case "scaleColor":
+				case "chitinColor":
+					buffer = scaleColor;
+					break;
 				case "ears":
 					buffer = earsDescript();
 					break;
@@ -1837,9 +1844,6 @@ package classes {
 					break;
 				case "manWoman":
 					buffer = this.mf("man", "woman");
-					break;
-				case "skinTone":
-					buffer = this.skinTone;
 					break;
 				case "boy":
 				case "girl":
@@ -3662,7 +3666,7 @@ package classes {
 		public function skinFurScalesColor():String
 		{
 			if(skinType == GLOBAL.SKIN_TYPE_FUR) return furColor;
-			else if(skinType == GLOBAL.SKIN_TYPE_SCALES) return scaleColor;
+			else if(skinType == GLOBAL.SKIN_TYPE_SCALES || skinType == GLOBAL.SKIN_TYPE_CHITIN) return scaleColor;
 			else return skinTone;
 		}
 		public function legFurScales():String 
@@ -3671,8 +3675,9 @@ package classes {
 			var temp:*;
 			var noun:String = "";
 			//Figure out if we're talking skin or fur.
-			if(hasLegFur()) noun += "fur"; 
+			if(hasLegFur()) noun += "fur";
 			else if(hasLegFlag(GLOBAL.FLAG_SCALED) || skinType == GLOBAL.SKIN_TYPE_SCALES) noun += "scales";
+			else if(hasLegFlag(GLOBAL.FLAG_CHITINOUS) || skinType == GLOBAL.SKIN_TYPE_CHITIN) noun += "chitin";
 			else if(hasLegFlag(GLOBAL.FLAG_AMORPHOUS) || skinType == GLOBAL.SKIN_TYPE_GOO) noun += "goo";
 			else noun += "skin";
 
@@ -3687,7 +3692,7 @@ package classes {
 			if (this.rand(4) == 0) {
 				if (output != "") output += ", ";
 				if (noun == "fur") output += furColor;
-				else if (noun == "scales") output += scaleColor;
+				else if (noun == "scales" || noun == "chitin") output += scaleColor;
 				else output += skinTone;
 			}
 			//Setup for words
@@ -3710,7 +3715,7 @@ package classes {
 			if (forceTone || this.rand(4) == 0) {
 				if (output != "") output += ", ";
 				if (skinType == GLOBAL.SKIN_TYPE_FUR && !skin) output += furColor;
-				else if (skinType == GLOBAL.SKIN_TYPE_SCALES && !skin) output += scaleColor;
+				else if ((skinType == GLOBAL.SKIN_TYPE_SCALES || skinType == GLOBAL.SKIN_TYPE_CHITIN) && !skin) output += scaleColor;
 				else output += skinTone;
 			}
 			//Setup for words
