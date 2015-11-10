@@ -2506,7 +2506,7 @@ public function initializeMyrellionRooms():void
 	//Y19 -- Ascension Point
 	rooms["2Y19"] = new RoomClass(this);
 	rooms["2Y19"].roomName = "ASCENTION\nPOINT";
-	rooms["2Y19"].description = "You stand at the foot of a towering cliff face. Above you, you can vaguely make out the shelf of rock you came down from against the black backdrop of the dark caves. A wide, stony passage leads westward from here, flanked by columns of stone that look almost like Greek pillars, leading you deeper into the planet's heart.\n\nStrange, blurred colors smear the walls of the cavern.  On closer inspection, it looks as if centuries of pictographs and writing have been written and rewritten on the black stone.  The result is a formless, but aesthetically pleasing fresco on all sides.";
+	rooms["2Y19"].description = "You stand at the foot of a towering cliff face. Above you, you can vaguely make out the shelf of rock you came down from against the black backdrop of the dark caves. A wide, stony passage leads westward from here, flanked by columns of stone that look almost like Greek pillars, leading you deeper into the planet's heart.\n\nStrange, blurred colors smear the walls of the cavern. On closer inspection, it looks as if centuries of pictographs and writing have been written and rewritten on the black stone. The result is a formless, but aesthetically pleasing fresco on all sides.";
 	rooms["2Y19"].planet = "PLANET: MYRELLION";
 	rooms["2Y19"].system = "SYSTEM: SINDATHU";
 	rooms["2Y19"].northExit = "";
@@ -2554,7 +2554,7 @@ public function initializeMyrellionRooms():void
 	//U21 -- Mushroom Forest
 	rooms["2U21"] = new RoomClass(this);
 	rooms["2U21"].roomName = "MUSHROOM\nFOREST";
-	rooms["2U21"].description = "A series of shelf-like mushrooms line the walls of this room, tiny terraces upon which bone-white insects sit, completely still until you approach them.  In your presence, the tiny invertebrates glow red and skitter beneath the fungus, still alight.  As you stride through the room, the shelves of fungus turn into red-light lamps, an interesting, albeit eerie effect.";
+	rooms["2U21"].description = "A series of shelf-like mushrooms line the walls of this room, tiny terraces upon which bone-white insects sit, completely still until you approach them. In your presence, the tiny invertebrates glow red and skitter beneath the fungus, still alight. As you stride through the room, the shelves of fungus turn into red-light lamps, an interesting, albeit eerie effect.";
 	rooms["2U21"].planet = "PLANET: MYRELLION";
 	rooms["2U21"].system = "SYSTEM: SINDATHU";
 	rooms["2U21"].northExit = "2U19";
@@ -2570,7 +2570,7 @@ public function initializeMyrellionRooms():void
 	//U23 -- Hanging Fungus
 	rooms["2U23"] = new RoomClass(this);
 	rooms["2U23"].roomName = "HANGING\nFUNGUS";
-	rooms["2U23"].description = "Fungus hangs in unhealthy-looking streamers in this cave.  Fleshy strips of barely-glowing fungus tatter down to the floor, often connected to each other by skin-like membranes.  You shudder a bit as you make your way through the strangely flesh-like curtains, trying hard to ignore the way they feel like hands on your skin.";
+	rooms["2U23"].description = "Fungus hangs in unhealthy-looking streamers in this cave. Fleshy strips of barely-glowing fungus tatter down to the floor, often connected to each other by skin-like membranes. You shudder a bit as you make your way through the strangely flesh-like curtains, trying hard to ignore the way they feel like hands on your skin.";
 	rooms["2U23"].planet = "PLANET: MYRELLION";
 	rooms["2U23"].system = "SYSTEM: SINDATHU";
 	rooms["2U23"].northExit = "2U21";
@@ -2586,7 +2586,7 @@ public function initializeMyrellionRooms():void
 	//U25 -- Fungal Depths
 	rooms["2U25"] = new RoomClass(this);
 	rooms["2U25"].roomName = "FUNGAL\nDEPTHS";
-	rooms["2U25"].description = "A papery rasp fills this section of tunnel and as you walk through, you happen to glance up halfway through the cavern and realize that the ceiling is moving.  A moment of peering at it reveals the horrifying truth--it's covered in segmented coils, wound over each other in countless, slithering layers, all bristling with spiny, twitching legs. You don't see a head or even and end, so it's unclear if it's a colony of something or just one monstrous organism.  You'd rather not find out and hurry your way through the otherwise empty cave.";
+	rooms["2U25"].description = "A papery rasp fills this section of tunnel and as you walk through, you happen to glance up halfway through the cavern and realize that the ceiling is moving. A moment of peering at it reveals the horrifying truth--it's covered in segmented coils, wound over each other in countless, slithering layers, all bristling with spiny, twitching legs. You don’t see a head or even an end, so it's unclear if it's a colony of something or just one monstrous organism. You’d rather not find out and hurry your way through the otherwise empty cave.";
 	rooms["2U25"].planet = "PLANET: MYRELLION";
 	rooms["2U25"].system = "SYSTEM: SINDATHU";
 	rooms["2U25"].northExit = "2U23";
@@ -2764,7 +2764,7 @@ public function initializeMyrellionRooms():void
 	//M11 -- Long Passage, West
 	rooms["2M11"] = new RoomClass(this);
 	rooms["2M11"].roomName = "LONG\nPASSAGE";
-	rooms["2M11"].description = "A lengthy eastern passage widens out into a circular chamber, running north to south. The cragginess of this cave makes it barely navigatable.  You manage to hop from one safe foothold to the next, almost losing your balance when something skitters out of the darkness and over your [pc.foot].  It disappears when you try to get a closer look at it.  You continue across the crags at a somewhat more hurried pace.";
+	rooms["2M11"].description = "A lengthy eastern passage widens out into a circular chamber, running north to south. The cragginess of this cave makes it barely navigatable. You manage to hop from one safe foothold to the next, almost losing your balance when something skitters out of the darkness and over your [pc.foot]. It disappears when you try to get a closer look at it. You continue across the crags at a somewhat more hurried pace.";
 	rooms["2M11"].planet = "PLANET: MYRELLION";
 	rooms["2M11"].system = "SYSTEM: SINDATHU";
 	rooms["2M11"].northExit = "2M9";
@@ -2840,7 +2840,7 @@ public function initializeMyrellionRooms():void
 	rooms["2I7"].addFlag(GLOBAL.CAVE);
 	rooms["2I7"].addFlag(GLOBAL.INDOOR);
 	rooms["2I7"].addFlag(GLOBAL.TAXI);
-	  
+	
 	//M13 -- Pillar NE
 	rooms["2M13"] = new RoomClass(this);
 	rooms["2M13"].roomName = "PILLAR\nNORTHEAST";
