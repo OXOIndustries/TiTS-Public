@@ -662,6 +662,7 @@ public function slimyPassageBonus():Boolean
 {
 	output("Droplets of goo pelt the floor around you, dripping from the cave ceiling at irregular intervals. Your ");
 	if(pc.isChestGarbed()) output("[pc.upperGarment]");
+	else if(pc.hasBreasts()) output("breast");
 	else output("[pc.chest]");
 	output(" catches some of the blobs, splattering harmlessly but making you shiver nonetheless.");
 	if(flags["MET_CGOOS"] == undefined) 
