@@ -52,7 +52,7 @@ package classes.Items.Transformatives
 			
 			if (target.faceType != GLOBAL.TYPE_HUMAN || target.skinType != GLOBAL.SKIN_TYPE_SKIN)
 			{
-				output("The first thing you feel after ingesting the treat is an odd calmness that falls over you. A passivity and complacency that makes you want to just sit down and... chew greens? You blink, scowling at yourself for thinking that. What the hell?\n\n");
+				output("\n\nThe first thing you feel after ingesting the treat is an odd calmness that falls over you. A passivity and complacency that makes you want to just sit down and... chew greens? You blink, scowling at yourself for thinking that. What the hell?");
 
 				//if PC has non-human skin:
 				if (target.skinType != GLOBAL.SKIN_TYPE_SKIN && target.skinTypeUnlocked(GLOBAL.SKIN_TYPE_SKIN))
@@ -83,7 +83,7 @@ package classes.Items.Transformatives
 				//if PC has a non-human face:
 				if (target.faceType != GLOBAL.TYPE_HUMAN && target.faceTypeUnlocked(GLOBAL.TYPE_HUMAN))
 				{
-					output("\n\nYou feel your [pc.face] starting to crumple in, rattling your teeth and sending shockwaves of pressure through your head. You feel like you’re in a vice! Slowly but surely, your inhuman face takes on a much more common appearance, leaving you with a cute little nose, lips, human eyes -- the works. <b>You now have a human face!</b>\n\n");
+					output("\n\nYou feel your [pc.face] starting to crumple in, rattling your teeth and sending shockwaves of pressure through your head. You feel like you’re in a vice! Slowly but surely, your inhuman face takes on a much more common appearance, leaving you with a cute little nose, lips, human eyes -- the works. <b>You now have a human face!</b>");
 					
 					target.faceType = GLOBAL.TYPE_HUMAN;
 					target.faceFlags = [];
@@ -224,7 +224,7 @@ package classes.Items.Transformatives
 							if (cCocks.length > 1) output("s");
 						}
 						else output(" completely without cocks");
-						output(", now.\n\n");
+						output(", now.");
 					}
 				}
 			}
@@ -272,7 +272,7 @@ package classes.Items.Transformatives
 
 				output("\n\nYou reach a hand down, brushing it along your ");
 				if(!target.isCrotchGarbed()) output("bare ");
-				output("crotch, and find an unsettling wetness clinging to your groin. Your fingers explore further, and find a cut gaping in your [pc.skin], growing deeper. The pangs of agony start to abate, replaced by something approaching pleasure as your fingers explore this new cleft in your groin. Your find a small lump near to top, and a single touch of it sends shivers of ecstasy through you. As your explore the new hole in your body, you quickly come to the realization that <b>you now have a vagina</b>!");
+				output("crotch, and find an unsettling wetness clinging to your groin. Your fingers explore further, and find a cut gaping in your [pc.skin], growing deeper. The pangs of agony start to abate, replaced by something approaching pleasure as your fingers explore this new cleft in your groin. Your find a small lump near to top, and a single touch of it sends shivers of ecstasy through you. As your explore the new hole in your body, you quickly come to the realization that <b>you now have a vagina!</b>");
 				
 				target.createVagina();
 				target.clitLength = 0.5;
@@ -283,7 +283,7 @@ package classes.Items.Transformatives
 			{
 				var startMF:String = target.mfn("m", "f", "n");
 				
-				output("\n\nYou feel a slight change in your facial structure -- your lips become a bit more pronounced, your eyelashes grow a bit, your nose becomes a little cuter. Many subtle, small changes occur over the course of a minute or so. When they finish, <b>you feel much more feminine</b>!");
+				output("\n\nYou feel a slight change in your facial structure -- your lips become a bit more pronounced, your eyelashes grow a bit, your nose becomes a little cuter. Many subtle, small changes occur over the course of a minute or so. When they finish, <b>you feel much more feminine!</b>");
 				
 				target.femininity += 5;
 				changes++;
@@ -340,7 +340,7 @@ package classes.Items.Transformatives
 				
 				output("\n\nYou feel a shift of weight in your [pc.chest], and your hands roam up your");
 				if (grownTitties) output(" growing ");
-				output("bust. You squeeze one of your [pc.nipples], and find your fingers come away wet with [pc.milkNoun]. You give your boob a squeeze, and sure enough, a little trickle of it comes out of your stuff teat, drooling onto the ground. <b>It looks like you’re lactating now</b>!");
+				output("bust. You squeeze one of your [pc.nipples], and find your fingers come away wet with [pc.milkNoun]. You give your boob a squeeze, and sure enough, a little trickle of it comes out of your stuff teat, drooling onto the ground. <b>It looks like you’re lactating now!</b>");
 			}
 			else if (target.milkMultiplier < 150) // SWINGING IN THE DARK HERE
 			{
@@ -454,10 +454,10 @@ package classes.Items.Transformatives
 				target.thickness += 2;
 				if (target.thickness < 30) target.thickness += 2;
 				
-				output("\n\nIt’s obvious that some of your body weight is shifting around. You smile as your belly and libs seem to soften, fat distributing to them. <b>");
-				if (target.thickness < 40) output(" You now look a little thicker!</b>");
-				else if (target.thickness < 60) output(" You’re now fairly thick!</b> If you ever get tired of adventuring or C.E.O.ing, you think you’d make a pretty solid plus-size model! Especially with your otherwise very curvy figure!");
-				else output(" You now look quite thick!</b> You’ve got a distinctly chubby, soft appearance now. You’re developing a bit of a belly, just enough to make you look delightfully thick and curvy.");
+				output("\n\nIt’s obvious that some of your body weight is shifting around. You smile as your belly and libs seem to soften, fat distributing to them.");
+				if (target.thickness < 40) output(" <b>You now look a little thicker!</b>");
+				else if (target.thickness < 60) output(" <b>You’re now fairly thick!</b> If you ever get tired of adventuring or C.E.O.ing, you think you’d make a pretty solid plus-size model! Especially with your otherwise very curvy figure!");
+				else output(" <b>You now look quite thick!</b> You’ve got a distinctly chubby, soft appearance now. You’re developing a bit of a belly, just enough to make you look delightfully thick and curvy.");
 				
 				changes++;
 			}
@@ -606,10 +606,10 @@ package classes.Items.Transformatives
 
 				if (target.hasVagina())
 				{
-					output("You look down after a few moments, and realize that your");
+					output("\n\nYou look down after a few moments, and realize that your");
 					if (target.isGroinCovered()) output(" [pc.lowerUnderGarments]");
 					else output(" thighs");
-					output(" are soaked in fem-cum. Did you just... cream yourself from daydreaming!?\n\n");
+					output(" are soaked in fem-cum. Did you just... cream yourself from daydreaming!?");
 					output("\n\nHot!");
 				}
 			}
