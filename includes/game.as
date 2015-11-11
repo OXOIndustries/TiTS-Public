@@ -957,17 +957,173 @@ public function statusTick():void {
 
 public function variableRoomUpdateCheck():void
 {
-	//Fungus area open:
-	if(flags["FUNGUS_QUEEN_SAVED"] == undefined && flags["LET_FUNGUS_QUEEN_DIE"] == undefined)
+	/* MHENGA */
+	
+	//Kelly's work - close/open Xenogen Biotech.
+	//Open up shop: link room
+	if(hours >= 6 && hours < 17) 
 	{
-		rooms["2S11"].northExit = "2S9";
+		rooms["SOUTH ESBETH 2"].northExit = "KELLY'S OFFICE";
+		rooms["BURT'S BACK END"].removeFlag(GLOBAL.NPC);
+		//Add back in icons.
+		if(!rooms["JULIAN'S OFFICE"].hasFlag(GLOBAL.NPC)) rooms["JULIAN'S OFFICE"].addFlag(GLOBAL.NPC);
+		if(!rooms["KELLY'S OFFICE"].hasFlag(GLOBAL.NPC)) rooms["KELLY'S OFFICE"].addFlag(GLOBAL.NPC);
 	}
-	else 
+	//Close shop: 
+	else
 	{
-		rooms["2S11"].northExit = "";
+		//rooms["SOUTH ESBETH 2"].northExit = "";
+		//Get rid of icons
+		rooms["KELLY'S OFFICE"].removeFlag(GLOBAL.NPC);
+		rooms["JULIAN'S OFFICE"].removeFlag(GLOBAL.NPC);
+		//Add Kelly icon in the bar
+		if(!rooms["BURT'S BACK END"].hasFlag(GLOBAL.NPC)) rooms["BURT'S BACK END"].addFlag(GLOBAL.NPC);
 	}
-	if(silly) rooms["2O25"].southExit = "2O27";
-	else rooms["2O25"].southExit = "";
+	//Pitchers on Mhen'ga
+	if(flags["ROOM_80_PITCHER_MET"] == 1)
+	{
+		if(!rooms["OVERGROWN ROCK 12"].hasFlag(GLOBAL.PLANT_BULB)) rooms["OVERGROWN ROCK 12"].addFlag(GLOBAL.PLANT_BULB);
+	}
+	else rooms["OVERGROWN ROCK 12"].removeFlag(GLOBAL.PLANT_BULB);
+	if(flags["ROOM_65_PITCHER_MET"] == 1)
+	{
+		if(!rooms["VINED JUNGLE 3"].hasFlag(GLOBAL.PLANT_BULB)) rooms["VINED JUNGLE 3"].addFlag(GLOBAL.PLANT_BULB);
+	}
+	else rooms["VINED JUNGLE 3"].removeFlag(GLOBAL.PLANT_BULB);
+	if(flags["ROOM_61_PITCHER_MET"] == 1)
+	{
+		if(!rooms["DEEP JUNGLE 2"].hasFlag(GLOBAL.PLANT_BULB)) rooms["DEEP JUNGLE 2"].addFlag(GLOBAL.PLANT_BULB);
+	}
+	else rooms["DEEP JUNGLE 2"].removeFlag(GLOBAL.PLANT_BULB);
+	
+	
+	/* TARKUS */
+	
+	//Handle planet explosions
+	if(flags["TARKUS_DESTROYED"] == 1 && rooms["211"].southExit != "") 
+	{
+		trace("PLANET BLEWED UP. HIDIN ROOMS");
+		rooms["211"].southExit = "";
+		rooms["213"].southExit = "";
+	}
+	else if(rooms["211"].southExit == "" && flags["TARKUS_DESTROYED"] == undefined)
+	{
+		trace("PLANET DIDN'T BLOWED UP. LINKIN' ROOMS");
+		rooms["211"].southExit = "215";
+		rooms["213"].southExit = "295";
+	}
+	//Sexbot factory opeeeeeen.
+	if(flags["SEXBOTS_SCANNED_FOR_COLENSO"] != undefined && flags["SEXBOTS_SCANNED_FOR_COLENSO"] >= 4)
+	{
+		rooms["256"].southExit = "294";
+	}
+	else
+	{
+		rooms["256"].southExit = undefined;
+	}
+	// Annos shop
+	if (!steeleTechTarkusShopAvailable())
+	{
+		rooms["303"].removeFlag(GLOBAL.NPC);
+	}
+	else
+	{
+		rooms["303"].addFlag(GLOBAL.NPC);
+	}
+	// Deck 13 Reactor -> Databank room
+	if (flags["DECK13_REACTOR_DOOR_OPEN"] == undefined)
+	{
+		rooms["DECK 13 REACTOR"].northExit = undefined;
+	}
+	else
+	{
+		rooms["DECK 13 REACTOR"].northExit = "DECK 13 SECONDARY REACTOR";
+	}
+	// Deck 13 Reactor -> Vents
+	if (flags["DECK13_REACTOR_DOOR_OPEN"] != undefined)
+	{
+		rooms["DECK 13 REACTOR"].eastExit = undefined;
+	}
+	else
+	{
+		rooms["DECK 13 REACTOR"].eastExit = "DECK 13 VENTS";
+	}
+	//Handle badger closure
+	if(flags["DR_BADGER_TURNED_IN"] != undefined && rooms["209"].northExit != "") rooms["209"].northExit = "";
+	if(flags["DR_BADGER_TURNED_IN"] == undefined && rooms["209"].northExit == "") rooms["209"].northExit = "304";
+	
+	
+	/* NEW TEXAS */
+	
+	// Brynn's Stall
+	if (flags["BRYNN_MET_TODAY"] == 1) rooms["BrynnsStall"].removeFlag(GLOBAL.NPC);
+	else rooms["BrynnsStall"].addFlag(GLOBAL.NPC);
+	// Quenton Gym stuffs
+	if (pc.hasKeyItem("Ten Ton Gym Membership") || pc.hasStatusEffect("Gym Pass"))
+	{
+		if(!rooms["571"].hasFlag(GLOBAL.OBJECTIVE)) rooms["571"].addFlag(GLOBAL.OBJECTIVE);
+		if(!rooms["572"].hasFlag(GLOBAL.OBJECTIVE)) rooms["572"].addFlag(GLOBAL.OBJECTIVE);
+		if(!rooms["573"].hasFlag(GLOBAL.OBJECTIVE)) rooms["573"].addFlag(GLOBAL.OBJECTIVE);
+		if(!rooms["574"].hasFlag(GLOBAL.OBJECTIVE)) rooms["574"].addFlag(GLOBAL.OBJECTIVE);
+	}
+	else
+	{
+		if(rooms["571"].hasFlag(GLOBAL.OBJECTIVE)) rooms["571"].removeFlag(GLOBAL.OBJECTIVE);
+		if(rooms["572"].hasFlag(GLOBAL.OBJECTIVE)) rooms["572"].removeFlag(GLOBAL.OBJECTIVE);
+		if(rooms["573"].hasFlag(GLOBAL.OBJECTIVE)) rooms["573"].removeFlag(GLOBAL.OBJECTIVE);
+		if(rooms["574"].hasFlag(GLOBAL.OBJECTIVE)) rooms["574"].removeFlag(GLOBAL.OBJECTIVE);
+	}
+	
+	
+	/* MYRELLION */
+	
+	// Steph Myrellion shit
+	if (flags["STEPH_WATCHED"] == undefined)
+	{
+		if (rooms["1F22"].hasFlag(GLOBAL.NPC)) rooms["1F22"].removeFlag(GLOBAL.NPC);
+	}
+	else
+	{
+		if (flags["STEPH_WORK_CHOICE"] == undefined)
+		{
+			if (!rooms["1F22"].hasFlag(GLOBAL.NPC)) rooms["1F22"].addFlag(GLOBAL.NPC);
+		}
+		else
+		{
+			if (rooms["1F22"].hasFlag(GLOBAL.NPC)) rooms["1F22"].removeFlag(GLOBAL.NPC);
+		}
+	}
+	// Doc McAllister
+	if (mcallisterIsIn())
+	{
+		rooms["XBMYRELLIONLAB"].addFlag(GLOBAL.NPC);
+	}
+	else
+	{
+		rooms["XBMYRELLIONLAB"].removeFlag(GLOBAL.NPC);
+	}
+	//Irellia quest stuff.
+	//IrelliaQuest incomplete. No east passage, people token in main room.
+	if(flags["IRELLIA_QUEST_STATUS"] == undefined || flags["IRELLIA_QUEST_STATUS"] < 6)
+	{
+		// Quest markers
+		//Added by JCup
+		if(flags["IRELLIA_QUEST_STATUS"] == 2 && (hours >= 17 && hours <= 18) && !rooms["708"].hasFlag(GLOBAL.OBJECTIVE)) rooms["708"].addFlag(GLOBAL.OBJECTIVE);
+		else if(rooms["708"].hasFlag(GLOBAL.OBJECTIVE)) rooms["708"].removeFlag(GLOBAL.OBJECTIVE);
+		if(flags["IRELLIA_QUEST_STATUS"] == 3 && hours >= 23 && !rooms["725"].hasFlag(GLOBAL.OBJECTIVE)) rooms["725"].addFlag(GLOBAL.OBJECTIVE);
+		else if(rooms["725"].hasFlag(GLOBAL.OBJECTIVE)) rooms["725"].removeFlag(GLOBAL.OBJECTIVE);
+
+		if(!rooms["746"].hasFlag(GLOBAL.NPC)) rooms["746"].addFlag(GLOBAL.NPC);
+		if(rooms["747"].hasFlag(GLOBAL.NPC)) rooms["747"].removeFlag(GLOBAL.NPC);
+		rooms["746"].eastExit = "";
+	}
+	//IrelliaQuest complete: establish east/west link and move people token to Irellia's chambers
+	else
+	{
+		rooms["746"].eastExit = "747";
+		if(rooms["746"].hasFlag(GLOBAL.NPC)) rooms["746"].removeFlag(GLOBAL.NPC);
+		if(!rooms["747"].hasFlag(GLOBAL.NPC)) rooms["747"].addFlag(GLOBAL.NPC);
+	}
 	//Nyrea gate should be open
 	if(nyreaDungeonGateOpen()) 
 	{
@@ -991,150 +1147,18 @@ public function variableRoomUpdateCheck():void
 		if(!rooms["2C13"].hasFlag(GLOBAL.NPC)) rooms["2C13"].addFlag(GLOBAL.NPC);
 	}
 	else if(rooms["2C13"].hasFlag(GLOBAL.NPC)) rooms["2C13"].removeFlag(GLOBAL.NPC);
-	//Handle badger closure
-	if(flags["DR_BADGER_TURNED_IN"] != undefined && rooms["209"].northExit != "") rooms["209"].northExit = "";
-	if(flags["DR_BADGER_TURNED_IN"] == undefined && rooms["209"].northExit == "") rooms["209"].northExit = "304";
-	//Handle planet explosions
-	if(flags["TARKUS_DESTROYED"] == 1 && rooms["211"].southExit != "") 
+	//Fungus area open:
+	if(flags["FUNGUS_QUEEN_SAVED"] == undefined && flags["LET_FUNGUS_QUEEN_DIE"] == undefined)
 	{
-		trace("PLANET BLEWED UP. HIDIN ROOMS");
-		rooms["211"].southExit = "";
-		rooms["213"].southExit = "";
+		rooms["2S11"].northExit = "2S9";
 	}
-	else if(rooms["211"].southExit == "" && flags["TARKUS_DESTROYED"] == undefined)
+	else 
 	{
-		trace("PLANET DIDN'T BLOWED UP. LINKIN' ROOMS");
-		rooms["211"].southExit = "215";
-		rooms["213"].southExit = "295";
+		rooms["2S11"].northExit = "";
 	}
-	
-	//Kelly's work - close/open Xenogen Biotech.
-	//Open up shop: link room
-	if(hours >= 6 && hours < 17) 
-	{
-		rooms["SOUTH ESBETH 2"].northExit = "KELLY'S OFFICE";
-		rooms["BURT'S BACK END"].removeFlag(GLOBAL.NPC);
-		//Add back in icons.
-		if(!rooms["JULIAN'S OFFICE"].hasFlag(GLOBAL.NPC)) rooms["JULIAN'S OFFICE"].addFlag(GLOBAL.NPC);
-		if(!rooms["KELLY'S OFFICE"].hasFlag(GLOBAL.NPC)) rooms["KELLY'S OFFICE"].addFlag(GLOBAL.NPC);
-	}
-	//Close shop: 
-	else
-	{
-		//rooms["SOUTH ESBETH 2"].northExit = "";
-		//Get rid of icons
-		rooms["KELLY'S OFFICE"].removeFlag(GLOBAL.NPC);
-		rooms["JULIAN'S OFFICE"].removeFlag(GLOBAL.NPC);
-		//Add Kelly icon in the bar
-		if(!rooms["BURT'S BACK END"].hasFlag(GLOBAL.NPC)) rooms["BURT'S BACK END"].addFlag(GLOBAL.NPC);
-	}
-
-	//Sexbot factory opeeeeeen.
-	if(flags["SEXBOTS_SCANNED_FOR_COLENSO"] != undefined && flags["SEXBOTS_SCANNED_FOR_COLENSO"] >= 4)
-	{
-		rooms["256"].southExit = "294";
-	}
-	else rooms["256"].southExit = undefined;
-	
-	// Annos shop
-	if (!steeleTechTarkusShopAvailable())
-	{
-		rooms["303"].removeFlag(GLOBAL.NPC);
-	}
-	else
-	{
-		rooms["303"].addFlag(GLOBAL.NPC);
-	}
-	
-	// Deck 13 Reactor -> Databank room
-	if (flags["DECK13_REACTOR_DOOR_OPEN"] == undefined)
-	{
-		rooms["DECK 13 REACTOR"].northExit = undefined;
-	}
-	else
-	{
-		rooms["DECK 13 REACTOR"].northExit = "DECK 13 SECONDARY REACTOR";
-	}
-
-	// Deck 13 Reactor -> Vents
-	if (flags["DECK13_REACTOR_DOOR_OPEN"] != undefined)
-	{
-		rooms["DECK 13 REACTOR"].eastExit = undefined;
-	}
-	else
-	{
-		rooms["DECK 13 REACTOR"].eastExit = "DECK 13 VENTS";
-	}
-	
-	if (flags["BRYNN_MET_TODAY"] == 1) rooms["BrynnsStall"].removeFlag(GLOBAL.NPC);
-	else rooms["BrynnsStall"].addFlag(GLOBAL.NPC);
-	//Pitchers on Mhen'ga
-	if(flags["ROOM_80_PITCHER_MET"] == 1)
-	{
-		if(!rooms["OVERGROWN ROCK 12"].hasFlag(GLOBAL.PLANT_BULB)) rooms["OVERGROWN ROCK 12"].addFlag(GLOBAL.PLANT_BULB);
-	}
-	else rooms["OVERGROWN ROCK 12"].removeFlag(GLOBAL.PLANT_BULB);
-	if(flags["ROOM_65_PITCHER_MET"] == 1)
-	{
-		if(!rooms["VINED JUNGLE 3"].hasFlag(GLOBAL.PLANT_BULB)) rooms["VINED JUNGLE 3"].addFlag(GLOBAL.PLANT_BULB);
-	}
-	else rooms["VINED JUNGLE 3"].removeFlag(GLOBAL.PLANT_BULB);
-	if(flags["ROOM_61_PITCHER_MET"] == 1)
-	{
-		if(!rooms["DEEP JUNGLE 2"].hasFlag(GLOBAL.PLANT_BULB)) rooms["DEEP JUNGLE 2"].addFlag(GLOBAL.PLANT_BULB);
-	}
-	else rooms["DEEP JUNGLE 2"].removeFlag(GLOBAL.PLANT_BULB);
-
-	//Irellia quest stuff.
-	//IrelliaQuest incomplete. No east passage, people token in main room.
-	if(flags["IRELLIA_QUEST_STATUS"] == undefined || flags["IRELLIA_QUEST_STATUS"] < 6)
-	{
-		// Quest markers
-		//Added by JCup
-		if(flags["IRELLIA_QUEST_STATUS"] == 2 && (hours >= 17 && hours <= 18) && !rooms["708"].hasFlag(GLOBAL.OBJECTIVE)) rooms["708"].addFlag(GLOBAL.OBJECTIVE);
-		else if(rooms["708"].hasFlag(GLOBAL.OBJECTIVE)) rooms["708"].removeFlag(GLOBAL.OBJECTIVE);
-		if(flags["IRELLIA_QUEST_STATUS"] == 3 && hours >= 23 && !rooms["725"].hasFlag(GLOBAL.OBJECTIVE)) rooms["725"].addFlag(GLOBAL.OBJECTIVE);
-		else if(rooms["725"].hasFlag(GLOBAL.OBJECTIVE)) rooms["725"].removeFlag(GLOBAL.OBJECTIVE);
-
-		if(!rooms["746"].hasFlag(GLOBAL.NPC)) rooms["746"].addFlag(GLOBAL.NPC);
-		if(rooms["747"].hasFlag(GLOBAL.NPC)) rooms["747"].removeFlag(GLOBAL.NPC);
-		rooms["746"].eastExit = "";
-	}
-	//IrelliaQuest complete: establish east/west link and move people token to Irellia's chambers
-	else
-	{
-		rooms["746"].eastExit = "747";
-		if(rooms["746"].hasFlag(GLOBAL.NPC)) rooms["746"].removeFlag(GLOBAL.NPC);
-		if(!rooms["747"].hasFlag(GLOBAL.NPC)) rooms["747"].addFlag(GLOBAL.NPC);
-	}
-	
-	// Steph Myrellion shit
-	if (flags["STEPH_WATCHED"] == undefined)
-	{
-		if (rooms["1F22"].hasFlag(GLOBAL.NPC)) rooms["1F22"].removeFlag(GLOBAL.NPC);
-	}
-	else
-	{
-		if (flags["STEPH_WORK_CHOICE"] == undefined)
-		{
-			if (!rooms["1F22"].hasFlag(GLOBAL.NPC)) rooms["1F22"].addFlag(GLOBAL.NPC);
-		}
-		else
-		{
-			if (rooms["1F22"].hasFlag(GLOBAL.NPC)) rooms["1F22"].removeFlag(GLOBAL.NPC);
-		}
-	}
-	
-	// Doc McAllister
-	if (mcallisterIsIn())
-	{
-		rooms["XBMYRELLIONLAB"].addFlag(GLOBAL.NPC);
-	}
-	else
-	{
-		rooms["XBMYRELLIONLAB"].removeFlag(GLOBAL.NPC);
-	}
-	
+	// Crystal Goo Silly Modes
+	if(silly) rooms["2O25"].southExit = "2O27";
+	else rooms["2O25"].southExit = "";
 }
 
 public function processTime(arg:int):void {
