@@ -9762,6 +9762,7 @@ package classes {
 			if (cock.hasFlag(GLOBAL.FLAG_NUBBY)) collection.push("nubby");
 			if (cock.hasFlag(GLOBAL.FLAG_AMORPHOUS)) collection.push("amorphous");
 			if (cock.hasFlag(GLOBAL.FLAG_SMOOTH)) collection.push("smooth");
+			if (cock.hasFlag(GLOBAL.FLAG_RIBBED)) collection.push("ribbed");
 			//if (cock.hasFlag(GLOBAL.FLAG_LUBRICATED)) collection.push("lubricated");
 			//if (cock.hasFlag(GLOBAL.FLAG_STICKY)) collection.push("sticky");
 			if (cock.hasFlag(GLOBAL.FLAG_FORESKINNED)) collection.push("foreskinned", "foreskin-covered");
