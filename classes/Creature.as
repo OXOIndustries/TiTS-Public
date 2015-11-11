@@ -9751,6 +9751,7 @@ package classes {
 			
 			// flag overrides
 			if (cock.hasFlag(GLOBAL.FLAG_KNOTTED)) collection.push("knotted");
+			//if (cock.hasFlag(GLOBAL.FLAG_SHEATHED)) collection.push("sheathed");
 			if (cock.hasFlag(GLOBAL.FLAG_FLARED)) collection.push("flared");
 			if (cock.hasFlag(GLOBAL.FLAG_BLUNT)) collection.push("blunt");
 			if (cock.hasFlag(GLOBAL.FLAG_PREHENSILE)) collection.push("prehensile");
@@ -9761,7 +9762,7 @@ package classes {
 			if (cock.hasFlag(GLOBAL.FLAG_AMORPHOUS)) collection.push("amorphous");
 			if (cock.hasFlag(GLOBAL.FLAG_SMOOTH)) collection.push("smooth");
 			if (cock.hasFlag(GLOBAL.FLAG_LUBRICATED)) collection.push("lubricated");
-			if (cock.hasFlag(GLOBAL.FLAG_FORESKINNED)) collection.push("foreskinned");
+			if (cock.hasFlag(GLOBAL.FLAG_FORESKINNED)) collection.push("foreskinned", "foreskin-covered");
 			if (cock.hasFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) collection.push("aphrodisiac-laced");
 			
 			return RandomInCollection(collection);
