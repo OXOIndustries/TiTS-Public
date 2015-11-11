@@ -53,7 +53,7 @@ public function steeleTechTarkusOutsideFunction():Boolean
 	}
 	else
 	{
-		output("\n\nSet into the wall of the main corridor through the <i>Nova</i> is a smallish shop bearing your name: a broken neon \"Steele Tech\" sign hangs above the door, although it's usual garish glow is absent, having been turned off. A dusty window set in side of the shop shows stacks of salvaged tech from the now-lost wastelands, along with a much smaller sign in the door: ‘CLOSED’.");
+		output("\n\nSet into the wall of the main corridor through the <i>Nova</i> is a smallish shop bearing your name: a broken neon \"Steele Tech\" sign hangs above the door, although its usual garish glow is absent, having been turned off. A dusty window set in side of the shop shows stacks of salvaged tech from the now-lost wastelands, along with a much smaller sign in the door: ‘CLOSED’.");
 	}
 	
 	return false;
