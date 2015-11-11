@@ -906,11 +906,11 @@ package classes {
 			return "Your knot warms, but nothing happens.";
 		}
 
-		public function flacidMultiplierUnlocked(cockIndex:int, newFlaccidMulti:Number):Boolean
+		public function flaccidMultiplierUnlocked(cockIndex:int, newFlaccidMulti:Number):Boolean
 		{
 			return true;
 		}
-		public function flacidMultiplierLockedMessage():String
+		public function flaccidMultiplierLockedMessage():String
 		{
 			return "Your crotch warms, but nothing happens.";
 		}
