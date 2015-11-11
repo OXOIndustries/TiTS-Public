@@ -5352,8 +5352,8 @@ package classes {
 			}
 			var temp: Number = Math.round((tip + cylinder) * 100) / 100;
 			if (effective) {
-				//if(GLOBAL.FLAG_LUBRICATED) temp *= .75;
-				//if(hasFlag(GLOBAL.FLAG_STICKY)) temp *= 1.25;
+				//if(hasTailFlag(GLOBAL.FLAG_LUBRICATED)) temp *= .75;
+				//if(hasTailFlag(GLOBAL.FLAG_STICKY)) temp *= 1.25;
 			}
 			return Math.round(temp * 100) / 100;
 		}
@@ -6895,6 +6895,7 @@ package classes {
 				cocks[slot].cockColor = RandomInCollection(["green", "purple"]);
 				cocks[slot].addFlag(GLOBAL.FLAG_PREHENSILE);
 				cocks[slot].addFlag(GLOBAL.FLAG_FLARED);
+				cocks[slot].addFlag(GLOBAL.FLAG_LUBRICATED);
 			}
 			if (type == GLOBAL.TYPE_ANEMONE || type == GLOBAL.TYPE_SIREN) {
 				cocks[slot].cockColor = RandomInCollection(["blue", "aquamarine"]);
@@ -9761,9 +9762,10 @@ package classes {
 			if (cock.hasFlag(GLOBAL.FLAG_NUBBY)) collection.push("nubby");
 			if (cock.hasFlag(GLOBAL.FLAG_AMORPHOUS)) collection.push("amorphous");
 			if (cock.hasFlag(GLOBAL.FLAG_SMOOTH)) collection.push("smooth");
-			if (cock.hasFlag(GLOBAL.FLAG_LUBRICATED)) collection.push("lubricated");
+			//if (cock.hasFlag(GLOBAL.FLAG_LUBRICATED)) collection.push("lubricated");
+			//if (cock.hasFlag(GLOBAL.FLAG_STICKY)) collection.push("sticky");
 			if (cock.hasFlag(GLOBAL.FLAG_FORESKINNED)) collection.push("foreskinned", "foreskin-covered");
-			if (cock.hasFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) collection.push("aphrodisiac-laced");
+			//if (cock.hasFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) collection.push("aphrodisiac-laced");
 			
 			return RandomInCollection(collection);
 		}
