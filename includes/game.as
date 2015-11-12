@@ -608,6 +608,17 @@ public function sleepHeal():void
 	pc.removeStatusEffect("Sore Counter");
 	pc.removeStatusEffect("Jaded");
 	
+	// Fecund Figure shape loss (Lose only after sore/working out)
+	if(pc.hasPerk("Fecund Figure") && pc.hasStatusEffect("Sore"))
+	{
+		pc.addPerkValue("Fecund Figure", 1, -1);
+		pc.addPerkValue("Fecund Figure", 2, -1);
+		pc.addPerkValue("Fecund Figure", 3, -1);
+		if(pc.perkv1("Fecund Figure") < 0) pc.setPerkValue("Fecund Figure", 1, 0);
+		if(pc.perkv2("Fecund Figure") < 0) pc.setPerkValue("Fecund Figure", 2, 0);
+		if(pc.perkv3("Fecund Figure") < 0) pc.setPerkValue("Fecund Figure", 3, 0);
+	}
+	
 	if (pc.energy() < pc.energyMax()) pc.energyRaw = pc.energyMax();
 }
 
@@ -1538,6 +1549,21 @@ public function processTime(arg:int):void {
 				venusSubmission( -1);
 				
 				tryProcSaendraXPackEmail();
+				
+				// Fecund Figure shape gain (Gains only while pregnant)
+				if(pc.hasPerk("Fecund Figure"))
+				{
+					if(pc.isPregnant()) pc.addPerkValue("Fecund Figure", 4, 1);
+					if(pc.perkv4("Fecund Figure") > 0)
+					{
+						// 20 days for 1 hips/butt size gain?
+						pc.addPerkValue("Fecund Figure", 1, 0.05); // Hips
+						pc.addPerkValue("Fecund Figure", 2, 0.05); // Butt
+						//pc.addPerkValue("Fecund Figure", 3, 0.0125); // Belly
+						pc.addPerkValue("Fecund Figure", 4, -1); // Gains
+					}
+					if(pc.perkv4("Fecund Figure") < 0) pc.setPerkValue("Fecund Figure", 4, 0);
+				}
 			}
 		}
 		arg--;
@@ -1694,6 +1720,15 @@ public function racialPerkUpdateCheck():void
 				eventBuffer += "\n\n(<b>Perk Lost: 'Nuki Nuts</b> - You no longer meet the requirements. You've lost too many kui-tan transformations.)";
 				pc.removePerk("'Nuki Nuts");
 			}
+		}
+	}
+	if(pc.hasPerk("Fecund Figure"))
+	{
+		if(!hasVagina())
+		{
+			eventBuffer += "\n\nNo longer possessing a vagina, your body rapidly changes and you lose your fertility goddess-like build.";
+			eventBuffer += "\n\n(<b>Perk Lost: Fecund Figure</b>)";
+			pc.removePerk("Fecund Figure");
 		}
 	}
 }
