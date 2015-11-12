@@ -779,7 +779,10 @@ package classes {
 				hipRatingRaw += arg;
 			}
 			
-			var currHipRating:Number = hipRatingRaw + hipRatingMod;
+			var bonus:Number = 0;
+			//9999 if(hasPerk("Fecund Figure")) bonus += perkv1("Fecund Figure");
+			
+			var currHipRating:Number = hipRatingRaw + hipRatingMod + bonus;
 			
 			if (currHipRating < 0)
 			{
@@ -824,7 +827,10 @@ package classes {
 				buttRatingRaw += arg;
 			}
 			
-			var currButtRating:Number = buttRatingRaw + buttRatingMod;
+			var bonus:Number = 0;
+			//9999 if(hasPerk("Fecund Figure")) bonus += perkv2("Fecund Figure");
+			
+			var currButtRating:Number = buttRatingRaw + buttRatingMod + bonus;
 			
 			if (currButtRating < 0)
 			{
@@ -2679,7 +2685,9 @@ package classes {
 			return level * 5;
 		}
 		public function intelligenceMax(): Number {
-			return level * 5;
+			var bonuses:int = 0;
+			//9999 if(hasPerk("Cybernetic Synchronization")) bonuses += (perkv1("Cybernetic Synchronization") * cyborgScore());
+			return level * 5 + bonuses;
 		}
 		public function willpowerMax(): Number {
 			return level * 5;
@@ -3175,7 +3183,7 @@ package classes {
 		public function hasLongEars(): Boolean
 		{
 			// For ear types that support the earLength value. At least 1 inch long or more to count.
-			if(earLength >= 1 && InCollection(earType, GLOBAL.TYPE_SYLVAN, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_LAPINE)) return true;
+			if(earLength >= 1 && InCollection(earType, GLOBAL.TYPE_SYLVAN, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_GABILANI)) return true;
 			return false;
 		}
 		public function earDescript(): String
@@ -3235,6 +3243,9 @@ package classes {
 					break;
 				case GLOBAL.TYPE_DEER:
 					adjectives = ["deer", "pointed", "oval-shaped", "pointy", "softly furred"];
+					break;
+				case GLOBAL.TYPE_GABILANI:
+					adjectives = ["gabilani", "pointy goblin", "long triangular", "sharp alien", "elven"];
 					break;
 			}
 			if (hasLongEars()) adjectives.push(num2Text(Math.round(earLength)) + "-inch long");
@@ -6762,12 +6773,14 @@ package classes {
 			vaginas[slot].clearFlags();
 
 			//Add bonus flags and shit.
-			if (type == GLOBAL.TYPE_EQUINE) {
+			if (type == GLOBAL.TYPE_EQUINE)
+			{
 				vaginas[slot].clits = 1;
 				vaginas[slot].vaginaColor = "black";
 				vaginas[slot].minLooseness = 2;
 			}
-			if (type == GLOBAL.TYPE_HUMAN) {
+			if (type == GLOBAL.TYPE_HUMAN)
+			{
 				vaginas[slot].clits = 1;
 				vaginas[slot].vaginaColor = "pink";
 			}
@@ -6822,6 +6835,13 @@ package classes {
 				vaginas[slot].addFlag(GLOBAL.FLAG_NUBBY);
 				vaginas[slot].addFlag(GLOBAL.FLAG_TENDRIL);
 				vaginas[slot].addFlag(GLOBAL.FLAG_APHRODISIAC_LACED);
+			}
+			if (type == GLOBAL.TYPE_GABILANI)
+			{
+				vaginas[slot].clits = 1;
+				vaginas[slot].vaginaColor = RandomInCollection(["pink", "pink", "aquamarine", "purple"]);
+				vaginas[slot].minLooseness = 1;
+				vaginas[slot].addFlag(GLOBAL.FLAG_LUBRICATED);
 			}
 		}
 		//Change cock type
@@ -6954,6 +6974,11 @@ package classes {
 				cocks[slot].cockColor = RandomInCollection(["green", "purple"]);
 				cocks[slot].knotMultiplier = 1;
 				cocks[slot].addFlag(GLOBAL.FLAG_PREHENSILE);
+			}
+			if (type == GLOBAL.TYPE_GABILANI) {
+				cocks[slot].knotMultiplier = 1;
+				cocks[slot].cockColor = RandomInCollection(["pink", "pink", "olive", "purple"]);
+				cocks[slot].addFlag(GLOBAL.FLAG_DOUBLE_HEADED);
 			}
 		}
 		//PC can fly?
@@ -7237,6 +7262,7 @@ package classes {
 			if (horseScore() >= 4) race = "horse-morph";
 			if (pandaScore() >= 4) race = "panda-morph";
 			if (ausarScore() >= 4) race = "ausar"
+			if (gabilaniScore() >= 5) race = "gabilani";
 			if (kaithritScore() >= 6) race = "kaithrit"
 			if (leithanScore() >= 6) race = "leithan";
 			if (nukiScore() >= 6) race = "kui-tan";
@@ -7340,6 +7366,26 @@ package classes {
 			if (armType == GLOBAL.TYPE_BADGER) counter++;
 			if (faceType == GLOBAL.TYPE_BADGER) counter++;
 			if (counter > 0 && skinType == GLOBAL.SKIN_TYPE_FUR) counter++;
+			return counter;
+		}
+		public function gabilaniScore():int
+		{
+			var counter:int = 0;
+			if (skinType == GLOBAL.SKIN_TYPE_SKIN && InCollection(skinTone, "green", "lime", "emerald", "aqua", "pale blue", "turquoise", "yellow", "amber", "topaz")) counter++;
+			if (tallness >= 24 && tallness <= 48) counter++;
+			if (earType == GLOBAL.TYPE_GABILANI) counter++;
+			if (counter > 0 && faceType == GLOBAL.TYPE_GABILANI && !hasFaceFlag(GLOBAL.FLAG_MUZZLED))
+			{
+				counter++;
+				if (eyeType == GLOBAL.TYPE_GABILANI) counter++;
+				//9999 if (counter > 2 && isCyborg()) counter += cyborgScore();
+			}
+			if (counter > 3 && hasCock(GLOBAL.TYPE_GABILANI)) counter++;
+			if (counter > 3 && hasVaginaType(GLOBAL.TYPE_GABILANI)) counter++;
+			if (!isBiped() || !hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) counter--;
+			if (tallness >= 72) counter--;
+			if (tallness >= 84) counter--;
+			if (tallness >= 96) counter--;
 			return counter;
 		}
 		public function horseScore(): int
@@ -7477,6 +7523,32 @@ package classes {
 		public function isRahn(): Boolean {
 			if(race() == "rahn" || race() == "fuu'rahn" || race() == "zel'rahn" || race() == "loo'rahn" || race() == "doh'rahn" || race() == "go'rahn") return true;
 			else if (race().indexOf("rahn") != -1) return true;
+			return false;
+		}
+		public function cyborgScore():int
+		{
+			var counter:int = 0;
+			// List of valid synth/cyborg parts here!
+			//if (skinType == 9999) counter++;
+			//if (hairType == 9999) counter++;
+			//if (faceType == 9999) counter++;
+			//if (tongueType == 9999) counter++;
+			if (eyeType == GLOBAL.TYPE_SYNTHETIC) counter++;
+			//if (earType == 9999) counter++;
+			//if (armType == 9999) counter++;
+			//if (legType == 9999) counter++;
+			//if (wingType == 9999) counter++;
+			//if (tailType == 9999) counter++;
+			if (cockTotal(GLOBAL.TYPE_SYNTHETIC) > 0) counter++;
+			if (totalVaginas(GLOBAL.TYPE_SYNTHETIC) > 0) counter++;
+			//if (milkType == 9999) counter++;
+			if (cumType == GLOBAL.FLUID_TYPE_OIL) counter++;
+			//if (girlCumType == 9999) counter++;
+			return counter;
+		}
+		public function isCyborg(numParts:int = 1):Boolean
+		{
+			if(cyborgScore() >= numParts) return true;
 			return false;
 		}
 		public function sackDescript(forceAdjectives: Boolean = false, adjectives: Boolean = true): String {
@@ -8998,6 +9070,13 @@ package classes {
 				else
 					vag += RandomInCollection(["synth-pussy", "robo-cunt", "fuck-hole", "synth-twat", "robo-twat", "synth-snatch", "mecha-pussy", "robo-pussy", "synth-cunt"]);
 			}
+			else if (type == GLOBAL.TYPE_GABILANI)
+			{
+				if (!simple)
+					vag += RandomInCollection(["gabilani gash", "dexterous vagina", "goblin cunny", "inhuman honeypot", "well muscled snatch", "capable cunt", "gabilani pussy", "dexterous goblin-cunt"]);
+				else
+					vag += RandomInCollection(["inhuman-pussy", "goblin-cunt", "fuck-hole", "xeno-twat", "goblin-twat", "goblin-snatch", "alien-pussy", "gabilani-pussy", "gabilani-cunt"]);
+			}
 			else
 			{
 				if (!simple)
@@ -9740,6 +9819,9 @@ package classes {
 				case GLOBAL.TYPE_COCKVINE:
 					collection = ["plant", "vine-like"];
 					break;
+				case GLOBAL.TYPE_GABILANI:
+					collection = ["gabilani", "goblin"];
+					break;
 				case GLOBAL.TYPE_INHUMAN:
 					collection = ["inhuman", "human-like", "alien"];
 					break;
@@ -9767,6 +9849,7 @@ package classes {
 			//if (cock.hasFlag(GLOBAL.FLAG_STICKY)) collection.push("sticky");
 			if (cock.hasFlag(GLOBAL.FLAG_FORESKINNED)) collection.push("foreskinned", "foreskin-covered");
 			//if (cock.hasFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) collection.push("aphrodisiac-laced");
+			if (cock.hasFlag(GLOBAL.FLAG_DOUBLE_HEADED)) collection.push("double-headed");
 			
 			return RandomInCollection(collection);
 		}
@@ -10007,6 +10090,15 @@ package classes {
 				choices = ["dick", "shaft", "prick", "cock", "tool", "member", "cock", "pecker", "dong", "phallus"];
 				if (tail && rand(2) == 0) noun += "tail-";
 				else if(descript != "insectile ") choices.push("bug-cock", "bug-shaft", "bug-dick");
+				noun += choices[rand(choices.length)];
+			} else if (type == GLOBAL.TYPE_GABILANI) {
+				if (!simple) {
+					choices = ["alien", "bulbous", "double-crowned", "gabilani", "goblin", "inhuman", "exotic", "two-headed"];
+					descript += choices[rand(choices.length)] + " ";
+				}
+				choices = ["dick", "shaft", "prick", "cock", "tool", "member", "cock", "pecker", "phallus"];
+				if (tail && rand(2) == 0) noun += "tail-";
+				else if(descript != "goblin " || descript != "gabilani ") choices.push("goblin-dick", "goblin-cock", "goblin-prick", "gabilani-dick", "gabilani-cock", "gabilani-prick");
 				noun += choices[rand(choices.length)];
 			} else if (type == GLOBAL.TYPE_INHUMAN) {
 				if (!simple) {
@@ -10679,12 +10771,12 @@ package classes {
 		}
 		public function fluidFlavor(arg: int):String {
 			var collection:Array = [];
-				//CUM & MILK TYPES
+			//CUM & MILK TYPES
 			if (arg == GLOBAL.FLUID_TYPE_MILK) {
 				collection = ["creamy","creamy","creamy","creamy","creamy","delicious","delicious","delicious","sweet","creamy"];
-			} else if(arg == GLOBAL.FLUID_TYPE_CUM) {
+			} else if (arg == GLOBAL.FLUID_TYPE_CUM) {
 				collection = ["salty","salty","salty","salty","salty","salty","salty","potent","potent","potent"];
-			} else if (arg == GLOBAL.FLUID_TYPE_HONEY || arg == GLOBAL.FLUID_TYPE_NECTAR) {
+			} else if (InCollection(arg, GLOBAL.FLUID_TYPE_HONEY, GLOBAL.FLUID_TYPE_NECTAR)) {
 				collection = ["sweet","sweet","sweet","sweet","sweet","syrupy","syrupy","syrupy","sugary","sugary"];
 			} else if (arg == GLOBAL.FLUID_TYPE_OIL) {
 				collection = ["tasteless"];
@@ -10698,16 +10790,20 @@ package classes {
 				collection = ["creamy","creamy","creamy","delicious","delicious","sweet","chocolatey","cocoa-flavored","rich"];
 			} else if (arg == GLOBAL.FLUID_TYPE_STRAWBERRY_MILK) {
 				collection = ["creamy","creamy","creamy","delicious","delicious","sweet","strawberry-flavored","fruity","rich"];
-			} else if(arg == GLOBAL.FLUID_TYPE_SYDIAN_CUM) {
+			} else if (arg == GLOBAL.FLUID_TYPE_SYDIAN_CUM) {
 				collection = ["citrusy","citrusy","citrusy","citrusy","citrusy","tangy","tangy","tangy","metallic","metallic"];
-			} else if(arg == GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK || arg == GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK) {
+			} else if (InCollection(arg, GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK, GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK)) {
 				collection = ["sweet","fruity"];
-			} else if(arg == GLOBAL.FLUID_TYPE_LEITHAN_MILK) {
+			} else if (arg == GLOBAL.FLUID_TYPE_LEITHAN_MILK) {
 				collection = ["tangy","tangy","tangy","tangy","tangy","sweet","sweet","sweet","intoxicating","intoxicating"];
 			} else if (arg == GLOBAL.FLUID_TYPE_VANILLA) {
 				collection = ["sweet","sugary","creamy","vanilla"];
-			} else if(arg == GLOBAL.FLUID_TYPE_NYREA_CUM) {
+			} else if (arg == GLOBAL.FLUID_TYPE_NYREA_CUM) {
 				collection = ["salty","salty","salty","salty","salty","salty","salty","potent","potent","potent"];
+			} else if (arg == GLOBAL.FLUID_TYPE_GABILANI_CUM) {
+				collection = ["salty","potent"];
+			} else if (arg == GLOBAL.FLUID_TYPE_GABILANI_GIRLCUM) {
+				collection = ["tangy","flavorful"];
 			}
 			
 			else collection = ["bland"];
@@ -10718,11 +10814,11 @@ package classes {
 			var collection:Array = [];
 			
 			//CUM & MILK TYPES
-			if (arg == GLOBAL.FLUID_TYPE_MILK || arg == GLOBAL.FLUID_TYPE_CHOCOLATE_MILK || arg == GLOBAL.FLUID_TYPE_STRAWBERRY_MILK || GLOBAL.FLUID_TYPE_VANILLA) {
+			if (InCollection(arg, GLOBAL.FLUID_TYPE_MILK, GLOBAL.FLUID_TYPE_CHOCOLATE_MILK, GLOBAL.FLUID_TYPE_STRAWBERRY_MILK, GLOBAL.FLUID_TYPE_VANILLA)) {
 				collection = ["creamy"];
-			} else if(arg == GLOBAL.FLUID_TYPE_CUM || arg == GLOBAL.FLUID_TYPE_SYDIAN_CUM) {
+			} else if (InCollection(arg, GLOBAL.FLUID_TYPE_CUM, GLOBAL.FLUID_TYPE_SYDIAN_CUM)) {
 				collection = ["thick","thick","thick","slick","creamy"];
-			} else if (arg == GLOBAL.FLUID_TYPE_HONEY || arg == GLOBAL.FLUID_TYPE_NECTAR) {
+			} else if (InCollection(arg, GLOBAL.FLUID_TYPE_HONEY, GLOBAL.FLUID_TYPE_NECTAR)) {
 				collection = ["sticky","sticky","sticky","slick","slick"];
 			} else if (arg == GLOBAL.FLUID_TYPE_OIL) {
 				collection = ["slippery","slick"];
@@ -10732,12 +10828,14 @@ package classes {
 				collection = ["slick","slick","slick","slick","slick","slick","slick","slippery","slippery","slippery"];
 			} else if (arg == GLOBAL.FLUID_TYPE_CUMSAP) {
 				collection = ["slick","slick","slick","slick","slick","sticky","sticky","sticky","syrupy","syrupy"];
-			} else if (arg == GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK || arg == GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK) {
+			} else if (InCollection(arg, GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK, GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK)) {
 				collection = ["creamy","creamy","creamy","sticky","sticky"];
 			} else if (arg == GLOBAL.FLUID_TYPE_LEITHAN_MILK) {
 				collection = ["thick","thick","thick","creamy","creamy"];
-			} else if(arg == GLOBAL.FLUID_TYPE_NYREA_CUM) {
+			} else if (arg == GLOBAL.FLUID_TYPE_NYREA_CUM) {
 				collection = ["thick","thick","thick","slick","creamy"];
+			} else if (InCollection(arg, GLOBAL.FLUID_TYPE_GABILANI_CUM, GLOBAL.FLUID_TYPE_GABILANI_GIRLCUM)) {
+				collection = ["oily","coating"];
 			}
 			
 			else collection = ["fluid"];
@@ -10748,9 +10846,9 @@ package classes {
 			var collection:Array = [];
 			
 			//CUM & MILK TYPES
-			if (arg == GLOBAL.FLUID_TYPE_MILK || arg == GLOBAL.FLUID_TYPE_CUM || arg == GLOBAL.FLUID_TYPE_VANILLA) {
+			if (InCollection(arg, GLOBAL.FLUID_TYPE_MILK, GLOBAL.FLUID_TYPE_CUM, GLOBAL.FLUID_TYPE_VANILLA)) {
 				collection = ["white","white","white","white","white","alabaster","alabaster","alabaster","ivory","ivory"];
-			} else if (arg == GLOBAL.FLUID_TYPE_HONEY || arg == GLOBAL.FLUID_TYPE_NECTAR) {
+			} else if (InCollection(arg, GLOBAL.FLUID_TYPE_HONEY, GLOBAL.FLUID_TYPE_NECTAR)) {
 				collection = ["amber","amber","amber","amber","amber","yellow","yellow","yellow","gold","tawny"];
 			} else if (arg == GLOBAL.FLUID_TYPE_OIL) {
 				collection = ["semi-transparent","semi-transparent","semi-transparent","semi-transparent","semi-transparent","transluscent brown","transluscent brown","transluscent brown","lucent","lucent"];
@@ -10760,9 +10858,9 @@ package classes {
 				collection = ["transluscent","transluscent","transluscent","transluscent","transluscent","clear","clear","clear","semi-transparent","semi-transparent"];
 			} else if (arg == GLOBAL.FLUID_TYPE_CUMSAP) {
 				collection = ["off-white","off-white","off-white","off-white","off-white","pearl-marbled amber","pearl-marbled amber","pearl-marbled amber","ivory-amber","ivory-amber"];
-			} else if(arg == GLOBAL.FLUID_TYPE_CHOCOLATE_MILK) {
+			} else if (arg == GLOBAL.FLUID_TYPE_CHOCOLATE_MILK) {
 				collection = ["chocolate","chocolate","chocolate","chocolate","chocolate","creamy brown, chocolate","creamy brown, chocolate","creamy brown, chocolate","dark, chocolate","dark, chocolate"];
-			} else if(arg == GLOBAL.FLUID_TYPE_STRAWBERRY_MILK) {
+			} else if (arg == GLOBAL.FLUID_TYPE_STRAWBERRY_MILK) {
 				collection = ["pink","pink","pink","pink","pink","creamy pink","creamy pink","creamy pink","light, pink","light, pink"];
 			} else if (arg == GLOBAL.FLUID_TYPE_SYDIAN_CUM) {
 				collection = ["silvery","silvery","silvery","silvery","silvery","metallic silver","metallic silver","metallic silver","silver","silver"];
@@ -10774,6 +10872,10 @@ package classes {
 				collection = ["alabaster","alabaster","alabaster","alabaster","alabaster","semi-transparent","semi-transparent","semi-transparent","off-white","off-white"];
 			} else if (arg == GLOBAL.FLUID_TYPE_NYREA_CUM) {
 				collection = ["purple","purple"];
+			} else if (arg == GLOBAL.FLUID_TYPE_GABILANI_CUM) {
+				collection = ["off-white", "semi-clear", "semi-transparent"];
+			} else if (arg == GLOBAL.FLUID_TYPE_GABILANI_GIRLCUM) {
+				collection = ["gray", "semi-clear", "semi-transparent"];
 			}
 			
 			else collection = ["ERROR, INVALID FLUID TYPE."];
@@ -10782,14 +10884,17 @@ package classes {
 		}
 		public function fluidColorSimple(arg: int):String
 		{
-			if(arg == GLOBAL.FLUID_TYPE_LEITHAN_MILK || arg == GLOBAL.FLUID_TYPE_CUMSAP || GLOBAL.FLUID_TYPE_MILK == arg || arg == GLOBAL.FLUID_TYPE_CUM || arg == GLOBAL.FLUID_TYPE_VANILLA || arg == GLOBAL.FLUID_TYPE_MILKSAP) return "white";
-			else if (arg == GLOBAL.FLUID_TYPE_HONEY || arg == GLOBAL.FLUID_TYPE_NECTAR) return "yellow";
-			else if (arg == GLOBAL.FLUID_TYPE_OIL || arg == GLOBAL.FLUID_TYPE_GIRLCUM) return "transparent";
-			else if(arg == GLOBAL.FLUID_TYPE_CHOCOLATE_MILK) return "brown";
-			else if(arg == GLOBAL.FLUID_TYPE_STRAWBERRY_MILK || arg == GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK) return "pink";
+			
+			if (InCollection(arg, GLOBAL.FLUID_TYPE_LEITHAN_MILK, GLOBAL.FLUID_TYPE_CUMSAP, GLOBAL.FLUID_TYPE_MILK, GLOBAL.FLUID_TYPE_CUM, GLOBAL.FLUID_TYPE_VANILLA, GLOBAL.FLUID_TYPE_MILKSAP)) return "white";
+			else if (InCollection(arg, GLOBAL.FLUID_TYPE_HONEY, GLOBAL.FLUID_TYPE_NECTAR)) return "yellow";
+			else if (InCollection(arg, GLOBAL.FLUID_TYPE_OIL, GLOBAL.FLUID_TYPE_GIRLCUM)) return "transparent";
+			else if (arg == GLOBAL.FLUID_TYPE_CHOCOLATE_MILK) return "brown";
+			else if (InCollection(arg, GLOBAL.FLUID_TYPE_STRAWBERRY_MILK, GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK)) return "pink";
 			else if (arg == GLOBAL.FLUID_TYPE_SYDIAN_CUM) return "silver";
-			else if(arg == GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK) return "purple";
+			else if (arg == GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK) return "purple";
 			else if (arg == GLOBAL.FLUID_TYPE_NYREA_CUM) return "purple";
+			else if (arg == GLOBAL.FLUID_TYPE_GABILANI_CUM) return "white";
+			else if (arg == GLOBAL.FLUID_TYPE_GABILANI_GIRLCUM) return "gray";
 			return "white";
 		}
 		public function fluidNoun(arg: int): String {
@@ -10798,7 +10903,7 @@ package classes {
 			//CUM & MILK TYPES
 			if (arg == GLOBAL.FLUID_TYPE_MILK) {
 				collection = ["milk","cream"];
-			} else if (arg == GLOBAL.FLUID_TYPE_CUM || arg == GLOBAL.FLUID_TYPE_SYDIAN_CUM || arg == GLOBAL.FLUID_TYPE_NYREA_CUM) {
+			} else if (InCollection(arg, GLOBAL.FLUID_TYPE_CUM, GLOBAL.FLUID_TYPE_SYDIAN_CUM, GLOBAL.FLUID_TYPE_NYREA_CUM, GLOBAL.FLUID_TYPE_GABILANI_CUM)) {
 				collection = ["cum"];
 			} else if (arg == GLOBAL.FLUID_TYPE_HONEY) {
 				collection = ["honey"];
@@ -10806,13 +10911,13 @@ package classes {
 				collection = ["oil"];
 			} else if (arg == GLOBAL.FLUID_TYPE_MILKSAP) {
 				collection = ["milk-sap"];
-			} else if (arg == GLOBAL.FLUID_TYPE_GIRLCUM) {
+			} else if (InCollection(arg, GLOBAL.FLUID_TYPE_GIRLCUM, GLOBAL.FLUID_TYPE_GABILANI_GIRLCUM)) {
 				collection = ["girl-cum"];
 			} else if (arg == GLOBAL.FLUID_TYPE_CUMSAP) {
 				collection = ["cum-sap","cum-sap","botanical spunk","floral jism"];
-			} else if(arg == GLOBAL.FLUID_TYPE_CHOCOLATE_MILK || arg == GLOBAL.FLUID_TYPE_STRAWBERRY_MILK || arg == GLOBAL.FLUID_TYPE_VANILLA) {
+			} else if(InCollection(arg, GLOBAL.FLUID_TYPE_CHOCOLATE_MILK, GLOBAL.FLUID_TYPE_STRAWBERRY_MILK, GLOBAL.FLUID_TYPE_VANILLA)) {
 				collection = ["milk"];
-			} else if (arg == GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK || arg == GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK) {
+			} else if (InCollection(arg, GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK, GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK)) {
 				collection = ["milk"];
 			} else if (arg == GLOBAL.FLUID_TYPE_NECTAR) {
 				collection = ["nectar"];
@@ -11471,7 +11576,10 @@ package classes {
 		public var bellyRatingMod:Number = 0;
 		public function bellyRating():Number
 		{
-			return bellyRatingRaw + bellyRatingMod;
+			var bonus:Number = 0;
+			//9999 if(hasPerk("Fecund Figure")) bonus += perkv3("Fecund Figure");
+			
+			return bellyRatingRaw + bellyRatingMod + bonus;
 		}
 		
 		// Pregnancy Data Storage
