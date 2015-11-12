@@ -180,7 +180,12 @@ public function appearance(target:Creature):void {
 			else output2("and covered with " + target.skinFurScales(true,true));
 			output2(". It's almost rabbit-like, except for the length of your muzzle.");
 		}
-
+		else if(target.faceType == GLOBAL.TYPE_GABILANI) {
+			output2(" You have a narrow-jawed gabilani face");
+			if(target.skinType != GLOBAL.SKIN_TYPE_SKIN) output2(", covered in " + target.skinFurScales(true,true));
+			output2(", appearing almost goblinoid with alien facial features.");
+		}
+		
 		//M/F stuff!
 		output2(" Overall, your visage has " + target.faceDesc() + ".");
 		//Eyes
@@ -222,6 +227,11 @@ public function appearance(target:Creature):void {
 		else if (target.eyeType == GLOBAL.TYPE_MYR)
 		{
 			output2(" Your eyes are gleaming, solid " + target.eyeColor + " orbs that seem to give little away.");
+		}
+		else if (target.eyeType == GLOBAL.TYPE_GABILANI)
+		{
+			if(target.eyeColor == "black") output2(" Your alien eyes are dark as the void, with irises that are completely black and indistinguishible from the pupils themselves, making you appear disconcerting from afar.");
+			else output2(" Your eyes are completely " + target.eyeColor + ", with irises of the same color and indistinguishible from the pupils themselves, making you appear quite alien.");
 		}
 		else 
 		{
@@ -272,6 +282,12 @@ public function appearance(target:Creature):void {
 				//5+ inches:
 				else output2(" A pair of exquisitely long, elf-like ears extend a full " + num2Text(target.earLength) + " inches from the sides of your head, triangular in shape with a bit of downward curve along their length. A thought is all it takes for them to change their angle to suit your expression, letting even the most rugged face pull off a cutesy pout with ease.");
 			}
+			else if(target.earType == GLOBAL.TYPE_GABILANI)
+			{
+				output2(" A pair of long, triangular goblin ears point outwards");
+				if(target.earLength > 1) output2(num2Text(target.earLength) + " inches from your");
+				output2(" from your skull.");
+			}
 			if(target.antennae == 2) output2(" Floppy antennae also appear on your head, bouncing and swaying in the breeze.");
 		}
 		//not bald
@@ -305,6 +321,12 @@ public function appearance(target:Creature):void {
 				else if(target.earLength <= 4) output2(" The " + target.hairDescript(true,true) + " on your head can't hide a pair of triangular, elven ears. They stick out a full " + num2Text(target.earLength) + " inches from the sides of your head. Small extra muscles let them twitch or droop expressively.");
 				//5+ inches:
 				else output2(" The " + target.hairDescript(true,true) + " atop your head can't possibly hide a pair of exquisitely long, elf-like ears. They extend a full " + num2Text(target.earLength) + " inches from the sides of your head, triangular in shape with a bit of downward curve along their length. A thought is all it takes for them to change their angle to suit your expression, letting even the most rugged face pull off a cutesy pout with ease.");
+			}
+			else if(target.earType == GLOBAL.TYPE_GABILANI)
+			{
+				output2(" The " + target.hairDescript(true,true) + " on your head is parted by a pair of");
+				if(target.earLength > 1) output2(num2Text(target.earLength) + "-inch");
+				output2(" long, triangular goblin ears.");
 			}
 			if(target.antennae == 2) {
 				if(target.earType == GLOBAL.TYPE_LAPINE) output2(" Limp antennae also grow from just behind your hairline, waving and swaying in the breeze with your ears.");
@@ -1669,6 +1691,11 @@ public function dickBonusForAppearance(target:Creature, x:int = 0):void
 		output2(" Your shaft ends in a blunted tip");
 		if(target.cocks[x].cType == GLOBAL.TYPE_EQUINE) output2(" similar to a terran horse's");
 		output2(".");
+	}
+	//Double-headed
+	else if(target.cocks[x].hasFlag(GLOBAL.FLAG_DOUBLE_HEADED))
+	{
+		output2(" The head of your alien-looking cock consists of bulbous twin glans, ready to double the sensation of penetration.");
 	}
 	//Demon cock flavor
 	if(target.cocks[x].cType == GLOBAL.TYPE_DEMONIC)
