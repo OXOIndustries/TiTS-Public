@@ -39,7 +39,7 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Varmints", varmintCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "V-Ko", VKoCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Gryvain", gryvainCodexEntry, true);
-
+	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Mhen'ga", "Cunt Snakes", cuntSnakeCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Mhen'ga", "Kerokoras",kerokorasCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Mhen'ga", "Mimbranes", mimbraneCodexEntry, true);
@@ -55,7 +55,8 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Myrellion", "Myr Fungus", myrFungusCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Myrellion", "Nyrea", nyreaCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Myrellion", "Red Myr", redMyrmedionCodexEntry);
-		
+	
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Tarkus","Gabilani",grayGooCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Tarkus","Gray Goos",grayGooCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Tarkus","Lapinara",lapinaraCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Tarkus","Raskvel",raskVelCodexEntry);
@@ -64,7 +65,7 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items","Dumbfuck",dumbfuckCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items","Gush",gushCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items","The Treatment",treatmentCodexEntry);
-
+	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "SynthSheath", synthSheathCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "BionaHoles", bionaholeCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Grav Cuffs", gravCuffsCodex);
@@ -73,7 +74,7 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Technology", "AI Systems", AISystemsCodexEntry, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Technology", "Item Mechanics", mechanicsCodex, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Technology", "Maia Series AI", Bess13CodexEntry);
-
+	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Dragon’s Hoard", dragonsHordeCodexStory, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Bull’s Strength", bullsStrength, true);
 }
@@ -993,42 +994,33 @@ public function zilCodexEntry():void
 
 /* Tarkus */
 
-public function grayGooCodex():void
+public function gabilaniCodex():void
 {
 	clearOutputCodex();
-	showBust("GRAY_GOO");
-	outputCodex(header("Hazard: \"Gray Goos\""));
-	outputCodex("<b>Name (Singular):</b> Gray Goo");
-	outputCodex("\n\n");
-	outputCodex("The Gray Goo is an enemy seemingly unique to the junkyard wastelands of Tarkus, comprised of a network of small nanobots - mostly discarded microsurgeons and one-shot stimulants that haven't been properly disposed of. Gray goos require natural lubricants like oil in order to move around effectively, and may target living organics as potential victims for sexual assault in an attempt to use orgasmic fluids as an emergency alternative.\n\nThey're smarter the more of them there are - blasting away at the grey goo with weapons will slowly corrupt their networked A.I. even if it only destroys a few bots. They are also susceptible to \"sensory overload,\" which may cause a temporary shutdown in their offensive programs, leaving them helpless but to beg for their necessary fluids. While the network has no specific shape, their drive for humanoid contact often leads them to adopt exaggerated humanoid figures, such as comically busty women or satyrian males in ill-conceived attempts to entice their prey. Recorded assaults generally involve a sexual harvesting, with the goos penetrating sexual orifices and molding themselves around phalluses and similar organs to stimulate orgasm.\n\nWhile no fatalities have yet been reported due to Gray Goo attacks, U.G.C. Scout Authority recommends explorers on Tarkus remain well-hydrated in the event of attack.");
-	outputCodex("\n\n");
-	CodexManager.viewedEntry("Gray Goos");
-}
-public function lapinaraCodexEntry():void
-{
-	clearOutputCodex();
-	showBust("LAPINARA","LAPINARA_2");
-	outputCodex(header("Lapinara"));
-	outputCodex("<b>Name (Singular & Plural):</b> Lapinara");
-	outputCodex("\n<b>Sexes:</b> Female (parasitic variant), Female (non-parasitic variant), Male, Herm, and Genderless.");
-	outputCodex("\n<b>Height:</b> Anywhere between 3 and 4 feet for all genders.");
-	outputCodex("\n<b>Weight:</b> Anywhere between 40 and 85 pounds for all genders.");
-	outputCodex("\n<b>Hair & Fur:</b> Hair is fast-growing, and typically very soft and curly. The hair and fur of parasitic females is typically white, but can sometimes be silver or gray. All Lapinara have a thin layer of fur covering the entirety of their bodies. The hair is longer and curlier on the lower legs and forearms, resembling warmers. They have a long, puffy tuft of fuzz at the end of their long, whip-like tails.");
-	outputCodex("\n<b>Eyes:</b> Large and rabbit-like; parasitic females always have glassy, cloudy, gray eyes. They resemble crystal balls.");
+	showBust("COLENSO","","");
+	outputCodex(header("Gabilani"));
+	if(silly) outputCodex("<i>They’re eating her... and then they’re going to eat me! ..... OH MY GOOOOOOOOOOOOOOOOOOOOOOD!!!</i>\n\n");
+	outputCodex("<b>Name (Singular & Plural):</b> Gabilani (colloquially known as “Goblin” or “Goblins”)");
+	outputCodex("\n<b>Sexes:</b> Male and female, equal split.");
+	outputCodex("\n<b>Height:</b> 2’8” to 3’6”, with females averaging an inch or two taller than males.");
+	outputCodex("\n<b>Weight:</b> 40lbs to 55lbs.");
+	outputCodex("\n<b>Hair:</b> Black (naturally), many choose to dye their hair more unusual colors. As gabilani age, their hair greys and eventually turns white. Males can grow beards, however the species as a whole lack body hair.");
+	outputCodex("\n<b>Eyes:</b> Two eyes, similar to humans, save that the pigmentation of their irises is black, making them virtually indistinguishable from their pupils to the naked eye. Gabilani have poor eyesight synonymous with a subterranean evolution. Glasses and ocular cybernetic enhancements are common.");
+	outputCodex("\n<b>Ears:</b> Gabilani have large, pointed, flexible ears. These provide them with ausar-like hearing and a pronounced sensitivity to vibration.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Features"));
-	outputCodex("The Lapinara are a sapient, rabbit-like race on digitigrade legs. Their faces are mostly humanesque, possessing tiny, button-like, constantly wiggling noses, as well as long whiskers. Their ears are large and rabbit-like. Given their long incisors and molars built for tough grinding, they have a very powerful, painful bite. A pair of horns, similar to that of the pronghorn grow from the foreheads of all genders. Parasitic females, non-parasitic females, and fem-herms have small, perky breasts, never more than A-cup. Parasitic gender skin comes in varying shades of gray. The skin tone of the other genders is determined by their host parent.");
-	outputCodex("\n\n");
-	outputCodex(blockHeader("Environs Typically Inhabited"));
-	outputCodex("The Lapinara are a highly adaptive species. Not possessing a home planet of their own, they are a nomadic kind. Many of the parasitic variety, however, have taken up residence on Tarkus, taking advantage of the local sex-loving goblins and Raskvel, as well as any oblivious visitors.");
+	outputCodex("Gabilani are humanoid in structure, but are smaller in size to the galactic norm. They look not unlike scaled down humans, or more like the fantasy “goblin”, as they are commonly known by some terrans. This may be due to the fact that their skin has a green pigmentation in most cases, but can vary between yellowish and aquamarine. They have nearly identical facial features to human ones, aside from a tendency towards slightly larger noses and a more triangular visage.\n\nGabilani females are on average slightly larger than their male counterparts. This is matched with a higher level of natural strength and aggression in females over males.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Reproduction"));
-	outputCodex("Parasitic females are nothing short of pests. They are sex machines, completely obsessed with implanting their eggs into an unfortunate host. While appearing to have typical male genitalia, they are actually anything but. Their “penis” is actually an ovipositor, and their “testicles” instead hold their ovaries. These faux testicles swell up considerably when they have eggs ready. The presence of eggs causes the parasitic Lapinara to enter a rut-like state that doesn’t end until they are rid of them. The pre-cum of the parasitic Lapinara works as an anesthetic, preventing egg implantation from hurting the host.\n\nThe eggs are soft-shelled, and can only continue development if they’re implanted via a host organism’s anus or vagina, where they absorb the second half of the required genetic material. Labor is initiated when the soft outer shell dissolves. This produces non-parasitic offspring that are always born in pairs, and always the same gender as the host parent. Hair, eye, and skin color is also determined by the host parent. Males and herms tend to inherit penis type from their host parent, and females and herms tend to inherit vagina type from their host parent.\n\nMore parasitic females are produced when one parasitic female implants her eggs in another parasitic female. The non-parasitic genders reproduce just like any human, albeit with significantly shorter pregnancies, never longer than three months, but never shorter than two.");
+	outputCodex("Gabilani are a highly sexed species. They do not have an estrous cycle, and fertile females appear capable of having children at any time. Pregnancies usually last for 3 months, with mothers giving birth to 3 to 5 children per litter. Larger or smaller litters are possible, but very rare. A female gabilani's hips and buttocks grow larger with each pregnancy, and their sizes are often a good indication of how many children a particular female has had. Aside from the lack of an estrous cycle and body hair, gabilani have many mammalian traits and their females nurse their young with breast milk. Both gabilani sexes are quite capable of interbreeding with a number of races.\n\nGabilani vaginas are naturally loose, but possess a set of specialized muscles that let them twist and rotate their interior passage around. Females have full voluntary control over these muscles. These two characteristics allow them to house and tighten down upon almost any size and type of erection. Gabilani males often find it difficult to orgasm without some twisting on their dicks. This leads to male gabilani having greater sexual endurance than the galactic norm, taking a long time to orgasm whilst having sex with non-gabilani.\n\nDespite their small stature, a male gabilani's penis is, on average, 4 to 6 inches in length and 1 and a half inches in diameter. It has a bulbous shape, featuring two distinct, sequential “heads” at its tip separated by a ridge.");
 	outputCodex("\n\n");
-	outputCodex(blockHeader("History"));
-	outputCodex("The epidemic of parasitic Lapinara breeding has led to the foundation of the Lapinara Sanctuary, a charity organization that cares for orphan Lapinara, offers adoption, and provides oophorectomies (ovary removal) for any consenting parasitic Lapinara, essentially neutering them. The removed ovaries are sold to Tamani Corp for research for the advancement of fertility-enhancing products.\n\nIt is currently under fierce debate whether or not unconsenting parasitic oophorectomies are ethical and should be allowed.");
+	outputCodex(blockHeader("Society"));
+	outputCodex("Gabilani are an intensely social species that become stressed when isolated far faster than most. They have evolved a competitive caste system that allegedly revolves around who is the most involved and dynamic within their society at any one time. For both of these reasons, exile is regarded as the worst punishment possible to the gabilani, outstripping even death, as execution involves being the centre of attention even if only for a short time.\n\nGabilani express a great love for mechanical invention. Whilst their appreciation of biology and medicine is limited, the great space stations upon which the majority of the species now live demonstrate a remarkable grasp of aerodynamics and engineering, particularly given the limited timeframe many of them were constructed in. Where they differ from the similarly practically-minded raskvel is a preference towards inventing new things, as opposed to repairing or recycling the old. This is identified as one of the key reasons for Tarkus’s environmental exhaustion.\n\nOutside, cultural historians theorize that many gabilani societal traits suggest an overall veneration of “bigness”, possibly related to the generousness of a female’s frame displaying how many children they have had. How long a gabilani’s name is, for instance, displays how important they are considered to be, and the more spectacular an individual’s invention - or the more spectacularly said invention goes wrong - the more cultural cache is attached to him or her, above and beyond what an engineer or scientist of a different race might expect. Similarly to the raskvel, then, most gabilani view larger offworlders as profoundly sexually attractive, and aim to breed with them wherever possible.\n\nGabilani can interbreed with raskvel, however the progeny is always raskvel. The only race on Tarkus capable of outbreeding them, gabilani express a cultural fear and dislike of the raskvel, viewing their reckless approach to reproduction as the primary reason for Tarkus’s ruin. Higher ranking gabilani sometimes “adopt” raskvel as menial workers and sex slaves aboard their space stations. The gabilani High Command is currently locked in negotiations with the U.G.C. for full membership; one of the key provisos is that it explicitly wipes the practice of raskvel slavery out.");
 	outputCodex("\n\n");
-	CodexManager.viewedEntry("Lapinara");
+	outputCodex(blockHeader("Cybernetics and Health"));
+	outputCodex("The passion for mechanical invention, lack of interest in medicine, and the frequency of industrial accidents in gabilani culture led to the species evolving the love of and reliance on cybernetics that they are remarkable for today. The gabilani developed physical cybernetic enhancements before microbe theory and blood transfusion, and a great majority employ significant mechanical bodily enhancement during their lifetime.\n\nReplacement limbs and ocular enhancement are the most common procedures, however the gabilani are also capable of sophisticated internal adaptations, often aimed at combating the health problems they face as a result of spending most of their lives in orbit above their home planet. All gabilani are required by law to spend at least three weeks in a year on the surface of Tarkus to boost their skeletal and immune system strength, however some wealthier gabilani disdain this edict by having all or most of their bones replaced with alloy metal, and augmenting their respiratory systems with antiviral micro-bot plants.\n\nThis ability to easily replace defective organs and limbs with effective cybernetic replacements has greatly boosted the possible lifespan of the average gabilani, however their population has remained stable as a result of the scourge of industrial accidents in their frenetic society, and the likelihood of newer models of replacement organs going catastrophically wrong.");
+	outputCodex("\n\n");
+	CodexManager.viewedEntry("Gabilani");
 }
 public function raskVelCodexEntry():void
 {
@@ -1105,6 +1097,43 @@ public function sydianCodexEntry():void
 	outputCodex("Sydian society is largely patriarchal. The males, much larger and more powerful, typically assume leadership roles in the villages and packs, while the females are usually sent out as hunters. Some beta males look after and educate children and perform general manual labor, though others will roam the wastes alone, like lone wolves. Though cultivation is difficult for sydians, some tribes have learned to farm some rudimentary crops using stone tools.\n\nEarly communications have hinted that sydians are actually quite intelligent; early interactions have resulted in near unanimous praise for their wit, though their corrosive touch and tumultuous environment have conspired to keep them in a literal stone age. Most adult sydians have accepted this fact of life, and may even be thankful for it, some claiming technology to be holding people back from leading a happy life. A few have left Tarkus with specially tailored gloves, intent on discovering the wonders of the technology they previously consumed for sustenance.");
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Sydians");
+}
+public function grayGooCodex():void
+{
+	clearOutputCodex();
+	showBust("GRAY_GOO");
+	outputCodex(header("Hazard: \"Gray Goos\""));
+	outputCodex("<b>Name (Singular):</b> Gray Goo");
+	outputCodex("\n\n");
+	outputCodex("The Gray Goo is an enemy seemingly unique to the junkyard wastelands of Tarkus, comprised of a network of small nanobots - mostly discarded microsurgeons and one-shot stimulants that haven't been properly disposed of. Gray goos require natural lubricants like oil in order to move around effectively, and may target living organics as potential victims for sexual assault in an attempt to use orgasmic fluids as an emergency alternative.\n\nThey're smarter the more of them there are - blasting away at the grey goo with weapons will slowly corrupt their networked A.I. even if it only destroys a few bots. They are also susceptible to \"sensory overload,\" which may cause a temporary shutdown in their offensive programs, leaving them helpless but to beg for their necessary fluids. While the network has no specific shape, their drive for humanoid contact often leads them to adopt exaggerated humanoid figures, such as comically busty women or satyrian males in ill-conceived attempts to entice their prey. Recorded assaults generally involve a sexual harvesting, with the goos penetrating sexual orifices and molding themselves around phalluses and similar organs to stimulate orgasm.\n\nWhile no fatalities have yet been reported due to Gray Goo attacks, U.G.C. Scout Authority recommends explorers on Tarkus remain well-hydrated in the event of attack.");
+	outputCodex("\n\n");
+	CodexManager.viewedEntry("Gray Goos");
+}
+public function lapinaraCodexEntry():void
+{
+	clearOutputCodex();
+	showBust("LAPINARA","LAPINARA_2");
+	outputCodex(header("Lapinara"));
+	outputCodex("<b>Name (Singular & Plural):</b> Lapinara");
+	outputCodex("\n<b>Sexes:</b> Female (parasitic variant), Female (non-parasitic variant), Male, Herm, and Genderless.");
+	outputCodex("\n<b>Height:</b> Anywhere between 3 and 4 feet for all genders.");
+	outputCodex("\n<b>Weight:</b> Anywhere between 40 and 85 pounds for all genders.");
+	outputCodex("\n<b>Hair & Fur:</b> Hair is fast-growing, and typically very soft and curly. The hair and fur of parasitic females is typically white, but can sometimes be silver or gray. All Lapinara have a thin layer of fur covering the entirety of their bodies. The hair is longer and curlier on the lower legs and forearms, resembling warmers. They have a long, puffy tuft of fuzz at the end of their long, whip-like tails.");
+	outputCodex("\n<b>Eyes:</b> Large and rabbit-like; parasitic females always have glassy, cloudy, gray eyes. They resemble crystal balls.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Features"));
+	outputCodex("The Lapinara are a sapient, rabbit-like race on digitigrade legs. Their faces are mostly humanesque, possessing tiny, button-like, constantly wiggling noses, as well as long whiskers. Their ears are large and rabbit-like. Given their long incisors and molars built for tough grinding, they have a very powerful, painful bite. A pair of horns, similar to that of the pronghorn grow from the foreheads of all genders. Parasitic females, non-parasitic females, and fem-herms have small, perky breasts, never more than A-cup. Parasitic gender skin comes in varying shades of gray. The skin tone of the other genders is determined by their host parent.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Environs Typically Inhabited"));
+	outputCodex("The Lapinara are a highly adaptive species. Not possessing a home planet of their own, they are a nomadic kind. Many of the parasitic variety, however, have taken up residence on Tarkus, taking advantage of the local sex-loving goblins and Raskvel, as well as any oblivious visitors.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Reproduction"));
+	outputCodex("Parasitic females are nothing short of pests. They are sex machines, completely obsessed with implanting their eggs into an unfortunate host. While appearing to have typical male genitalia, they are actually anything but. Their “penis” is actually an ovipositor, and their “testicles” instead hold their ovaries. These faux testicles swell up considerably when they have eggs ready. The presence of eggs causes the parasitic Lapinara to enter a rut-like state that doesn’t end until they are rid of them. The pre-cum of the parasitic Lapinara works as an anesthetic, preventing egg implantation from hurting the host.\n\nThe eggs are soft-shelled, and can only continue development if they’re implanted via a host organism’s anus or vagina, where they absorb the second half of the required genetic material. Labor is initiated when the soft outer shell dissolves. This produces non-parasitic offspring that are always born in pairs, and always the same gender as the host parent. Hair, eye, and skin color is also determined by the host parent. Males and herms tend to inherit penis type from their host parent, and females and herms tend to inherit vagina type from their host parent.\n\nMore parasitic females are produced when one parasitic female implants her eggs in another parasitic female. The non-parasitic genders reproduce just like any human, albeit with significantly shorter pregnancies, never longer than three months, but never shorter than two.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("History"));
+	outputCodex("The epidemic of parasitic Lapinara breeding has led to the foundation of the Lapinara Sanctuary, a charity organization that cares for orphan Lapinara, offers adoption, and provides oophorectomies (ovary removal) for any consenting parasitic Lapinara, essentially neutering them. The removed ovaries are sold to Tamani Corp for research for the advancement of fertility-enhancing products.\n\nIt is currently under fierce debate whether or not unconsenting parasitic oophorectomies are ethical and should be allowed.");
+	outputCodex("\n\n");
+	CodexManager.viewedEntry("Lapinara");
 }
 
 
