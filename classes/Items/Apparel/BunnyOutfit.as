@@ -17,7 +17,7 @@ package classes.Items.Apparel
 			
 			this.quantity = 1;
 			this.stackSize = 1;
-			this.type = GLOBAL.ARMOR;
+			this.type = GLOBAL.CLOTHING;
 			
 			this.shortName = "Bunny.O";
 			
