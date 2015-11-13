@@ -14,7 +14,7 @@
 		public function VenusBloom()
 		{
 			this._latestVersion = 1;
-			this.hasRandomProperties = true;
+			//this.hasRandomProperties = true;
 			
 			this.quantity = 1;
 			this.stackSize = 1;
