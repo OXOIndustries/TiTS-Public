@@ -572,7 +572,11 @@ public function equipItem(arg:ItemSlotClass):void {
 	if (arg.stackSize > 1) throw new Error("Potential item stacking bug with " + arg.shortName + ". Item has a stacksize > 0 and the equip code cannot currently handle splitting an item stack!");
 	
 	clearOutput();
-	output("You equip your " + arg.longName + ".");
+	output("You");
+	if(arg.type == GLOBAL.ARMOR) output(" don");
+	else if(arg.type == GLOBAL.CLOTHING) output(" wear");
+	else output(" equip");
+	output(" your " + arg.longName + ".");
 	//Clear disarm if appropriate.
 	if(pc.hasStatusEffect("Disarmed") && (arg.type == GLOBAL.MELEE_WEAPON || arg.type == GLOBAL.RANGED_WEAPON))
 	{
@@ -665,7 +669,14 @@ public function itemCollect(newLootList:Array, clearScreen:Boolean = false):void
 		var iSlot:ItemSlotClass = target.inventory[i] as ItemSlotClass;
 		
 		// Check if same item && space in stack
-		if (iSlot.shortName == tItem.shortName && iSlot.quantity < iSlot.stackSize)
+		var isSameItem:Boolean = false;
+		if
+		(	(tItem.hasRandomProperties == false && tItem.shortName == iSlot.shortName)
+		||	(tItem.hasRandomProperties == true && tItem.longName == iSlot.longName)
+		)	isSameItem = true;
+		
+		//if (iSlot.shortName == tItem.shortName && iSlot.quantity < iSlot.stackSize)
+		if (isSameItem && iSlot.quantity < iSlot.stackSize)
 		{
 			// Check if 100% merge will go past max stack
 			if (iSlot.quantity + tItem.quantity > iSlot.stackSize)
