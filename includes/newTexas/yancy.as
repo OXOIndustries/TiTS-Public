@@ -99,8 +99,8 @@ public function approachYancyYouFaggot():void
 		//Backed out with nothing last time
 		else output("<i>“Welcome back, [pc.name].”</i> Yancy smiles genially. <i>“Change your mind about getting a milking?”</i>");
 	}
+	clearMenu();
 	if(pc.isLactating()) addButton(0,"Get Milked",getMilkedByYancyYaSloot);
-
 	else addDisabledButton(0,"Get Milked","Get Milked","You need to be lactating to get milked.");
 	addButton(14,"Back",mainGameMenu);
 }
