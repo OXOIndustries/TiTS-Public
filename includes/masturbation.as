@@ -1545,23 +1545,23 @@ public function joyCoMagicMilker7Sucks():void
 			if(milkProduced < 700) 
 			{
 				output("small");
-				foundLootItems[0].longName = "small bag of " + GLOBAL.FLUID_TYPE_NAMES[pc.milkType].toLowerCase());
-				foundLootItems[0].basePrice = 2;
+				foundLootItems[0].longName = "small bag of " + GLOBAL.FLUID_TYPE_NAMES[pc.milkType].toLowerCase();
 				foundLootItems[0].tooltip += "\n\n<b>Fullness:</b> Not Very Full";
+				foundLootItems[0].basePrice = 2;
 			}
 			else if(milkProduced <= 1400) 
 			{
 				output("medium");
 				foundLootItems[0].longName = "medium bag of " + GLOBAL.FLUID_TYPE_NAMES[pc.milkType].toLowerCase();
-				foundLootItems[0].basePrice = 4;
 				foundLootItems[0].tooltip += "\n\n<b>Fullness:</b> Somewhat Full";
+				foundLootItems[0].basePrice = 4;
 			}
 			else if(milkProduced <= 2100) 
 			{
 				output("large");
 				foundLootItems[0].longName = "large bag of " + GLOBAL.FLUID_TYPE_NAMES[pc.milkType].toLowerCase();
-				foundLootItems[0].basePrice = 6;
 				foundLootItems[0].tooltip += "\n\n<b>Fullness:</b> Mostly Full";
+				foundLootItems[0].basePrice = 6;
 			}
 			else 
 			{
@@ -1585,7 +1585,8 @@ public function joyCoMagicMilker7Sucks():void
 			//Start loot
 			itemCollect(foundLootItems);
 		}
-		else {
+		else
+		{
 			clearMenu();
 			addButton(0,"Next",mainGameMenu);
 		}
