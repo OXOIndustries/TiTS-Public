@@ -15,7 +15,7 @@
 
 			this.quantity = 1;
 			this.stackSize = 1;
-			this.type = GLOBAL.ARMOR;
+			this.type = GLOBAL.CLOTHING;
 			
 			//Used on inventory buttons
 			this.shortName = "WaitressUniform";
