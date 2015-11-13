@@ -1603,9 +1603,9 @@ public function processTime(arg:int):void {
 	//Saendra Mail
 	if (!MailManager.isEntryUnlocked("saendrathanks") && flags["FALL OF THE PHOENIX STATUS"] >= 1 && flags["SAENDRA_DISABLED"] != 1) saendraPhoenixMailGet();
 	//Anno Mail
-	if (!MailManager.isEntryUnlocked("annoweirdshit") && flags["MET_ANNO"] != undefined && flags["FOUGHT_TAM"] == undefined && rand(10) == 0 && flags["RUST_STEP"] != undefined) goMailGet("annoweirdshit");
+	if (!MailManager.isEntryUnlocked("annoweirdshit") && flags["MET_ANNO"] != undefined && flags["FOUGHT_TAM"] == undefined && flags["RUST_STEP"] != undefined && rand(10) == 0) goMailGet("annoweirdshit");
 	//Other Email Checks!
-	if (rand(20) == 0 || (rand(24) == hours && rand(60) == minutes)) emailRoulette();
+	if (rand(50) == 0) emailRoulette();
 	flags["HYPNO_EFFECT_OUTPUT_DONE"] = undefined;
 	variableRoomUpdateCheck();
 	updatePCStats();
