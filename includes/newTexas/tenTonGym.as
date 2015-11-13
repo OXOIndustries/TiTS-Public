@@ -381,6 +381,7 @@ public function talkToQuenton():void
 		else output("<i>“Good to see you again, [pc.name]. What can I do for you today?”</i>");
 		processTime(1);
 	}
+	clearMenu();
 	//[Purchase Day] Go to Purchasing Membership for a Day {Text: Ask about purchasing a day-long membership.}
 	if(!pc.hasKeyItem("Ten Ton Gym Membership") && !pc.hasStatusEffect("Gym Pass")) addButton(0,"Day Pass",purchaseTempGymMembership,undefined,"Day Pass","Ask about purchasing a day-long membership.");
 	else addDisabledButton(0,"Day Pass","Day Pass","You already have a gym pass.");
