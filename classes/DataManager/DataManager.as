@@ -369,6 +369,19 @@
 			kGAMECLASS.clearOutput2();
 			kGAMECLASS.userInterface.dataButton.Glow();
 			
+			// Switch to enabled save notes and override prompt
+			var saveNoteEnabled:Boolean = true;
+			var overwriteToggle:Boolean = true;
+			// Custom notes:
+			if (saveNoteEnabled)
+			{
+				kGAMECLASS.output2("<b><u>Notes:</u></b>\n<i>Leave the box blank if you don’t wish to change notes, or type “none” to not save any notes at all. Your note can be up to 256 characters long.</i>");
+				kGAMECLASS.displayInput();
+				kGAMECLASS.userInterface.textInput.text = "";
+				kGAMECLASS.userInterface.textInput.maxChars = 256;
+				kGAMECLASS.output2("\n\n\n");
+			}
+			
 			var displayMessage:String = "";
 			displayMessage += "<b>Which slot would you like to save in?</b>\n";
 			
@@ -378,11 +391,58 @@
 			{
 				var dataFile:SharedObject = this.getSO(slotNum);
 				displayMessage += this.generateSavePreview(dataFile, slotNum);
-				kGAMECLASS.addGhostButton(slotNum - 1, "Slot " + slotNum, this.saveGameData, slotNum);
+				if (saveNoteEnabled) kGAMECLASS.addGhostButton(slotNum - 1, "Slot " + slotNum, this.saveGameNextNotes, slotNum);
+				else if (overwriteToggle) kGAMECLASS.addGhostButton(slotNum - 1, "Slot " + slotNum, this.saveGameNextPrompt, slotNum);
+				else kGAMECLASS.addGhostButton(slotNum - 1, "Slot " + slotNum, this.saveGameData, slotNum);
 			}
 			
 			kGAMECLASS.output2(displayMessage);
-			kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
+			kGAMECLASS.output2("\n\n");
+			if (saveNoteEnabled) kGAMECLASS.addGhostButton(14, "Back", this.saveGameBackNotes);
+			else kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
+		}
+		// Check save note
+		private function saveGameNextNotes(slotNumber:int):void
+		{
+			kGAMECLASS.removeInput();
+			kGAMECLASS.userInterface.currentPCNotes = kGAMECLASS.userInterface.textInput.text;
+			
+			if(kGAMECLASS.hasIllegalInput(kGAMECLASS.userInterface.currentPCNotes))
+			{
+				kGAMECLASS.clearOutput2();
+				kGAMECLASS.output2("To avoid complications, please avoid using code in the note.");
+				
+				kGAMECLASS.userInterface.clearGhostMenu();
+				kGAMECLASS.addGhostButton(0, "Next", this.saveGameMenu);
+				return;
+			}
+			
+			this.saveGameNextPrompt(slotNumber);
+		}
+		// Display override prompt (if toggled)
+		private function saveGameNextPrompt(slotNumber:int):void
+		{
+			// Toggle to turn on/off the overwrite prompt!
+			var overwriteToggle:Boolean = true;
+			
+			// Overwrite file?
+			if(overwriteToggle && this.getSO(slotNumber).size > 0)
+			{
+				kGAMECLASS.clearOutput2();
+				kGAMECLASS.output2("A save file already exists in slot " + slotNumber + ", are you sure you want to overwrite this file?");
+				
+				kGAMECLASS.userInterface.clearGhostMenu();
+				kGAMECLASS.addGhostButton(0, "No", this.saveGameMenu);
+				kGAMECLASS.addGhostButton(4, "Yes", this.saveGameData, slotNumber);
+				return;
+			}
+			// New file/Overwrite!
+			this.saveGameData(slotNumber);
+		}
+		private function saveGameBackNotes():void
+		{
+			kGAMECLASS.removeInput();
+			this.showDataMenu();
 		}
 		
 		/**
@@ -873,8 +933,15 @@
 			dataFile.saveName 		= kGAMECLASS.chars["PC"].short;
 			dataFile.saveLocation 	= StringUtil.toTitleCase(kGAMECLASS.userInterface.planetText + ", " + kGAMECLASS.userInterface.systemText);
 			
-			if (kGAMECLASS.userInterface.currentPCNotes == null || kGAMECLASS.userInterface.currentPCNotes.length == 0 || kGAMECLASS.userInterface.currentPCNotes == "") dataFile.saveNotes = "No notes available.";
-			else dataFile.saveNotes = kGAMECLASS.userInterface.currentPCNotes;
+			// No change!
+			if (kGAMECLASS.userInterface.currentPCNotes == null || kGAMECLASS.userInterface.currentPCNotes.length == 0 || kGAMECLASS.userInterface.currentPCNotes == "")
+			{ /* No overwrites! */ }
+			// Keywords to clear current saved notes!
+			else if (kGAMECLASS.userInterface.currentPCNotes.toLowerCase() == "none" || kGAMECLASS.userInterface.currentPCNotes == "N/A")
+			{ dataFile.saveNotes = "No notes available."; }
+			// Save note!
+			else
+			{ dataFile.saveNotes = kGAMECLASS.userInterface.currentPCNotes; }
 			
 			var gender:String = "N";
 			if(kGAMECLASS.chars["PC"].hasCock() && kGAMECLASS.chars["PC"].hasVagina()) gender = "H";
