@@ -4807,7 +4807,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["ENCOUNTERED_ZIL"] != undefined)
 				{
 					output2("\n<b>* Male Zil, Times Encountered: </b>" + flags["ENCOUNTERED_ZIL"]);
-					if(flags["TIMES_LOST_TO_ZIL"] != undefined) output2("\n<b>* Male Zil, Combat, Times Lost: </b>" + flags["TIMES_LOST_TO_ZIL"]);
+					//if(flags["TIMES_LOST_TO_ZIL"] != undefined) output2("\n<b>* Male Zil, Combat, Times Lost To: </b>" + flags["TIMES_LOST_TO_ZIL"]);
 					if(flags["TIMES_LOSS_SUCKED_ZIL_MALE"] != undefined) output2("\n<b>* Male Zil, Combat, Times Sucked His Cock Upon Losing: </b>" + flags["TIMES_LOSS_SUCKED_ZIL_MALE"]);
 				}
 				variousCount++;
