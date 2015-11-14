@@ -1093,6 +1093,7 @@
 			
 			menuButtonsOff();
 			appearanceOff();
+			dataOff();
 			
 			_buttonTray.hideKeyBinds();
 			
@@ -1137,6 +1138,11 @@
 		public function dataOn():void 
 		{
 			_leftSideBar.dataButton.Activate();
+		}
+		
+		public function dataOff():void 
+		{
+			_leftSideBar.dataButton.Deactivate();
 		}
 
 		public function menuButtonsOn():void 
