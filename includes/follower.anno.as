@@ -402,7 +402,7 @@ public function annoMorningShower():void
 
 	output("\n\n<i>“All yours, Steele!”</i> she says, before bounding towards the main door to your quarters. <i>“See you later, yeah?”</i>");
 
-	output("\n\nDid- did she blow you a kiss on her way out? The tease....")
+	output("\n\nDid - did she blow you a kiss on her way out? The tease....")
 
 	pc.lust(10);
 
@@ -1754,6 +1754,7 @@ public function annoFollowerShowerSex():void
 
 	processTime(30+rand(20));
 	pc.lust(10);
+	pc.shower();
 
 	annoSexed(1);
 
