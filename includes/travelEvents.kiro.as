@@ -24,7 +24,9 @@ public function roamingBarEncounter(button:int = 0):void
 	var NPCs:Array = new Array();
 	//66% chance Kiro could be there if available.
 	if(roamingKiroAvailable() && rand(3) <= 1) NPCs.push(kiroSetup);
-	// "Help: Bodies" option, has had an update from Anno about the Nova.
+	//Follower Anno
+	if (flags["ANNO_CREWMEMBER"] == 2 || flags["ANNO_CREWMEMBER"] == 1) NPCs.push(annoAtAnonsAddendum);
+	//"Help: Bodies" option, has had an update from Anno about the Nova.
 	if (flags["DECK13_GRAY_PRIME_DECISION"] == 1 && flags["ANNO_NOVA_UPDATE"] == 1 && rooms[currentLocation].planet == "PLANET: MYRELLION") NPCs.push(grayGooAtBarSetup);
 
 	//Pick available NPC, run setup func
