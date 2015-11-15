@@ -4897,6 +4897,26 @@ public function displayEncounterLog(showID:String = "All"):void
 		
 		if(showID == "Tarkus" || showID == "All")
 		{
+			// Arbetz Travel Agency
+			if(flags["ARBETZ_ENTERED"] != undefined)
+			{
+				output2("\n<b><u>Arbetz Travel Agency</u></b>");
+				output2("\n<b>* Status:</b>");
+				if(hours >= 9 && hours < 21) output2(" Open");
+				else output2(" Closed");
+				if(pc.hasStatusEffect("Arbetz Busy Cooldown")) output2(", Busy today");
+				if(flags["UNA_MET"] != undefined) output2("\n<b>* Una:</b> Met her");
+				else output2("\n<b>* Gabilani Woman:</b> Seen her");
+				if(flags["ARBETZ_SEX_ORAL"] != undefined) output2("\n<b>* Una, Times Oral Sexed Her: </b>" + flags["ARBETZ_SEX_ORAL"]);
+				if(flags["ARBETZ_SEX_HATE_FUCK"] != undefined) output2("\n<b>* Una, Times Hate Fucked Her: </b>" + flags["ARBETZ_SEX_HATE_FUCK"]);
+				if(flags["UNA_TALKED"] >= 4)
+				{
+					output2("\n<b>* Godi & Petr:</b> Met them");
+					if(flags["ARBETZ_SEX_ONE_BOY"] != undefined) output2("\n<b>* Godi, Times Sexed: </b>" + flags["ARBETZ_SEX_ONE_BOY"]);
+					if(flags["ARBETZ_SEX_TWO_BOYS"] != undefined) output2("\n<b>* Godi & Petr, Times Spitroasted By: </b>" + flags["ARBETZ_SEX_TWO_BOYS"]);
+				}
+				variousCount++;
+			}
 			// Bimbotorium
 			if(flags["MET_DR_BADGER"] != undefined)
 			{
@@ -6118,11 +6138,12 @@ public function displayEncounterLog(showID:String = "All"):void
 			miscCount++;
 		}
 		// Sexploration: The Sex Toys
-		if(flags["NIVAS_BIONAHOLE_USES"] != undefined || flags["TAMANI_HOLED"] != undefined || flags["GRAVCUFFS_USES"] != undefined || flags["HOVERHOLE_USES"] != undefined || 9999 == 0)
+		if(flags["NIVAS_BIONAHOLE_USES"] != undefined || flags["SYRI_BIONAHOLE_USES"] != undefined || flags["TAMANI_HOLED"] != undefined || flags["GRAVCUFFS_USES"] != undefined || flags["HOVERHOLE_USES"] != undefined || 9999 == 0)
 		{
 			output2("\n<b><u>Sex Toys</u></b>");
 			// BionaHoles
 			if(flags["NIVAS_BIONAHOLE_USES"] != undefined) output2("\n<b>* BionaHole, Nivas Oxonef, Times Used: </b>" + flags["NIVAS_BIONAHOLE_USES"]);
+			if(flags["SYRI_BIONAHOLE_USES"] != undefined) output2("\n<b>* BionaHole, Syri, Times Used: </b>" + flags["SYRI_BIONAHOLE_USES"]);
 			if(flags["TAMANI_HOLED"] != undefined) output2("\n<b>* BionaHole, Tamani, Times Used: </b>" + flags["TAMANI_HOLED"]);
 			// Grav-Cuffs
 			if(flags["GRAVCUFFS_USES"] != undefined) output2("\n<b>* Grav-Cuffs, Times Used: </b>" + flags["GRAVCUFFS_USES"]);
