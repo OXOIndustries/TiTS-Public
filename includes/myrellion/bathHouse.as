@@ -31,17 +31,17 @@ public function approachBathMatron():void
 	output("You walk over to the desk, and with preternatural awareness, the veiled woman behind it turns her perpetual smile your way. <i>“Welcome, my child,”</i> she says, spreading her four arms out invitingly. The way she moves, her silken white robe strains against the belt around her waist, trying desperately to come undone and reveal the clearly curvaceous figure underneath. <i>“How may we serve you?”</i>");
 	processTime(2);
 	clearMenu();
-	addButton(1,"Talk",talkToMatronAbootBathHooose,undefined,"Talk","Ask about her and the bath house itself.");
-	if(pc.credits >= 50) 
+	if(pc.credits >= 50)
 	{
 		addButton(0,"Public Bath",publicBathSlutBitchComeOnYouDipshitBastardInsertCurseWordsHere,undefined,"Public Bath","Give the matron a few credits to use the public bath.");
 		addButton(1,"PrivateBath",privateBathSelection,undefined,"Private Bath","Give the matron a few credits for a private bath.");
 	}
-	else 
+	else
 	{
 		addDisabledButton(0,"Public Bath","Public Bath","You can't afford the 50 credits it would cost to use the public bath.");
 		addDisabledButton(1,"PrivateBath","Private Bath","You don't have the money!\n\nCost: 50 credits");
 	}
+	addButton(2,"Talk",talkToMatronAbootBathHooose,undefined,"Talk","Ask about her and the bath house itself.");
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -69,9 +69,17 @@ public function talkToMatronAbootBathHooose():void
 	processTime(5);
 	flags["TALKED_ABOOT_BATH_HOUSE"] = 1;
 	clearMenu();
-	addDisabledButton(1,"Talk","Talk","You just finished that.");
-	if(pc.credits >= 50) addButton(0,"Public Bath",publicBathSlutBitchComeOnYouDipshitBastardInsertCurseWordsHere,undefined,"Public Bath","Give the matron a few credits to use the public bath.");
-	else addDisabledButton(0,"Public Bath","Public Bath","You can't afford the 50 credits it would cost to use the public bath.");
+	if(pc.credits >= 50)
+	{
+		addButton(0,"Public Bath",publicBathSlutBitchComeOnYouDipshitBastardInsertCurseWordsHere,undefined,"Public Bath","Give the matron a few credits to use the public bath.");
+		addButton(1,"PrivateBath",privateBathSelection,undefined,"Private Bath","Give the matron a few credits for a private bath.");
+	}
+	else
+	{
+		addDisabledButton(0,"Public Bath","Public Bath","You can't afford the 50 credits it would cost to use the public bath.");
+		addDisabledButton(1,"PrivateBath","Private Bath","You don't have the money!\n\nCost: 50 credits");
+	}
+	addDisabledButton(2,"Talk","Talk","You just finished that.");
 	addButton(14,"Leave",mainGameMenu);
 }
 
