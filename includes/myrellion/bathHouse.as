@@ -9,7 +9,7 @@ PC can talk to the Mistress to get different services (at a very small fee), the
 public function bathHouseBonus():Boolean
 {
 	//Small chance to add if PC's fucked Lieve before:
-	if(hasFuckedLieve()) output("\n\nLieve is relaxing on a couch with a few other Federation troops, laughing and grinning with the other soldiers. She sees you hanging around and gives you a friendly wave.");
+	if(hasFuckedLieve() && rand (5) == 0) output("\n\nLieve is relaxing on a couch with a few other Federation troops, laughing and grinning with the other soldiers. She sees you hanging around and gives you a friendly wave.");
 	addButton(0,"Matron",approachBathMatron,undefined,"Matron","Talk to the matronly ant-woman about what services the bath house offers.");
 	return false;
 }
@@ -33,8 +33,8 @@ public function approachBathMatron():void
 	clearMenu();
 	if(pc.credits >= 50)
 	{
-		addButton(0,"Public Bath",publicBathSlutBitchComeOnYouDipshitBastardInsertCurseWordsHere,undefined,"Public Bath","Give the matron a few credits to use the public bath.");
-		addButton(1,"PrivateBath",privateBathSelection,undefined,"Private Bath","Give the matron a few credits for a private bath.");
+		addButton(0,"Public Bath",publicBathSlutBitchComeOnYouDipshitBastardInsertCurseWordsHere,undefined,"Public Bath","Give the matron a few credits to use the public bath.\n\nCost: 50 credits");
+		addButton(1,"PrivateBath",privateBathSelection,undefined,"Private Bath","Give the matron a few credits for a private bath.\n\nCost: 50 credits");
 	}
 	else
 	{
@@ -71,8 +71,8 @@ public function talkToMatronAbootBathHooose():void
 	clearMenu();
 	if(pc.credits >= 50)
 	{
-		addButton(0,"Public Bath",publicBathSlutBitchComeOnYouDipshitBastardInsertCurseWordsHere,undefined,"Public Bath","Give the matron a few credits to use the public bath.");
-		addButton(1,"PrivateBath",privateBathSelection,undefined,"Private Bath","Give the matron a few credits for a private bath.");
+		addButton(0,"Public Bath",publicBathSlutBitchComeOnYouDipshitBastardInsertCurseWordsHere,undefined,"Public Bath","Give the matron a few credits to use the public bath.\n\nCost: 50 credits");
+		addButton(1,"PrivateBath",privateBathSelection,undefined,"Private Bath","Give the matron a few credits for a private bath.\n\nCost: 50 credits");
 	}
 	else
 	{
