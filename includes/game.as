@@ -27,10 +27,10 @@ public function get canSaveAtCurrentLocation():Boolean
 	if(inCombat()) 
 		return false;
 
-	if (this.inSceneBlockSaving)
+	if (inSceneBlockSaving)
 		return false;
 
-	return this.rooms[this.currentLocation].canSaveInRoom
+	return rooms[currentLocation].canSaveInRoom
 }
 
 public function infiniteItems():Boolean
@@ -100,9 +100,9 @@ public function mainGameMenu():void {
 	//trace("this.eventQueue = ", this.eventQueue);
 	if(eventQueue.length > 0) {
 		//Do the most recent:
-		this.eventQueue[0]();
+		eventQueue[0]();
 		//Strip out the most recent:
-		this.eventQueue.splice(0,1);
+		eventQueue.splice(0,1);
 		return;
 	}
 	
@@ -125,62 +125,62 @@ public function mainGameMenu():void {
 	//Set up all appropriate flags
 	//Display the room description
 	clearOutput();
-	output(this.rooms[this.currentLocation].description);
-	setLocation(this.rooms[this.currentLocation].roomName,this.rooms[this.currentLocation].planet,this.rooms[this.currentLocation].system);
+	output(rooms[currentLocation].description);
+	setLocation(rooms[currentLocation].roomName, rooms[currentLocation].planet, rooms[currentLocation].system);
 	if(currentLocation == "SHIP INTERIOR") setLocation("SHIP\nINTERIOR",rooms[rooms["SHIP INTERIOR"].outExit].planet,rooms[rooms["SHIP INTERIOR"].outExit].system);
 	if(inCombat()) 
-		output("\n\n<b>You're still in combat, you ninny!</b>");
+		output("\n\n<b>You’re still in combat, you ninny!</b>");
 	if(pc.hasStatusEffect("Temporary Nudity Cheat"))
 		output("\n\n<b>BUG REPORT: TEMP NUDITY STUCK ON.</b>");
 	//Standard buttons:
-	this.clearMenu(false);
-	this.userInterface.showBust("none");
-	this.inSceneBlockSaving = false;
+	clearMenu(false);
+	userInterface.showBust("none");
+	inSceneBlockSaving = false;
 	//Inventory shit
 	itemScreen = mainGameMenu;
 	lootScreen = inventory;
-	this.addButton(13,"Inventory",inventory);
+	addButton(13, "Inventory", inventory);
 	//Other standard buttons
 
 	if(pc.lust() < 33) {
-		if(pc.canLactate()) addButton(8,"Hand Milk",milkturbation);
-		else this.addDisabledButton(8,"Masturbate");
+		if(pc.canLactate()) addButton(8, "Hand Milk", milkturbation);
+		else addDisabledButton(8, "Masturbate");
 	}
 	else {
-		this.addButton(8,"Masturbate",masturbateMenu);
+		addButton(8, "Masturbate", masturbateMenu);
 	}
-	if(!this.rooms[this.currentLocation].hasFlag(GLOBAL.BED)) 
-		this.addButton(9,"Rest",rest);
+	if(!rooms[currentLocation].hasFlag(GLOBAL.BED)) 
+		addButton(9, "Rest", rest);
 	else 
-		this.addButton(9,"Sleep",sleep);
+		addButton(9, "Sleep", sleep);
 	//Display movement shits - after clear menu for extra options!
-	if(this.rooms[this.currentLocation].runOnEnter != undefined) {
-		if(this.rooms[this.currentLocation].runOnEnter()) return;
+	if(rooms[currentLocation].runOnEnter != undefined) {
+		if(rooms[currentLocation].runOnEnter()) return;
 	}
 	//Turn off encounters since you're already here. Moving clears this.
 	flags["ENCOUNTERS_DISABLED"] = 1;
 
 	if(pc.hasStatusEffect("Endowment Immobilized"))
 	{
-		if (this.rooms[this.currentLocation].northExit && !isNavDisabled(NAV_NORTH_DISABLE))
+		if (rooms[currentLocation].northExit && !isNavDisabled(NAV_NORTH_DISABLE))
 		{
-			this.addDisabledButton(6, "North", "North", "You can't move - you're immobilized!");
+			addDisabledButton(6, "North", "North", "You can't move - you're immobilized!");
 		}
-		if (this.rooms[this.currentLocation].eastExit && !isNavDisabled(NAV_EAST_DISABLE)) 
+		if (rooms[currentLocation].eastExit && !isNavDisabled(NAV_EAST_DISABLE)) 
 		{
-			this.addDisabledButton(12, "East", "East", "You can't move - you're immobilized!");
+			addDisabledButton(12, "East", "East", "You can't move - you're immobilized!");
 		}
-		if (this.rooms[this.currentLocation].southExit && !isNavDisabled(NAV_SOUTH_DISABLE)) 
+		if (rooms[currentLocation].southExit && !isNavDisabled(NAV_SOUTH_DISABLE)) 
 		{
-			this.addDisabledButton(11,"South","South","You can't move - you're immobilized!");
+			addDisabledButton(11,"South","South","You can't move - you're immobilized!");
 		}
-		if (this.rooms[this.currentLocation].westExit && !isNavDisabled(NAV_WEST_DISABLE)) 
+		if (rooms[currentLocation].westExit && !isNavDisabled(NAV_WEST_DISABLE)) 
 		{
-			this.addDisabledButton(10,"West","West","You can't move - you're immobilized!");
+			addDisabledButton(10,"West","West","You can't move - you're immobilized!");
 		}
-		if (this.rooms[this.currentLocation].inExit && !isNavDisabled(NAV_IN_DISABLE))
+		if (rooms[currentLocation].inExit && !isNavDisabled(NAV_IN_DISABLE))
 		{
-			this.addDisabledButton(5, rooms[currentLocation].inText, rooms[currentLocation].inText, "You can't move - you're immobilized!");
+			addDisabledButton(5, rooms[currentLocation].inText, rooms[currentLocation].inText, "You can't move - you're immobilized!");
 		}
 		if (rooms[currentLocation].outExit && !isNavDisabled(NAV_OUT_DISABLE)) 
 		{
@@ -189,42 +189,42 @@ public function mainGameMenu():void {
 	}
 	else
 	{
-		if (this.rooms[this.currentLocation].northExit && !isNavDisabled(NAV_NORTH_DISABLE))
+		if (rooms[currentLocation].northExit && !isNavDisabled(NAV_NORTH_DISABLE))
 		{
-			this.addButton(6, "North", move, this.rooms[this.currentLocation].northExit);
+			addButton(6, "North", move, rooms[currentLocation].northExit);
 		}
-		if (this.rooms[this.currentLocation].eastExit && !isNavDisabled(NAV_EAST_DISABLE))
+		if (rooms[currentLocation].eastExit && !isNavDisabled(NAV_EAST_DISABLE))
 		{
-			this.addButton(12, "East", move, this.rooms[this.currentLocation].eastExit);
+			addButton(12, "East", move, rooms[currentLocation].eastExit);
 		}
-		if (this.rooms[this.currentLocation].southExit && !isNavDisabled(NAV_SOUTH_DISABLE))
+		if (rooms[currentLocation].southExit && !isNavDisabled(NAV_SOUTH_DISABLE))
 		{
-			this.addButton(11,"South",move,this.rooms[this.currentLocation].southExit);
+			addButton(11,"South", move, rooms[currentLocation].southExit);
 		}
-		if (this.rooms[this.currentLocation].westExit && !isNavDisabled(NAV_WEST_DISABLE))
+		if (rooms[currentLocation].westExit && !isNavDisabled(NAV_WEST_DISABLE))
 		{
-			this.addButton(10, "West", move, this.rooms[this.currentLocation].westExit);
+			addButton(10, "West", move, rooms[currentLocation].westExit);
 		}
-		if (this.rooms[this.currentLocation].inExit && !isNavDisabled(NAV_IN_DISABLE)) 
+		if (rooms[currentLocation].inExit && !isNavDisabled(NAV_IN_DISABLE)) 
 		{
-			this.addButton(5, this.rooms[this.currentLocation].inText, move, this.rooms[this.currentLocation].inExit);
+			addButton(5, rooms[currentLocation].inText, move, rooms[currentLocation].inExit);
 		}
-		if (this.rooms[this.currentLocation].outExit && !isNavDisabled(NAV_OUT_DISABLE))
+		if (rooms[currentLocation].outExit && !isNavDisabled(NAV_OUT_DISABLE))
 		{
-			this.addButton(7, this.rooms[this.currentLocation].outText, move, this.rooms[this.currentLocation].outExit);
+			addButton(7, rooms[currentLocation].outText, move, rooms[currentLocation].outExit);
 		}
 	}
-	if(this.currentLocation == shipLocation) 
-		this.addButton(5,"Enter Ship",move,"SHIP INTERIOR");
+	if(currentLocation == shipLocation) 
+		addButton(5, "Enter Ship", move, "SHIP INTERIOR");
 
 	flags["NAV_DISABLED"] = undefined; // Clear disabled directions.
 
 	//if (kGAMECLASS.debug) this.addButton(13, "RESET NPCs", initializeNPCs);
-	this.addButton(14, "Codex", showCodex);
+	addButton(14, "Codex", showCodex);
 	// Show the minimap too!
-	this.userInterface.showMinimap();
+	userInterface.showMinimap();
 	var map:* = mapper.generateMap(currentLocation);
-	this.userInterface.setMapData(map);
+	userInterface.setMapData(map);
 	
 	// Enable the perk list button
 	(userInterface as GUI).perkDisplayButton.Activate();
@@ -254,9 +254,9 @@ public function showCodex():void
 }*/
 public function showCodex():void
 {
-	this.userInterface.showCodex();
-	this.codexHomeFunction();
-	this.clearGhostMenu();
+	userInterface.showCodex();
+	codexHomeFunction();
+	clearGhostMenu();
 	
 	// Default toggles
 	if(flags["TOGGLE_MENU_STATS"] == undefined) flags["TOGGLE_MENU_STATS"] = "All";
@@ -270,7 +270,7 @@ public function showCodex():void
 	//addGhostButton(3, "CHEEVOS", function():void { } );
 	addGhostButton(1, "Log", displayQuestLog, flags["TOGGLE_MENU_LOG"]);
 	
-	addGhostButton(4, "Back", this.userInterface.showPrimaryOutput);
+	addGhostButton(4, "Back", userInterface.showPrimaryOutput);
 }
 
 // Temp display stuff for perks
@@ -403,14 +403,14 @@ public function crewRecruited():Number
 public function crew(counter:Boolean = false):Number {
 	if(!counter) {
 		clearOutput();
-		this.clearMenu();
+		clearMenu();
 	}
 	var crewMessages:String = "";
 	var count:int = 0;
 	if(celiseIsCrew()) {
 		count++;
 		if(!counter) {
-			this.addButton(count - 1,"Celise",celiseFollowerInteractions);
+			addButton(count - 1, "Celise", celiseFollowerInteractions);
 			crewMessages += "\n\nCelise is onboard, if you want to go see her. The ship does seem to stay clean of spills and debris with her around.";
 		}
 	}
@@ -419,7 +419,7 @@ public function crew(counter:Boolean = false):Number {
 		count++;
 		if(!counter)
 		{
-			addButton(count-1,"Reaha",approachShipBoardReahaWhyDidntSavinCodeThisHeWasntExhaustedYesterday);
+			addButton(count-1, "Reaha", approachShipBoardReahaWhyDidntSavinCodeThisHeWasntExhaustedYesterday);
 			crewMessages += "\n\nReaha is currently meandering around the ship, arms clutched under her hefty bosom, her nipples hooked up to a small portable milker.";
 		}
 	}
@@ -447,7 +447,7 @@ public function crew(counter:Boolean = false):Number {
 		if(count > 0) {
 			output("Who of your crew do you wish to interact with?" + crewMessages);
 		}
-		this.addButton(14,"Back",mainGameMenu);
+		addButton(14, "Back", mainGameMenu);
 	}
 	return count;
 }
@@ -473,8 +473,8 @@ public function rest(deltaT:int = -1):void {
 	}
 	restHeal();
 	processTime(minutes);
-	this.clearMenu();
-	this.addButton(0,"Next",mainGameMenu);
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
 public function restHeal():void
 {
@@ -575,7 +575,7 @@ public function sleep(outputs:Boolean = true):void {
 		if(currentLocation == "SHIP INTERIOR") grayGooSpessSkype();
 	}
 	
-	this.clearMenu();
+	clearMenu();
 	if(currentLocation == "SHIP INTERIOR")
 	{
 		if (flags["ANNO_SLEEPWITH_DOMORNING"] != undefined)
@@ -595,7 +595,7 @@ public function sleep(outputs:Boolean = true):void {
 		}
 	}
 	
-	addButton(0,"Next",mainGameMenu);
+	addButton(0, "Next", mainGameMenu);
 }
 
 public function sleepHeal():void
@@ -622,39 +622,38 @@ public function sleepHeal():void
 	if (pc.energy() < pc.energyMax()) pc.energyRaw = pc.energyMax();
 }
 
-
 public function shipMenu():Boolean {
 	
 	rooms["SHIP INTERIOR"].outExit = shipLocation;
 	
-	setLocation("SHIP\nINTERIOR",rooms[rooms["SHIP INTERIOR"].outExit].planet,rooms[rooms["SHIP INTERIOR"].outExit].system);
+	setLocation("SHIP\nINTERIOR", rooms[rooms["SHIP INTERIOR"].outExit].planet, rooms[rooms["SHIP INTERIOR"].outExit].system);
 	
 	// Lane follower hook
 	if (tryFollowerLaneIntervention())
 	{
 		return true;
 	}
-	
 	// Puppyslutmas hook :D
 	if (annoIsCrew() && annoPuppyslutmasEntry())
 	{
 		return true;
 	}
-	
+	// Goo Armor hook
 	if (flags["ANNO_NOVA_UPDATE"] == 2)
 	{
 		grayGooArrivesAtShip();
 		return true;
 	}
-
-	this.addButton(4,"Fly",flyMenu);
-	if(currentLocation == "SHIP INTERIOR") {
-		if(crew(true) > 0) {
-			this.addButton(2,"Crew",crew);
-		}
+	
+	// Main ship interior buttons
+	if(currentLocation == "SHIP INTERIOR")
+	{
+		if (crew(true) > 0) addButton(2, "Crew", crew);
+		if (hasShipStorage()) addButton(3, "Storage", shipStorageMenuRoot);
+		else addDisabledButton(3, "Storage");
+		addButton(4, "Shower", showerMenu);
+		addButton(5, "Fly", flyMenu);
 	}
-	if (hasShipStorage()) addButton(3, "Storage", shipStorageMenuRoot);
-	else addDisabledButton(3, "Storage");
 
 	return false;
 }
@@ -667,7 +666,7 @@ public function flyMenu():void {
 		{
 			output("<b>Your gear is still locked up in customs. You should go grab it before you jump out of system.");
 			clearMenu();
-			addButton(14,"Back",mainGameMenu);
+			addButton(14, "Back", mainGameMenu);
 			return;
 		}
 		else 
@@ -676,45 +675,45 @@ public function flyMenu():void {
 		}
 	}
 	output("Where do you want to go?");
-	this.clearMenu();
+	clearMenu();
 	//TAVROS
 	if(shipLocation != "TAVROS HANGAR") 
-		this.addButton(0,"Tavros",flyTo,"Tavros");
-	else addDisabledButton(0,"Tavros");
+		addButton(0, "Tavros", flyTo, "Tavros");
+	else addDisabledButton(0, "Tavros");
 	//MHEN'GA
 	if(shipLocation != "SHIP HANGAR") 
-		this.addButton(1,"Mhen'ga",flyTo,"Mhen'ga");
-	else addDisabledButton(1,"Mhen'ga");
+		addButton(1, "Mhen'ga", flyTo, "Mhen'ga");
+	else addDisabledButton(1, "Mhen'ga");
 	//TARKUS
 	if(flags["UNLOCKED_JUNKYARD_PLANET"] != undefined)
 	{
-		if(shipLocation != "201") addButton(2,"Tarkus",flyTo,"Tarkus");
-		else addDisabledButton(2,"Tarkus");
+		if(shipLocation != "201") addButton(2, "Tarkus", flyTo, "Tarkus");
+		else addDisabledButton(2, "Tarkus", "You’re already here.");
 	}
-	else addDisabledButton(2,"Locked","Locked","You need to find your father's probe on Mhen'ga to get this planet's coordinates.");
+	else addDisabledButton(2, "Locked", "Locked", "You need to find your father’s probe on Mhen’ga to get this planet’s coordinates.");
 	//MYRELLION
 	if(flags["PLANET_3_UNLOCKED"] != undefined)
 	{
-		if(shipLocation != "600") addButton(3,"Myrellion",flyTo,"Myrellion");
-		else addDisabledButton(3,"Myrellion","Myrellion","You're already here.");
+		if(shipLocation != "600") addButton(3, "Myrellion", flyTo, "Myrellion");
+		else addDisabledButton(3, "Myrellion", "Myrellion", "You’re already here.");
 	}
-	else addDisabledButton(3,"Locked","Locked","You need to find one of your father's probes to access this planet's coordinates and name.");
+	else addDisabledButton(3, "Locked", "Locked", "You need to find one of your father’s probes to access this planet’s coordinates and name.");
 	//NEW TEXAS
 	if(flags["NEW_TEXAS_COORDINATES_GAINED"] != undefined)
 	{
-		if(shipLocation != "500") addButton(5,"New Texas",flyTo,"New Texas");
-		else addDisabledButton(5,"New Texas","New Texas","You're already there.");
+		if(shipLocation != "500") addButton(5, "New Texas", flyTo, "New Texas");
+		else addDisabledButton(5, "New Texas", "New Texas", "You’re already here.");
 	}
-	else addDisabledButton(5,"Locked","Locked","You have not yet learned of this planet's coordinates.");
+	else addDisabledButton(5, "Locked", "Locked", "You have not yet learned of this planet’s coordinates.");
 	//POE A
 	if(flags["HOLIDAY_OWEEN_ACTIVATED"] != undefined)
 	{
-		if(flags["POE_A_DISABLED"] == 1) addDisabledButton(6,"Poe A","Poe A","You probably shouldn't go back there after your last trip to 'The Masque.'")
-		else if(shipLocation != "POESPACE") addButton(6,"Poe A",flyTo,"Poe A");
-		else addDisabledButton(6,"Poe A","Poe A","You're already there.");
+		if(flags["POE_A_DISABLED"] == 1) addDisabledButton(6, "Poe A", "Poe A", "You probably shouldn’t go back there after your last trip to ‘The Masque.’")
+		else if(shipLocation != "POESPACE") addButton(6, "Poe A", flyTo, "Poe A");
+		else addDisabledButton(6, "Poe A", "Poe A", "You’re already here.");
 	}
-	else addDisabledButton(6,"Locked","Locked","You have not yet learned of this planet.");
-	this.addButton(14,"Back",mainGameMenu);
+	else addDisabledButton(6, "Locked", "Locked", "You have not yet learned of this planet.");
+	addButton(14, "Back", mainGameMenu);
 }
 
 public function flyTo(arg:String):void {
@@ -789,8 +788,67 @@ public function flyTo(arg:String):void {
 	StatTracking.track("movement/time flown", timeFlown);
 	processTime(timeFlown);
 	flags["LANDING_EVENT_CHECK"] = 1;
-	this.clearMenu();
-	this.addButton(0,"Next",mainGameMenu);
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function showerMenu():void {
+	clearOutput();
+	output("You find yourself in the ship’s shower room. What would you like to do?");
+	clearMenu();
+	addButton(0, "Shower", showerOptions, 0);
+	if (pc.lust() >= 33)
+	{
+		if (crew(true) > 0) addButton(1, "Sex", showerOptions, 1);
+		if (shipShowerFaps() > 0) addButton(2, "Masturbate", showerOptions, 2);
+	}
+	addButton(14, "Back", mainGameMenu);
+}
+public function showerOptions(option:int = 0):void {
+	clearOutput();
+	clearMenu();
+	var showerSex:Number = 0;
+	var buttonslot:Number = -1;
+	// Regular showers
+	if (option == 0)
+	{
+		output("Deciding to take a quick shower, you strip off your gear, set it aside and turn on the shower. The water hits you with a cold chill. Onboard shower units are never really known for great tempurature regulation...");
+		output("\n\nSlightly shivering, you shampoo your [pc.hair] and rub down your [pc.skinFurScalesNoun] with soap");
+		if (pc.hasStatusEffect("Sweaty"))
+		{
+			output(", stripping away the");
+			if (pc.statusEffectv1("Sweaty") >= 4) output(" thick");
+			if (pc.statusEffectv1("Sweaty") >= 2) output(" layers of");
+			output(" sweat from your exertion");
+		}
+		output(". You cleanse your [pc.face] and wash behind your [pc.ears], making sure not to miss a spot.");
+		output("\n\nSome minutes later, you finally rinse and towel yourself off. Stepping out of the shower and redonning your equipment, you are feeling");
+		if (pc.hasStatusEffect("Sweaty")) output(" much cleaner than you did before");
+		else output(" sqeaky clean");
+		output(".");
+		pc.shower();
+		processTime(10);
+		addButton(0, "Next", mainGameMenu);
+	}
+	// Shower sex options
+	else if (option == 1)
+	{
+		if (annoIsCrew() && pc.hasGenitals())
+		{
+			addButton(buttonslot + 1, "Anno", annoFollowerShowerSex);
+			showerSex++;
+		}
+		if (showerSex > 0) output(" Feeling a little turned on, you decide that maybe you should have some fun shower sex with one of your crew. Who do you approach?");
+		else output(" You don’t seem to have any crewmembers onboard who can have shower sex with you at the moment.");
+		addButton(14, "Back", showerMenu);
+	}
+	// Shower masturbation options
+	else if (option == 2)
+	{
+		output(" Not wanting to resist touching yourself, you decide masturbating while in the shower would be a great idea. How do you want to get off?");
+		shipShowerFaps(true);
+		addButton(14, "Back", showerMenu);
+	}
 }
 
 public function sneakBackYouNudist():void
@@ -800,9 +858,9 @@ public function sneakBackYouNudist():void
 	processTime(180+rand(30));
 	currentLocation = "SHIP INTERIOR";
 	var map:* = mapper.generateMap(currentLocation);
-	this.userInterface.setMapData(map);
+	userInterface.setMapData(map);
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	addButton(0, "Next", mainGameMenu);
 }
 
 public function move(arg:String, goToMainMenu:Boolean = true):void {
@@ -817,8 +875,8 @@ public function move(arg:String, goToMainMenu:Boolean = true):void {
 			clearOutput();
 			output("Nudity is illegal in that location! You'll have to cover up if you want to go there.");
 			clearMenu();
-			addButton(0,"SneakBack",sneakBackYouNudist,undefined,"SneakBack","Sneak back to the ship. Fuckin' prudes. It might take you a couple hours to get back safely.");
-			addButton(14,"Back",mainGameMenu);
+			addButton(0, "SneakBack", sneakBackYouNudist, undefined, "SneakBack", "Sneak back to the ship. Fuckin' prudes. It might take you a couple hours to get back safely.");
+			addButton(14, "Back", mainGameMenu);
 			return;
 		}
 	}
@@ -837,7 +895,7 @@ public function move(arg:String, goToMainMenu:Boolean = true):void {
 	processTime(moveMinutes);
 	currentLocation = arg;
 	var map:* = mapper.generateMap(currentLocation);
-	this.userInterface.setMapData(map);
+	userInterface.setMapData(map);
 	
 	trace("Printing map for " + currentLocation);
 	//mapper.printMap(map);
@@ -1318,7 +1376,7 @@ public function processTime(arg:int):void {
 	while(arg > 0) {
 		//Check for shit that happens.
 		//Actually move time!
-		this.minutes++;
+		minutes++;
 
 		//Status Effect Updates
 		statusTick();
@@ -1344,7 +1402,7 @@ public function processTime(arg:int):void {
 		//Kiro stuff
 		if(flags["KIRO_BAR_MET"] != undefined)
 		{
-			if (this.minutes >= 60) 
+			if (minutes >= 60) 
 			{
 				kiro.ballSizeRaw++;
 				//Ball despunkification!
@@ -1366,13 +1424,13 @@ public function processTime(arg:int):void {
 			updateSaendraXPackTimer();
 		}
 		//Tick hours!
-		if (this.minutes >= 60) {
+		if (minutes >= 60) {
 			
 			// Lust increase per hour
 			mimbraneSweatHandler();
 			
-			this.minutes = 0;
-			this.hours++;
+			minutes = 0;
+			hours++;
 			//Hours checks here!
 			
 			if(flags["SHEKKA_TALK_COOLDOWN"] != undefined)
@@ -1487,8 +1545,8 @@ public function processTime(arg:int):void {
 			}
 
 			//Days ticks here!
-			if(this.hours >= 24) {
-				this.days++;
+			if(hours >= 24) {
+				days++;
 				//Unlock dat shiiit
 				if(flags["HOLIDAY_OWEEN_ACTIVATED"] == undefined && (isHalloweenish() || rand(100) == 0)) eventQueue.push(hollidayOweenAlert);
 				if(pc.hasPerk("Honeypot") && days % 3 == 0) honeyPotBump();
@@ -1506,7 +1564,7 @@ public function processTime(arg:int):void {
 				//Reset Orryx shipments!
 				if(flags["ORRYX_SHIPPED_TODAY"] != undefined) flags["ORRYX_SHIPPED_TODAY"] = undefined;
 				if(days >= 2 && (flags["NEW_TEXAS_COORDINATES_GAINED"] == undefined || !MailManager.isEntryUnlocked("newtexas"))) newTexasEmail();
-				this.hours = 0;
+				hours = 0;
 				if(chars["ALISS"].lust() >= 70)
 				{
 					chars["ALISS"].orgasm();
@@ -1842,7 +1900,7 @@ public function bigBallBadEnd():void
 		userInterface.setMapData(map);
 		processTime(1382);
 		clearMenu();
-		addButton(0,"Next",mainGameMenu);
+		addButton(0, "Next", mainGameMenu);
 	}
 	
 }
