@@ -323,8 +323,7 @@ public function anonsBarAddendums():Boolean {
 	anonsBarWaitressAddendum(0);
 	alexManHermIntro(1);
 	ShellyBlurb(2);
-	annoAtAnonsAddendum(4);
-	roamingBarEncounter(5);
+	roamingBarEncounter(4);
 	return false;
 }
 
