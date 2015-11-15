@@ -452,7 +452,7 @@ public function annoAtAnonsAddendum(slot:int = 8):void
 
 		if (haveFuckedAnno() && flags["ANNOxKAEDE_LAST_DAY"] < days - 7)
 		{
-			if (rand(3) == 0)
+			if (rand(2) == 0)
 			{
 				addButton(slot, "Anno", annoxKaedeFollowerMeeting);
 			}
