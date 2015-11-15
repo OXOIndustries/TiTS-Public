@@ -3100,78 +3100,65 @@ public function bionaHoleSyri():void
 */
 
 // Shower Fappings (if any)
-public function shipShowerFaps(display:Boolean = false):Number
+public function shipShowerFaps(genButtons:Boolean = false):Number
 {
-	var showerSex:Number = 0;
-	var buttonslot:Number = -1;
-	/*
-	if (display) addButton(buttonslot + 1, "ButtFuck", shipShowerFappening, 0);
-	showerSex++;
+	var showerSex:Array = [];
 	
-	if (pc.hasCock() && pc.hasVagina())
+	/*
+	showerSex.push("ButtFuck");
+	if (pc.hasCock() && pc.hasVagina()) showerSex.push("Genitals");
+	if (pc.hasCock()) showerSex.push("Cock");
+	if (pc.hasVagina()) showerSex.push("Vagina");
+	if (pc.hasTailCock()) showerSex.push("TailCock");
+	if (pc.hasTailCunt()) showerSex.push("TailCunt");
+	
+	if (genButtons && showerSex.length > 0)
 	{
-		if (display) addButton(buttonslot + 1, "Genitals", shipShowerFappening, 1);
-		showerSex++;
-	}
-	if (pc.hasCock())
-	{
-		if (display) addButton(buttonslot + 1, "Cock", shipShowerFappening, 2);
-		showerSex++;
-	}
-	if (pc.hasVagina())
-	{
-		if (display) addButton(buttonslot + 1, "Vagina", shipShowerFappening, 3);
-		showerSex++;
-	}
-	if (pc.hasTailCock())
-	{
-		if (display) addButton(buttonslot + 1, "TailCock", shipShowerFappening, 4);
-		showerSex++;
-	}
-	if (pc.hasTailCunt())
-	{
-		if (display) addButton(buttonslot + 1, "TailCunt", shipShowerFappening, 5);
-		showerSex++;
+		for(var i:int = 0; i < showerSex.length; i++)
+		{
+			addButton(i, showerSex[i], shipShowerFappening, showerSex[i]);
+		}
 	}
 	*/
-	return showerSex;
+	
+	return showerSex.length;
 }
-public function shipShowerFappening(scene:int = 0):void
+public function shipShowerFappening(scene:String = ""):void
 {
 	clearOutput();
 	output("You eagerly strip off your gear, set it aside and turn on the shower. The cold water hits you but you are unphased--all you care about is getting yourself off!");
-	// Buttfucks
-	if (scene == 0)
+	// ButtFuck
+	if (scene == "ButtFuck")
 	{
 		output("\n\n");
 		processTime(10);
 	}
 	// Both Genitals
-	else if (scene == 1)
+	else if (scene == "Genitals")
 	{
 		output("\n\n");
 		processTime(10);
 	}
 	// Cock(s)
-	else if (scene == 2)
+	else if (scene == "Cock")
 	{
 		output("\n\n");
 		processTime(10);
 	}
 	// Vagina(s)
-	else if scene == 3)
+	else if scene == "Vagina")
 	{
 		output("\n\n");
 		processTime(10);
 	}
-	// Tailcock(s)
-	else if (scene == 4)
+	// TailCock(s)
+	else if (scene == "TailCock")
 	{
 		output("\n\n");
 		processTime(10);
 	}
-	// Tailcunt(s)
-	else if (scene == 5)
+	// TailCunt(s)
+	else if (scene == "TailCunt")
 	{
 		output("\n\n");
 		processTime(10);
@@ -3180,6 +3167,7 @@ public function shipShowerFappening(scene:int = 0):void
 	if (pc.hasStatusEffect("Sweaty")) output(" much cleaner than you did before");
 	else output(" sqeaky clean");
 	output(".");
+	pc.orgasm();
 	pc.shower();
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
