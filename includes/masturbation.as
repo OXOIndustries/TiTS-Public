@@ -2991,55 +2991,196 @@ public function bionaHoleInstructionalBullshit():void
 }
 
 
-/*output("\n\n");
-output("\n\nUsing Syri’s BionaHole");
-output("\n\n//Must have follower Syri, have gotten her twat-in-a-box. PC must have a cock that can fit.");
-output("\n\n//Add [BionaHole] to Syri’s menu.");
-output("\n\n//Tooltip: Ask Syri if you can borrow her perfectly packaged pussy for a little playtime.");
-
-output("\n\nYou take a step towards your asuar lover, slipping one hand around Syri’s supple waist... and the other around behind her, to the hefty black pipe sitting on her desk. <i>“Mind if I borrow this?”</i> you ask with a coy smile, showing the randy pup what you’ve got in mind.");
-
-output("\n\n<i>“What? My ass not good enough for you, Steele?”</i> she teases, grabbing your [pc.butt]{ through your clothes} while you’re still so close. The way she moves against you, you can feel a very familiar stiffness growing against your {thigh // belly // chest} through Syri’s jeans. <i>“Yeah, I guess you can use it... if you don’t mind sloppy seconds. Let me tell you, I’ve been enjoying the hell out of it. Something just gets me going like crazy about fucking myself like that, watching those rosy red lips of mine quiver around my knot... mmf!”</i>");
-
-output("\n\nSyri chews her lip, blue eyes tracing you up and down. <i>“And one more thing. You can use it, but I get to watch. Deal?”</i>");
-
-output("\n\nWow, she really gets off on this! After a moment’s mock consideration, you agree to your lover’s terms and give her a gentle push back against the desk, a perfect place to perch while you sprawl out on her bed and get to work. Syri’s raven tail thumps audibly against the desk’s legs as she leans back against it, one hand supporting herself, the other starting to zip her fly down. Well, if that’s the way she wants it, you suppose you can put on a bit of show for the horny voyeur. You {pull off your clothes piece by piece, turning around to give Syri a good look at your [pc.butt] before showing off the half-hard rod of your [pc.cock], ready to plunge it into the wet vice of her erstwhile pussy. // don’t have much to strip off, and so spend a good deal of time crawling into the bed, showing off your bare ass and emphasizing your [pc.cock] - the last she’ll see of it before you sheath it in her erstwhile twat.} Glancing over your shoulder, you see that even the barest bit of teasing has Syri breathing hard, her double-Ds pressing against the front of her T-shirt with a pair of very obvious promontories at the crest of the perfect mounds.");
-
-output("\n\nWinking at your lover, you lie back on her bed and pop the ventilated lid from her custom-made BionaHole, revealing the smooth pink flesh beneath. A pair of rose-red lips gently reach up from the surface, glistening with moisture. You can feel the heat radiating off of the bio-preserved pussy, a sultry, muggy warmth that begs for you to slip a finger in and play. It’s hard to pass up the opportunity, and you quickly shift your grip around the black sheath to let you brush a pair of fingers gently across Syri’s pussylips. Just like you’d expect, the crimson lips twitch in response to your touch, squeezing down ever so slightly around a fingertip that you slip inside.");
-
-output("\n\n<i>“Mmm, you really know how to treat a pussy right,”</i> Syri teases from her perch, sitting on the edge of the desk. Glancing her way, you see the lusty ausar’s fished her broad red puppy-cock out from her pants, and with her legs splayed wide open, you’re treated to a picture-perfect view of her pillar of dogmeat. Her black-furred hand is wrapped around the still-slender base, slowly rubbing her fuzzy fingertips around where her knot will soon appear. Given what you’re about to do, you’re surprised she’s playing with her cock and not, say, a thick dildo - is she fantasizing about being in your place, or her pussy’s?");
-
-output("\n\nEither way, you’re going to give her a hell of a lot of fapping fuel! You plunge a pair of fingers deep into the BionaHole: the preserved pussy makes a lurid, wet noise as you finger-fuck it, drooling moisture around your digits as it feebly clenches. It’s amazing how sensitive it seems... especially when you run your thumb across its tiny little clit, brushing back the hood and caressing the swollen nub. If the toy were attached to a person, you’re sure she’d be moaning and squirming around you. Instead, though, all Syri’s twat can do is quiver and drool its warm juices all over your hand, giving you plenty of lube for what’s to come.");
-
-output("\n\nSatisfied with your efforts, you pop your fingers out and shift the black sheath down towards your crotch. You {spread your legs // move to emphasize your cock for Syri}, making sure your lover has a good view of the action. She certainly shows her appreciation, chewing her lower lip and fixing her big blue eyes on your [pc.cock]. Her hand moves faster around her own red prick, and you can see a faint glisten of white moisture on her pointed crown.");
-
-output("\n\nEmboldened by the effect you’re having on your lover, you press ahead, aligning your [pc.cockhead] with the sodden lips of her twat. The heat’s almost unbearable - her lips are hotter than any human girl’s could be, burning with alien desire even disembodied as it is. You’ve thoroughly turned her BionaHole on, and its flush lips draw you imperiously onward to penetration. Your breath catches as your {if flared: flared head presses against the pussylips, pushing in against them in demand of entrance //else: crown brushes between the lips of her pussy, hovering on the brink}. A second later and you’re in, pushing the hard black sheath down the length of your shaft.");
-
-output("\n\nGod damn, Syri was tight back in the day! Her cunt squeezes you {as tight as Syri’s ass ever has // like a soaked, smooth vice of flesh}. You slowly slide her BionaHole down, enveloping {your entire // the first eight inches or so} of your cock in her wet hole. As if it were still a part of her, Syri moans huskily, arching her back and furiously stroking herself; she’s definitely enjoying the show! <i>“Don’t be gentle, Steele,”</i> she grunts, taking her own advice as she beats her meat. <i>“I wanna see you pounding that filthy hole in!”</i>");
-
-output("\n\nYou’re more than happy to oblige. You stir the sheath around your [pc.cock], making sure you’re totally coated in her steamy juices before starting to pump it up and down your length; slowly at first, but you start to pick up the pace quickly enough, almost matching Syri’s own manic masturbation. She moans louder, her eyes narrowing until they’re almost closed, signaling her complete surrender to her primal urges. You don’t think your lover’s going to hold out much longer, and you’ve barely gotten started!");
-
-output("\n\nNot wanting let Syri get too far ahead, you prop up your [pc.legs] on the foot of the bed, giving you just enough leverage to start thrusting into her BionaHole’s slit. It clenches hard around you, a primitive reaction to a sudden onslaught of pleasure. Fem-juices drool down your shaft between thrusts, splattering your crotch{ and other cocks} with Syri’s own musky blend of girl-cum. The way the toy is twitching and squirming around you, you’re sure you’ve made it orgasm - if only it could talk! What you wouldn’t do to hear Syri’s screams if she were mounted on it.");
-
-output("\n\nYou’ll have to make do with the cries and moans she’s urging out of herself, pumping her shaft and groping her breasts. While you were distracted with her cunt, Syri’s ditched her coat and t-shirt, leaving those big, beautiful breasts of her bare for your gaze. Her dark little nipples look so stiff, eliciting a sharp gasp every time her furred hands move across them, pinching and pulling until she’s all but screaming.");
-
-output("\n\nJust like that, the dam breaks. Syri throws her head back at the peak of one of your thrusts, just as you’re {hammering her pussy to the limit // going balls deep in her pussy}. She shrieks and bucks her hips into her hand, joining her BionaHole-bound twat in spraying her juices all over. You recoil as a geyser of pearly ausar cream splatters onto the bed, missing you by inches. A second wave falls short, dirtying Syri’s fingers and thighs with drooling spunk.");
-
-output("\n\n<i>“Oh, fuck,”</i> she gasps, stumbling back against the desk. Her knot is flush with the bottom of her fist, and little trickles of white cream are still spurting out of her pointed top, rolling down her shaft and into her hand-fur like creamy lava. <i>“Y-you came too, right?”</i>");
-
-output("\n\nYou shake your head apologetically, still fucking yourself full force with her pussy. Syri curses and drops her jeans, letting them clatter to the floor as she strides towards you. <i>“Shit. Guess I’ll just have to make sure you’re not far behind!”</i>");
-
-output("\n\nYou give her a quizzical look, but she makes her intentions known quick enough: your lover slips down onto her knees, nuzzling up {under your balls // to the base of your cock} and running her tongue along your underside{ until she’s got her lips around your sack. She gives you one hard, long suck before popping off to tend to your shaft}. You gasp as she licks all the way up to the lips of her twat, wrapping her hands around the base and starting to massage {your nuts // your [pc.cunt] // the skin over your prostate}. Between her lips, tongue, and fingers and the pussy squeezing down on your cock, there’s not much you can do to hold back the tide of rising pleasure.");
-
-output("\n\n<i>“Gonna... gonna...”</i> you stammer, furiously stroking yourself off. Syri answers with a lusty moan muffled in cock, licking all the harder. She only urges you on, until with a gasp of pleasure you feel your climax shooting up through your shaft and into the waiting reservoir of Syri’s disembodied cunt. The living sextoy responds with a gush of its own juices, making a creamy mire of its tight channel as you {shoot your wad deep inside it // flood the BionaHole’s reservoir with your massive load // blast the BionaHole with more cum than even it can withstand, quickly covering yourself and Syri in a deluge of backwashed cum. Syri just laughs and licks her lips, cleaning herself off and swallowing down as much of your [pc.cumNoun] as she can get}. No sooner have you let loose into the flesh-filled sheath before Syri grabs it out of your hands, popping it wetly off your well-spent cock and bringing her rosey pussy-lips up to her mouth. Your eyes widen in surprise as Syri’s rough tongue vanishes into her own cunt, and she drinks down your steamy load from her juicy twat.");
-
-output("\n\n<i>“Mmm, delicious,”</i> she laughs, flashing you a cum-stained grin as she finishes her vulgar drink. <i>“Nothing better than cleaning up an epic creampie!”</i>");
-
-output("\n\nIf that’s how she likes it, you can only imagine the shenanigans she gets up to all by herself...");
-
-output("\n\nYou smile at Syri as she caps off her sheathed cunt and sets it aside before crawling into bed with you. Her tongue flicks across your [pc.cock], lapping up a bit of excess spooge before she curls up beside you, head resting on your [pc.chest]. <i>“I think that turned out to be a pretty fair deal...”</i>");
-
-output("\n\n<i>“Definitely,”</i> you agree, wrapping an arm around the ausar’s shoulders and pulling her close. The two of you enjoy the afterglow together for a long few minutes, nestled in each other’s arms, before you finally work up the strength to haul yourself out of bed and grab your gear. Syri gives you a playful swat on the [pc.butt] as you get up, telling you that <i>“Next time, {your pussy’s getting fucked // maybe I’ll drill </i>you<i> instead}!”</i>");
-
-output("\n\n[Next]");
+/*
+// Using Syri’s BionaHole
+// Must have follower Syri, have gotten her twat-in-a-box. PC must have a cock that can fit.
+// Add [BionaHole] to Syri’s menu.
+// Tooltip: Ask Syri if you can borrow her perfectly packaged pussy for a little playtime.
+public function bionaHoleSyri():void
+{
+	clearOutput();
+	author("Savin");
+	showSyri(true);
+	
+	var x:int = pc.cockThatFits(350);
+	if (x < 0) x = pc.smallestCockIndex();
+	
+	output("You take a step towards your ausar lover, slipping one hand around Syri’s supple waist... and the other around behind her, to the hefty black pipe sitting on her desk. <i>“Mind if I borrow this?”</i> you ask with a coy smile, showing the randy pup what you’ve got in mind.");
+	
+	output("\n\n<i>“What? My ass not good enough for you, Steele?”</i> she teases, grabbing your [pc.butt]");
+	if (!pc.isNude()) output(" through your clothes");
+	output(" while you’re still so close. The way she moves against you, you can feel a very familiar stiffness growing against your");
+	if (pc.tallness >= 84) output(" thigh");
+	else if (pc.tallness >= 48) output(" belly");
+	else output(" chest");
+	output(" through Syri’s jeans. <i>“Yeah, I guess you can use it... if you don’t mind sloppy seconds. Let me tell you, I’ve been enjoying the hell out of it. Something just gets me going like crazy about fucking myself like that, watching those rosy red lips of mine quiver around my knot... mmf!”</i>");
+	
+	output("\n\nSyri chews her lip, blue eyes tracing you up and down. <i>“And one more thing. You can use it, but I get to watch. Deal?”</i>");
+	
+	output("\n\nWow, she really gets off on this! After a moment’s mock consideration, you agree to your lover’s terms and give her a gentle push back against the desk, a perfect place to perch while you sprawl out on her bed and get to work. Syri’s raven tail thumps audibly against the desk’s legs as she leans back against it, one hand supporting herself, the other starting to zip her fly down. Well, if that’s the way she wants it, you suppose you can put on a bit of show for the horny voyeur. You");
+	if (!pc.isNude()) output(" pull off your clothes piece by piece, turning around to give Syri a good look at your [pc.butt] before showing off the half-hard rod of your [pc.cock], ready to plunge it into the wet vice of her erstwhile pussy.");
+	else output(" don’t have much to strip off, and so spend a good deal of time crawling into the bed, showing off your bare ass and emphasizing your [pc.cock] - the last she’ll see of it before you sheath it in her erstwhile twat.");
+	output(" Glancing over your shoulder, you see that even the barest bit of teasing has Syri breathing hard, her double-Ds pressing against the front of her T-shirt with a pair of very obvious promontories at the crest of the perfect mounds.");
+	
+	output("\n\nWinking at your lover, you lie back on her bed and pop the ventilated lid from her custom-made BionaHole, revealing the smooth pink flesh beneath. A pair of rose-red lips gently reach up from the surface, glistening with moisture. You can feel the heat radiating off of the bio-preserved pussy, a sultry, muggy warmth that begs for you to slip a finger in and play. It’s hard to pass up the opportunity, and you quickly shift your grip around the black sheath to let you brush a pair of fingers gently across Syri’s pussylips. Just like you’d expect, the crimson lips twitch in response to your touch, squeezing down ever so slightly around a fingertip that you slip inside.");
+	
+	output("\n\n<i>“Mmm, you really know how to treat a pussy right,”</i> Syri teases from her perch, sitting on the edge of the desk. Glancing her way, you see the lusty ausar’s fished her broad red puppy-cock out from her pants, and with her legs splayed wide open, you’re treated to a picture-perfect view of her pillar of dogmeat. Her black-furred hand is wrapped around the still-slender base, slowly rubbing her fuzzy fingertips around where her knot will soon appear. Given what you’re about to do, you’re surprised she’s playing with her cock and not, say, a thick dildo - is she fantasizing about being in your place, or her pussy’s?");
+	
+	output("\n\nEither way, you’re going to give her a hell of a lot of fapping fuel! You plunge a pair of fingers deep into the BionaHole: the preserved pussy makes a lurid, wet noise as you finger-fuck it, drooling moisture around your digits as it feebly clenches. It’s amazing how sensitive it seems... especially when you run your thumb across its tiny little clit, brushing back the hood and caressing the swollen nub. If the toy were attached to a person, you’re sure she’d be moaning and squirming around you. Instead, though, all Syri’s twat can do is quiver and drool its warm juices all over your hand, giving you plenty of lube for what’s to come.");
+	
+	output("\n\nSatisfied with your efforts, you pop your fingers out and shift the black sheath down towards your crotch. You");
+	if (pc.hasLegs()) output(" spread your legs");
+	else output(" move to emphasize your cock for Syri");
+	output(", making sure your lover has a good view of the action. She certainly shows her appreciation, chewing her lower lip and fixing her big blue eyes on your [pc.cock]. Her hand moves faster around her own red prick, and you can see a faint glisten of white moisture on her pointed crown.");
+	
+	output("\n\nEmboldened by the effect you’re having on your lover, you press ahead, aligning your [pc.cockhead] with the sodden lips of her twat. The heat’s almost unbearable - her lips are hotter than any human girl’s could be, burning with alien desire even disembodied as it is. You’ve thoroughly turned her BionaHole on, and its flush lips draw you imperiously onward to penetration. Your breath catches as your");
+	if (pc.cocks[x].hasFlag(GLOBAL.FLAG_FLARED)) output(" flared head presses against the pussylips, pushing in against them in demand of entrance");
+	else output(" crown brushes between the lips of her pussy, hovering on the brink}. A second later and you’re in, pushing the hard black sheath down the length of your shaft.");
+	
+	output("\n\nGod damn, Syri was tight back in the day! Her cunt squeezes you");
+	if (flags["FUCKED_SYRI_COUNT"] != undefined) output(" as tight as Syri’s ass ever has");
+	else output(" like a soaked, smooth vice of flesh");
+	output(". You slowly slide her BionaHole down, enveloping");
+	if (pc.cocks[x].cLength() <= 8) output(" your entire");
+	else output(" the first eight inches or so");
+	output(" of your cock in her wet hole. As if it were still a part of her, Syri moans huskily, arching her back and furiously stroking herself; she’s definitely enjoying the show! <i>“Don’t be gentle, Steele,”</i> she grunts, taking her own advice as she beats her meat. <i>“I wanna see you pounding that filthy hole in!”</i>");
+	
+	output("\n\nYou’re more than happy to oblige. You stir the sheath around your [pc.cock], making sure you’re totally coated in her steamy juices before starting to pump it up and down your length; slowly at first, but you start to pick up the pace quickly enough, almost matching Syri’s own manic masturbation. She moans louder, her eyes narrowing until they’re almost closed, signaling her complete surrender to her primal urges. You don’t think your lover’s going to hold out much longer, and you’ve barely gotten started!");
+	
+	output("\n\nNot wanting let Syri get too far ahead, you prop up your [pc.legs] on the foot of the bed, giving you just enough leverage to start thrusting into her BionaHole’s slit. It clenches hard around you, a primitive reaction to a sudden onslaught of pleasure. Fem-juices drool down your shaft between thrusts, splattering your crotch");
+	if (pc.cockTotal() > 1) output(" and other cocks");
+	output(" with Syri’s own musky blend of girl-cum. The way the toy is twitching and squirming around you, you’re sure you’ve made it orgasm - if only it could talk! What you wouldn’t do to hear Syri’s screams if she were mounted on it.");
+	
+	output("\n\nYou’ll have to make do with the cries and moans she’s urging out of herself, pumping her shaft and groping her breasts. While you were distracted with her cunt, Syri’s ditched her coat and t-shirt, leaving those big, beautiful breasts of her bare for your gaze. Her dark little nipples look so stiff, eliciting a sharp gasp every time her furred hands move across them, pinching and pulling until she’s all but screaming.");
+	
+	output("\n\nJust like that, the dam breaks. Syri throws her head back at the peak of one of your thrusts, just as you’re");
+	if (pc.balls <= 0) output(" hammering her pussy to the limit");
+	else output(" going balls deep in her pussy");
+	output(". She shrieks and bucks her hips into her hand, joining her BionaHole-bound twat in spraying her juices all over. You recoil as a geyser of pearly ausar cream splatters onto the bed, missing you by inches. A second wave falls short, dirtying Syri’s fingers and thighs with drooling spunk.");
+	
+	output("\n\n<i>“Oh, fuck,”</i> she gasps, stumbling back against the desk. Her knot is flush with the bottom of her fist, and little trickles of white cream are still spurting out of her pointed top, rolling down her shaft and into her hand-fur like creamy lava. <i>“Y-you came too, right?”</i>");
+	
+	output("\n\nYou shake your head apologetically, still fucking yourself full force with her pussy. Syri curses and drops her jeans, letting them clatter to the floor as she strides towards you. <i>“Shit. Guess I’ll just have to make sure you’re not far behind!”</i>");
+	
+	output("\n\nYou give her a quizzical look, but she makes her intentions known quick enough: your lover slips down onto her knees, nuzzling up");
+	if (pc.balls > 0) output(" under your balls");
+	else output(" to the base of your cock");
+	output(" and running her tongue along your underside");
+	if (pc.balls > 0) output(" until she’s got her lips around your sack. She gives you one hard, long suck before popping off to tend to your shaft");
+	output(". You gasp as she licks all the way up to the lips of her twat, wrapping her hands around the base and starting to massage");
+	if (pc.balls > 0) output(" your nuts");
+	else if (pc.hasVagina()) output(" your [pc.cunt]");
+	else output(" the skin over your prostate");
+	output(". Between her lips, tongue, and fingers and the pussy squeezing down on your cock, there’s not much you can do to hold back the tide of rising pleasure.");
+	
+	output("\n\n<i>“Gonna... gonna...”</i> you stammer, furiously stroking yourself off. Syri answers with a lusty moan muffled in cock, licking all the harder. She only urges you on, until with a gasp of pleasure you feel your climax shooting up through your shaft and into the waiting reservoir of Syri’s disembodied cunt. The living sextoy responds with a gush of its own juices, making a creamy mire of its tight channel as you");
+	if (pc.cumQ() < 50) output(" shoot your wad deep inside it");
+	else if (pc.cumQ() < 200) output(" flood the BionaHole’s reservoir with your massive load");
+	else output(" blast the BionaHole with more cum than even it can withstand, quickly covering yourself and Syri in a deluge of backwashed cum. Syri just laughs and licks her lips, cleaning herself off and swallowing down as much of your [pc.cumNoun] as she can get");
+	output(". No sooner have you let loose into the flesh-filled sheath before Syri grabs it out of your hands, popping it wetly off your well-spent cock and bringing her rosey pussy-lips up to her mouth. Your eyes widen in surprise as Syri’s rough tongue vanishes into her own cunt, and she drinks down your steamy load from her juicy twat.");
+	
+	output("\n\n<i>“Mmm, delicious,”</i> she laughs, flashing you a cum-stained grin as she finishes her vulgar drink. <i>“Nothing better than cleaning up an epic creampie!”</i>");
+	
+	output("\n\nIf that’s how she likes it, you can only imagine the shenanigans she gets up to all by herself...");
+	
+	output("\n\nYou smile at Syri as she caps off her sheathed cunt and sets it aside before crawling into bed with you. Her tongue flicks across your [pc.cock], lapping up a bit of excess spooge before she curls up beside you, head resting on your [pc.chest]. <i>“I think that turned out to be a pretty fair deal...”</i>");
+	
+	output("\n\n<i>“Definitely,”</i> you agree, wrapping an arm around the ausar’s shoulders and pulling her close. The two of you enjoy the afterglow together for a long few minutes, nestled in each other’s arms, before you finally work up the strength to haul yourself out of bed and grab your gear. Syri gives you a playful swat on the [pc.butt] as you get up, telling you that <i>“Next time,");
+	if (pc.hasVagina()) output(" your pussy’s getting fucked");
+	else output(" maybe I’ll drill </i>you<i> instead");
+	output("!”</i>");
+	
+	IncrementFlag("SYRI_BIONAHOLE_USES");
+	processTime(30);
+	pc.orgasm();
+	// [Next]
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
 */
+
+// Shower Fappings (if any)
+public function shipShowerFaps(display:Boolean = false):Number
+{
+	var showerSex:Number = 0;
+	var buttonslot:Number = -1;
+	/*
+	if (display) addButton(buttonslot + 1, "ButtFuck", shipShowerFappening, 0);
+	showerSex++;
+	
+	if (pc.hasCock() && pc.hasVagina())
+	{
+		if (display) addButton(buttonslot + 1, "Genitals", shipShowerFappening, 1);
+		showerSex++;
+	}
+	if (pc.hasCock())
+	{
+		if (display) addButton(buttonslot + 1, "Cock", shipShowerFappening, 2);
+		showerSex++;
+	}
+	if (pc.hasVagina())
+	{
+		if (display) addButton(buttonslot + 1, "Vagina", shipShowerFappening, 3);
+		showerSex++;
+	}
+	if (pc.hasTailCock())
+	{
+		if (display) addButton(buttonslot + 1, "TailCock", shipShowerFappening, 4);
+		showerSex++;
+	}
+	if (pc.hasTailCunt())
+	{
+		if (display) addButton(buttonslot + 1, "TailCunt", shipShowerFappening, 5);
+		showerSex++;
+	}
+	*/
+	return showerSex;
+}
+public function shipShowerFappening(scene:int = 0):void
+{
+	clearOutput();
+	output("You eagerly strip off your gear, set it aside and turn on the shower. The cold water hits you but you are unphased--all you care about is getting yourself off!");
+	// Buttfucks
+	if (scene == 0)
+	{
+		output("\n\n");
+		processTime(10);
+	}
+	// Both Genitals
+	else if (scene == 1)
+	{
+		output("\n\n");
+		processTime(10);
+	}
+	// Cock(s)
+	else if (scene == 2)
+	{
+		output("\n\n");
+		processTime(10);
+	}
+	// Vagina(s)
+	else if scene == 3)
+	{
+		output("\n\n");
+		processTime(10);
+	}
+	// Tailcock(s)
+	else if (scene == 4)
+	{
+		output("\n\n");
+		processTime(10);
+	}
+	// Tailcunt(s)
+	else if (scene == 5)
+	{
+		output("\n\n");
+		processTime(10);
+	}
+	output("\n\nAfter your orgasmic ordeal, you finally rinse and towel yourself off. Stepping out of the shower and redonning your equipment, you are feeling");
+	if (pc.hasStatusEffect("Sweaty")) output(" much cleaner than you did before");
+	else output(" sqeaky clean");
+	output(".");
+	pc.shower();
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
