@@ -94,7 +94,7 @@ package classes.GameData.Pregnancy
 		public function tryKnockUp(father:Creature, mother:Creature, pregSlot:int):Boolean
 		{
 			// Abort if there's an existing pregnancy of this type and multipreg of this type is disabled
-			if (_allowMultiplePregnancies == false && mother.hasPregnancyOfType(_handlesType))
+			if (_allowMultiplePregnancies == false && mother.isPregnant())
 			{
 				return false;
 			}
