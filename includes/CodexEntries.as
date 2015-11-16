@@ -56,7 +56,7 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Myrellion", "Nyrea", nyreaCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Myrellion", "Red Myr", redMyrmedionCodexEntry);
 	
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Tarkus","Gabilani",grayGooCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Tarkus","Gabilani",gabilaniCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Tarkus","Gray Goos",grayGooCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Tarkus","Lapinara",lapinaraCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Tarkus","Raskvel",raskVelCodexEntry);
