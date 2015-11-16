@@ -1049,7 +1049,7 @@ public function kiroBallsSexMenu():void
 	//High trust only - get her panties.
 	if(pc.hasCock())
 	{
-		if(pc.cockThatFits(kiro.vaginalCapacity(0) + 100) >= 0)
+		if(pc.cockThatFits(kiro.vaginalCapacity(0) + 200) >= 0)
 		{
 			if(kiro.vaginas[0].hymen) addButton(0,"Fuck Vag.",takeKirosVirginity,undefined,"Fuck Her Vagina","Kiro seems excessively focused on her dick. Why not share the loving with her vagina?");
 			else addButton(0,"Fuck Vag.",repeatVagFuckKiro,undefined,"Fuck her Vagina","You took her virginity; might as well see if she's still just as tight.");
@@ -1076,7 +1076,7 @@ public function kiroSexMenu():void
 	//High trust only - get her panties.
 	if(pc.hasCock())
 	{
-		if(pc.cockThatFits(kiro.vaginalCapacity(0) + 100) >= 0)
+		if(pc.cockThatFits(kiro.vaginalCapacity(0) + 200) >= 0)
 		{
 			if(kiro.vaginas[0].hymen) addButton(0,"Fuck Vag.",takeKirosVirginity,undefined,"Fuck Her Vagina","Kiro seems excessively focused on her dick. Why not share the loving with her vagina?");
 			else addButton(0,"Fuck Vag.",repeatVagFuckKiro,undefined,"Fuck her Vagina","You took her virginity; might as well see if she's still just as tight.");
