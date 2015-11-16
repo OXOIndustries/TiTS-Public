@@ -6,21 +6,8 @@ import classes.GameData.MailManager;
 // Illegal character input check
 public function hasIllegalInput(sText:String = ""):Boolean
 {
-	if
-	(	sText.indexOf("<") != -1
-	||	sText.indexOf(">") != -1
-	||	sText.indexOf("[") != -1
-	||	sText.indexOf("]") != -1
-	||	sText.indexOf("\n") != -1
-	||	sText.indexOf("\r") != -1
-	||	sText.indexOf("\t") != -1
-	||	sText.indexOf("\b") != -1
-	||	sText.indexOf("\f") != -1
-	)
-	{
-		return true;
-	}
-	return false;
+	var r:RegExp = /[^\w ]/g; // Match anything that isn't a word or a space (\w == [A-z0-9])
+	return r.test(sText);
 }
 
 public function creationRouter(e:Event = null):void {
@@ -43,6 +30,7 @@ public function startCharacterCreation(e:Event = null):void
 	chars["PC"].shield = new classes.Items.Protection.BasicShield();
 	chars["PC"].shieldsRaw = chars["PC"].shieldsMax();
 	MailManager.resetMails();
+	userInterface.mailsDisplayButton.Deactivate();
 	hours = 0;
 	minutes = 0;
 	days = 0;

@@ -1092,8 +1092,6 @@
 			}
 			
 			menuButtonsOff();
-			appearanceOff();
-			dataOff();
 			
 			_buttonTray.hideKeyBinds();
 			
@@ -1107,6 +1105,10 @@
 			if (_currentModule is GameTextModule)
 			{
 				(_currentModule as GameTextModule).hideInput();
+			}
+			else
+			{
+				_availableModules["PrimaryOutput"].hideInput();
 			}
 			
 			menuButtonsOn();
@@ -1123,6 +1125,26 @@
 		public function mainMenuButtonOff():void 
 		{
 			_leftSideBar.menuButton.Deactivate();
+		}
+		
+		public function perksOff():void
+		{
+			_leftSideBar.perksButton.Deactivate();
+		}
+		
+		public function perksOn():void
+		{
+			_leftSideBar.perksButton.Activate();
+		}
+		
+		public function messengerOff():void
+		{
+			_leftSideBar.mailsButton.Deactivate();
+		}
+		
+		public function messengerOn():void
+		{
+			_leftSideBar.mailsButton.Activate();
 		}
 		
 		public function appearanceOn():void 
@@ -1156,6 +1178,10 @@
 			{
 				mainMenuButtonOn();
 				dataOn();
+				/*
+				perksOn();
+				messengerOn();
+				*/
 			}
 		}
 		
@@ -1163,6 +1189,11 @@
 		{
 			appearanceOff();
 			mainMenuButtonOff();
+			dataOff();
+			/*
+			perksOff();
+			messengerOff();
+			*/
 		}
 		
 		public function hideData():void 

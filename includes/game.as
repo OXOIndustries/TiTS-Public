@@ -225,9 +225,8 @@ public function mainGameMenu():void {
 	userInterface.showMinimap();
 	var map:* = mapper.generateMap(currentLocation);
 	userInterface.setMapData(map);
-	
-	// Enable the perk list button
-	(userInterface as GUI).perkDisplayButton.Activate();
+		
+	userInterface.perkDisplayButton.Activate();
 }
 
 public function generateMapForLocation(location:String):void
@@ -294,6 +293,12 @@ public function showMailsHandler(e:Event = null):void
 {
 	var pButton:SquareButton = (userInterface as GUI).mailsDisplayButton;
 	
+	if (!pc || pc.hasStatusEffect("In Creation"))
+	{
+		userInterface.mailsDisplayButton.Deactivate();
+		return;
+	}
+	
 	if (flags["PC_EMAIL_ADDRESS"] == undefined)
 	{
 		(userInterface as GUI).showSecondaryOutput();
@@ -315,7 +320,7 @@ public function showMailsHandler(e:Event = null):void
 public function showMails():void
 {
 	userInterface.showMails();
-			userInterface.DeGlowButtons();
+	userInterface.DeGlowButtons();
 	(userInterface as GUI).mailsDisplayButton.Highlight();
 	codexMailFunction();
 }
