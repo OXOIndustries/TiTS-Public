@@ -7,6 +7,7 @@ package classes.Items.Toys
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
+	import classes.GameData.CodexManager;
 	
 	public class GravCuffs extends ItemSlotClass
 	{
@@ -54,7 +55,8 @@ package classes.Items.Toys
 		override public function useFunction(target:Creature, usingCreature:Creature = null):Boolean
 		{
 			if(!kGAMECLASS.infiniteItems()) quantity++;
-			if(target is PlayerCharacter) {
+			if (target is PlayerCharacter) 
+			{
 				CodexManager.unlockEntry("Grav Cuffs");
 				if(kGAMECLASS.rooms[kGAMECLASS.currentLocation].planet == "PLANET: NEW TEXAS" && kGAMECLASS.rooms[kGAMECLASS.currentLocation].hasFlag(GLOBAL.PUBLIC) && target.exhibitionism() >= 33 && target.lust() >= 33 && kGAMECLASS.flags["GRAVCUFFS_USES"] != undefined)
 				{

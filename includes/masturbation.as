@@ -3146,7 +3146,7 @@ public function shipShowerFappening(scene:String = ""):void
 		processTime(10);
 	}
 	// Vagina(s)
-	else if scene == "Vagina")
+	else if (scene == "Vagina")
 	{
 		output("\n\n");
 		processTime(10);

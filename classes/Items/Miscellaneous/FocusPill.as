@@ -74,7 +74,7 @@
 			//Not player!
 			else
 			{
-				if(inCombat()) output("\n");
+				if(kGAMECLASS.inCombat()) output("\n");
 				else clearOutput();
 				output(target.capitalA + target.short + " swallows a focus pill to no effect.\n");
 			}

@@ -1359,7 +1359,7 @@ public function appearance(target:Creature):void {
 					output2("the massive hole that is your " + target.vaginasDescript() + ".");
 				}
 				//Zil flavor!
-				if(target.totalVaginas(GLOBAL.TYPE_BEE) > 0 && target.vaginas[0].vaginaColor = "black and gold") {
+				if (target.totalVaginas(GLOBAL.TYPE_BEE) > 0 && target.vaginas[0].vaginaColor == "black and gold") {
 					output2(" The exterior folds are a dusky black, while the inner lining of your tunnel is a glorious golden hue.");
 				}
 				//Naleen flavor
@@ -1414,7 +1414,7 @@ public function appearance(target:Creature):void {
 						else output2(", its lips loosened by frequent fucking");
 						output2(".")
 						//Zil flavor!
-						if(target.vaginas[temp].type == GLOBAL.TYPE_BEE && target.vaginas[temp].vaginaColor = "black and gold") {
+						if(target.vaginas[temp].type == GLOBAL.TYPE_BEE && target.vaginas[temp].vaginaColor == "black and gold") {
 							output2(" The exterior folds are a dusky black, while the inner lining of your tunnel is a glorious golden hue.");
 						}
 						//Naleen flavor
