@@ -281,17 +281,17 @@ public function venomExpirationNotice():void
 		if(pc.hasFur() || pc.hasScales() || pc.hasFeathers()) output(" beneath your [pc.skinFurScales]");
 		eventBuffer += ". Nor is it quite so sensitive to the touch. The effects of the red myr venom must be subsiding.";
 	}
-	trace("PROGRESS TO ADDICTION: " + flags["VENOM_PROGRESS"] + " ADDICTION SUPERMAX PROG: " + flags["VENOM_ADDICTION"]);
+	//trace("PROGRESS TO ADDICTION: " + flags["VENOM_PROGRESS"] + " ADDICTION SUPERMAX PROG: " + flags["VENOM_ADDICTION"]);
 }
 
 //Special Scene: Desperation Oral
 //PC is either withdrawing or addicted and not high on R.Venom. Only plays in Kressia or the DMZ. Small chance to play per step.
 public function sluttyMcSlutOral():void
 {
-	clearOutput();
-	showName("ADDICT'S\nDESPERATION");
+	showName("RED\nMYR");
+	showBust("MYR_RED_GUARD");
 	author("Savin");
-	output("Your heart feels like it’s turning to stone, slowing down and down. Your whole body feels leaden, even, wanting for the wondrous pleasures you’re so familiar with now. Nothing feels the same anymore, and your thoughts constantly drift towards gorgeous red myr women and their lush, crimson lips... and the treasure within.");
+	output("\n\nYour heart feels like it’s turning to stone, slowing down and down. Your whole body feels leaden, even, wanting for the wondrous pleasures you’re so familiar with now. Nothing feels the same anymore, and your thoughts constantly drift towards gorgeous red myr women and their lush, crimson lips... and the treasure within.");
 	output("\n\nExcept now, here, surrounded by reds, your fantasies are so much more than that. Temptations. That’s the word. Any of the crimson-clad beauties around here could sate your needs with a kiss, and you find yourself staring at each in turn, your lusts mounting with every passing heartbeat. You can’t take it anymore!");
 	output("\n\nA moment later and you’ve grabbed the arm of a passing soldier, a prim and proper-looking young woman with russet curls spilling down her back in a loose ponytail. Her black eyes widen when you grab her, instinctively reaching for the axe on her hip... until she sees the wanton desperation clear on your face. Her expression softens into a mix of concern and pity.");
 	output("\n\n<i>“What’s wrong, spacer?”</i> she asks - as if she couldn’t tell! You’re close enough to smell the sweet scent of the drug that’s left you in its stranglehold on her rosy lips. You lead in to get a better taste, nearly pulling the confused soldier into a kiss. Just being so close to one of the living drug factories has your heart racing out of control now, your whole body reacting with growing arousal.");

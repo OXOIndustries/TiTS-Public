@@ -6,6 +6,11 @@ public function myrellionHangarBonus():Boolean
 		probeReclamationShit();
 		return true;
 	}
+	if(pc.hasStatusEffect("Myr Venom Withdrawl") && rand(10) == 0)
+	{
+		sluttyMcSlutOral();
+		return true;
+	}
 	return false;
 }
 
@@ -14,6 +19,21 @@ public function airFieldNorthBonus():Boolean
 	if(flags["SEXED_SHADE"] != undefined && shadeAtTheBar())
 	{
 		output(" You recognize Shade's ship, a purple MS-XI with \"Mirage\" painted in bold white letters across its bow, parked next to one of the hangers here.")
+	}
+	if(pc.hasStatusEffect("Myr Venom Withdrawl") && rand(10) == 0)
+	{
+		sluttyMcSlutOral();
+		return true;
+	}
+	return false;
+}
+
+public function DMZRandoEventsBonus():Boolean
+{
+	if(pc.hasStatusEffect("Myr Venom Withdrawl") && rand(10) == 0)
+	{
+		sluttyMcSlutOral();
+		return true;
 	}
 	return false;
 }
@@ -79,6 +99,11 @@ public function streetOutsideBarBonus():Boolean
 	{
 		output("\n\nA sign has been posted outside the Xenogen outpost, reading in big, bold red letters: THE DOCTOR IS <i><b>OUT</b></i>!");
 	}
+	if(pc.hasStatusEffect("Myr Venom Withdrawl") && rand(10) == 0)
+	{
+		sluttyMcSlutOral();
+		return true;
+	}
 
 	return false;
 }
@@ -86,6 +111,11 @@ public function spacersRowBonusFunc():Boolean
 {
 	if(karaQuestTurninNeeded()) output(" <b>where Kara is hiding</b>");
 	output(".");
+	if(pc.hasStatusEffect("Myr Venom Withdrawl") && rand(10) == 0)
+	{
+		sluttyMcSlutOral();
+		return true;
+	}
 	return false;
 }
 public function backAlleyBonus():Boolean
@@ -96,6 +126,11 @@ public function backAlleyBonus():Boolean
 		return true;
 	}
 	else output(" Not much to see here.");
+	if(pc.hasStatusEffect("Myr Venom Withdrawl") && rand(10) == 0)
+	{
+		sluttyMcSlutOral();
+		return true;
+	}
 	return false;
 }
 
@@ -331,6 +366,11 @@ public function DMZKressiaAirstrip():Boolean
 		output("\n\nA red myr trooper checks your papers and identification again before waving you through the checkpoint and telling you to hurry aboard if you want to go to Kressia, the closest of the Red's cities.");
 		addButton(0,"Enter Plane",aeroplaneFlightShit,true,"Enter Plane","Hop on a plane for a quick trip to Kressia.");
 	}
+	if(pc.hasStatusEffect("Myr Venom Withdrawl") && rand(10) == 0)
+	{
+		sluttyMcSlutOral();
+		return true;
+	}
 	return false;
 }
 
@@ -386,7 +426,15 @@ public function kressiaGateBonus():Boolean
 	}
 	return false;
 }
-
+public function kressiaBasicBonusBitches():Boolean
+{
+	if(pc.hasStatusEffect("Myr Venom Withdrawl") && rand(10) == 0)
+	{
+		sluttyMcSlutOral();
+		return true;
+	}
+	return false;
+}
 public function sledgehammersBonus():Boolean
 {
 	showBust("MYR_GOLD_GUARD_HAMMER","","MYR_GOLD_GUARD_HAMMER");
