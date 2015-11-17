@@ -1531,6 +1531,8 @@ public function initializeMyrellionRooms():void
 	rooms["837"].runOnEnter = undefined;
 	rooms["837"].addFlag(GLOBAL.PUBLIC);
 	rooms["837"].addFlag(GLOBAL.INDOOR);
+	//rooms["837"].addFlag(GLOBAL.OBJECTIVE);
+	//rooms["837"].addFlag(GLOBAL.BED);
 
 	rooms["838"] = new RoomClass(this);
 	rooms["838"].roomName = "MANOR\nKITCHEN";
@@ -3368,7 +3370,7 @@ public function initializeMyrellionRooms():void
 	//Garde Here
 	rooms["2S29"] = new RoomClass(this);
 	rooms["2S29"].roomName = "GANRAEN\nPRISON";
-	rooms["2S29"].description = "Crystalline cages hold a number of myr of varying colors, along with some of the more exotic myrmedion life forms. You know from personal experience that the ganraen harvest fluids from their captives before releasing them back to where they came from.";
+	rooms["2S29"].description = "Crystalline cages hold a number of myr of varying colors, along with some of the more exotic myrmedion life forms. You know from personal experience that the ganraen harvest fluids from their captives before releasing them back to where they came from.\n\nThere is a spare bed here you can use if you need to rest.";
 	rooms["2S29"].planet = "PLANET: MYRELLION";
 	rooms["2S29"].system = "SYSTEM: SINDATHU";
 	rooms["2S29"].northExit = "";
