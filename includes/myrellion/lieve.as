@@ -1,4 +1,6 @@
-﻿public function lieveHeader(isNude:Boolean = false, isSolo:Boolean = false):void
+﻿import classes.Items.Drinks.HoneyWine;
+
+public function lieveHeader(isNude:Boolean = false, isSolo:Boolean = false):void
 {
 	showName("\nLIEVE");
 	author("Savin");
@@ -2034,7 +2036,7 @@ public function lieveTourBathhouseIIScrubHer():void
 
 	flags["LIEVE_DATEPOINTS"] -= 1;
 
-	output("\n\nYou ignore your lascivious companion’s offer, starting to regret taking the lusty ant up on a group bath. You slip up behind Lieve and start to wash her back, scrubbing her plateless back down from shoulder to the first gentle incline of her buttocks. The lower you move, the greater the tension you can feel in your companion’s body - she moans softly when you near her swaying backside, clearly expectant of more... until you move back up, away from her sex. The tension relaxes, and Lieve sighs.");
+	output("You ignore your lascivious companion’s offer, starting to regret taking the lusty ant up on a group bath. You slip up behind Lieve and start to wash her back, scrubbing her plateless back down from shoulder to the first gentle incline of her buttocks. The lower you move, the greater the tension you can feel in your companion’s body - she moans softly when you near her swaying backside, clearly expectant of more... until you move back up, away from her sex. The tension relaxes, and Lieve sighs.");
 	
 	output("\n\n<i>“Thanks. Couldn’t reach there myself,”</i> she says dryly, though you get the sense she’s at least somewhat trying to disguise her disappointment.");
 	
@@ -2135,12 +2137,27 @@ public function lieveTourManorHouse(fromBath:Boolean = true):void
 	
 	output("\n\n<i>“Take your pick,”</i> Lieve says, ushering you in. <i>“The queen who lived here was one of the most... productive... on the Council. They drank her tit-honey from one side of Gold country to the other. She kept enough down here to keep us swimming in honey for the rest of our lives, and our daughters’. To the victors go the spoils!”</i>");
 	
-	output("\n\nYou’ve got no idea how myr vintage their honey-booze, and so select a bottle at random from one of the many, many racks against the walls. The bottle’s clear, letting you see the thick yellow drink inside that sloshes viscously when you move it. Even through the cork, you can smell the sweetness in the air around it, making your nose tingle ever so slightly.");
-
-	// 9999
+	output("\n\nYou’ve got no idea how myr vintage their honey-booze, and so select a bottle at random from one of the many, many racks against the walls. The bottle’s clear, letting you see the thick yellow drink inside that sloshes viscously when you move it. Even through the cork, you can smell the sweetness in the air around it, making your nose tingle ever so slightly.\n\n");
+	//Cheatsy doodle way to wrap that passed variable around the item loot.
+	if(fromBath) pc.createStatusEffect("FromBath");
+	
 	// Stuff for getting a Honey Wine bottle here.
+	itemScreen = postWineCellarShitForLieve;
+	lootScreen = postWineCellarShitForLieve;
+	useItemFunction = postWineCellarShitForLieve;
+	
+	itemCollect([new HoneyWine()]);
+}
 
-	output("\n\nAs you exit the wine cellar, you ask Lieve if she has anything left in this little tour of hers.");
+
+public function postWineCellarShitForLieve():void
+{
+	clearOutput();
+	lieveHeader(false, true);
+	//End cheaty shit and clean up the cheaty status effect.
+	var fromBath:Boolean = pc.hasStatusEffect("FromBath");
+	pc.removeStatusEffect("FromBath");
+	output("As you exit the wine cellar, you ask Lieve if she has anything left in this little tour of hers.");
 
 	output("\n\n<i>“That’s about it,”</i> she admits,");
 	if (flags["LIEVE_DATEPOINTS"] >= 6) output(" putting an arm around your shoulders");
