@@ -18,8 +18,8 @@
 			this._latestVersion = 1;
 			
 			this.quantity = 1;
-			this.stackSize = 10;
-			this.type = GLOBAL.PILL;
+			this.stackSize = 1;
+			this.type = GLOBAL.POTION;
 			//Used on inventory buttons
 			this.shortName = "H.Wine";
 			//Regular name
@@ -60,8 +60,7 @@
 			{
 				clearOutput();
 				output("You heft the big, dark bottle of gold myr Honey Wine out of your pack. It feels heavier than any wine bottle you've handled before, and the contents slosh with viscous languidity. That's a lot of booze, you start to think as you pop the cork. Rather than fizzing, the Honey Wine makes a burbling sound as you uncork it.\n\nWell, no better time to start your career as an interstellar wino than now, right? Bottoms up!\n\nYou drink as much of the honey-sweet booze as you can stomach, and find yourself feeling more energized for having done it. That Honey Wine gives you a hell of a rush: you feel like you could take on the world now... or at least do some exercises.");
-				target.createStatusEffect("Royal Nectar",30,0,0,0,false,"Charmed","That honey wine packs a punch! You're feeling a lot peppier now.",false,2880)
-				target.energy(30);
+
 			}
 			//Not player!
 			else
@@ -69,10 +68,14 @@
 				if(kGAMECLASS.inCombat()) output("\n");
 				else clearOutput();
 				output(target.capitalA + target.short + " chugs down the wine, and looks a lot peppier afterward!\n");
+			}
+			target.imbibeAlcohol(35);
+			if(!target.hasStatusEffect("Royal Nectar"))
+			{
 				target.createStatusEffect("Royal Nectar",30,0,0,0,false,"Charmed","That honey wine packs a punch! You're feeling a lot peppier now.",false,2880)
 				target.energy(30);
 			}
-			target.imbibeAlcohol(35);
+			else target.energy(50);
 			return false;
 		}
 	}
