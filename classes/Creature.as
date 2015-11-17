@@ -2041,7 +2041,7 @@ package classes {
 		{
 			// Effects that prevent maturbations:
 			if
-			(	hasStatusEffect("Myr Venom Withdrawl")
+			(	hasStatusEffect("Myr Venom Withdrawal")
 			||	hasStatusEffect("Grappled")
 			||	hasStatusEffect("Stunned")
 			||	hasStatusEffect("Paralyzed")
@@ -2665,7 +2665,7 @@ package classes {
 			var currLib:int = libidoMod + libidoRaw;
 			if (hasStatusEffect("Myr Venom")) currLib += Math.floor(currLib * 0.15);
 			if (accessory is Allure) currLib += 20;
-			if (hasStatusEffect("Myr Venom Withdrawl")) currLib /= 2;
+			if (hasStatusEffect("Myr Venom Withdrawal")) currLib /= 2;
 			
 			if (currLib > libidoMax())
 			{
