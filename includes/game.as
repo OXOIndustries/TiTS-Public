@@ -147,7 +147,8 @@ public function mainGameMenu():void {
 		else addDisabledButton(8, "Masturbate");
 	}
 	else {
-		if(pc.hasStatusEffect("Myr Venom Withdrawl")) addDisabledButton(8,"Masturbate","Masturbate","While you're in withdrawl, you don't see much point in masturbating, no matter how much your body may want it.");
+		if(pc.hasStatusEffect("Myr Venom Withdrawl")) addDisabledButton(8, "Masturbate", "Masturbate", "While you’re in withdrawl, you don’t see much point in masturbating, no matter how much your body may want it.");
+		else if(!pc.canMasturbate()) addDisabledButton(8, "Masturbate", "Masturbate", "You can’t seem to masturbate at the moment....");
 		else addButton(8, "Masturbate", masturbateMenu);
 	}
 	if(!rooms[currentLocation].hasFlag(GLOBAL.BED)) 
@@ -801,7 +802,12 @@ public function showerMenu():void {
 	if (pc.lust() >= 33)
 	{
 		if (crew(true) > 0) addButton(1, "Sex", showerOptions, 1);
-		if (shipShowerFaps() > 0) addButton(2, "Masturbate", showerOptions, 2);
+		if (shipShowerFaps() > 0)
+		{
+			if (pc.hasStatusEffect("Myr Venom Withdrawl")) addDisabledButton(2, "Masturbate", "Masturbate", "While you’re in withdrawl, you don’t see much point in masturbating, no matter how much your body may want it.");
+			else if (!pc.canMasturbate()) addDisabledButton(2, "Masturbate", "Masturbate", "You can’t seem to masturbate at the moment....");
+			else addButton(2, "Masturbate", showerOptions, 2);
+		}
 	}
 	addButton(14, "Back", mainGameMenu);
 }
@@ -3862,6 +3868,33 @@ public function displayQuestLog(showID:String = "All"):void
 					if(flags["NEVRIE_QUEST"] < 2) output2(", Return to Nevrie");
 				}
 				else output2(" <i>Not yet obtained</i>");
+				sideCount++;
+			}
+			// Red Myr Venom Addiction
+			if(CodexManager.entryViewed("Red Myr") && (drankMyrVenom() || sexedMyrVenom()))
+			{
+				output2("\n<b><u>Red Myr Venom</u></b>");
+				output2("\n<b>* Status:</b>");
+				if(pc.hasPerk("Venom Slut")) output2(" Complete venom slut");
+				else if(flags["VENOM_PROGRESS"] != undefined && flags["VENOM_PROGRESS"] > 0)
+				{
+					if(pc.hasStatusEffect("Red Myr Venom")) output2(" Currently affected");
+					else output2(" In system");
+					if(flags["VENOM_ADDICTION"] != undefined && flags["VENOM_ADDICTION"] > 0)
+					{
+						output2(", Addicted");
+						if(pc.hasStatusEffect("Myr Venom Withdrawl")) output2(", Undergoing withdrawal");
+						output2("\n<b>* Venom Addiction Level: </b>" + flags["VENOM_ADDICTION"] + "%");
+					}
+					else output2("\n<b>* Venom Dosage Level: </b>" + flags["VENOM_PROGRESS"] + "%");
+				}
+				else
+				{
+					output2(" Tried");
+					if(flags["VENOM_PROGRESS"] != undefined && flags["VENOM_PROGRESS"] <= 0) output2(", Cured");
+				}
+				if(sexedMyrVenom()) output2("\n<b>* Doses, Sex-related: </b>" + flags["SEXED_MYR_VENOM"]);
+				if(drankMyrVenom()) output2("\n<b>* Doses, Drink-related: </b>" + flags["DRANK_MYR_VENOM"]);
 				sideCount++;
 			}
 			// "All the Feels: The Quest"
