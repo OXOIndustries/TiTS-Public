@@ -61,6 +61,7 @@
 			if (target is PlayerCharacter) 
 			{
 				kGAMECLASS.useRedMyrVenom();
+				return true;
 			}
 			//Not player!
 			else
