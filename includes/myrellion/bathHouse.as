@@ -1213,7 +1213,7 @@ public function acceptPrivateBathHJs(dick:Boolean = false):void
 	showName("BATH\nSERVICE");
 	output("<i>“Sure, why not? I’ve got time,”</i> you reply, netting yourself a knowing smile from the cloth-blinded ant-girl. She takes another smaller bottle from the tray, popping off the cap and pouring a viscous, clear liquid that trickles like honey over her breasts and belly. The bottle empties quickly, and she rubs the sweet smelling syrup into her body, giving it a slick sheen.");
 	output("\n\n<i>“This is a special oil made with honey and a hint of red myr venom, it will make it easier to expel the spiritual impurities that plague you,”</i> she says, her skin shining like copper in the dim light. After discarding the used bottle, she wades back to you, wrapping herself around you from the side and caressing your [pc.chest].");
-
+	imbibeVenomEffects();
 	//dickwielder
 	if(dick)
 	{
@@ -1228,7 +1228,7 @@ public function acceptPrivateBathHJs(dick:Boolean = false):void
 
 		output("\n\n<i>“It takes a lot of <b>practice</b> to be a sister of the order, and we are required to <b>know</b> what to do in case one of the rare unattached males should need <b>release</b>,”</i> she continues, timing her emphasis with rhythmic constrictions around your [pc.cockHeadBiggest]. The strength of her squeezing adapts to your reactions. The part of you that still has reason marvels at her ability to maintain her grip with such slippery oil coating her hands.");
 		output("\n\n<i>“Let me show you how long I can hold my breath,”</i> she finishes, ducking away and planting a wet kiss on your [pc.hip] before ducking into the clear pool. Even with the ripples distorting the image, you can see her glide through the water to match her lips up to your [pc.cockBiggest]. Her mouth envelopes your [pc.cockHeadBiggest] in a different kind of wetness, and you feel the ");
-		if(9999 == 9999) output("electric surge");
+		if(flags["VENOM_ADDICTION"] == undefined) output("electric surge");
 		//addicted
 		else output("familiar pulse");
 		output(" of red myr venom. It’s the real thing this time, no mere diluted body oil.");
@@ -1261,7 +1261,6 @@ public function acceptPrivateBathHJs(dick:Boolean = false):void
 		processTime(14);
 		pc.orgasm();
 		flags["BEEN_PRIVATE_MYRBATH_SERVICED"] = 1;
-		//9999 red venom dose
 		clearMenu();
 		addButton(0,"Next",privateBathServiceEpilogue);
 	}
@@ -1282,7 +1281,7 @@ public function acceptPrivateBathHJs(dick:Boolean = false):void
 		output("\n\nThe bathhouse adherent’s free hand slides smoothly over your body, stopping to squeeze one of your buttcheeks. You can see the flush in your partner’s face even through the silky veil over her nose, and her stiff nipples press into your [pc.chest]. She leans in close, licking your chin and prodding your lips till they part for her tongue. Any attempts to resist her are quickly calmed by a sensual warmth.");
 		output("\n\nThis is the real stuff, multitudes better than a facsimile. The diluted lotion is nothing compared to the aching lust created by the full strength venom in her saliva. You melt into her kiss, ");
 		//unaddicted/addicted:
-		if(9999 == 9999) output("wanting");
+		if(flags["VENOM_ADDICTION"] == undefined) output("wanting");
 		else output("<b>needing</b>");
 		output(" nothing more than to let it continue for the rest of your life. Her tongue lingers outside her open mouth as she pulls back, and you try your hardest to suck it back into your mouth.");
 		output("\n\nUnfortunately your hardest is weakened considerably by the venom, and she pulls gently out of your reach. The fingers massaging you");
@@ -1302,7 +1301,6 @@ public function acceptPrivateBathHJs(dick:Boolean = false):void
 		processTime(14);
 		pc.orgasm();
 		flags["BEEN_PRIVATE_MYRBATH_SERVICED"] = 1;
-		//9999 red venom dose
 		clearMenu();
 		addButton(0,"Next",femSceneWaterSploosh);
 		return;

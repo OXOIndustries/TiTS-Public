@@ -147,7 +147,8 @@ public function mainGameMenu():void {
 		else addDisabledButton(8, "Masturbate");
 	}
 	else {
-		addButton(8, "Masturbate", masturbateMenu);
+		if(pc.hasStatusEffect("")) addDisabledButton(8,"Masturbate","Masturbate","While you're in withdrawl, you don't see much point in masturbating, no matter how much your body may want it.");
+		else addButton(8, "Masturbate", masturbateMenu);
 	}
 	if(!rooms[currentLocation].hasFlag(GLOBAL.BED)) 
 		addButton(9, "Rest", rest);
@@ -906,6 +907,7 @@ public function move(arg:String, goToMainMenu:Boolean = true):void {
 public function statusTick():void {
 	var expiredStatuses:Array = new Array();
 	var y:int = 0;
+	var gogoVenomShit:Boolean = false;
 	for(var x:int = pc.statusEffects.length-1; x >= 0; x--) 
 	{
 		//Some hardcoded removal stuff
@@ -940,6 +942,11 @@ public function statusTick():void {
 				{
 					var pill:HorsePill = new HorsePill();
 					eventQueue[eventQueue.length] = pill.lastPillTF;
+				}
+				if(pc.statusEffects[x].storageName == "Red Myr Venom")
+				{
+					//Bit of a hacky solution
+					gogoVenomShit = true;
 				}
 				//Condensol ends!
 				if(pc.statusEffects[x].storageName == "Condensol-A")
@@ -1022,6 +1029,8 @@ public function statusTick():void {
 		pc.statusEffects.splice(expiredStatuses[0],1);
 		expiredStatuses.splice(0,1);
 	}
+	//Alright, now do the venom shit - since adding more statuses could fuck shit otherwise
+	if(gogoVenomShit) venomExpirationNotice();
 }
 
 public function variableRoomUpdateCheck():void
@@ -1250,7 +1259,7 @@ public function processTime(arg:int):void {
 	if (pc.hasStatusEffect("Ludicrously Endowed")) productionFactor *= 1.5;
 	if (pc.hasStatusEffect("Overwhelmingly Endowed")) productionFactor *= 2;
 	
-	if (pc.hasStatusEffect("Myr Venom")) productionFactor *= 1.25;
+	if (pc.hasStatusEffect("Red Myr Venom")) productionFactor *= 1.5;
 	
 	//BOOZE QUADRUPLES TIEM!
 	if(pc.hasStatusEffect("X-Zil-rate") || pc.hasStatusEffect("Mead") || pc.hasStatusEffect("X-Zil-rate"))
@@ -1621,6 +1630,21 @@ public function processTime(arg:int):void {
 						pc.addPerkValue("Fecund Figure", 4, -1); // Gains
 					}
 					if(pc.perkv4("Fecund Figure") < 0) pc.setPerkValue("Fecund Figure", 4, 0);
+				}
+				//DAILY MYR VENOM CHECKS
+				//Addicts
+				if(flags["VENOM_ADDICTION"] != undefined)
+				{
+					//Not yet uber-addict:
+					if(!pc.hasPerk("Venom Slut"))
+					{
+						if(pc.hasStatusEffect("Myr Venom Withdrawl")) myrAddiction(-2);
+					}
+				}
+				//Non addicts not under the effects of venom lose progress to addiction
+				else if(flags["VENOM_ADDICTION"] == undefined && !pc.hasStatusEffect("Red Myr Venom"))
+				{
+					venomProgress(-2);
 				}
 			}
 		}
