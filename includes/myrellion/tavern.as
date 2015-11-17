@@ -14,7 +14,7 @@ public function goldenPeakBonusFunction():Boolean
 		karaFirstTimeBarStuff();
 		return true;
 	}
-	if(pc.hasStatusEffect("Myr Venom Withdrawl") && rand(10) == 0)
+	if(pc.hasStatusEffect("Myr Venom Withdrawal") && rand(10) == 0)
 	{
 		sluttyMcSlutOral();
 		return true;

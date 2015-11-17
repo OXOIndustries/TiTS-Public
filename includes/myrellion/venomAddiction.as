@@ -6,13 +6,13 @@
  DRANK_MYR_VENOM - Count of how many times imbibed
  SEXED_MYR_VENOM - count of venom applications from sex
  VENOM_PROGRESS - Increased on dosage. Decreases over time spent sober. Stays at 100 while addicted
- VENOM_ADDICTION - If not undefined, PC is addicted. Scales from 1 to 100. Decreases while in withdrawl
+ VENOM_ADDICTION - If not undefined, PC is addicted. Scales from 1 to 100. Decreases while in withdrawal
  "Venom Slut" - If you reach 100 VENOM_ADDICTION, gain the venom slut perk.
  			  - Increases maximum lust by 35 while on venom
 
 "Red Myr Venom" - +35 minimum lust if below 35, 150% lust over time, +25% tease damage vuln
 				- 12 hour duration.
-"Myr Venom Withdrawl" - Half libido, tease attacks disabled, cannot fap
+"Myr Venom Withdrawal" - Half libido, tease attacks disabled, cannot fap
 
 /* LEGACY MYR VENOM NOTES
 Red Myr Venom (Status)
@@ -34,17 +34,17 @@ public function imbibeVenomEffects(sexed:Boolean = true):void
 {
 	if(sexed) IncrementFlag("SEXED_MYR_VENOM");
 	else IncrementFlag("DRANK_MYR_VENOM");
-	//In withdrawl? Do shit
-	if(pc.hasStatusEffect("Myr Venom Withdrawl"))
+	//In withdrawal? Do shit
+	if(pc.hasStatusEffect("Myr Venom Withdrawal"))
 	{
 		//Big relapse bump for addiction
 		myrAddiction(10);
-		//Remove withdrawl
-		pc.removeStatusEffect("Myr Venom Withdrawl");
+		//Remove withdrawal
+		pc.removeStatusEffect("Myr Venom Withdrawal");
 		//Got Yer Fix Via Sex
 		eventBuffer += "\n\nAhh, that was just what you needed. Maybe you should come back for more before this dose finishes wearing off next time. Withdrawal sucks.";
 	}
-	//Not in withdrawl
+	//Not in withdrawal
 	else
 	{
 		//Addicted? ADD MORE ADDICTION
@@ -109,7 +109,7 @@ public function myrAddiction(arg:Number):Number
 			eventBuffer += "right here and now if you wanted to. Maybe you should";
 			if(currentLocation != "SHIP INTERIOR") eventBuffer += " head back to the ship";
 			eventBuffer += " and have a little self-pleasure... to celebrate.\n\n<b>You’ve overcome your addiction to red myr venom.</b>";
-			pc.removeStatusEffect("Myr Venom Withdrawl");
+			pc.removeStatusEffect("Myr Venom Withdrawal");
 		}
 
 	}
@@ -194,7 +194,7 @@ public function drinkDatRedVenoShitYooooooo():void
 		imbibeVenomEffects(false);
 	}
 	//Use Text (Addict, not withdrawing)
-	else if(flags["VENOM_ADDICTION"] != undefined && !pc.hasStatusEffect("Myr Venom Withdrawl"))
+	else if(flags["VENOM_ADDICTION"] != undefined && !pc.hasStatusEffect("Myr Venom Withdrawal"))
 	{
 		output("Though your body is still tingling with the supernal sensitivity you’ve come to rely on, you decide it’s time for a re-up. You can’t imagine not feeling this <i>good</i> for a long while longer. Even the air against your [pc.skinFurScales]");
 		if(!pc.isNude()) 
@@ -244,12 +244,12 @@ public function venomExpirationNotice():void
 	{
 		eventBuffer += "\n\nNo doubt about it, you're a venom slut at this point. You need the stuff, and even if you didn't, you'd want it every second of your life. Without it, life is a dull gray mess. With it, you're an infinitely fuckable receptable for the attentions of the nearest sapient. You've gotten so used to having your senses heightened by the myr venom that you can withstand even more lust while you're under its effects. <b>You don't think it's possible to break your addiction any longer.</b>\n\n(<b>Perk Gained: Venom Slut</b> - Gain 35 maximum lust while under the effects of red myr venom.)"
 		if(!pc.hasPerk("Venom Slut")) pc.createPerk("Venom Slut",0,0,0,0,"You're a total venom slut, raising your maximum lust while on red myr venom.");
-		if(!pc.hasStatusEffect("Myr Venom Withdrawl")) pc.createStatusEffect("Myr Venom Withdrawl",0,0,0,0,false,"Icon_LustDown","You're so used to being under the effects of red myr venom that you're incapable of getting yourself off alone. You'll need to find a lover (preferably a red myr) if you want to feel anything at all!",false);
+		if(!pc.hasStatusEffect("Myr Venom Withdrawal")) pc.createStatusEffect("Myr Venom Withdrawal",0,0,0,0,false,"Icon_LustDown","You're so used to being under the effects of red myr venom that you're incapable of getting yourself off alone. You'll need to find a lover (preferably a red myr) if you want to feel anything at all!",false);
 	}
 	else if(pc.hasPerk("Venom Slut") || flags["VENOM_ADDICTION"] != undefined)
 	{
 		eventBuffer += "\n\nFuck! You can feel the pleasant high of your venom receding. Without it, you’re barely interested in sex, let alone living life. You can’t even masturbate like this. <b>You need to get some more red venom!</b> Maybe you could just go the front lines and become a trench-" + pc.mf("husband","wife") + ". At least you’d have access to a steady source. Then, you’d never even need to come down; you could just bump and grind the hours away in sublime pleasure...";
-		if(!pc.hasStatusEffect("Myr Venom Withdrawl")) pc.createStatusEffect("Myr Venom Withdrawl",0,0,0,0,false,"Icon_LustDown","You're so used to being under the effects of red myr venom that you're incapable of getting yourself off alone. You'll need to find a lover (preferably a red myr) if you want to feel anything at all!",false);
+		if(!pc.hasStatusEffect("Myr Venom Withdrawal")) pc.createStatusEffect("Myr Venom Withdrawal",0,0,0,0,false,"Icon_LustDown","You're so used to being under the effects of red myr venom that you're incapable of getting yourself off alone. You'll need to find a lover (preferably a red myr) if you want to feel anything at all!",false);
 	}
 	//START ADDICTION!
 	//Venom Addiction Alert!
@@ -262,7 +262,7 @@ public function venomExpirationNotice():void
 		eventBuffer += ". Shit, you’ve gotten so used to being affected by the red venom that you couldn’t even masturbate if you wanted to!\n\n<b>You’re a red venom addict who needs the stuff just to get off!</b>";
 		//Start at 15
 		flags["VENOM_ADDICTION"] = 15;
-		if(!pc.hasStatusEffect("Myr Venom Withdrawl")) pc.createStatusEffect("Myr Venom Withdrawl",0,0,0,0,false,"Icon_LustDown","You're so used to being under the effects of red myr venom that you're incapable of getting yourself off alone. You'll need to find a lover (preferably a red myr) if you want to feel anything at all!",false);
+		if(!pc.hasStatusEffect("Myr Venom Withdrawal")) pc.createStatusEffect("Myr Venom Withdrawal",0,0,0,0,false,"Icon_LustDown","You're so used to being under the effects of red myr venom that you're incapable of getting yourself off alone. You'll need to find a lover (preferably a red myr) if you want to feel anything at all!",false);
 	}
 	//Venom Expires Addiction Warning Numero Dos Equis
 	else if(flags["VENOM_ADDICTION"] != undefined && flags["VENOM_ADDICTION"] >= 95)
