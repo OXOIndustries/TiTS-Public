@@ -6241,26 +6241,26 @@ public function emailRoulette():void
 	// Character/Event specific:
 	if(!MailManager.isEntryUnlocked("burtsmeadhall") && pc.level >= 1)
 		mailList.push("burtsmeadhall");
-	else if(!MailManager.isEntryUnlocked("kihaai") && flags["UNLOCKED_JUNKYARD_PLANET"] != undefined)
+	if(!MailManager.isEntryUnlocked("kihaai") && flags["UNLOCKED_JUNKYARD_PLANET"] != undefined)
 		mailList.push("kihaai");
-	else if(!MailManager.isEntryUnlocked("syrividja") && flags["SPAM_MSG_COV8"] != undefined && syriIsAFuckbuddy() && (flags["TIMES_WON_AGAINST_SYRI"] != undefined || flags["TIMES_LOST_TO_SYRI"] != undefined))
+	if(!MailManager.isEntryUnlocked("syrividja") && flags["SPAM_MSG_COV8"] != undefined && syriIsAFuckbuddy() && (flags["TIMES_WON_AGAINST_SYRI"] != undefined || flags["TIMES_LOST_TO_SYRI"] != undefined))
 		mailList.push("syrividja");
-	else if(!MailManager.isEntryUnlocked("fuckinggoosloots") && celiseIsCrew() && pc.level >= 2)
+	if(!MailManager.isEntryUnlocked("fuckinggoosloots") && celiseIsCrew() && pc.level >= 2)
 		mailList.push("fuckinggoosloots");
-	else if(!MailManager.isEntryUnlocked("fuckinggooslootsII") && MailManager.isEntryUnlocked("fuckinggoosloots") && celiseIsCrew() && pc.level >= 5)
+	if(!MailManager.isEntryUnlocked("fuckinggooslootsII") && MailManager.isEntryUnlocked("fuckinggoosloots") && celiseIsCrew() && pc.level >= 5)
 		mailList.push("fuckinggooslootsII");
-	else if(!MailManager.isEntryUnlocked("kirofucknet") && flags["RESCUE KIRO FROM BLUEBALLS"] == 1 && kiroTrust() >= 50)
+	if(!MailManager.isEntryUnlocked("kirofucknet") && flags["RESCUE KIRO FROM BLUEBALLS"] == 1 && kiroTrust() >= 50)
 		mailList.push("kirofucknet");
-	else if(!MailManager.isEntryUnlocked("cuzfuckball") && flags["TIMES_MET_FEMZIL"] != undefined && flags["BEEN_ON_TARKUS"] != undefined && pc.level >= 2)
+	if(!MailManager.isEntryUnlocked("cuzfuckball") && flags["TIMES_MET_FEMZIL"] != undefined && flags["BEEN_ON_TARKUS"] != undefined && pc.level >= 2)
 		mailList.push("cuzfuckball");
 	
 	/*
 	// SPAM: (9999: If does not have spamblocker upgrade toggled on for CODEX.)
-	if(SpamEmailKeys.length > 0 && flags["CODEX_SPAM_BLOCKER"] == undefined)
+	if(SpamEmailKeys.length > 0 && flags["CODEX_SPAM_BLOCKER"] == undefined && rand(2) == 0)
 		mailList.push(SpamEmailKeys);
 	*/
 	
-	if(mailList.length > 0 && rand(4) == 0) mailKey = mailList[rand(mailList.length)];
+	if(mailList.length > 0) mailKey = mailList[rand(mailList.length)];
 	
 	if(mailKey != "" && MailManager.hasEntry(mailKey))
 	{
@@ -6268,8 +6268,8 @@ public function emailRoulette():void
 		
 		// Any special actions/unlocks
 		var mailEmail:Object = MailManager.getEntry(mailKey);
-		if(mailEmail.Subject != null) mailSubject = mailEmail.Subject();
-		if(mailEmail.Content != null) mailContent = mailEmail.Content();
+		if(mailEmail.SubjectCache != null) mailSubject = mailEmail.SubjectCache;
+		if(mailEmail.ContentCache != null) mailContent = mailEmail.ContentCache;
 		
 		// Regular:
 		if(mailKey == "kirofucknet" && (pc.isBimbo() || pc.isBro() || !pc.hasStatusEffect("Focus Pill") || pc.IQ() < 50 || pc.WQ() < 50))
