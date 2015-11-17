@@ -397,7 +397,7 @@ public function noHoneyForYouSlut():void
 	processTime(2);
 	clearMenu();
 	//Leave
-	addButton(14,"Leave",mainGameMenu);
+	addButton(0,"Next",mainGameMenu);
 }
 
 //Blackmarket
