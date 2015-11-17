@@ -581,7 +581,7 @@ public function equipItem(arg:ItemSlotClass):void {
 	clearOutput();
 	output("You");
 	if(arg.type == GLOBAL.ARMOR) output(" don");
-	else if(arg.type == GLOBAL.CLOTHING) output(" wear");
+	else if(InCollection(arg.type, GLOBAL.CLOTHING, GLOBAL.UPPER_UNDERGARMENT, GLOBAL.LOWER_UNDERGARMENT)) output(" wear");
 	else output(" equip");
 	output(" your " + arg.longName + ".");
 	//Clear disarm if appropriate.
