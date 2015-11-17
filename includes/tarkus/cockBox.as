@@ -79,7 +79,7 @@ public function useInstalledDickBox():void
 	//Build dis menu
 	for(var y:int = 0; y < pc.totalCocks(); y++)
 	{
-		output("<b>#" + (y+1) + ":</b> " formatFloat(pc.cLength(y),3) " in long, " + pc.cocks[x].cockColor + " [pc.accurateCockName " + y + "]\n")
+		output("<b>#" + (y+1) + ":</b> " + formatFloat(pc.cLength(y),3) + " in long, " + pc.cocks[x].cockColor + " [pc.accurateCockName " + y + "]\n")
 		if(pc.cocks[y].thickness() <= 4 && pc.cocks[y].cLength() <= 20) addButton(y,"#" + (y+1),cockBoxUse,y,"#"+(y+1),"Stick your [pc.cockNoun " + y + "] in there.");
 		else addDisabledButton(y,"#" + (y+1),"#" + (y+1),"Your [pc.cockNoun " + y + "] is too big to fit in the hole.");
 	}
@@ -139,39 +139,42 @@ public function dickBoxTFColorSelect(args:Array):void
 	output("The holographic menu depresses beneath your finger. The other dicks disappear, and the icon you’ve chosen splits into a variety of different colorations.");
 	output("\n\nWhat color would you like your soon-to-be improved manhood to be?");
 	
+	var cIdx:int = args[0];
+	var cType:int = args[1];
+	
 	var colors:Array = [];
-	switch (arg[1])
+	switch (cType)
 	{
 		case GLOBAL.TYPE_HUMAN:
-			addButton(0,"Pink",dickBoxTF,[arg[0],arg[1],"pink"],"Pink","Your cock’s head will be colored pink.");
+			addButton(0,"Pink",dickBoxTF, [cIdx, cType, "pink"],"Pink","Your cock’s head will be colored pink.");
 			break;
 		case GLOBAL.TYPE_CANINE:
-			addButton(0,"Pink",dickBoxTF,[arg[0],arg[1],"pink"],"Pink","Your cock will be colored pink.");
-			addButton(1,"Red",dickBoxTF,[arg[0],arg[1],"red"],"Red","Your cock will be colored red.");
-			addButton(2,"BrightRed",dickBoxTF,[arg[0],arg[1],"bright red"],"Bright Red","Your cock will be colored bright red.");
-			addButton(3,"DarkRed",dickBoxTF,[arg[0],arg[1],"dark red"],"Dark Red","Your cock will be colored dark red.");
+			addButton(0,"Pink",dickBoxTF, [cIdx, cType, "pink"],"Pink","Your cock will be colored pink.");
+			addButton(1,"Red",dickBoxTF, [cIdx, cType, "red"],"Red","Your cock will be colored red.");
+			addButton(2,"BrightRed",dickBoxTF, [cIdx, cType, "bright red"],"Bright Red","Your cock will be colored bright red.");
+			addButton(3,"DarkRed",dickBoxTF, [cIdx, cType, "dark red"],"Dark Red","Your cock will be colored dark red.");
 			break;
 		case GLOBAL.TYPE_FELINE:
-			addButton(0,"Pink",dickBoxTF,[arg[0],arg[1],"pink"],"Pink","Your cock will be colored pink.");
-			addButton(1,"Red",dickBoxTF,[arg[0],arg[1],"red"],"Red","Your cock will be colored red.");
+			addButton(0,"Pink",dickBoxTF, [cIdx, cType, "pink"],"Pink","Your cock will be colored pink.");
+			addButton(1,"Red",dickBoxTF, [cIdx, cType, "red"],"Red","Your cock will be colored red.");
 			break;
 		case GLOBAL.TYPE_KUITAN:
-			addButton(0,"Pink",dickBoxTF,[arg[0],arg[1],"pink"],"Pink","Your cock will be colored pink.");
-			addButton(1,"Red",dickBoxTF,[arg[0],arg[1],"red"],"Red","Your cock will be colored red.");
+			addButton(0,"Pink",dickBoxTF, [cIdx, cType, "pink"],"Pink","Your cock will be colored pink.");
+			addButton(1,"Red",dickBoxTF, [cIdx, cType, "red"],"Red","Your cock will be colored red.");
 			break;
 		case GLOBAL.TYPE_LEITHAN:
-			addButton(0,"Pink",dickBoxTF,[arg[0],arg[1],"pink"],"Pink","Your cock will be colored pink.");
-			addButton(1,"Purple",dickBoxTF,[arg[0],arg[1],"purple"],"Purple","Your cock will be colored purple.");
-			addButton(2,"Black",dickBoxTF,[arg[0],arg[1],"black"],"Black","Your cock will be colored black.");
+			addButton(0,"Pink",dickBoxTF, [cIdx, cType, "pink"],"Pink","Your cock will be colored pink.");
+			addButton(1,"Purple",dickBoxTF, [cIdx, cType, "purple"],"Purple","Your cock will be colored purple.");
+			addButton(2,"Black",dickBoxTF, [cIdx, cType, "black"],"Black","Your cock will be colored black.");
 			break;
 		case GLOBAL.TYPE_EQUINE:
-			addButton(0,"Pink",dickBoxTF,[arg[0],arg[1],"pink"],"Pink","Your cock will be colored pink.");
-			addButton(1,"Black",dickBoxTF,[arg[0],arg[1],"black"],"Black","Your cock will be colored black.");
-			addButton(2,"Mottled",dickBoxTF,[arg[0],arg[1],"mottled pink and black"],"Mottled Pink and Black","Your cock will be colored in a mottled pink and black pattern.");
+			addButton(0,"Pink",dickBoxTF, [cIdx, cType, "pink"],"Pink","Your cock will be colored pink.");
+			addButton(1,"Black",dickBoxTF, [cIdx, cType, "black"],"Black","Your cock will be colored black.");
+			addButton(2,"Mottled",dickBoxTF, [cIdx, cType, "mottled pink and black"],"Mottled Pink and Black","Your cock will be colored in a mottled pink and black pattern.");
 			break;
 	}
-	addButton(13,"Random",dickBoxTF,[arg[0],arg[1],"null"],"Random","Your cock will be a random color, natural to the penis type.");
-	addButton(14,"Back",cockBoxDickSelect,args[0]);
+	addButton(13,"Random",dickBoxTF, [cIdx, cType, "null"],"Random","Your cock will be a random color, natural to the penis type.");
+	addButton(14,"Back",cockBoxDickSelect, cIdx);
 }
 
 //Return. Choose dick again...

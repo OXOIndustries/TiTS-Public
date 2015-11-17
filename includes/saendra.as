@@ -13,9 +13,9 @@ public function showSaendra(nude:Boolean = false):void
 
 public function saendraPhoenixMailGet():void
 {
-	var timeStamp = GetGameTimestamp();
+	var timeStamp:uint = GetGameTimestamp();
 	// Keep unlock in chronological order from her later mail!
-	if (MailManager.isEntryUnlocked("saendraxpack1")) timeStamp = MailManager.ENTRIES["saendraxpack1"].UnlockedTimestamp - 1;
+	if (MailManager.isEntryUnlocked("saendraxpack1")) timeStamp = MailManager.getEntry("saendraxpack1").UnlockedTimestamp - 1;
 	// Unlock mail!
 	goMailGet("saendrathanks", timeStamp);
 }

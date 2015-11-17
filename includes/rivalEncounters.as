@@ -25,7 +25,7 @@ public function showRival(nude:Boolean = false):void
 public function showDane(nude:Boolean = false):void
 {
 	showName("\nDANE");
-	if(nude!) showBust("DANE");
+	if (!nude) showBust("DANE");
 	else showBust("DANE_NUDE");
 }
 
