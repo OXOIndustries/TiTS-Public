@@ -66,7 +66,7 @@
 			//Not player!
 			else
 			{
-				output(target.capitalA + target.short + " chugs down the wine, and looks a lot peppier afterward!\n");
+				output(target.capitalA + target.short + " doesn't seem interested in using this item....");
 			}
 			return false;
 		}

@@ -58,17 +58,22 @@ package classes.Items.Toys
 			if (target is PlayerCharacter) 
 			{
 				CodexManager.unlockEntry("Grav Cuffs");
-				if(kGAMECLASS.rooms[kGAMECLASS.currentLocation].planet == "PLANET: NEW TEXAS" && kGAMECLASS.rooms[kGAMECLASS.currentLocation].hasFlag(GLOBAL.PUBLIC) && target.exhibitionism() >= 33 && target.lust() >= 33 && kGAMECLASS.flags["GRAVCUFFS_USES"] != undefined)
+				kGAMECLASS.clearOutput();
+				if(!target.canMasturbate() || target.lust() < 33)
+				{
+					kGAMECLASS.output("You’re not really in the mood to masturbate right now....");
+				}
+				else if(kGAMECLASS.rooms[kGAMECLASS.currentLocation].planet == "PLANET: NEW TEXAS" && kGAMECLASS.rooms[kGAMECLASS.currentLocation].hasFlag(GLOBAL.PUBLIC) && target.exhibitionism() >= 33 && kGAMECLASS.flags["GRAVCUFFS_USES"] != undefined)
 				{
 					kGAMECLASS.cuffSelfRouter();
 				}
 				else
 				{
-					kGAMECLASS.clearOutput();
 					kGAMECLASS.output("You cannot use the grav-cuffs at this time!");
 				}
 			}
-			else {
+			else
+			{
 				kGAMECLASS.clearOutput();
 				kGAMECLASS.output(target.capitalA + target.short + " cannot use the grav-cuffs.");
 			}

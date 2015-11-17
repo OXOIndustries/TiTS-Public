@@ -1628,7 +1628,7 @@ public function lieveBodyWorship():void
 
 	hasFuckedLieveSolo(true);
 
-	output("\n\nYou take a confident step towards Lieve, slipping your arms around the red myr warrior’s waist and leaning in for a kiss - as much a sign of affection as your growing desire to feel the burn of her lusty venom coursing back through your veins.");
+	output("You take a confident step towards Lieve, slipping your arms around the red myr warrior’s waist and leaning in for a kiss - as much a sign of affection as your growing desire to feel the burn of her lusty venom coursing back through your veins.");
 	
 	output("\n\n<i>“Oh, hey there, beautiful,”</i> Lieve laughs as you slip into her arms, just before your [pc.lips] press into hers.");
 	

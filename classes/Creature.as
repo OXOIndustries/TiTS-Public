@@ -2037,6 +2037,17 @@ package classes {
 		{
 			removeStatusEffect("Sweaty");
 		}
+		public function canMasturbate():Boolean
+		{
+			// Effects that prevent maturbations:
+			if
+			(	hasStatusEffect("Myr Venom Withdrawl")
+			||	hasStatusEffect("Grappled")
+			||	hasStatusEffect("Stunned")
+			||	hasStatusEffect("Paralyzed")
+			)	return false;
+			return true;
+		}
 		public function orgasm(): void {
 			// NaN production was down to maxCum
 			// if the player didn't have a cock, maxCum returns 0.
