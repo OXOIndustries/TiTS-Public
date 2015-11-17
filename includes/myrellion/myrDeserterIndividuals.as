@@ -1325,6 +1325,7 @@ public function cumSplurgeForRedAntSloots():void
 	output("\n\nIt takes at least an hour or two before you regain full motion, not to mention the time it takes you to clean up your messy loins. You’re still riding the euphoric high when you finish slipping on your gear. That really was something else!");
 
 	myrDeserterEpilogueShitTracker();
+	imbibeVenomEffects();
 	processTime(120+rand(10));
 	// PC loses two hours.
 	// Balls are mother-fucking-emptied.

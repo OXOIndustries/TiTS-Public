@@ -504,6 +504,7 @@ public function getEggsInShit(x:int = -1):void
 	
 	pc.orgasm();
 	renvra.orgasm();
+	imbibeVenomEffects();
 	
 	processTime(14);
 	flags["RENVRA_SEXED"] = 1;
@@ -541,6 +542,7 @@ public function takeAShotOJizzInZeWomb(x:int = -1):void
 	if (x >= 0) pc.loadInCunt(renvra, x);
 	else pc.loadInAss(renvra);
 	renvra.impregnationType = "RenvraEggPregnancy";
+	imbibeVenomEffects();
 	
 	pc.orgasm();
 	renvra.orgasm();
@@ -1614,6 +1616,7 @@ public function renvraSuperCumPartII(x:int = -1):void
 	renvra.impregnationType = "RenvraEggPregnancy";
 	pc.loadInAss(renvra);
 	renvra.orgasm();
+	imbibeVenomEffects();
 	//Set her back to normal, disable double trubble
 	flags["MADE_RENVRA_BEG"] = 1;
 	flags["RENVRA_SEXED"] = 1;

@@ -859,7 +859,7 @@ public function lieveVenomToggle():void
 	}
 	
 	processTime(30 + rand(10));
-
+	imbibeVenomEffects();
 	//Sex Menu here.
 	lieveSexMenu(true);
 }
@@ -884,7 +884,7 @@ public function lieveKissHer():void
 	output("\n\n<i>“Get everything you needed, Steele?”</i> Lieve asks, caressing your cheek. When you nod, she smiles and adds, <i>“Now, what’re you going to do to burn off all that extra lust, hmm?”</i>");
 
 	flags["LIEVE_VENOM_USED"]++;
-
+	imbibeVenomEffects();
 	//Sex menu here
 	lieveSexMenu(true);
 	processTime(3 + rand(2));
@@ -906,7 +906,7 @@ public function lieveSexEntry():void
 	{
 		if (pc.isMasculine())
 		{
-			output("\n\n<i>“Sure! The girls have been looking forward to more after that last time, haven’t they?”</i> she says, teasing the antenna of a golden-haired slut.");
+			output("<i>“Sure! The girls have been looking forward to more after that last time, haven’t they?”</i> she says, teasing the antenna of a golden-haired slut.");
 			
 			output("\n\n<i>“We sure have,”</i> Mayren coos, crawling towards you.");
 			
@@ -1091,7 +1091,6 @@ public function lieveVenomFuck(tempVenomEnabled:Boolean = false):void
 	output("\n\nTime escapes you when eight more hands join Lieve’s, wandering all over your body, teasing your over-sensitive flesh. Several of them rub and caress your [pc.breasts], while others rub your thighs, neck, and lips. You feel the familiar sensation of Mayren’s honeypot tits pressing against your face, and Sierva’s tongue running dangerously close to your pussy. Lieve’s tongue joins her, slipping into your slit. Slow as she goes, you can feel her working her way deep into you, lacing the insides of your sex with her aphrodisiac saliva. The drug burns in you like a sexual wildfire, and you lose count of how many times you orgasm before she’s fully buried between your [pc.legs]. All you can do is writhe and moan, letting the ant-girls bring you to climax again and again and again until your mind’s a blank, completely given over to physical impulse.");
 
 	processTime(200 + rand(40));
-	
 	clearMenu();
 	addButton(0, "Next", lieveVenomFuckII);
 }
@@ -1123,7 +1122,7 @@ public function lieveVenomFuckII(tempVenomEnabled:Boolean = false):void
 	}
 	
 	flags["HAS_BEEN_MYR_VENOMED"] = 1;
-	pc.createStatusEffect("Myr Venom", 0, 0, 0, 0, false, "Icon_LustUp", "Red Myr venom is coursing through your veins.", false, 480);
+	imbibeVenomEffects();
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -1314,7 +1313,6 @@ public function lieveFuckHaremDickVersionVenom():void
 	output("\n\nVenom seeps into you from the mouth and cock, hitting you from both ends. You feel yourself cumming again before long, moaning into Sierva’s mouth. And again. And again. You lose track of time completely, succumbing to the aphrodisiac coursing through your veins and the heady smells of sex that hang like a heavy cloud over the dungeon. Life is good...");
 
 	processTime(200 + rand(40));
-	
 	clearMenu();
 	addButton(0, "Next", lieveFuckHaremDickVersionVenomII);
 }
@@ -1344,7 +1342,7 @@ public function lieveFuckHaremDickVersionVenomII():void
 	}
 
 	flags["HAS_BEEN_MYR_VENOMED"] = 1;
-	pc.createStatusEffect("Myr Venom", 0, 0, 0, 0, false, "Icon_LustUp", "Red Myr venom is coursing through your veins.", false, 480);
+	imbibeVenomEffects();
 	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -1426,7 +1424,11 @@ public function lieveSoloFucktime(tempVenomEnabled:Boolean = false):void
 	else output(" Your mind leaps to the lusty venom red myr possess. The way your body’s reacting, you must have just gotten a hell of a dose, swapping spit with the crimson ant-girl like that.");
 	
 	output("\n\nYou lick your lips and grab at the myr’s breasts, scooping the pair of hand-filling mounds up and squeezing them until your lover moans. You push her back against the wall, pinning her back and");
-	if (lieveVenomEnabled() || tempVenomEnabled) output(" furiously pressing your lips to hers, eager for more of that potent aphrodisiac.");
+	if (lieveVenomEnabled() || tempVenomEnabled) 
+	{
+		output(" furiously pressing your lips to hers, eager for more of that potent aphrodisiac.");
+		imbibeVenomEffects();
+	}
 	else output(" trailing kisses up her neck, careful to avoid her poisonous lips.");
 	output(" From where she’s positioned, it’s easy for Lieve to hike her legs up around your [pc.hips], and your hands are quick to grab her ass in turn, supporting her weight between you and the wall.");
 	
@@ -1719,6 +1721,7 @@ public function lieveBodyWorship():void
 	{
 		pc.orgasm();
 	}
+	imbibeVenomEffects();
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
