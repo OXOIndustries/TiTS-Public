@@ -147,7 +147,7 @@ public function mainGameMenu():void {
 		else addDisabledButton(8, "Masturbate");
 	}
 	else {
-		if(pc.hasStatusEffect("")) addDisabledButton(8,"Masturbate","Masturbate","While you're in withdrawl, you don't see much point in masturbating, no matter how much your body may want it.");
+		if(pc.hasStatusEffect("Myr Venom Withdrawl")) addDisabledButton(8,"Masturbate","Masturbate","While you're in withdrawl, you don't see much point in masturbating, no matter how much your body may want it.");
 		else addButton(8, "Masturbate", masturbateMenu);
 	}
 	if(!rooms[currentLocation].hasFlag(GLOBAL.BED)) 
