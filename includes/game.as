@@ -1663,7 +1663,7 @@ public function processTime(arg:int):void {
 	//Anno Mail
 	if (!MailManager.isEntryUnlocked("annoweirdshit") && flags["MET_ANNO"] != undefined && flags["FOUGHT_TAM"] == undefined && flags["RUST_STEP"] != undefined && rand(10) == 0) goMailGet("annoweirdshit");
 	//Other Email Checks!
-	if (rand(50) == 0) emailRoulette();
+	if (rand(40) == 0) emailRoulette();
 	flags["HYPNO_EFFECT_OUTPUT_DONE"] = undefined;
 	variableRoomUpdateCheck();
 	updatePCStats();
@@ -6224,9 +6224,8 @@ public function goMailGet(mailKey:String = "", timeStamp:int = -1):void
 	if(mailKey != "" && MailManager.hasEntry(mailKey))
 	{
 		var mailEmail:Object = MailManager.getEntry(mailKey);
-		if(mailEmail.From != null) mailFrom = mailEmail.From();
-		if(mailEmail.FromAddress != null) mailFromAdress = mailEmail.FromAddress();
-		
+		if(mailEmail.FromCache != null) mailFrom = mailEmail.FromCache;
+		if(mailEmail.FromAddressCache != null) mailFromAdress = mailEmail.FromAddressCache;
 		eventBuffer += "\n\n<b>New Email from " + mailFrom + " ("+ mailFromAdress +")!</b>";
 		MailManager.unlockEntry(mailKey, timeStamp);
 	}
