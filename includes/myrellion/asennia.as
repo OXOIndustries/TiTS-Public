@@ -254,7 +254,7 @@ public function honeyWineIntro():void
 	showAsennia();
 	author("Fenoxo");
 	output("You glance between the lovely hostess and a small crate of glass bottles. Following your gaze, Asennia flashes you a broad smile and picks one out for you, a dark container full of honey-colored liquid.");
-	output("\n\n”</i>1000 credits if you want a taste of royalty. This is honey-wine, distilled from a Queen’s personal nectar. Irellia’s one of the few women I’d comfortably say has tastier tata’s than my own. A few sips of her brew and you’ll feel more energetic than ever.”</i> She smiles knowingly at you. <i>“Drink the whole thing, like I bet you will, and you’ll be tapping into an expanded well of energy for a whole day.”</i> Rolling the bottle between her fingers, Asennia licks her lips and sighs. <i>“If you can afford it, buy it. I promise it’ll be worth it.”</i>");
+	output("\n\n<i>“1000 credits if you want a taste of royalty. This is honey-wine, distilled from a Queen’s personal nectar. Irellia’s one of the few women I’d comfortably say has tastier tata’s than my own. A few sips of her brew and you’ll feel more energetic than ever.”</i> She smiles knowingly at you. <i>“Drink the whole thing, like I bet you will, and you’ll be tapping into an expanded well of energy for a whole day.”</i> Rolling the bottle between her fingers, Asennia licks her lips and sighs. <i>“If you can afford it, buy it. I promise it’ll be worth it.”</i>");
 	processTime(1);
 	clearMenu();
 	if(pc.credits >= 1000) addItemButton(0, new HoneyWine(), buyDatHunhunWine);
