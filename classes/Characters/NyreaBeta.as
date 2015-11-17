@@ -11,6 +11,7 @@
 	import classes.Items.Miscellaneous.Picardine;
 	import classes.Items.Miscellaneous.Kirkite;
 	import classes.Items.Miscellaneous.Satyrite;
+	import classes.Items.Drinks.RedMyrVenom;
 	import classes.GLOBAL;
 	import classes.CockClass;
 	
@@ -184,6 +185,7 @@
 			var nyrea:NyreaBeta = this.makeCopy();
 			if (rand(20) == 0) nyrea.inventory.push(new Kirkite());
 			else if(rand(20) == 0) nyrea.inventory.push(new Satyrite());
+			else if(rand(3) == 0) nyrea.inventory.push(new RedMyrVenom());
 			nyrea.tallness = 60 + (rand(10) - 5);
 			
 			nyrea.sexualPreferences.setPref(GLOBAL.SEXPREF_FEMININE,		GLOBAL.REALLY_LIKES_SEXPREF);

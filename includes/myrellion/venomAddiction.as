@@ -1,4 +1,6 @@
-﻿/*****************************
+﻿import classes.Items.Drinks.RedMyrVenom;
+
+/*****************************
  *   MECHANICS OF MYR VENOM  *
  *****************************
  DRANK_MYR_VENOM - Count of how many times imbibed
@@ -31,7 +33,7 @@ You’re currently suffering withdrawal from red myr venom. Your senses seem dul
 public function imbibeVenomEffects(sexed:Boolean = true):void
 {
 	if(sexed) IncrementFlag("SEXED_MYR_VENOM");
-	else IncrementFlag("SEXED_MYR_VENOM");
+	else IncrementFlag("DRANK_MYR_VENOM");
 	//In withdrawl? Do shit
 	if(pc.hasStatusEffect("Myr Venom Withdrawl"))
 	{
@@ -59,7 +61,10 @@ public function imbibeVenomEffects(sexed:Boolean = true):void
 		if(pc.getStatusMinutes("Red Myr Venom") <= 720) pc.addStatusMinutes("Red Myr Venom",720);
 		else pc.setStatusMinutes("Red Myr Venom",1440);
 	}
-	if(!sexed) pc.lust(50);
+	if(!sexed) 
+	{
+		pc.lust(50);
+	}
 	else pc.lust(1);
 	if(rand(4) == 0) pc.slowStatGain("libido",1);
 }
@@ -164,7 +169,7 @@ public function drinkDatRedVenoShitYooooooo():void
 	clearOutput();
 	author("Savin");
 	showName("DOWN\nTHE HATCH");
-	imbibeVenomEffects(false);
+	pc.destroyItem(new RedMyrVenom(),1);
 	if(flags["DRANK_MYR_VENOM"] == undefined)
 	{
 		output("Curious about the effects of red myr venom");
@@ -172,6 +177,7 @@ public function drinkDatRedVenoShitYooooooo():void
 		output(", you bring the vial up to your lips and slosh it a bit, sniffing at the sweet perfume radiating from it. Your cheeks flush almost instantly, responding to the deliciously lusty odor. With a deep breath, you knock back the vial’s contents: the frothy, thick, viscous liquid slowly sloughs out of the vial and onto your [pc.tongue].");
 		output("\n\nThe venom is as sweet as it smells, washing down your throat in a tingling, warm wave until the vile’s gone. You let out a long sigh and toss the vial aside, wiping your lips to finish the deal. Your fingers brushing lips sends an unexpected shock of pleasure through you, making you shiver from head to toe. Whew, that stuff’s potent!");
 		output("\n\nShaking it off for the moment, you get ready for what promises to be one hell of a lust-high.");
+		imbibeVenomEffects(false);
 	}
 	//Use Text (Repeat, non-addict)
 	else if(flags["VENOM_ADDICTION"] == undefined)
@@ -185,6 +191,7 @@ public function drinkDatRedVenoShitYooooooo():void
 		output(". You could probably cum just from <b>giving</b> oral the way you are now!");
 
 		output("\n\nYou move to wipe your lips off, but think better of it. The sensation might be a little much for you right now, after all, and you find yourself licking your [pc.lips] clean. The act still leaves your mouth quivering with pleasure, but at least this way your tongue gets a thrill, too.");
+		imbibeVenomEffects(false);
 	}
 	//Use Text (Addict, not withdrawing)
 	else if(flags["VENOM_ADDICTION"] != undefined && !pc.hasStatusEffect("Myr Venom Withdrawl"))
@@ -203,24 +210,32 @@ public function drinkDatRedVenoShitYooooooo():void
 		output("\n\nOnly when you think the word do you realize your hands are already groping at yourself, pinching at your [pc.nipples], desperate for more of the heightened sensations you crave. Without a moment’s further hesitation, you greedily down the venom vial, flooding your mouth with thick pink slime that leaves your whole body burning with desire before you even swallow.");
 		output("\n\nYour [pc.tongue] reaches in to get every drop from the vial, cleaning it until it shines like new. You sigh contentedly as the venom takes hold over you once again, spreading out with creeping tendrils of heat and lust. Just the movements of your tongue are enough to send chills down your spine - you know from experience that you could probably get off just by giving oral about now... or better yet, finding a nice, hard red myr’s body to worship, bathing her down in exchange for a few tantalizing tastes of her glorious mouth.");
 		output("\n\n");
-		if(rooms[currentLocation].planet == "PLANET: MYRELLION") output("You should head back to Myrellion soon...");
+		if(rooms[currentLocation].planet != "PLANET: MYRELLION") output("You should head back to Myrellion soon...");
 		else output("You doubt it’d be hard to find one around here.");
+		imbibeVenomEffects(false);
 	}
 	//Use Text (Addict, withdrawing)
 	//Note to self: Make PC autodrink red myr venom if withdrawing
 	else
 	{
+		pc.lust(100);
 		output("You can’t hold back any longer. The need is too great, all but controlling you by the time you fish a vial of frothy pink venom out of your pack and pop the cork with shaky, numb fingers. You need it so badly... you need to <i>feel</i> again! In desperation, you fumble the vial up to your lips and drink down, gulping the slushing pink goo as fast as it will pour from the tube.");
 		output("\n\nThe vial clatters to the ground a moment later, falling from your leaden arms as you’re hit with a sunburst of sensation, more powerful than anything you can remember feeling - and that’s just your [pc.tongue] brushing against your teeth. You breathe hard, running your fingers across your [pc.face] as the familiar, comforting warmth of red venom spreads through you, reawakening your body from its lifeless, husk-like reverie.");
 		output("\n\nYour hands roam on auto-pilot across your body, pinching and caressing and fondling every curve and pleasure-point you have.");
-		if(!inCombat() && useItemFunction == mainGameMenu)
+		imbibeVenomEffects(false);
+		if(!inCombat() && useItemFunction == inventory)
 		{
 			output(" There’s no way you could stop yourself from masturbating, right here, right now");
 			if(pc.exhibitionism() < 66) output(" - and who cares if people watch you? You need relief too badly to care");
 			output("!");
-			//To fap menu 9999
+			//Force fap!
+			clearMenu();
+			addButton(0,"Next",masturbateMenu,true);
+			return;
 		}
 	}
+	clearMenu();
+	addButton(0,"Next",useItemFunction);
 }
 
 public function venomExpirationNotice():void

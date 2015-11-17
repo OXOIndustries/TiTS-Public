@@ -14,6 +14,7 @@
 	import classes.Items.Miscellaneous.Picardine;
 	import classes.Items.Miscellaneous.Kirkite;
 	import classes.Items.Miscellaneous.Satyrite;
+	import classes.Items.Drinks.RedMyrVenom;
 
 	import classes.GLOBAL;
 	
@@ -199,6 +200,7 @@
 			GoldMyr.credits = rand(200);
 			if(rand(20) == 0) GoldMyr.inventory.push(new Kirkite());
 			else if(rand(20) == 0) GoldMyr.inventory.push(new Satyrite());
+			else if(rand(5) == 0) GoldMyr.inventory.push(new RedMyrVenom());		
 			this.sexualPreferences.setRandomPrefs(2 + rand(3),1);
 			//GoldMyr.sexualPreferences.setPref(GLOBAL.SEXPREF_FEMININE,	GLOBAL.REALLY_LIKES_SEXPREF);
 			
