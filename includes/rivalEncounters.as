@@ -189,24 +189,31 @@ public function daneCrotchSmother():void {
 //Lickitongue
 //Req's grapple, follows smother
 public function daneLickitongue():void {
-	output("You feel something warm and wet ");
-	if(!pc.isNude()) output("worm past your [pc.lowerGarments] to ");
-	output("lick your [pc.crotch]. It flutters around expertly, ");
-	var choices:Array = new Array();
-
-	if(pc.hasCock()) choices[choices.length] = 0;
-	if(pc.hasVagina()) choices[choices.length] = 1;
-	if(pc.balls > 0) choices[choices.length] = 2;
-	if(choices.length == 0) choices[choices.length] = 3;
-
-	var select:int = choices[rand(choices.length)];
-	if(select == 0) output("paying special attention to [pc.oneCock]. It loops about it, tugging and sliding, forcing you to feel incredible pleasure.");
-	else if(select == 1) output("diving right into [pc.oneVagina]. Thrusting in and out, it slides and licks across every inner fold, driving you wild with desire.");
-	else if(select == 2) output("lovingly polishing your [pc.balls] before sliding over your taint to your [pc.asshole]. There, it busily rims you, sometimes even sliding an inch inside your asshole.");
-	else output("diving right into rimming your asshole. The thick intruder feels so wet and lewd that you can't help but offer up hot little pants of encouragement.");
-	output(" Dane's tongue feels amazing.");
-	pc.lust(20+rand(10));
-	if(pc.lust() >= pc.lustMax()) output("\n\nYou start begging him to fuck you, unable to hold back. Withdrawing that wonderful slab of flesh from your crotch, Dane drops you, laughing heartily. <i>\"So be it.\"</i>");
+	if(pc.hasArmor() && pc.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+	{
+		output("You feel something warm and wet rub and press against your [pc.crotch]. Dane's tongue tries to get at your nethers but your airtight [pc.armor] prevents that from happening.");
+	}
+	else
+	{
+		output("You feel something warm and wet ");
+		if(!pc.isNude()) output("worm past your [pc.lowerGarments] to ");
+		output("lick your [pc.crotch]. It flutters around expertly, ");
+		var choices:Array = new Array();
+	
+		if(pc.hasCock()) choices[choices.length] = 0;
+		if(pc.hasVagina()) choices[choices.length] = 1;
+		if(pc.balls > 0) choices[choices.length] = 2;
+		if(choices.length == 0) choices[choices.length] = 3;
+	
+		var select:int = choices[rand(choices.length)];
+		if(select == 0) output("paying special attention to [pc.oneCock]. It loops about it, tugging and sliding, forcing you to feel incredible pleasure.");
+		else if(select == 1) output("diving right into [pc.oneVagina]. Thrusting in and out, it slides and licks across every inner fold, driving you wild with desire.");
+		else if(select == 2) output("lovingly polishing your [pc.balls] before sliding over your taint to your [pc.asshole]. There, it busily rims you, sometimes even sliding an inch inside your asshole.");
+		else output("diving right into rimming your asshole. The thick intruder feels so wet and lewd that you can't help but offer up hot little pants of encouragement.");
+		output(" Dane's tongue feels amazing.");
+		pc.lust(20+rand(10));
+		if(pc.lust() >= pc.lustMax()) output("\n\nYou start begging him to fuck you, unable to hold back. Withdrawing that wonderful slab of flesh from your crotch, Dane drops you, laughing heartily. <i>\"So be it.\"</i>");
+	}
 	processCombat();
 }
 
