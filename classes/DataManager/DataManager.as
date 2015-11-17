@@ -406,6 +406,7 @@
 		{
 			kGAMECLASS.removeInput();
 			kGAMECLASS.userInterface.currentPCNotes = kGAMECLASS.userInterface.textInput.text;
+			if (kGAMECLASS.userInterface.currentPCNotes == undefined || kGAMECLASS.userInterface.currentPCNotes == "undefined") kGAMECLASS.userInterface.currentPCNotes = "";
 			
 			if(kGAMECLASS.hasIllegalInput(kGAMECLASS.userInterface.currentPCNotes))
 			{
