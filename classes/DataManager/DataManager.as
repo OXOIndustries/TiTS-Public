@@ -1400,6 +1400,12 @@
 				{
 					kGAMECLASS.flags["LANE_BROKEN_INCOMINGSAVE"] = 1;
 				}
+				
+				// Hacking in a cleanup check for some pregnancy data because :effort: to do this without actual instantiated objects
+				if (!kGAMECLASS.pc.hasPregnancyOfType("DeepQueenPregnancy") && kGAMECLASS.pc.hasStatusEffect("Queen Pregnancy State"))
+				{
+					kGAMECLASS.pc.removeStatusEffect("Queen Pregnancy State");
+				}
 			}
 			
 			kGAMECLASS.mainGameMenu();
