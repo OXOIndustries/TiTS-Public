@@ -524,6 +524,7 @@ public function sexWivNehzaraInStorageCloset(fromMissionTalk:Boolean = false):vo
 	}
 	pc.lust(33);
 	processTime(30);
+	imbibeVenomEffects();
 	clearMenu();
 	addButton(0,"Next",nehzaraClosetPartII);
 }

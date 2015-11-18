@@ -230,6 +230,7 @@
 		include "../includes/myrellion/tavern.as";
 		include "../includes/myrellion/taivrasPalace.as";
 		include "../includes/myrellion/tradingPost.as";
+		include "../includes/myrellion/venomAddiction.as";
 		include "../includes/myrellion/wetraxxel.as";
 		include "../includes/myrellion/xanthe.as";
 		include "../includes/myrellion/xenogenbiotech.as";
@@ -326,7 +327,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.6.15";
+			version = "0.6.17";
 
 			//temporary nonsense variables.
 			temp = 0;

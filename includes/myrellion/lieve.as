@@ -1,4 +1,6 @@
-﻿public function lieveHeader(isNude:Boolean = false, isSolo:Boolean = false):void
+﻿import classes.Items.Drinks.HoneyWine;
+
+public function lieveHeader(isNude:Boolean = false, isSolo:Boolean = false):void
 {
 	showName("\nLIEVE");
 	author("Savin");
@@ -857,7 +859,7 @@ public function lieveVenomToggle():void
 	}
 	
 	processTime(30 + rand(10));
-
+	imbibeVenomEffects();
 	//Sex Menu here.
 	lieveSexMenu(true);
 }
@@ -882,7 +884,7 @@ public function lieveKissHer():void
 	output("\n\n<i>“Get everything you needed, Steele?”</i> Lieve asks, caressing your cheek. When you nod, she smiles and adds, <i>“Now, what’re you going to do to burn off all that extra lust, hmm?”</i>");
 
 	flags["LIEVE_VENOM_USED"]++;
-
+	imbibeVenomEffects();
 	//Sex menu here
 	lieveSexMenu(true);
 	processTime(3 + rand(2));
@@ -904,7 +906,7 @@ public function lieveSexEntry():void
 	{
 		if (pc.isMasculine())
 		{
-			output("\n\n<i>“Sure! The girls have been looking forward to more after that last time, haven’t they?”</i> she says, teasing the antenna of a golden-haired slut.");
+			output("<i>“Sure! The girls have been looking forward to more after that last time, haven’t they?”</i> she says, teasing the antenna of a golden-haired slut.");
 			
 			output("\n\n<i>“We sure have,”</i> Mayren coos, crawling towards you.");
 			
@@ -1089,7 +1091,6 @@ public function lieveVenomFuck(tempVenomEnabled:Boolean = false):void
 	output("\n\nTime escapes you when eight more hands join Lieve’s, wandering all over your body, teasing your over-sensitive flesh. Several of them rub and caress your [pc.breasts], while others rub your thighs, neck, and lips. You feel the familiar sensation of Mayren’s honeypot tits pressing against your face, and Sierva’s tongue running dangerously close to your pussy. Lieve’s tongue joins her, slipping into your slit. Slow as she goes, you can feel her working her way deep into you, lacing the insides of your sex with her aphrodisiac saliva. The drug burns in you like a sexual wildfire, and you lose count of how many times you orgasm before she’s fully buried between your [pc.legs]. All you can do is writhe and moan, letting the ant-girls bring you to climax again and again and again until your mind’s a blank, completely given over to physical impulse.");
 
 	processTime(200 + rand(40));
-	
 	clearMenu();
 	addButton(0, "Next", lieveVenomFuckII);
 }
@@ -1121,7 +1122,7 @@ public function lieveVenomFuckII(tempVenomEnabled:Boolean = false):void
 	}
 	
 	flags["HAS_BEEN_MYR_VENOMED"] = 1;
-	pc.createStatusEffect("Myr Venom", 0, 0, 0, 0, false, "Icon_LustUp", "Red Myr venom is coursing through your veins.", false, 480);
+	imbibeVenomEffects();
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -1312,7 +1313,6 @@ public function lieveFuckHaremDickVersionVenom():void
 	output("\n\nVenom seeps into you from the mouth and cock, hitting you from both ends. You feel yourself cumming again before long, moaning into Sierva’s mouth. And again. And again. You lose track of time completely, succumbing to the aphrodisiac coursing through your veins and the heady smells of sex that hang like a heavy cloud over the dungeon. Life is good...");
 
 	processTime(200 + rand(40));
-	
 	clearMenu();
 	addButton(0, "Next", lieveFuckHaremDickVersionVenomII);
 }
@@ -1342,7 +1342,7 @@ public function lieveFuckHaremDickVersionVenomII():void
 	}
 
 	flags["HAS_BEEN_MYR_VENOMED"] = 1;
-	pc.createStatusEffect("Myr Venom", 0, 0, 0, 0, false, "Icon_LustUp", "Red Myr venom is coursing through your veins.", false, 480);
+	imbibeVenomEffects();
 	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -1424,7 +1424,11 @@ public function lieveSoloFucktime(tempVenomEnabled:Boolean = false):void
 	else output(" Your mind leaps to the lusty venom red myr possess. The way your body’s reacting, you must have just gotten a hell of a dose, swapping spit with the crimson ant-girl like that.");
 	
 	output("\n\nYou lick your lips and grab at the myr’s breasts, scooping the pair of hand-filling mounds up and squeezing them until your lover moans. You push her back against the wall, pinning her back and");
-	if (lieveVenomEnabled() || tempVenomEnabled) output(" furiously pressing your lips to hers, eager for more of that potent aphrodisiac.");
+	if (lieveVenomEnabled() || tempVenomEnabled) 
+	{
+		output(" furiously pressing your lips to hers, eager for more of that potent aphrodisiac.");
+		imbibeVenomEffects();
+	}
 	else output(" trailing kisses up her neck, careful to avoid her poisonous lips.");
 	output(" From where she’s positioned, it’s easy for Lieve to hike her legs up around your [pc.hips], and your hands are quick to grab her ass in turn, supporting her weight between you and the wall.");
 	
@@ -1624,7 +1628,7 @@ public function lieveBodyWorship():void
 
 	hasFuckedLieveSolo(true);
 
-	output("\n\nYou take a confident step towards Lieve, slipping your arms around the red myr warrior’s waist and leaning in for a kiss - as much a sign of affection as your growing desire to feel the burn of her lusty venom coursing back through your veins.");
+	output("You take a confident step towards Lieve, slipping your arms around the red myr warrior’s waist and leaning in for a kiss - as much a sign of affection as your growing desire to feel the burn of her lusty venom coursing back through your veins.");
 	
 	output("\n\n<i>“Oh, hey there, beautiful,”</i> Lieve laughs as you slip into her arms, just before your [pc.lips] press into hers.");
 	
@@ -1717,6 +1721,7 @@ public function lieveBodyWorship():void
 	{
 		pc.orgasm();
 	}
+	imbibeVenomEffects();
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -2034,7 +2039,7 @@ public function lieveTourBathhouseIIScrubHer():void
 
 	flags["LIEVE_DATEPOINTS"] -= 1;
 
-	output("\n\nYou ignore your lascivious companion’s offer, starting to regret taking the lusty ant up on a group bath. You slip up behind Lieve and start to wash her back, scrubbing her plateless back down from shoulder to the first gentle incline of her buttocks. The lower you move, the greater the tension you can feel in your companion’s body - she moans softly when you near her swaying backside, clearly expectant of more... until you move back up, away from her sex. The tension relaxes, and Lieve sighs.");
+	output("You ignore your lascivious companion’s offer, starting to regret taking the lusty ant up on a group bath. You slip up behind Lieve and start to wash her back, scrubbing her plateless back down from shoulder to the first gentle incline of her buttocks. The lower you move, the greater the tension you can feel in your companion’s body - she moans softly when you near her swaying backside, clearly expectant of more... until you move back up, away from her sex. The tension relaxes, and Lieve sighs.");
 	
 	output("\n\n<i>“Thanks. Couldn’t reach there myself,”</i> she says dryly, though you get the sense she’s at least somewhat trying to disguise her disappointment.");
 	
@@ -2135,12 +2140,27 @@ public function lieveTourManorHouse(fromBath:Boolean = true):void
 	
 	output("\n\n<i>“Take your pick,”</i> Lieve says, ushering you in. <i>“The queen who lived here was one of the most... productive... on the Council. They drank her tit-honey from one side of Gold country to the other. She kept enough down here to keep us swimming in honey for the rest of our lives, and our daughters’. To the victors go the spoils!”</i>");
 	
-	output("\n\nYou’ve got no idea how myr vintage their honey-booze, and so select a bottle at random from one of the many, many racks against the walls. The bottle’s clear, letting you see the thick yellow drink inside that sloshes viscously when you move it. Even through the cork, you can smell the sweetness in the air around it, making your nose tingle ever so slightly.");
-
-	// 9999
+	output("\n\nYou’ve got no idea how myr vintage their honey-booze, and so select a bottle at random from one of the many, many racks against the walls. The bottle’s clear, letting you see the thick yellow drink inside that sloshes viscously when you move it. Even through the cork, you can smell the sweetness in the air around it, making your nose tingle ever so slightly.\n\n");
+	//Cheatsy doodle way to wrap that passed variable around the item loot.
+	if(fromBath) pc.createStatusEffect("FromBath");
+	
 	// Stuff for getting a Honey Wine bottle here.
+	itemScreen = postWineCellarShitForLieve;
+	lootScreen = postWineCellarShitForLieve;
+	useItemFunction = postWineCellarShitForLieve;
+	
+	itemCollect([new HoneyWine()]);
+}
 
-	output("\n\nAs you exit the wine cellar, you ask Lieve if she has anything left in this little tour of hers.");
+
+public function postWineCellarShitForLieve():void
+{
+	clearOutput();
+	lieveHeader(false, true);
+	//End cheaty shit and clean up the cheaty status effect.
+	var fromBath:Boolean = pc.hasStatusEffect("FromBath");
+	pc.removeStatusEffect("FromBath");
+	output("As you exit the wine cellar, you ask Lieve if she has anything left in this little tour of hers.");
 
 	output("\n\n<i>“That’s about it,”</i> she admits,");
 	if (flags["LIEVE_DATEPOINTS"] >= 6) output(" putting an arm around your shoulders");

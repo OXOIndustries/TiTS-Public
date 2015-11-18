@@ -7,6 +7,15 @@ import classes.StorageClass;
 import classes.StringUtil;
 import classes.TiTS;
 
+public function isEquippableItem(item:ItemSlotClass):Boolean
+{
+	return	InCollection(item.type, 
+		GLOBAL.ARMOR, GLOBAL.SHIELD, GLOBAL.ACCESSORY, 
+		GLOBAL.RANGED_WEAPON, GLOBAL.MELEE_WEAPON, 
+		GLOBAL.CLOTHING, GLOBAL.UPPER_UNDERGARMENT, GLOBAL.LOWER_UNDERGARMENT
+		);
+}
+
 public function useItem(item:ItemSlotClass):Boolean {
 	if (item.isUsable == false)
 	{
@@ -28,8 +37,7 @@ public function useItem(item:ItemSlotClass):Boolean {
 	else 
 	{
 		//Equippable items are equipped!
-		if (item.type == GLOBAL.ARMOR || item.type == GLOBAL.CLOTHING || item.type == GLOBAL.SHIELD || item.type == GLOBAL.ACCESSORY || item.type == GLOBAL.UPPER_UNDERGARMENT 
-			|| item.type == GLOBAL.LOWER_UNDERGARMENT || item.type == GLOBAL.RANGED_WEAPON || item.type == GLOBAL.MELEE_WEAPON)
+		if (isEquippableItem(item))
 		{
 			// Order of operations band-aid.
 			// Item needs to be removed from inventory before being equipped, or it'll exist in two places and fuck up
@@ -81,8 +89,7 @@ public function useItem(item:ItemSlotClass):Boolean {
 public function combatUseItem(item:ItemSlotClass, targetCreature:Creature = null, usingCreature:Creature = null):void
 {
 	// If we're looking at an equippable item, equip it
-	if (item.type == GLOBAL.ARMOR || item.type == GLOBAL.CLOTHING || item.type == GLOBAL.SHIELD || item.type == GLOBAL.ACCESSORY || item.type == GLOBAL.UPPER_UNDERGARMENT 
-		|| item.type == GLOBAL.LOWER_UNDERGARMENT || item.type == GLOBAL.RANGED_WEAPON || item.type == GLOBAL.MELEE_WEAPON)
+	if (isEquippableItem(item))
 	{
 		if (pc.inventory.indexOf(item) != -1) pc.inventory.splice(pc.inventory.indexOf(item), 1);
 		equipItem(item);
@@ -498,7 +505,7 @@ public function combatInventoryMenu():void
 	
 	for (var i:int = 0; i < pc.inventory.length; i++)
 	{
-		if (pc.inventory[i].isUsable == false || pc.inventory[i].combatUsable == false)
+		if (!isEquippableItem(pc.inventory[i]) && (pc.inventory[i].isUsable == false || pc.inventory[i].combatUsable == false))
 		{
 			(this as TiTS).addDisabledButton((i < 14) ? i : i + 1, pc.inventory[i].shortName + " x" + pc.inventory[i].quantity, StringUtil.toDisplayCase(pc.inventory[i].longName), "Cannot be used in combat.");
 		}
@@ -574,7 +581,7 @@ public function equipItem(arg:ItemSlotClass):void {
 	clearOutput();
 	output("You");
 	if(arg.type == GLOBAL.ARMOR) output(" don");
-	else if(arg.type == GLOBAL.CLOTHING) output(" wear");
+	else if(InCollection(arg.type, GLOBAL.CLOTHING, GLOBAL.UPPER_UNDERGARMENT, GLOBAL.LOWER_UNDERGARMENT)) output(" wear");
 	else output(" equip");
 	output(" your " + arg.longName + ".");
 	//Clear disarm if appropriate.

@@ -1296,6 +1296,9 @@ package classes {
 				case "upperGarment":
 					buffer = upperGarmentDescript();
 					break;
+				case "upperGarmentOuter":
+					buffer = upperGarmentOuterDescript();
+					break;
 				case "upperGarments":
 					buffer = upperGarmentsDescript();
 					break;
@@ -1306,6 +1309,9 @@ package classes {
 				case "lowerGarment":
 				case "underGarment":
 					buffer = lowerGarmentDescript();
+					break;
+				case "lowerGarmentOuter":
+					buffer = lowerGarmentOuterDescript();
 					break;
 				case "skinNoun":
 					buffer = skinNoun(true);
@@ -1372,8 +1378,14 @@ package classes {
 				case "lips":
 					buffer = pluralize(lipDescript());
 					break;
+				case "lipsChaste":
+					buffer = pluralize(lipDescript(false,true));
+					break;
 				case "lip":
 					buffer = lipDescript();
+					break;
+				case "lipChaste":
+					buffer = lipDescript(false,true);
 					break;
 				case "lipColor":
 					buffer = lipColor;
@@ -2025,6 +2037,17 @@ package classes {
 		{
 			removeStatusEffect("Sweaty");
 		}
+		public function canMasturbate():Boolean
+		{
+			// Effects that prevent maturbations:
+			if
+			(	hasStatusEffect("Myr Venom Withdrawal")
+			||	hasStatusEffect("Grappled")
+			||	hasStatusEffect("Stunned")
+			||	hasStatusEffect("Paralyzed")
+			)	return false;
+			return true;
+		}
 		public function orgasm(): void {
 			// NaN production was down to maxCum
 			// if the player didn't have a cock, maxCum returns 0.
@@ -2375,7 +2398,7 @@ package classes {
 		}
 		public function energyMax(): Number {
 			var bonus:int = 0;
-			if(hasStatusEffect("Royal Nectar")) bonus += 40;
+			bonus += statusEffectv1("Royal Nectar");
 			if(hasPerk("Heroic Reserves")) bonus += 33;
 			return energyMod + 100 + bonus;
 		}
@@ -2642,6 +2665,7 @@ package classes {
 			var currLib:int = libidoMod + libidoRaw;
 			if (hasStatusEffect("Myr Venom")) currLib += Math.floor(currLib * 0.15);
 			if (accessory is Allure) currLib += 20;
+			if (hasStatusEffect("Myr Venom Withdrawal")) currLib /= 2;
 			
 			if (currLib > libidoMax())
 			{
@@ -2661,6 +2685,7 @@ package classes {
 			var bonus:int = 0;
 			bonus += perkv1("Inhuman Desire");
 			//trace("Max lust: " + (bonus + 100));
+			if(hasPerk("Venom Slut") && hasStatusEffect("Red Myr Venom")) bonus += 35;
 			return (100 + bonus);
 		}
 		public function lustMin(): Number {
@@ -2671,6 +2696,8 @@ package classes {
 			{
 				if (bonus < statusEffectv2("Lane Detoxing Weakness")) bonus = statusEffectv2("Lane Detoxing Weakness");
 			}
+			//Venom brings minimum up to 35.
+			if(bonus < 35 && hasStatusEffect("Red Myr Venom")) bonus = 35;
 			return (0 + bonus);
 		}
 		public function physiqueMax(): Number {
@@ -3082,10 +3109,10 @@ package classes {
 		public function lipRating(): Number {
 			return lipMod + femininity / 25;
 		}
-		public function lipsDescript(forcedAdjectives:Boolean = false): String {
+		public function lipsDescript(forcedAdjectives:Boolean = false, chaste:Boolean = false): String {
 			return lipDescript(forcedAdjectives);
 		}
-		public function lipDescript(forcedAdjectives:Boolean = false): String {
+		public function lipDescript(forcedAdjectives:Boolean = false, chaste:Boolean = false): String {
 			//lipMod + some femininity divided by something to get result.
 			var lips:int = lipRating();
 			var result:String = "";
@@ -3168,14 +3195,22 @@ package classes {
 			nouns[nouns.length] = "lip";
 			nouns[nouns.length] = "lip";
 			nouns[nouns.length] = "lip";
-			//High libido sluttery
-			if(lust() >= 80 && libido() >= 50 && lips >= 2 && (hasVagina() || femininity >= 75)) nouns[nouns.length] = "dick-sucker";
-			if(lust() >= 80 && libido() >= 60 && lips >= 3 && (hasVagina() || femininity >= 75)) nouns[nouns.length] = "cock-sucker";
-			if(lust() >= 80 && libido() >= 65 && lips >= 4) nouns[nouns.length] = "dick-pillow";
-			if(lust() >= 80 && libido() >= 70 && lips >= 4) nouns[nouns.length] = "cock-pillow";
-			if(lust() >= 80 && libido() >= 80 && lips >= 5) nouns[nouns.length] = "fuck-pillow";
-			if(lust() >= 80 && libido() >= 90 && lips >= 5) nouns[nouns.length] = "oral fuck-cushion";
-			if(lust() >= 80 && libido() >= 90 && lips >= 6) nouns[nouns.length] = "pleasure-pillow";
+			if(!chaste)
+			{
+				//High libido sluttery
+				if(lust() >= 80 && libido() >= 50 && lips >= 2 && (hasVagina() || femininity >= 75)) nouns[nouns.length] = "dick-sucker";
+				if(lust() >= 80 && libido() >= 60 && lips >= 3 && (hasVagina() || femininity >= 75)) nouns[nouns.length] = "cock-sucker";
+				if(lust() >= 80 && libido() >= 65 && lips >= 4) nouns[nouns.length] = "dick-pillow";
+				if(lust() >= 80 && libido() >= 70 && lips >= 4) nouns[nouns.length] = "cock-pillow";
+				if(lust() >= 80 && libido() >= 80 && lips >= 5) nouns[nouns.length] = "fuck-pillow";
+				if(lust() >= 80 && libido() >= 90 && lips >= 5) nouns[nouns.length] = "oral fuck-cushion";
+				if(lust() >= 80 && libido() >= 90 && lips >= 6) nouns[nouns.length] = "pleasure-pillow";
+			}
+			else
+			{
+				if(lips >= 4) nouns[nouns.length] = "pillow";
+				if(lips >= 4) nouns[nouns.length] = "pucker";
+			}
 			//Tack the selected choice onto result
 			result += nouns[rand(nouns.length)];
 			return result;
@@ -9673,9 +9708,19 @@ package classes {
 			else if (armor.shortName != "") return armor.longName;
 			else return "nothing";
 		}
+		public function lowerGarmentOuterDescript(): String {
+			if (armor.shortName != "") return armor.longName;
+			else if (lowerUndergarment.shortName != "") return lowerUndergarment.longName;
+			else return "nothing";
+		}
 		public function upperGarmentDescript(): String {
 			if (upperUndergarment.shortName != "") return upperUndergarment.longName;
 			else if (armor.shortName != "") return armor.longName;
+			else return "nothing";
+		}
+		public function upperGarmentOuterDescript(): String {
+			if (armor.shortName != "") return armor.longName;
+			else if (upperUndergarment.shortName != "") return upperUndergarment.longName;
 			else return "nothing";
 		}
 		public function upperGarmentsDescript(): String {

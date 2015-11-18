@@ -167,7 +167,8 @@ public function combatMainMenu():void
 		}
 		this.addButton(3, "Inventory", inventory, undefined, "Inventory", "Use items in combat.");
 		this.addButton(4,"Specials",specialsMenu,undefined,"Specials","The special attacks you have available to you are listed in this menu.");
-		this.addButton(5,"Tease",attackRouter,teaseMenu,"Tease Menu","Opens up your menu of available lust targetting attacks. It is recommended that the \"Sense\" option be used beforehand.");
+		if(pc.hasStatusEffect("Myr Venom Withdrawal")) addDisabledButton(5,"Tease","Tease","Without the venom, teasing just seems... fruitless.");
+		else this.addButton(5,"Tease",attackRouter,teaseMenu,"Tease Menu","Opens up your menu of available lust targetting attacks. It is recommended that the \"Sense\" option be used beforehand.");
 		this.addButton(6,"Sense",attackRouter,sense,"Sense","Attempts to get a feel for a foe's likes and dislikes. Absolutely critical for someone who plans on seducing " + pc.mf("his","her") + " way out of a fight.");
 		if(pc.hasStatusEffect("Trip")) this.addButton(8,"Stand Up",standUp,undefined,"Stand Up","Stand up, getting rid of the \"Trip\" status effect. This will consume your offensive action for this turn.");
 		this.addButton(9,"Fantasize",fantasize,undefined,"Fantasize","Fantasize about your foe until you're helpless and on your [pc.knees] before them.");

@@ -147,7 +147,9 @@ public function mainGameMenu():void {
 		else addDisabledButton(8, "Masturbate");
 	}
 	else {
-		addButton(8, "Masturbate", masturbateMenu);
+		if(pc.hasStatusEffect("Myr Venom Withdrawal")) addDisabledButton(8, "Masturbate", "Masturbate", "While you’re in withdrawal, you don’t see much point in masturbating, no matter how much your body may want it.");
+		else if(!pc.canMasturbate()) addDisabledButton(8, "Masturbate", "Masturbate", "You can’t seem to masturbate at the moment....");
+		else addButton(8, "Masturbate", masturbateMenu);
 	}
 	if(!rooms[currentLocation].hasFlag(GLOBAL.BED)) 
 		addButton(9, "Rest", rest);
@@ -805,7 +807,12 @@ public function showerMenu():void {
 	if (pc.lust() >= 33)
 	{
 		if (crew(true) > 0) addButton(1, "Sex", showerOptions, 1);
-		if (shipShowerFaps() > 0) addButton(2, "Masturbate", showerOptions, 2);
+		if (shipShowerFaps() > 0)
+		{
+			if (pc.hasStatusEffect("Myr Venom Withdrawal")) addDisabledButton(2, "Masturbate", "Masturbate", "While you’re in withdrawal, you don’t see much point in masturbating, no matter how much your body may want it.");
+			else if (!pc.canMasturbate()) addDisabledButton(2, "Masturbate", "Masturbate", "You can’t seem to masturbate at the moment....");
+			else addButton(2, "Masturbate", showerOptions, 2);
+		}
 	}
 	addButton(14, "Back", mainGameMenu);
 }
@@ -911,6 +918,7 @@ public function move(arg:String, goToMainMenu:Boolean = true):void {
 public function statusTick():void {
 	var expiredStatuses:Array = new Array();
 	var y:int = 0;
+	var gogoVenomShit:Boolean = false;
 	for(var x:int = pc.statusEffects.length-1; x >= 0; x--) 
 	{
 		//Some hardcoded removal stuff
@@ -945,6 +953,11 @@ public function statusTick():void {
 				{
 					var pill:HorsePill = new HorsePill();
 					eventQueue[eventQueue.length] = pill.lastPillTF;
+				}
+				if(pc.statusEffects[x].storageName == "Red Myr Venom")
+				{
+					//Bit of a hacky solution
+					gogoVenomShit = true;
 				}
 				//Condensol ends!
 				if(pc.statusEffects[x].storageName == "Condensol-A")
@@ -1027,6 +1040,8 @@ public function statusTick():void {
 		pc.statusEffects.splice(expiredStatuses[0],1);
 		expiredStatuses.splice(0,1);
 	}
+	//Alright, now do the venom shit - since adding more statuses could fuck shit otherwise
+	if(gogoVenomShit) venomExpirationNotice();
 }
 
 public function variableRoomUpdateCheck():void
@@ -1255,7 +1270,7 @@ public function processTime(arg:int):void {
 	if (pc.hasStatusEffect("Ludicrously Endowed")) productionFactor *= 1.5;
 	if (pc.hasStatusEffect("Overwhelmingly Endowed")) productionFactor *= 2;
 	
-	if (pc.hasStatusEffect("Myr Venom")) productionFactor *= 1.25;
+	if (pc.hasStatusEffect("Red Myr Venom")) productionFactor *= 1.5;
 	
 	//BOOZE QUADRUPLES TIEM!
 	if(pc.hasStatusEffect("X-Zil-rate") || pc.hasStatusEffect("Mead") || pc.hasStatusEffect("X-Zil-rate"))
@@ -1627,6 +1642,21 @@ public function processTime(arg:int):void {
 					}
 					if(pc.perkv4("Fecund Figure") < 0) pc.setPerkValue("Fecund Figure", 4, 0);
 				}
+				//DAILY MYR VENOM CHECKS
+				//Addicts
+				if(flags["VENOM_ADDICTION"] != undefined)
+				{
+					//Not yet uber-addict:
+					if(!pc.hasPerk("Venom Slut"))
+					{
+						if(pc.hasStatusEffect("Myr Venom Withdrawal")) myrAddiction(-2);
+					}
+				}
+				//Non addicts not under the effects of venom lose progress to addiction
+				else if(flags["VENOM_ADDICTION"] == undefined && !pc.hasStatusEffect("Red Myr Venom"))
+				{
+					venomProgress(-2);
+				}
 			}
 		}
 		arg--;
@@ -1664,7 +1694,7 @@ public function processTime(arg:int):void {
 	//Emmy Mail
 	if (!MailManager.isEntryUnlocked("emmy_apology") && flags["EMMY_EMAIL_TIMER"] <= (GetGameTimestamp() - (24 * 60))) emmyMailGet();
 	//Saendra Mail
-	if (!MailManager.isEntryUnlocked("saendrathanks") && flags["FALL OF THE PHOENIX STATUS"] >= 1 && flags["SAENDRA_DISABLED"] != 1) saendraPhoenixMailGet();
+	if (!MailManager.isEntryUnlocked("saendrathanks") && flags["FALL OF THE PHOENIX STATUS"] >= 1 && flags["SAENDRA_DISABLED"] != 1 && rooms[currentLocation].planet != "SHIP: PHOENIX" && currentLocation != "SHIP INTERIOR") saendraPhoenixMailGet();
 	//Anno Mail
 	if (!MailManager.isEntryUnlocked("annoweirdshit") && flags["MET_ANNO"] != undefined && flags["FOUGHT_TAM"] == undefined && flags["RUST_STEP"] != undefined && rand(10) == 0) goMailGet("annoweirdshit");
 	//Other Email Checks!
@@ -3843,6 +3873,33 @@ public function displayQuestLog(showID:String = "All"):void
 					if(flags["NEVRIE_QUEST"] < 2) output2(", Return to Nevrie");
 				}
 				else output2(" <i>Not yet obtained</i>");
+				sideCount++;
+			}
+			// Red Myr Venom Addiction
+			if(CodexManager.entryViewed("Red Myr") && (drankMyrVenom() || sexedMyrVenom()))
+			{
+				output2("\n<b><u>Red Myr Venom</u></b>");
+				output2("\n<b>* Status:</b>");
+				if(pc.hasPerk("Venom Slut")) output2(" Complete venom slut");
+				else if(flags["VENOM_PROGRESS"] != undefined && flags["VENOM_PROGRESS"] > 0)
+				{
+					if(pc.hasStatusEffect("Red Myr Venom")) output2(" Currently affected");
+					else output2(" In system");
+					if(flags["VENOM_ADDICTION"] != undefined && flags["VENOM_ADDICTION"] > 0)
+					{
+						output2(", Addicted");
+						if(pc.hasStatusEffect("Myr Venom Withdrawal")) output2(", Undergoing withdrawal");
+						output2("\n<b>* Venom Addiction Level: </b>" + flags["VENOM_ADDICTION"] + "%");
+					}
+					else output2("\n<b>* Venom Dosage Level: </b>" + flags["VENOM_PROGRESS"] + "%");
+				}
+				else
+				{
+					output2(" Tried");
+					if(flags["VENOM_PROGRESS"] != undefined && flags["VENOM_PROGRESS"] <= 0) output2(", Cured");
+				}
+				if(sexedMyrVenom()) output2("\n<b>* Doses, Sex-related: </b>" + flags["SEXED_MYR_VENOM"]);
+				if(drankMyrVenom()) output2("\n<b>* Doses, Drink-related: </b>" + flags["DRANK_MYR_VENOM"]);
 				sideCount++;
 			}
 			// "All the Feels: The Quest"
@@ -6229,9 +6286,8 @@ public function goMailGet(mailKey:String = "", timeStamp:int = -1):void
 	if(mailKey != "" && MailManager.hasEntry(mailKey))
 	{
 		var mailEmail:Object = MailManager.getEntry(mailKey);
-		if(mailEmail.From != null) mailFrom = mailEmail.From();
-		if(mailEmail.FromAddress != null) mailFromAdress = mailEmail.FromAddress();
-		
+		if(mailEmail.FromCache != null) mailFrom = mailEmail.FromCache;
+		if(mailEmail.FromAddressCache != null) mailFromAdress = mailEmail.FromAddressCache;
 		eventBuffer += "\n\n<b>New Email from " + mailFrom + " ("+ mailFromAdress +")!</b>";
 		MailManager.unlockEntry(mailKey, timeStamp);
 	}
@@ -6247,26 +6303,26 @@ public function emailRoulette():void
 	// Character/Event specific:
 	if(!MailManager.isEntryUnlocked("burtsmeadhall") && pc.level >= 1)
 		mailList.push("burtsmeadhall");
-	else if(!MailManager.isEntryUnlocked("kihaai") && flags["UNLOCKED_JUNKYARD_PLANET"] != undefined)
+	if(!MailManager.isEntryUnlocked("kihaai") && flags["UNLOCKED_JUNKYARD_PLANET"] != undefined)
 		mailList.push("kihaai");
-	else if(!MailManager.isEntryUnlocked("syrividja") && flags["SPAM_MSG_COV8"] != undefined && syriIsAFuckbuddy() && (flags["TIMES_WON_AGAINST_SYRI"] != undefined || flags["TIMES_LOST_TO_SYRI"] != undefined))
+	if(!MailManager.isEntryUnlocked("syrividja") && flags["SPAM_MSG_COV8"] != undefined && syriIsAFuckbuddy() && (flags["TIMES_WON_AGAINST_SYRI"] != undefined || flags["TIMES_LOST_TO_SYRI"] != undefined))
 		mailList.push("syrividja");
-	else if(!MailManager.isEntryUnlocked("fuckinggoosloots") && celiseIsCrew() && pc.level >= 2)
+	if(!MailManager.isEntryUnlocked("fuckinggoosloots") && celiseIsCrew() && pc.level >= 2)
 		mailList.push("fuckinggoosloots");
-	else if(!MailManager.isEntryUnlocked("fuckinggooslootsII") && MailManager.isEntryUnlocked("fuckinggoosloots") && celiseIsCrew() && pc.level >= 5)
+	if(!MailManager.isEntryUnlocked("fuckinggooslootsII") && MailManager.isEntryUnlocked("fuckinggoosloots") && celiseIsCrew() && pc.level >= 5)
 		mailList.push("fuckinggooslootsII");
-	else if(!MailManager.isEntryUnlocked("kirofucknet") && flags["RESCUE KIRO FROM BLUEBALLS"] == 1 && kiroTrust() >= 50)
+	if(!MailManager.isEntryUnlocked("kirofucknet") && flags["RESCUE KIRO FROM BLUEBALLS"] == 1 && kiroTrust() >= 50)
 		mailList.push("kirofucknet");
-	else if(!MailManager.isEntryUnlocked("cuzfuckball") && flags["TIMES_MET_FEMZIL"] != undefined && flags["BEEN_ON_TARKUS"] != undefined && pc.level >= 2)
+	if(!MailManager.isEntryUnlocked("cuzfuckball") && flags["TIMES_MET_FEMZIL"] != undefined && flags["BEEN_ON_TARKUS"] != undefined && pc.level >= 2)
 		mailList.push("cuzfuckball");
 	
 	/*
 	// SPAM: (9999: If does not have spamblocker upgrade toggled on for CODEX.)
-	if(SpamEmailKeys.length > 0 && flags["CODEX_SPAM_BLOCKER"] == undefined)
+	if(SpamEmailKeys.length > 0 && flags["CODEX_SPAM_BLOCKER"] == undefined && rand(2) == 0)
 		mailList.push(SpamEmailKeys);
 	*/
 	
-	if(mailList.length > 0 && rand(4) == 0) mailKey = mailList[rand(mailList.length)];
+	if(mailList.length > 0) mailKey = mailList[rand(mailList.length)];
 	
 	if(mailKey != "" && MailManager.hasEntry(mailKey))
 	{
@@ -6274,8 +6330,8 @@ public function emailRoulette():void
 		
 		// Any special actions/unlocks
 		var mailEmail:Object = MailManager.getEntry(mailKey);
-		if(mailEmail.Subject != null) mailSubject = mailEmail.Subject();
-		if(mailEmail.Content != null) mailContent = mailEmail.Content();
+		if(mailEmail.SubjectCache != null) mailSubject = mailEmail.SubjectCache;
+		if(mailEmail.ContentCache != null) mailContent = mailEmail.ContentCache;
 		
 		// Regular:
 		if(mailKey == "kirofucknet" && (pc.isBimbo() || pc.isBro() || !pc.hasStatusEffect("Focus Pill") || pc.IQ() < 50 || pc.WQ() < 50))
