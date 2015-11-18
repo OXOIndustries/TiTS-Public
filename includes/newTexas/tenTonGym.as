@@ -515,7 +515,8 @@ public function quentonTrainingPitch():void
 	pp.elasticity = 1.5;
 	
 	var x:int = -1;
-	if(!pc.lowerUndergarment.hardLightEquipped && pc.hasCock()) x = rand(pc.cocks.length);
+	//if(!pc.lowerUndergarment.hardLightEquipped && pc.hasCock()) x = rand(pc.cocks.length);
+	if(!pc.lowerUndergarment.hardLightEquipped && pc.hasCock()) x = 0; // cockOrStrapon actually uses cock 0
 	
 	output("You tell Quenton you want to take him from behind. He puts his hands on his hips and nods");
 	if(!pc.isNude())
