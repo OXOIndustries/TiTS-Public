@@ -4,6 +4,7 @@
 	import classes.GLOBAL;
 	import classes.Items.Apparel.AnnosCatsuit;
 	import classes.Items.Apparel.TSTArmor;
+	import classes.Items.Drinks.RedMyrVenom;
 	import classes.Items.Guns.HammerCarbine;
 	import classes.Items.Guns.LaserCarbine;
 	import classes.Items.Guns.Goovolver;
@@ -28,7 +29,7 @@
 		//constructor
 		public function Anarrie()
 		{
-			this._latestVersion = 1;
+			this._latestVersion = 2;
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
@@ -40,8 +41,9 @@
 			inventory.push(new SurvivalAxe());
 			inventory.push(new HuntingRifle());
 			inventory.push(new MyrBow());
+			inventory.push(new RedMyrVenom());
 			//9999
-			// inventory.push(new RedMyrVenom());
+			
 			
 			this.typesBought[this.typesBought.length] = GLOBAL.ARMOR;
 			this.typesBought[this.typesBought.length] = GLOBAL.RANGED_WEAPON;
@@ -195,6 +197,11 @@
 			this.vaginas[0].bonusCapacity = 20;
 			
 			this._isLoading = false;
+		}
+		
+		public function UpgradeVersion1(dataObject:Object):void
+		{
+			dataObject.inventory.push(new RedMyrVenom().getSaveObject());
 		}
 	}
 }
