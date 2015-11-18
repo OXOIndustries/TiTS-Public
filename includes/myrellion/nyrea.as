@@ -737,9 +737,9 @@ public function pcVictoryOverNyrea():void
 		if(pc.hasCock() && fitsInside) addButton(3,"Cuff&Fuck",cuffNFuck,undefined,"Cuff & Fuck","Use your grav-cuffs to pin down [monster.name] and have your way with [monster.hisHer] [pc.vagOrAssNoun]! Requires Grav-cuffs and a penis.");
 		else if(pc.hasCock()) addDisabledButton(3,"Cuff&Fuck","Cuff & Fuck","You can cuff [monster.himHer] down, but you wouldn't be able to fit inside.");
 		else addDisabledButton(3,"Cuff&Fuck","Cuff & Fuck","You need a penis to make use of your grav-cuffs this way.");
-		output("CUFFIES");
+		//output(" CUFFIES");
 	}
-	else output(" NO CUFFIES");
+	//else output(" NO CUFFIES");
 	// 9999 territory - need something decent for leaving after victory without fucking
 	addButton(14, "Leave", function():void {
 		clearOutput();

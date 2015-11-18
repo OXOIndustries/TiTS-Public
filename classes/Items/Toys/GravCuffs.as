@@ -7,6 +7,7 @@ package classes.Items.Toys
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
+	import classes.GameData.CodexManager;
 	
 	public class GravCuffs extends ItemSlotClass
 	{
@@ -54,18 +55,25 @@ package classes.Items.Toys
 		override public function useFunction(target:Creature, usingCreature:Creature = null):Boolean
 		{
 			if(!kGAMECLASS.infiniteItems()) quantity++;
-			if(target is PlayerCharacter) {
-				if(kGAMECLASS.rooms[kGAMECLASS.currentLocation].planet == "PLANET: NEW TEXAS" && kGAMECLASS.rooms[kGAMECLASS.currentLocation].hasFlag(GLOBAL.PUBLIC) && kGAMECLASS.flags["NEW_TEXAS_GANGBANGED"] != undefined && target.lust() >= 33)
+			if (target is PlayerCharacter) 
+			{
+				CodexManager.unlockEntry("Grav Cuffs");
+				kGAMECLASS.clearOutput();
+				if(!target.canMasturbate() || target.lust() < 33)
 				{
-					kGAMECLASS.newTexanGanguBangu();
+					kGAMECLASS.output("You’re not really in the mood to masturbate right now....");
+				}
+				else if(kGAMECLASS.rooms[kGAMECLASS.currentLocation].planet == "PLANET: NEW TEXAS" && kGAMECLASS.rooms[kGAMECLASS.currentLocation].hasFlag(GLOBAL.PUBLIC) && target.exhibitionism() >= 33 && kGAMECLASS.flags["GRAVCUFFS_USES"] != undefined)
+				{
+					kGAMECLASS.cuffSelfRouter();
 				}
 				else
 				{
-					kGAMECLASS.clearOutput();
 					kGAMECLASS.output("You cannot use the grav-cuffs at this time!");
 				}
 			}
-			else {
+			else
+			{
 				kGAMECLASS.clearOutput();
 				kGAMECLASS.output(target.capitalA + target.short + " cannot use the grav-cuffs.");
 			}

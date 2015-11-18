@@ -129,29 +129,30 @@ public function enemyAphrodisiacDarts():void
 	//Reactions
 	if(hit)
 	{
-		if(pc.lust() < 33) output("\nAn unwelcome heat suffuses your body as the chemicals do their work.");
-		else if(pc.lust() < 45) output("\nYour heart beats faster as you look at your foe's body." + foes[0].mf("","Her outfit seems a bit more revealing, and her movements seem more sexually enticing than ever before."));
+		output("\n\n");
+		if(pc.lust() < 33) output("An unwelcome heat suffuses your body as the chemicals do their work.");
+		else if(pc.lust() < 45) output("Your heart beats faster as you look at your foe's body." + foes[0].mf("","Her outfit seems a bit more revealing, and her movements seem more sexually enticing than ever before."));
 		else if(pc.lust() < 55) 
 		{
 			if(pc.hasCock()) 
 			{
-				output("\n[pc.EachCock] pulsates as it fills with burgeoning tumescence.");
+				output("[pc.EachCock] pulsates as it fills with burgeoning tumescence.");
 				if(foes[0] is RaskvelFemale) output(" You find yourself wondering what it would be like to slip into her puffy, double-clitted box.");
 			}
-			else if(pc.hasVagina()) output("\n[pc.EachVagina] grows sensitive and moist as you ponder the merits of fucking this fetching little lizard-" + foes[0].mf("man","woman") + ".");
-			else output("\nYour [pc.nipples] harden as you idly consider forcing " + foes[0].mf("him","her") + " to lick you while suckling on " + foes[0].mf("his reptilian tool.","her twin clits."));
+			else if(pc.hasVagina()) output("[pc.EachVagina] grows sensitive and moist as you ponder the merits of fucking this fetching little lizard-" + foes[0].mf("man","woman") + ".");
+			else output("Your [pc.nipples] harden as you idly consider forcing " + foes[0].mf("him","her") + " to lick you while suckling on " + foes[0].mf("his reptilian tool.","her twin clits."));
 		}
-		else if(pc.lust() < 65) output("\nYou groan out loud as the aphrodisiacs surges through your bloodstream, rousing you into a " + pc.rawmf("rut","heat") + " that you have have a hard time suppressing.");
-		else if(pc.lust() < 75) output("\n" + pc.mf("Grunting","Whimpering") + " in anticipation of what is to come, you ball your hands into fists as you try to endure the rising need as it spreads through your body. It feels like your brain is oozing down into your crotch, fixating utterly on sex. You want to fuck right now. You NEED to fuck soon.");
-		else if(pc.lust() < 85) output("\nYou stagger as the lust hits you, stirring your already aroused body to new heights of need. Your [pc.legs] tremble, and the desperate, animal need to copulate thrums through your quivering muscles, filling them with an artificial desire.");
+		else if(pc.lust() < 65) output("You groan out loud as the aphrodisiacs surges through your bloodstream, rousing you into a " + pc.rawmf("rut","heat") + " that you have have a hard time suppressing.");
+		else if(pc.lust() < 75) output(pc.mf("Grunting","Whimpering") + " in anticipation of what is to come, you ball your hands into fists as you try to endure the rising need as it spreads through your body. It feels like your brain is oozing down into your crotch, fixating utterly on sex. You want to fuck right now. You NEED to fuck soon.");
+		else if(pc.lust() < 85) output("You stagger as the lust hits you, stirring your already aroused body to new heights of need. Your [pc.legs] tremble, and the desperate, animal need to copulate thrums through your quivering muscles, filling them with an artificial desire.");
 		else if(pc.lust() < 95) 
 		{
-			output("\nThe payload has its way with your aroused body as it rushes through your veins. It acts quickly, like other intravenious drugs, turning you on with each beat of your heart.");
+			output("The payload has its way with your aroused body as it rushes through your veins. It acts quickly, like other intravenious drugs, turning you on with each beat of your heart.");
 			if(pc.hasCock() || pc.hasVagina()) output(" Your genitals drip with need as y");
-			else output("Y");
+			else output(" Y");
 			output("ou idly consider throwing the fight for a quick fuck.");
 		}
-		else output("\nYou whimper as the drugs pour through your body and melt your resistance into a bubbling puddle of distilled fuck. Your body is hot, feverish even, and you lose the will to resist as the absolute need to tend to your state asserts itself.");
+		else output("You whimper as the drugs pour through your body and melt your resistance into a bubbling puddle of distilled fuck. Your body is hot, feverish even, and you lose the will to resist as the absolute need to tend to your state asserts itself.");
 	}
 	if(pc.lust() < pc.lustMax() && foes[0] is RaskvelMale)
 	{

@@ -12,6 +12,7 @@
 	import classes.Items.Miscellaneous.Picardine;
 	import classes.Items.Miscellaneous.Kirkite;
 	import classes.Items.Miscellaneous.Satyrite;
+	import classes.Items.Drinks.RedMyrVenom;
 	
 	import classes.GLOBAL;
 	
@@ -201,7 +202,7 @@
 			infectedMyr.credits = rand(200);
 			if (rand(20) == 0) infectedMyr.inventory.push(new Kirkite());
 			else if(rand(20) == 0) infectedMyr.inventory.push(new Satyrite());
-					
+			else if(rand(2) == 0) infectedMyr.inventory.push(new RedMyrVenom());		
 			this.sexualPreferences.setRandomPrefs(4 + rand(3),1);
 			infectedMyr.sexualPreferences.setPref(GLOBAL.SEXPREF_FEMININE,	GLOBAL.REALLY_LIKES_SEXPREF);
 			

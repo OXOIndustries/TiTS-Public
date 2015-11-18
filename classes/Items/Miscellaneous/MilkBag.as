@@ -58,7 +58,7 @@
 			if(target is PlayerCharacter) {
 				//Consume:
 				kGAMECLASS.clearOutput();
-				kGAMECLASS.output("You have no use for this item at present.");
+				kGAMECLASS.output("You have no use for the milk bag at present.");
 			}
 			else {
 				kGAMECLASS.clearOutput();

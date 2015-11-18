@@ -52,7 +52,7 @@
 			this.fortification = 0;
 			
 			resistances = new TypeCollection();
-			resistances.burning.resistanceValue = 75.0;
+			resistances.burning.resistanceValue = 50.0;
 			
 			this.version = _latestVersion;
 		}	

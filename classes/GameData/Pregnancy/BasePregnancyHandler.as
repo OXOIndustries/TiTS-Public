@@ -94,7 +94,7 @@ package classes.GameData.Pregnancy
 		public function tryKnockUp(father:Creature, mother:Creature, pregSlot:int):Boolean
 		{
 			// Abort if there's an existing pregnancy of this type and multipreg of this type is disabled
-			if (_allowMultiplePregnancies == false && mother.hasPregnancyOfType(_handlesType))
+			if (_allowMultiplePregnancies == false && mother.isPregnant())
 			{
 				return false;
 			}
@@ -117,7 +117,6 @@ package classes.GameData.Pregnancy
 						if (this.alwaysImpregnate || mother.fertility() > Math.floor(Math.random() * this.basePregnancyChance))
 						{
 							mother.fertilizeEggs();
-							return true;
 						}
 					}
 				}
@@ -262,6 +261,12 @@ package classes.GameData.Pregnancy
 				}
 				
 				if (thisPtr.debugTrace) trace("Autosetting pregnancy to slot " + pregSlot);
+			}
+			
+			// Fail if the targetted hole is already pregnant
+			if ((mother.pregnancyData[pregSlot] as PregnancyData).pregnancyType != "")
+			{
+				return false;
 			}
 			
 			// Process various ignore values

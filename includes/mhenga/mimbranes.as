@@ -544,6 +544,19 @@ public function feedAMimbrane(effectName:String, feedValue:int = 1, force:Boolea
 	}
 }
 
+public function willpowerModAffected():Boolean
+{
+	if
+	(	pc.isBuzzed()
+	||	pc.hasStatusEffect("Crabbst")
+	||	pc.hasStatusEffect("Naleen Venom")
+	||	pc.hasStatusEffect("Lane Detoxing Weakness")
+	)
+	{
+		return true;
+	}
+	return false;
+}
 public function resetAllMimbraneFeedings():void
 {
 	for (var i:uint = 0; i < mimbraneEffects.length; i++)
@@ -552,8 +565,11 @@ public function resetAllMimbraneFeedings():void
 		
 		if (pc.hasStatusEffect(tEff))
 		{
-			pc.willpowerMod = 0;
-			pc.setStatusValue(tEff, 3, 0);
+			if(pc.willpowerMod < 0 && !willpowerModAffected())
+			{
+				pc.willpowerMod = 0;
+				pc.setStatusValue(tEff, 3, 0);
+			}
 			
 			switch (tEff)
 			{
@@ -3839,8 +3855,8 @@ public function defeatMimbrane():void
 	if (pc.hasCock()) output(" The parasite did manage to work you up into a bit of a frenzy. That slick skin could make for a halfway decent tension reliever.");
 
 	clearMenu();
-	addButton(0, "Let It Go", letMimbraneGo);
-	addButton(1, "Kill It", killDatMimbrane);
+	addButton(0, "Kill It", killDatMimbrane);
+	addButton(1, "Let It Go", letMimbraneGo);
 
 	if (pc.hasCock() && pc.lust() >= 33) addButton(2, "Mimbrane Fap", useDatMimbraneLikeACondom,undefined,"Mimbrane Fap","Use the mimbrane like a living sextoy. It's certainly slippery enough.");
 	else if(pc.lust() >= 33) addDisabledButton(2,"Mimbrane Fap","Mimbrane Fap","You need a penis to fap with a mimbrane.");
@@ -4622,13 +4638,12 @@ public function mimbraneMenu():void
 	}
 	
 	if 
-	(
-		(pc.hasVagina() && (pc.vaginas[0].loosenessMod < -5 || pc.vaginas[0].wetnessMod < -5 || pc.vaginas[0].loosenessMod > 5 || pc.vaginas[0].wetnessMod > 5))
+	(	(pc.hasVagina() && (pc.vaginas[0].loosenessMod < -5 || pc.vaginas[0].wetnessMod < -5 || pc.vaginas[0].loosenessMod > 5 || pc.vaginas[0].wetnessMod > 5))
 	||	(pc.hasCock() && (pc.cocks[0].cLengthMod < -5 || pc.cocks[0].cThicknessRatioMod < -5))
 	||	(pc.lipMod < -4)
 	||	(pc.ass.loosenessMod < -5 || pc.ass.wetnessMod < -5 || pc.buttRatingMod < -5)
 	||	(pc.breastRows[0].breastRatingMod < -5)
-	||	(pc.willpowerMod < -10)
+	||	(pc.willpowerMod < -10 && !willpowerModAffected())
 	)
 	{
 		addGhostButton(4, "RstFeed", resetAllMimbraneFeedings, undefined, "Reset Feed Effects", "Reset all current mimbrane feed values to zero, and revert all applicable part-modification values to match. This is a 'recovery' features to attempt to 'fix' broken saves that have built up huge negative modification values. BE CAREFUL!");

@@ -57,7 +57,7 @@ public function metBeth():Boolean
 
 public function showBrothelLady(nude:Boolean = false):void
 {
-	if(flags["KAT_MET"] != undefined) userInterface.showName("KAT");
+	if(flags["KAT_MET"] != undefined) userInterface.showName("\nKAT");
 	else userInterface.showName("BROTHEL\nMISTRESS");
 	if(!nude) userInterface.showBust("BORING_MISTRESS");
 	else userInterface.showBust("BORING_MISTRESS_NUDE");
@@ -182,7 +182,7 @@ public function teaseTheOvir():void
 	}
 	//merge all
 	output("\n\nAs you reach the height of your little demonstration, the ovir is rubbing her thighs together and whining softly");
-	if(pc.exhibitionism() >= 66) output(" along with you");
+	if(pc.exhibitionism() >= 66 && !pc.isPsionic()) output(" along with you");
 	output(". A bulge forms in her lacy red panties as she fidgets, swelling larger and more oblong by the second, until it peeks from the low-cut fringe. The orange-and-yellow crescent moon grows and strains against the yielding waistband, silencing the crowd. As the patrons watch, the flared tip slips free, allowing her half-erect cock to swing out. Like the poor ovir, it’s yellow at the base and shifts in color close to the end.");
 	output("\n\nThe girl, rather, the boy, freezes as her thick tool bobs. One hand still clings to the pole while the other covers her face in shame. None of the stifled patrons seems to know how to react, staring dumbly at the revealed penis.");
 	output("\n\n<i>“Dance!”</i> you cheer, shattering the stillness. <i>“Dance, dance!”</i>");
@@ -253,8 +253,9 @@ public function vaandeGo():void
 	pc.credits -= 100;
 	clearMenu();
 	//mark Vaande as met if first time, either intro branch present buttons ‘Fuck Pussy’,‘Ride Ovi’, ‘Back’
-	addButton(4,"Back",talkToBrothelLadyNewOmni);
+	addButton(14,"Back",talkToBrothelLadyNewOmni);
 	if((pc.hasCock() && pc.cockThatFits(500) >= 0) || pc.hasTailCock() || pc.hasDickNipples()) addButton(0,"Fuck Pussy",fuckVaandesPuss,undefined,"Fuck Pussy","Use your cock on her.");
+	else if(pc.hasCock() && pc.cockThatFits(500) < 0) addDisabledButton(0,"Fuck Pussy","Fuck Pussy","Here’s where you’d put your cock in her, if you had any that fit.");
 	else addDisabledButton(0,"Fuck Pussy","Fuck Pussy","Here’s where you’d put your cock in her, if you had one.");
 	//Ride Ovi
 	//for vagOrAss
@@ -430,6 +431,8 @@ public function brothelTurnTrixLady():void
 	showBrothelLady();
 	author("Nonesuch");
 	
+	processTime(1);
+	clearMenu();
 	// If PC is licensed
 	if(flags["BETHS_CONTRACT_WHORE"] != undefined)
 	{
@@ -437,6 +440,7 @@ public function brothelTurnTrixLady():void
 		//[Yep] [No]
 		addButton(0, "Yep", brothelTurnTrixLicensedMenu);
 		addButton(1, "No", brothelTurnTrixAnswer, 3);
+		return;
 	}
 	// If PC hasn't whored
 	else if(flags["BETHS_TIMES_WHORED"] == undefined)
@@ -458,7 +462,6 @@ public function brothelTurnTrixLady():void
 		}
 		
 		// [Agree] [License?] [Nah]
-		clearMenu();
 		addButton(0, "Agree", brothelTurnTrixAnswer, 1, "Agree", "Whore as a freelancer.");
 		addButton(1, "License?", brothelTurnTrixAnswer, 2, "License?", "Ask about the license.");
 		addButton(2, "Nah", brothelTurnTrixAnswer, 0, "Nah", "Maybe next time.");
@@ -472,6 +475,7 @@ public function brothelTurnTrixLady():void
 		// [Freelance] [License?]
 		addButton(0, "Freelance", brothelTurnTrixFreelanceMenu);
 		addButton(1, "License?", brothelTurnTrixAnswer, 2, "License?", "Ask about the license.");
+		return;
 	}
 }
 
@@ -490,6 +494,7 @@ public function brothelTurnTrixAnswer(choice:int = 0):void
 		if(rand(2) == 0) output(" fingers");
 		else output(" nails");
 		output(". <i>“But remember: 50% of whatever you earn here, and if there’s trouble it’s you out the door, not them.”</i>");
+		processTime(1);
 		// Go to freelancing menu
 		brothelTurnTrixFreelanceMenu();
 	}
@@ -499,6 +504,7 @@ public function brothelTurnTrixAnswer(choice:int = 0):void
 		output("<i>“What’s this about a license?”</i> you ask.");
 		output("\n\n<i>“If you license yourself with us, you can keep 80% of what you earn,”</i> she replies, rummaging around behind the desk. <i>“But you gotta agree to the terms.”</i> She brings out an electronic form and tap-pencil, pointing out each clause as he goes along.");
 		output("\n\n<i>“You’ve got to hit a certain number of johns on a shift. Not worth our while otherwise. You gotta look presentable, obviously. You got to agree to at least suck. Don’t have to do anything more if you don’t want. And, most importantly...”</i> she looks up and catches your eye with a dry smirk. <i>“You’ve got to see to the staff from time to time, pro bono. Pretty frustrating, watching the dancers do their thing when you’re stuck behind the bar.”</i> She taps the signature box at the bottom. <i>“Agree to all that and you get an 80/20 cut, the use of the rooms, and a promise that if there’s trouble, someone will be along to break the guy’s face in two.”</i>");
+		processTime(2);
 		// [Sign] [No]
 		if(flags["BETHS_TIMES_WHORED_MOUTH"] != undefined || (flags["TIMES_BUTT_TEASED"] >= 1 && flags["TIMES_CHEST_TEASED"] >= 1 && flags["TIMES_CROTCH_TEASED"] >= 1 && flags["TIMES_HIPS_TEASED"] >= 1)) addButton(0, "Sign", brothelTurnTrixContract, 1);
 		else addButton(0, "Sign", brothelTurnTrixContract, 4);
@@ -512,13 +518,15 @@ public function brothelTurnTrixAnswer(choice:int = 0):void
 		if(!pc.isAss()) output("\n\nYou wiggle your fingers at her teasingly");
 		else output("\n\nYou give her a look of pure, smirking evil");
 		output(" and return to the floor.");
+		processTime(1);
 		addButton(0, "Next", mainGameMenu);
 	}
 	// Nah
 	else
 	{
 		output("<i>“Suit yourself,”</i> she shrugs. <i>“Doubt you’ll find fairer rates for freelancers anywhere else on this station.”</i>");
-		addButton(0, "Next", mainGameMenu);
+		processTime(1);
+		addButton(0, "Next", brothelMainMenu);
 	}
 }
 
@@ -542,6 +550,7 @@ public function brothelTurnTrixContract(choice:int = 0):void
 		flags["KAT_MET"] = 1;
 		flags["BETHS_CONTRACT_WHORE"] = 1;
 		if(flags["BETHS_TIMES_WHORED"] == undefined) flags["BETHS_TIMES_WHORED"] = 0;
+		processTime(10);
 		// [Yes] [Later]
 		// Go to licensed menu
 		addButton(0, "Yes", brothelTurnTrixLicensedMenu);
@@ -551,8 +560,9 @@ public function brothelTurnTrixContract(choice:int = 0):void
 	else if(choice == 3)
 	{
 		output("<i>“Later, maybe,”</i> you grin, stepping back.");
+		processTime(1);
 		// Go to Beth’s main menu
-		brothelMainMenu();
+		addButton(0, "Next", brothelMainMenu);
 	}
 	// Wait
 	else if(choice == 4)
@@ -563,6 +573,7 @@ public function brothelTurnTrixContract(choice:int = 0):void
 		output(" and polish it with those lips of yours.”</i>");
 		output("\n\nYou look at her bored, almost expressionless, face and you can tell that she is pretty serious.");
 		output("\n\n<i>“This is a business after all and whichever you choose to do, I can’t have you dropping this establishment’s reputation before you are able to drop your panties.”</i>");
+		processTime(5);
 		// [Freelance] [Nah]
 		addButton(0, "Freelance", brothelTurnTrixAnswer, 1, "Freelance", "Choose to be a freelance whore instead.");
 		addButton(1, "Later", brothelTurnTrixContract, 3);
@@ -571,9 +582,10 @@ public function brothelTurnTrixContract(choice:int = 0):void
 	else
 	{
 		output("<i>“Offer’s always open,”</i> she shrugs, taking the form back. <i>“Least if you remain looking as slutty as you do now. You fixing to go solo, then?”</i>");
+		processTime(1);
 		// [Freelance] [Nah]
 		addButton(0, "Freelance", brothelTurnTrixAnswer, 1, "Freelance", "Choose to be a freelance whore instead.");
-		addButton(1, "Nah", mainGameMenu);
+		addButton(1, "Nah", brothelMainMenu);
 	}
 }
 
@@ -663,7 +675,7 @@ public function brothelTurnTrixFreelanceMenu():void
 	// [Hands] [Mouth] [Vag] [Everything]
 	addButton(0, "Hands", brothelTurnTrixFreelanceWhore, "hands", "Hands", "Just your warm company and grip.");
 	if(flags["BETHS_TIMES_WHORED_HANDS"] >= 2) addButton(1, "Mouth", brothelTurnTrixFreelanceWhore, "mouth", "Mouth", "Handjobs and blowjobs.");
-	if(flags["BETHS_TIMES_WHORED_MOUTH"] >= 2) addButton(2, "Vag", brothelTurnTrixFreelanceWhore, "vagina", "Vag", "Almost the whole package.");
+	if(flags["BETHS_TIMES_WHORED_MOUTH"] >= 2) addButton(2, "Vag", brothelTurnTrixFreelanceWhore, "vagina", "Vagina", "Almost the whole package.");
 	if(flags["BETHS_TIMES_WHORED_VAGINA"] >= 2) addButton(3, "Everything", brothelTurnTrixFreelanceWhore, "all", "Everything", "Why be fussy? Whatever the client wants, within reason.");
 }
 
@@ -731,7 +743,7 @@ public function brothelTurnTrixFreelanceWhore(service:String = "none"):void
 		else
 		{
 			output("\n\nIt seems a pretty pathetic amount for what feels like a considerable amount of hard, honest work.");
-			output("<i>“\n\nGet yourself licensed is my advice,”</i> the mistress says, pocketing the handful of credit chits. <i>“Seems a real shame to lose half, seeing some of the things you did for it.”</i>");
+			output("\n\n<i>“Get yourself licensed is my advice,”</i> the mistress says, pocketing the handful of credit chits. <i>“Seems a real shame to lose half, seeing some of the things you did for it.”</i>");
 		}
 	}
 	
@@ -759,7 +771,7 @@ public function brothelTurnTrixLicensedMenu():void
 	clearMenu();
 	// [Mouth] [Vag] [Everything] [Rooms]
 	addButton(0, "Mouth", brothelTurnTrixLicensedWhore, "mouth", "Mouth", "Handjobs and blowjobs.");
-	if(flags["BETHS_TIMES_WHORED_MOUTH"] >= 2) addButton(1, "Vag", brothelTurnTrixLicensedWhore, "vagina", "Vag", "Almost the whole package.");
+	if(flags["BETHS_TIMES_WHORED_MOUTH"] >= 2) addButton(1, "Vag", brothelTurnTrixLicensedWhore, "vagina", "Vagina", "Almost the whole package.");
 	if(flags["BETHS_TIMES_WHORED_VAGINA"] >= 2) addButton(2, "Everything", brothelTurnTrixLicensedWhore, "all", "Everything", "Why be fussy? Whatever the client wants, within reason.");
 	if(flags["BETHS_TIMES_WHORED_ALL"] >= 2) addButton(3, "Rooms", brothelTurnTrixLicensedWhore, "rooms", "Rooms", "See if you can’t get in on the action of the downstairs rooms.");
 }
@@ -895,8 +907,8 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 	{
 		output("You sashay through the room, letting your hand trail along muscular arms, bending the warm weight of your [pc.chest] into seated gamblers, offering your friendliest smile and most lascivious lick of the [pc.lips] to anyone who looks at you, coming across at the faintest sign of interest.");
 		output("\n\nYou soon find takers. Many of the men here are actually just pleased to hear a friendly female voice in their ear; deep space miners or mercenaries coming back from one ugly incident or another. They tip you healthily just to sit with them and laugh at their stupid jokes. Others want a little more.");
-		output("\n\nYour warm hand slides its way past belts and buckles, it undoes zips, it clicks buttons which release armored compartments; you become pretty adept at the art of one-handed undressing. You grip hot dick after dick - mostly big and girthy; penis enhancers are widely available, after all - and gently, rhythmically bring them to full mast, knead and coil hot meat until the guy’s eyes are closed and leant back, ");
-		if(pc.biggestTitSize() > 0) output("letting the plush softness of your [pc.chest] press into their chests as you work");
+		output("\n\nYour warm hand slides its way past belts and buckles, it undoes zips, it clicks buttons which release armored compartments; you become pretty adept at the art of one-handed undressing. You grip hot dick after dick - mostly big and girthy; penis enhancers are widely available, after all - and gently, rhythmically bring them to full mast, knead and coil hot meat until the guy’s eyes are closed and leant back");
+		if(pc.biggestTitSize() > 0) output(", letting the plush softness of your [pc.chest] press into their chests as you work");
 		output(". You keep the movement of your hand slow and murmur in their ear that you will do more, if they’re willing to pay a little extra... the dick does all the thinking in these situations and more often than not, it’s exactly what they do. You give them a big, lusty smile, sink beneath the table and finish them off with a nice, deep suck.");
 		output("\n\nSome of the clients are more to the point; they pay you and point at their crotch, often without even breaking conversation with whoever they’re with. Their thighs tensing up around your gently bobbing head and their balls doing likewise against your chin, a groaning exhalation as they fountain hot cum down your throat and maybe a <i>“thanks doll”</i> after you’ve licked their bulging, oozing cock clean is the most you get from such guys.");
 		output("\n\nA popular combo is to get a blowjob whilst watching a dance. You find yourself ");
@@ -1013,7 +1025,7 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 		while(scenesLimit > 0)
 		{
 			// Cunt-tail:
-			if(!InCollection(scenesIndex, [1]) && pc.hasTailCunt() && pc.tailType == GLOBAL.TYPE_CUNTSNAKE && scenesLimit > 0 && rand(scenesTotal) == 0)
+			if(!InCollection(1, scenesIndex) && pc.hasTailCunt() && pc.tailType == GLOBAL.TYPE_CUNTSNAKE && scenesLimit > 0 && rand(scenesTotal) == 0)
 			{
 				output("\n\nYour parasitic tail, spreading itself eagerly in the presence of so much male musk, attracts some attention, and a few clients happily pay a bit extra for you to fasten it wetly on their cocks and pump them absolutely silly with it, pleasure and the sensation of cum being siphoned hungrily away tingling up to you.");
 				processTime(10);
@@ -1027,7 +1039,7 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 			// Massive capacity:
 			pp.cocks[0].cLengthRaw = 36;
 			pp.cocks[0].addFlag(GLOBAL.FLAG_BLUNT);
-			if(!InCollection(scenesIndex, [2]) && pc.vaginalCapacity(x) >= pp.cockVolume(0) && scenesLimit > 0 && rand(scenesTotal) == 0)
+			if(!InCollection(2, scenesIndex) && pc.vaginalCapacity(x) >= pp.cockVolume(0) && scenesLimit > 0 && rand(scenesTotal) == 0)
 			{
 				output("\n\nA particularly huge alien is delighted to discover your voluminous twat is capable of taking his 3-foot long blunt breeding prong, and you spend an eye-crossing ten minutes riding him to a womb-swelling high. You have to waddle to the bathroom and release a full gallon of purple cum from your [pc.vagina " + x + "] afterwards.");
 				processTime(10);
@@ -1045,7 +1057,7 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 			pp.removeCocks();
 			pp.createCock();
 			// Any: Ausar Male
-			if(!InCollection(scenesIndex, [3]) && scenesLimit > 0 && rand(scenesTotal) == 0)
+			if(!InCollection(3, scenesIndex) && scenesLimit > 0 && rand(scenesTotal) == 0)
 			{
 				pp.shiftCock(0, GLOBAL.TYPE_CANINE);
 				output("\n\nIn one corner booth a burly ausar turns you around and gives you a hard ass-fucking, pounding your [pc.asshole] with his hot knotted cock with relentless pumps of his thick hips whilst you grit your teeth, being used like the whore you are.");
@@ -1061,7 +1073,7 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 				scenesIndex[scenesIndex.length] = 3;
 			}
 			// Any: Kaitrit Male Pirate
-			if(!InCollection(scenesIndex, [4]) && scenesLimit > 0 && rand(scenesTotal) == 0)
+			if(!InCollection(4, scenesIndex) && scenesLimit > 0 && rand(scenesTotal) == 0)
 			{
 				output("\n\nA flinty-looking kaithrit pirate pulls you to one side and fumblingly tells you that he’s homesick. Away from his macho human friends, you briskly jerk his small pink cock off from behind, murmuring all the while in his pointy ear what a good boy he’s being for mommy, spearing into his tight ass with two fingers for emphasis.");
 				processTime(10);
@@ -1069,7 +1081,7 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 				scenesIndex[scenesIndex.length] = 4;
 			}
 			// Any: Dzaan Druggies
-			if(!InCollection(scenesIndex, [5]) && scenesLimit > 0 && rand(scenesTotal) == 0)
+			if(!InCollection(5, scenesIndex) && scenesLimit > 0 && rand(scenesTotal) == 0)
 			{
 				output("\n\nA group of dzaan call you over and imperiously demand you get on top of their table and present your [pc.ass]. Mentally steeling yourself for a hard session of anal, you do as they ask - and then feel lines of powder being formed on the bare [pc.skin] of your buttocks, followed by hefty snorts and husky hermaphroditic crows of enjoyment. Any form of drug tastes better if it’s taken off the backside of a hooker, it turns out.");
 				processTime(10);
@@ -1078,7 +1090,7 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 				scenesIndex[scenesIndex.length] = 5;
 			}
 			// D cups or larger:
-			if(!InCollection(scenesIndex, [6]) && pc.canTitFuck() && scenesLimit > 0 && rand(scenesTotal) == 0)
+			if(!InCollection(6, scenesIndex) && pc.canTitFuck() && scenesLimit > 0 && rand(scenesTotal) == 0)
 			{
 				output("\n\nA human businessman watches you rub lube into your [pc.chest] down in front of him, swirling your hands over your big boobs, brushing over your [pc.nipples] until they ");
 				if(pc.hasNipples() && !pc.hasFlatNipples() && !pc.hasCuntNipples() && !pc.hasLipples() && !pc.hasInvertedNipples()) output("are as hard and protuberant as cherries");
@@ -1089,7 +1101,7 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 				scenesIndex[scenesIndex.length] = 6;
 			}
 			// Cunt/mouth nipples:
-			if(!InCollection(scenesIndex, [7]) && pc.hasBreasts() && pc.hasFuckableNipples() && scenesLimit > 0 && rand(scenesTotal) == 0)
+			if(!InCollection(7, scenesIndex) && pc.hasBreasts() && pc.hasFuckableNipples() && scenesLimit > 0 && rand(scenesTotal) == 0)
 			{
 				var boobs:int = pc.totalBreasts();
 				
@@ -1109,11 +1121,10 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 				scenesIndex[scenesIndex.length] = 7;
 			}
 			// Any: Daynar Male
-			if(!InCollection(scenesIndex, [8]) && scenesLimit > 0 && rand(scenesTotal) == 0)
+			if(!InCollection(8, scenesIndex) && scenesLimit > 0 && rand(scenesTotal) == 0)
 			{
 				pp.shiftCock(0, GLOBAL.TYPE_DAYNAR);
 				pp.cocks[0].cLengthRaw = 8;
-				pp.cocks[0].cthickness = 1.5;
 				output("\n\nThe big spenders - gangsters and businessmen out celebrating particularly lucrative scores, for the most part - pay very well to have multiple girls tending to them. A suited, broad-shouldered daynar sits back, watching the ovir on stage slowly twist and gyrate around her pole, his neck stretched so the kaithrit girl sat behind can massage his tender neck-membranes, whilst you bounce on his lap, squeezing and bending his eight inch lizard cock in your [pc.vagina " + x + "], stroking and teasing your [pc.chest] at his throaty request.");
 				pc.cuntChange(x, pp.cockVolume(0));
 				output(" Beneath the jounce of your bare [pc.ass] you can feel the hair of the human girl sucking his balls. The expression on the daynar’s long face tells you that this is just Tuesday to him - but a pretty good Tuesday, nonetheless.");
@@ -1125,7 +1136,7 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 				scenesIndex[scenesIndex.length] = 8;
 			}
 			// Naga
-			if(!InCollection(scenesIndex, [9]) && pc.isNaga() && scenesLimit > 0 && rand(scenesTotal) == 0)
+			if(!InCollection(9, scenesIndex) && pc.isNaga() && scenesLimit > 0 && rand(scenesTotal) == 0)
 			{
 				output("\n\nA credit chit is trailed up your scales. A genetically modified something-or-other asks, in a high, breathy voice, if you will dance with the vanae on-stage. You curl yourself around and around the pink-tentacled blind girl, tightening and loosening around her flat abdomen and plush boobs, giving her the odd teasing lick and fondle. She plays along but her primal fear of you is palpable. The customer enjoys it immensely, clapping four hands excitedly and ordering a supplementary blowjob from a waitress. You finish it off by holding her tight and frenching the vanae, feeling her mouth quiver around you. Everyone gets tipped well - but you rather suspect your partner would trade hers for not having to go anywhere near you again.");
 				processTime(10);
@@ -1134,7 +1145,7 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 				scenesIndex[scenesIndex.length] = 9;
 			}
 			// Centaur:
-			if(!InCollection(scenesIndex, [10]) && pc.isTaur() && scenesLimit > 0 && rand(scenesTotal) == 0)
+			if(!InCollection(10, scenesIndex) && pc.isTaur() && scenesLimit > 0 && rand(scenesTotal) == 0)
 			{
 				pp.shiftCock(0, GLOBAL.TYPE_NAGA);
 				pp.cocks[0].cLengthRaw = 36;
@@ -1199,7 +1210,7 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 		while(scenesLimit > 0)
 		{
 			// Any: Human Male Masochist
-			if(!InCollection(scenesIndex, [1]) && scenesLimit > 0 && rand(scenesTotal) == 0)
+			if(!InCollection(1, scenesIndex) && scenesLimit > 0 && rand(scenesTotal) == 0)
 			{
 				output("\n\nA big, gruff human tough, tattoos festooned down both arms, wants some one-on-one... and very discrete... treatment. He barks and groans, blindfolded and hands tied to the ceiling by magnetic hard-points, as you apply the lash to his muscular back and ass, casually telling him what a bad boy he’s been. Honestly, given the amount of unsolicited fondles and pinches to the [pc.ass] you’ve received whilst you’ve been here from guys who look exactly like this, it’s a pretty satisfying hour.");
 				pc.lust(10);
@@ -1208,7 +1219,7 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 				scenesIndex[scenesIndex.length] = 1;
 			}
 			// Any: Female Scientist's Sexperiment
-			if(!InCollection(scenesIndex, [2]) && scenesLimit > 0 && rand(scenesTotal) == 0)
+			if(!InCollection(2, scenesIndex) && scenesLimit > 0 && rand(scenesTotal) == 0)
 			{
 				output("\n\nA bookish woman dressed in a lab-coat asks, with fluttering nervousness, if she can borrow you and another girl for a time. You and the female ausar lounge on the bed together and accept the tablets she gives you.");
 				output("\n\n<i>“Nothing to worry about, nothing to worry about,”</i> she insists, sitting down on the far side of the room with her clipboard. <i>“Definitely not toxic. It just, um, it just needs to be tested in a non-lab environment. Tell me how you feel.”</i>");
@@ -1223,11 +1234,10 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 				scenesIndex[scenesIndex.length] = 2;
 			}
 			// Female treated: Human Male, Dragon Dick
-			if(!InCollection(scenesIndex, [3]) && pc.isTreated() && pc.isBimbo() && scenesLimit > 0 && rand(scenesTotal) == 0)
+			if(!InCollection(3, scenesIndex) && pc.isTreated() && pc.isBimbo() && scenesLimit > 0 && rand(scenesTotal) == 0)
 			{
 				pp.shiftCock(0, GLOBAL.TYPE_DRACONIC);
 				pp.cocks[0].cLengthRaw = 12;
-				pp.cocks[0].cthickness = 1.5;
 				output("\n\n<i>“You!”</i> says a well-heeled olive-skinned human, delighted eyes fastening upon your face. <i>“You’re Treated, aren’t you? Yes, yes, I can tell. How much for her, a room, and a supply of Insta-rect for two hours?”</i>");
 				output("\n\nHe hurries you into a room and proceeds to fuck you absolutely stupid, using your [pc.vagina " + x + "] and your [pc.lips] in quick succession, mainlining Insta-rect the moment he orgasms to instantly regain his knotted, dragon-like erection so he can keep thrusting its hardness into your eager, sensitive holes. You finish it off with a");
 				if(pc.canTitFuck()) output(" long tit-job, rubbing his cock lovingly between your lubed-up [pc.chest].");
@@ -1247,10 +1257,9 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 				scenesIndex[scenesIndex.length] = 3;
 			}
 			// Any: Anat Male Navel Officer
-			if(!InCollection(scenesIndex, [4]) && scenesLimit > 0 && rand(scenesTotal) == 0)
+			if(!InCollection(4, scenesIndex) && scenesLimit > 0 && rand(scenesTotal) == 0)
 			{
 				pp.cocks[0].cLengthRaw = 9;
-				pp.cocks[0].cthickness = .75;
 				pp.cocks[0].addFlag(GLOBAL.FLAG_FLARED);
 				pp.cocks[0].addFlag(GLOBAL.FLAG_NUBBY);
 				output("\n\nAn anat naval officer - pretty high-ranking, going off his feathers and the cut of his uniform - gruffly asks for you and Room 21. When you open Room 21, you’re momentarily baffled: it looks like a simple, tidy flat, complete with a kitchenette. It’s only when you see the house dress and apron laid out on the bed, note attached, that you understand.");
@@ -1266,7 +1275,7 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 				scenesIndex[scenesIndex.length] = 4;
 			}
 			// Any: Kui-Tan Herm
-			if(!InCollection(scenesIndex, [5]) && scenesLimit > 0 && rand(scenesTotal) == 0)
+			if(!InCollection(5, scenesIndex) && scenesLimit > 0 && rand(scenesTotal) == 0)
 			{
 				pp.shiftCock(0, GLOBAL.TYPE_KUITAN);
 				pp.cocks[0].cLengthRaw = 12;
@@ -1289,7 +1298,7 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 				scenesIndex[scenesIndex.length] = 5;
 			}
 			// Biped:
-			if(!InCollection(scenesIndex, [6]) && pc.isBiped() && scenesLimit > 0 && rand(scenesTotal) == 0)
+			if(!InCollection(6, scenesIndex) && pc.isBiped() && scenesLimit > 0 && rand(scenesTotal) == 0)
 			{
 				pp.shiftCock(0, GLOBAL.TYPE_EQUINE);
 				pp.cocks[0].cLengthRaw = 10;
@@ -1308,7 +1317,7 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 				scenesIndex[scenesIndex.length] = 6;
 			}
 			// Goo:
-			if(!InCollection(scenesIndex, [7]) && pc.isGoo() && scenesLimit > 0 && rand(scenesTotal) == 0)
+			if(!InCollection(7, scenesIndex) && pc.isGoo() && scenesLimit > 0 && rand(scenesTotal) == 0)
 			{
 				pp.shiftCock(0, GLOBAL.TYPE_CANINE);
 				output("\n\n<i>“Hmm,”</i> says an ovir pro, eyeing your slimy, ectoplasmic bottom half thoughtfully. <i>“That looks... useful.”</i>");
@@ -1318,7 +1327,14 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 				output(" The hard girth of his dick combine with the vibrations drives you to clenching orgasm after orgasm; it requires no acting on your part to squeal with simple-minded joy until you are hoarse. You and the galotian’s gooey flesh travel up and down the three writhing bodies, worshipping them, your reward the salt on their skins and the copious amount of slut-feed they spurt into you.");
 				output("\n\n<i>“He always persuades me to come to this sleaze-hole for our anniversaries,”</i> sighs the girl later, leaning over the side as you massage her shoulders, layered on top of her generous hams, tracing the lips of her pussy with gooey tendrils. <i>“I always regret caving in at the time. Never while I’m here.”</i>");
 				processTime(60);
+				pc.loadInCunt(pp, x);
+				pc.loadInCunt(pp, x);
 				pc.loadInAss(pp);
+				pc.loadInAss(pp);
+				pc.loadInMouth(pp);
+				pc.loadInMouth(pp);
+				pc.girlCumInMouth(pp);
+				pc.girlCumInMouth(pp);
 				pc.orgasm();
 				pc.orgasm();
 				pc.orgasm();

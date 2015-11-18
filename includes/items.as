@@ -7,10 +7,23 @@ import classes.StorageClass;
 import classes.StringUtil;
 import classes.TiTS;
 
+public function isEquippableItem(item:ItemSlotClass):Boolean
+{
+	return	InCollection(item.type, 
+		GLOBAL.ARMOR, GLOBAL.SHIELD, GLOBAL.ACCESSORY, 
+		GLOBAL.RANGED_WEAPON, GLOBAL.MELEE_WEAPON, 
+		GLOBAL.CLOTHING, GLOBAL.UPPER_UNDERGARMENT, GLOBAL.LOWER_UNDERGARMENT
+		);
+}
+
 public function useItem(item:ItemSlotClass):Boolean {
 	if (item.isUsable == false)
 	{
 		trace("Need to find where the use button for this item was generated and disable it with isUsable == false checks.");
+		clearOutput();
+		output("Unable to use " + item.longName + ".");
+		//clearMenu();
+		//addButton(14,"Back",useItemFunction);
 		return false;
 	}
 	if (item.quantity == 0) 
@@ -24,8 +37,7 @@ public function useItem(item:ItemSlotClass):Boolean {
 	else 
 	{
 		//Equippable items are equipped!
-		if (item.type == GLOBAL.ARMOR || item.type == GLOBAL.CLOTHING || item.type == GLOBAL.SHIELD || item.type == GLOBAL.ACCESSORY || item.type == GLOBAL.UPPER_UNDERGARMENT 
-			|| item.type == GLOBAL.LOWER_UNDERGARMENT || item.type == GLOBAL.RANGED_WEAPON || item.type == GLOBAL.MELEE_WEAPON)
+		if (isEquippableItem(item))
 		{
 			// Order of operations band-aid.
 			// Item needs to be removed from inventory before being equipped, or it'll exist in two places and fuck up
@@ -46,6 +58,8 @@ public function useItem(item:ItemSlotClass):Boolean {
 					clearMenu();
 					addButton(0,"Next",useItemFunction);
 				}
+				output("\n");
+				if (item.combatUsable == false) output("\n");
 			}
 			//else: Error checking
 			else 
@@ -75,8 +89,7 @@ public function useItem(item:ItemSlotClass):Boolean {
 public function combatUseItem(item:ItemSlotClass, targetCreature:Creature = null, usingCreature:Creature = null):void
 {
 	// If we're looking at an equippable item, equip it
-	if (item.type == GLOBAL.ARMOR || item.type == GLOBAL.CLOTHING || item.type == GLOBAL.SHIELD || item.type == GLOBAL.ACCESSORY || item.type == GLOBAL.UPPER_UNDERGARMENT 
-		|| item.type == GLOBAL.LOWER_UNDERGARMENT || item.type == GLOBAL.RANGED_WEAPON || item.type == GLOBAL.MELEE_WEAPON)
+	if (isEquippableItem(item))
 	{
 		if (pc.inventory.indexOf(item) != -1) pc.inventory.splice(pc.inventory.indexOf(item), 1);
 		equipItem(item);
@@ -107,7 +120,7 @@ public function combatUseItem(item:ItemSlotClass, targetCreature:Creature = null
 		
 		item.useFunction(targetCreature, usingCreature);
 		
-		if (!infiniteItems())
+		if (!infiniteItems() && !item.hasFlag(GLOBAL.NOT_CONSUMED_BY_DEFAULT))
 		{
 			item.quantity--;
 			if (item.quantity <= 0)
@@ -201,6 +214,11 @@ public function shop(keeper:Creature):void {
 		approachIness();
 		return;
 	}
+	else if(keeper is CrystalShopkeep)
+	{
+		visitCrystalGooShop();
+		return;
+	}
 	clearOutput();
 	output(keeper.keeperGreeting);
 	shopkeep = keeper;
@@ -223,6 +241,14 @@ public function buyItem():void {
 		if(shopkeep.inventory[x].quantity > 0) {
 			output("\n");
 			temp = getBuyPrice(shopkeep,shopkeep.inventory[x].basePrice);
+			/*
+			// Coupons (only affects buy price--not sell price.)
+			var couponName:String = "Coupon - " + shopkeep.inventory[x].shortName;
+			if(pc.hasKeyItem(couponName))
+			{
+				temp = Math.round(temp * keyItemv1(couponName));
+			}
+			*/
 			if(temp > pc.credits) output("<b>(Too Expensive)</b> ");
 			output(upperCase(shopkeep.inventory[x].description, false) + " - " + temp + " credits.");
 			trace("DISPLAYING SHIT");
@@ -244,7 +270,19 @@ public function buyItem():void {
 public function buyItemGo(arg:ItemSlotClass):void {
 	clearOutput();
 	var price:Number = getBuyPrice(shopkeep,arg.basePrice);
-	output("You purchase " + arg.description  + " for " + num2Text(price) + " credits.\n\n");
+	/*
+	// Apply and destroy coupons!
+	var usedCoupon:Boolean = false;
+	var couponName:String = "Coupon - " + arg.shortName;
+	if(pc.hasKeyItem(couponName))
+	{
+		price = Math.round(price * keyItemv1(couponName));
+		pc.removeKeyItem(couponName);
+		usedCoupon = true;
+	}
+	if(usedCoupon) output("The coupon saved on your codex is used and instantly changes the final price. ");
+	*/
+	output("You purchase " + arg.description + " for " + num2Text(price) + " credits.\n\n");
 	
 	//Emmy magic!
 	if(shopkeep is Emmy) flags["PURCHASED_FROM_EMS"] = 1;
@@ -283,7 +321,7 @@ public function sellItemGo(arg:ItemSlotClass):void {
 	clearOutput();
 	var price:Number = getSellPrice(shopkeep,arg.basePrice);
 	pc.credits += price;
-	output("You sell " + arg.description  + " for " + num2Text(price) + " credits.");
+	output("You sell " + arg.description + " for " + num2Text(price) + " credits.");
 	arg.quantity--;
 	if (arg.quantity == 0) pc.inventory.splice(pc.inventory.indexOf(arg), 1);
 	this.clearMenu();
@@ -398,25 +436,25 @@ public function inventoryDisplay():void
 	output("<b>Underwear Top:</b> " + StringUtil.toTitleCase(pc.upperUndergarment.description) + "\n\n");
 	
 	output("<b><u>Equipment Stats:</u></b>\n");
-	output("<b>" + StringUtil.toTitleCase(pc.meleeWeapon.longName) + "</b>\n");
+	output("<b>" + StringUtil.toDisplayCase(pc.meleeWeapon.longName) + "</b>\n");
 	output(pc.meleeWeapon.compareTo(new EmptySlot(), null, null, true));
 	
-	output("\n<b>" + StringUtil.toTitleCase(pc.rangedWeapon.longName) + "</b>\n");
+	output("\n<b>" + StringUtil.toDisplayCase(pc.rangedWeapon.longName) + "</b>\n");
 	output(pc.rangedWeapon.compareTo(new EmptySlot(), null, null, true));
 
-	output("\n<b>" + StringUtil.toTitleCase(pc.armor.longName) + "</b>\n");
+	output("\n<b>" + StringUtil.toDisplayCase(pc.armor.longName) + "</b>\n");
 	output(pc.armor.compareTo(new EmptySlot(), null, null, true));
 
-	output("\n<b>" + StringUtil.toTitleCase(pc.shield.longName) + "</b>\n");
+	output("\n<b>" + StringUtil.toDisplayCase(pc.shield.longName) + "</b>\n");
 	output(pc.shield.compareTo(new EmptySlot(), null, null, true));
 
-	output("\n<b>" + StringUtil.toTitleCase(pc.accessory.longName) + "</b>\n");
+	output("\n<b>" + StringUtil.toDisplayCase(pc.accessory.longName) + "</b>\n");
 	output(pc.accessory.compareTo(new EmptySlot(), null, null, true));
 
-	output("\n<b>" + StringUtil.toTitleCase(pc.upperUndergarment.longName) + "</b>\n");
+	output("\n<b>" + StringUtil.toDisplayCase(pc.upperUndergarment.longName) + "</b>\n");
 	output(pc.upperUndergarment.compareTo(new EmptySlot(), null, null, true));
 
-	output("\n<b>" + StringUtil.toTitleCase(pc.lowerUndergarment.longName) + "</b>\n");
+	output("\n<b>" + StringUtil.toDisplayCase(pc.lowerUndergarment.longName) + "</b>\n");
 	output(pc.lowerUndergarment.compareTo(new EmptySlot(), null, null, true));
 	
 	output("\n");
@@ -467,7 +505,14 @@ public function combatInventoryMenu():void
 	
 	for (var i:int = 0; i < pc.inventory.length; i++)
 	{
-		(this as TiTS).addItemButton((i < 14) ? i : i + 1, pc.inventory[i], combatUseItem, pc.inventory[i]);
+		if (!isEquippableItem(pc.inventory[i]) && (pc.inventory[i].isUsable == false || pc.inventory[i].combatUsable == false))
+		{
+			(this as TiTS).addDisabledButton((i < 14) ? i : i + 1, pc.inventory[i].shortName + " x" + pc.inventory[i].quantity, StringUtil.toDisplayCase(pc.inventory[i].longName), "Cannot be used in combat.");
+		}
+		else
+		{
+			(this as TiTS).addItemButton((i < 14) ? i : i + 1, pc.inventory[i], combatUseItem, pc.inventory[i]);
+		}
 	}
 	
 	addButton(14, "Back", combatMainMenu);
@@ -534,7 +579,11 @@ public function equipItem(arg:ItemSlotClass):void {
 	if (arg.stackSize > 1) throw new Error("Potential item stacking bug with " + arg.shortName + ". Item has a stacksize > 0 and the equip code cannot currently handle splitting an item stack!");
 	
 	clearOutput();
-	output("You equip your " + arg.longName + ".");
+	output("You");
+	if(arg.type == GLOBAL.ARMOR) output(" don");
+	else if(InCollection(arg.type, GLOBAL.CLOTHING, GLOBAL.UPPER_UNDERGARMENT, GLOBAL.LOWER_UNDERGARMENT)) output(" wear");
+	else output(" equip");
+	output(" your " + arg.longName + ".");
 	//Clear disarm if appropriate.
 	if(pc.hasStatusEffect("Disarmed") && (arg.type == GLOBAL.MELEE_WEAPON || arg.type == GLOBAL.RANGED_WEAPON))
 	{
@@ -589,7 +638,7 @@ public function equipItem(arg:ItemSlotClass):void {
 		removedItem = pc.upperUndergarment;
 		pc.upperUndergarment = arg;
 	}
-	else output("  <b>AN ERROR HAS OCCURRED: Equipped invalid item type. Item: " + arg.longName + "</b>  ");
+	else output(" <b>AN ERROR HAS OCCURRED: Equipped invalid item type. Item: " + arg.longName + "</b> ");
 	
 	removedItem.onRemove(pc);
 	arg.onEquip(pc);
@@ -627,7 +676,14 @@ public function itemCollect(newLootList:Array, clearScreen:Boolean = false):void
 		var iSlot:ItemSlotClass = target.inventory[i] as ItemSlotClass;
 		
 		// Check if same item && space in stack
-		if (iSlot.shortName == tItem.shortName && iSlot.quantity < iSlot.stackSize)
+		var isSameItem:Boolean = false;
+		if
+		(	(tItem.hasRandomProperties == false && tItem.shortName == iSlot.shortName)
+		||	(tItem.hasRandomProperties == true && tItem.longName == iSlot.longName)
+		)	isSameItem = true;
+		
+		//if (iSlot.shortName == tItem.shortName && iSlot.quantity < iSlot.stackSize)
+		if (isSameItem && iSlot.quantity < iSlot.stackSize)
 		{
 			// Check if 100% merge will go past max stack
 			if (iSlot.quantity + tItem.quantity > iSlot.stackSize)
@@ -658,11 +714,11 @@ public function itemCollect(newLootList:Array, clearScreen:Boolean = false):void
 	{
 		output(". There is no room in your inventory for your new acquisition. Do you discard the item or replace a filled item slot?");
 		this.clearMenu();
-		this.addButton(0,"Replace", replaceItemPicker, newLootList);  // ReplaceItem is a actionscript keyword. Let's not override it, mmkay?
-		this.addButton(1,"Discard", discardItem,       newLootList);
+		this.addButton(0,"Replace", replaceItemPicker, newLootList); // ReplaceItem is a actionscript keyword. Let's not override it, mmkay?
+		this.addButton(1,"Discard", discardItem, newLootList);
 		//Hacky fix. If you hit useLoot with stuff that has its own submenus, it'll overwrite the submenu with the loot info for the next item. For instance, if you loot a hand cannon and a spear, then equip the hand cannon, your old ZK rifle will vanish into the ether while the game jumps over it to the spear.
 		if ((newLootList.length >= 2)) addDisabledButton(2,"Use","Use","You cannot use an item while there are more items in the loot queue.");
-		else if ((newLootList[0] as ItemSlotClass).isUsable == true) this.addButton(2,"Use",     useLoot,           newLootList);
+		else if ((newLootList[0] as ItemSlotClass).isUsable == true) this.addButton(2,"Use", useLoot, newLootList);
 	}
 	else
 	{			
@@ -695,7 +751,7 @@ public function replaceItemPicker(lootList:Array):void {
 		if(pc.inventory[x].shortName != "" && pc.inventory[x].quantity > 0) 
 		{
 			var butDesc:String = pc.inventory[x].shortName + " x" + pc.inventory[x].quantity
-			this.addButton(x,butDesc,replaceItemGo,[x, lootList]);  // HAAACK. We can only pass one arg, so shove the two args into an array
+			this.addButton(x,butDesc,replaceItemGo,[x, lootList]); // HAAACK. We can only pass one arg, so shove the two args into an array
 		}
 	}
 	
@@ -765,7 +821,7 @@ public function hasShipStorage():Boolean
 public function shipStorageMenuRoot():void
 {
 	clearOutput();
-    output("You turn to your ship's storage.");
+	output("You turn to your ship's storage.");
 	
 	clearMenu();
 	

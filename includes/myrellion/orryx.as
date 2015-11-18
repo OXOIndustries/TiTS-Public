@@ -397,7 +397,7 @@ public function noHoneyForYouSlut():void
 	processTime(2);
 	clearMenu();
 	//Leave
-	addButton(14,"Leave",mainGameMenu);
+	addButton(0,"Next",mainGameMenu);
 }
 
 //Blackmarket
@@ -414,9 +414,8 @@ public function orryxBlackmarket():void
 		output("<i>“I’ve got a supply of Red Venom. Enough pleasure and stimulation to shake the gametophytes from your gonopores. I’ve got a much more ready supply than I do with Golden Honey, and I have a few regulars who get their fix on a daily basis. What they do with it, I don’t ask. How I get it, YOU don’t ask. But you’ve been so good to me that I’d like to help you out in return -really, I’d be happy to. Just 100 credits - friends and family discount.”</i> He winks each of his four eyes, one at a time.");
 		processTime(1);
 		clearMenu();
-		if(pc.credits >= 100 && 9999 == 0) addButton(0,"Buy Red Venom",buySomeRedShit);
-		else if(9999 == 9999) addDisabledButton(0,"Buy Some","Buy Some","That item has not been added to the game yet.");
-		else addDisabledButton(0,"Buy Red Venom","Buy Red Venom","You can't afford the 100 credit price!");
+		if(pc.credits >= 100) addButton(0,"Buy R. Venom",buySomeRedShit,undefined,"Buy Red Venom","Buy a dose of red venom.\n\n<b>Credits: </b>100");
+		else addDisabledButton(0,"Buy R, Venom","Buy Red Venom","You can't afford the 100 credit price!");
 		addButton(1,"No Thanks",noThanksNoRedVenom);
 	}
 	//Over 10!
@@ -433,8 +432,7 @@ public function orryxBlackmarket():void
 		//Yes, have some
 		//No thanks
 		clearMenu();
-		if(pc.credits >= price && 9999 == 0) addButton(0,"Buy Some",buySomeExpensiveShit);
-		else if(9999 == 9999) addDisabledButton(0,"Buy Some","Buy Some","That item has not been added to the game yet.");
+		if(pc.credits >= price) addButton(0,"Buy Some",buySomeExpensiveShit,undefined,"Buy Red Venom","Buy a dose of red venom.\n\n<b>Credits: </b>" + price);
 		else addDisabledButton(0,"Buy Some","Buy Some","You can't afford that!");
 		addButton(1,"No Thanks",turnDownExpensiveFroggieShitz);
 		processTime(1);
@@ -447,13 +445,16 @@ public function buySomeRedShit():void
 	clearOutput();
 	showOrryx();
 	output("You nod and he taps the top of his podium lightly. Near your waist, a small panel opens up in one of the flashing screens, and a small vial of Red Venom rolls out into your waiting hand. Your Codex buzzes, informing you that you’ve paid out 100 credits.");
-	output("\n\n<i>“Enjoy yourself, my good sapient,”</i> he says with an unreadable smile.");
+	output("\n\n<i>“Enjoy yourself, my good sapient,”</i> he says with an unreadable smile.\n\n");
 	//[+1 Orryx Rep]
 	orryxReputation(1);
 	pc.credits -= 100;
 	processTime(1);
-	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	itemScreen = orryxBlackmarket;
+	lootScreen = orryxBlackmarket;
+	useItemFunction = orryxBlackmarket;
+	
+	itemCollect([new RedMyrVenom()]);
 }
 
 //No thanks.
@@ -474,13 +475,16 @@ public function buySomeExpensiveShit():void
 	clearOutput();
 	showOrryx();
 	var price:Number = (orryxReputation() - 8) * 100;
-	output("You agree to the tove’s price hike, and he taps the top of his podium lightly. Near your waist, a small panel opens up in one of the flashing screens, and a small vial of Red Venom rolls out into your waiting hand. Your Codex buzzes, informing you that you’ve paid out " + price + " credits.");
+	output("You agree to the tove’s price hike, and he taps the top of his podium lightly. Near your waist, a small panel opens up in one of the flashing screens, and a small vial of Red Venom rolls out into your waiting hand. Your Codex buzzes, informing you that you’ve paid out " + price + " credits.\n\n");
 	//[+1 Orryx Rep]
 	orryxReputation(1);
 	pc.credits -= price;
 	processTime(1);
-	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	itemScreen = orryxBlackmarket;
+	lootScreen = orryxBlackmarket;
+	useItemFunction = orryxBlackmarket;
+	
+	itemCollect([new RedMyrVenom()]);
 }
 
 //No thanks:

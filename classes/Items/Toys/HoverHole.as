@@ -31,7 +31,7 @@ package classes.Items.Toys
 			this.description = "a hovering, life-like pocket pussy";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This levitating, transparent pocket-pussy is designed to float and autonomously milk your [pc.cocks] for every last drop of pent-up cum. Not only is it realistically designed, it's pre-heated and auto-lubing.";
+			this.tooltip = "This levitating, transparent pocket-pussy is designed to float and autonomously milk a cock for every last drop of pent-up cum. Not only is it realistically designed, it's pre-heated and auto-lubing.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -54,25 +54,27 @@ package classes.Items.Toys
 		override public function useFunction(target:Creature, usingCreature:Creature = null):Boolean
 		{
 			if(!kGAMECLASS.infiniteItems()) quantity++;
-			if(target is PlayerCharacter) {
-				if(!target.hasCock())
+			if(target is PlayerCharacter)
+			{
+				kGAMECLASS.clearOutput();
+				if(!target.canMasturbate() || target.lust() < 33)
 				{
-					kGAMECLASS.clearOutput();
+					kGAMECLASS.output("You’re not really in the mood to masturbate right now....");
+				}
+				else if(!target.hasCock())
+				{
 					kGAMECLASS.output("You don’t have the proper genitals to use this!");
 				}
 				else if(kGAMECLASS.rooms[kGAMECLASS.currentLocation].hasFlag(GLOBAL.NOFAP))
 				{
-					kGAMECLASS.clearOutput();
 					kGAMECLASS.output("Masturbating here would be impossible.");
 				}
 				else if(kGAMECLASS.rooms[kGAMECLASS.currentLocation].hasFlag(GLOBAL.FAPPING_ILLEGAL))
 				{
-					kGAMECLASS.clearOutput();
 					kGAMECLASS.output("Public masturbation is illegal here. Trying to masturbate would almost certainly land you in jail.");
 				}
-				else if(target.lust() < 33 || (kGAMECLASS.rooms[kGAMECLASS.currentLocation].hasFlag(GLOBAL.PUBLIC) && target.exhibitionism() < 33 && target.libido() < 70))
+				else if(kGAMECLASS.rooms[kGAMECLASS.currentLocation].hasFlag(GLOBAL.PUBLIC) && target.exhibitionism() < 33 && target.libido() < 70)
 				{
-					kGAMECLASS.clearOutput();
 					kGAMECLASS.output("You cannot use the Hoverhole at this time!");
 				}
 				else
@@ -80,7 +82,8 @@ package classes.Items.Toys
 					kGAMECLASS.hoverholeFapFapFap();
 				}
 			}
-			else {
+			else
+			{
 				kGAMECLASS.clearOutput();
 				kGAMECLASS.output(target.capitalA + target.short + " cannot use the Hoverhole.");
 			}

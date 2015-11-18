@@ -24,9 +24,14 @@ public function haveFuckedAnno():Boolean
 	return true;
 }
 
-public function showAnno():void
+public function showAnno(nude:Boolean = false):void
 {
-	userInterface.showBust("ANNO");
+	// Naked Anno
+	if(nude) showBust("ANNO_NUDE");
+	// Blouse Anno
+	//else if (anno.armor is AnnosBlouse) showBust("ANNO");
+	// Catsuit Anno
+	else showBust("ANNO");
 	userInterface.showName("\nANNO");
 }
 
@@ -48,7 +53,7 @@ public function steeleTechTarkusOutsideFunction():Boolean
 	}
 	else
 	{
-		output("\n\nSet into the wall of the main corridor through the <i>Nova</i> is a smallish shop bearing your name: a broken neon \"Steele Tech\" sign hangs above the door, although it's usual garish glow is absent, having been turned off. A dusty window set in side of the shop shows stacks of salvaged tech from the now-lost wastelands, along with a much smaller sign in the door: ‘CLOSED’.");
+		output("\n\nSet into the wall of the main corridor through the <i>Nova</i> is a smallish shop bearing your name: a broken neon \"Steele Tech\" sign hangs above the door, although its usual garish glow is absent, having been turned off. A dusty window set in side of the shop shows stacks of salvaged tech from the now-lost wastelands, along with a much smaller sign in the door: ‘CLOSED’.");
 	}
 	
 	return false;
@@ -112,8 +117,7 @@ public function meetingAnno():void
 {
 	clearOutput();
 	author("Savin");
-	userInterface.showBust("ANNO");
-	userInterface.showName("\nANNO");
+	showAnno();
 	flags["MET_ANNO"] = 1;
 	output("You step up to the ausar woman, clearing your throat to get her attention. She looks up, eyeing you up and down before returning her attention to her data slate. <i>\"Good ");
 	if(hours < 12) output("Morning");
@@ -134,8 +138,7 @@ public function annosMemo():void
 {
 	clearOutput();
 	author("Savin");
-	userInterface.showBust("ANNO");
-	userInterface.showName("\nANNO");
+	showAnno();
 	output("<i>\"What's this about a memo?\"</i>");
 	output("\n\nShe shrugs. <i>\"Right before Victor died, he sent out a company-wide message. Told us to operate independently for the time being, and not to treat you too special. I guess you're not the CEO just yet?\"</i>");
 	output("\n\nThat's an understatement.");
@@ -150,8 +153,7 @@ public function didAnnoyKnowYourDad():void
 {
 	clearOutput();
 	author("Savin");
-	userInterface.showBust("ANNO");
-	userInterface.showName("\nANNO");
+	showAnno();
 	output("<i>\"Did you know my Dad?\"</i> you ask. The way she was talking about him, after all...");
 	output("\n\nThe ausar grins and nods. <i>\"You could say that...\"</i> she says cheekily.");
 	output("\n\nOh, <i>EEEEWWWWWW!</i>");
@@ -186,8 +188,7 @@ public function firstTimeAnnoTalks():void
 {
 	clearMenu();
 	author("Savin");
-	userInterface.showBust("ANNO");
-	userInterface.showName("\nANNO");
+	showAnno();
 	if(flags["ANNO_TALKED_ABOUT_THE_MEMO"] == undefined) addButton(0,"Memo",annosMemo,undefined,"Memo","What's up with the memo that went out.");
 	else addDisabledButton(0,"Memo","Memo","You already had this discussion.");
 
@@ -212,8 +213,7 @@ public function repeatAnnoApproach():void
 {
 	clearOutput();
 	author("Savin");
-	userInterface.showBust("ANNO");
-	userInterface.showName("\nANNO");
+	showAnno();
 	//{If not sex'd yet:}
 	if(annoSexed() == 0)
 	{
@@ -252,8 +252,7 @@ public function annoMainMenu():void
 public function buyFromDatDogslut():void
 {
 	author("Savin");
-	userInterface.showBust("ANNO");
-	userInterface.showName("\nANNO");
+	showAnno();
 	shopkeep = chars["ANNO"];
 	if(flags["SEEN_ANNO_BUY_MENU"] == undefined)
 	{
@@ -266,8 +265,7 @@ public function buyFromDatDogslut():void
 public function annoShopSetup():void
 {
 	author("Savin");
-	userInterface.showBust("ANNO");
-	userInterface.showName("\nANNO");
+	showAnno();
 	shopkeep = chars["ANNO"];
 	if(flags["TARKUS_DESTROYED"] != undefined)
 	{
@@ -286,8 +284,7 @@ public function testDriveArmorsForShit():void
 {
 	clearOutput();
 	author("Savin");
-	userInterface.showBust("ANNO");
-	userInterface.showName("\nANNO");
+	showAnno();
 	output("<i>\"Nice hardware,\"</i> you surmise, looking through the weapons and armor on display. <i>\"Hard to choose just from the tooltips, though...\"</i>");
 	output("\n\nAnno's eyes light up before you've even finished speaking. <i>\"Want to see my goods in action, do you? Well, for you, I think I might be able to work something out. Follow me.\"</i>");
 	output("\n\nAnno crooks a finger invitingly before disappearing into the back of the shop. You dutifully follow her through a long corridor behind the shop, then down a flight of stairs and into the belly of the old ship. ");
@@ -319,8 +316,7 @@ public function noAnnoSexPlz():void
 {
 	clearOutput();
 	author("Savin");
-	userInterface.showBust("ANNO");
-	userInterface.showName("\nANNO");
+	showAnno();
 	output("<i>\"Not exactly professional,\"</i> you say, shaking your head.");
 	output("\n\nAnno's lips twist into a pout. <i>\"Fiiine. You're the boss, I guess. C'mon, let's get back up to the shop.\"</i>");
 	//{Return to shop}
@@ -333,8 +329,7 @@ public function sureAnnoWeShotLetsFuck():void
 {
 	clearOutput();
 	author("Savin");
-	userInterface.showBust("ANNO");
-	userInterface.showName("\nANNO");
+	showAnno();
 	//Sure
 	output("<i>\"Sounds good,\"</i> you say, stepping up to the range with her.\n\n<i>\"I'll go first,\"</i> Anno says, as she plants the rifle on a crate and takes a knee behind it. <i>\"Gotta set the bar high for you.\"</i>");
 	output("\n\nYou nod and watch as the ausar girl adjusts her scope and fixes her sights on the target. She takes a long moment to set up her shot before you see her exhale deeply, finger moving down to the trigger.");
@@ -351,8 +346,7 @@ public function doNothingWhileAnnoShoots():void
 {
 	clearOutput();
 	author("Savin");
-	userInterface.showBust("ANNO");
-	userInterface.showName("\nANNO");
+	showAnno();
 	output("You stand back and watch as Anno squeezes the trigger. A loud crack echoes through the room as she sends a heavy lead package down range, slamming into the target dummy. She pumps her fist excitedly, handing the rifle over to you. <i>\"Score! Try and top that, boss!\"</i>");
 	output("\n\nYou peek through the scope, and see Anno's scored a pretty good shot: right through the bridge of the nose. That'll be hard to top, though you could plant a round right in the forehead if your aim is true...");
 	processTime(2);
@@ -366,8 +360,7 @@ public function gropeAnnoShoots():void
 {
 	clearOutput();
 	author("Savin");
-	userInterface.showBust("ANNO");
-	userInterface.showName("\nANNO");
+	showAnno();
 	//{2nd time +; tiny Mischievous bump?}
 	output("You're not going to let Anno get the better of you this time... at least not without returning the favor. As Anno's lining up her shot, you slip behind the bent-over ausar and grab a handful of her ass, squeezing hard enough to make her yelp.");
 	output("\n\n<i>\"Hey! W-what're you...\"</i> she snaps, her voice turning into a low mewl as you grope and squeeze her butt, working your hand up around the base of her bushy white tail. Her leg twitches visibly as you stroke her tail, fingers running through the soft fur before trailing down between her now limply spread legs. You slip a pair of fingers down through her groin, pushing up through the sheer material of her catsuit uniform until you feel the hot ridges of her cunt, already moist with sudden excitement at your unexpected touch.");
@@ -387,8 +380,7 @@ public function takeYourShot(easy:Boolean = false):void
 {
 	clearOutput();
 	author("Savin");
-	userInterface.showBust("ANNO");
-	userInterface.showName("\nANNO");
+	showAnno();
 	output("Rifle in hand, you crouch down and lay the barrel on the crate for stability, adjusting your sights as you start to line up your shot. A few tweaks of the scope, and the dummy's head comes into focus.");
 	output("\n\nBefore you can squeeze the trigger, your body suddenly convulses as a hand grabs your [pc.butt], squeezing hard. You shoot a glance over your shoulder to see Anno nonchalantly grabbing your ass, grinning at you. <i>\"C'mon, boss, don't keep me waiting.\"</i>");
 	output("\n\nYou're about to respond when her hand slips lower, fingers brushing across your [pc.groin]");
@@ -413,8 +405,7 @@ public function annoShootsResults(easy:Boolean = false):void
 {
 	clearOutput();
 	author("Savin");
-	userInterface.showBust("ANNO");
-	userInterface.showName("\nANNO");
+	showAnno();
 	//PC Succeeds
 	if((easy && (pc.aim()/2 + pc.willpower()/4 + rand(20) + 1 > 15)) || (pc.aim()/2 + pc.willpower()/4 + rand(20) + 1 > 25))
 	{
@@ -508,8 +499,7 @@ public function snuggleWithAnnoAfterWhuppinHerAss():void
 {
 	clearOutput();
 	author("Savin");
-	userInterface.showBust("ANNO");
-	userInterface.showName("\nANNO");
+	showAnno();
 	if(flags["ANNO_SNUGGLED_AFTER_SHOOTOFF"] == undefined)
 	{
 		flags["ANNO_SNUGGLED_AFTER_SHOOTOFF"] = 1;
@@ -531,8 +521,7 @@ public function snuggleWithAnnoAfterWhuppinHerAss2():void
 {
 	clearOutput();
 	author("Savin");
-	userInterface.showBust("ANNO");
-	userInterface.showName("\nANNO");
+	showAnno();
 	output("You wake up with a yawn, struggling to open your eyes. When you do, you're glad to find Anno's still napping in your arms, snoring ever so softly, with her tail tucked comfortably");
 	if(pc.legCount > 1) output(" between");
 	else output(" around");
@@ -557,8 +546,7 @@ public function petPlayForAnnoAfterCheating():void
 		pc.addHard(2);
 	}
 	author("Savin");
-	userInterface.showBust("ANNO_NUDE");
-	userInterface.showName("\nANNO");
+	showAnno(true);
 	output("Grinning dangerously at Anno, you tell her to strip out of that uniform: dogs don't wear clothes.");
 	output("\n\n<i>\"W-what?\"</i> she starts to say, until you grab the zipper on her uniform and yank it down, baring her breasts in one swift motion. Anno gasps, trying to cover them. You bat her arm down.");
 	output("\n\n<i>\"Bad puppy,\"</i> you say, pulling the rest of her uniform off. Her tail tucks in, ears lowering as you scold her for her disobedience. You circle around your bare-naked ausar, tracing a hand along her taut midriff and then down to the rounded cheek of her ass, squeezing it hard enough to make her wince. <i>\"Sit, girl.\"</i>");
@@ -593,8 +581,7 @@ public function takeYourPetBackToTheShop():void
 {
 	clearOutput();
 	author("Savin");
-	userInterface.showBust("ANNO_NUDE");
-	userInterface.showName("\nANNO");
+	showAnno(true);
 	output("<i>\"C'mon girl, time to get home,\"</i> you say, tugging on Anno's leash until she turns around. She barks thankfully as you start to lead your puppy back to the shop. The gropes and wandering hands continue all the way home, until you finally get through the door. A small crowd tries to follow you in, dicks waving around at the defenseless pooch-cooch on display. You quickly close and lock the shop, cutting off their access to Anno. Still in character, she gives you an appreciative mewl and rubs her head against your [pc.leg].");
 
 	output("\n\n<i>\"Good girl,\"</i> you say, praising her with a few head pats. Still blushing and oh-so-very wet after her public excursion, Anno's tail pries itself out from her crotch and wiggles happily at the praise. You sit yourself down, inviting your pup to jump up onto your lap. She clambers up on her knees, hands and chin resting on your [pc.chest] expectantly. You run a hand through her snowy hair, scratching just hard enough to make her tail leap up in excitement. Grinning to yourself, you give the slutty ausar-dog a few minutes of affectionate play, rubbing and squeezing all over her eager body until her hips and tail are both wagging madly, and she's even barking happily as you scratch between her ears or giving her a belly rub that moves a little higher to her ample chest.");
@@ -610,8 +597,7 @@ public function publicUsePuppyAnno():void
 {
 	clearOutput();
 	author("Savin");
-	userInterface.showBust("ANNO_NUDE");
-	userInterface.showName("\nANNO");
+	showAnno(true);
 	output("Anno might try to deny it, but she certainly seems to be enjoying the attention. Her body's already reacting so sweetly to the touches of the many raskvel men interested in her, wet and ready and eager to fuck. You give a sharp whistle to Anno and command her to sit. She does so, falling onto her knees and staring up expectantly at you.");
 
 	output("\n\n<i>\"Good girl. Stay.\"</i>");
@@ -643,8 +629,7 @@ public function repairMyRustBroInjuryAnno():void
 	//Cost: ~50 Creds? 
 	clearOutput();
 	author("Savin");
-	userInterface.showBust("ANNO");
-	userInterface.showName("\nANNO");
+	showAnno();
 	output("<i>\"Can you take a look at this?\"</i> you ask, pulling your equipment off and setting it onto the counter.");
 	//if that leaves the PC bare-breasted AND PC has boobs:
 	if(!(pc.upperUndergarment is EmptySlot) && pc.biggestTitSize() >= 1) output("\n\nAnno's eyes widen a bit as you take off your top, but she's quick to recompose herself into a businesslike demeanor as you start talking price and time. You can't shake the feeling of her eyes glancing up at your bare chest, though, and more than once her swishing tail knocks some widget or another over behind the counter.");
@@ -664,8 +649,7 @@ public function earScritchesForAnno():void
 {
 	clearOutput();
 	author("Savin");
-	userInterface.showBust("ANNO");
-	userInterface.showName("\nANNO");
+	showAnno();
 	//{if First time:}
 	if(flags["ANNO_SCRITCHES_HAPPENED"] == undefined)
 	{
@@ -694,8 +678,7 @@ public function sexWIthAnnoPostTease():void
 {
 	clearOutput();
 	author("Savin");
-	userInterface.showBust("ANNO");
-	userInterface.showName("\nANNO");
+	showAnno();
 	output("With Anno panting happily, bent over the counter with her ass in the air and tail wagging freely behind her, you figure the perky little ausar's in for a special treat.");
 	//[Face Fuck] [Get Slurped]
 	clearMenu();
@@ -713,8 +696,7 @@ public function teaseAnno():void
 {
 	clearOutput();
 	author("Savin");
-	userInterface.showBust("ANNO");
-	userInterface.showName("\nANNO");
+	showAnno();
 	output("<i>\"Who's a good puppy?\"</i> you ask, ruffling her hair. <i>\"Who's a good girl?\"</i>");
 	output("\n\n<i>\"I-I am?\"</i> Anno moans, nuzzling up against your hand.");
 	output("\n\n<i>\"That's right! You are!\"</i> you tease, stopping your scratches a few moments later to give her a final pat on the head.");
@@ -730,8 +712,7 @@ public function talkToAnnoAboutShitz():void
 {
 	clearOutput();
 	author("Savin");
-	userInterface.showBust("ANNO");
-	userInterface.showName("\nANNO");
+	showAnno();
 	output("You ask Anno if she's got a few free minutes to chat.");
 	output("\n\nShe glances around the customer-less storefront and grins, <i>\"I dunno, I'm pretty swamped at the moment...\"</i>");
 	output("\n\nYou both chuckle as Anno hops up onto the counter");
@@ -746,8 +727,7 @@ public function talkToAnnoAboutShitz():void
 public function annoTalkMenu():void
 {
 	clearMenu();
-	showBust("ANNO");
-	showName("\nANNO");
+	showAnno();
 	addButton(0,"Anno",askAbootAnnoz,undefined,"Anno","Ask her about herself.");
 	addButton(1,"Novahome",novaHomeTalk,undefined,"Novahome","Ask her about the Nova.");
 	addButton(2,"Locals",talkToSyriAboutTheLocals,undefined,"Locals","Ask her about the locals.");
@@ -795,8 +775,7 @@ public function askAbootAnnoz():void
 {
 	clearOutput();
 	author("Savin");
-	userInterface.showBust("ANNO");
-	userInterface.showName("\nANNO");
+	showAnno();
 	output("<i>\"So, tell me about yourself,\"</i> you say, by way of breaking the ice.");
 	output("\n\n<i>\"No, you,\"</i> Anno giggles, giving you a playful punch on the shoulder. <i>\"You're the billionaire playboy's " + pc.mf("son","daughter") + ". That's, like, a hundred times more interesting than me.\"</i>");
 	output("\n\nYou try and refudiate her claim, but Anno's insistent, and eventually pries you into telling her a bit about yourself, your rather unorthodox upbringing and training, and eventually to the quest that's brought you all the way out to Tarkus.");
@@ -841,8 +820,7 @@ public function tellAnnoAboutSyri():void
 {
 	clearOutput();
 	author("Savin");
-	userInterface.showBust("ANNO");
-	userInterface.showName("\nANNO");
+	showAnno();
 	//if Friends w/ Benefits with Syri:
 	if(flags["SYRI_TALKS"] != undefined) output("<i>\"We got pretty close, actually.\"</i>");
 	else output("<i>\"We, uh, hung out.\"</i>");
@@ -868,8 +846,7 @@ public function dontTellAnnoAboutSyri():void
 {
 	clearOutput();
 	author("Savin");
-	userInterface.showBust("ANNO");
-	userInterface.showName("\nANNO");
+	showAnno();
 	output("You decide to keep your... intimate relations with Syri to yourself");
 	//[Append as follows, as if you hadn't fucked her]
 	//Didn't Fuck/Didn't Tell:
@@ -922,8 +899,7 @@ public function novaHomeTalk():void
 {
 	clearOutput();
 	author("Savin");
-	userInterface.showBust("ANNO");
-	userInterface.showName("\nANNO");
+	showAnno();
 	if(flags["TARKUS_DESTROYED"] == undefined)
 	{
 		output("<i>\"So, what do you think of Nova?\"</i> you ask, gesturing out the shop front to the derelict spaceship around you.");
@@ -955,8 +931,7 @@ public function talkToSyriAboutTheLocals():void
 {
 	clearOutput();
 	author("Savin");
-	userInterface.showBust("ANNO");
-	userInterface.showName("\nANNO");
+	showAnno();
 	if(flags["TARKUS_DESTROYED"] == undefined)
 	{
 		output("<i>\"So, what can you tell me about the locals?\"</i>");
@@ -998,8 +973,7 @@ public function anyoneSpecial():void
 {
 	clearOutput();
 	author("Savin");
-	userInterface.showBust("ANNO");
-	userInterface.showName("\nANNO");
+	showAnno();
 	//if sexed:
 	if(annoSexed() > 0) output("It might be a little too late for this question, but... ");
 	output("You ask Anno if there's anyone special in her life. She laughs, <i>\"What're you, trying to sell me the Good Book or something?\"</i>");
@@ -1037,8 +1011,7 @@ public function threeWayAnno():void
 {
 	clearOutput();
 	author("Savin");
-	userInterface.showBust("ANNO");
-	userInterface.showName("\nANNO");
+	showAnno();
 	output("Grinning, you ask Anno if she'd be into a little group activity, next time she and her girlfriend get together.");
 	output("\n\n<i>\"Haha! Any time, any place. That's actually how we got together the first time, you know... a, uh, mutual friend I was tutoring brought beer one night, and before I know it I'm in bed with a pair of smoking hot half-ausars, with two dicks, six beers, and a box of sex toys between us. I couldn't sit down for a week! I'll give you a call if you're around, boss: I think you'll like her!\"</i>");
 	processTime(1);
@@ -1052,8 +1025,7 @@ public function intoGirlsAnno():void
 {
 	clearOutput();
 	author("Savin");
-	userInterface.showBust("ANNO");
-	userInterface.showName("\nANNO");
+	showAnno();
 	output("<i>\"So, you're into girls?\"</i> you tease, weight shifting to subtly emphasizing your own feminine form.");
 	output("\n\nAnno grins. <i>\"Guys, girls, and everything in between. I mean, in this day and age it's hard to limit yourself like that. Heck, my </i>parents<i> switched genders for a year or two. 'It'll be fun,' they said. 'We're just playing,' they said. So yeah, I like girl just plenty...\"</i>");
 	output("\n\n<i>\"So, why do you ask?\"</i> she teases, pressing herself close. <i>\"Thinking about asking little ol' me out?\"</i>");
@@ -1069,8 +1041,7 @@ public function intoDickgirlsAnno():void
 {
 	clearOutput();
 	author("Savin");
-	userInterface.showBust("ANNO");
-	userInterface.showName("\nANNO");
+	showAnno();
 	output("<i>\"So, you're into girls with a little more?\"</i> you tease, weight shifting to subtly emphasizing your own feminine form... as well as what lies");
 	if(pc.legCount > 1) output(" between");
 	else output(" along");
@@ -1089,8 +1060,7 @@ public function howsBusiness():void
 {
 	clearOutput();
 	author("Savin");
-	userInterface.showBust("ANNO");
-	userInterface.showName("\nANNO");
+	showAnno();
 	if(flags["TARKUS_DESTROYED"] == undefined)
 	{
 		output("<i>\"So, how's business these days?\"</i> you ask, giving a nod towards the widget shop across the way.");
@@ -1121,16 +1091,17 @@ public function annoAppearance():void
 {
 	clearOutput();
 	author("Savin");
-	userInterface.showName("\nANNO");
+	//userInterface.showName("\nANNO");
+	showAnno();
 	output("Anno Dorna is a six-foot tall ausar girl with long, snow-white hair and a pair of huge, perky wolf ears perched atop her head. Though distinctly humanoid in face and form, the silky fur on her arms and legs, plus the swishing, bushy tail give her a playfully alien appearance, more like a perky little puppy than a fearsome predator. She's wearing the distinctive Steele Tech field uniform: an ultra-sheer black and yellow catsuit that hugs her frame and accentuates her curves in all the right places, supporting her ample bust so that it looks almost impossibly perky for its size. Thanks to the catsuit, you can see the full expanse of her fleshy body: a big, bouncy butt only barely hidden by her tail, a sizable rack, and a pair of long, toned legs.");
 	if(annoSexed() > 0)
 	{
-		
+		//userInterface.showBust("ANNO_NUDE");
 		output("\n\nAnno has a pair of full DD-cup breasts, big and bouncy and oh so soft, each tipped with a big, sensitive nipple that's perfect to tug and squeeze.");
 		output("\n\nBetween her legs, Anno has a tight little pussy. Naturally stretchier and so much wetter than a human's, her sex is perfect for taking thick knots and great big cocks with ease. It's topped with a trimmed landing strip of downy white fuzz. Opposite that, she has a nice, inviting little asshole between her firm cheeks, right where it belongs.");
 	}
+	//else userInterface.showBust("ANNO");
 	annoMainMenu();
-	if(annoSexed() > 0) userInterface.showBust("ANNO_NUDE","ANNO");
 	removeButton(5);
 	addDisabledButton(5,"Appearance");
 }
@@ -1140,8 +1111,7 @@ public function faceFuckAnno():void
 {
 	clearOutput();
 	author("Savin");
-	userInterface.showBust("ANNO_NUDE");
-	userInterface.showName("\nANNO");
+	showAnno(true);
 
 	var x:int = pc.biggestCockIndex();
 	output("You ");
@@ -1219,8 +1189,7 @@ public function fuckAnnoAfterBeeJay():void
 {
 	clearOutput();
 	author("Savin");
-	userInterface.showBust("ANNO_NUDE");
-	userInterface.showName("\nANNO");
+	showAnno(true);
 
 	var x:int = pc.cockThatFits(chars["ANNO"].vaginalCapacity());
 	if(x < 0) x = pc.smallestCockIndex();
@@ -1288,8 +1257,7 @@ public function getSlurpedOnByAnnoz():void
 {
 	clearOutput();
 	author("Savin");
-	userInterface.showBust("ANNO_NUDE");
-	userInterface.showName("\nANNO");
+	showAnno(true);
 
 	output("Continuing to pet your ausar pooch, you figure that she's in for a very special treat indeed. Your hands slowly move down from her perky wolf-ears, starting to work at her shoulders and the base of her neck, massaging the taut skin underneath her slick catsuit of a uniform. Anno's voice curls into a murmur of curiosity, but once she feels your fingers going to work on her tense muscles, her tail resumes wagging happily, and she slowly relaxes in your grip.");
 
@@ -1357,8 +1325,7 @@ public function putItInAnnosButtYouSloot():void
 {
 	clearOutput();
 	author("Savin");
-	userInterface.showBust("ANNO_NUDE");
-	userInterface.showName("\nANNO");
+	showAnno(true);
 	var x:int = pc.cockThatFits(chars["ANNO"].analCapacity());
 	if(x < 0) x = pc.smallestCockIndex();
 	output("<i>\"Turn around,\"</i> you command, approaching the defeated ausar. She makes a show of rolling her eyes and turns on a heel, bracing her hands on another crate. Anno flicks her tail up, giving you a good view of her [anno.butt], the sheer material of her uniform stretched taut across her big, squishy cheeks. You step up and give one of those supple butt-cheeks a slap and squeeze, watching Anno's flesh jiggle at your touch; its owner gives a little hiss of pain when you spank her, but settles in with a little wag of her tail as you start to grope and knead her backside, clearly not all that put out about losing anymore. Indeed, she's outright moaning by the time you've worked your way to the other cheek, spreading them as far apart as her catsuit-uniform will allow.");
@@ -1427,8 +1394,7 @@ public function cumInYerAusarShapedButtslot():void
 {
 	clearOutput();
 	author("Savin");
-	userInterface.showBust("ANNO_NUDE");
-	userInterface.showName("\nANNO");
+	showAnno(true);
 	var x:int = pc.cockThatFits(chars["ANNO"].analCapacity());
 	if(x < 0) x = pc.smallestCockIndex();
 	output("No reason to hold back the inevitable. You give Anno one last slap on the ass and slam yourself deep inside, just in time to get the full effect of her muscles going wild around your cock, milking you for all you're worth. You don't try to resist your body's urges as Anno works you, instead reveling in the tightness of her quivering passage, savoring the warmth and wetness and exhilarating in the feeling of your cum rushing up through your [pc.cock " + x + "], hurtling into the dark embrace of Anno's bowels. Your whole body lurches forward when the first orgasmic wave of bliss hits you, nearly throwing you over as your own excitement is left to run rampant.");
@@ -1455,8 +1421,7 @@ public function cumWithAnnoOnTop():void
 {
 	clearOutput();
 	author("Savin");
-	userInterface.showBust("ANNO_NUDE");
-	userInterface.showName("\nANNO");
+	showAnno(true);
 	output("Time for a change of pace. Between hilt-deep thrusts into your ausar lover's spasming ass, you catch her attention with a gentle hair-pull and whisper into one of her towering canid ears, <i>\"What do you think about getting on top for a bit?\"</i>");
 
 	output("\n\nAnno gives you a quizzical look before a small grin plays across her lips. <i>\"I can try,\"</i> she says, her voice trailing off into a little moan as you pull yourself out of her and saunter back, sliding down to sit against the other crate. Slowly, Anno stands up, taking her time to look over her shoulders at her backside, even reaching back to spread her cheeks - clearly for your benefit.");
@@ -1497,8 +1462,7 @@ public function beginTheGoozookeningHas():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("ANNO");
-	userInterface.showName("\nANNO");
+	showAnno();
 	
 	output("<i>\"Hey, you're pretty techie, right?\"</i> you say by way of opening as you dig into your pack.");
 	output("\n\nAnno shrugs. <i>\"Literal rocket scientist here, so... kinda? Whatcha need?\"</i>");
@@ -1545,8 +1509,7 @@ public function gimmeAGoozooka(buyGoovolverToo:Boolean = false):void
 {
 	clearOutput();
 	author("Savin");
-	showBust("ANNO");
-	userInterface.showName("\nANNO");
+	showAnno();
 
 	output("<i>\"Alright! Now we're in business!\"</i> Anno grins as you hand over the goo-slinging revolver and the spare credits. <i>\"Just gimme a few minutes to do the work, alright?\"</i>");
 
@@ -1595,8 +1558,7 @@ public function goozookaRaepsForAnnoButts():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("ANNO");
-	userInterface.showName("\nANNO");
+	showAnno();
 
 	//{+Mischevious, -1 Goo Sample}
 	pc.addMischievous(1);
@@ -1622,8 +1584,7 @@ public function insideSteeleTechPostPlanetCrack():Boolean
 {
 	clearOutput();
 	author("Savin");
-	showBust("ANNO");
-	userInterface.showName("\nANNO");
+	showAnno();
 	//Inside Descriptor (First Time)
 	if(flags["MET_ANNO"] == undefined)
 	{
@@ -1654,8 +1615,7 @@ public function firstTImeAnnoPostPlanetCrackNeverMetTheBitchBeforeIunnoWhatsUpWi
 {
 	clearOutput();
 	author("Savin");
-	showBust("ANNO");
-	userInterface.showName("\nANNO");
+	showAnno();
 	output("You step closer to the ausar woman, clearing your throat to get her attention. She looks up with a start, turning to face you. <i>\"Oh thank God! Pleeeaaassse tell me you're the company rep coming in to tell me I can get off this bucket! Pleasepleaseplease!\"</i>");
 	output("\n\n<i>\"Woah, slow down,\"</i> you start as the snowy-haired ausar goes all puppy-dog eyed at you.");
 	output("\n\n<i>\"Wait, no, shit!\"</i> she says, leaning in and sniffing at you. <i>\"Holy shit! You're... you're not Victor's kid, are you?\"</i>");
@@ -1674,8 +1634,7 @@ public function firstTImeAnnoPostPlanetCrackNeverMetTheBitchBeforeIunnoWhatsUpWi
 public function firstTimeBackAfterPlanetSplosionsButMetAnnoBefore():void
 {
 	author("Savin");
-	showBust("ANNO");
-	userInterface.showName("\nANNO");
+	showAnno();
 	output("\n\nYou've barely made it through the door to the Steele Tech shop when you hear the tell-tale click of a gun leveling at you. Your eyes go wide when you see Anno behind the counter, a pistol aimed square at your chest.");
 	output("\n\nA tense moment passes... before Anno lowers her weapon. <i>\"Shit, boss. I thought you were dead,\"</i> she sighs, holstering her sidearm on her hip and collapsing against the back wall. <i>\"I saw you go out, right before... fuck.\"</i>");
 	output("\n\nAnno shakes her head, looking out of the shop window to the debris-cluttered corridor. <i>\"Sorry. I'm just... I'm glad you're alright, [pc.name].\"</i>");
@@ -1708,8 +1667,7 @@ public function joinCrewPlanetCrackerVersion():void
 	clearOutput();
 
 	author("Savin");
-	showBust("ANNO");
-	showName("\nANNO");
+	showAnno();
 
 	output("<i>“So, you want off this rust bucket?”</i> you ask, leaning over the counter. ");
 	
@@ -1733,8 +1691,7 @@ public function joinCrewPlanetCrackerVersionHelpHer():void
 	clearOutput();
 
 	author("Savin");
-	showBust("ANNO");
-	showName("\nANNO");
+	showAnno();
 	
 	pc.addNice(1);
 
@@ -1763,8 +1720,7 @@ public function joinCrewPlanetCrackerVersionSheWantsIt():void
 	clearOutput();
 
 	author("Savin");
-	showBust("ANNO");
-	showName("\nANNO");
+	showAnno();
 
 	pc.addMischievous(1);
 
@@ -1806,8 +1762,7 @@ public function holdOnAnno():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("ANNO");
-	userInterface.showName("\nANNO");
+	showAnno();
 	output("<i>\"Keep your chin up, Anno,\"</i> you say, patting the miserable scientist between her big, fluffy ears. <i>\"You've got a job to do.\"</i>");
 	output("\n\n<i>\"Ugh. I know,\"</i> Anno sighs, but still nuzzles her head up against your palm. <i>\"I'm just scared, boss. We lost some people when the boat went orbital. Lost that little bat kid. A fuckin' kid, [pc.name]. I swear to God I heard her getting sucked out when we lost atmosphere.\"</i> She shudders. <i>\"I don't want to be next. This clanker is barely holding together. I mean, it crashed for a reason, right?\"</i>");
 	output("\n\n<i>\"Shit. Nevermind me, boss. I'm a big girl, I'll take care of myself. Anyway, you came here for something, or just to check on me?\"</i>");
@@ -1819,8 +1774,7 @@ public function joinCrewPlanetFineVersion():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("ANNO");
-	showName("\nANNO");
+	showAnno();
 
 	output("<i>“So, Anno,”</i> you say, leaning up against the counter. She looks");
 	if (pc.tallness > anno.tallness + 6) output(" up");
@@ -1865,8 +1819,7 @@ public function joinCrewMissionComplete():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("ANNO");
-	showName("\nANNO");
+	showAnno();
 
 	output("<i>“So what’s the verdict?”</i> you ask, leaning over the counter toward Anno. ");
 	
@@ -1897,8 +1850,7 @@ public function annoTalkAboutDaMission():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("ANNO");
-	showName("\nANNO");
+	showAnno();
 
 	output("<i>“Alright,”</i> you say, leaning across the counter toward the eager ausar. <i>“Let’s talk about this work of yours.”</i> ");
 	
@@ -1933,8 +1885,7 @@ public function annoMissionNotYet():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("ANNO");
-	showName("\nANNO");
+	showAnno();
 
 	output("<i>“Not right now.”</i>");
 	
@@ -1948,8 +1899,7 @@ public function annoMissionImIn():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("ANNO");
-	showName("\nANNO");
+	showAnno();
 
 	output("<i>“Alright. I’m in,”</i> you say, extending a hand to Anno.");
 	

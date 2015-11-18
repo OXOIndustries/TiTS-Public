@@ -3,7 +3,7 @@
 	if(flags["HAS_ORDERED_FOOD_AT_THE_MESS"] == undefined) addButton(0,"Order Food",orderFoodFromTheMess,undefined,"Order Food","Order some food from this \"fine\" establishment.");
 	else addDisabledButton(0,"Order Food","Order Food","No way are you doing that again. The service is terrible and the food looks even worse.");
 	//Also adds a button to slot 1 if tarkus 'sploded
-	auroroMessInRoomText();
+	auroroMessInRoomText(1);
 	vendingMachineButton(2);
 	return false;
 }
@@ -16,7 +16,7 @@ public function barBonusFunction():Boolean
 	if(flags["MET_DEL"] == undefined) addButton(0,"Bartender",approachDCLTrap,undefined,"Bartender","Approach the bartender for a drink or something.");
 	else addButton(0,"Del",approachDCLTrap,undefined,"Del","Approach Del the bartender for a drink or some other service.");
 	addButton(1,"Watch TV",stephIrsonEpisodeTwo,undefined,"Watch TV","Watch the television. It looks like an episode of Steph Irson: Galactic Hunter is on.");
-	roamingBarEncounter(5);
+	roamingBarEncounter(2);
 	return false;
 }
 //Order Food

@@ -35,7 +35,7 @@ Repeating occurence
 
 
 
-public function anonsBarWaitressAddendum():void {
+public function anonsBarWaitressAddendum(slot:int = 0):void {
 	if(flags["SEEN_SELLESY"] == undefined)
 	{
 		flags["SEEN_SELLESY"] = 1;
@@ -53,7 +53,7 @@ public function anonsBarWaitressAddendum():void {
 		output(" is here again, though she hasn't yet caught sight of you. You could flag her down if you wanted.");
 	}
 	if(flags["MET_SELLESY"] == undefined) addButton(0,"Waitress",anonsBarWaitressApproach);
-	else addButton(0,"Sellesy",anonsBarWaitressApproach);
+	else addButton(slot,"Sellesy",anonsBarWaitressApproach);
 }
 
 

@@ -1,12 +1,16 @@
 ﻿//Storefront (Aka, Pretty Princess Dressup Simulator 2014 XL Collector's Edition, With $4.99 Horsecock Armor DLC)
 //By Third
-
+public function showAliss(nude:Boolean = false):void
+{
+	if(!nude) userInterface.showBust("ALISS");
+	else userInterface.showBust("ALISS_NUDE");
+	userInterface.showName("\nALISS");
+}
 //First time enter
 public function miAmoreBonusShit():Boolean
 {
 	author("Third");
-	userInterface.showBust("ALISS");
-	userInterface.showName("\nALISS");
+	showAliss();
 	if(flags["MET_ALICE"] == undefined)
 	{
 		flags["MET_ALICE"] = 1;
@@ -36,6 +40,7 @@ public function miAmoreBonusShit():Boolean
 	//[Upper Body] [Lower Body] [Cocksocks] [Aliss] [Leave]
 	addButton(0,"Upper Body",upperBodyAlice,undefined,"Upper Body","See what tops Aliss has for sale.");
 	addButton(1,"Lower Body",lowerBodyAlice,undefined,"Lower Body","See what bottoms Aliss has for sale.");
+	//9999 addButton(2,"Cocksocks",cocksocksAlice,undefined,"Cocksocks","See what Aliss's \"Handmade Cocksocks\" are all about.");
 	addButton(5,"Aliss",alissDiscussionsInsteadOfPanties,undefined,"Aliss","Visit with the shopkeeper herself.");
 	return false;
 }
@@ -45,8 +50,7 @@ public function upperBodyAlice():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
-	userInterface.showName("\nALISS");
+	showAliss();
 	output("You take a look at what <i>Mi Amour</i> has to offer in terms of upper body lingerie.");
 	/*Plain Bra
 	/Lacy Bra
@@ -58,15 +62,24 @@ public function upperBodyAlice():void
 	/Undershirt
 	/Shibari Top*/
 	clearMenu();
-	addButton(0, "Plain Bra", plainBraOptions);
-	addButton(1, "Lacy Bra", lacyBraAliss);
-	addButton(2, "Sports Bra", sportsSwimBraAliss);
-	addButton(3, "Corset", tellMeAboutYerCorsetAlice);
-	addButton(4, "U.Corset", underbustCorsetOptionsAliss);
-	addButton(5, "Babydoll", babydollsAtAliss);
-	addButton(6, "Pasties", pastiesAndAliss);
-	addButton(7, "Undershirt", undershirtWithAliss);
-	addButton(8, "ShibariTop", shibariTopForAliss);
+	//addButton(0, "Plain Bra", plainBraOptions);
+	addOverrideItemButton(0, new PlainBra(), "Plain Bra", plainBraOptions);
+	//addButton(1, "Lacy Bra", lacyBraAliss);
+	addOverrideItemButton(1, new LacyBra(), "Lacy Bra", lacyBraAliss);
+	//addButton(2, "Sports Bra", sportsSwimBraAliss);
+	addOverrideItemButton(2, new SportsBra(), "Sports Bra", sportsSwimBraAliss);
+	//addButton(3, "Corset", tellMeAboutYerCorsetAlice);
+	addOverrideItemButton(3, new Corset(), "Corset", tellMeAboutYerCorsetAlice);
+	//addButton(4, "U.Corset", underbustCorsetOptionsAliss);
+	addOverrideItemButton(4, new UnderbustCorset(), "U.Corset", underbustCorsetOptionsAliss);
+	//addButton(5, "Babydoll", babydollsAtAliss);
+	addOverrideItemButton(5, new Babydoll(), "Babydoll", babydollsAtAliss);
+	//addButton(6, "Pasties", pastiesAndAliss);
+	addOverrideItemButton(6, new Pasties(), "Pasties", pastiesAndAliss);
+	//addButton(7, "Undershirt", undershirtWithAliss);
+	addOverrideItemButton(7, new Undershirt(), "Undershirt", undershirtWithAliss);
+	//addButton(8, "ShibariTop", shibariTopForAliss);
+	addOverrideItemButton(8, new ShibariTop(), "ShibariTop", shibariTopForAliss);
 	addButton(14,"Back",mainGameMenu);
 }
 
@@ -74,8 +87,7 @@ public function purchaseSomethingFromAliss(purchaseItem:*):void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
-	userInterface.showName("\nALISS");
+	showAliss();
 	output("You transfer the credits. ");
 	//Credits
 	pc.credits -= getAlissPrice(purchaseItem);
@@ -100,8 +112,7 @@ public function plainBraOptions():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
-	userInterface.showName("\nALISS");
+	showAliss();
 	output("Aliss produces a simple looking bra from a nearby stand and holds it up. \"<i>This is simple, but functional. Keeps all your bits and bobs where they need to be. It's made of our proprietary chameleon silk, which means you can download our app to your datapad and customize the color as needed. You'll never have to worry about finding the right color again!</i>\"");
 	output("\n\nYou look the bra over and consider your options. The holographic price tag says " + getAlissPrice(new PlainBra()) + " credits. You could also have Aliss try it on for you.");
 	//[Buy (go to Buy, below)] [Try On] [Back]
@@ -117,8 +128,7 @@ public function tryOnBraAlice():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
-	userInterface.showName("\nALISS");
+	showAliss();
 	//Adds +1 to Aliss's lust
 	chars["ALISS"].lust(5);
 	if(chars["ALISS"].lust() >= 100)
@@ -135,6 +145,7 @@ public function tryOnBraAlice():void
 	clearMenu();
 	if(pc.credits >= getAlissPrice(new PlainBra())) addButton(0,"Buy", purchaseSomethingFromAliss, new PlainBra());
 	else addDisabledButton(0,"Buy","Buy","You cannot afford this item.");
+	addDisabledButton(1,"Try On");
 	addButton(14,"Back",upperBodyAlice);
 }
 
@@ -143,8 +154,7 @@ public function lacyBraAliss():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
-	userInterface.showName("\nALISS");
+	showAliss();
 	output("Aliss produces an intricately patterned bra trimmed with lace. \"<i>Whenever you go out on the town, or just want to feel sexy, there's nothing better than this. Not only does it look fantastic, but it functions as a push-up bra, giving you the appearance of at least another cup size. Not only that, but it's made with our proprietary chameleon silk, which means you can download an app to your datapad to customize the color as needed! It'll fit with any outfit, guaranteed.</i>\"");
 	output("\n\nYou look the bra over and consider your options. The holographic price tag says " + getAlissPrice(new LacyBra()) + " credits. You could also have Aliss try it on for you.");
 	//[Buy] [Try On] [Back]
@@ -160,8 +170,7 @@ public function tryTheLacyBraAlice():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
-	userInterface.showName("\nALISS");
+	showAliss();
 	chars["ALISS"].lust(2);
 	if(chars["ALISS"].lust() >= 100)
 	{
@@ -174,6 +183,7 @@ public function tryTheLacyBraAlice():void
 	clearMenu();
 	if(pc.credits >= getAlissPrice(new LacyBra())) addButton(0,"Buy", purchaseSomethingFromAliss, new LacyBra());
 	else addDisabledButton(0,"Buy","Buy","You cannot afford this item.");
+	addDisabledButton(1,"Try On");
 	addButton(14,"Back",upperBodyAlice);
 }
 
@@ -182,8 +192,7 @@ public function sportsSwimBraAliss():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
-	userInterface.showName("\nALISS");
+	showAliss();
 	output("Aliss produces the racerback sports bra from a nearby table and holds it up. \"<i>This is popular among athletes and other active women, including planet rushers. It incorporates a small amount of nanosteel fibers to help keep your breasts from bouncing around, while also remaining sleek and comfortable.</i>\"");
 	output("\n\nYou look the bra over and consider your options. The holographic price tag says " + getAlissPrice(new SportsBra()) + " credits. You could also have Aliss try it on for you.");
 	//[Buy] [Try On] [Back]
@@ -199,8 +208,7 @@ public function tryOnTheSwimBraAlice():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
-	userInterface.showName("\nALISS");
+	showAliss();
 	//Adds +1 to Aliss's lust
 	chars["ALISS"].lust(5);
 	if(chars["ALISS"].lust() >= 100)
@@ -216,6 +224,7 @@ public function tryOnTheSwimBraAlice():void
 	clearMenu();
 	if(pc.credits >= getAlissPrice(new SportsBra())) addButton(0,"Buy", purchaseSomethingFromAliss, new SportsBra());
 	else addDisabledButton(0,"Buy","Buy","You cannot afford this item.");
+	addDisabledButton(1,"Try On");
 	addButton(14,"Back",upperBodyAlice);
 }
 
@@ -224,8 +233,7 @@ public function tellMeAboutYerCorsetAlice():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
-	userInterface.showName("\nALISS");
+	showAliss();
 	output("Aliss produces a black, lacy corset off of a nearby rack and holds it up to her body. \"<i>This is a classic of fashion back on my home planet. I just love these, personally. This corset will keep your waist cinched and really emphasize your bust, hips and butt. Like all our products, of course, it's made with chameleon silk, which means you can download an app to any datapad and customize its color. Perfect for any intimate encounter.</i>\"");
 	output("\n\nYou look the corset over and consider your options. The holographic price tag says " + getAlissPrice(new Corset()) + " credits. You could also have Aliss try it on for you.");
 	//[Buy] [Try On] [Back]
@@ -241,8 +249,7 @@ public function tryDatCorsetOnAlice():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
-	userInterface.showName("\nALISS");
+	showAliss();
 	//Add +1 to Aliss's lust.
 	chars["ALISS"].lust(5);
 	if(chars["ALISS"].lust() >= 100)
@@ -259,6 +266,7 @@ public function tryDatCorsetOnAlice():void
 	clearMenu();
 	if(pc.credits >= getAlissPrice(new Corset())) addButton(0,"Buy", purchaseSomethingFromAliss, new Corset());
 	else addDisabledButton(0,"Buy","Buy","You cannot afford this item.");
+	addDisabledButton(1,"Try On");
 	addButton(14,"Back",upperBodyAlice);
 }
 
@@ -267,8 +275,7 @@ public function underbustCorsetOptionsAliss():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
-	userInterface.showName("\nALISS");
+	showAliss();
 	output("Aliss produces a black, lacy corset off of a nearby rack and holds it up to her body. It's apparently designed to fit around a person's midsection while leaving the breasts open. \"<i>The overbust version are really popular on my home planet. I love both types, personally. This corset will keep your waist cinched and really emphasize your hips and butt, while showing off your breasts. Like all our products, of course, it's made with chameleon silk, which means you can download an app to any datapad and customize its color. Perfect for any intimate encounter.</i>\"");
 	output("\n\nYou look the corset over and consider your options. The holographic price tag says " + getAlissPrice(new UnderbustCorset()) + " credits. You could also have Aliss try it on for you.");
 	//[Buy] [Try On] [Back]
@@ -284,8 +291,7 @@ public function tryOnDisUnderBoobCorsetThingAliss():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
-	userInterface.showName("\nALISS");
+	showAliss();
 	//Adds +2 to Aliss's lust.
 	chars["ALISS"].lust(10);
 	if(chars["ALISS"].lust() >= 100)
@@ -301,6 +307,7 @@ public function tryOnDisUnderBoobCorsetThingAliss():void
 	clearMenu();
 	if(pc.credits >= getAlissPrice(new UnderbustCorset())) addButton(0,"Buy", purchaseSomethingFromAliss, new UnderbustCorset());
 	else addDisabledButton(0,"Buy","Buy","You cannot afford this item.");
+	addDisabledButton(1,"Try On");
 	addButton(14,"Back",upperBodyAlice);
 }
 
@@ -309,8 +316,7 @@ public function babydollsAtAliss():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
-	userInterface.showName("\nALISS");
+	showAliss();
 	output("Aliss produces a skimpy pink babydoll. It almost looks like a dress, were it not for the extremely short length, and the thin, silky material. You'd guess it would only barely cover the crotch of its wearer, and certainly wouldn't leave much to the imagination. \"<i>These are super cute, I love using them as my sleepwear when I've got... someone over,</i>\" she says, her vivid green eyes lingering on you for a moment. \"<i>It's comfy, fashionable, and downright sexy.</i>\"");
 	output("\n\nYou look the babydoll over and consider your options. The holographic price tag says " + getAlissPrice(new Babydoll()) + " credits. You could also have Aliss try it on for you.");
 	//[Buy] [Try On] [Back]
@@ -326,8 +332,7 @@ public function tryOnTheBabydollAliss():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
-	userInterface.showName("\nALISS");
+	showAliss();
 	//Add +2 to Aliss's lust.
 	chars["ALISS"].lust(10);
 	if(chars["ALISS"].lust() >= 100)
@@ -343,6 +348,7 @@ public function tryOnTheBabydollAliss():void
 	clearMenu();
 	if(pc.credits >= getAlissPrice(new Babydoll())) addButton(0,"Buy", purchaseSomethingFromAliss, new Babydoll());
 	else addDisabledButton(0,"Buy","Buy","You cannot afford this item.");
+	addDisabledButton(1,"Try On");
 	addButton(14,"Back",upperBodyAlice);
 }
 
@@ -351,8 +357,7 @@ public function pastiesAndAliss():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
-	userInterface.showName("\nALISS");
+	showAliss();
 	output("Aliss produces a small plastic package from a nearby table and opens it up to reveal two red circular pasties. \"<i>Super simple, and revealing. A staple of any strip tease,</i>\" she says with a grin. \"<i>There's not much else to say, I'm afraid.</i>\"");
 	output("\n\nYou look the package of pasties over and consider your options. The holographic price tag says " + getAlissPrice(new Pasties()) + " credits. You could also have Aliss try it on for you.");
 	//[Buy] [Try On] [Back]
@@ -368,8 +373,7 @@ public function tryOnPastiesAliss():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
-	userInterface.showName("\nALISS");
+	showAliss();
 	//Add +2 to Aliss's lust.
 	chars["ALISS"].lust(10);
 	if(chars["ALISS"].lust() >= 100)
@@ -384,6 +388,7 @@ public function tryOnPastiesAliss():void
 	clearMenu();
 	if(pc.credits >= getAlissPrice(new Pasties())) addButton(0,"Buy", purchaseSomethingFromAliss, new Pasties());
 	else addDisabledButton(0,"Buy","Buy","You cannot afford this item.");
+	addDisabledButton(1,"Try On");
 	addButton(14,"Back",upperBodyAlice);
 }
 
@@ -392,8 +397,7 @@ public function undershirtWithAliss():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
-	userInterface.showName("\nALISS");
+	showAliss();
 	output("Aliss produces a simple white tank top from a nearby rack. \"<i>This is simple, but functional. Perfect for any guy, or girl, who wants to cover up but wants a little bit more comfort than the average shirt. The material is silky smooth, and it'll feel great against your skin. Using our patented chameleon silk you can download an app to your datapad and customize the color as you see fit. It'll go with any outfit, guaranteed!</i>\"");
 	output("\n\nYou look the undershirt over and consider your options. The holographic price tag says " + getAlissPrice(new Undershirt()) + " credits. You could also have Aliss try it on for you.");
 	//[Buy] [Try On] [Back]
@@ -409,8 +413,7 @@ public function tryOnAnUndershirtAliss():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
-	userInterface.showName("\nALISS");
+	showAliss();
 	chars["ALISS"].lust(2);
 	if(chars["ALISS"].lust() >= 100)
 	{
@@ -424,6 +427,7 @@ public function tryOnAnUndershirtAliss():void
 	clearMenu();
 	if(pc.credits >= getAlissPrice(new Undershirt())) addButton(0,"Buy", purchaseSomethingFromAliss, new Undershirt());
 	else addDisabledButton(0,"Buy","Buy","You cannot afford this item.");
+	addDisabledButton(1,"Try On");
 	addButton(14,"Back",upperBodyAlice);
 }
 
@@ -432,8 +436,7 @@ public function shibariTopForAliss():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
-	userInterface.showName("\nALISS");
+	showAliss();
 	output("Aliss smiles broadly as she retrieves an awkward bra-like garment made of ropes. \"<i>Ah yes, this is for some of our more adventurous customers. It comes from an old practice of bondage from Earth called shibari. We simplified it down and created this. It'll feel restrictive, but not actually limit your movements. It's made with a combination of spinerran silk as well as our patented chameleon silk, allowing you to customize the color as you see fit simply by downloading an app for any datapad.</i>\"");
 	output("\n\nYou look over the rope \"bra\" and consider your options. The holographic price tag says " + getAlissPrice(new ShibariTop()) + " credits. You could also have Aliss try it on for you.");
 	clearMenu();
@@ -448,8 +451,7 @@ public function tryOnAShibariTopAliss():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
-	userInterface.showName("\nALISS");
+	showAliss();
 	//Add +2 to Aliss's lust.
 	chars["ALISS"].lust(10);
 	if(chars["ALISS"].lust() >= 100)
@@ -464,6 +466,7 @@ public function tryOnAShibariTopAliss():void
 	clearMenu();
 	if(pc.credits >= getAlissPrice(new ShibariTop())) addButton(0,"Buy", purchaseSomethingFromAliss, new ShibariTop());
 	else addDisabledButton(0,"Buy","Buy","You cannot afford this item.");
+	addDisabledButton(1,"Try On");
 	addButton(14,"Back",upperBodyAlice);
 }
 
@@ -472,8 +475,7 @@ public function lowerBodyAlice():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
-	userInterface.showName("\nALISS");
+	showAliss();
 	output("You take a look at what <i>Mi Amour</i> has to offer in terms of lower body lingerie.");
 	/*Plain Panties
 	/Thong
@@ -483,12 +485,18 @@ public function lowerBodyAlice():void
 	/Shibari Bottom
 	*/
 	clearMenu();
-	addButton(0, "Plain Panties", alissPlainPantiesForNerds);
-	addButton(1, "Thong", thongWithAliss);
-	addButton(2, "Boyshorts", boyShortsWithAliss);
-	addButton(3, "Boxers", boxersWithAliss);
-	addButton(4, "Stockings Set", stockingSetWithAliss);
-	addButton(5, "Shibari Bottom", shibariBottomAliss);
+	//addButton(0, "Plain Panties", alissPlainPantiesForNerds);
+	addOverrideItemButton(0, new PlainPanties(), "Panties", alissPlainPantiesForNerds);
+	//addButton(1, "Thong", thongWithAliss);
+	addOverrideItemButton(1, new Thong(), "Thong", thongWithAliss);
+	//addButton(2, "Boyshorts", boyShortsWithAliss);
+	addOverrideItemButton(2, new Boyshorts(), "Boyshorts", boyShortsWithAliss);
+	//addButton(3, "Boxers", boxersWithAliss);
+	addOverrideItemButton(3, new Boxers(), "Boxers", boxersWithAliss);
+	//addButton(4, "Stockings Set", stockingSetWithAliss);
+	addOverrideItemButton(4, new Stockings(), "Stockings", stockingSetWithAliss);
+	//addButton(5, "Shibari Bottom", shibariBottomAliss);
+	addOverrideItemButton(5, new ShibariBottom(), "Shib. Bottom", shibariBottomAliss);
 	
 	addButton(14,"Back",mainGameMenu);
 }
@@ -498,8 +506,7 @@ public function alissPlainPantiesForNerds():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
-	userInterface.showName("\nALISS");
+	showAliss();
 	output("Aliss produces a pair of simple white panties. \"<i>Simple, comfortable, and functional. Every girl, and some boys, need a pair of these. They keep everything under wraps until the time is right. And with our proprietary chameleon silk, you can even download an app to your datapad and customize the color as you see fit. They'll go with any outfit, guaranteed!</i>\"");
 	output("\n\nYou look over the panties and consider your options. The holographic price tag says " + getAlissPrice(new PlainPanties()) + " credits, as well as \"HARDLIGHT COMPATIBLE.\" You could also have Aliss try it on for you.");
 	//[Buy] [Try On] [Hardlight] [Back]
@@ -516,8 +523,7 @@ public function tryOnHardlightPantiesAliss():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
-	userInterface.showName("\nALISS");
+	showAliss();
 	chars["ALISS"].lust(2);
 	if(chars["ALISS"].lust() >= 100)
 	{
@@ -531,6 +537,8 @@ public function tryOnHardlightPantiesAliss():void
 	clearMenu();
 	if(pc.credits >= getAlissPrice(new PlainPanties())) addButton(0,"Buy", purchaseSomethingFromAliss, new PlainPanties());
 	else addDisabledButton(0,"Buy","Buy","You cannot afford this item.");
+	addDisabledButton(1,"Try On");
+	addButton(2,"Hardlight",hardLightDiscussion,new PlainPanties());
 	addButton(14,"Back",lowerBodyAlice);
 }
 
@@ -539,8 +547,7 @@ public function thongWithAliss():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
-	userInterface.showName("\nALISS");
+	showAliss();
 	output("Aliss produces a skimpy \"garment\" that wouldn't even be considered clothing according to several planet's governments. \"<i>Ah, the always popular thong. You know, ten years ago they had to smuggle these onto the planet Bronka IV because the local government outlawed them for being too \"risque\". Anyway, despite their appearance, they're still quite comfortable.</i>\"");
 	output("\n\nYou look over the thong and consider your options. The holographic price tag says " + getAlissPrice(new Thong()) + " credits, as well as \"HARDLIGHT COMPATIBLE.\" You could also have Aliss try it on for you.");
 	//[Buy] [Try On] [Hardlight] [Back]
@@ -557,8 +564,7 @@ public function tryOnTheThong():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
-	userInterface.showName("\nALISS");
+	showAliss();
 	//Adds +2 to Aliss's lust.
 	chars["ALISS"].lust(10);
 	if(chars["ALISS"].lust() >= 100)
@@ -572,6 +578,8 @@ public function tryOnTheThong():void
 	clearMenu();
 	if(pc.credits >= getAlissPrice(new Thong())) addButton(0,"Buy", purchaseSomethingFromAliss, new Thong());
 	else addDisabledButton(0,"Buy","Buy","You cannot afford this item.");
+	addDisabledButton(1,"Try On");
+	addButton(2,"Hardlight",hardLightDiscussion,new Thong());
 	addButton(14,"Back",lowerBodyAlice);
 }
 
@@ -580,8 +588,7 @@ public function boyShortsWithAliss():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
-	userInterface.showName("\nALISS");
+	showAliss();
 	output("Aliss produces a simple, lacy pair of boyshorts. \"<i>I like this kind. It's a simple cut, but looks really cute no matter your body type. They lend one the nice tomboy, or the boyfriend's clothes look.</i>\" She giggles and gives you a quick wink. \"<i>They're made with our proprietary chameleon silk, which means you can download an app to your datapad and customize the color as you see fit. They'll go with any outfit!</i>\"");
 	output("\n\nYou look over the boyshorts and consider your options. The holographic price tag says " + getAlissPrice(new Boyshorts()) + " credits, as well as \"HARDLIGHT COMPATIBLE.\" You could also have Aliss try it on for you.");
 	//[Buy] [Try On] [Hardlight] [Back]
@@ -598,8 +605,7 @@ public function tryOnBoyShortsAliss():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
-	userInterface.showName("\nALISS");
+	showAliss();
 	chars["ALISS"].lust(2);
 	if(chars["ALISS"].lust() >= 100)
 	{
@@ -613,6 +619,8 @@ public function tryOnBoyShortsAliss():void
 	clearMenu();
 	if(pc.credits >= getAlissPrice(new Boyshorts())) addButton(0,"Buy", purchaseSomethingFromAliss, new Boyshorts());
 	else addDisabledButton(0,"Buy","Buy","You cannot afford this item.");
+	addDisabledButton(1,"Try On");
+	addButton(2,"Hardlight",hardLightDiscussion,new Boyshorts());
 	addButton(14,"Back",lowerBodyAlice);
 }
 
@@ -621,8 +629,7 @@ public function boxersWithAliss():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
-	userInterface.showName("\nALISS");
+	showAliss();
 	output("Aliss produces a pair of white boxers decorated with red hearts. \"<i>We do cater to the masculine here as well. These boxers are not only functional and fashionable, but comfortable as well. They feature a slightly upgraded version of our chameleon silk, which allows you to not only control the color, but the patterning as well. All with just a simple app you can download to any datapad.</i>\"");
 	output("\n\nYou look over the boxers and consider your options. The holographic price tag says " + getAlissPrice(new Boxers()) + " credits. You could also have Aliss try it on for you.");
 	//[Buy] [Try On] [Back]
@@ -638,8 +645,7 @@ public function tryOnBoxersAliss():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
-	userInterface.showName("\nALISS");
+	showAliss();
 	chars["ALISS"].lust(2);
 	if(chars["ALISS"].lust() >= 100)
 	{
@@ -653,6 +659,7 @@ public function tryOnBoxersAliss():void
 	clearMenu();
 	if(pc.credits >= getAlissPrice(new Boxers())) addButton(0,"Buy", purchaseSomethingFromAliss, new Boxers());
 	else addDisabledButton(0,"Buy","Buy","You cannot afford this item.");
+	addDisabledButton(1,"Try On");
 	addButton(14,"Back",lowerBodyAlice);
 }
 
@@ -661,8 +668,7 @@ public function stockingSetWithAliss():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
-	userInterface.showName("\nALISS");
+	showAliss();
 	output("Aliss produces a pair of panties, garter and pair of stockings. Draping the stockings and garter over one arm, she holds up the lacy panties. \"<i>Popular for any romantic rendezvous, this set is sure to start a flame in your lover's heart. Of course it features our patented chameleon silk, which means you can customize the color any way you see fit. No matter what else you're wearing, or not wearing, you'll look great.</i>\"");
 	output("\n\nYou look over the lingerie set and consider your options. The holographic price tag says " + getAlissPrice(new Stockings()) + " credits, as well as \"HARDLIGHT COMPATIBLE.\" You could also have Aliss try it on for you.");
 	//[Buy] [Try On] [Hardlight] [Back]
@@ -679,8 +685,7 @@ public function tryOnTheStockingsAliss():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
-	userInterface.showName("\nALISS");
+	showAliss();
 	chars["ALISS"].lust(1);
 	if(chars["ALISS"].lust() >= 100)
 	{
@@ -693,6 +698,8 @@ public function tryOnTheStockingsAliss():void
 	clearMenu();
 	if(pc.credits >= getAlissPrice(new Stockings())) addButton(0,"Buy", purchaseSomethingFromAliss, new Stockings());
 	else addDisabledButton(0,"Buy","Buy","You cannot afford this item.");
+	addDisabledButton(1,"Try On");
+	addButton(2,"Hardlight",hardLightDiscussion,new Stockings());
 	addButton(14,"Back",lowerBodyAlice);
 }
 
@@ -701,8 +708,7 @@ public function shibariBottomAliss():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
-	userInterface.showName("\nALISS");
+	showAliss();
 	output("Aliss produces a complicated-looking rope garment from a nearby display. After fiddling with it for a moment, she holds it up proudly and you can see the ropes take the form of panties. \"<i>For our more adventurous customers, we have these. Inspired by an old practice of bondage from Earth, known as shibari, we made these. It's a simplified concept, it feels restrictive, without actually being so. It's made of a combination of spinerran silk, and our proprietary chameleon silk, so of course you can customize the color as you see fit.</i>\"");
 	output("\n\nYou look over the \"panties\" and consider your options. The holographic price tag says " + getAlissPrice(new ShibariBottom()) + " credits. You could also have Aliss try it on for you.");
 	//[Buy] [Try On] [Back]
@@ -718,8 +724,7 @@ public function tryOnShibariBottoms():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
-	userInterface.showName("\nALISS");
+	showAliss();
 	chars["ALISS"].lust(10);
 	if(chars["ALISS"].lust() >= 100)
 	{
@@ -733,6 +738,7 @@ public function tryOnShibariBottoms():void
 	clearMenu();
 	if(pc.credits >= getAlissPrice(new ShibariBottom())) addButton(0,"Buy", purchaseSomethingFromAliss, new ShibariBottom());
 	else addDisabledButton(0,"Buy","Buy","You cannot afford this item.");
+	addDisabledButton(1,"Try On");
 	addButton(14,"Back",lowerBodyAlice);
 }
 
@@ -741,8 +747,7 @@ public function hardLightDiscussion(arg:*):void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
-	userInterface.showName("\nALISS");
+	showAliss();
 	output("You question the holographic tag that proclaims \"HARDLIGHT COMPATIBLE\". \"<i>Ohoh, that's a fun feature. We're one of the first shops to offer this, and it certainly has been popular. See, by incorporating miniaturized hardlight projectors across the outside of the fabric, we can set it up so that it will project a holographic, fully corporeal strap-on. No need for complicated straps, and no worries about potentially addictive or harmful drugs, you can simply wear these panties and be good to go, whenever, wherever. It will even interface with your own nervous system and give you a real time tactile feedback! And it should be noted, these projectors are so miniscule and well hidden you'd never even know they were there.</i>\"");
 	output("\n\n\"<i>If you want to upgrade it to include these projectors, that'll be an extra " + (getAlissPrice(arg) + 3000) + " credits.</i>\"");
 	//[Buy Normal] [Buy Hardlight] [Back]
@@ -758,8 +763,7 @@ public function purchaseSomethingHardlightFromAliss(purchaseItem:*):void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
-	userInterface.showName("\nALISS");
+	showAliss();
 	output("You transfer the credits for a hardlight-equipped version of your chosen undergarment. ");
 	//Credits
 	pc.credits -= (getAlissPrice(purchaseItem) + 3000);
@@ -777,14 +781,26 @@ public function purchaseSomethingHardlightFromAliss(purchaseItem:*):void
 	itemCollect(foundLootItems);
 }
 
+//Cocksocks
+public function cocksocksAlice():void
+{
+	clearOutput();
+	author("Third");
+	showAliss();
+	// 9999
+	output("Nothing to see here!");
+	
+	clearMenu();
+	addButton(14,"Back",mainGameMenu);
+}
+
 //Sexytimes
 //(When Aliss' lust reaches 10, the next time the PC asks her to model an outfit, it triggers this scene.)
 public function alissSexyTimes():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS_NUDE");
-	userInterface.showName("\nALISS");
+	showAliss(true);
 	output("You ask if Aliss would be so kind as to model this garment for you. She nods, though for some reason her face flushes hotly, turning a deeper shade of purple. \"<i>You, ah, you just wait right here, [pc.name]. I'll be right back!</i>\" She turns away and quickly makes her way to the changing rooms, her steps a little more hurried than usual. How odd. That's the first time she's called you by your name.");
 	output("\n\nAfter a minute's time you hear a soft call from the changing rooms, \"<i>Ah, [pc.name]. Could you come here for a moment? I, ah, need your help with something.</i>\" You raise an eyebrow. Need help with something? It couldn't be that hard to put on, could it?");
 	output("\n\nShrugging to yourself, you approach the door to the changing room and knock. Aliss' voice calls out softly, \"<i>It's not locked.</i>\" You carefully open the door and peek inside. Aliss' back is to you, her thick tail swaying with agitation, but you can see her clearly in the mirror beyond. Her face is flushed a deep violet and her eyes half lidded. Her bountiful breasts are exposed, the dark purple nipples erect and straining for attention. Your eyes drift downward, and then widen in surprise.");
@@ -807,8 +823,7 @@ public function helpAlissWithSexyTiems():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS_NUDE");
-	userInterface.showName("\nALISS");
+	showAliss(true);
 	output("You slip inside the changing room, noting how spacious it seems to be. Surprise dick or not, you figure you'd have to be an idiot to pass up an opportunity like this. Aliss beams at you as she turns around, letting you come face to face with the fourteen inch purple cock between her legs.");
 	if(!pc.isNude()) output(" You quickly strip down, tossing your clothes into a neat pile in the corner.");
 	output("\n\n\"<i>Oh thank goodness. I was worried I might have to deal with this bad boy by myself...</i>\" she says, her voice trailing off. Clearly she expects you to take the first step. How would you like to proceed?");
@@ -833,14 +848,14 @@ public function questionAlissAboutHerHorsecock():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS_NUDE");
-	userInterface.showName("\nALISS");
+	showAliss(true);
 	output("Before you agree to anything, you've got to settle a few things. \"<i>So... Is that normal?</i>\" you ask in a quiet voice, motioning towards the dick between her legs.");
 	output("\n\nAliss shrugs nonchalantly, \"<i>Whenever I get horny, but I'm guessing that's not what you meant, is it?</i>\" You shake your head. \"<i>I'm guessing you don't know much about my race then? Well then, fun fact, [pc.name]: I'm a male! Males for my species, the ovir, are pretty \"feminine\" according to your culture. Breasts, hips, the whole shebang. Oh yeah, and this thing,</i>\" she grips the horse-like cock between her legs for emphasis. \"<i>Don't worry though, </i>mi amour<i>, I don't plan on sticking it anywhere you don't want it to go. So, how about it? Are you going to join me in here, or do I have to deal with this thing by myself?</i>\"");
 	processTime(1);
 	//[Help] [Nope]
 	clearMenu();
 	addButton(0,"Help",helpAlissWithSexyTiems,undefined,"Help","Helping Aliss with her \"problem\" is likely to include sex.");
+	addDisabledButton(1,"Question");
 	addButton(2,"Nope",nopeDafuqOut,undefined,"Nope","Nope. Nope! NOPE! Nope-nope-nopenope!!!");
 }
 
@@ -849,8 +864,7 @@ public function nopeDafuqOut():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS_NUDE");
-	userInterface.showName("\nALISS");
+	showAliss(true);
 	output("You shake your head and softly close the door before quickly ");
 	if(!silly) output("retreating from the store");
 	else output("noping the fuck out");
@@ -871,10 +885,8 @@ public function fuckDatBitchesSluttyAss():void
 	//PC can also use a hardlight strapon that she sells, if it's worn and the PC has no applicable cocks.
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS_NUDE");
-	userInterface.showName("\nALISS");
+	showAliss(true);
 	output("As tantalizing as that cock is, you think you can help Aliss relieve herself in other ways. Advancing, your hands grip her upper arms, while you lean in for a kiss. The alien lets out a surprised sound, but once your lips meet with her strawberry flavored ones, she seems to melt in your arms.");
-
 
 	output("\n\nYou press her back against a mirrored wall, forcefully but gently. Aliss moans into your mouth, then with a little reluctance she pulls away and giggles. \"<i>Mmm, like it rough, do you? Well, </i>mi amour,<i> how about we get a little inventive?</i>\" she says with a coy smile, motioning to her own discarded lingerie. You arch an eyebrow quizzically, and then it dawns on you what she means. Smirking, you pick up one of her stockings and test its strength. It seems abnormally strong. Probably thanks to whatever hi-tech nanofibers they use nowadays.");
 
@@ -902,8 +914,7 @@ public function condomWithAliss(x:int = -1):void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS_NUDE");
-	userInterface.showName("\nALISS");
+	showAliss(true);
 	output("You decide to oblige Aliss, and pick up one of the stray condoms she had with her. Emblazoned on it is the word \"Stallionguard\" along with a stylized picture of an eight-legged horse.");
 	output("\n\n\"<i>Yep, those are the ones,</i>\" Aliss says, looking over her shoulder. \"<i>They're designed for folks with equine dicks, but they fit us ovir perfectly too. They'll certainly fit you as well, just maybe not as comfortably.</i>\"");
 	output("\n\nYou tear open the package and pull out the condom, then sidle up behind the lizard \"girl\". Pressing your body against hers, you reach down, your hands easily finding her dick. You press the tip of the \"Stallionguard\" condom to her flat cockhead and slowly unroll it across her member. Her entire body stiffens and you hear a light sound emanate from her throat. In no time at all, her cock is covered from top to bottom, with a clear latex sheen.");
@@ -919,8 +930,7 @@ public function noCondomsAlissYerASlut(x:int = -1):void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS_NUDE");
-	userInterface.showName("\nALISS");
+	showAliss(true);
 	output("You shake your head, a grin on your face. There will be no condoms today. Any mess she makes she'll have to clean up herself. She raises her eyebrows in surprise, but quickly lowers one, giving you a sultry look. \"<i>Well then I hope for your sake, you're worth it,</i>\" she says, looking over her shoulder at you.");
 
 	//if using hardlight strapon:
@@ -1042,8 +1052,7 @@ public function alissButtFuxEnd(x:int = -1, condom:Boolean = false):void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS_NUDE");
-	userInterface.showName("\nALISS");
+	showAliss(true);
 	output("<b>One hour later.</b>");
 	output("\n\nInsatiable as she is, the rapacious ovir doesn't let you go until you've ");
 	if(x <= 0) output("fucked her senseless several times");
@@ -1078,8 +1087,7 @@ public function offerPussyYouSloot():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS_NUDE");
-	userInterface.showName("\nALISS");
+	showAliss(true);
 	var x:int = rand(pc.totalVaginas());
 	output("The cock before you glistens tantalizingly with precum. You swallow hard, feeling a warm tingle from down below. Almost instinctually [pc.eachVagina] is growing wet with arousal.");
 	output("\n\nSeeming to sense this, Aliss steps forward, her strawberry flavored lips suddenly on yours. One of her hands");
@@ -1166,8 +1174,7 @@ public function takeItInZeCoochFromAlissFinal(x:int = 0):void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS_NUDE");
-	userInterface.showName("\nALISS");
+	showAliss(true);
 	output("<b>One hour later.</b>");
 	output("\n\nYou emerge from the changing room shakily. Your body feels like it's been through an intense workout. Not content to have just one romp, Aliss filled several more condoms inside of you, stacking them all in the corner of the room like a perverted timepiece. You switched positions several times, and even got free of the damnable panties once, forcing her into the same position you were in while you rode her for all she's worth.");
 	output("\n\nYou smile a bit, but rub your sore muscles. You'll be feeling this in the morning, that's for sure. Sighing to yourself, you allow Aliss some time to \"clean\" the changing room, while you look over the displays and wait for her.");
@@ -1189,8 +1196,7 @@ public function offerAlissYourAss():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS_NUDE");
-	userInterface.showName("\nALISS");
+	showAliss(true);
 	output("You bite your lip as you look at the impressive member between Aliss' legs.");
 	if(pc.hasCock() && pc.biggestCockLength() >= 15) output(" It's not as big as yours, of course, but as far as natural dicks go, fourteen inches is quite respectable.");
 	output(" Its purple exterior glistens with fresh pre-cum, beckoning you closer.");
@@ -1316,8 +1322,7 @@ public function offerAlissYourAssPart2():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS_NUDE");
-	userInterface.showName("\nALISS");
+	showAliss(true);
 	output("<b>One hour later.</b>");
 	output("\nSeemingly insatiable, Aliss doesn't quit until several condoms surround her");
 	if(pc.hasCock()) output(", both yours and hers");
@@ -1343,8 +1348,7 @@ public function suckAlissOffBecauseYouLikeToGulpDownLoadsOfJizzYouSlut():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS_NUDE");
-	userInterface.showName("\nALISS");
+	showAliss(true);
 	output("The way that purple alien cock dangles between Aliss' legs makes your mouth water. There's something about the fresh pre-cum glistening across its length that seems so mesmerizing. As you watch, the alien gathers another dollop of pre-cum and smears it along the shaft.");
 	output("\n\n\"<i>You seem quite fixated on this... perhaps you'd like a taste?</i>\" she asks, a devilish smile creeping over her face. You nod absently. Aliss steps forward suddenly, slipping a hand underneath your chin ");
 	//(PC <6')
@@ -1404,8 +1408,7 @@ public function swallowAlissSpunk():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS_NUDE");
-	userInterface.showName("\nALISS");
+	showAliss(true);
 	output("You quickly make the decision to swallow every last drop of her cum. As she's tensing up you make sure she's buried as far into your mouth as possible. Aliss bites her lip, and you can feel her body tensing up. The tail wrapped around your midsection constricts, though not painfully. Aliss bucks her hips as the cock within your throat suddenly grows rigid.");
 	output("\n\nAn unearthly cry escapes from the lizard-girl's throat, filling the little changing room, and most certainly echoing throughout the rest of the store. A sudden flood of warmth envelops your body as Aliss' seed is pumped directly into your stomach. You pull the cock out slightly so that jet after jet of cum goes straight into your mouth. You gulp it down greedily, your mind in too much of a haze right now to think properly. You swirl the cum around in your mouth, luxuriating in its taste. With every gulp of cum you feel your body growing warmer... more aroused with every mouthful.");
 	output("\n\nSighing softly, Aliss slumps back on the bench happily. \"<i>You are a mighty fine cocksucker,</i>\" she giggles. \"<i>Anyone ever tell you that?</i>\"");
@@ -1426,8 +1429,7 @@ public function takeALoadInDaFaceFromAliss():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS_NUDE");
-	userInterface.showName("\nALISS");
+	showAliss(true);
 	output("As nice as it would be to have this cum inside you, what you really want is to be covered in it. At the last second you pull the cock out of your mouth and aim it at your face. Aliss' body tenses up, and the tail around you constricts painlessly. You wrap your hands around her cock, pumping them up and down as it grows suddenly rigid.");
 	output("\n\nAll at once, her cumvein thickens, and then a burst of white, gooey cum erupts from the alien cock before you. The first jet of cum splatters against your face. The rest are less precise, landing on your outstretched tongue, chin, chest... really an available space. Pretty soon you're practically covered in the warm substance. You greedily gulp down whatever lands in your mouth.");
 	output("\n\nWhen Aliss slumps backward on the bench, completely spent, you lean back as well, taking a moment to appreciate the feeling of the seed on your [pc.skinFurScales]. Then, using two fingers, you collect some of the cum and swallow it. You lick your cum-stained lips, and then lean forwards, giving Aliss a sloppy, wet kiss that tastes of strawberry and jizz. She giggles and returns it, even going so far as to lick some of her own seed off your face.");
@@ -1445,8 +1447,7 @@ public function alissDumpsALoadOnHirseflLOLHirDurhurhur():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS_NUDE");
-	userInterface.showName("\nALISS");
+	showAliss(true);
 	output("A mischievous thought crosses your mind. As much as you'd like the cum... you think Aliss might like a taste of her own medicine. As her body tenses and the cock inside your throat grows rigid, you pull your mouth away. You grip it firmly and point it, not at yourself, but at the lizard-like woman in the throes of passion.");
 	output("\n\nHer cumvein thickens and suddenly a burst of pearlescent white cum erupts from the cock, splattering against her own face. Her eyes widen in surprise, but there's nothing she can do about it as another jet blasts against her face, then another against her breasts. Blast after blast covers her from face to stomach in creamy goo. You can't help but giggle as she gulps down any that falls into her mouth. She licks her lips and actually scoops up some more seed with two fingers, letting that dribble into her mouth.");
 	output("\n\nAliss slips forward on the bench, pulling you into a sloppy, salty kiss. Her lips taste of strawberries and cum this time, an altogether not unpleasant taste. Her tongue breaches your mouth, carrying globules of sticky jizz, which you are all too happy to swallow. She breaks the kiss and bites her lip, suddenly looking coy. \"<i>Well, dear, I certainly wasn't expecting that, but I must say... I taste damn good. Perhaps next time you'll have to get your own full taste.</i>\"");
@@ -1471,8 +1472,7 @@ public function alissDiscussionsInsteadOfPanties():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
-	userInterface.showName("\nALISS");
+	showAliss();
 	output("\"<i>I'm not here for shopping right now,</i>\" you say. \"<i>I came here to talk with you.</i>\"");
 	output("\n\nAliss smiles, \"<i>All right, </i>mi amour<i>. What can I do for you?</i>\"");
 	//[Sex] [Talk] 
@@ -1498,8 +1498,7 @@ public function sexWithAlissFromMainMenu():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS_NUDE");
-	userInterface.showName("\nALISS");
+	showAliss(true);
 	output("You slide your hand along Aliss' ass and whisper in her ear if she'd like to head into the changing to blow off some steam. She blushes, but gives you a smile, \"<i>All right, </i>mi amour<i>\, follow me.</i>\"");
 	output("\n\nShe takes you by the hand and leads you into the closest changing room. You notice several other employees at the store rolling their eyes, though others seem to have barely-concealed smirks.");
 	output("\n\nOnce inside, Aliss' lingerie immediately comes off");
@@ -1527,8 +1526,7 @@ public function talkToAliss():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
-	userInterface.showName("\nALISS");
+	showAliss();
 	output("You lean against a nearby countertop and ask if you could just talk for a moment.");
 	output("\n\nAliss quirks an eyebrow. \"<i>Oh, sure. Not used to people wanting to talk,</i>\" she says with a light laugh. She goes to stand behind the counter and waves a hand. \"<i>What would you like to talk about?</i>\"");
 	processTime(1);
@@ -1549,8 +1547,7 @@ public function talkToAlissAboutOvier():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
-	userInterface.showName("\nALISS");
+	showAliss();
 	output("You ask about her race, the ovir.");
 	output("\n\n\"<i>Oh, that's easy. You could probably find this on the extranet but whatever, I'm happy to talk about it. We were \"discovered\" by the UGC a couple planet rushes ago. Back then our society was reasonably advanced. We were well into an industrial revolution, even had our own primitive version of the extranet. And boy were we curious. When the UGC showed up, we were actually planning missions to land on our own moons. So when a bunch of aliens land and say there's actually a vast network of worlds and species, we jumped at the opportunity to join them.</i>\"");
 	output("\n\n\"<i>From what I understand, we fit pretty well into the universe as a whole. There wasn't much of an awkward phase for us. We came in and adapted really well. My parents, and their parents, all grew up in mostly human settlements.</i>\"");
@@ -1568,8 +1565,7 @@ public function miAmourTalkWithAliss():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
-	userInterface.showName("\nALISS");
+	showAliss();
 	flags["TALKED_WITH_ALISS_ABOUT_HER_SHOP"] = 1;
 	output("You ask Aliss about her store, Mi Amour.");
 	output("\n\nShe perks up, her eyes suddenly sparkling. \"<i>Oh! That's a good story. Now, I grew up in a mostly human colony. There were other ovir about, but mostly humans. The local clothing shops didn't really ever have anything that fit me, not with this big old tail.</i>\" She lifts part of her bulky purple tail. \"<i>So I got into sewing my own clothing. It was a bit of a natural talent, really. I </i>loved<i> clothes, so I really got into making my own.</i>\"");
@@ -1586,8 +1582,7 @@ public function chameleonSilkTalkWithAlissYouSlut():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
-	userInterface.showName("\nALISS");
+	showAliss();
 	output("You ask Aliss about the chameleon silk she'd mentioned earlier.");
 	output("\n\nAliss pulls out a pair of panties from a nearby display and puts them on the counter. \"<i>It's this new type of fabric I invented. It uses these multihued synthetic fibers. They normally look like little rainbow strands, but when you pulse electricity through them, they change to solid colors. So positioned around the panties,</i>\" she points at areas on the inside of the underwear. You can't seem to see anything different. \"<i>There are these little nano machines that control the colors. I made it so that they can be linked up with a simple application on any wireless device to alter the color as you see fit.</i>\"");
 	output("\n\nAliss retrieves a small tablet computer and presses something on the screen. The panties, before your eyes, shift from black to white, then to white and pink polka dot, pink and green stripes, and finally to solid red. \"<i>It's really cool. Patterns are taking a bit longer to work with, for obvious reasons, but we're working on it. My biggest accomplishment was getting it to work with stockings.</i>\"");
@@ -1603,8 +1598,7 @@ public function talkToAlissAboutLibido():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
-	userInterface.showName("\nALISS");
+	showAliss();
 	flags["TALKED_TO_ALIIS_ABOUT_LIBIDO"] = 1;
 	output("You mention that you've noticed her sex drive is a little high at times, and wonder why that is.");
 	output("\n\nAliss blushes, but smiles. \"<i>Oh, I may have gotten a few mods to help with that. Normally, we ovir don't have too much of a libido. A few times a year we go into a sort of heat, but aside from that we don't really get as horny as, say, humans. Well, when I was in college, I may have been persuaded to pick up a few libido mods...</i>\" she says, blushing brighter.");
@@ -1622,8 +1616,7 @@ public function exhibitionismTalkWithAliss():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
-	userInterface.showName("\nALISS");
+	showAliss();
 	flags["TALKED_WITH_ALISS_ABOUT_EXHIBITIONISM"] = 1;
 	output("Since it seems like Aliss is a bit of an exhibitionist, you prod her on that subject.");
 	output("\n\n\"<i>Oh, I... maybe. Probably. Yeah, I'm an exhibitionist,</i>\" she laughs lightly, looking flustered. \"<i>So, it started in college after I got those mods. I found that whenever I was modeling new clothes for people, I just got really turned on. Like, hardcore really want to fuck something. The skimpier the clothing, the better. I'd host these little fashion shows for my roommate and whoever wanted to come by, to show off my new designs and whatnot. By the end of each show, I'd just be this quivering mass just wanting to fuck everything. About that time I'd drag my roommate off into another room and we wouldn't come out for a few hours.</i>\"");

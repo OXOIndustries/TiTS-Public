@@ -32,7 +32,7 @@
 			this.description = "a shock pistol colloquially called 'The Shocker'";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This gun fires a directed lance of electrical energy, frying shields and flesh with equal ease. It's limited capacitors prevent it from doing too much damage, but it still packs quite the wallop.";
+			this.tooltip = "This gun fires a directed lance of electrical energy, frying shields and flesh with equal ease. Its limited capacitors prevent it from doing too much damage, but it still packs quite the wallop.";
 			this.attackVerb = "shock";
 			attackNoun = "shock";
 			

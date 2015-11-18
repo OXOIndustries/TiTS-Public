@@ -180,7 +180,12 @@ public function appearance(target:Creature):void {
 			else output2("and covered with " + target.skinFurScales(true,true));
 			output2(". It's almost rabbit-like, except for the length of your muzzle.");
 		}
-
+		else if(target.faceType == GLOBAL.TYPE_GABILANI) {
+			output2(" You have a narrow-jawed gabilani face");
+			if(target.skinType != GLOBAL.SKIN_TYPE_SKIN) output2(", covered in " + target.skinFurScales(true,true));
+			output2(", appearing almost goblinoid with alien facial features.");
+		}
+		
 		//M/F stuff!
 		output2(" Overall, your visage has " + target.faceDesc() + ".");
 		//Eyes
@@ -222,6 +227,11 @@ public function appearance(target:Creature):void {
 		else if (target.eyeType == GLOBAL.TYPE_MYR)
 		{
 			output2(" Your eyes are gleaming, solid " + target.eyeColor + " orbs that seem to give little away.");
+		}
+		else if (target.eyeType == GLOBAL.TYPE_GABILANI)
+		{
+			if(target.eyeColor == "black") output2(" Your alien eyes are dark as the void, with irises that are completely black and indistinguishible from the pupils themselves, making you appear disconcerting from afar.");
+			else output2(" Your eyes are completely " + target.eyeColor + ", with irises of the same color and indistinguishible from the pupils themselves, making you appear quite alien.");
 		}
 		else 
 		{
@@ -272,6 +282,12 @@ public function appearance(target:Creature):void {
 				//5+ inches:
 				else output2(" A pair of exquisitely long, elf-like ears extend a full " + num2Text(target.earLength) + " inches from the sides of your head, triangular in shape with a bit of downward curve along their length. A thought is all it takes for them to change their angle to suit your expression, letting even the most rugged face pull off a cutesy pout with ease.");
 			}
+			else if(target.earType == GLOBAL.TYPE_GABILANI)
+			{
+				output2(" A pair of long, triangular goblin ears point outwards");
+				if(target.earLength > 1) output2(num2Text(target.earLength) + " inches from your");
+				output2(" from your skull.");
+			}
 			if(target.antennae == 2) output2(" Floppy antennae also appear on your head, bouncing and swaying in the breeze.");
 		}
 		//not bald
@@ -305,6 +321,12 @@ public function appearance(target:Creature):void {
 				else if(target.earLength <= 4) output2(" The " + target.hairDescript(true,true) + " on your head can't hide a pair of triangular, elven ears. They stick out a full " + num2Text(target.earLength) + " inches from the sides of your head. Small extra muscles let them twitch or droop expressively.");
 				//5+ inches:
 				else output2(" The " + target.hairDescript(true,true) + " atop your head can't possibly hide a pair of exquisitely long, elf-like ears. They extend a full " + num2Text(target.earLength) + " inches from the sides of your head, triangular in shape with a bit of downward curve along their length. A thought is all it takes for them to change their angle to suit your expression, letting even the most rugged face pull off a cutesy pout with ease.");
+			}
+			else if(target.earType == GLOBAL.TYPE_GABILANI)
+			{
+				output2(" The " + target.hairDescript(true,true) + " on your head is parted by a pair of");
+				if(target.earLength > 1) output2(num2Text(target.earLength) + "-inch");
+				output2(" long, triangular goblin ears.");
 			}
 			if(target.antennae == 2) {
 				if(target.earType == GLOBAL.TYPE_LAPINE) output2(" Limp antennae also grow from just behind your hairline, waving and swaying in the breeze with your ears.");
@@ -666,7 +688,7 @@ public function appearance(target:Creature):void {
 		else if(target.tailType == GLOBAL.TYPE_VANAE) 
 		{
 			if(target.tailCount == 1) output2(" Protruding from above your butt, a long, slippery tail wiggles behind you. It is lined with octopus-like suckers on the bottom, very much like a tentacle of some underwater... or perhaps tree-dwelling, creature.");
-			else output2(" Protruding from above your butt, " + num2Text(target.tailCount) + " long, slippery tails wiggle behind you. They is lined with octopus-like suckers on the bottom, very much like the tentacles of some underwater... or perhaps tree-dwelling, creature.");
+			else output2(" Protruding from above your butt, " + num2Text(target.tailCount) + " long, slippery tails wiggle behind you. They are lined with octopus-like suckers on the bottom, very much like the tentacles of some underwater... or perhaps tree-dwelling, creature.");
 		}
 		else if(target.tailType == GLOBAL.TYPE_OVIR)
 		{
@@ -680,14 +702,14 @@ public function appearance(target:Creature):void {
 			// Cockvine
 			if (target.tailGenitalArg == GLOBAL.TYPE_COCKVINE && !target.hasTailFlag(GLOBAL.FLAG_RIBBED))
 			{
-				output2(" Most of the length of the thing is coated in "+ (target as PlayerCharacter).skinTone +" skin, culminating in");
+				output2(" Most of the length of the thing is coated in "+ target.skinTone +" skin, culminating in");
 				if(target.tailGenitalColor != "" && rand(2) == 0) output2(" " + indefiniteArticle(target.tailGenitalColor) + " shaft with");
 				output2(" a proud purple head that's distinctly cock-shaped in nature.");
 			}
 			// Horse
 			else if (target.tailGenitalArg == GLOBAL.TYPE_EQUINE)
 			{
-				output2(" Most of the length of the thing is coated in "+ (target as PlayerCharacter).skinTone +" skin, culminating in a girthy, flared tip, distinctly reminiscent of");
+				output2(" Most of the length of the thing is coated in "+ target.skinTone +" skin, culminating in a girthy, flared tip, distinctly reminiscent of");
 				if(target.tailGenitalColor != "" && rand(2) == 0) output2(" " + indefiniteArticle(target.tailGenitalColor));
 				else output2(" a");
 				output2(" horse-cock.");
@@ -695,7 +717,7 @@ public function appearance(target:Creature):void {
 			// Human
 			else if (target.tailGenitalArg == GLOBAL.TYPE_HUMAN)
 			{
-				output2(" Most of the length of the thing is coated in "+ (target as PlayerCharacter).skinTone +" skin, culminating in a fleshy");
+				output2(" Most of the length of the thing is coated in "+ target.skinTone +" skin, culminating in a fleshy");
 				if(target.tailGenitalColor != "") output2(" " + target.tailGenitalColor);
 				else output2(" pink");
 				output2(" head that's distinctly cock-shaped in nature.");
@@ -703,7 +725,7 @@ public function appearance(target:Creature):void {
 			// Bulbous
 			else if (target.tailGenitalArg == GLOBAL.TYPE_CANINE)
 			{
-				output2(" Most of the length of the thing is coated in "+ (target as PlayerCharacter).skinTone +" skin, culminating in a thick bulge a few inches below a tapered,");
+				output2(" Most of the length of the thing is coated in "+ target.skinTone +" skin, culminating in a thick bulge a few inches below a tapered,");
 				if(target.tailGenitalColor != "") output2(" " + target.tailGenitalColor);
 				else output2(" dark-red");
 				output2(" tip.");
@@ -711,10 +733,18 @@ public function appearance(target:Creature):void {
 			// Ribbed
 			else
 			{
-				output2(" Most of the length of the thing is coated in "+ (target as PlayerCharacter).skinTone +" skin, culminating in");
+				output2(" Most of the length of the thing is coated in "+ target.skinTone +" skin, culminating in");
 				if(target.tailGenitalColor != "" && rand(2) == 0) output2(" " + indefiniteArticle(target.tailGenitalColor) + " shaft with");
 				output2(" a series of noticeable ridges that gradually thin as they appear closer to the tip.");
 			}
+		}
+		//Ovipositor
+		if(target.hasTailFlag(GLOBAL.FLAG_OVIPOSITOR))
+		{
+			output2(" In addition,");
+			if(target.tailCount == 1) output2(" it is an organ that is");
+			else output2(" they are organs that are");
+			output2(" capable of laying eggs into an orifice.");
 		}
 		
 		//legType notez!
@@ -1145,6 +1175,8 @@ public function appearance(target:Creature):void {
 				}
 				else output2(num2Text(Math.round(10*target.cocks[0].thickness())/10) + " inches across.");				
 				dickBonusForAppearance(target, 0);
+				//Worm flavor
+				if(target.hasStatusEffect("Infested")) output2(" Every now and again a slimy worm coated in spunk slips partway out of your " + target.cockDescript(0) + ", tasting the air like a snake's tongue.");
 			}
 			//MULTICOCKS!
 			else if(target.totalCocks() > 1)
@@ -1201,8 +1233,10 @@ public function appearance(target:Creature):void {
 					rando++
 					if(rando > 3) rando = 0;
 				}
+				//All sheathed
+				if(target.hasFullSheaths()) output2("\nEach of your manhoods naturally retract into an animalistic sheath when completely flaccid.");
 				//Worm flavor
-				if(target.hasStatusEffect("infested")) output2("\nEvery now and again slimy worms coated in spunk slip partway out of your " + target.multiCockDescript() + ", tasting the air like tongues of snakes.");
+				if(target.hasStatusEffect("Infested")) output2("\nEvery now and again slimy worms coated in spunk slip partway out of your " + target.multiCockDescript() + ", tasting the air like tongues of snakes.");
 				//DONE WITH COCKS, moving on!
 			}
 		}
@@ -1280,8 +1314,7 @@ public function appearance(target:Creature):void {
 					else if(target.vaginas[0].wetness() < 4) output2("Moisture gleams in ");
 					else if(target.vaginas[0].wetness() >= 4)
 					{
-						output2("Occasional beads of ");
-						output2("[target.girlCum] drip from ");
+						output2("Occasional beads of [target.girlCum] drip from ");
 					}				
 				}
 				else if(target.libido() < 80 && target.lust() < 80) //kinda horny
@@ -1291,12 +1324,10 @@ public function appearance(target:Creature):void {
 					else if(target.vaginas[0].wetness() < 2) output2("Moisture gleams in ");
 					else if(target.vaginas[0].wetness() < 4) 
 					{
-						output2("Occasional beads of ");
-						output2("[target.girlCum] drip from ");
+						output2("Occasional beads of [target.girlCum] drip from ");
 					}
 					else {
-						output2("Thin streams of ");
-						output2("[target.girlCum] occasionally dribble from ");
+						output2("Thin streams of [target.girlCum] occasionally dribble from ");
 					}
 				}
 				else //WTF horny!
@@ -1305,18 +1336,15 @@ public function appearance(target:Creature):void {
 					if(target.vaginas[0].wetness() < 1) {}
 					else if(target.vaginas[0].wetness() < 2) 
 					{
-						output2("Occasional beads of ");
-						output2("[target.girlCum] drip from ");
+						output2("Occasional beads of [target.girlCum] drip from ");
 					}
 					else if(target.vaginas[0].wetness() < 4)
 					{
-						output2("Thin streams of ");
-						output2("[target.girlCum] occasionally dribble from ");
+						output2("Thin streams of [target.girlCum] occasionally dribble from ");
 					}
 					else 
 					{
-						output2("Thick streams of ");
-						output2("[target.girlCum] drool constantly from ");
+						output2("Thick streams of [target.girlCum] drool constantly from ");
 					}				
 				}
 				//Different description based on vag looseness
@@ -1328,26 +1356,25 @@ public function appearance(target:Creature):void {
 					output2("lips slightly parted.");
 				}
 				else {
-					output2("the massive hole");
-					output2(" that is");
-					output2(" your " + target.vaginasDescript() + ".");
+					output2("the massive hole that is your " + target.vaginasDescript() + ".");
 				}
 				//Zil flavor!
-				if(target.totalVaginas(GLOBAL.ZIL) > 0) {
-					output2(" The exterior folds are a dusky black, while the inner lining of ");
-					output2("your");
-					output2(" tunnel is a glorious golden hue.");
+				if (target.totalVaginas(GLOBAL.TYPE_BEE) > 0 && target.vaginas[0].vaginaColor == "black and gold") {
+					output2(" The exterior folds are a dusky black, while the inner lining of your tunnel is a glorious golden hue.");
 				}
 				//Naleen flavor
 				if(target.totalVaginas(GLOBAL.TYPE_NAGA) > 0) {
-					output2(" The exterior lips are subtle and narrow, making ");
-					output2("your");
-					output2(" lengthy entrance a little more discrete.");
+					output2(" The exterior lips are subtle and narrow, making your lengthy entrance a little more discrete.");
 				}
 				//LEITHAN FLAVOR
 				if(target.totalVaginas(GLOBAL.TYPE_LEITHAN) > 0 || target.totalVaginas(GLOBAL.TYPE_EQUINE) > 0)
 				{
 					output2(" The exterior lips are fat and swollen. They could easily be described as rubbery, and they often shine with a wet sheen, regardless of your arousal. When you're aroused, you're told that they wink.");
+				}
+				//Ovipositor
+				if(target.vaginas[0].hasFlag(GLOBAL.FLAG_OVIPOSITOR))
+				{
+					output2(" Moving its internal muscles, you know it has the ability to lay eggs into another orifice.");
 				}
 			}
 			//MULTICOOCH!
@@ -1387,22 +1414,22 @@ public function appearance(target:Creature):void {
 						else output2(", its lips loosened by frequent fucking");
 						output2(".")
 						//Zil flavor!
-						if(target.vaginas[temp].type == GLOBAL.ZIL) {
-							output2(" The exterior folds are a dusky black, while the inner lining of ");
-							output2("your");
-							output2(" tunnel is a glorious golden hue.");
+						if(target.vaginas[temp].type == GLOBAL.TYPE_BEE && target.vaginas[temp].vaginaColor == "black and gold") {
+							output2(" The exterior folds are a dusky black, while the inner lining of your tunnel is a glorious golden hue.");
 						}
 						//Naleen flavor
 						if(target.vaginas[temp].type == GLOBAL.TYPE_NAGA) {
-							output2(" The exterior lips are subtle and narrow, making ");
-							output2("your");
-							output2(" lengthy entrance a little more discrete.");
+							output2(" The exterior lips are subtle and narrow, making your lengthy entrance a little more discrete.");
 						}
 						//LEITHAN FLAVOR
-						if(target.vaginas[temp].type == GLOBAL.TYPE_LEITHAN)
-						{
+						if(target.vaginas[temp].type == GLOBAL.TYPE_LEITHAN || target.vaginas[temp].type == GLOBAL.TYPE_EQUINE) {
 							output2(" The exterior lips are fat and swollen. They could easily be described as rubbery, and they often shine with a wet sheen, regardless of your arousal. When you're aroused, you're told that they wink.");
 						}
+					}
+					//Ovipositor
+					if(target.vaginas[temp].hasFlag(GLOBAL.FLAG_OVIPOSITOR))
+					{
+						output2(" Moving its internal muscles, you know it has the ability to lay eggs into another orifice.");
 					}
 					if (temp == 0 && target.hasStatusEffect("Mimbrane Pussy") && target.statusEffectv3("Mimbrane Pussy") > 3)
 					{
@@ -1499,7 +1526,7 @@ public function appearance(target:Creature):void {
 					if(target.hasStatusEffect("Mimbrane Cock") && target.hasStatusEffect("Mimbrane Balls")) output2(" your cock and balls");
 					else if(target.hasStatusEffect("Mimbrane Boobs") && target.hasStatusEffect("Mimbrane Ass")) output2(" your tits and ass");
 					else if(target.hasStatusEffect("Mimbrane Pussy") && target.hasStatusEffect("Mimbrane Ass")) output2(" your bodily glory holes");
-					else if(target.hasStatusEffect("Mimbrane Cock")&& target.hasStatusEffect("Mimbrane Pussy")) output2(" your genitalia");
+					else if(target.hasStatusEffect("Mimbrane Cock") && target.hasStatusEffect("Mimbrane Pussy")) output2(" your genitalia");
 					else if(target.hasStatusEffect("Mimbrane Hand Left") && target.hasStatusEffect("Mimbrane Hand Right")) output2(" both of your hands");
 					else if(target.hasStatusEffect("Mimbrane Foot Left") && target.hasStatusEffect("Mimbrane Foot Right")) output2(" your [target.feet]");
 					else output2(" a couple of your appendages");
@@ -1588,19 +1615,21 @@ public function dickBonusForAppearance(target:Creature, x:int = 0):void
 		if(target.cocks[x].cockColor == "mottled pink and black") output2(" It's mottled pink and black in a very animalistic pattern.");
 		else output2(" It's " + target.cocks[x].cockColor + " in color and laced with thick veins.");
 	}
-
 	//More general descripts - gotta be before flare/knot due to "It" sentence subject.
 	if(target.cocks[x].cType == GLOBAL.TYPE_RASKVEL) {
 		output2(" It's fairly smooth and shapely in appearance, lacking in any severe or stimulating ridges.");
 	}
 	//Tentacle cock flavor
 	else if(target.cocks[x].cType == GLOBAL.TYPE_TENTACLE) {
-		output2(" The entirety of its " + target.cocks[x].cockColor + " surface is covered in perspiring beads of slick moisture. It frequently shifts and moves of its own volition, the slightly oversized and mushroom-like head shifting in coloration to purplish-red whenever you become aroused.");
+		if(target.cocks[x].hasFlag(GLOBAL.FLAG_LUBRICATED)) output2(" The entirety of its " + target.cocks[x].cockColor + " surface is covered in perspiring beads of slick moisture. It");
+		else output2(" Its " + target.cocks[x].cockColor + " length");
+		output2(" frequently shifts and moves of its own volition, the slightly oversized and mushroom-like head shifting in coloration to purplish-red whenever you become aroused.");
 	}
 	//Cat cock flavor
-	else if(target.cocks[x].hasFlag(GLOBAL.FLAG_NUBBY)) {
-		if(target.cocks[x].cType == GLOBAL.TYPE_FELINE) output2(" It ends in a tapered head, ringed in small, fleshy nubs that terrans have taken to calling \"barbs\" in spite of their softness. More of these \"barbs\" line the shaft, but they're largest at the base, where they are likely to be rubbed against a clit mid-coitus.");
-		else output2(" It is covered in barb-like nubs, soft and rounded enough to massage any passage into which it is inserted. ");
+	else if(target.cocks[x].cType == GLOBAL.TYPE_FELINE) {
+		output2(" It ends in a tapered head");
+		if(target.cocks[x].hasFlag(GLOBAL.FLAG_NUBBY)) output2(", ringed in small, fleshy nubs that terrans have taken to calling \"barbs\" in spite of their softness. More of these \"barbs\" line the shaft, but they're largest at the base, where they are likely to be rubbed against a clit mid-coitus.");
+		else output2(" much like that of a feline.");
 	}
 	//Snake cock flavor
 	else if(target.cocks[x].cType == GLOBAL.TYPE_SNAKE) {
@@ -1613,16 +1642,43 @@ public function dickBonusForAppearance(target:Creature, x:int = 0):void
 	}
 	//Kangawang flavor
 	else if(target.cocks[x].cType == GLOBAL.TYPE_KANGAROO) {
-		output2(" It usually lies coiled inside a sheath, but undulates gently and tapers to a point when erect, somewhat like a taproot.");
+		output2(" It");
+		if(target.hasSheath(x)) output2(" usually lies coiled inside a sheath, but");
+		output2(" undulates gently and tapers to a point when erect, somewhat like a taproot.");
 	}
 	//Draconic Cawk Flava flav
 	else if(target.cocks[x].cType == GLOBAL.TYPE_DRACONIC) {
 		output2(" With its tapered tip, there are few holes you wouldn't be able to get into. It has a strange, knot-like bulb at its base, but doesn't usually flare during arousal as a dog's knot would.");
 	}
+	//Beees
 	else if(target.cocks[x].cType == GLOBAL.TYPE_BEE) {
-		output2(" There's a lot in common between human and zil genitals, but the alien member you're packing has a much longer, stretchier foreskin than most terrans can pack. It also looks vaguely glossy, like you oiled it up just a moment ago.");
+		if(target.cocks[x].hasFlag(GLOBAL.FLAG_FORESKINNED)) output2(" There's a lot in common between human and zil genitals, but the alien member you're packing has a much longer, stretchier foreskin than most terrans can pack. It also");
+		else output2(" The zil-like member you're packing ");
+		output2(" looks vaguely glossy, like you oiled it up just a moment ago.");
 	}
-
+	//Nubby or Ribbed
+	if((target.cocks[x].hasFlag(GLOBAL.FLAG_NUBBY) && target.cocks[x].cType != GLOBAL.TYPE_FELINE) || target.cocks[x].hasFlag(GLOBAL.FLAG_RIBBED))
+	{
+		output2(" It is");
+		if(target.cocks[x].hasFlag(GLOBAL.FLAG_NUBBY)) output2(" covered in barb-like nubs");
+		else output2(" lined with rib-like protrusions");
+		output2(", soft and rounded enough to massage any passage into which it is inserted.");
+	}
+	//Sheaths
+	if(target.hasSheath(x) && target.cocks[x].cType != GLOBAL.TYPE_KANGAROO)
+	{
+		if(target.cockTotal() == 1 || (target.cockTotal() > 1 && !target.hasFullSheaths())) output2(" The shaft of your manhood naturally retracts into an animalistic sheath when completely flaccid.");
+	}
+	//Lube
+	if(target.cocks[x].hasFlag(GLOBAL.FLAG_LUBRICATED) && target.cocks[x].cType != GLOBAL.TYPE_TENTACLE)
+	{
+		output2(" Its surface is slick and slippery, covered in an abundant amount of moist lubrication.");
+	}
+	//Sticky
+	if(target.cocks[x].hasFlag(GLOBAL.FLAG_STICKY))
+	{
+		output2(" The length is glazed in a glossy sheen of saccharine oil that is sticky to the touch.");
+	}
 	//FLARE STUFF
 	if(target.cocks[x].hasFlag(GLOBAL.FLAG_FLARED))
 	{
@@ -1636,14 +1692,24 @@ public function dickBonusForAppearance(target:Creature, x:int = 0):void
 		if(target.cocks[x].cType == GLOBAL.TYPE_EQUINE) output2(" similar to a terran horse's");
 		output2(".");
 	}
+	//Double-headed
+	else if(target.cocks[x].hasFlag(GLOBAL.FLAG_DOUBLE_HEADED))
+	{
+		output2(" The head of your alien-looking cock consists of bulbous twin glans, ready to double the sensation of penetration.");
+	}
 	//Demon cock flavor
-	if(target.cocks[x].cType == GLOBAL.TYPE_DEMONIC) {
+	if(target.cocks[x].cType == GLOBAL.TYPE_DEMONIC)
+	{
 		output2(" The ");
 		if(target.cocks[x].hasFlag(GLOBAL.FLAG_FLARED)) output2("flared ");
 		else if(target.cocks[x].hasFlag(GLOBAL.FLAG_BLUNT)) output2("blunt ");
-		output2("crown is ringed with a circle of rubbery protrusions that grow larger as you get more aroused. The entire thing is shiny and covered with tiny, sensitive nodules that leave no doubt about its demonic origins.");
+		output2("crown is ringed with a circle of rubbery protrusions that grow larger as you get more aroused. The entire thing is shiny and covered with tiny, sensitive nodules that leave no doubt about its demonic influences.");
 	}
-
+	//Foreskins
+	if(target.cocks[x].hasFlag(GLOBAL.FLAG_FORESKINNED) && target.cocks[x].cType != GLOBAL.TYPE_BEE)
+	{
+		output2(" The head is also covered by stretchy foreskin, ensuring that it is kept protected and sensitive.");
+	}
 	//KNOT STUFF
 	if(target.hasKnot(x))
 	{
@@ -1660,6 +1726,10 @@ public function dickBonusForAppearance(target:Creature, x:int = 0):void
 		}
 	}
 	else trace("NO KNOT");
-	//Worm flavor
-	if(target.hasStatusEffect("infested")) output2(" Every now and again a slimy worm coated in spunk slips partway out of your " + target.cockDescript(x) + ", tasting the air like a snake's tongue.");		
+	//Ovipositor
+	if(target.cocks[x].hasFlag(GLOBAL.FLAG_OVIPOSITOR))
+	{
+		if(target.cockTotal() == 1) output2(" While phallic in shape, you are aware that your cock is capable of injecting more than just [target.cumNoun] into an orifice... namely eggs.");
+		else output2(" The phallus doubles as an egg-injecting organ.");
+	}
 }

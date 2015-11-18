@@ -27,10 +27,10 @@ public function get canSaveAtCurrentLocation():Boolean
 	if(inCombat()) 
 		return false;
 
-	if (this.inSceneBlockSaving)
+	if (inSceneBlockSaving)
 		return false;
 
-	return this.rooms[this.currentLocation].canSaveInRoom
+	return rooms[currentLocation].canSaveInRoom
 }
 
 public function infiniteItems():Boolean
@@ -100,9 +100,9 @@ public function mainGameMenu():void {
 	//trace("this.eventQueue = ", this.eventQueue);
 	if(eventQueue.length > 0) {
 		//Do the most recent:
-		this.eventQueue[0]();
+		eventQueue[0]();
 		//Strip out the most recent:
-		this.eventQueue.splice(0,1);
+		eventQueue.splice(0,1);
 		return;
 	}
 	
@@ -125,62 +125,64 @@ public function mainGameMenu():void {
 	//Set up all appropriate flags
 	//Display the room description
 	clearOutput();
-	output(this.rooms[this.currentLocation].description);
-	setLocation(this.rooms[this.currentLocation].roomName,this.rooms[this.currentLocation].planet,this.rooms[this.currentLocation].system);
+	output(rooms[currentLocation].description);
+	setLocation(rooms[currentLocation].roomName, rooms[currentLocation].planet, rooms[currentLocation].system);
 	if(currentLocation == "SHIP INTERIOR") setLocation("SHIP\nINTERIOR",rooms[rooms["SHIP INTERIOR"].outExit].planet,rooms[rooms["SHIP INTERIOR"].outExit].system);
 	if(inCombat()) 
-		output("\n\n<b>You're still in combat, you ninny!</b>");
+		output("\n\n<b>You’re still in combat, you ninny!</b>");
 	if(pc.hasStatusEffect("Temporary Nudity Cheat"))
 		output("\n\n<b>BUG REPORT: TEMP NUDITY STUCK ON.</b>");
 	//Standard buttons:
-	this.clearMenu(false);
-	this.userInterface.showBust("none");
-	this.inSceneBlockSaving = false;
+	clearMenu(false);
+	userInterface.showBust("none");
+	inSceneBlockSaving = false;
 	//Inventory shit
 	itemScreen = mainGameMenu;
 	lootScreen = inventory;
-	this.addButton(2,"Inventory",inventory);
+	addButton(13, "Inventory", inventory);
 	//Other standard buttons
 
 	if(pc.lust() < 33) {
-		if(pc.canLactate()) addButton(3,"Hand Milk",milkturbation);
-		else this.addDisabledButton(3,"Masturbate");
+		if(pc.canLactate()) addButton(8, "Hand Milk", milkturbation);
+		else addDisabledButton(8, "Masturbate");
 	}
 	else {
-		this.addButton(3,"Masturbate",masturbateMenu);
+		if(pc.hasStatusEffect("Myr Venom Withdrawal")) addDisabledButton(8, "Masturbate", "Masturbate", "While you’re in withdrawal, you don’t see much point in masturbating, no matter how much your body may want it.");
+		else if(!pc.canMasturbate()) addDisabledButton(8, "Masturbate", "Masturbate", "You can’t seem to masturbate at the moment....");
+		else addButton(8, "Masturbate", masturbateMenu);
 	}
-	if(!this.rooms[this.currentLocation].hasFlag(GLOBAL.BED)) 
-		this.addButton(4,"Rest",rest);
+	if(!rooms[currentLocation].hasFlag(GLOBAL.BED)) 
+		addButton(9, "Rest", rest);
 	else 
-		this.addButton(4,"Sleep",sleep);
+		addButton(9, "Sleep", sleep);
 	//Display movement shits - after clear menu for extra options!
-	if(this.rooms[this.currentLocation].runOnEnter != undefined) {
-		if(this.rooms[this.currentLocation].runOnEnter()) return;
+	if(rooms[currentLocation].runOnEnter != undefined) {
+		if(rooms[currentLocation].runOnEnter()) return;
 	}
 	//Turn off encounters since you're already here. Moving clears this.
 	flags["ENCOUNTERS_DISABLED"] = 1;
 
 	if(pc.hasStatusEffect("Endowment Immobilized"))
 	{
-		if (this.rooms[this.currentLocation].northExit && !isNavDisabled(NAV_NORTH_DISABLE))
+		if (rooms[currentLocation].northExit && !isNavDisabled(NAV_NORTH_DISABLE))
 		{
-			this.addDisabledButton(6, "North", "North", "You can't move - you're immobilized!");
+			addDisabledButton(6, "North", "North", "You can't move - you're immobilized!");
 		}
-		if (this.rooms[this.currentLocation].eastExit && !isNavDisabled(NAV_EAST_DISABLE)) 
+		if (rooms[currentLocation].eastExit && !isNavDisabled(NAV_EAST_DISABLE)) 
 		{
-			this.addDisabledButton(12, "East", "East", "You can't move - you're immobilized!");
+			addDisabledButton(12, "East", "East", "You can't move - you're immobilized!");
 		}
-		if (this.rooms[this.currentLocation].southExit && !isNavDisabled(NAV_SOUTH_DISABLE)) 
+		if (rooms[currentLocation].southExit && !isNavDisabled(NAV_SOUTH_DISABLE)) 
 		{
-			this.addDisabledButton(11,"South","South","You can't move - you're immobilized!");
+			addDisabledButton(11,"South","South","You can't move - you're immobilized!");
 		}
-		if (this.rooms[this.currentLocation].westExit && !isNavDisabled(NAV_WEST_DISABLE)) 
+		if (rooms[currentLocation].westExit && !isNavDisabled(NAV_WEST_DISABLE)) 
 		{
-			this.addDisabledButton(10,"West","West","You can't move - you're immobilized!");
+			addDisabledButton(10,"West","West","You can't move - you're immobilized!");
 		}
-		if (this.rooms[this.currentLocation].inExit && !isNavDisabled(NAV_IN_DISABLE))
+		if (rooms[currentLocation].inExit && !isNavDisabled(NAV_IN_DISABLE))
 		{
-			this.addDisabledButton(5, rooms[currentLocation].inText, rooms[currentLocation].inText, "You can't move - you're immobilized!");
+			addDisabledButton(5, rooms[currentLocation].inText, rooms[currentLocation].inText, "You can't move - you're immobilized!");
 		}
 		if (rooms[currentLocation].outExit && !isNavDisabled(NAV_OUT_DISABLE)) 
 		{
@@ -189,45 +191,44 @@ public function mainGameMenu():void {
 	}
 	else
 	{
-		if (this.rooms[this.currentLocation].northExit && !isNavDisabled(NAV_NORTH_DISABLE))
+		if (rooms[currentLocation].northExit && !isNavDisabled(NAV_NORTH_DISABLE))
 		{
-			this.addButton(6, "North", move, this.rooms[this.currentLocation].northExit);
+			addButton(6, "North", move, rooms[currentLocation].northExit);
 		}
-		if (this.rooms[this.currentLocation].eastExit && !isNavDisabled(NAV_EAST_DISABLE))
+		if (rooms[currentLocation].eastExit && !isNavDisabled(NAV_EAST_DISABLE))
 		{
-			this.addButton(12, "East", move, this.rooms[this.currentLocation].eastExit);
+			addButton(12, "East", move, rooms[currentLocation].eastExit);
 		}
-		if (this.rooms[this.currentLocation].southExit && !isNavDisabled(NAV_SOUTH_DISABLE))
+		if (rooms[currentLocation].southExit && !isNavDisabled(NAV_SOUTH_DISABLE))
 		{
-			this.addButton(11,"South",move,this.rooms[this.currentLocation].southExit);
+			addButton(11,"South", move, rooms[currentLocation].southExit);
 		}
-		if (this.rooms[this.currentLocation].westExit && !isNavDisabled(NAV_WEST_DISABLE))
+		if (rooms[currentLocation].westExit && !isNavDisabled(NAV_WEST_DISABLE))
 		{
-			this.addButton(10, "West", move, this.rooms[this.currentLocation].westExit);
+			addButton(10, "West", move, rooms[currentLocation].westExit);
 		}
-		if (this.rooms[this.currentLocation].inExit && !isNavDisabled(NAV_IN_DISABLE)) 
+		if (rooms[currentLocation].inExit && !isNavDisabled(NAV_IN_DISABLE)) 
 		{
-			this.addButton(5, this.rooms[this.currentLocation].inText, move, this.rooms[this.currentLocation].inExit);
+			addButton(5, rooms[currentLocation].inText, move, rooms[currentLocation].inExit);
 		}
-		if (this.rooms[this.currentLocation].outExit && !isNavDisabled(NAV_OUT_DISABLE))
+		if (rooms[currentLocation].outExit && !isNavDisabled(NAV_OUT_DISABLE))
 		{
-			this.addButton(7, this.rooms[this.currentLocation].outText, move, this.rooms[this.currentLocation].outExit);
+			addButton(7, rooms[currentLocation].outText, move, rooms[currentLocation].outExit);
 		}
 	}
-	if(this.currentLocation == shipLocation) 
-		this.addButton(1,"Enter Ship",move,"SHIP INTERIOR");
+	if(currentLocation == shipLocation) 
+		addButton(5, "Enter Ship", move, "SHIP INTERIOR");
 
 	flags["NAV_DISABLED"] = undefined; // Clear disabled directions.
 
 	//if (kGAMECLASS.debug) this.addButton(13, "RESET NPCs", initializeNPCs);
-	this.addButton(14, "Codex", showCodex);
+	addButton(14, "Codex", showCodex);
 	// Show the minimap too!
-	this.userInterface.showMinimap();
+	userInterface.showMinimap();
 	var map:* = mapper.generateMap(currentLocation);
-	this.userInterface.setMapData(map);
-	
-	// Enable the perk list button
-	(userInterface as GUI).perkDisplayButton.Activate();
+	userInterface.setMapData(map);
+		
+	userInterface.perkDisplayButton.Activate();
 }
 
 public function generateMapForLocation(location:String):void
@@ -254,9 +255,9 @@ public function showCodex():void
 }*/
 public function showCodex():void
 {
-	this.userInterface.showCodex();
-	this.codexHomeFunction();
-	this.clearGhostMenu();
+	userInterface.showCodex();
+	codexHomeFunction();
+	clearGhostMenu();
 	
 	// Default toggles
 	if(flags["TOGGLE_MENU_STATS"] == undefined) flags["TOGGLE_MENU_STATS"] = "All";
@@ -270,7 +271,7 @@ public function showCodex():void
 	//addGhostButton(3, "CHEEVOS", function():void { } );
 	addGhostButton(1, "Log", displayQuestLog, flags["TOGGLE_MENU_LOG"]);
 	
-	addGhostButton(4, "Back", this.userInterface.showPrimaryOutput);
+	addGhostButton(4, "Back", userInterface.showPrimaryOutput);
 }
 
 // Temp display stuff for perks
@@ -294,6 +295,12 @@ public function showMailsHandler(e:Event = null):void
 {
 	var pButton:SquareButton = (userInterface as GUI).mailsDisplayButton;
 	
+	if (!pc || pc.hasStatusEffect("In Creation"))
+	{
+		userInterface.mailsDisplayButton.Deactivate();
+		return;
+	}
+	
 	if (flags["PC_EMAIL_ADDRESS"] == undefined)
 	{
 		(userInterface as GUI).showSecondaryOutput();
@@ -315,7 +322,7 @@ public function showMailsHandler(e:Event = null):void
 public function showMails():void
 {
 	userInterface.showMails();
-			userInterface.DeGlowButtons();
+	userInterface.DeGlowButtons();
 	(userInterface as GUI).mailsDisplayButton.Highlight();
 	codexMailFunction();
 }
@@ -403,14 +410,14 @@ public function crewRecruited():Number
 public function crew(counter:Boolean = false):Number {
 	if(!counter) {
 		clearOutput();
-		this.clearMenu();
+		clearMenu();
 	}
 	var crewMessages:String = "";
 	var count:int = 0;
 	if(celiseIsCrew()) {
 		count++;
 		if(!counter) {
-			this.addButton(count - 1,"Celise",celiseFollowerInteractions);
+			addButton(count - 1, "Celise", celiseFollowerInteractions);
 			crewMessages += "\n\nCelise is onboard, if you want to go see her. The ship does seem to stay clean of spills and debris with her around.";
 		}
 	}
@@ -419,7 +426,7 @@ public function crew(counter:Boolean = false):Number {
 		count++;
 		if(!counter)
 		{
-			addButton(count-1,"Reaha",approachShipBoardReahaWhyDidntSavinCodeThisHeWasntExhaustedYesterday);
+			addButton(count-1, "Reaha", approachShipBoardReahaWhyDidntSavinCodeThisHeWasntExhaustedYesterday);
 			crewMessages += "\n\nReaha is currently meandering around the ship, arms clutched under her hefty bosom, her nipples hooked up to a small portable milker.";
 		}
 	}
@@ -447,7 +454,7 @@ public function crew(counter:Boolean = false):Number {
 		if(count > 0) {
 			output("Who of your crew do you wish to interact with?" + crewMessages);
 		}
-		this.addButton(14,"Back",mainGameMenu);
+		addButton(14, "Back", mainGameMenu);
 	}
 	return count;
 }
@@ -473,8 +480,8 @@ public function rest(deltaT:int = -1):void {
 	}
 	restHeal();
 	processTime(minutes);
-	this.clearMenu();
-	this.addButton(0,"Next",mainGameMenu);
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
 public function restHeal():void
 {
@@ -485,6 +492,8 @@ public function restHeal():void
 	if(pc.energy() < pc.energyMax()) {
 		pc.energy(Math.round(pc.energyMax() * .33));
 	}
+	
+	if(pc.hasStatusEffect("Jaded")) pc.addStatusMinutes("Jaded", -1 * (60 + rand(90 + 1)));
 }
 
 public function sleep(outputs:Boolean = true):void {
@@ -573,7 +582,7 @@ public function sleep(outputs:Boolean = true):void {
 		if(currentLocation == "SHIP INTERIOR") grayGooSpessSkype();
 	}
 	
-	this.clearMenu();
+	clearMenu();
 	if(currentLocation == "SHIP INTERIOR")
 	{
 		if (flags["ANNO_SLEEPWITH_DOMORNING"] != undefined)
@@ -593,7 +602,7 @@ public function sleep(outputs:Boolean = true):void {
 		}
 	}
 	
-	addButton(0,"Next",mainGameMenu);
+	addButton(0, "Next", mainGameMenu);
 }
 
 public function sleepHeal():void
@@ -606,42 +615,52 @@ public function sleepHeal():void
 	pc.removeStatusEffect("Sore Counter");
 	pc.removeStatusEffect("Jaded");
 	
+	// Fecund Figure shape loss (Lose only after sore/working out)
+	if(pc.hasPerk("Fecund Figure") && pc.hasStatusEffect("Sore"))
+	{
+		pc.addPerkValue("Fecund Figure", 1, -1);
+		pc.addPerkValue("Fecund Figure", 2, -1);
+		pc.addPerkValue("Fecund Figure", 3, -1);
+		if(pc.perkv1("Fecund Figure") < 0) pc.setPerkValue("Fecund Figure", 1, 0);
+		if(pc.perkv2("Fecund Figure") < 0) pc.setPerkValue("Fecund Figure", 2, 0);
+		if(pc.perkv3("Fecund Figure") < 0) pc.setPerkValue("Fecund Figure", 3, 0);
+	}
+	
 	if (pc.energy() < pc.energyMax()) pc.energyRaw = pc.energyMax();
 }
-
 
 public function shipMenu():Boolean {
 	
 	rooms["SHIP INTERIOR"].outExit = shipLocation;
 	
-	setLocation("SHIP\nINTERIOR",rooms[rooms["SHIP INTERIOR"].outExit].planet,rooms[rooms["SHIP INTERIOR"].outExit].system);
+	setLocation("SHIP\nINTERIOR", rooms[rooms["SHIP INTERIOR"].outExit].planet, rooms[rooms["SHIP INTERIOR"].outExit].system);
 	
 	// Lane follower hook
 	if (tryFollowerLaneIntervention())
 	{
 		return true;
 	}
-	
 	// Puppyslutmas hook :D
 	if (annoIsCrew() && annoPuppyslutmasEntry())
 	{
 		return true;
 	}
-	
+	// Goo Armor hook
 	if (flags["ANNO_NOVA_UPDATE"] == 2)
 	{
 		grayGooArrivesAtShip();
 		return true;
 	}
-
-	this.addButton(9,"Fly",flyMenu);
-	if(currentLocation == "SHIP INTERIOR") {
-		if(crew(true) > 0) {
-			this.addButton(8,"Crew",crew);
-		}
+	
+	// Main ship interior buttons
+	if(currentLocation == "SHIP INTERIOR")
+	{
+		if (crew(true) > 0) addButton(2, "Crew", crew);
+		if (hasShipStorage()) addButton(3, "Storage", shipStorageMenuRoot);
+		else addDisabledButton(3, "Storage");
+		addButton(4, "Shower", showerMenu);
+		addButton(5, "Fly", flyMenu);
 	}
-	if (hasShipStorage()) addButton(5, "Storage", shipStorageMenuRoot);
-	else addDisabledButton(5, "Storage");
 
 	return false;
 }
@@ -654,7 +673,7 @@ public function flyMenu():void {
 		{
 			output("<b>Your gear is still locked up in customs. You should go grab it before you jump out of system.");
 			clearMenu();
-			addButton(14,"Back",mainGameMenu);
+			addButton(14, "Back", mainGameMenu);
 			return;
 		}
 		else 
@@ -663,45 +682,45 @@ public function flyMenu():void {
 		}
 	}
 	output("Where do you want to go?");
-	this.clearMenu();
+	clearMenu();
 	//TAVROS
 	if(shipLocation != "TAVROS HANGAR") 
-		this.addButton(0,"Tavros",flyTo,"Tavros");
-	else addDisabledButton(0,"Tavros");
+		addButton(0, "Tavros", flyTo, "Tavros");
+	else addDisabledButton(0, "Tavros");
 	//MHEN'GA
 	if(shipLocation != "SHIP HANGAR") 
-		this.addButton(1,"Mhen'ga",flyTo,"Mhen'ga");
-	else addDisabledButton(1,"Mhen'ga");
+		addButton(1, "Mhen'ga", flyTo, "Mhen'ga");
+	else addDisabledButton(1, "Mhen'ga");
 	//TARKUS
 	if(flags["UNLOCKED_JUNKYARD_PLANET"] != undefined)
 	{
-		if(shipLocation != "201") addButton(2,"Tarkus",flyTo,"Tarkus");
-		else addDisabledButton(2,"Tarkus");
+		if(shipLocation != "201") addButton(2, "Tarkus", flyTo, "Tarkus");
+		else addDisabledButton(2, "Tarkus", "You’re already here.");
 	}
-	else addDisabledButton(2,"Locked","Locked","You need to find your father's probe on Mhen'ga to get this planet's coordinates.");
+	else addDisabledButton(2, "Locked", "Locked", "You need to find your father’s probe on Mhen’ga to get this planet’s coordinates.");
 	//MYRELLION
 	if(flags["PLANET_3_UNLOCKED"] != undefined)
 	{
-		if(shipLocation != "600") addButton(3,"Myrellion",flyTo,"Myrellion");
-		else addDisabledButton(3,"Myrellion","Myrellion","You're already here.");
+		if(shipLocation != "600") addButton(3, "Myrellion", flyTo, "Myrellion");
+		else addDisabledButton(3, "Myrellion", "Myrellion", "You’re already here.");
 	}
-	else addDisabledButton(3,"Locked","Locked","You need to find one of your father's probes to access this planet's coordinates and name.");
+	else addDisabledButton(3, "Locked", "Locked", "You need to find one of your father’s probes to access this planet’s coordinates and name.");
 	//NEW TEXAS
 	if(flags["NEW_TEXAS_COORDINATES_GAINED"] != undefined)
 	{
-		if(shipLocation != "500") addButton(5,"New Texas",flyTo,"New Texas");
-		else addDisabledButton(5,"New Texas","New Texas","You're already there.");
+		if(shipLocation != "500") addButton(5, "New Texas", flyTo, "New Texas");
+		else addDisabledButton(5, "New Texas", "New Texas", "You’re already here.");
 	}
-	else addDisabledButton(5,"Locked","Locked","You have not yet learned of this planet's coordinates.");
+	else addDisabledButton(5, "Locked", "Locked", "You have not yet learned of this planet’s coordinates.");
 	//POE A
 	if(flags["HOLIDAY_OWEEN_ACTIVATED"] != undefined)
 	{
-		if(flags["POE_A_DISABLED"] == 1) addDisabledButton(6,"Poe A","Poe A","You probably shouldn't go back there after your last trip to 'The Masque.'")
-		else if(shipLocation != "POESPACE") addButton(6,"Poe A",flyTo,"Poe A");
-		else addDisabledButton(6,"Poe A","Poe A","You're already there.");
+		if(flags["POE_A_DISABLED"] == 1) addDisabledButton(6, "Poe A", "Poe A", "You probably shouldn’t go back there after your last trip to ‘The Masque.’")
+		else if(shipLocation != "POESPACE") addButton(6, "Poe A", flyTo, "Poe A");
+		else addDisabledButton(6, "Poe A", "Poe A", "You’re already here.");
 	}
-	else addDisabledButton(6,"Locked","Locked","You have not yet learned of this planet.");
-	this.addButton(14,"Back",mainGameMenu);
+	else addDisabledButton(6, "Locked", "Locked", "You have not yet learned of this planet.");
+	addButton(14, "Back", mainGameMenu);
 }
 
 public function flyTo(arg:String):void {
@@ -776,8 +795,72 @@ public function flyTo(arg:String):void {
 	StatTracking.track("movement/time flown", timeFlown);
 	processTime(timeFlown);
 	flags["LANDING_EVENT_CHECK"] = 1;
-	this.clearMenu();
-	this.addButton(0,"Next",mainGameMenu);
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function showerMenu():void {
+	clearOutput();
+	output("You find yourself in the ship’s shower room. What would you like to do?");
+	clearMenu();
+	addButton(0, "Shower", showerOptions, 0);
+	if (pc.lust() >= 33)
+	{
+		if (crew(true) > 0) addButton(1, "Sex", showerOptions, 1);
+		if (shipShowerFaps() > 0)
+		{
+			if (pc.hasStatusEffect("Myr Venom Withdrawal")) addDisabledButton(2, "Masturbate", "Masturbate", "While you’re in withdrawal, you don’t see much point in masturbating, no matter how much your body may want it.");
+			else if (!pc.canMasturbate()) addDisabledButton(2, "Masturbate", "Masturbate", "You can’t seem to masturbate at the moment....");
+			else addButton(2, "Masturbate", showerOptions, 2);
+		}
+	}
+	addButton(14, "Back", mainGameMenu);
+}
+public function showerOptions(option:int = 0):void {
+	clearOutput();
+	clearMenu();
+	var showerSex:Number = 0;
+	var buttonslot:Number = -1;
+	// Regular showers
+	if (option == 0)
+	{
+		output("Deciding to take a quick shower, you strip off your gear, set it aside and turn on the shower. The water hits you with a cold chill. Onboard shower units are never really known for great tempurature regulation...");
+		output("\n\nSlightly shivering, you shampoo your [pc.hair] and rub down your [pc.skinFurScalesNoun] with soap");
+		if (pc.hasStatusEffect("Sweaty"))
+		{
+			output(", stripping away the");
+			if (pc.statusEffectv1("Sweaty") >= 4) output(" thick");
+			if (pc.statusEffectv1("Sweaty") >= 2) output(" layers of");
+			output(" sweat from your exertion");
+		}
+		output(". You cleanse your [pc.face] and wash behind your [pc.ears], making sure not to miss a spot.");
+		output("\n\nSome minutes later, you finally rinse and towel yourself off. Stepping out of the shower and redonning your equipment, you are feeling");
+		if (pc.hasStatusEffect("Sweaty")) output(" much cleaner than you did before");
+		else output(" sqeaky clean");
+		output(".");
+		pc.shower();
+		processTime(10);
+		addButton(0, "Next", mainGameMenu);
+	}
+	// Shower sex options
+	else if (option == 1)
+	{
+		if (annoIsCrew() && pc.hasGenitals())
+		{
+			addButton(buttonslot + 1, "Anno", annoFollowerShowerSex);
+			showerSex++;
+		}
+		if (showerSex > 0) output(" Feeling a little turned on, you decide that maybe you should have some fun shower sex with one of your crew. Who do you approach?");
+		else output(" You don’t seem to have any crewmembers onboard who can have shower sex with you at the moment.");
+		addButton(14, "Back", showerMenu);
+	}
+	// Shower masturbation options
+	else if (option == 2)
+	{
+		output(" Not wanting to resist touching yourself, you decide masturbating while in the shower would be a great idea. How do you want to get off?");
+		shipShowerFaps(true);
+		addButton(14, "Back", showerMenu);
+	}
 }
 
 public function sneakBackYouNudist():void
@@ -787,9 +870,9 @@ public function sneakBackYouNudist():void
 	processTime(180+rand(30));
 	currentLocation = "SHIP INTERIOR";
 	var map:* = mapper.generateMap(currentLocation);
-	this.userInterface.setMapData(map);
+	userInterface.setMapData(map);
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	addButton(0, "Next", mainGameMenu);
 }
 
 public function move(arg:String, goToMainMenu:Boolean = true):void {
@@ -804,8 +887,8 @@ public function move(arg:String, goToMainMenu:Boolean = true):void {
 			clearOutput();
 			output("Nudity is illegal in that location! You'll have to cover up if you want to go there.");
 			clearMenu();
-			addButton(0,"SneakBack",sneakBackYouNudist,undefined,"SneakBack","Sneak back to the ship. Fuckin' prudes. It might take you a couple hours to get back safely.");
-			addButton(14,"Back",mainGameMenu);
+			addButton(0, "SneakBack", sneakBackYouNudist, undefined, "SneakBack", "Sneak back to the ship. Fuckin' prudes. It might take you a couple hours to get back safely.");
+			addButton(14, "Back", mainGameMenu);
 			return;
 		}
 	}
@@ -824,7 +907,7 @@ public function move(arg:String, goToMainMenu:Boolean = true):void {
 	processTime(moveMinutes);
 	currentLocation = arg;
 	var map:* = mapper.generateMap(currentLocation);
-	this.userInterface.setMapData(map);
+	userInterface.setMapData(map);
 	
 	trace("Printing map for " + currentLocation);
 	//mapper.printMap(map);
@@ -835,6 +918,7 @@ public function move(arg:String, goToMainMenu:Boolean = true):void {
 public function statusTick():void {
 	var expiredStatuses:Array = new Array();
 	var y:int = 0;
+	var gogoVenomShit:Boolean = false;
 	for(var x:int = pc.statusEffects.length-1; x >= 0; x--) 
 	{
 		//Some hardcoded removal stuff
@@ -869,6 +953,11 @@ public function statusTick():void {
 				{
 					var pill:HorsePill = new HorsePill();
 					eventQueue[eventQueue.length] = pill.lastPillTF;
+				}
+				if(pc.statusEffects[x].storageName == "Red Myr Venom")
+				{
+					//Bit of a hacky solution
+					gogoVenomShit = true;
 				}
 				//Condensol ends!
 				if(pc.statusEffects[x].storageName == "Condensol-A")
@@ -951,10 +1040,179 @@ public function statusTick():void {
 		pc.statusEffects.splice(expiredStatuses[0],1);
 		expiredStatuses.splice(0,1);
 	}
+	//Alright, now do the venom shit - since adding more statuses could fuck shit otherwise
+	if(gogoVenomShit) venomExpirationNotice();
 }
 
 public function variableRoomUpdateCheck():void
 {
+	/* MHENGA */
+	
+	//Kelly's work - close/open Xenogen Biotech.
+	//Open up shop: link room
+	if(hours >= 6 && hours < 17) 
+	{
+		rooms["SOUTH ESBETH 2"].northExit = "KELLY'S OFFICE";
+		rooms["BURT'S BACK END"].removeFlag(GLOBAL.NPC);
+		//Add back in icons.
+		if(!rooms["JULIAN'S OFFICE"].hasFlag(GLOBAL.NPC)) rooms["JULIAN'S OFFICE"].addFlag(GLOBAL.NPC);
+		if(!rooms["KELLY'S OFFICE"].hasFlag(GLOBAL.NPC)) rooms["KELLY'S OFFICE"].addFlag(GLOBAL.NPC);
+	}
+	//Close shop: 
+	else
+	{
+		//rooms["SOUTH ESBETH 2"].northExit = "";
+		//Get rid of icons
+		rooms["KELLY'S OFFICE"].removeFlag(GLOBAL.NPC);
+		rooms["JULIAN'S OFFICE"].removeFlag(GLOBAL.NPC);
+		//Add Kelly icon in the bar
+		if(!rooms["BURT'S BACK END"].hasFlag(GLOBAL.NPC)) rooms["BURT'S BACK END"].addFlag(GLOBAL.NPC);
+	}
+	//Pitchers on Mhen'ga
+	if(flags["ROOM_80_PITCHER_MET"] == 1)
+	{
+		if(!rooms["OVERGROWN ROCK 12"].hasFlag(GLOBAL.PLANT_BULB)) rooms["OVERGROWN ROCK 12"].addFlag(GLOBAL.PLANT_BULB);
+	}
+	else rooms["OVERGROWN ROCK 12"].removeFlag(GLOBAL.PLANT_BULB);
+	if(flags["ROOM_65_PITCHER_MET"] == 1)
+	{
+		if(!rooms["VINED JUNGLE 3"].hasFlag(GLOBAL.PLANT_BULB)) rooms["VINED JUNGLE 3"].addFlag(GLOBAL.PLANT_BULB);
+	}
+	else rooms["VINED JUNGLE 3"].removeFlag(GLOBAL.PLANT_BULB);
+	if(flags["ROOM_61_PITCHER_MET"] == 1)
+	{
+		if(!rooms["DEEP JUNGLE 2"].hasFlag(GLOBAL.PLANT_BULB)) rooms["DEEP JUNGLE 2"].addFlag(GLOBAL.PLANT_BULB);
+	}
+	else rooms["DEEP JUNGLE 2"].removeFlag(GLOBAL.PLANT_BULB);
+	
+	
+	/* TARKUS */
+	
+	//Handle planet explosions
+	if(flags["TARKUS_DESTROYED"] == 1 && rooms["211"].southExit != "") 
+	{
+		trace("PLANET BLEWED UP. HIDIN ROOMS");
+		rooms["211"].southExit = "";
+		rooms["213"].southExit = "";
+	}
+	else if(rooms["211"].southExit == "" && flags["TARKUS_DESTROYED"] == undefined)
+	{
+		trace("PLANET DIDN'T BLOWED UP. LINKIN' ROOMS");
+		rooms["211"].southExit = "215";
+		rooms["213"].southExit = "295";
+	}
+	//Sexbot factory opeeeeeen.
+	if(flags["SEXBOTS_SCANNED_FOR_COLENSO"] != undefined && flags["SEXBOTS_SCANNED_FOR_COLENSO"] >= 4)
+	{
+		rooms["256"].southExit = "294";
+	}
+	else
+	{
+		rooms["256"].southExit = undefined;
+	}
+	// Annos shop
+	if (!steeleTechTarkusShopAvailable())
+	{
+		rooms["303"].removeFlag(GLOBAL.NPC);
+	}
+	else
+	{
+		rooms["303"].addFlag(GLOBAL.NPC);
+	}
+	// Deck 13 Reactor -> Databank room
+	if (flags["DECK13_REACTOR_DOOR_OPEN"] == undefined)
+	{
+		rooms["DECK 13 REACTOR"].northExit = undefined;
+	}
+	else
+	{
+		rooms["DECK 13 REACTOR"].northExit = "DECK 13 SECONDARY REACTOR";
+	}
+	// Deck 13 Reactor -> Vents
+	if (flags["DECK13_REACTOR_DOOR_OPEN"] != undefined)
+	{
+		rooms["DECK 13 REACTOR"].eastExit = undefined;
+	}
+	else
+	{
+		rooms["DECK 13 REACTOR"].eastExit = "DECK 13 VENTS";
+	}
+	//Handle badger closure
+	if(flags["DR_BADGER_TURNED_IN"] != undefined && rooms["209"].northExit != "") rooms["209"].northExit = "";
+	if(flags["DR_BADGER_TURNED_IN"] == undefined && rooms["209"].northExit == "") rooms["209"].northExit = "304";
+	
+	
+	/* NEW TEXAS */
+	
+	// Brynn's Stall
+	if (flags["BRYNN_MET_TODAY"] == 1) rooms["BrynnsStall"].removeFlag(GLOBAL.NPC);
+	else rooms["BrynnsStall"].addFlag(GLOBAL.NPC);
+	// Quenton Gym stuffs
+	if (pc.hasKeyItem("Ten Ton Gym Membership") || pc.hasStatusEffect("Gym Pass"))
+	{
+		if(!rooms["571"].hasFlag(GLOBAL.OBJECTIVE)) rooms["571"].addFlag(GLOBAL.OBJECTIVE);
+		if(!rooms["572"].hasFlag(GLOBAL.OBJECTIVE)) rooms["572"].addFlag(GLOBAL.OBJECTIVE);
+		if(!rooms["573"].hasFlag(GLOBAL.OBJECTIVE)) rooms["573"].addFlag(GLOBAL.OBJECTIVE);
+		if(!rooms["574"].hasFlag(GLOBAL.OBJECTIVE)) rooms["574"].addFlag(GLOBAL.OBJECTIVE);
+	}
+	else
+	{
+		if(rooms["571"].hasFlag(GLOBAL.OBJECTIVE)) rooms["571"].removeFlag(GLOBAL.OBJECTIVE);
+		if(rooms["572"].hasFlag(GLOBAL.OBJECTIVE)) rooms["572"].removeFlag(GLOBAL.OBJECTIVE);
+		if(rooms["573"].hasFlag(GLOBAL.OBJECTIVE)) rooms["573"].removeFlag(GLOBAL.OBJECTIVE);
+		if(rooms["574"].hasFlag(GLOBAL.OBJECTIVE)) rooms["574"].removeFlag(GLOBAL.OBJECTIVE);
+	}
+	
+	
+	/* MYRELLION */
+	
+	// Steph Myrellion shit
+	if (flags["STEPH_WATCHED"] == undefined)
+	{
+		if (rooms["1F22"].hasFlag(GLOBAL.NPC)) rooms["1F22"].removeFlag(GLOBAL.NPC);
+	}
+	else
+	{
+		if (flags["STEPH_WORK_CHOICE"] == undefined)
+		{
+			if (!rooms["1F22"].hasFlag(GLOBAL.NPC)) rooms["1F22"].addFlag(GLOBAL.NPC);
+		}
+		else
+		{
+			if (rooms["1F22"].hasFlag(GLOBAL.NPC)) rooms["1F22"].removeFlag(GLOBAL.NPC);
+		}
+	}
+	// Doc McAllister
+	if (mcallisterIsIn())
+	{
+		rooms["XBMYRELLIONLAB"].addFlag(GLOBAL.NPC);
+	}
+	else
+	{
+		rooms["XBMYRELLIONLAB"].removeFlag(GLOBAL.NPC);
+	}
+	//Irellia quest stuff.
+	//IrelliaQuest incomplete. No east passage, people token in main room.
+	if(flags["IRELLIA_QUEST_STATUS"] == undefined || flags["IRELLIA_QUEST_STATUS"] < 6)
+	{
+		// Quest markers
+		//Added by JCup
+		if(flags["IRELLIA_QUEST_STATUS"] == 2 && (hours >= 17 && hours <= 18) && !rooms["708"].hasFlag(GLOBAL.OBJECTIVE)) rooms["708"].addFlag(GLOBAL.OBJECTIVE);
+		else if(rooms["708"].hasFlag(GLOBAL.OBJECTIVE)) rooms["708"].removeFlag(GLOBAL.OBJECTIVE);
+		if(flags["IRELLIA_QUEST_STATUS"] == 3 && hours >= 23 && !rooms["725"].hasFlag(GLOBAL.OBJECTIVE)) rooms["725"].addFlag(GLOBAL.OBJECTIVE);
+		else if(rooms["725"].hasFlag(GLOBAL.OBJECTIVE)) rooms["725"].removeFlag(GLOBAL.OBJECTIVE);
+
+		if(!rooms["746"].hasFlag(GLOBAL.NPC)) rooms["746"].addFlag(GLOBAL.NPC);
+		if(rooms["747"].hasFlag(GLOBAL.NPC)) rooms["747"].removeFlag(GLOBAL.NPC);
+		rooms["746"].eastExit = "";
+	}
+	//IrelliaQuest complete: establish east/west link and move people token to Irellia's chambers
+	else
+	{
+		rooms["746"].eastExit = "747";
+		if(rooms["746"].hasFlag(GLOBAL.NPC)) rooms["746"].removeFlag(GLOBAL.NPC);
+		if(!rooms["747"].hasFlag(GLOBAL.NPC)) rooms["747"].addFlag(GLOBAL.NPC);
+	}
 	//Nyrea gate should be open
 	if(nyreaDungeonGateOpen()) 
 	{
@@ -978,150 +1236,18 @@ public function variableRoomUpdateCheck():void
 		if(!rooms["2C13"].hasFlag(GLOBAL.NPC)) rooms["2C13"].addFlag(GLOBAL.NPC);
 	}
 	else if(rooms["2C13"].hasFlag(GLOBAL.NPC)) rooms["2C13"].removeFlag(GLOBAL.NPC);
-	//Handle badger closure
-	if(flags["DR_BADGER_TURNED_IN"] != undefined && rooms["209"].northExit != "") rooms["209"].northExit = "";
-	if(flags["DR_BADGER_TURNED_IN"] == undefined && rooms["209"].northExit == "") rooms["209"].northExit = "304";
-	//Handle planet explosions
-	if(flags["TARKUS_DESTROYED"] == 1 && rooms["211"].southExit != "") 
+	//Fungus area open:
+	if(flags["FUNGUS_QUEEN_SAVED"] == undefined && flags["LET_FUNGUS_QUEEN_DIE"] == undefined)
 	{
-		trace("PLANET BLEWED UP. HIDIN ROOMS");
-		rooms["211"].southExit = "";
-		rooms["213"].southExit = "";
+		rooms["2S11"].northExit = "2S9";
 	}
-	else if(rooms["211"].southExit == "" && flags["TARKUS_DESTROYED"] == undefined)
+	else 
 	{
-		trace("PLANET DIDN'T BLOWED UP. LINKIN' ROOMS");
-		rooms["211"].southExit = "215";
-		rooms["213"].southExit = "295";
+		rooms["2S11"].northExit = "";
 	}
-	
-	//Kelly's work - close/open Xenogen Biotech.
-	//Open up shop: link room
-	if(hours >= 6 && hours < 17) 
-	{
-		rooms["SOUTH ESBETH 2"].northExit = "KELLY'S OFFICE";
-		rooms["BURT'S BACK END"].removeFlag(GLOBAL.NPC);
-		//Add back in icons.
-		if(!rooms["JULIAN'S OFFICE"].hasFlag(GLOBAL.NPC)) rooms["JULIAN'S OFFICE"].addFlag(GLOBAL.NPC);
-		if(!rooms["KELLY'S OFFICE"].hasFlag(GLOBAL.NPC)) rooms["KELLY'S OFFICE"].addFlag(GLOBAL.NPC);
-	}
-	//Close shop: 
-	else
-	{
-		//rooms["SOUTH ESBETH 2"].northExit = "";
-		//Get rid of icons
-		rooms["KELLY'S OFFICE"].removeFlag(GLOBAL.NPC);
-		rooms["JULIAN'S OFFICE"].removeFlag(GLOBAL.NPC);
-		//Add Kelly icon in the bar
-		if(!rooms["BURT'S BACK END"].hasFlag(GLOBAL.NPC)) rooms["BURT'S BACK END"].addFlag(GLOBAL.NPC);
-	}
-
-	//Sexbot factory opeeeeeen.
-	if(flags["SEXBOTS_SCANNED_FOR_COLENSO"] != undefined && flags["SEXBOTS_SCANNED_FOR_COLENSO"] >= 4)
-	{
-		rooms["256"].southExit = "294";
-	}
-	else rooms["256"].southExit = undefined;
-	
-	// Annos shop
-	if (!steeleTechTarkusShopAvailable())
-	{
-		rooms["303"].removeFlag(GLOBAL.NPC);
-	}
-	else
-	{
-		rooms["303"].addFlag(GLOBAL.NPC);
-	}
-	
-	// Deck 13 Reactor -> Databank room
-	if (flags["DECK13_REACTOR_DOOR_OPEN"] == undefined)
-	{
-		rooms["DECK 13 REACTOR"].northExit = undefined;
-	}
-	else
-	{
-		rooms["DECK 13 REACTOR"].northExit = "DECK 13 SECONDARY REACTOR";
-	}
-
-	// Deck 13 Reactor -> Vents
-	if (flags["DECK13_REACTOR_DOOR_OPEN"] != undefined)
-	{
-		rooms["DECK 13 REACTOR"].eastExit = undefined;
-	}
-	else
-	{
-		rooms["DECK 13 REACTOR"].eastExit = "DECK 13 VENTS";
-	}
-	
-	if (flags["BRYNN_MET_TODAY"] == 1) rooms["BrynnsStall"].removeFlag(GLOBAL.NPC);
-	else rooms["BrynnsStall"].addFlag(GLOBAL.NPC);
-	//Pitchers on Mhen'ga
-	if(flags["ROOM_80_PITCHER_MET"] == 1)
-	{
-		if(!rooms["OVERGROWN ROCK 12"].hasFlag(GLOBAL.PLANT_BULB)) rooms["OVERGROWN ROCK 12"].addFlag(GLOBAL.PLANT_BULB);
-	}
-	else rooms["OVERGROWN ROCK 12"].removeFlag(GLOBAL.PLANT_BULB);
-	if(flags["ROOM_65_PITCHER_MET"] == 1)
-	{
-		if(!rooms["VINED JUNGLE 3"].hasFlag(GLOBAL.PLANT_BULB)) rooms["VINED JUNGLE 3"].addFlag(GLOBAL.PLANT_BULB);
-	}
-	else rooms["VINED JUNGLE 3"].removeFlag(GLOBAL.PLANT_BULB);
-	if(flags["ROOM_61_PITCHER_MET"] == 1)
-	{
-		if(!rooms["DEEP JUNGLE 2"].hasFlag(GLOBAL.PLANT_BULB)) rooms["DEEP JUNGLE 2"].addFlag(GLOBAL.PLANT_BULB);
-	}
-	else rooms["DEEP JUNGLE 2"].removeFlag(GLOBAL.PLANT_BULB);
-
-	//Irellia quest stuff.
-	//IrelliaQuest incomplete. No east passage, people token in main room.
-	if(flags["IRELLIA_QUEST_STATUS"] == undefined || flags["IRELLIA_QUEST_STATUS"] < 6)
-	{
-		// Quest markers
-		//Added by JCup
-		if(flags["IRELLIA_QUEST_STATUS"] == 2 && (hours >= 17 && hours <= 18) && !rooms["708"].hasFlag(GLOBAL.OBJECTIVE)) rooms["708"].addFlag(GLOBAL.OBJECTIVE);
-		else if(rooms["708"].hasFlag(GLOBAL.OBJECTIVE)) rooms["708"].removeFlag(GLOBAL.OBJECTIVE);
-		if(flags["IRELLIA_QUEST_STATUS"] == 3 && hours >= 23 && !rooms["725"].hasFlag(GLOBAL.OBJECTIVE)) rooms["725"].addFlag(GLOBAL.OBJECTIVE);
-		else if(rooms["725"].hasFlag(GLOBAL.OBJECTIVE)) rooms["725"].removeFlag(GLOBAL.OBJECTIVE);
-
-		if(!rooms["746"].hasFlag(GLOBAL.NPC)) rooms["746"].addFlag(GLOBAL.NPC);
-		if(rooms["747"].hasFlag(GLOBAL.NPC)) rooms["747"].removeFlag(GLOBAL.NPC);
-		rooms["746"].eastExit = "";
-	}
-	//IrelliaQuest complete: establish east/west link and move people token to Irellia's chambers
-	else
-	{
-		rooms["746"].eastExit = "747";
-		if(rooms["746"].hasFlag(GLOBAL.NPC)) rooms["746"].removeFlag(GLOBAL.NPC);
-		if(!rooms["747"].hasFlag(GLOBAL.NPC)) rooms["747"].addFlag(GLOBAL.NPC);
-	}
-	
-	// Steph Myrellion shit
-	if (flags["STEPH_WATCHED"] == undefined)
-	{
-		if (rooms["1F22"].hasFlag(GLOBAL.NPC)) rooms["1F22"].removeFlag(GLOBAL.NPC);
-	}
-	else
-	{
-		if (flags["STEPH_WORK_CHOICE"] == undefined)
-		{
-			if (!rooms["1F22"].hasFlag(GLOBAL.NPC)) rooms["1F22"].addFlag(GLOBAL.NPC);
-		}
-		else
-		{
-			if (rooms["1F22"].hasFlag(GLOBAL.NPC)) rooms["1F22"].removeFlag(GLOBAL.NPC);
-		}
-	}
-	
-	// Doc McAllister
-	if (mcallisterIsIn())
-	{
-		rooms["XBMYRELLIONLAB"].addFlag(GLOBAL.NPC);
-	}
-	else
-	{
-		rooms["XBMYRELLIONLAB"].removeFlag(GLOBAL.NPC);
-	}
-	
+	// Crystal Goo Silly Modes
+	if(silly) rooms["2O25"].southExit = "2O27";
+	else rooms["2O25"].southExit = "";
 }
 
 public function processTime(arg:int):void {
@@ -1144,7 +1270,7 @@ public function processTime(arg:int):void {
 	if (pc.hasStatusEffect("Ludicrously Endowed")) productionFactor *= 1.5;
 	if (pc.hasStatusEffect("Overwhelmingly Endowed")) productionFactor *= 2;
 	
-	if (pc.hasStatusEffect("Myr Venom")) productionFactor *= 1.25;
+	if (pc.hasStatusEffect("Red Myr Venom")) productionFactor *= 1.5;
 	
 	//BOOZE QUADRUPLES TIEM!
 	if(pc.hasStatusEffect("X-Zil-rate") || pc.hasStatusEffect("Mead") || pc.hasStatusEffect("X-Zil-rate"))
@@ -1270,7 +1396,7 @@ public function processTime(arg:int):void {
 	while(arg > 0) {
 		//Check for shit that happens.
 		//Actually move time!
-		this.minutes++;
+		minutes++;
 
 		//Status Effect Updates
 		statusTick();
@@ -1296,7 +1422,7 @@ public function processTime(arg:int):void {
 		//Kiro stuff
 		if(flags["KIRO_BAR_MET"] != undefined)
 		{
-			if (this.minutes >= 60) 
+			if (minutes >= 60) 
 			{
 				kiro.ballSizeRaw++;
 				//Ball despunkification!
@@ -1318,13 +1444,13 @@ public function processTime(arg:int):void {
 			updateSaendraXPackTimer();
 		}
 		//Tick hours!
-		if (this.minutes >= 60) {
+		if (minutes >= 60) {
 			
 			// Lust increase per hour
 			mimbraneSweatHandler();
 			
-			this.minutes = 0;
-			this.hours++;
+			minutes = 0;
+			hours++;
 			//Hours checks here!
 			
 			if(flags["SHEKKA_TALK_COOLDOWN"] != undefined)
@@ -1439,8 +1565,8 @@ public function processTime(arg:int):void {
 			}
 
 			//Days ticks here!
-			if(this.hours >= 24) {
-				this.days++;
+			if(hours >= 24) {
+				days++;
 				//Unlock dat shiiit
 				if(flags["HOLIDAY_OWEEN_ACTIVATED"] == undefined && (isHalloweenish() || rand(100) == 0)) eventQueue.push(hollidayOweenAlert);
 				if(pc.hasPerk("Honeypot") && days % 3 == 0) honeyPotBump();
@@ -1458,7 +1584,7 @@ public function processTime(arg:int):void {
 				//Reset Orryx shipments!
 				if(flags["ORRYX_SHIPPED_TODAY"] != undefined) flags["ORRYX_SHIPPED_TODAY"] = undefined;
 				if(days >= 2 && (flags["NEW_TEXAS_COORDINATES_GAINED"] == undefined || !MailManager.isEntryUnlocked("newtexas"))) newTexasEmail();
-				this.hours = 0;
+				hours = 0;
 				if(chars["ALISS"].lust() >= 70)
 				{
 					chars["ALISS"].orgasm();
@@ -1501,6 +1627,36 @@ public function processTime(arg:int):void {
 				venusSubmission( -1);
 				
 				tryProcSaendraXPackEmail();
+				
+				// Fecund Figure shape gain (Gains only while pregnant)
+				if(pc.hasPerk("Fecund Figure"))
+				{
+					if(pc.isPregnant()) pc.addPerkValue("Fecund Figure", 4, 1);
+					if(pc.perkv4("Fecund Figure") > 0)
+					{
+						// 20 days for 1 hips/butt size gain?
+						pc.addPerkValue("Fecund Figure", 1, 0.05); // Hips
+						pc.addPerkValue("Fecund Figure", 2, 0.05); // Butt
+						//pc.addPerkValue("Fecund Figure", 3, 0.0125); // Belly
+						pc.addPerkValue("Fecund Figure", 4, -1); // Gains
+					}
+					if(pc.perkv4("Fecund Figure") < 0) pc.setPerkValue("Fecund Figure", 4, 0);
+				}
+				//DAILY MYR VENOM CHECKS
+				//Addicts
+				if(flags["VENOM_ADDICTION"] != undefined)
+				{
+					//Not yet uber-addict:
+					if(!pc.hasPerk("Venom Slut"))
+					{
+						if(pc.hasStatusEffect("Myr Venom Withdrawal")) myrAddiction(-2);
+					}
+				}
+				//Non addicts not under the effects of venom lose progress to addiction
+				else if(flags["VENOM_ADDICTION"] == undefined && !pc.hasStatusEffect("Red Myr Venom"))
+				{
+					venomProgress(-2);
+				}
 			}
 		}
 		arg--;
@@ -1534,9 +1690,15 @@ public function processTime(arg:int):void {
 	//NEVRIE MAIL!
 	if (!MailManager.isEntryUnlocked("myrpills") && flags["MCALLISTER_MEETING_TIMESTAMP"] <= (GetGameTimestamp() - (24 * 60))) nevriMailGet();
 	if (!MailManager.isEntryUnlocked("orangepills") && flags["MCALLISTER_MYR_HYBRIDITY"] == 2 && GetGameTimestamp() >= (flags["MCALLISTER_MYR_HYBRIDITY_START"] + (7 * 24 * 60))) nevriOrangeMailGet();
-	if (!MailManager.isEntryUnlocked("bjreminder") && flags["NEVRIE_FIRST_DISCOUNT_DATE"] != undefined && days >= flags["NEVRIE_FIRST_DISCOUNT_DATE"]+20) nevriBJMailGet();
+	if (!MailManager.isEntryUnlocked("bjreminder") && flags["NEVRIE_FIRST_DISCOUNT_DATE"] != undefined && days >= flags["NEVRIE_FIRST_DISCOUNT_DATE"] + 20) nevriBJMailGet();
 	//Emmy Mail
-	if (!MailManager.isEntryUnlocked("emmy_apology") && flags["EMMY_EMAIL_TIMER"] <= (GetGameTimestamp() - (24*60))) emmyMailGet();
+	if (!MailManager.isEntryUnlocked("emmy_apology") && flags["EMMY_EMAIL_TIMER"] <= (GetGameTimestamp() - (24 * 60))) emmyMailGet();
+	//Saendra Mail
+	if (!MailManager.isEntryUnlocked("saendrathanks") && flags["FALL OF THE PHOENIX STATUS"] >= 1 && flags["SAENDRA_DISABLED"] != 1 && rooms[currentLocation].planet != "SHIP: PHOENIX" && currentLocation != "SHIP INTERIOR") saendraPhoenixMailGet();
+	//Anno Mail
+	if (!MailManager.isEntryUnlocked("annoweirdshit") && flags["MET_ANNO"] != undefined && flags["FOUGHT_TAM"] == undefined && flags["RUST_STEP"] != undefined && rand(10) == 0) goMailGet("annoweirdshit");
+	//Other Email Checks!
+	if (rand(50) == 0) emailRoulette();
 	flags["HYPNO_EFFECT_OUTPUT_DONE"] = undefined;
 	variableRoomUpdateCheck();
 	updatePCStats();
@@ -1653,6 +1815,15 @@ public function racialPerkUpdateCheck():void
 			}
 		}
 	}
+	if(pc.hasPerk("Fecund Figure"))
+	{
+		if(!pc.hasVagina())
+		{
+			eventBuffer += "\n\nNo longer possessing a vagina, your body rapidly changes and you lose your fertility goddess-like build.";
+			eventBuffer += "\n\n(<b>Perk Lost: Fecund Figure</b>)";
+			pc.removePerk("Fecund Figure");
+		}
+	}
 }
 
 public function nutSwellUpdates():void
@@ -1764,7 +1935,7 @@ public function bigBallBadEnd():void
 		userInterface.setMapData(map);
 		processTime(1382);
 		clearMenu();
-		addButton(0,"Next",mainGameMenu);
+		addButton(0, "Next", mainGameMenu);
 	}
 	
 }
@@ -2094,6 +2265,8 @@ public function statisticsScreen(showID:String = "All"):void
 		if(pc.isNice()) output2(", Kind");
 		if(pc.isMischievous()) output2(", Mischievous");
 		if(pc.isAss()) output2(", Hard");
+		if(pc.isBimbo()) output2(", Ditz");
+		if(pc.isBro()) output2(", Brute");
 		output2("\n<b>* Alcohol Tolerance: </b>" + pc.tolerance() + "/100");
 		output2("\n<b>* Exhibitionism: </b>" + formatFloat(pc.exhibitionism(), 1) + "/100");
 		// Head
@@ -2113,6 +2286,7 @@ public function statisticsScreen(showID:String = "All"):void
 			{
 				output2(" " + prettifyLength(pc.beardLength));
 				if(pc.beardStyle != 0) output2("\n<b>* Beard, Style: </b>" + pc.beardStyle);
+				//if(pc.beardStyle != "null") output2("\n<b>* Beard, Style: </b>" + StringUtil.toDisplayCase(pc.beardStyle));
 			}
 			else if(pc.skinType == GLOBAL.SKIN_TYPE_FUR) output2(" Short, Fur");
 			else if(pc.beardLength > 0.0625) output2(" Stubble");
@@ -2122,14 +2296,14 @@ public function statisticsScreen(showID:String = "All"):void
 		output2("\n<b>* Hair:</b>");
 		if(pc.hasHair())
 		{
-			if(pc.hairColor != "no") output2(" " + StringUtil.toTitleCase(pc.hairColor) + ",");
+			if(pc.hairColor != "no") output2(" " + StringUtil.toDisplayCase(pc.hairColor) + ",");
 			if(pc.hasPerk("Mane")) output2(" Mane,");
 			output2(" " + GLOBAL.HAIR_TYPE_NAMES[pc.hairType]);
 			output2("\n<b>* Hair, Length:</b>");
 			if(pc.hairLength > 0.125)
 			{
 				output2(" " + prettifyLength(pc.hairLength));
-				if(pc.hairStyle != "null") output2("\n<b>* Hair, Style: </b>" + StringUtil.toTitleCase(pc.hairStyle));
+				if(pc.hairStyle != "null") output2("\n<b>* Hair, Style: </b>" + StringUtil.toDisplayCase(pc.hairStyle));
 			}
 			else output2(" Shaved");
 		}
@@ -2139,12 +2313,12 @@ public function statisticsScreen(showID:String = "All"):void
 		output2("\n<b>* Ears:</b>");
 		if(pc.hasLongEars()) output2(" " + prettifyLength(pc.earLength) + ",");
 		output2(" " + GLOBAL.TYPE_NAMES[pc.earType]);
-		if(pc.earsPierced != 0) output2("\n<b>* Ear Piercing: </b>" + pc.earsPierced + " " + StringUtil.toTitleCase(pc.earsPShort));
+		if(pc.earsPierced != 0) output2("\n<b>* Ear Piercing: </b>" + pc.earsPierced + " " + StringUtil.toDisplayCase(pc.earsPShort));
 		output2("\n<b>* Eyes:</b>");
-		if(pc.eyeColor != "") output2(" " + StringUtil.toTitleCase(pc.eyeColor) + ",");
+		if(pc.eyeColor != "") output2(" " + StringUtil.toDisplayCase(pc.eyeColor) + ",");
 		output2(" " + GLOBAL.TYPE_NAMES[pc.eyeType]);
-		if(pc.eyebrowPierced != 0) output2("\n<b>* Eyebrow Piercing: </b>" + pc.eyebrowPierced + " " + StringUtil.toTitleCase(pc.eyebrowPShort));
-		if(pc.nosePierced != 0) output2("\n<b>* Nose Piercing: </b>" + pc.nosePierced + " " + StringUtil.toTitleCase(pc.nosePShort));
+		if(pc.eyebrowPierced != 0) output2("\n<b>* Eyebrow Piercing: </b>" + pc.eyebrowPierced + " " + StringUtil.toDisplayCase(pc.eyebrowPShort));
+		if(pc.nosePierced != 0) output2("\n<b>* Nose Piercing: </b>" + pc.nosePierced + " " + StringUtil.toDisplayCase(pc.nosePShort));
 		output2("\n<b>* Lips:</b>");
 		var lipsize:int = pc.lipRating();
 		if(lipsize <= 1) output2(" Pencil-thin");
@@ -2156,7 +2330,7 @@ public function statisticsScreen(showID:String = "All"):void
 		else if(lipsize <= 7) output2(" Bloated");
 		else if(lipsize <= 8) output2(" Whorish");
 		else output2(" Universe-distorting");
-		if(pc.lipColor != "") output2(", " + StringUtil.toTitleCase(pc.lipColor));
+		if(pc.lipColor != "") output2(", " + StringUtil.toDisplayCase(pc.lipColor));
 		if(pc.lipPierced != 0 || flags["MIMBRANE_FACE_APPEARANCE"] == 1 || flags["MIMBRANE_FACE_APPEARANCE"] == 2)
 		{
 			output2("\n<b>* Lip Accent:</b>");
@@ -2165,7 +2339,7 @@ public function statisticsScreen(showID:String = "All"):void
 			if(pc.lipPierced != 0)
 			{
 				if(flags["MIMBRANE_FACE_APPEARANCE"] == 1 || flags["MIMBRANE_FACE_APPEARANCE"] == 2) output2(",");
-				output2(" " + pc.lipPierced + " " + StringUtil.toTitleCase(pc.lipPShort));
+				output2(" " + pc.lipPierced + " " + StringUtil.toDisplayCase(pc.lipPShort));
 			}
 		}
 		output2("\n<b>* Tongue:</b>");
@@ -2177,14 +2351,14 @@ public function statisticsScreen(showID:String = "All"):void
 			}
 		}
 		output2(" " + GLOBAL.TYPE_NAMES[pc.tongueType]);
-		if(pc.tonguePierced != 0) output2("\n<b>* Tongue Piercing: </b>" + pc.tonguePierced + " " + StringUtil.toTitleCase(pc.tonguePShort));
+		if(pc.tonguePierced != 0) output2("\n<b>* Tongue Piercing: </b>" + pc.tonguePierced + " " + StringUtil.toDisplayCase(pc.tonguePShort));
 		if(pc.hasHorns())
 		{
 			output2("\n<b>* [pc.HornsNoun]:</b>");
 			if(pc.hasStatusEffect("Horn Bumps")) output2(" Horn Bumps");
 			else
 			{
-				if(pc.hornType == GLOBAL.TYPE_DEER) output2(" 2, " + GLOBAL.TYPE_NAMES[pc.hornType] + ", " + pc.horns + " Points");
+				if(pc.hornType == GLOBAL.TYPE_DEER) output2(" 2, " + prettifyLength(pc.hornLength) + ", " + GLOBAL.TYPE_NAMES[pc.hornType] + ", " + pc.horns + " Points");
 				else 
 				{
 					output2(" " + pc.horns + ",");
@@ -2215,11 +2389,11 @@ public function statisticsScreen(showID:String = "All"):void
 			}
 		}
 		output2(" " + GLOBAL.SKIN_TYPE_NAMES[pc.skinType]);
-		output2("\n<b>* Skin Tone: </b>" + StringUtil.toTitleCase(pc.skinTone));
-		if(pc.hasStatusEffect("Vanae Markings")) output2(", " + StringUtil.toTitleCase(pc.skinAccent) + " Markings");
-		if(pc.hasFur() || pc.hasLegFur() || pc.hasArmFlag(GLOBAL.FLAG_FURRED) || pc.hasTailFlag(GLOBAL.FLAG_FURRED)) output2("\n<b>* Fur Color: </b>" + StringUtil.toTitleCase(pc.furColor));
-		if(pc.hasScales() || pc.hasLegFlag(GLOBAL.FLAG_SCALED) || pc.hasArmFlag(GLOBAL.FLAG_SCALED) || pc.hasTailFlag(GLOBAL.FLAG_SCALED)) output2("\n<b>* Scale Color: </b>" + StringUtil.toTitleCase(pc.scaleColor));
-		if((pc.armType == GLOBAL.TYPE_MYR && pc.hasArmFlag(GLOBAL.FLAG_CHITINOUS)) || (pc.legType == GLOBAL.TYPE_MYR && pc.hasLegFlag(GLOBAL.FLAG_CHITINOUS))) output2("\n<b>* Chitin Color: </b>" + StringUtil.toTitleCase(pc.scaleColor));
+		output2("\n<b>* Skin Tone: </b>" + StringUtil.toDisplayCase(pc.skinTone));
+		if(pc.hasStatusEffect("Vanae Markings")) output2(", " + StringUtil.toDisplayCase(pc.skinAccent) + " Markings");
+		if(pc.hasFur() || pc.hasLegFur() || pc.hasArmFlag(GLOBAL.FLAG_FURRED) || pc.hasTailFlag(GLOBAL.FLAG_FURRED)) output2("\n<b>* Fur Color: </b>" + StringUtil.toDisplayCase(pc.furColor));
+		if(pc.hasScales() || pc.hasLegFlag(GLOBAL.FLAG_SCALED) || pc.hasArmFlag(GLOBAL.FLAG_SCALED) || pc.hasTailFlag(GLOBAL.FLAG_SCALED)) output2("\n<b>* Scale Color: </b>" + StringUtil.toDisplayCase(pc.scaleColor));
+		if (pc.skinType == GLOBAL.SKIN_TYPE_CHITIN || pc.hasLegFlag(GLOBAL.FLAG_CHITINOUS) || pc.hasArmFlag(GLOBAL.FLAG_CHITINOUS) || pc.hasTailFlag(GLOBAL.FLAG_CHITINOUS)) output2("\n<b>* Chitin Color: </b>" + StringUtil.toDisplayCase(pc.scaleColor));
 		output2("\n<b>* Arms:</b> 2,");
 		if(pc.armFlags.length > 0)
 		{
@@ -2244,7 +2418,7 @@ public function statisticsScreen(showID:String = "All"):void
 			}
 		}
 		output2(" " + GLOBAL.TYPE_NAMES[pc.legType]);
-		if(pc.wingType != 0) output2("\n<b>* Back: </b>" + GLOBAL.TYPE_NAMES[pc.wingType] + " " + StringUtil.toTitleCase(pc.wingsDescript()));
+		if(pc.wingType != 0) output2("\n<b>* Back: </b>" + GLOBAL.TYPE_NAMES[pc.wingType] + " " + StringUtil.toDisplayCase(pc.wingsDescript()));
 		if(pc.tailCount > 0)
 		{
 			if(pc.tailCount == 1) output2("\n<b>* Tail:</b>");
@@ -2262,7 +2436,7 @@ public function statisticsScreen(showID:String = "All"):void
 		if(pc.hasTailCock() || pc.hasTailCunt())
 		{
 			output2("\n<b>* Tail, Genital Type: </b>");
-			if(pc.tailGenitalColor != "") output2(StringUtil.toTitleCase(pc.tailGenitalColor) + ", ");
+			if(pc.tailGenitalColor != "") output2(StringUtil.toDisplayCase(pc.tailGenitalColor) + ", ");
 			output2(GLOBAL.TYPE_NAMES[pc.tailGenitalArg]);
 			if(pc.hasTailCock()) output2(", " + GLOBAL.TAIL_GENTIAL_TYPE_NAMES[1]);
 			if(pc.hasTailCunt()) output2(", " + GLOBAL.TAIL_GENTIAL_TYPE_NAMES[2]);
@@ -2290,12 +2464,12 @@ public function statisticsScreen(showID:String = "All"):void
 			{
 				output2("\n<b>* Nipples:</b>");
 				output2(" " + pc.totalNipples());
-				if(pc.nippleColor != "") output2(" " + StringUtil.toTitleCase(pc.nippleColor));
+				if(pc.nippleColor != "") output2(" " + StringUtil.toDisplayCase(pc.nippleColor));
 				output2(" Nipple");
 				if(pc.totalNipples() != 1) output2("s");
 				if(pc.totalNipples() > 1) output2(", " + pc.nipplesPerBreast + " per Breast");
 				if(pc.isLactating()) output2(", Lactation Active");
-				if(pc.nipplesPierced != 0) output2("\n<b>* Nipple Piercing: </b>" + pc.nipplesPierced + " " + StringUtil.toTitleCase(pc.nipplesPShort));
+				if(pc.nipplesPierced != 0) output2("\n<b>* Nipple Piercing: </b>" + pc.nipplesPierced + " " + StringUtil.toDisplayCase(pc.nipplesPShort));
 			}
 			// Lactation
 			if(pc.canLactate())
@@ -2326,7 +2500,7 @@ public function statisticsScreen(showID:String = "All"):void
 					if(pc.breastRows[x].breastRatingLactationMod != 0) output2("\n<b>* Breast, Lactation Size Rating: </b>" + formatFloat(pc.breastRows[x].breastRatingLactationMod, 3));
 					output2("\n<b>* Nipple, Type: </b>" + " " + GLOBAL.NIPPLE_TYPE_NAMES[pc.breastRows[x].nippleType]);
 					if(pc.breastRows[x].fuckable()) output2(", Fuckable");
-					if(pc.breastRows[x].nippleType == GLOBAL.NIPPLE_TYPE_DICK) output2("\n<b>* Nipple, Genital Type: </b>" + GLOBAL.TYPE_NAMES[pc.breastRows[x].dickNippleType]);
+					if(pc.breastRows[x].nippleType == GLOBAL.NIPPLE_TYPE_DICK) output2("\n<b>* Nipple, Genital Type: </b>" + GLOBAL.TYPE_NAMES[pc.dickNippleType]);
 					if(pc.breastRows[x].nippleType != GLOBAL.NIPPLE_TYPE_FUCKABLE && pc.breastRows[x].nippleType != GLOBAL.NIPPLE_TYPE_FLAT && pc.breastRows[x].nippleType != GLOBAL.NIPPLE_TYPE_INVERTED)
 					{
 						if(pc.breastRows[x].nippleType == GLOBAL.NIPPLE_TYPE_DICK)
@@ -2391,7 +2565,7 @@ public function statisticsScreen(showID:String = "All"):void
 							output2(" " + GLOBAL.FLAG_NAMES[pc.cocks[x].cockFlags[i]] + ",");
 						}
 					}
-					if(pc.cocks[x].cockColor != "") output2(" " + StringUtil.toTitleCase(pc.cocks[x].cockColor) + ",");
+					if(pc.cocks[x].cockColor != "") output2(" " + StringUtil.toDisplayCase(pc.cocks[x].cockColor) + ",");
 					output2(" " + GLOBAL.TYPE_NAMES[pc.cocks[x].cType]);
 					output2("\n<b>* Length, Flaccid: </b>" + prettifyLength(pc.cLength(x) * pc.cocks[x].flaccidMultiplier));
 					output2("\n<b>* Length, Erect: </b>" + prettifyLength(pc.cLength(x)));
@@ -2404,8 +2578,8 @@ public function statisticsScreen(showID:String = "All"):void
 					}
 					else output2("\n<b>* Volume: </b>" + prettifyVolume(pc.cockVolume(x)));
 					output2("\n<b>* Capacity: </b>" + prettifyVolume(pc.cockCapacity(x)));
-					if(pc.cocks[x].pierced != 0) output2("\n<b>* Piercing: </b>" + pc.cocks[x].pierced + " " + StringUtil.toTitleCase(pc.cocks[x].pShort));
-					if(pc.cocks[x].sock != "") output2("\n<b>* Sock: </b>" + StringUtil.toTitleCase(pc.cocks[x].sock));
+					if(pc.cocks[x].pierced != 0) output2("\n<b>* Piercing: </b>" + pc.cocks[x].pierced + " " + StringUtil.toDisplayCase(pc.cocks[x].pShort));
+					if(pc.cocks[x].sock != "") output2("\n<b>* Sock: </b>" + StringUtil.toDisplayCase(pc.cocks[x].sock));
 				}
 			}
 		}
@@ -2454,7 +2628,7 @@ public function statisticsScreen(showID:String = "All"):void
 							output2(" " + GLOBAL.FLAG_NAMES[pc.vaginas[x].vagooFlags[i]] + ",");
 						}
 					}
-					if(pc.vaginas[x].vaginaColor != "") output2(" " + StringUtil.toTitleCase(pc.vaginas[x].vaginaColor) + ",");
+					if(pc.vaginas[x].vaginaColor != "") output2(" " + StringUtil.toDisplayCase(pc.vaginas[x].vaginaColor) + ",");
 					output2(" " + GLOBAL.TYPE_NAMES[pc.vaginas[x].type]);
 					output2("\n<b>* Hymen:</b>");
 					if(pc.vaginas[x].hymen) output2(" Virgin");
@@ -2469,8 +2643,8 @@ public function statisticsScreen(showID:String = "All"):void
 					output2("\n<b>* Wetness Level: </b>" + formatFloat(pc.vaginas[x].wetness(), 3));
 					if(pc.vaginas[x].wetness() >= 4) output2(", Squirter");
 					if(pc.vaginas[x].clits > 0) output2("\n<b>* Clitoris: </b>" + pc.vaginas[x].clits);
-					if(pc.vaginas[x].clitPierced != 0) output2("\n<b>* Clit Piercing: </b>" + pc.vaginas[x].clitPierced + " " + StringUtil.toTitleCase(pc.vaginas[x].clitPShort));
-					if(pc.vaginas[x].labiaPierced != 0) output2("\n<b>* Labia Piercing: </b>" + pc.vaginas[x].labiaPierced + " " + StringUtil.toTitleCase(pc.vaginas[x].labiaPShort));
+					if(pc.vaginas[x].clitPierced != 0) output2("\n<b>* Clit Piercing: </b>" + pc.vaginas[x].clitPierced + " " + StringUtil.toDisplayCase(pc.vaginas[x].clitPShort));
+					if(pc.vaginas[x].labiaPierced != 0) output2("\n<b>* Labia Piercing: </b>" + pc.vaginas[x].labiaPierced + " " + StringUtil.toDisplayCase(pc.vaginas[x].labiaPShort));
 				}
 			}
 		}
@@ -2545,7 +2719,7 @@ public function statisticsScreen(showID:String = "All"):void
 			{
 				if(pc.sexualPreferences.getPref(i) != 0)
 				{
-					output2("\n<b>* Preferences, " + StringUtil.toTitleCase(GLOBAL.SEXPREF_DESCRIPTORS[i]) + ":</b>");
+					output2("\n<b>* Preferences, " + StringUtil.toDisplayCase(GLOBAL.SEXPREF_DESCRIPTORS[i]) + ":</b>");
 					if(pc.sexualPreferences.getPref(i) >= GLOBAL.REALLY_LIKES_SEXPREF - 0.33335) output2(" Really likes!");
 					else if(pc.sexualPreferences.getPref(i) >= GLOBAL.KINDA_LIKES_SEXPREF - 0.29165) output2(" Kinda likes!");
 					else if(pc.sexualPreferences.getPref(i) >= GLOBAL.KINDA_DISLIKES_SEXPREF - 0.125) output2(" Dislikes!");
@@ -2736,10 +2910,14 @@ public function statisticsScreen(showID:String = "All"):void
 		// Virgin booties claimed
 		var totalVirginitiesTaken:Number = 0;
 		if(StatTracking.getStat("characters/maiden vanae/cherrys popped") > 0) totalVirginitiesTaken += StatTracking.getStat("characters/maiden vanae/cherrys popped");
-		if(!chars["KIRO"].vaginalVirgin) totalVirginitiesTaken++;
-		if(!chars["EMBRY"].vaginalVirgin) totalVirginitiesTaken++;
-		if(!chars["EMBRY"].analVirgin) totalVirginitiesTaken++;
 		if(!chars["ANNO"].analVirgin) totalVirginitiesTaken++;
+		if(!chars["EMBRY"].analVirgin) totalVirginitiesTaken++;
+		if(!chars["EMBRY"].cockVirgin) totalVirginitiesTaken++;
+		if(!chars["EMBRY"].vaginalVirgin) totalVirginitiesTaken++;
+		if(!chars["GEOFF"].analVirgin || flags["GEOFF_TOPPED"] != undefined) totalVirginitiesTaken++;
+		if(!chars["KIRO"].vaginalVirgin) totalVirginitiesTaken++;
+		if(!chars["PENNY"].cockVirgin) totalVirginitiesTaken++;
+		if(!chars["SAENDRA"].cockVirgin) totalVirginitiesTaken++;
 		if(flags["TOOK_DELILAHS_BUTTGINITY"] != undefined) totalVirginitiesTaken++;
 		if(flags["TOOK_PRINCESS_BUTTGINITY"] != undefined) totalVirginitiesTaken++;
 		if(sleepingPartner != "" || totalVirginitiesTaken > 0)
@@ -2789,10 +2967,6 @@ public function statisticsScreen(showID:String = "All"):void
 			if(StatTracking.getStat("pregnancy/queen of the deep eggs") > 0)
 				output2("\n<b>* Births, Water Queen Young: </b>" + StatTracking.getStat("pregnancy/queen of the deep eggs"));
 			// Father
-			if(StatTracking.getStat("pregnancy/raskvel sired/total") > 0)
-				output2("\n<b>* Fathered, Raskvel Eggs: </b>" + StatTracking.getStat("pregnancy/raskvel sired/total"));
-			if(StatTracking.getStat("pregnancy/raskvel sired/day care") > 0)
-				output2("\n<b>* Fathered, Raskvel @ Daycare: </b>" + StatTracking.getStat("pregnancy/raskvel sired/day care"));
 			if(StatTracking.getStat("pregnancy/briha kids") > 0)
 			{
 				output2("\n<b>* Fathered, Briha’s Children:</b>");
@@ -2821,6 +2995,12 @@ public function statisticsScreen(showID:String = "All"):void
 				output2("\n<b>* Fathered, Briha’s Sons: </b>" + StatTracking.getStat("pregnancy/briha sons"));
 			if(StatTracking.getStat("pregnancy/briha daughters") > 0)
 				output2("\n<b>* Fathered, Briha’s Daughters: </b>" + StatTracking.getStat("pregnancy/briha daughters"));
+			if(StatTracking.getStat("pregnancy/raskvel sired/total") > 0)
+				output2("\n<b>* Fathered, Raskvel Eggs: </b>" + StatTracking.getStat("pregnancy/raskvel sired/total"));
+			if(StatTracking.getStat("pregnancy/raskvel sired/day care") > 0)
+				output2("\n<b>* Fathered, Raskvel @ Daycare: </b>" + StatTracking.getStat("pregnancy/raskvel sired/day care"));
+			if(StatTracking.getStat("pregnancy/zil callgirl kids") > 0)
+				output2("\n<b>* Fathered, Zil Call Girl Children: </b>" + StatTracking.getStat("pregnancy/zil callgirl kids"));
 		}
 		
 		//======PARASITE STATISTICS=====//
@@ -3053,13 +3233,13 @@ public function questLogMenu(currentFunc:Function):Boolean
 	// Poe A
 	if(flags["HOLIDAY_OWEEN_ACTIVATED"] != undefined)
 	{
-		if(showID == "Poe A") { output2(header("<u>Poe A</u>", false)); addDisabledGhostButton(4, "Poe A"); }
+		if(showID == "Poe A") { output2(header("<u>Poe A</u>", false)); addDisabledGhostButton(6, "Poe A"); }
 		else addGhostButton(6, "Poe A", currentFunc, "Poe A");
 	}
 	// Uveto
 	if(flags["UVETO_UNLOCKED"] != undefined)
 	{
-		if(showID == "Uveto") { output2(header("<u>Uveto VII</u>", false)); addDisabledGhostButton(4, "Uveto"); }
+		if(showID == "Uveto") { output2(header("<u>Uveto VII</u>", false)); addDisabledGhostButton(7, "Uveto"); }
 		else addGhostButton(7, "Uveto", currentFunc, "Uveto");
 	}
 	// Other Info
@@ -3109,7 +3289,11 @@ public function displayQuestLog(showID:String = "All"):void
 			if(flags["DIDNT_ENGAGE_RIVAL_ON_MHENGA"] != undefined) output2(" Coordinates received, Did not engage [rival.name]");
 			else if(flags["WHUPPED_DANES_ASS_ON_MHENGA"] != undefined) output2(" Coordinates received, Won against Dane");
 			else if(flags["LOST_TO_DANE_ON_MHENGA"] != undefined) output2(" Coordinates received, Lost against Dane");
-			else output2(" <i>In progress...</i>");
+			else
+			{
+				output2(" <i>In progress...</i>");
+				output2("\n<b>* Probe Location:</b> <i>It seems the probe fell deep into the jungles.</i>");
+			}
 			// Scout
 			if(flags["MET_FLAHNE"] == undefined)
 			{
@@ -3124,7 +3308,18 @@ public function displayQuestLog(showID:String = "All"):void
 			output2("\n<b><u>Tarkus</u></b>");
 			output2("\n<b>* Status:</b>");
 			if(flags["PLANET_3_UNLOCKED"] != undefined) output2(" Coordinates received");
-			else output2(" <i>In progress...</i>");
+			else
+			{
+				output2(" <i>In progress...</i>");
+				output2("\n<b>* Probe Location:</b>");
+				if(flags["GAVE_SHEKKA_PROBE"] != undefined) output2(" <i>Probe located in Shekka’s shop.</i>");
+				else output2(" <i>No indication of where the probe fell.</i>");
+				if(flags["MET_UGC_TROOPER_AT_CHASMFALL"] == undefined)
+				{
+					output2("\n<b>* Scanner Feed:</b> <i>There is a lot of activity around the planetary tether.</i>");
+					if(MailManager.isEntryViewed("annoweirdshit")) output2(" <i>Anno confirms this.</i>");
+				}
+			}
 			if(flags["GAVE_SHEKKA_PROBE"] != undefined) output2(", Gave probe to Shekka");
 			// Scout
 			if(flags["BEEN_ON_TARKUS"] != undefined)
@@ -3135,18 +3330,19 @@ public function displayQuestLog(showID:String = "All"):void
 			// The Stellar Tether
 			if(flags["MET_UGC_TROOPER_AT_CHASMFALL"] != undefined && flags["FOUGHT_TAM"] != undefined)
 			{
-				output2("\n<b>* The Stellar Tether:</b>");
+				output2("\n<b><u>The Stellar Tether</u></b>");
+				output2("\n<b>* Status:</b>");
 				if(flags["STELLAR_TETHER_CLOSED"] != undefined && flags["TARKUS_BOMB_TIMER"] != undefined && flags["TARKUS_BOMB_TIMER"] <= 0)
 				{
-					if(!pc.hasKeyItem("Kaska's Detonator") && !pc.hasKeyItem("Khorgan's Detonator")) output2(" Planet spared, <i>Tarasque</i> pirates escaped, Completed?");
-					else if(flags["TARKUS_DESTROYED"] != undefined) output2(" Planet destroyed by pirates of the <i>Tarasque</i>, Completed");
-					else output2(" Planet saved from pirates of the <i>Tarasque</i>, Completed");
+					if(!pc.hasKeyItem("Kaska's Detonator") && !pc.hasKeyItem("Khorgan's Detonator")) output2(" Tarkus spared, <i>Tarasque</i> pirates escaped, Completed?");
+					else if(flags["TARKUS_DESTROYED"] != undefined) output2(" Tarkus destroyed by pirates of the <i>Tarasque</i>, Completed");
+					else output2(" Tarkus saved from pirates of the <i>Tarasque</i>, Completed");
 				}
 				else output2(" <i>In progress...</i>");
 				// Tam
 				if(flags["TAM_DISABLE_METHOD"] != undefined || flags["TAKEN_TAMWOLF"] != undefined)
 				{
-					output2("\n<b>* The Stellar Tether, Tam:</b> Defeated her");
+					output2("\n<b>* Tam:</b> Defeated her");
 					if(flags["TAM_DISABLE_METHOD"] == 1) output2(", Knocked her out");
 					if(flags["TAM_DISABLE_METHOD"] == 2) output2(", Fucked her");
 					if(flags["TAKEN_TAMWOLF"] != undefined) output2(", Took Tam-wolf");
@@ -3154,7 +3350,7 @@ public function displayQuestLog(showID:String = "All"):void
 				// Rocket pods
 				if(flags["ROCKET_PODS_ENCOUNTERED"] != undefined)
 				{
-					output2("\n<b>* The Stellar Tether, Defenses:</b>");
+					output2("\n<b>* Defenses:</b>");
 					if(flags["ROCKET_PODS_HACKED"] != undefined) output2(" Hacked rocket pods");
 					else if(flags["ROCKET_PODS_SNEAKED"] != undefined) output2(" Sneaked passed rocket pods");
 					else output2(" Destroyed rocket pods");
@@ -3162,20 +3358,20 @@ public function displayQuestLog(showID:String = "All"):void
 				// Kaska
 				if(pc.hasKeyItem("Kaska's Detonator") || flags["KASKA_FUCKED"] != undefined)
 				{
-					output2("\n<b>* The Stellar Tether, Kaska:</b> Defeated her");
+					output2("\n<b>* Kaska:</b> Defeated her");
 					if(flags["KASKA_FUCKED"] != undefined) output2(", Fucked her");
 				}
 				// Khorgan
 				if(pc.hasKeyItem("Khorgan's Detonator") || flags["DICKFUCKED_CAPN_KHORGAN"] != undefined || flags["LESBOED_KHORGAN"] != undefined)
 				{
-					output2("\n<b>* The Stellar Tether, Capt. Khorgan:</b> Defeated her");
+					output2("\n<b>* Capt. Khorgan:</b> Defeated her");
 					if(flags["DICKFUCKED_CAPN_KHORGAN"] != undefined) output2(", Dick-fucked her");
 					if(flags["LESBOED_KHORGAN"] != undefined) output2(", Lesbian-fucked her");
 				}
 				// Resources
-				if(flags["PLATINUM_TAKEN"] != undefined) output2("\n<b>* The Stellar Tether, Resources:</b> Taken Platinum 190");
+				if(flags["PLATINUM_TAKEN"] != undefined) output2("\n<b>* Resources:</b> Platinum 190 taken");
 				// Bomb
-				if(flags["TARKUS_BOMB_TIMER"] != undefined && flags["TARKUS_BOMB_TIMER"] > 0) output2("\n<b>* The Stellar Tether, Time-Bomb Countdown: </b>" + prettifyMinutes(flags["TARKUS_BOMB_TIMER"]));
+				if(flags["TARKUS_BOMB_TIMER"] != undefined && flags["TARKUS_BOMB_TIMER"] > 0) output2("\n<b>* Time-Bomb Countdown: </b>" + prettifyMinutes(flags["TARKUS_BOMB_TIMER"]));
 			}
 			mainCount++;
 		}
@@ -3184,8 +3380,14 @@ public function displayQuestLog(showID:String = "All"):void
 		{
 			output2("\n<b><u>Myrellion</u></b>");
 			output2("\n<b>* Status:</b>");
-			if(flags["UVETO_UNLOCKED"] != undefined) output2(" Coordinates received");
-			else output2(" <i>In progress...</i>");
+			if(reclaimedProbeMyrellion()) output2(" Coordinates received");
+			else
+			{
+				output2(" <i>In progress...</i>");
+				output2("\n<b>* Probe Location:</b>");
+				if(nyreaDungeonFinished()) output2(" <i>Probe has been located.</i>");
+				else output2(" <i>Probe appears to be in some kind of royal throne room.</i>");
+			}
 			// Scout
 			if(flags["MYRELLION_EMBASSY_VISITED"] != undefined)
 			{
@@ -3205,7 +3407,6 @@ public function displayQuestLog(showID:String = "All"):void
 						else output2(" Spared Taivra,");
 					}
 					if(flags["KING_NYREA"] != undefined) output2(" Succeeded the throne as " + pc.mf("king","queen") + ",");
-					if(flags["MYRELLION_PROBE_CASH_GOT"] != undefined) output2(" Reclaimed probe,");
 					output2(" Completed");
 				}
 				else output2(" <i>In progress...</i>");
@@ -3353,12 +3554,13 @@ public function displayQuestLog(showID:String = "All"):void
 			// Deck 13
 			if(flags["ANNO_MISSION_OFFER"] != undefined)
 			{
-				output2("\n<b><u>The Ghost Deck</u></b>");
+				if(flags["DECK13_COMPLETE"] != undefined) output2("\n<b><u>Ghost in the Machine</u></b>");
+				else output2("\n<b><u>The Ghost Deck</u></b>");
 				output2("\n<b>* Status:</b>");
 				if(flags["ANNO_MISSION_OFFER"] <= 1) output2(" Offered");
 				else
 				{
-					if(flags["DECK13_COMPLETE"] != undefined) 
+					if(flags["DECK13_COMPLETE"] != undefined)
 					{
 						if(flags["DECK13_GRAY_PRIME_DECISION"] == 1) output2(" Helped Nova with cybernetic bodies");
 						if(flags["DECK13_GRAY_PRIME_DECISION"] == 2) output2(" Convinced Nova to make use of gray goo");
@@ -3532,7 +3734,7 @@ public function displayQuestLog(showID:String = "All"):void
 			if(flags["BEEN_TO_MYRELLION_BAR"] != undefined && flags["MET_KARA"] != undefined)
 			{
 				output2("\n<b><u>KaraQuest</u></b>");
-				output2("\n<b>* First Encounter:</b>");
+				output2("\n<b>* Status:</b>");
 				if(flags["LET_SHADE_AND_KARA_DUKE_IT_OUT"] != undefined) output2(" Ignored Kara and Shade");
 				else if(flags["DISTRACTED_SHADE"] != undefined) output2(" Distracted Shade");
 				else if(flags["TRIPPED_ON_SHADE"] != undefined) output2(" Tripped on Shade");
@@ -3544,6 +3746,66 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["LOST_TO_SHADE_WITH_KARA"] != undefined) output2(", Lost against Shade");
 				if(flags["SHADE_PAID_YOU"] != undefined) output2(", Rewarded by Shade, Completed");
 				if(flags["KARA_PAID_YOU"] != undefined) output2(", Rewarded by Kara, Completed");
+				sideCount++;
+			}
+			// Kara's Big Adventure! - Pt.2
+			if(flags["KQ2_QUEST_OFFER"] != undefined)
+			{
+				output2("\n<b><u>KaraQuest 2: Eye of the Beholder</u></b>");
+				output2("\n<b>* Status:</b>");
+				if(flags["KQ2_QUEST_DETAILED"] == undefined)
+				{
+					output2(" Mission offered, Invited to meet Kara");
+				}
+				else
+				{
+					output2(" Met Kara");
+					if(flags["KQ2_QUEST_BEGIN"] == 1) output2(", Accepted mission");
+					else if(flags["KQ2_QUEST_BEGIN"] == 2) output2(", Rejected mission");
+					else output2(", Undecided about mission");
+					if(flags["KQ2_SEX_PAY"] != undefined) output2(", Kara sexed you");
+					if(flags["KQ2_CREDS_FIRST"] != undefined) output2(", Kara paid you");
+					if(flags["KQ2_KHANS_FILES"] != undefined) output2(", Took Khan’s files");
+					// Pirate Base
+					if(9999 == 0)
+					{
+						output2("\n<b>* Pirate Base, Kara, Status:</b>");
+						if(flags["KQ2_KARA_WITH_PC"] == 1) output2(" At your side");
+						if(flags["KQ2_KARA_WITH_PC"] == 2) output2(" At the radio tower");
+						else output2(" <i>Unknown</i>");
+					}
+					if(9999 == 0)
+					{
+						output2("\n<b>* Pirate Base, Entrance:</b>");
+						if(flags["KQ2_RND_ENTRANCE_OPEN"] == 1) output2(" Blown open with tank");
+						else if(flags["KQ2_RND_ENTRANCE_OPEN"] == 2) output2(" Opened with keycard");
+						else if(flags["KQ2_RND_ENTRANCE_OPEN"] == 3) output2(" Opened with manual override");
+						else if(flags["KQ2_RND_ENTRANCE_OPEN"] == 4) output2(" Opened by Kara");
+						else output2(" Closed");
+					}
+					if(flags["KQ2_RF_KENNEL_USED"] != undefined)
+					{
+						output2("\n<b>* Pirate Base, RF Kennel:</b>");
+						if(flags["KQ2_RF_KENNEL_USED"] == 1) output2(" Used to fix Tam-wolf");
+						else if(flags["KQ2_RF_KENNEL_USED"] == 2) output2(" Used to upgrade Tam-wolf");
+						else output2(" Unused");
+					}
+					if(flags["KQ2_WATSTON_MET"] != undefined) output2("\n<b>* Pirate Base, Watston:</b> Met it");
+					if(flags["KQ2_DEFEATED_ENGINEER"] != undefined) output2("\n<b>* Pirate Base, Engineer:</b> Defeated her");
+					if(flags["KQ2_DEFEATED_JUGGERNAUT"] != undefined) output2("\n<b>* Pirate Base, Juggernaut:</b> Defeated him");
+					if(flags["KQ2_DEFEATED_KHAN"] != undefined)
+					{
+						output2("\n<b>* Pirate Base, Dr.Khan:</b> Met him, Defeated him");
+						if(9999 == 0) output2(", Sexed him with Kara");
+					}
+					// Nuke 'em, Rico!
+					if(flags["KQ2_NUKE_STARTED"] != undefined)
+					{
+						output2("\n<b>* Pirate Base, Nuke:</b>");
+						if(9999 == 0) output2(" Activated, Detonated, Destroyed Myrellion");
+						else output2(" Activated " + prettifyMinutes(GetGameTimestamp() - flags["KQ2_NUKE_STARTED"]) + " ago");
+					}
+				}
 				sideCount++;
 			}
 			// MarshalQuestuuuuuu
@@ -3611,6 +3873,33 @@ public function displayQuestLog(showID:String = "All"):void
 					if(flags["NEVRIE_QUEST"] < 2) output2(", Return to Nevrie");
 				}
 				else output2(" <i>Not yet obtained</i>");
+				sideCount++;
+			}
+			// Red Myr Venom Addiction
+			if(CodexManager.entryViewed("Red Myr") && (drankMyrVenom() || sexedMyrVenom()))
+			{
+				output2("\n<b><u>Red Myr Venom</u></b>");
+				output2("\n<b>* Status:</b>");
+				if(pc.hasPerk("Venom Slut")) output2(" Complete venom slut");
+				else if(flags["VENOM_PROGRESS"] != undefined && flags["VENOM_PROGRESS"] > 0)
+				{
+					if(pc.hasStatusEffect("Red Myr Venom")) output2(" Currently affected");
+					else output2(" In system");
+					if(flags["VENOM_ADDICTION"] != undefined && flags["VENOM_ADDICTION"] > 0)
+					{
+						output2(", Addicted");
+						if(pc.hasStatusEffect("Myr Venom Withdrawal")) output2(", Undergoing withdrawal");
+						output2("\n<b>* Venom Addiction Level: </b>" + flags["VENOM_ADDICTION"] + "%");
+					}
+					else output2("\n<b>* Venom Dosage Level: </b>" + flags["VENOM_PROGRESS"] + "%");
+				}
+				else
+				{
+					output2(" Tried");
+					if(flags["VENOM_PROGRESS"] != undefined && flags["VENOM_PROGRESS"] <= 0) output2(", Cured");
+				}
+				if(sexedMyrVenom()) output2("\n<b>* Doses, Sex-related: </b>" + flags["SEXED_MYR_VENOM"]);
+				if(drankMyrVenom()) output2("\n<b>* Doses, Drink-related: </b>" + flags["DRANK_MYR_VENOM"]);
 				sideCount++;
 			}
 			// "All the Feels: The Quest"
@@ -3725,6 +4014,7 @@ public function displayQuestLog(showID:String = "All"):void
 			else output2(" <i>In progress...</i>");
 			if(flags["SAEN MET AT THE BAR"] != undefined)
 			{
+				output2("\n<b><u>Phoenix Rising</u></b>");
 				output2("\n<b>* The <i>Phoenix</i>, Status:</b>");
 				if(flags["SAENDRA PHOENIX AVAILABLE"] == undefined) output2(" Locked");
 				else output2(" Unlocked");
@@ -3733,7 +4023,11 @@ public function displayQuestLog(showID:String = "All"):void
 				else
 				{
 					output2(", Undergoing repairs");
-					if(flags["SAENDRA PHOENIX STATUS TIMES"] != undefined) output2("\n<b>* The <i>Phoenix</i>, Times Checked Status: </b>" + flags["SAENDRA PHOENIX STATUS TIMES"]);
+					if(flags["SAENDRA PHOENIX STATUS TIMES"] != undefined)
+					{
+						output2(", Status checked");
+						if(flags["SAENDRA PHOENIX STATUS TIMES"] != 1) output2(" " + num2Text(flags["SAENDRA PHOENIX STATUS TIMES"]) + " times");
+					}
 				}
 			}
 			distressCount++;
@@ -3776,6 +4070,7 @@ public function displayQuestLog(showID:String = "All"):void
 			{
 				output2(" Responded, Cleared Deck 92, Rescue time expired, Peter died");
 				if(flags["SAENDRA_XPACK1_CREDITOFFER"] == 2) output2(", Paid for the <i>Phoenix</i>, Completed");
+				if(flags["ZIL_CALLGIRL_SEXED"] != undefined && flags["ZIL_CALLGIRL_SEXED"] > 0) output2("\n<b>* Call Girl, Times Sexed: </b>" + zilCallGirlSexed());
 			}
 			
 			if(flags["SAENDRA_XPACK1_CALLGIRLSTATE"] != undefined)
@@ -3811,6 +4106,18 @@ public function displayQuestLog(showID:String = "All"):void
 				output2("\n<b>* Valeria:</b> Asked her for help");
 				if(flags["SAENDRA_XPACK1_ASKEDVAL"] == 2) output2(", Couldn’t hack security");
 			}
+			distressCount++;
+		}
+		// Operation: Spooky Aliens
+		if(9999 == 0)
+		{
+			output2("\n<b><u>The Kashima Incident</u></b>");
+			output2("\n<b>* Status:</b>");
+			if(9999 == 0)
+			{
+				output2(" Completed");
+			}
+			else output2(" <i>In progress...</i>");
 			distressCount++;
 		}
 		// Operation: Tanuki Problems #69
@@ -4099,10 +4406,11 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Public
-			if(flags["NEW_TEXAS_GANGBANGED"] != undefined) 
+			if(flags["NEW_TEXAS_GANGBANGED"] != undefined || flags["TEXAS_GRAVCUFFS_COWORGY"] != undefined) 
 			{
 				output2("\n<b><u>New Texas Public</u></b>");
 				if(flags["NEW_TEXAS_GANGBANGED"] != undefined) output2("\n<b>* Alpha Bull-Men, Times Gangbanged By: </b>" + flags["NEW_TEXAS_GANGBANGED"]);
+				if(flags["TEXAS_GRAVCUFFS_COWORGY"] != undefined) output2("\n<b>* Curvy Cowgirls, Times Gangbanged By: </b>" + flags["TEXAS_GRAVCUFFS_COWORGY"]);
 				variousCount++;
 			}
 			// Big T's Ranch
@@ -4619,7 +4927,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["ENCOUNTERED_ZIL"] != undefined)
 				{
 					output2("\n<b>* Male Zil, Times Encountered: </b>" + flags["ENCOUNTERED_ZIL"]);
-					if(flags["TIMES_LOST_TO_ZIL"] != undefined) output2("\n<b>* Male Zil, Combat, Times Lost: </b>" + flags["TIMES_LOST_TO_ZIL"]);
+					//if(flags["TIMES_LOST_TO_ZIL"] != undefined) output2("\n<b>* Male Zil, Combat, Times Lost To: </b>" + flags["TIMES_LOST_TO_ZIL"]);
 					if(flags["TIMES_LOSS_SUCKED_ZIL_MALE"] != undefined) output2("\n<b>* Male Zil, Combat, Times Sucked His Cock Upon Losing: </b>" + flags["TIMES_LOSS_SUCKED_ZIL_MALE"]);
 				}
 				variousCount++;
@@ -4651,6 +4959,26 @@ public function displayEncounterLog(showID:String = "All"):void
 		
 		if(showID == "Tarkus" || showID == "All")
 		{
+			// Arbetz Travel Agency
+			if(flags["ARBETZ_ENTERED"] != undefined)
+			{
+				output2("\n<b><u>Arbetz Travel Agency</u></b>");
+				output2("\n<b>* Status:</b>");
+				if(hours >= 9 && hours < 21) output2(" Open");
+				else output2(" Closed");
+				if(pc.hasStatusEffect("Arbetz Busy Cooldown")) output2(", Busy today");
+				if(flags["UNA_MET"] != undefined) output2("\n<b>* Una:</b> Met her");
+				else output2("\n<b>* Gabilani Woman:</b> Seen her");
+				if(flags["ARBETZ_SEX_ORAL"] != undefined) output2("\n<b>* Una, Times Oral Sexed Her: </b>" + flags["ARBETZ_SEX_ORAL"]);
+				if(flags["ARBETZ_SEX_HATE_FUCK"] != undefined) output2("\n<b>* Una, Times Hate Fucked Her: </b>" + flags["ARBETZ_SEX_HATE_FUCK"]);
+				if(flags["UNA_TALKED"] >= 4)
+				{
+					output2("\n<b>* Godi & Petr:</b> Met them");
+					if(flags["ARBETZ_SEX_ONE_BOY"] != undefined) output2("\n<b>* Godi, Times Sexed: </b>" + flags["ARBETZ_SEX_ONE_BOY"]);
+					if(flags["ARBETZ_SEX_TWO_BOYS"] != undefined) output2("\n<b>* Godi & Petr, Times Spitroasted By: </b>" + flags["ARBETZ_SEX_TWO_BOYS"]);
+				}
+				variousCount++;
+			}
 			// Bimbotorium
 			if(flags["MET_DR_BADGER"] != undefined)
 			{
@@ -5375,6 +5703,33 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(StatTracking.getStat("pregnancy/queen of the deep eggs") > 0) output2(", Progenitor of race");
 				variousCount++;
 			}
+			// Fungus Passage
+			if(flags["SUCKED_FUNGUS"] != undefined || flags["FUNGUS_QUEEN_SAVED"] != undefined || flags["LET_FUNGUS_QUEEN_DIE"] != undefined)
+			{
+				output2("\n<b><u>Fungal Passage</u></b>");
+				// Fungal Queen
+				output2("\n<b>* Infected Myr Queen:</b> Encountered");
+				if(flags["SUCKED_FUNGUS"] != undefined) output2(", Sucked her tits");
+				if(flags["LET_FUNGUS_QUEEN_DIE"] != undefined) output2(", Abandoned her, Let her die");
+				if(flags["FUNGUS_QUEEN_SAVED"] != undefined)
+				{
+					output2(", Saved her");
+					// Rogue Robot
+					output2("\n<b>* Rogue KihaCorp Deconstruction Unit:</b> Destroyed");
+					// Resources
+					output2("\n<b>* Resources:</b> Crystallized Sophinol claimed");
+				}
+				variousCount++;
+			}
+			// Village of the Goos
+			if(flags["MET_CGOOS"] != undefined)
+			{
+				output2("\n<b><u>Ganraen Village</u></b>");
+				output2("\n<b>* Village:</b> Visited, Imprisoned and freed from jail");
+				output2("\n<b>* Issett:</b> Met her");
+				if(flags["MET_CGOO_SHOPKEEP"] != undefined) output2("\n<b>* Ganraen Shopkeeper:</b> Met her");
+				variousCount++;
+			}
 			// ReallyJustSpaceSavin
 			if(flags["MET_SEIFYN"] != undefined)
 			{
@@ -5515,10 +5870,12 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Deep Caverns
-			if(flags["MET_INFECTED_MYR_FEMALE"] != undefined || flags["MET_NYREA_ALPHA"] != undefined || flags["MET_NYREA_BETA"] != undefined)
+			if(flags["MET_GOO_KNIGHT"] != undefined || flags["MET_INFECTED_MYR_FEMALE"] != undefined || flags["MET_INFECTED_MYR_MALE"] != undefined || flags["MET_NYREA_ALPHA"] != undefined || flags["MET_NYREA_BETA"] != undefined)
 			{
 				output2("\n<b><u>The Deep Caverns</u></b>");
+				if(flags["MET_GOO_KNIGHT"] != undefined) output2("\n<b>* Ganraen Knight, Times Encountered: </b>" + flags["MET_GOO_KNIGHT"]);
 				if(flags["MET_INFECTED_MYR_FEMALE"] != undefined) output2("\n<b>* Female Infected Myr, Times Encountered: </b>" + flags["MET_INFECTED_MYR_FEMALE"]);
+				if(flags["MET_INFECTED_MYR_MALE"] != undefined) output2("\n<b>* Male Infected Myr, Times Encountered: </b>" + flags["MET_INFECTED_MYR_MALE"]);
 				if(flags["MET_NYREA_ALPHA"] != undefined) output2("\n<b>* Alpha Nyrean Huntress, Times Encountered: </b>" + flags["MET_NYREA_ALPHA"]);
 				if(flags["MET_NYREA_BETA"] != undefined) output2("\n<b>* Beta Nyrean Huntress, Times Encountered: </b>" + flags["MET_NYREA_BETA"]);
 				variousCount++;
@@ -5843,11 +6200,12 @@ public function displayEncounterLog(showID:String = "All"):void
 			miscCount++;
 		}
 		// Sexploration: The Sex Toys
-		if(flags["NIVAS_BIONAHOLE_USES"] != undefined || flags["TAMANI_BIONAHOLE_USES"] != undefined || flags["GRAVCUFFS_USES"] != undefined || flags["HOVERHOLE_USES"] != undefined || 9999 == 0)
+		if(flags["NIVAS_BIONAHOLE_USES"] != undefined || flags["SYRI_BIONAHOLE_USES"] != undefined || flags["TAMANI_HOLED"] != undefined || flags["GRAVCUFFS_USES"] != undefined || flags["HOVERHOLE_USES"] != undefined || 9999 == 0)
 		{
 			output2("\n<b><u>Sex Toys</u></b>");
 			// BionaHoles
 			if(flags["NIVAS_BIONAHOLE_USES"] != undefined) output2("\n<b>* BionaHole, Nivas Oxonef, Times Used: </b>" + flags["NIVAS_BIONAHOLE_USES"]);
+			if(flags["SYRI_BIONAHOLE_USES"] != undefined) output2("\n<b>* BionaHole, Syri, Times Used: </b>" + flags["SYRI_BIONAHOLE_USES"]);
 			if(flags["TAMANI_HOLED"] != undefined) output2("\n<b>* BionaHole, Tamani, Times Used: </b>" + flags["TAMANI_HOLED"]);
 			// Grav-Cuffs
 			if(flags["GRAVCUFFS_USES"] != undefined) output2("\n<b>* Grav-Cuffs, Times Used: </b>" + flags["GRAVCUFFS_USES"]);
@@ -5917,4 +6275,90 @@ public function fixPcUpbringingSetNew(upType:uint):void
 	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
+}
+
+// Checkin' da E-mails
+public function goMailGet(mailKey:String = "", timeStamp:int = -1):void
+{
+	var mailFrom:String = "<i>Unknown Sender</i>";
+	var mailFromAdress:String = "<i>Unknown Address</i>";
+	if(timeStamp < 0) timeStamp = GetGameTimestamp();
+	if(mailKey != "" && MailManager.hasEntry(mailKey))
+	{
+		var mailEmail:Object = MailManager.getEntry(mailKey);
+		if(mailEmail.FromCache != null) mailFrom = mailEmail.FromCache;
+		if(mailEmail.FromAddressCache != null) mailFromAdress = mailEmail.FromAddressCache;
+		eventBuffer += "\n\n<b>New Email from " + mailFrom + " ("+ mailFromAdress +")!</b>";
+		MailManager.unlockEntry(mailKey, timeStamp);
+	}
+}
+// Random Emails!
+public function emailRoulette():void
+{
+	var mailList:Array = [];
+	var mailKey:String = "";
+	var mailSubject:String = "\\\[No Subject\\\]";
+	var mailContent:String = "<i>This message turns up empty...</i>";
+	
+	// Character/Event specific:
+	if(!MailManager.isEntryUnlocked("burtsmeadhall") && pc.level >= 1)
+		mailList.push("burtsmeadhall");
+	if(!MailManager.isEntryUnlocked("kihaai") && flags["UNLOCKED_JUNKYARD_PLANET"] != undefined)
+		mailList.push("kihaai");
+	if(!MailManager.isEntryUnlocked("syrividja") && flags["SPAM_MSG_COV8"] != undefined && syriIsAFuckbuddy() && (flags["TIMES_WON_AGAINST_SYRI"] != undefined || flags["TIMES_LOST_TO_SYRI"] != undefined))
+		mailList.push("syrividja");
+	if(!MailManager.isEntryUnlocked("fuckinggoosloots") && celiseIsCrew() && pc.level >= 2)
+		mailList.push("fuckinggoosloots");
+	if(!MailManager.isEntryUnlocked("fuckinggooslootsII") && MailManager.isEntryUnlocked("fuckinggoosloots") && celiseIsCrew() && pc.level >= 5)
+		mailList.push("fuckinggooslootsII");
+	if(!MailManager.isEntryUnlocked("kirofucknet") && flags["RESCUE KIRO FROM BLUEBALLS"] == 1 && kiroTrust() >= 50)
+		mailList.push("kirofucknet");
+	if(!MailManager.isEntryUnlocked("cuzfuckball") && flags["TIMES_MET_FEMZIL"] != undefined && flags["BEEN_ON_TARKUS"] != undefined && pc.level >= 2)
+		mailList.push("cuzfuckball");
+	
+	/*
+	// SPAM: (9999: If does not have spamblocker upgrade toggled on for CODEX.)
+	if(SpamEmailKeys.length > 0 && flags["CODEX_SPAM_BLOCKER"] == undefined && rand(2) == 0)
+		mailList.push(SpamEmailKeys);
+	*/
+	
+	if(mailList.length > 0) mailKey = mailList[rand(mailList.length)];
+	
+	if(mailKey != "" && MailManager.hasEntry(mailKey))
+	{
+		goMailGet(mailKey);
+		
+		// Any special actions/unlocks
+		var mailEmail:Object = MailManager.getEntry(mailKey);
+		if(mailEmail.SubjectCache != null) mailSubject = mailEmail.SubjectCache;
+		if(mailEmail.ContentCache != null) mailContent = mailEmail.ContentCache;
+		
+		// Regular:
+		if(mailKey == "kirofucknet" && (pc.isBimbo() || pc.isBro() || !pc.hasStatusEffect("Focus Pill") || pc.IQ() < 50 || pc.WQ() < 50))
+		{
+			eventBuffer += " The subject line reads <i>“" + mailSubject + "”</i>. Curiously, you open the letter to see what it could be...";
+			eventBuffer += "\n\nThe message is headed by a big holo-image of Kiro with her massive equine dong shoved to the hilt up some girl’s backside, stretching her sphincter like a rubber band. Kiro’s holding the camera and giving you a big, goofy grin and a thumb’s-up.\n\n<i>Kiro Tamahime wants you to join the GalLink group “GalLink Fuckmeet.”\n\nGalLink Fuckmeet: Bone random citizens of the galaxy with no hassle, no commitment, just fun!\n\nSuggested Members: Kiro Tamahime, Saendra en Illya, BigBooty Flahne, Sera Succubus, GirlBoy Alex</i>";
+			eventBuffer += "\n\nYou shrug and click “Join”...\n\nAnd are instantly flooded with several THOUSAND pictures of the group’s members (mostly Kiro) engaged in lewd acts.\n\nWell, at least you won’t need to look for new porn for a while.";
+			pc.lust(20);
+		}
+		// Spam:
+		if(mailKey == "cov8" && flags["SPAM_MSG_COV8"] == undefined)
+			flags["SPAM_MSG_COV8"] = 1;
+		if(mailKey == "fatloss" && pc.isBimbo())
+		{
+			eventBuffer += " The subject line reads <i>“" + mailSubject + "”</i>. Ooo, secrets and stuff! You eagerly open the message and the codex lights up with the display:";
+			eventBuffer += "\n\n<i>" + mailContent + "</i>";
+			eventBuffer += "\n\nMmm, that sounds yummy!";
+			pc.lust(20);
+		}
+		if(mailKey == "estrobloom" && !pc.hasKeyItem("Coupon - Estrobloom"))
+			pc.createKeyItem("Coupon - Estrobloom", 0.9, 0, 0, 0, "Save 10% on your next purchase of Estrobloom!");
+		if(mailKey == "hugedicktoday" && pc.isBro() && pc.hasCock())
+		{
+			eventBuffer += " The subject line reads <i>“" + mailSubject + "”</i>. Hell yeah--who wouldn’t want a bigger dick? You quicky open the message to read its contents and the codex lights up with the display:";
+			eventBuffer += "\n\n<i>" + mailContent + "</i>";
+			eventBuffer += "\n\nYou’re not quite sure you understood all that, but your dick did.";
+			pc.lust(20);
+		}
+	}
 }

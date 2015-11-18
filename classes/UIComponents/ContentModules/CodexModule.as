@@ -23,6 +23,11 @@ package classes.UIComponents.ContentModules
 		public function get htmlText():String { return _codexText.htmlText; }
 		public function set htmlText(v:String):void { _codexText.htmlText = v; }
 		
+		public function resetContentScroll():void
+		{
+			_codexText.scrollV = 0;
+		}
+		
 		public function CodexModule() 
 		{
 			leftBarEnabled = true;

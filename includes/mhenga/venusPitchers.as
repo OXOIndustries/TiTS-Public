@@ -1317,8 +1317,8 @@ public function venusPitcherLayUnfertilizedEgg():void {
 	
 	itemCollect(podLoot);
 
-	clearMenu();
-	addButton(0, "Next", mainGameMenu);
+	//clearMenu();
+	//addButton(0, "Next", mainGameMenu);
 }
 
 public function rumblyInYourTummy():void 

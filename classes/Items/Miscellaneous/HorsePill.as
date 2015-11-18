@@ -144,7 +144,7 @@
 			if(target.willpower() / target.willpowerMax() > 0.33)
 				TFList[TFList.length] = 9;
 			//#10 Remove horns
-			if(target.horns > 0)
+			if(target.hasHorns())
 				TFList[TFList.length] = 10;
 			//#11 Remove antennae
 			if(target.antennae > 0)
@@ -467,9 +467,8 @@
 				{
 					if (target.hornsUnlocked(0))
 					{
-						kGAMECLASS.eventBuffer += "Your horn";
-						if(target.horns > 1) kGAMECLASS.eventBuffer += "s audibly crack";
-						else kGAMECLASS.eventBuffer += " audibly cracks";
+						kGAMECLASS.eventBuffer += "Your [pc.hornsNoun] audibly crack";
+						if(target.horns == 1) kGAMECLASS.eventBuffer += "s";
 						kGAMECLASS.eventBuffer += ", falling to the ground a second later. Picking ";
 						if(target.horns == 1) kGAMECLASS.eventBuffer += "it";
 						else kGAMECLASS.eventBuffer += "them";
@@ -480,9 +479,7 @@
 						if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) kGAMECLASS.eventBuffer += "are";
 						else kGAMECLASS.eventBuffer += "is";
 						kGAMECLASS.eventBuffer += " all that remains in place of your [pc.horns].</b>";
-						target.horns = 0;
-						target.hornType = GLOBAL.TYPE_HUMAN;
-						target.hornLength = 0;
+						target.removeHorns();
 					}
 					else
 					{

@@ -68,7 +68,7 @@ public function myrellionManorGoInside():Boolean
 
 	output("While you’re here in Kressia, you figure it’d be prudent to meet with the occupation force’s commander.");
 	// Not found the probe yet
-	if (reclaimedProbeMyrellion()) output(" She may have information on any alien technology that’s gone through here, like one of your father’s probes.");
+	if (!reclaimedProbeMyrellion()) output(" She may have information on any alien technology that’s gone through here, like one of your father’s probes.");
 	output(" After all, you’re a visiting UGC citizen, and a high-profile one at that. What’s the worst they could do to you?");
 	
 	output("\n\nYou move past the sentry and step through the wide doorway. The scene that greets you upon entering certainly suits the hubbub you heard from outside. The first comparison that comes to mind is a kicked anthill, which brings a small smile to your face. Uniformed red myr rush back and forth around the office-like room, carrying papers and boxes while hurriedly making their way through the maze of desks and workspaces. Decorated officers move about, picking up files or delivering instructions. Though everyone is speaking in a low voice, the presence of so much activity, even in a large room like this, is almost deafening. It’s putting you on edge, and you wonder how the myr are able to function like this.");
@@ -180,7 +180,7 @@ public function selleraYourMission():void
 	else if (pc.isMischievous()) output(" a comically exaggerated cough");
 	else output(" a blunt and straightforward clearing of your throat");
 	output(", you ask if she knows anything about");
-	if (reclaimedProbeMyrellion()) output(" where the probe could be");
+	if (!reclaimedProbeMyrellion()) output(" where the probe could be");
 	else output(" how the probe made it all the way into the caverns");
 	output(". If anyone would know, the commander of every single soldier in Kressia is a very likely candidate.");
 	

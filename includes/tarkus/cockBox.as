@@ -79,13 +79,14 @@ public function useInstalledDickBox():void
 	//Build dis menu
 	for(var y:int = 0; y < pc.totalCocks(); y++)
 	{
-		output("#" + (y+1) + ": [pc.AccurateCockName " + y + "]\n")
+		output("<b>#" + (y+1) + ":</b> " + formatFloat(pc.cLength(y),3) + " in long, " + pc.cocks[x].cockColor + " [pc.accurateCockName " + y + "]\n")
 		if(pc.cocks[y].thickness() <= 4 && pc.cocks[y].cLength() <= 20) addButton(y,"#" + (y+1),cockBoxUse,y,"#"+(y+1),"Stick your [pc.cockNoun " + y + "] in there.");
 		else addDisabledButton(y,"#" + (y+1),"#" + (y+1),"Your [pc.cockNoun " + y + "] is too big to fit in the hole.");
 	}
-	if(!pc.hasCock()) addDisabledButton(0,"No Penis","No Penis","You don't have any penis to insert into the machine.");
+	if(!pc.hasCock()) addDisabledButton(0,"No Penis","No Penis","You don’t have any penis to insert into the machine.");
 	if(pc.cockTotal() == 1) addButton(0,"Yes",cockBoxUse,0,"Yes","Yes, you will stick your dick in that box.");
-	addButton(14,"Leave",mainGameMenu);
+	if(currentLocation == "SHIP INTERIOR") addButton(14,"Back",shipStorageMenuRoot);
+	else addButton(14,"Leave",mainGameMenu);
 }
 
 //Insert Dick
@@ -100,7 +101,7 @@ public function cockBoxUse(x:int):void
 		//Ever “FAILED”:
 		if(flags["DONG_DESIGNER_MALFUNCTIONED"] != undefined) output("potentially ");
 		output("magnificent transformation. Puffs of electrochemically-warmed air roll out of the entrance, a palpable reminder of just how warm the embrace of the TamaniCorp Dong Designer is going to be once you finally push forward.");
-		output("\n\nThe parting of the machine's pink-colored liner is just as pleasurable as you remember, both slick and purposefully textured to stimulate your flesh on the way through. They seal tight around your [pc.base " + x + "], firm enough to make your [pc.cock " + x + "] bloat, but not painfully so. You could probably fuck this thing if you wanted to, but there’s really no need to. It’ll do all the work once you select the kind of prick you want.");
+		output("\n\nThe parting of the machine’s pink-colored liner is just as pleasurable as you remember, both slick and purposefully textured to stimulate your flesh on the way through. They seal tight around your [pc.base " + x + "], firm enough to make your [pc.cock " + x + "] bloat, but not painfully so. You could probably fuck this thing if you wanted to, but there’s really no need to. It’ll do all the work once you select the kind of prick you want.");
 		output("\n\nSloshing audibly around your girth, the fluid-rich interior floods in an instant, submerging you in hot, sticky-slick goo that rapidly firms around your [pc.dickColor " + x + "] boner, cupping it like a lover’s hand. As it is, you can feel your length twitching against the gelatinous embrace while it shapes into a perfect mold of your [pc.cock " + x + "].");
 		output("\n\nYou could swear the machine gives you a loving caress when it finishes, but your attention is pulled away by flash of the holographic display. The waiting screen has vanished, replaced by pictures of a bevy of alien boners. All you have to do is pick one.");
 		if(flags["DONG_DESIGNER_MALFUNCTIONED"] != undefined) output(" Hopefully it’ll work correctly this time...");
@@ -113,12 +114,19 @@ public function cockBoxUse(x:int):void
 		output("\n\nYou could swear it finishes with a firm, joyous squeeze.");
 		output("\n\nOnly then does the loading screen vanish and allow you to select a new form for your dick. What do you press?");
 	}
+	cockBoxMenu(x);
+}
+
+//Insert Dick
+public function cockBoxMenu(x:int):void
+{
 	clearMenu();
 	addButton(0,"Ausar",dickBoxTF,[x,GLOBAL.TYPE_CANINE],"Ausar","Get a knotted, ausar penis.");
 	addButton(1,"Equine",dickBoxTF,[x,GLOBAL.TYPE_EQUINE],"Equine","Get a penis like that of a terran horse.");
 	addButton(2,"Kaithrit",dickBoxTF,[x,GLOBAL.TYPE_FELINE],"Kaithrit","Get a penis with textured nubs like a kaithrit.");
 	addButton(3,"Kui-Tan",dickBoxTF,[x,GLOBAL.TYPE_KUITAN],"Kui-Tan","Get a bulbous penis, like the kui-tan.");
-	addButton(4,"Terran",dickBoxTF,[x,GLOBAL.TYPE_HUMAN],"Human","Get a fleshy, pink penis, like a terran.");
+	addButton(4,"Leithan",dickBoxTF,[x,GLOBAL.TYPE_LEITHAN],"Leithan","Get a smooth, tapered penis like that of a leithan.");
+	addButton(5,"Terran",dickBoxTF,[x,GLOBAL.TYPE_HUMAN],"Human","Get a fleshy, pink penis, like a terran.");
 	addButton(14,"Back",useInstalledDickBox);
 }
 
@@ -128,8 +136,58 @@ public function dickBoxTFColorSelect(args:Array):void
 {
 	clearOutput();
 	showName("DONG\nDESIGNER");
-	output("The holographic menu depresses beneath your finger. The other dicks disappear, and the icon you’ve chosen splits into a variety of different colorations. What color would you like your soon to be improved manhood to be?");
+	output("The holographic menu depresses beneath your finger. The other dicks disappear, and the icon you’ve chosen splits into a variety of different colorations.");
+	output("\n\nWhat color would you like your soon-to-be improved manhood to be?");
+	
+	var cIdx:int = args[0];
+	var cType:int = args[1];
+	
+	var colors:Array = [];
+	switch (cType)
+	{
+		case GLOBAL.TYPE_HUMAN:
+			addButton(0,"Pink",dickBoxTF, [cIdx, cType, "pink"],"Pink","Your cock’s head will be colored pink.");
+			break;
+		case GLOBAL.TYPE_CANINE:
+			addButton(0,"Pink",dickBoxTF, [cIdx, cType, "pink"],"Pink","Your cock will be colored pink.");
+			addButton(1,"Red",dickBoxTF, [cIdx, cType, "red"],"Red","Your cock will be colored red.");
+			addButton(2,"BrightRed",dickBoxTF, [cIdx, cType, "bright red"],"Bright Red","Your cock will be colored bright red.");
+			addButton(3,"DarkRed",dickBoxTF, [cIdx, cType, "dark red"],"Dark Red","Your cock will be colored dark red.");
+			break;
+		case GLOBAL.TYPE_FELINE:
+			addButton(0,"Pink",dickBoxTF, [cIdx, cType, "pink"],"Pink","Your cock will be colored pink.");
+			addButton(1,"Red",dickBoxTF, [cIdx, cType, "red"],"Red","Your cock will be colored red.");
+			break;
+		case GLOBAL.TYPE_KUITAN:
+			addButton(0,"Pink",dickBoxTF, [cIdx, cType, "pink"],"Pink","Your cock will be colored pink.");
+			addButton(1,"Red",dickBoxTF, [cIdx, cType, "red"],"Red","Your cock will be colored red.");
+			break;
+		case GLOBAL.TYPE_LEITHAN:
+			addButton(0,"Pink",dickBoxTF, [cIdx, cType, "pink"],"Pink","Your cock will be colored pink.");
+			addButton(1,"Purple",dickBoxTF, [cIdx, cType, "purple"],"Purple","Your cock will be colored purple.");
+			addButton(2,"Black",dickBoxTF, [cIdx, cType, "black"],"Black","Your cock will be colored black.");
+			break;
+		case GLOBAL.TYPE_EQUINE:
+			addButton(0,"Pink",dickBoxTF, [cIdx, cType, "pink"],"Pink","Your cock will be colored pink.");
+			addButton(1,"Black",dickBoxTF, [cIdx, cType, "black"],"Black","Your cock will be colored black.");
+			addButton(2,"Mottled",dickBoxTF, [cIdx, cType, "mottled pink and black"],"Mottled Pink and Black","Your cock will be colored in a mottled pink and black pattern.");
+			break;
+	}
+	addButton(13,"Random",dickBoxTF, [cIdx, cType, "null"],"Random","Your cock will be a random color, natural to the penis type.");
+	addButton(14,"Back",cockBoxDickSelect, cIdx);
 }
+
+//Return. Choose dick again...
+public function cockBoxDickSelect(x:int):void
+{
+	clearOutput();
+	showName("DONG\nDESIGNER");
+	output("Changing your mind, you press the button to go back to the dick type menu.");
+	output("\n\nWhat cock shape do you choose?");
+	
+	cockBoxMenu(x);
+}
+
 //Actual Transformation Scene
 //First time!
 public function dickBoxTF(args:Array):void
@@ -206,6 +264,12 @@ public function dickBoxTF(args:Array):void
 	if(testChar.hasCockFlag(GLOBAL.FLAG_FORESKINNED,0) && !pc.hasCockFlag(GLOBAL.FLAG_FORESKINNED,args[0])) output(" Folds of expanding foreskin slip and slide around you, so sensitive and yet perfect for easing your back-and-forth passage through a set of honeyed folds.");
 	if(testChar.hasCockFlag(GLOBAL.FLAG_SHEATHED,0) && !pc.hasCockFlag(GLOBAL.FLAG_SHEATHED,args[0])) output(" Skin bunches up around your base into a loose, musky sheath, the perfect place for your orgasm-locked dick to retreat to once you finally manage to cum.");
 	if(testChar.hasCockFlag(GLOBAL.FLAG_NUBBY,0) && !pc.hasCockFlag(GLOBAL.FLAG_NUBBY,args[0])) output(" Maddeningly, tiny, exquisitely sensitive nubs grow in along the whole of your trembling meat, each demanding in no uncertain terms that you cum and cum hard. How do kaithrit and those like them keep from cumming as soon as they slide inside?");
+	if(testChar.hasCockFlag(GLOBAL.FLAG_SMOOTH,0) && !pc.hasCockFlag(GLOBAL.FLAG_SMOOTH,args[0])) output(" The shaft’s surface smooths out, much more so than is normal, potentially making penetration a lot less painful for both you and your partner.");
+	if(testChar.hasCockFlag(GLOBAL.FLAG_LUBRICATED,0) && !pc.hasCockFlag(GLOBAL.FLAG_LUBRICATED,args[0])) output(" Your pleasure-pole sweats profusely while inside the grips of the glory box and it doesn’t take you too long to realize that your cock has developed some over-active, self-lubricating glands!");
+	if(testChar.hasCockFlag(GLOBAL.FLAG_STICKY,0) && !pc.hasCockFlag(GLOBAL.FLAG_STICKY,args[0])) output(" You are encountering a lot of friction between your shaft and the walls of the box’s orifice... Your cock has developed a stickier reaction to penetration now.");
+	if(testChar.hasCockFlag(GLOBAL.FLAG_PREHENSILE,0) && !pc.hasCockFlag(GLOBAL.FLAG_PREHENSILE,args[0])) output(" Your cock trashes about within the glory hole and with a little concentration, you can feel yourself bending and moving your now-prehensile cock at will!");
+	if(testChar.hasCockFlag(GLOBAL.FLAG_APHRODISIAC_LACED,0) && !pc.hasCockFlag(GLOBAL.FLAG_APHRODISIAC_LACED,args[0])) output(" A musky sent strikes your nostrils as you can smell the cloud of aphrodisiacs waft from your man meat.");
+	if(testChar.hasCockFlag(GLOBAL.FLAG_OVIPOSITOR,0) && !pc.hasCockFlag(GLOBAL.FLAG_OVIPOSITOR,args[0])) output(" You feel internal muscular contractions pushing along the length of your shaft as if to allow the passage of some item through and out your phallus--and not just cum either...");
 
 	output("\n\nFeeling so overwhelmingly hard that you fear you’ll burst, you notice the almost ethereal bath of molten pleasure recede, leaving you nothing but the company of your redoubling climactic spasms. [pc.Cum] hoses out of your transformed tip in long ropes, finally registering to your senses. Relief at last! Uncontrollable trembles run through your body as you gain your long-denied release");
 	if(pc.cumQ() <= 100) output(", pumping your meager orgasm into the machine’s moist interior.");
@@ -257,6 +321,7 @@ public function dickBoxTF(args:Array):void
 	flags["USED_DONG_DESIGNER"] = 1;
 	processTime(5);
 	pc.shiftCock(args[0],args[1]);
+	//9999 if(arg[2] != undefined || arg[2] != "null") pc.cocks[args[0]].cockColor = arg[2];
 	//Cause ausar are too cool for sheaths.
 	if(args[1] == GLOBAL.TYPE_CANINE) pc.cocks[args[0]].delFlag(GLOBAL.FLAG_SHEATHED);
 	pc.orgasm();

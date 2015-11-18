@@ -48,7 +48,8 @@
 			this.evasion = 0;
 			this.fortification = 0;
 			
-			this.isUsable = false;
+			//this.isUsable = false;
+			this.combatUsable = false;
 			
 			this.version = _latestVersion;
 		}	

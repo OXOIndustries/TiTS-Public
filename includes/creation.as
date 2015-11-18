@@ -4,20 +4,10 @@ import classes.GameData.MailManager;
 
 
 // Illegal character input check
-public function hasIllegalInput(sText:String = ""):Boolean 
+public function hasIllegalInput(sText:String = ""):Boolean
 {
-	if(
-		sText.indexOf("<") != -1 || 
-		sText.indexOf(">") != -1 || 
-		sText.indexOf("[") != -1 || 
-		sText.indexOf("]") != -1 || 
-		sText.indexOf("\n") != -1 || 
-		sText.indexOf("\t") != -1
-		)
-	{
-		return true;
-	}
-	return false;
+	var r:RegExp = /[^\w ]/g; // Match anything that isn't a word or a space (\w == [A-z0-9])
+	return r.test(sText);
 }
 
 public function creationRouter(e:Event = null):void {
@@ -40,6 +30,7 @@ public function startCharacterCreation(e:Event = null):void
 	chars["PC"].shield = new classes.Items.Protection.BasicShield();
 	chars["PC"].shieldsRaw = chars["PC"].shieldsMax();
 	MailManager.resetMails();
+	userInterface.mailsDisplayButton.Deactivate();
 	hours = 0;
 	minutes = 0;
 	days = 0;
@@ -180,11 +171,13 @@ public function chooseStartingRace(race:String = "human"):void {
 	//Half-leithan Starting Goods
 	else if(pc.originalRace == "half-leithan") {
 		pc.legCount = 6;
+		pc.genitalSpot = 2;
 		//Clawed lizardfeet
 		pc.legType = GLOBAL.TYPE_LIZAN;
 		pc.addLegFlag(GLOBAL.FLAG_DIGITIGRADE);
 		pc.addLegFlag(GLOBAL.FLAG_SCALED);
 		pc.addLegFlag(GLOBAL.FLAG_PAWS);
+		//Non-chitinous leithan arms
 		pc.armType = GLOBAL.TYPE_LEITHAN;
 		//>Four ears: two elfin ears on the side, two bunny ears on top. Probably need a new ear-type for this.
 		pc.earType = GLOBAL.TYPE_LEITHAN;
@@ -199,9 +192,8 @@ public function chooseStartingRace(race:String = "human"):void {
 		pc.addTailFlag(GLOBAL.FLAG_SCALED);
 		pc.addTailFlag(GLOBAL.FLAG_PREHENSILE);
 		pc.skinType = GLOBAL.SKIN_TYPE_SCALES;
-		pc.genitalSpot = 2;
-		CodexManager.unlockEntry("Leithan");
 		pc.scaleColor = "black";
+		CodexManager.unlockEntry("Leithan");
 		this.addButton(0,"Male",setStartingSex,1);
 		this.addButton(1,"Female",setStartingSex,3);
 	}
@@ -878,7 +870,7 @@ public function chooseSexualGift():void {
 	}
 	this.addButton(0,"Virile",applySexualGift,"virile","Virile","Increases the quality, or impregnation chance, of the sperm you produce. <i>This perk also applies if your character is female and gains a penis in the future.</i>");
 	this.addButton(1,"Potent",applySexualGift,"potent","Potent","Increases the quantity - the sheer amount - of sperm you produce. <i>This perk also applies if your character is female and gains a penis in the future.</i>");
-	this.addButton(2,"Elasticity",applySexualGift,"elasticity","‘Elasticity","Allows you to take larger insertions, both vaginally and anally, with less chance of permanent orifice stretching.");
+	this.addButton(2,"Elasticity",applySexualGift,"elasticity","Elasticity","Allows you to take larger insertions, both vaginally and anally, with less chance of permanent orifice stretching.");
 	this.addButton(3,"Fertility",applySexualGift,"fertility","Fertility","Increases your chances of getting pregnant. <i>This perk also applies if your character is male and gains a vagina in the future.</i>");
 	this.addButton(4,"Milky",applySexualGift,"milky","Milky","Ensures that your lactation is more easily induced and much harder to stop.");
 	this.addButton(5,"Incubator",applySexualGift,"incubator","Incubator","Shortens your pregnancy time, making pregnancies come to term quicker. <i>This perk applies to both vaginal and anal pregnancies.</i>");
@@ -1326,8 +1318,7 @@ public function tutorialIntro4():void {
 //The Introduction of Celise (Goo Girl)
 public function openDoorToTutorialCombat():void {
 	clearOutput();
-	this.userInterface.showBust("CELISE");
-	this.userInterface.showName("\nCELISE");
+	showCelise();
 	setLocation("YOUR\nINHERITANCE","TAVROS STATION","SYSTEM: KALAS");
 	output("You open the doorway and step through a little hesitantly, your hands on your " + pc.rangedWeapon.longName + " and " + pc.meleeWeapon.longName + " in case you need them. Visible light slowly increases as the systems dial up in response to your presence, illuminating an amorphous green blob that huddles in the corner. The semi-transparent, emerald mass bulges out at the base and turns to regard you. You aren’t sure how you can make such an assessment when it has no visible face or eyes, but it definitely seems to be reacting to you and you alone. Lurching violently, a bubbling mass erupts from the top of it, sparkling as it builds higher and higher, the cylindrical distention reforming into a more familiar, humanoid shape.");
 	output("\n\nDense insets reveal themselves to be eyes. Darker hued bulges resolve into shapely lips. Excess material drapes down the back of the growing creature into a mane of unkempt, wild hair. The alien makes a sound that resembles a sigh of relief as arms separate from the sides of what must be its torso, while strings of fluid hang between the newborn appendages and the rest of her, reminding you just how gooey this thing is. Finally, the front of the chest bulges out into a pair of pert breasts. At least, they seemed that way at first. More and more liquid flows from seemingly endless reservoirs inside the thing, bloating the improvised mammaries bigger, fuller, and rounder with each passing second. The goo-girl doesn’t stop them until they obscure the bulk of her torso, reminding you of some of the racier porn-stars out there on the extranet.");
@@ -1373,8 +1364,7 @@ public function celiseAI():void {
 public function defeatCelise():void {
 	pc.removeStatusEffect("Round");
 	setLocation("VICTORY OVER\nCELISE","TAVROS STATION","SYSTEM: KALAS");
-	this.userInterface.showBust("CELISE");
-	this.userInterface.showName("\nCELISE");
+	showCelise();
 	output("Celise groans, <i>“Come on, fuck me! Please? Don’t just... leave me like this! I need your juiiiiice!”</i> The last word comes out as a high-pitched, nearly orgasmic whine. Her masturbation gets faster and more lewd with every passing second.");
 	output("\n\nVictor’s hologram faces you and explains, <i>“If you’re seeing this, you learned how to disable Celise. Good work. The key is on the shelf next to the exit.”</i> He sighs and continues, <i>“Most things you run into won’t be nearly as easy to deal with. You’ll want to make sure to master the skills of your vocation and use them to the best of your ability. As you develop your abilities, you’ll find that many of them can be chained together to be more effective. Make sure you do that, or you’ll have a hard time beating some of the galaxy’s worst.”</i>");
 	output("\n\nYou put away your weapons and go to grab your key when a barely cohesive hand wraps around your " + pc.foot() + ". There isn’t enough force behind it to immobilize you, but it does catch your attention. Celise is looking up at you with pleading eyes that would make an Earth puppy proud.");
@@ -1390,8 +1380,7 @@ public function skipCeliseOption():void
 {
 	clearOutput();
 	setLocation("TUTORIAL\nSKIP", "TAVROS STATION", "SYSTEM: KALAS");
-	showBust("CELISE");
-	showName("\nCELISE");
+	showCelise();
 	chars["PC"].removeStatusEffect("In Creation");
 	output("What do you do with Celise? Ignore her, or take her on your crew?");
 	
@@ -1420,8 +1409,7 @@ public function ignoreCelise():void {
 public function takeCelise():void {
 	pc.removeStatusEffect("Round"); // Uh, this was removed in the previous function. Duplicate?
 	clearOutput();
-	this.userInterface.showBust("CELISE");
-	this.userInterface.showName("\nCELISE");
+	showCelise();
 	setLocation("CELISE","TAVROS STATION","SYSTEM: KALAS");
 	//Feed Celise [Male]
 	if(pc.hasCock()) {
@@ -1500,8 +1488,7 @@ public function takeCelise():void {
 //Take Celise on As A Crew Member
 public function takeCeliseAsACrewMember():void {
 	clearOutput();
-	this.userInterface.showBust("CELISE");
-	this.userInterface.showName("\nCELISE");
+	showCelise();
 	//{Nice}
 	if(pc.isNice()) output("You smile broadly and admit that you’d be happier to have her along; the more the merrier, in fact!");
 	//{Mischievious}
@@ -1595,10 +1582,7 @@ public function setRivalGender(sex:int = 0):void
 //Rival Spills the Beans
 public function rivalSpillsTheBeans():void {
 	clearOutput();
-	
-	this.userInterface.showBust(chars["RIVAL"].short.toUpperCase());
-	userInterface.showName(chars["RIVAL"].short.toUpperCase());
-	
+	showRival();
 	setLocation("MEETING\n" + chars["RIVAL"].short.toUpperCase(),"TAVROS STATION","SYSTEM: KALAS");
 	output(chars["RIVAL"].mf("He","She") + "’s " + chars["RIVAL"].mf("male","female") + ", surely. Just as you make that conclusion, " + chars["RIVAL"].mf("he","she") + " turns and spots you. You lean back and try to make yourself look as inconspicuous as a bored, leering stranger can, but it must not work out too well. The silhouette gets up and snatches " + chars["RIVAL"].mf("his","her") + " drink, walking towards you with a slow, overly confident gait that betrays its owner’s nimbleness. You ball your fists and hope that you’re not going to get in a fight on a day like today.");
 	output("\n\nLuckily, the figure resolves into someone more familiar: " + chars["RIVAL"].short + " Steele, obviously on station for the same reason as you. " + chars["RIVAL"].short + " is your cousin, though in this case, familiarity breeds no affection. " + chars["RIVAL"].mf("His","Her") + " father is Maximilian Steele, your Dad’s brother and all around conniving bastard. Uncle Max made his fortune by following your father and filing time-shifted, forged claims on as many of your father’s finds as he could. The worst part of it is that some of the claims actually held up in court, allowing him to make out nearly as well as Dad with a fraction of the risk.");
@@ -1621,8 +1605,7 @@ public function rivalSpillsTheBeans():void {
 //Wake to Find Rival Left in the Night
 public function ohShitGameStarts():void {
 	clearOutput();
-	this.userInterface.showBust(chars["RIVAL"].short.toUpperCase());
-	userInterface.showName(chars["RIVAL"].short.toUpperCase());
+	showRival();
 	setLocation("THE\nMESSAGE","TAVROS STATION","SYSTEM: KALAS");
 	output("When you rise, the Codex beeps and says, <i>“Message received.”</i> You flip it open to read the missive, instead getting blasted with your snotty cousin’s voice as " + chars["RIVAL"].mf("he","she") + " says, <i>“Good morning sleepyhead. I just wanted to let you know that I left not long after you went to bed. My ship does have luxurious sleeping quarters for ten, after all. Ta ta!”</i>");
 	output("\n\n<i>“Message complete,”</i> the codex blithely states.");

@@ -197,6 +197,7 @@
 
 			target.earType = GLOBAL.TYPE_LEITHAN;
 			if (target.earLength < 2) target.earLength = 2 + rand(5);
+			if (target.earLength > 6) target.earLength = 6;
 
 			return true;
 		}

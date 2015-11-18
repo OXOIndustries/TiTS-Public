@@ -58,11 +58,12 @@
 			if(target is PlayerCharacter) {
 				//Consume:
 				kGAMECLASS.clearOutput();
-				kGAMECLASS.output("You have no use for this item at present.");
+				kGAMECLASS.output("The varmint struggles under its restraints, trying to break free.");
+				kGAMECLASS.output("\n\nYou have no use for the creature at present.");
 			}
 			else {
 				kGAMECLASS.clearOutput();
-				kGAMECLASS.output(target.capitalA + target.short + " cannot use the a varmint.");
+				kGAMECLASS.output(target.capitalA + target.short + " cannot use a varmint.");
 			}
 			return true;
 		}
