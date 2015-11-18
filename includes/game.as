@@ -1691,9 +1691,9 @@ public function processTime(arg:int):void {
 	//Saendra Mail
 	if (!MailManager.isEntryUnlocked("saendrathanks") && flags["FALL OF THE PHOENIX STATUS"] >= 1 && flags["SAENDRA_DISABLED"] != 1 && rooms[currentLocation].planet != "SHIP: PHOENIX" && currentLocation != "SHIP INTERIOR") saendraPhoenixMailGet();
 	//Anno Mail
-	if (!MailManager.isEntryUnlocked("annoweirdshit") && flags["MET_ANNO"] != undefined && flags["FOUGHT_TAM"] == undefined && flags["RUST_STEP"] != undefined && rand(10) == 0) goMailGet("annoweirdshit");
+	if (!MailManager.isEntryUnlocked("annoweirdshit") && flags["MET_ANNO"] != undefined && flags["FOUGHT_TAM"] == undefined && flags["RUST_STEP"] != undefined && rand(20) == 0) goMailGet("annoweirdshit");
 	//Other Email Checks!
-	if (rand(50) == 0) emailRoulette();
+	if (rand(100) == 0) emailRoulette();
 	flags["HYPNO_EFFECT_OUTPUT_DONE"] = undefined;
 	variableRoomUpdateCheck();
 	updatePCStats();
@@ -5222,7 +5222,7 @@ public function displayEncounterLog(showID:String = "All"):void
 						if(chars["BESS"].hasVagina())
 						{
 							if(chars["BESS"].hasCock()) output2(", ");
-							if(chars["BESS"].vaginalVirgin) output2("Virgin " + GLOBAL.TYPE_NAMES[chars["BESS"].cocks[0].cType].toLowerCase() + " vagina");
+							if(chars["BESS"].vaginalVirgin) output2("Virgin " + GLOBAL.TYPE_NAMES[chars["BESS"].vaginas[0].type].toLowerCase() + " vagina");
 							else output2(GLOBAL.TYPE_NAMES[chars["BESS"].vaginas[0].type] + " vagina");
 							if(chars["BESS"].vaginas[0].clits == 1) output2(" with a clit");
 							else if(chars["BESS"].vaginas[0].clits > 1) output2(" with " + num2Text(chars["BESS"].vaginas[0].clits) + " clits");
@@ -6282,7 +6282,9 @@ public function goMailGet(mailKey:String = "", timeStamp:int = -1):void
 	{
 		var mailEmail:Object = MailManager.getEntry(mailKey);
 		if(mailEmail.FromCache != null) mailFrom = mailEmail.FromCache;
+		if(mailEmail.From != null) mailFrom = mailEmail.From();
 		if(mailEmail.FromAddressCache != null) mailFromAdress = mailEmail.FromAddressCache;
+		if(mailEmail.FromAddress != null) mailFromAdress = mailEmail.FromAddress();
 		eventBuffer += "\n\n<b>New Email from " + mailFrom + " ("+ mailFromAdress +")!</b>";
 		MailManager.unlockEntry(mailKey, timeStamp);
 	}
@@ -6326,7 +6328,9 @@ public function emailRoulette():void
 		// Any special actions/unlocks
 		var mailEmail:Object = MailManager.getEntry(mailKey);
 		if(mailEmail.SubjectCache != null) mailSubject = mailEmail.SubjectCache;
+		if(mailEmail.Subject != null) mailSubject = mailEmail.Subject();
 		if(mailEmail.ContentCache != null) mailContent = mailEmail.ContentCache;
+		if(mailEmail.Content != null) mailContent = mailEmail.Content();
 		
 		// Regular:
 		if(mailKey == "kirofucknet" && (pc.isBimbo() || pc.isBro() || !pc.hasStatusEffect("Focus Pill") || pc.IQ() < 50 || pc.WQ() < 50))
