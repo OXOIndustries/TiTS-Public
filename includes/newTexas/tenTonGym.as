@@ -11,10 +11,11 @@ output("\n\n");
 output("\n\n[Add directional into gym]");
 */
 
-public function showQuenton():void
+public function showQuenton(nude:Boolean = false):void
 {
 	showName("\nQUENTON");
-	showBust("QUENTON");
+	if(!nude) showBust("QUENTON");
+	else showBust("QUENTON_NUDE");
 }
 
 //Entrance
@@ -28,7 +29,7 @@ public function gymEntranceBonus():Boolean
 	output("\n\nA gated doorway just past the desk leads into the weight room, while a gated hallway on the back wall leads into the rest of the gym. There’s also a closed door marked ‘Office’.");
 	if(flags["MET_QUENTON"] == undefined)
 	{
-		output("\n\nThe bull gives you a giant grin as you walk in. <i>“How do, friend?  Welcome to The Ten Ton Gym. I’m Quenton, owner of this place. Folks ‘round here call me Ten-Ton Quenton.”</i> He chuckles. <i>“I betcha I can getcha looking better than you ever dreamed. Whatcha say?”</i>");
+		output("\n\nThe bull gives you a giant grin as you walk in. <i>“How do, friend? Welcome to The Ten Ton Gym. I’m Quenton, owner of this place. Folks ‘round here call me Ten-Ton Quenton.”</i> He chuckles. <i>“I betcha I can getcha looking better than you ever dreamed. Whatcha say?”</i>");
 	}
 	else if(!pc.hasKeyItem("Ten Ton Gym Membership") && !pc.hasStatusEffect("Gym Pass")) output("\n\nUpon seeing you walk in, Quenton’s familiar grin lights up his face. <i>“How do, friend? Good to see you back. Here for a workout?”</i>");
 	//Has gym membership: 
@@ -92,8 +93,11 @@ public function weightRoomBonusFunction():Boolean
 	//[Hard Workout] Go to Light Workout {locked if PC has [Sore] debuff or doesn’t have 50 energy}
 	if(pc.energy() >= 50 && !pc.hasStatusEffect("Sore")) addButton(1,"Hard Workout",hardWorkout,undefined,"Hard Workout","A hard workout that'll help you build muscle <b>and</b> strength.");
 	else addDisabledButton(1,"Hard Workout","Hard Workout","You're too tired for that workout.");
-
 	//[Cowgirl] Go to Simone
+	/*
+	if(flags["MET_SIMONE"] == undefined) addButton(3,"Cowgirl",simoneWorkoutApproach,undefined,"Cowgirl","A cowgirl can be seen lifting weights here.");
+	else addButton(3,"Lola",simoneWorkoutApproach,undefined,"Lola","Pump some iron with the competitive cowgirl.");
+	*/
 	//[To Entrance]
 	return false;
 }
@@ -180,7 +184,7 @@ public function takeARunInNewTexas():void
 	clearOutput();
 	showName("\nRUNNING");
 	author("Slab Bulkhead");
-	output("Time to move, and there’s no better place for it.  You hit the track and run a quick warmup lap, then decide it’s time to push yourself. The sound of chanting comes from behind you, and you glance back to see the group of young bulls running in cadence.");
+	output("Time to move, and there’s no better place for it. You hit the track and run a quick warmup lap, then decide it’s time to push yourself. The sound of chanting comes from behind you, and you glance back to see the group of young bulls running in cadence.");
 	output("\n\nYou move over to the side to let them pass, then speed up to match their pace, running in time along with them. A few of them grunt a greeting, but every one of them is breathing hard, sweat flowing freely down their chests. They set a grueling pace, but you match it and keep up with them for at least a few miles.");
 	output("\n\nSoon, you’re dripping sweat and have to cool off. One of the bulls razzes you about not being able to keep up, but running with them until you collapse doesn’t sound like the best idea. You head off the track, then grab a gym towel and wipe yourself off.");
 	output("\n\nYou feel like you’ve shed a few pounds from that workout.");
@@ -211,9 +215,12 @@ public function swimmingPoolBonus():Boolean
 	if(pc.energy() >= 50 && !pc.hasStatusEffect("Sore")) addButton(1,"Swim Laps",swimLapsAtZePool,undefined,"Swim Laps","Swim laps in the pool. It'll burn fat and build muscle but leave you tired as a dog.");
 	else addDisabledButton(1,"Swim Laps","Swim Laps","You're too tired for that workout.");
 	//[Spa] Go to Spa
-	addButton(3,"Spa",spaTimesFunStuff,undefined,"Spa","Relax in the spa and recover some energy.");
+	addButton(4,"Spa",spaTimesFunStuff,undefined,"Spa","Relax in the spa and recover some energy.");
 	//[Swimmer] Go to Lola
-
+	/*
+	if(flags["MET_LOLA"] == undefined) addButton(3,"Swimmer",lolaPoolApproach,undefined,"Swimmer","A naked cowgirl floats about here.");
+	else addButton(3,"Lola",lolaPoolApproach,undefined,"Lola","Have some floaty fun with the cowgirl.");
+	*/
 	return false;
 }
 
@@ -255,7 +262,7 @@ public function swimLapsAtZePool():void
 	else output("admire your already nude form");
 	output(" and plunge into the cool water headfirst, coming up with a spurting breath. You head for one of the lanes, and get right into swimming laps. It takes a few strokes for you to find your rhythm, but soon you’re coasting through the water with ease.");
 	output("\n\nAfter a few laps, you swim up alongside the local cows who are also doing laps, and nod a quick greeting to them, then match their pace. They clearly do this a lot, and it’s a struggle at first, but you manage to stay with them for a while.");
-	output("\n\nSoon enough, your limbs start feeling heavy, and your once-smooth strokes start to stutter.  You swim for the edge and pull yourself out, sore but satisfied.");
+	output("\n\nSoon enough, your limbs start feeling heavy, and your once-smooth strokes start to stutter. You swim for the edge and pull yourself out, sore but satisfied.");
 	output("\n\nYou feel stronger and fitter after your swim.");
 	//{+2 muscle tone, -2 frame, +2 toward [Sore] debuff, -50 energy}{Time: 30 minutes}
 	processTime(30);
@@ -351,7 +358,7 @@ public function takeAShowerSloot():void
 			pc.lust(30+rand(10));
 			pc.exhibitionism(1);
 			clearMenu();
-			//addButton(0,"Next",9999);
+			//addButton(0,"Next",showerWithBetsyAndVictoriaApproach);
 			return;
 		}
 	}
@@ -389,6 +396,8 @@ public function talkToQuenton():void
 	if(!pc.hasKeyItem("Ten Ton Gym Membership")) addButton(1,"Life Pass",buyDatLifetimeMembership,undefined,"Life Pass","Ask about purchasing a lifetime membership.");
 	else addDisabledButton(1,"Life Pass","Life Pass","You already have one!");
 	//[Personal] Go to Personal Training {Text: Try to get into Quenton’s workout pants}
+	if(pc.lust() >= 33) addButton(1,"P.Training",quentonPersonalTraining,undefined,"Personal Training","Try to get into Quenton’s workout pants.");
+	else addDisabledButton(2,"P.Training","Personal Training","You are not aroused enough for this.");
 	//[No Thanks] Go to Entrance
 	addButton(14,"Leave",mainGameMenu);
 }
@@ -399,7 +408,7 @@ public function purchaseTempGymMembership():void
 	clearOutput();
 	showQuenton();
 	author("Slab Bulkhead");
-	output("Quenton gives you a nod. <i>“Just here for a quick look or a quick lift?  I gotcha.<i>”</i> He taps a few buttons on his computer, then holds out a hand to you. <i>“That’ll be 500, friend.”</i>");
+	output("Quenton gives you a nod. <i>“Just here for a quick look or a quick lift? I gotcha.<i>”</i> He taps a few buttons on his computer, then holds out a hand to you. <i>“That’ll be 500, friend.”</i>");
 	processTime(1);
 	clearMenu();
 	//[Purchase Day]{Set global flag GYM_MEMBER_DAY to true}{Deduct 50 credits} Go to Purchased Day
@@ -452,240 +461,700 @@ public function purchaseLifetimeGymMembership():void
 	addButton(0,"Next",mainGameMenu);
 }
 
+// Personal Training
+public function quentonPersonalTraining():void
+{
+	clearOutput();
+	author("Slab Bulkhead");
+	
+	//PC’s tone is below 80% of maximum:
+	if(pc.tone < 80)
+	{
+		showQuenton();
+		output("You lean toward Quenton and ask if he does any personal training, if he knows what you mean. He seems to be a man who likes his muscle, so you flex your biceps, just to make sure you get your point across.");
+		output("\n\nQuenton chuckles a little. <i>“I’m flattered, friend, but you’re not what I’d call my type.”</i> He gestures to the pictures hanging on his walls, all the buff cowgirls and bullboys. <i>“I like a good, hard body more than anything else, why I built up the gym in the first place. And why I built up myself, naturally.”</i> A quick flex makes both of his pecs jump.");
+		output("<i>“Now, don’t take it bad, I’m just sayin’. Maybe you spend some time here, get yourself in my kind of shape, and we can see about some personal trainin’.”</i>");
+		// [Back] Go to Entrance
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+	}
+	// PC’s tone is above 80% of maximum
+	else
+	{
+		showQuenton(true);
+		// and has not had sex with Quenton: 
+		if(flags["SEXED_QUENTON"] == undefined) output("<i>“Oh, I get what you’re sayin’,”</i> Quenton says, and stands up to his full height. He puffs out his chest, pecs straining against his shirt, stretching the gym’s logo across his musculature. <i>“There’s nothin’ I like more than a good, hard body against mine, except maybe a good lift. And even that’s made better with a good lay after. Or maybe durin’.”</i> He chuckles. <i>“So I’m up for it if you’re askin’.”</i>");
+		// and has had sex with Quenton: 
+		else output("<i>“You know I do,”</i> Quenton says with a chuckle. <i>“You’re up for another round, then, hardbody?”</i>");
+		output("\n\nDamn right you are. Quenton props a sign that says ‘Be Back Soon’ on the desk, then opens up the door to his office and invites you in, closing the door behind you both.");
+		output("\n\nQuenton’s office is small but simple, with a desk and cabinet taking up about half of it. Lights shine down from the ceiling, and two of the walls are nothing but enormous mirrors.");
+		output("\n\nThe short-horned bull takes a bottle of lube out of one desk drawer, then strips out of his shirt and pants, and spreads his arms and legs as he flexes for you. Quenton is ridiculously ripped, with veins standing out over rock-hard muscles bulging beneath his tanned skin. His foot-long horse cock also has thick veins standing out on either side, with a pair of bulging balls dangling behind it. He’s also entirely hairless, further making all of his muscles and his pronounced package stand out.");
+		output("\n\nQuenton flexes his way through a few poses, then turns to you with a grin, clearly hoping you like what you see. <i>“You pitchin’ or catchin’, hardbody? I’m good for you either way.”</i>");
+		
+		// [Pitch] Go to Pitching Quenton {requires penis or strap-on}
+		// [Catch] Go to Catching Quenton
+		clearMenu();
+		if (pc.lowerUndergarment.hardLightEquipped || pc.hasCock()) addButton(0, "Pitch", quentonTrainingPitch, undefined, "Pitch", "Use your tool to take him from behind.");
+		else addDisabledButton(2, "Pitch", "Pitch", "You don’t have the proper equipment for this.");
+		addButton(1, "Catch", quentonTrainingCatch, "catch", "Catch", "Have him take you from behind.");
+	}
+}
+
+// Pitching Quenton
+public function quentonTrainingPitch():void
+{
+	clearOutput();
+	author("Slab Bulkhead");
+	showQuenton(true);
+	
+	// Create Quenton
+	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
+	if(!pp.hasCock()) pp.createCock();
+	pp.shiftCock(0, GLOBAL.TYPE_EQUINE);
+	pp.cocks[slot].cLengthRaw = 12;
+	pp.elasticity = 1.5;
+	
+	var x:int = -1;
+	if(!pc.lowerUndergarment.hardLightEquipped && pc.hasCock()) x = rand(pc.cocks.length);
+	
+	output("You tell Quenton you want to take him from behind. He puts his hands on his hips and nods");
+	if(!pc.isNude())
+	{
+		if(pc.hasArmor() || (x >= 0 && pc.hasLowerGarment() && !pc.hasUpperGarment()))
+		{
+			output(", then waits as you get out of your");
+			if(pc.hasArmor()) output(" [pc.armor]");
+		}
+		if(pc.hasUpperGarment()) output(". He gives you an appreciative whistle as you shed your [pc.upperUndergarment]");
+		if(x >= 0 && pc.hasLowerGarment())
+		{
+			if(pc.hasArmor() || pc.hasUpperGarment()) output(" and");
+			output(" [pc.lowerUndergarment]");
+		}
+	}
+	output(". <i>“Damn, [pc.name]. You’ve done yourself right, with a build like that.”</i>");
+	output("\n\nQuenton picks up the bottle of lube and drizzles some of it into his palm, then tosses the bottle to you. He rubs the lube all over his chest, making every muscle shine, then flexes again, thrusting his crotch at you.");
+	output("\n\n<i>“Now,”</i> Quenton says, giving you a lewd wink, <i>“let’s see about you doin’ me right.”</i>");
+	output("\n\nYou lube up your [pc.cockOrStrapon] and step up to Quenton. He pulls you close, pressing your [pc.chest] against his muscular pecs, and rubs his dong against your [pc.cockOrStrapon]. His lubed-up hands stroke you and him both,");
+	//if cock:
+	if(x >= 0) output(" his strong grip tugging you to hardness in a handful of strokes");
+	//if strapon:
+	else output(" tugging on your hardlight and providing a pleasing friction through your [pc.lowerUndergarment]");
+	output(". He smells like lube and masculine musk, making your desire build and your [pc.nipples] hard.");
+	output("\n\nQuenton frees one of his hands from the mutual massage and traces it up your side, his touch surprisingly light as he outlines your muscles with his fingertips. There’s a look of mixed lust and approval as he does the same along your arm and shoulder, then across your [pc.chest], giving your nipples a little tweak along the way.");
+	output("\n\n<i>“Body this built,”</i> he says, <i>“goin’ to feel real good against mine.”</i> He gives you another grin. <i>“You ready, hardbody?”</i>");
+	output("\n\nAs if he needed to ask. You grin right back at Quenton and tell him to turn around. He does so, flexing again and watching himself in the mirror before glancing back over his shoulder to you.");
+	output("\n\nYou run your hands down Quenton’s muscular back and down to his narrow hips, then grip both his hard butt cheeks as tight as you can. He only laughs and flexes them, then widens his stance, rests his hands on his thighs as he bends over.");
+	output("\n\n<i>“Slide on home, Steele,”</i> Quenton says. <i>“I’m ready for you.”</i>");
+	output("\n\nYou slide your [pc.cockOrStrapon] down one of Quenton’s cheeks and aim it at his rear entrance. He lets out a low, lusty groan as your head penetrates him, and you drive in slowly, taking hold of his hips and pressing your lubed-up [pc.cockOrStrapon] in.");
+	// PC has large cock:
+	if(x >= 0 && pc.cockVolume(x) > pp.analCapacity()) output(" It’s a tight squeeze, and he grunts once as you push your [pc.cock " + x + "] into the muscle-lined tunnel.");
+	// PC doesn’t have large cock or uses strapon:
+	else output(" It’s an easy fit, and while you wouldn’t call him loose, it’s clearly not the first time he’s been fucked like this.");
+	
+	// PC has cock:
+	if(x >= 0)
+	{
+		pc.cockChange();
+		
+		output("\n\nOnce you’re all the way in, you thrust just a little, getting used to the feel of your cock up his ass. Quenton starts to push back against you, a low growl coming from his throat with every motion as he too eases into it. The muscles of his back and legs tighten and loosen, every movement pushing him into an easy rhythm. After a moment, you start thrusting a little harder, and Quenton drops one hand to his foot-long dong and starts stroking himself.");
+		output("\n\n<i>“You got it, Steele,”</i> Quenton says, his voice low and husky, and lets out a long moan. <i>“Just keep on goin’.”</i>");
+		output("\n\nYou plan to. Your grip tightens on his narrow hips, and as you pick up the pace, your hands slowly trace up his sides. Quenton straightens up and presses his muscled ass back against you, making your thrusts go deeper. You feel the heat coming off of him as he presses his back against your [pc.chest], and the scent of his musk is intoxicating.");
+		output("\n\nQuenton’s hips are thrusting faster now, and you increase your pace again, and wrap your arms around his chest, getting a grip on his hard pecs. He growls, and slaps his free hand down on your [pc.thigh], squeezing it.");
+		output("\n\nHe’s breathing faster, sweat beading on his forehead and trickling down the back of his neck. Your thrusts drive still deeper, making him let out a quick gasp with each one. His swollen balls swing forward with every one of your thrusts, to bang against the base of his horsecock");
+		// if PC has balls:
+		if(pc.balls > 0) output(", matched by your own [pc.balls] in the same rhythm slapping against his ass");
+		output(". His head tilts back, and he squeezes your thigh, urging you on.");
+		output("\n\n<i>“Harder,”</i> Quenton groans, his voice catching at the end.");
+		output("\n\nYou drop your hands to his hips again, your fingers wrapping around them from the front, all for a better grip. His rear tunnel clenches around your [pc.cock " + x + "] as you thrust harder and harder again, the sound of your flesh slapping together filling the small office. The heat coming off of him is enough to make you start sweating, and you wonder if the mirrors will fog up before you two are done.");
+		output("\n\nYou feel your urge to release building, and force it down. No way you’re going to finish before him; you’ll show Quenton you’re stronger. Just to drive that home, you drop one hand to his swinging balls and give them a soft squeeze, then start stroking his swollen sack.");
+		output("\n\nAnother long, low groan tears its way out of Quenton’s throat, and he arches his back, pressing his shoulders against your [pc.chest]. <i>“Gonna,”</i> he gasps out, <i>“gonna–”</i>");
+		output("\n\nAnything else Quenton was going to say is lost in a throaty groan as his cock twitches and spurts out a long stream of pearly white cum, splattering against the mirror halfway across the office. You don’t let up, and give his balls a good squeeze as he shoots off again, his breathing rough and ragged. He gives his horsedong a few more tugs, squeezing out another quick shot, before leaning forward and resting his hands on his knees again.");
+		output("\n\nWith the buff bull finished and drained, it’s time for you to get yours. You clench your hands on Quenton’s hips again and pound away, focusing on the sound of his low grunts and the warm grip of his anal passage as it massages your [pc.cock " + x + "]. It’s not long before you can no longer hold back. You look to the cum-spattered mirror, and see Quenton watching you both there, and give him a grin as you pound home one last time.");
+		output("\n\nYour [pc.cock " + x + "] spasms as the orgasm rips through you, and you let out a long groan of your own as your [pc.cum] flows through you and gushes into Quenton’s ass. He squeezes down hard on your organ, holding you tight in his rear grip as you spend yourself within him.");
+		// If PC makes lots of cum:
+		if(pc.cumQ() >= 2000) output(" But he can’t hold all you’ve got to give, and your [pc.cum] splashes back out of his asshole, splattering against your [pc.thighs] and dripping down to the floor.");
+		output("\n\nA few deep breaths later, you slowly pull your [pc.cock " + x + "] out of Quenton’s asshole, and let it dangle free as you catch your breath. Quenton straightens himself with a grunt, and grabs some pre-moistened towels from a bin in the corner. His familiar grin is back in place as he cleans himself off, and he gives you an appreciative look as you do the same.");
+		output("\n\n<i>“Damn fine work, hardbody,”</i> Quenton says, then pulls out a fresh pair of underwear from one of his desk drawers. Looks like he does this kind of thing all the time, if he’s that well-prepared. <i>“We’ve got to do this again sometime.”</i> He looks to the mess he made on the mirror, and chuckles. <i>“Be right back with you after I get this cleaned up.”</i>");
+		output("\n\nYou chuckle, and finish cleaning yourself up, then don your discarded clothes and head out. Hell of a personal training session.");
+	}
+	
+	// PC uses strapon:
+	else
+	{
+		output("\n\nOnce you’ve got the hardlight dildo all the way in, you thrust just a little. The friction from your [pc.lowerUndergarment] rubs against [pc.oneVagina], a pleasing sensation that builds with every thrust. Quenton starts to push back against you, a low growl coming from his throat with every motion as he too eases into it. The muscles of his back and legs tighten and loosen, every movement pushing him into an easy rhythm. After a moment, you start thrusting a little harder, and Quenton drops one hand to his foot-long dong and starts stroking himself.");
+		output("\n\n<i>“You got it, Steele,”</i> Quenton says, his voice low and husky, and lets out a long moan. <i>“Just keep on goin’.”</i>");
+		output("\n\nYou plan to. Your grip tightens on his narrow hips, and as you pick up the pace, your hands slowly trace up his sides. Quenton straightens up and presses his muscled ass back against you, making your thrusts go deeper. You feel the heat coming off of him as he presses his back against your [pc.chest], and the scent of his musk is intoxicating.");
+		output("\n\nQuenton’s hips are thrusting faster now, and you increase your pace again, and wrap your arms around his chest, getting a grip on his hard pecs. He growls, and slaps his free hand down on your [pc.thigh], squeezing it.");
+		output("\n\nHe’s breathing faster, sweat beading on his forehead and trickling down the back of his neck. Your thrusts drive still deeper, making him let out a quick gasp with each one. His swollen balls swing forward with every one of your thrusts, to bang against the base of his horsecock");
+		// if PC has balls:
+		if(pc.balls > 0) output(", matched by your own [pc.balls] in the same rhythm slapping against his ass");
+		output(". His head tilts back, and he squeezes your thigh, urging you on.");
+		output("\n\n<i>“Harder,”</i> Quenton groans, his voice catching at the end.");
+		output("\n\nYou drop your hands to his hips again, your fingers wrapping around them from the front, all for a better grip. His rear tunnel squeezes your strapon, and you push harder, increasing the pressure against [pc.oneVagina] as you thrust again, the sound of your flesh slapping together filling the small office. The heat coming off of him is enough to make you start sweating, and you wonder if the mirrors will fog up before you two are done.");
+		output("\n\nThe pleasure in your [pc.crotch] builds, bringing you closer to orgasm, but you force it down. No way you’re going to finish before him; you’ll show Quenton you’re stronger. Just to drive that home, you drop one hand to his swinging balls and give them a soft squeeze, then start stroking his swollen sack.");
+		output("\n\nAnother long, low groan tears its way out of Quenton’s throat, and he arches his back, pressing his shoulders against your [pc.chest]. <i>“Gonna,”</i> he gasps out, <i>“gonna–”</i>");
+		output("\n\nAnything else Quenton was going to say is lost in a throaty groan as his cock twitches and spurts out a long stream of pearly white cum, splattering against the mirror halfway across the office. You don’t let up, and give his balls a good squeeze as he shoots off again, his breathing rough and ragged. He gives his horsedong a few more tugs, squeezing out another quick shot, before leaning forward and resting his hands on his knees again.");
+		output("\n\nWith the buff bull finished and drained, it’s time for you to get yours. You clench your hands on Quenton’s hips again and pound away, focusing on the sound of his low grunts and friction from every thrust as your [pc.lowerUndergarment] massages [pc.oneVagina]. It’s not long before the sensation becomes too much. You look to the cum-spattered mirror, and see Quenton watching you both there, and give him a grin as you pound home one last time.");
+		output("\n\nYour [pc.oneVagina] spasms as the orgasm rips through you, your whole body clenching at once, and you let out a long groan of your own as your [pc.girlCum] turns your [pc.lowerUndergarment] slick and swampy. Your hips thrust a few more times on their own, then your whole body sags.");
+		output("\n\nA few deep breaths later, you slowly pull your strapon out of Quenton’s asshole, and let it dangle free as you catch your breath. Quenton straightens himself with a grunt, and grabs some pre-moistened towels from a bin in the corner. His familiar grin is back in place as he cleans himself off, and he gives you an appreciative look as you do the same.");
+		output("\n\n<i>“Damn fine work, hardbody,”</i> Quenton says, then pulls out a fresh pair of underwear from one of his desk drawers. Looks like he does this kind of thing all the time, if he’s that well-prepared. <i>“We’ve got to do this again sometime.”</i> He looks to the mess he made on the mirror, and chuckles. <i>“Be right back with you after I get this cleaned up.”</i>");
+		output("\n\nYou chuckle, and finish cleaning yourself up, then don your discarded");
+		if(!pc.isNude()) output(" clothes");
+		else output(" gear");
+		output(" and head out. Hell of a personal training session.");
+	}
+	
+	processTime(25);
+	pc.orgasm();
+	pc.orgasm();
+	IncrementFlag("SEXED_QUENTON");
+	
+	// [Done] Go to Entrance
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+// Catching Quenton
+public function quentonTrainingCatch(response:String = ""):void
+{
+	clearOutput();
+	author("Slab Bulkhead");
+	showQuenton(true);
+	
+	// Create Quenton
+	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
+	if(!pp.hasCock()) pp.createCock();
+	pp.shiftCock(0, GLOBAL.TYPE_EQUINE);
+	pp.cocks[slot].cLengthRaw = 12;
+	pp.elasticity = 1.5;
+	
+	var x:int = 0;
+	
+	if(response == "catch")
+	{
+		output("You tell Quenton you want him to take you from behind. He puts his hands on his hips and nods, then waits as you get out of your [pc.armor]. He gives you an appreciative whistle as you shed your [pc.upperUndergarment] and [pc.lowerUndergarment]. <i>“Damn, [pc.name]. You’ve done yourself right, with a build like that.”</i>");
+		output("\n\nQuenton picks up the bottle of lube and strokes his horsecock to full hardness, then drizzles a line of lube on it and rubs it in until his cock gleams. A palmful of lube gets rubbed all over his chest, making every muscle shine. He flexes again, and thrusts his well-oiled crotch at you.");
+		output("\n\n<i>“Now,”</i> Quenton says, giving you a lewd wink, <i>“let’s see about doin’ you right.”</i>");
+		output("\n\nQuenton steps behind you and faces you toward the mirror, runs both his hands down your muscular back, then slides his hands around your [pc.belly] and strokes them up your [pc.chest]. You keep your eyes on the mirror, watching his hands work over your body, and catch the appreciative look on his face.");
+		output("\n\nThis is indeed a man who loves his muscle, and you’ve got what he wants.");
+		output("\n\nQuenton’s hands stroke down your sides again, slower this time, as he works his way toward your [pc.crotch]. He moves in closer, and you feel his horsecock against your [pc.ass], warm and slick and growing steadily harder. His lubed-up chest presses against your back, and the scent of his musk makes your [pc.nipples] hard.");
+		output("\n\nThe bull at your back lets out a low groan as his hands reach past your waist.");
+		// PC has only penis and balls:
+		if(!pc.hasVagina() && pc.hasCock() && pc.balls > 0) output(" Quenton’s hand wraps around your [pc.biggestCock] and gives it a good, long stroke, then another. His grip is firm and strong, and blood rushes to your crotch as your [pc.biggestCock] rises to the occasion. Quenton’s other hand cups your [pc.balls] and rolls them gently in his palm, giving you just enough of a squeeze to be stimulating.");
+		// PC has only penis and no balls:
+		else if(!pc.hasVagina() && pc.hasCock() && pc.balls <= 0) output(" Quenton’s hand wraps around [pc.biggestCock] and gives it a good, long stroke, then another. His grip is firm and strong, and blood rushes to your crotch as [pc.biggestCock] rises to the occasion. Quenton’s other hand wraps around the base of your [pc.biggestCock] and squeezes in rhythm with his strokes. His well-practiced technique makes you moan.");
+		// PC has only vagina:
+		else if(pc.hasVagina() && !pc.hasCock()) output(" Quenton’s hand slides down to stroke [pc.eachVagina], rubbing his fingers back and forth along your lower lips. He applies a little more pressure with each stroke, then slides one thick finger into [pc.oneVagina], and you let out a low moan. After a few good strokes, he slips in a second finger, which is swiftly covered in your [pc.girlCum].");
+		// PC has both:
+		else if(pc.hasVagina() && pc.hasCock()) output(" Quenton’s hand wraps around your [pc.biggestCock] and gives it a good, long stroke, then another. His grip is firm and strong, and blood rushes to your crotch as your [pc.biggestCock] rises to the occasion. Quenton’s other hand slides down to [pc.eachVagina], rubbing his fingers back and forth along your lower lips.");
+		output("\n\n<i>“You about ready, hardbody?”</i> Quenton asks, his breath hot on your neck. He presses his horsecock against your [pc.ass], and it’s clearly at full mast now. <i>“‘Cause I’m all kinds of ready for you.”</i>");
+		output("\n\nYou tell Quenton that you’re definitely ready, and spread your legs a little wider, making yourself open for him. He gives you an approving growl, and pulls his hands away from your [pc.crotch], then gives your rear a light smack.");
+		
+		processTime(5);
+		
+		// [Catch Vaginal] Go to Catch Vaginal
+		// [Catch Anal] Go to Catch Anal
+		if(pc.hasVagina())
+		{
+			output("\n\n<i>“Where do you want it, Steele?”</i>");
+			
+			addButton(0, "Vaginal", quentonTrainingCatch, "vaginal", "Vaginal", "Have him peg [pc.oneVagina].");
+			addButton(1, "Anal", quentonTrainingCatch, "anal", "Anal", "Have him fuck your butt.");
+		}
+		else addButton(0, "Next", quentonTrainingCatch, "anal");
+		
+		return;
+	}
+	
+	// Catch Vaginal
+	if(response == "vaginal")
+	{
+		x = rand(pc.vaginas.length);
+		
+		output("Quenton slides his horsecock between your legs, rubbing the shaft against [pc.eachVagina], adding some slickness to his already lubed-up member. His hands settle on your [pc.hips], and he pulls his own hips back, then slides his cock into [pc.oneVagina] with one smooth, slow motion.");
+		// PC has tight vagina:
+		if(pc.vaginas[x].looseness() <= 1) output(" You feel him pushing to fit into you, and he lets out a low groan as his foot-long dong stretches your vaginal walls, pressing them wide with his penetration.");
+		
+		pc.cuntChange(x, pp.cockVolume(0));
+		
+		output("\n\nHe presses in balls-deep with his first stroke, hilting himself in your [pc.vagina " + x + "], then pulls halfway out with a long grunt. <i>“Damn,”</i> he breathes, then shoves himself into you again, pulls halfway out once more, then thrusts in and holds himself there.");
+		output("\n\nYou push your [pc.hips] back against him, your [pc.ass] smacking against his crotch, eager for more. He’s got muscle to spare, so he can fuck you stronger than that, can’t he?");
+		output("\n\nIndeed he can. Quenton grins at your encouragement, and starts into a rhythmic thrust. You look at the mirror, and see his abs clenched as he pounds away at you, his pecs bouncing in time with every thrust. Thick veins stand out on his forearms as he grips your [pc.hips].");
+		output("\n\n<i>“That’s the stuff,”</i> Quenton grunts, and brings a hand down to smack one cheek of your [pc.ass]. You let out a gasp, and Quenton laughs, then spanks your other cheek.");
+		output("\n\nThe buff bull’s thrusts pick up their pace, and the sound of your bodies slapping together fills the office. He drops his hands back to your [pc.hips], then runs them up your sides, urging you to tilt your torso up higher. You do so, pushing hard back against his hips, until you’re standing halfway up.");
+		output("\n\nQuenton reaches out and takes hold of your [pc.chest], squeezing tight as he pumps deeper into your [pc.vagina " + x + "]. He’s watching the mirror as you fuck, his gaze tracing over both of you the entire time. You tilt your head back and moan as his horsecock pounds away, his balls slapping against your [pc.thighs].");
+		output("\n\n<i>“</i>Damn<i>, you look good,”</i> Quenton grunts, sweat from his chest beading onto your bare back. <i>“Got to be . . . one of the best . . . bodies in my gym,”</i> he pants.");
+		output("\n\nYou reach back and get a grip on the back of Quenton’s neck, urging him on, telling him to go harder, and deliberately putting yourself on better display. His hips redouble their efforts, slapping into your [pc.ass] with a new fury, sweat from both of you leaping off in all directions.");
+		// If PC has penis:
+		if(pc.hasCock()) output(" [pc.EachCock] flops in rhythm with your fucking, bouncing up and down at full mast.");
+		// If PC has no penis:
+		else output(" You watch his horsecock thrusting in and out of your [pc.vagina " + x + "], your [pc.girlCum] soaking his shaft.");
+		output("\n\nQuenton’s thrusting is getting more fevered now, his grunts louder, his hot breath on the back of your neck coming faster and faster. His grip on your [pc.chest] tightens, and his head tilts back. You feel his horsecock twitch in your cunt and you clench down hard. You’re almost there, but not yet.");
+		output("\n\n<i>“Hell of a squeeze!”</i> he groans, then takes a deep breath and keeps thrusting away.");
+		output("\n\nYou twitch your hips from side to side, focusing on the feeling of him filling you, and lean back against him. His frantic thrusts bring you closer, closer, until you can’t hold it back any more. You arch back hard against Quenton, your back bending away from his broad chest, orgasm ripping through you, [pc.girlCum] dripping down over his cock to his swinging balls.");
+		// If PC has penis:
+		if(pc.hasCock()) output(" At the same time, [pc.cum] spurts out of [pc.eachCock], splattering across the mirror and leaving a long [pc.cumColor] trail back to your crotch.");
+		output("\n\nA breath later, Quenton lets out a throaty groan as his cock twitches inside you, and you feel the hot jet of his cum splash into you. He gives a few long thrusts, finishing the same way he started, each accompanied by another squirt.");
+		output("\n\nYou both lean forward, sweaty and drained, and it’s a moment before either of you can form words again. Quenton slowly pulls his semi-hard dong out of you, then lets out a low chuckle. <i>“I knew some personal trainin’ with you was a good idea,”</i> he says, then straightens up. <i>“Damn good, Steele, damn good. Let me getcha a towel.”</i>");
+		output("\n\nQuenton hands you a pre-moistened towel from a bin in the corner, and you both take a moment to clean up before returning to the gym entrance.");
+		
+		pc.loadInCunt(pp, x);
+		pc.loadInCunt(pp, x);
+	}
+	
+	// Catch Anal
+	if(response == "anal")
+	{
+		output("<i>“Backdoor fan, eh?”</i> Quenton asks, then chuckles. <i>“You’re not the only one.”</i>");
+		output("\n\nQuenton slaps his horsecock against your [pc.ass], rubbing the slickened shaft between your cheeks. His hands settle on your [pc.hips], and he pulls his own hips back, then aligns his cock with your [pc.asshole]. His wide, flat cockhead presses against your rear entrance, then slips into you with one smooth, slow motion.");
+		// PC has tight asshole:
+		if(pc.ass.looseness() <= 1) output(" You feel him pushing to fit into you, and he lets out a low groan as his foot-long dong stretches your anal walls, pressing them wide with his penetration.");
+		
+		pc.buttChange(pp.cockVolume(0));
+		
+		output("\n\nHe presses in balls-deep with his first stroke, hilting himself in your [pc.ass], then pulls halfway out with a long grunt. <i>“Damn,”</i> he breathes, then shoves himself into you again, pulls halfway out once more, then thrusts in and holds himself there.");
+		output("\n\nYou push your [pc.hips] back against him, your [pc.ass] smacking against his crotch, eager for more. He’s got muscle to spare, so he can fuck you stronger than that, can’t he?");
+		output("\n\nIndeed he can. Quenton grins at your encouragement, and starts into a rhythmic thrust. You look at the mirror, and see his abs clenched as he pounds away at you, his pecs bouncing in time with every thrust. Thick veins stand out on his forearms as he grips your [pc.hips].");
+		output("\n\n<i>“That’s the stuff,”</i> Quenton grunts, and brings a hand down to smack one cheek of your [pc.ass]. You let out a gasp, and Quenton laughs, then spanks your other cheek.");
+		output("\n\nThe buff bull’s thrusts pick up their pace, and the sound of your bodies slapping together fills the office. He drops his hands back to your [pc.hips], then runs them up your sides, urging you to tilt your torso up higher. You do so, pushing hard back against his hips, until you’re standing halfway up.");
+		output("\n\nQuenton reaches out and takes hold of your [pc.chest], squeezing tight as he pumps deeper into your [pc.asshole]. He’s watching the mirror as you fuck, his gaze tracing over both of you the entire time. You tilt your head back and moan as his horsecock pounds away, his balls slapping against your [pc.thighs].");
+		output("\n\n<i>“</i>Damn<i>, you look good,”</i> Quenton grunts, sweat from his chest beading onto your bare back. <i>“Got to be . . . one of the best . . . bodies in my gym,”</i> he pants.");
+		output("\n\nYou reach back and get a grip on the back of Quenton’s neck, urging him on, telling him to go harder, and deliberately putting yourself on better display. His hips redouble their efforts, slapping into your [pc.ass] with a new fury, sweat from both of you leaping off in all directions.");
+		// If PC has penis:
+		if(pc.hasCock()) output(" [pc.EachCock] flops in rhythm with your fucking, bouncing up and down at full mast.");
+		// If PC has no penis:
+		else output(" You watch his horsecock thrusting in and out of your [pc.ass], his shaft shiny with lube.");
+		output("\n\nQuenton’s thrusting is getting more fevered now, his grunts louder, his hot breath on the back of your neck coming faster and faster. His grip on your [pc.chest] tightens, and his head tilts back. You feel his horsecock twitch in your [pc.asshole], and squeeze down hard. You’re almost there, but not yet.");
+		output("\n\n<i>“Hell of a squeeze!”</i> he groans, then takes a deep breath and keeps thrusting away.");
+		output("\n\nYou twitch your hips from side to side, focusing on the feeling of him filling you, and lean back against him. His frantic thrusts bring you closer, closer, until you can’t hold it back any more. You arch back hard against Quenton, your back bending away from his broad chest, orgasm ripping through you, your [pc.ass] clenching tight against Quenton’s thighs and cock.");
+		// If PC has penis:
+		if(pc.hasCock()) output(" At the same time, [pc.cum] spurts out of [pc.eachCock], splattering across the mirror and leaving a long [pc.cumColor] trail back to your crotch.");
+		output("\n\nA breath later, Quenton lets out a throaty groan as his cock twitches inside you, and you feel the hot jet of his cum splash into you. He gives a few long thrusts, finishing the same way he started, each accompanied by another squirt.");
+		output("\n\nYou both lean forward, sweaty and drained, and it’s a moment before either of you can form words again. Quenton slowly pulls his semi-hard dong out of you, then lets out a low chuckle. <i>“I knew some personal trainin’ with you was a good idea,”</i> he says, then straightens up. <i>“Damn good, Steele, damn good. Let me getcha a towel.”</i>");
+		output("\n\nQuenton hands you a pre-moistened towel from a bin in the corner, and you both take a moment to clean up before returning to the gym entrance.");
+		
+		pc.loadInAss(pp);
+		pc.loadInAss(pp);
+	}
+	
+	processTime(20);
+	pc.orgasm();
+	pc.orgasm();
+	IncrementFlag("SEXED_QUENTON");
+	
+	// [Done] Go to Entrance
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
 /*
-output("\n\nPersonal Training");
-output("\n\nYou lean toward Quenton and ask if he does any personal training, if he knows what you mean. He seems to be a man who likes his muscle, so you flex your biceps, just to make sure you get your point across.");
-
-output("\n\n{PC’s tone is below 80% maximum: Quenton chuckles a little. <i>“I’m flattered, friend, but you’re not what I’d call my type.”</i> He gestures to the pictures hanging on his walls, all the buff cowgirls and bullboys. <i>“I like a good, hard body more than anything else, why I built up the gym in the first place. And why I built up myself, naturally.”</i> A quick flex makes both of his pecs jump.");
-
-output("\n\n<i>“Now, don’t take it bad, I’m just sayin’. Maybe you spend some time here, get yourself in my kind of shape, and we can see about some personal trainin’.”</i>");
-
-output("\n\n[Back] Go to Entrance}");
-
-output("\n\n{PC’s tone is above 80% maximum: <i>“Oh, I get what you’re sayin’,”</i> Quenton says, and stands up to his full height. He puffs out his chest, pecs straining against his shirt, stretching the gym’s logo across his musculature. <i>“There’s nothin’ I like more than a good, hard body against mine, except maybe a good lift. And even that’s made better with a good lay after. Or maybe durin’.”</i> He chuckles. <i>"So I’m up for it if you’re askin’.”</i>");
-
-output("\n\nDamn right you are. Quenton props a sign that says ‘Be Back Soon’ on the desk, then opens up the door to his office and invites you in, closing the door behind you both.");
-
-output("\n\nQuenton’s office is small but simple, with a desk and cabinet taking up about half of it. Lights shine down from the ceiling, and two of the walls are nothing but enormous mirrors.");
-
-output("\n\nThe short-horned bull takes a bottle of lube out of one desk drawer, then strips out of his shirt and pants, and spreads his arms and legs as he flexes for you. Quenton is ridiculously ripped, with veins standing out over rock-hard muscles bulging beneath his tanned skin. His foot-long horse cock also has thick veins standing out on either side, with a pair of bulging balls dangling behind it. He’s also entirely hairless, further making all of his muscles and his pronounced package stand out.");
-
-output("\n\nQuenton flexes his way through a few poses, then turns to you with a grin, clearly hoping you like what you see. <i>“You pitchin’ or catchin, hardbody? I’m good for you either way.”</i>");
-
-output("\n\n[Pitch] Go to Pitching Quinton {requires penis or strap-on}");
-output("\n\n[Catch] Go to Catching Quinton {requires penis or strap-on}}");
-
-output("\n\nPitching Quinton");
-output("\n\n[Not yet written] You bang Quinton’s behind in front of his mirror.");
-
-output("\n\n[Done] Go to Entrance");
-
-output("\n\nCatching Quinton");
-output("\n\n[Not yet written] Quinton bangs you from behind, in front of his mirror.");
-
-output("\n\n[Done] Go to Entrance");
-
-output("\n\nSimone");
-output("\n\nYou saunter on over to the smirking cowgirl. She’s hard at work on a chest press machine, her arms spread wide to either side of her gigantic breasts, which are barely held in place by a tight, pink sports bra. Her top matches the equally tight pink shorts she’s got on, the shiny fabric an interesting contrast to her dark brown skin. Her long, curly brown hair is tied back in a simple ponytail, and her pink sweatband sits just beneath a pair of gleaming black horns. She’s clearly a gym regular; her arms and shoulders are well-toned, she has defined abs, and her thighs are strong and firm. You can see a hint of a bulge between her legs, but not enough for her to be a futa; it looks more like she has a prominent cameltoe.");
-
-output("\n\n{PC hasn’t met Simone: <i>“Heeyy,”</i> the cowgirl says as you approach. She lowers the bar and leans up on one elbow. Her eyes meet yours for a moment, then lower to your arms and chest. <i>“You here to lift, or just to watch?”</i>");
-
-output("\n\nYou ask her if you can’t do both, then introduce yourself. If she recognizes your name, she doesn’t show it.");
-
-output("\n\n<i>“I’m Simone,”</i> she says, <i>“and </i>I’m<i> here to lift. But if you’re here for both, how about a little challenge?”</i>");
-
-output("\n\nWhen you ask what kind of challenge, Simone’s smirk returns. It looks like she’s been waiting for someone to ask.");
-
-output("\n\n<i>“Let’s see who’s stronger,”</i>, Simone says. She nudges the chest press bar, setting her boobs to jiggling. <i>“Five presses, add weight, five more, add weight, you get it. First one who can’t lift anymore loses.”</i> She smiles, the tip of her wide pink tongue flicking out between her lips. <i>“Loser makes the winner come. You in?”</i>}");
-
-output("\n\n{PC has met Simone: <i>“Heeyy, [pc.name],”</i> Simone says, stopping her workout as you approach. <i>“Feeling up for a challenge, or did you wear yourself out too much already?”</i>}");
-
-output("\n\n[Compete] Go to Compete {Text: Lift like you mean it.} {-40 Energy}");
-output("\n\n[Fake Loss] Go to Fake Loss {Text: Lift like you don’t mean it.} {-20 Energy}");
-output("\n\n[Pass] Go to Pass {Text: Or just don’t lift.}");
-
-output("\n\nCompete");
-output("\n\nYou tell Simone you’ll take her on, and lie down on the other chest press machine. You set the stack to four weights, as per her instructions, then take hold of the bar. She says, <i>“Ready? Go!”</i> and you start lifting.");
-
-output("\n\nYou push your way through your first set, then add more weight and start your second, lifting slow and steady. Simone matches your pace, clearly handling this without a problem. It doesn’t start to get difficult until you add the sixth weight, but you keep going.");
-
-output("\n\nBy the time you get to the ninth weight, you and Simone have both slowed down a little, but she shows no signs of stopping. You take a deep breath and move up to the tenth weight. One . . . two . . . three . . . four . . . five. There’s an aching in your chest now, but you force yourself to keep lifting.");
-
-output("\n\n// If the PC has a Sexiness bonus of 7 or higher, or muscle tone over 70% of maximum, Simone will lose on purpose. If PC chooses [Compete], they win. If PC chooses [Fake Loss], they still lose.");
-output("\n\nIf Simone does not lose on purpose, take the PC’s Physique stat plus a random number from 1 to 10. If that number is over 20, the PC wins. If that number is under 20, Simone wins.");
-
-output("\n\n{PC wins: The movements become mechanical: lift five, add weight, lift five more, add weight. You plow through the eleventh stack with only a little trouble, and a quick glance over at Simone shows that she’s starting to struggle. You both add the twelfth weight at the same time, and she pauses to take a deep breath.");
-
-output("\n\nYou shove the bar up with a grunt, pushing through your set, then lower the weights and add another to the stack. A loud slam comes from Simone’s machine, and you look over to see her laying there, arms dangling off both sides of the bench, her heavy tits trying to flop to either side as her sports bra strains to hold them in place. She looks at you, and you push the bar up once, twice, three times, so she knows that you won.");
-
-output("\n\nVictory is yours, and you let the bar drop.");
-
-output("\n\nSimone rises and walks over to you, her arms hanging limp at her sides. <i>“Damn, [pc.name],”</i> she says. <i>“I didn’t think you had it in you.”</i>");
-
-output("\n\nYou sit up and flex your arms and chest, trying not to show any strain from the workout. It looks like you win, you tell her, and she laughs.");
-
-output("\n\n<i>"Looks like.”</i> Simone leans forward and rests a hand on your [pc.thigh], then trails it higher, moving toward your [pc.crotch]. <i>"Now let’s see what you’ve got for me.”</i>}");
-
-output("\n\n[Victory] Go to Victory");
-
-output("\n\n{Simone wins: It’s the eleventh stack that gets you. After shoving the bar up as hard as you can, your muscles feel weak and wobbly, and you wipe away sweat before trying again. Your arms strain as you try to force them to work, and then, you know it’s hopeless.");
-
-output("\n\nTry as you might, you can’t force the bar up one more time. You look over at Simone, who’s struggling through her own set of eleven. She hoists the bar up four times, then five, and lets the weights slam down. When she looks over and sees you spent, she lets out a tired laugh, then adds one more weight to her stack and pushes the bar up once, just so there’s no doubt who won.");
-
-output("\n\nSlowly, Simone rises and walks over to you. <i>“Not bad, [pc.name],”</i> she says. <i>“Not bad at all. I thought you had me there for a second.”</i> Her smirk returns. <i>“Just means you get to have me now.”</i>");
-
-output("\n\nYou give her a sly smile, wondering what she’s got in mind.");
-
-output("\n\n<i>“Oh, don’t get up,”</i> Simone says, and hooks one thumb into her pink shorts’ waistband. <i>“Just scoot down a little, so the bar’s out of the way. You’re not going anywhere.”</i>}");
-
-output("\n\n[Defeat] Go to Defeat");
-output("\n\nFake Loss");
-output("\n\nYou tell Simone to bring it on, trying to hide your smile. Better make this look convincing; she looks she takes this seriously.");
-
-output("\n\nYou lie down on another chest press machine, and set the weights on the fourth setting, as per Simone’s instructions. She says, <i>“Ready? Go!”</i> and you start lifting. You start off fast, to make it look like you’re going to burn yourself out quickly.");
-
-output("\n\nBy the time you’ve increased the weight twice, you slow it down a little, and let out a grunt as you finish your reps. When you glance over at Simone, she looks like she’s plowing through this with ease. Perfect.");
-
-output("\n\nWhen you have the weights stacked up to seven, you start breathing hard, and after adding the eighth weight, you struggle, straining against the bar to no avail. When Simone laughs, you look over, and see her raising her stack to the ninth weight. You force the bar up one last time, gritting your teeth with a loud grunt, then let the bar slam down hard. The sound of metal on metal is just barely loud enough to cover your strained breathing.");
-
-output("\n\nSimone hefts her way through her set of five, then adds the tenth weight and pushes through another set, just to ensure her victory. Once finished, she stands up with a hearty laugh, then steps over to your machine. <i>“Aww, [pc.name]. Is that all you’ve got?”</i>");
-
-output("\n\nLooks like it. You shrug and laugh, trying to look like you really meant to win. Whether you fooled her or not, the glint in her eye makes it clear she’s taking her victor’s spoils.");
-
-output("\n\n<i>“Oh, don’t get up,”</i> Simone says, and hooks one thumb into her pink shorts’ waistband. Her smirk returns. <i>“Just scoot down a little, so the bar’s out of the way. You’re not going anywhere.”</i>");
-
-output("\n\n[Defeat] Go to Defeat");
-
-output("\n\nPass");
-output("\n\nYou tell Simone that you’re not up for a challenge right now. Her smile fades, and she looks disappointed. <i>“Too bad,”</i> she says. <i>“Could have been fun. Let me know if you change your mind.”</i> She lies back down on the bench and returns to her lifting.");
-
-output("\n\n[Done] Go to Weight Room");
-
-output("\n\nVictory");
-output("\n\n{If PC has no penises: [Not yet written] Simone goes down on the PC with her wide cow-tongue. [+2% Exhibitionism]}");
-output("\n\n{If PC has one penis: [Not yet written] Simone titfucks the PC, keeps her top on for a better squeeze. [+2% Exhibitionism]}");
-output("\n\n{If PC has 2+ penises: [Not yet written] Simone double-penetrates herself with the PC’s dicks. [+2% Exhibitionism]}");
-
-output("\n\n[Done] Go to Weight Room");
-
-output("\n\nDefeat");
-output("\n\n[Not yet written] Simone rides PC’s face, making sure to get her gumball-sized clit thoroughly sucked. [+2% Exhibitionism] [+40 Lust]");
-
-output("\n\n[Done] Go to Weight Room");
-
-output("\n\nLola");
-output("\n\nYou wade over toward the naked cowgirl as she strokes her way across the pool. She doesn’t seem to notice your approach, so you time it so she bumps into you on her way. As soon as you two collide, she looks over, then flips herself over and stands up, surprise clear on her round face.");
-
-output("\n\n<i>“Oh, I’m sorry!”</i> she says, then gives you a long look up and down, her blue eyes wide. <i>“Hi there,”</i> she says, a smile spreading across her face. <i>“I’m Lola. Haven’t seen you here before, huh?”</i>");
-
-output("\n\nLola’s only a little over five feet tall, but her hips would look wide on a woman twice her size; on her, they seem almost comically exaggerated. Her butt is appropriately bulbous, with curvy thighs beneath it. Soaked red hair trails down to her shoulders, clearly her natural color, if the little tuft above her pussy is any indication. Two short white horns peek out from among her locks, and her ears are cowlike and floppy. Her skin is pale, and she has the large boobs common among New Texans, with hard, pink nipples.");
-
-output("\n\nYou introduce yourself to the bright-eyed cowgirl, and ask if she’s here working out, or if she just likes to swim.");
-
-output("\n\n<i>“Little of both,”</i>, Lola says, nodding a few times. <i>“Sometimes I feel like I need a workout, but mostly I just like to swim. Or to fuck.”</i> Her smile grows a little devious as her gaze trails over your [pc.chest]. <i>“Have you ever had sex with someone who’s floating?”</i>");
-
-output("\n\nYou consider it for a moment, and tell her no, you haven’t. Lola looks down at your crotch.");
-
-output("\n\n{If PC has cock: <i>“That’s too bad,”</i> she says, not taking her eyes off your [pc.cock]. A blush spreads across her cheeks and down her chest, turning the skin on her breasts the palest pink. <i>“Do you want to try it? Like, right now?”</i>");
-
-output("\n\n[Yep] Go to FloatFuck");
-output("\n\n[Nope] Go to NoFloatFuck}");
-
-output("\n\n{If PC doesn’t have cock: <i>“That’s too bad,”</i> she says, and looks up from your [pc.crotch] after a moment. <i>“And you don’t have anything to fuck me with. Darn.”</i>");
-
-output("\n\n{If PC has no hardlight undergarment: You ask if she’s still up for whatever you two can do together. Fingers and lips and tongues can do a lot.");
-
-output("\n\n<i>“Oh, but it’s not the same,”</i> Lola says, pouting a little. <i>“And I really like to be, you know–”</i> She thrusts her voluminous hips in your direction, sending a small wave crashing against you. <i>“–penetrated. Sorry, [pc.name].”</i>");
-
-output("\n\nLola swims away, flipping onto her back again after a few strokes, leaving you alone.");
-
-output("\n\n[Done] Go to Swimming Pool}");
-
-output("\n\n{If PC has hardlight undergarment: You mention that you’ve got a hardlight strapon back with your gear, and you can get it if she’s down for that.");
-
-output("\n\nLola nods eagerly, her eyes lighting up. <i>“Ooh, those things are fun,”</i> she says. A blush spreads across her cheeks and down her chest, turning the skin on her breasts the palest pink. <i>“Can you go get that? Please?”</i>");
-
-output("\n\n[Yep] Go to FloatFuck");
-output("\n\n[Nope] Go to NoFloatFuck}}");
-
-output("\n\nFloatFuck");
-output("\n\n[Not yet written] You fuck Lola. While she’s floating.");
-
-output("\n\n[Done] [+2% Exhibitionism] Go to Swimming Pool");
-
-output("\n\nNoFloatFuck");
-output("\n\nYou tell Lola that you’re just not into that. She pouts at you a little, then shrugs it off with a giggle. <i>“Aww, no problem. I’m sure someone else here’s up for it.”</i>");
-
-output("\n\nLola floats off, the peaceful smile returning to her face.");
-
-output("\n\n[Done] Go to Swimming Pool");
-
-output("\n\nBetsy and Victoria");
-output("\n\nOne of the girls is a tanned blue-eyed blonde with a figure so much the New Texas ideal she could have stepped off of a travel brochure, her huge tits almost impossibly perky with nipples staring straight at you. Her hair’s pulled back in low pigtails dangling past her shoulders.");
-
-output("\n\nThe other has black hair with bangs trimmed straight above her eyebrows, and stands taller and a little less curvy, but with quite a bit more tone, clearly no stranger to the gym. She’s also packing eight inches of horsecock, an uncommon sight on the local girls.");
-
-output("\n\n<i>“Hi there, cutie,”</i> the blonde says, then giggles as she looks you over. <i>“I’m Betsy. This–”</i> She pauses to squeeze her partner’s ass, prompting the other girl to spank her, hand smacking hard across Betsy’s jiggling flesh. <i>“–is Victoria.”</i>");
-
-output("\n\n<i>“Hi,”</i> Victoria says, and gives you an appraising look. Her eyes are heavy-lidded, but she looks like she likes what she sees.");
-
-output("\n\nYou introduce yourself, and ask if the two come here often.");
-
-output("\n\n<i>“Most every time we’re here,”</i> Victoria says. <i>“It’s a good place to find new friends to play with.”</i>");
-
-output("\n\nYou mention that you haven’t seen many futa here on New Texas, though you’ve met quite a few others on your journeys. Victoria smiles, looking kind of proud, but it’s Betsy who speaks up, blushing as she laughs.");
-
-output("\n\n<i>“Oh, that’s a funny story. We used to use a strapon, but I kept breaking them. I, um, get a little rough sometimes.”</i>");
-
-output("\n\nYou stare at Betsy for a moment, and hope she’s talking about low-tech strapons. If the girl has a habit of breaking hardlights, you might be in for a rough time.");
-
-output("\n\n<i>“And,”</i> Victoria says, <i>“I always wondered what it felt like to have a cock. So I thought I’d give it a try.”</i> She strokes a hand down her length, joined by Betsy’s hand a moment later. <i>“I wouldn’t give up this thing for the world.”</i>");
-
-output("\n\n<i>“"Sooooo,”</i> Betsy says, twirling a lock of blonde hair around one finger, <i>“you want to play with us? You can pick who gets to be in the middle.”</i>");
-
-output("\n\n[Oh Yeah] Go to Sandwich Selection [+40 Lust] {Remove all [Sweaty]} {Time: 10 minutes}");
-output("\n\n[Just Teasing] Go to Sandwich Denial [+40 Lust] {Remove all [Sweaty]} {Time: 10 minutes}}");
-
-output("\n\nSandwich Selection");
-output("\n\n<i>“Ooh, good,”</i> Betsy says. <i>“I thought you looked like fun.”</i> She presses her wet body against you, her boobs slipping against your [pc.chest], while Victoria slides up against your other hip, and rubs her dong against your thigh.");
-
-output("\n\n<i>“So, your choice, [pc.name],”</i> Victoria says. <i>“Who gets to be in the middle?”</i>");
-
-output("\n\n[Betsy] Go to Betsy Sandwich");
-output("\n\n[Victoria] Go to Victoria Sandwich");
-output("\n\n[You] Go to You Sandwich");
-
-output("\n\nBetsy Sandwich");
-output("\n\n[Not yet written] You and Victoria double-penetrate Betsy in between you two.");
-
-output("\n\n[Done] Go to Locker Room and Showers [+2% Exhibitionism]");
-
-output("\n\nVictoria Sandwich");
-output("\n\n[Not yet written] You fuck Victoria, while she fucks Betsy.");
-
-output("\n\n[Done] Go to Locker Room and Showers [+2% Exhibitionism]");
-
-output("\n\nYou Sandwich");
-output("\n\n[Not yet written] Victoria fucks you, while you fuck Betsy.");
-
-output("\n\n[Done] Go to Locker Room and Showers [+2% Exhibitionism]");
-
-output("\n\nSandwich Denial");
-output("\n\nYou give the two cowgirls a teasing smile, and tell them you just felt like showing off a little. It’s a flattering offer, but you’re not actually looking for sex right now.");
-
-output("\n\n<i>“Tease,”</i> Betsy says, and sticks her tongue out at you.");
-
-output("\n\nVictoria gives her a swat on her butt, and points over to another part of the showers. <i>“What about her?”</i> she asks Betsy.");
-
-output("\n\n<i>“Ooh, I like,”</i> Betsy says. The two lovers wander off toward their new potential partner.");
-
-output("\n\n[Done] Go to Locker Room and Showers [+1% Exhibitionism]");
+// Simone
+public function simoneWorkoutApproach():void
+{
+	clearOutput();
+	author("Slab Bulkhead");
+	showName("\nSIMONE");
+	showBust("SIMONE");
+	
+	output("You saunter on over to the smirking cowgirl. She’s hard at work on a chest press machine, her arms spread wide to either side of her gigantic breasts, which are barely held in place by a tight, pink sports bra. Her top matches the equally tight pink shorts she’s got on, the shiny fabric an interesting contrast to her dark brown skin. Her long, curly brown hair is tied back in a simple ponytail, and her pink sweatband sits just beneath a pair of gleaming black horns. She’s clearly a gym regular; her arms and shoulders are well-toned, she has defined abs, and her thighs are strong and firm. You can see a hint of a bulge between her legs, but not enough for her to be a futa; it looks more like she has a prominent cameltoe.");
+	
+	// PC hasn’t met Simone:
+	if(flags["MET_SIMONE"] == undefined)
+	{
+		output("\n\n<i>“Heeyy,”</i> the cowgirl says as you approach. She lowers the bar and leans up on one elbow. Her eyes meet yours for a moment, then lower to your arms and chest. <i>“You here to lift, or just to watch?”</i>");
+		output("\n\nYou ask her if you can’t do both, then introduce yourself. If she recognizes your name, she doesn’t show it.");
+		output("\n\n<i>“I’m Simone,”</i> she says, <i>“and </i>I’m<i> here to lift. But if you’re here for both, how about a little challenge?”</i>");
+		output("\n\nWhen you ask what kind of challenge, Simone’s smirk returns. It looks like she’s been waiting for someone to ask.");
+		output("\n\n<i>“Let’s see who’s stronger,”</i>, Simone says. She nudges the chest press bar, setting her boobs to jiggling. <i>“Five presses, add weight, five more, add weight, you get it. First one who can’t lift anymore loses.”</i> She smiles, the tip of her wide pink tongue flicking out between her lips. <i>“Loser makes the winner come. You in?”</i>");
+		
+		flags["MET_SIMONE"] = 1;
+		
+		processTime(5);
+	}
+	// PC has met Simone:
+	else
+	{
+		output("\n\n<i>“Heeyy, [pc.name],”</i> Simone says, stopping her workout as you approach. <i>“Feeling up for a challenge, or did you wear yourself out too much already?”</i>");
+		
+		processTime(1);
+	}
+	
+	// [Compete] Go to Compete {Text: Lift like you mean it.} {-40 Energy}
+	// [Fake Loss] Go to Fake Loss {Text: Lift like you don’t mean it.} {-20 Energy}
+	// [Pass] Go to Pass {Text: Or just don’t lift.}
+	clearMenu();
+	if(pc.energy() >= 40 && !pc.hasStatusEffect("Sore")) addButton(0, "Compete", simoneWorkoutGo, "compete", "Compete", "Lift like you mean it.");
+	else addDisabledButton(0, "Compete", "Compete", "You're too tired to lift.");
+	if(pc.energy() >= 20 && !pc.hasStatusEffect("Sore")) addButton(1, "Fake Loss", simoneWorkoutGo, "fake loss", "Fake Loss", "Lift like you don’t mean it.");
+	else addDisabledButton(1, "Fake Loss", "Fake Loss", "You're too tired to lift.");
+	addButton(2, "Pass", simoneWorkoutGo, "pass", "Pass", "Or just don’t lift.");
+}
+public function simoneWorkoutGo(response:String = ""):void
+{
+	clearOutput();
+	author("Slab Bulkhead");
+	showName("\nSIMONE");
+	showBust("SIMONE");
+	clearMenu();
+	
+	// Compete
+	if(response == "compete")
+	{
+		output("You tell Simone you’ll take her on, and lie down on the other chest press machine. You set the stack to four weights, as per her instructions, then take hold of the bar. She says, <i>“Ready? Go!”</i> and you start lifting.");
+		output("\n\nYou push your way through your first set, then add more weight and start your second, lifting slow and steady. Simone matches your pace, clearly handling this without a problem. It doesn’t start to get difficult until you add the sixth weight, but you keep going.");
+		output("\n\nBy the time you get to the ninth weight, you and Simone have both slowed down a little, but she shows no signs of stopping. You take a deep breath and move up to the tenth weight. One . . . two . . . three . . . four . . . five. There’s an aching in your chest now, but you force yourself to keep lifting.");
+		
+		// If the PC has a Sexiness bonus of 7 or higher, or muscle tone over 70% of maximum, Simone will lose on purpose. If PC chooses [Compete], they win. If PC chooses [Fake Loss], they still lose.
+		// If Simone does not lose on purpose, take the PC’s Physique stat plus a random number from 1 to 10. If that number is over 20, the PC wins. If that number is under 20, Simone wins.
+		var winrar:Boolean = false;
+		if((pc.sexiness() >= 7 && pc.tone > 70) || ((pc.physique() + rand(10) + 1) > 20)) winrar = true;
+		
+		processTime(15);
+		
+		// PC wins:
+		if(winrar)
+		{
+			output("\n\nThe movements become mechanical: lift five, add weight, lift five more, add weight. You plow through the eleventh stack with only a little trouble, and a quick glance over at Simone shows that she’s starting to struggle. You both add the twelfth weight at the same time, and she pauses to take a deep breath.");
+			output("\n\nYou shove the bar up with a grunt, pushing through your set, then lower the weights and add another to the stack. A loud slam comes from Simone’s machine, and you look over to see her laying there, arms dangling off both sides of the bench, her heavy tits trying to flop to either side as her sports bra strains to hold them in place. She looks at you, and you push the bar up once, twice, three times, so she knows that you won.");
+			output("\n\nVictory is yours, and you let the bar drop.");
+			output("\n\nSimone rises and walks over to you, her arms hanging limp at her sides. <i>“Damn, [pc.name],”</i> she says. <i>“I didn’t think you had it in you.”</i>");
+			output("\n\nYou sit up and flex your arms and chest, trying not to show any strain from the workout. It looks like you win, you tell her, and she laughs.");
+			output("\n\n<i>“Looks like.”</i> Simone leans forward and rests a hand on your [pc.thigh], then trails it higher, moving toward your [pc.crotch]. <i>“Now let’s see what you’ve got for me.”</i>");
+			
+			// [Victory] Go to Victory
+			addButton(0, "Victory", simoneWorkoutResults, "victory");
+		}
+		// Simone wins:
+		else
+		{
+			output("\n\nIt’s the eleventh stack that gets you. After shoving the bar up as hard as you can, your muscles feel weak and wobbly, and you wipe away sweat before trying again. Your arms strain as you try to force them to work, and then, you know it’s hopeless.");
+			output("\n\nTry as you might, you can’t force the bar up one more time. You look over at Simone, who’s struggling through her own set of eleven. She hoists the bar up four times, then five, and lets the weights slam down. When she looks over and sees you spent, she lets out a tired laugh, then adds one more weight to her stack and pushes the bar up once, just so there’s no doubt who won.");
+			output("\n\nSlowly, Simone rises and walks over to you. <i>“Not bad, [pc.name],”</i> she says. <i>“Not bad at all. I thought you had me there for a second.”</i> Her smirk returns. <i>“Just means you get to have me now.”</i>");
+			output("\n\nYou give her a sly smile, wondering what she’s got in mind.");
+			output("\n\n<i>“Oh, don’t get up,”</i> Simone says, and hooks one thumb into her pink shorts’ waistband. <i>“Just scoot down a little, so the bar’s out of the way. You’re not going anywhere.”</i>");
+			
+			// [Defeat] Go to Defeat
+			addButton(0, "Defeat", simoneWorkoutResults, "defeat");
+		}
+	}
+	
+	// Fake Loss
+	if(response == "fake loss")
+	{
+		output("You tell Simone to bring it on, trying to hide your smile. Better make this look convincing; she looks she takes this seriously.");
+		output("\n\nYou lie down on another chest press machine, and set the weights on the fourth setting, as per Simone’s instructions. She says, <i>“Ready? Go!”</i> and you start lifting. You start off fast, to make it look like you’re going to burn yourself out quickly.");
+		output("\n\nBy the time you’ve increased the weight twice, you slow it down a little, and let out a grunt as you finish your reps. When you glance over at Simone, she looks like she’s plowing through this with ease. Perfect.");
+		output("\n\nWhen you have the weights stacked up to seven, you start breathing hard, and after adding the eighth weight, you struggle, straining against the bar to no avail. When Simone laughs, you look over, and see her raising her stack to the ninth weight. You force the bar up one last time, gritting your teeth with a loud grunt, then let the bar slam down hard. The sound of metal on metal is just barely loud enough to cover your strained breathing.");
+		output("\n\nSimone hefts her way through her set of five, then adds the tenth weight and pushes through another set, just to ensure her victory. Once finished, she stands up with a hearty laugh, then steps over to your machine. <i>“Aww, [pc.name]. Is that all you’ve got?”</i>");
+		output("\n\nLooks like it. You shrug and laugh, trying to look like you really meant to win. Whether you fooled her or not, the glint in her eye makes it clear she’s taking her victor’s spoils.");
+		output("\n\n<i>“Oh, don’t get up,”</i> Simone says, and hooks one thumb into her pink shorts’ waistband. Her smirk returns. <i>“Just scoot down a little, so the bar’s out of the way. You’re not going anywhere.”</i>");
+		
+		processTime(10);
+		
+		// [Defeat] Go to Defeat
+		addButton(0, "Defeat", simoneWorkoutResults, "defeat");
+	}
+	
+	// Pass
+	if(response == "pass")
+	{
+		output("You tell Simone that you’re not up for a challenge right now. Her smile fades, and she looks disappointed. <i>“Too bad,”</i> she says. <i>“Could have been fun. Let me know if you change your mind.”</i> She lies back down on the bench and returns to her lifting.");
+		
+		processTime(2);
+		
+		// [Done] Go to Weight Room
+		addButton(0, "Next", mainGameMenu);
+	}
+}
+public function simoneWorkoutResults(response:String = ""):void
+{
+	clearOutput();
+	author("Slab Bulkhead");
+	showName("\nSIMONE");
+	showBust("SIMONE_NUDE");
+	clearMenu();
+	
+	// Create Simone
+	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
+	if(!pp.hasVagina()) pp.createVagina();
+	
+	// Victory
+	if(response == "victory")
+	{
+		// {If PC has no penises: [Not yet written] Simone goes down on the PC with her wide cow-tongue. [+2% Exhibitionism]}
+		if(!pc.hasCock())
+		{
+			// 9999
+		}
+		// {If PC has one penis: [Not yet written] Simone titfucks the PC, keeps her top on for a better squeeze. [+2% Exhibitionism]}
+		else if(pc.cockTotal() == 1)
+		{
+			// 9999
+			pc.cockChange();
+		}
+		// {If PC has 2+ penises: [Not yet written] Simone double-penetrates herself with the PC’s dicks. [+2% Exhibitionism]}
+		else
+		{
+			// 9999
+			pc.cockChange();
+		}
+		
+		processTime(20);
+		pc.exhibitionism(2);
+		pc.orgasm();
+		pc.orgasm();
+		
+		// [Done] Go to Weight Room
+		addButton(0, "Next", mainGameMenu);
+	}
+	
+	// Defeat
+	if(response == "defeat")
+	{
+		// [Not yet written] Simone rides PC’s face, making sure to get her gumball-sized clit thoroughly sucked. [+2% Exhibitionism] [+40 Lust]
+		
+		// 9999
+		
+		processTime(20);
+		pc.loadInMouth(pp);
+		pc.loadInMouth(pp);
+		pc.exhibitionism(2);
+		pc.lust(30+rand(10));
+		
+		// [Done] Go to Weight Room
+		addButton(0, "Next", mainGameMenu);
+	}
+}
+
+// Lola
+public function lolaPoolApproach():void
+{
+	clearOutput();
+	author("Slab Bulkhead");
+	showName("\nLOLA");
+	showBust("LOLA");
+	clearMenu();
+	
+	if(flags["MET_LOLA"] == undefined)
+	{
+		output("You wade over toward the naked cowgirl as she strokes her way across the pool. She doesn’t seem to notice your approach, so you time it so she bumps into you on her way. As soon as you two collide, she looks over, then flips herself over and stands up, surprise clear on her round face.");
+		output("\n\n<i>“Oh, I’m sorry!”</i> she says, then gives you a long look up and down, her blue eyes wide. <i>“Hi there,”</i> she says, a smile spreading across her face. <i>“I’m Lola. Haven’t seen you here before, huh?”</i>");
+		output("\n\nLola’s only a little over five feet tall, but her hips would look wide on a woman twice her size; on her, they seem almost comically exaggerated. Her butt is appropriately bulbous, with curvy thighs beneath it. Soaked red hair trails down to her shoulders, clearly her natural color, if the little tuft above her pussy is any indication. Two short white horns peek out from among her locks, and her ears are cowlike and floppy. Her skin is pale, and she has the large boobs common among New Texans, with hard, pink nipples.");
+		output("\n\nYou introduce yourself to the bright-eyed cowgirl, and ask if she’s here working out, or if she just likes to swim.");
+		output("\n\n<i>“Little of both,”</i>, Lola says, nodding a few times. <i>“Sometimes I feel like I need a workout, but mostly I just like to swim. Or to fuck.”</i> Her smile grows a little devious as her gaze trails over your [pc.chest]. <i>“Have you ever had sex with someone who’s floating?”</i>");
+		output("\n\nYou consider it for a moment, and tell her no, you haven’t. Lola looks down at your crotch.");
+	}
+	else
+	{
+		output("\n\n<i>“Hello again, [pc.name], up for some floating fun?”</i> Lola looks down at your crotch.");
+	}
+	
+	processTime(5);
+	
+	// If PC has cock:
+	if(pc.hasCock())
+	{
+		if(flags["MET_LOLA"] == undefined) output("\n\n<i>“That’s too bad,”</i> she says, not taking her eyes off your [pc.cock]. A blush spreads across her cheeks and down her chest, turning the skin on her breasts the palest pink. <i>“Do you want to try it? Like, right now?”</i>");
+		else output("\n\n<i>“I can really go for some of that right about now,”</i> she says, not taking her eyes off your [pc.cock]. A blush spreads across her cheeks and down her chest, turning the skin on her breasts the palest pink. <i>“Do you wanna try it?”</i>");
+		
+		// [Yep] Go to FloatFuck
+		// [Nope] Go to NoFloatFuck
+		addButton(0, "Yep", lolaPoolSex, "yep");
+		addButton(1, "Nope", lolaPoolSex, "nope");
+	}
+	// If PC has hardlight undergarment:
+	else if(pc.lowerUndergarment.hardLightEquipped)
+	{
+		output("\n\nYou mention that you’ve got a hardlight strapon back with your gear, and you can get it if she’s down for that.");
+		output("\n\nLola nods eagerly, her eyes lighting up. <i>“Ooh, those things are fun,”</i> she says. A blush spreads across her cheeks and down her chest, turning the skin on her breasts the palest pink. <i>“Can you go get that? Please?”</i>");
+		
+		// [Yep] Go to FloatFuck
+		// [Nope] Go to NoFloatFuck
+		addButton(0, "Yep", lolaPoolSex, "yep");
+		addButton(1, "Nope", lolaPoolSex, "nope");
+	}
+	else
+	{
+		// If PC doesn’t have cock:
+		if(rand(2) == 0)
+		{
+			if(flags["MET_LOLA"] == undefined) output("\n\n<i>“That’s too bad,”</i> she says, and looks up from your [pc.crotch] after a moment. <i>“And you don’t have anything to fuck me with. Darn.”</i>");
+			else output("\n\n<i>“Darn, you don’t have anything to fuck me with.”</i> she says, looking up from your [pc.crotch] and quickly apologizes.");
+		}
+		// If PC has no hardlight undergarment:
+		else
+		{
+			output("\n\nYou ask if she’s still up for whatever you two can do together. Fingers and lips and tongues can do a lot.");
+			output("\n\n<i>“Oh, but it’s not the same,”</i> Lola says, pouting a little. <i>“And I really like to be, you know–”</i> She thrusts her voluminous hips in your direction, sending a small wave crashing against you. <i>“–penetrated. Sorry, [pc.name].”</i>");
+		}
+		output("\n\nLola swims away, flipping onto her back again after a few strokes, leaving you alone.");
+		
+		// [Done] Go to Swimming Pool
+		addButton(0, "Next", mainGameMenu);
+	}
+	
+	if(flags["MET_LOLA"] == undefined) flags["MET_LOLA"] = 1;
+}
+public function lolaPoolSex(response:String = ""):void
+{
+	clearOutput();
+	author("Slab Bulkhead");
+	showName("\nLOLA");
+	showBust("LOLA");
+	clearMenu();
+	
+	// FloatFuck
+	if(response == "yep")
+	{
+		// [Not yet written] You fuck Lola. While she’s floating.
+		
+		// 9999
+		
+		processTime(15);
+		pc.exhibitionism(2);
+		pc.orgasm();
+		pc.orgasm();
+		
+		// [Done] [+2% Exhibitionism] Go to Swimming Pool
+		addButton(0, "Next", mainGameMenu);
+	}
+	
+	// NoFloatFuck
+	if(response == "nope")
+	{
+		output("You tell Lola that you’re just not into that. She pouts at you a little, then shrugs it off with a giggle. <i>“Aww, no problem. I’m sure someone else here’s up for it.”</i>");
+		output("\n\nLola floats off, the peaceful smile returning to her face.");
+		
+		processTime(2);
+		
+		// [Done] Go to Swimming Pool
+		addButton(0, "Next", mainGameMenu);
+	}
+}
+
+// Betsy and Victoria
+public function showerWithBetsyAndVictoriaApproach():void
+{
+	clearOutput();
+	author("Slab Bulkhead");
+	showName("BETSY &\nVICTORIA");
+	showBust("BETSY", "VICTORIA");
+	
+	if(flags["MET_SHOWER_GIRLS"] == undefined)
+	{
+		output("One of the girls is a tanned blue-eyed blonde with a figure so much the New Texas ideal she could have stepped off of a travel brochure, her huge tits almost impossibly perky with nipples staring straight at you. Her hair’s pulled back in low pigtails dangling past her shoulders.");
+		output("\n\nThe other has black hair with bangs trimmed straight above her eyebrows, and stands taller and a little less curvy, but with quite a bit more tone, clearly no stranger to the gym. She’s also packing eight inches of horsecock, an uncommon sight on the local girls.");
+		output("\n\n<i>“Hi there, cutie,”</i> the blonde says, then giggles as she looks you over. <i>“I’m Betsy. This–”</i> She pauses to squeeze her partner’s ass, prompting the other girl to spank her, hand smacking hard across Betsy’s jiggling flesh. <i>“–is Victoria.”</i>");
+		output("\n\n<i>“Hi,”</i> Victoria says, and gives you an appraising look. Her eyes are heavy-lidded, but she looks like she likes what she sees.");
+		output("\n\nYou introduce yourself, and ask if the two come here often.");
+		output("\n\n<i>“Most every time we’re here,”</i> Victoria says. <i>“It’s a good place to find new friends to play with.”</i>");
+		output("\n\nYou mention that you haven’t seen many futa here on New Texas, though you’ve met quite a few others on your journeys. Victoria smiles, looking kind of proud, but it’s Betsy who speaks up, blushing as she laughs.");
+		output("\n\n<i>“Oh, that’s a funny story. We used to use a strapon, but I kept breaking them. I, um, get a little rough sometimes.”</i>");
+		output("\n\nYou stare at Betsy for a moment, and hope she’s talking about low-tech strapons. If the girl has a habit of breaking hardlights, you might be in for a rough time.");
+		output("\n\n<i>“And,”</i> Victoria says, <i>“I always wondered what it felt like to have a cock. So I thought I’d give it a try.”</i> She strokes a hand down her length, joined by Betsy’s hand a moment later. <i>“I wouldn’t give up this thing for the world.”</i>");
+		
+		flags["MET_SHOWER_GIRLS"] = 1;
+	}
+	else
+	{
+		output("\n\nThe tanned, blue-eyed blonde Betsy and the tall, raven-haired futa Victoria approach you again, both as perky and proud as ever.");
+	}
+	output("\n\n<i>“</i>Sooooo,<i>”</i> Betsy says, twirling a lock of blonde hair around one finger, <i>“you want to play with us? You can pick who gets to be in the middle.”</i>");
+	
+	processTime(1);
+	
+	// [Oh Yeah] Go to Sandwich Selection [+40 Lust] {Remove all [Sweaty]} {Time: 10 minutes}
+	// [Just Teasing] Go to Sandwich Denial [+40 Lust] {Remove all [Sweaty]} {Time: 10 minutes}
+	clearMenu();
+	addButton(0, "Oh Yeah", showerWithBetsyAndVictoriaSelect, "yes");
+	addButton(1, "Just Teasing", showerWithBetsyAndVictoriaSelect, "denial");
+}
+// Sandwich Selection
+public function showerWithBetsyAndVictoriaSelect(response:String = ""):void
+{
+	clearOutput();
+	author("Slab Bulkhead");
+	showName("BETSY &\nVICTORIA");
+	showBust("BETSY", "VICTORIA");
+	clearMenu();
+	
+	if(response == "yes")
+	{
+		output("<i>“Ooh, good,”</i> Betsy says. <i>“I thought you looked like fun.”</i> She presses her wet body against you, her boobs slipping against your [pc.chest], while Victoria slides up against your other hip, and rubs her dong against your thigh.");
+		output("\n\n<i>“So, your choice, [pc.name],”</i> Victoria says. <i>“Who gets to be in the middle?”</i>");
+		
+		processTime(1);
+		
+		// [Betsy] Go to Betsy Sandwich
+		// [Victoria] Go to Victoria Sandwich
+		// [You] Go to You Sandwich
+		addButton(0, "Betsy", showerWithBetsyAndVictoriaSelect, "betsy");
+		addButton(1, "Victoria", showerWithBetsyAndVictoriaSelect, "victoria");
+		addButton(2, "You", showerWithBetsyAndVictoriaSelect, "you");
+	}
+	// Betsy Sandwich
+	if(response == "betsy")
+	{
+		// [Not yet written] You and Victoria double-penetrate Betsy in between you two.
+		
+		processTime(10);
+		pc.lust(30+rand(10));
+		pc.exhibitionism(2);
+		pc.shower();
+		
+		// [Done] Go to Locker Room and Showers [+2% Exhibitionism]
+		addButton(0, "Next", mainGameMenu);
+	}
+	// Victoria Sandwich
+	if(response == "victoria")
+	{
+		// [Not yet written] You fuck Victoria, while she fucks Betsy.
+		
+		processTime(10);
+		pc.lust(30+rand(10));
+		pc.exhibitionism(2);
+		pc.shower();
+		
+		// [Done] Go to Locker Room and Showers [+2% Exhibitionism]
+		addButton(0, "Next", mainGameMenu);
+	}
+	// You Sandwich
+	if(response == "you")
+	{
+		// [Not yet written] Victoria fucks you, while you fuck Betsy.
+		
+		processTime(10);
+		pc.lust(30+rand(10));
+		pc.exhibitionism(2);
+		pc.shower();
+		
+		// [Done] Go to Locker Room and Showers [+2% Exhibitionism]
+		addButton(0, "Next", mainGameMenu);
+	}
+	// Sandwich Denial
+	if(response == "denial")
+	{
+		output("You give the two cowgirls a teasing smile, and tell them you just felt like showing off a little. It’s a flattering offer, but you’re not actually looking for sex right now.");
+		output("\n\n<i>“Tease,”</i> Betsy says, and sticks her tongue out at you.");
+		output("\n\nVictoria gives her a swat on her butt, and points over to another part of the showers. <i>“What about her?”</i> she asks Betsy.");
+		output("\n\n<i>“Ooh, I like,”</i> Betsy says. The two lovers wander off toward their new potential partner.");
+		
+		processTime(10);
+		pc.lust(30+rand(10));
+		pc.exhibitionism(1);
+		pc.shower();
+		
+		// [Done] Go to Locker Room and Showers [+1% Exhibitionism]
+		addButton(0, "Next", mainGameMenu);
+	}
+}
 */
 
 //New Mechanics
 //Sore
 //If your [Sore] total from working out reaches or exceeds 3 (two heavy workouts or three light workouts) you’ll gain the debuff [Sore]. This means you won’t be able to use the gym again until after you sleep, and you’ll regain half as much energy as usual (via resting or other mechanics) while [Sore].
-//The purpose of [Sore] is to make it so you have to spend a little time and effort getting your character’s body into the exact shape you want. I’m trying to make it work similar to the Fatigue buildup from using the gym in CoC, so you can’t just go to the gym once, work out for ten hours of game time, and never need to go back.  The [Sore] debuff should disappear after you sleep.
+//The purpose of [Sore] is to make it so you have to spend a little time and effort getting your character’s body into the exact shape you want. I’m trying to make it work similar to the Fatigue buildup from using the gym in CoC, so you can’t just go to the gym once, work out for ten hours of game time, and never need to go back. The [Sore] debuff should disappear after you sleep.
 
 public function soreDebuff(arg:int = 0):Number
 {
