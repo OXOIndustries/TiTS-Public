@@ -404,9 +404,13 @@
 		// Check save note
 		private function saveGameNextNotes(slotNumber:int):void
 		{
-			kGAMECLASS.removeInput();
 			kGAMECLASS.userInterface.currentPCNotes = kGAMECLASS.userInterface.textInput.text;
-			if (kGAMECLASS.userInterface.currentPCNotes == undefined || kGAMECLASS.userInterface.currentPCNotes == "undefined") kGAMECLASS.userInterface.currentPCNotes = "";
+			if
+			(	kGAMECLASS.userInterface.textInput.text == null || kGAMECLASS.userInterface.textInput.text == ""
+			||	kGAMECLASS.userInterface.textInput.text == undefined || kGAMECLASS.userInterface.textInput.text == "undefined"
+			)	kGAMECLASS.userInterface.currentPCNotes = "";
+			
+			kGAMECLASS.removeInput();
 			
 			if(kGAMECLASS.hasIllegalInput(kGAMECLASS.userInterface.currentPCNotes))
 			{
