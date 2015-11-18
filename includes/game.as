@@ -147,7 +147,7 @@ public function mainGameMenu():void {
 		else addDisabledButton(8, "Masturbate");
 	}
 	else {
-		if(pc.hasStatusEffect("Myr Venom Withdrawl")) addDisabledButton(8, "Masturbate", "Masturbate", "While you’re in withdrawl, you don’t see much point in masturbating, no matter how much your body may want it.");
+		if(pc.hasStatusEffect("Myr Venom Withdrawal")) addDisabledButton(8, "Masturbate", "Masturbate", "While you’re in withdrawal, you don’t see much point in masturbating, no matter how much your body may want it.");
 		else if(!pc.canMasturbate()) addDisabledButton(8, "Masturbate", "Masturbate", "You can’t seem to masturbate at the moment....");
 		else addButton(8, "Masturbate", masturbateMenu);
 	}
@@ -804,7 +804,7 @@ public function showerMenu():void {
 		if (crew(true) > 0) addButton(1, "Sex", showerOptions, 1);
 		if (shipShowerFaps() > 0)
 		{
-			if (pc.hasStatusEffect("Myr Venom Withdrawl")) addDisabledButton(2, "Masturbate", "Masturbate", "While you’re in withdrawl, you don’t see much point in masturbating, no matter how much your body may want it.");
+			if (pc.hasStatusEffect("Myr Venom Withdrawal")) addDisabledButton(2, "Masturbate", "Masturbate", "While you’re in withdrawal, you don’t see much point in masturbating, no matter how much your body may want it.");
 			else if (!pc.canMasturbate()) addDisabledButton(2, "Masturbate", "Masturbate", "You can’t seem to masturbate at the moment....");
 			else addButton(2, "Masturbate", showerOptions, 2);
 		}
@@ -1644,7 +1644,7 @@ public function processTime(arg:int):void {
 					//Not yet uber-addict:
 					if(!pc.hasPerk("Venom Slut"))
 					{
-						if(pc.hasStatusEffect("Myr Venom Withdrawl")) myrAddiction(-2);
+						if(pc.hasStatusEffect("Myr Venom Withdrawal")) myrAddiction(-2);
 					}
 				}
 				//Non addicts not under the effects of venom lose progress to addiction
@@ -3883,7 +3883,7 @@ public function displayQuestLog(showID:String = "All"):void
 					if(flags["VENOM_ADDICTION"] != undefined && flags["VENOM_ADDICTION"] > 0)
 					{
 						output2(", Addicted");
-						if(pc.hasStatusEffect("Myr Venom Withdrawl")) output2(", Undergoing withdrawal");
+						if(pc.hasStatusEffect("Myr Venom Withdrawal")) output2(", Undergoing withdrawal");
 						output2("\n<b>* Venom Addiction Level: </b>" + flags["VENOM_ADDICTION"] + "%");
 					}
 					else output2("\n<b>* Venom Dosage Level: </b>" + flags["VENOM_PROGRESS"] + "%");
