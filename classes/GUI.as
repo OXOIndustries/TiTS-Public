@@ -930,13 +930,20 @@
 			{
 				throw new Error("OutputCodex called whilst the currently active module was not the CodexDisplay!");
 			}
-			
-			trace("Output!");
 		}
 		
 		public function clearOutputCodex():void
 		{
+			resetCodexContentPosition();
 			outputCodexBuffer = "\n";
+		}
+		
+		public function resetCodexContentPosition():void
+		{
+			if (_currentModule is CodexModule)
+			{
+				(_currentModule as CodexModule).resetContentScroll();
+			}
 		}
 		
 		public function getGuiPlayerNameText():String
