@@ -184,6 +184,8 @@
 		{
 			var displayMessage:String = "";
 			
+			kGAMECLASS.removeInput();
+			
 			kGAMECLASS.clearOutput2();
 			kGAMECLASS.userInterface.dataButton.Glow();
 			
