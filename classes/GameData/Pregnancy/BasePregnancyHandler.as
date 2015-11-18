@@ -117,7 +117,6 @@ package classes.GameData.Pregnancy
 						if (this.alwaysImpregnate || mother.fertility() > Math.floor(Math.random() * this.basePregnancyChance))
 						{
 							mother.fertilizeEggs();
-							return true;
 						}
 					}
 				}
@@ -262,6 +261,12 @@ package classes.GameData.Pregnancy
 				}
 				
 				if (thisPtr.debugTrace) trace("Autosetting pregnancy to slot " + pregSlot);
+			}
+			
+			// Fail if the targetted hole is already pregnant
+			if ((mother.pregnancyData[pregSlot] as PregnancyData).pregnancyType != "")
+			{
+				return false;
 			}
 			
 			// Process various ignore values

@@ -53,7 +53,10 @@ package classes.GameData.Pregnancy.Handlers
 				if (pregSlot == -1) return false;
 			}
 			
-			return true;
+			// If the hole we're trying to impregnate is already full and isn't the base type or empty, fail
+			var pData:PregnancyData = mother.pregnancyData[pregSlot];
+			if (pData.pregnancyType.length == 0 || pData.pregnancyType == "VenusPitcherSeedCarrier") return true;
+			return false;
 		}
 		
 		public static function seedCarrierOnSuccessfulImpregnation(father:Creature, mother:Creature, pregSlot:int, thisPtr:BasePregnancyHandler):void
