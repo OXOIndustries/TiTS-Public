@@ -94,7 +94,7 @@ public function weightRoomBonusFunction():Boolean
 	if(pc.energy() >= 50 && !pc.hasStatusEffect("Sore")) addButton(1,"Hard Workout",hardWorkout,undefined,"Hard Workout","A hard workout that'll help you build muscle <b>and</b> strength.");
 	else addDisabledButton(1,"Hard Workout","Hard Workout","You're too tired for that workout.");
 	//[Cowgirl] Go to Simone
-	/*
+	/* 9999
 	if(flags["MET_SIMONE"] == undefined) addButton(3,"Cowgirl",simoneWorkoutApproach,undefined,"Cowgirl","A cowgirl can be seen lifting weights here.");
 	else addButton(3,"Lola",simoneWorkoutApproach,undefined,"Lola","Pump some iron with the competitive cowgirl.");
 	*/
@@ -217,7 +217,7 @@ public function swimmingPoolBonus():Boolean
 	//[Spa] Go to Spa
 	addButton(4,"Spa",spaTimesFunStuff,undefined,"Spa","Relax in the spa and recover some energy.");
 	//[Swimmer] Go to Lola
-	/*
+	/* 9999
 	if(flags["MET_LOLA"] == undefined) addButton(3,"Swimmer",lolaPoolApproach,undefined,"Swimmer","A naked cowgirl floats about here.");
 	else addButton(3,"Lola",lolaPoolApproach,undefined,"Lola","Have some floaty fun with the cowgirl.");
 	*/
@@ -358,7 +358,7 @@ public function takeAShowerSloot():void
 			pc.lust(30+rand(10));
 			pc.exhibitionism(1);
 			clearMenu();
-			//addButton(0,"Next",showerWithBetsyAndVictoriaApproach);
+			//9999 addButton(0,"Next",showerWithBetsyAndVictoriaApproach);
 			return;
 		}
 	}
@@ -808,9 +808,11 @@ public function simoneWorkoutGo(response:String = ""):void
 		// If the PC has a Sexiness bonus of 7 or higher, or muscle tone over 70% of maximum, Simone will lose on purpose. If PC chooses [Compete], they win. If PC chooses [Fake Loss], they still lose.
 		// If Simone does not lose on purpose, take the PC’s Physique stat plus a random number from 1 to 10. If that number is over 20, the PC wins. If that number is under 20, Simone wins.
 		var winrar:Boolean = false;
-		if((pc.sexiness() >= 7 && pc.tone > 70) || ((pc.physique() + rand(10) + 1) > 20)) winrar = true;
+		if(pc.sexiness() >= 7 || pc.tone > 70 || ((pc.physique() + rand(10) + 1) > 20)) winrar = true;
 		
 		processTime(15);
+		//soreDebuff(1);
+		pc.energy(-40);
 		
 		// PC wins:
 		if(winrar)
@@ -851,6 +853,8 @@ public function simoneWorkoutGo(response:String = ""):void
 		output("\n\n<i>“Oh, don’t get up,”</i> Simone says, and hooks one thumb into her pink shorts’ waistband. Her smirk returns. <i>“Just scoot down a little, so the bar’s out of the way. You’re not going anywhere.”</i>");
 		
 		processTime(10);
+		//soreDebuff(1);
+		pc.energy(-20);
 		
 		// [Defeat] Go to Defeat
 		addButton(0, "Defeat", simoneWorkoutResults, "defeat");
@@ -1089,19 +1093,21 @@ public function showerWithBetsyAndVictoriaSelect(response:String = ""):void
 		// [Betsy] Go to Betsy Sandwich
 		// [Victoria] Go to Victoria Sandwich
 		// [You] Go to You Sandwich
-		addButton(0, "Betsy", showerWithBetsyAndVictoriaSelect, "betsy");
-		addButton(1, "Victoria", showerWithBetsyAndVictoriaSelect, "victoria");
-		addButton(2, "You", showerWithBetsyAndVictoriaSelect, "you");
+		addButton(0, "Betsy", showerWithBetsyAndVictoriaSelect, "betsy", "Betsy", "Betsy Sandwich");
+		addButton(1, "Victoria", showerWithBetsyAndVictoriaSelect, "victoria", "Victoria", "Victoria Sandwich");
+		addButton(2, "You", showerWithBetsyAndVictoriaSelect, "you", "You", "[pc.name] Sandwich");
 	}
 	// Betsy Sandwich
 	if(response == "betsy")
 	{
 		// [Not yet written] You and Victoria double-penetrate Betsy in between you two.
 		
+		// 9999
+		
 		processTime(10);
 		pc.lust(30+rand(10));
 		pc.exhibitionism(2);
-		pc.shower();
+		pc.removeStatusEffect("Sweaty");
 		
 		// [Done] Go to Locker Room and Showers [+2% Exhibitionism]
 		addButton(0, "Next", mainGameMenu);
@@ -1111,10 +1117,12 @@ public function showerWithBetsyAndVictoriaSelect(response:String = ""):void
 	{
 		// [Not yet written] You fuck Victoria, while she fucks Betsy.
 		
+		// 9999
+		
 		processTime(10);
 		pc.lust(30+rand(10));
 		pc.exhibitionism(2);
-		pc.shower();
+		pc.removeStatusEffect("Sweaty");
 		
 		// [Done] Go to Locker Room and Showers [+2% Exhibitionism]
 		addButton(0, "Next", mainGameMenu);
@@ -1124,10 +1132,12 @@ public function showerWithBetsyAndVictoriaSelect(response:String = ""):void
 	{
 		// [Not yet written] Victoria fucks you, while you fuck Betsy.
 		
+		// 9999
+		
 		processTime(10);
 		pc.lust(30+rand(10));
 		pc.exhibitionism(2);
-		pc.shower();
+		pc.removeStatusEffect("Sweaty");
 		
 		// [Done] Go to Locker Room and Showers [+2% Exhibitionism]
 		addButton(0, "Next", mainGameMenu);
@@ -1143,7 +1153,7 @@ public function showerWithBetsyAndVictoriaSelect(response:String = ""):void
 		processTime(10);
 		pc.lust(30+rand(10));
 		pc.exhibitionism(1);
-		pc.shower();
+		pc.removeStatusEffect("Sweaty");
 		
 		// [Done] Go to Locker Room and Showers [+1% Exhibitionism]
 		addButton(0, "Next", mainGameMenu);
