@@ -377,9 +377,12 @@
 			// Custom notes:
 			if (saveNoteEnabled)
 			{
-				kGAMECLASS.output2("<b><u>Notes:</u></b>\n<i>Leave the box blank if you don’t wish to change notes, or type “none” to not save any notes at all. Your note can be up to 256 characters long.</i>");
+				kGAMECLASS.output2("<b><u>Notes:</u></b>\n<i>Leave the box blank or type “none” to clear the current note. Your note can be up to 256 characters long.</i>");
 				kGAMECLASS.displayInput();
-				kGAMECLASS.userInterface.textInput.text = "";
+				if (kGAMECLASS.userInterface.currentPCNotes != null)
+					kGAMECLASS.userInterface.textInput.text = kGAMECLASS.userInterface.currentPCNotes;
+				else
+					kGAMECLASS.userInterface.textInput.text = "";
 				kGAMECLASS.userInterface.textInput.maxChars = 256;
 				kGAMECLASS.output2("\n\n\n");
 			}
@@ -406,9 +409,9 @@
 		// Check save note
 		private function saveGameNextNotes(slotNumber:int):void
 		{
-			kGAMECLASS.removeInput();
 			kGAMECLASS.userInterface.currentPCNotes = kGAMECLASS.userInterface.textInput.text;
-			if (kGAMECLASS.userInterface.currentPCNotes == undefined || kGAMECLASS.userInterface.currentPCNotes == "undefined") kGAMECLASS.userInterface.currentPCNotes = "";
+			
+			kGAMECLASS.removeInput();
 			
 			if(kGAMECLASS.hasIllegalInput(kGAMECLASS.userInterface.currentPCNotes))
 			{
@@ -936,9 +939,9 @@
 			dataFile.saveName 		= kGAMECLASS.chars["PC"].short;
 			dataFile.saveLocation 	= StringUtil.toTitleCase(kGAMECLASS.userInterface.planetText + ", " + kGAMECLASS.userInterface.systemText);
 			
-			// No change!
+			// Blank entries get cleared notes!
 			if (kGAMECLASS.userInterface.currentPCNotes == null || kGAMECLASS.userInterface.currentPCNotes.length == 0 || kGAMECLASS.userInterface.currentPCNotes == "")
-			{ /* No overwrites! */ }
+			{ dataFile.saveNotes = "No notes available."; }
 			// Keywords to clear current saved notes!
 			else if (kGAMECLASS.userInterface.currentPCNotes.toLowerCase() == "none" || kGAMECLASS.userInterface.currentPCNotes == "N/A")
 			{ dataFile.saveNotes = "No notes available."; }
