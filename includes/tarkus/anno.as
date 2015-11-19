@@ -3760,7 +3760,7 @@ public function annoxKaedeNotRecruitedMeeting():void
 
 	flags["ANNOxKAEDE_LAST_DAY"] = days;
 
-	if (flags["ANNOxKAEDE_INTRODUCED"] == undefined)
+	if (!hasMetKaede())
 	{
 		flags["ANNOxKAEDE_INTRODUCED"] = 1;
 
@@ -3790,8 +3790,11 @@ public function annoxKaedeNotRecruitedMeeting():void
 	}
 	else
 	{
-		flags["ANNOxKAEDE_INTRODUCED"]++;
-		output("When you step into the shop, you quickly notice that Kaede’s back, languidly resting against the counter chatting quietly with her lover. The two ausars look up, ears twitching, as you step into the company outpost");
+		//flags["ANNOxKAEDE_INTRODUCED"]++;
+		output("When you step into the shop, you quickly notice that Kaede’s");
+		if(flags["ANNOxKAEDE_INTRODUCED"] != undefined) output(" back");
+		else output(" here");
+		output(", languidly resting against the counter chatting quietly with her lover. The two ausars look up, ears twitching, as you step into the company outpost");
 		if (flags["KAEDE_FUCKED"] != undefined) output("; Kaede’s tail visibly wags as she recognizes you");
 		output(".");
 		
@@ -3800,6 +3803,8 @@ public function annoxKaedeNotRecruitedMeeting():void
 		output("\n\n<i>“Hey there, "+ pc.mf("Mr.", "Miss.") +" Steele,”</i> Kaede says, giving you a friendly smile. ");
 		
 		output("\n\n<i>“Kaede and I were just catching up... though I wouldn’t mind closing up shop for a little reunion. if you know what I mean.”</i> Kaede blushes as Anno leans over the counter, nibbling on one of her big, red ears. <i>“Especially if you’d like to join us, [pc.name].”</i>");
+		
+		IncrementFlag("ANNOxKAEDE_INTRODUCED");
 	}
 
 	pc.createStatusEffect("ST Tarkus Closed", 0, 0, 0, 0, true, "", "", false, 60);
