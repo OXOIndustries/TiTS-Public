@@ -5952,7 +5952,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			roamCount++;
 		}
 		// Kaede
-		if(flags["ANNOxKAEDE_INTRODUCED"] != undefined || flags["PUPPYSLUTMAS_2014"] != undefined || flags["MET_KAEDE"] != undefined || flags["KAEDE_MYRELLION_ENCOUNTER"] != undefined)
+		if(hasMetKaede())
 		{
 			output2("\n<b>* Kaede:</b> Met her");
 			if(flags["ANNOxKAEDE_INTRODUCED"] != undefined) output2(", Seen with Anno");
