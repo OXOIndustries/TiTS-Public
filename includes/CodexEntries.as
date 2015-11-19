@@ -158,6 +158,7 @@ public function ausarCodexEntry():void
 	clearOutputCodex();
 	showBust("SYRI"); // An example of an Ausar?
 	outputCodex(header("Ausar"));
+	outputCodex("<i>Man’s best fuckbuddy.</i>\n\n");
 	outputCodex("<b>Name (Singular & Plural):</b> Ausar");
 	outputCodex("\n<b>Sexes:</b> Male and female.");
 	outputCodex("\n<b>Height:</b> Varies, usually similar to humans; they commonly range from five feet to just over six, with rare specimens reaching around seven feet in height.");
@@ -224,6 +225,7 @@ public function leithanCodexEntry():void
 	clearOutputCodex();
 	showBust("ELLIE");
 	outputCodex(header("Leithans"));
+	outputCodex("<i>The centaur people are otherworldly, but as peaceful and friendly as they come.</i>\n\n");
 	outputCodex("<b>Name (Singular):</b> Leithan");
 	outputCodex("\n<b>Sexes:</b> Male and Female");
 	outputCodex("\n<b>Height:</b> Leithans can range from 8’ 6” to 10’ tall, with females usually slightly shorter and lighter than males. Their tauric frames are roughly 5’ at the shoulders, with their humanoid halves ranging from three and a half to five additional feet.");
@@ -250,6 +252,7 @@ public function kuitanCodexEntry():void
 	clearOutputCodex();
 	showBust("KIRO");
 	outputCodex(header("Kui-Tan"));
+	outputCodex("<i>Tan-tan-tanuki no kintama wa...</i>\n\n");
 	outputCodex("<b>Name (Singular & Plural):</b> Kui-tan");
 	outputCodex("\n<b>Sexes:</b> Evenly split between males and hermaphrodites.");
 	outputCodex("\n<b>Height: </b>Most adults are between 4’10” and 5’1” in height with few ever being shorter than 4’4” or taller than 5’6”.");
@@ -279,6 +282,7 @@ public function ovirCodexEntry():void
 	clearOutputCodex();
 	showBust("ALISS");
 	outputCodex(header("Ovir"));
+	outputCodex("<i>You know peacocks? Like them. Only reptiles.</i>\n\n");
 	outputCodex("<b>Name (Singular & Plural):</b> Ovir");
 	outputCodex("\n<b>Sexes:</b> Male & Female.");
 	outputCodex("\n<b>Height:</b> Averages between 4’ 6” and 6’.");
@@ -336,6 +340,7 @@ public function anataeCodexEntry():void
 	clearOutputCodex();
 	showBust("ANATAE");
 	outputCodex(header("Anatae"));
+	outputCodex("<i>Ad maius bonum.</i>\n\n");
 	outputCodex("<b>Name (Singular):</b> Anat");
 	outputCodex("\n<b>Genders:</b> Male (85%), Female (15%)");
 	outputCodex("\n<b>Height:</b> Both sexes range between 5’ 11” and 6’ 4”");
@@ -363,6 +368,7 @@ public function daynarCodexEntry():void
 	clearOutputCodex();
 	showBust("LANE", "DAYNAR_MALE", "DAYNAR_FEMALE");
 	outputCodex(header("Daynar"));
+	outputCodex("<i>Not all lizards are untrustworthy: Just most.</i>\n\n");
 	outputCodex("<b>Name (Singular & Plural):</b> Daynar");
 	outputCodex("\n<b>Sexes:</b> Male & Female");
 	outputCodex("\n<b>Height:</b> Males - 5’ 9” ft, Females - 5’ 7”");
@@ -420,6 +426,7 @@ public function fanfirCodexEntry():void
 {
 	clearOutputCodex();
 	outputCodex(header("Fanfir"));
+	outputCodex("<i>Massive, deafening heart-stealers. Don’t touch hoard.</i>\n\n");
 	outputCodex("<b>Name:</b> Fanfir");
 	outputCodex("\n<b>Sexes:</b> Male and female, equally split.");
 	outputCodex("\n<b>Height:</b> About 10’ (3 meters) tall, and roughly 40’ (12 meters) long from head to tail tip on average.");
@@ -482,6 +489,7 @@ public function rahnCodexEntry():void
 	clearOutputCodex();
 	showBust("FLAHNE");
 	outputCodex(header("Fuu’Rahn and ’Rahn"));
+	outputCodex("<i>They may just be one cell, but really they’re all heart.</i>\n\n");
 	outputCodex("<b>Name (Singular & Plural):</b> Rahn");
 	outputCodex("\n<b>Sexes:</b> “Female”");
 	outputCodex("\n<b>Height:</b> 4’ to 5’ 8” commonly. Most are shorter, but a rare few can attain heights as tall as six feet.");
@@ -548,7 +556,7 @@ public function sielCodexEntry():void
 	clearOutputCodex();
 	showBust("XANTHE");
 	outputCodex(header("Siel"));
-	outputCodex("<i>Be careful you don't get too wrapped up in them.</i>\n\n");
+	outputCodex("<i>Kinky, possessive silk-spinners. Be careful you don't get too wrapped up in them.</i>\n\n");
 	outputCodex("<b>Name (Singular & Plural):</b> Siel");
 	outputCodex("\n<b>Sexes:</b> Male, Female, Herm (See Siel Sexes and Genders)");
 	outputCodex("\n<b>Height:</b> Generally six feet high with a total body length of twelve feet.");
@@ -583,8 +591,8 @@ public function simiiCodex():void
 	showBust("EMBRY_0");
 	//Species Codex Entry
 	outputCodex(header("Simii"));
-	outputCodex("(From order name Simiiformes / Simians)\n\n");
-	outputCodex("<b>Name (Singular & Plural):</b> Simii");
+	outputCodex("<i>Designed specifically by humanity not to blow anything up.</i>\n\n");
+	outputCodex("<b>Name (Singular & Plural):</b> Simii <i>(From order name Simiiformes / Simians)</i>");
 	outputCodex("\n<b>Sexes:</b> Male, Female");
 	outputCodex("\n<b>Height, Weight, Hair, And Eyes:</b> As terrans.");
 	outputCodex("\n<b>Skin:</b> Fur on their forearms and lower legs, with human-like skin everywhere else.");
@@ -633,6 +641,7 @@ public function thraggenCodexEntry():void
 	clearOutputCodex();
 	showBust("CAPTAIN_KHORGAN");
 	outputCodex(header("Thraggen"));
+	outputCodex("<i>The instigators of the great galactic war, locked away for their - and everyone else’s - good.</i>\n\n");
 	outputCodex("<b>Name (Singular & Plural):</b> Thraggen");
 	outputCodex("\n<b>Sexes:</b> Male & Female");
 	outputCodex("\n<b>Height:</b> 6’ to 7’ 5”");
@@ -695,6 +704,7 @@ public function gryvainCodexEntry():void
 {
 	clearOutputCodex();
 	outputCodex(header("Gryvain"));
+	outputCodex("<i>The dragon women are as beautiful and artistic as they are breed-hungry.</i>\n\n");
 	outputCodex("<b>Name:</b> Gryvain (plural and singular)");
 	outputCodex("\n<b>Sexes:</b> Hermaphrodites");
 	outputCodex("\n<b>Height:</b> 5’10” to 7’2”");
@@ -1114,6 +1124,7 @@ public function lapinaraCodexEntry():void
 	clearOutputCodex();
 	showBust("LAPINARA","LAPINARA_2");
 	outputCodex(header("Lapinara"));
+	outputCodex("<i>Be wary on frontier worlds of the parasitic laquines.</i>\n\n");
 	outputCodex("<b>Name (Singular & Plural):</b> Lapinara");
 	outputCodex("\n<b>Sexes:</b> Female (parasitic variant), Female (non-parasitic variant), Male, Herm, and Genderless.");
 	outputCodex("\n<b>Height:</b> Anywhere between 3 and 4 feet for all genders.");
