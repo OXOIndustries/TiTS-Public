@@ -967,42 +967,85 @@ public function appearance(target:Creature):void {
 			// or stand as their own paragraphs.
 			output2(" " + target.pregBellyFragment());
 		}
-
 		
 		//Chesticles.
 		output2("\n\n");
 		if(target.gills) output2("A pair of feathery gills are growing out just below your neck, spreading out horizontally and draping down your chest. They allow you to stay in the water for quite a long time. ");
 		//Chesticles..I mean bewbz.
 		if(target.breastRows.length == 1) {
-			if(target.biggestTitSize() >= 1) output2("You have " + num2Text(target.breastRows[0].breasts) + " " + target.chestDesc() + ", capped with ");
+			// Feminine A-Cups
+			if(target.biggestTitSize() == 1 && target.mf("m","f") == "f") {
+				if (rand(3) == 0) output2("You have the barest hint of breasts, " + num2Text(target.breastRows[0].breasts) + " teasing feminine rises on your chest");
+				else if (rand(2) == 0) output2("You have tiny, cute mosquito bites for breasts, pert and sensitive");
+				else output2("You have A-cup breasts, " + num2Text(target.breastRows[0].breasts) + " small, pert" + target.rawmfn(" trappy"," sporty","") + " boobs that almost vanish under anything thicker than spandex");
+				output2(", capped with ");
+			}
+			// Default
+			else if(target.biggestTitSize() > 1) output2("You have " + num2Text(target.breastRows[0].breasts) + " " + target.chestDesc() + ", capped with ");
+			// Flat chests!
 			else
 			{
-				output2("You have a");
-				if(target.tone >= 100)
+				// Explicit
+				if (rand(5) != 0)
 				{
-					if(target.thickness > 70) output2("n immense chest with " + target.mf("extremely pronounced","very pronounced") + " pectoral muscles");
-					else if(target.thickness >= 30) output2(" robust chest with " + target.mf("extremely pronounced","very pronounced") + " pectoral muscles");
-					else output2(" chisled chest with " + target.mf("extremely pronounced","very pronounced") + " pectoral muscles");
+					// Feminine/Andro, Low/Medium Tone
+					if((target.mfn("m","f","n") != "m") && target.tone < 60) {
+						if (rand(3) == 0) output2("You have a waif’s chest, flat and innocent-looking");
+						else if (rand(2) == 0) output2("You have a girly, soft, undefined flat chest");
+						else output2("The top half of your body is willowy and breast-less, graceful yet vaguely austere");
+					}
+					// Masculine, High Tone, High Thickness
+					else if((target.mf("m","f") == "m") && target.tone >= 60 && target.thickness >= 60) {
+						if (rand(3) == 0) output2("You have a fuck off six pack, bulging with heavy muscle");
+						else if (rand(2) == 0) output2("You’re ripped as hell, sporting the kind of muscle guys want and girls want around them");
+						else output2("You have remarkably well defined, heavyweight abs, rounded and beefy");
+					}
+					// Masculine, Low Tone, High Thickness
+					else if((target.mf("m","f") == "m") && target.tone <= 30 && target.thickness >= 60) {
+						if (rand(3) == 0) output2("You have a broad, incredibly masculine chest, bulky and assured");
+						else if (rand(2) == 0) output2("You have a bear-like upper frame, voluminous and imminently cuddly");
+						else output2("You have a wide, hearty, supremely manly chest");
+					}
+					// Masculine/Feminine/Andro, High Tone, Low Thickness
+					else if(target.tone >= 60 && target.thickness <= 30) {
+						if (rand(3) == 0) output2(target.mf("You have a narrow, well defined but unostentatious six pack", "You have a flat, athlete’s chest, supple and thin"));
+						else if (rand(2) == 0) output2(target.mf("You have a sleek, tight featherweight’s six pack", "You have a no-nonsense flat chest, framed by rounded, subtle amounts of muscle"));
+						else output2(target.mf("You have a flat, athlete’s chest, wiry with muscle", "Your firm, washboard, modest pecs make you look teasingly sexually ambiguous"));
+						}
+					// Default
+					else output2("You have a flat chest with unremarkable pectoral muscles");
+					output2(", capped with ");
 				}
-				else if(target.tone > 70)
-				{
-					if(target.thickness > 70) output2(" broad chest with " + target.mf("well defined","well toned") + " pectoral muscles");
-					else if(target.thickness >= 30) output2(" healthy chest with " + target.mf("well defined","well toned") + " pectoral muscles");
-					else output2(" fit chest with " + target.mf("well defined","well toned") + " pectoral muscles");
-				}
-				else if(target.tone >= 30)
-				{
-					if(target.thickness > 70) output2(" thick chest with " + target.mf("toned","lightly toned") + " pectoral muscles");
-					else if(target.thickness >= 30) output2("n average chest with " + target.mf("toned","lightly toned") + " pectoral muscles");
-					else output2(" soft chest with " + target.mf("toned","lightly toned") + " pectoral muscles");
-				}
+				// Basic
 				else
 				{
-					if(target.thickness > 70) output2(" wide chest with unremarkable pectoral muscles");
-					else if(target.thickness >= 30) output2(" passable chest with unremarkable pectoral muscles");
-					else output2(" flat chest with unremarkable pectoral muscles");
+					output2("You have a");
+					if(target.tone >= 100)
+					{
+						if(target.thickness > 70) output2("n immense chest with " + target.mf("extremely pronounced","very pronounced") + " pectoral muscles");
+						else if(target.thickness >= 30) output2(" robust chest with " + target.mf("extremely pronounced","very pronounced") + " pectoral muscles");
+						else output2(" chisled chest with " + target.mf("extremely pronounced","very pronounced") + " pectoral muscles");
+					}
+					else if(target.tone > 70)
+					{
+						if(target.thickness > 70) output2(" broad chest with " + target.mf("well defined","well toned") + " pectoral muscles");
+						else if(target.thickness >= 30) output2(" healthy chest with " + target.mf("well defined","well toned") + " pectoral muscles");
+						else output2(" fit chest with " + target.mf("well defined","well toned") + " pectoral muscles");
+					}
+					else if(target.tone >= 30)
+					{
+						if(target.thickness > 70) output2(" thick chest with " + target.mf("toned","lightly toned") + " pectoral muscles");
+						else if(target.thickness >= 30) output2("n average chest with " + target.mf("toned","lightly toned") + " pectoral muscles");
+						else output2(" soft chest with " + target.mf("toned","lightly toned") + " pectoral muscles");
+					}
+					else
+					{
+						if(target.thickness > 70) output2(" wide chest with unremarkable pectoral muscles");
+						else if(target.thickness >= 30) output2(" passable chest with unremarkable pectoral muscles");
+						else output2(" flat chest with unremarkable pectoral muscles");
+					}
+					output2(", capped with ");
 				}
-				output2(", capped with ");
 			}
 			//Normal nips
 			if(target.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_DICK || target.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_NORMAL)
@@ -1072,12 +1115,27 @@ public function appearance(target:Creature):void {
 			else output2(", the topmost pair starting at your chest.");
 			temp = 0;
 			while (temp < target.breastRows.length) {
-				if(temp == 0) output2(" Your uppermost row houses ");
-				if(temp == 1) output2(" The second group holds ");
-				if(temp == 2) output2(" Your third batch contains ");
-				if(temp == 3) output2(" Your fourth set cradles ");
-				if(temp == 4) output2(" Your fifth has ");
-				if(target.breastRows[temp].breastRating() >= 1) output2(num2Text(target.breastRows[temp].breasts) + " " + target.breastDescript(temp) + ", capped with ");
+				// Feminine A-Cups
+				if(target.breastRows[temp].breastRating() == 1 && target.mf("m","f") == "f"))
+				{
+					if(temp == 0) output2(" Your top row of breasts are ");
+					else if(temp == (target.breastRows.length - 1)) output2(" Your bottom row of breasts are ");
+					else output2(" Your next row of breasts are ");
+					if(rand(3) == 0) output2("barest hints, nothing more than " + num2Text(target.breastRows[0].breasts) + " teasing feminine rises below the ones above");
+					else if(rand(2) == 0) output2("tiny, cute mosquito bites, pert and sensitive");
+					else output2("A-cups, " + num2Text(target.breastRows[0].breasts) + " small, pert" + target.rawmfn(" trappy"," sporty","") + " boobs that almost vanish under anything thicker than spandex");
+					output2(", capped with ");
+				}
+				// Default
+				else
+				{
+					if(temp == 0) output2(" Your uppermost row houses ");
+					if(temp == 1) output2(" The second group holds ");
+					if(temp == 2) output2(" Your third batch contains ");
+					if(temp == 3) output2(" Your fourth set cradles ");
+					if(temp == 4) output2(" Your fifth has ");
+					if(target.breastRows[temp].breastRating() >= 1) output2(num2Text(target.breastRows[temp].breasts) + " " + target.breastDescript(temp) + ", capped with ");
+				}
 				//DESCRIBE NIPPLE NAU!
 				//Normal nips
 				if(target.breastRows[temp].nippleType == GLOBAL.NIPPLE_TYPE_DICK || target.breastRows[temp].nippleType == GLOBAL.NIPPLE_TYPE_NORMAL) { 
