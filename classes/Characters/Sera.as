@@ -49,15 +49,14 @@
 			this.HPRaw = this.HPMax();
 			this.shieldsRaw = this.shieldsMax();
 
-			this.inventory.push(new Condensol());
 			this.inventory.push(new TerranTreats());
 			this.inventory.push(new Estrobloom());
-			this.inventory.push(new Rainbotox());
 			this.inventory.push(new Tittyblossom());
-			this.inventory.push(new Chocolac());
 			this.inventory.push(new Pussybloom());
 			this.inventory.push(new Pussyblossom());
-			this.inventory.push(new Bovinium());
+			this.inventory.push(new ManUp());
+			this.inventory.push(new Rainbotox());
+			this.inventory.push(new Chocolac());
 			this.inventory.push(new Lactaid());
 
 			
