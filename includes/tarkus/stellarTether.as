@@ -53,7 +53,7 @@ public function approachUGCTroopers():void
 		output("\n\n<i>\"Who the hell do you think you are, " + pc.mf("boy","girl") + "?\"</i> the officer growls, couching his rifle under an arm. <i>\"Ain't no sane fellow walks up to a bunch of troops on high alert.\"</i>");
 		output("\n\nYou shrug. <i>\"I'm just looking around. What's going on here?\"</i>");
 		output("\n\nThe veteran cocks an eyebrow at you, and mutters. <i>\"Damn rushers,\"</i> as he taps out his cigar onto the parched dirt.");
-		output("\n\n<i>\"Look, kid, see that station up ahead?\"</i> he says, pointing to Tether station. <i>\"There's a shitload of pirates in there threatening to crack the planet back in half, finish what the goblins and kobo- er, raskvel started ages ago. Why don't you head back to Nova and get the hell out of here before you get sucked into space with the rest of us, huh?\"</i>");
+		output("\n\n<i>\"Look, kid, see that station up ahead?\"</i> he says, pointing to Tether station. <i>\"There's a shitload of pirates in there threatening to crack the planet back in half, finish what the goblins and kobo- er, gabilani and raskvel started ages ago. Why don't you head back to Nova and get the hell out of here before you get sucked into space with the rest of us, huh?\"</i>");
 		output("\n\nThat's a pretty cheery attitude.");
 		processTime(2);
 	}
@@ -2879,7 +2879,7 @@ public function failedToDisarmTarkusBomb():void
 	clearOutput();
 	author("Fenoxo");
 	showName("\nBOMB");
-	output("The moment all the relays light up, the bomb releases a high-pitched whine. Uh oh. The explosion happens faster than you can perceive it, ending your life and your quest in a coruscating nova. The Tarkus asteroid belt becomes your grave.");
+	output("The moment all the relays light up, the bomb releases a high-pitched whine. Uh oh. The explosion happens faster than you can perceive it, ending your life and your quest in a coruscating Nova. The Tarkus asteroid belt becomes your grave.");
 	output("\n\n<b>GAME OVER</b>");
 	clearMenu();
 }
@@ -2931,7 +2931,7 @@ public function bombExplodes():void
 	//[FAILURE] Bomb goes off while off planet.
 	else if(rooms[this.currentLocation].planet != "PLANET: TARKUS")
 	{
-		output("You receive a notification on your codex that Tarkus was destroyed by the bomb you failed to disarm. The news feeds make a big deal of playing up the survival of a group of raskvel onboard Novahome, and some mention is made of a goblin space station being intact as well. Maybe you should check up on Novahome and see how the raskvel are doing?");
+		output("You receive a notification on your codex that Tarkus was destroyed by the bomb you failed to disarm. The news feeds make a big deal of playing up the survival of a group of raskvel onboard Novahome, and some mention is made of a gabilani space station being intact as well. Maybe you should check up on Novahome and see how the raskvel are doing?");
 		flags["TARKUS_DESTROYED"] = 1;
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
@@ -2949,7 +2949,7 @@ public function bombExplodes():void
 	{
 		showBust("ANNO","SHEKKA");
 		output("Novahome groans like a wounded animal and shifts at least a foot to the left, dumping you to the deck. Alarms sound while you're climbing back to your [pc.feet]. When did the raskvel get those working? Screams of alarm fill the corridors, and you're nearly swept along on a tide of scaley panic. The ship lurches a few more times. You're lucky enough to grab hold of a hand hold this time, and you make your way to the ship's exit ramp.");
-		output("\n\nThe ramp itself is gone. There's an open air gap in its place and no sign of those who might have been walking on it. The Nova bucks like a nautical vessel of old trapped in the gale-force winds of a hurricane. Your belly turns, and you watch the ground fall away a second before tarkus' surface shatters like a piece of glass. Chunks of ore go hurtling by. Raskvel, goblins, and rushers alike are sucked out of the hull, screaming in terror. You barely manage to keep your grip as you watch the bomb tear apart the planet you could've saved.");
+		output("\n\nThe ramp itself is gone. There's an open air gap in its place and no sign of those who might have been walking on it. The Nova bucks like a nautical vessel of old trapped in the gale-force winds of a hurricane. Your belly turns, and you watch the ground fall away a second before tarkus' surface shatters like a piece of glass. Chunks of ore go hurtling by. Raskvel, gabilani, and rushers alike are sucked out of the hull, screaming in terror. You barely manage to keep your grip as you watch the bomb tear apart the planet you could've saved.");
 		output("\n\nDry winds scream like banshees, propelled by geological forces beyond comprehension. ");
 		if(flags["MET_ANNO"] != undefined) output("Anno");
 		else output("A white-haired ausar");
@@ -2980,8 +2980,8 @@ public function planetAsplodeWhileInNova():void
 	output("\n\nStill bumping and bouncing, you wonder if you're going to die like this - trapped in a metal coffin with a bunch of space-");
 	if(!silly) output("rats");
 	else output("kobolds");
-	output(", doomed by your own incompetence. The overhead lights flicked and die, plunging you into darkness. The nova rings like a gong when something slams into it, forcing you to clap your hands to your [pc.ears]. You're going to die. It's finished, then. There's no way out.");
-	output("\n\nThe lights come on, bringing with it the tinny voice of whatever raskvel sits at the helm. <i>\"Shields are up! Shields are up! Get me engines! Fucking goblins must have wrecked their own planet. Someone should've told them it would take more than that to wipe us out!\"</i> A cheer goes through the huddled masses around you. Maybe you'll live after all?");
+	output(", doomed by your own incompetence. The overhead lights flicked and die, plunging you into darkness. The Nova rings like a gong when something slams into it, forcing you to clap your hands to your [pc.ears]. You're going to die. It's finished, then. There's no way out.");
+	output("\n\nThe lights come on, bringing with it the tiny voice of whatever raskvel sits at the helm. <i>\"Shields are up! Shields are up! Get me engines! Fucking gabilani must have wrecked their own planet. Someone should've told them it would take more than that to wipe us out!\"</i> A cheer goes through the huddled masses around you. Maybe you'll live after all?");
 	processTime(3);
 	//[Next]
 	clearMenu();
