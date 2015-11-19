@@ -15,6 +15,7 @@ public function cockBoxDiscoveryBlurb():Boolean
 public function investigateTheCockBox():void
 {
 	clearOutput();
+	author("Fenoxo");
 	showName("STRANGE\nBOX");
 	output("You climb through the wasted machines and rust-scaled heaps to get a closer look, even going so far as to brush away the grit and grime that covers it. Lettering in luminescent paint declares it to be a TamaniCorp Dong Designer. What a find! These things are incredibly expensive, even in the core. You’ve seen them in less savory holos - they get installed in elite nightclubs or exclusive spas, particularly along the human/ausar border worlds where the two races mix.");
 	output("\n\nBedding an ausar lady? Punch a few buttons on a Dong Designer, stick your dick inside, and you’ll be knotting her in no time. Need something to properly scratch a kaithrit’s itch? Satisfaction is a button press away. About the only thing they can’t do is make you bigger - or smaller. And once you’ve had your fun, a return to normalcy is just a touch away.");
@@ -37,6 +38,7 @@ public function takeDatCockBawks():void
 public function useInstalledDickBox():void
 {
 	clearOutput();
+	author("Fenoxo");
 	showName("DONG\nDESIGNER");
 	output("The Dong Designer is still plugged in and working where you left it. The holographic display is as obscene as ever, offering you a bevy of different reproductive organs. The scrolling lettering indicates that you need to insert your penis into the pink-rimmed opening to begin. A nearby lever allows you to adjust the height for comfort.");
 
@@ -93,6 +95,7 @@ public function useInstalledDickBox():void
 public function cockBoxUse(x:int):void
 {
 	clearOutput();
+	author("Fenoxo");
 	showName("DONG\nDESIGNER");
 	//Repeats are for cool kids
 	if(flags["USED_DONG_DESIGNER"] == undefined)
@@ -122,31 +125,22 @@ public function cockBoxMenu(x:int):void
 {
 	clearMenu();
 	
-	addButton(0,"Ausar",dickBoxTF,[x,GLOBAL.TYPE_CANINE],"Ausar","Get a knotted, ausar penis.");
-	addButton(1,"Equine",dickBoxTF,[x,GLOBAL.TYPE_EQUINE],"Equine","Get a penis like that of a terran horse.");
-	addButton(2,"Kaithrit",dickBoxTF,[x,GLOBAL.TYPE_FELINE],"Kaithrit","Get a penis with textured nubs like a kaithrit.");
-	addButton(3,"Kui-Tan",dickBoxTF,[x,GLOBAL.TYPE_KUITAN],"Kui-Tan","Get a bulbous penis, like the kui-tan.");
-	addButton(4,"Leithan",dickBoxTF,[x,GLOBAL.TYPE_LEITHAN],"Leithan","Get a smooth, tapered penis like that of a leithan.");
-	addButton(5,"Terran",dickBoxTF,[x,GLOBAL.TYPE_HUMAN],"Human","Get a fleshy, pink penis, like a terran.");
-	
-	/*
-	// 9999: If implementing color choices (replace the previous)
 	addButton(0,"Ausar",dickBoxTFColorSelect,[x,GLOBAL.TYPE_CANINE],"Ausar","Get a knotted, ausar penis.");
 	addButton(1,"Equine",dickBoxTFColorSelect,[x,GLOBAL.TYPE_EQUINE],"Equine","Get a penis like that of a terran horse.");
 	addButton(2,"Kaithrit",dickBoxTFColorSelect,[x,GLOBAL.TYPE_FELINE],"Kaithrit","Get a penis with textured nubs like a kaithrit.");
 	addButton(3,"Kui-Tan",dickBoxTFColorSelect,[x,GLOBAL.TYPE_KUITAN],"Kui-Tan","Get a bulbous penis, like the kui-tan.");
-	addButton(4,"Leithan",dickBoxTFColorSelect,[x,GLOBAL.TYPE_LEITHAN],"Leithan","Get a smooth, tapered penis like that of a leithan.");
+	addButton(4,"Leithan",dickBoxTFColorSelect,[x,GLOBAL.TYPE_NAGA],"Leithan","Get a smooth, tapered penis like that of a leithan.");
 	addButton(5,"Terran",dickBoxTFColorSelect,[x,GLOBAL.TYPE_HUMAN],"Human","Get a fleshy, pink penis, like a terran.");
-	*/
 	
 	addButton(14,"Back",useInstalledDickBox);
 }
 
 //Dick Chosen.
-//Pick Color - CUT! For now...
+//Pick Color - CUT! For now... (Now included!)
 public function dickBoxTFColorSelect(args:Array):void
 {
 	clearOutput();
+	author("Fenoxo");
 	showName("DONG\nDESIGNER");
 	output("The holographic menu depresses beneath your finger. The other dicks disappear, and the icon you’ve chosen splits into a variety of different colorations.");
 	output("\n\nWhat color would you like your soon-to-be improved manhood to be?");
@@ -154,7 +148,7 @@ public function dickBoxTFColorSelect(args:Array):void
 	var cIdx:int = args[0];
 	var cType:int = args[1];
 	
-	var colors:Array = [];
+	/*
 	switch (cType)
 	{
 		case GLOBAL.TYPE_HUMAN:
@@ -174,7 +168,7 @@ public function dickBoxTFColorSelect(args:Array):void
 			addButton(0,"Pink",dickBoxTF, [cIdx, cType, "pink"],"Pink","Your cock will be colored pink.");
 			addButton(1,"Red",dickBoxTF, [cIdx, cType, "red"],"Red","Your cock will be colored red.");
 			break;
-		case GLOBAL.TYPE_LEITHAN:
+		case GLOBAL.TYPE_NAGA:
 			addButton(0,"Pink",dickBoxTF, [cIdx, cType, "pink"],"Pink","Your cock will be colored pink.");
 			addButton(1,"Purple",dickBoxTF, [cIdx, cType, "purple"],"Purple","Your cock will be colored purple.");
 			addButton(2,"Black",dickBoxTF, [cIdx, cType, "black"],"Black","Your cock will be colored black.");
@@ -185,7 +179,24 @@ public function dickBoxTFColorSelect(args:Array):void
 			addButton(2,"Mottled",dickBoxTF, [cIdx, cType, "mottled pink and black"],"Mottled Pink and Black","Your cock will be colored in a mottled pink and black pattern.");
 			break;
 	}
-	addButton(13,"Random",dickBoxTF, [cIdx, cType, "null"],"Random","Your cock will be a random color, natural to the penis type.");
+	*/
+	
+	addButton(0,"Pink",dickBoxTF, [cIdx, cType, "pink"],"Pink","Your cock will be colored pink.");
+	addButton(1,"Red",dickBoxTF, [cIdx, cType, "red"],"Red","Your cock will be colored red.");
+	addButton(2,"BrightRed",dickBoxTF, [cIdx, cType, "bright red"],"Bright Red","Your cock will be colored bright red.");
+	addButton(3,"DarkRed",dickBoxTF, [cIdx, cType, "dark red"],"Dark Red","Your cock will be colored dark red.");
+	addButton(4,"Orange",dickBoxTF, [cIdx, cType, "orange"],"Orange","Your cock will be colored orange.");
+	
+	addButton(5,"Amber",dickBoxTF, [cIdx, cType, "amber"],"Amber","Your cock will be colored golden yellow.");
+	addButton(6,"Green",dickBoxTF, [cIdx, cType, "green"],"Green","Your cock will be colored green.");
+	addButton(7,"Blue",dickBoxTF, [cIdx, cType, "blue"],"Blue","Your cock will be colored blue.");
+	addButton(8,"Purple",dickBoxTF, [cIdx, cType, "purple"],"Purple","Your cock will be colored purple.");
+	addButton(9,"Mottled",dickBoxTF, [cIdx, cType, "mottled pink and black"],"Mottled Pink and Black","Your cock will be colored in a mottled pink and black pattern.");
+	
+	addButton(10,"Black",dickBoxTF, [cIdx, cType, "black"],"Black","Your cock will be colored black.");
+	addButton(11,"Gray",dickBoxTF, [cIdx, cType, "gray"],"Gray","Your cock will be colored gray.");
+	addButton(12,"Silver",dickBoxTF, [cIdx, cType, "silver"],"Silver","Your cock will be colored silver.");
+	addButton(13,"Natural",dickBoxTF, [cIdx, cType, "null"],"Natural","Your cock will be a random color, natural to the penis type.");
 	addButton(14,"Back",cockBoxDickSelect, cIdx);
 }
 
@@ -205,6 +216,7 @@ public function cockBoxDickSelect(x:int):void
 public function dickBoxTF(args:Array):void
 {
 	clearOutput();
+	author("Fenoxo");
 	showName("DONG\nDESIGNER");
 	if((rand(10) == 0 && flags["USED_DONG_DESIGNER"] != undefined) || (debug && rand(2) == 0))
 	{
@@ -333,7 +345,12 @@ public function dickBoxTF(args:Array):void
 	flags["USED_DONG_DESIGNER"] = 1;
 	processTime(5);
 	pc.shiftCock(args[0],args[1]);
-	//9999 if(arg[2] != undefined || arg[2] != null || arg[2] != "null") pc.cocks[args[0]].cockColor = arg[2];
+	//Coloration
+	if(args.length > 2)
+	{
+		var cColor:String = args[2];
+		if(cColor.length > 0 && cColor != "null") pc.cocks[args[0]].cockColor = cColor;
+	}
 	//Cause ausar are too cool for sheaths.
 	if(args[1] == GLOBAL.TYPE_CANINE) pc.cocks[args[0]].delFlag(GLOBAL.FLAG_SHEATHED);
 	pc.orgasm();
@@ -345,6 +362,8 @@ public function dickBoxTF(args:Array):void
 public function cockBoxDickDoublingHijinx(args:Array):void
 {
 	clearOutput();
+	author("Fenoxo");
+	showName("\nUH OH!");
 	output("The moment you select a chosen color, something goes wrong. A flashing orange and red notification appears above a crossed-out progress bar:\n\n\t<b>Warning: Multiple phalli detected. TamaniCorp can not be held responsible for any deviations in our advanced mutation protocols.</b>\n\t<b>Compensating...</b>\n\t<b>Error: Single phallus detected in multiple mode. Reverting to prevent damage to user. Please do not attempt to remove your penises from the device or irreversible genetic damage may occur.</b>");
 	if(flags["DONG_DESIGNER_MALFUNCTIONED"] == undefined) output("\n\nUh oh.");
 	else output("Fuck, not again.");
