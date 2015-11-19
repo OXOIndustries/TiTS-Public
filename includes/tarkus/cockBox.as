@@ -79,7 +79,7 @@ public function useInstalledDickBox():void
 	//Build dis menu
 	for(var y:int = 0; y < pc.totalCocks(); y++)
 	{
-		output("<b>#" + (y+1) + ":</b> " + formatFloat(pc.cLength(y),3) + " in long, " + pc.cocks[x].cockColor + " [pc.accurateCockName " + y + "]\n")
+		output("<b>#" + (y+1) + ":</b> " + formatFloat(pc.cLength(y),3) + " in long, " + pc.cocks[y].cockColor + " [pc.accurateCockName " + y + "]\n")
 		if(pc.cocks[y].thickness() <= 4 && pc.cocks[y].cLength() <= 20) addButton(y,"#" + (y+1),cockBoxUse,y,"#"+(y+1),"Stick your [pc.cockNoun " + y + "] in there.");
 		else addDisabledButton(y,"#" + (y+1),"#" + (y+1),"Your [pc.cockNoun " + y + "] is too big to fit in the hole.");
 	}
@@ -117,16 +117,28 @@ public function cockBoxUse(x:int):void
 	cockBoxMenu(x);
 }
 
-//Insert Dick
+//Dick Select:
 public function cockBoxMenu(x:int):void
 {
 	clearMenu();
+	
 	addButton(0,"Ausar",dickBoxTF,[x,GLOBAL.TYPE_CANINE],"Ausar","Get a knotted, ausar penis.");
 	addButton(1,"Equine",dickBoxTF,[x,GLOBAL.TYPE_EQUINE],"Equine","Get a penis like that of a terran horse.");
 	addButton(2,"Kaithrit",dickBoxTF,[x,GLOBAL.TYPE_FELINE],"Kaithrit","Get a penis with textured nubs like a kaithrit.");
 	addButton(3,"Kui-Tan",dickBoxTF,[x,GLOBAL.TYPE_KUITAN],"Kui-Tan","Get a bulbous penis, like the kui-tan.");
 	addButton(4,"Leithan",dickBoxTF,[x,GLOBAL.TYPE_LEITHAN],"Leithan","Get a smooth, tapered penis like that of a leithan.");
 	addButton(5,"Terran",dickBoxTF,[x,GLOBAL.TYPE_HUMAN],"Human","Get a fleshy, pink penis, like a terran.");
+	
+	/*
+	// 9999: If implementing color choices (replace the previous)
+	addButton(0,"Ausar",dickBoxTFColorSelect,[x,GLOBAL.TYPE_CANINE],"Ausar","Get a knotted, ausar penis.");
+	addButton(1,"Equine",dickBoxTFColorSelect,[x,GLOBAL.TYPE_EQUINE],"Equine","Get a penis like that of a terran horse.");
+	addButton(2,"Kaithrit",dickBoxTFColorSelect,[x,GLOBAL.TYPE_FELINE],"Kaithrit","Get a penis with textured nubs like a kaithrit.");
+	addButton(3,"Kui-Tan",dickBoxTFColorSelect,[x,GLOBAL.TYPE_KUITAN],"Kui-Tan","Get a bulbous penis, like the kui-tan.");
+	addButton(4,"Leithan",dickBoxTFColorSelect,[x,GLOBAL.TYPE_LEITHAN],"Leithan","Get a smooth, tapered penis like that of a leithan.");
+	addButton(5,"Terran",dickBoxTFColorSelect,[x,GLOBAL.TYPE_HUMAN],"Human","Get a fleshy, pink penis, like a terran.");
+	*/
+	
 	addButton(14,"Back",useInstalledDickBox);
 }
 
@@ -321,7 +333,7 @@ public function dickBoxTF(args:Array):void
 	flags["USED_DONG_DESIGNER"] = 1;
 	processTime(5);
 	pc.shiftCock(args[0],args[1]);
-	//9999 if(arg[2] != undefined || arg[2] != "null") pc.cocks[args[0]].cockColor = arg[2];
+	//9999 if(arg[2] != undefined || arg[2] != null || arg[2] != "null") pc.cocks[args[0]].cockColor = arg[2];
 	//Cause ausar are too cool for sheaths.
 	if(args[1] == GLOBAL.TYPE_CANINE) pc.cocks[args[0]].delFlag(GLOBAL.FLAG_SHEATHED);
 	pc.orgasm();
