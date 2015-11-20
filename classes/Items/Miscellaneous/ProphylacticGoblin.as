@@ -24,15 +24,15 @@
 			this.shortName = "Goblin P.";
 			
 			//Regular name
-			this.longName = "goblin prophylactic";
+			this.longName = "gabilani prophylactic";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a prophylactic designed to repel goblins";
+			this.description = "a prophylactic designed to repel gabilani";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "A tubular aerosol canister with the outline of a goblin on it. Once sprayed on, it should detract any goblin from approaching you for a time. It doesn’t feel particularly full; you suspect you’ll only get one use out of it.";
+			this.tooltip = "A tubular aerosol canister with the outline of a gabilani on it. Once sprayed on, it should detract any gabilani from approaching you for a time. It doesn’t feel particularly full; you suspect you’ll only get one use out of it.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -58,8 +58,8 @@
 			kGAMECLASS.clearOutput();
 			if(target is PlayerCharacter) {
 				kGAMECLASS.output("You take out the aerosol canister and spray yourself all over with it. It doesn’t smell of anything but wet solvent... but then, you aren’t a goblin.");
-				if(!target.hasStatusEffect("Goblin Prophylactic")) target.createStatusEffect("Goblin Prophylactic", 0, 0, 0, 0, false, "Radio", "The spray currently effecting you will reduce encounters with goblins.", false, 1200);
-				else target.setStatusMinutes("Goblin Prophylactic",1200);
+				if(!target.hasStatusEffect("Gabilani Prophylactic")) target.createStatusEffect("Gabilani Prophylactic", 0, 0, 0, 0, false, "Radio", "The spray currently effecting you will reduce encounters with gabilani.", false, 1200);
+				else target.setStatusMinutes("Gabilani Prophylactic",1200);
 			}
 			else {
 				kGAMECLASS.output(target.capitalA + target.short + " seems uninterested in the spray.");

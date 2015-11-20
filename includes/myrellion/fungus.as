@@ -118,7 +118,7 @@ public function infectedMyrAI():void
 //Win text
 public function winVsInfectedMyr():void
 {
-	output("As you deal the finishing blow, your codex lights up. A brief glance at the screen nets you a warning that despite the fungi’s inability to parasitize non insectile races there could be other side effects. It advises shying away from physical contact. Looks like you have a choice to make.");
+	output("As you deal the finishing blow, your codex lights up. A brief glance at the screen nets you a warning that despite the fungi’s inability to parasitize non-insectile races there could be other side effects. It advises shying away from physical contact. Looks like you have a choice to make.");
 	processTime(1);
 	//[Sex] [Compassion] [Watch] [Leave]
 	//Red femyr fuck/loss
@@ -449,7 +449,7 @@ public function maleInfectedMyrEncounter():void
 	}
 	else output("You know the females of the race to be dominant");
 	output(", so the sight of the proud looking myr holding her by one of her nearly foot long ears while she begrudgingly eyes the ground is somewhat unnerving.");
-	output("\n\n<i>“At first this slut thought she was the one hitting the jackpot, but then I realised I had super powers and she changed her mind,”</i> he says, leaning down next to her and kissing one of her ears. The nyrea shudders but hides whatever feelings she has as her captor stands. What you thought was a human looking cock opens like a three jawed mouth, with a slimy red tendril for a tongue. The tentacle slides up her cheek, leaving a shiny line of what you assume is pre-cum before it slides back and returns to a normal look.");
+	output("\n\n<i>“At first this slut thought she was the one hitting the jackpot, but then I realized I had super powers and she changed her mind,”</i> he says, leaning down next to her and kissing one of her ears. The nyrea shudders but hides whatever feelings she has as her captor stands. What you thought was a human looking cock opens like a three jawed mouth, with a slimy red tendril for a tongue. The tentacle slides up her cheek, leaving a shiny line of what you assume is pre-cum before it slides back and returns to a normal look.");
 	output("\n\n<i>“So what do you say? I’m sure you two will get along wonderfully together!”</i> he says as if you’ve already agreed. When you inform him that joining his harem is not on your list of things to do his features change in an instant. Instead of the jovial ant-man you’d been treated to he smiles wickedly and speaks in a calm, calculated tone.");
 	output("\n\n<i>“I guess I’ll have to convince you then.”</i>\n\nIt looks like you’ll have to fight.");
 	//[fightshit]

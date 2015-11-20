@@ -45,7 +45,10 @@ public function annoPuppyslutmasNope():void
 	
 	output("\n\nThe happy wagging of Anno’s tail dies instantly, and her smile fades. <i>“Right. Uh, yeah, you’re right. Sorry, I don’t know what I was thinking.”</i>");
 	
-	output("\n\nAnno slips out of your lap and heads for the door. <i>“Talk to you later I guess. I’ll give Kaede a call, see if I can swing a pickup next time we’re on-world.”</i>");
+	output("\n\nAnno slips out of your lap and heads for the door. <i>“Talk to you later I guess. I’ll give");
+	if(flags["ANNOxKAEDE_INTRODUCED"] != undefined) output(" Kaede");
+	else output(" my friend");
+	output(" a call, see if I can swing a pickup next time we’re on-world.”</i>");
 	
 	processTime(10);
 

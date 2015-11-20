@@ -6704,6 +6704,14 @@ package classes {
 		{
 			return (hasCock() || hasVagina());
 		}
+		public function hasTail(): Boolean {
+			if (tailCount > 0) return true;
+			return false;
+		}
+		public function hasParasiteTail(): Boolean {
+			if (tailCount > 0 && InCollection(tailType, GLOBAL.TYPE_CUNTSNAKE, GLOBAL.TYPE_COCKVINE)) return true;
+			return false;
+		}
 		public function hasTailCock(): Boolean {
 			if (hasTailFlag(GLOBAL.FLAG_TAILCOCK) && tailCount > 0) return true;
 			if (tailType == GLOBAL.TYPE_COCKVINE && tailCount > 0) return true;
@@ -7620,7 +7628,7 @@ package classes {
 			else return "base";
 		}
 		public function chestDesc(): String {
-			if (biggestTitSize() < 1)
+			if (biggestTitSize() < 1 && rand(2) == 0)
 			{
 				var adjective:String = "";
 				if(tone >= 100)
@@ -11208,7 +11216,20 @@ package classes {
 			var descript: String = "";
 			var choice: Number = 0;
 			//Catch all for dudes.
-			if (val < 1) return "manly";
+			if (val < 1) {
+				choice = this.rand(4);
+				if (choice == 0) descript += "tight";
+				else if (choice == 1) descript += "hard";
+				else if (choice == 2) descript += "fine";
+				else return "manly";
+			}
+			//A-cup
+			else if (val == 1) {
+				choice = this.rand(3);
+				if (choice == 0) descript += "cute";
+				else if (choice == 1) descript += "soft";
+				else descript += "small";
+			}
 			//Small - A->B
 			if (val <= 2) {
 				choice = this.rand(4);
@@ -11224,7 +11245,7 @@ package classes {
 				else if (choice <= 1) descript += "hand-filling";
 				else if (choice <= 2) descript += "well-rounded";
 				else descript += "supple";
-				//else if(choice == 4) descript += "softball-sized ";
+				//else if(choice == 4) descript += "softball-sized";
 			}
 			//DD->big EE
 			else if (val < 11) {
@@ -11279,10 +11300,47 @@ package classes {
 			var descript: String = "";
 			var descripted: Boolean = false;
 			if (breastRows[rowNum].breastRating() < 1) {
+				/*
 				temp = this.rand(10);
 				if (temp <= 3) return "pecs";
 				else if (temp <= 6) return "flat, almost non-existent breasts";
 				else return "pectoral muscles";
+				*/
+				// Feminine/Andro, Low/Medium Tone
+				if((mfn("m","f","n") != "m") && tone < 60) {
+					temp = this.rand(3);
+					if (temp <= 0) return "soft, flat chest";
+					else if (temp <= 1) return "flat, girly chest";
+					else return "smooth, featureless chest";
+				}
+				// Masculine, High Tone, High Thickness
+				else if((mf("m","f") == "m") && tone >= 60 && thickness >= 60) {
+					temp = this.rand(3);
+					if (temp <= 0) return "manly, rippling chest";
+					else if (temp <= 1) return "big, muscular chest";
+					else return "beefcake pecs";
+				}
+				// Masculine, Low Tone, High Thickness
+				else if((mf("m","f") == "m") && tone <= 30 && thickness >= 60) {
+					temp = this.rand(3);
+					if (temp <= 0) return "broad, cuddly chest";
+					else if (temp <= 1) return "bear-like chest";
+					else return "fleshy, manly chest";
+				}
+				// Masculine/Feminine/Andro, High Tone, Low Thickness
+				else if(tone >= 60 && thickness <= 30) {
+					temp = this.rand(3);
+					if (temp <= 0) return mf("tight, firm pecs","firm, flat breasts");
+					else if (temp <= 1) return mf("hard, sleek chest","athletic chest");
+					else return mf("fine, flat pecs","sleek, firm chest");
+				}
+				// Default
+				else {
+					temp = this.rand(10);
+					if (temp <= 3) return "pecs";
+					else if (temp <= 6) return "flat, almost non-existant breasts";
+					else return "pectoral muscles";
+				}
 			}
 			//50% of the time size-descript them
 			if (this.rand(2) == 0) {
@@ -11312,8 +11370,19 @@ package classes {
 				}
 				descripted = true;
 			}
-			if(descripted) descript += " ";
-			descript += chestNoun(rowNum);
+			// A-cups
+			if(breastRows[rowNum].breastRating() == 1) {
+				if(descripted) descript += ", ";
+				temp = this.rand(3);
+				if (temp == 0) descript += "tiny ";
+				else if (temp == 1) descript += "girly ";
+				else descript += "waifish ";
+				descript += RandomInCollection("breasts", "chest", "boobs", "tits");
+			}
+			else {
+				if(descripted) descript += " ";
+				descript += chestNoun(rowNum);
+			}
 			return descript;
 		}
 		public function breastNoun(rowNum:int = 99):String

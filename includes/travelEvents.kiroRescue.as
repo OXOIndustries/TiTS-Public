@@ -165,29 +165,31 @@ public function kirosShipWails(doOutput:Boolean = true):Boolean
 	
 	if (pc.hasVagina())
 	{
-		addButton(2, "Get Filled", kirosShipChubnookiFucksYouGud, undefined, "Get Filled", "Ride the Tanuki's monster cock.");
+		addButton(2, "Vag Filled", kirosShipChubnookiFucksYouGud, false, "Get Filled Vaginally", "Ride the Tanuki's monster cock with your cunt.");
 	}
 	else
 	{
-		addDisabledButton(2, "Get Filled", "Get Filled", "If you had a cunt, you could ride the Tanuki's monster cock.");
+		addDisabledButton(2, "Vag Filled", "Get Filled Vaginally", "If you had a cunt, you could ride the Tanuki's monster cock.");
 	}
+	
+	addButton(3, "Ass Filled", kirosShipChubnookiFucksYouGud, true, "Get Filled Anally", "Ride the Tanuki's monster cock with your ass.");
 
 	if (pc.characterClass == GLOBAL.CLASS_ENGINEER)
 	{
 		if (flags["RESCUE KIRO TECHSPEC MACHINE FIX"] == undefined)
 		{
-			addButton(3, "Fix Machine", kirosShipfixDaMachine, undefined, "Fix the Machine", "Bring your considerable technical knowhow to bare on the troubled machine.")
+			addButton(4, "Fix Machine", kirosShipfixDaMachine, undefined, "Fix the Machine", "Bring your considerable technical knowhow to bare on the troubled machine.")
 		}
 		else
 		{
-			addDisabledButton(3, "Fix Machine", "Fix the Machine", "You've already tried - and failed - to successfully fix the troubled machine that would grant the Kui-tan the relief she so desperately needs.")
+			addDisabledButton(4, "Fix Machine", "Fix the Machine", "You've already tried - and failed - to successfully fix the troubled machine that would grant the Kui-tan the relief she so desperately needs.")
 		}
 	}
 	else
 	{
-		addDisabledButton(3, "Fix Machine", "An individual with substantial engineering know-how might be in a position to attempt fixing the machine for the beached Kui-Tan.")
+		addDisabledButton(4, "Fix Machine", "An individual with substantial engineering know-how might be in a position to attempt fixing the machine for the beached Kui-Tan.")
 	}
-	addButton(4,"Nope!",kirosShipNopeFuckThisShit,undefined,"Nope, I'm Out","You don't get paid enough to deal with this kind of shit.");
+	addButton(14,"Nope!",kirosShipNopeFuckThisShit,undefined,"Nope, I'm Out","You don't get paid enough to deal with this kind of shit.");
 	return true;
 }
 
@@ -489,7 +491,7 @@ public function kirosShipChubnookiUpDaCooter():void
 	addButton(0, "Next", kirosShipPostFirstFuck);
 }
 
-public function kirosShipChubnookiFucksYouGud():void
+public function kirosShipChubnookiFucksYouGud(anal:Boolean = false):void
 {
 	clearOutput();
 	author("Fenoxo");
@@ -497,9 +499,13 @@ public function kirosShipChubnookiFucksYouGud():void
 	
 	flags["KIRO_FUCKED_DURING_RESCUE"] = 1;
 	
-	var selVag:int = (pc as PlayerCharacter).biggestVaginaIndex();
+	var selVag:int = 0;
+	if (!anal) selVag = (pc as PlayerCharacter).biggestVaginaIndex();
 
-	output("Shuddering at the sight of all that pent-up seed, you can't help but think that the best way to empty it out would be inside you. The image of it painted over your inner walls and absolutely bathing your womb in its creamy delights has you feeling hot and flushed in all the right places.");
+	output("Shuddering at the sight of all that pent-up seed, you can't help but think that the best way to empty it out would be inside you. The image of it painted over your");
+	if (!anal) output(" inner walls and absolutely bathing your womb");
+	else output(" asshole and filling your insides");
+	output(" in its creamy delights has you feeling hot and flushed in all the right places.");
 	if (pc.hasCock())
 	{
 		output(" [pc.EachCock] stiffens even though");
@@ -510,47 +516,112 @@ public function kirosShipChubnookiFucksYouGud():void
 		else output(" it");
 		output(" all the same as you take in the scene.");
 	}
-	output(" You cast a lusty look towards the tanuki and tell her, \"<i>Pull out of that fake pussy. I've got something for you right here.</i>\" You drop your gear and bend over to show her just what you're talking about, grabbing [pc.onePussy] with both hands and spreading it wide, showing off the juicy, slick interior to the nearly-insensate tanuki-woman.");
+	output(" You cast a lusty look towards the tanuki and tell her, \"<i>Pull out of that fake pussy. I've got something for you right here.</i>\" You drop your gear and bend over to show her just what you're talking about, grabbing");
+	if (!anal) output(" [pc.onePussy]");
+	else output(" your [pc.asshole]");
+	output(" with both hands and spreading it wide, showing off the");
+	if (!anal) output(" juicy, slick");
+	else output(" deep");
+	output(" interior to the nearly-insensate tanuki-woman.");
 
 	output("\n\n\"<i>R-really?</i>\" the half-crazed hermaphrodite pants, \"<i>I c-can put inside you? I can use you like a little cum-bloated cocksleeve until my balls are empty and you're waddling around full of jizz?</i>\" She bites her lip, grabs her nipple and gasps, violently lurching her hips forward, slamming them into the entrance of the fake pussy with aroused desperation. She jackhammers it a few times before exhaustion overwhelms her, forcing her to give up with a mewl of disappointment. \"<i>Please, do it!</i>\" She roughly yanks back, revealing a glistening fuckpole at least a foot and a half long, pulsating so violently that it visibly throbs in place. Its big, flat flare is stretched wide like it's about to cum, and a steady stream of pre-cum is just rolling out of the distended cum-slit.");
 
-	output("\n\nLocking your eyes on that pillar of bitch-breaking fuckmeat like it's the most important thing in the room (and to you, it is), you grab hold of the girl's feet and lurch, dragging yourself up across the soft, squishy ballsack with more than a little effort. Cum sputters out of her tip along with lascivious groans whenever the whole of your bodyweight falls against the trembling sperm-spheres, some even falling on your");
+	output("\n\nLocking your eyes on that pillar of ");
+	if (!anal) output("bitch");
+	else output("butt");
+	output("-breaking fuckmeat like it's the most important thing in the room (and to you, it is), you grab hold of the girl's feet and lurch, dragging yourself up across the soft, squishy ballsack with more than a little effort. Cum sputters out of her tip along with lascivious groans whenever the whole of your bodyweight falls against the trembling sperm-spheres, some even falling on your");
 	if (pc.hasHair()) output(" [pc.hair]");
 	else output(" head");
-	output(" as you manage to pull yourself up between her legs. This close, you can't help but breathe in her unmistakably animalistic musk. The heady pheromones tickle your nose as you take them in and pump right down to [pc.eachVagina] until you feel unmistakably wet with need, your face pressed against the skin of her lube-slick cock so hard that it compresses your nose. You give it a long shuddering lick, before you remember your promise. You're going to let this beast-girl cum inside you.");
+	output(" as you manage to pull yourself up between her legs. This close, you can't help but breathe in her unmistakably animalistic musk. The heady pheromones tickle your nose as you take them in and pump right down to");
+	if (!anal) output(" [pc.eachVagina]");
+	else output(" your [pc.asshole]");
+	output(" until you feel unmistakably wet with need, your face pressed against the skin of her lube-slick cock so hard that it compresses your nose. You give it a long shuddering lick, before you remember your promise. You're going to let this beast-girl cum inside you.");
 
-	output("\n\nThe horse-dicked hermaphrodite is too turned on to take action other than stroking herself during that time period, and she's even groping at her own tit. The soft pads that line her fingertips squeeze down on a chocolate nipple as it's twisted, tugged, and pulled with reckless abandon. This room is rich with the aroma of her need, and your own feminine fuck-scent mixes with it into a soupy sexual haze. Both panting now, you lock eyes with each other and smile.");
+	output("\n\nThe horse-dicked hermaphrodite is too turned on to take action other than stroking herself during that time period, and she's even groping at her own tit. The soft pads that line her fingertips squeeze down on a chocolate nipple as it's twisted, tugged, and pulled with reckless abandon. This room is rich with the aroma of her need,");
+	if (!anal) output(" and your own feminine fuck-scent mixes with it into a soupy");
+	else output(" your senses swimming in a scent of the");
+	output(" sexual haze. Both panting now, you lock eyes with each other and smile.");
 
 	output("\n\nThe tanuki mentions via stuttering groan, \"<i>The l-lube is elasticizing. So, don't worry about the size. It'll fit.</i>\" Her balls quake under you, nearly tossing you from your perch. Clearly she's imagining what's about to happen.");
 
-	output("\n\nYou smile to yourself. Her imagination has no idea how good you're going to make that bloated horse-dick of hers feel. Placing your hands on her shoulders, you pull yourself up onto just your [pc.feet], balancing yourself as you straddle her splayed legs and align yourself with the pre-spouting pecker. You lower slowly, as her head is at least three or four inches across thanks to its flare, feeling the hot kiss of her efflux as you come within a hairsbreadth of touching her spasming flesh. The slick pre soaks your [pc.vaginas] with a clear coat of sopping-wet lust before your own dripping passion causes it to drizzle out onto the tanuki-woman's increasingly slippery nutsack. You decide that you can hold out no longer.");
+	output("\n\nYou smile to yourself. Her imagination has no idea how good you're going to make that bloated horse-dick of hers feel. Placing your hands on her shoulders, you pull yourself up onto just your [pc.feet], balancing yourself as you straddle her splayed legs and align yourself with the pre-spouting pecker. You lower slowly, as her head is at least three or four inches across thanks to its flare, feeling the hot kiss of her efflux as you come within a hairsbreadth of touching her spasming flesh. The slick pre soaks your");
+	if (!anal) output(" [pc.vaginas]");
+	else output(" [pc.asshole]");
+	output(" with a clear coat of sopping-wet lust before");
+	if (!anal) output(" your own dripping passion causes it to drizzle");
+	else output(" drizzling");
+	output(" out onto the tanuki-woman's increasingly slippery nutsack. You decide that you can hold out no longer.");
 
-	output("\n\nRelaxing your [pc.legOrLegs], you let her flare smash into your juiced-up gates, spreading them slowly as the rock-hard pillar of cock presses against them, flat with just enough of a curve to make you spread out wider and wider. Whatever chemical lubricant she was using");
-	if (pc.biggestVaginalCapacity() >= kiro.biggestCockVolume()) output(" doesn't matter with as much sexual experience as you've had. This is just a walk in the park for a flexible cunt like yours.");
+	output("\n\nRelaxing your [pc.legOrLegs], you let her flare smash into your");
+	if (!anal) output(" juiced-up gates, spreading them");
+	else output(" slicked sphincter, spreading it");
+	output(" slowly as the rock-hard pillar of cock presses against");
+	if (!anal) output(" them");
+	else output(" it");
+	output(", flat with just enough of a curve to make you spread out wider and wider. Whatever chemical lubricant she was using");
+	if (!anal && pc.biggestVaginalCapacity() >= kiro.biggestCockVolume()) output(" doesn't matter with as much sexual experience as you've had. This is just a walk in the park for a flexible cunt like yours.");
+	else if (anal && pc.analCapacity() >= kiro.biggestCockVolume()) output(" doesn't matter with as much sexual experience as you've had. This is just a walk in the park for a pliant pucker like yours.");
 	else output(" seems to be working, as the wider you go, the better it feels, and there's not the slightest hint of pain.");
-	output(" Once you're wide enough that you can feel your labia slipping around either side of the blunt tip, you throw back your head in a moan of passion. Her pre-cum is bubbling straight into your passage now.");
-	if (pc.vaginaTotal() > 1) output(" You reach down with one hand to play with");
-	if (pc.vaginaTotal() == 2) output(" your other");
-	else if (pc.vaginaTotal() > 2) output(" another");
-	if (pc.vaginaTotal() > 1) output(" of your [pc.vaginas], fingerfucking yourself in a way that lets you press against the cock inside you, rubbing it to ease the penetration.");
+	output(" Once you're wide enough that you can feel your");
+	if (!anal) output(" labia slipping around either side");
+	else output(" anus enveloping the circumference");
+	output(" of the blunt tip, you throw back your head in a moan of passion. Her pre-cum is bubbling straight into your passage now.");
+	if (!anal)
+	{
+		if (pc.vaginaTotal() > 1) output(" You reach down with one hand to play with");
+		if (pc.vaginaTotal() == 2) output(" your other");
+		else if (pc.vaginaTotal() > 2) output(" another");
+		if (pc.vaginaTotal() > 1) output(" of your [pc.vaginas], fingerfucking yourself in a way that lets you press against the cock inside you, rubbing it to ease the penetration.");
+		
+		pc.cuntChange(selVag, (kiro as Creature).biggestCockVolume(), true, true, false);
+	}
+	else
+	{
+		pc.buttChange((kiro as Creature).biggestCockVolume(), true, true, false);
+	}
+	output("\n\n\"<i>Ohhhh yesss,</i>\" the raccoon-girl gasps, \"<i>You're going to make me cum so hard. I can feel it.</i>\" She kisses you without warning, her pouty lower lip slipping over your own in advance of her probing tongue. It finds your own and begins to tangle with it, distracting you from your pace until your muscles relax and your body slides three inches down that turgid fuckpole all at once. You moan and aggressively kiss her back, not even trying to control your descent anymore. It feels too good, and you're too horny to try to master yourself any longer. You're going to let yourself be fucked as fast as your");
+	if (!anal) output(" soaking-wet snatch");
+	else output(" greedy anus");
+	output(" and gravity will allow, stretching out to handle the huge insertion as you go, her pulsating head bathing your");
+	if (!anal) output(" reproductive organs");
+	else output(" backdoor");
+	output(" in a slippery-warm soup of tanuki love.");
 	
-	pc.cuntChange(selVag, (kiro as Creature).biggestCockVolume(), true, true, false);
-
-	output("\n\n\"<i>Ohhhh yesss,</i>\" the raccoon-girl gasps, \"<i>You're going to make me cum so hard. I can feel it.</i>\" She kisses you without warning, her pouty lower lip slipping over your own in advance of her probing tongue. It finds your own and begins to tangle with it, distracting you from your pace until your muscles relax and your body slides three inches down that turgid fuckpole all at once. You moan and aggressively kiss her back, not even trying to control your descent anymore. It feels too good, and you're too horny to try to master yourself any longer. You're going to let yourself be fucked as fast as your soaking-wet snatch and gravity will allow, stretching out to handle the huge insertion as you go, her pulsating head bathing your reproductive organs in a slippery-warm soup of tanuki love.");
-	
-	output("\n\nGoddamn, she's huge. Your [pc.vagina "+ selVag +"] is filled so beautifully that you have to wonder if this is what you were meant to be: an organic, dick-draining cock-wrapper. A sudden change in thickness arrests your slow slide down for a moment until it pops past your clinging lips and follows the flare through your canal, stroking over-sensitive nerve bundles along every fold of your cunt. You whimper and arch your back, feeling it stretch the whole of your body.");
+	output("\n\nGoddamn, she's huge. Your");
+	if (!anal) output(" [pc.vagina "+ selVag +"]");
+	else output(" [pc.asshole]");
+	output(" is filled so beautifully that you have to wonder if this is what you were meant to be: an organic, dick-draining cock-wrapper. A sudden change in thickness arrests your slow slide down for a moment until it pops past your");
+	if (!anal) output(" clinging lips");
+	else output(" rectal ring");
+	output(" and follows the flare through your canal, stroking over-sensitive nerve bundles along");
+	if (!anal) output(" every fold of your cunt");
+	else output(" the walls of your anus");
+	output(". You whimper and arch your back, feeling it stretch the whole of your body.");
 	if (pc.bellyRating() > 25) output(" If your belly weren't so big, you're sure you'd see her cock outlined in stark relief on your [pc.skin].");
 	else output(" Her cock is outlined in stark relief on the [pc.skin] of your [pc.belly].");
-	output(" That cock is just wrecking your pussy. It's so fucking huge and hot and wet that you're not sure you'll ever be able to settle for anything less again.");
+	output(" That cock is just wrecking your");
+	if (!anal) output(" pussy");
+	else output(" asshole");
+	output(". It's so fucking huge and hot and wet that you're not sure you'll ever be able to settle for anything less again.");
 
-	output("\n\nGushes of girlish-cream splatter out from your nether-lips, and you resume your steady slide downward. You're sure you can feel your internal organs shifting to make room, bent out of the way in proper deference to this powerful, masculine organ. You whimper, biting your [pc.lip] and letting your arms go limp. Your brain feels like it’s shutting down, and you lack the will to make your muscles do anything at this point. You're just limply sliding down, accepting more and more of the tanuki-woman's tremendous, towering erection into your taut folds. She's so big and firm that even with you laying back, limp, it holds you in place, supporting you in a way that your muscles and skeleton have failed to do.");
+	if (!anal) output("\n\nGushes of girlish-cream splatter out from your nether-lips, and y");
+	else output("\n\nY");
+	output("ou resume your steady slide downward. You're sure you can feel your internal organs shifting to make room, bent out of the way in proper deference to this powerful, masculine organ. You whimper, biting your [pc.lip] and letting your arms go limp. Your brain feels like it’s shutting down, and you lack the will to make your muscles do anything at this point. You're just limply sliding down, accepting more and more of the tanuki-woman's tremendous, towering erection into your");
+	if (!anal) output(" taut folds");
+	else output("rear end");
+	output(". She's so big and firm that even with you laying back, limp, it holds you in place, supporting you in a way that your muscles and skeleton have failed to do.");
 
-	output("\n\nThere's a palpable sense of fullness, a stretching in your middle, and you're not even all the way down yet. From how high up you are, you guess you've only handled about three quarters of that beast-cock, but it feels so big inside you that you could swear you should have had it all by now. How much more prick can one " + pc.mfn("man","woman","person") + "'s crotch hold? Her arms wrap around your chest in a remarkably comforting motion, the soft, padded tips of her fingers pressing down on your [pc.nipples] with gentle squeezes. Her hips lurch upward, and you cry out from rapturous pleasure. Your body is so full, so stuffed with cock, that it should hurt. Your [pc.vagina "+ selVag +"] should be crying out in protest, but all it's doing is dripping nonstop.");
+	output("\n\nThere's a palpable sense of fullness, a stretching in your middle, and you're not even all the way down yet. From how high up you are, you guess you've only handled about three quarters of that beast-cock, but it feels so big inside you that you could swear you should have had it all by now. How much more prick can one " + pc.mfn("man","woman","person") + "'s crotch hold? Her arms wrap around your chest in a remarkably comforting motion, the soft, padded tips of her fingers pressing down on your [pc.nipples] with gentle squeezes. Her hips lurch upward, and you cry out from rapturous pleasure. Your body is so full, so stuffed with cock, that it should hurt. Your");
+	if (!anal) output(" [pc.vagina "+ selVag +"] should be crying out in protest, but all it's doing is dripping nonstop.");
+	else output(" [pc.asshole] should be crying out in protest, but instead, it's vigorously pulsing with need!");
 
 	output("\n\nTouching down, your [pc.legOrLegs]");
-	if(pc.legCount == 1) output(" touches");
+	if(pc.legCount == 1) output(" brushes");
 	else output(" contact");
-	output(" with the tanuki-herm's gloriously soft thighs, her silky fur sliding sensuously across your [pc.skinFurScales] as you settle down atop that pillar of perfect fuckmeat, letting the folds of her sheath bunch up on your outer lips. The two sets of soaked, sensitive crotch-flesh slip and slide all over one another like two sloppy-wet pussies tribbing against each other.");
+	output(" with the tanuki-herm's gloriously soft thighs, her silky fur sliding sensuously across your [pc.skinFurScales] as you settle down atop that pillar of perfect fuckmeat, letting the folds of her sheath bunch up on your");
+	if (!anal) output(" outer lips. The two sets of soaked, sensitive crotch-flesh");
+	else output(" butthole. The soaked and sensitive organs");
+	output(" slip and slide all over one another like two sloppy-wet pussies tribbing against each other.");
 	if (pc.hasCock())
 	{
 		output(" Your [pc.cocks] spew");
@@ -562,9 +633,20 @@ public function kirosShipChubnookiFucksYouGud():void
 
 	output(" You're panting and cooing with delight while your body lamely twists upon the impaling phallus. Your whole world, much like yourself, is wrapped completely around that cock.");
 
-	output("\n\n\"<i>Mmmm, my savior,</i>\" the ludicrously endowed woman purrs into your ear a moment before she shifts her weight, setting you both bouncing upon her over-inflated sack. She gently drags you up her cock, every rigid vein and pulsing bulge felt in stark relief on the inside of your [pc.vagina "+ selVag +"]. Then, in a moment of exquisite friction and fullness, you both bounce down, bodies locking together once more just in time for a healthy blast of sperm to launch into your");
-	if (pc.biggestVaginalCapacity() > kiro.biggestCockVolume()) output(" channel");
-	else output(" womb with cervix-shattering force");
+	output("\n\n\"<i>Mmmm, my savior,</i>\" the ludicrously endowed woman purrs into your ear a moment before she shifts her weight, setting you both bouncing upon her over-inflated sack. She gently drags you up her cock, every rigid vein and pulsing bulge felt in stark relief on the inside of your");
+	if (!anal) output(" [pc.vagina "+ selVag +"]");
+	else output(" [pc.asshole]");
+	output(". Then, in a moment of exquisite friction and fullness, you both bounce down, bodies locking together once more just in time for a healthy blast of sperm to launch into your");
+	if (!anal)
+	{
+		if (pc.biggestVaginalCapacity() > kiro.biggestCockVolume()) output(" channel");
+		else output(" womb with cervix-shattering force");
+	}
+	else
+	{
+		if (pc.analCapacity() > kiro.biggestCockVolume()) output(" heiny-hole");
+		else output(" insides with earth-shattering force");
+	}
 	output(". Your [pc.belly] bulges bigger from the weight of the deposit. It actually jiggles and sloshes ponderously on the next bounce, forcing bigger, fatter cum-shots directly inside you, and each time, your swollen sperm-paunch gets bigger and bigger.");
 
 	output("\n\nThis erotic, sensuously exotic fuck is setting your nerves off like overloaded circuit-breakers. They're flipping from pleasure to mind-crushing orgasm in rapid succession, causing you to arch yourself back against your soft-furred lover's cushy boobs and ");
@@ -587,13 +669,31 @@ public function kirosShipChubnookiFucksYouGud():void
 		output("Your tail thrashes against her, spurting [pc.cum] all over her belly, legs, and tits, even whipping out to hit her in the face with a blast of [pc.cumColor] slickness. It's just firing out of your [pc.tailCock], completely uncontrolled. You're helpless to stop it, yet you don't really want to. It feels too damned good.");
 	}
 
-	output("\n\nBounce-fucking your way through your orgasm, you feel parts of your mind shutting down one after another, but you don't mind. It makes it that much easier to focus on how good [pc.eachVagina] feels. The way your folds stretch and give, the way her hot, passionate gushes roll around inside you before blasting back out into the growing pool on the floor - these things keep every neuron busy and pleasurably pulsating. You don't even see anything anymore, though whether your eyes have closed or your mind has simply momentarily forgotten how to process visual cues, you don't know.");
+	output("\n\nBounce-fucking your way through your orgasm, you feel parts of your mind shutting down one after another, but you don't mind. It makes it that much easier to focus on how good");
+	if (!anal) output(" [pc.eachVagina] feels. The way your folds");
+	else output(" your [pc.asshole] feels. The way your anal muscles");
+	output(" stretch and give, the way her hot, passionate gushes roll around inside you before blasting back out into the growing pool on the floor - these things keep every neuron busy and pleasurably pulsating. You don't even see anything anymore, though whether your eyes have closed or your mind has simply momentarily forgotten how to process visual cues, you don't know.");
 
-	output("\n\nPaw-like hands squeeze and grope your tits enthusiastically to add another sensation to the symphony of ecstasy. They roll your [pc.nipples] and sometimes tug, rocking every single erogenous zone they can get at. Loving little nips bite at your neck, not hard enough to break your [pc.skinFurScales], but enough to be felt digging in, possessively clamping down near your neck.");
+	output("\n\nPaw-like hands squeeze and grope your");
+	if (pc.hasBreasts()) output(" tits");
+	else output(" [pc.chest]");
+	output(" enthusiastically to add another sensation to the symphony of ecstasy. They roll your [pc.nipples] and sometimes tug, rocking every single erogenous zone they can get at. Loving little nips bite at your neck, not hard enough to break your [pc.skinFurScales], but enough to be felt digging in, possessively clamping down near your neck.");
 
-	output("\n\nLocked together like that, you serve as the tanuki-woman's willing cum-sleeve, milking pressurized waves of spunk from her until she you feel warmth wrapping your [pc.feet], [pc.legOrLegs] and eventually [pc.hips]. You're slowly sinking down into a puddle of spent cum, the very same alabaster cream that was pumped into your [pc.vagina] only to be sprayed back out later. It's getting so high, and you can actually feel your [pc.feet] touching the ground!");
+	output("\n\nLocked together like that, you serve as the tanuki-woman's willing cum-sleeve, milking pressurized waves of spunk from her until she you feel warmth wrapping your [pc.feet], [pc.legOrLegs] and eventually [pc.hips]. You're slowly sinking down into a puddle of spent cum, the very same alabaster cream that was pumped into your");
+	if (!anal) output(" [pc.vagina]");
+	else output(" [pc.asshole]");
+	output(" only to be sprayed back out later. It's getting so high, and you can actually feel your [pc.feet] touching the ground!");
 
-	output("\n\nThe raccoon-like space-woman grabs you tighter, more fiercely as her super-long orgasm continues. She's obviously touched down as well, because she's slapping her hips against yours, fucking your cum-buried pussy with steady, machine-like motions. She's working your poor, sodden box with consummate skill, and as she piledrives it harder and faster, the ridiculously potent orgasm you've been riding for the past few minutes - or has it been hours -  intensifies again. Her huge balls are sloshing through the lake, swaying back and forth as they empty the last of their ultra-virile load straight into your receptive snatch. The jizz crests past your [pc.belly], almost to your");
+	output("\n\nThe raccoon-like space-woman grabs you tighter, more fiercely as her super-long orgasm continues. She's obviously touched down as well, because she's slapping her hips against yours, fucking your cum-buried");
+	if (!anal) output(" pussy");
+	else output(" asshole");
+	output(" with steady, machine-like motions. She's working your poor");
+	if (!anal) output(", sodden box");
+	else output(" orifice");
+	output(" with consummate skill, and as she piledrives it harder and faster, the ridiculously potent orgasm you've been riding for the past few minutes - or has it been hours -  intensifies again. Her huge balls are sloshing through the lake, swaying back and forth as they empty the last of their ultra-virile load straight into your receptive");
+	if (!anal) output(" snatch");
+	else output(" rectum");
+	output(". The jizz crests past your [pc.belly], almost to your");
 	var bRow:int = 0;
 	if (pc.bRows() > 1)
 	{
@@ -604,7 +704,9 @@ public function kirosShipChubnookiFucksYouGud():void
 
 	output("\n\nEventually, the cum stops, but your lover's aggressive fucking doesn't slow for a few minutes. She's growling and grunting with each bone-jarring hilting, smashing her cum-soaked sheath against you again and again with furious strikes. She’s almost feral in the way that she spends her lust on your form. Thankfully, she does eventually wear out, giving you a small cum as she rams herself home one last time. Her tongue lolls out, and she groans in satisfaction, \"<i>Ohhhhh, thank you, babe. You're wonderful.</i>\"");
 
-	output("\n\nGently, she dips lower into the spunky lake of her own making, letting her softening shaft ooze out of your spunk-soaked channel. Tremors of bliss explode out with the passage of each vein, and when the swollen head emerges, a torrent of lady-spunk and stored-up tanuki goo pours out into the waiting jizz bath.");
+	output("\n\nGently, she dips lower into the spunky lake of her own making, letting her softening shaft ooze out of your spunk-soaked channel. Tremors of bliss explode out with the passage of each vein, and when the swollen head emerges, a torrent of");
+	if (!anal) output(" lady-spunk and");
+	output(" stored-up tanuki goo pours out into the waiting jizz bath.");
 
 	output("\n\n\"<i>Damn, now that's a rescue,</i>\" the tanuki-woman says with an exhausted smile.");
 
@@ -613,7 +715,8 @@ public function kirosShipChubnookiFucksYouGud():void
 	// Lotta fuckyfucky
 	for (var i:int = 0; i < 20; i++)
 	{
-		pc.loadInCunt(kiro);
+		if (!anal) pc.loadInCunt(kiro);
+		else pc.loadInAss(kiro);
 		kiro.orgasm();
 	}
 	

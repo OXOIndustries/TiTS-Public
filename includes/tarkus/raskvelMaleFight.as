@@ -338,7 +338,7 @@ public function shekkaGetsSoldRaskShitz():void
 	else
 	{
 		output("\n\nShekka peers at what you’ve brought her dubiously.");
-		output("\n\n<i>“I’m not really a scrapper, [pc.name],”</i> she replies. <i>“That’s more that weird goblin’s thing. I mean, I’ll take it off your hands to use for spare parts, but I can’t pay you anything for it.”</i>");
+		output("\n\n<i>“I’m not really a scrapper, [pc.name],”</i> she replies. <i>“That’s more that weird gabilani’s thing. I mean, I’ll take it off your hands to use for spare parts, but I can’t pay you anything for it.”</i>");
 		//[Give] [Don’t]
 		clearMenu();
 		addButton(0,"Give",giveStupidShitRaskPartsToShekkaFree);
@@ -421,7 +421,7 @@ public function noDealOnShipPartWivShekka():void
 	clearOutput();
 	showShekka();
 	output("\"<i>For this thing? That's practically the amount I'd pay for someone to lug it around in the first place!</i>\"");
-	output("\n\n\"<i>Hey! Watch it, you. Credits don't spawn on trees around here, there's plenty of trash to go around. You just made someone </i>very<i> unhappy, though.</i>\" Shekka crosses her arms, looking up to you with a stern expression. \"<i>That's was my only offer. Go chuck it at the goblin, then.</i>\"");
+	output("\n\n\"<i>Hey! Watch it, you. Credits don't spawn on trees around here, there's plenty of trash to go around. You just made someone </i>very<i> unhappy, though.</i>\" Shekka crosses her arms, looking up to you with a stern expression. \"<i>That's was my only offer. Go chuck it at the gabilani, then.</i>\"");
 	//”Sell scrap” ghosted out for her as long as PC is still holding this piece
 	flags["SHEKKA_SCRAP_DISABLED"] = 1;
 	clearMenu();
@@ -444,7 +444,7 @@ public function sellRaskShitToColenso():void
 	//Chest:
 	if(raskLootType == 0) 
 	{
-		output("\n\n<i>“Let’s have a... what the blimmin ‘eck is this?”</i> The heavily built goblin rolls his chair over to you, fumbles a jeweller’s glass into one eye and then stares at the locked metal chest you have landed on his counter.");
+		output("\n\n<i>“Let’s have a... what the blimmin ‘eck is this?”</i> The heavily built gabilani rolls his chair over to you, fumbles a jeweller’s glass into one eye and then stares at the locked metal chest you have landed on his counter.");
 		output("\n\n<i>“Where did you find it? Do you have the key? No... no, obviously not.”</i> He strokes the lid, entranced. <i>“Well secured locker like this wouldn’t have no key knocking around with it. Whoever locked it wouldn’t want ANYONE getting inside... prob’ly even if you FOUND the key and put it in, it would just release poison gas or something, you’d have to turn it the right way and know a voice activated code as well, and... What could be inside? What desperate galactic secrets have been buried in the junkyards this whole time? You’d better give it to me, " + pc.mf("guv","luv") + ". You wouldn’t be able to trust anyone else to get inside safely, and then disseminate the contents to the masses responsibly... I could liveblog me opening it on the Truth3000!</i>\" You deliberately shift the chest back towards you. Colenso grits his teeth and grips the air in the direction of it instinctively.");
 		output("\n\n<i>“Nngh... alright. " + Math.round(getRaskLootPrice()*1.5) + " credits. That’s more ‘n reasonable.”</i>");
 		processTime(2);
@@ -455,7 +455,7 @@ public function sellRaskShitToColenso():void
 	}
 	else
 	{
-		output("\n\n<i>“Let’s have a butcher’s.”</i> The heavily built goblin rolls his chair over to you, affixes a jeweller’s glass to one eye and then spends what seems an inordinate amount of time considering what you’ve brought him from every possible angle.");
+		output("\n\n<i>“Let’s have a butcher’s.”</i> The heavily built gabilani rolls his chair over to you, affixes a jeweller’s glass to one eye and then spends what seems an inordinate amount of time considering what you’ve brought him from every possible angle.");
 		output("\n\n<i>“Mmm. Weeeell,”</i> he rumbles eventually with an air of great reluctance, rubbing his chin. <i>“Mass produced, not in great nick, difficult to move this kind of thing on. But since me and you go way back, I’ll take it off your hands for " + Math.round(getRaskLootPrice()*.5) + " credits, as a favour. That’s ripping my own arm off, mind.”</i>");
 		processTime(2);
 		//[Deal] [No Deal]
@@ -513,7 +513,7 @@ public function dealWivColensoForTheChestGuv():void
 {
 	clearOutput();
 	showColenso();
-	output("Colenso stabs at his console a few times, and a couple of seconds later your bank balance is updated. The goblin runs his hands over his new acquisition lovingly.");
+	output("Colenso stabs at his console a few times, and a couple of seconds later your bank balance is updated. The gabilani runs his hands over his new acquisition lovingly.");
 	output("\n\n<i>“You’re a star, [pc.fullName],”</i> he says, grinning happily. <i>“You can’t put a price on buried secrets like these, just can’t. Find anything like this out in the wastes again, bring it right here.”</i>");
 	pc.credits += Math.round(getRaskLootPrice()*1.5);
 	removeRaskLoot();

@@ -595,7 +595,7 @@
 			"Cum",
 			"Oil",
 			"Milksap",
-			"Girlcum",
+			"Girl Cum",
 			"Cumsap",
 			"Chocolate Milk",
 			"Strawberry Milk",
@@ -605,7 +605,7 @@
 			"Nectar",
 			"Leithan Milk",
 			"Gabilani Cum",
-			"Gabilani Girlcum",
+			"Gabilani Girl Cum",
 			"Vanilla",
 			"Nyrea Cum",
 		];

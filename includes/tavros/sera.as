@@ -192,7 +192,10 @@ public function getTailUsedBySera():void
 	clearOutput();
 	userInterface.showName("\nSERA");
 	userInterface.showBust("SERA");
-	output("Your tail waves around your [pc.hips], as eager for a drop of cum as a snake salivating over its prey. Rather than reacting to your parasitic hind-limb with disgust or revulsion, Sera simply smiles and extends her arm, letting the sinuously undulating length of vagina-capped flesh curl about her arm. She pets it while cooing affectionately, much as someone might do to a pet, a happy smile on her pierced face.");
+	output("Your tail waves around your [pc.hips], as eager for a drop of cum as a snake salivating over its prey. Rather than reacting to your");
+	if(pc.hasParasiteTail()) output(" parasitic hind-limb");
+	else output(" [pc.tail]");
+	output(" with disgust or revulsion, Sera simply smiles and extends her arm, letting the sinuously undulating length of vagina-capped flesh curl about her arm. She pets it while cooing affectionately, much as someone might do to a pet, a happy smile on her pierced face.");
 	output("\n\n<i>\"You've got a little tagalong, huh?\"</i> the demoness purrs, slipping a finger into the moist entrance at its tip. Shudders of pleasure ripple up the tubular organ and into your spine where they diffuse through your body. A half-whimper, half-sigh slips out of your lips. Muscles clamp down about the invading digit automatically, pulling it deeper with noisy, squelching suckles, every rippling twist rubbing new, sensitive nerves against her. <i>\"I never understood the prohibitions against these little girls. All they want to do is get stuffed full of cum and make you feel good for it, right?\"</i>");
 	output("\n\nYou try to summon up some kind of response to her statement, but she slides her middle finger in next to her pointer, silencing you with a gag of feminine bliss.");
 	output("\n\n<i>\"Don't bother talking, slut. I'm just here to use your body. Today, you've lucked out. I'm gonna drill this little cocksucker full until you're lying on the ground unconscious while it feasts on jizz.\"</i> Sera pauses to add a third finger. It feels too good for words. Your head is spinning, awash with pleasure. You bite your lip almost hard enough to draw blood, and when your jaw relaxes, a reedy exultation of desire is all that emerges. You grind your body against Sera, eager for more");
@@ -212,7 +215,10 @@ public function getTailUsedBySera():void
 	output("\n\n<i>\"Damn, you suck like a vacuum cleaner! I almost wanna stick it in your mouth instead!\"</i> Sera teases. Her fingers slide free of your suckling maw, connected to your [pc.lips] by strands of clear saliva. Your mouth is pursed, horny and confused. Is she finally going to tend to your needy slit? The hungry tail is all over Sera, kissing her with its engorged lips, smearing lubricants across her unblemished skin. You wonder if she's going to make you lick that off her with no small amount of anticipation, but she disappoints you by grabbing hold of your roving tail and holding it up to your face.");
 	output("\n\nSera's voice commands, <i>\"Lick your pussy, pussy. I wanna see you tongue-deep in that snatch. You show me what you'd do to my cunt, and maybe I'll fill yours. That's what you need, isn't it?\"</i>");
 	output("\n\nYou nod against the flush netherlips, moaning into your [pc.tailgina], the vibrations of your voice like tiny fingers vibrating against your aching flesh.");
-	output("\n\nGrinding your tail's clit harder into your [pc.face], Sera watches. Her hips twitch a little, grinding her boner against your [pc.thigh]. She's obviously enjoying watching you almost as much as you're enjoying the friction on your parasitic pussy. Your [pc.tongue] flicks out, tracing up one side of your entrance and down the other. It skillfully circles your clit once, and then, you plunge it deeply inside yourself in an act of unrestrained auto-cunnilingus. The flavor is tangy and a little bit sweet on your taste buds.");
+	output("\n\nGrinding your tail's clit harder into your [pc.face], Sera watches. Her hips twitch a little, grinding her boner against your [pc.thigh]. She's obviously enjoying watching you almost as much as you're enjoying the friction on your");
+	if(pc.hasParasiteTail()) output(" parasitic ");
+	else output(" tail-");
+	output("pussy. Your [pc.tongue] flicks out, tracing up one side of your entrance and down the other. It skillfully circles your clit once, and then, you plunge it deeply inside yourself in an act of unrestrained auto-cunnilingus. The flavor is tangy and a little bit sweet on your taste buds.");
 	if(pc.tailCount > 1) 
 	{
 		if(pc.tailCount == 2) output(" Your other");
