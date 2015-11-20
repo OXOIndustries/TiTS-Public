@@ -1274,6 +1274,7 @@ public function shadeTailSex():void
 	clearOutput();
 	showShade();
 	author("Savin");
+	
 	output("<i>“I’ve got a few ideas,”</i> you answer the buxom kaithrit overtop you, playing your hands up her ample thighs and over her smooth, flared hips. She smiles down at you, gently rocking in your embrace and letting you watch those huge, perfect tits of hers sway hypnotically over your face. You shiver in anticipation at the thought of burying your face between those titans of titflesh, just losing yourself in them... worshipping them with your mouth. Gently, you start to urge Shade down, bringing the smoking hot kitty lower until you can lick your tongue along one of her hefty orbs, teasing the tip across what must be a very sensitive teat. She gasps and arches her back into you, laying her taut belly flat against your [pc.belly] and easing her cleavage down around your face.");
 	output("\n\nThough your world goes dark, completely obscured by soft, sensual flesh, your body only seems all the more sensitive for it. Every subtle movement of your lover overtop you, every brush of skin or movement of her sultry tail around your [pc.legs] sends electric currents of sensation tearing through you.");
 	if(flags["SHADE_BOOBWORSHIP"] != undefined && flags["SHADE_TALKED_ABOUT_MODS"] != undefined && shade.isLactating()) output("\n\nAnother sensation then hits you and rolls down your boob-sandwiched face... a warm, wet stream flowing along your cheeks - This MILF's milk no doubt! <i>“I should invest in more milk mods,”</i> Shade murmurs, slipping a hand behind your head and pulling you tight into her rack. <i>“I bet you love my big, milky tits. Don't you want to snack on them while I fuck you silly?");
@@ -1325,7 +1326,10 @@ public function shadeTailSex():void
 
 	output("\n\nNow she’s just trying to get you horny again... and its working. Sliding out of her tail-pussy is an agony of over-sensation, and when you finally pull out of her, you’re left with such a cold and exposed sensation that you can’t help but moan.");
 
-	output("\n\nShade tsks her tongue down at you, but reaches down beneath her and grabs your writhing parasite by its tip, dragging it all the way up your body until it's stretching flat against your belly and up to your [pc.chest]. When it is, Shade lies back down, pressing herself tight against you, and putting all of her heat and weight around your over-sensitive cock-tail. You suck in a sharp breath when those beautiful tits of hers wrap around your prick-like tip, just low enough that the tip peeks out. Still drooling the aftershocks of your orgasm, you note, which quickly forms a little puddle of heat ");
+	output("\n\nShade tsks her tongue down at you, but reaches down beneath her and grabs your");
+	if(pc.hasParasiteTail()) output(" writhing parasite");
+	else output(" [pc.tail]");
+	output(" by its tip, dragging it all the way up your body until it's stretching flat against your belly and up to your [pc.chest]. When it is, Shade lies back down, pressing herself tight against you, and putting all of her heat and weight around your over-sensitive cock-tail. You suck in a sharp breath when those beautiful tits of hers wrap around your prick-like tip, just low enough that the tip peeks out. Still drooling the aftershocks of your orgasm, you note, which quickly forms a little puddle of heat ");
 	if(pc.biggestTitSize() < 1) output("on your chest.");
 	else output("between your tits. You note gleefully that your tits and Shade’s make a perfect sheathe for your tail-cock.");
 
