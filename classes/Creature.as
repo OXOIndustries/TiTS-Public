@@ -6708,6 +6708,20 @@ package classes {
 			if (tailCount > 0 && tailType != GLOBAL.TYPE_HUMAN) return true;
 			return false;
 		}
+		public function hasTails(): Boolean {
+			if (tailCount > 1 && tailType != GLOBAL.TYPE_HUMAN) return true;
+			return false;
+		}
+		public function removeTails():void
+		{
+			tailCount = 0;
+			tailType = 0;
+			tailGenital = 0;
+			tailGenitalArg = 0;
+			tailGenitalColor = "";
+			clearTailFlags();
+			return;
+		}
 		public function hasParasiteTail(): Boolean {
 			if (tailCount > 0 && InCollection(tailType, GLOBAL.TYPE_CUNTSNAKE, GLOBAL.TYPE_COCKVINE)) return true;
 			return false;
