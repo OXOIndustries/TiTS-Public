@@ -6705,22 +6705,8 @@ package classes {
 			return (hasCock() || hasVagina());
 		}
 		public function hasTail(): Boolean {
-			if (tailCount > 0 && tailType != 0) return true;
+			if (tailCount > 0) return true;
 			return false;
-		}
-		public function hasTails(): Boolean {
-			if (tailCount > 1 && tailType != 0) return true;
-			return false;
-		}
-		public function removeTails():void
-		{
-			tailCount = 0;
-			tailType = 0;
-			tailGenital = 0;
-			tailGenitalArg = 0;
-			tailGenitalColor = "";
-			clearTailFlags();
-			return;
 		}
 		public function hasParasiteTail(): Boolean {
 			if (tailCount > 0 && InCollection(tailType, GLOBAL.TYPE_CUNTSNAKE, GLOBAL.TYPE_COCKVINE)) return true;
