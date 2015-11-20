@@ -1611,7 +1611,7 @@ public function wutwutindabuttbuttFap():void
 	clearOutput();
 	author("Couch/Gedan");
 
-// {Clothes:
+	// {Clothes:
 	if (!pc.isNude())
 	{
 		output("Your gear quickly finds itself thrown into an assorted pile of all manner of equipment, item after item being discarded to a soundtrack comprising of clattering metal and hollow thunks;");
@@ -1835,7 +1835,9 @@ public function wutwutindabuttbuttFap():void
 	}
 	if (pc.hasTailCunt())
 	{
-		output(" Your parasitic tail-cunt lets out its own squirt of feminine juices, wishing it was dousing a real dick with its [pc.girlCum].");
+		output(" Your");
+		if(pc.hasParasiteTail()) output(" parasitic");
+		output(" tail-cunt lets out its own squirt of feminine juices, wishing it was dousing a real dick with its [pc.girlCum].");
 	}
 	if (!pc.hasCock() && !pc.hasVagina() && !pc.hasTailCock() && !pc.hasTailCunt())
 	{

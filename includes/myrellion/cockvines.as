@@ -665,7 +665,13 @@ public function adultCockvinePCLoses():void
 	output("\n\nInevitably a vine slides a slimy course between your buttocks, pressing against your [pc.asshole] and then spreading it wide, relentlessly feeding inch after inch of warm, oily tentacle into your bowels");
 	if (pc.hasCock()) output(", mindlessly riding over your tender prostate as it does");
 	output(".");
-	if (pc.hasCuntTail()) output(" Your parasitic tail, drooling and eagerly spreading itself in the presence of so many phalluses, is a final, easy target. Just when you thought you’d reached as much as you could take your back arches, your body seizing up as you feel a tentacle thrust into your rear pussy’s sensitive wet stem, your petals happily clutching at the green, pumping hardness.");
+	if (pc.hasCuntTail())
+	{
+		output(" Your");
+		if(pc.hasParasiteTail()) output(" parasitic tail");
+		else output(" [pc.tail]");
+		output(", drooling and eagerly spreading itself in the presence of so many phalluses, is a final, easy target. Just when you thought you’d reached as much as you could take your back arches, your body seizing up as you feel a tentacle thrust into your rear pussy’s sensitive wet stem, your petals happily clutching at the green, pumping hardness.");
+	}
 
 	output("\n\nYou are utterly transfixed by the thing, your limbs and trunk bound by clenching wet muscle as the self-same stuff pumps into your every orifice. Other stiff tentacle ends bat into your skin, oozing their white payloads onto you, frustrated by your inability to take every single one of them.");
 
