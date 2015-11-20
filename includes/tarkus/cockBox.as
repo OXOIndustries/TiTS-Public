@@ -139,14 +139,20 @@ public function cockBoxMenu(x:int):void
 //Pick Color - CUT! For now... (Now included!)
 public function dickBoxTFColorSelect(args:Array):void
 {
+	var cIdx:int = args[0];
+	var cType:int = args[1];
+	
+	if(flags["COCKBOX_COLOR_UPGRADE"] == undefined)
+	{
+		dickBoxTF([cIdx, cType]);
+		return;
+	}
+	
 	clearOutput();
 	author("Fenoxo");
 	showName("DONG\nDESIGNER");
 	output("The holographic menu depresses beneath your finger. The other dicks disappear, and the icon you’ve chosen splits into a variety of different colorations.");
 	output("\n\nWhat color would you like your soon-to-be improved manhood to be?");
-	
-	var cIdx:int = args[0];
-	var cType:int = args[1];
 	
 	/*
 	switch (cType)
@@ -226,7 +232,10 @@ public function dickBoxTF(args:Array):void
 			return;
 		}
 	}
-	output("As soon as you select a color, the machine hums into action, vibrating vigorously around your [pc.cock " + args[0] + "]. ");
+	output("As soon as you");
+	if(flags["COCKBOX_COLOR_UPGRADE"] != undefined) output(" select a color");
+	else output(" finalize your selection");
+	output(", the machine hums into action, vibrating vigorously around your [pc.cock " + args[0] + "]. ");
 	if(flags["USED_DONG_DESIGNER"] == undefined) output("It’s more intense than you expected.");
 	else output("It’s just as intense as you remembered.");
 	output(" You’d have to hold a dozen high-strength vibrators against yourself to approach such an effect. The stampede of sensation makes it difficult to focus on much else, driving you to a lusty plateau by massaging your individual neurons until they spark with wild delight. You let your head loll and your jaw hang open, prevented from thrusting by the machine’s grip and already closing in on the brink.");
@@ -364,7 +373,10 @@ public function cockBoxDickDoublingHijinx(args:Array):void
 	clearOutput();
 	author("Fenoxo");
 	showName("\nUH OH!");
-	output("The moment you select a chosen color, something goes wrong. A flashing orange and red notification appears above a crossed-out progress bar:\n\n\t<b>Warning: Multiple phalli detected. TamaniCorp can not be held responsible for any deviations in our advanced mutation protocols.</b>\n\t<b>Compensating...</b>\n\t<b>Error: Single phallus detected in multiple mode. Reverting to prevent damage to user. Please do not attempt to remove your penises from the device or irreversible genetic damage may occur.</b>");
+	output("The moment you");
+	if(flags["COCKBOX_COLOR_UPGRADE"] != undefined) output(" select a chosen color");
+	else output(" finalize your selection");
+	output(", something goes wrong. A flashing orange and red notification appears above a crossed-out progress bar:\n\n\t<b>Warning: Multiple phalli detected. TamaniCorp can not be held responsible for any deviations in our advanced mutation protocols.</b>\n\t<b>Compensating...</b>\n\t<b>Error: Single phallus detected in multiple mode. Reverting to prevent damage to user. Please do not attempt to remove your penises from the device or irreversible genetic damage may occur.</b>");
 	if(flags["DONG_DESIGNER_MALFUNCTIONED"] == undefined) output("\n\nUh oh.");
 	else output("Fuck, not again.");
 	output("\n\nThe inside of the Dong Designer is already vibrating and hot, like before, but this time it’s almost too hot, uncomfortably so. Sweat breaks out on your forehead");
