@@ -636,10 +636,17 @@ public function juroXLyrallPartIV():void
 	//Ctail
 	if(pc.hasCuntTail() && pc.tailCount == 1)
 	{
-		output("Your [pc.tail] wriggles around the edge of the door, openly dripping from the enticing sights and rich scents pressing against your senses. The parasitic sperm-harvester bodily tries to tug you into the room; it pulls tight again and again, anything to get at the ocean of kui-tan cream that’s about to burst forth from Juro’s balls. Without any leverage, it doesn’t even manage to budge you, but it does leave you flushed and panting. Goddamnit, you want that dick for yourself right now... and maybe those nectar-stuffed tits too. ");
+		output("Your [pc.tail] wriggles around the edge of the door, openly dripping from the enticing sights and rich scents pressing against your senses. The");
+		if(pc.hasParasiteTail()) output(" parasitic");
+		output(" sperm-harvester bodily tries to tug you into the room; it pulls tight again and again, anything to get at the ocean of kui-tan cream that’s about to burst forth from Juro’s balls. Without any leverage, it doesn’t even manage to budge you, but it does leave you flushed and panting. Goddamnit, you want that dick for yourself right now... and maybe those nectar-stuffed tits too. ");
 	}
 	//Multi ctails
-	else if(pc.hasCuntTail()) output("Your [pc.tails] wriggle around the edge of the door, openly dripping from the enticing sights and rich scents pressing against your senses. The parasitic sperm-harvesters bodily try to tug you into the room, squirming and wriggling against one another in a frenzy of movement; they pull tight again and again, anything to get at the ocean of kui-tan cream that’s about to burst forth from Juro’s balls. Without any leverage, they don’t even manage to budge you, but they do leave you flushed and panting. Goddamnit, you want that dick for yourself right now... and maybe those nectar-stuffed tits too. ");
+	else if(pc.hasCuntTail())
+	{
+		output("Your [pc.tails] wriggle around the edge of the door, openly dripping from the enticing sights and rich scents pressing against your senses. The");
+		if(pc.hasParasiteTail()) output(" parasitic");
+		output(" sperm-harvesters bodily try to tug you into the room, squirming and wriggling against one another in a frenzy of movement; they pull tight again and again, anything to get at the ocean of kui-tan cream that’s about to burst forth from Juro’s balls. Without any leverage, they don’t even manage to budge you, but they do leave you flushed and panting. Goddamnit, you want that dick for yourself right now... and maybe those nectar-stuffed tits too. ");
+	}
 	//Nocunttailzbuthazdix
 	else if(pc.hasCock() && (!pc.hasVagina() || rand(2) == 0))
 	{
