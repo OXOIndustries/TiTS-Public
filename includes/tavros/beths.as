@@ -1025,9 +1025,12 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 		while(scenesLimit > 0)
 		{
 			// Cunt-tail:
-			if(!InCollection(1, scenesIndex) && pc.hasTailCunt() && pc.tailType == GLOBAL.TYPE_CUNTSNAKE && scenesLimit > 0 && rand(scenesTotal) == 0)
+			if(!InCollection(1, scenesIndex) && pc.hasTailCunt() && scenesLimit > 0 && rand(scenesTotal) == 0)
 			{
-				output("\n\nYour parasitic tail, spreading itself eagerly in the presence of so much male musk, attracts some attention, and a few clients happily pay a bit extra for you to fasten it wetly on their cocks and pump them absolutely silly with it, pleasure and the sensation of cum being siphoned hungrily away tingling up to you.");
+				output("\n\nYour");
+				if(pc.hasParasiteTail()) output(" parasitic tail");
+				else output(" [pc.tail]");
+				output(", spreading itself eagerly in the presence of so much male musk, attracts some attention, and a few clients happily pay a bit extra for you to fasten it wetly on their cocks and pump them absolutely silly with it, pleasure and the sensation of cum being siphoned hungrily away tingling up to you.");
 				processTime(10);
 				pc.loadInCuntTail(pp);
 				pc.loadInCuntTail(pp);
