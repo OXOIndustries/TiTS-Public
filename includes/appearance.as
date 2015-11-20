@@ -974,7 +974,7 @@ public function appearance(target:Creature):void {
 		//Chesticles..I mean bewbz.
 		if(target.breastRows.length == 1) {
 			// Feminine A-Cups
-			if(target.biggestTitSize() == 1 && target.mf("m","f") == "f") {
+			if(target.biggestTitSize() < 2 && target.biggestTitSize() >= 1 && target.mf("m","f") == "f") {
 				if (rand(3) == 0) output2("You have the barest hint of breasts, " + num2Text(target.breastRows[0].breasts) + " teasing feminine rises on your chest");
 				else if (rand(2) == 0) output2("You have tiny, cute mosquito bites for breasts, pert and sensitive");
 				else output2("You have A-cup breasts, " + num2Text(target.breastRows[0].breasts) + " small, pert" + target.rawmfn(" trappy"," sporty","") + " boobs that almost vanish under anything thicker than spandex");
@@ -996,7 +996,7 @@ public function appearance(target:Creature):void {
 					}
 					// Masculine, High Tone, High Thickness
 					else if((target.mf("m","f") == "m") && target.tone >= 60 && target.thickness >= 60) {
-						if (rand(3) == 0) output2("You have a fuck off six pack, bulging with heavy muscle");
+						if (rand(3) == 0) output2("You have a fuck-off six pack, bulging with heavy muscle");
 						else if (rand(2) == 0) output2("You’re ripped as hell, sporting the kind of muscle guys want and girls want around them");
 						else output2("You have remarkably well defined, heavyweight abs, rounded and beefy");
 					}
@@ -1116,12 +1116,12 @@ public function appearance(target:Creature):void {
 			temp = 0;
 			while (temp < target.breastRows.length) {
 				// Feminine A-Cups
-				if(target.breastRows[temp].breastRating() == 1 && target.mf("m","f") == "f"))
+				if(target.breastRows[temp].breastRating() >= 1 && target.breastRows[temp].breastRating() < 2 && target.mf("m","f") == "f")
 				{
 					if(temp == 0) output2(" Your top row of breasts are ");
 					else if(temp == (target.breastRows.length - 1)) output2(" Your bottom row of breasts are ");
 					else output2(" Your next row of breasts are ");
-					if(rand(3) == 0) output2("barest hints, nothing more than " + num2Text(target.breastRows[0].breasts) + " teasing feminine rises below the ones above");
+					if(rand(3) == 0 && temp > 0) output2("bare hints, nothing more than " + num2Text(target.breastRows[0].breasts) + " teasing feminine rises below the ones above");
 					else if(rand(2) == 0) output2("tiny, cute mosquito bites, pert and sensitive");
 					else output2("A-cups, " + num2Text(target.breastRows[0].breasts) + " small, pert" + target.rawmfn(" trappy"," sporty","") + " boobs that almost vanish under anything thicker than spandex");
 					output2(", capped with ");

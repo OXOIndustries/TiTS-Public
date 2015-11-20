@@ -396,7 +396,7 @@ public function talkToQuenton():void
 	if(!pc.hasKeyItem("Ten Ton Gym Membership")) addButton(1,"Life Pass",buyDatLifetimeMembership,undefined,"Life Pass","Ask about purchasing a lifetime membership.");
 	else addDisabledButton(1,"Life Pass","Life Pass","You already have one!");
 	//[Personal] Go to Personal Training {Text: Try to get into Quenton’s workout pants}
-	if(pc.lust() >= 33) addButton(1,"P.Training",quentonPersonalTraining,undefined,"Personal Training","Try to get into Quenton’s workout pants.");
+	if(pc.lust() >= 33) addButton(2,"P.Training",quentonPersonalTraining,undefined,"Personal Training","Try to get into Quenton’s workout pants.");
 	else addDisabledButton(2,"P.Training","Personal Training","You are not aroused enough for this.");
 	//[No Thanks] Go to Entrance
 	addButton(14,"Leave",mainGameMenu);
@@ -511,7 +511,7 @@ public function quentonTrainingPitch():void
 	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
 	if(!pp.hasCock()) pp.createCock();
 	pp.shiftCock(0, GLOBAL.TYPE_EQUINE);
-	pp.cocks[slot].cLengthRaw = 12;
+	pp.cocks[0].cLengthRaw = 12;
 	pp.elasticity = 1.5;
 	
 	var x:int = -1;
@@ -627,7 +627,7 @@ public function quentonTrainingCatch(response:String = ""):void
 	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
 	if(!pp.hasCock()) pp.createCock();
 	pp.shiftCock(0, GLOBAL.TYPE_EQUINE);
-	pp.cocks[slot].cLengthRaw = 12;
+	pp.cocks[0].cLengthRaw = 12;
 	pp.elasticity = 1.5;
 	
 	var x:int = 0;
