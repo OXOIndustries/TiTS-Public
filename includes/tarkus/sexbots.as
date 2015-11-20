@@ -605,9 +605,21 @@ public function femalePCsGetBangedByAFemBot(cameFromMenu:Boolean = false):void
 	//Cunt nipples:
 	if(pc.hasCuntNipples()) output("\n\nIt doesn’t take it long to calibrate the pulse needed to find your beading nipple cunts. It packs your sensitive breasts full of vibrations, your tunnels stroked and caressed by insistent electric fingers until you have moved from moans to screams, your nipples forced to quivering orgasm again and again, spurting [pc.milk] down your front.");
 	//Cock tail:
-	if(pc.hasCockTail()) output("\n\nIt sends sensation shivering down your parasitic tail, making it tighten and bulge eagerly as it thrums it relentlessly to orgasm, making you thrash it around wildly, surging [pc.cum] in every direction until the air is heavy with the scent of male musk.");
+	if(pc.hasCockTail())
+	{
+		output("\n\nIt sends sensation shivering down your");
+		if(pc.hasParasiteTail()) output(" parasitic tail");
+		else output(" [pc.tail]");
+		output(", making it tighten and bulge eagerly as it thrums it relentlessly to orgasm, making you thrash it around wildly, surging [pc.cum] in every direction until the air is heavy with the scent of male musk.");
+	}
 	//Pussy tail:
-	if(pc.hasCuntTail()) output("\n\nIt sends sensations shivering down your parasitic tail, making it open eagerly like a blossoming flower. It drools lubricant as it is thrummed relentlessly to orgasm, making you thrash it around wildly to the filthy ecstasy of it.");
+	if(pc.hasCuntTail())
+	{
+		output("\n\nIt sends sensations shivering down your");
+		if(pc.hasParasiteTail()) output(" parasitic tail");
+		else output(" [pc.tail]");
+		output(", making it open eagerly like a blossoming flower. It drools lubricant as it is thrummed relentlessly to orgasm, making you thrash it around wildly to the filthy ecstasy of it.");
+	}
 
 	output("\n\n<i>“Scanning in progress”</i>, you think you hear it calmly state in amongst the endlessly shifting, torturing pleasure but it could have said anything - hell, YOU could have said it, you’re that much of a passenger in your own body. You are however dimly aware of what it’s building towards and finally");
 	if(pc.hasClit()) output(", after softly teasing your [pc.clits] with tiny charges for a time,");
@@ -791,12 +803,18 @@ public function loseToManBotWhenHavingAPussy(cameFromMenu:Boolean = false):void
 	//Cock tail:
 	if(pc.hasCockTail())
 	{
-		output("\n\nIt sends sensation shivering down your parasitic tail, making it tighten and bulge eagerly as it thrums it relentlessly to orgasm, making you thrash it around wildly, surging cum in every direction until the air is heavy with the scent of male musk.");
+		output("\n\nIt sends sensation shivering down your");
+		if(pc.hasParasiteTail()) output(" parasitic tail");
+		else output(" [pc.tail]");
+		output(", making it tighten and bulge eagerly as it thrums it relentlessly to orgasm, making you thrash it around wildly, surging cum in every direction until the air is heavy with the scent of male musk.");
 	}
 	//Pussy tail:
 	if(pc.hasCuntTail())
 	{
-		output("\n\nIt sends sensations shivering down your parasitic tail, making it open eagerly like a blossoming flower. It drools lubricant as it is thrummed relentlessly to orgasm, making you thrash it around wildly to the filthy ecstasy of it.");
+		output("\n\nIt sends sensations shivering down your");
+		if(pc.hasParasiteTail()) output(" parasitic tail");
+		else output(" [pc.tail]");
+		output(", making it open eagerly like a blossoming flower. It drools lubricant as it is thrummed relentlessly to orgasm, making you thrash it around wildly to the filthy ecstasy of it.");
 	}
 
 	output("\n\n<i>“Scanning in progress”</i>, you think you hear it calmly state in amongst the endlessly shifting, torturing pleasure but it could have said anything - hell, YOU could have said it, you’re that much of a passenger in your own body. You are however dimly aware of what it’s building towards and finally");
