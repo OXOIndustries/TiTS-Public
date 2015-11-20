@@ -55,6 +55,7 @@
 			this.inventory.push(new Pussybloom());
 			this.inventory.push(new Pussyblossom());
 			this.inventory.push(new ManUp());
+			this.inventory.push(new Condensol());
 			this.inventory.push(new Rainbotox());
 			this.inventory.push(new Chocolac());
 			this.inventory.push(new Lactaid());
