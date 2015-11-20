@@ -6704,6 +6704,14 @@ package classes {
 		{
 			return (hasCock() || hasVagina());
 		}
+		public function hasTail(): Boolean {
+			if (tailCount > 0) return true;
+			return false;
+		}
+		public function hasParasiteTail(): Boolean {
+			if (tailCount > 0 && InCollection(tailType, GLOBAL.TYPE_CUNTSNAKE, GLOBAL.TYPE_COCKVINE)) return true;
+			return false;
+		}
 		public function hasTailCock(): Boolean {
 			if (hasTailFlag(GLOBAL.FLAG_TAILCOCK) && tailCount > 0) return true;
 			if (tailType == GLOBAL.TYPE_COCKVINE && tailCount > 0) return true;
