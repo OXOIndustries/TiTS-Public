@@ -6705,7 +6705,7 @@ package classes {
 			return (hasCock() || hasVagina());
 		}
 		public function hasTail(): Boolean {
-			if (tailCount > 0) return true;
+			if (tailCount > 0 && tailType != GLOBAL.TYPE_HUMAN) return true;
 			return false;
 		}
 		public function hasParasiteTail(): Boolean {
@@ -6741,10 +6741,6 @@ package classes {
 			if (!hasTailCunt()) return 0;
 			if (vaginalCapacity(0) > 100) return vaginalCapacity(0);
 			else return 100;
-		}
-		public function hasTail(): Boolean {
-			if (tailType != GLOBAL.TYPE_HUMAN) return true;
-			return false;
 		}
 		public function isBald(): Boolean {
 			return (hairLength <= 0);
