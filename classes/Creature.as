@@ -7641,37 +7641,70 @@ package classes {
 			if (biggestTitSize() < 1 && rand(2) == 0)
 			{
 				var adjective:String = "";
-				if(tone >= 100)
+				if (tone >= 100)
 				{
-					if(rand(4) == 0) adjective += mf("extremely pronounced","very pronounced");
-					else if(thickness > 70) adjective += "immense";
-					else if(thickness >= 30) adjective += "robust";
+					if (rand(4) == 0) adjective += mf("extremely pronounced","very pronounced");
+					else if (thickness > 70) adjective += "immense";
+					else if (thickness >= 30) adjective += "robust";
 					else adjective += "chiseled";
 				}
-				else if(tone > 70)
+				else if (tone > 70)
 				{
-					if(rand(4) == 0) adjective += mf("well-defined","well-toned");
-					else if(thickness > 70) adjective += "broad";
-					else if(thickness >= 30) adjective += "healthy";
+					if (rand(4) == 0) adjective += mf("well-defined","well-toned");
+					else if (thickness > 70) adjective += "broad";
+					else if (thickness >= 30) adjective += "healthy";
 					else adjective += "fit";
 				}
-				else if(tone >= 30)
+				else if (tone >= 30)
 				{
-					if(rand(4) == 0) adjective += mf("toned","lightly-toned");
-					else if(thickness > 70) adjective += "thick";
-					else if(thickness >= 30) adjective += "average";
+					if (rand(4) == 0) adjective += mf("toned","lightly-toned");
+					else if (thickness > 70) adjective += "thick";
+					else if (thickness >= 30) adjective += "average";
 					else adjective += "soft";
 				}
 				else
 				{
-					if(rand(4) == 0) adjective += "unremarkable";
-					else if(thickness > 70) adjective += "wide";
-					else if(thickness >= 30) adjective += "passable";
+					if (rand(4) == 0) adjective += "unremarkable";
+					else if (thickness > 70) adjective += "wide";
+					else if (thickness >= 30) adjective += "passable";
 					else adjective += "flat";
 				}
-				if(rand(4) > 0 && adjective.length > 0) return (adjective + " chest");
+				if (rand(4) > 0 && adjective.length > 0) return (adjective + " chest");
 				
 				return "chest";
+			}
+			else if (biggestTitSize() < 1)
+			{
+				// Feminine/Andro, Low/Medium Tone
+				if((mfn("m","f","n") != "m") && tone < 60) {
+					if (rand(3) == 0) return "soft, flat chest";
+					else if (rand(2) == 0) return "flat, girly chest";
+					else return "smooth, featureless chest";
+				}
+				// Masculine, High Tone, High Thickness
+				else if((mf("m","f") == "m") && tone >= 60 && thickness >= 60) {
+					if (rand(3) == 0) return "manly, rippling chest";
+					else if (rand(2) == 0) return "big, muscular chest";
+					else return "beefcake chest";
+				}
+				// Masculine, Low Tone, High Thickness
+				else if((mf("m","f") == "m") && tone <= 30 && thickness >= 60) {
+					if (rand(3) == 0) return "broad, cuddly chest";
+					else if (rand(2) == 0) return "bear-like chest";
+					else return "fleshy, manly chest";
+				}
+				// Masculine/Feminine/Andro, High Tone, Low Thickness
+				else if(tone >= 60 && thickness <= 30) {
+					if (rand(3) == 0) return mf("tight, firm pecs","firm, flat chest");
+					else if (rand(2) == 0) return mf("hard, sleek chest","athletic chest");
+					else return mf("fine, flat pecs","sleek, firm chest");
+				}
+				// Default
+				else {
+					if (rand(3) == 0) return "plain chest";
+					else if (rand(2) == 0) return "flat chest";
+					else return "chest";
+				}
 			}
 			else return biggestBreastDescript();
 		}
@@ -11310,47 +11343,10 @@ package classes {
 			var descript: String = "";
 			var descripted: Boolean = false;
 			if (breastRows[rowNum].breastRating() < 1) {
-				/*
 				temp = this.rand(10);
 				if (temp <= 3) return "pecs";
 				else if (temp <= 6) return "flat, almost non-existent breasts";
 				else return "pectoral muscles";
-				*/
-				// Feminine/Andro, Low/Medium Tone
-				if((mfn("m","f","n") != "m") && tone < 60) {
-					temp = this.rand(3);
-					if (temp <= 0) return "soft, flat chest";
-					else if (temp <= 1) return "flat, girly chest";
-					else return "smooth, featureless chest";
-				}
-				// Masculine, High Tone, High Thickness
-				else if((mf("m","f") == "m") && tone >= 60 && thickness >= 60) {
-					temp = this.rand(3);
-					if (temp <= 0) return "manly, rippling chest";
-					else if (temp <= 1) return "big, muscular chest";
-					else return "beefcake pecs";
-				}
-				// Masculine, Low Tone, High Thickness
-				else if((mf("m","f") == "m") && tone <= 30 && thickness >= 60) {
-					temp = this.rand(3);
-					if (temp <= 0) return "broad, cuddly chest";
-					else if (temp <= 1) return "bear-like chest";
-					else return "fleshy, manly chest";
-				}
-				// Masculine/Feminine/Andro, High Tone, Low Thickness
-				else if(tone >= 60 && thickness <= 30) {
-					temp = this.rand(3);
-					if (temp <= 0) return mf("tight, firm pecs","firm, flat breasts");
-					else if (temp <= 1) return mf("hard, sleek chest","athletic chest");
-					else return mf("fine, flat pecs","sleek, firm chest");
-				}
-				// Default
-				else {
-					temp = this.rand(10);
-					if (temp <= 3) return "pecs";
-					else if (temp <= 6) return "flat, almost non-existant breasts";
-					else return "pectoral muscles";
-				}
 			}
 			//50% of the time size-descript them
 			if (this.rand(2) == 0) {
@@ -11387,7 +11383,7 @@ package classes {
 				if (temp == 0) descript += "tiny ";
 				else if (temp == 1) descript += "girly ";
 				else descript += "waifish ";
-				descript += RandomInCollection("breasts", "chest", "boobs", "tits");
+				descript += RandomInCollection("breasts", "mammaries", "boobs", "tits");
 			}
 			else {
 				if(descripted) descript += " ";
