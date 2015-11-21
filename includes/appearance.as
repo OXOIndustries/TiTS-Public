@@ -56,7 +56,7 @@ public function appearance(target:Creature):void {
 			else if(target.exhibitionism() >= 50) output2(" Maybe you're some kind of nudist, but it's not like you mind being naked anyway.");
 			else if(target.exhibitionism() >= 33) output2(" It's okay to show some nudity once in a while, right?");
 			else if(target.exhibitionism() >= 20) output2(" If anyone sees you this way, you can't help but be aroused a little.");
-			else if(target.exhibitionism() == 10) output2(" If anyone sees you now, they're sure to think you're a nudist...");
+			else if(target.exhibitionism() >= 10) output2(" If anyone sees you now, they're sure to think you're a nudist...");
 			else output2(" If anyone sees you now, they're sure to think you're a nudist!");
 		}
 
