@@ -14,7 +14,7 @@
 		public function VenusBloom()
 		{
 			this._latestVersion = 1;
-			this.hasRandomProperties = true;
+			//this.hasRandomProperties = true;
 			
 			this.quantity = 1;
 			this.stackSize = 1;
@@ -58,11 +58,11 @@
 			if(target is PlayerCharacter) {
 				//Consume:
 				kGAMECLASS.clearOutput();
-				kGAMECLASS.output("You have no use for this item at present.");
+				kGAMECLASS.output("You have no use for the flower at present. Maybe you can give it to someone?");
 			}
 			else {
 				kGAMECLASS.clearOutput();
-				kGAMECLASS.output(target.capitalA + target.short + " cannot use the a varmint.");
+				kGAMECLASS.output(target.capitalA + target.short + " cannot use the flower.");
 			}
 			return true;
 		}

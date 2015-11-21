@@ -35,12 +35,12 @@
 			this.attackVerb = "null";
 			
 			//Information
-			this.basePrice = 450;
+			this.basePrice = 850;
 			this.attack = 0;
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
-			this.sexiness = 0;
+			this.sexiness = 2;
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 0;

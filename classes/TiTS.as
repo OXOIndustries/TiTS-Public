@@ -88,6 +88,7 @@
 		include "../includes/combat.as";
 		include "../includes/ControlBindings.as";
 		include "../includes/CodexEntries.as";
+		include "../includes/CodexFiction.as";
 		include "../includes/creation.as";
 		include "../includes/debug.as";
 		include "../includes/engine.as";
@@ -100,6 +101,9 @@
 		include "../includes/rooms.as";
 		include "../includes/roomFunctions.as";
 		include "../includes/StubbedFunctions.as";
+
+		//Holiday shit
+		include "../includes/holidayEvents/halloweenCostumes.as";
 
 		//Followers
 		include "../includes/follower.anno.as";
@@ -196,6 +200,7 @@
 		include "../includes/myrellion/bathHouse.as";
 		include "../includes/myrellion/cockvines.as";
 		include "../includes/myrellion/cockvineseedling.as";
+		include "../includes/myrellion/crystalGoo.as";
 		include "../includes/myrellion/dally.as";
 		include "../includes/myrellion/embassy.as";
 		include "../includes/myrellion/embry.as";
@@ -225,6 +230,7 @@
 		include "../includes/myrellion/tavern.as";
 		include "../includes/myrellion/taivrasPalace.as";
 		include "../includes/myrellion/tradingPost.as";
+		include "../includes/myrellion/venomAddiction.as";
 		include "../includes/myrellion/wetraxxel.as";
 		include "../includes/myrellion/xanthe.as";
 		include "../includes/myrellion/xenogenbiotech.as";
@@ -321,7 +327,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.6.10";
+			version = "0.6.17";
 
 			//temporary nonsense variables.
 			temp = 0;

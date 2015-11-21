@@ -252,6 +252,17 @@ package classes.GameData
 			return false;
 		}
 		
+		/**
+		 * Safely check if the datastore contains a mail with a given index.
+		 * @param	entryName
+		 * @return
+		 */
+		public static function hasEntry(entryName:String):Boolean
+		{
+			if (MailManager.ENTRIES[entryName] !== undefined) return true;
+			return false;
+		}
+		
 		//Added by Fen! Kill me if needed, Geddy
 		public static function isEntryViewed(entryName:String):Boolean
 		{

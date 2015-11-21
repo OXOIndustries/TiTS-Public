@@ -17,7 +17,7 @@
 			this._latestVersion = 1;
 			
 			this.quantity = 1;
-			this.stackSize = 10;
+			this.stackSize = 12;
 			this.type = GLOBAL.FOOD;
 			//Used on inventory buttons
 			this.shortName = "SmallEgg";
@@ -46,6 +46,9 @@
 			this.evasion = 0;
 			this.fortification = 0;
 			
+			this.combatUsable = true;
+			this.targetsSelf = true;
+			
 			this.version = this._latestVersion;
 		}
 		
@@ -56,28 +59,27 @@
 		//METHOD ACTING!
 		override public function useFunction(target:Creature, usingCreature:Creature = null):Boolean
 		{
-			var changes:int = 0;
-			var changeLimit:int = 1;
-			var pc:Creature = target;
-			var x:int = 0;
-			var y:int = 0;
-			var choices:Array;
-			if(rand(2) == 0) changeLimit++;
-			if(rand(3) == 0) changeLimit++;
-			if(rand(4) == 0) changeLimit++;
-			if(rand(5) == 0) changeLimit++;
-			kGAMECLASS.clearOutput();
-			if(target is PlayerCharacter) {
+			var healing:int = 10;
+			if(target is PlayerCharacter)
+			{
+				kGAMECLASS.clearOutput();
 				//Usage text:
 				kGAMECLASS.output("You chomp down on the delicious, almost sugary egg.");
-				if(target.HP() < target.HPMax()) kGAMECLASS.output(" You feel better almost immediately!");
+				if(target.HP() < target.HPMax()) kGAMECLASS.output(" You feel better almost immediately! (<b>+" + healing + " HP</b>)");
 				else kGAMECLASS.output(" Nothing changes except for the taste in your mouth.");
-				target.HP(10);
+				target.HP(healing);
+				kGAMECLASS.output("\n");
 			}
 			//Not player!
 			else
 			{
-				kGAMECLASS.output(target.capitalA + target.short + " eats the rations to no effect.");
+				if(kGAMECLASS.inCombat()) kGAMECLASS.output("\n");
+				else kGAMECLASS.clearOutput();
+				kGAMECLASS.output(target.capitalA + target.short + " eats a brightly-colored egg");
+				if(target.HP() < target.HPMax()) kGAMECLASS.output(" and instantly regains a little health! (<b>+" + healing + " HP</b>)");
+				else kGAMECLASS.output(" to no effect.");
+				target.HP(healing);
+				kGAMECLASS.output("\n");
 			}
 			return false;
 		}

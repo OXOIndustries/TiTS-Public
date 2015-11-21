@@ -71,7 +71,7 @@ package classes.Items.Miscellaneous
 				{
 					if(kGAMECLASS.flags["TIMES_TAKEN_DUMBFUCK"] == undefined)
 					{
-						kGAMECLASS.output("The simple, purple-pink pill in your hand looks so innocuous, so simple and harmless, yet it supposedly has the power to turn anyone who imbibes it into a sex-crazed breeder. Taking it is going to undoubtedly dim your intellect and enhance your lidido permanently, potentially to such a degree that you won't even care to bother chasing your inheritance anymore. If you do take it, every orgasm for the next twenty-four hours is going to make you dumber and hornier. You'll have to be careful to control yourself.");
+						kGAMECLASS.output("The simple, purple-pink pill in your hand looks so innocuous, so simple and harmless, yet it supposedly has the power to turn anyone who imbibes it into a sex-crazed breeder. Taking it is going to undoubtedly dim your intellect and enhance your libido permanently, potentially to such a degree that you won't even care to bother chasing your inheritance anymore. If you do take it, every orgasm for the next twenty-four hours is going to make you dumber and hornier. You'll have to be careful to control yourself.");
 						kGAMECLASS.output("\n\n<b>Do you take this pill?</b>");
 						kGAMECLASS.clearMenu();
 						kGAMECLASS.addButton(0,"Take It",kGAMECLASS.goAheadAndDumbfuck);

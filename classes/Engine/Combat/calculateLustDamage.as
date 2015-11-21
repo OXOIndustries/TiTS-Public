@@ -38,13 +38,16 @@ package classes.Engine.Combat
 		
 		if (lustDamage.tease.damageValue > 0 && attacker != null) lustDamage.tease.damageValue += attacker.sexiness() / 2;
 		if (lustDamage.tease.damageValue > 0 && attacker != null && attacker.hasPerk("Pheromone Cloud")) lustDamage.pheromone.damageValue += 1 + rand(4);
+		//25% dam multiplier
+		if (lustDamage.tease.damageValue > 0 && target != null && target.hasStatusEffect("Red Myr Venom")) lustDamage.tease.damageValue *= 1.25; 
 		
 		// Apply any defensive modifiers
 		var damMulti:Number = 1;
 		if (target.hasStatusEffect("Blue Balls")) damMulti += 0.25;
 		if (target.hasStatusEffect("Sex On a Meteor")) damMulti += 0.5;
 		if (target.hasStatusEffect("Tallavarian Tingler")) damMulti += 0.5;
-		if (target.hasStatusEffect("Myr Venom")) damMulti += 0.25;
+		//New status: "Red Myr Venom" replaces this.
+		//if (target.hasStatusEffect("Myr Venom")) damMulti += 0.25;
 		if (target.hasPerk("Easy")) damMulti += 0.2;
 		if (damMulti != 1) lustDamage.multiply(damMulti);
 		

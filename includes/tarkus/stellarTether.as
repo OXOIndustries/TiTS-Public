@@ -53,7 +53,7 @@ public function approachUGCTroopers():void
 		output("\n\n<i>\"Who the hell do you think you are, " + pc.mf("boy","girl") + "?\"</i> the officer growls, couching his rifle under an arm. <i>\"Ain't no sane fellow walks up to a bunch of troops on high alert.\"</i>");
 		output("\n\nYou shrug. <i>\"I'm just looking around. What's going on here?\"</i>");
 		output("\n\nThe veteran cocks an eyebrow at you, and mutters. <i>\"Damn rushers,\"</i> as he taps out his cigar onto the parched dirt.");
-		output("\n\n<i>\"Look, kid, see that station up ahead?\"</i> he says, pointing to Tether station. <i>\"There's a shitload of pirates in there threatening to crack the planet back in half, finish what the goblins and kobo- er, raskvel started ages ago. Why don't you head back to Nova and get the hell out of here before you get sucked into space with the rest of us, huh?\"</i>");
+		output("\n\n<i>\"Look, kid, see that station up ahead?\"</i> he says, pointing to Tether station. <i>\"There's a shitload of pirates in there threatening to crack the planet back in half, finish what the goblins and kobo- er, gabilani and raskvel started ages ago. Why don't you head back to Nova and get the hell out of here before you get sucked into space with the rest of us, huh?\"</i>");
 		output("\n\nThat's a pretty cheery attitude.");
 		processTime(2);
 	}
@@ -505,11 +505,11 @@ public function takeTamWulf():void
 	clearOutput();
 	author("Savin");
 	showBust("TAMWOLF");
-	showName("\nTAMWOLF");
+	showName("\nTAM-WOLF");
 	output("With the psychotic cat-girl incapacitated, you take a gander at the damaged drone dog on the work table. Looking just like a sleek black doberman, the drone is certainly quite powerful -- and those teeth can take a bite right out of you. With a little re-working, you could probably turn him into your new best friend.");
 	if(silly) output(" Then again, stealing is wrong... even from pirates.");
 	//If PC is a Tech w/ drone:
-	else if(pc.characterClass == GLOBAL.CLASS_ENGINEER) output(" <b>Taking Tamwolf would let you replace your shock-slinging default drone with a bitey attack drone by equipping it as an accessory</b>.");
+	else if(pc.characterClass == GLOBAL.CLASS_ENGINEER) output(" <b>Taking Tam-wolf would let you replace your shock-slinging default drone with a bitey attack drone by equipping it as an accessory</b>.");
 	else output(" If only you had the expertise and experience to work with drones, you could probably get Tam-wolf up to peak form -- as is, he's still pretty damaged, and might be unreliable.");
 	output("\n\nTake him?");
 	processTime(1);
@@ -525,7 +525,7 @@ public function dontTakeTamWulf():void
 	clearOutput();
 	author("Savin");
 	showBust("TAMWOLF");
-	showName("\nTAMWOLF");
+	showName("\nTAM-WOLF");
 	output("Nah. You'd hate to deprive the crazy cat-girl of her pet pooch, anyway. She'd be heartbroken!");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -538,7 +538,7 @@ public function yesTechSpecialistsTakeTamWulf():void
 	clearOutput();
 	author("Savin");
 	showBust("TAMWOLF");
-	showName("\nTAMWOLF");
+	showName("\nTAM-WOLF");
 	var foundLootItems:Array = new Array();
 	//Drone techs!
 	if(pc.hasPerk("Attack Drone"))
@@ -612,7 +612,7 @@ public function tamtamBadEndPetPooch():void
 {
 	author("Savin");
 	showBust("TAMTAM","TAMWOLF");
-	showName("\nTAMWOLF");
+	showName("\nTAM-WOLF");
 	//If During phase 1:
 	if(!foes[0].hasStatusEffect("Phase 2"))
 	{
@@ -622,7 +622,7 @@ public function tamtamBadEndPetPooch():void
 	else output("Under a withering hail of bullets and a ceaseless assault from the cyber-dog, you find yourself slipping, only narrowing dodging streams of lead. Suddenly, you feel a set of dangerously pointed teeth on your neck as a powerful robotic body barrels you onto the ground.");
 	output("\n\nTam the cat-girl is over you in an instant, kicking your [pc.rangedWeapon] away and leveling her own laser pistol at you. <i>\"On your knees!\"</i> she demands, before noticing that you're flat on your back");
 	if(!pc.hasKnees()) output(", much less that you don't even have knees");
-	output(". <i>\"Yeah! Suck it, bitch. High-five, Tamwolf!\"</i>");
+	output(". <i>\"Yeah! Suck it, bitch. High-five, Tam-wolf!\"</i>");
 	output("\n\n<i>\"High-five, mistress Tam,\"</i> Tam-wolf agrees, reaching a steel paw up and swatting her outstretched hand.");
 	output("\n\n<i>\"That'll teach you for messing with Captain Khorgan's pirate crew, and especially Tam-Tam!\"</i> Tam cheers, pumping a victorious fist in the air. <i>\"So... uh... what do I do now?\"</i>");
 	output("\n\n<i>\"Captain Khorgan ordered all trespassers be attacked on sight,\"</i> Tam-wolf offers, growling at you.");
@@ -663,7 +663,7 @@ public function badEndToTamWulfAndTamAndMaybeAlsoTamPartII():void
 	clearOutput();
 	author("Savin");
 	showBust("TAMTAM","TAMWOLF");
-	showName("\nTAMWOLF");
+	showName("\nTAM-WOLF");
 	output("<b>Months pass</b>");
 	output("\n\nYou can barely feel your extremities. The leather outfit is restraining, tight against your nude body, holding you onto ");
 	if(!pc.hasKnees()) output("your newly grown ");
@@ -2367,9 +2367,15 @@ public function kaskaBadEndPartDues():void
 
 		output("\n\nBetween the dick in your mouth and the feelings coursing down the length of the lucky tail, you're in no position to argue. You mutely suck on her length instead, slurping noisily on her rod until she pulls it out. The dusky cock gleams with a thick layer of your saliva. Here and there, bubbles adorn its surface, evidence of some of your more vigorous attempts at oral service. Kaska lifts it away, but only to offer it to another a different, more sensitive part of you - a wetter, more pliant part of you. Clenching your knuckles, you brace yourself for the coming penetration. Feelings of overwhelming eagerness are being fed up your spine, making it difficult not smile. It's contagious.");
 		output("\n\nThe dickgirl pirate doesn't push herself inside right away. She takes it slow, rubbing her glans against your [pc.tailgina]'s over-lubricated folds, finding the little clit and letting her cumslit prod at the thing before sliding back across the other way. Your entrance feebly gropes at tantalizing, leaking dick, sucking down every drop of pre yet powerless to pull the tool's proper length inside. You squirm beneath Kaska, too turned on and excited to sit still, until she tires of her game and allows your [pc.tailgina] to envelop her head.");
-		output("\n\nGasping at the same time as Kaska, you revel in the sensations pouring up your tail and into your brain. No matter how many times you feed the parasitic creature that has become part of you, you'll never get used to the surges of raw pleasure that it feeds you in return. Every tail-feeding experience seems calibrated to fill your pleasure-centers with bubbling bliss, and once you get used to it, it merely shifts the pattern and vector of its transmissions to tickle your mind anew.");
+		output("\n\nGasping at the same time as Kaska, you revel in the sensations pouring up your tail and into your brain. No matter how many times you feed the");
+		if(pc.hasParasiteTail()) output(" parasitic creature");
+		else output(" alien tail");
+		output(" that has become part of you, you'll never get used to the surges of raw pleasure that it feeds you in return. Every tail-feeding experience seems calibrated to fill your pleasure-centers with bubbling bliss, and once you get used to it, it merely shifts the pattern and vector of its transmissions to tickle your mind anew.");
 		output("\n\nThe amount of tactile sensation hitting your cerebellum is enough to make picking apart any detail impossible, so you lie there, hearing the sounds of the slow, sucking penetration more than feeling it. There's too much ecstasy to pick out the individual threads of feeling, the pressure of a vein against your inner walls, the curvature of her glans probing into you. They're definitely there, but you lack the ability to process them.");
-		output("\n\nSighing, Kaska admits, <i>\"Now this is a pussy.\"</i> She lets it engulf her down to the root. <i>\"If I had known that these little - mmm... that these little parasites felt like this! I would have gotten one long ago. Oh, fuck yes!\"</i> Her hips quiver uselessly, anxious to thrust and fuck, an action rendered unnecessary by talented muscles working over her cock. She mauls her own breasts in response, taking out her energies on an untended-to erogenous zone, her fingers disappearing under the taut xeno leather of her top.");
+		output("\n\nSighing, Kaska admits, <i>\"Now this is a pussy.\"</i> She lets it engulf her down to the root. <i>\"If I had known that these little - mmm... that these little");
+		if(pc.hasParasiteTail()) output(" parasites");
+		else output(" tail-pussies");
+		output(" felt like this! I would have gotten one long ago. Oh, fuck yes!\"</i> Her hips quiver uselessly, anxious to thrust and fuck, an action rendered unnecessary by talented muscles working over her cock. She mauls her own breasts in response, taking out her energies on an untended-to erogenous zone, her fingers disappearing under the taut xeno leather of her top.");
 		output("\n\nYou gradually become aware of a bone-dry thirst, totally incongruous with how full of spit and pre your mouth is after the short blowjob. The [pc.tailgina]'s desires must be transmitting so powerful as to override your own sensations. Aching, empty, desire fills you to paradoxical capacity, and your hands reach forward to caress Kaska's weighty, twitching balls. You've got to have her cum! Kneading her swollen cum-tanks, you feel them twitch in your palms, wet with the musky juices of a barely-concealed pussy. They bounce and contract at your touches, ready to blow any second now. All it will take is a little something to push them past the point of no return.");
 		output("\n\nThe lusty privateer archers her back, grinding her slit against your [pc.chest]. The bump of her clit catches on a [pc.nipple], enough to make her scream in sudden climax. Her hips shudder with barely-contained energy, and then lurch forward, dropping her balls square on top of your mouth and her slit directly onto your chin. The first rope of heady cream blasts into your tunnel at the same time, triggering a climax of your own. Your mouth opens to vocalize your pleasure but immediately fills with weighty, twat-slicked sack, transforming your moans into muffled vibrations that caress Kaska's cum-pumping ballsack, shaking every hidden drop of sperm loose for the dickgirl's orgasm.");
 		output("\n\nYou lose consciousness to the feel of the busty pirate's sweat-slick body grinding against you.");
@@ -2879,7 +2885,7 @@ public function failedToDisarmTarkusBomb():void
 	clearOutput();
 	author("Fenoxo");
 	showName("\nBOMB");
-	output("The moment all the relays light up, the bomb releases a high-pitched whine. Uh oh. The explosion happens faster than you can perceive it, ending your life and your quest in a coruscating nova. The Tarkus asteroid belt becomes your grave.");
+	output("The moment all the relays light up, the bomb releases a high-pitched whine. Uh oh. The explosion happens faster than you can perceive it, ending your life and your quest in a coruscating Nova. The Tarkus asteroid belt becomes your grave.");
 	output("\n\n<b>GAME OVER</b>");
 	clearMenu();
 }
@@ -2931,7 +2937,7 @@ public function bombExplodes():void
 	//[FAILURE] Bomb goes off while off planet.
 	else if(rooms[this.currentLocation].planet != "PLANET: TARKUS")
 	{
-		output("You receive a notification on your codex that Tarkus was destroyed by the bomb you failed to disarm. The news feeds make a big deal of playing up the survival of a group of raskvel onboard Novahome, and some mention is made of a goblin space station being intact as well. Maybe you should check up on Novahome and see how the raskvel are doing?");
+		output("You receive a notification on your codex that Tarkus was destroyed by the bomb you failed to disarm. The news feeds make a big deal of playing up the survival of a group of raskvel onboard Novahome, and some mention is made of a gabilani space station being intact as well. Maybe you should check up on Novahome and see how the raskvel are doing?");
 		flags["TARKUS_DESTROYED"] = 1;
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
@@ -2949,7 +2955,7 @@ public function bombExplodes():void
 	{
 		showBust("ANNO","SHEKKA");
 		output("Novahome groans like a wounded animal and shifts at least a foot to the left, dumping you to the deck. Alarms sound while you're climbing back to your [pc.feet]. When did the raskvel get those working? Screams of alarm fill the corridors, and you're nearly swept along on a tide of scaley panic. The ship lurches a few more times. You're lucky enough to grab hold of a hand hold this time, and you make your way to the ship's exit ramp.");
-		output("\n\nThe ramp itself is gone. There's an open air gap in its place and no sign of those who might have been walking on it. The Nova bucks like a nautical vessel of old trapped in the gale-force winds of a hurricane. Your belly turns, and you watch the ground fall away a second before tarkus' surface shatters like a piece of glass. Chunks of ore go hurtling by. Raskvel, goblins, and rushers alike are sucked out of the hull, screaming in terror. You barely manage to keep your grip as you watch the bomb tear apart the planet you could've saved.");
+		output("\n\nThe ramp itself is gone. There's an open air gap in its place and no sign of those who might have been walking on it. The Nova bucks like a nautical vessel of old trapped in the gale-force winds of a hurricane. Your belly turns, and you watch the ground fall away a second before tarkus' surface shatters like a piece of glass. Chunks of ore go hurtling by. Raskvel, gabilani, and rushers alike are sucked out of the hull, screaming in terror. You barely manage to keep your grip as you watch the bomb tear apart the planet you could've saved.");
 		output("\n\nDry winds scream like banshees, propelled by geological forces beyond comprehension. ");
 		if(flags["MET_ANNO"] != undefined) output("Anno");
 		else output("A white-haired ausar");
@@ -2980,8 +2986,8 @@ public function planetAsplodeWhileInNova():void
 	output("\n\nStill bumping and bouncing, you wonder if you're going to die like this - trapped in a metal coffin with a bunch of space-");
 	if(!silly) output("rats");
 	else output("kobolds");
-	output(", doomed by your own incompetence. The overhead lights flicked and die, plunging you into darkness. The nova rings like a gong when something slams into it, forcing you to clap your hands to your [pc.ears]. You're going to die. It's finished, then. There's no way out.");
-	output("\n\nThe lights come on, bringing with it the tinny voice of whatever raskvel sits at the helm. <i>\"Shields are up! Shields are up! Get me engines! Fucking goblins must have wrecked their own planet. Someone should've told them it would take more than that to wipe us out!\"</i> A cheer goes through the huddled masses around you. Maybe you'll live after all?");
+	output(", doomed by your own incompetence. The overhead lights flicked and die, plunging you into darkness. The Nova rings like a gong when something slams into it, forcing you to clap your hands to your [pc.ears]. You're going to die. It's finished, then. There's no way out.");
+	output("\n\nThe lights come on, bringing with it the tiny voice of whatever raskvel sits at the helm. <i>\"Shields are up! Shields are up! Get me engines! Fucking gabilani must have wrecked their own planet. Someone should've told them it would take more than that to wipe us out!\"</i> A cheer goes through the huddled masses around you. Maybe you'll live after all?");
 	processTime(3);
 	//[Next]
 	clearMenu();

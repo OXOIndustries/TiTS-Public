@@ -24,6 +24,8 @@ public function roamingBarEncounter(button:int = 0):void
 	var NPCs:Array = new Array();
 	//66% chance Kiro could be there if available.
 	if(roamingKiroAvailable() && rand(3) <= 1) NPCs.push(kiroSetup);
+	//"Help: Bodies" option, has had an update from Anno about the Nova. @ Golden Peak
+	if (flags["DECK13_GRAY_PRIME_DECISION"] == 1 && flags["ANNO_NOVA_UPDATE"] == 1 && currentLocation == "609") NPCs.push(grayGooAtBarSetup);
 
 	//Pick available NPC, run setup func
 	if(NPCs.length > 0)
@@ -1047,7 +1049,7 @@ public function kiroBallsSexMenu():void
 	//High trust only - get her panties.
 	if(pc.hasCock())
 	{
-		if(pc.cockThatFits(kiro.vaginalCapacity(0)) >= 0)
+		if(pc.cockThatFits(kiro.vaginalCapacity(0) + 200) >= 0)
 		{
 			if(kiro.vaginas[0].hymen) addButton(0,"Fuck Vag.",takeKirosVirginity,undefined,"Fuck Her Vagina","Kiro seems excessively focused on her dick. Why not share the loving with her vagina?");
 			else addButton(0,"Fuck Vag.",repeatVagFuckKiro,undefined,"Fuck her Vagina","You took her virginity; might as well see if she's still just as tight.");
@@ -1074,7 +1076,7 @@ public function kiroSexMenu():void
 	//High trust only - get her panties.
 	if(pc.hasCock())
 	{
-		if(pc.cockThatFits(kiro.vaginalCapacity(0)) >= 0)
+		if(pc.cockThatFits(kiro.vaginalCapacity(0) + 200) >= 0)
 		{
 			if(kiro.vaginas[0].hymen) addButton(0,"Fuck Vag.",takeKirosVirginity,undefined,"Fuck Her Vagina","Kiro seems excessively focused on her dick. Why not share the loving with her vagina?");
 			else addButton(0,"Fuck Vag.",repeatVagFuckKiro,undefined,"Fuck her Vagina","You took her virginity; might as well see if she's still just as tight.");
@@ -1138,7 +1140,7 @@ public function takeKirosVirginity():void
 	else output("your");
 	output(" [pc.leg] and rubs her dewy lips back and forth across it. <i>“You’re already there. If you’re serious about this, taking my virginity... I guess it would be okay.”</i> She scoots forward, sliding her way to the top of your thigh. <i>“If you think you’re " + pc.mf("man","woman") + " enough.”</i>");
 	output("\n\nYou shift her mammoth member aside to ");
-	var x:int = pc.cockThatFits(kiro.vaginalCapacity());
+	var x:int = pc.cockThatFits(kiro.vaginalCapacity(0));
 	if(x < 0) x = pc.smallestCockIndex();
 	if(pc.cockVolume(x) * .75 > kiro.cockVolume(0)) output("get the petite thing off of");
 	else output("reveal");
@@ -1191,7 +1193,7 @@ public function yesImTakingKirosVcards():void
 {
 	clearOutput();
 	showKiro(true);
-	var x:int = pc.cockThatFits(kiro.vaginalCapacity());
+	var x:int = pc.cockThatFits(kiro.vaginalCapacity(0));
 	if(x < 0) x = pc.smallestCockIndex();
 	output("<i>“Yes,”</i> you tell her. <i>“I’m ready if you are.");
 	if(pc.isBimbo() && pc.hasVagina()) output(" You’re gonna love it! Having your pussy fucked is like, the best feeling in the universe!");
@@ -1232,7 +1234,7 @@ public function kiroginityTakingPartII():void
 {
 	clearOutput();
 	showKiro(true);
-	var x:int = pc.cockThatFits(kiro.vaginalCapacity());
+	var x:int = pc.cockThatFits(kiro.vaginalCapacity(0));
 	if(x < 0) x = pc.smallestCockIndex();
 	output("Rolling the fucked-out kui-tan into her own sperm-drenched sheets, you switch positions, pinning her underneath you. Puddles of cum run out of her cleavage and down her neck as she looks up at you in confusion, babbling, <i>“A-angel?”</i>");
 	output("\n\nYou put a finger to her lips to shush her and bend low, nibbling at the underside of her jaw, tasting traces of her too-voluminous ejaculate in her fur. How the hell did she hit herself there? It doesn’t matter. You move your kisses up to her lips and gently begin to rock your hips, taking over the fuck now that she’s caved into her own bliss.");
@@ -1258,7 +1260,7 @@ public function kiroginityTakingPartII():void
 	else if(pc.cumQ() <= 100) output(" The resulting jets of [pc.cum] are far more forceful than you would have expected. Maybe it’s how long it’s taken you to get here or the knowledge that yours is the first cum to ever grace this vagina. Whatever the case, you do a damned fine job of giving Kiro a creampie to remember.");
 	else if(pc.cumQ() < 1500)
 	{
-		output(" The torrent of [pc.cum] you unleash floods the inside of her canal, bathing the quivering folds in enough spunk to make her black lips glisten with a layer of white");
+		output(" The torrent of [pc.cum] you unleash floods the inside of her canal, bathing the quivering folds in enough spunk to make her black lips glisten with a layer of [pc.cumColor]");
 		if(pc.hasKnot(x)) output(" despite your knot’s attempts at interdiction");
 		output(". You feel like a firehose, pouring seemingly endless amounts into her womb, spurred on by the knowledge that yours is the first [pc.cumNoun] to meet her most tender flesh.");
 	}
@@ -1279,7 +1281,7 @@ public function tookKiroginityPartIII():void
 {
 	clearOutput();
 	showKiro();
-	var x:int = pc.cockThatFits(kiro.vaginalCapacity());
+	var x:int = pc.cockThatFits(kiro.vaginalCapacity(0));
 	if(x < 0) x = pc.smallestCockIndex();
 	output("Spent, you collapse on Kiro. She doesn’t recover for a few minutes, giving you both time to catch your breath and enjoy the simple pleasure of your warm bodies cuddling against one another. When her eyes finally blink open, she looks at you and smiles, then gently kisses you. You kiss her back, slowly and sensually twisting your tongue around her own, expressing your feelings in simple physical contact rather than with any words.");
 	output("\n\nShe eventually pushes on your chest, breaking the kiss. <i>“Wow... I didn’t... wow.”</i> She licks a little of her cum from her face and admits, <i>“I didn’t know it could feel that good. No wonder girls always wind up ringing me back.”</i> She squeezes your ");

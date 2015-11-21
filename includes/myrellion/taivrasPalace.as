@@ -18,12 +18,6 @@ public function showQueensguard():void
 	showName("\nQUEENSGUARD");
 	showBust("QUEENSGUARD");
 }
-
-public function showRival():void
-{
-	userInterface.showBust(chars["RIVAL"].short.toUpperCase());
-	userInterface.showName(chars["RIVAL"].short.toUpperCase());
-}
 public function showPraetorians(nude:Boolean = false):void
 {
 	if(inCombat()) showName("FIGHT: NYREAN\nGUARDS");
@@ -41,7 +35,14 @@ public function metTaivra():Boolean
 public function reclaimedProbeMyrellion():Boolean
 {
 	// Used for checking whether or not the probe was reclaimed!
+	// Coordinates to next planet seems to be taken after the probe has been reclaimed/touched.
+	// After getting the lucky bucks
 	if(flags["MYRELLION_PROBE_CASH_GOT"] != undefined) return true;
+	// For marrying Taivra
+	if(flags["BEAT_TAIVRA_TIMESTAMP"] == undefined && flags["KING_NYREA"] != undefined && 9999 == 0) return true;
+	// For beating Taivra (Leave/Kill/Subjugate)
+	if(flags["BEAT_TAIVRA_TIMESTAMP"] != undefined) return true;
+	// else
 	return false;
 }
 
@@ -61,12 +62,12 @@ public function nyreaDungeonGateOpen():Boolean
 	//Has taivra been down 12+ hours? If yes, seal the gates
 	if(flags["BEAT_TAIVRA_TIMESTAMP"] != undefined)
 	{
-		if(flags["BEAT_TAIVRA_TIMESTAMP"] + 60 * 12 <= GetGameTimestamp()) return false;
+		if(flags["BEAT_TAIVRA_TIMESTAMP"] + (12 * 60) <= GetGameTimestamp()) return false;
 	}
 	//Otherwise, Gate is open if praetorians are in recovery mode
 	else if(flags["FOUGHT_PRAETORIANS"] != undefined)
 	{
-		if(flags["PRAETORIAN_RESPAWN"] != undefined && flags["PRAETORIAN_RESPAWN"] + 60*12 > GetGameTimestamp()) return true;
+		if(flags["PRAETORIAN_RESPAWN"] != undefined && flags["PRAETORIAN_RESPAWN"] + (12 * 60) > GetGameTimestamp()) return true;
 	}
 	return false;
 }
@@ -77,7 +78,7 @@ public function taivrasPalaceSquareBonus():Boolean
 	author("Savin");
 	//Officially become King Nyrea!
 	//if(!pc.hasPerk("Nyrean Royal") && flags["KING_NYREA"] == 1) 
-	if(!pc.hasPerk("Nyrean Royal") && flags["KING_NYREA"] == 1 && flags["BEAT_TAIVRA_TIMESTAMP"] + (60 * 12) <= GetGameTimestamp())
+	if(!pc.hasPerk("Nyrean Royal") && flags["KING_NYREA"] == 1 && flags["BEAT_TAIVRA_TIMESTAMP"] + (12 * 60) <= GetGameTimestamp())
 	{
 		nyreaKingReturnGreeting();
 		return true;
@@ -91,9 +92,10 @@ public function taivrasPalaceSquareBonus():Boolean
 	else
 	{
 		//Gate sealed for defeating Taivra
-		if(flags["BEAT_TAIVRA_TIMESTAMP"] != undefined && flags["BEAT_TAIVRA_TIMESTAMP"] + 60 * 12 <= GetGameTimestamp())
+		if(flags["BEAT_TAIVRA_TIMESTAMP"] != undefined && flags["BEAT_TAIVRA_TIMESTAMP"] + (12 * 60) <= GetGameTimestamp())
 		{
 			output("\n\nThe gates are sealed, and nobody is standing outside. There doesn’t seem to be any way you can get the gate open without a lot of help...");
+			if(flags["KING_NYREA"] == 1) output("\n\n<b>Perhaps you should wait a day or so for the new power structure to sort itself out before returning.</b>");
 		}
 		//if Praetorian fight not won:
 		else if(flags["FOUGHT_PRAETORIANS"] == undefined)
@@ -106,7 +108,7 @@ public function taivrasPalaceSquareBonus():Boolean
 		else
 		{
 			//within 12 hours:
-			if(flags["PRAETORIAN_RESPAWN"] != undefined && flags["PRAETORIAN_RESPAWN"] + 60*12 > GetGameTimestamp()) output("\n\nA squad of armed and armored nyrean huntresses are scattered around the ground, recovering from the ass-kicking you gave them earlier. When they see you standing around, they either get small or play dead in a hurry.");
+			if(flags["PRAETORIAN_RESPAWN"] != undefined && flags["PRAETORIAN_RESPAWN"] + (12 * 60) > GetGameTimestamp()) output("\n\nA squad of armed and armored nyrean huntresses are scattered around the ground, recovering from the ass-kicking you gave them earlier. When they see you standing around, they either get small or play dead in a hurry.");
 			//13+ hours, PC hasn’t finished dungeon OR PC got rekt by the Praetorian last time:
 			else
 			{
@@ -490,7 +492,7 @@ public function taivrasGateInteriorBonus():Boolean
 	else output(" The place has been cleared out, thanks to your forceful entrance.");
 	//SPOILS! Happens on entering the interior gate room
 	//Not a menu-producing event. Append to description?
-	if(pc.hasPerk("Nyrean Royal") && (flags["NYREAN_SPOILS"] == undefined || flags["NYREAN_SPOILS"] + 60*24*7 < GetGameTimestamp()))
+	if(pc.hasPerk("Nyrean Royal") && (flags["NYREAN_SPOILS"] == undefined || flags["NYREAN_SPOILS"] + (7 * 24 * 60) < GetGameTimestamp()))
 	{
 		getRoyalSpoils();
 		return true;
@@ -526,7 +528,7 @@ public function queensFountainBonusShit():Boolean
 
 public function queensguardAtFountain():Boolean
 {
-	if(pc.hasPerk("Nyrean Royal") && (flags["QUEENSGUARD_STAB_TIME"] != undefined && flags["QUEENSGUARD_STAB_TIME"] + 12*60 < GetGameTimestamp())) return true;
+	if(pc.hasPerk("Nyrean Royal") && flags["QUEENSGUARD_STAB_TIME"] != undefined && flags["QUEENSGUARD_STAB_TIME"] + (12 * 60) < GetGameTimestamp()) return true;
 	return false;
 }
 
@@ -665,21 +667,20 @@ public function taivrasThroneBonusFunc():Boolean
 		return true;
 	}
 	//PC executed Taivra:
-	else if(flags["KILLED_TAIVRA"] == 1)
+	else if(flags["KILLED_TAIVRA"] != undefined)
 	{
 		output("Queensguard, despite her wounds, is kneeling over the body of her queen and weeping quietly. As you demanded, she’s gathered the remnants of her soldiers - those who haven’t deserted into the caves - and ordered them to dismantle the queen’s throne from around your father’s probe, ready to deliver the probe outside for a Steele Tech team.");
 	}
 	//PC is KingNyrea vis Peace:
 	//First 12 hours after fight:
-	else if(flags["KING_NYREA"] != undefined && flags["BEAT_TAIVRA_TIMESTAMP"] == undefined && flags["QUEENSGUARD_STAB_TIME"] != undefined && flags["QUEENSGUARD_STAB_TIME"] + 12*60 > GetGameTimestamp())
+	else if(flags["KING_NYREA"] != undefined && flags["BEAT_TAIVRA_TIMESTAMP"] == undefined && flags["QUEENSGUARD_STAB_TIME"] != undefined && flags["QUEENSGUARD_STAB_TIME"] + (12 * 60) > GetGameTimestamp())
 	{
-		output("Your newly-minted mate is sitting on the edge of her throne's dias, tending to the wounds her bodyguard suffered at Dane's hands. Taivra looks at you with something between fear and admiration, and she keeps her hands well clear of her weapons. Your father's probe remains where it was, acting as your wife's throne. It flashes occasionally, reacting to your presence.");
+		output("Your newly-minted mate is sitting on the edge of her throne's dias, tending to the wounds her bodyguard suffered at Dane's hands. Taivra looks at you with something between fear and admiration, and she keeps her hands well clear of her weapons. Your father's probe remains where it was, acting as your wife's throne. It flashes occasionally, reacting to your presence.\n\n<b>You should come back in a day or so if you'd like to interact her. Hopefully someone will remember to tell the gate guards about you. It'd suck to have to fight them again on the way out - but it might happen.</b>");
 	}
 	//PC spared Taivra:
 	else if(flags["KING_NYREA"] == undefined)
 	{
-		output("Queen Taivra is sitting on the edge of her throne’s dais, tending to the wounds her bodyguard suffered at ");
-		output("Dane’s hands.");
+		output("Queen Taivra is sitting on the edge of her throne’s dais, tending to the wounds her bodyguard suffered at Dane’s hands.");
 		if(flags["BEAT_TAIVRA_TIMESTAMP"] != undefined) output(" As you demanded, some of her warriors are dismantling her probe-throne, getting ready to dump it out into the village.");
 		output(" The queen glowers at you, not in hatred, but in what you would almost call admiration. Clearly your ability to best her has made an impression on the nyrean queen.");
 	}
@@ -687,10 +688,9 @@ public function taivrasThroneBonusFunc():Boolean
 	else
 	{
 		//First 12 hours after a bitch got shanked
-		if(flags["QUEENSGUARD_STAB_TIME"] != undefined && flags["QUEENSGUARD_STAB_TIME"] + 12*60 > GetGameTimestamp())
+		if(flags["QUEENSGUARD_STAB_TIME"] != undefined && flags["QUEENSGUARD_STAB_TIME"] + (12 * 60) > GetGameTimestamp())
 		{
-			output("Your newly-minted mate is sitting on the edge of her throne’s dais, tending to the wounds her bodyguard suffered at ");
-			output("Dane’s hands.");
+			output("Your newly-minted mate is sitting on the edge of her throne’s dais, tending to the wounds her bodyguard suffered at Dane’s hands.");
 			if(flags["BEAT_TAIVRA_TIMESTAMP"] != undefined) output(" As you demanded, some of her warriors are dismantling her probe-throne, getting ready to dump it out into the village.");
 			output(" Taivra looks at you with something between fear and admiration, and she keeps her hands well clear of her weapons.");
 		}
@@ -753,11 +753,12 @@ public function stepBackFromGloryHoles():void
 	output("\n\nYou don’t exactly know how to respond to that, and in the couple of moments you spend flubbing for some response that will keep the creature placated, you hear something clicking behind the stone. You manage to scramble back just in time to avoid falling in as a trap door pops open from underneath a shaggy rug, and a glistening green figure pulls herself up from below.");
 	output("\n\n");
 	//if seen a Crystalgu b4:
-	if(9999 == 0) output("You instantly recognize the familiar form of a ganrael, the planet’s crystal-hemmed goo race, but something’s very different about this specimen. ");
+	if(CodexManager.entryUnlocked("Ganrael")) output("You instantly recognize the familiar form of a ganrael, the planet’s crystal-hemmed goo race, but something’s very different about this specimen. ");
 	else 
 	{
-		output("It’s a green goo-girl, just like Celise, but covered with bits of glistening crystal. Your Codex beeps, identifying it as a gan’rael, a myrellion native species. ");
+		output("It’s a green goo-girl, just like Celise, but covered with bits of glistening crystal. Your Codex beeps, identifying it as a ganrael, a myrellion native species. ");
 		//CODEX UNLOCK!
+		CodexManager.unlockEntry("Ganrael");
 	}
 	output("She’s adopted a relatively humanoid form, probably based off of a gooey interpretation of the nyrea she’s living besides: she’s got two arms, a human-like head with big elfin ears, and a curvaceous body with big tits and hips that fold down into a solid base of goo instead of legs. Her crystals, though, are what tip you off to what you’re really dealing with here: a thick dome of emerald crystal has formed around her belly, shielding a massively pregnant gut filled to the brim with what looks like hundreds of fist-sized eggs! Her middle is hugely bloated, swollen with eggs and plated with as much crystal as the goo could possibly churn out, protecting her charges rather than herself.");
 
@@ -812,7 +813,7 @@ public function useDatGloryhole():void
 
 	output("\n\nIs that a goo-girl on the other side? It has to be, you tell yourself");
 	//if seen a Crystalgu b4:
-	if(9999 == 0) output(" - probably a ganrael in the queen’s service");
+	if(CodexManager.entryUnlocked("Ganrael")) output(" - probably a ganrael in the queen’s service");
 	output(". The way the semi-liquid slurps and squeezes, sucks and caresses your cockflesh is amazing, better than any mouth or sex toy could ever be. An irrepressible grin spreads across your face as you sink every inch of your [pc.cock] into the gooey sheath on the other side of the hole, surrounding your manhood in a constant cavalcade of pleasures.");
 	pc.cockChange();
 	output("\n\n<i>“Wow, this feels totally different!”</i> the voice on the other side giggles, quivering wonderfully around your dick. <i>“Did you, like, get a whole new cock? Just for me, right?”</i>");
@@ -831,9 +832,13 @@ public function useDatGloryhole():void
 
 	output("\n\n");
 	//if seen a Crystalgu b4:
-	if(9999 == 0) output("You instantly recognize the familiar form of a ganrael, the planet’s crystal-hemmed goo race, but something’s very different about this specimen.");
+	if(CodexManager.entryUnlocked("Ganrael")) output("You instantly recognize the familiar form of a ganrael, the planet’s crystal-hemmed goo race, but something’s very different about this specimen.");
 	//else
-	else output("It’s a green goo-girl, just like Celise, as you expected. Unlike your dad’s favorite pet, though, this one’s  covered with bits of glistening crystal. Your Codex beeps, identifying it as a gan’rael, a myrellion native species.");
+	else
+	{
+		output("It’s a green goo-girl, just like Celise, as you expected. Unlike your dad’s favorite pet, though, this one’s  covered with bits of glistening crystal. Your Codex beeps, identifying it as a ganrael, a myrellion native species.");
+		CodexManager.unlockEntry("Ganrael");
+	}
 	output(" She’s adopted a relatively humanoid form, probably based off of a gooey interpretation of the nyrea she’s living besides: she’s got two arms, a human-like head with big elfin ears, and a curvaceous body with big tits and hips that fold down into a solid base of goo instead of legs. Her crystals, though, are what tip you off to what you’re really dealing with here: a thick dome of emerald crystal has formed around her belly, shielding a massively pregnant gut filled to the brim with what looks like hundreds of fist-sized eggs! Her middle is hugely bloated, swollen with eggs and plated with as much crystal as the goo could possibly churn out, protecting her charges rather than herself. Beneath the gemstone shield, though, you see a ");
 	if(pc.cumQ() < 40) output("small");
 	else if(pc.cumQ() <= 550) output("big");
@@ -2593,7 +2598,7 @@ public function subjugateQueenTaivra():void
 	flags["KING_NYREA"] = 1;
 	flags["BEAT_TAIVRA_TIMESTAMP"] = GetGameTimestamp();
 	//Should make queen nyreabuns ready to go immediately
-	flags["QUEENSGUARD_STAB_TIME"] = GetGameTimestamp() - (60*13);
+	flags["QUEENSGUARD_STAB_TIME"] = GetGameTimestamp() - (60 * 13);
 	genericVictory();
 }
 
@@ -2834,7 +2839,7 @@ public function leaderShipDeadTaivraConvo():void
 	clearOutput();
 	showSeifyn();
 	author("Savin");
-	if(flags["KILLED_TAIVRA"] == 1)
+	if(flags["KILLED_TAIVRA"] != undefined)
 	{
 		output("<i>“So, who’s in charge these days?”</i> you ask, glancing at the ground of armed huntresses near the middle of the small village.");
 		output("\n\nSeifyn sighs heavily, wrapping her arms around herself. <i>“Taivra’s eldest daughter. She’s the heir, after all... but she’s locked herself in the palace, surrounded by her elite guard. Barely comes out now, except to send soldiers to take mates or bring in food.”</i>");
@@ -2852,7 +2857,7 @@ public function leaderShipDeadTaivraConvo():void
 		else output("admit that it was, yes.");
 		output(" Siefyn nods slowly. <i>“Well, she’s locked herself in her palace now. Says she doesn’t want anything else to do with off-worlders. I can see why, but... we need the trade. I don’t want to be the one with sticks and stones when the myr have magic guns from space.”</i>");
 
-		output("\n\n<i>“So Taivra doesn’t want you trading us now?”</i>");
+		output("\n\n<i>“So Taivra doesn’t want you trading with us now?”</i>");
 
 		output("\n\n<i>“No, but...”</i> Siefyn chuckles, flicking back a stray lock of hair. <i>“You’re way too valuable to turn away.”</i>");
 
@@ -3124,7 +3129,7 @@ public function useRepeatGloryhole():void
 	if(flags["CRYSTAL_GOO_DEFEAT"] == undefined) 
 	{
 		output("Is that a goo-girl on the other side? It has to be, you tell yourself");
-		if(9999 == 0) output(" - probably a ganrael in the queen’s service");
+		if(CodexManager.entryUnlocked("Ganrael")) output(" - probably a ganrael in the queen’s service");
 	}
 	else output("You smile as the familiar sensation of the ganrael broodmare’s gooey body surrounds you");
 	output(". The way the semi-liquid slurps and squeezes, sucks and caresses your cockflesh is amazing, better than any mouth or sex toy could ever be. An irrepressible grin spreads across your face as you sink every inch of [pc.oneCock] into the gooey sheath on the other side of the hole, surrounding your manhood in a constant cavalcade of pleasures.");
@@ -3179,7 +3184,7 @@ public function taivraFertilize():void
 public function taivraHasFertileEggs():Boolean
 {
 	//Did PC fertilize her?
-	if(flags["TAIVRA_FERTILE"] + 24*60 > GetGameTimestamp()) return true;
+	if(flags["TAIVRA_FERTILE"] + (24 * 60) > GetGameTimestamp()) return true;
 	//Otherwise fertile 1/4 hours.
 	else if(hours % 4 == 0) return true;
 	return false;

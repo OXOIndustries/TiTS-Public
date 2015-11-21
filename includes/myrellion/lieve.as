@@ -1,4 +1,6 @@
-﻿public function lieveHeader(isNude:Boolean = false, isSolo:Boolean = false):void
+﻿import classes.Items.Drinks.HoneyWine;
+
+public function lieveHeader(isNude:Boolean = false, isSolo:Boolean = false):void
 {
 	showName("\nLIEVE");
 	author("Savin");
@@ -378,7 +380,7 @@ public function lieveTalkMenu():void
 	if (hasFuckedLieveSolo() && flags["LIEVE_TALK_THEWAR"] != undefined) addButton(3, "Her Scars", lieveTalkScars, undefined, "Her Scars", "Ask Lieve about those brutal scars on her back.");
 	else addDisabledButton(3, "Her Scars");
 
-	if (flags["LIEVE_TALK_SCARS"] != undefined) addButton(4, "Red Prisoners?", lieveTalkRedPrisoners, undefined, "Red Prisoners?", "Push Lieve for more details about the prisoners.");
+	if (flags["LIEVE_TALK_SCARS"] != undefined) addButton(4, "RedPrisoners?", lieveTalkRedPrisoners, undefined, "Red Prisoners?", "Push Lieve for more details about the prisoners.");
 	else addDisabledButton(4, "Red Prisoners");
 
 	if (flags["LIEVE_TALK_PRISONERS"] != undefined) addButton(5, "Myr Fertility", lieveTalkMyrFertility, undefined, "Myr Fertility", "Ask Lieve for more details about the state of Myr fertility.");
@@ -388,9 +390,13 @@ public function lieveTalkMenu():void
 
 	addButton(7, "Fed.Army", lieveTalkFedArmy, undefined, "Federation Army", "Have Lieve tell you a little about the Scarlet Federation's military.");
 	
+	//9999 = if has talked to Jim's Warmedic ant about "Her Past"
+	if (flags["LIEVE_TALK_THEWAR"] != undefined && (9999 == 0 || CodexManager.hasViewedEntry("Red Myr"))) addButton(8, "Citizenship", lieveTalkCitizenship, undefined, "Citizenship", "Ask Lieve about Federal Citizenship. From what you understand, it's very different from how the Confederate government handles things.");
+	else addDisabledButton(8, "Citizenship");
+
 	if (flags["NEVRIE_QUEST"] == 1 && flags["LIEVE_BLOOD_SAMPLE"] == undefined && !pc.hasKeyItem("Red Myr Blood"))
 	{
-		addButton(8, "BloodSample", lieveBloodSample, undefined, "Blood Sample", "Ask Lieve if you could get a sample of her blood for Nevrie.");
+		addButton(9, "BloodSample", lieveBloodSample, undefined, "Blood Sample", "Ask Lieve if you could get a sample of her blood for Nevrie.");
 	}
 	
 	addButton(14, "Back", lieveMenu);
@@ -432,7 +438,7 @@ public function lieveTalkNoMansLand():void
 	
 	output("\n\n<i>“Anything else I should be aware of?”</i>");
 	
-	output("\n\n<i>“There are other creatures out there, but the nyrea and fungal myr are the most common in No Myrs’s. If you go down in the deep caves, you’ll start seeing bothrioc, wetraxxal, creatures made of a living goo called the ganrael. Any of them can be bad news. Stay clear of them if you can. If not, well, I hope you’re as tough as you look.”</i>");
+	output("\n\n<i>“There are other creatures out there, but the nyrea and fungal myr are the most common in No Myrs’s. If you go down in the deep caves, you’ll start seeing wetraxxal and creatures made of a living goo called the ganrael. Any of them can be bad news. Stay clear of them if you can. If not, well, I hope you’re as tough as you look.”</i>");
 
 	processTime(10 + rand(5));
 	
@@ -467,6 +473,46 @@ public function lieveTalkFungalMyr():void
 	
 	lieveTalkMenu();
 	addDisabledButton(1, "FungalMyr");
+}
+
+public function lieveTalkCitizenship():void
+{
+	clearOutput();
+	lieveHeader();
+
+	output("You ask Lieve if she’d be willing to tell you a little more about the Scarlet Federation’s concept of <i>“citizenship.”</i> From what you’ve heard, it’s very different from being a Confederate citizen, or the citizen of a planet elsewhere in the galaxy, where your citizenship is determined at birth.");
+
+	output("\n\nLieve has a half-smile the entire time you’re talking, drinking up the details of your government and society you divulge with an eager curiosity. When you’re finished, she answers immediately: <i>“No, you’re right. The word means something entirely different for you off-worlders... and for golds... than it does to a red myr. I’m not exactly rated as a Moral Philosophy teacher, but I can try and explain if you’d like. That’s why I’m here, after all.”</i>");
+
+	output("\n\nGiving her an encouraging nod, you ask Lieve to do her best.");
+
+	output("\n\n<i>“I’ll try,”</i> she says with a wink. <i>“Right. The first thing to understand is that nobody is <i>born</i> a citizen of the Federation. Not even the children of the High Commanders. The Scarlet Federation was originally founded by warriors, veterans from our unification wars and the conflict with the nyrea queens around us. The early years were hard, and we survived and stayed together because good people made hard decisions. The Federation doesn’t have the luxury of assured safety and prosperity, and we couldn’t afford to let petty grievances and political machinations get in the way of survival. So the idea of veteran leadership took hold: the idea that the people most qualified to lead us were the people that had fought and bled to bring us together - the people that risked life and limb already for the safety of the Federation.”</i>");
+
+	output("\n\nYou nod slowly. <i>“Wouldn’t that"); 
+	if (pc.isBimbo()) output(", like,");
+	output(" make your government pretty militaristic?”</i> you ask.");
+
+	output("\n\nLieve smirks. <i>“That’s what the Republic would tell you. But the idea’s the opposite: if you’ve seen combat, you’re going to be the last person in the world to order more girls into the fire unless it’s absolutely necessary. You don’t get to make decisions in the Federation until you’ve proven that you’re willing to lay your life on the line, just like any of the troopers whose lives are in your hands.”</i>");
+
+	output("\n\nThat makes sense, you suppose. Though you have to wonder how the Federation government would work in peace time. Just because you’re a veteran doesn’t mean you’re a capable politician, does it?");
+
+	output("\n\n<i>“I hope we’ll find out someday,”</i> Lieve sighs, leaning against the bunker wall. <i>“Even outside of total war, the Federation’s been in some sort of conflict pretty much constantly. Our homeland’s a rough, unforgiving place, and we’ve always been surrounded by enemies. But this war... I hope it will be the last. Through victory, peace.");
+	//if war is still on
+	if (9999 == 9999) 
+	{
+		output(" Or through diplomacy, if we veterans have anything to say about it.”</i>");
+
+		output("\n\n<i>“Oh?”</i> you ask. <i>“What do you mean?”</i>");
+
+		output("\n\n<i>“Between you and me,”</i> Lieve says, giving her captive gold audience a stern look, <i>“rumor has it that High Command is going to issue a referendum on the war soon. With the cease fire looking like it could drag on indefinitely, I think we all just want this to end. If it comes to a vote, the question will be do we re-issue our declaration of war, or do we relent and accept peace? And if we pursue peace, what kind will it be? I think High Command will try and make the Republic a client state, like the nyrean city-states near our territory, but with the star-walkers looming over us... I don’t know. The Republic might squeak out intact in that case, but I’m not sure the Federal government - or its citizens - will settle for that after near total victory. Especially after so much loss to get here.”</i>");
+
+		output("\n\nHeavy stuff. You wonder how the vote will go...");
+	}
+	else output("”</i>");
+
+	processTime(10 + rand(5));
+	lieveTalkMenu();
+	addDisabledButton(8, "Citizenship");
 }
 
 public function lieveTalkTheWar():void
@@ -813,7 +859,7 @@ public function lieveVenomToggle():void
 	}
 	
 	processTime(30 + rand(10));
-
+	imbibeVenomEffects();
 	//Sex Menu here.
 	lieveSexMenu(true);
 }
@@ -838,7 +884,7 @@ public function lieveKissHer():void
 	output("\n\n<i>“Get everything you needed, Steele?”</i> Lieve asks, caressing your cheek. When you nod, she smiles and adds, <i>“Now, what’re you going to do to burn off all that extra lust, hmm?”</i>");
 
 	flags["LIEVE_VENOM_USED"]++;
-
+	imbibeVenomEffects();
 	//Sex menu here
 	lieveSexMenu(true);
 	processTime(3 + rand(2));
@@ -860,7 +906,7 @@ public function lieveSexEntry():void
 	{
 		if (pc.isMasculine())
 		{
-			output("\n\n<i>“Sure! The girls have been looking forward to more after that last time, haven’t they?”</i> she says, teasing the antenna of a golden-haired slut.");
+			output("<i>“Sure! The girls have been looking forward to more after that last time, haven’t they?”</i> she says, teasing the antenna of a golden-haired slut.");
 			
 			output("\n\n<i>“We sure have,”</i> Mayren coos, crawling towards you.");
 			
@@ -1045,7 +1091,6 @@ public function lieveVenomFuck(tempVenomEnabled:Boolean = false):void
 	output("\n\nTime escapes you when eight more hands join Lieve’s, wandering all over your body, teasing your over-sensitive flesh. Several of them rub and caress your [pc.breasts], while others rub your thighs, neck, and lips. You feel the familiar sensation of Mayren’s honeypot tits pressing against your face, and Sierva’s tongue running dangerously close to your pussy. Lieve’s tongue joins her, slipping into your slit. Slow as she goes, you can feel her working her way deep into you, lacing the insides of your sex with her aphrodisiac saliva. The drug burns in you like a sexual wildfire, and you lose count of how many times you orgasm before she’s fully buried between your [pc.legs]. All you can do is writhe and moan, letting the ant-girls bring you to climax again and again and again until your mind’s a blank, completely given over to physical impulse.");
 
 	processTime(200 + rand(40));
-	
 	clearMenu();
 	addButton(0, "Next", lieveVenomFuckII);
 }
@@ -1077,7 +1122,7 @@ public function lieveVenomFuckII(tempVenomEnabled:Boolean = false):void
 	}
 	
 	flags["HAS_BEEN_MYR_VENOMED"] = 1;
-	pc.createStatusEffect("Myr Venom", 0, 0, 0, 0, false, "Icon_LustUp", "Red Myr venom is coursing through your veins.", false, 480);
+	imbibeVenomEffects();
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -1268,7 +1313,6 @@ public function lieveFuckHaremDickVersionVenom():void
 	output("\n\nVenom seeps into you from the mouth and cock, hitting you from both ends. You feel yourself cumming again before long, moaning into Sierva’s mouth. And again. And again. You lose track of time completely, succumbing to the aphrodisiac coursing through your veins and the heady smells of sex that hang like a heavy cloud over the dungeon. Life is good...");
 
 	processTime(200 + rand(40));
-	
 	clearMenu();
 	addButton(0, "Next", lieveFuckHaremDickVersionVenomII);
 }
@@ -1298,7 +1342,7 @@ public function lieveFuckHaremDickVersionVenomII():void
 	}
 
 	flags["HAS_BEEN_MYR_VENOMED"] = 1;
-	pc.createStatusEffect("Myr Venom", 0, 0, 0, 0, false, "Icon_LustUp", "Red Myr venom is coursing through your veins.", false, 480);
+	imbibeVenomEffects();
 	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -1380,7 +1424,11 @@ public function lieveSoloFucktime(tempVenomEnabled:Boolean = false):void
 	else output(" Your mind leaps to the lusty venom red myr possess. The way your body’s reacting, you must have just gotten a hell of a dose, swapping spit with the crimson ant-girl like that.");
 	
 	output("\n\nYou lick your lips and grab at the myr’s breasts, scooping the pair of hand-filling mounds up and squeezing them until your lover moans. You push her back against the wall, pinning her back and");
-	if (lieveVenomEnabled() || tempVenomEnabled) output(" furiously pressing your lips to hers, eager for more of that potent aphrodisiac.");
+	if (lieveVenomEnabled() || tempVenomEnabled) 
+	{
+		output(" furiously pressing your lips to hers, eager for more of that potent aphrodisiac.");
+		imbibeVenomEffects();
+	}
 	else output(" trailing kisses up her neck, careful to avoid her poisonous lips.");
 	output(" From where she’s positioned, it’s easy for Lieve to hike her legs up around your [pc.hips], and your hands are quick to grab her ass in turn, supporting her weight between you and the wall.");
 	
@@ -1580,7 +1628,7 @@ public function lieveBodyWorship():void
 
 	hasFuckedLieveSolo(true);
 
-	output("\n\nYou take a confident step towards Lieve, slipping your arms around the red myr warrior’s waist and leaning in for a kiss - as much a sign of affection as your growing desire to feel the burn of her lusty venom coursing back through your veins.");
+	output("You take a confident step towards Lieve, slipping your arms around the red myr warrior’s waist and leaning in for a kiss - as much a sign of affection as your growing desire to feel the burn of her lusty venom coursing back through your veins.");
 	
 	output("\n\n<i>“Oh, hey there, beautiful,”</i> Lieve laughs as you slip into her arms, just before your [pc.lips] press into hers.");
 	
@@ -1673,6 +1721,7 @@ public function lieveBodyWorship():void
 	{
 		pc.orgasm();
 	}
+	imbibeVenomEffects();
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -1990,7 +2039,7 @@ public function lieveTourBathhouseIIScrubHer():void
 
 	flags["LIEVE_DATEPOINTS"] -= 1;
 
-	output("\n\nYou ignore your lascivious companion’s offer, starting to regret taking the lusty ant up on a group bath. You slip up behind Lieve and start to wash her back, scrubbing her plateless back down from shoulder to the first gentle incline of her buttocks. The lower you move, the greater the tension you can feel in your companion’s body - she moans softly when you near her swaying backside, clearly expectant of more... until you move back up, away from her sex. The tension relaxes, and Lieve sighs.");
+	output("You ignore your lascivious companion’s offer, starting to regret taking the lusty ant up on a group bath. You slip up behind Lieve and start to wash her back, scrubbing her plateless back down from shoulder to the first gentle incline of her buttocks. The lower you move, the greater the tension you can feel in your companion’s body - she moans softly when you near her swaying backside, clearly expectant of more... until you move back up, away from her sex. The tension relaxes, and Lieve sighs.");
 	
 	output("\n\n<i>“Thanks. Couldn’t reach there myself,”</i> she says dryly, though you get the sense she’s at least somewhat trying to disguise her disappointment.");
 	
@@ -2091,12 +2140,27 @@ public function lieveTourManorHouse(fromBath:Boolean = true):void
 	
 	output("\n\n<i>“Take your pick,”</i> Lieve says, ushering you in. <i>“The queen who lived here was one of the most... productive... on the Council. They drank her tit-honey from one side of Gold country to the other. She kept enough down here to keep us swimming in honey for the rest of our lives, and our daughters’. To the victors go the spoils!”</i>");
 	
-	output("\n\nYou’ve got no idea how myr vintage their honey-booze, and so select a bottle at random from one of the many, many racks against the walls. The bottle’s clear, letting you see the thick yellow drink inside that sloshes viscously when you move it. Even through the cork, you can smell the sweetness in the air around it, making your nose tingle ever so slightly.");
-
-	// 9999
+	output("\n\nYou’ve got no idea how myr vintage their honey-booze, and so select a bottle at random from one of the many, many racks against the walls. The bottle’s clear, letting you see the thick yellow drink inside that sloshes viscously when you move it. Even through the cork, you can smell the sweetness in the air around it, making your nose tingle ever so slightly.\n\n");
+	//Cheatsy doodle way to wrap that passed variable around the item loot.
+	if(fromBath) pc.createStatusEffect("FromBath");
+	
 	// Stuff for getting a Honey Wine bottle here.
+	itemScreen = postWineCellarShitForLieve;
+	lootScreen = postWineCellarShitForLieve;
+	useItemFunction = postWineCellarShitForLieve;
+	
+	itemCollect([new HoneyWine()]);
+}
 
-	output("\n\nAs you exit the wine cellar, you ask Lieve if she has anything left in this little tour of hers.");
+
+public function postWineCellarShitForLieve():void
+{
+	clearOutput();
+	lieveHeader(false, true);
+	//End cheaty shit and clean up the cheaty status effect.
+	var fromBath:Boolean = pc.hasStatusEffect("FromBath");
+	pc.removeStatusEffect("FromBath");
+	output("As you exit the wine cellar, you ask Lieve if she has anything left in this little tour of hers.");
 
 	output("\n\n<i>“That’s about it,”</i> she admits,");
 	if (flags["LIEVE_DATEPOINTS"] >= 6) output(" putting an arm around your shoulders");

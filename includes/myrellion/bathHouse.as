@@ -9,7 +9,7 @@ PC can talk to the Mistress to get different services (at a very small fee), the
 public function bathHouseBonus():Boolean
 {
 	//Small chance to add if PC's fucked Lieve before:
-	if(hasFuckedLieve()) output("\n\nLieve is relaxing on a couch with a few other Federation troops, laughing and grinning with the other soldiers. She sees you hanging around and gives you a friendly wave.");
+	if(hasFuckedLieve() && rand (5) == 0) output("\n\nLieve is relaxing on a couch with a few other Federation troops, laughing and grinning with the other soldiers. She sees you hanging around and gives you a friendly wave.");
 	addButton(0,"Matron",approachBathMatron,undefined,"Matron","Talk to the matronly ant-woman about what services the bath house offers.");
 	return false;
 }
@@ -31,17 +31,17 @@ public function approachBathMatron():void
 	output("You walk over to the desk, and with preternatural awareness, the veiled woman behind it turns her perpetual smile your way. <i>“Welcome, my child,”</i> she says, spreading her four arms out invitingly. The way she moves, her silken white robe strains against the belt around her waist, trying desperately to come undone and reveal the clearly curvaceous figure underneath. <i>“How may we serve you?”</i>");
 	processTime(2);
 	clearMenu();
-	addButton(1,"Talk",talkToMatronAbootBathHooose,undefined,"Talk","Ask about her and the bath house itself.");
-	if(pc.credits >= 50) 
+	if(pc.credits >= 50)
 	{
-		addButton(0,"Public Bath",publicBathSlutBitchComeOnYouDipshitBastardInsertCurseWordsHere,undefined,"Public Bath","Give the matron a few credits to use the public bath.");
-		addButton(1,"PrivateBath",privateBathSelection,undefined,"Private Bath","Give the matron a few credits for a private bath.");
+		addButton(0,"Public Bath",publicBathSlutBitchComeOnYouDipshitBastardInsertCurseWordsHere,undefined,"Public Bath","Give the matron a few credits to use the public bath.\n\nCost: 50 credits");
+		addButton(1,"PrivateBath",privateBathSelection,undefined,"Private Bath","Give the matron a few credits for a private bath.\n\nCost: 50 credits");
 	}
-	else 
+	else
 	{
 		addDisabledButton(0,"Public Bath","Public Bath","You can't afford the 50 credits it would cost to use the public bath.");
 		addDisabledButton(1,"PrivateBath","Private Bath","You don't have the money!\n\nCost: 50 credits");
 	}
+	addButton(2,"Talk",talkToMatronAbootBathHooose,undefined,"Talk","Ask about her and the bath house itself.");
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -69,9 +69,17 @@ public function talkToMatronAbootBathHooose():void
 	processTime(5);
 	flags["TALKED_ABOOT_BATH_HOUSE"] = 1;
 	clearMenu();
-	addDisabledButton(1,"Talk","Talk","You just finished that.");
-	if(pc.credits >= 50) addButton(0,"Public Bath",publicBathSlutBitchComeOnYouDipshitBastardInsertCurseWordsHere,undefined,"Public Bath","Give the matron a few credits to use the public bath.");
-	else addDisabledButton(0,"Public Bath","Public Bath","You can't afford the 50 credits it would cost to use the public bath.");
+	if(pc.credits >= 50)
+	{
+		addButton(0,"Public Bath",publicBathSlutBitchComeOnYouDipshitBastardInsertCurseWordsHere,undefined,"Public Bath","Give the matron a few credits to use the public bath.\n\nCost: 50 credits");
+		addButton(1,"PrivateBath",privateBathSelection,undefined,"Private Bath","Give the matron a few credits for a private bath.\n\nCost: 50 credits");
+	}
+	else
+	{
+		addDisabledButton(0,"Public Bath","Public Bath","You can't afford the 50 credits it would cost to use the public bath.");
+		addDisabledButton(1,"PrivateBath","Private Bath","You don't have the money!\n\nCost: 50 credits");
+	}
+	addDisabledButton(2,"Talk","Talk","You just finished that.");
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -472,7 +480,13 @@ public function cleanPenisPartDues(x:int):void
 		output("\n\nThe woman at your arm squeezes her breasts against you, depositing dollops of myr nectar which she begins to work into your [pc.skin]. <i>“Do you like my special honey massage?”</i> she asks, popping two sweet fingers into your mouth. Your [pc.tongue] conforms automatically, lapping up the nectar and teasing the fingers apart to snake down to the bases. She slowly pulls them back out, savoring the feel of your lips, then rubs your saliva into her honeyed nipple with a smoldering look, completely distracted with her fantasies. The raunchy eye-fuck from your masseuse only brings your [pc.cock " + x + "] closer to bursting inside your slender lover.");
 
 		//(tailcock)
-		if(pc.hasTailCock()) output("\n\nA shock travels up your spine as fingers suddenly probe the opening at the end of your perverted, cock-concealing tail, touching the crown of the penis inside. <i>“What’s this?”</i> asks a very quiet voice. Both you and the girl astride your shaft look back to see a youthful myr of average height examining the end of your tail. She leans over for a closer look, and that’s when you notice her staggering bust - a pair of full, round DD-cup beauties dangling from her chest, begging for attention. Your tailcock slides out almost before you think of it, presenting its proud, veiny shaft and blood-engorged, puffy head to the mousey myr girl.\n\nHer eyes widen at the writhing, precum-slicked hot rod in her hand that seconds ago was an innocuous tail tip, and when she looks up and meets the gazes of you and your lover, still busily humping away, her whole skin blushes with embarrassment. Despite that, her thighs rub together and her nipples drool nectar... clearly, her body is far sluttier than she likes to admit. Your tail slips free of her hand, slick with [pc.cumVisc] pre-cum, and begins to press between her thighs. Looking away, the shy myr leans back and slides her abdomen forward to rest between her legs, presenting a target for your alien, parasitic cock to penetrate. She moans lightly and grasps one of her superb breasts as the thick tool enters her and begins to thrust, already near climax.");
+		if(pc.hasTailCock())
+		{
+			output("\n\nA shock travels up your spine as fingers suddenly probe the opening at the end of your perverted, cock-concealing tail, touching the crown of the penis inside. <i>“What’s this?”</i> asks a very quiet voice. Both you and the girl astride your shaft look back to see a youthful myr of average height examining the end of your tail. She leans over for a closer look, and that’s when you notice her staggering bust - a pair of full, round DD-cup beauties dangling from her chest, begging for attention. Your tailcock slides out almost before you think of it, presenting its proud, veiny shaft and blood-engorged, puffy head to the mousey myr girl.\n\nHer eyes widen at the writhing, precum-slicked hot rod in her hand that seconds ago was an innocuous tail tip, and when she looks up and meets the gazes of you and your lover, still busily humping away, her whole skin blushes with embarrassment. Despite that, her thighs rub together and her nipples drool nectar... clearly, her body is far sluttier than she likes to admit. Your tail slips free of her hand, slick with [pc.cumVisc] pre-cum, and begins to press between her thighs. Looking away, the shy myr leans back and slides her abdomen forward to rest between her legs, presenting a target for your alien");
+			if(pc.hasParasiteTail()) output(", parasitic ");
+			else output(" tail-");
+			output("cock to penetrate. She moans lightly and grasps one of her superb breasts as the thick tool enters her and begins to thrust, already near climax.");
+		}
 
 		output("\n\n<i>“Fuck me... I’m coming!”</i> the beauty in your lap moans, pulling your head into her breasts. Her tight ant cunt takes on a new dimension of pressure as her orgasm squeezes your [pc.cock " + x + "], and with all the creamy flesh, innuendo, and rubbing going on around you, you can no longer hold out. Your jizz boils from your cum slit, basting the inside of your enthusiastic partner.");
 		if(pc.hasTailCock()) 
@@ -550,7 +564,13 @@ public function cleanMuhVaginaYo():void
 	output("\n\nYour mouth works as the arousal mounts in your womanhood - with the almost-sadistic teasing of your [pc.vagina " + x + "] by the lesbian myr, you’re horny and desperate for something to happen. The girl behind you notices, and remarks, <i>“You poor thing. You look like you might enjoy my special honey massage.”</i> She scoots backward, allowing you to see as she squeezes her breasts with her hands, producing dollops of nectar from her nipples. She scoops up the nectar and some pool water and begins to work it into your skin, adding a sugary smell to the aroma already present. <i>“Does this feel good?”</i>");
 	output("\n\nYour [pc.vagina " + x + "] continues to burn under the heat of myr tongue, now joined by a whole hand’s worth of fingers as your opening becomes slicker and wetter with your juices. The myr behind you offers her own fingers to you, dangling the honey-coated digits in front of your mouth. You snap them up, caressing them with your [pc.tongue] and slurping between them right down to the ticklish bases. The sound of a sharp breath comes from behind you as your rapacious mouth takes the myr by surprise. She looks into your eyes for a moment, flushing with her own arousal, and then makes a decision: leaning over, she lowers her honey-dribbling breast until it dangles just above your face. Spurred by the crashing orchestra of nerves in your nethers, you don’t even hesitate, reaching up and wrapping the teat in your lips. The taste of sweet sugar fills your mouth as the myr moans, stimulated to give up her precious nectar. Her hand darts between her thighs, and the other myr look positively envious as you tease and circle her nipple with your teeth and tongue, slowing down their bathing efforts as new fantasies fill their heads.");
 	//(tailcunt)
-	if(pc.hasTailCunt()) output("\n\nThe lack of control over the pace begins to get to you; you’re eager to cum but every time you get close, the myr at your pussy backs off with expert timing. Try as you might to rub your crotch on her, she seems dedicated to taking the fuck nice and slow, giving all the other myr their chance to tease you. Your tail even begins to ache as your maddened mind becomes painfully aware of your [pc.tailgina]’s emptiness. A desperate idea occurs: though you can’t use your mouth to punish your lesbian lover in kind, the throbbing, wet opening of your tail-pussy begs for stimulation, and it’s flexible enough to curl around to the little myr’s own hot hole.\n\nYou waste no time, snaking your tail around the end of her abdomen; at first, you can only feel her smile as it brushes up against her cunt clumsily, but once you zero in on it, you spread the strange, alien opening as wide as you can and press it right up to hers. A hot breath blows past your labia as the shocked myr gets a taste of her own foreplay - your parasitic pussy drools and smears sex juices on her own, and you can feel her squirm. Knowing that you have the capacity to tease her just as much as she’s teasing you, you sigh and resume sucking on the gorgeous breast in your mouth, confident that she’ll bring you to orgasm soon.");
+	if(pc.hasTailCunt())
+	{
+		output("\n\nThe lack of control over the pace begins to get to you; you’re eager to cum but every time you get close, the myr at your pussy backs off with expert timing. Try as you might to rub your crotch on her, she seems dedicated to taking the fuck nice and slow, giving all the other myr their chance to tease you. Your tail even begins to ache as your maddened mind becomes painfully aware of your [pc.tailgina]’s emptiness. A desperate idea occurs: though you can’t use your mouth to punish your lesbian lover in kind, the throbbing, wet opening of your tail-pussy begs for stimulation, and it’s flexible enough to curl around to the little myr’s own hot hole.\n\nYou waste no time, snaking your tail around the end of her abdomen; at first, you can only feel her smile as it brushes up against her cunt clumsily, but once you zero in on it, you spread the strange, alien opening as wide as you can and press it right up to hers. A hot breath blows past your labia as the shocked myr gets a taste of her own foreplay - your");
+		if(pc.hasParasiteTail()) output(" parasitic ");
+		else output(" tail-");
+		output("pussy drools and smears sex juices on her own, and you can feel her squirm. Knowing that you have the capacity to tease her just as much as she’s teasing you, you sigh and resume sucking on the gorgeous breast in your mouth, confident that she’ll bring you to orgasm soon.");
+	}
 	output("\n\nIt doesn’t take much longer, in fact, before your pussy is teased over the breaking point. As your [pc.vagina " + x + "] convulses");
 	if(pc.isSquirter()) output(" and squirts");
 	output(", the little myr raises her head above water and inhales deeply, still holding several fingers inside you that touch and tease your entrance. Your mouth pops free of the other myr’s nectar-dripping breast, and she leans back, satisfied.");
@@ -740,7 +760,7 @@ public function treasureHunt():void
 	else
 	{
 		output("zeroes in on your ");
-		if(pc.hasCocks()) output("[pc.cocks]");
+		if(pc.hasCock()) output("[pc.cocks]");
 		else output("[pc.vaginas]");
 		output(".");
 		if(pc.cockTotal() >= 4) output(" Your terrible tangle of pricks stuns her. <i>“How... how do you even get anything done with so many of these?”</i> she asks, fruitlessly trying to separate them.");
@@ -1205,7 +1225,7 @@ public function acceptPrivateBathHJs(dick:Boolean = false):void
 	showName("BATH\nSERVICE");
 	output("<i>“Sure, why not? I’ve got time,”</i> you reply, netting yourself a knowing smile from the cloth-blinded ant-girl. She takes another smaller bottle from the tray, popping off the cap and pouring a viscous, clear liquid that trickles like honey over her breasts and belly. The bottle empties quickly, and she rubs the sweet smelling syrup into her body, giving it a slick sheen.");
 	output("\n\n<i>“This is a special oil made with honey and a hint of red myr venom, it will make it easier to expel the spiritual impurities that plague you,”</i> she says, her skin shining like copper in the dim light. After discarding the used bottle, she wades back to you, wrapping herself around you from the side and caressing your [pc.chest].");
-
+	imbibeVenomEffects();
 	//dickwielder
 	if(dick)
 	{
@@ -1220,7 +1240,7 @@ public function acceptPrivateBathHJs(dick:Boolean = false):void
 
 		output("\n\n<i>“It takes a lot of <b>practice</b> to be a sister of the order, and we are required to <b>know</b> what to do in case one of the rare unattached males should need <b>release</b>,”</i> she continues, timing her emphasis with rhythmic constrictions around your [pc.cockHeadBiggest]. The strength of her squeezing adapts to your reactions. The part of you that still has reason marvels at her ability to maintain her grip with such slippery oil coating her hands.");
 		output("\n\n<i>“Let me show you how long I can hold my breath,”</i> she finishes, ducking away and planting a wet kiss on your [pc.hip] before ducking into the clear pool. Even with the ripples distorting the image, you can see her glide through the water to match her lips up to your [pc.cockBiggest]. Her mouth envelopes your [pc.cockHeadBiggest] in a different kind of wetness, and you feel the ");
-		if(9999 == 9999) output("electric surge");
+		if(flags["VENOM_ADDICTION"] == undefined) output("electric surge");
 		//addicted
 		else output("familiar pulse");
 		output(" of red myr venom. It’s the real thing this time, no mere diluted body oil.");
@@ -1253,7 +1273,6 @@ public function acceptPrivateBathHJs(dick:Boolean = false):void
 		processTime(14);
 		pc.orgasm();
 		flags["BEEN_PRIVATE_MYRBATH_SERVICED"] = 1;
-		//9999 red venom dose
 		clearMenu();
 		addButton(0,"Next",privateBathServiceEpilogue);
 	}
@@ -1274,7 +1293,7 @@ public function acceptPrivateBathHJs(dick:Boolean = false):void
 		output("\n\nThe bathhouse adherent’s free hand slides smoothly over your body, stopping to squeeze one of your buttcheeks. You can see the flush in your partner’s face even through the silky veil over her nose, and her stiff nipples press into your [pc.chest]. She leans in close, licking your chin and prodding your lips till they part for her tongue. Any attempts to resist her are quickly calmed by a sensual warmth.");
 		output("\n\nThis is the real stuff, multitudes better than a facsimile. The diluted lotion is nothing compared to the aching lust created by the full strength venom in her saliva. You melt into her kiss, ");
 		//unaddicted/addicted:
-		if(9999 == 9999) output("wanting");
+		if(flags["VENOM_ADDICTION"] == undefined) output("wanting");
 		else output("<b>needing</b>");
 		output(" nothing more than to let it continue for the rest of your life. Her tongue lingers outside her open mouth as she pulls back, and you try your hardest to suck it back into your mouth.");
 		output("\n\nUnfortunately your hardest is weakened considerably by the venom, and she pulls gently out of your reach. The fingers massaging you");
@@ -1294,7 +1313,6 @@ public function acceptPrivateBathHJs(dick:Boolean = false):void
 		processTime(14);
 		pc.orgasm();
 		flags["BEEN_PRIVATE_MYRBATH_SERVICED"] = 1;
-		//9999 red venom dose
 		clearMenu();
 		addButton(0,"Next",femSceneWaterSploosh);
 		return;

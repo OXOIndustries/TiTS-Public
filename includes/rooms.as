@@ -41,6 +41,29 @@ public function initializeRooms():void
 	rooms["SHIP INTERIOR"].addFlag(GLOBAL.BED);
 	rooms["SHIP INTERIOR"].addFlag(GLOBAL.PRIVATE);
 
+	rooms["SPACE"] = new RoomClass(this);
+	rooms["SPACE"].roomName = "SPACE";
+	rooms["SPACE"].description = "";
+	rooms["SPACE"].planet = "PLANET: NONE";
+	rooms["SPACE"].system = "SYSTEM: ARA ARA";
+	//rooms["SPACE"].outExit = shipLocation;
+	//rooms["SPACE"].outText = "Exit";
+	rooms["SPACE"].moveMinutes = 1;
+	rooms["SPACE"].runOnEnter = puntToShip;
+	rooms["SPACE"].addFlag(GLOBAL.OUTDOOR);
+
+	rooms["POESPACE"] = new RoomClass(this);
+	rooms["POESPACE"].roomName = "SPACE";
+	rooms["POESPACE"].description = "";
+	rooms["POESPACE"].planet = "PLANET: POE A";
+	rooms["POESPACE"].system = "SYSTEM: POE";
+	//rooms["POESPACE"].outExit = shipLocation;
+	//rooms["POESPACE"].outText = "Exit";
+	rooms["POESPACE"].moveMinutes = 1;
+	rooms["POESPACE"].runOnEnter = puntToShip;
+	rooms["POESPACE"].addFlag(GLOBAL.OUTDOOR);
+
+
 	//100. Hotel Room
 	rooms["HOTEL ROOM"] = new RoomClass(this);
 	rooms["HOTEL ROOM"].roomName = "HOTEL\nROOM";
@@ -98,6 +121,7 @@ public function initializeRooms():void
 	rooms["ANON'S BOARD HALL"].planet = "TAVROS STATION";
 	rooms["ANON'S BOARD HALL"].system = "SYSTEM: KALAS";
 	rooms["ANON'S BOARD HALL"].southExit = "ANON'S BAR AND BOARD";
+	rooms["ANON'S BOARD HALL"].runOnEnter = anonsBoardBonus;
 	rooms["ANON'S BOARD HALL"].moveMinutes = 1;
 	rooms["ANON'S BOARD HALL"].addFlag(GLOBAL.INDOOR);
 	rooms["ANON'S BOARD HALL"].addFlag(GLOBAL.PUBLIC);
@@ -339,7 +363,7 @@ public function initializeRooms():void
 	//9008
 	rooms["9008"] = new RoomClass(this);
 	rooms["9008"].roomName = "MERCHANT'S\nTHOROUGHFARE";
-	rooms["9008"].description = "Bending away to the south and west, the merchant’s thoroughfare snakes its way around the circumference of the station, blazing a wide path between seemingly endless storefronts. Many in the immediate area are closed, shuttered and covered with temporary advertisements. \"Visit beautiful Bogrum 12! Luxurious mud baths, sulfer springs, and exotic slug women await you!\"";
+	rooms["9008"].description = "Bending away to the south and west, the merchant’s thoroughfare snakes its way around the circumference of the station, blazing a wide path between seemingly endless storefronts. Many in the immediate area are closed, shuttered and covered with temporary advertisements. \"Visit beautiful Bogrum 12! Luxurious mud baths, sulfur springs, and exotic slug women await you!\"";
 	rooms["9008"].planet = "TAVROS STATION";
 	rooms["9008"].system = "SYSTEM: KALAS";
 	rooms["9008"].southExit = "9009";
@@ -435,7 +459,7 @@ public function initializeRooms():void
 	//9015
 	rooms["9015"] = new RoomClass(this);
 	rooms["9015"].roomName = "MERCHANT'S\nTHOROUGHFARE";
-	rooms["9015"].description = "A neon sign displaying a pair of scissors sits next to a small store entrance with its doors propped open to the east, allowing you a glimpse of the salon inside. The sign above the door labels it as “Shear Beauty.” The lifts aren’t too far down the merchant deck to the west, but if you falling the arcing thoroughfare east, you could visit the red light zone.";
+	rooms["9015"].description = "A neon sign displaying a pair of scissors sits next to a small store entrance with its doors propped open to the east, allowing you a glimpse of the salon inside. The sign above the door labels it as “Shear Beauty.” The lifts aren’t too far down the merchant deck to the west, but if you follow the arcing thoroughfare east, you could visit the red light zone.";
 	rooms["9015"].planet = "TAVROS STATION";
 	rooms["9015"].system = "SYSTEM: KALAS";
 	rooms["9015"].westExit = "9016";

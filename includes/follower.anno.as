@@ -44,11 +44,10 @@ public function annoNotCrew():Boolean
 	return false;
 }
 
-public function annoFollowerHeader():void
+public function annoFollowerHeader(nude:Boolean = false):void
 {
+	showAnno(nude);
 	author("Savin");
-	showBust("ANNO");
-	showName("\nANNO");
 }
 
 // Hook this into Tarkus' ship hangar room
@@ -403,7 +402,7 @@ public function annoMorningShower():void
 
 	output("\n\n<i>“All yours, Steele!”</i> she says, before bounding towards the main door to your quarters. <i>“See you later, yeah?”</i>");
 
-	output("\n\nDid- did she blow you a kiss on her way out? The tease....")
+	output("\n\nDid - did she blow you a kiss on her way out? The tease....")
 
 	pc.lust(10);
 
@@ -438,13 +437,13 @@ public function annoFollowerBootOff():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-public function annoAtAnonsAddendum():void
+public function annoAtAnonsAddendum(slot:int = 8):void
 {
 	// Recruited but booted off da ship
 	if (flags["ANNO_CREWMEMBER"] == 2)
 	{
 		output("\n\nAnno is sitting at the bar, nursing a whiskey and working on a glowing datapad.");
-		addButton(8, "Anno", annoFindingALostPooch);
+		addButton(slot, "Anno", annoFindingALostPooch);
 	}
 	// Is an active crewmember - see if we can proc the Kaede event.
 	else if (flags["ANNO_CREWMEMBER"] == 1)
@@ -455,7 +454,7 @@ public function annoAtAnonsAddendum():void
 		{
 			if (rand(3) == 0)
 			{
-				addButton(8, "Anno", annoxKaedeFollowerMeeting);
+				addButton(slot, "Anno", annoxKaedeFollowerMeeting);
 			}
 		}
 	}
@@ -1031,8 +1030,7 @@ public function annoFollowerSexMenu():void
 public function annoFollowerTailjobSex():void
 {
 	clearOutput();
-	annoFollowerHeader();
-	showBust("ANNO_NUDE");
+	annoFollowerHeader(true);
 
 	output("You pull the snowy-haired ausar close, your hands running up her slender arms and waist, and enjoy the feeling of her big, soft, hot breasts pressing against your own [pc.chest] and straining against the sheer fabric of her");
 	if (anno.armor is AnnosCatsuit) output(" catsuit");
@@ -1106,8 +1104,7 @@ public function annoFollowerTailjobSex():void
 public function annoFollowerSuckAndFuckSex():void
 {
 	clearOutput();
-	annoFollowerHeader();
-	showBust("ANNO_NUDE");
+	annoFollowerHeader(true);
 
 	var selCock:int = pc.cockThatFits(anno.vaginalCapacity());
 	
@@ -1195,8 +1192,7 @@ public function annoFollowerSuckAndFuckSex():void
 public function annoFollowerSuckAndFuckSexPartII():void
 {
 	clearOutput();
-	annoFollowerHeader();
-	showBust("ANNO_NUDE");
+	annoFollowerHeader(true);
 	
 	var selCock:int = pc.cockThatFits(anno.vaginalCapacity());
 	if(selCock < 0) selCock = pc.smallestCockIndex();
@@ -1272,8 +1268,7 @@ public function annoFollowerSuckAndFuckSexPartII():void
 public function annoFollowerAnalSex():void
 {
 	clearOutput();
-	annoFollowerHeader();
-	showBust("ANNO_NUDE");
+	annoFollowerHeader(true);
 
 	var selCock:int = pc.cockThatFits(anno.analCapacity());
 	if(selCock < 0) selCock = pc.smallestCockIndex();
@@ -1377,8 +1372,7 @@ public function annoFollowerAnalSex():void
 public function annoFollowerAnalSexCum(selCock:int):void
 {
 	clearOutput();
-	annoFollowerHeader();
-	showBust("ANNO_NUDE");
+	annoFollowerHeader(true);
 	
 	output("No reason to hold back the inevitable. You give Anno one last slap on the ass and slam yourself deep inside, just in time to get the full effect of her muscles going wild around your cock, milking you for all you’re worth. You don’t try to resist your body’s urges as Anno works you, instead reveling in the tightness of her quivering passage, savoring the warmth and wetness and exhilarating in the feeling of your cum rushing up through your [pc.cock " + selCock + "], hurtling into the dark embrace of Anno’s bowels. Your whole body lurches forward when the first orgasmic wave of bliss hits you, nearly throwing you over as your own excitement is left to run rampant. ");
 	
@@ -1408,8 +1402,7 @@ public function annoFollowerAnalSexCum(selCock:int):void
 public function annoFollowerAnalSexAnnoOnTop(selCock:int):void
 {
 	clearOutput();
-	annoFollowerHeader();
-	showBust("ANNO_NUDE");
+	annoFollowerHeader(true);
 
 	output("Time for a change of pace. Between hilt-deep thrusts into your ausar lover’s spasming ass, you catch her attention with a gentle hair-pull and whisper into one of her towering canid ears, <i>“What do you think about getting on top for a bit?”</i>");
 	
@@ -1452,8 +1445,7 @@ public function annoFollowerAnalSexAnnoOnTop(selCock:int):void
 public function annoFollowerEatDatDogslootOut():void
 {
 	clearOutput();
-	annoFollowerHeader();
-	showBust("ANNO_NUDE");
+	annoFollowerHeader(true);
 
 	output("<i>“What do you say about helping me relieve some tension?”</i> Anno coos, slowly stepping around you, slipping behind your back. You give a slight shudder of excitement, feeling her ample chest tight against your back, stiff nipples poking through her");
 	if (anno.armor is AnnosCatsuit) output(" sheer uniform");
@@ -1552,8 +1544,7 @@ public function annoFollowerEatDatDogslootOut():void
 public function annoFollowerSixtyNineSex():void
 {
 	clearOutput();
-	annoFollowerMenu();
-	showBust("ANNO_NUDE");
+	annoFollowerHeader(true);
 
 	output("With one sure motion, you pull Anno down into the bed, hands slowly moving down from her perky wolf-ears and starting to work at her shoulders and the base of her neck, massaging the taut skin underneath her");
 	if (anno.armor is AnnosCatsuit) output(" slick catsuit of a uniform");
@@ -1646,8 +1637,7 @@ public function annoFollowerSixtyNineSex():void
 public function annoFollowerShowerSex():void
 {
 	clearOutput();
-	annoFollowerHeader();
-	showBust("ANNO_NUDE");
+	annoFollowerHeader(true);
 
 	output("<i>“You know, I was just going to hit the shower, boss,”</i> Anno says, slowly");
 	if (anno.armor is AnnosCatsuit) output(" drawing the zipper on her catsuit down");
@@ -1764,6 +1754,7 @@ public function annoFollowerShowerSex():void
 
 	processTime(30+rand(20));
 	pc.lust(10);
+	pc.shower();
 
 	annoSexed(1);
 
@@ -1952,7 +1943,8 @@ public function annoFollowerGoozookaTesting():void
 public function annoFollowerFirstTimeOnMhenga():void
 {
 	clearOutput();
-	annoFollowerHeader();
+	//annoFollowerHeader();
+	showName("\nANNO");
 	showBust("ANNO", "SYRI");
 
 	output("As you dock at Mhen’ga, you feel a pair of familiar, fluffy arms wrap around your neck and shoulders as a big pair of");
@@ -2013,7 +2005,9 @@ public function annoFollowerFirstTimeOnMhenga():void
 public function annoFollowerFirstTimeOnMhengaPartII():void
 {
 	clearOutput();
-	annoFollowerHeader();
+	//annoFollowerHeader();
+	showName("ANNO &\nSYRI");
+	showBust("ANNO", "SYRI");
 
 	output("<i>“Hey! Over here!”</i> you hear, just as soon as you and Anno walk into <i>“Burt’s Badass Meadhall.”</i> Syri’s sitting at the bar next to two empty stools and three beers, a great big grin on her face. ");
 	
@@ -2028,6 +2022,8 @@ public function annoFollowerFirstTimeOnMhengaPartII():void
 		output("\n\nShe turns to you with a wolfish grin that shows off her pointed teeth. <i>“So you’re the one who pulled my sister off that rust bucket on Tarkus, huh? Name’s Syri,”</i> she says, giving you a vigorous handshake.");
 	
 		output("\n\n<i>“Steele. [pc.name] Steele,”</i> you answer, returning it before she ushers you and Anno into the empty seats.");
+		
+		flags["MET_SYRI"] = 1;
 	}
 	
 	output("\n\n<i>“God damn, it’s been ages,”</i> Syri says after a long swig of her beer. <i>“How’ve you been, Anno?”</i>");
@@ -2058,6 +2054,7 @@ public function annoFollowerFirstTimeOnMhengaPartII():void
 	
 	output("\n\nYou nod, and tell the ravenette ausar you’ll think about it. She grins, and buys you both another round. The next couple hours go by pleasantly, with Anno and Syri regaling you with the misadventures of their youth, their various petty rivalries and in-jokes. Finally, several beers later, a slightly-inebriated, companionable silence falls over the trio of you. You excuse yourself then, leaving the two ausars to privately catch up.");
 
+	pc.imbibeAlcohol(35);
 	processTime(120+rand(30));
 
 	// Booze!
@@ -2081,7 +2078,7 @@ public function annoFollowerAppearance():void
 {
 	clearOutput();
 	annoFollowerHeader();
-
+	
 	output("Anno Dorna is a six-foot-tall ausar girl with long, snow-white hair and a pair of huge, perky wolf ears perched atop her head. Though she is distinctly humanoid in face and form, the silky fur on her arms and legs, along with the swishing, bushy tail, give her a playfully alien appearance, more like a perky little puppy than a fearsome predator. She’s wearing");
 	if (anno.armor is AnnosCatsuit) output(" the distinctive Steele Tech field uniform: an ultra-sheer black and yellow catsuit that hugs her frame and accentuates her curves in all the right places, supporting her ample bust so that it looks almost impossibly perky for its size.");
 	else output(" a civilian outfit, relatively simple compared to her usual slick catsuit: she’s got a pair of jeans, a button-up blouse, and a pair of tall work boots on. She’s not wearing a bra that you can see, which means you can get a nice look at her ample titflesh through the sheet fabric of her shirt.");
@@ -2090,9 +2087,13 @@ public function annoFollowerAppearance():void
 	else output(" tight, curve-hugging outfit she’s wearing");
 	output(", you can see the full expanse of her fleshy body: a big, bouncy butt only barely hidden by her tail, a sizable rack, and a pair of long, toned legs. ");
 	
-	output("\n\nAnno has a pair of full DD-cup breasts, big and bouncy and oh so soft, each tipped with a big, sensitive nipple that’s perfect to tug and squeeze.");
-	
-	output("\n\nBetween her legs, Anno has a tight little pussy. Naturally stretchier and so much wetter than a human’s, her sex is perfect for taking thick knots and great big cocks with ease. It’s topped with a trimmed landing strip of downy white fuzz. Opposite that, she has a nice, inviting little asshole between her firm cheeks, right where it belongs.");
+	if(annoSexed() > 0)
+	{
+		//annoFollowerHeader(true);
+		output("\n\nAnno has a pair of full DD-cup breasts, big and bouncy and oh so soft, each tipped with a big, sensitive nipple that’s perfect to tug and squeeze.");
+		output("\n\nBetween her legs, Anno has a tight little pussy. Naturally stretchier and so much wetter than a human’s, her sex is perfect for taking thick knots and great big cocks with ease. It’s topped with a trimmed landing strip of downy white fuzz. Opposite that, she has a nice, inviting little asshole between her firm cheeks, right where it belongs.");
+	}
+	//else annoFollowerHeader();
 
 	addDisabledButton(10, "Appearance");
 }
@@ -2160,8 +2161,7 @@ public function fuckAnnoWithScienceYoFukkinLadyBoi():void
 {
 	clearOutput();
 	author("Savin");
-	showName("\nANNO");
-	showBust("ANNO");
+	annoFollowerHeader(true);
 	//if PC is wearing any kind of clothes/armor over the strap:
 	if(pc.armor.shortName != "")
 	{
@@ -2374,8 +2374,7 @@ public function annoPegsYouWivStraponsPtII(annoDickType:int = 0):void
 {
 	clearOutput();
 	author("Savin");
-	showName("\nANNO");
-	showBust("ANNO");
+	annoFollowerHeader(true);
 	output("<i>“I knew it,”</i> Anno teases, flicking the power on her panties. The tiny projectors on her panties flicker to life, and a radiant yellow shaft begins to grow from her groin. The light coalesces into a ");
 
 	if(annoDickType == 0) output("thick, footlong human cock");
@@ -2490,8 +2489,7 @@ public function annoStraponMods():void
 {
 	clearOutput();
 	author("Savin");
-	showName("\nANNO");
-	showBust("ANNO");
+	annoFollowerHeader();
 	output("<i>“Oh, hey, check this out,”</i> Anno says, waving you over to her work bench. Amid a clutter of broken-down guns, tools, and electrical equipment sits, of all things, the pair of lacy orange panties she bought from <i>Mi Amour</i>. <i>“Remember these?”</i> ");
 	output("\n\nYou nod, and your lover continues. <i>“Well, I’ve been tweaking ‘em a little. I mean, a hardlight cock is cool and all, but we can do better than that, right? I totally voided the warranty on these, but check it out!”</i>");
 	output("\n\nAnno picks her panties up and slips them on over her [anno.lowerGarment]. After a moment of adjusting, she keys the little button hidden on her hip, and the hardlight projectors spring to life. Rather than the hefty human cock that Aliss showed off at the shop, Anno’s crotch erupts into a gargantuan equine cock, thicker around than her arm and near as long as her leg. The over-sized horsecock throbs and flops down under its own imagined weight, hanging menacingly between Anno’s legs.");
@@ -2524,7 +2522,7 @@ Anno plops down on the side of her bed, arms spread back to support her... which
 public function annosTriberatorGatorMatorHater():void
 {
 	clearOutput();
-	showAnno();
+	annoFollowerHeader(true);
 	author("JimThermic");
 	//First Time:
 	if(flags["ANNO_TRIBERATOR_USED"] == undefined)
@@ -2721,7 +2719,7 @@ public function grayGooArrivesAtShip():void
 	author("Savin");
 	showName("\nGRAY GOO");
 	showBust("GRAYGOO");
-
+	
 	output("<i>“So, [goo.name], think you can help me out with something?”</i> you ask as you make your way aboard. The gray girl’s eyes are wide with awe as she surveys your ship, squirming around and poking her head right up next to several of your computer systems, poking at the door mechanics, or bending way over to look at something on the floor. Or to show off her big, jiggling booty... hard to tell. You tap her on the back to get her attention, and repeat your request.");
 	
 	output("\n\n<i>“Oh! Sure, bestest buddy. Anything you want!”</i> she says with a grin, bouncing up uncomfortably close to you. She presents her tits to you and wiggles her behind, clearly expecting your desire to be entirely sexual.");
@@ -2735,7 +2733,7 @@ public function grayGooArrivesAtShip():void
 	output("\n\nYou have to admit, it actually <i>is</i> very comfortable. Nice and cool, and the goo flows around you like a full-body glove... that just happens to be hardened against weapons fire whenever you need it to be. You tell [goo.name] that this is going to work out just fine... especially if she’s as eager to help you between fights as well.");
 	
 	output("\n\n<i>“I was hoping you’d ask!”</i> she giggles, shifting herself around your [pc.crotch].");
-
+	
 	flags["ANNO_NOVA_UPDATE"] = 3;
 	
 	processTime(10+rand(5));
@@ -2751,10 +2749,43 @@ public function grayGooArrivesAtShip():void
 		});
 	}
 	else pc.armor = new GooArmor();
-
+	
 	clearMenu();
 	addButton(0, "Goo Dicks", gooDickFap, undefined, "Goo Dicks", "Have [goo.name] fill all of your holes and fuck you.");
 	if (pc.hasCock()) addButton(1, "GooSleeve", grayGooCockSleeve, undefined, "Goo Cocksleeve", "Have [goo.name] jack you off.");
+	addButton(2, "No Sex", gooFapNope, undefined, "No Sex", "You are not in the mood to sex [goo.name] at this time.");
+}
+
+public function gooFapNope():void
+{
+	clearOutput();
+	showName("\nGRAY GOO");
+	showBust("GRAYGOO");
+	
+	output("With that, you");
+	if(pc.isBimbo()) output(" giggle back and tell [goo.name] that you two will be the bestest of friends! You blurt, <i>“Like, we should <b>totally</b> get facials together, okay?”</i>");
+	else if(pc.isBro()) output(" grunt and comment that [goo.name] is welcome to help you take a load off anytime she wants--that is, if she can handle you.");
+	else if(pc.isMischievous()) output(" jokingly warn [goo.name] not to try anything funny.");
+	else if(pc.isAss()) output(" sternly warn [goo.name] not to get all up in your personal business.");
+	else output(" thank [goo.name] for being so cooperative.");
+	// Extra goo notes for having goo followers!
+	if(celiseIsCrew())
+	{
+		if(pc.isBimbo()) output(" And maybe you can invite another yummy goo-mate to join the party too!");
+		else if(pc.isBro()) output(" But of course, if she needs help, you’re sure you can find another goo that could lend a hand too...");
+		else if(pc.isMischievous()) output(" You then take a pause. Hm, you might be developing some kind of goo fetish here...");
+		else if(pc.isAss()) output(" And as long as she doesn't make trouble with the other goo, you guess it’ll be fine to have her around.");
+		else output(" It would definitely be nice to have another goo-form around the place, you ponder.");
+	}
+	output("\n\n<i>“Mm-hm!”</i> she excitedly responds, though she is obviously too focused on your crotch to communicate with actual words at the moment.");
+	
+	pc.lust(5);
+	if(pc.hasPerk("Inhuman Desire")) pc.lust(5);
+	if(pc.hasPerk("Fuck Sense")) pc.lust(5);
+	if(pc.isTreated()) pc.lust(5);
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
 
 public function grayGooSpessSkype():void
@@ -2769,19 +2800,21 @@ public function grayGooSpessSkype():void
 public function grayGooSpessSkypeScene():void
 {
 	clearOutput();
-
+	showName("\n" + goo.short.toUpperCase());
+	showBust("GRAY_GOO_PRIME");
+	
 	output("The sound of talking beckons you awake. You blink your eyes open, and see that your cabin’s holoterminal is open, flashing brightly... and [goo.name] is parked in your chair, her body molded in an even more human form than normal. She looks like the old [goo.name] you encountered on Deck 13, complete with uniform and long hair pulled back in a ponytail, sitting on her legs and talking happily at the computer screen.");
-		
+	
 	output("\n\n<i>“I’m having so much fun!”</i> she grins, jiggling excitedly at the screen. <i>“Space is amazing. There are so many cool people and weird places and adventures. So many adventures! I never thought I’d be, like, a real life adventurer. Well, kind of. [pc.name] is the real adventurer, but [pc.heShe]’s been nice enough to let me tag along.”</i>");
-		
+	
 	output("\n\nYou hear a noble, reserved laugh from the screen, and a woman’s voice answer. <i>“That’s lovely, [goo.name]. I’m glad you’re being taken care of.”</i>");
-		
+	
 	output("\n\n<i>“How’s the new body? Everything where it’s supposed to be?”</i> [goo.name] teases, making her big ol’ tits bounce.");
-		
+	
 	output("\n\n<i>“I am... fully functional, yes,”</i> the voice says with another laugh. <i>“The new body’s quite nice, actually. I do admit, I miss the flexibility and convenience we used to have, but I shouldn’t complain. Sometimes I even forget that I’m not... me.”</i>");
-		
+	
 	output("\n\n[goo.name] pouts. <i>“Aww, don’t be like that. You’re gonna make </i>me<i> sad. Oh, didn’t you get that super duper awesome job, anyway?”</i>");
-		
+	
 	output("\n\n<i>“I did!”</i> the woman says, her tone changing immediately. <i>“Steele Tech offered me a captain’s post aboard one of their transports. They said I had sufficient ‘prior experience.’ Ha! Still, it’s something to do. Most of the crew is still in re-education classes to bring them up to speed on all the advances in the last few centuries.”</i>");
 	
 	output("\n\n[goo.name] beams. <i>“Super cool! I guess I can still call you ‘captain,’ then?”</i>");
@@ -2791,7 +2824,7 @@ public function grayGooSpessSkypeScene():void
 	output("\n\n<i>“Aw. Okay! See you later, Captain Morrow. Love you. Bye.”</i>");
 	
 	output("\n\nThe screen flicks off to back, and like breathing a sigh, [goo.name] resumes her less-human gooey form. She scoots back over to where you’ve dumped your equipment and collapses into an amorphous pile, awaiting you. Smiling to yourself, you roll back over and go to sleep again...");
-
+	
 	addButton(0, "Next", mainGameMenu);
 }
 

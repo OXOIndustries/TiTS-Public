@@ -2,12 +2,25 @@
 {
 	clearOutput();
 	author("Savin");
+	showSaendra(nude);
+}
+public function showSaendra(nude:Boolean = false):void
+{
 	if (!nude) showBust("SAENDRA");
 	else showBust("SAENDRA_NUDE");
 	showName("\nSAENDRA");
 }
 
-public function saendraBarAddendum():Boolean
+public function saendraPhoenixMailGet():void
+{
+	var timeStamp:uint = GetGameTimestamp();
+	// Keep unlock in chronological order from her later mail!
+	if (MailManager.isEntryUnlocked("saendraxpack1")) timeStamp = MailManager.getEntry("saendraxpack1").UnlockedTimestamp - 1;
+	// Unlock mail!
+	goMailGet("saendrathanks", timeStamp);
+}
+
+public function saendraBarAddendum(slot:int = 7):Boolean
 {
 	if (saendraAtBar())
 	{
@@ -21,11 +34,11 @@ public function saendraBarAddendum():Boolean
 			output("\n\nThe firey red-head you saved from the pirates aboard <i>The Phoenix</i> is here tucked away in one of the many booths available throughout the bar.");
 			if (flags["SAENDRA_XPACK1_STATUS"] == 5)
 			{
-				addButton(7, "Saendra", sx1TalkFriend, undefined, "Saendra", "Talk to Saen about her friend. Can you help her out?");
+				addButton(slot, "Saendra", sx1TalkFriend, undefined, "Saendra", "Talk to Saen about her friend. Can you help her out?");
 			}
 			else
 			{
-				addButton(7, "Saendra", meetSaenAtTheBar);
+				addButton(slot, "Saendra", meetSaenAtTheBar);
 			}
 			return false;
 		}
@@ -35,6 +48,16 @@ public function saendraBarAddendum():Boolean
 
 public function saendraAtBar():Boolean
 {
+	if (flags["SAENDRA_DISABLED"] != undefined)
+	{
+		return false;
+	}
+	
+	if (flags["SAENDRA GONNA GO GET A COCK"] == 1 || flags["SAENDRA GONNA GO GET A COCK"] == 2)
+	{
+		return false;
+	}
+	
 	if (flags["SAENDRA_XPACK1_CREDITTIME"] != undefined && (GetGameTimestamp() - flags["SAENDRA_XPACK1_CREDITTIME"] <= (24 * 60)))
 	{
 		return false;
@@ -62,19 +85,9 @@ public function saendraAtBar():Boolean
 				break;
 		}
 	}
-
+	
 	if (flags["FALL OF THE PHOENIX STATUS"] == 1)
 	{
-		if (flags["SAEN MET AT THE BAR"] == undefined)
-		{
-			return true;
-		}
-
-		if (flags["SAENDRA GONNA GO GET A COCK"] == 1 || flags["SAENDRA GONNA GO GET A COCK"] == 2)
-		{
-			return false;
-		}
-
 		return true;
 	}
 	else
@@ -327,13 +340,13 @@ public function talkToSaendraAboutStuffAndThings(doOutput:Boolean = true):void
 
 		output("\n\n<i>“Sure, hero,”</i> she says with a warm smile. <i>“What’s on your mind?”</i>");
 	}
-
+	
 	clearMenu();
 	addButton(0, "How's Work", saendraHowsWork);
 	addButton(1, "Hobbies", saendraHobbies);
 	addButton(2, "Valeria Work", saendraValeriaWork);
 	addButton(3, "Her Race", saendraHerRace);
-
+	
 	if (days != flags["SAENDRA TALK PHOENIX STATUS"]) addButton(4, "Phoenix Status", saendraPhoenixStatus);
 	else addDisabledButton(4, "Phoenix Status", "Phoenix Status", "You've already talked to Saendra about the status of her ship today.");
 
@@ -348,9 +361,7 @@ public function talkToSaendraAboutStuffAndThings(doOutput:Boolean = true):void
 		else if (flags["SAENDRA CREDITS TALK AVAILABLE"] != undefined && flags["SAENDRA OFFERED CREDITS"] != undefined) addDisabledButton(5, "Offer Credits", "Offer Credits", "You've already offered her credits, but she politely declined.");
 		else addDisabledButton(5, "OfferCreds", "Offer Credits", "Maybe if you can find out about the problems she's been having in a little more detail, you could offer to help her out with some credits.");
 	}
-
 	
-
 	if (!saendra.hasCock())
 	{
 		if (flags["SAENDRA TIMES SEXED"] != undefined) addButton(6, "Futafication", saendraFutification, undefined, "Futafication", "Ask Saendra if she's ever thought about growing a dick.");
@@ -1375,8 +1386,8 @@ public function saendraStuffsHerFutacockInYourCunt():void
 
 	output("\n\nYou stick your tongue out at the lusty slut, punctuating the action by pushing your fingers in to the knuckle. Saen’s back arches, her hands clutching fistfuls of the sheets as you ram yourself home inside her. Her cock reacts, too, going rigid against your lapping tongue and ejecting a thick dollop of pre, ballooning the tip of the condom in the process."); // Yum! You lick it off, reveling in the strong, salty taste of her seed... oh, you need more of that.");
 
-	output("\n\nEnough of this foreplay shit - you want it now! You surge forward, grabbing Saen’s cock and straddling her hips. <i>“Now we’re talking!”</i> she grins, reaching up to steady you as you move overtop her, angling her slick schlong towards the lips of your [pc.cunt "+ selCunt +"]. You hold there, just a moment, savoring the anticipation; but you can’t deny your mounting lust much longer than that, and slide yourself down onto Saen’s turgid cock. ");
-
+	output("\n\nEnough of this foreplay shit - you want it now! You surge forward, grabbing Saen’s cock and straddling her hips. <i>“Now we’re talking!”</i> she grins, reaching up to steady you as you move overtop her, angling her slick schlong towards the lips of your [pc.cunt "+ selCunt +"]. You hold there, just a moment, savoring the anticipation; but you can’t deny your mounting lust much longer than that, and slide yourself down onto Saen’s turgid cock.");
+	saendra.cockChange();
 	output("\n\nYou’d almost forgotten about the ring of barbs surrounding her crown, but they make themselves readily apparent as Saen’s thick rod slides into you. You scream your pleasure as you’re lowered onto the bristly cock, stretched wide and left to feel every one of those nodules pressing tight into the sensitive walls of your eager pussy.");
 	pc.cuntChange(selCunt, saendra.cockVolume(0), true, true, false);
 	output(" The alien feeling nearly drives you to orgasm in moments as her bristly cock scrapes along your cunt’s walls, the very tip of her tapered cock pressing insistently into your womb. You swoon, barely able to stay upright over Saen without her hands firmly locked on your hips, rooting you in place as you adjust to her unique shape and size.");
@@ -1447,6 +1458,7 @@ public function takeSaensCompletelyReasonablyProportionedFutaCock():void
 	output("\n\n<i>“You wanted it, hero,”</i> she teases, her hands gripping your [pc.hips]. Her cock drags down until the tapered tip is resting against your well-lubed hole, wet and hot and so very hard against your [pc.asshole]. She leans in close, her chest almost against your back, and whispers, <i>“So take it.”</i>");
 
 	output("\n\nShe thrusts in, her spiny kitten-dick spearing your ass open around its rounded barbs. The feeling is incredible, countless tiny bulbs caressing the very rim of your hole, teasing the over-sensitive flesh as she pushes in. She only goes easy for the briefest second, just long enough to let her tip spread you open, before she rams herself hilt-deep into you slick hole.");
+	saendra.cockChange();
 	pc.buttChange(saendra.cockVolume(0), true, true, false);
 	output(" You stop yourself from screaming only by biting down hard on Saen’s pillow, fingers clawing at the bedsheets as you’re anally violated by the thick, meaty girth of her kittycock. Once she gets into you, her prick feels more like a fist forcing its way into you, stretching your spasming walls wide open around its rounded point, making sure you feel every bump and ridge of her spiney feline member. ");
 
@@ -1615,7 +1627,7 @@ public function saendraButteFuckeTailwank():void
 	else output(" third");
 	output(" load of spunk. Saen grins and takes it like the cum-hungry slut she is, leaning back and letting you blow your whole load across her tits and stomach, eagerly rubbing the hot spooge in as you deliver the finale of your one-"+ pc.mf("man", "woman") +" bukkake. ");
 
-	output("\n\nThe money-shot ends with Saen’s body slathered with your cum, looking more [pc.cumColor] than pink. With a sated sigh, the lusty halfbreed flops back in the bed, idly rubbing the coating of cum sticking to her skin. She <i>reeks</i> of sex now, a heady aroma of your cum and hers mixing around her. <i>“Oh, that’s nice,”</i> she grins, eyes fluttering closed. One of her hands hooks under your arm, tugging you down.  <i>“C’mere, hero, unless you you wanna go for number four.”</i>");
+	output("\n\nThe money-shot ends with Saen’s body slathered with your cum, looking more [pc.cumColor] than pink. With a sated sigh, the lusty halfbreed flops back in the bed, idly rubbing the coating of cum sticking to her skin. She <i>reeks</i> of sex now, a heady aroma of your cum and hers mixing around her. <i>“Oh, that’s nice,”</i> she grins, eyes fluttering closed. One of her hands hooks under your arm, tugging you down. <i>“C’mere, hero, unless you you wanna go for number four.”</i>");
 
 	output("\n\nYou obediently collapse beside your lover, more exhausted than she is from your sexual ordeal. Sleep overtakes you in moments.");
 
@@ -1726,7 +1738,7 @@ public function newFutaSaendraScenes():void
 
 	output("\n\n<i>“Oooh, that’s good,”</i> Saen purrs. <i>“");
 	if(pc.buttRating() <= 5) output("I love tight little butts. Gonna smack this ass till you scream");
-	else if(pc.buttRating()  <= 10) output("You’ve got a great little bubble butt back here, Hero. I’m gonna enjoy making it bounce.");
+	else if(pc.buttRating() <= 10) output("You’ve got a great little bubble butt back here, Hero. I’m gonna enjoy making it bounce.");
 	else output("Oh man, you have such a huge fuckin’ ass. Gonna make it bounce like jelly in a second.");
 	output("”</i>");
 

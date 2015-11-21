@@ -184,6 +184,8 @@
 		{
 			var displayMessage:String = "";
 			
+			kGAMECLASS.removeInput();
+			
 			kGAMECLASS.clearOutput2();
 			kGAMECLASS.userInterface.dataButton.Glow();
 			
@@ -369,6 +371,22 @@
 			kGAMECLASS.clearOutput2();
 			kGAMECLASS.userInterface.dataButton.Glow();
 			
+			// Switch to enabled save notes and override prompt
+			var saveNoteEnabled:Boolean = true;
+			var overwriteToggle:Boolean = true;
+			// Custom notes:
+			if (saveNoteEnabled)
+			{
+				kGAMECLASS.output2("<b><u>Notes:</u></b>\n<i>Leave the box blank or type “none” to clear the current note. Your note can be up to 256 characters long.</i>");
+				kGAMECLASS.displayInput();
+				if (kGAMECLASS.userInterface.currentPCNotes != null)
+					kGAMECLASS.userInterface.textInput.text = kGAMECLASS.userInterface.currentPCNotes;
+				else
+					kGAMECLASS.userInterface.textInput.text = "";
+				kGAMECLASS.userInterface.textInput.maxChars = 256;
+				kGAMECLASS.output2("\n\n\n");
+			}
+			
 			var displayMessage:String = "";
 			displayMessage += "<b>Which slot would you like to save in?</b>\n";
 			
@@ -378,11 +396,59 @@
 			{
 				var dataFile:SharedObject = this.getSO(slotNum);
 				displayMessage += this.generateSavePreview(dataFile, slotNum);
-				kGAMECLASS.addGhostButton(slotNum - 1, "Slot " + slotNum, this.saveGameData, slotNum);
+				if (saveNoteEnabled) kGAMECLASS.addGhostButton(slotNum - 1, "Slot " + slotNum, this.saveGameNextNotes, slotNum);
+				else if (overwriteToggle) kGAMECLASS.addGhostButton(slotNum - 1, "Slot " + slotNum, this.saveGameNextPrompt, slotNum);
+				else kGAMECLASS.addGhostButton(slotNum - 1, "Slot " + slotNum, this.saveGameData, slotNum);
 			}
 			
 			kGAMECLASS.output2(displayMessage);
-			kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
+			kGAMECLASS.output2("\n\n");
+			if (saveNoteEnabled) kGAMECLASS.addGhostButton(14, "Back", this.saveGameBackNotes);
+			else kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
+		}
+		// Check save note
+		private function saveGameNextNotes(slotNumber:int):void
+		{
+			kGAMECLASS.userInterface.currentPCNotes = kGAMECLASS.userInterface.textInput.text;
+			
+			kGAMECLASS.removeInput();
+			
+			if(kGAMECLASS.hasIllegalInput(kGAMECLASS.userInterface.currentPCNotes))
+			{
+				kGAMECLASS.clearOutput2();
+				kGAMECLASS.output2("To avoid complications, please avoid using code in the note.");
+				
+				kGAMECLASS.userInterface.clearGhostMenu();
+				kGAMECLASS.addGhostButton(0, "Next", this.saveGameMenu);
+				return;
+			}
+			
+			this.saveGameNextPrompt(slotNumber);
+		}
+		// Display override prompt (if toggled)
+		private function saveGameNextPrompt(slotNumber:int):void
+		{
+			// Toggle to turn on/off the overwrite prompt!
+			var overwriteToggle:Boolean = true;
+			
+			// Overwrite file?
+			if(overwriteToggle && this.getSO(slotNumber).size > 0)
+			{
+				kGAMECLASS.clearOutput2();
+				kGAMECLASS.output2("A save file already exists in slot " + slotNumber + ", are you sure you want to overwrite this file?");
+				
+				kGAMECLASS.userInterface.clearGhostMenu();
+				kGAMECLASS.addGhostButton(0, "No", this.saveGameMenu);
+				kGAMECLASS.addGhostButton(4, "Yes", this.saveGameData, slotNumber);
+				return;
+			}
+			// New file/Overwrite!
+			this.saveGameData(slotNumber);
+		}
+		private function saveGameBackNotes():void
+		{
+			kGAMECLASS.removeInput();
+			this.showDataMenu();
 		}
 		
 		/**
@@ -410,8 +476,8 @@
 			returnString += ": <b>" + dataFile.data.saveName + "</b>";
 			returnString += " - <i>" + dataFile.data.saveNotes + "</i>\n";
 			returnString += "\t<b>Days:</b> " + dataFile.data.daysPassed;
-			returnString += "  <b>Gender:</b> " + dataFile.data.playerGender;
-			returnString += "  <b>Location:</b> " + StringUtil.toTitleCase(dataFile.data.saveLocation);
+			returnString += " - <b>Gender:</b> " + dataFile.data.playerGender;
+			returnString += " - <b>Location:</b> " + StringUtil.toTitleCase(dataFile.data.saveLocation);
 			
 			returnString += "\n";
 			return returnString;
@@ -873,8 +939,15 @@
 			dataFile.saveName 		= kGAMECLASS.chars["PC"].short;
 			dataFile.saveLocation 	= StringUtil.toTitleCase(kGAMECLASS.userInterface.planetText + ", " + kGAMECLASS.userInterface.systemText);
 			
-			if (kGAMECLASS.userInterface.currentPCNotes == null || kGAMECLASS.userInterface.currentPCNotes.length == 0 || kGAMECLASS.userInterface.currentPCNotes == "") dataFile.saveNotes = "No notes available.";
-			else dataFile.saveNotes = kGAMECLASS.userInterface.currentPCNotes;
+			// Blank entries get cleared notes!
+			if (kGAMECLASS.userInterface.currentPCNotes == null || kGAMECLASS.userInterface.currentPCNotes.length == 0 || kGAMECLASS.userInterface.currentPCNotes == "")
+			{ dataFile.saveNotes = "No notes available."; }
+			// Keywords to clear current saved notes!
+			else if (kGAMECLASS.userInterface.currentPCNotes.toLowerCase() == "none" || kGAMECLASS.userInterface.currentPCNotes == "N/A")
+			{ dataFile.saveNotes = "No notes available."; }
+			// Save note!
+			else
+			{ dataFile.saveNotes = kGAMECLASS.userInterface.currentPCNotes; }
 			
 			var gender:String = "N";
 			if(kGAMECLASS.chars["PC"].hasCock() && kGAMECLASS.chars["PC"].hasVagina()) gender = "H";
@@ -1329,6 +1402,12 @@
 				if (kGAMECLASS.chars["LANE"].eyeColor != "dark blue" && kGAMECLASS.flags["MET_LANE"] != undefined)
 				{
 					kGAMECLASS.flags["LANE_BROKEN_INCOMINGSAVE"] = 1;
+				}
+				
+				// Hacking in a cleanup check for some pregnancy data because :effort: to do this without actual instantiated objects
+				if (!kGAMECLASS.pc.hasPregnancyOfType("DeepQueenPregnancy") && kGAMECLASS.pc.hasStatusEffect("Queen Pregnancy State"))
+				{
+					kGAMECLASS.pc.removeStatusEffect("Queen Pregnancy State");
 				}
 			}
 			

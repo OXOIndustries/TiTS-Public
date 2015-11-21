@@ -338,7 +338,7 @@ public function shekkaGetsSoldRaskShitz():void
 	else
 	{
 		output("\n\nShekka peers at what you’ve brought her dubiously.");
-		output("\n\n<i>“I’m not really a scrapper, [pc.name],”</i> she replies. <i>“That’s more that weird goblin’s thing. I mean, I’ll take it off your hands to use for spare parts, but I can’t pay you anything for it.”</i>");
+		output("\n\n<i>“I’m not really a scrapper, [pc.name],”</i> she replies. <i>“That’s more that weird gabilani’s thing. I mean, I’ll take it off your hands to use for spare parts, but I can’t pay you anything for it.”</i>");
 		//[Give] [Don’t]
 		clearMenu();
 		addButton(0,"Give",giveStupidShitRaskPartsToShekkaFree);
@@ -421,7 +421,7 @@ public function noDealOnShipPartWivShekka():void
 	clearOutput();
 	showShekka();
 	output("\"<i>For this thing? That's practically the amount I'd pay for someone to lug it around in the first place!</i>\"");
-	output("\n\n\"<i>Hey! Watch it, you. Credits don't spawn on trees around here, there's plenty of trash to go around. You just made someone </i>very<i> unhappy, though.</i>\" Shekka crosses her arms, looking up to you with a stern expression. \"<i>That's was my only offer. Go chuck it at the goblin, then.</i>\"");
+	output("\n\n\"<i>Hey! Watch it, you. Credits don't spawn on trees around here, there's plenty of trash to go around. You just made someone </i>very<i> unhappy, though.</i>\" Shekka crosses her arms, looking up to you with a stern expression. \"<i>That's was my only offer. Go chuck it at the gabilani, then.</i>\"");
 	//”Sell scrap” ghosted out for her as long as PC is still holding this piece
 	flags["SHEKKA_SCRAP_DISABLED"] = 1;
 	clearMenu();
@@ -444,7 +444,7 @@ public function sellRaskShitToColenso():void
 	//Chest:
 	if(raskLootType == 0) 
 	{
-		output("\n\n<i>“Let’s have a... what the blimmin ‘eck is this?”</i> The heavily built goblin rolls his chair over to you, fumbles a jeweller’s glass into one eye and then stares at the locked metal chest you have landed on his counter.");
+		output("\n\n<i>“Let’s have a... what the blimmin ‘eck is this?”</i> The heavily built gabilani rolls his chair over to you, fumbles a jeweller’s glass into one eye and then stares at the locked metal chest you have landed on his counter.");
 		output("\n\n<i>“Where did you find it? Do you have the key? No... no, obviously not.”</i> He strokes the lid, entranced. <i>“Well secured locker like this wouldn’t have no key knocking around with it. Whoever locked it wouldn’t want ANYONE getting inside... prob’ly even if you FOUND the key and put it in, it would just release poison gas or something, you’d have to turn it the right way and know a voice activated code as well, and... What could be inside? What desperate galactic secrets have been buried in the junkyards this whole time? You’d better give it to me, " + pc.mf("guv","luv") + ". You wouldn’t be able to trust anyone else to get inside safely, and then disseminate the contents to the masses responsibly... I could liveblog me opening it on the Truth3000!</i>\" You deliberately shift the chest back towards you. Colenso grits his teeth and grips the air in the direction of it instinctively.");
 		output("\n\n<i>“Nngh... alright. " + Math.round(getRaskLootPrice()*1.5) + " credits. That’s more ‘n reasonable.”</i>");
 		processTime(2);
@@ -455,7 +455,7 @@ public function sellRaskShitToColenso():void
 	}
 	else
 	{
-		output("\n\n<i>“Let’s have a butcher’s.”</i> The heavily built goblin rolls his chair over to you, affixes a jeweller’s glass to one eye and then spends what seems an inordinate amount of time considering what you’ve brought him from every possible angle.");
+		output("\n\n<i>“Let’s have a butcher’s.”</i> The heavily built gabilani rolls his chair over to you, affixes a jeweller’s glass to one eye and then spends what seems an inordinate amount of time considering what you’ve brought him from every possible angle.");
 		output("\n\n<i>“Mmm. Weeeell,”</i> he rumbles eventually with an air of great reluctance, rubbing his chin. <i>“Mass produced, not in great nick, difficult to move this kind of thing on. But since me and you go way back, I’ll take it off your hands for " + Math.round(getRaskLootPrice()*.5) + " credits, as a favour. That’s ripping my own arm off, mind.”</i>");
 		processTime(2);
 		//[Deal] [No Deal]
@@ -513,7 +513,7 @@ public function dealWivColensoForTheChestGuv():void
 {
 	clearOutput();
 	showColenso();
-	output("Colenso stabs at his console a few times, and a couple of seconds later your bank balance is updated. The goblin runs his hands over his new acquisition lovingly.");
+	output("Colenso stabs at his console a few times, and a couple of seconds later your bank balance is updated. The gabilani runs his hands over his new acquisition lovingly.");
 	output("\n\n<i>“You’re a star, [pc.fullName],”</i> he says, grinning happily. <i>“You can’t put a price on buried secrets like these, just can’t. Find anything like this out in the wastes again, bring it right here.”</i>");
 	pc.credits += Math.round(getRaskLootPrice()*1.5);
 	removeRaskLoot();
@@ -1045,7 +1045,10 @@ public function raskMaleButtfuckery():void
 		if(pc.balls > 0) output("and [pc.balls] ");
 		output("when you spear into him deep, your cock-tail just seems to keep finding more and more taut tunnel to wriggle into, and the fact that their dense forms and the amount of labour they evidently engage in mean they’re a wonderful squeeze all the way down.");
 
-		output("\n\nIt’s a serious struggle to hold onto the urge to pile-drive into them, particularly with the deep lusts of your parasitic tail pulling and biting at the strings of your subconscious, but you keep yourself responsive to their exertions, slowing down whenever it sounds and feels like they can’t take anymore, but otherwise determinedly pushing their limit");
+		output("\n\nIt’s a serious struggle to hold onto the urge to pile-drive into them, particularly with the deep lusts of your");
+		if(pc.hasParasiteTail()) output(" parasitic tail");
+		else output(" [pc.tail]");
+		output(" pulling and biting at the strings of your subconscious, but you keep yourself responsive to their exertions, slowing down whenever it sounds and feels like they can’t take anymore, but otherwise determinedly pushing their limit");
 		if(pc.cockVolume(x) <= foes[0].analCapacity()) output(" until you are happily giving the one in front of you every bulging inch, your [pc.hips] patting purposefully against his");
 		output(". You snake a hand between the big raskvel’s legs and begin to briskly run it up and down his purple seven inch cock, which is flopping well out of its slit. It takes suspiciously little time for it to be fully erect, hot and straining in your grip.\n\nYou grin to yourself and begin to pick up the pace, pumping your hips strongly into the reptilian’s behind as you continue to generously coil him. You can’t offer the same sort of service to the other one, but your tail seems to know what to do; without you directing it at all, it pulls back and drives into a pulpy spot in the raskvel’s walls over and over again which, given the way he clutches at the dirt and arches his back, gasping reactively, can only be his prostate.");
 
@@ -1306,7 +1309,10 @@ public function raskVelCockTailPegging(args:Array):void
 	var y:int = args[1];
 	output("<i>“Come here, little boy,”</i> you purr. What with you thoroughly embedded in his two friends he could easily run away if he wanted – but instead he obeys, meekly trotting over to your side. Perhaps he lives in hope he will get in on the pussy action – if that is what he thinks he’s about to be sorely disappointed, quite literally. He pauses when your [pc.cockTail] rears into view, throbbing with frustrated lust and beading pre, and the impulse to turn and make for the hills does now clearly occur to him.");
 	output("\n\n<i>“Let’s not pretend you aren’t going to enjoy this,”</i> you say lowly. <i>“On your knees here and let me see that cute butt of yours... that’s it.”</i> He really does have a nice ass: supple, smaller and rounder than the other two, really crying out for a good, hard reaming. He gasps in a delightful rising cadence and grasps handfuls of dirt as, whilst you continue to lazily ride the big one’s cock, you allow your cock-tail to wriggle its way between his butt-cheeks, sternly working his sphincter loose and oiling him with a steady dribble of pre-cum, before thrusting into his tight, clenching colon deep.");
-	output("\n\nYou gasp and growl to the variegated ecstasy of it, penetrated and penetrating, revelling in the twinkish raskvel’s arched neck and sweat-beaded brow, his expression somewhere between anguish and intense gratification as your bulging parasitic tail claims his ass again and again, all the while you swivel your female sex purposefully into the mouth and cock of the other two.");
+	output("\n\nYou gasp and growl to the variegated ecstasy of it, penetrated and penetrating, revelling in the twinkish raskvel’s arched neck and sweat-beaded brow, his expression somewhere between anguish and intense gratification as your bulging");
+	if(pc.hasParasiteTail()) output(" parasitic tail");
+	else output(" cock-tail");
+	output(" claims his ass again and again, all the while you swivel your female sex purposefully into the mouth and cock of the other two.");
 	processTime(4);
 	args.push(raskVelCockTailPegging);
 	clearMenu();
@@ -1322,7 +1328,10 @@ public function cuntTailRaskPlay(args:Array):void
 	var x:int = args[0];
 	var y:int = args[1];
 	output("<i>“Come here, little boy,”</i> you purr. With you thoroughly embedded in his two friends he could easily run away if he wanted – but instead he obeys, meekly trotting over to your side. He pauses as your [pc.cuntTail] rears into view, dripping and spreading itself with unrequited arousal, an expression somewhere between fright and lust crossing his ruddy face.");
-	output("\n\n<i>“Kneel beside me,”</i> you say lowly. <i>“Relax, and let me do everything. That’s it... </i>\" You, in fact, don’t have to do anything at all; your parasitic tail can sense a ready, needy cum-pump a mile off, and it whips down without instruction to plaster itself over the raskvel’s small, thick erection. It’s not the size it wants and it is soon squeezing him ruthlessly, dribbling fluid down his flanks, writhing around to milk him so hard that you’re slightly worried it’s going to tear it right off him.");
+	output("\n\n<i>“Kneel beside me,”</i> you say lowly. <i>“Relax, and let me do everything. That’s it... </i>\" You, in fact, don’t have to do anything at all; your");
+	if(pc.hasParasiteTail()) output(" parasitic tail");
+	else output(" [pc.tail]");
+	output(" can sense a ready, needy cum-pump a mile off, and it whips down without instruction to plaster itself over the raskvel’s small, thick erection. It’s not the size it wants and it is soon squeezing him ruthlessly, dribbling fluid down his flanks, writhing around to milk him so hard that you’re slightly worried it’s going to tear it right off him.");
 	output("\n\nHe gasps and shouts, grasping handfuls of dirt with his body arched backwards, quivering to the [pc.cuntTail] squelching ministrations. You sigh blissfully to the sensation of double penetration, pleasure channelling back down your tail and twining with that arriving from swivelling your [pc.vagina " + x + "]");
 	if(pc.totalVaginas() > 1) output(" and [pc.vagina " + y + "]");
 	output(" into the mouth and cock of the other two.");
@@ -1385,8 +1394,14 @@ public function vaginaRaskStuffEpilogus(args:Array):void
 	}
 	else if(originalScene == raskvelHardlightPegEdition) output("\n\nThe third raskvel wails as you mercilessly up the tempo of your manual pegging, the muscles in your arm beginning to ache as you holster a large proportion of the dildo in his tight little butt again and again; he is forced to orgasm, spurting a surprising amount of cum from his shaking cock to your stringent prostate milking.");
 	else if(originalScene == raskVelCockTailPegging) output("\n\nThe third raskvel wails as you mercilessly up the tempo of your cock-tail’s thrusting, pumping your way towards a sighted orgasm. Your sighs soon combine with his moans as hot cum courses up your long stem and then fountains deep within him, quickly packing him like a red hot water-bottle full of your seed.");
-	else output("\n\nThe third raskvel wails as your cunt-tail kneads him to orgasm, a surprising amount of cum shooting deep into its dripping blossom; deep, unnatural bliss fills your mind, endorphins geyser as you, the host, achieve your lusty parasite’s purpose.");
-
+	else
+	{
+		output("\n\nThe third raskvel wails as your cunt-tail kneads him to orgasm, a surprising amount of cum shooting deep into its dripping blossom; deep, unnatural bliss fills your mind, endorphins geyser as you, the host, achieve your lusty");
+		if(pc.hasParasiteTail()) output(" parasite");
+		else output(" tail");
+		output("’s purpose.");
+	}
+	
 	output("\n\nYou then release the raskvel’s dick – still pointing needily at the sky, thickly pasted in cum, when you allow it to schlorp out of your steaming [pc.vagina " + x + "] – and, with a few taps of your hand and whispered instructions, reposition them. You leer down at the second raskvel as you slide your cum-slicked pussy down his eager, purple length, tightening up as much as you can as you do so, enjoying every inch that fill your depths. On his back, snared and overwhelmed by the taste on his lips and texture on his dick, he simply cannot take it. He clenches up and grunts in helpless orgasm when your [pc.hips] touch his, a single spurt of fresh warmth deep within you.");
 	output("\n\nIt makes no difference to you. Like his friend, now ");
 	if(pc.vaginaTotal() == 1)

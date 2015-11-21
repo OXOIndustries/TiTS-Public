@@ -137,7 +137,7 @@
 				changes++;
 			}
 			//GROWTH! REQUIRES DICK!
-			if(pc.hasCock() && ((pc.cockTotal() > 1 || rand(2) == 0) || (changes < changeLimit && rand(3) == 0))) {
+			if(pc.hasCock() && ((pc.cockTotal() > 1 && rand(2) == 0) || (changes < changeLimit && rand(3) == 0))) {
 				//Make a smallish dick bigger!
 				if(pc.cockLengthUnlocked(arg, 9) && pc.cocks[arg].cLengthRaw <= 8) {
 					kGAMECLASS.output("\n\nYour hand strays to your [pc.cock " + arg + "] without conscious thought. On noticing it, you merely smile, admiring the shape of your swollen length, like your hand belongs there. Your arm begins to pump, dragging your hand up and down the length, pleasuring yourself before you have a chance to react, and you just slump back, jacking on your [pc.cock " + arg + "] as it feels better and better.");
@@ -246,19 +246,40 @@
 				else kGAMECLASS.output("in the center of your crotch");
 				kGAMECLASS.output(". It feels achy and a little painful but very very sensitive, and it's getting bigger with alarming ridity. The little knot is sticking an inch out past your [pc.skinFurScales], turning glossy and red as it does. You touch its tip and moan, assaulted by pleasure you barely understand, watching the bulge stretch out another inch in eager response. In seconds, you're rubbing and fondling it, coaxing more and more length from your crotch until ");
 				pc.createCock();
-				pc.cocks[0].cLengthRaw = 5;
-				if(pc.hasPerk("Hung")) pc.cocks[0].cLengthRaw += 2+rand(4);
-				if(pc.race() == "ausar" || pc.race() == "half-ausar") 
+				pc.cocks[arg].cLengthRaw = 5;
+				if(pc.hasPerk("Hung")) pc.cocks[arg].cLengthRaw += 2+rand(4);
+				
+				// Type changes
+				if(pc.race() == "ausar" || pc.race() == "half-ausar" || pc.race() == "canine-morph")
 				{
 					pc.shiftCock(arg,GLOBAL.TYPE_CANINE);
-					//Cause ausar are too cool for sheaths.
-					pc.cocks[arg].delFlag(GLOBAL.FLAG_SHEATHED);
+					if(pc.race() == "ausar" || pc.race() == "half-ausar") pc.cocks[arg].delFlag(GLOBAL.FLAG_SHEATHED);
 				}
-			    if(pc.race() == "kaithrit" || pc.race() == "half-kaithrit") pc.shiftCock(arg,GLOBAL.TYPE_FELINE);
-			    if(pc.race() == "leithan" || pc.race() == "half-leithan") pc.shiftCock(arg,GLOBAL.TYPE_SNAKE);
-			    if(pc.race() == "zil") pc.shiftCock(arg,GLOBAL.TYPE_BEE);
-			    if(pc.race() == "naleen" || pc.race() == "naga") pc.shiftCock(arg,GLOBAL.TYPE_NAGA);
-				kGAMECLASS.output("<b>your hand is wrapped around a " + kGAMECLASS.num2Text(Math.round(pc.cocks[0].cLengthRaw*10)/10) + "-inch long, twitching [pc.cockNounSimple " + arg + "].</b>");
+				else if(pc.race() == "kaithrit" || pc.race() == "half-kaithrit" || pc.race() == "feline-morph") pc.shiftCock(arg,GLOBAL.TYPE_FELINE);
+				else if(pc.race() == "leithan" || pc.race() == "half-leithan") pc.shiftCock(arg,GLOBAL.TYPE_SNAKE);
+				else if(pc.race() == "kui-tan" || pc.race() == "half kui-tan") pc.shiftCock(arg, GLOBAL.TYPE_KUITAN);
+				else if(pc.race() == "horse-morph" || pc.race() == "part horse-morph" || pc.race() == "laquine" || pc.race() == "ovir" || pc.race() == "half-ovir") pc.shiftCock(arg, GLOBAL.TYPE_EQUINE);
+				else if(pc.race() == "vulpine-morph") pc.shiftCock(arg,GLOBAL.TYPE_VULPINE);
+				else if(pc.race() == "zil") pc.shiftCock(arg,GLOBAL.TYPE_BEE);
+				else if(pc.race() == "naleen" || pc.race() == "naga") pc.shiftCock(arg,GLOBAL.TYPE_NAGA);
+				else if(pc.race() == "raskvel" || pc.race() == "raskvel-morph" || pc.race() == "rask-morph") pc.shiftCock(arg, GLOBAL.TYPE_RASKVEL);
+				else if(pc.race() == "fanfir" || pc.race() == "dragon-morph") pc.shiftCock(arg, GLOBAL.TYPE_DRACONIC);
+				else if(pc.race() == "demon-morph") pc.shiftCock(arg, GLOBAL.TYPE_DEMONIC);
+				else if(pc.race() == "kangaroo-morph") pc.shiftCock(arg, GLOBAL.TYPE_KANGAROO);
+				else if(pc.race() == "simii") pc.shiftCock(arg, GLOBAL.TYPE_SIMII);
+				else if(pc.race() == "saurian") pc.shiftCock(arg, GLOBAL.TYPE_SAURIAN);
+				else if(pc.race() == "venus pitcher") pc.shiftCock(arg, GLOBAL.TYPE_VENUSPITCHER);
+				else if(pc.race() == "sydian") pc.shiftCock(arg, GLOBAL.TYPE_SYDIAN);
+				else if(pc.race() == "daynar") pc.shiftCock(arg, GLOBAL.TYPE_DAYNAR);
+				/*
+				else if(pc.race() == "tentacle beast") pc.shiftCock(arg, GLOBAL.TYPE_TENTACLE);
+				else if(pc.race() == "anemone") pc.shiftCock(arg, GLOBAL.TYPE_ANEMONE);
+				else if(pc.race() == "siren") pc.shiftCock(arg, GLOBAL.TYPE_SIREN);
+				else if(pc.race() == "synthetic" || pc.race() == "robot" || pc.race() == "companion droid") pc.shiftCock(arg, GLOBAL.TYPE_SYNTHETIC);
+				else if(pc.race() == "cockvine") pc.shiftCock(arg, GLOBAL.TYPE_COCKVINE);
+				*/
+				
+				kGAMECLASS.output("<b>your hand is wrapped around a " + kGAMECLASS.num2Text(Math.round(pc.cocks[arg].cLengthRaw*10)/10) + "-inch long, twitching [pc.cockNounSimple " + arg + "].</b>");
 				changes++;
 			}
 			else if (!pc.createCockUnlocked())

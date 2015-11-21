@@ -35,6 +35,7 @@ public function fauxCowFarmerBonus():Boolean
 public function approachFarmer():void
 {
 	clearOutput();
+	clearMenu();
 	//Farmer (First time)
 	if(flags["MET_CAMERON"] == undefined)
 	{
@@ -66,7 +67,6 @@ public function approachFarmer():void
 		}
 		//[Help] [Nah]
 		processTime(3);
-		clearMenu();
 		addButton(0,"Help",helpCameronBeAGiantSlut);
 		addButton(1,"Nah",dontHelpCameron);
 	}

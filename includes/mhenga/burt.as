@@ -16,14 +16,14 @@ public function burtsBarFunc():void {
 		if(flags["BET_AGAINST_SYRI"] == undefined) {
 			output("\n\nToward the corner of the Mead Hall, you note that a pair of holoscreens have been set up on one of the walls. A small crowd of dock workers and other spacers have gathered around it, apparently taking bets. Might be worth a look, who knows?");
 			//[Games]
-			addButton(5,"Games",syriGamesStart);
+			addButton(2,"Games",syriGamesStart);
 		}
 		//{Has bet against Syri}
 		else {
 			output("\n\nThe cocksure ausar girl, Syri, is standing across from the game screens, deep into a match as she nurses a stiff Terran beer. Seeing you standing around, she waves you over, clearly looking for a rematch. ");
 			if(flags["FUCKED_SYRI_COUNT"] != undefined) output("She's certainly got that lusty look in her eyes...");
 			//[!Syri]
-			addButton(5,"Syri",syriGamesStart);
+			addButton(2,"Syri",syriGamesStart);
 		}
 	}
 	//Add to Bar Description, Early Morning
@@ -38,13 +38,13 @@ public function burtsBarFunc():void {
 				output("\n\nSyri's at her usual place, reading and munching on some nuts Burt's left for her. Seeing you looking her way, she flashes you a grin and indicates the empty seat beside her.");
 			}
 			//[Syri]
-			addButton(5,"Syri",approachSyriIntheMorning);
+			addButton(2,"Syri",approachSyriIntheMorning);
 		}
 
 	}
 	if(flags["MET_BURT"] == undefined) this.addButton(0,"Bar",burtapproach);
 	else this.addButton(0,"Burt",burtapproach);
-	roamingBarEncounter(7);
+	roamingBarEncounter(3);
 	this.addButton(1,"Watch Screen",stephIrsonBountHunterEpisodeOne);
 }
 

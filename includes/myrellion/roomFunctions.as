@@ -6,6 +6,11 @@ public function myrellionHangarBonus():Boolean
 		probeReclamationShit();
 		return true;
 	}
+	if(pc.hasStatusEffect("Myr Venom Withdrawal") && rand(10) == 0)
+	{
+		sluttyMcSlutOral();
+		return true;
+	}
 	return false;
 }
 
@@ -14,6 +19,21 @@ public function airFieldNorthBonus():Boolean
 	if(flags["SEXED_SHADE"] != undefined && shadeAtTheBar())
 	{
 		output(" You recognize Shade's ship, a purple MS-XI with \"Mirage\" painted in bold white letters across its bow, parked next to one of the hangers here.")
+	}
+	if(pc.hasStatusEffect("Myr Venom Withdrawal") && rand(10) == 0)
+	{
+		sluttyMcSlutOral();
+		return true;
+	}
+	return false;
+}
+
+public function DMZRandoEventsBonus():Boolean
+{
+	if(pc.hasStatusEffect("Myr Venom Withdrawal") && rand(10) == 0)
+	{
+		sluttyMcSlutOral();
+		return true;
 	}
 	return false;
 }
@@ -79,6 +99,11 @@ public function streetOutsideBarBonus():Boolean
 	{
 		output("\n\nA sign has been posted outside the Xenogen outpost, reading in big, bold red letters: THE DOCTOR IS <i><b>OUT</b></i>!");
 	}
+	if(pc.hasStatusEffect("Myr Venom Withdrawal") && rand(10) == 0)
+	{
+		sluttyMcSlutOral();
+		return true;
+	}
 
 	return false;
 }
@@ -86,6 +111,11 @@ public function spacersRowBonusFunc():Boolean
 {
 	if(karaQuestTurninNeeded()) output(" <b>where Kara is hiding</b>");
 	output(".");
+	if(pc.hasStatusEffect("Myr Venom Withdrawal") && rand(10) == 0)
+	{
+		sluttyMcSlutOral();
+		return true;
+	}
 	return false;
 }
 public function backAlleyBonus():Boolean
@@ -96,6 +126,11 @@ public function backAlleyBonus():Boolean
 		return true;
 	}
 	else output(" Not much to see here.");
+	if(pc.hasStatusEffect("Myr Venom Withdrawal") && rand(10) == 0)
+	{
+		sluttyMcSlutOral();
+		return true;
+	}
 	return false;
 }
 
@@ -331,6 +366,11 @@ public function DMZKressiaAirstrip():Boolean
 		output("\n\nA red myr trooper checks your papers and identification again before waving you through the checkpoint and telling you to hurry aboard if you want to go to Kressia, the closest of the Red's cities.");
 		addButton(0,"Enter Plane",aeroplaneFlightShit,true,"Enter Plane","Hop on a plane for a quick trip to Kressia.");
 	}
+	if(pc.hasStatusEffect("Myr Venom Withdrawal") && rand(10) == 0)
+	{
+		sluttyMcSlutOral();
+		return true;
+	}
 	return false;
 }
 
@@ -386,7 +426,15 @@ public function kressiaGateBonus():Boolean
 	}
 	return false;
 }
-
+public function kressiaBasicBonusBitches():Boolean
+{
+	if(pc.hasStatusEffect("Myr Venom Withdrawal") && rand(10) == 0)
+	{
+		sluttyMcSlutOral();
+		return true;
+	}
+	return false;
+}
 public function sledgehammersBonus():Boolean
 {
 	showBust("MYR_GOLD_GUARD_HAMMER","","MYR_GOLD_GUARD_HAMMER");
@@ -562,7 +610,7 @@ public function deepCavesEntranceBonus():Boolean
 public function fungus1Bonus():Boolean
 {
 	output("To the north ");
-	if(9999 == 9999) output("is a passage all but buried in glowing fungus, making it hard to see what exactly lies beyond the gently-pulsing curtain");
+	if(flags["FUNGUS_QUEEN_SAVED"] == undefined && flags["LET_FUNGUS_QUEEN_DIE"] == undefined) output("is a passage all but buried in glowing fungus, making it hard to see what exactly lies beyond the gently-pulsing curtain");
 	else output("is a cascade of rock and jagged burn scars that marks what used to be a glowing cavern");
 	output(". South lies a short passage, starting with the dessicated corpse of a giant insect.\n\nWest lies a much longer passage, the end lost in darkness.");
 	return DeepCavesBonus();
@@ -652,6 +700,27 @@ public function queensRoadTradingPost():Boolean
 	return queensRoadBonusShit();
 }
 
+//Handles fixing up the map if silly mode is toggled and not yet updated!
+public function emergencyMapCorrector():Boolean
+{
+	variableRoomUpdateCheck();
+	return DeepCavesBonus();
+}
+public function slimyPassageBonus():Boolean
+{
+	output("Droplets of goo pelt the floor around you, dripping from the cave ceiling at irregular intervals. Your ");
+	if(pc.isChestGarbed()) output("[pc.upperGarment]");
+	else if(pc.hasBreasts()) output("breast");
+	else output("[pc.chest]");
+	output(" catches some of the blobs, splattering harmlessly but making you shiver nonetheless.");
+	if(flags["MET_CGOOS"] == undefined) 
+	{
+		gooVillageThinger();
+		return true;
+	}
+	return false;
+}
+
 public function DeepCavesBonus():Boolean
 {
 	if(flags["ENCOUNTERS_DISABLED"] != undefined) return false;
@@ -663,17 +732,27 @@ public function DeepCavesBonus():Boolean
 	
 	var choices:Array = new Array();
 	//If walked far enough w/o an encounter
-	if(flags["NO_MANS_STEP"] >= 5 && rand(4) == 0) {
+	if((pc.accessory is MuskRepel && flags["NO_MANS_STEP"] >= 10 && rand(4) == 0) || (!(pc.accessory is MuskRepel) && flags["NO_MANS_STEP"] >= 5 && rand(4) == 0)) {
 		//Reset step counter
 		flags["NO_MANS_STEP"] = 0;
 		
 		//Build possible encounters
 		choices[choices.length] = encounterNyreaAlpha;
 		choices[choices.length] = encounterNyreaBeta;
+		if(flags["LET_FUNGUS_QUEEN_DIE"] != undefined) 
+		{
+			choices[choices.length] = infectedMyrmedionShit;
+			choices[choices.length] = infectedMyrmedionShit;
+			choices[choices.length] = infectedMyrmedionShit;
+		}
 		choices[choices.length] = infectedMyrmedionShit;
-		choices[choices.length] = infectedMyrmedionShit;
-		choices[choices.length] = infectedMyrmedionShit;
-		choices[choices.length] = infectedMyrmedionShit;
+		if(silly)
+		{
+			choices[choices.length] = crystalGooFenBurps;
+			choices[choices.length] = crystalGooFenBurps;
+			//crystalGooFenBurps();
+			//return true;
+		}
 
 		//Run the event
 		choices[rand(choices.length)]();

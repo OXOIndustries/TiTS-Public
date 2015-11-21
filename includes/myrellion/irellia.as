@@ -569,7 +569,10 @@ public function fuckIrelliasFrontGina():void
 		output(" Your [pc.cuntTail] reaches around for ");
 		if(pc.cockTotal() == 1) output("your");
 		else output("a");
-		output(" naked, erect phallus, but you bat it back with a frown. You’ve no time to waste on parasitic twats when a queen’s slit is right there waiting for you.");
+		output(" naked, erect phallus, but you bat it back with a frown. You’ve no time to waste on");
+		if(pc.hasParasiteTail()) output(" parasitic");
+		else output(" hungry");
+		output(" twats when a queen’s slit is right there waiting for you.");
 	}
 	output("\n\nQueen Irellia smiles at what she sees, gently fanning her face as her cheeks flush orange. A droplet of slick pussy-nectar hangs from the top of her surprisingly-engorged clitoris, and the lips are fuller and more prominent than before. She brushes off the stray droplet with the back of her thumb, then brings it to her lips to savor, her tongue lapping it away in a flash. Her eyes twinkle with mirth. <i>“What’s the matter, [pc.name]? You aren’t anxious about performing are you? I hear some drones have problems with that. A big girl like me can be intimidating, no?”</i>");
 	output("\n\nYou step closer with a smile on your face and a hand on [pc.oneCock], the other on your hip. After everything you’ve seen and done, a private tryst with royalty hardly phases you, and you tell her as much while you climb up onto her throne. It’s a little awkward, being so high up from the floor");
@@ -655,10 +658,10 @@ public function cumInsideIrellia(x:int):void
 	else if(pc.isNice()) output("Your wish is my command, mi’lady.");
 	else output("Works for me.");
 	output("”</i>");
-	output("\n\nThe ecstatic monarch groans throatily in response, her insectile abdomen twitching wildly behind her. Her finger pushes more firmly against ");
-	if(pc.elasticity < 3 || pc.ass.looseness() <= 3) output("your ring");
-	else output("your elastic ring");
-	output(". With all pussy-juice coating it, it could slip inside more easily than a galotian’s pinkie. She shifts it just when your asshole is about to give, circling the very edge of your pucker with gentle, prodding strokes that seem designed to guide the tempo of your thrusts.");
+	output("\n\nThe ecstatic monarch groans throatily in response, her insectile abdomen twitching wildly behind her. Her finger pushes more firmly against your");
+	if(pc.elasticity >= 3) output(" elastic");
+	else if(pc.ass.looseness() > 3) output(" loose");
+	output(" ring. With all the pussy-juice coating it, it could slip inside more easily than a galotian’s pinkie. She shifts it just when your asshole is about to give, circling the very edge of your pucker with gentle, prodding strokes that seem designed to guide the tempo of your thrusts.");
 	output("\n\nIf that’s her plan, it’s working. You pick up the pace while the Queen giggles and coos encouragement. <i>“More! Fuck me harder! Faster!”</i> One hand traces ");
 	if(pc.biggestTitSize() < 1) output("down the middle of your chest");
 	else output("between your bouncing [pc.breastsNoun]");

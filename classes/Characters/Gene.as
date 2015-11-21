@@ -26,16 +26,14 @@
 			
 			this.short = "Gene";
 			
-			keeperBuy = "You tell Nevrie you’d like to see what the Xenogen store has in stock.";
+			keeperBuy = "";
 			keeperSell = "";
 			
-			inventory.push(new ManUp());
 			inventory.push(new Bovinium());
-			inventory.push(new Chocolac());
-			inventory.push(new FocusPill());
+			// 9999 plz add this item for matching sets: inventory.push(new MinoCharge());
+			inventory.push(new Condensol());
 			inventory.push(new EasyFit());
-			inventory.push(new LeithaCharm());
-			inventory.push(new Nepeta());
+			inventory.push(new Chocolac());
 			
 			this.typesBought = [];
 			

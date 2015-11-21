@@ -7,6 +7,7 @@
 	import classes.GLOBAL;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
+	import classes.kGAMECLASS;
 	
 	public class HoldOutPistol extends ItemSlotClass
 	{
@@ -31,7 +32,9 @@
 			this.description = "a hold-out pistol";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "A simple black-powder pistol. It is easy to conceal but does not pack a particularly strong punch, the perfect weapon for a smuggler.";
+			this.tooltip = "A simple black-powder pistol. It is easy to conceal but does not pack a particularly strong punch";
+			//if(kGAMECLASS.pc.characterClass == GLOBAL.CLASS_SMUGGLER) this.tooltip += ", the perfect weapon for a smuggler";
+			this.tooltip += ".";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

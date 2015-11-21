@@ -105,8 +105,8 @@ public function getAGlassOfMilkFromReapersCowsona():void {
 	userInterface.showName("\nREAHA");
 	userInterface.showBust("REAHA");
 	output("Cupping one of the cow's hefty tits, you ask if she's ready for a good milking. ");
-	if(flags["REAHA_FREE"] == 1) output("<i>\"From you? Always, [pc.name],\"</i>");
-	else output("<i>\"If that's what </i>you<i> want,\"</i>");
+	if(flags["REAHA_FREE"] == 1) output("\n\n<i>\"From you? Always, [pc.name],\"</i>");
+	else output("\n\n<i>\"If that's what </i>you<i> want,\"</i>");
 	output("  she says, a thin smile pursing her lips. Reaha slips in your arms, breasts pressing against you as she reaches toward her bed, grabbing a handful of fresh aphrodisiac patches. You take them from her, spinning her around until her big butt is grinding against your [pc.crotch], shoulders bared to you; one by one you rip the patches out of their packets, pasting them onto the cow-girl's back like stickers. With each one, her skin flushes a dark, hot red, radiating out around the drugged patches until you can feel Reaha's breath catching, her whole body trembling with shameless lust. Her cunt is drooling on just the second patch, and you can see her perky nipples stiffening, beading the first tiny drops of milk from her sheer arousal.");
 	output("\n\nYou apply the last patch with a rough slap on her ass, leaving her tattooed flesh red and jiggling as the lusty venom seeps into her behind. She whines a pathetic little whimper, hips pushing back against your ");
 	if(pc.hasCock() && pc.isCrotchGarbed()) output("growing bulge");
@@ -521,8 +521,7 @@ public function talkToBrothelLady():void
 {
 	clearOutput();
 	author("Savin");
-	userInterface.showName("BROTHEL\nMISTRESS");
-	userInterface.showBust("BORING_MISTRESS");
+	showBrothelLady();
 	output("You approach the mistress, clearing your throat to get her attention. With marked boredom, she intones, \"<i>Welcome to Beth's Busty Broads. If you're here for our going out of business sale, you're out of luck. The selection's... pretty limited. And by that I mean we've got one slut left, and she's a handful.</i>\"");
 	output("\n\n\"<i>What happened to all the others?</i>\"");
 	output("\n\nShe cocks an eyebrow at you, finally bothering to look up from her slate. \"<i>Boss was using indentured labor, but she had some kinda crisis, whatever. Had to sell most of the contracts out. A lot of the regulars bought up their favorite sluts to keep 'em forever. Or close enough to forever as money can buy.</i>\"");
@@ -590,15 +589,15 @@ public function brothelMainMenu():void {
 			else addDisabledButton(4,"Doh'rahn","Doh'rahn","You need 100 credits for conjugals, and you don’t have the money!");
 		}
 	}
-	//Doh’rahn/Vaande
-	//name on button changes after first time
-	//avail whenever doh’rahn is not on center stage (21 hours a day)
-	//employs pheromones to charm and loves to be sniffed, very PC subby
-	//usable by any sex and leg config
-	//tooltip: Visit the doh’rahn in her room and contract out some wet-work for 100 credits.
-	//tooltip disabled, hour 1000, 1300, 1600: The doh’rahn is on stage right now. She only dances for an hour at a time, so you could just come back in a bit if you’d like to buy her services. Have 100 credits handy.
-	//tooltip disabled, no money: You need 100 credits for conjugals, and you don’t have the money!
-
+	// Turn Tricks
+	// Feminine female wearing something sexiness > 2 only for now.
+	// "Jaded" status, prevents whoring plus minor stat penalties for 6 hours. Prevents players spamming it for essentially free money. Yeah they can just wait, but that won't make it any different from the milker.
+	if(hours >= 6 && hours < 10) addDisabledButton(5, "Turn Tricks", "Turn Tricks", "The brothel mistress is currently sleeping. You don’t think it’ll be a good idea to wake her right now.");
+	else if(!pc.hasVagina()) addDisabledButton(5, "Turn Tricks", "Turn Tricks", "You need to have a vagina in order to try this.");
+	else if((pc.armor.sexiness + pc.upperUndergarment.sexiness + pc.lowerUndergarment.sexiness) <= 2) addDisabledButton(5,"Turn Tricks","Turn Tricks","You need sexier clothing in order to try this.");
+	else if(pc.hasStatusEffect("Jaded")) addDisabledButton(5, "Turn Tricks", "Turn Tricks", "You’re too wiped from last time to contemplate that right now.");
+	else if(pc.hasStatusEffect("Sore")) addDisabledButton(5, "Turn Tricks", "Turn Tricks", "You’re too sore to think about doing that right now.");
+	else addButton(5, "Turn Tricks", brothelTurnTrixLady, undefined, "Turn Tricks", "See if you can’t earn some money in the most time-honored of fashions.");
 
 	addButton(14,"Leave",mainGameMenu);
 }
@@ -607,8 +606,7 @@ public function talkToBrothelLadyNewOmni():void
 {
 	clearOutput();
 	author("Savin & Zeik");
-	userInterface.showName("BROTHEL\nMISTRESS");
-	userInterface.showBust("BORING_MISTRESS");
+	showBrothelLady();
 	
 	//time 0600-0959, replace first paragraph of first meeting (or entire intro if repeat)
 	if(hours >= 6 && hours < 10)
@@ -663,7 +661,8 @@ public function ReahaBrothelSexMenu():void
 {
 	clearOutput();
 	author("Savin");
-	userInterface.showName("MISTRESS AND\nREAHA");
+	if(flags["KAT_MET"] != undefined) userInterface.showName("KAT AND\nREAHA");
+	else userInterface.showName("MISTRESS AND\nREAHA");
 	userInterface.showBust("BORING_MISTRESS","REAHA");
 	
 
@@ -708,8 +707,7 @@ public function askAboutBusinessLikeASir():void
 {
 	clearOutput();
 	author("Savin");
-	userInterface.showName("BROTHEL\nMISTRESS");
-	userInterface.showBust("BORING_MISTRESS");
+	showBrothelLady();
 	output("You ask the mistress how business is doing. There are enough people on the floor with drinks in hand to suggest Beth's is in no danger of shutting down.");
 	output("\n\nShe shrugs. \"<i>New madame's whipped up a lot of new customers. Old one didn't do much, let the place fall to shit. I was about to put in my two-weeks' when she up and left. Dunno why. But things are picking up again. New popular girls coming in, old ones going out. Even fixed the surround sound.</i>\"")
 	//GET RID OF ZIS BUTTON U CUNT
@@ -932,7 +930,9 @@ public function fuckReahasPussyintheBrothel():void
 	output("\n\nYou slip behind the girl, lowering yourself down onto your [pc.knees] to get on her level. She shivers with excitement, grinding her plump derriere against your crotch as you pull off the tiny micro-skirt she's got on, revealing the military tattoos stenciled on her big butt cheeks, marking the ex-army bitch for the indebted slave slut that she is. Seeing her cunt already drooling on your britches, you toss your [pc.lowerGarments] aside, revealing your [pc.cock].");
 	output("\n\nLetting it flop in between her big ass cheeks, you thrust into her crack, making the milky slut moo in pleasure, her cheeks tightly squeezing your prick. Hot-dogging away, you reach around her busty frame to grab her over-sized teats, fingers locking around the puffy nipples atop each. With the slightest squeeze, a flow of the purest white gushes out around your grasp, wetting the floor with her lactic lust. Reaha moans huskily, hips humping back with abandon as you start to milk her, slathering your hands with creamy streams. And it's only going to get messier...");
 	output("\n\nDelivering an encouraging slap to the slave slut's jiggly ass, you rear back and line your [pc.cock] up with her sodden box, pressing your head in so close that you can feel her slick need on your shaft, so eager and needy, her sex demanding your cock. After all, how can a whorish cow give her milk without a big, fat cock buried inside her?");
-	output("\n\nYou push in gently at first, letting the wanton wench moan lustily as your cock slides home, spreading the cum-soaked walls of her quivering quim wide around your thrusting manhood. She whimpers with ecstasy, biting her lip as your hips push in against her. With every inch, the unstoppable flood of milk pouring from Reaha's tits increases, more like a pair of hoses in your hands than a woman's tits. These gene mods are insane... but you're not complaining! You ram home inside her, feeling the lips of her womb kiss the tip of your [pc.cock] as your hips settle against her tattooed ass cheeks.");
+	output("\n\nYou push in gently at first, letting the wanton wench moan lustily as your cock slides home, spreading the cum-soaked walls of her quivering quim wide around your thrusting manhood.");
+	pc.cockChange();
+	output(" She whimpers with ecstasy, biting her lip as your hips push in against her. With every inch, the unstoppable flood of milk pouring from Reaha's tits increases, more like a pair of hoses in your hands than a woman's tits. These gene mods are insane... but you're not complaining! You ram home inside her, feeling the lips of her womb kiss the tip of your [pc.cock] as your hips settle against her tattooed ass cheeks.");
 	output("\n\nYour fingers sink into her soft, pliant kiester, squeezing Raeha's bubble butt as her tits go onto auto-pilot, squirting away without need of your hands. Like a burst dam, once this slut gets going, there's no stopping it! But hey, that leaves you free to get your pleasure from the slave girl. You didn't pay a hundred creds just to milk a cow, after all!");
 	output("\n\n<i>\"Mmm, milk me harder!\"</i>  the cow-slut moans, clutching futilely at the bars shackling her hands, trying to hold herself steady as you start to pound her whorish cunt, your [pc.cock] thrusting harder and faster until you can feel her lubricant pouring out around your pounding prick, urged on by the sweet release of her cream and the constant stream of aphrodisiacs pumping into her veins from the tubes on the walls. You've barely gone for a minute by the time she cums for the first time, screaming -- or rather, bellowing -- a loud moo as her pussy clamps around your dick, trying to milk you as much as you're milking her.");
 	output("\n\n<i>\"You like that, milk-slut?\"</i>  you jeer, spanking her again. She moos and groans in response, thrusting her hips back against you, trying to get at even more of your shaft. Well, she clearly wants it. You fuck her harder, grabbing her hips to hold her fast and hammering in, humping that milky slave-girl like you've never done before. She cries and bellows, milk spurting from her tits in greater gouts, so powerful they seem to be lifting her up; you could swear you can SEE them deflating, milked for everything they've got.");

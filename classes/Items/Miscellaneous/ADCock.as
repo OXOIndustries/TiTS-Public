@@ -14,7 +14,7 @@
 		public function ADCock()
 		{
 			this._latestVersion = 2;
-			this.hasRandomProperties = true;
+			//this.hasRandomProperties = true;
 			
 			this.quantity = 1;
 			this.stackSize = 10;

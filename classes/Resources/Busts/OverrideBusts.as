@@ -45,6 +45,13 @@
 		[Embed(source = "../../../assets/images/npcs/hand_so.png", mimeType = "image/png")]
 		public var Bust_HAND_SO:Class;
 
+		[Embed(source = "../../../assets/images/npcs/holiday.png", mimeType = "image/png")]
+		public var Bust_HOLIDAY:Class;
+		[Embed(source = "../../../assets/images/npcs/holiday_horse.png", mimeType = "image/png")]
+		public var Bust_HOLIDAY_HORSE:Class;
+		[Embed(source = "../../../assets/images/npcs/holiday_trap.png", mimeType = "image/png")]
+		public var Bust_HOLIDAY_TRAP:Class;
+
 		[Embed(source = "../../../assets/images/npcs/jacques00/irellia.png", mimeType = "image/png")]
 		public var Bust_IRELLIA:Class;
 		
@@ -53,8 +60,8 @@
 
 		//[Embed(source = "../../../assets/images/npcs/kara.png", mimeType = "image/png")]
 		//public var Bust_KARA:Class;
-		[Embed(source = "../../../assets/images/npcs/lieve.png", mimeType = "image/png")]
-		public var Bust_LIEVE:Class;
+		//[Embed(source = "../../../assets/images/npcs/lieve.png", mimeType = "image/png")]
+		//public var Bust_LIEVE:Class;
 		[Embed(source = "../../../assets/images/npcs/jacques00/liliana.png", mimeType = "image/png")]
 		public var Bust_LILIANA:Class;
 		[Embed(source = "../../../assets/images/npcs/jacques00/liliana_blanket.png", mimeType = "image/png")]

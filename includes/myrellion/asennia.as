@@ -37,6 +37,7 @@ public function showAsennia():void
 //Add to SW corner of Mushroom Park, near the Great Elevator:
 public function honeyAntStallShit():Boolean
 {
+	author("Savin");
 	if(hours >= 6 && hours <= 18)
 	{
 		//Hasn’t been to stall before, stall open:
@@ -82,6 +83,7 @@ public function firstTimeAtHoneyTits():void
 {
 	clearOutput();
 	showAsennia();
+	author("Savin");
 	//First Time @ [Honey Stall]
 	//Get in line for a taste of myr honey, straight from the tap.
 	//Lose no Credits; small Thickness gain.
@@ -120,6 +122,7 @@ public function asenniaPartTwoIntro():void
 {
 	clearOutput();
 	showAsennia();
+	author("Savin");
 	output("You take a deep whiff of the nectar in front of you, getting just a hint of the overwhelming sweetness of it. Her nectar looks almost more like syrup than honey, drooling amber liquid that quickly leaves a trail rolling down her pale flesh. You lower yourself down towards the descending bulb of amber nectar and flick at it with your [pc.tongue]; you let out a happy little sigh as you taste the delectable golden fluid, and trace your tongue back up along its trail until your [pc.lips] are brushing the stiffening peak of Asennia’s breast.");
 	output("\n\nAt the same time you wrap your lips around the honeypot’s nipple, her other customer is already starting to enjoy her drink, puckering her lips just around the very promontory of Asennia’s tit and using her hands to squeeze and knead the honey out. Your hostess moans, flicking her insectile antennae back and forth between the two of you. <i>“Ah, you must have been starving, darling,”</i> she murmurs, running a hand through the other woman’s long, auburn hair.");
 	output("\n\nA creeping knot of jealousy forms in your throat, and you find yourself glowering at the human woman feasting beside you despite yourself. She notices, and flashes you half a smile between long sucks from Asennia’s tap. Hearing the ant-girl moan sensually, wiggling her body in a way that makes her breasts quake like liquid under your arms, drives you over the edge. You open wide, burying as much as Asennia’s huge teat in your mouth as you can, and start to suck.");
@@ -138,6 +141,7 @@ public function introToAsseniaPartThree():void
 {
 	clearOutput();
 	showAsennia();
+	author("Savin");
 	output("You won’t let yourself be outdone that easily. Figuring Asennia might prefer a gentler touch, you latch your lips to the very rim of her dark areola and start to work your [pc.tongue] around the edge, circling closer and closer in towards the stiff peak. Your tongue wraps around her pebbly point, lapping up sweet nectar as you lavish the honeypot’s teat with tender yet unrelenting strokes.");
 	output("\n\nIt turns out your instincts were right: it’s a softer touch this massively buxom myr really needs. Asennia groans, abandoning any pretense of concealing her pleasure; her fingers clutch at your [pc.hair] and pull you into her breast, burying you in a pillow of titflesh that completely envelops your face. You’re blinded by Asennia’s boob, forced to work on nothing but taste and touch. Your fingers wander across the expanse of flesh around you, squeezing at her honey-laden body as your [pc.tongue] urges out a stronger and stronger flow of her sweet nectar.");
 	output("\n\nYou can actually <i>feel</i> Asennia’s bust shrinking as you and your fellow customer drain her of what feels like gallons of honey. She’s jiggling and moaning and pulling harder against you, reaching a crescendo. It takes you a moment to realize what’s going on: long enough to leave you defenseless when a thunderous boobgasm rocks the ant-girl. Asennia screams in pleasure, echoing through the caverns, and squirts honey like a geyser into your mouth. Your cheeks bulge, struggling to keep down an ungodly amount of syrup-like nectar blasting into your mouth.");
@@ -170,14 +174,15 @@ public function asseniaMenu():void
 			if(pc.hasCock() && flags["ASENNIA_COCK_OFFERED"] != undefined) addButton(0,"TapDrink",afterNoonMyrSnackRouter,undefined,"TapDrink","Get a drink straight from the tap! Given the way you and Asennia have gotten along, you might get a little more than that, too...\n\n<b>50 Credits</b>");
 			else addButton(0,"TapDrink",afterNoonMyrSnackRouter,undefined,"TapDrink","Get a drink straight from the tap!\n\n<b>50 Credits</b>");
 		}
-		addButton(1,"To Go",milkToGoCup,undefined,"Get a To Go Cup","Ask Asennia for a to-go cup of her delicious nectar. Guaranteed to fill you with energy, and a key ingredient to all manner of Myrellion delicacies.\n\n<b>50 Credits</b>");
+		addButton(1,"To Go",milkToGoCup,undefined,"Get a To Go Cup","Ask Asennia for a to-go cup of her delicious nectar. Guaranteed to fill you with energy, and a key ingredient to all manner of Myrellion delicacies.\n\nCost: <b>50 Credits</b>");
 	}
 	else
 	{
 		addDisabledButton(0,"TapDrink","TapDrink","You can't afford that.");
 		addDisabledButton(1,"To Go","To Go","You can't afford that.");
 	}
-	addButton(2,"Her Business",herBusinessAsennia,undefined,"Talk: Her Business","Ask Asennia about her operation here. It’s definitely unique!");
+	addButton(2,"HoneyWine",honeyWineIntro,undefined,"Ask about honey wine.\n\nCost: <b>1000 credits</b>");
+	addButton(3,"Her Business",herBusinessAsennia,undefined,"Talk: Her Business","Ask Asennia about her operation here. It’s definitely unique!");
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -187,6 +192,7 @@ public function repeatApproachAsennia():void
 {
 	clearOutput();
 	showAsennia();
+	author("Savin");
 	//Morning Greeting (Huge Tits)
 	if(hours < 12)
 	{
@@ -209,6 +215,7 @@ public function herBusinessAsennia():void
 {
 	clearOutput();
 	showAsennia();
+	author("Savin");
 	output("<i>“Mind talking for a minute?”</i> you ask the honeypot, trying to ignore the burn of arousal watching her nurse her customers gives you - nevermind the other half-dozen moaning, squirting ants around her.");
 	output("\n\n<i>“I’d be delighted,”</i> Asennia answers, steepling her upper set of fingers. <i>“Anything specific on your mind, [pc.name]?”</i>");
 	output("\n\nHelping yourself to a seat ");
@@ -240,6 +247,33 @@ public function herBusinessAsennia():void
 	addDisabledButton(2,"Her Business","Her Business","You just finished that discussion.");
 }
 
+
+public function honeyWineIntro():void
+{
+	clearOutput();
+	showAsennia();
+	author("Fenoxo");
+	output("You glance between the lovely hostess and a small crate of glass bottles. Following your gaze, Asennia flashes you a broad smile and picks one out for you, a dark container full of honey-colored liquid.");
+	output("\n\n<i>“1000 credits if you want a taste of royalty. This is honey-wine, distilled from a Queen’s personal nectar. Irellia’s one of the few women I’d comfortably say has tastier tata’s than my own. A few sips of her brew and you’ll feel more energetic than ever.”</i> She smiles knowingly at you. <i>“Drink the whole thing, like I bet you will, and you’ll be tapping into an expanded well of energy for a whole day.”</i> Rolling the bottle between her fingers, Asennia licks her lips and sighs. <i>“If you can afford it, buy it. I promise it’ll be worth it.”</i>");
+	processTime(1);
+	clearMenu();
+	if(pc.credits >= 1000) addItemButton(0, new HoneyWine(), buyDatHunhunWine);
+	else addDisabledButton(0,"Buy","Buy","You don't have enough credits for that. It costs <b>1000 credits</b>.");
+	addButton(4,"Back",repeatApproachAsennia);
+}
+
+public function buyDatHunhunWine():void
+{
+	clearOutput();
+	showAsennia();
+	pc.credits -= 1000;
+	// Stuff for getting a Honey Wine bottle here.
+	itemScreen = repeatApproachAsennia;
+	lootScreen = repeatApproachAsennia;
+	useItemFunction = repeatApproachAsennia;
+	
+	itemCollect([new HoneyWine()]);
+}
 //Milk To-Go Cup
 //Ask Asennia for a to-go cup of her delicious nectar. Guaranteed to fill you with energy, and a key ingredient to all manner of Myrellion delicacies.
 //-50 Credits
@@ -247,6 +281,7 @@ public function milkToGoCup():void
 {
 	clearOutput();
 	showAsennia();
+	author("Savin");
 	output("You glance between your lovely hostess and the stack of thermos-like containers behind the counter. Following your gaze, Asennia flashes you a broad smile and picks one out for you, a bright pink, partially-transparent container, and pops the top.");
 	output("\n\n<i>“Fifty credits, and you can fill this with as much as you’d like. Knowing you, I think that would be right up to the brim.”</i>");
 	output("\n\nShe knows you so well already...");
@@ -314,6 +349,7 @@ public function repeatDrinkStraightFromAsenniasTap():void
 {
 	clearOutput();
 	showAsennia();
+	author("Savin");
 	output("Looking at the huge, honey-swollen breasts Asennia’s resting on the stone counter fills you with hunger. You can’t help but lick your lips at the sight of them, eyes taking in the full curves and the dark ring of her nipple, surrounded by a pebbly ring around a prominent peak. She’s so... so <i>full</i>, intoxicatingly beautiful in her swollen state. The primal part of your brain switches on, and you slip down onto the paved ground in front of the honeypot stall - in front of Asennia’s fully laden breasts.");
 	output("\n\n<i>“Thirsty, darling?”</i> she purrs, her dark lips smiling broadly. <i>“You know you’re welcome to as much as you’d like.”</i>");
 	output("\n\nOne of her arms reaches down and runs her black-plated fingers around her nipple, pinching herself just hard enough to draw out a tiny trickle of her golden nectar. Your eyes widen as the smell of sweet honey hits you, and you find yourself leaning closer and closer into the swollen tit until your lips brush against the dark plane of Asennia’s tit, smearing the pre-trickle of honey across your [pc.lips].");
@@ -375,6 +411,7 @@ public function drinkHoneySmallerBoobsAfternoonWithADongle():void
 {
 	clearOutput();
 	showAsennia();
+	author("Savin");
 	var x:int = pc.cockThatFits(500);
 	if(x < 0) x = pc.smallestCockIndex();
 	output("Asennia’s breasts aren’t what you could ever call small - she’s still rocking tits easily in the F or G-cup range, but they look much more natural on her plated, insectile frame. You can still see the faint glow of liquid nectar sloshing just under the skin, making her chest seem like the living larder that it is. Every breath makes her bare, ample chest quake enticingly. Your eyes fix on her jiggling titflesh, and you feel the hot tendrils of arousal start snaking through you. Your [pc.cock " + x + "] starts to stiffen just from watching her work, and you find yourself needing to feel those magnificent breasts in your hands - and her teat in your mouth.");
@@ -456,6 +493,7 @@ public function drinkHoneyAfternoonWithNoBoner():void
 {
 	clearOutput();
 	showAsennia();
+	author("Savin");
 	output("Asennia’s breasts aren’t what you could ever call small - she’s still rocking tits easily in the F or G-cup range, but they look much more natural on her plated, insectile frame. You can still see the faint glow of liquid nectar sloshing just under the skin, making her chest seem like the living larder that it is. Every breath makes her bare, ample chest quake enticingly. Your eyes fix on her jiggling titflesh, and you feel the hot tendrils of arousal start snaking through you.");
 	output("\n\nChewing on your [pc.lip], you start to sidle forward, feeling drawn into the gravity of Asennia’s full breasts. She smiles warmly as you approach, patting the tops of her breasts and leaning back from the stall. Her mein is inviting, urging you to come crawl into her lap and suck her dry. You do so eagerly, quickly swiping your Codex across her pay station and hopping onto the counter in Asennia’s wake.");
 	output("\n\n<i>“I hope you came thirsty, love,”</i> she purrs, using two arms to heft up her breasts for you and the others to draw you in, wrapping around your [pc.hips].");

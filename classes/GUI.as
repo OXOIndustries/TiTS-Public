@@ -930,13 +930,20 @@
 			{
 				throw new Error("OutputCodex called whilst the currently active module was not the CodexDisplay!");
 			}
-			
-			trace("Output!");
 		}
 		
 		public function clearOutputCodex():void
 		{
+			resetCodexContentPosition();
 			outputCodexBuffer = "\n";
+		}
+		
+		public function resetCodexContentPosition():void
+		{
+			if (_currentModule is CodexModule)
+			{
+				(_currentModule as CodexModule).resetContentScroll();
+			}
 		}
 		
 		public function getGuiPlayerNameText():String
@@ -1092,7 +1099,6 @@
 			}
 			
 			menuButtonsOff();
-			appearanceOff();
 			
 			_buttonTray.hideKeyBinds();
 			
@@ -1106,6 +1112,10 @@
 			if (_currentModule is GameTextModule)
 			{
 				(_currentModule as GameTextModule).hideInput();
+			}
+			else
+			{
+				_availableModules["PrimaryOutput"].hideInput();
 			}
 			
 			menuButtonsOn();
@@ -1124,6 +1134,26 @@
 			_leftSideBar.menuButton.Deactivate();
 		}
 		
+		public function perksOff():void
+		{
+			_leftSideBar.perksButton.Deactivate();
+		}
+		
+		public function perksOn():void
+		{
+			_leftSideBar.perksButton.Activate();
+		}
+		
+		public function messengerOff():void
+		{
+			_leftSideBar.mailsButton.Deactivate();
+		}
+		
+		public function messengerOn():void
+		{
+			_leftSideBar.mailsButton.Activate();
+		}
+		
 		public function appearanceOn():void 
 		{
 			_leftSideBar.appearanceButton.Activate();
@@ -1138,6 +1168,11 @@
 		{
 			_leftSideBar.dataButton.Activate();
 		}
+		
+		public function dataOff():void 
+		{
+			_leftSideBar.dataButton.Deactivate();
+		}
 
 		public function menuButtonsOn():void 
 		{
@@ -1150,6 +1185,10 @@
 			{
 				mainMenuButtonOn();
 				dataOn();
+				/*
+				perksOn();
+				messengerOn();
+				*/
 			}
 		}
 		
@@ -1157,6 +1196,11 @@
 		{
 			appearanceOff();
 			mainMenuButtonOff();
+			dataOff();
+			/*
+			perksOff();
+			messengerOff();
+			*/
 		}
 		
 		public function hideData():void 

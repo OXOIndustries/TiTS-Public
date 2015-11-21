@@ -52,7 +52,7 @@
 			this.fortification = 0;
 			
 			resistances = new TypeCollection();
-			resistances.electric.resistanceValue = 100.0;
+			resistances.electric.resistanceValue = 60.0;
 			
 			this.version = _latestVersion;
 		}	

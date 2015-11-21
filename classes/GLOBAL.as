@@ -66,6 +66,7 @@
 		public static const FLAG_RIBBED:int									= 33;
 		public static const FLAG_CHITINOUS:int								= 34;
 		public static const FLAG_FEATHERED:int								= 35;
+		public static const FLAG_DOUBLE_HEADED:int								= 36;
 		
 		public static const FLAG_NAMES:Array = [
 			"OFFSET -- INVALID",
@@ -104,6 +105,7 @@
 			"Ribbed",
 			"Chitinous",
 			"Feathered",
+			"Double Headed",
 		];
 		
 		public static const VALID_SKIN_FLAGS:Array = [
@@ -135,6 +137,7 @@
 		public static const TYPE_DEMONIC:int                                = 15;
 		public static const TYPE_GOOEY:int                                  = 16;
 		public static const TYPE_KANGAROO:int                               = 17;
+		public static const TYPE_GABILANI:int                               = 18;
 		public static const TYPE_TANUKI:int                                 = 24; //Changed from 18 to 24 soz is the same as kui-tan
 		public static const TYPE_SHARK:int                                  = 19;
 		public static const TYPE_SIREN:int                                  = 20;
@@ -196,7 +199,7 @@
 			"Demonic",
 			"Gooey",
 			"Kangaroo",
-			"UNUSED",
+			"Gabilani",
 			"Shark",
 			"Siren",
 			"Deer",
@@ -262,7 +265,8 @@
 			TYPE_CANINE,
 			TYPE_PANDA,
 			TYPE_BADGER,
-			TYPE_KANGAROO,			
+			TYPE_KANGAROO,
+			TYPE_GABILANI,
 		];
 		
 		public static const VALID_FACE_FLAGS:Array = [
@@ -281,6 +285,7 @@
 			TYPE_LEITHAN,
 			TYPE_BEE,
 			TYPE_MYR,
+			TYPE_GABILANI,
 		];
 		
 		public static const VALID_TONGUE_TYPES:Array = [
@@ -329,6 +334,7 @@
 			TYPE_RASKVEL,
 			TYPE_VANAE,
 			TYPE_SYLVAN,
+			TYPE_GABILANI,
 		];
 		
 		public static const VALID_ARM_TYPES:Array = [
@@ -578,6 +584,8 @@
 		public static const FLUID_TYPE_VANAE_HUNTRESS_MILK:int					= 11;
 		public static const FLUID_TYPE_NECTAR:int 								= 12;
 		public static const FLUID_TYPE_LEITHAN_MILK:int							= 13;
+		public static const FLUID_TYPE_GABILANI_CUM:int					= 14;
+		public static const FLUID_TYPE_GABILANI_GIRLCUM:int					= 15;
 		public static const FLUID_TYPE_VANILLA:int								= 16;
 		public static const FLUID_TYPE_NYREA_CUM:int							= 17;
 		
@@ -587,7 +595,7 @@
 			"Cum",
 			"Oil",
 			"Milksap",
-			"Girlcum",
+			"Girl Cum",
 			"Cumsap",
 			"Chocolate Milk",
 			"Strawberry Milk",
@@ -596,6 +604,8 @@
 			"Vanae Huntress Milk",
 			"Nectar",
 			"Leithan Milk",
+			"Gabilani Cum",
+			"Gabilani Girl Cum",
 			"Vanilla",
 			"Nyrea Cum",
 		];
@@ -608,12 +618,14 @@
 			FLUID_TYPE_MILK,
 			FLUID_TYPE_VANILLA,
 			FLUID_TYPE_NYREA_CUM,
+			FLUID_TYPE_GABILANI_CUM,
 		];
 		
 		public static const VALID_GIRLCUM_TYPES:Array = [
 			FLUID_TYPE_GIRLCUM,
 			FLUID_TYPE_HONEY,
 			FLUID_TYPE_VANILLA,
+			FLUID_TYPE_GABILANI_GIRLCUM,
 		];
 		
 		public static const VALID_MILK_TYPES:Array = [
@@ -627,6 +639,8 @@
 			FLUID_TYPE_NECTAR,
 			FLUID_TYPE_LEITHAN_MILK,
 			FLUID_TYPE_VANILLA,
+			FLUID_TYPE_CUM,
+			FLUID_TYPE_GIRLCUM,
 		];
 		
 		// HAIRTYPES
@@ -683,6 +697,11 @@
 			TYPE_SAURIAN,
 			TYPE_SYNTHETIC,
 			TYPE_NYREA,
+			TYPE_DAYNAR,
+			TYPE_SYDIAN,
+			TYPE_COCKVINE,
+			TYPE_INHUMAN,
+			TYPE_GABILANI,
 		];
 		
 		public static const VALID_COCK_FLAGS:Array = [
@@ -702,6 +721,8 @@
 			FLAG_APHRODISIAC_LACED,
 			FLAG_STICKY,
 			FLAG_OVIPOSITOR,
+			FLAG_RIBBED,
+			FLAG_DOUBLE_HEADED,
 		];
 		
 		public static const VALID_VAGINA_TYPES:Array = [
@@ -717,6 +738,7 @@
 			TYPE_CANINE,
 			TYPE_GOOEY,
 			TYPE_SIREN,
+			TYPE_GABILANI,
 		];
 		
 		// As far as I can tell, at time of writing there are no flags currently used/assigned to vaginas

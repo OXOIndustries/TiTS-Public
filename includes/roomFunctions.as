@@ -42,7 +42,24 @@ public function mhengaShipHangarFunc():Boolean
 	
 	return false;
 }
-
+public function puntToShip():Boolean
+{
+	clearOutput();
+	if(currentLocation == "POESPACE" && flags["POE_A_DISABLED"] == undefined)
+	{
+		landingOnPoeA();
+		return true;
+	}
+	output("You really don't want to step out into the cold void of space. Maybe you should land somewhere?");
+	currentLocation = "SHIP INTERIOR";
+	var map:* = mapper.generateMap(currentLocation);
+	this.userInterface.setMapData(map);
+	showName("SHIP\nINTERIOR");
+	processTime(1);
+	clearMenu();
+	addButton(14,"Back",mainGameMenu);
+	return true;
+}
 public function xenogenOutsideBlurb():Boolean
 {
 	variableRoomUpdateCheck();
@@ -66,7 +83,7 @@ public function hangarBonus():Boolean
 	
 	if(currentLocation == "LIFT: MERCHANT DECK") {
 		output("\n\n<b>You are currently on the merchant deck.</b>");
-		addButton(5,"Down",liftMove, "TAVROS LIFT");
+		addButton(7,"Down",liftMove, "TAVROS LIFT");
 	}
 	else if(currentLocation == "TAVROS LIFT") {
 		output("\n\n<b>You are currently on the hangar deck.</b>");
@@ -86,23 +103,25 @@ public function tavrosHangarStuff():Boolean
 		output("\n\nVahn's around here somewhere, if you want to look for him.");
 		addButton(0,"Vahn",VahnTheMechanic);
 	}
-	if (flags["FALL OF THE PHOENIX STATUS"] == 1)
-	{
-		output("\n\n<i>The Phoenix</i> is nearby, only a stones-throw away from your own ship, docked in a much smaller neighboring hangar.");
-		
-		if (flags["SAENDRA TALK PHOENIX STATUS"] != undefined)
-			addButton(7, "The Phoenix", move, "PHOENIX RECROOM");
-	}
 	//Celise In Tavros
 	if(celiseIsFollower() && !celiseIsCrew())
 	{
 		output("\n\nCelise is lounging here, just as green as ever and chatting amicably with one of the station's mechanics.");
-		addButton(5,"Celise",approachNonCrewCelise);
+		addButton(1,"Celise",approachNonCrewCelise);
 	}
 	if (bessAtTavros())
 	{
 		output("\n\n[bess.name] is here, waiting around and generally staying out of the way as best [bess.heShe] can.");
-		addButton(6, bess.short, approachBessAtTavros);
+		addButton(2, bess.short, approachBessAtTavros);
+	}
+	if (flags["FALL OF THE PHOENIX STATUS"] == 1)
+	{
+		output("\n\n<i>The Phoenix</i> is nearby, only a stones-throw away from your own ship, docked in a much smaller neighboring hangar.");
+		
+		if (flags["SAENDRA PHOENIX AVAILABLE"] != undefined)
+			addButton(7, "The Phoenix", move, "PHOENIX RECROOM");
+		else
+			addDisabledButton(7, "The Phoenix", "The Phoenix", "This ship is locked and cannot be entered.");
 	}
 	return false;
 }
@@ -297,21 +316,22 @@ public function barBackRoomBonus():Boolean
 }
 
 public function anonsBarAddendums():Boolean {
-	//Button #7
-	if (saendraBarAddendum())
+	if (saendraBarAddendum(3))
 	{
 		return true;
 	}
-	//Button #0
-	anonsBarWaitressAddendum();
-	//Button #1
-	alexManHermIntro();
-	//Button #5
-	ShellyBlurb();
-	//#8
-	annoAtAnonsAddendum();
-	//#6 it is!
-	roamingBarEncounter(9);
+	anonsBarWaitressAddendum(0);
+	alexManHermIntro(1);
+	ShellyBlurb(2);
+	annoAtAnonsAddendum(4);
+	roamingBarEncounter(5);
+	return false;
+}
+
+public function anonsBoardBonus():Boolean
+{
+	//If PC has done Fools Rush In: Part 2 (ie, helping Saendra rescue her friend), add [Call Girl] to Anon's Bar.
+	zilCallGirlAddendum(0);
 	return false;
 }
 
@@ -414,18 +434,18 @@ public function newTexasRoadFirstTime():Boolean
 
 public function manMilkerRoomBonusFunc():Boolean
 {
-    if (flags["MILK_BARN_COCKMILKER_BROKEN"] != undefined || flags["MILK_BARN_COCKMILKER_REPAIR_DAYS"] != undefined)
-    {
-        if(flags["MILK_BARN_COCKMILKER_BROKEN"] != undefined)
-        {
-            if(flags["MILK_BARN_COCKMILKER_SCANNED"] == undefined) addButton(0,"Fix Milker",yesFixDaMilkar,true,"Repair Milker","The male milker looks to be broken from your previous use... It'll need to be repaired before you can use it again.");
-            else addButton(0,"Fix Milker",yesFixDaMilkar,false,"Repair Milker","The male milker looks to be broken from your previous use... You'll need to pay for the repairs before you can use it again.");
-        }
-        else if (flags["MILK_BARN_COCKMILKER_REPAIR_DAYS"] > 0) addDisabledButton(0,"Use Milker","OUT OF ORDER","The machine is currently being repaired. You'll have to wait for it to be fixed first!");
-        else addButton(0,"Use Milker",useDaMilkar,undefined,"Use Milker","It looks like the male milker has finally been fixed. It looks good as new!");
-    }
-    else addButton(0,"Use Milker",useDaMilkar,undefined,"Use Milker","Use the male milker. It looks to function based off of prostate stimulation.");
-    return false;
+	if (flags["MILK_BARN_COCKMILKER_BROKEN"] != undefined || flags["MILK_BARN_COCKMILKER_REPAIR_DAYS"] != undefined)
+	{
+		if(flags["MILK_BARN_COCKMILKER_BROKEN"] != undefined)
+		{
+			if(flags["MILK_BARN_COCKMILKER_SCANNED"] == undefined) addButton(0,"Fix Milker",yesFixDaMilkar,true,"Repair Milker","The male milker looks to be broken from your previous use... It'll need to be repaired before you can use it again.");
+			else addButton(0,"Fix Milker",yesFixDaMilkar,false,"Repair Milker","The male milker looks to be broken from your previous use... You'll need to pay for the repairs before you can use it again.");
+		}
+		else if (flags["MILK_BARN_COCKMILKER_REPAIR_DAYS"] > 0) addDisabledButton(0,"Use Milker","OUT OF ORDER","The machine is currently being repaired. You'll have to wait for it to be fixed first!");
+		else addButton(0,"Use Milker",useDaMilkar,undefined,"Use Milker","It looks like the male milker has finally been fixed. It looks good as new!");
+	}
+	else addButton(0,"Use Milker",useDaMilkar,undefined,"Use Milker","Use the male milker. It looks to function based off of prostate stimulation.");
+	return false;
 }
 
 public function NTGiftShopBonusFunc():Boolean
@@ -655,7 +675,7 @@ public function mhengaTaxiToXenogen():void
 	output("\n\nNot long after, you arrive at the camp, and disembark into the jungle. The hover-car zips away a minute later, leaving you behind.");
 	currentLocation = "ABANDONED CAMP";
 	var map:* = mapper.generateMap(currentLocation);
-  	this.userInterface.setMapData(map);
+	this.userInterface.setMapData(map);
 	processTime(15);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -753,7 +773,7 @@ public function tarkusFlyTo(arg:String):void
 	pc.credits -= 80;
 	currentLocation = arg;
 	var map:* = mapper.generateMap(currentLocation);
-  	this.userInterface.setMapData(map);
+	this.userInterface.setMapData(map);
 	processTime(15);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

@@ -15,6 +15,7 @@
 	import classes.Items.Miscellaneous.Picardine;
 	import classes.Items.Miscellaneous.Kirkite;
 	import classes.Items.Miscellaneous.Satyrite;
+	import classes.Items.Drinks.RedMyrVenom;
 	
 	import classes.GLOBAL;
 	
@@ -205,6 +206,7 @@
 			else if(rand(20) == 0) nyrea.inventory.push(new Picardine());
 			else if (rand(20) == 0)	nyrea.inventory.push(nyrea.rangedWeapon.makeCopy());
 			else if (rand(20) == 0) nyrea.inventory.push(nyrea.meleeWeapon.makeCopy());
+			else if(rand(3) == 0) nyrea.inventory.push(new RedMyrVenom());
 			kGAMECLASS.nyreaHeader(1,"FIGHT:");
 			kGAMECLASS.foes.push(nyrea);
 		}
