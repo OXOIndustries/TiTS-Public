@@ -814,6 +814,7 @@ public function hasShipStorage():Boolean
 	if (flags["SHIP_STORAGE_WARDROBE"] == undefined) flags["SHIP_STORAGE_WARDROBE"] = 10;
 	if (flags["SHIP_STORAGE_EQUIPMENT"] == undefined) flags["SHIP_STORAGE_EQUIPMENT"] = 10;
 	if (flags["SHIP_STORAGE_CONSUMABLES"] == undefined) flags["SHIP_STORAGE_CONSUMABLES"] = 10;
+	if (flags["SHIP_STORAGE_VALUABLES"] == undefined) flags["SHIP_STORAGE_VALUABLES"] = 10;
 	
 	return true;
 }
@@ -845,7 +846,14 @@ public function shipStorageMenuRoot():void
 		addButton(2, "Consumables", shipStorageMenuType, "CONSUMABLES");
 	}
 	else addDisabledButton(2, "Consumables");
-
+	
+	if (flags["SHIP_STORAGE_VALUABLES"] != undefined)
+	{
+		output(" Adjacent to that is a small vault used to store valuable or important items.");
+		addButton(3, "Valuables", shipStorageMenuType, "VALUABLES");
+	}
+	else addDisabledButton(3, "Valuables");
+	
 	if (kGAMECLASS.flags["DONG_DESIGNER_INSTALLED"] == 1)
 	{
 		output("\n\nNearby, the TamaniCorp Dong Designer hums with life.");
@@ -948,6 +956,13 @@ public function getListOfType(from:Array, type:String):Array
 				
 			case "CONSUMABLES":
 				if (InCollection(item.type, GLOBAL.PILL, GLOBAL.FOOD, GLOBAL.POTION, GLOBAL.DRUG, GLOBAL.EXPLOSIVECONSUMABLE))
+				{
+					items.push(item);
+				}
+				break;
+				
+			case "VALUABLES":
+				if (InCollection(item.type, GLOBAL.GEM, GLOBAL.QUESTITEM))
 				{
 					items.push(item);
 				}

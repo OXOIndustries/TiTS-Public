@@ -56,7 +56,7 @@ public function appearance(target:Creature):void {
 			else if(target.exhibitionism() >= 50) output2(" Maybe you're some kind of nudist, but it's not like you mind being naked anyway.");
 			else if(target.exhibitionism() >= 33) output2(" It's okay to show some nudity once in a while, right?");
 			else if(target.exhibitionism() >= 20) output2(" If anyone sees you this way, you can't help but be aroused a little.");
-			else if(target.exhibitionism() == 10) output2(" If anyone sees you now, they're sure to think you're a nudist...");
+			else if(target.exhibitionism() >= 10) output2(" If anyone sees you now, they're sure to think you're a nudist...");
 			else output2(" If anyone sees you now, they're sure to think you're a nudist!");
 		}
 
@@ -516,7 +516,7 @@ public function appearance(target:Creature):void {
 		//Done with head bits. Move on to body stuff
 		//Horse legType, other legType texts appear lower
 		if(target.legType == GLOBAL.TYPE_MLP) output2(" From the waist down, you have an incredibly cute and cartoonish parody of a horse's body, with all four legs ending in flat, rounded feet.");
-		else if(target.legType == GLOBAL.TYPE_LIZAN && target.legCount == 6) output2(" From the waist down, you have a powerful, six-legged body that looks like a crossbreed of a lizard and a horse.")
+		else if(target.legType == GLOBAL.TYPE_LIZAN && target.legCount == 6) output2(" From the waist down, you have a powerful, six-legged body that looks like a crossbreed of a lizard and a horse.");
 		else if(target.isTaur())
 		{
 			output2(" From the waist down, you have a bestial, " + num2Text(target.legCount) + "-legged form vaguely like that of a");
@@ -886,21 +886,21 @@ public function appearance(target:Creature):void {
 							output2(" Your");
 							if (bothFeet) output2(" [target.feet] appear");
 							else output2(" [target.foot] appears");
-							output2(" to be slightly distended.")
+							output2(" to be slightly distended.");
 						}
 						else if (feedVal < 13)
 						{
 							output2(" Your");
 							if (bothFeet) output2(" [target.feet] appear");
 							else output2(" [target.foot] appears");
-							output2(" puffy and inflated.")
+							output2(" puffy and inflated.");
 						}
 						else
 						{
 							output2(" Your");
 							if (bothFeet) output2(" [target.feet] appear");
 							else output2(" [target.foot] appears");
-							output2(" unusually large and somewhat swollen, almost engorged.")
+							output2(" unusually large and somewhat swollen, almost engorged.");
 						}
 					}
 				}
@@ -926,8 +926,8 @@ public function appearance(target:Creature):void {
 		//Display belly size
 		if (tempBelly <= 5)
 		{
-			if(target.tone >= 75) output2("Your [target.belly] is rock-hard, shaped by a good diet, steady conditioning, or both.") 
-			else if(target.tone >= 50) output2("Your [target.belly] is fairly well-toned.")
+			if(target.tone >= 75) output2("Your [target.belly] is rock-hard, shaped by a good diet, steady conditioning, or both.");
+			else if(target.tone >= 50) output2("Your [target.belly] is fairly well-toned.");
 			else output2("Your [target.belly] is nice and smooth.");
 		}
 		else if (tempBelly <= 10) output2("Your [target.belly] is fairly average in appearance.");
@@ -1187,7 +1187,7 @@ public function appearance(target:Creature):void {
 			{
 				if(target.milkFullness < 50) output2(" Your [target.fullChest] are producing [target.milk] but are nowhere near full at the moment.");
 				else if(target.milkFullness < 75) output2(" Your [target.fullChest] have a noticable amount of [target.milk] inside them now. Before long, they'll start swelling.");
-				else if(target.milkFullness < 100) output2(" Your [target.fullChest] are fairly full of [target.milk] and noticeably swollen.")
+				else if(target.milkFullness < 100) output2(" Your [target.fullChest] are fairly full of [target.milk] and noticeably swollen.");
 				else if(target.milkFullness < 150) output2(" Your [target.fullChest] are sore and sensitive from being so stuffed with [target.milk]. You should release the pressure soon.");
 				else if(target.milkFullness < 200)
 				{
@@ -1354,13 +1354,23 @@ public function appearance(target:Creature):void {
 					else if (target.statusEffectv3("Mimbrane Pussy") < 13)
 					{
 						output2("Your pussy appears noticably inflated");
-						if (target.isCrotchGarbed()) output2(" and creates a slight bulge beneath your armor");
-						output2(". ")
+						if (target.isCrotchGarbed())
+						{
+							output2(" and creates a slight bulge beneath your");
+							if (target.armor.type == GLOBAL.ARMOR) output2(" armor");
+							else output2(" clothing");
+						}
+						output2(". ");
 					}
 					else
 					{
 						output2("Your pussy appears delightfully plump");
-						if (target.isCrotchGarbed()) output2(", creating an undeniable bulge in your armor");
+						if (target.isCrotchGarbed())
+						{
+							output2(", creating an undeniable bulge in your");
+							if (target.armor.type == GLOBAL.ARMOR) output2(" armor");
+							else output2(" clothing");
+						}
 						output2(". ");
 					}
 				}
@@ -1368,42 +1378,25 @@ public function appearance(target:Creature):void {
 				if(target.libido() < 50 && target.lust() < 50) //not particularly horny
 				{
 					//Wetness
-					if(target.vaginas[0].wetness() < 2) output2("No moisture presently escapes ")
+					if(target.vaginas[0].wetness() < 2) output2("No moisture presently escapes ");
 					else if(target.vaginas[0].wetness() < 4) output2("Moisture gleams in ");
-					else if(target.vaginas[0].wetness() >= 4)
-					{
-						output2("Occasional beads of [target.girlCum] drip from ");
-					}				
+					else if(target.vaginas[0].wetness() >= 4) output2("Occasional beads of [target.girlCum] drip from ");
 				}
 				else if(target.libido() < 80 && target.lust() < 80) //kinda horny
 				{
 					//Wetness
 					if(target.vaginas[0].wetness() < 1) {}
 					else if(target.vaginas[0].wetness() < 2) output2("Moisture gleams in ");
-					else if(target.vaginas[0].wetness() < 4) 
-					{
-						output2("Occasional beads of [target.girlCum] drip from ");
-					}
-					else {
-						output2("Thin streams of [target.girlCum] occasionally dribble from ");
-					}
+					else if(target.vaginas[0].wetness() < 4) output2("Occasional beads of [target.girlCum] drip from ");
+					else output2("Thin streams of [target.girlCum] occasionally dribble from ");
 				}
 				else //WTF horny!
 				{
 					//Wetness
 					if(target.vaginas[0].wetness() < 1) {}
-					else if(target.vaginas[0].wetness() < 2) 
-					{
-						output2("Occasional beads of [target.girlCum] drip from ");
-					}
-					else if(target.vaginas[0].wetness() < 4)
-					{
-						output2("Thin streams of [target.girlCum] occasionally dribble from ");
-					}
-					else 
-					{
-						output2("Thick streams of [target.girlCum] drool constantly from ");
-					}				
+					else if(target.vaginas[0].wetness() < 2) output2("Occasional beads of [target.girlCum] drip from ");
+					else if(target.vaginas[0].wetness() < 4) output2("Thin streams of [target.girlCum] occasionally dribble from ");
+					else output2("Thick streams of [target.girlCum] drool constantly from ");
 				}
 				//Different description based on vag looseness
 				if(target.vaginas[0].looseness() < 2) output2("your " + target.vaginasDescript() + ".");
@@ -1470,18 +1463,21 @@ public function appearance(target:Creature):void {
 						if(target.vaginas[temp].looseness() < 2) output2(", its lips primly pressed together as if waiting for something");
 						else if(target.vaginas[temp].looseness() < 4) output2(", its lips slightly parted");
 						else output2(", its lips loosened by frequent fucking");
-						output2(".")
-						//Zil flavor!
-						if(target.vaginas[temp].type == GLOBAL.TYPE_BEE && target.vaginas[temp].vaginaColor == "black and gold") {
-							output2(" The exterior folds are a dusky black, while the inner lining of your tunnel is a glorious golden hue.");
-						}
-						//Naleen flavor
-						if(target.vaginas[temp].type == GLOBAL.TYPE_NAGA) {
-							output2(" The exterior lips are subtle and narrow, making your lengthy entrance a little more discrete.");
-						}
-						//LEITHAN FLAVOR
-						if(target.vaginas[temp].type == GLOBAL.TYPE_LEITHAN || target.vaginas[temp].type == GLOBAL.TYPE_EQUINE) {
-							output2(" The exterior lips are fat and swollen. They could easily be described as rubbery, and they often shine with a wet sheen, regardless of your arousal. When you're aroused, you're told that they wink.");
+						output2(".");
+						if(!target.matchedVaginas())
+						{
+							//Zil flavor!
+							if(target.vaginas[temp].type == GLOBAL.TYPE_BEE && target.vaginas[temp].vaginaColor == "black and gold") {
+								output2(" The exterior folds are a dusky black, while the inner lining of your tunnel is a glorious golden hue.");
+							}
+							//Naleen flavor
+							if(target.vaginas[temp].type == GLOBAL.TYPE_NAGA) {
+								output2(" The exterior lips are subtle and narrow, making your lengthy entrance a little more discrete.");
+							}
+							//LEITHAN FLAVOR
+							if(target.vaginas[temp].type == GLOBAL.TYPE_LEITHAN || target.vaginas[temp].type == GLOBAL.TYPE_EQUINE) {
+								output2(" The exterior lips are fat and swollen. They could easily be described as rubbery, and they often shine with a wet sheen, regardless of your arousal. When you're aroused, you're told that they wink.");
+							}
 						}
 					}
 					//Ovipositor
@@ -1498,17 +1494,42 @@ public function appearance(target:Creature):void {
 						else if (target.statusEffectv3("Mimbrane Pussy") < 13)
 						{
 							output2(" Your pussy appears noticably inflated");
-							if (target.isCrotchGarbed()) output2(" and creates a slight bulge beneath your armor");
-							output2(".")
+							if (target.isCrotchGarbed())
+							{
+								output2(" and creates a slight bulge beneath your");
+								if (target.armor.type == GLOBAL.ARMOR) output2(" armor");
+								else output2(" clothing");
+							}
+							output2(".");
 						}
 						else
 						{
 							output2(" Your pussy appears delightfully plump");
-							if (target.isCrotchGarbed()) output2(", creating an undeniable bulge in your armor");
+							if (target.isCrotchGarbed())
+							{
+								output2(", creating an undeniable bulge in your");
+								if (target.armor.type == GLOBAL.ARMOR) output2(" armor");
+								else output2(" clothing");
+							}
 							output2(".");
 						}
 					}
 					temp++;
+				}
+				if(target.matchedVaginas())
+				{
+					//Zil flavor!
+					if(target.vaginas[0].type == GLOBAL.TYPE_BEE && target.vaginas[0].vaginaColor == "black and gold") {
+						output2("\nEach vagina's exterior folds are a dusky black, while the inner linings of your tunnels are a glorious golden hue.");
+					}
+					//Naleen flavor
+					if(target.vaginas[0].type == GLOBAL.TYPE_NAGA) {
+						output2("\nEach vagina's exterior lips are subtle and narrow, making your lengthy entrances a little more discrete.");
+					}
+					//LEITHAN FLAVOR
+					if(target.vaginas[0].type == GLOBAL.TYPE_LEITHAN || target.vaginas[0].type == GLOBAL.TYPE_EQUINE) {
+						output2("\nEach vagina's exterior lips are fat and swollen. They could easily be described as rubbery, and they often shine with a wet sheen, regardless of your arousal. When you're aroused, you're told that they wink.");
+					}
 				}
 			}
 		}
@@ -1613,7 +1634,7 @@ public function appearance(target:Creature):void {
 public function selectGenderPref():void
 {
 	clearOutput2();
-	output2("Your current preferred gender is set to <b>");
+	output2("Your current preferred gender is set to ");
 	
 	clearGhostMenu();
 	
@@ -1623,19 +1644,19 @@ public function selectGenderPref():void
 	
 	if (pc.hasStatusEffect("Force Fem Gender"))
 	{
-		output2("Female</b>");
+		output2("<b>Female</b>.");
 		output2("\n\nNo matter your femininity value, genitalia presence, or any other contributing factors, where possible you will be considered female.");
 		addDisabledGhostButton(0, "Female");
 	}
 	else if (pc.hasStatusEffect("Force Male Gender"))
 	{
-		output2("Male</b>");
+		output2("<b>Male</b>.");
 		output2("\n\nNo matter your masculinity value, genitalia presence, or any other contributing factors, where possible you will be considered male.");
 		addDisabledGhostButton(1, "Male");
 	}
 	else
 	{
-		output2("Automatic</b>");
+		output2("<b>Automatic</b>.");
 		output2("\n\nPronouns used for your character will be based on contributions from a number of appearance properties, switching between male & female pronouns as appropriate.");
 		addDisabledGhostButton(2, "Auto");
 	}
