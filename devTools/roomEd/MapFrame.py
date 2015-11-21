@@ -1,5 +1,5 @@
 #!/SOMETHING SOMETHING SOMETHING python
-# -*- coding: utf-8 -*- 
+# -*- coding: utf-8 -*-
 
 import wx
 import itertools
@@ -7,11 +7,54 @@ import mapTools
 import os
 import time
 
+# Helpful regex (for Atom):
+# \t+public static const ([A-Z_]+):int.*$
+# \t$1 = 'GLOBAL.$1'
+class RoomFlags:
+	INDOOR = 'GLOBAL.INDOOR'
+	OUTDOOR = 'GLOBAL.OUTDOOR'
+	BED = 'GLOBAL.BED'
+	COMMERCE = 'GLOBAL.COMMERCE'
+	BAR = 'GLOBAL.BAR'
+	NPC = 'GLOBAL.NPC'
+	MEDICAL = 'GLOBAL.MEDICAL'
+	SHIPHANGAR = 'GLOBAL.SHIPHANGAR'
+	QUEST = 'GLOBAL.QUEST'
+	OBJECTIVE = 'GLOBAL.OBJECTIVE'
+	HAZARD = 'GLOBAL.HAZARD'
+	NOFAP = 'GLOBAL.NOFAP'
+	LIFTUP = 'GLOBAL.LIFTUP'
+	LIFTDOWN = 'GLOBAL.LIFTDOWN'
+	TAXI = 'GLOBAL.TAXI'
+	PUBLIC = 'GLOBAL.PUBLIC'
+	PRIVATE = 'GLOBAL.PRIVATE'
+	FAPPING_ILLEGAL = 'GLOBAL.FAPPING_ILLEGAL'
+	NUDITY_ILLEGAL = 'GLOBAL.NUDITY_ILLEGAL'
+	CAVE = 'GLOBAL.CAVE'
+	FOREST = 'GLOBAL.FOREST'
+	JUNGLE = 'GLOBAL.JUNGLE'
+	DESERT = 'GLOBAL.DESERT'
+	PLANE = 'GLOBAL.PLANE'
+	PLANT_BULB = 'GLOBAL.PLANT_BULB'
+	LIFT = 'GLOBAL.LIFT'
+
+# \t+public static var g([A-Z_]+)Room(Flag)?Colour:uint\s+= 0x([A-F0-9]{2})([A-F0-9]{2})([A-F0-9]{2});.*$
+# \t$1 = wx.Colour(0x$3, 0x$4, 0x$5) # 0x$3$4$5
+class RoomColors:
+	PCLocation = wx.Colour(0x8D, 0x31, 0xB0) # 0x8D31B0
+	Fallback = wx.Colour(0x00, 0x00, 0x00) # 0x000000
+	Indoor = wx.Colour(0x33, 0x3E, 0x52) # 0x333E52
+	Outdoor = wx.Colour(0x77, 0x79, 0x7A) # 0x77797A
+	Cave = wx.Colour(0x33, 0x22, 0x25) # 0x332225
+	Desert = wx.Colour(0xD6, 0xBB, 0x8D) # 0xD6BB8D
+	Forest = wx.Colour(0x3F, 0x70, 0x4C) # 0x3F704C
+	Jungle = wx.Colour(0x18, 0x49, 0x25) # 0x184925
+
 class GridPanel(wx.Panel):
 
 		#Number of items in the color map LUT
 		#I'm pretty sure the actual cm library only uses 256, so settings above 256 have no benefit
-		
+
 	def __init__(self, parent, grandparent, **kwargs):
 
 		wx.Panel.__init__( self, parent, **kwargs )
@@ -33,14 +76,12 @@ class GridPanel(wx.Panel):
 		self.textColourWhite      = wx.Colour(255, 255, 255)
 		self.textColourBlack      = wx.Colour(0, 0, 0)
 
-		self.roomBrush            = wx.Brush(wx.Colour(0, 0, 150))
-		self.selRoomBrush         = wx.Brush(wx.Colour(150, 150, 250))
-		self.emptyRoomBrush       = wx.Brush(wx.Colour(240, 240, 240))
+		self.bgBrush              = wx.Brush(wx.Colour(0x3D, 0x51, 0x74)) # 0x3D5174
 		self.whiteBrush           = wx.Brush(wx.Colour(255, 255, 255))
 
-		
 		self.penBlack             = wx.Pen(wx.Colour(0, 0, 0, 0))
 		self.penRed               = wx.Pen(wx.Colour(255, 0, 0, 0))
+		self.penWhite             = wx.Pen(wx.Colour(255, 255, 255, 0))
 		self.drawnRoomCoords      = []
 		self.lastDrawPosition     = 0
 		print "Loading Map"
@@ -58,8 +99,8 @@ class GridPanel(wx.Panel):
 		for path in possiblePaths:
 			if os.path.exists(path):
 				paths.append(path)
-		print "Found roooms.as on path:", paths
-		
+		print "Found rooms.as on path:", paths
+
 		self.currentZ = 0
 		self.currentP = 0
 
@@ -76,10 +117,37 @@ class GridPanel(wx.Panel):
 		self.Bind(wx.EVT_LEFT_UP, self.OnLeftUp)
 		self.Bind(wx.EVT_MOTION, self.OnMotion)
 		self.Bind(wx.EVT_LEAVE_WINDOW, self.OnLeaveWindow)
-		
+
 		self.motionLoop = 0
 
 		self.lastClicked = [0, None]
+
+	# \t+[a-z ]+\(roomFlags & Mapper\.([a-z_]+)\)\s+{\s+tarSprite\.setColour\(UIStyleSettings\.gMap([a-zA-Z]+)ColourTransform\);\s+}
+	# \t\tif roomFlags & RoomFlag.$1:\n\t\t\tnew_color = RoomColors.$2
+	def setRoomColor(self,dc,room):
+		roomFlags = room.roomFlags
+		new_color = RoomColors.Fallback
+		if room.selected:
+			new_color = RoomColors.PCLocation
+		elif RoomFlags.CAVE in roomFlags:
+			new_color = RoomColors.Cave
+		elif RoomFlags.FOREST in roomFlags:
+			new_color = RoomColors.Forest
+		elif RoomFlags.JUNGLE in roomFlags:
+			new_color = RoomColors.Jungle
+		elif RoomFlags.DESERT in roomFlags:
+			new_color = RoomColors.Desert
+		elif RoomFlags.INDOOR in roomFlags:
+			new_color = RoomColors.Indoor
+		elif RoomFlags.OUTDOOR in roomFlags:
+			new_color = RoomColors.Outdoor
+
+		if RoomFlags.HAZARD in roomFlags:
+			dc.SetPen(wx.Pen(new_color, 1))
+			dc.SetBrush(wx.Brush(new_color, wx.BDIAGONAL_HATCH))
+		else:
+			dc.SetPen(self.penBlack)
+			dc.SetBrush(wx.Brush(new_color))
 
 	def changeZIndex(self, newZ):
 
@@ -100,7 +168,7 @@ class GridPanel(wx.Panel):
 			print "No rooms at that P index!"
 		self.clearRoomStates()
 		self.redraw()
-		
+
 	def increaseZIndex(self):
 		self.changeZIndex(self.currentZ+1)
 	def increasePIndex(self):
@@ -172,17 +240,17 @@ class GridPanel(wx.Panel):
 			else:
 				print "Click, ", time.time()-lastClickTime < 0.45, lastClickRoom == self.currentSelectedRoomCoords
 			self.lastClicked = [time.time(), self.currentSelectedRoomCoords]
-		
+
 	def onSize(self, event):
 		# re-create memory dc to fill window
 		w, h = self.GetClientSize()
 		self.mdc = wx.MemoryDC(wx.EmptyBitmap(w, h))
 
 		self.redraw()
-		
+
 	def onErase(self, event):
 		pass # don't do any erasing to avoid flicker
-	
+
 	def onPaint(self, event):
 		# just blit the memory dc
 		dc = wx.PaintDC(self)
@@ -190,7 +258,7 @@ class GridPanel(wx.Panel):
 			return
 		w, h = self.mdc.GetSize()
 		dc.Blit(0, 0, w, h, self.mdc, 0, 0)
-		
+
 	def redraw(self):
 		# do the actual drawing on the memory dc here
 		#print "Redraw!"
@@ -200,8 +268,8 @@ class GridPanel(wx.Panel):
 		#print "mapRoot", mapRoot
 		w, h = dc.GetSize()
 		dc.Clear()
-		
-		dc.SetBrush(self.roomBrush)
+
+		dc.SetBrush(self.bgBrush)
 		dc.SetPen(self.penBlack)
 		dc.SetTextForeground(self.textColourWhite)
 
@@ -211,7 +279,7 @@ class GridPanel(wx.Panel):
 		self.rootY = (h/2)+self.globalDrawOffset[1]
 
 		#print "Drawing at ", rootX, rootY
-		
+
 		# Track drawn rooms so we don't draw any more then once
 		self.drawnList = []
 		self.nonExistDrawnList = []
@@ -221,7 +289,7 @@ class GridPanel(wx.Panel):
 
 		# And then draw non-existent room positions where a room could be inserted
 		self.drawNonexistantRooms(dc)
-		
+
 		# Draw the various text overlays
 		# Lots of mode-settings, because I want black text on an opaque white background
 		bkGroundBrush = dc.GetBackground()
@@ -230,7 +298,7 @@ class GridPanel(wx.Panel):
 		dc.SetTextForeground(self.textColourBlack)
 		coordNote = "Current Viewport Center = X:%d, Y:%d" % (self.globalDrawOffset[0], self.globalDrawOffset[1])
 		dc.DrawText(coordNote, 7, h-20)
-		
+
 		if self.currentSelectedRoomCoords:
 			roomNote = "Selected Coordinates = %d, %d, %d, %d" % (self.currentSelectedRoomCoords)
 			dc.DrawText(roomNote, w/2-250, h-20)
@@ -243,9 +311,9 @@ class GridPanel(wx.Panel):
 		# Draw a cross-hair at the origin because it helped
 		gdoX = self.rootX
 		gdoY = self.rootY
-		crossHairLines = [[gdoX+7, gdoY, gdoX-7, gdoY], 
+		crossHairLines = [[gdoX+7, gdoY, gdoX-7, gdoY],
 						  [gdoX, gdoY+7, gdoX, gdoY-7],
-						  [gdoX+7, gdoY+7, gdoX-7, gdoY-7], 
+						  [gdoX+7, gdoY+7, gdoX-7, gdoY-7],
 						  [gdoX-7, gdoY+7, gdoX+7, gdoY-7]]
 		dc.DrawLineList(crossHairLines, self.penRed)
 		#print incH, incW
@@ -281,10 +349,15 @@ class GridPanel(wx.Panel):
 			self.handleRoom(dc, self.mapper.mapDict[room.game_eastExit])
 
 	def drawRoom(self, dc, x, y, room):
+		self.setRoomColor(dc,room)
+		'''
 		if room.selected:
 			dc.SetBrush(self.selRoomBrush)
+		elif room.game_runOnEnter:
+			dc.SetBrush(self.contentRoomBrush)
 		else:
 			dc.SetBrush(self.roomBrush)
+		'''
 
 		room.drawCoords = [x, y]
 		roomStr = ""
@@ -305,9 +378,9 @@ class GridPanel(wx.Panel):
 
 			roomSz = 30
 			hRmSz = roomSz/2
-			
+
 			self.drawRectangleCenter(dc, x, y, roomSz, roomSz, roomStr)
-			
+
 			# Draw neighboring room connection lines as-needed
 			ptList = []
 			lineLen = ((self.roomStep - roomSz) / 2) + 1
@@ -319,8 +392,8 @@ class GridPanel(wx.Panel):
 				ptList.append([x+hRmSz, y, x+hRmSz+lineLen, y])
 			if room.game_westExit:
 				ptList.append([x-hRmSz, y, x-hRmSz-lineLen, y])
-			if ptList:
-				dc.DrawLineList(ptList)
+			if len(ptList) > 0:
+				dc.DrawLineList(ptList, self.penWhite)
 
 	def roomIter(self, dcSize):
 
@@ -347,7 +420,7 @@ class GridPanel(wx.Panel):
 		xIter = xrange(x, xMx, 1)
 		yIter = xrange(y, yMx, 1)
 		for x, y  in itertools.product(xIter, yIter):
-			
+
 			yield x, y
 
 	def getRoomOnLevelPlanet(self, levelCord, planetCord):
@@ -375,15 +448,15 @@ class GridPanel(wx.Panel):
 						cX, cY = self.coordsToDrawCoords(x, y)
 						if [cX, cY] not in self.drawnRoomCoords:
 							if (x, y, self.currentZ, self.currentP) == self.currentSelectedRoomCoords:
-								dc.SetBrush(self.selRoomBrush)
+								dc.SetBrush(wx.Brush(RoomColors.PCLocation))
 							else:
-								dc.SetBrush(self.emptyRoomBrush)
+								dc.SetBrush(wx.Brush(RoomColors.Fallback))
 							self.drawRectangleCenter(dc, cX, cY, roomSz, roomSz)
 							self.nonExistDrawnList.append((x, y, self.currentZ, self.currentP))
 
 			#print "Drew %s rooms" % drawnRooms
 				#print x, y, cX, cY
-		
+
 	def drawRectangleCenter(self, dc, x, y, w, h, text=None):
 		dc.DrawRectangle(x-(w/2), y-(h/2), w, h)
 		if text != None:
@@ -391,7 +464,7 @@ class GridPanel(wx.Panel):
 			strExtntX , strExtntY = strExtntX/2 , strExtntY/2
 			dc.DrawText(text, x-strExtntX, y-strExtntY)
 
-	
+
 
 class ReadoutPanel(wx.Panel):
 	def __init__(self, parent, **kwds):
@@ -399,7 +472,7 @@ class ReadoutPanel(wx.Panel):
 		wx.Panel.__init__(self, parent, **kwds)
 		#print self
 		self.mapPlot = GridPanel(self, parent)
-		
+
 		centerCoord = [0, 0, 0, 0]
 
 		self.__set_properties()
@@ -411,7 +484,7 @@ class ReadoutPanel(wx.Panel):
 
 
 		self.Bind(wx.EVT_TIMER, self.updateGrids, self.pollUpdateTmr)
-		
+
 
 
 		#print "Starting Up..."
@@ -432,7 +505,6 @@ class ReadoutPanel(wx.Panel):
 
 
 
-	def updateGrids(self, event): 
+	def updateGrids(self, event):
 		self.mapPlot.checkRedrawPoller()
 		#self.mapPlot.redraw()
-
