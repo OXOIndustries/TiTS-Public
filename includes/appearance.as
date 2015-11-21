@@ -1354,13 +1354,23 @@ public function appearance(target:Creature):void {
 					else if (target.statusEffectv3("Mimbrane Pussy") < 13)
 					{
 						output2("Your pussy appears noticably inflated");
-						if (target.isCrotchGarbed()) output2(" and creates a slight bulge beneath your armor");
+						if (target.isCrotchGarbed())
+						{
+							output2(" and creates a slight bulge beneath your");
+							if (target.armor.type == GLOBAL.ARMOR) output2(" armor");
+							else output2(" clothing");
+						}
 						output2(". ")
 					}
 					else
 					{
 						output2("Your pussy appears delightfully plump");
-						if (target.isCrotchGarbed()) output2(", creating an undeniable bulge in your armor");
+						if (target.isCrotchGarbed())
+						{
+							output2(", creating an undeniable bulge in your");
+							if (target.armor.type == GLOBAL.ARMOR) output2(" armor");
+							else output2(" clothing");
+						}
 						output2(". ");
 					}
 				}
@@ -1498,13 +1508,23 @@ public function appearance(target:Creature):void {
 						else if (target.statusEffectv3("Mimbrane Pussy") < 13)
 						{
 							output2(" Your pussy appears noticably inflated");
-							if (target.isCrotchGarbed()) output2(" and creates a slight bulge beneath your armor");
+							if (target.isCrotchGarbed())
+							{
+								output2(" and creates a slight bulge beneath your");
+								if (target.armor.type == GLOBAL.ARMOR) output2(" armor");
+								else output2(" clothing");
+							}
 							output2(".")
 						}
 						else
 						{
 							output2(" Your pussy appears delightfully plump");
-							if (target.isCrotchGarbed()) output2(", creating an undeniable bulge in your armor");
+							if (target.isCrotchGarbed())
+							{
+								output2(", creating an undeniable bulge in your");
+								if (target.armor.type == GLOBAL.ARMOR) output2(" armor");
+								else output2(" clothing");
+							}
 							output2(".");
 						}
 					}
@@ -1613,7 +1633,7 @@ public function appearance(target:Creature):void {
 public function selectGenderPref():void
 {
 	clearOutput2();
-	output2("Your current preferred gender is set to <b>");
+	output2("Your current preferred gender is set to ");
 	
 	clearGhostMenu();
 	
@@ -1623,19 +1643,19 @@ public function selectGenderPref():void
 	
 	if (pc.hasStatusEffect("Force Fem Gender"))
 	{
-		output2("Female</b>");
+		output2("<b>Female</b>.");
 		output2("\n\nNo matter your femininity value, genitalia presence, or any other contributing factors, where possible you will be considered female.");
 		addDisabledGhostButton(0, "Female");
 	}
 	else if (pc.hasStatusEffect("Force Male Gender"))
 	{
-		output2("Male</b>");
+		output2("<b>Male</b>.");
 		output2("\n\nNo matter your masculinity value, genitalia presence, or any other contributing factors, where possible you will be considered male.");
 		addDisabledGhostButton(1, "Male");
 	}
 	else
 	{
-		output2("Automatic</b>");
+		output2("<b>Automatic</b>.");
 		output2("\n\nPronouns used for your character will be based on contributions from a number of appearance properties, switching between male & female pronouns as appropriate.");
 		addDisabledGhostButton(2, "Auto");
 	}
