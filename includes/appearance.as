@@ -1409,19 +1409,8 @@ public function appearance(target:Creature):void {
 				else {
 					output2("the massive hole that is your " + target.vaginasDescript() + ".");
 				}
-				//Zil flavor!
-				if (target.totalVaginas(GLOBAL.TYPE_BEE) > 0 && target.vaginas[0].vaginaColor == "black and gold") {
-					output2(" The exterior folds are a dusky black, while the inner lining of your tunnel is a glorious golden hue.");
-				}
-				//Naleen flavor
-				if(target.totalVaginas(GLOBAL.TYPE_NAGA) > 0) {
-					output2(" The exterior lips are subtle and narrow, making your lengthy entrance a little more discrete.");
-				}
-				//LEITHAN FLAVOR
-				if(target.totalVaginas(GLOBAL.TYPE_LEITHAN) > 0 || target.totalVaginas(GLOBAL.TYPE_EQUINE) > 0)
-				{
-					output2(" The exterior lips are fat and swollen. They could easily be described as rubbery, and they often shine with a wet sheen, regardless of your arousal. When you're aroused, you're told that they wink.");
-				}
+				//Flavor
+				vaginaBonusForAppearance(target, 0, false);
 				//Ovipositor
 				if(target.vaginas[0].hasFlag(GLOBAL.FLAG_OVIPOSITOR))
 				{
