@@ -1800,6 +1800,6 @@ public function vaginaBonusForAppearance(target:Creature, x:int = 0, eachOne:Boo
 	//Goblin flavor
 	if(target.vaginas[x].type == GLOBAL.TYPE_GABILANI) {
 		if(!eachOne) output2(" The special muscles around your vagina are strong and powerful, making it possible to swallow any insertion without the need to push it in.");
-		else output2("\nThe special muscles around your talented vaginas are strong and powerful, giving you the ability to swallow any insertions without the need of external forces to push them in.");
+		else output2("\nThe special muscles around your talented vaginas are strong and powerful, making it possible to swallow insertions without the need of external forces to push them in.");
 	}
 }
