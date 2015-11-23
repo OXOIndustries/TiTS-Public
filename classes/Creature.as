@@ -9081,9 +9081,20 @@ package classes {
 			if(vaginaNum > vaginas.length || vaginaNum < 0) return "ERROR, INVALID PUSSY";
 			else return vaginaNoun(vaginas[vaginaNum].type);
 		}
-		public function vaginaNoun(type: int = 0, simple: Boolean = false): String {
+		public function vaginaNoun(type: int = 0, simple: Boolean = false, nogoo:Boolean = false): String {
 			var vag: String = "";
-			if (type == GLOBAL.TYPE_EQUINE)
+			if(rand(4) == 0 && hasStatusEffect("Goocrotch")) 
+			{
+				if(!simple)
+				{
+					vag += RandomInCollection(["sloppy gash", "gooey pussy", "sopping cunt", "slick snatch", "puddling pussy", "semi-solid snatch", "gooey cunt", "goo vagina"]);
+				}
+				else
+				{
+					vag += RandomInCollection(["googina", "goo-hole", "fuck-hole"]);
+				}
+			}
+			else if (type == GLOBAL.TYPE_EQUINE)
 			{
 				if (!simple)
 				{
@@ -9178,6 +9189,7 @@ package classes {
 				}
 				vag += RandomInCollection(["vagina", "pussy", "cunt", "fuck-hole", "slit", "twat", "gash", "cunny", "honeypot", "snatch"]);
 			}
+
 			return vag;
 		}
 		/* OLD Version.
@@ -9540,7 +9552,7 @@ package classes {
 				}
 				descripted++;
 			}
-			if (descripted < 2 && skinType == GLOBAL.SKIN_TYPE_GOO && ((adjectives && this.rand(3) == 0) || forceAdjectives)) {
+			if (descripted < 2 && (skinType == GLOBAL.SKIN_TYPE_GOO || hasStatusEffect("Goocrotch")) && ((adjectives && this.rand(3) == 0) || forceAdjectives)) {
 				if (descripted > 0) vag += ", ";
 				if (this.rand(2) == 0) vag += "gooey";
 				else vag += "slimy";
@@ -9669,7 +9681,7 @@ package classes {
 				if (rando == 3) descript += "wriggling bunch of ";
 			}
 			//Append Nounse
-			if (hasSamecType()) descript += cockAdjective() + ", " + pluralize(cockNoun(cocks[0].cType, false, false));
+			if (hasSamecType()) descript += cockAdjective() + ", " + pluralize(cockNoun2(cocks[0], false, ""));
 			else {
 				rando = this.rand(4);
 				if (rando == 0) descript += cockAdjective() + ", mutated cocks";
@@ -9792,30 +9804,30 @@ package classes {
 			//Single dicks are normal.
 			else if (cocks.length == 1) return cockDescript();
 			//Matched dicks get full cocknoun.
-			if (hasSamecType()) return pluralize(cockAdjective() + ", " + cockNoun(cocks[0].cType, false));
+			if (hasSamecType()) return pluralize(cockAdjective() + ", " + cockNoun2(cocks[0], false));
 			//Unmatched get default types
-			else return pluralize(cockAdjective() + " " + cockNoun(0, true));
+			else return pluralize(cockAdjective() + " " + randomSimpleCockNoun());
 		}
 		//Ultra-basic multiple cock description
 		public function cocksDescriptLight(): String {
 			var output: String = "";
 			if (cocks.length < 1) return "<b>ERROR: NO WANGS DETECTED for cocksDescript()</b>";
-			if (hasSamecType()) output += cockNoun(cocks[0].cType);
-			else output += cockNoun(0);
+			if (hasSamecType()) output += cockNoun2(cocks[0]);
+			else output += randomSimpleCockNoun();
 			//pluralize dat shit
 			if (cockTotal() > 1) output = pluralize(output);
 			return output;
 		}
 		public function simpleCockNoun(arg: Number): String {
 			if (cocks.length < 1) return "<b>ERROR: NO WANGS DETECTED for simpleCockNoun()</b>";
-			return cockNoun(cocks[arg].cType, true);
+			return cockNoun2(cocks[arg], true);
 		}
 		public function simpleCocksNoun():String {
 			var output:String = "";
 			
 			if (cocks.length < 1) return "<b>ERROR: NO WANGS DETECTED for simpleCocksNoun()</b>";
-			if (hasSamecType()) output += cockNoun(cocks[0].cType, true);
-			else output += cockNoun(0, true);
+			if (hasSamecType()) output += cockNoun2(cocks[0], true);
+			else output += randomSimpleCockNoun();
 			
 			if (cocks.length > 1) output = pluralize(output);
 			
@@ -9823,7 +9835,7 @@ package classes {
 		}
 		public function cockNounComplex(arg: Number): String {
 			if (cocks.length < 1) return "<b>ERROR: NO WANGS DETECTED for cockNounComplex()</b>";
-			return cockNoun(cocks[arg].cType, false);
+			return cockNoun2(cocks[arg], false);
 		}
 		//Spit back an accurate name for the cock
 		public function accurateCockName(cockIndex:int):String
@@ -9946,11 +9958,119 @@ package classes {
 			if (cock.hasFlag(GLOBAL.FLAG_FORESKINNED)) collection.push("foreskinned", "foreskin-covered");
 			//if (cock.hasFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) collection.push("aphrodisiac-laced");
 			if (cock.hasFlag(GLOBAL.FLAG_DOUBLE_HEADED)) collection.push("double-headed");
+			if (cock.hasFlag(GLOBAL.FLAG_GOOEY)) collection.push("gooey");
 			
 			return RandomInCollection(collection);
 		}
-		
-		//Cock nouns with a single, toggleable adjective. Used all over the place, yo.
+		//Special - "tail" - Tail description
+		//Special - "nipple" - NipplecockDesc
+		public function cockNoun2(cock:CockClass, simple: Boolean = true, special:String = ""): String
+		{
+			var descript: String = "";
+			var nouns:Array = new Array();
+			var adjectives:Array = new Array();
+			var type:int = cock.cType;
+			if (type == GLOBAL.TYPE_HUMAN) {
+				if (!simple) adjectives.push("human","terran");
+				
+			} 
+			else if (type == GLOBAL.TYPE_CANINE) {
+				adjectives.push("pointed","knotty","bestial","animalistic","knotted","canine","canine");
+				nouns.push("doggie-dong","dog-cock","puppy-pecker","dog-dick");
+			} else if(type == GLOBAL.TYPE_VULPINE) {
+				adjectives.push("pointed","knotty","bestial","animalistic","knotted","vulpine","vulpine");
+				nouns.push("fox-dick","fox-cock","fox-prick","fox-tool","vixen-pricker");
+			} else if (type == GLOBAL.TYPE_EQUINE) {
+				adjectives.push("flared","equine","bestial","flat-tipped","animalistic","blunted","musky");
+				nouns.push("horse-cock","horse-shaft","horse-member","stallion-prick","beast-cock","stallion-cock");
+			} else if (type == GLOBAL.TYPE_DEMONIC) {
+				adjectives.push("nub-covered","nubby","perverse","bumpy","demonic","cursed","infernal","unholy","blighted","fiendish");
+				nouns.push("demon-dick","demon-cock","demon-prick","monster-member");
+			} else if (type == GLOBAL.TYPE_TENTACLE || type == GLOBAL.TYPE_COCKVINE) {
+				adjectives.push("twisting","wriggling","sinuous","squirming","writhing","smooth","undulating","slithering","vine-like");
+				nouns.push("tentacle-prick","plant-shaft","tentacle-cock","cock-tendril","tentacle-pecker","plant-prick","tentacle-dick");
+			} else if (type == GLOBAL.TYPE_FELINE) {
+				adjectives.push("feline","spine-covered","spined","kitty","animalistic","soft-barbed","nubby","feline");
+				nouns.push("cat-cock","kitty-cock","kitty-prick","cat-penis","kitten-prick");
+			} else if (type == GLOBAL.TYPE_NAGA || type == GLOBAL.TYPE_SNAKE) {
+				adjectives.push("reptilian","ophidian","inhuman","reptilian","herpetological","serpentine","bulbous","bulging");
+				nouns.push("snake-cock","snake-shaft","snake-dick");
+			} else if (type == GLOBAL.TYPE_RASKVEL) {
+				adjectives.push("reptilian","alien","raskvel","reptilian","smooth","sleek","exotic");
+				nouns.push("rask-cock");
+			} else if (type == GLOBAL.TYPE_ANEMONE || type == GLOBAL.TYPE_SIREN) {
+				adjectives.push("tentacle-ringed","stinger-laden","pulsating","stinger-coated","near-transparent","tentacle-ringed","squirming");
+				nouns.push("anemone-dick","anemone-prick");
+			} else if (type == GLOBAL.TYPE_KANGAROO) {
+				adjectives.push("pointed","marsupial","tapered","curved");
+				nouns.push("kangaroo-cock","kangaroo-dick","kanga-cock");
+			} else if (type == GLOBAL.TYPE_DRACONIC) {
+				adjectives.push("dragon-like","segmented","pointed","knotted","mythic","draconic","tapered","scaly");
+				//Don't say "canine dog-cock" that's dumb.
+				nouns.push("dragon-cock","dragon-dick","wyrm-cock");
+			} else if (type == GLOBAL.TYPE_BEE) {
+				adjectives.push("foreskin-covered","thick-skinned","fleshy","skin-shrouded","alien","vaguely human-like","smooth");
+				nouns.push("zil-dick","zil-prick","zil-cock","wasp-cock");
+			} else if (type == GLOBAL.TYPE_KUITAN) {
+				adjectives.push("alien","bulgy","knot-lined","extra knotty","bestial","kui-tan","inhuman","exotic","knotted");
+				nouns.push("'nuki-dick","kui-cock","spunk-dispensor","xeno-cock");
+			} else if (type == GLOBAL.TYPE_SIMII) {
+				adjectives.push("simian");
+				nouns.push("simii-dick","simii-cock");
+			} else if (type == GLOBAL.TYPE_RASKVEL) {
+				adjectives.push("raskvel");
+				nouns.push("rask-dick","rask-cock","egg-fertilizer");
+			}
+			//Depreciated, but left in.
+			else if (type == GLOBAL.TYPE_GOOEY || cock.hasFlag(GLOBAL.FLAG_GOOEY)) {
+				adjectives.push("gooey","self-lubricating","slick");
+				nouns.push("goo-dick","goo-cock");
+			} else if (type == GLOBAL.TYPE_VENUSPITCHER) {
+				adjectives.push("floral");
+				nouns.push("plant-dick","plant-cock","vine-dick","vine-cock");
+			} else if (type == GLOBAL.TYPE_SAURIAN) {
+				adjectives.push("dinosaur", "saurian");
+				nouns.push("dino-dick","dino-cock","penisaurus","schlongosaur");
+			} else if (type == GLOBAL.TYPE_SYNTHETIC) {
+				adjectives.push("metallic", "synthetic", "mechanical", "robotic", "sleek");
+				nouns.push("robo-dick","robo-cock","mecha-dick","mecha-cock");
+			} else if (type == GLOBAL.TYPE_NYREA) {
+				adjectives.push("nyrean", "insectile", "egg-laying", "nyrean", "insectile");
+				nouns.push("ovipositor", "organ", "tool", "member", "tube");
+			} else if (type == GLOBAL.TYPE_DAYNAR) {
+				adjectives.push("daynarian", "reptilian", "inhuman", "reptilian");
+				nouns.push("daynar-cock", "daynar-shaft", "daynar-dick");
+			} else if (type == GLOBAL.TYPE_SYDIAN) {
+				adjectives.push("sydian", "insectile", "inhuman", "bristly", "brush-like");
+				nouns.push("bug-cock", "bug-shaft", "bug-dick");
+			} else if (type == GLOBAL.TYPE_GABILANI) {
+				adjectives.push("alien", "bulbous", "double-crowned", "gabilani", "goblin", "inhuman", "exotic", "two-headed");
+				nouns.push("goblin-dick", "goblin-cock", "goblin-prick", "gabilani-dick", "gabilani-cock", "gabilani-prick");
+			} else if (type == GLOBAL.TYPE_INHUMAN) {
+				adjectives.push("inhuman", "human-like", "almost-human", "alien");
+			} else {
+				nouns.push("Error. Cock type does not have a cock noun configuration.");
+			}
+			nouns.push("cock","cock","dick","prick","shaft","member","dong","tool","phallus");
+
+			if(!simple && adjectives.length > 0) 
+			{
+				descript = RandomInCollection(adjectives);
+				//Prevent duplicate "canine dog-cock" type deals.
+				if(InCollection(descript,"gabilani","goblin","insectile","robotic","mechanical","dinosaur","saurian","floral","gooey","raskvel","simian","kui-tan","draconic","dragon-like","marsupial","reptilian","serpentine","kitty","feline","demonic","equine","vulpine","canine"))
+				{
+					descript += " " + RandomInCollection("cock","cock","dick","prick","shaft","member","dong","tool","phallus");
+					return descript;
+				}
+				descript += " ";
+			}
+			if(special == "tail" && rand(2) == 0) descript += "tail-" + RandomInCollection(["cock","cock","dick","prick","phallus"]);
+			else if(special == "dick" && rand(2) == 0) descript += RandomInCollection(["dick","cock","prick"] + "-nipple");
+			else descript += RandomInCollection(nouns);
+
+			return descript;
+		}
+		/*Cock nouns with a single, toggleable adjective. Used all over the place, yo.
 		public function cockNoun(type: Number, simple: Boolean = true, tail: Boolean = false): String {
 			var descript: String = "";
 			var noun: String = "";
@@ -10205,7 +10325,8 @@ package classes {
 				if (tail && rand(2) == 0) noun += "tail-";
 				noun += choices[rand(choices.length)];
 			}
-			/* To return if Third writes it!
+
+			// To return if Third writes it!
 			 else if (type == 9999) {
 				if (!simple) {
 					choices = ["coerl","tentacle-tipped","starfish-tipped","alien","almost-canine","bizarre","beastly","cthulhu-tier","animal","star-capped"];
@@ -10215,12 +10336,12 @@ package classes {
 				if (tail && rand(2) == 0) noun += "tail-";
 				else choices.push("coerl-dick","coerl-prick");
 				noun += choices[rand(choices.length)];
-			} */
+			}
 			else {
 				noun += "Error. Cock type does not have a cock noun configuration.";
 			}
 			return descript + noun;
-		}
+		}*/
 		//New cock adjectives. The old one sucked dicks
 		public function cockAdjective(cockNum: Number = -1):String {
 			var descript: String = "";
@@ -10263,7 +10384,7 @@ package classes {
 				else descript += "covered";
 			}
 			//Goo - 1/4 chance
-			else if (skinType == GLOBAL.SKIN_TYPE_GOO && this.rand(4) == 0) {
+			else if (skinType == GLOBAL.SKIN_TYPE_GOO || cocks[cockNum].hasFlag(GLOBAL.FLAG_GOOEY) && this.rand(4) == 0) {
 				rando = this.rand(3);
 				if (rando == 0) descript += "goopey";
 				else if (rando == 1) descript += "gooey";
@@ -10460,7 +10581,7 @@ package classes {
 			var rando: Number = 0;
 			var multi: Boolean = false;
 			//Goo - 1/4 chance
-			if (skinType == GLOBAL.SKIN_TYPE_GOO && this.rand(4) == 0) {
+			if ((skinType == GLOBAL.SKIN_TYPE_GOO || hasStatusEffect("Goocrotch")) && this.rand(4) == 0) {
 				rando = this.rand(3);
 				if (rando == 0) descript += "goopey";
 				else if (rando == 1) descript += "gooey";
@@ -10900,6 +11021,8 @@ package classes {
 				collection = ["salty","potent"];
 			} else if (arg == GLOBAL.FLUID_TYPE_GABILANI_GIRLCUM) {
 				collection = ["tangy","flavorful"];
+			} else if (arg == GLOBAL.FLUID_TYPE_SPECIAL_GOO) {
+				collection = ["sweet","tangy","citrusy"];
 			}
 			
 			else collection = ["bland"];
@@ -10932,6 +11055,8 @@ package classes {
 				collection = ["thick","thick","thick","slick","creamy"];
 			} else if (InCollection(arg, GLOBAL.FLUID_TYPE_GABILANI_CUM, GLOBAL.FLUID_TYPE_GABILANI_GIRLCUM)) {
 				collection = ["oily","coating"];
+			} else if (arg == GLOBAL.FLUID_TYPE_SPECIAL_GOO) {
+				collection = ["slick","slimy","viscous","slippery"];
 			}
 			
 			else collection = ["fluid"];
@@ -10972,6 +11097,10 @@ package classes {
 				collection = ["off-white", "semi-clear", "semi-transparent"];
 			} else if (arg == GLOBAL.FLUID_TYPE_GABILANI_GIRLCUM) {
 				collection = ["gray", "semi-clear", "semi-transparent"];
+			} else if (arg == GLOBAL.FLUID_TYPE_SPECIAL_GOO) {
+				if(skinType == GLOBAL.SKIN_TYPE_GOO) collection = [skinTone];
+				else if(hairType == GLOBAL.HAIR_TYPE_GOO) collection = [hairColor];
+				else collection ["green","emerald"];
 			}
 			
 			else collection = ["ERROR, INVALID FLUID TYPE."];
@@ -10980,7 +11109,6 @@ package classes {
 		}
 		public function fluidColorSimple(arg: int):String
 		{
-			
 			if (InCollection(arg, GLOBAL.FLUID_TYPE_LEITHAN_MILK, GLOBAL.FLUID_TYPE_CUMSAP, GLOBAL.FLUID_TYPE_MILK, GLOBAL.FLUID_TYPE_CUM, GLOBAL.FLUID_TYPE_VANILLA, GLOBAL.FLUID_TYPE_MILKSAP)) return "white";
 			else if (InCollection(arg, GLOBAL.FLUID_TYPE_HONEY, GLOBAL.FLUID_TYPE_NECTAR)) return "yellow";
 			else if (InCollection(arg, GLOBAL.FLUID_TYPE_OIL, GLOBAL.FLUID_TYPE_GIRLCUM)) return "transparent";
@@ -10991,6 +11119,12 @@ package classes {
 			else if (arg == GLOBAL.FLUID_TYPE_NYREA_CUM) return "purple";
 			else if (arg == GLOBAL.FLUID_TYPE_GABILANI_CUM) return "white";
 			else if (arg == GLOBAL.FLUID_TYPE_GABILANI_GIRLCUM) return "gray";
+			else if (arg == GLOBAL.FLUID_TYPE_SPECIAL_GOO) 
+			{
+				if(skinType == GLOBAL.SKIN_TYPE_GOO) return skinTone;
+				else if(hairType == GLOBAL.HAIR_TYPE_GOO) return hairColor;
+				else return "green";
+			}
 			return "white";
 		}
 		public function fluidNoun(arg: int): String {
@@ -11019,6 +11153,9 @@ package classes {
 				collection = ["nectar"];
 			} else if (arg == GLOBAL.FLUID_TYPE_LEITHAN_MILK) {
 				collection = ["milk"];
+			}
+			else if (arg == GLOBAL.FLUID_TYPE_SPECIAL_GOO) {
+				collection = ["slime","goo"];
 			}
 			
 			else collection = ["ERROR: NONVALID FLUID TYPE PASSED TO fluidNoun."];
@@ -11061,41 +11198,29 @@ package classes {
 			desc += fluidNoun(girlCumType);
 			return desc;
 		}
-		public function nippleCockDescript(): String {
+		public function nippleCockDescript(appearance: Boolean = false): String {
 			var descript: String = "";
-			//Non boring descriptions!
-			//70% of the time add a descriptor
-			if (this.rand(10) <= 6) {
-				descript += nippleCockAdjective();
-				//50% of the time add supplimental cock adjective with the noun.
-				if (this.rand(2) == 0) descript += ", " + cockNoun(dickNippleType, false);
-				//Otherwise normal
-				else descript += " " + cockNoun(dickNippleType, true);
-			}
-			//These guys get a bonus adjective 70% of the time.
-			else {
-				if (this.rand(10) <= 6) descript += cockNoun(dickNippleType, false);
-				else descript += cockNoun(dickNippleType);
-			}
-			return descript;
-		}
-		public function nippleCocksDescript(appearance: Boolean = false): String {
-			var descript: String = "";
+			//Set up a placeholder cock to pass for descripts
+			var cock:CockClass = new CockClass();
+			cock.cType = dickNippleType;
 			//Non boring descriptions!
 			//70% of the time add a descriptor
 			if (this.rand(10) <= 6 && !appearance) {
 				descript += nippleCockAdjective();
 				//50% of the time add supplimental cock adjective with the noun.
-				if (this.rand(2) == 0) descript += ", " + cockNoun(dickNippleType, false);
+				if(rand(2) == 0) descript += ", " + cockNoun2(cock, false, "nipple");
 				//Otherwise normal
-				else descript += " " + cockNoun(dickNippleType, true);
+				else descript += " " + cockNoun2(cock, true, "nipple");
 			}
 			//These guys get a bonus adjective 70% of the time.
 			else {
-				if (this.rand(10) <= 6 && !appearance) descript += cockNoun(dickNippleType, false);
-				else descript += cockNoun(dickNippleType);
+				if (this.rand(10) <= 6 && !appearance) descript += cockNoun2(cock, false, "nipple");
+				else descript += cockNoun2(cock, true, "nipple");
 			}
-			return pluralize(descript);
+			return descript;
+		}
+		public function nippleCocksDescript(appearance: Boolean = false): String {
+			return pluralize(nippleCockDescript(appearance));
 		}
 		public function cockColor(arg2:int = 0):String
 		{
@@ -11151,7 +11276,7 @@ package classes {
 			else if(hasCock())
 			{
 				if(forceAdjective == 1 || (forceAdjective == 0 && rand(2) == 0)) descript += cockAdjective(0) + " ";
-				descript += cockNoun(0);
+				descript += cockNoun2(cocks[0]);
 				return descript;
 			}
 			// Giant Clits?
@@ -11183,43 +11308,49 @@ package classes {
 					descript += cockAdjective(cockNum);
 					//50% of the time add supplimental cock adjective with the noun.
 					if (this.rand(2) == 0) {
-						descript += ", " + cockNoun(cocks[cockNum].cType, false);
+						descript += ", " + cockNoun2(cocks[cockNum], false);
 					}
 					//Otherwise normal
-					else descript += " " + cockNoun(cocks[cockNum].cType, true);
+					else descript += " " + cockNoun2(cocks[cockNum], true);
 				}
 				//These guys get a bonus adjective 70% of the time.
 				else {
-					if (this.rand(10) <= 6) descript += cockNoun(cocks[cockNum].cType, false);
-					else descript += cockNoun(cocks[cockNum].cType);
+					if (this.rand(10) <= 6) descript += cockNoun2(cocks[cockNum], false);
+					else descript += cockNoun2(cocks[cockNum]);
 				}
 			}
 			//Boring descriptions. Mostly the same but kinda lame, actually.
 			else {
 				//70% of the time add a descriptor
-				if (this.rand(10) <= 6) descript += cockAdjective(-1) + " " + cockNoun(0);
-				else descript += cockNoun(0);
+				if (this.rand(10) <= 6) descript += cockAdjective(-1) + " " + randomSimpleCockNoun();
+				else descript += randomSimpleCockNoun();
 			}
 			return descript;
 		}
+		public function randomSimpleCockNoun():String
+		{
+			return RandomInCollection("cock","cock","cock","cock","dick","dick","phallus","phallus","prick","tool","member","shaft","dong");
+		}
 		public function tailCockDescript(): String {
 			var descript: String = "";
+			//Placeholder for new cock stuff
+			var cock:CockClass = new CockClass();
+			cock.cType = tailGenitalArg;
 			//Non boring descriptions!
-
 			//70% of the time add a descriptor
 			if (this.rand(10) <= 6) {
 				descript += statCockAdjective(8, 2);
 				//50% of the time add supplimental cock adjective with the noun.
-				if (this.rand(2) == 0) descript += ", " + cockNoun(tailGenitalArg, false, true);
+				if (this.rand(2) == 0) descript += ", " + cockNoun2(cock, false, "tail");
 				//or 10% of that time, mention color.
-				else if (this.rand(10) == 0 && tailGenitalColor != "") descript += ", " + tailGenitalColor + " " + cockNoun(tailGenitalArg, false, true);
+				else if (this.rand(10) == 0 && tailGenitalColor != "") descript += ", " + tailGenitalColor + " " + cockNoun2(cock, false, "tail");
 				//Otherwise normal
-				else descript += " " + cockNoun(tailGenitalArg, false, true);
+				else descript += " " + cockNoun2(cock, false, "tail");
 			}
 			//These guys get a bonus adjective 70% of the time.
 			else {
-				if (this.rand(10) <= 6) descript += cockNoun(tailGenitalArg, false, true);
-				else descript += cockNoun(tailGenitalArg, true, true);
+				if (this.rand(10) <= 6) descript += cockNoun2(cock, false, "tail");
+				else descript += cockNoun2(cock, true, "tail");
 			}
 			return descript;
 		}

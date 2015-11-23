@@ -330,7 +330,7 @@ public function targetLapinaraSex(targetFunc:Function):void
 		clearMenu();
 		for(var x:int = 0; x < pc.cockTotal(); x++)
 		{
-			output("\n<b>" + (x+1) + ":</b> " + pc.cockNoun(pc.cocks[x].cType, false, false));
+			output("\n<b>" + (x+1) + ":</b> " + pc.cockNoun2(pc.cocks[x], false, ""));
 			addButton(x,upperCase(num2Text((x+1))),targetFunc,x);
 		}
 	}
