@@ -1332,7 +1332,19 @@ package classes {
 					break;
 				case "scaleColor":
 				case "chitinColor":
-					buffer = scaleColor;
+					buffer = chitinColor();
+					break;
+				case "chitinColorBody":
+					buffer = chitinColor("body");
+					break;
+				case "chitinColorArm":
+					buffer = chitinColor("arm");
+					break;
+				case "chitinColorLeg":
+					buffer = chitinColor("leg");
+					break;
+				case "chitinColorTail":
+					buffer = chitinColor("tail");
 					break;
 				case "ears":
 					buffer = earsDescript();
@@ -3701,6 +3713,35 @@ package classes {
 			else if(skinType == GLOBAL.SKIN_TYPE_SCALES || skinType == GLOBAL.SKIN_TYPE_CHITIN) return scaleColor;
 			else return skinTone;
 		}
+		public function chitinColor(part:String = ""):String
+		{
+			// Special types of chitinous anatomy return the scale color, otherwise it's a black color.
+			var colors:Array = ["black", "black", "black", "ebony", "midnight-hued", "obsidian", "onyx", "pitch"];
+			if (part == "body" || skinType == GLOBAL.SKIN_TYPE_CHITIN)
+			{
+				if (skinType != GLOBAL.SKIN_TYPE_CHITIN) return "null";
+				return scaleColor;
+			}
+			if (part == "arm" || hasArmFlag(GLOBAL.FLAG_CHITINOUS))
+			{
+				if (!hasArmFlag(GLOBAL.FLAG_CHITINOUS)) return "null";
+				if (InCollection(tailType, GLOBAL.TYPE_MYR, GLOBAL.TYPE_LEITHAN)) return scaleColor;
+				return RandomInCollection(colors);
+			}
+			if (part == "leg" || hasLegFlag(GLOBAL.FLAG_CHITINOUS))
+			{
+				if (!hasLegFlag(GLOBAL.FLAG_CHITINOUS)) return "null";
+				if (InCollection(tailType, GLOBAL.TYPE_MYR)) return scaleColor;
+				return RandomInCollection(colors);
+			}
+			if (part == "tail" || hasTailFlag(GLOBAL.FLAG_CHITINOUS))
+			{
+				if (!hasTailFlag(GLOBAL.FLAG_CHITINOUS)) return "null";
+				if (InCollection(tailType, GLOBAL.TYPE_MYR)) return scaleColor;
+				return RandomInCollection(colors);
+			}
+			return "null";
+		}
 		public function legFurScales():String 
 		{
 			var output: String = "";
@@ -3897,19 +3938,22 @@ package classes {
 			else if (tailType == GLOBAL.TYPE_EQUINE)
 				adjectives = ["equine", "horse-like"];
 			else if (tailType == GLOBAL.TYPE_CANINE)
-				adjectives = ["ausar", "dog-like"];
+			{
+				adjectives = ["canine", "dog-like"];
+				if (race() == "ausar" || race() == "half-ausar") adjectives.push("ausar");
+			}
 			else if (tailType == GLOBAL.TYPE_BOVINE)
 				adjectives = ["bovine", "cow-like"];
-			else if (hasCuntTail())
-				adjectives = ["snake-like", "writhing", "tentacle-like", "pussy-tipped"];
+			else if (tailType == GLOBAL.TYPE_CUNTSNAKE)
+				adjectives = ["snake-like"];
 			else if (tailType == GLOBAL.TYPE_PANDA)
 				adjectives = ["panda", "bear-like"];
 			else if (tailType == GLOBAL.TYPE_FELINE)
 			{
 				adjectives = ["feline", "cat-like"];
-				if (race() == "kaithrit") adjectives.push("kaithrit");
+				if (race() == "kaithrit" || race() == "half-kaithrit") adjectives.push("kaithrit");
 			}
-			else if (tailType == GLOBAL.TYPE_DRIDER || tailType == GLOBAL.TYPE_ARACHNID || tailType == GLOBAL.TYPE_BEE || tailType == GLOBAL.TYPE_MYR)
+			else if (InCollection(tailType, GLOBAL.TYPE_DRIDER, GLOBAL.TYPE_ARACHNID, GLOBAL.TYPE_BEE, GLOBAL.TYPE_MYR))
 			{
 				nouns = ["abdomen"];
 				adjectives = ["dangling", "insectile", "insect-like"];
@@ -3923,7 +3967,7 @@ package classes {
 			}
 			else if (tailType == GLOBAL.TYPE_DEMONIC)
 				adjectives = ["demonic", "spade-tipped", "whip-like", "inhuman"];
-			else if (tailType == GLOBAL.TYPE_SHARK || tailType == GLOBAL.TYPE_SIREN)
+			else if (tailType == GLOBAL.TYPE_SHARK || tailType == GLOBAL.TYPE_SIREN))
 				adjectives = ["shark", "finned", "fish-like", "fin-tipped"];
 			else if (tailType == GLOBAL.TYPE_LIZAN)
 				adjectives = ["reptilian", "lizard-like"];
@@ -3948,7 +3992,7 @@ package classes {
 			else if (tailType == GLOBAL.TYPE_SYDIAN)
 				adjectives = ["sydian", "wicked-shaped"];
 			else if (tailType == GLOBAL.TYPE_COCKVINE)
-				adjectives = ["vine-like", "writhing", "tentacle-like", "penis-tipped"];
+				adjectives = ["vine-like"];
 			else if (tailType == GLOBAL.TYPE_OVIR)
 				adjectives = ["ovir", "lizard-like"];
 			else if (tailType == GLOBAL.TYPE_VANAE)
@@ -3956,6 +4000,10 @@ package classes {
 			else if (tailType == GLOBAL.TYPE_DEER)
 				adjectives = ["deer", "tufted", "cute"];
 			// Flags
+			if (hasTailCock())
+				adjectives.push("writhing", "tentacle-like", "penis-tipped");
+			if (hasTailCunt())
+				adjectives.push("writhing", "tentacle-like", "pussy-tipped");
 			if (hasTailFlag(GLOBAL.FLAG_PREHENSILE))
 				adjectives.push("talented", "nimble");
 			if (hasTailFlag(GLOBAL.FLAG_LONG))
@@ -4114,10 +4162,10 @@ package classes {
 			// Adjectives: 50%
 			if(rand(2) == 0)
 			{
-				if (armType == GLOBAL.TYPE_CANINE || armType == GLOBAL.TYPE_FELINE || armType == GLOBAL.TYPE_BADGER || armType == GLOBAL.TYPE_PANDA || armType == GLOBAL.TYPE_LEITHAN) adjective.push("clawed");
-				if (armType == GLOBAL.TYPE_FELINE || armType == GLOBAL.TYPE_BADGER || armType == GLOBAL.TYPE_EQUINE || armType == GLOBAL.TYPE_PANDA) adjective.push("bestial");
-				if (armType == GLOBAL.TYPE_KUITAN || armType == GLOBAL.TYPE_PANDA) adjective.push("padded");
-				if (armType == GLOBAL.TYPE_ARACHNID || armType == GLOBAL.TYPE_DRIDER || armType == GLOBAL.TYPE_BEE || armType == GLOBAL.TYPE_LEITHAN) adjective.push("chitinous");
+				if (InCollection(armType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_BADGER, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_LEITHAN)) adjective.push("clawed");
+				if (InCollection(armType, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_BADGER, GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_PANDA)) adjective.push("bestial");
+				if (InCollection(armType, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_PANDA)) adjective.push("padded");
+				if (InCollection(armType, GLOBAL.TYPE_ARACHNID, GLOBAL.TYPE_DRIDER, GLOBAL.TYPE_BEE, GLOBAL.TYPE_LEITHAN)) adjective.push("chitinous");
 			}
 			// Build
 			if (rand(2) == 0 && adjective.length > 0) output += RandomInCollection(adjective);
@@ -4135,10 +4183,10 @@ package classes {
 			// Adjectives: 50%
 			if(rand(2) == 0)
 			{
-				if (armType == GLOBAL.TYPE_CANINE || armType == GLOBAL.TYPE_FELINE || armType == GLOBAL.TYPE_BADGER || armType == GLOBAL.TYPE_PANDA || armType == GLOBAL.TYPE_LEITHAN) adjective.push("clawed");
-				if (armType == GLOBAL.TYPE_KUITAN || armType == GLOBAL.TYPE_PANDA) adjective.push("padded");
-				if (armType == GLOBAL.TYPE_ARACHNID || armType == GLOBAL.TYPE_DRIDER || armType == GLOBAL.TYPE_BEE || armType == GLOBAL.TYPE_LEITHAN) adjective.push("chitinous");
-				if (armType == GLOBAL.TYPE_EQUINE) adjective.push("hoof-tipped");
+				if (InCollection(armType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_BADGER, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_LEITHAN)) adjective.push("clawed");
+				if (InCollection(armType, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_PANDA)) adjective.push("padded");
+				if (InCollection(armType, GLOBAL.TYPE_ARACHNID, GLOBAL.TYPE_DRIDER, GLOBAL.TYPE_BEE, GLOBAL.TYPE_LEITHAN)) adjective.push("chitinous");
+				if (InCollection(armType, GLOBAL.TYPE_EQUINE)) adjective.push("hoof-tipped");
 			}
 			// Build
 			if (adjective.length > 0 && rand(2) == 0) output += RandomInCollection(adjective);
