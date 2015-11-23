@@ -66,7 +66,8 @@
 		public static const FLAG_RIBBED:int									= 33;
 		public static const FLAG_CHITINOUS:int								= 34;
 		public static const FLAG_FEATHERED:int								= 35;
-		public static const FLAG_DOUBLE_HEADED:int								= 36;
+		public static const FLAG_DOUBLE_HEADED:int							= 36;
+		public static const FLAG_GOOEY:int							= 36;
 		
 		public static const FLAG_NAMES:Array = [
 			"OFFSET -- INVALID",
@@ -588,6 +589,8 @@
 		public static const FLUID_TYPE_GABILANI_GIRLCUM:int					= 15;
 		public static const FLUID_TYPE_VANILLA:int								= 16;
 		public static const FLUID_TYPE_NYREA_CUM:int							= 17;
+		//Why special? Cause it matches yer goo color.
+		public static const FLUID_TYPE_SPECIAL_GOO:int							= 18;
 		
 		public static const FLUID_TYPE_NAMES:Array = [
 			"Milk",
@@ -723,6 +726,7 @@
 			FLAG_OVIPOSITOR,
 			FLAG_RIBBED,
 			FLAG_DOUBLE_HEADED,
+			FLAG_GOOEY,
 		];
 		
 		public static const VALID_VAGINA_TYPES:Array = [
@@ -749,6 +753,7 @@
 			FLAG_TENDRIL,
 			FLAG_NUBBY,
 			FLAG_OVIPOSITOR,
+			FLAG_GOOEY,
 		];
 		
 		//ROOM FLAGS
