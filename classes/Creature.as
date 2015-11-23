@@ -8310,46 +8310,46 @@ package classes {
 			if (rand(4) == 0 && breastRows[rowNum].nippleType != GLOBAL.NIPPLE_TYPE_FUCKABLE && breastRows[rowNum].nippleType != GLOBAL.NIPPLE_TYPE_FLAT && breastRows[rowNum].nippleType != GLOBAL.NIPPLE_TYPE_INVERTED) {
 				//TINAHHHH
 				if (nippleLength(rowNum) < .25) {
-					rando = rand(3);
+					rando = rand(4);
 					if (rando == 0) description += "tiny";
-					if (rando == 1) description += "itty-bitty";
-					if (rando == 2) description += "teeny-tiny";
-					if (rando == 3) description += "dainty";
+					else if (rando == 1) description += "itty-bitty";
+					else if (rando == 2) description += "teeny-tiny";
+					else if (rando == 3) description += "dainty";
 				}
 				//Prominant
 				else if (nippleLength(rowNum) < 1) {
 					rando = rand(5);
 					if (rando == 0) description += "prominent";
-					if (rando == 1) description += "pencil eraser-sized";
-					if (rando == 2) description += "eye-catching";
-					if (rando == 3) description += "pronounced";
-					if (rando == 4) description += "striking";
+					else if (rando == 1) description += "pencil eraser-sized";
+					else if (rando == 2) description += "eye-catching";
+					else if (rando == 3) description += "pronounced";
+					else if (rando == 4) description += "striking";
 				}
 				//Big 'uns
 				else if (nippleLength(rowNum) < 2) {
 					rando = rand(4);
 					if (rando == 0) description += "forwards-jutting";
-					if (rando == 1) description += "over-sized";
-					if (rando == 2) description += "fleshy";
-					if (rando == 3) description += "large protruding";
+					else if (rando == 1) description += "over-sized";
+					else if (rando == 2) description += "fleshy";
+					else if (rando == 3) description += "large protruding";
 				}
 				//'Uge
 				else if (nippleLength(rowNum) < 3.2) {
 					rando = rand(5);
 					if (rando == 0) description += "elongated";
-					if (rando == 1) description += "massive";
-					if (rando == 2) description += "awkward";
-					if (rando == 3) description += "lavish";
-					if (rando == 4) description += "hefty";
+					else if (rando == 1) description += "massive";
+					else if (rando == 2) description += "awkward";
+					else if (rando == 3) description += "lavish";
+					else if (rando == 4) description += "hefty";
 				}
 				//Massive
 				else {
 					rando = rand(5);
 					if (rando == 0) description += "bulky";
-					if (rando == 1) description += "ponderous";
-					if (rando == 2) description += "thumb-sized";
-					if (rando == 3) description += "cock-sized";
-					if (rando == 4) description += "cow-like";
+					else if (rando == 1) description += "ponderous";
+					else if (rando == 2) description += "thumb-sized";
+					else if (rando == 3) description += "cock-sized";
+					else if (rando == 4) description += "cow-like";
 				}
 				descripted++;
 			}
@@ -8368,14 +8368,14 @@ package classes {
 					else {
 						rando = rand(9);
 						if (rando == 0) description += "wet";
-						if (rando == 1) description += "mutated";
-						if (rando == 2) description += "slimy";
-						if (rando == 3) description += "damp";
-						if (rando == 4) description += "moist";
-						if (rando == 5) description += "slippery";
-						if (rando == 6) description += "oozing";
-						if (rando == 7) description += "sloppy";
-						if (rando == 8) description += "dewy";
+						else if (rando == 1) description += "mutated";
+						else if (rando == 2) description += "slimy";
+						else if (rando == 3) description += "damp";
+						else if (rando == 4) description += "moist";
+						else if (rando == 5) description += "slippery";
+						else if (rando == 6) description += "oozing";
+						else if (rando == 7) description += "sloppy";
+						else if (rando == 8) description += "dewy";
 					}
 					descripted++;
 				}
@@ -8391,9 +8391,9 @@ package classes {
 					else {
 						rando = rand(4);
 						if (rando == 0) description += "puffy";
-						if (rando == 1) description += "pouty";
-						if (rando == 2) description += "parted";
-						if (rando == 3) description += "luscious";
+						else if (rando == 1) description += "pouty";
+						else if (rando == 2) description += "parted";
+						else if (rando == 3) description += "luscious";
 					}
 					descripted++;
 				}
@@ -8409,7 +8409,7 @@ package classes {
 				//Flat
 				else if (breastRows[rowNum].nippleType == GLOBAL.NIPPLE_TYPE_FLAT) {
 					if (descripted > 0) description += ", ";
-					rando = rand(3);
+					rando = rand(4);
 					if (rando == 0) description += "tipless";
 					else if (rando == 1) description += "flat";
 					else if (rando == 2) description += "puffy";
@@ -8429,22 +8429,22 @@ package classes {
 					if (milkMultiplier < 65) {
 						rando = rand(2);
 						if (rando == 0) description += "moistened";
-						if (rando == 1) description += "slightly lactating";
+						else if (rando == 1) description += "slightly lactating";
 					}
 					//Moderate lactation
 					else if (milkMultiplier <= 85) {
 						rando = rand(3);
 						if (rando == 0) description += "lactating";
-						if (rando == 1) description += "milky";
-						if (rando == 2) description += "milk-seeping";
+						else if (rando == 1) description += "milky";
+						else if (rando == 2) description += "milk-seeping";
 					}
 					//Heavy lactation
 					else {
 						rando = rand(4);
 						if (rando == 0) description += "dripping";
-						if (rando == 1) description += "dribbling";
-						if (rando == 2) description += "milk-leaking";
-						if (rando == 3) description += "drooling";
+						else if (rando == 1) description += "dribbling";
+						else if (rando == 2) description += "milk-leaking";
+						else if (rando == 3) description += "drooling";
 					}
 					descripted++;
 				}
@@ -8455,19 +8455,19 @@ package classes {
 					if (descripted > 0) description += ", ";
 					rando = rand(5);
 					if (rando == 0) description += "erect";
-					if (rando == 1) description += "perky";
-					if (rando == 2) description += "erect";
-					if (rando == 3) description += "firm";
-					if (rando == 4) description += "tender";
+					else if (rando == 1) description += "perky";
+					else if (rando == 2) description += "erect";
+					else if (rando == 3) description += "firm";
+					else if (rando == 4) description += "tender";
 					descripted++;
 				}
 				if (lust() >= 75) {
 					if (descripted > 0) description += ", ";
 					rando = rand(4);
 					if (rando == 0) description += "throbbing";
-					if (rando == 1) description += "trembling";
-					if (rando == 2) description += "needy";
-					if (rando == 3) description += "throbbing";
+					else if (rando == 1) description += "trembling";
+					else if (rando == 2) description += "needy";
+					else if (rando == 3) description += "throbbing";
 					descripted++;
 				}
 			}
@@ -8481,8 +8481,8 @@ package classes {
 				if (descripted > 0) description += ", ";
 				rando = rand(3);
 				if (rando == 0) description += "slime-slick ";
-				if (rando == 1) description += "goopy ";
-				if (rando == 2) description += "slippery ";
+				else if (rando == 1) description += "goopy ";
+				else if (rando == 2) description += "slippery ";
 			}
 			/* 9999
 			if (!descripted && InCollection(nippleColor, "black", "ebony", "obsidian", "onyx", "sable")) {
@@ -8518,15 +8518,15 @@ package classes {
 				rando = rand(5);
 				if (descripted > 0) description += " ";
 				if (rando <= 1) description += "nipple";
-				if (rando == 2) {
+				else if (rando == 2) {
 					if (isLactating() && nippleLength(rowNum) >= 1) description += "teat";
 					else description += "nipple";
 				}
-				if (rando == 3) {
+				else if (rando == 3) {
 					if (isLactating() && nippleLength(rowNum) >= 1) description += "teat";
 					else description += "nipple";
 				}
-				if (rando == 4) description += "bud";
+				else if (rando == 4) description += "bud";
 			}
 			if (plural) description = pluralize(description);
 			return description;
@@ -8566,15 +8566,15 @@ package classes {
 			else {
 				rando = rand(5);
 				if (rando <= 1) description += "nipple";
-				if (rando == 2) {
+				else if (rando == 2) {
 					if (isLactating() && nippleLength(rowNum) >= 1) description += "teat";
 					else description += "nipple";
 				}
-				if (rando == 3) {
+				else if (rando == 3) {
 					if (isLactating() && nippleLength(rowNum) >= 1) description += "teat";
 					else description += "nipple";
 				}
-				if (rando == 4) description += "bud";
+				else if (rando == 4) description += "bud";
 			}
 			//description = pluralize(description);
 			return description;
@@ -8808,7 +8808,6 @@ package classes {
 			if (descripted > 0) descript += " ";
 			if (hairType == GLOBAL.HAIR_TYPE_TENTACLES) descript += "tentacles";
 			else if (hairType == GLOBAL.HAIR_TYPE_FEATHERS) descript += "feathers";
-			else if (hairType == GLOBAL.HAIR_TYPE_GOO) descript += "locks of goo";
 			else 
 			{
 				if(hairStyle == "ponytail") descript += "ponytail-bound locks";
@@ -8818,6 +8817,7 @@ package classes {
 				else if(hairStyle == "afro") descript += "afro-puffed locks";
 				else if(hairStyle == "mohawk") descript += "mohawk-shaped locks";
 				else descript += "locks";
+				if (hairType == GLOBAL.HAIR_TYPE_GOO) descript += " of goo";
 			}
 			return descript;
 		}
@@ -9034,36 +9034,24 @@ package classes {
 			if(rand(4) == 0 && hasStatusEffect("Goocrotch")) 
 			{
 				if(!simple)
-				{
 					vag += RandomInCollection(["sloppy gash", "gooey pussy", "sopping cunt", "slick snatch", "puddling pussy", "semi-solid snatch", "gooey cunt", "goo vagina"]);
-				}
 				else
-				{
 					vag += RandomInCollection(["googina", "goo-hole", "fuck-hole"]);
-				}
 			}
 			else if (type == GLOBAL.TYPE_EQUINE)
 			{
 				if (!simple)
-				{
 					vag += RandomInCollection(["equine gash", "animalistic vagina", "animalistic cunny", "equine honeypot", "dusky snatch", "equine cunt", "pheromone-laden pussy", "musky mare-cunt"]);
-				}
 				else
-				{
 					vag += RandomInCollection(["horse-pussy", "mare-cunt", "fuck-hole", "horse-twat", "mare-twat", "centaur-snatch", "animal-pussy", "mare-pussy", "horse-cunt"]);
-				}
 			}
 			//Maybe doge?
 			else if (type == GLOBAL.TYPE_CANINE)
 			{
 				if (!simple)
-				{
 					vag += RandomInCollection(["canine gash", "small-lipped vagina", "animalistic cunny", "canine honeypot", "canine snatch", "canine cunt", "animalistic pussy", "fragrant dog-cunt"]);
-				}
 				else
-				{
 					vag += RandomInCollection(["dog-pussy", "bitch-cunt", "fuck-hole", "dog-twat", "animal-twat", "animal-pussy", "dog-pussy", "dog-cunt"]);
-				}
 			}
 			//Slimgina?
 			else if (type == GLOBAL.TYPE_GOOEY)
@@ -9127,13 +9115,9 @@ package classes {
 				if (!simple)
 				{
 					if (type == GLOBAL.TYPE_HUMAN)
-					{
 						vag += RandomInCollection(["human ", "human ", "terran ", "terran ", "terran "]);
-					}
 					else
-					{
 						vag += RandomInCollection(["human-like ", "human-like ", "exotic ", "exotic ", "inhuman "]);
-					}
 				}
 				vag += RandomInCollection(["vagina", "pussy", "cunt", "fuck-hole", "slit", "twat", "gash", "cunny", "honeypot", "snatch"]);
 			}
@@ -9693,12 +9677,11 @@ package classes {
 			var type:int = cock.cType;
 			if (type == GLOBAL.TYPE_HUMAN) {
 				if (!simple) adjectives.push("human","terran");
-				
 			} 
 			else if (type == GLOBAL.TYPE_CANINE) {
 				adjectives.push("pointed","knotty","bestial","animalistic","knotted","canine","canine");
 				nouns.push("doggie-dong","dog-cock","puppy-pecker","dog-dick");
-			} else if(type == GLOBAL.TYPE_VULPINE) {
+			} else if (type == GLOBAL.TYPE_VULPINE) {
 				adjectives.push("pointed","knotty","bestial","animalistic","knotted","vulpine","vulpine");
 				nouns.push("fox-dick","fox-cock","fox-prick","fox-tool","vixen-pricker");
 			} else if (type == GLOBAL.TYPE_EQUINE) {
@@ -9727,7 +9710,6 @@ package classes {
 				nouns.push("kangaroo-cock","kangaroo-dick","kanga-cock");
 			} else if (type == GLOBAL.TYPE_DRACONIC) {
 				adjectives.push("dragon-like","segmented","pointed","knotted","mythic","draconic","tapered","scaly");
-				//Don't say "canine dog-cock" that's dumb.
 				nouns.push("dragon-cock","dragon-dick","wyrm-cock");
 			} else if (type == GLOBAL.TYPE_BEE) {
 				adjectives.push("foreskin-covered","thick-skinned","fleshy","skin-shrouded","alien","vaguely human-like","smooth");
@@ -9773,7 +9755,7 @@ package classes {
 				nouns.push("goo-dick","goo-cock");
 			}
 			nouns.push("cock","cock","dick","prick","shaft","member","dong","tool","phallus");
-
+			
 			if(!simple && adjectives.length > 0) 
 			{
 				descript = RandomInCollection(adjectives);
@@ -9788,7 +9770,7 @@ package classes {
 			if(special == "tail" && rand(2) == 0) descript += "tail-" + RandomInCollection(["cock","cock","dick","prick","phallus"]);
 			else if(special == "dick" && rand(2) == 0) descript += RandomInCollection(["dick","cock","prick"] + "-nipple");
 			else descript += RandomInCollection(nouns);
-
+			
 			return descript;
 		}
 		/*Cock nouns with a single, toggleable adjective. Used all over the place, yo.
