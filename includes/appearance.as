@@ -367,7 +367,7 @@ public function appearance(target:Creature):void {
 			//Minotaur horns
 			if(target.hornType == GLOBAL.TYPE_BOVINE) {
 				if(target.hornLength < 1) output2(" Two tiny horn-like nubs protrude from your forehead, resembling the horns of the young livestock kept by terrans.");
-				else if(target.hornLength < 2) output2(" Two small, roughly 1-inch long bovine horns protrude from your forehead. They're kind of cute, actually.");
+				else if(target.hornLength < 2) output2(" Two small, roughly one-inch long bovine horns protrude from your forehead. They're kind of cute, actually.");
 				else if(target.hornLength < 3) output2(" Two bovine horns, approximately two inches in length, jut from your forehead.");
 				else if(target.hornLength < 4) output2(" A pair of bovine horns jut a full three inches from your forehead.");
 				else if(target.hornLength < 5) output2(" Two horns protrude through the [target.skin] of your forehead. Each is about four inches in length and impossible to ignore.");
