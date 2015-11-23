@@ -505,6 +505,7 @@
 				target.clearTailFlags();
 				target.addTailFlag(GLOBAL.FLAG_SMOOTH);
 				target.addTailFlag(GLOBAL.FLAG_STINGER_TIPPED);
+				target.addTailFlag(GLOBAL.FLAG_CHITINOUS);
 				target.tailType = GLOBAL.TYPE_BEE;
 				target.tailCount = 1;
 				changes++;
