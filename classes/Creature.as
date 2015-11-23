@@ -9552,7 +9552,7 @@ package classes {
 				}
 				descripted++;
 			}
-			if (descripted < 2 && (skinType == GLOBAL.SKIN_TYPE_GOO || hasStatusEffect("Goocrotch")) && ((adjectives && this.rand(3) == 0) || forceAdjectives)) {
+			if (descripted < 2 && (skinType == GLOBAL.SKIN_TYPE_GOO || vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_GOOEY)) && ((adjectives && this.rand(3) == 0) || forceAdjectives)) {
 				if (descripted > 0) vag += ", ";
 				if (this.rand(2) == 0) vag += "gooey";
 				else vag += "slimy";
@@ -10020,11 +10020,6 @@ package classes {
 			} else if (type == GLOBAL.TYPE_RASKVEL) {
 				adjectives.push("raskvel");
 				nouns.push("rask-dick","rask-cock","egg-fertilizer");
-			}
-			//Depreciated, but left in.
-			else if (type == GLOBAL.TYPE_GOOEY || cock.hasFlag(GLOBAL.FLAG_GOOEY)) {
-				adjectives.push("gooey","self-lubricating","slick");
-				nouns.push("goo-dick","goo-cock");
 			} else if (type == GLOBAL.TYPE_VENUSPITCHER) {
 				adjectives.push("floral");
 				nouns.push("plant-dick","plant-cock","vine-dick","vine-cock");
@@ -10051,13 +10046,18 @@ package classes {
 			} else {
 				nouns.push("Error. Cock type does not have a cock noun configuration.");
 			}
+			
+			if (type == GLOBAL.TYPE_GOOEY || cock.hasFlag(GLOBAL.FLAG_GOOEY)) {
+				adjectives.push("gooey","self-lubricating","slick");
+				nouns.push("goo-dick","goo-cock");
+			}
 			nouns.push("cock","cock","dick","prick","shaft","member","dong","tool","phallus");
 
 			if(!simple && adjectives.length > 0) 
 			{
 				descript = RandomInCollection(adjectives);
 				//Prevent duplicate "canine dog-cock" type deals.
-				if(InCollection(descript,"gabilani","goblin","insectile","robotic","mechanical","dinosaur","saurian","floral","gooey","raskvel","simian","kui-tan","draconic","dragon-like","marsupial","reptilian","serpentine","kitty","feline","demonic","equine","vulpine","canine"))
+				if(InCollection(descript,"gabilani","goblin","insectile","robotic","mechanical","dinosaur","saurian","floral","gooey","raskvel","simian","kui-tan","draconic","dragon-like","marsupial","reptilian","serpentine","kitty","feline","demonic","equine","vulpine","canine","gooey"))
 				{
 					descript += " " + RandomInCollection("cock","cock","dick","prick","shaft","member","dong","tool","phallus");
 					return descript;
