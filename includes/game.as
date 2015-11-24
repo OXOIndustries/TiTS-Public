@@ -6113,6 +6113,17 @@ public function displayEncounterLog(showID:String = "All"):void
 			}
 			roamCount++;
 		}
+		// Zo'dee
+		if(flags["MET_ZODEE"] != undefined)
+		{
+			output2("\n<b>* Zo’dee:</b> Met her");
+			if(flags["ZODEE_GALOQUEST"] != undefined)
+			{
+				output2(", Gave you GaloMax");
+				if(flags["ZODEE_GALOQUEST"] != 1) output2(" " + num2Text(flags["ZODEE_GALOQUEST"]) + " times");
+			}
+			roamCount++;
+		}
 		
 		// Nothing recorded
 		if(roamCount == 0)
