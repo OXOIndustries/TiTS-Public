@@ -3887,7 +3887,7 @@ package classes {
 			
 			//Add Noun
 			if (hasFaceFlag(GLOBAL.FLAG_MUZZLED) && rand(2) == 0) output += "muzzle";
-			else if (rand(2) == 0 && hasFaceFlag(GLOBAL.FLAG_MUZZLED) && (InCollection(faceType, GLOBAL.TYPE_LIZAN, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_NAGA))
+			else if (rand(2) == 0 && hasFaceFlag(GLOBAL.FLAG_MUZZLED) && (InCollection(faceType, GLOBAL.TYPE_LIZAN, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_NAGA)))
 				output += "snout";
 			else output += "face";
 			
@@ -3969,7 +3969,7 @@ package classes {
 			}
 			else if (tailType == GLOBAL.TYPE_DEMONIC)
 				adjectives = ["demonic", "spade-tipped", "whip-like", "inhuman"];
-			else if (tailType == GLOBAL.TYPE_SHARK || tailType == GLOBAL.TYPE_SIREN))
+			else if (tailType == GLOBAL.TYPE_SHARK || tailType == GLOBAL.TYPE_SIREN)
 				adjectives = ["shark", "finned", "fish-like", "fin-tipped"];
 			else if (tailType == GLOBAL.TYPE_LIZAN)
 				adjectives = ["reptilian", "lizard-like"];
