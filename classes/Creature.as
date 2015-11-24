@@ -3887,7 +3887,7 @@ package classes {
 			
 			//Add Noun
 			if (hasFaceFlag(GLOBAL.FLAG_MUZZLED) && rand(2) == 0) output += "muzzle";
-			else if (rand(2) == 0 && hasFaceFlag(GLOBAL.FLAG_MUZZLED) && (InCollection(faceType, GLOBAL.TYPE_LIZAN, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_NAGA)))
+			else if (rand(2) == 0 && hasFaceFlag(GLOBAL.FLAG_MUZZLED) && InCollection(faceType, GLOBAL.TYPE_LIZAN, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_NAGA))
 				output += "snout";
 			else output += "face";
 			
@@ -8967,7 +8967,7 @@ package classes {
 			tailCuntHolder.type = tailGenitalArg;
 
 			//low chance of size descriptor
-			if (((adjectives && rand(100) <= 25) || forceAdjectives)) {
+			if ((adjectives && rand(100) <= 25) || forceAdjectives) {
 				temp = rand(10);
 				if (temp <= 3) vag += "tight";
 				else if (temp <= 5) vag += "clingy";
@@ -9033,6 +9033,12 @@ package classes {
 			if(vaginaNum > vaginas.length || vaginaNum < 0) return "ERROR, INVALID PUSSY";
 			else return vaginaNoun2(vaginas[vaginaNum]);
 		}
+		public function vaginaNoun(vType:int = 0, simple:Boolean = true, special:String = ""): String
+		{
+			var vag:VaginaClass = new VaginaClass();
+			vag.type = vType;
+			return vaginaNoun2(vag, simple, special);
+		}
 		public function vaginaNoun2(vag:VaginaClass, simple:Boolean = false, special:String = ""):String
 		{
 			var desc: String = "";
@@ -9042,11 +9048,13 @@ package classes {
 				//If tail mounted, give tail specials.
 				if(special == "tail" && rand(2) == 0)
 				{
-					if(!simple) desc += RandomInCollection(["tail-mounted pussy","parasite pussy","tail-topping cunt","tail-mounted twat"]);
-					else desc += RandomInCollection(["tail-vagina", "tail-pussy", "tail-pussy","tail-pussy","tail-pussy", "tail-cunt", "tail-cunt", "tail-slit", "tail-slit","tail-twat","tail-twat"]);
+					if(!simple)
+						desc += RandomInCollection(["tail-mounted pussy","parasite pussy","tail-topping cunt","tail-mounted twat"]);
+					else
+						desc += RandomInCollection(["tail-vagina", "tail-pussy", "tail-pussy","tail-pussy","tail-pussy", "tail-cunt", "tail-cunt", "tail-slit", "tail-slit","tail-twat","tail-twat"]);
 				}
 				//Gooey override
-				else if(rand(3) == 0 && vag.hasFlag(GLOBAL.FLAG_GOOEY)) 
+				else if(rand(3) == 0 && vag.hasFlag(GLOBAL.FLAG_GOOEY))
 				{
 					if(!simple)
 						desc += RandomInCollection(["sloppy gash", "gooey pussy", "sopping cunt", "slick snatch", "puddling pussy", "semi-solid snatch", "gooey cunt", "goo vagina"]);
@@ -9195,7 +9203,7 @@ package classes {
 				}
 			}
 			//low chance of size descriptor
-			if (((adjectives && rand(100) <= 25 + bonus) || forceAdjectives)) {
+			if ((adjectives && rand(100) <= 25 + bonus) || forceAdjectives) {
 				if (descripted > 0) vag += ", ";
 				//Virgin overpowers other shit half the time.
 				if (vaginalVirgin && rand(2) == 0) {
@@ -9693,9 +9701,15 @@ package classes {
 			
 			return RandomInCollection(collection);
 		}
+		public function cockNoun(cType:int = 0, simple:Boolean = true, special:String = ""): String
+		{
+			var cock:CockClass = new CockClass();
+			cock.cType = cType;
+			return cockNoun2(cock, simple, special);
+		}
 		//Special - "tail" - Tail description
 		//Special - "nipple" - NipplecockDesc
-		public function cockNoun2(cock:CockClass, simple: Boolean = true, special:String = ""): String
+		public function cockNoun2(cock:CockClass, simple:Boolean = true, special:String = ""): String
 		{
 			var descript: String = "";
 			var nouns:Array = new Array();
