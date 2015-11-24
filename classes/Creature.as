@@ -9050,12 +9050,6 @@ package classes {
 			if(vaginaNum > vaginas.length || vaginaNum < 0) return "ERROR, INVALID PUSSY";
 			else return vaginaNoun2(vaginas[vaginaNum]);
 		}
-		public function vaginaNoun(vType:int = 0, simple:Boolean = true, special:String = ""): String
-		{
-			var vag:VaginaClass = new VaginaClass();
-			vag.type = vType;
-			return vaginaNoun2(vag, simple, special);
-		}
 		public function vaginaNoun2(vag:VaginaClass, simple:Boolean = false, special:String = ""):String
 		{
 			var desc: String = "";
@@ -9717,12 +9711,6 @@ package classes {
 			if (cock.hasFlag(GLOBAL.FLAG_GOOEY)) collection.push("gooey");
 			
 			return RandomInCollection(collection);
-		}
-		public function cockNoun(cType:int = 0, simple:Boolean = true, special:String = ""): String
-		{
-			var cock:CockClass = new CockClass();
-			cock.cType = cType;
-			return cockNoun2(cock, simple, special);
 		}
 		//Special - "tail" - Tail description
 		//Special - "nipple" - NipplecockDesc
