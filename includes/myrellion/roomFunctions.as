@@ -522,7 +522,7 @@ public function noManzLandBonus():Boolean
 		choices[choices.length] = encounterNyreaBeta;
 		choices[choices.length] = approachMyrDeserters;
 		choices[choices.length] = approachMyrDeserters;
-
+		if(flags["ZODEE_GALOQUEST"] == undefined) choices.push(zodeeGivesFirstGalomax);
 		//Run the event
 		choices[rand(choices.length)]();
 		return true;
@@ -753,6 +753,7 @@ public function DeepCavesBonus():Boolean
 			//crystalGooFenBurps();
 			//return true;
 		}
+		if(flags["ZODEE_GALOQUEST"] == undefined) choices.push(zodeeGivesFirstGalomax);
 
 		//Run the event
 		choices[rand(choices.length)]();

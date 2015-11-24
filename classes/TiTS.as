@@ -93,6 +93,7 @@
 		include "../includes/debug.as";
 		include "../includes/engine.as";
 		include "../includes/game.as";
+		include "../includes/gooExtras.as";
 		include "../includes/lightsOut.as";
 		include "../includes/items.as";
 		include "../includes/MailEntries.as";

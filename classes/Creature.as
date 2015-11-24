@@ -2082,6 +2082,11 @@ package classes {
 					setPerkValue("'Nuki Nuts",1,0);
 					kGAMECLASS.nutStatusCleanup();
 				}
+				//Biomass vent
+				if(statusEffectv1("Goo Vent") == 1)
+				{
+					kGAMECLASS.flags["GOO_BIOMASS"] = 0;
+				} 
 			}
 			
 			if (this is PlayerCharacter) 
@@ -6417,7 +6422,6 @@ package classes {
 			if (quantity > currentCum()) quantity = currentCum();
 			//Round dat shit.
 			quantity = Math.round(quantity / 10) * 10;
-			trace("Cum produced: " + quantity);
 			if (quantity < 2) quantity = 2;
 			//Super high refractory raises minimum.
 			if (refractoryRate >= 3 && quantity < 15) quantity = 15;
@@ -6430,6 +6434,13 @@ package classes {
 			if(quantity > maxCum()) quantity = maxCum();
 			//Overloaded nuki' nuts will fully drain
 			if(hasPerk("'Nuki Nuts") && balls > 1 && perkv1("'Nuki Nuts") > 0 && quantity < currentCum()) quantity = currentCum();
+			//BIOMASS ADDED LAST!
+			if(hasStatusEffect("Goo Vent")) 
+			{
+				if(kGAMECLASS.flags["GOO_BIOMASS"] == undefined) kGAMECLASS.flags["GOO_BIOMASS"] = 0;
+				quantity += kGAMECLASS.flags["GOO_BIOMASS"];
+			}
+			trace("Total produced: " + quantity);
 			return quantity;
 		}
 		//Can hold about three average shots worth, since this is fantasy.
@@ -6560,6 +6571,12 @@ package classes {
 			quantity = girlCumMultiplier * lustCoefficient * (girlCumAmount + squirterBonus);
 			// Heat means wetter orgasms.
 			quantity += statusEffectv1("Heat");
+			//GOO VENT BONUS!
+			if(hasStatusEffect("Goo Vent")) 
+			{
+				if(kGAMECLASS.flags["GOO_BIOMASS"] == undefined) kGAMECLASS.flags["GOO_BIOMASS"] = 0;
+				quantity += kGAMECLASS.flags["GOO_BIOMASS"];
+			}
 			// Round values.
 			quantity = Math.round(quantity / 10) * 10;
 			trace("Girl-cum produced: " + quantity);
@@ -10052,7 +10069,7 @@ package classes {
 			var rando: Number = 0;
 			var multi: Boolean = false;
 			//Goo - 1/4 chance
-			if ((skinType == GLOBAL.SKIN_TYPE_GOO || hasStatusEffect("Goocrotch")) && rand(4) == 0) {
+			if ((skinType == GLOBAL.SKIN_TYPE_GOO) && rand(4) == 0) {
 				rando = rand(3);
 				if (rando == 0) descript += "goopey";
 				else if (rando == 1) descript += "gooey";
@@ -10535,8 +10552,8 @@ package classes {
 			return RandomInCollection(collection);
 		}
 		public function fluidColor(arg: int): String {
-			var collection:Array = [];
-			
+			var collection:Array = new Array();;
+			trace("BOOP DA SNOOT");
 			//CUM & MILK TYPES
 			if (InCollection(arg, GLOBAL.FLUID_TYPE_MILK, GLOBAL.FLUID_TYPE_CUM, GLOBAL.FLUID_TYPE_VANILLA)) {
 				collection = ["white","white","white","white","white","alabaster","alabaster","alabaster","ivory","ivory"];
@@ -10569,9 +10586,9 @@ package classes {
 			} else if (arg == GLOBAL.FLUID_TYPE_GABILANI_GIRLCUM) {
 				collection = ["gray", "semi-clear", "semi-transparent"];
 			} else if (arg == GLOBAL.FLUID_TYPE_SPECIAL_GOO) {
-				if(skinType == GLOBAL.SKIN_TYPE_GOO) collection = [skinTone];
-				else if(hairType == GLOBAL.HAIR_TYPE_GOO) collection = [hairColor];
-				else collection ["green","emerald"];
+				if(skinType == GLOBAL.SKIN_TYPE_GOO) collection = [String(skinTone)];
+				else if(hairType == GLOBAL.HAIR_TYPE_GOO) collection = [String(hairColor)];
+				else collection = ["green","emerald"];
 			}
 			
 			else collection = ["ERROR, INVALID FLUID TYPE."];

@@ -73,6 +73,7 @@ public function jungleMiddleEncounters():Boolean {
 		choices[choices.length] = encounterRegularTentaclePitcherYouGay;
 		choices[choices.length] = encounterRegularTentaclePitcherYouGay;
 		choices[choices.length] = encounterRegularTentaclePitcherYouGay;
+		if(flags["ZODEE_GALOQUEST"] == undefined) choices.push(zodeeGivesFirstGalomax);
 		choices.push(frogGirlsEncounter);
 		//Run the event
 		choices[rand(choices.length)]();
@@ -146,6 +147,7 @@ public function jungleDeepEncounters():Boolean {
 		choices[choices.length] = encounterMimbrane;
 		choices[choices.length] = encounterMimbrane;
 		//choices[choices.length] = encounterRegularTentaclePitcherYouGay;
+		if(flags["ZODEE_GALOQUEST"] == undefined) choices.push(zodeeGivesFirstGalomax);
 		
 		//Run the event
 		choices[rand(choices.length)]();

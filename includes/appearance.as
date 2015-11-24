@@ -244,7 +244,7 @@ public function appearance(target:Creature):void {
 				if (rand (10) == 0) output2(" Fairly unremarkable " + target.eyeColor);
 				else if (rand(3) == 0) output2(" Regular " + target.eyeColor);
 				else if (rand(2) == 0) output2(" Normal-looking " + target.eyeColor);
-				else output2(StringUtil.capitalize(target.eyeColor) + "-colored");
+				else output2(" " + StringUtil.capitalize(target.eyeColor) + "-colored");
 				output2(" eyes allow you to take in your surroundings without trouble.");
 			}
 		}
@@ -1540,7 +1540,18 @@ public function appearance(target:Creature):void {
 		clearGhostMenu();
 		var btnIndex:int = 0;
 		addGhostButton(btnIndex++, "PrefGender", selectGenderPref, undefined, "Preferred Gender", "Indicate the gender you would prefer your character to be considered.");
-		
+		//PC Goo'ed up?
+		if (target.hairType == GLOBAL.HAIR_TYPE_GOO || target.hasStatusEffect("Goo Vent") || target.hasStatusEffect("Goo Crotch"))
+		{
+			output2("\n\nSince ");
+			if(pc.isGoo()) output2("you're ");
+			else output2("some parts of you are ");
+			output2("made of goo, you can adjust ");
+			if(pc.isGoo()) output2("your body");
+			else output2("them");
+			output2(" if need be.");
+			addGhostButton(btnIndex++,"Shift Goo",gooShiftMenu,undefined,"Shift Goo","Adjust the gooey parts of your body.");
+		}
 		// Mimbrane hooooook
 		// [MIMBRANECODE]
 		if (attachedMimbranes() > 0)
