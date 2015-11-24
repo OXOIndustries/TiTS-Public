@@ -67,7 +67,7 @@
 		public static const FLAG_CHITINOUS:int								= 34;
 		public static const FLAG_FEATHERED:int								= 35;
 		public static const FLAG_DOUBLE_HEADED:int							= 36;
-		public static const FLAG_GOOEY:int							= 36;
+		public static const FLAG_GOOEY:int							= 37;
 		
 		public static const FLAG_NAMES:Array = [
 			"OFFSET -- INVALID",
@@ -107,6 +107,7 @@
 			"Chitinous",
 			"Feathered",
 			"Double Headed",
+			"Gooey",
 		];
 		
 		public static const VALID_SKIN_FLAGS:Array = [
@@ -611,6 +612,7 @@
 			"Gabilani Girl Cum",
 			"Vanilla",
 			"Nyrea Cum",
+			"Goo",
 		];
 		
 		public static const VALID_CUM_TYPES:Array = [
