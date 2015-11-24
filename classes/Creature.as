@@ -1331,6 +1331,8 @@ package classes {
 					buffer = furColor;
 					break;
 				case "scaleColor":
+					buffer = scaleColor;
+					break;
 				case "chitinColor":
 					buffer = chitinColor();
 					break;
