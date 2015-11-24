@@ -26,6 +26,25 @@ Fullgoo. Monoped goobod, Gain resistance to corrosion. Height and thickness beco
 //Max Mass: no limit. Extra lowerbody descs for lots of goo?
 */
 
+public function zodeeGivesFirstGalomax():void
+{
+	showName("A\nSTRANGER");
+	showBust("ZODEE");
+	output("\n\nThere's another rusher here - a rahn by the looks of it. She's dressed in a pale white jumpsuit that hides most of her gleaming teal, gelatinous skin from view but does little to conceal the weighty jiggle of her chest. Her hands are in her pack, sorting through enough gleaming prizes to make your belly clench with envy, and her plump rump is positioned perfectly to entice you with its restless wiggles. Just how much did she find before you could get to here?");
+	output("\n\nTossing items carelessly over her shoulder, the rahn seems blithely unaware of your presence until a pill-bottle smacks off your chest, rattling noisily. She draws in the blink of an eye, then lowers her weapon at the sight of another galactic traveler.");
+	output("\n\n<i>“Oh, didn’t think I’d bump into another rusher out here. You can have the GaloMax if you want. Not much use to a girl like me.”</i> She eyeballs you from the crown of your head to the bottoms of your [pc.feet], blatantly evaluating every detail. You’ve had full-body scans that felt less invasive. <i>“You know, you just might make it out here, if you’re careful.”</i> Straightening and shouldering her bag, the alien woman licks her lips and grins. <i>“The name’s Zo’dee, by the way. Maybe we’ll bump into each other again sometime. Just don’t get mad when I score all the loot before you get there.”</i>");
+	output("\n\nYou pick up the pills and answer, ");
+	if(pc.isBimbo()) output("<i>“Ooh, I hope we meet again super soon! My name’s [pc.name].”</i>");
+	else if(pc.isBro()) output("<i>“[pc.name], and I’ll get it first,”</i> with a growl.");
+	else if(pc.isNice()) output("<i>“I’m [pc.name], and I think I’d like that.”</i>");
+	else if(pc.isMischievous()) output("<i>“I go by [pc.name]. I sure hope you aren’t too sore when I’m scoring crate loads of riches out from under your nose.”</i>");
+	else output("<i>“Good luck with that. I’m [pc.name]. Remember it.”</i>");
+	output("\n\nZo’dee shrugs nonchalantly, but your eyes are firmly drawn to the wiggle of her hips, brought out in stark relief by the glistening shine of her bodysuit, as she walks away. <i>“Maybe. Be careful with that GaloMax by the way. I hear it’s pretty permanent. Or get as much as you can, I don’t really care. Maybe I want you all gooey and slutty~?”</i>\n\n");
+	flags["MET_ZODEE"] = 1;
+	flags["ZODEE_GALOQUEST"] = 1;
+	quickLoot(new GaloMax());
+}
+
 public function galoMaxTFProc():void
 {
 	clearOutput();
@@ -122,7 +141,7 @@ public function galoMaxTFProc():void
 		//Just dix
 		else if(pc.hasCock())
 		{
-			output("\n\nYou’re helpless against the tide of lust rolling into your nethers, steadily filling your [pc.cocks]. You get hard - rock hard. ");
+			output("You’re helpless against the tide of lust rolling into your nethers, steadily filling your [pc.cocks]. You get hard - rock hard. ");
 			if(pc.cockTotal() > 1) output("Boners");
 			else output("A boner");
 			output(" this rigid could chop wood, and yet ");
@@ -169,6 +188,7 @@ public function galoMaxTFProc():void
 			output("\n\nOrgasm is less like a blissful explosion and more like breaking the top off a fire hydrant. Ribbons of... syrupy, [pc.cumColor] cum spray from your drenched, quivering twat. It’s different than you remember, tapping into a reservoir that you never would have expected to aid in your feminine ejaculation, releasing waves of thick, sloppy goop to puddle on the floor and coat your [pc.legOrLegs]. It’s difficult to take in while the raw pleasure is dancing behind your eyes, but the minute the flow tapers down to a gentle drip, you realize what’s happened.");
 			output("\n\n<b>The GaloMax has turned your girlcum into the same sort of material as your hair, but slicker.</b> And you’re pretty sure you can spend your biomass to make future orgasms bigger and messier, just like the last. This might take some getting used to.");
 		}
+		pc.createStatusEffect("Goo Vent");
 	}
 	//Dose 3
 	//All genitalia are goo.
@@ -176,7 +196,7 @@ public function galoMaxTFProc():void
 	//Elasticity to 3 min
 	else if(flags["GALOMAX_DOSES"] == 3)
 	{
-		output("\n\nHere it comes! Once again, that heavy heat spreads throughout you, circling from your fingertips to ");
+		output("Here it comes! Once again, that heavy heat spreads throughout you, circling from your fingertips to ");
 		if(pc.hasToes()) output("your toes");
 		else output("the tips of your [feetOrFoot]");
 		output(" only to settle more and more of itself into your crotch. Your [pc.genitals] flood with it, plumping up with artificially-induced arousal. Your head swims, dizzied by the ");
@@ -212,55 +232,194 @@ public function galoMaxTFProc():void
 		else output(", and it isn’t until you see the edge of a finger through a freshly-cleaned nether-lip that you realize what’s happened.");
 		output(" <b>Your genitalia... your whole pubic mound, really, has become [pc.hairColor] and gooey, just like your hair.</b>");
 		output("\n\n<i>Maybe you can shift things around down there too...</i>");
+		pc.createStatusEffect("Goo Crotch");
 		//Elasticity to 3
 		//Cocks/Cunts to goo
 		pc.elasticity = 3;
 		for(var x:int = 0; x < pc.totalCocks(); x++)
 		{
 			if(!pc.hasCockFlag(GLOBAL.FLAG_GOOEY,x)) pc.cocks[x].addFlag(GLOBAL.FLAG_GOOEY);
-			pc.cocks[x].cockColor = 
+			pc.cocks[x].cockColor = pc.hairColor;
+			if(pc.hairType != GLOBAL.HAIR_TYPE_GOO) pc.cocks[x].cockColor = RandomInCollection[("green","emerald")];
 		}
 		for(x = 0; x < pc.totalVaginas(); x++)
 		{
 			if(!pc.vaginas[x].hasFlag(GLOBAL.FLAG_GOOEY)) pc.vaginas[x].addFlag(GLOBAL.FLAG_GOOEY);
+			pc.vaginas[x].vaginaColor = pc.hairColor;
+			if(pc.hairType != GLOBAL.HAIR_TYPE_GOO) pc.vaginas[x].vaginaColor = RandomInCollection[("green","emerald")];
 		}
-		pc.createStatusEffect("Goocrotch");
 	}
 }
 
-output("\n\nGoo Options submenu.");
-output("\n\nNow that you’re {part/a} goo creature, you can resize the goo’ed up parts of your form however you like. Which part of yourself will you focus on?");
+//Goo Options submenu.
+public function gooShiftMenu():void
+{
+	clearOutput2();
+	output2("Now that you’re ");
+	if(!pc.isGoo()) output2("part");
+	else output2("a");
+	output2(" goo creature, you can resize the goo’ed up parts of your form however you like. Which part of yourself will you focus on?");
+	showBiomass();
+	clearGhostMenu();
+	if(pc.hairType == GLOBAL.HAIR_TYPE_GOO) addGhostButton(0, "Hair", gooHairAdjustmenu);
+	else addDisabledGhostButton(0, "Hair");
+	//addGhostButton(1, "Male", setGenderPref, "male");
+	//addGhostButton(2, "Auto", setGenderPref, "auto");
+	if(pc.hasStatusEffect("Goo Vent")) addGhostButton(4,"ToggleVent",ventToggle,undefined,"Toggle Vent","Toggle on or off whether you would like to add excess biomass to your own orgasmic releases.");
+	else addDisabledGhostButton(4,"Locked","Locked","It takes two doses of GaloMax to unlock this option.");
+	addGhostButton(14, "Back", appearance, pc);
+}
 
-output("\n\n\tBiomass Reserve: X");
+public function showBiomass():void
+{
+	if(flags["GOO_BIOMASS"] == undefined) flags["GOO_BIOMASS"] = 0;
+	output2("\n\n\tBiomass Reserve: " + flags["GOO_BIOMASS"]);
+	if(pc.hasStatusEffect("Goo Vent")) {
+		output2("\n\tVenting: ");
+		if(pc.statusEffectv1("Goo Vent") == 1) output2("On");
+		else output2("Off");
+	}
+}
 
-output("\n\n[Hair] [Crotch] [???]");
-output("\n\nHair");
-output("\n\n//100 biomass/inch");
-output("\n\nYou currently have <i>“ + num2Text(Math.round(pc.hairLength*10)/10) + <i>“-inch{es} of gooey hair, in <i>“ + goostyle + <i>“ style. Will you do anything with it?");
+//Hair
+//100 biomass/inch
+public function gooHairAdjustmenu():void
+{
+	clearOutput2();
+	output2("You currently have " + num2Text(Math.round(pc.hairLength*10)/10) + "-inch");
+	if(Math.round(pc.hairLength*10)/10 != 1) output2("es");
+	output2(" of gooey hair, in ");
+	if(pc.hairStyle == "null") output2("no particular");
+	else output2("a " + pc.hairStyle);
+	output2(" style. Will you do anything with it?");
+	showBiomass();
+	//[Lengthen] [Shorten] [Style]
+	clearGhostMenu();
+	addGhostButton(0,"Lengthen",lengthenHairGoo,undefined,"Lengthen","Put 100 mLs of biomass into adding an inch to your hair.");
+	if(pc.hasHair()) addGhostButton(1,"Shorten",shortenHairGoo,undefined,"Shorten","Shorten your gooey hair, regaining a portion of its biomass.");
+	else addDisabledGhostButton(1,"Shorten","Shorten","You've got to have hair in order to shorten it!");
+	addGhostButton(2,"Style",newGooStyle,undefined,"Style","Style your hair into a more pleasing shape.");
+	addGhostButton(14,"Back",gooShiftMenu);
+	
+}
 
-output("\n\n{Biomass display}");
+//Lengthen
+public function lengthenHairGoo():void
+{
+	clearOutput2();
+	//Below 100 Biomass
+	if(flags["GOO_BIOMASS"] < 100) 
+	{
+		output2("No matter how hard you will your ");
+		if(!pc.hasHair()) output2("bald head to sprout hair, it steadfastly refuses to grow.");
+		else output2("slippery locks to lengthen, they steadfastly refuse to grow.");
+		output2(" The empty ache in your gut informs you that you’ll need more biomass to grow it longer.");
+	}
+	//Enough
+	else
+	{
+		output2("You blink your eyes closed and direct your will to the flowing fluid atop your head, directing to expand and lengthen, to grow out ");
+		if(pc.hairLength >= 1) output2("another");
+		else output2("an");
+		output2(" inch. You feel a bizarre tingle as it happens, but a second later, you’ve gotten longer hair.");
+		if(pc.hairStyle != "null") 
+		{
+			output2(" <b>Growing it out mussed up your style. You’ll have to re-coif your ‘do if you want it back.</b>");
+			pc.hairStyle = "null";
+		}
+		//-100 biomass. Reset style.
+		flags["GOO_BIOMASS"] -= 100;
+		pc.hairLength++;
+	}
+	clearGhostMenu();
+	addGhostButton(0,"Next",gooHairAdjustmenu);
+}
 
-output("\n\n[Lengthen] [Shorten] [Style]");
+//Shorten
+public function shortenHairGoo():void
+{
+	clearOutput2();
+	output2("You scrunch up your face and draw the excess hair into your scalp, absorbing back into your reserve of biomass.");
+	if(pc.hairStyle != "null")
+	{
+		pc.hairStyle = "null";
+		output2(" <b>Shrinking it down messed up your style. You’ll have to re-coif your ‘do if you want it back.</b>");
+	}
+	if(pc.hairLength - 1 <= 0) output2(" There’s no more visible hair. You look bald now, though you could have a mop of hair back whenever you wanted it.");
+	//+100 biomass, reset style
+	flags["GOO_BIOMASS"] += 75;
+	pc.hairLength -= 1;
+	if(pc.hairLength < 0) pc.hairLength = 0;
+	clearGhostMenu();
+	addGhostButton(0,"Next",gooHairAdjustmenu);
+}	
 
-output("\n\n//Lengthen");
-output("\n\n//Below 100 Biomass");
-output("\n\nNo matter how hard you will your slippery locks to lengthen, they steadfastly refuse to grow. The empty ache in your gut informs you that you’ll need more biomass to grow it longer.");
-output("\n\n//Enough");
-output("\n\nYou blink your eyes closed and direct your will to the flowing fluid atop your head, directing to expand and lengthen, to grow out {an/another} inch. You feel a bizarre tingle as it happens, but a second later, you’ve gotten longer hair.{ <b>Growing it out mussed up your style. You’ll have to re-coif your ‘do if you want it back.}");
-output("\n\n//-100 biomass. Reset style.");
+//Style
+public function newGooStyle():void
+{
+	clearOutput2();
+	output2("What style will you shape your hair into?");
+	//[All options go to Style Confirmation]
+	clearGhostMenu();
+	//[Straight] Sets [pc.hairstyle] to null.
+	if(pc.hairStyle != "null" && pc.hairStyle != "straight") addGhostButton(0,"Straight",gooStyle,"straight","Straight","Style your hair into a plain, straight do.");
+	else addDisabledGhostButton(0,"Straight","Straight","Your hair is already straight.");
+	//[Ponytail]
+	if(pc.hairStyle != "ponytail" && pc.hairLength >= 5) addGhostButton(1,"Ponytail",gooStyle,"ponytail","Ponytail","Style your hair into a ponytail.");
+	else if(pc.hairStyle != "ponytail") addDisabledGhostButton(1,"Ponytail","Ponytail","Your hair isn't long enough to get put into a ponytail.");
+	else addDisabledGhostButton(1,"Ponytail","Ponytail","You already have a ponytail.");
+	//[Pigtails]
+	if(pc.hairStyle != "pigtails" && pc.hairLength >= 5) addGhostButton(2,"Pigtails",gooStyle,"pigtails","Pigtails","Style your hair into pigtails.");
+	else if(pc.hairStyle != "pigtails") addDisabledGhostButton(2,"Pigtails","Pigtails","Your hair isn't long enough to get put into pigtails.");
+	else addDisabledGhostButton(2,"Pigtails","Pigtails","You already have a ponytail.");
+	//[Curls]
+	if(pc.hairStyle != "curls") addGhostButton(3,"Curls",gooStyle,"curls","Curls","Style your hair into curls.");
+	else addDisabledGhostButton(3,"Curls","Curlse","You already have your hair curled.");
+	//[Braided]
+	if(pc.hairStyle != "braided" && pc.hairLength >= 5) addGhostButton(4,"Braided",gooStyle,"braided","Braided","Style your hair into a braid.");
+	else if(pc.hairStyle != "braided") addDisabledGhostButton(4,"Braided","Braided","Your hair isn't long enough to be braided.");
+	else addDisabledGhostButton(4,"Braided","Braided","You already have your hair braided!");
+	//[Afro]
+	if(pc.hairStyle != "afro" && pc.hairLength <= 12) addGhostButton(5,"Afro",gooStyle,"afro","Afro","Style your hair into an afro.");
+	else if(pc.hairStyle != "afro") addDisabledGhostButton(5,"Afro","Afro","Your hair is too long to be styled into an afro.");
+	else addDisabledGhostButton(5,"Afro","Afro","You already have an afro.");
+	//[Mohawk]
+	if(pc.hairStyle != "mohawk" && pc.hairLength <= 12) addGhostButton(6,"Mohawk",gooStyle,"mohawk","Mohawk","Style your hair into a mohawk.");
+	else if(pc.hairStyle != "mohawk") addDisabledGhostButton(6,"Mohawk","Mohawk","Your hair is too long to be styled into a mohawk.");
+	else addDisabledGhostButton(6,"Mohawk","Mohawk","You already have a mohawk.");
+	addGhostButton(14,"Back",gooHairAdjustmenu);
+}
 
-output("\n\n//Shorten");
-output("\n\nYou scrunch up your face and draw the excess hair into your scalp, absorbing back into your reserve of biomass.{ <b>Shrinking it down messed up your style. You’ll have to re-coif your ‘do if you want it back.</b>/ There’s no more visible hair. You look bald now, though you could have a mop of hair back whenever you wanted it.}");
-output("\n\n//+100 biomass, reset style");
+//Style it
+public function gooStyle(arg:String):void
+{
+	clearOutput2();
+	output2("You use your Codex’s Holocam to check your appearance as your hair miraculously assumes the chosen shape. There’s a certain thrill in being able to alter your looks so effortlessly on your own, without something as barbaric as a pair of clippers of styling gel. You’re your own styling gel!");
+	pc.hairStyle = arg;
+	output2("\n\n<b>You have a new hairstyle: " + pc.hairStyle + "</b>");
+	clearGhostMenu();
+	addGhostButton(0,"Next",gooHairAdjustmenu)
+}
 
-output("\n\n//Style");
-output("\n\nWhat style will you shape your hair into?");
-output("\n\n//Style it");
-output("\n\nYou use your Codex’s Holocam to check your appearance as your hair miraculously assumes the chosen shape. There’s a certain thrill in being able to alter your looks so effortlessly on your own, without something as barbaric as a pair of clippers of styling gel. You’re your own styling gel!");
+public function ventToggle():void
+{
+	clearOutput2();
+	if(pc.statusEffectv1("Goo Vent") == 1)
+	{
+		output2("You stop venting excess biomass when you orgasm.");
+		pc.setStatusValue("Goo Vent",1,0);
+	}
+	else 
+	{
+		output2("You will now vent excess biomass when you orgasm.");
+		pc.setStatusValue("Goo Vent",1,1);
+	}
+	clearGhostMenu();
+	addGhostButton(0,"Next",gooShiftMenu);
+}
 
-output("\n\n<b>You have X hairstyle.</b>");
-output("\n\nCrotch");
-output("\n\n//Copy past crotch display from Appearance screen.");
+/*Crotch
+output2("\n\n//Copy past crotch display from Appearance screen.");
 
 output("\n\nDo you will your body to change anything?");
 output("\n\n[Penis] [Vagina] [Balls] [Misc]");
@@ -295,3 +454,4 @@ output("\n\nDeciding that your [pc.vagina] is too much of a distraction, you foc
 output("\n\n//Remove Vags");
 output("\n\nDeciding that your [pc.vaginas] would serve you better by fading away into nothingness, you will the goo at your crotch to fold over the feminine creases and melt them back into nothingness once more.");
 
+*/

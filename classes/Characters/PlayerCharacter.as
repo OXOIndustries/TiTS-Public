@@ -36,7 +36,12 @@ package classes.Characters
 		override public function loadInCunt(cumFrom:Creature = null, vagIndex:int = -1):Boolean
 		{
 			kGAMECLASS.mimbraneFeed("vagina");
-			
+			//Goo TFed? GATHER BIOMASS
+			if(hairType == GLOBAL.HAIR_TYPE_GOO) 
+			{
+				if(cumFrom != null) addBiomass(cumFrom.cumQ());
+				else addBiomass(10);
+			}
 			if (cumFrom != null)
 			{
 				return this.tryKnockUp(cumFrom, vagIndex);
@@ -48,7 +53,12 @@ package classes.Characters
 		override public function loadInAss(cumFrom:Creature = null):Boolean
 		{
 			kGAMECLASS.mimbraneFeed("ass");
-			
+			//Goo TFed? GATHER BIOMASS
+			if(hairType == GLOBAL.HAIR_TYPE_GOO) 
+			{
+				if(cumFrom != null) addBiomass(cumFrom.cumQ());
+				else addBiomass(10);
+			}
 			if (cumFrom != null)
 			{
 				return this.tryKnockUp(cumFrom, 3);
@@ -60,6 +70,12 @@ package classes.Characters
 		override public function loadInMouth(cumFrom:Creature = null):Boolean
 		{
 			kGAMECLASS.mimbraneFeed("face");
+			//Goo TFed? GATHER BIOMASS
+			if(hairType == GLOBAL.HAIR_TYPE_GOO) 
+			{
+				if(cumFrom != null) addBiomass(cumFrom.cumQ());
+				else addBiomass(10);
+			}
 			if(hasPerk("Honeypot")) 
 			{
 				kGAMECLASS.honeyPotBump(true);
@@ -72,10 +88,20 @@ package classes.Characters
 			}
 			return false;
 		}
-		
+		public function addBiomass(arg:Number):void
+		{
+			if(kGAMECLASS.flags["GOO_BIOMASS"] == undefined) kGAMECLASS.flags["GOO_BIOMASS"] = 0;
+			kGAMECLASS.flags["GOO_BIOMASS"] += arg;
+		}
 		// *shrug*
 		override public function loadInNipples(cumFrom:Creature = null):Boolean
 		{
+			//Goo TFed? GATHER BIOMASS
+			if(hairType == GLOBAL.HAIR_TYPE_GOO) 
+			{
+				if(cumFrom != null) addBiomass(cumFrom.cumQ());
+				else addBiomass(10);
+			}
 			kGAMECLASS.mimbraneFeed("boobs");
 			return false;
 		}

@@ -10,6 +10,7 @@
 	import classes.StringUtil;
 	import classes.Util.InCollection;
 	import classes.Util.RandomInCollection;
+	import classes.Engine.Utility.IncrementFlag
 	import classes.Engine.Utility.num2Text;
 	
 	public class GaloMax extends ItemSlotClass
@@ -65,19 +66,26 @@
 			var pc:Creature = target;
 			if(target is PlayerCharacter) {
 				//Dose 1!
-				if(flags["GALOMAX_DOSES"] == undefined)
+				if(kGAMECLASS.flags["GALOMAX_DOSES"] == undefined)
 				{
 					//Take this shit
 					output("It’s amazing what they can fit into pills these days, though this particular pill is more of a potion-packing gelcap. The thing is big enough to make you wonder if you’ll be able to swallow it at all");
 					if(pc.isBimbo()) output(", but then your spaced-out mind daydreams about taking far bigger... veinier packages into your throat. This’ll be no trouble at all");
 					output(". Oh well, if you want to ");
-					if(flags["RECRUITED_CELISE"] == undefined) output("gain the advantages of a galotian");
+					if(kGAMECLASS.flags["RECRUITED_CELISE"] == undefined) output("gain the advantages of a galotian");
 					else output("get as gooey as Celise");
 					output(", you’ll need to do it.");
 
 					output("\n\nDown the hatch.");
 					output("\n\nIt... it wasn’t that bad. It didn’t feel nearly as big as it looked. You barely even felt it! Nothing to do now but wait for that lump in your belly to dissolve and work its magic. Just how long is this stuff supposed to take anyway?");
 					output("\n\nArticles on the Codex peg it somewhere between thirty minutes and an hour. Time to wait.");
+				}
+				//Already waiting on effects
+				else if(target.hasStatusEffect("GaloMax"))
+				{
+					output("Nope. You're still waiting for the effects of the last one to kick in. You're not going to risk turning into a puddle.");
+					if(!kGAMECLASS.infiniteItems()) quantity++;
+					return false;
 				}
 				//Repeat take this shit
 				else

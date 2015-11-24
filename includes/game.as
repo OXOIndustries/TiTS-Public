@@ -1026,6 +1026,10 @@ public function statusTick():void {
 					pc.willpowerMod += pc.statusEffects[x].value1;
 					pc.reflexesMod += pc.statusEffects[x].value1;
 				}
+				if (pc.statusEffects[x].storageName == "GaloMax")
+				{
+					eventQueue.push(galoMaxTFProc);
+				}
 				//Mark out the ones that need cut!
 				expiredStatuses[expiredStatuses.length] = x;
 				//trace("Marking slot: " + x + " to cut");
