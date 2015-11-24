@@ -1421,7 +1421,11 @@ public function appearance(target:Creature):void {
 			else if(target.vaginaTotal() > 1) 
 			{
 				output2("You have " + num2Text(target.vaginas.length) + " " + target.vaginasDescript() + ", ");
-				if(target.matchedVaginas()) output2(" all similar in appearance.");
+				if(target.matchedVaginas()) 
+				{
+					if(target.totalVaginas() == 2) output2(" both similar in appearance.");
+					else output2(" all similar in appearance.");
+				}
 				else output2(" each a unique and beautiful flower.");
 				temp = 0;
 				while(temp < target.totalVaginas())
