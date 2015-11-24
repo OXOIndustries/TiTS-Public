@@ -378,9 +378,9 @@ package classes.TITSSaveEdit.Data
 			CONVERT_TAIL_TYPES[CoCTypeDefs.TAIL_TYPE_KANGAROO] = GLOBAL.TYPE_KANGAROO;
 			CONVERT_TAIL_TYPES[CoCTypeDefs.TAIL_TYPE_FOX] = GLOBAL.TYPE_VULPINE;
 			CONVERT_TAIL_TYPES[CoCTypeDefs.TAIL_TYPE_DRACONIC] = GLOBAL.TYPE_DRACONIC;
-			CONVERT_TAIL_TYPES[CoCTypeDefs.TAIL_TYPE_RACCOON] = 0;
+			CONVERT_TAIL_TYPES[CoCTypeDefs.TAIL_TYPE_RACCOON] = GLOBAL.TYPE_KUITAN;
 			CONVERT_TAIL_TYPES[CoCTypeDefs.TAIL_TYPE_MOUSE] = GLOBAL.TYPE_MOUSE;
-			CONVERT_TAIL_TYPES[CoCTypeDefs.TAIL_TYPE_FERRET] = 0;
+			CONVERT_TAIL_TYPES[CoCTypeDefs.TAIL_TYPE_FERRET] = GLOBAL.TYPE_BADGER;
 		}
 		
 		private static function convertTailData(tits:TiTsCharacterData, coc:CoCCharacterData):void
@@ -412,14 +412,24 @@ package classes.TITSSaveEdit.Data
 				switch (tits.tailType)
 				{
 					case GLOBAL.TYPE_EQUINE:
+					case GLOBAL.TYPE_MOUSE:
 						tits.tailFlags = [GLOBAL.FLAG_LONG];
 						break;
 						
+					case GLOBAL.TYPE_BOVINE:
+						tits.tailFlags = [GLOBAL.FLAG_LONG, GLOBAL.FLAG_FLUFFY];
+						break;
+						
 					case GLOBAL.TYPE_PANDA:
+					case GLOBAL.TYPE_BADGER:
+					case GLOBAL.TYPE_DEER:
+					case GLOBAL.TYPE_LAPINE:
 						tits.tailFlags = [GLOBAL.FLAG_FLUFFY, GLOBAL.FLAG_FURRED];
 						break;
 					
 					case GLOBAL.TYPE_CANINE:
+					case GLOBAL.TYPE_KUITAN:
+					case GLOBAL.TYPE_VULPINE:
 						tits.tailFlags = [GLOBAL.FLAG_LONG, GLOBAL.FLAG_FLUFFY, GLOBAL.FLAG_FURRED];
 						break;
 						
@@ -428,9 +438,37 @@ package classes.TITSSaveEdit.Data
 						break;
 						
 					case GLOBAL.TYPE_BEE:
-						tits.tailFlags = [GLOBAL.FLAG_SMOOTH, GLOBAL.FLAG_STINGER_TIPPED];
+						tits.tailFlags = [GLOBAL.FLAG_SMOOTH, GLOBAL.FLAG_STINGER_TIPPED, GLOBAL.FLAG_CHITINOUS];
 						break;
-					
+						
+					case GLOBAL.TYPE_ARACHNID:
+					case GLOBAL.TYPE_DRIDER:
+						tits.tailFlags = [GLOBAL.FLAG_SMOOTH, GLOBAL.FLAG_CHITINOUS];
+						break;
+						
+					case GLOBAL.TYPE_MYR:
+						tits.tailFlags = [GLOBAL.FLAG_SMOOTH, GLOBAL.FLAG_CHITINOUS];
+						break;
+						
+					case GLOBAL.TYPE_DEMONIC:
+						tits.tailFlags = [GLOBAL.FLAG_LONG, GLOBAL.FLAG_PREHENSILE];
+						break;
+						
+					case GLOBAL.TYPE_DRACONIC:
+					case GLOBAL.TYPE_LIZAN:
+					case GLOBAL.TYPE_RASKVEL:
+					case GLOBAL.TYPE_SNAKE:
+						tits.tailFlags = [GLOBAL.FLAG_LONG, GLOBAL.FLAG_PREHENSILE, GLOBAL.FLAG_SCALED];
+						break;
+						
+					case GLOBAL.TYPE_OVIR:
+						tits.tailFlags = [GLOBAL.FLAG_SCALED];
+						break;
+						
+					case GLOBAL.TYPE_VANAE:
+						tits.tailFlags = [GLOBAL.FLAG_LONG, GLOBAL.FLAG_PREHENSILE];
+						break;
+						
 					default:
 						tits.tailFlags = [];
 						break;
@@ -454,14 +492,46 @@ package classes.TITSSaveEdit.Data
 		
 		private static function convertTongueData(tits:TiTsCharacterData, coc:CoCCharacterData):void
 		{
+			var initTongueType:int = tits.tongueType;
+			
 			if (CONVERT_TONGUE_TYPES[coc.tongueType] != undefined)
 			{
 				tits.tongueType = CONVERT_TONGUE_TYPES[coc.tongueType];
 			}
 			
-			// No flags are actually ever added to the player yet afaik although descriptors/sceneflow is setup to
-			// support some.
-			tits.tongueFlags = [];
+			if (tits.tongueType != initTongueType)
+			{
+				tits.tongueFlags = [];
+				
+				switch (tits.tongueType)
+				{
+					case GLOBAL.TYPE_BEE:
+						tits.armFlags.push(GLOBAL.FLAG_LONG);
+						tits.armFlags.push(GLOBAL.FLAG_HOLLOW);
+						
+					case GLOBAL.TYPE_DEMONIC:
+					case GLOBAL.TYPE_DRACONIC:
+					case GLOBAL.TYPE_LEITHAN:
+						tits.armFlags.push(GLOBAL.FLAG_LONG);
+						tits.armFlags.push(GLOBAL.FLAG_PREHENSILE);
+						break;
+						
+					case GLOBAL.TYPE_NAGA:
+					case GLOBAL.TYPE_OVIR:
+						tits.armFlags.push(GLOBAL.FLAG_LONG);
+						break;
+						
+					case GLOBAL.TYPE_RASKVEL:
+						tits.armFlags.push(GLOBAL.FLAG_LONG);
+						tits.armFlags.push(GLOBAL.FLAG_LUBRICATED);
+						tits.armFlags.push(GLOBAL.FLAG_PREHENSILE);
+						tits.armFlags.push(GLOBAL.FLAG_SQUISHY);
+						break;
+						
+					default:
+						break;
+				}
+			}
 		}
 		
 		private static var CONVERT_WING_TYPES:Array;
@@ -505,9 +575,46 @@ package classes.TITSSaveEdit.Data
 		
 		private static function convertArmData(tits:TiTsCharacterData, coc:CoCCharacterData):void
 		{
+			var initArmType:int = tits.armType;
+			
 			if (CONVERT_ARM_TYPES[coc.armType] != undefined)
 			{
 				tits.armType = CONVERT_ARM_TYPES[coc.armType];
+			}
+			
+			if (tits.armType != initArmType)
+			{
+				tits.armFlags = [];
+				
+				switch (tits.armType)
+				{
+					case GLOBAL.TYPE_AVIAN:
+						tits.armFlags.push(GLOBAL.FLAG_FEATHERED);
+						break;
+						
+					case GLOBAL.TYPE_ARACHNID:
+					case GLOBAL.TYPE_BEE:
+					case GLOBAL.TYPE_DRIDER:
+					case GLOBAL.TYPE_LEITHAN:
+					case GLOBAL.TYPE_MYR:
+						tits.armFlags.push(GLOBAL.FLAG_CHITINOUS);
+						break;
+						
+					case GLOBAL.TYPE_CANINE:
+					case GLOBAL.TYPE_FELINE:
+					case GLOBAL.TYPE_BADGER:
+					case GLOBAL.TYPE_KUITAN:
+					case GLOBAL.TYPE_PANDA:
+						tits.armFlags.push(GLOBAL.FLAG_FURRED);
+						break;
+						
+					case GLOBAL.TYPE_OVIR:
+						tits.armFlags.push(GLOBAL.FLAG_SCALED);
+						break;
+						
+					default:
+						break;
+				}
 			}
 		}
 		
@@ -518,7 +625,7 @@ package classes.TITSSaveEdit.Data
 			
 			CONVERT_EYE_TYPES[CoCTypeDefs.EYES_HUMAN] = GLOBAL.TYPE_HUMAN;
 			CONVERT_EYE_TYPES[CoCTypeDefs.EYES_FOUR_SPIDER_EYES] = GLOBAL.TYPE_ARACHNID;
-			CONVERT_EYE_TYPES[CoCTypeDefs.EYES_BLACK_EYES_SAND_TRAP] = GLOBAL.TYPE_HUMAN;
+			CONVERT_EYE_TYPES[CoCTypeDefs.EYES_BLACK_EYES_SAND_TRAP] = GLOBAL.TYPE_MYR;
 		}
 		
 		private static var CONVERT_FACE_TYPES:Array;
@@ -540,10 +647,10 @@ package classes.TITSSaveEdit.Data
 			CONVERT_FACE_TYPES[CoCTypeDefs.FACE_FOX] = GLOBAL.TYPE_VULPINE;
 			CONVERT_FACE_TYPES[CoCTypeDefs.FACE_DRAGON] = GLOBAL.TYPE_DRACONIC;
 			CONVERT_FACE_TYPES[CoCTypeDefs.FACE_RACCOON_MASK] = GLOBAL.TYPE_HUMANMASKED;
-			CONVERT_FACE_TYPES[CoCTypeDefs.FACE_RACCOON] = GLOBAL.TYPE_HUMAN; // fallback to default
+			CONVERT_FACE_TYPES[CoCTypeDefs.FACE_RACCOON] = GLOBAL.TYPE_KUITAN;
 			CONVERT_FACE_TYPES[CoCTypeDefs.FACE_BUCKTEETH] = GLOBAL.TYPE_LAPINE;
 			CONVERT_FACE_TYPES[CoCTypeDefs.FACE_FERRET_MASK] = GLOBAL.TYPE_HUMANMASKED;
-			CONVERT_FACE_TYPES[CoCTypeDefs.FACE_FERRET] = GLOBAL.TYPE_HUMAN; // fallback to default
+			CONVERT_FACE_TYPES[CoCTypeDefs.FACE_FERRET] = GLOBAL.TYPE_BADGER;
 		}
 		
 		private static var CONVERT_HAIR_TYPES:Array;
@@ -555,7 +662,7 @@ package classes.TITSSaveEdit.Data
 			CONVERT_HAIR_TYPES[CoCTypeDefs.HAIR_FEATHER] = GLOBAL.HAIR_TYPE_FEATHERS;
 			CONVERT_HAIR_TYPES[CoCTypeDefs.HAIR_GHOST] = GLOBAL.HAIR_TYPE_TRANSPARENT;
 			CONVERT_HAIR_TYPES[CoCTypeDefs.HAIR_GOO] = GLOBAL.HAIR_TYPE_GOO;
-			CONVERT_HAIR_TYPES[CoCTypeDefs.HAIR_ANEMONE ] = GLOBAL.HAIR_TYPE_TENTACLES;
+			CONVERT_HAIR_TYPES[CoCTypeDefs.HAIR_ANEMONE] = GLOBAL.HAIR_TYPE_TENTACLES;
 		}
 		
 		private static var CONVERT_HORN_TYPES:Array;
@@ -566,8 +673,8 @@ package classes.TITSSaveEdit.Data
 			CONVERT_HORN_TYPES[CoCTypeDefs.HORNS_NONE] = 0;
 			CONVERT_HORN_TYPES[CoCTypeDefs.HORNS_DEMON] = GLOBAL.TYPE_DEMONIC;
 			CONVERT_HORN_TYPES[CoCTypeDefs.HORNS_COW_MINOTAUR] = GLOBAL.TYPE_BOVINE;
-			CONVERT_HORN_TYPES[CoCTypeDefs.HORNS_DRACONIC_X2] = 0; // Type not available
-			CONVERT_HORN_TYPES[CoCTypeDefs.HORNS_DRACONIC_X4_12_INCH_LONG] = 0; // Type not available
+			CONVERT_HORN_TYPES[CoCTypeDefs.HORNS_DRACONIC_X2] = GLOBAL.TYPE_DRACONIC;
+			CONVERT_HORN_TYPES[CoCTypeDefs.HORNS_DRACONIC_X4_12_INCH_LONG] = GLOBAL.TYPE_DRACONIC;
 		}
 		
 		private static var CONVERT_EAR_TYPES:Array;
@@ -579,14 +686,14 @@ package classes.TITSSaveEdit.Data
 			CONVERT_EAR_TYPES[CoCTypeDefs.EARS_HORSE] = GLOBAL.TYPE_EQUINE;
 			CONVERT_EAR_TYPES[CoCTypeDefs.EARS_DOG] = GLOBAL.TYPE_CANINE;
 			CONVERT_EAR_TYPES[CoCTypeDefs.EARS_COW] = GLOBAL.TYPE_BOVINE;
-			CONVERT_EAR_TYPES[CoCTypeDefs.EARS_ELFIN] = GLOBAL.TYPE_HUMAN;
+			CONVERT_EAR_TYPES[CoCTypeDefs.EARS_ELFIN] = GLOBAL.TYPE_SYLVAN;
 			CONVERT_EAR_TYPES[CoCTypeDefs.EARS_CAT] = GLOBAL.TYPE_FELINE;
 			CONVERT_EAR_TYPES[CoCTypeDefs.EARS_LIZARD] = GLOBAL.TYPE_LIZAN;
 			CONVERT_EAR_TYPES[CoCTypeDefs.EARS_BUNNY] = GLOBAL.TYPE_LAPINE;
 			CONVERT_EAR_TYPES[CoCTypeDefs.EARS_KANGAROO] = GLOBAL.TYPE_KANGAROO;
 			CONVERT_EAR_TYPES[CoCTypeDefs.EARS_FOX] = GLOBAL.TYPE_VULPINE;
 			CONVERT_EAR_TYPES[CoCTypeDefs.EARS_DRAGON] = GLOBAL.TYPE_DRACONIC;
-			CONVERT_EAR_TYPES[CoCTypeDefs.EARS_RACCOON] = GLOBAL.TYPE_HUMAN;
+			CONVERT_EAR_TYPES[CoCTypeDefs.EARS_RACCOON] = GLOBAL.TYPE_KUITAN;
 			CONVERT_EAR_TYPES[CoCTypeDefs.EARS_MOUSE] = GLOBAL.TYPE_MOUSE;
 			CONVERT_EAR_TYPES[CoCTypeDefs.EARS_FERRET] = GLOBAL.TYPE_HUMAN;	
 		}
@@ -618,6 +725,7 @@ package classes.TITSSaveEdit.Data
 						tits.faceFlags.push(GLOBAL.FLAG_MUZZLED);
 						break;
 						
+					case GLOBAL.TYPE_CANINE:
 					case GLOBAL.TYPE_FELINE:
 					case GLOBAL.TYPE_LIZAN:
 					case GLOBAL.TYPE_KANGAROO:
@@ -630,6 +738,7 @@ package classes.TITSSaveEdit.Data
 						break;
 						
 					case GLOBAL.TYPE_SHARK:
+					case GLOBAL.TYPE_GABILANI:
 						tits.faceFlags.push(GLOBAL.FLAG_ANGULAR);
 						break;
 						
