@@ -6,7 +6,7 @@ import classes.GameData.MailManager;
 // Illegal character input check
 public function hasIllegalInput(sText:String = ""):Boolean
 {
-	var r:RegExp = /[^\w ]/g; // Match anything that isn't a word or a space (\w == [A-z0-9])
+	var r:RegExp = /[^\w .!?]/g; // Match anything that isn't a word or a space (\w == [A-z0-9])
 	return r.test(sText);
 }
 
