@@ -117,8 +117,9 @@ public function dragonsHordeCodexStory():void
 	outputCodex("\n\nThe dragoness had never offered to show Lusina a way out of her lair, never given her permission to leave, but in the same way that Lusina had never asked for it. Something told her that she could have left at any time, but the urge never struck. Whenever her thoughts turned to the forest, to her home far away in the distance, her draconic lover would always remind her why she stayed: with a kiss, a caress, and soon carrying her into the nest she called a bed to make passionate love.");
 	outputCodex("\n\nIt was only when Lusina’s belly started to swell that she realized what her tribute meant. It grew and grew over the span of days, until by the end of the second week she looked like a woman ready to deliver. Eryxienne told her between fucking and cuddling that she was carrying a dragon egg inside her, that she’d been gifted with a rare and precious honor.");
 	outputCodex("\n\nShe laid it in the third week, screaming in pleasure as Eryxienne and her kobold minions tended to her. The little reptiles had all delivered eggs of their own during Lusina’s stay, filling Eryxienne’s nest with more and more nascent young - though the moth took pride in seeing that her egg was by far the largest and most colorful of the clutch, and as she curled up to sleep with her arms around it, legs spread for the inevitable arrival of her egg’s father ready to put another in her, she felt more like a queen than she’d ever felt in her silly dreams.");
-	outputCodex("\n\nThis was a true dragon’s hoard: not riches of gold and gems, but of her lover’s constant affection, and the feeling of a second egg taking inside her as she yet warmed the first...\n");
+	outputCodex("\n\nThis was a true dragon’s hoard: not riches of gold and gems, but of her lover’s constant affection, and the feeling of a second egg taking inside her as she yet warmed the first...");
 	
+	outputCodex("\n\n");
 	CodexManager.viewedEntry("Dragon’s Hoard");
 }
 
@@ -171,7 +172,8 @@ public function bullsStrength():void
 	outputCodex("\n\n<i>“Gods,”</i> Hyra gasped, eyes unfocused, body unresponsive. She couldn’t move a muscle if she wanted to, left helpless to her body’s pleasure-tremors. Her cock throbbed and came again, spurred on by the heat drooling wetly down its shaft, adding her meager orgasm to Kell’s gallon.");
 	outputCodex("\n\n<i>“What, you don’t think your done yet, do you?”</i> Kell laughed, and Hyra could hear a cork popping behind her. The smell of dryad’s sap hit her nose, sweet and fruity and potent enough that she stiffened again even on the heels of an orgasm, cock and teats diamond hard by the time she heard Kell gulp, and felt his flare prod against her thus-far unruined hole. She gasped, trembling in pleasure as his cockhead pressed against her ass. <i>“Cows aren’t done until they’re ten loads deep. I’m not stopping until your belly’s so full they’ll have to roll you out of here.”</i>");
 	outputCodex("\n\nAll Hyra could do was moo as her bull’s irresistible manhood thrust in, driven on again and again and again by magic fuck-drugs and feral lust.");
-	outputCodex("\n\nFor the rest of the night, she was the best-bred gods-damned cow in the bazaar.... and loved every moment of it.\n");
+	outputCodex("\n\nFor the rest of the night, she was the best-bred gods-damned cow in the bazaar.... and loved every moment of it.");
 	
+	outputCodex("\n\n");
 	CodexManager.viewedEntry("Bull’s Strength");
 }
