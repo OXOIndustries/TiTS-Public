@@ -2384,15 +2384,21 @@ public function deck13ElevatorFunc():Boolean
 		clearOutput();
 		output("You step up to the elevator and press the call button. Immediately, the doors slide open, but no car comes. ");
 		
-		output("\n\n<i>“Someone must have done an override,”</i> Anno says with a shrug, peering into the elevator shaft. <i>“Keeps anybody from accidentally wandering through. I think this one goes right up to the docking bay... yeah, it goes right by the shop, too. Maybe we can hitch a ride when we’re done here - I’m pretty good at getting around lockouts like this.”</i>");
-
+		output("\n\n<i>“Someone must have done an override,”</i> Anno says with a shrug, peering into the elevator shaft. <i>“Keeps anybody from accidentally wandering through. I think this one goes right up to");
+		// output(" the docking bay");
+		output("... yeah, it goes right by the shop");
+		// output(", too");
+		output(". Maybe we can hitch a ride when we’re done here - I’m pretty good at getting around lockouts like this.”</i>");
+		
 		clearMenu();
 		addButton(0, "Next", move, "DECK 13 SECURITY CHECKPOINT");
 		return true;
 	}
 	else
 	{
-		output("You're in the central elevator shaft, looking out into the empty security checkpoint. This can take you back up to the main floor of the <i>Nova</i>, or up to the docks.");
+		output("You're in the central elevator shaft, looking out into the empty security checkpoint. This can take you back up to the main floor of the <i>Nova</i>");
+		// output(", or up to the docks");
+		output(".");
 		addButton(0, "Elevator", novaElevatorControlPanel);
 		return false;
 	}
