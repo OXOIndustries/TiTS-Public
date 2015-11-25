@@ -714,8 +714,7 @@ public function treasureHunt():void
 		{
 			output("the chiseled");
 			if(pc.thickness >= 70) output(", wide");
-			output(" ");
-			output("expanse of your chest before moving to your washboard abs. <i>“Oh, my,”</i> she exclaims. <i>“So very masculine.”</i>");
+			output(" expanse of your chest before moving to your washboard abs. <i>“Oh, my,”</i> she exclaims. <i>“So very masculine.”</i>");
 		}
 		else if(pc.tone <= 30)
 		{
