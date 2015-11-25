@@ -45,6 +45,13 @@ public function zodeeGivesFirstGalomax():void
 	quickLoot(new GaloMax());
 }
 
+public function galoMaxPartTwo():void
+{
+	output("\n\nThere's a pill bottle left on the ground here. <b>This is a placehoooolder.</b>\n\n");
+	flags["ZODEE_GALOQUEST"] = 2;
+	quickLoot(new GaloMax());
+}
+
 public function galoMaxTFProc():void
 {
 	clearOutput();

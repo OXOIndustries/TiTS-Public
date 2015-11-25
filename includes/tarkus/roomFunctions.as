@@ -77,6 +77,7 @@ public function rustCoastEncounters():Boolean {
 		choices[choices.length] = encounterDasGooGray;
 		choices[choices.length] = encounterDasGooGray;
 		if(flags["ZODEE_GALOQUEST"] == undefined) choices.push(zodeeGivesFirstGalomax);
+		if(flags["ZODEE_GALOQUEST"] == 1) choices.push(galoMaxPartTwo);
 	
 		//Run the event
 		choices[rand(choices.length)]();
@@ -113,6 +114,7 @@ public function rustRidgesEncounters():Boolean {
 		if(flags["SEXBOT_FACTORY_DISABLED"] == undefined) choices[choices.length] = encounterASexBot;
 		if(flags["SEXBOT_FACTORY_DISABLED"] == undefined || rand(2) == 0) choices[choices.length] = encounterASexBot;
 		if(flags["ZODEE_GALOQUEST"] == undefined) choices.push(zodeeGivesFirstGalomax);
+		if(flags["ZODEE_GALOQUEST"] == 1) choices.push(galoMaxPartTwo);
 
 		//Run the event
 		choices[rand(choices.length)]();
