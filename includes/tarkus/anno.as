@@ -2167,9 +2167,7 @@ public function lossToSecurityDroid():void
 
 	output("\n\n<i>ZAP</i>.");
 
-	output("\n\n<b>Game over.</b>");
-
-	clearMenu();
+	badEnd();
 	addDisabledButton(0, "Game Over", "Game Over", "Roll credits etc.");
 }
 
@@ -2521,7 +2519,7 @@ public function deck13MakeGoo():void
 	output("\n\nYou grumble and pull your Codex out, hoping your device can sync with the goo cannister. You flip the Codex on and search for nearby networks. Again, nothing close enough to be the goo. Shit. You drop down to a [pc.knee] and start looking for an old-school data port. Sure enough, there’s one hidden underneath the console. You pull a universal cable from your Codex, and thankfully manage to slot it into the port. The Codex takes over from there, booting up the ancient computer and interfacing for you. The Bell-Isle/Grunmann logo appears, followed by a button-press command prompt, which the Codex translates onto its touch screen. That’s better. You tap through a few commands, instructing the machine to print you out a great big pile of gray goo.");
 	
 	output("\n\nThe device hums to life and starts working, squirting out goo like ice cream from its spigot. You watch as it squirts and thrums, depositing gallons of murky silvery goop onto the deck, looking more like a puddle than a person for now. A few seconds later, though, the vat shuts off, and the goo starts squirming and re-shaping itself. It only takes a moment for the big gray blob to turn into a big, bouncy gray girl. She looks just like the creatures");
-	if (flags["TARKUS_DESTROYED"] == 1) output(" once");
+	if (flags["TARKUS_DESTROYED"] != undefined) output(" once");
 	output(" found outside of Novahome, with inhumanly exaggerated hips and ass and a pair of tits that look like silver-sheened watermelons standing impossibly perky on her chest. Her ample assets jiggle and bounce as she looks around, surveying her surroundings with wide eyes full of wonder.");
 	
 	output("\n\n<i>“Hi!”</i> the newly-made goo says, adopting a huge grin as you take a step toward her. <i>“Wow! You’re super");
@@ -3529,12 +3527,10 @@ public function loseToGigaGoo():void
 	author("Savin");
 	showName("LOSS:\nGIGA GOO");
 	showBust("GRAY_GOO_GIGA");
-
+	
 	output("<i>“YOU SHOULD HAVE LET US WORK,”</i> Nova roars, reaching through the elevator’s lips and grabbing you and Anno, squeezing you together in one of her massive fists. You can already feel the life being crushed out of you before the monolithic goo-girl throws you down to the deck below, ending your life as a crushed husk in a haze of poison gas.");
 	
-	output("\n\n<b>GAME OVER</b>");
-
-	clearMenu();
+	badEnd();
 	addDisabledButton(0, "Game Over", "GAME OVER", "Roll end credits etc.");
 }
 
