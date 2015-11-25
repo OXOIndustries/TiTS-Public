@@ -1482,14 +1482,13 @@ public function bessFunctionsMenu():void
 	if (flags["BESS_LOVER_STATUS"] != undefined && (flags["BESS_LOVER_STATUS"].indexOf("dom") != -1 || flags["BESS_LOVER_STATUS"] == "pet" || flags["BESS_LOVER_STATUS"] == "sub")) addDisabledButton(1, "Role", "Bess’ Role", "Since making things ‘official’ with [bess.name], you’re unable to change [bess.hisHer] role!");
 	else addButton(1, "Role", talkToBessAboutRoles, undefined, "Roles", "Change [bess.name]'s various roles, such as if [bess.heShe]'s dominant or not during sex.");
 	
-
 	addButton(2, "Hair", talkToBessAboutHair, undefined, "Hair", "Ask [bess.name] to change [bess.hisHer] hair such as color, length, and styling.");
-	addButton(3, "Eyes", talkToBessAboutEyes);
+	addButton(3, "Eyes", talkToBessAboutEyes, undefined, "Eye Color", "Ask [bess.name] to change [bess.hisHer] eye color.");
 	addButton(4, "Chest", talkToBessAboutBoobs, undefined, "Chest", "Ask [bess.name] to change [bess.hisHer] chest, such as breast size and nipple type.");
 	addButton(5, "BodyShape", talkToBessAboutBodyShape, undefined, "Body Shape", "Ask [bess.name] to change [bess.hisHer] body shape, such as muscle tone, hip, and ass size.");
 	addButton(6, "Genitals", talkToBessAboutGenitals, undefined, "Genitals", "Ask [bess.name] to change [bess.hisHer] genitals, such as if [bess.heShe] has a pussy or a cock.");
-	addButton(7, "Cum", talkToBessAboutCum);
-	addButton(8, "Clothing", talkToBessAboutClothes);
+	addButton(7, "Cum", talkToBessAboutCum, undefined, "Cum", "Ask [bess.name] to change [bess.hisHer] cum.");
+	addButton(8, "Clothing", talkToBessAboutClothes, undefined, "Clothing", "Ask [bess.name] to change [bess.hisHer] clothing or accessories.");
 	
 	// I couldn't find any scenes relating to these... anywhere
 	//addButton(10, "JoyCord", talkToBessAboutJoyCord);
@@ -3344,6 +3343,10 @@ public function talkToBessAboutCumFlavour(asCock:Boolean):void
 	var opts:Array = ["normal", "chocolate", "vanilla", "strawberry", "honey"];
 	var vals:Array = [0, GLOBAL.FLUID_TYPE_CHOCOLATE_MILK, GLOBAL.FLUID_TYPE_VANILLA, GLOBAL.FLUID_TYPE_STRAWBERRY_MILK, GLOBAL.FLUID_TYPE_HONEY];
 
+	// Initialize
+	if (asCock) vals[0] = GLOBAL.FLUID_TYPE_CUM;
+	else vals[0] = GLOBAL.FLUID_TYPE_GIRLCUM;
+
 	clearMenu();
 
 	var optSlot:int = -1;
@@ -3371,6 +3374,11 @@ public function talkToBessAboutCumFlavour(asCock:Boolean):void
 			addButton(i, StringUtil.toTitleCase(opts[optSlot]), bessSetCumFlavor, [asCock, vals[optSlot]]);
 		}
 	}
+	
+	if (opts.length < 15)
+	{
+		addButton(14, "Back", bessFunctionsMenu);
+	}
 }
 
 public function bessSetCumFlavor(opts:Array):void
@@ -3387,13 +3395,13 @@ public function bessSetCumFlavor(opts:Array):void
 	if (asCock)
 	{
 		bess.cumType = flav;
-		if (flav != 0) output("of " + bessCumFlavor());
+		if (flav != GLOBAL.FLUID_TYPE_CUM) output("of " + bessCumFlavor());
 		else output("like regular cum");
 	}
 	else
 	{
 		bess.girlCumType = flav;
-		if (flav != 0) output("of " + bessGirlCumFlavor());
+		if (flav != GLOBAL.FLUID_TYPE_GIRLCUM) output("of " + bessGirlCumFlavor());
 		else output(" like regular girlcum");
 	}
 	output("!</i> [bess.name] cheerfully exclaims.");
@@ -3423,14 +3431,14 @@ public function talkToBessAboutClothes():void
 	// Choosing the Glasses or Katana triggers bessGlasses or bessKatana boolean true or false (equipped or unequipped).
 
 	clearMenu();
-	addButton(0, "Outfits", talkToBessAboutOutfits);
-	addButton(1, "Underwear Tops", talkToBessAboutUpperUndergarments);
-	addButton(2, "Underwear Bottoms", talkToBessAboutLowerUndergarments);
-	addButton(3, "Ears", talkToBessAboutEars);
-	addButton(4, "Horns", talkToBessAboutHorns);
-	addButton(5, "Tails", talkToBessAboutTails);
-	addButton(6, "Wings", talkToBessAboutWings);
-	addButton(7, "Items", talkToBessAboutItems);
+	addButton(0, "Outfits", talkToBessAboutOutfits, undefined, "Outfits", "Change [bess.hisHer] armor, outfit or clothing.");
+	addButton(1, "U. Tops", talkToBessAboutUpperUndergarments, undefined, "Underwear Tops", "Change [bess.hisHer] upper undergarment.");
+	addButton(2, "U. Bottoms", talkToBessAboutLowerUndergarments, undefined, "Underwear Bottoms", "Change [bess.hisHer] lower undergarment.");
+	addButton(3, "Ears", talkToBessAboutEars, undefined, "Ears", "Change [bess.hisHer] ears.");
+	addButton(4, "Horns", talkToBessAboutHorns, undefined, "Horns", "Change [bess.hisHer] horns.");
+	addButton(5, "Tails", talkToBessAboutTails, undefined, "Tails", "Change [bess.hisHer] tail.");
+	addButton(6, "Wings", talkToBessAboutWings, undefined, "Wings", "Change [bess.hisHer] wings.");
+	addButton(7, "Items", talkToBessAboutItems, undefined, "Items", "Change [bess.hisHer] accessories.");
 
 	addButton(14, "Back", bessFunctionsMenu);
 }
@@ -3454,7 +3462,8 @@ public function bessSetArmorSlot(item:ItemSlotClass):void
 public function talkToBessAboutOutfits():void
 {
 	clearMenu();
-	addButton(0, "Nude", bessSetArmorSlot, new EmptySlot(), "Nude", "Go Nude!");
+	if (bess.hasUpperGarment() || bess.hasLowerGarment()) addButton(0, "No Outfit", bessSetArmorSlot, new EmptySlot(), "No Outfit", "Remove outfit.");
+	else addButton(0, "Nude", bessSetArmorSlot, new EmptySlot(), "Nude", "Go Nude!");
 	bessCIW(1, "C.Clothes", ComfortableClothes, "Casual Clothes", "Casual Clothes");
 	bessCIW(2, "P.Jacket", ProtectiveJacket, "Protective Jacket", "Protective Jacket");
 	bessCIW(3, "UGC Uniform", UGCUniform, "UGC Uniform", "UGC Uniform");
@@ -3583,7 +3592,7 @@ public function setBessOutfit(classT:Class):void
 
 	var item:ItemSlotClass = new classT(); // now we can inspect the item
 
-	if (item.type == GLOBAL.ARMOR) bess.armor = item;
+	if (item.type == GLOBAL.ARMOR || item.type == GLOBAL.CLOTHING) bess.armor = item;
 	if (item.type == GLOBAL.UPPER_UNDERGARMENT) bess.upperUndergarment = item;
 	if (item.type == GLOBAL.LOWER_UNDERGARMENT) bess.lowerUndergarment = item;
 
@@ -3917,15 +3926,16 @@ public function bessBuyShitOutfits():void
 	addButton(14, "Back", talkToBessAboutAccessories);
 	
 	bessBuyCIW(15, "Pirate", SpacePirateOutfit, "Space Pirate", "Space Pirate");
-	bessBuyCIW(16, "T.Zipsuit", TransparentZipsuit, "Transparent Zipsuit", "Transparent Zipsuit");
-	bessBuyCIW(17, "Butler", ButlerOutfit, "Butler Outfit", "Butler Outfit");
-	bessBuyCIW(18, "M.Doctor", MaleDoctorOutfit, "Male Doctor Outfit", "Male Doctor Outfit");
-	bessBuyCIW(19, "F.Doctor", FemaleDoctorOutfit, "Female Doctor Outfit", "Female Doctor Outfit");
+	bessBuyCIW(16, "R.Fem Armor", RevealingFemaleArmor, "Revealing Female Armor", "Revealing Female Armor");
+	bessBuyCIW(17, "R.Male Armor", RevealingMaleArmor, "Revealing Male Armor", "Revealing Male Armor");
+	bessBuyCIW(18, "T.Zipsuit", TransparentZipsuit, "Transparent Zipsuit", "Transparent Zipsuit");
+	bessBuyCIW(19, "Butler", ButlerOutfit, "Butler Outfit", "Butler Outfit");
 	
-	bessBuyCIW(20, "Schoolboy", SchoolboyOutfit, "Schoolboy Outfit", "Schoolboy Outfit");
-	bessBuyCIW(21, "StrapHarness", LeatherStrapHarness, "Leather Strap Harness", "Leather Strap Harness");
-
-	bessBuyCIW(22, "BlackDress", LittleBlackDress, "Little Black Dress", "Little Black Dress");
+	bessBuyCIW(20, "M.Doctor", MaleDoctorOutfit, "Male Doctor Outfit", "Male Doctor Outfit");
+	bessBuyCIW(21, "F.Doctor", FemaleDoctorOutfit, "Female Doctor Outfit", "Female Doctor Outfit");
+	bessBuyCIW(22, "Schoolboy", SchoolboyOutfit, "Schoolboy Outfit", "Schoolboy Outfit");
+	bessBuyCIW(23, "StrapHarness", LeatherStrapHarness, "Leather Strap Harness", "Leather Strap Harness");
+	bessBuyCIW(24, "BlackDress", LittleBlackDress, "Little Black Dress", "Little Black Dress");
 	
 	addButton(29, "Back", talkToBessAboutAccessories);
 }
@@ -12272,7 +12282,7 @@ public function bessBreastFeed(opts:Array = null):void
 	output(".");
 	if (bess.hasCock() || bess.hasVagina())
 	{
-		output(" [bess.HisHer] thighs are a mess");
+		output(" [bess.HisHer] thighs are a mess with");
 		if (bess.hasCock()) output(" [bess.cum]");
 		if (bess.hasCock() && bess.hasVagina()) output(" and");
 		if (bess.hasVagina()) output(" [bess.girlCum]");
