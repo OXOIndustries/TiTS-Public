@@ -1487,7 +1487,7 @@ public function bessFunctionsMenu():void
 	addButton(4, "Chest", talkToBessAboutBoobs, undefined, "Chest", "Ask [bess.name] to change [bess.hisHer] chest, such as breast size and nipple type.");
 	addButton(5, "BodyShape", talkToBessAboutBodyShape, undefined, "Body Shape", "Ask [bess.name] to change [bess.hisHer] body shape, such as muscle tone, hip, and ass size.");
 	addButton(6, "Genitals", talkToBessAboutGenitals, undefined, "Genitals", "Ask [bess.name] to change [bess.hisHer] genitals, such as if [bess.heShe] has a pussy or a cock.");
-	addButton(7, "Cum", talkToBessAboutCum, undefined, "Cum", "Ask [bess.name] to change [bess.hisHer] cum.");
+	addButton(7, "Cum", talkToBessAboutCum, undefined, "Cum Flavor", "Ask [bess.name] to change [bess.hisHer] cum flavors.");
 	addButton(8, "Clothing", talkToBessAboutClothes, undefined, "Clothing", "Ask [bess.name] to change [bess.hisHer] clothing or accessories.");
 	
 	// I couldn't find any scenes relating to these... anywhere
@@ -3324,10 +3324,10 @@ public function talkToBessAboutCum():void
 
 	clearMenu();
 	
-	if (bess.hasCock()) addButton(0, "CumFlavor", talkToBessAboutCumFlavour, true);
+	if (bess.hasCock()) addButton(0, "CumFlavor", talkToBessAboutCumFlavour, true, "Cum Flavor", "Change [bess.hisHer] cum flavor.");
 	else addDisabledButton(0, "CumFlavor");
 
-	if (bess.hasVagina()) addButton(1, "GirlCum F", talkToBessAboutCumFlavour, false);
+	if (bess.hasVagina()) addButton(1, "GirlCum F", talkToBessAboutCumFlavour, false, "Girl Cum Flavor", "Change [bess.hisHer] girl cum flavor.");
 	else addDisabledButton(1, "GirlCum F");
 
 	addButton(14, "Back", bessFunctionsMenu);
