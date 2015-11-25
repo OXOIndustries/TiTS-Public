@@ -285,12 +285,12 @@ package classes.Items.Transformatives
 					for(var b:int = 0; b < pc.bRows(); b++)
 					{
 						//See if testing row is smaller than smallest row
-						if(pc.breastRows[smallestBoobRow].breastRating() < pc.breastRows[b].breastRating()) smallestBoobRow = b;
+						if(pc.breastRows[smallestBoobRow].breastRating() > pc.breastRows[b].breastRating()) smallestBoobRow = b;
 					}
 					//Check if in size
 					if(pc.breastRows[smallestBoobRow].breastRating() < 11 && rand(2) == 0)
 					{
-						if(pc.breastRatingUnlocked(smallestBoobRow, pc.breastRows[smallestBoobRow].breastRatingRaw+1))
+						if(pc.breastRatingUnlocked(smallestBoobRow, pc.breastRows[smallestBoobRow].breastRatingRaw + 1))
 						{
 							boobed = true;
 							output("\n\nYou feel a slight pressure building in your [pc.chest], and a stretching in your skin. Pleasure, not pain, hits you like a brick wall, and you find yourself grabbing your chest and caressing your tits as they grow in your hands. A moan escapes your lips as your body trembles with pleasure, almost orgasming from the sensation of growing titflesh.");
