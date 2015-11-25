@@ -2193,13 +2193,14 @@ public function milkMultiplierGainNotificationCheck():void
 	}
 }
 
-public function badEnd():void 
+public function badEnd(displayGG:String = "GAME OVER"):void 
 {
 	gameOverEvent = true;
 	
 	// Todo -- Hook alternate game ends in here, and also maybe look into some kind of categorisation system.
 	
-	output("\n\n<b>GAME OVER</b>\n\n(Access the main menu to start a new character or the data menu to load a saved game. The buttons are located in the lower left of the game screen.)");
+	if (displayGG != "") output("\n\n<b>" + displayGG + "</b>");
+	output("\n\n(Access the main menu to start a new character or the data menu to load a saved game. The buttons are located in the lower left of the game screen.)");
 	clearMenu();
 }
 
