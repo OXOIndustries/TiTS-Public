@@ -11205,6 +11205,11 @@ package classes {
 		}
 		public function girlCumInMouth(cumFrom:Creature = null):Boolean
 		{
+			if(hairType == GLOBAL.HAIR_TYPE_GOO) 
+			{
+				if(cumFrom != null) addBiomass(cumFrom.girlCumQ());
+				else addBiomass(10);
+			}
 			if(hasPerk("Honeypot")) 
 			{
 				kGAMECLASS.honeyPotBump(true);
@@ -11235,6 +11240,11 @@ package classes {
 				trace("Warning: Attempting to call knockUp on a Creature class that isn't serialized to save data. Better check this shit yo.");
 			}
 			return false;
+		}
+		public function addBiomass(arg:Number):void
+		{
+			if(kGAMECLASS.flags["GOO_BIOMASS"] == undefined) kGAMECLASS.flags["GOO_BIOMASS"] = 0;
+			kGAMECLASS.flags["GOO_BIOMASS"] += arg;
 		}
 		
 		/**

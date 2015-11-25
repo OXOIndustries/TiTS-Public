@@ -88,11 +88,6 @@ package classes.Characters
 			}
 			return false;
 		}
-		public function addBiomass(arg:Number):void
-		{
-			if(kGAMECLASS.flags["GOO_BIOMASS"] == undefined) kGAMECLASS.flags["GOO_BIOMASS"] = 0;
-			kGAMECLASS.flags["GOO_BIOMASS"] += arg;
-		}
 		// *shrug*
 		override public function loadInNipples(cumFrom:Creature = null):Boolean
 		{
