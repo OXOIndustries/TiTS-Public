@@ -507,7 +507,7 @@ package classes.Items.Transformatives
 				{
 					if(pc.tailTypeUnlocked(GLOBAL.TYPE_MYR) && pc.tailType != GLOBAL.TYPE_MYR)
 					{
-						if(pc.tailCountUnlocked(1) && pc.tailCount != 1)
+						if(pc.tailCountUnlocked(1))
 						{
 							if(pc.tailCount == 0) 
 							{
