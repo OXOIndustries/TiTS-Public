@@ -425,6 +425,8 @@ public function purchaseTempGymMembershipConfirm():void
 	showQuenton();
 	author("Slab Bulkhead");
 	output("You pay Quenton with a credit chit, and he gestures toward the gym doors. <i>“Enjoy your workout, and do come back.”</i>");
+	var map:* = mapper.generateMap(currentLocation);
+	userInterface.setMapData(map);
 	processTime(1);
 	pc.credits -= 500;
 	pc.createStatusEffect("Gym Pass", 0, 0, 0, 0, false, "Icon_Haste", "You have a temporary gym pass to the Ten Ton Gym on New Texas.", false, 1440);
@@ -454,6 +456,8 @@ public function purchaseLifetimeGymMembership():void
 	showQuenton();
 	author("Slab Bulkhead");
 	output("You pay him with a credit chit, and the computer plays a twangy musical fanfare. <i>“You’re all set, [pc.name]. Welcome to the Ten Ton Gym!”</i>");
+	var map:* = mapper.generateMap(currentLocation);
+	userInterface.setMapData(map);
 	processTime(1);
 	pc.credits -= 10000;
 	pc.createKeyItem("Ten Ton Gym Membership",0,0,0,0);
