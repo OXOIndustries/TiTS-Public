@@ -1,6 +1,7 @@
 ﻿import classes.Characters.PlayerCharacter;
 import classes.Creature;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
+import classes.Util.InCollection;
 //{If Dungeon not completed, add:}
 public function chasmfallBonusFunction():Boolean
 {
@@ -2906,7 +2907,7 @@ public function bombExplodes():void
 	clearOutput();
 	author("Fenoxo");
 	//[FAILURE] Bomb goes off while in the Core
-	if(currentLocation == "350" || currentLocation == "351" || currentLocation == "352" || currentLocation == "353" || currentLocation == "354" || currentLocation == "355" || currentLocation == "356" || currentLocation == "357" || currentLocation == "358" || currentLocation == "359" || currentLocation == "360" || currentLocation == "361" || currentLocation == "362" || currentLocation == "363" || currentLocation == "364" || currentLocation == "KHORGAN_CENTER_COVER" || currentLocation == "KHORGAN_LEFT_COVER" || currentLocation == "KHORGAN_RIGHT_COVER")
+	if(InCollection(currentLocation, "350", "351", "352", "353", "354", "355", "356", "357", "358", "359", "360", "361", "362", "363", "364", "KHORGAN_CENTER_COVER", "KHORGAN_LEFT_COVER", "KHORGAN_RIGHT_COVER"))
 	{
 		output("There is a flash of light too fast to react to, and then nothing. Your life ended on the leading edge of a facility-shredding blast wave. The only consolation for your departing spirit is that you didn't have to watch the planet above tear itself to pieces, killing nearly every living creature on its surface in the process.");
 		badEnd();
@@ -2947,33 +2948,36 @@ public function bombExplodes():void
 		output("\n\nThe groans of straining metal being rent asunder give voice to the collapsing planet's pain. You're thrown into air along with a mountain of debris. The vantage offered by such heights allows you to watch Tarkus' crust split apart. Other pieces join you in the air, dislodged by the incredible tectonic forces at work. There is nowhere to run, nowhere to hide. You have a front row seat to the destruction of a planet, and it does not disappoint. The orange ball has already fractured into hundreds of island-sized asteroids. Luckily, you're crushed by a mountain of metal long before the atmosphere scatters to the void.");
 		badEnd();
 	}
+	//[FAILURE] Escape Deck 13!
+	else if(currentLocation.indexOf("DECK 13") != -1)
+	{
+		if(flags["ANNO_MISSION_OFFER"] == 2) showBust("ANNO");
+		output("A sudden shock courses through the entire room followed by a loud roar. Quickly realizing that the situation does not bode well for you if you stay here, you decide head straight to the main deck.");
+		output("\n\nCareful not to");
+		if(pc.canFly()) output(" lunge into any obstacles, you fly");
+		else if(pc.hasLegs()) output(" trip over yourself, you make a dash");
+		else output(" stumble over yourself, you hastily move your body");
+		output(" towards the elevator and punch the call button. Excess debris starts to fall as the haunting sounds of creaking and crunching metal echo around you. Like a sign from the heavens, the bell dings and the doors open.");
+		if(flags["ANNO_MISSION_OFFER"] == 2) output("\n\n<i>“Boss!”<i> Your ausar companion yells as she does a tactical somersault into the elevator shaft. You quickly follow behind her");
+		else output("\n\nYou quickly jump into the elevator shaft");
+		output(" and hit the button on the control panel. The doors jam, refusing to close, but the elevator hums and the lift makes its ascent.");
+		output("\n\nAs it moves up, you peer out the opening");
+		if(flags["DECK13_SHIELDS_ON"] != 1) output(" only to find the shaft below being crushed and mangled, lit only by small sparks... and then huge flames. You have to get out of here quick!");
+		else output(" seeing visible tremors and more debris - though luckily, the shaft remains intact. Turning on the shields must have done the trick or you could have been a trapped sardine!");
+		output("\n\nThe bell dings again and");
+		if(flags["ANNO_MISSION_OFFER"] == 2) output(" Anno pulls you to help you get out of the");
+		else output(" you finally crawl out of the");
+		if(flags["DECK13_SHIELDS_ON"] != 1) output(" death trap and get on your [pc.feet], the doors now closing - then completely sealing - behind you");
+		else output(" shakey elevator cab and get on your [pc.feet]");
+		output(", only to be greeted with more chaos on the main floor...");
+		processTime(2);
+		clearMenu();
+		addButton(0,"Next",planetAsplodeWhileInGhostDeck);
+	}
 	//[FAILURE] Bomb goes off while in Nova
 	else
 	{
 		showBust("ANNO","SHEKKA");
-		// Escape Deck 13!
-		if(currentLocation.indexOf("DECK 13") != -1)
-		{
-			output("A sudden shock courses through the entire room followed by a loud roar. Quickly realizing that the situation does not bode well for you if you stay here, you decide head straight to the main deck.");
-			output("\n\nCareful not to");
-			if(pc.canFly()) output(" lunge into any obstacles, you fly");
-			else if(pc.hasLegs()) output(" trip over yourself, you make a dash");
-			else output(" stumble over yourself, you hastily move your body");
-			output(" towards the elevator and punch the call button. Excess debris starts to fall as the haunting sounds of creaking and crunching metal echo around you. Like a sign from the heavens, the bell dings and the doors open.");
-			if(flags["ANNO_MISSION_OFFER"] == 2) output("\n\n<i>“Boss!”<i> Your ausar companion yells as she does a tactical somersault into the elevator shaft. You quickly follow behind her");
-			else output("\n\nYou quickly jump into the elevator shaft");
-			output(" and hit the button on the control panel. The doors jam, refusing to close, but the elevator hums and the lift makes its ascent.");
-			output("\n\nAs it moves up, you peer out the opening");
-			if(flags["DECK13_SHIELDS_ON"] != 1) output(" only to find the shaft below being crushed and mangled, lit only by small sparks... and then huge flames. You have to get out of here quick!");
-			else output(" seeing visible tremors and more debris - though luckily, the shaft remains intact. Turning on the shields must have done the trick or you could have been a trapped sardine!");
-			output("\n\nThe bell dings again and");
-			if(flags["ANNO_MISSION_OFFER"] == 2) output(" Anno pulls you to help you get out of the");
-			else output(" you finally crawl out of the");
-			if(flags["DECK13_SHIELDS_ON"] != 1) output(" death trap and get on your [pc.feet], the doors now closing - then completely sealing - behind you");
-			else output(" shakey elevator cab and get on your [pc.feet]");
-			output(", only to be greeted with more chaos on the main floor...");
-			output("\n\n");
-		}
 		output("Novahome groans like a wounded animal and shifts at least a foot to the left, dumping you to the deck. Alarms sound while you're climbing back to your [pc.feet]. When did the raskvel get those working? Screams of alarm fill the corridors, and you're nearly swept along on a tide of scaley panic. The ship lurches a few more times. You're lucky enough to grab hold of a hand hold this time, and you make your way to the ship's exit ramp.");
 		output("\n\nThe ramp itself is gone. There's an open air gap in its place and no sign of those who might have been walking on it. The Nova bucks like a nautical vessel of old trapped in the gale-force winds of a hurricane. Your belly turns, and you watch the ground fall away a second before tarkus' surface shatters like a piece of glass. Chunks of ore go hurtling by. Raskvel, gabilani, and rushers alike are sucked out of the hull, screaming in terror. You barely manage to keep your grip as you watch the bomb tear apart the planet you could've saved.");
 		output("\n\nDry winds scream like banshees, propelled by geological forces beyond comprehension. ");
@@ -2993,6 +2997,14 @@ public function bombExplodes():void
 		addButton(0,"Next",planetAsplodeWhileInNova);
 	}
 	flags["TARKUS_BOMB_TIMER"] = -1;
+}
+
+public function planetAsplodeWhileInGhostDeck():void
+{
+	currentLocation = "210";
+	var map:* = mapper.generateMap(currentLocation);
+	userInterface.setMapData(map);
+	bombExplodes();
 }
 
 public function planetAsplodeWhileInNova():void
