@@ -19,6 +19,7 @@ public function chasmfallBonusFunction():Boolean
 			//Sod the Quest: Fucking off w/o Disarming the Bomb
 			//PC must have defeated TamTam
 			fuckOffWithoutDisarmingTheBomb();
+			return true;
 		}
 		else
 		{
