@@ -79,7 +79,7 @@ public function approachDCLTrap():void
 		output("<i>\"Oh, it's... um, hi,\"</i> the bartender \"girl\" says shyly as you approach, knees knocking together nervously as you near her supple body once again.");
 		output("\n\n<i>\"You're not... going to make me fuck you again, are you?\"</i> she says, ");
 		//If <5 times:
-		if(timesDelilahSexed() < 5) output("though you think there's a little more to than tone that dread. She practically sounds like she wants it!");
+		if(timesDelilahSexed() < 5) output("though you think there's a little more to that tone than dread. She practically sounds like she wants it!");
 		else output("biting her lower lip cutely as she all but wiggles her hips for you, her tone nothing but hopeful. You ought to get paid for breaking this slut in so well!");
 		//[{PC has dick:}Sex] [{PC has a cun:} Face Sit] [Drink] [Leave]
 	}
