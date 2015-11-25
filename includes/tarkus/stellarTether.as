@@ -747,8 +747,8 @@ public function badEndToTamWulfAndTamAndMaybeAlsoTamPartII():void
 	output("\n\n<i>\"Bitch breaker protocols successful,\"</i> Tam-wolf growls, scrambling forward overtop you, pushing his knot deeper.");
 	output("\n\n<i>\"Go, go, Tam-wolf!\"</i> Mistress cheers, reaching up to pat her robotic pooch on the head.");
 	output("\n\n<i>\"Mistress, I am cumming,\"</i> Tam-wolf announces, his latex member shifting inside you, the knot thickening as a load of synthetic spooge rushes toward you defiled sex. As a flood of hot, sticky, canid seed floods your womb, you're suddenly very, very aware of your new lot in life: even worse than being a dog, you're now reduced to nothing more than the robotic Tam-wolf's breeding bitch, a living onahole for Mistress's alpha hound.");
-	output("\n\nGAME OVER!");
-	clearMenu();
+	
+	badEnd("GAME OVER!");
 }
 
 //Shit Gets Real, Here
@@ -1031,8 +1031,7 @@ public function pcBeatsRocketPods():void
 public function pcLosesToRocketPods():void
 {
 	output("Rockets pummel into the ground around you, closer and closer, blasting you off your [pc.feet], bouncing you around like a toy. You scream in pain as shrapnel tears through you, explosive force hurling you off the walkway and into the void around Tarkus' core. Your corpse will have to rest amongst the floating strata.");
-	output("\n\n<b>GAME OVER</b>");
-	clearMenu();
+	badEnd();
 }
 
 //END BOSS: Captain Khorgan Brytheck
@@ -1846,8 +1845,8 @@ public function loseToCaptainKhorganBadEnd():void
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
-	output("\n\n<b>GAME OVER</b>");
-	clearMenu();
+	
+	badEnd();
 }
 
 //Post Combat Captain
@@ -2220,8 +2219,7 @@ public function defeatedByKaska():void
 	if(foes[0].lust() < 50)
 	{
 		output("You collapse, or you would if you weren't in a weightless environ. Your body hangs bonelessly, tethered in place by the magnetic equipment you picked up from the elevator. Burn marks and wounds riddle your ailing form, and as your eyes drift closed, you hear one final, echoing sound. BLAM!");
-		output("\n\n<b>Game Over</b>");
-		clearMenu();
+		badEnd();
 	}
 	//Defeated by Kaska: Turned On
 	else
@@ -2547,8 +2545,8 @@ public function kaskaBadEndPartIII():void
 	output("\n\nIt was really hard the first time Kaska went out on jobs. You were home alone, and after a few hours, the need for her became almost overwhelming. It was agony and ecstasy. You'd sit there for hours masturbating to the nastiest dickgirl porn you could find on the extranet, barely doing anything else, just imagining the taste and texture of Kaska on your tongue or in your ass - anywhere, really.");
 	output("\n\nWhen Kaska got home days later, you were an absolute mess. She had to scrub you down in the shower because you hadn't showered the entire time. Of course, her dick was in your mouth the whole time.");
 	output("\n\nAfter that, she'd remember to leave some of her spunk for you in the refrigerator, and you would keep the place spotless in her absence, greeting her on your [pc.knees] and ready for a dose of the fresh stuff. Your sense of initiative dwindled to nothing, but love and submissiveness grew to replace it. You had forgotten your father's fortune by the end of the first week in Kaska's apartment; living with her was the real treasure.");
-	output("\n\n<b>GAME OVER</b>");
-	clearMenu();
+	
+	badEnd();
 }
 
 //Defeat Kaska
@@ -2886,8 +2884,8 @@ public function failedToDisarmTarkusBomb():void
 	author("Fenoxo");
 	showName("\nBOMB");
 	output("The moment all the relays light up, the bomb releases a high-pitched whine. Uh oh. The explosion happens faster than you can perceive it, ending your life and your quest in a coruscating Nova. The Tarkus asteroid belt becomes your grave.");
-	output("\n\n<b>GAME OVER</b>");
-	clearMenu();
+	
+	badEnd();
 }
 //Succeed at Light's Out
 public function disarmedTarkusBomb():void
@@ -2910,8 +2908,7 @@ public function bombExplodes():void
 	if(currentLocation == "350" || currentLocation == "351" || currentLocation == "352" || currentLocation == "353" || currentLocation == "354" || currentLocation == "355" || currentLocation == "356" || currentLocation == "357" || currentLocation == "358" || currentLocation == "359" || currentLocation == "360" || currentLocation == "361" || currentLocation == "362" || currentLocation == "363" || currentLocation == "364" || currentLocation == "KHORGAN_CENTER_COVER" || currentLocation == "KHORGAN_LEFT_COVER" || currentLocation == "KHORGAN_RIGHT_COVER")
 	{
 		output("There is a flash of light too fast to react to, and then nothing. Your life ended on the leading edge of a facility-shredding blast wave. The only consolation for your departing spirit is that you didn't have to watch the planet above tear itself to pieces, killing nearly every living creature on its surface in the process.");
-		output("\n\n<b>GAME OVER</b>");
-		clearMenu();
+		badEnd();
 		return;
 	}
 	//PC Bailed on Dungeon, Didn't Defeat Kaska OR Khorgan
@@ -2947,8 +2944,7 @@ public function bombExplodes():void
 	{
 		output("You feel a sudden shift in the ground a moment before you hear a faint, distantly echoing boom. The sound is almost tinny, carried on reverberations through the metallic countryside. The bomb went off before you could make it back to your ship! You push yourself into a sprint, but the whole planet rumbles, splitting open into a giant crevasse in front of you. A gust of wind slams into you, displaced from the core when the two half planets crashed into one another.");
 		output("\n\nThe groans of straining metal being rent asunder give voice to the collapsing planet's pain. You're thrown into air along with a mountain of debris. The vantage offered by such heights allows you to watch Tarkus' crust split apart. Other pieces join you in the air, dislodged by the incredible tectonic forces at work. There is nowhere to run, nowhere to hide. You have a front row seat to the destruction of a planet, and it does not disappoint. The orange ball has already fractured into hundreds of island-sized asteroids. Luckily, you're crushed by a mountain of metal long before the atmosphere scatters to the void.");
-		output("\n\n<b>GAME OVER</b>");
-		clearMenu();
+		badEnd();
 	}
 	//[FAILURE] Bomb goes off while in Nova
 	else
