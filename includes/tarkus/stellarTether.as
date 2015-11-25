@@ -2950,6 +2950,29 @@ public function bombExplodes():void
 	else
 	{
 		showBust("ANNO","SHEKKA");
+		// Escape Deck 13!
+		if(currentLocation.indexOf("DECK 13") != -1)
+		{
+			output("A sudden shock courses through the entire room followed by a loud roar. Quickly realizing that the situation does not bode well for you if you stay here, you decide head straight to the main deck.");
+			output("\n\nCareful not to");
+			if(pc.canFly()) output(" lunge into any obstacles, you fly");
+			else if(pc.hasLegs()) output(" trip over yourself, you make a dash");
+			else output(" stumble over yourself, you hastily move your body");
+			output(" towards the elevator and punch the call button. Excess debris starts to fall as the haunting sounds of creaking and crunching metal echo around you. Like a sign from the heavens, the bell dings and the doors open.");
+			if(flags["ANNO_MISSION_OFFER"] == 2) output("\n\n<i>“Boss!”<i> Your ausar companion yells as she does a tactical somersault into the elevator shaft. You quickly follow behind her");
+			else output("\n\nYou quickly jump into the elevator shaft");
+			output(" and hit the button on the control panel. The doors jam, refusing to close, but the elevator hums and the lift makes its ascent.");
+			output("\n\nAs it moves up, you peer out the opening");
+			if(flags["DECK13_SHIELDS_ON"] != 1) output(" only to find the shaft below being crushed and mangled, lit only by small sparks... and then huge flames. You have to get out of here quick!");
+			else output(" seeing visible tremors and more debris - though luckily, the shaft remains intact. Turning on the shields must have done the trick or you could have been a trapped sardine!");
+			output("\n\nThe bell dings again and");
+			if(flags["ANNO_MISSION_OFFER"] == 2) output(" Anno pulls you to help you get out of the");
+			else output(" you finally crawl out of the");
+			if(flags["DECK13_SHIELDS_ON"] != 1) output(" death trap and get on your [pc.feet], the doors now closing - then completely sealing - behind you");
+			else output(" shakey elevator cab and get on your [pc.feet]");
+			output(", only to be greeted with more chaos on the main floor...");
+			output("\n\n");
+		}
 		output("Novahome groans like a wounded animal and shifts at least a foot to the left, dumping you to the deck. Alarms sound while you're climbing back to your [pc.feet]. When did the raskvel get those working? Screams of alarm fill the corridors, and you're nearly swept along on a tide of scaley panic. The ship lurches a few more times. You're lucky enough to grab hold of a hand hold this time, and you make your way to the ship's exit ramp.");
 		output("\n\nThe ramp itself is gone. There's an open air gap in its place and no sign of those who might have been walking on it. The Nova bucks like a nautical vessel of old trapped in the gale-force winds of a hurricane. Your belly turns, and you watch the ground fall away a second before tarkus' surface shatters like a piece of glass. Chunks of ore go hurtling by. Raskvel, gabilani, and rushers alike are sucked out of the hull, screaming in terror. You barely manage to keep your grip as you watch the bomb tear apart the planet you could've saved.");
 		output("\n\nDry winds scream like banshees, propelled by geological forces beyond comprehension. ");
