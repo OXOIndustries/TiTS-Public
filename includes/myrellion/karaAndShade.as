@@ -1056,8 +1056,7 @@ public function pcAndShadeDefeated():void
 	output("You’ve had enough. You throw down your [pc.rangedWeapon] and put your hands up - better a little indignity than death. Shade grunts in disgust, but puts her hands up too - she’s not much better off than you are, after all. The victorious Kara takes one stride towards the both of you, glowers at you, and raises her gun.");
 	output("\n\nYou wince, closing your eyes as she pulls the trigger. You hear the scream beside you, though, and look to see Shade on the deck, collapsed in a pool of blood and burning plasma. Kara gives a huff and turns her gun toward you.");
 	output("\n\n<i>“You could have just walked away,”</i> she breathes, the last thing you hear before the glow of green flame takes your life.");
-	output("\n\n<b>Game Over</b>");
-	clearMenu();
+	badEnd();
 	addDisabledButton(0,"Game Over","Game Over","You died. Tough luck.");
 }
 
