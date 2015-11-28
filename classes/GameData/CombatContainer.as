@@ -2,11 +2,24 @@ package classes.GameData
 {
 	import classes.Characters.PlayerCharacter;
 	import classes.Creature;
+	import classes.Items.Armor.GooArmor;
 	import classes.StorageClass;
 	import classes.Engine.Interfaces.*;
 	import classes.Characters.*;
 	import classes.kGAMECLASS;
 	import fl.events.SliderEventClickTarget;
+	import classes.Engine.Utility.possessive;
+	
+	/**
+	 * TODO:
+	 * Tweak status effects that cause damage to store the damage they should do in one of the value stores:
+	 * 		f.ex Burning damage was based purely off foes[0]'s level + 4. Calculate-on-apply, no more lookups etc
+	 * A lot of the additional messages that this has added will probably need tuning.
+	 * 		To get through this I haven't really applied *logic* in terms of what the messages are saying, and they
+	 * 		are mostly just a slight tweak on what was being output for the player, so sometimes they don't make much sense.
+	 * I've tried to clean up new line insertion as much as possible (removing it from the *messages* and putting them higher up
+	 * 		the chain so its more "handled"), but I've probably missed some in places.
+	 */
 	
 	/**
 	 * Documentation on things!
@@ -42,6 +55,44 @@ package classes.GameData
 		}
 		
 		/**
+		 * Hook function.
+		 * Run as part of combat menu generation- extend this with extra available options
+		 * against specific enemies and such.
+		 * This is executed after the basic menu buttons are created, so you can override
+		 * the default options that are displayed.
+		 */
+		private function additionalCombatMenuEntries():void
+		{
+			if (hasEnemyOfClass(CaptainKhorganMech))
+			{
+				kGAMECLASS.khorganMechBonusMenu();
+				return;
+			}
+			
+			if (hasEnemyOfClass(GardeBot))
+			{
+				kGAMECLASS.gardeBotBonusButtons();
+				return;
+			}
+			
+			if (hasEnemyOfClass(QueenOfTheDeep))
+			{
+				kGAMECLASS.queenOfTheDeepCombatMenuAddition();
+				return;
+			}
+			
+			if (hasEnemyOfClass(Queensguard) || hasEnemyOfClass(Taivra))
+			{
+				if (kGAMECLASS.flags["FREED_DANE_FROM_TAIVRA"] == undefined)
+				{
+					if (pc.statusEffectv1("Cage Distance") != 0) addButton(10, "Cage", kGAMECLASS.moveToCage, undefined, "Cage", "Attempt to move closer to dane and [rival.name]'s cage.");
+					else addButton(10, "BreakCage", kGAMECLASS.breakOutDane, undefined, "Break Cage", "Try and break Dane out - that big, burly ausar might just level the playing field!");
+					return;
+				}
+			}
+		}
+		
+		/**
 		 * Place code in this function for any status effect that impacts the creature
 		 * it is on outside of its mere presence (ie DoT ticks, stat changes etc)
 		 * @param	target
@@ -50,6 +101,482 @@ package classes.GameData
 		{
 			if (target.isDefeated()) return;
 			
+			if (target.hasPerk("Shield Regen") && target.shields() <= 0 && target.shieldsMax() > 0 && !target.hasStatusEffect("Used Shield Regen"))
+			{
+				if (target is PlayerCharacter)
+				{
+					output("<b>Your shields power back up at one quarter power. Now's your chance to turn this around!</b>\n");
+				}
+				else
+				{
+					output("<b>" + target.capitalA + possessive(target.short) + " shield powers back up at one quarter power!</b>\n");
+				}
+				pc.shields(Math.round(pc.shieldsMax()/4));
+				pc.createStatusEffect("Used Shield Regen",0,0,0,0,true,"","",true,0);
+			}
+			
+			if (target.hasStatusEffect("Riposting")) target.removeStatusEffect("Riposting");
+			if (target.hasStatusEffect("Bloodthirsted")) target.removeStatusEffect("Bloodthirsted");
+	
+			if (target.hasPerk("Juggernaught"))
+			{
+				if (target.hasStatusEffect("Stunned") && rand(4) == 0)
+				{
+					if (target is PlayerCharacter) output("<b>You shake off your stun! You're unstoppable!</b>\n");
+					else output("<b>" + target.capitalA + target.short + " shakes off their stun!</b>\n");
+					target.removeStatusEffect("Stunned");
+				}
+				if (target.hasStatusEffect("Paralyzed") && rand(4) == 0)
+				{
+					if (target is PlayerCharacter) output("<b>You shake off the paralysis! You're unstoppable!</b>\n");
+					else output("<b>" + target.capitalA + target.short + " shakes off the paralysis!</b>\n");
+					target.removeStatusEffect("Paralyzed");
+				}
+			}
+			if (target.hasStatusEffect("Burning"))
+			{
+				target.addStatusValue("Burning", 1, -1);
+				//Remove status!
+				if (target.statusEffectv1("Burning") <= 0)
+				{
+					target.removeStatusEffect("Burning");
+					if (target is PlayerCharacter) output("<b>At last you manage to stifle the life out of the fire on your " + target.armor.longName + ". The smell of pork hangs in your nose. You try not to think about it.</b>");
+					else output("<b>" + target.capitalA + target.short + " manages to stifle the life out of the flames on their " + target.armor.longName "!</b>");
+				}
+				//Keep status!
+				else
+				{
+					if (target is PlayerCharacter) output("<b>You desperately slap at your body, trying to extinguish the flames that have taken to your " + target.armor.longName + " but it stubbornly clings to you, blackening and bubbling everything it touches. It burns!</b>");
+					else output("<b>" + target.capitalA + target.short + " desperately slaps at their body, trying to extingquish the flames licking at their " + target.armor.longName + " to no avail!</b>");
+					applyDamage(new TypeCollection( { burning: target.statusEffectv2("Burning") } ), null, target);
+				}
+				output("\n");
+			}
+			
+			//Does v1 lust damage every turn. V2 is turn counter (negative = infinite)!
+			if (target.hasStatusEffect("Aphro"))
+			{
+				target.addStatusValue("Aphro", 2, -1);
+				if (target.statusEffectv2("Aphro") == 0)
+				{
+					if (target is PlayerCharacter) output("<b>The aphrodisiac in your bloodstream has faded!</b>");
+					else output("<b>The aphrodisiac in " + target.capitalA + possessive(target.short) + " bloodstream has faded!</b>");
+					target.removeStatusEffect("Aphro");
+				}
+				else
+				{
+					if (target is PlayerCharacter) output("<b>The aphrodisiac in your bloodstream continues to excite your body!</b>");
+					else output("<b>The aphrodisiac in " + target.capitalA + possessive(target.short) + " bloodstream continues to excite " + target.mfn("him", "her", "it") + "!</b>");
+					applyDamage(new TypeCollection( { drug: target.statusEffectv1("Aphro") } ), null, target);
+				}
+				output("\n");
+			}
+			
+			//Does v1 lust damage every turn. V2 is turn counter (negative = infinite)!
+			if(target.hasStatusEffect("Aphro Gas"))
+			{
+				target.addStatusValue("Aphro Gas", 2, -1);
+				if(target.statusEffectv2("Aphro Gas") == 0)
+				{
+					output("<b>The aphrodisiac cloud has dispersed!</b>");
+					target.removeStatusEffect("Aphro Gas");
+				}
+				else
+				{
+					if (target is PlayerCharacter) output("<b>The cloud of aphrodisiac continues to excite your body!</b>");
+					else output("<b>The cloud of aphrodisiac continues to linger around " + target.a + target.short + "!</b>");
+					applyDamage(new TypeCollection( { drug: target.statusEffectv1("Aphro Gas") } ), null, target);
+				}
+				output("\n");
+			}
+			
+			if(target.hasStatusEffect("Burn"))
+			{
+				if (target is PlayerCharacter)
+				{
+					output("<b>The flames slowly lick at you,</b>");
+					if(target.statusEffectv1("Burn") > 1) 
+					{
+						target.addStatusValue("Burn",1,-1);
+						output("<b> resisting any attempt to put them out.</b>");
+					}
+					else 
+					{
+						target.removeStatusEffect("Burn");
+						output("<b> refusing to go out until they've done their foul work.</b>");
+					}
+				}
+				else
+				{
+					output("<b>Flames slowly lick at " + target.a + target.short + ",");
+					if (target.statusEffectv1("Burn") > 1)
+					{
+						target.addStatusValue("Burn", 1, -1);
+						output(" resisting any attempt to put them out.</b>");
+					}
+					else
+					{
+						target.removeStatusEffect("Burn");
+						output(" refusing to go out until they've done their foul work.</b>");
+					}
+				}
+				applyDamage(new TypeCollection( { burning: 3 + rand(4) } ), null, target);
+				output("\n");
+			}
+				
+			if (target.hasStatusEffect("Bleeding"))
+			{
+				if (target is PlayerCharacter) output("<b>Your wounds continue to take their toll on your body;");
+				else output("<b>" + target.capitalA + possessive(target.short) + " wounds continue to take a toll on their body;");
+				if (target.statusEffectv2("Bleeding") >= 1)
+				{
+					target.addStatusValue("Bleeding", 2, -1);
+					if (target is PlayerCharacter) output(" your microsugeons working overtime to stem the ongoing damage.</b>\n");
+					else output(" blood liberally flows from their wounds as they frantically attempt to stem the bleeding.</b>\n");
+				}
+				else
+				{
+					target.removeStatusEffect("Bleeding");
+					if (target is PlayerCharacter) output(" your microsurgeons have triaged the worst of it, but you'll need proper rest to heal.</b>\n");
+					else output(" the bleeding has finally stopped, but it'd take anybody some rest to properly recover from those kinds of wounds!</b>\n");
+				}
+				applyDamage(damageRand(new TypeCollection( { kinetic: target.statusEffectv1("Bleeding") * target.statusEffectv3("Bleeding") } ), 15), null, target);
+				output("\n");
+			}
+	
+			if (target.hasStatusEffect("Staggered"))
+			{
+				if (target.statusEffectv1("Staggered"))
+				{
+					target.addStatusValue("Staggered", 1, -1);
+					if (target is PlayerCharacter) output("<b>You're still reeling from the force of the blows to which you've been subjected.</b>");
+					else output("<b>" + target.capitalA + target.short + " is still reeling from the force of the blows to which they've been subject!</b>");
+				}
+				else
+				{
+					target.removeStatusEffect("Staggered");
+					if (target is PlayerCharacter) output("<b>You finally shake away the stars from your vision, your [pc.feet] planted on the floor firmly once again.</b>");
+					else output("<b>" + target.capitalA + target.short + " finally shakes away the cobwebs, their " + target.feet() + " planted firmly on the floor once again.</b>");
+				}
+				output("\n");
+			}
+	
+			// Should never be applicable to non-PCs
+			if (target is PlayerCharacter)
+			{
+				if(!target.hasStatusEffect("Blind") && target.hasStatusEffect("Quivering Quasar"))
+				{
+					if(rand(10) == 0) 
+					{
+						output("<b>You abruptly go blind, perhaps an effect of the Quivering Quasar you drank.</b>\n")
+						pc.createStatusEffect("Blind",2,0,0,0,false,"Blind","You're blinded and cannot see! Accuracy is reduced, and ranged attacks are far more likely to miss.",true,0);
+					}
+				}
+			}
+			
+			if (target.hasStatusEffect("Tripped"))
+			{
+				if(target.hasPerk("Leap Up"))
+				{
+					if (target is PlayerCharacter) output("<b>You roll up onto your [pc.feet] immediately thanks to your quick reflexes.</b>\n");
+					else output("<b>" + target.capitalA + target.short + " jumps back onto their " + target.feet() + " almost immediately!</b>\n");
+					target.removeStatusEffect("Tripped");
+				}
+			}
+	
+			if (target.hasStatusEffect("Blinded"))
+			{
+				target.addStatusValue("Blinded",1,-1);
+				if (target.statusEffectv1("Blinded") <= 0) 
+				{
+					target.removeStatusEffect("Blinded");
+					if (target is PlayerCharacter) output("<b>You can see again!</b>\n");
+					else if (target.plural) output("<b>" + target.capitalA + target.short + " are no longer blinded!</b>\n");
+					else output("<b>" + target.capitalA + target.short + " is no longer blinded!</b>\n");
+				}
+				else if (target.hasPerk("Sharp Eyes") && target.statusEffectv1("Blinded") <= 1) 
+				{
+					target.removeStatusEffect("Blinded");
+					if (target is PlayerCharacter) output("<b>You can see again!</b>\n");
+					else if (target.plural) output("<b>" + target.capitalA + target.short + " are no longer blinded!</b>\n");
+					else output("<b>" + target.capitalA + target.short + " is no longer blinded!</b>\n");
+				}
+				else
+				{
+					if (target is PlayerCharacter) output("<b>You are blind!</b>\n");
+					if (target.plural) output("<b>" + target.capitalA + target.short + " are blinded.</b>\n");
+					else output("<b>" + target.capitalA + target.short + " is blinded.</b>\n");
+				}
+			}
+	
+			if (target.hasStatusEffect("Smoke Grenade")) 
+			{
+				target.addStatusValue("Smoke Grenade", 1, -1);
+				if (target.statusEffectv1("Smoke Grenade") <= 0) 
+				{
+					target.removeStatusEffect("Smoke Grenade");
+					output("<b>The cloud of smoke finally dissipates!</b>\n");
+				}
+				else if (target.hasPerk("Smoke Grenade") && target.statusEffectv1("Blinded") <= 1) 
+				{
+					target.removeStatusEffect("Smoke Grenade");
+					if (target is PlayerCharacter) output("<b>You can see again!</b>\n");
+					else output("<b>" + target.capitalA + target.short + " looks a little more confident in their aim!</b>\n");
+				}
+			}
+	
+			if (target.hasStatusEffect("Paralyzed")) 
+			{
+				target.addStatusValue("Paralyzed",1,-1);
+				if (target.statusEffectv1("Paralyzed") <= 0) 
+				{
+					target.removeStatusEffect("Paralyzed");
+					if (target is PlayerCharacter) output("<b>The paralytic venom wears off, and you are able to move once more.</b>\n");
+					else output("<b>The paralysis affecting " + target.a + target.short + " seems to wear off, motion returning to " + target.mfn("his", "her", "its") + " limbs!</b>\n");
+				}
+				else
+				{
+					if (target is PlayerCharacter) output("<b>You're paralyzed and unable to move!</b>\n");
+					else output("<b>" + target.capitalA + target.short + " is paralyzed and unable to move!</b>\n");
+				}
+			}
+	
+			if(target.hasStatusEffect("Stealth Field Generator"))
+			{
+				target.addStatusValue("Stealth Field Generator",1,-1);
+				if(target.statusEffectv1("Stealth Field Generator") <= 0)
+				{
+					if (target is PlayerCharacter) output("<b>Your stealth field generator collapses.</b>\n");
+					else output("<b>" + target.capitalA + possessive(target.short) + " stealth drops abruptly!</b>\n");
+					target.removeStatusEffect("Stealth Field Generator");
+				}
+				else 
+				{
+					if (target is PlayerCharacter) output("<b>You are practically invisible thanks to your stealth field generator.</b>\n");
+					else output("<b>" + target.capitalA + target.short + " is practically invisible thanks to their stealth field generator.</b>\n");
+				}
+			}
+	
+			if (target.hasStatusEffect("Taking Cover"))
+			{
+				target.addStatusValue("Taking Cover",1,-1);
+				if (target.statusEffectv1("Taking Cover") <= 0)
+				{
+					target.removeStatusEffect("Taking Cover");
+					if (target is PlayerCharacter) output("<b>You are no longer taking cover!</b>\n");
+					else output("<b>" + target.capitalA + target.short + " is no longer taking cover!</b>\n");
+				}
+				else 
+				{
+					if (target is PlayerCharacter) output("<b>Your enemies will have a hard time hitting you behind your cover!</b>\n");
+					else output("<b>You'll have a hard time hitting " + target.a + target.short + " with them hiding behind cover!</b>\n");
+				}
+			}
+	
+			if (target.hasStatusEffect("Deflector Regeneration"))
+			{
+				target.addStatusValue("Deflector Regeneration",1,-1);
+				temp = target.statusEffectv2("Deflector Regeneration");
+				if(temp + target.shields() > target.shieldsMax()) temp = target.shieldsMax() - target.shields();
+				if(temp > 0) 
+				{
+					if (target is PlayerCharacter) output("<b>You recover " + temp + " points of shielding.</b>\n");
+					else output("<b>" + target.capitalA + target.short + " recovers " + temp + " points of shielding!</b>\n");
+					target.shields(temp);
+				}
+				if(target.statusEffectv1("Deflector Regeneration") <= 0)
+				{
+					if (target is PlayerCharacter) output("<b>Your shields are no longer regenerating!</b>\n");
+					else output("<b>" + target.capitalA + possessive(target.short) + " shields are no longer regenerating!</b>\n");
+					target.removeStatusEffect("Deflector Regeneration");
+				}
+			}
+	
+			if (target.statusEffectv1("Used Smuggled Stimulant") > 0)
+			{
+				target.addStatusValue("Used Smuggled Stimulant",1,-1);
+				target.energy(25);
+				if (target is PlayerCharacter) output("<b>A rush of energy fills you as the smuggled stimulant affects you.</b>\n");
+				else output("<b>" + target.capitalA + target.short + " is filled with a sudden rush of energy!</b>\n");
+			}
+	
+			if (target.hasStatusEffect("Porno Hacked Drone"))
+			{
+				if(target.shields() > 0)
+				{
+					target.addStatusValue("Porno Hacked Drone",1,-1);
+					if(target.statusEffectv1("Porno Hacked Drone") <= 0)
+					{
+						if (target is PlayerCharacter) output("<b>With a grinding click the porn beaming out of your drone snuffs out, finally getting the better of the sexbot’s hacking routine, and returns to your side.</b>\n");
+						else output("<b>" + target.capitalA + possessive(target.short) + " drone whirrs slightly, the porn beaming from it snuffing out in short order. Having finally managed to expel the rouge instructions hacked into the thing, it returns to its owners side.</b>\n");
+						target.removeStatusEffect("Porno Hacked Drone");
+					}
+					else
+					{
+						//Combat blurb:
+						if (target is PlayerCharacter) output("<b>Your hacked drone continues to fly into your line of sight and near your ear no matter how many times you slap it away, inundating your senses with garish, shifting and teasing smut.</b>\n");
+						else output("<b>" + target.capitalA + possessive(target.short) + " hacked drone continues to fly around them, projecting a series of ever lewder smutty visuals directly at " + target.mfn("him", "her", "it") + "!</b>\n");
+						target.lust(4);
+					}
+				}
+			}
+			
+			if (target.hasStatusEffect("Mimbrane Lust Cloud"))
+			{
+				if (target is PlayerCharacter)
+				{
+					target.addStatusValue("Mimbrane Lust Cloud", 2, -1);
+					if (target.statusEffectv1("Mimbrane Lust Cloud") <= 0)
+					{
+						target.removeStatusEffect("Mimbrane Lust Cloud");
+						output("<b>The parasite’s noxious perspiration has faded away.</b>\n");
+					}
+					else
+					{
+						target.lust(5 + rand(10));
+						if (target is PlayerCharacter) output("<b>The parasite's venom is coursing through your veins. Your sexual desire is rising at an alarming rate.</b>\n");
+					}
+				}
+				else
+				{
+					cloudDebuffHandler(target);
+				}
+			}
+			
+			if (target.hasStatusEffect("Disarmed") && (!(target is Varmint) && !(hasEnemyOfClass(Varmint))))
+			{
+				target.addStatusValue("Disarmed",1,-1);
+				if(target.statusEffectv1("Disarmed") <= 0)
+				{
+					target.removeStatusEffect("Disarmed");
+					if (target is PlayerCharacter) output("<b>You are no longer disarmed!</b>\n");
+					else if (target.plural) output("<b>" + target.capitalA + target.short + " are no longer disarmed!</b>\n");
+					else output("<b>" + target.capitalA + target.short + " is no longer disarmed!</b>\n");
+				}
+				else 
+				{
+					if (target is PlayerCharacter) output("<b>You are disarmed and cannot use weapon based attacks.</b>\n");
+					else if (target.plural) output("<b>" + target.capitalA + target.short + " are disarmed.</b>\n");
+					else output("<b>" + target.capitalA + target.short + " is disarmed.</b>\n");
+				}
+			}
+	
+			if (target.hasStatusEffect("Combat Drone Disabled"))
+			{
+				target.addStatusValue("Combat Drone Disabled", 1, -1);
+				if (target.statusEffectv1("Combat Drone Disabled") <= 0)
+				{
+					target.removeStatusEffect("Combat Drone Disabled");
+					if (target.hasCombatDrone())
+					{
+						if (target is PlayerCharacter) output("<b>There’s a familiar and welcome sound of whirring servos above you. Your righted drone moves back down to your side to aid you.</b>\n");
+						else output("<b>A telling hum returns to the battlefield. " + target.capitalA + possessive(target.short) + " combat drone returns to the fold!</b>\n");
+					}
+				}
+			}
+	
+			// Annoquest stuffs
+	
+			if (target.hasStatusEffect("Sensor Link"))
+			{
+				target.addStatusValue("Sensor Link", 1, -1);
+				if (target.statusEffectv1("Sensor Link") <= 0)
+				{
+					target.removeStatusEffect("Sensor Link");
+					target.aimMod -= 5;
+					if (target is PlayerCharacter) output("<b>Your equipments connection to Anno's wanes as combat draws on, your improved accuracy diminishing.</b>\n");
+					else output("<b>" + target.capitalA + possessive(target.short) + " equipment interlink wanes, the extra assistance diminishing!</b>\n");
+				}
+			}
+	
+			if (target.hasStatusEffect("HP Boost CD"))
+			{
+				target.addStatusValue("HP Boost CD", 1, -1);
+				if (target.statusEffectv1("HP Boost CD") <= 0)
+				{
+					target.removeStatusEffect("HP Boost CD");
+				}
+			}
+	
+			if(target.hasStatusEffect("Evasion Boost"))
+			{
+				target.addStatusMinutes("Evasion Boost",-1);
+				if(target.getStatusMinutes("Evasion Boost") <= 0)
+				{
+					if (target.plural) output("<b>" + target.capitalA + target.short + " no longer have boosted evasion!</b>");
+					else if (target is PlayerCharacter("<b>Your limbs feel heavier, slower than they were a moment ago. Your boosted evasion has worn off!</b>");
+					else output("<b>" + target.cappitalA + target.short + " no longer has boosted evasion!</b>");
+					target.removeStatusEffect("Evasion Boost");
+					output("\n");
+				}
+			}
+		
+			if (target.hasStatusEffect("Resolve"))
+			{
+				target.addStatusValue("Resolve",1,-1);
+				if (target.statusEffectv1("Resolve") <= 0)
+				{
+					target.removeStatusEffect("Resolve");
+					output("<b>" + target.capitalA + target.short + " is no longer resolved!</b>\n");
+					target.baseHPResistances.tease.resistanceValue -= 100;
+					target.baseHPResistances.drug.resistanceValue -= 50;
+					target.baseHPResistances.pheromone.resistanceValue -= 50;
+				}
+				else
+				{
+					output("<b>" + target.capitalA + target.short + " has a resolved, steely look in " + target.mfn("his","her","its") + " eyes!</b>\n");
+				}
+			}
+		
+			if (target.hasStatusEffect("Lust Stunned"))
+			{
+				target.addStatusValue("Lust Stunned",1,-1);
+				if (target.statusEffectv1("Lust Stunned") <= 0)
+				{
+					target.removeStatusEffect("Lust Stunned");
+				}
+			}
+		
+			if (target.hasStatusEffect("Stunned"))
+			{
+				if (target.hasStatusEffect("Lust Stunned")) output("<b>Your teasing has the poor " + target.mfn("boy", "girl", "thing") + " in a shuddering mess as " + target.mfn("he", "she", "it") +" tries to regain control of " + target,mfn("his", "her", "its") + " lust addled nerves.</b>\n");
+				else if (target.plural) output("<b>" + target.capitalA + target.short + " are stunned and unable to act!</b>\n");
+				else output("<b>" + target.capitalA + target.short + " is stunned and unable to act!</b>\n");
+			}
+		
+			/**
+			 * TODO: Ensure this is wrapped up properly somehow!
+			 */
+			if (target.hasStatusEffect("Gray Goo Clone"))
+			{
+				var lFailed:Boolean = false;
+				
+				if ((target as Creature).isLustImmune == true) lFailed = true;
+				if ((target as Creature).getLustResistances().tease.resistanceValue >= 100.0) lFailed = true;
+				
+				if (!lFailed)
+				{
+					var lDamage:TypeCollection = new TypeCollection( { tease: 5 + rand(3) } );
+					var dResult:DamageResult = applyDamage(lDamage, pc, target, "suppress");
+				}
+				
+				output("[goo.name] dances around, flashing plenty of tits and ass for " + target.a + target.short + ".");
+				if (lFailed || (dResult && (dResult.lustDamage <= 0 || dResult.lustResisted)))
+				{
+					output(" " + target.capitalA + target.short + " looks on, clearly unimpressed.\n");
+				}
+				else
+				{
+					output(" " + target.capitalA + target.short + " stares mesmerized at [goo.name]'s dance, flushing with lust.\n");
+				}
+				
+				if (!lFailed)
+				{
+					outputDamage(dResult);
+				}
+			}
+		
+			// userInterface.playerStatusEffects = this.chars["PC"].statusEffects;	
 		}
 		
 		public function showCombatMenu():void
@@ -59,7 +586,9 @@ package classes.GameData
 			if (!doneRoundActions())
 			{
 				// do anything that only happens once per round here.
-				if (hasEnemyOfClass(CaptainKhorganMech)) updateCoverDisplay();
+				if (hasEnemyOfClass(CaptainKhorganMech)) updateKhorganMechCover();
+				if (hasEnemyOfClass(GardeBot)) updateGardeBotCover();
+				// updateCombatStatuses(); // Status effects are handled during action-resolution (ie after the player takes an action)
 			}
 			
 			if (checkForVictory()) return;
@@ -128,8 +657,15 @@ package classes.GameData
 			}
 			
 			// attack
-			var af:Function = pc.meleeWeapon.attackImplementor == null ? CombatAttacks.MeleeAttack : pc.meleeWeapon.attackImplementor;
-			addButton(0, "Attack", selectSimpleAttack, af, "Attack", "Attack a single enemy with a melee strike. Damage is based on physique.");
+			if (hasEnemyOfClass(Varmint) && pc.hasKeyItem("Lasso"))
+			{
+				addButton(0, "Lasso", lassoVarmint, undefined, "Lasso", "Use this lasso you've been provided with to properly down this varmint.");
+			}
+			else
+			{
+				var af:Function = pc.meleeWeapon.attackImplementor == null ? CombatAttacks.MeleeAttack : pc.meleeWeapon.attackImplementor;
+				addButton(0, "Attack", selectSimpleAttack, af, "Attack", "Attack a single enemy with a melee strike. Damage is based on physique.");
+			}
 			
 			// shoot
 			var sf:Function = pc.rangedWeapon.attackImplementor == null ? CombatAttacks.RangedAttack : pc.rangedWeapon.attackImplementor;
@@ -142,17 +678,20 @@ package classes.GameData
 			addButton(4, "Specials", generateSpecialsMenu, undefined, "Specials", "The special attacks you have available to you are listed in this menu.");
 			
 			// tease
-			addButton(5, "Tease", selectSimpleTarget, generateTeaseMenu, "Tease Menu", "Opens up your menu of available lust targetting attacks. It is recommended that the ‘Sense’ option be used beforehand.");
+			if (pc.hasStatusEffect("Myr Venom Withdrawal")) addDisabledButton(5, "Tease", "Tease", "Without the venom, teasing just seems... fruitless.");
+			else addButton(5, "Tease", selectSimpleTarget, generateTeaseMenu, "Tease Menu", "Opens up your menu of available lust targetting attacks. It is recommended that the ‘Sense’ option be used beforehand.");
+			
 			// sense
 			addButton(6, "Sense", selectSimpleTarget, generateSenseMenu, "Sense", "Attempts to get a feel for a foe's likes and dislikes. Absolutely critical for someone who plans on seducing " + pc.mf("his", "her") + " way out of a fight.");
-			// 
+			
 			// wait
 			addButton(8, "Wait", waitRound, undefined, "Wait", "There's no real reason to this unless you're just dragging out combat to see what your enemy will do.");
 			// fantasize
 			addButton(9, "Fantasize", fantasizeRound, undefined, "Fantasize", "Fantasize about your foe until you're helpless and on your [pc.knees] before them.");
 			
 			// trip
-			if(pc.hasStatusEffect("Trip")) this.addButton(10,"Stand Up",standupRound,undefined,"Stand Up","Stand up, getting rid of the \"Trip\" status effect. This will consume your offensive action for this turn.");
+			if (pc.hasStatusEffect("Trip")) this.addButton(10, "Stand Up", standupRound, undefined, "Stand Up", "Stand up, getting rid of the \"Trip\" status effect. This will consume your offensive action for this turn.");
+			
 			//
 			//
 			//
@@ -172,6 +711,10 @@ package classes.GameData
 			{
 				this.addButton(14, "Run", runAway, undefined, "Run", "Attempt to run away from your enemy. Success is greatly dependant on reflexes. Immobilizing your enemy before attempting to run will increase the odds of success.");
 			}
+			
+			// Hook in any additional menu entries -- allowing the hooks to override
+			// default entries
+			additionalCombatMenuEntries();
 		}
 		
 		private function waitRound():void
@@ -372,6 +915,7 @@ package classes.GameData
 		
 		private function generateSpecialsMenu():void
 		{
+			clearMenu();
 			var attacks:Array = CombatAttacks.GetAttacksFor(pc);
 			
 			var bOff:int = 0;
@@ -386,8 +930,24 @@ package classes.GameData
 				{
 					addDisabledButton(bOff, atk.ButtonName, atk.TooltipTitle, atk.TooltipBody);
 				}
+				bOff++;
 			}
 			
+			// Special shits
+			if (pc.armor is GooArmor)
+			{
+				if (!pc.hasStatusEffect("Reduced Goo"))
+				{
+					addButton(bOff, "Goo Clone", kGAMECLASS.pcGooClone, undefined, "Goo Clone", "Have [goo.name] hop off and start teasing your enemy. Reduces your armor value, but inflicts lust over time.");
+				}
+				else
+				{
+					addButton(bOff, "Recall Goo", kGAMECLASS.pcRecallGoo, undefined, "Recall Goo", "Call [goo.name] back to you, restoring your gooey armor.");
+				}
+				offset++;
+			}
+			
+			// TODO sort pages and shit
 			addButton(14, "Back", generateCombatMenu);
 		}
 		

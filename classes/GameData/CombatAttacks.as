@@ -339,6 +339,20 @@ package classes.GameData
 			ConcussiveShot.TooltipTitle = "Concussive Shot";
 			ConcussiveShot.TooltipBody = "Fire an explosive arrow at your target, potentially stunning them for 1-2 rounds.";
 			a.push(ConcussiveShot);
+			
+			// Goozooka
+			GoozookaAttack = new SingleCombatAttack();
+			GoozookaAttack.ButtonName = "Goozooka";
+			GoozookaAttack.DisabledIfEffectedBy = ["Disarmed"];
+			GoozookaAttack.IsRangedBased = true;
+			GoozookaAttack.ExtendedDisplayabilityCheck = function():Boolean {
+				return kGAMECLASS.pc.hasKeyItem("Goozooka");
+			}
+			GoozookaAttack.ExtendedAvailabilityCheck = function():Boolean {
+				return kGAMECLASS.pc.hasItem("Gray Microbots");
+			}
+			GoozookaAttack.TooltipTitle = "Goozooka";
+			GoozookaAttack.TooltipBody = "Fire a Gray Goo at your enemy for the princely sum of a single sample of Gray Microbots.";
 		}
 		
 		/**
@@ -1261,6 +1275,12 @@ package classes.GameData
 				damage = damageRand(damage,15);
 				applyDamage(damage, attacker, target, "ranged");
 			}
+		}
+		
+		public static const GoozookaAttack:SingleCombatAttack;
+		private static function GoozookaAttackImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
+		{
+			
 		}
 	}
 
