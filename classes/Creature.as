@@ -1334,19 +1334,19 @@ package classes {
 					buffer = scaleColor;
 					break;
 				case "chitinColor":
-					buffer = chitinColor();
+					buffer = chitinColor("", true);
 					break;
 				case "chitinColorBody":
-					buffer = chitinColor("body");
+					buffer = chitinColor("body", true);
 					break;
 				case "chitinColorArm":
-					buffer = chitinColor("arm");
+					buffer = chitinColor("arm", true);
 					break;
 				case "chitinColorLeg":
-					buffer = chitinColor("leg");
+					buffer = chitinColor("leg", true);
 					break;
 				case "chitinColorTail":
-					buffer = chitinColor("tail");
+					buffer = chitinColor("tail", true);
 					break;
 				case "ears":
 					buffer = earsDescript();
@@ -1476,6 +1476,12 @@ package classes {
 				case "cuntColor":
 				case "pussyColor":
 					buffer = vaginaColor(arg2);
+					break;
+				case "cockSkinColor":
+					buffer = cockSkinColor(arg2);
+					break;
+				case "vaginaSkinColor":
+					buffer = vaginaSkinColor(arg2);
 					break;
 				case "cockHead":
 				case "cockhead":
@@ -3720,10 +3726,11 @@ package classes {
 			else if(skinType == GLOBAL.SKIN_TYPE_SCALES || skinType == GLOBAL.SKIN_TYPE_CHITIN) return scaleColor;
 			else return skinTone;
 		}
-		public function chitinColor(part:String = ""):String
+		public function chitinColor(part:String = "", bonus:Boolean = false):String
 		{
 			// Special types of chitinous anatomy return the scale color, otherwise it's a black color.
-			var colors:Array = ["black", "black", "black", "ebony", "midnight-hued", "obsidian", "onyx", "pitch"];
+			var colors:Array = ["black"];
+			if (bonus) colors.push("ebony", "midnight-hued", "obsidian", "onyx", "pitch");
 			if (part == "body" || skinType == GLOBAL.SKIN_TYPE_CHITIN)
 			{
 				if (skinType != GLOBAL.SKIN_TYPE_CHITIN) return "null";
@@ -3891,10 +3898,12 @@ package classes {
 			if (adjectives.length > 0) output += RandomInCollection(adjectives) + " ";
 			
 			//Add Noun
-			if (hasFaceFlag(GLOBAL.FLAG_MUZZLED) && rand(2) == 0) output += "muzzle";
-			else if (rand(2) == 0 && hasFaceFlag(GLOBAL.FLAG_MUZZLED) && InCollection(faceType, GLOBAL.TYPE_LIZAN, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_NAGA))
+			if (hasFaceFlag(GLOBAL.FLAG_MUZZLED) && rand(2) == 0)
+				output += "muzzle";
+			else if (hasFaceFlag(GLOBAL.FLAG_MUZZLED) && rand(2) == 0 && InCollection(faceType, GLOBAL.TYPE_LIZAN, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_NAGA))
 				output += "snout";
-			else output += "face";
+			else
+				output += "face";
 			
 			return output;
 		}
@@ -10244,12 +10253,12 @@ package classes {
 		public function nippleLength(row: int = 0): Number {
 			if (row >= bRows()) return 0;
 			else if (row < 0) return 0;
-			else return nippleLengthRatio * .25 * ((10 + breastRows[row].breastRating()) / 10)
+			else return (nippleLengthRatio * .25 * ((10 + breastRows[row].breastRating()) / 10));
 		}
 		public function nippleWidth(row: int = 0): Number {
 			if (row >= bRows()) return 0;
 			else if (row < 0) return 0;
-			else return nippleWidthRatio * .5 * ((10 + breastRows[row].breastRating()) / 10)
+			else return (nippleWidthRatio * .5 * ((10 + breastRows[row].breastRating()) / 10));
 		}
 		//New cock adjectives. The old one sucked dicks
 		public function nippleCockAdjective(plural: Boolean = false):String {
@@ -10539,7 +10548,7 @@ package classes {
 			return RandomInCollection(collection);
 		}
 		public function fluidColor(arg: int): String {
-			var collection:Array = new Array();;
+			var collection:Array = new Array();
 			trace("BOOP DA SNOOT");
 			//CUM & MILK TYPES
 			if (InCollection(arg, GLOBAL.FLUID_TYPE_MILK, GLOBAL.FLUID_TYPE_CUM, GLOBAL.FLUID_TYPE_VANILLA)) {
@@ -10696,6 +10705,23 @@ package classes {
 		}
 		public function nippleCocksDescript(appearance: Boolean = false): String {
 			return pluralize(nippleCockDescript(appearance));
+		}
+		public function cockSkinColor(arg2:int = 0):String
+		{
+			if(!hasCock() || arg2 < 0 || arg2 >= cockTotal()) return "ERROR";
+			var skinColor = skinFurScalesColor();
+			// Flesh-colored
+			if
+			(	(!cocks[arg2].hasFlag(GLOBAL.FLAG_FORESKINNED) && !cocks[arg2].hasFlag(GLOBAL.GLOBAL.FLAG_SHEATHED))
+			&&	!InCollection(cocks[arg2].cType, GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_SIMII, GLOBAL.TYPE_GABILANI)
+			)	skinColor = cockColor(arg2);
+			return skinColor;
+		}
+		public function vaginaSkinColor(arg2:int = 0):String
+		{
+			if(!hasVagina() || arg2 < 0 || arg2 >= vaginaTotal()) return "ERROR";
+			var skinColor = skinFurScalesColor();
+			return skinColor;
 		}
 		public function cockColor(arg2:int = 0):String
 		{
