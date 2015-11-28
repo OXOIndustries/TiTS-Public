@@ -3888,7 +3888,7 @@ package classes {
 				if (hasFaceFlag(GLOBAL.FLAG_LONG)) adjectives.push("long");
 			}
 			//Space if adjective'd
-			if (adjectives.length > 0) output += " " + RandomInCollection(adjectives);
+			if (adjectives.length > 0) output += RandomInCollection(adjectives) + " ";
 			
 			//Add Noun
 			if (hasFaceFlag(GLOBAL.FLAG_MUZZLED) && rand(2) == 0) output += "muzzle";
@@ -4265,9 +4265,8 @@ package classes {
 					if (hasLegFlag(GLOBAL.FLAG_CHITINOUS)) adjectives.push("chitinous", "armored", "carapace-covered");
 				}
 				//Random goes here!
-				if (adjectives.length > 0) output += RandomInCollection(adjectives);
+				if (adjectives.length > 0) output += RandomInCollection(adjectives) + " ";
 				//NOUN IT UP BITCHES!
-				if (output != "") output += " ";
 				output += legNoun();
 			}
 			return output;
