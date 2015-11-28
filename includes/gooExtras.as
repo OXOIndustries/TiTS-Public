@@ -205,7 +205,7 @@ public function galoMaxTFProc():void
 	{
 		output("Here it comes! Once again, that heavy heat spreads throughout you, circling from your fingertips to ");
 		if(pc.hasToes()) output("your toes");
-		else output("the tips of your [feetOrFoot]");
+		else output("the tips of your [pc.feetOrFoot]");
 		output(" only to settle more and more of itself into your crotch. Your [pc.genitals] flood with it, plumping up with artificially-induced arousal. Your head swims, dizzied by the ");
 		if(pc.isCrotchGarbed()) output("hot press of your aching, leaky flesh against your [pc.lowerGarment]");
 		else output("currents of air blowing over your leaking, engorged flesh");
