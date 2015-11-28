@@ -824,7 +824,7 @@ public function showerOptions(option:int = 0):void {
 	// Regular showers
 	if (option == 0)
 	{
-		output("Deciding to take a quick shower, you strip off your gear, set it aside and turn on the shower. The water hits you with a cold chill. Onboard shower units are never really known for great tempurature regulation...");
+		output("Deciding to take a quick shower, you strip off your gear, set it aside and turn on the shower. The water hits you with a cold chill. Onboard shower units are never really known for great temperature regulation...");
 		output("\n\nSlightly shivering, you shampoo your [pc.hair] and rub down your [pc.skinFurScalesNoun] with soap");
 		if (pc.hasStatusEffect("Sweaty"))
 		{
@@ -836,7 +836,7 @@ public function showerOptions(option:int = 0):void {
 		output(". You cleanse your [pc.face] and wash behind your [pc.ears], making sure not to miss a spot.");
 		output("\n\nSome minutes later, you finally rinse and towel yourself off. Stepping out of the shower and redonning your equipment, you are feeling");
 		if (pc.hasStatusEffect("Sweaty")) output(" much cleaner than you did before");
-		else output(" sqeaky clean");
+		else output(" squeaky clean");
 		output(".");
 		pc.shower();
 		processTime(10);
