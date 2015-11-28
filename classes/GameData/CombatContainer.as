@@ -537,12 +537,18 @@ package classes.GameData
 				}
 			}
 		
+			// This is basically irrelevent now-
+			// NPCs use the same method (doStunRecover) as the player to recover from stunned effects
+			// automatically.
+			
+			/*
 			if (target.hasStatusEffect("Stunned"))
 			{
 				if (target.hasStatusEffect("Lust Stunned")) output("<b>Your teasing has the poor " + target.mfn("boy", "girl", "thing") + " in a shuddering mess as " + target.mfn("he", "she", "it") +" tries to regain control of " + target,mfn("his", "her", "its") + " lust addled nerves.</b>\n");
 				else if (target.plural) output("<b>" + target.capitalA + target.short + " are stunned and unable to act!</b>\n");
 				else output("<b>" + target.capitalA + target.short + " is stunned and unable to act!</b>\n");
 			}
+			*/
 		
 			/**
 			 * TODO: Ensure this is wrapped up properly somehow!
@@ -911,6 +917,50 @@ package classes.GameData
 			}
 			output("\n");
 			processCombat();
+		}
+		
+		private function doStunRecover(target:Creature):void
+		{
+			if (target.hasStatusEffect("Stunned"))
+			{
+				if (target is PlayerCharacter) clearOutput();
+				
+				target.addStatusValue("Stunned", 1, -1);
+				
+				if (target.statusEffectv1("Stunned") <= 0)
+				{
+					target.removeStatusEffect("Stunned");
+					if (target is PlayerCharacter) output("You manage to recover your wits and adopt a fighting stance!\n");
+					else if (!target.plural) output(target.capitalA + target.short + " manages to recover " + target.mfn("his","her","its") + " wits and adopt a fighting stance!");
+					else output(target.capitalA + target.short + " manage to recover their wits and adopt a fighting stance!");
+				}
+				else
+				{
+					if (target is PlayerCharacter) output("You're still too stunned to act!\n");
+					else
+					{
+						if (!target.hasStatusEffect("Lust Stunned"))
+						{
+							if (!target.plural) output(target.capitalA + target.short + " is still too stunned to act!");
+							else output(target.capitalA + target.short + " are still too stunned to act!");
+						}
+						else
+						{
+							output("<b>Your teasing has the poor " + target.mfn("boy", "girl", "thing") + " in a shuddering mess as " + target.mfn("he", "she", "it") +" tries to regain control of " + target,mfn("his", "her", "its") + " lust addled nerves.</b>\n");
+						}
+					}
+				}
+			}
+			
+			if (target.hasStatusEffect("Paralyzed"))
+			{
+				if (target is PlayerCharacter) clearOutput();
+				
+				if (target.statusEffectv1("Paralyzed") <= 1) output("The venom seems to be weakening, but you can't move yet!\n");
+				else output("You try to move, but just can't manage it!\n");
+			}
+	
+			if (target is PlayerCharacter) processCombat();
 		}
 		
 		private function generateSpecialsMenu():void
