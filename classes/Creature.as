@@ -10709,7 +10709,7 @@ package classes {
 		public function cockSkinColor(arg2:int = 0):String
 		{
 			if(!hasCock() || arg2 < 0 || arg2 >= cockTotal()) return "ERROR";
-			var skinColor = skinFurScalesColor();
+			var skinColor:String = skinFurScalesColor();
 			// Flesh-colored
 			if
 			(	(!cocks[arg2].hasFlag(GLOBAL.FLAG_FORESKINNED) && !cocks[arg2].hasFlag(GLOBAL.GLOBAL.FLAG_SHEATHED))
@@ -10720,7 +10720,7 @@ package classes {
 		public function vaginaSkinColor(arg2:int = 0):String
 		{
 			if(!hasVagina() || arg2 < 0 || arg2 >= vaginaTotal()) return "ERROR";
-			var skinColor = skinFurScalesColor();
+			var skinColor:String = skinFurScalesColor();
 			return skinColor;
 		}
 		public function cockColor(arg2:int = 0):String
