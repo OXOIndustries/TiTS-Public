@@ -401,7 +401,7 @@ package classes.Items.Transformatives
 						else output("you’ve got a literal honeypot now!");
 						output("</b>");
 						pc.girlCumType = GLOBAL.FLUID_TYPE_HONEY;
-						pc.lust(Math.round(pc.lustMax()/2))
+						pc.lust(Math.round(pc.lustMax()/2));
 						changes++;
 					}
 					else output("\n\n" + pc.girlCumTypeLockedMessage());
