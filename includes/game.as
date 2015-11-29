@@ -1577,7 +1577,12 @@ public function processTime(arg:int):void {
 				//Exhibitionism reduction!
 				if(!(pc.armor is EmptySlot) && !(pc.lowerUndergarment is EmptySlot) && !(pc.upperUndergarment is EmptySlot))
 				{
-					pc.exhibitionism(-0.5);
+					if
+					(	pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)
+					&&	pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)
+					&&	pc.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)
+					)	{ /* No reduction for a full set of exposed clothing! */ }
+					else pc.exhibitionism(-0.5);
 				}
 				// New Texas cockmilker repair cooldown.
 				if (flags["MILK_BARN_COCKMILKER_BROKEN"] == undefined && flags["MILK_BARN_COCKMILKER_REPAIR_DAYS"] != undefined)
