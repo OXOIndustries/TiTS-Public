@@ -118,11 +118,11 @@ package classes.Items.Transformatives
 				//Chitin Limbs & Human Skin
 				if(changes < changeLimit)
 				{
-					var armLegSkinTF:Boolean = (pc.armType != GLOBAL.TYPE_MYR || (pc.legType != GLOBAL.TYPE_MYR && pc.legCount != GLOBAL.TYPE_HUMAN) || pc.legCount != 2 || (pc.hasFur() || pc.hasScales()));
+					var armLegSkinTF:Boolean = (pc.armType != GLOBAL.TYPE_MYR || (pc.legType != GLOBAL.TYPE_MYR && pc.legCount != 2) || pc.legCount != 2 || (pc.hasFur() || pc.hasScales()));
 					if(armLegSkinTF && rand(2) == 0)
 					{
 						//PC isn't a biped: 
-						if(pc.legCount != 2 || (pc.legType != GLOBAL.TYPE_MYR && pc.legCount != GLOBAL.TYPE_HUMAN))
+						if(pc.legCount != 2 || (pc.legType != GLOBAL.TYPE_MYR && pc.legCount != 2))
 						{
 							if(target.legTypeUnlocked(GLOBAL.TYPE_HUMAN))
 							{
