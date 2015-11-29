@@ -431,7 +431,7 @@ public function bessTopStripScene():void
 			}
 			output(" Underneath [bess.heShe]'s");
 			if (bess.upperUndergarment is EmptySlot) output(" completely naked and");
-			else output(" wearing a [bess.upperUndergarment]. [bess.HeShe] removes it and soon");
+			else output(" wearing " + indefiniteArticle(bess.upperUndergarment.longName) + ". [bess.HeShe] removes it and soon");
 			output(" [bess.hisHer] [bess.chest]");
 			if (bess.biggestTitSize() == 0) output(" is");
 			else output(" are");
@@ -1021,7 +1021,7 @@ public function verifyBessModel():void
 	
 	output("As you approach [bess.name], [bess.heShe] greets you with wave and a bright smile.");
 	output("\n\nAll of a sudden, [bess.heShe] is suspended in mid air and out of nowhere, a huge bubble of light engulfs [bess.hisHer] body. The last you see is [bess.hisHer] surprised face before [bess.heShe] is completely covered in a sheet of semi-transparent, light-refractive energy.");
-	output("\n\nYou walk up to the strange hex-patterned dome and notice no heat radiating off of it. You give it an experimental touch with a [pc.finger] and confirm that it is some kind of hardlight force field. Slamming your fist against it feels like knocking on thick bulletproof glass.");
+	output("\n\nYou walk up to the strange hex-patterned dome and notice no heat radiating off of it. You give it an experimental touch with " + indefiniteArticle(pc.finger()) + " and confirm that it is some kind of hardlight force field. Slamming your fist against it feels like knocking on thick bulletproof glass.");
 	output("\n\nBefore you could figure out an alternate means of bypassing the shield, a holographic console appears in front of you.");
 	output("\n\n<i>“Welcome to the JoyCo Personal Maintenance App.”</i> A soothing electronic female voice announces.");
 	output("\n\nIs this some kind of software package you weren’t aware of?");
@@ -1414,9 +1414,9 @@ public function bessAppearance():void
 	else if(bess.hasCock()) output("\n\n");
 	if (bess.hasCock()) 
 	{
-		output("[bess.name] has a [bess.cock] with a [bess.cockHead].");
+		output("[bess.name] has " + indefiniteArticle(bess.cockDescript(0)) + " with " + indefiniteArticle(bess.cockHead(0)) + ".");
 		//if(bess.hasASheath()) output(" and [bess.sheath]"); // dont think I set any cock changes to create a sheath and frankly I dont give a shit at this point
-		if(bess.balls > 0) output(" [bess.HisHer] [bess.balls] are contained in a [bess.sack].");
+		if(bess.balls > 0) output(" [bess.HisHer] [bess.balls] are contained in " + indefiniteArticle(bess.sackDescript()) + ".");
 	}
 	//if (bessCumDump = true)
 	if(flags["BESS_CUMDUMP"] != undefined)
@@ -1425,7 +1425,7 @@ public function bessAppearance():void
 		if(bess.hasVagina()) output("pussy and ");
 		output("ass. [bess.HisHer] lips are smeared with fresh spunk collected from the nearby natives. [bess.HisHer] eyes are unfocused, probably from being used day in and out as a synthetic cum dumpster.");
 	}
-	output("\n\n[bess.name] currently has a [bess.bellySize].");
+	output("\n\n[bess.name] currently has a " + indefiniteArticle(bess.bellyDescript(true)) + ".");
 	if(!bess.isNude()) output(" [bess.HeShe] is currently wearing [bess.gear].");
 	//if (bessKatana = true)
 	if(bessKatana()) output("\n\nAt [bess.name]’s right side is a well-polished katana, secured safely in a glazed sheath. The sheath is decorated with eastern-style dragons running up its length, talons stretched out as if to strike. The blade is just as silvery and untarnished as [bess.name] [bess.himHer]self.");
@@ -3158,6 +3158,8 @@ public function setBessCockType(newType:int):void
 			bess.cocks[0].cLengthRaw = 12;
 			bess.cocks[0].cThicknessRatioRaw = 1.5;
 			bess.cocks[0].clearFlags();
+			bess.cocks[0].cType = GLOBAL.TYPE_SYNTHETIC;
+			bess.cocks[0].cockColor = "silver";
 
 			bess.balls = 2;
 			bess.ballSizeRaw = 4;
@@ -3182,7 +3184,7 @@ public function setBessCockType(newType:int):void
 		if (newType == -1) output(" [bess.hisHer] cock is gone - though where [bess.heShe]’s stored it is a mystery. <i>“Do you like me better this way, "+ bessPCName() +"?”</i>\n\n<b>[bess.name] has removed [bess.hisHer] cock!</b>");
 		else
 		{
-			output(" [bess.heShe]’s sporting "+ indefiniteArticle(bessCockType()) +" cock! [bess.HeShe] eagerly models it off for you. <i>“Do you like it, "+ bessPCName() +"?”</i>\n\n<b>[bess.name] now has a [bess.cock]");
+			output(" [bess.heShe]’s sporting "+ indefiniteArticle(bessCockType()) +" cock! [bess.HeShe] eagerly models it off for you. <i>“Do you like it, "+ bessPCName() +"?”</i>\n\n<b>[bess.name] now has " + indefiniteArticle(bess.cockDescript(0)));
 			if (bess.balls > 0) output(" and balls");
 			output("!</b>");
 		}
@@ -3241,7 +3243,7 @@ public function bessRemovePussy():void
 
 	output("In what can only be described as bizarre to watch, [bess.name]’s silvery vagina moves up just slightly into [bess.hisHer] body. A skin covered panel then slides down and out, pressing into the empty spot and filling the gap. What is left is a perfectly smooth groin area.");
 	
-	output("\n\n<b>[bess.name] no longer has a [bess.pussy]!</b>");
+	output("\n\n<b>[bess.name] no longer has " + indefiniteArticle(bess.vaginaDescript(0)) + "!</b>");
 
 	bess.removeVagina();
 
@@ -3255,9 +3257,11 @@ public function bessGainPussy():void
 
 	output("In what can only be described as bizarre to watch, [bess.name]’s flat groin slides in and up, like a hatch opening. From inside a silvery vagina pushes out, filling the gap.");
 
-	bess.vaginas.push(new VaginaClass());
+	if (!bess.hasVagina()) bess.vaginas.push(new VaginaClass());
+	bess.vaginas[0].type = GLOBAL.TYPE_SYNTHETIC;
+	bess.vaginas[0].vaginaColor = "silver";
 	
-	output("\n\n<b>[bess.name] now has a [bess.pussy]!</b>");
+	output("\n\n<b>[bess.name] now has " + indefiniteArticle(bess.vaginaDescript(0)) + "!</b>");
 
 	bessFunctionsMenu();
 }
@@ -3299,7 +3303,7 @@ public function bessGainKnot():void
 
 	bess.cocks[0].addFlag(GLOBAL.FLAG_KNOTTED);
 
-	output("\n\n<b>[bess.name]’s [bess.cockNounSimple] now has a [bess.knot]!</b>");
+	output("\n\n<b>[bess.name]’s [bess.cockNounSimple] now has " + indefiniteArticle(bess.knotDescript(0)) + "!</b>");
 
 	bessFunctionsMenu();
 }
@@ -11721,7 +11725,7 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 		{
 			output("\n\n[bess.name]");
 			if (!(bess.lowerUndergarment is EmptySlot)) output(" reaches up and swiftly slides off [bess.hisHer] [bess.lowerUndergarment], kicking them away. [bess.HeShe] then");
-			output(" pulls [bess.hisHer] [bess.cock] from under [bess.hisHer] skirt. [bess.HeShe] looks incredibly sexy with [bess.hisHer] erection boldly thrust out from [bess.hisHer] hemline -- wearing a [bess.armor] is convenient!");
+			output(" pulls [bess.hisHer] [bess.cock] from under [bess.hisHer] skirt. [bess.HeShe] looks incredibly sexy with [bess.hisHer] erection boldly thrust out from [bess.hisHer] hemline -- wearing " + indefiniteArticle(bess.armor.longName) + " is convenient!");
 		}
 		else if (!(bess.armor is EmptySlot))
 		{
