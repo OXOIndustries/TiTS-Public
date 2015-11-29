@@ -277,10 +277,11 @@ package classes.Items.Transformatives
 					}
 				}
 				var boobed:Boolean = false;
+				var smallestBoobRow:int = 0;
 				//Breast Size Increase (Red: up to DD, Orange/Gold: up to GG
 				if(pc.hasVagina() && changes < changeLimit)
 				{
-					var smallestBoobRow:int = 0;
+					smallestBoobRow = 0;
 					//find smallestIndex
 					for(var b:int = 0; b < pc.bRows(); b++)
 					{
@@ -413,7 +414,7 @@ package classes.Items.Transformatives
 						else output("you’ve got a literal honeypot now!");
 						output("</b>");
 						pc.girlCumType = GLOBAL.FLUID_TYPE_HONEY;
-						pc.lust(Math.round(pc.lustMax()/2))
+						pc.lust(Math.round(pc.lustMax()/2));
 						changes++;
 					}
 					else output("\n\n" + pc.girlCumTypeLockedMessage());
