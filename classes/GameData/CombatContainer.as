@@ -33,15 +33,21 @@ package classes.GameData
 	 * 
 	 * AUTOMATICALLY HANDLED CONTROL EFFECTS.
 	 * Effects named "Grappled", "Stunned", "Tripped" and "Blinded" are automatically handled.
+	 * Some of these are handled at a "basic" level for NPCs too. Certain effects can be wired in to
+	 * subvert the usual AI-movement-process, to default handling for things that remove control (and thus,
+	 * provides automatic action-selections to be taken to clean these up).
 	 * 
 	 * PROCESS COMBAT SHOULD ONLY BE CALLED ONCE
 	 * ProcessCombat demarks the final player input that actually takes an action. 
 	 * It should only be called a single time. Attack implementations should not require it,
 	 * as the method that executes the attack implementors calls it.
+	 * NPC actions do not require it, at all- it is simply the means that "kicks off" the process
+	 * of resolving a round of combat once a player action has been taken.
 	 * @author Gedan
 	 */
 	public class CombatContainer 
 	{
+		// Local accessor to simplify coding throught this class
 		private function get pc():PlayerCharacter { return kGAMECLASS.pc; }
 		
 		/**
@@ -618,7 +624,9 @@ package classes.GameData
 		{
 			if (hasEnemyOfClass(Celise))
 			{
-				celiseMenu();
+				if (roundCounter == 1) addButton(0,"Attack",attackRouter,playerAttack);
+				else if (roundCounter == 2) addButton(1,upperCase(pc.rangedWeapon.attackVerb), attackRouter, playerRangedAttack);
+				else addButton(5,"Tease",attackRouter,tease);
 				return;
 			}
 			
@@ -961,6 +969,30 @@ package classes.GameData
 			}
 	
 			if (target is PlayerCharacter) processCombat();
+		}
+		
+		private function doGrappleStruggle(target:Creature):void
+		{
+			if (!target.hasStatusEffect("Grappled")) return;
+			
+			if (target is PlayerCharacter) clearOutput();
+			
+			if (hasEnemyOfClass(Cockvine))
+			{
+				adultCockvineStruggleOverride();
+				return;
+			}
+			
+			if (target.hasPerk("Escape Artist") && target.reflexes() >= target.physique())
+			{
+				if (target.reflexes() + rand(20) + 7 + target.statusEffectv1("Grappled") * 5 > target.statusEffectv2("Grappled"))
+				{
+					if (hasEnemyOfClass(SexBot)) output("You almost dislocate an arm doing it, but, ferret-like, you manage to wriggle out of the sexbot’s coils. Once your hands are free, the droid does not seem to know how to respond, and you are able to grapple the rest of your way out easily, ripping away from its molesting grip. The sexbot clicks and stutters a few times before going back to staring at you blankly, swinging its fibrous limbs over its head.");
+					if (hasEnemyOfClass(MaidenVanae) || hasEnemyOfClass(HuntressVanae)) vanaeEscapeGrapple("Escape Artist");
+					else output("You display a remarkable amount of flexibility as you twist and writhe to freedom.");
+					pc.removeStatusEffect("Grappled");
+				}
+			}
 		}
 		
 		private function generateSpecialsMenu():void
@@ -2617,7 +2649,27 @@ package classes.GameData
 		
 		public function processCombat():void
 		{
+			doCombatDrone(pc);
 			processFriendlyGroupActions();
+			if (hasEnemyOfClass(Varmint))
+			{
+				// TODO: might be an idea to make this more resilient
+				var varm:Varmint = _hostiles[0];
+				varm.removeStatusEffect("Lassoed");
+			}
+		}
+		
+		private function doCombatDrone(droneUser:Creature):void
+		{
+			if (droneUser.hasCombatDrone() && droneUser.droneTarget != null)
+			{
+				var target:Creature = droneUser.droneTarget;
+				if (target.HP() > 0 && target.lust() < target.lustMax())
+				{
+					// TODO: Route this through the actual drone the droneUser has equipped to redirect to different atk implementors.
+					CombatAttacks.DroneAttack(droneUser, target);
+				}
+			}
 		}
 		
 		private function processFriendlyGroupActions():void
@@ -2671,20 +2723,24 @@ package classes.GameData
 				{
 					continue;
 				}
-				
-				if (_friendlies[i].hasStatusEffect("Grappled"))
+				else if (_friendlies[i].hasStatusEffect("Grappled"))
 				{
 					doStruggleRecover(_friendlies[i]);
-					continue;
 				}
-				
-				if (_friendlies[i].hasStatusEffect("Stunned"))
+				else if (_friendlies[i].hasStatusEffect("Stunned"))
 				{
 					doStunRecover(_friendlies[i]);
-					continue;
+				}
+				else if (_friendlies[i].hasStatusEffect("Tripped"))
+				{
+					doTripRecover(_friendlies[i]);
+				}
+				else
+				{
+					_friendlies[i].CombatAI(_friendlies, _hostiles);
 				}
 				
-				_friendlies[i].CombatAI(_friendlies, _hostiles);
+				doCombatDrone(_friendlies[i]);
 			}
 		}
 		
@@ -2744,26 +2800,24 @@ package classes.GameData
 				var target:Creature = _hostiles[i];
 				
 				if (target.isDefeated()) continue;
-				
-				if (target.hasStatusEffect("Grappled"))
+				else if (target.hasStatusEffect("Grappled"))
 				{
 					doStruggleRecover(target);
-					continue;
 				}
-				
-				if (target.hasStatusEffect("Stunned"))
+				else if (target.hasStatusEffect("Stunned"))
 				{
 					doStunRecover(target);
-					continue;
 				}
-				
-				if (target.hasStatusEffect("Tripped"))
+				else if (target.hasStatusEffect("Tripped"))
 				{
 					doTripRecover(target);
-					continue;
+				}
+				else
+				{
+					target.CombatAI(_hostiles, _friendlies);
 				}
 				
-				target.CombatAI(_hostiles, _friendlies);
+				doCombatDrone(target);
 			}
 		}
 		
