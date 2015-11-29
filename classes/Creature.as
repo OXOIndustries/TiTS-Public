@@ -11161,6 +11161,20 @@ package classes {
 				else if (temp == 2) return "exotic cock-head";
 				else if (temp == 3) return "aphrodisiac-laced head";
 				else return "wiggling crown";
+			} else if (type == GLOBAL.TYPE_SAURIAN) {
+				temp = rand(5);
+				if (temp == 0) return "nubbed crown";
+				else if (temp <= 1) return "nubby head";
+				else if (temp <= 2) return "monstrous glans";
+				else if (temp <= 3) return "nub-ringed tip";
+				else return "cock-head";
+			} else if (type == GLOBAL.TYPE_GABILANI) {
+				temp = rand(5);
+				if (temp == 0) return "coupled crown";
+				else if (temp <= 1) return "paired head";
+				else if (temp <= 2) return "doubled glans";
+				else if (temp <= 3) return "twinned tip";
+				else return "doubled cock-head";
 			}
 			/*else if (type == 9999) {
 				temp = rand(5);
