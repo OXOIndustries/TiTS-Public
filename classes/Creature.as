@@ -2191,18 +2191,27 @@ package classes {
 		}
 		public function isNude(): Boolean {
 			if(hasStatusEffect("Temporary Nudity Cheat")) return true;
-			return (armor.shortName == "" && lowerUndergarment.shortName == "" && upperUndergarment.shortName == "");
+			//return (armor.shortName == "" && lowerUndergarment.shortName == "" && upperUndergarment.shortName == "");
+			return (!isCrotchGarbed() && !isChestCovered());
 		}
 		public function isCrotchGarbed(): Boolean {
 			if(hasStatusEffect("Temporary Nudity Cheat")) return false;
-			return (armor.shortName != "" || lowerUndergarment.shortName != "");
+			//return (armor.shortName != "" || lowerUndergarment.shortName != "");
+			return
+			(	(armor.shortName != "" && !armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL))
+			||	(lowerUndergarment.shortName != "" && !lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL))
+			);
 		}
 		public function isGroinCovered(): Boolean {
 			return isCrotchGarbed();
 		}
 		public function isChestCovered(): Boolean {
 			if(hasStatusEffect("Temporary Nudity Cheat")) return false;
-			return (armor.shortName != "" || upperUndergarment.shortName != "");
+			//return (armor.shortName != "" || upperUndergarment.shortName != "");
+			return
+			(	(armor.shortName != "" && !armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL))
+			||	(upperUndergarment.shortName != "" && !upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL))
+			);
 		}
 		public function isChestGarbed(): Boolean {
 			return isChestCovered();
@@ -2221,6 +2230,35 @@ package classes {
 		public function hasLowerGarment():Boolean
 		{
 			return !(lowerUndergarment is EmptySlot);
+		}
+		
+		public function inSwimwear(strict:Boolean = false):Boolean
+		{
+			// Armor/Outfit check:
+			if (hasArmor() && armor.hasFlag(GLOBAL.ITEM_FLAG_SWIMWEAR))
+			{
+				// Swimsuit outfits should not have undergarments on. That's not fashionable!
+				if (hasUpperGarment() || hasLowerGarment()) return false;
+				// Swimsuit outfits with no undies? Yes.
+				return true;
+			}
+			// Undergarment check:
+			if (hasLowerGarment() || hasUpperGarment())
+			{
+				// All undergarments are eligible swimwear, unless it's a strict check
+				if (strict)
+				{
+					if (hasLowerGarment() && hasUpperGarment())
+						return (lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_SWIMWEAR) && upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_SWIMWEAR));
+					if (hasLowerGarment())
+						return (lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_SWIMWEAR));
+					if (hasUpperGarment())
+						return (upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_SWIMWEAR));
+				}
+				return true;
+			}
+			// Nope, no valid swim clothes (or is probably nude!).
+			return false;
 		}
 		
 		//STATS!
