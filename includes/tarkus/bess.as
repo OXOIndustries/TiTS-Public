@@ -3140,9 +3140,11 @@ public function setBessCockType(newType:int):void
 	}
 	else
 	{
+		output("You decide you’d like [bess.name]");
 		// None
 		if (newType == -1)
 		{
+			output(" without a cock");
 			if (bess.hasCock()) bess.cocks = [];
 			bess.balls = 0;
 			bess.ballSizeRaw = 0;
@@ -3150,6 +3152,7 @@ public function setBessCockType(newType:int):void
 		// Normal and Normal+Balls
 		else
 		{
+			output(" to have a human-shaped cock");
 			if (!bess.hasCock()) bess.cocks.push(new CockClass());
 			bess.cocks[0].cType = newType;
 			bess.cocks[0].cLengthRaw = 12;
@@ -3159,10 +3162,10 @@ public function setBessCockType(newType:int):void
 			bess.balls = 2;
 			bess.ballSizeRaw = 4;
 		}
-		
 		// With balls
 		if (newType == -2)
 		{
+			output(" with balls");
 			bess.cocks[0].cType = GLOBAL.TYPE_HUMAN;
 			//bess.balls = 0;
 			//bess.ballSizeRaw = 0;
@@ -3174,7 +3177,7 @@ public function setBessCockType(newType:int):void
 			bess.balls = 0;
 			bess.ballSizeRaw = 0;
 		}
-
+		output(".");
 		output("\n\n<i>“Just one second, "+ bessPCName() +", while I make the adjustments.”</i> [bess.name] darts off and when [bess.heShe] comes back,");
 		if (newType == -1) output(" [bess.hisHer] cock is gone - though where [bess.heShe]’s stored it is a mystery. <i>“Do you like me better this way, "+ bessPCName() +"?”</i>\n\n<b>[bess.name] has removed [bess.hisHer] cock!</b>");
 		else
@@ -3190,7 +3193,7 @@ public function setBessCockType(newType:int):void
 	addButton(0, "Next", bessFunctionsMenu);
 	if (bess.balls > 0 && newType > GLOBAL.TYPE_HUMAN)
 	{
-		addButton(1, "No Balls", setBessNoBalls, "Remove Balls", "Ask [bess.name] to remove [bess.hisHer] balls.");
+		addButton(1, "No Balls", setBessNoBalls, undefined, "Remove Balls", "Ask [bess.name] to remove [bess.hisHer] balls.");
 	}
 }
 
