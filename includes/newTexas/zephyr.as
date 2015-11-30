@@ -503,9 +503,9 @@ public function getFuckedByZephyrIV():void
 	var ppZephyr:PregnancyPlaceholder = new PregnancyPlaceholder();
 	if(x >= 0)
 	{
-		pc.loadInCunt(x, ppZephyr);
-		pc.loadInCunt(x, ppZephyr);
-		pc.loadInCunt(x, ppZephyr);
+		pc.loadInCunt(ppZephyr, x);
+		pc.loadInCunt(ppZephyr, x);
+		pc.loadInCunt(ppZephyr, x);
 	}
 	else
 	{
