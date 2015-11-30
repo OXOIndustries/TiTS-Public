@@ -1109,6 +1109,7 @@ public function reahaAddictionTherapyNoWingWang():void
 	}
 	output(" You slowly start to slow your pace as Reaha recovers, her whole body quivering with the aftershocks brought on by your rough handling. She clings to you, arms and legs, moaning softly as she rides out the end of her orgasm.");
 	reaha.orgasm();
+	pc.milkInMouth(chars["REAHA"]);
 	
 	output("\n\n");
 	if (reahaAddiction() < REAHA_ADDICTION_LOW) output("<i>“Who needs patches when I’ve got you?”</i> Reaha purrs, nuzzling against you.");
@@ -1199,6 +1200,7 @@ public function reahaBreastMilkIceCream():void
 
 	processTime(20);
 	pc.credits -= 20;
+	pc.milkInMouth(chars["REAHA"]);
 	pc.lust(5);
 	reaha.lust(5);
 
@@ -1396,6 +1398,8 @@ public function reahaDommyFuxTimeWait():void
 	reaha.loadInCunt(pc);
 	reaha.orgasm();
 	pc.orgasm();
+	pc.milkInMouth(chars["REAHA"]);
+	pc.milkInMouth(chars["REAHA"]);
 
 	addNextButton(mainGameMenu);
 }
@@ -1472,9 +1476,9 @@ public function reahaMilkTalkHoneydew():void
 	output("\n\n<i>“Moo,”</i> she moans quietly. One glance at the blissed-out look on the cow-girl’s face tells you that she’s out of commission for a little while. Wiping a bit of honey from your cheeks");
 	if (pc.beardLength > 0) output(", which is no easy task thanks to your [pc.beard] getting stuck with it");
 	output(", you leave Reaha to get used to her new lactation.");
-
+	
+	pc.milkInMouth(chars["REAHA"]);
 	processTime(15);
-
 	addNextButton(mainGameMenu);
 }
 
@@ -1510,7 +1514,8 @@ public function reahaMilkTalkChocolac():void
 	if (!pc.isNude()) output(" sleeve");
 	else output(" arm");
 	output(", looking down at the spreading puddle of it on the floor. Delightful. Giving Reaha a pat on the tit, you leave her to get used to her new lactation.");
-
+	
+	pc.milkInMouth(chars["REAHA"]);
 	processTime(20);
 	addNextButton(mainGameMenu);
 }
