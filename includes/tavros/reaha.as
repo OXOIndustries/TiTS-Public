@@ -225,6 +225,8 @@ public function suckleFollowerReahasTits():void {
 
 	pc.lust(15+rand(15));
 	processTime(25+rand(5));
+	pc.milkInMouth(chars["REAHA"]);
+	pc.milkInMouth(chars["REAHA"]);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -452,6 +454,8 @@ public function dominantReahaAss():void {
 
 	output("\n\nThe orgasm leaves you both panting heavily, rolled in each other's arms in a tangle of cum-stained sheets. You barely feel the dildo slip from your guts, only feeling the intense emptiness it leaves behind as Reaha wriggles out of the strapon; when the toy pulls out of her, a floodgate of fem-slime opens, drenching her thighs in musky slime. She gives a heavy sigh, rubbing her sore teats as you let your face fall back into the valley of her cleavage, using her heavy tits as pillows as you recover from your sexual marathon.");
 	pc.orgasm();
+	pc.milkInMouth(chars["REAHA"]);
+	pc.milkInMouth(chars["REAHA"]);
 	processTime(20+rand(5));
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -1024,6 +1028,8 @@ public function RideReahasStraponAtTheBrothel():void
 	pc.credits -= 100;
 
 	processTime(20+rand(4));
+	pc.milkInMouth(chars["REAHA"]);
+	pc.milkInMouth(chars["REAHA"]);
 	pc.orgasm();
 	//Clears menu data
 	clearMenu();
