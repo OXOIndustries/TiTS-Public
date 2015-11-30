@@ -2109,6 +2109,10 @@ public function shadeBoobWorship():void
 	flags["SEXED_SHADE"] = 1;
 	flags["SHADE_BOOBWORSHIP"] = 1;
 	
+	if (shade.canLactate())
+	{
+		pc.milkInMouth(chars["SHADE"]);
+	}
 	pc.orgasm();
 
 	clearMenu()
@@ -2159,9 +2163,9 @@ public function gibShadeModItems():void
 	
 	output("\n\n<i>“Oh?”</i> she says, cocking an eyebrow as you pull out...");
 
-	Honeyizer
-	Chocolac
-	Honeydew
+	// Honeyizer
+	// Chocolac
+	// Honeydew
 
 	clearMenu();
 	if (!shade.canLactate() || shade.milkType != GLOBAL.FLUID_TYPE_MILK)
