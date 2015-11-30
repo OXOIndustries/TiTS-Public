@@ -958,8 +958,8 @@ public function reahaAddictionTherapy():void
 	if (reahaAddiction() <= REAHA_ADDICTION_LOW) output(" lone patch");
 	else output(" the highest patch");
 	output(" on her inner thigh. You reach in, fingers teasing up her tender skin until she lets out a little gasp, body making one big, tit-jiggling quake that carries through from bubble butt to heaving bosom. Your fingers find the lip of the target pad, and you ply a single");
-	if (9999 == 0) output(" nail");
-	else if (9999 == 1) output(" claw");
+	if (pc.armType == GLOBAL.TYPE_HUMAN) output(" nail");
+	else if (InCollection(pc.armType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_BADGER, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_LEITHAN)) output(" claw");
 	else output(" digit");
 	output(" to peel it off. You give it one swift rip, yanking it off to a loud gasp of pain from the cow, and a sudden reddening of the skin where the patch was, soaking up the last remnants of its drugs. Reaha groans, scratching at the place the patch was.");
 	if (reahaAddiction() > REAHA_ADDICTION_LOW)
