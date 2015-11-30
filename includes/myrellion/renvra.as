@@ -634,6 +634,7 @@ public function buttFuckRenvra():void
 	output("\n\nRenvra releases you and turns on a heel towards the door. Finishing with your own gear, you follow her back out to the trading post’s main floor.");
 	processTime(23);
 	if(pc.hasKnot(0)) processTime(20);
+	pc.milkInMouth(chars["RENVRA"]);
 	pc.orgasm();
 	flags["RENVRA_SEXED"] = 1;
 	clearMenu();
