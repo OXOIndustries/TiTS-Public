@@ -467,6 +467,8 @@ public function millieMilkingFinale():void
 		
 		var ppMillie:PregnancyPlaceholder = new PregnancyPlaceholder();
 		ppMillie.breastRows[0].breastRatingRaw = 40;
+		ppMillie.milkMultiplier = 100;
+		ppMillie.milkFullness = 100;
 		pc.milkInMouth(ppMillie);
 		
 		//Temporary Treatment funtimes
