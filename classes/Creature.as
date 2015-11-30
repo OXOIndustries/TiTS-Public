@@ -11267,7 +11267,6 @@ package classes {
 			}
 			return false;
 		}
-		
 		public function loadInAss(cumFrom:Creature = null):Boolean
 		{
 			if (neverSerialize == false && cumFrom != null)
@@ -11280,27 +11279,18 @@ package classes {
 			}
 			return false;
 		}
+		public function milkInMouth(cumFrom:Creature = null):Boolean
+		{
+			return false;
+		}
 		public function girlCumInMouth(cumFrom:Creature = null):Boolean
 		{
-			if(hairType == GLOBAL.HAIR_TYPE_GOO) 
-			{
-				if(cumFrom != null) addBiomass(cumFrom.girlCumQ());
-				else addBiomass(10);
-			}
-			if(hasPerk("Honeypot")) 
-			{
-				kGAMECLASS.honeyPotBump(true);
-				if(cumFrom.girlCumQ() >= 500) kGAMECLASS.honeyPotBump(true);
-				if(cumFrom.girlCumQ() >= 1000) kGAMECLASS.honeyPotBump(true);
-				if(cumFrom.girlCumQ() >= 2000) kGAMECLASS.honeyPotBump(true);
-			}
 			return false;
 		}
 		public function loadInMouth(cumFrom:Creature = null):Boolean
 		{
 			return false;
 		}
-		
 		public function loadInNipples(cumFrom:Creature = null):Boolean
 		{
 			return false;
