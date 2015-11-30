@@ -2396,6 +2396,7 @@ package classes {
 		
 		public static const DEPENDANT_ANY:uint = 0;
 		public static const DEPENDANT_MYRVENOM:uint = 1;
+		public static const DEPENDANT_CUM:uint = 2;
 		
 		// Is the character dependant on some external drug/chemical/etc
 		public function isDependant(dependantType:uint = DEPENDANT_ANY):Boolean
