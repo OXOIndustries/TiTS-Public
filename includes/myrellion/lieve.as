@@ -1018,6 +1018,14 @@ public function lieveFuckHarem(tempVenomEnabled:Boolean = false):void
 	
 	output("\n\nAs she speaks, Lieve’s fingers massage her breast, making her back arch with pleasure. Her other arm slips lower, teasing all the way down to the small of your back. She crosses one leg over the other, letting the lower of the two rest of Mayren’s upraised ass as she whispers into your [pc.ear]: <i>“");
 	
+	var ppMayren:PregnancyPlaceholder = new PregnancyPlaceholder();
+	ppMayren.breastRows[0].breastRatingRaw = 15;
+	ppMayren.breastRows[0].breasts = 2;
+	ppMayren.milkType = GLOBAL.FLUID_TYPE_NECTAR;
+	ppMayren.milkMultiplier = 100;
+	ppMayren.milkFullness = 100;
+	pc.milkInMouth(ppMayren);
+	
 	if (!lieveVenomEnabled() && !tempVenomEnabled)
 	{
 		output("The real question is if you want the full package.”</i> As if to emphasize her point, Lieve leans in and plants a kiss on the nape of your neck, letting her tongue play across your [pc.skin] until you shiver with sensation, her aphrodisiac venom seeping into you. <i>“...Or do I need to hold back? It’s alright, nobody would think less of you if you didn’t want a big, strong ant to turn you into a screaming, blubbering bag of lust... just putty in my hands, cumming again and again and again.”</i>");
