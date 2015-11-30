@@ -99,7 +99,7 @@ public function lieveInitialEncounter():void
 	
 	output("\n\nThe soldier finishes buckling her belt and looks up at you, running a hand through her purple hair. <i>“Sorry about that,”</i> she chuckles, resting a hand on one of the gold myr’s heads. The nude woman makes a wordless sound of pleasure and nuzzles against the red’s chitinous palm. Scratching the golden’s blonde hair, the soldier continues, <i>“Look, the Commandant’s said all you offworlder types can go out into the tunnels even with the lockdown, but if you know what’s good for you, you won’t. Can’t stop you, but I can at least warn you. Goldies mined the tunnels pretty good, and now that the fighting’s done, plenty of scavengers are out looking to loot or breed. Some are myr, some... not.”</i>");
 	
-	// {if PC’s been in No-Man’s Land before: - 9999
+	// {if PC’s been in No-Man’s Land before:
 	if (flags["ENTERED_NOMANSLAND"] != undefined)
 	{
 		output("\n\n<i>“I get the picture,”</i> you say. <i>“Been out there before.”</i>");
@@ -200,7 +200,6 @@ public function lieveMenu():void
 
 	if (!lieveVenomUsed())
 	{
-		// 9999
 		if (pc.mf("m", "f") == "f") addButton(3, "TryVenom", lieveVenomToggle, undefined, "Try Venom", (flags["HAS_BEEN_MYR_VENOMED"] == undefined ? "You've heard amazing things about red myr venom. How about Lieve give you a taste of hers?" : "You've only dabbled with red myr venom. How about Lieve give you a taste of hers?"));
 		else addDisabledButton(3, "TryVenom", "Try Venom", "Lieve is only really interested in feminine partners...");
 	}
@@ -2457,7 +2456,6 @@ public function lieveBloodSample():void
 	
 	if (pc.isFeminine()) output("\n\nWith a teasing wink, she adds <i>“Maybe I’ll see </i>you<i> as a hot little piece of red myr ass some day?”</i>");
 
-	// 9999
 	output("\n\n");
 	pc.createKeyItem("Red Myr Blood", 0, 0, 0, 0, "A vial of blood sampled from a red myr.");
 	output("<b>(Key Item Acquired: Red Myr Blood)</b>");
