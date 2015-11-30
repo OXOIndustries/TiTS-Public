@@ -128,6 +128,8 @@ public function firstDrinkFromSellesy(first:Boolean = true):void {
 	ppSellesy.breastRows[0].breastRatingRaw = 10;
 	ppSellesy.breastRows[0].breasts = 3;
 	ppSellesy.milkType = GLOBAL.FLUID_TYPE_LEITHAN_MILK;
+	ppSellesy.milkMultiplier = 100;
+	ppSellesy.milkFullness = 100;
 	pc.milkInMouth(ppSellesy);
 	pc.imbibeAlcohol(50);
 	processTime(5+rand(5));
