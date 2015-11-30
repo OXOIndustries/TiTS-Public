@@ -139,6 +139,8 @@ public function orderUpOneTurkeySlut():void
 	var ppCanada:PregnancyPlaceholder = new PregnancyPlaceholder();
 	ppCanada.breastRows[0].breastRatingRaw = 30;
 	ppCanada.milkType = GLOBAL.FLUID_TYPE_MILKSAP;
+	ppCanada.milkMultiplier = 100;
+	ppCanada.milkFullness = 100;
 	pc.lust(5);
 	pc.milkInMouth(ppCanada);
 	processTime(10);
