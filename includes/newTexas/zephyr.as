@@ -36,6 +36,20 @@ public function showZephyrDeets(nakkers:Boolean = false):void
 	showName("\nZEPHYR");
 	author("Fenoxo");
 }
+public function getZephyrPregContainer():PregnancyPlaceholder
+{
+	var ppZephyr:PregnancyPlaceholder = new PregnancyPlaceholder();
+	ppZephyr.breastRows[0].breasts = 2;
+	ppZephyr.breastRows[0].breastRatingRaw = 35;
+	ppZephyr.milkType = GLOBAL.FLUID_TYPE_MILK;
+	ppZephyr.milkMultiplier = 100;
+	ppZephyr.milkFullness = 100;
+	if(!ppZephyr.hasCock()) ppZephyr.createCock();
+	ppZephyr.shiftCock(0, GLOBAL.TYPE_CANINE);
+	ppZephyr.cocks[0].cLength = 9;
+	ppZephyr.cocks[0].flaccidMultiplier = .6;
+	return ppZephyr;
+}
 
 //Approach
 public function approachZephyr(approached:Boolean = false):void
@@ -500,7 +514,7 @@ public function getFuckedByZephyrIV():void
 	if(!pc.isTreated()) output(", promising that you can have her dick every day if you take the Treatment and immigrate, no matter what kind of " + pc.rawmfn("cow","bull","person") + " you come out as.");
 	else output(", promising to knot you until you’re addicted to her cock unable to cum without feeling her signature swelling down below.");
 	
-	var ppZephyr:PregnancyPlaceholder = new PregnancyPlaceholder();
+	var ppZephyr:PregnancyPlaceholder = getZephyrPregContainer();
 	if(x >= 0)
 	{
 		pc.loadInCunt(ppZephyr, x);
@@ -540,7 +554,7 @@ public function getFuckedByZephyrV():void
 		output("\n\nIt looks fucking delicious. You wrap your [pc.lips] around it and suck it like your life depends on it, shining it until its been spit-polished.");
 		output("\n\nZephyr pats you on the head and whispers, <i>“Good [pc.boy], now run along before I decide to keep you under my desk for the rest of the day.”</i> You practically glow from the praise, beaming as you lick the last droplets from your [pc.lips]. This planet rules!");
 		processTime(2);
-		var ppZephyr:PregnancyPlaceholder = new PregnancyPlaceholder();
+		var ppZephyr:PregnancyPlaceholder = getZephyrPregContainer();
 		pc.loadInMouth(ppZephyr);
 		pc.loadInMouth(ppZephyr);
 		clearMenu();
@@ -568,7 +582,7 @@ public function cleanDatZephyrCawk():void
 	output(". You run your tongue over every sensitive vein, keeping her completely hard until you finally pull back, revealing a gleaming red, spit-shined dog-cock.");
 	output("\n\nZephyr gives you a pat on the head. <i>“Good [pc.boy]. Now get out of my office unless you’re wanting another go.”</i>");
 	processTime(2);
-	var ppZephyr:PregnancyPlaceholder = new PregnancyPlaceholder();
+	var ppZephyr:PregnancyPlaceholder = getZephyrPregContainer();
 	pc.loadInMouth(ppZephyr);
 	pc.loadInMouth(ppZephyr);
 	clearMenu();
