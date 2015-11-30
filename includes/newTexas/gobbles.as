@@ -69,11 +69,11 @@ public function supGobbles2014CanadaEdition():void
 	else output("<i>“What’s wrong?”</i>");
 	output(" you ask.");
 
-	// 9999 - add tit milker check
-	if (StatTracking.getStat("milkers/prostate milker uses") > 0)
+	// add tit milker check
+	if (StatTracking.getStat("milkers/breast milker uses") > 0)
 	{
 		output("  You’re not used to cows coming right up and asking for help. There’s attendants for that, after all.");
-		if (StatTracking.getStat("milkers/prostate milker uses") > 0) output(" Not that you wouldn’t mind a little hands-on time with the cute little redhead.");
+		if (StatTracking.getStat("milkers/breast milker uses") > 0) output(" Not that you wouldn’t mind a little hands-on time with the cute little redhead.");
 	}
 	
 	output("\n\n<i>“The milkers,”</i> she starts, almost choking on her words. She chews on her lip and her nose twitches cutely, making a ruby-red ring it in jiggle. <i>“They, um, they can’t help me. I jam them up. I’m really sorry, but you seem nice. Could you maybe... maybe milk me, eh?”</i>");
