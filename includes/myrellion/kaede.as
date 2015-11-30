@@ -46,7 +46,7 @@ public function encounterKaedeOnMyrellion():void
 	else output(" shaking her hand warmly.");
 	
 	output("\n\n<i>“So what’s got you all the way out here?”</i> Kaede asks, resting an arm on the handle of the hover-platform following at her heel. Her other hand disappears into the pocket of her jeans. The slight shift of her stance is enough to make her small breasts press against the front of her white tank-top, bringing your eyes back up from her swishing red tail. Prying your eyes away from the halfbreed’s chest, you tell her that");
-	if (9999 == 0) output(" you’re looking for a probe your father launched out here onto Myrellion");
+	if (!reclaimedProbeMyrellion()) output(" you’re looking for a probe your father launched out here onto Myrellion");
 	else output(" you’re just passing through");
 	output(".");
 	
@@ -622,7 +622,7 @@ public function kaedeMyrellionSucknRide():void
 	
 	output("\n\nYou look up at her, in time to see the cute halfbreed chewing on her lip and blushing like a rose. She reaches an unsure hand down to stroke your [pc.hair]. You answer the sweet gesture with a swirl of your tongue around the still-flaccid ball of her knot, sending a throbbing shudder through her prick. Something delightfully warm and sticky smears onto the back of your throat from where her crown is nestled, and the salty scent of pre-cum roils through your senses.");
 	// {if bimbo/Treated/cum-dependant:
-	if (pc.isBimbo() || pc.isTreated() || 9999 == 0) output(" You wish you could just suck this little cutie off until she gives you a big, hot load of spunk to swallow down... but then you wouldn’t get to shove it in your [pc.vagOrAss]!");
+	if (pc.isBimbo() || pc.isTreated() || pc.isDependant(Creature.DEPENDANT_CUM)) output(" You wish you could just suck this little cutie off until she gives you a big, hot load of spunk to swallow down... but then you wouldn’t get to shove it in your [pc.vagOrAss]!");
 	
 	output("\n\nThe thought of Kaede’s knotty cock going somewhere other than your mouth spurs you on, urging you to slather her shaft with a nice, thick coating of spittle. You work your tongue from base to crown and down again, lavishing every inch of red puppy prick with wet affection. She answers your motions with cute little moans and twitches of her hips, bucking against your lips. You let her have her fun, thrusting her hips into you until she sounds like she’s barely holding on. Kaede cups her breasts, squeezing her nipples and moaning like a lusty whore. You enjoy every second of her sensual show until you’re more than satisfied with the glaze of spit-lube coating her cock.");
 	
