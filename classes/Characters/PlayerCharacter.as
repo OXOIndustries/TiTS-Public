@@ -37,7 +37,7 @@ package classes.Characters
 		{
 			kGAMECLASS.mimbraneFeed("vagina");
 			//Goo TFed? GATHER BIOMASS
-			if(hairType == GLOBAL.HAIR_TYPE_GOO) 
+			if(hairType == GLOBAL.HAIR_TYPE_GOO)
 			{
 				if(cumFrom != null) addBiomass(cumFrom.cumQ());
 				else addBiomass(10);
@@ -54,7 +54,7 @@ package classes.Characters
 		{
 			kGAMECLASS.mimbraneFeed("ass");
 			//Goo TFed? GATHER BIOMASS
-			if(hairType == GLOBAL.HAIR_TYPE_GOO) 
+			if(hairType == GLOBAL.HAIR_TYPE_GOO)
 			{
 				if(cumFrom != null) addBiomass(cumFrom.cumQ());
 				else addBiomass(10);
@@ -67,16 +67,50 @@ package classes.Characters
 			return false;
 		}
 		
+		override public function milkInMouth(milkFrom:Creature = null):Boolean
+		{
+			if(hairType == GLOBAL.HAIR_TYPE_GOO)
+			{
+				if(milkFrom != null) addBiomass(milkFrom.lactationQ());
+				else addBiomass(10);
+			}
+			if(hasPerk("Honeypot"))
+			{
+				kGAMECLASS.honeyPotBump(true);
+				if(milkFrom.lactationQ() >= 500) kGAMECLASS.honeyPotBump(true);
+				if(milkFrom.lactationQ() >= 1000) kGAMECLASS.honeyPotBump(true);
+				if(milkFrom.lactationQ() >= 2000) kGAMECLASS.honeyPotBump(true);
+			}
+			return false;
+		}
+		
+		override public function girlCumInMouth(cumFrom:Creature = null):Boolean
+		{
+			if(hairType == GLOBAL.HAIR_TYPE_GOO)
+			{
+				if(cumFrom != null) addBiomass(cumFrom.girlCumQ());
+				else addBiomass(10);
+			}
+			if(hasPerk("Honeypot"))
+			{
+				kGAMECLASS.honeyPotBump(true);
+				if(cumFrom.girlCumQ() >= 500) kGAMECLASS.honeyPotBump(true);
+				if(cumFrom.girlCumQ() >= 1000) kGAMECLASS.honeyPotBump(true);
+				if(cumFrom.girlCumQ() >= 2000) kGAMECLASS.honeyPotBump(true);
+			}
+			return false;
+		}
+		
 		override public function loadInMouth(cumFrom:Creature = null):Boolean
 		{
 			kGAMECLASS.mimbraneFeed("face");
 			//Goo TFed? GATHER BIOMASS
-			if(hairType == GLOBAL.HAIR_TYPE_GOO) 
+			if(hairType == GLOBAL.HAIR_TYPE_GOO)
 			{
 				if(cumFrom != null) addBiomass(cumFrom.cumQ());
 				else addBiomass(10);
 			}
-			if(hasPerk("Honeypot")) 
+			if(hasPerk("Honeypot"))
 			{
 				kGAMECLASS.honeyPotBump(true);
 				if(cumFrom != null)
@@ -92,7 +126,7 @@ package classes.Characters
 		override public function loadInNipples(cumFrom:Creature = null):Boolean
 		{
 			//Goo TFed? GATHER BIOMASS
-			if(hairType == GLOBAL.HAIR_TYPE_GOO) 
+			if(hairType == GLOBAL.HAIR_TYPE_GOO)
 			{
 				if(cumFrom != null) addBiomass(cumFrom.cumQ());
 				else addBiomass(10);
