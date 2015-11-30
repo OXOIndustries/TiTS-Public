@@ -423,7 +423,7 @@ public function getGiantDickTailfilledWhileEatingSeraOut():void
 	else if(pc.cumQ() <= 1000)
 	{
 		output("\n\nThe eruption of mixed spunk ");
-		if(pc.cumType == GLOBAL.FLUID_TYPE_CUM || pc.cumType == GLOBAL.FLUID_TYPE_MILK) output("comes as an indistinguishable mass of white. You can't tell where yours starts and hers begins, but there's a lot of it, soaking your [pc.legOrLegs] and making a puddle on the floor.");
+		if(pc.fluidColorSimple(pc.cumType) == "white") output("comes as an indistinguishable mass of white. You can't tell where yours starts and hers begins, but there's a lot of it, soaking your [pc.legOrLegs] and making a puddle on the floor.");
 		else output("comes out as a swirling mix of [pc.cumColor] and white. The rainbow jism spatters across your [pc.legOrLegs], effectively painting");
 		if(pc.legCount == 1) output(" it");
 		else output(" them");
@@ -433,10 +433,10 @@ public function getGiantDickTailfilledWhileEatingSeraOut():void
 	else
 	{
 		output("\n\nThe eruption of mixed spunk ");
-		if(pc.cumType == GLOBAL.FLUID_TYPE_CUM || pc.cumType == GLOBAL.FLUID_TYPE_MILK) output("might be an indistinguishable mass of white, but there's so much that you're sure most of it is your own.");
+		if(pc.fluidColorSimple(pc.cumType) == "white") output("might be an indistinguishable mass of white, but there's so much that you're sure most of it is your own.");
 		else output("materializes as a mix of [pc.cumColor], white, and every color in between, though most of it is your own.");
 		output(" The first rope alone is enough to completely drench your [pc.legOrLegs], and each successive blast of [pc.cumColor]");
-		if(pc.cumType == GLOBAL.FLUID_TYPE_CUM || pc.cumType == GLOBAL.FLUID_TYPE_MILK) output(" and white");
+		if(pc.fluidColorSimple(pc.cumType) == "white") output(" and white");
 		output(" fills a lake around your ankles.");
 		if(pc.cumQ() >= 5000)
 		{
@@ -450,7 +450,7 @@ public function getGiantDickTailfilledWhileEatingSeraOut():void
 	}
 	//Merge
 	output("\n\nYou slump over into the mess, still leaking trickles of whit");
-	if(pc.cumType == GLOBAL.FLUID_TYPE_CUM || pc.cumType == GLOBAL.FLUID_TYPE_MILK) output("e");
+	if(pc.fluidColorSimple(pc.cumType) == "white") output("e");
 	else output("ish-[pc.cumColor]");
 	output(", but Sera isn't quite done with you. She sticks her tail in your face and says, <i>\"Clean up your mess.\"</i> Still dazed, you obey, polishing the diminutive rod with your tongue. It's half-hard when she pops it out, but the spade closes back up around it. If you hadn't just taken it past its hilt, you'd never suspect her demonic tail concealed such a tool.");
 	output("\n\nSera walks away to clean herself. In seconds, she's looking as fresh as a daisy while you look like a cum-stained wreck. She tosses the used towel your way and mans the counter, not caring in the slightest if you reek like her spooge by the time you're done wiping.");
