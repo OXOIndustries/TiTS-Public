@@ -172,7 +172,7 @@ public function queenOfTheDeepAI():void
 public function queenOfTheDeepClawChomp():void
 {
 	output("One of the creature’s claws lunges forward, opening like a carapace-clad ‘V’ to grab you.");
-	// 9999 miss
+	// miss
 	if (combatMiss(foes[0], pc))
 	{
 		output(" You stumble out of the way, avoiding the crushing weight of the creature's pincers snapping closed inches in front of your nose with bone-crushing finality.");
