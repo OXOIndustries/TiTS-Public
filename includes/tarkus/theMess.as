@@ -627,6 +627,8 @@ public function delSlutTraining2():void
 	processTime(15);
 	timesDelilahSexed(1);
 	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
+	pp.milkMultiplier = 100;
+	pp.milkFullness = 100;
 	for(var i:int = 0; i < 10; i++)
 	{
 		pc.loadinAss(pp);
