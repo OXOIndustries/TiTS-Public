@@ -77,9 +77,12 @@ package classes.Characters
 			if(hasPerk("Honeypot"))
 			{
 				kGAMECLASS.honeyPotBump(true);
-				if(milkFrom.lactationQ() >= 500) kGAMECLASS.honeyPotBump(true);
-				if(milkFrom.lactationQ() >= 1000) kGAMECLASS.honeyPotBump(true);
-				if(milkFrom.lactationQ() >= 2000) kGAMECLASS.honeyPotBump(true);
+				if(milkFrom != null)
+				{
+					if(milkFrom.lactationQ() >= 500) kGAMECLASS.honeyPotBump(true);
+					if(milkFrom.lactationQ() >= 1000) kGAMECLASS.honeyPotBump(true);
+					if(milkFrom.lactationQ() >= 2000) kGAMECLASS.honeyPotBump(true);
+				}
 			}
 			return false;
 		}
@@ -94,9 +97,12 @@ package classes.Characters
 			if(hasPerk("Honeypot"))
 			{
 				kGAMECLASS.honeyPotBump(true);
-				if(cumFrom.girlCumQ() >= 500) kGAMECLASS.honeyPotBump(true);
-				if(cumFrom.girlCumQ() >= 1000) kGAMECLASS.honeyPotBump(true);
-				if(cumFrom.girlCumQ() >= 2000) kGAMECLASS.honeyPotBump(true);
+				if(cumFrom != null)
+				{
+					if(cumFrom.girlCumQ() >= 500) kGAMECLASS.honeyPotBump(true);
+					if(cumFrom.girlCumQ() >= 1000) kGAMECLASS.honeyPotBump(true);
+					if(cumFrom.girlCumQ() >= 2000) kGAMECLASS.honeyPotBump(true);
+				}
 			}
 			return false;
 		}
