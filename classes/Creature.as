@@ -2400,6 +2400,10 @@ package classes {
 		// Is the character dependant on some external drug/chemical/etc
 		public function isDependant(dependantType:uint = DEPENDANT_ANY):Boolean
 		{
+			if(dependantType == DEPENDANT_MYRVENOM)
+			{
+				if(hasPerk("Venom Slut") || hasStatusEffect("Myr Venom Withdrawal")) return true;
+			}
 			return false;
 		}
 		
