@@ -309,7 +309,7 @@ public function fuckVaandesPuss():void
 	output("\n\nYour ejaculation, building and roiling close to the surface since you first unfastened Vaande’s bra and intensifying with every stroke in her hot, conforming pussy, erupts from you unchecked. ");
 	var cumQ:Number = pc.cumQ();
 	if(cumQ < 5) output("[pc.Cum] dribbles from you in fits, depositing several tiny gems of jizz in the rahn’s translucent purple abdomen.");
-	else if(cumQ < 50) output("Strings of {[pc.cum]/[pc.milk] fly from you to hang suspended in the rahn’s plasma, like layers in aspic.");
+	else if(cumQ < 50) output("Strings of [pc.cum] fly from you to hang suspended in the rahn’s plasma, like layers in aspic.");
 	else output("Waves of [pc.cum] pour from you, filling and bulging the rahn’s membrane, washing out her natural purple color with your own and bringing a delirious, slack-jawed smile to her face.");
 	output(" You climax for far longer than normal, buoyed by the authority of her scent, but eventually finish, as you must.");
 
