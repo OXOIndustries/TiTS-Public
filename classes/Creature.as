@@ -11025,7 +11025,7 @@ package classes {
 			}
 			if (isLactating()) {
 				if (descripted) descript += ", ";
-				if (milkType == GLOBAL.FLUID_TYPE_MILK) {
+				if (InCollection(milkType, GLOBAL.FLUID_TYPE_MILK, GLOBAL.FLUID_TYPE_CHOCOLATE_MILK, GLOBAL.FLUID_TYPE_STRAWBERRY_MILK, GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK, GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK, GLOBAL.FLUID_TYPE_LEITHAN_MILK)) {
 					temp = rand(4);
 					if (temp == 0) descript += "lactating";
 					else if (temp == 1) descript += "milky";
