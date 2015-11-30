@@ -557,6 +557,7 @@ public function missionaryWithAZilGirl():void {
 	output("\n\nThe zil girl sighs and leans back, patting her belly full of seed as you collect your [pc.gear]. <i>“Don't be a stranger, stranger,”</i> she laughs, blowing you a kiss as you leave.");
 	
 	pc.orgasm();
+	pc.milkInMouth(chars["ZILFEMALE"]);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -828,7 +829,7 @@ public function forceCunnilstingus():void {
 	if(pc.HP() <= 0) {
 		output("With your strength falling as rapidly as the leaves that occasionally drop from the canopy above, you give in. There's no way you can continue to resist the nubile alien. She has you right where she wants you: on the ground and unable to stop her from inflicting some perverse mating ritual upon you. You look up at her with fire in your eyes. Perhaps you can bite off something sensitive when she makes her move?");
 		output("\n\n<i>“Oh dear, this resistance simply will not do,”</i>  the zil explains as she closes in, grabbing you gently under your chin and tipping your head back to meet her gaze. <i>“It is rude to resist once your position has been decided by your loss.”</i>  She releases you only to stalk around you like a predator circling prey, tapping on her chin in thought. Her face brightens as a playful expression spreads across her features. <i>“I can teach you politeness, offworlder.”</i>");
-		output("\n\nWorry over just what she means wars with your desire to resist her, and in the end, you wind up watching her. Your eyes remain warily locked as she completes her circle and drops nto your lap. Her hands, shiny as the most high quality latex, ");
+		output("\n\nWorry over just what she means wars with your desire to resist her, and in the end, you wind up watching her. Your eyes remain warily locked as she completes her circle and drops onto your lap. Her hands, shiny as the most high quality latex, ");
 		if(!pc.isNude()) output("carefully peel away every piece of your equipment");
 		else output("carefully strip away your few possessions");
 		output(", and she's sure to keep them far, far away from your mouth. Resting heavily upon your [pc.legOrLegs], her abdomen twitches while she works, dragging the sharpness over her stinger up your vulnerable [pc.skinFurScales]. The perfect hardness of her fingers comes to rest on your shoulders, and she gazes deeply into your eyes, a sardonic smile painted across her obsidian lips.");
