@@ -993,6 +993,8 @@ public function breastTeaseInessaShit():void
 	output("\n\nYou’re caught off guard as <i>another</i> weaker splash of sticky girl-cum jumps out and splashes you directly in the cheek. You chuckle under your breath and lap up what’s left, taking it all for yourself. Once you’re done, you slide up her trembling body and give her a long, lusty kiss–sharing with her the taste of her sweet lady juice as your tongue dance with each other.");
 	output("\n\n<i>“... I don’t think I’ll take the bed, but I’ll certainly take </i>you<i>,”</i> you seductively murmur in her ear, and she squirms with barely concealed delight. You give her a parting kiss before hopping off the bed, leaving the poor saeri girl to recuperate from her back-to-back orgasms. By the way she’s splayed out across the silky sheets, she definitely needs it!");
 	processTime(27);
+	if(!chars["INESSA"].hasVagina()) chars["INESSA"].createVagina();
+	pc.girlCumInMouth(chars["INESSA"]);
 	// Return to store menu.
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
