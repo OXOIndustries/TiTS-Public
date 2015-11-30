@@ -543,7 +543,7 @@ public function mcallisterMenu(cFunc:Function = null):void
 		}
 		else if (flags["MCALLISTER_MYR_HYBRIDITY"] == 2)
 		{
-			var nPercent:Number = ((GetGameTimestamp()/(flags["MCALLISTER_MYR_HYBRIDITY_START"] + (7 * 24 * 60))) * 100);
+			var nPercent:Number = (((GetGameTimestamp() - flags["MCALLISTER_MYR_HYBRIDITY_START"])/(7 * 24 * 60)) * 100);
 			if (nPercent < 0) nPercent = 0;
 			if (nPercent > 100) nPercent = 100;
 			addDisabledButton(0, "Research", "Researching...", "Progress: " + formatFloat(nPercent, 1) + "%"); // use button tooltip as a progress display
