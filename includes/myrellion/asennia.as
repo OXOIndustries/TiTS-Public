@@ -322,7 +322,7 @@ public function milkToGoCup():void
 
 	var helper:Number = -1;
 	//If Shade, higher rolls
-	if(9999) helper = rand(5);
+	if(shadeAtTheBar()) helper = rand(5);
 	else helper = rand(4);
 	if(helper == 0) output("a familiar red-haired human slip down onto her knees, making her skin-tight jumpsuit creak. Her eyes go a little wide as she recognizes you, but she recovers with a lecherous smile. <i>“Hey again, stranger,”</i> she purrs, reaching up to Asennia’s boob and running her tongue along a tanned teat. Your hostess moans, hand reaching down to run through red locks and pull the woman against her breast.");
 	else if(helper == 1) output("a great big, bulkily-plated centaur settle down on his knees, running a hand through a blonde ponytail behind plated bunny ears before he roughly hefts up Asennia’s right boob to his mouth and starts to suckle.");
@@ -381,7 +381,7 @@ public function repeatDrinkStraightFromAsenniasTap():void
 	output("\n\nAs you’re starting to drink, Asennia’s attentions turn to another figure approaching her from behind you. You hear her exchange a few words with the new customer, and see ");
 
 	var helper:int = 0;
-	if(9999) helper = rand(5);
+	if(shadeAtTheBar()) helper = rand(5);
 	else helper = rand(4);
 
 	if(helper == 0) output("a familiar red-haired human slip down onto her knees, making her skin-tight jumpsuit creak. Her eyes go a little wide as she recognizes you, but she recovers with a lecherous smile. <i>“Hey again, stranger,”</i> she purrs, reaching up to Asennia’s boob and running her tongue along a tanned teat. Your hostess moans, hand reaching down to run through red locks and pull the woman against her breast.");
@@ -527,7 +527,7 @@ public function drinkHoneyAfternoonWithNoBoner():void
 	output("\n\nNeither can Asennia, by the way her arms pull you close and all but press your head into the front of her breast. Your mouth opens on instinct, lips latching onto the pebbly ring around her dark teat. Your hands rub along her taut flesh, gently applying pressure until you feel a trickle of honey start to tease your [pc.tongue]. After that, you start to suck until Asennia’s tits go from leaking to pouring out her bounty as quick as you can gulp it down.");
 	output("\n\nWhile you greedily nurse from the hostess’s ample chest, her attention momentarily turns from you to a customer standing behind you. She giggles at something being said, and you feel a hand on your [pc.butt], gently pushing you aside. You scoot out of the way, making room at Asennia’s other breast for her new customer: ");
 	var helper:int = 0;
-	if(9999) helper = rand(5);
+	if(shadeAtTheBar()) helper = rand(5);
 	else helper = rand(4);
 	if(helper == 0) output("a familiar red-headed spacer babe, wearing a skin-tight suit that instantly draws your eyes to her own perky curves and the flares of her hips. She gives you a wink, and you feel her hand linger on your upraised ass for a moment before she reaches up to grope the honeypot and start to suckle.");
 	else if(helper == 1) output("a leithan man clad in a business suit that extends across his centaur-like body. He gives you an apologetic smile before trotting up to Asennia and taking hold of an offered breast and bringing it to his mouth.");
