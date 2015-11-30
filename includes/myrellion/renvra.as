@@ -114,7 +114,7 @@ public function talkToRenvraAboutHerRaceBecauseSheIsBasicallyAnEndgameCoCCharact
 	output("\n\nIf that’s the case, you have to say, you’re surprised there aren’t more halfbreeds like Renvra running around.");
 	output("\n\n<i>“Oh, there’s a damn good reason we’re so rare,”</i> Renvra answers with a predatory grin.");
 	//if Codex: Nyrea unlocked: 
-	if(CodexManager.entryUnlocked("Nyrea")) 
+	if(CodexManager.entryViewed("Nyrea")) 
 	{
 		output(" Considering her mother’s ovipositor had barbs on it, it isn’t hard to imagine why.");
 		output("\n\nRenvra laughs. <i>“Lucky for my sex life, I didn’t inherit the nice, comfortable ring of spikes on my dick.”</i>");
