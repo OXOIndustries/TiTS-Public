@@ -12287,6 +12287,7 @@ public function bessBreastFeed(opts:Array = null):void
 		output(" had your fill of [bess.hisHer] [bess.milk]");
 	}
 	output(".");
+	pc.milkInMouth(chars["BESS"]);
 	if (bess.hasCock() || bess.hasVagina())
 	{
 		output(" [bess.HisHer] thighs are a mess with");
@@ -12354,7 +12355,7 @@ public function bessMilkers(opts:Array = null):void
 		output(" gets on all fours on a nearby bench, positioning [bess.himHer]self to be the perfect height for you. [bess.HisHer] [bess.breasts] dangle below [bess.himHer].");
 	}
 
-	output("\n\nYou click the milker on and a sucking air noise immediately comes from one the teat cups. Out of the corner of your eye you see [bess.name] shiver pleasantly at the noise");
+	output("\n\nYou click the milker on and a sucking air noise immediately comes from one of the teat cups. Out of the corner of your eye you see [bess.name] shiver pleasantly at the noise");
 	if (!(bess.lowerUndergarment is EmptySlot)) output(", wearing nothing but [bess.hisHer] [bess.lowerUndergarment]");
 	output(".");
 	
