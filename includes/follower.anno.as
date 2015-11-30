@@ -173,30 +173,32 @@ public function annoFollowerMenu():void
 	annoFollowerHeader();
 	
 	clearMenu();
-	addButton(0, "Buy", annoFollowerBuyMenu);
-	addButton(1, "Sell", annoFollowerSellMenu);
-	addButton(2, "Special Gear", annoFollowerSpecialGear, undefined, "Special Equipment", "Talk to Anno about any special equipment she might be able to build or buy for you.");
-
-	addButton(5, "Talk", annoFollowerTalkMenu);
-	addButton(6, "EarScritch", annoFollowerEarScritches, undefined, "Ear Scritches", "Give Anno an affectionate little pet.");
-	if (pc.lust() >= 33) addButton(7, "Sex", annoFollowerSexMenu);
-	else addDisabledButton(7, "Sex", "Sex", "Gotta get fired up before you can approach the snowy ausar for some 'entertainment'.")
-
+	addButton(0, "Buy", annoFollowerBuyMenu, undefined, "Buy", "See what Anno has for sale.");
+	addButton(1, "Sell", annoFollowerSellMenu, undefined, "Sell", "See if you can sell any of your carried items to Anno.");
+	addButton(2, "Talk", annoFollowerTalkMenu, undefined, "Talk", "Talk to Anno about a variety of topics.");
+	addButton(3, "EarScritch", annoFollowerEarScritches, undefined, "Ear Scritches", "Give Anno an affectionate little pet.");
+	
+	addButton(5, "Appearance", annoFollowerAppearance, undefined, "Appearance", "Review what Anno's entire body looks like.");
+	if (pcHasJunkPrize() && flags["ANNO_SCRAP_DISABLED"] == undefined) addButton(6, "Sell Prize", tryToSellAnnoSomeRaskScrapGuv, undefined, "Sell Prize", "Try to sell off the sweet loot you bought from the gang of raskvel males.");
+	else addDisabledButton(6, "Sell Prize", "Sell Prize", "This merchant isn't interested in whatever you're considering to be a prize.");
+	
+	if (pc.lust() >= 33) addButton(8, "Sex", annoFollowerSexMenu, undefined, "Sex","Have some sexy fun with Anno.");
+	else addDisabledButton(8, "Sex", "Sex", "Gotta get fired up before you can approach the snowy ausar for some 'entertainment'.")
+	
 	if (flags["ANNO_SLEEPWITH_INTRODUCED"] != undefined)
 	{
 		if (haveFuckedAnno())
 		{
-			if (flags["CREWMEMBER_SLEEP_WITH"] == "ANNO") addButton(8, "No Sleep W.", annoSleepToggleOff, undefined, "Don't Sleep With", "Tell Anno you'd like to sleep without her for now.");
-			else addButton(8, "Sleep With", annoSleepToggleOn, undefined, "Sleep With", "Tell Anno you'd like her to sleep with you in the evenings.");
+			if (flags["CREWMEMBER_SLEEP_WITH"] == "ANNO") addButton(7, "No Sleep W.", annoSleepToggleOff, undefined, "Don't Sleep With", "Tell Anno you'd like to sleep without her for now.");
+			else addButton(7, "Sleep With", annoSleepToggleOn, undefined, "Sleep With", "Tell Anno you'd like her to sleep with you in the evenings.");
 		}
 		else
 		{
-			addDisabledButton(8, "Sleep With", "Sleep With", "You could probably get a cuddly ausar bed-buddy if you had sex with her.");
+			addDisabledButton(7, "Sleep With", "Sleep With", "You could probably get a cuddly ausar bed-buddy if you had sex with her.");
 		}
 	}
-	else addDisabledButton(8, "Sleep With", "Sleep With", "A nice rest sounds good... maybe Anno might pay you a vist of her own accord in the process.");
+	else addDisabledButton(7, "Sleep With", "Sleep With", "A nice rest sounds good... maybe Anno might pay you a vist of her own accord in the process.");
 	
-	if (haveFuckedAnno()) addButton(10, "Appearance", annoFollowerAppearance);
 	
 	if (InCollection(shipLocation, "TAVROS HANGAR", "SHIP HANGAR", "201", "500")) addButton(13, "Evict", annoFollowerBootOff, undefined, "Evict from Ship", "Tell Anno to get off the ship. You might break her heart a little, but you'll probably be able to pick her up again later.");
 	else addDisabledButton(13, "Evict", "Evict from Ship", "You can't bring yourself to kick Anno off your ship here. Head back to a mainline planet or station first.");
@@ -635,7 +637,7 @@ public function annoFollowerTalkMenu(doOut:Boolean = true):void
 	{
 		if (anno.armor is AnnosCatsuit) addButton(7, "Uniform", annoFollowerRemoveUniform, undefined, "Steele Tech Uniform", "Tell Anno she doesn’t need to wear her uniform all the time.");
 		else addButton(7, "Uniform", annoFollowerWearUniform, undefined, "Steele Tech Uniform", "Tell Anno she should put her uniform back on. It’s pretty sexy looking, after all.");
-		if (flags["ANNO_NOVA_UPDATE"] != 2) addButton(10, "Nova Update", annoNovaUpdate, true, "Nova Update", "Ask Anno if there's been any further developments regarding the Nova.");
+		if (flags["ANNO_NOVA_UPDATE"] != 2) addButton(11, "Nova Update", annoNovaUpdate, true, "Nova Update", "Ask Anno if there's been any further developments regarding the Nova.");
 	}
 	else
 	{
@@ -657,6 +659,8 @@ public function annoFollowerTalkMenu(doOut:Boolean = true):void
 		else addDisabledButton(9,"Strapon Mods","Strapon Mods","Anno has already tweaked her hardlight strapon. Good job!");
 	}
 	else addDisabledButton(9,"Strapon Mods","Strapon Mods","Anno needs to own a hardlight strapon before it can be modified. Maybe you could take her to Tavros and look for a store that sells them.");
+	
+	addButton(10, "Special Gear", annoFollowerSpecialGear, undefined, "Special Equipment", "Talk to Anno about any special equipment she might be able to build or buy for you.");
 	addButton(14, "Back", annoFollowerMenu);
 }
 
@@ -944,7 +948,8 @@ public function annoFollowerEarScritches():void
 	processTime(4+rand(2));
 	//[Sex][Tease]
 	clearMenu();
-	addButton(0, "Sex", annoFollowerEarScritchesSex);
+	if (pc.lust() >= 33) addButton(0, "Sex", annoFollowerEarScritchesSex, undefined, "Sex","Follow that scratch up with some sex.");
+	else addDisabledButton(0, "Sex", "Sex", "You're not horny enough for that...")
 	addButton(1, "Tease", annoFollowerEarScritchesTease);
 }
 
@@ -1773,6 +1778,7 @@ public function annoFollowerSpecialGear():void
 	{
 		addButton(0, "Her Gun", annoFollowerSpecialGearHerGun, undefined, "Her Gun", "Ask Anno about her personal gun. That didn't seem like a stock model.")
 	}
+	else addDisabledButton(0, "Her Gun", "Her Gun", "You've already asked her about her gun.");
 
 	if (pc.hasItem(new GrayMicrobots()) && !pc.hasKeyItem("Goozooka"))
 	{
@@ -1806,6 +1812,8 @@ public function annoFollowerSpecialGearHerGun():void
 	{
 		anno.inventory.push(new HoldoutHP());
 	}
+	
+	annoFollowerSpecialGear();
 }
 
 public function annoFollowerSpecialGearGrayGoo():void
@@ -1858,7 +1866,7 @@ public function annoFollowerSpecialGearGrayGoo():void
 		}
 	}
 	
-	addButton(1, "Nope", annoFollowerMenu);
+	addButton(1, "Nope", annoFollowerTalkMenu, false);
 }
 
 public function annoFollowerSpecialGearGoozooka(buyGoovolverToo:Boolean = false):void
