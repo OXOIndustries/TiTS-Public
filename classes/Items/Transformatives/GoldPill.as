@@ -536,7 +536,7 @@ package classes.Items.Transformatives
 				}
 				//Second Breast Row
 				//If PC has only 1 row of tits. 
-				if(pc.hasVagina() && changes < changeLimit && rand(5) == 0 && pc.bRows() == 1 && pc.biggestTitSize() >= 4 && pc.hasVagina())
+				if(pc.hasVagina() && changes < changeLimit && rand(5) == 0 && pc.bRows() == 1 && pc.biggestTitSize() >= 4 && pc.isPregnant())
 				{
 					if(pc.createBreastRowUnlocked(2))
 					{
