@@ -219,6 +219,7 @@ public function chooseRedOfficerForBathShenanigansIllPistolWhipTheNextPersonWhoS
 		output("\n\nShe seizes up, breath catching in her throat as the pleasure that’s been building up inside her comes to a cataclysmic head. Her breasts spray nectar like a geyser, discharging their lactic load across the stoney poolside. You just squeeze her breasts harder, milking out all that sweet nectar - and keeping the insensate ant-girl writhing with pleasure all through her boobgasm.");
 		output("\n\nWhen she finally calms down, the myr woman is left panting and gasping, leaning heavily back against you. <i>“These... massages... incredible...”</i> she breathes, eyes rolling closed in the afterglow. You grin down at her and start to lick the sweet, thick honey off of your fingers. While you do so, the exhausted ant-girl slips out of your arms and flops down against the pool side, leaving you to clamber out of the pool and go get cleaned up.");
 		pc.lust(20+rand(10));
+		pc.shower();
 		processTime(21);
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
@@ -255,6 +256,7 @@ public function antMouthNutBustEpilogue():void
 	//[Next]
 	//Back to Bath House main room
 	processTime(20);
+	pc.shower();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -277,6 +279,7 @@ public function waterNutBustAttack():void
 	output("\n\nChuckling to yourself, you hop out of the pool a minute later and grab your towel, heading back to your own locker to collect your gear. You catch sight of your red companion just as she’s heading out the front door, stopping just long enough to give you a wave before she departs.");
 	processTime(9);
 	pc.orgasm();
+	pc.shower();
 	//[Next]
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -319,6 +322,7 @@ public function bustANutMidMyrEpilogue():void
 	author("Savin");
 	output("Eventually, you get tired of just sitting around. You’re as relaxed as you can be by the time you haul yourself up out of the hot spring and grab your towel. It’s a quick process to dry yourself off on the way back to the locker room, passing several gold myr on the way to the baths as you go. You toss your towel into a hamper next to your row of lockers and grab your [pc.gear], kitting back up before returning to the lobby.");
 	processTime(20);
+	pc.shower();
 	//[Next]
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -357,9 +361,17 @@ public function honeyPotFunTimes():void
 	output("\n\nSo there is. You give the bunch of golds wading your way a sheepish smile, thank the honeypot for the snack, and haul yourself up out of the pool. You’ve had enough relaxation for one trip...");
 	//[Next]
 	//Pass 20 minutes
+	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
+	pp.breastRows[0].breastRatingRaw = 7;
+	pp.breastRows[0].breasts = 2;
+	pp.milkType = GLOBAL.FLUID_TYPE_NECTAR;
+	pp.milkMultiplier = 100;
+	pp.milkFullness = 100;
+	pc.milkInMouth(pp);
 	pc.energy(pc.energyMax());
 	pc.HP(pc.HPMax());
 	pc.lust(10+rand(10));
+	pc.shower();
 	processTime(20);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -400,6 +412,7 @@ public function batheAloneEpilogue():void
 	//[Next]
 	//Back to Bath House main room
 	processTime(15);
+	pc.shower();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1217,6 +1230,7 @@ public function declineBathHJs():void
 	output("\n\nYou stay and soak in the tub for a little while longer. Now that you’re totally clean, you don’t have much to do in the private bath. You wonder if anyone other than you actually pays to bathe alone, as the bath was truly meant to fit a party. After mulling for a little while longer, you decide to leave the bath. The air chills your naked body as you step out of the waters warm embrace, and you scramble for the cloth towel you were given.");
 	output("\n\nOnce you’ve dried off, you return to gather your [pc.gear] from the lockers before leaving the private bathing area. The orderlies show you back to the main lobby before continuing their duties.");
 	processTime(10);
+	pc.shower();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 	//{return to savins main room menu}
@@ -1344,6 +1358,7 @@ public function privateBathServiceEpilogue():void
 	showName("\nBATH");
 	author("Gardeford");
 	output("You stay in the pool for a little while longer, waiting for the venom to work its way out of your system. When you don’t feel like fucking the next living thing you see, you hop out of the giant tub and dry off. Your [pc.gear] is exactly where you left it in the locker room, and you grab it as you head out the doors. The orderlies at the door show you back to the main lobby, where you can decide what to do next.");
+	pc.shower();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
