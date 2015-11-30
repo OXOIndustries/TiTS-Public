@@ -884,6 +884,7 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 	var scenesIndex:Array = [];
 	var scenesLimit:int = 3;
 	var scenesTotal:int = 5;
+	if (!pp.hasCock()) pp.createCock();
 	
 	// Hands
 	if(service == "hands")
@@ -1024,6 +1025,7 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 		
 		while(scenesLimit > 0)
 		{
+			if (!pp.hasCock()) pp.createCock();
 			// Cunt-tail:
 			if(!InCollection(1, scenesIndex) && pc.hasTailCunt() && scenesLimit > 0 && rand(scenesTotal) == 0)
 			{
@@ -1212,6 +1214,7 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 		
 		while(scenesLimit > 0)
 		{
+			if (!pp.hasCock()) pp.createCock();
 			// Any: Human Male Masochist
 			if(!InCollection(1, scenesIndex) && scenesLimit > 0 && rand(scenesTotal) == 0)
 			{
