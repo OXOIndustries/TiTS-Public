@@ -127,6 +127,8 @@ public function getShellyPregContainer():PregnancyPlaceholder
 	pregContainer.createStatusEffect("Infertile");
 	pregContainer.breastRows[0].breastRatingRaw = 4;
 	pregContainer.milkType = GLOBAL.FLUID_TYPE_VANILLA;
+	pregContainer.milkMultiplier = 100;
+	pregContainer.milkFullness = 100;
 	return pregContainer;
 }
 
