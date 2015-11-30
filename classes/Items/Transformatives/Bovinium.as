@@ -356,6 +356,8 @@ package classes.Items.Transformatives
 				target.milkType = GLOBAL.FLUID_TYPE_MILK;
 				
 				output("\n\nYou feel a strange, twisting sensation in your [pc.chest], strong enough to make you clutch at your tits. When you put even the slightest amount of pressure on them, you’re treated to a sudden gush of milk -- milk, thick and rich, just like a cow’s. You can’t resist the urge to bring one of your nipples up to your mouth and suckle from yourself, drinking down your new creamy bounty. Absolutely delicious! <b>Your boobs now produce milk!</b>");
+				
+				target.milkInMouth(target);
 			}
 			
 			return changes;
