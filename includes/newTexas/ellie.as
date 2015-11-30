@@ -512,6 +512,7 @@ public function suckleDatCowtaurTeat():void
 	pc.lust(90+rand(20));
 	processTime(8);
 	pc.energy(200);
+	pc.milkInMouth(chars["ELLIE"]);
 	//yes/no
 	clearMenu();
 	if(pc.genitalLocation() >= 2 && pc.tallness >= ((2 * chars["ELLIE"].tallness) / 3))
@@ -561,6 +562,7 @@ public function turnDownDatLustReliefFroMElliebuns():void
 	output("\n\nShe leans over and strokes your [pc.hair] affectionately. <i>“You rest now, hun. Sleep the worst of that lustiness off. I’ve got some bulls to take care of now, don’t I?”</i>");
 	output("\n\nYou drift obediently off to sleep, though your dreams are punctuated by howls of pleasure and the wet sounds of sex...");
 	processTime(55);
+	pc.milkInMouth(chars["ELLIE"]);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -603,6 +605,7 @@ public function getAHandyFromEllie():void
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
+	pc.milkInMouth(chars["ELLIE"]);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -645,6 +648,7 @@ public function getFingerByEllieDuringMilkDrinking():void
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
+	pc.milkInMouth(chars["ELLIE"]);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
