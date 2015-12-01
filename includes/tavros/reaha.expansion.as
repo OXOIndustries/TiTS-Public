@@ -1579,6 +1579,8 @@ public function reahaBootOffShip():void
 		if (shipLocation != "TAVROS HANGAR") output(" as soon as the taxi arrives");
 		else output(" and down onto the garage floor");
 		output(", stopping just long enough to say goodbye before she goes.");
+		
+		output("\n\n(<b>Reaha is no longer on your crew. You can find her again in Tavros Station.</b>)");
 
 		processTime(15);
 		addNextButton(mainGameMenu);
@@ -1625,6 +1627,8 @@ public function reahaBootOffShipGo2Tavros():void
 	output(",”</i> Reaha says as she’s getting aboard the taxi");
 	if (reahaConfidence() > REAHA_CONFIDENCE_HIGH) output(", stopping just long enough to give you a hug before she goes");
 	output(".");
+	
+	output("\n\n(<b>Reaha is no longer on your crew. You can find her again in Tavros Station.</b>)");
 
 	processTime(15);
 	addNextButton(mainGameMenu);
@@ -1640,7 +1644,9 @@ public function reahaBootOffShipNewTexas():void
 	output("<i>“Knock it off, Reaha, you’re staying,”</i> you insist. You can all but see her heart fall, and she lets out a pathetic whimper as you send her to collect her things. You tell her she’ll be fine -- this is her homeworld, after all. Nothing seems to cheer her up, though, and she looks on the verge of tears by the time you send her down the gangplank into the landing barn. ");
 	
 	output("\n\n<i>“I... I guess I’ll see you again. Probably all stupid and Treated,”</i> Reaha says, avoiding your eyes as she descends. <i>“Bye...”</i>");
-
+	
+	output("\n\n(<b>Reaha is no longer on your crew. You can find her again on New Texas.</b>)");
+	
 	processTime(15);
 	addNextButton(mainGameMenu);
 }
@@ -1675,7 +1681,9 @@ public function reahaBackAtBethsRejoin():void
 	output("\n\n<i>“You mean, back aboard your ship?”</i> she asks, clearly hopeful. You nod, and Reaha immediately hops into your arms, hugging you tight. <i>“Yay! I-I mean, uh, yes master. Ready whenever you want me back...”</i>");
 	
 	output("\n\nWith a chuckle, you ruffle Reaha’s strawberry hair and tell her to pack her bags. She grabs her one, small satchel from under her seat and says she’ll meet you back aboard ship. You send her off with a playful swat on the rear, making her anchor tattoo jiggle obscenely as she scampers off. ");
-
+	
+	output("\n\n(<b>Reaha has rejoined your crew!</b>)");
+	
 	processTime(15);
 
 	addNextButton(mainGameMenu);
