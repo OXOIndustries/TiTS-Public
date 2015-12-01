@@ -180,6 +180,7 @@
 		include "../includes/tarkus/stellarTether.as";
 		include "../includes/tarkus/sydianMale.as";
 		include "../includes/tarkus/theMess.as";
+		include "../includes/tarkus/goblinPool.as";
 
 		//Third planet
 		include "../includes/newTexas/newTexas.as";
@@ -926,82 +927,66 @@
 		{
 			return chars["CELISE"];
 		}
-
 		public function get rival():Rival
 		{
 			return chars["RIVAL"];
 		}
-
 		public function get enemy():Creature
 		{
 			return foes[0];
 		}
-
 		public function get geoff():Geoff
 		{
 			return chars["GEOFF"];
 		}
-
 		public function get flahne():Flahne
 		{
 			return chars["FLAHNE"];
 		}
-
 		public function get zilpack():ZilPack
 		{
 			return chars["ZILPACK"];
 		}
-
 		public function get zil():ZilMale
 		{
 			return chars["ZIL"];
 		}
-
 		public function get penny():Penny
 		{
 			return chars["PENNY"];
 		}
-
 		public function get renvra():Renvra
 		{
 			return chars["RENVRA"];
 		}
-
 		public function get embry():Embry
 		{
 			return chars["EMBRY"];
 		}
-
 		public function get shekka():Shekka
 		{
 			return chars["SHEKKA"];
 		}
-
 		public function get burt():Burt
 		{
 			return chars["BURT"];
 		}
-
 		public function get zilFemale():ZilFemale
 		{
 			return chars["ZILFEMALE"];
 		}
-
 		public function get cuntsnake():CuntSnake
 		{
 			return chars["CUNTSNAKE"];
 		}
-		
 		public function get reaha():Reaha
 		{
 			return chars["REAHA"];
 		}
-		
 		public function get dane():Dane
 		{
 			return chars["DANE"];
 		}
-		
 		public function get mimbrane():Mimbrane
 		{
 			return chars["MIMBRANE"];
@@ -1010,12 +995,10 @@
 		{
 			return chars["ANNO"];
 		}
-		
 		public function get kiro():Kiro
 		{
 			return chars["KIRO"];
 		}
-		
 		public function get saendra():Saendra
 		{
 			return chars["SAENDRA"];
@@ -1028,7 +1011,6 @@
 		{
 			return chars["SYRI"];
 		}
-		
 		public function get vanae():Creature
 		{
 			return this.monster;
@@ -1041,6 +1023,7 @@
 		{
 			return chars["HUNTRESS_VANAE"];
 		}
+		
 		public function get gianna():Gianna
 		{
 			return chars["GIANNA"];
@@ -1088,6 +1071,10 @@
 		public function get gene():Gene
 		{
 			return chars["GENE"];
+		}
+		public function get petr():Petr
+		{
+			return chars["PETR"];
 		}
 	}
 }
