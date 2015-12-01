@@ -2439,12 +2439,38 @@ public function initializeRooms():void
 	rooms["224"].addFlag(GLOBAL.OUTDOOR);
 	rooms["224"].addFlag(GLOBAL.HAZARD);
 	rooms["224"].addFlag(GLOBAL.DESERT);
-
+	
+	// Arbetz Travel Agency: Main
+	rooms["ARBETZ MAIN"] = new RoomClass(this);
+	rooms["ARBETZ MAIN"].roomName = "ARBETZ\nTRAVEL AGENCY";
+	rooms["ARBETZ MAIN"].description = "";
+	rooms["ARBETZ MAIN"].runOnEnter = arbetzMainApproach;
+	rooms["ARBETZ MAIN"].northExit = "ARBETZ POOL";
+	rooms["ARBETZ MAIN"].southExit = "225";
+	rooms["ARBETZ MAIN"].planet = "PLANET: TARKUS";
+	rooms["ARBETZ MAIN"].system = "SYSTEM: REDACTED";
+	rooms["ARBETZ MAIN"].addFlag(GLOBAL.INDOOR);
+	rooms["ARBETZ MAIN"].addFlag(GLOBAL.PUBLIC);
+	rooms["ARBETZ MAIN"].addFlag(GLOBAL.NOFAP);
+	
+	// Arbetz Travel Agency: Pool
+	rooms["ARBETZ POOL"] = new RoomClass(this);
+	rooms["ARBETZ POOL"].roomName = "ARBETZ\nPOOL";
+	rooms["ARBETZ POOL"].description = "";
+	rooms["ARBETZ POOL"].runOnEnter = arbetzPoolBonus;
+	rooms["ARBETZ POOL"].southExit = "ARBETZ MAIN";
+	rooms["ARBETZ POOL"].planet = "PLANET: TARKUS";
+	rooms["ARBETZ POOL"].system = "SYSTEM: REDACTED";
+	rooms["ARBETZ POOL"].addFlag(GLOBAL.OUTDOOR);
+	rooms["ARBETZ POOL"].addFlag(GLOBAL.PUBLIC);
+	rooms["ARBETZ POOL"].addFlag(GLOBAL.DESERT);
+	
 	//#25 POLLUTED\nBEACH
 	rooms["225"] = new RoomClass(this);
 	rooms["225"].roomName = "POLLUTED\nBEACH";
-	rooms["225"].description = "Gurgling faintly to the west, a sea of sludge, filth, and corruption laps against a oily beach. Here, the pollution is not quite so bad, but it's still thick enough to make the flaky \"sand\" clump together around your [pc.feet]. You can go west or south if you want to experience the pollution firsthand. Otherwise, the Nova's fore is visible a few minutes to the east, dangling reddish stalactites off its chin.";
-	rooms["225"].runOnEnter = rustCoastEncounters;
+	rooms["225"].description = "";
+	rooms["225"].runOnEnter = tarkusBeachAddendum;
+	rooms["225"].northExit = "ARBETZ MAIN";
 	rooms["225"].southExit = "228";
 	rooms["225"].westExit = "226";
 	rooms["225"].eastExit = "224";
