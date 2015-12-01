@@ -19,7 +19,7 @@ package classes.Characters
 			version = _latestVersion;
 			_neverSerialize = true;
 			
-			short = "Petr";;
+			short = "Petr";
 			
 			inventory.push(new BaggySwimShorts());
 			inventory.push(new MaleThong());
