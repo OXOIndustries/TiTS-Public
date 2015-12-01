@@ -64,8 +64,6 @@ public function returnToShipAfterRecruitingAnno():Boolean
 			
 	if (flags["ANNO_CREWMEMBER"] == 1 && flags["ANNO_CREWMEMBER_INITIALSCENE"] == undefined)
 	{
-		flags["ANNO_CREWMEMBER_INITIALSCENE"] = 1;
-
 		clearOutput();
 		annoFollowerHeader();
 
@@ -125,6 +123,8 @@ public function returnToShipAfterRecruitingAnno():Boolean
 
 			output("\n\nCelise nods eagerly. You pat the girls on the shoulders and leave them to catch up from since... whenever it is they met.");
 		}
+		
+		output("\n\n(<b>Anno has joined your crew!</b>)");
 
 		currentLocation = "SHIP INTERIOR";
 		flags["ANNO_CREWMEMBER_INITIALSCENE"] = 1;
@@ -432,6 +432,8 @@ public function annoFollowerBootOff():void
 
 	flags["ANNO_CREWMEMBER"] = 2;
 	if (flags["CREWMEMBER_SLEEP_WITH"] == "ANNO") flags["CREWMEMBER_SLEEP_WITH"] = undefined;
+	
+	output("\n\n(<b>Anno is no longer on your crew. You can find her again in Tavros Station.</b>)");
 
 	processTime(15);
 
@@ -518,7 +520,7 @@ public function annoFollowerLetThePoochShitUpYourShowerWithFurAgain():void
 
 	output("\n\nA quick trip to her girlfriend’s apartment to collect her things, and you’re ready to go. Hand in hand, you guide Anno back aboard your ship. She settles in like she'd never been gone.");
 
-	output("\n\n<b>Anno has joined your crew!</b>");
+	output("\n\n(<b>Anno has rejoined your crew!</b>)");
 	
 	currentLocation = "SHIP INTERIOR";
 	flags["ANNO_CREWMEMBER"] = 1;
