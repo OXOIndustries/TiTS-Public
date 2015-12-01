@@ -9,6 +9,7 @@ import classes.GUI;
 import classes.Items.Accessories.LeithaCharm;
 import classes.Items.Miscellaneous.EmptySlot;
 import classes.Items.Miscellaneous.HorsePill;
+import classes.Items.Transformatives.Goblinola;
 import classes.RoomClass;
 import classes.StorageClass;
 import classes.UIComponents.ContentModules.MailModule;
@@ -954,6 +955,18 @@ public function statusTick():void {
 					var pill:HorsePill = new HorsePill();
 					eventQueue[eventQueue.length] = pill.lastPillTF;
 				}
+				//Goblinola changes!
+				if(pc.statusEffects[x].storageName == "Goblinola Bar")
+				{
+					var gobbyTF:Goblinola = new Goblinola();
+					eventQueue[eventQueue.length] = gobbyTF.itemEndGoblinTF;
+				}
+				//Goblinola face changes
+				if(pc.statusEffects[x].storageName == "Gabilani Face Change")
+				{
+					var gobbyFaceTF:Goblinola = new Goblinola();
+					eventQueue[eventQueue.length] = gobbyFaceTF.itemGoblinFaceTF;
+				}
 				if(pc.statusEffects[x].storageName == "Red Myr Venom")
 				{
 					//Bit of a hacky solution
@@ -1144,6 +1157,18 @@ public function variableRoomUpdateCheck():void
 	//Handle badger closure
 	if(flags["DR_BADGER_TURNED_IN"] != undefined && rooms["209"].northExit != "") rooms["209"].northExit = "";
 	if(flags["DR_BADGER_TURNED_IN"] == undefined && rooms["209"].northExit == "") rooms["209"].northExit = "304";
+	// Arbetz Open:
+	if (arbetzActiveHours())
+	{
+		if (!rooms["ARBETZ MAIN"].hasFlag(GLOBAL.NPC)) rooms["ARBETZ MAIN"].addFlag(GLOBAL.NPC);
+		if (!rooms["ARBETZ POOL"].hasFlag(GLOBAL.OBJECTIVE)) rooms["ARBETZ POOL"].addFlag(GLOBAL.OBJECTIVE);
+	}
+	// Arbetz Closed:
+	else
+	{
+		rooms["ARBETZ MAIN"].removeFlag(GLOBAL.NPC);
+		rooms["ARBETZ POOL"].removeFlag(GLOBAL.OBJECTIVE);
+	}
 	
 	
 	/* NEW TEXAS */
@@ -1509,7 +1534,13 @@ public function processTime(arg:int):void {
 				var pill:HorsePill = new HorsePill();
 				//eventQueue[eventQueue.length] = pill.pillTF;
 				pill.pillTF();
-			}	
+			}
+			//Goblinola procs!
+			if(pc.hasStatusEffect("Goblinola Bar"))
+			{
+				var gobbyTF:Goblinola = new Goblinola();
+				gobbyTF.itemGoblinTF();
+			}
 			//Treatmentr procs
 			if(pc.hasStatusEffect("The Treatment"))
 			{
