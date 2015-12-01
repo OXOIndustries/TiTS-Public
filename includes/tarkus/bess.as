@@ -864,7 +864,7 @@ public function waitAtTavrosBess():void
 	clearOutput();
 	output("You decide you don’t have a place for [bess.himHer] on the ship at the moment and you don’t want to get rid of [bess.himHer]. You do have a space dock at Tavros Station though.");
 	output("\n\nIt is a bit out of your way, but you fly all the way back and drop [bess.himHer] there for the time being. That way, you can pick [bess.himHer] up once you know what you want to do with [bess.himHer].");
-	output("\n\n<b>The " + bess.mf("Ben-14", "Bess-13") + " unit has been dropped at Tavros Station! You can pick [bess.himHer] up later if you want to have [bess.himHer] join your crew.</b>");
+	output("\n\n(<b>The " + bess.mf("Ben-14", "Bess-13") + " unit has been dropped at Tavros Station! You can pick [bess.himHer] up later if you want to have [bess.himHer] join your crew.</b>)");
 	//See Tavros Station section for more information.
 	processTime(2040);
 	currentLocation = shipLocation;
@@ -1050,8 +1050,10 @@ public function verifyBessModelMenu(sGender:String = "auto"):void
 	}
 	
 	clearMenu();
-	addButton(0, "Ben-14", verifyBessModelMenu, "male");
-	addButton(1, "Bess-13", verifyBessModelMenu, "female");
+	if (sGender == "male") addDisabledButton(0, "Ben-14");
+	else addButton(0, "Ben-14", verifyBessModelMenu, "male");
+	if (sGender == "female") addDisabledButton(1, "Bess-13");
+	else addButton(1, "Bess-13", verifyBessModelMenu, "female");
 	if (sGender == "auto") addDisabledButton(2, "Confirm", "Confirm", "You need to select the appropriate model to proceed.");
 	else addButton(2, "Confirm", verifyBessModelFinish);
 }
@@ -1824,7 +1826,7 @@ public function setBessRole(newRole:int):void
 	var sRole:int = 0;
 	if (flags["BESS_SEX_ROLE"] != undefined) sRole = flags["BESS_SEX_ROLE"];
 
-	output("Bess is now assuming");
+	output("[bess.name] is now assuming");
 	if (sRole == 0) output(" a role of equal partners.");
 	else if (sRole == 1) output(" the role of a dominant partner.")
 	else if (sRole == 2) output(" the role of a submissive partner.");
@@ -1841,12 +1843,12 @@ public function talkToBessAboutHair():void
 
 	clearMenu();
 	if (bess.hairLength > 0) addButton(0, "Color", talkToBessAboutHairColor);
-	else addDisabledButton(0, "Color", "Hair Color", "Bess has to have hair to be able to select its color!");
+	else addDisabledButton(0, "Color", "Hair Color", "[bess.name] has to have hair to be able to select its color!");
 
 	addButton(1, "Length", talkToBessAboutHairLength);
 
 	if (bess.hairLength > 0) addButton(2, "Style", talkToBessAboutHairStyle);
-	else addDisabledButton(2, "Style", "Hair Style", "Bess has to have hair to be able to select its style!");
+	else addDisabledButton(2, "Style", "Hair Style", "[bess.name] has to have hair to be able to select its style!");
 
 	addButton(14, "Back", bessFunctionsMenu);
 }
@@ -2404,7 +2406,7 @@ public function bessSetNippleType(newType:int):void
 
 	output("\n\n<i>“There you go, two [bess.nipplesNoun]! Anything else..?”</i>");
 
-	output("\n\n<b>Bess now has a pair of [bess.nipplesNoun]!</b>");
+	output("\n\n<b>[bess.name] now has a pair of [bess.nipplesNoun]!</b>");
 
 	bessFunctionsMenu();
 }
@@ -5691,7 +5693,9 @@ public function talkToBessBreakUp():void
 	output("\n\n[bess.HeShe] tries to open [bess.hisHer] mouth, but only a choked noise comes out. Soon [bess.heShe]’s running and collecting [bess.hisHer] things, obviously packing to leave the ship.");
 	
 	output("\n\nBefore you know it, there’s silence, and [bess.name] has left to who knows where. You have no idea where [bess.heShe] went, or if you’ll ever see [bess.himHer] again.");
-
+	
+	output("\n\n(<b>[bess.name] is no longer part of your crew.</b>)");
+	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -5700,11 +5704,13 @@ public function talkToBessConfirmDismiss():void
 {
 	clearOutput();
 	bessHeader();
-
+	
 	flags["BESS_LOCATION"] = BESS_AT_TAVROS;
-
+	
 	output("<i>“Alright, "+ bessPCName() +"! I’ll wait for you back on Tavros if you need me,”</i> [bess.name] obediently replies. [bess.HeShe] doesn’t seem that upset by you kicking [bess.himHer] off the ship.");
-
+	
+	output("\n\n(<b>[bess.name] is no longer on your crew. You can find [bess.himHer] again in Tavros Station.</b>)");
+	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -9447,7 +9453,7 @@ public function bessEvent25Spinoff():void
 
 	output("\n\n<i>~ [bess.name]</i>");
 
-	output("\n\n<b>[bess.name] is no longer part of your crew.</b>");
+	output("\n\n(<b>[bess.name] is no longer part of your crew.</b>)");
 
 	flags["BESS_LOCATION"] = BESS_DISABLED;
 	processTime(10+rand(3));
@@ -9570,7 +9576,7 @@ public function bessEvent28DontGoAfter():void
 
 	output("Eventually, the bleeping on the console stops. [bess.name] never returns to the ship.");
 
-	output("\n\n<b>[bess.name] is no longer your follower!</b>");
+	output("\n\n(<b>[bess.name] is no longer your follower!</b>)");
 
 	flags["BESS_LOCATION"] = BESS_DISABLED;
 
@@ -10561,7 +10567,7 @@ public function bessAtTavrosYes():void
 
 	output("<i>“... That’s... that’s all I ever wanted!”</i> [bess.name] begins to tear up; clearly being off the ship has been an incredibly trying experience. [bess.HisHer] brave face crumbles all at once as [bess.heShe] gives you a hug, glad to be back on board again.");
 	
-	output("\n\n<b>[bess.name] has now returned to the ship as a follower!</b>");
+	output("\n\n(<b>[bess.name] has now returned to the ship as a follower!</b>)");
 
 	flags["BESS_AFFECTION"] = 10;
 	flags["BESS_LOCATION"] = BESS_ON_CREW;
