@@ -1290,7 +1290,6 @@ public function appearance(target:Creature):void {
 				output2("Where a penis would normally be located, you have instead grown your " + target.multiCockDescript() + ":");
 				while(temp < target.cocks.length) 
 				{
-					
 					//middle cock description
 					if(rando == 0) {
 						if(temp == 0)output2("\nYour first ");
@@ -1305,7 +1304,7 @@ public function appearance(target:Creature):void {
 						}
 					}
 					if(rando == 1) {
-						output2("\nYour ");
+						output2("\nYour " + num2Ordinal(temp + 1) + " ");
 						output2(target.cockDescript(temp) + " is " + Math.round(10*target.cocks[temp].cLength())/10 + " inches long and ");
 						if(Math.floor(target.cocks[temp].thickness()) >= 2) output2(num2Text(Math.round(target.cocks[temp].thickness() * 10)/10) + " inches thick.");
 						else {
@@ -1314,7 +1313,7 @@ public function appearance(target:Creature):void {
 						}
 					}
 					if(rando == 2) {
-						output2("\nThis ");
+						output2("\nThe " + num2Ordinal(temp + 1) + " ");
 						output2(target.cockDescript(temp) + " is " + Math.round(10*target.cocks[temp].cLength())/10 + " inches long and ");
 						if(Math.floor(target.cocks[temp].thickness()) >= 2) output2(num2Text(Math.round(target.cocks[temp].thickness() * 10)/10) + " inches thick.");
 						else {
@@ -1334,7 +1333,7 @@ public function appearance(target:Creature):void {
 					}
 					dickBonusForAppearance(target, temp);
 					temp++;
-					rando++
+					rando++;
 					if(rando > 3) rando = 0;
 				}
 				//All sheathed
