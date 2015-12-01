@@ -171,7 +171,7 @@ public function rejoinTheCrewCelise():void
 	output("<i>“Sounds good to me!”</i> you answer with a welcoming hug, or at least what you think is one. It’s tough to hug someone who has most of your body ensconced within herself.");
 	output("\n\nCelise’s face surges up to kiss you on the nose, her lips soft and remarkably solid compared to elsewhere. Pulling back, she giggles and withdraws herself from your body, leaving you surprisingly dry and clean in her wake. <i>“Race you to the ship!”</i>");
 	output("\n\nShe jiggles off toward the ship without another word, moving with a surprising amount of speed and grace for one so mellifluent.");
-	output("\n\n(<b>Celise has rejoined your crew.</b>)");
+	output("\n\n(<b>Celise has rejoined your crew!</b>)");
 	processTime(1);
 	//REJOIN CREW
 	flags["CELISE_ONBOARD"] = 1;
