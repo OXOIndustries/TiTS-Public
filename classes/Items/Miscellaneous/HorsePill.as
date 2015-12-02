@@ -147,7 +147,7 @@
 			if(target.hasHorns())
 				TFList[TFList.length] = 10;
 			//#11 Remove antennae
-			if(target.antennae > 0)
+			if(target.hasAntennae())
 				TFList[TFList.length] = 11;
 			//#12 Grow hair length to 6"
 			if(target.hairType == GLOBAL.HAIR_TYPE_REGULAR && target.hairLength < 6)
@@ -491,8 +491,9 @@
 				{
 					if (target.antennaeUnlocked(0))
 					{
-						kGAMECLASS.eventBuffer += "Your antennae drop to the ground. Where they once sat, there's only the curious numbness of a missing body part. You feel almost naked without them, but at the same time, it seems... right.";
-						target.antennae = 0;
+						if(target.antennae == 1) kGAMECLASS.eventBuffer += "Your [pc.antenna] drops to the ground. Where it once sat, there's only the curious numbness of a missing body part. You feel almost naked without it, but at the same time, it seems... right.";
+						else kGAMECLASS.eventBuffer += "Your [pc.antennae] drop to the ground. Where they once sat, there's only the curious numbness of a missing body part. You feel almost naked without them, but at the same time, it seems... right.";
+						target.removeAntennae();
 					}
 					else
 					{
