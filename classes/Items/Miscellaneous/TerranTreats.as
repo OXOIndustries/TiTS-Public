@@ -294,27 +294,29 @@
 					else kGAMECLASS.output("\n\n" + pc.tongueTypeLockedMessage());
 				}
 				//Horns/antennae:
-				if((pc.hasHorns() || pc.antennae > 0) && rand(4) == 0 && changes < changeLimit)
+				if((pc.hasHorns() || pc.hasAntennae()) && rand(4) == 0 && changes < changeLimit)
 				{
-					if((pc.hasHorns() && pc.hornsUnlocked(0)) || (pc.antennae > 0 && pc.antennaeUnlocked(0)))
+					if((pc.hasHorns() && pc.hornsUnlocked(0)) || (pc.hasAntennae() && pc.antennaeUnlocked(0)))
 					{
 						kGAMECLASS.output("\n\nThere’s a sucking feeling on the top of your head, as it draws its extra appendages inward. By the time it’s done, <b>your ");
 						if(pc.hasHorns()) 
 						{
 							kGAMECLASS.output("[pc.horns]");
+							if(pc.horns == 1) kGAMECLASS.output(" is");
+							else kGAMECLASS.output(" are");
 							pc.removeHorns();
 						}
 						else
 						{
-							kGAMECLASS.output("antenna");
-							if(pc.antennae != 1) kGAMECLASS.output("e");
-							pc.antennae = 0;
-							pc.antennaeType = GLOBAL.TYPE_HUMAN;
+							kGAMECLASS.output("[pc.antennae]");
+							if(pc.antennae == 1) kGAMECLASS.output(" is");
+							else kGAMECLASS.output(" are");
+							pc.removeAntennae();
 						}
-						kGAMECLASS.output(" are gone</b>.");
+						kGAMECLASS.output(" gone</b>.");
 						changes++;
 					}
-					else if(pc.antennae > 0 && pc.antennaeUnlocked(0))
+					else if(pc.hasAntennae() && pc.antennaeUnlocked(0))
 					{
 						kGAMECLASS.output("\n\n" + pc.hornsLockedMessage());
 					}
