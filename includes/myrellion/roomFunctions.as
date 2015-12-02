@@ -523,7 +523,7 @@ public function noManzLandBonus():Boolean
 		choices[choices.length] = approachMyrDeserters;
 		choices[choices.length] = approachMyrDeserters;
 		if(flags["ZODEE_GALOQUEST"] == undefined) choices.push(zodeeGivesFirstGalomax);
-		if(flags["ZODEE_GALOQUEST"] == 1) choices.push(galoMaxPartTwo);
+		if(flags["ZODEE_GALOQUEST"] == 1) choices.push(secondZodeeEncouonterForGaloMax);
 		//Run the event
 		choices[rand(choices.length)]();
 		return true;
@@ -755,7 +755,7 @@ public function DeepCavesBonus():Boolean
 			//return true;
 		}
 		if(flags["ZODEE_GALOQUEST"] == undefined) choices.push(zodeeGivesFirstGalomax);
-		if(flags["ZODEE_GALOQUEST"] == 1) choices.push(galoMaxPartTwo);
+		if(flags["ZODEE_GALOQUEST"] == 1) choices.push(secondZodeeEncouonterForGaloMax);
 		
 		//Run the event
 		choices[rand(choices.length)]();
