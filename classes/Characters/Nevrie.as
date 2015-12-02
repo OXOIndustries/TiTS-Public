@@ -4,11 +4,6 @@
 	import classes.GLOBAL;
 	import classes.Items.Accessories.LeithaCharm;
 	import classes.Items.Miscellaneous.*;
-	import classes.Items.Combat.CrystalShard;
-	import classes.Items.Melee.NyreanSpear;
-	import classes.Items.Melee.MilitaryPick;
-	import classes.Items.Armor.ChitinArmor;
-	import classes.Items.Armor.NyreanChain;
 	import classes.Items.Transformatives.Bovinium;
 	import classes.Items.Transformatives.Nepeta;
 	import classes.kGAMECLASS;
