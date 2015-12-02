@@ -846,6 +846,16 @@
 		public static const ITEM_FLAG_SWIMWEAR:int				= 5; // Used specifically for swimming attire.
 		public static const ITEM_FLAG_EXPOSE_FULL:int				= 6; // Used specifically for attire that exposes nipples/breasts and genitals/asshole to the elements.
 		
+		public static const ITEM_FLAG_NAMES:Array = [
+			"Bow Weapon",
+			"Energy Weapon",
+			"Non-consumable",
+			"Bonus Hit Rate",
+			"Airtight",
+			"Swimwear",
+			"Naked Wear",
+		];
+		
 		/**
 		 * You have a couple of ways of querying the preference values to get useful information back out; it's why I've set the LIKES/DISLIKES values like I have.
 		 * creature.sexualPreferences.getPref(SEXPREF_flag) will give you the direct set value; 2, 1, -1 or -2. Or 0 if the preference isn't set.
