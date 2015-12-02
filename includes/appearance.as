@@ -1211,331 +1211,7 @@ public function appearance(target:Creature):void {
 			}
 		}
 		//CROTCH STUFF!
-		if(target.hasCock() || target.hasVagina()) {
-			output2("\n\n");
-			//Crotchial stuff - mention snake
-			if(target.hasStatusEffect("Genital Slit") && target.hasCock()) {
-				output2("Your masculine endowment");
-				if((target.hasVagina() && target.hasCock()) || target.totalCocks() > 1) output2("s are ");
-				else output2(" is ");
-				output2("concealed within a well-hidden slit when not in use, though when the need arises, you can part your concealed entrance and reveal your true self. ");
-				if(target.isTaur()) output2("You're probably one of the most modest taurs out there because of this. ");
-			}
-			else if(target.isTaur() && (target.hasCock() || target.hasVagina()) && target.originalRace == "half-leithan") output2("Your sexual equipment is positioned at the back of your tauric hindquarters, rather than at your humanoid waist. ");
-			else if(target.isTaur() && (target.hasCock() || target.hasVagina())) output2("Your sexual equipment is no longer below your waist, but instead at the back of your equine hindquarters. ");
-			
-			//SINGLE DICKS!
-			if(target.cockTotal() == 1) {
-				output2("Your " + target.cockDescript() + " is " + Math.floor(10*target.cocks[0].cLength())/10 + " inches long and ");
-				if(Math.floor(10*target.cocks[0].thickness())/10 < 2) {
-					if(Math.floor(10*target.cocks[0].thickness())/10 == 1) output2(int(10*target.cocks[0].thickness())/10 + " inch thick.");
-					else output2(Math.round(10*target.cocks[0].thickness())/10 + " inches across.");
-				}
-				else output2(num2Text(Math.round(10*target.cocks[0].thickness())/10) + " inches across.");				
-				dickBonusForAppearance(target, 0);
-				//Worm flavor
-				if(target.hasStatusEffect("Infested")) output2(" Every now and again a slimy worm coated in spunk slips partway out of your " + target.cockDescript(0) + ", tasting the air like a snake's tongue.");
-			}
-			//MULTICOCKS!
-			else if(target.totalCocks() > 1)
-			{
-				temp = 0;
-				rando = rand(4);
-				output2("Where a penis would normally be located, you have instead grown your " + target.multiCockDescript() + ":");
-				while(temp < target.cocks.length) 
-				{
-					
-					//middle cock description
-					if(rando == 0) {
-						if(temp == 0)output2("\nYour first ");
-						else output2("\nYour next ");
-						output2(target.cockDescript(temp));
-						output2(" is ");
-						output2(int(10*target.cocks[temp].cLength())/10 + " inches long and ");
-						if(Math.floor(target.cocks[temp].thickness()) >= 2) output2(num2Text(Math.round(target.cocks[temp].thickness() * 10)/10) + " inches wide.");
-						else {
-							if(target.cocks[temp].thickness() == 1) output2("one inch wide.");
-							else output2(Math.round(target.cocks[temp].thickness()*10)/10 + " inches wide.");
-						}
-					}
-					if(rando == 1) {
-						output2("\nYour ");
-						output2(target.cockDescript(temp) + " is " + Math.round(10*target.cocks[temp].cLength())/10 + " inches long and ");
-						if(Math.floor(target.cocks[temp].thickness()) >= 2) output2(num2Text(Math.round(target.cocks[temp].thickness() * 10)/10) + " inches thick.");
-						else {
-							if(target.cocks[temp].thickness() == 1) output2("one inch thick.");
-							else output2(Math.round(target.cocks[temp].thickness()*10)/10 + " inches thick.");
-						}
-					}
-					if(rando == 2) {
-						output2("\nThis ");
-						output2(target.cockDescript(temp) + " is " + Math.round(10*target.cocks[temp].cLength())/10 + " inches long and ");
-						if(Math.floor(target.cocks[temp].thickness()) >= 2) output2(num2Text(Math.round(target.cocks[temp].thickness() * 10)/10) + " inches thick.");
-						else {
-							if(target.cocks[temp].thickness() == 1) output2("one inch thick.");
-							else output2(Math.round(target.cocks[temp].thickness()*10)/10 + " inches thick.");
-						}
-					}
-					if(rando == 3) {
-						if(temp > 0) output2("\nYour next ");
-						else output2("\nYour first ");
-						output2(target.cockDescript(temp) + " is " + Math.round(10*target.cocks[temp].cLength())/10 + " inches long and ");
-						if(Math.floor(target.cocks[temp].thickness()) >= 2) output2(num2Text(Math.round(target.cocks[temp].thickness() * 10)/10) + " inches in diameter.");
-						else {
-							if(Math.round(target.cocks[temp].thickness()*10)/10 == 1) output2("one inch in diameter.");
-							else output2(Math.round(target.cocks[temp].thickness()*10)/10 + " inches in diameter.");
-						}
-					}
-					dickBonusForAppearance(target, temp);
-					temp++;
-					rando++
-					if(rando > 3) rando = 0;
-				}
-				//All sheathed
-				if(target.hasFullSheaths()) output2("\nEach of your manhoods naturally retract into an animalistic sheath when completely flaccid.");
-				//Worm flavor
-				if(target.hasStatusEffect("Infested")) output2("\nEvery now and again slimy worms coated in spunk slip partway out of your " + target.multiCockDescript() + ", tasting the air like tongues of snakes.");
-				//DONE WITH COCKS, moving on!
-			}
-		}
-		//Of Balls and Sacks!
-		if(target.balls > 0) {
-			if(target.cockTotal() == 0) output2("\n\n");
-			else if(target.cockTotal() > 1) output2("\n\n");
-			else output2(" ");
-			if(target.hasStatusEffect("Uniball")) {
-				if(target.skinType != GLOBAL.SKIN_TYPE_GOO) output2("Your " + target.sackDescript(true,true) + " clings tightly to your groin, holding your " + target.ballsDescript(true,true) + " snugly against you.");
-				else if(target.skinType == GLOBAL.SKIN_TYPE_GOO) output2("Your " + target.sackDescript(true,true) + " clings tightly to your groin, dripping and holding " + target.ballsDescript(true,true) + " snugly against you.");
-			}
-			else if(target.cockTotal() == 0) {
-				if(target.skinType == GLOBAL.SKIN_TYPE_SKIN) output2("" + StringUtil.capitalize(indefiniteArticle(target.sackDescript(true,true))) + " with " + target.ballsDescript(true,true) + " swings heavily under where a penis would normally grow.");
-				if(target.skinType == GLOBAL.SKIN_TYPE_FUR) output2("A fuzzy " + target.sackDescript(true,true) + " filled with " + target.ballsDescript(true,true) + " swings low under where a penis would normally grow.");
-				if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2("A scaley " + target.sackDescript(true,true) + " hugs your " + target.ballsDescript(true,true) + " tightly against your body.");
-				if(target.skinType == GLOBAL.SKIN_TYPE_GOO) output2("An oozing, semi-solid sack with " + target.ballsDescript(true,true) + " swings heavily under where a penis would normally grow.");
-			}
-			else {
-				if(target.skinType == GLOBAL.SKIN_TYPE_SKIN) output2(StringUtil.capitalize(indefiniteArticle(target.sackDescript(true,true))) + " with " + target.ballsDescript(true,true) + " swings heavily beneath your " + target.multiCockDescript() + ".");
-				if(target.skinType == GLOBAL.SKIN_TYPE_FUR) output2("A fuzzy " + target.sackDescript(true,true) + " filled with " + target.ballsDescript(true,true) + " swings low under your " + target.multiCockDescript() + ".");
-				if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2("A scaley " + target.sackDescript(true,true) + " hugs your " + target.ballsDescript(true,true) + " tightly against your body.");
-				if(target.skinType == GLOBAL.SKIN_TYPE_GOO) output2("An oozing, semi-solid sack with " + target.ballsDescript(true,true) + " swings heavily beneath your " + target.multiCockDescript() + ".");
-			}
-			//Does it mention the dick at the end of the sentence? If so, dont use pronoun here:
-			if(target.hasCock() && !target.hasStatusEffect("Uniball") && target.skinType != GLOBAL.SKIN_TYPE_SCALES)
-			{
-				output2(" You estimate each testicle to be about " + num2Text(Math.round(target.ballSize())) + " ");
-			}
-			//No dick mention? Great! Pronouns deployed!
-			else output2(" You estimate each of them to be about " + num2Text(Math.round(target.ballSize())) + " ");
-			if(Math.round(target.ballSize()) == 1) output2("inch");
-			else output2("inches");
-			var ballDisplayDiameter:Number = Math.round(target.ballDiameter()*10)/10;
-			output2(" around and " + ballDisplayDiameter);
-			if(ballDisplayDiameter != 1) output2(" inches");
-			else output2(" inch");
-			output2(" across.");
-		}	
-		//VAGOOZ
-		if(target.vaginas.length > 0) {
-			if(target.hasCock()) output2("\n\n");
-			if(!target.hasCock() && target.isTaur()) output2("As a tauric creature, your womanly parts lie between your rear legs in a rather equine fashion. ");
-			//Vaginal Numbers
-			if(target.vaginaTotal() == 1) {
-				output2("You have " + indefiniteArticle(target.vaginaDescript(0)) + ", with " + num2Text(target.vaginas[0].clits) + " " + Math.round(target.clitLength*10)/10 + "-inch clit");
-				if(target.vaginas[0].clits > 1) output2("s");
-				if(target.vaginas[0].hymen) output2(" and an intact hymen");
-				output2(". ");
-
-				if (target.hasStatusEffect("Mimbrane Pussy") && target.statusEffectv3("Mimbrane Pussy") > 3)
-				{
-					if (target.statusEffectv3("Mimbrane Pussy") < 8)
-					{
-						output2("Your pussy appears slightly swollen. ");
-					}
-					else if (target.statusEffectv3("Mimbrane Pussy") < 13)
-					{
-						output2("Your pussy appears noticably inflated");
-						if (target.isCrotchGarbed())
-						{
-							output2(" and creates a slight bulge beneath your");
-							if (target.armor.type == GLOBAL.ARMOR) output2(" armor");
-							else output2(" clothing");
-						}
-						output2(". ");
-					}
-					else
-					{
-						output2("Your pussy appears delightfully plump");
-						if (target.isCrotchGarbed())
-						{
-							output2(", creating an undeniable bulge in your");
-							if (target.armor.type == GLOBAL.ARMOR) output2(" armor");
-							else output2(" clothing");
-						}
-						output2(". ");
-					}
-				}
-				//Variances based on lustiness & wetness & such. THE DETAIL!
-				if(target.libido() < 50 && target.lust() < 50) //not particularly horny
-				{
-					//Wetness
-					if(target.vaginas[0].wetness() < 2) output2("No moisture presently escapes ");
-					else if(target.vaginas[0].wetness() < 4) output2("Moisture gleams in ");
-					else if(target.vaginas[0].wetness() >= 4) output2("Occasional beads of [target.girlCum] drip from ");
-				}
-				else if(target.libido() < 80 && target.lust() < 80) //kinda horny
-				{
-					//Wetness
-					if(target.vaginas[0].wetness() < 1) {}
-					else if(target.vaginas[0].wetness() < 2) output2("Moisture gleams in ");
-					else if(target.vaginas[0].wetness() < 4) output2("Occasional beads of [target.girlCum] drip from ");
-					else output2("Thin streams of [target.girlCum] occasionally dribble from ");
-				}
-				else //WTF horny!
-				{
-					//Wetness
-					if(target.vaginas[0].wetness() < 1) {}
-					else if(target.vaginas[0].wetness() < 2) output2("Occasional beads of [target.girlCum] drip from ");
-					else if(target.vaginas[0].wetness() < 4) output2("Thin streams of [target.girlCum] occasionally dribble from ");
-					else output2("Thick streams of [target.girlCum] drool constantly from ");
-				}
-				//Different description based on vag looseness
-				if(target.vaginas[0].looseness() < 2) output2("your " + target.vaginasDescript() + ".");
-				else if(target.vaginas[0].looseness() < 4) {
-					output2("your " + target.vaginasDescript() + ", ");
-					if(target.totalVaginas() > 1) output2("its ");
-					else output2("their ");
-					output2("lips slightly parted.");
-				}
-				else {
-					output2("the massive hole that is your " + target.vaginasDescript() + ".");
-				}
-				//Flavor
-				vaginaBonusForAppearance(target, 0, false);
-				//Ovipositor
-				if(target.vaginas[0].hasFlag(GLOBAL.FLAG_OVIPOSITOR))
-				{
-					output2(" Moving its internal muscles, you know it has the ability to lay eggs into another orifice.");
-				}
-			}
-			//MULTICOOCH!
-			else if(target.vaginaTotal() > 1) 
-			{
-				output2("You have " + num2Text(target.vaginas.length) + " " + target.vaginasDescript() + ", ");
-				if(target.matchedVaginas()) 
-				{
-					if(target.totalVaginas() == 2) output2(" both similar in appearance.");
-					else output2(" all similar in appearance.");
-				}
-				else output2(" each a unique and beautiful flower.");
-				temp = 0;
-				while(temp < target.totalVaginas())
-				{
-					if(temp == 0) output2("\nYour first entrance");
-					else if(temp == 1) output2("\nThe second slit");
-					else output2("\nThe third and final vagina");
-					output2(" is " + indefiniteArticle(target.vaginaNounDescript(temp)) + " with " + num2Text(target.vaginas[temp].clits) + " " + int(target.clitLength*10)/10 + "-inch clit");
-					if(target.vaginas[temp].clits > 1) output2("s");
-					//Virginal trumps all else
-					if(target.vaginas[temp].hymen) output2(", still virginal in appearance.");
-					//Else wetness -> size
-					else
-					{
-						//High wetness shit
-						if(target.vaginas[temp].wetness() >= 4)
-						{
-							if(target.lust() < 50) output2(", occassionally beading its ever-present [target.girlCumNoun]");
-							else if(target.lust() < 75) output2(", frequently drooling its ever-present [target.girlCumNoun]");
-							else output2(", constantly-drooling thick strands of [target.girlCumNoun]");
-						}
-						//Medium wetness shit
-						else if(target.vaginas[temp].wetness() >= 2)
-						{
-							if(target.lust() > 50) output2(", gleaming with barely-contained wetness");
-						}
-						//Size shit
-						if(target.vaginas[temp].looseness() < 2) output2(", its lips primly pressed together as if waiting for something");
-						else if(target.vaginas[temp].looseness() < 4) output2(", its lips slightly parted");
-						else output2(", its lips loosened by frequent fucking");
-						output2(".");
-						if(!target.matchedVaginas())
-						{
-							vaginaBonusForAppearance(target, temp, false);
-						}
-					}
-					//Ovipositor
-					if(target.vaginas[temp].hasFlag(GLOBAL.FLAG_OVIPOSITOR))
-					{
-						output2(" Moving its internal muscles, you know it has the ability to lay eggs into another orifice.");
-					}
-					if (temp == 0 && target.hasStatusEffect("Mimbrane Pussy") && target.statusEffectv3("Mimbrane Pussy") > 3)
-					{
-						if (target.statusEffectv3("Mimbrane Pussy") < 8)
-						{
-							output2(" Your pussy appears slightly swollen from the mimbrane.");
-						}
-						else if (target.statusEffectv3("Mimbrane Pussy") < 13)
-						{
-							output2(" Your pussy appears noticably inflated");
-							if (target.isCrotchGarbed())
-							{
-								output2(" and creates a slight bulge beneath your");
-								if (target.armor.type == GLOBAL.ARMOR) output2(" armor");
-								else output2(" clothing");
-							}
-							output2(".");
-						}
-						else
-						{
-							output2(" Your pussy appears delightfully plump");
-							if (target.isCrotchGarbed())
-							{
-								output2(", creating an undeniable bulge in your");
-								if (target.armor.type == GLOBAL.ARMOR) output2(" armor");
-								else output2(" clothing");
-							}
-							output2(".");
-						}
-					}
-					temp++;
-				}
-				if(target.matchedVaginas())
-				{
-					vaginaBonusForAppearance(target, 0, true);
-				}
-			}
-		}
-		//Genderless lovun'
-		if(!target.hasVagina() && !target.hasCock()) output2("\n\nYou have a curious lack of any sexual endowments.");
-		//BUNGHOLIO
-		if(target.ass != null) {
-			output2("\n\nYou have one " + target.assholeDescript() + ", placed between your cheeks where it belongs");
-			if(target.libido() < 50 && target.lust() < 50) //not particularly horny
-			{
-				//Wetness
-				if(target.ass.wetness() < 0) output2(" without any sign of moisture.");
-				else if(target.ass.wetness() <= 2) output2(".");
-				else if(target.ass.wetness() <= 4) output2(" with slight signs of moisture bordering its edges.");
-				else output2(" with occasional beads of lube bordering its edges.");
-			}
-			else if(target.libido() < 80 && target.lust() < 80) //kinda horny
-			{
-				//Wetness
-				if(target.ass.wetness() < 0) output2(", completely dry of any kind of moisture.");
-				else if(target.ass.wetness() <= 2) output2(".");
-				else if(target.ass.wetness() <= 3) output2(" with slight signs of moisture bordering its edges.");
-				else if(target.ass.wetness() < 5) output2(" with occasional beads of lube bordering its edges.");
-				else output2(" with thin streams of lube leaking out of its edges.");
-			}
-			else //WTF horny!
-			{
-				//Wetness
-				if(target.ass.wetness() < 0) output2(", desperately in need of lubricant.");
-				else if(target.ass.wetness() <= 2) output2(".");
-				else if(target.ass.wetness() <= 3) output2(" with occasional beads of lubricant dripping from the orifice every so often.");
-				else if(target.ass.wetness() < 5) output2(" with thin streams of lubricant occasionally dribbling from the orifice.");
-				else output2(" with thick streams of lubricant oozing constantly from the orifice quite liberally.");
-			}
-		}
+		crotchStuff(target);
 		
 		clearGhostMenu();
 		var btnIndex:int = 0;
@@ -1610,6 +1286,336 @@ public function appearance(target:Creature):void {
 			output2(" intelligent enough for some rudimentary communication....");
 		}		
 		addGhostButton(14, "Back", pcAppearance);
+	}
+}
+
+public function crotchStuff(target:Creature):void
+{
+	var rando:int = 0;
+	if(target.hasCock() || target.hasVagina()) {
+		output2("\n\n");
+		//Crotchial stuff - mention snake
+		if(target.hasStatusEffect("Genital Slit") && target.hasCock()) {
+			output2("Your masculine endowment");
+			if((target.hasVagina() && target.hasCock()) || target.totalCocks() > 1) output2("s are ");
+			else output2(" is ");
+			output2("concealed within a well-hidden slit when not in use, though when the need arises, you can part your concealed entrance and reveal your true self. ");
+			if(target.isTaur()) output2("You're probably one of the most modest taurs out there because of this. ");
+		}
+		else if(target.isTaur() && (target.hasCock() || target.hasVagina()) && target.originalRace == "half-leithan") output2("Your sexual equipment is positioned at the back of your tauric hindquarters, rather than at your humanoid waist. ");
+		else if(target.isTaur() && (target.hasCock() || target.hasVagina())) output2("Your sexual equipment is no longer below your waist, but instead at the back of your equine hindquarters. ");
+		
+		//SINGLE DICKS!
+		if(target.cockTotal() == 1) {
+			output2("Your " + target.cockDescript() + " is " + Math.floor(10*target.cocks[0].cLength())/10 + " inches long and ");
+			if(Math.floor(10*target.cocks[0].thickness())/10 < 2) {
+				if(Math.floor(10*target.cocks[0].thickness())/10 == 1) output2(int(10*target.cocks[0].thickness())/10 + " inch thick.");
+				else output2(Math.round(10*target.cocks[0].thickness())/10 + " inches across.");
+			}
+			else output2(num2Text(Math.round(10*target.cocks[0].thickness())/10) + " inches across.");				
+			dickBonusForAppearance(target, 0);
+			//Worm flavor
+			if(target.hasStatusEffect("Infested")) output2(" Every now and again a slimy worm coated in spunk slips partway out of your " + target.cockDescript(0) + ", tasting the air like a snake's tongue.");
+		}
+		//MULTICOCKS!
+		else if(target.totalCocks() > 1)
+		{
+			temp = 0;
+			rando = rand(4);
+			output2("Where a penis would normally be located, you have instead grown your " + target.multiCockDescript() + ":");
+			while(temp < target.cocks.length) 
+			{
+				
+				//middle cock description
+				if(rando == 0) {
+					if(temp == 0)output2("\nYour first ");
+					else output2("\nYour next ");
+					output2(target.cockDescript(temp));
+					output2(" is ");
+					output2(int(10*target.cocks[temp].cLength())/10 + " inches long and ");
+					if(Math.floor(target.cocks[temp].thickness()) >= 2) output2(num2Text(Math.round(target.cocks[temp].thickness() * 10)/10) + " inches wide.");
+					else {
+						if(target.cocks[temp].thickness() == 1) output2("one inch wide.");
+						else output2(Math.round(target.cocks[temp].thickness()*10)/10 + " inches wide.");
+					}
+				}
+				if(rando == 1) {
+					output2("\nYour ");
+					output2(target.cockDescript(temp) + " is " + Math.round(10*target.cocks[temp].cLength())/10 + " inches long and ");
+					if(Math.floor(target.cocks[temp].thickness()) >= 2) output2(num2Text(Math.round(target.cocks[temp].thickness() * 10)/10) + " inches thick.");
+					else {
+						if(target.cocks[temp].thickness() == 1) output2("one inch thick.");
+						else output2(Math.round(target.cocks[temp].thickness()*10)/10 + " inches thick.");
+					}
+				}
+				if(rando == 2) {
+					output2("\nThis ");
+					output2(target.cockDescript(temp) + " is " + Math.round(10*target.cocks[temp].cLength())/10 + " inches long and ");
+					if(Math.floor(target.cocks[temp].thickness()) >= 2) output2(num2Text(Math.round(target.cocks[temp].thickness() * 10)/10) + " inches thick.");
+					else {
+						if(target.cocks[temp].thickness() == 1) output2("one inch thick.");
+						else output2(Math.round(target.cocks[temp].thickness()*10)/10 + " inches thick.");
+					}
+				}
+				if(rando == 3) {
+					if(temp > 0) output2("\nYour next ");
+					else output2("\nYour first ");
+					output2(target.cockDescript(temp) + " is " + Math.round(10*target.cocks[temp].cLength())/10 + " inches long and ");
+					if(Math.floor(target.cocks[temp].thickness()) >= 2) output2(num2Text(Math.round(target.cocks[temp].thickness() * 10)/10) + " inches in diameter.");
+					else {
+						if(Math.round(target.cocks[temp].thickness()*10)/10 == 1) output2("one inch in diameter.");
+						else output2(Math.round(target.cocks[temp].thickness()*10)/10 + " inches in diameter.");
+					}
+				}
+				dickBonusForAppearance(target, temp);
+				temp++;
+				rando++
+				if(rando > 3) rando = 0;
+			}
+			//All sheathed
+			if(target.hasFullSheaths()) output2("\nEach of your manhoods naturally retract into an animalistic sheath when completely flaccid.");
+			//Worm flavor
+			if(target.hasStatusEffect("Infested")) output2("\nEvery now and again slimy worms coated in spunk slip partway out of your " + target.multiCockDescript() + ", tasting the air like tongues of snakes.");
+			//DONE WITH COCKS, moving on!
+		}
+	}
+	//Of Balls and Sacks!
+	if(target.balls > 0) {
+		if(target.cockTotal() == 0 && !target.hasVagina()) output2("\n\n");
+		else if(target.cockTotal() > 1) output2("\n\n");
+		else output2(" ");
+		if(target.hasStatusEffect("Uniball")) {
+			if(target.skinType != GLOBAL.SKIN_TYPE_GOO) output2("Your " + target.sackDescript(true,true) + " clings tightly to your groin, holding your " + target.ballsDescript(true,true) + " snugly against you.");
+			else if(target.skinType == GLOBAL.SKIN_TYPE_GOO) output2("Your " + target.sackDescript(true,true) + " clings tightly to your groin, dripping and holding " + target.ballsDescript(true,true) + " snugly against you.");
+		}
+		else if(target.cockTotal() == 0) {
+			if(target.skinType == GLOBAL.SKIN_TYPE_SKIN) output2("" + StringUtil.capitalize(indefiniteArticle(target.sackDescript(true,true))) + " with " + target.ballsDescript(true,true) + " swings heavily under where a penis would normally grow.");
+			if(target.skinType == GLOBAL.SKIN_TYPE_FUR) output2("A fuzzy " + target.sackDescript(true,true) + " filled with " + target.ballsDescript(true,true) + " swings low under where a penis would normally grow.");
+			if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2("A scaley " + target.sackDescript(true,true) + " hugs your " + target.ballsDescript(true,true) + " tightly against your body.");
+			if(target.skinType == GLOBAL.SKIN_TYPE_GOO) output2("An oozing, semi-solid sack with " + target.ballsDescript(true,true) + " swings heavily under where a penis would normally grow.");
+		}
+		else {
+			if(target.skinType == GLOBAL.SKIN_TYPE_SKIN) output2(StringUtil.capitalize(indefiniteArticle(target.sackDescript(true,true))) + " with " + target.ballsDescript(true,true) + " swings heavily beneath your " + target.multiCockDescript() + ".");
+			if(target.skinType == GLOBAL.SKIN_TYPE_FUR) output2("A fuzzy " + target.sackDescript(true,true) + " filled with " + target.ballsDescript(true,true) + " swings low under your " + target.multiCockDescript() + ".");
+			if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2("A scaley " + target.sackDescript(true,true) + " hugs your " + target.ballsDescript(true,true) + " tightly against your body.");
+			if(target.skinType == GLOBAL.SKIN_TYPE_GOO) output2("An oozing, semi-solid sack with " + target.ballsDescript(true,true) + " swings heavily beneath your " + target.multiCockDescript() + ".");
+		}
+		//Does it mention the dick at the end of the sentence? If so, dont use pronoun here:
+		if(target.hasCock() && !target.hasStatusEffect("Uniball") && target.skinType != GLOBAL.SKIN_TYPE_SCALES)
+		{
+			output2(" You estimate each testicle to be about " + num2Text(Math.round(target.ballSize())) + " ");
+		}
+		//No dick mention? Great! Pronouns deployed!
+		else output2(" You estimate each of them to be about " + num2Text(Math.round(target.ballSize())) + " ");
+		if(Math.round(target.ballSize()) == 1) output2("inch");
+		else output2("inches");
+		var ballDisplayDiameter:Number = Math.round(target.ballDiameter()*10)/10;
+		output2(" around and " + ballDisplayDiameter);
+		if(ballDisplayDiameter != 1) output2(" inches");
+		else output2(" inch");
+		output2(" across.");
+	}	
+	//VAGOOZ
+	if(target.vaginas.length > 0) {
+		if(target.hasCock()) output2("\n\n");
+		if(!target.hasCock() && target.isTaur()) output2("As a tauric creature, your womanly parts lie between your rear legs in a rather equine fashion. ");
+		//Vaginal Numbers
+		if(target.vaginaTotal() == 1) {
+			output2("You have " + indefiniteArticle(target.vaginaDescript(0)) + ", with " + num2Text(target.vaginas[0].clits) + " " + Math.round(target.clitLength*10)/10 + "-inch clit");
+			if(target.vaginas[0].clits > 1) output2("s");
+			if(target.vaginas[0].hymen) output2(" and an intact hymen");
+			output2(". ");
+
+			if (target.hasStatusEffect("Mimbrane Pussy") && target.statusEffectv3("Mimbrane Pussy") > 3)
+			{
+				if (target.statusEffectv3("Mimbrane Pussy") < 8)
+				{
+					output2("Your pussy appears slightly swollen. ");
+				}
+				else if (target.statusEffectv3("Mimbrane Pussy") < 13)
+				{
+					output2("Your pussy appears noticably inflated");
+					if (target.isCrotchGarbed())
+					{
+						output2(" and creates a slight bulge beneath your");
+						if (target.armor.type == GLOBAL.ARMOR) output2(" armor");
+						else output2(" clothing");
+					}
+					output2(". ");
+				}
+				else
+				{
+					output2("Your pussy appears delightfully plump");
+					if (target.isCrotchGarbed())
+					{
+						output2(", creating an undeniable bulge in your");
+						if (target.armor.type == GLOBAL.ARMOR) output2(" armor");
+						else output2(" clothing");
+					}
+					output2(". ");
+				}
+			}
+			//Variances based on lustiness & wetness & such. THE DETAIL!
+			if(target.libido() < 50 && target.lust() < 50) //not particularly horny
+			{
+				//Wetness
+				if(target.vaginas[0].wetness() < 2) output2("No moisture presently escapes ");
+				else if(target.vaginas[0].wetness() < 4) output2("Moisture gleams in ");
+				else if(target.vaginas[0].wetness() >= 4) output2("Occasional beads of [target.girlCum] drip from ");
+			}
+			else if(target.libido() < 80 && target.lust() < 80) //kinda horny
+			{
+				//Wetness
+				if(target.vaginas[0].wetness() < 1) {}
+				else if(target.vaginas[0].wetness() < 2) output2("Moisture gleams in ");
+				else if(target.vaginas[0].wetness() < 4) output2("Occasional beads of [target.girlCum] drip from ");
+				else output2("Thin streams of [target.girlCum] occasionally dribble from ");
+			}
+			else //WTF horny!
+			{
+				//Wetness
+				if(target.vaginas[0].wetness() < 1) {}
+				else if(target.vaginas[0].wetness() < 2) output2("Occasional beads of [target.girlCum] drip from ");
+				else if(target.vaginas[0].wetness() < 4) output2("Thin streams of [target.girlCum] occasionally dribble from ");
+				else output2("Thick streams of [target.girlCum] drool constantly from ");
+			}
+			//Different description based on vag looseness
+			if(target.vaginas[0].looseness() < 2) output2("your " + target.vaginasDescript() + ".");
+			else if(target.vaginas[0].looseness() < 4) {
+				output2("your " + target.vaginasDescript() + ", ");
+				if(target.totalVaginas() > 1) output2("its ");
+				else output2("their ");
+				output2("lips slightly parted.");
+			}
+			else {
+				output2("the massive hole that is your " + target.vaginasDescript() + ".");
+			}
+			//Flavor
+			vaginaBonusForAppearance(target, 0, false);
+			//Ovipositor
+			if(target.vaginas[0].hasFlag(GLOBAL.FLAG_OVIPOSITOR))
+			{
+				output2(" Moving its internal muscles, you know it has the ability to lay eggs into another orifice.");
+			}
+		}
+		//MULTICOOCH!
+		else if(target.vaginaTotal() > 1) 
+		{
+			output2("You have " + num2Text(target.vaginas.length) + " " + target.vaginasDescript() + ", ");
+			if(target.matchedVaginas()) 
+			{
+				if(target.totalVaginas() == 2) output2(" both similar in appearance.");
+				else output2(" all similar in appearance.");
+			}
+			else output2(" each a unique and beautiful flower.");
+			temp = 0;
+			while(temp < target.totalVaginas())
+			{
+				if(temp == 0) output2("\nYour first entrance");
+				else if(temp == 1) output2("\nThe second slit");
+				else output2("\nThe third and final vagina");
+				output2(" is " + indefiniteArticle(target.vaginaNounDescript(temp)) + " with " + num2Text(target.vaginas[temp].clits) + " " + int(target.clitLength*10)/10 + "-inch clit");
+				if(target.vaginas[temp].clits > 1) output2("s");
+				//Virginal trumps all else
+				if(target.vaginas[temp].hymen) output2(", still virginal in appearance.");
+				//Else wetness -> size
+				else
+				{
+					//High wetness shit
+					if(target.vaginas[temp].wetness() >= 4)
+					{
+						if(target.lust() < 50) output2(", occassionally beading its ever-present [target.girlCumNoun]");
+						else if(target.lust() < 75) output2(", frequently drooling its ever-present [target.girlCumNoun]");
+						else output2(", constantly-drooling thick strands of [target.girlCumNoun]");
+					}
+					//Medium wetness shit
+					else if(target.vaginas[temp].wetness() >= 2)
+					{
+						if(target.lust() > 50) output2(", gleaming with barely-contained wetness");
+					}
+					//Size shit
+					if(target.vaginas[temp].looseness() < 2) output2(", its lips primly pressed together as if waiting for something");
+					else if(target.vaginas[temp].looseness() < 4) output2(", its lips slightly parted");
+					else output2(", its lips loosened by frequent fucking");
+					output2(".");
+					if(!target.matchedVaginas())
+					{
+						vaginaBonusForAppearance(target, temp, false);
+					}
+				}
+				//Ovipositor
+				if(target.vaginas[temp].hasFlag(GLOBAL.FLAG_OVIPOSITOR))
+				{
+					output2(" Moving its internal muscles, you know it has the ability to lay eggs into another orifice.");
+				}
+				if (temp == 0 && target.hasStatusEffect("Mimbrane Pussy") && target.statusEffectv3("Mimbrane Pussy") > 3)
+				{
+					if (target.statusEffectv3("Mimbrane Pussy") < 8)
+					{
+						output2(" Your pussy appears slightly swollen from the mimbrane.");
+					}
+					else if (target.statusEffectv3("Mimbrane Pussy") < 13)
+					{
+						output2(" Your pussy appears noticably inflated");
+						if (target.isCrotchGarbed())
+						{
+							output2(" and creates a slight bulge beneath your");
+							if (target.armor.type == GLOBAL.ARMOR) output2(" armor");
+							else output2(" clothing");
+						}
+						output2(".");
+					}
+					else
+					{
+						output2(" Your pussy appears delightfully plump");
+						if (target.isCrotchGarbed())
+						{
+							output2(", creating an undeniable bulge in your");
+							if (target.armor.type == GLOBAL.ARMOR) output2(" armor");
+							else output2(" clothing");
+						}
+						output2(".");
+					}
+				}
+				temp++;
+			}
+			if(target.matchedVaginas())
+			{
+				vaginaBonusForAppearance(target, 0, true);
+			}
+		}
+	}
+	//Genderless lovun'
+	if(!target.hasVagina() && !target.hasCock()) output2("\n\nYou have a curious lack of any sexual endowments.");
+	//BUNGHOLIO
+	if(target.ass != null) {
+		output2("\n\nYou have one " + target.assholeDescript() + ", placed between your cheeks where it belongs");
+		if(target.libido() < 50 && target.lust() < 50) //not particularly horny
+		{
+			//Wetness
+			if(target.ass.wetness() < 0) output2(" without any sign of moisture.");
+			else if(target.ass.wetness() <= 2) output2(".");
+			else if(target.ass.wetness() <= 4) output2(" with slight signs of moisture bordering its edges.");
+			else output2(" with occasional beads of lube bordering its edges.");
+		}
+		else if(target.libido() < 80 && target.lust() < 80) //kinda horny
+		{
+			//Wetness
+			if(target.ass.wetness() < 0) output2(", completely dry of any kind of moisture.");
+			else if(target.ass.wetness() <= 2) output2(".");
+			else if(target.ass.wetness() <= 3) output2(" with slight signs of moisture bordering its edges.");
+			else if(target.ass.wetness() < 5) output2(" with occasional beads of lube bordering its edges.");
+			else output2(" with thin streams of lube leaking out of its edges.");
+		}
+		else //WTF horny!
+		{
+			//Wetness
+			if(target.ass.wetness() < 0) output2(", desperately in need of lubricant.");
+			else if(target.ass.wetness() <= 2) output2(".");
+			else if(target.ass.wetness() <= 3) output2(" with occasional beads of lubricant dripping from the orifice every so often.");
+			else if(target.ass.wetness() < 5) output2(" with thin streams of lubricant occasionally dribbling from the orifice.");
+			else output2(" with thick streams of lubricant oozing constantly from the orifice quite liberally.");
+		}
 	}
 }
 
