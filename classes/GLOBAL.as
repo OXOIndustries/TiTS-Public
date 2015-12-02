@@ -853,7 +853,7 @@
 			"Bonus Hit Rate",
 			"Airtight",
 			"Swimwear",
-			"Naked Wear",
+			"Fully Exposed",
 		];
 		
 		/**
