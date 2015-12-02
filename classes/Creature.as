@@ -1919,6 +1919,12 @@ package classes {
 				case "hornsNoun":
 					buffer = hornsNoun();
 					break;
+				case "antenna":
+					buffer = antennaeDescript(false);
+					break;
+				case "antennae":
+					buffer = antennaeDescript();
+					break;
 					
 				default:
 					// error production is now done up-stream in the parser
@@ -4003,8 +4009,6 @@ package classes {
 			}
 			else if (tailType == GLOBAL.TYPE_BOVINE)
 				adjectives = ["bovine", "cow-like"];
-			else if (tailType == GLOBAL.TYPE_CUNTSNAKE)
-				adjectives = ["snake-like"];
 			else if (tailType == GLOBAL.TYPE_PANDA)
 				adjectives = ["panda", "bear-like"];
 			else if (tailType == GLOBAL.TYPE_FELINE)
@@ -4046,7 +4050,7 @@ package classes {
 				adjectives = ["badger", "mustelid", "tufted"];
 			else if (tailType == GLOBAL.TYPE_RASKVEL)
 				adjectives = ["raskvel", "reptilian"];
-			else if (tailType == GLOBAL.TYPE_SYDIAN)
+			else if (tailType == GLOBAL.TYPE_CUNTSNAKE)
 				adjectives = ["reptilian", "snake-like", "serpent"];
 			else if (tailType == GLOBAL.TYPE_SYDIAN)
 				adjectives = ["sydian", "wicked-shaped"];
@@ -12149,6 +12153,57 @@ package classes {
 			//Horn nouns
 			if(hornType == GLOBAL.TYPE_DEER) return "antler";
 			return "horn";
+		}
+		
+		public function hasAntennae():Boolean
+		{
+			return (antennae > 0 && antennaeType != 0); 
+		}
+		public function removeAntennae():void
+		{
+			antennaeType = GLOBAL.TYPE_HUMAN;
+			antennae = 0;
+			return;
+		}
+		public function antennaeDescript(plural:Boolean = true): String 
+		{
+			var description:String = "";
+			var adjectives:Array = [];
+			var nouns:Array = ["antenna"];
+			var noun:String = "antenna";
+			
+			switch (antennaeType)
+			{
+				default:
+					adjectives.push("non-existent");
+					break;
+					
+				case GLOBAL.TYPE_BEE:
+					adjectives.push("zil", "bee-like", "insect-like", "insectile");
+					nouns.push("feeler");
+					break;
+				case GLOBAL.TYPE_SYDIAN:
+					adjectives.push("sydian", "brush-like", "bristly", "insectile");
+					nouns.push("feeler");
+					break;
+				case GLOBAL.TYPE_MYR:
+					adjectives.push("myr", "ant-like", "insect-like", "insectile");
+					nouns.push("feeler");
+					break;
+			}
+			
+			if(adjectives.length > 0 && rand(2) == 0) description += RandomInCollection(adjectives) + " ";
+			if(nouns.length > 1) noun = RandomInCollection(nouns);
+			
+			if(plural && antennae > 1)
+			{
+				if(noun == "antenna") noun += "e";
+				else noun = pluralize(noun);
+			}
+			
+			description += noun;
+			
+			return description;
 		}
 	}
 }
