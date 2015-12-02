@@ -166,29 +166,21 @@
 				//Hair color change
 				if(pc.hairColor != "brown" && pc.hairColor != "chocolate" && pc.hairColor != "dark brown" && changes < changeLimit && rand(4) == 0)
 				{
-					if(pc.hairColorUnlocked("brown"))
-					{
-						kGAMECLASS.output("\n\nThe most insidious change the cookies wreak isn’t something sexual or mental. No, it’s changing your hair color. <b>Your [pc.hairColor] locks have turned brown</b>! You didn’t even get to watch it happen!");
-						pc.hairColor = "brown";
-						changes++;
-					}
-					else kGAMECLASS.output("\n\n" + pc.hairColorLockedMessage());
+					kGAMECLASS.output("\n\nThe most insidious change the cookies wreak isn’t something sexual or mental. No, it’s changing your hair color. <b>Your [pc.hairColor] locks have turned brown</b>! You didn’t even get to watch it happen!");
+					pc.hairColor = "brown";
+					changes++;
 				}
 				//Fur color changing
 				if(pc.hasFur() && pc.furColor != "brown" && pc.furColor != "chocolate" && changes < changeLimit && rand(4) == 0)
 				{
-					if(pc.furColorUnlocked("chocolate"))
-					{
-						kGAMECLASS.output("\n\nYou glance down, then do a double-take. Your [pc.skinFurScales] is changing color, morphing before your very eyes into a color like rich chocolate. It’s even getting a little thicker too - fluffier for sure. You pet yourself and try to enjoy the change. You can probably dye it if you aren’t happy <b>having brown fur</b>.");
-						pc.furColor = "chocolate";
-						changes++;
-					}
-					else kGAMECLASS.output("\n\n" + pc.furColorLockedMessage());
+					kGAMECLASS.output("\n\nYou glance down, then do a double-take. Your [pc.skinFurScales] is changing color, morphing before your very eyes into a color like rich chocolate. It’s even getting a little thicker too - fluffier for sure. You pet yourself and try to enjoy the change. You can probably dye it if you aren’t happy <b>having brown fur</b>.");
+					pc.furColor = "chocolate";
+					changes++;
 				}
 				//Eye type changed to normal wiv color change
 				if(pc.eyeType != GLOBAL.TYPE_HUMAN && rand(4) == 0 && changes < changeLimit)
 				{
-					if(pc.eyeColorUnlocked("brown"))
+					if(pc.eyeTypeUnlocked(GLOBAL.TYPE_HUMAN))
 					{
 						kGAMECLASS.output("\n\nEverything is getting really fuzzy. You can barely see your hand in front of your face, for crying out loud. Unreasoning terror wells up inside you; are you going blind? Was there some kind of programming mishap with the microsurgeons buried in these cookies?\n\nYou get your answer after a half-minute of panic when your vision returns to normal, even if the color balance seems a little off. You check yourself with the Codex’s camera function and discover that your eyes have changes to a far plainer design. <b>You’ve got eyes like a terran or dozens of other species");
 						if(pc.eyeColor != "brown") kGAMECLASS.output(", and yours turned brown in the process");
@@ -197,7 +189,7 @@
 						pc.eyeColor = "brown";
 						changes++;
 					}
-					else kGAMECLASS.output("\n\n" + pc.eyeColorLockedMessage());
+					else kGAMECLASS.output("\n\n" + pc.eyeTypeLockedMessage());
 				}
 				//Nonhair to hair
 				if((pc.hairType == GLOBAL.HAIR_TYPE_FEATHERS || pc.hairType == GLOBAL.HAIR_TYPE_GOO || pc.hairType == GLOBAL.HAIR_TYPE_TENTACLES) && rand(4) == 0 && changes < changeLimit)
