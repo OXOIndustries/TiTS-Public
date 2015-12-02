@@ -198,6 +198,26 @@
 				}
 			}
 			
+			// Considering we don't even have any item flags atm, I'm going to ignore it for the time being.
+			// -- Nope, here it is!
+			// Special item flags!
+			if (this.itemFlags.length > 0)
+			{
+				var fList:String = "";
+				for (var i:uint = 0; i < itemFlags.length; i++)
+				{
+					// Ignore non-consumable flag
+					if (itemFlags[i] != GLOBAL.NOT_CONSUMED_BY_DEFAULT)
+					{
+						if (fList.length > 0) fList += ", ";
+						fList += GLOBAL.ITEM_FLAG_NAMES[itemFlags[i]];
+					}
+				}
+				if(!short) compareString += "\n\n";
+				else compareString += "\n";
+				compareString += "Special Flags:\n" + fList;
+			}
+			
 			// Item value -- this is going to be a bit of a shit. I can't easily figure out what "mode" a button is at this point, so this code doesn't know if we're buying or selling,
 			// so we dunno which modifiers to use to figure out the actual value of an item wrt a specific vendor.
 			// Can't lean on the shopKeep stuff, because some vendors in game atm don't use it (Crazy Carl), so we can't just track the "state" we need and pull the data later.
@@ -219,8 +239,6 @@
 				
 				compareString = mergeString(compareString, valueString);
 			}
-			
-			// Considering we don't even have any item flags atm, I'm going to ignore it for the time being.
 			
 			// For custom items, we need to figure out exactly what kinds of things we could mod into a weapon, and how best to display them, and how that system is going to work. 
 			// I've got some ideas that ima forumpoast about so we can figure out exactly what direction we wanna go with that. 
@@ -285,22 +303,22 @@
 				resultString += displayAs + ": <b>";
 				resultString += newItemStat;
 				if (asPercentage) resultString += "%";
-				resultString += "</b> ";
+				resultString += "</b> (";
 				
 				if (!lowIsGood)
 				{
 					// Figure out formatting shit
 					if (statDiff < 0)
 					{
-						resultString += "<span class='bad'><b>(";
+						resultString += "<span class='bad'><b>";
 					}
 					else if (statDiff > 0)
 					{
-						resultString += "<span class='good'><b>(+";
+						resultString += "<span class='good'><b>+";
 					}
 					else if (statDiff == 0)
 					{
-						resultString += "<span class='words'><b>(";
+						resultString += "<span class='words'><b>";
 					}
 				}
 				else
@@ -308,21 +326,21 @@
 					// Figure out formatting shit
 					if (statDiff > 0)
 					{
-						resultString += "<span class='bad'><b>(+";
+						resultString += "<span class='bad'><b>+";
 					}
 					else if (statDiff < 0)
 					{
-						resultString += "<span class='good'><b>(";
+						resultString += "<span class='good'><b>";
 					}
 					else if (statDiff == 0)
 					{
-						resultString += "<span class='words'><b>(";
+						resultString += "<span class='words'><b>";
 					}
 				}
 				
 				resultString += statDiff;
 				if (asPercentage) resultString += "%";
-				resultString += ")</b></span>";
+				resultString += "</b></span>)";
 			}
 			
 			return resultString;
@@ -428,7 +446,7 @@
 				
 				// Print the values
 				damageString += newItem.baseDamage.getType(damIndex).longName + ":\t ";
-				damageString += "<b>" + String(newItem.baseDamage.getType(damIndex).damageValue) + "</b>";
+				damageString += "<b>" + String(newItem.baseDamage.getType(damIndex).damageValue) + "</b> (";
 				
 				// Print the comparison value
 				var newDam:Number = newItem.baseDamage.getType(damIndex).damageValue;
@@ -436,20 +454,20 @@
 				
 				if (newDam > oldDam)
 				{
-					damageString += " <span class='good'><b>(+";
+					damageString += "<span class='good'><b>+";
 					damageString += String(newDam - oldDam);
 				}
 				else if (newDam < oldDam)
 				{
-					damageString += " <span class='bad'><b>(-";
+					damageString += "<span class='bad'><b>-";
 					damageString += String(oldDam - newDam);
 				}
 				else
 				{
-					damageString += " <span class='words'><b>(0";
+					damageString += "<span class='words'><b>0";
 				}
 				
-				damageString += ")</b></span> ";
+				damageString += "</b></span>) ";
 			}
 			
 			if (damageString.length > 0)
@@ -460,24 +478,24 @@
 			// Total damage difference
 			if (newDamage != 0 || oldDamage != 0)
 			{
-				damAppend += "<b>" + String(newDamage) + "</b>";
+				damAppend += "<b>" + String(newDamage) + "</b> (";
 				
 				if (newDamage > oldDamage)
 				{
-					damAppend += " <span class='good'><b>(+";
+					damAppend += "<span class='good'><b>+";
 					damAppend += String(newDamage - oldDamage);
 				}
 				else if (newDamage < oldDamage)
 				{
-					damAppend += " <span class='bad'><b>(-";
+					damAppend += "<span class='bad'><b>-";
 					damAppend += String(oldDamage - newDamage);
 				}
 				else
 				{
-					damAppend += " <span class='words'><b>(0";
+					damAppend += "<span class='words'><b>0";
 				}
 				
-				damAppend += ")</b></span>\n";
+				damAppend += "</b></span>)\n";
 			}
 			
 			damageString = damAppend + damageString;
@@ -526,16 +544,16 @@
 			}
 			
 			// Merge shit together
-			if (fNew.length > 0) flags += "<span class='good'><b>" + fNew + "</b></span>";
+			if (fNew.length > 0) flags += "<span class='good'>" + fNew + "</span>";
 			if (fDupe.length > 0)
 			{
-				if (fNew.length > 0) flags += "<span class='words'><b>, </b></span>";
-				flags += "<span class='words'><b>" + fDupe + "</b></span>";
+				if (fNew.length > 0) flags += ", ";
+				flags += "<span class='words'>" + fDupe + "</span>";
 			}
 			if (fLost.length > 0)
 			{
-				if (fDupe.length > 0 || fNew.length > 0) flags += "<span class='bad'><b>, </b></span>";
-				flags += "<span class='bad'><b>" + fLost + "</b></span>";
+				if (fDupe.length > 0 || fNew.length > 0) flags += ", ";
+				flags += "<span class='bad'>" + fLost + "</span>";
 			}
 			
 			if (fNew.length > 0 || fDupe.length > 0 || fLost.length > 0)
@@ -579,31 +597,31 @@
 				
 				// Print the new items resistance value as a %
 				resistancesDiffString += newItem.resistances.getType(resistIndex).longName + "\t ";
-				resistancesDiffString += String(newItem.resistances.getType(resistIndex).damageValue) + "%\t ";
-					
+				resistancesDiffString += String(newItem.resistances.getType(resistIndex).damageValue) + "%\t (";
+				
 				// Display the comparison value
 				var newRes:Number = newItem.resistances.getType(resistIndex).damageValue;
 				var oldRes:Number = oldItem.resistances.getType(resistIndex).damageValue;
-					
+				
 				if (newRes > oldRes)
 				{
 					// Good
-					resistancesDiffString += "<span class='good'><b>(+";
+					resistancesDiffString += "<span class='good'><b>+";
 					resistancesDiffString += newRes - oldRes;
 				}
 				else if (newRes < oldRes)
 				{
 					// Bad
-					resistancesDiffString += "<span class='bad'><b>(-";
+					resistancesDiffString += "<span class='bad'><b>-";
 					resistancesDiffString += oldRes - newRes;
 				}
 				else
 				{
 					// No diff
-					resistancesDiffString += "<span class='words'><b>(0";
+					resistancesDiffString += "<span class='words'><b>0";
 				}
 					
-				resistancesDiffString += ")</b></span> ";
+				resistancesDiffString += "</b></span>) ";
 			}
 			
 			if (resistancesDiffString.length > 0)
@@ -634,13 +652,13 @@
 				{
 					// New flag
 					if (fNew.length > 0) fNew += ", ";
-					fNew += nFlags[i].short;
+					fNew += "<span class='good'>" + nFlags[i].short + "</span>";
 				}
 				else
 				{
 					// Dupe flag
 					if (fDupe.length > 0) fDupe += ", ";
-					fDupe += nFlags[i].short;
+					fDupe += "<span class='words'>" + nFlags[i].short + "</span>";
 				}
 			}
 			
@@ -650,14 +668,14 @@
 				{
 					// Lost flag
 					if (fLost.length > 0) fLost += ", ";
-					fLost += oFlags[i].short;
+					fLost += "<span class='bad'>" + oFlags[i].short + "</span>";
 				}
 			}
 			
 			// Merge shit together
-			if (fNew.length > 0) flags += "<span class='good'>" + fNew + "</span>";
-			if (fDupe.length > 0) flags += "<span class='words'>" + fDupe + "</span>";
-			if (fLost.length > 0) flags += "<span class='bad'>" + fLost + "</span>";
+			if (fNew.length > 0) flags += fNew;
+			if (fDupe.length > 0) flags += fDupe;
+			if (fLost.length > 0) flags += fLost;
 			
 			if (fNew.length > 0 || fDupe.length > 0 || fLost.length > 0)
 			{
