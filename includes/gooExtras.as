@@ -52,10 +52,90 @@ public function zodeeGivesFirstGalomax():void
 	quickLoot(new GaloMax());
 }
 
-public function galoMaxPartTwo():void
+//Zo’dee encounter #2
+public function secondZodeeEncouonterForGaloMax():void
 {
-	output("\n\nThere's a pill bottle left on the ground here. <b>This is a placehoooolder.</b>\n\n");
+	clearOutput();
+	showZodee();
+	output("You aren’t alone. A white-suited figure stands a few yards away, warily aiming the muzzle of a deadly-looking weapon in your direction - at least, until she recognizes you.");
+	output("\n\n<i>“Oh it’s you.”</i> Her familiar voice instantly lightens the tone, and with the barrel of the weapon no longer waving in your face, you’re able to identify her. It’s Zo’dee - another rusher. You bumped into her a while back.");
+	output("\n\nYou wave back in greeting, taking the chance to drink in the sight of the skimpily-clothed alien. She notices and puts a hand on her hip, subtly shifting her chest to lift her prodigious bosom into a shelf of jiggling delights. The arching of her back puts her thinly-veiled derriere on full display, a pair of almost globular cheeks that beg to be squeezed. Zo’dee’s voice lilts playfully. <i>“My eyes are up here.”</i>");
+	output("\n\nYou jerk your gaze back up-");
+	output("\n\n<i>“But you can keep looking if you want.”</i> Zo’dee wiggles closer, running a palm up her thigh to the side of her belly. <i>“It’s so easy to get all worked up out here.”</i> Her antennae bounce to the same hypnotic beat as her breasts. <i>“The damned natives are just too good at making a girl fill up with eggs, you know?”</i> The gelatinous rusher gestures at her crotch, displaying the bulging outline of a prominent ovipositor. <i>“Hey, I got an idea. Help me squeeze ‘em out, and I’ll give you this dose of GaloMax I found.”</i>");
+	output("\n\nIf you help her, you’ll have to squeeze the eggs out of that thing between her legs, but if you don’t, you might miss out on a rare transformative item. Maybe you could buy it? Five hundred credits sound fair.");
+	
+	processTime(4);
+	//lust+5
+	pc.lust(5);
 	flags["ZODEE_GALOQUEST"] = 2;
+	//[Help Her] [Buy It] [Nope]
+	clearMenu();
+	addButton(2,"Nope",nopeZodeeIDontWantShit,undefined,"Nope","Turn down her offer and be on your way.");
+	addButton(0,"Help Her",helpZodeeWithHerEggProblem,undefined,"Help Her","Help her squeeze out some eggs for GaloMax.");
+	addButton(1,"Buy It",buyGaloMaxFromZodee,undefined,"Buy It","Offer to buy the GaloMax off her for 500 credits. That's a good deal, right?\n\n<b>500 credits</b>");
+}
+
+
+//[Nope]
+public function nopeZodeeIDontWantShit():void
+{
+	clearOutput();
+	output("<i>“No thanks, but good luck.”</i> You give her a friendly wave and prepare to go on your way.");
+	output("\n\nZo’dee waves back. <i>“Suit yourself, but don’t expect me to come save you.”</i>");
+	output("\n\nWhen you look back, the rahn has moved on.");
+	processTime(1);
+	flags["ZODEE_S2_CHOICE"] = -1;
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//[Buy It]
+public function buyGaloMaxFromZodee():void
+{
+	clearOutput();
+	output("<i>“");
+	if(pc.isBimbo()) output("Umm, like how about I buy it? 500 sound good?");
+	else if(pc.isBro()) output("No time to screw around with that shit. 500 creds.");
+	else if(pc.isNice()) output("Would you accept credits instead? 500, to be precise.");
+	else if(pc.isMischievous()) output("Much as I might enjoy getting my hands on your body, I’m in a bit of a hurry. How about 500 credits?");
+	else output("Eh. I bet you’d rather have 500 credits.");
+	output("”</i> You pull a loaded chit out and wave it around.");
+	output("\n\nZo’dee looks about to refuse, then thinks better of it. <i>“Yeah, I guess,”</i> she huffs, snatching the chit from your hand. <i>“You’re more boring than a Tove diplomat. Little bastards wouldn’t know a good fuck if it cockslapped them in the face. Here-”</i> She pulls a pill bottle off her hip and tosses it your way. <i>“Don’t get crazy with the GaloMax. It’d be hard to adventure from the inside of a bucket.”</i>");
+	output("\n\nCan that... can that actually happen? You look up from the label to ask, but Zo’dee is already stomping off into the untamed wilds.\n\n");
+	//-500 creds, acquire GaloMax
+	pc.credits -= 500;
+	flags["ZODEE_S2_CHOICE"] = 0;
+	processTime(2);
+	quickLoot(new GaloMax());
+}
+
+//[Help Her]
+public function helpZodeeWithHerEggProblem():void
+{
+	clearOutput();
+	showZodee();
+	output("Zo’dee’s eyes light up when you tell her you’ll help her.");
+	output("\n\n<i>“Really?”</i> The teal-skinned gel-girl seems positively elated. <i>“That kind of service usually costs quite a few credits... or a few drinks at least.”</i> Running a finger down the edge of her outfit, she releases an invisible catch, allowing the white latex to peel away. Deep blue nipples appear shortly before the tip of her turgid egg-layer, and the more you see of her unfeminine organ, the more aware of her plight you become. She is <i>stuffed</i> with eggs. The topmost sphere looks about ready to pop out. All you’ve got to do is give it a squeeze.");
+	output("\n\n<i>“Go on,”</i> Zo’dee purrs encouragingly. <i>“Squeeze them out.”</i>");
+	output("\n\n{Your breath catches in your throat. It’s beautiful, even for like, a lady-cock./Your breath seems a little too fast even to your own ears. There’s something indescribably exciting about offering such salacious assistance.} You reach out and grab hold, marvelling at the smooth, almost slick texture of her gelatinous skin. It’s not quite as soft as you’d expect, tough and hard enough to make you doubt you’ll be much help at squeezing out all the eggs trapped inside, but Zo’dee’s blissful expression is all the encouragement you need to forge ahead.");
+	output("\n\nExperimentally stroking, you squeeze it from the base to the tip, at first alarmed and then pleased when a whitish-green goo leaks from the tip to glaze your fingers. Zo’dee wobbles and gasps, leaning against you for support{, forced to hold onto your diminutive shoulders lest she pitch over on top of you.} You grin up at her and squeeze her near the base, forcing her prong to bloat bigger, the head greenish-blue. Its slitted tip is already starting to gape. More yoghurt-thick goop oozes out.");
+	output("\n\nYou use the extra fluid as lubricant, squeezing tight, dragging your pinching fingers upward. The spherical distentions of her eggs press back against your digits, but even they have to give. One forceful tug is all it takes to pop the first egg from Zo’dee’s dribbling spout. Rahn-spunk sprays out like champagne from a shaken bottle, carrying another orb to land alongside the first.");
+	output("\n\nThe gelatinous girl is biting her lower lips and watching you with rapt attention, grunting and shaking her hips, slamming her spurting ovipositor into your fingers as hard as she can. She’s straight-up fucking your hand at this point. All you have to do is hold on and squeeze at the right moments to make the orgasmically addled alien moan and spurt. Ribbons of gooey relief intermingle with your squelching knuckles, filling the air with the lewdest slaps imaginable.");
+	output("\n\nAnother egg lands in a rapidly expanding puddle with a squelch, kicking droplets of mixed ivory-emerald spunk onto your ");
+	if(pc.hasToes()) output("toes");
+	else output("[pc.footOrFeet]");
+	output(". Zo’dee bucks powerfully another few times, expelling two more orbs, yet her frenetic motions die down afterward, expended. More eggs still lie within her. You can feel them rolling past your palm, pushed into position by whatever her race has in place of muscles. But Zo’dee seems spent. Her eyes are closed, her tongue is hanging free, and her antennae are drooping so low they verge on pressing against her face.");
+	output("\n\nWeak twitches are the most your cummed-out companion can offer, but you did promise her you would help her with her egg problem. And there are still so many eggs to wring out of her.");
+	output("\n\nShifting position, you ease Zo’dee onto the ground with her legs akimbo, splayed to either side of the puddle of eggs and rahn-butter. Then, squatting behind her, you get both hands on her still-stuffed ovipositor and work it over in earnest. She whimpers and cums again, splattering a half-dozen eggs onto the pile in rapid succession. You don’t pause or slow, mercilessly stroking her off, pumping her with sure, firm strokes until her body stops offering you more eggs - and the flood of creamy spooge tapers down to a drizzle.");
+	output("\n\nZo’dee’s head lolls back, and she looks at you with dazzling smile. <i>“O-oh, I might have to keep you...”</i> She grabs your head and forcefully kisses you, popping free with a ‘Mwah~’");
+	output("\n\nYou stumble up, a little confused at her sudden recovery and fumbling for your words.");
+	output("\n\n<i>“Maybe next time I’ll have you suck me off even when I’m </i>not<i> full of eggs. I bet that mouth of yours is just as good as your hands.”</i> Zo’dee produces the bottle of GaloMax and chucks it your way. <i>“See ya around, slut.”</i>");
+	output("\n\nYou catch the bottle and shake it. A single pill rattles around inside.");
+	output("\n\nThe teal rahn is already on her feet and lacing up her jumpsuit. She favors you with a mischievous smile, stretches out like a cat, and prances off into the wilds, brandishing her pistol.");
+	output("\n\nWeird.\n\n");
+	pc.lust(15);
+	flags["ZODEE_S2_CHOICE"] = 1;
+	processTime(17);
 	quickLoot(new GaloMax());
 }
 
