@@ -111,7 +111,7 @@
 					changes++;
 				}
 				//Masculine TFs
-				//Get a doggy dick
+				//Get a human dick
 				//First find an unTF'ed prick
 				choices = new Array();
 				for(x = 0; x < pc.cockTotal(); x++)
@@ -150,6 +150,7 @@
 					pc.removeStatusEffect("Genital Slit");
 				}
 				
+				// Remove Markings
 				if (pc.hasStatusEffect("Vanae Markings") && changes < changeLimit && rand(6) == 0)
 				{
 					kGAMECLASS.output("\n\nYou feel your [pc.skinNoun] tingle and notice the " + pc.skinAccent + " swirls decorating your form starting to dissolve and fade. It doesn't take long until your");
@@ -224,7 +225,7 @@
 						else if(bonusRowsTFed > 1) kGAMECLASS.output(" Your other breasts shrink a bit as well.");
 					}
 				}
-				//Change arm type to furred
+				//Change arm type to human
 				if(pc.armType != GLOBAL.TYPE_HUMAN && changes < changeLimit && rand(3) == 0)
 				{
 					if (target.armTypeUnlocked(GLOBAL.TYPE_HUMAN))
@@ -236,7 +237,7 @@
 					}
 					else kGAMECLASS.output(target.armTypeLockedMessage());
 				}
-				//Change leg-type to furred (Needs Bipedal legs)
+				//Change leg-type to bipedal human
 				if((pc.legType != GLOBAL.TYPE_HUMAN || pc.legCount != 2) && changes < changeLimit &&  rand(3) == 0 && pc.armType == GLOBAL.TYPE_HUMAN)
 				{
 					if (target.legTypeUnlocked(GLOBAL.TYPE_HUMAN))
@@ -263,9 +264,7 @@
 						else kGAMECLASS.output("they vanish");
 						kGAMECLASS.output(" entirely, allowing you to straighten up a bit. <b>You no longer have a tail</b>.");
 
-						pc.tailCount = 0;
-						pc.tailType = GLOBAL.TYPE_HUMAN;
-						pc.clearTailFlags();
+						pc.removeTails();
 						changes++;
 					}
 					else kGAMECLASS.output(target.tailTypeLockedMessage());
@@ -285,53 +284,78 @@
 				//Tongue:
 				if(pc.tongueType != GLOBAL.TYPE_HUMAN && changes < changeLimit && rand(4) == 0)
 				{
-					kGAMECLASS.output("\n\nYour tongue feels thick in your mouth, morphing into a rounded, slightly tapered shape. <b>You have a human tongue</b>.");
-					changes++;
-					pc.clearTongueFlags();
-					pc.tongueType = GLOBAL.TYPE_HUMAN;
+					if(pc.tongueTypeUnlocked(0))
+					{
+						kGAMECLASS.output("\n\nYour tongue feels thick in your mouth, morphing into a rounded, slightly tapered shape. <b>You have a human tongue</b>.");
+						changes++;
+						pc.clearTongueFlags();
+						pc.tongueType = GLOBAL.TYPE_HUMAN;
+					}
+					else kGAMECLASS.output("\n\n" + pc.tongueTypeLockedMessage());
 				}
 				//Horns/antennae:
 				if((pc.hasHorns() || pc.antennae > 0) && rand(4) == 0 && changes < changeLimit)
 				{
-					kGAMECLASS.output("\n\nThere’s a sucking feeling on the top of your head, as it draws its extra appendages inward. By the time it’s done, <b>your ");
-					if(pc.hasHorns()) 
+					if((pc.hasHorns() && pc.hornsUnlocked(0)) || (pc.antennae > 0 && pc.antennaeUnlocked(0)))
 					{
-						kGAMECLASS.output("[pc.horns]");
-						pc.removeHorns();
+						kGAMECLASS.output("\n\nThere’s a sucking feeling on the top of your head, as it draws its extra appendages inward. By the time it’s done, <b>your ");
+						if(pc.hasHorns()) 
+						{
+							kGAMECLASS.output("[pc.horns]");
+							pc.removeHorns();
+						}
+						else
+						{
+							kGAMECLASS.output("antenna");
+							if(pc.antennae != 1) kGAMECLASS.output("e");
+							pc.antennae = 0;
+							pc.antennaeType = GLOBAL.TYPE_HUMAN;
+						}
+						kGAMECLASS.output(" are gone</b>.");
+						changes++;
 					}
-					else 
+					else if(pc.antennae > 0 && pc.antennaeUnlocked(0))
 					{
-						kGAMECLASS.output("antennae");
-						pc.antennae = 0;
+						kGAMECLASS.output("\n\n" + pc.hornsLockedMessage());
 					}
-					kGAMECLASS.output(" are gone</b>.");
-					changes++;
+					else
+					{
+						kGAMECLASS.output("\n\n" + pc.antennaeLockedMessage());
+					}
 				}
 				//Wings:
 				if(pc.wingType != 0 && rand(4) == 0 && changes < changeLimit)
 				{
-					if(pc.wingType == GLOBAL.TYPE_SHARK) kGAMECLASS.output("\n\nYour back feels uncomfortable, like something is stabbing you between your shoulder blades. You look behind you to see your [pc.wing] is being drawn into your back, soon vanishing entirely. <b>You no longer have a [pc.wing]</b>!");
-					else kGAMECLASS.output("\n\nYour back feels uncomfortable, like you’re molting. You look behind you to see your [pc.wings] being drawn into your back, soon vanishing entirely. <b>You no longer have wings</b>!");
-					changes++;
-					pc.wingType = 0;
+					if(pc.wingTypeUnlocked(0))
+					{
+						if(pc.wingType == GLOBAL.TYPE_SHARK) kGAMECLASS.output("\n\nYour back feels uncomfortable, like something is stabbing you between your shoulder blades. You look behind you to see your [pc.wing] is being drawn into your back, soon vanishing entirely. <b>You no longer have a [pc.wing]</b>!");
+						else kGAMECLASS.output("\n\nYour back feels uncomfortable, like you’re molting. You look behind you to see your [pc.wings] being drawn into your back, soon vanishing entirely. <b>You no longer have wings</b>!");
+						changes++;
+						pc.wingType = 0;
+					}
+					else kGAMECLASS.output("\n\n" + pc.wingTypeLockedMessage());
 				}
 				//Eyes:
 				if(pc.eyeType != GLOBAL.TYPE_HUMAN && changes < changeLimit && rand(4) == 0)
 				{
-					kGAMECLASS.output("\n\nYour vision flickers like a camera hit with a burst of static, staggering you as you grab your forehead in pain. After a few seconds the feeling subsides, but it takes a good while longer for you to adjust to the change in vision from <b>your new human-like eyes</b>.");
-					changes++;
-					pc.eyeType = GLOBAL.TYPE_HUMAN;
+					if(pc.eyeTypeUnlocked(GLOBAL.TYPE_HUMAN))
+					{
+						kGAMECLASS.output("\n\nYour vision flickers like a camera hit with a burst of static, staggering you as you grab your forehead in pain. After a few seconds the feeling subsides, but it takes a good while longer for you to adjust to the change in vision from <b>your new human-like eyes</b>.");
+						changes++;
+						pc.eyeType = GLOBAL.TYPE_HUMAN;
+					}
+					else kGAMECLASS.output("\n\n" + pc.eyeTypeLockedMessage());
 				}
 				
 				//Hair
-				if(pc.hasHair() && pc.hairType != GLOBAL.TYPE_HUMAN && changes < changeLimit && rand(4) == 0)
+				if(pc.hasHair() && pc.hairType != GLOBAL.HAIR_TYPE_REGULAR && changes < changeLimit && rand(4) == 0)
 				{
 					kGAMECLASS.output("\n\n");
-					if(pc.hairTypeUnlocked(GLOBAL.TYPE_HUMAN))
+					if(pc.hairTypeUnlocked(GLOBAL.HAIR_TYPE_REGULAR))
 					{
 						kGAMECLASS.output("Your scalp itches, the [pc.hair] covering it falling away as a mass of new filaments sprouts in their place. <b>You have hair!</b>");
 						changes++;
-						pc.hairType = GLOBAL.TYPE_HUMAN;
+						pc.hairType = GLOBAL.HAIR_TYPE_REGULAR;
 					}
 					else kGAMECLASS.output(pc.hairTypeLockedMessage());
 				}
@@ -353,7 +377,7 @@
 			//Not player!
 			else
 			{
-				kGAMECLASS.output(target.capitalA + target.short + " eats the rations to no effect.");
+				kGAMECLASS.output(target.capitalA + target.short + " eats the treats to no effect.");
 			}
 			return false;
 		}
