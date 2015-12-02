@@ -39,7 +39,9 @@ public function zodeeGivesFirstGalomax():void
 	showBust("ZODEE");
 	output("\n\nThere's another rusher here - a rahn by the looks of it. She's dressed in a pale white jumpsuit that hides most of her gleaming teal, gelatinous skin from view but does little to conceal the weighty jiggle of her chest. Her hands are in her pack, sorting through enough gleaming prizes to make your belly clench with envy, and her plump rump is positioned perfectly to entice you with its restless wiggles. Just how much did she find before you could get to here?");
 	output("\n\nTossing items carelessly over her shoulder, the rahn seems blithely unaware of your presence until a pill-bottle smacks off your chest, rattling noisily. She draws in the blink of an eye, then lowers her weapon at the sight of another galactic traveler.");
-	output("\n\n<i>“Oh, didn’t think I’d bump into another rusher out here. You can have the GaloMax if you want. Not much use to a girl like me.”</i> She eyeballs you from the crown of your head to the bottoms of your [pc.feet], blatantly evaluating every detail. You’ve had full-body scans that felt less invasive. <i>“You know, you just might make it out here, if you’re careful.”</i> Straightening and shouldering her bag, the alien woman licks her lips and grins. <i>“The name’s Zo’dee, by the way. Maybe we’ll bump into each other again sometime. Just don’t get mad when I score all the loot before you get there.”</i>");
+	output("\n\n<i>“Oh, didn’t think I’d bump into another rusher out here. You can have the GaloMax if you want. Not much use to a girl like me.”</i> She eyeballs you from the crown of your head to the bottom");
+	if(pc.legCount != 1) output("s");
+	output(" of your [pc.feet], blatantly evaluating every detail. You’ve had full-body scans that felt less invasive. <i>“You know, you just might make it out here, if you’re careful.”</i> Straightening and shouldering her bag, the alien woman licks her lips and grins. <i>“The name’s Zo’dee, by the way. Maybe we’ll bump into each other again sometime. Just don’t get mad when I score all the loot before you get there.”</i>");
 	output("\n\nYou pick up the pills and answer, ");
 	if(pc.isBimbo()) output("<i>“Ooh, I hope we meet again super soon! My name’s [pc.name].”</i>");
 	else if(pc.isBro()) output("<i>“[pc.name], and I’ll get it first,”</i> with a growl.");
@@ -212,8 +214,10 @@ public function galoMaxTFProc():void
 	{
 		output("Here it comes! Once again, that heavy heat spreads throughout you, circling from your fingertips to ");
 		if(pc.hasToes()) output("your toes");
-		else output("the tips of your [feetOrFoot]");
-		output(" only to settle more and more of itself into your crotch. Your [pc.genitals] flood with it, plumping up with artificially-induced arousal. Your head swims, dizzied by the ");
+		else output("the tips of your [pc.footOrFeet]");
+		output(" only to settle more and more of itself into your crotch. Your [pc.groin] flood");
+		if(pc.cockTotal() + pc.totalVaginas() < 2) output("s");
+		output(" with it, plumping up with artificially-induced arousal. Your head swims, dizzied by the ");
 		if(pc.isCrotchGarbed()) output("hot press of your aching, leaky flesh against your [pc.lowerGarment]");
 		else output("currents of air blowing over your leaking, engorged flesh");
 		output(". Standing up seems to difficult, all of a sudden, and you drop to the floor");
