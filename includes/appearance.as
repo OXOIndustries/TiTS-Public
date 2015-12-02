@@ -288,7 +288,13 @@ public function appearance(target:Creature):void {
 				if(target.earLength > 1) output2(num2Text(target.earLength) + " inches from your");
 				output2(" from your skull.");
 			}
-			if(target.antennae == 2) output2(" Floppy antennae also appear on your head, bouncing and swaying in the breeze.");
+			if(target.hasAntennae())
+			{
+				if(target.antennae == 1) output2(" A floppy [pc.antenna] also appears");
+				else if(rand(2) == 0) output2(" " + StringUtil.capitalize(num2Text(target.antennae)) + " floppy [target.antennae] also grow");
+				else output2(" Floppy [pc.antennae] also appear");
+				output2(" on your head, bouncing and swaying in the breeze.");
+			}
 		}
 		//not bald
 		else {
@@ -325,19 +331,32 @@ public function appearance(target:Creature):void {
 			else if(target.earType == GLOBAL.TYPE_GABILANI)
 			{
 				output2(" The " + target.hairDescript(true,true) + " on your head is parted by a pair of");
-				if(target.earLength > 1) output2(num2Text(target.earLength) + "-inch");
+				if(target.earLength > 1) output2(" " + num2Text(target.earLength) + "-inch");
 				output2(" long, triangular goblin ears.");
 			}
-			if(target.antennae == 2) {
-				if(target.earType == GLOBAL.TYPE_LAPINE) output2(" Limp antennae also grow from just behind your hairline, waving and swaying in the breeze with your ears.");
-				else output2(" Floppy antennae also grow from just behind your hairline, bouncing and swaying in the breeze.");
+			if(target.hasAntennae())
+			{
+				if(target.earType == GLOBAL.TYPE_LAPINE)
+				{
+					if(target.antennae == 1) output2(" A limp [target.antenna] also grows");
+					else if(rand(2) == 0) output2(" " + StringUtil.capitalize(num2Text(target.antennae)) + " limp [target.antennae] also grow");
+					else output2(" Limp [target.antennae] also grow");
+					output2(" from just behind your hairline, waving and swaying in the breeze with your ears.");
+				}
+				else
+				{
+					if(target.antennae == 1) output2(" A floppy [target.antenna] also grows");
+					else if(rand(2) == 0) output2(" " + StringUtil.capitalize(num2Text(target.antennae)) + " floppy [target.antennae] also grow");
+					else output2(" Floppy [target.antennae] also grow");
+					output2(" from just behind your hairline, bouncing and swaying in the breeze.");
+				}
 			}
 		}
 		if(target.earType == GLOBAL.TYPE_LEITHAN)
 		{
-			output2(" In addition, ");
-			if(target.earLength > 1) output2(" " + num2Text(target.earLength) + "-inch long ");
-			output2("pointed elfin ears jut out below them, giving you exceptional hearing.");
+			output2(" In addition,");
+			if(target.earLength > 1) output2(" " + num2Text(target.earLength) + "-inch long");
+			output2(" pointed elfin ears jut out below them, giving you exceptional hearing.");
 		}
 		//Tongue
 		if(target.tongueType == GLOBAL.TYPE_SNAKE) output2(" A snake-like [target.tongueNoun] occasionally flits between your lips, tasting the air.");
