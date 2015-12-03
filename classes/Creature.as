@@ -1477,12 +1477,6 @@ package classes {
 				case "pussyColor":
 					buffer = vaginaColor(arg2);
 					break;
-				case "cockSkinColor":
-					buffer = cockSkinColor(arg2);
-					break;
-				case "vaginaSkinColor":
-					buffer = vaginaSkinColor(arg2);
-					break;
 				case "cockHead":
 				case "cockhead":
 					buffer = cockHead(arg2);
@@ -10762,23 +10756,6 @@ package classes {
 		}
 		public function nippleCocksDescript(appearance: Boolean = false): String {
 			return pluralize(nippleCockDescript(appearance));
-		}
-		public function cockSkinColor(arg2:int = 0):String
-		{
-			if(!hasCock() || arg2 < 0 || arg2 >= cockTotal()) return "ERROR";
-			var skinColor:String = skinFurScalesColor();
-			// Flesh-colored
-			if
-			(	(!cocks[arg2].hasFlag(GLOBAL.FLAG_FORESKINNED) && !cocks[arg2].hasFlag(GLOBAL.FLAG_SHEATHED))
-			&&	!InCollection(cocks[arg2].cType, GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_SIMII, GLOBAL.TYPE_GABILANI)
-			)	skinColor = cockColor(arg2);
-			return skinColor;
-		}
-		public function vaginaSkinColor(arg2:int = 0):String
-		{
-			if(!hasVagina() || arg2 < 0 || arg2 >= vaginaTotal()) return "ERROR";
-			var skinColor:String = skinFurScalesColor();
-			return skinColor;
 		}
 		public function cockColor(arg2:int = 0):String
 		{

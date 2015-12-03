@@ -323,8 +323,8 @@ public function galoMaxTFProc():void
 		}
 		if(pc.hasVagina()) output("[pc.vaginas]");
 		output(", oozing along your bizarrely clenching ");
-		if(pc.hasCock()) output("[pc.cockSkinColor]");
-		else output("[pc.vaginaSkinColor]");
+		if(pc.hasCock()) output("[pc.cockColor]");
+		else output("[pc.vaginaColor]");
 		output(" skin, painting it [pc.cumColor] in its wake. It almost looks like you’re cumming, but without the enjoyment the associated act would entail. Instead, you’re slumped on the floor, trying not to slump over while paradoxical contractions wreath you in tingling goo.");
 		output("\n\nIt does feel kind of good, in an unusual kind of way. You feel like a passenger in a remote-controlled body, one that insists on making its crotch so hot that it threatens to liquefy under the deluge. It’d be maddening if you hadn’t expected something like this to happen. Rapid pants, whining gasps, and splatters fill the air with their lurid echoes. Aeons seem to pass while you lie there, fruitlessly twitching, bathing your ");
 		if(pc.balls > 0) output("[pc.balls]");
