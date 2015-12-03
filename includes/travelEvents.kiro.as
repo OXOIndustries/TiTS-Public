@@ -2190,17 +2190,37 @@ public function inviteAFriendForKiroPlays():void
 {
 	clearOutput();
 	showKiro();
-	output("A sly smile creeps up the side of your lips and blossoms into a full blown grin. You press a finger to the Tanuki’s small, black nose and tell her to give you just a minute. She barks out an angry protest, gesturing broadly as if to remind you that she’s ready to go. <i>“You’d better not leave me hanging, you cock-tease,”</i> she complains, her half-hard shaft throbbing between her legs. <i>“I don’t want a repeat of that milker accident!”</i> You tweak one of her round, fluffy ears and give her a wink as you throw a robe over your body and step towards the door. Just a minute, you promise.");
+	
+	var nFriends:Number = 0;
+	
 	//[Holiday?] [Saendra][Reaha] [Literally Every other NPC. Hey ZilGirl, come fly with us!]
 	processTime(1);
 	clearMenu();
-	if(flags["SAEN MET AT THE BAR"] != undefined)
+	// Celise
+	if(flags["RECRUITED_CELISE"] != undefined)
 	{
-		if(rooms[currentLocation].planet != "TAVROS STATION") addDisabledButton(0,"Saendra","Saendra","Saendra isn't anywhere near this location. You'd have to catch Kiro on Tavros Station to have Saendra within easy reach.");
-		else if(pc.hasCock()) addButton(0,"Saendra",inviteSaenForKiroFilling,undefined,"Saendra","Invite Saendra over for a ball-draining good time.");
-		else addDisabledButton(0,"Saendra","Saendra","This scene requires a penis to participate in.");
+		if(!celiseIsCrew()) addDisabledButton(0,"Celise","Celise","Celise isn't aboard your ship for this to work.");
+		else if(kiroTrust() < 80) addDisabledButton(0,"Celise","Celise","Kiro doesn't trust you enough to try this.");
+		else if(kiro.ballDiameter() <= 7) addDisabledButton(0,"Celise","Celise","Kiro doesn't look bloated enough. You should probably wait until she's really backed up before trying this.");
+		else addButton(0,"Celise",celiseKiroFunSekritShit,undefined,"Celise","Invite Kiro to meet with Celise.");
+		nFriends++;
 	}
-	else addDisabledButton(0,"Locked","Locked","You don't know Saendra well enough to invite her.");
+	// Saendra
+	if(flags["FALL OF THE PHOENIX STATUS"] >= 1)
+	{
+		if(flags["SAEN MET AT THE BAR"] != undefined)
+		{
+			if(rooms[currentLocation].planet != "TAVROS STATION") addDisabledButton(1,"Saendra","Saendra","Saendra isn't anywhere near this location. You'd have to catch Kiro on Tavros Station to have Saendra within easy reach.");
+			else if(pc.hasCock()) addButton(1,"Saendra",inviteSaenForKiroFilling,undefined,"Saendra","Invite Saendra over for a ball-draining good time.");
+			else addDisabledButton(1,"Saendra","Saendra","This scene requires a penis to participate in.");
+		}
+		else addDisabledButton(1,"Saendra","Locked","You don't know Saendra well enough to invite her.");
+		nFriends++;
+	}
+	
+	if(nFriends > 0) output("A sly smile creeps up the side of your lips and blossoms into a full blown grin. You press a finger to the Tanuki’s small, black nose and tell her to give you just a minute. She barks out an angry protest, gesturing broadly as if to remind you that she’s ready to go. <i>“You’d better not leave me hanging, you cock-tease,”</i> she complains, her half-hard shaft throbbing between her legs. <i>“I don’t want a repeat of that milker accident!”</i> You tweak one of her round, fluffy ears and give her a wink as you throw a robe over your body and step towards the door. Just a minute, you promise.");
+	else output("Unfortunately, you don't know any available friends to invite...");
+	
 	addButton(14,"Back",kiroSexMenu);
 }
 
