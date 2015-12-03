@@ -4365,10 +4365,16 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["SERA FUCKED PCS TAILCUNT"] > 0) output2("\n<b>* Sera, Times She Fucked Your Tail Cunt: </b>" + flags["SERA FUCKED PCS TAILCUNT"]);
 					if(flags["SERA_URETHRA_TAILFUCKS"] > 0) output2("\n<b>* Sera, Times She Tail-Fucked Your Urethra: </b>" + flags["SERA_URETHRA_TAILFUCKS"]);
 				}
-				if(flags["SAENDRA GONNA GO GET A COCK"] >= 2)
+				if(flags["PURCHASED_SERAS_GALO"] != undefined || flags["SAENDRA GONNA GO GET A COCK"] >= 2)
 				{
-					output2("\n<b>* Sera, Unique Sale:</b> Saendra’s penis growth drug");
-					if(flags["SAEN_X_SERA_THREESOME"] != undefined) output2(", Threesome-sexed for discount");
+					output2("\n<b>* Sera, Unique Sale:</b>");
+					if(flags["PURCHASED_SERAS_GALO"] != undefined) output2(" GaloMax");
+					if(flags["SAENDRA GONNA GO GET A COCK"] >= 2)
+					{
+						if(flags["PURCHASED_SERAS_GALO"] != undefined) output2(",");
+						output2(" Saendra’s penis growth drug");
+						if(flags["SAEN_X_SERA_THREESOME"] != undefined) output2(" (with threesome discount)");
+					}
 				}
 				variousCount++;
 			}
@@ -4416,7 +4422,10 @@ public function displayEncounterLog(showID:String = "All"):void
 				output2("\n<b>* Aliss:</b> Met her");
 				if(flags["TALKED_TO_ALIIS_ABOUT_LIBIDO"] != undefined) output2("\n<b>* Aliss, Lust: </b>" + chars["ALISS"].lust());
 				if(flags["TIMES_SEXED_ALISS"] != undefined) output2("\n<b>* Aliss, Times Sexed: </b>" + flags["TIMES_SEXED_ALISS"]);
-				if(flags["ANNO_OWNS_LIGHT_STRAPON"] != undefined) output2("\n<b>* Aliss, Unique Sale:</b> Anno’s hardlight strap-on");
+				if(flags["ANNO_OWNS_LIGHT_STRAPON"] != undefined)
+				{
+					output2("\n<b>* Aliss, Unique Sale:</b> Anno’s hardlight strap-on");
+				}
 				variousCount++;
 			}
 			// Shear Beauty!
@@ -5562,6 +5571,10 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["GENE_SUBMISSION_LEVEL"] == -1) output2("Refused his advances completely");
 					else output2(flags["GENE_SUBMISSION_LEVEL"] + "/10");
 				}
+				if(flags["PURCHASED_GENES_GALO"] != undefined)
+				{
+					output2("\n<b>* Gene, Unique Sale:</b> GaloMax");
+				}
 				variousCount++;
 			}
 			// The Honey Nozzle
@@ -6156,8 +6169,15 @@ public function displayEncounterLog(showID:String = "All"):void
 			output2("\n<b>* Zo’dee:</b> Met her");
 			if(flags["ZODEE_GALOQUEST"] != undefined)
 			{
-				output2(", Gave you GaloMax");
 				if(flags["ZODEE_GALOQUEST"] != 1) output2(" " + num2Text(flags["ZODEE_GALOQUEST"]) + " times");
+				output2(", Gave you GaloMax");
+			}
+			if(flags["ZODEE_S2_CHOICE"] != undefined)
+			{
+				output2("\n<b>* Zo’dee, Second Encounter:</b>");
+				if(flags["ZODEE_S2_CHOICE"] == -1) output2(" Refused to help her lay eggs");
+				if(flags["ZODEE_S2_CHOICE"] == 0) output2(" Bought GaloMax from her");
+				if(flags["ZODEE_S2_CHOICE"] == 1) output2(" Helped her lay eggs for GaloMax");
 			}
 			roamCount++;
 		}
