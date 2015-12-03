@@ -879,7 +879,7 @@ public function chooseSexualGift():void {
 	addButton(8,"Bulgy",applySexualGift,"bulgy","Bulgy","Increases the size of your testicles and causes them to be more receptive to future size-increasing modifications. <i>This perk also applies if your character is female and gains testicles in the future.</i>");
 	addButton(9,"Extra Ardor",applySexualGift,"extra ardor","Extra Ardor","Ensures that you will have a higher sex drive than normal.");
 	addButton(10,"Ice Cold",applySexualGift,"ice cold","Ice Cold","Ensures that you will have a lower sex drive than normal.");
-	addButton(11,"None",applySexualGift,"none");
+	addButton(13,"None",applySexualGift,"none");
 	if(pc.hasVagina()) 
 		addButton(14,"Back",chooseYourVagina);
 	else if(pc.hasCock()) 
@@ -966,6 +966,7 @@ public function chooseAPhysicalAffinity():void {
 	addButton(2,"Reflexes",applyAffinity,"reflexes","Reflexes","Increases your reaction time. It is a measurement of your piloting aptitude, but also comes in handy when having to avoid a surprise attack or trap.");
 	addButton(3,"Aim",applyAffinity,"aim","Aim","Increases your accuracy and how well you can aim both hand-held and ship-board ranged weaponry.");
 	addButton(4,"Willpower",applyAffinity,"willpower","Willpower","Increases your ability to counter sexual urges and addictions, resist psionics, and strengthen your own psionics, should a person of human descent somehow gain mind powers.");
+	addButton(13,"None",applyAffinity,"none","No Affinity","You will not have a natural affinity towards any certain attribute.");
 	addButton(14,"Back",chooseSexualGift);
 }
 
