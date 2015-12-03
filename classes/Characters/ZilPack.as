@@ -249,10 +249,10 @@
 			}
 			else 
 			{
-				var damage:TypeCollection = attacker.damage(true);
-				damage.add(attacker.physique() / 2);
+				var damage:TypeCollection = damage(true);
+				damage.add(physique() / 2);
 				damageRand(damage, 15);
-				var damageResult:DamageResult = calculateDamage(damage, foes[0], pc);
+				var damageResult:DamageResult = calculateDamage(damage, this, target);
 				
 				//Apply damage reductions
 				if (damageResult.shieldDamage > 0) 
@@ -268,10 +268,10 @@
 				{
 					if (damageResult.shieldDamage == 0) output(" The armored bootheel connects with your cheek hard enough to turn your head and leave you seeing stars.");
 						
-					if (!pc.hasStatusEffect("Stunned"))
+					if (!target.hasStatusEffect("Stunned"))
 					{
 						output("<b> It's concussive enough to leave you stunned.</b>");
-						pc.createStatusEffect("Stunned",1,0,0,0,false,"Stun","You are stunned and cannot move until you recover!",true,0);
+						target.createStatusEffect("Stunned",1,0,0,0,false,"Stun","You are stunned and cannot move until you recover!",true,0);
 					}
 				}
 				

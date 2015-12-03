@@ -1,6 +1,8 @@
 ﻿package classes.Characters
 {
 	import classes.Creature;
+	import classes.Engine.Combat.DamageTypes.DamageResult;
+	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.GLOBAL;
 	import classes.Items.Melee.Fists;
 	import classes.Items.Miscellaneous.*
@@ -8,8 +10,10 @@
 	import classes.kGAMECLASS;
 	import classes.rand;
 	import classes.GameData.CodexManager;
-	
+	import classes.GameData.CombatManager;
+	import classes.GameData.CombatAttacks;
 	import classes.Engine.Utility.num2Text;
+	import classes.Engine.Interfaces.output;
 	
 	public class ZilMale extends Creature
 	{
@@ -198,6 +202,171 @@
 			}
 			
 			kGAMECLASS.foes.push(combatZilMale);
+		}
+		
+		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
+		{
+			var target:Creature = selectTarget(hostileCreatures);
+			
+			if (target == null) return;
+			
+			if(((HPMax() - HP())/HPMax()) * 200 > rand(100))
+			{
+				if(CombatManager.getRoundCount() % 4 == 0) zilHardenSingle();
+				else if(rand(4) == 0) flurryOfBlows(target);
+				else if(rand(3) == 0) zilFlyingSpinKickSingle(target);
+				else if(rand(2) == 0) zilDrop(target);
+				else CombatAttacks.MeleeAttack(this, target);
+			}
+			else 
+			{
+				if(rand(3) == 0) zilCrotchGrind(target);
+				else if(rand(2) == 0) zilPheromoneFan(target);
+				else zilHoneyDrip(target);
+			}
+		}
+		
+		private function zilCrotchGrind(target:Creature):void
+		{
+			output("Zipping forward, the zil brings his ");
+			if(lust() < 33) output("sensitive");
+			else if(lust() <= 66) output("stiff");
+			else if(lust() <= 75) output("throbbing");
+			else if(lust() <= 85) output("dripping");
+			else output("drooling");
+			output(" dick right into your [pc.face]. The soft shroud of his foreskin rubs hotly against you, peeling back to barely expose the ebony glans that is prodding your forehead.");
+			if(target.hasArmor() && target.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+			{
+				output(" You gasp and stumble away when you see his cock produce an oily streak. Pheromones, no doubt. Fortunately for you, your [pc.armor] is airtight, so any reactions you could have had to it are assuredly blocked.");
+			}
+			else
+			{
+				output(" You gasp and stumble away, not realizing your mistake until the chemical deluge hits your senses.");
+				if(target.lust() <= 33) output(" Uh, wow... you could probably go for another sniff of that.");
+				else if(target.lust() <= 66) output(" Mmmm, he smells so good that you could just drop down to your knees and let him drag it all over.");
+				else if(target.lust() <= 75) output(" Yum! You inhale another deep drag of his diminishing aroma and wonder if it wouldn't be too bad to give in to him.");
+				else output(" Ungh, why aren't you letting him fuck your mouth so that you can breathe in more?");
+				if(kGAMECLASS.flags["TIMES_LOST_TO_ZIL"] == 1) output(" You've let him win before and nothing bad came of it, what's wrong with one more submission?");
+				else if(kGAMECLASS.flags["TIMES_LOST_TO_ZIL"] == 2) output(" You've given into these aliens twice already. Surely the third time is the charm...");
+				else if(kGAMECLASS.flags["TIMES_LOST_TO_ZIL"] == 3) output(" You've let them use you a handful of times. What's once more?");
+				else if(kGAMECLASS.flags["TIMES_LOST_TO_ZIL"] != undefined) output(" You've given in countless times already, why not live it up?");
+				target.lust(10+target.libido()/10);
+			}
+		}
+		
+		private function zilPheromoneFan(target:Creature):void
+		{
+			output("The zil abruptly begins to fondle his [zil.cock], stimulating the organ as he alters his wingbeats to gust musk-laced air in your direction. He floats up high and flies erratically enough that you doubt you could hit him.");
+			if(target.hasArmor() && target.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+			{
+				output("\n\nLuckily your [pc.armor] is sealed tight, so you unaffected by it. He grumps at his failed attempt. You definitely came prepared!");
+			}
+			//{Moderate toughness check pass}
+			else if(target.physique() + rand(20) + 1 > 20) {
+				output(" There's nothing to do but try and hold your breath!");
+				output("\nHe gets tired long before you do and gives up, but it still leaves a cloud of his delicious aroma floating around you. It's strong enough to make your pulse quicken.");
+				target.lust(5+target.libido()/20);
+			}
+			else {
+				output(" There's nothing to do but try and hold your breath!");
+				output("\nEventually, you can hold your breath no longer, and you're forced to inhale the potent cloud deep into your lungs. Your heart hammers in your chest faster and faster while your [pc.skin] flushes and your lips unconsciously purse.");
+				if(target.lust() < 33) output(" A tingling warmth in your crotch leaves no doubts as to the effectiveness of your alien foe's 'attack'.");
+				else if(target.lust() <= 66) output(" The warm, incessantly building heat in your loins is getting hotter and hotter with every breath you take.");
+				else
+				{
+					output(" Your crotch feels so hot that you know you just HAVE to touch it soon. Damn this alien and his ");
+					if(kGAMECLASS.silly) output("stupid ");
+					output("sexy dick-scent!");
+				}
+				target.lust(10+target.libido()/10);
+			}
+		}
+		
+		private function zilHoneyDrip(target:Creature):void
+		{
+			output("Zipping high into the air, the Zil begins to jack himself off, stroking his thick, scented dong while amber droplets drip out of his voluptuous dickskin. His pre-cum drips down around you in long strings, some falling across your shoulders, head and face. It smells sweet and floral, like honey, and though it doesn't seem laced with his pheromones, the lewdness of it all quickens your pulse.");
+			target.lust(5+target.libido()/20);
+		}
+		
+		private function flurryOfBlows(target:Creature):void
+		{
+			output("The zil launches a flurry of blows in your direction!\n");
+			for (var i:int = 0; i < 3; i++)
+			{
+				CombatAttacks.SingleMeleeAttackImpl(this, target, true);
+				output("\n");
+			}
+		}
+		
+		private function zilFlyingSpinKickAttack(target:Creature):void
+		{
+			output("An irritated snarl crosses the alien's smooth lips, and he launches himself towards you. His body pivots in mid-air, accelerated by his wings, and he snaps his heel out towards your face at the last second.");
+			if (combatMiss(this, target)) 
+			{
+				output("\nYou duck aside of his flying heel!");
+			}
+			else 
+			{
+				var damage:TypeCollection = damage(true);
+				damage.add(physique() / 2);
+				damageRand(damage, 15);
+				var damageResult:DamageResult = calculateDamage(damage, this, target);
+				
+				if (damageResult.shieldDamage > 0)
+				{
+					if (damageResult.hpDamage == 0) output(" Your shield crackles but holds.");
+					else output(" There is a concussive boom and tingling aftershock of energy as your shield is breached.");
+				}
+				
+				if (damageResult.hpDamage > 0)
+				{
+					if (damageResult.shieldDamage == 0) output(" The armored bootheel connects with your cheek hard enough to turn your head and leave you seeing stars.");
+					
+					if (!target.hasStatusEffect("Stunned"))
+					{
+						output("<b> It's concussive enough to leave you stunned.</b>");
+						target.createStatusEffect("Stunned",1,0,0,0,false,"Stun","You are stunned and cannot move until you recover!",true,0);
+					}
+				}
+				
+				outputDamage(damageResult);
+			}
+		}
+		
+		private function zilDrop(target:Creature):void
+		{
+			output("The zil lowers his shoulder and charges at you, but it's a feint! He diverts at the last second and makes to grab you under the arms as he passes.");
+			if (combatMiss(this, target)) 
+			{
+				output(" You avoid it!");
+				return;
+			}
+			//{lift fail}
+			if((target.thickness + 100) * target.tallness >= 9900) {
+				output(" He strains for a second, but the zil just can't get your [pc.feet] up off the ground. Frustrated, he kicks off your back just before you can react.");
+				//{low damage}
+				applyDamage(new TypeCollection( { kinetic: 1 + rand(4) } ), this, target);
+			}
+			else 
+			{
+				output(" He proves strong enough to separate you from your footing. You struggle, but the ground gets further and further away. Then, he lets you go. ");
+				if (!target.canFly()) 
+				{
+					output("There's a moment of stomach-churning weightlessness followed by the hard crunch of you smacking into the forest floor.");
+					applyDamage(new TypeCollection( { kinetic: 5 + rand(5) } ), this, target);
+				}
+				else output("You flutter down safely under your own power. It's so good to be able to fly.");
+				
+			}
+		}
+		
+		private function zilHardenSingle():void
+		{
+			output("Closing his onyx eyes, the zil flexes, and you hear quiet, barely audible cracks filling the busy, woodland air. You peer closer and realize that the zil's carapace seems shinier, and perhaps a bit more formidable... just barely thicker, somehow.");
+	
+			var newRes:Number = (100 - baseHPResistances.kinetic.resistanceValue) / 5;
+			baseHPResistances.kinetic.resistanceValue += newRes;
+			createStatusEffect("Harden", 0, 30, 0, 0, false, "DefenseUp", "Defense against all forms of attack has been increased!", true, 0);
 		}
 	}
 }
