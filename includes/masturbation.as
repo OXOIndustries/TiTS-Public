@@ -2853,6 +2853,7 @@ public function tamaniBionaholeInstruction():void
 {
 	clearOutput();
 	showBust("TAMANI_NUDE");
+	showName("\nTAMANI");
 	author("Fenoxo Fenbutt");
 	output("Excited to fuck a perfect copy of one of the galaxy’s top CEOs, you pull the protective cap off the Tamani Ultralux Edition BionaHole. Inside is as perfect a pubic mound as you’ve ever seen. Flawless, bubblegum-pink skin surrounds a puffy slit so vibrantly purple that it would look at home on an old-fashioned neon light. Moisture beads on the flush petals like morning dew, ensuring it’ll be lubricated and ready to go at a moment’s notice. You could probably pull it out of its case at any time, night or day, and Tamani’s cunt would be drooling for you all the same.");
 	output("\n\nThere’s no need to rush into this, however. The high-tech sex-toy came with a holovid featuring the corporate tart herself, titled <i>“Fucking My Pussy,”</i> and ");
