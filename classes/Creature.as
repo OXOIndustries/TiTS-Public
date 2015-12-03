@@ -2203,8 +2203,7 @@ package classes {
 		public function isCrotchGarbed(): Boolean {
 			if(hasStatusEffect("Temporary Nudity Cheat")) return false;
 			//return (armor.shortName != "" || lowerUndergarment.shortName != "");
-			return
-			(	(armor.shortName != "" && !armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL))
+			return (	(armor.shortName != "" && !armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL))
 			||	(lowerUndergarment.shortName != "" && !lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL))
 			);
 		}
@@ -2214,8 +2213,7 @@ package classes {
 		public function isChestCovered(): Boolean {
 			if(hasStatusEffect("Temporary Nudity Cheat")) return false;
 			//return (armor.shortName != "" || upperUndergarment.shortName != "");
-			return
-			(	(armor.shortName != "" && !armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL))
+			return (	(armor.shortName != "" && !armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL))
 			||	(upperUndergarment.shortName != "" && !upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL))
 			);
 		}
@@ -10761,7 +10759,7 @@ package classes {
 			var skinColor:String = skinFurScalesColor();
 			// Flesh-colored
 			if
-			(	(!cocks[arg2].hasFlag(GLOBAL.FLAG_FORESKINNED) && !cocks[arg2].hasFlag(GLOBAL.GLOBAL.FLAG_SHEATHED))
+			(	(!cocks[arg2].hasFlag(GLOBAL.FLAG_FORESKINNED) && !cocks[arg2].hasFlag(GLOBAL.FLAG_SHEATHED))
 			&&	!InCollection(cocks[arg2].cType, GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_SIMII, GLOBAL.TYPE_GABILANI)
 			)	skinColor = cockColor(arg2);
 			return skinColor;

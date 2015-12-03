@@ -32,6 +32,11 @@ public function gooColor():String
 	else return pc.skinTone;
 }
 
+public function showZodee():void
+{
+	showBust("ZODEE");
+	showName("\nZO'DEE");
+}
 
 public function zodeeGivesFirstGalomax():void
 {
@@ -362,7 +367,7 @@ public function galoMaxTFProc():void
 		output("\n\nOoh...");
 		output("\n\nAnd... nothing happens.");
 		output("\n\nSeems like that GaloMax pill didn't have any effect on you this time.");
-		if(flags["GOO_BIOMASS"] != undefined & rand (2) == 0)
+		if(flags["GOO_BIOMASS"] != undefined && rand(2) == 0)
 		{
 			output("..");
 			output("\n\nSuddenly, you feel a surge of biomass flow into your body. Well, it did have an effect after all!");
@@ -677,7 +682,7 @@ public function reshapeAGooCawkForReaaaaal(arg:int = 0):void
 		if(newType == GLOBAL.TYPE_HUMAN) addGhostButton(x,"Terran",seriouslyThoReshapeDatGooCock,[arg,GLOBAL.TYPE_HUMAN]);
 		else if(newType == GLOBAL.TYPE_SNAKE) addGhostButton(x,"Snake-like",seriouslyThoReshapeDatGooCock,[arg,GLOBAL.TYPE_SNAKE]);
 		else if(newType == GLOBAL.TYPE_BEE) addGhostButton(x,"Zil",seriouslyThoReshapeDatGooCock,[arg,GLOBAL.TYPE_BEE]);
-		else if(cocks[arg].cType != newType) addGhostButton(x,GLOBAL.TYPE_NAMES[newType],seriouslyThoReshapeDatGooCock,[arg,newType]);
+		else if(pc.cocks[arg].cType != newType) addGhostButton(x,GLOBAL.TYPE_NAMES[newType],seriouslyThoReshapeDatGooCock,[arg,newType]);
 		else addDisabledGhostButton(x,GLOBAL.TYPE_NAMES[newType],GLOBAL.TYPE_NAMES[newType],"The penis is already this shape.");
 	}
 	

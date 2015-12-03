@@ -631,9 +631,9 @@ public function delSlutTraining2():void
 	pp.milkFullness = 100;
 	for(var i:int = 0; i < 10; i++)
 	{
-		pc.loadinAss(pp);
-		pc.loadinAss(pp);
-		if(rand(2) == 0) pc.loadinAss(pp);
+		pc.loadInAss(pp);
+		pc.loadInAss(pp);
+		if(rand(2) == 0) pc.loadInAss(pp);
 		pc.loadInMouth(pp);
 		pc.loadInMouth(pp);
 		if(rand(2) == 0) pc.loadInMouth(pp);

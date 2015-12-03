@@ -293,7 +293,7 @@ public function arbetzMainOptions(response:int = 0):void
 		if (pc.credits < 5000) addDisabledButton(0, "Pay", "Pay", "The price is just too damn high!");
 		else addButton(0, "Pay", arbetzPoolOptions, 1, "Pay", "Price: 5000 Credits");
 		addButton(1, "Other Way?", arbetzPoolOptions, 2);
-		else addButton(2, "No", arbetzPoolOptions, 0);
+		addButton(2, "No", arbetzPoolOptions, 0);
 	}
 	// Sex
 	else if (response == 3)
@@ -563,7 +563,7 @@ public function arbetzSexMenu():void
 		addButton(2, "Two Boys", arbetzSexScenes, "two", "Two Boys", "Get an energetic spitroasting.");
 	}
 	if (flags["UNA_TALKED"] < 3 || arbetzTotalFucks() < 1) addDisabledButton(3, "Hate Sex", "Hate Sex", "You don’t know Una well enough to try this.");
-	else if (pc.isNice() && rand(2) = 0) addDisabledButton(3, "Hate Sex", "Hate Sex", "Why would you do that? You’re a nice [pc.guy].");
+	else if (pc.isNice() && rand(2) == 0) addDisabledButton(3, "Hate Sex", "Hate Sex", "Why would you do that? You’re a nice [pc.guy].");
 	else if (pc.isNice() || !pc.hasCock()) addDisabledButton(3, "Hate Sex", "Hate Sex", "You’ll need to be a dick <i>(both figuratively and literally)</i> to try this.");
 	else addButton(3, "Hate Sex", arbetzSexScenes, "hate", "Hate Sex", "Get nasty and vigorous with Una in equal measure.");
 }
@@ -655,7 +655,7 @@ public function arbetzSexScenes(response:String = ""):void
 		output(". You only let her go then because your ears are beginning to ring; good grief does this juicy gabilani sow have a pair of lungs on her, and she’s not afraid to use them. You give her clit one last judicious flick of your tongue, making her twitch and groan, and then finally release her legs, letting her weakly spool and splay back onto her bed.");
 		output("\n\n<i>“You are a crude and willful " + pc.mf("boy", "girl") + " who has no idea how to treat a lady professional,”</i> she says woozily, hips still spread, black top bun in a tangle. She either doesn’t have a strength to disguise her well-fucked, wicked delight in you, or she isn’t bothering. <i>“You will follow my instructions to the letter next time, or there will be repercussions.”</i>");
 		output("\n\n<i>“You’re welcome,”</i>");
-		if (!pc.isHard()) output(" you grin winningly");
+		if (!pc.isAss()) output(" you grin winningly");
 		else output(" you say tartly");
 		output(", ");
 		if (pc.hasFeet()) output(" getting back onto your feet");
@@ -1157,7 +1157,7 @@ public function arbetzSexScenes(response:String = ""):void
 		output(", pussy rippling around your erection in quivering arousal as she does. You slap her in the face, make the fatness of her breast bulge between your fingers as you clamp down on one distended, navy nipple and squeeze cruelly. She");
 		if (pc.hasHair()) output(" takes a handful of your [pc.hair] and pulls,");
 		output(" practically");
-		if output(" headbutting");
+		if (pc.hasHair()) output(" headbutting");
 		else output(" headbutts");
 		output(" you as she mashes her mouth into your [pc.lips] again, serpentine tongue and hot, hard breath invading your mouth. It’s feral, it’s prickly, and the more vicious it gets the better the wet, wrenching struggle-fuck becomes.");
 		output("\n\nYou bark hoarsely and mould as much of yourself into Una’s sweaty, heaving softness as your [pc.cock " + y + "] bulges in irresistible, juicy release, [pc.cum] practically vacuumed out of your hardness into the gabilani’s ruthless, sweltering knead. She doesn’t care; beetle-black eyes fixed entirely on her own prize, breath hard on your");
@@ -1231,7 +1231,7 @@ public function arbetzPoolOptions(response:int = 0):void
 		output("<i>“C’mon,”</i> you coax. <i>“There’s got to be another way I can get a swim.”</i>");
 		
 		// PC is male, flat chest, medium to high tone, is wearing something
-		if (pc.hasCock() && pc.biggestTitSize() <= 0 && pc.tone() > 25 && !pc.isNude())
+		if (pc.hasCock() && pc.biggestTitSize() <= 0 && pc.tone > 25 && !pc.isNude())
 		{
 			output("\n\nUna looks up, an acid retort all but visible on her thick lips... and then she pauses, sits back and considers you for a long moment.");
 			output("\n\n<i>“Y’know, maybe there is a way,”</i> she replies. <i>“I’m charged with advertising this place, and nothing advertises better than a lot of");
@@ -1269,7 +1269,7 @@ public function arbetzPoolOptions(response:int = 0):void
 			if (pc.credits < 5000) addDisabledButton(0, "Pay", "Pay", "You are just too poor for this!");
 			else addButton(0, "Pay", arbetzPoolOptions, 1, "Pay", "Price: 5000 Credits");
 			addDisabledButton(1, "Other Way?", "Other Way?", "You should probably wear some garments and have the body type Una is looking for before trying this option again...");
-			else addButton(2, "Don’t", arbetzPoolOptions, 0);
+			addButton(2, "Don’t", arbetzPoolOptions, 0);
 		}
 	}
 	// Other Way? - No
@@ -1284,7 +1284,7 @@ public function arbetzPoolOptions(response:int = 0):void
 		if (pc.credits < 5000) addDisabledButton(0, "Pay", "Pay", "You are just too poor for this!");
 		else addButton(0, "Pay", arbetzPoolOptions, 1, "Pay", "Price: 5000 Credits");
 		addDisabledButton(1, "Other Way?");
-		else addButton(2, "Don’t", arbetzPoolOptions, 0);
+		addButton(2, "Don’t", arbetzPoolOptions, 0);
 	}
 }
 
@@ -1410,7 +1410,7 @@ public function arbetzPoolBonus():Boolean
 		if (pc.tallness <= 48) output(" shoulder");
 		else if (pc.tallness <= 60) output(" waist");
 		else if (pc.tallness <= 72) output(" [pc.thigh]");
-		else if output(" [pc.leg]");
+		else output(" [pc.leg]");
 		output(" and quickly turn around.");
 		output("\n\n<i>“Ahem.”</i> It’s Una and she doesn’t look too pleased at your presence. <i>“I’m not sure how you treat schedules on your home planet, but I would like it if you took mine seriously. I’m running a facility here, not a 24-hour playground!”</i>");
 		output("\n\nYou take a glance at your codex and note the time. Oh. It must be after hours already...");
@@ -1420,7 +1420,7 @@ public function arbetzPoolBonus():Boolean
 		else if (pc.buttRating() > 4)
 		{
 			output(" big");
-			if (pc.thickness > 60) else output(", fat");
+			if (pc.thickness > 60) output(", fat");
 		}
 		output(" arse of yours out of here so I can close up properly?");
 		if (arbetzTotalFucks() > 0) output(" Please.");
@@ -1610,5 +1610,5 @@ public function arbetzPetrBuyGo(item:ItemSlotClass):void
 	
 	processTime(2);
 	
-	arbetzVendItem(new item, price);
+	arbetzVendItem(item, price);
 }
