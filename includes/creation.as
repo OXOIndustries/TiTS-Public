@@ -1329,37 +1329,6 @@ public function openDoorToTutorialCombat():void {
 	this.addButton(0,"Next",startCombat,"celise");
 }
 
-public function celiseAI():void {
-	//Round 1:
-	if(pc.statusEffectv1("Round") == 1) {
-		output("Well, that didn’t work! She seems completely immune to normal physical attacks.");
-		output("\n\n<i>“Hehe, that tickles!”</i> Celise giggles, <i>“Are you sure you want to listen to that old fuddy duddy instead of letting me </i>");
-		if(pc.hasCock()) output("<i>wrap myself around your " + pc.cocksDescript() + "</i>");
-		if(pc.hasCock() && pc.hasVagina()) output(" <i>and</i> ");
-		if(pc.hasVagina()) output("<i>plunge into your " + pc.vaginasDescript() + "</i>");
-		output("<i>?”</i> She pushes her finger into the semipermeable membrane around her breast, allowing you to hear the lewd, sucking noises her body makes around her digit as you watch. <i>“It’ll feeeel gooood!”</i>");
-		//Plus lust!
-		pc.lustRaw += 10;
-	}
-	//Round 2:
-	else if(pc.statusEffectv1("Round") == 2) {
-		output("The goo-girl appears impervious to everything you can throw at her! Just how did Dad expect you to handle something like this?");
-		output("\n\nCelise leans down to put her palms flat on the ground, her breasts squishing out around the sides of her arms, actually merging partway into her elbows as she begins to crawl toward you, wiggling her suddenly visible rump and hips at you, now revealed by her altered posture. <i>“I’m gonna suck all the yummiest juices out of you!”</i> Her lips plump bigger after the declaration, almost forcefully reminding you how good they would ");
-		if(pc.hasCock()) output("feel around " + pc.oneCock());
-		else if(pc.hasVagina()) output("feel on " + pc.oneVagina());
-		output(".");
-		//Plus lust!
-		pc.lustRaw += 10;
-	}
-	//Round 3:
-	else if(pc.statusEffectv1("Round") == 3) {
-		output("Whoah, now that’s a reaction! Celise whimpers and starts to vigorously fist herself again and again, not even bothering to make sure her hand goes between her legs. Wherever she shoves her balled fist into, sensitive lips form around it, suckling and oozing with lust around her fast-pumping arm.");
-		foes[0].lustRaw = 100;
-		pc.lustRaw += 10;
-	}
-	processCombat();
-}
-
 //Win
 public function defeatCelise():void {
 	pc.removeStatusEffect("Round");

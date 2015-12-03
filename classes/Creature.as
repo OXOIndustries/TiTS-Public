@@ -12478,13 +12478,51 @@ package classes {
 		}
 		
 		/**
-		 * Argument names are in context to _this_ creature.
-		 * @param	friendlies
-		 * @param	hostiles
+		 * Core combat AI handling; this methods called on each creature present in a fight
+		 * (excepting the player).
+		 * The array names are relative to the creature in question, f.ex
+		 * PC vs NPC1, NPC2 =>
+		 * 		PC alliedCreatures(PC), hostileCreatures(NPC1, NPC2)
+		 * 		NPC1 alliedCreatures(NPC1, NPC2), hostileCreatures(PC)
 		 */
-		public function CombatAI(friendlies:Array, hostiles:Array):void
+		public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{
+			throw new Error("Creature combat handler for " + this.short + " has not been overriden!");
+		}
+		
+		/**
+		 * Handy helper to select a potential target at random!
+		 * TODO: Include some standard "weighting" effects to influence target selection
+		 * f.ex prefer potential targets that have debuffs granting increased accuracy against them
+		 * @param	otherTeam
+		 * @return
+		 */
+		protected function selectTarget(otherTeam:Array):Creature
+		{
+			var selTarget:Creature = null;
 			
+			var posTargets:Array = [];
+			
+			for (var i:int = 0; i < otherTeam.length; i++)
+			{
+				// If it hasn't been defeated already this turn
+				if (otherTeam[i].HP() > 0 && otherTeam[i].lust() < otherTeam[i].lustMax())
+				{
+					// list as a potential
+					posTargets.push(otherTeam[i]);
+					
+					// Example "forced" effect selection
+					if (otherTeam[i].hasStatusEffect("Focus Fire"))
+					{
+						return otherTeam[i];
+					}
+				}
+			}
+			
+			if (posTargets.length == 0) return null;
+			if (posTargets.length == 1) return posTargets[0];
+			
+			return posTargets[rand(posTargets.length)];
 		}
 		
 		/**

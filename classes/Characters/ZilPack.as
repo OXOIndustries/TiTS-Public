@@ -1,10 +1,16 @@
 ﻿package classes.Characters
 {
 	import classes.Creature;
+	import classes.Engine.Combat.DamageTypes.DamageResult;
+	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.GLOBAL;
 	import classes.Items.Melee.Fists;
 	import classes.kGAMECLASS;
 	import classes.rand;
+	import classes.GameData.CombatManager;
+	import classes.GameData.CombatAttacks;
+	import classes.Engine.Interfaces.output;
+	import classes.Engine.Combat.*;
 	
 	public class ZilPack extends Creature
 	{
@@ -175,6 +181,164 @@
 			combatZilPack.sexualPreferences.setRandomPrefs(6,2);
 			
 			kGAMECLASS.foes.push(combatZilPack);
+		}
+		
+		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
+		{
+			var target:Creature = selectTarget(hostileCreatures);
+			
+			if (target == null) return;
+			
+			if (((this.HPMax() - this.HP()) / this.HPMax()) * 200 > rand(100))
+			{
+				// None of these make sense to bring to "general" attacks to be shared,
+				// so they can live as part of the creature in question.
+				if (CombatManager.getRoundCount() % 4 == 0) pluralZilHarden();
+				else if (rand(3) == 0) flurryOfBlowsPlural(target);
+				else if (rand(2) == 0) zilFlyingSpinKick(target);
+				else CombatAttacks.MeleeAttack(this, target);
+			}
+			else
+			{
+				if (rand(3) == 0) zilCrotchGrindPlural(target);
+				else if (rand(2) == 0) zilPheromoneFanPlural(target);
+				else zilHoneyDripPlural(target);
+			}
+			
+			pennyFapActions();
+		}
+		
+		private function pennyFapActions():void
+		{
+			if (CombatManager.getRoundCount() == 1) 
+			output("\n\nPenny slips a furred hand under the waistband of rapidly-dampening pants as she watches the spectacle, already falling under the influence of the zils’ insidious pheromones.");
+		else if (CombatManager.getRoundCount() == 2) 
+			output("\n\nPenny’s ears flatten partway back on her head while she shimmies her hips, wiggling out of her pants. Her fingers stay busy under the white fabric of her thoroughly soaked panties, pumping in and out with lurid schlicks.");
+		else if (CombatManager.getRoundCount() == 3) 
+			output("\n\nPenny whimpers and shrugs out of her top. The wrappings and the bra they cover disappear a moment later, forgotten when the fox’s spare hand begins to knead her tits with unrelenting passion.");
+		else if (CombatManager.getRoundCount() == 4) 
+			output("\n\nPenny is openly humping her palm at this point. Her poor, soaked panties are fairly drenched with girlish moisture, clinging to her fur while fingers slip and slide underneath the gusset. Her gaze never seems to leave you.");
+		else if (CombatManager.getRoundCount() == 5)
+		{
+			output("\n\nPenny’s lust-filled gaze locks on the two zil, sliding over their bodies with all the subtlety of a drunken sorority girl. She’s fingerfucking herself hard, peeling her panties away from her snatch to show the zil what they’ve done to her. Their erections seem to stiffen in response.");
+			//Plus zil lust
+			this.lust(10);
+		}
+		else if (CombatManager.getRoundCount() == 6)
+			output("\n\nPenny cums around her fingers. Her voice pitches up an octave as she screams through her breathing mask, her secretions trapped inside her undergarments.");
+		else if (CombatManager.getRoundCount() == 7)
+			output("\n\nThe fox-girl is still at it, though trickles of moisture are running down her thighs whenever she shifts position, escaping through the imperfect seal between her underwear and her furred thighs.");
+		else
+			output("\n\nPenny’s tongue is lolling from her mouth, uncontrolled. Her eyelids hang low and heavy, and her pupils keep rolling back under them whenever she has an orgasm, something that happens every few times her fingers dive into her soaked muff. Conscious thought seems to be beyond her at this point, and her pussy-scent is so heavy in the air that it almost overpowers the zils’ mixed aromas.");
+		}
+		
+		private function pluralZilHarden():void
+		{
+			output("Closing their onyx eyes, the zil flex, and you hear quiet, barely audible cracks filling the air. You peer closer and realize that the zil's carapace seems shinier, and perhaps a bit more formidable... just barely thicker, somehow.");
+	
+			baseHPResistances.kinetic.damageValue += 20.0;
+			baseHPResistances.addFlag(DamageFlag.PLATED);
+		}
+		
+		private function zilFlyingSpinKick(target:Creature):void
+		{
+			output("An irritated snarl crosses the aliens' smooth lips, and they launch themselves towards you. Their bodies pivot in mid-air, accelerated by their wings, and they snap their heels out toward your face at the last second.");
+			if (combatMiss(this, target)) 
+			{
+				output("\nYou duck aside of their flying heels!");
+			}
+			else 
+			{
+				var damage:TypeCollection = attacker.damage(true);
+				damage.add(attacker.physique() / 2);
+				damageRand(damage, 15);
+				var damageResult:DamageResult = calculateDamage(damage, foes[0], pc);
+				
+				//Apply damage reductions
+				if (damageResult.shieldDamage > 0) 
+				{
+					if (damageResult.hpDamage == 0)
+					{
+						output(" Your shield crackles but holds.");
+					}
+					else output(" There is a concussive boom and tingling aftershock of energy as your shield is breached.");
+				}
+				
+				if(damageResult.hpDamage > 0) 
+				{
+					if (damageResult.shieldDamage == 0) output(" The armored bootheel connects with your cheek hard enough to turn your head and leave you seeing stars.");
+						
+					if (!pc.hasStatusEffect("Stunned"))
+					{
+						output("<b> It's concussive enough to leave you stunned.</b>");
+						pc.createStatusEffect("Stunned",1,0,0,0,false,"Stun","You are stunned and cannot move until you recover!",true,0);
+					}
+				}
+				
+				if (damageResult.shieldDamage > 0 || damageResult.hpDamage > 0) outputDamage(damageResult);
+			}
+		}
+		
+		private function zilCrotchGrindPlural(target:Creature):void 
+		{
+			output("Zipping forward, the zil bring their ");
+			if(lust() < 33) output("sensitive");
+			else if(lust() <= 66) output("stiff");
+			else if(lust() <= 75) output("throbbing");
+			else if(lust() <= 85) output("dripping");
+			else output("drooling");
+			output(" dicks right into your [pc.face]. The soft shroud of their foreskins rubs hotly against you, peeling back to barely expose the ebony and yellow glans that are prodding your forehead. You gasp and stumble away, not realizing your mistake until the chemical deluge hits your senses.");
+			if(target.lust() <= 33) output(" Uh, wow... you could probably go for another sniff of that.");
+			else if(target.lust() <= 66) output(" Mmmm, they smell so good that you could just drop down to your knees and let them drag it all over.");
+			else if(target.lust() <= 75) output(" Yum! You inhale another deep drag of their diminishing aroma and wonder if it wouldn't be too bad to give in to them.");
+			else output(" Ungh, why aren't you letting them fuck your mouth so that you can breathe in more?");
+			if(kGAMECLASS.flags["TIMES_LOST_TO_ZIL"] == 1) output(" You've done it before and nothing bad came of it, what's wrong with one more submission?");
+			else if(kGAMECLASS.flags["TIMES_LOST_TO_ZIL"] == 2) output(" You've given into these aliens twice already. Surely the third time is the charm...");
+			else if(kGAMECLASS.flags["TIMES_LOST_TO_ZIL"] == 3) output(" You've let them use you a handful of times. What's once more?");
+			else if(kGAMECLASS.flags["TIMES_LOST_TO_ZIL"] != undefined) output(" You've given in countless times already, why not live it up?");
+			target.lust(10+target.libido()/10);
+		}
+		
+		private function zilPheromoneFanPlural(target:Creature):void 
+		{
+			output("The two zil abruptly begin to fondle their rigid members, stimulating the organs as they alter their wingbeats to gust musk-laced air your direction. There's nothing to do but try and hold your breath!");
+			//{Moderate toughness check pass}
+			if (target.physique() + rand(20) + 1 > 20) 
+			{
+				output("\nThey get tired long before you do and give up, but it still leaves a cloud of their delicious aroma floating around you. It's strong enough to make your pulse quicken.");
+				target.lust(5+target.libido()/20);
+			}
+			else 
+			{
+				output("\nEventually, you can hold your breath no longer, and you're forced to inhale the potent cloud deep into your lungs. Your heart hammers in your chest faster and faster while your [pc.skin] flushes and your lips unconsciously purse.");
+				if(target.lust() < 33) output(" A tingling warmth in your crotch leaves no doubts as to the effectiveness of your alien foes' sensuous attack.");
+				else if(target.lust() <= 66) output(" The warm, incessantly building heat in your loins is getting hotter and hotter with every breath you take.");
+				else
+				{
+					output(" Your crotch feels so hot that you know you just HAVE to touch it soon. Damn these aliens and their ");
+					if(kGAMECLASS.silly) output("stupid ");
+					output("sexy dick-scent!");
+				}
+				target.lust(10+target.libido()/10);
+			}
+		}
+		
+		private function zilHoneyDripPlural(target:Creature):void 
+		{
+			output("Flying up into the air, the two zil begin to jack themselves off, stroking their thick, scented dongs while amber droplets drip from their thick dickskin. Their pre-cum drips down around you in long strings, some falling across your shoulders, head and face. It smells sweet and floral like honey, and though it doesn't seem laced with his pheromones, the lewdness of it all quickens your pulse.");
+			target.lust(5+target.libido()/20);
+		}
+		
+		private function flurryOfBlowsPlural(target:Creature):void
+		{
+			output("Together, the zil launch a flurry of blows in your direction!\n");
+			for (var i:int = 0; i < 6; i++)
+			{
+				// Old: attack(...[1,2]) x 5, attack(...[1]);
+				// 1 == flurry attacks, 2 = no process
+				CombatAttacks.SingleMeleeAttackImpl(this, target, true);
+				output("\n");
+			}
 		}
 	}
 }

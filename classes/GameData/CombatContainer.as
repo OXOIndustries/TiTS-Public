@@ -2,6 +2,7 @@ package classes.GameData
 {
 	import classes.Characters.PlayerCharacter;
 	import classes.Creature;
+	import classes.GameData.Pregnancy.Handlers.CockvinePregnancy;
 	import classes.Items.Armor.GooArmor;
 	import classes.StorageClass;
 	import classes.Engine.Interfaces.*;
@@ -715,7 +716,7 @@ package classes.GameData
 				if (pc.hasPerk("Static Burst"))
 				{
 					if (pc.shields() <= 0) addDisabledButton(3,"StaticBurst","StaticBurst","You need shields available to overload in order for static burst to function.");
-					else if (pc.energy() >= 5) this.addButton(3, "Static Burst", staticBurst);
+					else if (pc.energy() >= 5) this.addButton(3, "Static Burst", doStaticBurst);
 					else this.addDisabledButton(3, "Static Burst");
 				}
 				
@@ -921,7 +922,7 @@ package classes.GameData
 			}
 			if(hasEnemyOfClass(MaidenVanae) || hasEnemyOfClass(HuntressVanae))
 			{
-				pc.removeStatusEffect("Trip");
+				pc.removeStatusEffect("Tripped");
 			}
 			output("\n");
 			processCombat();
@@ -973,6 +974,8 @@ package classes.GameData
 		
 		private function doGrappleStruggle(target:Creature):void
 		{
+			// TODO Tweak the shit out of this probably for other NPCs to be able to call into it
+			
 			if (!target.hasStatusEffect("Grappled")) return;
 			
 			if (target is PlayerCharacter) clearOutput();
@@ -990,9 +993,48 @@ package classes.GameData
 					if (hasEnemyOfClass(SexBot)) output("You almost dislocate an arm doing it, but, ferret-like, you manage to wriggle out of the sexbot’s coils. Once your hands are free, the droid does not seem to know how to respond, and you are able to grapple the rest of your way out easily, ripping away from its molesting grip. The sexbot clicks and stutters a few times before going back to staring at you blankly, swinging its fibrous limbs over its head.");
 					if (hasEnemyOfClass(MaidenVanae) || hasEnemyOfClass(HuntressVanae)) vanaeEscapeGrapple("Escape Artist");
 					else output("You display a remarkable amount of flexibility as you twist and writhe to freedom.");
-					pc.removeStatusEffect("Grappled");
+					target.removeStatusEffect("Grappled");
 				}
 			}
+			else
+			{
+				if(target.physique() + rand(20) + 6 + target.statusEffectv1("Grappled") * 5 > target.statusEffectv2("Grappled"))
+				{
+					// TODO It might be an idea to do something similar to how drone targets work now, in that the actual
+					// enemy DOING the grappling is stored as a transient property on the victim of the grapple,
+					// allowing us to extract this information
+					// The same will also be said of the grapler in instances where grapples can happen with multiple
+					// enemies- we'll need to know which one, specifically, is out of action for other attacks
+					
+					if (hasEnemyOfClass(SexBot)) output("You almost tear a muscle doing it, but, you manage to heave apart the sexbot’s coils. Once your hands are free, the droid does not seem to know how to respond, and you are able to grapple the rest of your way out easily, ripping away from its molesting grip. The sexbot clicks and stutters a few times before going back to staring at you blankly, swinging its fibrous limbs over its head.");
+					else if (hasEnemyOfClass(MaidenVanae) || hasEnemyOfClass(HuntressVanae)) vanaeEscapeGrapple();
+					else if (hasEnemyOfClass(GrayPrime)) grayPrimeEscapeGrapple();
+					else if (hasEnemyOfClass(NyreaAlpha) || hasEnemyOfClass(NyreaBeta)) output("You pull and heave at the thick, knotted ropes of the nyrea's net, finally managing to pry a gap large enough for you to squeeze your frame through!");
+					//else if (foes[0] is GoblinGadgeteer) output("You manage to untangle your body from the net, and prepare to fight the goblin again.");
+					else if (hasEnemyOfClass(Goocubator))
+					{
+						output("You manage to tear yourself out of the goo’s grasp, wrenching your limbs free one by one. She squeals as you pop yourself out of her, eyes crossing as her whole body quakes with the aftershocks.");
+						output("\n\n<i>“Aww, why do you have to be that way?”</i> she pouts, wiggling away from you.");
+					}
+					else output("With a mighty heave, you tear your way out of the grapple and onto your [pc.feet].");
+					target.removeStatusEffect("Grappled");
+				}
+			}
+			
+			// Failure to escape grapple
+			if(target.hasStatusEffect("Grappled"))
+			{
+				if(hasEnemyOfClass(SexBot)) output("You struggle as hard as you can against the sexbot’s coils but the synthetic fiber is utterly unyielding.");
+				else if (hasEnemyOfClass(Kaska)) failToStruggleKaskaBoobs();
+				else if (hasEnemyOfClass(MaidenVanae) || hasEnemyOfClass(HuntressVanae)) output("You wriggle in futility, helpless as she lubes you up with her sensuous strokes. This is serious!");
+				else if (hasEnemyOfClass(GrayPrime)) grayPrimeFailEscape();
+				else if (hasEnemyOfClass(NyreaAlpha) || hasEnemyOfClass(NyreaBeta)) output("Try as you might, struggling against the heavy ropes of the nyrea huntresses net, you just can't find a way out of the net that has you restrained.");
+				//else if (foes[0] is GoblinGadgeteer) output("You manage to untangle your body from the net, and prepare to fight the goblin again.");
+				else output("You struggle madly to escape from the pin but ultimately fail. The pin does feel a little looser as a result, however.");
+				target.addStatusValue("Grappled",1,1);
+			}
+			output("\n");
+			if (target is PlayerCharacter) processCombat();
 		}
 		
 		private function generateSpecialsMenu():void
@@ -2516,6 +2558,7 @@ package classes.GameData
 		{
 			output("You're fighting " + num2Text(enemiesAlive()) + " hostiles.");
 			
+			// TODO: I guess this would be the place to point out blindness or whatever.
 			for (var i:int = 0; i < _hostiles.length; i++)
 			{
 				displayHostileStatus(_hostiles[i]);
@@ -2532,9 +2575,67 @@ package classes.GameData
 		
 		private function displayHostileStatus(target:Creature):void
 		{
+			if (target is Celise)
+			{
+				if(roundCounter == 1) output("\nVictor instructs, <i>“<b>Try and strike her, " + pc.short + ". Use a melee attack.</b>”</i>\n");
+			else if(roundCounter == 2) output("\n<i>“Some foes are more vulnerable to ranged attacks than melee attacks or vice versa. <b>Why don’t you try using your gun?</b> Don’t worry, it won’t kill her.”</i> Victor suggests.\n");
+			else if(roundCounter == 3) output("\n<i>“Didn’t work, did it? Celise’s race does pretty well against kinetic damage. Thermal weapons would work, but you don’t have any of those. You’ve still got one more weapon that galotians can’t handle - sexual allure. They’re something of a sexual predator, but their libidos are so high that teasing them back often turns them on to the point where they masturbate into a puddle of quivering sex.”</i> Victor chuckles. <i>“<b>Go ahead, try teasing her.</b> Fighting aliens is about using the right types of attacks in the right situations.”</i>\n");
+				return;
+			}
+			
 			if (target.HP() <= 0)
 			{
 				output("\n\n<b>You've knocked the resistance out of " + target.a + target.short + ".</b>");
+			}
+			else if (target.lust() >= target.lustMax())
+			{
+				output("\n\n<b>" + target.capitalA + target.short + ((target.plural == true) ? " are" : " is") + " too turned on to fight.</b>");
+			}
+			else
+			{
+				// TODO Blinds had some effect on this...
+				if (target is QueenOfTheDeep && !pc.hasStatusEffect("Watered Down"))
+				{
+					output("\n<b>You're still clinging to the monster's topside, limiting her ability to fight you!</b>");
+					
+					if (target.lust() >= 50) output("\nYou can see her breath quickening, her massive chest heaving with nipples as hard as diamonds. She looks almost ready to cum just from your confrontation...\n");
+				}
+				else if (target is Cockvine)
+				{
+					kGAMECLASS.adultCockvineCombatDescriptionExtension();
+				}
+				else if (target is SX1Techguard && target.shields() > 0)
+				{
+					output("\nA small ball-shaped hover drone floats around her, spraying laser fire everywhere.");
+				}
+				
+				if (!(target is QueenOfTheDeep) && !(target is Cockvine))
+				{
+					if (target.getCombatDescription != null)
+					{
+						output(target.getCombatDescription());
+					}
+					showMonsterArousalFlavor(target);
+				}
+				
+				var pHealth:Number = target.HP() / target.HPMax();
+				var pShield:Number = target.shieldsRaw / target.shieldsMax();
+				
+				pHealth *= 100;
+				pShield *= 100;
+				
+				var dHealth:int = Math.round(pHealth);
+				var dShield:int = Math.round(pShield);
+				
+				output("\n\n" + target.long + " (<b>S: " + dShield + "% / H: " + dHealth + "%</b>)");
+			}
+		}
+		
+		private function displayFriendlyStatus(target:Creature):void
+		{
+			if (target.HP() <= 0)
+			{
+				output("\n\n<b>" + target.capitalA + target.short + " is down and out for the count!</b>");
 			}
 			else if (target.lust() >= target.lustMax())
 			{
@@ -2567,45 +2668,9 @@ package classes.GameData
 				if (enemiesAlive() > 1 || _hostiles[0].plural) output("<b>Your enemies have turned you on too much to keep fighting. You give in....</b>");
 				else output("<b>" + hostiles[0].capitalA + _hostiles[0].short + " has turned you on too much to keep fighting. You give in....</b>");
 			}
-			else if (hasEnemyOfClass(QueenOfTheDeep) && !pc.hasStatusEffect("Watered Down"))
-			{
-				output("<b>You're still clinging to the monster's topside, limiting her ability to fight you!</b>\n");
-			}
-			else if (hasEnemyOfClass(Celise))
-			{
-				if (_roundCounter == 1) output("\nVictor instructs, <i>“<b>Try and strike her, " + pc.short + ". Use a melee attack.</b>”</i>\n");
-				else if (_roundCounter == 2) output("\n<i>“Some foes are more vulnerable to ranged attacks than melee attacks or vice versa. <b>Why don’t you try using your gun?</b> Don’t worry, it won’t kill her.”</i> Victor suggests.\n");
-				else if (_roundCounter == 3) output("\n<i>“Didn’t work, did it? Celise’s race does pretty well against kinetic damage. Thermal weapons would work, but you don’t have any of those. You’ve still got one more weapon that galotians can’t handle - sexual allure. They’re something of a sexual predator, but their libidos are so high that teasing them back often turns them on to the point where they masturbate into a puddle of quivering sex.”</i>  Victor chuckles. <i>“<b>Go ahead, try teasing her.</b> Fighting aliens is about using the right types of attacks in the right situations.”</i>\n");
-			}
-			else
-			{
-				if (pc.statusEffectv1("Blind") <= 1 && pc.statusEffectv1("Smoke Grenade") <= 1)
-				{
-					output("<b>You're fighting " + targetFoe.a + targetFoe.short  + ".</b>\n" + targetFoe.long + "\n");
-					if (hasEnemyOfClass(Naleen)) author("Savin");
-					if (hasEnemyOfClass(ZilFemale)) author("Savin");
-					if (hasEnemyOfClass(Cockvine))
-					{
-						author("Nonesuch");			
-						adultCockvineCombatDescriptionExtension();
-					}
-					if (hasEnemyOfClass(QueenOfTheDeep))
-					{
-						if (targetFoe.lust() >= 50) output("You can see her breath quickening, her massive chest heaving with nipples as hard as diamonds. She looks almost ready to cum just from your confrontation...");
-					}
-					if (hasEnemyOfClass(SX1Techguard) && _hostiles[0].shields() > 0)
-					{
-						output("A small ball-shaped hover drone floats around her, spraying laser fire everywhere."); 
-					}
-					showMonsterArousalFlavor(targetFoe);
-					mutinousMimbranesCombat();
-					neglectedMimbranesCombat();
-				}
-				else
-				{
-					output("<b>You're too blind to see your foe!</b>\n");
-				}
-			}
+			
+			kGAMECLASS.mutinousMimbranesCombat();
+			kGAMECLASS.neglectedMimbranesCombat();
 		}
 		
 		private function showMonsterArousalFlavor(target:Creature):void
@@ -2719,28 +2784,43 @@ package classes.GameData
 		{
 			for (var i:int = 0; i < _friendlies.length; i++)
 			{
-				if (_friendlies[i].isDefeated())
+				var target:Creature = _friendlies[i];
+				
+				if (target.isDefeated())
 				{
 					continue;
 				}
-				else if (_friendlies[i].hasStatusEffect("Grappled"))
+				else if (target.hasStatusEffect("Paralyzed"))
 				{
-					doStruggleRecover(_friendlies[i]);
+					if (target.plural) output("<b>" + target.capitalA + target.short + " are still paralyzed.</b>");
+					else output("<b>" + target.capitalA + target.short + " is still paralyzed.</b>");
+					target.addStatusValue("Paralyzed", 1, -1);
+					
+					if (target.statusEffectv1("Paralyzed"))
+					{
+						if(target.plural) output(" They shake it off!");
+						else output(" " + target.mfn("He","She","It") + " shakes it off!");
+						target.removeStatusEffect("Paralyzed");
+					}
 				}
-				else if (_friendlies[i].hasStatusEffect("Stunned"))
+				else if (target.hasStatusEffect("Grappled"))
 				{
-					doStunRecover(_friendlies[i]);
+					doStruggleRecover(target);
 				}
-				else if (_friendlies[i].hasStatusEffect("Tripped"))
+				else if (target.hasStatusEffect("Stunned"))
 				{
-					doTripRecover(_friendlies[i]);
+					doStunRecover(target);
+				}
+				else if (target.hasStatusEffect("Tripped"))
+				{
+					doTripRecover(target);
 				}
 				else
 				{
-					_friendlies[i].CombatAI(_friendlies, _hostiles);
+					target.CombatAI(_friendlies, _hostiles);
 				}
 				
-				doCombatDrone(_friendlies[i]);
+				doCombatDrone(target);
 			}
 		}
 		
