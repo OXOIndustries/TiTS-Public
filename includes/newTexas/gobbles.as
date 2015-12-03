@@ -96,6 +96,19 @@ public function noThanksGobbles():void
 	addButton(0, "Next", mainGameMenu);
 }
 
+public function getCanadaPregContainer():PregnancyPlaceholder
+{
+	var ppCanada:PregnancyPlaceholder = new PregnancyPlaceholder();
+	ppCanada.breastRows[0].breasts = 2;
+	ppCanada.breastRows[0].breastRatingRaw = 30;
+	ppCanada.milkType = GLOBAL.FLUID_TYPE_MILKSAP;
+	ppCanada.milkMultiplier = 100;
+	ppCanada.milkFullness = 100;
+	if(!ppCanada.hasVagina()) ppCanada.createVagina();
+	ppCanada.girlCumType = GLOBAL.FLUID_TYPE_HONEY;
+	return ppCanada;
+}
+
 public function orderUpOneTurkeySlut():void
 {
 	clearOutput();
@@ -136,11 +149,7 @@ public function orderUpOneTurkeySlut():void
 	
 	output("\n\nShe blushes when you ask her and admits <i>“I’ve got a few mods down there, too. I’m really tasty now. Do you want to have a taste, eh?”</i>");
 	flags["GOBBLES_SEXYTIMES_STARTED"] = 1;
-	var ppCanada:PregnancyPlaceholder = new PregnancyPlaceholder();
-	ppCanada.breastRows[0].breastRatingRaw = 30;
-	ppCanada.milkType = GLOBAL.FLUID_TYPE_MILKSAP;
-	ppCanada.milkMultiplier = 100;
-	ppCanada.milkFullness = 100;
+	var ppCanada:PregnancyPlaceholder = getCanadaPregContainer();
 	pc.lust(5);
 	pc.milkInMouth(ppCanada);
 	processTime(10);
@@ -192,8 +201,7 @@ public function orderUpOneTurkeyCuntPie():void
 	
 	output("\n\nYou slowly pull yourself out from the cow’s backside, giving her a parting spank and watching appreciatively as her turkey-themed buttplug jiggles a little deeper into her. She coos, cupping one of her now-smaller breasts and wiggling her hips for you. That ass of hers is amazing... you could lose yourself in it if you aren’t careful. You’d like nothing more that to cuddle up with that butt, to say nothing of the huge boobs blatantly visible between the cow’s cum-splattered thighs.");
 	
-	var ppCanada:PregnancyPlaceholder = new PregnancyPlaceholder();
-	ppCanada.girlCumType = GLOBAL.FLUID_TYPE_HONEY;
+	var ppCanada:PregnancyPlaceholder = getCanadaPregContainer();
 	pc.lust(10);
 	pc.girlCumInMouth(ppCanada);
 	processTime(10);
