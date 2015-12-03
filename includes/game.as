@@ -4192,6 +4192,8 @@ public function displayEncounterLog(showID:String = "All"):void
 						output2("<b>: </b>" + flags["TIMES_CELISE_IN_BALLS"]);
 					}
 					if(flags["LACTATION_FED_CELISE"] != undefined) output2("\n<b>* Celise, Times Breast-Fed Her: </b>" + flags["LACTATION_FED_CELISE"]);
+					if(flags["KIRO_CELISE_3SOME"] != undefined) output2("\n<b>* Celise, Times Sexed with Kiro: </b>" + flags["KIRO_CELISE_3SOME"]);
+					if(flags["CELISE_ROOMBA_GOO"] != undefined) output2("\n<b>* Celise, Times Seen Cleaning Ship: </b>" + flags["CELISE_ROOMBA_GOO"]);
 				}
 				// Vahn
 				if(flags["MET_VAHN"] != undefined)
