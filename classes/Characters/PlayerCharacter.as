@@ -69,6 +69,7 @@ package classes.Characters
 		
 		override public function milkInMouth(milkFrom:Creature = null):Boolean
 		{
+			kGAMECLASS.mimbraneFeed("face");
 			if(hairType == GLOBAL.HAIR_TYPE_GOO)
 			{
 				if(milkFrom != null) addBiomass(milkFrom.lactationQ());
@@ -89,6 +90,7 @@ package classes.Characters
 		
 		override public function girlCumInMouth(cumFrom:Creature = null):Boolean
 		{
+			kGAMECLASS.mimbraneFeed("face");
 			if(hairType == GLOBAL.HAIR_TYPE_GOO)
 			{
 				if(cumFrom != null) addBiomass(cumFrom.girlCumQ());
