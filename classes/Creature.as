@@ -4009,6 +4009,8 @@ package classes {
 			}
 			else if (tailType == GLOBAL.TYPE_BOVINE)
 				adjectives = ["bovine", "cow-like"];
+			else if (tailType == GLOBAL.TYPE_CUNTSNAKE)
+				adjectives = ["snake-like"];
 			else if (tailType == GLOBAL.TYPE_PANDA)
 				adjectives = ["panda", "bear-like"];
 			else if (tailType == GLOBAL.TYPE_FELINE)
@@ -4050,7 +4052,7 @@ package classes {
 				adjectives = ["badger", "mustelid", "tufted"];
 			else if (tailType == GLOBAL.TYPE_RASKVEL)
 				adjectives = ["raskvel", "reptilian"];
-			else if (tailType == GLOBAL.TYPE_CUNTSNAKE)
+			else if (tailType == GLOBAL.TYPE_SNAKE)
 				adjectives = ["reptilian", "snake-like", "serpent"];
 			else if (tailType == GLOBAL.TYPE_SYDIAN)
 				adjectives = ["sydian", "wicked-shaped"];
