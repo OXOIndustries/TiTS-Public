@@ -341,7 +341,7 @@ public function celiseFemalePartsTentacleFun():void
 }
 
 //kiro tentacle fun(voyeurism)
-public function celiseKiroFunSekritShit9999():void
+public function celiseKiroFunSekritShit():void
 {
 	clearOutput();
 	showCelise();
@@ -355,16 +355,16 @@ public function celiseKiroFunSekritShit9999():void
 		if(pc.isNice()) output("smile happily");
 		else output("grin devilishly");
 		output(", telling Kiro that you’ve found the perfect person to vent her desires into, and that person is waiting for her on your ship.");
-		output("\n\n“<i>Who is it? ‘Perfect’ sounds a little too good to be true,</i>” Kiro says with an incredulous tone. \"<i>The last time someone offered me something perfect I nearly wound up in a cell!\"</i>");
+		output("\n\n<i>“Who is it? ‘Perfect’ sounds a little too good to be true,”</i> Kiro says with an incredulous tone. <i>“The last time someone offered me something perfect I nearly wound up in a cell!”</i>");
 		//[tell] [dont tell]
 		clearMenu();
-		addButton(1,"Don't Tell",dontTellKiroShit,undefined,"Don't Tell","Don't give away the surprise.");
+		addButton(1,"Don't Tell",dontTellKiroShit,undefined,"Don't Tell","Don’t give away the surprise.");
 		addButton(0,"Tell",tellKiroShit,undefined,"Tell","Tell Kiro!");
 	}
 	//repeat
 	else
 	{
-		output("\n\nYou tell Kiro that if she wouldn’t mind a little exercise Celise wouldn’t mind draining her again. She perks up immediately, wildly enthused at the prospect of getting to make use of your living cum-dump once more. She follows you to your ship with her fluffy tail swishing the floor behind you and her cock swelling. You lead her through the halls until you find the corner Celise has situated herself in. She perks up when she sees you, and perks up even further when she sees the well endowed kui-tan.");
+		output("\n\nYou tell Kiro that if she wouldn’t mind a little exercise Celise wouldn’t mind draining her again. The kui-tan perks up immediately, wildly enthused at the prospect of getting to make use of your living cum-dump once more. She follows you to your ship with her fluffy tail swishing the floor behind you and her cock swelling. You lead her through the halls until you find the corner Celise has situated herself in. The galotian perks up when she sees you, and perks up even further when she sees the well endowed kui-tan.");
 		properKiroSceneTimeLetsGo();
 	}
 }
@@ -374,7 +374,7 @@ public function dontTellKiroShit():void
 	clearOutput();
 	showKiro();
 	author("Gardeford");
-	output("You laugh. “<i>That would ruin the surprise, silly. Come see for yourself.</i>”");
+	output("You laugh. <i>“That would ruin the surprise, silly. Come see for yourself.”</i>");
 	//9999 Untrusting Kiro wouldn't do this. Do a variant where she refuses.
 	celiseXKiroFirstTimeIntroEpilogue();
 }
@@ -389,7 +389,8 @@ public function tellKiroShit():void
 
 public function celiseXKiroFirstTimeIntroEpilogue():void
 {
-	output(" She still gives you a wary look, but then rolls her eyes and shrugs. \"<i>What have I got to lose? If you were going to fuck me over, you'd have done it by now.</i>\"\n\nYou lead her through the ship till you reach the engine room that Celise stays in. The Emerald goo-girl brightens at seeing you, and raises a brow when she sees your companion.");
+	output(" She still gives you a wary look, but then rolls her eyes and shrugs. <i>“What have I got to lose? If you were going to fuck me over, you’d have done it by now.”</i>");
+	output("\n\nYou lead her through the ship till you reach the engine room that Celise stays in. The emerald goo-girl brightens at seeing you, and raises a brow when she sees your companion.");
 	properKiroSceneTimeLetsGo();
 }
 
@@ -400,7 +401,7 @@ public function properKiroSceneTimeLetsGo():void
 	showBust("KIRO","CELISE");
 	author("Gardeford");
 	output("\n\n<i>“Uhh,”</i> says Kiro when she sees the giant forest of tentacles beneath Celise’s upper body, <i>“");
-	if(flags["KIRO_CELISE_3SOME"] == undefined) output("Are you sure she can handle me? There's a lot of captain for her to handle, goo body or no.");
+	if(flags["KIRO_CELISE_3SOME"] == undefined) output("Are you sure she can handle me? There’s a lot of captain for her to handle, goo body or no.");
 	else output("Whoah...”</i> She braces her hand against a wall when her cock suddenly and violently becomes wholly erect, pulsing hotly. <i>“Fuck, that made me lightheaded. Give me a second, guys.");
 	output("”</i>");
 
@@ -412,7 +413,7 @@ public function properKiroSceneTimeLetsGo():void
 	else output("is throbbing powerfully and dripping gouts of pre large enough to fill a shotglass");
 	output(". The goo-girl raises her upper half to meet her ‘victim’ face-to-face.");
 
-	output("\n\n<i>“Hold on to your cum or she'll suck it out before you have a chance to stop her,”</i> you warn with a mischievous smile.");
+	output("\n\n<i>“Hold on to your cum or she’ll suck it out before you have a chance to stop her,”</i> you warn with a mischievous smile.");
 
 	output("\n\nSwirling tendrils brush against Kiro’s fuzzy ballsack until they converge into a single, coated sheath of goo. The kui-tan pirate coos softly before the emerald sheath begins to ripple visibly; Kiro’s voice catches in her throat as Celise softly vibrates around her sensitive testes. Her monstrous member instantly springs to full hardness, blasting herself in the face with creamy spooge. You feel ");
 	if(pc.hasCock()) output("[pc.eachCock] harden");
@@ -426,7 +427,8 @@ public function properKiroSceneTimeLetsGo():void
 	output("\n\nThe sheath surrounding Kiro’s ballsack begins to lose coherency as Celise is fucked silly by the ravenous tanuki. Some of the tentacles try to assist with the fucking, but after having been filled with a steady flow of cum before, the goo-girl is having trouble controlling her longer appendages. It’s all she can do to hang on to Kiro for dear life as she receives the pounding of a lifetime.");
 	output("\n\nThe two of them shout in simultaneous orgasm. You can see Kiro’s horsecock bulge with its load before it floods the emerald girl’s body. Kiro continues to fuck and rut into Celise until her balls are back to their regular size, by which time the normally bright and verdantly colored goo girl looks more like a giant plash of green-tinged spooge. Kiro lies out cold in the literal puddle of fuck, smiling wistfully as small tentacles pet various parts of her furry body. You wait there patiently, helping Kiro towel off and get redressed once she wakes.");
 	output("\n\nThe two of you travel to the station together before parting ways. You leave Celise to digest her gigantic meal for the time being while you ponder what to do next.");
-	//9999 kiro orgasm ballshrank shit
+	//kiro orgasm ballshrank shit
+	kiro.orgasm();
 	//(pass 3 hours)(lust raise +40)
 	processTime(160+rand(20));
 	pc.lust(40);
