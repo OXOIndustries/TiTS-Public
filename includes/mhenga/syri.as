@@ -717,10 +717,9 @@ public function tellSyriYoureIlliterate():void {
 	{
 		output(" grabs her data slate. <i>“Well, we'll just have to rectify that, Captain Steele. Now, let's start you off with some new Rondell Ramus books... and maybe a little Capser van Beck. Oh, and Imono Flaest's new one - it's a bestseller already, and it just came out today. Fifty billion copies by the time I woke up.”</i>");
 		output("\n\n<i>“Here we go...”</i>  she grins, tapping her screen. A moment later your codex announces that you have mail.");
-		eventBuffer += "\n\n<b>New Email from Syri Dorna (BlastMaster@GalLink.org)!</b>";
-		MailManager.unlockEntry("syribooks", GetGameTimestamp());
+		goMailGet("syribooks");
 	}
-	else output(" looks at you a bit beratingly. <i>“Even after I set you that giant list of books? Don't tell me you just wanted to listen to me talk about books... Here, let's read some of these...”</i> She grabs her slate and scrolls through some short story titles, making suggestions for you to check out later.");
+	else output(" looks at you a bit beratingly. <i>“Even after I sent you that giant list? Don't tell me you just wanted to listen to me talk about books... Here, let's read some of these...”</i> She grabs her slate and scrolls through some short story titles, making suggestions for you to check out later.");
 	
 	syriBookTalkEpilogue();
 }
