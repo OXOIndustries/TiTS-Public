@@ -237,23 +237,6 @@ public function generateMapForLocation(location:String):void
 	userInterface.setMapData(mapper.generateMap(location));
 }
 
-/*OLD
-public function showCodex():void
-{
-	this.userInterface.showCodex();
-	this.codexHomeFunction();
-	this.clearGhostMenu();
-	
-	// TESTO BUTTONO
-	addGhostButton(0, "Stats", statisticsScreen);
-	
-	//addGhostButton(1, "Messages", function():void { } );
-	//addGhostButton(2, "Log", function():void { } );
-	//addGhostButton(3, "CHEEVOS", function():void { } );
-	addGhostButton(1, "Log", displayQuestLog);
-	
-	addGhostButton(4, "Back", this.userInterface.showPrimaryOutput);
-}*/
 public function showCodex():void
 {
 	userInterface.showCodex();
@@ -2775,40 +2758,6 @@ public function statisticsScreen(showID:String = "All"):void
 	// Other
 	if(showID == "Other" || showID == "All")
 	{
-		// Equipment/Flags (Of course, this is visible in the inventory, but this is primarily for those who can't see the flags on the tooltips!)
-		/*
-		output2("\n\n" + blockHeader("Equipment Statistics", false));
-		output2("\n<b><u>Currently Worn</u></b>");
-		if(!(pc.meleeWeapon is EmptySlot))
-		{
-			output2("\n<b>* Melee Weapon: </b>" + pc.meleeWeapon.shortName + " " + pc.meleeWeapon.getDamageFlags("", pc.meleeWeapon, new EmptySlot()) + " " + pc.meleeWeapon.getResistanceFlags("", pc.meleeWeapon, new EmptySlot()));
-		}
-		if(!(pc.rangedWeapon is EmptySlot))
-		{
-			output2("\n<b>* Ranged Weapon: </b>" + pc.rangedWeapon.shortName);
-		}
-		if(!(pc.armor is EmptySlot))
-		{
-			output2("\n<b>* Armor: </b>" + pc.armor.shortName);
-		}
-		if(!(pc.shield is EmptySlot))
-		{
-			output2("\n<b>* Shield: </b>" + pc.shield.shortName);
-		}
-		if(!(pc.accessory is EmptySlot))
-		{
-			output2("\n<b>* Accessory: </b>" + pc.accessory.shortName);
-		}
-		if(!(pc.upperUndergarment is EmptySlot))
-		{
-			output2("\n<b>* Underwear Top: </b>" + pc.upperUndergarment.shortName);
-		}
-		if(!(pc.lowerUndergarment is EmptySlot))
-		{
-			output2("\n<b>* Underwear Bottom: </b>" + pc.lowerUndergarment.shortName);
-		}
-		*/
-		
 		//======COMBAT STATISTICS=====//
 		output2("\n\n" + blockHeader("Combat Statistics", false));
 		// Physical Combat
