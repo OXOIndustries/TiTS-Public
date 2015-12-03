@@ -255,7 +255,7 @@ public function arbetzMainMenu():void
 	if (flags["ARBETZ_SEX_UNLOCKED"] != undefined)
 	{
 		if (pc.lust() >= 33) addButton(3, "Sex", arbetzMainOptions, 3);
-		else addDisabledButton(3, "Sex", "Sex", "You are currently not aroused enough for this!");
+		else addDisabledButton(3, "Sex", "Sex", "You are currently not aroused enough for that!");
 	}
 	addButton(5, "Appearance", arbetzMainOptions, 1);
 	
