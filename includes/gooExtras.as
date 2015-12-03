@@ -27,7 +27,7 @@ Fullgoo. Monoped goobod, Gain resistance to corrosion. Height and thickness beco
 */
 public function gooColor():String
 {
-	if(flags["GALOMAX_DOSES"]  == undefined) return "green";
+	if(flags["GALOMAX_DOSES"] == undefined) return "green";
 	else if(flags["GALOMAX_DOSES"] < 4) return pc.hairColor;
 	else return pc.skinTone;
 }
@@ -119,8 +119,13 @@ public function helpZodeeWithHerEggProblem():void
 	output("Zo’dee’s eyes light up when you tell her you’ll help her.");
 	output("\n\n<i>“Really?”</i> The teal-skinned gel-girl seems positively elated. <i>“That kind of service usually costs quite a few credits... or a few drinks at least.”</i> Running a finger down the edge of her outfit, she releases an invisible catch, allowing the white latex to peel away. Deep blue nipples appear shortly before the tip of her turgid egg-layer, and the more you see of her unfeminine organ, the more aware of her plight you become. She is <i>stuffed</i> with eggs. The topmost sphere looks about ready to pop out. All you’ve got to do is give it a squeeze.");
 	output("\n\n<i>“Go on,”</i> Zo’dee purrs encouragingly. <i>“Squeeze them out.”</i>");
-	output("\n\n{Your breath catches in your throat. It’s beautiful, even for like, a lady-cock./Your breath seems a little too fast even to your own ears. There’s something indescribably exciting about offering such salacious assistance.} You reach out and grab hold, marvelling at the smooth, almost slick texture of her gelatinous skin. It’s not quite as soft as you’d expect, tough and hard enough to make you doubt you’ll be much help at squeezing out all the eggs trapped inside, but Zo’dee’s blissful expression is all the encouragement you need to forge ahead.");
-	output("\n\nExperimentally stroking, you squeeze it from the base to the tip, at first alarmed and then pleased when a whitish-green goo leaks from the tip to glaze your fingers. Zo’dee wobbles and gasps, leaning against you for support{, forced to hold onto your diminutive shoulders lest she pitch over on top of you.} You grin up at her and squeeze her near the base, forcing her prong to bloat bigger, the head greenish-blue. Its slitted tip is already starting to gape. More yoghurt-thick goop oozes out.");
+	output("\n\nYour breath")
+	if(pc.libido() < 50) output(" catches in your throat. It’s beautiful, even for like, a lady-cock.")
+	else output(" seems a little too fast even to your own ears. There’s something indescribably exciting about offering such salacious assistance.")
+	output(" You reach out and grab hold, marvelling at the smooth, almost slick texture of her gelatinous skin. It’s not quite as soft as you’d expect, tough and hard enough to make you doubt you’ll be much help at squeezing out all the eggs trapped inside, but Zo’dee’s blissful expression is all the encouragement you need to forge ahead.");
+	output("\n\nExperimentally stroking, you squeeze it from the base to the tip, at first alarmed and then pleased when a whitish-green goo leaks from the tip to glaze your fingers. Zo’dee wobbles and gasps, leaning against you for support")
+	if(pc.tallness < 48) output(", forced to hold onto your diminutive shoulders lest she pitch over on top of you")
+	output(". You grin up at her and squeeze her near the base, forcing her prong to bloat bigger, the head greenish-blue. Its slitted tip is already starting to gape. More yoghurt-thick goop oozes out.");
 	output("\n\nYou use the extra fluid as lubricant, squeezing tight, dragging your pinching fingers upward. The spherical distentions of her eggs press back against your digits, but even they have to give. One forceful tug is all it takes to pop the first egg from Zo’dee’s dribbling spout. Rahn-spunk sprays out like champagne from a shaken bottle, carrying another orb to land alongside the first.");
 	output("\n\nThe gelatinous girl is biting her lower lips and watching you with rapt attention, grunting and shaking her hips, slamming her spurting ovipositor into your fingers as hard as she can. She’s straight-up fucking your hand at this point. All you have to do is hold on and squeeze at the right moments to make the orgasmically addled alien moan and spurt. Ribbons of gooey relief intermingle with your squelching knuckles, filling the air with the lewdest slaps imaginable.");
 	output("\n\nAnother egg lands in a rapidly expanding puddle with a squelch, kicking droplets of mixed ivory-emerald spunk onto your ");
@@ -223,7 +228,7 @@ public function galoMaxTFProc():void
 			if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC)) output("They don’t care that you’re in public, out where anyone could see you. If peacekeepers show up, they’ll have to pry them out with a crowbar.");
 			else output("They don’t care a whit about your location. If you were out in public, they’d still be knuckle-deep inside you. The peacekeepers would have to pry them out of you with a crowbar");
 			output(". Your other hand settles on [pc.oneCock] and begins to stroke, and pre-cum spills out in eager response. Everything feels so hot and wet, and the faster you masturbate, the slipperier you get.");
-			output("\n\nYour boundless sex juices fill your palms to overflowing, and you instinctively smear it all over your genitals, your own slippery, gooey lubricant. It provides the perfect mix of slickness and friction, just enough to ease the passage of your hands’ back and forth motions. You squelch and stroke and whine, dribbling down your [pc.legs] - so wet... so very very wet. Your cock");
+			output("\n\nYour boundless sex juices fill your palms to overflowing, and you instinctively smear it all over your genitals, your own slippery, gooey lubricant. It provides the perfect mix of slickness and friction, just enough to ease the passage of your hands’ back and forth motions. You squelch and stroke and whine, dribbling down your [pc.legOrLegs] - so wet... so very very wet. Your cock");
 			if(pc.cockTotal() > 1) output("s are fountains");
 			else output("is a fountain");
 			output(", your puss");
@@ -257,7 +262,7 @@ public function galoMaxTFProc():void
 			if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC)) output("They don’t care that you’re in public, out where anyone could see you. If peacekeepers show up, they’ll have to pry them off with a crowbar.");
 			else output("They don’t care a whit about your location. If you were out in public, they’d still be wrapped around your length. The peacekeepers would have to pry them off of you with a crowbar");
 			output(". Pre-cum spills out in eager response. Everything feels so hot and wet, and the faster you masturbate, the slipperier you get.");
-			output("\n\nYour boundless sex juices fill your palms to overflowing, and you instinctively smear it all over your genitals, your own slippery, gooey lubricant. It provides the perfect mix of slickness and friction, just enough to ease the passage of your hands’ back and forth motions. You squelch and stroke and whine, dribbling down your [pc.legs] - so wet... so very very wet. Your cock");
+			output("\n\nYour boundless sex juices fill your palms to overflowing, and you instinctively smear it all over your genitals, your own slippery, gooey lubricant. It provides the perfect mix of slickness and friction, just enough to ease the passage of your hands’ back and forth motions. You squelch and stroke and whine, dribbling down your [pc.legOrLegs] - so wet... so very very wet. Your cock");
 			if(pc.cockTotal() > 1) output("s are fountains.");
 			else output(" is a fountain.");
 			output("\n\nOrgasm is less like a blissful explosion and more like breaking the top off a fire hydrant. Ribbons of... syrupy, [pc.cumColor] cum spray your [pc.cocks]. It’s different than you remember, tapping into a reservoir that you never would have expected to aid in ejaculation, releasing pulsing waves of thick, sloppy goop to puddle on the floor and coat your [pc.legOrLegs]. It’s difficult to take in while the raw pleasure is dancing behind your eyes, but the minute the flow tapers down to a gentle drip, you realize what’s happened.");
@@ -277,7 +282,7 @@ public function galoMaxTFProc():void
 			if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC)) output("They don’t care that you’re in public, out where anyone could see you. If peacekeepers show up, they’ll have to pry them out with a crowbar.");
 			else output("They don’t care a whit about your location. If you were out in public, they’d still be knuckle-deep inside you. The peacekeepers would have to pry them out of you with a crowbar.");
 			output(" Everything feels so hot and wet, and the faster you masturbate, the slipperier you get.");
-			output("\n\nYour boundless sex juices fill your palms to overflowing, and you instinctively smear it all over your genitals, your own slippery, gooey lubricant. It provides the perfect mix of slickness and friction, just enough to ease the passage of your fingers. You squelch and stroke and whine, dribbling down your [pc.legs] - so wet... so very very wet. Your puss");
+			output("\n\nYour boundless sex juices fill your palms to overflowing, and you instinctively smear it all over your genitals, your own slippery, gooey lubricant. It provides the perfect mix of slickness and friction, just enough to ease the passage of your fingers. You squelch and stroke and whine, dribbling down your [pc.legOrLegs] - so wet... so very very wet. Your puss");
 			if(pc.totalVaginas() > 1) output("ies");
 			else output("y");
 			output(" a seemingly endless river.");
@@ -602,16 +607,20 @@ public function reshapeAGooCawkForReaaaaal(arg:int = 0):void
 	output2("What new shape would you like to give your [pc.cockNoun " + arg + "]?");
 	clearGhostMenu();
 	addGhostButton(0,"Terran",seriouslyThoReshapeDatGooCock,[arg,GLOBAL.TYPE_HUMAN]);
-	addGhostButton(1,"Equine",seriouslyThoReshapeDatGooCock,[arg,GLOBAL.TYPE_EQUINE]);
-	addGhostButton(2,"Canine",seriouslyThoReshapeDatGooCock,[arg,GLOBAL.TYPE_CANINE]);
-	addGhostButton(3,"Feline",seriouslyThoReshapeDatGooCock,[arg,GLOBAL.TYPE_FELINE]);
-	addGhostButton(4,"Vulpine",seriouslyThoReshapeDatGooCock,[arg,GLOBAL.TYPE_VULPINE]);
-	addGhostButton(5,"Zil",seriouslyThoReshapeDatGooCock,[arg,GLOBAL.TYPE_BEE]);
-	addGhostButton(6,"Draconic",seriouslyThoReshapeDatGooCock,[arg,GLOBAL.TYPE_DRACONIC]);
-	addGhostButton(7,"Snake-like",seriouslyThoReshapeDatGooCock,[arg,GLOBAL.TYPE_SNAKE]);
-	addGhostButton(8,"Demonic",seriouslyThoReshapeDatGooCock,[arg,GLOBAL.TYPE_DEMONIC]);
-	addGhostButton(9,"Kui-tan",seriouslyThoReshapeDatGooCock,[arg,GLOBAL.TYPE_KUITAN]);
-	addGhostButton(10,"Tentacle",seriouslyThoReshapeDatGooCock,[arg,GLOBAL.TYPE_TENTACLE]);
+	addGhostButton(1,"Canine",seriouslyThoReshapeDatGooCock,[arg,GLOBAL.TYPE_CANINE]);
+	addGhostButton(2,"Feline",seriouslyThoReshapeDatGooCock,[arg,GLOBAL.TYPE_FELINE]);
+	addGhostButton(3,"Kui-tan",seriouslyThoReshapeDatGooCock,[arg,GLOBAL.TYPE_KUITAN]);
+	addGhostButton(4,"Snake-like",seriouslyThoReshapeDatGooCock,[arg,GLOBAL.TYPE_SNAKE]);
+	addGhostButton(5,"Equine",seriouslyThoReshapeDatGooCock,[arg,GLOBAL.TYPE_EQUINE]);
+	addGhostButton(6,"Vulpine",seriouslyThoReshapeDatGooCock,[arg,GLOBAL.TYPE_VULPINE]);
+	if(flags["MET_SERA"] != undefined || CodexManager.entryViewed("Vanae"))
+		addGhostButton(7,"Demonic",seriouslyThoReshapeDatGooCock,[arg,GLOBAL.TYPE_DEMONIC]);
+	if(CodexManager.entryViewed("Venus Pitchers") || CodexManager.entryUnlocked("Cockvines"))
+		addGhostButton(8,"Tentacle",seriouslyThoReshapeDatGooCock,[arg,GLOBAL.TYPE_TENTACLE]);
+	if(CodexManager.entryUnlocked("Zil"))
+		addGhostButton(9,"Zil",seriouslyThoReshapeDatGooCock,[arg,GLOBAL.TYPE_BEE]);
+	if(CodexManager.entryUnlocked("Fanfir") || CodexManager.entryViewed("The Dragon's Hoard"))
+		addGhostButton(10,"Draconic",seriouslyThoReshapeDatGooCock,[arg,GLOBAL.TYPE_DRACONIC]);
 	addGhostButton(14,"Back",reshapeACaaaawk);
 }
 public function seriouslyThoReshapeDatGooCock(arg:Array):void
@@ -653,7 +662,7 @@ public function seriouslyThoReshapeDatGooCock(arg:Array):void
 	{
 		output2(". The ease with which you can reshape your sex never ceases to amaze you. Flesh flows like liquid butter, forming a serious of bulbous protrusions with a slick, almost shiny surface. In no time flat, you have a turgid snake-cock hanging heavily");
 		if(pc.legCount == 1) output(" from your gooey loins.");
-		else output(" between your [pc.legs].");
+		else output(" between your [pc.legOrLegs].");
 		
 	}
 	else if(type == GLOBAL.TYPE_DEMONIC)
@@ -776,16 +785,23 @@ public function lengthenGooCock():void
 public function lengthenSelectedGooCock(arg:int = 0):void
 {
 	clearOutput2();
+	var cChange:Number = 2;
 	//Find the difference between new and old sizes:
-	pc.cocks[arg].cLengthRaw += 2;
+	pc.cocks[arg].cLengthRaw += cChange;
 	var biomassReq:Number = pc.cockVolume(arg,false);
-	pc.cocks[arg].cLengthRaw -= 2;
+	pc.cocks[arg].cLengthRaw -= cChange;
 	biomassReq -= pc.cockVolume(arg,false);
 	//Is there enough? TF
 	if(flags["GOO_BIOMASS"] >= biomassReq)
 	{
-		output2("Oh wow, as soon as you thought about your [pc.cockNoun " + arg + "] sticking a little farther out than normal, you could feel more cock pushing out of you, fucking its way out of your body on the path to full erectness. It feels quite good, good enough that you can’t help but imagining it a little bigger, a little thicker, and a lot more erect. By the time you reel yourself in, you’ve added two inches to your size.");
-		pc.cocks[arg].cLengthRaw += 2;
+		// Perk bonus (no extra cost!)
+		if(pc.hasPerk("Hung")) cChange += 2;
+		
+		output2("Oh wow, as soon as you thought about your [pc.cockNoun " + arg + "] sticking a little farther out than normal, you could feel more cock pushing out of you, fucking its way out of your body on the path to full erectness. It feels quite good, good enough that you can’t help but imagining it a little bigger, a little thicker, and a lot more erect. By the time you reel yourself in, you’ve added");
+		if(cChange == 1) output2(" one inch");
+		else output2(" " + num2Text(cChange) + " inches");
+		output2(" to your size.");
+		pc.cocks[arg].cLengthRaw += cChange;
 		flags["GOO_BIOMASS"] -= Math.round(biomassReq);
 	}
 	//NOT ENOUGH! ABORT!
@@ -812,7 +828,8 @@ public function shortenADick():void
 		if(pc.cocks[x].hasFlag(GLOBAL.FLAG_GOOEY))
 		{
 			output2("\n" + (x+1) + ": [pc.cock " + x + "]");
-			addGhostButton(x,upperCase(num2Text(x+1)),shortenSelectedCock,x);
+			if(pc.cocks[x].cLengthRaw <= 1) addDisabledGhostButton(x,upperCase(num2Text(x+1)),upperCase(num2Text(x+1)),"This penis is as short as it's going to get.");
+			else addGhostButton(x,upperCase(num2Text(x+1)),shortenSelectedCock,x);
 		}
 		else
 		{
@@ -825,11 +842,37 @@ public function shortenADick():void
 public function shortenSelectedCock(arg:int = 0):void
 {
 	clearOutput2();
-	output2("Turns out that there can be too much of a good thing. You glance down at your [pc.cockNoun " + x + "] and focus, willing it to become a little more reasonably sized. After losing about two inches. You take a break to evaluate the results, and decide if you should go any smaller.");
-	var biomassDiff:Number = pc.cockVolume(arg);
-	pc.cocks[arg].cLengthRaw -= 2;
-	biomassDiff -= pc.cockVolume(arg);
-	flags["GOO_BIOMASS"] += Math.round(biomassDiff * .75);
+	
+	if(pc.cocks[arg].cLengthRaw >= 3)
+	{
+		var cChange:Number = 2;
+		var biomassDiff:Number = pc.cockVolume(arg);
+		pc.cocks[arg].cLengthRaw -= cChange;
+		biomassDiff -= pc.cockVolume(arg);
+		pc.cocks[arg].cLengthRaw += cChange;
+		
+		// Perk bonus (no extra gain!)
+		if(pc.hasPerk("Mini")) cChange += 2;
+		
+		output2("Turns out that there can be too much of a good thing. You glance down at your [pc.cockNoun " + arg + "] and focus, willing it to become a little more reasonably sized.");
+		if(pc.cocks[arg].cLengthRaw - cChange < 1) output2(" After losing enough mass until your tiny prick is about one-inch long");
+		else if(cChange == 1) output2(" After losing about one inch");
+		else output2(" After losing about " + num2Text(cChange) + " inches");
+		output2(", you take a break to evaluate the results and decide if you should go any smaller.");
+		
+		if(pc.cocks[arg].cLengthRaw - cChange < 1) pc.cocks[arg].cLengthRaw = 1;
+		else pc.cocks[arg].cLengthRaw -= cChange;
+		flags["GOO_BIOMASS"] += Math.round(biomassDiff * .75);
+	}
+	else if(pc.cocks[arg].cLengthRaw > 1)
+	{
+		output2("Turns out that there can be too much of a good thing. You glance down at your [pc.cockNoun " + arg + "] and focus, willing it to become a little more reasonably sized. After it shrinks down to about one inch, it suddenly stops... looks like you can't get it any smaller than that without having to remove it.");
+		pc.cocks[arg].cLengthRaw = 1;
+	}
+	else
+	{
+		output2("You try and try but you can't quite shift the biomass of your [pc.cockNoun " + arg + "] to get it any smaller... You guess you pecker as small as it's going to get unless you decide you want to remove it.");
+	}
 
 	clearGhostMenu();
 	addButton(0,"Next",gooCockRootMenu);
@@ -863,7 +906,8 @@ public function vaginaGooRootMenu():void
 		else addDisabledGhostButton(2,"Grow Clit","Grow Clit","You have no vagina to add a clit to.");
 	}
 	else addDisabledGhostButton(2,"Grow Clit","Grow Clit","You have no vagina to add a clit to.");
-	if(pc.hasVagina()) addGhostButton(3,"Remove Clit",removeGooClitVagSelector,undefined,"Grow Clit","Remove an excess clitoris.");
+	if(pc.totalVaginas() == 1 && pc.vaginas[0].hasFlag(GLOBAL.FLAG_GOOEY) && pc.vaginas[0].clits <= 1) addDisabledGhostButton(3,"Remove Clit","Remove Clit","You cannot remove your only clit. It just seems... wrong without it.");
+	else if(pc.hasVagina()) addGhostButton(3,"Remove Clit",removeGooClitVagSelector,undefined,"Remove Clit","Remove an excess clitoris.");
 	else addDisabledGhostButton(3,"Remove Clit","Remove Clit","You don't have a vagina to remove a clit from.");
 
 	if(pc.hasVagina())
@@ -990,7 +1034,7 @@ public function removeGooClitVagSelector():void
 		{
 			output2("\n" + (x+1) + ": [pc.vagina " + x + "] - " + pc.vaginas[x].clits + " clits");
 			if(pc.vaginas[x].clits > 1) addGhostButton(x,upperCase(num2Text(x+1)),addGooClitNau,x);
-			else addDisabledGhostButton(x,upperCase(num2Text(x+1)),upperCase(num2Text(x+1)),"You cannot remove your last clit. It just seems... wrong without it.");
+			else addDisabledGhostButton(x,upperCase(num2Text(x+1)),upperCase(num2Text(x+1)),"You cannot remove your last clit for this vagina. It just seems... wrong without it.");
 		}
 		else addDisabledGhostButton(x,upperCase(num2Text(x+1)),upperCase(num2Text(x+1)),"This vagina isn't made of goo and cannot be morphed that way.");
 	}
@@ -1003,7 +1047,7 @@ public function removingClitSurgeryGoo(arg:int = 0):void
 	clearOutput2();
 	output2("Deciding to simplify things, you will one of your [pc.clits] to fade back into the gelatinous surface of your crotch. It disappears with a sudden cessation of sensation, leaving your [pc.vagina " + arg + "] a little less sensitive for the change.");
 	flags["GOO_BIOMASS"] += 75;
-	pc.vaginas[arg].clits++;
+	pc.vaginas[arg].clits--;
 	clearGhostMenu();
 	addGhostButton(0,"Next",vaginaGooRootMenu);
 }
@@ -1038,10 +1082,12 @@ public function pickNewCuntType(arg:int = 0):void
 	output2("What type of vagina will you change it into?");
 	clearGhostMenu();
 	addGhostButton(0,"Terran",actuallyTFToNewCuntType,[arg,GLOBAL.TYPE_HUMAN]);
-	addGhostButton(1,"Equine",actuallyTFToNewCuntType,[arg,GLOBAL.TYPE_EQUINE]);
-	addGhostButton(2,"Canine",actuallyTFToNewCuntType,[arg,GLOBAL.TYPE_CANINE]);
-	addGhostButton(3,"Lapinara",actuallyTFToNewCuntType,[arg,GLOBAL.TYPE_LAPINARA]);
-	addGhostButton(4,"Vanae",actuallyTFToNewCuntType,[arg,GLOBAL.TYPE_VANAE]);
+	addGhostButton(1,"Canine",actuallyTFToNewCuntType,[arg,GLOBAL.TYPE_CANINE]);
+	addGhostButton(2,"Equine",actuallyTFToNewCuntType,[arg,GLOBAL.TYPE_EQUINE]);
+	if(CodexManager.entryUnlocked("Vanae"))
+		addGhostButton(3,"Vanae",actuallyTFToNewCuntType,[arg,GLOBAL.TYPE_VANAE]);
+	if(CodexManager.entryUnlocked("Lapinara"))
+		addGhostButton(4,"Lapinara",actuallyTFToNewCuntType,[arg,GLOBAL.TYPE_LAPINARA]);
 	addGhostButton(14,"Back",shiftACuntYaCunt);
 }
 
