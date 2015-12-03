@@ -125,7 +125,7 @@ public function helpZodeeWithHerEggProblem():void
 	output(" You reach out and grab hold, marvelling at the smooth, almost slick texture of her gelatinous skin. It’s not quite as soft as you’d expect, tough and hard enough to make you doubt you’ll be much help at squeezing out all the eggs trapped inside, but Zo’dee’s blissful expression is all the encouragement you need to forge ahead.");
 	output("\n\nExperimentally stroking, you squeeze it from the base to the tip, at first alarmed and then pleased when a whitish-green goo leaks from the tip to glaze your fingers. Zo’dee wobbles and gasps, leaning against you for support")
 	if(pc.tallness < 48) output(", forced to hold onto your diminutive shoulders lest she pitch over on top of you")
-	output(". You grin up at her and squeeze her near the base, forcing her prong to bloat bigger, the head greenish-blue. Its slitted tip is already starting to gape. More yoghurt-thick goop oozes out.");
+	output(". You grin up at her and squeeze her near the base, forcing her prong to bloat bigger, the head greenish-blue. Its slitted tip is already starting to gape. More yogurt-thick goop oozes out.");
 	output("\n\nYou use the extra fluid as lubricant, squeezing tight, dragging your pinching fingers upward. The spherical distentions of her eggs press back against your digits, but even they have to give. One forceful tug is all it takes to pop the first egg from Zo’dee’s dribbling spout. Rahn-spunk sprays out like champagne from a shaken bottle, carrying another orb to land alongside the first.");
 	output("\n\nThe gelatinous girl is biting her lower lips and watching you with rapt attention, grunting and shaking her hips, slamming her spurting ovipositor into your fingers as hard as she can. She’s straight-up fucking your hand at this point. All you have to do is hold on and squeeze at the right moments to make the orgasmically addled alien moan and spurt. Ribbons of gooey relief intermingle with your squelching knuckles, filling the air with the lewdest slaps imaginable.");
 	output("\n\nAnother egg lands in a rapidly expanding puddle with a squelch, kicking droplets of mixed ivory-emerald spunk onto your ");
@@ -350,6 +350,22 @@ public function galoMaxTFProc():void
 			if(!pc.vaginas[x].hasFlag(GLOBAL.FLAG_GOOEY)) pc.vaginas[x].addFlag(GLOBAL.FLAG_GOOEY);
 			pc.vaginas[x].vaginaColor = pc.hairColor;
 			if(pc.hairType != GLOBAL.HAIR_TYPE_GOO) pc.vaginas[x].vaginaColor = RandomInCollection[("green","emerald")];
+		}
+	}
+	
+	// PLACEHOLDER - Failsafe, Overlimit, What do?
+	// 9999 (Fill this in with your content if necessary!)
+	else
+	{
+		output("Oh...");
+		output("\n\nOoh...");
+		output("\n\nAnd... nothing happens.");
+		output("\n\nSeems like that GaloMax pill didn't have any effect on you this time.");
+		if(flags["GOO_BIOMASS"] != undefined & rand (2) == 0)
+		{
+			output("..");
+			output("\n\nSuddenly, you feel a surge of biomass flow into your body. Well, it did have an effect afterall!");
+			flags["GOO_BIOMASS"] += 1000;
 		}
 	}
 }
@@ -828,8 +844,7 @@ public function shortenADick():void
 		if(pc.cocks[x].hasFlag(GLOBAL.FLAG_GOOEY))
 		{
 			output2("\n" + (x+1) + ": [pc.cock " + x + "]");
-			if(pc.cocks[x].cLengthRaw <= 1) addDisabledGhostButton(x,upperCase(num2Text(x+1)),upperCase(num2Text(x+1)),"This penis is as short as it's going to get.");
-			else addGhostButton(x,upperCase(num2Text(x+1)),shortenSelectedCock,x);
+			addGhostButton(x,upperCase(num2Text(x+1)),shortenSelectedCock,x);
 		}
 		else
 		{
@@ -871,7 +886,13 @@ public function shortenSelectedCock(arg:int = 0):void
 	}
 	else
 	{
-		output2("You try and try but you can't quite shift the biomass of your [pc.cockNoun " + arg + "] to get it any smaller... You guess you pecker as small as it's going to get unless you decide you want to remove it.");
+		output2("You try and try but you can't quite shift the biomass of your [pc.cockNoun " + arg + "] to get it any smaller... You guess your pecker as small as it's going to get... unless you decide to remove it.");
+		output2("\n\nDo you want to remove it?");
+		
+		clearGhostMenu();
+		addButton(0,"Remove It",removeDaChosenGooCock,arg,"Remove It","Remove your [pc.cock " + arg + "].");
+		addButton(1,"Nah",gooCockRootMenu);
+		return;
 	}
 
 	clearGhostMenu();
