@@ -36,6 +36,20 @@ public function showZephyrDeets(nakkers:Boolean = false):void
 	showName("\nZEPHYR");
 	author("Fenoxo");
 }
+public function getZephyrPregContainer():PregnancyPlaceholder
+{
+	var ppZephyr:PregnancyPlaceholder = new PregnancyPlaceholder();
+	ppZephyr.breastRows[0].breasts = 2;
+	ppZephyr.breastRows[0].breastRatingRaw = 35;
+	ppZephyr.milkType = GLOBAL.FLUID_TYPE_MILK;
+	ppZephyr.milkMultiplier = 100;
+	ppZephyr.milkFullness = 100;
+	if(!ppZephyr.hasCock()) ppZephyr.createCock();
+	ppZephyr.shiftCock(0, GLOBAL.TYPE_CANINE);
+	ppZephyr.cocks[0].cLength = 9;
+	ppZephyr.cocks[0].flaccidMultiplier = .6;
+	return ppZephyr;
+}
 
 //Approach
 public function approachZephyr(approached:Boolean = false):void
@@ -372,7 +386,7 @@ public function getFuckedByZephyrII():void
 	else 
 	{
 		output(" Her size, as impressive as it is, doesn’t even begin to push you towards your boundaries. Your sex-scattered neurons desperately scrape together a thought: ");
-		if(9999) output("what if you got her some throbb?");
+		if(flags["PENNY_THROBB_PURCHASE_UNLOCKED"] != undefined || flags["PENNY_THROBB_USES"] != undefined || flags["TIMES_THROBB_USED"] != undefined) output("what if you got her some throbb?");
 		else output("what if you could get her something to make her bigger?");
 	}
 	output("\n\nZephyr grunts in raw, animal pleasure and stops in an effort to adjust to the touch of your tunnel, huffing excitedly. <i>“Damn, you got an ass on you. You ready for the rest of it?”</i>");
@@ -495,12 +509,25 @@ public function getFuckedByZephyrIV():void
 	if(pc.bellyRating() < 45) output("begins to swell");
 	else output("swells up even more");
 	output(", stuffed full of the cow’s gene-modded jism.");
-
-	output("\n\nZephyr holds you there for what feels like hours, pinned beneath her, slowly filling, expanding from the pressure of her endless, liquid load. She whispers perverse promises in your ear once it finally dies down, promising to knot you until you’re addicted to her cock unable to cum without feeling her signature swelling down below");
-	if(!pc.isTreated()) 
+	
+	output("\n\nZephyr holds you there for what feels like hours, pinned beneath her, slowly filling, expanding from the pressure of her endless, liquid load. She whispers perverse promises in your ear once it finally dies down");
+	if(!pc.isTreated()) output(", promising that you can have her dick every day if you take the Treatment and immigrate, no matter what kind of " + pc.rawmfn("cow","bull","person") + " you come out as.");
+	else output(", promising to knot you until you’re addicted to her cock unable to cum without feeling her signature swelling down below.");
+	
+	var ppZephyr:PregnancyPlaceholder = getZephyrPregContainer();
+	if(x >= 0)
 	{
-		output(", promising that you can have her dick every day if you take the Treatment and immigrate, no matter what kind of " + pc.rawmfn("cow","bull","person") + " you come out as.");
+		pc.loadInCunt(ppZephyr, x);
+		pc.loadInCunt(ppZephyr, x);
+		pc.loadInCunt(ppZephyr, x);
 	}
+	else
+	{
+		pc.loadInAss(ppZephyr);
+		pc.loadInAss(ppZephyr);
+		pc.loadInAss(ppZephyr);
+	}
+	
 	//[Next]
 	processTime(8);
 	pc.orgasm();
@@ -526,6 +553,10 @@ public function getFuckedByZephyrV():void
 	{
 		output("\n\nIt looks fucking delicious. You wrap your [pc.lips] around it and suck it like your life depends on it, shining it until its been spit-polished.");
 		output("\n\nZephyr pats you on the head and whispers, <i>“Good [pc.boy], now run along before I decide to keep you under my desk for the rest of the day.”</i> You practically glow from the praise, beaming as you lick the last droplets from your [pc.lips]. This planet rules!");
+		processTime(2);
+		var ppZephyr:PregnancyPlaceholder = getZephyrPregContainer();
+		pc.loadInMouth(ppZephyr);
+		pc.loadInMouth(ppZephyr);
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 	}
@@ -551,6 +582,9 @@ public function cleanDatZephyrCawk():void
 	output(". You run your tongue over every sensitive vein, keeping her completely hard until you finally pull back, revealing a gleaming red, spit-shined dog-cock.");
 	output("\n\nZephyr gives you a pat on the head. <i>“Good [pc.boy]. Now get out of my office unless you’re wanting another go.”</i>");
 	processTime(2);
+	var ppZephyr:PregnancyPlaceholder = getZephyrPregContainer();
+	pc.loadInMouth(ppZephyr);
+	pc.loadInMouth(ppZephyr);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -578,6 +612,7 @@ public function leaveLikeABitchPC():void
 	output("You ");
 	if(!pc.isNude()) output("pull up your gear and ");
 	output("step away from the desk, leaking a trail of bruised pride behind you with every step.");
+	processTime(1);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -590,6 +625,7 @@ public function snarkLeaveLikeABitch():void
 	output("You retort, <i>“Fine, bitch,”</i> and spin");
 	if(!pc.isNude()) output(", pulling up your gear as you walk away");
 	output(". <i>“The galaxy’s full of dicks. Most of them better than yours.”</i>");
+	processTime(1);
 	//Permamad
 	//flags["ZEPHYR_PISSED"] = 1;
 	clearMenu();

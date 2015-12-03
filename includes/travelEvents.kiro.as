@@ -2038,7 +2038,7 @@ public function balljobFromKiro():void
 	//Cocktail PG
 	if(pc.hasCockTail()) output("\n\nUnable to hold back any longer, you arc [pc.oneTail] up and under the tanuki-girl’s bouncing testes, threading up towards your [pc.cocks]. Halfway there, it peels open to expose your [pc.cockTail], and you nearly cum on the spot. You keep it together, somehow, sliding that extra phallus back and forth, rubbing it against yourself and her, oozing fresh lubricants onto her and yourself in equal message. It’s a musky, lust-filled mess, and you wouldn’t want to be anywhere else right now. Hell, you doubt you could be anywhere else at this moment.");
 	//Vagtail PG
-	else if(pc.hasCuntTail()) output("\n\nUnable to hold back any longer, [pc.oneTail], acting entirely on its own, curls up and around Kiro’s hip, under her arm, to nuzzle up against her blunted tip. It rubs affectionately against it until the kui-tan shudders. Then your [pc.cuntTail] places itself puss-down against the bulging, leaky cumslit, capturing the oozing cock-juice as it stretches out, trying to wrap around the whole of her flaring tip and failing entirely. She rocks back and forth, bucking against an imaginary partner as your [pc.cuntTail] suckles her like a popsickle, capturing the juicy pre before it can get anywhere else. The sensation of that heat fluid filling you is exquisite, a combination of cool water on a hot day and getting flooded with cum while horny all at once.");
+	else if(pc.hasCuntTail()) output("\n\nUnable to hold back any longer, [pc.oneTail], acting entirely on its own, curls up and around Kiro’s hip, under her arm, to nuzzle up against her blunted tip. It rubs affectionately against it until the kui-tan shudders. Then your [pc.cuntTail] places itself puss-down against the bulging, leaky cumslit, capturing the oozing cock-juice as it stretches out, trying to wrap around the whole of her flaring tip and failing entirely. She rocks back and forth, bucking against an imaginary partner as your [pc.cuntTail] suckles her like a popsicle, capturing the juicy pre before it can get anywhere else. The sensation of that heat fluid filling you is exquisite, a combination of cool water on a hot day and getting flooded with cum while horny all at once.");
 	//Merge
 	output("\n\nKiro pants, <i>“Ready to blow yet, cock-pet? Or do I need to squeeze these a little tighter.”</i> She presses down on both sides before you can answer, bloated sperm-sacks swelling and distorting so that they completely cover your hips, locking your [pc.cocks] in a vice of tight pleasure. You try to control yourself, but it feels so good that you cry out an affirmation, swearing to her that fucking her balls is absolutely heavenly, telling her just how close to cumming you’ve come. And you <i>are</i> a hair’s breadth from climaxing, so very close now. Your body is trembling in between thrusts, and you’re just about to release when she coos, <i>“Cum pet, let out a little orgasm for me. Wash my balls with it.”</i>");
 	output("\n\nThat does it. Your rhythmic thrusts devolve into spastic pumps and lunges, shaking in wild, ecstatic convulsions. The pleased warmth of orgasmic release crests somewhere inside your middle and blossoms through you, spreading with the muscular contractions your body makes as pumps your [pc.cum] out. You don’t even see the first jet of your release. It’s sprayed directly between Kiro’s compressed balls, out of sight but certainly not out of mind. She sure feels it, judging by the way she whimpers as you shoot, shuddering and squeezing down in a way that makes her cockhead flare and her urethra dilate. Her eyelids lower so far that they nearly close, her mouth parted in complete rapture.");
@@ -2190,17 +2190,37 @@ public function inviteAFriendForKiroPlays():void
 {
 	clearOutput();
 	showKiro();
-	output("A sly smile creeps up the side of your lips and blossoms into a full blown grin. You press a finger to the Tanuki’s small, black nose and tell her to give you just a minute. She barks out an angry protest, gesturing broadly as if to remind you that she’s ready to go. <i>“You’d better not leave me hanging, you cock-tease,”</i> she complains, her half-hard shaft throbbing between her legs. <i>“I don’t want a repeat of that milker accident!”</i> You tweak one of her round, fluffy ears and give her a wink as you throw a robe over your body and step towards the door. Just a minute, you promise.");
+	
+	var nFriends:Number = 0;
+	
 	//[Holiday?] [Saendra][Reaha] [Literally Every other NPC. Hey ZilGirl, come fly with us!]
 	processTime(1);
 	clearMenu();
-	if(flags["SAEN MET AT THE BAR"] != undefined)
+	// Celise
+	if(flags["RECRUITED_CELISE"] != undefined)
 	{
-		if(rooms[currentLocation].planet != "TAVROS STATION") addDisabledButton(0,"Saendra","Saendra","Saendra isn't anywhere near this location. You'd have to catch Kiro on Tavros Station to have Saendra within easy reach.");
-		else if(pc.hasCock()) addButton(0,"Saendra",inviteSaenForKiroFilling,undefined,"Saendra","Invite Saendra over for a ball-draining good time.");
-		else addDisabledButton(0,"Saendra","Saendra","This scene requires a penis to participate in.");
+		if(!celiseIsCrew()) addDisabledButton(0,"Celise","Celise","Celise isn't aboard your ship for this to work.");
+		else if(kiroTrust() < 80) addDisabledButton(0,"Celise","Celise","Kiro doesn't trust you enough to try this.");
+		else if(kiro.ballDiameter() <= 7) addDisabledButton(0,"Celise","Celise","Kiro doesn't look bloated enough. You should probably wait until she's really backed up before trying this.");
+		else addButton(0,"Celise",celiseKiroFunSekritShit,undefined,"Celise","Invite Kiro to meet with Celise.");
+		nFriends++;
 	}
-	else addDisabledButton(0,"Locked","Locked","You don't know Saendra well enough to invite her.");
+	// Saendra
+	if(flags["FALL OF THE PHOENIX STATUS"] >= 1)
+	{
+		if(flags["SAEN MET AT THE BAR"] != undefined)
+		{
+			if(rooms[currentLocation].planet != "TAVROS STATION") addDisabledButton(1,"Saendra","Saendra","Saendra isn't anywhere near this location. You'd have to catch Kiro on Tavros Station to have Saendra within easy reach.");
+			else if(pc.hasCock()) addButton(1,"Saendra",inviteSaenForKiroFilling,undefined,"Saendra","Invite Saendra over for a ball-draining good time.");
+			else addDisabledButton(1,"Saendra","Saendra","This scene requires a penis to participate in.");
+		}
+		else addDisabledButton(1,"Saendra","Locked","You don't know Saendra well enough to invite her.");
+		nFriends++;
+	}
+	
+	if(nFriends > 0) output("A sly smile creeps up the side of your lips and blossoms into a full blown grin. You press a finger to the Tanuki’s small, black nose and tell her to give you just a minute. She barks out an angry protest, gesturing broadly as if to remind you that she’s ready to go. <i>“You’d better not leave me hanging, you cock-tease,”</i> she complains, her half-hard shaft throbbing between her legs. <i>“I don’t want a repeat of that milker accident!”</i> You tweak one of her round, fluffy ears and give her a wink as you throw a robe over your body and step towards the door. Just a minute, you promise.");
+	else output("Unfortunately, you don't know any available friends to invite...");
+	
 	addButton(14,"Back",kiroSexMenu);
 }
 

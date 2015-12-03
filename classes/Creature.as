@@ -1334,19 +1334,19 @@ package classes {
 					buffer = scaleColor;
 					break;
 				case "chitinColor":
-					buffer = chitinColor();
+					buffer = chitinColor("", true);
 					break;
 				case "chitinColorBody":
-					buffer = chitinColor("body");
+					buffer = chitinColor("body", true);
 					break;
 				case "chitinColorArm":
-					buffer = chitinColor("arm");
+					buffer = chitinColor("arm", true);
 					break;
 				case "chitinColorLeg":
-					buffer = chitinColor("leg");
+					buffer = chitinColor("leg", true);
 					break;
 				case "chitinColorTail":
-					buffer = chitinColor("tail");
+					buffer = chitinColor("tail", true);
 					break;
 				case "ears":
 					buffer = earsDescript();
@@ -1476,6 +1476,12 @@ package classes {
 				case "cuntColor":
 				case "pussyColor":
 					buffer = vaginaColor(arg2);
+					break;
+				case "cockSkinColor":
+					buffer = cockSkinColor(arg2);
+					break;
+				case "vaginaSkinColor":
+					buffer = vaginaSkinColor(arg2);
 					break;
 				case "cockHead":
 				case "cockhead":
@@ -1913,6 +1919,12 @@ package classes {
 				case "hornsNoun":
 					buffer = hornsNoun();
 					break;
+				case "antenna":
+					buffer = antennaeDescript(false);
+					break;
+				case "antennae":
+					buffer = antennaeDescript();
+					break;
 					
 				default:
 					// error production is now done up-stream in the parser
@@ -2185,18 +2197,27 @@ package classes {
 		}
 		public function isNude(): Boolean {
 			if(hasStatusEffect("Temporary Nudity Cheat")) return true;
-			return (armor.shortName == "" && lowerUndergarment.shortName == "" && upperUndergarment.shortName == "");
+			//return (armor.shortName == "" && lowerUndergarment.shortName == "" && upperUndergarment.shortName == "");
+			return (!isCrotchGarbed() && !isChestCovered());
 		}
 		public function isCrotchGarbed(): Boolean {
 			if(hasStatusEffect("Temporary Nudity Cheat")) return false;
-			return (armor.shortName != "" || lowerUndergarment.shortName != "");
+			//return (armor.shortName != "" || lowerUndergarment.shortName != "");
+			return
+			(	(armor.shortName != "" && !armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL))
+			||	(lowerUndergarment.shortName != "" && !lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL))
+			);
 		}
 		public function isGroinCovered(): Boolean {
 			return isCrotchGarbed();
 		}
 		public function isChestCovered(): Boolean {
 			if(hasStatusEffect("Temporary Nudity Cheat")) return false;
-			return (armor.shortName != "" || upperUndergarment.shortName != "");
+			//return (armor.shortName != "" || upperUndergarment.shortName != "");
+			return
+			(	(armor.shortName != "" && !armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL))
+			||	(upperUndergarment.shortName != "" && !upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL))
+			);
 		}
 		public function isChestGarbed(): Boolean {
 			return isChestCovered();
@@ -2215,6 +2236,35 @@ package classes {
 		public function hasLowerGarment():Boolean
 		{
 			return !(lowerUndergarment is EmptySlot);
+		}
+		
+		public function inSwimwear(strict:Boolean = false):Boolean
+		{
+			// Armor/Outfit check:
+			if (hasArmor() && armor.hasFlag(GLOBAL.ITEM_FLAG_SWIMWEAR))
+			{
+				// Swimsuit outfits should not have undergarments on. That's not fashionable!
+				if (hasUpperGarment() || hasLowerGarment()) return false;
+				// Swimsuit outfits with no undies? Yes.
+				return true;
+			}
+			// Undergarment check:
+			if (hasLowerGarment() || hasUpperGarment())
+			{
+				// All undergarments are eligible swimwear, unless it's a strict check
+				if (strict)
+				{
+					if (hasLowerGarment() && hasUpperGarment())
+						return (lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_SWIMWEAR) && upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_SWIMWEAR));
+					if (hasLowerGarment())
+						return (lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_SWIMWEAR));
+					if (hasUpperGarment())
+						return (upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_SWIMWEAR));
+				}
+				return true;
+			}
+			// Nope, no valid swim clothes (or is probably nude!).
+			return false;
 		}
 		
 		//STATS!
@@ -2352,10 +2402,15 @@ package classes {
 		
 		public static const DEPENDANT_ANY:uint = 0;
 		public static const DEPENDANT_MYRVENOM:uint = 1;
+		public static const DEPENDANT_CUM:uint = 2;
 		
 		// Is the character dependant on some external drug/chemical/etc
 		public function isDependant(dependantType:uint = DEPENDANT_ANY):Boolean
 		{
+			if(dependantType == DEPENDANT_MYRVENOM)
+			{
+				if(hasPerk("Venom Slut") || hasStatusEffect("Myr Venom Withdrawal")) return true;
+			}
 			return false;
 		}
 		
@@ -3720,10 +3775,11 @@ package classes {
 			else if(skinType == GLOBAL.SKIN_TYPE_SCALES || skinType == GLOBAL.SKIN_TYPE_CHITIN) return scaleColor;
 			else return skinTone;
 		}
-		public function chitinColor(part:String = ""):String
+		public function chitinColor(part:String = "", bonus:Boolean = false):String
 		{
 			// Special types of chitinous anatomy return the scale color, otherwise it's a black color.
-			var colors:Array = ["black", "black", "black", "ebony", "midnight-hued", "obsidian", "onyx", "pitch"];
+			var colors:Array = ["black"];
+			if (bonus) colors.push("ebony", "midnight-hued", "obsidian", "onyx", "pitch");
 			if (part == "body" || skinType == GLOBAL.SKIN_TYPE_CHITIN)
 			{
 				if (skinType != GLOBAL.SKIN_TYPE_CHITIN) return "null";
@@ -3888,13 +3944,15 @@ package classes {
 				if (hasFaceFlag(GLOBAL.FLAG_LONG)) adjectives.push("long");
 			}
 			//Space if adjective'd
-			if (adjectives.length > 0) output += " " + RandomInCollection(adjectives);
+			if (adjectives.length > 0) output += RandomInCollection(adjectives) + " ";
 			
 			//Add Noun
-			if (hasFaceFlag(GLOBAL.FLAG_MUZZLED) && rand(2) == 0) output += "muzzle";
-			else if (rand(2) == 0 && hasFaceFlag(GLOBAL.FLAG_MUZZLED) && InCollection(faceType, GLOBAL.TYPE_LIZAN, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_NAGA))
+			if (hasFaceFlag(GLOBAL.FLAG_MUZZLED) && rand(2) == 0)
+				output += "muzzle";
+			else if (hasFaceFlag(GLOBAL.FLAG_MUZZLED) && rand(2) == 0 && InCollection(faceType, GLOBAL.TYPE_LIZAN, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_NAGA))
 				output += "snout";
-			else output += "face";
+			else
+				output += "face";
 			
 			return output;
 		}
@@ -3994,7 +4052,7 @@ package classes {
 				adjectives = ["badger", "mustelid", "tufted"];
 			else if (tailType == GLOBAL.TYPE_RASKVEL)
 				adjectives = ["raskvel", "reptilian"];
-			else if (tailType == GLOBAL.TYPE_SYDIAN)
+			else if (tailType == GLOBAL.TYPE_SNAKE)
 				adjectives = ["reptilian", "snake-like", "serpent"];
 			else if (tailType == GLOBAL.TYPE_SYDIAN)
 				adjectives = ["sydian", "wicked-shaped"];
@@ -4265,9 +4323,8 @@ package classes {
 					if (hasLegFlag(GLOBAL.FLAG_CHITINOUS)) adjectives.push("chitinous", "armored", "carapace-covered");
 				}
 				//Random goes here!
-				if (adjectives.length > 0) output += RandomInCollection(adjectives);
+				if (adjectives.length > 0) output += RandomInCollection(adjectives) + " ";
 				//NOUN IT UP BITCHES!
-				if (output != "") output += " ";
 				output += legNoun();
 			}
 			return output;
@@ -10245,12 +10302,12 @@ package classes {
 		public function nippleLength(row: int = 0): Number {
 			if (row >= bRows()) return 0;
 			else if (row < 0) return 0;
-			else return nippleLengthRatio * .25 * ((10 + breastRows[row].breastRating()) / 10)
+			else return (nippleLengthRatio * .25 * ((10 + breastRows[row].breastRating()) / 10));
 		}
 		public function nippleWidth(row: int = 0): Number {
 			if (row >= bRows()) return 0;
 			else if (row < 0) return 0;
-			else return nippleWidthRatio * .5 * ((10 + breastRows[row].breastRating()) / 10)
+			else return (nippleWidthRatio * .5 * ((10 + breastRows[row].breastRating()) / 10));
 		}
 		//New cock adjectives. The old one sucked dicks
 		public function nippleCockAdjective(plural: Boolean = false):String {
@@ -10540,7 +10597,7 @@ package classes {
 			return RandomInCollection(collection);
 		}
 		public function fluidColor(arg: int): String {
-			var collection:Array = new Array();;
+			var collection:Array = new Array();
 			trace("BOOP DA SNOOT");
 			//CUM & MILK TYPES
 			if (InCollection(arg, GLOBAL.FLUID_TYPE_MILK, GLOBAL.FLUID_TYPE_CUM, GLOBAL.FLUID_TYPE_VANILLA)) {
@@ -10697,6 +10754,23 @@ package classes {
 		}
 		public function nippleCocksDescript(appearance: Boolean = false): String {
 			return pluralize(nippleCockDescript(appearance));
+		}
+		public function cockSkinColor(arg2:int = 0):String
+		{
+			if(!hasCock() || arg2 < 0 || arg2 >= cockTotal()) return "ERROR";
+			var skinColor:String = skinFurScalesColor();
+			// Flesh-colored
+			if
+			(	(!cocks[arg2].hasFlag(GLOBAL.FLAG_FORESKINNED) && !cocks[arg2].hasFlag(GLOBAL.GLOBAL.FLAG_SHEATHED))
+			&&	!InCollection(cocks[arg2].cType, GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_SIMII, GLOBAL.TYPE_GABILANI)
+			)	skinColor = cockColor(arg2);
+			return skinColor;
+		}
+		public function vaginaSkinColor(arg2:int = 0):String
+		{
+			if(!hasVagina() || arg2 < 0 || arg2 >= vaginaTotal()) return "ERROR";
+			var skinColor:String = skinFurScalesColor();
+			return skinColor;
 		}
 		public function cockColor(arg2:int = 0):String
 		{
@@ -10962,7 +11036,7 @@ package classes {
 			}
 			if (isLactating()) {
 				if (descripted) descript += ", ";
-				if (milkType == GLOBAL.FLUID_TYPE_MILK) {
+				if (InCollection(milkType, GLOBAL.FLUID_TYPE_MILK, GLOBAL.FLUID_TYPE_CHOCOLATE_MILK, GLOBAL.FLUID_TYPE_STRAWBERRY_MILK, GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK, GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK, GLOBAL.FLUID_TYPE_LEITHAN_MILK)) {
 					temp = rand(4);
 					if (temp == 0) descript += "lactating";
 					else if (temp == 1) descript += "milky";
@@ -11136,6 +11210,20 @@ package classes {
 				else if (temp == 2) return "exotic cock-head";
 				else if (temp == 3) return "aphrodisiac-laced head";
 				else return "wiggling crown";
+			} else if (type == GLOBAL.TYPE_SAURIAN) {
+				temp = rand(5);
+				if (temp == 0) return "nubbed crown";
+				else if (temp <= 1) return "nubby head";
+				else if (temp <= 2) return "monstrous glans";
+				else if (temp <= 3) return "nub-ringed tip";
+				else return "cock-head";
+			} else if (type == GLOBAL.TYPE_GABILANI) {
+				temp = rand(5);
+				if (temp == 0) return "coupled crown";
+				else if (temp <= 1) return "paired head";
+				else if (temp <= 2) return "doubled glans";
+				else if (temp <= 3) return "twinned tip";
+				else return "doubled cock-head";
 			}
 			/*else if (type == 9999) {
 				temp = rand(5);
@@ -11190,7 +11278,6 @@ package classes {
 			}
 			return false;
 		}
-		
 		public function loadInAss(cumFrom:Creature = null):Boolean
 		{
 			if (neverSerialize == false && cumFrom != null)
@@ -11203,27 +11290,18 @@ package classes {
 			}
 			return false;
 		}
+		public function milkInMouth(cumFrom:Creature = null):Boolean
+		{
+			return false;
+		}
 		public function girlCumInMouth(cumFrom:Creature = null):Boolean
 		{
-			if(hairType == GLOBAL.HAIR_TYPE_GOO) 
-			{
-				if(cumFrom != null) addBiomass(cumFrom.girlCumQ());
-				else addBiomass(10);
-			}
-			if(hasPerk("Honeypot")) 
-			{
-				kGAMECLASS.honeyPotBump(true);
-				if(cumFrom.girlCumQ() >= 500) kGAMECLASS.honeyPotBump(true);
-				if(cumFrom.girlCumQ() >= 1000) kGAMECLASS.honeyPotBump(true);
-				if(cumFrom.girlCumQ() >= 2000) kGAMECLASS.honeyPotBump(true);
-			}
 			return false;
 		}
 		public function loadInMouth(cumFrom:Creature = null):Boolean
 		{
 			return false;
 		}
-		
 		public function loadInNipples(cumFrom:Creature = null):Boolean
 		{
 			return false;
@@ -12077,6 +12155,57 @@ package classes {
 			//Horn nouns
 			if(hornType == GLOBAL.TYPE_DEER) return "antler";
 			return "horn";
+		}
+		
+		public function hasAntennae():Boolean
+		{
+			return (antennae > 0 && antennaeType != 0); 
+		}
+		public function removeAntennae():void
+		{
+			antennaeType = GLOBAL.TYPE_HUMAN;
+			antennae = 0;
+			return;
+		}
+		public function antennaeDescript(plural:Boolean = true): String 
+		{
+			var description:String = "";
+			var adjectives:Array = [];
+			var nouns:Array = ["antenna"];
+			var noun:String = "antenna";
+			
+			switch (antennaeType)
+			{
+				default:
+					adjectives.push("non-existent");
+					break;
+					
+				case GLOBAL.TYPE_BEE:
+					adjectives.push("zil", "bee-like", "insect-like", "insectile");
+					nouns.push("feeler");
+					break;
+				case GLOBAL.TYPE_SYDIAN:
+					adjectives.push("sydian", "brush-like", "bristly", "insectile");
+					nouns.push("feeler");
+					break;
+				case GLOBAL.TYPE_MYR:
+					adjectives.push("myr", "ant-like", "insect-like", "insectile");
+					nouns.push("feeler");
+					break;
+			}
+			
+			if(adjectives.length > 0 && rand(2) == 0) description += RandomInCollection(adjectives) + " ";
+			if(nouns.length > 1) noun = RandomInCollection(nouns);
+			
+			if(plural && antennae > 1)
+			{
+				if(noun == "antenna") noun += "e";
+				else noun = pluralize(noun);
+			}
+			
+			description += noun;
+			
+			return description;
 		}
 	}
 }

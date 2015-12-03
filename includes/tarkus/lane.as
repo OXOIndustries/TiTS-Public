@@ -2528,6 +2528,7 @@ public function firstTimeLaneMPCM():void
 	processTime(60);
 
 	pc.loadInAss(lane);
+	pc.loadInMouth(lane);
 
 	lane.orgasm();
 	pc.orgasm();

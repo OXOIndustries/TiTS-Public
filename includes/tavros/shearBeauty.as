@@ -386,7 +386,9 @@ public function standardHairColorMenu():void
 	addButton(11,"Purple",hairColorizing,"purple","Purple","Dye your hair purple.");
 	addButton(12,"Violet",hairColorizing,"violet","Violet","Dye your hair violet.");
 	addButton(13,"Blue",hairColorizing,"blue","Blue","Dye your hair blue.");
+	
 	addButton(14,"Back",hairColorMainMenu);
+	
 	addButton(15,"Emerald",hairColorizing,"emerald","Emerald","Dye your hair emerald.");
 	addButton(16,"Green",hairColorizing,"green","Green","Dye your hair green.");
 	addButton(17,"Turquoise",hairColorizing,"turquoise","Turquoise","Dye your hair turquoise.");
@@ -395,7 +397,7 @@ public function standardHairColorMenu():void
 	addButton(20,"Gray",hairColorizing,"gray","Gray","Dye your hair gray.");
 	addButton(21,"Pink",hairColorizing,"pink","Pink","Dye your hair pink.");
 
-	addButton(29, "Back", hairColorMainMenu); // 9999 -- refactor to always keep a back button on every page?
+	addButton(29, "Back", hairColorMainMenu); // refactor to always keep a back button on every page?
 	
 	//addButton(21,"Purple",hairColorizing,"purple","Purple","Dye your hair purple.");
 	//addButton(22,"Violet",hairColorizing,"violet","Violet","Dye your hair violet.");
@@ -711,7 +713,7 @@ public function ceriaTalk():void
 	author("Couch");
 	processTime(1);
 	//Hasn't used the store
-	if(9999 == 0)
+	if(flags["CERIA_BOUGHT"] == undefined)
 	{
 		output("<i>“I was thinking I’d rather just talk to a cute girl like you.”</i> you say, prompting a playful smirk from Ceria.");
 		output("\n\n<i>“Sorry, [pc.name], you’re cute, but I </i>do<i> have a business to run here. My boss would kill me if she found out I was chatting up customers who hadn’t bought anything yet. Buy something or get a treatment first, then we’ll talk.”</i>");

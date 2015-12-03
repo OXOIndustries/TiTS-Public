@@ -108,18 +108,18 @@ public function talkToRenvraAboutHerRaceBecauseSheIsBasicallyAnEndgameCoCCharact
 	output("\n\n<i>“Did you work that out for yourself?”</i> she laughs. <i>“Half nyrea. On my mother’s side. Don’t ask how that worked out -- I imagine it was awkward and painful.”</i>");
 	output("\n\n<i>“Didn’t expect to see anything but myr here,”</i> you say, looking around at all the Federation troops moving around you.");
 	//if fought a nyrea before:
-	if(9999) output(" <i>“Especially since most of the ones I’ve seen so far have been pretty hostile.”</i>");
+	if(flags["MET_NYREA_ALPHA"] != undefined || flags["MET_NYREA_BETA"] != undefined) output(" <i>“Especially since most of the ones I’ve seen so far have been pretty hostile.”</i>");
 
 	output("\n\nRenvra plants her hands firmly on her hips. <i>“That right? There’s not a lot of nyrea in the Federation, but we’re here. The biggest nyrean cities are north and across the ocean, back in our home territory. It’s not like the lone huntresses and little villages you’ll see around here, but powerful matriarchs with harems bigger than an infantry company. When the Federation formed, some of the matriarchs wanted in on it. Smart enough to realize they’re going to survive a lot longer with us than against us.”</i>");
 	output("\n\nIf that’s the case, you have to say, you’re surprised there aren’t more halfbreeds like Renvra running around.");
 	output("\n\n<i>“Oh, there’s a damn good reason we’re so rare,”</i> Renvra answers with a predatory grin.");
 	//if Codex: Nyrea unlocked: 
-	if(9999) 
+	if(CodexManager.entryViewed("Nyrea")) 
 	{
 		output(" Considering her mother’s ovipositor had barbs on it, it isn’t hard to imagine why.");
 		output("\n\nRenvra laughs. <i>“Lucky for my sex life, I didn’t inherit the nice, comfortable ring of spikes on my dick.”</i>");
 		//Fucked
-		if(flags["RENVRA_SEXED"] != undefined && 9999 == 0)
+		if(flags["RENVRA_SEXED"] != undefined)
 		{
 			output("\n\nYou chuckle and say that you’re happy Renvra’s spike-free. Makes her much easier to deal with.");
 			output("\n\n<i>“Easy to deal with?”</i> she snorts. <i>“Why don’t we step out back find out how true that is?”</i>");
@@ -634,6 +634,7 @@ public function buttFuckRenvra():void
 	output("\n\nRenvra releases you and turns on a heel towards the door. Finishing with your own gear, you follow her back out to the trading post’s main floor.");
 	processTime(23);
 	if(pc.hasKnot(0)) processTime(20);
+	pc.milkInMouth(chars["RENVRA"]);
 	pc.orgasm();
 	flags["RENVRA_SEXED"] = 1;
 	clearMenu();
@@ -1017,7 +1018,12 @@ public function fuckRenvrasUrethra():void
 		if(!pc.hasScales() && !pc.hasChitin()) output("A wave of arousal spreads through your nerves from the smear of slightly-pink pre-cum. ");
 		output("You wrap a hand around the end of her dick, and her throaty growl intensifies. <i>“I’m ready to stick this in any hole you want filled,”</i> she says huskily.");
 		//(not vis. preg and has cunt)
-		if(pc.hasVagina() && 9999) output(" <i>“Put my get in your belly, too.”</i>");
+		var nBelly:Number = pc.bellyRating();
+		var nToneMod:Number = (pc.thickness - pc.tone);
+		if(nToneMod < 0) nToneMod = 0;
+		nToneMod /= 5;
+		nBelly += nToneMod;
+		if(pc.hasVagina() && (!isPregnant() || (isPregnant() && nBelly < 10))) output(" <i>“Put my get in your belly, too.”</i>");
 		output(" Your [pc.vagOrAss] burns, imploring you to forget your plans and accept her offer, but you resist the fog of fuck-lust pressing at your consciousness.");
 		if(pc.libido() > 80) output(".. barely.");
 

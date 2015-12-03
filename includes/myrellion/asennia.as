@@ -32,7 +32,29 @@ public function showAsennia():void
 	else if(hours <= 15) showBust("ASENNIA_2");
 	else showBust("ASENNIA_1");
 }
-
+public function getAsenniaPregContainer():PregnancyPlaceholder
+{
+	var ppAsennia:PregnancyPlaceholder = new PregnancyPlaceholder();
+	ppAsennia.breastRows[0].breasts = 2;
+	if(flags["MET_ASENNIA"] == undefined) ppAsennia.breastRows[0].breastRatingRaw = 50;
+	else if(hours <= 6) ppAsennia.breastRows[0].breastRatingRaw = 62;
+	else if(hours <= 7) ppAsennia.breastRows[0].breastRatingRaw = 52;
+	else if(hours <= 8) ppAsennia.breastRows[0].breastRatingRaw = 43;
+	else if(hours <= 9) ppAsennia.breastRows[0].breastRatingRaw = 35;
+	else if(hours <= 10) ppAsennia.breastRows[0].breastRatingRaw = 28;
+	else if(hours <= 11) ppAsennia.breastRows[0].breastRatingRaw = 22;
+	else if(hours <= 12) ppAsennia.breastRows[0].breastRatingRaw = 17;
+	else if(hours <= 13) ppAsennia.breastRows[0].breastRatingRaw = 16;
+	else if(hours <= 14) ppAsennia.breastRows[0].breastRatingRaw = 15;
+	else if(hours <= 15) ppAsennia.breastRows[0].breastRatingRaw = 14;
+	else if(hours <= 16) ppAsennia.breastRows[0].breastRatingRaw = 13;
+	else if(hours <= 17) ppAsennia.breastRows[0].breastRatingRaw = 12;
+	else ppAsennia.breastRows[0].breastRatingRaw = 11;
+	ppAsennia.milkType = GLOBAL.FLUID_TYPE_NECTAR;
+	ppAsennia.milkMultiplier = 100;
+	ppAsennia.milkFullness = 100;
+	return ppAsennia;
+}
 //Room Descripts & Intros
 //Add to SW corner of Mushroom Park, near the Great Elevator:
 public function honeyAntStallShit():Boolean
@@ -87,7 +109,7 @@ public function firstTimeAtHoneyTits():void
 	//First Time @ [Honey Stall]
 	//Get in line for a taste of myr honey, straight from the tap.
 	//Lose no Credits; small Thickness gain.
-	flags["MET_ASENNIA"] = 1;
+	//flags["MET_ASENNIA"] = 1;
 	output("A chance to suckle honey from the tits of a smoking-hot ant girl? Sure, why not! You walk over to the shortest line out from the stalls and claim your place: maybe six people back in line for the inhumanly-busty myr’s left breast.");
 	output("\n\nAt the front of the line, you see an attractive young woman in a skin-tight jumpsuit with long, leathery blue wings behind her is on her knees in front of the honeypot, a hand digging into either side of her balloon-like tit in her face. She’s squeezing while she suckles, gulping down a steady stream of myr nectar. The myr is moaning happily, a hand atop the head of both the off-worlders suckling from her; her second pair of hands is noticeably absent from view, wrapped behind her sitting body and her bloated abdomen. The way she’s moving, the way her chest is heaving, something tells you she’s thoroughly enjoying the act of nursing person after person.");
 	output("\n\nOf course, with both customer and vendor enjoying themselves so much, the line doesn’t seem to be in much of a hurry. The dragon-woman ahead of you seems to take the better part of half an hour to finish her drink, finally popping off the tit and running a cream-pale hand over her lips to wipe away an excess of sticky amber. You see her swipe a credit chit through a hand-held device the myr hands her, then slip away in the crowd. The line steps forward all of three or four paces, and you start mumbling about your [pc.feet] aching.");
@@ -157,7 +179,9 @@ public function introToAsseniaPartThree():void
 	output("\n\nYou smile at the well-sucked honeypot and stand up, wiping away an excess of honey on your cheeks. The other woman, the redhead, hops to her feet and starts to leave - but not before reaching back and slapping your [pc.butt] first. You flinch and turn to face her, just in time to see her flashing you a wink before she saunters off into the crowd.");
 	output("\n\n<i>“See you next time,”</i> Asennia murmurs to you as you step out of line, letting her next set of customers come over to get their long-awaited drink.");
 	processTime(13);
+	pc.milkInMouth(getAsenniaPregContainer());
 	output(pc.modThickness(1));
+	flags["MET_ASENNIA"] = 1;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -298,7 +322,7 @@ public function milkToGoCup():void
 
 	var helper:Number = -1;
 	//If Shade, higher rolls
-	if(9999) helper = rand(5);
+	if(shadeAtTheBar()) helper = rand(5);
 	else helper = rand(4);
 	if(helper == 0) output("a familiar red-haired human slip down onto her knees, making her skin-tight jumpsuit creak. Her eyes go a little wide as she recognizes you, but she recovers with a lecherous smile. <i>“Hey again, stranger,”</i> she purrs, reaching up to Asennia’s boob and running her tongue along a tanned teat. Your hostess moans, hand reaching down to run through red locks and pull the woman against her breast.");
 	else if(helper == 1) output("a great big, bulkily-plated centaur settle down on his knees, running a hand through a blonde ponytail behind plated bunny ears before he roughly hefts up Asennia’s right boob to his mouth and starts to suckle.");
@@ -357,7 +381,7 @@ public function repeatDrinkStraightFromAsenniasTap():void
 	output("\n\nAs you’re starting to drink, Asennia’s attentions turn to another figure approaching her from behind you. You hear her exchange a few words with the new customer, and see ");
 
 	var helper:int = 0;
-	if(9999) helper = rand(5);
+	if(shadeAtTheBar()) helper = rand(5);
 	else helper = rand(4);
 
 	if(helper == 0) output("a familiar red-haired human slip down onto her knees, making her skin-tight jumpsuit creak. Her eyes go a little wide as she recognizes you, but she recovers with a lecherous smile. <i>“Hey again, stranger,”</i> she purrs, reaching up to Asennia’s boob and running her tongue along a tanned teat. Your hostess moans, hand reaching down to run through red locks and pull the woman against her breast.");
@@ -395,6 +419,7 @@ public function repeatDrinkStraightFromAsenniasTap():void
 	if(pc.hasCock()) output(" <i>“Maybe a little later today, when I’m less full? You and I could have some real fun then,”</i> she adds with a suggestive wink.");
 	output("\n\nYou give her a grin and tell her you’ll definitely be back.");
 	processTime(23);
+	pc.milkInMouth(getAsenniaPregContainer());
 	pc.lust(11);
 	pc.energy(200);
 	output(pc.modThickness(2));
@@ -469,6 +494,7 @@ public function drinkHoneySmallerBoobsAfternoonWithADongle():void
 	}
 	output("\n\n<i>“There’s a shower in back,”</i> the honeypot offers, handing you your gear as soon as you’ve swiped your credits through her terminal. You give her a smile and slip into her shop to clean yourself off. A few minutes, and a hot shower, later, you head back onto the street with your gear back on - though you couldn’t quite get the smell of cum and nectar off you...");
 	processTime(18);
+	pc.milkInMouth(getAsenniaPregContainer());
 	pc.orgasm();
 	pc.shower();
 	pc.energy(100);
@@ -501,7 +527,7 @@ public function drinkHoneyAfternoonWithNoBoner():void
 	output("\n\nNeither can Asennia, by the way her arms pull you close and all but press your head into the front of her breast. Your mouth opens on instinct, lips latching onto the pebbly ring around her dark teat. Your hands rub along her taut flesh, gently applying pressure until you feel a trickle of honey start to tease your [pc.tongue]. After that, you start to suck until Asennia’s tits go from leaking to pouring out her bounty as quick as you can gulp it down.");
 	output("\n\nWhile you greedily nurse from the hostess’s ample chest, her attention momentarily turns from you to a customer standing behind you. She giggles at something being said, and you feel a hand on your [pc.butt], gently pushing you aside. You scoot out of the way, making room at Asennia’s other breast for her new customer: ");
 	var helper:int = 0;
-	if(9999) helper = rand(5);
+	if(shadeAtTheBar()) helper = rand(5);
 	else helper = rand(4);
 	if(helper == 0) output("a familiar red-headed spacer babe, wearing a skin-tight suit that instantly draws your eyes to her own perky curves and the flares of her hips. She gives you a wink, and you feel her hand linger on your upraised ass for a moment before she reaches up to grope the honeypot and start to suckle.");
 	else if(helper == 1) output("a leithan man clad in a business suit that extends across his centaur-like body. He gives you an apologetic smile before trotting up to Asennia and taking hold of an offered breast and bringing it to his mouth.");
@@ -543,6 +569,7 @@ public function drinkHoneyAfternoonWithNoBoner():void
 	pc.energy(100);
 	pc.lust(15);
 	processTime(19);
+	pc.milkInMouth(getAsenniaPregContainer());
 	clearMenu();
 	pc.credits -= 50;
 	output(pc.modThickness(2));

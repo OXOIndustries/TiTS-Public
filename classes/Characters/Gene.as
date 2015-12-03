@@ -2,16 +2,9 @@
 {
 	import classes.Creature;
 	import classes.GLOBAL;
-	import classes.Items.Accessories.LeithaCharm;
 	import classes.Items.Miscellaneous.*;
-	import classes.Items.Combat.CrystalShard;
-	import classes.Items.Melee.NyreanSpear;
-	import classes.Items.Melee.MilitaryPick;
-	import classes.Items.Armor.ChitinArmor;
-	import classes.Items.Armor.NyreanChain;
 	import classes.Items.Transformatives.Bovinium;
-	import classes.Items.Transformatives.Nepeta;
-	import classes.Items.Transformatives.ManUp;
+	import classes.Items.Transformatives.MinoCharge;
 	import classes.kGAMECLASS;
 	import classes.rand;
 	
@@ -30,7 +23,7 @@
 			keeperSell = "";
 			
 			inventory.push(new Bovinium());
-			// 9999 plz add this item for matching sets: inventory.push(new MinoCharge());
+			inventory.push(new MinoCharge());
 			inventory.push(new Condensol());
 			inventory.push(new EasyFit());
 			inventory.push(new Chocolac());

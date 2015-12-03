@@ -1204,7 +1204,11 @@ public function milkturbation():void
 		if(pc.milkQ() < 300)
 		{
 			output("\n\nThe [pc.milk] comes out in slow dribbles and occasional squirts, running down your fingers to your knuckles before dripping off. Deciding to have a little fun with it, you start milking yourself more vigorously, spraying thin streams of the stuff this way and that, " + pc.mf("chuckling","giggling") + " in delight.");
-			if(pc.biggestTitSize() >= 5) output(" You even lift a [pc.chest] to your [pc.lips] and suckle some of your bounty from the tap.");
+			if(pc.biggestTitSize() >= 5)
+			{
+				output(" You even lift a [pc.chest] to your [pc.lips] and suckle some of your bounty from the tap.");
+				pc.milkInMouth(pc);
+			}
 			else output(" You find yourself wishing your [pc.chest] were big enough to bring to your [pc.lips]. You'd like a taste, however brief.");
 		}
 		//Middle: Express a normal amount of milk for a human
@@ -1213,7 +1217,11 @@ public function milkturbation():void
 			output("\n\nThe [pc.milk] comes out in steady streams and squirts, running down your fingers ");
 			if(pc.biggestTitSize() >= 1) output("and [pc.chest] ");
 			output("before dripping off. There seems to be plenty of it there, enough to feed a baby for sure, and you tend to your dripping nipples with consistent, busy pressure, making [pc.milkColor] puddles form by your [pc.feet].");
-			if(pc.biggestTitSize() >= 5) output(" You lift one to your [pc.lips] and drink deeply of your bounty. It floods your cheeks with its [pc.milkFlavor] flavor, and you greedily gulp it down.");
+			if(pc.biggestTitSize() >= 5)
+			{
+				output(" You lift one to your [pc.lips] and drink deeply of your bounty. It floods your cheeks with its [pc.milkFlavor] flavor, and you greedily gulp it down.");
+				pc.milkInMouth(pc);
+			}
 			else output(" You kind of wish you were big enough to drink it directly, just to sample it.");
 		}
 		//Middle: Express a large amount of milk for a human
@@ -1225,21 +1233,33 @@ public function milkturbation():void
 		else if(pc.milkQ() <= 3000)
 		{
 			output("\n\nThe [pc.milk] forms into puddles between your [pc.feet] while you're still getting started, and as you settle into giving yourself a proper milking, they only get bigger. Streams of [pc.milkColor] spill down your forearms to your elbows before falling off in rivers. You groan in animal pleasure, unable to help yourself; there's just so much coming out of you, and it feels like such a relief. The human body wasn't made to gush like this, but isn't science wonderful?");
-			if(pc.biggestTitSize() >= 5) output(" Grabbing a teat, you lift it to your [pc.lips] for a sample. The flow is strong enough to flood your cheeks in spite of your gluttonous swallowing. Eventually you have to let go. Streamers of [pc.milk] come out in a spray.");
+			if(pc.biggestTitSize() >= 5)
+			{
+				output(" Grabbing a teat, you lift it to your [pc.lips] for a sample. The flow is strong enough to flood your cheeks in spite of your gluttonous swallowing. Eventually you have to let go. Streamers of [pc.milk] come out in a spray.");
+				pc.milkInMouth(pc);
+			}
 			else output(" Wishing you could lift a teat to your mouth to sample from, you tug with wild abandon, squeezing heavier and heavier flows from your body.");
 		}
 		//Middle: Express milk like a fucking cow
 		else if(pc.milkQ() <= 7000)
 		{
 			output("\n\nThe [pc.milk] almost immediately gathers into deep puddles around your [pc.feet] as you extract the wondrous fluid. Cows and cow-like creatures are your only competition when it comes to unbridled lactation, and even then, you're sure such base creatures could never appreciate the heavenly sensations of it rolling down the underside of your [pc.chest] and arms. ");
-			if(pc.biggestTitSize() >= 5) output("Lifting one of your udders to your [pc.lips], you gleefully gulp the [pc.milkFlavor] liquid down. You let it fall away after a few swallows with a satisfied 'ahhh,' sating both your hunger and your need to empty your chest.");
+			if(pc.biggestTitSize() >= 5)
+			{
+				output("Lifting one of your udders to your [pc.lips], you gleefully gulp the [pc.milkFlavor] liquid down. You let it fall away after a few swallows with a satisfied 'ahhh,' sating both your hunger and your need to empty your chest.");
+				pc.milkInMouth(pc);
+			}
 			else output("Aiming down, you splatter more and more of your lactic cargo into the budding lake while wishing you could sample it yourself. If only your chest was bigger!");
 		}
 		//Middle: Express milk like a pent-up cow-girl
 		else if(pc.milkQ() <= 10000)
 		{
 			output("\n\nThe [pc.milk] is expressed with blatantly super-human speed, puddling around your [pc.feet] with such speed that it splatters all over your [pc.legOrLegs]. The highly-modified indentured servant-girls of Venusia and their legendary milk-making capabilities would find themselves in a run for their money if pitted against you. As the fluid spills over your arms and [pc.fullChest] in small, frothy rivers, you realize that you could probably retire to such a life right now, if you wanted.");
-			if(pc.biggestTitSize() >= 5) output(" You mull it over as you lift a heavy teat to your lips, inadvertently hosing yourself down while trying to seat your mouth, managing a tight seal just in time to receive a mouthful of [pc.milkFlavor] flavor. You guzzle for a little while to fill your belly and burp noisily when you finish, still pouring more into the lake.");
+			if(pc.biggestTitSize() >= 5)
+			{
+				output(" You mull it over as you lift a heavy teat to your lips, inadvertently hosing yourself down while trying to seat your mouth, managing a tight seal just in time to receive a mouthful of [pc.milkFlavor] flavor. You guzzle for a little while to fill your belly and burp noisily when you finish, still pouring more into the lake.");
+				pc.milkInMouth(pc);
+			}
 		}
 		//Middle: Express milk like a milk machine in the cafeteria
 		else if(pc.milkQ() <= 20000)
@@ -1248,7 +1268,11 @@ public function milkturbation():void
 			if(pc.legCount <= 1) output("shift position");
 			else output("spread your [pc.legs]");
 			output(" to stop the inevitable splatters from soaking your lower body as you express the stuff with machine-like efficiency, flooding the area with more [pc.milk] than an organic has any business creating. There's so much that you can't help but stifle a smile; there isn't a cow-girl or alien in the galaxy that could keep up with you.");
-			if(pc.biggestTitSize() >= 5) output(" Lifting one weighty teat to your lips, you coat your chin and mouth immediately, getting a nice full draught of [pc.milkFlavor] to sample for your troubles.");
+			if(pc.biggestTitSize() >= 5)
+			{
+				output(" Lifting one weighty teat to your lips, you coat your chin and mouth immediately, getting a nice full draught of [pc.milkFlavor] to sample for your troubles.");
+				pc.milkInMouth(pc);
+			}
 		}
 		//Middle: Express milk like a someone in a furry's hyper story
 		else if(pc.milkQ() <= 100000)
@@ -1547,33 +1571,33 @@ public function joyCoMagicMilker7Sucks():void
 			foundLootItems[0].hasRandomProperties = true;
 			if(milkProduced < 700) 
 			{
-				output("small");
+				foundLootItems[0].stackSize = 30;
 				foundLootItems[0].longName = "small bag of " + GLOBAL.FLUID_TYPE_NAMES[pc.milkType].toLowerCase();
 				foundLootItems[0].tooltip += "\n\n<b>Fullness:</b> Not Very Full";
 				foundLootItems[0].basePrice = 2;
 			}
 			else if(milkProduced <= 1400) 
 			{
-				output("medium");
+				foundLootItems[0].stackSize = 15;
 				foundLootItems[0].longName = "medium bag of " + GLOBAL.FLUID_TYPE_NAMES[pc.milkType].toLowerCase();
 				foundLootItems[0].tooltip += "\n\n<b>Fullness:</b> Somewhat Full";
 				foundLootItems[0].basePrice = 4;
 			}
 			else if(milkProduced <= 2100) 
 			{
-				output("large");
+				foundLootItems[0].stackSize = 10;
 				foundLootItems[0].longName = "large bag of " + GLOBAL.FLUID_TYPE_NAMES[pc.milkType].toLowerCase();
 				foundLootItems[0].tooltip += "\n\n<b>Fullness:</b> Mostly Full";
 				foundLootItems[0].basePrice = 6;
 			}
 			else 
 			{
-				output("dangerously full");
+				foundLootItems[0].stackSize = 6;
 				foundLootItems[0].longName = "dangerously full bag of " + GLOBAL.FLUID_TYPE_NAMES[pc.milkType].toLowerCase();
 				foundLootItems[0].tooltip += "\n\n<b>Fullness:</b> Dangerously Full";
 				foundLootItems[0].basePrice = 10;
 			}
-			foundLootItems[0].description = "a " + foundLootItems[0].longName;
+			foundLootItems[0].description = indefiniteArticle(foundLootItems[0].longName);
 			output(" " + foundLootItems[0].description + ".");
 			output("\n\n");
 			//Milk items probably just good for selling. Value relatively low for normal milk but honey is worth 2x milk, and maybe other more exotic lactations could also get value boosts?
@@ -2829,6 +2853,7 @@ public function tamaniBionaholeInstruction():void
 {
 	clearOutput();
 	showBust("TAMANI_NUDE");
+	showName("\nTAMANI");
 	author("Fenoxo Fenbutt");
 	output("Excited to fuck a perfect copy of one of the galaxy’s top CEOs, you pull the protective cap off the Tamani Ultralux Edition BionaHole. Inside is as perfect a pubic mound as you’ve ever seen. Flawless, bubblegum-pink skin surrounds a puffy slit so vibrantly purple that it would look at home on an old-fashioned neon light. Moisture beads on the flush petals like morning dew, ensuring it’ll be lubricated and ready to go at a moment’s notice. You could probably pull it out of its case at any time, night or day, and Tamani’s cunt would be drooling for you all the same.");
 	output("\n\nThere’s no need to rush into this, however. The high-tech sex-toy came with a holovid featuring the corporate tart herself, titled <i>“Fucking My Pussy,”</i> and ");

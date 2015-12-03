@@ -57,11 +57,11 @@ public function buyADrinkFromCandice(drink:String):void
 	output("You give [embry.name] your order.");
 
 	output("\n\n<i>“Sure thing!”</i> she says, skipping off to fetch your drink, returning a moment later with your order. She slides a " + drink + " to you, and you spend the next few minutes ");
-	if(drink != "9999") output("nursing your drink, slowly sipping it down");
+	if(drink != "Nyrean Knot" || drink != "Fire Pepper") output("nursing your drink, slowly sipping it down");
 	else 
 	{
 		output("kicking back your shot and recovering from the ");
-		if(drink == "9999") output("Knot");
+		if(drink == "Nyrean Knot") output("Knot");
 		else output("Pepper");
 		output("’s intense kick. Whew, that burns!");
 	}

@@ -225,6 +225,8 @@ public function suckleFollowerReahasTits():void {
 
 	pc.lust(15+rand(15));
 	processTime(25+rand(5));
+	pc.milkInMouth(chars["REAHA"]);
+	pc.milkInMouth(chars["REAHA"]);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -452,6 +454,8 @@ public function dominantReahaAss():void {
 
 	output("\n\nThe orgasm leaves you both panting heavily, rolled in each other's arms in a tangle of cum-stained sheets. You barely feel the dildo slip from your guts, only feeling the intense emptiness it leaves behind as Reaha wriggles out of the strapon; when the toy pulls out of her, a floodgate of fem-slime opens, drenching her thighs in musky slime. She gives a heavy sigh, rubbing her sore teats as you let your face fall back into the valley of her cleavage, using her heavy tits as pillows as you recover from your sexual marathon.");
 	pc.orgasm();
+	pc.milkInMouth(chars["REAHA"]);
+	pc.milkInMouth(chars["REAHA"]);
 	processTime(20+rand(5));
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -886,6 +890,8 @@ public function reahaISFREEEEEEE():void
 	output("\n\n\"<i>Nice. So, uh, you're not gonna tie me up or anything, right? Not that I mind a little rope play, I mean, but... let's not do the whole handcuff me to the wall for hours at a time, okay? With all these fucking patches, I gotta wank it like, all the time or I'll go crazy.</i>\"  You nod your agreement, and Reaha positively beams, \"<i>Oh man, I can FINALLY fap and milk myself! Thank god!</i>\"  she cries, practically jumping with joy.");
 	output("\n\n\"<i>Oh, speaking of milk,</i>\"  she says, cupping her big, squishy breasts, \"<i>Just shout if you want a little cream in your morning joe, or even by the glass. It tastes like normal cow milk, I promise; the human stuff's icky. Although... I spent like, a bajillion creds on these things, but... if you happen to run into something that, say, changes what milk I'd make, I'm </i>totally<i> into that. You want me squirting honey or chocolate milk or whatever, just gimme the mod. Otherwise... I'm all yours... "+ pc.mf("Master","Mistress") +",\"</i> she says playfully as she stretches out on the bed.");
 	output("\n\nYou nod, and tell her to get settled in.");
+	
+	output("\n\n(<b>Reaha has joined your crew!</b>)");
 
 	processTime(60+rand(4));
 	clearMenu();
@@ -910,7 +916,9 @@ public function reahaWantsToKnowWhatsUp():void
 	output("\n\nAs you get back to the docks, Reaha finally breathes a short sigh and, looking over your shoulder, you can see her tearing off a swatch of pink patches from her back, scratching at the reddened skin where the aphrodisiacs were pumping into her. \"<i>Hey, toss a couple more of those my way, would ya? I'm getting antsy, here... fucking whores probably got me hooked on that shit for life, at this rate.</i>\" You hesitate a moment, eyeing your newly purchased sexual servant, and that's all the time she needs for that rage you saw in her eyes to fizzle right back up.");
 	output("\n\n\"<i>What!?</i>\" she huffs, arms crossing under her massive bust, \"<i>Look, I've been playing the lust-addled cow-girl for fucking years now, and I'm goddamned sick of it, okay? Look, I'll keep my smart-ass-ness to myself, but don't look at me like I'm some dumb bimbo slut, alright? Now gimme those stupid patches before I start hearing colors or something, and we can all go back to me pretending I'm a good little sex slave while you fuck me six ways to sunday.</i>\"");
 	output("\n\nYou shrug and toss the patch box to her, and Reaha quickly covers herself in bright pink drug-stickers. A moment later, her face flushes and she gets a big, dopey smile as her cunt starts to drool obscenely. She shivers when you touch her shoulder, guiding her into the airlock to your ship. \"<i>Sorry, "+ pc.mf("master","mistress") +". I get angry without enough of, uh, this,</i>\" she mumbles, itching her shoulders. You ruffle her strawberry hair, leading her down toward an empty cabin. She flops down on the bed, tits jiggling obscenely, the flesh bouncing so rhythmically that you can't help but stare. With a lazy yawn, Reaha says, \"<i>Oh, by the way... I paid, like, a bajillion credits for this sexy body -- which you should totally come over here and use, cuz I need a good fucking -- but if you want me to lactate something other than delicious cow milk, just toss me the gene mods and I'll use 'em. I did chocolate milk for about a year, and that was pretty hot. Kinda sticky, though... anyway, just thought you should know.</i>\"");
-	output("\n\n\"<i>Riiight,</i>\" you say as the cow-girl closes her eyes, drifting off. You figure you ought to let her get adjusted to her new arrangement.");	
+	output("\n\n\"<i>Riiight,</i>\" you say as the cow-girl closes her eyes, drifting off. You figure you ought to let her get adjusted to her new arrangement.");
+	
+	output("\n\n(<b>Reaha has joined your crew!</b>)");
 
 	processTime(60+rand(4));
 	clearMenu();
@@ -1024,6 +1032,8 @@ public function RideReahasStraponAtTheBrothel():void
 	pc.credits -= 100;
 
 	processTime(20+rand(4));
+	pc.milkInMouth(chars["REAHA"]);
+	pc.milkInMouth(chars["REAHA"]);
 	pc.orgasm();
 	//Clears menu data
 	clearMenu();

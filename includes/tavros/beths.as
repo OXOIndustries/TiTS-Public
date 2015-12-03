@@ -309,7 +309,7 @@ public function fuckVaandesPuss():void
 	output("\n\nYour ejaculation, building and roiling close to the surface since you first unfastened Vaande’s bra and intensifying with every stroke in her hot, conforming pussy, erupts from you unchecked. ");
 	var cumQ:Number = pc.cumQ();
 	if(cumQ < 5) output("[pc.Cum] dribbles from you in fits, depositing several tiny gems of jizz in the rahn’s translucent purple abdomen.");
-	else if(cumQ < 50) output("Strings of {[pc.cum]/[pc.milk] fly from you to hang suspended in the rahn’s plasma, like layers in aspic.");
+	else if(cumQ < 50) output("Strings of [pc.cum] fly from you to hang suspended in the rahn’s plasma, like layers in aspic.");
 	else output("Waves of [pc.cum] pour from you, filling and bulging the rahn’s membrane, washing out her natural purple color with your own and bringing a delirious, slack-jawed smile to her face.");
 	output(" You climax for far longer than normal, buoyed by the authority of her scent, but eventually finish, as you must.");
 
@@ -884,6 +884,7 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 	var scenesIndex:Array = [];
 	var scenesLimit:int = 3;
 	var scenesTotal:int = 5;
+	if (!pp.hasCock()) pp.createCock();
 	
 	// Hands
 	if(service == "hands")
@@ -1024,6 +1025,7 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 		
 		while(scenesLimit > 0)
 		{
+			if (!pp.hasCock()) pp.createCock();
 			// Cunt-tail:
 			if(!InCollection(1, scenesIndex) && pc.hasTailCunt() && scenesLimit > 0 && rand(scenesTotal) == 0)
 			{
@@ -1212,6 +1214,7 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 		
 		while(scenesLimit > 0)
 		{
+			if (!pp.hasCock()) pp.createCock();
 			// Any: Human Male Masochist
 			if(!InCollection(1, scenesIndex) && scenesLimit > 0 && rand(scenesTotal) == 0)
 			{

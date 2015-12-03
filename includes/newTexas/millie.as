@@ -162,7 +162,9 @@ public function millieAppearance():void
 	output("\n\nLower still, Millie’s thick, strong-looking thighs carry the weight of her enormous teats with ease. She’s perfectly capable of pinning a lover in place if she so desires, and equally equipped to deliver a punishing kick to a would-be ");
 	if(silly) output("jimmy ");
 	output("rustler.");
-	millieMenu();
+	
+	clearMenu();
+	addButton(0,"Next",millieMenu);
 }
 
 //Solo Milking
@@ -174,7 +176,9 @@ public function soloMilkingFromMillieAttempt():void
 	output("You inform her that you’d like to use the milkers by yourself.");
 	output("\n\nMillie laughs at that. <i>“Why come to the milk barn if you don’t want a pair of warm hands to massage you while you’re letting down? If you wanna pump your boobs by yourself, go get one of those JoyCo milkers.”</i> She rolls her eyes as if she just said something ridiculous. <i>“Now, you wanna have some fun or not?”</i>");
 	processTime(1);
-	millieMenu();
+	
+	clearMenu();
+	addButton(0,"Next",millieMenu);
 }
 
 //Get Milked
@@ -460,6 +464,13 @@ public function millieMilkingFinale():void
 		output(" Your nipples look like proper teats now: huge and puffy, engorged beyond reasonable measure from all the sucking.");
 		output("\n\nMillie strokes one like a miniature dick, and you gasp. The flesh there is still slick from your [pc.milk] and oh-so-sensitive after being pumped for who knows how long. You moo in quiet pleasure, noting that the raven-haired beauty has stained her overalls with her own creamy-smelling milk.");
 		output("\n\nShe bends over you, pulling a strap to the side so that her leaking teat can pop out. You suckle it hungrily, replacing a few lost fluids over the course of a few minutes. Millie switches out, only feeding you enough to keep herself off the edge. The stall floods with the scent of cherries all the same, and by the time she helps you up, you note that her cheeks are flush and her crotch is liberally dripping with excitement.");
+		
+		var ppMillie:PregnancyPlaceholder = new PregnancyPlaceholder();
+		ppMillie.breastRows[0].breastRatingRaw = 40;
+		ppMillie.milkMultiplier = 100;
+		ppMillie.milkFullness = 100;
+		pc.milkInMouth(ppMillie);
+		
 		//Temporary Treatment funtimes
 		if(pc.hasStatusEffect("Temporary Treatment"))
 		{
@@ -473,7 +484,6 @@ public function millieMilkingFinale():void
 				output(" You guess that part wasn't as temporary as advertised.");
 			}
 			if(!pc.isLactating()) pc.boostLactation(4);
-			
 		}
 	}
 	//Merge

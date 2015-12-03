@@ -138,7 +138,7 @@ public function kirosShipWails(doOutput:Boolean = true):Boolean
 
 		output("\n\nThe gasp you made upon entry was enough to draw the animal-girl's attention, and she twists to look at you, desperation in her eyes. Her breasts jiggle in her new pose, naked to your roving eyes and capped with nipples a chocolate so dark that they're almost black. Voice breaking, she begs, \"<i>Help me cum, please! My milker's broken and I'm so pent up! I can't cum without it or a nice, tight cunt! Ohgod, please, I need a cunt!</i>\" Her wails become almost feverish, and she thrashes, enabling you to see something massively swollen between her legs slipping partway out of the defunct machine. It's the color of dark-cherry and covered in angry veins with a positively equine sheath at its base. This tanuki is packing some serious horse-meat!");
 
-		output("\n\n\"<i>D-don't just stand there, fuck me or something! This is- unnnnghmmm... It's- ooohhh gods... life or death!</i>\" she cries as she bends over her mechanized lover and reaches back,  spreading her well-rounded cheeks to expose her dark-lipped pussy and darker anal star. \"<i>P-please, if I cum the swelling will go down!</i>\" Her eyes desperately implore you to help her get off.");
+		output("\n\n\"<i>D-don't just stand there, fuck me or something! This is- unnnnghmmm... It's- ooohhh gods... life or death!</i>\" she cries as she bends over her mechanized lover and reaches back, spreading her well-rounded cheeks to expose her dark-lipped pussy and darker anal star. \"<i>P-please, if I cum the swelling will go down!</i>\" Her eyes desperately implore you to help her get off.");
 
 
 		if(!CodexManager.entryUnlocked("Kui-Tan"))
@@ -371,7 +371,7 @@ public function kirosShipChubnookiUpDaCooter():void
 		output("\n\nInspired by the quantity of love-juices dripping from her nethers, you grab hold of");
 		if (pc.cockTotal() == 2) output(" your other cock");
 		else output(" another one of your cocks");
-	output(" and dangle it beneath her while you withdraw, painting it with her slick estrus. A few quick strokes spread the lubricant across your hot, hungry [pc.cock " + selCock2 + "]. Now ready, you heft it up, aligning it just before your next thrust. After all, the poor, distressed captain has another orifice she seemed quite okay with you using. Why not make this extra special for the both of you?");
+		output(" and dangle it beneath her while you withdraw, painting it with her slick estrus. A few quick strokes spread the lubricant across your hot, hungry [pc.cock " + selCock2 + "]. Now ready, you heft it up, aligning it just before your next thrust. After all, the poor, distressed captain has another orifice she seemed quite okay with you using. Why not make this extra special for the both of you?");
 
 		output("\n\nYou do not stop to think further on the situation, instead, you simply slam your [pc.hips] home, burying your slick shaft straight into the tanuki-girl's willing anus. Surprisingly, it parts around your intruding member with far greater ease than her lower lips did, gleefully accepting your second cock like the asshole of a well-trained butt-slut.");
 		
@@ -690,7 +690,7 @@ public function kirosShipChubnookiFucksYouGud(anal:Boolean = false):void
 	output(" with steady, machine-like motions. She's working your poor");
 	if (!anal) output(", sodden box");
 	else output(" orifice");
-	output(" with consummate skill, and as she piledrives it harder and faster, the ridiculously potent orgasm you've been riding for the past few minutes - or has it been hours -  intensifies again. Her huge balls are sloshing through the lake, swaying back and forth as they empty the last of their ultra-virile load straight into your receptive");
+	output(" with consummate skill, and as she piledrives it harder and faster, the ridiculously potent orgasm you've been riding for the past few minutes - or has it been hours - intensifies again. Her huge balls are sloshing through the lake, swaying back and forth as they empty the last of their ultra-virile load straight into your receptive");
 	if (!anal) output(" snatch");
 	else output(" rectum");
 	output(". The jizz crests past your [pc.belly], almost to your");
@@ -789,7 +789,7 @@ public function kirosShipPostFirstFuck():void
 	author("Fenoxo");
 
 	//Combine after sex scenes or Tech Spec. repair job. 
-	output("A little while later, the big-tailed, big-balled, big-cocked… big-everything girl is leaning against the wall, completely ignoring the salty musk that's coating her nearly from head to toe. She gives you a measuring glance. Her reddish-brown eyes are wide and searching, taking in every detail of her rescuer before returning to your [pc.face]. Suckling some of her excess from a fingertip, she smacks her lips and nods her head in your direction thankfully. \"<i>I couldn't have done it without you, kid. Thanks.</i>\" She cleans another finger, licking down to her palm while she gathers her thoughts. \"<i>The name's Kiro Tamahime; you might have heard of me.</i>\"");
+	output("A little while later, the big-tailed, big-balled, big-cocked... big-everything girl is leaning against the wall, completely ignoring the salty musk that's coating her nearly from head to toe. She gives you a measuring glance. Her reddish-brown eyes are wide and searching, taking in every detail of her rescuer before returning to your [pc.face]. Suckling some of her excess from a fingertip, she smacks her lips and nods her head in your direction thankfully. \"<i>I couldn't have done it without you, kid. Thanks.</i>\" She cleans another finger, licking down to her palm while she gathers her thoughts. \"<i>The name's Kiro Tamahime; you might have heard of me.</i>\"");
 
 	output("\n\nYou cock your head to the side.");
 

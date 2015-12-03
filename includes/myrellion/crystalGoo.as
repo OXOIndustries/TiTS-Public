@@ -547,7 +547,7 @@ public function gooVillageThinger():void
 	if(pc.shields() > 0) output("Your shield fizzles as it blocks out the brunt of the hit");
 	else output("The wind is knocked out of you by the force of the blow");
 	output(", and you shield yourself as numerous heavy plates clang down atop you. Once the cacophony ends you have a little time to recover your bearings, calming your breathing as you hold what you now see are multicolored crystals above your head.");
-	output("\n\nSuddenly, the plates covering you liquify, coating you in more of the sticky goo that covered the passage. You do your best to wipe it from your eyes, blinking the last of it away to find out what happened. A group of variably colored goo-girls - and some with male forms as well - surround you, staring on with wide-eyed, apprehensive expressions. Your codex gives a slime-muffled beep to tell you that these are ganrael, ");
+	output("\n\nSuddenly, the plates covering you liquefy, coating you in more of the sticky goo that covered the passage. You do your best to wipe it from your eyes, blinking the last of it away to find out what happened. A group of variably colored goo-girls - and some with male forms as well - surround you, staring on with wide-eyed, apprehensive expressions. Your codex gives a slime-muffled beep to tell you that these are ganrael, ");
 	if(CodexManager.entryUnlocked("Ganrael")) output("but you already knew that");
 	else output("a race of crystal forming goos");
 	output(".");

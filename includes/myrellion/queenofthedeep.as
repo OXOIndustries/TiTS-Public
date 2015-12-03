@@ -172,7 +172,7 @@ public function queenOfTheDeepAI():void
 public function queenOfTheDeepClawChomp():void
 {
 	output("One of the creature’s claws lunges forward, opening like a carapace-clad ‘V’ to grab you.");
-	// 9999 miss
+	// miss
 	if (combatMiss(foes[0], pc))
 	{
 		output(" You stumble out of the way, avoiding the crushing weight of the creature's pincers snapping closed inches in front of your nose with bone-crushing finality.");
@@ -1117,7 +1117,9 @@ public function queenOfTheDeepGetEgged():void
 	output("\n\nYour heart flutters at the compliment... or at the feeling of several tentacles brushing against your [pc.asshole]");
 	if (pc.hasVagina()) output(" and [pc.cunts]");
 	output("; you can’t be sure. Either way, you continue to drink deep of the rich amber meal your lover is granting you, only stopping to moan and shiver as one of her tentacles sprays your [pc.vagOrAss] with its lusty red chemicals. You’re practically swimming in a sea of lust-venom by the time the queen seems satisfied that you can handle the amorous onslaught that is to come, and gently pries you off her breast.");
-
+	
+	pc.milkInMouth(queenOfTheDeep);
+	
 	output("\n\n<i>“Are you ready, dear one?”</i> she asks, cupping your cheeks. You nod eagerly, and receive a kiss for your trouble, a passionate embrace of the lips that lets her sinfully sinuous tongue play all across your mouth. What you wouldn’t give to feel that penetrating a more tender hole...");
 	if (pc.isBiped()) output(" <i>“You are so small for one so strong. I hope I do not cause you pain now.”</i>");
 

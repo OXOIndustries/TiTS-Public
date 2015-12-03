@@ -1024,6 +1024,7 @@ public function elderVenusPitcherDickNipplePlay():void {
 		pc.ballEfficiency += 2;
 		pc.cumMultiplierRaw += 2;
 		if(pc.ballEfficiency/pc.cumMultiplierRaw < 3) pc.ballEfficiency += 2;
+		pc.milkInMouth(chars["ELDERVENUSPITCHER"]);
 		pc.slowStatGain("libido",2);
 	}
 	//{Medium Cum Amount}
@@ -1071,7 +1072,7 @@ public function milkyElderPitcherPlantPlay():void {
 	output("\n\nYou wanted to already, so her words dig deep into your subconscious, ensuring that you’ll drink every drop of \"medicine\" she’s willing to offer. After each successive swallow, burgeoning heat blooms in your [pc.nipples] and [pc.chest], causing both to engorge a little bit more. Your bust swells more and more with each passing moment, and the flow of milk becomes an unstoppable torrent. You whimper around the heavenly bud until it dries up and gentle hands separate it from your mouth, guiding you on to an equally delightful and yet-untapped source of your new favorite drink.");
 	output("\n\nThrough the transparency of their walls, the milkers' reservoirs slowly fill with your [pc.milk]. You also become aware of a slight variation in the suction applied to your [pc.nipples]; it pulsates in a rhythm, diminishing and then increasing in a way that your breasts respond quite strongly to. Blobs of liquid weight slide deeper down the tentacles, accompanied by a satisfied “mmmm” from nearby, and a sense of pride wells up inside in your chest (along with an uptick in the feeling of tongues on your teats");
 	if(pc.hasCock() || pc.hasVagina()) output(" and genitalia");
-	output(".)");
+	output(").");
 	
 	output("\n\n<i>“That’s all the medicine, little cow. I don’t have any more for you.”</i>");
 	
@@ -1093,6 +1094,7 @@ public function milkyElderPitcherPlantPlay():void {
 	if(pc.milkRate < 15) pc.milkRate++;
 	pc.slowStatGain("libido",2);
 	pc.orgasm();
+	pc.milkInMouth(chars["ELDERVENUSPITCHER"]);
 	processTime(20+rand(10));
 	clearMenu();
 	addButton(0,"Next",elderVenusPitcherEpilogue);
@@ -1139,6 +1141,7 @@ public function elderPitcherPlantTailCockPlay():void {
 		pc.ballEfficiency += 2;
 		pc.cumMultiplierRaw += 2;
 		if(pc.ballEfficiency/pc.cumMultiplierRaw < 3) pc.ballEfficiency += 2;
+		pc.milkInMouth(chars["ELDERVENUSPITCHER"]);
 		pc.slowStatGain("libido",2);
 	}
 	//{other}

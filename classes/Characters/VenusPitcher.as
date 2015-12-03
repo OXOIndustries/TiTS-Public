@@ -58,7 +58,7 @@
 			this.thickness = 35;
 			this.tone = 20;
 			this.hairColor = "green";
-			this.scaleColor = this.scaleColor;
+			this.scaleColor = hairColor;
 			this.furColor = "yellow";
 			this.hairLength = 24;
 			this.hairType = GLOBAL.TYPE_VENUSPITCHER;
@@ -155,7 +155,8 @@
 			
 			this.breastRows[0].breastRatingRaw = 10;
 			this.nippleColor = "dark green";
-			this.milkMultiplier = 0;
+			this.milkMultiplier = 100;
+			this.milkFullness = 100;
 			this.milkType = GLOBAL.FLUID_TYPE_MILKSAP;
 			//The rate at which you produce milk. Scales from 0 to INFINITY.
 			this.milkRate = 0;

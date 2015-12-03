@@ -621,6 +621,8 @@
 			FLUID_TYPE_CUMSAP,
 			FLUID_TYPE_SYDIAN_CUM,
 			FLUID_TYPE_MILK,
+			FLUID_TYPE_CHOCOLATE_MILK,
+			FLUID_TYPE_STRAWBERRY_MILK,
 			FLUID_TYPE_VANILLA,
 			FLUID_TYPE_NYREA_CUM,
 			FLUID_TYPE_GABILANI_CUM,
@@ -629,6 +631,8 @@
 		public static const VALID_GIRLCUM_TYPES:Array = [
 			FLUID_TYPE_GIRLCUM,
 			FLUID_TYPE_HONEY,
+			FLUID_TYPE_CHOCOLATE_MILK,
+			FLUID_TYPE_STRAWBERRY_MILK,
 			FLUID_TYPE_VANILLA,
 			FLUID_TYPE_GABILANI_GIRLCUM,
 		];
@@ -839,6 +843,18 @@
 		public static const NOT_CONSUMED_BY_DEFAULT:int 				= 2;
 		public static const ITEM_FLAG_EFFECT_FLURRYBONUS:int			= 3; // Equipping the items removes the additional miss-chances from flurry attacks.
 		public static const ITEM_FLAG_AIRTIGHT:int 						= 4; // Used for space suits and the like.
+		public static const ITEM_FLAG_SWIMWEAR:int				= 5; // Used specifically for swimming attire.
+		public static const ITEM_FLAG_EXPOSE_FULL:int				= 6; // Used specifically for attire that exposes nipples/breasts and genitals/asshole to the elements.
+		
+		public static const ITEM_FLAG_NAMES:Array = [
+			"Bow Weapon",
+			"Energy Weapon",
+			"Non-consumable",
+			"Bonus Hit Rate",
+			"Airtight",
+			"Swimwear",
+			"Fully Exposed",
+		];
 		
 		/**
 		 * You have a couple of ways of querying the preference values to get useful information back out; it's why I've set the LIKES/DISLIKES values like I have.

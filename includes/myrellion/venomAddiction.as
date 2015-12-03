@@ -169,7 +169,7 @@ public function drinkDatRedVenoShitYooooooo():void
 	clearOutput();
 	author("Savin");
 	showName("DOWN\nTHE HATCH");
-	pc.destroyItem(new RedMyrVenom(),1);
+	if(!infiniteItems()) pc.destroyItem(new RedMyrVenom(),1);
 	if(flags["DRANK_MYR_VENOM"] == undefined)
 	{
 		output("Curious about the effects of red myr venom");

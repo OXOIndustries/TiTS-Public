@@ -64,8 +64,6 @@ public function returnToShipAfterRecruitingAnno():Boolean
 			
 	if (flags["ANNO_CREWMEMBER"] == 1 && flags["ANNO_CREWMEMBER_INITIALSCENE"] == undefined)
 	{
-		flags["ANNO_CREWMEMBER_INITIALSCENE"] = 1;
-
 		clearOutput();
 		annoFollowerHeader();
 
@@ -125,6 +123,8 @@ public function returnToShipAfterRecruitingAnno():Boolean
 
 			output("\n\nCelise nods eagerly. You pat the girls on the shoulders and leave them to catch up from since... whenever it is they met.");
 		}
+		
+		output("\n\n(<b>Anno has joined your crew!</b>)");
 
 		currentLocation = "SHIP INTERIOR";
 		flags["ANNO_CREWMEMBER_INITIALSCENE"] = 1;
@@ -173,30 +173,32 @@ public function annoFollowerMenu():void
 	annoFollowerHeader();
 	
 	clearMenu();
-	addButton(0, "Buy", annoFollowerBuyMenu);
-	addButton(1, "Sell", annoFollowerSellMenu);
-	addButton(2, "Special Gear", annoFollowerSpecialGear, undefined, "Special Equipment", "Talk to Anno about any special equipment she might be able to build or buy for you.");
-
-	addButton(5, "Talk", annoFollowerTalkMenu);
-	addButton(6, "EarScritch", annoFollowerEarScritches, undefined, "Ear Scritches", "Give Anno an affectionate little pet.");
-	if (pc.lust() >= 33) addButton(7, "Sex", annoFollowerSexMenu);
-	else addDisabledButton(7, "Sex", "Sex", "Gotta get fired up before you can approach the snowy ausar for some 'entertainment'.")
-
+	addButton(0, "Buy", annoFollowerBuyMenu, undefined, "Buy", "See what Anno has for sale.");
+	addButton(1, "Sell", annoFollowerSellMenu, undefined, "Sell", "See if you can sell any of your carried items to Anno.");
+	addButton(2, "Talk", annoFollowerTalkMenu, undefined, "Talk", "Talk to Anno about a variety of topics.");
+	addButton(3, "EarScritch", annoFollowerEarScritches, undefined, "Ear Scritches", "Give Anno an affectionate little pet.");
+	
+	addButton(5, "Appearance", annoFollowerAppearance, undefined, "Appearance", "Review what Anno's entire body looks like.");
+	if (pcHasJunkPrize() && flags["ANNO_SCRAP_DISABLED"] == undefined) addButton(6, "Sell Prize", tryToSellAnnoSomeRaskScrapGuv, undefined, "Sell Prize", "Try to sell off the sweet loot you bought from the gang of raskvel males.");
+	else addDisabledButton(6, "Sell Prize", "Sell Prize", "This merchant isn't interested in whatever you're considering to be a prize.");
+	
+	if (pc.lust() >= 33) addButton(8, "Sex", annoFollowerSexMenu, undefined, "Sex","Have some sexy fun with Anno.");
+	else addDisabledButton(8, "Sex", "Sex", "Gotta get fired up before you can approach the snowy ausar for some 'entertainment'.")
+	
 	if (flags["ANNO_SLEEPWITH_INTRODUCED"] != undefined)
 	{
 		if (haveFuckedAnno())
 		{
-			if (flags["CREWMEMBER_SLEEP_WITH"] == "ANNO") addButton(8, "No Sleep W.", annoSleepToggleOff, undefined, "Don't Sleep With", "Tell Anno you'd like to sleep without her for now.");
-			else addButton(8, "Sleep With", annoSleepToggleOn, undefined, "Sleep With", "Tell Anno you'd like her to sleep with you in the evenings.");
+			if (flags["CREWMEMBER_SLEEP_WITH"] == "ANNO") addButton(7, "No Sleep W.", annoSleepToggleOff, undefined, "Don't Sleep With", "Tell Anno you'd like to sleep without her for now.");
+			else addButton(7, "Sleep With", annoSleepToggleOn, undefined, "Sleep With", "Tell Anno you'd like her to sleep with you in the evenings.");
 		}
 		else
 		{
-			addDisabledButton(8, "Sleep With", "Sleep With", "You could probably get a cuddly ausar bed-buddy if you had sex with her.");
+			addDisabledButton(7, "Sleep With", "Sleep With", "You could probably get a cuddly ausar bed-buddy if you had sex with her.");
 		}
 	}
-	else addDisabledButton(8, "Sleep With", "Sleep With", "A nice rest sounds good... maybe Anno might pay you a vist of her own accord in the process.");
+	else addDisabledButton(7, "Sleep With", "Sleep With", "A nice rest sounds good... maybe Anno might pay you a vist of her own accord in the process.");
 	
-	if (haveFuckedAnno()) addButton(10, "Appearance", annoFollowerAppearance);
 	
 	if (InCollection(shipLocation, "TAVROS HANGAR", "SHIP HANGAR", "201", "500")) addButton(13, "Evict", annoFollowerBootOff, undefined, "Evict from Ship", "Tell Anno to get off the ship. You might break her heart a little, but you'll probably be able to pick her up again later.");
 	else addDisabledButton(13, "Evict", "Evict from Ship", "You can't bring yourself to kick Anno off your ship here. Head back to a mainline planet or station first.");
@@ -430,6 +432,8 @@ public function annoFollowerBootOff():void
 
 	flags["ANNO_CREWMEMBER"] = 2;
 	if (flags["CREWMEMBER_SLEEP_WITH"] == "ANNO") flags["CREWMEMBER_SLEEP_WITH"] = undefined;
+	
+	output("\n\n(<b>Anno is no longer on your crew. You can find her again in Tavros Station.</b>)");
 
 	processTime(15);
 
@@ -516,7 +520,7 @@ public function annoFollowerLetThePoochShitUpYourShowerWithFurAgain():void
 
 	output("\n\nA quick trip to her girlfriend’s apartment to collect her things, and you’re ready to go. Hand in hand, you guide Anno back aboard your ship. She settles in like she'd never been gone.");
 
-	output("\n\n<b>Anno has joined your crew!</b>");
+	output("\n\n(<b>Anno has rejoined your crew!</b>)");
 	
 	currentLocation = "SHIP INTERIOR";
 	flags["ANNO_CREWMEMBER"] = 1;
@@ -635,7 +639,7 @@ public function annoFollowerTalkMenu(doOut:Boolean = true):void
 	{
 		if (anno.armor is AnnosCatsuit) addButton(7, "Uniform", annoFollowerRemoveUniform, undefined, "Steele Tech Uniform", "Tell Anno she doesn’t need to wear her uniform all the time.");
 		else addButton(7, "Uniform", annoFollowerWearUniform, undefined, "Steele Tech Uniform", "Tell Anno she should put her uniform back on. It’s pretty sexy looking, after all.");
-		if (flags["ANNO_NOVA_UPDATE"] != 2) addButton(10, "Nova Update", annoNovaUpdate, true, "Nova Update", "Ask Anno if there's been any further developments regarding the Nova.");
+		if (flags["ANNO_NOVA_UPDATE"] != 2) addButton(11, "Nova Update", annoNovaUpdate, true, "Nova Update", "Ask Anno if there's been any further developments regarding the Nova.");
 	}
 	else
 	{
@@ -657,6 +661,8 @@ public function annoFollowerTalkMenu(doOut:Boolean = true):void
 		else addDisabledButton(9,"Strapon Mods","Strapon Mods","Anno has already tweaked her hardlight strapon. Good job!");
 	}
 	else addDisabledButton(9,"Strapon Mods","Strapon Mods","Anno needs to own a hardlight strapon before it can be modified. Maybe you could take her to Tavros and look for a store that sells them.");
+	
+	addButton(10, "Special Gear", annoFollowerSpecialGear, undefined, "Special Equipment", "Talk to Anno about any special equipment she might be able to build or buy for you.");
 	addButton(14, "Back", annoFollowerMenu);
 }
 
@@ -944,7 +950,8 @@ public function annoFollowerEarScritches():void
 	processTime(4+rand(2));
 	//[Sex][Tease]
 	clearMenu();
-	addButton(0, "Sex", annoFollowerEarScritchesSex);
+	if (pc.lust() >= 33) addButton(0, "Sex", annoFollowerEarScritchesSex, undefined, "Sex","Follow that scratch up with some sex.");
+	else addDisabledButton(0, "Sex", "Sex", "You're not horny enough for that...")
 	addButton(1, "Tease", annoFollowerEarScritchesTease);
 }
 
@@ -1773,6 +1780,7 @@ public function annoFollowerSpecialGear():void
 	{
 		addButton(0, "Her Gun", annoFollowerSpecialGearHerGun, undefined, "Her Gun", "Ask Anno about her personal gun. That didn't seem like a stock model.")
 	}
+	else addDisabledButton(0, "Her Gun", "Her Gun", "You've already asked her about her gun.");
 
 	if (pc.hasItem(new GrayMicrobots()) && !pc.hasKeyItem("Goozooka"))
 	{
@@ -1806,6 +1814,8 @@ public function annoFollowerSpecialGearHerGun():void
 	{
 		anno.inventory.push(new HoldoutHP());
 	}
+	
+	annoFollowerSpecialGear();
 }
 
 public function annoFollowerSpecialGearGrayGoo():void
@@ -1858,7 +1868,7 @@ public function annoFollowerSpecialGearGrayGoo():void
 		}
 	}
 	
-	addButton(1, "Nope", annoFollowerMenu);
+	addButton(1, "Nope", annoFollowerTalkMenu, false);
 }
 
 public function annoFollowerSpecialGearGoozooka(buyGoovolverToo:Boolean = false):void
@@ -2672,35 +2682,36 @@ public function annoNovaUpdate(asFollower:Boolean = true):void
 {
 	clearOutput();
 	annoFollowerHeader();
-
+	
 	output("<i>“So, has R&D figured out anything useful from the </i>Nova<i>?”</i> you ask, casting a glance to some displays on her work bench. Several holographic images of bouncy, buxom goo-girls are on display, not all of them gray.");
-
-	output("\n\nAnno grins. <i>“They’ve been tearing the ‘ghost deck’ up since we cleared it out. We’re working on dissecting the tech on the </i>Nova<i> the crew was using to mass-produce the goo, but we’re a couple years out from actually producing our own, looks like. We’re dealing with tech several centuries out of date - nobody knows how to use it, all the ports and cables and chips are unavailable and, even if we </i>could<i> get them, they’re woefully inefficient. R&D’s basically having to start from scratch on building their prototypes. Once we get up and running, though, oh man, we’re gonna be able to churn the little bimbos out like you wouldn’t believe. Some of the egg-heads are already talking about branding them as ‘silver galotians.’”</i>");
-
+	output("\n\nAnno grins. <i>“They’ve been tearing the ‘ghost deck’ up since we cleared it out");
+	if(flags["TARKUS_DESTROYED"] != undefined && flags["DECK13_SHIELDS_ON"] != 1) output("... or at least what’s left of it");
+	output(". We’re working on dissecting the tech on the </i>Nova<i> the crew was using to mass-produce the goo, but we’re a couple years out from actually producing our own, looks like. We’re dealing with tech several centuries out of date - nobody knows how to use it, all the ports and cables and chips are unavailable and, even if we </i>could<i> get them, they’re woefully inefficient. R&D’s basically having to start from scratch on building their prototypes. Once we get up and running, though, oh man, we’re gonna be able to churn the little bimbos out like you wouldn’t believe. Some of the egg-heads are already talking about branding them as ‘silver galotians.’”</i>");
 	output("\n\nThat’s good, though you were hoping for something a little bit more immediate. Anno shrugs apologetically. <i>“Well, we’re looking into the actual goo itself, too. Trying to reverse-engineer their network A.I., figure out ways to make them do things other than suck dick. I mean, giving JoyCo a run for their money on pleasure droids alone is pretty valuable, but the thing about gray goo - the really exciting part about them - is that they’re both chassis and intelligence rolled together. They just form up to whatever configuration you need ‘em in, as long as you have enough goo. I really wanna see if we can make, say, a giant elephant goo, or turn them into mini-leithans. And that’s not even scratching the surface of their applications. Bell-Isle/Grunmann didn’t know what they were sitting on - or didn’t know how to take advantage of it, anyway. Corporate couldn’t be happier with our work.”</i>");
-
 	output("\n\nShe smiles proudly, tail wagging behind her. <i>“Oh! We do have one very, very, very early working prototype... here, lemme pull it off my drive,”</i> she adds, pushing a few keys on her holoscreen. After a moment’s work, she pulls a small thumb drive out and hands it to you. <i>“Someone from our military contracts group got ahold of my notes on the goo. We got to talking, and that sort of snowballed into something we’re PRETTY SURE works, though since we’re having trouble fabricating goo back at Corporate, I can’t one-hundred percent vouch for it. Probably works, though. Maybe.”</i>");
-
 	output("\n\nYou turn the thumb drive over in your hand, looking it over. <i>“So what’s it do?”</i>");
-
 	output("\n\n<i>“Oh! Right. It’s a primitive combat routine. Should teach a gray goo how to do what she does best - clinging to people and giving ‘em big, squishy boob-hugs - but in battle. Specifically, it should teach the goo to envelop an opponent and molest them into submission. Next generation less-than-lethal goonology.”</i>");
-
 	output("\n\nNeat. <i>“So, just plug it into a gray goo and I’m good to go?”</i>");
-
 	output("\n\nAnno shrugs. <i>“Weeeell, I dunno if you’d want to just stick it in any gray goo you find");
-	if (flags["ANNO_MISSION_OFFER"] == 3) output(" on Tarkus");
+	if (flags["TARKUS_DESTROYED"] == undefined) output(" on Tarkus");
 	else output(", assuming you can even find one. Because, you know, planet go asplode and all");
-	output(". It’s a modification program, not an overwrite. If the goo’s already got it into her head to go around attacking people willy-nilly, she’ll just keep doing that. Except now you have to file paperwork to get her onto planets because now she’s a class-seventy assault droid. With a dick. Made of goo. Anyway, uh... I’d suggest getting a new goo if you can. Head");
-	if (shipLocation != "201") output(" on back");
-	else output(" outside");
-	output(" to the </i>Nova<i> and shovel some goo out of the canister on Deck 13. R&D left one dispenser active there just in case.”</i>");
-
+	output(". It’s a modification program, not an overwrite. If the goo’s already got it into her head to go around attacking people willy-nilly, she’ll just keep doing that. Except now you have to file paperwork to get her onto planets because now she’s a class-seventy assault droid. With a dick. Made of goo. Anyway, uh... I’d suggest getting a new goo if you can.");
+	if(flags["TARKUS_DESTROYED"] != undefined && flags["DECK13_SHIELDS_ON"] != 1)
+	{
+		output(" Since Deck 13 was wiped out in the blast when Tarkus exploded, it might be harder to find one in the wild... I mean, it’s not like you can find one walking into in a bar or anything, right?");
+	}
+	else
+	{
+		output(" Head");
+		if (shipLocation != "201") output(" on back");
+		else output(" outside");
+		output(" to the </i>Nova<i> and shovel some goo out of the canister on Deck 13. R&D left one dispenser active there just in case.");
+	}
+	output("”</i>");
 	output("\n\nYou pocket the drive and tell Anno you’ll look into it.");
-
 	output("\n\n<i>“Great! Lemme know how it works out. I think I’ve got some QA forms around here somewhere...”</i>");
-
 	if (flags["ANNO_NOVA_UPDATE"] == undefined) flags["ANNO_NOVA_UPDATE"] = 1;
-
+	
 	if (asFollower)
 	{
 		annoFollowerTalkMenu(false);

@@ -1056,8 +1056,7 @@ public function pcAndShadeDefeated():void
 	output("You’ve had enough. You throw down your [pc.rangedWeapon] and put your hands up - better a little indignity than death. Shade grunts in disgust, but puts her hands up too - she’s not much better off than you are, after all. The victorious Kara takes one stride towards the both of you, glowers at you, and raises her gun.");
 	output("\n\nYou wince, closing your eyes as she pulls the trigger. You hear the scream beside you, though, and look to see Shade on the deck, collapsed in a pool of blood and burning plasma. Kara gives a huff and turns her gun toward you.");
 	output("\n\n<i>“You could have just walked away,”</i> she breathes, the last thing you hear before the glow of green flame takes your life.");
-	output("\n\n<b>Game Over</b>");
-	clearMenu();
+	badEnd();
 	addDisabledButton(0,"Game Over","Game Over","You died. Tough luck.");
 }
 
@@ -1135,7 +1134,7 @@ public function takeShadesHardlightPenisInYerBoot():void
 	if(pc.hasVagina()) x = rand(pc.totalVaginas());
 	output("Shade looms over you for a moment, her big slitted eyes playing over your bare body as she decides what to do with you. After a moment of thought, she leans back on her knees and plants a hand on her hip. Rather than taking her panties off, though, the kaithrit huntress instead presses a tiny button hidden in the waistband. In a flash of light, a thick, turgid holographic cock sprouts from her crotch, flopping onto your [pc.belly] with a perceptible weight.");
 	//if PC knows about Hardlight dicks: 
-	if(9999 == 0) output(" Looks like somebody’s been shopping at Aliss’s!");
+	if(flags["ANNO_EVER_STRAPONED"] != undefined) output(" Looks like somebody’s been shopping at Aliss’s!");
 	else output("\n\n<i>“Hardlight strapon,”</i> Shade purrs, reaching down to run a hand along her glowing shaft. She can’t help but shiver as her fingers play across its glittering length. <i>“Complete with one-to-one tactile sensation. Heh, I have too much fun with this.”</i>");
 	output("\n\nAs if by well-ingrained instinct, her cunt-tail swerves around her hips, lips spreading open eagerly. She gives it a playful swat, murmuring, <i>“Not for you, dumbshit.”</i> Her tail slips back like a whipped dog, getting out of the way as Shade starts to stroke her hardlight cock, angling it down towards the ");
 	if(x >= 0) output("lips of your sex");
@@ -1785,7 +1784,7 @@ public function runesYouTurdShade():void
 	output("\n\nYou tell Shade you’ve got time, and make yourself comfortable. ");
 	output("\n\n<i>“Suit yourself,”</i> she says, reclining in her chair and waving a waitress over with a couple of drinks. <i>“Have to go way back for this. I was... eighteen, maybe nineteen, just starting out as a bounty hunter. I thought I was at the end of my career, too. Thought my life was over, really. I’d just found out I was pregnant with Astra, her father was nowhere to be found, and my mother was threatening to disown me or kill me or whatever else. It was terrifying at the time.”</i>");
 	output("\n\nShe shakes her head at herself as the waitress drops off her drinks. Shade takes a long swig from her mug, letting out a hiss of a breath afterwards. <i>“So I was afraid. Scared shitless, really. Between my mother throwing me out, and the woman I thought was my lover abandoning me, I decided to stow away on a ship and just... leave. I had to get away from home. It was my first time in space, huddled up in a half-empty supply crate headed for the far edge of the frontier. Ended up on a god-forsaken ice ball of a moon called Uveto VII, owned by those little bastards.”</i> She points to ");
-	if(9999 == 0) output("Madame Brillig");
+	if(flags["MET_BRILLIG"] != undefined) output("Madame Brillig");
 	else output("a tiny, stuffed-animal-like creature sitting in the bar");
 	output(".");
 	output("\n\n<i>“I woke up in a church, laid up beside a fire and covered in blankets. Apparently I lost consciousness in the cold, sitting in a warehouse out in the open for half a day. Nearly died before somebody heard me shivering in a crate and crowbarred it. I was lucky I didn’t lose my baby, not to mention a few extremities. A human religious sect on-world took me in after the docs were finished with me. Uveto was a protectorate-world, and I’d be in big trouble for sneaking in, they said, as if stowing away on a ship was nothing. I didn’t have much choice but to stay with them: I was weak, half-starved, and didn’t stop shivering for days.”</i>");
@@ -2110,6 +2109,10 @@ public function shadeBoobWorship():void
 	flags["SEXED_SHADE"] = 1;
 	flags["SHADE_BOOBWORSHIP"] = 1;
 	
+	if (shade.canLactate())
+	{
+		pc.milkInMouth(chars["SHADE"]);
+	}
 	pc.orgasm();
 
 	clearMenu()
@@ -2160,9 +2163,9 @@ public function gibShadeModItems():void
 	
 	output("\n\n<i>“Oh?”</i> she says, cocking an eyebrow as you pull out...");
 
-	Honeyizer
-	Chocolac
-	Honeydew
+	// Honeyizer
+	// Chocolac
+	// Honeydew
 
 	clearMenu();
 	if (!shade.canLactate() || shade.milkType != GLOBAL.FLUID_TYPE_MILK)

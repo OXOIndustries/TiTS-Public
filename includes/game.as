@@ -9,6 +9,7 @@ import classes.GUI;
 import classes.Items.Accessories.LeithaCharm;
 import classes.Items.Miscellaneous.EmptySlot;
 import classes.Items.Miscellaneous.HorsePill;
+import classes.Items.Transformatives.Goblinola;
 import classes.RoomClass;
 import classes.StorageClass;
 import classes.UIComponents.ContentModules.MailModule;
@@ -236,23 +237,6 @@ public function generateMapForLocation(location:String):void
 	userInterface.setMapData(mapper.generateMap(location));
 }
 
-/*OLD
-public function showCodex():void
-{
-	this.userInterface.showCodex();
-	this.codexHomeFunction();
-	this.clearGhostMenu();
-	
-	// TESTO BUTTONO
-	addGhostButton(0, "Stats", statisticsScreen);
-	
-	//addGhostButton(1, "Messages", function():void { } );
-	//addGhostButton(2, "Log", function():void { } );
-	//addGhostButton(3, "CHEEVOS", function():void { } );
-	addGhostButton(1, "Log", displayQuestLog);
-	
-	addGhostButton(4, "Back", this.userInterface.showPrimaryOutput);
-}*/
 public function showCodex():void
 {
 	userInterface.showCodex();
@@ -824,7 +808,7 @@ public function showerOptions(option:int = 0):void {
 	// Regular showers
 	if (option == 0)
 	{
-		output("Deciding to take a quick shower, you strip off your gear, set it aside and turn on the shower. The water hits you with a cold chill. Onboard shower units are never really known for great tempurature regulation...");
+		output("Deciding to take a quick shower, you strip off your gear, set it aside and turn on the shower. The water hits you with a cold chill. Onboard shower units are never really known for great temperature regulation...");
 		output("\n\nSlightly shivering, you shampoo your [pc.hair] and rub down your [pc.skinFurScalesNoun] with soap");
 		if (pc.hasStatusEffect("Sweaty"))
 		{
@@ -836,7 +820,7 @@ public function showerOptions(option:int = 0):void {
 		output(". You cleanse your [pc.face] and wash behind your [pc.ears], making sure not to miss a spot.");
 		output("\n\nSome minutes later, you finally rinse and towel yourself off. Stepping out of the shower and redonning your equipment, you are feeling");
 		if (pc.hasStatusEffect("Sweaty")) output(" much cleaner than you did before");
-		else output(" sqeaky clean");
+		else output(" squeaky clean");
 		output(".");
 		pc.shower();
 		processTime(10);
@@ -953,6 +937,18 @@ public function statusTick():void {
 				{
 					var pill:HorsePill = new HorsePill();
 					eventQueue[eventQueue.length] = pill.lastPillTF;
+				}
+				//Goblinola changes!
+				if(pc.statusEffects[x].storageName == "Goblinola Bar")
+				{
+					var gobbyTF:Goblinola = new Goblinola();
+					eventQueue[eventQueue.length] = gobbyTF.itemEndGoblinTF;
+				}
+				//Goblinola face changes
+				if(pc.statusEffects[x].storageName == "Gabilani Face Change")
+				{
+					var gobbyFaceTF:Goblinola = new Goblinola();
+					eventQueue[eventQueue.length] = gobbyFaceTF.itemGoblinFaceTF;
 				}
 				if(pc.statusEffects[x].storageName == "Red Myr Venom")
 				{
@@ -1144,6 +1140,18 @@ public function variableRoomUpdateCheck():void
 	//Handle badger closure
 	if(flags["DR_BADGER_TURNED_IN"] != undefined && rooms["209"].northExit != "") rooms["209"].northExit = "";
 	if(flags["DR_BADGER_TURNED_IN"] == undefined && rooms["209"].northExit == "") rooms["209"].northExit = "304";
+	// Arbetz Open:
+	if (arbetzActiveHours())
+	{
+		if (!rooms["ARBETZ MAIN"].hasFlag(GLOBAL.NPC)) rooms["ARBETZ MAIN"].addFlag(GLOBAL.NPC);
+		if (!rooms["ARBETZ POOL"].hasFlag(GLOBAL.OBJECTIVE)) rooms["ARBETZ POOL"].addFlag(GLOBAL.OBJECTIVE);
+	}
+	// Arbetz Closed:
+	else
+	{
+		rooms["ARBETZ MAIN"].removeFlag(GLOBAL.NPC);
+		rooms["ARBETZ POOL"].removeFlag(GLOBAL.OBJECTIVE);
+	}
 	
 	
 	/* NEW TEXAS */
@@ -1509,7 +1517,13 @@ public function processTime(arg:int):void {
 				var pill:HorsePill = new HorsePill();
 				//eventQueue[eventQueue.length] = pill.pillTF;
 				pill.pillTF();
-			}	
+			}
+			//Goblinola procs!
+			if(pc.hasStatusEffect("Goblinola Bar"))
+			{
+				var gobbyTF:Goblinola = new Goblinola();
+				gobbyTF.itemGoblinTF();
+			}
 			//Treatmentr procs
 			if(pc.hasStatusEffect("The Treatment"))
 			{
@@ -1577,7 +1591,12 @@ public function processTime(arg:int):void {
 				//Exhibitionism reduction!
 				if(!(pc.armor is EmptySlot) && !(pc.lowerUndergarment is EmptySlot) && !(pc.upperUndergarment is EmptySlot))
 				{
-					pc.exhibitionism(-0.5);
+					if
+					(	pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)
+					&&	pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)
+					&&	pc.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)
+					)	{ /* No reduction for a full set of exposed clothing! */ }
+					else pc.exhibitionism(-0.5);
 				}
 				// New Texas cockmilker repair cooldown.
 				if (flags["MILK_BARN_COCKMILKER_BROKEN"] == undefined && flags["MILK_BARN_COCKMILKER_REPAIR_DAYS"] != undefined)
@@ -2193,13 +2212,14 @@ public function milkMultiplierGainNotificationCheck():void
 	}
 }
 
-public function badEnd():void 
+public function badEnd(displayGG:String = "GAME OVER"):void 
 {
 	gameOverEvent = true;
 	
 	// Todo -- Hook alternate game ends in here, and also maybe look into some kind of categorisation system.
 	
-	output("\n\n<b>GAME OVER</b>\n\n(Access the main menu to start a new character or the data menu to load a saved game. The buttons are located in the lower left of the game screen.)");
+	if (displayGG != "") output("\n\n<b>" + displayGG + "</b>");
+	output("\n\n(Access the main menu to start a new character or the data menu to load a saved game. The buttons are located in the lower left of the game screen.)");
 	clearMenu();
 }
 
@@ -2248,7 +2268,7 @@ public function statisticsScreen(showID:String = "All"):void
 		output2("\n<b>* Name:</b> [pc.fullName]");
 		output2("\n<b>* Occupation: </b>" + GLOBAL.CLASS_NAMES[pc.characterClass]);
 		if(flags["PC_UPBRINGING"] != undefined) output2("\n<b>* Upbringing: </b>" + GLOBAL.UPBRINGING_NAMES[flags["PC_UPBRINGING"]]);
-		if(pc.affinity != "") output2("\n<b>* Affinity: </b>" + StringUtil.toTitleCase(pc.affinity));
+		if(pc.affinity != "none") output2("\n<b>* Affinity: </b>" + StringUtil.toTitleCase(pc.affinity));
 		if(pc.originalRace != pc.race())
 		{
 			output2("\n<b>* Initial Race: </b>" + StringUtil.toTitleCase(pc.originalRace));
@@ -2313,7 +2333,7 @@ public function statisticsScreen(showID:String = "All"):void
 		}
 		else if(pc.skinType == GLOBAL.SKIN_TYPE_FUR) output2(" Fur");
 		else output2(" None");
-		if(pc.antennae > 0 && pc.antennaeType != 0) output2("\n<b>* Antennae:</b> " + pc.antennae + ", " + GLOBAL.TYPE_NAMES[pc.antennaeType]);
+		if(pc.hasAntennae()) output2("\n<b>* Antennae:</b> " + pc.antennae + ", " + GLOBAL.TYPE_NAMES[pc.antennaeType]);
 		output2("\n<b>* Ears:</b>");
 		if(pc.hasLongEars()) output2(" " + prettifyLength(pc.earLength) + ",");
 		output2(" " + GLOBAL.TYPE_NAMES[pc.earType]);
@@ -2738,40 +2758,6 @@ public function statisticsScreen(showID:String = "All"):void
 	// Other
 	if(showID == "Other" || showID == "All")
 	{
-		// Equipment/Flags (Of course, this is visible in the inventory, but this is primarily for those who can't see the flags on the tooltips!)
-		/*
-		output2("\n\n" + blockHeader("Equipment Statistics", false));
-		output2("\n<b><u>Currently Worn</u></b>");
-		if(!(pc.meleeWeapon is EmptySlot))
-		{
-			output2("\n<b>* Melee Weapon: </b>" + pc.meleeWeapon.shortName + " " + pc.meleeWeapon.getDamageFlags("", pc.meleeWeapon, new EmptySlot()) + " " + pc.meleeWeapon.getResistanceFlags("", pc.meleeWeapon, new EmptySlot()));
-		}
-		if(!(pc.rangedWeapon is EmptySlot))
-		{
-			output2("\n<b>* Ranged Weapon: </b>" + pc.rangedWeapon.shortName);
-		}
-		if(!(pc.armor is EmptySlot))
-		{
-			output2("\n<b>* Armor: </b>" + pc.armor.shortName);
-		}
-		if(!(pc.shield is EmptySlot))
-		{
-			output2("\n<b>* Shield: </b>" + pc.shield.shortName);
-		}
-		if(!(pc.accessory is EmptySlot))
-		{
-			output2("\n<b>* Accessory: </b>" + pc.accessory.shortName);
-		}
-		if(!(pc.upperUndergarment is EmptySlot))
-		{
-			output2("\n<b>* Underwear Top: </b>" + pc.upperUndergarment.shortName);
-		}
-		if(!(pc.lowerUndergarment is EmptySlot))
-		{
-			output2("\n<b>* Underwear Bottom: </b>" + pc.lowerUndergarment.shortName);
-		}
-		*/
-		
 		//======COMBAT STATISTICS=====//
 		output2("\n\n" + blockHeader("Combat Statistics", false));
 		// Physical Combat
@@ -4328,10 +4314,16 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["SERA FUCKED PCS TAILCUNT"] > 0) output2("\n<b>* Sera, Times She Fucked Your Tail Cunt: </b>" + flags["SERA FUCKED PCS TAILCUNT"]);
 					if(flags["SERA_URETHRA_TAILFUCKS"] > 0) output2("\n<b>* Sera, Times She Tail-Fucked Your Urethra: </b>" + flags["SERA_URETHRA_TAILFUCKS"]);
 				}
-				if(flags["SAENDRA GONNA GO GET A COCK"] >= 2)
+				if(flags["PURCHASED_SERAS_GALO"] != undefined || flags["SAENDRA GONNA GO GET A COCK"] >= 2)
 				{
-					output2("\n<b>* Sera, Unique Sale:</b> Saendra’s penis growth drug");
-					if(flags["SAEN_X_SERA_THREESOME"] != undefined) output2(", Threesome-sexed for discount");
+					output2("\n<b>* Sera, Unique Sale:</b>");
+					if(flags["PURCHASED_SERAS_GALO"] != undefined) output2(" GaloMax");
+					if(flags["SAENDRA GONNA GO GET A COCK"] >= 2)
+					{
+						if(flags["PURCHASED_SERAS_GALO"] != undefined) output2(",");
+						output2(" Saendra’s penis growth drug");
+						if(flags["SAEN_X_SERA_THREESOME"] != undefined) output2(" (with threesome discount)");
+					}
 				}
 				variousCount++;
 			}
@@ -4379,7 +4371,10 @@ public function displayEncounterLog(showID:String = "All"):void
 				output2("\n<b>* Aliss:</b> Met her");
 				if(flags["TALKED_TO_ALIIS_ABOUT_LIBIDO"] != undefined) output2("\n<b>* Aliss, Lust: </b>" + chars["ALISS"].lust());
 				if(flags["TIMES_SEXED_ALISS"] != undefined) output2("\n<b>* Aliss, Times Sexed: </b>" + flags["TIMES_SEXED_ALISS"]);
-				if(flags["ANNO_OWNS_LIGHT_STRAPON"] != undefined) output2("\n<b>* Aliss, Unique Sale:</b> Anno’s hardlight strap-on");
+				if(flags["ANNO_OWNS_LIGHT_STRAPON"] != undefined)
+				{
+					output2("\n<b>* Aliss, Unique Sale:</b> Anno’s hardlight strap-on");
+				}
 				variousCount++;
 			}
 			// Shear Beauty!
@@ -5525,6 +5520,10 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["GENE_SUBMISSION_LEVEL"] == -1) output2("Refused his advances completely");
 					else output2(flags["GENE_SUBMISSION_LEVEL"] + "/10");
 				}
+				if(flags["PURCHASED_GENES_GALO"] != undefined)
+				{
+					output2("\n<b>* Gene, Unique Sale:</b> GaloMax");
+				}
 				variousCount++;
 			}
 			// The Honey Nozzle
@@ -6110,6 +6109,24 @@ public function displayEncounterLog(showID:String = "All"):void
 				output2("\n<b>* Shade, Sexual History:</b> Sexed her");
 				if(flags["TAKEN_SHADES_HARDLIGHT"] != undefined) output2(", Fucked by her hardlight strap-on");
 				if(flags["SHADE_BOOBWORSHIP"] != undefined) output2(", Worshipped her boobs");
+			}
+			roamCount++;
+		}
+		// Zo'dee
+		if(flags["MET_ZODEE"] != undefined)
+		{
+			output2("\n<b>* Zo’dee:</b> Met her");
+			if(flags["ZODEE_GALOQUEST"] != undefined)
+			{
+				if(flags["ZODEE_GALOQUEST"] != 1) output2(" " + num2Text(flags["ZODEE_GALOQUEST"]) + " times");
+				output2(", Gave you GaloMax");
+			}
+			if(flags["ZODEE_S2_CHOICE"] != undefined)
+			{
+				output2("\n<b>* Zo’dee, Second Encounter:</b>");
+				if(flags["ZODEE_S2_CHOICE"] == -1) output2(" Refused to help her lay eggs");
+				if(flags["ZODEE_S2_CHOICE"] == 0) output2(" Bought GaloMax from her");
+				if(flags["ZODEE_S2_CHOICE"] == 1) output2(" Helped her lay eggs for GaloMax");
 			}
 			roamCount++;
 		}

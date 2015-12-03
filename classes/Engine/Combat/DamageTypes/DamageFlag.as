@@ -61,7 +61,7 @@ package classes.Engine.Combat.DamageTypes
 			FlagNames[BYPASS_SHIELD] 		= "Shield Bypass";
 			FlagNames[ONLY_SHIELD] 			= "Targets Shield";
 			FlagNames[EASY] 				= "Easy";
-			FlagNames[CHANCE_APPLY_BURN]	= "Chance to apply Burn DoT"
+			FlagNames[CHANCE_APPLY_BURN]	= "Burn DoT Chance"
 			FlagNames[DRAINING] 			= "Draining";
 			FlagNames[GREATER_DRAINING] 	= "Greater Draining";
 			FlagNames[VAMPIRIC] 			= "Vampiric";
