@@ -36,7 +36,7 @@ package classes.Items.Apparel
 			attack = 0;
 			defense = 0;
 			shieldDefense = 0;
-			sexiness = 3;
+			sexiness = 2;
 			critBonus = 0;
 			evasion = 0;
 			fortification = 0;

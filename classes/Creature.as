@@ -2202,20 +2202,30 @@ package classes {
 		}
 		public function isCrotchGarbed(): Boolean {
 			if(hasStatusEffect("Temporary Nudity Cheat")) return false;
-			//return (armor.shortName != "" || lowerUndergarment.shortName != "");
-			return (	(armor.shortName != "" && !armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL))
-			||	(lowerUndergarment.shortName != "" && !lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL))
-			);
+			else if(armor is EmptySlot && lowerUndergarment is EmptySlot) return false;
+			return true;
+		}
+		//Used to see if wing-wang-doodles and hatchet-wounds are accessible. Should probably replace most isCrotchGarbed() calls.
+		public function isCrotchExposed(): Boolean {
+			return ((armor is EmptySlot || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)) && (lowerUndergarment is EmptySlot || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)));
+		}
+		//Badonkadonk check
+		public function isAssExposed():Boolean
+		{
+			return ((armor is EmptySlot || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)) && (lowerUndergarment is EmptySlot || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)));
 		}
 		public function isGroinCovered(): Boolean {
 			return isCrotchGarbed();
 		}
 		public function isChestCovered(): Boolean {
 			if(hasStatusEffect("Temporary Nudity Cheat")) return false;
-			//return (armor.shortName != "" || upperUndergarment.shortName != "");
-			return (	(armor.shortName != "" && !armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL))
-			||	(upperUndergarment.shortName != "" && !upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL))
-			);
+			else if(armor is EmptySlot && upperUndergarment is EmptySlot) return false;
+			return true;
+		}
+		//Used to see if boobs are hanging out instead of isChestGarbed/Covered.
+		public function isChestExposed(): Boolean
+		{
+			return ((armor is EmptySlot || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)) && (upperUndergarment is EmptySlot || upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)));
 		}
 		public function isChestGarbed(): Boolean {
 			return isChestCovered();
