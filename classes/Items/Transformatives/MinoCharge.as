@@ -12,6 +12,7 @@ package classes.Items.Transformatives
 	import classes.Engine.Interfaces.*;
 	import classes.kGAMECLASS;
 	import classes.Util.RandomInCollection;
+	import classes.Engine.Utility.num2Text;
 	
 	public class MinoCharge extends ItemSlotClass
 	{
@@ -100,11 +101,12 @@ package classes.Items.Transformatives
 			//PC gets turned into a man!
 			var changes:int = 0;
 			var i:int = 0;
+			var grownInitialTits:Boolean = false
 			
 			//100% chance to shrink breasts by 1-3 cups
 			if (target.breastRows[target.biggestTitRow()].breastRatingRaw > 0)
 			{
-				var cupSizeLoss = 1 + rand(3);
+				var cupSizeLoss:Number = 1 + rand(3);
 				changes++;
 				
 				if (target.breastRows[target.biggestTitRow()].breastRatingRaw > 0) grownInitialTits = true;
@@ -598,8 +600,8 @@ package classes.Items.Transformatives
 				
 				target.faceType = GLOBAL.TYPE_BOVINE;
 				target.clearFaceFlags();
-				target.addFaceFlag(FLAG_MUZZLED);
-				target.addFaceFlag(FLAG_LONG);
+				target.addFaceFlag(GLOBAL.FLAG_MUZZLED);
+				target.addFaceFlag(GLOBAL.FLAG_LONG);
 				changes++;
 			}
 			
@@ -617,7 +619,7 @@ package classes.Items.Transformatives
 			{
 				target.skinFlags = [];
 				target.skinType = GLOBAL.SKIN_TYPE_FUR;
-				target.furColor = RandominCollection("black", "brown", "black", "brown", "black", "brown", "black and white", "brown and white");
+				target.furColor = RandomInCollection("black", "brown", "black", "brown", "black", "brown", "black and white", "brown and white");
 				changes++;
 				
 				output("\n\nYour [pc.skinFurScalesNoun] itches, starting to grow out a thick layer of shaggy [pc.furColor] fur all over its surface. It matches the fur on your legs and face, which now look thick and monstrous. <b>You’ve got " + target.furColor + " fur!</b>");
@@ -698,7 +700,7 @@ package classes.Items.Transformatives
 			var changes:int = 0;
 			
 			clearOutput();
-			author("Couch");
+			kGAMECLASS.author("Couch");
 			
 			if (!(target is PlayerCharacter))
 			{

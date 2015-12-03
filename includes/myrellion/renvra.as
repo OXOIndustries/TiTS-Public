@@ -1023,7 +1023,7 @@ public function fuckRenvrasUrethra():void
 		if(nToneMod < 0) nToneMod = 0;
 		nToneMod /= 5;
 		nBelly += nToneMod;
-		if(pc.hasVagina() && (!isPregnant() || (isPregnant() && nBelly < 10))) output(" <i>“Put my get in your belly, too.”</i>");
+		if(pc.hasVagina() && (!pc.isPregnant() || (pc.isPregnant() && nBelly < 10))) output(" <i>“Put my get in your belly, too.”</i>");
 		output(" Your [pc.vagOrAss] burns, imploring you to forget your plans and accept her offer, but you resist the fog of fuck-lust pressing at your consciousness.");
 		if(pc.libido() > 80) output(".. barely.");
 
