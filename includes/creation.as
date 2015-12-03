@@ -6,14 +6,14 @@ import classes.GameData.MailManager;
 // Illegal character input check
 public function hasIllegalInput(sText:String = ""):Boolean
 {
-	var r:RegExp = /[^\w ]/g; // Match anything that isn't a word or a space (\w == [A-z0-9])
+	var r:RegExp = /[^\w .!?]/g; // Match anything that isn't a word or a space (\w == [A-z0-9])
 	return r.test(sText);
 }
 
 public function creationRouter(e:Event = null):void {
 	if(chars["PC"].short.length >= 1) {
-		this.userInterface.warningText.htmlText = "<b>Are you sure you want to create a new character?</b>";
-		this.userInterface.confirmNewCharacter();
+		userInterface.warningText.htmlText = "<b>Are you sure you want to create a new character?</b>";
+		userInterface.confirmNewCharacter();
 	}
 	else 
 	{
@@ -34,7 +34,7 @@ public function startCharacterCreation(e:Event = null):void
 	hours = 0;
 	minutes = 0;
 	days = 0;
-	this.userInterface.hideTime();
+	userInterface.hideTime();
 	flags = new Dictionary();
 	gameOverEvent = false;
 
@@ -44,11 +44,11 @@ public function startCharacterCreation(e:Event = null):void
 	// Stat Tracking
 	StatTracking.resetStorage();
 
-	this.userInterface.currentPCNotes = undefined;
+	userInterface.currentPCNotes = undefined;
 	//Tag as in creation.
 	chars["PC"].createStatusEffect("In Creation",0,0,0,0);
 	clearOutput();
-	if(stage.contains(this.userInterface.textInput)) this.removeInput();
+	if(stage.contains(userInterface.textInput)) removeInput();
 	setLocation("THE\nPAST","PLANET: TERRA","SYSTEM: SOL");
 	
 	//OLD
@@ -71,17 +71,17 @@ public function startCharacterCreation(e:Event = null):void
 	output("\n\n<b>What species would you like your character to be?</b>");
 	
 	hidePCStats();
-	this.userInterface.hideMinimap();
-	this.userInterface.setGuiPlayerNameText("");
-	this.userInterface.resetPCStats();
-	this.userInterface.hidePCStats();
-	this.userInterface.hideNPCStats();
-	this.clearMenu();
-	this.addButton(0,"Human",confirmRaceChoice,"human","Human Mother","Victor's child will be born a full-blooded human.");
-	this.addButton(1,"Ausar",confirmRaceChoice,"ausar","Ausar Mother","Victor's child will have a dog-like ausar for a mother. Half-ausars will come into the world with anubis-like ears, canine genitalia (if male), additional hair color choices, more eye color choices, and a long, fluffy tail.");
-	this.addButton(2,"Kaithrit",confirmRaceChoice,"kaithrit","Kaithrit Mother","Victor's child will have a kaithrit mother, famed for their feline resemblance and doubled tails. Half-kaithrit come into the world with two feline tails, cat ears, additional hair color choices, more eye color choices, and cat genitalia (if male).");
-	this.addButton(3,"Leithan",confirmRaceChoice,"leithan","Leithan Mother","Victor's child would have a leithan mother, though that race's unique biology would mandate some very expensive scientific intervention to ensure a successful pregnancy. Leithans are powerfully built, six-legged reptile-taurs. Half-leithans come into the world with thick, prehensile tails; unique bunny-like ears; and a tauric body configuration. They have limited skin and hair color options compared to other races. Half-leithan males are born with large reptilian genitalia, and both sexes have rear-mounted sexual organs.");
-	this.addButton(4,"Kui-Tan",confirmRaceChoice,"kui-tan","Kui-Tan Mother","Victor's child would have a kui-tan mother, a race known for its total lack of females and similarities to earth raccoons. Of course, that would make the mother a hermaphrodite - a woman with a vagina and a penis. Half kui-tan usually come into the world as a male or hermaphrodite with one bushy tail, fuzzy ears, and a knotty dick.");
+	userInterface.hideMinimap();
+	userInterface.setGuiPlayerNameText("");
+	userInterface.resetPCStats();
+	userInterface.hidePCStats();
+	userInterface.hideNPCStats();
+	clearMenu();
+	addButton(0,"Human",confirmRaceChoice,"human","Human Mother","Victor's child will be born a full-blooded human.");
+	addButton(1,"Ausar",confirmRaceChoice,"ausar","Ausar Mother","Victor's child will have a dog-like ausar for a mother. Half-ausars will come into the world with anubis-like ears, canine genitalia (if male), additional hair color choices, more eye color choices, and a long, fluffy tail.");
+	addButton(2,"Kaithrit",confirmRaceChoice,"kaithrit","Kaithrit Mother","Victor's child will have a kaithrit mother, famed for their feline resemblance and doubled tails. Half-kaithrit come into the world with two feline tails, cat ears, additional hair color choices, more eye color choices, and cat genitalia (if male).");
+	addButton(3,"Leithan",confirmRaceChoice,"leithan","Leithan Mother","Victor's child would have a leithan mother, though that race's unique biology would mandate some very expensive scientific intervention to ensure a successful pregnancy. Leithans are powerfully built, six-legged reptile-taurs. Half-leithans come into the world with thick, prehensile tails; unique bunny-like ears; and a tauric body configuration. They have limited skin and hair color options compared to other races. Half-leithan males are born with large reptilian genitalia, and both sexes have rear-mounted sexual organs.");
+	addButton(4,"Kui-Tan",confirmRaceChoice,"kui-tan","Kui-Tan Mother","Victor's child would have a kui-tan mother, a race known for its total lack of females and similarities to earth raccoons. Of course, that would make the mother a hermaphrodite - a woman with a vagina and a penis. Half kui-tan usually come into the world as a male or hermaphrodite with one bushy tail, fuzzy ears, and a knotty dick.");
 	//addButton(4,"Cheat",chooseHowPCIsRaised);
 }
 
@@ -104,9 +104,9 @@ public function confirmRaceChoice(race:String = "human"):void {
 		output("The kui-tan are a raccoon-like race who invariably have a phallus with multiple knots. They are also known to have fuzzy, rounded ears, fluffy tails bigger than many species' adolescent young, and balls that engorge with seed the longer they go without release.");
 	}
 	output("\n\nIs this the race Victor chooses?")
-	this.clearMenu();
-	this.addButton(0,"Yes",chooseStartingRace,race);
-	this.addButton(1,"No",startCharacterCreation);
+	clearMenu();
+	addButton(0,"Yes",chooseStartingRace,race);
+	addButton(1,"No",startCharacterCreation);
 }
 
 public function chooseStartingRace(race:String = "human"):void {
@@ -136,12 +136,12 @@ public function chooseStartingRace(race:String = "human"):void {
 	else if(race == "kui-tan") pc.originalRace = "half " + race;
 	else pc.originalRace = "half-" + race;
 	//Menus vary based on race.
-	this.clearMenu();
+	clearMenu();
 	if(race == "human") {
 		pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
 		//output("male or female");
-		this.addButton(0,"Male",setStartingSex,1);
-		this.addButton(1,"Female",setStartingSex,3);
+		addButton(0,"Male",setStartingSex,1);
+		addButton(1,"Female",setStartingSex,3);
 	}
 	else if(pc.originalRace == "half-ausar") {
 		pc.earType = GLOBAL.TYPE_CANINE;
@@ -152,8 +152,8 @@ public function chooseStartingRace(race:String = "human"):void {
 		pc.addTailFlag(GLOBAL.FLAG_FURRED);
 		pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
 		//output("male or female");
-		this.addButton(0,"Male",setStartingSex,1);
-		this.addButton(1,"Female",setStartingSex,3);
+		addButton(0,"Male",setStartingSex,1);
+		addButton(1,"Female",setStartingSex,3);
 		//addButton(2,"Herm.",setStartingSex,2);
 	}
 	else if(pc.originalRace == "half-kaithrit") {
@@ -164,8 +164,8 @@ public function chooseStartingRace(race:String = "human"):void {
 		pc.addTailFlag(GLOBAL.FLAG_FURRED);
 		pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
 		//output("male or female");
-		this.addButton(0,"Male",setStartingSex,1);
-		this.addButton(1,"Female",setStartingSex,3);
+		addButton(0,"Male",setStartingSex,1);
+		addButton(1,"Female",setStartingSex,3);
 		//addButton(2,"Herm.",setStartingSex,2);
 	}
 	//Half-leithan Starting Goods
@@ -194,8 +194,8 @@ public function chooseStartingRace(race:String = "human"):void {
 		pc.skinType = GLOBAL.SKIN_TYPE_SCALES;
 		pc.scaleColor = "black";
 		CodexManager.unlockEntry("Leithan");
-		this.addButton(0,"Male",setStartingSex,1);
-		this.addButton(1,"Female",setStartingSex,3);
+		addButton(0,"Male",setStartingSex,1);
+		addButton(1,"Female",setStartingSex,3);
 	}
 	else if(pc.originalRace == "half kui-tan")
 	{
@@ -209,30 +209,30 @@ public function chooseStartingRace(race:String = "human"):void {
 		pc.armType = GLOBAL.TYPE_KUITAN;
 		pc.addArmFlag(GLOBAL.FLAG_FURRED);
 		//output("male or hermaphroditic");
-		this.addButton(0,"Male",setStartingSex,1);
+		addButton(0,"Male",setStartingSex,1);
 		addDisabledButton(1,"Female","Female","Kui-tan cannot be female.")
-		this.addButton(2,"Herm",setStartingSex,2);
+		addButton(2,"Herm",setStartingSex,2);
 	}
-	this.displayInput();
-	this.userInterface.textInput.text = "";
-	this.userInterface.textInput.maxChars = 12;
+	displayInput();
+	userInterface.textInput.text = "";
+	userInterface.textInput.maxChars = 12;
 }
 
 public function setStartingSex(sex:int = 1):void {
 	var race:String = "human";
 	if(pc.originalRace != "human") race = pc.originalRace.substring(5);
-	if(this.userInterface.textInput.text == "") {
+	if(userInterface.textInput.text == "") {
 		chooseStartingRace(race);
 		output("\n\n\n<b>You must input a name.</b>");
 		return;
 	}
 	// Illegal characters check. Just in case...
-	if(hasIllegalInput(this.userInterface.textInput.text)) {
+	if(hasIllegalInput(userInterface.textInput.text)) {
 		chooseStartingRace(race);
 		output("\n\n\n<b>To prevent complications, please avoid using code in the name.</b>");
 		return;
 	}
-	if(this.userInterface.textInput.length > 14) {
+	if(userInterface.textInput.length > 14) {
 		chooseStartingRace(race);
 		output("\n\n\n<b>Please select a name no more than fourteen characters long.</b>");
 		return;
@@ -324,8 +324,8 @@ public function setStartingSex(sex:int = 1):void {
 			}
 		}
 	}
-	pc.short = this.userInterface.textInput.text;
-	this.userInterface.setGuiPlayerNameText(pc.short);
+	pc.short = userInterface.textInput.text;
+	userInterface.setGuiPlayerNameText(pc.short);
 	chooseHeight();
 }
 
@@ -362,46 +362,46 @@ public function chooseHeight():void {
 	output("\n\n<i>“Victor, I’ve known you for eighty years. We both know you’re a sucker for the classics. Don’t pretend you don’t use that archaic system just to screw with your acquaintances.”</i> The doctor smiles and continues, <i>“Now, the height?”</i>");
 	output("\n\n<b>Please give your character’s height in inches. For reference, six feet tall is 72 inches.</b>");
 	
-	this.displayInput();
+	displayInput();
 	//[Height Box]
-	this.clearMenu();
-	this.addButton(0,"Next",applyHeight);
-	this.addButton(14,"Back",startCharacterCreation);
+	clearMenu();
+	addButton(0,"Next",applyHeight);
+	addButton(14,"Back",startCharacterCreation);
 }
 
 public function applyHeight():void {
 	var fail:Boolean = false;
-	if(isNaN(Number(this.userInterface.textInput.text))) {
+	if(isNaN(Number(userInterface.textInput.text))) {
 		clearOutput();
 		output("Choose a height using numbers only, please. And remember, the value should be given in inches.");
 		fail = true;
 	}
-	else if(Number(this.userInterface.textInput.text) < 48) {
+	else if(Number(userInterface.textInput.text) < 48) {
 		clearOutput();
 		output("Choose a height above 48 inches tall, please.");
 		fail = true;
 	}
-	else if(Number(this.userInterface.textInput.text) > 84 && pc.originalRace != "half-leithan") {
+	else if(Number(userInterface.textInput.text) > 84 && pc.originalRace != "half-leithan") {
 		clearOutput();
 		output("Choose a height below 84 inches tall, please.");
 		fail = true;
 	}
-	else if(Number(this.userInterface.textInput.text) > 108 && pc.originalRace == "half-leithan") {
+	else if(Number(userInterface.textInput.text) > 108 && pc.originalRace == "half-leithan") {
 		clearOutput();
 		output("Choose a height below 108 inches tall, please.");
 		fail = true;
 	}
 	if(fail) {
-		this.userInterface.textInput.text = "";
-		this.displayInput();
-		this.clearMenu();
-		this.addButton(0,"Next",applyHeight);
-		this.addButton(14,"Back",startCharacterCreation);
+		userInterface.textInput.text = "";
+		displayInput();
+		clearMenu();
+		addButton(0,"Next",applyHeight);
+		addButton(14,"Back",startCharacterCreation);
 		return;
 	}
-	pc.tallness = Number(this.userInterface.textInput.text);
-	if(stage.contains(this.userInterface.textInput)) 
-		this.removeInput();
+	pc.tallness = Number(userInterface.textInput.text);
+	if(stage.contains(userInterface.textInput)) 
+		removeInput();
 	chooseThickness();
 }
 
@@ -422,21 +422,21 @@ public function chooseThickness():void {
 	output("\n\n<b>How thickset would you like your character to be?</b>");
 	
 	//[Height Box]
-	this.clearMenu();
-	this.addButton(0,"Very Thin",applyThickness,20);
-	this.addButton(1,"Thin",applyThickness,30);
-	this.addButton(2,"Lithe",applyThickness,40);
-	this.addButton(3,"Normal",applyThickness,50);
-	this.addButton(4,"Husky",applyThickness,60);
-	this.addButton(5,"Thickset",applyThickness,70);
-	this.addButton(14,"Back",chooseHeight);
+	clearMenu();
+	addButton(0,"Very Thin",applyThickness,20);
+	addButton(1,"Thin",applyThickness,30);
+	addButton(2,"Lithe",applyThickness,40);
+	addButton(3,"Normal",applyThickness,50);
+	addButton(4,"Husky",applyThickness,60);
+	addButton(5,"Thickset",applyThickness,70);
+	addButton(14,"Back",chooseHeight);
 }
 
 public function applyThickness(arg:Number):void {
 	var fail:Boolean = false;
 	pc.thickness = arg;
-	if(stage.contains(this.userInterface.textInput)) 
-		this.removeInput();
+	if(stage.contains(userInterface.textInput)) 
+		removeInput();
 	chooseHairColor();
 }
 //Hair Color:
@@ -457,40 +457,40 @@ public function chooseHairColor():void {
 	output("\n\n<b>What color is your character’s hair?</b>");
 	
 	//[CoC-like choices with bonus options for certain half-races].
-	this.clearMenu();
+	clearMenu();
 	if(pc.originalRace == "half-leithan")
 	{
-		this.addButton(0,"Black",applyHairColor,"black");
-		this.addButton(1,"Gray",applyHairColor,"gray");
-		this.addButton(2,"Silver",applyHairColor,"silver");
-		this.addButton(3,"Dark Gold",applyHairColor,"dark gold");
+		addButton(0,"Black",applyHairColor,"black");
+		addButton(1,"Gray",applyHairColor,"gray");
+		addButton(2,"Silver",applyHairColor,"silver");
+		addButton(3,"Dark Gold",applyHairColor,"dark gold");
 	}
 	else if(pc.originalRace == "half kui-tan")
 	{
-		this.addButton(0,"Brown",applyHairColor,"brown");
-		this.addButton(1,"Chocolate",applyHairColor,"chocolate");
-		this.addButton(2,"D.Brown",applyHairColor,"dark brown","Dark Brown","Dark brown hair. Pardon the abbreviation.");
-		this.addButton(3,"Black",applyHairColor,"black");
+		addButton(0,"Brown",applyHairColor,"brown");
+		addButton(1,"Chocolate",applyHairColor,"chocolate");
+		addButton(2,"D.Brown",applyHairColor,"dark brown","Dark Brown","Dark brown hair. Pardon the abbreviation.");
+		addButton(3,"Black",applyHairColor,"black");
 	}
 	else
 	{
-		this.addButton(0,"Black",applyHairColor,"black");
-		this.addButton(1,"Brown",applyHairColor,"brown");
-		this.addButton(2,"Dirty Blond",applyHairColor,"dirty blond");
-		this.addButton(3,"Blond",applyHairColor,"blond");
-		this.addButton(4,"Auburn",applyHairColor,"auburn");
-		this.addButton(5,"Red",applyHairColor,"red");
-		this.addButton(6,"Gray",applyHairColor,"gray");
+		addButton(0,"Black",applyHairColor,"black");
+		addButton(1,"Brown",applyHairColor,"brown");
+		addButton(2,"Dirty Blond",applyHairColor,"dirty blond");
+		addButton(3,"Blond",applyHairColor,"blond");
+		addButton(4,"Auburn",applyHairColor,"auburn");
+		addButton(5,"Red",applyHairColor,"red");
+		addButton(6,"Gray",applyHairColor,"gray");
 		if (pc.originalRace == "half-kaithrit") {
-			this.addButton(7,"Blue",applyHairColor,"blue");
-			this.addButton(8,"Green",applyHairColor,"green");
-			this.addButton(9,"Purple",applyHairColor,"purple");
+			addButton(7,"Blue",applyHairColor,"blue");
+			addButton(8,"Green",applyHairColor,"green");
+			addButton(9,"Purple",applyHairColor,"purple");
 		}
 		if(pc.originalRace == "half-ausar") {
-			this.addButton(7,"White",applyHairColor,"white");
+			addButton(7,"White",applyHairColor,"white");
 		}
 	}
-	this.addButton(14,"Back",chooseThickness);
+	addButton(14,"Back",chooseThickness);
 }
 
 public function applyHairColor(arg:String = "black"):void {
@@ -516,7 +516,7 @@ public function chooseEyeColor():void {
 	output("\n\n<b>What color are your character’s eyes?</b>");
 	
 	//[Normal Eye colors + bonus half race ones]
-	this.clearMenu();
+	clearMenu();
 	if(pc.originalRace == "half kui-tan")
 	{
 		addButton(0,"Brown",applyeEyeColor,"brown");
@@ -528,22 +528,22 @@ public function chooseEyeColor():void {
 	}
 	else
 	{
-		this.addButton(0,"Blue",applyeEyeColor,"blue");
-		this.addButton(1,"Green",applyeEyeColor,"green");
-		this.addButton(2,"Hazel",applyeEyeColor,"hazel");
-		this.addButton(3,"Brown",applyeEyeColor,"brown");
+		addButton(0,"Blue",applyeEyeColor,"blue");
+		addButton(1,"Green",applyeEyeColor,"green");
+		addButton(2,"Hazel",applyeEyeColor,"hazel");
+		addButton(3,"Brown",applyeEyeColor,"brown");
 		if (pc.originalRace == "half-kaithrit") {
-			this.addButton(4,"Amber",applyeEyeColor,"amber");
-			this.addButton(5,"Yellow",applyeEyeColor,"yellow");
-			this.addButton(6,"Orange",applyeEyeColor,"orange");
-			this.addButton(7,"Violet",applyeEyeColor,"violet");
-			this.addButton(8,"Copper",applyeEyeColor,"copper");
+			addButton(4,"Amber",applyeEyeColor,"amber");
+			addButton(5,"Yellow",applyeEyeColor,"yellow");
+			addButton(6,"Orange",applyeEyeColor,"orange");
+			addButton(7,"Violet",applyeEyeColor,"violet");
+			addButton(8,"Copper",applyeEyeColor,"copper");
 		}
 		if(pc.originalRace == "half-ausar") {
-			this.addButton(4,"Gold",applyeEyeColor,"gold");
+			addButton(4,"Gold",applyeEyeColor,"gold");
 		}
 	}
-	this.addButton(14,"Back",chooseHairColor);
+	addButton(14,"Back",chooseHairColor);
 }
 
 public function applyeEyeColor(eyeColor:String = "brown"):void {
@@ -557,24 +557,24 @@ public function chooseSkinTone():void
 	setLocation("SELECTING\nSKIN PIGMENT","PLANET: TERRA","SYSTEM: SOL");
 	output("<i>“Great. How about skin pigmentation?”</i>");
 	output("\n\n<b>What color is your character’s skin?</b>");
-	this.clearMenu();
+	clearMenu();
 	if(pc.originalRace == "half-leithan")
 	{
-		this.addButton(0,"Pale",applySkinTone,"pale");
-		this.addButton(1,"Fair",applySkinTone,"fair");
-		this.addButton(2,"Gray",applySkinTone,"gray");
-		this.addButton(3,"Black",applySkinTone,"black");
+		addButton(0,"Pale",applySkinTone,"pale");
+		addButton(1,"Fair",applySkinTone,"fair");
+		addButton(2,"Gray",applySkinTone,"gray");
+		addButton(3,"Black",applySkinTone,"black");
 	}
 	else
 	{
-		this.addButton(0,"Pale",applySkinTone,"pale");
-		this.addButton(1,"Fair",applySkinTone,"fair");
-		this.addButton(2,"Tan",applySkinTone,"tan");
-		this.addButton(3,"Olive",applySkinTone,"olive");
-		this.addButton(4,"Dark",applySkinTone,"dark");
-		this.addButton(5,"Ebony",applySkinTone,"ebony");
+		addButton(0,"Pale",applySkinTone,"pale");
+		addButton(1,"Fair",applySkinTone,"fair");
+		addButton(2,"Tan",applySkinTone,"tan");
+		addButton(3,"Olive",applySkinTone,"olive");
+		addButton(4,"Dark",applySkinTone,"dark");
+		addButton(5,"Ebony",applySkinTone,"ebony");
 	}
-	this.addButton(14,"Back",chooseEyeColor);
+	addButton(14,"Back",chooseEyeColor);
 }
 public function applySkinTone(skinTone:String = "pale"):void {
 	pc.skinTone = skinTone;
@@ -622,31 +622,31 @@ public function chooseBreastSize():void {
 	}
 	output("\n\n<b>What size would you like your character’s breasts to be?</b>");
 	
-	this.clearMenu();
-	this.addButton(0,"Flat",applyBreastSize,0);
-	this.addButton(1,"A",applyBreastSize,1);
-	this.addButton(2,"B",applyBreastSize,2);
-	this.addButton(3,"C",applyBreastSize,3);
+	clearMenu();
+	addButton(0,"Flat",applyBreastSize,0);
+	addButton(1,"A",applyBreastSize,1);
+	addButton(2,"B",applyBreastSize,2);
+	addButton(3,"C",applyBreastSize,3);
 	addButton(13,"Whatever",applyBreastSize,rand(4));
 	if(pc.hasVagina()) {
-		this.addButton(4,"D",applyBreastSize,4);
-		if(pc.originalRace != "half kui-tan") this.addButton(5,"DD",applyBreastSize,5);
+		addButton(4,"D",applyBreastSize,4);
+		if(pc.originalRace != "half kui-tan") addButton(5,"DD",applyBreastSize,5);
 		if(pc.originalRace == "half-leithan")
 		{
-			this.addButton(6,"Big DD",applyBreastSize,6);
-			this.addButton(7,"E",applyBreastSize,7);
+			addButton(6,"Big DD",applyBreastSize,6);
+			addButton(7,"E",applyBreastSize,7);
 		}
 		addButton(13,"Whatever",applyBreastSize,rand(6));
 	}
 	if (pc.originalRace == "half-kaithrit" && pc.hasVagina()) {
-		this.addButton(6,"Big DD",applyBreastSize,6);
-		this.addButton(7,"E",applyBreastSize,7);
-		this.addButton(8,"Big E",applyBreastSize,8);
-		this.addButton(9,"EE",applyBreastSize,9);
+		addButton(6,"Big DD",applyBreastSize,6);
+		addButton(7,"E",applyBreastSize,7);
+		addButton(8,"Big E",applyBreastSize,8);
+		addButton(9,"EE",applyBreastSize,9);
 		addButton(13,"Whatever",applyBreastSize,rand(10));
 	}
 
-	this.addButton(14,"Back",chooseSkinTone);
+	addButton(14,"Back",chooseSkinTone);
 }
 
 public function applyBreastSize(size:int = 0):void {
@@ -724,7 +724,7 @@ public function chooseYourJunkSize():void {
 	//NEW (cont.)
 	output("\n\n<b>How long do you want your character’s penis to be?</b>");
 	
-	this.addButton(14,"Back",chooseBreastSize);
+	addButton(14,"Back",chooseBreastSize);
 }
 
 public function applyJunkSize(arg:int = 0):void {
@@ -756,15 +756,15 @@ public function chooseYourVagina():void {
 	output("\n\n<i>“I know, I know, it’s the last thing you want to think of as a dad. But if she’s going to take after you, it would be wise to tweak at least </i>one<i> of those things. Trust me, it saves on a lot of doctor visits.”</i>");
 	output("\n\n<b>Do you want your character’s vagina to have extra capacity or lubrication?</b>");
 	
-	this.clearMenu();
-	this.addButton(0,"Capacity",upgradeCapacity);
-	this.addButton(1,"Lubrication",upgradeLubricants);
-	this.addButton(2,"Both",fullyUpgradeCunt);
-	this.addButton(3,"Neither",chooseSexualGift);
+	clearMenu();
+	addButton(0,"Capacity",upgradeCapacity);
+	addButton(1,"Lubrication",upgradeLubricants);
+	addButton(2,"Both",fullyUpgradeCunt);
+	addButton(3,"Neither",chooseSexualGift);
 	if(pc.hasCock()) 
-		this.addButton(14,"Back",chooseYourJunkSize);
+		addButton(14,"Back",chooseYourJunkSize);
 	else 
-		this.addButton(14,"Back",chooseBreastSize);
+		addButton(14,"Back",chooseBreastSize);
 }
 
 public function upgradeCapacity():void {
@@ -807,7 +807,7 @@ public function chooseSexualGift():void {
 	output("\n\n<b>What special trait would you like your character to have?</b>");
 	
 	//Make sure there is a none option.
-	this.clearMenu();
+	clearMenu();
 	if(pc.hasPerk("Virile"))
 	{
 		//pc.cumQualityRaw -= 0.15;
@@ -868,24 +868,24 @@ public function chooseSexualGift():void {
 	{
 		pc.removePerk("Ice Cold");
 	}
-	this.addButton(0,"Virile",applySexualGift,"virile","Virile","Increases the quality, or impregnation chance, of the sperm you produce. <i>This perk also applies if your character is female and gains a penis in the future.</i>");
-	this.addButton(1,"Potent",applySexualGift,"potent","Potent","Increases the quantity - the sheer amount - of sperm you produce. <i>This perk also applies if your character is female and gains a penis in the future.</i>");
-	this.addButton(2,"Elasticity",applySexualGift,"elasticity","Elasticity","Allows you to take larger insertions, both vaginally and anally, with less chance of permanent orifice stretching.");
-	this.addButton(3,"Fertility",applySexualGift,"fertility","Fertility","Increases your chances of getting pregnant. <i>This perk also applies if your character is male and gains a vagina in the future.</i>");
-	this.addButton(4,"Milky",applySexualGift,"milky","Milky","Ensures that your lactation is more easily induced and much harder to stop.");
-	this.addButton(5,"Incubator",applySexualGift,"incubator","Incubator","Shortens your pregnancy time, making pregnancies come to term quicker. <i>This perk applies to both vaginal and anal pregnancies.</i>");
-	this.addButton(6,"Hung",applySexualGift,"hung","Hung","Increases the size of your male organs and causes them to be more receptive to future size-increasing modifications. <i>This perk also applies if your character is female and gains a penis in the future.</i>");
-	this.addButton(7,"Mini",applySexualGift,"mini","Mini","Decreases the size of your male organs and causes them to be more receptive to future size-decreasing modifications. <i>This perk also applies if your character is female and gains a penis in the future.</i>");
-	this.addButton(8,"Bulgy",applySexualGift,"bulgy","Bulgy","Increases the size of your testicles and causes them to be more receptive to future size-increasing modifications. <i>This perk also applies if your character is female and gains testicles in the future.</i>");
-	this.addButton(9,"Extra Ardor",applySexualGift,"extra ardor","Extra Ardor","Ensures that you will have a higher sex drive than normal.");
-	this.addButton(10,"Ice Cold",applySexualGift,"ice cold","Ice Cold","Ensures that you will have a lower sex drive than normal.");
-	this.addButton(11,"None",applySexualGift,"none");
+	addButton(0,"Virile",applySexualGift,"virile","Virile","Increases the quality, or impregnation chance, of the sperm you produce. <i>This perk also applies if your character is female and gains a penis in the future.</i>");
+	addButton(1,"Potent",applySexualGift,"potent","Potent","Increases the quantity - the sheer amount - of sperm you produce. <i>This perk also applies if your character is female and gains a penis in the future.</i>");
+	addButton(2,"Elasticity",applySexualGift,"elasticity","Elasticity","Allows you to take larger insertions, both vaginally and anally, with less chance of permanent orifice stretching.");
+	addButton(3,"Fertility",applySexualGift,"fertility","Fertility","Increases your chances of getting pregnant. <i>This perk also applies if your character is male and gains a vagina in the future.</i>");
+	addButton(4,"Milky",applySexualGift,"milky","Milky","Ensures that your lactation is more easily induced and much harder to stop.");
+	addButton(5,"Incubator",applySexualGift,"incubator","Incubator","Shortens your pregnancy time, making pregnancies come to term quicker. <i>This perk applies to both vaginal and anal pregnancies.</i>");
+	addButton(6,"Hung",applySexualGift,"hung","Hung","Increases the size of your male organs and causes them to be more receptive to future size-increasing modifications. <i>This perk also applies if your character is female and gains a penis in the future.</i>");
+	addButton(7,"Mini",applySexualGift,"mini","Mini","Decreases the size of your male organs and causes them to be more receptive to future size-decreasing modifications. <i>This perk also applies if your character is female and gains a penis in the future.</i>");
+	addButton(8,"Bulgy",applySexualGift,"bulgy","Bulgy","Increases the size of your testicles and causes them to be more receptive to future size-increasing modifications. <i>This perk also applies if your character is female and gains testicles in the future.</i>");
+	addButton(9,"Extra Ardor",applySexualGift,"extra ardor","Extra Ardor","Ensures that you will have a higher sex drive than normal.");
+	addButton(10,"Ice Cold",applySexualGift,"ice cold","Ice Cold","Ensures that you will have a lower sex drive than normal.");
+	addButton(11,"None",applySexualGift,"none");
 	if(pc.hasVagina()) 
-		this.addButton(14,"Back",chooseYourVagina);
+		addButton(14,"Back",chooseYourVagina);
 	else if(pc.hasCock()) 
-		this.addButton(14,"Back",chooseYourJunkSize);
+		addButton(14,"Back",chooseYourJunkSize);
 	else 
-		this.addButton(14,"Back",chooseBreastSize);
+		addButton(14,"Back",chooseBreastSize);
 	
 }
 
@@ -960,13 +960,13 @@ public function chooseAPhysicalAffinity():void {
 	output("\n\nThese ability scores are capped at five to start, though certain things like current level, starting race, cybernetic enhancements, and specific mutations can increase the maximum. Libido, while not an option the doc is giving, deals with how fast lust increases over time. It is not capped by level and scales from 1 to 100.");
 	output("\n\n<b>What ability score affinity would you like to have?</b>");
 	
-	this.clearMenu();
-	this.addButton(0,"Intelligence",applyAffinity,"intelligence","Intelligence","Increases the effectiveness of your technology-based attacks, primarily those used by tech specialists. It is also useful any time you have to deal with sophisticated machinery.");
-	this.addButton(1,"Physique",applyAffinity,"physique","Physique","Increases your strength and endurance. It is especially useful for increasing the damage of any melee strikes you may land on an opponent.");
-	this.addButton(2,"Reflexes",applyAffinity,"reflexes","Reflexes","Increases your reaction time. It is a measurement of your piloting aptitude, but also comes in handy when having to avoid a surprise attack or trap.");
-	this.addButton(3,"Aim",applyAffinity,"aim","Aim","Increases your accuracy and how well you can aim both hand-held and ship-board ranged weaponry.");
-	this.addButton(4,"Willpower",applyAffinity,"willpower","Willpower","Increases your ability to counter sexual urges and addictions, resist psionics, and strengthen your own psionics, should a person of human descent somehow gain mind powers.");
-	this.addButton(14,"Back",chooseSexualGift);
+	clearMenu();
+	addButton(0,"Intelligence",applyAffinity,"intelligence","Intelligence","Increases the effectiveness of your technology-based attacks, primarily those used by tech specialists. It is also useful any time you have to deal with sophisticated machinery.");
+	addButton(1,"Physique",applyAffinity,"physique","Physique","Increases your strength and endurance. It is especially useful for increasing the damage of any melee strikes you may land on an opponent.");
+	addButton(2,"Reflexes",applyAffinity,"reflexes","Reflexes","Increases your reaction time. It is a measurement of your piloting aptitude, but also comes in handy when having to avoid a surprise attack or trap.");
+	addButton(3,"Aim",applyAffinity,"aim","Aim","Increases your accuracy and how well you can aim both hand-held and ship-board ranged weaponry.");
+	addButton(4,"Willpower",applyAffinity,"willpower","Willpower","Increases your ability to counter sexual urges and addictions, resist psionics, and strengthen your own psionics, should a person of human descent somehow gain mind powers.");
+	addButton(14,"Back",chooseSexualGift);
 }
 
 public function applyAffinity(arg:String = "intelligence"):void {
@@ -1008,13 +1008,13 @@ public function chooseHowPCIsRaised():void {
 	output("\n\n<b>What kind of upbringing does your character have?</b>");
 	
 	//[Pampered][Athletic][Bookworm][Austere][Balanced]
-	this.clearMenu();
-	this.addButton(0,"Pampered",applyUpbringing,0,"Pampered","You begin with more starting money, but lower willpower.");
-	this.addButton(1,"Athletic",applyUpbringing,1,"Athletic","You begin with higher physical skills but lower mental ones.");
-	this.addButton(2,"Bookworm",applyUpbringing,2,"Bookworm","You begin with higher mental skills but lower physical ones.");
-	this.addButton(3,"Austere",applyUpbringing,3,"Austere","You begin with less starting money, but higher willpower.");
-	this.addButton(4,"Balanced",applyUpbringing,4,"Balanced","You begin well rounded, not specialized or lacking in anything.");
-	this.addButton(14,"Back",chooseAPhysicalAffinity);
+	clearMenu();
+	addButton(0,"Pampered",applyUpbringing,0,"Pampered","You begin with more starting money, but lower willpower.");
+	addButton(1,"Athletic",applyUpbringing,1,"Athletic","You begin with higher physical skills but lower mental ones.");
+	addButton(2,"Bookworm",applyUpbringing,2,"Bookworm","You begin with higher mental skills but lower physical ones.");
+	addButton(3,"Austere",applyUpbringing,3,"Austere","You begin with less starting money, but higher willpower.");
+	addButton(4,"Balanced",applyUpbringing,4,"Balanced","You begin well rounded, not specialized or lacking in anything.");
+	addButton(14,"Back",chooseAPhysicalAffinity);
 }
 
 public function applyUpbringing(arg:int = 0):void {
@@ -1098,11 +1098,11 @@ public function chooseAlignment():void {
 	output("\n\nStill, the one thing a parent can never choose is exactly what kind of person their children will be. <b>When your friends talk about you, what word do they use to describe your personality?</b>");
 	output("\n\n<i>(This choice will affect how your character reacts to the challenges and situations [pc.heShe] finds [pc.himHer]self in. Ultimately, the choice will still remain with you, the player, but the way [pc.name] goes through those choices may vary with personality.)</i>");
 	
-	this.clearMenu();
-	this.addButton(0,"Kind",alignConfirm,17,"Kind","You react to most things in a kind manner, favoring compassion.");
-	this.addButton(1,"Mischievous",alignConfirm,50,"Mischievous","You’re a light-hearted sort, neither too kind or too hard.");
-	this.addButton(2,"Hard",alignConfirm,85,"Hard","Let’s face it, you’re a bit, no, a lot of an ass. Not that you care.");
-	this.addButton(14,"Back",chooseHowPCIsRaised);
+	clearMenu();
+	addButton(0,"Kind",alignConfirm,17,"Kind","You react to most things in a kind manner, favoring compassion.");
+	addButton(1,"Mischievous",alignConfirm,50,"Mischievous","You’re a light-hearted sort, neither too kind or too hard.");
+	addButton(2,"Hard",alignConfirm,85,"Hard","Let’s face it, you’re a bit, no, a lot of an ass. Not that you care.");
+	addButton(14,"Back",chooseHowPCIsRaised);
 }
 
 public function alignConfirm(arg:int):void {
@@ -1123,11 +1123,11 @@ public function chooseGenderIdentity():void
 	output("<b>... And what gender do you identify as?</b>");
 	output("\n\n<i>(This choice determines your character’s preferred gender and can be changed at any time in the <b>Character Appearance</b> menu.)</i>");
 	
-	this.clearMenu();
-	this.addButton(0,"Female",genderConfirm,"female","Female","No matter your masculinity level, genitalia presence, or any other contributing factors, you will be considered female, where possible.");
-	this.addButton(1,"Male",genderConfirm,"male","Male","No matter your femininity level, genitalia presence, or any other contributing factors, you will be considered male, where possible.");
-	this.addButton(2,"Auto",genderConfirm,"auto","Automatic","Pronouns used to address you will be based on contributions from a number of your personal appearance properties, switching between male and female pronouns as appropriate.");
-	this.addButton(14,"Back",chooseAlignment);
+	clearMenu();
+	addButton(0,"Female",genderConfirm,"female","Female","No matter your masculinity level, genitalia presence, or any other contributing factors, you will be considered female, where possible.");
+	addButton(1,"Male",genderConfirm,"male","Male","No matter your femininity level, genitalia presence, or any other contributing factors, you will be considered male, where possible.");
+	addButton(2,"Auto",genderConfirm,"auto","Automatic","Pronouns used to address you will be based on contributions from a number of your personal appearance properties, switching between male and female pronouns as appropriate.");
+	addButton(14,"Back",chooseAlignment);
 }
 
 public function genderConfirm(pref:String):void
@@ -1171,12 +1171,12 @@ public function chooseClass():void {
 	output("\n\nYou stare at the list. Smuggler, Mercenary, Tech Specialist? As intriguing as these choices are, are they really okay job prospects for a future CEO?");
 	output("\n\n<b>What kind of class would you like your character to be?</b>");
 	
-	this.clearMenu();
-	this.addButton(0,"Smuggler",classConfirm,GLOBAL.CLASS_SMUGGLER);
-	this.addButton(1,"Mercenary",classConfirm,GLOBAL.CLASS_MERCENARY);
-	this.addButton(2,"TechSpecialist",classConfirm,GLOBAL.CLASS_ENGINEER);
-	this.addButton(14,"Back",chooseAlignment);
-	//this.addButton(14,"Back",chooseGenderIdentity);
+	clearMenu();
+	addButton(0,"Smuggler",classConfirm,GLOBAL.CLASS_SMUGGLER);
+	addButton(1,"Mercenary",classConfirm,GLOBAL.CLASS_MERCENARY);
+	addButton(2,"TechSpecialist",classConfirm,GLOBAL.CLASS_ENGINEER);
+	addButton(14,"Back",chooseAlignment);
+	//addButton(14,"Back",chooseGenderIdentity);
 }
 public function classConfirm(arg:int = 0):void {
 	clearOutput();
@@ -1185,9 +1185,9 @@ public function classConfirm(arg:int = 0):void {
 	else if(arg == GLOBAL.CLASS_MERCENARY) output("<b><u>Mercenary</u></b>:\nAs a mercenary, you’d depend on raw physique or aim for your attacks, focusing more on a good battle plan and tough armor than anything else. You’d learn to overpower your foes with sheer strength and determination, defend yourself with all manner of weapons and equipment, and fly a ship when the situation calls for it. The life of a mercenary is one of profit through violence.");
 	else if(arg == GLOBAL.CLASS_ENGINEER) output("<b><u>Tech Specialist</u></b>:\nAs a tech specialist, your abilities would rely heavily on your intelligence and aim. You’d learn to work with all kinds of technologies, perhaps even make your own robotic defense turrets! Your intellect would be your greatest weapon, though you wouldn’t shy away from tweaking your own high-tech ranged weaponry. The life of a tech specialist is one of profit through smart decisions and superior technology.");
 	output("\n\nIs this the career you’d like to pursue?");
-	this.clearMenu();
-	this.addButton(0,"Yes",setClass,arg);
-	this.addButton(1,"No",chooseClass);
+	clearMenu();
+	addButton(0,"Yes",setClass,arg);
+	addButton(1,"No",chooseClass);
 }
 
 public function setClass(arg:int = 0):void {
@@ -1223,7 +1223,7 @@ public function tutorialSkipOption():void {
 	setLocation("TUTORIAL\nSKIP", "TAVROS STATION", "SYSTEM: KALAS");
 	output("Would you like to play through the story and tutorial or skip to gameplay?");
 	//[Tutorial] [Skip]
-	this.clearMenu();
+	clearMenu();
 	if (pc.hasVagina() || pc.hasCock()) addButton(0, "Tutorial", tutorialIntro);
 	else addDisabledButton(0, "Tutorial", "Do Tutorial", "You must have genitals available in order to play through the tutorial fight.");
 	addButton(1, "Skip", skipCeliseOption, undefined, "Skip Fight", "Skip the tutorial fight.");
@@ -1239,8 +1239,8 @@ public function tutorialIntro():void {
 	output("\n\nYou shake your head to chase away the unwelcome thoughts and focus on packing. The trip is boring, leaving you with nothing to think about except life without your father and the uncertain future ahead. Hopefully the old man was lucky enough to go out in a dignified way.");
 	output("\n\nYour transport pulls up to Tavros Station, where the service is being held. Adjusting your finest clothes, you walk through the airlock and up some old-fashioned steps towards the theater Dad's money bought him, trying to keep your eyes clear as you breeze past a surprisingly low amount of paparazzi. They must have gotten decent security this time.");
 	output("\n\nYou push open the doors and step inside...");
-	this.clearMenu();
-	this.addButton(0,"Next",tutorialIntro2);
+	clearMenu();
+	addButton(0,"Next",tutorialIntro2);
 }
 
 public function tutorialIntro2():void {
@@ -1251,8 +1251,8 @@ public function tutorialIntro2():void {
 	output("\n\nYou’re on your way over to your father’s real friends, people you’ve actually seen around his mansion growing up, when his lawyer intercepts you and pulls you aside.");
 	output("\n\n<i>“Come, we must talk...”</i>");
 	//[Next]
-	this.clearMenu();
-	this.addButton(0,"Next",tutorialIntro3);
+	clearMenu();
+	addButton(0,"Next",tutorialIntro3);
 }
 
 public function tutorialIntro3():void {
@@ -1281,8 +1281,8 @@ public function tutorialIntro3():void {
 	output("\n\nThe lawyer steeples his fingers and says, <i>“Microsurgeon immune boosters. Top of the line. Your dad will tell you more.”</i> He gestures towards a second door set into the wall beside you. <i>“Go on through.”</i>");
 	output("\n\nYou take the injector and open the door, unsure just how much weirder this can get...");
 	//[Next]
-	this.clearMenu();
-	this.addButton(0,"Next",tutorialIntro4);
+	clearMenu();
+	addButton(0,"Next",tutorialIntro4);
 }
 
 public function tutorialIntro4():void {
@@ -1312,8 +1312,8 @@ public function tutorialIntro4():void {
 	output("\n\nThe projection of your father tilts its head, gesturing towards another door behind it. <i>“Through the door behind, you'll find a hangar with the ship I started my journey on, repaired to usable condition and outfitted with standard, modernized technology. It’s a good starting point, but you should see if you can jump up to something better, particularly if you pick up the number of crewmates I did. That little junker can only hold a few people.”</i>");
 	output("\n\nYou rise to progress, but Dad keeps talking. <i>“One more thing.... there’s a Galotian in the next room, right next to the ship’s key. If you want to do this, you’ve gotta subdue her. Galotians are voracious protein hunters, but they’re not truly dangerous. She’s still a tough little foe, though. I’ve set up some recordings to assist you in learning how to handle creatures like this during your adventures.”</i> Dad winks. <i>“Good luck!”</i>");
 	//[Open Door]
-	this.clearMenu();
-	this.addButton(0,"Open Door",openDoorToTutorialCombat);
+	clearMenu();
+	addButton(0,"Open Door",openDoorToTutorialCombat);
 }
 //The Introduction of Celise (Goo Girl)
 public function openDoorToTutorialCombat():void {
@@ -1325,8 +1325,8 @@ public function openDoorToTutorialCombat():void {
 	output("\n\nWith her bust jiggling and wobbling in such a titanic manner that you feel it might separate from her chest, the gelatinous gal runs her hands over and through the new, bulgy boobs, giggling as your eyes follow her motions. She chirps, <i>“Hiya! You look like you taste pretty good! I think I’ll drain you dry...”</i>");
 	output("\n\nShe lurches forward, and for a second, you fear you’ll be engulfed before you can react. A blue flash interrupts her pell-mell undulations, and your Dad’s face appears between you, suspended in the air. He explains, <i>“Celise here is a fairly simple girl with simple needs. Unfortunately, she doesn’t respect anyone until she feels they’ve earned it. You’re going to have to fight her if you want to get the keys to your new ship.”</i>");
 	output("\n\nDamnit, Dad!\n\n<b>It’s a fight!</b>");
-	this.clearMenu();
-	this.addButton(0,"Next",startCombat,"celise");
+	clearMenu();
+	addButton(0,"Next",startCombat,"celise");
 }
 
 //Win
@@ -1340,9 +1340,9 @@ public function defeatCelise():void {
 	output("\n\n<i>“If you give Celise what she wants now, you’ll probably earn her loyalty. That choice is up to you; I can’t make it for you. Galotians are a fiercely loyal people once they choose to follow someone, and though she has few marketable skills, it might be good to have a companion out there in the void. Whatever you choose, I’m sure you’ll do me proud.”</i> Victor smiles dryly. <i>“After all, I bet my legacy on it.”</i>");
 	output("\n\nThe recording winks off.");
 	output("\n\nWhat do you do with Celise? Ignore her, or feed her and take her on your crew?");
-	this.clearMenu();
-	this.addButton(0,"Ignore Her",ignoreCelise);
-	this.addButton(1,"Feed Celise",takeCelise);
+	clearMenu();
+	addButton(0,"Ignore Her",ignoreCelise);
+	addButton(1,"Feed Celise",takeCelise);
 }
 
 public function skipCeliseOption():void
@@ -1368,18 +1368,18 @@ public function takeCeliseSkip():void
 //Ignore Celise
 public function ignoreCelise():void {
 	clearOutput();
-	setLocation("KEYS","TAVROS STATION","SYSTEM: KALAS");
+	setLocation("\nKEYS","TAVROS STATION","SYSTEM: KALAS");
 	output("You ignore the hand and pull free, grabbing the keys as you step out to inspect your ship.");
 	//[Next]
-	this.clearMenu();
-	this.addButton(0,"Next",checkOutYourShip);
+	clearMenu();
+	addButton(0,"Next",checkOutYourShip);
 }
 //Feed Celise [Male]
 public function takeCelise():void {
 	pc.removeStatusEffect("Round"); // Uh, this was removed in the previous function. Duplicate?
 	clearOutput();
 	showCelise();
-	setLocation("CELISE","TAVROS STATION","SYSTEM: KALAS");
+	setLocation("\nCELISE","TAVROS STATION","SYSTEM: KALAS");
 	//Feed Celise [Male]
 	if(pc.hasCock()) {
 		output("Smiling a little lustily, you strip out of your gear and toss it up on the shelf, next to the key. Celise smiles beatifically up at you, her eyes practically humping every bit of exposed " + pc.skinFurScales() + " as you reveal yourself. As soon as your " + pc.cocksDescript());
@@ -1449,9 +1449,9 @@ public function takeCelise():void {
 	}
 	//Orgasm, edit stats
 	pc.orgasm();
-	this.clearMenu();
-	this.addButton(0,"Take Her",takeCeliseAsACrewMember);
-	this.addButton(1,"Don't",ignoreCelise);
+	clearMenu();
+	addButton(0,"Take Her",takeCeliseAsACrewMember);
+	addButton(1,"Don't",ignoreCelise);
 }
 
 //Take Celise on As A Crew Member
@@ -1469,8 +1469,8 @@ public function takeCeliseAsACrewMember():void {
 	output("\n\nWhatever, it’s time to get this show on the road! You grab the digikey off the shelf and step through the door.");
 	flags["RECRUITED_CELISE"] = 1;
 	flags["CELISE_ONBOARD"] = 1;
-	this.clearMenu();
-	this.addButton(0,"Next",checkOutYourShip);
+	clearMenu();
+	addButton(0,"Next",checkOutYourShip);
 }
 
 //Check Out Your Ship
@@ -1484,8 +1484,8 @@ public function checkOutYourShip():void {
 	output("\n\nA clearly marked exit portal dilates as you approach, and you step out into the station’s main thoroughfare. It’s surprisingly quiet and devoid of the shops you’d expect to see. The only place with any grub looks to be an “Anon’s Bar”</i>, though it boasts mention of rooms for rent as well.");
 	output("\n\nYou head on in...");
 	//[Next]
-	this.clearMenu();
-	this.addButton(0,"Next",getFoodAndDrink);
+	clearMenu();
+	addButton(0,"Next",getFoodAndDrink);
 }
 //Go Get Food and a Drink
 public function getFoodAndDrink():void {
@@ -1496,9 +1496,9 @@ public function getFoodAndDrink():void {
 	output("\n\nAfter a moment, you decide to order a whiskey. Regardless of your personal feelings, Dad asked you to knock one back for him. You may as well humor the dead codger, even if he did make acquiring your inheritance a trial and a half. At that point, your belly rumbles, and you realize that you haven’t had anything to eat since this morning.");
 	output("\n\n<i>“How about I bring out some hot buns with that for you to munch on. You can look over the menu while you snack.”</i> She doesn't wait around for an answer, moving off to drop a single drink off at a nearby table on her way to the kitchen. The drink is scooped up by a figure obscured by the bar's dusky atmosphere. It's difficult to make out much about... the humanoid shape, but its gender and features elude you. There’s nothing else to do, so you ponder the nearby person... just what sex are they?");
 	//[Male] [Female]
-	this.clearMenu();
-	this.addButton(0, "Male", function():void { setRivalGender(1); rivalSpillsTheBeans(); });
-	this.addButton(1, "Female", function():void { setRivalGender(3); rivalSpillsTheBeans(); } );	
+	clearMenu();
+	addButton(0, "Male", function():void { setRivalGender(1); rivalSpillsTheBeans(); } );
+	addButton(1, "Female", function():void { setRivalGender(3); rivalSpillsTheBeans(); } );	
 }
 
 public function jackJillSkip():void
@@ -1568,8 +1568,8 @@ public function rivalSpillsTheBeans():void {
 	output("\n\n" + chars["RIVAL"].short + " swaggers off with " + chars["RIVAL"].mf("his","her") + " drink and " + chars["RIVAL"].mf("his","her") + " spy machines, leaving you to brood on your thoughts while your order arrives. It tastes bitter in your mouth after such a betrayal, but you swear to yourself that the punk won’t take over Dad’s company. Even the outrageous bustiness of your server won’t cheer you up at this point, nor will the surprisingly delicious wings.");
 	output("\n\nYou burp as fatigue sets in and make off to secure quarters for the evening. Tomorrow is going to be a big day, and you intend to hit the galactic rim hard.");
 	output("\n\nTomorrow, you join the Planet Rush.");
-	this.clearMenu();
-	this.addButton(0,"Next",ohShitGameStarts);
+	clearMenu();
+	addButton(0,"Next",ohShitGameStarts);
 }
 //Wake to Find Rival Left in the Night
 public function ohShitGameStarts():void {
@@ -1583,24 +1583,24 @@ public function ohShitGameStarts():void {
 	minutes = 2;
 	hours = 6;
 	days = 1;
-	this.userInterface.showTime();
+	userInterface.showTime();
 	//[Next] - to station screens!
-	this.clearMenu();
-	this.currentLocation = "TAVROS HANGAR";
-	this.shipLocation = "TAVROS HANGAR";
+	clearMenu();
+	currentLocation = "TAVROS HANGAR";
+	shipLocation = "TAVROS HANGAR";
 
 	if (false)//if(demo) 
-		this.addButton(0,"Next",demoOver);
+		addButton(0,"Next",demoOver);
 	else 
-		this.addButton(0,"Next",mainGameMenu);
+		addButton(0,"Next",mainGameMenu);
 	
 }
 public function demoOver():void {
 	clearOutput();
 	setLocation("DEMO\nCOMPLETE","THANKS FOR PLAYING","AND SUPPORTING ME.");
 	output("This concludes the full TiTS introductory sequence. Keep your eyes peeled for supporter-only releases and the eventual public pre-releases as I get more done.");
-	this.clearMenu();
-	this.addButton(0,"Appearance",appearanceTest);
+	clearMenu();
+	addButton(0,"Appearance",appearanceTest);
 }
 
 public function appearanceTest():void {

@@ -232,6 +232,12 @@ public function genesModsBuyStuff():void
 	}
 	gene.keeperBuy += "\n";
 	shopkeep = chars["GENE"];
+	if(flags["ZODEE_GALOQUEST"] != undefined)
+	{
+		if(!chars["GENE"].hasItem(new GaloMax()) && flags["PURCHASED_GENES_GALO"] == undefined) chars["GENE"].inventory.push(new GaloMax());
+		//Else no whip
+		else chars["GENE"].destroyItem(new GaloMax());
+	}
 	gene.keeperGreeting = "RUH ROH! SOMETHING WENT WRONG.";
 	itemScreen = mainGameMenu;
 	lootScreen = mainGameMenu;

@@ -1099,6 +1099,9 @@
 			}
 			
 			menuButtonsOff();
+			messengerOff();
+			perksOff();
+			levelUpOff();
 			
 			_buttonTray.hideKeyBinds();
 			
@@ -1119,6 +1122,9 @@
 			}
 			
 			menuButtonsOn();
+			messengerOn();
+			perksOn();
+			levelUpOn();
 
 			_buttonTray.showKeyBinds();
 		}
@@ -1172,6 +1178,16 @@
 		public function dataOff():void 
 		{
 			_leftSideBar.dataButton.Deactivate();
+		}
+		
+		public function levelUpOn():void 
+		{
+			_leftSideBar.levelUpButton.Activate();
+		}
+		
+		public function levelUpOff():void 
+		{
+			_leftSideBar.levelUpButton.Deactivate();
 		}
 
 		public function menuButtonsOn():void 

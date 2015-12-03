@@ -17,7 +17,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 	if (pc.hasCuntTail() && pc.hasCock && !pc.isTaur() && (pc.cockThatFits(pc.tailCuntCapacity()) >= 0) && flags["DAYS_SINCE_FED_CUNT_TAIL"] != undefined && flags["DAYS_SINCE_FED_CUNT_TAIL"] >= 7)
 	{
 		clearOutput();
-		output("An insatiable hunger from your tail overwhelms you. You have to feed it!");
+		output("An insatiable hunger from your tail overwhelms you. <b>You have to feed it!</b>");
 		addButton(0, "Next", cuntTailFapScene);
 		
 		return null;
@@ -37,8 +37,8 @@ public function availableFaps(roundTwo:Boolean = false):Array
 				masturbateMenu(false);
 				flags["SUPRESS_TREATED_MILK_FAP_MESSAGE"] = undefined;
 			}, undefined, "Masturbate", "Choose something else...");
-		addButton(1,"Milk",milkturbation, undefined ,"Milk Anyway","Release the pressure now!");
-		addButton(14,"Back", mainGameMenu);
+			addButton(1,"Milk",milkturbation, undefined ,"Milk Anyway","Release the pressure now!");
+			addButton(14,"Back", mainGameMenu);
 		}
 		// Your will is weak, now it's milky fun tiems, yay!
 		else milkturbation();
@@ -394,6 +394,7 @@ public function masturbateMenu(roundTwo:Boolean = false):void {
 			output("\n\n<b>No! You have to - you're too turned on from milking yourself!");
 			aborted = false;
 		}
+		output("\n\n");
 	}
 	if(aborted)
 	{
@@ -429,6 +430,8 @@ public function masturbateMenu(roundTwo:Boolean = false):void {
 		faps[0].execute();
 		return;
 	}
+	
+	output("What do you choose to do?");
 	
 	// If last is available, show repeat button
 	var showRepeat:Boolean = false;
@@ -474,7 +477,7 @@ public function masturbateMenu(roundTwo:Boolean = false):void {
 		}
 	}
 
-	this.addButton(14,"Back",mainGameMenu);
+	addButton(14,"Back",mainGameMenu);
 }
 
 //Tailcock Fapping w/ Celise
@@ -507,8 +510,8 @@ public function tailCockCeliseFaps():void {
 	processTime(45 + rand(5));
 	pc.orgasm();
 	celise.orgasm();
-	this.clearMenu();
-	this.addButton(0,"Next",mainGameMenu);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 //Vaginal Fap
@@ -613,8 +616,8 @@ public function vaginalFap():void {
 	output("\n\nYou come to a little later, reeking of sex, your fingers stained with girlish goo, and smile, sated... for now.");
 	processTime(45 + rand(5));
 	pc.orgasm();
-	this.clearMenu();
-	this.addButton(0,"Next",mainGameMenu);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 
@@ -754,8 +757,8 @@ public function singleDickFap():void {
 	output(", straighten yourself up a little, and prepare to resume your journeys.");
 	processTime(45 + rand(5));
 	pc.orgasm();
-	this.clearMenu();
-	this.addButton(0,"Next",mainGameMenu);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 public function multiCockFap():void {
@@ -1010,8 +1013,8 @@ public function multiCockFap():void {
 	else output("\n\nYou get your gear back on without bothering to clean up. You're just going to find something to fuck anyway.");
 	processTime(45 + rand(5));
 	pc.orgasm();
-	this.clearMenu();
-	this.addButton(0,"Next",mainGameMenu);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 //*Tailingus

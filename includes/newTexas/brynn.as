@@ -698,7 +698,14 @@ public function suckThatMassiveStudlyBrynnDickII(didDeepthroat:Boolean):void
 	output("\n\nYou gather up your [pc.gear] and make yourself as presentable as possible given the circumstances");
 	if (pc.cumflationEnabled()) output("- and the much larger midriff than when you arrived-");
 	output(" and head back out of the stall.");
-
+	pc.loadInMouth();
+	pc.loadInMouth();
+	pc.loadInMouth();
+	pc.loadInMouth();
+	pc.loadInMouth();
+	pc.loadInMouth();
+	pc.loadInMouth();
+	pc.loadInMouth();
 	processTime(30);
 	pc.lust(15);
 	clearMenu();

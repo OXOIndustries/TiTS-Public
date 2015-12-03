@@ -93,6 +93,7 @@
 		include "../includes/debug.as";
 		include "../includes/engine.as";
 		include "../includes/game.as";
+		include "../includes/gooExtras.as";
 		include "../includes/lightsOut.as";
 		include "../includes/items.as";
 		include "../includes/MailEntries.as";
@@ -327,7 +328,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.6.17";
+			version = "0.6.18";
 
 			//temporary nonsense variables.
 			temp = 0;

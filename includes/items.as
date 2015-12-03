@@ -286,7 +286,12 @@ public function buyItemGo(arg:ItemSlotClass):void {
 	
 	//Emmy magic!
 	if(shopkeep is Emmy) flags["PURCHASED_FROM_EMS"] = 1;
-
+	//Cheese shit for GaloMax
+	if(arg is GaloMax)
+	{
+		if(shopkeep is Gene) flags["PURCHASED_GENES_GALO"] = 1;
+		else if(shopkeep is Sera) flags["PURCHASED_SERAS_GALO"] = 1;
+	}
 	// Renamed from lootList so I can distinguish old vs new uses
 	var purchasedItems:Array = new Array();
 	purchasedItems[purchasedItems.length] = arg.makeCopy();
