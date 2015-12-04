@@ -478,7 +478,7 @@ package classes.Items.Transformatives
 			}
 			
 			//High chance to grow a cow tail (PC already has tails)
-			if ((target.tailType != GLOBAL.TYPE_BOVINE && target.tailType != 0 && target.tailCount > 0) && rand(3) == 0 && changes < tChanges)
+			if ((target.tailType != GLOBAL.TYPE_BOVINE && target.tailCount > 0) && rand(3) == 0 && changes < tChanges)
 			{
 				if (target.tailTypeUnlocked(GLOBAL.TYPE_BOVINE))
 				{
@@ -492,17 +492,14 @@ package classes.Items.Transformatives
 					}
 					target.tailCount = 1;
 					target.tailType = GLOBAL.TYPE_BOVINE;
-					target.tailFlags = [];
-					target.clearTailFlags();
-					target.addTailFlag(GLOBAL.FLAG_LONG);
-					target.addTailFlag(GLOBAL.FLAG_FLUFFY);
+					target.tailFlags = [GLOBAL.FLAG_LONG,GLOBAL.FLAG_FLUFFY];
 					changes++;
 				}
 				else kGAMECLASS.output(target.tailTypeLockedMessage());
 			}
 			
 			//High chance to gain bovine ears
-			if ((target.earType != GLOBAL.TYPE_BOVINE) && rand(3) == 0 && changes < tChanges)
+			if (target.earType != GLOBAL.TYPE_BOVINE && rand(3) == 0 && changes < tChanges)
 			{
 				output("\n\nYou let out a startled yelp as your ears start to squirm and wiggle, making horrid jelly-like motions as the nanomachines in the Mino Charge rearrange your body shape. Your ears grow out from the side of your head, turning soft and velvety while the outward-facing sides are covered in a thin layer of fur. You pull your Codex out and flip it around, using it like a mirror to examine your newly-molded ears. <b>You now have distinctly bovine ears!</b>");
 
@@ -535,7 +532,7 @@ package classes.Items.Transformatives
 			
 			//Low chance for cow-leg TF
 			//PC leg type becomes bipedal, fur-covered, with hooves for feet. 
-			if ((target.legType != GLOBAL.TYPE_BOVINE || !target.hasLegFlag(GLOBAL.FLAG_HOOVES) || target.legCount != 2) && rand(20) == 0 && changes < tChanges)
+			if ((target.legType != GLOBAL.TYPE_BOVINE || target.legCount != 2) && rand(20) == 0 && changes < tChanges)
 			{
 				//PC was a naga:
 				if (target.isNaga())
@@ -576,8 +573,8 @@ package classes.Items.Transformatives
 			(	target.faceType != GLOBAL.TYPE_BOVINE
 			&&	target.hasHorns()
 			&&	target.earType == GLOBAL.TYPE_BOVINE
-			&&	(target.hasLegFlag(GLOBAL.FLAG_HOOVES))
-			&&	(target.tailType == GLOBAL.TYPE_BOVINE && target.tailCount > 0)
+			&&	target.hasLegFlag(GLOBAL.FLAG_HOOVES)
+			&&	target.hastail(GLOBAL.TYPE_BOVINE)
 			&&	rand(3) == 0 && changes < tChanges
 			)
 			{
@@ -597,8 +594,8 @@ package classes.Items.Transformatives
 			&&	target.faceType == GLOBAL.TYPE_BOVINE
 			&&	target.hasHorns()
 			&&	target.earType == GLOBAL.TYPE_BOVINE
-			&&	(target.hasLegFlag(GLOBAL.FLAG_HOOVES))
-			&&	(target.tailType == GLOBAL.TYPE_BOVINE && target.tailCount > 0)
+			&&	target.hasLegFlag(GLOBAL.FLAG_HOOVES)
+			&&	target.hastail(GLOBAL.TYPE_BOVINE)
 			&&	rand(3) == 0 && changes < tChanges
 			)
 			{
