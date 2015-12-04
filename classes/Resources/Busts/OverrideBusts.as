@@ -133,7 +133,8 @@
 
 		[Embed(source = "../../../assets/images/npcs/yancy.png", mimeType = "image/png")]
 		public var Bust_YANCY:Class;
-
+		[Embed(source = "../../../assets/images/npcs/zodee.png", mimeType = "image/png")]
+		public var Bust_ZODEE:Class;
 		
 	}
 
