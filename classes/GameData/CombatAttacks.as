@@ -656,7 +656,7 @@ package classes.GameData
 		
 		
 		public static const Headbutt:SingleCombatAttack;
-		private static function HeadbuttImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
+		public static function HeadbuttImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
 			if (attacker is PlayerCharacter)
 			{

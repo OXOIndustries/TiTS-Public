@@ -2,7 +2,6 @@
 {	
 	trace("AI CALL");
 	//Paralyze stops turns! AHHHH!
-	else if (aggressor is Dane) daneAI();
 	else if (aggressor is Mimbrane) mimbraneAI();
 	else if (aggressor is RaskvelFemale) raskvelChickAI();
 	else if (aggressor is RaskvelMale) raskGangAI();
@@ -1820,60 +1819,6 @@ public function NPCFlashGrenade():void {
 		output("<b>the luminous flashes.</b>");
 	}
 	else output("You manage to keep away from the blinding projectile!");
-	processCombat();
-}
-
-public function headbutt(target:Creature):void {
-	properHeadbutt(pc,target);
-}
-
-public function properHeadbutt(attacker:Creature,target:Creature):void {
-	if(attacker == pc) clearOutput();
-	attacker.energy(-25);
-	if(attacker == pc) output("You lean back before whipping your head forward in a sudden headbutt.\n");
-	else output(attacker.capitalA + attacker.short + " leans back before whipping " + attacker.mfn("his","her","its") + " head forward in a sudden headbutt.\n");
-	
-	if(combatMiss(attacker,target)) {
-		if(attacker == pc) 
-		{
-			if(target.customDodge == "") output("You miss!");
-			else output(target.customDodge);
-		}
-		else
-		{
-			output(attacker.mfn("He","She","It") + " he misses.");
-		}
-	}
-	//Extra miss for blind
-	else if(attacker.hasStatusEffect("Blind") && rand(2) > 0) {
-		if(attacker == pc) output("Your blind strike fails to connect.");
-		else output(attacker.mfn("He","She","It") + " blind strike fails to connect.");
-	}
-	//Attack connected!
-	else {
-		if(attacker == pc) output("You connect with your target!");
-		else output(attacker.mfn("He", "She", "It") + " connects with you.");
-		
-		applyDamage(damageRand(new TypeCollection( { kinetic: attacker.physique() / 2 + attacker.level } ), 15), attacker, target, "headbutt");
-
-		if(attacker.physique()/2 + rand(20) + 1 >= target.physique()/2 + 10 && !target.hasStatusEffect("Stunned") && !target.hasStatusEffect("Stun Immune")) {
-			if(target == pc)
-			{
-				output("\n<b>You are stunned.</b>");
-			}
-			else
-			{
-				if(target.plural) output("\n<b>" + target.capitalA + target.short + " are stunned.</b>");
-				else output("\n<b>" + target.capitalA + target.short + " is stunned.</b>");
-			}
-			target.createStatusEffect("Stunned",2,0,0,0,false,"Stun","Cannot act for a turn.",true,0);
-		}
-		else {
-			if(attacker == pc) output("\nIt doesn't look to have stunned your foe!");
-			else output("\nIt didn't manage to stun you.");
-		}
-	}
-	if(attacker == pc) output("\n");
 	processCombat();
 }
 
