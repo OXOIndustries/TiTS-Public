@@ -1601,7 +1601,7 @@ public function crotchStuff(target:Creature):void
 					{
 						if(target.lust() < 50) output2(", occassionally beading its ever-present [target.girlCumNoun]");
 						else if(target.lust() < 75) output2(", frequently drooling its ever-present [target.girlCumNoun]");
-						else output2(", constantly-drooling thick strands of [target.girlCumNoun]");
+						else output2(", constantly drooling thick strands of [target.girlCumNoun]");
 					}
 					//Medium wetness shit
 					else if(target.vaginas[temp].wetness() >= 2)
