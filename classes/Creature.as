@@ -19,6 +19,7 @@ package classes {
 	import classes.DataManager.Serialization.ISaveable;
 	import classes.DataManager.Serialization.VersionedSaveable;
 	import flash.utils.describeType;
+	import flash.utils.Dictionary;
 	import flash.utils.getQualifiedClassName;
 	import flash.utils.getDefinitionByName;
 	import classes.GameData.StatTracking;
@@ -65,7 +66,8 @@ package classes {
 				"neverSerialize", 
 				"droneTarget", 
 				"concentratedFireTarget",
-				"uniqueName"
+				"uniqueName",
+				"flags"
 			);
 
 			cocks = new Array();
@@ -12167,5 +12169,6 @@ package classes {
 		public var concentratedFireTarget:Creature = null; // Transient
 		public var isUniqueInFight:Boolean = false;
 		public var uniqueName:String = null; // Transient
+		public function get flags():Dictionary { return kGAMECLASS.flags; } // Transient
 	}
 }

@@ -1,6 +1,8 @@
 ﻿package classes.Characters
 {
 	import classes.Creature;
+	import classes.Engine.Combat.DamageTypes.DamageResult;
+	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.GLOBAL;
 	import classes.Items.Guns.*
 	import classes.Items.Melee.Fists;
@@ -8,6 +10,10 @@
 	import classes.kGAMECLASS;
 	import classes.rand;
 	import classes.GameData.CodexManager;
+	import classes.Engine.Interfaces.output;
+	import classes.GameData.CombatManager;
+	import classes.GameData.CombatAttacks;
+	import classes.Engine.Combat.outputDamage;
 	
 	public class ZilFemale extends Creature
 	{
@@ -221,6 +227,180 @@
 			}
 			
 			kGAMECLASS.foes.push(combatZilFemale);
+		}
+		
+		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
+		{
+			var target:Creature = selectTarget(hostileCreatures);
+			
+			if (target == null) return;
+			
+			if (flags["HIT_A_ZILGIRL"] != undefined) 
+			{
+				flags["HIT_A_ZILGIRL"] = undefined;
+				zilFemSting(target);
+			}
+			else if(rand(4) == 0) lustBangOut(target);
+			else if((HP()/HPMax()) < 0.5 && rand(4) == 0) zilFemSting(target);
+			else if(rand(4) == 0) pheromoneFanFromZilFemale(target);
+			else if(rand(3) == 0) zilFemaleDartThrow(target);
+			else if(rand(2) == 0) flurryOfFemBlows(target);
+			else zilFemHarden();
+		}
+		
+		private function zilFemHarden(target:Creature):void
+		{
+			author("Savin");
+			//Buffs kinetic defenses?
+			output("Closing her onyx eyes, the zil flexes, and you hear quiet, barely audible cracks filling the busy, woodland air. You peer closer and realize that the zil's carapace seems shinier, and perhaps a bit more formidable... just barely thicker, somehow.");
+			
+			var newRes:Number = (100 - baseHPResistances.kinetic.resistanceValue) / 5;
+			baseHPResistances.kinetic.resistanceValue += newRes;
+			createStatusEffect("Harden", 0, 30, 0, 0, false, "DefenseUp", "Defense against all forms of attack has been increased!", true, 0);
+		}
+		
+		private function zilFemSting(target:Creature):void
+		{
+			author("Savin");
+			//Counter-melee / last resort. Light physical,medium lust, slows victim
+			output("Leaping at you, the zil girl spins around and dives ass-first toward you, her deadly stinger on full display!");
+			
+			//{standard dodge/miss messages}
+			if (combatMiss(this, target))
+			{
+				output(" You avoid it at the last moment!");
+			}
+			else 
+			{
+				if(target.shieldsRaw > 0) output(" She isn't moving fast enough to trigger your shield, slipping right on through.");
+				output(" The stinger punches through your ");
+				if(target.armor.shortName != "") output(target.armor.longName + " and [pc.skin]");
+				else output("[pc.skin]");
+				output(", pumping a thick load of some kind of chemical into you.  You feel hot and flustered in seconds, blushing hard as your loins burn. Your whole body feels like it's in a haze....");
+				target.lust(15);
+				if (target.hasStatusEffect("Zil Sting")) 
+				{
+					target.addStatusValue("Zil Sting",1,4);
+				}
+				else target.createStatusEffect("Zil Sting",4,0,0,0,false,"Poison","Zil Toxin: Reduces speed and increases libido.",false,55+rand(10));
+				target.reflexesMod -= 4;
+				target.libidoMod += 4;
+			}
+		}
+		
+		private function flurryOfFemBlows(target:Creature):void
+		{
+			author("Savin");
+			output("The zil launches a barrage of darts in your direction!\n");
+			
+			for (var i:int = 0; i < 3; i++)
+			{
+				CombatAttacks.SingleMeleeAttackImpl(this, target, true);
+				output("\n");
+			}
+		}
+		
+		private function lustBangOut(target:Creature):void
+		{
+			output("The zil girl dances away from you, just out of reach before grabbing one of the vials off her belt and throwing it at the ground just in front of you!");
+	
+			// Airtight check
+			if(target.hasArmor() && target.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+			{
+				output(" You attempt to dodge but the vial shatters, exploding in a pink cloud that blows over you. Fortunately for you, your airtight [pc.armor] refuses to allow the gas to seep in. The permeating lust cloud floats about, affecting the bee lady to a small degree.");
+				lust(1);
+			}
+			else
+			{
+				//If Speed is higher and passes check:
+				if(target.reflexes() + rand(20) + 1 > 15) {
+					output(" You leap out of the way, rolling to the side as a pink haze envelopes the ground where you were standing a moment before. Though even at this distance, your skin tingles sensually...");
+					target.lust(1);
+				}
+				//If Toughness is higher and passes check:
+				if(target.physique() + rand(20) + 1 > 20) {
+					output(" You cover your face behind your arms as the glass shatters. You cough and wheeze as a pink mist rolls around you, but quickly hold your breath as a your skin tingles lustily...")
+					target.lust(2);
+				}
+				//Else if failed the check: 
+				else {
+					output(" You cry out as the vial shatters, exploding in a pink cloud that blows over you. You gag and cough and suddenly your hands are reaching to your crotch as if on their own. You yank back, but feel a hot haze washing across your exposed body. What the hell is this stuff?");
+					//PC must pass an willpower check, else:
+					target.lust(5);
+					if(target.willpower() + rand(20) + 1 < 20 && !target.hasStatusEffect("Blind")) {
+						output("\n\nSuddenly, you realize that in the wake of the pink cloud, your vision's collapsed to just a few feet in front of you, and the zil girl is nowhere to be seen. You desperately rub at your eyes, but that only serves to make them burn as the lust-cloud sticks to your [pc.skin]. Oh, shit, you're <b>blinded</b>!");
+						target.createStatusEffect("Blind",rand(3)+1,0,0,0,false,"Blind","You're blinded and cannot see! Accuracy is reduced, and ranged attacks are far more likely to miss.",true,0);
+					}
+				}
+			}
+		}
+		
+		private function zilFemaleDartThrow(target:Creature):void
+		{
+			author("Savin");
+			//Light physical + light poison damage/ DOT
+			output("Pursing her black lips in anger, the zil girl leans back and lets fly with a red-tipped dart, sending it right at you!");
+			//{standard dodge/miss messages}
+			if (combatMiss(this, target)) 
+			{
+				output("\nYou twist to avoid the dart!");
+			}
+			//It hits!
+			else 
+			{
+				var damage:TypeCollection = damage(true);
+				damage.add(physique() / 2);
+				damageRand(damage, 15);
+				var damageResult:DamageResult = calculateDamage(damage, this, target);
+				
+				if (damageResult.shieldDamage > 0)
+				{
+					if (damageResult.hpDamage == 0) output(" The dart spangs uselessly off your shields!");
+					else output(" There is a concussive boom and tingling aftershock of energy as your shield is breached."); 
+				}
+				
+				if (damageResult.hpDamage > 0)
+				{
+					output(" The dart punches right through your ");
+					if(!(target.armor is EmptySlot)) output(target.armor.longName);
+					else output("[pc.skinFurScales]");
+					output(" with surprising ease, and your [pc.skin] suddenly flushes, burning as whatever she coated this dart with boils your blood!");
+					damageResult.lustDamage += 10;
+					target.lust(10);
+				}
+				
+				outputDamage(damageResult);
+			}
+		}
+		
+		private function pheromoneFanFromZilFemale(target:Creature):void
+		{
+			author("Savin");
+			output("Suddenly, the zil girl drops her combat stance, and dips her fingers right into her honeypot, masturbating furiously.");
+			if(target.hasArmor() && target.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+			{
+				output(" You wonder what the hell she's doing, but judging by the look on her face, she is being assualted by a potent cloud of her own sex pheromones!");
+				output("\n\nLuckily your [pc.armor] is airtight, so you don't have to worry about being affected by it - but you can see <i>she</i> definitely is!");
+				lust(8);
+			}
+			//{Moderate toughness check pass}
+			else if(target.physique() + rand(20) + 1 > 20) {
+				output(" You wonder what the hell she's doing, but suddenly your senses are assaulted by a potent cloud of her sex pheromones!");
+				output("\nYou hold your breath as long as you can, waving the lusty cloud away from you. Before long, the zil girl tires out, nearly cumming before she stumbles back with chest heaving. There's a thick scent of sex in the air by the time you breathe again...");
+				lust(5);
+				target.lust(5);
+			}
+			else {
+				output(" You wonder what the hell she's doing, but suddenly your senses are assaulted by a potent cloud of her sex pheromones!");
+				output("\nEventually, you can hold your breath no longer, and you're forced to inhale the potent cloud deep into your lungs. Your heart hammers in your chest faster and faster while your [pc.skin] flushes and your lips unconsciously purse.");
+				if(target.lust() < 33) output(" A tingling warmth in your crotch leaves no doubts as to the effectiveness of your alien foe's 'attack'.");
+				else if(target.lust() <= 66) output(" The warm, incessantly building heat in your loins is getting hotter and hotter with every breathe you take.");
+				else
+				{
+					output(" Your crotch feels so hot that you know you just HAVE to touch her soon. Damn this woman and her stupid... sexy... beautiful alien body.");
+				}
+				target.lust(10+target.libido()/10);
+			}
 		}
 	}
 }
