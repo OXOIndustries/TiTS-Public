@@ -1035,6 +1035,12 @@ public function gabilaniCodex():void
 	outputCodex("The passion for mechanical invention, lack of interest in medicine, and the frequency of industrial accidents in gabilani culture led to the species evolving the love of and reliance on cybernetics that they are remarkable for today. The gabilani developed physical cybernetic enhancements before microbe theory and blood transfusion, and a great majority employ significant mechanical bodily enhancement during their lifetime.\n\nReplacement limbs and ocular enhancement are the most common procedures, however the gabilani are also capable of sophisticated internal adaptations, often aimed at combating the health problems they face as a result of spending most of their lives in orbit above their home planet. All gabilani are required by law to spend at least three weeks in a year on the surface of Tarkus to boost their skeletal and immune system strength, however some wealthier gabilani disdain this edict by having all or most of their bones replaced with alloy metal, and augmenting their respiratory systems with antiviral micro-bot plants.\n\nThis ability to easily replace defective organs and limbs with effective cybernetic replacements has greatly boosted the possible lifespan of the average gabilani, however their population has remained stable as a result of the scourge of industrial accidents in their frenetic society, and the likelihood of newer models of replacement organs going catastrophically wrong.");
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Gabilani");
+	//Fix buttons
+	if(currentLocation == "225") 
+	{
+		flags["NAV_DISABLED"] = undefined;
+		addButton(6, "North", move, rooms[currentLocation].northExit);
+	}
 }
 public function raskVelCodexEntry():void
 {
