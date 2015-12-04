@@ -1591,7 +1591,7 @@ public function processTime(arg:int):void {
 				//Exhibitionism reduction!
 				if(!(pc.armor is EmptySlot) && !(pc.lowerUndergarment is EmptySlot) && !(pc.upperUndergarment is EmptySlot))
 				{
-					if(pc.isChestExposed()) && pc.isCrotchExposed() && pc.isAssExposed())
+					if(pc.isChestExposed() && pc.isCrotchExposed() && pc.isAssExposed())
 						{ /* No reduction for a full set of exposed clothing! */ }
 					else pc.exhibitionism(-0.5);
 				}
