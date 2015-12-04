@@ -50,10 +50,10 @@ public function appearance(target:Creature):void {
 		else output2(" using " + target.lowerUndergarment.longName + " for underwear,");
 		if(target.isNude() || target.upperUndergarment is EmptySlot) output2(" and letting your torso breathe, unrestricted by any undertop.");
 		else output2(" and girding your upper body with " + target.upperUndergarment.description + ".");
-		if(!target.isNude() && ((target.isChestExposed() && pc.hasBreasts()) || target.isCrotchExposed() || target.isAssExposed()))
+		if(!target.isNude() && ((target.isChestExposed() && target.hasBreasts()) || target.isCrotchExposed() || target.isAssExposed()))
 		{
 			output2(" Your outfit leaves little to the imagination, exposing your");
-			if (target.isChestExposed() && pc.hasBreasts())
+			if (target.isChestExposed() && target.hasBreasts())
 			{
 				output2(" breasts");
 				if(target.isCrotchExposed() && target.isAssExposed()) output2(",");
@@ -307,9 +307,9 @@ public function appearance(target:Creature):void {
 			}
 			if(target.hasAntennae())
 			{
-				if(target.antennae == 1) output2(" A floppy [pc.antenna] also appears");
+				if(target.antennae == 1) output2(" A floppy [target.antenna] also appears");
 				else if(rand(2) == 0) output2(" " + StringUtil.capitalize(num2Text(target.antennae)) + " floppy [target.antennae] also grow");
-				else output2(" Floppy [pc.antennae] also appear");
+				else output2(" Floppy [target.antennae] also appear");
 				output2(" on your head, bouncing and swaying in the breeze.");
 			}
 		}
@@ -1136,7 +1136,7 @@ public function appearance(target:Creature):void {
 				}
 				else
 				{
-					if(target.isMilkTank() && rand(2) == 0) output2(" <b>Your " + target.breastDescript(0) + " are so full that they might burst! They radiate a constant yet rhythmic pulse of pressure, a sign that you are quite the productive [target.milk] factory!</b>");
+					if(target.isMilkTank() && rand(2) == 0) output2(" <b>Your " + target.breastDescript(0) + " are so full that they might burst! They radiate a constant yet rhythmic pulse of pressure, a sign that you are quite the productive [target.milkNoun] factory!</b>");
 					else if(target.isMilkTank()) output2(" Despite the uncomfortable fullness, you are at ease - you know your enhanced [target.fullChest] will never stop lactating, no matter what.");
 					else output2(" <b>Your " + target.breastDescript(0) + " are so full that they feel about to burst! Spending time like this is going to slow your milk production.</b>");
 				}
@@ -1239,7 +1239,7 @@ public function appearance(target:Creature):void {
 				}
 				else
 				{
-					if(target.isMilkTank() && rand(2) == 0) output2(" <b>Your [target.fullChest] are so full that they might burst! They radiate a constant yet rhythmic pulse of pressure, a sign that you are quite the productive [target.milk] factory!</b>");
+					if(target.isMilkTank() && rand(2) == 0) output2(" <b>Your [target.fullChest] are so full that they might burst! They radiate a constant yet rhythmic pulse of pressure, a sign that you are quite the productive [target.milkNoun] factory!</b>");
 					else if(target.isMilkTank()) output2(" Despite the uncomfortable fullness, you are at ease - you know your enhanced [target.fullChest] will never stop lactating, no matter what.");
 					else output2(" <b>Your [target.fullChest] are so full that they feel about to burst! Spending time like this is going to slow your milk production.</b>");
 				}
@@ -1262,10 +1262,10 @@ public function appearance(target:Creature):void {
 		if (target.hairType == GLOBAL.HAIR_TYPE_GOO || target.hasStatusEffect("Goo Vent") || target.hasStatusEffect("Goo Crotch"))
 		{
 			output2("\n\nSince ");
-			if(pc.isGoo()) output2("you're ");
+			if(target.isGoo()) output2("you're ");
 			else output2("some parts of you are ");
 			output2("made of goo, you can adjust ");
-			if(pc.isGoo()) output2("your body");
+			if(target.isGoo()) output2("your body");
 			else output2("them");
 			output2(" if need be.");
 			addGhostButton(btnIndex++,"Shift Goo",gooShiftMenu,undefined,"Shift Goo","Adjust the gooey parts of your body.");
