@@ -774,7 +774,7 @@ package classes {
 			}
 			
 			var bonus:Number = 0;
-			//9999 if(hasPerk("Fecund Figure")) bonus += perkv1("Fecund Figure");
+			if(hasPerk("Fecund Figure")) bonus += perkv1("Fecund Figure");
 			
 			var currHipRating:Number = hipRatingRaw + hipRatingMod + bonus;
 			
@@ -822,7 +822,7 @@ package classes {
 			}
 			
 			var bonus:Number = 0;
-			//9999 if(hasPerk("Fecund Figure")) bonus += perkv2("Fecund Figure");
+			if(hasPerk("Fecund Figure")) bonus += perkv2("Fecund Figure");
 			
 			var currButtRating:Number = buttRatingRaw + buttRatingMod + bonus;
 			
@@ -2783,7 +2783,7 @@ package classes {
 		}
 		public function intelligenceMax(): Number {
 			var bonuses:int = 0;
-			//9999 if(hasPerk("Cybernetic Synchronization")) bonuses += (perkv1("Cybernetic Synchronization") * cyborgScore());
+			if(hasPerk("Cybernetic Synchronization")) bonuses += (perkv1("Cybernetic Synchronization") * cyborgScore());
 			return level * 5 + bonuses;
 		}
 		public function willpowerMax(): Number {
@@ -6715,12 +6715,26 @@ package classes {
 		{
 			return (hasCock() || hasVagina());
 		}
-		public function hasTail(): Boolean {
-			if (tailCount > 0 && tailType != GLOBAL.TYPE_HUMAN) return true;
+		public function hasTail(tType:Number = 0): Boolean
+		{
+			if (tailCount > 0 && tailType != GLOBAL.TYPE_HUMAN)
+			{
+				// Specific type
+				if (tType > 0 && tType == tailType) return true;
+				// Any type
+				if (tType == 0) return true;
+			}
 			return false;
 		}
-		public function hasTails(): Boolean {
-			if (tailCount > 1 && tailType != GLOBAL.TYPE_HUMAN) return true;
+		public function hasTails(tType:Number = 0): Boolean
+		{
+			if (tailCount > 1 && tailType != GLOBAL.TYPE_HUMAN)
+			{
+				// Specific type
+				if (tType > 0 && tType == tailType) return true;
+				// Any type
+				if (tType == 0) return true;
+			}
 			return false;
 		}
 		public function removeTails():void
@@ -7414,7 +7428,7 @@ package classes {
 		{
 			var counter:int = 0;
 			if (earType == GLOBAL.TYPE_BOVINE) counter++;
-			if (hasHorns() && hornType == GLOBAL.TYPE_BOVINE) counter++;
+			if (hasHorns(GLOBAL.TYPE_BOVINE)) counter++;
 			if (tailType == GLOBAL.TYPE_BOVINE && hasTailFlag(GLOBAL.FLAG_LONG) && hasTailFlag(GLOBAL.FLAG_FLUFFY) && tailCount > 0) counter++;
 			if (legType == GLOBAL.TYPE_BOVINE) counter++;
 			if (faceType == GLOBAL.TYPE_BOVINE) counter++;
@@ -7441,7 +7455,7 @@ package classes {
 			{
 				counter++;
 				if (eyeType == GLOBAL.TYPE_GABILANI) counter++;
-				//9999 if (counter > 2 && isCyborg()) counter += cyborgScore();
+				if (counter > 2 && isCyborg()) counter += cyborgScore();
 			}
 			if (counter > 3 && hasCock(GLOBAL.TYPE_GABILANI)) counter++;
 			if (counter > 3 && hasVaginaType(GLOBAL.TYPE_GABILANI)) counter++;
@@ -11377,7 +11391,7 @@ package classes {
 		public function bellyRating():Number
 		{
 			var bonus:Number = 0;
-			//9999 if(hasPerk("Fecund Figure")) bonus += perkv3("Fecund Figure");
+			if(hasPerk("Fecund Figure")) bonus += perkv3("Fecund Figure");
 			
 			return bellyRatingRaw + bellyRatingMod + bonus;
 		}
@@ -11967,9 +11981,16 @@ package classes {
 			return (hasStatusEffect("Buzzed") || hasStatusEffect("Drunk") || hasStatusEffect("Smashed"));
 		}
 		
-		public function hasHorns():Boolean
+		public function hasHorns(hType:Number = 0):Boolean
 		{
-			return (horns != 0 || hasStatusEffect("Horn Bumps")); 
+			if (horns > 0 && hornType != 0)
+			{
+				// Specific type
+				if (hType > 0 && hType == hornType) return true;
+				// Any type
+				if (hType == 0 ) return true;
+			}
+			return (hasStatusEffect("Horn Bumps"));
 		}
 		public function removeHorns():void
 		{
@@ -12142,9 +12163,16 @@ package classes {
 			return "horn";
 		}
 		
-		public function hasAntennae():Boolean
+		public function hasAntennae(aType:Number = 0):Boolean
 		{
-			return (antennae > 0 && antennaeType != 0); 
+			if (antennae > 0 && antennaeType != 0)
+			{
+				// Specific type
+				if (aType > 0 && aType == antennaeType) return true;
+				// Any type
+				if (aType == 0) return true;
+			}
+			return false; 
 		}
 		public function removeAntennae():void
 		{

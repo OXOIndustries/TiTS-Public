@@ -864,8 +864,8 @@ public function move(arg:String, goToMainMenu:Boolean = true):void {
 	if(rooms[arg].hasFlag(GLOBAL.NUDITY_ILLEGAL))
 	{
 		var nudistPrevention:Boolean = false;
-		if(!pc.isChestGarbed() && pc.biggestTitSize() > 1) nudistPrevention = true;
-		if(!pc.isCrotchGarbed()) nudistPrevention = true;
+		if((!pc.isChestGarbed() || pc.isChestExposed()) && pc.biggestTitSize() > 1) nudistPrevention = true;
+		if(!pc.isCrotchGarbed() || pc.isCrotchExposed() || pc.isAssExposed()) nudistPrevention = true;
 		if(nudistPrevention)
 		{
 			clearOutput();
@@ -1591,11 +1591,8 @@ public function processTime(arg:int):void {
 				//Exhibitionism reduction!
 				if(!(pc.armor is EmptySlot) && !(pc.lowerUndergarment is EmptySlot) && !(pc.upperUndergarment is EmptySlot))
 				{
-					if
-					(	pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)
-					&&	pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)
-					&&	pc.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)
-					)	{ /* No reduction for a full set of exposed clothing! */ }
+					if(pc.isChestExposed() && pc.isCrotchExposed() && pc.isAssExposed())
+						{ /* No reduction for a full set of exposed clothing! */ }
 					else pc.exhibitionism(-0.5);
 				}
 				// New Texas cockmilker repair cooldown.

@@ -50,7 +50,24 @@ public function appearance(target:Creature):void {
 		else output2(" using " + target.lowerUndergarment.longName + " for underwear,");
 		if(target.isNude() || target.upperUndergarment is EmptySlot) output2(" and letting your torso breathe, unrestricted by any undertop.");
 		else output2(" and girding your upper body with " + target.upperUndergarment.description + ".");
-		if(target.isNude()) {
+		if(!target.isNude() && ((target.isChestExposed() && pc.hasBreasts()) || target.isCrotchExposed() || target.isAssExposed()))
+		{
+			output2(" Your outfit leaves little to the imagination, exposing your");
+			if (target.isChestExposed() && pc.hasBreasts())
+			{
+				output2(" breasts");
+				if(target.isCrotchExposed() && target.isAssExposed()) output2(",");
+				else if(target.isCrotchExposed() || target.isAssExposed()) output2(" and");
+			}
+			if(target.isCrotchExposed())
+			{
+				output2(" crotch");
+				if(target.isAssExposed()) output2(" and");
+			}
+			if(target.isAssExposed()) output2(" ass");
+			output2(" to the world.");
+		}
+		if(target.isChestExposed() && target.isCrotchExposed() && target.isAssExposed()) {
 			if(target.exhibitionism() >= 100) output2(" You're a shameless exhibitionist and proud of it, flaunting your naked body and giving the entire galaxy quite an eyeful!");
 			else if(target.exhibitionism() >= 66) output2(" Your naked body is like a second outfit for you, giving you naughty thoughts when in the public's gaze.");
 			else if(target.exhibitionism() >= 50) output2(" Maybe you're some kind of nudist, but it's not like you mind being naked anyway.");

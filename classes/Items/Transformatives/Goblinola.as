@@ -60,7 +60,7 @@ package classes.Items.Transformatives
 			//Build a list of all potential TFs
 			var TFList:Array = new Array();
 			//#1 Goblin skin: Requires non-human skin texture, non green, blue, or yellow skin.
-			if(target.skinType != GLOBAL.SKIN_TYPE_SKIN && !InCollection(target.skinTone, "green", "lime", "emerald", "aqua", "pale blue", "turquoise", "yellow", "amber", "topaz"))
+			if(target.skinType != GLOBAL.SKIN_TYPE_SKIN || !InCollection(target.skinTone, "green", "lime", "emerald", "aqua", "pale blue", "turquoise", "yellow", "amber", "topaz"))
 				TFList[TFList.length] = 1;
 			//#2 Goblin ears: Requires non-elven ears.
 			if(target.earType != GLOBAL.TYPE_SYLVAN || target.earType != GLOBAL.TYPE_GABILANI)
@@ -96,7 +96,7 @@ package classes.Items.Transformatives
 			if((target.armType != GLOBAL.TYPE_HUMAN) && target.legType == GLOBAL.TYPE_HUMAN && target.isBiped())
 				TFList[TFList.length] = 9;
 			//#10 Remove tail: Requires a non-parasitic tail or tails and humanoid legs. Remove tail.
-			if(target.tailCount > 0 && target.legType == GLOBAL.TYPE_HUMAN && target.isBiped())
+			if(target.hasTail() && target.legType == GLOBAL.TYPE_HUMAN && target.isBiped())
 				TFList[TFList.length] = 10;
 			
 			//Loop through doing TFs until we run out, pulling out whichever we use.
@@ -128,6 +128,9 @@ package classes.Items.Transformatives
 						if(target.skinType == GLOBAL.SKIN_TYPE_SKIN) kGAMECLASS.eventBuffer += "You notice something odd about your skin and find, much to your surprise, that your flesh tone has changed! <b>You now have [pc.skinColor] colored skin.</b>";
 						// Transformation text (non-human texture):
 						else kGAMECLASS.eventBuffer += "You touch your face in a moment of idle contemplation, and find that it feels very different than usual. You check your reflection in and see that not only has your skin’s texture changed to something much more in line with what a human’s normally is, it’s also turned an unusual [pc.skinColor] color. <b>You now have [pc.skinColor] human skin!</b>";
+						
+						target.skinType = GLOBAL.SKIN_TYPE_SKIN;
+						target.clearSkinFlags();
 					}
 					else
 					{
@@ -304,6 +307,7 @@ package classes.Items.Transformatives
 						
 						kGAMECLASS.processTime(10 + rand(8));
 						target.armType = GLOBAL.TYPE_HUMAN;
+						target.clearArmFlags();
 					}
 					else
 					{
@@ -324,9 +328,7 @@ package classes.Items.Transformatives
 						else kGAMECLASS.eventBuffer += " any tails";
 						kGAMECLASS.eventBuffer += ".</b>";
 						
-						target.tailType = 0;
-						target.tailCount = 0;
-						target.clearTailFlags();
+						target.removeTails();
 					}
 					else if(target.tailTypeUnlocked(0))
 					{
