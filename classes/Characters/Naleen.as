@@ -6,6 +6,13 @@
 	import classes.kGAMECLASS;
 	import classes.rand;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
+	import classes.Engine.Interfaces.output;
+	import classes.GameData.CombatManager;
+	import classes.GameData.CombatAttacks;
+	import classes.Engine.Combat.DamageTypes.DamageResult;
+	import classes.Engine.Combat.DamageTypes.TypeCollection;
+	import classes.Engine.Combat.outputDamage;
+	import classes.Engine.Combat.applyDamage;
 	
 	public class Naleen extends Creature
 	{
@@ -215,6 +222,89 @@
 			combatNaleen.setDefaultSexualPreferences();
 			
 			kGAMECLASS.foes.push(combatNaleen);
+		}
+		
+		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
+		{
+			var target:Creature = selectTarget(hostileCreatures);
+			if (target == null) return;
+			
+			if(CombatManager.getRoundCount() % 5 == 0) naleenConstrict(target);
+			else if(CombatManager.getRoundCount() % 6 == 0 && target.shieldsRaw <= 0) biteAttack(target);
+			else if (target.hasStatusEffect("Naleen Coiled")) 
+			{
+				if(rand(5) == 0 || target.shieldsRaw > 0) naleenConstrict(target);
+				else biteAttack(target);
+			}
+			else naleenDoubleAttack(target);
+		}
+		
+		private function biteAttack(target:Creature):void
+		{
+			author("Savin");
+			output("The naleen girl lunges at you with a predatory grin, jaw opening wide as she closes. You can almost see the glint of venom on her fangs!");
+			
+			//{standard dodge/miss messages}
+			if (combatMiss(this, target)) 
+			{
+				output(" You manage to avoid " + a + possessive(short) + " bite!");
+			}
+			else 
+			{
+				output(" The naleen sinks her teeth into you, twin fangs piercing your tender [pc.skin]. You grunt in pain, but that's replaced a moment later by an overwhelming feeling of calm, of peace, of slow dreariness. You just want to curl up in a ball and take a nap. Maybe with a beautiful kitty-snake to ");
+				if(target.hasCock()) output("stroke you off");
+				else if(target.hasVagina()) output("eat you out");
+				else output("fuck your ass with her big tail");
+				output(" until you're fast asleep.");
+				//Effect: Moderate Speed/Dex/Whatever drain. If reduced to 0, auto lose (as if by lust).
+				if(!target.hasStatusEffect("Naleen Venom")) target.createStatusEffect("Naleen Venom",0,0,0,0,false,"Poison","This venom reduces strength, aim, reflexes, and willpower! If you take in too much of it while fighting a naleen, you'll lose!",false,10);
+				target.physiqueMod -= .5;
+				target.aimMod -= .5;
+				target.willpowerMod -= .5;
+				target.reflexesMod -= .5;
+				target.addStatusValue("Naleen Venom", 1, .5);
+				applyDamage(new TypeCollection( { drug: 10 + rand(10) } ), this, target, "minimal");
+				if(target.lust() >= target.lustMax() || ((target.physique() == 0 || target.willpower() == 0) && target.hasStatusEffect("Naleen Venom"))) output("\n\n<b>You're too doped up to care anymore. You give in.</b>");
+			}
+		}
+		
+		private function naleenConstrict(target:Creature):void
+		{
+			author("Savin");
+			if(!target.hasStatusEffect("Naleen Coiled"))
+			{
+				output("The naleen lunges at you, but you nimbly dodge the attack. However, before you can blink, you feel leather and fur coursing across your body as the serpentine feline coils around you, squeezing tight!");
+				
+				target.createStatusEffect("Naleen Coiled",0,0,0,0,false,"Constrict","You're trapped in the naleen's coils!",true,0);
+			}
+			else
+			{
+				output("The naleen's constricting embrace tightens slightly, coil after coil slithering around your compressing flesh.");
+			}
+			
+			var damage:TypeCollection = damageRand(new TypeCollection( { kinetic: 5 + rand(5) } ), 15);
+			var damageResult:DamageResult = calculateDamage(damage, this, target, "constrict");
+			
+			if (damageResult.shieldDamage > 0)
+			{
+				if (damageResult.hpDamage == 0) output(" Your shield crackles but holds. ");
+				else output(" There is a concussive boom and tingling aftershock of energy as your shield is breached. ");
+			}
+			
+			if (damageResult.hpDamage > 0)
+			{
+				if (damageResult.shieldDamage == 0) output(" Your breath is taken away by a brutal squeezes, and in a moment you're seeing stars!");
+			}
+			
+			outputDamage(damageResult);
+		}
+		
+		private function naleeDoubleAttack(target:Creature):void
+		{
+			author("Savin");
+			output("The naleen surges forward, lunging at you and swinging her razor-sharp claws right at your throat!\n");
+			CombatAttacks.SingleMeleeAttackImpl(this, target, true);
+			CombatAttacks.SingleMeleeAttackImpl(this, target, true);
 		}
 	}
 }

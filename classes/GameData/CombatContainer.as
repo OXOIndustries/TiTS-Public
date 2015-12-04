@@ -653,7 +653,7 @@ package classes.GameData
 					output("\n<b>You are grappled and unable to fight normally!</b>");
 				}
 				
-				addButton(0, "Struggle", doGrappleStruggle); // 9999 - merge naleen coil struggle && mimbranesmother
+				addButton(0, "Struggle", doStruggleRecover); // 9999 - merge naleen coil struggle && mimbranesmother
 				
 				if (pc.hasPerk("Static Burst") && (!hasEnemyOfClass(NyreaAlpha) && !hasEnemyOfClass(NyreaBeta)))
 				{
@@ -972,7 +972,7 @@ package classes.GameData
 			if (target is PlayerCharacter) processCombat();
 		}
 		
-		private function doGrappleStruggle(target:Creature):void
+		private function doStruggleRecover(target:Creature):void
 		{
 			// TODO Tweak the shit out of this probably for other NPCs to be able to call into it
 			
@@ -982,56 +982,85 @@ package classes.GameData
 			
 			if (hasEnemyOfClass(Cockvine))
 			{
-				adultCockvineStruggleOverride();
+				// TODO pull this in!
+				kGAMECLASS.adultCockvineStruggleOverride(target);
 				return;
 			}
-			
-			if (target.hasPerk("Escape Artist") && target.reflexes() >= target.physique())
+			// Naleen coil grapple text
+			else if (hasEnemyOfClass(Naleen))
 			{
-				if (target.reflexes() + rand(20) + 7 + target.statusEffectv1("Grappled") * 5 > target.statusEffectv2("Grappled"))
+				if(target.hasPerk("Escape Artist"))
 				{
-					if (hasEnemyOfClass(SexBot)) output("You almost dislocate an arm doing it, but, ferret-like, you manage to wriggle out of the sexbot’s coils. Once your hands are free, the droid does not seem to know how to respond, and you are able to grapple the rest of your way out easily, ripping away from its molesting grip. The sexbot clicks and stutters a few times before going back to staring at you blankly, swinging its fibrous limbs over its head.");
-					if (hasEnemyOfClass(MaidenVanae) || hasEnemyOfClass(HuntressVanae)) vanaeEscapeGrapple("Escape Artist");
-					else output("You display a remarkable amount of flexibility as you twist and writhe to freedom.");
-					target.removeStatusEffect("Grappled");
+					if(target.reflexes() + rand(20) + 6 + target.statusEffectv1("Naleen Coiled") * 5 > 24) {
+						output("You display a remarkable amount of flexibility as you twist and writhe through the coils to freedom.");
+						target.removeStatusEffect("Naleen Coiled");
+					}
+				}
+				else 
+				{
+					if(target.physique() + rand(20) + 1 + target.statusEffectv1("Naleen Coiled") * 5 > 24) {
+						output("With a mighty heave, you tear your way out of the coils and onto your [pc.feet].");
+						target.removeStatusEffect("Naleen Coiled");
+					}
+				}
+				//Fail to escape: 
+				if(target.hasStatusEffect("Naleen Coiled"))
+				{
+					if(CombatManager.hasEnemyOfClass(Naleen)) output("You groan in pain, struggling madly to escape the brutal confines of the naleen's coils. She grins down at you with a feral look in her eyes....");
+					else output("You groan in pain, struggling madly to escape the brutal confines of the naleen's coils. He grins down at you with a predatory glint in his eye, baring his fangs....");
+					target.addStatusValue("Naleen Coiled",1,1);
 				}
 			}
+			// Standard grapple text
 			else
 			{
-				if(target.physique() + rand(20) + 6 + target.statusEffectv1("Grappled") * 5 > target.statusEffectv2("Grappled"))
+				if (target.hasPerk("Escape Artist") && target.reflexes() >= target.physique())
 				{
-					// TODO It might be an idea to do something similar to how drone targets work now, in that the actual
-					// enemy DOING the grappling is stored as a transient property on the victim of the grapple,
-					// allowing us to extract this information
-					// The same will also be said of the grapler in instances where grapples can happen with multiple
-					// enemies- we'll need to know which one, specifically, is out of action for other attacks
-					
-					if (hasEnemyOfClass(SexBot)) output("You almost tear a muscle doing it, but, you manage to heave apart the sexbot’s coils. Once your hands are free, the droid does not seem to know how to respond, and you are able to grapple the rest of your way out easily, ripping away from its molesting grip. The sexbot clicks and stutters a few times before going back to staring at you blankly, swinging its fibrous limbs over its head.");
-					else if (hasEnemyOfClass(MaidenVanae) || hasEnemyOfClass(HuntressVanae)) vanaeEscapeGrapple();
-					else if (hasEnemyOfClass(GrayPrime)) grayPrimeEscapeGrapple();
-					else if (hasEnemyOfClass(NyreaAlpha) || hasEnemyOfClass(NyreaBeta)) output("You pull and heave at the thick, knotted ropes of the nyrea's net, finally managing to pry a gap large enough for you to squeeze your frame through!");
-					//else if (foes[0] is GoblinGadgeteer) output("You manage to untangle your body from the net, and prepare to fight the goblin again.");
-					else if (hasEnemyOfClass(Goocubator))
+					if (target.reflexes() + rand(20) + 7 + target.statusEffectv1("Grappled") * 5 > target.statusEffectv2("Grappled"))
 					{
-						output("You manage to tear yourself out of the goo’s grasp, wrenching your limbs free one by one. She squeals as you pop yourself out of her, eyes crossing as her whole body quakes with the aftershocks.");
-						output("\n\n<i>“Aww, why do you have to be that way?”</i> she pouts, wiggling away from you.");
+						if (hasEnemyOfClass(SexBot)) output("You almost dislocate an arm doing it, but, ferret-like, you manage to wriggle out of the sexbot’s coils. Once your hands are free, the droid does not seem to know how to respond, and you are able to grapple the rest of your way out easily, ripping away from its molesting grip. The sexbot clicks and stutters a few times before going back to staring at you blankly, swinging its fibrous limbs over its head.");
+						else if (hasEnemyOfClass(MaidenVanae) || hasEnemyOfClass(HuntressVanae)) vanaeEscapeGrapple("Escape Artist");
+						else output("You display a remarkable amount of flexibility as you twist and writhe to freedom.");
+						target.removeStatusEffect("Grappled");
 					}
-					else output("With a mighty heave, you tear your way out of the grapple and onto your [pc.feet].");
-					target.removeStatusEffect("Grappled");
 				}
-			}
-			
-			// Failure to escape grapple
-			if(target.hasStatusEffect("Grappled"))
-			{
-				if(hasEnemyOfClass(SexBot)) output("You struggle as hard as you can against the sexbot’s coils but the synthetic fiber is utterly unyielding.");
-				else if (hasEnemyOfClass(Kaska)) failToStruggleKaskaBoobs();
-				else if (hasEnemyOfClass(MaidenVanae) || hasEnemyOfClass(HuntressVanae)) output("You wriggle in futility, helpless as she lubes you up with her sensuous strokes. This is serious!");
-				else if (hasEnemyOfClass(GrayPrime)) grayPrimeFailEscape();
-				else if (hasEnemyOfClass(NyreaAlpha) || hasEnemyOfClass(NyreaBeta)) output("Try as you might, struggling against the heavy ropes of the nyrea huntresses net, you just can't find a way out of the net that has you restrained.");
-				//else if (foes[0] is GoblinGadgeteer) output("You manage to untangle your body from the net, and prepare to fight the goblin again.");
-				else output("You struggle madly to escape from the pin but ultimately fail. The pin does feel a little looser as a result, however.");
-				target.addStatusValue("Grappled",1,1);
+				else
+				{
+					if(target.physique() + rand(20) + 6 + target.statusEffectv1("Grappled") * 5 > target.statusEffectv2("Grappled"))
+					{
+						// TODO It might be an idea to do something similar to how drone targets work now, in that the actual
+						// enemy DOING the grappling is stored as a transient property on the victim of the grapple,
+						// allowing us to extract this information
+						// The same will also be said of the grapler in instances where grapples can happen with multiple
+						// enemies- we'll need to know which one, specifically, is out of action for other attacks
+						
+						if (hasEnemyOfClass(SexBot)) output("You almost tear a muscle doing it, but, you manage to heave apart the sexbot’s coils. Once your hands are free, the droid does not seem to know how to respond, and you are able to grapple the rest of your way out easily, ripping away from its molesting grip. The sexbot clicks and stutters a few times before going back to staring at you blankly, swinging its fibrous limbs over its head.");
+						else if (hasEnemyOfClass(MaidenVanae) || hasEnemyOfClass(HuntressVanae)) vanaeEscapeGrapple();
+						else if (hasEnemyOfClass(GrayPrime)) grayPrimeEscapeGrapple();
+						else if (hasEnemyOfClass(NyreaAlpha) || hasEnemyOfClass(NyreaBeta)) output("You pull and heave at the thick, knotted ropes of the nyrea's net, finally managing to pry a gap large enough for you to squeeze your frame through!");
+						//else if (foes[0] is GoblinGadgeteer) output("You manage to untangle your body from the net, and prepare to fight the goblin again.");
+						else if (hasEnemyOfClass(Goocubator))
+						{
+							output("You manage to tear yourself out of the goo’s grasp, wrenching your limbs free one by one. She squeals as you pop yourself out of her, eyes crossing as her whole body quakes with the aftershocks.");
+							output("\n\n<i>“Aww, why do you have to be that way?”</i> she pouts, wiggling away from you.");
+						}
+						else output("With a mighty heave, you tear your way out of the grapple and onto your [pc.feet].");
+						target.removeStatusEffect("Grappled");
+					}
+				}
+				
+				// Failure to escape grapple
+				if(target.hasStatusEffect("Grappled"))
+				{
+					if(hasEnemyOfClass(SexBot)) output("You struggle as hard as you can against the sexbot’s coils but the synthetic fiber is utterly unyielding.");
+					else if (hasEnemyOfClass(Kaska)) failToStruggleKaskaBoobs();
+					else if (hasEnemyOfClass(MaidenVanae) || hasEnemyOfClass(HuntressVanae)) output("You wriggle in futility, helpless as she lubes you up with her sensuous strokes. This is serious!");
+					else if (hasEnemyOfClass(GrayPrime)) grayPrimeFailEscape();
+					else if (hasEnemyOfClass(NyreaAlpha) || hasEnemyOfClass(NyreaBeta)) output("Try as you might, struggling against the heavy ropes of the nyrea huntresses net, you just can't find a way out of the net that has you restrained.");
+					//else if (foes[0] is GoblinGadgeteer) output("You manage to untangle your body from the net, and prepare to fight the goblin again.");
+					else output("You struggle madly to escape from the pin but ultimately fail. The pin does feel a little looser as a result, however.");
+					target.addStatusValue("Grappled",1,1);
+				}
 			}
 			output("\n");
 			if (target is PlayerCharacter) processCombat();
