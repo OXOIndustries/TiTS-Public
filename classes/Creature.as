@@ -774,7 +774,7 @@ package classes {
 			}
 			
 			var bonus:Number = 0;
-			//9999 if(hasPerk("Fecund Figure")) bonus += perkv1("Fecund Figure");
+			if(hasPerk("Fecund Figure")) bonus += perkv1("Fecund Figure");
 			
 			var currHipRating:Number = hipRatingRaw + hipRatingMod + bonus;
 			
@@ -822,7 +822,7 @@ package classes {
 			}
 			
 			var bonus:Number = 0;
-			//9999 if(hasPerk("Fecund Figure")) bonus += perkv2("Fecund Figure");
+			if(hasPerk("Fecund Figure")) bonus += perkv2("Fecund Figure");
 			
 			var currButtRating:Number = buttRatingRaw + buttRatingMod + bonus;
 			
@@ -2783,7 +2783,7 @@ package classes {
 		}
 		public function intelligenceMax(): Number {
 			var bonuses:int = 0;
-			//9999 if(hasPerk("Cybernetic Synchronization")) bonuses += (perkv1("Cybernetic Synchronization") * cyborgScore());
+			if(hasPerk("Cybernetic Synchronization")) bonuses += (perkv1("Cybernetic Synchronization") * cyborgScore());
 			return level * 5 + bonuses;
 		}
 		public function willpowerMax(): Number {
@@ -7455,7 +7455,7 @@ package classes {
 			{
 				counter++;
 				if (eyeType == GLOBAL.TYPE_GABILANI) counter++;
-				//9999 if (counter > 2 && isCyborg()) counter += cyborgScore();
+				if (counter > 2 && isCyborg()) counter += cyborgScore();
 			}
 			if (counter > 3 && hasCock(GLOBAL.TYPE_GABILANI)) counter++;
 			if (counter > 3 && hasVaginaType(GLOBAL.TYPE_GABILANI)) counter++;
@@ -11391,7 +11391,7 @@ package classes {
 		public function bellyRating():Number
 		{
 			var bonus:Number = 0;
-			//9999 if(hasPerk("Fecund Figure")) bonus += perkv3("Fecund Figure");
+			if(hasPerk("Fecund Figure")) bonus += perkv3("Fecund Figure");
 			
 			return bellyRatingRaw + bellyRatingMod + bonus;
 		}
