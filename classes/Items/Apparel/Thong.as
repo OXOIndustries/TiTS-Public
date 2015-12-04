@@ -52,9 +52,9 @@
 		
 		public function UpgradeVersion1(d:Object):void
 		{
-			basePrice = 550;
-			sexiness = 1;
-			itemFlags = [GLOBAL.ITEM_FLAG_SWIMWEAR];
+			d.basePrice = 550;
+			d.sexiness = 1;
+			d.itemFlags = [GLOBAL.ITEM_FLAG_SWIMWEAR];
 		}
 	}
 }
