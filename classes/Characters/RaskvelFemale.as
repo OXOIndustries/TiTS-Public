@@ -9,7 +9,12 @@
 	import classes.kGAMECLASS;
 	import classes.rand;
 	import classes.GameData.CodexManager;
-	import classes.Engine.Combat.DamageTypes.DamageFlag;
+	import classes.Engine.Combat.DamageTypes.*;
+	
+	import classes.Engine.Interfaces.output;
+	import classes.GameData.CombatAttacks;
+	import classes.GameData.CodexManager;
+	import classes.Engine.Combat.*;
 	
 	public class RaskvelFemale extends Creature
 	{
@@ -216,6 +221,98 @@
 			}
 			else if(rand(8) <= 6) combatRaskvelFemale.inventory.push(new Ruskvel());
 			kGAMECLASS.foes.push(combatRaskvelFemale);
+		}
+		
+		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
+		{
+			var target:Creature = selectTarget(hostileCreatures);
+			if (target == null) return;
+			
+			if(hasStatusEffect("Disarmed"))
+			{
+				raskvelPunch(target);
+			}
+			else if(hasStatusEffect("Wrench Charge")) 
+			{
+				CombatAttacks.WrenchAttack.execute(alliedCreatures, hostileCreatures, this, target);
+			}
+			else
+			{
+				if(rand(4) == 0 && target.hasCock()) raskvelGirlsTeasingCockwielders();
+				else if(rand(3) == 0) CombatAttacks.WrenchAttack.execute(alliedCreatures, hostileCreatures, this, target);
+				else if(rand(2) == 0) CombatAttacks.AphrodisiacDarts.execute(alliedCreatures, hostileCreatures, this, target);
+				else raskvelFemShotgun(target);
+			}
+		}
+		
+		private function raskvelGirlsTeasingCockwielders(target:Creature):void
+		{
+			if(rand(4) == 0) 
+			{
+				output("The short female swivels to show you her rump, shaking it up and down to show off her puffed-up pussy and second clit from behind. She shakes and wobbles, bouncing her cheeks enticingly for your enjoyment while asking, \"<i>Come over here and give me some eggs, and we can forget all about this.</i>\"");
+				applyDamage(new TypeCollection( { tease: 7 + rand(3) } ), this, target, "minimal");
+			}
+			//#2
+			else if(rand(3) == 0)
+			{
+				output("Pulling down her top to expose her nipples, " + a + short + " asks, \"<i>Still want to fight? You could always pay me in sperm, you know.</i>\"");
+				applyDamage(new TypeCollection( { tease: 6 + rand(7) } ), this, target, "minimal");
+			}
+			//#3
+			else if(rand(2) == 0) 
+			{
+				output("The raskvel playfully scampers up and pivots, resting her butt against your crotch. She squeezes her surprisingly powerfully thighs to make her cushy little asscheeks wobble back and forth against");
+				if (!target.isCrotchGarbed()) output(" [pc.oneCock]");
+				else output(" [pc.oneCock] through your [pc.lowerGarments]");
+				output(". \"<i>Come play, we can forget about the money.</i>\"");
+				applyDamage(new TypeCollection( { tease: 10 + rand(4) } ), this, target, "minimal");
+			}
+			//#4
+			else
+			{
+				output("Dropping her wrench, the little creature launches herself towards you, legs akimbo.");
+				//Miss
+				if(combatMiss(this, target)) output(" You step aside, forcing her to land hard and circle back to her weapon with a frown.");
+				//Hit
+				else
+				{
+					output(" Her trajectory carries her square into your face. The lizard-girl's hot cunt squishes up against your [pc.face] as her legs circle behind your neck, and she languidly grinds herself on your face while running her hands ");
+					if(target.hasHair()) output("through your [pc.hair]");
+					else output("over your head");
+					output(". She detaches before you can think to get her off of you, leaving you with the taste of her femininity on your lips and the thought sex on your mind.");
+					applyDamage(new TypeCollection( { tease: 15 + rand(6) } ), this, target, "minimal");
+				}
+			}
+		}
+		
+		private function raskvelFemShotgun(target:Creature):void
+		{
+			output(capitalA + short + " presses a button on the side of her wrench, and you hear a shell slide home. A moment later she points it your way and pulls the trigger. Ka-BLAM! The report is loud enough to echo for miles.");
+			//Miss
+			if(rangedCombatMiss(this, target)) output(" The pellets fly wide.");
+			//Hit
+			else
+			{
+				output("\nYou are struck by the projectiles!");
+				var damage:TypeCollection = rangedDamage();
+				damageRand(damage, 15);
+				applyDamage(damage, this, target);
+			}
+		}
+		
+		private function raskvelPunch(target:Creature):void
+		{
+			output("Unmoved by being disarmed, the petite raskvel balls her fists and charges you.");
+			if(rangedCombatMiss(this, target))
+			{
+				output("\nYou slide to the side of her clumsy swings.");
+			}
+			else
+			{
+				var damage:TypeCollection = new TypeCollection( { kinetic: physique() / 2});
+				damageRand(damage, 15);
+				applyDamage(damage, this, target);
+			}
 		}
 	}
 }

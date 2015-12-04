@@ -3,6 +3,8 @@ package classes.GameData
 	import classes.Characters.Celise;
 	import classes.Characters.Kaska;
 	import classes.Characters.PlayerCharacter;
+	import classes.Characters.RaskvelFemale;
+	import classes.Characters.RaskvelMale;
 	import classes.Characters.ZilFemale;
 	import classes.Creature;
 	import classes.Engine.Combat.DamageTypes.DamageResult;
@@ -338,6 +340,7 @@ package classes.GameData
 			ConcussiveShot.RequiresItemFlags = [GLOBAL.ITEM_FLAG_BOW_WEAPON];
 			ConcussiveShot.TooltipTitle = "Concussive Shot";
 			ConcussiveShot.TooltipBody = "Fire an explosive arrow at your target, potentially stunning them for 1-2 rounds.";
+			ConcussiveShot.Implementor = ConcussiveShotImpl;
 			a.push(ConcussiveShot);
 			
 			// Goozooka
@@ -353,6 +356,17 @@ package classes.GameData
 			}
 			GoozookaAttack.TooltipTitle = "Goozooka";
 			GoozookaAttack.TooltipBody = "Fire a Gray Goo at your enemy for the princely sum of a single sample of Gray Microbots.";
+			GoozookaAttack.Implementor = GoozookaAttackImpl;
+			
+			// Shared NPC Attacks
+			// Attacks only intended to be used by NPCs!
+			AphrodisiacDarts = new SingleCombatAttack();
+			AphrodisiacDarts.IsRangedBased = true;
+			AphrodisiacDarts.Implementor = AphrodisiacDartsImpl;
+			
+			WrenchAttack = new SingleCombatAttack();
+			WrenchAttack.IsMeleeBased = true;
+			WrenchAttach.Implementor = WrenchAttachImpl;
 		}
 		
 		/**
@@ -1281,6 +1295,111 @@ package classes.GameData
 		private static function GoozookaAttackImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
 			
+		}
+		
+		public static const WrenchAttack:SingleCombatAttack;
+		private static function WrenchAttachImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
+		{
+			//Charged attack!
+			if(!attacker.hasStatusEffect("Wrench Charge"))
+			{
+				output(attacker.capitalA + attacker.short + " hefts her wrench up over her head, readying a powerful downward stroke. If you act quickly, you can interrupt her!");
+				attacker.createStatusEffect("Wrench Charge", attacker.HP(),0,0,0);
+			}
+			//Already charged, lets do this!
+			else
+			{
+				//Interrupted
+				if(attacker.statusEffectv1("Wrench Charge") > attacker.HP()) output(attacker.capitalA + attacker.short + " staggers, dropping her heavy weapon down from its striking posture. She looks less than pleased by this development!");
+				//Miss
+				else if(combatMiss(attacker, target))
+				{
+					output(attacker.capitalA + attacker.short + " brings her weapon down in a vicious two-handed strike but fails to connect!");
+				}
+				//Hit
+				else
+				{
+					//[foes[0].short][capital]
+					output(attacker.capitalA + attacker.short + " slams down her wrench in a heavy blow. It connects solidly, and your head is ringing from the brutal hit.");
+					//{Stun chance}
+					if (!target.hasStatusEffect("Stunned") && target.physique() + rand(20) + 1 < 40)
+					{
+						output("<b> The hit was hard enough to stun you!</b>");
+						target.createStatusEffect("Stunned",1,0,0,0,false,"Stun","You are stunned and cannot move until you recover!",true,0);
+					}
+					var damage:TypeCollection = attacker.meleeDamage();
+					damage.multiply(2);
+					damageRand(damage, 15);
+					applyDamage(damage, attacker, target);
+				}
+				attacker.removeStatusEffect("Wrench Charge");
+			}
+		}
+		
+		public static const AphrodisiacDarts:SingleCombatAttack;
+		private static function AphrodisiacDartsImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
+		{
+			var damage:int = 0;
+			var hit:Boolean = true;
+			//Hacky-ass solution for male raskvel. Will need tweaked if a proper mob ever uses the attack
+			if(attacker is RaskvelMale) output("<i>“Boo! Raaaaar!”</i> shouts the big raskvel, waving his arms at you. At the same time, one of the others pulls an injector gun from his belt and fires three needles at you near soundlessly.")
+			else output(attacker.capitalA + attacker.short + " pulls a gun off her hip, levels it, and pulls the trigger. The only reports are a trio of near-silent hisses as three injectors fly through the air toward you.");
+			//Blocked
+			if(target.shields() > 0) 
+			{
+				output("\nThe needles break apart uselessly on contact with your defenses.");
+				hit = false;
+			}
+			//Miss (can't be completely dodged)
+			else if(rangedCombatMiss(attacker, target)) 
+			{
+				output("\nYou manage to avoid most of the projectiles, but one still impacts your arm, stinging you with a pinprick of pain. You yank it out, but it's payload is already spent, injected inside you.");
+				applyDamage(new TypeCollection( { tease: 3 + rand(3) } ), attacker, target, "minimal");
+			}
+			//Medium hit
+			else if(rangedCombatMiss(attacker, target))
+			{
+				output("\nTwo needles slam into your body, imparting bursts of searing pain when they penetrate your flesh. You yank them out in irritation, but whatever they contained is inside you now.");
+				applyDamage(new TypeCollection( { tease: 7 + rand(3) } ), attacker, target, "minimal");
+			}
+			//Full Hit
+			else
+			{
+				output("\nAll three needles hit you before you can react.");
+				applyDamage(new TypeCollection( { tease: 11 + rand(3) } ), attacker, target, "minimal");
+			}
+			//Reactions
+			if(hit)
+			{
+				output("\n\n");
+				if(target.lust() < 33) output("An unwelcome heat suffuses your body as the chemicals do their work.");
+				else if(target.lust() < 45) output("Your heart beats faster as you look at your foe's body." + attacker.mf("","Her outfit seems a bit more revealing, and her movements seem more sexually enticing than ever before."));
+				else if(target.lust() < 55) 
+				{
+					if(target.hasCock()) 
+					{
+						output("[pc.EachCock] pulsates as it fills with burgeoning tumescence.");
+						if(attacker is RaskvelFemale) output(" You find yourself wondering what it would be like to slip into her puffy, double-clitted box.");
+					}
+					else if(target.hasVagina()) output("[pc.EachVagina] grows sensitive and moist as you ponder the merits of fucking this fetching little lizard-" + foes[0].mf("man","woman") + ".");
+					else output("Your [pc.nipples] harden as you idly consider forcing " + foes[0].mf("him","her") + " to lick you while suckling on " + foes[0].mf("his reptilian tool.","her twin clits."));
+				}
+				else if(target.lust() < 65) output("You groan out loud as the aphrodisiacs surges through your bloodstream, rousing you into a " + pc.rawmf("rut","heat") + " that you have have a hard time suppressing.");
+				else if(target.lust() < 75) output(pc.mf("Grunting","Whimpering") + " in anticipation of what is to come, you ball your hands into fists as you try to endure the rising need as it spreads through your body. It feels like your brain is oozing down into your crotch, fixating utterly on sex. You want to fuck right now. You NEED to fuck soon.");
+				else if(target.lust() < 85) output("You stagger as the lust hits you, stirring your already aroused body to new heights of need. Your [pc.legs] tremble, and the desperate, animal need to copulate thrums through your quivering muscles, filling them with an artificial desire.");
+				else if(target.lust() < 95) 
+				{
+					output("The payload has its way with your aroused body as it rushes through your veins. It acts quickly, like other intravenious drugs, turning you on with each beat of your heart.");
+					if(target.hasCock() || target.hasVagina()) output(" Your genitals drip with need as y");
+					else output(" Y");
+					output("ou idly consider throwing the fight for a quick fuck.");
+				}
+				else output("You whimper as the drugs pour through your body and melt your resistance into a bubbling puddle of distilled fuck. Your body is hot, feverish even, and you lose the will to resist as the absolute need to tend to your state asserts itself.");
+			}
+			if(target.lust() < target.lustMax() && attacker is RaskvelMale)
+			{
+				target.createStatusEffect("Attempt Seduction", 0, 0, 0, 0, true, "", "", true, 0);
+			}
 		}
 	}
 

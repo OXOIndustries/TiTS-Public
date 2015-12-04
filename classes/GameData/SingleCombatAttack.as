@@ -117,7 +117,8 @@ package classes.GameData
 		
 		public function execute(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
-			
+			this.Implementor(fGroup, hGroup, attacker, target);
+			attacker.energy( -(attacker.CalculateEnergyCost(this)));
 		}
 	}
 }

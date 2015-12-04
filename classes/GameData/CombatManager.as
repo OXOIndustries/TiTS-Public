@@ -132,6 +132,10 @@ package classes.GameData
 			if (_hostileCharacters.indexOf(c) != -1) return _friendlyCharacters;
 			return _hostileCharacters;
 		}
+		public static function continueCombat():void
+		{
+			if (combatContainer) combatContainer.endCombatRound();
+		}
 	}
 
 }

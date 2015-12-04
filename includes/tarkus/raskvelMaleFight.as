@@ -1637,25 +1637,16 @@ public function loseToRaskvelAndGetGangBangued():void
 
 public function seductionChance():Boolean
 {
-	if(pc.hasVagina() && pc.mf("he","she") == "she" && pc.IQ() >= 70 && (pc.isBimbo() || pc.sexiness() >= 3) && !foes[0].hasStatusEffect("Seduction Declined") && !pc.hasStatusEffect("Stunned"))
-	{
-		output("\n\n<b>It occurs to you that there might be another, cleaner way out of this... if you use your feminine wiles to your best advantage.</b>");
-		//[[Seduce]]
-		clearMenu();
-		addButton(0,"Seduce",seduceTheRaskvelAttackYaNerd,undefined,"Seduce","You could probably seduce your way out of this. These boys will be easy to manipulate...");
-		addButton(1,"No, Fight!",nopeGonnaFightCapn);
-		return true;
-	}
-	return false;
+
 }
 
 public function nopeGonnaFightCapn():void
 {
 	clearOutput();
 	showRaskGang();
-	foes[0].createStatusEffect("Seduction Declined",0,0,0,0);
+	pc.createStatusEffect("Seduction Declined",0,0,0,0);
 	output("You'd rather show these brutes what you're made of than titillate them any farther.");
-	processCombat();
+	CombatManager.
 }
 
 public function seduceTheRaskvelAttackYaNerd():void
