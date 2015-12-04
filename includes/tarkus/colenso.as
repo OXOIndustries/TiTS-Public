@@ -473,8 +473,7 @@ public function yesIVolunteerForBadEndsBecauseImBadAtSexGames():void {
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
-	output("\n\n<b>THE END</b>");
-	clearMenu();
+	badEnd("THE END");
 }
 
 //Reason
@@ -639,8 +638,7 @@ public function pcLosesToHanSoSosBot():void
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
-	output("\n\n<b>THE END</b>");
-	clearMenu();
+	badEnd("THE END");
 }
 
 //PC wins

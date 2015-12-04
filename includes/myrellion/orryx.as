@@ -155,7 +155,7 @@ public function investigateFrogapi():void
 	clearOutput();
 	showOrryx();
 	output("Atop the podium is a small, peculiar creature. ");
-	if(flags["MET_BRILLIG"] == undefined) output("You immediately recognize it as a tove, one of the odd, fuzzy creatures from the G.G.C.");
+	if(flags["MET_BRILLIG"] != undefined) output("You immediately recognize it as a tove, one of the odd, fuzzy creatures from the G.G.C.");
 	else output("This strange six-legged created sit perched on its fuzzy haunches, bird-like talons hooked over the edge of the glittering screens of its stand. Four, emotive limbs gesture frenetically through the air as it regards you with a row of four, glittering eyes, its sideways pupils regarding you with alien expression. Beneath those eyes clicks a wide, hooked beak, and two, overlong ears twitch in time to its speech. Covered completely in deep-blue fur, the creature looks more like some kind of living stuffed animal.");
 	output(" It beckons you in with one hooked talon, while the other turns the dial on what looks like an antique pocketwatch. Its remaining two limbs brush down an adorably tiny vest buttoned snugly over the creature’s round, fuzzy belly.");
 

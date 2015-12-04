@@ -231,7 +231,11 @@ public function quickSwim():void
 	author("Slab Bulkhead");
 	showName("QUICK\nSWIM");
 	output("You ");
-	if(pc.exhibitionism() < 66) output("don a swimsuit");
+	if(pc.exhibitionism() < 66)
+	{
+		if(pc.inSwimwear(true)) output("adjust your [pc.gear]");
+		else output("don a swimsuit");
+	}
 	else if(!pc.isNude()) output("strip naked");
 	else output("admire your already nude form");
 	output(" and step into the pool, taking a few minutes to get used to the water. The unusual smoothness feels good against your [pc.skinFurScalesNoun], almost sensual. The temperature is pretty much perfect, a little bit cold but nothing you can’t handle.");
@@ -257,7 +261,11 @@ public function swimLapsAtZePool():void
 	author("Slab Bulkhead");
 	showName("SWIM\nLAPS");
 	output("You ");
-	if(pc.exhibitionism() < 66) output("don a swimsuit");
+	if(pc.exhibitionism() < 66)
+	{
+		if(pc.inSwimwear(true)) output("adjust your [pc.gear]");
+		else output("don a swimsuit");
+	}
 	else if(!pc.isNude()) output("strip naked");
 	else output("admire your already nude form");
 	output(" and plunge into the cool water headfirst, coming up with a spurting breath. You head for one of the lanes, and get right into swimming laps. It takes a few strokes for you to find your rhythm, but soon you’re coasting through the water with ease.");
@@ -282,7 +290,11 @@ public function spaTimesFunStuff():void
 	clearOutput();
 	author("Slab Bulkhead");
 	output("The spa is a welcome sight. You ");
-	if(pc.exhibitionism() < 66) output("don a swimsuit");
+	if(pc.exhibitionism() < 66)
+	{
+		if(pc.inSwimwear(true)) output("adjust your [pc.gear]");
+		else output("don a swimsuit");
+	}
 	else if(!pc.isNude()) output("strip naked");
 	else output("admire your already nude form");
 	output(" and climb in.");
@@ -428,6 +440,8 @@ public function purchaseTempGymMembershipConfirm():void
 	processTime(1);
 	pc.credits -= 500;
 	pc.createStatusEffect("Gym Pass", 0, 0, 0, 0, false, "Icon_Haste", "You have a temporary gym pass to the Ten Ton Gym on New Texas.", false, 1440);
+	var map:* = mapper.generateMap(currentLocation);
+	userInterface.setMapData(map);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -457,6 +471,8 @@ public function purchaseLifetimeGymMembership():void
 	processTime(1);
 	pc.credits -= 10000;
 	pc.createKeyItem("Ten Ton Gym Membership",0,0,0,0);
+	var map:* = mapper.generateMap(currentLocation);
+	userInterface.setMapData(map);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

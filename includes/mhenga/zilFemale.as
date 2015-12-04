@@ -224,11 +224,14 @@ public function getHoney():void {
 	output("\n\n<i>“H-hey stranger, you've got really... really talented fingers, you know? Keep this up and I'll... I'll... I'll...”</i>  she trails off into a long <i>“Ooooohhhh,”</i>  as you let one of your hands slip down, joining her fingers between her legs as the other massages her breast, topping off your prize. Her honeypot is slick with her sexual juices and offers no resistance as you slip into its warmth, brushing and teasing her own fingers before joining them in their work, exploring her depths. <i>“Gonna... gonna c-c-ahhhh!”</i> she cries, as her vaginal muscles clench down hard, squeezing and milking the fingers inside like miniature cocks. A whole new wave of thick honey squirts from her quivering cunt as the zil girl climaxes around the two hands penetrating her; a moment later and her teats join in the fun with a last mighty burst of honey that sails off into the clearing, overshooting the vial with the force of a fire hose.");
 	output("\n\nYou cork the vial and tuck it away as the throughly milked zil collapses in your arms, breathing hard. You run your honey-slick hands through the soft, hair-like spines on her head, teasing her a little as you get ready to go.");
 	//If Gendered PC:
-	if(pc.hasCock() || pc.hasVagina()) output("\n\n<i>“H-hey now,”</i> she manages to say, <i>“I'd feel bad if I got to cum that hard and you didn't even get a thrill. At least let me </i>");
-	if(pc.hasVagina()) output("<i>give your honeypot some love</i>");
-	if(pc.hasVagina() && pc.hasCock()) output("<i> or </i>");
-	if(pc.hasCock()) output("<i>give your cock a little attention</i>");
-	output("<i> before you go.”</i>");
+	if(pc.hasGenitals())
+	{
+		output("\n\n<i>“H-hey now,”</i> she manages to say, <i>“I'd feel bad if I got to cum that hard and you didn't even get a thrill. At least let me ");
+		if(pc.hasVagina()) output("give your honeypot some love");
+		if(pc.hasVagina() && pc.hasCock()) output(" or ");
+		if(pc.hasCock()) output("give your cock a little attention");
+		output(" before you go.”</i>");
+	}
 	
 	processTime(10+rand(5));
 	eventQueue[eventQueue.length] = getSomeHoney;
@@ -337,6 +340,7 @@ public function suckleFuckZilFemaleYouSuckleFucker():void {
 	output(".\n\n<i>“See you around, stranger,”</i> she calls after you as you leave before rolls over in the puddle of sex you've left for a quick nap.");
 	processTime(20+rand(10));
 	pc.orgasm();
+	pc.milkInMouth(chars["ZILFEMALE"]);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -380,6 +384,7 @@ public function missionaryWithAZilGirl():void {
 	output("\n\nThe zil girl sighs and leans back, patting her belly full of seed as you collect your [pc.gear]. <i>“Don't be a stranger, stranger,”</i> she laughs, blowing you a kiss as you leave.");
 	
 	pc.orgasm();
+	pc.milkInMouth(chars["ZILFEMALE"]);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -429,6 +434,7 @@ public function footjobFromFemzil():void {
 	
 	processTime(10+rand(10));
 	pc.orgasm();
+	pc.girlCumInMouth(chars["ZILFEMALE"]);
 	//CHOICES!
 	clearMenu();
 	addButton(0,"Lick Her",lickABitchCleanYouBitch);
@@ -539,6 +545,7 @@ public function sixtyNineZil():void {
 	output("\n\nWith your chest still heaving, you can only try to stagger to your feet and brush the wetness from your thighs and cheeks. As you grab your [pc.gear], the zil girl slips up behind you, wrapping her dark arms around your [pc.hips], chin nestling in your neck. <i>“Come back real soon, stranger. It's awful hard to find a girl like you around here,”</i> she whispers, kissing along your neck. You breathe deep, skin trembling as the cum-soaked beauty caresses you; soon, she helps you get dressed and sends you on your way with a friendly wave and a kiss goodbye.");
 	processTime(25+rand(15));	
 	pc.orgasm();
+	pc.girlCumInMouth(chars["ZILFEMALE"]);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -649,7 +656,7 @@ public function forceCunnilstingus():void {
 	if(pc.HP() <= 0) {
 		output("With your strength falling as rapidly as the leaves that occasionally drop from the canopy above, you give in. There's no way you can continue to resist the nubile alien. She has you right where she wants you: on the ground and unable to stop her from inflicting some perverse mating ritual upon you. You look up at her with fire in your eyes. Perhaps you can bite off something sensitive when she makes her move?");
 		output("\n\n<i>“Oh dear, this resistance simply will not do,”</i>  the zil explains as she closes in, grabbing you gently under your chin and tipping your head back to meet her gaze. <i>“It is rude to resist once your position has been decided by your loss.”</i>  She releases you only to stalk around you like a predator circling prey, tapping on her chin in thought. Her face brightens as a playful expression spreads across her features. <i>“I can teach you politeness, offworlder.”</i>");
-		output("\n\nWorry over just what she means wars with your desire to resist her, and in the end, you wind up watching her. Your eyes remain warily locked as she completes her circle and drops nto your lap. Her hands, shiny as the most high quality latex, ");
+		output("\n\nWorry over just what she means wars with your desire to resist her, and in the end, you wind up watching her. Your eyes remain warily locked as she completes her circle and drops onto your lap. Her hands, shiny as the most high quality latex, ");
 		if(!pc.isNude()) output("carefully peel away every piece of your equipment");
 		else output("carefully strip away your few possessions");
 		output(", and she's sure to keep them far, far away from your mouth. Resting heavily upon your [pc.legOrLegs], her abdomen twitches while she works, dragging the sharpness over her stinger up your vulnerable [pc.skinFurScales]. The perfect hardness of her fingers comes to rest on your shoulders, and she gazes deeply into your eyes, a sardonic smile painted across her obsidian lips.");
@@ -727,6 +734,11 @@ public function forceCunnilstingus():void {
 	else output("tense nipple");
 	output(". A fevered moan is your thank you and goodbye, your body well on its way to its next artificial climax as your eyes drift closed.\n\n");
 	processTime(200+rand(60));
+	pc.milkInMouth(chars["ZILFEMALE"]);
+	pc.milkInMouth(chars["ZILFEMALE"]);
+	pc.girlCumInMouth(chars["ZILFEMALE"]);
+	pc.girlCumInMouth(chars["ZILFEMALE"]);
+	pc.girlCumInMouth(chars["ZILFEMALE"]);
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();

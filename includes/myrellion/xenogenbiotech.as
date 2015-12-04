@@ -543,7 +543,10 @@ public function mcallisterMenu(cFunc:Function = null):void
 		}
 		else if (flags["MCALLISTER_MYR_HYBRIDITY"] == 2)
 		{
-			addDisabledButton(0, "Research"); // 9999 use button tooltip as a progress display?
+			var nPercent:Number = (((GetGameTimestamp() - flags["MCALLISTER_MYR_HYBRIDITY_START"])/(7 * 24 * 60)) * 100);
+			if (nPercent < 0) nPercent = 0;
+			if (nPercent > 100) nPercent = 100;
+			addDisabledButton(0, "Research", "Researching...", "Progress: " + formatFloat(nPercent, 1) + "%"); // use button tooltip as a progress display
 		}
 	}
 
@@ -924,6 +927,11 @@ public function mcallisterMyrGirlsCunty():void
 	clearOutput();
 	mcallisterHeader();
 	
+	var ppMcAllister:PregnancyPlaceholder = new PregnancyPlaceholder();
+	if (!ppMcAllister.hasCock()) ppMcAllister.createCock();
+	ppMcAllister.shiftCock(0, GLOBAL.TYPE_HUMAN);
+	ppMcAllister.cocks[0].cLengthRaw = 12;
+	
 	var selCunt:int = (pc as Creature).biggestVaginaIndex();
 
 	output("You let the amorous gold have her way with you, pulling the front of your robe open and guiding you towards the bed she and her crimson companion are splayed out on. You join the giggling beauties on the bed, giving them a gentle push apart and crawling in between them. The ant babes moan and giggle as you join them, running your hands along their legs and thighs, brushing your fingertips through the clefts of a pair of sultry pussies as you go.");
@@ -957,7 +965,10 @@ public function mcallisterMyrGirlsCunty():void
 	output("\n\n<i>“That’s more like it,”</i> you groan, running a hand through both ant-girls’ hair and guiding them towards your [pc.cunt "+selCunt+"].");
 	
 	output("\n\n<i>“Hope you like venom,”</i> the red coos, running her tongue to the very bottom of your sex, circling it there and leaving a heady dose of her pink-tinged saliva on your pussylips.");
-	// 9999 - red myr venom?
+	
+	// red myr venom
+	imbibeVenomEffects();
+	
 	if (pc.hasCock()) output(" As she does so, the gold’s hands reach up and caress your [pc.cock], latex-smooth fingers gripping you tight and starting to piston.");
 	output(" The girls both smile up at you, playing their lips and tongues around your sex, never quite penetrating you. Still, the sensation’s almost overwhelming with the red’s venom starting to seep into you, to set your sex afire with lust.");
 	
@@ -978,7 +989,8 @@ public function mcallisterMyrGirlsCunty():void
 	output("\n\nIt takes you a moment to distinguish the bulbous heft of a cockhead joining the fingers caressing you. You gasp, but find yourself wiggling your [pc.hips] invitingly, spurred on by the intoxicating touch of red venom to accept any new pleasure you can grab.");
 	
 	output("\n\nTaking your movements as silent encouragement, the doctor moves ahead until his cockhead is grazing the envenomed, drooling lips of your twat. You suck in a sharp breath, letting it out with a moan as he eases into you. The myr girls giggle and coo, running their hands across your body, caressing your [pc.chest] and [pc.hips], doing all they can to heighten your pleasure while McAllister penetrates you.");
-	pc.cuntChange(selCunt, 250, true, true, false); // 9999 - volume
+	
+	pc.cuntChange(selCunt, ppMcAllister.cockVolume(0), true, true, false); // volume
 	
 	output("\n\nHis cock might have <i>looked</i> big at first, but feeling it spreading your [pc.cunt "+selCunt+"] apart makes it feel like you’re taking a horse’s shaft, a massive, thick length of dick that");
 	if (pc.vaginas[selCunt].looseness() >= 4) output(" fills even your stretched-out sex");
@@ -1004,6 +1016,10 @@ public function mcallisterMyrGirlsCunty():void
 	
 	output("\n\nMcAllister grunts and hilts himself in you, burying his unnaturally long prick into your quivering slit and unleashing a torrent of seed. A gasp rends its way out of your mouth, but nothing else: no scream of pleasure, no lewd moans... all you can manage is a silent bulge of your eyes - and your [pc.belly] - as you take the doctor’s load.");
 	if (pc.hasCock()) output(" As if to balance your body out, your [pc.cock] erupts across the myr girls’ faces, slathering the faux-ants with [pc.cumNoun]. They take it eagerly, mouths open and giggling.");
+	
+	pc.loadInCunt(ppMcAllister, selCunt);
+	pc.loadInCunt(ppMcAllister, selCunt);
+	pc.loadInCunt(ppMcAllister, selCunt);
 	
 	output("\n\nSo much for the sterile feeling of the lab.");
 	

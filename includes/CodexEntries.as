@@ -40,27 +40,27 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "V-Ko", VKoCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Gryvain", gryvainCodexEntry, true);
 	
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Mhen'ga", "Cunt Snakes", cuntSnakeCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Mhen'ga", "Kerokoras",kerokorasCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Mhen'ga", "Mimbranes", mimbraneCodexEntry, true);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Mhen'ga", "Naleen", naleenCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Mhen'ga", "Vanae", vanaeCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Mhen'ga", "Vanae: History", vanaeHistoryCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Mhen'ga", "Venus Pitchers", venusPitcherCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Mhen'ga", "Zil", zilCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MHENGA, "Mhen'ga", "Cunt Snakes", cuntSnakeCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MHENGA, "Mhen'ga", "Kerokoras",kerokorasCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MHENGA, "Mhen'ga", "Mimbranes", mimbraneCodexEntry, true);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MHENGA, "Mhen'ga", "Naleen", naleenCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MHENGA, "Mhen'ga", "Vanae", vanaeCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MHENGA, "Mhen'ga", "Vanae: History", vanaeHistoryCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MHENGA, "Mhen'ga", "Venus Pitchers", venusPitcherCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MHENGA, "Mhen'ga", "Zil", zilCodexEntry);
 	
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Myrellion", "Cockvines", cockvinesCodexEntry);	
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Myrellion", "Ganrael", crystalGooCodexEntry);	
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Myrellion", "Gold Myr", goldMyrmedionCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Myrellion", "Myr Fungus", myrFungusCodex);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Myrellion", "Nyrea", nyreaCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Myrellion", "Red Myr", redMyrmedionCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MYRELLION, "Myrellion", "Cockvines", cockvinesCodexEntry);	
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MYRELLION, "Myrellion", "Ganrael", crystalGooCodexEntry);	
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MYRELLION, "Myrellion", "Gold Myr", goldMyrmedionCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MYRELLION, "Myrellion", "Myr Fungus", myrFungusCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MYRELLION, "Myrellion", "Nyrea", nyreaCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MYRELLION, "Myrellion", "Red Myr", redMyrmedionCodexEntry);
 	
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Tarkus","Gabilani",gabilaniCodex);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Tarkus","Gray Goos",grayGooCodex);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Tarkus","Lapinara",lapinaraCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Tarkus","Raskvel",raskVelCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Tarkus","Sydians",sydianCodexEntry);	
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_TARKUS, "Tarkus","Gabilani",gabilaniCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_TARKUS, "Tarkus","Gray Goos",grayGooCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_TARKUS, "Tarkus","Lapinara",lapinaraCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_TARKUS, "Tarkus","Raskvel",raskVelCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_TARKUS, "Tarkus","Sydians",sydianCodexEntry);	
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items","Dumbfuck",dumbfuckCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items","Gush",gushCodexEntry);
@@ -116,7 +116,7 @@ public function codexHomeFunction():void
 public function humanTerranCodex():void
 {
 	clearOutputCodex();
-	showBust("BURT","");
+	showBust("BURT","STEPH");
 	outputCodex(header("Humans"));
 	outputCodex("<i>What does it mean to be human?</i>\n\n");
 	outputCodex("<b>Name (Singular):</b> Human");
@@ -338,7 +338,7 @@ public function galotianCodexEntry():void
 public function anataeCodexEntry():void
 {
 	clearOutputCodex();
-	showBust("ANATAE");
+	showBust("9999");
 	outputCodex(header("Anatae"));
 	outputCodex("<i>Ad maius bonum.</i>\n\n");
 	outputCodex("<b>Name (Singular):</b> Anat");
@@ -366,7 +366,7 @@ public function anataeCodexEntry():void
 public function daynarCodexEntry():void
 {
 	clearOutputCodex();
-	showBust("LANE", "DAYNAR_MALE", "DAYNAR_FEMALE");
+	showBust("LANE_M", "LANE_F", "LANE_M_NUDE", "LANE_F_NUDE");
 	outputCodex(header("Daynar"));
 	outputCodex("<i>Not all lizards are untrustworthy: Just most.</i>\n\n");
 	outputCodex("<b>Name (Singular & Plural):</b> Daynar");
@@ -425,6 +425,7 @@ public function dzaanCodex():void
 public function fanfirCodexEntry():void 
 {
 	clearOutputCodex();
+	showBust("9999");
 	outputCodex(header("Fanfir"));
 	outputCodex("<i>Massive, deafening heart-stealers. Don’t touch hoard.</i>\n\n");
 	outputCodex("<b>Name:</b> Fanfir");
@@ -457,6 +458,7 @@ public function laquineCodexEntry():void
 	clearOutputCodex();
 	showBust("KELLY","KELLY_NUDE");
 	outputCodex(header("Laquines"));
+	outputCodex("<i>They have plumbing built like a horse and mate like horny bunnies during breeding season.</i>\n\n");
 	outputCodex("<b>Name (Singular):</b> Laquine");
 	outputCodex("\n<b>Sexes:</b> 33% Male, 33% Female, 33% Hermaphrodite");
 	outputCodex("\n<b>Height:</b> 5’ 6” to 7’");
@@ -521,6 +523,7 @@ public function rahnCodexEntry():void
 public function saeriCodexEntry():void
 {
 	clearOutputCodex();
+	showBust("9999");
 	outputCodex(header("Saeri"));
 	outputCodex("<i>Butterfly girls. Second form of caterpillar-like siel.</i>\n\n");
 	outputCodex("<b>Name (Singular):</b> Saeri");
@@ -614,7 +617,7 @@ public function simiiCodex():void
 public function sionachCodexEntry():void
 {
 	clearOutputCodex();
-	showBust("SIONACH");
+	showBust("9999");
 	outputCodex(header("Sionach"));
 	outputCodex("<b>Name (Singular & Plural):</b> Sionach");
 	outputCodex("\n<b>Sexes:</b> Male and female");
@@ -667,6 +670,7 @@ public function varmintCodex():void
 	clearOutputCodex();
 	showBust("VARMINT");
 	outputCodex(header("Hazard: Varmints"));
+	outputCodex("<i>Everything’s bigger on New Texas and these dangerous dog-like creatures are no exception.</i>\n\n");
 	outputCodex("<b>Name (Singular):</b> Varmint");
 	outputCodex("\n\n");
 	outputCodex("One of the surviving native life forms on New Texas, the predatory creatures locally dubbed \"varmints\" are descendants from a much larger, more dangerous breed encountered by the settlers in their early days of colonization. Originally encountered as towering, dinosaur-like creatures with a penchant for flesh, the varmints' ancestors were nearly exterminated by overzealous colonist militias. Those that survived are of smaller, less dangerous and less intelligent sub-breeds.\n\nVarmints are a silicone-based life form, roughly resembling a very large Terran dog or perhaps lizard. They are covered with rough blue skin and long, sharp spikes that make them dangerous even when not attacking directly. Their jaws are extremely powerful, and they frequently attack by knocking an opponent to the ground and rending at the throat.\n\nVarmints are to be considered hostile when encountered, and may attack without provocation. Deaths caused by these creatures are very rare, but they can result in serious injury. It is advised to be armed with traveling outside city grounds on New Texas due to the widespread distribution of the varmint population.");
@@ -703,6 +707,7 @@ public function VKoCodex():void
 public function gryvainCodexEntry():void 
 {
 	clearOutputCodex();
+	showBust("9999");
 	outputCodex(header("Gryvain"));
 	outputCodex("<i>The dragon women are as beautiful and artistic as they are breed-hungry.</i>\n\n");
 	outputCodex("<b>Name:</b> Gryvain (plural and singular)");
@@ -884,8 +889,7 @@ public function vanaeCodexEntry():void
 	clearOutputCodex();
 	showBust("VANAE_HUNTRESS", "VANAE_MAIDEN"); // Probably split this out into multiple types?
 	outputCodex(header("Vanae"));
-	outputCodex("'Vah-nay'\n\n");
-	outputCodex("<b>Name (Singular & Plural):</b> Vanae");
+	outputCodex("<b>Name (Singular & Plural):</b> Vanae <i>('Vah-nay')</i>");
 	//Taxonym: Vanae
 	outputCodex("\n<b>Sexes:</b> Female");
 	outputCodex("\n<b>Height:</b> 5’ 2” to 5’ 6”");
@@ -933,7 +937,7 @@ public function vanaeCodexEntry():void
 public function vanaeHistoryCodexEntry():void
 {
 	clearOutputCodex();
-	showBust("VANAE"); // Probably split this out into multiple types?
+	showBust("9999"); // Probably split this out into multiple types?
 	outputCodex(header("Vanae"));
 	outputCodex("'Vah-nay'");
 	outputCodex("\n\n");
@@ -1007,9 +1011,9 @@ public function zilCodexEntry():void
 public function gabilaniCodex():void
 {
 	clearOutputCodex();
-	showBust("COLENSO","","");
+	showBust("COLENSO","GOBLIN_FEMALE");
 	outputCodex(header("Gabilani"));
-	if(silly) outputCodex("<i>They’re eating her... and then they’re going to eat me! ..... OH MY GOOOOOOOOOOOOOOOOOOOOOOD!!!</i>\n\n");
+	if(silly) outputCodex("<i>They’re eating her... and then they’re going to eat me! ..... OH MY GOOOOOOOOOOD!!!</i>\n\n");
 	outputCodex("<b>Name (Singular & Plural):</b> Gabilani (colloquially known as “Goblin” or “Goblins”)");
 	outputCodex("\n<b>Sexes:</b> Male and female, equal split.");
 	outputCodex("\n<b>Height:</b> 2’8” to 3’6”, with females averaging an inch or two taller than males.");
@@ -1031,6 +1035,12 @@ public function gabilaniCodex():void
 	outputCodex("The passion for mechanical invention, lack of interest in medicine, and the frequency of industrial accidents in gabilani culture led to the species evolving the love of and reliance on cybernetics that they are remarkable for today. The gabilani developed physical cybernetic enhancements before microbe theory and blood transfusion, and a great majority employ significant mechanical bodily enhancement during their lifetime.\n\nReplacement limbs and ocular enhancement are the most common procedures, however the gabilani are also capable of sophisticated internal adaptations, often aimed at combating the health problems they face as a result of spending most of their lives in orbit above their home planet. All gabilani are required by law to spend at least three weeks in a year on the surface of Tarkus to boost their skeletal and immune system strength, however some wealthier gabilani disdain this edict by having all or most of their bones replaced with alloy metal, and augmenting their respiratory systems with antiviral micro-bot plants.\n\nThis ability to easily replace defective organs and limbs with effective cybernetic replacements has greatly boosted the possible lifespan of the average gabilani, however their population has remained stable as a result of the scourge of industrial accidents in their frenetic society, and the likelihood of newer models of replacement organs going catastrophically wrong.");
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Gabilani");
+	//Fix buttons
+	if(currentLocation == "225") 
+	{
+		flags["NAV_DISABLED"] = undefined;
+		addButton(6, "North", move, rooms[currentLocation].northExit);
+	}
 }
 public function raskVelCodexEntry():void
 {
@@ -1289,7 +1299,7 @@ public function myrFungusCodex():void
 	clearOutputCodex();
 	showBust("MYR_INFECTED_FEMALE");
 	outputCodex(header("Myr Fungi"));
-	outputCodex("<i>Gross.</i>\n\n");
+	if(silly) outputCodex("<i>Gross.</i>\n\n");
 	outputCodex("<b>Name:</b> Ophiocordyceps Myrmedius (Myr Fungus)");
 	outputCodex("\n<b>Genders:</b> Spores are technically genderless. Upon attaching to a host, the spores develop a gender based on a number of factors within the host.");
 	outputCodex("\n<b>Height:</b> Spores are a half-inch in diameter at the most. Manifested fungi are typically around half the host’s height.");
@@ -1349,6 +1359,7 @@ public function crystalGooCodexEntry():void
 public function dumbfuckCodexEntry():void
 {
 	clearOutputCodex();
+	showBust("9999");
 	outputCodex(header("Dumbfuck, an Illegal Drug"));
 	outputCodex("The drug colloquially known as \"Dumbfuck\" was originally designed as an all-in-one fertility treatment for couples having trouble conceiving by Xenogen Biotech. It was designed to rebalance hormones of males, females, and hermaphrodites to promote a stronger sex drive as well as slightly enhancing the reproductive capabilities of each. During initial trials, it was discovered that the drug and microsurgeon cocktail had a number of unintended side effects that brought about the cessation of all research into it.\n\nThe first test subjects reported an increase in sensitivity and drive, as expected. Clinical tests also showed an uptick in fertility and virility well within expected bounds. What wasn't within expected bounds were the subjects' extreme reactions to undergoing an orgasm. The altered body chemistry and drugs combined to set off a cascade of neural activity upon climax.\n\nThis neural cascades did not peak until a few minutes after orgasm at the earliest, often accompanied by at least one uncontrollable sneeze and slight draining of the sinuses. Further research determined that the sneezes were merely a side effect triggered by wildly misfiring neurons as they adjusted to new linkages. The end result of these linkages was a confirmed loss of intellect and an increase in libido and sexual pleasure - roughly one I.Q. point per orgasm, though some subjects experienced noticeably more or less.\n\nMost subjects reported feeling \"dizzy\" or \"a little confused\" during their first few cascades. They seemed almost oblivious to their own rising desire or the way their brains were becoming increasingly obsessed with sexual pleasure. However, later on, they reported: <i>\"like, feeling great when they sneeze out brains to make more room for sex!\"</i>\n\nBy this point, it was impossible to corral the sex-obsessed volunteers into taking part in any moderately challenging mental testing. Keeping them from fucking or masturbating while the drugs exited their system was nigh impossible. After the chemicals left their bloodstream, additional changes stopped, but they were left with a permanently diminished mental capacity and superhuman libidos.\n\nA few were kept in house for further study. While superficially dumb, they mastered techniques both sexual and seductive with exceeding aptitude. They were still clearly capable of problem solving, just much, much more focused into a single discipline. One of the dumbest girls, Stacy \\\[Redacted\\\] discovered that she did enjoy more general learning when coupled with masturbation. She went on to master advanced physics and currently serves as a Xenogen personal instructor using her unique talents.\n\nIn conclusion, Xenogen Biotech created one of the first and most unusual bimbofication drugs. The company buried it deep until a Black Void hacker stole the code and chemical composition. Nowadays, an enhanced version of the stuff can be found in the hands of any moderately talented scientist with loose morals, though the U.G.C. declared it universally illegal in short order.\n\nThe drug leaves marked, permanent changes in brain and body chemistry that make it easy to identify one who has used it.");
 	outputCodex("\n\n");
@@ -1357,7 +1368,7 @@ public function dumbfuckCodexEntry():void
 public function gushCodexEntry():void
 {
 	clearOutputCodex();
-	showBust("");
+	showBust("9999");
 	outputCodex(header("Gush"));
 	outputCodex("<i>This is gush. \\\[Picture of gush\\\] This is your brain on gush. \\\[Picture of a tremendously swollen pair of breasts\\\] Any questions?</i>\n\n");
 	outputCodex("<b>Warning:</b> Gush is presently illegal on over 96% of confederate worlds, almost certainly due to its addictive euphoria.");
@@ -1377,6 +1388,7 @@ public function gushCodexEntry():void
 public function treatmentCodexEntry():void
 {
 	clearOutputCodex();
+	showBust("9999");
 	outputCodex(header("The Treatment"));
 	outputCodex("The Treatment is something of an irregularity within the United Galactic Confederacy. A galaxy-wide ban on involuntary mind-control prevents similar perversions on other planets. The officially cited reason for this exemption dates back to New Texas' first contact with the U.G.C. hundreds of years ago during one of the first rushes, and the reasons behind that even further.");
 	outputCodex("\n\n");
@@ -1453,6 +1465,7 @@ public function treatmentCodexEntry():void
 public function synthSheathCodex():void
 {
 	clearOutputCodex();
+	showBust("9999");
 	outputCodex(header("Item: Xenogen Biotech SynthSheath"));
 	outputCodex("The XenoGen Biotech SynthSheath was a prototypical effort in their genital modification program. The device consists of a depopulated cellular matrix which functions by microsyringes on the lip and inside the shaft injecting a potent cocktail of specialized microsurgeons, equine genetic material, and a powerful cell division stimulant. In the case of a male or hermaphroditic subject, the sheath takes the cells of the existing genitals, treats them with their new genetic makeup and migrates them to their place in the cellular matrix of the sheath.\n\nFemale subjects attaching this device have their blood cells used to populate their new penis and testicles. The microsurgeons also insert a prostate near the device; genetic manipulation of the subject’s brain chemistry links the device to the subjects nervous, circulatory, and immune systems to prevent phantom limb disorder and tissue rejection.");
 	outputCodex("\n\n");
@@ -1461,7 +1474,7 @@ public function synthSheathCodex():void
 public function bionaholeCodex():void
 {
 	clearOutputCodex();
-	showBust("");
+	showBust("9999");
 	outputCodex(header("BionaHoles"));
 	outputCodex("<i>For thousands of years, sapients have concealed their dicks in boxes. Now, with the TamaniCorp Bionahole, the reverse is just as possible.</i>\n\n");
 	outputCodex("Perhaps the most controversial of TamaniCorp’s wide range of products, the BionaHole came about after a failed venture into all-natural artificial wombs. Though the main project went grossly over budget due to the insistence of the company CEO personally sampling a huge number of paid male test candidates, the scientists working on the artificial wombs managed to salvage some of the tech behind it and turn it into a high-end sex toy: the BionaHole.\n\nAt its core, the BionaHole is a cloned vagina - complete with lips, clitoris, and channel... and the ability to become excited when played with - suspended in a thick black tube laden with life-support tech to keep the sex organ alive, wet, and warm. The vaginal passage is designed with greatly increased sensitivity compared to its natural base, and will actually achieve orgasm through vigorous use. All BionaHoles are equipped with self-cleaning abilities and the capacity for minor self-repair thanks to a healthy dose of microsurgeons. So long as the owner regularly changes out the proprietary nutrient packs and keeps the flask charged (either through a small solar battery or a conventional electrical port), the cloned pussy can remain healthy and enjoyable for decades.\n\nBionaHoles reached their peak popularity shortly after launch with their modelled line, featuring cloned vaginas of recognizable sex symbols; like the galaxy’s number one hyperporn actress Nivas Oxonef to TamaniCorp’s own lascivious CEO. Since the product line’s introduction, several additional models have come out, modelled after mouths, anuses, and several exotic alien sexual organs.\n\nOf course, the BionaHole met with a great deal of controversy after its introduction, especially from anti-cloning political groups. Even today, the product remains fairly niche and is regarded as being fairly <i>“deviant”</i> by the mainstream sex industry, due to the living nature of the toy. However, it has certainly found a market for itself, especially among wealthy playboys who won’t settle for anything less than the <i>“real thing”</i> as a safer and more convenient alternative to intercourse - or simply a practice tool for their sexual escapades.");
@@ -1471,6 +1484,7 @@ public function bionaholeCodex():void
 public function gravCuffsCodex():void
 {
 	clearOutputCodex();
+	showBust("9999");
 	outputCodex(header("Grav Cuffs"));
 	outputCodex("<b>Manufactured By:</b> Humphard Inc");
 	outputCodex("\n\n");
@@ -1482,6 +1496,7 @@ public function gravCuffsCodex():void
 public function holodomCodex():void
 {
 	clearOutputCodex();
+	showBust("9999");
 	outputCodex(header("Holodom"));
 	outputCodex("<b>Description:</b> Hard light holographic condom, or \"holodom.\"");
 	outputCodex("\n<b>Manufactured By:</b> Humphard Inc");
@@ -1498,6 +1513,7 @@ public function holodomCodex():void
 public function AISystemsCodexEntry():void
 {
 	clearOutputCodex();
+	showBust("9999");
 	outputCodex(header("A Brief Overview of Synthetic Intelligences"))
 	outputCodex(blockHeader("Author - Linera Gerie"));
 	outputCodex("\n\n");
@@ -1522,6 +1538,7 @@ public function AISystemsCodexEntry():void
 public function mechanicsCodex():void
 {
 	clearOutputCodex();
+	showBust("9999");
 	outputCodex(header("Item Mechanics"));
 	outputCodex("<i>What the hell do all the weird little flags in the tooltips mean?</i>\n\n");
 	outputCodex("Many weapons and armors in the universe react in different ways to each other. To help identify possible interactions between these items, this Codex has been equipped with the capability to automatically identify and tag these with <b>item flags</b>. The estimated effects of the various flags are detailed below.");
@@ -1593,6 +1610,7 @@ public function Bess13CodexEntry():void
 public function panaraCodex():void
 {
 	clearOutputCodex();
+	showBust("9999");
 	outputCodex(header("Panara"));
 	outputCodex("<b>Planet Name:</b> Panara");
 	outputCodex("\n<b>Size:</b> Small");
@@ -1610,6 +1628,7 @@ public function panaraCodex():void
 public function branFlazinganCodex():void
 {
 	clearOutputCodex();
+	showBust("9999");
 	outputCodex(header("Bran Flazingan"));
 	outputCodex("<b>Full Name:</b> Bran Humpterhard Flazingan");
 	outputCodex("\n<b>Titles:</b> CEO of HumpHard Inc, Humphard Flazingan, The Man with the Giant Wad, Anything-Goes Flazingan, Humpty Dumpty.");
@@ -1637,6 +1656,7 @@ public function branFlazinganCodex():void
 public function humphardIncCodex():void
 {
 	clearOutputCodex();
+	showBust("9999");
 	outputCodex(header("Humphard Inc"));
 	outputCodex("<b>Company Name:</b> Humphard Incorporated.");
 	outputCodex("\n<b>Industry:</b> Sex product manufacturer and distributor.");

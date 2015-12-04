@@ -119,11 +119,11 @@ package classes.Items.Transformatives
 				//Chitin Limbs & Human Skin
 				if(changes < changeLimit)
 				{
-					var armLegSkinTF:Boolean = (pc.armType != GLOBAL.TYPE_MYR || (pc.legType != GLOBAL.TYPE_MYR && pc.legCount != GLOBAL.TYPE_HUMAN) || pc.legCount != 2 || (pc.hasFur() || pc.hasScales()));
+					var armLegSkinTF:Boolean = (pc.armType != GLOBAL.TYPE_MYR || (pc.legType != GLOBAL.TYPE_MYR && pc.legType != GLOBAL.TYPE_HUMAN) || pc.legCount != 2 || (pc.hasFur() || pc.hasScales()));
 					if(armLegSkinTF && rand(2) == 0)
 					{
 						//PC isn't a biped: 
-						if(pc.legCount != 2 || (pc.legType != GLOBAL.TYPE_MYR && pc.legCount != GLOBAL.TYPE_HUMAN))
+						if(pc.legCount != 2 || (pc.legType != GLOBAL.TYPE_MYR && pc.legType != GLOBAL.TYPE_HUMAN))
 						{
 							if(target.legTypeUnlocked(GLOBAL.TYPE_HUMAN))
 							{
@@ -309,12 +309,12 @@ package classes.Items.Transformatives
 					for(var b:int = 0; b < pc.bRows(); b++)
 					{
 						//See if testing row is smaller than smallest row
-						if(pc.breastRows[smallestBoobRow].breastRating() < pc.breastRows[b].breastRating()) smallestBoobRow = b;
+						if(pc.breastRows[smallestBoobRow].breastRating() > pc.breastRows[b].breastRating()) smallestBoobRow = b;
 					}
 					//Check if in size
 					if(pc.breastRows[smallestBoobRow].breastRating() < 18 && rand(2) == 0)
 					{
-						if(pc.breastRatingUnlocked(smallestBoobRow, pc.breastRows[smallestBoobRow].breastRatingRaw+1))
+						if(pc.breastRatingUnlocked(smallestBoobRow, pc.breastRows[smallestBoobRow].breastRatingRaw + 1))
 						{
 							output("\n\nYou feel a slight pressure building in your [pc.chest], and a stretching in your skin. Pleasure, not pain, hits you like a brick wall, and you find yourself grabbing your chest and caressing your tits as they grow in your hands. A moan escapes your lips as your body trembles with pleasure, almost orgasming from the sensation of growing titflesh.");
 							pc.breastRows[smallestBoobRow].breastRatingRaw++;
@@ -401,7 +401,7 @@ package classes.Items.Transformatives
 						else output("you’ve got a literal honeypot now!");
 						output("</b>");
 						pc.girlCumType = GLOBAL.FLUID_TYPE_HONEY;
-						pc.lust(Math.round(pc.lustMax()/2))
+						pc.lust(Math.round(pc.lustMax()/2));
 						changes++;
 					}
 					else output("\n\n" + pc.girlCumTypeLockedMessage());
@@ -507,7 +507,7 @@ package classes.Items.Transformatives
 				{
 					if(pc.tailTypeUnlocked(GLOBAL.TYPE_MYR) && pc.tailType != GLOBAL.TYPE_MYR)
 					{
-						if(pc.tailCountUnlocked(1) && pc.tailCount != 1)
+						if(pc.tailCountUnlocked(1))
 						{
 							if(pc.tailCount == 0) 
 							{

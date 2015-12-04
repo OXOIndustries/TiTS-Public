@@ -128,6 +128,16 @@ public function tittysnackWithIrellia(queenOffered:Boolean = false):void
 	output("\n\nQueen Irellia slumps back, her jiggling breasts significantly reduced but still very large. <i>“Now, was there something else I could assist you with?”</i> The scent of honey is thick in the air, as well as a slightly muskier, more feminine scent. She must have enjoyed herself even more than you!");
 	
 	processTime(24);
+	var ppIrellia:PregnancyPlaceholder = new PregnancyPlaceholder();
+	ppIrellia.breastRows[0].breastRatingRaw = 15;
+	ppIrellia.breastRows[0].breasts = 2;
+	ppIrellia.breastRows[1] = new BreastRowClass();
+	ppIrellia.breastRows[1].breastRatingRaw = 15;
+	ppIrellia.breastRows[1].breasts = 2;
+	ppIrellia.milkType = GLOBAL.FLUID_TYPE_NECTAR;
+	ppIrellia.milkMultiplier = 100;
+	ppIrellia.milkFullness = 100;
+	pc.milkInMouth(ppIrellia);
 	//Buff max energy by 40 for 2 days.
 	pc.createStatusEffect("Royal Nectar",40,0,0,0,false,"Charmed","Irellia's nectar has you feeling far peppier than normal.",false,2880)
 	//Fill energy.

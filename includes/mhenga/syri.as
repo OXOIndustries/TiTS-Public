@@ -9,16 +9,12 @@
 // SYRI_BETTING_STORAGE			: Stores credit bet or 9001 if ass betting.
 // SYRI_TALKS 					: Stores what talk scene to display next in the sequence. Scene 1 never repeats. YAY!
 
-public function showSyriName():void
+public function showSyri(nude:Boolean = false):void
 {
 	if(flags["MET_SYRI"] == undefined) userInterface.showName("AUSAR\nGIRL");
 	else userInterface.showName("\nSYRI");
-}
-public function showSyri(nude:Boolean = false):void
-{
 	if(!nude) userInterface.showBust("SYRI");
 	else userInterface.showBust("SYRI_NUDE");
-	showSyriName();
 }
 
 public function syriIsCrew():Boolean {
@@ -26,7 +22,7 @@ public function syriIsCrew():Boolean {
 }
 public function syriIsAFuckbuddy():Boolean
 {
-	if(flags["SYRI_TALKS"] != undefined) return true;
+	if(syriFriendsWithBenefits()) return true;
 	return false;
 }
 
@@ -229,7 +225,7 @@ public function pcBeatsSyriWhenSexBet():void {
 public function nevermindSyri():void
 {
 	clearOutput();
-	showSyriName();
+	showSyri();
 	author("Not Savin. HAH!");
 	output("<i>“You get off lucky this time, ausar,”</i> you say as you spin the panting dickgirl away. <i>“But next time you might not be so lucky.”</i>\n\nShe looks a little confused at the reprieve and maybe even a little hurt, but she doesn’t show it for long. Besides, you’ve got better things to do than waste all your time screwing around in a bar.");
 	processTime(3);
@@ -531,7 +527,7 @@ public function syriMorningMenu():void
 {
 	clearMenu();
 	addButton(0,"Talk",talkToSyriRouter);
-	if(flags["SYRI_TALKS"] != undefined) {
+	if(syriIsAFuckbuddy()) {
 		if(pc.lust() >= 33) addButton(1,"Sex",syriSexMenu);
 		else addDisabledButton(1,"Sex");
 	}
@@ -717,10 +713,9 @@ public function tellSyriYoureIlliterate():void {
 	{
 		output(" grabs her data slate. <i>“Well, we'll just have to rectify that, Captain Steele. Now, let's start you off with some new Rondell Ramus books... and maybe a little Capser van Beck. Oh, and Imono Flaest's new one - it's a bestseller already, and it just came out today. Fifty billion copies by the time I woke up.”</i>");
 		output("\n\n<i>“Here we go...”</i>  she grins, tapping her screen. A moment later your codex announces that you have mail.");
-		eventBuffer += "\n\n<b>New Email from Syri Dorna (BlastMaster@GalLink.org)!</b>";
-		MailManager.unlockEntry("syribooks", GetGameTimestamp());
+		goMailGet("syribooks");
 	}
-	else output(" looks at you a bit beratingly. <i>“Even after I set you that giant list of books? Don't tell me you just wanted to listen to me talk about books... Here, let's read some of these...”</i> She grabs her slate and scrolls through some short story titles, making suggestions for you to check out later.");
+	else output(" looks at you a bit beratingly. <i>“Even after I sent you that giant list? Don't tell me you just wanted to listen to me talk about books... Here, let's read some of these...”</i> She grabs her slate and scrolls through some short story titles, making suggestions for you to check out later.");
 	
 	syriBookTalkEpilogue();
 }

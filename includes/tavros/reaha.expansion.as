@@ -958,8 +958,8 @@ public function reahaAddictionTherapy():void
 	if (reahaAddiction() <= REAHA_ADDICTION_LOW) output(" lone patch");
 	else output(" the highest patch");
 	output(" on her inner thigh. You reach in, fingers teasing up her tender skin until she lets out a little gasp, body making one big, tit-jiggling quake that carries through from bubble butt to heaving bosom. Your fingers find the lip of the target pad, and you ply a single");
-	if (9999 == 0) output(" nail");
-	else if (9999 == 1) output(" claw");
+	if (pc.armType == GLOBAL.TYPE_HUMAN) output(" nail");
+	else if (InCollection(pc.armType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_BADGER, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_LEITHAN)) output(" claw");
 	else output(" digit");
 	output(" to peel it off. You give it one swift rip, yanking it off to a loud gasp of pain from the cow, and a sudden reddening of the skin where the patch was, soaking up the last remnants of its drugs. Reaha groans, scratching at the place the patch was.");
 	if (reahaAddiction() > REAHA_ADDICTION_LOW)
@@ -1109,6 +1109,7 @@ public function reahaAddictionTherapyNoWingWang():void
 	}
 	output(" You slowly start to slow your pace as Reaha recovers, her whole body quivering with the aftershocks brought on by your rough handling. She clings to you, arms and legs, moaning softly as she rides out the end of her orgasm.");
 	reaha.orgasm();
+	pc.milkInMouth(chars["REAHA"]);
 	
 	output("\n\n");
 	if (reahaAddiction() < REAHA_ADDICTION_LOW) output("<i>“Who needs patches when I’ve got you?”</i> Reaha purrs, nuzzling against you.");
@@ -1199,6 +1200,7 @@ public function reahaBreastMilkIceCream():void
 
 	processTime(20);
 	pc.credits -= 20;
+	pc.milkInMouth(chars["REAHA"]);
 	pc.lust(5);
 	reaha.lust(5);
 
@@ -1396,6 +1398,8 @@ public function reahaDommyFuxTimeWait():void
 	reaha.loadInCunt(pc);
 	reaha.orgasm();
 	pc.orgasm();
+	pc.milkInMouth(chars["REAHA"]);
+	pc.milkInMouth(chars["REAHA"]);
 
 	addNextButton(mainGameMenu);
 }
@@ -1472,9 +1476,9 @@ public function reahaMilkTalkHoneydew():void
 	output("\n\n<i>“Moo,”</i> she moans quietly. One glance at the blissed-out look on the cow-girl’s face tells you that she’s out of commission for a little while. Wiping a bit of honey from your cheeks");
 	if (pc.beardLength > 0) output(", which is no easy task thanks to your [pc.beard] getting stuck with it");
 	output(", you leave Reaha to get used to her new lactation.");
-
+	
+	pc.milkInMouth(chars["REAHA"]);
 	processTime(15);
-
 	addNextButton(mainGameMenu);
 }
 
@@ -1510,7 +1514,8 @@ public function reahaMilkTalkChocolac():void
 	if (!pc.isNude()) output(" sleeve");
 	else output(" arm");
 	output(", looking down at the spreading puddle of it on the floor. Delightful. Giving Reaha a pat on the tit, you leave her to get used to her new lactation.");
-
+	
+	pc.milkInMouth(chars["REAHA"]);
 	processTime(20);
 	addNextButton(mainGameMenu);
 }
@@ -1574,6 +1579,8 @@ public function reahaBootOffShip():void
 		if (shipLocation != "TAVROS HANGAR") output(" as soon as the taxi arrives");
 		else output(" and down onto the garage floor");
 		output(", stopping just long enough to say goodbye before she goes.");
+		
+		output("\n\n(<b>Reaha is no longer on your crew. You can find her again in Tavros Station.</b>)");
 
 		processTime(15);
 		addNextButton(mainGameMenu);
@@ -1620,6 +1627,8 @@ public function reahaBootOffShipGo2Tavros():void
 	output(",”</i> Reaha says as she’s getting aboard the taxi");
 	if (reahaConfidence() > REAHA_CONFIDENCE_HIGH) output(", stopping just long enough to give you a hug before she goes");
 	output(".");
+	
+	output("\n\n(<b>Reaha is no longer on your crew. You can find her again in Tavros Station.</b>)");
 
 	processTime(15);
 	addNextButton(mainGameMenu);
@@ -1635,7 +1644,9 @@ public function reahaBootOffShipNewTexas():void
 	output("<i>“Knock it off, Reaha, you’re staying,”</i> you insist. You can all but see her heart fall, and she lets out a pathetic whimper as you send her to collect her things. You tell her she’ll be fine -- this is her homeworld, after all. Nothing seems to cheer her up, though, and she looks on the verge of tears by the time you send her down the gangplank into the landing barn. ");
 	
 	output("\n\n<i>“I... I guess I’ll see you again. Probably all stupid and Treated,”</i> Reaha says, avoiding your eyes as she descends. <i>“Bye...”</i>");
-
+	
+	output("\n\n(<b>Reaha is no longer on your crew. You can find her again on New Texas.</b>)");
+	
 	processTime(15);
 	addNextButton(mainGameMenu);
 }
@@ -1670,7 +1681,9 @@ public function reahaBackAtBethsRejoin():void
 	output("\n\n<i>“You mean, back aboard your ship?”</i> she asks, clearly hopeful. You nod, and Reaha immediately hops into your arms, hugging you tight. <i>“Yay! I-I mean, uh, yes master. Ready whenever you want me back...”</i>");
 	
 	output("\n\nWith a chuckle, you ruffle Reaha’s strawberry hair and tell her to pack her bags. She grabs her one, small satchel from under her seat and says she’ll meet you back aboard ship. You send her off with a playful swat on the rear, making her anchor tattoo jiggle obscenely as she scampers off. ");
-
+	
+	output("\n\n(<b>Reaha has rejoined your crew!</b>)");
+	
 	processTime(15);
 
 	addNextButton(mainGameMenu);

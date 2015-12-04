@@ -6,7 +6,7 @@ import classes.GameData.MailManager;
 // Illegal character input check
 public function hasIllegalInput(sText:String = ""):Boolean
 {
-	var r:RegExp = /[^\w .!?]/g; // Match anything that isn't a word or a space (\w == [A-z0-9])
+	var r:RegExp = /[^\w .!?,;:@#$&()*-+=]/g; // Match anything that isn't a word or a space (\w == [A-z0-9])
 	return r.test(sText);
 }
 
@@ -879,7 +879,7 @@ public function chooseSexualGift():void {
 	addButton(8,"Bulgy",applySexualGift,"bulgy","Bulgy","Increases the size of your testicles and causes them to be more receptive to future size-increasing modifications. <i>This perk also applies if your character is female and gains testicles in the future.</i>");
 	addButton(9,"Extra Ardor",applySexualGift,"extra ardor","Extra Ardor","Ensures that you will have a higher sex drive than normal.");
 	addButton(10,"Ice Cold",applySexualGift,"ice cold","Ice Cold","Ensures that you will have a lower sex drive than normal.");
-	addButton(11,"None",applySexualGift,"none");
+	addButton(13,"None",applySexualGift,"none","No Sexual Gift","You will not begin with a natural sexual gift.");
 	if(pc.hasVagina()) 
 		addButton(14,"Back",chooseYourVagina);
 	else if(pc.hasCock()) 
@@ -966,6 +966,7 @@ public function chooseAPhysicalAffinity():void {
 	addButton(2,"Reflexes",applyAffinity,"reflexes","Reflexes","Increases your reaction time. It is a measurement of your piloting aptitude, but also comes in handy when having to avoid a surprise attack or trap.");
 	addButton(3,"Aim",applyAffinity,"aim","Aim","Increases your accuracy and how well you can aim both hand-held and ship-board ranged weaponry.");
 	addButton(4,"Willpower",applyAffinity,"willpower","Willpower","Increases your ability to counter sexual urges and addictions, resist psionics, and strengthen your own psionics, should a person of human descent somehow gain mind powers.");
+	addButton(13,"None",applyAffinity,"none","No Affinity","You will not have a natural affinity towards any certain attribute.");
 	addButton(14,"Back",chooseSexualGift);
 }
 
@@ -1467,6 +1468,9 @@ public function takeCeliseAsACrewMember():void {
 	//{merge}
 	output("\n\nCelise jiggles jubilantly, the accumulated mass of goo below her waist churning with excitement as she applauds. She gulps in a huge breath of air, ballooning herself comically before exhaling it in a quiet <i>“Yayyyy...”</i> You glance at her curiously, and she shyly covers her mouth, whispering, <i>“Sorry.”</i>");
 	output("\n\nWhatever, it’s time to get this show on the road! You grab the digikey off the shelf and step through the door.");
+	
+	output("\n\n(<b>Celise has joined your crew!</b>)");
+	
 	flags["RECRUITED_CELISE"] = 1;
 	flags["CELISE_ONBOARD"] = 1;
 	clearMenu();

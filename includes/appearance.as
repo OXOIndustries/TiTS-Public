@@ -50,7 +50,24 @@ public function appearance(target:Creature):void {
 		else output2(" using " + target.lowerUndergarment.longName + " for underwear,");
 		if(target.isNude() || target.upperUndergarment is EmptySlot) output2(" and letting your torso breathe, unrestricted by any undertop.");
 		else output2(" and girding your upper body with " + target.upperUndergarment.description + ".");
-		if(target.isNude()) {
+		if(!target.isNude() && ((target.isChestExposed() && target.hasBreasts()) || target.isCrotchExposed() || target.isAssExposed()))
+		{
+			output2(" Your outfit leaves little to the imagination, exposing your");
+			if (target.isChestExposed() && target.hasBreasts())
+			{
+				output2(" breasts");
+				if(target.isCrotchExposed() && target.isAssExposed()) output2(",");
+				else if(target.isCrotchExposed() || target.isAssExposed()) output2(" and");
+			}
+			if(target.isCrotchExposed())
+			{
+				output2(" crotch");
+				if(target.isAssExposed()) output2(" and");
+			}
+			if(target.isAssExposed()) output2(" ass");
+			output2(" to the world.");
+		}
+		if(target.isChestExposed() && target.isCrotchExposed() && target.isAssExposed()) {
 			if(target.exhibitionism() >= 100) output2(" You're a shameless exhibitionist and proud of it, flaunting your naked body and giving the entire galaxy quite an eyeful!");
 			else if(target.exhibitionism() >= 66) output2(" Your naked body is like a second outfit for you, giving you naughty thoughts when in the public's gaze.");
 			else if(target.exhibitionism() >= 50) output2(" Maybe you're some kind of nudist, but it's not like you mind being naked anyway.");
@@ -288,7 +305,13 @@ public function appearance(target:Creature):void {
 				if(target.earLength > 1) output2(num2Text(target.earLength) + " inches from your");
 				output2(" from your skull.");
 			}
-			if(target.antennae == 2) output2(" Floppy antennae also appear on your head, bouncing and swaying in the breeze.");
+			if(target.hasAntennae())
+			{
+				if(target.antennae == 1) output2(" A floppy [target.antenna] also appears");
+				else if(rand(2) == 0) output2(" " + StringUtil.capitalize(num2Text(target.antennae)) + " floppy [target.antennae] also grow");
+				else output2(" Floppy [target.antennae] also appear");
+				output2(" on your head, bouncing and swaying in the breeze.");
+			}
 		}
 		//not bald
 		else {
@@ -325,19 +348,32 @@ public function appearance(target:Creature):void {
 			else if(target.earType == GLOBAL.TYPE_GABILANI)
 			{
 				output2(" The " + target.hairDescript(true,true) + " on your head is parted by a pair of");
-				if(target.earLength > 1) output2(num2Text(target.earLength) + "-inch");
+				if(target.earLength > 1) output2(" " + num2Text(target.earLength) + "-inch");
 				output2(" long, triangular goblin ears.");
 			}
-			if(target.antennae == 2) {
-				if(target.earType == GLOBAL.TYPE_LAPINE) output2(" Limp antennae also grow from just behind your hairline, waving and swaying in the breeze with your ears.");
-				else output2(" Floppy antennae also grow from just behind your hairline, bouncing and swaying in the breeze.");
+			if(target.hasAntennae())
+			{
+				if(target.earType == GLOBAL.TYPE_LAPINE)
+				{
+					if(target.antennae == 1) output2(" A limp [target.antenna] also grows");
+					else if(rand(2) == 0) output2(" " + StringUtil.capitalize(num2Text(target.antennae)) + " limp [target.antennae] also grow");
+					else output2(" Limp [target.antennae] also grow");
+					output2(" from just behind your hairline, waving and swaying in the breeze with your ears.");
+				}
+				else
+				{
+					if(target.antennae == 1) output2(" A floppy [target.antenna] also grows");
+					else if(rand(2) == 0) output2(" " + StringUtil.capitalize(num2Text(target.antennae)) + " floppy [target.antennae] also grow");
+					else output2(" Floppy [target.antennae] also grow");
+					output2(" from just behind your hairline, bouncing and swaying in the breeze.");
+				}
 			}
 		}
 		if(target.earType == GLOBAL.TYPE_LEITHAN)
 		{
-			output2(" In addition, ");
-			if(target.earLength > 1) output2(" " + num2Text(target.earLength) + "-inch long ");
-			output2("pointed elfin ears jut out below them, giving you exceptional hearing.");
+			output2(" In addition,");
+			if(target.earLength > 1) output2(" " + num2Text(target.earLength) + "-inch long");
+			output2(" pointed elfin ears jut out below them, giving you exceptional hearing.");
 		}
 		//Tongue
 		if(target.tongueType == GLOBAL.TYPE_SNAKE) output2(" A snake-like [target.tongueNoun] occasionally flits between your lips, tasting the air.");
@@ -515,7 +551,13 @@ public function appearance(target:Creature):void {
 		}
 		//Done with head bits. Move on to body stuff
 		//Horse legType, other legType texts appear lower
-		if(target.legType == GLOBAL.TYPE_MLP) output2(" From the waist down, you have an incredibly cute and cartoonish parody of a horse's body, with all four legs ending in flat, rounded feet.");
+		if(target.legType == GLOBAL.TYPE_MLP)
+		{
+			output2(" From the waist down, you have an incredibly cute and cartoonish parody of a horse's body, with");
+			if(target.legCount == 2) output2(" both legs");
+			else output2(" all " + num2Text(target.legCount) + " legs");
+			output2(" ending in flat, rounded feet.");
+		}
 		else if(target.legType == GLOBAL.TYPE_LIZAN && target.legCount == 6) output2(" From the waist down, you have a powerful, six-legged body that looks like a crossbreed of a lizard and a horse.");
 		else if(target.isTaur())
 		{
@@ -627,16 +669,19 @@ public function appearance(target:Creature):void {
 		}
 		else if(target.tailType == GLOBAL.TYPE_DRIDER || target.tailType == GLOBAL.TYPE_ARACHNID) {
 			output2(" A large, spherical spider-abdomen has grown out from your backside, covered in shiny black chitin. Though it's heavy and bobs with every motion, it doesn't seem to slow you down.");
+			/*
 			if(target.tailVenom > 50 && target.tailVenom < 80) output2(" Your bulging arachnid posterior feels fairly full of webbing.");
 			if(target.tailVenom >= 80 && target.tailVenom < 100) output2(" Your arachnid rear bulges and feels very full of webbing.");
 			if(target.tailVenom == 100) output2(" Your swollen spider-butt is distended with the sheer amount of webbing it's holding.");
+			*/
 		}
 		else if(target.tailType == GLOBAL.TYPE_BEE) {
 			output2(" A large, insectile abdomen dangles from just above your backside, bobbing with its own weight as you shift. It is covered in hard black chitin and tipped with a needle-like stinger.");
 			/*
 			if(target.tailVenom > 50 && target.tailVenom < 80) output2(" A single drop of poison hangs from your exposed stinger.");
 			if(target.tailVenom >= 80 && target.tailVenom < 100) output2(" Poisonous bee venom coats your stinger completely.");
-			if(target.tailVenom == 100) output2(" Venom drips from your poisoned stinger regularly.");*/
+			if(target.tailVenom == 100) output2(" Venom drips from your poisoned stinger regularly.");
+			*/
 		}
 		else if(target.tailType == GLOBAL.TYPE_MYR) {
 			output2(" A large, insectile abdomen dangles from just above your backside, bobbing with its own weight as you shift. It is covered in hard " + target.scaleColor + " chitin that is smooth to the touch.");
@@ -742,8 +787,8 @@ public function appearance(target:Creature):void {
 		if(target.hasTailFlag(GLOBAL.FLAG_OVIPOSITOR))
 		{
 			output2(" In addition,");
-			if(target.tailCount == 1) output2(" it is an organ that is");
-			else output2(" they are organs that are");
+			if(target.tailCount == 1) output2(" it is an organ");
+			else output2(" they are organs");
 			output2(" capable of laying eggs into an orifice.");
 		}
 		
@@ -856,52 +901,49 @@ public function appearance(target:Creature):void {
 		}
 
 		// Mimbrane feet for applicable legTypes (any pair of humanoid legs with existing feet)!
-		if (target.legCount == 2 && !target.isTaur())
+		if (target.isBiped() && target.hasFeet() && target.hasToes())
 		{
-			if (!InCollection(target.legType, GLOBAL.TYPE_NAGA, GLOBAL.TYPE_GOOEY, GLOBAL.TYPE_DRIDER))
+			if (target.hasStatusEffect("Mimbrane Foot Left") || target.hasStatusEffect("Mimbrane Foot Right"))
 			{
-				if (target.hasStatusEffect("Mimbrane Foot Left") || target.hasStatusEffect("Mimbrane Foot Right"))
-				{
-					var bothFeet:Boolean = false;
-					feedVal = 0;
+				var bothFeet:Boolean = false;
+				feedVal = 0;
 
-					if (target.hasStatusEffect("Mimbrane Foot Left") && target.hasStatusEffect("Mimbrane Foot Right")) bothFeet = true;
-					
-					if (!bothFeet)
+				if (target.hasStatusEffect("Mimbrane Foot Left") && target.hasStatusEffect("Mimbrane Foot Right")) bothFeet = true;
+				
+				if (!bothFeet)
+				{
+					if (target.hasStatusEffect("Mimbrane Foot Left")) feedVal = target.statusEffectv3("Mimbrane Foot Left");
+					else feedVal = target.statusEffectv3("Mimbrane Foot Right");
+				}
+				// Don't foget to set feedVal for bothHands!
+				else
+				{
+					//The feed values should be synced for feet, so use one of them!
+					feedVal = target.statusEffectv3("Mimbrane Foot Right");
+				}
+
+				if (feedVal >= 3)
+				{
+					if (feedVal < 8)
 					{
-						if (target.hasStatusEffect("Mimbrane Foot Left")) feedVal = target.statusEffectv3("Mimbrane Foot Left");
-						else feedVal = target.statusEffectv3("Mimbrane Foot Right");
+						output2(" Your");
+						if (bothFeet) output2(" [target.feet] appear");
+						else output2(" [target.foot] appears");
+						output2(" to be slightly distended.");
 					}
-					// Don't foget to set feedVal for bothHands!
+					else if (feedVal < 13)
+					{
+						output2(" Your");
+						if (bothFeet) output2(" [target.feet] appear");
+						else output2(" [target.foot] appears");
+						output2(" puffy and inflated.");
+					}
 					else
 					{
-						//The feed values should be synced for feet, so use one of them!
-						feedVal = target.statusEffectv3("Mimbrane Foot Right");
-					}
-
-					if (feedVal >= 3)
-					{
-						if (feedVal < 8)
-						{
-							output2(" Your");
-							if (bothFeet) output2(" [target.feet] appear");
-							else output2(" [target.foot] appears");
-							output2(" to be slightly distended.");
-						}
-						else if (feedVal < 13)
-						{
-							output2(" Your");
-							if (bothFeet) output2(" [target.feet] appear");
-							else output2(" [target.foot] appears");
-							output2(" puffy and inflated.");
-						}
-						else
-						{
-							output2(" Your");
-							if (bothFeet) output2(" [target.feet] appear");
-							else output2(" [target.foot] appears");
-							output2(" unusually large and somewhat swollen, almost engorged.");
-						}
+						output2(" Your");
+						if (bothFeet) output2(" [target.feet] appear");
+						else output2(" [target.foot] appears");
+						output2(" unusually large and somewhat swollen, almost engorged.");
 					}
 				}
 			}
@@ -1094,7 +1136,7 @@ public function appearance(target:Creature):void {
 				}
 				else
 				{
-					if(target.isMilkTank() && rand(2) == 0) output2(" <b>Your " + target.breastDescript(0) + " are so full that they might burst! They radiate a constant yet rhythmic pulse of pressure, a sign that you are quite the productive [target.milk] factory!</b>");
+					if(target.isMilkTank() && rand(2) == 0) output2(" <b>Your " + target.breastDescript(0) + " are so full that they might burst! They radiate a constant yet rhythmic pulse of pressure, a sign that you are quite the productive [target.milkNoun] factory!</b>");
 					else if(target.isMilkTank()) output2(" Despite the uncomfortable fullness, you are at ease - you know your enhanced [target.fullChest] will never stop lactating, no matter what.");
 					else output2(" <b>Your " + target.breastDescript(0) + " are so full that they feel about to burst! Spending time like this is going to slow your milk production.</b>");
 				}
@@ -1197,7 +1239,7 @@ public function appearance(target:Creature):void {
 				}
 				else
 				{
-					if(target.isMilkTank() && rand(2) == 0) output2(" <b>Your [target.fullChest] are so full that they might burst! They radiate a constant yet rhythmic pulse of pressure, a sign that you are quite the productive [target.milk] factory!</b>");
+					if(target.isMilkTank() && rand(2) == 0) output2(" <b>Your [target.fullChest] are so full that they might burst! They radiate a constant yet rhythmic pulse of pressure, a sign that you are quite the productive [target.milkNoun] factory!</b>");
 					else if(target.isMilkTank()) output2(" Despite the uncomfortable fullness, you are at ease - you know your enhanced [target.fullChest] will never stop lactating, no matter what.");
 					else output2(" <b>Your [target.fullChest] are so full that they feel about to burst! Spending time like this is going to slow your milk production.</b>");
 				}
@@ -1220,10 +1262,10 @@ public function appearance(target:Creature):void {
 		if (target.hairType == GLOBAL.HAIR_TYPE_GOO || target.hasStatusEffect("Goo Vent") || target.hasStatusEffect("Goo Crotch"))
 		{
 			output2("\n\nSince ");
-			if(pc.isGoo()) output2("you're ");
+			if(target.isGoo()) output2("you're ");
 			else output2("some parts of you are ");
 			output2("made of goo, you can adjust ");
-			if(pc.isGoo()) output2("your body");
+			if(target.isGoo()) output2("your body");
 			else output2("them");
 			output2(" if need be.");
 			addGhostButton(btnIndex++,"Shift Goo",gooShiftMenu,undefined,"Shift Goo","Adjust the gooey parts of your body.");
@@ -1292,18 +1334,59 @@ public function appearance(target:Creature):void {
 public function crotchStuff(target:Creature):void
 {
 	var rando:int = 0;
-	if(target.hasCock() || target.hasVagina()) {
+	if(target.hasGenitals()) {
 		output2("\n\n");
 		//Crotchial stuff - mention snake
-		if(target.hasStatusEffect("Genital Slit") && target.hasCock()) {
+		if(target.hasStatusEffect("Genital Slit") && target.hasCock())
+		{
 			output2("Your masculine endowment");
 			if((target.hasVagina() && target.hasCock()) || target.totalCocks() > 1) output2("s are ");
 			else output2(" is ");
 			output2("concealed within a well-hidden slit when not in use, though when the need arises, you can part your concealed entrance and reveal your true self. ");
 			if(target.isTaur()) output2("You're probably one of the most modest taurs out there because of this. ");
 		}
-		else if(target.isTaur() && (target.hasCock() || target.hasVagina()) && target.originalRace == "half-leithan") output2("Your sexual equipment is positioned at the back of your tauric hindquarters, rather than at your humanoid waist. ");
-		else if(target.isTaur() && (target.hasCock() || target.hasVagina())) output2("Your sexual equipment is no longer below your waist, but instead at the back of your equine hindquarters. ");
+		else if(target.genitalLocation() == 0)
+		{
+			output2("Your sexual equipment is located at your");
+			if(!target.isHuman() || !target.isHalfHuman()) output2(" humanoid");
+			output2(" waist. ");
+		}
+		else if(target.genitalLocation() == 1)
+		{
+			output2("Your sexual equipment is located in the middle of your");
+			if(target.legCount == 1 && target.isNaga()) output2(" long tail");
+			else output2(" lower body");
+			output2(". ");
+		}
+		else if(target.isTaur() && target.genitalLocation() == 2 && target.originalRace == "half-leithan")
+		{
+			output2("Your sexual equipment is positioned at the back of your tauric hindquarters, rather than at your humanoid waist. ");
+		}
+		else if(target.isTaur() && target.genitalLocation() == 2)
+		{
+			output2("Your sexual equipment is");
+			if(target.race() != target.originalRace) output2(" no longer below your waist, but instead");
+			output2(" at the back of your");
+			if(target.legType == GLOBAL.TYPE_EQUINE) output2(" equine");
+			else if(target.legType == GLOBAL.TYPE_BOVINE) output2(" bovine");
+			else output2(" tauric");
+			output2(" hindquarters. ");
+		}
+		else if(target.genitalLocation() == 2)
+		{
+			output2("Your sexual equipment is located at your rear");
+			if(target.legCount > 1 && target.isNaga()) output2(" tails");
+			else if(target.legCount > 1) output2(" legs");
+			output2(". ");
+		}
+		else if(target.genitalLocation() == 3)
+		{
+			output2("Your sexual equipment is located");
+			if(target.isDrider()) output2(" at the end of your drider abdomen");
+			else if(target.legCount == 1 && target.isNaga()) output2(" on the underside of your long tail");
+			else output2(" on the underside of your lower body");
+			output2(". ");
+		}
 		
 		//SINGLE DICKS!
 		if(target.cockTotal() == 1) {
@@ -1325,7 +1408,6 @@ public function crotchStuff(target:Creature):void
 			output2("Where a penis would normally be located, you have instead grown your " + target.multiCockDescript() + ":");
 			while(temp < target.cocks.length) 
 			{
-				
 				//middle cock description
 				if(rando == 0) {
 					if(temp == 0)output2("\nYour first ");
@@ -1340,20 +1422,20 @@ public function crotchStuff(target:Creature):void
 					}
 				}
 				if(rando == 1) {
-					output2("\nYour ");
+					output2("\nYour " + num2Ordinal(temp + 1) + " ");
 					output2(target.cockDescript(temp) + " is " + Math.round(10*target.cocks[temp].cLength())/10 + " inches long and ");
 					if(Math.floor(target.cocks[temp].thickness()) >= 2) output2(num2Text(Math.round(target.cocks[temp].thickness() * 10)/10) + " inches thick.");
 					else {
-						if(target.cocks[temp].thickness() == 1) output2("one inch thick.");
+						if(target.cocks[temp].thickness() == 1) output2("one-inch thick.");
 						else output2(Math.round(target.cocks[temp].thickness()*10)/10 + " inches thick.");
 					}
 				}
 				if(rando == 2) {
-					output2("\nThis ");
+					output2("\nThe " + num2Ordinal(temp + 1) + " ");
 					output2(target.cockDescript(temp) + " is " + Math.round(10*target.cocks[temp].cLength())/10 + " inches long and ");
 					if(Math.floor(target.cocks[temp].thickness()) >= 2) output2(num2Text(Math.round(target.cocks[temp].thickness() * 10)/10) + " inches thick.");
 					else {
-						if(target.cocks[temp].thickness() == 1) output2("one inch thick.");
+						if(target.cocks[temp].thickness() == 1) output2("one-inch thick.");
 						else output2(Math.round(target.cocks[temp].thickness()*10)/10 + " inches thick.");
 					}
 				}
@@ -1369,7 +1451,7 @@ public function crotchStuff(target:Creature):void
 				}
 				dickBonusForAppearance(target, temp);
 				temp++;
-				rando++
+				rando++;
 				if(rando > 3) rando = 0;
 			}
 			//All sheathed
@@ -1480,16 +1562,9 @@ public function crotchStuff(target:Creature):void
 				else output2("Thick streams of [target.girlCum] drool constantly from ");
 			}
 			//Different description based on vag looseness
-			if(target.vaginas[0].looseness() < 2) output2("your " + target.vaginasDescript() + ".");
-			else if(target.vaginas[0].looseness() < 4) {
-				output2("your " + target.vaginasDescript() + ", ");
-				if(target.totalVaginas() > 1) output2("its ");
-				else output2("their ");
-				output2("lips slightly parted.");
-			}
-			else {
-				output2("the massive hole that is your " + target.vaginasDescript() + ".");
-			}
+			if(target.vaginas[0].looseness() < 2) output2("your " + target.vaginaDescript(0) + ".");
+			else if(target.vaginas[0].looseness() < 4) output2("your " + target.vaginaDescript(0) + ", their lips slightly parted.");
+			else output2("the massive hole that is your " + target.vaginaDescript(0) + ".");
 			//Flavor
 			vaginaBonusForAppearance(target, 0, false);
 			//Ovipositor
@@ -1552,11 +1627,11 @@ public function crotchStuff(target:Creature):void
 				{
 					if (target.statusEffectv3("Mimbrane Pussy") < 8)
 					{
-						output2(" Your pussy appears slightly swollen from the mimbrane.");
+						output2(" It appears slightly swollen from the mimbrane.");
 					}
 					else if (target.statusEffectv3("Mimbrane Pussy") < 13)
 					{
-						output2(" Your pussy appears noticably inflated");
+						output2(" It appears noticably inflated");
 						if (target.isCrotchGarbed())
 						{
 							output2(" and creates a slight bulge beneath your");
@@ -1567,7 +1642,7 @@ public function crotchStuff(target:Creature):void
 					}
 					else
 					{
-						output2(" Your pussy appears delightfully plump");
+						output2(" It appears delightfully plump");
 						if (target.isCrotchGarbed())
 						{
 							output2(", creating an undeniable bulge in your");
@@ -1586,7 +1661,7 @@ public function crotchStuff(target:Creature):void
 		}
 	}
 	//Genderless lovun'
-	if(!target.hasVagina() && !target.hasCock()) output2("\n\nYou have a curious lack of any sexual endowments.");
+	if(!target.hasGenitals()) output2("\n\nYou have a curious lack of any sexual endowments.");
 	//BUNGHOLIO
 	if(target.ass != null) {
 		output2("\n\nYou have one " + target.assholeDescript() + ", placed between your cheeks where it belongs");
@@ -1793,6 +1868,22 @@ public function dickBonusForAppearance(target:Creature, x:int = 0):void
 		}
 	}
 	else trace("NO KNOT");
+	// Mimbranes
+	if(x == 0 && target.hasStatusEffect("Mimbrane Cock") && target.statusEffectv3("Mimbrane Cock") > 3)
+	{
+		if (target.isCrotchGarbed()) output2(" It feels");
+		else output2(" It looks");
+		if (target.statusEffectv3("Mimbrane Cock") < 8) output2(" slightly swollen");
+		else if (target.statusEffectv3("Mimbrane Cock") < 13) output2(" noticably inflated");
+		else output2(" unnaturally plump");
+		if (target.isCrotchGarbed())
+		{
+			output2(" under your");
+			if (target.armor.type == GLOBAL.ARMOR) output2(" armor");
+			else output2(" clothing");
+		}
+		output2(" due to the occupying mimbrane.");
+	}
 	//Ovipositor
 	if(target.cocks[x].hasFlag(GLOBAL.FLAG_OVIPOSITOR))
 	{

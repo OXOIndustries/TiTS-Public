@@ -163,7 +163,8 @@
 
 			this.breastRows[0].breastRatingRaw = 0;
 			this.nippleColor = "black";
-			this.milkMultiplier = 0;
+			this.milkMultiplier = 100;
+			this.milkFullness = 100;
 			this.milkType = GLOBAL.FLUID_TYPE_HONEY;
 			//The rate at which you produce milk. Scales from 0 to INFINITY.
 			this.milkRate = 0;

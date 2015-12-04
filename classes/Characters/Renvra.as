@@ -15,7 +15,7 @@
 	{
 		public function Renvra() 
 		{
-			this._latestVersion = 2;
+			this._latestVersion = 3;
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
@@ -181,6 +181,11 @@
 			// eg a Pregnancy with 10% chance and a father with 1.0 virility == 10% chance of happening (ignoring mother fertility).
 			dataObject.cumQualityRaw = 1.0;
 			dataObject.cumQualityMod = 0.0;
+		}
+		public function UpgradeVersion2(dataObject:Object):void
+		{
+			dataObject.milkMultiplier = 100;
+			dataObject.milkFullness = 100;
 		}
 		//Gotta reset 'dem balls!'
 		override public function orgasm(): void {

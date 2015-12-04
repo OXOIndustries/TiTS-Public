@@ -108,6 +108,7 @@ public function assistShellyLaying():void
 	output("\n\nYou tell her you’ll be sure to come back to help again some time, and leave with one of the smaller eggs in your hand.\n\n");
 	processTime(40+rand(10));
 	pc.lust(15+rand(3));
+	pc.milkInMouth(getShellyPregContainer());
 	pc.girlCumInMouth(getShellyPregContainer());
 	//[gain small egg](just restores small hp amount unless you wanna make it like coc eggs)
 	var foundLootItems:Array = new Array();
@@ -123,7 +124,11 @@ public function assistShellyLaying():void
 public function getShellyPregContainer():PregnancyPlaceholder
 {
 	var pregContainer:PregnancyPlaceholder = new PregnancyPlaceholder();
-	pregContainer.createStatusEffect("Infertile");	
+	pregContainer.createStatusEffect("Infertile");
+	pregContainer.breastRows[0].breastRatingRaw = 4;
+	pregContainer.milkType = GLOBAL.FLUID_TYPE_VANILLA;
+	pregContainer.milkMultiplier = 100;
+	pregContainer.milkFullness = 100;
 	return pregContainer;
 }
 

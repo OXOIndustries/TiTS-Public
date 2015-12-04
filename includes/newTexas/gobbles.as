@@ -69,11 +69,11 @@ public function supGobbles2014CanadaEdition():void
 	else output("<i>“What’s wrong?”</i>");
 	output(" you ask.");
 
-	// 9999 - add tit milker check
-	if (StatTracking.getStat("milkers/prostate milker uses") > 0)
+	// add tit milker check
+	if (StatTracking.getStat("milkers/breast milker uses") > 0)
 	{
 		output("  You’re not used to cows coming right up and asking for help. There’s attendants for that, after all.");
-		if (StatTracking.getStat("milkers/prostate milker uses") > 0) output(" Not that you wouldn’t mind a little hands-on time with the cute little redhead.");
+		if (StatTracking.getStat("milkers/breast milker uses") > 0) output(" Not that you wouldn’t mind a little hands-on time with the cute little redhead.");
 	}
 	
 	output("\n\n<i>“The milkers,”</i> she starts, almost choking on her words. She chews on her lip and her nose twitches cutely, making a ruby-red ring it in jiggle. <i>“They, um, they can’t help me. I jam them up. I’m really sorry, but you seem nice. Could you maybe... maybe milk me, eh?”</i>");
@@ -94,6 +94,19 @@ public function noThanksGobbles():void
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
+}
+
+public function getCanadaPregContainer():PregnancyPlaceholder
+{
+	var ppCanada:PregnancyPlaceholder = new PregnancyPlaceholder();
+	ppCanada.breastRows[0].breasts = 2;
+	ppCanada.breastRows[0].breastRatingRaw = 30;
+	ppCanada.milkType = GLOBAL.FLUID_TYPE_MILKSAP;
+	ppCanada.milkMultiplier = 100;
+	ppCanada.milkFullness = 100;
+	if(!ppCanada.hasVagina()) ppCanada.createVagina();
+	ppCanada.girlCumType = GLOBAL.FLUID_TYPE_HONEY;
+	return ppCanada;
 }
 
 public function orderUpOneTurkeySlut():void
@@ -136,7 +149,9 @@ public function orderUpOneTurkeySlut():void
 	
 	output("\n\nShe blushes when you ask her and admits <i>“I’ve got a few mods down there, too. I’m really tasty now. Do you want to have a taste, eh?”</i>");
 	flags["GOBBLES_SEXYTIMES_STARTED"] = 1;
+	var ppCanada:PregnancyPlaceholder = getCanadaPregContainer();
 	pc.lust(5);
+	pc.milkInMouth(ppCanada);
 	processTime(10);
 
 	// [Sweet Pussy Pie] [Nah]
@@ -186,7 +201,9 @@ public function orderUpOneTurkeyCuntPie():void
 	
 	output("\n\nYou slowly pull yourself out from the cow’s backside, giving her a parting spank and watching appreciatively as her turkey-themed buttplug jiggles a little deeper into her. She coos, cupping one of her now-smaller breasts and wiggling her hips for you. That ass of hers is amazing... you could lose yourself in it if you aren’t careful. You’d like nothing more that to cuddle up with that butt, to say nothing of the huge boobs blatantly visible between the cow’s cum-splattered thighs.");
 	
+	var ppCanada:PregnancyPlaceholder = getCanadaPregContainer();
 	pc.lust(10);
+	pc.girlCumInMouth(ppCanada);
 	processTime(10);
 
 	if (pc.hasCock())

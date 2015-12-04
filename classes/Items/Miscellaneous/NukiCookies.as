@@ -180,46 +180,58 @@
 				//Eye type changed to normal wiv color change
 				if(pc.eyeType != GLOBAL.TYPE_HUMAN && rand(4) == 0 && changes < changeLimit)
 				{
-					kGAMECLASS.output("\n\nEverything is getting really fuzzy. You can barely see your hand in front of your face, for crying out loud. Unreasoning terror wells up inside you; are you going blind? Was there some kind of programming mishap with the microsurgeons buried in these cookies?\n\nYou get your answer after a half-minute of panic when your vision returns to normal, even if the color balance seems a little off. You check yourself with the Codex’s camera function and discover that your eyes have changes to a far plainer design. <b>You’ve got eyes like a terran or dozens of other species");
-					if(pc.eyeColor != "brown") kGAMECLASS.output(", and yours turned brown in the process");
-					kGAMECLASS.output(".</b>");
-					pc.eyeType = GLOBAL.TYPE_HUMAN;
-					pc.eyeColor = "brown";
-					changes++;
+					if(pc.eyeTypeUnlocked(GLOBAL.TYPE_HUMAN))
+					{
+						kGAMECLASS.output("\n\nEverything is getting really fuzzy. You can barely see your hand in front of your face, for crying out loud. Unreasoning terror wells up inside you; are you going blind? Was there some kind of programming mishap with the microsurgeons buried in these cookies?\n\nYou get your answer after a half-minute of panic when your vision returns to normal, even if the color balance seems a little off. You check yourself with the Codex’s camera function and discover that your eyes have changes to a far plainer design. <b>You’ve got eyes like a terran or dozens of other species");
+						if(pc.eyeColor != "brown") kGAMECLASS.output(", and yours turned brown in the process");
+						kGAMECLASS.output(".</b>");
+						pc.eyeType = GLOBAL.TYPE_HUMAN;
+						pc.eyeColor = "brown";
+						changes++;
+					}
+					else kGAMECLASS.output("\n\n" + pc.eyeTypeLockedMessage());
 				}
 				//Nonhair to hair
 				if((pc.hairType == GLOBAL.HAIR_TYPE_FEATHERS || pc.hairType == GLOBAL.HAIR_TYPE_GOO || pc.hairType == GLOBAL.HAIR_TYPE_TENTACLES) && rand(4) == 0 && changes < changeLimit)
 				{
-					//Feathers
-					if(pc.hairType == GLOBAL.HAIR_TYPE_FEATHERS)
+					if(pc.hairTypeUnlocked(GLOBAL.HAIR_TYPE_REGULAR))
 					{
-						kGAMECLASS.output("\n\nA feather falls past your eye - one of yours. More follow it. One after another, the feathers that line your head are detaching and drifting to the ground. An insane part of you feels compelled to gather them up - to somehow keep them from leaving you. You soon forget that in the face of an incredible itch. Both hands go to your bared scalp, scratching like mad as tiny filaments emerge from your skull.\n\nYou itch and itch, feeling the individual threads thicken into a short man of ruddy brown hair. <b>You have brown hair!</b>");
+						//Feathers
+						if(pc.hairType == GLOBAL.HAIR_TYPE_FEATHERS)
+						{
+							kGAMECLASS.output("\n\nA feather falls past your eye - one of yours. More follow it. One after another, the feathers that line your head are detaching and drifting to the ground. An insane part of you feels compelled to gather them up - to somehow keep them from leaving you. You soon forget that in the face of an incredible itch. Both hands go to your bared scalp, scratching like mad as tiny filaments emerge from your skull.\n\nYou itch and itch, feeling the individual threads thicken into a short man of ruddy brown hair. <b>You have brown hair!</b>");
+						}
+						//Goo
+						else if(pc.hairType == GLOBAL.HAIR_TYPE_GOO)
+						{
+							kGAMECLASS.output("\n\nYour gooey hair shudders, the effect sending jiggles through the whole mass. You put a hand to it, wondering what could be wrong, but it contracts again. This time, the surface feels vaguely... fibrous, like someone made gelatin in a broom. Unsure what to do, you feel around while it happens again... and again... and again. Each time, there’s less goo and more... hair. In the span of a few minutes, <b>you go from having amorphous locks to brown hair of similar length.</b>");
+						}
+						//Tentacles
+						else if(pc.hairType == GLOBAL.HAIR_TYPE_TENTACLES)
+						{
+							kGAMECLASS.output("\n\nThe tentacles on your head go limp one after another, and you realize that the feeling you get from them is gradually dying away, replaced with the passive sensation of them limp against your skull. Poking and prodding at them, you discover that they’re splitting apart into hundreds upon hundreds of thin, flexible filaments. In no time flat, <b>you’ve got a head of lustrous brown hair in place of tentacles.</b>");
+						}
+						pc.hairType = GLOBAL.HAIR_TYPE_REGULAR;
+						pc.hairColor = "brown";
+						changes++;
 					}
-					//Goo
-					else if(pc.hairType == GLOBAL.HAIR_TYPE_GOO)
-					{
-						kGAMECLASS.output("\n\nYour gooey hair shudders, the effect sending jiggles through the whole mass. You put a hand to it, wondering what could be wrong, but it contracts again. This time, the surface feels vaguely... fibrous, like someone made gelatin in a broom. Unsure what to do, you feel around while it happens again... and again... and again. Each time, there’s less goo and more... hair. In the span of a few minutes, <b>you go from having amorphous locks to brown hair of similar length.</b>");
-					}
-					//Tentacles
-					else if(pc.hairType == GLOBAL.HAIR_TYPE_TENTACLES)
-					{
-						kGAMECLASS.output("\n\nThe tentacles on your head go limp one after another, and you realize that the feeling you get from them is gradually dying away, replaced with the passive sensation of them limp against your skull. Poking and prodding at them, you discover that they’re splitting apart into hundreds upon hundreds of thin, flexible filaments. In no time flat, <b>you’ve got a head of lustrous brown hair in place of tentacles.</b>");
-					}
-					pc.hairType = GLOBAL.HAIR_TYPE_REGULAR;
-					pc.hairColor = "brown";
-					changes++;
+					else kGAMECLASS.output("\n\n" + pc.hairTypeLockedMessage());
 				}
 				//Nuki ears
 				if(pc.earType != GLOBAL.TYPE_KUITAN && rand(4) == 0 && changes < changeLimit)
 				{
-					kGAMECLASS.output("\n\nAn itch radiates out from the top of your head, migrating down the sides to your ears. Nerves fizzle and misfire as your flesh remoulds. Your eardrums pop a half-dozen times in a row. You wince a time or two, then reach to try and feel the changes. Silky fur brushes against your fingertips, revealing a rounded pair of ears - just like a tanuki or kui-tan!");
-					pc.earType = GLOBAL.TYPE_KUITAN;
-					changes++;
+					if(pc.earTypeUnlocked(GLOBAL.TYPE_KUITAN))
+					{
+						kGAMECLASS.output("\n\nAn itch radiates out from the top of your head, migrating down the sides to your ears. Nerves fizzle and misfire as your flesh remoulds. Your eardrums pop a half-dozen times in a row. You wince a time or two, then reach to try and feel the changes. Silky fur brushes against your fingertips, revealing a rounded pair of ears - just like a tanuki or kui-tan!");
+						pc.earType = GLOBAL.TYPE_KUITAN;
+						changes++;
+					}
+					else kGAMECLASS.output("\n\n" + pc.earTypeLockedMessage());
 				}
 				//Nuki tail - make sure TF locks work. No gettin’ rid of snakebuttez
 				if(pc.tailType != GLOBAL.TYPE_KUITAN && rand(4) == 0 && changes < changeLimit)
 				{
-					if (target.tailTypeUnlocked(GLOBAL.TYPE_KUITAN))
+					if (pc.tailTypeUnlocked(GLOBAL.TYPE_KUITAN))
 					{
 						//From no tail
 						if(pc.tailCount == 0)
@@ -293,53 +305,69 @@
 							changes++;
 						}
 					}
-					else kGAMECLASS.output("\n\n" + target.tailTypeLockedMessage());
+					else kGAMECLASS.output("\n\n" + pc.tailTypeLockedMessage());
 				}
 				//GO FULL Nukiface
 				//Requires nonhumoo face.
 				if(pc.earType == GLOBAL.TYPE_KUITAN && pc.hasFur() && pc.faceType != GLOBAL.TYPE_HUMAN && pc.faceType != GLOBAL.TYPE_KUITAN && changes < changeLimit && rand(5) == 0)
 				{
-					kGAMECLASS.output("\n\nVertigo nearly drops you to the ground. Something isn’t right with your skull or your equilibrium. You can feel your skin crawling from your reshaping face, your nose stretched tight. The air feels cold blowing across a suddenly damp nose. Your teeth feel sharp and your jaw roomy. There’s so smuch space for your tongue to wiggle. In the middle of your vision is a slightly protruding muzzle. No doubt about it, <b>you have a raccoon-like face now</b>, just like a kui-tan.");
-					pc.clearFaceFlags();
-					pc.faceType = GLOBAL.TYPE_KUITAN;
-					changes++;
+					if (pc.faceTypeUnlocked(GLOBAL.TYPE_KUITAN))
+					{
+						kGAMECLASS.output("\n\nVertigo nearly drops you to the ground. Something isn’t right with your skull or your equilibrium. You can feel your skin crawling from your reshaping face, your nose stretched tight. The air feels cold blowing across a suddenly damp nose. Your teeth feel sharp and your jaw roomy. There’s so smuch space for your tongue to wiggle. In the middle of your vision is a slightly protruding muzzle. No doubt about it, <b>you have a raccoon-like face now</b>, just like a kui-tan.");
+						pc.clearFaceFlags();
+						pc.faceType = GLOBAL.TYPE_KUITAN;
+						changes++;
+					}
+					else kGAMECLASS.output("\n\n" + pc.faceTypeLockedMessage());
 				}
 				//Maskface
 				//Human-type faces get dis. Others go st8 2 muzzle
 				if(pc.faceType == GLOBAL.TYPE_HUMAN && changes < changeLimit && rand(5) == 0 && (pc.earType == GLOBAL.TYPE_KUITAN || pc.tailType == GLOBAL.TYPE_KUITAN))
 				{
-					kGAMECLASS.output("\n\nYour vision goes double! You blink repeatedly, shaking your head to clear your wits. You’re absolutely sure something must have changed with your face, but you haven’t grown any eyestalks that will let you take a look at it - thank the stars!\n\nYou whip out the Codex and use the integrated camera function as an improvised mirror. Smiling, you admire the new look. A " + pc.mf("handsome-looking","fetching") + " mask has grown over your face, giving you a roguish look. The police might look a little closer at your activities, but that’s a small price to pay for looking this good.");
-					pc.clearFaceFlags();
-					pc.faceType = GLOBAL.TYPE_HUMANMASKED;
-					changes++;
+					if (pc.faceTypeUnlocked(GLOBAL.TYPE_HUMANMASKED))
+					{
+						kGAMECLASS.output("\n\nYour vision goes double! You blink repeatedly, shaking your head to clear your wits. You’re absolutely sure something must have changed with your face, but you haven’t grown any eyestalks that will let you take a look at it - thank the stars!\n\nYou whip out the Codex and use the integrated camera function as an improvised mirror. Smiling, you admire the new look. A " + pc.mf("handsome-looking","fetching") + " mask has grown over your face, giving you a roguish look. The police might look a little closer at your activities, but that’s a small price to pay for looking this good.");
+						pc.clearFaceFlags();
+						pc.faceType = GLOBAL.TYPE_HUMANMASKED;
+						changes++;
+					}
+					else kGAMECLASS.output("\n\n" + pc.faceTypeLockedMessage());
 				}
 				//Fuzzy handtypeshit - req’s fur.
 				if(pc.armType != GLOBAL.TYPE_KUITAN && pc.hasFur())
 				{
-					kGAMECLASS.output("\n\nYou ball a hand into a fist while you wait, only to feel the softest little pads pressing into your palm. Opening your digits, you marvel at the appearance of small, dark-brown pads on the tips of your fingers. A larger one stretches across the top of your palm. They’re soft as hell and might feel pretty good in certain... tender areas. <b>You’ve got padded palms, just like a kui-tan");
-					if(!pc.hasFur()) kGAMECLASS.output(", and fur has grown in up to your shoulders to boot.</b>");
-					pc.armType = GLOBAL.TYPE_KUITAN;
-					pc.clearArmFlags();
-					pc.addArmFlag(GLOBAL.FLAG_FURRED);
-					changes++;
+					if (pc.armTypeUnlocked(GLOBAL.TYPE_KUITAN))
+					{
+						kGAMECLASS.output("\n\nYou ball a hand into a fist while you wait, only to feel the softest little pads pressing into your palm. Opening your digits, you marvel at the appearance of small, dark-brown pads on the tips of your fingers. A larger one stretches across the top of your palm. They’re soft as hell and might feel pretty good in certain... tender areas. <b>You’ve got padded palms, just like a kui-tan");
+						if(!pc.hasFur()) kGAMECLASS.output(", and fur has grown in up to your shoulders to boot.</b>");
+						pc.armType = GLOBAL.TYPE_KUITAN;
+						pc.clearArmFlags();
+						pc.addArmFlag(GLOBAL.FLAG_FURRED);
+						changes++;
+					}
+					else kGAMECLASS.output("\n\n" + pc.armTypeLockedMessage());
 				}
 				//Grow fur
 				if((pc.skinType == GLOBAL.SKIN_TYPE_SKIN || pc.skinType == GLOBAL.SKIN_TYPE_SCALES) && pc.earType == GLOBAL.TYPE_KUITAN && pc.tailType == GLOBAL.TYPE_KUITAN && rand(4) == 0 && changes < changeLimit)
 				{
-					//From skin
-					if(pc.skinType == GLOBAL.SKIN_TYPE_SKIN)
+					if (pc.skinTypeUnlocked(GLOBAL.SKIN_TYPE_FUR))
 					{
-						kGAMECLASS.output("\n\nYou idly scratch at your arm, but find yourself catching on something. Looking closer, you see a single hair growing from a normally hairless part of your body. A second later, another pops out alongside it... then another, and another... and another. They’re everywhere! Tiny hairs are surfacing all across your body, thickening into layer of fur before your eyes. All over, there’s a seemingly endless sea of thick, fluffy brown. <b>You pet your silky fur as you try to get used to it.</b>");
+						//From skin
+						if(pc.skinType == GLOBAL.SKIN_TYPE_SKIN)
+						{
+							kGAMECLASS.output("\n\nYou idly scratch at your arm, but find yourself catching on something. Looking closer, you see a single hair growing from a normally hairless part of your body. A second later, another pops out alongside it... then another, and another... and another. They’re everywhere! Tiny hairs are surfacing all across your body, thickening into layer of fur before your eyes. All over, there’s a seemingly endless sea of thick, fluffy brown. <b>You pet your silky fur as you try to get used to it.</b>");
+						}
+						//From scales
+						else
+						{
+							kGAMECLASS.output("\n\nYou idly scratch at a loose scale, feeling it come loose under your fingers, but the one alongside it is also loose now. You flick it off just before you become aware that the sensation is spreading; scales are dropping like rain now, even without you touching them. Underneath, a lush carpet is springing up from your [pc.skin]. <b>You’re growing the typical tanuki brown fur.</b> You pet yourself to try and get used to the sensation. You might have to buy a brush later - for grooming, not because it feels good.");
+						}
+						pc.furColor = "brown";
+						pc.skinType = GLOBAL.SKIN_TYPE_FUR;
+						pc.clearSkinFlags();
+						changes++;
 					}
-					//From scales
-					else
-					{
-						kGAMECLASS.output("\n\nYou idly scratch at a loose scale, feeling it come loose under your fingers, but the one alongside it is also loose now. You flick it off just before you become aware that the sensation is spreading; scales are dropping like rain now, even without you touching them. Underneath, a lush carpet is springing up from your [pc.skin]. <b>You’re growing the typical tanuki brown fur.</b> You pet yourself to try and get used to the sensation. You might have to buy a brush later - for grooming, not because it feels good.");
-					}
-					pc.furColor = "brown";
-					pc.skinType = GLOBAL.SKIN_TYPE_FUR;
-					pc.clearSkinFlags();
-					changes++;
+					else kGAMECLASS.output("\n\n" + pc.skinTypeLockedMessage());
 				}
 				//SEXY STUUUUUFF
 				//Rare: 5+ Ultraball Squish Enabled!
@@ -445,7 +473,7 @@
 				else x = -1;
 				if(changes < changeLimit && x >= 0 && rand(3) == 0)
 				{
-					if(target.cockTypeUnlocked(x,GLOBAL.TYPE_KUITAN))
+					if(pc.cockTypeUnlocked(x,GLOBAL.TYPE_KUITAN))
 					{
 						//No sheath
 						if(!pc.hasSheath(x))
@@ -484,7 +512,7 @@
 					}
 					else
 					{
-						kGAMECLASS.output("\n\n" + target.cockTypeLockedMessage());
+						kGAMECLASS.output("\n\n" + pc.cockTypeLockedMessage());
 					}
 				}
 				//Find nonblack vags for TF!
@@ -528,44 +556,59 @@
 				//Leg changing - monopods split to bipednuki
 				if(pc.legCount == 1 && changes < changeLimit && rand(4) == 0)
 				{
-					kGAMECLASS.output("\n\nOne moment, you’re savoring the last few crumbs from your cookies, the next, you’re dropping hard on your [pc.butt]. It feels like you’ve lost all control over your [pc.leg]... and not just all control - all feeling! In a panic, you look down at your quivering appendage, watching it ripple and shift, slowly revealing a divot in the center that all-too-soon becomes a total split.\n\nYou’ve got two masses, shaped roughly like bipedal legs, filling out before your eyes. Knees appear. New-grown toes wiggle, tipped with short claws. You can even feel soft pads forming on the bottoms of your freshly-minted feet. Not long after, a thick coat of fur springs up across your flesh, bringing with it a tingling so intense that it makes your recently-shaped muscles jerk and twitch. You can feel again!\n\nThe new limbs get easier to control over the next minute, and in no time you’re standing up and walking around on <b>your new, tanuki-like legs</b> just fine.");
-					pc.clearLegFlags();
-					pc.legCount = 2;
-					pc.genitalSpot = 0;
-					pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
-					pc.addLegFlag(GLOBAL.FLAG_FURRED);
-					pc.addLegFlag(GLOBAL.FLAG_FLUFFY);
-					pc.legType = GLOBAL.TYPE_KUITAN;
-					changes++;
+					if(pc.legCountUnlocked(2) && pc.legTypeUnlocked(GLOBAL.TYPE_KUITAN))
+					{
+						kGAMECLASS.output("\n\nOne moment, you’re savoring the last few crumbs from your cookies, the next, you’re dropping hard on your [pc.butt]. It feels like you’ve lost all control over your [pc.leg]... and not just all control - all feeling! In a panic, you look down at your quivering appendage, watching it ripple and shift, slowly revealing a divot in the center that all-too-soon becomes a total split.\n\nYou’ve got two masses, shaped roughly like bipedal legs, filling out before your eyes. Knees appear. New-grown toes wiggle, tipped with short claws. You can even feel soft pads forming on the bottoms of your freshly-minted feet. Not long after, a thick coat of fur springs up across your flesh, bringing with it a tingling so intense that it makes your recently-shaped muscles jerk and twitch. You can feel again!\n\nThe new limbs get easier to control over the next minute, and in no time you’re standing up and walking around on <b>your new, tanuki-like legs</b> just fine.");
+						pc.clearLegFlags();
+						pc.legCount = 2;
+						pc.genitalSpot = 0;
+						pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
+						pc.addLegFlag(GLOBAL.FLAG_FURRED);
+						pc.addLegFlag(GLOBAL.FLAG_FLUFFY);
+						pc.legType = GLOBAL.TYPE_KUITAN;
+						changes++;
+					}
+					else if(pc.legTypeUnlocked(GLOBAL.TYPE_KUITAN))
+					{
+						kGAMECLASS.output("\n\n" + pc.legCountLockedMessage());
+					}
+					else
+					{
+						kGAMECLASS.output("\n\n" + pc.legTypeLockedMessage());
+					}
 				}
 				//Leg changing - any other amount of legs become nukilegs.
 				//Taurs stay taurs, become nukitaurs.
 				else if(pc.legCount > 1 && changes < changeLimit && pc.legType != GLOBAL.TYPE_KUITAN && rand(4) == 0)
 				{
-					if(pc.isTaur())
+					if(pc.legTypeUnlocked(GLOBAL.TYPE_KUITAN))
 					{
-						kGAMECLASS.output("\n\nOne at a time, your multitude of lower limbs go numb. The change is slow enough that you can lower yourself to the ground safely rather than tripping and potentially injuring yourself, but it is disconcerting all the same. Rubbing the closest pair, you marvel at the way your flesh shifts beneath your fingers, flowing past your inquisitive digits on its way to a new shape.");
-						if(!pc.hasLegFur()) kGAMECLASS.output(" They even grow a thick coat of fur and");
-						else kGAMECLASS.output(" They even grow");
-						kGAMECLASS.output(" soft pads on the bottom.");
-						kGAMECLASS.output("\n\n<b>You’ve got legs like a tanuki or a kui-tan - fur, pads, and all.</b>");
+						if(pc.isTaur())
+						{
+							kGAMECLASS.output("\n\nOne at a time, your multitude of lower limbs go numb. The change is slow enough that you can lower yourself to the ground safely rather than tripping and potentially injuring yourself, but it is disconcerting all the same. Rubbing the closest pair, you marvel at the way your flesh shifts beneath your fingers, flowing past your inquisitive digits on its way to a new shape.");
+							if(!pc.hasLegFur()) kGAMECLASS.output(" They even grow a thick coat of fur and");
+							else kGAMECLASS.output(" They even grow");
+							kGAMECLASS.output(" soft pads on the bottom.");
+							kGAMECLASS.output("\n\n<b>You’ve got legs like a tanuki or a kui-tan - fur, pads, and all.</b>");
+						}
+						//Nontaur
+						else
+						{
+							kGAMECLASS.output("\n\nYour right leg goes implausibly numb, dumping you to the ground before you have the slightest chance to react. Thankfully, you are uninjured, but your sense of alarm only continues to rise as you lose feeling in your left.");
+							if(pc.legCount == 3) kGAMECLASS.output(" Your middle limb goes dull and distant soon after.");
+							kGAMECLASS.output(" Reaching down, you press your hand against your [pc.legFurScales] and discover something alarming. Your flesh is moving like liquid! Muscles are fading and reforming, bones are changing shape, and it’s all somehow painless.\n\nThe remarkable transformation slows once you’ve got a fairly normal-looking set of plantigrade legs.");
+							if(!pc.hasLegFur()) kGAMECLASS.output(" A coat of fur arrives next, followed shortly after by the appearance of soft-looking pads on the bottom of your feet.");
+							else kGAMECLASS.output(" Finally, soft-looking pads appear on your new-formed feet.");
+							kGAMECLASS.output(" <b>You’ve got furry legs just like a tanuki.</b>");
+						}
+						pc.clearLegFlags();
+						pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
+						pc.addLegFlag(GLOBAL.FLAG_FURRED);
+						pc.addLegFlag(GLOBAL.FLAG_FLUFFY);
+						pc.legType = GLOBAL.TYPE_KUITAN;
+						changes++;
 					}
-					//Nontaur
-					else
-					{
-						kGAMECLASS.output("\n\nYour right leg goes implausibly numb, dumping you to the ground before you have the slightest chance to react. Thankfully, you are uninjured, but your sense of alarm only continues to rise as you lose feeling in your left.");
-						if(pc.legCount == 3) kGAMECLASS.output(" Your middle limb goes dull and distant soon after.");
-						kGAMECLASS.output(" Reaching down, you press your hand against your [pc.legFurScales] and discover something alarming. Your flesh is moving like liquid! Muscles are fading and reforming, bones are changing shape, and it’s all somehow painless.\n\nThe remarkable transformation slows once you’ve got a fairly normal-looking set of plantigrade legs.");
-						if(!pc.hasLegFur()) kGAMECLASS.output(" A coat of fur arrives next, followed shortly after by the appearance of soft-looking pads on the bottom of your feet.");
-						else kGAMECLASS.output(" Finally, soft-looking pads appear on your new-formed feet.");
-						kGAMECLASS.output(" <b>You’ve got furry legs just like a tanuki.</b>");
-					}
-					pc.clearLegFlags();
-					pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
-					pc.addLegFlag(GLOBAL.FLAG_FURRED);
-					pc.addLegFlag(GLOBAL.FLAG_FLUFFY);
-					pc.legType = GLOBAL.TYPE_KUITAN;
-					changes++;
+					else kGAMECLASS.output("\n\n" + pc.legTypeLockedMessage());
 				}
 				if(changes == 0)
 				{

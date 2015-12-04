@@ -44,7 +44,8 @@ public function encounterVanae(isHuntress:Boolean):void
 			
 			output("\n\n<i>“... Whoops, I missed. You’re no ordinary");
 			if(pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" [pc.race]");
-			else output(" off-worlder”</i> the vanae woman exclaims. She looks fairly humanoid, except for her tentacle hair, tail, and organic skirt. Her tentacles are violet colored and bioluminescent, while the rest of her is pale as snow. Her body is covered in gorgeous glowing violet swirls and patterns, just like her hair.");
+			else output(" off-worlder");
+			output("!”</i> the vanae woman exclaims. She looks fairly humanoid, except for her tentacle hair, tail, and organic skirt. Her tentacles are violet colored and bioluminescent, while the rest of her is pale as snow. Her body is covered in gorgeous glowing violet swirls and patterns, just like her hair.");
 			
 			// Please make sure the nipples parser always calls up the fact she’s lactating, if it doesn’t already. Couldn’t tell from the GIT info.
 			output("\n\nThe other thing that immediately captures your attention are her sizable [vanaeHuntress.breastCupSize]s and [vanaeHuntress.milkyNipples]. She seems to be lactating a transparent violet liquid that is drooling down her [vanaeHuntress.breasts]. As you check her out, you can see her webbed hands gripping the handle of her spear.");
@@ -1664,7 +1665,7 @@ public function vanaeHuntressTentaSex(selScene:String):void
 	if (pc.hasVagina()) output(" [pc.girlcum] squirting from [pc.eachPussy]");
 	if (!pc.hasCock() && pc.hasVagina() || !pc.hasCock() && pc.hasVagina()) output(" and all over the place");
 	if (!pc.hasCock() && !pc.hasVagina()) output(" racked with wave after wave of pleasure");
-	output(". At the same time she shoots her [pc.milk] inside of you, filling up your spasming hole.");
+	output(". At the same time she shoots her [monster.milk] inside of you, filling up your spasming hole.");
 
 	output("\n\nAs you reel in post orgasmic bliss, the alien huntress lies on top of you and affectionately licks");
 	if (pc.hasCock()) output(" the underside of your [pc.cock]");
@@ -2524,16 +2525,16 @@ public function vanaeHuntressPCDefeatTentafux():void
 	if (isCunt) looseness = pc.vaginas[0].looseness();
 	else looseness = pc.ass.looseness();
 
-	output("\n\n<i>“");
-	if (looseness <= 1) output("...Was this your first time? You feel so tight!”</i> she exclaims");
+	output("\n\n");
+	if (looseness <= 1) output("<i>“...Was this your first time? You feel so tight!”</i> she exclaims");
 	else if (looseness <= 3)
 	{
-		output("You like my tail buried in your");
+		output("<i>“You like my tail buried in your");
 		if (isCunt) output(" [pc.pussyColor] pussy");
 		else output(" beautiful bottom");
 		output(", don't you? I love how tight you are!”</i> she exclaims");
 	}
-	else output("You're so loose - you've done this a lot, haven't you?”</i> she asks");
+	else output("<i>“You're so loose - you've done this a lot, haven't you?”</i> she asks");
 	output(". You let out a trembling cry in response, your mind reeling from the intense sensations utterly seizing your body as her tentacle 'cock' coils around inside of you.");
 
 	output("\n\nTentacles of her organic skirt begin coiling around your [pc.hips], pulling her waist flush with your own. You gasp as your bellies rub together and her naked flesh brushes against your [pc.skinFurScales], her writhing alien appendage now buried fully inside of you.");
@@ -2569,7 +2570,7 @@ public function vanaeHuntressPCDefeatTentafux():void
 	if (pc.hasCock() && pc.hasVagina()) output(" and");
 	if (pc.hasVagina()) output(" [pc.girlcum] squirting from [pc.eachPussy]");
 	if ((pc.hasCock() && !pc.hasVagina()) || (!pc.hasCock() && pc.hasVagina())) output(" and all over the place");
-	output(". At the same time she shoots her [pc.milk] inside of you, filling up your spasming hole.");
+	output(". At the same time she shoots her [monster.milk] inside of you, filling up your spasming hole.");
 
 	if (isCunt) pc.loadInCunt(monster);
 	else pc.loadInAss(monster);

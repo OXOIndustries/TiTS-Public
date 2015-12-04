@@ -572,7 +572,7 @@ public function getRaskVelTailPegged(combat:Boolean = false):void
 	output("\n\nAs soon as you do, she starts to wag her tail.");
 	output("\n\nYour mouth locks open in a mewling cry as the raskvel slut's tail starts to thrash and squirm, moving around inside you like a serpent, its movements undulating and wild. Your voice breaks, crying your pleasure as you nearly cum from the first moments of her sexual assault. But then she stops, holding deathly still.");
 	output("\n\n<i>\"Lick,\"</i> she commands, her tail motionless inside you. Your hips wriggle, desperate for the overwhelming pleasure of her tail-fucking. <i>\"LICK!\"</i>");
-	output("\n\nYou whine and comply, grabbing her big hips and diving in, suckling from one of her cllits like a teat. In response, she coos and moans, cupping one of ");
+	output("\n\nYou whine and comply, grabbing her big hips and diving in, suckling from one of her clits like a teat. In response, she coos and moans, cupping one of ");
 	if(pc.biggestTitSize() >= 1) output("your [pc.chest] for support");
 	else output("her small teats, squeezing a nipple");
 	output(" as she starts to move her tail, letting it grind and slide and writhe inside you, and with that you cum, and cum hard. You scream, back arching as she slams her tail into you again and again, hammering a mind-shattering orgasm from you, your own cries masking hers as your tongue drives her over the edge with you, spattering your face with alien fem-cum.");

@@ -304,7 +304,7 @@ public function shekkaGetsSoldRaskShitz():void
 {
 	clearOutput();
 	showShekka();
-	output("<i>“What would you give me for... </i>\" you untie the ");
+	output("<i>“What would you give me for...”</i> you untie the ");
 	var raskLootType:int = getRaskLootType();
 	if(raskLootType == 0) output("locked metal chest");
 	else if(raskLootType == 1) output("spaceship part");
@@ -316,8 +316,8 @@ public function shekkaGetsSoldRaskShitz():void
 	//Spaceship part
 	if(raskLootType == 1)
 	{
-		output("\n\n\"<i>That looks like something one of the technicians could use, sure, but I'm not much of a scrapper. I don't... think...</i>\" The small woman begins to trail off as she looks up and beyond you, a distracted frown forming on her face. When <i>you</i> look, there isn't anything there but the doorway. Still, Shekka throws her hands up in the air in resignation.");
-		output("\n\n\"<i>Fine, fine. How does " + Math.round(getRaskLootPrice()*1.75) + " sound? C'mon, it might just be junk metal.</i>\"");
+		output("\n\n<i>“That looks like something one of the technicians could use, sure, but I'm not much of a scrapper. I don't... think...”</i> The small woman begins to trail off as she looks up and beyond you, a distracted frown forming on her face. When <i>you</i> look, there isn't anything there but the doorway. Still, Shekka throws her hands up in the air in resignation.");
+		output("\n\n<i>“Fine, fine. How does " + Math.round(getRaskLootPrice()*1.75) + " sound? C'mon, it might just be junk metal.”</i>");
 		processTime(2);
 		clearMenu();
 		addButton(0,"Deal",dealOnShipPartWithShekka);
@@ -326,7 +326,7 @@ public function shekkaGetsSoldRaskShitz():void
 	//Android: 
 	else if(raskLootType == 2)
 	{
-		output("\n\nShekka’s eyes go round. <i>“Ooh. I’ve never seen that model before! Mind if I - ?”</i> you step back and allow her to pad over and run her inquisitive hands over the old robot. <i>“It looks pretty intact, too. I wonder what algorithms it uses? You can use older droids to do rough-edge stuff it’s so hard to program more recently produced droids to do, you know... </i>\" You pull it back a few inches meaningfully when her fingers reach for its head. The raskvel laughs exasperatedly.");
+		output("\n\nShekka’s eyes go round. <i>“Ooh. I’ve never seen that model before! Mind if I - ?”</i> you step back and allow her to pad over and run her inquisitive hands over the old robot. <i>“It looks pretty intact, too. I wonder what algorithms it uses? You can use older droids to do rough-edge stuff it’s so hard to program more recently produced droids to do, you know...”</i> You pull it back a few inches meaningfully when her fingers reach for its head. The raskvel laughs exasperatedly.");
 		output("\n\n<i>“Oh, alright! How does " + Math.round(getRaskLootPrice()*1.75) + " credits sound?”</i>");
 		processTime(2);
 		clearMenu();
@@ -407,7 +407,7 @@ public function dealOnShipPartWithShekka():void
 	if(flags["MET_AURORA"] == undefined) output("\n\nThe child's haphazard");
 	else output("\n\nAurora's haphazard");
 	output(" motions are like a dangerous pendulum, a heavy wrecking ball that threatens to sprawl you across the floor with a blow to the head. You can only watch in surprise as she skitters along the ceiling, grasping her dexterous claws into exposed piping, perforated tiles, lights, and whatever else happens to be around to get back into the hall and, you assume, her workshop, all the while giggling with glee at her new toy.");
-	output("\n\n\"<i>I'm sure she's behaved...</i>\" grumbles the woman behind you as she transfers the credits to your account. Well, you've made someone happy.");
+	output("\n\n<i>“I'm sure she's behaved...”</i> grumbles the woman behind you as she transfers the credits to your account. Well, you've made someone happy.");
 	processTime(3);
 	pc.credits += Math.round(getRaskLootPrice()*1.75);
 	removeRaskLoot();
@@ -420,8 +420,8 @@ public function noDealOnShipPartWivShekka():void
 {
 	clearOutput();
 	showShekka();
-	output("\"<i>For this thing? That's practically the amount I'd pay for someone to lug it around in the first place!</i>\"");
-	output("\n\n\"<i>Hey! Watch it, you. Credits don't spawn on trees around here, there's plenty of trash to go around. You just made someone </i>very<i> unhappy, though.</i>\" Shekka crosses her arms, looking up to you with a stern expression. \"<i>That's was my only offer. Go chuck it at the gabilani, then.</i>\"");
+	output("<i>“For this thing? That's practically the amount I'd pay for someone to lug it around in the first place!”</i>");
+	output("\n\n<i>“Hey! Watch it, you. Credits don't spawn on trees around here, there's plenty of trash to go around. You just made someone </i>very<i> unhappy, though.”</i> Shekka crosses her arms, looking up to you with a stern expression. <i>“That's was my only offer. Go chuck it at the gabilani, then.”</i>");
 	//”Sell scrap” ghosted out for her as long as PC is still holding this piece
 	flags["SHEKKA_SCRAP_DISABLED"] = 1;
 	clearMenu();
@@ -434,7 +434,7 @@ public function sellRaskShitToColenso():void
 {
 	clearOutput();
 	showColenso();
-	output("<i>“What would you give me for... </i>\" you untie the ");
+	output("<i>“What would you give me for...”</i> you untie the ");
 	var raskLootType:int = getRaskLootType();
 	if(raskLootType == 0) output("locked metal chest");
 	else if(raskLootType == 1) output("spaceship part");
@@ -445,7 +445,7 @@ public function sellRaskShitToColenso():void
 	if(raskLootType == 0) 
 	{
 		output("\n\n<i>“Let’s have a... what the blimmin ‘eck is this?”</i> The heavily built gabilani rolls his chair over to you, fumbles a jeweller’s glass into one eye and then stares at the locked metal chest you have landed on his counter.");
-		output("\n\n<i>“Where did you find it? Do you have the key? No... no, obviously not.”</i> He strokes the lid, entranced. <i>“Well secured locker like this wouldn’t have no key knocking around with it. Whoever locked it wouldn’t want ANYONE getting inside... prob’ly even if you FOUND the key and put it in, it would just release poison gas or something, you’d have to turn it the right way and know a voice activated code as well, and... What could be inside? What desperate galactic secrets have been buried in the junkyards this whole time? You’d better give it to me, " + pc.mf("guv","luv") + ". You wouldn’t be able to trust anyone else to get inside safely, and then disseminate the contents to the masses responsibly... I could liveblog me opening it on the Truth3000!</i>\" You deliberately shift the chest back towards you. Colenso grits his teeth and grips the air in the direction of it instinctively.");
+		output("\n\n<i>“Where did you find it? Do you have the key? No... no, obviously not.”</i> He strokes the lid, entranced. <i>“Well secured locker like this wouldn’t have no key knocking around with it. Whoever locked it wouldn’t want ANYONE getting inside... prob’ly even if you FOUND the key and put it in, it would just release poison gas or something, you’d have to turn it the right way and know a voice activated code as well, and... What could be inside? What desperate galactic secrets have been buried in the junkyards this whole time? You’d better give it to me, " + pc.mf("guv","luv") + ". You wouldn’t be able to trust anyone else to get inside safely, and then disseminate the contents to the masses responsibly... I could liveblog me opening it on the Truth3000!”</i> You deliberately shift the chest back towards you. Colenso grits his teeth and grips the air in the direction of it instinctively.");
 		output("\n\n<i>“Nngh... alright. " + Math.round(getRaskLootPrice()*1.5) + " credits. That’s more ‘n reasonable.”</i>");
 		processTime(2);
 		//[Deal] [No Deal]
@@ -528,7 +528,7 @@ public function tryToSellAnnoSomeRaskScrapGuv():void
 {
 	clearOutput();
 	showAnno();
-	output("<i>“What would you give me for... </i>\" you untie the ");
+	output("<i>“What would you give me for...”</i> you untie the ");
 	var raskLootType:int = getRaskLootType();
 	if(raskLootType == 0) output("locked metal chest");
 	else if(raskLootType == 1) output("spaceship part");
@@ -537,10 +537,17 @@ public function tryToSellAnnoSomeRaskScrapGuv():void
 	output(" from your back and plonk it down on the ausar’s floor as grandly as you can, <i>“...this?”</i>");
 	processTime(2);
 	//Anything but the core:
-	if(raskLootType != 3) 
+	if(raskLootType != 3)
 	{
 		output("\n\nAnno looks at what you’ve brought her askance and then is quiet for a time, as if trying to think of the politest way of putting something.");
-		output("\n\n<i>“I appreciate the effort you’ve gone to, bringing this all the way back here boss,”</i> she says eventually. <i>“But... this isn’t really a pawn shop. I mean, what would it look like if I were buying random bits of junk off Victor’s son/daughter and not doing that for anyone else? Try Colenso. He’s the serious scrap dealer in Novahome. For a certain value of serious, anyway.”</i>");
+		output("\n\n<i>“I appreciate the effort you’ve gone to, bringing this all the way back here boss,”</i> she says eventually. <i>“But...");
+		if(annoIsCrew())
+		{
+			if (flags["ANNO_MISSION_OFFER"] == 3) output(" while it’s great working for ya, I’m not really a pawn shop, you know?");
+			else output(" even though I know some contacts that might be interested, I don’t think this will sell very high on the markets at all. The price to ship it off is probably worth more than what you’d get in return.");
+		}
+		else output(" this isn’t really a pawn shop. I mean, what would it look like if I were buying random bits of junk off Victor’s " + pc.mf("son","daughter") + " and not doing that for anyone else?");
+		output(" Try Colenso. He’s the serious scrap dealer in Novahome. For a certain value of serious, anyway.”</i>");
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 	}
@@ -548,8 +555,8 @@ public function tryToSellAnnoSomeRaskScrapGuv():void
 	else
 	{
 		output("\n\nAnno peers at what you’ve brought her interestedly.");
-		output("\n\n<i>“Is that -? Let me take a look.”</i> She rummages around in her back room and then trots around to you with a tangle of wires and a power source, before poking and twiddling around with the hulk of severed plastic and metal. <i>“Seems to be still functioning. People throw away stuff like this wholesale with malfunctioning or outdated machinery, and I will never understand why – memory is valuable, always has been, always will be. There may even be one or two interesting things stored on it, who knows... </i>\"");
-		output("\n\n<i>“So?... </i>\" you say meaningfully. Anno pauses, then simpers.");
+		output("\n\n<i>“Is that -? Let me take a look.”</i> She rummages around in her back room and then trots around to you with a tangle of wires and a power source, before poking and twiddling around with the hulk of severed plastic and metal. <i>“Seems to be still functioning. People throw away stuff like this wholesale with malfunctioning or outdated machinery, and I will never understand why – memory is valuable, always has been, always will be. There may even be one or two interesting things stored on it, who knows...”</i>");
+		output("\n\n<i>“So?...”</i> you say meaningfully. Anno pauses, then simpers.");
 		output("\n\n<i>“I’m not supposed to. But I can really use cores like this for my research. When you’re dealing with macro-data, you wouldn’t believe how much memory... is " + Math.round(getRaskLootPrice()*1.75) + " credits alright?”</i>");
 		//[Deal] [No Deal]
 		clearMenu();
@@ -565,12 +572,20 @@ public function noDealonCoresAnno():void
 	showAnno();
 	output("<i>“Not enough,”</i> you reply calmly. <i>“A decent piece like this is worth way more by my reckoning.”</i>");
 	output("\n\nAnno sighs, and then click off her power source.");
-	output("\n\n<i>“Yeah. I shouldn’t be throwing around unauthorized company money anyway. Good luck with getting a good price for it elsewhere, boss.”</i>");
+	output("\n\n<i>“Yeah. I shouldn’t be throwing around");
+	if(annoIsCrew())
+	{
+		if (flags["ANNO_MISSION_OFFER"] == 3) output(" our funds on questionable items anyway");
+		else output(" my earnings so recklessly");
+	}
+	else output(" unauthorized company money anyway");
+	output(". Good luck with getting a good price for it elsewhere, boss.”</i>");
 	//”Sell scrap” ghosted out for her as long as PC is still holding this piece
 	flags["ANNO_SCRAP_DISABLED"] = 1;
 	processTime(2);
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	if(annoIsCrew()) addButton(0,"Next",annoFollowerMenu);
+	else addButton(0,"Next",mainGameMenu);
 }
 
 //Deal: 
@@ -584,7 +599,8 @@ public function itsADealAnnoBossDataCore():void
 	processTime(2);
 	removeRaskLoot();
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	if(annoIsCrew()) addButton(0,"Next",annoFollowerMenu);
+	else addButton(0,"Next",mainGameMenu);
 }
  
 //Aurora
@@ -593,7 +609,7 @@ public function tryToHawkRaskShitToAurora():void
 {
 	clearOutput();
 	auroraBust();
-	output("<i>“What would you give me for... </i>\" you untie the ");
+	output("<i>“What would you give me for...”</i> you untie the ");
 	var raskLootType:int = getRaskLootType();
 	if(raskLootType == 0) output("locked metal chest");
 	else if(raskLootType == 1) output("spaceship part");
@@ -603,7 +619,7 @@ public function tryToHawkRaskShitToAurora():void
 	output(" from your back and plonk it down on the bat kid’s floor as grandly as you can, <i>“...this?”</i>");
 
 	//(Anything at all) 
-	output("\n\n\"<i>Huh? Hey! I've seen that before! It always looked like trash to me, up above... but I'm not allowed to buy anything, they don't let me 'hold the wallet'.</i>\" In some show of childish indignation, the pint-sized girl puffs her cheeks out adorably. \"<i>Shekka is, though! She's... probably an adult! Go ask her! And hurry, too, I wanna look at it!</i>\"");
+	output("\n\n<i>“Huh? Hey! I've seen that before! It always looked like trash to me, up above... but I'm not allowed to buy anything, they don't let me 'hold the wallet'.”</i> In some show of childish indignation, the pint-sized girl puffs her cheeks out adorably. <i>“Shekka is, though! She's... probably an adult! Go ask her! And hurry, too, I wanna look at it!”</i>");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1074,7 +1090,7 @@ public function redRidingRaskvel():void
 		output(", your sex inundated with hot, shifting pleasure outside and in.");
 	}
 
-	output("\n\n<i>“Rusting hell... </i>\" the big one groans, tensing up as you begin to work your hips, bending his cock into you, squeezing it deep, pressing your ");
+	output("\n\n<i>“Rusting hell...”</i> the big one groans, tensing up as you begin to work your hips, bending his cock into you, squeezing it deep, pressing your ");
 	if(pc.totalVaginas() == 1) output("groin forwards");
 	else output("[pc.butt] downwards");
 	output(" into the other one’s face. Leisurely you open your eyes to see that the smallest one is still standing there, his mouth slightly ajar and his fat, four inch boy cock standing on end to your performance.");
@@ -1184,7 +1200,7 @@ public function cuntTailRaskPlay(args:Array):void
 	var x:int = args[0];
 	var y:int = args[1];
 	output("<i>“Come here, little boy,”</i> you purr. With you thoroughly embedded in his two friends he could easily run away if he wanted – but instead he obeys, meekly trotting over to your side. He pauses as your [pc.cuntTail] rears into view, dripping and spreading itself with unrequited arousal, an expression somewhere between fright and lust crossing his ruddy face.");
-	output("\n\n<i>“Kneel beside me,”</i> you say lowly. <i>“Relax, and let me do everything. That’s it... </i>\" You, in fact, don’t have to do anything at all; your");
+	output("\n\n<i>“Kneel beside me,”</i> you say lowly. <i>“Relax, and let me do everything. That’s it...”</i> You, in fact, don’t have to do anything at all; your");
 	if(pc.hasParasiteTail()) output(" parasitic tail");
 	else output(" [pc.tail]");
 	output(" can sense a ready, needy cum-pump a mile off, and it whips down without instruction to plaster itself over the raskvel’s small, thick erection. It’s not the size it wants and it is soon squeezing him ruthlessly, dribbling fluid down his flanks, writhing around to milk him so hard that you’re slightly worried it’s going to tear it right off him.");
@@ -1231,9 +1247,9 @@ public function vaginaRaskStuffEpilogus(args:Array):void
 	else output("continue to milk the third raskvel’s small cock with your [pc.cuntTail] assiduously, pleasure shimmering up your stem as surely as he gasps and almost wails to the wet wring you’ve trapped him in");
 	output(". The big raskvel’s cock is still very much erect, his alien physiology allowing him to keep pressing strongly into your walls when you sway, and that to your blissed-out mind is all for the good; you want them kept in this nice, attentive state you’ve got them in. He’s looking at you now, his breath catching every time you bend his cock within your oozing cunt.");
 
-	output("\n\n<i>“Please...</i>\" he manages. There’s a woozy mumble of support for this statement somewhere beneath you.");
+	output("\n\n<i>“Please...”</i> he manages. There’s a woozy mumble of support for this statement somewhere beneath you.");
 
-	output("\n\n<i>“Oh very well,”</i> you sigh. <i>“Just give me a moment...</i>\"");
+	output("\n\n<i>“Oh very well,”</i> you sigh. <i>“Just give me a moment...”</i>");
 	if(originalScene == feedRaskGangMalk) 
 	{
 		output("\n\nYou release the other raskvel from the ");
@@ -1286,7 +1302,7 @@ public function vaginaRaskStuffEpilogus(args:Array):void
 	output(" your juices all over the biggest one’s questing tongue.");
 
 	output("\n\nYou roll off them at last with a sigh, a thick cocktail of sexual fluids seeping out of your [pc.vagina " + x + "] and oozing down your [pc.thighs] when you allow the middle raskvel’s dick to slide out – disgusting, weirdly satisfying.");
-	output("\n\n<i>“I always wanted to breed an alien,”</i> groans the biggest, flat on his back. <i>“But this... I wasn’t... </i>\"");
+	output("\n\n<i>“I always wanted to breed an alien,”</i> groans the biggest, flat on his back. <i>“But this... I wasn’t...”</i>");
 	output("\n\n<i>“...");
 	if(!silly) output("Wasn’t ready");
 	else output("My body wasn’t ready");
@@ -1405,12 +1421,12 @@ public function loseToRaskvelAndGetGangBangued():void
 		output("\n\n<i>“That’s it tourist,”</i> pants the big raskvel, continuing to slam his length into your ");
 		if(pc.hasVagina()) output("convulsing pussy");
 		else output("clenching ass");
-		output(". <i>“You got to start at the bottom if you want to be one of us - but that’s not so bad, is it? Maybe you’ll enjoy it so much you’ll want to stay there... </i>\"");
+		output(". <i>“You got to start at the bottom if you want to be one of us - but that’s not so bad, is it? Maybe you’ll enjoy it so much you’ll want to stay there...”</i>");
 	}
 	//Female/Herm: 
-	else if(pc.hasVagina()) output("\n\n<i>“Such a big, beautiful broodmare,”</i> pants the big raskvel, continuing to slam his length into your convulsing pussy. <i>“I knew you’d enjoy this. Show - show my kids the stars... </i>\"");
+	else if(pc.hasVagina()) output("\n\n<i>“Such a big, beautiful broodmare,”</i> pants the big raskvel, continuing to slam his length into your convulsing pussy. <i>“I knew you’d enjoy this. Show - show my kids the stars...”</i>");
 	//Male/Genderless: 
-	else output("\n\n<i>“I knew you’d enjoy it, offworlder,”</i> pants the big raskvel, continuing to slam his length into your clenching ass. <i>“Gotta say, you’re a better lay than you look... </i>\"");
+	else output("\n\n<i>“I knew you’d enjoy it, offworlder,”</i> pants the big raskvel, continuing to slam his length into your clenching ass. <i>“Gotta say, you’re a better lay than you look...”</i>");
 
 	output("\n\nHe loses the ability to form words as he speeds into his own orgasm, gripping your [pc.hips] tightly as he clenches up once and with a breathless grunt fills your ");
 	if(!pc.hasVagina()) output("guts");
@@ -1505,14 +1521,14 @@ public function seduceTheRaskvelAttackYaNerd():void
 	clearOutput();
 	showRaskGang();
 	userInterface.showBust("RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE");
-	output("<i>“Oh no, the big strong raskvel are going to get me!”</i> You widen your eyes in dismay and set your upper lip to tremulous as the three of them surround you. <i>“Please don’t get rough with me! Oh, this is all too much... </i>\" you deliberately stagger back into the medium sized one, gasping as you do, pushing your [pc.butt] against his hard, flat abdomen. You throw an arm around his shoulders, apparently for support, and bend into his ear.");
-	output("\n\n<i>“You won’t let them harm me, will you?”</i> you whisper, letting your warm breath curl around his long ears and neck. <i>“It’s plain to see you’re the smartest one here, you could make them go away... imagine the fun we could have, just the two of us... </i>\" He pushes you off him, but you can see that the laughter on his face has been replaced with a slight, uncertain frown.");
+	output("<i>“Oh no, the big strong raskvel are going to get me!”</i> You widen your eyes in dismay and set your upper lip to tremulous as the three of them surround you. <i>“Please don’t get rough with me! Oh, this is all too much...”</i> you deliberately stagger back into the medium sized one, gasping as you do, pushing your [pc.butt] against his hard, flat abdomen. You throw an arm around his shoulders, apparently for support, and bend into his ear.");
+	output("\n\n<i>“You won’t let them harm me, will you?”</i> you whisper, letting your warm breath curl around his long ears and neck. <i>“It’s plain to see you’re the smartest one here, you could make them go away... imagine the fun we could have, just the two of us...”</i> He pushes you off him, but you can see that the laughter on his face has been replaced with a slight, uncertain frown.");
 	output("\n\n<i>“What did she say to you?”</i> says the smallest suspiciously. The biggest makes to grab you; you dart out of his reach.");
 	output("\n\n<i>“Why do you have to be so mean?”</i> you mewl");
 	if(pc.biggestTitSize() >= 3 && pc.isChestGarbed()) output(", allowing your [pc.chest] to shift and heave conspicuously in your [pc.upperGarment]");
-	output(". <i>“All this violence. Why, I’d love to do... such things with strong, youthful boys as you... </i>\" you purse your [pc.lips] and allow your [pc.eyes] to drift winsomely over all three, favouring each of them equally. <i>“But when there’s three of you all getting rough together, it’s just, just too much!”</i> The smallest one seems to be in a slight daze, his long flap-like ears and feathers twitching as he gazes at you. You drape yourself over him, very gently caressing his lower back, stopping before the rise of his round, pert bum.");
+	output(". <i>“All this violence. Why, I’d love to do... such things with strong, youthful boys as you...”</i> you purse your [pc.lips] and allow your [pc.eyes] to drift winsomely over all three, favouring each of them equally. <i>“But when there’s three of you all getting rough together, it’s just, just too much!”</i> The smallest one seems to be in a slight daze, his long flap-like ears and feathers twitching as he gazes at you. You drape yourself over him, very gently caressing his lower back, stopping before the rise of his round, pert bum.");
 
-	output("\n\n<i>“I bet those two don’t let you have any fun,”</i> you breathe in his ear. <i>“Always the last and least for you, isn’t it? I can tell, and it makes my heart ache to think of you being so unhappy. Imagine if it were just you and me... if you had me all to yourself... </i>\" His breath is coming thick and hard.");
+	output("\n\n<i>“I bet those two don’t let you have any fun,”</i> you breathe in his ear. <i>“Always the last and least for you, isn’t it? I can tell, and it makes my heart ache to think of you being so unhappy. Imagine if it were just you and me... if you had me all to yourself...”</i> His breath is coming thick and hard.");
 
 	output("\n\n<i>“Look, knock it off,”</i> says the biggest weakly. <i>“If you want to have fun, stop doing... doing that and we’ll share. That’s how we do it.”</i>");
 
@@ -1522,7 +1538,7 @@ public function seduceTheRaskvelAttackYaNerd():void
 	else output("pace");
 	output(" slowly towards him as you talk, lowering your tone as you go until only he can hear you. <i>“I can barely believe you, the biggest, the strongest, the leader, </i>shares<i> with these two rejects. Is that really proper? The alpha of the pack, sharing?”</i> he takes a big shuddering breath as you gently touch the bottom of his chin with your damp finger.");
 
-	output("\n\n<i>“I... maybe if – </i>\" he howls and jerks in pain as the smallest one, who has crept up behind him, lands him a savage blow with his wrench.");
+	output("\n\n<i>“I... maybe if – ”</i> he howls and jerks in pain as the smallest one, who has crept up behind him, lands him a savage blow with his wrench.");
 
 	output("\n\nYou stand back and watch with a pleased smile as the three raskvel descend into a howling red ball of flying fists, tails, feet and recriminations, mauling each other in an explosion of sexual aggression, purely to try and win a chance to make it with you. If you wanted to sneak away, this would be the time to do it. Or you could stay and see if you can have some further fun with whoever wins...");
 
@@ -1589,7 +1605,7 @@ public function lickPussyRaskButt(raskWinner:String = "big"):void
 	if(pc.isCrotchGarbed()) output("slowly sliding off your [pc.lowerGarments] and ");
 	output("spreading your [pc.hips]");
 	if(pc.hasCock()) output(", shifting [pc.eachCock] out of the way to properly present yourself");
-	output(". From his position on the ground raskvel dazedly gazes in at the moist, parting veil of [pc.oneVagina], mouth slightly ajar, panting quietly. <i>“I suppose you’ve earned the right to have a taste. Just a taste...</i>\"");
+	output(". From his position on the ground raskvel dazedly gazes in at the moist, parting veil of [pc.oneVagina], mouth slightly ajar, panting quietly. <i>“I suppose you’ve earned the right to have a taste. Just a taste...”</i>");
 
 	output("\n\nYou sigh as he hooks his arms around your thighs – more for support than anything, poor boy – and sinks his face into your crotch. He pauses before your opening, gathering his breath, the warmth of his exhalations wafting over your sex, increasing your anticipation");
 	if(pc.hasClit()) output(" so that [pc.eachClit] plumps up, practically demanding attention");
@@ -1603,7 +1619,7 @@ public function lickPussyRaskButt(raskWinner:String = "big"):void
 	else output("grip of your hand on his feathers");
 	output(", ensuring that worshipful mouth goes nowhere.");
 
-	output("\n\n<i>“That’s it,”</i> you coo. <i>“What a fine reward for all your hard efforts, hmm? Make it shine, my little warrior... </i>\" You bite your lip and close your eyes as he slips his tongue inside of you, lapping at your soft, inner walls. Such is the size and length of it he’s able to reach far up your tunnel, searching and coaxing out more of your nectar, packing it full of writhing, rubbing flesh.");
+	output("\n\n<i>“That’s it,”</i> you coo. <i>“What a fine reward for all your hard efforts, hmm? Make it shine, my little warrior...”</i> You bite your lip and close your eyes as he slips his tongue inside of you, lapping at your soft, inner walls. Such is the size and length of it he’s able to reach far up your tunnel, searching and coaxing out more of your nectar, packing it full of writhing, rubbing flesh.");
 	if(pc.totalVaginas() > 1) 
 	{
 		output(" With a few murmured, humoured instructions, you are able to make him pull out and lavish the same treatment on your [pc.vagina 1], ");
@@ -1627,7 +1643,7 @@ public function lickPussyRaskButt(raskWinner:String = "big"):void
 	else output("stubby, purple boy-prick");
 	output(" stands almost painfully on end, the taste and texture of you evidently only turning him even more on.");
 
-	output("\n\n<i>“Please... </i>\" he groans again. You hold his powerless gaze as you reach down and place a single, dainty fingertip on the fevered flesh at the bottom of his dick; then, very gradually, you move it upwards. It’s near the tip when he cums, a doubling up of his muscled thighs and back to cause a single spout of white cum to erupt upwards, landing straight back down on his stomach. He moans long and low as he relaxes back into the dust, a sound of defeat more than anything.");
+	output("\n\n<i>“Please...”</i> he groans again. You hold his powerless gaze as you reach down and place a single, dainty fingertip on the fevered flesh at the bottom of his dick; then, very gradually, you move it upwards. It’s near the tip when he cums, a doubling up of his muscled thighs and back to cause a single spout of white cum to erupt upwards, landing straight back down on his stomach. He moans long and low as he relaxes back into the dust, a sound of defeat more than anything.");
 
 	output("\n\n<i>“Good boy,”</i> you leer down at him, before getting up");
 	if(!pc.isNude()) output(", rearranging your clothes,");
@@ -1652,7 +1668,7 @@ public function feetLickingGoodTimes(raskWinner:String = "big"):void
 
 	output("\n\n<i>“And now you want to get your dirty mitts on me, do you?”</i> you say softly. Wriggle wiggle, goes your dainty [pc.foot]. The weary red reptilian has his eyes on it; you let your words sink into him as you continue to rotate your [pc.foot], changing direction from time to time... <i>“This isn’t what I wanted at all. Such violence towards your friends. Such brutality. Why should I let a wicked brute like you anywhere near my body?”</i>");
 
-	output("\n\n<i>“No... </i>\" mumbles the entranced raskvel, head swaying gently with the movements of your foot. <i>“I proved... you said... </i>\" He gestures dozily at the stunned pile of brawny scales behind him. <i>“I’m the... let me prove... </i>\"");
+	output("\n\n<i>“No...”</i> mumbles the entranced raskvel, head swaying gently with the movements of your foot. <i>“I proved... you said...”</i> He gestures dozily at the stunned pile of brawny scales behind him. <i>“I’m the... let me prove...”</i>");
 	output("\n\n<i>“Oh, very well,”</i> you whisper. You bend ");
 	if(pc.hasLegFlag(GLOBAL.FLAG_PAWS)) output("the pad of your big claw");
 	else output("your big toe");
@@ -1681,7 +1697,7 @@ public function feetLickingGoodTimes(raskWinner:String = "big"):void
 	else output("stubby, purple boy-prick");
 	output(" stands almost painfully on end, what you’ve made him do, the taste and texture of you evidently only turning him more on.");
 
-	output("\n\n<i>“Please... </i>\" he groans again. You hold his powerless gaze as you reach down and place a single, dainty fingertip on the fevered flesh at the bottom of his dick; then, very gradually, you move it upwards. It’s near the tip when he cums, a doubling up of his muscled thighs and back to cause a single spout of white cum to erupt upwards, landing straight back down on his stomach. He groans long and low as he relaxes back into the dust, a sound of defeat more than anything.");
+	output("\n\n<i>“Please...”</i> he groans again. You hold his powerless gaze as you reach down and place a single, dainty fingertip on the fevered flesh at the bottom of his dick; then, very gradually, you move it upwards. It’s near the tip when he cums, a doubling up of his muscled thighs and back to cause a single spout of white cum to erupt upwards, landing straight back down on his stomach. He groans long and low as he relaxes back into the dust, a sound of defeat more than anything.");
 
 	output("\n\n<i>“Good boy.”</i> You leer down at him, before getting up");
 	if(!pc.isNude()) output(", rearranging your clothes,");

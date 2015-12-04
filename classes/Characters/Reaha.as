@@ -11,7 +11,7 @@
 		//constructor
 		public function Reaha()
 		{
-			this._latestVersion = 2;
+			this._latestVersion = 3;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			
@@ -166,6 +166,12 @@
 			delete dataObject.resistances;
 			delete dataObject.bonusResistances;
 			delete dataObject.bonusLustVuln;
+		}
+		
+		public function UpgradeVersion2(dataObject:Object):void
+		{
+			dataObject.milkMultiplier = 100;
+			dataObject.milkFullness = 100;
 		}
 	}
 }

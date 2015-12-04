@@ -79,7 +79,7 @@ public function approachDCLTrap():void
 		output("<i>\"Oh, it's... um, hi,\"</i> the bartender \"girl\" says shyly as you approach, knees knocking together nervously as you near her supple body once again.");
 		output("\n\n<i>\"You're not... going to make me fuck you again, are you?\"</i> she says, ");
 		//If <5 times:
-		if(timesDelilahSexed() < 5) output("though you think there's a little more to than tone that dread. She practically sounds like she wants it!");
+		if(timesDelilahSexed() < 5) output("though you think there's a little more to that tone than dread. She practically sounds like she wants it!");
 		else output("biting her lower lip cutely as she all but wiggles her hips for you, her tone nothing but hopeful. You ought to get paid for breaking this slut in so well!");
 		//[{PC has dick:}Sex] [{PC has a cun:} Face Sit] [Drink] [Leave]
 	}
@@ -542,8 +542,8 @@ public function delilahSlutTraining():void
 	author("Savin");
 	output("<i>\"Not me, no,\"</i> you say, taunting the cute trap. You curl your finger in a come-hither, drawing her out from behind the bar, and take a look at your trappy protege. She's lithe and feminine, whether by gene-mod or naturally, you don't know; either way, she's certainly more girly than man, especially in the cross between maid uniform and outright lingerie she's dressed up in, complete with thigh-high stockings and garter hidden under a sinfully short skirt that can't quite reach to her knees. The perfect combination of cute and slutty, just right for someone like the two of you.");
 	output("\n\n<i>\"Watch and learn,\"</i> you breathe into her ear, close enough that your [pc.lips] brush against her ear as you slip over to the bar, bending over it and wiggling your [pc.hips] toward the patrons of the bar. A few boys look your way as you shimmy up onto the bar, ass in the air, giving everyone who even glances your way a full-force show as you start to peel off your [pc.gear], revealing the full cheeks of your [pc.butt]. That gets their attention: a few wolf-whistles and cat-calls come your way as you let your hind end slip free, making sure to spread 'em wide as your welcoming little hole comes into view while simultaneously keeping your [pc.cock] well out of view");
-	if(pc.legCount > 1) output(", trapped between your [pc.legs].");
-	else output(".");
+	if(pc.legCount > 1) output(", trapped between your [pc.legs]");
+	output(".");
 	output("\n\nYou cast a glance over your shoulder to your impromptu audience, gratified to see several tented trousers among the gathering of humans, ausar, and other coreward races sitting in the booths, all with a front-row seat to your show. Now for a little audience participation....");
 	output("\n\nYou reach back and give yourself a slap on the ass, drawing a sharp breath at the gratifying snap of pain, and the motion of your jiggling cheeks as they recoil from the blow. Your hand moves in, spreading your cheeks wide so everyone can get a good look at your [pc.asshole], shamelessly on display and already craving cock. You can <i>feel</i> the need in your loins and hole, hungry for the familiar taste of cock inside you, pounding you into the cold, unforgiving wood of the bar, stretching your slutty hole wide open.");
 	output("\n\nYour mouth is watering. And oh <i>god</i> is your cock hard.");
@@ -626,6 +626,20 @@ public function delSlutTraining2():void
 	output("\n\nWith a grunt, the last john of the day pulls out of you, still leaking cum, and wipes himself off on your thigh. You give him a wink and blow a kiss after him before collapsing back, trying to catch your breath. Delilah's beside you still, though you're not sure if she's still conscious: that horsecock'd woman left her pretty well ruined for the moment, and only the best-endowed men have used her since. But she's certainly gotten her taste of what it REALLY means to be a cock-hungry whore. You lean over and give her a peck on the cheek before unsteadily clambering off the bar and searching for your gear. Nice and cum-soaked....");
 	processTime(15);
 	timesDelilahSexed(1);
+	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
+	pp.milkMultiplier = 100;
+	pp.milkFullness = 100;
+	for(var i:int = 0; i < 10; i++)
+	{
+		pc.loadInAss(pp);
+		pc.loadInAss(pp);
+		if(rand(2) == 0) pc.loadInAss(pp);
+		pc.loadInMouth(pp);
+		pc.loadInMouth(pp);
+		if(rand(2) == 0) pc.loadInMouth(pp);
+		if(rand(4) == 0) pc.girlCumInMouth(pp);
+		if(rand(5) == 0) pc.milkInMouth(pp);
+	}
 	pc.exhibitionism(2);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

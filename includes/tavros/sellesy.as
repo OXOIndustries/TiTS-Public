@@ -123,6 +123,14 @@ public function firstDrinkFromSellesy(first:Boolean = true):void {
 
 	output("\n\nYou are now happily suckling away at her massive tit, echoing the actions of the patrons scattered throughout the bar. You manage to look through lidded eyes at the closest patron to you, lying back on a bed-like chair, as her waitress lowers one massive breast over her face, and sighs in relief as her free hands roam the helpless girl's body, much to the girl's obvious delight. As you watch, she curls into an almost infantile pose, before a swell of Sellesy's breast looms in and blocks your view.");
 	output("\n\nLooking up you see her staring down at you, all three eyes positively alight with glee. \"<i>How's that sweetie? Taste good?</i>\"  she asks rather girlishly, apparently already certain of the answer, \"<i>I get lots of compliments on my drink mixing. I always make something my customers swear they could just drink forever...</i>\"  she utters softly, shuddering slightly from your unbidden gentle nibbling on her nipple.");
+	
+	var ppSellesy:PregnancyPlaceholder = new PregnancyPlaceholder();
+	ppSellesy.breastRows[0].breastRatingRaw = 10;
+	ppSellesy.breastRows[0].breasts = 3;
+	ppSellesy.milkType = GLOBAL.FLUID_TYPE_LEITHAN_MILK;
+	ppSellesy.milkMultiplier = 100;
+	ppSellesy.milkFullness = 100;
+	pc.milkInMouth(ppSellesy);
 	pc.imbibeAlcohol(50);
 	processTime(5+rand(5));
 

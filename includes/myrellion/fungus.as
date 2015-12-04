@@ -705,6 +705,16 @@ public function queenFungusBoobsuck():void
 	output("\n\n<i>“Those machines make you compatible even though you aren’t myrmedion. I can make every nerve you have feel like those that respond to sex. It’s a little bit more crude than the connection I can form between myself and the myr, but I hope it still felt enjoyable to you”</i> she says, patting you on the head.");
 	output("\n\nYou stand after you recover yourself, and she positions a number of spores above your head. The cluster turns to a watery substance, washing away the stickiness that covered you. Another cluster brushes you like a towel, sponging up the liquid till you’re completely dry. You smile, adjusting your [pc.gear], and think of something else to do.");
 	processTime(23);
+	var ppFungusQueen:PregnancyPlaceholder = new PregnancyPlaceholder();
+	ppFungusQueen.breastRows[0].breastRatingRaw = 7;
+	ppFungusQueen.breastRows[0].breasts = 2;
+	ppFungusQueen.breastRows[1] = new BreastRowClass();
+	ppFungusQueen.breastRows[1].breastRatingRaw = 7;
+	ppFungusQueen.breastRows[1].breasts = 2;
+	ppFungusQueen.milkType = GLOBAL.FLUID_TYPE_NECTAR;
+	ppFungusQueen.milkMultiplier = 100;
+	ppFungusQueen.milkFullness = 100;
+	pc.milkInMouth(ppFungusQueen);
 	pc.HP(50);
 	pc.orgasm();
 	pc.energy(200);

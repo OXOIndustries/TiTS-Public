@@ -32,7 +32,7 @@ public function showAnno(nude:Boolean = false):void
 	//else if (anno.armor is AnnosBlouse) showBust("ANNO");
 	// Catsuit Anno
 	else showBust("ANNO");
-	userInterface.showName("\nANNO");
+	showName("\nANNO");
 }
 
 public function steeleTechTarkusShopAvailable():Boolean
@@ -428,7 +428,7 @@ public function annoShootsResults(easy:Boolean = false):void
 	//PC Fails
 	else
 	{
-		userInterface.showBust("ANNO_NUDE");
+		showBust("ANNO_NUDE");
 		output("<i>\"Let's see what we have here,\"</i> Anno says, squinting down range. You adjust your sights, looking back down to your target. Unfortunately, it looks like Anno's tender ministrations paid off for her: the shot went wide, blowing off the dummy's arm.");
 		output("\n\n<i>\"Poor Bobbest,\"</i> Anno grins, pressing up against you. You gulp, feeling her ample chest tight against your back, stiff nipples poking through her sheer uniform to rub against you. Stroking a hand over your [pc.hair], Anno slips around you and onto the crate, deftly positioning her legs around your kneeling head. With one hand, she takes the traitorous rifle from you; her other makes a sensually slow trip up her body as she leans back, stifling a moan as her fingers brush along the curves of her breast, and up to the zipper holding her outfit together. Your eyes are locked on with laser precision as she grips the zipper and slowly pulls it down, taking her time to reveal the heavy mounds of her bust. With a shake of her shoulders, her perky tits bounce free of their confines, already flushed red with lust.");
 
@@ -868,8 +868,7 @@ public function syriTalksAboutAnno():void
 {
 	clearOutput();
 	author("Savin");
-	userInterface.showBust("SYRI");
-	userInterface.showName("\nSYRI");
+	showSyri();
 	output("<i>\"Oh, hey, Anno says 'Write me, bitch!' by the way.");
 	if(pc.isNice() || pc.isMischievous()) output(" Her words, not mine!");
 	output("\"</i>");
@@ -877,21 +876,29 @@ public function syriTalksAboutAnno():void
 	output("\n\nSyri cocks an eyebrow at you. <i>\"Why do... right, billionaire play" + pc.mf("boy","girl") + ",\"</i> she rolls her eyes. <i>\"Tell that pussy-stealing harpy she can write </i>me<i> whenever she feels like it. I haven't exactly changed email addresses.\"</i>");
 	output("\n\n<i>\"Harsh.\"</i>");
 	output("\n\nSyri holds your gaze for a long second before sighing, the fight gone out of her. <i>\"Yeah. I'll write her when I get off work later.\"</i>");
-	output("\n\nSuddenly, Syri's lips curl into a fierce grin, and her big, blue eyes search you over. <i>\"Hmm... maybe I ought to ask her to take some vacation time and come on out here. What do you say, Steele... ever thought about what it'd be like with twins?\"</i>");
-	output("\n\n<i>\"Twins? I, uh...\"</i> you fidget, <i>\"I thought she was your older sister?\"</i>");
-	output("\n\n<i>\"By like, five minutes. Don't change the subject, killjoy,\"</i> Syri growls, looming over you. ");
-	//If PC has a cock: 
-	if(pc.hasCock()) output("<i>“Come on, we even have the same cup size. Imagine two identical pairs of tits, big and soft and all over your [pc.cockBiggest], jacking you off together until you bust a big, thick nut all over our faces... watching us lick it off each other, maybe turns into kissing, groping, until you bend us over and take us together, still in each others' arms...”</i>");
-	else output("<i>“Imagine yourself bent over, face buried in Anno's big, perky tits, your hands all over the sensitive little teats of hers as I fuck you from behind, pounding you extra hard cuz you've got your grubby, terran hands on my sister... until maybe my cock slips, and suddenly I'm doing her, pounding her wet, sloppy little bitch-hole while you watch.”</i>");
-	output(" Your eyes dart down to the suddenly immense-looking bulge in Syri's pants. She's... she's not joking, is she?");
-	output("\n\nThe ausar follows your gaze, her body suddenly tense. Syri grabs you by the ");
-	if(pc.armor.shortName != "") output("front of your " + pc.armor.longName);
-	else output("shoulders");
-	output(", slamming you back against the bar as she crawls into your lap, her heaving breasts pressing hard into your [pc.chest]. <i>\"Take me back to your place before I bust a nut in my pants just thinking about it.\"</i>");
-	output("\n\nHo boy!");
-	pc.lust(10);
-	//[Sex Menu]
-	syriSexMenu(false);
+	if(syriIsAFuckbuddy() && pc.lust() >= 33)
+	{
+		output("\n\nSuddenly, Syri's lips curl into a fierce grin, and her big, blue eyes search you over. <i>\"Hmm... maybe I ought to ask her to take some vacation time and come on out here. What do you say, Steele... ever thought about what it'd be like with twins?\"</i>");
+		output("\n\n<i>\"Twins? I, uh...\"</i> you fidget, <i>\"I thought she was your older sister?\"</i>");
+		output("\n\n<i>\"By like, five minutes. Don't change the subject, killjoy,\"</i> Syri growls, looming over you. ");
+		//If PC has a cock: 
+		if(pc.hasCock()) output("<i>“Come on, we even have the same cup size. Imagine two identical pairs of tits, big and soft and all over your [pc.cockBiggest], jacking you off together until you bust a big, thick nut all over our faces... watching us lick it off each other, maybe turns into kissing, groping, until you bend us over and take us together, still in each others' arms...”</i>");
+		else output("<i>“Imagine yourself bent over, face buried in Anno's big, perky tits, your hands all over the sensitive little teats of hers as I fuck you from behind, pounding you extra hard cuz you've got your grubby, terran hands on my sister... until maybe my cock slips, and suddenly I'm doing her, pounding her wet, sloppy little bitch-hole while you watch.”</i>");
+		output(" Your eyes dart down to the suddenly immense-looking bulge in Syri's pants. She's... she's not joking, is she?");
+		output("\n\nThe ausar follows your gaze, her body suddenly tense. Syri grabs you by the ");
+		if(pc.armor.shortName != "") output("front of your " + pc.armor.longName);
+		else output("shoulders");
+		output(", slamming you back against the bar as she crawls into your lap, her heaving breasts pressing hard into your [pc.chest]. <i>\"Take me back to your place before I bust a nut in my pants just thinking about it.\"</i>");
+		output("\n\nHo boy!");
+		pc.lust(10);
+		//[Sex Menu]
+		syriSexMenu(false);
+	}
+	else
+	{
+		syriMorningMenu();
+		addDisabledButton(3,"Anno");
+	}
 }
 
 //Novahome
@@ -2063,7 +2070,7 @@ public function deck13SecurityFunc():Boolean
 		clearOutput();
 		author("Savin");
 		showBust("DROID_SECURITY","DROID_SECURITY","DROID_SECURITY");
-		kGAMECLASS.userInterface.showName("FIGHT:\nS. DROIDS");
+		showName("FIGHT:\nS. DROIDS");
 		flags["DECK13_SECURITY_ENTERED"] = 1;
 
 		output("As you make your way out of the airlock, you're suddenly blinded by a bright white light. You flinch, trying to regain your senses as a booming metallic voice shouts: \"<i><b>INTRUDERS DETECTED. PASSENGER REGISTRY: UNAVAILABLE. IDENTITIES UNCONFIRMED. LAY DOWN YOUR WEAPONS OR YOU WILL BE PURGED</b></i>.\"");
@@ -2167,9 +2174,7 @@ public function lossToSecurityDroid():void
 
 	output("\n\n<i>ZAP</i>.");
 
-	output("\n\n<b>Game over.</b>");
-
-	clearMenu();
+	badEnd();
 	addDisabledButton(0, "Game Over", "Game Over", "Roll credits etc.");
 }
 
@@ -2386,15 +2391,21 @@ public function deck13ElevatorFunc():Boolean
 		clearOutput();
 		output("You step up to the elevator and press the call button. Immediately, the doors slide open, but no car comes. ");
 		
-		output("\n\n<i>“Someone must have done an override,”</i> Anno says with a shrug, peering into the elevator shaft. <i>“Keeps anybody from accidentally wandering through. I think this one goes right up to the docking bay... yeah, it goes right by the shop, too. Maybe we can hitch a ride when we’re done here - I’m pretty good at getting around lockouts like this.”</i>");
-
+		output("\n\n<i>“Someone must have done an override,”</i> Anno says with a shrug, peering into the elevator shaft. <i>“Keeps anybody from accidentally wandering through. I think this one goes right up to");
+		// output(" the docking bay");
+		output("... yeah, it goes right by the shop");
+		// output(", too");
+		output(". Maybe we can hitch a ride when we’re done here - I’m pretty good at getting around lockouts like this.”</i>");
+		
 		clearMenu();
 		addButton(0, "Next", move, "DECK 13 SECURITY CHECKPOINT");
 		return true;
 	}
 	else
 	{
-		output("You're in the central elevator shaft, looking out into the empty security checkpoint. This can take you back up to the main floor of the <i>Nova</i>, or up to the docks.");
+		output("You're in the central elevator shaft, looking out into the empty security checkpoint. This can take you back up to the main floor of the <i>Nova</i>");
+		// output(", or up to the docks");
+		output(".");
 		addButton(0, "Elevator", novaElevatorControlPanel);
 		return false;
 	}
@@ -2521,7 +2532,7 @@ public function deck13MakeGoo():void
 	output("\n\nYou grumble and pull your Codex out, hoping your device can sync with the goo cannister. You flip the Codex on and search for nearby networks. Again, nothing close enough to be the goo. Shit. You drop down to a [pc.knee] and start looking for an old-school data port. Sure enough, there’s one hidden underneath the console. You pull a universal cable from your Codex, and thankfully manage to slot it into the port. The Codex takes over from there, booting up the ancient computer and interfacing for you. The Bell-Isle/Grunmann logo appears, followed by a button-press command prompt, which the Codex translates onto its touch screen. That’s better. You tap through a few commands, instructing the machine to print you out a great big pile of gray goo.");
 	
 	output("\n\nThe device hums to life and starts working, squirting out goo like ice cream from its spigot. You watch as it squirts and thrums, depositing gallons of murky silvery goop onto the deck, looking more like a puddle than a person for now. A few seconds later, though, the vat shuts off, and the goo starts squirming and re-shaping itself. It only takes a moment for the big gray blob to turn into a big, bouncy gray girl. She looks just like the creatures");
-	if (flags["TARKUS_DESTROYED"] == 1) output(" once");
+	if (flags["TARKUS_DESTROYED"] != undefined) output(" once");
 	output(" found outside of Novahome, with inhumanly exaggerated hips and ass and a pair of tits that look like silver-sheened watermelons standing impossibly perky on her chest. Her ample assets jiggle and bounce as she looks around, surveying her surroundings with wide eyes full of wonder.");
 	
 	output("\n\n<i>“Hi!”</i> the newly-made goo says, adopting a huge grin as you take a step toward her. <i>“Wow! You’re super");
@@ -3529,12 +3540,10 @@ public function loseToGigaGoo():void
 	author("Savin");
 	showName("LOSS:\nGIGA GOO");
 	showBust("GRAY_GOO_GIGA");
-
+	
 	output("<i>“YOU SHOULD HAVE LET US WORK,”</i> Nova roars, reaching through the elevator’s lips and grabbing you and Anno, squeezing you together in one of her massive fists. You can already feel the life being crushed out of you before the monolithic goo-girl throws you down to the deck below, ending your life as a crushed husk in a haze of poison gas.");
 	
-	output("\n\n<b>GAME OVER</b>");
-
-	clearMenu();
+	badEnd();
 	addDisabledButton(0, "Game Over", "GAME OVER", "Roll end credits etc.");
 }
 

@@ -28,41 +28,38 @@ public function celiseFollowerInteractions():void {
 		return;
 	}
 	clearOutput();
-	this.userInterface.showBust("CELISE");
-	this.userInterface.showName("\nCELISE");
+	showCelise();
 	output("Celise has settled into your ship with remarkable enthusiasm, claiming a corner near some heat transfer pipes. Her amorphous bottom half is molded tightly into the niches between the tubes for warmth. You can even see bubbles percolating through her transparent emerald shape as she takes in thermal energies that would singe creatures with lesser physiologies. Celise’s upper half sprouts seamlessly from the barely-controlled mass of goo below, looking entirely like a human woman from the waist up - that is, if human women were green and constantly dripping.");
 	output("\n\nThe galotian woman’s face is framed by a mane of unruly hair, if it can even be called that. There aren’t individual strands, just carefully shaped body-mass formed in a way that would shame any model going for a wind-blown look. It hangs halfway down her back before it ends, fanning slightly out behind her. Celise’s eyes appear equally false. They have proper shape and even include darker colored irises and pupils, but they’re obviously made of the same stuff as the rest of her. A short, upturned nose graces the space between, and below that, a pair of pouting viridian lips purse in a half-pucker as if they’re ready to kiss something at any moment.");
 	output("\n\nSurprisingly, the green woman appears flat chested when you first arrive. Her torso is slim, lithe, and completely unadorned with nipples or even a belly button. Once she sees you, however, Celise’s kiss-hungry lips quirk up into a smile, and her mass of reserve goo shudders with the effort of rearranging itself. Two dark caps resolve on her chest, gaining in cohesion until they appear as a pair of perfect, pointy nipples. A moment later, the flesh beneath them surges, swelling outward with the barest hint of domed shape. More and more of Celise’s base vanishes, and those two budding orbs engorge with new mass by the second, swelling into heavy, dripping melons, their areolae widening and nipples thickening proportionally. Large breasts do not seem to satisfy the galotian temptress though, expanding beyond reasonable size and into the realm of the absurdly sexual, and with a coo of pleasure, she begins to knead her swollen tits, sinking fingers deeper inside them as they grow out over her hands.");
 	output("\n\nThe goo-girl watches you with a lusty smile while her breasts finish their absurd growth, eventually pulling her half-absorbed limbs out of her enormous bosom so that her fingers can regrow. She flutters eyelashes that have become so long that they drip to the floor in your direction while her mouth coos, <i>“Oh, is it snack time?”</i>");
-	output("  Celise is as sexually focused as ever. Do you give her a feeding or something else?");
-	this.clearMenu();
+	output(" Celise is as sexually focused as ever. Do you give her a feeding or something else?");
+	clearMenu();
 	if(pc.hasCock() || pc.hasVagina()) {
 		if(pc.lust() < 33) {
 			output("\n\n<b>You aren't aroused enough to consider any sort of sexual situation with Celise.</b>");
-			this.addDisabledButton(0,"Feed");
+			addDisabledButton(0,"Feed");
 		}
-		else this.addButton(0,"Feed",celiseFeedingRouter);
+		else addButton(0,"Feed",celiseFeedingRouter);
 	}
 	else output("\n\n<b>You do not have any suitable genitalia to feed Celise with.</b>");
 	addButton(1,"Transform",gigaCeliseTransform,undefined,"Transform","Tell Celise that you'd like her to grow lots of gooey tentacles for you to have fun with.");
 	addButton(4,"Send Away",sendCeliseAway,undefined,"Send Away","Send Celise off the ship to wait for you. She'll be at the hangar in Tavros if you ever want her back.");
-	this.addButton(14,"Back",crew);
+	addButton(14,"Back",crew);
 }
 
 //Leave Crewmember Celise’s Screen
 public function leaveCelisesMenu():void {
 	clearOutput();
-	this.userInterface.showBust("CELISE");
-	this.userInterface.showName("\nCELISE");
+	showCelise();
 	output("You wave at the ever-hungry emerald woman and head off, hearing a sigh of disappointment behind you as you go.");
-	this.clearMenu();
-	this.addButton(0,"Next",celiseFollowerInteractions);
+	clearMenu();
+	addButton(0,"Next",celiseFollowerInteractions);
 }
 
 public function celiseFeedingRouter():void {
 	clearMenu();
-	this.userInterface.showBust("CELISE");
-	this.userInterface.showName("\nCELISE");
+	showCelise();
 	if(pc.hasCock()) addButton(0,"Male Feeding",dudesFeedCelise);
 	else addDisabledButton(0,"Male Feeding");
 	if(pc.hasVagina()) addButton(1,"FemaleFeed",feedCeliseBySavin);
@@ -171,7 +168,7 @@ public function rejoinTheCrewCelise():void
 	output("<i>“Sounds good to me!”</i> you answer with a welcoming hug, or at least what you think is one. It’s tough to hug someone who has most of your body ensconced within herself.");
 	output("\n\nCelise’s face surges up to kiss you on the nose, her lips soft and remarkably solid compared to elsewhere. Pulling back, she giggles and withdraws herself from your body, leaving you surprisingly dry and clean in her wake. <i>“Race you to the ship!”</i>");
 	output("\n\nShe jiggles off toward the ship without another word, moving with a surprising amount of speed and grace for one so mellifluent.");
-	output("\n\n(<b>Celise has rejoined your crew.</b>)");
+	output("\n\n(<b>Celise has rejoined your crew!</b>)");
 	processTime(1);
 	//REJOIN CREW
 	flags["CELISE_ONBOARD"] = 1;
@@ -202,8 +199,7 @@ public function leaveCeliseOnTavrosYouMonster():void
 //Feed Celise (M)
 public function dudesFeedCelise():void {
 	clearOutput();
-	this.userInterface.showBust("CELISE");
-	this.userInterface.showName("\nCELISE");
+	showCelise();
 	//Intro for prostate milking, urethral harvesting, and intense suction.
 	if(!pc.isNude()) output("You start to undress with a knowing smile, reaching to remove your gear,");
 	else output("You start to approach, reaching for your gear,");
@@ -222,19 +218,19 @@ public function dudesFeedCelise():void {
 	output("orifice just yet.");
 	output("\n\nLuxuriating in an increasingly erotic massage, you slip further inside her, [pc.legOrLegs] twitching weakly inside her as the pleasure robs you of strength");
 	if(pc.isGoo()) output(", your own goo mixing with hers until you can barely tell which of you is which, only that it feels wonderful");
-	output(". Celise lustily wonders, <i>“Like, how do I feed this time, [pc.name]? Should I pull out all that yummy [pc.cumNoun] with suction alone?</i>");
-	if(pc.cumQ() <= 1000) output("<i> I bet if I did that enough, you’d start making enough to properly feed me in no time!</i>");
-	output("”  A rhythmic tugging starts on [pc.oneCock]. <i>“I could squeeze it out from behind....”</i> A tongue of liquid warmth circles your asshole, causing your hips to lurch forward hard enough to make [pc.eachCockHead] crest her surface, dripping with emerald slime. <i>“Hehehe... maybe I should just climb inside the the tip and drink it straight from your [pc.balls]</i>");
-	if(pc.cumQ() >= 5000) output("<i>. I bet I could drink so much that way that your poor [pc.balls] wouldn’t be able to make as much afterward. That’s not a big deal, right? You’re too messy anyway. I get tired of mopping it up</i>");
-	output("<i>....”</i>");
+	output(". Celise lustily wonders, <i>“Like, how do I feed this time, [pc.name]? Should I pull out all that yummy [pc.cumNoun] with suction alone?");
+	if(pc.cumQ() <= 1000) output(" I bet if I did that enough, you’d start making enough to properly feed me in no time!");
+	output("”</i> A rhythmic tugging starts on [pc.oneCock]. <i>“I could squeeze it out from behind....”</i> A tongue of liquid warmth circles your asshole, causing your hips to lurch forward hard enough to make [pc.eachCockHead] crest her surface, dripping with emerald slime. <i>“Hehehe... maybe I should just climb inside the the tip and drink it straight from your [pc.balls]");
+	if(pc.cumQ() >= 5000) output(". I bet I could drink so much that way that your poor [pc.balls] wouldn’t be able to make as much afterward. That’s not a big deal, right? You’re too messy anyway. I get tired of mopping it up");
+	output("....”</i>");
 	
 	output("\n\nCelise’s body surges up to recapture your escaping genitals, dragging you back inside her while you try to process her words. A dozen fingers tickle across your crotch while the spunk-drinking goo-girl ponders how best to harvest your seed. If you speak up now, she’d likely obey you, but if you wait, she’s going to pick one....");
 	//[Suck Out] [Squeeze Out] [Go In] [Say Nothing]
-	this.clearMenu();
-	this.addButton(0,"Suck Out",celiseSucksYouDry);
-	this.addButton(1,"SqueezeOut",celiseDoesSomeAnalMilking);
-	this.addButton(2,"Go In",celiseGoesInYerBallsYo);
-	this.addButton(3,"SayNothing",feedCeliseSayNothing);
+	clearMenu();
+	addButton(0,"Suck Out",celiseSucksYouDry);
+	addButton(1,"SqueezeOut",celiseDoesSomeAnalMilking);
+	addButton(2,"Go In",celiseGoesInYerBallsYo);
+	addButton(3,"SayNothing",feedCeliseSayNothing);
 }
 
 //Say Nothing
@@ -258,9 +254,8 @@ public function feedCeliseSayNothing():void {
 //Suck Out
 public function celiseSucksYouDry():void {
 	clearOutput();
-	this.userInterface.showBust("CELISE");
-	this.userInterface.showName("\nCELISE");
-	output("<i>“I’ll totally suck out every drop, " + pc.mfn("mister boss-man","miss boss-lady","mis... er... boss-person") + ",”</i>  Celise promises as her human-shaped torso shifts, bending down while your body is lifted on a column of slippery force. [pc.eachCock] crests through her goopy lower form, shedding strands of goo as it goes until only your " + pc.sheathDescript(pc.biggestCockIndex()));
+	showCelise();
+	output("<i>“I’ll totally suck out every drop, " + pc.mfn("mister boss-man","miss boss-lady","mis... er... boss-person") + ",”</i> Celise promises as her human-shaped torso shifts, bending down while your body is lifted on a column of slippery force. [pc.eachCock] crests through her goopy lower form, shedding strands of goo as it goes until only your " + pc.sheathDescript(pc.biggestCockIndex()));
 	if(pc.balls > 0) output(" and [pc.balls] are");
 	else output(" is");
 	output(" enveloped in her embrace. Before your soaking wet dick");
@@ -271,7 +266,7 @@ public function celiseSucksYouDry():void {
 	output(", pulling more blood into your loins until your [pc.cocks] feel");
 	if(pc.cockTotal() == 1) output("s");
 	output(" fit to burst. You can feel her breasts pressing down on your [pc.legOrLegs], submerged into herself and yet still keeping their shape so well her nipples dig into your [pc.skinFurScales], slipping and sliding over you with every motion the galotian woman makes.");
-	output("\n\nCelise licks her jade lips with a tongue too long for her mouth, shining the already reflective mouth-pillows into a glittering polish as she watches your face, measuring the effects her motions are having on your body. <i>“You like that, huh, Captain? Feeling your [pc.cocks] getting sucked on like that must be pretty good.”</i>  Celise lets her tongue hang down into the translucent prison, wrapping it around your " + possessive(pc.cockDescript(pc.biggestCockIndex())) + " " + pc.sheathDescript(pc.biggestCockIndex()) + " into a tight ring. Then, she starts to slide it around, twisting it in quick circuits of your cock that make your overfull shaft thicken further. <i>“Ahm ghunga ‘ake ‘oo ftheel tho ‘ood!”</i>");
+	output("\n\nCelise licks her jade lips with a tongue too long for her mouth, shining the already reflective mouth-pillows into a glittering polish as she watches your face, measuring the effects her motions are having on your body. <i>“You like that, huh, Captain? Feeling your [pc.cocks] getting sucked on like that must be pretty good.”</i> Celise lets her tongue hang down into the translucent prison, wrapping it around your " + possessive(pc.cockDescript(pc.biggestCockIndex())) + " " + pc.sheathDescript(pc.biggestCockIndex()) + " into a tight ring. Then, she starts to slide it around, twisting it in quick circuits of your cock that make your overfull shaft thicken further. <i>“Ahm ghunga ‘ake ‘oo ftheel tho ‘ood!”</i>");
 	output("\n\nSlipping behind your back, Celise’s arms connect just above your spine and pull down into a tight, form-fitting seal. The definition of her fingers and knuckles fades into a smooth column of green restraint, holding you still while the suction increases. Your [pc.toes] twitch and your back arches when the vacuum pumps on your [pc.cocks] double the tug, pulling so hard that droplets of pre-cum wick out of your [pc.cockHeads] one after another to vanish directly into the galotian.");
 	
 	output("\n\nSudden motion assaults you, and the texture of the prison");
@@ -294,7 +289,7 @@ public function celiseSucksYouDry():void {
 	output(" stops, and the relentless, vacuum-tight tugging of your maleness");
 	if(pc.cockTotal() > 1) output("es");
 	output(" begins. The pull is so strong that it’s almost painful but so pleasurably good at the same time. Your hands reach down to try and slow or stop it, but they’re immediately trapped in prisons of the purest green, arrested up to the elbow by Celise’s improbable strength.");
-	output("\n\n<i>“Nuh uh! Just hang on and let it happen, [pc.name],”</i>  the smiling woman hungrily chides. As if there was anything you could do but hang by your trapped hands! Celise’s not-so-tender affections grow fiercer still, and spatters of warm moisture begin to fall across your [pc.belly] and ");
+	output("\n\n<i>“Nuh uh! Just hang on and let it happen, [pc.name],”</i> the smiling woman hungrily chides. As if there was anything you could do but hang by your trapped hands! Celise’s not-so-tender affections grow fiercer still, and spatters of warm moisture begin to fall across your [pc.belly] and ");
 	if(pc.bRows() > 1) output("the lowest row of your [pc.fullChest]");
 	else output("[pc.chest]");
 	output(". You look up to see her drooling glops of green goo all over you. You can’t endure much more of this. Already, you can feel the warmth of an impending orgasm building in your [pc.balls]");
@@ -339,7 +334,7 @@ public function celiseSucksYouDry():void {
 		}
 	}
 	//Resume
-	output("\n\n<i>“Feels like, totally good, right?”</i>  Celise asks, squeezing her arms and constantly suckling dicksleeves tighter. <i>“Most bodies can’t handle this kind of suction, and they just let it all out without getting any kind of relief.”</i>  Spots of [pc.cumColor] are swimming inside her as she teases you. <i>“You taste so good, too! Captain, I could keep you like this all day long!”</i>");
+	output("\n\n<i>“Feels like, totally good, right?”</i> Celise asks, squeezing her arms and constantly suckling dicksleeves tighter. <i>“Most bodies can’t handle this kind of suction, and they just let it all out without getting any kind of relief.”</i> Spots of [pc.cumColor] are swimming inside her as she teases you. <i>“You taste so good, too! Captain, I could keep you like this all day long!”</i>");
 	output("\n\nYou shudder, wracked by rising ecstasy and yet unable to hit the climax that feels so achingly close. The steady ejaculation continues well past when you thought you should have gone dry.");
 	if(pc.cumQ() >= 5000) output(" Celise, meanwhile, is flush with fresh fluid, noticeably less cohesive and dripping uncontrolled moisture into a puddle of sex and goo at her base.");
 	output(" She draws cum from you until the flow thins, turning runny, more water than protein, and an uncomfortably empty feeling grows even as your [pc.balls] ");
@@ -347,7 +342,7 @@ public function celiseSucksYouDry():void {
 	else output("empties");
 	output(". You " + pc.mf("growl","whine") + " in discomfort, lamely bucking your hips in an attempt to get off.");
 	
-	output("\n\n<i>“Ohhh, it’s drying up,”</i>  Celise sadly gushes. <i>“Wanna cum?”</i>");
+	output("\n\n<i>“Ohhh, it’s drying up,”</i> Celise sadly gushes. <i>“Wanna cum?”</i>");
 	output("\n\nYou nod, perhaps a bit too vigorously");
 	if(pc.isAss()) output(", growling, <i>“Let me cum, you cunt!”</i>");
 	else output(".");
@@ -384,32 +379,31 @@ public function celiseSucksYouDry():void {
 	celise.orgasm();
 	celise.loadInMouth(pc);
 	processTime(25+rand(4));
-	this.clearMenu();
-	this.addButton(0,"Next",mainGameMenu);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 //Anal Milking
 public function celiseDoesSomeAnalMilking():void {
 	clearOutput();
-	this.userInterface.showBust("CELISE");
-	this.userInterface.showName("\nCELISE");
-	output("<i>“Yeah, you need a nice, long milking. A " + pc.mfn("boy","girl","person") + " like you has so many things to worry about out here,”</i>  Celise soothingly prattles as her body shapes around your [pc.butt], sliding fingers of hot, wet heat through your crack. You gasp and shift inside her only to be pushed back into place by the unstoppable force of a liquid wave crashing over you. <i>“Hold still, Captain, it’s time you were milked. Just relax and I’ll make you feel very good.”</i> Squishy, half-formed fingers clasp [pc.eachCock], bouncing ");
+	showCelise();
+	output("<i>“Yeah, you need a nice, long milking. A " + pc.mfn("boy","girl","person") + " like you has so many things to worry about out here,”</i> Celise soothingly prattles as her body shapes around your [pc.butt], sliding fingers of hot, wet heat through your crack. You gasp and shift inside her only to be pushed back into place by the unstoppable force of a liquid wave crashing over you. <i>“Hold still, Captain, it’s time you were milked. Just relax and I’ll make you feel very good.”</i> Squishy, half-formed fingers clasp [pc.eachCock], bouncing ");
 	if(pc.cockTotal() == 1) output("it");
 	else output("them");
-	output(" lightly. <i>“Very good,”</i>  she purrs.");
+	output(" lightly. <i>“Very good,”</i> she purrs.");
 	//Jackass
 	if(pc.isAss()) output("\n\nYou reply, <i>“I’m only doing this because you’d be insufferable otherwise,”</i>");
 	//Mischievious
 	else if(pc.isMischievous()) output("\n\nYou nervously ask, <i>“Are you sure you know what you’re doing back there?”</i>");
 	//Good
 	else output("\n\nYou politely ask, <i>“Just be careful, okay?”</i>");
-	output("  but it is hard to keep the catch of anticipation out of your voice. The feeling of the aqueous woman’s form surging over the most intimate cracks and crevices of your body is sending pleasant tingles through your body, particularly as she massages the ring of your [pc.asshole]. Your [pc.cocks] give");
+	output(" but it is hard to keep the catch of anticipation out of your voice. The feeling of the aqueous woman’s form surging over the most intimate cracks and crevices of your body is sending pleasant tingles through your body, particularly as she massages the ring of your [pc.asshole]. Your [pc.cocks] give");
 	if(pc.cockTotal() == 1) output("s");
 	output(" an eager twitch at this, even constrained by the gelatinous mass as they are. Tender licks trace along ");
 	if(pc.cockTotal() > 1) output("their forms ");
 	else output("its form ");
 	output("in response, affectionately rewarding you for the feeding to come.");
-	output("\n\n<i>“I’ll be soooo careful,”</i>  Celise coos while slipping a thread-sized pseudopod through your pucker. <i>“You deserve to be pampered from time to time, to be massaged and caressed.”</i>  The gel-crafted intrusion thickens, forcing your sphincter to dilate wider. It’s now the size of a finger and pressing a few inches into your [pc.asshole]. Bubbling heat passes inside you, and you feel the tip of it thickening, shaping your internals to hold it. It feels like a fat bulb on the end, probably the size of an apple by the way you can feel it pushing on you, yet its insertion is as gentle the barest hint of friction on your ring.");
+	output("\n\n<i>“I’ll be soooo careful,”</i> Celise coos while slipping a thread-sized pseudopod through your pucker. <i>“You deserve to be pampered from time to time, to be massaged and caressed.”</i> The gel-crafted intrusion thickens, forcing your sphincter to dilate wider. It’s now the size of a finger and pressing a few inches into your [pc.asshole]. Bubbling heat passes inside you, and you feel the tip of it thickening, shaping your internals to hold it. It feels like a fat bulb on the end, probably the size of an apple by the way you can feel it pushing on you, yet its insertion is as gentle the barest hint of friction on your ring.");
 	output("\n\nGiggling, Celise watches your face as she works. <i>“Feeling it now, [pc.name]?”</i>");
 	output("\n\nYou have to admit that you are. Your [pc.cocks] ");
 	if(pc.cockTotal() > 1) output("are");
@@ -441,7 +435,7 @@ public function celiseDoesSomeAnalMilking():void {
 	output(" around your [pc.cocks]. Your [pc.legOrLegs] twitch");
 	if(pc.legCount == 1) output("es");
 	output(" from the pleasure, aching to fuck something, anything, but you’re waist deep in a goo woman who seems intent to milk you from behind. You gasp, <i>“More!”</i>");
-	output("\n\n<i>“Are you sure you sure, Captain [pc.name]?”</i>  Celise moans in enjoyment. <i>“I - ohhhh - don’t think I’ll be able to stop once I start.”</i>  Her whole form jiggles with quakes of enjoyment.");
+	output("\n\n<i>“Are you sure you sure, Captain [pc.name]?”</i> Celise moans in enjoyment. <i>“I - ohhhh - don’t think I’ll be able to stop once I start.”</i> Her whole form jiggles with quakes of enjoyment.");
 	output("\n\nNodding, you cry, <i>“Yes! I can’t wait any longer!”</i>");
 	
 	output("\n\nStarting at the base of the mound encircling you, vibrations begin ripple up the emerald cock-milker’s body. You can feel it rippling around your [pc.legOrLegs], squeezing and sliding over so fast that it feels like a constant massage. Then, it moves up to your crotch, rubbing every part of you so nicely except for your [pc.cocks], which ");
@@ -465,7 +459,7 @@ public function celiseDoesSomeAnalMilking():void {
 		if(pc.cumQ() >= 5000) output(", though she fails to retain it due to the massive fluid injections you’re forcing into her");
 		output(".");
 	}
-	output("\n\n<i>“Good " + pc.mfn("boy","cum-cow","cum-cow") + ",”</i>  Celise purrs as she works. <i>“Let it all out...”</i>  Your eyes roll back as your rectum is flooded with yet more of her warm vibrations, pushing more and more inside you until your belly bulges slightly. The orgasm you’ve been locked in for what feels like forever just drags on, not ending your waist goes numb and your squeezed-out prostate feels achy and pained.");
+	output("\n\n<i>“Good " + pc.mfn("boy","cum-cow","cum-cow") + ",”</i> Celise purrs as she works. <i>“Let it all out...”</i> Your eyes roll back as your rectum is flooded with yet more of her warm vibrations, pushing more and more inside you until your belly bulges slightly. The orgasm you’ve been locked in for what feels like forever just drags on, not ending your waist goes numb and your squeezed-out prostate feels achy and pained.");
 	output("\n\nSensing this, the jade-eyed honey begins to exit your stuffed backdoor in much the same way that she entered - a narrow, painless thread of slippery biological matter that releases you from your forced spurting. You sag into her slick arms");
 	if(pc.hasFuckableNipples() || pc.hasNippleCocks()) output(", feeling your nipples pop apart");
 	output(", and the ");
@@ -476,43 +470,41 @@ public function celiseDoesSomeAnalMilking():void {
 	pc.orgasm();
 	celise.orgasm();
 	processTime(25+rand(4));
-	this.clearMenu();
-	this.addButton(0,"Next",mainGameMenu);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 //Inside Milking
 public function celiseGoesInYerBallsYo():void {
 	clearOutput();
-	this.userInterface.showBust("CELISE");
-	this.userInterface.showName("\nCELISE");
+	showCelise();
 	output("<i>“Yeah, going inside sounds super fun,”</i> Celise muses. ");
 	if(pc.balls > 0) output("\n\nShe cups your [pc.sack] gingerly");
 	else output("\n\nShe traces around your crotch gingerly");
-	output(". <i>“A shame I can’t just crawl the whole way in there and slurp down on your yummy boysauce all day, but then you wouldn’t be able to run around having adventures would you? You’d just be stuck to the floor, </i>");
-	if(pc.balls > 0) output("<i>cumming endlessly into me while you twitch on top of your swollen sack.</i>");
-	else output("<i>pulled down by weight of your belly. Your prostate would be so stuffed with me that you’d look pregnant with dozens of kids, cumming endlessly yet never letting any out of your own body.</i>");
-	output("<i>”</i>  She stops her fantasizing to cup [pc.oneCock] and lick the [pc.biggestCockHead]. <i>“Mmmm, are you ready?”</i>");
+	output(". <i>“A shame I can’t just crawl the whole way in there and slurp down on your yummy boysauce all day, but then you wouldn’t be able to run around having adventures would you? You’d just be stuck to the floor,");
+	if(pc.balls > 0) output(" cumming endlessly into me while you twitch on top of your swollen sack.");
+	else output(" pulled down by weight of your belly. Your prostate would be so stuffed with me that you’d look pregnant with dozens of kids, cumming endlessly yet never letting any out of your own body.");
+	output("”</i> She stops her fantasizing to cup [pc.oneCock] and lick the [pc.biggestCockHead]. <i>“Mmmm, are you ready?”</i>");
 	//These should be obvious where they go.
 	//[Yep] [Nevermind, suck] [Nevermind, milk me]
-	this.clearMenu();
-	this.addButton(0,"Yep",yepGetInMyBallsUBitch);
-	this.addButton(1,"No, Suck Me",celiseSucksYouDry);
-	this.addButton(2,"No, Milk Me",celiseDoesSomeAnalMilking);
+	clearMenu();
+	addButton(0,"Yep",yepGetInMyBallsUBitch);
+	addButton(1,"No, Suck Me",celiseSucksYouDry);
+	addButton(2,"No, Milk Me",celiseDoesSomeAnalMilking);
 }
 public function yepGetInMyBallsUBitch():void {
 	clearOutput();
-	this.userInterface.showBust("CELISE");
-	this.userInterface.showName("\nCELISE");
+	showCelise();
 	output("You ");
 	if(!pc.isAss()) output("bite your lip and ");
 	output("nod.");
-	output("\n\n<i>“Let's get you nice and big first. I want the journey in to be easy, and lubricated,”</i>  the emerald woman explains. Her hand reaches up to the [pc.biggestSheath] of your [pc.cockBiggest] and encircles it. Her thumb, index, and middle fingers merge together into a jade loop, wetly squishing as they seal into a tight ring right around you. Blood flows into your filling boner, but it doesn’t come back out, forcing the bulging bitch-breaker bigger and bigger with each passing second. You gasp at the sensation when Celise takes the [pc.biggestCockHead] straight into her mouth, plumping her lips bigger and fatter around you. Just like your penis, they get bigger and fatter with each passing second, swelling until your boner is wrapped in plump, juicy goopillows.");
-	output("\n\nGasping out encouraging pants, you reach down towards Celise’s wobbling mounds, sinking your digits deep into the forgiving, semi-liquid surface of her barely-congealed melons. She gasps and moans while your fingers slip deeper, and the slippery surface fades into thick, viscous warmth around you. You swirl your hand around, feeling the inside of her tits and making the gelatinous female gasp at being fist-fucked in her own tit. She breaks from your [pc.cockBiggest] to whimper, <i>“More,”</i>  arching her back encouragingly.");
+	output("\n\n<i>“Let's get you nice and big first. I want the journey in to be easy, and lubricated,”</i> the emerald woman explains. Her hand reaches up to the [pc.biggestSheath] of your [pc.cockBiggest] and encircles it. Her thumb, index, and middle fingers merge together into a jade loop, wetly squishing as they seal into a tight ring right around you. Blood flows into your filling boner, but it doesn’t come back out, forcing the bulging bitch-breaker bigger and bigger with each passing second. You gasp at the sensation when Celise takes the [pc.biggestCockHead] straight into her mouth, plumping her lips bigger and fatter around you. Just like your penis, they get bigger and fatter with each passing second, swelling until your boner is wrapped in plump, juicy goopillows.");
+	output("\n\nGasping out encouraging pants, you reach down towards Celise’s wobbling mounds, sinking your digits deep into the forgiving, semi-liquid surface of her barely-congealed melons. She gasps and moans while your fingers slip deeper, and the slippery surface fades into thick, viscous warmth around you. You swirl your hand around, feeling the inside of her tits and making the gelatinous female gasp at being fist-fucked in her own tit. She breaks from your [pc.cockBiggest] to whimper, <i>“More,”</i> arching her back encouragingly.");
 	output("\n\nYou give her what she wants by pulling out and shifting down to her nipples, pressing your thumb down hard on the pebbly surface until it parts into a sopping-wet orifice. Celise’s entire body is like one big, juicy cunt just waiting to be penetrated. With your other fingers, you squeeze her nubs, compressing them into nice tight slits that are sure to feel good as your thumb slides through them.");
 	output("\n\nGlittering moist ringlets drop back down around your crotch in a semi-transparent veil, barely concealing the lewd suckling and muffled moans taking place within. Celise has returned to getting you ready, use her luscious lips and suddenly toothless maw to wrap your [pc.cockBiggest] in a syrupy tunnel of bliss. You jerk your hips in lewd little shakes against her while she works, feeling yourself clench and twitch within oral vice, already feeling a rush of warmth beginning within you that culminates in the expression of slick droplets of pre-cum.");
 	output("\n\nAs soon as she tastes the beginnings of fluid release, Celise edges off your cock, connected by a web of glittering strands that hang from her chin to your " + pc.cockHead(pc.biggestCockIndex()) + " before breaking. Both of you sit there panting, joined together at your [pc.legOrLegs]. The goo-girl announces, <i>“It’s - ooohhh... ungh! It’s r-ready!”</i> Her voice stutters while your hands continue to play with her immense tits, fucking her nipples while the rest of your fingers slip deeper into the emerald surface, eventually finding pleasant sinkholes of their own to plumb.");
 	output("\n\nGathering herself, Celise shudders before holding your [pc.cockBiggest] in one hand, her own thumb curling up to press against your oozing cumslit. Hot pressure can be felt probing that leaking tip, compressing and distorting into the shape of your fluid-filled cumtunnel.");
-	output("\n\n<i>“I hope you’re ready to cum,”</i>  she bubbles.");
+	output("\n\n<i>“I hope you’re ready to cum,”</i> she bubbles.");
 	output("\n\nYou start to answer, but that pressure spikes, pushing the pre-cum back through your urethra");
 	if (pc.balls > 0) output(" and into your [pc.balls]");
 	output(", turned back by a wave of emerald goo that’s filling every inch of your plumbing. It doesn’t hurt at all, surprisingly, it’s more like a tingle of warm, juicy goodness that slithers inside of you, forking off to touch every single cum-producing organ in your body. Your seminial vesicles are flooded. Your prostate is plugged. ");
@@ -521,8 +513,8 @@ public function yepGetInMyBallsUBitch():void {
 	output("With each passing second, your sexual organs are more and more stuffed with the hungry goo-girl’s green goop until you wonder how you’ll hold it any more.");
 	pc.cockChange();
 	output("\n\nIt is at that point that Celise finally breaks contact with your [pc.cockBiggest], depositing a wet kiss upon its " + pc.cockHead(pc.biggestCockIndex()) + " as the last of her stuff disappears into your urethra. The strange tingles that her actions have filled you with cause your [pc.legOrLegs] to quiver slightly, and you nervously grab your slime-shined penis, examining it while your innards shift. You feel so full!");
-	output("\n\nLong lashes flutter innocently as Celise watches you squirm. She idly runs her hands across the expansive curve of her chest before pulling you deeper into her base, snuggling your head between her tits and securely ensconcing your groin in the gentle mass. <i>“Wait for it,”</i>  she coos, stroking your back with one hand and your [pc.chest] with the other.");
-	output("\n\n<i>“Wait for what?”</i>  you retort, finally starting to feel more at ease with the squirming inside you. Before the question leaves your mouth, the warmth inside you changes to a fervent stroking, caressing the entirety of your reproductive system from the inside. The heat in your [pc.balls] doubles in that moment, and you cry out in excitement, back on the cusp of cumming once more. An explosion of bliss explodes from deep within you, and you feel your body clenching and pumping, producing all the sensations of a hot, messy orgasm. However, unexpectedly, nothing emerges into the waiting goo maiden’s mass.");
+	output("\n\nLong lashes flutter innocently as Celise watches you squirm. She idly runs her hands across the expansive curve of her chest before pulling you deeper into her base, snuggling your head between her tits and securely ensconcing your groin in the gentle mass. <i>“Wait for it,”</i> she coos, stroking your back with one hand and your [pc.chest] with the other.");
+	output("\n\n<i>“Wait for what?”</i> you retort, finally starting to feel more at ease with the squirming inside you. Before the question leaves your mouth, the warmth inside you changes to a fervent stroking, caressing the entirety of your reproductive system from the inside. The heat in your [pc.balls] doubles in that moment, and you cry out in excitement, back on the cusp of cumming once more. An explosion of bliss explodes from deep within you, and you feel your body clenching and pumping, producing all the sensations of a hot, messy orgasm. However, unexpectedly, nothing emerges into the waiting goo maiden’s mass.");
 	output("\n\nSeeing your questioning look, Celise comfortingly caresses your ");
 	if(pc.balls > 0) output("swelling balls");
 	else if(pc.hasVagina()) {
@@ -531,40 +523,37 @@ public function yepGetInMyBallsUBitch():void {
 		else output("y");
 	}
 	else output("taint");
-	output(" with warm pleasure and explains, <i>“</i>");
-	if(flags["TIMES_CELISE_IN_BALLS"] > 0) output("<i>Don’t you remember? Well, let me explain again while you enjoy the pleasure. </i>");
-	output("<i>The part of me that’s inside you right now is stimulating your body to orgasm, as you can surely feel.”</i>  You cry out a moan as an answer, unable to articulate anything more complex. Your body pumps the cum around inside itself, but it doesn’t seem to go anywhere. <i>“Yeah, I’m redirecting the yummy stuff back into your [pc.balls], but I’m tricking </i>");
-	if(pc.balls <= 1) output("<i>it</i>");
-	else output("<i>them</i>");
-	output("<i> into thinking </i>");
-	if(pc.balls <= 1) output("<i>it’s</i>");
-	else output("<i>they’re</i>");
-	output("<i> empty so that they’ll go into overdrive and make more. I’m just going to leave you cumming like this until your body wears itself out making cum. Then I’ll let it all out into these condoms,”</i>  she gestures toward a nearby pail of nanoweave condoms before continuing, <i>“for a snack later!”</i>");
-	output("\n\n<i>“Whaaaa... ahhh!”</i>  you cry, arching your back and twitching your [pc.hips] around inside Celise, feeling her inside and outside, massaging your body to a tremendous orgasm. This time, you feel the [pc.cum] sliding around inside you, pouring into your [pc.balls] so heavily that you can feel ");
+	output(" with warm pleasure and explains, <i>“");
+	if(flags["TIMES_CELISE_IN_BALLS"] > 0) output("Don’t you remember? Well, let me explain again while you enjoy the pleasure. ");
+	output("The part of me that’s inside you right now is stimulating your body to orgasm, as you can surely feel.”</i> You cry out a moan as an answer, unable to articulate anything more complex. Your body pumps the cum around inside itself, but it doesn’t seem to go anywhere. <i>“Yeah, I’m redirecting the yummy stuff back into your [pc.balls], but I’m tricking ");
+	if(pc.balls <= 1) output("it into thinking it’s empty so that it");
+	else output("them into thinking they’re empty so that they");
+	output("’ll go into overdrive and make more. I’m just going to leave you cumming like this until your body wears itself out making cum. Then I’ll let it all out into these condoms,”</i> she gestures toward a nearby pail of nanoweave condoms before continuing, <i>“for a snack later!”</i>");
+	output("\n\n<i>“Whaaaa... ahhh!”</i> you cry, arching your back and twitching your [pc.hips] around inside Celise, feeling her inside and outside, massaging your body to a tremendous orgasm. This time, you feel the [pc.cum] sliding around inside you, pouring into your [pc.balls] so heavily that you can feel ");
 	if(pc.balls <= 1) output("it");
 	else output("them");
 	output(" expanding, filling with pleasant weight a moment before the next explosion of bliss rolls in. Your lids lazily droop as the consecutive cums take their toll on your consciousness, letting your mouth hang out while you’re brought to a third ");
 	if(pc.balls > 0) output("ball-filling");
 	else output("prostate-pumping");
 	output(" orgasm. This time, there’s a definite sense of stretching - of filling beyond normal capacity, and you whimper as it concludes, immediately feeling the twinge of a fourth starting.");
-	output("\n\n<i>“Shhhh, shhh,”</i>  Celise soothes. <i>“Don’t yell so loud, they’re just orgasms.”</i>  Despite her calm tone, the goo-girl is rapidly sliding herself all around you, bucking her amorphous base back and forth around [pc.eachCock]. She’s actually lost a bit of cohesion; her heavy breasts are merging back into the rest of her and dripping green moisture down into the rest of her. Clearly she’s enjoying herself as well, something she confirms when she cums, spouting green trickles from both her nipples as she does. You lack the capacity to capitalize on this, as you’re cumming for the seventh or eighth time. It’s getting too hard to keep track. Your ");
+	output("\n\n<i>“Shhhh, shhh,”</i> Celise soothes. <i>“Don’t yell so loud, they’re just orgasms.”</i> Despite her calm tone, the goo-girl is rapidly sliding herself all around you, bucking her amorphous base back and forth around [pc.eachCock]. She’s actually lost a bit of cohesion; her heavy breasts are merging back into the rest of her and dripping green moisture down into the rest of her. Clearly she’s enjoying herself as well, something she confirms when she cums, spouting green trickles from both her nipples as she does. You lack the capacity to capitalize on this, as you’re cumming for the seventh or eighth time. It’s getting too hard to keep track. Your ");
 	if(pc.balls > 0) output("[pc.balls] feel like they’ve doubled in size, stretching your sack taut with their sloshing weight.");
 	else output("prostate feels like it’s doubled in size, large enough that it’s actually formed a visible bulge in your belly.");
 	output("\n\nCumming like that, wrapped in comforting goo and endlessly orgasming into your own spunk-reserves, you slip from conscious awareness, focusing entirely on how good it feels. Celise is similarly affected by the experience. Her green goop is splattering all over the walls with how hard she’s humping you, and she constantly prattles encouragingly to you.");
 	output("\n\n<i>“Cum again, [pc.name]!”</i>");
-	output("\n\n<i>“Ohhh, look at how big </i>");
-	if(pc.balls > 0) output("<i>those</i>");
-	else output("<i>you</i>");
-	output("<i> are getting!”</i>");
+	output("\n\n<i>“Ohhh, look at how big ");
+	if(pc.balls > 0) output("those");
+	else output("you");
+	output(" are getting!”</i>");
 	output("\n\n<i>“A little more, [pc.name], just cum a little bit more.”</i>");
 	output("\n\n<i>“You don’t mind if I get a few more cums of my own in before I stop, do you?”</i>");
 	output("\n\nYou lose track of her words soon enough, aware only of how your ");
 	if(pc.balls == 0) output("[pc.belly]");
 	else output("[pc.sack]");
 	output(" is swelling out with all the unspent cum. Before long, you’ve grown so full of jizz that you don’t think could move if you wanted to. ");
-	if(pc.balls > 0) output("Your immense, sloshing balls would keep your [pc.legOrLegs] from making contact with the ground, if at all, and the feeling of dragging them along would likely just set off a fresh orgasm.");
-	else output("Your immense, sloshing middle is so heavy that you doubt you could lift it up, and the prostate contained within is so sensitive that dragging yourself along the floor would probably make you pop off a fresh orgasm.");
-	output("..");
+	if(pc.balls > 0) output("Your immense, sloshing balls would keep your [pc.legOrLegs] from making contact with the ground, if at all, and the feeling of dragging them along would likely just set");
+	else output("Your immense, sloshing middle is so heavy that you doubt you could lift it up, and the prostate contained within is so sensitive that dragging yourself along the floor would probably make you pop");
+	output(" off a fresh orgasm...");
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
@@ -572,20 +561,19 @@ public function yepGetInMyBallsUBitch():void {
 	celise.orgasm();
 	processTime(90+rand(5));
 	//[Next]
-	this.clearMenu();
-	this.addButton(0,"Next",celiseInBallsFinalEnding);
+	clearMenu();
+	addButton(0,"Next",celiseInBallsFinalEnding);
 }
 
 public function celiseInBallsFinalEnding():void {
 	clearOutput();
-	this.userInterface.showBust("CELISE");
-	this.userInterface.showName("\nCELISE");
+	showCelise();
 	output("Abruptly, you’re aware of the feeling of the incredible, pleasant pleasure draining out of you, releasing the backed-up [pc.cumNoun] in a wave of ecstasy. There’s a snug tightness around [pc.eachCock] that grows tighter by the moment, and it isn’t nearly as warm or wet as the pressure you felt before. You pull your tongue back in your mouth, but you still cannot manage to suppress your pleasured moans, looking down to watch the pink surface of a condom bloating with [pc.cumColor] fluid. [pc.eachCock] is lurching powerfully, pumping out huge deluges into the beachball-sized balloon of condensed lust.");
 	output("\n\nCelise plucks up fresh condoms to drop into herself. One after another, their wrappings open and their contents are drawn out. The discarded packaging ejects from her blobby undercarriage to land in a nearby trashcan. Your orgasm is once more arrested, redirected back inside yourself, causing you to give a high pitched whine of disappointment, but it does not last long. [pc.eachCock] has its condom pulled off, tied into a wobbling balloon, and then replaced with a fresh one. Once the new cum-receptacle is in place, your reproductive efflux is let free again.");
-	output("\n\n<i>“Fill ‘er up!”</i>  Celise giggles, stroking you encouragingly. <i>“</i>");
-	if(pc.cumQ() >= 5000) output("<i>You cum too much normally anyway.</i>");
-	else output("<i>This is a good way to make sure you make enough to feed me anyway.</i>");
-	output("<i>”</i>");
+	output("\n\n<i>“Fill ‘er up!”</i> Celise giggles, stroking you encouragingly. <i>“");
+	if(pc.cumQ() >= 5000) output("You cum too much normally anyway.");
+	else output("This is a good way to make sure you make enough to feed me anyway.");
+	output("”</i>");
 	output("\n\nYou fill that balloon and more like it until there is a small mountain of stored cum bobbing under its own liquid weight next to you. At that point, Celise runs out of condoms and shrugs. She removes the last one and gingerly squeezes your [pc.cockBiggest], purring, <i>“I’ll take the rest, go on.”</i>");
 	output("\n\nBoy, do you ever. Torrents of [pc.cum] wash into your pet galotian, flooding her body with [pc.cumColor] deposits. Her huge breasts distend, her belly expands to the point where she looks pregnant, and her asscheeks turn into two ginormous globes of barely-restrained spunk. Eventually, she can hold no more, and the force of your orgasm propels you out of her body. You lie there, gasping and crying from the immense ecstasy, painting her [pc.cumColor] with the last of your pent-up bliss. Even after you go dry, your [pc.cocks] ");
 	if(pc.cockTotal() > 1) output("are");
@@ -605,8 +593,8 @@ public function celiseInBallsFinalEnding():void {
 	IncrementFlag("TIMES_CELISE_IN_BALLS");
 	processTime(7);
 	pc.orgasm();
-	this.clearMenu();
-	this.addButton(0,"Next",mainGameMenu);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 //Feed Celise (F)
@@ -614,8 +602,7 @@ public function celiseInBallsFinalEnding():void {
 //By Savin
 public function feedCeliseBySavin():void {
 	clearOutput();
-	this.userInterface.showBust("CELISE");
-	this.userInterface.showName("\nCELISE");
+	showCelise();
 	author("Savin");
 	output("With one look at the massively busty green beauty, so desirous in her sexual need, your hands move to ");
 	if(pc.armor.shortName == "") output("discard your gear");
@@ -659,7 +646,7 @@ public function feedCeliseBySavin():void {
 	output("\n\nStill recovering from your massive gut-wrenching orgasm, you can do nothing but float listlessly atop Celise's gooey body as the galotian girl starts to thrust: her hips are utterly still, but you can feel the alien quasi-cocks inside of you flooding back from your depths... only to come ramming back a moment later, nearly making you cum again on the spot. The second thrust finishes the job, but the third has you screaming, head thrown back as your quiver and cum, body writhing helplessly in a sea of goo as Celise reams your every hole again and again.");
 	
 	output("\n\nCelise keeps you cumming again and again, endlessly crashing over the edge of bliss as her gooey dicks pound your [pc.asshole] and [pc.pussies]. She seems to swell and liven with every orgasm she fucks out of you, feeding on your sexual juices like a vampire. She uses you for what seems like eternity, pounding your holes until all you can think of is your massive, gaping fuck-holes filled with her alien goo. Your cries die out to pitiful, pleasured whimpers, your sex-addled mind unable to produce anything more throughout the ages of gooey intercourse until finally you feel the tendrils of slime withdrawing from you, leaving your entire body feeling loose, sore, and empty.");
-	output("\n\n<i>“Sooo tasty,”</i>  Celise purrs, licking her lips as the last tendril pops out of your [pc.asshole] with a wet squelch. <i>“Thanks, cap! That'll last me a loooong time.”</i>");
+	output("\n\n<i>“Sooo tasty,”</i> Celise purrs, licking her lips as the last tendril pops out of your [pc.asshole] with a wet squelch. <i>“Thanks, cap! That'll last me a loooong time.”</i>");
 	output("\n\nYou just groan weakly and roll off of her amorphous body, flopping onto the floor. Barely cognizant enough to pick up your gear");
 	if(!pc.isNude()) output(" and clothes");
 	output(" after the mighty railing you just got, your feel your [pc.legOrLegs] bowing, barely able to stand with how stretched you are. You waddle off, sexually and physically exhausted and feeling more loose than you could ever have imagined.");
@@ -669,30 +656,49 @@ public function feedCeliseBySavin():void {
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
-	this.clearMenu();
-	this.addButton(0,"Next",mainGameMenu);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 //RoombaGoo
-/*Savin Author!
-{Small chance to play after the PC masturbates w/ a cock OR fuck Kiro}
-
-{First Time}
-As you're lounging in your cabin, still recovering from your sexual bliss, you notice a strange... slurping sound coming from your door. You look down from the uberkitty video on your Codex's screen to see a green goop pouring in through your lock. In a moment of panic, you scramble back to the corner of your bed, grabbing your [weapon] as the goo plops onto the floor... and congeals into a vaguely Celise-shaped blob. Apparently oblivious to your presence, the perky little goo-girl rolls around on your cum-splattered floor, happily absorbing the spunk smeared across the deck. You watch with awkward quiet as the galotian mops up after you, humming merrily to herself as she gobbles up your seed, turning a paler shade of green and leaving your floor spotless.
-
-Huh. You always wondered how the ship stayed so damn clean.
-
-{Repeat Variant}
-As you're lounging in your cabin, still recovering from your sexual bliss, you notice a strange... slurping sound coming from your door. You look down from the uberkitty video on your Codex's screen to see a green goop pouring in through your lock and congeals into a vaguely Celise-shaped blob. Apparently oblivious to your presence, the perky little goo-girl rolls around on your cum-splattered floor, happily absorbing the spunk smeared across the deck. You watch with amused quiet as the galotian mops up after you, humming merrily to herself as she gobbles up your seed, turning a paler shade of green and leaving your floor spotless.
-
-Good on her, keeping the ship nice and sparkly.*/
+// Savin Author!
+// Small chance to play after the PC masturbates w/ a cock OR fuck Kiro
+public function celiseRoombaGoo(clearText:Boolean = true):void
+{
+	showCelise();
+	if(clearText)
+	{
+		clearOutput();
+		author("Savin");
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
+	else
+	{
+		output("\n\n");
+	}
+	output("As you’re lounging in your cabin, still recovering from your sexual bliss, you notice a strange... slurping sound coming from your door. You look down from the uberkitty video on your Codex’s screen to see a green goop pouring in through your lock");
+	// First Time
+	if(flags["CELISE_ROOMBA_GOO"] == undefined)
+	{
+		output(". In a moment of panic, you scramble back to the corner of your bed, grabbing your [pc.weapon] as the goo plops onto the floor... and congeals into a vaguely Celise-shaped blob. Apparently oblivious to your presence, the perky little goo-girl rolls around on your cum-splattered floor, happily absorbing the spunk smeared across the deck. You watch with awkward quiet as the galotian mops up after you, humming merrily to herself as she gobbles up your seed, turning a paler shade of green and leaving your floor spotless.");
+		output("\n\nHuh. You always wondered how the ship stayed so damn clean.");
+	}
+	// Repeat Variant
+	else
+	{
+		output(" and congeals into a vaguely Celise-shaped blob. Apparently oblivious to your presence, the perky little goo-girl rolls around on your cum-splattered floor, happily absorbing the spunk smeared across the deck. You watch with amused quiet as the galotian mops up after you, humming merrily to herself as she gobbles up your seed, turning a paler shade of green and leaving your floor spotless.");
+		output("\n\nGood on her, keeping the ship nice and sparkly.");
+	}
+	IncrementFlag("CELISE_ROOMBA_GOO");
+	processTime(30+rand(10));
+}
 
 //Celise Sleaze
 //Requirements: PC C-cup or above, lactates, and has junk of some kind
 public function celiseSleezeLactation():void {
 	clearOutput();
-	this.userInterface.showBust("CELISE");
-	this.userInterface.showName("\nCELISE");
+	showCelise();
 	author("Nonesuch");
 	//First time
 	if(flags["LACTATION_FED_CELISE"] == undefined)
@@ -703,9 +709,9 @@ public function celiseSleezeLactation():void {
 		output("\n\nYou touch one of your [pc.nipples] absently and manage to refocus on your goo girl pet. Or more specifically on her soft, plump lips. The creature seems to have evolved specifically to lick, nurse, and imbibe - just looking at her mouth makes you want to stuff it with something, to fill her orifices completely until her eyes roll back in their sockets through sheer glut.");
 		if(pc.intelligence() > 60) output(" It must be some form of subliminal suggestion, speaking to you wordlessly through the shape of her mouth and the wetness of her form. The galotians have spent millennia enticing other creatures to part with their fluids after all, and however dumb Celise might come across as, she clearly has an encyclopaedia of tricks she instinctively reaches for when she sees a big, fleshy milk float like you coming. Recognizing the urge as an outside animal will pressing on you doesn’t make it feel any less real, though.");
 		output("\n\nAlthough it’s always difficult to read her facade of a human face, the way her mass quivers and roils, reforming her smooth hips over and over again, suggests she finds your long stare at her disquieting. She giggles nervously, fingering a tendril of hair. <i>“Is everything alright, [pc.name]?”</i>");
-		output("\n\nYou smile. Holding her gaze ");
-		if(!pc.isChestGarbed()) output("you slide your [pc.upperGarment] down, slowly releasing your [pc.chest] into the warm, dry air.");
-		else output("you run your hands across the top of your [pc.chest] enticingly, slowly teasing your [pc.nipples] in the warm, dry air.");
+		output("\n\nYou smile. Holding her gaze you");
+		if(!pc.isChestGarbed()) output(" slide your [pc.upperGarment] down, slowly releasing your [pc.chest] into the warm, dry air.");
+		else output(" run your hands across the top of your [pc.chest] enticingly, slowly teasing your [pc.nipples] in the warm, dry air.");
 		output(" Celise’s eyes move downwards and all worry evaporates from her face, replaced by a familiar all-encompassing look of hunger.");
 
 		output("\n\n<i>“Ooh. Would it be alright if I - would you mind if I put my mouth on those? They look like something I’d like to, mmm, get to know.”</i>");
@@ -740,7 +746,7 @@ public function celiseSleezeLactation():void {
 	else if(pc.hasFuckableNipples())
 	{
 		output("\n\nYour [pc.nipples] are leaking precipitously by now, dribbling a needy mixture of [pc.milk] and lubrication down your front.");
-		if(pc.milkType == GLOBAL.FLUID_TYPE_HONEY) output(" The goo girl hums with delight as you fill her mouth with your oozing, golden fluids. <i>“Sho shweet!”</i>  she exclaims, pulling away to stare at the thick nectar beading freely from your breast. You pull her firmly back into your softness, impatient now that she has tapped your liquid wealth. In response she slides her hot tongue into your slit, drawing out long strokes of honey with expert laps of her mouth muscle yet continuing to suckle and squeeze on your areola.");
+		if(pc.milkType == GLOBAL.FLUID_TYPE_HONEY) output(" The goo girl hums with delight as you fill her mouth with your oozing, golden fluids. <i>“Sho shweet!”</i> she exclaims, pulling away to stare at the thick nectar beading freely from your breast. You pull her firmly back into your softness, impatient now that she has tapped your liquid wealth. In response she slides her hot tongue into your slit, drawing out long strokes of honey with expert laps of her mouth muscle yet continuing to suckle and squeeze on your areola.");
 		//[Inedible Fluid (in case of later TF): The goo girl winces as the first taste of your unnatural mixture crosses her lips. <i>“Strange...”</i> she sighs, <i>“and a little slimy... kind of like cum!” With the association locked in her mind, Celise dives in again, plunging her tongue into your nipple-slit and swirling it around the insides, stimulating the entrance in her best impression of a sex toy.]
 		//[Otherwise: 
 		else output(" Celise drinks up the stream you’ve presented to her with vocal delight, humming into your flesh as she laps up your fluids before inserting her hot tongue into your slit, absorbing milk with expert rolls of her mouth muscle, yet continuing to suckle and squeeze on your areola.");
@@ -749,7 +755,7 @@ public function celiseSleezeLactation():void {
 	//Normal nipples:
 	else {
 		output("\n\nYour [pc.nipples] are almost painfully hard by now and it takes only a few seconds for the one Celise has seized upon to open and begin to dribble [pc.milk] into hot, wet, roiling, licking pressure.");
-		if(pc.milkType == GLOBAL.FLUID_TYPE_HONEY) output(" The goo girl hums with delight as you fill her mouth with your oozing, golden fluids. <i>“Sho shweet!”</i>  she exclaims, pulling away to stare at the thick nectar beading freely from your breast. You push her firmly back into your flesh, impatient now that she has tapped your liquid wealth.");
+		if(pc.milkType == GLOBAL.FLUID_TYPE_HONEY) output(" The goo girl hums with delight as you fill her mouth with your oozing, golden fluids. <i>“Sho shweet!”</i> she exclaims, pulling away to stare at the thick nectar beading freely from your breast. You push her firmly back into your flesh, impatient now that she has tapped your liquid wealth.");
 		//[Inedible Fluid (in case of later TF): The goo girl winces as the first taste of your unnatural bounty crosses her lips. <i>“Bitter... but not bad,”</i> she sighs, settling back into her task and coaxing your strange fluid from you once again.]
 		//Otherwise: 
 		else output(" The goo girl hums with delight as she begins to suckle, drawing it out with expert pulls of her lips, rolling her tongue along the underside as her own pseudo-boobs squish into your stomach.");
@@ -878,9 +884,9 @@ public function celiseSleezeLactation():void {
 	//[merge]
 	output("\n\nAfter Celise has composed herself a bit she looks at you, frowning as if something were bothering her. Whatever she’s thinking slowly gathers pace; she opens her mouth and... burps richly. Her blush turns into an embarrassed titter when you laugh, shaking your head at your stuffed goo pet.");
 
-	output("\n\n<i>“You taste sooooo good, [pc.name],”</i>  she sighs. <i>“");
+	output("\n\n<i>“You taste sooooo good, [pc.name],”</i> she sighs. <i>“");
 	if(pc.milkType == GLOBAL.FLUID_TYPE_HONEY) output("How lucky am I to have a captain who’s like a giant walking honey pot? ");
-	output("You’ll never stop leaking nice stuff from your top, will you? Because I just want to keep drinking that forever, and ever, and...”</i>  She pauses, and looks down at her bulging bimbo body. <i>“...well, maybe not </i>right<i> now, but you’ll come back with more, right?”</i>  You tell her as long as she’s a good girl and keeps using her mouth like she does, you’ll always give her exactly what she needs. Her response to this is to reform herself so she is lying on her front with her ");
+	output("You’ll never stop leaking nice stuff from your top, will you? Because I just want to keep drinking that forever, and ever, and...”</i> She pauses, and looks down at her bulging bimbo body. <i>“...well, maybe not </i>right<i> now, but you’ll come back with more, right?”</i> You tell her as long as she’s a good girl and keeps using her mouth like she does, you’ll always give her exactly what she needs. Her response to this is to reform herself so she is lying on her front with her ");
 	if(pc.lactationQ() <= 5000) output("green");
 	else output("[pc.milkColor], heavily-inflated");
 	output(" bottom arched towards you, her face peering round it with a sultry, come-hither expression plastered on it. She’s insatiable. You leave her to satisfy the raging thirst that has taken hold of you, before arousal forces you into a decision she’ll probably regret.");
@@ -932,8 +938,7 @@ Scene
 public function celiseOffersToBeYourBedSenpai():void {
 	clearOutput();
 	author("TheDarkMaster");
-	this.userInterface.showBust("CELISE");
-	this.userInterface.showName("\nCELISE");
+	showCelise();
 	output("Just before you turn in, your door chimes, followed by the voice of Celise calling out to you. <i>“Hey there, I was wondering if maybe you wanted a little company tonight? Maybe a nice soft goo bed that will hug you and rub you all night?”</i> There is a pleading note in there. Do you let her in?");
 	//Player chooses yes/no
 	clearMenu();
@@ -945,8 +950,7 @@ public function celiseOffersToBeYourBedSenpai():void {
 public function dontLetCeliseInForBed():void {
 	clearOutput();
 	author("TheDarkMaster");
-	this.userInterface.showBust("CELISE");
-	this.userInterface.showName("\nCELISE");
+	showCelise();
 	if(pc.isNice())
 	{
 		output("You apologize to her, saying tonight’s just not a good night for you. Maybe some other time?");
@@ -957,7 +961,7 @@ public function dontLetCeliseInForBed():void {
 	else { //you’re mean
 		output("You tell her to get lost, you don’t have time for her tonight.");
 	}
-	output("\n\n<i>“Okay...”</i>  you hear her say sadly as she shuffles away from your room. You try not to let it bother you and continue getting ready for bed as before.");
+	output("\n\n<i>“Okay...”</i> you hear her say sadly as she shuffles away from your room. You try not to let it bother you and continue getting ready for bed as before.");
 	//end scene, normal rest messages after this
 	sleep(false);
 }
@@ -966,11 +970,10 @@ public function dontLetCeliseInForBed():void {
 public function letCeliseInForBed():void {
 	clearOutput();
 	author("TheDarkMaster");
-	this.userInterface.showBust("CELISE");
-	this.userInterface.showName("\nCELISE");
-	output("You open the door to invite the green goopy girl into your room. She screams, <i>“Yay!”</i>  and happily bobs her way past.");
+	showCelise();
+	output("You open the door to invite the green goopy girl into your room. She screams, <i>“Yay!”</i> and happily bobs her way past.");
 	output("\n\nThe Galotian circles around the room for a few moments before settling down near the center and reshaping her body. She reaches her arms down and firmly grabs the bottoms of her pornstar breasts, then heaves them up while simultaneously leaning her body back further and further. The secret to her technique eludes you until you notice how her lower body is stretching forward at the same time, giving the illusion that she is leaning back.");
-	output("\n\nFinally she’s stretched out into a long oval pad of emerald goo, big enough that you could easily lie down on it. Satisfied, she drops her enormous assets onto the unusual bed and pats them proudly. <i>“Come on! Try out the best pillows in the universe!”</i>  she proclaims, her upbeat mood still in full force.");
+	output("\n\nFinally she’s stretched out into a long oval pad of emerald goo, big enough that you could easily lie down on it. Satisfied, she drops her enormous assets onto the unusual bed and pats them proudly. <i>“Come on! Try out the best pillows in the universe!”</i> she proclaims, her upbeat mood still in full force.");
 	
 	// flag gets unset at the first mainGameMenu call, allowing other chars to intercept the end of
 	// the sleep event, check the flag to react appropriately, and then clean up afterwards.
@@ -997,8 +1000,7 @@ public function letCeliseInForBed():void {
 public function sleepWithCeliseNotNaked():void {
 	clearOutput();
 	author("TheDarkMaster");
-	this.userInterface.showBust("CELISE");
-	this.userInterface.showName("\nCELISE");
+	showCelise();
 	output("You tell her that you’re fine the way you are; you’d rather sleep in her clothed.");
 	output("\n\nThe ditzy green girl pouts for a bit before grudgingly agreeing. <i>“Fine, but next time you gotta try it naked!”</i>");
 	output("\n\nYou lower yourself onto the green bed of ooze, and lean back onto the Galotian’s massive mock mammaries. The owner of these mounds giggles as your head settles into the valley created by them");
@@ -1017,8 +1019,7 @@ public function sleepWithCeliseNotNaked():void {
 public function sleepWithCeliseNaked(disrobe:Boolean = true):void {
 	clearOutput();
 	author("TheDarkMaster");
-	this.userInterface.showBust("CELISE");
-	this.userInterface.showName("\nCELISE");
+	showCelise();
 	//{if PC is not nude} 
 	if(disrobe) output("You remove your clothing at Celise’s suggestion, prompting happy applause from the green woman. It sounds rather like two wet towels slapping together. Once completely nude, you’re once again invited to lay down on the bed of ooze and rest your head between her appropriately sized pillowcase cup breasts.\n\n");
 	output("Her gel is warm to the touch, and is quite pleasant on your skin. You let out a contented sigh as your head sinks partially into her bust and she puts her hands onto your chest, hugging you to her breast. You switch off the lights in your room and close your eyes, completely relaxed on the thick goopy body of the Galotian.");
@@ -1051,9 +1052,8 @@ public function sleepWithCeliseNaked(disrobe:Boolean = true):void {
 public function dontLetCeliseDrainAllYourBodilyFluidsWhileYouSleep():void {
 	clearOutput();
 	author("TheDarkMaster");
-	this.userInterface.showBust("CELISE");
-	this.userInterface.showName("\nCELISE");
-	output("You clear your throat and tell the slime girl that you’ve had quite enough playing for the night, you’d rather just sleep. <i>“Aw, poo...”</i>  Celise pouts, before trying once again trying to have her way with you. At your insistence that the two of you will be sleeping separately if she keeps this up, the horny puddle finally gives in and allows you to recline within her gooey embrace.");
+	showCelise();
+	output("You clear your throat and tell the slime girl that you’ve had quite enough playing for the night, you’d rather just sleep. <i>“Aw, poo...”</i> Celise pouts, before trying once again to have her way with you. At your insistence that the two of you will be sleeping separately if she keeps this up, the horny puddle finally gives in and allows you to recline within her gooey embrace.");
 	//scene ends
 	sleep(false);
 }
@@ -1063,12 +1063,11 @@ public function dontLetCeliseDrainAllYourBodilyFluidsWhileYouSleep():void {
 public function getDrainedSexyTimes():void {
 	clearOutput();
 	author("TheDarkMaster");
-	this.userInterface.showBust("CELISE");
-	this.userInterface.showName("\nCELISE");
+	showCelise();
 	output("Joyful laughter reverberates through Celise’s body as a column of goo pushes through your [pc.asshole]. She gently strokes the exposed part of your face and neck. <i>“That’s so wonderful of you; I’ll be sure to ");
 	if(pc.hasCock() || pc.isLactating()) output("milk");
 	else output("please");
-	output(" you lots tonight.”</i>  Before you have a chance to respond, she shushes your lips, closes your eyes with her fingers, and gets to work.");
+	output(" you lots tonight.”</i> Before you have a chance to respond, she shushes your lips, closes your eyes with her fingers, and gets to work.");
 	pc.buttChange(5,true,true,false);
 	//asshole
 	output("\n\nThe tip of the column of gel embedded deep inside your backside swells up, growing bigger and bigger until there is a large ball of goo on the end of it. She tests this gel sphere against your backside’s ring with a tug, ");
@@ -1139,7 +1138,7 @@ public function getDrainedSexyTimes():void {
 			else output("each");
 			output(" of your dicks are encased.");
 		}
-		output(" You groan and thrust your groin up to get a taste of those wonderfully shaped cock-sleeves, but her body moves along with you. <i>“No need to move, silly; I’ll take care of that for you...”</i>  Celise whispers, and pulls you back down into her.");
+		output(" You groan and thrust your groin up to get a taste of those wonderfully shaped cock-sleeves, but her body moves along with you. <i>“No need to move, silly; I’ll take care of that for you...”</i> Celise whispers, and pulls you back down into her.");
 
 		output("\n\nIt turns out that a mind-melting manhood massage is what she had in mind. A pleasant vibration spreads through the gel around your [pc.cocks], bringing with it a glow of pleasure that spreads around your body. Afterwards, a slow inexorable pull begins to work on your engulfed erect equipment, tugging on you with that marvelously ringed pipe of slime. Without warning it reverses course, and pushes down on you, rubbing you in the other direction in an ecstasy-inducing manner. There is no acceleration in her stimulation, just steady repetition of the cycle of pushing and pulling on your member again and again, slowly building you up to release.");
 	
@@ -1201,8 +1200,7 @@ public function getDrainedSexyTimes():void {
 public function zeiksCeliseSubmersionTechnique():void
 {
 	clearOutput();
-	showName("\nCELISE");
-	showBust("CELISE");
+	showCelise();
 	author("Zeikfried");
 	output("“<i>Celise...</i>”");
 	output("The galotian leans over and stretches lazily toward you, scooting her impressive breasts along the floor. Bulges form under her face and then shape into arms as she shifts forward. She comes to rest with her chin on her hands, the very picture of indolence.");
