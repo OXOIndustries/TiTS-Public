@@ -1328,7 +1328,7 @@ public function arbetzPoolJUSTDOIT(sex:int = 0):void
 	// Male
 	if (sex == 1)
 	{
-		output(" <i>“ Who’s Una’s good boy? Let’s see you shake that moneymaker of yours, you big dumb stallion.”</i> You turn and give your [pc.butt] a jounce whilst discarding your [pc.upperGarment] with a little flourish, dressed now only in your [pc.lowerGarment].");
+		output(" <i>“Who’s Una’s good boy? Let’s see you shake that moneymaker of yours, you big dumb stallion.”</i> You turn and give your [pc.butt] a jounce whilst discarding your [pc.upperGarment] with a little flourish, dressed now only in your [pc.lowerGarment].");
 		if (pc.exhibitionism() < 66) output(" You hope the way your cheeks are burning isn’t too obvious.");
 		else output(" Your [pc.cock] is hotly erect from stripping down in this manner.");
 		output("\n\n<i>“Now turn,”</i> the gabilani says. <i>“Let’s see the goods.”</i> You face her again, bare-chested,");
@@ -1342,7 +1342,7 @@ public function arbetzPoolJUSTDOIT(sex:int = 0):void
 	// Female
 	if (sex == 0)
 	{
-		output(" <i>“ Who’s Una’s good girl? Let’s see you shake that mantrap of yours, you dumb bimbo.”</i> You turn and give your [pc.butt] a jounce whilst discarding your [pc.upperGarment] with a little flourish, dressed now only in your [pc.lowerGarment].");
+		output(" <i>“Who’s Una’s good girl? Let’s see you shake that mantrap of yours, you dumb bimbo.”</i> You turn and give your [pc.butt] a jounce whilst discarding your [pc.upperGarment] with a little flourish, dressed now only in your [pc.lowerGarment].");
 		if (pc.exhibitionism() < 66) output(" You hope the way your cheeks are burning isn’t too obvious.");
 		else output(" Your [pc.vagina] is flush with [pc.girlCum] from stripping down in this manner.");
 		output("\n\n<i>“Now turn,”</i> the gabilani says. <i>“Let’s see the goods.”</i> You face her again, bare-chested");
