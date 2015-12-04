@@ -2,14 +2,16 @@
 {
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
-	
+	import classes.GameData.CombatAttacks;
 	import classes.Creature;
 	import classes.GLOBAL;
 	import classes.kGAMECLASS;
 	import classes.rand;
-	
+	import classes.GameData.CombatManager;
 	import classes.Engine.Utility.num2Text;
 	import classes.Util.RandomInCollection;
+	import classes.Engine.Combat.DamageTypes.DamageResult;
+	import classes.Engine.Combat.outputDamage;
 	
 	public class CuntSnake extends Creature
 	{
@@ -243,6 +245,200 @@
 			//if(rand(3) == 0) combatCSnake.tailGenitalArg = GLOBAL.TYPE_SIREN;
 
 			kGAMECLASS.foes.push(combatCSnake);
+		}
+		
+		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
+		{
+			var target:Creature = selectTarget(hostileCreatures);
+			
+			if (target == null) return;
+			
+			if (target.hasCock() && rand(3) == 0) 
+			{
+				if(rand(4) == 0) paralyzingVenom();
+				else aphrodisiacBite(target);	
+			}
+			if (CombatManager.getRoundCount() % 5 == 0) 
+			{
+				paralyzingVenom(target);
+			}
+			else if (rand(4) == 0) 
+			{
+				aphrodisiacBite(target);
+			}
+			else if (rand(3) == 0) 
+			{
+				NPCTripAttackGo(target);
+			}
+			else if (rand(2) == 0) 
+			{
+				slapAttackFromCuntSnake(foes[0],pc);
+			}
+			else 
+			{
+				CombatAttacks.MeleeAttack(this, target);
+			}
+		}
+		
+		private function slapAttackFromCuntSnake(target:Creature):void
+		{
+			output("Coiling its body like a spring, the cunt snake launches its body towards you!");
+
+			//{standard miss/block text}
+			if (combatMiss(this, target))
+			{
+				output(" It misses!");
+			}
+			//Blind miss
+			else if(hasStatusEffect("Blind") && rand(2) == 0) output(" It misses due to its blindness!");
+			//{hit} 
+			else
+			{
+				output(" It twists to slap at your [pc.face]");
+				
+				var damage:TypeCollection = new TypeCollection( { kinetic: 5 } );
+				damageRand(damage, 15);
+				var damageResult:DamageResult = calculateDamage(damage, this, target);
+				
+				if (damageResult.shieldDamage > 0)
+				{
+					if (target.shieldsRaw > 0) output(", bouncing off your shield with a loud 'snap'!");
+					else output(", breaching your shield.");
+				}
+				
+				if (damageResult.hpDamage > 0)
+				{
+					if (damageResult.shieldDamage > 0) output(" You're sent reeling from the impact while it flops onto the ground.");
+					else output(", sending you reeling from the impact while it flaps onto the ground.");
+					
+					if (!target.hasStatusEffect("Stunned") && target.physique() + rand(20) + 1 < 15)
+					{
+						output("<b> The hit was hard enough to stun you!</b>");
+						target.createStatusEffect("Stunned",1,0,0,0,false,"Stun","You are stunned and cannot move until you recover!",true,0);
+					}
+				}
+				
+				outputDamage(damageResult);
+			}
+		}
+		
+		private function NPCTripAttackGo(target:Creature):void
+		{
+			output("Your foe contorts its body inward and abruptly snaps its tail around like a whip, directed at your [pc.feet]! ");
+	//{standard miss/block text}
+			if (combatMiss(this, target))
+			{
+				output("It misses!");
+			}
+			//Blind miss
+			else if(hasStatusEffect("Blind") && rand(2) == 0) output("It misses due to its blindness!");
+			//{hit} 
+			else
+			{
+				output("Your [pc.legOrLegs]");
+				if(target.legCount == 1) output(" is");
+				else output(" are");
+				output(" swept out from beneath you and you land hard");
+				
+				var damage:TypeCollection = new TypeCollection( { kinetic: 5 } );
+				damageRand(damage, 15);
+				var damageResult:DamageResult = calculateDamage(damage, this, target);
+				
+				if (damageResult.shieldDamage > 0)
+				{
+					if (target.shieldsRaw > 0) output(", shield cushioning your impact.");
+					else output(", shattering your energy shield.");
+				}
+				
+				if (damageResult.hpDamage > 0)
+				{
+					output(" Your backside fares little better.");
+				}
+				
+				outputDamage(damageResult);
+
+				//If cock!
+				if (target.hasCock())
+				{
+					output("\n\nThe end of the snake loops around your waist and rubs against ");
+					if(!target.isCrotchGarbed()) output("your [pc.leg]");
+					else if(target.armor.shortName != "") output("the front of your [pc.armor]");
+					else output("the front of your [pc.lowerUndergarment]");
+					output(", trying to get at [pc.oneCock]. Moist secretions stain your crotch as you find yourself becoming unintentionally aroused by the contact.");
+					target.lust(3+rand(3));
+				}
+				//{not defeated}
+				output(" You roll aside and climb upright, feeling a little more sore");
+				if(target.hasCock()) output(" and horny");
+				output(" than before.");
+			}
+		}
+		
+		private function aphrodisiacBite(target:Creature):void
+		{
+			output("The snake coils up, then flashes out at you with mouth open and fangs exposed. ");
+			//{standard miss/block text}
+			if (combatMiss(this, target)) 
+			{
+				output(" It misses!");
+			}
+			//Blind miss
+			else if(hasStatusEffect("Blind") && rand(2) == 0) output("It misses due to its blindness!");
+			//{hit}
+			else 
+			{
+				output("Two spears of hot lust slip through your defenses and straight into your vulnerable veins. In a second, genitalia-engorging chemicals are pumped throughout your body. More and more of them spread through you as the snake injects artificial ardor straight into you.");
+				target.lust(10+rand(5));
+				if (target.lust() >= target.lustMax()) 
+				{
+					output("\n\nYou moan and lie back, ");
+					if(target.armor.shortName != "") output("digging into your [pc.armor]");
+					else if(target.lowerUndergarment.shortName != "") output("digging into your [pc.lowerUndergarment]");
+					else if(target.hasVagina()) output("digging into [pc.oneVagina]");
+					else if(target.hasCock()) output("grabbing your [pc.cock]");
+					else output("grabbing your [pc.nipples] in an attempt");
+					output(" to satisfy the urges welling up within you.");
+				}
+				//{not defeated}
+				else output("\n\nYou wriggle away as hard as you can, and the snake releases its grip on you. The holes its fangs left close up almost as soon as they emptied, leaving you sore and aroused.");
+			}
+		}
+		
+		private function paralyzingVenom(target:Creature):void
+		{
+			output("The snake coils up, then flashes out at you with mouth open and fangs exposed.");
+			//{standard miss/block text}
+			if (combatMiss(this, target)) 
+			{
+				output(" It misses!");
+			}
+			//Blind miss
+			else if(hasStatusEffect("Blind") && rand(2) == 0) output(" It misses due to its blindness!");
+			//{hit}
+			else 
+			{
+				if (target.shieldsRaw > 0) output(" It passes right through your shields, and i");
+				else output(" I");
+				output("ts attack lands, and you feel the needles sliding through your [pc.skin]. There is a moment of burning pain as the venom enters your bloodstream followed by the gentle deadness of numbed sensation.");
+				//{no save}
+				if (target.physique() + rand(20) + 1 < 15) 
+				{
+					if (target.hasStatusEffect("Paralyzed")) 
+					{
+						output(" <b>You're even more paralyzed than before!</b>");
+					}
+					else
+					{
+						output(" <b>After a second, you realize you've been paralyzed by the creature's bite!</b>");
+						target.createStatusEffect("Paralyzed",2,0,0,0,false,"Paralyze","You are paralyzed and cannot move until the venom wears off!",true,0);
+					}
+				}
+				//{resist/make save}
+				else 
+				{
+					output(" You yank it off before it can deposit its entire payload, rubbing the sore, rapidly healing spot on your arm in irritation.");
+				}
+			}
 		}
 	}
 }
