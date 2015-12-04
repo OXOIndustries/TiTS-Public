@@ -50,8 +50,8 @@
 		
 		public function UpgradeVersion1(d:Object):void
 		{
-			basePrice = 850;
-			sexiness = 2;
+			d.basePrice = 850;
+			d.sexiness = 2;
 		}
 	}
 }
