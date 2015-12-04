@@ -85,11 +85,11 @@
 		//COCK VOLUME
 		public function volume():Number {
 			//Abstract size as a cylinder + half sphere for the tip.
-			var cylinder:Number = 3.142 * thickness()/2 * thickness()/2 * (cLength() - thickness()/2);
+			var cylinder:Number = Math.PI * thickness()/2 * thickness()/2 * (cLength() - thickness()/2);
 
-			var tip:Number = (4/3 * 3.142 * thickness()/2 * thickness()/2 * thickness()/2)/2;
+			var tip:Number = (4/3 * Math.PI * thickness()/2 * thickness()/2 * thickness()/2)/2;
 			//If blunt, tip is converted to cylinder as well.
-			if(hasFlag(GLOBAL.FLAG_BLUNT)) tip = (3.142 * thickness()/2 * thickness()/2 * thickness()/2);
+			if(hasFlag(GLOBAL.FLAG_BLUNT)) tip = (Math.PI * thickness()/2 * thickness()/2 * thickness()/2);
 			//If flared, tip is multiplied by 1.3.
 			if(hasFlag(GLOBAL.FLAG_FLARED)) tip = tip * 1.3;
 			//If tapered, reduce total by a factor of 75%
@@ -100,7 +100,7 @@
 			//If double headed, the tip is approximately two half-diameter hemispheres plus a cylinder of full diameter and half height.
 			if(hasFlag(GLOBAL.FLAG_DOUBLE_HEADED))
 			{
-				tip = (2 * 2/3 * 3.142 * (thickness()/4 * thickness()/4 * thickness()/4)) + (2 * 3.142 * thickness()/2 * thickness()/2 * thickness()/4);
+				tip = (2 * 2/3 * Math.PI * (thickness()/4 * thickness()/4 * thickness()/4)) + (2 * Math.PI * thickness()/2 * thickness()/2 * thickness()/4);
 			}
 			return Math.round((tip + cylinder) * 100) / 100;
 			//EXAMPLES
