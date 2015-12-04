@@ -23,7 +23,7 @@ public function tarkusBeachAddendum():Boolean
 		if (!CodexManager.entryViewed("Gabilani"))
 		{
 			flags["NAV_DISABLED"] = NAV_NORTH_DISABLE;
-			output(" Could it be a warning sign? <b>Perhaps you should check your codex about any potential inhabitants before proceeding northward.</b>");
+			output("\n\nCould it be a warning sign? <b>Your Codex identifies it as gabilani script. Perhaps you ought to read their Codex entry before blundering ahead?</b>");
 			CodexManager.unlockEntry("Gabilani");
 		}
 		else
@@ -174,7 +174,7 @@ public function arbetzMainApproach():Boolean
 				
 				processTime(2);
 				
-				arbetzMainMenu();
+				arbetzMainMenu(true);
 			}
 		}
 	}
@@ -245,10 +245,10 @@ public function arbetzMainInitialOptions(response:int = 0):void
 }
 
 // Main Options
-public function arbetzMainMenu():void
+public function arbetzMainMenu(light:Boolean = false):void
 {
 	// [Talk] [Appearance] [Pool Area] [Sex] [Leave]
-	clearMenu();
+	if(!light) clearMenu();
 	addButton(0, "Talk", arbetzMainOptions, 0);
 	if (flags["PETR_UNLOCKED"] != undefined) addButton(1, "Petr", arbetzPetrShop);
 	if (!pc.hasKeyItem("Arbetz Travel Agency Memebership")) addButton(2, "Pool Area", arbetzMainOptions, 2, "Pool Area", "Ask if you can use the pool area at the back of the agency.");
@@ -258,8 +258,7 @@ public function arbetzMainMenu():void
 		else addDisabledButton(3, "Sex", "Sex", "You are currently not aroused enough for that!");
 	}
 	addButton(5, "Appearance", arbetzMainOptions, 1);
-	
-	addButton(14, "Leave", mainGameMenu);
+	if(!light) addButton(14, "Leave", mainGameMenu);
 }
 public function arbetzMainOptions(response:int = 0):void
 {

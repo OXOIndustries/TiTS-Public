@@ -574,7 +574,7 @@ package classes.Items.Transformatives
 			&&	target.hasHorns()
 			&&	target.earType == GLOBAL.TYPE_BOVINE
 			&&	target.hasLegFlag(GLOBAL.FLAG_HOOVES)
-			&&	target.hastail(GLOBAL.TYPE_BOVINE)
+			&&	target.hasTail(GLOBAL.TYPE_BOVINE)
 			&&	rand(3) == 0 && changes < tChanges
 			)
 			{
@@ -595,7 +595,7 @@ package classes.Items.Transformatives
 			&&	target.hasHorns()
 			&&	target.earType == GLOBAL.TYPE_BOVINE
 			&&	target.hasLegFlag(GLOBAL.FLAG_HOOVES)
-			&&	target.hastail(GLOBAL.TYPE_BOVINE)
+			&&	target.hasTail(GLOBAL.TYPE_BOVINE)
 			&&	rand(3) == 0 && changes < tChanges
 			)
 			{

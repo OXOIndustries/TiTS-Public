@@ -40,27 +40,27 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "V-Ko", VKoCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Gryvain", gryvainCodexEntry, true);
 	
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Mhen'ga", "Cunt Snakes", cuntSnakeCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Mhen'ga", "Kerokoras",kerokorasCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Mhen'ga", "Mimbranes", mimbraneCodexEntry, true);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Mhen'ga", "Naleen", naleenCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Mhen'ga", "Vanae", vanaeCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Mhen'ga", "Vanae: History", vanaeHistoryCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Mhen'ga", "Venus Pitchers", venusPitcherCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Mhen'ga", "Zil", zilCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MHENGA, "Mhen'ga", "Cunt Snakes", cuntSnakeCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MHENGA, "Mhen'ga", "Kerokoras",kerokorasCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MHENGA, "Mhen'ga", "Mimbranes", mimbraneCodexEntry, true);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MHENGA, "Mhen'ga", "Naleen", naleenCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MHENGA, "Mhen'ga", "Vanae", vanaeCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MHENGA, "Mhen'ga", "Vanae: History", vanaeHistoryCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MHENGA, "Mhen'ga", "Venus Pitchers", venusPitcherCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MHENGA, "Mhen'ga", "Zil", zilCodexEntry);
 	
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Myrellion", "Cockvines", cockvinesCodexEntry);	
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Myrellion", "Ganrael", crystalGooCodexEntry);	
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Myrellion", "Gold Myr", goldMyrmedionCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Myrellion", "Myr Fungus", myrFungusCodex);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Myrellion", "Nyrea", nyreaCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Myrellion", "Red Myr", redMyrmedionCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MYRELLION, "Myrellion", "Cockvines", cockvinesCodexEntry);	
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MYRELLION, "Myrellion", "Ganrael", crystalGooCodexEntry);	
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MYRELLION, "Myrellion", "Gold Myr", goldMyrmedionCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MYRELLION, "Myrellion", "Myr Fungus", myrFungusCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MYRELLION, "Myrellion", "Nyrea", nyreaCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MYRELLION, "Myrellion", "Red Myr", redMyrmedionCodexEntry);
 	
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Tarkus","Gabilani",gabilaniCodex);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Tarkus","Gray Goos",grayGooCodex);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Tarkus","Lapinara",lapinaraCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Tarkus","Raskvel",raskVelCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Tarkus","Sydians",sydianCodexEntry);	
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_TARKUS, "Tarkus","Gabilani",gabilaniCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_TARKUS, "Tarkus","Gray Goos",grayGooCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_TARKUS, "Tarkus","Lapinara",lapinaraCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_TARKUS, "Tarkus","Raskvel",raskVelCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_TARKUS, "Tarkus","Sydians",sydianCodexEntry);	
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items","Dumbfuck",dumbfuckCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items","Gush",gushCodexEntry);
@@ -1035,6 +1035,12 @@ public function gabilaniCodex():void
 	outputCodex("The passion for mechanical invention, lack of interest in medicine, and the frequency of industrial accidents in gabilani culture led to the species evolving the love of and reliance on cybernetics that they are remarkable for today. The gabilani developed physical cybernetic enhancements before microbe theory and blood transfusion, and a great majority employ significant mechanical bodily enhancement during their lifetime.\n\nReplacement limbs and ocular enhancement are the most common procedures, however the gabilani are also capable of sophisticated internal adaptations, often aimed at combating the health problems they face as a result of spending most of their lives in orbit above their home planet. All gabilani are required by law to spend at least three weeks in a year on the surface of Tarkus to boost their skeletal and immune system strength, however some wealthier gabilani disdain this edict by having all or most of their bones replaced with alloy metal, and augmenting their respiratory systems with antiviral micro-bot plants.\n\nThis ability to easily replace defective organs and limbs with effective cybernetic replacements has greatly boosted the possible lifespan of the average gabilani, however their population has remained stable as a result of the scourge of industrial accidents in their frenetic society, and the likelihood of newer models of replacement organs going catastrophically wrong.");
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Gabilani");
+	//Fix buttons
+	if(currentLocation == "225") 
+	{
+		flags["NAV_DISABLED"] = undefined;
+		addButton(6, "North", move, rooms[currentLocation].northExit);
+	}
 }
 public function raskVelCodexEntry():void
 {
