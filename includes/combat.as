@@ -2,7 +2,6 @@
 {	
 	trace("AI CALL");
 	//Paralyze stops turns! AHHHH!
-	else if (aggressor is SexBot) sexbotAI();
 	else if (aggressor is GrayGoo) grayGooAI();
 	else if (aggressor is LapinaraFemale) lapinaraAI();
 	else if (aggressor is SydianMale) sydianMaleAI();
