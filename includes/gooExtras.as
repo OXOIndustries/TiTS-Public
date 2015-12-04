@@ -557,6 +557,7 @@ public function gooCrotchCustomizer():void
 	clearGhostMenu();
 	addButton(0,"Penis",gooCockRootMenu,undefined,"Penis","Modify phallus parameters.");
 	addButton(1,"Vagina",vaginaGooRootMenu,undefined,"Vagina","Modify vaginal parameters.");
+	addButton(2,"Balls",gooBallsMenu,undefined,"Balls","Modify testicular parameters.");
 	addButton(14,"Back",gooShiftMenu);
 }
 
@@ -617,6 +618,216 @@ public function gooCockRootMenu():void
 		addDisabledGhostButton(6,"Remove All","Remove All","You don't have a penis to remove.");
 	}
 	addGhostButton(14,"Back",gooCrotchCustomizer);
+}
+
+public function gooBallsMenu():void
+{
+	clearOutput2();
+	output2("What would you like to change about your ");
+	if(pc.balls == 0) output2("lack of balls?");
+	else if(pc.balls == 1) output2("single testicle?");
+	else output2("balls?");
+	crotchStuff(pc);
+	showBiomass();
+	if(pc.balls < 6)
+	{
+		if(flags["GOO_BIOMASS"] >= nutGrowCost()) addGhostButton(0, "Grow Testicle", growSomeGooBalls,undefined,"Grow Testicle","Grow a new testicle.\n\n<b>" + nutGrowCost() + "mLs Biomass</b>");
+		else addDisabledGhostButton(0,"Grow Testicle","Grow Testicle","You do not have enough biomass for this.\n\n<b>" + nutGrowCost() + "mLs Biomass</b>");
+	}
+	else addDisabledGhostButton(0,"Grow Testicle","Grow Testicle","You have as many testicles as possible.");
+	if(pc.balls > 0) addGhostButton(1,"Remove One",removeATesticle,undefined,"Remove One","Remove a testicle.");
+	else addDisabledGhostButton(1,"Remove One","Remove One","You have no testicles to remove.");
+	if(pc.balls > 0)
+	{
+		if(flags["GOO_BIOMASS"] >= nutExpansionCost()) addGhostButton(2,"Expand Balls",expandoNuts,undefined,"Expand Balls","Expand the diameter of your balls by approximately one inch.\n\n<b>" + nutExpansionCost() + "</b>mLs Biomass</b>");
+		else addDisabledGhostButton(2,"Expand Balls","Expand Balls","You don't have the necessary biomass to expand your testicular endowments.\n\n<b>" + nutExpansionCost() + "</b>mLs Biomass</b>");
+		if(pc.ballDiameter() > 1) addGhostButton(3,"Shrink Balls",nutShrinkGo,undefined,"Shrink Balls","Reduce the size of your testicular endowments significantly.");
+		else addDisabledGhostButton(3,"Shrink Balls","Shrink Balls","You can't get any smaller down there!");
+
+		if(pc.hasStatusEffect("Uniball")) addGhostButton(5,"Loosen Sack",tautSackToggle,undefined,"Loosen Sack","Let your nutsack hang a little lower and freer.");
+		else if(flags["GOO_BIOMASS"] >= 100) addGhostButton(5,"Tighten Sack",tautSackToggle,undefined,"Tighten Sack","Tighten up your nutsack into a nice, smooth bulge.\n\n<b>100mLs Biomass</b>");
+		else addDisabledGhostButton(5,"Tighten Sack","Tighten Sack","You don't have enough biomass to tighten your sack into a nice, smooth bulge.");
+	}
+	else 
+	{
+		addDisabledGhostButton(2,"Expand Balls","Expand Balls","You don't have balls to expand.");
+		addDisabledGhostButton(3,"Shrink Balls","Shrink Balls","You don't have any balls to shrink!");
+		addDisabledGhostButton(5,"Sack Options","Sack Options","If you had balls, you could use this button to make your nutsack pull up high and tight or swing low and free.");
+	}
+
+}
+
+//Shrink Down Nuts
+//Solve for -1 diameter?
+public function nutShrinkCost():Number
+{
+
+	//Figure out the new size of circumference in order to increase diameter by 1"
+	var newSize:Number = (pc.ballSizeRaw/Math.PI-1) * Math.PI
+
+	//Calc old size.
+	var ballRadius:Number = pc.ballSizeRaw/Math.PI/2;
+	var volume:Number = Math.round(4/3 * Math.PI * ballRadius * ballRadius * ballRadius);
+
+	
+	//Calc new size
+	ballRadius = newSize/Math.PI/2;
+	var newVolume:Number = Math.round(4/3 * Math.PI * ballRadius * ballRadius * ballRadius);
+
+	//Figure out the difference
+	var trueCost:int = volume - newVolume;
+	if(trueCost < 10) trueCost = 10;
+	//Only get 75% back!
+	trueCost = Math.round(trueCost * .75);
+	trace("NUTSHRINK PRE VOL: " + volume + " POSTVOL: " + newVolume + " TRUCOST: " + trueCost);
+	return trueCost;
+}
+
+public function nutShrinkGo():void
+{
+	clearOutput2();
+	output2("You sag with relief as your body reabsorbs some of the weight from your [pc.sack]. Getting around will certainly be a little easier!");
+	flags["GOO_BIOMASS"] += nutShrinkCost();
+	pc.ballSizeRaw = (pc.ballSizeRaw/Math.PI-1) * Math.PI;
+	trace("FINAL ACTUAL VOL: " + pc.ballVolume());
+	clearMenu();
+	addButton(0,"Next",gooBallsMenu);
+}
+
+
+//Solve for +1 diameter?
+public function nutExpansionCost():Number
+{
+	//Figure out the new size of circumference in order to increase diameter by 1"
+	var newSize:Number = (pc.ballSizeRaw/Math.PI+1) * Math.PI
+
+	//Calc old size.
+	var ballRadius:Number = pc.ballSizeRaw/Math.PI/2;
+	var volume:Number = Math.round(4/3 * Math.PI * ballRadius * ballRadius * ballRadius);
+	
+	//Calc new size
+	ballRadius = newSize/Math.PI/2;
+	var newVolume:Number = Math.round(4/3 * Math.PI * ballRadius * ballRadius * ballRadius);
+
+	//Figure out the difference
+	var trueCost:int = newVolume - volume;
+	if(trueCost < 10) trueCost = 10;
+	trace("NUTGROW PRE VOL: " + volume + " POSTVOL: " + newVolume + " TRUCOST: " + trueCost);
+	return trueCost;
+}
+
+public function expandoNuts():void
+{
+	clearOutput2();
+	if(pc.balls == 1)
+	{
+		if(pc.ballDiameter() < 1) output2("Your [pc.balls] abruptly puffs up with new mass, swelling on command. The addition of new biomass roughly doubles the size of your endowment, causing you to feel swollen and vaguely horny. You can probably cum so much right now!");
+		else if(pc.ballDiameter() < 2) output2("A channel of syrupy biomass forms between your pubic mound and the low-hanging fruit of your loins, reinforcing your [pc.balls] with enough new weight to make it wobble and jiggle as it expands. The experience leaves you feeling vaguely horny.");
+		else if(pc.ballDiameter() < 3) output2("Your plump nut wobbles as you focus on enhancing its girth, swelling out with new, virile goo with every beat of what you assume is your heart. The experience leaves you hot enough to melt - or try cumming a few times just to judge the effectiveness of your enhanced organ.");
+		else if(pc.ballDiameter() < 5) output2("You're more than big enough to be considered well-endowed by most galactic species, but you want your [pc.balls] to be bigger, heavier. You want your dripping-wet sack to jiggle with every step you make, to bulge your clothes and promise a swift impregnation to those daring enough to let you get too close.\n\nRipples roll across the surface of your expanding sperm-factory while it trembles and grows, flooding with fresh mass. You stagger, feeling light-headed from the effort of it all, but when the feeling passes, you've got a bigger, bulgier ball.");
+		else if(pc.ballDiameter() < 10) output2("Forcing yet more goo into the overtaxed sack between your legs, you gradually expand your [pc.balls]. The bigger it gets, the heavier each expansion seems to be and the more wildly erotic your orgasms will become. You can only imagine the deluge you'll release when you get off after this. You're a one-" + pc.mf("man","woman") + " bukkake show, and if you keep this up, you'll need to upgrade the ship's plumbing.");
+		else output2("If there are gods, out there in the void, they must have a [pc.balls] like yours. The melon-sized spunk-tank is constantly swaying and bouncing, jiggling wetly at the slightest contact. Merely pouring additional mass into your overstuffed sack has it threatening to throw you off balance with its ungainly wobbling.");
+	}
+	else
+	{
+		if(pc.ballDiameter() < 1) output2("Your [pc.balls] abruptly puff up with new mass, swelling on command. The addition of new biomass roughly doubles the size of your endowment, causing you to feel swollen and vaguely horny. You can probably cum so much right now!");
+		else if(pc.ballDiameter() < 2) output2("Channels of syrupy biomass forms between your pubic mound and the low-hanging fruit of your loins, reinforcing your [pc.balls] with enough new weight to make them wobble and jiggle as they expand. The experience leaves you feeling vaguely horny.");
+		else if(pc.ballDiameter() < 3) output2("Your plump nuts wobble as you focus on enhancing their girth, swelling out with new, virile goo with every beat of what you assume is your heart. The experience leaves you hot enough to melt - or squirt.");
+		else if(pc.ballDiameter() < 5) output2("You're more than big enough to be considered well-endowed by most galactic species, but you want your [pc.balls] to be bigger, heavier. You want your dripping-wet sack to jiggle with every step you make, to bulge your clothes and promise a swift impregnation to those daring enough to let you get too close.\n\nRipples roll across the surface of your expanding sperm-factories while they tremble and grow, flooding with fresh mass. You stagger, feeling light-headed from the effort of it all, but when the feeling passes, you've got bigger, bulgier balls.");
+		else if(pc.ballDiameter() < 10) output2("Forcing yet more goo into the overtaxed sack between your legs, you gradually expand your [pc.balls]. The bigger they get, the more you have to push inside to make an appreciable difference in size, and the more wildly erotic your orgasms will become. You can only imagine the deluge you'll release when you get off after this. You're a one-" + pc.mf("man","woman") + " bukkake show, and if you keep this up, you'll need to upgrade the ship's plumbing.");
+		else output2("If there are gods, out there in the void, they must have [pc.balls] like yours. The melon-sized spunk-tanks are constantly swaying and bouncing, jiggling wetly at the slightest contact. Merely pouring additional mass into your overstuffed sack has it threatening to throw you off balance with its ungainly wobbling.");
+	}
+	flags["GOO_BIOMASS"] -= nutExpansionCost();
+	pc.ballSizeRaw = (pc.ballSizeRaw/Math.PI+1) * Math.PI;
+	trace("FINAL ACTUAL VOL: " + pc.ballVolume());
+	pc.lust(15);
+	while(pc.lust() < 33) { pc.lust(5); }
+	clearMenu();
+	addButton(0,"Next",gooBallsMenu);
+}
+
+public function tautSackToggle():void
+{
+	clearOutput2();
+	if(!pc.hasStatusEffect("Uniball")) 
+	{
+		pc.createStatusEffect("Uniball",0,0,0,0,true,"","",false,0);
+		output2("Biomass flows into the lining of your gooey nutsack, reinforcing the lining and drawing it up tighter against your drippy crotch");
+		if(pc.balls > 1) output2(", squeezing your balls together until your package appears almost spherical");
+		else output2(", squeezing your package into a primly-packed, almost spherical bulge");
+		output2(". You've got a tight, aesthetically pleasing nutsack. It shines as if polished.");
+		flags["GOO_BIOMASS"] -= 100;
+	}
+	else 
+	{
+		pc.removeStatusEffect("Uniball");
+		flags["GOO_BIOMASS"] += 75;
+		output2("The complex weave of gelatinous lattices in your [pc.sack] collapses right on cue, allowing you to reabsorb most of the reinforcement and let your [pc.balls] swing low and heavy once more. No more tightly-packed testes for you, no sir!");
+	}
+	clearMenu();
+	addButton(0,"Next",gooBallsMenu);
+}
+
+public function nutGrowCost():Number
+{
+	if(pc.balls > 0) 
+	{
+		var ballRadius:Number = pc.ballSizeRaw/Math.PI/2;
+		var volume:Number = Math.round(4/3 * Math.PI * ballRadius * ballRadius * ballRadius);
+		if(volume > 1700) volume = 1700;
+		return volume + 300;
+	}
+	return 300;
+}
+
+public function nutLossCost():Number
+{
+	if(pc.balls > 1) 
+	{
+		var ballRadius:Number = pc.ballSizeRaw/Math.PI/2;
+		var volume:Number = Math.round(4/3 * Math.PI * ballRadius * ballRadius * ballRadius * .75);
+		return volume + 225;
+	}
+	return 225;
+}
+
+
+public function removeATesticle():void
+{
+	clearOutput2();
+	output2("As easily as snapping your fingers, you're down one testicle");
+	if(pc.balls == 1) output2(", leaving your [pc.sack] to shrink back into the smooth fluid encompassing your pubic mound");
+	output2(". Now you can put that biomass to better use...");
+	flags["GOO_BIOMASS"] += nutLossCost();
+	pc.balls--;
+	clearMenu();
+	addButton(0,"Next",gooBallsMenu)
+}
+
+//1 nut = 300 biomass
+public function growSomeGooBalls():void
+{
+	clearOutput2();
+	if(pc.balls == 0) {
+		if(!pc.hasCock()) output2("Other people might call you crazy for wanting a bulging ballsack without even a single penis to vent the sperm with, but you don't care. You direct your amorphous crotch to fill out a gelatinous flap of skin, rolling a semi-solid lump of spunk-churning delightfulness.\n\nNow that you've got one perfect nut, perhaps you could give it a twin?");
+		else output2("It's never to late to gift your [pc.cocks] a weighty, spunk-churning companion. Gripping a fold of aqueous skin, you tug it, shaping it into an empty sack just in time for a nicely-rounded ball of gelatinous nutflesh to slide down into it.\n\nYou can already feel your single nut brewing up a fresh batch of [pc.cumNoun]. Maybe you should give it a companion?");
+		pc.ballSizeRaw = 3.4;
+	}
+	else if(pc.balls == 1)
+	{
+		output2("Envisioning your [pc.sack] with a second, identical lump inside, you revel in the sensation of your slimy loins forging a second testicle, building an oblong organ up from the size of a marble until it's big enough to match its brother.\n\nYou've got two gooey balls.");
+	}
+	else
+	{
+		output2("You grab hold of your slippery sack and give the semi-solid nuts inside a familiar squeeze. Why stop at " + num2Text(pc.balls) + " balls when you can have even more? You bid your reserves of organic matter to flow down into your [pc.sack], pumping it up with a dripping-wet orb, a syrupy-slick spunk-factory. You finish crafting the new testicle in a matter of seconds. It bulges");
+		if(pc.legCount > 1) output(" against your [pc.legs] ");
+		else output(" against your [pc.leg] ");
+		output("with every movement, a potent reminder of how egregiously sexual you've become.")
+	}
+	flags["GOO_BIOMASS"] -= nutGrowCost();
+	pc.balls++;
+	clearMenu();
+	addButton(0,"Next",gooBallsMenu);
 }
 
 //100

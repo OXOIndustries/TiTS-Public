@@ -644,6 +644,7 @@ package classes {
 		public var cumType: Number = GLOBAL.FLUID_TYPE_CUM;
 		public function cumTypeUnlocked(newCumType:Number):Boolean
 		{
+			if(cumType == GLOBAL.FLUID_TYPE_SPECIAL_GOO) return false;
 			return true;
 		}
 		public function cumTypeLockedMessage():String
@@ -872,6 +873,7 @@ package classes {
 		public var cocks: Array;
 		public function cockLengthUnlocked(cockIndex:int, newCockLength:Number):Boolean
 		{
+			if(hasStatusEffect("Goo Crotch")) return false;
 			return true;
 		}
 		public function cockLengthLockedMessage():String
@@ -881,6 +883,7 @@ package classes {
 
 		public function cockThicknessUnlocked(cockIndex:int, newCockThickness:Number):Boolean
 		{
+			if(hasStatusEffect("Goo Crotch")) return false;
 			return true;
 		}
 		public function cockThicknessLockedMessage():String
@@ -890,6 +893,7 @@ package classes {
 
 		public function cockTypeUnlocked(cockIndex:int, newCockType:Number):Boolean
 		{
+			if(hasStatusEffect("Goo Crotch")) return false;
 			return true;
 		}
 		public function cockTypeLockedMessage():String
@@ -899,6 +903,7 @@ package classes {
 
 		public function knotMultiplierUnlocked(cockIndex:int, newKnotMulti:Number):Boolean
 		{
+			if(hasStatusEffect("Goo Crotch")) return false;
 			return true;
 		}
 		public function knotMultiplierLockedMessage():String
@@ -908,6 +913,7 @@ package classes {
 
 		public function flaccidMultiplierUnlocked(cockIndex:int, newFlaccidMulti:Number):Boolean
 		{
+			if(hasStatusEffect("Goo Crotch")) return false;
 			return true;
 		}
 		public function flaccidMultiplierLockedMessage():String
@@ -917,6 +923,7 @@ package classes {
 
 		public function cockFlagsUnlocked(cockIndex:int, newFlags:*):Boolean
 		{
+			if(hasStatusEffect("Goo Crotch")) return false;
 			return true;
 		}
 		public function cockFlagsLockedMessage():String
@@ -929,6 +936,7 @@ package classes {
 		public function ballsUnlocked(newBalls:Number):Boolean
 		{
 			if (newBalls == 0 && hasStatusEffect("Mimbrane Balls")) return false;
+			if(hasStatusEffect("Goo Crotch")) return false;
 			return true;
 		}
 		public function ballsLockedMessage():String
@@ -943,13 +951,13 @@ package classes {
 		
 		public function ballDiameter():Number
 		{
-			return ballSize()/3.14;
+			return ballSize()/Math.PI;
 		}
 
 		public function ballVolume():Number
 		{
 			var radius:Number = ballDiameter()/2;
-			return 4/3*3.14*radius*radius*radius;
+			return 4/3*Math.PI*radius*radius*radius;
 		}
 
 		public function ballSize(arg:Number = 0, apply:Boolean = false):Number
@@ -977,6 +985,7 @@ package classes {
 		
 		public function ballSizeUnlocked(newBallSize:Number):Boolean
 		{
+			if(hasStatusEffect("Goo Crotch")) return false;
 			return true;
 		}
 		public function ballSizeLockedMessage():String
@@ -1029,6 +1038,7 @@ package classes {
 
 		public function vaginaTypeUnlocked(vagIndex:int, newVagType:int):Boolean
 		{
+			if(hasStatusEffect("Goo Crotch")) return false;
 			return true;
 		}
 		public function vaginaTypeLockedMessage():String
@@ -1040,6 +1050,7 @@ package classes {
 		{
 			// Vaginas always have one clit?
 			if(vaginas[vagIndex].clits == 1 && newClitNumber < 1) return false;
+			if(hasStatusEffect("Goo Crotch")) return false;
 			return true;
 		}
 		public function clitsLockedMessage():String
@@ -1049,6 +1060,7 @@ package classes {
 
 		public function wetnessUnlocked(vagIndex:int, newWetness:Number):Boolean
 		{
+			if(hasStatusEffect("Goo Crotch")) return false;
 			return true;
 		}
 		public function wetnessLockedMessage():String
@@ -1067,6 +1079,7 @@ package classes {
 
 		public function loosenessUnlocked(vagIndex:int, newLooseness:Number):Boolean
 		{
+			if(hasStatusEffect("Goo Crotch")) return false;
 			return true;
 		}
 		public function loosenessLockedMessage():String
@@ -1077,6 +1090,7 @@ package classes {
 		public var clitLength: Number = .5;
 		public function clitLengthUnlocked(newClitLength:Number):Boolean
 		{
+			if(hasStatusEffect("Goo Crotch")) return false;
 			return true;
 		}
 		public function clitLengthLockedMessage():String
@@ -1089,6 +1103,7 @@ package classes {
 		public var girlCumType: Number = GLOBAL.FLUID_TYPE_GIRLCUM;
 		public function girlCumTypeUnlocked(newGirlCumType:Number):Boolean
 		{
+			if(girlCumType == GLOBAL.FLUID_TYPE_SPECIAL_GOO) return false;
 			return true;
 		}
 		public function girlCumTypeLockedMessage():String
@@ -5485,10 +5500,10 @@ package classes {
 		}
 		public function tailCockVolume(effective: Boolean = true): Number {
 			//Abstract size as a cylinder + half sphere for the tip.
-			var cylinder: Number = 3.142 * 1.5 / 2 * 1.5 / 2 * (8 - 1.5);
-			var tip: Number = (4 / 3 * 3.142 * 1.5 / 2 * 1.5 / 2 * 1.5 / 2) / 2;
+			var cylinder: Number = Math.PI * 1.5 / 2 * 1.5 / 2 * (8 - 1.5);
+			var tip: Number = (4 / 3 * Math.PI * 1.5 / 2 * 1.5 / 2 * 1.5 / 2) / 2;
 			//If blunt, tip is converted to cylinder as well.
-			if (tailGenitalArg == GLOBAL.TYPE_EQUINE) tip = (3.142 * 1.5 / 2 * 1.5 / 2 * 1.5);
+			if (tailGenitalArg == GLOBAL.TYPE_EQUINE) tip = (Math.PI * 1.5 / 2 * 1.5 / 2 * 1.5);
 			//If flared, tip is multiplied by 1.3.
 			if (tailGenitalArg == GLOBAL.TYPE_EQUINE) tip = tip * 1.3;
 			//If tapered, reduce total by a factor of 75%
