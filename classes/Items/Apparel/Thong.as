@@ -10,7 +10,7 @@
 		//constructor
 		public function Thong()
 		{
-			this._latestVersion = 1;
+			this._latestVersion = 2;
 
 			this.quantity = 1;
 			this.stackSize = 1;
@@ -48,6 +48,13 @@
 			itemFlags = [GLOBAL.ITEM_FLAG_SWIMWEAR];
 			
 			this.version = _latestVersion;
+		}
+		
+		public function UpgradeVersion1(d:Object):void
+		{
+			basePrice = 550;
+			sexiness = 1;
+			itemFlags = [GLOBAL.ITEM_FLAG_SWIMWEAR];
 		}
 	}
 }
