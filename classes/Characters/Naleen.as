@@ -13,12 +13,10 @@
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.Engine.Combat.outputDamage;
 	import classes.Engine.Combat.applyDamage;
+	import classes.Engine.Combat.combatMiss;
 	
 	public class Naleen extends Creature
 	{
-		
-		
-		//constructor
 		public function Naleen()
 		{
 			this._latestVersion = 2;
