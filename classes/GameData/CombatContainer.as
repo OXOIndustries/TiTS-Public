@@ -1011,6 +1011,52 @@ package classes.GameData
 					target.addStatusValue("Naleen Coiled",1,1);
 				}
 			}
+			// Mimbrane grapplestruggle
+			else if (hasEnemyOfClass(Mimbrane))
+			{
+				if (target.hasPerk("Escape Artist"))
+				{
+					if (target.reflexes() + rand(10) > target.statusEffectv1("Mimbrane Smother") * 5)
+					{
+						output("You keep your cool, calmly feeling around the edges of the parasite attached to your face and manage to find a weakness in its hold; working your fingers into the small imperfection in the Mimbranes seal around your features, you manage to pry it away from you.");
+						target.removeStatusEffect("Mimbrane Smother");
+					}
+				}
+				else
+				{
+					if (target.physique() + rand(10) > target.statusEffectv1("Mimbrane Smother") * 5)
+					{
+						output("You manage to force your fingers under the edge of the Mimbrane smothering you, and forcefully tear it away from your face.");
+						target.removeStatusEffect("Mimbrane Smother");
+					}
+				}
+				
+				// Failure to escape
+				if (target.hasStatusEffect("Mimbrane Smother"))
+				{
+					// lust tick
+					target.lust(10 + target.libido()/10);
+
+					//{fail to escape 1} 
+					if (target.statusEffectv1("Mimbrane Smother") == 0)
+					{
+						output("Your hands fail to find purchase on the slippery surface of your aggressor. The Mimbrane continues squeezing and sliding against your head.");
+						target.setStatusValue("Mimbrane Smother", 1, 1);
+					}
+					//{fail to escape 2} 
+					else if (target.statusEffectv1("Mimbrane Smother") == 1)
+					{
+						output("The Mimbrane’s advance over you puts you into a slight daze, overpowered by the artificial desire being forced upon you. You snap back to your senses and resume your struggle to free yourself.")
+						target.setStatusValue("Mimbrane Smother", 1, 2);
+					}
+					//{defeated} 
+					else if (target.statusEffectv1("Mimbrane Smother") == 2)
+					{
+						output("The aphrodisiacal rag around your head proves to be too much, dissolving the last of your will and dropping you to your [pc.knees]. You breathe heavily, sucking in increasing amounts of the parasite’s infatuating perspiration and causing its skin to compress and inflate over your mouth. Sensing your defeat, the Mimbrane slowly unfurls from your head. Lines of oily sweat snap apart as the parasite peels off of you. It sizes up its prize, deciding how to proceed.");
+						target.lust(target.lustMax(), true);
+					}
+				}
+			}
 			// Standard grapple text
 			else
 			{

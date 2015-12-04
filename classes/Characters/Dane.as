@@ -222,10 +222,11 @@
 				else daneLickitongue(target);
 			}
 			//Headbutt - every fifth round until out of energy
-			else if(target.statusEffectv1("Round") % 5 == 0 && energy() >= 25)
+			else if(CombatManager.getRoundCount() % 5 == 0 && energy() >= 25)
 			{
 				//As the PC attack
 				CombatAttacks.HeadbuttImpl(alliedCreatures, hostileCreatures, this, target);
+				energy( -25);
 			}
 			else if(CombatManager.getRoundCount() % 7 == 0)
 			{
