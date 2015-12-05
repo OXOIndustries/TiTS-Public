@@ -85,8 +85,8 @@ public function questionsForYammi():void
 public function getIceCreamContainer(iType:int = 0, sSize:String = ""):PregnancyPlaceholder
 {
 	var iSize:Number = 0;
-	if (sSize == "cone") iSize = 10;
-	if (sSize == "bowl") iSize = 20;
+	if (sSize == "cone") iSize = 5;
+	if (sSize == "bowl") iSize = 15;
 	if (sSize == "feast") iSize = 50;
 	
 	var ppIceCream:PregnancyPlaceholder = new PregnancyPlaceholder();
