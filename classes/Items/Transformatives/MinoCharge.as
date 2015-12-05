@@ -45,10 +45,11 @@ package classes.Items.Transformatives
 		private function t0Changes(target:Creature, tChanges:int):int
 		{
 			var changes:int = 0;
-			var isMinotaur:Boolean = (target.faceType == GLOBAL.TYPE_BOVINE && target.skinType == GLOBAL.SKIN_TYPE_FUR);
+			
+			if (target.faceType == GLOBAL.TYPE_BOVINE) return changes;
 			
 			//PC becomes fairly humanoid. 100% chance to get human face, skin, if not already possessed, unless PC has fur and bovine face.
-			if ((target.faceType != GLOBAL.TYPE_HUMAN || target.skinType != GLOBAL.SKIN_TYPE_SKIN) && !isMinotaur)
+			if (target.faceType != GLOBAL.TYPE_HUMAN || target.skinType != GLOBAL.SKIN_TYPE_SKIN)
 			{
 				output("\n\nThe first thing you feel after ingesting the treat is an odd calmness that falls over you. A passivity and complacency that makes you want to just sit down and... chew greens? You blink, scowling at yourself for thinking that. What the hell?");
 				
@@ -437,7 +438,7 @@ package classes.Items.Transformatives
 			
 			//High chance to gain small bovine horns
 			//Does not change existing horns.
-			if (target.horns == 0 && rand(3) == 0 && changes < tChanges)
+			if (!target.hasHorns() && rand(3) == 0 && changes < tChanges)
 			{
 				output("\n\nA tingling sensation comes from your forehead. You reach up and pat at your brow, and find a pair of growing lumps growing from your head. After a few moments, they become very hard, and covered with a velvety softness. <b>They’re a pair of small, cow-like horns!</b>");
 				
@@ -450,16 +451,35 @@ package classes.Items.Transformatives
 			
 			//Moderate chance that horns grow
 			//Diminishing returns past twelve inches
-			else if (target.hasHorns() && rand(3) == 0 && changes < tChanges)
+			else if (target.hasHorns() && target.hornLength < 60 && rand(3) == 0 && changes < tChanges)
 			{
-				inchGained = 2;
-				target.hornLength += inchGained;
-				changes++;
+				inchGained = 3;
+				if(target.hornLength > 6) inchGained = 2;
+				if(target.hornLength > 12) inchGained = 1;
 				
-				//First growth
-				if (target.hornType != GLOBAL.TYPE_BOVINE || target.hornLength < 10) output("\n\nYou feel a pressure in the base of your horns, feeling the velvety surface flake off as your horns expand outward " + inchGained + " inches, curling forward like a bull’s.");
-				//Repeat growths
-				else output("\n\nYou feel a pressure in the base of your horns, letting out a grunting moo as " + inchGained + " more inches emerge. They feel huge, heavy, and powerful, big fat <i>bull</i> horns.");
+				if (target.hornLengthUnlocked(target.hornLength + inchGained))
+				{
+					target.hornLength += inchGained;
+					changes++;
+					
+					//First growth
+					if (target.hornType != GLOBAL.TYPE_BOVINE || target.hornLength < 10)
+					{
+						output("\n\nYou feel a pressure in the base of your [pc.horns], feeling the velvety surface flake off as your [pc.hornsNoun] expand outward " + inchGained + " inch");
+						if (inchGained != 1) output("es");
+						if (target.hornLength < 5) output(".");
+						else output(", curling forward like a bull’s.");
+					}
+					//Repeat growths
+					else
+					{
+						output("\n\nYou feel a pressure in the base of your [pc.horns], letting out a grunting moo as " + inchGained + " more inch");
+						if(inchGained != 1) output("es emerge.");
+						else output(" emerges.");
+						if (target.horns > 1 && target.hornLength >= 10) output(" They feel huge, heavy, and powerful, like big fat <i>bull</i> horns.");
+					}
+				}
+				else kGAMECLASS.output("\n\n" + target.hornLengthLockedMessage());
 			}
 			
 			//High chance to grow a cow tail (No existing tails)
