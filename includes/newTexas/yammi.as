@@ -81,6 +81,23 @@ public function questionsForYammi():void
 	addButton(14,"Back",yammiRepeatMenu,false);
 }
 
+// Ice Cream scoops
+public function getIceCreamContainer(iType:int = 0, sSize:String = ""):PregnancyPlaceholder
+{
+	var iSize:Number = 0;
+	if (sSize == "cone") iSize = 10;
+	if (sSize == "bowl") iSize = 20;
+	if (sSize == "feast") iSize = 50;
+	
+	var ppIceCream:PregnancyPlaceholder = new PregnancyPlaceholder();
+	ppIceCream.breastRows[0].breasts = 1;
+	ppIceCream.breastRows[0].breastRatingRaw = iSize;
+	ppIceCream.milkType = iType;
+	ppIceCream.milkMultiplier = 100;
+	ppIceCream.milkFullness = 100;
+	return ppIceCream;
+}
+
 //Choose ‘Cone’
 public function orderAYammiCone():void
 {
@@ -179,6 +196,7 @@ public function gewinFruit(servingType:String = "cone"):void
 		processTime(12);
 		pc.HP(50);
 	}
+	pc.milkInMouth(getIceCreamContainer(GLOBAL.FLUID_TYPE_MILK, servingType));
 	clearMenu();
 	addButton(0,"Next",yammiRepeatMenu,true);
 }
@@ -234,6 +252,7 @@ public function getYokto(servingType:String = "cone"):void
 		pc.HP(25);
 		pc.energy(25);
 	}
+	pc.milkInMouth(getIceCreamContainer(GLOBAL.FLUID_TYPE_MILK, servingType));
 	clearMenu();
 	addButton(0,"Next",yammiRepeatMenu,true);
 }
@@ -283,6 +302,7 @@ public function blitzaberryCone(servingType:String = "cone"):void
 		processTime(12);
 		pc.energy(75);
 	}
+	pc.milkInMouth(getIceCreamContainer(GLOBAL.FLUID_TYPE_MILK, servingType));
 	clearMenu();
 	addButton(0,"Next",yammiRepeatMenu,true);
 }
@@ -341,6 +361,7 @@ public function strawberryIcedCream(servingType:String = "cone"):void
 		pc.HP(25);
 		pc.energy(25);
 	}
+	pc.milkInMouth(getIceCreamContainer(GLOBAL.FLUID_TYPE_STRAWBERRY_MILK, servingType));
 	clearMenu();
 	addButton(0,"Next",yammiRepeatMenu,true);
 }
@@ -393,6 +414,7 @@ public function JumbijumbiCream(servingType:String = "cone"):void
 		pc.HP(9);
 		pc.energy(9);
 	}
+	pc.milkInMouth(getIceCreamContainer(GLOBAL.FLUID_TYPE_MILK, servingType));
 	clearMenu();
 	addButton(0,"Next",yammiRepeatMenu,true);
 }
@@ -448,6 +470,7 @@ public function darginutIcedCream(servingType:String = "cone"):void
 		pc.HP(40);
 		pc.energy(20);
 	}
+	pc.milkInMouth(getIceCreamContainer(GLOBAL.FLUID_TYPE_MILK, servingType));
 	clearMenu();
 	addButton(0,"Next",yammiRepeatMenu,true);
 }
@@ -506,6 +529,7 @@ public function chocolateIcedCream(servingType:String = "cone"):void
 		pc.HP(25);
 		pc.energy(25);
 	}
+	pc.milkInMouth(getIceCreamContainer(GLOBAL.FLUID_TYPE_CHOCOLATE_MILK, servingType));
 	clearMenu();
 	addButton(0,"Next",yammiRepeatMenu,true);
 }
@@ -564,6 +588,7 @@ public function flameberksIcedCream(servingType:String = "cone"):void
 		pc.HP(9);
 		pc.energy(9);
 	}
+	pc.milkInMouth(getIceCreamContainer(GLOBAL.FLUID_TYPE_MILK, servingType));
 	clearMenu();
 	addButton(0,"Next",yammiRepeatMenu,true);
 }
