@@ -555,10 +555,10 @@ public function gooCrotchCustomizer():void
 	showBiomass();
 	//[Penis] [Vagina] [Balls] [Misc]
 	clearGhostMenu();
-	addButton(0,"Penis",gooCockRootMenu,undefined,"Penis","Modify phallus parameters.");
-	addButton(1,"Vagina",vaginaGooRootMenu,undefined,"Vagina","Modify vaginal parameters.");
-	addButton(2,"Balls",gooBallsMenu,undefined,"Balls","Modify testicular parameters.");
-	addButton(14,"Back",gooShiftMenu);
+	addGhostButton(0,"Penis",gooCockRootMenu,undefined,"Penis","Modify phallus parameters.");
+	addGhostButton(1,"Vagina",vaginaGooRootMenu,undefined,"Vagina","Modify vaginal parameters.");
+	addGhostButton(2,"Balls",gooBallsMenu,undefined,"Balls","Modify testicular parameters.");
+	addGhostButton(14,"Back",gooShiftMenu);
 }
 
 //Penis
@@ -654,7 +654,7 @@ public function gooBallsMenu():void
 		addDisabledGhostButton(3,"Shrink Balls","Shrink Balls","You don't have any balls to shrink!");
 		addDisabledGhostButton(5,"Sack Options","Sack Options","If you had balls, you could use this button to make your nutsack pull up high and tight or swing low and free.");
 	}
-
+	addGhostButton(14,"Back",gooShiftMenu);
 }
 
 //Shrink Down Nuts
@@ -691,7 +691,7 @@ public function nutShrinkGo():void
 	pc.ballSizeRaw = (pc.ballSizeRaw/Math.PI-1) * Math.PI;
 	trace("FINAL ACTUAL VOL: " + pc.ballVolume());
 	clearMenu();
-	addButton(0,"Next",gooBallsMenu);
+	addGhostButton(0,"Next",gooBallsMenu);
 }
 
 
@@ -743,7 +743,7 @@ public function expandoNuts():void
 	pc.lust(15);
 	while(pc.lust() < 33) { pc.lust(5); }
 	clearMenu();
-	addButton(0,"Next",gooBallsMenu);
+	addGhostButton(0,"Next",gooBallsMenu);
 }
 
 public function tautSackToggle():void
@@ -765,7 +765,7 @@ public function tautSackToggle():void
 		output2("The complex weave of gelatinous lattices in your [pc.sack] collapses right on cue, allowing you to reabsorb most of the reinforcement and let your [pc.balls] swing low and heavy once more. No more tightly-packed testes for you, no sir!");
 	}
 	clearMenu();
-	addButton(0,"Next",gooBallsMenu);
+	addGhostButton(0,"Next",gooBallsMenu);
 }
 
 public function nutGrowCost():Number
@@ -801,7 +801,7 @@ public function removeATesticle():void
 	flags["GOO_BIOMASS"] += nutLossCost();
 	pc.balls--;
 	clearMenu();
-	addButton(0,"Next",gooBallsMenu)
+	addGhostButton(0,"Next",gooBallsMenu)
 }
 
 //1 nut = 300 biomass
@@ -827,7 +827,7 @@ public function growSomeGooBalls():void
 	flags["GOO_BIOMASS"] -= nutGrowCost();
 	pc.balls++;
 	clearMenu();
-	addButton(0,"Next",gooBallsMenu);
+	addGhostButton(0,"Next",gooBallsMenu);
 }
 
 //100
@@ -1096,7 +1096,7 @@ public function lengthenSelectedGooCock(arg:int = 0):void
 		output2("No matter how hard you try, you can't muster up anything more than an empty feeling inside yourself. It looks like you'll need more biomass for this.");
 	}
 	clearGhostMenu();
-	addButton(0,"Next",gooCockRootMenu);
+	addGhostButton(0,"Next",gooCockRootMenu);
 }
 
 //Shorten cock
@@ -1170,13 +1170,13 @@ public function shortenSelectedCock(arg:int = 0):void
 		output2("\n\nDo you want to remove it?");
 		
 		clearGhostMenu();
-		addButton(0,"Remove It",removeDaChosenGooCock,arg,"Remove It","Remove your [pc.cock " + arg + "].");
-		addButton(1,"Nah",gooCockRootMenu);
+		addGhostButton(0,"Remove It",removeDaChosenGooCock,arg,"Remove It","Remove your [pc.cock " + arg + "].");
+		addGhostButton(1,"Nah",gooCockRootMenu);
 		return;
 	}
 
 	clearGhostMenu();
-	addButton(0,"Next",gooCockRootMenu);
+	addGhostButton(0,"Next",gooCockRootMenu);
 }
 
 //Vagina
@@ -1190,7 +1190,7 @@ public function vaginaGooRootMenu():void
 	clearGhostMenu();
 	if(flags["GOO_BIOMASS"] >= 500)
 	{
-		if(pc.totalVaginas() < 3) addButton(0,"Grow Vagina",growAGoogina,undefined,"Grow Vagina","Grow a new vagina.\n\n<b>500 mLs Biomass</b>");
+		if(pc.totalVaginas() < 3) addGhostButton(0,"Grow Vagina",growAGoogina,undefined,"Grow Vagina","Grow a new vagina.\n\n<b>500 mLs Biomass</b>");
 		else addDisabledGhostButton(0,"Grow Vagina","Grow Vagina","There's no more room for more vaginas!");
 	}
 	else addDisabledGhostButton(0,"Grow Vagina","Grow Vagina","You don't have enough biomass for that!\n\n<b>500 mLs Biomass</b>");
@@ -1226,7 +1226,7 @@ public function vaginaGooRootMenu():void
 	// Removal: Single vagina
 	if(pc.totalVaginas() == 1)
 	{
-		if(pc.vaginas[0].addFlag(GLOBAL.FLAG_GOOEY)) addGhostButton(5,"Remove Vag",removeAVag,0,"Remove Vag","Remove your vagina.");
+		if(pc.vaginas[0].hasFlag(GLOBAL.FLAG_GOOEY)) addGhostButton(5,"Remove Vag",removeAVag,0,"Remove Vag","Remove your vagina.");
 		else addDisabledGhostButton(5,"Remove Vag","Remove Vag","Your vagina isn't made of goo and cannot be removed.");
 	}
 	else if(!pc.hasVagina()) addDisabledGhostButton(5,"Remove Vag","Remove Vag","You have no vagina to remove.");
@@ -1234,15 +1234,15 @@ public function vaginaGooRootMenu():void
 	// Removal: Multiple vaginas
 	if(pc.totalVaginas() > 1)
 	{
-		if(pc.vaginas[0].addFlag(GLOBAL.FLAG_GOOEY)) addGhostButton(5,"Remove Vag 1",removeAVag,0,"Remove Vag 1","Remove your first vagina.");
+		if(pc.vaginas[0].hasFlag(GLOBAL.FLAG_GOOEY)) addGhostButton(5,"Remove Vag 1",removeAVag,0,"Remove Vag 1","Remove your first vagina.");
 		else addDisabledGhostButton(5,"Remove Vag 1","Remove Vag 1","This vagina isn't made of goo and cannot be removed.");
-		if(pc.vaginas[1].addFlag(GLOBAL.FLAG_GOOEY)) addGhostButton(6,"Remove Vag 2",removeAVag,1,"Remove Vag 2","Remove your second vagina.");
+		if(pc.vaginas[1].hasFlag(GLOBAL.FLAG_GOOEY)) addGhostButton(6,"Remove Vag 2",removeAVag,1,"Remove Vag 2","Remove your second vagina.");
 		else addDisabledGhostButton(6,"Remove Vag 2","Remove Vag 2","This vagina isn't made of goo and cannot be removed.");
 	}
 	//else addDisabledGhostButton(6,"Remove Vag 2","Remove Vag 2","You have no vagina to remove.");
 	if(pc.totalVaginas() > 2)
 	{
-		if(pc.vaginas[2].addFlag(GLOBAL.FLAG_GOOEY)) addGhostButton(7,"Remove Vag 3",removeAVag,2,"Remove Vag 3","Remove your third vagina.");
+		if(pc.vaginas[2].hasFlag(GLOBAL.FLAG_GOOEY)) addGhostButton(7,"Remove Vag 3",removeAVag,2,"Remove Vag 3","Remove your third vagina.");
 		else addDisabledGhostButton(7,"Remove Vag 3","Remove Vag 3","This vagina isn't made of goo and cannot be removed.");
 	}
 	//else addDisabledGhostButton(7,"Remove Vag 3","Remove Vag 3","You have no vagina to remove.");
@@ -1300,7 +1300,7 @@ public function removeAVag(arg:int = 0):void
 	flags["GOO_BIOMASS"] += 375;
 	pc.removeVagina(arg,1);
 	clearGhostMenu();
-	addButton(0,"Next",vaginaGooRootMenu);
+	addGhostButton(0,"Next",vaginaGooRootMenu);
 }
 //Remove Vags
 public function removeAllVags():void
@@ -1313,7 +1313,7 @@ public function removeAllVags():void
 	}
 	pc.removeVaginas();
 	clearGhostMenu();
-	addButton(0,"Next",vaginaGooRootMenu);	
+	addGhostButton(0,"Next",vaginaGooRootMenu);	
 }
 
 public function addClitGooMenu():void

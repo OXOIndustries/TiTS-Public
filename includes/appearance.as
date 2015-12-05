@@ -1333,6 +1333,8 @@ public function appearance(target:Creature):void {
 
 public function crotchStuff(target:Creature):void
 {
+	kGAMECLASS.target = target;
+	
 	var rando:int = 0;
 	if(target.hasGenitals()) {
 		output2("\n\n");
@@ -1601,7 +1603,7 @@ public function crotchStuff(target:Creature):void
 					{
 						if(target.lust() < 50) output2(", occassionally beading its ever-present [target.girlCumNoun]");
 						else if(target.lust() < 75) output2(", frequently drooling its ever-present [target.girlCumNoun]");
-						else output2(", constantly-drooling thick strands of [target.girlCumNoun]");
+						else output2(", constantly drooling thick strands of [target.girlCumNoun]");
 					}
 					//Medium wetness shit
 					else if(target.vaginas[temp].wetness() >= 2)
@@ -1750,6 +1752,8 @@ public function setGenderPref(pref:String):void
 
 public function dickBonusForAppearance(target:Creature, x:int = 0):void
 {
+	kGAMECLASS.target = target;
+	
 	trace("DICK FLAVOR FIRED!");
 	//Color shit
 	if(target.cocks[x].cType == GLOBAL.TYPE_EQUINE)
@@ -1894,6 +1898,8 @@ public function dickBonusForAppearance(target:Creature, x:int = 0):void
 
 public function vaginaBonusForAppearance(target:Creature, x:int = 0, eachOne:Boolean = false):void
 {
+	kGAMECLASS.target = target;
+	
 	//Zil flavor!
 	if(target.vaginas[x].type == GLOBAL.TYPE_BEE && target.vaginas[x].vaginaColor == "black and gold") {
 		if(!eachOne) output2(" The exterior folds are a dusky black, while the inner lining of your tunnel is a glorious golden hue.");

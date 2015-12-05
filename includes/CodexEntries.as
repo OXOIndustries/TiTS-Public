@@ -49,18 +49,18 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MHENGA, "Mhen'ga", "Venus Pitchers", venusPitcherCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MHENGA, "Mhen'ga", "Zil", zilCodexEntry);
 	
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MYRELLION, "Myrellion", "Cockvines", cockvinesCodexEntry);	
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MYRELLION, "Myrellion", "Ganrael", crystalGooCodexEntry);	
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MYRELLION, "Myrellion", "Gold Myr", goldMyrmedionCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MYRELLION, "Myrellion", "Myr Fungus", myrFungusCodex);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MYRELLION, "Myrellion", "Nyrea", nyreaCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MYRELLION, "Myrellion", "Red Myr", redMyrmedionCodexEntry);
-	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_TARKUS, "Tarkus","Gabilani",gabilaniCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_TARKUS, "Tarkus","Gray Goos",grayGooCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_TARKUS, "Tarkus","Lapinara",lapinaraCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_TARKUS, "Tarkus","Raskvel",raskVelCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_TARKUS, "Tarkus","Sydians",sydianCodexEntry);	
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_TARKUS, "Tarkus","Sydians",sydianCodexEntry);
+	
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MYRELLION, "Myrellion", "Cockvines", cockvinesCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MYRELLION, "Myrellion", "Ganrael", crystalGooCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MYRELLION, "Myrellion", "Gold Myr", goldMyrmedionCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MYRELLION, "Myrellion", "Myr Fungus", myrFungusCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MYRELLION, "Myrellion", "Nyrea", nyreaCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MYRELLION, "Myrellion", "Red Myr", redMyrmedionCodexEntry);
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items","Dumbfuck",dumbfuckCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items","Gush",gushCodexEntry);

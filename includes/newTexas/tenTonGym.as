@@ -425,7 +425,7 @@ public function purchaseTempGymMembership():void
 	clearMenu();
 	//[Purchase Day]{Set global flag GYM_MEMBER_DAY to true}{Deduct 50 credits} Go to Purchased Day
 	if(pc.credits >= 500) addButton(0,"Purchase",purchaseTempGymMembershipConfirm,undefined,"Purchase","Spend 500 credits on a day pass.");
-	else addDisabledButton(0,"Purchase","Purchase","You can't afford a day pass.");
+	else addDisabledButton(0,"Purchase","Purchase","You can't afford a day pass.\n\nPrice: 500 Credits");
 	//[Never Mind] Go to Entrance
 	addButton(14,"Back",talkToQuenton);
 }
@@ -440,6 +440,7 @@ public function purchaseTempGymMembershipConfirm():void
 	processTime(1);
 	pc.credits -= 500;
 	pc.createStatusEffect("Gym Pass", 0, 0, 0, 0, false, "Icon_Haste", "You have a temporary gym pass to the Ten Ton Gym on New Texas.", false, 1440);
+	variableRoomUpdateCheck();
 	var map:* = mapper.generateMap(currentLocation);
 	userInterface.setMapData(map);
 	clearMenu();
@@ -455,7 +456,7 @@ public function buyDatLifetimeMembership():void
 	output("Quenton’s grin stretches even wider. <i>“Always happy to welcome a new member!”</i> He taps a few buttons on his computer, then holds out a hand to you. <i>“10,000 credits, friend, and you’ve got a home at the greatest gym this side of the galaxy.”</i>");
 	clearMenu();
 	if(pc.credits >= 10000) addButton(0,"Purchase",purchaseLifetimeGymMembership,undefined,"Purchase","Purchase a lifetime membership for 10,000 credits.");
-	else addDisabledButton(0,"Purchase","Purchase","You cannot afford that.");
+	else addDisabledButton(0,"Purchase","Purchase","You cannot afford that.\n\nPrice: 10000 Credits");
 	//[Purchase Life]{Set global flag GYM_MEMBER_LIFE to true}{Deduct 500 credits} Go to Purchased Life
 	//[Never Mind] Go to Entrance
 	addButton(14,"Back",talkToQuenton);
@@ -471,6 +472,7 @@ public function purchaseLifetimeGymMembership():void
 	processTime(1);
 	pc.credits -= 10000;
 	pc.createKeyItem("Ten Ton Gym Membership",0,0,0,0);
+	variableRoomUpdateCheck();
 	var map:* = mapper.generateMap(currentLocation);
 	userInterface.setMapData(map);
 	clearMenu();
