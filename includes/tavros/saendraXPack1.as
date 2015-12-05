@@ -54,6 +54,7 @@ public function tryProcSaendraXPackEmail():void
 public function unlockSaendraXPackMail():void
 {
 	clearOutput();
+	author("Savin");
 
 	output("Your Codex beeps unexpectedly, alerting you to an incoming extranet message. When you pull your device out, you’re greeted by an message addressed from one <i>“FlyGirl@PhoenixCargo.net.”</i> No bonus points guessing who <i>that</i> is. You flip it open and start to read:");
 	
@@ -95,7 +96,7 @@ public function saendraX1LiftGo():void
 {
 	clearOutput();
 	showName("\nDECK 92");
-
+	author("Savin");
 	generateMapForLocation("SX1 FAKE FIGHT ROOM");
 
 	// 2late
@@ -530,7 +531,7 @@ public function sx1TalkFriendII():void
 {
 	clearOutput();
 	showBust("SAENDRA");
-	
+	author("Savin");
 	generateMapForLocation("HOTEL CORRIDOR");
 	
 	output("You and Saendra walk up the stairs behind the bar, towards the small hall of rooms for rent Anon’s sports. It’s small and undecorated, steel walls straight down a ten foot corridor. A fluorescent light flickers uneasily overhead, casting dark shadows across the dull gray bulkheads.");
@@ -582,7 +583,7 @@ public function sx1LootSecureMP():void
 {
 	clearOutput();
 	showBust("SAENDRA");
-	
+	author("Savin");
 	generateMapForLocation("HOTEL CORRIDOR");
 	
 	output("You snatch up the pistol from the guards body, hefting it in your grip with ease. Feels... pretty light actually, but not in a bad way.");
@@ -637,7 +638,7 @@ public function sx1AskValiera():void
 {
 	clearOutput();
 	showBust("VALERIA");
-
+	author("Savin");
 	generateMapForLocation("HOTEL CORRIDOR");
 
 	flags["SAENDRA_XPACK1_ASKEDVAL"] = 1;
@@ -663,7 +664,7 @@ public function sx1AskSaendra():void
 {
 	clearOutput();
 	showBust("SAENDRA");
-
+	author("Savin");
 	flags["SAENDRA_XPACK1_ASKEDSAEN"] = 1;
 
 	generateMapForLocation("HOTEL CORRIDOR");
@@ -687,6 +688,7 @@ public function sx1SeeCallgirl():void
 {
 	clearOutput();
 	showBust("ZILFEMALE");
+	author("Savin");
 	generateMapForLocation("CALLGIRL ROOM");
 
 	if (flags["SAENDRA_XPACK1_CALLGIRLSTATE"] == undefined)
@@ -750,6 +752,7 @@ public function sx1CallgirlNevermind():void
 {
 	clearOutput();
 	showBust("ZILFEMALE");
+	author("Savin");
 	generateMapForLocation("CALLGIRL ROOM");
 
 	output("<i>“Aww. Nervous, hun?”</i> the callgirl coos, blowing you a kiss. <i>“Go ahead and take your time. I’ll be here.”</i>");
@@ -761,6 +764,7 @@ public function sx1CallgirlOkay():void
 {
 	clearOutput();
 	showBust("ZILFEMALE");
+	author("Savin");
 	generateMapForLocation("CALLGIRL ROOM");
 
 	flags["SAENDRA_XPACK1_CALLGIRLSTATE"] = 2;
@@ -865,6 +869,7 @@ public function sx1CallgirlOfferJob():void
 	clearOutput();
 	pc.credits -= 500;
 	showBust("ZILFEMALE");
+	author("Savin");
 	generateMapForLocation("CALLGIRL ROOM");
 
 	output("<i>“Hey, so, my buddy is over in the next room,”</i> you lie, pulling a credstick out of your pocket. <i>“It’s his birthday, you know, and I was thinking maybe...”</i>");
@@ -918,6 +923,7 @@ public function sx1Holoburn():void
 {
 	clearOutput();
 	showBust("VALERIA");
+	author("Savin");
 	generateMapForLocation("HOTEL CORRIDOR");
 	
 	output("<i>“Valeria, think you can overload the power in there?”</i> you ask, jerking a thumb to the pirates’ door.");
@@ -955,6 +961,7 @@ public function sx1SaenDistract():void
 {
 	clearOutput();
 	showBust("SAENDRA_NUDE");
+	author("Savin");
 	generateMapForLocation("HOTEL CORRIDOR");
 	
 	output("<i>“Alright, we’ll go with your plan,”</i> you tell Saendra, eyeing her mouthwatering rack. <i>“Let’s lure the bastards out.”</i>");
@@ -983,6 +990,7 @@ public function sx1ThrowFlashbang():void
 {
 	clearOutput();
 	showBust("SAENDRA");
+	author("Savin");
 	generateMapForLocation("HOTEL CORRIDOR");
 	
 	output("<i>“Kick the door,”</i> you say, pulling a flash grenade out and pulling the pin. Saen gives you a nod, rears her leg back, and slams her foot into the door. It buckles, tumbling back on its hinges and you toss the flashbang in.");
@@ -997,6 +1005,7 @@ public function sx1DoorBreach():void
 {
 	clearOutput();
 	showBust("SAENDRA");
+	author("Savin");
 	generateMapForLocation("SX1 RESCUE ROOM");
 	
 	output("<i>“Fuck it. Let’s do it loud,”</i> you say, nodding towards the door. Saen grins and thumbs the safety on her Hammer pistol.");
@@ -1439,7 +1448,7 @@ public function sx1RescueTheDude(fromCombat:Boolean = false):void
 {
 	clearOutput();
 	showBust("SAENDRA");
-
+	author("Savin");
 	flags["SAENDRA_XPACK1_STATUS"] = 9;
 
 	generateMapForLocation("SX1 RESCUE ROOM");
