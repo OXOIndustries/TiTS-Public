@@ -803,8 +803,7 @@ public function showerMenu():void {
 public function showerOptions(option:int = 0):void {
 	clearOutput();
 	clearMenu();
-	var showerSex:Number = 0;
-	var buttonslot:Number = -1;
+	var showerSex:int = 0;
 	// Regular showers
 	if (option == 0)
 	{
@@ -831,7 +830,7 @@ public function showerOptions(option:int = 0):void {
 	{
 		if (annoIsCrew() && pc.hasGenitals())
 		{
-			addButton(buttonslot + 1, "Anno", annoFollowerShowerSex);
+			addButton(showerSex, "Anno", annoFollowerShowerSex);
 			showerSex++;
 		}
 		if (showerSex > 0) output(" Feeling a little turned on, you decide that maybe you should have some fun shower sex with one of your crew. Who do you approach?");
