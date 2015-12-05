@@ -112,7 +112,7 @@ package classes.Items.Transformatives
 				if (target.breastRows[target.biggestTitRow()].breastRatingRaw > 0) grownInitialTits = true;
 				
 				// To flat
-				for(i = 0; i > target.breastRows.length; i++)
+				for(i = 0; i < target.breastRows.length; i++)
 				{
 					target.breastRows[i].breastRatingRaw -= cupSizeLoss;
 					if (target.breastRows[i].breastRatingRaw < 0) target.breastRows[i].breastRatingRaw = 0;
@@ -151,7 +151,7 @@ package classes.Items.Transformatives
 					else output(" are");
 					output(" now covered in a sheath</b>!");
 					
-					for(i = 0; i > target.cocks.length; i++)
+					for(i = 0; i < target.cocks.length; i++)
 					{
 						if (!target.cocks[i].hasFlag(GLOBAL.FLAG_SHEATHED)) target.cocks[i].addFlag(GLOBAL.FLAG_SHEATHED);
 					}
@@ -180,7 +180,7 @@ package classes.Items.Transformatives
 						
 						// Average the cock sizes
 						var avgCockLength:Number = 0;
-						for(i = 0; i > target.cocks.length; i++)
+						for(i = 0; i < target.cocks.length; i++)
 						{
 							avgCockLength += target.cocks[i].cLengthRaw;
 						}
@@ -245,7 +245,7 @@ package classes.Items.Transformatives
 					if (target.totalVaginas() != 1) output("s");
 					output(" tightening up to leave you feeling noticeably smaller down there.");
 					
-					for(i = 0; i > target.vaginas.length; i++)
+					for(i = 0; i < target.vaginas.length; i++)
 					{
 						if (target.vaginas.bonusCapacity > 0)
 						{
