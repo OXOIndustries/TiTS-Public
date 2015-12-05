@@ -7351,6 +7351,7 @@ package classes {
 			if (leithanScore() >= 3 && race == "human") race = "half-leithan";
 			if (nukiScore() >= 2 && race == "human") race = "half kui-tan"
 			if (raskvelScore() >= 2) race = "rask-morph";
+			if (bovineScore() >= 3) race = bovineRace(); // Cow-morphs
 			if (raskvelScore() >= 4) race = "raskvel-morph";
 			if (horseScore() >= 4) race = "horse-morph";
 			if (pandaScore() >= 4) race = "panda-morph";
@@ -7368,6 +7369,8 @@ package classes {
 			if (race == "myr" && goldMyrScore() >= 8) race = "gold myr";
 			if (race == "myr" && redMyrScore() >= 8) race = "red myr";
 			if (orangeMyrScore() >= 9) race = "orange myr";
+			// Human-morphs
+			if (race == "human" && cowScore() >= 4) race = mfn("cow-boy", "cow-girl", "hucow");
 			// Centaur-morphs
 			if (horseScore() >= 2 && isCentaur()) race == "horse-taur";
 			else if (race == "human" && isCentaur()) race = "centaur";
@@ -7376,6 +7379,33 @@ package classes {
 			else if (isNaga()) race = "naga";
 
 			return race;
+		}
+		public function bovineRace():String
+		{
+			if (bovineScore() >= 6 && feminity <= 60 && feminity >= 40) return "bovine-morph";
+			if (hasLegFlag(GLOBAL.FLAG_HOOVES))
+			{
+				if (hasCock() && hasVagina()) return "futaurus";
+				if (feminity < 40 && faceType == GLOBAL.TYPE_BOVINE) return "minotaur";
+				if (feminity > 60) return "holstaurus";
+				if (feminity > 30) return "minitaur";
+			}
+			if (feminity > 60)
+			{
+				if (hasCock() && !hasVagina() && hasBreasts()) return "cow-boi";
+				if (hasCock() && !hasVagina()) return "bull-girl";
+				if (!hasGenitals()) return "cow-morph";
+				return "cow-girl";
+			}
+			if (feminity < 40)
+			{
+				if (hasCock() && hasVagina()) return "bull-futa";
+				if (hasCock() && !hasVagina() && feminity < 20) return "bull-man";
+				if (hasCock() && !hasVagina()) return "bull-boy";
+				if (!hasCock() && hasVagina()) return "cow-boy";
+				return "bull-morph";
+			}
+			return "part bovine-morph";
 		}
 		
 		public function isHuman():Boolean
@@ -7437,7 +7467,18 @@ package classes {
 		}
 		public function cowScore():int
 		{
-			return bovineScore();
+			var counter:int = 0;
+			if (bovineScore() >= 2)
+			{
+				counter += bovineScore();
+				if (isLactating()) counter++;
+				if (hipRating() >= 20) counter++;
+				if (nippleLength(0) >= 3.2) counter++;
+				if (nipplesPerBreast == 4) counter++;
+				if (totalBreasts() >= 4) counter++;
+				if (isMilkTank()) counter++;
+			}
+			return counter;
 		}
 		public function bovineScore():int
 		{
@@ -7446,8 +7487,8 @@ package classes {
 			if (hasHorns(GLOBAL.TYPE_BOVINE)) counter++;
 			if (tailType == GLOBAL.TYPE_BOVINE && hasTailFlag(GLOBAL.FLAG_LONG) && hasTailFlag(GLOBAL.FLAG_FLUFFY) && tailCount > 0) counter++;
 			if (legType == GLOBAL.TYPE_BOVINE) counter++;
-			if (faceType == GLOBAL.TYPE_BOVINE) counter++;
 			if (tongueType == GLOBAL.TYPE_BOVINE && hasTongueFlag(GLOBAL.FLAG_LONG)) counter++;
+			if (faceType == GLOBAL.TYPE_BOVINE) counter += 2;
 			if (hasScales()) counter--;
 			return counter;
 		}
