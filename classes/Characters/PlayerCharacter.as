@@ -139,7 +139,8 @@ package classes.Characters
 				if(cumFrom != null) addBiomass(cumFrom.cumQ());
 				else addBiomass(10);
 			}
-			kGAMECLASS.mimbraneFeed("boobs");
+			//REMOVED - not a valid argument for mimbraneFeed.
+			//kGAMECLASS.mimbraneFeed("boobs");
 			return false;
 		}
 		

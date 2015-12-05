@@ -95,7 +95,7 @@ package classes.Items.Transformatives
 				TFList[TFList.length] = 7;
 			}
 			//#8 Change legs and feet to humanoid: Requires non-humanoid legs and either goblin ears or goblin eyes. Legs become normal human legs. Advances time by 20 minutes when it triggers.
-			if((target.legType != GLOBAL.TYPE_HUMAN || !target.isBiped()) && (target.eyeType == GLOBAL.TYPE_GABILANI || hasElvenEars(target))
+			if((target.legType != GLOBAL.TYPE_HUMAN || !target.isBiped()) && (target.eyeType == GLOBAL.TYPE_GABILANI || hasElvenEars(target)))
 				TFList[TFList.length] = 8;
 			//#9 Change arms to human: Requires non-human arms and humanoid legs.
 			if((target.armType != GLOBAL.TYPE_HUMAN) && target.legType == GLOBAL.TYPE_HUMAN && target.isBiped())
