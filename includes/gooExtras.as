@@ -820,9 +820,9 @@ public function growSomeGooBalls():void
 	else
 	{
 		output2("You grab hold of your slippery sack and give the semi-solid nuts inside a familiar squeeze. Why stop at " + num2Text(pc.balls) + " balls when you can have even more? You bid your reserves of organic matter to flow down into your [pc.sack], pumping it up with a dripping-wet orb, a syrupy-slick spunk-factory. You finish crafting the new testicle in a matter of seconds. It bulges");
-		if(pc.legCount > 1) output(" against your [pc.legs] ");
-		else output(" against your [pc.leg] ");
-		output("with every movement, a potent reminder of how egregiously sexual you've become.")
+		if(pc.legCount > 1) output2(" against your [pc.legs] ");
+		else output2(" against your [pc.leg] ");
+		output2("with every movement, a potent reminder of how egregiously sexual you've become.")
 	}
 	flags["GOO_BIOMASS"] -= nutGrowCost();
 	pc.balls++;
@@ -937,8 +937,8 @@ public function seriouslyThoReshapeDatGooCock(arg:Array):void
 	else if(type == GLOBAL.TYPE_SNAKE)
 	{
 		output2(". The ease with which you can reshape your sex never ceases to amaze you. Flesh flows like liquid butter, forming a serious of bulbous protrusions with a slick, almost shiny surface. In no time flat, you have a turgid snake-cock hanging heavily");
-		if(pc.legCount == 1) output(" from your gooey loins.");
-		else output(" between your [pc.legOrLegs].");
+		if(pc.legCount == 1) output2(" from your gooey loins.");
+		else output2(" between your [pc.legOrLegs].");
 	}
 	else if(type == GLOBAL.TYPE_DEMONIC)
 	{
