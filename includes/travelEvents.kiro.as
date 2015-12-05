@@ -2200,6 +2200,7 @@ public function inviteAFriendForKiroPlays():void
 	if(flags["RECRUITED_CELISE"] != undefined)
 	{
 		if(!celiseIsCrew()) addDisabledButton(nFriends,"Celise","Celise","Celise isn't aboard your ship for this to work.");
+		else if(flags["GIGACELISE"] == undefined) addDisabledButton(nFriends,"Celise","Celise","Celise should probably be in her giga-goo form for this.");
 		else if(kiroTrust() < 80) addDisabledButton(nFriends,"Celise","Celise","Kiro doesn't trust you enough to try this.");
 		else if(kiro.ballDiameter() <= 7) addDisabledButton(nFriends,"Celise","Celise","Kiro doesn't look bloated enough. You should probably wait until she's really backed up before trying this.");
 		else addButton(nFriends,"Celise",celiseKiroFunSekritShit,undefined,"Celise","Invite Kiro to meet with Celise.");
