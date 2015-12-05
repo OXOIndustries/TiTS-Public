@@ -402,7 +402,7 @@ package classes.Items.Transformatives
 			{
 				output("\n\nYour hips widen just a touch, giving you a stockier, wider stance.");
 				
-				target.hipRatingRaw -= 1;
+				target.hipRatingRaw += 1;
 				changes++;
 			}
 			
