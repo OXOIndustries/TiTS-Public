@@ -46,7 +46,7 @@ public function getZephyrPregContainer():PregnancyPlaceholder
 	ppZephyr.milkFullness = 100;
 	if(!ppZephyr.hasCock()) ppZephyr.createCock();
 	ppZephyr.shiftCock(0, GLOBAL.TYPE_CANINE);
-	ppZephyr.cocks[0].cLength = 9;
+	ppZephyr.cocks[0].cLengthRaw = 9;
 	ppZephyr.cocks[0].flaccidMultiplier = .6;
 	return ppZephyr;
 }
