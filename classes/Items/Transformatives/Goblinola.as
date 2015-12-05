@@ -49,6 +49,11 @@ package classes.Items.Transformatives
 		{
 			return int(Math.random() * max);
 		}
+		// Elven Ear check:
+		private function hasElvenEars(target:Creature):Boolean
+		{
+			return InCollection(target.earType, GLOBAL.TYPE_SYLVAN, GLOBAL.TYPE_GABILANI);
+		}
 		// Physical Changes
 		private function minorGoblinMutations(target:Creature):void
 		{
@@ -63,7 +68,7 @@ package classes.Items.Transformatives
 			if(target.skinType != GLOBAL.SKIN_TYPE_SKIN || !InCollection(target.skinTone, "green", "lime", "emerald", "aqua", "pale blue", "turquoise", "yellow", "amber", "topaz"))
 				TFList[TFList.length] = 1;
 			//#2 Goblin ears: Requires non-elven ears.
-			if(target.earType != GLOBAL.TYPE_SYLVAN || target.earType != GLOBAL.TYPE_GABILANI)
+			if(!hasElvenEars(target))
 				TFList[TFList.length] = 2;
 			//#3 Goblin hair: Requires non-black hair.
 			if(target.hairType == GLOBAL.HAIR_TYPE_REGULAR && !InCollection(target.hairColor, "black", "onyx", "jet-black"))
@@ -72,7 +77,7 @@ package classes.Items.Transformatives
 			if(target.eyeType != GLOBAL.TYPE_GABILANI)
 				TFList[TFList.length] = 4;
 			//#5 Goblin face: Requires non-goblin face, goblin eyes, and elven ears.
-			if(!target.hasStatusEffect("Gabilani Face Change") && target.faceType != GLOBAL.TYPE_GABILANI && target.eyeType == GLOBAL.TYPE_GABILANI && (target.earType == GLOBAL.TYPE_SYLVAN || target.earType == GLOBAL.TYPE_GABILANI))
+			if(!target.hasStatusEffect("Gabilani Face Change") && target.faceType != GLOBAL.TYPE_GABILANI && target.eyeType == GLOBAL.TYPE_GABILANI && hasElvenEars(target))
 			{
 				TFList[TFList.length] = 5;
 			}
@@ -90,7 +95,7 @@ package classes.Items.Transformatives
 				TFList[TFList.length] = 7;
 			}
 			//#8 Change legs and feet to humanoid: Requires non-humanoid legs and either goblin ears or goblin eyes. Legs become normal human legs. Advances time by 20 minutes when it triggers.
-			if((target.legType != GLOBAL.TYPE_HUMAN || !target.isBiped()) && (target.eyeType == GLOBAL.TYPE_GABILANI || target.earType == GLOBAL.TYPE_SYLVAN || target.earType == GLOBAL.TYPE_GABILANI))
+			if((target.legType != GLOBAL.TYPE_HUMAN || !target.isBiped()) && (target.eyeType == GLOBAL.TYPE_GABILANI || hasElvenEars(target))
 				TFList[TFList.length] = 8;
 			//#9 Change arms to human: Requires non-human arms and humanoid legs.
 			if((target.armType != GLOBAL.TYPE_HUMAN) && target.legType == GLOBAL.TYPE_HUMAN && target.isBiped())
@@ -125,12 +130,17 @@ package classes.Items.Transformatives
 					{
 						target.skinTone = newSkinTone;
 						// Transformation text (human texture):
-						if(target.skinType == GLOBAL.SKIN_TYPE_SKIN) kGAMECLASS.eventBuffer += "You notice something odd about your skin and find, much to your surprise, that your flesh tone has changed! <b>You now have [pc.skinColor] colored skin.</b>";
+						if(target.skinType == GLOBAL.SKIN_TYPE_SKIN)
+						{
+							kGAMECLASS.eventBuffer += "You notice something odd about your skin and find, much to your surprise, that your flesh tone has changed! <b>You now have [pc.skinColor] colored skin.</b>";
+						}
 						// Transformation text (non-human texture):
-						else kGAMECLASS.eventBuffer += "You touch your face in a moment of idle contemplation, and find that it feels very different than usual. You check your reflection in and see that not only has your skin’s texture changed to something much more in line with what a human’s normally is, it’s also turned an unusual [pc.skinColor] color. <b>You now have [pc.skinColor] human skin!</b>";
-						
-						target.skinType = GLOBAL.SKIN_TYPE_SKIN;
-						target.clearSkinFlags();
+						else
+						{
+							kGAMECLASS.eventBuffer += "You touch your face in a moment of idle contemplation, and find that it feels very different than usual. You check your reflection in and see that not only has your skin’s texture changed to something much more in line with what a human’s normally is, it’s also turned an unusual [pc.skinColor] color. <b>You now have [pc.skinColor] human skin!</b>";
+							target.skinType = GLOBAL.SKIN_TYPE_SKIN;
+							target.clearSkinFlags();
+						}
 					}
 					else
 					{
