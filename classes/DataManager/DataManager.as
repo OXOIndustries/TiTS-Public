@@ -184,7 +184,7 @@
 		{
 			var displayMessage:String = "";
 			
-			kGAMECLASS.removeInput();
+			//kGAMECLASS.removeInput();
 			
 			kGAMECLASS.clearOutput2();
 			kGAMECLASS.userInterface.dataButton.Glow();
@@ -1355,7 +1355,7 @@
 			kGAMECLASS.gameOverEvent = false;
 			
 			// If the text input was being displayed, hide it
-			kGAMECLASS.removeInput();
+			//kGAMECLASS.removeInput();
 			
 			// If the clock is hidden, show it
 			kGAMECLASS.userInterface.showTime();
