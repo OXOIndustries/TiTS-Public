@@ -327,14 +327,6 @@
 			(buttons[3] as MainMenuButton).func = titsClassPtr.startCharacterCreation;
 			
 			(buttons[4] as MainMenuButton).visible = false;
-			
-			// Disable all but the relevant side buttons
-			mainMenuButtonOn();
-			dataOn();
-			appearanceOff();
-			messengerOff();
-			perksOff();
-			levelUpOff();
 		}
 		
 		public function confirmNewCharacter():void
@@ -559,6 +551,9 @@
 			_buttonTray.buttonPagePrev.Deactivate();
 			_buttonTray.textPageNext.Deactivate();
 			_buttonTray.textPagePrev.Deactivate();
+			
+			// Disable all but the relevant side buttons
+			mainButtonsOnly();
 		}
 		
 		public function showOptionsModule():void
@@ -1224,6 +1219,25 @@
 			perksOff();
 			messengerOff();
 			*/
+		}
+		
+		public function mainButtonsOnly():void 
+		{
+			mainMenuButtonOn();
+			dataOn();
+			appearanceOff();
+			messengerOff();
+			perksOff();
+			levelUpOff();
+		}
+		public function mainButtonsReset():void 
+		{
+			mainMenuButtonOn();
+			dataOn();
+			appearanceOn();
+			messengerOn();
+			perksOn();
+			levelUpOn();
 		}
 		
 		public function hideData():void 
