@@ -80,7 +80,7 @@ public function arbetzMainApproach():Boolean
 	author("Nonesuch");
 	
 	// Pool locks
-	if (!pc.hasKeyItem("Arbetz Travel Agency Memebership")) flags["NAV_DISABLED"] = NAV_NORTH_DISABLE;
+	if (!pc.hasKeyItem("Arbetz Travel Agency Memebership") || !arbetzActiveHours()) flags["NAV_DISABLED"] = NAV_NORTH_DISABLE;
 	
 	// Intros
 	if (arbetzActiveHours())
@@ -106,6 +106,7 @@ public function arbetzMainApproach():Boolean
 			clearMenu();
 			addButton(0, "Where?", arbetzMainInitialOptions, 0, "Where are you?", "Ask about this place.");
 			addButton(1, "Aid", arbetzMainInitialOptions, 1, "First Aid", "Ask for some help.");
+			return true;
 		}
 		// Repeat
 		else
@@ -130,7 +131,7 @@ public function arbetzMainApproach():Boolean
 				
 				clearMenu();
 				addButton(14, "Leave", mainGameMenu);
-				return false;
+				return true;
 			}
 			
 			// Standard:
@@ -221,6 +222,7 @@ public function arbetzMainInitialOptions(response:int = 0):void
 		
 		clearMenu();
 		addButton(0, "Where?", arbetzMainInitialOptions, 0);
+		addDisabledButton(1, "Aid");
 		addButton(14, "Leave", mainGameMenu);
 	}
 	// Where?
@@ -236,8 +238,8 @@ public function arbetzMainInitialOptions(response:int = 0):void
 		
 		processTime(5);
 		
-		flags["UNA_MET"] = 1;
-		flags["ARBETZ_ENTERED"] = 2;
+		//flags["UNA_MET"] = 1;
+		//flags["ARBETZ_ENTERED"] = 2;
 		
 		//standard options bar unlocked
 		arbetzMainMenu();
@@ -247,6 +249,12 @@ public function arbetzMainInitialOptions(response:int = 0):void
 // Main Options
 public function arbetzMainMenu(light:Boolean = false):void
 {
+	if (flags["UNA_MET"] == undefined)
+	{
+		flags["UNA_MET"] = 1;
+		flags["ARBETZ_ENTERED"] = 2;
+	}
+	
 	// [Talk] [Appearance] [Pool Area] [Sex] [Leave]
 	if(!light) clearMenu();
 	addButton(0, "Talk", arbetzMainOptions, 0);
@@ -275,7 +283,9 @@ public function arbetzMainOptions(response:int = 0):void
 		output("\n\nUna’s physique embodies the female gabilani stereotype and then some: thick, round hips carrying a pear shaped rump and ample, pendulous boobs. In keeping with the rest of her, this is all very carefully marshaled within a grey skirted business suit, stretched tightly over the succulent swells of her curves. She creaks slightly when she walks. Everything about her speaks of a repressively controlled, ravenous carnality.");
 		output("\n\nAs for her two male staff, they seem so alike it’s difficult to believe they are different species - brown, sleek, otter-like bodies, unruly curly hair, each about five foot eleven. You guess the kaithrit, recognizable by his dusty orange ears and tails, is a very masculine example of his race to match up so well to the human, with his flat, Germanic cheekbones. They are both dressed only in tight-fitting swim shorts, their slim, supple butts and seemly bulges clear to see, and they both carry the clumsy, defiantly prideful demeanor of young men who know they are being ruthlessly objectified.");
 		
+		arbetzMainMenu();
 		addDisabledButton(5, "Appearance");
+		addButton(14, "Back", mainGameMenu);
 	}
 	// Pool Area
 	else if (response == 2)
@@ -325,7 +335,7 @@ public function arbetzMainOptions(response:int = 0):void
 			// [Insist] [Go Back]
 			clearMenu();
 			addButton(0, "Insist", arbetzTalkOptions, 7, "Insist", "Insist on sex.");
-			addButton(1, "Go Back", arbetzMainMenu, undefined, "Nevermind", "Choose to do something else.");
+			addButton(1, "Go Back", arbetzMainMenu, true, "Nevermind", "Choose to do something else.");
 		}
 		// Repeat
 		else
@@ -386,7 +396,7 @@ public function arbetzTalkMenu():void
 	if (flags["UNA_TALKED"] >= 2) addButton(5, "Her", arbetzTalkOptions, 5);
 	if (flags["UNA_TALKED"] >= 3) addButton(6, "The Boys", arbetzTalkOptions, 6);
 	
-	addButton(14, "Back", arbetzMainMenu);
+	addButton(14, "Back", arbetzMainMenu, true);
 }
 public function arbetzTalkOptions(response:int = 0):void
 {
@@ -1301,7 +1311,7 @@ public function arbetzPoolJUSTDOIT(sex:int = 0):void
 	output(", you begin to take off your [pc.gear], piece by piece.");
 	
 	// PC has no undergarment:
-	if (pc.inSwimwear())
+	if (!pc.inSwimwear(true))
 	{
 		output("\n\n<i>“Oh for...”</i> Una’s leer is broken with a snort of hysterical laughter buried into her suited arm");
 		if (pc.isCrotchGarbed()) output(" when you take off your [pc.lowerGarments]");
@@ -1396,6 +1406,7 @@ public function arbetzPoolBonus():Boolean
 		{
 			if (pc.hasArmor() && isSwimsuit(pc.armor) && (pc.hasUpperGarment() || pc.hasLowerGarment())) addDisabledButton(0, "Swim", "Swim", "You should take off your undergarments first. You are wearing a swimsuit after all.");
 			else if (!pc.inSwimwear()) addDisabledButton(0, "Swim", "Swim", "You should take off your outer layers first. No point in ruining them.");
+			else addButton(0, "Swim", arbetzSwimOptions, 0, "Swim", "Go for a swim.");
 		}
 		else addButton(0, "Swim", arbetzSwimOptions, 0, "Swim", "Go for a swim.");
 		addButton(1, "Vending Machine", arbetzVendingMachine);
@@ -1436,6 +1447,7 @@ public function arbetzPoolBonus():Boolean
 		
 		clearMenu();
 		addButton(0, "Next", move, "ARBETZ MAIN");
+		return true;
 	}
 	
 	return false;
