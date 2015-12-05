@@ -476,8 +476,6 @@ public function restHeal():void
 	if(pc.energy() < pc.energyMax()) {
 		pc.energy(Math.round(pc.energyMax() * .33));
 	}
-	
-	if(pc.hasStatusEffect("Jaded")) pc.addStatusMinutes("Jaded", -1 * (60 + rand(90 + 1)));
 }
 
 public function sleep(outputs:Boolean = true):void {
@@ -953,6 +951,11 @@ public function statusTick():void {
 				{
 					//Bit of a hacky solution
 					gogoVenomShit = true;
+				}
+				//Jaded wears off!
+				if(pc.statusEffects[x].storageName == "Jaded")
+				{
+					eventBuffer += "\n\nThe feeling of being worn out from whoring has been lifted and you can move about more freely now.";
 				}
 				//Condensol ends!
 				if(pc.statusEffects[x].storageName == "Condensol-A")
