@@ -1045,9 +1045,9 @@ public function catchAnalFromAlex():void {
 	//If PC has vagina:
 	if(pc.hasVagina()) 
 	{
-		output("\n\nAlex seems a little confused by the gesture, but he stands up and grabs your waist, getting himself into position.");
-		output("\n\n<i>“Are you sure?”</i> he asks. <i>“I’ve always thought assplay was, I don’t know, less fun. There’s a reason I saved up for years to get myself a pussy of my own.");
-		if(pc.ass.looseness() >= 4) output(" Looks like you’d know better than me from the looks of things, though");
+		output("\n\nAlex seems a little confused by the gesture, but he stands up and grabs your waist, getting himself into position");
+		output("\n\n<i>“Are you sure?”</i> he asks. <i>“I’ve always thought assplay was, I don’t know, less fun. There’s a reason I saved up for years to get myself a pussy of my own");
+		if(pc.ass.looseness() >= 4) output(". Looks like you’d know better than me from the looks of things, though");
 		output(".”</i>  You reassure him that you can absolutely have as much fun with your ass as you can with your cunt, if not more.");
 	}
 	//If PC male or unsexed:
