@@ -111,7 +111,8 @@ public function arbetzMainApproach():Boolean
 		// Repeat
 		else
 		{
-			output("You approach the bronze gate and, finding it unlocked, slip inside.");
+			if (!pc.hasKeyItem("Arbetz Travel Agency Memebership")) output("You approach the bronze gate and, finding it unlocked, slip inside.");
+			else output("You approach the main building and step inside.");
 			
 			// Happens once per day for an hour at random:
 			if (flags["UNA_MET"] != undefined && !pc.hasStatusEffect("Arbetz Busy Hour") && !pc.hasStatusEffect("Arbetz Busy Cooldown") && rand(5) == 0)
@@ -166,7 +167,7 @@ public function arbetzMainApproach():Boolean
 				{
 					showBust("UNA", "PETR");
 					
-					if (pc.hasStatusEffect("Arbetz Busy Cooldown")) output("\n\nThe agency’s lobby is still a little active, though not as busy as it was earlier. Everyone has found their place and the staff doesn’t appear to have their hands full.");
+					if (pc.hasStatusEffect("Arbetz Busy Cooldown")) output("\n\nThe agency’s lobby is still a little active, though not as busy as it was earlier. Everyone has found their place and the staff members don’t appear to have their hands full.");
 					output("\n\n<i>“What is it? Oh, it’s you again.”</i>");
 					if (flags["UNA_MET"] != undefined) output(" Una");
 					else output(" the turquoise-skinned shortstack");
@@ -174,6 +175,15 @@ public function arbetzMainApproach():Boolean
 				}
 				
 				processTime(2);
+				
+				// If left the first time
+				if (flags["ARBETZ_ENTERED"] == 1)
+				{
+					clearMenu();
+					addButton(0, "Where?", arbetzMainInitialOptions, 0, "Where are you?", "Ask about this place.");
+					addButton(14, "Leave", mainGameMenu);
+					return true;
+				}
 				
 				arbetzMainMenu(true);
 			}
@@ -221,7 +231,7 @@ public function arbetzMainInitialOptions(response:int = 0):void
 		processTime(2);
 		
 		clearMenu();
-		addButton(0, "Where?", arbetzMainInitialOptions, 0);
+		addButton(0, "Where?", arbetzMainInitialOptions, 0, "Where are you?", "Ask about this place.");
 		addDisabledButton(1, "Aid");
 		addButton(14, "Leave", mainGameMenu);
 	}
@@ -238,8 +248,8 @@ public function arbetzMainInitialOptions(response:int = 0):void
 		
 		processTime(5);
 		
-		//flags["UNA_MET"] = 1;
-		//flags["ARBETZ_ENTERED"] = 2;
+		flags["UNA_MET"] = 1;
+		flags["ARBETZ_ENTERED"] = 2;
 		
 		//standard options bar unlocked
 		arbetzMainMenu();
@@ -249,12 +259,6 @@ public function arbetzMainInitialOptions(response:int = 0):void
 // Main Options
 public function arbetzMainMenu(light:Boolean = false):void
 {
-	if (flags["UNA_MET"] == undefined)
-	{
-		flags["UNA_MET"] = 1;
-		flags["ARBETZ_ENTERED"] = 2;
-	}
-	
 	// [Talk] [Appearance] [Pool Area] [Sex] [Leave]
 	if(!light) clearMenu();
 	addButton(0, "Talk", arbetzMainOptions, 0);
