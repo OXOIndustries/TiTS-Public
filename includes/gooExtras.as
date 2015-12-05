@@ -897,7 +897,8 @@ public function reshapeAGooCawkForReaaaaal(arg:int = 0):void
 		else addDisabledGhostButton(x,GLOBAL.TYPE_NAMES[newType],GLOBAL.TYPE_NAMES[newType],"The penis is already this shape.");
 	}
 	
-	addGhostButton(14,"Back",reshapeACaaaawk);
+	if(pc.cockTotal() == 1) addGhostButton(14,"Back",gooCockRootMenu);
+	else addGhostButton(14,"Back",reshapeACaaaawk);
 }
 public function seriouslyThoReshapeDatGooCock(arg:Array):void
 {
@@ -1447,7 +1448,8 @@ public function pickNewCuntType(arg:int = 0):void
 		else addDisabledGhostButton(x,GLOBAL.TYPE_NAMES[newType],GLOBAL.TYPE_NAMES[newType],"The vagina is already this shape.");
 	}
 	
-	addGhostButton(14,"Back",shiftACuntYaCunt);
+	if(pc.totalVaginas() == 1) addGhostButton(14,"Back",vaginaGooRootMenu);
+	else addGhostButton(14,"Back",shiftACuntYaCunt);
 }
 
 public function actuallyTFToNewCuntType(args:Array):void
