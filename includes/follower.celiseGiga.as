@@ -344,7 +344,7 @@ public function celiseFemalePartsTentacleFun():void
 public function celiseKiroFunSekritShit():void
 {
 	clearOutput();
-	showCelise();
+	showKiro();
 	author("Gardeford");
 	//(Only accessible if Kiro is medium balls or more and high trust. Giga celise in ship. find her in bar.(will do alternate intro if follower is implemented))
 
