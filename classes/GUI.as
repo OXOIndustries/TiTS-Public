@@ -515,7 +515,13 @@
 				throw new Error("Couldn't find module \"" + module + "\"");
 			}
 			
-			// Update some button states			
+			// Update some button states
+			updateLevelUp();
+		}
+		
+		// LeveUp button
+		public function updateLevelUp():void
+		{
 			if ((classes.kGAMECLASS.pc as PlayerCharacter).levelUpAvailable())
 			{
 				if (titsClassPtr.gameOverEvent == true || titsClassPtr.inSceneBlockSaving == true)
@@ -1184,7 +1190,7 @@
 		
 		public function levelUpOn():void 
 		{
-			_leftSideBar.levelUpButton.Activate();
+			updateLevelUp();
 		}
 		
 		public function levelUpOff():void 
