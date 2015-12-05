@@ -387,7 +387,7 @@ package classes.Items.Transformatives
 			
 			//Moderate chance for hip shrinkage
 			//To average
-			if (target.hipRatingRaw < 4 && rand(3) == 0 && changes < tChanges)
+			if (target.hipRatingRaw > 4 && rand(3) == 0 && changes < tChanges)
 			{
 				output("\n\nYour hips pull inward, bringing your thighs closer together as your stance becomes noticeably less girly.");
 				
@@ -397,7 +397,7 @@ package classes.Items.Transformatives
 			
 			//Moderate chance for hip growth
 			//To average
-			if (target.hipRatingRaw > 4 && rand(3) == 0 && changes < tChanges)
+			if (target.hipRatingRaw < 4 && rand(3) == 0 && changes < tChanges)
 			{
 				output("\n\nYour hips widen just a touch, giving you a stockier, wider stance.");
 				
