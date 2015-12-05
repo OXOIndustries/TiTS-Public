@@ -2266,7 +2266,7 @@ package classes {
 				return true;
 			}
 			// Undergarment check:
-			if (hasLowerGarment() || hasUpperGarment())
+			if (!hasArmor() && (hasLowerGarment() || hasUpperGarment()))
 			{
 				// All undergarments are eligible swimwear, unless it's a strict check
 				if (strict)
