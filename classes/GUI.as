@@ -327,6 +327,14 @@
 			(buttons[3] as MainMenuButton).func = titsClassPtr.startCharacterCreation;
 			
 			(buttons[4] as MainMenuButton).visible = false;
+			
+			// Disable all but the relevant side buttons
+			mainMenuButtonOn();
+			dataOn();
+			appearanceOff();
+			messengerOff();
+			perksOff();
+			levelUpOff();
 		}
 		
 		public function confirmNewCharacter():void
@@ -349,7 +357,6 @@
 			(buttons[0] as MainMenuButton).func = titsClassPtr.creationRouter;
 			
 			(buttons[3] as MainMenuButton).visible = false;
-			
 		}
 		
 		private function showOptions():void
