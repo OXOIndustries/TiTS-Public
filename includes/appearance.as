@@ -1012,7 +1012,10 @@ public function appearance(target:Creature):void {
 		
 		//Chesticles.
 		output2("\n\n");
-		if(target.gills) output2("A pair of feathery gills are growing out just below your neck, spreading out horizontally and draping down your chest. They allow you to stay in the water for quite a long time. ");
+		if(target.gills)
+		{
+			output2("A pair of [pc.gills] are growing out just below your neck, spreading out horizontally and draping down your chest. They allow you to stay in the water for quite a long time. ");
+		}
 		//Chesticles..I mean bewbz.
 		if(target.breastRows.length == 1) {
 			// Feminine A-Cups
