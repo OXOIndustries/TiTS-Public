@@ -977,7 +977,7 @@ public function statusTick():void {
 				//Jaded wears off!
 				if(pc.statusEffects[x].storageName == "Jaded")
 				{
-					eventBuffer += "\n\nThe feeling of being worn out from whoring has been lifted and you can move about more freely now.";
+					eventBuffer += "\n\nNo longer bored from your previous whoring session, you feel a bit more refreshed now.";
 				}
 				//Condensol ends!
 				if(pc.statusEffects[x].storageName == "Condensol-A")
