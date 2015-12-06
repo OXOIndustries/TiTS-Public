@@ -786,18 +786,10 @@ public function showerMenu():void {
 	output("You find yourself in the ship’s shower room. What would you like to do?");
 	clearMenu();
 	addButton(0, "Shower", showerOptions, 0);
-	if (pc.lust() >= 33)
-	{
-		if (crew(true) > 0) addButton(1, "Sex", showerOptions, 1);
-		if (shipShowerFaps() > 0)
-		{
-			if (pc.hasStatusEffect("Myr Venom Withdrawal")) addDisabledButton(2, "Masturbate", "Masturbate", "While you’re in withdrawal, you don’t see much point in masturbating, no matter how much your body may want it.");
-			else if (!pc.canMasturbate()) addDisabledButton(2, "Masturbate", "Masturbate", "You can’t seem to masturbate at the moment....");
-			else addButton(2, "Masturbate", showerOptions, 2);
-		}
-	}
+	if (pc.lust() >= 33 && crew(true) > 0) addButton(1, "Sex", showerOptions, 1);
 	addButton(14, "Back", mainGameMenu);
 }
+
 public function showerOptions(option:int = 0):void {
 	clearOutput();
 	clearMenu();
@@ -805,23 +797,60 @@ public function showerOptions(option:int = 0):void {
 	// Regular showers
 	if (option == 0)
 	{
-		output("Deciding to take a quick shower, you strip off your gear, set it aside and turn on the shower. The water hits you with a cold chill. Onboard shower units are never really known for great temperature regulation...");
-		output("\n\nSlightly shivering, you shampoo your [pc.hair] and rub down your [pc.skinFurScalesNoun] with soap");
-		if (pc.hasStatusEffect("Sweaty"))
+		author("Couch");
+		output("Adventuring is fun and all, but it also leaves a [pc.guy] feeling dirty at the end of the day");
+		if (pc.libido() > 50) output(", and not in the good way");
+		output(". You decide to hit the showers, stripping off your gear with a sigh of relief as you take a moment just to stretch and enjoy being");
+		if (!pc.isNude()) output(" fully, truly");
+		output(" nude.");
+		output("\n\nThe water comes out icy cold, sending a shiver down your spine. You think to yourself that you really should spring for a better temperature regulator, carefully adjusting the dial back and forth until finding that sweet spot between freezing and scalding where the water is blissfully warm. Now you can finally relax, setting to applying a good dose of shampoo to your [pc.hair]. Your [pc.skinFurScalesNoun] comes next, your hands running up and down your front to coat every last inch in a nice thick lather.");
+		if (pc.biggestTitSize() >= 4) output(" You can’t help but take a moment just to grope your [pc.chest], licking your lips at how good it feels to be so busty.");
+		if (pc.hasWings()) output(" Now for the fun part.");
+		output(" You carefully apply more body wash to a brush and reach with it over your shoulder to scrub your back.");
+		if (pc.hasWings())
 		{
-			output(", stripping away the");
-			if (pc.statusEffectv1("Sweaty") >= 4) output(" thick");
-			if (pc.statusEffectv1("Sweaty") >= 2) output(" layers of");
-			output(" sweat from your exertion");
+			output(" As it hits that spot right between your wingpoints you can’t help but shudder and moan,");
+			if (pc.hasCock()) output(" [pc.eachCock] stiffening at");
+			output(" the rush of pleasure cascading down your spine. Gods, you love having wings! They get their own turn at being washed when your back’s done, delicate brushing ensuring they’re free of dust and grime.");
 		}
-		output(". You cleanse your [pc.face] and wash behind your [pc.ears], making sure not to miss a spot.");
-		output("\n\nSome minutes later, you finally rinse and towel yourself off. Stepping out of the shower and redonning your equipment, you are feeling");
-		if (pc.hasStatusEffect("Sweaty")) output(" much cleaner than you did before");
-		else output(" squeaky clean");
+		output("\n\nOf course, you can’t forget below the belt.");
+		if (pc.hasTail()) output(" You curl [pc.oneTail] in front to help with lathering it up, briefly relishing the little pleasure spot right at the top of where it meets your spine.");
+		output(" Your [pc.hips] come next, followed by your [pc.ass]");
+		if (pc.tone >= 30 && pc.buttRating() < 4) output(", relishing the hard, taut muscles you’ve worked so hard to achieve");
+		else if (pc.tone < 30 && pc.buttRating() >= 10) output(", unable to resist topping it off with a good spank");
 		output(".");
+		output("\n\nEven after you’re fully rinsed off, you let yourself stay under the water for a few minutes longer, just enjoying the warmth running down your body. There’s nothing like a good shower to just melt all the tension away.");
+		if (pc.lust() > 33)
+		{
+			output(" In fact...");
+			output("\n\nYou");
+			if(pc.hasGenitals())
+			{
+				if(pc.genitalLocation() >= 2) output(" look back at your groin,");
+				else output(" look down,");
+				if (pc.hasCock()) output(" [pc.eachCock] stiff");
+				if (pc.hasCock() && pc.hasVagina()) output(" and");
+				if (pc.hasVagina()) output(" [pc.eachVagina] slick");
+			}
+			else output(" flex your [pc.asshole]");
+			output(". Maybe you’re not done showering just yet.");
+			
+			if (pc.hasStatusEffect("Myr Venom Withdrawal")) addDisabledButton(0, "Masturbate", "Masturbate", "While you’re in withdrawal, you don’t see much point in masturbating, no matter how much your body may want it.");
+			else if (!pc.canMasturbate()) addDisabledButton(0, "Masturbate", "Masturbate", "You can’t seem to masturbate at the moment....");
+			else
+			{
+				showerSex = shipShowerFaps(true);
+			}
+			addButton(showerSex, "Nevermind", shipShowerFappening, "Nevermind", "On second thought...");
+		}
+		else
+		{
+			output("\n\nFinally you feel you’ve gotten all the relaxation you can and shut off the water, stepping out and toweling yourself off. You slip your gear on with a refreshed smile, squeaky clean and ready to resume your adventure.");
+			addButton(0, "Next", mainGameMenu);
+		}
+		
 		pc.shower();
 		processTime(10);
-		addButton(0, "Next", mainGameMenu);
 	}
 	// Shower sex options
 	else if (option == 1)
@@ -833,13 +862,6 @@ public function showerOptions(option:int = 0):void {
 		}
 		if (showerSex > 0) output(" Feeling a little turned on, you decide that maybe you should have some fun shower sex with one of your crew. Who do you approach?");
 		else output(" You don’t seem to have any crewmembers onboard who can have shower sex with you at the moment.");
-		addButton(14, "Back", showerMenu);
-	}
-	// Shower masturbation options
-	else if (option == 2)
-	{
-		output(" Not wanting to resist touching yourself, you decide masturbating while in the shower would be a great idea. How do you want to get off?");
-		shipShowerFaps(true);
 		addButton(14, "Back", showerMenu);
 	}
 }
