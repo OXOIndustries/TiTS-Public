@@ -301,7 +301,7 @@ package classes {
 		}
 		public function femininityLockedMessage():String 
 		{
-			return "Your face warms, but nothing happens.";
+			return "Your [pc.face] warms, but nothing happens.";
 		}
 		
 		public var eyeType: Number = 0;
@@ -311,7 +311,7 @@ package classes {
 		}
 		public function eyeTypeLockedMessage():String
 		{
-			return "Your eye twitches, resisting a change.";
+			return "Your [pc.eye] twitches, resisting a change.";
 		}
 		
 		public var eyeColor: String = "";
@@ -321,7 +321,7 @@ package classes {
 		}
 		public function eyeColorLockedMessage():String 
 		{
-			return "Your eye twitches, resisting a change.";
+			return "Your [pc.eye] twitches, resisting a change.";
 		}
 		
 		public var tallness: Number = 0;
@@ -372,7 +372,7 @@ package classes {
 		}
 		public function scaleColorLockedMessage():String
 		{
-			return "Your scales briefly itch.";
+			return "Your scales briefly itch, but nothing happens.";
 		}
 
 		public var furColor: String = "brown";
@@ -382,7 +382,7 @@ package classes {
 		}
 		public function furColorLockedMessage():String
 		{
-			return "Your fur briefly itches.";
+			return "Your fur briefly itches, but nothing happens.";
 		}
 
 		public var hairLength: Number = 0;
@@ -584,7 +584,7 @@ package classes {
 		}
 		public function armTypeLockedMessage():String
 		{
-			return "You arms twitch yet resist changing.";
+			return "Your [pc.arms] twitch yet resist changing.";
 		}
 		public var armFlags: Array = new Array();
 		
@@ -595,8 +595,8 @@ package classes {
 		}
 		public function gillsLockedMessage():String
 		{
-			if(!gills) return "You neck tingles but nothing changes.";
-			return "You gills flutter but do not change.";
+			if(!gills) return "Your neck tingles but nothing changes.";
+			return "Your [pc.gills] flutter but do not change.";
 		}
 		
 		public var wingType: Number = 0;
@@ -608,7 +608,7 @@ package classes {
 		{
 			if(wingType == 0) return "There is a tickling sensation around and between your shoulder blades, but nothing changes.";
 			if(wingType == GLOBAL.TYPE_SHARK) return "Your [pc.wing] radiates with warmth but nothing about it changes.";
-			return "You [pc.wings] flutter but do not change.";
+			return "Your [pc.wings] flutter but do not change.";
 		}
 
 		public var legType: Number = 0;
@@ -1430,6 +1430,12 @@ package classes {
 					break;
 				case "tonguePierced":
 					buffer = tongueNoun(false,true);
+					break;
+				case "gills":
+					buffer = gillsDesc();
+					break;
+				case "gill":
+					buffer = gillDesc();
 					break;
 				case "tail":
 					buffer = tailDescript();
@@ -3760,6 +3766,33 @@ package classes {
 			beardLength = 0;
 			beardStyle = "null";
 			return;
+		}
+		public function gillDesc(): String
+		{
+			var adjectives:Array = [];
+			var nouns:Array = ["gill"];
+			var description:String = "";
+			
+			if (9999 == 9999) adjectives.push("feathery");
+			if (9999 == 0) adjectives.push("slit-like");
+			if (9999 == 0) adjectives.push("fish-like");
+			if (9999 == 0) adjectives.push("bulbous");
+			if (9999 == 0) adjectives.push("dotted");
+			if (9999 == 0) adjectives.push("slimy", "gooey");
+			if (9999 == 0) adjectives.push("chitinous", "armored");
+			if (9999 == 0) adjectives.push("scaley", "scaled");
+			if (9999 == 0) adjectives.push("furry", "furred");
+			if (9999 == 0) adjectives.push("smooth", "sleek");
+			if (9999 == 0) adjectives.push("alien");
+			
+			if(rand(2) == 0 && adjectives.length > 0) description += adjectives[rand(adjectives.length)] + " ";
+			
+			description += nouns[rand(nouns.length)];
+			return description;
+		}
+		public function gillsDesc(): String
+		{
+			return pluralize(gillDesc());
 		}
 		public function modThickness(change: Number, display:Boolean = true): String 
 		{
@@ -9291,7 +9324,7 @@ package classes {
 				else if (type == GLOBAL.TYPE_GOOEY)
 				{
 					if (!simple)
-						desc += RandomInCollection(["slimey vagina", "gooey pussy", "slimy cunt", "syrupy hole", "juicy twat", "slimy gash", "gooey honeypot", "slimey snatch"]);
+						desc += RandomInCollection(["slimy vagina", "gooey pussy", "slimy cunt", "syrupy hole", "juicy twat", "slimy gash", "gooey honeypot", "slimy snatch"]);
 					else
 						desc += RandomInCollection(["slime-gina", "goo-pussy", "slime-cunt", "fuck-hole", "goo-twat", "slime-gash", "honeypot", "slime-snatch"]);
 				}
