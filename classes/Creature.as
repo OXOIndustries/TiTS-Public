@@ -417,8 +417,8 @@ package classes {
 			return "Your chin briefly tingles, but your [pc.beard] remains unchanged.";
 		}
 
-		public var beardStyle: String = "null";
-		public function beardStyleUnlocked(newBeardStyle:String):Boolean
+		public var beardStyle: Number = 0;
+		public function beardStyleUnlocked(newBeardStyle:Number):Boolean
 		{
 			return true;
 		}
@@ -1400,6 +1400,9 @@ package classes {
 					break;
 				case "hairColor":
 					buffer = hairColor;
+					break;
+				case "beard":
+					buffer = beard();
 					break;
 				case "face":
 					buffer = face();
@@ -3741,30 +3744,71 @@ package classes {
 				}
 				if (adjectives.length > 0 && rand(2) == 0) description += RandomInCollection(adjectives) + " ";
 				// Beard styles
-				if (beardStyle == 0) beardStyle = "null";
-				if (description.length == 0 && beardStyle != "null" && rand(2) == 0)
+				if (description.length == 0 && beardStyle != 0 && rand(2) == 0)
 				{
-					if (beardStyle == "braided") description += RandomInCollection("braided", "weaved") + " beard";
-					else if (beardStyle == "curly") description += RandomInCollection("curly", "curled", "frizzy") + " beard";
-					else if (beardStyle == "untamed") description += RandomInCollection("untamed", "wild") + " beard";
-					else if (beardStyle == "anchor") description += "anchor beard";
-					else if (beardStyle == "mutton chop") description += "mutton chop beard";
-					else if (beardStyle == "boxed") description += "boxed beard";
-					else if (beardStyle == "chin strap") description += "chin strap";
-					else if (beardStyle == "mustache") description += "mustache";
-					else if (beardStyle == "handlebar") description += "handlebar mustache";
-					else if (beardStyle == "goatee") description += "goatee";
-					else description += "beard";
+					description += beardStyles(true);
 				}
 				else description += "beard";
 				return description;
 			}
 			else return "ERROR: NO BEARD! <b>YOU ARE NOT A VIKING AND SHOULD TELL FEN IMMEDIATELY.</b>";
 		}
+		public function beardStyles(wNoun:Boolean = false): String
+		{
+			var bStyle:String = "";
+			// List of styles
+			switch (beardStyle)
+			{
+				default:
+					bStyle = "unstyled";
+					if(wNoun) bStyle += " beard"
+					break;
+					
+				case 1:
+					bStyle = "braided";
+					if(wNoun) bStyle = RandomInCollection("braided", "weaved") + " beard";
+					break;
+				case 2:
+					bStyle = "curly";
+					if(wNoun) bStyle = RandomInCollection("curly", "curled", "frizzy") + " beard";
+					break;
+				case 3:
+					bStyle = "untamed";
+					if(wNoun) bStyle = RandomInCollection("untamed", "wild") + " beard";
+					break;
+				case 4:
+					bStyle = "anchor";
+					if(wNoun) bStyle = RandomInCollection("anchor", "anchor-shaped") + " beard";
+					break;
+				case 5:
+					bStyle = "mutton chops";
+					if(wNoun) bStyle = RandomInCollection("mutton chop", "mutton-chop beard");
+					break;
+				case 6:
+					bStyle = "boxed";
+					if(wNoun) bStyle = RandomInCollection("boxed", "box-shaped") + " beard";
+					break;
+				case 7:
+					bStyle = "chin strap";
+					if(wNoun) bStyle = RandomInCollection("chin strap", "chin-strap beard");
+					break;
+				case 8:
+					bStyle = "mustache";
+					break;
+				case 9:
+					bStyle = "handlebars";
+					if(wNoun) bStyle = "handlebar mustache";
+					break;
+				case 10:
+					bStyle = "goatee";
+					break;
+			}
+			return bStyle;
+		}
 		public function removeBeard():void
 		{
 			beardLength = 0;
-			beardStyle = "null";
+			beardStyle = 0;
 			return;
 		}
 		public function gillDesc(): String
