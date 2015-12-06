@@ -3735,7 +3735,8 @@ package classes {
 				}
 				if (adjectives.length > 0 && rand(2) == 0) description += RandomInCollection(adjectives) + " ";
 				// Beard styles
-				if(rand(2) == 0 && description.length == 0 && beardStyle != "null" && beardStyle != 0)
+				if (beardStyle == 0) beardStyle = "null";
+				if (description.length == 0 && beardStyle != "null" && rand(2) == 0)
 				{
 					if (beardStyle == "braided") description += RandomInCollection("braided", "weaved") + " beard";
 					else if (beardStyle == "curly") description += RandomInCollection("curly", "curled", "frizzy") + " beard";
