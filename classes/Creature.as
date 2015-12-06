@@ -3700,8 +3700,7 @@ package classes {
 				output += "\n\n<b>Your incredibly masculine, chiseled features become a little bit softer from your body's changing hormones.";
 				if (hasBeard()) {
 					output += " As if that wasn't bad enough, your " + beard() + " falls out too!";
-					beardLength = 0;
-					beardStyle = "null";
+					removeBeard();
 				}
 				output += "</b>";
 				femininity = femininityMin();
@@ -3714,8 +3713,7 @@ package classes {
 			//LOSE DICK OR HAVE VAGINA? NO BEARD 4 U!
 			if ((!hasCock() || hasVagina()) && hasBeard()) {
 				output += "\n\n<b>Your beard falls out, leaving you with " + faceDesc() + ".</b>";
-				beardLength = 0;
-				beardStyle = "null";
+				removeBeard();
 			}
 			return output;
 		}
@@ -3755,6 +3753,12 @@ package classes {
 				return description;
 			}
 			else return "ERROR: NO BEARD! <b>YOU ARE NOT A VIKING AND SHOULD TELL FEN IMMEDIATELY.</b>";
+		}
+		public function removeBeard():void
+		{
+			beardLength = 0;
+			beardStyle = "null";
+			return;
 		}
 		public function modThickness(change: Number, display:Boolean = true): String 
 		{
