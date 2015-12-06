@@ -399,6 +399,7 @@ package classes {
 		public var hairType: Number = 0;
 		public function hairTypeUnlocked(newhairType:Number):Boolean
 		{
+			if (hairType == GLOBAL.HAIR_TYPE_GOO && (skinType == GLOBAL.SKIN_TYPE_GOO || hasStatusEffect("Goo Vent"))) return false;
 			return true;
 		}
 		public function hairTypeLockedMessage():String
@@ -7387,7 +7388,8 @@ package classes {
 			if (naleenScore() >= 5 && isNaga()) race = "naleen";
 			else if (isNaga()) race = "naga";
 			// Slime-morphs
-			if (gooScore() >= 6) race = "galotian";
+			if (gooScore() >= 6) race = "goo-morph";
+			if (gooScore() >= 8) race = "galotian";
 			// MLP-morphs
 			if (legType == GLOBAL.TYPE_MLP) race = mlpRace();
 			
@@ -7494,12 +7496,16 @@ package classes {
 		public function gooScore():int
 		{
 			var counter:int = 0;
-			if (isGoo()) counter += 2;
+			if (isGoo())
+			{
+				counter += 2;
+				if (legCount == 1) counter += 2;
+			}
 			if (hairType == GLOBAL.HAIR_TYPE_GOO) counter++;
 			if (hasStatusEffect("Goo Vent")) counter++;
 			if (hasStatusEffect("Goo Crotch")) counter++;
 			if (skinType == GLOBAL.SKIN_TYPE_GOO && counter > 0) counter++;
-			if (tongueType == GLOBAL.TYPE_GOOEY) counter++;
+			//if (tongueType == GLOBAL.TYPE_GOOEY) counter++;
 			return counter;
 		}
 		public function cowScore():int
@@ -7524,7 +7530,7 @@ package classes {
 			if (hasHorns(GLOBAL.TYPE_BOVINE)) counter++;
 			if (tailType == GLOBAL.TYPE_BOVINE && hasTailFlag(GLOBAL.FLAG_LONG) && hasTailFlag(GLOBAL.FLAG_FLUFFY) && tailCount > 0) counter++;
 			if (legType == GLOBAL.TYPE_BOVINE) counter++;
-			if (tongueType == GLOBAL.TYPE_BOVINE && hasTongueFlag(GLOBAL.FLAG_LONG)) counter++;
+			//if (tongueType == GLOBAL.TYPE_BOVINE && hasTongueFlag(GLOBAL.FLAG_LONG)) counter++;
 			if (faceType == GLOBAL.TYPE_BOVINE) counter += 2;
 			if (hasScales()) counter--;
 			return counter;
@@ -8879,7 +8885,7 @@ package classes {
 					}
 				}
 				if (descripted > 0) descript += " ";
-				if (hairType == GLOBAL.HAIR_TYPE_TENTACLES) descript += "tentacle-hair";
+				if (hairType == GLOBAL.HAIR_TYPE_TENTACLES || hairStyle == "tentacle") descript += "tentacle-hair";
 				else if (hairType == GLOBAL.HAIR_TYPE_FEATHERS) 
 				{
 					if(rand(2) == 0) descript += "plumage";
@@ -8991,7 +8997,7 @@ package classes {
 				}
 			}
 			if (descripted > 0) descript += " ";
-			if (hairType == GLOBAL.HAIR_TYPE_TENTACLES) descript += "tentacles";
+			if (hairType == GLOBAL.HAIR_TYPE_TENTACLES || hairStyle == "tentacle") descript += "tentacles";
 			else if (hairType == GLOBAL.HAIR_TYPE_FEATHERS) descript += "feathers";
 			else 
 			{
@@ -9002,8 +9008,8 @@ package classes {
 				else if(hairStyle == "afro") descript += "afro-puffed locks";
 				else if(hairStyle == "mohawk") descript += "mohawk-shaped locks";
 				else descript += "locks";
-				if (hairType == GLOBAL.HAIR_TYPE_GOO) descript += " of goo";
 			}
+			if (hairType == GLOBAL.HAIR_TYPE_GOO && rand(2) == 0) descript += " of goo";
 			return descript;
 		}
 		public function eachClit(): String {
