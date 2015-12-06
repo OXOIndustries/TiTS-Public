@@ -3178,7 +3178,7 @@ public function shipShowerFappening(scene:String = ""):void
 			output(" as you stroke, careful not to overdo it and take the focus away from your cock.");
 		}
 		output("\n\nYou lick your lips as you feel the first sense of pressure in the base of your dick, squeezing down to keep it slow, keep it gradual, really relish the sensation of cum slowly working its way upward. You let your hand come up to");
-		if (pc.cocks[n].hasFlag(GLOBAL.FLAG_BLUNT) && !pc.cocks[n].hasFlag(GLOBAL.FLAG_FLARED) output(" your cocktip, running a finger back and forth over the sharp angle between the cylinder of your shaft and the top of your fat, flat tip,");
+		if (pc.cocks[n].hasFlag(GLOBAL.FLAG_BLUNT) && !pc.cocks[n].hasFlag(GLOBAL.FLAG_FLARED)) output(" your cocktip, running a finger back and forth over the sharp angle between the cylinder of your shaft and the top of your fat, flat tip,");
 		else if (pc.cocks[n].hasFlag(GLOBAL.FLAG_FLARED)) output(" your flare, teasing the underside of the ring that almost feels like a second erection when it stretches wide like this, every pulse transforming your dick from an instrument of penetration to one of sheer depth-stretching pleasure");
 		else if (pc.cocks[n].hasFlag(GLOBAL.FLAG_TAPERED)) output(" your tapered tip, relishing the absence of any crown. Nothing but smooth, supple cockflesh, ready to train any hole by starting them off nice and easy with that thin, sharp tip");
 		else if (pc.cocks[n].hasFlag(GLOBAL.FLAG_DOUBLE_HEADED)) output(" your twin crowns, slowly spiraling a finger up from base to tips, caressing your twitching cumslits");
@@ -3215,7 +3215,7 @@ public function shipShowerFappening(scene:String = ""):void
 		if (pc.vaginas[n].clits != 1) output("s");
 		output(" like a hundred rapidly-tapping fingers, slowly moving the shower head closer and closer until the tip slips inside you with a satisfied gasp. The sensations of the individual streams disappear now, replaced with a constant flooding pressure that forces its way inside you.");
 		output("\n\nYou let out a long, sultry groan, water spurting out around the shower head now buried in your succulent snatch.");
-		if (pc.vaginas[n].type != TYPE_HUMAN)
+		if (pc.vaginas[n].type != GLOBAL.TYPE_HUMAN)
 		{
 			output(" You work it around a bit just to relish the exotic shape you’ve been endowed with, your delicious twat that feels so good, so much better than a human’s ever could just by the sheer wrongness of it. It shouldn’t be down there between your legs, yet it is, providing you pleasures a woman was never meant to experience. Gods, you love having an ");
 			if (InCollection(pc.vaginas[n].type, GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_NAGA)) output("animal’s");

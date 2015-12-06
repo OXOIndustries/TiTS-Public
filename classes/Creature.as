@@ -7498,25 +7498,25 @@ package classes {
 		}
 		public function bovineRace():String
 		{
-			if (bovineScore() >= 6 && feminity <= 60 && feminity >= 40) return "bovine-morph";
+			if (bovineScore() >= 6 && femininity <= 60 && femininity >= 40) return "bovine-morph";
 			if (hasLegFlag(GLOBAL.FLAG_HOOVES))
 			{
 				if (hasCock() && hasVagina()) return "futaurus";
-				if (feminity < 40 && faceType == GLOBAL.TYPE_BOVINE) return "minotaur";
-				if (feminity > 60) return "holstaurus";
-				if (feminity > 30) return "minitaur";
+				if (femininity < 40 && faceType == GLOBAL.TYPE_BOVINE) return "minotaur";
+				if (femininity > 60) return "holstaurus";
+				if (femininity > 30) return "minitaur";
 			}
-			if (feminity > 60)
+			if (femininity > 60)
 			{
 				if (hasCock() && !hasVagina() && hasBreasts()) return "cow-boi";
 				if (hasCock() && !hasVagina()) return "bull-girl";
 				if (!hasGenitals()) return "cow-morph";
 				return "cow-girl";
 			}
-			if (feminity < 40)
+			if (femininity < 40)
 			{
 				if (hasCock() && hasVagina()) return "bull-futa";
-				if (hasCock() && !hasVagina() && feminity < 20) return "bull-man";
+				if (hasCock() && !hasVagina() && femininity < 20) return "bull-man";
 				if (hasCock() && !hasVagina()) return "bull-boy";
 				if (!hasCock() && hasVagina()) return "cow-boy";
 				return "bull-morph";
