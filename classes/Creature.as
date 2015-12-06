@@ -7373,7 +7373,9 @@ package classes {
 			if (race == "human" && cowScore() >= 4) race = mfn("cow-boy", "cow-girl", "hucow");
 			// Centaur-morphs
 			if (horseScore() >= 2 && isCentaur()) race == "horse-taur";
+			else if (bovineScore() >= 3 && isTaur()) race == rawmfn("bull", "cow", "bovine") + "-taur";
 			else if (race == "human" && isCentaur()) race = "centaur";
+			else if (isTaur()) race = taurRace(race);
 			// Naga-morphs
 			if (naleenScore() >= 5 && isNaga()) race = "naleen";
 			else if (isNaga()) race = "naga";
@@ -7406,6 +7408,12 @@ package classes {
 				return "bull-morph";
 			}
 			return "part bovine-morph";
+		}
+		public function taurRace(race:String = ""):String
+		{
+			if (race.indexOf("leithan") != -1 || race.indexOf("taur") != -1) return race;
+			if (race.indexOf("-morph") != -1) race = race.replace("-morph", "");
+			return race + "-taur";
 		}
 		
 		public function isHuman():Boolean
