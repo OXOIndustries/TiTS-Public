@@ -2330,8 +2330,7 @@ public function statisticsScreen(showID:String = "All"):void
 			if(pc.beardLength > 0.125)
 			{
 				output2(" " + prettifyLength(pc.beardLength));
-				if(pc.beardStyle != 0) output2("\n<b>* Beard, Style: </b>" + pc.beardStyle);
-				//if(pc.beardStyle != "null") output2("\n<b>* Beard, Style: </b>" + StringUtil.toDisplayCase(pc.beardStyle));
+				if(pc.beardStyle != 0 && pc.beardStyle != "null") output2("\n<b>* Beard, Style: </b>" + StringUtil.toDisplayCase(pc.beardStyle));
 			}
 			else if(pc.skinType == GLOBAL.SKIN_TYPE_FUR) output2(" Short, Fur");
 			else if(pc.beardLength > 0.0625) output2(" Stubble");
