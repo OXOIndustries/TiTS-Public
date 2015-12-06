@@ -1915,7 +1915,7 @@ public function nutSwellUpdates():void
 public function canShrinkNuts():Boolean
 {
 	//Can fap it away!
-	if(pc.hasPerk("'Nuki Nuts"))
+	if(pc.hasPerk("'Nuki Nuts") && pc.canMasturbate())
 	{
 		//NO FAPS!
 		if(rooms[currentLocation].hasFlag(GLOBAL.NOFAP)) return false;
