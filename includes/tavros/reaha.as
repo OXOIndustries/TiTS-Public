@@ -442,7 +442,7 @@ public function dominantReahaAss():void {
 	output("\n\n<i>\"There's a good cow,\"</i>  you purr as Reaha's fingers lock around your hips, holding on for dear life as you start to really move. Faster and faster, riding that cock like a champ; you take hold of Reaha's shoulders, lifting her up to a sitting position so you can drink and ride more easily, bouncing in her lap as your face is buried in her bounteous bust. She holds you tight, pressing your face into the yielding mound of her tit, forcing as much of her long teat down your throat as she can, thrusting it against your writhing [pc.tongue]. You suckle from it, drinking deep from the cow-slut's endless reserves.");
 
 	output("\n\nYou utterly lose track of time, moments blending together as you suckle and bounce, in and out, up and down until you can feel a tell-tale pressure mounting behind the gaping wall of your sphincter. ");
-	if(pc.hasCock()) output("[pc.EachCock] drools threateningly, dripping slimey wads of [pc.cum] onto Reaha's belly with every movement. ");
+	if(pc.hasCock()) output("[pc.EachCock] drools threateningly, dripping slimy wads of [pc.cum] onto Reaha's belly with every movement. ");
 	output("You move faster, pounding down on the rigid rod until your ass is practically livid with pleasure, overwhelming every other sense but the need for release: back arched and voice crying, you cum. Your ass squeezes wildly on the dildo, wringing every second of agonizing ecstasy from it your can");
 	if(pc.hasCock())
 	{
