@@ -7372,8 +7372,8 @@ package classes {
 			// Human-morphs
 			if (race == "human" && cowScore() >= 4) race = mfn("cow-boy", "cow-girl", "hucow");
 			// Centaur-morphs
-			if (horseScore() >= 2 && isCentaur()) race == "horse-taur";
-			else if (bovineScore() >= 3 && isTaur()) race == rawmfn("bull", "cow", "bovine") + "-taur";
+			if (horseScore() >= 2 && isCentaur()) race = "horse-taur";
+			else if (bovineScore() >= 3 && isTaur()) race = rawmfn("bull", "cow", "bovine") + "-taur";
 			else if (race == "human" && isCentaur()) race = "centaur";
 			else if (isTaur()) race = taurRace(race);
 			// Naga-morphs
