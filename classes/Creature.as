@@ -7473,7 +7473,7 @@ package classes {
 				counter += bovineScore();
 				if (isLactating()) counter++;
 				if (hipRating() >= 20) counter++;
-				if (nippleLength(0) >= 3.2) counter++;
+				if (nippleLengthRatio >= 2) counter++;
 				if (nipplesPerBreast == 4) counter++;
 				if (totalBreasts() >= 4) counter++;
 				if (isMilkTank()) counter++;
