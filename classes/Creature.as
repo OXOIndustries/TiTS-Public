@@ -417,8 +417,8 @@ package classes {
 			return "Your chin briefly tingles, but your [pc.beard] remains unchanged.";
 		}
 
-		public var beardStyle: Number = 0;
-		public function beardStyleUnlocked(newBeardStyle:Number):Boolean
+		public var beardStyle: String = "null";
+		public function beardStyleUnlocked(newBeardStyle:String):Boolean
 		{
 			return true;
 		}
@@ -505,7 +505,7 @@ package classes {
 		}
 		public function lipModLockedMessage():String
 		{
-			return "Your lips feel momentarily hot, but a quick lick confirms that nothing has changed.";
+			return "Your [pc.lips] feel momentarily hot, but a quick lick confirms that nothing has changed.";
 		}
 		public var lipColor:String = "peach";
 
@@ -517,7 +517,7 @@ package classes {
 		}
 		public function earTypeLockedMessage():String
 		{
-			return "Your ears are burning. Someone must be talking about you.";
+			return "Your [pc.ears] are burning. Someone must be talking about you.";
 		}
 
 		public var antennae: Number = 0;
@@ -528,8 +528,8 @@ package classes {
 		public function antennaeLockedMessage():String
 		{
 			if(antennae == 0) return "Your forehead is burning but nothing changes.";
-			if(antennae == 1) return "Your antenna tingles for a moment. Someone must be thinking about you.";
-			return "Your antennae are burning. Someone must be thinking about you.";
+			if(antennae == 1) return "Your [pc.antenna] tingles for a moment. Someone must be thinking about you.";
+			return "Your [pc.antennae] are burning. Someone must be thinking about you.";
 		}
 		
 		public var antennaeType: Number = 0;
@@ -540,8 +540,8 @@ package classes {
 		public function antennaeTypeLockedMessage():String
 		{
 			if(antennae == 0) return "Your forehead is burning but nothing changes.";
-			if(antennae == 1) return "Your antenna tingles for a moment. Someone must be thinking about you.";
-			return "Your antennae are burning. Someone must be thinking about you.";
+			if(antennae == 1) return "Your [pc.antenna] tingles for a moment. Someone must be thinking about you.";
+			return "Your [pc.antennae] are burning. Someone must be thinking about you.";
 		}
 		
 		public var horns: Number = 0;
@@ -551,6 +551,7 @@ package classes {
 		}
 		public function hornsLockedMessage():String
 		{
+			if(horns == 0) return "You have a brief headache. It fades as quickly as it came, changing nothing.";
 			return "You have a brief headache, centered around your [pc.horns]. It fades as quickly as it came, changing nothing.";
 		}
 		
@@ -561,6 +562,7 @@ package classes {
 		}
 		public function hornTypeLockedMessage():String
 		{
+			if(horns == 0) return "You have a brief headache. It fades as quickly as it came, changing nothing.";
 			return "You have a brief headache, centered around your [pc.horns]. It fades as quickly as it came, changing nothing.";
 		}
 		
@@ -571,6 +573,7 @@ package classes {
 		}
 		public function hornLengthLockedMessage():String
 		{
+			if(horns == 0) return "You have a brief headache. It fades as quickly as it came, changing nothing.";
 			return "You have a brief headache, centered around your [pc.horns]. It fades as quickly as it came, changing nothing.";
 		}
 		
@@ -592,6 +595,7 @@ package classes {
 		}
 		public function gillsLockedMessage():String
 		{
+			if(!gills) return "You neck tingles but nothing changes.";
 			return "You gills flutter but do not change.";
 		}
 		
@@ -602,8 +606,9 @@ package classes {
 		}
 		public function wingTypeLockedMessage():String
 		{
+			if(wingType == 0) return "There is a tickling sensation around and between your shoulder blades, but nothing changes.";
 			if(wingType == GLOBAL.TYPE_SHARK) return "Your [pc.wing] radiates with warmth but nothing about it changes.";
-			else return "You [pc.wings] flutter but do not change.";
+			return "You [pc.wings] flutter but do not change.";
 		}
 
 		public var legType: Number = 0;
@@ -3696,7 +3701,7 @@ package classes {
 				if (hasBeard()) {
 					output += " As if that wasn't bad enough, your " + beard() + " falls out too!";
 					beardLength = 0;
-					beardStyle = 0;
+					beardStyle = "null";
 				}
 				output += "</b>";
 				femininity = femininityMin();
@@ -3710,7 +3715,7 @@ package classes {
 			if ((!hasCock() || hasVagina()) && hasBeard()) {
 				output += "\n\n<b>Your beard falls out, leaving you with " + faceDesc() + ".</b>";
 				beardLength = 0;
-				beardStyle = 0;
+				beardStyle = "null";
 			}
 			return output;
 		}
@@ -3730,8 +3735,22 @@ package classes {
 					else adjectives = [num2Text(Math.round(beardLength)) + "-inch long"];
 					if (beardLength >= 6) adjectives.push("lengthy", "long");
 				}
-				if (adjectives.length > 0) description += RandomInCollection(adjectives) + " ";
-				if (beardStyle == 0) description += "beard";
+				if (adjectives.length > 0 && rand(2) == 0) description += RandomInCollection(adjectives) + " ";
+				// Beard styles
+				if(rand(2) == 0 && description.length == 0 && beardStyle != "null" && beardStyle != 0)
+				{
+					if (beardStyle == "braided") description += RandomInCollection("braided", "weaved") + " beard";
+					else if (beardStyle == "curly") description += RandomInCollection("curly", "curled", "frizzy") + " beard";
+					else if (beardStyle == "untamed") description += RandomInCollection("untamed", "wild") + " beard";
+					else if (beardStyle == "anchor") description += "anchor beard";
+					else if (beardStyle == "mutton chop") description += "mutton chop beard";
+					else if (beardStyle == "boxed") description += "boxed beard";
+					else if (beardStyle == "chin strap") description += "chin strap";
+					else if (beardStyle == "mustache") description += "mustache";
+					else if (beardStyle == "handlebar") description += "handlebar mustache";
+					else if (beardStyle == "goatee") description += "goatee";
+					else description += "beard";
+				}
 				else description += "beard";
 				return description;
 			}
@@ -8814,12 +8833,16 @@ package classes {
 				return descript;
 			}
 			//50% odds of adjectives
-			if ((forceLength || rand(2) == 0) && hairStyle != "afro" && hairStyle != "mohawk") {
+			if ((forceLength || rand(2) == 0) && !InCollection(hairStyle, "afro", "mohawk")) {
 				if (hairLength < 1) {
 					if (rand(2) == 0) descript += "close-cropped";
 					else descript += "trim";
-				} else if (hairLength < 3) descript += "short";
-				else if (hairLength < 6) descript += "shaggy";
+				}
+				else if (hairLength < 3) descript += "short";
+				else if (hairLength < 6) {
+					if (rand(2) == 0 || hairType == GLOBAL.HAIR_TYPE_TENTACLES) descript += "medium-length";
+					else descript += "shaggy";
+				}
 				else if (hairLength < 10) {
 					if (rand(2) == 0) descript += "moderately long";
 					else descript += "shoulder-length";
