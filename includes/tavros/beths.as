@@ -66,6 +66,7 @@ public function getKatPregContainer():PregnancyPlaceholder
 {
 	var ppKat:PregnancyPlaceholder = new PregnancyPlaceholder();
 	if (!ppKat.hasVagina()) ppKat.createVagina();
+	return ppKat;
 }
 
 //Ovir Girl/Ovir ‘Girl’
