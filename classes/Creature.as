@@ -301,7 +301,7 @@ package classes {
 		}
 		public function femininityLockedMessage():String 
 		{
-			return "Your face warms, but nothing happens.";
+			return "Your [pc.face] warms, but nothing happens.";
 		}
 		
 		public var eyeType: Number = 0;
@@ -311,7 +311,7 @@ package classes {
 		}
 		public function eyeTypeLockedMessage():String
 		{
-			return "Your eye twitches, resisting a change.";
+			return "Your [pc.eye] twitches, resisting a change.";
 		}
 		
 		public var eyeColor: String = "";
@@ -321,7 +321,7 @@ package classes {
 		}
 		public function eyeColorLockedMessage():String 
 		{
-			return "Your eye twitches, resisting a change.";
+			return "Your [pc.eye] twitches, resisting a change.";
 		}
 		
 		public var tallness: Number = 0;
@@ -372,7 +372,7 @@ package classes {
 		}
 		public function scaleColorLockedMessage():String
 		{
-			return "Your scales briefly itch.";
+			return "Your scales briefly itch, but nothing happens.";
 		}
 
 		public var furColor: String = "brown";
@@ -382,7 +382,7 @@ package classes {
 		}
 		public function furColorLockedMessage():String
 		{
-			return "Your fur briefly itches.";
+			return "Your fur briefly itches, but nothing happens.";
 		}
 
 		public var hairLength: Number = 0;
@@ -399,6 +399,7 @@ package classes {
 		public var hairType: Number = 0;
 		public function hairTypeUnlocked(newhairType:Number):Boolean
 		{
+			if (hairType == GLOBAL.HAIR_TYPE_GOO && (skinType == GLOBAL.SKIN_TYPE_GOO || hasStatusEffect("Goo Vent"))) return false;
 			return true;
 		}
 		public function hairTypeLockedMessage():String
@@ -504,7 +505,7 @@ package classes {
 		}
 		public function lipModLockedMessage():String
 		{
-			return "Your lips feel momentarily hot, but a quick lick confirms that nothing has changed.";
+			return "Your [pc.lips] feel momentarily hot, but a quick lick confirms that nothing has changed.";
 		}
 		public var lipColor:String = "peach";
 
@@ -516,7 +517,7 @@ package classes {
 		}
 		public function earTypeLockedMessage():String
 		{
-			return "Your ears are burning. Someone must be talking about you.";
+			return "Your [pc.ears] are burning. Someone must be talking about you.";
 		}
 
 		public var antennae: Number = 0;
@@ -527,8 +528,8 @@ package classes {
 		public function antennaeLockedMessage():String
 		{
 			if(antennae == 0) return "Your forehead is burning but nothing changes.";
-			if(antennae == 1) return "Your antenna tingles for a moment. Someone must be thinking about you.";
-			return "Your antennae are burning. Someone must be thinking about you.";
+			if(antennae == 1) return "Your [pc.antenna] tingles for a moment. Someone must be thinking about you.";
+			return "Your [pc.antennae] are burning. Someone must be thinking about you.";
 		}
 		
 		public var antennaeType: Number = 0;
@@ -539,8 +540,8 @@ package classes {
 		public function antennaeTypeLockedMessage():String
 		{
 			if(antennae == 0) return "Your forehead is burning but nothing changes.";
-			if(antennae == 1) return "Your antenna tingles for a moment. Someone must be thinking about you.";
-			return "Your antennae are burning. Someone must be thinking about you.";
+			if(antennae == 1) return "Your [pc.antenna] tingles for a moment. Someone must be thinking about you.";
+			return "Your [pc.antennae] are burning. Someone must be thinking about you.";
 		}
 		
 		public var horns: Number = 0;
@@ -550,6 +551,7 @@ package classes {
 		}
 		public function hornsLockedMessage():String
 		{
+			if(horns == 0) return "You have a brief headache. It fades as quickly as it came, changing nothing.";
 			return "You have a brief headache, centered around your [pc.horns]. It fades as quickly as it came, changing nothing.";
 		}
 		
@@ -560,6 +562,7 @@ package classes {
 		}
 		public function hornTypeLockedMessage():String
 		{
+			if(horns == 0) return "You have a brief headache. It fades as quickly as it came, changing nothing.";
 			return "You have a brief headache, centered around your [pc.horns]. It fades as quickly as it came, changing nothing.";
 		}
 		
@@ -570,6 +573,7 @@ package classes {
 		}
 		public function hornLengthLockedMessage():String
 		{
+			if(horns == 0) return "You have a brief headache. It fades as quickly as it came, changing nothing.";
 			return "You have a brief headache, centered around your [pc.horns]. It fades as quickly as it came, changing nothing.";
 		}
 		
@@ -580,7 +584,7 @@ package classes {
 		}
 		public function armTypeLockedMessage():String
 		{
-			return "You arms twitch yet resist changing.";
+			return "Your [pc.arms] twitch yet resist changing.";
 		}
 		public var armFlags: Array = new Array();
 		
@@ -591,7 +595,8 @@ package classes {
 		}
 		public function gillsLockedMessage():String
 		{
-			return "You gills flutter but do not change.";
+			if(!gills) return "Your neck tingles but nothing changes.";
+			return "Your [pc.gills] flutter but do not change.";
 		}
 		
 		public var wingType: Number = 0;
@@ -601,8 +606,9 @@ package classes {
 		}
 		public function wingTypeLockedMessage():String
 		{
+			if(wingType == 0) return "There is a tickling sensation around and between your shoulder blades, but nothing changes.";
 			if(wingType == GLOBAL.TYPE_SHARK) return "Your [pc.wing] radiates with warmth but nothing about it changes.";
-			else return "You [pc.wings] flutter but do not change.";
+			return "Your [pc.wings] flutter but do not change.";
 		}
 
 		public var legType: Number = 0;
@@ -1395,6 +1401,9 @@ package classes {
 				case "hairColor":
 					buffer = hairColor;
 					break;
+				case "beard":
+					buffer = beard();
+					break;
 				case "face":
 					buffer = face();
 					break;
@@ -1424,6 +1433,12 @@ package classes {
 					break;
 				case "tonguePierced":
 					buffer = tongueNoun(false,true);
+					break;
+				case "gills":
+					buffer = gillsDesc();
+					break;
+				case "gill":
+					buffer = gillDesc();
 					break;
 				case "tail":
 					buffer = tailDescript();
@@ -2266,7 +2281,7 @@ package classes {
 				return true;
 			}
 			// Undergarment check:
-			if (hasLowerGarment() || hasUpperGarment())
+			if (!hasArmor() && (hasLowerGarment() || hasUpperGarment()))
 			{
 				// All undergarments are eligible swimwear, unless it's a strict check
 				if (strict)
@@ -3694,8 +3709,7 @@ package classes {
 				output += "\n\n<b>Your incredibly masculine, chiseled features become a little bit softer from your body's changing hormones.";
 				if (hasBeard()) {
 					output += " As if that wasn't bad enough, your " + beard() + " falls out too!";
-					beardLength = 0;
-					beardStyle = 0;
+					removeBeard();
 				}
 				output += "</b>";
 				femininity = femininityMin();
@@ -3708,8 +3722,7 @@ package classes {
 			//LOSE DICK OR HAVE VAGINA? NO BEARD 4 U!
 			if ((!hasCock() || hasVagina()) && hasBeard()) {
 				output += "\n\n<b>Your beard falls out, leaving you with " + faceDesc() + ".</b>";
-				beardLength = 0;
-				beardStyle = 0;
+				removeBeard();
 			}
 			return output;
 		}
@@ -3729,12 +3742,101 @@ package classes {
 					else adjectives = [num2Text(Math.round(beardLength)) + "-inch long"];
 					if (beardLength >= 6) adjectives.push("lengthy", "long");
 				}
-				if (adjectives.length > 0) description += RandomInCollection(adjectives) + " ";
-				if (beardStyle == 0) description += "beard";
+				if (adjectives.length > 0 && rand(2) == 0) description += RandomInCollection(adjectives) + " ";
+				// Beard styles
+				if (description.length == 0 && beardStyle != 0 && rand(2) == 0)
+				{
+					description += beardStyles(true);
+				}
 				else description += "beard";
 				return description;
 			}
 			else return "ERROR: NO BEARD! <b>YOU ARE NOT A VIKING AND SHOULD TELL FEN IMMEDIATELY.</b>";
+		}
+		public function beardStyles(wNoun:Boolean = false): String
+		{
+			var bStyle:String = "";
+			// List of styles
+			switch (beardStyle)
+			{
+				default:
+					bStyle = "unstyled";
+					if(wNoun) bStyle += " beard"
+					break;
+					
+				case 1:
+					bStyle = "braided";
+					if(wNoun) bStyle = RandomInCollection("braided", "weaved") + " beard";
+					break;
+				case 2:
+					bStyle = "curly";
+					if(wNoun) bStyle = RandomInCollection("curly", "curled", "frizzy") + " beard";
+					break;
+				case 3:
+					bStyle = "untamed";
+					if(wNoun) bStyle = RandomInCollection("untamed", "wild") + " beard";
+					break;
+				case 4:
+					bStyle = "anchor";
+					if(wNoun) bStyle = RandomInCollection("anchor", "anchor-shaped") + " beard";
+					break;
+				case 5:
+					bStyle = "mutton chops";
+					if(wNoun) bStyle = RandomInCollection("mutton chop", "mutton-chop beard");
+					break;
+				case 6:
+					bStyle = "boxed";
+					if(wNoun) bStyle = RandomInCollection("boxed", "box-shaped") + " beard";
+					break;
+				case 7:
+					bStyle = "chin strap";
+					if(wNoun) bStyle = RandomInCollection("chin strap", "chin-strap beard");
+					break;
+				case 8:
+					bStyle = "mustache";
+					break;
+				case 9:
+					bStyle = "handlebars";
+					if(wNoun) bStyle = "handlebar mustache";
+					break;
+				case 10:
+					bStyle = "goatee";
+					break;
+			}
+			return bStyle;
+		}
+		public function removeBeard():void
+		{
+			beardLength = 0;
+			beardStyle = 0;
+			return;
+		}
+		public function gillDesc(): String
+		{
+			var adjectives:Array = [];
+			var nouns:Array = ["gill"];
+			var description:String = "";
+			
+			if (9999 == 9999) adjectives.push("feathery");
+			if (9999 == 0) adjectives.push("slit-like");
+			if (9999 == 0) adjectives.push("fish-like");
+			if (9999 == 0) adjectives.push("bulbous");
+			if (9999 == 0) adjectives.push("dotted");
+			if (9999 == 0) adjectives.push("slimy", "gooey");
+			if (9999 == 0) adjectives.push("chitinous", "armored");
+			if (9999 == 0) adjectives.push("scaley", "scaled");
+			if (9999 == 0) adjectives.push("furry", "furred");
+			if (9999 == 0) adjectives.push("smooth", "sleek");
+			if (9999 == 0) adjectives.push("alien");
+			
+			if(rand(2) == 0 && adjectives.length > 0) description += adjectives[rand(adjectives.length)] + " ";
+			
+			description += nouns[rand(nouns.length)];
+			return description;
+		}
+		public function gillsDesc(): String
+		{
+			return pluralize(gillDesc());
 		}
 		public function modThickness(change: Number, display:Boolean = true): String 
 		{
@@ -6805,7 +6907,7 @@ package classes {
 		public function hasLivingHair(): Boolean {
 			if (hasHair())
 			{
-				if (hairType == GLOBAL.HAIR_TYPE_TENTACLES) return true;
+				if (InCollection(hairType, GLOBAL.HAIR_TYPE_TENTACLES, GLOBAL.HAIR_TYPE_GOO)) return true;
 			}
 			return false;
 		}
@@ -7088,9 +7190,16 @@ package classes {
 			if (wingType == GLOBAL.TYPE_SHARK) return true;
 			return true;
 		}
-		public function hasWings(): Boolean {
+		public function hasWings(wType:Number = 0): Boolean {
 			if(wingType == GLOBAL.TYPE_SHARK) return false;
-			return (wingType > 0);
+			if (wingType != 0)
+			{
+				// Specific type
+				if (wType > 0 && wType == wingType) return true;
+				// Any type
+				if (wType == 0) return true;
+			}
+			return false;
 		}
 		//check for vagoo
 		public function hasVagina(hole: int = 0): Boolean {
@@ -7351,6 +7460,7 @@ package classes {
 			if (leithanScore() >= 3 && race == "human") race = "half-leithan";
 			if (nukiScore() >= 2 && race == "human") race = "half kui-tan"
 			if (raskvelScore() >= 2) race = "rask-morph";
+			if (bovineScore() >= 3) race = bovineRace(); // Cow-morphs
 			if (raskvelScore() >= 4) race = "raskvel-morph";
 			if (horseScore() >= 4) race = "horse-morph";
 			if (pandaScore() >= 4) race = "panda-morph";
@@ -7368,14 +7478,63 @@ package classes {
 			if (race == "myr" && goldMyrScore() >= 8) race = "gold myr";
 			if (race == "myr" && redMyrScore() >= 8) race = "red myr";
 			if (orangeMyrScore() >= 9) race = "orange myr";
+			// Human-morphs
+			if (race == "human" && cowScore() >= 4) race = mfn("cow-boy", "cow-girl", "hucow");
 			// Centaur-morphs
-			if (horseScore() >= 2 && isCentaur()) race == "horse-taur";
+			if (horseScore() >= 2 && isCentaur()) race = "horse-taur";
+			else if (bovineScore() >= 3 && isTaur()) race = rawmfn("bull", "cow", "bovine") + "-taur";
 			else if (race == "human" && isCentaur()) race = "centaur";
+			else if (isTaur()) race = taurRace(race); // Other taurs
 			// Naga-morphs
 			if (naleenScore() >= 5 && isNaga()) race = "naleen";
 			else if (isNaga()) race = "naga";
-
+			// Slime-morphs
+			if (gooScore() >= 6) race = "goo-morph";
+			if (gooScore() >= 8) race = "galotian";
+			// MLP-morphs
+			if (legType == GLOBAL.TYPE_MLP) race = mlpRace();
+			
 			return race;
+		}
+		public function bovineRace():String
+		{
+			if (bovineScore() >= 6 && feminity <= 60 && feminity >= 40) return "bovine-morph";
+			if (hasLegFlag(GLOBAL.FLAG_HOOVES))
+			{
+				if (hasCock() && hasVagina()) return "futaurus";
+				if (feminity < 40 && faceType == GLOBAL.TYPE_BOVINE) return "minotaur";
+				if (feminity > 60) return "holstaurus";
+				if (feminity > 30) return "minitaur";
+			}
+			if (feminity > 60)
+			{
+				if (hasCock() && !hasVagina() && hasBreasts()) return "cow-boi";
+				if (hasCock() && !hasVagina()) return "bull-girl";
+				if (!hasGenitals()) return "cow-morph";
+				return "cow-girl";
+			}
+			if (feminity < 40)
+			{
+				if (hasCock() && hasVagina()) return "bull-futa";
+				if (hasCock() && !hasVagina() && feminity < 20) return "bull-man";
+				if (hasCock() && !hasVagina()) return "bull-boy";
+				if (!hasCock() && hasVagina()) return "cow-boy";
+				return "bull-morph";
+			}
+			return "part bovine-morph";
+		}
+		public function taurRace(race:String = ""):String
+		{
+			if (race.indexOf("leithan") != -1 || race.indexOf("taur") != -1) return race;
+			if (race.indexOf("-morph") != -1) race = race.replace("-morph", "");
+			return race + "-taur";
+		}
+		public function mlpRace():String
+		{
+			if (hasHorns() && hasWings()) return "alicorn";
+			if (hasHorns() && horns == 1) return "unicorn";
+			if (hasWings()) return "pegasus pony";
+			return "terran pony";
 		}
 		
 		public function isHuman():Boolean
@@ -7435,9 +7594,35 @@ package classes {
 			if (hasCock(GLOBAL.TYPE_KUITAN)) counter++;
 			return counter;
 		}
+		public function gooScore():int
+		{
+			var counter:int = 0;
+			if (isGoo())
+			{
+				counter += 2;
+				if (legCount == 1) counter += 2;
+			}
+			if (hairType == GLOBAL.HAIR_TYPE_GOO) counter++;
+			if (hasStatusEffect("Goo Vent")) counter++;
+			if (hasStatusEffect("Goo Crotch")) counter++;
+			if (skinType == GLOBAL.SKIN_TYPE_GOO && counter > 0) counter++;
+			//if (tongueType == GLOBAL.TYPE_GOOEY) counter++;
+			return counter;
+		}
 		public function cowScore():int
 		{
-			return bovineScore();
+			var counter:int = 0;
+			if (bovineScore() >= 2)
+			{
+				counter += bovineScore();
+				if (isLactating()) counter++;
+				if (hipRating() >= 20) counter++;
+				if (nippleLengthRatio >= 2) counter++;
+				if (nipplesPerBreast == 4) counter++;
+				if (totalBreasts() >= 4) counter++;
+				if (isMilkTank()) counter++;
+			}
+			return counter;
 		}
 		public function bovineScore():int
 		{
@@ -7446,8 +7631,8 @@ package classes {
 			if (hasHorns(GLOBAL.TYPE_BOVINE)) counter++;
 			if (tailType == GLOBAL.TYPE_BOVINE && hasTailFlag(GLOBAL.FLAG_LONG) && hasTailFlag(GLOBAL.FLAG_FLUFFY) && tailCount > 0) counter++;
 			if (legType == GLOBAL.TYPE_BOVINE) counter++;
-			if (faceType == GLOBAL.TYPE_BOVINE) counter++;
-			if (tongueType == GLOBAL.TYPE_BOVINE && hasTongueFlag(GLOBAL.FLAG_LONG)) counter++;
+			//if (tongueType == GLOBAL.TYPE_BOVINE && hasTongueFlag(GLOBAL.FLAG_LONG)) counter++;
+			if (faceType == GLOBAL.TYPE_BOVINE) counter += 2;
 			if (hasScales()) counter--;
 			return counter;
 		}
@@ -7535,7 +7720,7 @@ package classes {
 			var counter: int = 0;
 			if (isNaga()) counter += 2;
 			if (faceType == GLOBAL.TYPE_NALEEN_FACE) counter++;
-			if (skinType == GLOBAL.SKIN_TYPE_FUR && counter > 0) counter++;
+			if (counter > 0 && skinType == GLOBAL.SKIN_TYPE_FUR) counter++;
 			if (armType == GLOBAL.TYPE_FELINE && hasArmFlag(GLOBAL.FLAG_FURRED) && counter > 0) counter++;
 			if (eyeType == GLOBAL.TYPE_NAGA && faceType == GLOBAL.TYPE_NALEEN_FACE) counter++;
 			if (hasGenitals() && hasStatusEffect("Genital Slit")) counter++;
@@ -7565,7 +7750,7 @@ package classes {
 			if (faceType == GLOBAL.TYPE_PANDA) counter++;
 			if (armType == GLOBAL.TYPE_PANDA) counter++;
 			if (legType == GLOBAL.TYPE_PANDA) counter++;
-			if (thickness >= 65 && counter > 0) counter++;
+			if (counter > 0 && thickness >= 65) counter++;
 			//if (cockTotal(GLOBAL.TYPE_PANDA) > 0) counter++;
 			//if (vaginaTotal(GLOBAL.TYPE_PANDA) > 0) counter++;
 			return counter;
@@ -8730,12 +8915,16 @@ package classes {
 				return descript;
 			}
 			//50% odds of adjectives
-			if ((forceLength || rand(2) == 0) && hairStyle != "afro" && hairStyle != "mohawk") {
+			if ((forceLength || rand(2) == 0) && !InCollection(hairStyle, "afro", "mohawk")) {
 				if (hairLength < 1) {
 					if (rand(2) == 0) descript += "close-cropped";
 					else descript += "trim";
-				} else if (hairLength < 3) descript += "short";
-				else if (hairLength < 6) descript += "shaggy";
+				}
+				else if (hairLength < 3) descript += "short";
+				else if (hairLength < 6) {
+					if (rand(2) == 0 || hairType == GLOBAL.HAIR_TYPE_TENTACLES) descript += "medium-length";
+					else descript += "shaggy";
+				}
 				else if (hairLength < 10) {
 					if (rand(2) == 0) descript += "moderately long";
 					else descript += "shoulder-length";
@@ -8801,7 +8990,7 @@ package classes {
 					}
 				}
 				if (descripted > 0) descript += " ";
-				if (hairType == GLOBAL.HAIR_TYPE_TENTACLES) descript += "tentacle-hair";
+				if (hairType == GLOBAL.HAIR_TYPE_TENTACLES || hairStyle == "tentacle") descript += "tentacle-hair";
 				else if (hairType == GLOBAL.HAIR_TYPE_FEATHERS) 
 				{
 					if(rand(2) == 0) descript += "plumage";
@@ -8913,7 +9102,7 @@ package classes {
 				}
 			}
 			if (descripted > 0) descript += " ";
-			if (hairType == GLOBAL.HAIR_TYPE_TENTACLES) descript += "tentacles";
+			if (hairType == GLOBAL.HAIR_TYPE_TENTACLES || hairStyle == "tentacle") descript += "tentacles";
 			else if (hairType == GLOBAL.HAIR_TYPE_FEATHERS) descript += "feathers";
 			else 
 			{
@@ -8924,8 +9113,8 @@ package classes {
 				else if(hairStyle == "afro") descript += "afro-puffed locks";
 				else if(hairStyle == "mohawk") descript += "mohawk-shaped locks";
 				else descript += "locks";
-				if (hairType == GLOBAL.HAIR_TYPE_GOO) descript += " of goo";
 			}
+			if (hairType == GLOBAL.HAIR_TYPE_GOO && rand(2) == 0) descript += " of goo";
 			return descript;
 		}
 		public function eachClit(): String {
@@ -9179,7 +9368,7 @@ package classes {
 				else if (type == GLOBAL.TYPE_GOOEY)
 				{
 					if (!simple)
-						desc += RandomInCollection(["slimey vagina", "gooey pussy", "slimy cunt", "syrupy hole", "juicy twat", "slimy gash", "gooey honeypot", "slimey snatch"]);
+						desc += RandomInCollection(["slimy vagina", "gooey pussy", "slimy cunt", "syrupy hole", "juicy twat", "slimy gash", "gooey honeypot", "slimy snatch"]);
 					else
 						desc += RandomInCollection(["slime-gina", "goo-pussy", "slime-cunt", "fuck-hole", "goo-twat", "slime-gash", "honeypot", "slime-snatch"]);
 				}

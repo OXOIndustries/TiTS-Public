@@ -62,6 +62,11 @@ public function showBrothelLady(nude:Boolean = false):void
 	if(!nude) userInterface.showBust("BORING_MISTRESS");
 	else userInterface.showBust("BORING_MISTRESS_NUDE");
 }
+public function getKatPregContainer():PregnancyPlaceholder
+{
+	var ppKat:PregnancyPlaceholder = new PregnancyPlaceholder();
+	if (!ppKat.hasVagina()) ppKat.createVagina();
+}
 
 //Ovir Girl/Ovir ‘Girl’
 //’Ovir ‘Girl’ button name and smarty choice buttons below require governing stat to be >= 80% of cap (high because Tavros is early-game) OR 40 raw value, whichever is least; else button displays as ‘Ovir Girl’ (without any quotes)
@@ -781,6 +786,7 @@ public function brothelTurnTrixLicensedWhore(service:String = "none"):void
 	clearOutput();
 	showBrothelLady();
 	author("Nonesuch");
+	var ppKat:PregnancyPlaceholder = getKatPregContainer();
 	var totalEarnings:Number = 0;
 	var baseEarnings:Number = 0;
 	
@@ -798,6 +804,8 @@ public function brothelTurnTrixLicensedWhore(service:String = "none"):void
 		if(hours < 15) output("morning");
 		else output("evening");
 		output(".”</i> You get up wiping your mouth, and wait for her to zip herself back up before splitting the earnings with her.");
+		pc.girlCumInMouth(ppKat);
+		pc.lust(10);
 	}
 	// Vag
 	if(service == "vagina")
@@ -811,6 +819,8 @@ public function brothelTurnTrixLicensedWhore(service:String = "none"):void
 		if(hours < 15) output("morning");
 		else output("evening");
 		output(".”</i> You get up wiping your mouth, and wait for her to zip herself back up before splitting the earnings with her.");
+		pc.girlCumInMouth(ppKat);
+		pc.lust(10);
 	}
 	// Everything
 	else if(service == "all")
@@ -827,6 +837,8 @@ public function brothelTurnTrixLicensedWhore(service:String = "none"):void
 		if(hours < 15) output("morning");
 		else output("evening");
 		output(".”</i> You get up wiping your mouth, and wait for her to zip herself back up before splitting the earnings with her.");
+		pc.girlCumInMouth(ppKat);
+		pc.lust(10);
 	}
 	
 	totalEarnings = brothelWhorePayment(baseEarnings);

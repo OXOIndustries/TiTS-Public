@@ -1242,8 +1242,8 @@ public function approachFollowerBess():void
 	if(bess.armor != null && (bess.armor is TopNSkirt || bess.armor is MaidOutfit || bess.armor is NurseOutfit || bess.armor is SchoolgirlOutfit))
 	{
 		output("\n\nEvery time the hem of [bess.hisHer] outfit rides up, you get a good look at [bess.hisHer] ");
-		if(bess.lowerUndergarment.shortName != "") output("[bess.underGarment].");
-		else if(bess.hasVagina()) 
+		if(bess.hasVagina() && !bess.hasCock() && bess.lowerUndergarment.shortName != "") output("[bess.underGarment].");
+		else if(bess.hasVagina())
 		{
 			output("[bess.pussy]");
 			if(bess.hasCock()) output(" and [bess.cock]");
@@ -1253,7 +1253,8 @@ public function approachFollowerBess():void
 		else output("bare crotch.");
 		if(bess.hasCock())
 		{
-			output(" It ");
+			if(bess.hasVagina()) output(" [bess.HisHer] cock ");
+			else output(" It ");
 			if(bess.biggestCockLength() <= 10) 
 			{
 				if(bess.lowerUndergarment.shortName != "") output("makes a visible bulge in [bess.hisHer] [bess.underGarment].");
@@ -2420,12 +2421,12 @@ public function talkToBessAboutLactation():void
 
 	clearMenu();
 
-	if (!bess.isLactating()) addDisabledButton(0, "Lactate", "Start Lactation", "[bess.name] is already able to lactate.");
+	if (bess.isLactating()) addDisabledButton(0, "Lactate", "Start Lactation", "[bess.name] is already able to lactate.");
 	else if (bess.biggestTitSize() > 0) addButton(0, "Lactate", bessStartLactation);
 	else addDisabledButton(0, "Lactate", "Start Lactation", "[bess.name] first needs at least some breastflesh in order to lactate.");
 
-	if (bess.isLactating()) addDisabledButton(0, "StopLactate", "Stop Lactation", "[bess.name] needs to be lactating in order to stop it.");
-	else addButton(1, "StopLactate", bessStopLactation);
+	if (bess.isLactating()) addButton(1, "StopLactate", bessStopLactation);
+	else addDisabledButton(1, "StopLactate", "Stop Lactation", "[bess.name] needs to be lactating in order to stop it.");
 
 	addButton(14, "Back", talkToBessAboutBoobs);
 }
@@ -11973,7 +11974,7 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 		
 		output("\n\nEventually [bess.name] pulls out,");
 		if (bessIsSub()) output(" your sub");
-		output(" giving a naughty grin at the fact you are now a bloated, dribbling mess. None of [bess.hisHer] slimey <i>“cum”</i> escapes your");
+		output(" giving a naughty grin at the fact you are now a bloated, dribbling mess. None of [bess.hisHer] slimy <i>“cum”</i> escapes your");
 		if (bTargetVag) output(" lower lips");
 		else output(" asshole");
 		output(" - it continues to tease your");
@@ -11993,8 +11994,8 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 		if (bTargetVag) output(" vaginal");
 		else output(" anal");
 		output(" passage wide open - massaging it as they pass all the way down. Instead of pain, you cry out in rapture,");
-		if (bTargetVag) output(" splattering your [pc.girlcum] all over your slimey baby as it");
-		else output(" cumming explosively as your slimey baby");
+		if (bTargetVag) output(" splattering your [pc.girlcum] all over your slimy baby as it");
+		else output(" cumming explosively as your slimy baby");
 		output(" travels down and out your love canal. As you writhe on the ground, your");
 		if (bTargetVag) output(" [pc.pussy "+ vagIdx +"]");
 		else output(" [pc.asshole]");

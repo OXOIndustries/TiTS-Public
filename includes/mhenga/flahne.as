@@ -1091,7 +1091,7 @@ public function fuckAndSuckWithFlahne():void {
 		if(pc.cumQ() >= 500) output(", and jizz follows from her abused hole, leaking around your shaft and pooling on the chair");
 		output(".");
 		
-		output("\n\nYou pull free of the gel secretary’s hole and she lets her legs fall; small globs of your cum escape from her hole, but her body rushes to absorb it and most disappear before leaving her skin. She lifts her head as soon as the flow from her ovipositor stops, and it droops to one side. Insatiable, her lips wrap around [pc.EachCock] to suck out any remaining jism. <i>“Mmmm, your cum’s much better than a sucker, [pc.name]. You’d better be back soon,”</i>  she says. Flahne pulls a new skirt and a small towel out of a drawer in her desk; you take the towel and mop up as much of the fluid-stained desk ");
+		output("\n\nYou pull free of the gel secretary’s hole and she lets her legs fall; small globs of your cum escape from her hole, but her body rushes to absorb it and most disappear before leaving her skin. She lifts her head as soon as the flow from her ovipositor stops, and it droops to one side. Insatiable, her lips wrap around [pc.eachCock] to suck out any remaining jism. <i>“Mmmm, your cum’s much better than a sucker, [pc.name]. You’d better be back soon,”</i>  she says. Flahne pulls a new skirt and a small towel out of a drawer in her desk; you take the towel and mop up as much of the fluid-stained desk ");
 		if(pc.cumQ() >= 500) output("and floor ");
 		output("as you can while Flahne changes into her new skirt.");
 	}

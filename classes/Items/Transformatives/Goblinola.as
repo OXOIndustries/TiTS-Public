@@ -155,6 +155,7 @@ package classes.Items.Transformatives
 						// Transformation text:
 						kGAMECLASS.eventBuffer += "Your ears have been bothering you for a bit now. You give them a another scratch a discover that they’ve reshaped themselves! <b>You now have long pointy gabilani ears!</b>";
 						target.earType = GLOBAL.TYPE_GABILANI;
+						target.earLength = 2 + rand(3);
 					}
 					else
 					{
@@ -659,7 +660,10 @@ package classes.Items.Transformatives
 			{
 				clearOutput();
 				// Consuming:
-				output("You unwrap the goblinola and munch on the stuff. There are some constants that hold true the galaxy over, and health snacks are one of them: It’s reasonably tasty, takes a while to chew and is vaguely unsatisfying. Your stomach is left a little unsettled. (<b>+" + healing + " HP</b>)");
+				output("You unwrap the goblinola and munch on the stuff.");
+				if(!kGAMECLASS.inCombat()) output(" There are some constants that hold true the galaxy over, and health snacks are one of them: It’s reasonably tasty, takes a while to chew and is vaguely unsatisfying.");
+				output(" Your stomach is left a little unsettled.");
+				if (target.HP() < target.HPMax()) output(" (<b>+" + healing + " HP</b>)");
 				output("\n");
 				
 				// Immediate effects: The player gains some health.
@@ -686,15 +690,15 @@ package classes.Items.Transformatives
 					// v2: Number of major transformations
 					target.createStatusEffect("Goblinola Bar", timerStamp, 1, 0, 0, false, "Icon_Poison", "Your stomach is a little unsettled by the health bar you ate...", false, timerStamp);
 				}
-				
-				return true;
 			}
 			//Not the player!
 			else
 			{
 				if(kGAMECLASS.inCombat()) output("\n");
 				else clearOutput();
-				output(target.capitalA + target.short + " unwraps and eats the bar, revitalizing some of [target.hisHer] health! (<b>+" + healing + " HP</b>)");
+				output(target.capitalA + target.short + " unwraps and eats a Goblinola bar");
+				if (target.HP() < target.HPMax()) output(", revitalizing some of [target.hisHer] health! (<b>+" + healing + " HP</b>)");
+				else output(" but to no effect.");
 				target.HP(healing);
 				output("\n");
 			}

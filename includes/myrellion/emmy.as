@@ -960,7 +960,7 @@ public function emmyPleased():void
 	output("\n\nYou quirk an eyebrow at her, and after a moment the sheer sluttiness of her joke sinks home.");
 	output("\n\nThe jackal gasps and claps her hands over her snout. If you could see through her fur, you’re sure her skin would be blushed crimson. <i>“I didn’t... I was joking! I promise I’m in control of myself. I turned you down at first, didn’t I? And even though you’re my [pc.boy]friend, that doesn’t mean I’m going to start whipping my dick out around your or anything. We need to know each other a little bit better before something like that happens - I’m not going to be a huge slut just because we’ve started something.”</i> She puts her hands down on the countertop and stares at her nervously tapping fingertips. <i>“I’m rambling aren’t I?”</i>");
 	output("\n\n<i>“A little.”</i> You smile. <i>“It’s cute.”</i>");
-	output("\n\nEmmy leans forward, squeezing her breasts between her forearms to press her cleavage directly into your view. <i>“Sometime, I’m going to have to get you to tell me what else you think about me is cute... but for right now, I believe I promised my interstellar hero{ine} a certain reward for [pc.hisHer] efforts.”</i> She bats her eyelashes and licks her lips, staring at your crotch. <i>“We can cross that off the list right now...”</i>");
+	output("\n\nEmmy leans forward, squeezing her breasts between her forearms to press her cleavage directly into your view. <i>“Sometime, I’m going to have to get you to tell me what else you think about me is cute... but for right now, I believe I promised my interstellar hero" + pc.mf("","ine") + " a certain reward for [pc.hisHer] efforts.”</i> She bats her eyelashes and licks her lips, staring at your crotch. <i>“We can cross that off the list right now...”</i>");
 	//Sex!
 	processTime(7);
 	pc.lust(10);
@@ -1218,7 +1218,9 @@ public function emmyBJFinale(jizzbomb:Boolean = false):void
 {
 	clearOutput();
 	showEmmy();
-	output("Emmy straightens with a knowing smile{, your [pc.cum] cascading down her form}. Her dick looks so hard that you swear it’ll tear its way out of her straining jumpsuit at any second. <i>“Sit tight, tiger. I’m gonna freshen up.”</i> She pats you on the [pc.leg] and ducks into a back door, audibly squishing with every step.");
+	output("Emmy straightens with a knowing smile");
+	if(jizzbomb) output(", your [pc.cum] cascading down her form");
+	output(". Her dick looks so hard that you swear it’ll tear its way out of her straining jumpsuit at any second. <i>“Sit tight, tiger. I’m gonna freshen up.”</i> She pats you on the [pc.leg] and ducks into a back door, audibly squishing with every step.");
 	output("\n\nYou have ample time to");
 	if(pc.isNude()) output(" stretch");
 	else 

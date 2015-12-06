@@ -349,7 +349,6 @@
 			(buttons[0] as MainMenuButton).func = titsClassPtr.creationRouter;
 			
 			(buttons[3] as MainMenuButton).visible = false;
-			
 		}
 		
 		private function showOptions():void
@@ -516,7 +515,13 @@
 				throw new Error("Couldn't find module \"" + module + "\"");
 			}
 			
-			// Update some button states			
+			// Update some button states
+			updateLevelUp();
+		}
+		
+		// LeveUp button
+		public function updateLevelUp():void
+		{
 			if ((classes.kGAMECLASS.pc as PlayerCharacter).levelUpAvailable())
 			{
 				if (titsClassPtr.gameOverEvent == true || titsClassPtr.inSceneBlockSaving == true)
@@ -552,6 +557,9 @@
 			_buttonTray.buttonPagePrev.Deactivate();
 			_buttonTray.textPageNext.Deactivate();
 			_buttonTray.textPagePrev.Deactivate();
+			
+			// Disable all but the relevant side buttons
+			mainButtonsOnly();
 		}
 		
 		public function showOptionsModule():void
@@ -1182,7 +1190,7 @@
 		
 		public function levelUpOn():void 
 		{
-			_leftSideBar.levelUpButton.Activate();
+			updateLevelUp();
 		}
 		
 		public function levelUpOff():void 
@@ -1217,6 +1225,25 @@
 			perksOff();
 			messengerOff();
 			*/
+		}
+		
+		public function mainButtonsOnly():void 
+		{
+			mainMenuButtonOn();
+			dataOn();
+			appearanceOff();
+			messengerOff();
+			perksOff();
+			levelUpOff();
+		}
+		public function mainButtonsReset():void 
+		{
+			mainMenuButtonOn();
+			dataOn();
+			appearanceOn();
+			messengerOn();
+			perksOn();
+			levelUpOn();
 		}
 		
 		public function hideData():void 

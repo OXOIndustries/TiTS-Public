@@ -514,17 +514,18 @@ public function getFuckedByZephyrIV():void
 	if(!pc.isTreated()) output(", promising that you can have her dick every day if you take the Treatment and immigrate, no matter what kind of " + pc.rawmfn("cow","bull","person") + " you come out as.");
 	else output(", promising to knot you until you’re addicted to her cock unable to cum without feeling her signature swelling down below.");
 	
+	var ppZephyr:PregnancyPlaceholder = getZephyrPregContainer();
 	if(x >= 0)
 	{
-		pc.loadInCunt(getZephyrPregContainer(), x);
-		pc.loadInCunt(getZephyrPregContainer(), x);
-		pc.loadInCunt(getZephyrPregContainer(), x);
+		pc.loadInCunt(ppZephyr, x);
+		pc.loadInCunt(ppZephyr, x);
+		pc.loadInCunt(ppZephyr, x);
 	}
 	else
 	{
-		pc.loadInAss(getZephyrPregContainer());
-		pc.loadInAss(getZephyrPregContainer());
-		pc.loadInAss(getZephyrPregContainer());
+		pc.loadInAss(ppZephyr);
+		pc.loadInAss(ppZephyr);
+		pc.loadInAss(ppZephyr);
 	}
 	
 	//[Next]
@@ -553,8 +554,9 @@ public function getFuckedByZephyrV():void
 		output("\n\nIt looks fucking delicious. You wrap your [pc.lips] around it and suck it like your life depends on it, shining it until its been spit-polished.");
 		output("\n\nZephyr pats you on the head and whispers, <i>“Good [pc.boy], now run along before I decide to keep you under my desk for the rest of the day.”</i> You practically glow from the praise, beaming as you lick the last droplets from your [pc.lips]. This planet rules!");
 		processTime(2);
-		pc.loadInMouth(getZephyrPregContainer());
-		pc.loadInMouth(getZephyrPregContainer());
+		var ppZephyr:PregnancyPlaceholder = getZephyrPregContainer();
+		pc.loadInMouth(ppZephyr);
+		pc.loadInMouth(ppZephyr);
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 	}
@@ -580,8 +582,9 @@ public function cleanDatZephyrCawk():void
 	output(". You run your tongue over every sensitive vein, keeping her completely hard until you finally pull back, revealing a gleaming red, spit-shined dog-cock.");
 	output("\n\nZephyr gives you a pat on the head. <i>“Good [pc.boy]. Now get out of my office unless you’re wanting another go.”</i>");
 	processTime(2);
-	pc.loadInMouth(getZephyrPregContainer());
-	pc.loadInMouth(getZephyrPregContainer());
+	var ppZephyr:PregnancyPlaceholder = getZephyrPregContainer();
+	pc.loadInMouth(ppZephyr);
+	pc.loadInMouth(ppZephyr);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

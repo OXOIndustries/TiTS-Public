@@ -1282,8 +1282,8 @@ public function playerAttack(target:Creature):void
 		else
 		{
 			output("To finish off your attack, you lean in and deliver a surprise bite, injecting a healthy dose of your red myrmedion venom!");
-			applyDamage(new TypeCollection( { tease: 3 + rand(3) } ), pc,foes[0], "minimal");
-
+			//applyDamage(new TypeCollection( { tease: 3 + rand(3) } ), pc,foes[0], "minimal");
+			applyDamage(new TypeCollection( { drug: 3 + rand(3) } ), pc,foes[0], "minimal");
 		}
 		output("\n");
 	}
