@@ -1950,7 +1950,7 @@ public function zilCallGirlFuckHer():void
 	// 1st time:
 	if (zilCallGirlSexed() <= 0) output(" The green brut’s cum is still fresh on her pussylips, radiating wet warmth as you start to thrust in. She wasn’t kidding -- cum makes for a fine lube, letting you glide straight into her tight little twat.");
 	// else:
-	else output(" She’s as excited as you are, if the sheen of slimey feminine juice that greets your probing cockhead is any indication. The exotic babe coos lustily, pushing her hips back against you until your crown finally pushes through the startling tight lips of her dark hole, and you’re able to thrust deep into her sodden slit.");
+	else output(" She’s as excited as you are, if the sheen of slimy feminine juice that greets your probing cockhead is any indication. The exotic babe coos lustily, pushing her hips back against you until your crown finally pushes through the startling tight lips of her dark hole, and you’re able to thrust deep into her sodden slit.");
 	
 	pc.cockChange();
 	
