@@ -496,6 +496,13 @@
 						kGAMECLASS.output("\n\nYour [pc.beard] tickles your jaw for a little bit, bringing yourself to scratch it. After a while, the sensation stops and you pass your fingers through it. <b>You can confirm that it's slightly longer than it was before, gaining about " + kGAMECLASS.num2Text(x) + " inches of beard.</b>");
 						target.beardLength += x;
 					}
+					if (target.beardStyle != "null")
+					{
+						kGAMECLASS.output(" It seems the growth was not as neat as it should be... You'll have to get it ");
+						if (target.beardStyle != 0) kGAMECLASS.output("re-");
+						kGAMECLASS.output("styled somewhere if you want it to look a certain way...");
+						target.beardStyle = "null";
+					}
 				}
 				// Effect: If breast pair not flat - Decrease by 1
 				else if(select == 8)
