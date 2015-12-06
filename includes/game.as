@@ -820,7 +820,7 @@ public function showerOptions(option:int = 0):void {
 		else if (pc.tone < 30 && pc.buttRating() >= 10) output(", unable to resist topping it off with a good spank");
 		output(".");
 		output("\n\nEven after you’re fully rinsed off, you let yourself stay under the water for a few minutes longer, just enjoying the warmth running down your body. There’s nothing like a good shower to just melt all the tension away.");
-		if (pc.lust() > 33)
+		if (pc.lust() >= 33)
 		{
 			output(" In fact...");
 			output("\n\nYou");
