@@ -3129,76 +3129,137 @@ public function bionaHoleSyri():void
 }
 */
 
-// Shower Fappings (if any)
+// Shower Fappings
 public function shipShowerFaps(genButtons:Boolean = false):Number
 {
-	var showerSex:Array = [];
+	var showerSex:int = 0;
 	
-	/*
-	showerSex.push("ButtFuck");
-	if (pc.hasCock() && pc.hasVagina()) showerSex.push("Genitals");
-	if (pc.hasCock()) showerSex.push("Cock");
-	if (pc.hasVagina()) showerSex.push("Vagina");
-	if (pc.hasTailCock()) showerSex.push("TailCock");
-	if (pc.hasTailCunt()) showerSex.push("TailCunt");
-	
-	if (genButtons && showerSex.length > 0)
+	if (pc.hasCock())
 	{
-		for(var i:int = 0; i < showerSex.length; i++)
-		{
-			addButton(i, showerSex[i], shipShowerFappening, showerSex[i]);
-		}
+		if(genButtons) addButton(showerSex, "Jerk Off", shipShowerFappening, "Jerk Off", "Time to lather up and beat off.");
+		showerSex++;
 	}
-	*/
+	if (pc.hasVagina())
+	{
+		if(genButtons) addButton(showerSex, "Use Nozzle", shipShowerFappening, "Use Nozzle", "That shower head looks pretty tempting for your pussy...");
+		showerSex++;
+	}
 	
-	return showerSex.length;
+	return showerSex;
 }
 public function shipShowerFappening(scene:String = ""):void
 {
 	clearOutput();
-	output("You eagerly strip off your gear, set it aside and turn on the shower. The cold water hits you but you are unphased--all you care about is getting yourself off!");
-	// ButtFuck
-	if (scene == "ButtFuck")
+	
+	var n:int = 0;
+	
+	// Jerk Off
+	if (scene == "Jerk Off")
 	{
-		output("\n\n");
-		processTime(10);
+		author("Couch");
+		
+		n = rand(pc.cockTotal());
+		
+		output("You grab the bottle of body wash again, squeezing out a second dose into your palms. Rather than letting your hands roam over your body, though, this time you have a much more targeted place to apply it. You reach down and start to work the slippery lotion over [pc.oneCock], letting your hands slowly slide up and down");
+		if(pc.cocks[n].cLength() == 1) output(" the full inch");
+		else output(" all " + num2Text(pc.cocks[n].cLength()) + " inches");
+		output(" of [pc.cockColor " + n + "] meat. Each pass makes you more and more slippery, making your [pc.hand] feel better and better each time it brushes your [pc.sheath " + n + "]. Your other hand tends to your [pc.cockHead " + n + "], working it up with an extra dose of lather for the extra-sensitive flesh.");
+		output("\n\nSoon you’re lathered up and stroking away, [pc.chest] rising and falling in a steady rhythm as you bask in the lotion-slicked sensation of [pc.skinFurScalesNoun]-on-skin. Your free hand ");
+		if (!pc.hasBreasts()) output(" rests comfortably on your hip, letting all the focus stay on your eager, throbbing dick.");
+		else
+		{
+			output(" comes up to cup one of your breasts, caressing and gently squeezing the soft feminine flesh that’s such a pleasant contrast to your rock-hard masculine endowment. You tease and pinch at your [pc.nipples]");
+			if (pc.isLactating()) output(", sending little ribbons of [pc.milkNoun] squirting out between your [pc.fingers]");
+			output(" as you stroke, careful not to overdo it and take the focus away from your cock.");
+		}
+		output("\n\nYou lick your lips as you feel the first sense of pressure in the base of your dick, squeezing down to keep it slow, keep it gradual, really relish the sensation of cum slowly working its way upward. You let your hand come up to");
+		if (pc.cocks[n].hasFlag(GLOBAL.FLAG_BLUNT) && !pc.cocks[n].hasFlag(GLOBAL.FLAG_FLARED) output(" your cocktip, running a finger back and forth over the sharp angle between the cylinder of your shaft and the top of your fat, flat tip,");
+		else if (pc.cocks[n].hasFlag(GLOBAL.FLAG_FLARED)) output(" your flare, teasing the underside of the ring that almost feels like a second erection when it stretches wide like this, every pulse transforming your dick from an instrument of penetration to one of sheer depth-stretching pleasure");
+		else if (pc.cocks[n].hasFlag(GLOBAL.FLAG_TAPERED)) output(" your tapered tip, relishing the absence of any crown. Nothing but smooth, supple cockflesh, ready to train any hole by starting them off nice and easy with that thin, sharp tip");
+		else if (pc.cocks[n].hasFlag(GLOBAL.FLAG_DOUBLE_HEADED)) output(" your twin crowns, slowly spiraling a finger up from base to tips, caressing your twitching cumslits");
+		else output(" your crown, slowly spiraling a finger up from base to tip, caressing your twitching cumslit");
+		output(".");
+		if (pc.hasKnot(n)) output(" You tease your knot next, groping the thickening lump that makes your dick into a true tool of sexual conquest, ensuring no hole can escape being packed with every drop of [pc.cum] you have to offer.");
+		output("\n\nYou briefly run your fingers down");
+		if (pc.balls <= 0) output(" over the smooth flesh where someone else might need a ballsack, but you’ve been blessed with having all that tucked away inside. Why have a sack when you could feel your seed bubbling hot and fresh inside you?");
+		else
+		{
+			output(" to cup your [pc.balls], feeling the");
+			if (pc.ballDiameter() >= 2) output(" thick, heavy");
+			output(" orbs tightening with the seed churning inside them.");
+		}
+		output(" The sense of your cumslit dilating, being filled with [pc.cumColor] itching to burst forth, is nothing short of sublime.");
+		output("\n\nYou let go, moaning loudly as [pc.cum] splatters against the shower wall.");
+		if (pc.cumQ() >= 1000) output(" You’re practically outpacing the shower itself with your hose of a cock, every spurt flowing up your shaft coming out with such pressure that you almost feel as though you’ll cum again just from the act of cumming.");
+		if (pc.hasVagina()) output(" Below you feel [pc.eachVagina] add your feminine juices to the mix, a stream of [pc.girlCumColor] that accompanies the [pc.cumColor] spray from your cock.");
+		output(" You tilt your head back and let your eyelids flutter, relishing your messy orgasm.");
+		output("\n\nThankfully your choice of location means even the messiest orgasm is easy to clean up. You use the shower nozzle to hose down the side, and yourself, making sure you don’t leave any lotion behind on your dick. Once you’ve cleaned up, you step out of the shower and towel off, your loins satiated and your body cleaned up and ready for your next adventure.");
+		
+		processTime(10 + rand(6));
+		pc.orgasm();
+		pc.shower();
 	}
-	// Both Genitals
-	else if (scene == "Genitals")
+	// Use Nozzle
+	else if (scene == "Use Nozzle")
 	{
-		output("\n\n");
-		processTime(10);
+		author("Couch");
+		
+		n = rand(pc.totalVaginas());
+		
+		output("You lick your lips as you eye the shower nozzle. It’s currently sitting in its dock, but all it takes is reaching up and pulling it out to get it in your [pc.hand]. You can already feel [pc.eachVagina] starting to moisten as you bring the nozzle down, the spray washing over your belly. Your free hand spreads your nether lips, so that when the water finally reaches its target you feel the spray focused on your bared [pc.vaginaColor " + n + "]. You hold it there, moaning at the water striking your clit");
+		if (pc.vaginas[n].clits != 1) output("s");
+		output(" like a hundred rapidly-tapping fingers, slowly moving the shower head closer and closer until the tip slips inside you with a satisfied gasp. The sensations of the individual streams disappear now, replaced with a constant flooding pressure that forces its way inside you.");
+		output("\n\nYou let out a long, sultry groan, water spurting out around the shower head now buried in your succulent snatch.");
+		if (pc.vaginas[n].type != TYPE_HUMAN)
+		{
+			output(" You work it around a bit just to relish the exotic shape you’ve been endowed with, your delicious twat that feels so good, so much better than a human’s ever could just by the sheer wrongness of it. It shouldn’t be down there between your legs, yet it is, providing you pleasures a woman was never meant to experience. Gods, you love having an ");
+			if (InCollection(pc.vaginas[n].type, GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_NAGA)) output("animal’s");
+			else output("alien");
+			output(" cunt!");
+		}
+		if (pc.vaginas[n].looseness() <= 1) output(" It squeezes so hard without you even having to try, and when you clench your pussy muscles you’re almost afraid you’ll bend the metal out of shape from how tight you are. Afraid, yet you can’t help but grin at the thought. You know nobody out there could resist the thought of plunging their cock into a hole that promises such grip, such sinful squeezing.");
+		else if (pc.vaginas[n].looseness() <= 3) output(" Your inner muscles massage that probing metal just right, offering pleasurable resistance but letting it slide as deep as you want it. It’s the perfect fit for your perfectly trained pussy, the product of experience making a once-inexperienced hole into a professional cock-milker.");
+		else output(" You love the way the whole thing slips inside with nary a drop of resistance from your loose, sloppy hole. You feed it in further until only the tube is sticking out, careful not to let the water pressure make it slip out. Yet there’s hardly any pressure at all, just the sensation of water blasting away at your pussy walls, a sensation those silly tight girls could never experience. Your cunt is completely ruined, a total size queen’s twat, and you wouldn’t have it any other way.");
+		if (pc.hasCock()) output("\n\nAbove the heady pleasure stemming from your pussy you feel yourself throbbing, your masculine aspect providing a perfect counterpoint to your steamy feminine slit. You don’t even want to touch right now.  You don’t have to. You can just let [pc.eachCock] hang there and revel in your hermaphroditic endowments, each rhythmic clench of your cunt accompanied with a twitch of your cock. With every twitch you feel your cumslit widening from within, pushed open by that slowly-building pressure of preseed aching to come out.");
+		output("\n\nYour free hand comes up,");
+		if (!pc.hasBreasts()) output(" palm lying against the back of your head as you look down past your chest at the display. You don’t want to distract yourself with anything else, just relax and savor the pleasure of your pussy.");
+		else if (pc.biggestTitSize() < 4) output(" cupping one of your breasts and setting to rubbing as you look down past your cleavage to watch your pussy in action. Your [pc.fingers] brush across your nipple, adding the occasional girlish gasp to the steadier moaning slipping forth from your lips. You’re just the right size to be able to see everything, and it makes you so very, very pleased. Maybe being bigger could be fun, but you’re pretty happy being able to watch when there’s a cock making your pussy sing with pleasure. Or a shower head, for that matter.");
+		else
+		{
+			output(" [pc.fingers] sinking into the bountiful cleavage on display. You lift one of your breasts to run your tongue over your [pc.nippleColor] nipple");
+			if (pc.biggestTitSize() >= 11) output(", absolutely loving how easy it is with how huge you are");
+			output(". Big tits, wet pussy, what more could a girl want?");
+			if (pc.isLactating())
+			{
+				output(" Your body answers the question for you as a spurt of [pc.milkColor] splashes onto your tongue. She could want [pc.milkFlavor] goodness on demand. You take a few gulps, careful not to get too greedy and take the focus away from the pleasure in your pussy.");
+				pc.milkInMouth(pc);
+			}
+		}
+		output("\n\nAnd it’s a grand pleasure indeed, the water relentless in teasing your cunny depths, stoking the fires of your lusts higher and higher with each passing moment. Your croons come faster, higher, louder, every sound you make a step closer to sweet release. Despite how long it takes, you barely feel prepared, the water joined by a burst of [pc.girlCum] as you give the loudest cry of all.");
+		if (pc.hasCock()) output(" Spurts of [pc.cumNoun] join it, your male orgasm splattering against the shower wall in time with the contractions wracking your cunt.");
+		output(" An intense shiver runs down your spine, the shower head slowly slipping from your pussy");
+		if (pc.vaginas[n].looseness() <= 1) output(" despite your body’s best efforts");
+		output(", your muscles quivering and weak. Even after cumming, you feel so deliciously wet.");
+		output("\n\nBut the nicest thing about sex in the shower has to be the cleanup. You put the nozzle back in its place and let the water run for a minute longer, washing away the signs of your sinful soiree. Once you’ve cleaned up and calmed down a bit, you");
+		if (pc.isNaga()) output(" slither");
+		else if (pc.isGoo()) output(" slide");
+		else output(" step");
+		output(" out of the shower and towel off. Soon you’ve reclaimed your gear, thoroughly refreshed and ready to resume your adventure.");
+		
+		processTime(10 + rand(6));
+		pc.orgasm();
+		pc.shower();
 	}
-	// Cock(s)
-	else if (scene == "Cock")
+	// Nevermind
+	else (scene == "Nevermind")
 	{
-		output("\n\n");
-		processTime(10);
+		author("Couch");
+		output("On second thought, you’d rather save your strength for someone more appropriate. You wait for");
+		if (pc.hasCock()) output(" your erection to subside and");
+		output(" your urges to settle down before stepping out of the shower and toweling off. You slip your gear on with a refreshed smile, squeaky clean and ready to resume your adventure.");
+		processTime(2);
 	}
-	// Vagina(s)
-	else if (scene == "Vagina")
-	{
-		output("\n\n");
-		processTime(10);
-	}
-	// TailCock(s)
-	else if (scene == "TailCock")
-	{
-		output("\n\n");
-		processTime(10);
-	}
-	// TailCunt(s)
-	else if (scene == "TailCunt")
-	{
-		output("\n\n");
-		processTime(10);
-	}
-	output("\n\nAfter your orgasmic ordeal, you finally rinse and towel yourself off. Stepping out of the shower and redonning your equipment, you are feeling");
-	if (pc.hasStatusEffect("Sweaty")) output(" much cleaner than you did before");
-	else output(" sqeaky clean");
-	output(".");
-	pc.orgasm();
-	pc.shower();
+	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
