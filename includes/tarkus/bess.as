@@ -11974,7 +11974,7 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 		
 		output("\n\nEventually [bess.name] pulls out,");
 		if (bessIsSub()) output(" your sub");
-		output(" giving a naughty grin at the fact you are now a bloated, dribbling mess. None of [bess.hisHer] slimey <i>“cum”</i> escapes your");
+		output(" giving a naughty grin at the fact you are now a bloated, dribbling mess. None of [bess.hisHer] slimy <i>“cum”</i> escapes your");
 		if (bTargetVag) output(" lower lips");
 		else output(" asshole");
 		output(" - it continues to tease your");
@@ -11994,8 +11994,8 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 		if (bTargetVag) output(" vaginal");
 		else output(" anal");
 		output(" passage wide open - massaging it as they pass all the way down. Instead of pain, you cry out in rapture,");
-		if (bTargetVag) output(" splattering your [pc.girlcum] all over your slimey baby as it");
-		else output(" cumming explosively as your slimey baby");
+		if (bTargetVag) output(" splattering your [pc.girlcum] all over your slimy baby as it");
+		else output(" cumming explosively as your slimy baby");
 		output(" travels down and out your love canal. As you writhe on the ground, your");
 		if (bTargetVag) output(" [pc.pussy "+ vagIdx +"]");
 		else output(" [pc.asshole]");
