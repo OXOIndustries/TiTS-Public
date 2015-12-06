@@ -415,7 +415,8 @@ public function arbetzTalkOptions(response:int = 0):void
 		output("\n\n<i>“You, the advanced");
 		if (pc.thickness <= 35) output(" beanpole of an");
 		output(" alien, really pulled me away from my job to ask me that?”</i> snorts Una. She leans forward, opens her eyes wide, and adopts a mocking school-teacher tone. <i>“Well, you see [pc.name], we have these things called sa-ta-lites that fly waaaaaaay up in the sky, so high you can’t even see them. Some of these sa-ta-lites have super special equipment on them. They do big word things like “modulate air pressure” and “disperse ice nuclei”. All you need to know is: there’s one that flies over us every day and makes it always summer here, just like a holiday resort should be. Hurray!”</i>");
-		if (pc.isAss()) output("\n\n<i>“Knock it off,”</i> you say sharply. ");
+		output("\n\n");
+		if (pc.isAss()) output("<i>“Knock it off,”</i> you say sharply. ");
 		output("<i>“If the gabilani have cracked changing the weather, how come the rest of the planet is the way it is? And why is it so localized? Your agency isn’t a mile away from Novahome. Why isn’t it sunny there, too?”</i>");
 		output("\n\n<i>“Because it takes up a huge amount of energy, obviously,”</i> replies Una. <i>“Maybe if the High Command negotiations with your own stuffed shirts get anywhere, we might be able to properly terraform Tarkus, stop living in space. But I don’t think it honestly would take up that much more fuel to include the raskvel heap in the sunbeam, since you ask.”</i>");
 		output("\n\n<i>“So why...”</i>");
