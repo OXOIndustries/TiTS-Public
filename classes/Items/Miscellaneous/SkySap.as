@@ -173,7 +173,7 @@
 					outputB(", growing out at an incredible rate. Whatever it is, it feels kind of slippery.");
 
 					// Transform hair here.
-					if(pc.hairType == GLOBAL.HAIR_TYPE_GOO) pc.hairStyle == "tentacle";
+					if(pc.hairType == GLOBAL.HAIR_TYPE_GOO) pc.hairStyle = "tentacle";
 					else
 					{
 						pc.hairType = GLOBAL.HAIR_TYPE_TENTACLES;
