@@ -7088,9 +7088,16 @@ package classes {
 			if (wingType == GLOBAL.TYPE_SHARK) return true;
 			return true;
 		}
-		public function hasWings(): Boolean {
+		public function hasWings(wType:Number = 0): Boolean {
 			if(wingType == GLOBAL.TYPE_SHARK) return false;
-			return (wingType > 0);
+			if (wingType != 0)
+			{
+				// Specific type
+				if (wType > 0 && wType == wingType) return true;
+				// Any type
+				if (wType == 0) return true;
+			}
+			return false;
 		}
 		//check for vagoo
 		public function hasVagina(hole: int = 0): Boolean {
@@ -7375,11 +7382,15 @@ package classes {
 			if (horseScore() >= 2 && isCentaur()) race = "horse-taur";
 			else if (bovineScore() >= 3 && isTaur()) race = rawmfn("bull", "cow", "bovine") + "-taur";
 			else if (race == "human" && isCentaur()) race = "centaur";
-			else if (isTaur()) race = taurRace(race);
+			else if (isTaur()) race = taurRace(race); // Other taurs
 			// Naga-morphs
 			if (naleenScore() >= 5 && isNaga()) race = "naleen";
 			else if (isNaga()) race = "naga";
-
+			// Slime-morphs
+			if (gooScore() >= 6) race = "galotian";
+			// MLP-morphs
+			if (legType == GLOBAL.TYPE_MLP) race = mlpRace();
+			
 			return race;
 		}
 		public function bovineRace():String
@@ -7414,6 +7425,13 @@ package classes {
 			if (race.indexOf("leithan") != -1 || race.indexOf("taur") != -1) return race;
 			if (race.indexOf("-morph") != -1) race = race.replace("-morph", "");
 			return race + "-taur";
+		}
+		public function mlpRace():String
+		{
+			if (hasHorns() && hasWings()) return "alicorn";
+			if (hasHorns() && horns == 1) return "unicorn";
+			if (hasWings()) return "pegasus pony";
+			return "terran pony";
 		}
 		
 		public function isHuman():Boolean
@@ -7471,6 +7489,17 @@ package classes {
 			if (armType == GLOBAL.TYPE_KUITAN) counter++;
 			if (legType == GLOBAL.TYPE_KUITAN) counter++;
 			if (hasCock(GLOBAL.TYPE_KUITAN)) counter++;
+			return counter;
+		}
+		public function gooScore():int
+		{
+			var counter:int = 0;
+			if (isGoo()) counter += 2;
+			if (hairType == GLOBAL.HAIR_TYPE_GOO) counter++;
+			if (hasStatusEffect("Goo Vent")) counter++;
+			if (hasStatusEffect("Goo Crotch")) counter++;
+			if (skinType == GLOBAL.SKIN_TYPE_GOO && counter > 0) counter++;
+			if (tongueType == GLOBAL.TYPE_GOOEY) counter++;
 			return counter;
 		}
 		public function cowScore():int
@@ -7584,7 +7613,7 @@ package classes {
 			var counter: int = 0;
 			if (isNaga()) counter += 2;
 			if (faceType == GLOBAL.TYPE_NALEEN_FACE) counter++;
-			if (skinType == GLOBAL.SKIN_TYPE_FUR && counter > 0) counter++;
+			if (counter > 0 && skinType == GLOBAL.SKIN_TYPE_FUR) counter++;
 			if (armType == GLOBAL.TYPE_FELINE && hasArmFlag(GLOBAL.FLAG_FURRED) && counter > 0) counter++;
 			if (eyeType == GLOBAL.TYPE_NAGA && faceType == GLOBAL.TYPE_NALEEN_FACE) counter++;
 			if (hasGenitals() && hasStatusEffect("Genital Slit")) counter++;
@@ -7614,7 +7643,7 @@ package classes {
 			if (faceType == GLOBAL.TYPE_PANDA) counter++;
 			if (armType == GLOBAL.TYPE_PANDA) counter++;
 			if (legType == GLOBAL.TYPE_PANDA) counter++;
-			if (thickness >= 65 && counter > 0) counter++;
+			if (counter > 0 && thickness >= 65) counter++;
 			//if (cockTotal(GLOBAL.TYPE_PANDA) > 0) counter++;
 			//if (vaginaTotal(GLOBAL.TYPE_PANDA) > 0) counter++;
 			return counter;
