@@ -6806,7 +6806,7 @@ package classes {
 		public function hasLivingHair(): Boolean {
 			if (hasHair())
 			{
-				if (hairType == GLOBAL.HAIR_TYPE_TENTACLES) return true;
+				if (InCollection(hairType, GLOBAL.HAIR_TYPE_TENTACLES, GLOBAL.HAIR_TYPE_GOO)) return true;
 			}
 			return false;
 		}
