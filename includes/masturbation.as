@@ -3153,8 +3153,13 @@ public function shipShowerFappening(scene:String = ""):void
 	
 	var n:int = 0;
 	
+	// ButtFuck
+	if (scene == "ButtFuck")
+	{
+		/* 9999 - Probably needs one here... */
+	}
 	// Jerk Off
-	if (scene == "Jerk Off")
+	else if (scene == "Jerk Off")
 	{
 		author("Couch");
 		
@@ -3251,7 +3256,7 @@ public function shipShowerFappening(scene:String = ""):void
 		pc.shower();
 	}
 	// Nevermind
-	else (scene == "Nevermind")
+	else if (scene == "Nevermind")
 	{
 		author("Couch");
 		output("On second thought, you’d rather save your strength for someone more appropriate. You wait for");
