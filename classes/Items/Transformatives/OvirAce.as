@@ -90,7 +90,7 @@ package classes.Items.Transformatives
 						{
 							// 9999 - prob vary more based on beardlength but whatevs
 							output(" You take stock of your visage with delicate touches, noticing a lack of the bristly, abrasive facial hair that used to adorn your face.");
-							target.beardLength = 0;
+							target.removeBeard();
 						}
 					}
 					//If androgynous/feminine face
