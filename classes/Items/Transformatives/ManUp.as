@@ -481,7 +481,7 @@
 					else if(target.beardLength < 0.5)
 					{
 						target.beardLength = 0.5;
-						kGAMECLASS.output("\n\nWithout touching it, you can feel your [pc.beard] physically grow on your face. Reflexily, you brush your hand across it and can confirm that <b>it's now a half-inch long beard.</b>");
+						kGAMECLASS.output("\n\nWithout touching it, you can feel your [pc.beard] physically grow on your face. Reflexively, you brush your hand across it and can confirm that <b>it's now a half-inch long beard.</b>");
 					}
 					// For whole numbers.
 					else if(target.beardLength < 1)
@@ -498,9 +498,12 @@
 					}
 					if (target.beardStyle != "null")
 					{
-						kGAMECLASS.output(" It seems the growth was not as neat as it should be... You'll have to get it ");
-						if (target.beardStyle != 0) kGAMECLASS.output("re-");
-						kGAMECLASS.output("styled somewhere if you want it to look a certain way...");
+						if(target.beardLength >= 1)
+						{
+							kGAMECLASS.output(" It seems the growth was not as neat as it should be... You'll have to get it ");
+							if (target.beardStyle != 0) kGAMECLASS.output("re-");
+							kGAMECLASS.output("styled somewhere if you want it to look a certain way...");
+						}
 						target.beardStyle = "null";
 					}
 				}
