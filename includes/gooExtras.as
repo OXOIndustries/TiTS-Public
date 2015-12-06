@@ -680,7 +680,7 @@ public function nutShrinkCost():Number
 	//Only get 75% back!
 	trueCost = Math.round(trueCost * .75);
 	trace("NUTSHRINK PRE VOL: " + volume + " POSTVOL: " + newVolume + " TRUCOST: " + trueCost);
-	return trueCost;
+	return (trueCost * pc.balls);
 }
 
 public function nutShrinkGo():void
@@ -713,7 +713,7 @@ public function nutExpansionCost():Number
 	var trueCost:int = newVolume - volume;
 	if(trueCost < 10) trueCost = 10;
 	trace("NUTGROW PRE VOL: " + volume + " POSTVOL: " + newVolume + " TRUCOST: " + trueCost);
-	return trueCost;
+	return (trueCost * pc.balls);
 }
 
 public function expandoNuts():void
