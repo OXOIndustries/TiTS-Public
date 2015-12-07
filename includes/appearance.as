@@ -2,6 +2,8 @@
 import classes.Creature;
 public function pcAppearance(e:MouseEvent = null):void 
 {
+	if (pc.short.length == 0) return;
+	
 	if (!userInterface.appearanceButton.isActive)
 	{
 		return;
