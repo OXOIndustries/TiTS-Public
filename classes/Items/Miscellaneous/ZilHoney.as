@@ -60,22 +60,29 @@
 		{
 			
 			var healing:int = 35;
+			if(target.energy() + healing > target.energyMax())
+			{
+				healing = target.energyMax() - target.energy();
+			}
 			if(target is PlayerCharacter)
 			{
 				kGAMECLASS.clearOutput();
 				//Consume:
 				kGAMECLASS.output("You knock back the gooey, sweet-tasting stuff with ease, finding it more than palatable to your tongue. It tingles pleasantly on your taste buds as it invigorates you.");
+				if(healing > 0) kGAMECLASS.output(" You even feel like you could go longer before needing to sleep. Is there caffeine in this stuff? (<b>+" + healing + " Energy</b>)");
 				target.energy(healing);
-				kGAMECLASS.output(" You even feel like you could go longer before needing to sleep. Is there caffeine in this stuff?");
-				kGAMECLASS.output(" (<b>+" + healing + "</b>)\n");
+				kGAMECLASS.output("\n");
 			}
 			else
 			{
 				if(kGAMECLASS.inCombat()) kGAMECLASS.output("\n");
 				else kGAMECLASS.clearOutput();
-				kGAMECLASS.output(target.capitalA + target.short + " opens a vial of honey and drinks it, getting a quick energy boost.");
+				kGAMECLASS.output(target.capitalA + target.short + " opens a vial of honey and drinks it");
+				if(healing > 0) kGAMECLASS.output(", getting a quick energy boost. (<b>+" + healing + " Energy</b>)");
+				else kGAMECLASS.output(" to no effect.");
 				target.energy(healing);
-				kGAMECLASS.output(" (<b>+" + healing + "</b>)\n");
+				kGAMECLASS.output("\n");
+				if(kGAMECLASS.inCombat()) kGAMECLASS.output("\n");
 			}
 			return false;
 		}
