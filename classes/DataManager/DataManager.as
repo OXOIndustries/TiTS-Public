@@ -423,6 +423,7 @@
 			kGAMECLASS.userInterface.currentPCNotes = kGAMECLASS.userInterface.textInput.text;
 			
 			kGAMECLASS.removeInput();
+			kGAMECLASS.userInterface.mainButtonsOnly();
 			
 			if(kGAMECLASS.hasIllegalInput(kGAMECLASS.userInterface.currentPCNotes))
 			{
