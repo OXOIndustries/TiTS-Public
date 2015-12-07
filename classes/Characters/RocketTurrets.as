@@ -10,6 +10,13 @@
 	import classes.rand;
 	import classes.GameData.CodexManager;
 	
+	import classes.GameData.CombatManager;
+	import classes.GameData.CombatAttacks;
+	
+	import classes.Engine.Combat.*;
+	import classes.Engine.Combat.DamageTypes.*;
+	import classes.Engine.Interfaces.output;
+	
 	//**************************************************
 	//Listed as chars["AUTOTURRETS"] in code elsewhere!
 	//**************************************************
@@ -160,6 +167,42 @@
 			//combatGunTurrets.sexualPreferences.setRandomPrefs(2 + rand(3));
 			
 			kGAMECLASS.foes.push(combatGunTurrets);
+		}
+		
+		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
+		{
+			var target:Creature = selectTarget(hostileCreatures);
+			if (target == null) return;
+			
+			if(shields() == 0 && rand(2) == 0 && !hasStatusEffect("Shields Refilled")) shieldsUp(target);
+			else rocketPodRocketAttk();
+		}
+		
+		private function rocketPodRocketAttk():void
+		{
+			//Count as one HEAVY physical attack, but has a low to-hit chance.
+			output("One of the micro-rocket turrets takes a bead on you, its laser targeter dancing across your chest for a moment before a loud <i>THUMP</i> echoes across the rift and a tiny warhead races toward you!");
+			//Triple normal miss chance.
+			if(rangedCombatMiss(this, target) || rangedCombatMiss(this, target) || rangedCombatMiss(this, target))
+			{
+				output("\n\nYou tuck and roll under the rocket, dodging the blast!");
+			}
+			else
+			{
+				output("\n\nYou jump back just in time as the rocket slams into the walkway, blowing you off your [pc.feet] and sending you rocketing back! You slam into some crates, breaking your fall (and nearly your back). Lucky you still have all your limbs!");
+				
+				var damage:TypeCollection = new TypeCollection( { burning: 15 } );
+				damageRand(damage, 15);
+				applyDamage(damage, this, target);
+			}
+		}
+		
+		private function shieldsUp():void
+		{
+			//1 time per encounter, re-charges 50% of shields once they drop.
+			output("The rocket pods beep noisily at each other, stopping their barrage for a few moments. As they do so, you see the tell-tale flicker of a shield barrier going up. Shit!");
+			shields(Math.round(shieldsMax()/2));
+			createStatusEffect("Shields Refilled",0,0,0,0);
 		}
 	}
 }

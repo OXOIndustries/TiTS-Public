@@ -788,47 +788,6 @@ public function sneakByZeTurrets():void
 	addButton(0,"Next",mainGameMenu);
 }
 
-//MAIN SCREEN TURN ON:
-//You're fighting a battery of rocket pods! (Level: 4)
-public function rocketPodAI():void
-{
-	author("Savin");
-	showName("ROCKET\nPODS");
-	if(foes[0].shields() == 0 && rand(2) == 0 && !foes[0].hasStatusEffect("Shields Refilled")) shieldsUp();
-	else rocketPodRocketAttk();
-}
-
-//Primary Attack: ROCKET (duh)
-public function rocketPodRocketAttk():void
-{
-	//Count as one HEAVY physical attack, but has a low to-hit chance.
-	output("One of the micro-rocket turrets takes a bead on you, its laser targeter dancing across your chest for a moment before a loud <i>THUMP</i> echoes across the rift and a tiny warhead races toward you!");
-	//Triple normal miss chance.
-	if(rangedCombatMiss(foes[0],pc) || rangedCombatMiss(foes[0],pc) || rangedCombatMiss(foes[0],pc))
-	{
-		output("\n\nYou tuck and roll under the rocket, dodging the blast!");
-	}
-	else
-	{
-		output("\n\nYou jump back just in time as the rocket slams into the walkway, blowing you off your [pc.feet] and sending you rocketing back! You slam into some crates, breaking your fall (and nearly your back). Lucky you still have all your limbs!");
-		
-		var damage:TypeCollection = new TypeCollection( { burning: 15 } );
-		damageRand(damage, 15);
-		applyDamage(damage, foes[0], pc);
-	}
-	processCombat();
-}
-
-//Ability 2: SHIELDS UP!
-public function shieldsUp():void
-{
-	//1 time per encounter, re-charges 50% of shields once they drop.
-	output("The rocket pods beep noisily at each other, stopping their barrage for a few moments. As they do so, you see the tell-tale flicker of a shield barrier going up. Shit!");
-	foes[0].shields(Math.round(foes[0].shieldsMax()/2));
-	foes[0].createStatusEffect("Shields Refilled",0,0,0,0);
-	processCombat();
-}
-
 //PC Victory vs Rocket Pods
 public function pcBeatsRocketPods():void
 {
