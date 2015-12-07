@@ -72,7 +72,6 @@
 				if(kGAMECLASS.inCombat()) kGAMECLASS.output("\n");
 				else kGAMECLASS.clearOutput();
 				npcUsed(target, usingCreature);
-				if(kGAMECLASS.inCombat()) kGAMECLASS.output("\n");
 			}
 			else
 			{
