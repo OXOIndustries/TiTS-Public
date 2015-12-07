@@ -58,7 +58,6 @@
 		//METHOD ACTING!
 		override public function useFunction(target:Creature, usingCreature:Creature = null):Boolean
 		{
-			
 			var healing:int = 35;
 			if(target.energy() + healing > target.energyMax())
 			{
@@ -82,7 +81,6 @@
 				else kGAMECLASS.output(" to no effect.");
 				target.energy(healing);
 				kGAMECLASS.output("\n");
-				if(kGAMECLASS.inCombat()) kGAMECLASS.output("\n");
 			}
 			return false;
 		}
