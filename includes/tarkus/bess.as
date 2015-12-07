@@ -6487,7 +6487,7 @@ public function bessEvent3Yes():void
 	
 	output("\n\nAfter [bess.hisHer] lengthy explanation [bess.name] looks at you with pleading [bess.eyeColor] eyes, [bess.hisHer] "+ bess.mf("handsome", "melodic") +" voice wavering. <i>“... What then should I do? Which directives should I violate and disregard?”</i>");
 	
-	output("\n\nThis feels like a pretty pivotal moment. Whatever you say will probably affect how [bess.heShe] acts from hereon in. Did you want [bess.himHer] to remain as a simple sex-bot, or do you want to encourage [bess.himHer] to move beyond [bess.hisHer] programming?");
+	output("\n\nThis feels like a pretty pivotal moment. Whatever you say will probably affect how [bess.heShe] acts from here on in. Did you want [bess.himHer] to remain as a simple sex-bot, or do you want to encourage [bess.himHer] to move beyond [bess.hisHer] programming?");
 
 	//[Stick To Sex] [More Than Sex] [Find Your Own Path]
 	clearMenu();
@@ -11671,7 +11671,7 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 		
 		output("\n\nThe first thing you do is pull out [bess.hisHer] collar and snap it around [bess.hisHer] neck. You can see the submissive switch click in [bess.hisHer] head the very <i>second</i> you click it in place, as well as the longing look in [bess.hisHer] [bess.eyeColor] eyes.");
 		
-		output("\n\nAfter you have fastened [bess.hisHer] collar you inspect [bess.himHer] slowly, feeling your dominance over this silver skinned"+ bess.mf("sissy", "strumpet") +". The smallest smile passes over your lips and [bess.heShe] trembles, trying to keep perfectly still - probably wondering what instructions you’re going to give [bess.himHer] today.");
+		output("\n\nAfter you have fastened [bess.hisHer] collar you inspect [bess.himHer] slowly, feeling your dominance over this silver skinned "+ bess.mf("sissy", "strumpet") +". The smallest smile passes over your lips and [bess.heShe] trembles, trying to keep perfectly still - probably wondering what instructions you’re going to give [bess.himHer] today.");
 		
 		output("\n\n<i>“"+ StringUtil.capitalize(bessSexName()) +"! I am going to give you the immeasurable honor of fucking my "+ (bTargetVag ? "[pc.pussy "+ vagIdx +"]" : "[pc.ass]") +" from behind. If you fail to pleasure me, you will be punished - understood?”</i> You inform [bess.himHer] in a no nonsense voice");
 		if (!pc.isNude()) output(", at the same time stripping off your gear.");
@@ -11861,7 +11861,7 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 			output(" turn around. You then press your [pc.ass] against [bess.hisHers], treating [bess.name] like a");
 			if (bess.cocks[0].cType == GLOBAL.TYPE_VULPINE) output(" fox");
 			else if (bess.cocks[0].cType == GLOBAL.TYPE_CANINE) output(" bitch");
-			else output(" animal");
+			else output("n animal");
 			output(" in heat.");
 		
 			output("\n\n[bess.name]’s face is flushed as [bess.heShe] lets out");
@@ -11882,7 +11882,7 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 			else output(" knotted");
 			output(" dick so much!”</i> You tease [bess.name] as you tug away from [bess.himHer], forcing [bess.himHer] to follow you and show just how much [bess.heShe] is your little breeding bitch right now. [bess.HisHer] face burns with embarrassment and arousal, as [bess.heShe] is unable to remove [bess.hisHer] swollen knot.");
 			
-			output("\n\nFor a full half hour [bess.hisHer] [bess.hisHer] hot, sticky cum pours inside of your");
+			output("\n\nFor a full half hour [bess.hisHer] hot, sticky cum pours inside of your");
 			if (bTargetVag) output(" hungry uterus");
 			else output(" naughty ass");
 			output(". Finally, [bess.hisHer] knot deflates and [bess.heShe] pulls free with shaky legs. As soon as [bess.heShe] does, a good deal of [bess.hisHer] sticky spunk gushes out, though far more stays packed inside of your");
