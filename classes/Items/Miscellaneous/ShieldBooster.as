@@ -65,7 +65,6 @@
 					if(kGAMECLASS.inCombat()) kGAMECLASS.output("\n");
 					else kGAMECLASS.clearOutput();
 					kGAMECLASS.output(targetCreature.capitalA + targetCreature.short + " can't use a shield booster without a shield generator!\n");
-					if(kGAMECLASS.inCombat()) kGAMECLASS.output("\n");
 				}
 				return false;
 			}
@@ -82,7 +81,6 @@
 					if(kGAMECLASS.inCombat()) kGAMECLASS.output("\n");
 					else kGAMECLASS.clearOutput();
 					kGAMECLASS.output(targetCreature.capitalA + targetCreature.short + " pulls out a shield booster, but quickly puts it back.\n");
-					if(kGAMECLASS.inCombat()) kGAMECLASS.output("\n");
 				}
 				return false;
 			}
@@ -99,7 +97,6 @@
 					if(kGAMECLASS.inCombat()) kGAMECLASS.output("\n");
 					else kGAMECLASS.clearOutput();
 					kGAMECLASS.output(targetCreature.capitalA + targetCreature.short + " cannot use another shield booster--doing so will risk destroying " + targetCreature.mfn("his","her","its") + " shield generator.\n");
-					if(kGAMECLASS.inCombat()) kGAMECLASS.output("\n");
 				}
 				return false;
 			}
@@ -117,7 +114,6 @@
 					if(kGAMECLASS.inCombat()) kGAMECLASS.output("\n");
 					else kGAMECLASS.clearOutput();
 					npcUsed(targetCreature, usingCreature);
-					if(kGAMECLASS.inCombat()) kGAMECLASS.output("\n");
 				}
 				else
 				{
