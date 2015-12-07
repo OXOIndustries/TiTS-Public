@@ -9,6 +9,11 @@
 	import classes.kGAMECLASS;
 	import classes.rand;
 	import classes.GameData.CodexManager;
+	import classes.GameData.CombatManager;
+	import classes.GameData.CombatAttacks;
+	import classes.Engine.Interfaces.output;
+	import classes.Engine.Combat.*;
+	import classes.Engine.Combat.DamageTypes.*;
 	
 	public class LapinaraFemale extends Creature
 	{
@@ -208,6 +213,78 @@
 				combatLapinaraFemale.inventory.push(new RaskvelWrench());
 			}*/			
 			kGAMECLASS.foes.push(combatLapinaraFemale);
+		}
+		
+		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
+		{
+			var target:Creature = selectTarget(hostileCreatures);
+			if (target == null) return;
+			
+			if(rand(3) == 0) lapinaraHornCharge(target);
+			else if(rand(2) == 0) lapinaraFalconPunch();
+			else lapinaraBite();
+		}
+		
+		private function lapinaraHornCharge(target:Creature):void
+		{
+			if(combatMiss(this, target)) output("The lapinara charges at you. Thanks to your evasive skills, you manage to sidestep her attack. She stumbles slightly as she misses her target.");
+	//Hit (shield is down): 
+			else
+			{
+				var damage:TypeCollection = meleeDamage();
+				damage.add(8);
+				damageRand(damage, 15);
+				
+				if(target.shields() > 0) 
+				{
+					output("The lapinara charges at you, ramming your shield.");
+					applyDamage(damage, this, target);
+				}
+				else
+				{
+					//Hit (backfire, rare; requires armor):
+					if (target.armor.defense > 0 && rand(3) == 0) 
+					{
+						output("The lapinara charges at you, ramming you. However, thanks to your protective armor, she is instead knocked aback, stunned.");
+						createStatusEffect("Stunned",1,0,0,0,false,"Stun","Cannot act for a turn.",true,0);
+					}
+					else 
+					{
+						output("The lapinara charges at you, ramming you, the painful impact briefly staggering you.");
+						applyDamage(damage, this, target);
+					}
+				}
+			}
+		}
+		
+		private function lapinaraFalconPunch(target:Creature):void
+		{
+			if(combatMiss(this, target)) output("The lapinara attempts to swing at you, but you deftly dodge and deflect every punch she sends your way.");
+			else {
+				if(target.shields() > 0) output("The lapinara punches, aiming for your gut, but instead connecting with your shield.");
+				else output("The lapinara delivers a swift blow to your gut, briefly doubling you over. Ow.");
+				
+				var damage:TypeCollection = meleeDamage();
+				damageRand(damage, 15);
+				applyDamage(damage, this, target);
+			}
+		}
+		
+		private function lapinaraBite(target:Creature):void
+		{
+			var damage:TypeCollection = new TypeCollection( { kinetic: 5 + (physique() / 2) }, DamageFlag.PENETRATING);
+	damageRand(damage, 15);
+	
+			//Dodge: 
+			if(combatMiss(this, target)) output("The lapinara lunges at you. Thanks to your evasive skills, you manage to sidestep her attack. She stumbles slightly as she misses her target.");
+			else
+			{
+				//Hit (shield is up): 
+				if(target.shields() > 0) output("The lapinara lunges forward, attempting to bite you. Instead, her powerful teeth connect with your shield. She jumps back, rubbing her mouth in pain.");
+				//Hit (shield is down):
+				else output("The lapinara lunges forward, grabbing ahold of your arm and painfully sinking her teeth into your flesh.");
+				applyDamage(damage, this, target);
+			}
 		}
 	}
 }
