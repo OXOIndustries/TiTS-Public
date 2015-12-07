@@ -792,7 +792,6 @@ public function showerMenu():void {
 	clearOutput();
 	output("You find yourself in the ship’s shower room. What would you like to do?");
 	clearMenu();
-	
 	addButton(0, "Shower", showerOptions, 0, "Shower", "Take a shower and wash off any sweat or grime you might have.");
 	if (pc.lust() >= 33 && crew(true) > 0) addButton(1, "Sex", showerOptions, 1, "Sex", "Have some shower sex with a crew member.");
 	addButton(14, "Back", mainGameMenu);
