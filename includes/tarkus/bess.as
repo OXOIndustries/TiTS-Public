@@ -820,6 +820,7 @@ public function handBessOverToAuthorities():void
 	pc.credits += 2500;
 	flags["BESS_GIVEN_TO_UGC"] = 1;
 	flags["BESS_DISABLED"] = 1;
+	flags["BESS_LOCATION"] = BESS_DISABLED;
 	processTime(2040);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -854,6 +855,7 @@ public function dumpTheBessBot():void
 	currentLocation = shipLocation;
 	flags["BESS_DISABLED"] = 1;
 	flags["BESS_DUMPED_INTO_SPAAAAAAACE"] = 1;
+	flags["BESS_LOCATION"] = BESS_DISABLED;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
