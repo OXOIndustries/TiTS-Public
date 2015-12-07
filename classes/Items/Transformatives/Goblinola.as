@@ -705,7 +705,6 @@ package classes.Items.Transformatives
 				else output(" but to no effect.");
 				target.HP(healing);
 				output("\n");
-				if(kGAMECLASS.inCombat()) output("\n");
 			}
 			return false;
 		}
