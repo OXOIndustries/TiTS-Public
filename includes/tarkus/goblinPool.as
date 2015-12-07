@@ -225,8 +225,9 @@ public function arbetzMainInitialOptions(response:int = 0):void
 		else
 		{
 			output("You say you saw the place, and were hoping you might be able to pick up a few supplies here.");
-			output("\n\n<i>“Does this look like a pharmacy to you?”</i> snaps the gabilani. <i>“We don’t give medical attention to our clients in 90% of non-lethal circs, so why do you think we’d give it to just any scruff-bag traveler who decided to stroll in? If you’re looking for a hand-out you’re talking to the wrong bloody people, so kindly push off.”</i>");
 		}
+		
+		output("\n\n<i>“Does this look like a pharmacy to you?”</i> snaps the gabilani. <i>“We don’t give medical attention to our clients in 90% of non-lethal circs, so why do you think we’d give it to just any scruff-bag traveler who decided to stroll in? If you’re looking for a hand-out you’re talking to the wrong bloody people, so kindly push off.”</i>");
 		
 		processTime(2);
 		
@@ -1128,7 +1129,7 @@ public function arbetzSexScenes(response:String = ""):void
 		output("You’ve had just about enough of this gabilani’s attitude. You feel something drop away from you as, without any warning, you");
 		if (pc.hasLegs()) output(" step");
 		else output(" move");
-		output(" behind the agency’s desk and push your hand straight between Una’s soft, turquoise thighs, finding the outline of her warm, pudgy delta under her panties and stroking it through the fabric prospectively. You’re operating on pure, base instinct, and how easily all social grace evaporated from the situation with one shove of your hand makes your heart beat faster, heat surging down to your [pc.groin]. The self-possessed smirk has disappeared from her round face, and she stares at you mouth wide open, not moving. Even the boy sat next to her looks slightly shocked.");
+		output(" behind the agency’s desk and push your hand straight between Una’s soft, turquoise thighs, finding the outline of her warm, pudgy delta under her panties and stroking it through the fabric prospectively. You’re operating on pure, base instinct, and how easily all social grace evaporated from the situation with one shove of your hand that makes your heart beat faster, heat surging down to your [pc.groin]. The self-possessed smirk has disappeared from her round face, and she stares at you mouth wide open, not moving. Even the boy sat next to her looks slightly shocked.");
 		output("\n\n<i>“What - who - do you think you are,”</i> Una breathes.");
 		output("\n\n<i>“I’m the " + pc.mf("guy", "girl") + " who’s up to [pc.hisHer] wrist in disgraced fat-mouthed slut snatch,”</i> you reply, looking her in the eye levelly. You slip your [pc.fingers] briskly beyond her underwear and curl them into her heat, finding her wet hole and sliding inside. <i>“What are you going to do about it?”</i>");
 		output("\n\n<i>“Nobody talks to me like that,”</i> Una says. Purple spots have appeared on her cheeks, but her tone is low and stunned, and still she doesn’t move. <i>“I will have you killed. You don’t think I can’t or won’t? I’ll scrap your ship. I’ll have your crew turning tricks for me, just to make the money to get off this hellhole.”</i>");
