@@ -1184,7 +1184,11 @@
 		
 		public function messengerOn():void
 		{
-			_leftSideBar.mailsButton.Activate();
+			if (!(classes.kGAMECLASS.pc as PlayerCharacter) || (classes.kGAMECLASS.pc as PlayerCharacter).hasStatusEffect("In Creation"))
+			{
+				_leftSideBar.mailsButton.Deactivate();
+			}
+			else _leftSideBar.mailsButton.Activate();
 		}
 		
 		public function appearanceOn():void 
