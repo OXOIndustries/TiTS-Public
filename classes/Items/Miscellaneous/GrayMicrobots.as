@@ -65,7 +65,6 @@
 					if(kGAMECLASS.inCombat()) kGAMECLASS.output("\n");
 					else kGAMECLASS.clearOutput();
 					kGAMECLASS.output(targetCreature.capitalA + targetCreature.short + " has already used a vial of gray goo during this fight so drinking it again could be dangerous!\n");
-					if(kGAMECLASS.inCombat()) kGAMECLASS.output("\n");
 				}
 				return false;
 			}
@@ -83,7 +82,6 @@
 					if(kGAMECLASS.inCombat()) kGAMECLASS.output("\n");
 					else kGAMECLASS.clearOutput();
 					npcUsed(targetCreature, usingCreature);
-					if(kGAMECLASS.inCombat()) kGAMECLASS.output("\n");
 				}
 				else
 				{
