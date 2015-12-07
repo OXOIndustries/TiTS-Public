@@ -82,7 +82,6 @@
 				else kGAMECLASS.output(" to no effect.");
 				target.energy(healing);
 				kGAMECLASS.output("\n");
-				if(kGAMECLASS.inCombat()) kGAMECLASS.output("\n");
 			}
 			return false;
 		}
