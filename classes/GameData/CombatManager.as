@@ -32,6 +32,10 @@ package classes.GameData
 		{
 			return _friendlyCharacters;
 		}
+		public static function addFriendlyCreature(newC:Creature):void
+		{
+			combatContainer.addFriendlyCreature(newC);
+		}
 		
 		private static var _hostileCharacters:Array;
 		public static function setHostileCharacters(... args):void
@@ -43,6 +47,10 @@ package classes.GameData
 		public static function getHostileCharacters():Array
 		{
 			return _hostileCharacters;
+		}
+		public static function addHostileCreature(newC:Creature):void
+		{
+			combatContainer.addHostileCreature(newC);
 		}
 		
 		public static const SPECIFIC_TARGET_DEFEATED:String = "target_defeat";

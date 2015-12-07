@@ -2,8 +2,6 @@
 {	
 	trace("AI CALL");
 	//Paralyze stops turns! AHHHH!
-	else if (aggressor is PhoenixPirates) phoenixPiratesAI();
-	else if (aggressor is GunTurrets) tamtamtamtamtamtamAI();
 	else if (aggressor is RocketTurrets) rocketPodAI();
 	else if (aggressor is CaptainKhorganMech) khorganSuitAI();
 	else if (aggressor is CaptainKhorgan) actualKhorganAI();
