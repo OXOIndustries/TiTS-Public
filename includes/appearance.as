@@ -49,7 +49,7 @@ public function appearance(target:Creature):void {
 		if(target.isNude() || target.armor is EmptySlot) output2(" not wearing a single scrap of armor,");
 		else output2(" wearing " + target.armor.description + ",");
 		if(target.isNude() || target.lowerUndergarment is EmptySlot) output2(" going commando down south,");
-		else output2(" using " + target.lowerUndergarment.longName + " for underwear,");
+		else output2(" using " + target.lowerUndergarment.description + " for underwear,");
 		if(target.isNude() || target.upperUndergarment is EmptySlot) output2(" and letting your torso breathe, unrestricted by any undertop.");
 		else output2(" and girding your upper body with " + target.upperUndergarment.description + ".");
 		if(!target.isNude() && ((target.isChestExposed() && target.hasBreasts()) || target.isCrotchExposed() || target.isAssExposed()))
@@ -852,7 +852,11 @@ public function appearance(target:Creature):void {
 		}
 		else if(target.legType == GLOBAL.TYPE_GOOEY) 
 		{
-			if(target.legCount == 1) output2(" In place of legs you have a shifting amorphous blob. Thankfully it's quite easy to propel yourself around on. The lowest portions of your " + target.armor.longName + " float around inside you, bringing you no discomfort.");
+			if(target.legCount == 1)
+			{
+				output2(" In place of legs you have a shifting amorphous blob. Thankfully it's quite easy to propel yourself around on.");
+				if(target.hasArmor()) output2(" The lowest portions of your " + target.armor.longName + " float around inside you, bringing you no discomfort.");
+			}
 			else output2(" In place of legs you have a shifting, amorphous blob. It splits apart just beneath your genitals into " + num2Text(target.legCount) + " semi-solid limbs.");
 		}
 		else if(target.legType == GLOBAL.TYPE_FELINE) output2(" " + upperCase(num2Text(target.legCount)) + " digitigrade legs grow downwards from your waist, ending in soft, padded cat-paws.");
