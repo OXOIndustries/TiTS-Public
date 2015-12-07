@@ -1,7 +1,12 @@
 ﻿package classes.Characters
 {
-	import classes.Engine.Combat.DamageTypes.TypeCollection;
-	import classes.Engine.Combat.DamageTypes.DamageFlag;
+	import classes.Engine.Combat.DamageTypes.*;
+	import classes.Engine.Combat.*;
+	
+	import classes.GameData.CombatAttacks;
+	import classes.GameData.CombatManager;
+	
+	import classes.Engine.Interfaces.output;
 	
 	import classes.Creature;
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
@@ -194,6 +199,53 @@
 			//combatMachina.setDefaultSexualPreferences();
 			
 			kGAMECLASS.foes.push(combatMachina);
+		}
+		
+		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
+		{
+			var target:Creature = selectTarget(hostileCreatures);
+			if (target == null) return;
+			
+			if (rand(3) <= 1) CombatAttacks.MeleeAttack(this, target);
+			//Electropulse - shielded foes only
+			else if(pc.shields() > 0) electropulseAttack(target);
+			//Flamethrower - unshielded only
+			else flameThrowerAttack(target);
+		}
+		
+		private function falmeThrowerAttack(target:Creature):void
+		{
+			output("A yellow bush within a black bush appears on the Firewall’s screen. It opens its gripper at you, allowing you to momentarily see the hollow nozzle at its centre – and then burning gas shoots out of it, a shockingly hot and blinding plume of exothermic destruction which rushes greedily out towards you.");
+			if (target.armor.shortName != "") output(" You cry out as the fire grabs at your " + pc.armor.longName + ", catching hold and lapping at it lustily.");
+			if(flags["TASTED_THE_FLAME"] == undefined)
+			{
+				flags["TASTED_THE_FLAME"] = 1;
+				output("\n\n<i>“How the hell is that non-lethal?!”</i> you yell at So.");
+				output("\n\n<i>“Pest creatures sometimes encroach on the factory space,”</i> replies the AI, sounding mildly apologetic. <i>“Fire induces a state of extreme submissiveness in them. My algorithms calculate a 71% chance that it will have the same effect on ");
+				if(target.race() != "human") output("genetically modified ");
+				output("humans.”</i>");
+			}
+			if(rand(10) <= 3 && !target.hasStatusEffect("Burning"))
+			{
+				output("\n<b>You are now on fire!</b>");
+				target.createStatusEffect("Burning", rand(2)+2, 0, 0, 0, false, "DefenseDown", "Reduces your defense by five points and causes damage over time.", true, 0);
+
+			}
+			//If already on fire, add another two rounds.
+			else if(target.hasStatusEffect("Burning"))
+			{
+				output("\n<b>The flames licking at your flesh intensify!</b>");
+				target.addStatusValue("Burning",1,2);
+			}
+			var damage:TypeCollection = new TypeCollection( { burning: 5 + rand(5) } );
+			applyDamage(damage, this, target);
+		}
+		
+		private function electropulseAttack(target:Creature):void
+		{
+			output("A stylised lightning bolt within a yellow triangle appears on the Firewall’s screen. Electricity courses and spits up its arm, then connects with a blinding crack to your kinetic shield.");
+			var damage:TypeCollection = new TypeCollection( { electric: 15 + rand(5) } );
+			applyDamage(damage, this, target);
 		}
 	}
 }

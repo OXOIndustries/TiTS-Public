@@ -523,64 +523,6 @@ public function reasonWithHandSoJerkiness():void
 	addButton(14,"Back",backAfterWreckingHanSoSosShit);
 }
 
-//Fight texts
-//Note: Immune to lust.
-
-public function firewallAI():void
-{
-	showBust("FIREWALL_BATTLE");
-	showName("FIGHT:\nFIREWALL");
-	//Standard attack
-	if(rand(3) <= 1) enemyAttack(foes[0]);
-	//Electropulse - shielded foes only
-	else if(pc.shields() > 0) electropulseAttack(pc);
-	//Flamethrower - unshielded only
-	else flameThrowerAttack(pc);
-}
-
-public function electropulseAttack(target:Creature):void
-{
-	if(target == pc)
-	{
-		output("A stylised lightning bolt within a yellow triangle appears on the Firewall’s screen. Electricity courses and spits up its arm, then connects with a blinding crack to your kinetic shield.");
-		var damage:TypeCollection = new TypeCollection( { electric: 15 + rand(5) } );
-		applyDamage(damage, foes[0], pc);
-	}
-	processCombat();
-}
-
-public function flameThrowerAttack(target:Creature):void
-{
-	if(target == pc)
-	{
-		output("A yellow bush within a black bush appears on the Firewall’s screen. It opens its gripper at you, allowing you to momentarily see the hollow nozzle at its centre – and then burning gas shoots out of it, a shockingly hot and blinding plume of exothermic destruction which rushes greedily out towards you.");
-		if(pc.armor.shortName != "") output(" You cry out as the fire grabs at your " + pc.armor.longName + ", catching hold and lapping at it lustily.");
-		if(flags["TASTED_THE_FLAME"] == undefined)
-		{
-			flags["TASTED_THE_FLAME"] = 1;
-			output("\n\n<i>“How the hell is that non-lethal?!”</i> you yell at So.");
-			output("\n\n<i>“Pest creatures sometimes encroach on the factory space,”</i> replies the AI, sounding mildly apologetic. <i>“Fire induces a state of extreme submissiveness in them. My algorithms calculate a 71% chance that it will have the same effect on ");
-			if(pc.race() != "human") output("genetically modified ");
-			output("humans.”</i>");
-		}
-		if(rand(10) <= 3 && !pc.hasStatusEffect("Burning"))
-		{
-			output("\n<b>You are now on fire!</b>");
-			pc.createStatusEffect("Burning", rand(2)+2, 0, 0, 0, false, "DefenseDown", "Reduces your defense by five points and causes damage over time.", true, 0);
-
-		}
-		//If already on fire, add another two rounds.
-		else if(pc.hasStatusEffect("Burning"))
-		{
-			output("\n<b>The flames licking at your flesh intensify!</b>");
-			pc.addStatusValue("Burning",1,2);
-		}
-		var damage:TypeCollection = new TypeCollection( { burning: 5 + rand(5) } );
-		applyDamage(damage, foes[0], pc);
-	}
-	processCombat();
-}
-
 //PC loses
 public function pcLosesToHanSoSosBot():void
 {
