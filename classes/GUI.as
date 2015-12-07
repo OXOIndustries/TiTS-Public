@@ -577,13 +577,10 @@
 		{
 			this.showModule("Options");
 			(_currentModule as OptionsModule).updateDisplay();
+			mainButtonsOnly();
 			clearGhostMenu();
 			
-			if (kGAMECLASS.pc.short.length == 0)
-			{
-				mainButtonsOnly();
-				addGhostButton(4, "Back", showMainMenu);
-			}
+			if (kGAMECLASS.pc.short.length == 0) addGhostButton(4, "Back", showMainMenu);
 			//else addGhostButton(4, "Back", showPrimaryOutput);
 			else addGhostButton(4, "Back", backToPrimaryOutput);
 		}
