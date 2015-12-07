@@ -89,7 +89,6 @@
 				else kGAMECLASS.output(" full stomach in the process.");
 				target.energy(healing);
 				kGAMECLASS.output("\n");
-				if(kGAMECLASS.inCombat()) kGAMECLASS.output("\n");
 			}
 			return false;
 		}
