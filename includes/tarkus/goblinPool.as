@@ -1316,12 +1316,10 @@ public function arbetzPoolJUSTDOIT(sex:int = 0):void
 	else output(" Shivering slightly with the shameful delight of baring your naked flesh");
 	output(", you begin to take off your [pc.gear], piece by piece.");
 	
-	// PC has no undergarment:
-	if (!pc.inSwimwear(true))
+	// PC has no lower undergarment:
+	if (pc.isCrotchGarbed())
 	{
-		output("\n\n<i>“Oh for...”</i> Una’s leer is broken with a snort of hysterical laughter buried into her suited arm");
-		if (pc.isCrotchGarbed()) output(" when you take off your [pc.lowerGarments]");
-		output(". <i>“You never learned that less is more, did you dear?”</i> she sighs once she’s recovered, gazing down at");
+		output("\n\n<i>“Oh for...”</i> Una’s leer is broken with a snort of hysterical laughter buried into her suited arm when you take off your [pc.lowerGarments]. <i>“You never learned that less is more, did you dear?”</i> she sighs once she’s recovered, gazing down at");
 		if (pc.hasCock()) output(" [pc.eachCock]");
 		if (pc.hasCock() && pc.hasVagina()) output(" and");
 		if (pc.hasVagina()) output(" [pc.eachVagina]");
@@ -1336,7 +1334,6 @@ public function arbetzPoolJUSTDOIT(sex:int = 0):void
 		addButton(0, "Next", mainGameMenu);
 		return;
 	}
-	
 	//Otherwise:
 	output("\n\n<i>“Aww yeah,”</i> leers Una, eating up your every move with wide, black eyes.");
 	
