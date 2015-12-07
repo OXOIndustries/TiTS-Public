@@ -28,6 +28,10 @@ package classes.GameData
 			combatContainer.setPlayerGroup(args);
 			_friendlyCharacters = args;
 		}
+		public static function getFriendlyCharacters():Array
+		{
+			return _friendlyCharacters;
+		}
 		
 		private static var _hostileCharacters:Array;
 		public static function setHostileCharacters(... args):void
@@ -35,6 +39,10 @@ package classes.GameData
 			if (args.length == 0) throw new Error("Invalid arguments");
 			combatContainer.setEnemyGroup(args);
 			_hostileCharacters = args;
+		}
+		public static function getHostileCharacters():Array
+		{
+			return _hostileCharacters;
 		}
 		
 		public static const SPECIFIC_TARGET_DEFEATED:String = "target_defeat";

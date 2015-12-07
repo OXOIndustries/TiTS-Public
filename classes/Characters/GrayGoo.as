@@ -1,7 +1,7 @@
 ﻿package classes.Characters
 {
 	import classes.Creature;
-	import classes.Engine.Combat.DamageTypes.TypeCollection;
+	import classes.Engine.Combat.DamageTypes.*;
 	import classes.GLOBAL;
 	import classes.Items.Guns.*
 	import classes.Items.Melee.Fists;
@@ -9,6 +9,10 @@
 	import classes.kGAMECLASS;
 	import classes.rand;
 	import classes.GameData.CodexManager;
+	import classes.Engine.Interfaces.output;
+	import classes.Engine.Combat.*;
+	import classes.GameData.CombatAttacks;
+	import classes.GameData.CombatManager;
 	
 	public class GrayGoo extends Creature
 	{
@@ -201,6 +205,106 @@
 			}*/
 			
 			kGAMECLASS.foes.push(combatGrayGoo);
+		}
+		
+		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
+		{
+			// TODO this will need to be fettled to handle Anno + PC
+			// aka this is one of the initial tester-fights for proper multicombat
+			// most of the attacks will need to be reworded too
+			var target:Creature = selectTarget(hostileCreatures);
+			if (target == null) return;
+			
+			if (target.hasStatusEffect("Grappled")) grayGooRestrain(target);
+			else
+			{
+				if((hasStatusEffect("Blind") || HP() < maxHP()/2) && rand(5) == 0) grayGooReformatting();
+				else
+				{
+					if(CombatManager.getRoundCount() % 4 == 0) grayGooRestrain(target);
+					else if((!hasStatusEffect("Harden") && rand(3) == 0) || (lust() >= 75 && rand(2) == 0)) grayGooHarden(target);
+					else grayGooTeaseAttackGo(target);
+				}
+			}
+		}
+		
+		private function grayGooHarden(target:Creature):void
+		{
+			author("Savin");
+			output("The nano-goo shudders for a moment as her shimmering skin flashes brighter, seeming to become harder and more solid than it has been so far. She giggles and smiles at you, giving you a come-hither crook of her finger as she slinks to the ground and spreads her legs invitingly.");
+			if (hasStatusEffect("Harden"))
+			{
+				createStatusEffect("Harden", 0, 30, 0, 0, false, "DefenseUp", "Defense against all forms of attack has been increased!", true, 0);
+				baseHPResistances.kinetic.resistanceValue += 10.0;
+			}
+			//PC has options here!
+			//[Do Nothing] [Quickie!]
+			target.createStatusEffect("Goo Harden Offer", 0, 0, 0, 0, true, "", "", true, 0);
+		}
+		
+		private function grayGooReformatting():void
+		{
+			author("Savin");
+			//{Restores light HP, removes status effects}
+			clearCombatStatuses();
+			output("You see the goo-girl shudder, her eyes dimming for a moment. You hesitate, waiting to see what she's doing. After a moment, her eyes light up again, a dopey grin on her face. <i>\"All better now!\"</i> she chirps before slotting a hand up her gooey twat. (+15HP and all statuses cleared!)");
+			lust(5);
+			HP(15);
+		}
+		
+		private function grayGooRestrain(target:Creature):void
+		{
+			author("Savin");
+			if(!target.hasStatusEffect("Grappled"))
+			{
+				output("The nano-goo's arms deform into thick tentacles of nanomachines, hurtling toward you! The tendrils wrap around your arms, splaying you out and leaving you to struggle in their surprisingly strong grasp.");
+				target.createStatusEffect("Grappled",0,30,0,0,false,"Constrict","You're trapped in a gray goo's hold!",true,0);
+			}
+			//Turn 1: 
+			else if(target.statusEffectv3("Grappled") == 0)
+			{
+				output("Seeing that you can't quite wriggle free of her grasp, the gray goo giddily closes the distance between you, grabbing a handful of your [pc.butt] and squeezing just enough to make you groan.");
+				target.addStatusValue("Grappled",3,1);
+				applyDamage(new TypeCollection( { tease: 10 + rand(6) } ), this, target, "minimal");
+			}
+			//Turn 2
+			else
+			{
+				//PC has cock: 
+				if(target.hasCock()) output("The goo-girl spins around, planting her big ass right in your crotch. She giggles, giving you a seductive wink over her shoulder before starting to grind against your [pc.cocks], sending shocks of pleasure up your spine!");
+				//PC has tits:
+				else if(target.biggestTitSize() >= 2)
+				{
+					output("The goo-girl presses herself tight against you before mashing her face down into your bust, motor-boating your [pc.chest] as her hands squeeze and massage your [pc.butt], trying to ");
+					if(target.armor.shortName != "") output("work your " + target.armor.longName + " off");
+					else output("pull your cheeks apart to get at your behind");
+					output("!");
+				}
+				//Savin forgets things and I nagged him till he wrote this
+				else
+				{
+					output("The goo-girl wraps herself around you, pinning your");
+					if(target.legCount == 1) output(" [pc.leg] down");
+					else output(" [pc.legs] together");
+					output(" before slithering around and burying her face in your [pc.butt], motorboating your ass-cheeks as her gooey limbs try to peel off your [pc.gear]");
+				}
+				applyDamage(new TypeCollection( { tease: 10 + rand(6) } ), this, target, "minimal");
+			}
+		}
+		
+		private function grayGooTeaseAttackGo(target:Creature):void
+		{
+			author("Savin");
+			if(rand(2) == 0) output("The nano-goo-girl gives you a sultry grin before spinning around, leaning over to give you a good look at her big, full ass. She shakes what her programmers gave her, bouncing up and down as one of her arms turns into a huge horsecock-like dildo and rams it straight inside her, eliciting a gasp of pleasure from her big lips.");
+			else 
+			{
+				output("The gray goo cups her huge tits enticingly, squeezing the over-sized orbs together with her shoulders as one of her arms shapes itself into a big, drooling cockhead. She thrusts between her cleavage, pumping up and down until it blows a thick, gooey load right on her face ");
+				//if PC has a dick: 
+				if(target.hasCock()) output("clearly offering you the chance to do the same");
+				else output("clearly offering to do the same to you!");
+			}
+			applyDamage(new TypeCollection( { tease: 3 } ), this, this, "suppress");
+			applyDamage(new TypeCollection( { tease: 8 + rand(6) } ), this, target, "minimal");
 		}
 	}
 }

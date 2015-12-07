@@ -74,6 +74,24 @@ package classes.GameData
 				}
 			}
 			
+			// grayGooHarden() quickie offer
+			if (pc.hasStatusEffect("Goo Harden Offer"))
+			{
+				pc.removeStatusEffect("Goo Harden Offer");
+				
+				clearMenu();
+				addButton(0, "DoNothing", kGAMECLASS.dontDoAnythingFromHardenAttack);
+				if (pc.hasCock() || pc.hasVagina())
+				{
+					addButton(1, "Quickie!", kGAMECLASS.quickieAfterGooHarden, undefined, "Quickie", "Have a quickie with the gray goo girl, resetting both of your lust scores.");
+				}
+				else
+				{
+					output("\n\nThe poor thing doesn't seem to realize that you're missing the requisite parts.");
+					addDisabledButton(1, "Quickie");
+				}
+			}
+			
 			return false;
 		}
 		
