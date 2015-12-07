@@ -104,7 +104,7 @@ public function purchaseSomethingFromAliss(purchaseItem:*):void
 
 public function getAlissPrice(zeItem:*):Number
 {
-	return Math.round(zeItem.basePrice * 1.5);
+	return Math.round(zeItem.basePrice);
 }
 
 //Plain Bra
