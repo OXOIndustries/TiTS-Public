@@ -1,15 +1,16 @@
 ﻿package classes.Characters
 {
 	import classes.Creature;
-	import classes.Engine.Combat.DamageTypes.TypeCollection;
-	import classes.Engine.Combat.DamageTypes.DamageType;
 	import classes.GLOBAL;
 	import classes.Items.Protection.JoyCoPremiumShield;
 	import classes.kGAMECLASS;
 	import classes.rand;
 	import classes.GameData.CodexManager;
-	import classes.Engine.Combat.DamageTypes.TypeCollection;
-	import classes.Engine.Combat.DamageTypes.DamageFlag;
+	import classes.Engine.Combat.DamageTypes.*;
+	import classes.Engine.Combat.*;
+	import classes.Engine.Interfaces.output;
+	import classes.GameData.CombatAttacks;
+	import classes.GameData.CombatManager;
 	
 	public class CaptainKhorgan extends Creature
 	{
@@ -180,6 +181,7 @@
 
 			this._isLoading = false;
 		}
+		
 		override public function prepForCombat():void
 		{
 			var combatCaptainKhorgan:CaptainKhorgan = this.makeCopy();
@@ -189,6 +191,89 @@
 			combatCaptainKhorgan.sexualPreferences.setRandomPrefs(3 + rand(3));
 			
 			kGAMECLASS.foes.push(combatCaptainKhorgan);
+		}
+		
+		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
+		{
+			if(HP()/HPMax() * 100 < rand(100) - 30) gettingOffOnZePain(target);
+			else if(rand(4) == 0) captainCutlassAttk(target);
+			else if(rand(3) == 0) roundHouseKickFromCapn(target);
+			else if(rand(2) == 0) crotchFaceSmash(target);
+			else motorboatedByASpork(target);
+		}
+		
+		private function gettingOffOnZePain(target):void
+		{
+			output("The captain heaves a heavy, husky sigh, her breathing less hard as it is a throaty panting. Putting some distance between the two of you, she cups one of her huge green tits through the sheer, tattered fabric of her corset, teasing the pert nipple beneath it. It's almost like the more you hurt her, the more excited she gets.");
+			output("\n\nGrinning she says, <i>\"Come on, Steele... still not too late to surrender. If you keep up the foreplay, though, I don't know what I might do...\"</i>");
+			HP(25);
+			lust(5+rand(3));
+			target.lust(2);
+		}
+		
+		private function motorboatedByASpork(target):void
+		{
+			output("You find your guard battered down by a rapid-fire series of sword swipes, only for the captain to grab you by the shoulders and force your head into the gulf of her ample cleavage, burying your [pc.face] between her massive tits.");
+			//Success: 
+			if(target.willpower() + rand(20) + 1 < 25)
+			{
+				output("\n\nYou try to resist, but the sensation of being trapped in a jiggling sea of boobflesh is almost too good to fight back against. You only just keep yourself from grabbing Khorgan's tits and taking out your own mounting lust on those big, perfect green orbs.");
+				applyDamage(new TypeCollection( { tease: 7 + rand(3) } ), this, target, "minimal");
+			}
+			//Failure:
+			else output("\n\nYou shove the captain back before she can get too into rubbing you down with her tits, leaving her almost popping out of her corset as you try and recover your footing.");
+		}
+		
+		private function crotchFaceSmash(target:Creature):void
+		{
+			output("Amid a flurry of sword-swings, Captain Khorgan reaches out, grabbing your head and forcing you to your [pc.knees] with a mighty grunt. You give a gasp as your [pc.face] is thrust into the growing damp patch on her crotch, put face to face with her burning battle-lust.");
+			//Success:
+			if(target.willpower() + rand(20) + 1 < 20)
+			{
+				output("\n\nYou shudder as the potent, earthy smell of the captain's arousal washes over you, smearing across your face through the the fabric of her pants. You try to deny it, but there's a powerful heat starting to spread through your loins before she releases you.");
+				applyDamage(new TypeCollection( { tease: 15 } ), this, target, "minimal");
+			}
+			else 
+			{
+				output("\n\nYou hold your breath, trying not to think too hard around the overzealous thraggen warrior trying to pelvic-thrust you into submission. Finally, with a feral grunt, you shove the captain off and resume your battle stance.");
+				applyDamage(new TypeCollection( { tease: 2 } ), this, target, "minimal");
+			}
+		}
+		
+		private function captainCutlassAttk(target:Creature):void
+		{
+			output("The captain rushes at you, swinging her force cutlass in a brutal arc. You dodge the blow, but find another heading toward you almost immediately, trying to get through your still-staggered guard.");
+			//If Miss:
+			if(combatMiss(this, target)) output(" You deftly parry the strike!");
+			else 
+			{
+				output("\n\nThe strike connects! You wince in pain as the force blade leaves a gloaming cut across your chest.");
+				
+				var damage:TypeCollection = meleeDamage();
+				damageRand(damage, 15);
+				applyDamage(damage, this, target);
+			}
+		}
+		
+		private function roundHouseKickFromCapn(target:Creature):void
+		{
+			output("You parry a few sword-strokes, but find yourself pushed back by the captain's unrelenting flurry of blows. Suddenly, one of her swings turns into a high feint, unbalancing you as she spins into a kick aimed right at your [pc.chest].");
+			//If Miss: 
+			if(combatMiss(this, target)) output("\n\nYou grab the captain's foot a hand's breadth from your chest, stopping her in her tracks. Her face contorts in surprise before you fling her back, leaving her rolling in the dust -- and giving you a moment to breathe.");
+			//If Hit:
+			else
+			{
+				output("\n\nYou grunt as the kick connects, throwing you back ");
+				if(!target.hasStatusEffect("Tripped") && target.reflexes() + rand(20) + 1 < 25)
+				{
+					target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
+					output("onto your back!");
+				}
+				else output(".");
+				output(" Oof!");
+				
+				applyDamage(new TypeCollection( { kinetic: 4 } ), this, target);
+			}
 		}
 	}
 }

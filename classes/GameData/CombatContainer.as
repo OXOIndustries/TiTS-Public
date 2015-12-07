@@ -772,7 +772,7 @@ package classes.GameData
 			output("You choose not to act.\n");
 			if (pc.hasStatusEffect("Grappled"))
 			{
-				if (hasEnemyOfClass(Kaska)) doNothingWhileTittyGrappled();
+				if (hasEnemyOfClass(Kaska)) kGAMECLASS.doNothingWhileTittyGrappled();
 				else if (hasEnemyOfClass(GrayPrime)) grayPrimeFailEscape();
 				else if (hasEnemyOfClass(MaidenVanae) || hasEnemyOfClass(HuntressVanae)) vanaeWaitWhilstGrappled();
 			}
@@ -1133,7 +1133,7 @@ package classes.GameData
 				if(target.hasStatusEffect("Grappled"))
 				{
 					if(hasEnemyOfClass(SexBot)) output("You struggle as hard as you can against the sexbot’s coils but the synthetic fiber is utterly unyielding.");
-					else if (hasEnemyOfClass(Kaska)) failToStruggleKaskaBoobs();
+					else if (hasEnemyOfClass(Kaska)) kGAMECLASS.failToStruggleKaskaBoobs();
 					else if (hasEnemyOfClass(MaidenVanae) || hasEnemyOfClass(HuntressVanae)) output("You wriggle in futility, helpless as she lubes you up with her sensuous strokes. This is serious!");
 					else if (hasEnemyOfClass(GrayPrime)) grayPrimeFailEscape();
 					else if (hasEnemyOfClass(NyreaAlpha) || hasEnemyOfClass(NyreaBeta)) output("Try as you might, struggling against the heavy ropes of the nyrea huntresses net, you just can't find a way out of the net that has you restrained.");
