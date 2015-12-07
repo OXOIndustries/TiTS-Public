@@ -690,7 +690,7 @@ public function nutShrinkGo():void
 	flags["GOO_BIOMASS"] += nutShrinkCost();
 	pc.ballSizeRaw = (pc.ballSizeRaw/Math.PI-1) * Math.PI;
 	trace("FINAL ACTUAL VOL: " + pc.ballVolume());
-	clearMenu();
+	clearGhostMenu();
 	addGhostButton(0,"Next",gooBallsMenu);
 }
 
@@ -742,7 +742,7 @@ public function expandoNuts():void
 	trace("FINAL ACTUAL VOL: " + pc.ballVolume());
 	pc.lust(15);
 	while(pc.lust() < 33) { pc.lust(5); }
-	clearMenu();
+	clearGhostMenu();
 	addGhostButton(0,"Next",gooBallsMenu);
 }
 
@@ -764,7 +764,7 @@ public function tautSackToggle():void
 		flags["GOO_BIOMASS"] += 75;
 		output2("The complex weave of gelatinous lattices in your [pc.sack] collapses right on cue, allowing you to reabsorb most of the reinforcement and let your [pc.balls] swing low and heavy once more. No more tightly-packed testes for you, no sir!");
 	}
-	clearMenu();
+	clearGhostMenu();
 	addGhostButton(0,"Next",gooBallsMenu);
 }
 
@@ -800,7 +800,7 @@ public function removeATesticle():void
 	output2(". Now you can put that biomass to better use...");
 	flags["GOO_BIOMASS"] += nutLossCost();
 	pc.balls--;
-	clearMenu();
+	clearGhostMenu();
 	addGhostButton(0,"Next",gooBallsMenu)
 }
 
@@ -826,7 +826,7 @@ public function growSomeGooBalls():void
 	}
 	flags["GOO_BIOMASS"] -= nutGrowCost();
 	pc.balls++;
-	clearMenu();
+	clearGhostMenu();
 	addGhostButton(0,"Next",gooBallsMenu);
 }
 
