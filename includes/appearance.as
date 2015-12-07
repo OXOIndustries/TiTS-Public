@@ -722,7 +722,7 @@ public function appearance(target:Creature):void {
 			if(target.tailCount <= 1) output2(" A sinuous, almost snake-like tail waves behind you, covered in " + target.skinFurScales() + " like the rest of you except at the tip. There, it terminates in " + indefiniteArticle(target.tailVaginaDescript()) + " that always seems to crave fresh sperm.");
 			else output2(" " + upperCase(num2Text(target.tailCount)) + " sinuous, almost snake-like tails wave behind you, covered in " + target.skinFurScales() + " like the rest of you except at the tip. There, they terminate in " + plural(target.tailVaginaDescript()) + " that always seem to crave fresh sperm.");
 		}
-		else if (target.tailType == GLOBAL.TYPE_PANDA) output2(" A short, soft panda tail sprouts just above your " + target.buttDescript() + ". It just kind of sits there, not doing much beyond being a furry little accent.");
+		else if(target.tailType == GLOBAL.TYPE_PANDA) output2(" A short, soft panda tail sprouts just above your " + target.buttDescript() + ". It just kind of sits there, not doing much beyond being a furry little accent.");
 		else if(target.tailType == GLOBAL.TYPE_RASKVEL) {
 			if(target.tailCount == 1) output2(" A scaled " + target.scaleColor + " tail sprouts just above your " + target.buttDescript() + ", dangling behind you. Softer, lighter scales cover its bottom.");
 			else output2(" " + upperCase(num2Text(target.tailCount)) + " scaled " + target.scaleColor + " tails sprout just above your " + target.buttDescript() + ", their undersides covered with softer, lighter scales.");
@@ -742,9 +742,10 @@ public function appearance(target:Creature):void {
 			if(target.tailCount == 1) output2(" A thick, reptilian tail dangles behind you, swaying as a living counterbalance.");
 			else output2(upperCase(num2Text(target.tailCount)) + " thick, reptilian tails dangle behind you, swaying like living counterbalance. It's difficult to keep the thick appendages from idly squirming their scales against one another.");
 		}
-		else if (target.tailType == GLOBAL.TYPE_COCKVINE)
+		else if(target.tailType == GLOBAL.TYPE_COCKVINE)
 		{
-			output2(" A writhing, sinuous appendage flows after you, bobbing and undulating with the slightest movement of your hips.");
+			if(target.tailCount == 1) output2(" A writhing, sinuous appendage flows after you, bobbing and undulating with the slightest movement of your hips.");
+			else output2(upperCase(num2Text(target.tailCount)) + " writhing, sinuous appendages flow after you, all similar in appearance. Studying one of them, you see that it appears vine-like though very much alive and moving.");
 			
 			// Cockvine
 			if (target.tailGenitalArg == GLOBAL.TYPE_COCKVINE && !target.hasTailFlag(GLOBAL.FLAG_RIBBED))
@@ -790,7 +791,7 @@ public function appearance(target:Creature):void {
 		{
 			output2(" In addition,");
 			if(target.tailCount == 1) output2(" it is an organ");
-			else output2(" they are organs");
+			else output2(" your [target.tails] are organs");
 			output2(" capable of laying eggs into an orifice.");
 		}
 		
@@ -1020,7 +1021,7 @@ public function appearance(target:Creature):void {
 		output2("\n\n");
 		if(target.gills)
 		{
-			output2("A pair of [pc.gills] are growing out just below your neck, spreading out horizontally and draping down your chest. They allow you to stay in the water for quite a long time. ");
+			output2("A pair of [target.gills] are growing out just below your neck, spreading out horizontally and draping down your chest. They allow you to stay in the water for quite a long time. ");
 		}
 		//Chesticles..I mean bewbz.
 		if(target.breastRows.length == 1) {
