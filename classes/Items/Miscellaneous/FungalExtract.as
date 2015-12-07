@@ -66,11 +66,13 @@
 				kGAMECLASS.clearOutput();
 				playerUsed(target, usingCreature);
 			}
-			// Enemy used an item on the PC
+			// Enemy used an item
 			else if (target != kGAMECLASS.pc && usingCreature != kGAMECLASS.pc)
 			{
-				kGAMECLASS.output("\n");
+				if(kGAMECLASS.inCombat()) kGAMECLASS.output("\n");
+				else kGAMECLASS.clearOutput();
 				npcUsed(target, usingCreature);
+				if(kGAMECLASS.inCombat()) kGAMECLASS.output("\n");
 			}
 			else
 			{
@@ -80,16 +82,32 @@
 		}
 		public function playerUsed(targetCreature:Creature, usingCreature:Creature):void
 		{
-			kGAMECLASS.output("You pull out the sludgy fungal extract from your pack and uncork it, instantly scrunching your nose up at the pungent aroma of it. Still, you force yourself to knock it back, draining the vial down and grunting as it burns your throat. You quickly feel a rush of vigor... and a hint of arousal burning your cheeks.\n");
+			var healing:int = 50;
+			if(targetCreature.HP() + healing > targetCreature.HPMax())
+			{
+				healing = targetCreature.HPMax() - targetCreature.HP();
+			}
+			kGAMECLASS.output("You pull out the sludgy fungal extract from your pack and uncork it, instantly scrunching your nose up at the pungent aroma of it. Still, you force yourself to knock it back, draining the vial down and grunting as it burns your throat.");
+			if (healing > 0) kGAMECLASS.output(" You quickly feel a rush of vigor... and a hint of arousal burning your cheeks. (<b>+" + healing + " HP</b>)");
+			else kGAMECLASS.output(" You are hit by a rush of arousal!");
 			targetCreature.lust(20);
-			targetCreature.HP(50);
+			targetCreature.HP(healing);
+			kGAMECLASS.output("\n");
 		}
 		
 		public function npcUsed(targetCreature:Creature, usingCreature:Creature):void
 		{
-			kGAMECLASS.output(usingCreature.capitalA + usingCreature.short + " drinks down the draft, looking a little hornier and more than a little healthier!");
+			var healing:int = 50;
+			if(targetCreature.HP() + healing > targetCreature.HPMax())
+			{
+				healing = targetCreature.HPMax() - targetCreature.HP();
+			}
+			kGAMECLASS.output(usingCreature.capitalA + usingCreature.short + " drinks down the draft, looking a little hornier");
+			if (healing > 0) kGAMECLASS.output(" and more than a little healthier! (<b>+" + healing + " HP</b>)");
+			else kGAMECLASS.output("!");
 			targetCreature.lust(20);
-			targetCreature.HP(50);
+			targetCreature.HP(healing);
+			kGAMECLASS.output("\n");
 		}
 	}
 }
