@@ -792,8 +792,9 @@ public function showerMenu():void {
 	clearOutput();
 	output("You find yourself in the ship’s shower room. What would you like to do?");
 	clearMenu();
-	addButton(0, "Shower", showerOptions, 0);
-	if (pc.lust() >= 33 && crew(true) > 0) addButton(1, "Sex", showerOptions, 1);
+	
+	addButton(0, "Shower", showerOptions, 0, "Shower", "Take a shower and wash off any sweat or grime you might have.");
+	if (pc.lust() >= 33 && crew(true) > 0) addButton(1, "Sex", showerOptions, 1, "Sex", "Have some shower sex with a crew member.");
 	addButton(14, "Back", mainGameMenu);
 }
 
@@ -868,7 +869,7 @@ public function showerOptions(option:int = 0):void {
 			showerSex++;
 		}
 		if (showerSex > 0) output(" Feeling a little turned on, you decide that maybe you should have some fun shower sex with one of your crew. Who do you approach?");
-		else output(" You don’t seem to have any crewmembers onboard who can have shower sex with you at the moment.");
+		else output(" You don’t seem to have any crew members onboard who can have shower sex with you at the moment.");
 		addButton(14, "Back", showerMenu);
 	}
 }
@@ -4208,7 +4209,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				{
 					output2("\n<b>* Celise:</b> Met her");
 					if(flags["GIGACELISE"] == 1)output2(", Gigaform");
-					output2(", Crewmember");
+					output2(", Crew member");
 					if(celiseIsCrew()) output2(" (Onboard Ship)");
 					else if(flags["CELISE_ONBOARD"] == undefined) output2(" (At Tavros Station)");
 					if(flags["TIMES_CELISE_IN_BALLS"] != undefined)
@@ -4289,7 +4290,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["REAHA_SLAVE"] != undefined) output2(", Sex slave");
 					if(reahaRecruited())
 					{
-						output2(", Crewmember");
+						output2(", Crew member");
 						// Reaha Expansion
 						if(reahaIsCrew()) output2(" (Onboard Ship)");
 						else if(flags["REAHA_IS_CREW"] == 2) output2(" (At Tavros Station)");
@@ -4509,7 +4510,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				output2("\n<b>* Yammi:</b> Met her");
 				if(yammiIsOwned())
 				{
-					if(9999 == 0) output2(", Crewmember");
+					if(9999 == 0) output2(", Crew member");
 					else output2(", Own");
 					if(9999 == 0) output2(" (Onboard Ship)");
 				}
@@ -4793,7 +4794,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["ANNOxSYRI_WINCEST"] != undefined) output2(", Sexed her with Anno")
 					if(9999 == 0)
 					{
-						output2(", Crewmember");
+						output2(", Crew member");
 						if(syriIsCrew()) output2(" (Onboard Ship)");
 					}
 					if(flags["BET_AGAINST_SYRI"] != undefined)
@@ -5084,7 +5085,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["ANNO_ASLEEP"] != undefined) output2(", Currently sleeping");
 					if(!annoNotRecruited())
 					{
-						output2(", Crewmember");
+						output2(", Crew member");
 						// Follower stuff
 						if(annoIsCrew()) output2(" (Onboard Ship)");
 						else if(flags["ANNO_CREWMEMBER"] == 2) output2(" (At Tavros Station)");
@@ -5176,7 +5177,7 @@ public function displayEncounterLog(showID:String = "All"):void
 						if(flags["BESS_CUMDUMP"] != undefined) output2(", Cumdump");
 						if(bessIsFollower())
 						{
-							if(flags["BESS_CREW_ROLE"] != undefined) output2(", " + StringUtil.toTitleCase(bessCrewRole()));
+							if(flags["BESS_CREW_ROLE"] != undefined) output2(", " + upperCase(bessCrewRole()));
 							else output2(", Own");
 							if(bessIsCrew()) output2(" (Onboard Ship)");
 							else if(flags["BESS_LOCATION"] == BESS_AT_TAVROS) output2(" (At Tavros Station)");
@@ -5973,7 +5974,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			if(flags["FREED_DANE_FROM_TAIVRA"] != undefined) output2(", Freed him on Myrellion");
 			if(9999 == 0)
 			{
-				output2(", Crewmember");
+				output2(", Crew member");
 				if(daneIsCrew()) output2(" (Onboard Ship)");
 			}
 			if(flags["LOST_TO_DANE_ON_MHENGA"] != undefined || flags["TAURFUCKED_DANE"] != undefined)
