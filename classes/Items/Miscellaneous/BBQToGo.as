@@ -62,23 +62,34 @@
 			var nThick:Number = target.thickness;
 			if(target is PlayerCharacter)
 			{
+				if(targetCreature.energy() + healing > targetCreature.energyMax())
+				{
+					healing = targetCreature.energyMax() - targetCreature.energy();
+				}
 				kGAMECLASS.clearOutput();
 				//Consume:
 				//Effect: %Chance +thickness, +25 Energy
 				kGAMECLASS.output("You pop open the packaged BBQ To-Go meal and quickly munch down a nice, hot, fresh-tasting roast beef sandwich and fries, washing it down with a swig of sweet bottled orange soda. Delicious!");
-				target.energy(healing);
-				kGAMECLASS.output(" (<b>+" + healing + "</b>)");
+				if(healing > 0) kGAMECLASS.output(" (<b>+" + healing + " Energy</b>)");
 				target.modThickness(2);
+				target.energy(healing);
 				kGAMECLASS.output("\n");
 			}
 			else
 			{
 				healing = 35;
+				if(targetCreature.energy() + healing > targetCreature.energyMax())
+				{
+					healing = targetCreature.energyMax() - targetCreature.energy();
+				}
 				if(kGAMECLASS.inCombat()) kGAMECLASS.output("\n");
 				else kGAMECLASS.clearOutput();
-				kGAMECLASS.output(target.capitalA + target.short + " opens a BBQ To-Go box and wolfs down the contents, getting a quick energy boost.");
+				kGAMECLASS.output(target.capitalA + target.short + " opens a BBQ To-Go box and wolfs down the contents, getting a");
+				if(healing > 0) kGAMECLASS.output(" quick energy boost. (<b>+" + healing + " Energy</b>)");
+				else kGAMECLASS.output(" full stomach in the process.");
 				target.energy(healing);
-				kGAMECLASS.output(" (<b>+" + healing + "</b>)\n");
+				kGAMECLASS.output("\n");
+				if(kGAMECLASS.inCombat()) kGAMECLASS.output("\n");
 			}
 			return false;
 		}
