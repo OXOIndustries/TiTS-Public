@@ -262,6 +262,9 @@ public function showCodex():void
 public function showPerkListHandler(e:Event = null):void
 {
 	var pButton:SquareButton = (userInterface as GUI).perkDisplayButton;
+	
+	if (pc.short.length == 0) return;
+	
 	if (pButton.isActive && !pButton.isHighlighted)
 	{
 		showPerksList();
@@ -278,6 +281,8 @@ public function showPerkListHandler(e:Event = null):void
 public function showMailsHandler(e:Event = null):void
 {
 	var pButton:SquareButton = (userInterface as GUI).mailsDisplayButton;
+	
+	if (pc.short.length == 0) return;
 	
 	if (!pc || pc.hasStatusEffect("In Creation"))
 	{
@@ -366,6 +371,8 @@ public function showPerksList():void
 	addGhostButton(14, "Back", showPerkListHandler);
 	
 	var perkList:Array = (pc as PlayerCharacter).perks;
+	
+	if (perkList.length == 0) output2("<i>No available character perks have been acquired.</i>");
 	
 	for (var i:int = 0; i < perkList.length; i++)
 	{
