@@ -311,7 +311,7 @@ public function galoMaxTFProc():void
 		output(" with it, plumping up with artificially-induced arousal. Your head swims, dizzied by the ");
 		if(pc.isCrotchGarbed()) output("hot press of your aching, leaky flesh against your [pc.lowerGarment]");
 		else output("currents of air blowing over your leaking, engorged flesh");
-		output(". Standing up seems to difficult, all of a sudden, and you drop to the floor");
+		output(". Standing up seems too difficult, all of a sudden, and you drop to the floor");
 		if(pc.isCrotchGarbed()) output(", shedding your [pc.lowerGarments] as you go");
 		output(".");
 		//Used haircolor since that’s what we’re setting gooshit off of.
@@ -1368,7 +1368,7 @@ public function removeGooClitVagSelector():void
 		if(pc.vaginas[x].hasFlag(GLOBAL.FLAG_GOOEY))
 		{
 			output2("\n" + (x+1) + ": [pc.Vagina " + x + "] - " + pc.vaginas[x].clits + " clits");
-			if(pc.vaginas[x].clits > 1) addGhostButton(x,upperCase(num2Text(x+1)),addGooClitNau,x,StringUtil.capitalize(num2Ordinal(x + 1)) + " Vagina","Remove a clit for this vagina.");
+			if(pc.vaginas[x].clits > 1) addGhostButton(x,upperCase(num2Text(x+1)),removingClitSurgeryGoo,x,StringUtil.capitalize(num2Ordinal(x + 1)) + " Vagina","Remove a clit for this vagina.");
 			else addDisabledGhostButton(x,upperCase(num2Text(x+1)),StringUtil.capitalize(num2Ordinal(x + 1)) + " Vagina","You cannot remove your last clit for this vagina. It just seems... wrong without it.");
 		}
 		else
