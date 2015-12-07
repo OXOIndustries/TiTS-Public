@@ -42,7 +42,7 @@ public static const BESS_CREWROLE_TECHNICIAN:uint = 4;
 
 public function bessCrewRole():String
 {
-	if (flags["BESS_CREW_ROLE"] == undefined) return "crewmember";
+	if (flags["BESS_CREW_ROLE"] == undefined) return "crew member";
 
 	switch (flags["BESS_CREW_ROLE"])
 	{
@@ -51,10 +51,10 @@ public function bessCrewRole():String
 		case 2: return "archivist";
 		case 3: return "chief steward" + (bess.isFeminine() ? "ess" : "");
 		case 4: return "technician";
-		default: return "crewmember";
+		default: return "crew member";
 	}
 
-	return "crewmember";
+	return "crew member";
 }
 
 public function bessLoverStatus():String
@@ -5434,8 +5434,8 @@ public function talkToBessPlayGraviball():void
 	// Requires a Holo-room. Does not require bess once activated. Accessed through Holo-room or through Bess Menu (Either or)
 
 	output("You decide you’d like to play a game of Graviball on the holo room using the program that [bess.name] whipped up.");
-	if (crew(true) == 2) output(" <i>“You decide to go grab the only other crewmember on the ship to see if they’d be up for a game.”</i>");
-	else if (crew(true) >= 3) output(" <i>“You decide to go grab your other crewmembers to see if they’d be up for a game.”</i>");
+	if (crew(true) == 2) output(" <i>“You decide to go grab the only other crew member on the ship to see if they’d be up for a game.”</i>");
+	else if (crew(true) >= 3) output(" <i>“You decide to go grab your other crew members to see if they’d be up for a game.”</i>");
 
 	// Different NPC reactions on being asked.
 
@@ -8018,7 +8018,7 @@ public function bessEvent15Response(response:String):void
 	// [Acquaint] [CrewMem] [Friends] [InLove] [UMySamwise*]
 	clearMenu();
 	addButton(0, "Acquint", bessEvent15FollowUp, "acquaint", "Acquaintances", "You're acquaintances, nothing more.");
-	addButton(1, "CrewMemb", bessEvent15FollowUp, "crewmem", "Crewmember", "You're members of the same crew, nothing more.");
+	addButton(1, "CrewMemb", bessEvent15FollowUp, "crewmem", "Crew Member", "You're members of the same crew, nothing more.");
 	addButton(2, "Friends", bessEvent15FollowUp, "friends", "Friends", "Of course you're friends!");
 	addButton(3, "InLove", bessEvent15FollowUp, "inlove", "In Love", "Actually, you're in love with [bess.himHer]. Perhaps now is the time to confess...?");
 	if (response != "notread") addButton(4, "UMySamwise", bessEvent15FollowUp, "samwise", "You’re My Samwise", "You're Frodo, and [bess.heShe]'s your Samwise.");
