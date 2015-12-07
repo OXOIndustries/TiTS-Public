@@ -221,8 +221,8 @@
 			if (target == null) return;
 			
 			if(rand(3) == 0) lapinaraHornCharge(target);
-			else if(rand(2) == 0) lapinaraFalconPunch();
-			else lapinaraBite();
+			else if(rand(2) == 0) lapinaraFalconPunch(target);
+			else lapinaraBite(target);
 		}
 		
 		private function lapinaraHornCharge(target:Creature):void

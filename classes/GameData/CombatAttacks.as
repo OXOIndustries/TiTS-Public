@@ -367,6 +367,10 @@ package classes.GameData
 			WrenchAttack = new SingleCombatAttack();
 			WrenchAttack.IsMeleeBased = true;
 			WrenchAttach.Implementor = WrenchAttachImpl;
+			
+			TripAttack = new SingleCombatAttack();
+			TripAttack.IsMeleeBased = true;
+			TripAttack.Implementor = TripAttackImpl;
 		}
 		
 		/**
@@ -1333,6 +1337,20 @@ package classes.GameData
 					applyDamage(damage, attacker, target);
 				}
 				attacker.removeStatusEffect("Wrench Charge");
+			}
+		}
+		
+		public static const TripAttack:SingleCombatAttack;
+		private static function TripAttackImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
+		{
+			output(attacker.capitalA + attacker.short + " tries to trip you! ");
+			if (target.reflexes()/2 + rand(20) + 1 >= attacker.physique()/2 + 10) output("You neatly hop over the misguided attempt.");
+			else
+			{
+				output("You go down to the ground! <b>You're going to have a difficult time fighting from down here!</b>");
+				target.createStatusEffect("Trip", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
+				
+				applyDamage(new TypeCollection( { kinetic: 1 } ), attacker, target);
 			}
 		}
 		
