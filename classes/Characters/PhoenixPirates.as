@@ -8,6 +8,12 @@ package classes.Characters
 	import classes.kGAMECLASS;
 	import classes.rand;
 	
+	import classes.Engine.Combat.*;
+	import classes.Engine.Combat.DamageTypes.*;
+	import classes.GameData.CombatAttacks;
+	import classes.GameData.CombatManager;
+	import classes.Engine.Interfaces.output;
+	
 	public class PhoenixPirates extends Creature
 	{
 		//constructor
@@ -170,6 +176,71 @@ package classes.Characters
 			kGAMECLASS.setLocation("FIGHT: BLACK\nVOID GANG", "SHIP: PHOENIX", "SYSTEM: UNKNOWN");
 			
 			kGAMECLASS.foes.push(pGang);
+		}
+		
+		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
+		{
+			var target:Creature = selectTarget(hostileCreatures);
+			if (target == null) return;
+			
+			var bSideChance:int = 25;
+			if (rand(100) <= bSideChance)
+			{
+				phoenixPiratesBroadside(target);
+				return;
+			}
+
+			if (!hasStatusEffect("Carpet Grenade Cooldown"))
+			{
+				createStatusEffect("Carpet Grenade Cooldown", 5, 0, 0, 0);
+				phoenixPiratesCarpetGrenades(target);
+				return;
+			}
+
+			// Bulletstorms damage is modified by weapon stacks rather than chance of happening.
+			if (rand(100) <= 25 && energy() >= 20)
+			{
+				phoenixPiratesBulletstorm(target);
+				return;
+			}
+
+			// Fallback ranged attacku
+			CombatAttacks.RangedAttack(this, target);
+		}
+		
+		private function phoenixPiratesBulletstorm(target:Creature):void
+		{
+			output("\nSeveral of the pirates pop up from cover, firing on full-auto and sending a withering hail of gunfire downrange at you!");
+
+			energy(-20);
+
+			for (var i:int = 0; i < 5; i++)
+			{
+				CombatAttacks.SingleRangedAttackImpl(this, target, true);
+				output("\n");
+			}
+		}
+		
+		private function phoenixPiratesCarpetGrenades(target:Creature):void
+		{
+			output("<i>“Frag out!”</i> one of the pirates shouts, hurling a beeping black cylinder your way.");
+
+			output(" You dive out of the way, but still get riddled with shrapnel.");
+			
+			applyDamage(new TypeCollection( { kinetic: 25 }, DamageFlag.PENETRATING), this, target);
+
+			output("\n");
+		}
+		
+		private function phoenixPiratesBroadside(target:Creature):void
+		{
+			output("\nSuddenly, a particularly stealthy pirate pops up on your portside flank, poised to pound you into a pulp with a particularly potent-looking pump-action shotgun.");
+
+			output(" You get blasted by the shotty, throwing you back with the sheer force of the sneak attack!");
+			
+			applyDamage(new TypeCollection( { kinetic: 30 }, DamageFlag.BULLET), this, target);
+			
+			output("\n");
 		}
 	}
 }

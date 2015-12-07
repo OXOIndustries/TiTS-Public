@@ -11,6 +11,12 @@ package classes.Characters
 	import classes.Items.Protection.JoyCoPremiumShield;
 	import classes.VaginaClass;
 	
+	import classes.Engine.Combat.*;
+	import classes.Engine.Combat.DamageTypes.*;
+	import classes.Engine.Interfaces.output;
+	import classes.GameData.CombatAttacks;
+	import classes.GameData.CombatManager;
+	
 	/**
 	 * Notes:
 	 * When/if piercing is implemented, she has a row of silver studs in her ears from base to tip (Fall of the Phoenix doc)
@@ -166,6 +172,11 @@ package classes.Characters
 			this.refractoryRate = 10;
 		}
 		
+		override public function prepForCombat():void
+		{
+			
+		}
+		
 		public function UpgradeVersion1(dataObject:Object):void
 		{
 			// Clear out this shit and let the default constructor handle it.
@@ -175,6 +186,61 @@ package classes.Characters
 			delete dataObject.resistances;
 			delete dataObject.bonusResistances;
 			delete dataObject.bonusLustVuln;
+		}
+		
+		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
+		{
+			if (CombatManager.hasEnemyOfClass(PhoenixPirates))
+			{
+				fallOfThePhoenixAI(alliedCreatures, hostileCreatures);
+			}
+		}
+		
+		private function fallOfThePhoenixAI(alliedCreatures:Array, hostileCreatures:Array):void
+		{
+			var target:Creature = selectTarget(hostileCreatures);
+			if (target == null) return;
+			
+			if (rand(4) == 0) saendraDisarmingShot(target);
+			else saendraHammerPistol(target);
+		}
+		
+		private function saendraDisarmingShot(target:Creature):void
+		{
+			output("\nOn the other side of the pirates, the wounded captain fires her Hammer pistol, ");
+
+			if (rand(5) == 0)
+			{
+				output(" though her shot goes wide!");
+			}
+			else
+			{
+				output(" blasting through one pirate’s gun and destroying it!");
+				
+				applyDamage(new TypeCollection( { kinetic: 5 }, DamageFlag.BULLET), this, target);
+
+				target.createStatusEffect("Disarmed", 2 + rand(2), 0, 0, 0, false, "Blocked", "Cannot use normal melee or ranged attacks!", true, 0);
+			}
+			
+			output("\n");
+		}
+		
+		private function saendraHammerPistol(target:Creature):void
+		{
+			output("\nOn the other side of the pirates, the wounded captain fires her Hammer pistol, ");
+
+			// :effort: to rig up a special statblock for injured Saendra and make all this shit work based off of it.
+			if (rand(5) == 0)
+			{
+				output(" though her shot goes wide!");
+			}
+			else
+			{
+				output(" shooting one of the pirates square in the back!");
+				applyDamage(new TypeCollection( { kinetic: 10 }, DamageFlag.BULLET), this, target);
+			}
+			
+			output("\n");	
 		}
 	}
 
