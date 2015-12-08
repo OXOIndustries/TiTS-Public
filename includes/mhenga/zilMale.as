@@ -265,20 +265,13 @@ public function winVsZil():void {
 	else addDisabledButton(4,"Tail Peg","Tail Peg","You'll need a tailcock to peg the zil with it.");
 
 	if(pc.hasCock()) addButton(5,"Get BJ",getABJFromAManzil,undefined,"Get BJ","Get a BJ from the waspy male.");
-	else addDisabledButton(5,"Get BJ","Get BJ","Get a blowjob from the zil before you.,");
+	else addDisabledButton(5,"Get BJ","Get BJ","Get a blowjob from the zil before you.");
+	//Cuff&Fuck
+	cuffNFuckButton(6, foes[0]);
 	//Femzil prompt
 	if(pc.hasKeyItem("Capture Harness") && flags["CAPTURED_A_MALE_ZIL_FOR_DR_HASWELL"] == undefined) {
 		addButton(9,"Capture",useTheCaptureHarness);
 		output("\n\n<b>Doctor Julian Haswell wanted you to use a capture harness on a zil. Now would be the perfect time.</b>");
-	}
-	if(pc.hasItem(new GravCuffs()) && pc.lust() >= 33)
-	{
-		var fitsInside:Boolean = false;
-		if(foes[0].hasVagina()) fitsInside = (pc.cockThatFits(foes[0].vaginalCapacity(0)) >= 0);
-		else fitsInside = (pc.cockThatFits(foes[0].analCapacity()) >= 0);
-		if(pc.hasCock() && fitsInside) addButton(6,"Cuff&Fuck",cuffNFuck,undefined,"Cuff & Fuck","Use your grav-cuffs to pin down [monster.name] and have your way with [monster.hisHer] [pc.vagOrAssNoun]! Requires Grav-cuffs and a penis.");
-		else if(pc.hasCock()) addDisabledButton(6,"Cuff&Fuck","Cuff & Fuck","You can cuff [monster.himHer] down, but you wouldn't be able to fit inside.");
-		else addDisabledButton(6,"Cuff&Fuck","Cuff & Fuck","You need a penis to make use of your grav-cuffs this way.");
 	}
 	addButton(14,"Leave",genericVictory);
 }
