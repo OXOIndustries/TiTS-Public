@@ -7,6 +7,7 @@
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
+	import classes.Util.InCollection;
 	
 	public class Throbb extends ItemSlotClass
 	{
@@ -249,34 +250,43 @@
 				pc.cocks[arg].cLengthRaw = 5;
 				if(pc.hasPerk("Hung")) pc.cocks[arg].cLengthRaw += 2+rand(4);
 				
+				var pcRace:String = pc.race();
+				
 				// Type changes
-				if(pc.race() == "ausar" || pc.race() == "half-ausar" || pc.race() == "canine-morph")
+				if(InCollection(pcRace, "ausar", "half-ausar", "canine-morph"))
 				{
 					pc.shiftCock(arg,GLOBAL.TYPE_CANINE);
-					if(pc.race() == "ausar" || pc.race() == "half-ausar") pc.cocks[arg].delFlag(GLOBAL.FLAG_SHEATHED);
+					if(pcRace.indexOf("ausar") != -1) pc.cocks[arg].delFlag(GLOBAL.FLAG_SHEATHED);
 				}
-				else if(pc.race() == "kaithrit" || pc.race() == "half-kaithrit" || pc.race() == "feline-morph") pc.shiftCock(arg,GLOBAL.TYPE_FELINE);
-				else if(pc.race() == "leithan" || pc.race() == "half-leithan") pc.shiftCock(arg,GLOBAL.TYPE_SNAKE);
-				else if(pc.race() == "kui-tan" || pc.race() == "half kui-tan") pc.shiftCock(arg, GLOBAL.TYPE_KUITAN);
-				else if(pc.race() == "horse-morph" || pc.race() == "part horse-morph" || pc.race() == "laquine" || pc.race() == "ovir" || pc.race() == "half-ovir") pc.shiftCock(arg, GLOBAL.TYPE_EQUINE);
-				else if(pc.race() == "vulpine-morph") pc.shiftCock(arg,GLOBAL.TYPE_VULPINE);
-				else if(pc.race() == "zil") pc.shiftCock(arg,GLOBAL.TYPE_BEE);
-				else if(pc.race() == "naleen" || pc.race() == "naga") pc.shiftCock(arg,GLOBAL.TYPE_NAGA);
-				else if(pc.race() == "raskvel" || pc.race() == "raskvel-morph" || pc.race() == "rask-morph") pc.shiftCock(arg, GLOBAL.TYPE_RASKVEL);
-				else if(pc.race() == "fanfir" || pc.race() == "dragon-morph") pc.shiftCock(arg, GLOBAL.TYPE_DRACONIC);
-				else if(pc.race() == "demon-morph") pc.shiftCock(arg, GLOBAL.TYPE_DEMONIC);
-				else if(pc.race() == "kangaroo-morph") pc.shiftCock(arg, GLOBAL.TYPE_KANGAROO);
-				else if(pc.race() == "simii") pc.shiftCock(arg, GLOBAL.TYPE_SIMII);
-				else if(pc.race() == "saurian") pc.shiftCock(arg, GLOBAL.TYPE_SAURIAN);
-				else if(pc.race() == "venus pitcher") pc.shiftCock(arg, GLOBAL.TYPE_VENUSPITCHER);
-				else if(pc.race() == "sydian") pc.shiftCock(arg, GLOBAL.TYPE_SYDIAN);
-				else if(pc.race() == "daynar") pc.shiftCock(arg, GLOBAL.TYPE_DAYNAR);
+				else if(InCollection(pcRace, "kaithrit", "half-kaithrit", "feline-morph")) pc.shiftCock(arg,GLOBAL.TYPE_FELINE);
+				else if(InCollection(pcRace, "leithan", "half-leithan")) pc.shiftCock(arg,GLOBAL.TYPE_SNAKE);
+				else if(InCollection(pcRace, "kui-tan", "half kui-tan")) pc.shiftCock(arg, GLOBAL.TYPE_KUITAN);
+				else if(InCollection(pcRace, "horse-morph", "part horse-morph", "laquine", "ovir", "half-ovir", "minotaur", "centaur", pc.mlpRace())) pc.shiftCock(arg, GLOBAL.TYPE_EQUINE);
+				else if(pcRace == "vulpine-morph") pc.shiftCock(arg,GLOBAL.TYPE_VULPINE);
+				else if(pcRace == "zil") pc.shiftCock(arg,GLOBAL.TYPE_BEE);
+				else if(InCollection(pcRace, "naleen", "naga")) pc.shiftCock(arg,GLOBAL.TYPE_NAGA);
+				else if(InCollection(pcRace, "raskvel", "raskvel-morph", "rask-morph")) pc.shiftCock(arg, GLOBAL.TYPE_RASKVEL);
+				else if(InCollection(pcRace, "fanfir", "dragon-morph")) pc.shiftCock(arg, GLOBAL.TYPE_DRACONIC);
+				else if(pcRace == "demon-morph") pc.shiftCock(arg, GLOBAL.TYPE_DEMONIC);
+				else if(pcRace == "kangaroo-morph") pc.shiftCock(arg, GLOBAL.TYPE_KANGAROO);
+				else if(pcRace == "simii") pc.shiftCock(arg, GLOBAL.TYPE_SIMII);
+				else if(pcRace == "saurian") pc.shiftCock(arg, GLOBAL.TYPE_SAURIAN);
+				else if(pcRace == "venus pitcher") pc.shiftCock(arg, GLOBAL.TYPE_VENUSPITCHER);
+				else if(pcRace == "sydian") pc.shiftCock(arg, GLOBAL.TYPE_SYDIAN);
+				else if(pcRace == "daynar") pc.shiftCock(arg, GLOBAL.TYPE_DAYNAR);
+				else if(InCollection(pcRace, "gabilani", "goblin")) pc.shiftCock(arg, GLOBAL.TYPE_GABILANI);
+				else if(pc.skinType == GLOBAL.SKIN_TYPE_GOO)
+				{
+					pc.shiftCock(arg, GLOBAL.TYPE_HUMAN);
+					pc.cocks[arg].addFlag(GLOBAL.FLAG_GOOEY);
+					pc.cocks[arg].cockColor = pc.skinTone;
+				}
 				/*
-				else if(pc.race() == "tentacle beast") pc.shiftCock(arg, GLOBAL.TYPE_TENTACLE);
-				else if(pc.race() == "anemone") pc.shiftCock(arg, GLOBAL.TYPE_ANEMONE);
-				else if(pc.race() == "siren") pc.shiftCock(arg, GLOBAL.TYPE_SIREN);
-				else if(pc.race() == "synthetic" || pc.race() == "robot" || pc.race() == "companion droid") pc.shiftCock(arg, GLOBAL.TYPE_SYNTHETIC);
-				else if(pc.race() == "cockvine") pc.shiftCock(arg, GLOBAL.TYPE_COCKVINE);
+				else if(pcRace == "tentacle beast") pc.shiftCock(arg, GLOBAL.TYPE_TENTACLE);
+				else if(pcRace == "anemone") pc.shiftCock(arg, GLOBAL.TYPE_ANEMONE);
+				else if(pcRace == "siren") pc.shiftCock(arg, GLOBAL.TYPE_SIREN);
+				else if(InCollection(pcRace, "synthetic", "robot", "companion droid")) pc.shiftCock(arg, GLOBAL.TYPE_SYNTHETIC);
+				else if(pcRace == "cockvine") pc.shiftCock(arg, GLOBAL.TYPE_COCKVINE);
 				*/
 				
 				kGAMECLASS.output("<b>your hand is wrapped around a " + kGAMECLASS.num2Text(Math.round(pc.cocks[arg].cLengthRaw*10)/10) + "-inch long, twitching [pc.cockNounSimple " + arg + "].</b>");
