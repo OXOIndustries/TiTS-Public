@@ -132,7 +132,7 @@ public function useRedMyrVenom():void
 	author("Savin");
 	if(flags["DRANK_MYR_VENOM"] == undefined)
 	{
-		output("You pull the small pink vial out of your pack and give it a look over. It’s hard to think something so unassuming as a primitive vial of glass full of a thick, viscous pink could be something so potent - and so polarizing - as red myr’s venom. Popping the cork out, and you’re instantly assailed by the sweet scent of the venom. It’s almost like putting your face right next to a big stick of cotton candy, or maybe bubblegum. You try not to think too hard about it as your mouth waters from the smell, and you feel a very faint burn on your cheeks... and elsewhere.");
+		output("You pull the small pink vial out of your pack and give it a look over. It’s hard to think something so unassuming as a primitive vial of glass full of a thick, viscous pink liquid could be something so potent - and so polarizing - as red myr’s venom. Popping the cork out, and you’re instantly assailed by the sweet scent of the venom. It’s almost like putting your face right next to a big stick of cotton candy, or maybe bubblegum. You try not to think too hard about it as your mouth waters from the smell, and you feel a very faint burn on your cheeks... and elsewhere.");
 		output("\n\nYou shake the effects off, breathing out hard as you consider what to do with the bright pink substance. ");
 		//if has had venom before from sex: 
 		if(sexedMyrVenom()) output("You know it’s a powerful aphrodisiac, after all.");
@@ -175,7 +175,7 @@ public function drinkDatRedVenoShitYooooooo():void
 		output("Curious about the effects of red myr venom");
 		if(!drankMyrVenom() && sexedMyrVenom()) output(" from anything but the source");
 		output(", you bring the vial up to your lips and slosh it a bit, sniffing at the sweet perfume radiating from it. Your cheeks flush almost instantly, responding to the deliciously lusty odor. With a deep breath, you knock back the vial’s contents: the frothy, thick, viscous liquid slowly sloughs out of the vial and onto your [pc.tongue].");
-		output("\n\nThe venom is as sweet as it smells, washing down your throat in a tingling, warm wave until the vile’s gone. You let out a long sigh and toss the vial aside, wiping your lips to finish the deal. Your fingers brushing lips sends an unexpected shock of pleasure through you, making you shiver from head to toe. Whew, that stuff’s potent!");
+		output("\n\nThe venom is as sweet as it smells, washing down your throat in a tingling, warm wave until the vial’s gone. You let out a long sigh and toss the vial aside, wiping your lips to finish the deal. Your fingers brushing lips sends an unexpected shock of pleasure through you, making you shiver from head to toe. Whew, that stuff’s potent!");
 		output("\n\nShaking it off for the moment, you get ready for what promises to be one hell of a lust-high.");
 		imbibeVenomEffects(false);
 	}
