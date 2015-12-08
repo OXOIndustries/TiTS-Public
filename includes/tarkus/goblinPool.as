@@ -1316,8 +1316,8 @@ public function arbetzPoolJUSTDOIT(sex:int = 0):void
 	else output(" Shivering slightly with the shameful delight of baring your naked flesh");
 	output(", you begin to take off your [pc.gear], piece by piece.");
 	
-	// PC has no lower undergarment:
-	if (pc.lowerUndergarment is EmptySlot)
+	// PC has any non-exposed, non-swimwear lower undergarment:
+	if (pc.isCrotchGarbed() && !pc.isCrotchExposed() && !isSwimsuit(pc.lowerUndergarment))
 	{
 		output("\n\n<i>“Oh for...”</i> Una’s leer is broken with a snort of hysterical laughter buried into her suited arm when you take off your [pc.lowerGarments]. <i>“You never learned that less is more, did you dear?”</i> she sighs once she’s recovered, gazing down at");
 		if (pc.hasCock()) output(" [pc.eachCock]");
@@ -1333,6 +1333,17 @@ public function arbetzPoolJUSTDOIT(sex:int = 0):void
 		
 		addButton(0, "Next", mainGameMenu);
 		return;
+	}
+	else if (pc.inSwimwear(true) && !pc.isCrotchExposed())
+	{
+		output(" When you reach for your [pc.lowerGarment], the shortstack blurts out an audible chuckle.");
+		output("\n\n<i>“--I see you came prepared to swim, didn’t you?”</i> Una grins lustfully. <i>“However, this photoshoot isn’t for that...”</i> she points at your covered crotch.");
+		if (pc.exhibitionism() < 66) output("\n\nGiving her a confused look, you reply with a slight blush of embarrassment.");
+		else output("\n\nYou give a confident nod. Oh, you know what this woman wants to see.");
+		output("\n\n<i>“Take it off.”</i>");
+		if (pc.exhibitionism() < 66) output("\n\nAfter getting this far, there’s no use turning back now. Finally");
+		else output("\n\nWithout a moment’s hesitation");
+		output(", you peel your swimwear off....");
 	}
 	//Otherwise:
 	output("\n\n<i>“Aww yeah,”</i> leers Una, eating up your every move with wide, black eyes.");
