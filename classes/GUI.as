@@ -261,7 +261,8 @@
 			
 			if (_availableModules["MainMenu"].visible == true)
 			{
-				showPrimaryOutput();
+				//showPrimaryOutput();
+				backToPrimaryOutput();
 			}
 			else
 			{
@@ -367,6 +368,16 @@
 			//output2("\nThis is a placeholder. Keep your eye on the 'Scene by:\' box in the lower left corner of the UI for information on who wrote scenes as they appear. Thank you!");
 			//this.userInterface.clearGhostMenu();
 			//this.addGhostButton(0,"Back to Menu",mainMenu);
+			
+			/*
+			clearGhostMenu();
+			if (kGAMECLASS.pc.short.length == 0)
+			{
+				mainButtonsOnly();
+				addGhostButton(4, "Back", showMainMenu);
+			}
+			else addGhostButton(4, "Back", backToPrimaryOutput);
+			*/
 			
 			trace("Placeholder method handler whilst we build a content module to contain credits details. Sorry :(");
 		}
@@ -566,10 +577,18 @@
 		{
 			this.showModule("Options");
 			(_currentModule as OptionsModule).updateDisplay();
+			mainButtonsOnly();
 			clearGhostMenu();
 			
 			if (kGAMECLASS.pc.short.length == 0) addGhostButton(4, "Back", showMainMenu);
-			else addGhostButton(4, "Back", showPrimaryOutput);
+			//else addGhostButton(4, "Back", showPrimaryOutput);
+			else addGhostButton(4, "Back", backToPrimaryOutput);
+		}
+		
+		public function backToPrimaryOutput():void
+		{
+			mainButtonsReset();
+			showPrimaryOutput();
 		}
 		
 		// Interaction bullshit for the main menu
@@ -1165,7 +1184,11 @@
 		
 		public function messengerOn():void
 		{
-			_leftSideBar.mailsButton.Activate();
+			if (!(classes.kGAMECLASS.pc as PlayerCharacter) || (classes.kGAMECLASS.pc as PlayerCharacter).hasStatusEffect("In Creation"))
+			{
+				_leftSideBar.mailsButton.Deactivate();
+			}
+			else _leftSideBar.mailsButton.Activate();
 		}
 		
 		public function appearanceOn():void 

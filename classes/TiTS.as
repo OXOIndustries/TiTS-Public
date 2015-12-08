@@ -665,6 +665,8 @@
 		
 		public function levelUpHandler(e:Event = null):void
 		{
+			if ((pc as PlayerCharacter).short.length == 0) return;
+			
 			if (!this.userInterface.levelUpButton.isActive) return;
 			
 			if (!this.userInterface.levelUpButton.isHighlighted)

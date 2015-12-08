@@ -61,9 +61,19 @@ package classes.Items.Miscellaneous
 		{
 			if (!kGAMECLASS.inCombat())
 			{
-				kGAMECLASS.clearOutput();
-				kGAMECLASS.output("Pulling the pin on a grenade without a target to throw it at would be pretty dumb now, wouldn't it?");
-				this.quantity++;
+				if(!kGAMECLASS.infiniteItems()) quantity++;
+				if (targetCreature == kGAMECLASS.pc)
+				{
+					kGAMECLASS.clearOutput();
+					kGAMECLASS.output("Pulling the pin on a grenade without a target to throw it at would be pretty dumb now, wouldn't it?\n");
+				}
+				else
+				{
+					if(kGAMECLASS.inCombat()) kGAMECLASS.output("\n");
+					else kGAMECLASS.clearOutput();
+					kGAMECLASS.output(targetCreature.capitalA + targetCreature.short + " considers it unwise to use a grenade outside of combat.\n");
+					kGAMECLASS.output("\n");
+				}
 				return false;
 			}
 			else
@@ -77,7 +87,8 @@ package classes.Items.Miscellaneous
 				// Enemy used an item on the PC
 				else if (targetCreature == kGAMECLASS.pc && usingCreature != kGAMECLASS.pc)
 				{
-					kGAMECLASS.output("\n");
+					if(kGAMECLASS.inCombat()) kGAMECLASS.output("\n");
+					else kGAMECLASS.clearOutput();
 					npcUsed(targetCreature, usingCreature);
 				}
 				else
@@ -98,7 +109,6 @@ package classes.Items.Miscellaneous
 			// Or possibly open up genericDamageApply to also accept override text for its output
 			//kGAMECLASS.genericDamageApply(this.damage, usingCreature, targetCreature, this.damageType);
 			applyDamage(baseDamage, usingCreature, targetCreature);
-			
 			kGAMECLASS.output("\n");
 		}
 		
@@ -110,6 +120,7 @@ package classes.Items.Miscellaneous
 			
 			//kGAMECLASS.genericDamageApply(this.damage, usingCreature, targetCreature, this.damageType);
 			applyDamage(baseDamage, usingCreature, targetCreature);
+			kGAMECLASS.output("\n");
 		}
 		
 	}

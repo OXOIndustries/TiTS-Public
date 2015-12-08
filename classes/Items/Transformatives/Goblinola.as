@@ -656,6 +656,10 @@ package classes.Items.Transformatives
 			kGAMECLASS.author("Nonesuch");
 			
 			var healing:int = 25;
+			if(target.HP() + healing > target.HPMax())
+			{
+				healing = target.HPMax() - target.HP();
+			}
 			if(target is PlayerCharacter)
 			{
 				clearOutput();
@@ -663,7 +667,7 @@ package classes.Items.Transformatives
 				output("You unwrap the goblinola and munch on the stuff.");
 				if(!kGAMECLASS.inCombat()) output(" There are some constants that hold true the galaxy over, and health snacks are one of them: It’s reasonably tasty, takes a while to chew and is vaguely unsatisfying.");
 				output(" Your stomach is left a little unsettled.");
-				if (target.HP() < target.HPMax()) output(" (<b>+" + healing + " HP</b>)");
+				if (healing > 0) output(" (<b>+" + healing + " HP</b>)");
 				output("\n");
 				
 				// Immediate effects: The player gains some health.
@@ -697,7 +701,7 @@ package classes.Items.Transformatives
 				if(kGAMECLASS.inCombat()) output("\n");
 				else clearOutput();
 				output(target.capitalA + target.short + " unwraps and eats a Goblinola bar");
-				if (target.HP() < target.HPMax()) output(", revitalizing some of [target.hisHer] health! (<b>+" + healing + " HP</b>)");
+				if (healing > 0) output(", revitalizing some of [target.hisHer] health! (<b>+" + healing + " HP</b>)");
 				else output(" but to no effect.");
 				target.HP(healing);
 				output("\n");

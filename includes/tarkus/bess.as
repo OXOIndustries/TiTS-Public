@@ -42,7 +42,7 @@ public static const BESS_CREWROLE_TECHNICIAN:uint = 4;
 
 public function bessCrewRole():String
 {
-	if (flags["BESS_CREW_ROLE"] == undefined) return "crewmember";
+	if (flags["BESS_CREW_ROLE"] == undefined) return "crew member";
 
 	switch (flags["BESS_CREW_ROLE"])
 	{
@@ -51,10 +51,10 @@ public function bessCrewRole():String
 		case 2: return "archivist";
 		case 3: return "chief steward" + (bess.isFeminine() ? "ess" : "");
 		case 4: return "technician";
-		default: return "crewmember";
+		default: return "crew member";
 	}
 
-	return "crewmember";
+	return "crew member";
 }
 
 public function bessLoverStatus():String
@@ -5434,8 +5434,8 @@ public function talkToBessPlayGraviball():void
 	// Requires a Holo-room. Does not require bess once activated. Accessed through Holo-room or through Bess Menu (Either or)
 
 	output("You decide you’d like to play a game of Graviball on the holo room using the program that [bess.name] whipped up.");
-	if (crew(true) == 2) output(" <i>“You decide to go grab the only other crewmember on the ship to see if they’d be up for a game.”</i>");
-	else if (crew(true) >= 3) output(" <i>“You decide to go grab your other crewmembers to see if they’d be up for a game.”</i>");
+	if (crew(true) == 2) output(" <i>“You decide to go grab the only other crew member on the ship to see if they’d be up for a game.”</i>");
+	else if (crew(true) >= 3) output(" <i>“You decide to go grab your other crew members to see if they’d be up for a game.”</i>");
 
 	// Different NPC reactions on being asked.
 
@@ -6487,7 +6487,7 @@ public function bessEvent3Yes():void
 	
 	output("\n\nAfter [bess.hisHer] lengthy explanation [bess.name] looks at you with pleading [bess.eyeColor] eyes, [bess.hisHer] "+ bess.mf("handsome", "melodic") +" voice wavering. <i>“... What then should I do? Which directives should I violate and disregard?”</i>");
 	
-	output("\n\nThis feels like a pretty pivotal moment. Whatever you say will probably affect how [bess.heShe] acts from hereon in. Did you want [bess.himHer] to remain as a simple sex-bot, or do you want to encourage [bess.himHer] to move beyond [bess.hisHer] programming?");
+	output("\n\nThis feels like a pretty pivotal moment. Whatever you say will probably affect how [bess.heShe] acts from here on in. Did you want [bess.himHer] to remain as a simple sex-bot, or do you want to encourage [bess.himHer] to move beyond [bess.hisHer] programming?");
 
 	//[Stick To Sex] [More Than Sex] [Find Your Own Path]
 	clearMenu();
@@ -8018,7 +8018,7 @@ public function bessEvent15Response(response:String):void
 	// [Acquaint] [CrewMem] [Friends] [InLove] [UMySamwise*]
 	clearMenu();
 	addButton(0, "Acquint", bessEvent15FollowUp, "acquaint", "Acquaintances", "You're acquaintances, nothing more.");
-	addButton(1, "CrewMemb", bessEvent15FollowUp, "crewmem", "Crewmember", "You're members of the same crew, nothing more.");
+	addButton(1, "CrewMemb", bessEvent15FollowUp, "crewmem", "Crew Member", "You're members of the same crew, nothing more.");
 	addButton(2, "Friends", bessEvent15FollowUp, "friends", "Friends", "Of course you're friends!");
 	addButton(3, "InLove", bessEvent15FollowUp, "inlove", "In Love", "Actually, you're in love with [bess.himHer]. Perhaps now is the time to confess...?");
 	if (response != "notread") addButton(4, "UMySamwise", bessEvent15FollowUp, "samwise", "You’re My Samwise", "You're Frodo, and [bess.heShe]'s your Samwise.");
@@ -11671,7 +11671,7 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 		
 		output("\n\nThe first thing you do is pull out [bess.hisHer] collar and snap it around [bess.hisHer] neck. You can see the submissive switch click in [bess.hisHer] head the very <i>second</i> you click it in place, as well as the longing look in [bess.hisHer] [bess.eyeColor] eyes.");
 		
-		output("\n\nAfter you have fastened [bess.hisHer] collar you inspect [bess.himHer] slowly, feeling your dominance over this silver skinned"+ bess.mf("sissy", "strumpet") +". The smallest smile passes over your lips and [bess.heShe] trembles, trying to keep perfectly still - probably wondering what instructions you’re going to give [bess.himHer] today.");
+		output("\n\nAfter you have fastened [bess.hisHer] collar you inspect [bess.himHer] slowly, feeling your dominance over this silver skinned "+ bess.mf("sissy", "strumpet") +". The smallest smile passes over your lips and [bess.heShe] trembles, trying to keep perfectly still - probably wondering what instructions you’re going to give [bess.himHer] today.");
 		
 		output("\n\n<i>“"+ StringUtil.capitalize(bessSexName()) +"! I am going to give you the immeasurable honor of fucking my "+ (bTargetVag ? "[pc.pussy "+ vagIdx +"]" : "[pc.ass]") +" from behind. If you fail to pleasure me, you will be punished - understood?”</i> You inform [bess.himHer] in a no nonsense voice");
 		if (!pc.isNude()) output(", at the same time stripping off your gear.");
@@ -11861,7 +11861,7 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 			output(" turn around. You then press your [pc.ass] against [bess.hisHers], treating [bess.name] like a");
 			if (bess.cocks[0].cType == GLOBAL.TYPE_VULPINE) output(" fox");
 			else if (bess.cocks[0].cType == GLOBAL.TYPE_CANINE) output(" bitch");
-			else output(" animal");
+			else output("n animal");
 			output(" in heat.");
 		
 			output("\n\n[bess.name]’s face is flushed as [bess.heShe] lets out");
@@ -11882,7 +11882,7 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 			else output(" knotted");
 			output(" dick so much!”</i> You tease [bess.name] as you tug away from [bess.himHer], forcing [bess.himHer] to follow you and show just how much [bess.heShe] is your little breeding bitch right now. [bess.HisHer] face burns with embarrassment and arousal, as [bess.heShe] is unable to remove [bess.hisHer] swollen knot.");
 			
-			output("\n\nFor a full half hour [bess.hisHer] [bess.hisHer] hot, sticky cum pours inside of your");
+			output("\n\nFor a full half hour [bess.hisHer] hot, sticky cum pours inside of your");
 			if (bTargetVag) output(" hungry uterus");
 			else output(" naughty ass");
 			output(". Finally, [bess.hisHer] knot deflates and [bess.heShe] pulls free with shaky legs. As soon as [bess.heShe] does, a good deal of [bess.hisHer] sticky spunk gushes out, though far more stays packed inside of your");

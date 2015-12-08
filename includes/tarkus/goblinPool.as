@@ -131,7 +131,7 @@ public function arbetzMainApproach():Boolean
 				processTime(5);
 				
 				clearMenu();
-				addButton(14, "Leave", mainGameMenu);
+				addButton(0, "Next", move, "225");
 				return true;
 			}
 			
@@ -225,8 +225,9 @@ public function arbetzMainInitialOptions(response:int = 0):void
 		else
 		{
 			output("You say you saw the place, and were hoping you might be able to pick up a few supplies here.");
-			output("\n\n<i>“Does this look like a pharmacy to you?”</i> snaps the gabilani. <i>“We don’t give medical attention to our clients in 90% of non-lethal circs, so why do you think we’d give it to just any scruff-bag traveler who decided to stroll in? If you’re looking for a hand-out you’re talking to the wrong bloody people, so kindly push off.”</i>");
 		}
+		
+		output("\n\n<i>“Does this look like a pharmacy to you?”</i> snaps the gabilani. <i>“We don’t give medical attention to our clients in 90% of non-lethal circs, so why do you think we’d give it to just any scruff-bag traveler who decided to stroll in? If you’re looking for a hand-out you’re talking to the wrong bloody people, so kindly push off.”</i>");
 		
 		processTime(2);
 		
@@ -262,7 +263,7 @@ public function arbetzMainMenu(light:Boolean = false):void
 	// [Talk] [Appearance] [Pool Area] [Sex] [Leave]
 	if(!light) clearMenu();
 	addButton(0, "Talk", arbetzMainOptions, 0);
-	if (flags["PETR_UNLOCKED"] != undefined) addButton(1, "Petr", arbetzPetrShop);
+	if (flags["PETR_UNLOCKED"] != undefined) addButton(1, "Petr", arbetzPetrShop, undefined, "Petr", "Ask the human boy about buying some swimwear.");
 	if (!pc.hasKeyItem("Arbetz Travel Agency Memebership")) addButton(2, "Pool Area", arbetzMainOptions, 2, "Pool Area", "Ask if you can use the pool area at the back of the agency.");
 	if (flags["ARBETZ_SEX_UNLOCKED"] != undefined)
 	{
@@ -339,7 +340,7 @@ public function arbetzMainOptions(response:int = 0):void
 			// [Insist] [Go Back]
 			clearMenu();
 			addButton(0, "Insist", arbetzTalkOptions, 7, "Insist", "Insist on sex.");
-			addButton(1, "Go Back", arbetzMainMenu, true, "Nevermind", "Choose to do something else.");
+			addButton(1, "Go Back", arbetzMainMenu, false, "Nevermind", "Choose to do something else.");
 		}
 		// Repeat
 		else
@@ -400,7 +401,7 @@ public function arbetzTalkMenu():void
 	if (flags["UNA_TALKED"] >= 2) addButton(5, "Her", arbetzTalkOptions, 5);
 	if (flags["UNA_TALKED"] >= 3) addButton(6, "The Boys", arbetzTalkOptions, 6);
 	
-	addButton(14, "Back", arbetzMainMenu, true);
+	addButton(14, "Back", arbetzMainMenu);
 }
 public function arbetzTalkOptions(response:int = 0):void
 {
@@ -1315,12 +1316,10 @@ public function arbetzPoolJUSTDOIT(sex:int = 0):void
 	else output(" Shivering slightly with the shameful delight of baring your naked flesh");
 	output(", you begin to take off your [pc.gear], piece by piece.");
 	
-	// PC has no undergarment:
-	if (!pc.inSwimwear(true))
+	// PC has no lower undergarment:
+	if (pc.isCrotchGarbed())
 	{
-		output("\n\n<i>“Oh for...”</i> Una’s leer is broken with a snort of hysterical laughter buried into her suited arm");
-		if (pc.isCrotchGarbed()) output(" when you take off your [pc.lowerGarments]");
-		output(". <i>“You never learned that less is more, did you dear?”</i> she sighs once she’s recovered, gazing down at");
+		output("\n\n<i>“Oh for...”</i> Una’s leer is broken with a snort of hysterical laughter buried into her suited arm when you take off your [pc.lowerGarments]. <i>“You never learned that less is more, did you dear?”</i> she sighs once she’s recovered, gazing down at");
 		if (pc.hasCock()) output(" [pc.eachCock]");
 		if (pc.hasCock() && pc.hasVagina()) output(" and");
 		if (pc.hasVagina()) output(" [pc.eachVagina]");
@@ -1335,7 +1334,6 @@ public function arbetzPoolJUSTDOIT(sex:int = 0):void
 		addButton(0, "Next", mainGameMenu);
 		return;
 	}
-	
 	//Otherwise:
 	output("\n\n<i>“Aww yeah,”</i> leers Una, eating up your every move with wide, black eyes.");
 	
@@ -1529,21 +1527,37 @@ public function arbetzVendingMachine():void
 	
 	// [Buy] [Leave]
 	clearMenu();
-	addOverrideItemButton(0, new Goblinola(), "Buy", arbetzBuyGoblinola);
+	addOverrideItemButton(0, new Goblinola(), "Buy", arbetzBuyGoblinola, new Goblinola());
 	addButton(14, "Leave", mainGameMenu);
 }
-public function arbetzBuyGoblinola():void
+public function arbetzBuyGoblinola(vendedItem:ItemSlotClass):void
 {
 	clearOutput();
-	author("Nonesuch");
-	showName("GOBLINOLA\nVENDED!");
 	
-	output("You stick your cash in, and a few seconds later a wrapped treat rattles its way down to the lower compartment for you to take.");
-	output("\n\n");
-	
-	processTime(1);
-	
-	arbetzVendItem(new Goblinola());
+	if (pc.credits >= vendedItem.basePrice)
+	{
+		author("Nonesuch");
+		showName("GOBLINOLA\nVENDED!");
+		
+		output("You stick your cash in, and a few seconds later a wrapped treat rattles its way down to the lower compartment for you to take.");
+		output("\n\n");
+		
+		processTime(1);
+		
+		arbetzVendItem(vendedItem);
+	}
+	// Too poor
+	else
+	{
+		showName("INSUFFICIENT\nFUNDS");
+		
+		output("You shuffle through your gear to find some spare credit chits--even waving your codex over the machine’s scanner a couple times--but a negative beep answers your efforts. It looks like you don’t have enough money to purchase the " + vendedItem.longName + ".");
+		
+		processTime(1);
+		
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+	}
 }
 public function arbetzVendItem(vendedItem:ItemSlotClass, price:Number = 0):void
 {
