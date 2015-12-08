@@ -62,9 +62,9 @@
 			var nThick:Number = target.thickness;
 			if(target is PlayerCharacter)
 			{
-				if(targetCreature.energy() + healing > targetCreature.energyMax())
+				if(target.energy() + healing > target.energyMax())
 				{
-					healing = targetCreature.energyMax() - targetCreature.energy();
+					healing = target.energyMax() - target.energy();
 				}
 				kGAMECLASS.clearOutput();
 				//Consume:
@@ -78,9 +78,9 @@
 			else
 			{
 				healing = 35;
-				if(targetCreature.energy() + healing > targetCreature.energyMax())
+				if(target.energy() + healing > target.energyMax())
 				{
-					healing = targetCreature.energyMax() - targetCreature.energy();
+					healing = target.energyMax() - target.energy();
 				}
 				if(kGAMECLASS.inCombat()) kGAMECLASS.output("\n");
 				else kGAMECLASS.clearOutput();
