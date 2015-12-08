@@ -1117,16 +1117,36 @@ public function hoverholeFapFapFap():void
 //[Cuff&Fuck]
 // Cuff&Fuck.tooltip: Use your grav-cuffs to pin down [monster.name] and have your way with [monster.hisHer] [pc.vagOrAssNoun]! Requires Grav-cuffs and a penis.
 
+public function cuffNFuckButton(btnSlot:int = 0, sexedFoe:Creature = null):void
+{
+	if(sexedFoe == null) return;
+	if(pc.hasItem(new GravCuffs()) && pc.lust() >= 33)
+	{
+		var fitsInside:Boolean = false;
+		if(sexedFoe.hasVagina()) fitsInside = (pc.cockThatFits(sexedFoe.vaginalCapacity(0)) >= 0);
+		else fitsInside = (pc.cockThatFits(sexedFoe.analCapacity()) >= 0);
+		
+		if(sexedFoe != foes[0]) foes[0] = sexedFoe;
+		
+		if(pc.hasCock() && fitsInside) addButton(btnSlot, "Cuff&Fuck", cuffNFuck, undefined, "Cuff & Fuck", "Use your grav-cuffs to pin down [monster.name] and have your way with [monster.hisHer] [pc.vagOrAss]! Requires Grav-cuffs and a penis.");
+		else if(pc.hasCock()) addDisabledButton(btnSlot, "Cuff&Fuck", "Cuff & Fuck", "You can cuff [monster.himHer] down, but you wouldn't be able to fit inside.");
+		else addDisabledButton(btnSlot, "Cuff&Fuck", "Cuff & Fuck", "You need a penis to make use of your grav-cuffs this way.");
+	}
+}
+
 public function cuffNFuck():void
 {
 	clearOutput();
 	author("JimThermic");
-	output("Now that you’ve defeated [monster.name], you know exactly what to do with [monster.himHer]. As [monster.heShe] reels from the effects your battle, you pull out your grav-cuffs. With a commanding whistle, you toss them up and out in front of you. They immediately hone in and clamp on your felled opponent’s wrists and [pc.legsNoun]. Within seconds, [monster.name] is forced to the ground, [monster.hisHer] [monster.ass] shamefully pressed in the air.");
+	output("Now that you’ve defeated [monster.name], you know exactly what to do with [monster.himHer]. As [monster.heShe] reels from the effects your battle, you pull out your grav-cuffs. With a commanding whistle, you toss them up and out in front of you. They immediately hone in and clamp on your felled opponent’s wrists and ");
+	if(foes[0].legCount == 1) output("[monster.legNoun]");
+	else output("[monster.legsNoun]");
+	output(". Within seconds, [monster.name] is forced to the ground, [monster.hisHer] [monster.ass] shamefully pressed in the air.");
 	// One in three chance of pumping out one of the dialogue chunks below, just to keep the scene fresh.
 	//Random text output (⅓ chance):
 	if(rand(3) == 0)
 	{
-		output("\n\n <i>“W-what’s going on--?”</i> the [monster.name] stammers. [monster.HeShe] tries to pull [monster.hisHer] [pc.skinColor] hands off the ground, but [monster.heShe] can’t budge an inch.");
+		output("\n\n <i>“W-what’s going on--?”</i> [monster.name] stammers. [monster.HeShe] tries to pull [monster.hisHer] [pc.skinColor] hands off the ground, but [monster.heShe] can’t budge an inch.");
 		output("\n\nStriding up to your prostrate opponent, you stroke [monster.hisHer] butt and give it a ");
 		if(pc.isNice()) output("playful pat");
 		else if(pc.isMischievous()) output("cheeky slap");
@@ -1137,7 +1157,7 @@ public function cuffNFuck():void
 	//Random text output (⅓ chance):
 	else if(rand(2) == 0)
 	{
-		output("\n\n<i>“Wha-what did you do to me~?!”</i> the [monster.name] splutters. [monster.HisHer] [monster.ass] wiggles about enticingly as [monster.heShe] tries to tug free of the cuffs to no avail.");
+		output("\n\n<i>“Wha-what did you do to me~?!”</i> [monster.name] splutters. [monster.HisHer] [monster.ass] wiggles about enticingly as [monster.heShe] tries to tug free of the cuffs to no avail.");
 		output("\n\nStriding up to your prostrate opponent, you stroke [monster.hisHer] butt and give it a ");
 		if(pc.isNice()) output("playful pat");
 		else if(pc.isMischievous()) output("cheeky slap");
@@ -1148,7 +1168,10 @@ public function cuffNFuck():void
 	//Random text output (⅓ chance):
 	else
 	{
-		output("\n\n<i>“My wrists, my [monster.legsNoun] - I can’t move?!”</i> the [monster.name] cries out, trying in vain to tug [monster.hisHer] wrists and [monster.feet] free of the ground.");
+		output("\n\n<i>“My wrists, my ");
+		if(foes[0].legCount == 1) output("[monster.legNoun]");
+		else output("[monster.legsNoun]");
+		output(" - I can’t move?!”</i> [monster.name] cries out, trying in vain to tug [monster.hisHer] wrists and [monster.feet] free of the ground.");
 		output("\n\nStriding up to your prostrate opponent, you stroke [monster.hisHer] butt and give it a ");
 		if(pc.isNice()) output("playful pat");
 		else if(pc.isMischievous()) output("cheeky slap");
@@ -1202,9 +1225,9 @@ public function cuffNFuck():void
 	output("\n\n<i>“N-no!”</i> [monster.Name] blurts out. Despite [monster.hisHer] words, [monster.hisHer] [monster.ass] is instinctively slapping back against your [pc.hips], [monster.hisHer] own lifting to allow you deeper access.");
 	output("\n\nGrinning in amusement, you ");
 	//enemy.hasTail: 
-	if(foes[0].tailCount > 0) output("grab [monster.tails]");
+	if(foes[0].tailCount > 0) output("grab [monster.hisHer] [monster.tails]");
 	else output("grab [monster.hisHer] waist");
-	output(" and pick up the pace. [monster.name] grinds back against you, wringing your [pc.cock " + x + "] and moaning in ecstasy. Suddenly [monster.heShe]’s crying out and cumming hard around you, [monster.vagOrAss] trembling");
+	output(" and pick up the pace. [monster.Name] grinds back against you, wringing your [pc.cock " + x + "] and moaning in ecstasy. Suddenly [monster.heShe]’s crying out and cumming hard around you, [monster.vagOrAss] trembling");
 	if(foes[0].hasCock() || foes[0].hasVagina()) output(", ");
 	if(foes[0].hasCock()) output("[monster.cocks] spurting [monster.cum] all over [monster.hisHer] [monster.belly]");
 	if(foes[0].hasCock() && foes[0].hasVagina()) output(" and ");
@@ -1266,7 +1289,15 @@ public function cuffNFuck():void
 	foes[0].orgasm();
 	IncrementFlag("GRAVCUFFS_USES");
 	output("\n\n");
-	genericVictory();
+	if(inCombat())
+	{
+		genericVictory();
+	}
+	else
+	{
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
 }
 
 //New Texan Gang-Bang
