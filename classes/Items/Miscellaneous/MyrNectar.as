@@ -59,9 +59,9 @@
 		override public function useFunction(target:Creature, usingCreature:Creature = null):Boolean
 		{
 			var healing:int = 55;
-			if(targetCreature.energy() + healing > targetCreature.energyMax())
+			if(target.energy() + healing > target.energyMax())
 			{
-				healing = targetCreature.energyMax() - targetCreature.energy();
+				healing = target.energyMax() - target.energy();
 			}
 			if(target is PlayerCharacter)
 			{

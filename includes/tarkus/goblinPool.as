@@ -1317,7 +1317,7 @@ public function arbetzPoolJUSTDOIT(sex:int = 0):void
 	output(", you begin to take off your [pc.gear], piece by piece.");
 	
 	// PC has no lower undergarment:
-	if (pc.isCrotchGarbed())
+	if (pc.lowerUndergarment is EmptySlot)
 	{
 		output("\n\n<i>“Oh for...”</i> Una’s leer is broken with a snort of hysterical laughter buried into her suited arm when you take off your [pc.lowerGarments]. <i>“You never learned that less is more, did you dear?”</i> she sighs once she’s recovered, gazing down at");
 		if (pc.hasCock()) output(" [pc.eachCock]");
