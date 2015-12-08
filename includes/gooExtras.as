@@ -344,7 +344,7 @@ public function galoMaxTFProc():void
 		pc.createStatusEffect("Goo Crotch");
 		//Elasticity to 3
 		//Cocks/Cunts to goo
-		pc.elasticity = 3;
+		if(pc.elasticity < 3) pc.elasticity = 3;
 		for(var x:int = 0; x < pc.totalCocks(); x++)
 		{
 			if(!pc.hasCockFlag(GLOBAL.FLAG_GOOEY,x)) pc.cocks[x].addFlag(GLOBAL.FLAG_GOOEY);
