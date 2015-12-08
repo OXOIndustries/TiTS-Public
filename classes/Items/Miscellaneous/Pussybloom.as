@@ -7,6 +7,7 @@
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
+	import classes.Util.InCollection;
 	
 	public class Pussybloom extends ItemSlotClass
 	{
@@ -32,7 +33,7 @@
 			this.description = "a pussybloom pill";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "Originally intended as a feminine enhancer, it was discovered to cause non-females to permanently grow a vagina of their own. In light of this, the product was rebranded by Xenogen Biotech, repriced, and sold as an effective way of gaining or changing sex. It is still seen as the most effective and safest way to become a woman or hermaphrodite despite its high price tag.\n\nWomen still gain advantage from it, if they can afford it. The microsurgeon and chemical cocktail packed into the pink pill is quite effective at increasing the elasticity and capacity of a given orifice, making inter-species breeding a snap. Increases in fertility are a known and documented side effect.";
+			this.tooltip = "Originally intended as a feminine enhancer, it was discovered to cause non-females to permanently grow a vagina of their own. In light of this, the product was rebranded by Xenogen Biotech, repriced, and sold as an effective way of gaining or changing sex. It is still seen as the most effective and safest way to become a woman or hermaphrodite despite its high price tag.\n\nWomen still gain advantage from it, if they can afford it. The microsurgeon and chemical cocktail packed into the pink pill is quite effective at increasing the capacity of a given orifice, making inter-species breeding a snap. Increases in fertility are a known and documented side effect.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -78,25 +79,86 @@
 					pc.createVagina();
 					pc.clitLength = .25;
 					pc.vaginas[0].hymen = true;
-					if(pc.horseScore() >= 4) 
+					var pcRace:String = pc.race();
+					if(InCollection(pcRace, "horse-morph", "part horse-morph", "laquine", "ovir", "half-ovir", target.mlpRace())) 
 					{
-						kGAMECLASS.output("You’ve got dusky, black horse-pussy.");
 						pc.shiftVagina(0, GLOBAL.TYPE_EQUINE);
+						kGAMECLASS.output("You’ve got ");
+						if(pc.vaginaColor(0) == "black") kGAMECLASS.output("a dusky, black");
+						else kGAMECLASS.output(kGAMECLASS.indefiniteArticle(pc.vaginaColor(0)));
+						kGAMECLASS.output(" horse-pussy.");
 					}
-					else if(pc.naleenScore() >= 5)
+					else if(InCollection(pcRace, "naleen", "naga"))
 					{
-						kGAMECLASS.output("You’ve got a slim, purple-hued snake-pussy.");
-						target.vaginas[0].clits = 1;
-						target.vaginas[0].type = GLOBAL.TYPE_NAGA;
+						pc.shiftVagina(0, GLOBAL.TYPE_NAGA);
+						kGAMECLASS.output("You’ve got a slim, " + pc.vaginaColor(0) + "-hued snake-pussy.");
 					}
-					else if(pc.zilScore() >= 4)
+					else if(pcRace == "zil")
 					{
-						kGAMECLASS.output("You’ve got a dusky, black zil-pussy.");
 						pc.shiftVagina(0, GLOBAL.TYPE_BEE);
+						kGAMECLASS.output("You’ve got ");
+						if(pc.vaginaColor(0) == "black") kGAMECLASS.output("a dusky, black");
+						else kGAMECLASS.output(kGAMECLASS.indefiniteArticle(pc.vaginaColor(0)));
+						kGAMECLASS.output(" zil-pussy.");
 					}
+					else if (InCollection(pcRace, "leithan", "half-leithan"))
+					{
+						pc.shiftVagina(0, GLOBAL.TYPE_LEITHAN);
+						kGAMECLASS.output("You’ve got ");
+						if(pc.vaginaColor(0) == "black") kGAMECLASS.output("a dusky, black");
+						else kGAMECLASS.output(kGAMECLASS.indefiniteArticle(pc.vaginaColor(0)));
+						kGAMECLASS.output(" leithan pussy.");
+					}
+					else if (pcRace == "vanae-morph")
+					{
+						pc.shiftVagina(0, GLOBAL.TYPE_VANAE);
+						kGAMECLASS.output("You’ve got a virginal, " + pc.vaginaColor(0) + " vanae pussy.");
+					}
+					else if(InCollection(pcRace, "kui-tan", "half kui-tan"))
+					{
+						pc.shiftVagina(0, GLOBAL.TYPE_KUITAN);
+						kGAMECLASS.output("You’ve got ");
+						if(pc.vaginaColor(0) == "black") kGAMECLASS.output("a dusky, black");
+						else kGAMECLASS.output(kGAMECLASS.indefiniteArticle(pc.vaginaColor(0)));
+						kGAMECLASS.output(" ‘nuki-pussy.");
+					}
+					else if (pcRace == "lapinara")
+					{
+						pc.shiftVagina(0, GLOBAL.TYPE_LAPINARA);
+						kGAMECLASS.output("You’ve got " + kGAMECLASS.indefiniteArticle(pc.vaginaColor(0)) + " lapinara pussy.");
+					}
+					else if (pcRace == "canine-morph")
+					{
+						pc.shiftVagina(0, GLOBAL.TYPE_CANINE);
+						kGAMECLASS.output("You’ve got " + kGAMECLASS.indefiniteArticle(pc.vaginaColor(0)) + " canine-pussy.");
+					}
+					else if (InCollection(pcRace, "gabilani", "goblin"))
+					{
+						pc.shiftVagina(0, GLOBAL.TYPE_GABILANI);
+						kGAMECLASS.output("You’ve got a muscular, " + pc.vaginaColor(0) + " goblin pussy.");
+					}
+					/*
+					else if (InCollection(pcRace, "siren", "anemone"))
+					{
+						pc.shiftVagina(0, GLOBAL.TYPE_SIREN);
+						kGAMECLASS.output("You’ve got a tentacled, " + pc.vaginaColor(0) + " alien pussy.");
+					}
+					else if (InCollection(pcRace, "synthetic", "robot", "companion droid"))
+					{
+						pc.shiftVagina(0, GLOBAL.TYPE_SYNTHETIC);
+						kGAMECLASS.output("You’ve got a robotic, " + pc.vaginaColor(0) + "-colored synthetic pussy.");
+					}
+					*/
 					else
 					{
-						kGAMECLASS.output("You’ve got a pretty, pink pussy.");
+						if(pc.skinType == GLOBAL.SKIN_TYPE_GOO)
+						{
+							pc.vaginas[0].addFlag(GLOBAL.FLAG_GOOEY);
+							pc.vaginas[0].vaginaColor = pc.skinTone;
+						}
+						kGAMECLASS.output("You’ve got a pretty, " + pc.vaginaColor(0) + " pussy");
+						if(pc.vaginas[0].hasFlag(GLOBAL.FLAG_GOOEY)) kGAMECLASS.output(" made of goo");
+						kGAMECLASS.output(".");
 					}
 					pc.orgasm();
 					kGAMECLASS.output("</b> You’ll have to spend some quality time with it soon.");
@@ -122,11 +184,13 @@
 						kGAMECLASS.output("All the heat has you feeling a little frisky. You dip a couple fingers into your slick junction, just to test it out");
 						if(pc.vaginalCapacity() > 400) kGAMECLASS.output(" before graduating to your fist");
 						if(pc.vaginalCapacity() > 600) kGAMECLASS.output(" and forearm");
-						kGAMECLASS.output(", finding yourself stretching past your usual limits with ease. You still squeeze just as tight around your self-induced invasion, but you’re able to get more in before it becomes uncomfortable. <b>Your ");
+						kGAMECLASS.output(", finding yourself filling past your usual limits with ease.");
+						if(pc.vaginas[x].looseness() <= 4) kGAMECLASS.output(" You still squeeze just as tight around your self-induced invasion, but you’re able to get more in before it becomes uncomfortable.");
+						kGAMECLASS.output(" <b>Your ");
 						if(x == 0) kGAMECLASS.output("first");
 						else if(x == 1) kGAMECLASS.output("second");
 						else kGAMECLASS.output("third");
-						kGAMECLASS.output(" vagina has become more elastic!</b>");
+						kGAMECLASS.output(" vagina has become more capacious!</b>");
 						pc.vaginas[x].bonusCapacity += 100;
 					}
 				}
