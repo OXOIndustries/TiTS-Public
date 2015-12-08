@@ -429,6 +429,8 @@ public function pcLossToNyrea():void
 		
 		output("\n\nMore than the heft of her cock, you feel the soft barbs ringing her flare scraping along the insides of your [pc.asshole]. Your back arches like a whore’s, instinctively reacting to the alien sensation. Seeing your reaction, the huntress gives your [pc.butt] another slap, making you clench around the intruding pseudo-cock and driving its spines hard against your spasming walls. She digs into you inside and out, fingers sinking into your backside and spines grinding against your anal walls. The huntress doesn’t thrust or grind, just slides herself ever deeper inside you, her sheer size forcing your guts out of the way and stretching you out like a condom around her shaft.");
 		
+		pc.buttChange(foes[0].biggestCockVolume());
+		
 		output("\n\nLooks like she’s not as interested in fucking as much as she is in laying her eggs in you. The way she’s going, it isn’t long before the sensation of her prick sliding into you gives way to an immense pressure resting against your stretched-out hole: the nyrea’s knot. You gulp, finally giving in and looking at her over your shoulder. Her eyes are rolled back, long tongue lolling out of her mouth - totally consumed by pleasure. Completely on instinct, however, her hips press relentlessly against you, trying to brute force the knot inside you. There’s not much you can do about it, other than try not to scream as she starts to ramrod the knot into your [pc.asshole].");
 		
 		output("\n\nIt’s not one final plunge that gets her knot in, but a series of short, jerking thrusts; she has to work herself into you, inch by agonizing inch. You feel something change as she does so, a sudden flush of moisture rushing into your stretched-out bowels, followed by a throbbing in her knotted cock so powerful that you can feel the huntress’s heartbeat through her member, pulsing between the walls of your [pc.asshole].");
@@ -472,10 +474,9 @@ public function pcLossToNyrea():void
 			if(pc.vaginas[tHole].clits > 0) output(", teasing at your " + pc.clitDescript(tHole));
 			output(". Your breath catches, sending shivers down your spine until the huntress’s flared cockhead presses against your [pc.cunt "+ tHole +"]. The sensation of her spines teasing at the inside of your cunt is almost too much to bear.");
 			
-			output("\n\nWhen she thrusts in, you can’t help but scream. ");
-
-			output("\n\n");
-			pc.cuntChange(tHole, foes[0]);
+			output("\n\nWhen she thrusts in, you can’t help but scream.");
+			
+			pc.cuntChange(tHole, foes[0].biggestCockVolume());
 			
 			output("\n\n<i>“Try and relax,”</i> the nyrea urges, her hands gripping your [pc.hips] firmly. Easy for her to say! You take a deep breath to steady yourself, trying to force your pussy to unclench. A mix of pleasure and pain overtakes you as the elephantine pecker pushes through your pussylips, spreading you wide around its flared cockhead. Your eyes go wide, mouth curling open in a scream that trails into shocked silence, leaving your lips agape in a silent <i>“O.”</i> ");
 			
@@ -858,6 +859,7 @@ public function rideNyreaDick():void
 	var tHoleTag:String;
 	var useAss:Boolean;
 	var isFull:Boolean;
+	var iWomb:int = pc.findEmptyPregnancySlot(Creature.PREGSLOT_VAG);
 
 	if (!pc.isPregnant(3))
 	{
@@ -865,9 +867,9 @@ public function rideNyreaDick():void
 		useAss = true;
 		isFull = false;
 	}
-	else if (pc.findEmptyPregnancySlot(Creature.PREGSLOT_VAG) >= 0)
+	else if (iWomb >= 0)
 	{
-		tHoleTag = "[pc.cunt " + pc.findEmptyPregnancySlot(Creature.PREGSLOT_VAG) +"]";
+		tHoleTag = "[pc.cunt " + iWomb +"]";
 		useAss = false;
 		isFull = false;
 	}
@@ -918,8 +920,16 @@ public function rideNyreaDick():void
 	
 	output("\n\nShe’s not able to do it before she climaxes, driven wild by your clenching hole and the pressure in her chest. A veritable geyser of milk spurts from her teats, cascading up and onto your arms and chest. Now that’s a shower! You open your mouth to catch a few of the errant drops, loving her sweet nectar’s taste. You feel no flood of cum from her pseudo-cock, though: she’s got no jizz to flood you with, though that doesn’t stop her prick from twitching and throbbing, straining your "+ tHoleTag +"’s walls. Her feline nubs rub you in all the right places, teasing your tender muscles");
 	if (pc.hasCock()) output(" right through to your [pc.cock], making your manhood jump with excitement, drooling pre onto the huntress’s bare belly.");
-	else if (!useAss) output(", massaging the full passage of your pussy. Her flared head batters against your cervix, reaching up to kiss it. You can’t help but shiver as her spiney cockhead reaches deep into you.");
-	else output(". Your ass stretches in the most pleasurable of ways around the huntress’s thick member, every bounce or shift of your [pc.hips] dragging those soft spines across your walls, driving you mad with pleasure.");
+	else if (!useAss)
+	{
+		output(", massaging the full passage of your pussy. Her flared head batters against your cervix, reaching up to kiss it. You can’t help but shiver as her spiney cockhead reaches deep into you.");
+		pc.cuntChange(iWomb, foes[0].biggestCockVolume());
+	}
+	else
+	{
+		output(". Your ass stretches in the most pleasurable of ways around the huntress’s thick member, every bounce or shift of your [pc.hips] dragging those soft spines across your walls, driving you mad with pleasure.");
+		pc.buttChange(foes[0].biggestCockVolume());
+	}
 	
 	output("\n\nYou start to move your [pc.hips] more, bouncing on the nyrea’s cock as she cums, refusing to let her go soft on you. Lucky you, she might have a mighty dick, but the huntress has a girl’s refractory period - you’re able to ride her right through her orgasm, only increasing the pace until the alien warrior’s a blissed-out mess, moaning whorishly as you ride her into the ground. Every movement you make draws her fat knot closer to the");
 	if (!useAss) output(" lips");
