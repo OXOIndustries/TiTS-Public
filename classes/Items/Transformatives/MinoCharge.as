@@ -75,7 +75,7 @@ package classes.Items.Transformatives
 				}
 				else
 				{
-					output(target.skinTypeLockedMessage() + "\n\n");
+					output("\n\n" + target.skinTypeLockedMessage());
 				}
 				
 				//if PC has a non-human face:
@@ -240,7 +240,7 @@ package classes.Items.Transformatives
 			if (target.hasVagina())
 			{
 				//100% chance to shrink vaginas by 1 size
-				if (target.biggestVaginalCapacity() > 0)
+				if (target.biggestVaginalCapacity() > 300)
 				{
 					output("\n\nYou feel a painful constricting feeling in [pc.eachVagina], your hole");
 					if (target.totalVaginas() != 1) output("s");
@@ -248,14 +248,26 @@ package classes.Items.Transformatives
 					
 					for(i = 0; i < target.vaginas.length; i++)
 					{
-						if (target.vaginas.bonusCapacity > 0)
+						if (target.vaginas[i].bonusCapacity > 0)
 						{
-							target.vaginas.bonusCapacity--;
+							target.vaginas[i].bonusCapacity--;
+							if (target.vaginas[i].bonusCapacity < 0) target.vaginas[i].bonusCapacity == 0;
 						}
-						if (target.vaginas.loosenessRaw > 1)
+						if (target.vaginas[i].loosenessRaw > 1)
 						{
-							target.vaginas.loosenessRaw--;
-							target.vaginas.minLooseness = 1;
+							target.vaginas[i].loosenessRaw--;
+							if (target.vaginas[i].loosenessRaw < 1) target.vaginas[i].loosenessRaw == 1;
+							target.vaginas[i].minLooseness = 1;
+						}
+						if (target.vaginas[i].wetness > 0)
+						{
+							target.vaginas[i].wetness--;
+							if (target.vaginas[i].wetness < 0) target.vaginas[i].wetness == 0;
+						}
+						if (target.elasticity > 1)
+						{
+							target.elasticity--;
+							if (target.elasticity < 1) target.elasticity == 1;
 						}
 					}
 					changes++;
@@ -267,19 +279,24 @@ package classes.Items.Transformatives
 				//Only if as tight as possible, should immediately proc sheath/cock/ball growth if this leaves PC genderless
 				if (target.vaginalCapacity(smallestVagIndex) <= 300)
 				{
-					output("\n\nYour vagina just keeps getting tighter and tighter, way too much so. Soon relief comes, but it’s in the form of feeling your nether lips seal entirely, the supercharged masculine hormones surging through your blood removing the offending female part. <b>");
-					
-					target.removeVagina(smallestVagIndex, 1);
-					changes++;
-					
-					if (target.totalVaginas() > 0)
+					if (target.removeVaginaUnlocked(smallestVagIndex, 1))
 					{
-						output("You only have " + num2Text(target.totalVaginas()) + " vagina");
-						if (target.totalVaginas() != 1) output("s");
-						output(" left between your [pc.legOrLegs]");
+						output("\n\nYour vagina just keeps getting tighter and tighter, way too much so. Soon relief comes, but it’s in the form of feeling your nether lips seal entirely, the supercharged masculine hormones surging through your blood removing the offending female part. <b>");
+						
+						target.removeVagina(smallestVagIndex, 1);
+						changes++;
+						
+						if (target.totalVaginas() > 0)
+						{
+							output("You only have " + num2Text(target.totalVaginas()) + " vagina");
+							if (target.totalVaginas() != 1) output("s");
+							output(" left");
+							if (target.hasLegs() && target.genitalLocation() == 0)output(" between your [pc.legOrLegs]");
+						}
+						else output("Your vagina is gone");
+						output("</b>!");
 					}
-					else output("Your vagina is gone");
-					output("</b>!");
+					else output("\n\n" + target.removeVaginaLockedMessage());
 				}
 			}
 			
@@ -479,7 +496,7 @@ package classes.Items.Transformatives
 						if (target.horns > 1 && target.hornLength >= 10) output(" They feel huge, heavy, and powerful, like big fat <i>bull</i> horns.");
 					}
 				}
-				else kGAMECLASS.output("\n\n" + target.hornLengthLockedMessage());
+				else output("\n\n" + target.hornLengthLockedMessage());
 			}
 			
 			//High chance to grow a cow tail (No existing tails)
@@ -494,7 +511,7 @@ package classes.Items.Transformatives
 					target.tailFlags = [GLOBAL.FLAG_LONG,GLOBAL.FLAG_FLUFFY];
 					changes++;
 				}
-				else kGAMECLASS.output("\n\n" + target.tailTypeLockedMessage());
+				else output("\n\n" + target.tailTypeLockedMessage());
 			}
 			
 			//High chance to grow a cow tail (PC already has tails)
@@ -515,7 +532,7 @@ package classes.Items.Transformatives
 					target.tailFlags = [GLOBAL.FLAG_LONG,GLOBAL.FLAG_FLUFFY];
 					changes++;
 				}
-				else kGAMECLASS.output(target.tailTypeLockedMessage());
+				else output("\n\n" + target.tailTypeLockedMessage());
 			}
 			
 			//High chance to gain bovine ears
