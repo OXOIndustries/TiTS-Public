@@ -288,6 +288,7 @@
 			TYPE_BEE,
 			TYPE_MYR,
 			TYPE_GABILANI,
+			TYPE_DEMONIC,
 		];
 		
 		public static const VALID_TONGUE_TYPES:Array = [
@@ -327,6 +328,7 @@
 			TYPE_KANGAROO,
 			TYPE_DEER,
 			TYPE_VULPINE,
+			TYPE_DEMONIC,
 			TYPE_DRACONIC,
 			TYPE_KUITAN,
 			TYPE_MOUSE,
@@ -354,6 +356,7 @@
 			TYPE_KUITAN,
 			TYPE_OVIR,
 			TYPE_MYR,
+			TYPE_DEMONIC,
 		];
 
 		public static const VALID_ARM_FLAGS:Array = [
