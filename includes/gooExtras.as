@@ -399,7 +399,7 @@ public function gooShiftMenu():void
 
 public function showBiomass():void
 {
-	if(flags["GOO_BIOMASS"] == undefined) flags["GOO_BIOMASS"] = 0;
+	if(flags["GOO_BIOMASS"] == undefined || flags["GOO_BIOMASS"] < 0) flags["GOO_BIOMASS"] = 0;
 	output2("\n\n\tBiomass Reserve: " + flags["GOO_BIOMASS"] + " mLs");
 	if(pc.hasStatusEffect("Goo Vent")) {
 		output2("\n\tVenting: ");
@@ -1227,7 +1227,11 @@ public function vaginaGooRootMenu():void
 	// Removal: Single vagina
 	if(pc.totalVaginas() == 1)
 	{
-		if(pc.vaginas[0].hasFlag(GLOBAL.FLAG_GOOEY)) addGhostButton(5,"Remove Vag",removeAVag,0,"Remove Vag","Remove your vagina.");
+		if(pc.vaginas[0].hasFlag(GLOBAL.FLAG_GOOEY))
+		{
+			if(pc.isPregnant(0)) addDisabledGhostButton(5,"Remove Vag","Remove Vag","Your vagina is pregnant and cannot be removed.");
+			else addGhostButton(5,"Remove Vag",removeAVag,0,"Remove Vag","Remove your vagina.");
+		}
 		else addDisabledGhostButton(5,"Remove Vag","Remove Vag","Your vagina isn't made of goo and cannot be removed.");
 	}
 	else if(!pc.hasVagina()) addDisabledGhostButton(5,"Remove Vag","Remove Vag","You have no vagina to remove.");
@@ -1235,26 +1239,52 @@ public function vaginaGooRootMenu():void
 	// Removal: Multiple vaginas
 	if(pc.totalVaginas() > 1)
 	{
-		if(pc.vaginas[0].hasFlag(GLOBAL.FLAG_GOOEY)) addGhostButton(5,"Remove Vag 1",removeAVag,0,"Remove Vag 1","Remove your first vagina.");
+		if(pc.vaginas[0].hasFlag(GLOBAL.FLAG_GOOEY))
+		{
+			if(pc.isPregnant(0)) addDisabledGhostButton(5,"Remove Vag 1","Remove Vag 1","Your first vagina is pregnant and cannot be removed.");
+			else addGhostButton(5,"Remove Vag 1",removeAVag,0,"Remove Vag 1","Remove your first vagina.");
+		}
 		else addDisabledGhostButton(5,"Remove Vag 1","Remove Vag 1","This vagina isn't made of goo and cannot be removed.");
-		if(pc.vaginas[1].hasFlag(GLOBAL.FLAG_GOOEY)) addGhostButton(6,"Remove Vag 2",removeAVag,1,"Remove Vag 2","Remove your second vagina.");
+		if(pc.vaginas[1].hasFlag(GLOBAL.FLAG_GOOEY))
+		{
+			if(pc.isPregnant(1)) addDisabledGhostButton(6,"Remove Vag 2","Remove Vag 2","Your second vagina is pregnant and cannot be removed.");
+			else addGhostButton(6,"Remove Vag 2",removeAVag,1,"Remove Vag 2","Remove your second vagina.");
+		}
 		else addDisabledGhostButton(6,"Remove Vag 2","Remove Vag 2","This vagina isn't made of goo and cannot be removed.");
 	}
 	//else addDisabledGhostButton(6,"Remove Vag 2","Remove Vag 2","You have no vagina to remove.");
 	if(pc.totalVaginas() > 2)
 	{
-		if(pc.vaginas[2].hasFlag(GLOBAL.FLAG_GOOEY)) addGhostButton(7,"Remove Vag 3",removeAVag,2,"Remove Vag 3","Remove your third vagina.");
+		if(pc.vaginas[2].hasFlag(GLOBAL.FLAG_GOOEY))
+		{
+			if(pc.isPregnant(2)) addDisabledGhostButton(7,"Remove Vag 3","Remove Vag 3","Your third vagina is pregnant and cannot be removed.");
+			else addGhostButton(7,"Remove Vag 3",removeAVag,2,"Remove Vag 3","Remove your third vagina.");
+		}
 		else addDisabledGhostButton(7,"Remove Vag 3","Remove Vag 3","This vagina isn't made of goo and cannot be removed.");
 	}
 	//else addDisabledGhostButton(7,"Remove Vag 3","Remove Vag 3","You have no vagina to remove.");
-	if(pc.totalVaginas() > 1)
+	
+	var numGooVags:Number = 0;
+	var numPregVags:Number = 0;
+	var numPregTotal:Number = pc.totalPregnancies();
+	if(pc.isPregnant(3)) numPregTotal--;
+	for(x = 0; x < pc.totalVaginas(); x++)
 	{
-		var numGooVags:Number = 0;
-		for(x = 0; x < pc.totalVaginas(); x++)
+		if(pc.vaginas[x].hasFlag(GLOBAL.FLAG_GOOEY)) numGooVags++;
+		if(pc.isPregnant(x)) numPregVags++;
+	}
+	if(numPregTotal > pc.totalVaginas())
+	{
+		if(pc.totalVaginas() == 0) addGhostButton(8,"Fix Womb",fixAllVags,(numPregTotal - pc.totalVaginas()),"Fix Womb","You seem to have a pregnancy and no vaginas... You should fix this before something goes horribly wrong!\n\n<b>500 mLs Biomass</b>");
+		else addGhostButton(8,"Fix Wombs",fixAllVags,(numPregTotal - pc.totalVaginas()),"Fix Wombs","You seem to have more pregnancies than you do vaginas... You should fix this before something goes horribly wrong!\n\n<b>" + ((numPregTotal - pc.totalVaginas()) * 500) + " mLs Biomass</b>");
+	}
+	else if(pc.totalVaginas() > 1)
+	{
+		if(pc.totalVaginas() == numGooVags)
 		{
-			if(pc.vaginas[x].hasFlag(GLOBAL.FLAG_GOOEY)) numGooVags++;
+			if(numPregVags > 0) addDisabledGhostButton(8,"Remove Vags","Remove Vaginas","Your vaginas cannot be removed at the same time because at least one of them is currently pregnant.");
+			else addGhostButton(8,"Remove Vags",removeAllVags,undefined,"Remove Vaginas","Remove all vaginas.");
 		}
-		if(pc.totalVaginas() == numGooVags) addGhostButton(8,"Remove Vags",removeAllVags,undefined,"Remove Vaginas","Remove all vaginas.");
 		else addDisabledGhostButton(8,"Remove Vags","Remove Vaginas","Your vaginas aren't all made of goo and cannot be removed at the same time.");
 	}
 	else if(pc.totalVaginas() == 1) addDisabledGhostButton(8,"Remove Vags","Remove Vaginas","You need multiple goo vaginas in order to try this.");
@@ -1484,6 +1514,62 @@ public function hymenRestorationForGoos():void
 	}
 	if(hymens > 1) output2("You decide that you'd like to be a virgin once more, and like magic, it is so. Your hymens are restored.");
 	else output2("You decide that you'd like to be a virgin once more, and like magic, it is so. Your hymen is restored.");
+	clearGhostMenu();
+	addGhostButton(0,"Next",vaginaGooRootMenu);
+}
+
+//Fix Preg Vag
+public function fixAllVags(nVagsToFix:Number = 0):void
+{
+	clearOutput2();
+	var gooCost:Number = (500 * nVagsToFix);
+	var numPregTotal:Number = pc.totalPregnancies();
+	if(pc.isPregnant(3)) numPregTotal--;
+	
+	// Failsafe
+	if(nVagsToFix <= 0)
+	{
+		output2("Your [pc.belly] rumbles, but nothing happens....");
+		output2("\n\nWeird.");
+	}
+	// Grow new 'ginas
+	else
+	{
+		output2("Your [pc.belly] feels funny... It churns and gurgles, clearly complaining about something.");
+		output2("\n\nStrange sensations vibrate through your womb");
+		if(numPregTotal > 1) output2("s");
+		output2(". Your crotch suddenly lights up and a");
+		if(pc.totalVaginas() > 0) output2(" second");
+		output2(" pubic mound appears, growing and changing into a new gooey vagina!");
+		if(nVagsToFix > 1) output2(" Another slimy mound forms quickly after the other, molding into yet another fresh vagina.");
+		if(nVagsToFix > 2) output2(" A final one follows, completing the trio of pregnant vaginas.");
+		output2("\n\nGoosebumps crawl underneath your [pc.skinFurScalesNoun] as your womb");
+		if(nVagsToFix == 1) output2(" warms");
+		else output2("s warm");
+		output2(", pulling the much-needed material and energy into your fecund baby facto");
+		if(nVagsToFix == 1) output2("y");
+		else output2("ies");
+		
+		// Take goo:
+		if(gooCost > flags["GOO_BIOMASS"]) flags["GOO_BIOMASS"] = 0;
+		else flags["GOO_BIOMASS"] -= gooCost;
+		if(flags["GOO_BIOMASS"] == 0) output2("and using up the rest of your biomass reserves in the process");
+		output2(", all to ensure that your new young gain the nutrients they need to grow--and more importantly, an exit to come out from.");
+		
+		// Create new vags:
+		for(var x:int = (pc.vaginas.length); x < pc.vaginas.length + nVagsToFix; x++)
+		{
+			pc.createVagina();
+			pc.vaginas[x].addFlag(GLOBAL.FLAG_GOOEY);
+			pc.vaginas[x].vaginaColor = gooColor();
+			pc.energy(-25);
+		}
+		
+		output2("\n\n<b>You have gained ");
+		if(nVagsToFix == 1) output2("a new vagina");
+		else output2(num2Text(nVagsToFix) + " new vaginas");
+		output2("!</b>");
+	}
 	clearGhostMenu();
 	addGhostButton(0,"Next",vaginaGooRootMenu);
 }
