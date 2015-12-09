@@ -573,8 +573,9 @@ public function gooCockRootMenu():void
 	clearGhostMenu();
 	if(flags["GOO_BIOMASS"] >= 500) 
 	{
-		if(pc.cockTotal() < 10) addGhostButton(0,"Grow One",growANewGooCock,undefined,"Grow One","Grow a new, gooey penis.\n\n<b>500 mLs Biomass</b>");
-		else addDisabledGhostButton(0,"Grow One","Grow One","There's not room for any more penises!");
+		if(!pc.createCockUnlocked(pc.cockTotal() + 1)) addDisabledGhostButton(0,"Grow One","Grow One","Something is preventing you from growing a penis.");
+		else if(pc.cockTotal() < 10) addGhostButton(0,"Grow One",growANewGooCock,undefined,"Grow One","Grow a new, gooey penis.\n\n<b>500 mLs Biomass</b>");
+		else addDisabledGhostButton(0,"Grow One","Grow One","There's no room for any more penises!");
 	}
 	else addDisabledGhostButton(0,"Grow One","Grow One","You don't have enough biomass for that.\n\n<b>500 mLs Biomass</b>");
 
@@ -1197,8 +1198,9 @@ public function vaginaGooRootMenu():void
 	clearGhostMenu();
 	if(flags["GOO_BIOMASS"] >= 500)
 	{
-		if(pc.totalVaginas() < 3) addGhostButton(0,"Grow Vagina",growAGoogina,undefined,"Grow Vagina","Grow a new vagina.\n\n<b>500 mLs Biomass</b>");
-		else addDisabledGhostButton(0,"Grow Vagina","Grow Vagina","There's no more room for more vaginas!");
+		if(!pc.createVaginaUnlocked(pc.totalVaginas() + 1)) addDisabledGhostButton(0,"Grow Vagina","Grow Vagina","Something is preventing you from growing a vagina.");
+		else if(pc.totalVaginas() < 3) addGhostButton(0,"Grow Vagina",growAGoogina,undefined,"Grow Vagina","Grow a new vagina.\n\n<b>500 mLs Biomass</b>");
+		else addDisabledGhostButton(0,"Grow Vagina","Grow Vagina","There's no room for any more vaginas!");
 	}
 	else addDisabledGhostButton(0,"Grow Vagina","Grow Vagina","You don't have enough biomass for that!\n\n<b>500 mLs Biomass</b>");
 
