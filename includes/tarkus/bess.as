@@ -8245,32 +8245,32 @@ public function bessEvent17():void
 		output("\n\n[bess.name] pouts a little bit, spinning the z-g ball on one finger. <i>“... Well okay, this is no private yacht, and I’m no celebrity - just a bot with a ball. Anyway, the point is you know how to play!”</i>");
 	}
 
+	//{If Ship Has a Holoroom:
 	if (9999 == 0)
 	{
-	//{If Ship Has a Holoroom:
-		output("\n\n<i>“How about we play a game? I’ve reprogrammed the holoroom to run a very realistic simulation of the real thing. Pitch, crowd and the whole works! Even digital teammates to fill in the gaps.”</i> the");
+		output("\n\n<i>“How about we play a game? I’ve reprogrammed the holoroom to run a very realistic simulation of the real thing. Pitch, crowd and the whole works! Even digital teammates to fill in the gaps,”</i> the");
 		if (bess.hairLength > 0) output(" [bess.hairColor] haired");
 		else output(" silver headed");
 		output(" synthetic informs you.");
 		if (crew(true) == 2) output(" <i>“We could even see if we could make it a three way game, get the whole of our merry crew involved.”</i>");
-		else if (crew(true) > 2) output("<i>“We could even see if we could get the others to join in the fun.”</i>");
+		else if (crew(true) > 2) output(" <i>“We could even see if we could get the others to join in the fun.”</i>");
 		
 		output("\n\n<i>“Anytime you want to play a match in the holo room just come get me. I’ll boot up the program, and we can have a boot of the ol’ z-g ball.”</i>");
 		
-		output("\n\n<b> You can now play Graviball with [bess.name] and any of your other crew by talking to [bess.hisHer] in [bess.hisHer] companion menu!</b>");
+		output("\n\n<b>You can now play Graviball with [bess.name] and any of your other crew by talking to [bess.hisHer] in [bess.hisHer] companion menu!</b>");
 	}
 	else
 	{
-		output("\n\n<i>“I got bored last night, and wrote a holo room simulation for playing Graviball. If we get ourselves one, we can play a very realistic simulation of the real thing. Pitch, crowd, the whole works! Even digital teammates to fill in the gaps.”</i> the");
+		output("\n\n<i>“I got bored last night, and wrote a holo room simulation for playing Graviball. If we get ourselves one, we can play a very realistic simulation of the real thing. Pitch, crowd, the whole works! Even digital teammates to fill in the gaps,”</i> the");
 		if (bess.hairLength > 0) output(" [bess.hairColor] haired");
 		else output(" silver headed");
 		output(" synthetic informs you.");
 		if (crew(true) == 2) output(" <i>“We could even see if we could make it a three way game, get the whole of our merry crew involved.”</i>");
-		else if (crew(true) > 2) output("<i>“We could even see if we could get the others to join in the fun.”</i>");
+		else if (crew(true) > 2) output(" <i>“We could even see if we could get the others to join in the fun.”</i>");
 		
 		output("\n\n<i>“All we need is a holo room. Simple, right? We should save up and get one on our travels so we can play a match or two.”</i>");
 
-		output("\n\n<b> You can now play Graviball with [bess.name] and any of your other crew when your ship has a holoroom!</b>");
+		output("\n\n<b>You can now play Graviball with [bess.name] and any of your other crew when your ship has a holoroom!</b>");
 	}
 
 	flags["BESS_EVENT_17"] = GetGameTimestamp();
