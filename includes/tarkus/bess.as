@@ -2931,9 +2931,9 @@ public function talkToBessAboutCock():void
 	clearMenu();
 	if (!bess.hasCock()) addDisabledButton(0, "None");
 	else addButton(0, "None", setBessCockType, -1);
-	if (bess.hasCock() && bess.cocks[0].cType == GLOBAL.TYPE_HUMAN && bess.balls == 0) addDisabledButton(1, "Normal");
+	if (bess.hasCock() && bess.cocks[0].cType == GLOBAL.TYPE_SYNTHETIC && bess.balls == 0) addDisabledButton(1, "Normal");
 	else addButton(1, "Normal", setBessCockType, GLOBAL.TYPE_HUMAN);
-	if (bess.hasCock() && bess.cocks[0].cType == GLOBAL.TYPE_HUMAN && bess.balls > 0) addDisabledButton(2, "Normal+Balls");
+	if (bess.hasCock() && bess.cocks[0].cType == GLOBAL.TYPE_SYNTHETIC && bess.balls > 0) addDisabledButton(2, "Normal+Balls");
 	else addButton(2, "Normal+Balls", setBessCockType, -2);
 	
 	if (bess.hasCock() && bess.cocks[0].cType == GLOBAL.TYPE_SAURIAN) addDisabledButton(3, "Dino");
@@ -3159,28 +3159,25 @@ public function setBessCockType(newType:int):void
 		{
 			output(" to have a human-shaped cock");
 			if (!bess.hasCock()) bess.cocks.push(new CockClass());
-			bess.cocks[0].cType = newType;
+			//bess.cocks[0].cType = newType;
+			bess.cocks[0].cType = GLOBAL.TYPE_SYNTHETIC;
+			bess.cocks[0].cockColor = "silver";
 			bess.cocks[0].cLengthRaw = 12;
 			bess.cocks[0].cThicknessRatioRaw = 1.5;
 			bess.cocks[0].clearFlags();
-			bess.cocks[0].cType = GLOBAL.TYPE_SYNTHETIC;
-			bess.cocks[0].cockColor = "silver";
-
-			bess.balls = 2;
-			bess.ballSizeRaw = 4;
 		}
 		// With balls
 		if (newType == -2)
 		{
 			output(" with balls");
-			bess.cocks[0].cType = GLOBAL.TYPE_HUMAN;
-			//bess.balls = 0;
-			//bess.ballSizeRaw = 0;
+			//bess.cocks[0].cType = GLOBAL.TYPE_HUMAN;
+			bess.balls = 2;
+			bess.ballSizeRaw = 4;
 		}
 		// Without balls
 		else if (newType == GLOBAL.TYPE_HUMAN)
 		{
-			bess.cocks[0].cType = GLOBAL.TYPE_HUMAN;
+			//bess.cocks[0].cType = GLOBAL.TYPE_HUMAN;
 			bess.balls = 0;
 			bess.ballSizeRaw = 0;
 		}
@@ -3194,14 +3191,14 @@ public function setBessCockType(newType:int):void
 			output("!</b>");
 		}
 	}
-
-	//bessFunctionsMenu();
-	clearMenu();
-	addButton(0, "Next", bessFunctionsMenu);
+	
 	if (bess.balls > 0 && newType > GLOBAL.TYPE_HUMAN)
 	{
+		clearMenu();
+		addButton(0, "Next", bessFunctionsMenu);
 		addButton(1, "No Balls", setBessNoBalls, undefined, "Remove Balls", "Ask [bess.name] to remove [bess.hisHer] balls.");
 	}
+	else bessFunctionsMenu();
 }
 
 public function setBessNoBalls():void
