@@ -588,7 +588,8 @@ public function gooCockRootMenu():void
 			var cockCost:Number = costGooCockLengthen(0, 2);
 			addGhostButton(2,"Lengthen",lengthenGooCock,undefined,"Lengthen","Put some biomass to work making your endowment longer.\n\n<b>" + cockCost + " mLs Biomass</b>");
 			addGhostButton(3,"Shorten",shortenADick,undefined,"Shorten","Shorten your penis and reclaim some of its biomass.");
-			addGhostButton(5,"Remove",removeGooCockRoot,undefined,"Remove","Remove your penis, returning it to plain goo.");
+			if(!pc.removeCockUnlocked(0, 1)) addDisabledGhostButton(5,"Remove","Remove","Something is preventing your penis from being removed.");
+			else addGhostButton(5,"Remove",removeGooCockRoot,undefined,"Remove","Remove your penis, returning it to plain goo.");
 		}
 		else
 		{
@@ -604,7 +605,8 @@ public function gooCockRootMenu():void
 			{
 				if(pc.cocks[x].hasFlag(GLOBAL.FLAG_GOOEY)) numGooCocks++;
 			}
-			if(pc.cockTotal() == numGooCocks) addGhostButton(6,"Remove All",removeAllGooCocks,undefined,"Remove All Cocks","Remove all penises.");
+			if(!pc.removeCocksUnlocked()) addDisabledGhostButton(6,"Remove All","Remove All","Something is preventing your penises from being removed all the same time.");
+			else if(pc.cockTotal() == numGooCocks) addGhostButton(6,"Remove All",removeAllGooCocks,undefined,"Remove All Cocks","Remove all penises.");
 			else addDisabledGhostButton(6,"Remove All","Remove All","Your penises aren't all made of goo and cannot be removed at the same time.");
 		}
 		else addDisabledGhostButton(6,"Remove All","Remove All","You don't have multiple goo penises to try this.");
@@ -614,7 +616,7 @@ public function gooCockRootMenu():void
 		addDisabledGhostButton(1,"Reshape","Reshape","You have no penis to reshape.");
 		addDisabledGhostButton(2,"Lengthen","Lengthen","You have no penis to lengthen.");
 		addDisabledGhostButton(3,"Shorten","Shorten","You have no penis to shorten.");
-		addDisabledGhostButton(5,"Remove 1","Remove 1","You don't have a penis to remove.");
+		addDisabledGhostButton(5,"Remove 1","Remove One","You don't have a penis to remove.");
 		addDisabledGhostButton(6,"Remove All","Remove All","You don't have a penis to remove.");
 	}
 	addGhostButton(14,"Back",gooCrotchCustomizer);
@@ -635,8 +637,10 @@ public function gooBallsMenu():void
 		else addDisabledGhostButton(0,"Grow Testicle","Grow Testicle","You do not have enough biomass for this.\n\n<b>" + nutGrowCost() + " mLs Biomass</b>");
 	}
 	else addDisabledGhostButton(0,"Grow Testicle","Grow Testicle","You have as many testicles as possible.");
-	if(pc.balls > 0) addGhostButton(1,"Remove One",removeATesticle,undefined,"Remove One","Remove a testicle.");
-	else addDisabledGhostButton(1,"Remove One","Remove One","You have no testicles to remove.");
+	if(pc.balls == 1 && (hasStatusEffect("Mimbrane Balls") || 9999 == 0)) addGhostButton(1,"Remove",removeATesticle,undefined,"Remove","Something is preventing you from removing your only testicle.");
+	else if(pc.balls == 1) addGhostButton(1,"Remove",removeATesticle,undefined,"Remove","Remove your testicle.");
+	else if(pc.balls > 0) addGhostButton(1,"Remove 1",removeATesticle,undefined,"Remove One","Remove a testicle.");
+	else addDisabledGhostButton(1,"Remove 1","Remove One","You have no testicles to remove.");
 	if(pc.balls > 0)
 	{
 		if(flags["GOO_BIOMASS"] >= nutExpansionCost()) addGhostButton(2,"Expand Balls",expandoNuts,undefined,"Expand Balls","Expand the diameter of your balls by approximately one inch.\n\n<b>" + nutExpansionCost() + " mLs Biomass</b>");
@@ -991,7 +995,9 @@ public function removeGooCockRoot():void
 		if(pc.cocks[x].hasFlag(GLOBAL.FLAG_GOOEY))
 		{
 			output2("\n" + (x+1) + ": [pc.Cock " + x + "]");
-			addGhostButton(x,upperCase(num2Text(x+1)),removeDaChosenGooCock,x,StringUtil.capitalize(num2Ordinal(x + 1)) + " Cock","Remove this penis.");
+			if(!pc.removeCockUnlocked(x, 1)) addDisabledGhostButton(x,upperCase(num2Text(x+1)),StringUtil.capitalize(num2Ordinal(x + 1)) + " Cock","Something is preventing this penis from being removed.");
+			else addGhostButton(x,upperCase(num2Text(x+1)),removeDaChosenGooCock,x,StringUtil.capitalize(num2Ordinal(x + 1)) + " Cock","Remove this penis.");
+			
 		}
 		else
 		{
@@ -1229,10 +1235,11 @@ public function vaginaGooRootMenu():void
 	{
 		if(pc.vaginas[0].hasFlag(GLOBAL.FLAG_GOOEY))
 		{
-			if(pc.isPregnant(0)) addDisabledGhostButton(5,"Remove Vag","Remove Vag","Your vagina is pregnant and cannot be removed.");
-			else addGhostButton(5,"Remove Vag",removeAVag,0,"Remove Vag","Remove your vagina.");
+			if(!pc.removeVaginaUnlocked(0, 1)) addDisabledGhostButton(5,"Remove Vag","Remove Vagina","Something is preventing your vagina from being removed.");
+			else if(pc.isPregnant(0)) addDisabledGhostButton(5,"Remove Vag","Remove Vagina","Your vagina is pregnant and cannot be removed.");
+			else addGhostButton(5,"Remove Vag",removeAVag,0,"Remove Vagina","Remove your vagina.");
 		}
-		else addDisabledGhostButton(5,"Remove Vag","Remove Vag","Your vagina isn't made of goo and cannot be removed.");
+		else addDisabledGhostButton(5,"Remove Vag","Remove Vagina","Your vagina isn't made of goo and cannot be removed.");
 	}
 	else if(!pc.hasVagina()) addDisabledGhostButton(5,"Remove Vag","Remove Vag","You have no vagina to remove.");
 	
@@ -1241,28 +1248,31 @@ public function vaginaGooRootMenu():void
 	{
 		if(pc.vaginas[0].hasFlag(GLOBAL.FLAG_GOOEY))
 		{
-			if(pc.isPregnant(0)) addDisabledGhostButton(5,"Remove Vag 1","Remove Vag 1","Your first vagina is pregnant and cannot be removed.");
-			else addGhostButton(5,"Remove Vag 1",removeAVag,0,"Remove Vag 1","Remove your first vagina.");
+			if(!pc.removeVaginaUnlocked(0, 1)) addDisabledGhostButton(5,"Remove Vag 1","Remove First Vagina","Something is preventing this vagina from being removed.");
+			else if(pc.isPregnant(0)) addDisabledGhostButton(5,"Remove Vag 1","Remove First Vagina","Your first vagina is pregnant and cannot be removed.");
+			else addGhostButton(5,"Remove Vag 1",removeAVag,0,"Remove First Vagina","Remove your first vagina.");
 		}
-		else addDisabledGhostButton(5,"Remove Vag 1","Remove Vag 1","This vagina isn't made of goo and cannot be removed.");
+		else addDisabledGhostButton(5,"Remove Vag 1","Remove First Vagina","This vagina isn't made of goo and cannot be removed.");
 		if(pc.vaginas[1].hasFlag(GLOBAL.FLAG_GOOEY))
 		{
-			if(pc.isPregnant(1)) addDisabledGhostButton(6,"Remove Vag 2","Remove Vag 2","Your second vagina is pregnant and cannot be removed.");
-			else addGhostButton(6,"Remove Vag 2",removeAVag,1,"Remove Vag 2","Remove your second vagina.");
+			if(!pc.removeVaginaUnlocked(1, 1)) addDisabledGhostButton(6,"Remove Vag 2","Remove Second Vagina","Something is preventing this vagina from being removed.");
+			else if(pc.isPregnant(1)) addDisabledGhostButton(6,"Remove Vag 2","Remove Second Vagina","Your second vagina is pregnant and cannot be removed.");
+			else addGhostButton(6,"Remove Vag 2",removeAVag,1,"Remove Second Vagina","Remove your second vagina.");
 		}
-		else addDisabledGhostButton(6,"Remove Vag 2","Remove Vag 2","This vagina isn't made of goo and cannot be removed.");
+		else addDisabledGhostButton(6,"Remove Vag 2","Remove Second Vagina","This vagina isn't made of goo and cannot be removed.");
 	}
-	//else addDisabledGhostButton(6,"Remove Vag 2","Remove Vag 2","You have no vagina to remove.");
+	//else addDisabledGhostButton(6,"Remove Vag 2","Remove Second Vagina","You have no vagina to remove.");
 	if(pc.totalVaginas() > 2)
 	{
 		if(pc.vaginas[2].hasFlag(GLOBAL.FLAG_GOOEY))
 		{
-			if(pc.isPregnant(2)) addDisabledGhostButton(7,"Remove Vag 3","Remove Vag 3","Your third vagina is pregnant and cannot be removed.");
-			else addGhostButton(7,"Remove Vag 3",removeAVag,2,"Remove Vag 3","Remove your third vagina.");
+			if(!pc.removeVaginaUnlocked(2, 1)) addDisabledGhostButton(7,"Remove Vag 3","Remove Third Vagina","Something is preventing this vagina from being removed.");
+			else if(pc.isPregnant(2)) addDisabledGhostButton(7,"Remove Vag 3","Remove Third Vagina","Your third vagina is pregnant and cannot be removed.");
+			else addGhostButton(7,"Remove Vag 3",removeAVag,2,"Remove Third Vagina","Remove your third vagina.");
 		}
-		else addDisabledGhostButton(7,"Remove Vag 3","Remove Vag 3","This vagina isn't made of goo and cannot be removed.");
+		else addDisabledGhostButton(7,"Remove Vag 3","Remove Third Vagina","This vagina isn't made of goo and cannot be removed.");
 	}
-	//else addDisabledGhostButton(7,"Remove Vag 3","Remove Vag 3","You have no vagina to remove.");
+	//else addDisabledGhostButton(7,"Remove Vag 3","Remove Third Vagina","You have no vagina to remove.");
 	
 	var numGooVags:Number = 0;
 	var numPregVags:Number = 0;
@@ -1282,7 +1292,8 @@ public function vaginaGooRootMenu():void
 	{
 		if(pc.totalVaginas() == numGooVags)
 		{
-			if(numPregVags > 0) addDisabledGhostButton(8,"Remove Vags","Remove Vaginas","Your vaginas cannot be removed at the same time because at least one of them is currently pregnant.");
+			if(!pc.removeVaginasUnlocked()) addDisabledGhostButton(8,"Remove Vags","Remove Vaginas","Something is preventing your vaginas from being removed all the same time.");
+			else if(numPregVags > 0) addDisabledGhostButton(8,"Remove Vags","Remove Vaginas","Your vaginas cannot be removed at the same time because at least one of them is currently pregnant.");
 			else addGhostButton(8,"Remove Vags",removeAllVags,undefined,"Remove Vaginas","Remove all vaginas.");
 		}
 		else addDisabledGhostButton(8,"Remove Vags","Remove Vaginas","Your vaginas aren't all made of goo and cannot be removed at the same time.");
