@@ -22,9 +22,10 @@ public function pcAppearance(e:MouseEvent = null):void
 	}
 }
 
-public function appearance(target:Creature):void {
-	
+public function appearance(target:Creature):void
+{
 	clearOutput2();
+	addGhostButton(14, "Back", pcAppearance);
 
 	// specific-access to get around variable shadowing
 	// set it AFTER a call to clearOuput, as they null the underlying target variable, basically makes it obvious when something fucks up
@@ -36,6 +37,14 @@ public function appearance(target:Creature):void {
 	var rando:int = 0;
 	var feedVal:int;
 	if(target == pc) {
+		//Creation stuff
+		if(target.hasStatusEffect("In Creation"))
+		{
+			output2("You are currently creating yourself!");
+			output2("\n\n<i>Detailed information about your appearance wil be displayed here.</i>");
+			return;
+		}
+		
 		//Overall
 		if(target.originalRace == target.race()) output2("You are " + indefiniteArticle(target.originalRace) + ".");
 		else
@@ -1351,8 +1360,7 @@ public function appearance(target:Creature):void {
 				output2(" seem");
 			}
 			output2(" intelligent enough for some rudimentary communication....");
-		}		
-		addGhostButton(14, "Back", pcAppearance);
+		}
 	}
 }
 
