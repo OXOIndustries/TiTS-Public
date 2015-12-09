@@ -83,6 +83,8 @@ package classes.GameData
 		
 		public var combineDamageValueOutput:Boolean;
 		public var colourDamageValueOutput:Boolean;
+		public var saveNotesToggle:Boolean;
+		public var overwriteToggle:Boolean;
 		
 	}
 
