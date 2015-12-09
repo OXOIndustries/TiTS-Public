@@ -79,8 +79,19 @@ public function arbetzMainApproach():Boolean
 	clearOutput();
 	author("Nonesuch");
 	
+	// Key item typo hotfix:
+	if (pc.hasKeyItem("Arbetz Travel Agency Memebership"))
+	{
+		pc.removeKeyItem("Arbetz Travel Agency Memebership");
+		pc.createKeyItem("Arbetz Travel Agency Membership", 0, 0, 0, 0, "");
+		output("<b>Your codex beeps, proclaiming that your Arbetz Travel Agency Premium Klub card has been renewed.</b>");
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+		return true;
+	}
+	
 	// Pool locks
-	if (!pc.hasKeyItem("Arbetz Travel Agency Memebership") || !arbetzActiveHours()) flags["NAV_DISABLED"] = NAV_NORTH_DISABLE;
+	if (!pc.hasKeyItem("Arbetz Travel Agency Membership") || !arbetzActiveHours()) flags["NAV_DISABLED"] = NAV_NORTH_DISABLE;
 	
 	// Intros
 	if (arbetzActiveHours())
@@ -111,7 +122,7 @@ public function arbetzMainApproach():Boolean
 		// Repeat
 		else
 		{
-			if (!pc.hasKeyItem("Arbetz Travel Agency Memebership")) output("You approach the bronze gate and, finding it unlocked, slip inside.");
+			if (!pc.hasKeyItem("Arbetz Travel Agency Membership")) output("You approach the bronze gate and, finding it unlocked, slip inside.");
 			else output("You approach the main building and step inside.");
 			
 			// Happens once per day for an hour at random:
@@ -264,7 +275,7 @@ public function arbetzMainMenu(light:Boolean = false):void
 	if(!light) clearMenu();
 	addButton(0, "Talk", arbetzMainOptions, 0);
 	if (flags["PETR_UNLOCKED"] != undefined) addButton(1, "Petr", arbetzPetrShop, undefined, "Petr", "Ask the human boy about buying some swimwear.");
-	if (!pc.hasKeyItem("Arbetz Travel Agency Memebership")) addButton(2, "Pool Area", arbetzMainOptions, 2, "Pool Area", "Ask if you can use the pool area at the back of the agency.");
+	if (!pc.hasKeyItem("Arbetz Travel Agency Membership")) addButton(2, "Pool Area", arbetzMainOptions, 2, "Pool Area", "Ask if you can use the pool area at the back of the agency.");
 	if (flags["ARBETZ_SEX_UNLOCKED"] != undefined)
 	{
 		if (pc.lust() >= 33) addButton(3, "Sex", arbetzMainOptions, 3);
@@ -1235,7 +1246,7 @@ public function arbetzPoolOptions(response:int = 0):void
 		
 		//Pool area unlocked, "Petr" added to front desk options, “Pool Area” removed from front desk options
 		pc.credits -= 5000;
-		pc.createKeyItem("Arbetz Travel Agency Memebership", 0, 0, 0, 0, "");
+		pc.createKeyItem("Arbetz Travel Agency Membership", 0, 0, 0, 0, "");
 		flags["PETR_UNLOCKED"] = 1;
 		
 		addButton(0, "Next", mainGameMenu);
@@ -1383,7 +1394,7 @@ public function arbetzPoolJUSTDOIT(sex:int = 0):void
 	output(", but hey, free pool. That’s what matters here.");
 	
 	//Pool area unlocked, "Petr" added to front desk options, “Pool Area” removed from front desk options
-	pc.createKeyItem("Arbetz Travel Agency Memebership", 0, 0, 0, 0, "");
+	pc.createKeyItem("Arbetz Travel Agency Membership", 0, 0, 0, 0, "");
 	flags["PETR_UNLOCKED"] = 1;
 	
 	// + Lust, ++ Lust if Exhibitionist
