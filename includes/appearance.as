@@ -210,12 +210,13 @@ public function appearance(target:Creature):void {
 		//Eyes
 		var hasMetallicEyes:Boolean = InCollection(target.eyeColor, "copper", "silver", "gold", "platinum", "sable");
 		var hasGemstoneEyes:Boolean = InCollection(target.eyeColor, "crimson", "garnet", "ruby", "citrine", "topaz", "amber", "peridot", "emerald", "jade", "turquoise", "aquamarine", "lapis", "sapphire", "violet", "amethyst", "opal", "pearl");
-		var hasLuminousEyes:Boolean = InCollection(target.eyeColor, "luminous violet", "luminous purple", "luminous blue", "luminous pink", "luminous orange", "luminous green", "luminous silver", "glowing gold");
+		var hasLuminousEyes:Boolean = (target.eyeColor.indexOf("luminous") != -1 || target.eyeColor.indexOf("glowing") != -1);
 		if (target.eyeType == GLOBAL.TYPE_ARACHNID)
 		{
 			output2(" In addition to your primary two eyes, you have a second, smaller pair on your forehead");
 			if (hasMetallicEyes) output2(", all of which reflect back a metallic " + target.eyeColor + " in the light.");
 			else if (hasGemstoneEyes) output2(", all of which shimmer " + target.eyeColor + " in the light like jewels.");
+			else if (hasLuminousEyes) output2(", all of which beam " + target.eyeColor + " in the darkness.");
 			else output2(", all of which are " + target.eyeColor + ".");
 		}
 		else if (target.eyeType == GLOBAL.TYPE_BEE)
@@ -225,11 +226,12 @@ public function appearance(target:Creature):void {
 			else output2(" The black sclera and iris of both of your eyes make them appear as solid black and very alien.");
 			output2(" Their structure allows you to have a larger angle of vision as well as detecting the fastest of movements.");
 		}
-		else if (target.eyeType == GLOBAL.TYPE_FELINE || target.eyeType == GLOBAL.TYPE_SNAKE)
+		else if (target.eyeType == GLOBAL.TYPE_FELINE || target.eyeType == GLOBAL.TYPE_SNAKE || target.eyeType == TYPE_DEMONIC)
 		{
 			output2(" Your eyes bear a vertical slit instead of rounded pupils, ");
 			if (hasMetallicEyes) output2("surrounded by a metallically glistening " + target.eyeColor + " iris.");
 			else if (hasGemstoneEyes) output2("surrounded by a gem-like shimmering " + target.eyeColor + " iris.");
+			else if (hasLuminousEyes) output2("surrounded by a brightly " + target.eyeColor + " iris.");
 			else output2("surrounded by " + indefiniteArticle(target.eyeColor) + " iris.");
 		}
 		else if (target.eyeType == GLOBAL.TYPE_LEITHAN)
@@ -241,6 +243,7 @@ public function appearance(target:Creature):void {
 			}
 			else if (hasMetallicEyes) output2("both embedded in a single, overly large metallical " + target.eyeColor + " iris.");
 			else if (hasGemstoneEyes) output2("both embedded in a single shimmering " + target.eyeColor + " iris.");
+			else if (hasLuminousEyes) output2("both embedded in a single brightly " + target.eyeColor + " iris.");
 			else output2("surrounded by a single " + target.eyeColor + " iris.");
 		}
 		else if (target.eyeType == GLOBAL.TYPE_MYR)
@@ -256,7 +259,6 @@ public function appearance(target:Creature):void {
 		{
 			if (hasMetallicEyes) output2(" Metallically glistening " + target.eyeColor + " eyes allow you to take in your surroundings without trouble.");
 			else if (hasGemstoneEyes) output2(" Like jewels, shimmering " + target.eyeColor + " eyes allow you to take in your surroundings without trouble.");
-			//Vanae eyes
 			else if (hasLuminousEyes) output2(" Like twinkling beacons, " + target.eyeColor + " eyes seem to draw the attention of everyone around you.");
 			else
 			{
@@ -307,6 +309,12 @@ public function appearance(target:Creature):void {
 				if(target.earLength > 1) output2(num2Text(target.earLength) + " inches from your");
 				output2(" from your skull.");
 			}
+			else if(target.earType == GLOBAL.TYPE_DEMONIC)
+			{
+				output2(" A pair of wicked-looking ears point outwards");
+				if(target.earLength > 1) output2(num2Text(target.earLength) + " inches from your");
+				output2(" from your skull.");
+			}
 			if(target.hasAntennae())
 			{
 				if(target.antennae == 1) output2(" A floppy [target.antenna] also appears");
@@ -352,6 +360,12 @@ public function appearance(target:Creature):void {
 				output2(" The " + target.hairDescript(true,true) + " on your head is parted by a pair of");
 				if(target.earLength > 1) output2(" " + num2Text(target.earLength) + "-inch");
 				output2(" long, triangular goblin ears.");
+			}
+			else if(target.earType == GLOBAL.TYPE_DEMONIC)
+			{
+				output2(" The " + target.hairDescript(true,true) + " on your head is parted by a pair of");
+				if(target.earLength > 1) output2(" " + num2Text(target.earLength) + "-inch long,");
+				output2(" wicked-looking demonic ears.");
 			}
 			if(target.hasAntennae())
 			{
@@ -481,6 +495,7 @@ public function appearance(target:Creature):void {
 			if(target.skinType != GLOBAL.SKIN_TYPE_FUR && target.hasArmFlag(GLOBAL.FLAG_FURRED)) output2(" A coat of " + target.furColor + " fur covers your arms, giving them a distinctly animalistic bent.");
 			output2(" Your fingers are tipped with short, canine claws as well, just like one of the ausar.");
 		}
+		else if(target.armType == GLOBAL.TYPE_DEMONIC) output2(" Your humanoid hands appear very demonic, tipped with sharp claws that seem to have replaced your fingernails.");
 		else if(target.armType == GLOBAL.TYPE_ARACHNID || target.armType == GLOBAL.TYPE_DRIDER || target.armType == GLOBAL.TYPE_BEE) output2(" Shining black exoskeleton covers your arms from the biceps down, resembling a pair of long black gloves from a distance.");
 		else if(target.armType == GLOBAL.TYPE_MYR) output2(" Shining " + target.scaleColor + " exoskeleton covers parts of arms in a gleaming patchwork.");
 		else if(target.armType == GLOBAL.TYPE_FELINE) 
