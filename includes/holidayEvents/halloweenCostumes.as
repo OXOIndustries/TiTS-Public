@@ -168,6 +168,11 @@ public function leaveLikeABitch():void
 	pc.horns = 2;
 	pc.hornLength = 2;
 	pc.hornType = GLOBAL.TYPE_DEMONIC;
+	pc.earLength = 2;
+	pc.earType = GLOBAL.TYPE_DEMONIC;
+	pc.eyeColor = glowing amber;
+	pc.eyeType = GLOBAL.TYPE_DEMONIC;
+	pc.wingType = GLOBAL.TYPE_SMALLDEMONIC;
 	flags["HOLIDAY_OWEEN_LEFT"] = 1;
 	halloweenShipMove();
 	clearMenu();
