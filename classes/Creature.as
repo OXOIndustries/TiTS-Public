@@ -3310,7 +3310,7 @@ package classes {
 		public function hasLongEars(): Boolean
 		{
 			// For ear types that support the earLength value. At least 1 inch long or more to count.
-			if(earLength >= 1 && InCollection(earType, GLOBAL.TYPE_SYLVAN, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_GABILANI)) return true;
+			if(earLength >= 1 && InCollection(earType, GLOBAL.TYPE_SYLVAN, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_GABILANI, GLOBAL.TYPE_DEMONIC)) return true;
 			return false;
 		}
 		public function earDescript(): String
@@ -3343,6 +3343,9 @@ package classes {
 					break;
 				case GLOBAL.TYPE_VULPINE:
 					adjectives = ["vulpine", "fox-like", "pointed", "furry", "triangular"];
+					break;
+				case GLOBAL.TYPE_DEMONIC:
+					adjectives = ["demonic", "demon-like", "pointy", "inhuman", "pointed"];
 					break;
 				case GLOBAL.TYPE_DRACONIC:
 					adjectives = ["draconic", "dragon-like", "fin-like", "fan-shaped", "beastial"];
@@ -4346,7 +4349,7 @@ package classes {
 			// Adjectives: 50%
 			if(rand(2) == 0)
 			{
-				if (InCollection(armType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_BADGER, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_LEITHAN)) adjective.push("clawed");
+				if (InCollection(armType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_BADGER, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_DEMONIC)) adjective.push("clawed");
 				if (InCollection(armType, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_BADGER, GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_PANDA)) adjective.push("bestial");
 				if (InCollection(armType, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_PANDA)) adjective.push("padded");
 				if (InCollection(armType, GLOBAL.TYPE_ARACHNID, GLOBAL.TYPE_DRIDER, GLOBAL.TYPE_BEE, GLOBAL.TYPE_LEITHAN)) adjective.push("chitinous");
@@ -4367,7 +4370,7 @@ package classes {
 			// Adjectives: 50%
 			if(rand(2) == 0)
 			{
-				if (InCollection(armType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_BADGER, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_LEITHAN)) adjective.push("clawed");
+				if (InCollection(armType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_BADGER, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_DEMONIC)) adjective.push("clawed");
 				if (InCollection(armType, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_PANDA)) adjective.push("padded");
 				if (InCollection(armType, GLOBAL.TYPE_ARACHNID, GLOBAL.TYPE_DRIDER, GLOBAL.TYPE_BEE, GLOBAL.TYPE_LEITHAN)) adjective.push("chitinous");
 				if (InCollection(armType, GLOBAL.TYPE_EQUINE)) adjective.push("hoof-tipped");
@@ -7467,6 +7470,7 @@ package classes {
 			if (horseScore() >= 4) race = "horse-morph";
 			if (pandaScore() >= 4) race = "panda-morph";
 			if (ausarScore() >= 4) race = "ausar"
+			if (demonScore() >= 5) race = "demon-morph";
 			if (gabilaniScore() >= 5) race = "gabilani";
 			if (kaithritScore() >= 6) race = "kaithrit"
 			if (leithanScore() >= 6) race = "leithan";
@@ -7645,6 +7649,18 @@ package classes {
 			if (armType == GLOBAL.TYPE_BADGER) counter++;
 			if (faceType == GLOBAL.TYPE_BADGER) counter++;
 			if (counter > 0 && skinType == GLOBAL.SKIN_TYPE_FUR) counter++;
+			return counter;
+		}
+		public function demonScore(): int {
+			var counter: int = 0;
+			if (hasHorns(GLOBAL.TYPE_DEMONIC)) counter++;
+			if (earType == GLOBAL.TYPE_DEMONIC) counter++;
+			if (armType == GLOBAL.TYPE_DEMONIC) counter++;
+			if (tailType == GLOBAL.TYPE_DEMONIC) counter++;
+			if (wingType == GLOBAL.TYPE_DEMONIC || wingType == GLOBAL.TYPE_SMALLDEMONIC) counter++;
+			if (counter > 1 && (legType == GLOBAL.TYPE_DEMONIC || legType == GLOBAL.TYPE_SUCCUBUS || legType == GLOBAL.TYPE_BOVINE)) counter++;
+			if (counter > 2 && eyeType == GLOBAL.TYPE_DEMONIC && faceType == GLOBAL.TYPE_HUMAN) counter++;
+			if (counter > 3 && hasCock(GLOBAL.TYPE_DEMONIC)) counter++;
 			return counter;
 		}
 		public function gabilaniScore():int
