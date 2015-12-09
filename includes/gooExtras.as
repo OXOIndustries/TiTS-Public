@@ -1275,8 +1275,8 @@ public function vaginaGooRootMenu():void
 	}
 	if(numPregTotal > pc.totalVaginas())
 	{
-		if(pc.totalVaginas() == 0) addGhostButton(8,"Fix Womb",fixAllVags,(numPregTotal - pc.totalVaginas()),"Fix Womb","You seem to have a pregnancy and no vaginas... You should fix this before something goes horribly wrong!\n\n<b>500 mLs Biomass</b>");
-		else addGhostButton(8,"Fix Wombs",fixAllVags,(numPregTotal - pc.totalVaginas()),"Fix Wombs","You seem to have more pregnancies than you do vaginas... You should fix this before something goes horribly wrong!\n\n<b>" + ((numPregTotal - pc.totalVaginas()) * 500) + " mLs Biomass</b>");
+		if(pc.totalVaginas() == 0) addGhostButton(8,"Fix Womb",fixAllVags,(numPregTotal - pc.totalVaginas()),"Fix Womb","You seem to have a pregnant womb and no vaginas... You should fix this before something goes horribly wrong!\n\n<b>500 mLs Biomass</b>");
+		else addGhostButton(8,"Fix Wombs",fixAllVags,(numPregTotal - pc.totalVaginas()),"Fix Wombs","You seem to have more pregnant wombs than you do vaginas... You should fix this before something goes horribly wrong!\n\n<b>" + ((numPregTotal - pc.totalVaginas()) * 500) + " mLs Biomass</b>");
 	}
 	else if(pc.totalVaginas() > 1)
 	{
