@@ -7407,7 +7407,7 @@ package classes {
 		public function removeVaginasLockedMessage():String
 		{
 			if (hasStatusEffect("Mimbrane Pussy")) return "A powerful stretching overtakes your " + vaginaDescript(0) + ", your Mimbrane doing everything in its power to keep the feminine canyon from vanishing. Seems you won’t be able to get rid of your pussy so long as the parasite is in control of it.";
-			else return "Your body practically glows with groin-focused effort, keeping you from losing your genitalia entirely.";;
+			else return "Your body practically glows with groin-focused effort, keeping you from losing your genitalia entirely.";
 		}
 
 		//Remove vaginas
@@ -7417,12 +7417,14 @@ package classes {
 		public function removeVaginaUnlocked(arraySpot:int = 0, totalRemoved:int = 1):Boolean
 		{
 			if (vaginas.length == 1 && hasStatusEffect("Mimbrane Pussy")) return false;
+			if (isPregnant(arraySpot)) return false;
 			return true;
 		}
 		public function removeVaginaLockedMessage():String
 		{
 			if (vaginas.length == 1 && hasStatusEffect("Mimbrane Pussy")) return "A powerful stretching overtakes your " + vaginaDescript(0) + ", your Mimbrane doing everything in its power to keep the feminine canyon from vanishing. Seems you won’t be able to get rid of your pussy so long as the parasite is in control of it.";
-			else return "Your body practically glows with groin-focused effort, keeping you from losing your genitalia entirely.";;
+			if (isPregnant()) return "A powerful sensation can be felt in your womb. Your body actively fights the change, keeping you from losing your pregnant vagina entirely.";
+			else return "Your body practically glows with groin-focused effort, keeping you from losing your genitalia entirely.";
 		}
 
 		//Remove a breast row
