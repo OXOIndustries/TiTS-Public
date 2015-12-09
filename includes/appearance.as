@@ -41,7 +41,7 @@ public function appearance(target:Creature):void
 		if(target.hasStatusEffect("In Creation"))
 		{
 			output2("You are currently creating yourself!");
-			output2("\n\n<i>Detailed information about your appearance wil be displayed here.</i>");
+			output2("\n\n<i>(Detailed information about your appearance will be displayed here.)</i>");
 			return;
 		}
 		
