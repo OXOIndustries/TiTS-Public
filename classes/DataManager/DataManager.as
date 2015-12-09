@@ -976,8 +976,8 @@
 			// Blank entries get cleared notes!
 			if (kGAMECLASS.userInterface.currentPCNotes == null || kGAMECLASS.userInterface.currentPCNotes.length == 0 || kGAMECLASS.userInterface.currentPCNotes == "")
 			{ dataFile.saveNotes = "No notes available."; }
-			// Keywords to clear current saved notes!
-			else if (kGAMECLASS.userInterface.currentPCNotes.toLowerCase() == "none" || kGAMECLASS.userInterface.currentPCNotes == "N/A")
+			// Keywords to clear current saved notes! (Also if save notes toggle is disabled)
+			else if (kGAMECLASS.userInterface.currentPCNotes.toLowerCase() == "none" || kGAMECLASS.userInterface.currentPCNotes == "N/A" || kGAMECLASS.gameOptions.saveNotesToggle == false)
 			{ dataFile.saveNotes = "No notes available."; }
 			// Save note!
 			else
