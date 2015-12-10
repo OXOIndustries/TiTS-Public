@@ -926,6 +926,9 @@ public function simoneWorkoutResults(response:String = ""):void
 		pc.orgasm();
 		pc.orgasm();
 		
+		IncrementFlag("SEXED_SIMONE");
+		StatTracking.track("contests/simone challenge wins");
+		
 		// [Done] Go to Weight Room
 		addButton(0, "Next", mainGameMenu);
 	}
@@ -942,6 +945,9 @@ public function simoneWorkoutResults(response:String = ""):void
 		pc.loadInMouth(pp);
 		pc.exhibitionism(2);
 		pc.lust(30+rand(10));
+		
+		IncrementFlag("SEXED_SIMONE");
+		StatTracking.track("contests/simone challenge losses");
 		
 		// [Done] Go to Weight Room
 		addButton(0, "Next", mainGameMenu);
@@ -1091,6 +1097,8 @@ public function lolaPoolSex(response:String = ""):void
 		pc.orgasm();
 		pc.orgasm();
 		
+		IncrementFlag("SEXED_LOLA");
+		
 		addButton(0, "Next", mainGameMenu);
 	}
 	
@@ -1180,6 +1188,8 @@ public function showerWithBetsyAndVictoriaSelect(response:String = ""):void
 		pc.exhibitionism(2);
 		pc.removeStatusEffect("Sweaty");
 		
+		IncrementFlag("SHOWER_SANDWICH");
+		
 		// [Done] Go to Locker Room and Showers [+2% Exhibitionism]
 		addButton(0, "Next", mainGameMenu);
 	}
@@ -1195,6 +1205,8 @@ public function showerWithBetsyAndVictoriaSelect(response:String = ""):void
 		pc.exhibitionism(2);
 		pc.removeStatusEffect("Sweaty");
 		
+		IncrementFlag("SHOWER_SANDWICH");
+		
 		// [Done] Go to Locker Room and Showers [+2% Exhibitionism]
 		addButton(0, "Next", mainGameMenu);
 	}
@@ -1209,6 +1221,8 @@ public function showerWithBetsyAndVictoriaSelect(response:String = ""):void
 		pc.lust(30+rand(10));
 		pc.exhibitionism(2);
 		pc.removeStatusEffect("Sweaty");
+		
+		IncrementFlag("SHOWER_SANDWICH");
 		
 		// [Done] Go to Locker Room and Showers [+2% Exhibitionism]
 		addButton(0, "Next", mainGameMenu);
