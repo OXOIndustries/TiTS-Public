@@ -256,6 +256,7 @@ public function bessCockType():String
 	switch (bess.cocks[0].cType)
 	{
 		case GLOBAL.TYPE_HUMAN: return "normal";
+		case GLOBAL.TYPE_SYNTHETIC: return "normal";
 		case GLOBAL.TYPE_SAURIAN: return "saurian";
 		case GLOBAL.TYPE_EQUINE: return "equine";
 		case GLOBAL.TYPE_CANINE: return "canine";
@@ -3001,8 +3002,8 @@ public function setBessCockType(newType:int):void
 
 		output("\n\n<i>“Umm, "+ bessPCName() +", I’m not sure this is going to fit inside you. It seems like it’s used for insemination of city-destroying monsters...”</i> [bess.name] voices [bess.hisHer] concerns about the size of [bess.hisHer] positively preposterous phallus. <i>“Have you checked to see if your health insurance covers this kind of thing?”</i>");
 
-		if (silly) output("\n\n<b>[bess.name] now has a gigantic ogre cock and balls!</b>");
-		//else output("\n\n<b>[bess.name] now has a saurian cock and balls!</b>");
+		if (silly && rand(2) == 0) output("\n\n<b>[bess.name] now has a gigantic ogre cock and balls!</b>");
+		else if (rand(2) == 0) output("\n\n<b>[bess.name] now has a saurian cock and balls!</b>");
 		else output("\n\n<b>[bess.name] now has a dino cock and balls!</b>");
 	}
 	else if (newType == GLOBAL.TYPE_EQUINE)
@@ -3021,8 +3022,8 @@ public function setBessCockType(newType:int):void
 		
 		output("\n\n[bess.HisHer] new equine cock flares at you, it looks ready and raring to go. <i>“What do you think, "+ bessPCName() +", did you want to take a ride?”</i>");
 
-		//output("\n\n<b>[bess.name] now has an equine cock and balls!</b>");
-		output("\n\n<b>[bess.name] now has a horse cock and balls!</b>");
+		if (rand(2) == 0) output("\n\n<b>[bess.name] now has an equine cock and balls!</b>");
+		else output("\n\n<b>[bess.name] now has a horse cock and balls!</b>");
 	}
 	else if (newType == GLOBAL.TYPE_CANINE)
 	{
@@ -3157,14 +3158,23 @@ public function setBessCockType(newType:int):void
 		// Normal and Normal+Balls
 		else
 		{
-			output(" to have a human-shaped cock");
 			if (!bess.hasCock()) bess.cocks.push(new CockClass());
-			//bess.cocks[0].cType = newType;
-			bess.cocks[0].cType = GLOBAL.TYPE_SYNTHETIC;
-			bess.cocks[0].cockColor = "silver";
+			if (newType <= GLOBAL.TYPE_HUMAN)
+			{
+				output(" to have a human-shaped cock");
+				bess.cocks[0].cType = GLOBAL.TYPE_SYNTHETIC;
+			}
+			else
+			{
+				output(" to have " + indefiniteArticle(GLOBAL.TYPE_NAMES[newType].toLower()) + "-shaped cock");
+				//bess.cocks[0].cType = newType;
+				bess.shiftCock(0, newType); // Use this to get the proper flags.
+			}
 			bess.cocks[0].cLengthRaw = 12;
 			bess.cocks[0].cThicknessRatioRaw = 1.5;
 			bess.cocks[0].clearFlags();
+			bess.balls = 2;
+			bess.ballSizeRaw = 4;
 		}
 		// With balls
 		if (newType == -2)
@@ -3186,7 +3196,8 @@ public function setBessCockType(newType:int):void
 		if (newType == -1) output(" [bess.hisHer] cock is gone - though where [bess.heShe]’s stored it is a mystery. <i>“Do you like me better this way, "+ bessPCName() +"?”</i>\n\n<b>[bess.name] has removed [bess.hisHer] cock!</b>");
 		else
 		{
-			output(" [bess.heShe]’s sporting "+ indefiniteArticle(bessCockType()) +" cock! [bess.HeShe] eagerly models it off for you. <i>“Do you like it, "+ bessPCName() +"?”</i>\n\n<b>[bess.name] now has " + indefiniteArticle(bess.cockDescript(0)));
+			bess.cocks[0].cockColor = "silver";
+			output(" [bess.heShe]’s sporting " + indefiniteArticle(bessCockType()) + " cock! [bess.HeShe] eagerly models it off for you. <i>“Do you like it, "+ bessPCName() +"?”</i>\n\n<b>[bess.name] now has " + indefiniteArticle(bess.cockDescript(0)));
 			if (bess.balls > 0) output(" and balls");
 			output("!</b>");
 		}
