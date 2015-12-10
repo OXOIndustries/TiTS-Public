@@ -537,7 +537,7 @@ public function kirosShipChubnookiFucksYouGud(anal:Boolean = false):void
 	else output(" your [pc.asshole]");
 	output(" until you feel unmistakably wet with need, your face pressed against the skin of her lube-slick cock so hard that it compresses your nose. You give it a long shuddering lick, before you remember your promise. You're going to let this beast-girl cum inside you.");
 
-	output("\n\nThe horse-dicked hermaphrodite is too turned on to take action other than stroking herself during that time period, and she's even groping at her own tit. The soft pads that line her fingertips squeeze down on a chocolate nipple as it's twisted, tugged, and pulled with reckless abandon. This room is rich with the aroma of her need,");
+	output("\n\nThe horse-dicked hermaphrodite is too turned on to take action other than stroking herself during that time period, and she's even groping at her own tit. The soft pads that line her fingertips squeeze down on a chocolate nipple as it's twisted, tugged, and pulled with reckless abandon. The room is rich with the aroma of her need,");
 	if (!anal) output(" and your own feminine fuck-scent mixes with it into a soupy");
 	else output(" your senses swimming in a scent of the");
 	output(" sexual haze. Both panting now, you lock eyes with each other and smile.");
@@ -608,7 +608,7 @@ public function kirosShipChubnookiFucksYouGud(anal:Boolean = false):void
 	else output("\n\nY");
 	output("ou resume your steady slide downward. You're sure you can feel your internal organs shifting to make room, bent out of the way in proper deference to this powerful, masculine organ. You whimper, biting your [pc.lip] and letting your arms go limp. Your brain feels like it’s shutting down, and you lack the will to make your muscles do anything at this point. You're just limply sliding down, accepting more and more of the tanuki-woman's tremendous, towering erection into your");
 	if (!anal) output(" taut folds");
-	else output("rear end");
+	else output(" rear end");
 	output(". She's so big and firm that even with you laying back, limp, it holds you in place, supporting you in a way that your muscles and skeleton have failed to do.");
 
 	output("\n\nThere's a palpable sense of fullness, a stretching in your middle, and you're not even all the way down yet. From how high up you are, you guess you've only handled about three quarters of that beast-cock, but it feels so big inside you that you could swear you should have had it all by now. How much more prick can one " + pc.mfn("man","woman","person") + "'s crotch hold? Her arms wrap around your chest in a remarkably comforting motion, the soft, padded tips of her fingers pressing down on your [pc.nipples] with gentle squeezes. Her hips lurch upward, and you cry out from rapturous pleasure. Your body is so full, so stuffed with cock, that it should hurt. Your");
@@ -617,10 +617,10 @@ public function kirosShipChubnookiFucksYouGud(anal:Boolean = false):void
 
 	output("\n\nTouching down, your [pc.legOrLegs]");
 	if(pc.legCount == 1) output(" brushes");
-	else output(" contact");
-	output(" with the tanuki-herm's gloriously soft thighs, her silky fur sliding sensuously across your [pc.skinFurScales] as you settle down atop that pillar of perfect fuckmeat, letting the folds of her sheath bunch up on your");
-	if (!anal) output(" outer lips. The two sets of soaked, sensitive crotch-flesh");
-	else output(" butthole. The soaked and sensitive organs");
+	else output(" make contact");
+	output(" with the tanuki-herm's gloriously soft thighs, her silky fur sliding sensuously across your [pc.skinFurScales] as you settle down atop that pillar of perfect fuckmeat, letting the folds of her sheath bunch up");
+	if (!anal) output(" on your outer lips. The two sets of soaked, sensitive crotch-flesh");
+	else output(" around your butthole. The soaked and sensitive organs");
 	output(" slip and slide all over one another like two sloppy-wet pussies tribbing against each other.");
 	if (pc.hasCock())
 	{
@@ -657,8 +657,8 @@ public function kirosShipChubnookiFucksYouGud(anal:Boolean = false):void
 	//Dickgasms
 	if (pc.hasCock())
 	{
-		output("\n\n[pc.OneCock]");
-		if (pc.cockTotal() > 1) output(", the one");
+		output("\n\n[pc.OneCock],");
+		if (pc.cockTotal() > 1) output(" the one");
 		output(" lucky enough to be held by your lover's pre-slickened palm, explodes, spouting [pc.cum] so forcefully that it splatters against a wall. The successive shotgun-like blasts of seed fall a bit lower but still succeed in making a mess. Seeing this, she strokes you in between fountainous jets of her own, letting some of your [pc.cumColor] love cover her hand. You're milking her inside of you as she milks you, and it feels so damned good. ");
 	}
 
@@ -797,7 +797,7 @@ public function kirosShipPostFirstFuck():void
 
 	output("\n\nYou introduce yourself to the tanuki pirate, but you can't help glancing down at her naked, sperm-coated breasts, dripping cock, and still-large balls.");
 
-	output("\n\nKiro smiles warmly at you, and her stallion-sized dick twitches slightly. \"<i>That's a nice name, angel.");
+	output("\n\nKiro smiles warmly at you, and her stallion-sized dick twitches slightly. \"<i>Mm, that's a nice name.");
 	if (flags["KIRO_FUCKED_DURING_RESCUE"] != undefined) output(" I'd love to fuck a few more times, but");
 	else output(" I'd love to properly thank you for the assist, but");
 	output(" I've got a run to finish up before the buyer changes his mind,</i>\" she explains with a wink. \"<i>I'll catch you later, " + pc.mf("handsome", "gorgeous") + ".</i>\"");
