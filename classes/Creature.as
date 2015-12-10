@@ -4665,13 +4665,30 @@ package classes {
 			}
 			if (belly <= 5)
 			{
-				if(tone >= 50) 
+				if(tone >= 75)
+				{
+					sizeDescripts[sizeDescripts.length] = "ripped";
+					sizeDescripts[sizeDescripts.length] = "chiseled";
+					sizeDescripts[sizeDescripts.length] = "rock-hard";
+					sizeDescripts[sizeDescripts.length] = "washboard";
+					sizeDescripts[sizeDescripts.length] = "ab-lined";
+					sizeDescripts[sizeDescripts.length] = "well-toned";
+				}
+				if(tone >= 50)
 				{
 					sizeDescripts[sizeDescripts.length] = "toned";
 					sizeDescripts[sizeDescripts.length] = "sculpted";
 				}
-				sizeDescripts[sizeDescripts.length] = "flat";
-				sizeDescripts[sizeDescripts.length] = "slim";
+				else if(tone >= 25)
+				{
+					sizeDescripts[sizeDescripts.length] = "lightly-toned";
+					sizeDescripts[sizeDescripts.length] = "tight";
+				}
+				if(tone < 50)
+				{
+					sizeDescripts[sizeDescripts.length] = "flat";
+					sizeDescripts[sizeDescripts.length] = "slim";
+				}
 			}
 			else if (belly <= 10)
 			{
@@ -4762,7 +4779,8 @@ package classes {
 			}
 			
 			//Noun selection:
-			if(belly < 10 && rand(4) == 0) sBuilder += "midriff";
+			if(belly < 10 && tone >= 25 && rand(5) == 0) sBuilder += "six pack";
+			else if(belly < 10 && rand(4) == 0) sBuilder += "midriff";
 			else if(belly < 20 && rand(3) == 0) sBuilder += "middle";
 			else sBuilder += "belly";
 			
