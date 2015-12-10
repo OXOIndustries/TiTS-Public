@@ -12614,7 +12614,7 @@ public function bessIntimateGiveDoggy(fromEvent:Boolean = false):void
 	flags["BESS_FUCKED"]++;
 
 	if (flags["BESS_INTIMATE_FUCKED"] == undefined) flags["BESS_INTIMATE_FUCKED"] = 0;
-	flags["BESS_INTIMATE_FUCKED"]++
+	flags["BESS_INTIMATE_FUCKED"]++;
 
 	bess.orgasm();
 	pc.orgasm();
@@ -12727,7 +12727,7 @@ public function bessIntimateGetDoggy(fromEvent:Boolean = false):void
 	flags["BESS_FUCKED"]++;
 
 	if (flags["BESS_INTIMATE_FUCKED"] == undefined) flags["BESS_INTIMATE_FUCKED"] = 0;
-	flags["BESS_INTIMATE_FUCKED"]++
+	flags["BESS_INTIMATE_FUCKED"]++;
 
 	bess.orgasm();
 	pc.orgasm();
@@ -12777,7 +12777,7 @@ public function bessIntimateGiveOral(fromEvent:Boolean = false):void
 	flags["BESS_FUCKED"]++;
 
 	if (flags["BESS_INTIMATE_FUCKED"] == undefined) flags["BESS_INTIMATE_FUCKED"] = 0;
-	flags["BESS_INTIMATE_FUCKED"]++
+	flags["BESS_INTIMATE_FUCKED"]++;
 
 	if (fromEvent)
 	{
@@ -12851,7 +12851,7 @@ public function bessIntimateGetOral(fromEvent:Boolean = false):void
 	flags["BESS_FUCKED"]++;
 
 	if (flags["BESS_INTIMATE_FUCKED"] == undefined) flags["BESS_INTIMATE_FUCKED"] = 0;
-	flags["BESS_INTIMATE_FUCKED"]++
+	flags["BESS_INTIMATE_FUCKED"]++;
 
 	if (fromEvent)
 	{
