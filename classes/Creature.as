@@ -7283,8 +7283,8 @@ package classes {
 		}
 		public function rawmfn(male: String, female: String, neuter: String): String {
 			
-			if (hasStatusEffect("Force Fem Gender")) return female;
-			if (hasStatusEffect("Force Male Gender")) return male;
+			//if (hasStatusEffect("Force Fem Gender")) return female;
+			//if (hasStatusEffect("Force Male Gender")) return male;
 			
 			if (!hasCock() && !hasVagina()) return neuter;
 			else return rawmf(male, female);
