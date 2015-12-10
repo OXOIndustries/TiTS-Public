@@ -290,7 +290,7 @@ public function initializeMyrellionRooms():void
 
 	rooms["702"] = new RoomClass(this);
 	rooms["702"].roomName = "MUSHROOM\nPARK";
-	rooms["702"].description = "The stalk of a giant mushroom overshadows a number of backless benches in this part of the park. There’s no pavestones here, just hard earth packed by the foot traffic of hundreds of gold myr. Right now a group of younglings are here as well, gathered around the gigantic stalk as part of a biology lesson. The great elevator lies northwest, the park wrapping around it to the north and west.";
+	rooms["702"].description = "The stalk of a giant mushroom overshadows a number of backless benches in this part of the park. There are no pavestones here, just hard earth packed by the foot traffic of hundreds of gold myr. Right now a group of younglings are here as well, gathered around the gigantic stalk as part of a biology lesson. The great elevator lies northwest, the park wrapping around it to the north and west.";
 	rooms["702"].planet = "PLANET: MYRELLION";
 	rooms["702"].system = "SYSTEM: SINDATHU";
 	rooms["702"].northExit = "703";
@@ -320,7 +320,7 @@ public function initializeMyrellionRooms():void
 	//704 - Mushroom Park
 	rooms["704"] = new RoomClass(this);
 	rooms["704"].roomName = "MUSHROOM\nPARK";
-	rooms["704"].description = "A carpet of small toadstools devours the hard packed earth here. They’re so densely packed that you can’t see a single mote of brown of the blue-tinged fungus. Passing myr pay them no mind, running and jumping on them as a terran would grass, clearly enjoying the springy, organic rug. The elevator up to the DMZ and airstrip is just southwest of here, ensconced securely in this beauteous park.";
+	rooms["704"].description = "A carpet of small toadstools devours the hard packed earth here. They’re so densely packed that you can’t see a single mote of brown between the blue-tinged fungus. Passing myr pay them no mind, running and jumping on them as a terran would grass, clearly enjoying the springy, organic rug. The elevator up to the DMZ and airstrip is just southwest of here, ensconced securely in this beauteous park.";
 	rooms["704"].planet = "PLANET: MYRELLION";
 	rooms["704"].system = "SYSTEM: SINDATHU";
 	rooms["704"].southExit = "703";
@@ -334,7 +334,7 @@ public function initializeMyrellionRooms():void
 	//705 - Mushroom Park
 	rooms["705"] = new RoomClass(this);
 	rooms["705"].roomName = "MUSHROOM\nPARK";
-	rooms["705"].description = "Two twenty foot mushrooms cross over the onyx-paved roadway that bridges the city to the central elevator shaft. Their caps bend vertically where they press against one another; they’ve grown so close together that it’s difficult to tell them apart. Pairs of gold myr often pass below the fungal arch, their expressions hopeful and their mannerisms animated. Perhaps they’re excited at a chance to join a galactic fraternity, or simply pleased that nuclear apocalypse has been temporarily avoided. You can enter the great elevator to the south.";
+	rooms["705"].description = "Two twenty-foot mushrooms cross over the onyx-paved roadway that bridges the city to the central elevator shaft. Their caps bend vertically where they press against one another; they’ve grown so close together that it’s difficult to tell them apart. Pairs of gold myr often pass below the fungal arch, their expressions hopeful and their mannerisms animated. Perhaps they’re excited at a chance to join a galactic fraternity, or simply pleased that nuclear apocalypse has been temporarily avoided. You can enter the great elevator to the south.";
 	rooms["705"].planet = "PLANET: MYRELLION";
 	rooms["705"].system = "SYSTEM: SINDATHU";
 	rooms["705"].eastExit = "704";
@@ -350,7 +350,7 @@ public function initializeMyrellionRooms():void
 	//706 - Mushroom Park
 	rooms["706"] = new RoomClass(this);
 	rooms["706"].roomName = "MUSHROOM\nPARK";
-	rooms["706"].description = "Were you on terra, or any other number of human-inhabited worlds, a place like this would be deep in the shade, dark and forgotten. On Myrmedion, the glowing mushrooms provide all the light you’d ever need. A dense grove of these would be the brightest spot for miles. As it is, you’re pretty sure this is the best-lit spot in the park thanks. The gold myr seem to agree. Swing sets have been anchored into the undersides of the glowing caps for their young to play in, though you see more than one grown adult making use of them as well.";
+	rooms["706"].description = "Were you on terra, or any other number of human-inhabited worlds, a place like this would be deep in the shade, dark and forgotten. On Myrmedion, the glowing mushrooms provide all the light you’d ever need. A dense grove of these would be the brightest spot for miles. As it is, you’re pretty sure this is the best-lit spot in the park thanks to the mushrooms’ natural bioluminescence. The gold myr seem to agree. Swing sets have been anchored into the undersides of the glowing caps for their young to play in, though you see more than one grown adult making use of them as well.";
 	rooms["706"].planet = "PLANET: MYRELLION";
 	rooms["706"].system = "SYSTEM: SINDATHU";
 	rooms["706"].eastExit = "705";
