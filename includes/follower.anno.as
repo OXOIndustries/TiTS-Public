@@ -2116,10 +2116,8 @@ public function annoxKaedeFollowerMeeting():void
 	showBust("ANNO", "KAEDE");
 
 	// {First Time}
-	if (flags["ANNOxKAEDE_INTRODUCED"] == undefined)
+	if (!hasMetKaede())
 	{
-		flags["ANNOxKAEDE_INTRODUCED"] = 1;
-
 		output("Over the din of dozens of murmuring voices in Anon’s, you hear a loud, <i>“HEY! [pc.name], over here!”</i> ");
 	
 		output("\n\nLooking over the bar, you see Anno sitting in a booth with another ausar - a red-headed girl wearing a black leather jacket. The other woman turns in the booth, big blue eyes regarding you as your lover waves you over. ");
@@ -2149,7 +2147,9 @@ public function annoxKaedeFollowerMeeting():void
 		
 		output("\n\n<i>“What do you say we get out of here, huh boss? I’ve got a rent-by-the-hour down the way... and a cute little piece of ass to split between us.”</i>");
 	}
-
+	
+	IncrementFlag("ANNOxKAEDE_INTRODUCED");
+	
 	annoxKaedeAnonsBarMenu();
 }
 
