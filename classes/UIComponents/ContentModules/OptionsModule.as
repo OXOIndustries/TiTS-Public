@@ -63,6 +63,7 @@ package classes.UIComponents.ContentModules
 		
 		private function BuildControls():void
 		{
+			/*
 			//Turns off debug mode toggle. "fuckyou" cheat to enable.
 			//addToggleControl("Toggle debug mode access to game functions.", "Debug Mode", "debugMode");
 			addToggleControl("Toggle easy mode game difficulty.", "Easy Mode", "easyMode");
@@ -71,6 +72,10 @@ package classes.UIComponents.ContentModules
 			addToggleControl("Toggle color in damage output display.", "Color Damage", "colourDamageValueOutput");
 			addToggleControl("Toggle the save note input field.", "Save Notes", "saveNotesToggle");
 			addToggleControl("Toggle save file overwrite prompt.", "Overwrite Prompt", "overwriteToggle");
+			*/
+			addMultiToggleControl("Toggle game difficulty and content.", "Easy Mode", "easyMode", "Silly Mode", "sillyMode");
+			addMultiToggleControl("Toggle damage output display styles.", "Combine Damage", "combineDamageValueOutput", "Color Damage", "colourDamageValueOutput");
+			addMultiToggleControl("Toggle save notes and file overwrite prompt.", "Save Notes", "saveNotesToggle", "Overwrite Prompt", "overwriteToggle");
 			
 			addBustPreferenceControl();
 			
@@ -94,6 +99,18 @@ package classes.UIComponents.ContentModules
 			_pC = tC;
 			
 			tC.configure(d, n, p);
+		}
+		private function addMultiToggleControl(d:String, nA:String, pA:String, nB:String, pB:String):void
+		{
+			var tC:OptionsControlToggle = new OptionsControlToggle();
+			_controls.push(tC);
+			_controlsContainer.addChild(tC);
+			
+			if (_pC != null) tC.y = _pC.y + _pC.height;
+			if (_pC is BustsPreferenceControl) tC.y += 5;
+			_pC = tC;
+			
+			tC.configure(d, nA, pA, nB, pB);
 		}
 		
 		private function addBustPreferenceControl():void
