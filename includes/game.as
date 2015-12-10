@@ -4695,7 +4695,23 @@ public function displayEncounterLog(showID:String = "All"):void
 			{
 				output2("\n<b><u>Ten Ton Gym</u></b>");
 				output2("\n<b>* Quenton:</b> Met him");
-				if(flags["SEXED_QUENTON"] != undefined) output2(", Sexed him");
+				if(flags["SEXED_QUENTON"] != undefined) output2("\n<b>* Quenton, Times Sexed: </b>" + flags["SEXED_QUENTON"]);
+				if(flags["MET_SHOWER_GIRLS"])
+				{
+					output2("\n<b>* Betsy and Victoria:</b> Met them");
+					if(flags["SHOWER_SANDWICH"] != undefined) output2("\n<b>* Betsy and Victoria, Times Had Shower Sex With: </b>" + flags["SHOWER_SANDWICH"]);
+				}
+				if(flags["MET_LOLA"])
+				{
+					output2("\n<b>* Lola:</b> Met her");
+					if(flags["SEXED_LOLA"] != undefined) output2("\n<b>* Lola, Times Sexed: </b>" + flags["SEXED_LOLA"]);
+				}
+				if(flags["MET_SIMONE"])
+				{
+					output2("\n<b>* Simone:</b> Met her");
+					if(StatTracking.getStat("contests/simone challenge losses") + StatTracking.getStat("contests/simone challenge wins") > 0) output2("\n<b>* Simone, Weight Lift Challenge, Win/Loss Ratio: </b>" + StatTracking.getStat("contests/simone challenge wins") + "/" + StatTracking.getStat("contests/simone challenge losses") + ", of " + (StatTracking.getStat("contests/simone challenge losses") + StatTracking.getStat("contests/simone challenge wins")) + " games");
+					if(flags["SEXED_SIMONE"] != undefined) output2("\n<b>* Simone, Times Sexed: </b>" + flags["SEXED_SIMONE"]);
+				}
 				variousCount++;
 			}
 		}
@@ -5126,10 +5142,10 @@ public function displayEncounterLog(showID:String = "All"):void
 					output2(", Seen her sexbots");
 					if(flags["SEEN_SHEKKAS_SEXBOTS"] != undefined) output2(" and her <i>new</i> sexbots");
 				}
+				if(StatTracking.getStat("contests/shekka sexoff losses") + StatTracking.getStat("contests/shekka sexoff wins") > 0) output2("\n<b>* Shekka, Robot Sex-Off, Win/Loss Ratio: </b>" + StatTracking.getStat("contests/shekka sexoff wins") + "/" + StatTracking.getStat("contests/shekka sexoff losses") + ", of " + (StatTracking.getStat("contests/shekka sexoff losses") + StatTracking.getStat("contests/shekka sexoff wins")) + " games");
 				if(flags["TIMES_SEXED_SHEKKA"] != undefined) output2("\n<b>* Shekka, Times Sexed: </b>" + flags["TIMES_SEXED_SHEKKA"]);
 				if(flags["TIMES_TAILVIBED_WITH_SHEKKA"] != undefined) output2("\n<b>* Shekka, Times Fucked Her Tail-Vibrator: </b>" + flags["TIMES_TAILVIBED_WITH_SHEKKA"]);
 				if(flags["TIMES_SHEKKA_KIRBUED"] != undefined) output2("\n<b>* Shekka, Times Fucked Her Inside a Hazmat Suit: </b>" + flags["TIMES_SHEKKA_KIRBUED"]);
-				if(StatTracking.getStat("contests/shekka sexoff losses") + StatTracking.getStat("contests/shekka sexoff wins") > 0) output2("\n<b>* Shekka, Robot Sex-Off, Win/Loss Ratio: </b>" + StatTracking.getStat("contests/shekka sexoff wins") + "/" + StatTracking.getStat("contests/shekka sexoff losses") + ", of " + (StatTracking.getStat("contests/shekka sexoff losses") + StatTracking.getStat("contests/shekka sexoff wins")) + " games");
 				variousCount++;
 			}
 			// Horace Decker
