@@ -3771,8 +3771,6 @@ public function annoxKaedeNotRecruitedMeeting():void
 
 	if (!hasMetKaede())
 	{
-		flags["ANNOxKAEDE_INTRODUCED"] = 1;
-
 		output("When you step into the shop, you notice that for once, there’s actually someone in the Steele Tech outpost other than you and the playful ausar who runs the place. A red-haired girl with perky wolf-ears is leaning over the counter, a fluffy red tail swishing just under her black leather jacket. Anno’s sitting up beside the register, legs crossed and one hand running through the thick mane of her snowy hair as she laughs gaily. The redhead smirks, clearly pleased. Both sets of perky ausar ears twitch as you step into the shop, though, and the pair turn towards you. ");
 		
 		output("\n\n<i>“Oh, hey Boss!”</i> Anno beams, hopping back behind the counter. <i>“You haven’t met Kaede here, have you?”</i> ");
@@ -3812,10 +3810,10 @@ public function annoxKaedeNotRecruitedMeeting():void
 		output("\n\n<i>“Hey there, "+ pc.mf("Mr.", "Miss.") +" Steele,”</i> Kaede says, giving you a friendly smile. ");
 		
 		output("\n\n<i>“Kaede and I were just catching up... though I wouldn’t mind closing up shop for a little reunion. if you know what I mean.”</i> Kaede blushes as Anno leans over the counter, nibbling on one of her big, red ears. <i>“Especially if you’d like to join us, [pc.name].”</i>");
-		
-		IncrementFlag("ANNOxKAEDE_INTRODUCED");
 	}
-
+	
+	IncrementFlag("ANNOxKAEDE_INTRODUCED");
+	
 	pc.createStatusEffect("ST Tarkus Closed", 0, 0, 0, 0, true, "", "", false, 60);
 	// [Fuck Them (req: cock)] [Service Kaede] [Watch Them] [Leave] (ST outpost locked for an hour)
 	clearMenu();
