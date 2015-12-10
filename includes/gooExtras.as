@@ -1535,7 +1535,6 @@ public function hymenRestorationForGoos():void
 public function fixAllVags(nVagsToFix:Number = 0):void
 {
 	clearOutput2();
-	var gooCost:Number = (500 * nVagsToFix);
 	var numPregTotal:Number = pc.totalPregnancies();
 	if(pc.isPregnant(3)) numPregTotal--;
 	
@@ -1554,20 +1553,14 @@ public function fixAllVags(nVagsToFix:Number = 0):void
 		output2(". Your crotch suddenly lights up and a");
 		if(pc.totalVaginas() > 0) output2(" second");
 		output2(" pubic mound appears, growing and changing into a new gooey vagina!");
-		if(nVagsToFix > 1) output2(" Another slimy mound forms quickly after the other, molding into yet another fresh vagina.");
+		if(nVagsToFix > 1) output2(" Another slimy growth forms quickly after the other, molding into yet another fresh vagina.");
 		if(nVagsToFix > 2) output2(" A final one follows, completing the trio of pregnant vaginas.");
 		output2("\n\nGoosebumps crawl underneath your [pc.skinFurScalesNoun] as your womb");
 		if(nVagsToFix == 1) output2(" warms");
 		else output2("s warm");
-		output2(", pulling the much-needed material and energy into your fecund baby facto");
+		output2(", pulling the much-needed material and energy into your fecund baby factor");
 		if(nVagsToFix == 1) output2("y");
 		else output2("ies");
-		
-		// Take goo:
-		if(gooCost > flags["GOO_BIOMASS"]) flags["GOO_BIOMASS"] = 0;
-		else flags["GOO_BIOMASS"] -= gooCost;
-		if(flags["GOO_BIOMASS"] == 0) output2("and using up the rest of your biomass reserves in the process");
-		output2(", all to ensure that your new young gain the nutrients they need to grow--and more importantly, an exit to come out from.");
 		
 		// Create new vags:
 		for(var x:int = (pc.vaginas.length); x < pc.vaginas.length + nVagsToFix; x++)
@@ -1576,8 +1569,16 @@ public function fixAllVags(nVagsToFix:Number = 0):void
 			pc.vaginas[x].addFlag(GLOBAL.FLAG_GOOEY);
 			pc.vaginas[x].vaginaColor = gooColor();
 			pc.energy(-25);
+			// Take goo:
+			flags["GOO_BIOMASS"] -= 500;
 		}
 		
+		if(flags["GOO_BIOMASS"] <= 0)
+		{
+			flags["GOO_BIOMASS"] = 0;
+			output2(" and using up the rest of your biomass reserves in the process");
+		}
+		output2(", all to ensure that your new young gain the nutrients they need to grow--and more importantly, an orifice to exit from.");
 		output2("\n\n<b>You have gained ");
 		if(nVagsToFix == 1) output2("a new vagina");
 		else output2(num2Text(nVagsToFix) + " new vaginas");
