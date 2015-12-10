@@ -11176,7 +11176,7 @@ package classes {
 				else descript += "small";
 			}
 			//Small - A->B
-			if (val <= 2) {
+			else if (val <= 2) {
 				choice = rand(4);
 				if (choice == 0) descript += "palmable";
 				else if (choice == 1) descript += "tight";
