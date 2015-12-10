@@ -2751,8 +2751,11 @@ public function grayGooArrivesAtShip():void
 	
 	processTime(10+rand(5));
 	
+	output("\n\n<b>You");
+	
 	if(!(pc.armor is EmptySlot))
 	{
+		output(" have swapped your [pc.armor] and");
 		eventQueue.push(function():void {
 			clearOutput();
 			clearMenu();
@@ -2763,9 +2766,21 @@ public function grayGooArrivesAtShip():void
 	}
 	else pc.armor = new GooArmor();
 	
+	output(" are now wearing [goo.name] as armor!</b>");
+	
 	clearMenu();
-	addButton(0, "Goo Dicks", gooDickFap, undefined, "Goo Dicks", "Have [goo.name] fill all of your holes and fuck you.");
-	if (pc.hasCock()) addButton(1, "GooSleeve", grayGooCockSleeve, undefined, "Goo Cocksleeve", "Have [goo.name] jack you off.");
+	if(pc.lust() >= 33)
+	{
+		addButton(0, "Goo Dicks", gooDickFap, undefined, "Goo Dicks", "Have [goo.name] fill all of your holes and fuck you.");
+		if (pc.hasCock()) addButton(1, "GooSleeve", grayGooCockSleeve, undefined, "Goo Cocksleeve", "Have [goo.name] jack you off.");
+		else addDisabledButton(1, "GooSleeve", "Goo Cocksleeve", "You don't have the proper anatomy for that...")
+	}
+	else
+	{
+		addDisabledButton(0, "Goo Dicks", "Goo Dicks", "You're not horny enough for that...\n\n<i>(You can access this later in the Masturbate menu while wearing [goo.name].)</i>")
+		if (pc.hasCock()) addDisabledButton(1, "GooSleeve", "Goo Cocksleeve", "You're not horny enough for that...\n\n<i>(You can access this later in the Masturbate menu while wearing [goo.name].)</i>")
+		else addDisabledButton(1, "GooSleeve", "Goo Cocksleeve", "You don't have the proper anatomy for that...")
+	}
 	addButton(2, "No Sex", gooFapNope, undefined, "No Sex", "You are not in the mood to sex [goo.name] at this time.");
 }
 
