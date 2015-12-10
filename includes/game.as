@@ -808,7 +808,8 @@ public function showerOptions(option:int = 0):void {
 		output("Adventuring is fun and all, but it also leaves a [pc.guy] feeling dirty at the end of the day");
 		if (pc.libido() > 50) output(", and not in the good way");
 		output(". You decide to hit the showers, stripping off your gear with a sigh of relief as you take a moment just to stretch and enjoy being");
-		if (!pc.isNude()) output(" fully, truly");
+		if (pc.isNude()) output(" fully");
+		else output(" truly");
 		output(" nude.");
 		output("\n\nThe water comes out icy cold, sending a shiver down your spine. You think to yourself that you really should spring for a better temperature regulator, carefully adjusting the dial back and forth until finding that sweet spot between freezing and scalding where the water is blissfully warm. Now you can finally relax, setting to applying a good dose of shampoo to your [pc.hair]. Your [pc.skinFurScalesNoun] comes next, your hands running up and down your front to coat every last inch in a nice thick lather.");
 		if (pc.biggestTitSize() >= 4) output(" You can’t help but take a moment just to grope your [pc.chest], licking your lips at how good it feels to be so busty.");
