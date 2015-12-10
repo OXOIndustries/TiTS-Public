@@ -5091,7 +5091,6 @@ public function displayEncounterLog(showID:String = "All"):void
 					}
 					if(!chars["ANNO"].isNude()) output2("\n<b>* Anno, Attire:</b> [anno.Gear]");
 					if(flags["ANNOxKAEDE_INTRODUCED"] != undefined) output2("\n<b>* Anno, Times Met with Kaede: </b>" + flags["ANNOxKAEDE_INTRODUCED"]);
-					if(flags["ANNOxKAEDE_LAST_DAY"] != undefined) output2("\n<b>* Anno, Days Since Last Met with Kaede: </b>" + (days - flags["ANNOxKAEDE_LAST_DAY"]));
 					if(flags["ANNO_TRIBERATOR_USED"] != undefined || flags["ANNO_OWNS_LIGHT_STRAPON"] != undefined)
 					{
 						output2("\n<b>* Anno, Sex Toys:</b>");
