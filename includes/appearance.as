@@ -315,13 +315,13 @@ public function appearance(target:Creature):void
 			else if(target.earType == GLOBAL.TYPE_GABILANI)
 			{
 				output2(" A pair of long, triangular goblin ears point outwards");
-				if(target.earLength > 1) output2(num2Text(target.earLength) + " inches from your");
+				if(target.earLength > 1) output2(" " + num2Text(target.earLength) + " inches from your");
 				output2(" from your skull.");
 			}
 			else if(target.earType == GLOBAL.TYPE_DEMONIC)
 			{
 				output2(" A pair of wicked-looking ears point outwards");
-				if(target.earLength > 1) output2(num2Text(target.earLength) + " inches from your");
+				if(target.earLength > 1) output2(" " + num2Text(target.earLength) + " inches from your");
 				output2(" from your skull.");
 			}
 			if(target.hasAntennae())
