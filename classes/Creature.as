@@ -4679,7 +4679,7 @@ package classes {
 					sizeDescripts[sizeDescripts.length] = "toned";
 					sizeDescripts[sizeDescripts.length] = "sculpted";
 				}
-				else if(tone >= 25)
+				else if(tone >= 30)
 				{
 					sizeDescripts[sizeDescripts.length] = "lightly-toned";
 					sizeDescripts[sizeDescripts.length] = "tight";
@@ -4779,7 +4779,7 @@ package classes {
 			}
 			
 			//Noun selection:
-			if(belly < 10 && tone >= 25 && rand(5) == 0) sBuilder += "six pack";
+			if(belly < 10 && tone >= 40 && rand(5) == 0) sBuilder += "six pack";
 			else if(belly < 10 && rand(4) == 0) sBuilder += "midriff";
 			else if(belly < 20 && rand(3) == 0) sBuilder += "middle";
 			else sBuilder += "belly";
