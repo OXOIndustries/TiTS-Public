@@ -80,7 +80,7 @@
 					pc.clitLength = .25;
 					pc.vaginas[0].hymen = true;
 					var pcRace:String = pc.race();
-					if(InCollection(pcRace, "horse-morph", "part horse-morph", "laquine", "ovir", "half-ovir", target.mlpRace())) 
+					if(InCollection(pcRace, "horse-morph", "part horse-morph", "laquine", "centaur", "horse-taur", target.mlpRace()))
 					{
 						pc.shiftVagina(0, GLOBAL.TYPE_EQUINE);
 						kGAMECLASS.output("You’ve got ");
