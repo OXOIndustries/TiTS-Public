@@ -1113,8 +1113,8 @@ public function appearance(target:Creature):void
 						else if(target.thickness >= 30) output2(" passable chest with unremarkable pectoral muscles");
 						else output2(" flat chest with unremarkable pectoral muscles");
 					}
-					output2(", capped with ");
 				}
+				output2(", capped with ");
 			}
 			//Normal nips
 			if(target.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_DICK || target.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_NORMAL)
