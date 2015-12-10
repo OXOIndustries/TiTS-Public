@@ -3217,7 +3217,13 @@ public function shipShowerFappening(scene:String = ""):void
 		output("\n\nYou let out a long, sultry groan, water spurting out around the shower head now buried in your succulent snatch.");
 		if (pc.vaginas[n].type != GLOBAL.TYPE_HUMAN)
 		{
-			output(" You work it around a bit just to relish the exotic shape you’ve been endowed with, your delicious twat that feels so good, so much better than a human’s ever could just by the sheer wrongness of it. It shouldn’t be down there between your legs, yet it is, providing you pleasures a woman was never meant to experience. Gods, you love having an ");
+			output(" You work it around a bit just to relish the exotic shape you’ve been endowed with, your delicious twat that feels so good, so much better than a human’s ever could just by the sheer wrongness of it. It shouldn’t be down there");
+			if (pc.genitalLocation() < 3)
+			{
+				if (pc.legCount == 1) output(" between your thighs");
+				else output(" between your [pc.legs]");
+			}
+			output(", yet it is, providing you pleasures a woman was never meant to experience. Gods, you love having an ");
 			if (InCollection(pc.vaginas[n].type, GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_NAGA)) output("animal’s");
 			else output("alien");
 			output(" cunt!");
