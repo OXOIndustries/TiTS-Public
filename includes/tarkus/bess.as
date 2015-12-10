@@ -12648,10 +12648,12 @@ public function bessIntimateGetDoggy(fromEvent:Boolean = false):void
 	{
 		vagIdx = pc.biggestVaginaIndex();
 		cVolume = pc.vaginalCapacity(vagIdx);
+		if(cVolume > bess.cockVolume(0)) cVolume = bess.cockVolume(0);
 	}
 	else
 	{
 		cVolume = pc.analCapacity();
+		if(cVolume > bess.cockVolume(0)) cVolume = bess.cockVolume(0);
 	}
 
 	output("Both of you strip off your gear, caught up in the crashing waves of your shared passion. It’s not long before [bess.name] is pressing [bess.hisHer] naked body against yours, softly lavishing your collarbone in soft, sensuous little kisses.");
