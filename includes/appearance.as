@@ -1061,36 +1061,29 @@ public function appearance(target:Creature):void
 			// Flat chests!
 			else
 			{
-				// Explicit
-				if (rand(5) != 0)
-				{
-					// Feminine/Andro, Low/Medium Tone
-					if((target.mfn("m","f","n") != "m") && target.tone < 60) {
-						if (rand(3) == 0) output2("You have a waif’s chest, flat and innocent-looking");
-						else if (rand(2) == 0) output2("You have a girly, soft, undefined flat chest");
-						else output2("The top half of your body is willowy and breast-less, graceful yet vaguely austere");
-					}
-					// Masculine, High Tone, High Thickness
-					else if((target.mf("m","f") == "m") && target.tone >= 60 && target.thickness >= 60) {
-						if (rand(3) == 0) output2("You have a fuck-off six pack, bulging with heavy muscle");
-						else if (rand(2) == 0) output2("You’re ripped as hell, sporting the kind of muscle guys want and girls want around them");
-						else output2("You have remarkably well defined, heavyweight abs, rounded and beefy");
-					}
-					// Masculine, Low Tone, High Thickness
-					else if((target.mf("m","f") == "m") && target.tone <= 30 && target.thickness >= 60) {
-						if (rand(3) == 0) output2("You have a broad, incredibly masculine chest, bulky and assured");
-						else if (rand(2) == 0) output2("You have a bear-like upper frame, voluminous and imminently cuddly");
-						else output2("You have a wide, hearty, supremely manly chest");
-					}
-					// Masculine/Feminine/Andro, High Tone, Low Thickness
-					else if(target.tone >= 60 && target.thickness <= 30) {
-						if (rand(3) == 0) output2(target.mf("You have a narrow, well defined but unostentatious six pack", "You have a flat, athlete’s chest, supple and thin"));
-						else if (rand(2) == 0) output2(target.mf("You have a sleek, tight featherweight’s six pack", "You have a no-nonsense flat chest, framed by rounded, subtle amounts of muscle"));
-						else output2(target.mf("You have a flat, athlete’s chest, wiry with muscle", "Your firm, washboard, modest pecs make you look teasingly sexually ambiguous"));
-						}
-					// Default
-					else output2("You have a flat chest with unremarkable pectoral muscles");
-					output2(", capped with ");
+				// Feminine/Andro, Low/Medium Tone
+				if((target.mfn("m","f","n") != "m") && target.tone < 60) {
+					if (rand(3) == 0) output2("You have a waif’s chest, flat and innocent-looking");
+					else if (rand(2) == 0) output2("You have a girly, soft, undefined flat chest");
+					else output2("The top half of your body is willowy and breast-less, graceful yet vaguely austere");
+				}
+				// Masculine, High Tone, High Thickness
+				else if((target.mf("m","f") == "m") && target.tone >= 60 && target.thickness >= 60) {
+					if (rand(3) == 0) output2("You have a fuck-off six pack, bulging with heavy muscle");
+					else if (rand(2) == 0) output2("You’re ripped as hell, sporting the kind of muscle guys want and girls want around them");
+					else output2("You have remarkably well defined, heavyweight abs, rounded and beefy");
+				}
+				// Masculine, Low Tone, High Thickness
+				else if((target.mf("m","f") == "m") && target.tone <= 30 && target.thickness >= 60) {
+					if (rand(3) == 0) output2("You have a broad, incredibly masculine chest, bulky and assured");
+					else if (rand(2) == 0) output2("You have a bear-like upper frame, voluminous and imminently cuddly");
+					else output2("You have a wide, hearty, supremely manly chest");
+				}
+				// Masculine/Feminine/Andro, High Tone, Low Thickness
+				else if(target.tone >= 60 && target.thickness <= 30) {
+					if (rand(3) == 0) output2(target.mf("You have a narrow, well defined but unostentatious six pack", "You have a flat, athlete’s chest, supple and thin"));
+					else if (rand(2) == 0) output2(target.mf("You have a sleek, tight featherweight’s six pack", "You have a no-nonsense flat chest, framed by rounded, subtle amounts of muscle"));
+					else output2(target.mf("You have a flat, athlete’s chest, wiry with muscle", "Your firm, washboard, modest pecs make you look teasingly sexually ambiguous"));
 				}
 				// Basic
 				else
@@ -1187,8 +1180,42 @@ public function appearance(target:Creature):void
 		//many rows
 		else {
 			output2("You have " + num2Text(target.breastRows.length) + " rows of breasts");
-			if(target.biggestTitSize() < 1) output2(", all flat and fairly masculine in look.");
-			else output2(", the topmost pair starting at your chest.");
+			if(target.biggestTitSize() < 1)
+			{
+				output2(", all");
+				if(target.tone >= 100)
+				{
+					if(target.thickness > 70) output2(" immense with " + target.mf("extremely pronounced","very pronounced") + " pectoral muscles");
+					else if(target.thickness >= 30) output2(" robust with " + target.mf("extremely pronounced","very pronounced") + " pectoral muscles");
+					else output2(" chisled with " + target.mf("extremely pronounced","very pronounced") + " pectoral muscles");
+				}
+				else if(target.tone > 70)
+				{
+					if(target.thickness > 70) output2(" broad with " + target.mf("well defined","well toned") + " pectoral muscles");
+					else if(target.thickness >= 30) output2(" healthy with " + target.mf("well defined","well toned") + " pectoral muscles");
+					else output2(" fit with " + target.mf("well defined","well toned") + " pectoral muscles");
+				}
+				else if(target.tone >= 30)
+				{
+					if(target.thickness > 70) output2(" thick with " + target.mf("toned","lightly toned") + " pectoral muscles");
+					else if(target.thickness >= 30) output2(" average with " + target.mf("toned","lightly toned") + " pectoral muscles");
+					else output2(" soft with " + target.mf("toned","lightly toned") + " pectoral muscles");
+				}
+				else
+				{
+					if(target.thickness > 70) output2(" wide and fairly " + target.mfn("masculine","feminine","masculine") + " in look");
+					else if(target.thickness >= 30) output2(" passable and fairly " + target.mfn("masculine","feminine","masculine") + " in look");
+					else output2(" flat and fairly " + target.mfn("masculine","feminine","masculine") + " in look");
+				}
+				output2(".");
+			}
+			else
+			{
+				output2(", the topmost");
+				if(target.breastRows[0].breasts == 2) output2(" pair");
+				else output2(" set");
+				output2(" starting at your chest.");
+			}
 			temp = 0;
 			while (temp < target.breastRows.length) {
 				// Feminine A-Cups
