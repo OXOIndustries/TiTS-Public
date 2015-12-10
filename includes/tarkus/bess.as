@@ -8337,7 +8337,7 @@ public function bessEvent18Response(response:String):void
 	{
 		if (response == "letsgo")
 		{
-			output("You decide to take [bess.name] up on [bess.hisHer] invitation and grab a microphone as [bess.heShe] throws on some random. As a video pops up on the screen, you both sing along to the words. You both belt out an impromptu duet and have a lot of fun doing it.");
+			output("You decide to take [bess.name] up on [bess.hisHer] invitation and grab a microphone as [bess.heShe] throws on something random. As a video pops up on the screen, you both sing along to the words. You both belt out an impromptu duet and have a lot of fun doing it.");
 			
 			output("\n\n[bess.name] is a wonderful vocalist, but that’s not really surprising since [bess.hisHer] voice is naturally melodious. [bess.HeShe] seems to have masterfully synthesized qualities of all the best "+ bess.mf("male", "female") +" vocalists together into [bess.hisHer] own voice, keeping it [bess.hisHers] while improving it tenfold.");
 			
@@ -9913,7 +9913,7 @@ public function bessDate2p2(bLiked:Boolean):void
 	}
 	else
 	{
-		output("<i>“Right, it’s official - they’re called ‘Yuck Fruits’.”</i> You toss your fruit away. Just as you do, [bess.name] looks a little worried.”</i>... Wait, we’re breaking the no food rule. One bite shouldn’t hurt, right? I was caught up in all the new sensory input.”</i>");
+		output("<i>“Right, it’s official - they’re called ‘Yuck Fruits’.”</i> You toss your fruit away. Just as you do, [bess.name] looks a little worried. <i>“... Wait, we’re breaking the no food rule. One bite shouldn’t hurt, right? I was caught up in all the new sensory input.”</i>");
 	}
 
 	output("\n\nYou splash around in the water for a bit having fun. After a bit of swimming and then food, the sun begins to set, calling an end to your date. The only downside is that it takes forever to get the black sand out of everything once you’re back in the ship.");
@@ -12491,11 +12491,11 @@ public function bessIntimateSexMenu():void
 
 	if (pc.hasCock())
 	{
-		addButton(0, "GiveDoggy", bessIntimateGiveDoggy, false);
+		addButton(0, "Cowgirl", bessIntimateGiveDoggy, false, "Give Intimate Cowgirl", "Let [bess.name] ride you cowgirl style.");
 	}
 	else
 	{
-		addDisabledButton(0, "GiveDoggy", "Give Doggy", "Requires a cock!");
+		addDisabledButton(0, "Cowgirl", "Give Intimate Cowgirl", "Requires a cock!");
 	}
 
 	if (bess.hasCock())
@@ -12503,22 +12503,22 @@ public function bessIntimateSexMenu():void
 		// If you've equipped Bess with the saurian / dino-dick, the pc's orifice capacity must be able to take a 20 inch long, 12 inch wide cock.
 		if (bess.cocks[0].cType == GLOBAL.TYPE_SAURIAN)
 		{
-			if ((pc.hasVagina() && pc.cuntThatFits(1360) >= 0) || pc.analCapacity() >= 1360) addButton(2, "GetDoggy", bessIntimateGetDoggy, false, "Get Doggystyle", "Take it from [bess.name], doggy style! [bess.HeShe] must have a cock.");
-			else addDisabledButton(1, "GetDoggy", "Get Doggystyle", "Take it from [bess.name], doggy style! [bess.HeShe] must have a cock that [bess.heShe] can squeeze into you!");
+			if ((pc.hasVagina() && pc.cuntThatFits(1360) >= 0) || pc.analCapacity() >= 1360) addButton(2, "Missionary", bessIntimateGetDoggy, false, "Get Intimate Missionary", "Take it from [bess.name], missionary style.");
+			else addDisabledButton(1, "Missionary", "Get Intimate Missionary", "Take it from [bess.name], missionary style. [bess.HeShe] must have a cock that [bess.heShe] can squeeze into you!");
 		}
 		else
 		{
-			addButton(1, "GetDoggy", bessIntimateGetDoggy, false, "Get Doggystyle", "Take it from [bess.name], doggy style! [bess.HeShe] must have a cock.");
+			addButton(1, "Missionary", bessIntimateGetDoggy, false, "Get Intimate Missionary", "Take it from [bess.name], missionary style. [bess.HeShe] must have a cock.");
 		}
 	}
 	else
 	{
-		addDisabledButton(1, "GetDoggy", "Get Doggystyle", "Take it from [bess.name], doggy style! [bess.HeShe] must have a cock.")
+		addDisabledButton(1, "Missionary", "Get Intimate Missionary", "Take it from [bess.name], missionary style. [bess.HeShe] must have a cock.")
 	}
 
 	if (bess.hasVagina())
 	{
-		addButton(2, "GiveOral", bessIntimateGiveOral, false);
+		addButton(2, "GiveOral", bessIntimateGiveOral, false, "Give Oral", "Eat [bess.name] out.");
 	}
 	else
 	{
@@ -12575,7 +12575,7 @@ public function bessIntimateGiveDoggy(fromEvent:Boolean = false):void
 		output("\n\n[bess.HeShe] shifts [bess.himHer]self so your [pc.cockhead] is lined up with [bess.hisHer]");
 		if (bess.hasVagina()) output(" wetness");
 		else output(" entrance");
-		output(", sliding you slowly inside of [bess.himHer]self as [bess.heShe] descends on your length. As you push deeper inside of [bess.hisHer] incredibly narrow passage [bess.heShe] cling to you with a velvety grip.");
+		output(", sliding you slowly inside of [bess.himHer]self as [bess.heShe] descends on your length. As you push deeper inside of [bess.hisHer] incredibly narrow passage, [bess.heShe] clings to you with a velvety grip.");
 		
 		output("\n\nOnce you are fully inside of [bess.himHer], [bess.name] kisses you softly, pulling you against [bess.hisHer] as your [pc.cockNoun] twitches inside of [bess.himHer]. <i>“...I love the feeling of you deep inside of me. It makes me feel so complete.”</i>");
 		
@@ -12613,7 +12613,7 @@ public function bessIntimateGiveDoggy(fromEvent:Boolean = false):void
 	if (flags["BESS_FUCKED"] == undefined) flags["BESS_FUCKED"] = 0;
 	flags["BESS_FUCKED"]++;
 
-	if (flags["BESS_INTIMATE_FUCKED"] == undefined) flags["BESS_INTIMATE_FUCKED"];
+	if (flags["BESS_INTIMATE_FUCKED"] == undefined) flags["BESS_INTIMATE_FUCKED"] = 0;
 	flags["BESS_INTIMATE_FUCKED"]++
 
 	bess.orgasm();
@@ -12724,7 +12724,7 @@ public function bessIntimateGetDoggy(fromEvent:Boolean = false):void
 	if (flags["BESS_FUCKED"] == undefined) flags["BESS_FUCKED"] = 0;
 	flags["BESS_FUCKED"]++;
 
-	if (flags["BESS_INTIMATE_FUCKED"] == undefined) flags["BESS_INTIMATE_FUCKED"];
+	if (flags["BESS_INTIMATE_FUCKED"] == undefined) flags["BESS_INTIMATE_FUCKED"] = 0;
 	flags["BESS_INTIMATE_FUCKED"]++
 
 	bess.orgasm();
@@ -12774,7 +12774,7 @@ public function bessIntimateGiveOral(fromEvent:Boolean = false):void
 	if (flags["BESS_FUCKED"] == undefined) flags["BESS_FUCKED"] = 0;
 	flags["BESS_FUCKED"]++;
 
-	if (flags["BESS_INTIMATE_FUCKED"] == undefined) flags["BESS_INTIMATE_FUCKED"];
+	if (flags["BESS_INTIMATE_FUCKED"] == undefined) flags["BESS_INTIMATE_FUCKED"] = 0;
 	flags["BESS_INTIMATE_FUCKED"]++
 
 	if (fromEvent)
@@ -12848,7 +12848,7 @@ public function bessIntimateGetOral(fromEvent:Boolean = false):void
 	if (flags["BESS_FUCKED"] == undefined) flags["BESS_FUCKED"] = 0;
 	flags["BESS_FUCKED"]++;
 
-	if (flags["BESS_INTIMATE_FUCKED"] == undefined) flags["BESS_INTIMATE_FUCKED"];
+	if (flags["BESS_INTIMATE_FUCKED"] == undefined) flags["BESS_INTIMATE_FUCKED"] = 0;
 	flags["BESS_INTIMATE_FUCKED"]++
 
 	if (fromEvent)
