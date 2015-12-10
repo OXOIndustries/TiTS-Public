@@ -248,7 +248,7 @@
 					// Morph the wieners to proper type based on race
 					var pcRace:String = target.race();
 					kGAMECLASS.output(" <b>");
-					if(InCollection(pcRace, "horse-morph", "part horse-morph", "laquine", "ovir", "half-ovir", "minotaur", "centaur", target.mlpRace()))
+					if(InCollection(pcRace, "horse-morph", "part horse-morph", "laquine", "ovir", "half-ovir", "minotaur", "centaur", "horse-taur", target.mlpRace()))
 					{
 						target.shiftCock(0, GLOBAL.TYPE_EQUINE);
 						kGAMECLASS.output("Your [pc.cockColor] cock has a medial ring and flares like a horse");
