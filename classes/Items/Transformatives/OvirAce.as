@@ -551,8 +551,8 @@ package classes.Items.Transformatives
 				changes++;
 			}
 
-			//Change eye color (green, blue, yellow, red, grey), and make reptilian.
-			var eyeColors:Array = ["green", "blue", "yellow", "red", "grey"];
+			//Change eye color (green, blue, yellow, red, gray), and make reptilian.
+			var eyeColors:Array = ["green", "blue", "yellow", "red", "gray"];
 			var tEyeColor:String = RandomInCollection(eyeColors);
 			var tfEyeColor:Boolean = (!InCollection(target.eyeColor, eyeColors) && target.eyeColorUnlocked(tEyeColor));
 			var tfEyeType:Boolean = (target.eyeType != GLOBAL.TYPE_SNAKE && target.eyeTypeUnlocked(GLOBAL.TYPE_SNAKE));
