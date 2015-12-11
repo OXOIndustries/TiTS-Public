@@ -1998,7 +1998,7 @@ public function gooDickFap():void
 	
 	output("\n\n[goo.name] leans forward, squeezing her big, squishy tits against your back and wrapping her arms around your [pc.chest] and holding you tight... and putting her in a better position to rapid-fire hammer your ass");
 	if (pc.hasVagina()) output(" and pussy");
-	output(", pounding you with fast, hard strokes. The gooey prick in your mouth begins to throb and sputter, drooling grey faux-spunk onto your [pc.tongue] in simulated orgasm - [goo.name]’s really going all out to give you the complete fucked-into-submission experience!");
+	output(", pounding you with fast, hard strokes. The gooey prick in your mouth begins to throb and sputter, drooling gray faux-spunk onto your [pc.tongue] in simulated orgasm - [goo.name]’s really going all out to give you the complete fucked-into-submission experience!");
 	
 	output("\n\nYou groan appreciatively around her twitching goo-cock, feeling your body approaching climax. With a final cry, surrendering to the pleasure, your [pc.asshole]");
 	if (pc.hasVagina()) output(" and cunt");
@@ -2072,7 +2072,7 @@ public function grayGooCockSleeveII(allowIt:Boolean = false):void
 		
 		output("\n\n<i>“Aww!”</i> she groans, easing the pressure off your behind. <i>“I guess I’ll just have to work harder on that [pc.cock] of yours!”</i>");
 		
-		output("\n\nAnd does she ever. Her tits start flying around your shaft, and her whole chest contorts around your thrusting cock. She’s like a vacuum sucking on you, ready to drain every drop from your [pc.balls]. It doesn’t take more than a moment for pre to start pouring out of your cock, heralding the inevitable. The moment the first droplet stains her grey body, your gooey companion coos happily, licking her lips hungrily.");
+		output("\n\nAnd does she ever. Her tits start flying around your shaft, and her whole chest contorts around your thrusting cock. She’s like a vacuum sucking on you, ready to drain every drop from your [pc.balls]. It doesn’t take more than a moment for pre to start pouring out of your cock, heralding the inevitable. The moment the first droplet stains her gray body, your gooey companion coos happily, licking her lips hungrily.");
 	}
 
 	output("\n\nUnder this kind of treatment, you’re not going to last much longer. You clench down, trying to hold back, but [goo.name]’s sucking, writhing motions are as intense as an expert whore’s, purpose-built to suck every drop of cum from you. There’s not a lot you can do to keep it from happening - just to try and give as good as you get, making sure [goo.name] has every bit as much enjoyment from your lovemaking as you do. She squeals delighted as you redouble your efforts, wiggling and moaning with every thrust.");
