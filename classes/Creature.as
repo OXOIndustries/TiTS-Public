@@ -7769,7 +7769,7 @@ package classes {
 			var score:int = 0;
 			if (skinType == GLOBAL.SKIN_TYPE_SCALES && InCollection(scaleColor, "green", "purple", "red", "yellow", "brown", "tan", "olive green")) score++;
 			if (tailType == GLOBAL.TYPE_OVIR) score++;
-			if (eyeType == GLOBAL.TYPE_SNAKE && InCollection(eyeColor, "green", "blue", "yellow", "red", "grey")) score++;
+			if (eyeType == GLOBAL.TYPE_SNAKE && InCollection(eyeColor, "green", "blue", "yellow", "red", "gray")) score++;
 			if (tongueType == GLOBAL.TYPE_OVIR) score++;
 			if (legType == GLOBAL.TYPE_OVIR) score++;
 			if (armType == GLOBAL.TYPE_OVIR && legType == GLOBAL.TYPE_OVIR) score++;
