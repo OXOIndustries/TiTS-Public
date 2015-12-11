@@ -487,7 +487,7 @@ public function bendFlahneOver():void {
 	else output("it");
 	output(" a quick lick that sends a deep shiver of pleasure up your spine.");
 	
-	output("\n\nAs her mouth escorts your prick to a whole new realm of pleasure, compressed and engulfed in the soft, delightfully elastic flesh of her body, Flahne's hands go to work as well. She unbuttons her shirt, already strained against the massive G-cups practically bursting from the fabric; the massive mammaries flopping down to sway hypnotically beneath her your gel-slicked prick. She cups her heavy orbs under an arm, squeezing them just enough that they seem to swell even bigger, flowing over her grip until her big, squishy nipples brush your [pc.skinFurScales], making their owner shudder in delight.");
+	output("\n\nAs her mouth escorts your prick to a whole new realm of pleasure, compressed and engulfed in the soft, delightfully elastic flesh of her body, Flahne's hands go to work as well. She unbuttons her shirt, already strained against the massive G-cups practically bursting from the fabric; the massive mammaries flopping down to sway hypnotically beneath your gel-slicked prick. She cups her heavy orbs under an arm, squeezing them just enough that they seem to swell even bigger, flowing over her grip until her big, squishy nipples brush your [pc.skinFurScales], making their owner shudder in delight.");
 	
 	output("\n\nWhile you could easily lean back and cum just from Flahne's oral expertise, you ");
 	if(pc.isTaur()) output("shuffle away and ");
