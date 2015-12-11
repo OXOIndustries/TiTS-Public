@@ -15,7 +15,7 @@ if(!pc.isNude())
 
 (Add to exterior description) As you eye the entrance you here a feminine grunt from an elderly looking raskvel woman, who points upwards to a dangling sign as she passes by. A childish drawing of a dangling bat with the phrase ‘Stay chaste please!’ is written. <b>Looks like you’ll need to get on a real suit, not your birthday one.</b>
 
-(Grey out NORTH BUTTAN)
+(Gray out NORTH BUTTAN)
 
 (If Tarkus is asplode, you fukken asshole)
 
@@ -480,7 +480,7 @@ public function aurorasPocketWatchThing():void
 	author("Magic Ted");
 	auroraBust();
 	output("Something just hanging on the wall there... It looks like a antique pocket watch.");
-	output("\n\nIn a fit of amusement, you point out a golden clasp dangling by an equally golden chain on one of the racks of the room, the slight shine making it stand out among the grey and deprecated things hanging beside it. <i>\"What’s that?\"</i>");
+	output("\n\nIn a fit of amusement, you point out a golden clasp dangling by an equally golden chain on one of the racks of the room, the slight shine making it stand out among the gray and deprecated things hanging beside it. <i>\"What’s that?\"</i>");
 	output("\n\n<i>\"A pocket watch!\"</i>");
 	output("\n\nOh. Well then-");
 	output("\n\n<i>\"It’s not for sale, though! I use it to regulate voltage when I’m working.\"</i> Aurora continues, cutting you off and completely ignoring your now newly founded bewilderment. While you wait, subtly giving her time to explain in further detail, she doesn’t take the hint, evidently finished speaking on the topic.");
@@ -730,7 +730,7 @@ public function trashArmor():void
 	author("Magic Ted");
 	auroraBust();
 	output("Instead of bringing it to you, this time Aurora tugs at your hand and brings you along into the dark recesses of the shop, guiding you around piles of junk or at the very most relatively shallow ones that you can navigate through without much fear of tripping and catastrophic doom. Shortly after you round one of the lengthy shelves, you understand why. There’s no way Aurora could bring this thing out herself!");
-	output("\n\nPropped up on an unseen stand or mannequin, you could have easily mistaken this “armor\" for a vending machine or a rather bulky trash can. The dull grey metal resembles a humanoid shape, the limbs looking surprisingly mobile for all its blockiness from the crude-looking metallic slabs. Still, despite the recycled materials, it looked immaculately crafted, not so much of a single weld line visible as if the armor itself was molded this way. Aurora had every right to be beaming proudly beside it as she presented it, despite being the one who named it.");
+	output("\n\nPropped up on an unseen stand or mannequin, you could have easily mistaken this “armor\" for a vending machine or a rather bulky trash can. The dull gray metal resembles a humanoid shape, the limbs looking surprisingly mobile for all its blockiness from the crude-looking metallic slabs. Still, despite the recycled materials, it looked immaculately crafted, not so much of a single weld line visible as if the armor itself was molded this way. Aurora had every right to be beaming proudly beside it as she presented it, despite being the one who named it.");
 	output("\n\n<i>\"It’s a metal suit! You just wiggle on in it, and you’re protected from just about everything! ...Well, maybe a thousand years ago, but you’re still pretty well off! The joints move just fine, but it’s really heavy! You can’t really go anywhere fast, and you’re probably going to fall over a bunch, and it’s going to be pretty bad on your back, but... It works! And it’s padded inside, too, so it’s pretty comfortable! Sorta. Kinda. It’s not all metal!\"</i>");
 	output("\n\nIt’s pretty ghetto, but you’re not exactly in a primetime weapons dealer, either. It’s big enough that no raskvel could fit in it, certainly, and Aurora doesn’t really even have arms - no one in the Novahome had any hope of using it, just “upstart adventurers\" like you. It looks like it had a surprising amount of effort put into it, you certainly aren’t getting ripped off with it.");
 	output("\n\nAurora’s eyes silently ask a question as they stare down to you; want it?");
