@@ -242,7 +242,7 @@
 			
 			//Change skinColor to gray. Gain scales.
 			// NOTE: Leithan at creation get /scales/ not skin.
-			output("You feel an itch start to spread across you, starting at your [pc.chest] near where your Leitha Charm is hanging and creeping out across your entire body. You start to scratch yourself... only to see splotches of grey starting to spread across your body.");
+			output("You feel an itch start to spread across you, starting at your [pc.chest] near where your Leitha Charm is hanging and creeping out across your entire body. You start to scratch yourself... only to see splotches of gray starting to spread across your body.");
 			if (target.skinType == GLOBAL.SKIN_TYPE_FUR) output(" Your body's furry covering starts to fall off, giving way to the growing spread of gray scales underneath.");
 			else if (target.skinType == GLOBAL.SKIN_TYPE_GOO) output(" Your gooey body begins to solidify, wracking you with strange sensations. Slowly but surely, your goo is replaced with skin, and your internals solidify into something more normal for the leithan you're striving to become! Before long, your body is covered with scales!");
 			else output(" The patches stretch across your dermis erratically, the flesh left in the wake of the expanding areas visibly hardening.")
