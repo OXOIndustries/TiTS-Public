@@ -24,7 +24,7 @@
 			this.originalRace = "robot";
 			this.a = "the ";
 			this.capitalA = "The ";
-			this.long = "The robot hovers in the air, spindly arms twitching and flicking in the air at every moment. Its steel-grey dome has lost its shine from both combat and the fatigue of the jungle, though it still looks fully operational and, at the moment, lethal. Each of its many tools are pointed at you, threateningly. You’re in for it now!";
+			this.long = "The robot hovers in the air, spindly arms twitching and flicking in the air at every moment. Its steel-gray dome has lost its shine from both combat and the fatigue of the jungle, though it still looks fully operational and, at the moment, lethal. Each of its many tools are pointed at you, threateningly. You’re in for it now!";
 			this.customDodge = "The machina lazily lists to the side, causing your attack to go wayward!";
 			this.customBlock = "The machina’s thick plates cause the attack to glance off into the wilderness!";
 			this.plural = false;
