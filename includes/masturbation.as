@@ -3174,7 +3174,7 @@ public function shipShowerFappening(scene:String = ""):void
 		else
 		{
 			output(" comes up to cup one of your breasts, caressing and gently squeezing the soft feminine flesh that’s such a pleasant contrast to your rock-hard masculine endowment. You tease and pinch at your [pc.nipples]");
-			if (pc.isLactating()) output(", sending little ribbons of [pc.milkNoun] squirting out between your [pc.fingers]");
+			if (pc.isLactating() || pc.milkQ() >= 500) output(", sending little ribbons of [pc.milkNoun] squirting out between your [pc.fingers]");
 			output(" as you stroke, careful not to overdo it and take the focus away from your cock.");
 		}
 		output("\n\nYou lick your lips as you feel the first sense of pressure in the base of your dick, squeezing down to keep it slow, keep it gradual, really relish the sensation of cum slowly working its way upward. You let your hand come up to");
@@ -3239,12 +3239,13 @@ public function shipShowerFappening(scene:String = ""):void
 		{
 			output(" [pc.fingers] sinking into the bountiful cleavage on display. You lift one of your breasts to run your tongue over your [pc.nippleColor] nipple");
 			if (pc.biggestTitSize() >= 11) output(", absolutely loving how easy it is with how huge you are");
-			output(". Big tits, wet pussy, what more could a girl want?");
-			if (pc.isLactating())
+			output(". Big tits, wet pussy, what more could a [pc.boyGirl] want?");
+			if (pc.isLactating() || pc.milkQ() >= 1000)
 			{
-				output(" Your body answers the question for you as a spurt of [pc.milkColor] splashes onto your tongue. She could want [pc.milkFlavor] goodness on demand. You take a few gulps, careful not to get too greedy and take the focus away from the pleasure in your pussy.");
+				output(" Your body answers the question for you as a spurt of [pc.milkColor] splashes onto your tongue. [pc.HeShe] could want [pc.milkFlavor] goodness on demand. You take a few gulps, careful not to get too greedy and take the focus away from the pleasure in your pussy.");
 				pc.milkInMouth(pc);
 			}
+			else output(" You let your tongue wander of its own accord for a while, focusing on the pleasure brimming in your pussy.");
 		}
 		output("\n\nAnd it’s a grand pleasure indeed, the water relentless in teasing your cunny depths, stoking the fires of your lusts higher and higher with each passing moment. Your croons come faster, higher, louder, every sound you make a step closer to sweet release. Despite how long it takes, you barely feel prepared, the water joined by a burst of [pc.girlCum] as you give the loudest cry of all.");
 		if (pc.hasCock()) output(" Spurts of [pc.cumNoun] join it, your male orgasm splattering against the shower wall in time with the contractions wracking your cunt.");
