@@ -64,7 +64,7 @@ package classes.Characters
 			this.tone = 75;
 			this.hairColor = "firey-red";
 			this.scaleColor = "";
-			this.furColor = "grey";
+			this.furColor = "gray";
 			this.hairLength = 36;
 			this.hairType = GLOBAL.HAIR_TYPE_REGULAR;
 			this.beardLength = 0;
