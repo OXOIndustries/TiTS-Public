@@ -1185,7 +1185,7 @@ public function cuffNFuck():void
 	output(" grab [monster.hisHer] wiggling hips from behind, unceremoniously flopping [pc.oneCock] onto [monster.hisHer] ass. Teasing [monster.himHer] for a bit, you grind it back and forth between [monster.hisHer] buttocks, getting yourself nice and hard before sliding it in [monster.hisHer] [monster.vagOrAss].");
 
 	pc.cockChange();
-	output("\n\n[monster.Name] gasps and arches [monster.hisHer] back, trembling at your sudden entry. [monster.HisHer] insides clench tightly around the foreign intruder suddenly ");
+	output("\n\n" + foes[0].capitalA + foes[0].short + " gasps and arches [monster.hisHer] back, trembling at your sudden entry. [monster.HisHer] insides clench tightly around the foreign intruder suddenly ");
 	
 	var capacity:Number = 0;
 	if(foes[0].hasVagina()) capacity = foes[0].vaginalCapacity();
@@ -1222,12 +1222,12 @@ public function cuffNFuck():void
 	else output("Oh, so you like your [monster.vagOrAss] being fucked?");
 	output("”</i>");
 
-	output("\n\n<i>“N-no!”</i> [monster.Name] blurts out. Despite [monster.hisHer] words, [monster.hisHer] [monster.ass] is instinctively slapping back against your [pc.hips], [monster.hisHer] own lifting to allow you deeper access.");
+	output("\n\n<i>“N-no!”</i> " + foes[0].capitalA + foes[0].short + " blurts out. Despite [monster.hisHer] words, [monster.hisHer] [monster.ass] is instinctively slapping back against your [pc.hips], [monster.hisHer] own lifting to allow you deeper access.");
 	output("\n\nGrinning in amusement, you ");
 	//enemy.hasTail: 
 	if(foes[0].tailCount > 0) output("grab [monster.hisHer] [monster.tails]");
 	else output("grab [monster.hisHer] waist");
-	output(" and pick up the pace. [monster.Name] grinds back against you, wringing your [pc.cock " + x + "] and moaning in ecstasy. Suddenly [monster.heShe]’s crying out and cumming hard around you, [monster.vagOrAss] trembling");
+	output(" and pick up the pace. " + foes[0].capitalA + foes[0].short + " grinds back against you, wringing your [pc.cock " + x + "] and moaning in ecstasy. Suddenly [monster.heShe]’s crying out and cumming hard around you, [monster.vagOrAss] trembling");
 	if(foes[0].hasCock() || foes[0].hasVagina()) output(", ");
 	if(foes[0].hasCock()) output("[monster.cocks] spurting [monster.cum] all over [monster.hisHer] [monster.belly]");
 	if(foes[0].hasCock() && foes[0].hasVagina()) output(" and ");
@@ -1242,7 +1242,7 @@ public function cuffNFuck():void
 	else output("Cumming around my [pc.cockNoun " + x + "] - what a naughty " + foes[0].mf("boy","girl") + "!");
 	output("”</i>");
 
-	output("\n\n[monster.Name] flushes at your words, lowering [monster.hisHer] head, [monster.hisHer] ");
+	output("\n\n" + foes[0].capitalA + foes[0].short + " flushes at your words, lowering [monster.hisHer] head, [monster.hisHer] ");
 	if(foes[0].hasVagina()) output("pussy");
 	else output("rectum");
 	output(" still quivering around your [pc.cock " + x + "]. With a grin, you begin fucking it with slamming thrusts, stirring up [monster.hisHer] sensitive insides. [monster.HeShe] melts and frantically slaps [monster.hisHer] butt back against you, desperate for more. It’s not long before [monster.heShe] is cumming again, babbling and shaking in [monster.hisHer] cuffs.");
@@ -1276,7 +1276,7 @@ public function cuffNFuck():void
 		if(foes[0].isPregnant()) output("even more ");
 		output("pregnant.");
 	}
-	output("\n\nAfterwards, you pull your [pc.cockNoun " + x + "] from [monster.hisHer] [monster.vagOrAss] and snap your fingers. The cuffs undo around [monster.name]’s wrists and [monster.legs]. [monster.Name] immediately falls to [monster.hisHer] side, a dreamy look on [monster.hisHer] [monster.face]");
+	output("\n\nAfterwards, you pull your [pc.cockNoun " + x + "] from [monster.hisHer] [monster.vagOrAss] and snap your fingers. The cuffs undo around [monster.name]’s wrists and [monster.legs]. " + foes[0].capitalA + foes[0].short + " immediately falls to [monster.hisHer] side, a dreamy look on [monster.hisHer] [monster.face]");
 	if(pc.cumQ() >= 7) 
 	{
 		output(", and a stream of [monster.cum] dribbling ");
