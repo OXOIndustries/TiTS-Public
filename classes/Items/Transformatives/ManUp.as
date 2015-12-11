@@ -26,12 +26,12 @@
 			this.shortName = "ManUp";
 			
 			//Regular name
-			this.longName = "injector labelled ‘ManUp’";
+			this.longName = "injector labeled ‘ManUp’";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "an injector labelled ‘ManUp’";
+			this.description = "an injector labeled ‘ManUp’";
 			
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "ManUp is a cocktail of chemicals, hormones and nanomachines engineered by JoyCo guaranteed to \"make a man out of you\". This product, like the feminizing transformatives, is banned in some planets for the same reasons. JoyCo has managed to circumvent these bans with clever lobbying and a patched variant that doesn't transform feminine genders.\n\nThe injector is filled with a transparent blue fluid. The box guarantees its user <b>facial masculinization with every use</b>, among other side effects such as: reduction in hip, lip, breast and butt size, increases in muscle tone, and growth of facial hair. In some cases, consumers who do not possess male anatomy may grow a penis or a pair of balls.";
