@@ -738,7 +738,7 @@ public function annoTalkMenu():void
 	{
 		if (pc.hasItem(new GrayMicrobots()))
 		{
-			addButton(5, "Gray Goo", beginTheGoozookeningHas, undefined, "Gray Goo", "Ask Anno about the samples you've collected from some Grey Goos.");
+			addButton(5, "Gray Goo", beginTheGoozookeningHas, undefined, "Gray Goo", "Ask Anno about the samples you've collected from some Gray Goos.");
 		}
 		else
 		{
@@ -967,7 +967,7 @@ public function talkToSyriAboutTheLocals():void
 		if(pc.hasCock()) output("grab a rask and bend her over something");
 		else output("bend over and hike your clothes");
 		output("; they'll take care of the rest. As a race, they're obsessed with eggs and rutting, which makes sense when they can just get stepped on by sydians. Outbreed and outlast.\"</i>");
-		output("\n\nAfter a moment of thought, Anno adds, <i>\"I don't think any other races made it off Tarkus. Not in enough numbers, anyway. Still some of the more harmless grey goo and goblins around, but not many.\"</i>");
+		output("\n\nAfter a moment of thought, Anno adds, <i>\"I don't think any other races made it off Tarkus. Not in enough numbers, anyway. Still some of the more harmless gray goo and goblins around, but not many.\"</i>");
 	}
 	processTime(10);
 	annoTalkMenu();
@@ -1464,7 +1464,7 @@ public function cumWithAnnoOnTop():void
 	addButton(0,"Next",mainGameMenu);
 }
 
-// {PC Must have a Grey Goo Sample on-hand}
+// {PC Must have a Gray Goo Sample on-hand}
 public function beginTheGoozookeningHas():void
 {
 	clearOutput();
@@ -1476,7 +1476,7 @@ public function beginTheGoozookeningHas():void
 	output("\n\nYou pull out the vial of gray goo you extracted from one of the lusty mecha-babes and hand it over to Anno. <i>\"Think you could do something with this?\"</i>");
 	output("\n\n<i>\"Gray goo?\"</i> she asks quizzically, looking the sample over. <i>\"Uh... I can burn it for you. I think I've got an incinerator unit around here somewhere...\"</i>");
 	output("\n\n<i>\"Something </i>useful<i>,</i>\"</i> you correct, planting a defensive hand on the sample before she can toss it in the furnace.");
-	output("\n\nShe shrugs. <i>\"Oh. Well... let me think. Uh, I guess I could try and refactor a goo-launcher to shoot grey goo. Would need to build a custom AI-reset in, something to reprogram the sample into crawling up something's cooch when you fire it. Plus I'd have to rebuild the magazine well, or just kajigger it to fire right from the vial. Tell you what, boss: gimme a goo-gun - I sell them, but can't give it to you for free, sorry - and a thousand credits for spare parts and I could probably whip something together.\"</i>");
+	output("\n\nShe shrugs. <i>\"Oh. Well... let me think. Uh, I guess I could try and refactor a goo-launcher to shoot gray goo. Would need to build a custom AI-reset in, something to reprogram the sample into crawling up something's cooch when you fire it. Plus I'd have to rebuild the magazine well, or just kajigger it to fire right from the vial. Tell you what, boss: gimme a goo-gun - I sell them, but can't give it to you for free, sorry - and a thousand credits for spare parts and I could probably whip something together.\"</i>");
 
 	processTime(1);
 	
@@ -3199,7 +3199,7 @@ public function deck13GrayPrimeTalkCrew():void
 	
 	output("\n\n<i>“Maybe. But that doesn’t explain... well,”</i> Anno says, looking the gray woman up and down.");
 	
-	output("\n\nThe goo shrugs. <i>“We had an experimental tech with us. Courtesy of these bastards,”</i> she indicates the Bell-Isle/Grunmann patch on her shoulder. <i>“These little gray nanobots. Every one of us had an injection of them, supposed to keep us healthy and working when we got to... wherever we were going. They were also supposed to keep us </i>mentally<i> healthy, and that’s what got us. Every one of us died with a lace of grey bots copying our brains, just enough to fill a syringe. That was all that was left of us. But when this old bucket crashed, we woke up all the same.”</i>");
+	output("\n\nThe goo shrugs. <i>“We had an experimental tech with us. Courtesy of these bastards,”</i> she indicates the Bell-Isle/Grunmann patch on her shoulder. <i>“These little gray nanobots. Every one of us had an injection of them, supposed to keep us healthy and working when we got to... wherever we were going. They were also supposed to keep us </i>mentally<i> healthy, and that’s what got us. Every one of us died with a lace of gray bots copying our brains, just enough to fill a syringe. That was all that was left of us. But when this old bucket crashed, we woke up all the same.”</i>");
 	
 	output("\n\n<i>“Oh my god,”</i> Anno breathes.");
 	
