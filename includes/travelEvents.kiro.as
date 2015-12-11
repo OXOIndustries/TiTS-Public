@@ -1061,9 +1061,7 @@ public function kiroBallsSexMenu():void
 	if(pc.hasCock()) addButton(1,"Balljob",balljobFromKiro,undefined,"Balljob","Stick your cock between those oversized balls and squeeze out an orgasm - maybe for both of you.");
 	else addDisabledButton(1,"Balljob","Balljob","You need a penis to get a balljob from Kiro.");
 	addButton(2,"Catch Anal",bodyBloatingButtObliteratingBowelBasting,undefined,"Catch Anal","One way or another, Kiro's going to fill you up.");
-
-
-
+	
 	addButton(5,"Invite",inviteAFriendForKiroPlays,undefined,"Invite","Invite a friend to play with you and Kiro...");
 	addButton(14,"Back",kiroMenu);
 }
@@ -1092,12 +1090,17 @@ public function kiroSexMenu():void
 	else addDisabledButton(2,"2xMilker","2xMilker","You need a penis to participate in this scene.");
 	addButton(3,"Hand Milk",manualMilkingFromSavin,undefined,"Hand Milk","Hand milk Kiro, and she doesn't lactate...");
 	//PUSSY PUMPIN~
-	if(kiroTrust() >= 66)
+	if(9999 == 9999)
 	{
-		if(pc.hasCock() || pc.hasVagina()) addButton(4,"PussyPump",treatedPussPumps,undefined,"PussyPump","Give Kiro's pussy a thorough pumping up with the SukMastr 2000 you bought. She could spare to give her feminine side a little extra attention. <b>Enabled by default until the item is actually made available.</b>");//9999
-		else addDisabledButton(4,"PussyPump","PussyPump","You need a penis or vagina (in the usual location) to deal with the consequences of pumping up Kiro's pussy.");
+		if(kiroTrust() >= 66)
+		{
+			if(pc.hasCock() && (pc.cockThatFits(kiro.vaginalCapacity(0)) < 0 && pc.biggestCockLength() < 20) && !pc.hasVagina()) addDisabledButton(4,"PussyPump","PussyPump","You need a penis of a specific size or a vagina (in the usual location) to deal with the consequences of pumping up Kiro's pussy.");
+			else if(pc.hasGenitals()) addButton(4,"PussyPump",treatedPussPumps,undefined,"PussyPump","Give Kiro's pussy a thorough pumping up with the SukMastr 2000 you bought. She could spare to give her feminine side a little extra attention. <b>Enabled by default until the item is actually made available.</b>");//9999
+			else addDisabledButton(4,"PussyPump","PussyPump","You need a penis or vagina (in the usual location) to deal with the consequences of pumping up Kiro's pussy.");
+		}
+		else addDisabledButton(4,"PussyPump","PussyPump","Kiro doesn't trust you nearly enough for that.");
 	}
-	else addDisabledButton(4,"PussyPump","PussyPump","Kiro doesn't trust you nearly enough for that.");
+	else addDisabledButton(4,"PussyPump","PussyPump","You need a valid device for pumping up Kiro's pussy.");
 	//THREESOMES~
 	addButton(5,"Invite",inviteAFriendForKiroPlays,undefined,"Invite","Invite a friend to play with you and Kiro...");
 	addButton(14,"Back",kiroMenu);
@@ -1120,7 +1123,8 @@ public function takeKirosVirginity():void
 		output("\n\nDamn. Well, she’d probably let you put it in her butt.");
 		//Sex menu, no text.
 		processTime(2);
-		kiroSexMenu();
+		if(kiro.ballDiameter() <= 14) kiroSexMenu();
+		else kiroBallsSexMenu();
 		return;
 	}
 	//High Trust
@@ -2222,7 +2226,8 @@ public function inviteAFriendForKiroPlays():void
 	if(nFriends > 0) output("A sly smile creeps up the side of your lips and blossoms into a full blown grin. You press a finger to the Tanuki’s small, black nose and tell her to give you just a minute. She barks out an angry protest, gesturing broadly as if to remind you that she’s ready to go. <i>“You’d better not leave me hanging, you cock-tease,”</i> she complains, her half-hard shaft throbbing between her legs. <i>“I don’t want a repeat of that milker accident!”</i> You tweak one of her round, fluffy ears and give her a wink as you throw a robe over your body and step towards the door. Just a minute, you promise.");
 	else output("Unfortunately, you don't know of any available friends to invite...");
 	
-	addButton(14,"Back",kiroSexMenu);
+	if(kiro.ballDiameter() <= 14) addButton(14,"Back",kiroSexMenu);
+	else addButton(14,"Back",kiroBallsSexMenu);
 }
 
 public function inviteSaenForKiroFilling():void
