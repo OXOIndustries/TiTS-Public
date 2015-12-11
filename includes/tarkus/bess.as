@@ -3172,7 +3172,7 @@ public function setBessCockType(newType:int):void
 			}
 			bess.cocks[0].cLengthRaw = 12;
 			bess.cocks[0].cThicknessRatioRaw = 1.5;
-			bess.cocks[0].clearFlags();
+			//bess.cocks[0].clearFlags();
 			bess.balls = 2;
 			bess.ballSizeRaw = 4;
 		}
