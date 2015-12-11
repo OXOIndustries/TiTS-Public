@@ -384,10 +384,10 @@ package classes.Items.Transformatives
 			//#2 Goblin vagina: Requires at least one non-goblin vagina.
 			if(target.totalVaginas(GLOBAL.TYPE_GABILANI) < target.vaginas.length)
 				TFList[TFList.length] = 2;
-			//#3 Goblin cum: Requires non-oily grey cum and at least one goblin dick.
+			//#3 Goblin cum: Requires non-oily gray cum and at least one goblin dick.
 			if(target.hasCock(GLOBAL.TYPE_GABILANI) && target.cumType != GLOBAL.FLUID_TYPE_GABILANI_CUM)
 				TFList[TFList.length] = 3;
-			//#4 Goblin girlcum: Requires non-oily grey girlcum, and at least one goblin vagina.
+			//#4 Goblin girlcum: Requires non-oily gray girlcum, and at least one goblin vagina.
 			if(target.hasVaginaType(GLOBAL.TYPE_GABILANI) && target.girlCumType != GLOBAL.FLUID_TYPE_GABILANI_GIRLCUM)
 				TFList[TFList.length] = 4;
 			//#5 Intelligence increase towards 85%
@@ -497,7 +497,7 @@ package classes.Items.Transformatives
 						kGAMECLASS.eventBuffer += target.vaginaTypeLockedMessage();
 					}
 				}
-				//#3 Goblin cum: Cum changes to oily grey cum.
+				//#3 Goblin cum: Cum changes to oily gray cum.
 				else if(select == 3)
 				{
 					if(target.cumTypeUnlocked(GLOBAL.FLUID_TYPE_GABILANI_CUM))
@@ -521,7 +521,7 @@ package classes.Items.Transformatives
 					if(target.girlCumTypeUnlocked(GLOBAL.FLUID_TYPE_GABILANI_GIRLCUM))
 					{
 						// Transformation text:
-						kGAMECLASS.eventBuffer += "The muscles of your alien pussy quiver pleasantly and you feel an incredible urge to fill them with whatever is at hand, which ends up being exactly what you stick in there. After fingering yourself to orgasm, you check your fingers and discover they’re covered in a very oily grey liquid, very different from your usual discharge. <b>You now have gabilani girlcum!</b>";
+						kGAMECLASS.eventBuffer += "The muscles of your alien pussy quiver pleasantly and you feel an incredible urge to fill them with whatever is at hand, which ends up being exactly what you stick in there. After fingering yourself to orgasm, you check your fingers and discover they’re covered in a very oily gray liquid, very different from your usual discharge. <b>You now have gabilani girlcum!</b>";
 						
 						target.girlCumType = GLOBAL.FLUID_TYPE_GABILANI_GIRLCUM;
 						target.orgasm();
