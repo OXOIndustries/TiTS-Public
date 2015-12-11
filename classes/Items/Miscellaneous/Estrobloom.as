@@ -24,12 +24,12 @@
 			this.shortName = "Estrobloom";
 			
 			//Regular name
-			this.longName = "popsicle labelled 'Estrobloom'";
+			this.longName = "popsicle labeled 'Estrobloom'";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a popsicle labelled 'Estrobloom'";
+			this.description = "a popsicle labeled 'Estrobloom'";
 			
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "Estrobloom is a chemical cocktail engineered by JoyCo designed to help its users \"bloom into the feminine flower they always deserved to be.\" Some planets have banned Estrobloom due to the disruption it can introduce to racial gender identities, but in more liberal systems the product flows unrestricted.\n\nIt comes in convenient popsicle form for easy use, and the wrapper lists a bevy of potential side effects: increases in hip and butt size, loss of muscle tone, longer hair, reduction of phallus size, and even lip swelling. It does guarantee, in big bold letters, that <b>every use will cause facial feminization</b>.";
