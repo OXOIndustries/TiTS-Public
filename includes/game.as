@@ -600,13 +600,17 @@ public function sleepHeal():void
 	{
 		pc.HP(Math.round(pc.HPMax()));
 	}
-	pc.removeStatusEffect("Sore");
-	pc.removeStatusEffect("Sore Counter");
-	pc.removeStatusEffect("Jaded");
-	
 	// Fecund Figure shape loss (Lose only after sore/working out)
 	if(pc.hasPerk("Fecund Figure") && pc.hasStatusEffect("Sore"))
 	{
+		var numPreg:int = pc.totalPregnancies();
+		if(pc.isPregnant(3)) numPreg--;
+		if(numPreg <= 0)
+		{
+			pc.addPerkValue("Fecund Figure", 1, -1);
+			pc.addPerkValue("Fecund Figure", 2, -1);
+			pc.addPerkValue("Fecund Figure", 3, -1);
+		}
 		pc.addPerkValue("Fecund Figure", 1, -1);
 		pc.addPerkValue("Fecund Figure", 2, -1);
 		pc.addPerkValue("Fecund Figure", 3, -1);
@@ -614,6 +618,9 @@ public function sleepHeal():void
 		if(pc.perkv2("Fecund Figure") < 0) pc.setPerkValue("Fecund Figure", 2, 0);
 		if(pc.perkv3("Fecund Figure") < 0) pc.setPerkValue("Fecund Figure", 3, 0);
 	}
+	pc.removeStatusEffect("Sore");
+	pc.removeStatusEffect("Sore Counter");
+	pc.removeStatusEffect("Jaded");
 	
 	if (pc.energy() < pc.energyMax()) pc.energyRaw = pc.energyMax();
 }
@@ -1683,10 +1690,14 @@ public function processTime(arg:int):void {
 				// Fecund Figure shape gain (Gains only while pregnant)
 				if(pc.hasPerk("Fecund Figure"))
 				{
-					if(pc.isPregnant()) pc.addPerkValue("Fecund Figure", 4, 1);
+					var numPreg:int = pc.totalPregnancies();
+					// Wombs only--exclude anal pregnancy!
+					if(pc.isPregnant(3)) numPreg--;
+					// Longevity of growth based on number of current pregnant wombs.
+					if(numPreg > 0) pc.addPerkValue("Fecund Figure", 4, numPreg);
 					if(pc.perkv4("Fecund Figure") > 0)
 					{
-						// 20 days for 1 hips/butt size gain?
+						// 20 days for 1 hips/butt size gain
 						pc.addPerkValue("Fecund Figure", 1, 0.05); // Hips
 						pc.addPerkValue("Fecund Figure", 2, 0.05); // Butt
 						//pc.addPerkValue("Fecund Figure", 3, 0.0125); // Belly
