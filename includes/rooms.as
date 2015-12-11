@@ -502,7 +502,7 @@ public function initializeRooms():void
 	//9018
 	rooms["9018"] = new RoomClass(this);
 	rooms["9018"].roomName = "MERCHANT'S\nTHOROUGHFARE";
-	rooms["9018"].description = "Crowds are thick this close to the lifts, and the preponderance of nearby shops isn’t helping matters. Most stores closed down, either to get away from the Rush madness or to try to strike it rich themselves. Yet the storefronts in this area are as lively as ever. New businesses have sprung up in the bones of the old, and there’s more than enough clientele to keep them busy.\n\nThe Dark Chrysalis, a shop that specializes in targeted, cosmetic transformatives is doing business to the east. To the west, you see a brightly-lit shop labelled as “Fur Effect.”";
+	rooms["9018"].description = "Crowds are thick this close to the lifts, and the preponderance of nearby shops isn’t helping matters. Most stores closed down, either to get away from the Rush madness or to try to strike it rich themselves. Yet the storefronts in this area are as lively as ever. New businesses have sprung up in the bones of the old, and there’s more than enough clientele to keep them busy.\n\nThe Dark Chrysalis, a shop that specializes in targeted, cosmetic transformatives is doing business to the east. To the west, you see a brightly-lit shop labeled as “Fur Effect.”";
 	rooms["9018"].planet = "TAVROS STATION";
 	rooms["9018"].system = "SYSTEM: KALAS";
 	rooms["9018"].northExit = "MERCHANT'S THOROUGHFARE2";
@@ -558,7 +558,7 @@ public function initializeRooms():void
 	//2 - Flahne’s Office
 	rooms["CUSTOMS OFFICE"] = new RoomClass(this);
 	rooms["CUSTOMS OFFICE"].roomName = "CUSTOMS\nOFFICE";
-	rooms["CUSTOMS OFFICE"].description = "This office is one of many set up around the spaceport to process customs both coming and going. Other identical rooms can be spotted through doorways to the north, but they appear to be closed down or currently occupied. A single, large desk sits on the east side of the room, kept fairly tidy aside from a mug filled with lollipops and candy. A name placard proclaims the desk’s owner to be Flahne. A doorway to the west opens out back into the jungle at the base of an elevator. The door to the south is labelled 'Out to Esbeth.'";
+	rooms["CUSTOMS OFFICE"].description = "This office is one of many set up around the spaceport to process customs both coming and going. Other identical rooms can be spotted through doorways to the north, but they appear to be closed down or currently occupied. A single, large desk sits on the east side of the room, kept fairly tidy aside from a mug filled with lollipops and candy. A name placard proclaims the desk’s owner to be Flahne. A doorway to the west opens out back into the jungle at the base of an elevator. The door to the south is labeled 'Out to Esbeth.'";
 	rooms["CUSTOMS OFFICE"].planet = "PLANET: MHEN'GA";
 	rooms["CUSTOMS OFFICE"].system = "SYSTEM: ARA ARA";
 	rooms["CUSTOMS OFFICE"].westExit = "SPACEPORT ELEVATOR";
@@ -648,7 +648,7 @@ public function initializeRooms():void
 	//9. Esbeth’s Southern Path
 	rooms["SOUTH ESBETH 2"] = new RoomClass(this);
 	rooms["SOUTH ESBETH 2"].roomName = "SOUTH\nESBETH";
-	rooms["SOUTH ESBETH 2"].description = "Traffic on these hard-packed paths is light the whole way around the small town of Esbeth. No matter where you are, you usually don’t see more than a few people. Most of them appear to be townsfolk on the way to some errand or in the process of improving a ramshackle abode, but every now and again you see someone who is out hunting and prospecting like yourself, kitted out for a fight and looking at everything with sharp eyes. The building to the north is a monolithic looking thing labelled 'Xenogen Biotech.' A large doorway to the north provides access, and the road goes on to the east and west.";
+	rooms["SOUTH ESBETH 2"].description = "Traffic on these hard-packed paths is light the whole way around the small town of Esbeth. No matter where you are, you usually don’t see more than a few people. Most of them appear to be townsfolk on the way to some errand or in the process of improving a ramshackle abode, but every now and again you see someone who is out hunting and prospecting like yourself, kitted out for a fight and looking at everything with sharp eyes. The building to the north is a monolithic looking thing labeled 'Xenogen Biotech.' A large doorway to the north provides access, and the road goes on to the east and west.";
 	rooms["SOUTH ESBETH 2"].planet = "PLANET: MHEN'GA";
 	rooms["SOUTH ESBETH 2"].system = "SYSTEM: ARA ARA";
 	rooms["SOUTH ESBETH 2"].westExit = "SOUTH ESBETH 1";
@@ -2128,7 +2128,7 @@ public function initializeRooms():void
 	//#3 UPPER STAIRWELL
 	rooms["203"] = new RoomClass(this);
 	rooms["203"].roomName = "UPPER\nSTAIRWELL";
-	rooms["203"].description = "You're standing inside a wide corridor labelled as \"Starewell\" in painted script. The writing is as crude as it is misspelled. It isn't even accurate to this location; the corridor is a corkscrew-shaped ramp that twists down into the belly of the ship. There's no stairs anywhere that you can see. In spite of the terrible labeling, large numbers of the diminutive raskvel are scurrying up and down the passage, bearing all kinds of cargo. There are even some robots carrying tanks of fuel or driving small carts on their way. You can go down into the ship or south out into the hangar.";
+	rooms["203"].description = "You're standing inside a wide corridor labeled as \"Starewell\" in painted script. The writing is as crude as it is misspelled. It isn't even accurate to this location; the corridor is a corkscrew-shaped ramp that twists down into the belly of the ship. There's no stairs anywhere that you can see. In spite of the terrible labeling, large numbers of the diminutive raskvel are scurrying up and down the passage, bearing all kinds of cargo. There are even some robots carrying tanks of fuel or driving small carts on their way. You can go down into the ship or south out into the hangar.";
 	rooms["203"].runOnEnter = undefined;
 	rooms["203"].westExit = "202";
 	rooms["203"].outExit = "204";
@@ -4041,7 +4041,7 @@ public function initializeRooms():void
 	//Milking Stall - Will have a milker someday
 	rooms["515"] = new RoomClass(this);
 	rooms["515"].roomName = "MILKING\nSTALL";
-	rooms["515"].description = "A thickly-spread layer of hay makes every step you take a rustling, shuffling affair. The walls are surprisingly modern, covered in liquid and stain resistant tile. A large, industrial-sized milking device is built into the wall to the west, but it is currently powered down and retracted. There's a padded table that a potential milkee could sit or recline upon during the process. An activation button labelled \"Moo\" is recessed next to the machinery. Its purpose seems obvious. You can leave out the door to the east.";
+	rooms["515"].description = "A thickly-spread layer of hay makes every step you take a rustling, shuffling affair. The walls are surprisingly modern, covered in liquid and stain resistant tile. A large, industrial-sized milking device is built into the wall to the west, but it is currently powered down and retracted. There's a padded table that a potential milkee could sit or recline upon during the process. An activation button labeled \"Moo\" is recessed next to the machinery. Its purpose seems obvious. You can leave out the door to the east.";
 	rooms["515"].runOnEnter = millieBonusShitYouFuckface;
 	rooms["515"].eastExit = "511";
 	rooms["515"].moveMinutes = 1;
