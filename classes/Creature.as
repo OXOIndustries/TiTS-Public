@@ -6266,7 +6266,7 @@ package classes {
 			if(canLactate())
 			{
 				//Is there enough milk in yer tits for lactation?
-				if(milkFullness >= 10)
+				if(milkFullness >= 10 || milkQ() >= 1000)
 				{
 					//yes? true!
 					return true;
