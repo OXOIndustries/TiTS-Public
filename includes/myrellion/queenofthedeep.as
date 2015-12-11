@@ -239,14 +239,14 @@ public function queenOfTheDeepTentacleBarrage():void
 	}
 	else
 	{
-		if (numHits == 0) output(" You evade the barrage of tentacles!");
+		if (numHits == 0) output("\n\nYou evade the barrage of tentacles!");
 		else if (numHits == 1) output(" One of the tentacles manages"); 
 		else if (numHits < 5) output(" Some of the tentacles manage");
 		else output(" The tentacles manage");
-		output(" to get through your defenses, slathering you with a liquid venom that quickly has your [pc.skinFurScales] burning with arousal!");
 		
 		if (numHits > 0)
 		{
+			output(" to get through your defenses, slathering you with a liquid venom that quickly has your [pc.skinFurScales] burning with arousal!");
 			var baseDamage:TypeCollection = new TypeCollection( { drug: 2 } );
 			if (numHits > 1) baseDamage.multiply(numHits);
 			applyDamage(baseDamage, foes[0], pc, "minimal");
