@@ -52,7 +52,9 @@ package classes.Items.Guns
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 0;
-
+			
+			addFlag(GLOBAL.ITEM_FLAG_LUST_WEAPON);
+			
 			this.version = _latestVersion;
 		}
 		
