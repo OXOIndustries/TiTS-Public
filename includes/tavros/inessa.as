@@ -1934,25 +1934,6 @@ Slut Ray, Advanced
 
 // Unlocked for sale once PC reaches Myrellion
 
-this.quantity = 1;
-this.stackSize = 1;
-this.type = GLOBAL.RANGED_WEAPON;
-this.shortName = "A.Slut Ray";
-this.longName = "advanced slut ray";
-this.description = "a silvery 'slut ray' gun";
-this.tooltip = "An advanced slut ray model, designed to project sexual fantasies into the mind of a target. Incredibly similar to the original model, except this one boasts higher intensity settings and a wider database of fantasies to draw upon."
-this.attackVerb = "beam";
-attackNoun = "sexual fantasy";
-TooltipManager.addTooltip(this.shortName, this.tooltip);
-this.basePrice = 4500;
-this.attack = 5;
-baseDamage.psionic.damageValue =15;
-this.defense = 0;
-this.shieldDefense = 0;
-this.shields = 0;
-this.sexiness = 0;
-this.critBonus = 0;
-this.evasion = 0;
-this.fortification = 0;
+// Item coded already! I will functionally disable it though!
 
 */
