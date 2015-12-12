@@ -9665,6 +9665,7 @@ public function bessEvent28PartII():void
 	{
 		output("\n\nYou seize the chance to pull out your [pc.rangedWeapon] amongst all the confusion and shoot the ausar woman right in the skull. Her head");
 		if (pc.rangedWeapon.shortName == "SlutRay") output(" is instantly blasted with a deluge lustful thoughts. Ignoring her hostage, she immediately strips down and masturbates vigorously");
+		else if (pc.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_LUST_WEAPON)) output(" is instantly aroused by lustful feelings. Ignoring her hostage, she immediately strips down and masturbates vigorously");
 		else if (pc.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_BOW_WEAPON) && !pc.hasPerk("Concussive Shot")) output(" is instantly pinned to the nearest wall");
 		else if (pc.hasRangedEnergyWeapon()) output(" vaporizes");
 		else output(" explodes");
@@ -9674,9 +9675,10 @@ public function bessEvent28PartII():void
 	}
 	else if (!(pc.rangedWeapon is EmptySlot) && pc.hasRangedWeapon())
 	{
-		output("\n\nYou seize the chance to pull out your [pc.rangedWeapon] amongst all the confusion and shoot the ausar woman - you miss her head but hit her right in the shoulder. ");
+		output("\n\nYou seize the chance to pull out your [pc.rangedWeapon] amongst all the confusion and shoot the ausar woman - you miss her head but hit her right in the shoulder.");
 		if (pc.rangedWeapon.shortName == "SlutRay") output(" Interrupted by a flood of lusty thoughts and unable to keep her hands from wondering towards her crotch, she");
-		else output("She");
+		else if (pc.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_LUST_WEAPON)) output(" Interrupted by a flood of lustful sensations and unable to keep her hands from wondering towards her crotch, she");
+		else output(" She");
 		output(" drops her gun and curses, calling the retreat - the three pirates run back to their ship.");
 
 		output("\n\nAs you run for [bess.name], they take off, leaving [bess.himHer] behind as they fly up into the sky in their trash bucket.");
