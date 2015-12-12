@@ -1298,9 +1298,46 @@ package classes {
 				case "rangedWeapon":
 					buffer = rangedWeapon.longName;
 					break;
-				case "weapon":
-					if(physique() > aim()) buffer = meleeWeapon.longName;
-					else buffer = rangedWeapon.longName;
+				case "weaponStat":
+					if(physique() > aim() && hasMeleeWeapon()) buffer = meleeWeapon.longName;
+					else if(hasRangedWeapon()) buffer = rangedWeapon.longName;
+					else buffer = "fists";
+					break;
+				case "weaponReady":
+					buffer = weaponActionReady();
+					break;
+				case "weaponRelax":
+					buffer = weaponActionRelax();
+					break;
+				case "weaponReadyFull":
+					buffer = weaponActionReady(true);
+					break;
+				case "weaponRelaxFull":
+					buffer = weaponActionRelax(true);
+					break;
+				case "meleeReady":
+					buffer = weaponActionReady(false, "melee");
+					break;
+				case "meleeRelax":
+					buffer = weaponActionRelax(false, "melee");
+					break;
+				case "meleeReadyFull":
+					buffer = weaponActionReady(true, "melee");
+					break;
+				case "meleeRelaxFull":
+					buffer = weaponActionRelax(true, "melee");
+					break;
+				case "rangedReady":
+					buffer = weaponActionReady(false, "ranged");
+					break;
+				case "rangedRelax":
+					buffer = weaponActionRelax(false, "ranged");
+					break;
+				case "rangedReadyFull":
+					buffer = weaponActionReady(true, "ranged");
+					break;
+				case "rangedRelaxFull":
+					buffer = weaponActionRelax(true, "ranged");
 					break;
 				case "lowerUndergarment":
 					buffer = lowerUndergarment.longName;
@@ -2076,6 +2113,131 @@ package classes {
 			if (!(rangedWeapon is EmptySlot)) return rangedWeapon.longName;
 			if (!(meleeWeapon is EmptySlot)) return meleeWeapon.longName;
 			return "fists";
+		}
+		public function weaponActionReady(full:Boolean = false, weapon:String = ""):String
+		{
+			var action:String = "";
+			var actions:Array = [];
+			var singular:Boolean = ((this is PlayerCharacter) || plural);
+			var weaponName:String = getWeaponName();
+			
+			if (singular) actions.push("ready", "prepare");
+			else actions.push("readies", "prepares");
+			
+			if (weapon = "ranged" || hasRangedWeapon())
+			{
+				if (singular) actions.push("take out", "get out");
+				else actions.push("takes out", "gets out");
+				if (hasRangedEnergyWeapon())
+				{
+					if (singular) actions.push("charge", "load");
+					else actions.push("charges", "loads");
+				}
+				if (hasBowWeaponEquipped())
+				{
+					if (singular) actions.push("draw", "mount", "equip", "tighten");
+					else actions.push("draws", "mounts", "equips", "tightens");
+				}
+				else
+				{
+					if (singular) actions.push("draw", "load", "cock", "unholster");
+					else actions.push("draws", "loads", "cocks", "unholsters");
+				}
+				weaponName = rangedWeapon.longName;
+			}
+			else if (weapon = "melee" || hasMeleeWeapon())
+			{
+				if (singular) actions.push("take out", "get out");
+				else actions.push("takes out", "gets out");
+				if (hasMeleeEnergyWeapon())
+				{
+					if (singular) actions.push("charge", "activate");
+					else actions.push("charges", "activates");
+				}
+				if (meleeWeapon.attackNoun == "whip")
+				{
+					if(singular) actions.push("unravel", "loosen", "flourish");
+					else actions.push("unravels", "loosens", "flourishes");
+				}
+				else
+				{
+					if (singular) actions.push("draw", "unsheathe", "brandish", "flourish", "wield");
+					else actions.push("draws", "unsheathes", "brandishes", "flourishes", "wields");
+				}
+				weaponName = meleeWeapon.longName;
+			}
+			
+			action += RandomInCollection(actions);
+			
+			if (full)
+			{
+				if(this is PlayerCharacter) return action + " your " + weaponName;
+				else if(plural) return action + " their " + weaponName;
+				else return action + " " + mfn("his", "her", "its") + " " + weaponName;
+			}
+			return action;
+		}
+		public function weaponActionRelax(full:Boolean = false, weapon:String = ""):String
+		{
+			var action:String = "";
+			var actions:Array = [];
+			var singular:Boolean = ((this is PlayerCharacter) || plural);
+			
+			if (singular) actions.push("relax", "rest");
+			else actions.push("relaxes", "rest");
+			
+			if (weapon = "ranged" || hasRangedWeapon())
+			{
+				if (singular) actions.push("put away", "put back");
+				else actions.push("puts away", "puts back");
+				if (hasRangedEnergyWeapon())
+				{
+					if (singular) actions.push("decharge", "power down");
+					else actions.push("decharges", "powers down");
+				}
+				if (hasBowWeaponEquipped())
+				{
+					if (singular) actions.push("retract", "relinquish", "renounce", "loosen");
+					else actions.push("retracts", "relinquishes", "renounces", "loosens");
+				}
+				else
+				{
+					if (singular) actions.push("retract", "lock", "store", "holster");
+					else actions.push("retracts", "locks", "stores", "holsters");
+				}
+				weaponName = rangedWeapon.longName;
+			}
+			else if (weapon = "melee" || hasMeleeWeapon())
+			{
+				if (singular) actions.push("put away", "put back");
+				else actions.push("puts away", "puts back");
+				if (hasMeleeEnergyWeapon())
+				{
+					if (singular) actions.push("decharge", "deactivate");
+					else actions.push("decharges", "deactivates");
+				}
+				if (meleeWeapon.attackNoun == "whip")
+				{
+					if(singular) actions.push("recoil", "tighten", "pack away");
+					else actions.push("recoils", "tightens", "packs away");
+				}
+				else
+				{
+					if (singular) actions.push("put down", "sheathe", "stash", "save", "cover");
+					else actions.push("puts down", "sheathes", "stashes", "saves", "covers");
+				}
+				weaponName = meleeWeapon.longName;
+			}
+			
+			action += RandomInCollection(actions);
+			
+			if (full)
+			{
+				if(this is PlayerCharacter) return action + " your " + weaponName;
+				else if(plural) return action + " their " + weaponName;
+				else return action + " " + mfn("his", "her", "its") + " " + weaponName;
+			}
+			return action;
 		}
 		public function shower():void
 		{
@@ -2878,11 +3040,11 @@ package classes {
 		}
 		public function hasRangedWeapon():Boolean
 		{
-			return (!(rangedWeapon is Rock));
+			return (!(rangedWeapon is EmptySlot) && !(rangedWeapon is Rock));
 		}
 		public function hasMeleeWeapon():Boolean
 		{
-			return (!(meleeWeapon is Rock));
+			return (!(meleeWeapon is EmptySlot) && !(meleeWeapon is Rock));
 		}
 		public function hasEnergyWeapon():Boolean
 		{
