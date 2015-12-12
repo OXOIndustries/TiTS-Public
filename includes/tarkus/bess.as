@@ -9661,7 +9661,7 @@ public function bessEvent28PartII():void
 	
 	output("\n\nSuddenly, the ship’s guns are firing and the surroundings are torn apart; the entire area is turned into a war zone. Two of the pirates leap to the side and lay down fire at your ship while the woman turns her gun back on [bess.name].");
 
-	if (!(pc.rangedWeapon is EmptySlot) && pc.hasRangedWeapon() && pc.AQ() >= 50)
+	if (pc.hasRangedWeapon() && pc.AQ() >= 50)
 	{
 		output("\n\nYou seize the chance to pull out your [pc.rangedWeapon] amongst all the confusion and shoot the ausar woman right in the skull. Her head");
 		if (pc.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_LUST_WEAPON))
@@ -9678,7 +9678,7 @@ public function bessEvent28PartII():void
 	
 		output("\n\nAs you run for [bess.name], they take off, leaving [bess.himHer] behind as they fly up into the sky in their trash bucket.");
 	}
-	else if (!(pc.rangedWeapon is EmptySlot) && pc.hasRangedWeapon())
+	else if (pc.hasRangedWeapon())
 	{
 		output("\n\nYou seize the chance to pull out your [pc.rangedWeapon] amongst all the confusion and shoot the ausar woman - you miss her head but hit her right in the shoulder.");
 		if (pc.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_LUST_WEAPON))
@@ -9693,7 +9693,7 @@ public function bessEvent28PartII():void
 
 		output("\n\nAs you run for [bess.name], they take off, leaving [bess.himHer] behind as they fly up into the sky in their trash bucket.");
 	}
-	else if (!(pc.meleeWeapon is EmptySlot) && pc.hasMeleeWeapon() && pc.PQ() >= 50)
+	else if (pc.hasMeleeWeapon() && pc.meleeWeapon.attackNoun != "whip" && pc.PQ() >= 50)
 	{
 		output("\n\nYou seize the chance to pull out your [pc.meleeWeapon] amongst all the confusion and charge at the Ausar woman, running and striking at her while she’s distracted.")
 		if (pc.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_LUST_WEAPON)) output(" You inflict her with lustful sensations almost instantaneously; her body quickly hits the ground and she masturbates furiously.");
@@ -9701,9 +9701,11 @@ public function bessEvent28PartII():void
 	
 		output("\n\n Meanwhile, the other pirates see what you do and run into their ship. As you move for [bess.name], they take off, leaving [bess.himHer] behind as they fly up into the sky in their trash bucket.");
 	}
-	else if (!(pc.meleeWeapon is EmptySlot) && pc.hasMeleeWeapon())
+	else if (pc.hasMeleeWeapon())
 	{ 
-		output("\n\nYou seize the chance to pull out your [pc.meleeWeapon] amongst all the confusion and charge at the Ausar woman, running and striking at her while she’s distracted.")
+		output("\n\nYou seize the chance to pull out your [pc.meleeWeapon] amongst all the confusion and charge at the Ausar woman,");
+		if (pc.meleeWeapon.attackNoun == "whip") output(" quickly and powerfully lashing her while she’s distracted.")
+		else output(" running and striking at her while she’s distracted.")
 		if (pc.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_LUST_WEAPON)) output(" You inflict her with lustful sensations that make her cheeks flush bright red but fail to land a disabling blow.");
 		else output(" You injure her severely but fail to land a killing blow.");
 		
