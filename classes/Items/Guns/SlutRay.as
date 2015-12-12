@@ -40,6 +40,7 @@ package classes.Items.Guns
 			this.attack = 0;
 			baseDamage.tease.damageValue = 6;
 			addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
+			addFlag(GLOBAL.ITEM_FLAG_LUST_WEAPON);
 			
 			this.defense = 0;
 			this.shieldDefense = 0;
