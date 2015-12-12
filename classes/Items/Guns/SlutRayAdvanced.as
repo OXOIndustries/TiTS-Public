@@ -43,7 +43,9 @@ package classes.Items.Guns
 			critBonus = 2;
 			evasion = 0;
 			fortification = 0;
-
+			
+			isUsable = false; // 9999 Temporarily unusable
+			
 			version = _latestVersion;
 		}
 	}
