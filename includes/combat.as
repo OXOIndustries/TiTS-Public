@@ -24,6 +24,7 @@ import classes.Engine.Combat.DamageTypes.TypeCollection;
 import classes.Items.Accessories.TamWolfDamaged;
 import classes.Items.Armor.GooArmor;
 import classes.Items.Guns.Goovolver;
+import classes.Items.Guns.SlutRay;
 import classes.Items.Miscellaneous.GrayMicrobots;
 import classes.UIComponents.StatusEffectComponents.StatusEffectsDisplay;
 import classes.Util.InCollection;
@@ -1577,6 +1578,10 @@ public function rangedAttack(attacker:Creature, target:Creature, specials:Array 
 		{
 			applyDamage(damage, attacker, target, "goovolver");
 		}
+		if (attacker.rangedWeapon is SlutRay)
+		{
+			applyDamage(damage, attacker, target, "slut ray");
+		}
 		else
 		{
 			applyDamage(damage, attacker, target, "ranged");
@@ -2962,7 +2967,16 @@ public function teaseSkillUp(part:String):void {
 public function teaseReactions(damage:Number,target:Creature):String {
 	var buffer:String = "";
 	var textRands:Array = [];
-	if (target is HuntressVanae)
+	if (target is PlayerCharacter)
+	{
+		if (damage == 0) buffer = "You seem unimpressed.";
+		else if (damage < 4) buffer = "You look a little intrigued by what you see.";
+		else if (damage < 10) buffer = "You definitely seem to be enjoying the show.";
+		else if (damage < 15) buffer = "You openly touch yourself as you watch lustfully.";
+		else if (damage < 20) buffer = "You flush hotly with desire, your eyes filled with longing.";
+		else buffer = "You lick your lips in anticipation, your hands idly stroking your own body.";
+	}
+	else if (target is HuntressVanae)
 	{
 		if (damage == 0)
 		{
