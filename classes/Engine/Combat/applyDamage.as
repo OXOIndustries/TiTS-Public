@@ -158,6 +158,17 @@ package classes.Engine.Combat
 				else output(" doesn't");
 				output(" seem the least bit bothered by the miniature goo crawling over them.</b>\n");
 			}
+			if (special == "slut ray")
+			{
+				if(target is PlayerCharacter) output("You don’t");
+				else
+				{
+					output("\n<b>" + target.capitalA + target.short + " ");
+					if (target.plural) output(" don’t");
+					else output(" doesn’t");
+				}
+				output(" seem to be affected by the gun’s ray....</b>\n");
+			}
 			else
 			{
 				// Only if the incoming damage is pure-lust
@@ -176,6 +187,14 @@ package classes.Engine.Combat
 			if (special == "goovolver")
 			{
 				output(" A tiny " + (attacker.rangedWeapon as Goovolver).randGooColour() + " goo, vaguely female in shape, pops out and starts to crawl over " + target.mf("him", "her") + ", teasing " + target.mf("his", "her") + " most sensitive parts!");
+			}
+			if (special == "slut ray")
+			{
+				output("\n");
+				if(target is PlayerCharacter) output("Suddenly, your mind is filled with sexual fantasies, briefly obscuring your vision with lewd images!");
+				else if(target.plural) output(target.capitalA + target.short + " are mentally filled with sexual fantasies, briefly obscuring their vision with lewd images!");
+				else output(target.capitalA + target.short + " is mentally filled with sexual fantasies, briefly obscuring " + target.mfn("his", "her", "its") + " vision with lewd images!");
+				output(" " + teaseReactions(damageResult.lustDamage, target));
 			}
 			else
 			{
