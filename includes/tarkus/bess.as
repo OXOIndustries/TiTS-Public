@@ -9664,8 +9664,13 @@ public function bessEvent28PartII():void
 	if (!(pc.rangedWeapon is EmptySlot) && pc.hasRangedWeapon() && pc.AQ() >= 50)
 	{
 		output("\n\nYou seize the chance to pull out your [pc.rangedWeapon] amongst all the confusion and shoot the ausar woman right in the skull. Her head");
-		if (pc.rangedWeapon.shortName == "SlutRay") output(" is instantly blasted with a deluge lustful thoughts. Ignoring her hostage, she immediately strips down and masturbates vigorously");
-		else if (pc.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_LUST_WEAPON)) output(" is instantly aroused by lustful feelings. Ignoring her hostage, she immediately strips down and masturbates vigorously");
+		if (pc.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_LUST_WEAPON))
+		{
+			if (pc.rangedWeapon.shortName == "SlutRay") output(" is instantly blasted with a deluge lustful thoughts.");
+			else if (pc.rangedWeapon.shortName == "Goovolver") output(" is engulfed by a lust-filled blob of brightly-colored goo.");
+			else output(" is instantly aroused by lustful feelings.");
+			output(" Ignoring her hostage, she immediately strips down and masturbates vigorously");
+		}
 		else if (pc.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_BOW_WEAPON) && !pc.hasPerk("Concussive Shot")) output(" is instantly pinned to the nearest wall");
 		else if (pc.hasRangedEnergyWeapon()) output(" vaporizes");
 		else output(" explodes");
@@ -9676,8 +9681,13 @@ public function bessEvent28PartII():void
 	else if (!(pc.rangedWeapon is EmptySlot) && pc.hasRangedWeapon())
 	{
 		output("\n\nYou seize the chance to pull out your [pc.rangedWeapon] amongst all the confusion and shoot the ausar woman - you miss her head but hit her right in the shoulder.");
-		if (pc.rangedWeapon.shortName == "SlutRay") output(" Interrupted by a flood of lusty thoughts and unable to keep her hands from wondering towards her crotch, she");
-		else if (pc.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_LUST_WEAPON)) output(" Interrupted by a flood of lustful sensations and unable to keep her hands from wondering towards her crotch, she");
+		if (pc.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_LUST_WEAPON))
+		{
+			if (pc.rangedWeapon.shortName == "SlutRay") output(" Interrupted by a flood of lusty thoughts");
+			else if (pc.rangedWeapon.shortName == "Goovolver") output(" Quickly being engulfed by a lust-filled blob of brightly-colored goo");
+			else output(" Interrupted by a flood of lustful sensations");
+			output(" and unable to keep her hands from wondering towards her crotch, she");
+		}
 		else output(" She");
 		output(" drops her gun and curses, calling the retreat - the three pirates run back to their ship.");
 
@@ -9685,13 +9695,17 @@ public function bessEvent28PartII():void
 	}
 	else if (!(pc.meleeWeapon is EmptySlot) && pc.hasMeleeWeapon() && pc.PQ() >= 50)
 	{
-		output("\n\nYou seize the chance to pull out your [pc.meleeWeapon] amongst all the confusion and charge at the Ausar woman, running and striking at her while she’s distracted. You kill her in an instant; her body quickly hitting the ground.");
+		output("\n\nYou seize the chance to pull out your [pc.meleeWeapon] amongst all the confusion and charge at the Ausar woman, running and striking at her while she’s distracted.")
+		if (pc.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_LUST_WEAPON)) output(" You inflict her with lustful sensations almost instantaneously; her body quickly hits the ground and she masturbates furiously.");
+		else output(" You kill her in an instant; her body quickly hitting the ground.");
 	
 		output("\n\n Meanwhile, the other pirates see what you do and run into their ship. As you move for [bess.name], they take off, leaving [bess.himHer] behind as they fly up into the sky in their trash bucket.");
 	}
 	else if (!(pc.meleeWeapon is EmptySlot) && pc.hasMeleeWeapon())
 	{ 
-		output("\n\nYou seize the chance to pull out your [pc.meleeWeapon] amongst all the confusion and charge at the Ausar woman, running and striking at her while she’s distracted. You injure her severely but fail to land a killing blow.");
+		output("\n\nYou seize the chance to pull out your [pc.meleeWeapon] amongst all the confusion and charge at the Ausar woman, running and striking at her while she’s distracted.")
+		if (pc.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_LUST_WEAPON)) output(" You inflict her with lustful sensations that make her cheeks flush bright red but fail to land a disabling blow.");
+		else output(" You injure her severely but fail to land a killing blow.");
 		
 		output("\n\nShe staggers away, all the while yelling to her men to get on the ship. As you move for [bess.name], they take off, leaving [bess.himHer] behind as they fly up into the sky in their trash bucket.");
 	}
