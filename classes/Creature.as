@@ -7709,9 +7709,9 @@ package classes {
 			if (faceType == GLOBAL.TYPE_EQUINE) counter++;
 			if (armType == GLOBAL.TYPE_EQUINE) counter++;
 			if (legType == GLOBAL.TYPE_EQUINE) counter++;
-			if (counter > 0 && cockTotal(GLOBAL.TYPE_EQUINE) > 0) counter++;
-			if (counter > 0 && vaginaTotal(GLOBAL.TYPE_EQUINE) > 0) counter++;
 			if (counter > 1 && hairType == GLOBAL.HAIR_TYPE_REGULAR && hasPerk("Mane")) counter++;
+			if (counter > 2 && cockTotal(GLOBAL.TYPE_EQUINE) > 0) counter++;
+			if (counter > 2 && vaginaTotal(GLOBAL.TYPE_EQUINE) > 0) counter++;
 			return counter;
 		}
 		public function myrScore(): int
