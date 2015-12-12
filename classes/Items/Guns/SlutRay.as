@@ -25,10 +25,10 @@ package classes.Items.Guns
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a slut ray";
+			this.description = "a compact ‘slut ray’ gun";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This tiny, unassuming handgun-like device is designed to be hidden. When fired at a subject, it causes their mind to be flooded with graphic sexual fantasies, though they still retain free will. The fantasies can be custom selected by the user or set to random. Nobody knows how it works; the gun's contents are hidden behind a tamper-proof black casing.";
+			this.tooltip = "This tiny, unassuming handgun-like device is designed to be hidden. When fired at a subject, it causes their mind to be flooded with graphic sexual fantasies, though they still retain free will. The fantasies can be custom selected by the user or set to random. Nobody knows how it works; the gun’s contents are hidden behind a tamper-proof black casing.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
