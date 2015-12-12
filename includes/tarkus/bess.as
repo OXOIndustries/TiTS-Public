@@ -9663,24 +9663,16 @@ public function bessEvent28PartII():void
 
 	if (!(pc.rangedWeapon is EmptySlot) && pc.hasRangedWeapon() && pc.AQ() >= 50)
 	{
-		output("\n\nYou seize the chance to pull out your [pc.rangedWeapon] amongst all the confusion and");
-		if(pc.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_BOW_WEAPON))
-		{
-			output(" let loose on the ausar woman right in the skull. Her head");
-			if(pc.hasPerk("Concussive Shot")) output(" explodes");
-			else output(" is instantly pinned to the nearest wall");
-		}
-		else output(" shoot the ausar woman right in the skull. Her head explodes");
+		output("\n\nYou seize the chance to pull out your [pc.rangedWeapon] amongst all the confusion and shoot the ausar woman right in the skull. Her head");
+		if(pc.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_BOW_WEAPON) && !pc.hasPerk("Concussive Shot")) output(" is instantly pinned to the nearest wall");
+		else output(" explodes");
 		output(" as the pirates scream loudly, running back to the ship.");
 	
 		output("\n\nAs you run for [bess.name], they take off, leaving [bess.himHer] behind as they fly up into the sky in their trash bucket.");
 	}
 	else if (!(pc.rangedWeapon is EmptySlot) && pc.hasRangedWeapon())
 	{
-		output("\n\nYou seize the chance to pull out your [pc.rangedWeapon] amongst all the confusion and");
-		if(pc.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_BOW_WEAPON)) output(" let loose on");
-		else output(" shoot")
-		output(" the ausar woman - you miss her head but hit her right in the shoulder. She drops her gun and curses, calling the retreat - the three pirates run back to their ship.");
+		output("\n\nYou seize the chance to pull out your [pc.rangedWeapon] amongst all the confusion and shoot the ausar woman - you miss her head but hit her right in the shoulder. She drops her gun and curses, calling the retreat - the three pirates run back to their ship.");
 
 		output("\n\nAs you run for [bess.name], they take off, leaving [bess.himHer] behind as they fly up into the sky in their trash bucket.");
 	}
