@@ -12800,7 +12800,7 @@ public function bessIntimateGetOral(fromEvent:Boolean = false):void
 
 	output("<i>“... Sit on my face, I want to eat you out from below...”</i>”</i> [bess.name] pleads, [bess.hisHer] silky smooth body brushing up against your own with primal need. You nod and position yourself above [bess.hisHer] face, your [pc.vagOrAss] hovering above [bess.hisHer] hungry mouth.");
 	
-	output("\n\nYou lower your [pc.hips] as your [pc.skin] brushes against [bess.hisHer] cheeks and our loins hover just above [bess.hisHer] mouth as you can feel [bess.hisHer] hot breath on your");
+	output("\n\nYou lower your [pc.hips] as your [pc.skin] brushes against [bess.hisHer] cheeks and your loins hover just above [bess.hisHer] mouth as you can feel [bess.hisHer] hot breath on your");
 	if (pc.hasVagina()) output(" prickled flesh");
 	else output(" sensitive buttocks");
 	output(". You can hear [bess.hisHer] moaning below you already - apparently the smell of you is driving [bess.hisHer] positively batty. <i>“I’m so hungry for your");
