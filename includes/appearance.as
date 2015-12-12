@@ -1525,31 +1525,36 @@ public function crotchStuff(target:Creature):void
 	}
 	//Of Balls and Sacks!
 	if(target.balls > 0) {
+		var sTesticleDesc:String = target.ballsDescript(true,true);
+		if(target.balls == 1) sTesticleDesc = target.ballDescript(true,true);
+		
 		if(target.cockTotal() == 0 && !target.hasVagina()) output2("\n\n");
 		else if(target.cockTotal() > 1) output2("\n\n");
 		else output2(" ");
 		if(target.hasStatusEffect("Uniball")) {
-			if(target.skinType != GLOBAL.SKIN_TYPE_GOO) output2("Your " + target.sackDescript(true,true) + " clings tightly to your groin, holding your " + target.ballsDescript(true,true) + " snugly against you.");
-			else if(target.skinType == GLOBAL.SKIN_TYPE_GOO) output2("Your " + target.sackDescript(true,true) + " clings tightly to your groin, dripping and holding " + target.ballsDescript(true,true) + " snugly against you.");
+			if(target.skinType != GLOBAL.SKIN_TYPE_GOO) output2("Your " + target.sackDescript(true,true) + " clings tightly to your groin, holding your " + sTesticleDesc + " snugly against you.");
+			else if(target.skinType == GLOBAL.SKIN_TYPE_GOO) output2("Your " + target.sackDescript(true,true) + " clings tightly to your groin, dripping and holding " + sTesticleDesc + " snugly against you.");
 		}
 		else if(target.cockTotal() == 0) {
-			if(target.skinType == GLOBAL.SKIN_TYPE_SKIN) output2("" + StringUtil.capitalize(indefiniteArticle(target.sackDescript(true,true))) + " with " + target.ballsDescript(true,true) + " swings heavily under where a penis would normally grow.");
-			if(target.skinType == GLOBAL.SKIN_TYPE_FUR) output2("A fuzzy " + target.sackDescript(true,true) + " filled with " + target.ballsDescript(true,true) + " swings low under where a penis would normally grow.");
-			if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2("A scaley " + target.sackDescript(true,true) + " hugs your " + target.ballsDescript(true,true) + " tightly against your body.");
-			if(target.skinType == GLOBAL.SKIN_TYPE_GOO) output2("An oozing, semi-solid sack with " + target.ballsDescript(true,true) + " swings heavily under where a penis would normally grow.");
+			if(target.skinType == GLOBAL.SKIN_TYPE_SKIN) output2("" + StringUtil.capitalize(indefiniteArticle(target.sackDescript(true,true))) + " with " + sTesticleDesc + " swings heavily under where a penis would normally grow.");
+			if(target.skinType == GLOBAL.SKIN_TYPE_FUR) output2("A fuzzy " + target.sackDescript(true,true) + " filled with " + sTesticleDesc + " swings low under where a penis would normally grow.");
+			if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2("A scaley " + target.sackDescript(true,true) + " hugs your " + sTesticleDesc + " tightly against your body.");
+			if(target.skinType == GLOBAL.SKIN_TYPE_GOO) output2("An oozing, semi-solid sack with " + sTesticleDesc + " swings heavily under where a penis would normally grow.");
 		}
 		else {
-			if(target.skinType == GLOBAL.SKIN_TYPE_SKIN) output2(StringUtil.capitalize(indefiniteArticle(target.sackDescript(true,true))) + " with " + target.ballsDescript(true,true) + " swings heavily beneath your " + target.multiCockDescript() + ".");
-			if(target.skinType == GLOBAL.SKIN_TYPE_FUR) output2("A fuzzy " + target.sackDescript(true,true) + " filled with " + target.ballsDescript(true,true) + " swings low under your " + target.multiCockDescript() + ".");
-			if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2("A scaley " + target.sackDescript(true,true) + " hugs your " + target.ballsDescript(true,true) + " tightly against your body.");
-			if(target.skinType == GLOBAL.SKIN_TYPE_GOO) output2("An oozing, semi-solid sack with " + target.ballsDescript(true,true) + " swings heavily beneath your " + target.multiCockDescript() + ".");
+			if(target.skinType == GLOBAL.SKIN_TYPE_SKIN) output2(StringUtil.capitalize(indefiniteArticle(target.sackDescript(true,true))) + " with " + sTesticleDesc + " swings heavily beneath your " + target.multiCockDescript() + ".");
+			if(target.skinType == GLOBAL.SKIN_TYPE_FUR) output2("A fuzzy " + target.sackDescript(true,true) + " filled with " + sTesticleDesc + " swings low under your " + target.multiCockDescript() + ".");
+			if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2("A scaley " + target.sackDescript(true,true) + " hugs your " + sTesticleDesc + " tightly against your body.");
+			if(target.skinType == GLOBAL.SKIN_TYPE_GOO) output2("An oozing, semi-solid sack with " + sTesticleDesc + " swings heavily beneath your " + target.multiCockDescript() + ".");
 		}
 		//Does it mention the dick at the end of the sentence? If so, dont use pronoun here:
 		if(target.hasCock() && !target.hasStatusEffect("Uniball") && target.skinType != GLOBAL.SKIN_TYPE_SCALES)
 		{
-			output2(" You estimate each testicle to be about " + num2Text(Math.round(target.ballSize())) + " ");
+			if(target.balls == 1) output2(" You estimate the testicle to be about " + num2Text(Math.round(target.ballSize())) + " ");
+			else output2(" You estimate each testicle to be about " + num2Text(Math.round(target.ballSize())) + " ");
 		}
 		//No dick mention? Great! Pronouns deployed!
+		else if(target.balls == 1) output2(" You estimate it to be about " + num2Text(Math.round(target.ballSize())) + " ");
 		else output2(" You estimate each of them to be about " + num2Text(Math.round(target.ballSize())) + " ");
 		if(Math.round(target.ballSize()) == 1) output2("inch");
 		else output2("inches");
