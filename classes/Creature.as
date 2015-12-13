@@ -4312,7 +4312,7 @@ package classes {
 			return (legCount >= 4 && (legType == GLOBAL.TYPE_DRIDER || legType == GLOBAL.TYPE_ARACHNID));
 		}
 		public function isGoo(): Boolean {
-			if (legType == GLOBAL.TYPE_GOOEY) return true;
+			if (legType == GLOBAL.TYPE_GOOEY && hasLegFlag(GLOBAL.FLAG_AMORPHOUS)) return true;
 			return false;
 		}
 		public function isImmobilized(): Boolean {
@@ -7832,16 +7832,16 @@ package classes {
 		public function gooScore():int
 		{
 			var counter:int = 0;
-			if (isGoo())
+			if (legType == GLOBAL.TYPE_GOOEY)
 			{
 				counter += 2;
-				if (legCount == 1) counter += 2;
+				if (hasLegFlag(GLOBAL.FLAG_AMORPHOUS)) counter += 2;
 			}
 			if (hairType == GLOBAL.HAIR_TYPE_GOO) counter++;
 			if (hasStatusEffect("Goo Vent")) counter++;
 			if (hasStatusEffect("Goo Crotch")) counter++;
-			if (skinType == GLOBAL.SKIN_TYPE_GOO && counter > 0) counter++;
-			//if (tongueType == GLOBAL.TYPE_GOOEY) counter++;
+			if (counter > 1 && skinType == GLOBAL.SKIN_TYPE_GOO) counter++;
+			//if (counter > 2 && tongueType == GLOBAL.TYPE_GOOEY) counter++;
 			return counter;
 		}
 		public function cowScore():int
@@ -8045,7 +8045,7 @@ package classes {
 			return counter;
 		}
 		public function isRahn(): Boolean {
-			if(race() == "rahn" || race() == "fuu'rahn" || race() == "zel'rahn" || race() == "loo'rahn" || race() == "doh'rahn" || race() == "go'rahn") return true;
+			if(InCollection(race(), "rahn", "fuu'rahn", "zel'rahn", "loo'rahn", "doh'rahn", "go'rahn")) return true;
 			else if (race().indexOf("rahn") != -1) return true;
 			return false;
 		}
