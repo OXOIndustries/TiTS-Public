@@ -25,6 +25,7 @@ import classes.Items.Accessories.TamWolfDamaged;
 import classes.Items.Armor.GooArmor;
 import classes.Items.Guns.Goovolver;
 import classes.Items.Guns.SlutRay;
+import classes.Items.Guns.SlutRayAdvanced;
 import classes.Items.Miscellaneous.GrayMicrobots;
 import classes.UIComponents.StatusEffectComponents.StatusEffectsDisplay;
 import classes.Util.InCollection;
@@ -1578,7 +1579,7 @@ public function rangedAttack(attacker:Creature, target:Creature, specials:Array 
 		{
 			applyDamage(damage, attacker, target, "goovolver");
 		}
-		if (attacker.rangedWeapon is SlutRay)
+		if ((attacker.rangedWeapon is SlutRay) || (attacker.rangedWeapon is SlutRayAdvanced))
 		{
 			applyDamage(damage, attacker, target, "slut ray");
 		}
