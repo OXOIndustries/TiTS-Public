@@ -1545,7 +1545,11 @@ public function leftTeasedForEver(x:int = 0):void
 		if(pc.cumQ() < 5) output("tiny splatterings");
 		else if(pc.cumQ() < 50) output("thick sticky ropes");
 		else if(pc.cumQ() < 2500) output("gloriously thick ropes");
-		else output("gooey gallons");
+		else
+		{
+			if(pc.cumType != GLOBAL.FLUID_TYPE_SPECIAL_GOO) output("gooey ");
+			output("gallons");
+		}
 		output(" of your [pc.cum] all over the floor");
 	}
 	if(pc.hasVagina() && pc.hasCock()) output(". Your");
