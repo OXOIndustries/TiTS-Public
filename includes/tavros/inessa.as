@@ -1269,8 +1269,10 @@ public function cuffNFuck():void
 	}
 	else
 	{
-		output("Gooey gallons of [pc.cumNoun] gush from your [pc.cockHead " + x + "] and overfill ");
-		if(foes[0].hasVagina()) output("[monster.hisHer] [monster.pussy] and womb");
+		output("G");
+		if(pc.cumType != GLOBAL.FLUID_TYPE_SPECIAL_GOO) output("ooey g");
+		output("allons of [pc.cumNoun] gush from your [pc.cockHead " + x + "] and overfill [monster.hisHer] ");
+		if(foes[0].hasVagina()) output("[monster.pussy] and womb");
 		else output("bowels");
 		output(", leaving [monster.himHer] with a swollen belly that makes [monster.himHer] look ");
 		if(foes[0].isPregnant()) output("even more ");
@@ -1812,7 +1814,11 @@ public function getAHandjobFromInessy():void
 	if(pc.cumQ() < 8) output("pleasurable little splatter");
 	else if(pc.cumQ() < 100) output("thin stream");
 	else if(pc.cumQ() < 1000) output("thick stream");
-	else output("gooey gush");
+	else
+	{
+		if (cumType != GLOBAL.FLUID_TYPE_SPECIAL_GOO) output("gooey ");
+		output("gush");
+	}
 	output(" of your hot [pc.cumNoun] all over her face! Rather than flinch, the fae-like girl shivers with delight as you use her pretty face as a canvas, marking it pointedly with your precious seed.");
 
 	output("\n\nOnce she’s finished milking out every single drop your [pc.cocks] have to give, Inessa’s ");
