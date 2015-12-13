@@ -1975,23 +1975,53 @@ public function vaginaBonusForAppearance(target:Creature, x:int = 0, eachOne:Boo
 {
 	kGAMECLASS.target = target;
 	
+	//Gooey flavor
+	if(target.vaginas[x].type == GLOBAL.TYPE_GOOEY) {
+		if(!eachOne) output2(" The exterior lips are slick and gooey, making your entrance look wet at all times.");
+		else output2("\nEach vagina's exterior lips are slick and gooey, making the entrances look wet at all times.");
+	}
 	//Zil flavor!
-	if(target.vaginas[x].type == GLOBAL.TYPE_BEE && target.vaginas[x].vaginaColor == "black and gold") {
+	else if(target.vaginas[x].type == GLOBAL.TYPE_BEE && target.vaginas[x].vaginaColor == "black and gold") {
 		if(!eachOne) output2(" The exterior folds are a dusky black, while the inner lining of your tunnel is a glorious golden hue.");
 		else output2("\nEach vagina's exterior folds are a dusky black, while the inner linings of your tunnels are a glorious golden hue.");
 	}
 	//Naleen flavor
-	if(target.vaginas[x].type == GLOBAL.TYPE_NAGA) {
+	else if(target.vaginas[x].type == GLOBAL.TYPE_NAGA) {
 		if(!eachOne) output2(" The exterior lips are subtle and narrow, making your lengthy entrance a little more discrete.");
 		else output2("\nEach vagina's exterior lips are subtle and narrow, making your lengthy entrances a little more discrete.");
 	}
 	//LEITHAN FLAVOR
-	if(target.vaginas[x].type == GLOBAL.TYPE_LEITHAN || target.vaginas[x].type == GLOBAL.TYPE_EQUINE) {
+	else if(target.vaginas[x].type == GLOBAL.TYPE_LEITHAN || target.vaginas[x].type == GLOBAL.TYPE_EQUINE) {
 		if(!eachOne) output2(" The exterior lips are fat and swollen. They could easily be described as rubbery, and they often shine with a wet sheen, regardless of your arousal. When you're aroused, you're told that they wink.");
 		else output2("\nEach vagina's exterior lips are fat and swollen. They could easily be described as rubbery, and they often shine with a wet sheen, regardless of your arousal. When you're aroused, you're told that they wink.");
 	}
+	//Lapinara flavor
+	else if(target.vaginas[x].type == GLOBAL.TYPE_LAPINARA) {
+		if(!eachOne) output2(" The exterior lips are chubby and the entrance seems eager to be packed with an ovipositor - or any phallus-shaped object.");
+		else output2("\nEach vagina's exterior lips are chubby and their entrances seem eager to be packed with ovipositors - or any other phallus-shaped objects.");
+	}
+	//Vanae flavor
+	else if(target.vaginas[x].type == GLOBAL.TYPE_VANAE) {
+		if(!eachOne) output2(" The exterior folds glisten in the light, while the inner tunnel is lined with writhing, tentacle-like feelers.");
+		else output2("\nEach vagina's exterior folds glisten in the light, while the inner tunnels are lined with writhing, tentacle-like feelers.");
+	}
+	//Kui-tan flavor
+	else if(target.vaginas[x].type == GLOBAL.TYPE_KUITAN && target.vaginas[x].vaginaColor == "black") {
+		if(!eachOne) output2(" The exterior folds are dusky black, looking almost animalistic on your body.");
+		else output2("\nEach vagina's exterior folds are dusky black, looking almost animalistic on your body.");
+	}
+	//Doggie flavor
+	else if(target.vaginas[x].type == GLOBAL.TYPE_CANINE) {
+		if(!eachOne) output2(" The exterior lips are that of a bitch and have a tendency to swell when in heat, giving it a very animalistic bent.");
+		else output2("\nEach vagina's exterior lips are that of a bitch and have a tendency to swell when in heat, giving them a very animalistic bent.");
+	}
+	//Siren flavor
+	else if(target.vaginas[x].type == GLOBAL.TYPE_SIREN) {
+		if(!eachOne) output2(" The exterior opening is framed in writhing tentacles and the interior is lined with aphrodisiac-laced cilia.");
+		else output2("\nEach vagina's exterior openings are framed in writhing tentacles and the interiors are lined with aphrodisiac-laced cilia.");
+	}
 	//Goblin flavor
-	if(target.vaginas[x].type == GLOBAL.TYPE_GABILANI) {
+	else if(target.vaginas[x].type == GLOBAL.TYPE_GABILANI) {
 		if(!eachOne) output2(" The special muscles around your vagina are strong and powerful, making it possible to swallow any insertion without the need to push it in.");
 		else output2("\nThe special muscles around your talented vaginas are strong and powerful, making it possible to swallow insertions without the need of external forces to push them in.");
 	}
