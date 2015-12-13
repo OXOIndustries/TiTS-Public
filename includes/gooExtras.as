@@ -417,7 +417,7 @@ public function gooHairAdjustmenu():void
 	if(Math.round(pc.hairLength*10)/10 != 1) output2("es");
 	output2(" of gooey hair, in ");
 	if(pc.hairStyle == "null") output2("no particular");
-	else output2("a " + pc.hairStyle);
+	else output2(indefiniteArticle(pc.hairStyle));
 	output2(" style. Will you do anything with it?");
 	showBiomass();
 	//[Lengthen] [Shorten] [Style]
