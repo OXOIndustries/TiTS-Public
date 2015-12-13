@@ -726,9 +726,9 @@ public function appearance(target:Creature):void
 		else if(target.tailType == GLOBAL.TYPE_AVIAN) output2(" A tail of feathers fans out from just above your " + target.buttDescript() + ", twitching instinctively to help guide you if you were to take flight.");
 		else if(target.tailType == GLOBAL.TYPE_KANGAROO) {
 			output2(" A conical, ");
-			if(target.skinType == GLOBAL.SKIN_TYPE_GOO) output2("gooey, " + target.skinTone);
-			else output2("furry, " + target.hairColor);
-			output2(", tail extends from your " + target.buttDescript() + ", bouncing up and down as you move and helping to counterbalance you.");
+			if(target.skinType == GLOBAL.SKIN_TYPE_GOO && !target.hasTailFlag(GLOBAL.FLAG_FURRED)) output2("gooey, " + target.skinTone);
+			else output2("furry, " + target.furColor);
+			output2(" tail extends from your " + target.buttDescript() + ", bouncing up and down as you move and helping to counterbalance you.");
 		}
 		else if(target.tailType == GLOBAL.TYPE_VULPINE) {
 			if(target.tailCount == 1) output2(" A swishing, colorful fox's brush extends from your " + target.buttDescript() + ", curling around your body - the soft fur feels lovely.");
@@ -882,7 +882,17 @@ public function appearance(target:Creature):void
 				output2(" In place of legs you have a shifting amorphous blob. Thankfully it's quite easy to propel yourself around on.");
 				if(target.hasArmor()) output2(" The lowest portions of your " + target.armor.longName + " float around inside you, bringing you no discomfort.");
 			}
-			else output2(" In place of legs you have a shifting, amorphous blob. It splits apart just beneath your genitals into " + num2Text(target.legCount) + " semi-solid limbs.");
+			else
+			{
+				if(target.hasLegFlag(GLOBAL.FLAG_AMORPHOUS))
+				{
+					output2(" In place of legs you have a shifting, amorphous blob. It splits apart just beneath your");
+					if(target.hasGenitals()) output2(" genitals");
+					else output2(" “crotch”");
+					output2(" into " + num2Text(target.legCount) + " semi-solid limbs.");
+				}
+				else output2(" You have " + num2Text(target.legCount) + " semi-solid, gel-like leg-shaped limbs, capable of shifting and morphing when you will them to.");
+			}
 		}
 		else if(target.legType == GLOBAL.TYPE_FELINE) output2(" " + upperCase(num2Text(target.legCount)) + " digitigrade legs grow downwards from your waist, ending in soft, padded cat-paws.");
 		else if(target.legType == GLOBAL.TYPE_LIZAN)
