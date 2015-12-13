@@ -151,7 +151,7 @@ public function attackDemAntBiyotches():void
 	clearOutput();
 	showPraetorians();
 	author("Savin");
-	output("<i>“I’m going in. Like it or not,”</i> you tell the guards, drawing your [pc.weapon].");
+	output("<i>“I’m going in. Like it or not,”</i> you tell the guards, [pc.readyingWeapon].");
 	output("\n\nThe guards lower their spears at you, and one of them grabs a rope behind her, leading into the wall. A bell resounds inside, and a moment later the gate is creaking open and several more nyrean huntresses are pouring out. And suddenly, your odds look a little less great...");
 	processTime(1);
 	//[Fight!]
@@ -385,7 +385,7 @@ public function loseToPraetorianNyreaGangbangu():void
 	output(". A couple of the insectile amazons grab your [pc.weapon] and toss it aside; another grabs your ");
 	if(!pc.isNude()) output("equipment and tears it");
 	else output("gear and rips it");
-	output(" aside, leaving you bare naked on the warm subterranean stone.");
+	output(", leaving you bare naked on the warm subterranean stone.");
 
 	output("\n\n<i>“Another impertinent star-walker,”</i> the guard leader grouses, glowering down at you. <i>“Worse than the last, even.”</i>");
 
@@ -1402,7 +1402,7 @@ public function startFightingQueenButt(plat190:Boolean = false):void
 	showBust("TAIVRA","QUEENSGUARD");
 	showName("TAIVRA &\nQUEENSGUARD");
 	pc.addHard(4);
-	output("You draw your [pc.weapon] and flash the queen a dangerous smile. You’ve got nothing to say to her.");
+	output("You [pc.readyWeapon] and flash the queen a dangerous smile. You’ve got nothing to say to her.");
 	output("\n\n<i>“At least this one is honest about [pc.hisHer] intentions,”</i> Taivra chuckles. <i>“Unfortunately, I’m a bit too preoccupied to play at the moment. Queensguard, my dearest, why don’t you show this star-walker what happens to regicides.”</i>");
 	output("\n\nThe heavily armored bodyguard gives the queen a brisk nod and steps between you and her mistress, raising her steel shield. <i>“With pleasure, my queen. Offworlder, defend yourself!”</i>");
 	processTime(1);
@@ -1717,7 +1717,7 @@ public function badDealWithTaivra():void
 	showBust("QUEENSGUARD","TAIVRA");
 	output("<i>“I think I’ve heard enough,”</i> Taivra yawns, leaning back in her seat and drumming her fingers on the haft of her spear. <i>“Queensguard, I tired of our intruder. [pc.name] clearly has nothing to offer me...”</i>");
 	output("\n\n<i>“Aye, my queen,”</i> the dutiful nyrean knight answers, stepping between you and her queen. <i>“You had your chance, star-walker. A pity you squandered it.”</i>");
-	output("\n\nYou guess this only could have ended one way. You draw your [pc.weapon] and level it at Queensguard. Time to show the queen what you’re made of.");
+	output("\n\nYou guess this only could have ended one way. You [pc.readyWeapon] and level it at Queensguard. Time to show the queen what you’re made of.");
 	output("\n\n<i>“Tear that bitch up!”</i> your cousin shouts, rattling [rival.hisHer] cage.");
 	processTime(2);
 	clearMenu();
@@ -2302,7 +2302,7 @@ public function whupTaivrasAss():void
 	//If Dane Not Freed:
 	else
 	{
-		output("\n\nAs you’re thinking of all the things you could do with the beaten queen, you hear a roar and the rending of steel behind you. You pull your [pc.weapon] and spin around, just in time to see Queensguard lurching to her feet with sword drawn... and Dane looming over her, putting himself between you and the nyrea and your cousin as [rival.heShe] makes a break for the door.");
+		output("\n\nAs you’re thinking of all the things you could do with the beaten queen, you hear a roar and the rending of steel behind you. You [pc.readyWeapon] and spin around, just in time to see Queensguard lurching to her feet with sword drawn... and Dane looming over her, putting himself between you and the nyrea and your cousin as [rival.heShe] makes a break for the door.");
 		output("\n\nThe alabaster ausar is utterly naked, stripped of his gear and bruised from his capture, but he’s grinning like a mad dog all the same. The veins on his arms bulge as he flexes his corded muscles, holding torn bits of his cage like daggers. <i>“You should’ve killed me when you had the chance. This time you won’t get a chance to jump me in the dark.”</i>");
 		output("\n\n<i>“Slaves should learn their place,”</i> Queensguard answers, lowering her shield into place and readying her sword. <i>“If they cannot fathom that, then they will be fed to the deeps, piece by piece.”</i> She advances steadily, one plated boot in front of the other warily moving to intercept Dane. Looks like she’s already recovered from your battle.");
 		output("\n\n<i>“That’s all you’ve got? Not even a gun?”</i> Dane grins, cracking a pair of his knuckles.");
@@ -2769,7 +2769,7 @@ public function badEndWithTaivraShit():void
 	output(", giving you just enough of a squeeze to send a rush of an excitement through you.");
 
 	output("\n\nHer plated hands guide you towards the bed and roughly pushes you onto your back, sending you tumbling onto the feather-soft silks. She’s on you in a moment, pinning you down with her knees - and her lips, as well. Amethyst lips press firmly to yours, and your lover moans throatily as you submit to her sensual domination. You should enjoy your reward, you decide: the queen has offered to give you a place of honor, but a place you will be for the rest of your life. You’ll never see your gear again");
-	if(!(pc.meleeWeapon is EmptySlot) && !(pc.rangedWeapon is EmptySlot)) output(", or your weapons");
+	if(pc.hasEquippedWeapon()) output(", or your weapons");
 	output(". No way to contact home, no way to fight your way out that wouldn’t have you a doomed as Dane and your cousin were.");
 
 	output("\n\nThis is the end of your quest. Might as well make the most of it.");
