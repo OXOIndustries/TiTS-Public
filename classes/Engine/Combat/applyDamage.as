@@ -161,10 +161,11 @@ package classes.Engine.Combat
 			}
 			if (special == "slut ray")
 			{
-				if(target is PlayerCharacter) output("You don’t");
+				output("\n<b>");
+				if (target is PlayerCharacter) output("You don’t");
 				else
 				{
-					output("\n<b>" + target.capitalA + target.short + " ");
+					output(target.capitalA + target.short + " ");
 					if (target.plural) output(" don’t");
 					else output(" doesn’t");
 				}
@@ -192,8 +193,8 @@ package classes.Engine.Combat
 			if (special == "slut ray")
 			{
 				var lewdAdjective:String = "";
-				if(damageResult.wasCrit == true) lewdAdjective += RandomInCollection("awfully" ,"excessively" ,"highly" ,"immensely" ,"intensely" ,"overly" ,"unusually" ,"very") + " ";
-				lewdAdjective += RandomInCollection("alluring" , "amorous", "carnal", "lewd", "obscene", "seductive", "sensual", "steamy", "suggestive");
+				if(damageResult.wasCrit == true) lewdAdjective += RandomInCollection("awfully", "excessively", "extremely", "highly", "immensely", "intensely", "overly", "unusually", "very") + " ";
+				lewdAdjective += RandomInCollection("alluring", "amorous", "carnal", "lewd", "obscene", "seductive", "sensual", "steamy", "suggestive");
 				
 				output("\n");
 				if(target is PlayerCharacter) output("Suddenly, your mind is filled with sexual fantasies, briefly obscuring your vision with " + lewdAdjective + " images!");
