@@ -78,8 +78,8 @@ public function encounterNyreaHuntress(forceType:uint = NYREA_UNKNOWN):void
 	nyreaHeader(nyreaType);
 
 	output("\n\nAs you make your way through the dark caverns, you become increasingly aware of a mounting feeling of unease. As if something is watching you, hidden just out of sight in the darkness of the tunnel. You slow your pace, hand drifting down to the");
-	if (pc.hasRangedWeapon()) output(" butt of your gun");
-	else if (pc.hasMeleeWeapon()) output(" hilt of your [melee.weapon]");
+	if (pc.hasRangedWeapon()) output(" butt of your [pc.rangedWeapon]");
+	else if (pc.hasMeleeWeapon()) output(" hilt of your [pc.meleeWeapon]");
 	else output(" ground, picking up the meatiest rock you can find to defend yourself with");
 	output(" as your [pc.ears] perk up, listening for any trace of a possible assailant.");
 
@@ -164,7 +164,7 @@ public function alphaNyreaAI():void
 
 	if(!foes[0].hasStatusEffect("Disarmed"))
 	{
-		if (foes[0].rangedWeapon) attacks.push(nyreaAlphaUseGun);
+		if (foes[0].hasRangedWeapon()) attacks.push(nyreaAlphaUseGun);
 		attacks.push(nyreaSpearThrust);
 		attacks.push(nyreaPowerStrike);
 		if (!pc.hasStatusEffect("Grappled") && !foes[0].hasStatusEffect("Net Cooldown")) attacks.push(nyreaNetThrow);
