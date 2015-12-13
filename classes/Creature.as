@@ -1298,10 +1298,10 @@ package classes {
 				case "rangedWeapon":
 					buffer = rangedWeapon.longName;
 					break;
+				case "mainWeapon":
+				case "weaponMain":
 				case "weaponStat":
-					if(physique() > aim() && hasMeleeWeapon()) buffer = meleeWeapon.longName;
-					else if(hasRangedWeapon()) buffer = rangedWeapon.longName;
-					else buffer = "fist";
+					buffer = getWeaponName(true);
 					break;
 				case "readyWeapon":
 					buffer = weaponActionReady();
@@ -2108,11 +2108,20 @@ package classes {
 			}
 			return;
 		}
-		public function getWeaponName():String
+		public function getWeaponName(fromStat:Boolean = false):String
 		{
-			if (!(rangedWeapon is EmptySlot)) return rangedWeapon.longName;
-			if (!(meleeWeapon is EmptySlot)) return meleeWeapon.longName;
-			return "fists";
+			if(!fromStat)
+			{
+				if (!(rangedWeapon is EmptySlot)) return rangedWeapon.longName;
+				if (!(meleeWeapon is EmptySlot)) return meleeWeapon.longName;
+			}
+			else
+			{
+				if (hasMeleeWeapon() && (physique() > aim() || (physique() == aim() && affinity == "physique"))) return meleeWeapon.longName;
+				else if (hasRangedWeapon()) return rangedWeapon.longName;
+			}
+			if((meleeWeapon is Rock) || (rangedWeapon is Rock)) return "rock";
+			return "fist";
 		}
 		public function weaponActionReady(present:Boolean = false, weapon:String = "", full:Boolean = true):String
 		{
