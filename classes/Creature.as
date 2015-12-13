@@ -1303,40 +1303,40 @@ package classes {
 					else if(hasRangedWeapon()) buffer = rangedWeapon.longName;
 					else buffer = "fist";
 					break;
-				case "weaponReady":
+				case "readyWeapon":
 					buffer = weaponActionReady();
 					break;
-				case "weaponRelax":
+				case "relaxWeapon":
 					buffer = weaponActionRelax();
 					break;
-				case "weaponReadyFull":
+				case "readyingWeapon":
 					buffer = weaponActionReady(true);
 					break;
-				case "weaponRelaxFull":
+				case "relaxingWeapon":
 					buffer = weaponActionRelax(true);
 					break;
-				case "meleeReady":
+				case "readyMelee":
 					buffer = weaponActionReady(false, "melee");
 					break;
-				case "meleeRelax":
+				case "relaxMelee":
 					buffer = weaponActionRelax(false, "melee");
 					break;
-				case "meleeReadyFull":
+				case "readyingMelee":
 					buffer = weaponActionReady(true, "melee");
 					break;
-				case "meleeRelaxFull":
+				case "relaxingMelee":
 					buffer = weaponActionRelax(true, "melee");
 					break;
-				case "rangedReady":
+				case "readyRanged":
 					buffer = weaponActionReady(false, "ranged");
 					break;
-				case "rangedRelax":
+				case "relaxRanged":
 					buffer = weaponActionRelax(false, "ranged");
 					break;
-				case "rangedReadyFull":
+				case "readyingRanged":
 					buffer = weaponActionReady(true, "ranged");
 					break;
-				case "rangedRelaxFull":
+				case "relaxingRanged":
 					buffer = weaponActionRelax(true, "ranged");
 					break;
 				case "lowerUndergarment":
@@ -2114,54 +2114,63 @@ package classes {
 			if (!(meleeWeapon is EmptySlot)) return meleeWeapon.longName;
 			return "fists";
 		}
-		public function weaponActionReady(full:Boolean = false, weapon:String = ""):String
+		public function weaponActionReady(present:Boolean = false, weapon:String = "", full:Boolean = true):String
 		{
 			var desc:String = "";
 			var actions:Array = [];
 			var singular:Boolean = ((this is PlayerCharacter) || plural);
 			var weaponName:String = getWeaponName();
 			
-			if (singular) actions.push("ready", "prepare");
+			if (present) actions.push("readying", "preparing");
+			else if (singular) actions.push("ready", "prepare");
 			else actions.push("readies", "prepares");
 			
 			if (weapon = "ranged" || hasRangedWeapon())
 			{
-				if (singular) actions.push("take out", "get out", "pull out");
+				if(present) actions.push("taking out", "getting out", "pulling out");
+				else if (singular) actions.push("take out", "get out", "pull out");
 				else actions.push("takes out", "gets out", "pulls out");
 				if (hasRangedEnergyWeapon())
 				{
-					if (singular) actions.push("charge", "load");
+					if (present) actions.push("charging", "loading");
+					else if (singular) actions.push("charge", "load");
 					else actions.push("charges", "loads");
 				}
 				if (hasBowWeaponEquipped())
 				{
-					if (singular) actions.push("draw", "mount", "equip", "tighten");
+					if (present) actions.push("drawing", "mounting", "equipping", "tightening");
+					else if (singular) actions.push("draw", "mount", "equip", "tighten");
 					else actions.push("draws", "mounts", "equips", "tightens");
 				}
 				else
 				{
-					if (singular) actions.push("draw", "load", "cock", "unholster");
-					else actions.push("draws", "loads", "cocks", "unholsters");
+					if (present) actions.push("drawing", "loading", "cocking", "uncovering");
+					else if (singular) actions.push("draw", "load", "cock", "uncover");
+					else actions.push("draws", "loads", "cocks", "uncovers");
 				}
 				weaponName = rangedWeapon.longName;
 			}
 			else if (weapon = "melee" || hasMeleeWeapon())
 			{
-				if (singular) actions.push("take out", "get out", "pull out");
+				if (present) actions.push("taking out", "getting out", "pulling out");
+				else if (singular) actions.push("take out", "get out", "pull out");
 				else actions.push("takes out", "gets out", "pulls out");
 				if (hasMeleeEnergyWeapon())
 				{
-					if (singular) actions.push("charge", "activate");
+					if (present) actions.push("charging", "activating");
+					else if (singular) actions.push("charge", "activate");
 					else actions.push("charges", "activates");
 				}
 				if (meleeWeapon.attackNoun == "whip")
 				{
-					if(singular) actions.push("unravel", "loosen", "flourish");
+					if(present) actions.push("unraveling", "loosening", "flourishing");
+					else if(singular) actions.push("unravel", "loosen", "flourish");
 					else actions.push("unravels", "loosens", "flourishes");
 				}
 				else
 				{
-					if (singular) actions.push("draw", "unsheathe", "brandish", "flourish", "wield");
+					if (present) actions.push("drawing", "unsheathing", "brandishing", "flourishing", "wielding");
+					else if (singular) actions.push("draw", "unsheathe", "brandish", "flourish", "wield");
 					else actions.push("draws", "unsheathes", "brandishes", "flourishes", "wields");
 				}
 				weaponName = meleeWeapon.longName;
@@ -2177,54 +2186,63 @@ package classes {
 			}
 			return desc;
 		}
-		public function weaponActionRelax(full:Boolean = false, weapon:String = ""):String
+		public function weaponActionRelax(present:Boolean = false, weapon:String = "", full:Boolean = true):String
 		{
 			var desc:String = "";
 			var actions:Array = [];
 			var singular:Boolean = ((this is PlayerCharacter) || plural);
 			var weaponName:String = getWeaponName();
 			
-			if (singular) actions.push("relax", "rest");
+			if (present) actions.push("relaxing", "resting");
+			else if (singular) actions.push("relax", "rest");
 			else actions.push("relaxes", "rest");
 			
 			if (weapon = "ranged" || hasRangedWeapon())
 			{
-				if (singular) actions.push("put away", "put back", "place back");
+				if (present) actions.push("putting away", "putting back", "placing back");
+				else if (singular) actions.push("put away", "put back", "place back");
 				else actions.push("puts away", "puts back", "places back");
 				if (hasRangedEnergyWeapon())
 				{
-					if (singular) actions.push("decharge", "power down");
+					if (present) actions.push("decharging", "powering down");
+					else if (singular) actions.push("decharge", "power down");
 					else actions.push("decharges", "powers down");
 				}
 				if (hasBowWeaponEquipped())
 				{
-					if (singular) actions.push("retract", "relinquish", "renounce", "loosen");
+					if (present) actions.push("retracting", "relinquishing", "renouncing", "loosening");
+					else if (singular) actions.push("retract", "relinquish", "renounce", "loosen");
 					else actions.push("retracts", "relinquishes", "renounces", "loosens");
 				}
 				else
 				{
-					if (singular) actions.push("retract", "lock", "store", "holster");
+					if (present) actions.push("retracting", "locking", "storing", "holstering");
+					else if (singular) actions.push("retract", "lock", "store", "holster");
 					else actions.push("retracts", "locks", "stores", "holsters");
 				}
 				weaponName = rangedWeapon.longName;
 			}
 			else if (weapon = "melee" || hasMeleeWeapon())
 			{
-				if (singular) actions.push("put away", "put back", "place back");
+				if (present) actions.push("putting away", "putting back", "placing back");
+				else if (singular) actions.push("put away", "put back", "place back");
 				else actions.push("puts away", "puts back", "places back");
 				if (hasMeleeEnergyWeapon())
 				{
-					if (singular) actions.push("decharge", "deactivate");
-					else actions.push("decharges", "deactivates");
+					if (present) actions.push("turning off", "deactivating");
+					else if (singular) actions.push("turn off", "deactivate");
+					else actions.push("turns off", "deactivates");
 				}
 				if (meleeWeapon.attackNoun == "whip")
 				{
-					if(singular) actions.push("recoil", "tighten", "pack away");
+					if(present) actions.push("recoiling", "tightening", "packing away");
+					else if(singular) actions.push("recoil", "tighten", "pack away");
 					else actions.push("recoils", "tightens", "packs away");
 				}
 				else
 				{
-					if (singular) actions.push("put down", "sheathe", "stash", "save", "cover");
+					if (present) actions.push("putting down", "sheathing", "stashing", "saving", "covering");
+					else if (singular) actions.push("put down", "sheathe", "stash", "save", "cover");
 					else actions.push("puts down", "sheathes", "stashes", "saves", "covers");
 				}
 				weaponName = meleeWeapon.longName;
