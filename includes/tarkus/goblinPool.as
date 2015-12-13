@@ -105,7 +105,7 @@ public function arbetzMainApproach():Boolean
 			
 			flags["ARBETZ_ENTERED"] = 1;
 			
-			output("You approach the bronze gate and find them unlocked. You notice several gun-metal spherical security cameras barnacled to the walls keeping a close eye on you, but nothing stops you opening the gate, travelling up the pebble path and stepping inside the building proper.");
+			output("You approach the bronze gate and find them unlocked. You notice several gun-metal spherical security cameras barnacled to the walls keeping a close eye on you, but nothing stops you opening the gate, traveling up the pebble path and stepping inside the building proper.");
 			output("\n\nThe airy, summery, lounge-like room you find yourself in is largely unoccupied. Behind a desk in front of you, a curvy, turquoise-skinned female gabilani is talking into a clunky-looking interface device whilst stabbing her fingers irritably into an antique keyboard.");
 			output("\n\n<i>“ - telling you that no such clause exists! If your son was stupid enough to ride an open-air bi-walker into a sydian enclave - yes, I will take that tone with you - ”</i>");
 			output("\n\nThere’s a human lad operating a similar computer next to her in a distinctly more laid-back fashion. Beyond the desk you can see out into the back of the estate, which is as green as the front and has a swimming pool, alongside of which a male kaithrit is lounging. The two boys are lithe, bronzed and unashamedly dressed only in tight shorts. They, along with the warm, fresh air, give the place the atmosphere of an out-of-season holiday resort.");
@@ -136,7 +136,7 @@ public function arbetzMainApproach():Boolean
 				showBust("UNA", "GABILANI_MALE", "GABILANI_FEMALE");
 				showName("\nRUSH HOUR");
 				
-				output("\n\nThe agency’s foyer is absolutely thronged with gabilani and their luggage. A high, unpleasant petro-chemical scent is in the air, and through the patio doors you can see a clunky, metal module looming beyond the swimming pool, undoubtedly used to transport these green-skinned tourists down to Tarkus’s surface. They are talking excitedly amongst themselves, showing off their cybernetic enhancements and travelling gear to one another; a couple take the opportunity of your entrance to take a picture of you. Una is stood on top of the front desk gesticulating angrily, her querulous tones piercing the hubbub as she attempts to organize her kindred into different parties, with little obvious success");
+				output("\n\nThe agency’s foyer is absolutely thronged with gabilani and their luggage. A high, unpleasant petro-chemical scent is in the air, and through the patio doors you can see a clunky, metal module looming beyond the swimming pool, undoubtedly used to transport these green-skinned tourists down to Tarkus’s surface. They are talking excitedly amongst themselves, showing off their cybernetic enhancements and traveling gear to one another; a couple take the opportunity of your entrance to take a picture of you. Una is stood on top of the front desk gesticulating angrily, her querulous tones piercing the hubbub as she attempts to organize her kindred into different parties, with little obvious success");
 				output("\n\nYou should probably come back later.");
 				
 				processTime(5);
