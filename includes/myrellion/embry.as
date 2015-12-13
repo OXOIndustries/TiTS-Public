@@ -2683,7 +2683,12 @@ public function embryAnalSex():void
 		else if(embry.hasVagina()) output(" Her [embry.pussy] liberally dribbles down her [embry.thighs] and coats them in her [embry.girlcum].");
 		output("\n\nWhen you pull your [pc.cock] out from her ass, there is a plopping noise from her [embry.asshole], and ");
 		if(pc.cumQ() <= 10) output("tiny drips");
-		else if(pc.cumQ() < 35) output("gooey pearls");
+		else if(pc.cumQ() < 35)
+		{
+			if(pc.cumType != GLOBAL.FLUID_TYPE_SPECIAL_GOO) output("gooey ");
+			else output("blob-like ");
+			output("pearls");
+		}
 		else output("thick globs");
 		output(" of [pc.cum] drool down her crack.");
 		if(flags["EMBRY_TOLD_YOU_LIKE_COCK"] != undefined && embry.hasCock()) output(" They dribble down the back of her [embry.balls] and");
