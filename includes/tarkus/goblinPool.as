@@ -84,7 +84,7 @@ public function arbetzMainApproach():Boolean
 	{
 		pc.removeKeyItem("Arbetz Travel Agency Memebership");
 		pc.createKeyItem("Arbetz Travel Agency Membership", 0, 0, 0, 0, "");
-		output("<b>Your codex beeps, proclaiming that your Arbetz Travel Agency Premium Klub card has been renewed.</b>");
+		output("<b>Your codex beeps, proclaiming that your Arbetz Travel Agency Premium Klub membership card has been renewed.</b>");
 		clearMenu();
 		addButton(0, "Next", mainGameMenu);
 		return true;
@@ -136,7 +136,7 @@ public function arbetzMainApproach():Boolean
 				showBust("UNA", "GABILANI_MALE", "GABILANI_FEMALE");
 				showName("\nRUSH HOUR");
 				
-				output("\n\nThe agency’s foyer is absolutely thronged with gabilani and their luggage. A high, unpleasant petro-chemical scent is in the air, and through the patio doors you can see a clunky, metal module looming beyond the swimming pool, undoubtedly used to transport these green-skinned tourists down to Tarkus’s surface. They are talking excitedly amongst themselves, showing off their cybernetic enhancements and traveling gear to one another; a couple take the opportunity of your entrance to take a picture of you. Una is stood on top of the front desk gesticulating angrily, her querulous tones piercing the hubbub as she attempts to organize her kindred into different parties, with little obvious success");
+				output("\n\nThe agency’s foyer is absolutely thronged with gabilani and their luggage. A high, unpleasant petro-chemical scent is in the air, and through the patio doors you can see a clunky, metal module looming beyond the swimming pool, undoubtedly used to transport these green-skinned tourists down to Tarkus’s surface. They are talking excitedly amongst themselves, showing off their cybernetic enhancements and traveling gear to one another; a couple take the opportunity of your entrance to take a picture of you. Una is stood on top of the front desk gesticulating angrily, her querulous tones piercing the hubbub as she attempts to organize her kindred into different parties, with little obvious success.");
 				output("\n\nYou should probably come back later.");
 				
 				processTime(5);
@@ -154,7 +154,7 @@ public function arbetzMainApproach():Boolean
 				{
 					output("\n\nThe agency’s foyer is");
 					if (pc.hasStatusEffect("Arbetz Busy Cooldown")) output(" a bit active, though not as busy as it was earlier. Everyone seems to have found their place and the staff looks quite relaxed, namely Una.");
-					output(" its usual quiet self. Even Una looks more laid-back than usual.");
+					else output(" its usual quiet self. Even Una looks more laid-back than usual.");
 					output(" She’s leant back in her chair and gazing with a big smirk at her screen, not doing anything.");
 					output("\n\n<i>“Hmm?”</i> she drones languidly when you approach her desk. <i>“Oh, hello you. How nice to see you again.”</i> The gabilani’s eyes return to the screen, leer widening. <i>“Very nice.");
 					
