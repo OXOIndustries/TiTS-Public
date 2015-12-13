@@ -1301,7 +1301,7 @@ package classes {
 				case "weaponStat":
 					if(physique() > aim() && hasMeleeWeapon()) buffer = meleeWeapon.longName;
 					else if(hasRangedWeapon()) buffer = rangedWeapon.longName;
-					else buffer = "fists";
+					else buffer = "fist";
 					break;
 				case "weaponReady":
 					buffer = weaponActionReady();
@@ -2116,7 +2116,7 @@ package classes {
 		}
 		public function weaponActionReady(full:Boolean = false, weapon:String = ""):String
 		{
-			var action:String = "";
+			var desc:String = "";
 			var actions:Array = [];
 			var singular:Boolean = ((this is PlayerCharacter) || plural);
 			var weaponName:String = getWeaponName();
@@ -2167,21 +2167,22 @@ package classes {
 				weaponName = meleeWeapon.longName;
 			}
 			
-			action += RandomInCollection(actions);
+			desc += RandomInCollection(actions);
 			
 			if (full)
 			{
-				if(this is PlayerCharacter) return action + " your " + weaponName;
-				else if(plural) return action + " their " + weaponName;
-				else return action + " " + mfn("his", "her", "its") + " " + weaponName;
+				if (this is PlayerCharacter) return desc + " your " + weaponName;
+				else if (plural) return desc + " their " + weaponName;
+				else return desc + " " + mfn("his", "her", "its") + " " + weaponName;
 			}
-			return action;
+			return desc;
 		}
 		public function weaponActionRelax(full:Boolean = false, weapon:String = ""):String
 		{
-			var action:String = "";
+			var desc:String = "";
 			var actions:Array = [];
 			var singular:Boolean = ((this is PlayerCharacter) || plural);
+			var weaponName:String = getWeaponName();
 			
 			if (singular) actions.push("relax", "rest");
 			else actions.push("relaxes", "rest");
@@ -2229,15 +2230,15 @@ package classes {
 				weaponName = meleeWeapon.longName;
 			}
 			
-			action += RandomInCollection(actions);
+			desc += RandomInCollection(actions);
 			
 			if (full)
 			{
-				if(this is PlayerCharacter) return action + " your " + weaponName;
-				else if(plural) return action + " their " + weaponName;
-				else return action + " " + mfn("his", "her", "its") + " " + weaponName;
+				if (this is PlayerCharacter) return desc + " your " + weaponName;
+				else if (plural) return desc + " their " + weaponName;
+				else return desc + " " + mfn("his", "her", "its") + " " + weaponName;
 			}
-			return action;
+			return desc;
 		}
 		public function shower():void
 		{
