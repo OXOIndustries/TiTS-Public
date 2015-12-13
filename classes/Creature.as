@@ -2126,8 +2126,8 @@ package classes {
 			
 			if (weapon = "ranged" || hasRangedWeapon())
 			{
-				if (singular) actions.push("take out", "get out");
-				else actions.push("takes out", "gets out");
+				if (singular) actions.push("take out", "get out", "pull out");
+				else actions.push("takes out", "gets out", "pulls out");
 				if (hasRangedEnergyWeapon())
 				{
 					if (singular) actions.push("charge", "load");
@@ -2147,8 +2147,8 @@ package classes {
 			}
 			else if (weapon = "melee" || hasMeleeWeapon())
 			{
-				if (singular) actions.push("take out", "get out");
-				else actions.push("takes out", "gets out");
+				if (singular) actions.push("take out", "get out", "pull out");
+				else actions.push("takes out", "gets out", "pulls out");
 				if (hasMeleeEnergyWeapon())
 				{
 					if (singular) actions.push("charge", "activate");
@@ -2189,8 +2189,8 @@ package classes {
 			
 			if (weapon = "ranged" || hasRangedWeapon())
 			{
-				if (singular) actions.push("put away", "put back");
-				else actions.push("puts away", "puts back");
+				if (singular) actions.push("put away", "put back", "place back");
+				else actions.push("puts away", "puts back", "places back");
 				if (hasRangedEnergyWeapon())
 				{
 					if (singular) actions.push("decharge", "power down");
@@ -2210,8 +2210,8 @@ package classes {
 			}
 			else if (weapon = "melee" || hasMeleeWeapon())
 			{
-				if (singular) actions.push("put away", "put back");
-				else actions.push("puts away", "puts back");
+				if (singular) actions.push("put away", "put back", "place back");
+				else actions.push("puts away", "puts back", "places back");
 				if (hasMeleeEnergyWeapon())
 				{
 					if (singular) actions.push("decharge", "deactivate");
