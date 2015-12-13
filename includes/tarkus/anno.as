@@ -239,7 +239,7 @@ public function annoMainMenu():void
 	addButton(5,"Appearance",annoAppearance,undefined,"Appearance","Review what Anno's entire body looks like.");
 	if(pc.hasStatusEffect("Rusted Emitters")) addButton(4,"Fix Emit.",repairMyRustBroInjuryAnno,undefined,"Fix Emit.","See if Anno can possibly fix your sydian-damaged shield emitters.");
 	else addDisabledButton(4,"Fix Emit.","Fix Emit.","Your shield emitters are totally undamaged. Don't worry about it.");
-	if(flags["SEEN_ANNO_BUY_MENU"] != undefined) addButton(4,"Test Drive",testDriveArmorsForShit);
+	if(flags["SEEN_ANNO_BUY_MENU"] != undefined) addButton(9,"Test Drive",testDriveArmorsForShit);
 
 	if(pcHasJunkPrize() && flags["ANNO_SCRAP_DISABLED"] == undefined) addButton(6,"Sell Prize",tryToSellAnnoSomeRaskScrapGuv,undefined,"Sell Prize","Try to sell off the sweet loot you bought from the gang of raskvel males.");
 	else addDisabledButton(6,"Sell Prize","Sell Prize","This merchant isn't interested in whatever you're considering to be a prize.");
