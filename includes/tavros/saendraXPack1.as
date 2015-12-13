@@ -402,7 +402,7 @@ public function sx1PirateGroupPCLoss():void
 	generateMapForLocation("SX1 FAKE FIGHT ROOM");
 
 	output("You slump to the ground, completely unable to put up even token resistance anymore.");
-	if ((pc as Creature).hasEquippedWeapon()) output(" Your [pc.weaponStat] clatters out of your hands, and is quickly stomped on by a jackbooted thug.");
+	if ((pc as Creature).hasEquippedWeapon()) output(" Your [pc.mainWeapon] clatters out of your hands, and is quickly stomped on by a jackbooted thug.");
 	output(" You look up, in the barrel of a machine pistol, and can’t help but clench down in preparation for the inevitable.");
 	
 	output("\n\nIt doesn’t come. Instead, you’re roughly grabbed by plated hands and rolled onto your stomach. Your hands are cuffed behind your back, completely restrained as the other assassins grab Saendra and drag her off, kicking and screaming.");
