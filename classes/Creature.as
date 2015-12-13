@@ -3053,6 +3053,27 @@ package classes {
 				return 0;
 			}
 		}
+		public function hasWeapon(weaponName:String = "any"):Boolean
+		{
+			// Search on-hand
+			if(hasEquippedWeapon())
+			{
+				if(weaponName == "any") return true;
+				else if(weaponName == meleeWeapon.shortName || weaponName == rangedWeapon.shortName) return true;
+			}
+			// Search inventory
+			if(inventory.length == 0) return false;
+			for(var x:int = 0; x < inventory.length; x++)
+			{
+				if(InCollection(inventory[x].type, GLOBAL.MELEE_WEAPON, GLOBAL.RANGED_WEAPON, GLOBAL.EXPLOSIVECONSUMABLE))
+				{
+					if(weaponName == "any") return true;
+					else if(inventory[x].shortName == weaponName) return true;
+				}
+			}
+			// No weapons!
+			return false;
+		}
 		public function hasEquippedWeapon():Boolean
 		{
 			return (hasMeleeWeapon() || hasRangedWeapon());
