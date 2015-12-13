@@ -2528,7 +2528,9 @@ public function bessStartLactation():void
 		}
 		else
 		{
-			output("\n\nIt’s not long before you’re arching your back and pushing your [pc.pussy] right into [bess.hisHer] face. You cream yourself right in [bess.hisHer] face, your [pc.girlCum] splattering right against [bess.hisHer] mouth in a ecstatic, gooey gush. Your hands reach up and grab the back of [bess.hisHer] head, holding onto it as you explosively cum against [bess.hisHer] lips.");
+			output("\n\nIt’s not long before you’re arching your back and pushing your [pc.pussy] right into [bess.hisHer] face. You cream yourself right in [bess.hisHer] face, your [pc.girlCum] splattering right against [bess.hisHer] mouth in an ecstatic");
+			if(pc.girlCumType != GLOBAL.FLUID_TYPE_SPECIAL_GOO) output(", gooey");
+			output(" gush. Your hands reach up and grab the back of [bess.hisHer] head, holding onto it as you explosively cum against [bess.hisHer] lips.");
 		}
 
 		output("\n\n[bess.name] lets out a low, trembling moan as [bess.heShe] takes your");
@@ -11433,7 +11435,12 @@ public function bessGiveDoggySelected(bTargetVag:Boolean = false):void
 		output("\n\nAfterwards [bess.name] is glowing with sheer satisfaction. There’s a totally blissed-out look in [bess.hisHer] [bess.eyeColor] eyes. When [bess.heShe] pulls [bess.himHer]self off your cock,");
 		if (pc.cumQ() <= 100) output(" a tiny dribble");
 		else if (pc.cumQ() <= 500) output("a thin stream");
-		else output(" a gooey gush");
+		else
+		{
+			output(" a");
+			if(pc.cumType != GLOBAL.FLUID_TYPE_SPECIAL_GOO) output(" gooey");
+			output(" gush");
+		}
 		output(" of your [pc.cum] slides down [bess.hisHer] inner thighs.");
 		
 		if (bessIsEqual()) output("\n\n<i>“Mmm, that was wonderful. I love feeling your [pc.cumNoun] deep inside of me,</i> the insatiable synthetic dreamily tells you, a spaced out look in [bess.hisHer] eyes.");
@@ -11883,7 +11890,9 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 		}
 		else if (pc.hasCock())
 		{
-			output(" Thick, gooey ropes of [pc.cumNoun] shoot from your [pc.cocks] and coat your [pc.belly] as you");
+			output(" Thick");
+			if(pc.cumType != GLOBAL.FLUID_TYPE_SPECIAL_GOO) output(", gooey");
+			output(" ropes of [pc.cumNoun] shoot from your [pc.cocks] and coat your [pc.belly] as you");
 		}
 		else output(" You");
 		output(" tightly clench [bess.hisHer] [bess.cock].");
@@ -12116,7 +12125,12 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 			else output(" Rivulets of [pc.girlCum] stream down your [pc.thighs]");
 			output(" as you");
 		}
-		else if (pc.hasCock()) output(" Thick, gooey ropes of [pc.cumNoun] shoot from your [pc.cocks] and coat your [pc.belly] as you");
+		else if (pc.hasCock())
+		{
+			output(" Thick");
+			if(pc.cumType != GLOBAL.FLUID_TYPE_SPECIAL_GOO) output(", gooey");
+			output(" ropes of [pc.cumNoun] shoot from your [pc.cocks] and coat your [pc.belly] as you");
+		}
 		else output(" You");
 		output(" tightly clench [bess.hisHer] [bess.cock].");
 		
