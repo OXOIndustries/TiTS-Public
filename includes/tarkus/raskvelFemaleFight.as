@@ -999,7 +999,7 @@ public function getPeggedWhileDoublePenetrate():void
 	output(" straight into the alien's well-prepared womb. Her ass bounces off you as she begins to fuck you once more, restarting your orgasm before it even gets a chance to trail off. Her stretched anus gets a similar stuffing as you glaze the walls of her colon with [pc.cumColor].");
 	if(pc.cumQ() >= 2000) 
 	{
-		output(" You shoot so much that there's a gooey blobs rolling out around each of your members as you fill her");
+		output(" You shoot so much that there's a gooey blob rolling out around each of your members as you fill her");
 		if(pc.cumQ() >= 4000) output(", but those pale in comparison to the belly-bloating volume that's stuck inside");
 		output(".");
 		if(pc.cumQ() >= 10000) output(" The raskvel quickly grows cum-gravid and insensate, lacking the strength to shake her body with the added weight and far too pleased to form cogent thoughts.");
