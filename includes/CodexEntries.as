@@ -116,7 +116,8 @@ public function codexHomeFunction():void
 public function humanTerranCodex():void
 {
 	clearOutputCodex();
-	showBust("BURT","STEPH");
+	var randBust:Array = ["BORING_MISTRESS","BURT","CARL","DELILAH","GEOFF","STEPH"];
+	showBust(randBust[rand(randBust.length)]);
 	outputCodex(header("Humans"));
 	outputCodex("<i>What does it mean to be human?</i>\n\n");
 	outputCodex("<b>Name (Singular):</b> Human");
@@ -156,7 +157,8 @@ public function humanTerranCodex():void
 public function ausarCodexEntry():void
 {
 	clearOutputCodex();
-	showBust("SYRI"); // An example of an Ausar?
+	var randBust:Array = ["ANNO","DANE","SYRI"];
+	showBust(randBust[rand(randBust.length)]);
 	outputCodex(header("Ausar"));
 	outputCodex("<i>Man’s best fuckbuddy.</i>\n\n");
 	outputCodex("<b>Name (Singular & Plural):</b> Ausar");
@@ -194,7 +196,8 @@ public function ausarCodexEntry():void
 public function kaithritCodexEntry():void
 {
 	clearOutputCodex();
-	showBust("TAMTAM");
+	var randBust:Array = ["KAITHRIT_SCOUT","TAMTAM"];
+	showBust(randBust[rand(randBust.length)]);
 	outputCodex(header("Kaithrit"));
 	outputCodex("<i>Cat-girls with two tails? What's not to love? ...what do you mean they have males?</i>\n\n");
 	outputCodex("<b>Name (Singular & Plural):</b> Kaithrit");
@@ -223,7 +226,8 @@ public function kaithritCodexEntry():void
 public function leithanCodexEntry():void
 {
 	clearOutputCodex();
-	showBust("ELLIE");
+	var randBust:Array = ["ELLIE","TANIS"];
+	showBust(randBust[rand(randBust.length)]);
 	outputCodex(header("Leithans"));
 	outputCodex("<i>The centaur people are otherworldly, but as peaceful and friendly as they come.</i>\n\n");
 	outputCodex("<b>Name (Singular):</b> Leithan");
@@ -250,7 +254,8 @@ public function leithanCodexEntry():void
 public function kuitanCodexEntry():void
 {
 	clearOutputCodex();
-	showBust("KIRO");
+	var randBust:Array = ["KIRO","JURO"];
+	showBust(randBust[rand(randBust.length)]);
 	outputCodex(header("Kui-Tan"));
 	outputCodex("<i>Tan-tan-tanuki no kintama wa...</i>\n\n");
 	outputCodex("<b>Name (Singular & Plural):</b> Kui-tan");
@@ -1011,7 +1016,7 @@ public function zilCodexEntry():void
 public function gabilaniCodex():void
 {
 	clearOutputCodex();
-	showBust("COLENSO","GOBLIN_FEMALE");
+	showBust("COLENSO");
 	outputCodex(header("Gabilani"));
 	if(silly) outputCodex("<i>They’re eating her... and then they’re going to eat me! ..... OH MY GOOOOOOOOOOD!!!</i>\n\n");
 	outputCodex("<b>Name (Singular & Plural):</b> Gabilani (colloquially known as “Goblin” or “Goblins”)");
@@ -1063,19 +1068,19 @@ public function raskVelCodexEntry():void
 	outputCodex("Males have retractable, pointed purple penises that hide inside genital slits most of the time. Their gonads are kept in pouches that stay so taut to their belly that they appear almost spherical in spite of their three gonads. The female vaginas are purplish in hue, with small inner lips, larger outer lips, and clits on the top and the bottom.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Combat"));
-	outputCodex("Raskvel are a peaceful people, but coexisting on a planet with limited resources and highly competitive goblins has forced them into enough fights to know how to handle themselves. They prefer to use nonlethal weapons: stun guns, dart guns, sexual distractions, and aphrodisiacs. They will often flee when close to defeat, though when faced with sexual defeat they will often stay, sometimes even giving up early rather than risk further injury.");
+	outputCodex("Raskvel are a peaceful people, but coexisting on a planet with limited resources and highly competitive gabilani has forced them into enough fights to know how to handle themselves. They prefer to use nonlethal weapons: stun guns, dart guns, sexual distractions, and aphrodisiacs. They will often flee when close to defeat, though when faced with sexual defeat they will often stay, sometimes even giving up early rather than risk further injury.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Environs"));
 	outputCodex("Raskvel build villages under the surface of the planet to better conceal themselves from their enemies, only emerging to scavenge for technology, food, and trade. They can survive well in any temperate clime, though their reptilian blood causes them issue when faced with extreme cold or heat.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Reproduction"));
-	outputCodex("Raskvel are consummate breeders, one of the few races able to compete with goblins when it comes to sheer reproductive enthusiasm. They will breed with almost anything at any time, so long as it has a pleasant disposition and a compatible-looking penis or vagina. Most would consider them sluts, but to them, it is a way to survive a planet rife with industrial accidents and deadly foes. They love to mate with creatures bigger than themselves, believing it will give the young the strength to survive longer on their harsh home planet.\n\nShortly before pregnancy they will be immobilized by the size of their incubating bellies, but birth occurs with such rapidity after that that there is little danger from this. They will lay anywhere from three to ten large eggs in an act that they describe as “hellishly pleasurable” before slumbering to recover. The eggs will hatch within a month, each containing a young Raskvel if fertilized. The eggs do not need to be incubated. Once laid they are often left to fend for themselves, as the Raskvel are quite lacking in maternal instincts. The offspring are inquisitive, knowledge-hungry creatures that soak up information like sponges and mature enough to work and talk within a month or two. Full adulthood and sexual maturity do not come for at least two years.");
+	outputCodex("Raskvel are consummate breeders, one of the few races able to compete with gabilani when it comes to sheer reproductive enthusiasm. They will breed with almost anything at any time, so long as it has a pleasant disposition and a compatible-looking penis or vagina. Most would consider them sluts, but to them, it is a way to survive a planet rife with industrial accidents and deadly foes. They love to mate with creatures bigger than themselves, believing it will give the young the strength to survive longer on their harsh home planet.\n\nShortly before pregnancy they will be immobilized by the size of their incubating bellies, but birth occurs with such rapidity after that that there is little danger from this. They will lay anywhere from three to ten large eggs in an act that they describe as “hellishly pleasurable” before slumbering to recover. The eggs will hatch within a month, each containing a young Raskvel if fertilized. The eggs do not need to be incubated. Once laid they are often left to fend for themselves, as the Raskvel are quite lacking in maternal instincts. The offspring are inquisitive, knowledge-hungry creatures that soak up information like sponges and mature enough to work and talk within a month or two. Full adulthood and sexual maturity do not come for at least two years.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Diplomatic Relations"));
-	outputCodex("Raskvel are often hostile toward goblins but will rarely throw the first attack. They hate rust monsters with a passion, due to that race’s propensity for devouring their recently repaired machinery.");
+	outputCodex("Raskvel are often hostile toward gabilani but will rarely throw the first attack. They hate rust monsters with a passion, due to that race’s propensity for devouring their recently repaired machinery.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Other Notes"));
-	outputCodex("Raskvel are known as skilled mechanics but less gifted inventors. They tend to be obsessed with fixing rather than creating, a trait that makes goblins prize them as pets in spite of their racial squabbles. Needless to say, the Raskvel do not enjoy being held in that state.");
+	outputCodex("Raskvel are known as skilled mechanics but less gifted inventors. They tend to be obsessed with fixing rather than creating, a trait that makes gabilani prize them as pets in spite of their racial squabbles. Needless to say, the Raskvel do not enjoy being held in that state.");
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Raskvel");
 }
@@ -1146,7 +1151,7 @@ public function lapinaraCodexEntry():void
 	outputCodex("The Lapinara are a sapient, rabbit-like race on digitigrade legs. Their faces are mostly humanesque, possessing tiny, button-like, constantly wiggling noses, as well as long whiskers. Their ears are large and rabbit-like. Given their long incisors and molars built for tough grinding, they have a very powerful, painful bite. A pair of horns, similar to that of the pronghorn grow from the foreheads of all genders. Parasitic females, non-parasitic females, and fem-herms have small, perky breasts, never more than A-cup. Parasitic gender skin comes in varying shades of gray. The skin tone of the other genders is determined by their host parent.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Environs Typically Inhabited"));
-	outputCodex("The Lapinara are a highly adaptive species. Not possessing a home planet of their own, they are a nomadic kind. Many of the parasitic variety, however, have taken up residence on Tarkus, taking advantage of the local sex-loving goblins and Raskvel, as well as any oblivious visitors.");
+	outputCodex("The Lapinara are a highly adaptive species. Not possessing a home planet of their own, they are a nomadic kind. Many of the parasitic variety, however, have taken up residence on Tarkus, taking advantage of the local sex-loving Gabilani and Raskvel, as well as any oblivious visitors.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Reproduction"));
 	outputCodex("Parasitic females are nothing short of pests. They are sex machines, completely obsessed with implanting their eggs into an unfortunate host. While appearing to have typical male genitalia, they are actually anything but. Their “penis” is actually an ovipositor, and their “testicles” instead hold their ovaries. These faux testicles swell up considerably when they have eggs ready. The presence of eggs causes the parasitic Lapinara to enter a rut-like state that doesn’t end until they are rid of them. The pre-cum of the parasitic Lapinara works as an anesthetic, preventing egg implantation from hurting the host.\n\nThe eggs are soft-shelled, and can only continue development if they’re implanted via a host organism’s anus or vagina, where they absorb the second half of the required genetic material. Labor is initiated when the soft outer shell dissolves. This produces non-parasitic offspring that are always born in pairs, and always the same gender as the host parent. Hair, eye, and skin color is also determined by the host parent. Males and herms tend to inherit penis type from their host parent, and females and herms tend to inherit vagina type from their host parent.\n\nMore parasitic females are produced when one parasitic female implants her eggs in another parasitic female. The non-parasitic genders reproduce just like any human, albeit with significantly shorter pregnancies, never longer than three months, but never shorter than two.");
