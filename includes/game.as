@@ -2630,7 +2630,8 @@ public function statisticsScreen(showID:String = "All"):void
 					}
 					if(pc.cocks[x].cockColor != "") output2(" " + StringUtil.toDisplayCase(pc.cocks[x].cockColor) + ",");
 					output2(" " + GLOBAL.TYPE_NAMES[pc.cocks[x].cType]);
-					output2("\n<b>* Length, Flaccid: </b>" + prettifyLength(pc.cLength(x) * pc.cocks[x].flaccidMultiplier));
+					output2("\n<b>* Length, Flaccid: </b>" + prettifyLength(pc.cLengthFlaccid(x)));
+					output2("\n<b>* Length, Current: </b>" + prettifyLength(pc.cLengthFlaccid(x, true)));
 					output2("\n<b>* Length, Erect: </b>" + prettifyLength(pc.cLength(x)));
 					output2("\n<b>* Thickness: </b>" + prettifyLength(pc.cThickness(x)));
 					if(pc.hasKnot(x)) output2("\n<b>* Knot Thickness: </b>" + prettifyLength(pc.knotThickness(x)));
