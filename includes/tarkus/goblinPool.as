@@ -1269,8 +1269,7 @@ public function arbetzPoolOptions(response:int = 0):void
 			
 			// [Do it] [No]
 			addButton(0, "Do it", arbetzPoolJUSTDOIT, 1);
-			addDisabledButton(1, "Other Way?");
-			addButton(2, "No", arbetzPoolOptions, 3);
+			addButton(1, "No", arbetzPoolOptions, 3);
 		}
 		// PC is female, D cup or above, is not pregnant, is wearing something
 		else if (pc.hasVagina() && pc.biggestTitSize() >= 4 && !pc.isPregnant()&& !pc.isNude())
@@ -1282,8 +1281,7 @@ public function arbetzPoolOptions(response:int = 0):void
 			
 			// [Do it] [No]
 			addButton(0, "Do it", arbetzPoolJUSTDOIT, 0);
-			addDisabledButton(1, "Other Way?");
-			addButton(2, "No", arbetzPoolOptions, 3);
+			addButton(1, "No", arbetzPoolOptions, 3);
 		}
 		// Otherwise
 		else
@@ -1295,7 +1293,7 @@ public function arbetzPoolOptions(response:int = 0):void
 			// [Pay] [Don't]
 			if (pc.credits < 5000) addDisabledButton(0, "Pay", "Pay", "You are just too poor for this!");
 			else addButton(0, "Pay", arbetzPoolOptions, 1, "Pay", "Price: 5000 Credits");
-			addDisabledButton(1, "Other Way?", "Other Way?", "You should probably wear some garments and have the body type Una is looking for before trying this option again...");
+			addDisabledButton(1, "Other Way?", "Other Way?", "You should probably be half-naked and have the body type Una is looking for before trying this option again...");
 			addButton(2, "Don’t", arbetzPoolOptions, 0);
 		}
 	}
@@ -1310,8 +1308,7 @@ public function arbetzPoolOptions(response:int = 0):void
 		// [Pay] [Don't]
 		if (pc.credits < 5000) addDisabledButton(0, "Pay", "Pay", "You are just too poor for this!");
 		else addButton(0, "Pay", arbetzPoolOptions, 1, "Pay", "Price: 5000 Credits");
-		addDisabledButton(1, "Other Way?");
-		addButton(2, "Don’t", arbetzPoolOptions, 0);
+		addButton(1, "Don’t", arbetzPoolOptions, 0);
 	}
 }
 
