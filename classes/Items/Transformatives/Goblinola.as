@@ -357,6 +357,7 @@ package classes.Items.Transformatives
 		//#5b Goblin face: Stage two happens 30 minutes after stage 1 ends, and the face type only changes when stage 2 triggers.
 		public function itemGoblinFaceTFGo(target:Creature):void
 		{
+			kGAMECLASS.eventBuffer += "\n\n<u>The goblinola bar has an effect....</u>";
 			// Transformation text (stage 2):
 			kGAMECLASS.eventBuffer += "Finally the pain in your face subsides, and you take a deep breath. You check to see what the damage is and find that your face has restructured itself. Your nose has grown longer and pointier, while your jaw has narrowed a fair bit giving your face a more angular appearance not unlike that of an upside down triangle. <b>You now have a gabilani face!</b>";
 			// Actual face type change
@@ -364,6 +365,8 @@ package classes.Items.Transformatives
 			target.clearFaceFlags();
 			target.addFaceFlag(GLOBAL.FLAG_ANGULAR);
 			target.removeStatusEffect("Gabilani Face Change");
+			clearMenu();
+			addButton(0,"Next",kGAMECLASS.mainGameMenu);
 		}
 		// Sexual and Stat Changes and Perks
 		private function majorGoblinMutations(target:Creature):void
@@ -488,6 +491,7 @@ package classes.Items.Transformatives
 						// Increase capacity but also increase tightness.
 						if(target.vaginas[n].loosenessRaw > 1) target.vaginas[n].loosenessRaw -= 1;
 						if(target.vaginas[n].loosenessRaw < 0.5) target.vaginas[n].loosenessRaw = 0.5;
+						if(target.vaginas[n].minLooseness > 0.5) target.vaginas[n].minLooseness = 0.5;
 						if(target.vaginas[n].bonusCapacity < 2000) target.vaginas[n].bonusCapacity = 2000;
 						else target.vaginas[n].bonusCapacity += 500;
 						target.lust(10 + rand(20));
@@ -539,14 +543,14 @@ package classes.Items.Transformatives
 					// > 60% Intel:
 					else kGAMECLASS.eventBuffer += "A headache pulses behind your brow as your brain rewires itself slightly. You see yet more layers of information splitting off everything you observe; the immediate impulses coursing through your mind is how you might exploit it, how you might grasp your realizations and do something fantastical with it before anyone else does. It’s an awesome and more than slightly eerie sensation.";
 					
-					target.intelligence(2);
+					target.slowStatGain("intelligence", 2);
 				}
 				//#6 Reflexes increase towards 60%
 				else if(select == 6)
 				{
 					kGAMECLASS.eventBuffer += "Your movements feel jerkier, as if your joints were acting up. As your perception adapts, though, you realize that in actuality you are now reacting and moving slightly faster.";
 					
-					target.reflexes(2);
+					target.slowStatGain("reflexes", 2);
 				}
 				//#7 Physique decrease towards 30%
 				else if(select == 7)
@@ -561,20 +565,23 @@ package classes.Items.Transformatives
 				//#8 Fertility increase/Libido increase towards 80%
 				else if(select == 8)
 				{
-					kGAMECLASS.eventBuffer += "You " + target.mf("growl","purr") + " with enjoyment as liquid heat sinks down from your tummy to your groin,";
-					if(target.balls > 0)
+					kGAMECLASS.eventBuffer += "You " + target.mf("growl","purr") + " with enjoyment as liquid heat sinks down from your tummy to your groin";
+					var virilityChange:Boolean = false;
+					if(target.balls > 0 && target.cumQualityRaw < 3)
 					{
-						kGAMECLASS.eventBuffer += " your [pc.balls] swelling in gratification";
-						target.cumQualityRaw += 1;
+						kGAMECLASS.eventBuffer += ", your [pc.balls] swelling in gratification";
+						target.cumQualityRaw += 0.01;
+						virilityChange = true;
+						if(target.hasVagina() && target.fertilityRaw < 3) kGAMECLASS.eventBuffer += " and";
 					}
-					if(target.balls > 0 && target.hasVagina()) kGAMECLASS.eventBuffer += " and";
-					if(target.hasVagina())
+					if(target.hasVagina() && target.fertilityRaw < 3)
 					{
+						if(!virilityChange) kGAMECLASS.eventBuffer += ",";
 						kGAMECLASS.eventBuffer += " [pc.eachVagina] moistening with anticipatory need";
-						target.fertilityRaw += 1;
+						target.fertilityRaw += 0.01;
 					}
-					kGAMECLASS.eventBuffer += ". An increasingly tigrish and prickly urge to breed is stealing over you.";
-					
+					kGAMECLASS.eventBuffer += ". An increasingly tigerish and prickly urge to breed is stealing over you.";
+					target.slowStatGain("libido", 2);
 					//Lust increase
 					target.lust(30 + rand(50));
 				}
@@ -646,8 +653,6 @@ package classes.Items.Transformatives
 		public function itemEndGoblinTF():void
 		{
 			itemGoblinTF(true);
-			clearMenu();
-			addButton(0,"Next",kGAMECLASS.mainGameMenu);
 		}
 		
 		//METHOD ACTING!
@@ -685,7 +690,7 @@ package classes.Items.Transformatives
 					target.setStatusValue("Goblinola Bar", 1, timerStamp);
 					target.setStatusMinutes("Goblinola Bar", timerStamp);
 					// Increase chance for major TFs!
-					if(target.statusEffectv2("Goblinola Bar") < 4) target.addStatusValue("Goblinola Bar",2,1);
+					if(target.statusEffectv2("Goblinola Bar") < 4) target.addStatusValue("Goblinola Bar", 2, 1);
 				}
 				else
 				{
