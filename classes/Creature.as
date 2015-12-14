@@ -5944,11 +5944,24 @@ package classes {
 			if(arg < 0) return -1;
 			return cocks[arg].thickness();
 		}
-		public function cLength(arg:int = 0):Number
+		public function cLength(arg:int = 0, dynamicLength:Boolean = false):Number
 		{
 			if(arg >= cocks.length) return -1;
 			if(arg < 0) return -1;
+			if (dynamicLength) cLengthFlaccid(arg, true);
 			return cocks[arg].cLength();
+		}
+		public function cLengthFlaccid(arg:int = 0, dynamicLength:Boolean = false): Number
+		{
+			if(arg >= cocks.length) return -1;
+			if(arg < 0) return -1;
+			if (dynamicLength)
+			{
+				var lustRatio: Number = (lust()/100);
+				if (lustRatio > 1) lustRatio = 1; // To avoid over erect length
+				return (cocks[arg].cLengthFlaccid() + ((cocks[arg].cLength() - cocks[arg].cLengthFlaccid()) * lustRatio));
+			}
+			return cocks[arg].cLengthFlaccid();
 		}
 		public function thickestCock(): Number {
 			if (cocks.length == 0) return 0;
@@ -8183,16 +8196,16 @@ package classes {
 			if (biggestTitSize() < 1) return chestDesc();
 			else return allBreastsDescript();
 		}
-		public function eachCock(): String {
+		public function eachCock(dynamicLength:Boolean = false): String {
 			var desc: String = "";
 			if (totalCocks() > 1) desc += "each of ";
-			desc += "your " + cocksDescript();
+			desc += "your " + cocksDescript(dynamicLength);
 			return desc;
 		}
-		public function oneCock(): String {
+		public function oneCock(dynamicLength:Boolean = false): String {
 			var desc: String = "";
 			if (totalCocks() > 1) desc += "one of ";
-			desc += "your " + cocksDescript();
+			desc += "your " + cocksDescript(dynamicLength);
 			return desc;
 		}
 		public function ballsDescript(forceCount: Boolean = false, forceSize: Boolean = false, forceSingular: Boolean = false, appearance: Boolean = false): String {
@@ -9903,7 +9916,7 @@ package classes {
 			}
 			return true;
 		}
-		public function multiCockDescript(): String {
+		public function multiCockDescript(dynamicLength:Boolean = false): String {
 			if (cocks.length < 1) return "<B>Error: multiCockDescript() called with no penises present.</B>";
 			//Get cock counts
 			var descript: String = "";
@@ -9911,7 +9924,7 @@ package classes {
 			var descripted: Boolean = false;
 
 			//Single dick gets normal output
-			if (cocks.length == 1) return cockDescript(0);
+			if (cocks.length == 1) return cockDescript(0, dynamicLength);
 
 			//Numbers!
 			else if (cocks.length <= 2) {
@@ -9955,13 +9968,13 @@ package classes {
 				if (rando == 3) descript += "wriggling bunch of ";
 			}
 			//Append Nounse
-			if (hasSamecType()) descript += cockAdjective() + ", " + pluralize(cockNoun2(cocks[0], false, ""));
+			if (hasSamecType()) descript += cockAdjective(-1, dynamicLength) + ", " + pluralize(cockNoun2(cocks[0], false, ""));
 			else {
 				rando = rand(4);
-				if (rando == 0) descript += cockAdjective() + ", mutated cocks";
-				if (rando == 1) descript += cockAdjective() + ", mutated dicks";
-				if (rando == 2) descript += cockAdjective() + ", mixed cocks";
-				if (rando == 3) descript += cockAdjective() + ", mismatched dicks";
+				if (rando == 0) descript += cockAdjective(-1, dynamicLength) + ", mutated cocks";
+				if (rando == 1) descript += cockAdjective(-1, dynamicLength) + ", mutated dicks";
+				if (rando == 2) descript += cockAdjective(-1, dynamicLength) + ", mixed cocks";
+				if (rando == 3) descript += cockAdjective(-1, dynamicLength) + ", mismatched dicks";
 			}
 			return descript;
 		}
@@ -10023,7 +10036,7 @@ package classes {
 				return formatList();
 			}
 		}
-		public function crotchDescript():String {
+		public function crotchDescript(dynamicLength:Boolean = false):String {
 
 			clearList();
 			
@@ -10034,7 +10047,7 @@ package classes {
 				else return "bare groin";
 			}
 			//Make da list!
-			if(hasCock()) addToList(cocksDescript());
+			if(hasCock()) addToList(cocksDescript(dynamicLength));
 			if(balls > 0) addToList(ballsDescript());
 			if(hasVagina()) addToList(vaginasDescript());
 			
@@ -10073,14 +10086,14 @@ package classes {
 			else return "nothing";
 		}
 		//Basic multiple cock description.
-		public function cocksDescript(): String {
+		public function cocksDescript(dynamicLength:Boolean = false): String {
 			if (cocks.length < 1) return "<b>ERROR: NO WANGS DETECTED for cocksDescript()</b>";
 			//Single dicks are normal.
-			else if (cocks.length == 1) return cockDescript();
+			else if (cocks.length == 1) return cockDescript(0, dynamicLength);
 			//Matched dicks get full cocknoun.
-			if (hasSamecType()) return pluralize(cockAdjective() + ", " + cockNoun2(cocks[0], false));
+			if (hasSamecType()) return pluralize(cockAdjective(-1, dynamicLength) + ", " + cockNoun2(cocks[0], false));
 			//Unmatched get default types
-			else return pluralize(cockAdjective() + " " + randomSimpleCockNoun());
+			else return pluralize(cockAdjective(-1, dynamicLength) + " " + randomSimpleCockNoun());
 		}
 		//Ultra-basic multiple cock description
 		public function cocksDescriptLight(): String {
@@ -10343,7 +10356,7 @@ package classes {
 			return descript;
 		}
 		//New cock adjectives. The old one sucked dicks
-		public function cockAdjective(cockNum: Number = -1):String {
+		public function cockAdjective(cockNum: Number = -1, dynamicLength:Boolean = false):String {
 			var descript: String = "";
 			var rando: Number = 0;
 			var multi: Boolean = false;
@@ -10353,6 +10366,7 @@ package classes {
 				cockNum = biggestCockIndex();
 				multi = true;
 			}
+			var cLength: Number = cLength(cockNum, dynamicLength);
 			//Color: 1/15 chance
 			if (!multi && rand(15) == 0)
 			{
@@ -10361,12 +10375,12 @@ package classes {
 			//Bimbo flavor - 1/6 chance
 			else if(rand(6) == 0 && isBimbo())
 			{
-				if(rand(7) == 8 && cocks[cockNum].cLength() < 6) descript += "cute";
+				if(rand(7) == 8 && cLength < 6) descript += "cute";
 				else if(rand(7) == 0) descript += "mouth-watering";
 				else if(rand(6) == 0) descript += "totally sexy";
 				else if(rand(5) == 0) descript += "super hot";
 				else if(rand(4) == 0) descript += "delicious-looking";
-				else if(rand(3) == 0 && cocks[cockNum].cLength() >= 10) descript += "awe-inspiring";
+				else if(rand(3) == 0 && cLength >= 10) descript += "awe-inspiring";
 				else descript += "yummy";
 			}
 			//Pierced - 1/5 chance
@@ -10400,22 +10414,22 @@ package classes {
 			}
 			//Length 1/3 chance
 			else if (rand(3) == 0) {
-				if (cocks[cockNum].cLength() < 3) {
+				if (cLength < 3) {
 					rando = rand(4);
 					if (rando == 0) descript = "little";
 					else if (rando == 1) descript = "toy-sized";
 					else if (rando == 2) descript = "mini";
 					else if (rando == 3) descript = "budding";
 					else descript = "tiny";
-				} else if (cocks[cockNum].cLength() < 5) {
+				} else if (cLength < 5) {
 					rando = rand(2);
 					if (rando == 0) descript = "short";
 					else descript = "small";
-				} else if (cocks[cockNum].cLength() < 7) {
+				} else if (cLength < 7) {
 					rando = rand(2);
 					if (rando == 0) descript = "fair-sized";
 					else descript = "nice";
-				} else if (cocks[cockNum].cLength() < 11) {
+				} else if (cLength < 11) {
 					rando = rand(3);
 					if (rando == 0) {
 						if (cocks[cockNum].cType == GLOBAL.TYPE_EQUINE) descript = "pony-sized";
@@ -10424,24 +10438,24 @@ package classes {
 						if (cocks[cockNum].cType == GLOBAL.TYPE_EQUINE) descript = "colt-like";
 						else descript = "lengthy";
 					} else descript = "sizable";
-				} else if (cocks[cockNum].cLength() < 14) {
+				} else if (cLength < 14) {
 					rando = rand(3);
 					if (rando == 0) descript = "huge";
 					else if (rando == 1) {
 						if (cocks[cockNum].cType == GLOBAL.TYPE_CANINE) descript = "mastiff-like";
 						else descript = "cucumber-length";
 					} else descript = "foot-long";
-				} else if (cocks[cockNum].cLength() < 18) {
+				} else if (cLength < 18) {
 					rando = rand(3);
 					if (rando == 0) descript = "massive";
 					else if (rando == 1) descript = "knee-length";
 					else descript = "forearm-length";
-				} else if (cocks[cockNum].cLength() < 30) {
+				} else if (cLength < 30) {
 					rando = rand(3);
 					if (rando == 0) descript = "enormous";
 					else if (rando == 1) descript = "giant";
 					else descript = "arm-length";
-				} else if (cocks[cockNum].cLength() < 50) {
+				} else if (cLength < 50) {
 					rando = rand(7);
 					if (cocks[cockNum].cType == GLOBAL.TYPE_FELINE && rand(4) == 0) descript = "coiled ";
 					else {
@@ -10453,7 +10467,7 @@ package classes {
 						else if (rando == 5) descript = "hyper";
 						else descript = "massive";
 					}
-				} else if (cocks[cockNum].cLength() < 100) {
+				} else if (cLength < 100) {
 					rando = rand(8);
 					if (cocks[cockNum].cType == GLOBAL.TYPE_FELINE && rand(4) == 0) descript = "coiled ";
 					else {
@@ -11296,7 +11310,7 @@ package classes {
 			// Error, return something though!
 			else return "strapon";
 		}
-		public function cockDescript(cockNum: Number = 0): String {
+		public function cockDescript(cockNum: Number = 0, dynamicLength:Boolean = false): String {
 			if (totalCocks() == 0) return "<b>ERROR: CockDescript Called But No Cock Present</b>";
 			if (cockTotal() <= cockNum && cockNum != 99) return "<b>ERROR: CockDescript called with index of " + cockNum + " - out of BOUNDS</b>";
 
@@ -11305,7 +11319,7 @@ package classes {
 			if (cockNum != 99) {
 				//70% of the time add a descriptor
 				if (rand(10) <= 6) {
-					descript += cockAdjective(cockNum);
+					descript += cockAdjective(cockNum, dynamicLength);
 					//50% of the time add supplimental cock adjective with the noun.
 					if (rand(2) == 0) {
 						descript += ", " + cockNoun2(cocks[cockNum], false);
@@ -11322,7 +11336,7 @@ package classes {
 			//Boring descriptions. Mostly the same but kinda lame, actually.
 			else {
 				//70% of the time add a descriptor
-				if (rand(10) <= 6) descript += cockAdjective(-1) + " " + randomSimpleCockNoun();
+				if (rand(10) <= 6) descript += cockAdjective(-1, dynamicLength) + " " + randomSimpleCockNoun();
 				else descript += randomSimpleCockNoun();
 			}
 			return descript;
