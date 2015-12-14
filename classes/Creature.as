@@ -5968,7 +5968,7 @@ package classes {
 		{
 			if(arg >= cocks.length) return -1;
 			if(arg < 0) return -1;
-			if (dynamicLength) cLengthFlaccid(arg, true);
+			if (dynamicLength) return cLengthFlaccid(arg, true);
 			return cocks[arg].cLength();
 		}
 		public function cLengthFlaccid(arg:int = 0, dynamicLength:Boolean = false): Number
