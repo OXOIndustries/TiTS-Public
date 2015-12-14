@@ -1630,6 +1630,26 @@ package classes {
 				case "oneCockHead":
 					buffer = oneCockHead();
 					break;
+				case "erectCock":
+				case "flaccidCock":
+					buffer = cockDescript(arg2, true);
+					break;
+				case "erectCocks":
+				case "flaccidCocks":
+					buffer = cocksDescript(true);
+					break;
+				case "erectMultiCocks":
+				case "flaccidMultiCocks":
+					buffer = multiCockDescript(true);
+					break;
+				case "eachErectCock":
+				case "eachFlaccidCock":
+					buffer = eachCock(true);
+					break;
+				case "oneErectCock":
+				case "oneFlaccidCock":
+					buffer = oneCock(true);
+					break;
 				case "balls":
 					buffer = ballsDescript();
 					break;
