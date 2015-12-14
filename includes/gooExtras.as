@@ -892,14 +892,16 @@ public function reshapeAGooCawkForReaaaaal(arg:int = 0):void
 		cTypes.push(GLOBAL.TYPE_DRACONIC);
 	
 	var newType:Number = 0;
+	var btnName:String = "";
 	for(var x:int = 0; x < cTypes.length; x++)
 	{
 		newType = cTypes[x];
-		if(newType == GLOBAL.TYPE_HUMAN) addGhostButton(x,"Terran",seriouslyThoReshapeDatGooCock,[arg,GLOBAL.TYPE_HUMAN]);
-		else if(newType == GLOBAL.TYPE_SNAKE) addGhostButton(x,"Snake-like",seriouslyThoReshapeDatGooCock,[arg,GLOBAL.TYPE_SNAKE]);
-		else if(newType == GLOBAL.TYPE_BEE) addGhostButton(x,"Zil",seriouslyThoReshapeDatGooCock,[arg,GLOBAL.TYPE_BEE]);
-		else if(pc.cocks[arg].cType != newType) addGhostButton(x,GLOBAL.TYPE_NAMES[newType],seriouslyThoReshapeDatGooCock,[arg,newType]);
-		else addDisabledGhostButton(x,GLOBAL.TYPE_NAMES[newType],GLOBAL.TYPE_NAMES[newType],"The penis is already this shape.");
+		if(newType == GLOBAL.TYPE_HUMAN) btnName = "Terran";
+		else if(newType == GLOBAL.TYPE_SNAKE) btnName = "Snake-like";
+		else if(newType == GLOBAL.TYPE_BEE) btnName = "Zil";
+		else btnName = GLOBAL.TYPE_NAMES[newType];
+		if(pc.cocks[arg].cType != newType) addGhostButton(x,btnName,seriouslyThoReshapeDatGooCock,[arg,newType]);
+		else addDisabledGhostButton(x,btnName,btnName,"The penis is already this shape.");
 	}
 	
 	if(pc.cockTotal() == 1) addGhostButton(14,"Back",gooCockRootMenu);
@@ -1483,12 +1485,14 @@ public function pickNewCuntType(arg:int = 0):void
 		vTypes.push(GLOBAL.TYPE_LAPINARA);
 	
 	var newType:Number = 0;
+	var btnName:String = "";
 	for(var x:int = 0; x < vTypes.length; x++)
 	{
 		newType = vTypes[x];
-		if(newType == GLOBAL.TYPE_HUMAN) addGhostButton(x,"Terran",actuallyTFToNewCuntType,[arg,GLOBAL.TYPE_HUMAN]);
-		else if(pc.vaginas[arg].type != newType) addGhostButton(x,GLOBAL.TYPE_NAMES[newType],actuallyTFToNewCuntType,[arg,newType]);
-		else addDisabledGhostButton(x,GLOBAL.TYPE_NAMES[newType],GLOBAL.TYPE_NAMES[newType],"The vagina is already this shape.");
+		if(newType == GLOBAL.TYPE_HUMAN) btnName = "Terran";
+		else btnName = GLOBAL.TYPE_NAMES[newType];
+		if(pc.vaginas[arg].type != newType) addGhostButton(x,btnName,actuallyTFToNewCuntType,[arg,newType]);
+		else addDisabledGhostButton(x,btnName,btnName,"The vagina is already this shape.");
 	}
 	
 	if(pc.totalVaginas() == 1) addGhostButton(14,"Back",vaginaGooRootMenu);
