@@ -192,7 +192,8 @@ public function arbetzMainApproach():Boolean
 				{
 					clearMenu();
 					addButton(0, "Where?", arbetzMainInitialOptions, 0, "Where are you?", "Ask about this place.");
-					addButton(14, "Leave", mainGameMenu);
+					addButton(1, "Aid", arbetzMainInitialOptions, 1, "First Aid", "Ask for some help.");
+					addButton(14, "Leave", move, "225");
 					return true;
 				}
 				
@@ -245,7 +246,7 @@ public function arbetzMainInitialOptions(response:int = 0):void
 		clearMenu();
 		addButton(0, "Where?", arbetzMainInitialOptions, 0, "Where are you?", "Ask about this place.");
 		addDisabledButton(1, "Aid");
-		addButton(14, "Leave", mainGameMenu);
+		addButton(14, "Leave", move, "225");
 	}
 	// Where?
 	else
