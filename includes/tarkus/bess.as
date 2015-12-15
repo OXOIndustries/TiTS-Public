@@ -13261,7 +13261,20 @@ public function bessEventMap(bChance:Boolean = false):void
 				output(", next event");
 				if (nTimer <= GetGameTimestamp()) output(" after " + prettifyMinutes(GetGameTimestamp() - nTimer));
 				output(" at 1/" + iChance + " chance");
-				if (shipLocation != "SHIP HANGAR" && shipLocation != "500") output(", [bess.name] as sleeping partner");
+				if (shipLocation != "SHIP HANGAR" && shipLocation != "500")
+				{
+					if(flags["RIVALCONFIGURED"] == undefined && flags["NEW_TEXAS_COORDINATES_GAINED"] == undefined)
+					{
+						output(", <i>???</i>");
+					}
+					else
+					{
+						output(", ship is on");
+						if (flags["RIVALCONFIGURED"] != undefined) output(" Mhen’ga");
+						if (flags["RIVALCONFIGURED"] != undefined && flags["NEW_TEXAS_COORDINATES_GAINED"] != undefined) output(" or");
+						if (flags["NEW_TEXAS_COORDINATES_GAINED"] != undefined) output(" New Texas");
+					}
+				}
 				if (flags["BESS_DATES"] < 6) output(" after " + (6 - flags["BESS_DATES"]) + " dates");
 				if (bessAffection() < 80) output(" and 80% affection");
 			}
