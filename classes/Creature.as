@@ -11509,9 +11509,17 @@ package classes {
 			var descripted: Boolean = false;
 			if (breastRows[rowNum].breastRating() < 1) {
 				temp = rand(10);
-				if (temp <= 3) return "pecs";
+				if (temp <= 3)
+				{
+					if (tone < 30) return mf("pecs", "non-existent breasts");
+					return "pecs";
+				}
 				else if (temp <= 6) return "flat, almost non-existent breasts";
-				else return "pectoral muscles";
+				else
+				{
+					if (tone < 30) return mf("pectoral muscles", "flat breasts");
+					return "pectoral muscles";
+				}
 			}
 			//50% of the time size-descript them
 			if (rand(2) == 0) {
