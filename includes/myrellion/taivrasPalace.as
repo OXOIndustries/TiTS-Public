@@ -2518,7 +2518,7 @@ public function takeTentaclesForTaivra():void
 	output("\n\nEither way, though, you’re going to have a good time.");
 	output("\n\nThe green tendrils squirm in your grasp, beading with watery white pre as you stroke them. You’re not sure if these things change much when they’re erect, but you want to make sure they’re as stiff as they’re going to be when you get down to it. You’re not satisfied until you’ve gotten your hands on all twelve of her tentacle cocks, stroking and caressing, even letting your mouth find a few of their crowns to kiss and suck them.");
 	if(pc.isBimbo()) output(" You tell yourself you want to lube ‘em up, but really you find yourself deep throating the throbbing lengths, barely able to tear yourself away from them when another demands your attention.");
-	output(" Your hands eventually find their way between the queen’s legs, following the curves of her ass down to the tumescing shaft of her ovipositor cock.");
+	output(" Your hands eventually find their way between the queen’s legs, following the curves of her ass down to the tumescent shaft of her ovipositor cock.");
 
 	output("\n\nTaivra gasps as you grab her dick, sucking in her breath as you massage her shaft from the knotty base to her spiny tip. Your hand comes back covered in brightly-colored, hot slime - the nyrean equivalent of fem-lube, no doubt. You grin to yourself and reach down between your [pc.legs], smearing the sticky substance all over your [pc.vagOrAss " + x + "], using Taivra’s own juices to lube yourself up. Grinning happily, you grab a few of Taivra’s squirming tails into a bushel and drag them back towards your slicked-up hole, finally ready to have some fun!");
 
@@ -4120,7 +4120,7 @@ public function leavePrincess2Harem():void
 	clearOutput();
 	showPrincess();
 	output("The moment you turn to leave the room, there is a flurry of movement from behind you. A dozen dickless nyrean ‘girls’ swarm your fallen foe, dragging her up into the bed. You spare a glance her way as they snap her arms and legs into the bondage equipment and fit a ring around her quivering dick. She looks like she wants to protest, but her lips barely manage a throaty, eager moan.");
-	output("\n\nThe sounds of vigorous sex start when you close the door. At least she has her harem for company.");
+	output("\n\nThe sounds of vigorous sex start when you close the door. At least she has her harem for company.\n\n");
 	leavePrincessRoom();
 	genericVictory();
 }
