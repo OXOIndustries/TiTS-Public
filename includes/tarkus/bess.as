@@ -12925,6 +12925,7 @@ public function bessEventMap(bChance:Boolean = false):void
 		if (flags["BESS_LOVER"] != undefined) output(" [bess.name] is a lover");
 		else if (flags["BESS_FRIEND"] != undefined) output(" [bess.name] is a friend");
 		else output(" <i>In progress...</i>");
+		if (flags["BESS_EVENT_28"] != undefined) output(", Completed");
 	}
 	output2("\n<b>* Affection: </b>" + flags["BESS_AFFECTION"] + "%");
 	
