@@ -1291,9 +1291,11 @@ public function variableRoomUpdateCheck():void
 	if(flags["FUNGUS_QUEEN_SAVED"] == undefined && flags["LET_FUNGUS_QUEEN_DIE"] == undefined)
 	{
 		rooms["2S11"].northExit = "2S9";
+		if(!rooms["2S9"].hasFlag(GLOBAL.OBJECTIVE)) rooms["2S9"].addFlag(GLOBAL.OBJECTIVE);
 	}
 	else 
 	{
+		if(rooms["2S9"].hasFlag(GLOBAL.OBJECTIVE)) rooms["2S9"].removeFlag(GLOBAL.OBJECTIVE);
 		rooms["2S11"].northExit = "";
 	}
 	// Crystal Goo Silly Modes
