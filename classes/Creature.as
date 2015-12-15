@@ -11511,7 +11511,7 @@ package classes {
 				temp = rand(10);
 				if (temp <= 3)
 				{
-					if (tone < 30) return mf("pecs", "non-existent breasts");
+					if (tone < 30) return mf("pecs", "flat tits");
 					return "pecs";
 				}
 				else if (temp <= 6) return "flat, almost non-existent breasts";
