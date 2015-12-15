@@ -1374,7 +1374,8 @@ public function bessSleepWith():void
 public function bessLeaveFollowerMenu():void
 {
 	flags["BESS_NO_EVENT"] = undefined;
-	mainGameMenu();
+	//mainGameMenu();
+	crew();
 }
 
 //Appearance
