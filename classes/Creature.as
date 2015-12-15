@@ -1304,16 +1304,16 @@ package classes {
 					buffer = getWeaponName(true);
 					break;
 				case "readyWeapon":
-					buffer = weaponActionReady();
+					buffer = weaponActionReady(false, "stat");
 					break;
 				case "relaxWeapon":
-					buffer = weaponActionRelax();
+					buffer = weaponActionRelax(false, "stat");
 					break;
 				case "readyingWeapon":
-					buffer = weaponActionReady(true);
+					buffer = weaponActionReady(true, "stat");
 					break;
 				case "relaxingWeapon":
-					buffer = weaponActionRelax(true);
+					buffer = weaponActionRelax(true, "stat");
 					break;
 				case "readyMelee":
 					buffer = weaponActionReady(false, "melee");
@@ -2150,11 +2150,22 @@ package classes {
 			var singular:Boolean = ((this is PlayerCharacter) || plural);
 			var weaponName:String = getWeaponName();
 			
+			if (weapon == "stat")
+			{
+				if (hasMeleeWeapon() && (physique() > aim() || (physique() == aim() && affinity == "physique"))) weapon = "melee";
+				else if (hasRangedWeapon()) weapon = "ranged";
+			}
+			else
+			{
+				if (hasRangedWeapon()) weapon = "ranged";
+				else if (hasMeleeWeapon()) weapon = "melee";
+			}
+			
 			if (present) actions.push("readying", "preparing");
 			else if (singular) actions.push("ready", "prepare");
 			else actions.push("readies", "prepares");
 			
-			if (weapon = "ranged" || hasRangedWeapon())
+			if (weapon == "ranged")
 			{
 				if(present) actions.push("taking out", "getting out", "pulling out");
 				else if (singular) actions.push("take out", "get out", "pull out");
@@ -2179,7 +2190,7 @@ package classes {
 				}
 				weaponName = rangedWeapon.longName;
 			}
-			else if (weapon = "melee" || hasMeleeWeapon())
+			else if (weapon == "melee")
 			{
 				if (present) actions.push("taking out", "getting out", "pulling out");
 				else if (singular) actions.push("take out", "get out", "pull out");
@@ -2209,9 +2220,9 @@ package classes {
 			
 			if (full)
 			{
-				if (this is PlayerCharacter) return desc + " your " + weaponName;
-				else if (plural) return desc + " their " + weaponName;
-				else return desc + " " + mfn("his", "her", "its") + " " + weaponName;
+				if (this is PlayerCharacter) desc += " your " + weaponName;
+				else if (plural) desc += " their " + weaponName;
+				else desc += " " + mfn("his", "her", "its") + " " + weaponName;
 			}
 			return desc;
 		}
@@ -2222,11 +2233,22 @@ package classes {
 			var singular:Boolean = ((this is PlayerCharacter) || plural);
 			var weaponName:String = getWeaponName();
 			
+			if (weapon == "stat")
+			{
+				if (hasMeleeWeapon() && (physique() > aim() || (physique() == aim() && affinity == "physique"))) weapon = "melee";
+				else if (hasRangedWeapon()) weapon = "ranged";
+			}
+			else
+			{
+				if (hasRangedWeapon()) weapon = "ranged";
+				else if (hasMeleeWeapon()) weapon = "melee";
+			}
+			
 			if (present) actions.push("relaxing", "resting");
 			else if (singular) actions.push("relax", "rest");
 			else actions.push("relaxes", "rest");
 			
-			if (weapon = "ranged" || hasRangedWeapon())
+			if (weapon == "ranged")
 			{
 				if (present) actions.push("putting away", "putting back", "placing back");
 				else if (singular) actions.push("put away", "put back", "place back");
@@ -2251,7 +2273,7 @@ package classes {
 				}
 				weaponName = rangedWeapon.longName;
 			}
-			else if (weapon = "melee" || hasMeleeWeapon())
+			else if (weapon == "melee")
 			{
 				if (present) actions.push("putting away", "putting back", "placing back");
 				else if (singular) actions.push("put away", "put back", "place back");
@@ -2281,9 +2303,9 @@ package classes {
 			
 			if (full)
 			{
-				if (this is PlayerCharacter) return desc + " your " + weaponName;
-				else if (plural) return desc + " their " + weaponName;
-				else return desc + " " + mfn("his", "her", "its") + " " + weaponName;
+				if (this is PlayerCharacter) desc += " your " + weaponName;
+				else if (plural) desc += " their " + weaponName;
+				else desc += " " + mfn("his", "her", "its") + " " + weaponName;
 			}
 			return desc;
 		}
