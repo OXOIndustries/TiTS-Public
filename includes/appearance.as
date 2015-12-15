@@ -1119,9 +1119,9 @@ public function appearance(target:Creature):void
 					}
 					else
 					{
-						if(target.thickness > 70) output2(" wide chest with unremarkable pectoral muscles");
-						else if(target.thickness >= 30) output2(" passable chest with unremarkable pectoral muscles");
-						else output2(" flat chest with unremarkable pectoral muscles");
+						if(target.thickness > 70) output2(" wide chest with unremarkable " + target.mf("pectoral muscles", "breasts"));
+						else if(target.thickness >= 30) output2(" passable chest with unremarkable " + target.mf("pectoral muscles", "breasts"));
+						else output2(" flat chest with unremarkable " + target.mf("pectoral muscles", "breasts"));
 					}
 				}
 				output2(", capped with ");
