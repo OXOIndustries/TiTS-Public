@@ -2155,7 +2155,7 @@ package classes {
 				if (hasMeleeWeapon() && (physique() > aim() || (physique() == aim() && affinity == "physique"))) weapon = "melee";
 				else if (hasRangedWeapon()) weapon = "ranged";
 			}
-			else
+			else if (weapon == "default")
 			{
 				if (hasRangedWeapon()) weapon = "ranged";
 				else if (hasMeleeWeapon()) weapon = "melee";
@@ -2238,7 +2238,7 @@ package classes {
 				if (hasMeleeWeapon() && (physique() > aim() || (physique() == aim() && affinity == "physique"))) weapon = "melee";
 				else if (hasRangedWeapon()) weapon = "ranged";
 			}
-			else
+			else if (weapon == "default")
 			{
 				if (hasRangedWeapon()) weapon = "ranged";
 				else if (hasMeleeWeapon()) weapon = "melee";
