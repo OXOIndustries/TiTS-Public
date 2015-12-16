@@ -791,7 +791,7 @@ package classes {
 			}
 			else
 			{
-				return currHipRating;
+				return Math.round(currHipRating * 1000) / 1000;
 			}
 		}
 		
@@ -839,7 +839,7 @@ package classes {
 			}
 			else
 			{
-				return currButtRating;
+				return Math.round(currButtRating * 1000) / 1000;
 			}
 		}
 		
@@ -8531,7 +8531,7 @@ package classes {
 				if (rando == 0) desc += "voluptuous ";
 				else if (rando == 1) desc += "fertile ";
 				else if (rando == 2) desc += "child-bearing ";
-			} else if (hipRating() >= 20) {
+			} else {
 				if (femininity > 50 || hasVagina()) rando = rand(3);
 				else rando = rand(2);
 				if (thickness < 40) {
