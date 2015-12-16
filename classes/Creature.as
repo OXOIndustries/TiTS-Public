@@ -791,7 +791,7 @@ package classes {
 			}
 			else
 			{
-				return Math.round(currHipRating * 1000) / 1000;
+				return currHipRating;
 			}
 		}
 		
@@ -839,7 +839,7 @@ package classes {
 			}
 			else
 			{
-				return Math.round(currButtRating * 1000) / 1000;
+				return currButtRating;
 			}
 		}
 		
@@ -11890,7 +11890,7 @@ package classes {
 			}
 			else
 			{
-				return Math.round(currBellyRating * 1000) / 1000;
+				return currBellyRating;
 			}
 		}
 		
