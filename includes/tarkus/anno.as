@@ -2511,7 +2511,8 @@ public function deck13ShieldControlFunc():Boolean
 		else addDisabledButton(0,"Shields","Shields","You've already enabled the shields.");
 		addButton(1, "Breach", deck13Breach);
 
-		if (flags["DECK13_SAMPLES_TAKEN"] < 3) addButton(1, "Goo Sample", deck13GooSample);
+		if (flags["DECK13_SAMPLES_TAKEN"] == undefined || flags["DECK13_SAMPLES_TAKEN"] <= 3) addButton(2, "Goo Sample", deck13GooSample);
+		else addDisabledButton(2,"Goo Sample","Take Goo Sample","Looks like you’ve cleaned this place up of the excess goo.");
 		
 		if (flags["ANNO_NOVA_UPDATE"] == 1 && flags["ANNO_MISSION_OFFER"] == 3) addButton(5, "Make Goo", deck13MakeGoo);
 
@@ -2529,7 +2530,9 @@ public function deck13MakeGoo():void
 	
 	output("\n\nPoke. Nothing again.");
 	
-	output("\n\nYou grumble and pull your Codex out, hoping your device can sync with the goo cannister. You flip the Codex on and search for nearby networks. Again, nothing close enough to be the goo. Shit. You drop down to a [pc.knee] and start looking for an old-school data port. Sure enough, there’s one hidden underneath the console. You pull a universal cable from your Codex, and thankfully manage to slot it into the port. The Codex takes over from there, booting up the ancient computer and interfacing for you. The Bell-Isle/Grunmann logo appears, followed by a button-press command prompt, which the Codex translates onto its touch screen. That’s better. You tap through a few commands, instructing the machine to print you out a great big pile of gray goo.");
+	output("\n\nYou grumble and pull your Codex out, hoping your device can sync with the goo cannister. You flip the Codex on and search for nearby networks. Again, nothing close enough to be the goo. Shit. You drop down");
+	if (pc.hasKnees()) output(" to a [pc.knee]");
+	output(" and start looking for an old-school data port. Sure enough, there’s one hidden underneath the console. You pull a universal cable from your Codex, and thankfully manage to slot it into the port. The Codex takes over from there, booting up the ancient computer and interfacing for you. The Bell-Isle/Grunmann logo appears, followed by a button-press command prompt, which the Codex translates onto its touch screen. That’s better. You tap through a few commands, instructing the machine to print you out a great big pile of gray goo.");
 	
 	output("\n\nThe device hums to life and starts working, squirting out goo like ice cream from its spigot. You watch as it squirts and thrums, depositing gallons of murky silvery goop onto the deck, looking more like a puddle than a person for now. A few seconds later, though, the vat shuts off, and the goo starts squirming and re-shaping itself. It only takes a moment for the big gray blob to turn into a big, bouncy gray girl. She looks just like the creatures");
 	if (flags["TARKUS_DESTROYED"] != undefined) output(" once");
