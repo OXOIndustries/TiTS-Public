@@ -37,7 +37,7 @@ public function femzilEncounter(forceFriendly:Boolean = false):void {
 		addButton(14,"Leave",tryToLeaveFemzil);
 		//{Sex Options Here}
 		if((pc.hasCock() || pc.hasVagina()) && pc.lust() >= 33) addButton(1,"Sex",submitToFriendlyZil);	
-		else addDisabledButton(1,"Sex");
+		else addDisabledButton(1,"Sex","Sex","You need to be in the mood for sex and have genitals to submit to her sexually.");
 	}
 	//[Repeat] (If PC didn't fight her last time)
 	else if(hostile == 0 && flags["FOUGHT_FEMZIL_LAST_TIME"] == undefined) {
@@ -53,7 +53,7 @@ public function femzilEncounter(forceFriendly:Boolean = false):void {
 		addButton(0,"Fight Her",fightDatFriendlyFemzil);
 		//{Sex Options Here}
 		if((pc.hasCock() || pc.hasVagina()) && pc.lust() >= 33) addButton(1,"Sex",submitToFriendlyZil);	
-		else addDisabledButton(1,"Sex");
+		else addDisabledButton(1,"Sex","Sex","You need to be in the mood for sex and have genitals to submit to her sexually.");
 		addButton(2,"Get Honey",getHoney);
 		//[Leave]
 		addButton(14,"Leave",tryToLeaveFemzil);
@@ -447,19 +447,19 @@ public function zilConsensualSexMenu():void {
 	if(pc.hasCock()) {
 		//[SuckleFuck] (Anal ride while you suck honeytits)
 		if(pc.cockThatFits(zilFemale.analCapacity()) >= 0) 
-			addButton(0,"SuckleFuck",suckleFuckZilFemaleYouSuckleFucker);
-		else addDisabledButton(0,"SuckleFuck");
+			addButton(0,"SuckleFuck",suckleFuckZilFemaleYouSuckleFucker,undefined,"SuckleFuck","Let her anally ride you while you suck her honeytits.");
+		else addDisabledButton(0,"SuckleFuck","Suckle Fuck","You need a penis that can fit her anus for this.");
 		//[Missionary] FOR THE SOLE PURPOSE OF PROCREATION! YOU SICK BASTARD!
 		if(pc.cockThatFits(zilFemale.vaginalCapacity() * 1.25) >= 0) 
-			addButton(1,"Missionary",missionaryWithAZilGirl);
-		else addDisabledButton(1,"Missionary");
+			addButton(1,"Missionary",missionaryWithAZilGirl,undefined,"Missionary","Take her vagina in the missionary position.");
+		else addDisabledButton(1,"Missionary","Missionary","You need a penis that can fit her vagina for this.");
 		//[Footjob]
 		addButton(2,"Footjob",footjobFromFemzil);
 	}
 	else {
-		addDisabledButton(0,"SuckleFuck");
-		addDisabledButton(1,"Missionary");
-		addDisabledButton(2,"Footjob");
+		addDisabledButton(0,"SuckleFuck","Suckle Fuck","You need a penis that can fit her anus for this.");
+		addDisabledButton(1,"Missionary","Missionary","You need a penis that can fit her vagina for this.");
+		addDisabledButton(2,"Footjob","Footjob","You need a penis for this.");
 	}
 	//For Cuntwielders
 	if(pc.hasVagina()) {
@@ -469,8 +469,8 @@ public function zilConsensualSexMenu():void {
 		addButton(4,"Trib&Suck",tribAndSuckZil);
 	}
 	else {
-		addDisabledButton(3,"SixtyNine");
-		addDisabledButton(4,"Trib&Suck");
+		addDisabledButton(3,"SixtyNine","Sixty-Nine","You need a vagina for this.");
+		addDisabledButton(4,"Trib&Suck","Tribadism & Suck","You need a vagina for this.");
 	}
 	addButton(14,"Back",femzilEncounter,true);
 }
@@ -654,6 +654,7 @@ public function lickABitchCleanYouBitch():void {
 	processTime(25+rand(5));
 	clearMenu();
 	if(pc.cockThatFits(zilFemale.vaginalCapacity() * 1.25) >= 0 && pc.hasCock()) addButton(0,"Fuck Her",missionaryWithAZilGirl);
+	else addDisabledButton(0,"Fuck Her","Fuck Her","You need a penis that can fit her vagina for this.");
 	addButton(1,"No Can Do",noThanksZilLadyImSpent);
 }
 
@@ -772,6 +773,7 @@ public function tribAndSuckZil():void {
 	output(" and the look of fear and lust in her eyes can only drive you on....");
 	processTime(10+rand(10));
 	pc.orgasm();
+	pc.milkInMouth(chars["ZILFEMALE"]);
 	clearMenu();
 	addButton(0,"Next",zilFemaleTribbingEpilogue);
 }
@@ -1310,7 +1312,7 @@ public function defeatHostileZil():void {
 	clearMenu();
 	//Force Her To Lick YOUR Honeypot
 	if(pc.hasVagina()) addButton(0,"ForcedLick",forceFemzilToLickYourHoneypot);
-	else addDisabledButton(0,"ForcedLick");
+	else addDisabledButton(0,"ForcedLick","Forced Lick","You need a vagina for this.");
 	//Dose and Masturbate Her With Her Own Sex Drugs (open to all) - done Z
 	//requires having fought a hostile female zil once already
 	addButton(1,"UseHerDrugs",DoseAZilWithSexDrugsEvillyMustacheTwirling);
@@ -1320,17 +1322,17 @@ public function defeatHostileZil():void {
 		output(" You could also do that AND fuck her with your clit.");
 		addButton(2,"MeanClitFuck",numbPussyFuck,false);
 	}		
-	else addDisabledButton(2,"MeanClitFuck");
+	else addDisabledButton(2,"MeanClitFuck","Mean Clit Fuck","You need a vagina with a large enough clit for this.");
 	if(pc.hasCock() && pc.cockThatFits(foes[0].vaginalCapacity()) >= 0) {
 		output(" You could punish her with her toxins and fuck her with your dick too.");
 		addButton(3,"MeanCockFuk",numbPussyFuck);
 	}
-	else addDisabledButton(3,"MeanCockFuk");
+	else addDisabledButton(3,"MeanCockFuk","Mean Cock Fuck","You need a penis that can fit her vagina for this.");
 	if(pc.biggestCockLength() >= 36) {
 		output(" Then again, there's always the option of smothering her in your giant, hyper-sized dick and letting her get a feel for a REAL cock.");
 		addButton(4,"HyperSmothr",smotherDatBeeSlutInDickYo);
 	}
-	else addDisabledButton(4,"HyperSmothr");
+	else addDisabledButton(4,"HyperSmothr","Hyper Smother","You need an extremely large enough penis for this.");
 	//Cuff&Fuck
 	cuffNFuckButton(5, foes[0]);
 	//Femzil prompt
