@@ -1975,13 +1975,8 @@ public function vaginaBonusForAppearance(target:Creature, x:int = 0, eachOne:Boo
 {
 	kGAMECLASS.target = target;
 	
-	//Gooey flavor
-	if(target.vaginas[x].type == GLOBAL.TYPE_GOOEY) {
-		if(!eachOne) output2(" The exterior lips are slick and gooey, making your entrance look wet at all times.");
-		else output2("\nEach vagina's exterior lips are slick and gooey, making the entrances look wet at all times.");
-	}
 	//Zil flavor!
-	else if(target.vaginas[x].type == GLOBAL.TYPE_BEE && target.vaginas[x].vaginaColor == "black and gold") {
+	if(target.vaginas[x].type == GLOBAL.TYPE_BEE && target.vaginas[x].vaginaColor == "black and gold") {
 		if(!eachOne) output2(" The exterior folds are a dusky black, while the inner lining of your tunnel is a glorious golden hue.");
 		else output2("\nEach vagina's exterior folds are a dusky black, while the inner linings of your tunnels are a glorious golden hue.");
 	}
