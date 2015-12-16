@@ -41,7 +41,7 @@
 		//Cock length - flaccid
 		public function cLengthFlaccid():Number
 		{
-			cLength() * flaccidMultiplier;
+			return cLength() * flaccidMultiplier;
 		}
 		
 		//Cock thickness 

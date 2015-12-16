@@ -235,7 +235,7 @@ public function appearance(target:Creature):void
 			else output2(" The black sclera and iris of both of your eyes make them appear as solid black and very alien.");
 			output2(" Their structure allows you to have a larger angle of vision as well as detecting the fastest of movements.");
 		}
-		else if (target.eyeType == GLOBAL.TYPE_FELINE || target.eyeType == GLOBAL.TYPE_SNAKE || target.eyeType == TYPE_DEMONIC)
+		else if (target.eyeType == GLOBAL.TYPE_FELINE || target.eyeType == GLOBAL.TYPE_SNAKE || target.eyeType == GLOBAL.TYPE_DEMONIC)
 		{
 			output2(" Your eyes bear a vertical slit instead of rounded pupils, ");
 			if (hasMetallicEyes) output2("surrounded by a metallically glistening " + target.eyeColor + " iris.");
