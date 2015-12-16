@@ -6898,7 +6898,7 @@ package classes {
 			//Overloaded nuki' nuts will fully drain
 			if(hasPerk("'Nuki Nuts") && balls > 1 && perkv1("'Nuki Nuts") > 0 && quantity < currentCum()) quantity = currentCum();
 			//BIOMASS ADDED LAST!
-			if(hasStatusEffect("Goo Vent")) 
+			if(statusEffectv1("Goo Vent") == 1) 
 			{
 				if(kGAMECLASS.flags["GOO_BIOMASS"] == undefined) kGAMECLASS.flags["GOO_BIOMASS"] = 0;
 				quantity += kGAMECLASS.flags["GOO_BIOMASS"];
@@ -7035,7 +7035,7 @@ package classes {
 			// Heat means wetter orgasms.
 			quantity += statusEffectv1("Heat");
 			//GOO VENT BONUS!
-			if(hasStatusEffect("Goo Vent")) 
+			if(statusEffectv1("Goo Vent") == 1) 
 			{
 				if(kGAMECLASS.flags["GOO_BIOMASS"] == undefined) kGAMECLASS.flags["GOO_BIOMASS"] = 0;
 				quantity += kGAMECLASS.flags["GOO_BIOMASS"];
