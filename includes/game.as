@@ -600,13 +600,17 @@ public function sleepHeal():void
 	{
 		pc.HP(Math.round(pc.HPMax()));
 	}
-	pc.removeStatusEffect("Sore");
-	pc.removeStatusEffect("Sore Counter");
-	pc.removeStatusEffect("Jaded");
-	
 	// Fecund Figure shape loss (Lose only after sore/working out)
 	if(pc.hasPerk("Fecund Figure") && pc.hasStatusEffect("Sore"))
 	{
+		var numPreg:int = pc.totalPregnancies();
+		if(pc.isPregnant(3)) numPreg--;
+		if(numPreg <= 0)
+		{
+			pc.addPerkValue("Fecund Figure", 1, -1);
+			pc.addPerkValue("Fecund Figure", 2, -1);
+			pc.addPerkValue("Fecund Figure", 3, -1);
+		}
 		pc.addPerkValue("Fecund Figure", 1, -1);
 		pc.addPerkValue("Fecund Figure", 2, -1);
 		pc.addPerkValue("Fecund Figure", 3, -1);
@@ -614,6 +618,9 @@ public function sleepHeal():void
 		if(pc.perkv2("Fecund Figure") < 0) pc.setPerkValue("Fecund Figure", 2, 0);
 		if(pc.perkv3("Fecund Figure") < 0) pc.setPerkValue("Fecund Figure", 3, 0);
 	}
+	pc.removeStatusEffect("Sore");
+	pc.removeStatusEffect("Sore Counter");
+	pc.removeStatusEffect("Jaded");
 	
 	if (pc.energy() < pc.energyMax()) pc.energyRaw = pc.energyMax();
 }
@@ -808,7 +815,8 @@ public function showerOptions(option:int = 0):void {
 		output("Adventuring is fun and all, but it also leaves a [pc.guy] feeling dirty at the end of the day");
 		if (pc.libido() > 50) output(", and not in the good way");
 		output(". You decide to hit the showers, stripping off your gear with a sigh of relief as you take a moment just to stretch and enjoy being");
-		if (!pc.isNude()) output(" fully, truly");
+		if (pc.isNude()) output(" fully");
+		else output(" truly");
 		output(" nude.");
 		output("\n\nThe water comes out icy cold, sending a shiver down your spine. You think to yourself that you really should spring for a better temperature regulator, carefully adjusting the dial back and forth until finding that sweet spot between freezing and scalding where the water is blissfully warm. Now you can finally relax, setting to applying a good dose of shampoo to your [pc.hair]. Your [pc.skinFurScalesNoun] comes next, your hands running up and down your front to coat every last inch in a nice thick lather.");
 		if (pc.biggestTitSize() >= 4) output(" You can’t help but take a moment just to grope your [pc.chest], licking your lips at how good it feels to be so busty.");
@@ -1283,9 +1291,11 @@ public function variableRoomUpdateCheck():void
 	if(flags["FUNGUS_QUEEN_SAVED"] == undefined && flags["LET_FUNGUS_QUEEN_DIE"] == undefined)
 	{
 		rooms["2S11"].northExit = "2S9";
+		if(!rooms["2S9"].hasFlag(GLOBAL.OBJECTIVE)) rooms["2S9"].addFlag(GLOBAL.OBJECTIVE);
 	}
 	else 
 	{
+		if(rooms["2S9"].hasFlag(GLOBAL.OBJECTIVE)) rooms["2S9"].removeFlag(GLOBAL.OBJECTIVE);
 		rooms["2S11"].northExit = "";
 	}
 	// Crystal Goo Silly Modes
@@ -1682,10 +1692,14 @@ public function processTime(arg:int):void {
 				// Fecund Figure shape gain (Gains only while pregnant)
 				if(pc.hasPerk("Fecund Figure"))
 				{
-					if(pc.isPregnant()) pc.addPerkValue("Fecund Figure", 4, 1);
+					var numPreg:int = pc.totalPregnancies();
+					// Wombs only--exclude anal pregnancy!
+					if(pc.isPregnant(3)) numPreg--;
+					// Longevity of growth based on number of current pregnant wombs.
+					if(numPreg > 0) pc.addPerkValue("Fecund Figure", 4, numPreg);
 					if(pc.perkv4("Fecund Figure") > 0)
 					{
-						// 20 days for 1 hips/butt size gain?
+						// 20 days for 1 hips/butt size gain
 						pc.addPerkValue("Fecund Figure", 1, 0.05); // Hips
 						pc.addPerkValue("Fecund Figure", 2, 0.05); // Butt
 						//pc.addPerkValue("Fecund Figure", 3, 0.0125); // Belly
@@ -1747,7 +1761,7 @@ public function processTime(arg:int):void {
 	//Saendra Mail
 	if (!MailManager.isEntryUnlocked("saendrathanks") && flags["FALL OF THE PHOENIX STATUS"] >= 1 && flags["SAENDRA_DISABLED"] != 1 && rooms[currentLocation].planet != "SHIP: PHOENIX" && currentLocation != "SHIP INTERIOR") saendraPhoenixMailGet();
 	//Anno Mail
-	if (!MailManager.isEntryUnlocked("annoweirdshit") && flags["MET_ANNO"] != undefined && flags["FOUGHT_TAM"] == undefined && flags["RUST_STEP"] != undefined && rand(20) == 0) goMailGet("annoweirdshit");
+	if (!MailManager.isEntryUnlocked("annoweirdshit") && flags["MET_ANNO"] != undefined && flags["ANNO_MISSION_OFFER"] != 2 && flags["FOUGHT_TAM"] == undefined && flags["RUST_STEP"] != undefined && rand(20) == 0) goMailGet("annoweirdshit");
 	//Other Email Checks!
 	if (rand(100) == 0) emailRoulette();
 	flags["HYPNO_EFFECT_OUTPUT_DONE"] = undefined;
@@ -2618,7 +2632,8 @@ public function statisticsScreen(showID:String = "All"):void
 					}
 					if(pc.cocks[x].cockColor != "") output2(" " + StringUtil.toDisplayCase(pc.cocks[x].cockColor) + ",");
 					output2(" " + GLOBAL.TYPE_NAMES[pc.cocks[x].cType]);
-					output2("\n<b>* Length, Flaccid: </b>" + prettifyLength(pc.cLength(x) * pc.cocks[x].flaccidMultiplier));
+					output2("\n<b>* Length, Flaccid: </b>" + prettifyLength(pc.cLengthFlaccid(x)));
+					output2("\n<b>* Length, Current: </b>" + prettifyLength(pc.cLengthFlaccid(x, true)));
 					output2("\n<b>* Length, Erect: </b>" + prettifyLength(pc.cLength(x)));
 					output2("\n<b>* Thickness: </b>" + prettifyLength(pc.cThickness(x)));
 					if(pc.hasKnot(x)) output2("\n<b>* Knot Thickness: </b>" + prettifyLength(pc.knotThickness(x)));
@@ -4695,7 +4710,23 @@ public function displayEncounterLog(showID:String = "All"):void
 			{
 				output2("\n<b><u>Ten Ton Gym</u></b>");
 				output2("\n<b>* Quenton:</b> Met him");
-				if(flags["SEXED_QUENTON"] != undefined) output2(", Sexed him");
+				if(flags["SEXED_QUENTON"] != undefined) output2("\n<b>* Quenton, Times Sexed: </b>" + flags["SEXED_QUENTON"]);
+				if(flags["MET_SHOWER_GIRLS"])
+				{
+					output2("\n<b>* Betsy and Victoria:</b> Met them");
+					if(flags["SHOWER_SANDWICH"] != undefined) output2("\n<b>* Betsy and Victoria, Times Had Shower Sex With: </b>" + flags["SHOWER_SANDWICH"]);
+				}
+				if(flags["MET_LOLA"])
+				{
+					output2("\n<b>* Lola:</b> Met her");
+					if(flags["SEXED_LOLA"] != undefined) output2("\n<b>* Lola, Times Sexed: </b>" + flags["SEXED_LOLA"]);
+				}
+				if(flags["MET_SIMONE"])
+				{
+					output2("\n<b>* Simone:</b> Met her");
+					if(StatTracking.getStat("contests/simone challenge losses") + StatTracking.getStat("contests/simone challenge wins") > 0) output2("\n<b>* Simone, Weight Lift Challenge, Win/Loss Ratio: </b>" + StatTracking.getStat("contests/simone challenge wins") + "/" + StatTracking.getStat("contests/simone challenge losses") + ", of " + (StatTracking.getStat("contests/simone challenge losses") + StatTracking.getStat("contests/simone challenge wins")) + " games");
+					if(flags["SEXED_SIMONE"] != undefined) output2("\n<b>* Simone, Times Sexed: </b>" + flags["SEXED_SIMONE"]);
+				}
 				variousCount++;
 			}
 		}
@@ -5091,7 +5122,6 @@ public function displayEncounterLog(showID:String = "All"):void
 					}
 					if(!chars["ANNO"].isNude()) output2("\n<b>* Anno, Attire:</b> [anno.Gear]");
 					if(flags["ANNOxKAEDE_INTRODUCED"] != undefined) output2("\n<b>* Anno, Times Met with Kaede: </b>" + flags["ANNOxKAEDE_INTRODUCED"]);
-					if(flags["ANNOxKAEDE_LAST_DAY"] != undefined) output2("\n<b>* Anno, Days Since Last Met with Kaede: </b>" + (days - flags["ANNOxKAEDE_LAST_DAY"]));
 					if(flags["ANNO_TRIBERATOR_USED"] != undefined || flags["ANNO_OWNS_LIGHT_STRAPON"] != undefined)
 					{
 						output2("\n<b>* Anno, Sex Toys:</b>");
@@ -5127,10 +5157,10 @@ public function displayEncounterLog(showID:String = "All"):void
 					output2(", Seen her sexbots");
 					if(flags["SEEN_SHEKKAS_SEXBOTS"] != undefined) output2(" and her <i>new</i> sexbots");
 				}
+				if(StatTracking.getStat("contests/shekka sexoff losses") + StatTracking.getStat("contests/shekka sexoff wins") > 0) output2("\n<b>* Shekka, Robot Sex-Off, Win/Loss Ratio: </b>" + StatTracking.getStat("contests/shekka sexoff wins") + "/" + StatTracking.getStat("contests/shekka sexoff losses") + ", of " + (StatTracking.getStat("contests/shekka sexoff losses") + StatTracking.getStat("contests/shekka sexoff wins")) + " games");
 				if(flags["TIMES_SEXED_SHEKKA"] != undefined) output2("\n<b>* Shekka, Times Sexed: </b>" + flags["TIMES_SEXED_SHEKKA"]);
 				if(flags["TIMES_TAILVIBED_WITH_SHEKKA"] != undefined) output2("\n<b>* Shekka, Times Fucked Her Tail-Vibrator: </b>" + flags["TIMES_TAILVIBED_WITH_SHEKKA"]);
 				if(flags["TIMES_SHEKKA_KIRBUED"] != undefined) output2("\n<b>* Shekka, Times Fucked Her Inside a Hazmat Suit: </b>" + flags["TIMES_SHEKKA_KIRBUED"]);
-				if(StatTracking.getStat("contests/shekka sexoff losses") + StatTracking.getStat("contests/shekka sexoff wins") > 0) output2("\n<b>* Shekka, Robot Sex-Off, Win/Loss Ratio: </b>" + StatTracking.getStat("contests/shekka sexoff wins") + "/" + StatTracking.getStat("contests/shekka sexoff losses") + ", of " + (StatTracking.getStat("contests/shekka sexoff losses") + StatTracking.getStat("contests/shekka sexoff wins")) + " games");
 				variousCount++;
 			}
 			// Horace Decker
@@ -6292,7 +6322,7 @@ public function fixPcUpbringing():void
 	
 	output("\n\n<i>FIX NOW?</i>");
 	
-	output("\n\n<i>“Fucking computers,”</i> you mutter under your breath, a [pc.finger] already tapping on the key labelled ‘Okay’. The thing chugs away for a second or two, seemingly hard at work repairing itself... you’re about set to move on rather than wind up waiting all day for the Codex to");
+	output("\n\n<i>“Fucking computers,”</i> you mutter under your breath, a [pc.finger] already tapping on the key labeled ‘Okay’. The thing chugs away for a second or two, seemingly hard at work repairing itself... you’re about set to move on rather than wind up waiting all day for the Codex to");
 	if (!silly) output(" fix itself");
 	else output(" do the needful");
 	output(" before it’s vibrating away, demanding its masters dutiful attention again.");

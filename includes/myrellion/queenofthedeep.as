@@ -239,14 +239,14 @@ public function queenOfTheDeepTentacleBarrage():void
 	}
 	else
 	{
-		if (numHits == 0) output(" You evade the barrage of tentacles!");
+		if (numHits == 0) output("\n\nYou evade the barrage of tentacles!");
 		else if (numHits == 1) output(" One of the tentacles manages"); 
 		else if (numHits < 5) output(" Some of the tentacles manage");
 		else output(" The tentacles manage");
-		output(" to get through your defenses, slathering you with a liquid venom that quickly has your [pc.skinFurScales] burning with arousal!");
 		
 		if (numHits > 0)
 		{
+			output(" to get through your defenses, slathering you with a liquid venom that quickly has your [pc.skinFurScales] burning with arousal!");
 			var baseDamage:TypeCollection = new TypeCollection( { drug: 2 } );
 			if (numHits > 1) baseDamage.multiply(numHits);
 			applyDamage(baseDamage, foes[0], pc, "minimal");
@@ -883,6 +883,7 @@ public function queenOfTheDeepSurrenderIII(fromCombat:Boolean):void
 
 	if (fromCombat)
 	{
+		output("\n\n");
 		genericLoss();
 	}
 	else
@@ -953,7 +954,7 @@ public function queenOfTheDeepCloacaFuck():void
 	
 	if (selCock == -1) selCock = (pc as Creature).smallestCockIndex();
 
-	output("To the victor go the spoils, you tell yourself. The creature intended to fill you with her eggs... or whatever it is she lays, so you might as well return the favor and fill her with seed. You start to wade towards her through the water, shedding your [pc.gear] as you go until you’re bare naked and unarmed, mere inches from the creature’s humanoid half. Your [pc.cock " + selCock + "] announces itself with a tumescing throb, poking out of the water and all but pressing against the monstrous woman’s belly.");
+	output("To the victor go the spoils, you tell yourself. The creature intended to fill you with her eggs... or whatever it is she lays, so you might as well return the favor and fill her with seed. You start to wade towards her through the water, shedding your [pc.gear] as you go until you’re bare naked and unarmed, mere inches from the creature’s humanoid half. Your [pc.cock " + selCock + "] announces itself with a tumescent throb, poking out of the water and all but pressing against the monstrous woman’s belly.");
 
 	output("\n\n<i>“It is pleasure you desire after all,”</i> she says, licking her dark blue lips and reaching down to caress your [pc.cock " + selCock + "]. <i>“A shame. You will never know the bliss I could have brought you, if only you would take my eggs.”</i>");
 
@@ -1045,6 +1046,7 @@ public function queenOfTheDeepCloacaFuck():void
 
 	processTime(45 + rand(15));
 
+	output("\n\n");
 	genericVictory();
 }
 
@@ -1241,6 +1243,7 @@ public function queenOfTheDeepGetEggedII():void
 	
 	// permanent +wetness in holes filled, +10 Libido
 
+	output("\n\n");
 	genericVictory();
 }
 
@@ -1258,6 +1261,7 @@ public function queenOfTheDeepTakeBow():void
 	output("\n\nYou sling the bow over your shoulder and watch as the creature retreats, fading into the oppressive darkness. Something tells you that you won’t be seeing her again.");
 
 	foes[0].inventory.push(new QueensBow());
+	output("\n\n");
 	genericVictory();
 }
 
@@ -1308,6 +1312,7 @@ public function queenOfTheDeepLeave():void
 	
 	output("\n\nYou doubt you’ll see the monster again.");
 
+	output("\n\n");
 	genericVictory();
 }
 

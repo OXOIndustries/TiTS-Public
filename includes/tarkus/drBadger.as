@@ -288,7 +288,7 @@ public function heyDocImAHero():void
 		}
 	}
 	//IF PC HAS MORE THAN ONE NON-TAIL VAGINA
-	if(pc.totalVaginas() > 1)
+	if(pc.totalVaginas() > 1 && !pc.isPregnant())
 	{
 		output("\n\nYour fingers clench involuntarily as you undergo the indescribable sensation of your superfluous vagina");
 		if(pc.totalVaginas() > 2) output("s sealing themselves");

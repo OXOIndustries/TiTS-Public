@@ -1717,7 +1717,7 @@ public function carrieBlowjobIntro():void
 	//First
 	if(flags["CARRIE_BLOWJOBBED"] == undefined)
 	{
-		output("To you, the steel of the milking machine is a grey background detail next to the fleshy, milky curves of the machine’s operator, displayed brazenly in her skimpy, skin-tight cow outfit. They radiate summery, dreamy arousal to you, drowning everything else out, [pc.eachCock] hardening as you simply stand and drink her in. Carrie grins sheepishly, looking away; dimly you realize a good five seconds have crawled by in which you’ve simply stared at her.");
+		output("To you, the steel of the milking machine is a gray background detail next to the fleshy, milky curves of the machine’s operator, displayed brazenly in her skimpy, skin-tight cow outfit. They radiate summery, dreamy arousal to you, drowning everything else out, [pc.eachCock] hardening as you simply stand and drink her in. Carrie grins sheepishly, looking away; dimly you realize a good five seconds have crawled by in which you’ve simply stared at her.");
 		output("\n\n<i>“You ok, " + pc.mf("guy","girl") + "?”</i> she says.");
 
 		output("\n\n<i>“Yeah,”</i> you grin. You can practically feel the pheromones pouring off of you, and your heady tunnel vision allows you to see the effect they are having on the auburn-headed cow - the way her lips slowly part, her pupils dilating, her smile growing softer.");
@@ -1827,7 +1827,7 @@ public function carrieBlowjobsGo():void
 			output("\n\n<i>“Wow. Ok,”</i> she says at last, scooching back and wiping [pc.cum] out of her eyes. <i>“Gonna have to schedule some shower time afterwards if I do this with you again, ain’t I?”</i> You grin down at her absurdly. Heavy need satiated, you feel nothing but shining fondness and warmth for the auburn cock-polisher.");
 		}
 		output("\n\n<i>“Sure you don’t want anything?”</i> the euphoria of cooperation compels you to ask. <i>“Return the favor?”</i>");
-		output("\n\n<i>“Oh, no!”</i> giggles Carrie, sounding honestly surprised by your question. <i>“Sucking dick is its own reward, silly. Well, maybe not for you,”</i> she goes on, brow crinkling as a grey cloud vaguely intrudes on an eternally sunlit mind. <i>“But for cows it’s... the taste, and... when it touches the back of your throat, and... how happy and sweet and relaxed it makes you bulls...”</i> her eyes have gone a bit vague.");
+		output("\n\n<i>“Oh, no!”</i> giggles Carrie, sounding honestly surprised by your question. <i>“Sucking dick is its own reward, silly. Well, maybe not for you,”</i> she goes on, brow crinkling as a gray cloud vaguely intrudes on an eternally sunlit mind. <i>“But for cows it’s... the taste, and... when it touches the back of your throat, and... how happy and sweet and relaxed it makes you bulls...”</i> her eyes have gone a bit vague.");
 		output("\n\n<i>“Swing back around anytime ");
 		if(pc.tallness >= 72) output("big ");
 		else if(pc.tallness < 60) output("lil ");

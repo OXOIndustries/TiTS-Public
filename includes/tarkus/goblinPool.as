@@ -79,8 +79,19 @@ public function arbetzMainApproach():Boolean
 	clearOutput();
 	author("Nonesuch");
 	
+	// Key item typo hotfix:
+	if (pc.hasKeyItem("Arbetz Travel Agency Memebership"))
+	{
+		pc.removeKeyItem("Arbetz Travel Agency Memebership");
+		pc.createKeyItem("Arbetz Travel Agency Membership", 0, 0, 0, 0, "");
+		output("<b>Your codex beeps, proclaiming that your Arbetz Travel Agency Premium Klub membership card has been renewed.</b>");
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+		return true;
+	}
+	
 	// Pool locks
-	if (!pc.hasKeyItem("Arbetz Travel Agency Memebership") || !arbetzActiveHours()) flags["NAV_DISABLED"] = NAV_NORTH_DISABLE;
+	if (!pc.hasKeyItem("Arbetz Travel Agency Membership") || !arbetzActiveHours()) flags["NAV_DISABLED"] = NAV_NORTH_DISABLE;
 	
 	// Intros
 	if (arbetzActiveHours())
@@ -94,7 +105,7 @@ public function arbetzMainApproach():Boolean
 			
 			flags["ARBETZ_ENTERED"] = 1;
 			
-			output("You approach the bronze gate and find them unlocked. You notice several gun-metal spherical security cameras barnacled to the walls keeping a close eye on you, but nothing stops you opening the gate, travelling up the pebble path and stepping inside the building proper.");
+			output("You approach the bronze gate and find them unlocked. You notice several gun-metal spherical security cameras barnacled to the walls keeping a close eye on you, but nothing stops you opening the gate, traveling up the pebble path and stepping inside the building proper.");
 			output("\n\nThe airy, summery, lounge-like room you find yourself in is largely unoccupied. Behind a desk in front of you, a curvy, turquoise-skinned female gabilani is talking into a clunky-looking interface device whilst stabbing her fingers irritably into an antique keyboard.");
 			output("\n\n<i>“ - telling you that no such clause exists! If your son was stupid enough to ride an open-air bi-walker into a sydian enclave - yes, I will take that tone with you - ”</i>");
 			output("\n\nThere’s a human lad operating a similar computer next to her in a distinctly more laid-back fashion. Beyond the desk you can see out into the back of the estate, which is as green as the front and has a swimming pool, alongside of which a male kaithrit is lounging. The two boys are lithe, bronzed and unashamedly dressed only in tight shorts. They, along with the warm, fresh air, give the place the atmosphere of an out-of-season holiday resort.");
@@ -111,7 +122,7 @@ public function arbetzMainApproach():Boolean
 		// Repeat
 		else
 		{
-			if (!pc.hasKeyItem("Arbetz Travel Agency Memebership")) output("You approach the bronze gate and, finding it unlocked, slip inside.");
+			if (!pc.hasKeyItem("Arbetz Travel Agency Membership")) output("You approach the bronze gate and, finding it unlocked, slip inside.");
 			else output("You approach the main building and step inside.");
 			
 			// Happens once per day for an hour at random:
@@ -125,7 +136,7 @@ public function arbetzMainApproach():Boolean
 				showBust("UNA", "GABILANI_MALE", "GABILANI_FEMALE");
 				showName("\nRUSH HOUR");
 				
-				output("\n\nThe agency’s foyer is absolutely thronged with gabilani and their luggage. A high, unpleasant petro-chemical scent is in the air, and through the patio doors you can see a clunky, metal module looming beyond the swimming pool, undoubtedly used to transport these green-skinned tourists down to Tarkus’s surface. They are talking excitedly amongst themselves, showing off their cybernetic enhancements and travelling gear to one another; a couple take the opportunity of your entrance to take a picture of you. Una is stood on top of the front desk gesticulating angrily, her querulous tones piercing the hubbub as she attempts to organize her kindred into different parties, with little obvious success");
+				output("\n\nThe agency’s foyer is absolutely thronged with gabilani and their luggage. A high, unpleasant petro-chemical scent is in the air, and through the patio doors you can see a clunky, metal module looming beyond the swimming pool, undoubtedly used to transport these green-skinned tourists down to Tarkus’s surface. They are talking excitedly amongst themselves, showing off their cybernetic enhancements and traveling gear to one another; a couple take the opportunity of your entrance to take a picture of you. Una is stood on top of the front desk gesticulating angrily, her querulous tones piercing the hubbub as she attempts to organize her kindred into different parties, with little obvious success.");
 				output("\n\nYou should probably come back later.");
 				
 				processTime(5);
@@ -143,7 +154,7 @@ public function arbetzMainApproach():Boolean
 				{
 					output("\n\nThe agency’s foyer is");
 					if (pc.hasStatusEffect("Arbetz Busy Cooldown")) output(" a bit active, though not as busy as it was earlier. Everyone seems to have found their place and the staff looks quite relaxed, namely Una.");
-					output(" its usual quiet self. Even Una looks more laid-back than usual.");
+					else output(" its usual quiet self. Even Una looks more laid-back than usual.");
 					output(" She’s leant back in her chair and gazing with a big smirk at her screen, not doing anything.");
 					output("\n\n<i>“Hmm?”</i> she drones languidly when you approach her desk. <i>“Oh, hello you. How nice to see you again.”</i> The gabilani’s eyes return to the screen, leer widening. <i>“Very nice.");
 					
@@ -181,7 +192,8 @@ public function arbetzMainApproach():Boolean
 				{
 					clearMenu();
 					addButton(0, "Where?", arbetzMainInitialOptions, 0, "Where are you?", "Ask about this place.");
-					addButton(14, "Leave", mainGameMenu);
+					addButton(1, "Aid", arbetzMainInitialOptions, 1, "First Aid", "Ask for some help.");
+					addButton(14, "Leave", move, "225");
 					return true;
 				}
 				
@@ -234,7 +246,7 @@ public function arbetzMainInitialOptions(response:int = 0):void
 		clearMenu();
 		addButton(0, "Where?", arbetzMainInitialOptions, 0, "Where are you?", "Ask about this place.");
 		addDisabledButton(1, "Aid");
-		addButton(14, "Leave", mainGameMenu);
+		addButton(14, "Leave", move, "225");
 	}
 	// Where?
 	else
@@ -264,7 +276,7 @@ public function arbetzMainMenu(light:Boolean = false):void
 	if(!light) clearMenu();
 	addButton(0, "Talk", arbetzMainOptions, 0);
 	if (flags["PETR_UNLOCKED"] != undefined) addButton(1, "Petr", arbetzPetrShop, undefined, "Petr", "Ask the human boy about buying some swimwear.");
-	if (!pc.hasKeyItem("Arbetz Travel Agency Memebership")) addButton(2, "Pool Area", arbetzMainOptions, 2, "Pool Area", "Ask if you can use the pool area at the back of the agency.");
+	if (!pc.hasKeyItem("Arbetz Travel Agency Membership")) addButton(2, "Pool Area", arbetzMainOptions, 2, "Pool Area", "Ask if you can use the pool area at the back of the agency.");
 	if (flags["ARBETZ_SEX_UNLOCKED"] != undefined)
 	{
 		if (pc.lust() >= 33) addButton(3, "Sex", arbetzMainOptions, 3);
@@ -285,7 +297,7 @@ public function arbetzMainOptions(response:int = 0):void
 		showName("ARBETZ\nTRAVEL AGENCY");
 		
 		output("Baroness Doridia Aachen’Dedz Una Condinted is a three foot four inch tall gabilani, with clear turquoise skin and black hair, done up in a prim top bun. She has thick, expressive lips and arching eyebrows painted and styled to match her hair, proud features whose default setting seems to be “disbelieving sneer”. Her round face is framed by just the faintest touch of pudge, yet despite this and being beyond the bloom of youth, if there is the slightest line or sag about her it has been scrupulously tucked away.");
-		output("\n\nUna’s physique embodies the female gabilani stereotype and then some: thick, round hips carrying a pear shaped rump and ample, pendulous boobs. In keeping with the rest of her, this is all very carefully marshaled within a grey skirted business suit, stretched tightly over the succulent swells of her curves. She creaks slightly when she walks. Everything about her speaks of a repressively controlled, ravenous carnality.");
+		output("\n\nUna’s physique embodies the female gabilani stereotype and then some: thick, round hips carrying a pear shaped rump and ample, pendulous boobs. In keeping with the rest of her, this is all very carefully marshaled within a gray skirted business suit, stretched tightly over the succulent swells of her curves. She creaks slightly when she walks. Everything about her speaks of a repressively controlled, ravenous carnality.");
 		output("\n\nAs for her two male staff, they seem so alike it’s difficult to believe they are different species - brown, sleek, otter-like bodies, unruly curly hair, each about five foot eleven. You guess the kaithrit, recognizable by his dusty orange ears and tails, is a very masculine example of his race to match up so well to the human, with his flat, Germanic cheekbones. They are both dressed only in tight-fitting swim shorts, their slim, supple butts and seemly bulges clear to see, and they both carry the clumsy, defiantly prideful demeanor of young men who know they are being ruthlessly objectified.");
 		
 		arbetzMainMenu();
@@ -443,7 +455,7 @@ public function arbetzTalkOptions(response:int = 0):void
 		output("\n\n<i>“You say you polluted the planet,”</i> you say. <i>“And you were going to take the fresh one?”</i>");
 		output("\n\n<i>“Who came up with the world attractor?”</i> snaps Una. <i>“If you can’t be bothered looking this shit up yourself, don’t try and lay blame on the person telling you about it! And the raskvel helped to operate the damn thing, so they take just as much of the rap for what happened.”</i>");
 		output("\n\n<i>“It didn’t work?”</i>");
-		output("\n\n<i>“You’ve seen what this hole looks like from the sky, haven’t you? Of course it worked! Oh, it worked alright! Worked great right up until the point someone realized Daerinoys didn’t have a fucking brake on it!”</i>");
+		output("\n\n<i>“You’ve seen what this hole looks like from the sky, haven’t you? Of course it worked! Oh, it worked alright! Worked great right up until the point someone realised Daerinoys didn’t have a fucking brake on it!”</i>");
 		
 		processTime(8);
 		
@@ -1235,7 +1247,7 @@ public function arbetzPoolOptions(response:int = 0):void
 		
 		//Pool area unlocked, "Petr" added to front desk options, “Pool Area” removed from front desk options
 		pc.credits -= 5000;
-		pc.createKeyItem("Arbetz Travel Agency Memebership", 0, 0, 0, 0, "");
+		pc.createKeyItem("Arbetz Travel Agency Membership", 0, 0, 0, 0, "");
 		flags["PETR_UNLOCKED"] = 1;
 		
 		addButton(0, "Next", mainGameMenu);
@@ -1257,8 +1269,7 @@ public function arbetzPoolOptions(response:int = 0):void
 			
 			// [Do it] [No]
 			addButton(0, "Do it", arbetzPoolJUSTDOIT, 1);
-			addDisabledButton(1, "Other Way?");
-			addButton(2, "No", arbetzPoolOptions, 3);
+			addButton(1, "No", arbetzPoolOptions, 3);
 		}
 		// PC is female, D cup or above, is not pregnant, is wearing something
 		else if (pc.hasVagina() && pc.biggestTitSize() >= 4 && !pc.isPregnant()&& !pc.isNude())
@@ -1270,8 +1281,7 @@ public function arbetzPoolOptions(response:int = 0):void
 			
 			// [Do it] [No]
 			addButton(0, "Do it", arbetzPoolJUSTDOIT, 0);
-			addDisabledButton(1, "Other Way?");
-			addButton(2, "No", arbetzPoolOptions, 3);
+			addButton(1, "No", arbetzPoolOptions, 3);
 		}
 		// Otherwise
 		else
@@ -1283,7 +1293,7 @@ public function arbetzPoolOptions(response:int = 0):void
 			// [Pay] [Don't]
 			if (pc.credits < 5000) addDisabledButton(0, "Pay", "Pay", "You are just too poor for this!");
 			else addButton(0, "Pay", arbetzPoolOptions, 1, "Pay", "Price: 5000 Credits");
-			addDisabledButton(1, "Other Way?", "Other Way?", "You should probably wear some garments and have the body type Una is looking for before trying this option again...");
+			addDisabledButton(1, "Other Way?", "Other Way?", "You should probably be half-naked and have the body type Una is looking for before trying this option again...");
 			addButton(2, "Don’t", arbetzPoolOptions, 0);
 		}
 	}
@@ -1298,8 +1308,7 @@ public function arbetzPoolOptions(response:int = 0):void
 		// [Pay] [Don't]
 		if (pc.credits < 5000) addDisabledButton(0, "Pay", "Pay", "You are just too poor for this!");
 		else addButton(0, "Pay", arbetzPoolOptions, 1, "Pay", "Price: 5000 Credits");
-		addDisabledButton(1, "Other Way?");
-		addButton(2, "Don’t", arbetzPoolOptions, 0);
+		addButton(1, "Don’t", arbetzPoolOptions, 0);
 	}
 }
 
@@ -1316,8 +1325,8 @@ public function arbetzPoolJUSTDOIT(sex:int = 0):void
 	else output(" Shivering slightly with the shameful delight of baring your naked flesh");
 	output(", you begin to take off your [pc.gear], piece by piece.");
 	
-	// PC has no lower undergarment:
-	if (pc.lowerUndergarment is EmptySlot)
+	// PC has any non-exposed, non-swimwear lower undergarment:
+	if (pc.isCrotchGarbed() && !pc.isCrotchExposed() && !isSwimsuit(pc.lowerUndergarment))
 	{
 		output("\n\n<i>“Oh for...”</i> Una’s leer is broken with a snort of hysterical laughter buried into her suited arm when you take off your [pc.lowerGarments]. <i>“You never learned that less is more, did you dear?”</i> she sighs once she’s recovered, gazing down at");
 		if (pc.hasCock()) output(" [pc.eachCock]");
@@ -1333,6 +1342,17 @@ public function arbetzPoolJUSTDOIT(sex:int = 0):void
 		
 		addButton(0, "Next", mainGameMenu);
 		return;
+	}
+	else if (pc.inSwimwear(true) && !pc.isCrotchExposed())
+	{
+		output(" When you reach for your [pc.lowerGarment], the shortstack blurts out an audible chuckle.");
+		output("\n\n<i>“--I see you came prepared to swim, didn’t you?”</i> Una grins lustfully. <i>“However, this photoshoot isn’t for that...”</i> she points at your covered crotch.");
+		if (pc.exhibitionism() < 66) output("\n\nGiving her a confused look, you reply with a slight blush of embarrassment.");
+		else output("\n\nYou give a confident nod. Oh, you know what this woman wants to see.");
+		output("\n\n<i>“Take it off.”</i>");
+		if (pc.exhibitionism() < 66) output("\n\nAfter getting this far, there’s no use turning back now. Finally");
+		else output("\n\nWithout a moment’s hesitation");
+		output(", you peel your swimwear off....");
 	}
 	//Otherwise:
 	output("\n\n<i>“Aww yeah,”</i> leers Una, eating up your every move with wide, black eyes.");
@@ -1372,7 +1392,7 @@ public function arbetzPoolJUSTDOIT(sex:int = 0):void
 	output(", but hey, free pool. That’s what matters here.");
 	
 	//Pool area unlocked, "Petr" added to front desk options, “Pool Area” removed from front desk options
-	pc.createKeyItem("Arbetz Travel Agency Memebership", 0, 0, 0, 0, "");
+	pc.createKeyItem("Arbetz Travel Agency Membership", 0, 0, 0, 0, "");
 	flags["PETR_UNLOCKED"] = 1;
 	
 	// + Lust, ++ Lust if Exhibitionist

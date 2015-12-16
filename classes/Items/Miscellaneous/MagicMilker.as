@@ -54,11 +54,34 @@
 		override public function useFunction(target:Creature, usingCreature:Creature = null):Boolean
 		{
 			if(!kGAMECLASS.infiniteItems()) quantity++;
-			if(target is PlayerCharacter) {
-				//Consume:
-				kGAMECLASS.joyCoMagicMilker7Sucks();
+			if(target is PlayerCharacter)
+			{
+				var isMilkable:Boolean = (target.isMilkTank() || target.canLactate() || target.milkQ() >= 200);
+				
+				kGAMECLASS.clearOutput();
+				if(kGAMECLASS.rooms[kGAMECLASS.currentLocation].hasFlag(GLOBAL.NOFAP))
+				{
+					kGAMECLASS.output("Masturbating here would be impossible.");
+				}
+				else if(kGAMECLASS.rooms[kGAMECLASS.currentLocation].hasFlag(GLOBAL.FAPPING_ILLEGAL))
+				{
+					kGAMECLASS.output("Public masturbation is illegal here. Trying to masturbate would almost certainly land you in jail.");
+				}
+				else if(kGAMECLASS.rooms[kGAMECLASS.currentLocation].hasFlag(GLOBAL.PUBLIC) && target.exhibitionism() < 33 && target.libido() < 70)
+				{
+					kGAMECLASS.output("You cannot use the Magic-Milker 7 at this time!");
+				}
+				else if(!isMilkable)
+				{
+					kGAMECLASS.output("You do not lactate enough to try this at the moment.");
+				}
+				else
+				{
+					kGAMECLASS.joyCoMagicMilker7Sucks();
+				}
 			}
-			else {
+			else
+			{
 				kGAMECLASS.clearOutput();
 				kGAMECLASS.output(target.capitalA + target.short + " cannot use the Magic-Milker 7.");
 			}

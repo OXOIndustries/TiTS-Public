@@ -24,6 +24,8 @@ import classes.Engine.Combat.DamageTypes.TypeCollection;
 import classes.Items.Accessories.TamWolfDamaged;
 import classes.Items.Armor.GooArmor;
 import classes.Items.Guns.Goovolver;
+import classes.Items.Guns.SlutRay;
+import classes.Items.Guns.SlutRayAdvanced;
 import classes.Items.Miscellaneous.GrayMicrobots;
 import classes.UIComponents.StatusEffectComponents.StatusEffectsDisplay;
 import classes.Util.InCollection;
@@ -527,33 +529,35 @@ public function updateCombatStatuses():void {
 	if(pc.hasStatusEffect("Burn"))
 	{
 		//2% of HP per tic.
-		output("<b>The flames slowly lick at you,</b>");
+		output("<b>The flames slowly lick at you,");
 		if(pc.statusEffectv1("Burn") > 1) 
 		{
 			pc.addStatusValue("Burn",1,-1);
-			output("<b> resisting any attempt to put them out.</b>");
+			output(" resisting any attempt to put them out");
 		}
 		else 
 		{
 			pc.removeStatusEffect("Burn");
-			output("<b> refusing to go out until they've done their foul work.</b>");
-		}		
+			output(" refusing to go out until they've done their foul work");
+		}
+		output(".</b>");
 		applyDamage(new TypeCollection( { burning: 3 + rand(4) } ), foes[0], pc);
 		output("\n");
 	}
 	if (pc.hasStatusEffect("Bleeding"))
 	{
-		output("<b>Your wounds continue to take their toll on your body;</b>");
+		output("<b>Your wounds continue to take their toll on your body;");
 		if (pc.statusEffectv2("Bleeding") >= 1)
 		{
 			pc.addStatusValue("Bleeding", 2, -1);
-			output("<b> your microsugeons working overtime to stem the ongoing damage.</b>");
+			output(" your microsugeons working overtime to stem the ongoing damage");
 		}
 		else
 		{
 			pc.removeStatusEffect("Bleeding");
-			output("<b> your microsurgeons have triaged the worst of it, but you'll need proper rest to heal.</b>");
+			output(" your microsurgeons have triaged the worst of it, but you'll need proper rest to heal");
 		}
+		output(".</b>");
 		applyDamage(damageRand(new TypeCollection( { kinetic: pc.statusEffectv1("Bleeding") * pc.statusEffectv3("Bleeding") } ), 15), foes[0], pc);
 		output("\n");
 	}
@@ -562,12 +566,12 @@ public function updateCombatStatuses():void {
 		if (pc.statusEffectv1("Staggered"))
 		{
 			pc.addStatusValue("Staggered", 1, -1);
-			output("<b>You're still reeling from the force of the blows to which you've been subjected.</b>");
+			output("<b>You're still reeling from the force of the blows to which you've been subjected.</b>\n");
 		}
 		else
 		{
 			pc.removeStatusEffect("Staggered");
-			output("<b>You finally shake away the stars from your vision, your [pc.feet] planted on the floor firmly once again.</b>");
+			output("<b>You finally shake away the stars from your vision, your [pc.feet] planted on the floor firmly once again.</b>\n");
 		}
 	}
 	if(!pc.hasStatusEffect("Blind") && pc.hasStatusEffect("Quivering Quasar"))
@@ -669,13 +673,13 @@ public function updateCombatStatuses():void {
 			pc.addStatusValue("Porno Hacked Drone",1,-1);
 			if(pc.statusEffectv1("Porno Hacked Drone") <= 0)
 			{
-				output("<b>With a grinding click the porn beaming out of your drone snuffs out, finally getting the better of the sexbot’s hacking routine, and returns to your side.\n</b>");
+				output("<b>With a grinding click the porn beaming out of your drone snuffs out, finally getting the better of the sexbot’s hacking routine, and returns to your side.</b>\n");
 				pc.removeStatusEffect("Porno Hacked Drone");
 			}
 			else
 			{
 				//Combat blurb:
-				output("<b>Your hacked drone continues to fly into your line of sight and near your ear no matter how many times you slap it away, inundating your senses with garish, shifting and teasing smut.\n</b>");
+				output("<b>Your hacked drone continues to fly into your line of sight and near your ear no matter how many times you slap it away, inundating your senses with garish, shifting and teasing smut.</b>\n");
 				pc.lust(4);
 			}
 		}
@@ -1574,6 +1578,10 @@ public function rangedAttack(attacker:Creature, target:Creature, specials:Array 
 		if (attacker.rangedWeapon is Goovolver)
 		{
 			applyDamage(damage, attacker, target, "goovolver");
+		}
+		if ((attacker.rangedWeapon is SlutRay) || (attacker.rangedWeapon is SlutRayAdvanced))
+		{
+			applyDamage(damage, attacker, target, "slut ray");
 		}
 		else
 		{
@@ -2960,7 +2968,16 @@ public function teaseSkillUp(part:String):void {
 public function teaseReactions(damage:Number,target:Creature):String {
 	var buffer:String = "";
 	var textRands:Array = [];
-	if (target is HuntressVanae)
+	if (target is PlayerCharacter)
+	{
+		if (damage == 0) buffer = "You seem unimpressed.";
+		else if (damage < 4) buffer = "You look a little intrigued by what you see.";
+		else if (damage < 10) buffer = "You definitely seem to be enjoying the show.";
+		else if (damage < 15) buffer = "You openly touch yourself as you watch lustfully.";
+		else if (damage < 20) buffer = "You flush hotly with desire, your eyes filled with longing.";
+		else buffer = "You lick your lips in anticipation, your hands idly stroking your own body.";
+	}
+	else if (target is HuntressVanae)
 	{
 		if (damage == 0)
 		{
@@ -3907,7 +3924,7 @@ public function deflectorRegeneration(target:Creature):void {
 	clearOutput();
 	pc.energy(-20);
 	output("You fiddle with your shield, tuning it to regenerate over the next few turns.\n");
-	pc.createStatusEffect("Deflector Regeneration",4,Math.ceil((pc.intelligence() * 1.5 + rand(pc.level) + pc.shieldsMax() * 0.25)/4),0,0,false,"DefenseUp","You are recovering some of your shields every round",true,0);
+	pc.createStatusEffect("Deflector Regeneration",4,Math.ceil((pc.intelligence() * 1.5 + rand(pc.level) + pc.shieldsMax() * 0.25)/4),0,0,false,"DefenseUp","You are recovering some of your shields every round.",true,0);
 	processCombat();
 }
 
@@ -4069,10 +4086,10 @@ public function NPCDisarmingShot(user:Creature):void
 {
 	user.energy(-20);
 	if(pc.hasStatusEffect("Disarm Immune")) output(user.capitalA + user.short + " tries to shoot your weapons out of your hands but can't. <b>It's physically impossible!</b>\n");
-	else if(pc.hasStatusEffect("Disarmed")) output(user.capitalA + user.short + " tries to shoot your weapons out of your hands but can't. <b>You're already disarmed!</b>");
-	else if(rangedCombatMiss(user,pc)) output(user.capitalA + user.short + " misses when trying hit you with disarming shots!");
+	else if(pc.hasStatusEffect("Disarmed")) output(user.capitalA + user.short + " tries to shoot your weapons out of your hands but can't. <b>You're already disarmed!</b>\n");
+	else if(rangedCombatMiss(user,pc)) output(user.capitalA + user.short + " misses when trying hit you with disarming shots!\n");
 	else {
-		output(user.capitalA + user.short + " shoots your weapons away with well-placed shots!");
+		output(user.capitalA + user.short + " shoots your weapons away with well-placed shots!\n");
 		pc.createStatusEffect("Disarmed",4,0,0,0,false,"Blocked","Cannot use normal melee or ranged attacks!",true,0);
 	}
 	processCombat();
@@ -4150,9 +4167,10 @@ public function goozookaCannon(target:Creature):void
 			damageResult = applyDamage(damage, pc, target, "suppress");
 			
 			output("The Gray Goo absorbs her smaller twin on contact.");
-			output(" (Heals " + heal + ")");
+			output(" (<b>+" + heal + " HP</b>)");
 			
 			target.HP(heal);
+			output("\n");
 		}
 		else
 		{

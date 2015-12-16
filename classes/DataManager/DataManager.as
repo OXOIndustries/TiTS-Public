@@ -383,8 +383,8 @@
 			kGAMECLASS.userInterface.mainButtonsOnly();
 			
 			// Switch to enabled save notes and override prompt
-			var saveNoteEnabled:Boolean = true;
-			var overwriteToggle:Boolean = true;
+			if (kGAMECLASS.gameOptions.saveNotesToggle == undefined) kGAMECLASS.gameOptions.saveNotesToggle = true;
+			var saveNoteEnabled:Boolean = kGAMECLASS.gameOptions.saveNotesToggle;
 			// Custom notes:
 			if (saveNoteEnabled)
 			{
@@ -408,8 +408,7 @@
 				var dataFile:SharedObject = this.getSO(slotNum);
 				displayMessage += this.generateSavePreview(dataFile, slotNum);
 				if (saveNoteEnabled) kGAMECLASS.addGhostButton(slotNum - 1, "Slot " + slotNum, this.saveGameNextNotes, slotNum);
-				else if (overwriteToggle) kGAMECLASS.addGhostButton(slotNum - 1, "Slot " + slotNum, this.saveGameNextPrompt, slotNum);
-				else kGAMECLASS.addGhostButton(slotNum - 1, "Slot " + slotNum, this.saveGameData, slotNum);
+				else kGAMECLASS.addGhostButton(slotNum - 1, "Slot " + slotNum, this.saveGameNextPrompt, slotNum);
 			}
 			
 			kGAMECLASS.output2(displayMessage);
@@ -441,10 +440,11 @@
 		private function saveGameNextPrompt(slotNumber:int):void
 		{
 			// Toggle to turn on/off the overwrite prompt!
-			var overwriteToggle:Boolean = true;
+			if (kGAMECLASS.gameOptions.overwriteToggle == undefined) kGAMECLASS.gameOptions.overwriteToggle = true;
+			var overwritePrompt:Boolean = kGAMECLASS.gameOptions.overwriteToggle;
 			
 			// Overwrite file?
-			if(overwriteToggle && this.getSO(slotNumber).size > 0)
+			if(overwritePrompt && this.getSO(slotNumber).size > 0)
 			{
 				kGAMECLASS.clearOutput2();
 				kGAMECLASS.output2("A save file already exists in slot " + slotNumber + ", are you sure you want to overwrite this file?");
@@ -976,8 +976,8 @@
 			// Blank entries get cleared notes!
 			if (kGAMECLASS.userInterface.currentPCNotes == null || kGAMECLASS.userInterface.currentPCNotes.length == 0 || kGAMECLASS.userInterface.currentPCNotes == "")
 			{ dataFile.saveNotes = "No notes available."; }
-			// Keywords to clear current saved notes!
-			else if (kGAMECLASS.userInterface.currentPCNotes.toLowerCase() == "none" || kGAMECLASS.userInterface.currentPCNotes == "N/A")
+			// Keywords to clear current saved notes! (Also if save notes toggle is disabled)
+			else if (kGAMECLASS.userInterface.currentPCNotes.toLowerCase() == "none" || kGAMECLASS.userInterface.currentPCNotes == "N/A" || kGAMECLASS.gameOptions.saveNotesToggle == false)
 			{ dataFile.saveNotes = "No notes available."; }
 			// Save note!
 			else

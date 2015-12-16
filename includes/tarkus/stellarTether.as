@@ -2426,7 +2426,9 @@ public function kaskaBadEndPartDues():void
 		else if(pc.wetness(x) < 4) output("runnels");
 		else output("torrents");
 		output(" of [pc.girlCum] deepen the puddle below. Kaska cums for what feels like ages, more than long enough for you to ride out two orgasms and be feeling aftershocks from the second by the time she stops out.");
-		output("\n\nYour crotch is gooey... sticky with spent lust and totally, completely satiated.");
+		output("\n\nYour crotch is gooey");
+		if(pc.hasStatusEffect("Goo Crotch")) output("... uh, more so than usual");
+		output("... sticky with spent lust and totally, completely satiated.");
 		if(pc.hasCock()) 
 		{
 			output(" You were so into it that you didn't even notice your [pc.cocks] firing off onto your ");

@@ -401,7 +401,9 @@ public function sx1PirateGroupPCLoss():void
 
 	generateMapForLocation("SX1 FAKE FIGHT ROOM");
 
-	output("You slump to the ground, completely unable to put up even token resistance anymore. Your [pc.mainWeapon] clatters out of your hands, and is quickly stomped on by a jackbooted thug. You look up, in the barrel of a machine pistol, and can’t help but clench down in preparation for the inevitable.");
+	output("You slump to the ground, completely unable to put up even token resistance anymore.");
+	if ((pc as Creature).hasEquippedWeapon()) output(" Your [pc.mainWeapon] clatters out of your hands, and is quickly stomped on by a jackbooted thug.");
+	output(" You look up, in the barrel of a machine pistol, and can’t help but clench down in preparation for the inevitable.");
 	
 	output("\n\nIt doesn’t come. Instead, you’re roughly grabbed by plated hands and rolled onto your stomach. Your hands are cuffed behind your back, completely restrained as the other assassins grab Saendra and drag her off, kicking and screaming.");
 	
@@ -462,7 +464,7 @@ public function sx1PirateGroupPCVictory():void
 	output("\n\nYou turn to Saen and give her a look, which she answers with a loud declaration of <i>“MAWP”</i> while she rubs her ears. You mutter a small thanks to your nano-docs for repairing your hearing damage about as fast as it happens.");
 	
 	output("\n\nAnd thanks to that, you’re able to hear the elevator ding into place. You");
-	if ((pc as Creature).hasEquippedWeapon()) output(" draw your [pc.weapon] and");
+	if ((pc as Creature).hasEquippedWeapon()) output(" [pc.readyWeapon] and");
 	output(" grab Saendra’s shoulder, shoving the both of you into cover and out of sight. You pull Saendra tight against yourself, wrapping your arm around her belly. She has the sense to shut up and draw her gun, clumsily swapping magazines just before the elevator slides open.");
 	
 	output("\n\nLight floods into the darkened corridor, and a trio of people stride out - two more armored men, and a woman in a skin-tight red jumpsuit, worn under a flowing black longcoat. The woman’s dark hair half-conceals a face that’s a network of scars and tattoos that wrap around an eyepatch. One of her gloved hands rests on the hilt of a saber at her hip; the other carries a sleek laser pistol.");

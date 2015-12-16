@@ -526,13 +526,13 @@ public function styleConfirmation(hStyle:String = ""):void
 	clearOutput();
 	showCeria();
 	author("Couch");
-	output("<i>“Okay, so you want your hair ");
-	if(hStyle == "ponytail") output("in a ");
-	else if(hStyle == "pigtails") output("in ");
-	else if(hStyle == "curls") output("in ");
-	else if(hStyle == "braided") output("in a ");
-	else if(hStyle == "afro") output("in an ");
-	else if(hStyle == "mohawk") output("in a ");
+	output("<i>“Okay, so you want your hair");
+	if(hStyle == "ponytail") output(" in a ");
+	else if(hStyle == "pigtails") output(" in ");
+	else if(hStyle == "curls") output(" in ");
+	else if(hStyle == "braided") output(" ");
+	else if(hStyle == "afro") output(" worn as an ");
+	else if(hStyle == "mohawk") output(" done up as a ");
 	output(hStyle + "? That’ll be 1200 credits.”</i>");
 	processTime(1);
 	//[OK] Go to Styling

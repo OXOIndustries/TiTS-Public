@@ -110,12 +110,18 @@ public function myrellionManorAdminRoom():Boolean
 		output(" The air around her seems to fill with intensity as she leans forward to skewer you with her jet-black gaze.");
 		
 		output("\n\n<i>“Steele,”</i> she purrs. <i>“Captain Steele.”</i> Her voice isn’t unpleasant, but there’s something icy and dangerous about it. The way she says your name reminds you of a predator that’s thinking over the best time to pounce on its target. Her eyes drift down to");
-		if (pc.hasMeleeWeapon()) output("  your [pc.meleeWeapon] and narrow before moving on to");
-		if (pc.hasRangedWeapon()) output(" your [pc.weapon] and");
+		if (pc.hasMeleeWeapon()) output(" your [pc.meleeWeapon] and narrow before moving on to");
+		if (pc.hasRangedWeapon()) output(" your [pc.rangedWeapon] and");
 		output(" the [pc.gear] you’re wearing.");
-		if (pc.hasEquippedWeapon()) output(" It occurs to you that it’s pretty odd you weren’t disarmed before being taken to see the occupation leader herself, whom you assume is the myr woman in front of you now. Something tells you it wasn’t an oversight."); // maybe do an inv check for ANY weapons
 		
-		output("\n\nHer eyes leave your weapon after a long, tense moment. You get the feeling she was somehow taking your measure by appraising your equipment. The smile on her face is too emotionless, too ambiguous to give you any good indication of exactly what she thinks of her first impression of you.");
+		// maybe do an inv check for ANY weapons
+		var hasWeaponInv:Boolean = pc.hasWeapon();
+		
+		if (hasWeaponInv) output(" It occurs to you that it’s pretty odd you weren’t disarmed before being taken to see the occupation leader herself, whom you assume is the myr woman in front of you now. Something tells you it wasn’t an oversight.");
+		
+		output("\n\nHer eyes leave you");
+		if (hasWeaponInv) output("r weapon");
+		output(" after a long, tense moment. You get the feeling she was somehow taking your measure by appraising your equipment. The smile on her face is too emotionless, too ambiguous to give you any good indication of exactly what she thinks of her first impression of you.");
 		if (pc.isNice()) output(" Well, it couldn’t have been anything too bad.");
 		else if (pc.isMischievous()) output(" Hopefully she likes what she sees; keeping up a body like yours isn’t easy!");
 		else output(" If she’s sizing you up because she thinks you’re prey, she’d better think again.");

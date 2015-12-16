@@ -327,7 +327,7 @@ public function myrellionNevrieBlowjerb():void
 	output("\n\nYou grin, glad that Nevrie approves of your sensuous touch. Squeezing and cupping and caressing the inside of her thighs, you slowly meander your way down between the horny alien’s legs and");
 	if (pc.hasKnees()) output(" slip down onto your knees");
 	else output(" crouch down on your bestial lower body");
-	output(", all but crawling underneath Nevrie’s desk. Your fingers brush across her zipper, bulging under the tumescing heft of her hermaphroditic member. With great care, you work the zipper down until the bronze crown of the secretary’s cock is poking out, ripe for the tasting.");
+	output(", all but crawling underneath Nevrie’s desk. Your fingers brush across her zipper, bulging under the tumescent heft of her hermaphroditic member. With great care, you work the zipper down until the bronze crown of the secretary’s cock is poking out, ripe for the tasting.");
 
 	output("\n\n<i>“Ohh, fuck,”</i> she groans as your [pc.tongue] caresses her cockhead, wrapping under the modest shaft behind her tip and guiding it towards your [pc.lips]. <i>“You just get right down to it, don’t you?”</i>");
 

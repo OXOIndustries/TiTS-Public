@@ -678,7 +678,7 @@ public function gotJob():void
 	//Tipped Dally a bunch
 	if(dallysTips() >= 1000)
 	{
-		output("\n\n<i>“It’s embarrassing, but...”</i> He sighs <i>“...I guess it won’t hurt to share a little with my best customer.”</i> Dally runs his hand through his hair, collecting his thoughts. <i>“When I met the queen, I was stunned. She was beautiful, moreso than any girl I’d met before. I think I felt a little like the women who had hounded me - fascinated by the exotic form before me and giddy with desire. I barely managed a half-dozen words, and I think I spent most of the interview staring at her tits - all four of them.”</i>");
+		output("\n\n<i>“It’s embarrassing, but...”</i> He sighs <i>“...I guess it won’t hurt to share a little with my best customer.”</i> Dally runs his hand through his hair, collecting his thoughts. <i>“When I met the queen, I was stunned. She was beautiful, more so than any girl I’d met before. I think I felt a little like the women who had hounded me - fascinated by the exotic form before me and giddy with desire. I barely managed a half-dozen words, and I think I spent most of the interview staring at her tits - all four of them.”</i>");
 		//Met the queen: 
 		if(flags["MET_IRELLIA"] == undefined) output("\n\nYou remember your own meeting. <i>“It’s pretty hard not to.”</i>");
 		//Didn’t meet her: 

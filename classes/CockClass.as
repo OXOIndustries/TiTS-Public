@@ -38,6 +38,12 @@
 			}
 		}
 		
+		//Cock length - flaccid
+		public function cLengthFlaccid():Number
+		{
+			return cLength() * flaccidMultiplier;
+		}
+		
 		//Cock thickness 
 		public var cThicknessRatioRaw:Number = 1;
 		public var cThicknessRatioMod:Number = 0;

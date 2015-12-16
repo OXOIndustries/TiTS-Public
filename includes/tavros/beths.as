@@ -1059,9 +1059,10 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 			pp.cocks[0].addFlag(GLOBAL.FLAG_BLUNT);
 			if(!InCollection(2, scenesIndex) && pc.vaginalCapacity(x) >= pp.cockVolume(0) && scenesLimit > 0 && rand(scenesTotal) == 0)
 			{
-				output("\n\nA particularly huge alien is delighted to discover your voluminous twat is capable of taking his 3-foot long blunt breeding prong, and you spend an eye-crossing ten minutes riding him to a womb-swelling high. You have to waddle to the bathroom and release a full gallon of purple cum from your [pc.vagina " + x + "] afterwards.");
-				processTime(10);
+				output("\n\nA particularly huge alien is delighted to discover your voluminous twat is capable of taking his 3-foot long blunt breeding prong, and you spend an eye-crossing ten minutes riding him to a womb-swelling high.");
 				pc.cuntChange(x, pp.cockVolume(0));
+				output(" You have to waddle to the bathroom and release a full gallon of purple cum from your [pc.vagina " + x + "] afterwards.");
+				processTime(10);
 				pc.loadInCunt(pp, x);
 				pc.loadInCunt(pp, x);
 				pc.loadInCunt(pp, x);

@@ -1998,7 +1998,7 @@ public function gooDickFap():void
 	
 	output("\n\n[goo.name] leans forward, squeezing her big, squishy tits against your back and wrapping her arms around your [pc.chest] and holding you tight... and putting her in a better position to rapid-fire hammer your ass");
 	if (pc.hasVagina()) output(" and pussy");
-	output(", pounding you with fast, hard strokes. The gooey prick in your mouth begins to throb and sputter, drooling grey faux-spunk onto your [pc.tongue] in simulated orgasm - [goo.name]’s really going all out to give you the complete fucked-into-submission experience!");
+	output(", pounding you with fast, hard strokes. The gooey prick in your mouth begins to throb and sputter, drooling gray faux-spunk onto your [pc.tongue] in simulated orgasm - [goo.name]’s really going all out to give you the complete fucked-into-submission experience!");
 	
 	output("\n\nYou groan appreciatively around her twitching goo-cock, feeling your body approaching climax. With a final cry, surrendering to the pleasure, your [pc.asshole]");
 	if (pc.hasVagina()) output(" and cunt");
@@ -2072,7 +2072,7 @@ public function grayGooCockSleeveII(allowIt:Boolean = false):void
 		
 		output("\n\n<i>“Aww!”</i> she groans, easing the pressure off your behind. <i>“I guess I’ll just have to work harder on that [pc.cock] of yours!”</i>");
 		
-		output("\n\nAnd does she ever. Her tits start flying around your shaft, and her whole chest contorts around your thrusting cock. She’s like a vacuum sucking on you, ready to drain every drop from your [pc.balls]. It doesn’t take more than a moment for pre to start pouring out of your cock, heralding the inevitable. The moment the first droplet stains her grey body, your gooey companion coos happily, licking her lips hungrily.");
+		output("\n\nAnd does she ever. Her tits start flying around your shaft, and her whole chest contorts around your thrusting cock. She’s like a vacuum sucking on you, ready to drain every drop from your [pc.balls]. It doesn’t take more than a moment for pre to start pouring out of your cock, heralding the inevitable. The moment the first droplet stains her gray body, your gooey companion coos happily, licking her lips hungrily.");
 	}
 
 	output("\n\nUnder this kind of treatment, you’re not going to last much longer. You clench down, trying to hold back, but [goo.name]’s sucking, writhing motions are as intense as an expert whore’s, purpose-built to suck every drop of cum from you. There’s not a lot you can do to keep it from happening - just to try and give as good as you get, making sure [goo.name] has every bit as much enjoyment from your lovemaking as you do. She squeals delighted as you redouble your efforts, wiggling and moaning with every thrust.");
@@ -3217,7 +3217,13 @@ public function shipShowerFappening(scene:String = ""):void
 		output("\n\nYou let out a long, sultry groan, water spurting out around the shower head now buried in your succulent snatch.");
 		if (pc.vaginas[n].type != GLOBAL.TYPE_HUMAN)
 		{
-			output(" You work it around a bit just to relish the exotic shape you’ve been endowed with, your delicious twat that feels so good, so much better than a human’s ever could just by the sheer wrongness of it. It shouldn’t be down there between your legs, yet it is, providing you pleasures a woman was never meant to experience. Gods, you love having an ");
+			output(" You work it around a bit just to relish the exotic shape you’ve been endowed with, your delicious twat that feels so good, so much better than a human’s ever could just by the sheer wrongness of it. It shouldn’t be down there");
+			if (pc.genitalLocation() < 3)
+			{
+				if (pc.legCount == 1) output(" between your thighs");
+				else output(" between your [pc.legs]");
+			}
+			output(", yet it is, providing you pleasures a woman was never meant to experience. Gods, you love having an ");
 			if (InCollection(pc.vaginas[n].type, GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_NAGA)) output("animal’s");
 			else output("alien");
 			output(" cunt!");
@@ -3233,12 +3239,13 @@ public function shipShowerFappening(scene:String = ""):void
 		{
 			output(" [pc.fingers] sinking into the bountiful cleavage on display. You lift one of your breasts to run your tongue over your [pc.nippleColor] nipple");
 			if (pc.biggestTitSize() >= 11) output(", absolutely loving how easy it is with how huge you are");
-			output(". Big tits, wet pussy, what more could a girl want?");
+			output(". Big tits, wet pussy, what more could a [pc.boyGirl] want?");
 			if (pc.isLactating())
 			{
-				output(" Your body answers the question for you as a spurt of [pc.milkColor] splashes onto your tongue. She could want [pc.milkFlavor] goodness on demand. You take a few gulps, careful not to get too greedy and take the focus away from the pleasure in your pussy.");
+				output(" Your body answers the question for you as a spurt of [pc.milkColor] splashes onto your tongue. [pc.HeShe] could want [pc.milkFlavor] goodness on demand. You take a few gulps, careful not to get too greedy and take the focus away from the pleasure in your pussy.");
 				pc.milkInMouth(pc);
 			}
+			else output(" You let your tongue wander of its own accord for a while, focusing on the pleasure brimming in your pussy.");
 		}
 		output("\n\nAnd it’s a grand pleasure indeed, the water relentless in teasing your cunny depths, stoking the fires of your lusts higher and higher with each passing moment. Your croons come faster, higher, louder, every sound you make a step closer to sweet release. Despite how long it takes, you barely feel prepared, the water joined by a burst of [pc.girlCum] as you give the loudest cry of all.");
 		if (pc.hasCock()) output(" Spurts of [pc.cumNoun] join it, your male orgasm splattering against the shower wall in time with the contractions wracking your cunt.");

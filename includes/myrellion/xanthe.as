@@ -5,7 +5,7 @@
 //Resource Images
 // None of these exactly resemble the Siel, but many have certain aspects that have been incorporated into them. The first two pictures were the largest inspiration.
 //http://31.media.tumblr.com/6d0d17b86daa8081fc0412c3da30fba2/tumblr_naooxoNR0q1tqn35to1_r1_1280.png - This is the primary inspiration pic for the siel. The hips, legs, and feet are dead on (except for body color). Their body is more caterpillar like and has two more legs.
-//https://www.dropbox.com/s/vbb8ln8r9le1iqs/1406507618788.jpg - Siel have this kind of stomach (though not as long) and these kind of prolegs (The hooks), though differently colored (Blackish grey). Thier body is also broken up a bit like this.
+//https://www.dropbox.com/s/vbb8ln8r9le1iqs/1406507618788.jpg - Siel have this kind of stomach (though not as long) and these kind of prolegs (The hooks), though differently colored (Blackish gray). Thier body is also broken up a bit like this.
 //http://i.ytimg.com/vi/Zc2OqegzO6Y/hqdefault.jpg - Xanthe's eyes look like this. Most siel have this kind of 'black rim' that bleeds inwards, and an intense color that bleeds back in the other direction.
 
 //Xanthe And The Silken Serenity (Overview)
@@ -17,7 +17,7 @@ Appearance:
 Midnight blue hair and electric blue eyes.
 Collarbone or shoulder length wavy hair. 
 Dark blue nipples.
-Blue-grey skin
+Blue-gray skin
 Distinctively high cheekbones and full, pouting lips. Womanly features.
 Black lacy bra and panties, black stockings with a lacy trim on all eight legs (See first reference pic). Garter belt and garters.
 Front siel cock and back siel pussy. Can be changed.
@@ -351,7 +351,7 @@ public function enterTheSilkenSerenityWhyDidWashHaveToDie():Boolean
 		output("\n\nWandering into the maze built entirely from fashion items, you soon lose sight of the entrance. Just when you think you’re going to need to find a map or a signpost, you hear a husky voice speak out from behind you.");
 		output("\n\n<i>\"Hello, my dear...”</i> The sudden utterance, along with its incredibly close proximity to your back, almost causes you to leap right out of your [pc.skinFurScalesNoun].");
 		output("\n\nYou instinctively spin round. Your eyes are immediately met with a pair of electric blues staring straight back at you. They are shaped like exploding stars; pale azure exploding within the black rims of an iris. You take a step back, and they come into perspective.");
-		output("\n\nThe eyes, and the voice, belong to a mysterious looking woman with dusky blue-grey skin. Her face is smooth, feminine, and replete with high cheekbones. There is a playful smile on her full, pouting lips. It’s clear that she quite enjoyed sneaking up on you.");
+		output("\n\nThe eyes, and the voice, belong to a mysterious looking woman with dusky blue-gray skin. Her face is smooth, feminine, and replete with high cheekbones. There is a playful smile on her full, pouting lips. It’s clear that she quite enjoyed sneaking up on you.");
 		output("\n\n<i>\"Don’t worry. I don’t bite. Much,”</i> she teases. You soak in her appearance. Two antennae are sticking out of her head, and sweep back like insectoid rabbit ears. They’re protruding from a full head of wavy, midnight blue hair that tumbles down to her collarbones. There are slit like gills on either side of her neck.");
 		output("\n\nLooking down, you notice her eye-poppingly large breasts are only <i>barely</i> contained by a black lace bra. Teasing you again, she crosses her arms underneath her plump udders. She pushes her arms upwards, and her assets threaten to spill deliciously out of their lacy confines...");
 		//[Stare] [Don’t Stare] * Ditz always stares.
@@ -1545,7 +1545,11 @@ public function leftTeasedForEver(x:int = 0):void
 		if(pc.cumQ() < 5) output("tiny splatterings");
 		else if(pc.cumQ() < 50) output("thick sticky ropes");
 		else if(pc.cumQ() < 2500) output("gloriously thick ropes");
-		else output("gooey gallons");
+		else
+		{
+			if(pc.cumType != GLOBAL.FLUID_TYPE_SPECIAL_GOO) output("gooey ");
+			output("gallons");
+		}
 		output(" of your [pc.cum] all over the floor");
 	}
 	if(pc.hasVagina() && pc.hasCock()) output(". Your");
@@ -3660,7 +3664,7 @@ Gossamer
 
 New Pussy Type: Siel Pussy
 
-Colors: Steel Blue / Blue-grey / Dusky Blue.
+Colors: Steel Blue / Blue-gray / Dusky Blue.
 
 Adjective List Below:
 Y-lipped

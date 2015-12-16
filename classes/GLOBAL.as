@@ -288,6 +288,7 @@
 			TYPE_BEE,
 			TYPE_MYR,
 			TYPE_GABILANI,
+			TYPE_DEMONIC,
 		];
 		
 		public static const VALID_TONGUE_TYPES:Array = [
@@ -327,6 +328,7 @@
 			TYPE_KANGAROO,
 			TYPE_DEER,
 			TYPE_VULPINE,
+			TYPE_DEMONIC,
 			TYPE_DRACONIC,
 			TYPE_KUITAN,
 			TYPE_MOUSE,
@@ -354,6 +356,7 @@
 			TYPE_KUITAN,
 			TYPE_OVIR,
 			TYPE_MYR,
+			TYPE_DEMONIC,
 		];
 
 		public static const VALID_ARM_FLAGS:Array = [
@@ -847,6 +850,7 @@
 		public static const ITEM_FLAG_AIRTIGHT:int 						= 4; // Used for space suits and the like.
 		public static const ITEM_FLAG_SWIMWEAR:int				= 5; // Used specifically for swimming attire.
 		public static const ITEM_FLAG_EXPOSE_FULL:int				= 6; // Used specifically for attire that exposes nipples/breasts and genitals/asshole to the elements.
+		public static const ITEM_FLAG_LUST_WEAPON:int				= 7; // Used specifically for lust-exclusive weapons (that don't do physical damage).
 		
 		public static const ITEM_FLAG_NAMES:Array = [
 			"Bow Weapon",
@@ -856,6 +860,7 @@
 			"Airtight",
 			"Swimwear",
 			"Fully Exposed",
+			"Lust Weapon",
 		];
 		
 		/**

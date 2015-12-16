@@ -1174,7 +1174,11 @@
 		
 		public function perksOn():void
 		{
-			_leftSideBar.perksButton.Activate();
+			if (!(classes.kGAMECLASS.pc as PlayerCharacter) || (classes.kGAMECLASS.pc as PlayerCharacter).hasStatusEffect("In Creation"))
+			{
+				_leftSideBar.perksButton.Deactivate();
+			}
+			else _leftSideBar.perksButton.Activate();
 		}
 		
 		public function messengerOff():void
