@@ -59,15 +59,7 @@
 				var isMilkable:Boolean = (target.isMilkTank() || target.canLactate() || target.milkQ() >= 200);
 				
 				kGAMECLASS.clearOutput();
-				if(!target.canMasturbate() || target.lust() < 33)
-				{
-					kGAMECLASS.output("You’re not really in the mood to masturbate right now....");
-				}
-				else if(target.bRows() <= 0 || target.totalNipples() <= 0)
-				{
-					kGAMECLASS.output("You don’t have the proper anatomy to use this!");
-				}
-				else if(kGAMECLASS.rooms[kGAMECLASS.currentLocation].hasFlag(GLOBAL.NOFAP))
+				if(kGAMECLASS.rooms[kGAMECLASS.currentLocation].hasFlag(GLOBAL.NOFAP))
 				{
 					kGAMECLASS.output("Masturbating here would be impossible.");
 				}
@@ -81,7 +73,7 @@
 				}
 				else if(!isMilkable)
 				{
-					kGAMECLASS.output("You do not have the ability to lactate in order to try this at the moment.");
+					kGAMECLASS.output("You do not lactate enough to try this at the moment.");
 				}
 				else
 				{
