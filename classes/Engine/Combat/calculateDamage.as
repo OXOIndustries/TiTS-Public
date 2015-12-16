@@ -114,11 +114,13 @@ package classes.Engine.Combat
 		}
 		else if (special == "slut ray")
 		{
+			/*
 			if(attacker.critBonus(false) >= rand(100) + 1 && attacker is PlayerCharacter)
 			{
 				damageResult.wasCrit = true;
 				baseLustDamage.multiply(2);
 			}
+			*/
 		}
 		
 		/****************************
