@@ -10,6 +10,7 @@ package classes.Engine.Combat
 	import classes.Engine.Utility.possessive;
 	import classes.Items.Guns.Goovolver;
 	import classes.Util.RandomInCollection;
+	import classes.kGAMECLASS;
 	
 	/**
 	 * Apply damage wraps all of the general output stuff and isolates it from the actual damage calculation.
@@ -200,7 +201,7 @@ package classes.Engine.Combat
 				if(target is PlayerCharacter) output("Suddenly, your mind is filled with sexual fantasies, briefly obscuring your vision with " + lewdAdjective + " images!");
 				else if(target.plural) output(target.capitalA + target.short + " are mentally filled with sexual fantasies, briefly obscuring their vision with " + lewdAdjective + " images!");
 				else output(target.capitalA + target.short + " is mentally filled with sexual fantasies, briefly obscuring " + target.mfn("his", "her", "its") + " vision with " + lewdAdjective + " images!");
-				output(" " + teaseReactions(damageResult.lustDamage, target));
+				output(" " + kGAMECLASS.teaseReactions(damageResult.lustDamage, target));
 			}
 			else
 			{

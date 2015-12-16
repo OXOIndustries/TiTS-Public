@@ -1816,7 +1816,7 @@ public function getAHandjobFromInessy():void
 	else if(pc.cumQ() < 1000) output("thick stream");
 	else
 	{
-		if (cumType != GLOBAL.FLUID_TYPE_SPECIAL_GOO) output("gooey ");
+		if (pc.cumType != GLOBAL.FLUID_TYPE_SPECIAL_GOO) output("gooey ");
 		output("gush");
 	}
 	output(" of your hot [pc.cumNoun] all over her face! Rather than flinch, the fae-like girl shivers with delight as you use her pretty face as a canvas, marking it pointedly with your precious seed.");

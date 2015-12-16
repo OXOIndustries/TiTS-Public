@@ -279,7 +279,7 @@ package classes.Items.Transformatives
 				//Only if as tight as possible, should immediately proc sheath/cock/ball growth if this leaves PC genderless
 				if (target.vaginalCapacity(smallestVagIndex) <= 300)
 				{
-					if (target.removeVaginaUnlocked(smallestVagIndex, 1) && !pc.isPregnant())
+					if (target.removeVaginaUnlocked(smallestVagIndex, 1) && !target.isPregnant())
 					{
 						output("\n\nYour vagina just keeps getting tighter and tighter, way too much so. Soon relief comes, but it’s in the form of feeling your nether lips seal entirely, the supercharged masculine hormones surging through your blood removing the offending female part. <b>");
 						
@@ -296,7 +296,7 @@ package classes.Items.Transformatives
 						else output("Your vagina is gone");
 						output("</b>!");
 					}
-					else if(pc.isPregnant()) output("\n\nYour vaginal lips reflexively tighten and your womb warms, but nothing else happens. It seems your active pregnancy prevented the change.");
+					else if(target.isPregnant()) output("\n\nYour vaginal lips reflexively tighten and your womb warms, but nothing else happens. It seems your active pregnancy prevented the change.");
 					else output("\n\n" + target.removeVaginaLockedMessage());
 				}
 			}

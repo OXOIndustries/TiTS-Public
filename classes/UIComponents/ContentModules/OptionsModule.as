@@ -88,18 +88,6 @@ package classes.UIComponents.ContentModules
 		 * @param	n	Text to place on the control element (button label).
 		 * @param	p	The name of the property that the control binds to in the GameOptions class (the EXACT property name).
 		 */
-		private function addToggleControl(d:String, n:String, p:String):void
-		{
-			var tC:OptionsControlToggle = new OptionsControlToggle();
-			_controls.push(tC);
-			_controlsContainer.addChild(tC);
-			
-			if (_pC != null) tC.y = _pC.y + _pC.height;
-			if (_pC is BustsPreferenceControl) tC.y += 5;
-			_pC = tC;
-			
-			tC.configure(d, n, p);
-		}
 		private function addMultiToggleControl(d:String, nA:String, pA:String, nB:String, pB:String):void
 		{
 			var tC:OptionsControlToggle = new OptionsControlToggle();

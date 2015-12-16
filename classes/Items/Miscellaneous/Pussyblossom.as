@@ -8,6 +8,7 @@
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
 	import classes.Util.InCollection;
+	import classes.Engine.Utility.indefiniteArticle;
 	
 	public class Pussyblossom extends ItemSlotClass
 	{
@@ -85,7 +86,7 @@
 						pc.shiftVagina(0, GLOBAL.TYPE_EQUINE);
 						kGAMECLASS.output("You’ve got ");
 						if(pc.vaginaColor(0) == "black") kGAMECLASS.output("a dusky, black");
-						else kGAMECLASS.output(kGAMECLASS.indefiniteArticle(pc.vaginaColor(0)));
+						else kGAMECLASS.output(indefiniteArticle(pc.vaginaColor(0)));
 						kGAMECLASS.output(" horse-pussy.");
 					}
 					else if(InCollection(pcRace, "naleen", "naga"))
@@ -98,7 +99,7 @@
 						pc.shiftVagina(0, GLOBAL.TYPE_BEE);
 						kGAMECLASS.output("You’ve got ");
 						if(pc.vaginaColor(0) == "black") kGAMECLASS.output("a dusky, black");
-						else kGAMECLASS.output(kGAMECLASS.indefiniteArticle(pc.vaginaColor(0)));
+						else kGAMECLASS.output(indefiniteArticle(pc.vaginaColor(0)));
 						kGAMECLASS.output(" zil-pussy.");
 					}
 					else if (InCollection(pcRace, "leithan", "half-leithan"))
@@ -106,7 +107,7 @@
 						pc.shiftVagina(0, GLOBAL.TYPE_LEITHAN);
 						kGAMECLASS.output("You’ve got ");
 						if(pc.vaginaColor(0) == "black") kGAMECLASS.output("a dusky, black");
-						else kGAMECLASS.output(kGAMECLASS.indefiniteArticle(pc.vaginaColor(0)));
+						else kGAMECLASS.output(indefiniteArticle(pc.vaginaColor(0)));
 						kGAMECLASS.output(" leithan pussy.");
 					}
 					else if (pcRace == "vanae-morph")
@@ -119,18 +120,18 @@
 						pc.shiftVagina(0, GLOBAL.TYPE_KUITAN);
 						kGAMECLASS.output("You’ve got ");
 						if(pc.vaginaColor(0) == "black") kGAMECLASS.output("a dusky, black");
-						else kGAMECLASS.output(kGAMECLASS.indefiniteArticle(pc.vaginaColor(0)));
+						else kGAMECLASS.output(indefiniteArticle(pc.vaginaColor(0)));
 						kGAMECLASS.output(" ‘nuki-pussy.");
 					}
 					else if (pcRace == "lapinara")
 					{
 						pc.shiftVagina(0, GLOBAL.TYPE_LAPINARA);
-						kGAMECLASS.output("You’ve got " + kGAMECLASS.indefiniteArticle(pc.vaginaColor(0)) + " lapinara pussy.");
+						kGAMECLASS.output("You’ve got " + indefiniteArticle(pc.vaginaColor(0)) + " lapinara pussy.");
 					}
 					else if (pcRace == "canine-morph")
 					{
 						pc.shiftVagina(0, GLOBAL.TYPE_CANINE);
-						kGAMECLASS.output("You’ve got " + kGAMECLASS.indefiniteArticle(pc.vaginaColor(0)) + " canine-pussy.");
+						kGAMECLASS.output("You’ve got " + indefiniteArticle(pc.vaginaColor(0)) + " canine-pussy.");
 					}
 					else if (InCollection(pcRace, "gabilani", "goblin"))
 					{
