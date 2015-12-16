@@ -1219,9 +1219,9 @@ public function approachFollowerBess():void
 		output(" [bess.HisHer] [bess.chest]");
 		if (bess.isChestGarbed()) output(" pointedly strain against the fabric");
 		else output(" and [bess.nipples] are exposed");
+		output(".");
 	}
-	output(".");
-
+	
 	if (bess.wingType != GLOBAL.TYPE_HUMAN || bess.tailCount > 0)
 	{
 		output(" [bess.HisHer] ");
@@ -1277,9 +1277,16 @@ public function approachFollowerBess():void
 	else if(bess.bellyRating() >= 10)
 	{
 		output("\n\n[bess.HisHer] [bess.belly]");
-		if(bess.armor.shortName == "") output(" is clearly visible");
-		if (bess.isCrotchGarbed() || bess.isChestGarbed()) output(" through [bess.hisHer] undergarments");
-		output(".");
+		if (bess.armor.shortName == "")
+		{
+			output(" is clearly visible");
+			if (bess.isCrotchGarbed() || bess.isChestGarbed()) output(" through [bess.hisHer] undergarments");
+			output(".");
+		}
+		else
+		{
+			output(" pushes pointedly against the insides of [bess.hisHer] [bess.armor] and is visibly straining the material.");
+		}
 	}
 
 	bessFollowerMenu();
