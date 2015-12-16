@@ -683,13 +683,16 @@ public function alkahestsForeskinOralPlay():void {
 	//(Menu to pick which organ to come with)
 	output("\n\nHow do you cum?");
 	clearMenu();
-	if(pc.hasCock()) addButton(0,"Dick",foreskinWorshipCumWithDick);
-	if(pc.cockTotal() > 1) addButton(0,"Dicks",foreskinWorshipCumWithDick);
-	if(!pc.hasCock()) addDisabledButton(0,"Dick");
+	if(pc.hasCock())
+	{
+		if(pc.cockTotal() > 1) addButton(0,"Dicks",foreskinWorshipCumWithDick);
+		else addButton(0,"Dick",foreskinWorshipCumWithDick);
+	}
+	else addDisabledButton(0,"Dick","Dick","You need a penis for this.");
 	if(pc.hasVagina()) addButton(1,"Pussy",foreskinWorshipWithPussyCum);
-	else addDisabledButton(1,"Pussy");
+	else addDisabledButton(1,"Pussy","Pussy","You need a vagina for this.");
 	if(pc.hasDickNipples()) addButton(2,"DickNipples",foreskinWorshipWithNippleCocks);
-	else addDisabledButton(2,"DickNipples");
+	else addDisabledButton(2,"DickNipples","Dick Nipples","You need dick nipples for this.");
 }
 
 //{IF DICK}
