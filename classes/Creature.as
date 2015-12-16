@@ -7255,75 +7255,61 @@ package classes {
 			vaginas[slot].clearFlags();
 
 			//Add bonus flags and shit.
-			if (type == GLOBAL.TYPE_EQUINE)
+			switch (type)
 			{
-				vaginas[slot].clits = 1;
-				vaginas[slot].vaginaColor = "black";
-				vaginas[slot].minLooseness = 2;
-			}
-			if (type == GLOBAL.TYPE_HUMAN)
-			{
-				vaginas[slot].clits = 1;
-				vaginas[slot].vaginaColor = "pink";
-			}
-			if (type == GLOBAL.TYPE_BEE)
-			{
-				vaginas[slot].clits = 1;
-				vaginas[slot].vaginaColor = "black and gold";
-			}
-			if (type == GLOBAL.TYPE_NAGA)
-			{
-				vaginas[slot].clits = 1;
-				vaginas[slot].vaginaColor = "purple";
-			}
-			if (type == GLOBAL.TYPE_LEITHAN)
-			{
-				vaginas[slot].clits = 1;
-				vaginas[slot].vaginaColor = "black";
-			}
-			if (type == GLOBAL.TYPE_VANAE)
-			{
-				vaginas[slot].clits = 2;
-				vaginas[slot].vaginaColor = "luminous violet";
-				vaginas[slot].wetnessRaw = 4;
-			}
-			if(type == GLOBAL.TYPE_KUITAN)
-			{
-				vaginas[slot].vaginaColor = "black";
-			}
-			if (type == GLOBAL.TYPE_SYNTHETIC)
-			{
-				vaginas[slot].vaginaColor = RandomInCollection(["silver", "gray", "black"]);
-			}
-			if (type == GLOBAL.TYPE_LAPINARA)
-			{
-				vaginas[slot].vaginaColor = RandomInCollection(["pink", "pink", "purple"]);
-			}
-			if (type == GLOBAL.TYPE_CANINE)
-			{
-				vaginas[slot].clits = 1;
-				vaginas[slot].vaginaColor = "pink";
-				vaginas[slot].wetnessRaw = 3;
-				vaginas[slot].minLooseness = 3;
-			}
-			if (type == GLOBAL.TYPE_GOOEY)
-			{
-				vaginas[slot].vaginaColor = skinTone;
-				vaginas[slot].addFlag(GLOBAL.FLAG_LUBRICATED);
-			}
-			if (type == GLOBAL.TYPE_SIREN)
-			{
-				vaginas[slot].vaginaColor = RandomInCollection(["blue", "aquamarine"]);
-				vaginas[slot].addFlag(GLOBAL.FLAG_NUBBY);
-				vaginas[slot].addFlag(GLOBAL.FLAG_TENDRIL);
-				vaginas[slot].addFlag(GLOBAL.FLAG_APHRODISIAC_LACED);
-			}
-			if (type == GLOBAL.TYPE_GABILANI)
-			{
-				vaginas[slot].clits = 1;
-				vaginas[slot].vaginaColor = RandomInCollection(["pink", "pink", "aquamarine", "purple"]);
-				vaginas[slot].minLooseness = 1;
-				vaginas[slot].addFlag(GLOBAL.FLAG_LUBRICATED);
+				case GLOBAL.TYPE_HUMAN:
+					vaginas[slot].clits = 1;
+					vaginas[slot].vaginaColor = "pink";
+					break;
+				case GLOBAL.TYPE_EQUINE:
+					vaginas[slot].clits = 1;
+					vaginas[slot].vaginaColor = "black";
+					vaginas[slot].minLooseness = 2;
+					break;
+				case GLOBAL.TYPE_BEE:
+					vaginas[slot].clits = 1;
+					vaginas[slot].vaginaColor = "black and gold";
+					break;
+				case GLOBAL.TYPE_NAGA:
+					vaginas[slot].clits = 1;
+					vaginas[slot].vaginaColor = "purple";
+					break;
+				case GLOBAL.TYPE_LEITHAN:
+					vaginas[slot].clits = 1;
+					vaginas[slot].vaginaColor = "black";
+					break;
+				case GLOBAL.TYPE_VANAE:
+					vaginas[slot].clits = 2;
+					vaginas[slot].vaginaColor = "luminous violet";
+					vaginas[slot].wetnessRaw = 4;
+					break;
+				case GLOBAL.TYPE_KUITAN:
+					vaginas[slot].vaginaColor = "black";
+					break;
+				case GLOBAL.TYPE_SYNTHETIC:
+					vaginas[slot].vaginaColor = RandomInCollection(["silver", "gray", "black"]);
+					break;
+				case GLOBAL.TYPE_LAPINARA:
+					vaginas[slot].vaginaColor = RandomInCollection(["pink", "pink", "purple"]);
+					break;
+				case GLOBAL.TYPE_CANINE:
+					vaginas[slot].clits = 1;
+					vaginas[slot].vaginaColor = "pink";
+					vaginas[slot].wetnessRaw = 3;
+					vaginas[slot].minLooseness = 3;
+					break;
+				case GLOBAL.TYPE_SIREN:
+					vaginas[slot].vaginaColor = RandomInCollection(["blue", "aquamarine"]);
+					vaginas[slot].addFlag(GLOBAL.FLAG_NUBBY);
+					vaginas[slot].addFlag(GLOBAL.FLAG_TENDRIL);
+					vaginas[slot].addFlag(GLOBAL.FLAG_APHRODISIAC_LACED);
+					break;
+				case GLOBAL.TYPE_GABILANI:
+					vaginas[slot].clits = 1;
+					vaginas[slot].vaginaColor = RandomInCollection(["pink", "pink", "aquamarine", "purple"]);
+					vaginas[slot].minLooseness = 1;
+					vaginas[slot].addFlag(GLOBAL.FLAG_LUBRICATED);
+					break;
 			}
 		}
 		//Change cock type
@@ -7340,127 +7326,126 @@ package classes {
 			cocks[slot].clearFlags();
 
 			//Add bonus flags and shit.
-			if (type == GLOBAL.TYPE_HUMAN || type == GLOBAL.TYPE_INHUMAN)
+			switch (type)
 			{
-				cocks[slot].knotMultiplier = 1;
-				cocks[slot].cockColor = "pink";
-			}
-			if (type == GLOBAL.TYPE_CANINE || type == GLOBAL.TYPE_VULPINE) {
-				cocks[slot].knotMultiplier = 1.25;
-				cocks[slot].cockColor = "bright red";
-				cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
-				cocks[slot].addFlag(GLOBAL.FLAG_KNOTTED);
-				cocks[slot].addFlag(GLOBAL.FLAG_SHEATHED);
-			}
-			if (type == GLOBAL.TYPE_FELINE) {
-				cocks[slot].knotMultiplier = 1;
-				cocks[slot].cockColor = "pink";
-				cocks[slot].addFlag(GLOBAL.FLAG_NUBBY);
-			}
-			if (type == GLOBAL.TYPE_EQUINE) {
-				cocks[slot].knotMultiplier = 1;
-				cocks[slot].cockColor = RandomInCollection(["pink", "black", "mottled pink and black"]);
-				cocks[slot].addFlag(GLOBAL.FLAG_BLUNT);
-				cocks[slot].addFlag(GLOBAL.FLAG_FLARED);
-				cocks[slot].addFlag(GLOBAL.FLAG_SHEATHED);
-			}
-			if (type == GLOBAL.TYPE_BEE) {
-				cocks[slot].cockColor = RandomInCollection(["amber", "black"]);
-				cocks[slot].knotMultiplier = 1;
-				cocks[slot].addFlag(GLOBAL.FLAG_SMOOTH);
-				cocks[slot].addFlag(GLOBAL.FLAG_FORESKINNED);
-			}
-			if (type == GLOBAL.TYPE_NAGA) {
-				cocks[slot].cockColor = "purple";
-				cocks[slot].knotMultiplier = 1;
-				cocks[slot].addFlag(GLOBAL.FLAG_SMOOTH);
-				cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
-			}
-			if (type == GLOBAL.TYPE_KUITAN) {
-				cocks[slot].cockColor = "red";
-				cocks[slot].knotMultiplier = 1.3;
-				cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
-				cocks[slot].addFlag(GLOBAL.FLAG_KNOTTED);
-				cocks[slot].addFlag(GLOBAL.FLAG_SHEATHED);
-			}
-			if (type == GLOBAL.TYPE_RASKVEL) {
-				cocks[slot].cockColor = "purple";
-				cocks[slot].addFlag(GLOBAL.FLAG_SMOOTH);
-			}
-			if (type == GLOBAL.TYPE_DEMONIC) {
-				cocks[slot].cockColor = RandomInCollection(["red", "dark purple"]);
-				cocks[slot].knotMultiplier = 1.4;
-				cocks[slot].addFlag(GLOBAL.FLAG_KNOTTED);
-				cocks[slot].addFlag(GLOBAL.FLAG_NUBBY);
-			}
-			if (type == GLOBAL.TYPE_TENTACLE) {
-				cocks[slot].cockColor = RandomInCollection(["green", "purple"]);
-				cocks[slot].addFlag(GLOBAL.FLAG_PREHENSILE);
-				cocks[slot].addFlag(GLOBAL.FLAG_FLARED);
-				cocks[slot].addFlag(GLOBAL.FLAG_LUBRICATED);
-			}
-			if (type == GLOBAL.TYPE_ANEMONE || type == GLOBAL.TYPE_SIREN) {
-				cocks[slot].cockColor = RandomInCollection(["blue", "aquamarine"]);
-				cocks[slot].addFlag(GLOBAL.FLAG_APHRODISIAC_LACED);
-				cocks[slot].addFlag(GLOBAL.FLAG_STINGER_BASED);
-			}
-			if (type == GLOBAL.TYPE_KANGAROO) {
-				cocks[slot].cockColor = RandomInCollection(["red", "pink"]);
-				cocks[slot].addFlag(GLOBAL.FLAG_PREHENSILE);
-				cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
-			}
-			if (type == GLOBAL.TYPE_DRACONIC) {
-				cocks[slot].cockColor = "blue";
-				if (rand(2) == 0) cocks[slot].knotMultiplier = 1.25;
-				else cocks[slot].knotMultiplier = 1.3;
-				cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
-				cocks[slot].addFlag(GLOBAL.FLAG_KNOTTED);
-			}
-			if (type == GLOBAL.TYPE_GOOEY) {
-				cocks[slot].cockColor = skinTone;
-				cocks[slot].addFlag(GLOBAL.FLAG_SMOOTH);
-				cocks[slot].addFlag(GLOBAL.FLAG_LUBRICATED);
-			}
-			if (type == GLOBAL.TYPE_SIMII) {
-				cocks[slot].knotMultiplier = 1;
-				cocks[slot].cockColor = "pink";
-			}
-			if (type == GLOBAL.TYPE_SAURIAN) {
-				cocks[slot].knotMultiplier = 1;
-				cocks[slot].cockColor = "pink";
-				if(cocks[slot].cLengthRaw < 20) cocks[slot].cLengthRaw = 20;
-				if(cocks[slot].cThicknessRatioRaw < 3) cocks[slot].cThicknessRatioRaw = 3;
-			}
-			if (type == GLOBAL.TYPE_SYNTHETIC) {
-				cocks[slot].cockColor = RandomInCollection(["silver", "gray", "black"]);
-			}
-			if (type == GLOBAL.TYPE_VENUSPITCHER) {
-				cocks[slot].cockColor = RandomInCollection(["green", "purple", "olive green"]);
-				cocks[slot].addFlag(GLOBAL.FLAG_PREHENSILE);
-				cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
-			}
-			if (type == GLOBAL.TYPE_NYREA) {
-				cocks[slot].cockColor = RandomInCollection(["silver", "gray", "black"]);
-				cocks[slot].knotMultiplier = 1;
-			}
-			if (type == GLOBAL.TYPE_DAYNAR) {
-				cocks[slot].cockColor = "purple";
-				cocks[slot].knotMultiplier = 1;
-				cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
-			}
-			if (type == GLOBAL.TYPE_SYDIAN) {
-				cocks[slot].cockColor = RandomInCollection(["orange", "bright orange", "red orange"]);
-				cocks[slot].knotMultiplier = 1;
-			}
-			if (type == GLOBAL.TYPE_COCKVINE) {
-				cocks[slot].cockColor = RandomInCollection(["green", "purple"]);
-				cocks[slot].knotMultiplier = 1;
-				cocks[slot].addFlag(GLOBAL.FLAG_PREHENSILE);
-			}
-			if (type == GLOBAL.TYPE_GABILANI) {
-				cocks[slot].knotMultiplier = 1;
-				cocks[slot].cockColor = RandomInCollection(["pink", "pink", "olive", "purple"]);
-				cocks[slot].addFlag(GLOBAL.FLAG_DOUBLE_HEADED);
+				case GLOBAL.TYPE_HUMAN:
+				case GLOBAL.TYPE_INHUMAN:
+					cocks[slot].knotMultiplier = 1;
+					cocks[slot].cockColor = "pink";
+					break;
+				case GLOBAL.TYPE_CANINE:
+				case GLOBAL.TYPE_VULPINE:
+					cocks[slot].knotMultiplier = 1.25;
+					cocks[slot].cockColor = "bright red";
+					cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
+					cocks[slot].addFlag(GLOBAL.FLAG_KNOTTED);
+					cocks[slot].addFlag(GLOBAL.FLAG_SHEATHED);
+					break;
+				case GLOBAL.TYPE_FELINE:
+					cocks[slot].knotMultiplier = 1;
+					cocks[slot].cockColor = "pink";
+					cocks[slot].addFlag(GLOBAL.FLAG_NUBBY);
+					break;
+				case GLOBAL.TYPE_EQUINE:
+					cocks[slot].knotMultiplier = 1;
+					cocks[slot].cockColor = RandomInCollection(["pink", "black", "mottled pink and black"]);
+					cocks[slot].addFlag(GLOBAL.FLAG_BLUNT);
+					cocks[slot].addFlag(GLOBAL.FLAG_FLARED);
+					cocks[slot].addFlag(GLOBAL.FLAG_SHEATHED);
+					break;
+				case GLOBAL.TYPE_BEE:
+					cocks[slot].cockColor = RandomInCollection(["amber", "black"]);
+					cocks[slot].knotMultiplier = 1;
+					cocks[slot].addFlag(GLOBAL.FLAG_SMOOTH);
+					cocks[slot].addFlag(GLOBAL.FLAG_FORESKINNED);
+					break;
+				case GLOBAL.TYPE_NAGA:
+					cocks[slot].cockColor = "purple";
+					cocks[slot].knotMultiplier = 1;
+					cocks[slot].addFlag(GLOBAL.FLAG_SMOOTH);
+					cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
+					break;
+				case GLOBAL.TYPE_KUITAN:
+					cocks[slot].cockColor = "red";
+					cocks[slot].knotMultiplier = 1.3;
+					cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
+					cocks[slot].addFlag(GLOBAL.FLAG_KNOTTED);
+					cocks[slot].addFlag(GLOBAL.FLAG_SHEATHED);
+					break;
+				case GLOBAL.TYPE_RASKVEL:
+					cocks[slot].cockColor = "purple";
+					cocks[slot].addFlag(GLOBAL.FLAG_SMOOTH);
+					break;
+				case GLOBAL.TYPE_DEMONIC:
+					cocks[slot].cockColor = RandomInCollection(["red", "dark purple"]);
+					cocks[slot].knotMultiplier = 1.4;
+					cocks[slot].addFlag(GLOBAL.FLAG_KNOTTED);
+					cocks[slot].addFlag(GLOBAL.FLAG_NUBBY);
+					break;
+				case GLOBAL.TYPE_TENTACLE:
+					cocks[slot].cockColor = RandomInCollection(["green", "purple"]);
+					cocks[slot].addFlag(GLOBAL.FLAG_PREHENSILE);
+					cocks[slot].addFlag(GLOBAL.FLAG_FLARED);
+					cocks[slot].addFlag(GLOBAL.FLAG_LUBRICATED);
+					break;
+				case GLOBAL.TYPE_ANEMONE:
+				case GLOBAL.TYPE_SIREN:
+					cocks[slot].cockColor = RandomInCollection(["blue", "aquamarine"]);
+					cocks[slot].addFlag(GLOBAL.FLAG_APHRODISIAC_LACED);
+					cocks[slot].addFlag(GLOBAL.FLAG_STINGER_BASED);
+					break;
+				case GLOBAL.TYPE_KANGAROO:
+					cocks[slot].cockColor = RandomInCollection(["red", "pink"]);
+					cocks[slot].addFlag(GLOBAL.FLAG_PREHENSILE);
+					cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
+					break;
+				case GLOBAL.TYPE_DRACONIC:
+					cocks[slot].cockColor = "blue";
+					cocks[slot].knotMultiplier = RandomInCollection([1.25, 1.3]);
+					cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
+					cocks[slot].addFlag(GLOBAL.FLAG_KNOTTED);
+					break;
+				case GLOBAL.TYPE_SIMII:
+					cocks[slot].knotMultiplier = 1;
+					cocks[slot].cockColor = "pink";
+					break;
+				case GLOBAL.TYPE_SAURIAN:
+					cocks[slot].knotMultiplier = 1;
+					cocks[slot].cockColor = "pink";
+					if(cocks[slot].cLengthRaw < 20) cocks[slot].cLengthRaw = 20;
+					if(cocks[slot].cThicknessRatioRaw < 3) cocks[slot].cThicknessRatioRaw = 3;
+					break;
+				case GLOBAL.TYPE_SYNTHETIC:
+					cocks[slot].cockColor = RandomInCollection(["silver", "gray", "black"]);
+					break;
+				case GLOBAL.TYPE_VENUSPITCHER:
+					cocks[slot].cockColor = RandomInCollection(["green", "purple", "olive green"]);
+					cocks[slot].addFlag(GLOBAL.FLAG_PREHENSILE);
+					cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
+					break;
+				case GLOBAL.TYPE_NYREA:
+					cocks[slot].cockColor = RandomInCollection(["silver", "gray", "black"]);
+					cocks[slot].knotMultiplier = 1;
+					break;
+				case GLOBAL.TYPE_DAYNAR:
+					cocks[slot].cockColor = "purple";
+					cocks[slot].knotMultiplier = 1;
+					cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
+					break;
+				case GLOBAL.TYPE_SYDIAN:
+					cocks[slot].cockColor = RandomInCollection(["orange", "bright orange", "red orange"]);
+					cocks[slot].knotMultiplier = 1;
+					break;
+				case GLOBAL.TYPE_COCKVINE:
+					cocks[slot].cockColor = RandomInCollection(["green", "purple"]);
+					cocks[slot].knotMultiplier = 1;
+					cocks[slot].addFlag(GLOBAL.FLAG_PREHENSILE);
+					break;
+				case GLOBAL.TYPE_GABILANI:
+					cocks[slot].knotMultiplier = 1;
+					cocks[slot].cockColor = RandomInCollection(["pink", "pink", "olive", "purple"]);
+					cocks[slot].addFlag(GLOBAL.FLAG_DOUBLE_HEADED);
+					break;
 			}
 		}
 		//PC can fly?
@@ -9643,13 +9628,13 @@ package classes {
 					else
 						desc += RandomInCollection(["tail-vagina", "tail-pussy", "tail-pussy","tail-pussy","tail-pussy", "tail-cunt", "tail-cunt", "tail-slit", "tail-slit","tail-twat","tail-twat"]);
 				}
-				//Gooey override
+				//Gooey override, Slimgina
 				else if(rand(3) == 0 && vag.hasFlag(GLOBAL.FLAG_GOOEY))
 				{
 					if(!simple)
-						desc += RandomInCollection(["sloppy gash", "gooey pussy", "sopping cunt", "slick snatch", "puddling pussy", "semi-solid snatch", "gooey cunt", "goo vagina"]);
+						desc += RandomInCollection(["sloppy gash", "gooey pussy", "sopping cunt", "slick snatch", "puddling pussy", "semi-solid snatch", "gooey cunt", "goo vagina", "slimy vagina", "gooey pussy", "slimy cunt", "syrupy hole", "juicy twat", "slimy gash", "gooey honeypot", "slimy snatch"]);
 					else
-						desc += RandomInCollection(["googina", "goo-hole", "fuck-hole"]);
+						desc += RandomInCollection(["googina", "goo-hole", "fuck-hole", "slime-gina", "goo-pussy", "slime-cunt", "fuck-hole", "goo-twat", "slime-gash", "honeypot", "slime-snatch"]);
 				}
 				else if (type == GLOBAL.TYPE_EQUINE)
 				{
@@ -9665,14 +9650,6 @@ package classes {
 						desc += RandomInCollection(["canine gash", "small-lipped vagina", "animalistic cunny", "canine honeypot", "canine snatch", "canine cunt", "animalistic pussy", "fragrant dog-cunt"]);
 					else
 						desc += RandomInCollection(["dog-pussy", "bitch-cunt", "fuck-hole", "dog-twat", "animal-twat", "animal-pussy", "dog-pussy", "dog-cunt"]);
-				}
-				//Slimgina?
-				else if (type == GLOBAL.TYPE_GOOEY)
-				{
-					if (!simple)
-						desc += RandomInCollection(["slimy vagina", "gooey pussy", "slimy cunt", "syrupy hole", "juicy twat", "slimy gash", "gooey honeypot", "slimy snatch"]);
-					else
-						desc += RandomInCollection(["slime-gina", "goo-pussy", "slime-cunt", "fuck-hole", "goo-twat", "slime-gash", "honeypot", "slime-snatch"]);
 				}
 				else if (type == GLOBAL.TYPE_SIREN || type == GLOBAL.TYPE_ANEMONE)
 				{
@@ -10232,9 +10209,6 @@ package classes {
 				case GLOBAL.TYPE_RASKVEL:
 					collection = ["raskvel"];
 					break;
-				case GLOBAL.TYPE_GOOEY:
-					collection = ["gooey", "goo"];
-					break;
 				case GLOBAL.TYPE_VENUSPITCHER:
 					collection = ["plant", "vine-like"];
 					break;
@@ -10374,7 +10348,7 @@ package classes {
 				nouns.push("Error. Cock type does not have a cock noun configuration.");
 			}
 			
-			if (type == GLOBAL.TYPE_GOOEY || cock.hasFlag(GLOBAL.FLAG_GOOEY)) {
+			if (cock.hasFlag(GLOBAL.FLAG_GOOEY)) {
 				adjectives.push("gooey","self-lubricating","slick");
 				nouns.push("goo-dick","goo-cock");
 			}
