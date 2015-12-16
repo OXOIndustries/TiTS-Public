@@ -11882,7 +11882,16 @@ package classes {
 			var bonus:Number = 0;
 			if(hasPerk("Fecund Figure")) bonus += perkv3("Fecund Figure");
 			
-			return bellyRatingRaw + bellyRatingMod + bonus;
+			var currBellyRating:Number = bellyRatingRaw + bellyRatingMod + bonus;
+			
+			if (currBellyRating < 0)
+			{
+				return 0;
+			}
+			else
+			{
+				return Math.round(currBellyRating * 1000) / 1000;
+			}
 		}
 		
 		// Pregnancy Data Storage
