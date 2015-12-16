@@ -219,8 +219,26 @@ package classes.Characters
 			// attacks into one
 			if (alliedCreatures.length > 1)
 			{
-				cloneLustAttacks();
+				cloneLustAttacks(alliedCreatures, pc);
 			}
+		}
+		
+		private function attackAnno(target:Creature):void
+		{
+			//Chance to disable help from Anno for a turn
+			output("The goo turns her attention from you to your companion. Anno takes an unsure step back, leveling her gun at the goo and firing as it advances. The goo-girl dodges with inhuman ability, crumbling to dust where Anno shoots, only to reform inches from the ausar!");
+
+			if (combatMiss(this, target))
+			{
+				output(" Anno leaps out of the way as the goo-girl lunges for her! <i>“Bitch!”</i> the goo shouts. <i>“I’m not almost human! I’M MORE HUMAN THAN YOU ARE.”</i>");
+				output("\n\n<i>“I’m an ausar, you stupid cunt!”</i>\n");
+			}
+			else
+			{
+				output(" The gray goo’s hand lashes out, grabbing Anno by the neck and slamming your companion up against the bulkhead, choking her. Anno thrashes out, punching the goo square in the face... only for its face to deform around her fist, letting it pass straight through and hardening around it, trapping Anno’s hand. <i>“Almost human, was it? I’LL SHOW YOU ALMOST HUMAN!”</i>\n");
+
+				target.createStatusEffect("Grappled", 0, 0, 0, 0, true, "Constrict", "The Gray Prime has Anno in her clutches!", true, 0);
+			}	
 		}
 		
 		private function gooSword(target:Creature):void
@@ -303,6 +321,30 @@ package classes.Characters
 			{
 				CombatManager.addHostileCreature(new GooClone());
 			}
+		}
+		
+		private function cloneLustAttacks(allies:Array, target:Creature):void
+		{
+			var gooClone:GooClone;
+			var numAttacks:int = 1;
+			
+			for (var i:int = 0; i < allies.length; i++)
+			{
+				if (allies[i] is GooClone) gooClone = allies[i] as GooClone;
+			}
+			
+			numAttacks = allies.length - 1;
+			
+			if (numAttacks == 1)
+			{
+				output("\n\nOne of the lust clones shakes her hips and titties at you, trying to entice you into sex!");
+			}
+			else
+			{
+				output("\n\nThe lust clones shake their hips and titties at you, trying to entice you into sex!");
+			}
+			
+			applyDamage(new TypeCollection( { tease: numAttacks } ), gooClone, target, "minimal");
 		}
 	}
 

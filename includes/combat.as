@@ -2,9 +2,6 @@
 {	
 	trace("AI CALL");
 	//Paralyze stops turns! AHHHH!
-	else if (aggressor is GrayPrime) grayPrimeAI();
-	else if (aggressor is GigaGoo) gigaGooAI();
-	else if (aggressor is Varmint) varmintAI();
 	else if (aggressor is Shade) shadeAI();
 	else if (aggressor is Kara) karaAI();
 	else if (aggressor is Cockvine) adultCockvineAI();

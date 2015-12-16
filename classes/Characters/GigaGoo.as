@@ -13,6 +13,11 @@ package classes.Characters
 	import classes.kGAMECLASS;
 	import classes.rand;
 	import classes.GameData.CodexManager;
+	import classes.Engine.Combat.*;
+	import classes.Engine.Combat.DamageTypes.*;
+	import classes.Engine.Interfaces.output;
+	import classes.GameData.CombatAttacks;
+	import classes.GameData.CombatManager;
 	
 	/**
 	 * ...
@@ -172,6 +177,106 @@ package classes.Characters
 			kGAMECLASS.foes.push(gigaGoo);
 		}
 		
+		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
+		{
+			var target:Creature = selectTarget(hostileCreatures);
+			if (target == null) return;
+			
+			if (rand(3) == 0)
+			{
+				CombatAttacks.MeleeAttack(this, target);
+			}
+			else
+			{
+				if (CombatManager.getRoundCount() % 3 == 0) cageRattle();
+				else if (rand(4) == 0) swordThrust();
+				else gooPunch(hostileCreatures);
+			}
+		}
+		
+		private function cageRattle(hostiles:Array):void
+		{
+			var pc:Creature;
+			var anno:Creature;
+			
+			for (var i:int = 0; i < hostiles.length; i++)
+			{
+				if (hostiles[i] is PlayerCharacter) pc = hostiles[i];
+				if (hostiles[i] is Anno) anno = hostiles[i];
+			}
+			
+			//Several light physical attacks, chance of knockdown in failed Reflex save. 
+			output("\nNova reaches up and grabs the top of the elevator to hold it in place and push downward, trying to drive you into the rising cloud of gas below. The car shakes and shudders as she fights against the motor to hold you down.");
+
+			var totalDamage:int = 0;
+
+			for (var i:int = 0; i < 7; i++)
+			{
+				var damage:TypeCollection = new TypeCollection( { kinetic: 5 } );
+				damageRand(damage, 15);
+				
+				if (!combatMiss(this, pc, -1, 2))
+				{
+					var damageResult:DamageResult = applyDamage(damage, this, pc);
+					totalDamage += damageResult.totalDamage;
+				}
+				
+				if (!combatMiss(this, anno, -1, 2))
+				{
+					applyDamage(damage, this, anno);
+				}
+			}
+
+			if (rand(50) <= totalDamage)
+			{
+				output("\n<b>The rocking of the cage knocks you flat on your ass! You’re prone!</b>");
+				pc.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
+			}
+		}
+		
+		private function gooPunch(hostiles:Array):void
+		{
+			var pc:Creature;
+			var anno:Creature;
+			
+			for (var i:int = 0; i < hostiles.length; i++)
+			{
+				if (hostiles[i] is PlayerCharacter) pc = hostiles[i];
+				if (hostiles[i] is Anno) anno = hostiles[i];
+			}
+			
+			output("\nNova rears her massive fist back and swings, a straight punch right into the face of the cart. Bits of her gooey fingers are shorn off as she slams herself through the slim bars around the elevator, smashing into you! You and Anno are slammed back against the wall by the force of the blow, drowning in a sea of gray bots as her fingers drip away, though they reform a moment later.");
+	
+			if (rand(4) == 0)
+			{
+				pc.createStatusEffect("Stunned", 3, 0, 0, 0, false, "Stun", "You are stunned and cannot act until you recover!", true, 0);
+				output(" <b>You’re stunned by the overwhelming force of the blow!</b>");
+			}
+			
+			applyDamage(damageRand(meleeDamage(), 15), this, pc);
+			applyDamage(damageRand(meleeDamage(), 15), this, anno);
+		}
+		
+		private function swordThrust(hostiles:Array):void
+		{
+			output("\nNova’s sword swings back, her whole body leaning into the blow as she lunges forward to drive the sword straight through the open face of the lift!");
+
+			if (combatMiss(this, target, -1, 2))
+			{
+				output(" You and Anno duck apart, letting the sword plunge into the wall between the two of you. The rising elevator cart quickly cuts it off of the mass and lets it pour off the sides... only to reform a moment later.")
+			}
+			else
+			{
+				output(" You cry out in pain as the immense goo-sword strikes you, tearing through the ancient steel of the elevator cart with ease.");
+				
+				for (var i:int = 0; i < hostiles.length; i++)
+				{
+					var d:TypeCollection = meleeDamage();
+					d.add(reflexes() + 5);
+					applyDamage(damageRand(d, 25), this, hostiles[i]);
+				}
+			}
+		}
 	}
 
 }

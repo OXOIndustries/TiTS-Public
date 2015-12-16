@@ -20,6 +20,8 @@ package classes.GameData
 	 * 		are mostly just a slight tweak on what was being output for the player, so sometimes they don't make much sense.
 	 * I've tried to clean up new line insertion as much as possible (removing it from the *messages* and putting them higher up
 	 * 		the chain so its more "handled"), but I've probably missed some in places.
+	 * Forcibly clean up GooClones during the GooPrime fight if they get defeated rather
+	 * 		than allowing them to persist to the end of the fight in a defeated state.
 	 */
 	
 	/**
@@ -44,6 +46,15 @@ package classes.GameData
 	 * as the method that executes the attack implementors calls it.
 	 * NPC actions do not require it, at all- it is simply the means that "kicks off" the process
 	 * of resolving a round of combat once a player action has been taken.
+	 * 
+	 * TRANSIENT PROPERTIES TO ENABLE EASIER LINKAGES
+	 * Peep the bottom of the Creature class- there are a handful of properties designed
+	 * to act as "transient" storage, that link to other creatures. They won't be serialized
+	 * out to the save file and should only potentially be valid during combat.
+	 * This enables a couple of things. For instance, the best example:
+	 * 		Knowing which creature is grappling which other creature, allowing "followups"
+	 * to the inital grapple state to resolve correctly (specalized messages, stopping the
+	 * correct Creatures from taking other combat actions etc).
 	 * @author Gedan
 	 */
 	public class CombatContainer 
