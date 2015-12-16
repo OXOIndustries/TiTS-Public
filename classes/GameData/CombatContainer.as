@@ -1013,6 +1013,10 @@ package classes.GameData
 			if (!target.hasStatusEffect("Grappled")) return;
 			
 			if (target is PlayerCharacter) clearOutput();
+			else if (target is Anno)
+			{
+				(target as Anno).grappleStruggle();
+			}
 			
 			if (hasEnemyOfClass(Cockvine))
 			{

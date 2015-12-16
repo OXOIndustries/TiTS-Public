@@ -14,6 +14,11 @@ package classes.Characters
 	import classes.rand;
 	import classes.GameData.CodexManager;
 	import classes.VaginaClass;
+	import classes.Engine.Combat.*;
+	import classes.GameData.CombatAttacks;
+	import classes.GameData.CombatManager;
+	import classes.Engine.Interfaces.output;
+	import classes.Engine.Combat.DamageTypes.*;
 	
 	/**
 	 * ...
@@ -171,6 +176,134 @@ package classes.Characters
 			kGAMECLASS.foes.push(gooPrime);
 		}
 		
+		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
+		{
+			var pc:PlayerCharacter;
+			var anno:Anno;
+			var isGrappling:Boolean = false;
+			// If anything is grappled, move along and let the container deal with it
+			for (var i:int = 0; i < hostileCreatures.length; i++)
+			{
+				if (hostileCreatures[i].hasStatusEffect("Grappled")) isGrappling = true;
+				if (hostileCreatures[i] is PlayerCharacter) pc = hostileCreatures[i] as PlayerCharacter;
+				if (hostileCreatures[i] is Anno) anno = hostileCreatures[i] as Anno;
+			}
+			
+			var target:Creature = selectTarget(hostileCreatures);
+			if (target == null) return;
+			
+			if (!isGrappling)
+			{
+				var attackChance:int = 33;
+				attackChance += ((HP() / HPMax()) * 50);
+				attackChance -= ((lust() / lustMax()) * 50);
+				
+				if (target is PlayerCharacter && target.hasStatusEffect("Tripped") && !hasStatusEffect("Grapple Cooldown"))
+				{
+					grapplePC(pc);
+				}
+				else if (rand(100) <= attackChance)
+				{
+					var attacks:Array = [forcePunch, gooSword];
+					if (target is Anno) attacks.push(attackAnno);
+					
+					RandomInCollection(attacks)(target);
+				}
+				else
+				{
+					lustfulClones(alliedCreatures);
+				}
+			}
+			
+			// Tack lust clones onto the end of the primes logic- lets us compress 3-4 identical
+			// attacks into one
+			if (alliedCreatures.length > 1)
+			{
+				cloneLustAttacks();
+			}
+		}
+		
+		private function gooSword(target:Creature):void
+		{
+			//One heavy physical attack
+			output("The gray goo adapts an almost-textbook duelist's pose before she lunges at " + (target is PlayerCharacter ? "you" : "Anno") + ", her razor-sharp saber cutting through the air towards your " + (target is Anno ? "companions " : "") + "neck! Her first thrust drives you and Anno apart, cutting neatly between the two of you. Even as " + (target is PlayerCharacter ? "you riddle" : "Anno riddles") + " the goo's back with bullets, the monstrous woman pirouettes and brings her blade back around " + (target is PlayerCharacter ? "at you." : "toward Anno."));
+
+			if (combatMiss(this, target))
+			{
+				output(" " + (target is PlayerCharacter ? "You duck" : "Anno ducks") + " back, evading the goo's sword strike. Before she can swing again, + " (target is PlayerCharacter ? "you get" : "Anno gets") + " a shot off, blasting the goo's sword into pieces... only for it to reform a moment later, once " + (target is PlayerCharacter ? "you're" : "shes") +" safely away.")
+			}
+			else
+			{
+				output(" " + (target is PlayerCharacter ? "You duck" : "Anno ducks") + " back just in time, turning what might have been a mortal blow into a stinging graze. She isn't playing around!\n");
+
+				var damage:TypeCollection = meleeDamage();
+				damageRand(damage, 15);
+				applyDamage(damage, this, target);
+			}
+		}
+		
+		private function grapplePC(target:Creature):void
+		{
+			//Restrain attack. Inflicts Lust over time.
+			output("Suddenly, the sea of gray erupts around you! A half dozen thick, squirming gray tentacles surge up from the deck, lashing out at your limbs!");
+
+			if (combatMiss(this, target))
+			{
+				output(" Just as the tentacles are about to grab you, half of them explode in showers of goop as Anno levels her gun at them, firing dangerously close to your head. You duck as the others writhe and retreat under a hail of fire.");
+			}
+			else
+			{
+				output(" Two of the tentacles wrap tightly around your wrists");
+				if (target.isBiped()) output(", while two more grab your [pc.legs], lifting you up from the ground!");
+				else if (target.isTaur()) output(", while the rest grapple your inhuman lower half, raising you up from the deck until your [pc.legs] are dangling!");
+				else output(", while the rest grab your [pc.legOrLegs], lifting you up from the ground!");
+				output(" Another tentacle emerges, squirming toward your mouth; others crawl across your body, seeking out your other hole");
+				if (target.hasVagina()) output("s");
+				output(". Across the room, Anno is suffering the same fate, tendrils of gray wrapping around her limbs, tearing at her sheer catsuit to get at her pussy and tits.");
+
+				target.createStatusEffect("Grappled", 0, 35, 0, 0, false, "Constrict", "The Gray Primes tentacles are wound around your limbs, keeping you restrained!", true, 0);
+			}
+		}
+		
+		private function forcePunch(target:Creature):void
+		{
+			//One moderate physical, chance of knockdown
+			output("The goo-girl leaps forward, her off-hand visibly enlarging and hardening as she hurtles toward " + (target is PlayerCharacter ? "you" : "Anno") +" for what’s going to be a world-rocking punch!");
+
+			if (combatMiss(this, target))
+			{
+				output(" " + (target is PlayerCharacter ? "You knock" : "Anno knocks") + " her fist aside at the last moment, letting her momentum carry her through to the deck. Just when she tries to rise up, Anno leaps in with a roundhouse kick that takes the bitch’s head clean off! Of course, she reforms a moment later across the room, looking no worse for wear.");
+			}
+			else
+			{
+				output(" Her fist slams into " + (target is PlayerCharacter ? "you" : "Anno") + " like a freighter, cracking into " + (target is PlayerCharacter ? "your" : "her") +" face and sending " + (target is PlayerCharacter ? "you" : "her") +" plummeting to the ground. Oh, fuck, that " + (target is Anno ? "looks like it " : "") + "hurt!");
+
+				var damage:TypeCollection = meleeDamage();
+				damage.add(20);
+				damageRand(damage, 15);
+				applyDamage(damage, this, target);
+
+				// 25% of knockdown
+				if (rand(4) == 0)
+				{
+					if (target is PlayerCharacter) output(" The blow hits you so hard you're seeing stars!");
+					else output(" Anno doesn't look all that steady on her feet!");
+					target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
+				}
+			}
+		}
+	
+		private function lustfulClones(allied:Array):void
+		{
+			//The Gray Prime creates 1d4+1 stripper clones. Each makes a light lust attack each turn until destroyed. Basically Mirror Image but worse. 
+			output("The goo-girl takes a step back from you and Anno, dropping her sword and instead moving her fingers up to the buttons on her blouse, pulling them apart with a flourish to let her ample rack bounce free: two perfectly formed, glistening wet orbs of nanomachine flesh that look too good to not squeeze and grope. <i>“Why don’t you just surrender? I could use a few tough new sources of lubricant...”</i> she teases, shifting to emphasize her cleavage and jiggling it at you.");
+			output("\n\nAs she does so, several mounds of gray goo arise from the deck, slowly forming into new goo-girls. Each is a near perfect clone of the first, though butt-naked and with greatly overstated busts, hips, and asses, all of which are almost cartoonishly big. The new girls smile and shake what their programmer gave them, wiggling their hips and cupping their tits at you.");
+
+			for (var i:int = 0; i < 3; i++)
+			{
+				CombatManager.addHostileCreature(new GooClone());
+			}
+		}
 	}
 
 }

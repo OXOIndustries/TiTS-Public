@@ -2,9 +2,6 @@
 {	
 	trace("AI CALL");
 	//Paralyze stops turns! AHHHH!
-	else if (aggressor is Kaska) kaskaFightAI();
-	else if (aggressor is MaidenVanae || aggressor is HuntressVanae) vanaeAI();
-	else if (aggressor is SecurityDroids) securityDroidAI();
 	else if (aggressor is GrayPrime) grayPrimeAI();
 	else if (aggressor is GigaGoo) gigaGooAI();
 	else if (aggressor is Varmint) varmintAI();

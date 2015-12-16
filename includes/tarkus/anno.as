@@ -1,4 +1,5 @@
-﻿import classes.Characters.PlayerCharacter;
+﻿import classes.Characters.GrayPrime;
+import classes.Characters.PlayerCharacter;
 import classes.Creature;
 import classes.Engine.Combat.DamageTypes.DamageResult;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
@@ -1921,97 +1922,6 @@ public function annoMissionImIn():void
 	addButton(0, "Next", move, "DECK 13 AIRLOCK");
 }
 
-public function annoBonusCombatAttackShit():void
-{
-	// If anno isn't grappled
-	if (!foes[0].hasStatusEffect("AnnoGrapple"))
-	{
-		//	Anno has the following attacks/abilities in all combats:
-		// Add to combat view:
-		output("\nAnno’s crouched just over an arm’s length away, her compact holdout held close at a low-ready as she waits for an opportunity to fire. Her bushy tail is tucked in tight, ears lowered against her head as she moves from cover to cover, ducking around incoming attacks.\n");
-
-		// Targetting Computers
-		// Increases player accuracy temporarily
-		if (rand(4) == 0 && !pc.hasStatusEffect("Sensor Link"))
-		{
-			annoSensorLinkBuff();
-		}
-		// HP Boost
-		// Restores 10% HP.
-		else if (pc.HP()/pc.HPMax() <= 0.5 && !pc.hasStatusEffect("HP Boost CD"))
-		{
-			annoHPBoost();
-		}
-		// Sneak Attack
-		else if (foes[0].hasStatusEffect("Stunned") || foes[0].hasStatusEffect("Blind"))
-		{
-			var bonusDamage:int = anno.level * 2;
-			if (foes[0].hasStatusEffect("Stunned") && foes[0].hasStatusEffect("Blind"))
-			{
-				bonusDamage += anno.level;
-			}
-
-			annoRegularAttack(bonusDamage);
-		}
-		// Regular attack
-		else
-		{
-			annoRegularAttack();
-		}
-	}
-	else
-	{
-		// Anno Escape Tiem.
-		if (foes[0].hasStatusEffect("AnnoEscape")) grayPrimeAnnoEscape();
-	}
-}
-
-public function annoSensorLinkBuff():void
-{
-	output("\nAnno levels her left wrist at");
-	if (foes[0].plural) output(" one of");
-	else output(" the");
-	output(" " + foes[0].short + " and taps a key on her tiny computer. A visible targeting reticle forms around your opponent");
-	if (foes[0].plural) output("s");
-	output(", linking up with your own equipment in the process.\n<b>Accuracy increased!</b>\n");
-
-	pc.createStatusEffect("Sensor Link", 5, 0, 0, 0, false, "Radio", "Anno has linked her equipments targetting systems with yours, improving your combat accuracy.", true, 0);
-	pc.aimMod += 5;
-}
-
-public function annoHPBoost():void
-{
-	output("\nAnno runs up to you and passes her wrist computer over your shoulder, uploading an advanced program to your onboard microsurgeons. Your wounds start to knit together in no time!");
-
-	var hpGained:int = pc.HPMax()*0.1;
-
-	output(" <b>Gained " + hpGained + " health!</b>");
-
-	pc.HP(hpGained);
-
-	pc.createStatusEffect("HP Boost CD", 5, 0, 0, 0, true, "", "", true, 0);
-}
-
-public function annoRegularAttack(bonusDamage:int = 0):void
-{
-	output("\nAnno levels her holdout pistol and fires off a quick shot");
-
-	if (rangedCombatMiss(anno, foes[0])) output(", though she misses her target.");
-	else
-	{
-		output(", landing a solid hit");
-		if (foes[0] is GrayPrime || foes[0] is GigaGoo) output(" on the goo");
-		else output(" on one");
-		output("!");
-
-		if (bonusDamage > 0) output(" Her attack is super-effective while her target is incapacitated!");
-
-		applyDamage(new TypeCollection( { kinetic: 14 + bonusDamage } ), anno, foes[0]);
-	}
-	
-	output("\n");
-}
-
 public function deck13AirlockFunc():Boolean
 {
 	if (flags["DECK13_AIRLOCK_ENTERED"] == undefined)
@@ -2091,75 +2001,6 @@ public function deck13SecurityFunc():Boolean
 
 		return false;
 	}
-}
-
-public function securityDroidAI():void
-{
-	if (!pc.hasStatusEffect("Blind") && rand(5) == 0) securityDroidFlashbang();
-	else if (!foes[0].hasStatusEffect("Blind") && !foes[0].hasStatusEffect("Stunned") && rand(3) == 0) securityDroidChargeShot();
-	else securityDroidLaserBarrage();
-}
-
-public function securityDroidLaserBarrage():void
-{
-	//Laser Barrage
-	//Lots of moderate laser attacks
-	output("Several of the drones lock onto you and let loose with a hail of laser bolts.");
-	
-	var attacks:int = 2 + rand(2);
-
-	for (var i:int = 0; i < attacks; i++)
-	{
-		output("\n");
-		rangedAttack(foes[0], pc, [1,2]);
-	}
-	processCombat();
-}
-
-public function securityDroidChargeShot():void
-{
-	//Charge Shot
-	//Two moderate laser shots (as above) + one HEAVY one
-	output("Amid several other drones lighting you up, one steps to the forefront, its laser pistol glowing red-hot as it charges up a power shot!");
-
-	rangedAttack(foes[0], pc, [1,2]);
-	rangedAttack(foes[0], pc, [1,2]);
-
-	// Heavy attack
-	if (rangedCombatMiss(foes[0], pc))
-	{
-		output(" You tumble to the side, ducking out of the way just in time to avoid a face-melting energy blast");
-		if (silly) output(" to the, uh, face");
-		output(".");
-	}
-	else
-	{
-		output(" You stagger back as the heavy laser bolt slams into your chest, burning into your defenses and leaving you smoking like a sausage!");
-
-		applyDamage(new TypeCollection( { burning: 20, electric:10 }, DamageFlag.LASER), foes[0], pc);
-	}
-
-	output("\n");
-	processCombat();
-}
-
-public function securityDroidFlashbang():void
-{
-	// Flashbang
-	// Blind, possibly Stun attack
-	output("One of the drones pulls a small, cylindrical grenade from its slender steel hip and lobs it at the pair of you!");
-
-	if(foes[0].aim()/2 + rand(20) + 6 > pc.reflexes()/2 + 10 && !pc.hasStatusEffect("Blind"))
-	{
-		pc.createStatusEffect("Blind",3,0,0,0,false,"Blind","Accuracy is reduced, and ranged attacks are far more likely to miss.",true,0);
-		output(" You aren’t able to shield yourself in time as the flash grenade goes off with a deafening BANG, leaving you <b>blinded</b>!");
-	}
-	else
-	{
-		output(" You cover your eyes just in time to avoid the flash as the stun grenade goes off with a deafening BANG!");
-	}
-	output("\n");
-	processCombat();
 }
 
 public function lossToSecurityDroid():void
@@ -2685,53 +2526,13 @@ public function grayPrimeAI():void
 	processCombat();
 }
 
-//Goo Sword
-public function grayPrimeGooSword():void
-{
-	//One heavy physical attack
-	output("The gray goo adapts an almost-textbook duelist's pose before she lunges at you, her razor-sharp saber cutting through the air towards your neck! Her first thrust drives you and Anno apart, cutting neatly between the two of you. Even as Anno riddles the goo's back with bullets, the monstrous woman pirouettes and brings her blade back around at you.");
-
-	if (combatMiss(foes[0], pc))
-	{
-		output(" You duck back, evading the goo's sword strike. Before she can swing again, Anno gets a shot off, blasting the goo's sword into pieces... only for it to reform a moment later, once you're safely away.")
-	}
-	else
-	{
-		output(" You duck back just in time, turning what might have been a mortal blow into a stinging graze. She isn't playing around!\n");
-
-		var damage:TypeCollection = foes[0].meleeDamage();
-		damageRand(damage, 15);
-		applyDamage(damage, foes[0], pc);
-	}
-}
-
-//Goo Grapple
-public function grayPrimeGooGrapple():void
-{
-	//Restrain attack. Inflicts Lust over time.
-	output("Suddenly, the sea of gray erupts around you! A half dozen thick, squirming gray tentacles surge up from the deck, lashing out at your limbs!");
-
-	if (combatMiss(foes[0], pc))
-	{
-		output(" Just as the tentacles are about to grab you, half of them explode in showers of goop as Anno levels her gun at them, firing dangerously close to your head. You duck as the others writhe and retreat under a hail of fire.");
-	}
-	else
-	{
-		output(" Two of the tentacles wrap tightly around your wrists");
-		if (pc.isBiped()) output(", while two more grab your [pc.legs], lifting you up from the ground!");
-		else if (pc.isTaur()) output(", while the rest grapple your inhuman lower half, raising you up from the deck until your [pc.legs] are dangling!");
-		else output(", while the rest grab your [pc.legOrLegs], lifting you up from the ground!");
-		output(" Another tentacle emerges, squirming toward your mouth; others crawl across your body, seeking out your other hole");
-		if (pc.hasVagina()) output("s");
-		output(". Across the room, Anno is suffering the same fate, tendrils of gray wrapping around her limbs, tearing at her sheer catsuit to get at her pussy and tits.");
-
-		pc.createStatusEffect("Grappled", 0, 35, 0, 0, false, "Constrict", "The Gray Primes tentacles are wound around your limbs, keeping you restrained!", true, 0);
-		foes[0].createStatusEffect("Grapple CD", 4, 0, 0, 0, true, "", "", true, 0);
-	}
-}
-
 public function grayPrimeEscapeGrapple():void
 {
+	var hostiles:Array = CombatManager.getHostileCharacters();
+	for (var i:int = 0; i < hostiles.length; i++)
+	{
+		if (hostiles[i] is GrayPrime) hostiles[i].createStatusEffect("Grapple Cooldown", 4);
+	}
 	output("Finally, you tear yourself off the tentacles, flopping down onto the layer of gooey coating that covers the deck. The goo scowls, raising her sword again. <i>“Damn it. Why won’t you just go down!”</i> she shrieks. <i>“I don’t want to kill you, but if you won’t surrender, then I swear I will! What I’m doing is too important!”</i>");
 }
 
@@ -2782,50 +2583,10 @@ public function grayPrimeFailEscape():void
 	applyDamage(new TypeCollection( { tease: 10 + rand(5) } ), foes[0], pc, "minimal");
 }
 
-//Force Punch
-public function grayPrimeForcePunch():void
-{
-	//One moderate physical, chance of knockdown
-	output("The goo-girl leaps forward, her off-hand visibly enlarging and hardening as she hurtles toward you for what’s going to be a world-rocking punch!");
-
-	if (combatMiss(foes[0], pc))
-	{
-		output(" You knock her fist aside at the last moment, letting her momentum carry her through to the deck. Just when she tries to rise up, Anno leaps in with a roundhouse kick that takes the bitch’s head clean off! Of course, she reforms a moment later across the room, looking no worse for wear.");
-	}
-	else
-	{
-		output(" Her fist slams into you like a freighter, cracking into your face and sending you plummeting to the ground. Oh, fuck, that hurt!");
-
-		var damage:TypeCollection = foes[0].meleeDamage();
-		damage.add(20);
-		damageRand(damage, 15);
-		applyDamage(damage, foes[0], pc);
-
-		// 25% of knockdown
-		if (rand(4) == 0)
-		{
-			output(" The blow hits you so hard you're seeing stars!");
-			pc.createStatusEffect("Trip", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
-		}
-	}
-}
-
 //Lustful Clones
 public function grayPrimeLustfulClones():void
 {
-	//The Gray Prime creates 1d4+1 stripper clones. Each makes a light lust attack each turn until destroyed. Basically Mirror Image but worse. 
-	output("The goo-girl takes a step back from you and Anno, dropping her sword and instead moving her fingers up to the buttons on her blouse, pulling them apart with a flourish to let her ample rack bounce free: two perfectly formed, glistening wet orbs of nanomachine flesh that look too good to not squeeze and grope. <i>“Why don’t you just surrender? I could use a few tough new sources of lubricant...”</i> she teases, shifting to emphasize her cleavage and jiggling it at you.");
-	output("\n\nAs she does so, several mounds of gray goo arise from the deck, slowly forming into new goo-girls. Each is a near perfect clone of the first, though butt-naked and with greatly overstated busts, hips, and asses, all of which are almost cartoonishly big. The new girls smile and shake what their programmer gave them, wiggling their hips and cupping their tits at you.");
 
-	var createClones:int = 1 + rand(4);
-	if (foes[0].hasStatusEffect("Gooclones"))
-	{
-		foes[0].addStatusValue("Gooclones", 1, createClones);
-	}
-	else
-	{
-		foes[0].createStatusEffect("Gooclones", createClones, 0, 0, 0, false, "", "", true, 0);
-	}
 }
 
 //Clone Tease Attack
@@ -2870,30 +2631,12 @@ public function grayPrimeAttackAnno():void
 	}	
 }
 
-public function grayPrimeAnnoGrapple():void
-{
-	output("Anno struggles against the gray goo's assault, trying to escape her death-grasp.\n");
-
-	var chance:int = foes[0].statusEffectv1("AnnoGrapple");
-	
-	if (rand(3) <= chance) foes[0].createStatusEffect("AnnoEscape");
-	else foes[0].addStatusValue("AnnoGrapple", 1, 1);
-}
-
-public function grayPrimeAnnoEscape():void
-{
-	output("\nAnno finally brings her gun to bear and fires, pumping her entire magazine into the goo\’s tits. The gray body explodes in a rain of goop, only to reform a moment later across the room as Anno slams a new mag into her holdout. <i>“I’m fine, I’m fine!”</i> Anno groans, rubbing at her throat, now visibly bruising.\n");
-	foes[0].removeStatusEffect("AnnoGrapple");
-	foes[0].removeStatusEffect("AnnoEscape");
-}
-
 public function grayGooDisplay():void
 {
 	if(inCombat()) 
 	{
 		showName("FIGHT:\nGRAY PRIME");
 		showBust("GRAY_GOO_PRIME_2");
-		//showBust("GRAY_GOO_GIGA");
 	}
 	else 
 	{

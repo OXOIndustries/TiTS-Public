@@ -152,6 +152,16 @@ package classes.GameData
 		{
 			if (combatContainer) combatContainer.endCombatRound();
 		}
+		public static function multipleEnemies():void
+		{
+			if (_hostileCharacters.length > 1) return true;
+			if ((_hostileCreatures[0] as Creature).plural) return true;
+		}
+		public static function hasEnemyOfClass(t:Class):Boolean
+		{
+			if (combatContainer) return combatContainer.hasEnemyOfClass(t);
+			return false;
+		}
 	}
 
 }
