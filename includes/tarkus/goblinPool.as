@@ -455,7 +455,7 @@ public function arbetzTalkOptions(response:int = 0):void
 		output("\n\n<i>“You say you polluted the planet,”</i> you say. <i>“And you were going to take the fresh one?”</i>");
 		output("\n\n<i>“Who came up with the world attractor?”</i> snaps Una. <i>“If you can’t be bothered looking this shit up yourself, don’t try and lay blame on the person telling you about it! And the raskvel helped to operate the damn thing, so they take just as much of the rap for what happened.”</i>");
 		output("\n\n<i>“It didn’t work?”</i>");
-		output("\n\n<i>“You’ve seen what this hole looks like from the sky, haven’t you? Of course it worked! Oh, it worked alright! Worked great right up until the point someone realized Daerinoys didn’t have a fucking brake on it!”</i>");
+		output("\n\n<i>“You’ve seen what this hole looks like from the sky, haven’t you? Of course it worked! Oh, it worked alright! Worked great right up until the point someone realised Daerinoys didn’t have a fucking brake on it!”</i>");
 		
 		processTime(8);
 		
