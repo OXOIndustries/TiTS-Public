@@ -289,8 +289,16 @@ public function buyItemGo(arg:ItemSlotClass):void {
 	//Cheese shit for GaloMax
 	if(arg is GaloMax)
 	{
-		if(shopkeep is Gene) flags["PURCHASED_GENES_GALO"] = 1;
-		else if(shopkeep is Sera) flags["PURCHASED_SERAS_GALO"] = 1;
+		if(shopkeep is Gene) 
+		{
+			flags["PURCHASED_GENES_GALO"] = 1;
+			chars["GENE"].destroyItem(new GaloMax());
+		}
+		else if(shopkeep is Sera) 
+		{
+			flags["PURCHASED_SERAS_GALO"] = 1;
+			chars["SERA"].destroyItem(new GaloMax());
+		}
 	}
 	// Renamed from lootList so I can distinguish old vs new uses
 	var purchasedItems:Array = new Array();
