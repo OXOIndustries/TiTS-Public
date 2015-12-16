@@ -804,7 +804,7 @@ public function myrellionDiscussionWithEmbry():void
 	showSimii();
 	flags["EMBRY_TALKED_ABOUT_MYRELLION"] = 1;
 	output("You ask [embry.name] how she ended up on Myrellion, of all places. Surely there were more peaceful planets?");
-	output("\n\n<i>\"W-well, yeah, but transport to Myrellion was all I could afford,”</i> she lets out a little sigh, and continues, <i>“I didn’t realize why it was so cheap at the time, I was just excited there were cheap flights off my home planet. I’m stuck here until I get enough money for passage off-world.”</i>");
+	output("\n\n<i>\"W-well, yeah, but transport to Myrellion was all I could afford,”</i> she lets out a little sigh, and continues, <i>“I didn’t realise why it was so cheap at the time, I was just excited there were cheap flights off my home planet. I’m stuck here until I get enough money for passage off-world.”</i>");
 	output("\n\nThere are more jobs in Gildenmere than there are at the spaceport, and you say as much. [embry.name] flushes a bit and shakes her head.");
 	output("\n\n<i>\"What, are you crazy? I’m not moving further from the embassy than I need to. If war breaks out, at least they’ll give me free passage off world. Probably to Omorii, but that can’t be helped... it’s better than being taken as a prisoner of war.”</i>");
 	processTime(2);
