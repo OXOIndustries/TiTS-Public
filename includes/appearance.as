@@ -882,7 +882,10 @@ public function appearance(target:Creature):void
 		{
 			if(target.legCount == 1)
 			{
-				output2(" In place of legs you have a shifting amorphous blob. Thankfully it's quite easy to propel yourself around on.");
+				// Gel tail
+				if(target.hasLegFlag(GLOBAL.FLAG_PREHENSILE)) output2(" In place of legs you have a semi-solid, gel-like lower body, shaped into a prehensile mass that bends and twists as you move.");
+				// Goo moound
+				else output2(" In place of legs you have a shifting amorphous blob. Thankfully it's quite easy to propel yourself around on.");
 				if(target.hasArmor()) output2(" The lowest portions of your " + target.armor.longName + " float around inside you, bringing you no discomfort.");
 			}
 			else
@@ -899,9 +902,15 @@ public function appearance(target:Creature):void
 				else
 				{
 					output2(" You have " + num2Text(target.legCount) + " semi-solid, gel-like limbs");
-					if(target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) output2(", shaped in a digitigrade stance and");
-					else if(target.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) output2(", shaped in a plantigrade stance and");
-					output2(" ending in " + target.feet() + ". They are capable of shifting and morphing when you will them to.");
+					if(target.hasLegFlag(GLOBAL.FLAG_PREHENSILE)) output2(", shaped into prehensile masses that bend and twist as you move");
+					else if(target.hasLegFlag(GLOBAL.FLAG_TENDRIL)) output2(", shaped into tendrils that wriggle about when you move");
+					else
+					{
+						if(target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) output2(", shaped into digitigrade legs and");
+						if(target.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) output2(", shaped into plantigrade legs and");
+						output2(" ending in " + target.feet() + "");
+					}
+					output2(". They are capable of shifting and morphing when you will them to.");
 				}
 			}
 		}
