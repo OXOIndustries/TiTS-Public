@@ -4377,7 +4377,11 @@ package classes {
 			return (legCount >= 4 && (legType == GLOBAL.TYPE_DRIDER || legType == GLOBAL.TYPE_ARACHNID));
 		}
 		public function isGoo(): Boolean {
-			if (legType == GLOBAL.TYPE_GOOEY && (legCount == 1 || hasLegFlag(GLOBAL.FLAG_AMORPHOUS))) return true;
+			if (legType == GLOBAL.TYPE_GOOEY)
+			{
+				if (hasLegFlag(GLOBAL.FLAG_PREHENSILE)) return false;
+				if (legCount == 1 || hasLegFlag(GLOBAL.FLAG_AMORPHOUS)) return true;
+			}
 			return false;
 		}
 		public function isImmobilized(): Boolean {
@@ -7906,6 +7910,7 @@ package classes {
 			if (hairType == GLOBAL.HAIR_TYPE_GOO) counter++;
 			if (hasStatusEffect("Goo Vent")) counter++;
 			if (hasStatusEffect("Goo Crotch")) counter++;
+			if (hasStatusEffect("Gel Body")) counter++;
 			if (counter > 1 && skinType == GLOBAL.SKIN_TYPE_GOO) counter++;
 			//if (counter > 2 && tongueType == GLOBAL.TYPE_GOOEY) counter++;
 			return counter;
