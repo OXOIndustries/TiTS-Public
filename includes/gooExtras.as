@@ -38,6 +38,24 @@ public function showZodee():void
 	showName("\nZO'DEE");
 }
 
+public function gooBiomass(arg:Number = 0):Number
+{
+	if(arg == 0) return flags["GOO_BIOMASS"];
+	else
+	{
+		flags["GOO_BIOMASS"] += arg;
+		if(flags["GOO_BIOMASS"] < 0) flags["GOO_BIOMASS"] = 0;
+		else
+		{
+			if(flags["GALOMAX_DOSES"]  == 1 && flags["GOO_BIOMASS"] > 300) flags["GOO_BIOMASS"] = 300;
+			else if(flags["GALOMAX_DOSES"]  == 2 && flags["GOO_BIOMASS"] > 750) flags["GOO_BIOMASS"] = 750;
+			else if(flags["GALOMAX_DOSES"]  == 3 && flags["GOO_BIOMASS"] > 1500) flags["GOO_BIOMASS"] = 1500;
+			else if(flags["GALOMAX_DOSES"]  == 4 && flags["GOO_BIOMASS"] > 10000) flags["GOO_BIOMASS"] = 10000;
+		}
+	}
+	return flags["GOO_BIOMASS"];
+}
+
 public function zodeeGivesFirstGalomax():void
 {
 	showName("A\nSTRANGER");
@@ -358,7 +376,81 @@ public function galoMaxTFProc():void
 			if(pc.hairType != GLOBAL.HAIR_TYPE_GOO) pc.vaginas[x].vaginaColor = RandomInCollection("green", "emerald");
 		}
 	}
-	
+	//Dose 4
+	//Body exterior gets gooey - skinType change. Boobs can now be resized in goo submenu.
+	//Nipplecunts/dix as toggled by goo menu.
+	//Max Mass 10,000
+	else if(flags["GALOMAX_DOSES"] == 4)
+	{
+		var gooColor:String = pc.hairColor;
+		output("You wipe sweat from your brow, alarmed at how warm the air is getting. Your whole body feels sticky with perspiration. ");
+		if(pc.isNude()) output("Nudity provides no defense. Even bare, your extremities are uncomfortably heated.");
+		else output("Equipment is nothing but an inconvenience. Even once you strip naked, your extremities feel uncomfortably heated.");
+		output(" Salty moisture rolls down your face, threatening to blind you. This cannot be natural. Surely this is the GaloMax, modifying your body It must the GaloMax.");
+		//Since we start by looking at arms, base TF text off the appearance of the PC's arms if possible, if not base on appropriate skin tag.
+		var choice:String = "skin";
+		if(pc.hasArmFlag(GLOBAL.FLAG_CHITINOUS)) choice = "chitin";
+		else if(pc.hasArmFlag(GLOBAL.FLAG_FEATHERED)) choice = "feathers";
+		else if(pc.hasArmFlag(GLOBAL.FLAG_FURRED)) choice = "fur";
+		else if(pc.hasArmFlag(GLOBAL.FLAG_SCALED)) choice = "scales";
+		else if(pc.skinType == GLOBAL.SKIN_TYPE_CHITIN) choice = "chitin";
+		else if(pc.skinType == GLOBAL.SKIN_TYPE_SCALES) choice = "scales";
+		else if(pc.skinType == GLOBAL.SKIN_TYPE_FUR) choice = "fur";
+		else if(pc.skinType == GLOBAL.SKIN_TYPE_FEATHERS) choice = "feathers";
+		//Chitin arms
+		if(choice == "chitin")
+		{
+			output("\n\nHolding a " + pc.scaleColor + "-armored arm up in front of your face, you watch in horror as the individual chitin plates become slimy and matted with sweat. Worse yet, they’re next to impossible to distinguish from one another, blurring together into a seemless mass of gleaming slime. ");
+			if(pc.scaleColor != gooColor) output("Tendrils of " + gooColor + " spread inward from the edges like ink soaking through paper. Their progress is inexorable, and no matter how much the process disturbs you, you’re completely " + gooColor + " in no time at all. ");
+			output("You shiver feverishly and gape when you realize that you can see <b>through</b> your own hand, barely.");
+		}
+		//Fur skin or furred arms.
+		else if(choice == "fur")
+		{
+			output("\n\nHolding a " + pc.furColor + "-furred hand up in front of your face, you watch in horror as the individual strands become slimy and matted with sweat. Worse yet, they become more and more difficult to distinguish with each passing second. ");
+			if(pc.furColor != gooColor) output("Tendrils of " + gooColor + " spread outward from the roots like ink soaking through paper. Their progress is inexorable, and no matter how much the process disturbs you, you’ve become completely " + gooColor + " in no time at all. ");
+			output("You shiver feverishly and gape when you realize that you can see <b>through</b> your own hand, barely.");
+		}
+		//Feathers or feathered arms
+		else if(choice == "feathers")
+		{
+			output("\n\nHolding a " + pc.furColor + "-feathered arm up in front of your face, you watch in horror as the individual feathers become slimy and matted with sweat. Worse yet, they’re next to impossible to distinguish from one another, blurring together into a tangled mass of slimy fibers. ");
+			if(pc.furColor != gooColor) output("Tendrils of " + gooColor + " spread outward from the quills like ink soaking through paper. Their progress is inexorable, and no matter how much the process disturbs you, you’re completely " + gooColor + " in no time at all. ");
+			output("You shiver feverishly and gape when you realize that you can see <b>through</b> your own hand, barely.");
+		}
+		//Scales/scaled arms
+		else if(choice == "scales")
+		{
+			output("\n\nHolding a " + pc.scaleColor + "-scaled arm up in front of your face, you watch in horror as the individual scales become slimy and matted with sweat. Worse yet, they’re next to impossible to distinguish from one another, blurring together into a single sheet of gleaming carapace. ");
+			if(pc.scaleColor != gooColor) output("Tendrils of " + gooColor + " spread inward from the individual edges like ink soaking through paper. Their progress is inexorable, and no matter how much the process disturbs you, you’re completely " + gooColor + " in no time at all. ");
+			output("You shiver feverishly and gape when you realize that you can see <b>through</b> your own hand, barely.");
+		}
+		//Actual skinz without special armbutts.
+		else
+		{
+			output("\n\nHolding a " + pc.skinTone + " arm up in front of your face, you watch in horror as your skin begins to gleam with layer after layer of greasy sweat. Hairs disappear before your eyes, seemingly melting into the soupy morass. ");
+			if(pc.skinTone != gooColor) output("Tendrils of " + gooColor + " creep upward from the edges of your fingertips like ink soaking through paper. Their progress is inexorable, tracing spiderwebs of color through your arms and into your shoulders where they meet up with the ones spreading out from your crotch. ");
+			output("Shivering feverishly, you fail to contain your shock when you hand reveals the ground behind it. You can see through it, barely.");
+		}
+		//Merge
+		output("\n\nThe change isn’t limited to your hand either. Your whole body may as well be made of gelatin for how transparent it has become. Stranger still is what you see when you look at your own torso. There’s no flesh or organs beneath your translucent membrane, just an endless expanse of " + gooColor + " that wobbles delightfully where you poke and prod. You aren’t quite made of liquid, like a galotian, just yet, but you’re something close. A shiny, smooth surface has replaced your ");
+		if(pc.hasFur()) output("fur");
+		else if(pc.hasFeathers()) output("feathers");
+		else if(pc.hasScales()) output("scales");
+		else if(pc.hasChitin()) output("scales");
+		else output("skin");
+		output(", ");
+		if(pc.skinType != GLOBAL.SKIN_TYPE_SKIN) output(" not quite skin but ");
+		output("more like the cellular membrane of a rahn.");
+		output("\n\nYou calm down as well as you are able after such a massive change, still feeling your heartbeat hammering in your chest somehow. Happily the intense, full body fever seems to have passed. You’re still slick and slimy with whatever passes for your sweat, but at least you’re comfortable in your own gelatinous skin.");
+		output("\n\n<b>Your whole body is gooey and gelatinous from head to toe. You’re pretty sure you can even reshape your chest as easily as your ever-slimy loins. One more dose ought to finish the job and let you be a gooey, ever-shifting mass");
+		if(celiseIsFollower()) output(", like Celise");
+		output(".</b>");
+		pc.skinTone = gooColor;
+		pc.furColor = gooColor;
+		pc.scaleColor = gooColor;
+		pc.createStatusEffect("Gel Body");
+	}
 	// PLACEHOLDER - Failsafe, Overlimit, What do?
 	// 9999 (Fill this in with your content if necessary!)
 	else
@@ -371,7 +463,7 @@ public function galoMaxTFProc():void
 		{
 			output("..");
 			output("\n\nSuddenly, you feel a surge of biomass flow into your body. Well, it did have an effect after all!");
-			flags["GOO_BIOMASS"] += 1000;
+			gooBiomass(1000);
 		}
 	}
 }
@@ -390,8 +482,8 @@ public function gooShiftMenu():void
 	else addDisabledGhostButton(0, "Hair");
 	if(pc.hasStatusEffect("Goo Crotch")) addGhostButton(1,"Crotch",gooCrotchCustomizer);
 	else addDisabledGhostButton(1,"Locked","Locked","It takes three doses of GaloMax to unluck this option.");
-	//addGhostButton(1, "Male", setGenderPref, "male");
-	//addGhostButton(2, "Auto", setGenderPref, "auto");
+	if(pc.hasStatusEffect("Gel Body")) addGhostButton(2,"Chest",gooChestCustomizer);
+	else addDisabledGhostButton(2,"Locked","Locked","It takes four doses of GaloMax to unlock this option.");
 	if(pc.hasStatusEffect("Goo Vent")) addGhostButton(4,"ToggleVent",ventToggle,undefined,"Toggle Vent","Toggle on or off whether you would like to add excess biomass to your own orgasmic releases.");
 	else addDisabledGhostButton(4,"Locked","Locked","It takes two doses of GaloMax to unlock this option.");
 	addGhostButton(14, "Back", appearance, pc);
@@ -455,7 +547,7 @@ public function lengthenHairGoo():void
 			pc.hairStyle = "null";
 		}
 		//-100 biomass. Reset style.
-		flags["GOO_BIOMASS"] -= 100;
+		gooBiomass(-100);
 		pc.hairLength++;
 	}
 	clearGhostMenu();
@@ -474,7 +566,7 @@ public function shortenHairGoo():void
 	}
 	if(pc.hairLength - 1 <= 0) output2(" There’s no more visible hair. You look bald now, though you could have a mop of hair back whenever you wanted it.");
 	//+100 biomass, reset style
-	flags["GOO_BIOMASS"] += 75;
+	gooBiomass(75);
 	pc.hairLength -= 1;
 	if(pc.hairLength < 0) pc.hairLength = 0;
 	clearGhostMenu();
@@ -543,6 +635,264 @@ public function ventToggle():void
 	}
 	clearGhostMenu();
 	addGhostButton(0,"Next",gooShiftMenu);
+}
+
+//CHEST
+public function gooChestCustomizer():void
+{
+	clearOutput2();
+	output2("Do you will your body to change anything?");
+	boobStuff(pc);
+	showBiomass();
+	clearGhostMenu();
+	if(pc.isNaga() || pc.isGoo())
+	{
+		if(pc.bRows() < 5)
+		{
+			if(gooBiomass() >= 200) addGhostButton(0,"Add New Row",growNewBreastRow,undefined,"Add New Row","Grow an additional row of breasts and nipples.\n\n<b>200 mLs Biomass</b>");
+			else addDisabledGhostButton(0,"Add New Row","Add New Row","You don't have enough biomass for that.\n\n<b>200 mLs Biomass</b>");
+		}
+		else addDisabledGhostButton(0,"Add New Row","Add New Row","You have too many rows of breasts to grow more.");
+	}
+	if(pc.bRows() < 3) 
+	{
+		if(gooBiomass() >= 200) addGhostButton(0,"Add New Row",growNewBreastRow,undefined,"Add New Row","Grow an additional row of breasts and nipples.\n\n<b>200 mLs Biomass</b>");
+		else addDisabledGhostButton(0,"Add New Row","Add New Row","You don't have enough biomass for that.\n\n<b>200 mLs Biomass</b>");
+	}
+	else addDisabledGhostButton(0,"Add New Row","Add New Row","You have too many rows of breasts to grow more.");
+	if(pc.bRows() > 1) addGhostButton(1,"Remove Row",removeBreastRow,undefined,"Remove Row","Remove your bottommost breast row.");
+	else addDisabledGhostButton(1,"Remove Row","Remove Row","You'd look incredibly weird without anything on your chest at all.");
+	if(pc.smallestTitSize() < 198) addGhostButton(2,"ExpandBoobs",expandBreastsMenu,undefined,"Expand Breasts","Make a single row of breasts larger.");
+	else addDisabledGhostButton(2,"ExpandBoobs","Expand Breasts","You can't make your breasts any larger without straining the limits of your cohesion.");
+	if(pc.biggestTitSize() >= 1) addGhostButton(3,"ShrinkBoobs",shrinkBreastsMenu,undefined,"Shrink Boobs","Make a single row of breasts smaller.");
+	else addDisabledGhostButton(3,"ShrinkBoobs","Shrink Boobs","You cannot make your breasts any smaller.");
+	if(gooBiomass() < 300) addDisabledGhostButton(5,"Add Nipples","Add Nipples","You don't have enough biomass for that.\n\n<b>300 mLs Biomass</b>");
+	if(pc.nipplesPerBreast < 4) addGhostButton(5,"Add Nipples",addNipples,undefined,"Add Nipples","Add another nipple to every breast.\n\n<b>300 mLs Biomass</b>");
+	else addDisabledGhostButton(5,"Add Nipples","Add Nipples","You don't think you could handle having any more nipples.\n\n<b>300 mLs Biomass</b>");
+	if(pc.nipplesPerBreast > 1) addGhostButton(6,"Remove Nip",removeNipples,undefined,"Remove Nipples","Remove a nipple from each of your breasts.\n\n<b>225 mLs Biomass Gain</b>");
+	else addDisabledGhostButton(6,"Remove Nip","Remove Nip","You cannot remove any more nipples. Breasts without even a single nip would like quite strange. Too strange for you.");
+
+	addGhostButton(14,"Back",gooShiftMenu);
+}
+
+//300 biomass
+public function addNipples():void
+{
+	clearOutput2();
+	if(pc.nipplesPerBreast == 1) 
+	{
+		output2("One nipple per ");
+		if(pc.biggestTitSize() < 1) output2("pectoral");
+		else output2("breast");
+		output2(" hardly seems fitting. You blink your eyes and focus, and when you look back down, <b>you've doubled your nipples.</b>");
+	}
+	else if(pc.nipplesPerBreast == 2) 
+	{
+		output2("Having two nipples on each of your ");
+		if(pc.biggestTitSize() < 1) output2("pectoral");
+		else output2("breast");
+		output2(" looks a little... off. A third one would help round things out for sure. Tweaking your existing [pc.nipples], you direct flows of biomass into your [pc.fullChest], gasping when at the white-hot pleasure of new nipples being born. <b>You have three [pc.nipples] on every breast.</b>");
+	}
+	else
+	{
+		output2("Triple-nipples are pretty awesome, but what's better than having a quartet of teats? You pinch the flesh alongside your current tit-tips and visualize it as a perfect copy of the others, moaning when you feel the goo solidify into another perfect nip.");
+	}
+	pc.nipplesPerBreast++;
+	gooBiomass(-300);
+	clearGhostMenu();
+	addGhostButton(0,"Next",gooChestCustomizer);
+}
+
+//225 biomass back
+public function removeNipples():void
+{
+	clearOutput2();
+	if(pc.nipplesPerBreast == 2) output2("Deciding double-nipples are better in your imagination than in real life, you glare the offending teats and watch them shrink away to nothing, leaving you with a single [pc.nipple] per breast once more.");
+	else if(pc.nipplesPerBreast == 3) output2("You close your eyes and gently touch your triple-nipples, pushing one part of the triumvirate down in order to leave you with doubled sets. Isn't being made of goo wonderful?");
+	else output2("You will your quad nipples away, diminishing a quarter of their over-sensitive size and leaving you with triple nips.");
+	gooBiomass(225);
+	clearGhostMenu();
+	addGhostButton(0,"Next",gooChestCustomizer);
+}
+
+public function shrinkBreastsMenu():void
+{
+	clearOutput2();
+	output2("Which row will you shrink?");
+	boobStuff(pc);
+	output2("\n");
+	clearGhostMenu();
+	var boobCost:Number = 0;
+	//Try to force single boob reduction
+	if(pc.bRows() == 1 && pc.biggestTitSize() >= 1)
+	{
+		//Determine boobcost
+		if(pc.breastRows[x].breastRating() < 6) boobCost = (Math.round((boobsVolumeCheesed(pc.breastRows[x].breastRatingRaw) - boobsVolumeCheesed(pc.breastRows[x].breastRatingRaw-1)) * 0.75)) * pc.breastRows[x].breasts;
+		else boobCost = (Math.round((boobsVolumeCheesed(pc.breastRows[x].breastRatingRaw) - boobsVolumeCheesed(pc.breastRows[x].breastRatingRaw-2)) * 0.75)) * pc.breastRows[x].breasts;
+		//Let's do it.
+		shrinkASpecificTitRow(0);
+		return;
+	}
+	for(var x:int = 0; x < pc.bRows(); x++)
+	{
+		//Small boobs need a smaller boost to increase a cup size than bigger tiddies.
+		if(pc.breastRows[x].breastRating() < 6) boobCost = (Math.round((boobsVolumeCheesed(pc.breastRows[x].breastRatingRaw) - boobsVolumeCheesed(pc.breastRows[x].breastRatingRaw-1)) * 0.75)) * pc.breastRows[x].breasts;
+		else boobCost = (Math.round((boobsVolumeCheesed(pc.breastRows[x].breastRatingRaw) - boobsVolumeCheesed(pc.breastRows[x].breastRatingRaw-2)) * 0.75)) * pc.breastRows[x].breasts;
+		//Display costs
+		output2("\n" + (x+1) + ": [pc.breastCupSize " + x + "] - <b>Biomass Gain: </b>" + boobCost);
+		if(pc.breastRows[0].breastRating() >= 1) addGhostButton(x,upperCase(num2Text(x+1)),shrinkASpecificTitRow,x,StringUtil.capitalize(num2Ordinal(x + 1)) + " Row","Shrink this row.\n\n<b>" + boobCost + " mLs Biomass Gain</b>");
+		else addDisabledGhostButton(x,upperCase(num2Text(x+1)),StringUtil.capitalize(num2Ordinal(x + 1)) + " Row","You can't make this row any smaller.");
+	}
+	showBiomass();
+	addGhostButton(14,"Back",gooChestCustomizer);
+}
+
+public function shrinkASpecificTitRow(arg:int = 0):void
+{
+	clearOutput2();
+	if(pc.breastRows[arg].breastRatingRaw >= 1)
+	{
+		output2("You look down at your chest and silently will your bosom to reduce to its size. Your [pc.breasts " + arg + "] shrink before your eyes, allowing you to reabsorb most of the mass it took to expand them.");
+	}
+	else 
+	{
+		output2("There's barely any biomass fortifying your chest, but you drain it away all the same, ");
+		if(pc.breastRows[arg].breastRating() >= 2) output("minimizing the size of your tits. If you want to get rid of them entirely, you'll need to deal with whatever else is keeping them so swollen.");
+		else output("leaving you with a nice set of pectorals for your trouble.");
+	}
+	//Figure out refund amount.
+	var boobCost:Number = 0;
+	if(pc.breastRows[arg].breastRating() < 6) boobCost = (Math.round((boobsVolumeCheesed(pc.breastRows[arg].breastRatingRaw) - boobsVolumeCheesed(pc.breastRows[arg].breastRatingRaw-1)) * 0.75)) * pc.breastRows[arg].breasts;
+	else boobCost = (Math.round((boobsVolumeCheesed(pc.breastRows[arg].breastRatingRaw) - boobsVolumeCheesed(pc.breastRows[arg].breastRatingRaw-2)) * 0.75)) * pc.breastRows[arg].breasts;
+	gooBiomass(boobCost);
+	if(pc.breastRows[arg].breastRating() < 6) pc.breastRows[arg].breastRatingRaw--;
+	else pc.breastRows[arg].breastRatingRaw -= 2;
+
+	clearGhostMenu();
+	addGhostButton(0,"Next",gooChestCustomizer);
+}
+
+public function expandBreastsMenu():void
+{
+	clearOutput2();
+	output2("Which row will you expand?");
+	boobStuff(pc);
+	output2("\n");
+	clearGhostMenu();
+	var boobCost:Number = 0;
+	//Try to force expansion of a single row if only 1!
+	if(pc.bRows() == 1 && pc.biggestTitSize() < 198)
+	{
+		//Determine boobcost
+		if(pc.breastRows[x].breastRating() < 5) boobCost = (Math.round(boobsVolumeCheesed(pc.breastRows[x].breastRatingRaw+1) - boobsVolumeCheesed(pc.breastRows[x].breastRatingRaw))) * pc.breastRows[x].breasts;
+		else boobCost = (Math.round(boobsVolumeCheesed(pc.breastRows[x].breastRatingRaw+2) - boobsVolumeCheesed(pc.breastRows[x].breastRatingRaw))) * pc.breastRows[x].breasts;
+		//If we can afford, skip menu BS.
+		if(gooBiomass() >= boobCost)
+		{
+			expandASpecificTitRow(0);
+			return;
+		}
+	}
+	for(var x:int = 0; x < pc.bRows(); x++)
+	{
+		//Small boobs need a smaller boost to increase a cup size than bigger tiddies.
+		if(pc.breastRows[x].breastRating() < 5) boobCost = (Math.round(boobsVolumeCheesed(pc.breastRows[x].breastRatingRaw+1) - boobsVolumeCheesed(pc.breastRows[x].breastRatingRaw))) * pc.breastRows[x].breasts;
+		else boobCost = (Math.round(boobsVolumeCheesed(pc.breastRows[x].breastRatingRaw+2) - boobsVolumeCheesed(pc.breastRows[x].breastRatingRaw))) * pc.breastRows[x].breasts;
+		//Display costs
+		output2("\n" + (x+1) + ": [pc.breastCupSize " + x + "] - <b>Cost: </b>" + boobCost);
+		if(gooBiomass() >= boobCost) addGhostButton(x,upperCase(num2Text(x+1)),expandASpecificTitRow,x,StringUtil.capitalize(num2Ordinal(x + 1)) + " Row","Enlarge this row.\n\n<b>" + boobCost + " mLs Biomass</b>");
+		else addDisabledGhostButton(x,upperCase(num2Text(x+1)),StringUtil.capitalize(num2Ordinal(x + 1)) + " Row","You don't have enough biomass to enlarge this row.\n\n<b>" + boobCost + " mLs Biomass</b>");
+	}
+	showBiomass();
+	addGhostButton(14,"Back",gooChestCustomizer);
+}
+
+public function expandASpecificTitRow(arg:int):void
+{
+	clearOutput2();
+	if(silly)
+	{
+		output2("A somewhat silly idea takes you, and you inhale, sucking in a huge lungful of air. Then, placing your thumb in your mouth, you blow, pretending that the extra air is flowing into your chest, effortlessly inflating your mammaries. In reality, your visualization has produced the same effect, spilling biomass instead of air into your expanding boobs.");
+	}
+	else
+	{
+		//Flat to A-cups.
+		if(pc.breastRows[x].breastRating() < 1) output2("Taking a deep breath, you look down and focus on your chest, willing your biomass to flow up into your pectorals. Slippery-smooth flesh bulges, deforming your muscular chest into rounded, teardrop-shaped half-globes. <b>The A-cups look quite good on you.</b>");
+		//A -> B
+		else if(pc.breastRows[x].breastRating() < 2) output2("Placing your hands on the undersides of your [pc.breasts " + arg + "], you will your pliable flesh to pour into them. Jiggly goo floods into your chest right on cue, filling your palms and turning your tiny teardrops into <b>bouncy B-cups.</b>")
+		//B -> C
+		else if(pc.breastRows[x].breastRating() < 3) output2("Redistributing your body is almost second nature at this point, and your [pc.breasts " + arg + "] begin expanding before you even finish thinking about it. Reaching up to cup them, you marvel at the expanding fullness of your chest, the way your boobs have grown to fill your hands with bouncing, jiggly weight.");
+		//C -> D
+		else if(pc.breastRows[x].breastRating() < 4) output2("Your chest needs to be bigger. With a lascivious grin, you plant your hands on your hips and thrust your chest forward, relishing the feeling of your center of mass shifting forward. Watching the curves slowly swell and then bounce with your every motion is intoxicating. Could you go bigger, perhaps?");
+		//D -> DD
+		else if(pc.breastRows[x].breastRating() < 5) output2("Your breasts are currently... adequate, for an unmodded terran, but they can be bigger. Cupping them, you give your girls a squeeze and very direct command: grow. Biomass flows into them immediately, plumping the cutely-jiggling half-spheres into lush orbs, thick squeezable breasts whose bounciness could win competitions.")
+		//Over DD to pretty fuckin' big
+		else if(pc.breastRows[x].breastRating() < 15) 
+		{
+			output2("Fluid flows into your [pc.breasts " + arg + "] on command, filling the soft, squeezable orbs with yet more mass, swelling them into lewder, rounder tits. Squeezing them, you struggle to suppress a moan at the erotic, infinitely enjoyable feeling of expanding your chest.");
+			pc.lust(10);
+		}
+		//Pretty fuckin' big to huge
+		else if(pc.breastRows[x].breastRating() < 30) output2("Some might say that top-heavy is an apt description for a [pc.boyGirl] like you, but that's just the start. You massage the bouncy, slick surface of your tits, openly groping them as you direct more of your internal mass reserves to fill them, to add to their wiggle and jiggle. You've got huge, brazen boobs, and you've made them bigger yet. Maybe you should do it again?");
+		//Huge to megahuge
+		else output2("More. You dig your fingers into your [pc.breasts " + arg + "], sinking your digits deep into the forgiving, gooey orbs, rolling the hefty mounds back and forth as you pump more heavy goo into their capacious interiors. It feels good, stretching the membrane of your \"skin\" taut, then letting it loose enough to allow the barest hint of natural sag.");
+	}
+	var boobCost:Number = 0;
+	if(pc.breastRows[x].breastRating() < 5) boobCost = (Math.round(boobsVolumeCheesed(pc.breastRows[x].breastRatingRaw+1) - boobsVolumeCheesed(pc.breastRows[x].breastRatingRaw))) * pc.breastRows[x].breasts;
+	else boobCost = (Math.round(boobsVolumeCheesed(pc.breastRows[x].breastRatingRaw+2) - boobsVolumeCheesed(pc.breastRows[x].breastRatingRaw))) * pc.breastRows[x].breasts;
+	//Spend the biomass.
+	gooBiomass(-1 * boobCost);
+	//Actually increase the boobiliciousness
+	if(pc.breastRows[arg].breastRating() < 5) pc.breastRows[arg].breastRatingRaw++;
+	else pc.breastRows[arg].breastRatingRaw += 2;
+	clearGhostMenu();
+	addGhostButton(0,"Next",gooChestCustomizer);
+}
+
+
+public function growNewBreastRow():void
+{
+	clearOutput2();
+	output2("Grabbing hold of the blank space below ");
+	if(pc.bRows() > 1) 
+	{
+		if(pc.breastRows[pc.bRows()-1].breastRating() < 1) output2(" your lowest row of [pc.nipples " + (pc.bRows()-1) + "]");
+		else output2(" your lowest row of [pc.breasts " + (pc.bRows() -1) + "]");
+	}
+	else 
+	{
+		if(pc.breastRows[0].breastRating() < 1) output2("your [pc.nipples]");
+		else output2("your [pc.breasts]");
+	}
+	output2(", you give your supple, yielding goo-flesh a tug. Right on cue, " + num2Text(pc.nipplesPerBreast * pc.breastRows[pc.bRows()-1].breasts) + " slight bulges form beneath your fingers, new nipples that ape the appearance of those above. There's not much breast built up below, just enough to form a foundation for future growth.");
+	output2(" <b>You have " + num2Text(pc.bRows()+1) + " rows of breasts.</b>");
+	pc.createBreastRow();
+	pc.breastRows[pc.bRows()-1].breasts = pc.breastRows[pc.bRows()-2].breasts;
+	pc.breastRows[pc.bRows()-1].nippleType = pc.breastRows[pc.bRows()-2].nippleType;
+	gooBiomass(-200);
+	clearGhostMenu();
+	addGhostButton(0,"Next",gooChestCustomizer);
+}
+
+public function boobsVolumeCheesed(boobRating:Number):Number
+{
+	var amount:Number = Math.round(4 / 3 * Math.PI * boobRating/2 * boobRating/2 * boobRating/2) / 2;
+	return amount;
+}
+
+public function removeBreastRow():void
+{
+	clearOutput2();
+	output2("Grabbing hold of the bottom edge of your chest, you push your palms flat against the [pc.nipples " + (pc.bRows()-1) + "] and concentrate on removing the extra row from your body. There's a brief, answering tingle, followed by the satisfaction of absorbed biomass.");
+	output2(" <b>You have " + num2Text(pc.bRows()-1) + " row");
+	if(pc.bRows() > 2) output2("s");
+	output2(" of breasts.</b>")
+	gooBiomass(150);
+	if(pc.breastRows[pc.bRows()-1].breastRatingRaw >= 1) gooBiomass(Math.round(boobsVolumeCheesed(pc.breastRows[pc.bRows()-1].breastRatingRaw) * 0.75 * pc.breastRows[pc.bRows()-1].breasts));
+	pc.removeBreastRow(pc.bRows()-1,1);
+	
+	clearGhostMenu();
+	addGhostButton(0,"Next",gooChestCustomizer);
 }
 
 //Crotch
@@ -692,7 +1042,7 @@ public function nutShrinkGo():void
 {
 	clearOutput2();
 	output2("You sag with relief as your body reabsorbs some of the weight from your [pc.sack]. Getting around will certainly be a little easier!");
-	flags["GOO_BIOMASS"] += nutShrinkCost();
+	gooBiomass(nutShrinkCost());
 	pc.ballSizeRaw = (pc.ballSizeRaw/Math.PI-1) * Math.PI;
 	trace("FINAL ACTUAL VOL: " + pc.ballVolume());
 	clearGhostMenu();
@@ -742,7 +1092,7 @@ public function expandoNuts():void
 		else if(pc.ballDiameter() < 10) output2("Forcing yet more goo into the overtaxed sack between your legs, you gradually expand your [pc.balls]. The bigger they get, the more you have to push inside to make an appreciable difference in size, and the more wildly erotic your orgasms will become. You can only imagine the deluge you'll release when you get off after this. You're a one-" + pc.mf("man","woman") + " bukkake show, and if you keep this up, you'll need to upgrade the ship's plumbing.");
 		else output2("If there are gods, out there in the void, they must have [pc.balls] like yours. The melon-sized spunk-tanks are constantly swaying and bouncing, jiggling wetly at the slightest contact. Merely pouring additional mass into your overstuffed sack has it threatening to throw you off balance with its ungainly wobbling.");
 	}
-	flags["GOO_BIOMASS"] -= nutExpansionCost();
+	gooBiomass(nutExpansionCost() * -1);
 	pc.ballSizeRaw = (pc.ballSizeRaw/Math.PI+1) * Math.PI;
 	trace("FINAL ACTUAL VOL: " + pc.ballVolume());
 	pc.lust(15);
@@ -761,12 +1111,12 @@ public function tautSackToggle():void
 		if(pc.balls > 1) output2(", squeezing your balls together until your package appears almost spherical");
 		else output2(", squeezing your package into a primly-packed, almost spherical bulge");
 		output2(". You've got a tight, aesthetically pleasing nutsack. It shines as if polished.");
-		flags["GOO_BIOMASS"] -= 100;
+		gooBiomass(-100);
 	}
 	else 
 	{
 		pc.removeStatusEffect("Uniball");
-		flags["GOO_BIOMASS"] += 75;
+		gooBiomass(75);
 		output2("The complex weave of gelatinous lattices in your [pc.sack] collapses right on cue, allowing you to reabsorb most of the reinforcement and let your [pc.balls] swing low and heavy once more. No more tightly-packed testes for you, no sir!");
 	}
 	clearGhostMenu();
@@ -803,7 +1153,7 @@ public function removeATesticle():void
 	output2("As easily as snapping your fingers, you're down one testicle");
 	if(pc.balls == 1) output2(", leaving your [pc.sack] to shrink back into the smooth fluid encompassing your pubic mound");
 	output2(". Now you can put that biomass to better use...");
-	flags["GOO_BIOMASS"] += nutLossCost();
+	gooBiomass(nutLossCost());
 	pc.balls--;
 	clearGhostMenu();
 	addGhostButton(0,"Next",gooBallsMenu)
@@ -829,7 +1179,7 @@ public function growSomeGooBalls():void
 		else output2(" against your [pc.leg] ");
 		output2("with every movement, a potent reminder of how egregiously sexual you've become.")
 	}
-	flags["GOO_BIOMASS"] -= nutGrowCost();
+	gooBiomass(-1*nutGrowCost());
 	pc.balls++;
 	clearGhostMenu();
 	addGhostButton(0,"Next",gooBallsMenu);
@@ -910,7 +1260,7 @@ public function reshapeAGooCawkForReaaaaal(arg:int = 0):void
 public function seriouslyThoReshapeDatGooCock(arg:Array):void
 {
 	clearOutput2();
-	flags["GOO_BIOMASS"] -= 100;
+	gooBiomass(-100);
 	//Cause I'm turrible, fuck using the array any longer
 	var type:int = arg[1];
 	var x:int = arg[0];
@@ -977,7 +1327,7 @@ public function growANewGooCock():void
 	pc.cocks[x].addFlag(GLOBAL.FLAG_GOOEY);
 	pc.cocks[x].cockColor = gooColor();
 	output2("A little mental focus is all it takes to make your flesh ripple and part around a new length, allowing the semi-solid [pc.cockNoun " + x + "] to slip out of your body with an accompanying gasp of delight. Making yourself a new cock felt <i>good</i>.");
-	flags["GOO_BIOMASS"] -= 500;
+	gooBiomass(-500);
 	//Disable? Maybe you should see how many you’d have to make to get yourself off from the act alone?");
 	clearGhostMenu();
 	addGhostButton(0,"Next",gooCockRootMenu);
@@ -1017,7 +1367,7 @@ public function removeDaChosenGooCock(arg:int = 0):void
 	clearOutput2();
 	output2("You close your eyes and imagine your [pc.cockNoun " + arg + "] melding back into the pool at the base of your body. The feeling is a little disconcerting, but not quite as disconcerting as the ‘schlorp’ sound it makes.");
 	//Biomass refund!
-	flags["GOO_BIOMASS"] += Math.round(pc.cockVolume(arg,false) * .75) + 375;
+	gooBiomass(Math.round(pc.cockVolume(arg,false) * .75) + 375);
 	pc.removeCock(arg,1);
 	clearGhostMenu();
 	addGhostButton(0,"Next",gooCockRootMenu);
@@ -1035,7 +1385,7 @@ public function removeAllGooCocks():void
 	}
 	//Get 75% biomass refund.
 	biomass = Math.round(biomass * .75);
-	flags["GOO_BIOMASS"] += biomass;
+	gooBiomass(biomass);
 	pc.removeCocks();
 	clearGhostMenu();
 	addGhostButton(0,"Next",gooCockRootMenu);
@@ -1098,7 +1448,7 @@ public function lengthenSelectedGooCock(arg:int = 0):void
 		else output2(" " + num2Text(cChange) + " inches");
 		output2(" to your size.");
 		pc.cocks[arg].cLengthRaw += cChange;
-		flags["GOO_BIOMASS"] -= biomassReq;
+		gooBiomass(-1*biomassReq);
 	}
 	//NOT ENOUGH! ABORT!
 	else
@@ -1167,7 +1517,7 @@ public function shortenSelectedCock(arg:int = 0):void
 		
 		if(pc.cocks[arg].cLengthRaw - cChange < 1) pc.cocks[arg].cLengthRaw = 1;
 		else pc.cocks[arg].cLengthRaw -= cChange;
-		flags["GOO_BIOMASS"] += Math.round(biomassDiff * .75);
+		gooBiomass(Math.round(biomassDiff * .75));
 	}
 	else if(pc.cocks[arg].cLengthRaw > 1)
 	{
@@ -1330,7 +1680,7 @@ public function growAGoogina():void
 		output2(" and shudder, fighting the sensation to jill yourself on the spot.");
 		output2("\n\nThere will be time for that later. You pull your fingers free and slowly lick them clean, wary of wasting your own biomass.");
 	}
-	flags["GOO_BIOMASS"] -= 500;
+	gooBiomass(-500);
 	pc.createVagina();
 	pc.vaginas[pc.vaginas.length-1].addFlag(GLOBAL.FLAG_GOOEY);
 	pc.vaginas[pc.vaginas.length-1].vaginaColor = gooColor();
@@ -1343,7 +1693,7 @@ public function removeAVag(arg:int = 0):void
 {
 	clearOutput2();
 	output2("Deciding that your [pc.vagina " + arg + "] is too much of a distraction, you focus your will on it, commanding the semi-liquid flesh of your loins to flow over it like water, dissolving it back into the formless reservoir of biomass within.");
-	flags["GOO_BIOMASS"] += 375;
+	gooBiomass(375);
 	pc.removeVagina(arg,1);
 	clearGhostMenu();
 	addGhostButton(0,"Next",vaginaGooRootMenu);
@@ -1355,7 +1705,7 @@ public function removeAllVags():void
 	output2("Deciding that your [pc.vaginas] would serve you better by fading away into nothingness, you will the goo at your crotch to fold over the feminine creases and melt them back into nothingness once more.");
 	for(var x:int = 0; x < pc.totalVaginas(); x++)
 	{
-		flags["GOO_BIOMASS"] += 375;
+		gooBiomass(375);
 	}
 	pc.removeVaginas();
 	clearGhostMenu();
@@ -1394,7 +1744,7 @@ public function addGooClitNau(arg:int = 0):void
 	clearOutput2();
 	output2("Growing a clit is harder than you feel it ought to be - not because there's anything special about that chunk of biomass, but because increasing the nerve density on the surface of the bud is maddeningly distracting. You push through until you've added another [pc.clit] to your [pc.vagina " + arg + "].");
 	pc.vaginas[arg].clits++;
-	flags["GOO_BIOMASS"] -= 100;
+	gooBiomass(-100);
 	clearGhostMenu();
 	addGhostButton(0,"Next",vaginaGooRootMenu);
 }
@@ -1430,7 +1780,7 @@ public function removingClitSurgeryGoo(arg:int = 0):void
 {
 	clearOutput2();
 	output2("Deciding to simplify things, you will one of your [pc.clits] to fade back into the gelatinous surface of your crotch. It disappears with a sudden cessation of sensation, leaving your [pc.vagina " + arg + "] a little less sensitive for the change.");
-	flags["GOO_BIOMASS"] += 75;
+	gooBiomass(75);
 	pc.vaginas[arg].clits--;
 	clearGhostMenu();
 	addGhostButton(0,"Next",vaginaGooRootMenu);
@@ -1510,7 +1860,7 @@ public function actuallyTFToNewCuntType(args:Array):void
 	pc.shiftVagina(x,newType);
 	pc.vaginas[x].vaginaColor = colorStore;
 	pc.vaginas[x].addFlag(GLOBAL.FLAG_GOOEY);
-	flags["GOO_BIOMASS"] -= 200;
+	gooBiomass(-200);
 	clearGhostMenu();
 	addGhostButton(0,"Next",vaginaGooRootMenu);
 }
@@ -1524,7 +1874,7 @@ public function hymenRestorationForGoos():void
 	{
 		if(!pc.vaginas[x].hymen) 
 		{
-			flags["GOO_BIOMASS"] -= 50;
+			gooBiomass(-50);
 			pc.vaginas[x].hymen = true;
 			hymens++;
 		}
@@ -1574,7 +1924,7 @@ public function fixAllVags(nVagsToFix:Number = 0):void
 			pc.vaginas[x].vaginaColor = gooColor();
 			pc.energy(-25);
 			// Take goo:
-			flags["GOO_BIOMASS"] -= 500;
+			gooBiomass(-500);
 		}
 		
 		if(flags["GOO_BIOMASS"] <= 0)

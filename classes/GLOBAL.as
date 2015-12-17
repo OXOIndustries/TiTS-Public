@@ -529,6 +529,7 @@
 		public static const SKIN_TYPE_SCALES:int                                 = 2;
 		public static const SKIN_TYPE_GOO:int                                    = 3;
 		public static const SKIN_TYPE_CHITIN:int                                 = 4;
+		public static const SKIN_TYPE_FEATHERS:int                               = 5;
 		
 		public static const SKIN_TYPE_NAMES:Array = [
 			"Skin",
