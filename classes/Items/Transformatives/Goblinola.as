@@ -492,8 +492,8 @@ package classes.Items.Transformatives
 						if(target.vaginas[n].loosenessRaw > 1) target.vaginas[n].loosenessRaw -= 1;
 						if(target.vaginas[n].loosenessRaw < 0.5) target.vaginas[n].loosenessRaw = 0.5;
 						if(target.vaginas[n].minLooseness > 0.5) target.vaginas[n].minLooseness = 0.5;
-						if(target.vaginas[n].bonusCapacity < 2000) target.vaginas[n].bonusCapacity = 2000;
-						else target.vaginas[n].bonusCapacity += 500;
+						if(target.vaginas[n].bonusCapacity < 200) target.vaginas[n].bonusCapacity = 200;
+						else target.vaginas[n].bonusCapacity += 50;
 						target.lust(10 + rand(20));
 					}
 					else

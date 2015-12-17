@@ -113,11 +113,14 @@ public function appearance(target:Creature):void
 			}
 			//appearance furscales
 			else {
+				var furScaleColor:String = "";
+				if(target.skinType == GLOBAL.SKIN_TYPE_FUR) furScaleColor = target.furColor;
+				else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) furScaleColor = target.scaleColor;
 				//(black/midnight furscales)
-				if(InCollection(target.hairColor, "black", "midnight") && InCollection(target.skinType, GLOBAL.SKIN_TYPE_FUR, GLOBAL.SKIN_TYPE_SCALES)) output2(" Under your " + target.skinFurScales(true,true) + " hides a black kui-tan mask, barely visible due to your inky hue, and");
+				if(InCollection(furScaleColor, "black", "midnight") output2(" Under your " + target.skinFurScales(true,true) + " hides a black kui-tan mask, barely visible due to your inky hue, and");
 				else 
 				{
-					if(target.hasScales()) output2(" Your " + target.skinFurScales(true,true) + " are decorated with a sly-looking kui-tan mask, and under them");
+					if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2(" Your " + target.skinFurScales(true,true) + " are decorated with a sly-looking kui-tan mask, and under them");
 					else output2(" Your " + target.skinFurScales(true,true) + " is decorated with a sly-looking kui-tan mask, and under it");
 				}
 				output2(" you have a human-shaped head with " + target.skin(true,true) + ".");
@@ -879,11 +882,15 @@ public function appearance(target:Creature):void
 		{
 			if(target.legCount == 1)
 			{
-				output2(" In place of legs you have a shifting amorphous blob. Thankfully it's quite easy to propel yourself around on.");
+				// Gel tail
+				if(target.hasLegFlag(GLOBAL.FLAG_PREHENSILE)) output2(" In place of legs you have a semi-solid, gel-like lower body, shaped into a prehensile mass that bends and twists as you move.");
+				// Goo moound
+				else output2(" In place of legs you have a shifting amorphous blob. Thankfully it's quite easy to propel yourself around on.");
 				if(target.hasArmor()) output2(" The lowest portions of your " + target.armor.longName + " float around inside you, bringing you no discomfort.");
 			}
 			else
 			{
+				// Goo mound
 				if(target.hasLegFlag(GLOBAL.FLAG_AMORPHOUS))
 				{
 					output2(" In place of legs you have a shifting, amorphous blob. It splits apart just beneath your");
@@ -891,7 +898,20 @@ public function appearance(target:Creature):void
 					else output2(" “crotch”");
 					output2(" into " + num2Text(target.legCount) + " semi-solid limbs.");
 				}
-				else output2(" You have " + num2Text(target.legCount) + " semi-solid, gel-like leg-shaped limbs, capable of shifting and morphing when you will them to.");
+				// Gel legs
+				else
+				{
+					output2(" You have " + num2Text(target.legCount) + " semi-solid, gel-like limbs");
+					if(target.hasLegFlag(GLOBAL.FLAG_PREHENSILE)) output2(", shaped into prehensile masses that bend and twist as you move");
+					else if(target.hasLegFlag(GLOBAL.FLAG_TENDRIL)) output2(", shaped into tendrils that wriggle about when you move");
+					else
+					{
+						if(target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) output2(", shaped into digitigrade legs and");
+						if(target.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) output2(", shaped into plantigrade legs and");
+						output2(" ending in " + target.feet() + "");
+					}
+					output2(". They are capable of shifting and morphing when you will them to.");
+				}
 			}
 		}
 		else if(target.legType == GLOBAL.TYPE_FELINE) output2(" " + upperCase(num2Text(target.legCount)) + " digitigrade legs grow downwards from your waist, ending in soft, padded cat-paws.");
@@ -1162,9 +1182,9 @@ public function boobStuff(target:Creature):void
 			}
 			// Masculine, High Tone, High Thickness
 			else if((target.mf("m","f") == "m") && target.tone >= 60 && target.thickness >= 60) {
-				if (rand(3) == 0) output2("You have a fuck-off six pack, bulging with heavy muscle");
-				else if (rand(2) == 0) output2("You’re ripped as hell, sporting the kind of muscle guys want and girls want around them");
-				else output2("You have remarkably well defined, heavyweight abs, rounded and beefy");
+				if (rand(3) == 0) output2("You have a fuck-off six pack, bulging with heavy muscle. Above it, you have a broad chest");
+				else if (rand(2) == 0) output2("You’re ripped as hell, sporting the kind of muscle guys want and girls want around them. Much can be said about your pecs");
+				else output2("You have remarkably well defined, heavyweight abs, rounded and beefy. Above it, you have a muscled chest");
 			}
 			// Masculine, Low Tone, High Thickness
 			else if((target.mf("m","f") == "m") && target.tone <= 30 && target.thickness >= 60) {
@@ -1174,8 +1194,8 @@ public function boobStuff(target:Creature):void
 			}
 			// Masculine/Feminine/Andro, High Tone, Low Thickness
 			else if(target.tone >= 60 && target.thickness <= 30) {
-				if (rand(3) == 0) output2(target.mf("You have a narrow, well defined but unostentatious six pack", "You have a flat, athlete’s chest, supple and thin"));
-				else if (rand(2) == 0) output2(target.mf("You have a sleek, tight featherweight’s six pack", "You have a no-nonsense flat chest, framed by rounded, subtle amounts of muscle"));
+				if (rand(3) == 0) output2(target.mf("You have a narrow, well defined but unostentatious six pack. Above it, you have a chiseled chest", "You have a flat, athlete’s chest, supple and thin"));
+				else if (rand(2) == 0) output2(target.mf("You have a sleek, tight featherweight’s six pack. Above it, you have a defined chest", "You have a no-nonsense flat chest, framed by rounded, subtle amounts of muscle"));
 				else output2(target.mf("You have a flat, athlete’s chest, wiry with muscle", "Your firm, washboard, modest pecs make you look teasingly sexually ambiguous"));
 			}
 			// Basic

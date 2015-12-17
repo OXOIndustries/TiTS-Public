@@ -368,6 +368,7 @@ package classes {
 		public var scaleColor: String = "blue";
 		public function scaleColorUnlocked(newScaleColor:String):Boolean
 		{
+			if (hasStatusEffect("Gel Body")) return false;
 			return true;
 		}
 		public function scaleColorLockedMessage():String
@@ -378,6 +379,7 @@ package classes {
 		public var furColor: String = "brown";
 		public function furColorUnlocked(newFurColor:String):Boolean
 		{
+			if (hasStatusEffect("Gel Body")) return false;
 			return true;
 		}
 		public function furColorLockedMessage():String
@@ -389,6 +391,7 @@ package classes {
 		public var hairStyle:String = "null";
 		public function hairLengthUnlocked(newHairLength:Number):Boolean
 		{
+			if (hairType == GLOBAL.HAIR_TYPE_GOO && (skinType == GLOBAL.SKIN_TYPE_GOO || hasStatusEffect("Goo Vent"))) return false;
 			return true;
 		}
 		public function hairLengthLockedMessage():String
@@ -441,6 +444,7 @@ package classes {
 		public var skinAccent: String = "";
 		public function skinToneUnlocked(newSkinTone:String):Boolean
 		{
+			if (hasStatusEffect("Gel Body")) return false;
 			return true;
 		}
 		public function skinToneLockedMessage():String
@@ -1122,6 +1126,7 @@ package classes {
 
 		public function breastsUnlocked(bRowIndex:int, newBreastCount:Number):Boolean
 		{
+			if (hasStatusEffect("Gel Body")) return false;
 			return true;
 		}
 		public function breastsLockedMessage():String
@@ -1132,6 +1137,7 @@ package classes {
 
 		public function nippleTypeUnlocked(bRowIndex:int, newNippleType:Number):Boolean
 		{
+			if (hasStatusEffect("Gel Body")) return false;
 			return true;
 		}
 		public function nippleTypeLockedMessage():String
@@ -1142,6 +1148,7 @@ package classes {
 
 		public function breastRatingUnlocked(bRowIndex:int, newBreastRating:Number):Boolean
 		{
+			if (hasStatusEffect("Gel Body")) return false;
 			return true;
 		}
 		public function breastRatingLockedMessage():String
@@ -1164,6 +1171,7 @@ package classes {
 		public var nipplesPerBreast: int = 1;
 		public function nipplesPerBreastUnlocked(newNipplesPerBreast:int):Boolean
 		{
+			if (hasStatusEffect("Gel Body")) return false;
 			return true;
 		}
 		public function nipplesPerBreastLockedMessage():String
@@ -4146,7 +4154,7 @@ package classes {
 		}
 		public function skinFurScalesColor():String
 		{
-			if(skinType == GLOBAL.SKIN_TYPE_FUR) return furColor;
+			if(skinType == GLOBAL.SKIN_TYPE_FUR || skinType == GLOBAL.SKIN_TYPE_FEATHERS) return furColor;
 			else if(skinType == GLOBAL.SKIN_TYPE_SCALES || skinType == GLOBAL.SKIN_TYPE_CHITIN) return scaleColor;
 			else return skinTone;
 		}
@@ -4163,13 +4171,13 @@ package classes {
 			if (part == "arm" || hasArmFlag(GLOBAL.FLAG_CHITINOUS))
 			{
 				if (!hasArmFlag(GLOBAL.FLAG_CHITINOUS)) return "null";
-				if (InCollection(tailType, GLOBAL.TYPE_MYR, GLOBAL.TYPE_LEITHAN)) return scaleColor;
+				if (InCollection(armType, GLOBAL.TYPE_MYR, GLOBAL.TYPE_LEITHAN)) return scaleColor;
 				return RandomInCollection(colors);
 			}
 			if (part == "leg" || hasLegFlag(GLOBAL.FLAG_CHITINOUS))
 			{
 				if (!hasLegFlag(GLOBAL.FLAG_CHITINOUS)) return "null";
-				if (InCollection(tailType, GLOBAL.TYPE_MYR)) return scaleColor;
+				if (InCollection(legType, GLOBAL.TYPE_MYR)) return scaleColor;
 				return RandomInCollection(colors);
 			}
 			if (part == "tail" || hasTailFlag(GLOBAL.FLAG_CHITINOUS))
@@ -4185,24 +4193,31 @@ package classes {
 			var output: String = "";
 			var temp:*;
 			var noun:String = "";
+			var adjectives:Array = [];
 			//Figure out if we're talking skin or fur.
 			if(hasLegFur()) noun += "fur";
 			else if(hasLegFlag(GLOBAL.FLAG_SCALED) || skinType == GLOBAL.SKIN_TYPE_SCALES) noun += "scales";
 			else if(hasLegFlag(GLOBAL.FLAG_CHITINOUS) || skinType == GLOBAL.SKIN_TYPE_CHITIN) noun += "chitin";
 			else if(hasLegFlag(GLOBAL.FLAG_AMORPHOUS) || skinType == GLOBAL.SKIN_TYPE_GOO) noun += "goo";
+			else if(hasLegFlag(GLOBAL.FLAG_FEATHERED)) noun += "feathers";
 			else noun += "skin";
 
 			//25% of the time, add an adjective.
 			if (rand(4) == 0) {
-				if (hasSkinFlag(GLOBAL.FLAG_SMOOTH)) output += "smooth";
-				else if (hasSkinFlag(GLOBAL.FLAG_THICK)) output += "thick";
-				else if (hasSkinFlag(GLOBAL.FLAG_STICKY)) output += "sticky";
-				else if (hasSkinFlag(GLOBAL.FLAG_FLUFFY) && skinType == GLOBAL.SKIN_TYPE_FUR) output += "fluffy";
+				if (hasSkinFlag(GLOBAL.FLAG_SMOOTH) || hasLegFlag(GLOBAL.FLAG_SMOOTH)) adjectives.push("smooth");
+				if (hasSkinFlag(GLOBAL.FLAG_THICK)) adjectives.push("thick");
+				if (hasSkinFlag(GLOBAL.FLAG_STICKY)) adjectives.push("sticky");
+				if (hasSkinFlag(GLOBAL.FLAG_FLUFFY))
+				{
+					if (noun == "fur") adjectives.push("fluffy");
+					if (noun == "feathers") adjectives.push("downy");
+				}
+				output += RandomInCollection(adjectives);
 			}
 			//25% of time, describe tone.
 			if (rand(4) == 0) {
 				if (output != "") output += ", ";
-				if (noun == "fur") output += furColor;
+				if (noun == "fur" || noun == "feathers") output += furColor;
 				else if (noun == "scales" || noun == "chitin") output += scaleColor;
 				else output += skinTone;
 			}
@@ -4215,17 +4230,23 @@ package classes {
 		public function skinFurScales(forceTone: Boolean = false, forceAdjective: Boolean = false, skin: Boolean = false): String {
 			var output: String = "";
 			var temp:*;
+			var adjectives:Array = [];
 			//33% of the time, add an adjective.
 			if (forceAdjective || rand(3) == 0) {
-				if (hasSkinFlag(GLOBAL.FLAG_SMOOTH)) output += "smooth";
-				else if (hasSkinFlag(GLOBAL.FLAG_THICK)) output += "thick";
-				else if (hasSkinFlag(GLOBAL.FLAG_STICKY)) output += "sticky";
-				else if (hasSkinFlag(GLOBAL.FLAG_FLUFFY) && !skin && skinType == GLOBAL.SKIN_TYPE_FUR) output += "fluffy";
+				if (hasSkinFlag(GLOBAL.FLAG_SMOOTH)) adjectives.push("smooth");
+				if (hasSkinFlag(GLOBAL.FLAG_THICK)) adjectives.push("thick");
+				if (hasSkinFlag(GLOBAL.FLAG_STICKY)) adjectives.push("sticky");
+				if (hasSkinFlag(GLOBAL.FLAG_FLUFFY) && !skin)
+				{
+					if (skinType == GLOBAL.SKIN_TYPE_FUR) adjectives.push("fluffy");
+					if (skinType == GLOBAL.SKIN_TYPE_FEATHERS) adjectives.push("downy");
+				}
+				output += RandomInCollection(adjectives);
 			}
 			//25% of time, describe skin tone.
 			if (forceTone || rand(4) == 0) {
 				if (output != "") output += ", ";
-				if (skinType == GLOBAL.SKIN_TYPE_FUR && !skin) output += furColor;
+				if ((skinType == GLOBAL.SKIN_TYPE_FUR || skinType == GLOBAL.SKIN_TYPE_FEATHERS) && !skin) output += furColor;
 				else if ((skinType == GLOBAL.SKIN_TYPE_SCALES || skinType == GLOBAL.SKIN_TYPE_CHITIN) && !skin) output += scaleColor;
 				else output += skinTone;
 			}
@@ -4256,11 +4277,9 @@ package classes {
 		{
 			return (skinType == GLOBAL.SKIN_TYPE_GOO);
 		}
-
 		public function hasFeathers():Boolean
 		{
-			return false;
-			//return (skinType == GLOBAL.SKIN_TYPE_SCALES);
+			return (skinType == GLOBAL.SKIN_TYPE_FEATHERS);
 		}
 		public function hasLegFur():Boolean
 		{
@@ -4288,6 +4307,10 @@ package classes {
 			} else if (skinType == GLOBAL.SKIN_TYPE_GOO) {
 				if (temp <= 7 || appearance) output += "goo";
 				else output += "membrane";
+			} else if (skinType == GLOBAL.SKIN_TYPE_FEATHERS) {
+				if (temp <= 7 || appearance) output += "feathers";
+				else if (temp <= 8) output += "fringes";
+				else output += "plumes";
 			}
 			return output;
 		}
@@ -4354,7 +4377,11 @@ package classes {
 			return (legCount >= 4 && (legType == GLOBAL.TYPE_DRIDER || legType == GLOBAL.TYPE_ARACHNID));
 		}
 		public function isGoo(): Boolean {
-			if (legType == GLOBAL.TYPE_GOOEY && hasLegFlag(GLOBAL.FLAG_AMORPHOUS)) return true;
+			if (legType == GLOBAL.TYPE_GOOEY)
+			{
+				if (hasLegFlag(GLOBAL.FLAG_PREHENSILE)) return false;
+				if (legCount == 1 || hasLegFlag(GLOBAL.FLAG_AMORPHOUS)) return true;
+			}
 			return false;
 		}
 		public function isImmobilized(): Boolean {
@@ -4696,6 +4723,7 @@ package classes {
 					if (hasLegFlag(GLOBAL.FLAG_PREHENSILE)) adjectives.push("prehensile");
 					if (hasLegFlag(GLOBAL.FLAG_SMOOTH)) adjectives.push("smooth");
 					if (hasLegFlag(GLOBAL.FLAG_CHITINOUS)) adjectives.push("chitinous", "armored", "carapace-covered");
+					if (hasLegFlag(GLOBAL.FLAG_FEATHERED)) adjectives.push("feathered", "feathery");
 				}
 				//Random goes here!
 				if (adjectives.length > 0) output += RandomInCollection(adjectives) + " ";
@@ -7606,6 +7634,7 @@ package classes {
 		}
 		public function createBreastRowUnlocked(numRows:int = 1):Boolean
 		{
+			if (hasStatusEffect("Gel Body")) return false;
 			return true;
 		}
 		public function createBreastRowsLockedMessage():String
@@ -7713,6 +7742,7 @@ package classes {
 		public function removeBreastRowUnlocked(arraySpot:int = 0, totalRemoved:int = 1):Boolean
 		{
 			if (breastRows.length == 1 && hasStatusEffect("Mimbrane Boobs")) return false;
+			if (hasStatusEffect("Gel Body")) return false;
 			return true;
 		}
 		public function removeBreastRowLockedMessage():String
@@ -7880,6 +7910,7 @@ package classes {
 			if (hairType == GLOBAL.HAIR_TYPE_GOO) counter++;
 			if (hasStatusEffect("Goo Vent")) counter++;
 			if (hasStatusEffect("Goo Crotch")) counter++;
+			if (hasStatusEffect("Gel Body")) counter++;
 			if (counter > 1 && skinType == GLOBAL.SKIN_TYPE_GOO) counter++;
 			//if (counter > 2 && tongueType == GLOBAL.TYPE_GOOEY) counter++;
 			return counter;
