@@ -519,8 +519,8 @@ public function gooShiftMenu():void
 public function showBiomass():void
 {
 	if(flags["GOO_BIOMASS"] == undefined || flags["GOO_BIOMASS"] < 0) flags["GOO_BIOMASS"] = 0;
-	output2("\n\n\tBiomass Reserve: " + flags["GOO_BIOMASS"]);
-	if(flags["GALOMAX_DOSES"]  >= 1 && flags["GALOMAX_DOSES"]  <= 4) output2("/" + gooBiomassMax());
+	output2("\n\n\tBiomass Reserve: <b>" + flags["GOO_BIOMASS"] + "</b>");
+	if(flags["GALOMAX_DOSES"]  >= 1 && flags["GALOMAX_DOSES"]  <= 4) output2(" / " + gooBiomassMax());
 	output2(" mLs");
 	if(pc.hasStatusEffect("Goo Vent")) {
 		output2("\n\tVenting: ");
@@ -694,15 +694,139 @@ public function gooChestCustomizer():void
 	if(pc.nipplesPerBreast < 4) addGhostButton(5,"Add Nipples",gooAddNipples,undefined,"Add Nipples","Add another nipple to every breast.\n\n<b>300 mLs Biomass</b>");
 	else addDisabledGhostButton(5,"Add Nipples","Add Nipples","You don't think you could handle having any more nipples.");
 	if(pc.nipplesPerBreast > 1) addGhostButton(6,"Remove Nip",gooRemoveNipples,undefined,"Remove Nipples","Remove a nipple from each of your breasts.\n\n<b>225 mLs Biomass Gain</b>");
-	else addDisabledGhostButton(6,"Remove Nip","Remove Nip","You cannot remove any more nipples. Breasts without even a single nip would like quite strange. Too strange for you.");
-	addGhostButton(7,"Widen Nips",widenGooNipples,undefined,"Widen Nipples","Widen the areola of your [pc.nipples].\n\n<b>100 mLs Biomass</b>");
-	if(pc.nippleWidthRatio >= 1) addGhostButton(8,"Narrow Nips",narrowASpecificNipRow,undefined,"Narrow Nipples","Make your nipples narrower.\n\n<b>75 mLs Biomass Gain</b>");
-	else addDisabledGhostButton(8,"Narrow Nips","Narrow Nipples","You can't make your nipples any narrower.");
+	else addDisabledGhostButton(6,"Remove Nip","Remove Nip","You cannot remove any more nipples. Breasts without even a single nip would like quite strange. Too strange for you.\n\n<b>225 mLs Biomass Gain</b>");
+	if(gooBiomass() >= 100) addGhostButton(7,"Widen Nips",widenGooNipples,undefined,"Widen Nipples","Widen the areola of your [pc.nipples].\n\n<b>100 mLs Biomass</b>");
+	else addDisabledGhostButton(7,"Widen Nips","Widen Nipples","You don't have enough biomass to widen your nipples.\n\n<b>100 mLs Biomass</b>");
+	if(pc.nippleWidthRatio >= 1) addGhostButton(8,"Narrow Nips",narrowGooNips,undefined,"Narrow Nipples","Make your nipples narrower.\n\n<b>75 mLs Biomass Gain</b>");
+	else addDisabledGhostButton(8,"Narrow Nips","Narrow Nipples","You can't make your nipples any narrower.\n\n<b>75 mLs Biomass Gain");
 
-	addGhostButton(10,"LengthenNips",lengthenARowOfNipsMenu,undefined,"Lengthen Nipples","Lengthen the tips of your [pc.nipples]");
-
-
+	if(gooBiomass() >= 100) addGhostButton(10,"LengthenNips",lengthenGooNips,undefined,"Lengthen Nipples","Lengthen the tips of your [pc.nipples].\n\n<b>100 mLs Biomass</b>");
+	else addDisabledGhostButton(10,"LengthenNips","Lengthen Nipples","You don't have enough biomass to lengthen your nipples.\n\n<b>100 mLs Biomass</b>");
+	if(pc.nippleLengthRatio >= 1) addGhostButton(11,"Shorten Nips",shortenGooNips,undefined,"Shorten Nipples","Shorten the tips of your [pc.nipplesNoun].\n\n<b>75 mLs Biomass Gain</b>");
+	else addDisabledGhostButton(11,"Shorten Nips","Shorten Nipples","You cannot make your [pc.nipplesNoun] and shorter.\n\n<b>75 mLs Biomass Gain</b>");
+	addGhostButton(4,"Nip Type",nippleTypeGooMenu,undefined,"Nip Type","Change what type of nipples you will have.");
 	addGhostButton(14,"Back",gooShiftMenu);
+}
+
+public function nippleTypeChangeCost(target:int = 0):Number
+{
+	var cost:Number = 0;
+	for(var i:int = 0; i < pc.bRows(); i++)
+	{
+		//If we got a change on our hands.
+		if(pc.breastRows[i].nippleType != target)
+		{
+			//Dicknipples cost - 150 biomass.
+			if(target == GLOBAL.NIPPLE_TYPE_DICK) cost += pc.breastRows[i].breasts * pc.nipplesPerBreast * 150;
+			//Nipplecunts cost - 75 biomass
+			else if(target == GLOBAL.NIPPLE_TYPE_FUCKABLE) cost += pc.breastRows[i].breasts * pc.nipplesPerBreast * 75;
+			//Lipples cost - 200 biomass.
+			else if(target == GLOBAL.NIPPLE_TYPE_LIPPLES) cost += pc.breastRows[i].breasts * pc.nipplesPerBreast * 200;
+			//Inverted cost - 50 biomass.
+			else if(target == GLOBAL.NIPPLE_TYPE_INVERTED) cost += pc.breastRows[i].breasts * pc.nipplesPerBreast * 50;
+			//Normals cost - 100 biomass.
+			else if(target == GLOBAL.NIPPLE_TYPE_NORMAL) cost += pc.breastRows[i].breasts * pc.nipplesPerBreast * 50;
+		}
+	}
+	return cost;
+}
+
+public function canGooNippleChange(target:int):Boolean
+{
+	for(var i:int = 0; i < pc.bRows(); i++)
+	{
+		//If any nipples are different, you can TF 'em
+		if(pc.breastRows[i].nippleType != target) return true;
+	}
+	//All the same? FUCK OFF!
+	return false;
+}
+
+public function nippleTypeGooMenu():void
+{
+	clearOutput2();
+	output2("What type of nipples would you like to have?")
+	boobStuff(pc);
+	showBiomass();
+	clearGhostMenu();
+	if(canGooNippleChange(GLOBAL.NIPPLE_TYPE_NORMAL))
+	{
+		if(nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_NORMAL) <= gooBiomass()) addGhostButton(0,"Normal",nippleGooGetsTypeChanged,GLOBAL.NIPPLE_TYPE_NORMAL,"Normal","Change your nipples to be normal-looking.\n\n<b>" + nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_NORMAL) + " mLs Biomass</b>");
+		else addDisabledGhostButton(0,"Normal","Normal","You don't have enough biomass to make all your nipples normal.\n\n<b>" + nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_NORMAL) + " mLs Biomass</b>");
+	}
+	else addDisabledGhostButton(0,"Normal","Normal","All your nipples are already normal.\n\n<b>" + nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_NORMAL) + " mLs Biomass</b>");
+	//Inverted
+	if(canGooNippleChange(GLOBAL.NIPPLE_TYPE_INVERTED))
+	{
+		if(nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_INVERTED) <= gooBiomass()) addGhostButton(1,"Inverted",nippleGooGetsTypeChanged,GLOBAL.NIPPLE_TYPE_INVERTED,"Inverted","Change your nipples to be inverted.\n\n<b>" + nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_INVERTED) + " mLs Biomass</b>");
+		else addDisabledGhostButton(1,"Inverted","Inverted","You don't have enough biomass to make all your nipples inverted.\n\n<b>" + nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_INVERTED) + " mLs Biomass</b>");
+	}
+	else addDisabledGhostButton(1,"Inverted","Inverted","All your nipples are already inverted.\n\n<b>" + nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_INVERTED) + " mLs Biomass</b>");
+	//Fuckable
+	if(canGooNippleChange(GLOBAL.NIPPLE_TYPE_FUCKABLE))
+	{
+		if(nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_FUCKABLE) <= gooBiomass()) addGhostButton(2,"Fuckable",nippleGooGetsTypeChanged,GLOBAL.NIPPLE_TYPE_FUCKABLE,"Fuckable","Change your nipples to be fuckable.\n\n<b>" + nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_FUCKABLE) + " mLs Biomass</b>");
+		else addDisabledGhostButton(2,"Fuckable","Fuckable","You don't have enough biomass to make all your nipples fuckable.\n\n<b>" + nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_FUCKABLE) + " mLs Biomass</b>");
+	}
+	else addDisabledGhostButton(2,"Fuckable","Fuckable","All your nipples are already fuckable.\n\n<b>" + nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_FUCKABLE) + " mLs Biomass</b>");
+	//Lipples
+	if(canGooNippleChange(GLOBAL.NIPPLE_TYPE_LIPPLES))
+	{
+		if(nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_LIPPLES) <= gooBiomass()) addGhostButton(3,"Lipples",nippleGooGetsTypeChanged,GLOBAL.NIPPLE_TYPE_LIPPLES,"Lipples","Change your nipples to be fuckable sets of lips.\n\n<b>" + nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_LIPPLES) + " mLs Biomass</b>");
+		else addDisabledGhostButton(3,"Lipples","Lipples","You don't have enough biomass to make all your nipples fuckable sets of lips.\n\n<b>" + nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_LIPPLES) + " mLs Biomass</b>");
+	}
+	else addDisabledGhostButton(3,"Lipples","Lipples","All your nipples are already fuckable sets of lips.\n\n<b>" + nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_LIPPLES) + " mLs Biomass</b>");
+	//Dicknipples
+	if(canGooNippleChange(GLOBAL.NIPPLE_TYPE_DICK))
+	{
+		if(nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_DICK) <= gooBiomass()) addGhostButton(4,"DickNipples",nippleGooGetsTypeChanged,GLOBAL.NIPPLE_TYPE_DICK,"DickNipples","Change your nipples to be dick-nipples.\n\n<b>" + nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_DICK) + " mLs Biomass</b>");
+		else addDisabledGhostButton(4,"DickNipples","DickNipples","You don't have enough biomass to make all your nipples dick-nipples.\n\n<b>" + nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_DICK) + " mLs Biomass</b>");
+	}
+	else addDisabledGhostButton(4,"DickNipples","DickNipples","All your nipples are already dick-nipples.\n\n<b>" + nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_DICK) + " mLs Biomass</b>");
+	addGhostButton(14,"Back",gooChestCustomizer);
+}
+
+public function nippleGooGetsTypeChanged(target:int):void
+{
+	clearOutput2();
+	//Normal nipples
+	if(target == GLOBAL.NIPPLE_TYPE_NORMAL)
+	{
+		//Spend biobutts
+		gooBiomass(-1 * nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_NORMAL));
+		output2("You palm your chest and close your eyes, willing your unusual nipples to transform into the kind of pert, pebbly nipples that are all too common on most terrans and ausar. <b>You have normal nipples once more!</b>");
+	}
+	else if(target == GLOBAL.NIPPLE_TYPE_INVERTED)
+	{
+		//Spend biobutts
+		gooBiomass(-1 * nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_INVERTED));
+		if(pc.hasFuckableNipples()) output("You close up the passages inside your [pc.nipples] and reform their normal tips, leaving them delightfully inverted. When you get horny enough, they'll be sure to pop back out.");
+		else output2(pc.mf("Chuckling","Giggling") + " to yourself, you push your [pc.nipples] back into themselves, willing them to turn into simple 'innies.' Of course, when you get sufficiently horny, they'll pop right back out.");
+		output2(" <b>Aren't inverted nipples fun?</b>");
+	}
+	else if(target == GLOBAL.NIPPLE_TYPE_FUCKABLE)
+	{
+		gooBiomass(-1 * nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_FUCKABLE));
+		output2("Gently playing with your [pc.nipples], you push them back into your forgiving chest, willing them to deepen, to clutch at your fingers and develop into the sensory powerhouses that the deserve to be. You gasp and moan when fluid dribbles out around your digits, nearly creaming yourself to the sensation of fingering <b>your brand new nipple-cunts.</b>");
+	}
+	else if(target == GLOBAL.NIPPLE_TYPE_LIPPLES)
+	{
+		gooBiomass(-1 * nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_LIPPLES));
+		output2("Reinforcing your [pc.nipples] with fresh biomass, you will them into malleability. Then, with gentle squeezes, you sculpt them into a pair of puckered, almost smiling lips, wrapped around a nerve-line passage that's sure to please. <b>You've given yourself lipples,</b> perfect for exotic fun.");
+	}
+	else if(target == GLOBAL.NIPPLE_TYPE_DICK)
+	{
+		gooBiomass(-1 * nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_DICK));
+		output2("You have to close your eyes and focus for this one. Willing your old [pc.nipples] to melt down into simple, darker colored blobs, you reform them into normal-looking tips - at least on the surface. Below, you sculpt sensitive layers of flesh, each ready to fill with whatever passes for your blood these days and expand into full tumescence. The nipples above will part around them when you let them out, acting more like a sheath than lactic organs they once were.\n\nYou build up internal testes behind <b>your new dick-nipples</b> in order to let them properly cum, but leave the milk ducts surrounding them intact. You should be able to get milked normally, if you ever want to, so long as you can keep your tit-mounted cocks from surging out of containment.");
+		if(pc.dickNippleMultiplier < 5) pc.dickNippleMultiplier = 5;
+	}
+	//Change all da nips!
+	for(var i:int = 0; i < pc.bRows(); i++)
+	{
+		pc.breastRows[i].nippleType = target;
+	}
+	clearGhostMenu();
+	addGhostButton(0,"Next",gooChestCustomizer);
 }
 
 //Actually widen 'dem puppies
@@ -721,7 +845,7 @@ public function widenGooNipples():void
 	addGhostButton(14,"Back",gooChestCustomizer);
 }
 //Actually narrow 'dem puppies
-public function narrowASpecificNipRow():void
+public function narrowGooNips():void
 {
 	clearOutput2();
 	var totalNips:int = pc.totalNipples();
@@ -736,48 +860,33 @@ public function narrowASpecificNipRow():void
 	addGhostButton(14,"Back",gooChestCustomizer);
 }
 
-//lengthen nips/shorten nips
-public function lengthenARowOfNipsMenu():void
+public function lengthenGooNips():void
 {
 	clearOutput2();
-	output2("Which row of nipples will you widen?");
-	boobStuff(pc);
-	output2("\n");
-	clearGhostMenu();
-	var boobCost:Number = 0;
-	//Try to force single boob reduction
-	if(pc.bRows() == 1)
-	{
-		//Let's do it.
-		lengthenASpecificNipRow(0);
-		return;
-	}
-	for(var x:int = 0; x < pc.bRows(); x++)
-	{
-		//Display costs
-		output2("\n" + (x+1) + ": [pc.breastCupSize " + x + "] - " + Math.round(pc.nippleWidth(x) * 10)/10 + " inches wide - <b>Biomass: </b>100");
-		if(gooBiomass() >= 100) addGhostButton(x,upperCase(num2Text(x+1)),lengthenASpecificNipRow,x,StringUtil.capitalize(num2Ordinal(x + 1)) + " Row","Widen the [pc.nipples] on this row.\n\n<b>100 mLs Biomass</b>");
-		else addDisabledGhostButton(x,upperCase(num2Text(x+1)),StringUtil.capitalize(num2Ordinal(x + 1)),"You don't have enough biomass for that.");
-	}
-	showBiomass();
-	addGhostButton(14,"Back",gooChestCustomizer);
-}
-public function lengthenASpecificNipRow(x:int = 0):void
-{
-	clearOutput2();
-	var totalNips:int = pc.breastRows[x].breasts * pc.nipplesPerBreast;
+	var totalNips:int = pc.totalNipples();
 	output2("You grab hold of ");
 	if(totalNips > 2) output2("two of ");
-	output2("your [pc.nipples " + x + "] and give them a tug. The mixture of pleasure and pain draws a gasp from your lips, and better still, when you let go, they retain the extra length.");
+	output2("your [pc.nipples] and give them a tug. The mixture of pleasure and pain draws a gasp from your lips, and better still, when you let go, they retain the extra length.");
 	if(totalNips > 2) output2(" You repeat the process until the extras match up with the first batch.");
-	if(pc.nippleLength(x) <= 1) pc.nippleLengthRatio += 0.5;
+	if(pc.nippleLength(x) <= 1.5) pc.nippleLengthRatio += 0.5;
 	else pc.nippleLengthRatio += 0.25;
 	gooBiomass(-100);
 	clearGhostMenu();
 	addGhostButton(14,"Back",gooChestCustomizer);
 }
 
-
+public function shortenGooNips():void
+{
+	clearOutput2();
+	var totalNips:int = pc.totalNipples();
+	output2("Your [pc.nipples] are entirely too distracting, always bulging forward and getting in the way! You push back on their tips, gingerly squishing them partway back into your body. You can feel the biomass bubble through you as the excess flesh is converted back into goopy potential.");
+	if(totalNips > 2) output2(" You make sure to give the rest of your [pc.nipplesNoun] equal treatment. Can't have any looking disproportional, can you?")
+	if(pc.nippleLength(x) <= 1.5) pc.nippleLengthRatio -= 0.5;
+	else pc.nippleLengthRatio -= 0.25;
+	gooBiomass(75);
+	clearGhostMenu();
+	addGhostButton(14,"Back",gooChestCustomizer);
+}
 
 //300 biomass
 public function gooAddNipples():void
