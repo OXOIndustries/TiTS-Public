@@ -410,6 +410,7 @@
 			FLAG_PREHENSILE,
 			FLAG_SMOOTH,
 			FLAG_CHITINOUS,
+			FLAG_FEATHERED,
 		];
 		
 		public static const VALID_ANTENNAE_TYPES:Array = [
