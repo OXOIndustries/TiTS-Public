@@ -1259,13 +1259,13 @@ public function reshapeAGooCawkForReaaaaal(arg:int = 0):void
 	// Unlockables
 	if(flags["MET_SERA"] != undefined)
 		cTypes.push(GLOBAL.TYPE_DEMONIC);
-	if(CodexManager.entryViewed("Venus Pitchers") || CodexManager.entryUnlocked("Cockvines"))
+	if(CodexManager.entryViewed("Venus Pitchers") || CodexManager.entryViewed("Cockvines"))
 		cTypes.push(GLOBAL.TYPE_TENTACLE);
-	if(CodexManager.entryUnlocked("Zil"))
+	if(CodexManager.entryViewed("Zil"))
 		cTypes.push(GLOBAL.TYPE_BEE);
-	if(CodexManager.entryUnlocked("Fanfir") || CodexManager.entryViewed("The Dragon's Hoard"))
+	if(CodexManager.entryViewed("Fanfir") || CodexManager.entryViewed("The Dragon's Hoard"))
 		cTypes.push(GLOBAL.TYPE_DRACONIC);
-	if(CodexManager.entryUnlocked("Gabilani"))
+	if(CodexManager.entryViewed("Gabilani"))
 		cTypes.push(GLOBAL.TYPE_GABILANI);
 	
 	var newType:Number = 0;
@@ -1856,13 +1856,13 @@ public function pickNewCuntType(arg:int = 0):void
 	
 	var vTypes:Array = [GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_EQUINE];
 	// Unlockables
-	if(CodexManager.entryUnlocked("Naleen"))
+	if(CodexManager.entryViewed("Naleen"))
 		vTypes.push(GLOBAL.TYPE_SNAKE);
-	if(CodexManager.entryUnlocked("Vanae"))
+	if(CodexManager.entryViewed("Vanae"))
 		vTypes.push(GLOBAL.TYPE_VANAE);
-	if(CodexManager.entryUnlocked("Lapinara"))
+	if(CodexManager.entryViewed("Lapinara"))
 		vTypes.push(GLOBAL.TYPE_LAPINARA);
-	if(CodexManager.entryUnlocked("Gabilani"))
+	if(CodexManager.entryViewed("Gabilani"))
 		vTypes.push(GLOBAL.TYPE_GABILANI);
 	
 	var newType:Number = 0;
