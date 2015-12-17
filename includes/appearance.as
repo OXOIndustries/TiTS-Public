@@ -1052,277 +1052,7 @@ public function appearance(target:Creature):void
 		}
 		
 		//Chesticles.
-		output2("\n\n");
-		if(target.gills)
-		{
-			output2("A pair of [target.gills] are growing out just below your neck, spreading out horizontally and draping down your chest. They allow you to stay in the water for quite a long time. ");
-		}
-		//Chesticles..I mean bewbz.
-		if(target.breastRows.length == 1) {
-			// Feminine A-Cups
-			if(target.biggestTitSize() < 2 && target.biggestTitSize() >= 1 && target.mf("m","f") == "f") {
-				if (rand(3) == 0) output2("You have the barest hint of breasts, " + num2Text(target.breastRows[0].breasts) + " teasing feminine rises on your chest");
-				else if (rand(2) == 0) output2("You have tiny, cute mosquito bites for breasts, pert and sensitive");
-				else output2("You have A-cup breasts, " + num2Text(target.breastRows[0].breasts) + " small, pert" + target.rawmfn(" trappy"," sporty","") + " boobs that almost vanish under anything thicker than spandex");
-				output2(", capped with ");
-			}
-			// Default
-			else if(target.biggestTitSize() > 1) output2("You have " + num2Text(target.breastRows[0].breasts) + " " + target.chestDesc() + ", capped with ");
-			// Flat chests!
-			else
-			{
-				// Feminine/Andro, Low/Medium Tone
-				if((target.mfn("m","f","n") != "m") && target.tone < 60) {
-					if (rand(3) == 0) output2("You have a waif’s chest, flat and innocent-looking");
-					else if (rand(2) == 0) output2("You have a girly, soft, undefined flat chest");
-					else output2("The top half of your body is willowy and breast-less, graceful yet vaguely austere");
-				}
-				// Masculine, High Tone, High Thickness
-				else if((target.mf("m","f") == "m") && target.tone >= 60 && target.thickness >= 60) {
-					if (rand(3) == 0) output2("You have a fuck-off six pack, bulging with heavy muscle");
-					else if (rand(2) == 0) output2("You’re ripped as hell, sporting the kind of muscle guys want and girls want around them");
-					else output2("You have remarkably well defined, heavyweight abs, rounded and beefy");
-				}
-				// Masculine, Low Tone, High Thickness
-				else if((target.mf("m","f") == "m") && target.tone <= 30 && target.thickness >= 60) {
-					if (rand(3) == 0) output2("You have a broad, incredibly masculine chest, bulky and assured");
-					else if (rand(2) == 0) output2("You have a bear-like upper frame, voluminous and imminently cuddly");
-					else output2("You have a wide, hearty, supremely manly chest");
-				}
-				// Masculine/Feminine/Andro, High Tone, Low Thickness
-				else if(target.tone >= 60 && target.thickness <= 30) {
-					if (rand(3) == 0) output2(target.mf("You have a narrow, well defined but unostentatious six pack", "You have a flat, athlete’s chest, supple and thin"));
-					else if (rand(2) == 0) output2(target.mf("You have a sleek, tight featherweight’s six pack", "You have a no-nonsense flat chest, framed by rounded, subtle amounts of muscle"));
-					else output2(target.mf("You have a flat, athlete’s chest, wiry with muscle", "Your firm, washboard, modest pecs make you look teasingly sexually ambiguous"));
-				}
-				// Basic
-				else
-				{
-					output2("You have a");
-					if(target.tone >= 100)
-					{
-						if(target.thickness > 70) output2("n immense chest with " + target.mf("extremely pronounced","very pronounced") + " pectoral muscles");
-						else if(target.thickness >= 30) output2(" robust chest with " + target.mf("extremely pronounced","very pronounced") + " pectoral muscles");
-						else output2(" chisled chest with " + target.mf("extremely pronounced","very pronounced") + " pectoral muscles");
-					}
-					else if(target.tone > 70)
-					{
-						if(target.thickness > 70) output2(" broad chest with " + target.mf("well defined","well toned") + " pectoral muscles");
-						else if(target.thickness >= 30) output2(" healthy chest with " + target.mf("well defined","well toned") + " pectoral muscles");
-						else output2(" fit chest with " + target.mf("well defined","well toned") + " pectoral muscles");
-					}
-					else if(target.tone >= 30)
-					{
-						if(target.thickness > 70) output2(" thick chest with " + target.mf("toned","lightly toned") + " pectoral muscles");
-						else if(target.thickness >= 30) output2("n average chest with " + target.mf("toned","lightly toned") + " pectoral muscles");
-						else output2(" soft chest with " + target.mf("toned","lightly toned") + " pectoral muscles");
-					}
-					else
-					{
-						if(target.thickness > 70) output2(" wide chest with unremarkable " + target.mf("pectoral muscles", "breasts"));
-						else if(target.thickness >= 30) output2(" passable chest with unremarkable " + target.mf("pectoral muscles", "breasts"));
-						else output2(" flat chest with unremarkable " + target.mf("pectoral muscles", "breasts"));
-					}
-				}
-				output2(", capped with ");
-			}
-			//Normal nips
-			if(target.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_DICK || target.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_NORMAL)
-			{ 
-				//One nipple
-				if(target.nipplesPerBreast == 1) output2(num2Text(target.nipplesPerBreast) + " " + int(target.nippleLength(0)*10)/10 + "-inch " + target.nippleDescript(0) + " each.");
-				else output2(num2Text(target.nipplesPerBreast) + " " + int(target.nippleLength(0)*10)/10 + "-inch " + plural(target.nippleDescript(0)) + " each.");
-				//Dicknipples mention areolae desc later.
-				if(target.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_DICK) output2(" The areolae are " + target.nippleColor + ".");
-				else output2(" The " + target.areolaSizeDescript() + " areolae are " + target.nippleColor + ".");
-				if(target.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_DICK)
-				{
-					//New J-Cup hotness
-					output2(" With a lusty thought and a bit of focus, you can make " + num2Text(Math.round(target.nippleLength(0) * target.dickNippleMultiplier * 10)/10) + "-inch " + target.nippleCocksDescript(true) + " slide out from behind your normal-looking, " + target.areolaSizeDescript() + ", areolae.");
-					//OLD: output2(" With a lusty thought and a bit of focus, you can make " + num2Text(Math.round(target.nippleLength(0) * target.dickNippleMultiplier * 10)/10) + "-inch " + target.nippleCocksDescript(true) + " slide out from behind your normal-looking areolae.");
-				}
-			}
-			//Inverted type
-			else {
-				//One nipple
-				if(target.nipplesPerBreast == 1) output2(num2Text(target.nipplesPerBreast) + " " + target.nippleDescript(0) + " each.");
-				else output2(num2Text(target.nipplesPerBreast) + " " + plural(target.nippleDescript(0)) + " each.");
-				if(target.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_FUCKABLE) {
-					output2(" The " + target.areolaSizeDescript() + " areolae are " + target.nippleColor + ".");
-					output2(" While you may appear to have inverted nipples, your chest actually houses wet, slippery secrets. A finger or cock could easily slip inside you to give and get as much pleasure as any crotch-couched cunt.");
-				}
-				else if(target.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_LIPPLES) {
-					output2(" The plump, " + target.areolaSizeDescript() + ", " + target.nippleColor + " lips that you have in place of areolae could easily be parted to allow something stiff and hard inside your sensitive chest-based passages.");
-				}
-				else if(target.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_FLAT) {
-					output2(" There isn't any actual nub to your nipples - just flat, " + target.areolaSizeDescript() + ", " + target.nippleColor + " areolae.");
-				}
-			}
-			//Lactation and breast cup final!
-			if (target.isLactating())
-			{
-				if(target.milkFullness < 50) output2(" Your " + target.breastDescript(0) + " are producing [target.milk] but are nowhere near full at the moment.");
-				else if(target.milkFullness < 75) output2(" Your " + target.breastDescript(0) + " have a noticable amount of [target.milk] inside them now. Before long, they'll start swelling.");
-				else if(target.milkFullness < 100) output2(" Your " + target.breastDescript(0) + " are fairly full of [target.milk] and noticeably swollen.");
-				else if(target.milkFullness < 150) output2(" Your " + target.breastDescript(0) + " are sore and sensitive from being so stuffed with [target.milk]. You should release the pressure soon.");
-				else if(target.milkFullness < 200)
-				{
-					if(target.isMilkTank() && rand(2) == 0) output2(" Your " + target.breastDescript(0) + " are incredibly swollen with [target.milk], so much that they're much bigger than normal. Your lactation shows no signs of slowing down in the slightest.");
-					else if(target.isMilkTank()) output2(" At least you are certain your enhanced [target.chestNoun] will never stop lactating, no matter what.");
-					else output2(" Your " + target.breastDescript(0) + " are painfully swollen with [target.milk], so much that they're much bigger than normal. The longer they stay like this, the more your lactation will slow.");
-				}
-				else
-				{
-					if(target.isMilkTank() && rand(2) == 0) output2(" <b>Your " + target.breastDescript(0) + " are so full that they might burst! They radiate a constant yet rhythmic pulse of pressure, a sign that you are quite the productive [target.milkNoun] factory!</b>");
-					else if(target.isMilkTank()) output2(" Despite the uncomfortable fullness, you are at ease - you know your enhanced [target.chestNoun] will never stop lactating, no matter what.");
-					else output2(" <b>Your " + target.breastDescript(0) + " are so full that they feel about to burst! Spending time like this is going to slow your milk production.</b>");
-				}
-				//Don't forget about the bras! Primarily when mentioning the slowing of milk production.
-				if(target.milkFullness > 150 && target.upperUndergarment.shortName != "")
-				{
-					if(target.upperUndergarment.shortName == "Bounty Bra" && target.isMilkTank()) output2(" The massaging vibrations eminating from your JoyCo maternity bra reminds you that you'll never stop lactating, but you wonder if it is really necessary since your lactation seems to be on an endless outflow.");
-					else if(target.upperUndergarment.shortName == "Bounty Bra") output2(" Luckily, the massaging vibrations emanating from your JoyCo maternity bra reminds you that you'll never stop lactating as long as you continue to wear the " + target.upperUndergarment.shortName + ".");
-					else output2(" Unfortunately, a bit of [target.milk] leaks out onto your " + target.upperUndergarment.description + "... Maybe you should invest in a maternity bra?");
-				}
-			}
-			if (target.breastRows[0].breastRating() >= 1) output2(" You could easily fill " + indefiniteArticle(target.breastCup(0)) + " bra.");
-		}
-		//many rows
-		else {
-			output2("You have " + num2Text(target.breastRows.length) + " rows of breasts");
-			if(target.biggestTitSize() < 1)
-			{
-				output2(", all");
-				if(target.tone >= 100)
-				{
-					if(target.thickness > 70) output2(" immense with " + target.mf("extremely pronounced","very pronounced") + " pectoral muscles");
-					else if(target.thickness >= 30) output2(" robust with " + target.mf("extremely pronounced","very pronounced") + " pectoral muscles");
-					else output2(" chisled with " + target.mf("extremely pronounced","very pronounced") + " pectoral muscles");
-				}
-				else if(target.tone > 70)
-				{
-					if(target.thickness > 70) output2(" broad with " + target.mf("well defined","well toned") + " pectoral muscles");
-					else if(target.thickness >= 30) output2(" healthy with " + target.mf("well defined","well toned") + " pectoral muscles");
-					else output2(" fit with " + target.mf("well defined","well toned") + " pectoral muscles");
-				}
-				else if(target.tone >= 30)
-				{
-					if(target.thickness > 70) output2(" thick with " + target.mf("toned","lightly toned") + " pectoral muscles");
-					else if(target.thickness >= 30) output2(" average with " + target.mf("toned","lightly toned") + " pectoral muscles");
-					else output2(" soft with " + target.mf("toned","lightly toned") + " pectoral muscles");
-				}
-				else
-				{
-					if(target.thickness > 70) output2(" wide and fairly " + target.mfn("masculine","feminine","masculine") + " in look");
-					else if(target.thickness >= 30) output2(" passable and fairly " + target.mfn("masculine","feminine","masculine") + " in look");
-					else output2(" flat and fairly " + target.mfn("masculine","feminine","masculine") + " in look");
-				}
-				output2(".");
-			}
-			else
-			{
-				output2(", the topmost");
-				if(target.breastRows[0].breasts == 2) output2(" pair");
-				else output2(" set");
-				output2(" starting at your chest.");
-			}
-			temp = 0;
-			while (temp < target.breastRows.length) {
-				// Feminine A-Cups
-				if(target.breastRows[temp].breastRating() >= 1 && target.breastRows[temp].breastRating() < 2 && target.mf("m","f") == "f")
-				{
-					if(temp == 0) output2(" Your top row of breasts are ");
-					else if(temp == (target.breastRows.length - 1)) output2(" Your bottom row of breasts are ");
-					else output2(" Your next row of breasts are ");
-					if(rand(3) == 0 && temp > 0) output2("bare hints, nothing more than " + num2Text(target.breastRows[0].breasts) + " teasing feminine rises below the ones above");
-					else if(rand(2) == 0) output2("tiny, cute mosquito bites, pert and sensitive");
-					else output2("A-cups, " + num2Text(target.breastRows[0].breasts) + " small, pert" + target.rawmfn(" trappy"," sporty","") + " boobs that almost vanish under anything thicker than spandex");
-					output2(", capped with ");
-				}
-				// Default
-				else
-				{
-					if(temp == 0) output2(" Your uppermost row houses ");
-					if(temp == 1) output2(" The second group holds ");
-					if(temp == 2) output2(" Your third batch contains ");
-					if(temp == 3) output2(" Your fourth set cradles ");
-					if(temp == 4) output2(" Your fifth has ");
-					if(target.breastRows[temp].breastRating() >= 1) output2(num2Text(target.breastRows[temp].breasts) + " " + target.breastDescript(temp) + ", capped with ");
-				}
-				//DESCRIBE NIPPLE NAU!
-				//Normal nips
-				if(target.breastRows[temp].nippleType == GLOBAL.NIPPLE_TYPE_DICK || target.breastRows[temp].nippleType == GLOBAL.NIPPLE_TYPE_NORMAL) { 
-					//One nipple
-					if(target.nipplesPerBreast == 1) {
-						output2(num2Text(target.nipplesPerBreast) + " " + int(target.nippleLength(temp)*10)/10 + "-inch " + target.nippleDescript(temp) + " ");
-						if(target.breastRows[temp].breastRating() < 1) output2("on each side.");
-						else output2("each.");
-					}
-					else {
-						output2(num2Text(target.nipplesPerBreast) + " " + int(target.nippleLength(temp)*10)/10 + "-inch " + plural(target.nippleDescript(temp)) + " ");
-						if(target.breastRows[temp].breastRating() < 1) output2("on each side.");
-						else output2("each.");
-					}
-					if(target.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_DICK) {
-						output2(" You can make " + num2Text(Math.round(target.nippleLength(temp) * target.dickNippleMultiplier * 10)/10) + "-inch " + target.nippleCocksDescript(true) + " slide out from behind the normal-looking areolae.");
-					}		
-				}
-				//Inverted type
-				else {
-					//One nipple
-					if(target.nipplesPerBreast == 1) {
-						output2(num2Text(target.nipplesPerBreast) + " " + target.nippleDescript(temp) + " ");
-						if(target.breastRows[temp].breastRating() < 1) output2("on each side.");
-						else output2("each.");
-					}
-					//Multi
-					else {
-						output2(num2Text(target.nipplesPerBreast) + " " + plural(target.nippleDescript(temp)) + " ");
-						if(target.breastRows[temp].breastRating() < 1) output2("on each side.");
-						else output2("each.");
-					}
-					if(target.breastRows[temp].nippleType == GLOBAL.NIPPLE_TYPE_FUCKABLE) {
-						output2(" They actually houses wet, slippery, secret entrances.");
-					}
-					else if(target.breastRows[temp].nippleType == GLOBAL.NIPPLE_TYPE_LIPPLES) {
-						output2(" Plump lips cap them off in place of nipples.");
-					}
-					else if(target.breastRows[temp].nippleType == GLOBAL.NIPPLE_TYPE_FLAT) {
-						output2(" There isn't any actual nub to the nipples - just flat areolae.");
-					}
-				}
-				if(target.breastRows[temp].breastRating() >= 1) output2(" They could easily fill " + indefiniteArticle(target.breastCup(temp)) + " bra.");
-				temp++;
-			}
-			//Done with tits. Move on.
-			//Lactation and breast cup final!
-			if (target.isLactating())
-			{
-				if(target.milkFullness < 50) output2(" Your [target.fullChest] are producing [target.milk] but are nowhere near full at the moment.");
-				else if(target.milkFullness < 75) output2(" Your [target.fullChest] have a noticable amount of [target.milk] inside them now. Before long, they'll start swelling.");
-				else if(target.milkFullness < 100) output2(" Your [target.fullChest] are fairly full of [target.milk] and noticeably swollen.");
-				else if(target.milkFullness < 150) output2(" Your [target.fullChest] are sore and sensitive from being so stuffed with [target.milk]. You should release the pressure soon.");
-				else if(target.milkFullness < 200)
-				{
-					if(target.isMilkTank() && rand(2) == 0) output2(" Your [target.fullChest] are incredibly swollen with [target.milk], so much that they're much bigger than normal. Your lactation shows no signs of slowing down in the slightest.");
-					else if(target.isMilkTank()) output2(" At least you are certain your enhanced [target.chestNoun] will never stop lactating, no matter what.");
-					else output2(" Your [target.fullChest] are painfully swollen with [target.milk], so much that they're much bigger than normal. The longer they stay like this, the more your lactation will slow.");
-				}
-				else
-				{
-					if(target.isMilkTank() && rand(2) == 0) output2(" <b>Your [target.fullChest] are so full that they might burst! They radiate a constant yet rhythmic pulse of pressure, a sign that you are quite the productive [target.milkNoun] factory!</b>");
-					else if(target.isMilkTank()) output2(" Despite the uncomfortable fullness, you are at ease - you know your enhanced [target.chestNoun] will never stop lactating, no matter what.");
-					else output2(" <b>Your [target.fullChest] are so full that they feel about to burst! Spending time like this is going to slow your milk production.</b>");
-				}
-				//Bra specials
-				if(target.milkFullness > 150 && target.upperUndergarment.shortName != "")
-				{
-					if(target.upperUndergarment.shortName == "Bounty Bra" && target.isMilkTank()) output2(" The massaging vibrations eminating from your JoyCo maternity bra reminds you that you'll never stop lactating, but you wonder if it is really necessary since your lactation seems to be on an endless outflow.");
-					else if(target.upperUndergarment.shortName == "Bounty Bra") output2(" Luckily, the massaging vibrations emanating from your JoyCo maternity bra reminds you that you'll never stop lactating as long as you continue to wear the " + target.upperUndergarment.shortName + ".");
-					else output2(" Unfortunately, a bit of [target.milk] leaks out onto your " + target.upperUndergarment.description + "... Maybe you should invest in a maternity bra?");
-				}
-			}
-		}
+		boobStuff(target);
 		//CROTCH STUFF!
 		crotchStuff(target);
 		
@@ -1397,6 +1127,283 @@ public function appearance(target:Creature):void
 				output2(" seem");
 			}
 			output2(" intelligent enough for some rudimentary communication....");
+		}
+	}
+}
+
+public function boobStuff(target:Creature):void
+{
+	kGAMECLASS.target = target;
+	var rando:int = 0;
+	output2("\n\n");
+	if(target.gills)
+	{
+		output2("A pair of [target.gills] are growing out just below your neck, spreading out horizontally and draping down your chest. They allow you to stay in the water for quite a long time. ");
+	}
+	//Chesticles..I mean bewbz.
+	if(target.breastRows.length == 1) {
+		// Feminine A-Cups
+		if(target.biggestTitSize() < 2 && target.biggestTitSize() >= 1 && target.mf("m","f") == "f") {
+			if (rand(3) == 0) output2("You have the barest hint of breasts, " + num2Text(target.breastRows[0].breasts) + " teasing feminine rises on your chest");
+			else if (rand(2) == 0) output2("You have tiny, cute mosquito bites for breasts, pert and sensitive");
+			else output2("You have A-cup breasts, " + num2Text(target.breastRows[0].breasts) + " small, pert" + target.rawmfn(" trappy"," sporty","") + " boobs that almost vanish under anything thicker than spandex");
+			output2(", capped with ");
+		}
+		// Default
+		else if(target.biggestTitSize() > 1) output2("You have " + num2Text(target.breastRows[0].breasts) + " " + target.chestDesc() + ", capped with ");
+		// Flat chests!
+		else
+		{
+			// Feminine/Andro, Low/Medium Tone
+			if((target.mfn("m","f","n") != "m") && target.tone < 60) {
+				if (rand(3) == 0) output2("You have a waif’s chest, flat and innocent-looking");
+				else if (rand(2) == 0) output2("You have a girly, soft, undefined flat chest");
+				else output2("The top half of your body is willowy and breast-less, graceful yet vaguely austere");
+			}
+			// Masculine, High Tone, High Thickness
+			else if((target.mf("m","f") == "m") && target.tone >= 60 && target.thickness >= 60) {
+				if (rand(3) == 0) output2("You have a fuck-off six pack, bulging with heavy muscle");
+				else if (rand(2) == 0) output2("You’re ripped as hell, sporting the kind of muscle guys want and girls want around them");
+				else output2("You have remarkably well defined, heavyweight abs, rounded and beefy");
+			}
+			// Masculine, Low Tone, High Thickness
+			else if((target.mf("m","f") == "m") && target.tone <= 30 && target.thickness >= 60) {
+				if (rand(3) == 0) output2("You have a broad, incredibly masculine chest, bulky and assured");
+				else if (rand(2) == 0) output2("You have a bear-like upper frame, voluminous and imminently cuddly");
+				else output2("You have a wide, hearty, supremely manly chest");
+			}
+			// Masculine/Feminine/Andro, High Tone, Low Thickness
+			else if(target.tone >= 60 && target.thickness <= 30) {
+				if (rand(3) == 0) output2(target.mf("You have a narrow, well defined but unostentatious six pack", "You have a flat, athlete’s chest, supple and thin"));
+				else if (rand(2) == 0) output2(target.mf("You have a sleek, tight featherweight’s six pack", "You have a no-nonsense flat chest, framed by rounded, subtle amounts of muscle"));
+				else output2(target.mf("You have a flat, athlete’s chest, wiry with muscle", "Your firm, washboard, modest pecs make you look teasingly sexually ambiguous"));
+			}
+			// Basic
+			else
+			{
+				output2("You have a");
+				if(target.tone >= 100)
+				{
+					if(target.thickness > 70) output2("n immense chest with " + target.mf("extremely pronounced","very pronounced") + " pectoral muscles");
+					else if(target.thickness >= 30) output2(" robust chest with " + target.mf("extremely pronounced","very pronounced") + " pectoral muscles");
+					else output2(" chisled chest with " + target.mf("extremely pronounced","very pronounced") + " pectoral muscles");
+				}
+				else if(target.tone > 70)
+				{
+					if(target.thickness > 70) output2(" broad chest with " + target.mf("well defined","well toned") + " pectoral muscles");
+					else if(target.thickness >= 30) output2(" healthy chest with " + target.mf("well defined","well toned") + " pectoral muscles");
+					else output2(" fit chest with " + target.mf("well defined","well toned") + " pectoral muscles");
+				}
+				else if(target.tone >= 30)
+				{
+					if(target.thickness > 70) output2(" thick chest with " + target.mf("toned","lightly toned") + " pectoral muscles");
+					else if(target.thickness >= 30) output2("n average chest with " + target.mf("toned","lightly toned") + " pectoral muscles");
+					else output2(" soft chest with " + target.mf("toned","lightly toned") + " pectoral muscles");
+				}
+				else
+				{
+					if(target.thickness > 70) output2(" wide chest with unremarkable " + target.mf("pectoral muscles", "breasts"));
+					else if(target.thickness >= 30) output2(" passable chest with unremarkable " + target.mf("pectoral muscles", "breasts"));
+					else output2(" flat chest with unremarkable " + target.mf("pectoral muscles", "breasts"));
+				}
+			}
+			output2(", capped with ");
+		}
+		//Normal nips
+		if(target.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_DICK || target.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_NORMAL)
+		{ 
+			//One nipple
+			if(target.nipplesPerBreast == 1) output2(num2Text(target.nipplesPerBreast) + " " + int(target.nippleLength(0)*10)/10 + "-inch " + target.nippleDescript(0) + " each.");
+			else output2(num2Text(target.nipplesPerBreast) + " " + int(target.nippleLength(0)*10)/10 + "-inch " + plural(target.nippleDescript(0)) + " each.");
+			//Dicknipples mention areolae desc later.
+			if(target.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_DICK) output2(" The areolae are " + target.nippleColor + ".");
+			else output2(" The " + target.areolaSizeDescript() + " areolae are " + target.nippleColor + ".");
+			if(target.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_DICK)
+			{
+				//New J-Cup hotness
+				output2(" With a lusty thought and a bit of focus, you can make " + num2Text(Math.round(target.nippleLength(0) * target.dickNippleMultiplier * 10)/10) + "-inch " + target.nippleCocksDescript(true) + " slide out from behind your normal-looking, " + target.areolaSizeDescript() + ", areolae.");
+				//OLD: output2(" With a lusty thought and a bit of focus, you can make " + num2Text(Math.round(target.nippleLength(0) * target.dickNippleMultiplier * 10)/10) + "-inch " + target.nippleCocksDescript(true) + " slide out from behind your normal-looking areolae.");
+			}
+		}
+		//Inverted type
+		else {
+			//One nipple
+			if(target.nipplesPerBreast == 1) output2(num2Text(target.nipplesPerBreast) + " " + target.nippleDescript(0) + " each.");
+			else output2(num2Text(target.nipplesPerBreast) + " " + plural(target.nippleDescript(0)) + " each.");
+			if(target.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_FUCKABLE) {
+				output2(" The " + target.areolaSizeDescript() + " areolae are " + target.nippleColor + ".");
+				output2(" While you may appear to have inverted nipples, your chest actually houses wet, slippery secrets. A finger or cock could easily slip inside you to give and get as much pleasure as any crotch-couched cunt.");
+			}
+			else if(target.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_LIPPLES) {
+				output2(" The plump, " + target.areolaSizeDescript() + ", " + target.nippleColor + " lips that you have in place of areolae could easily be parted to allow something stiff and hard inside your sensitive chest-based passages.");
+			}
+			else if(target.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_FLAT) {
+				output2(" There isn't any actual nub to your nipples - just flat, " + target.areolaSizeDescript() + ", " + target.nippleColor + " areolae.");
+			}
+		}
+		//Lactation and breast cup final!
+		if (target.isLactating())
+		{
+			if(target.milkFullness < 50) output2(" Your " + target.breastDescript(0) + " are producing [target.milk] but are nowhere near full at the moment.");
+			else if(target.milkFullness < 75) output2(" Your " + target.breastDescript(0) + " have a noticable amount of [target.milk] inside them now. Before long, they'll start swelling.");
+			else if(target.milkFullness < 100) output2(" Your " + target.breastDescript(0) + " are fairly full of [target.milk] and noticeably swollen.");
+			else if(target.milkFullness < 150) output2(" Your " + target.breastDescript(0) + " are sore and sensitive from being so stuffed with [target.milk]. You should release the pressure soon.");
+			else if(target.milkFullness < 200)
+			{
+				if(target.isMilkTank() && rand(2) == 0) output2(" Your " + target.breastDescript(0) + " are incredibly swollen with [target.milk], so much that they're much bigger than normal. Your lactation shows no signs of slowing down in the slightest.");
+				else if(target.isMilkTank()) output2(" At least you are certain your enhanced [target.chestNoun] will never stop lactating, no matter what.");
+				else output2(" Your " + target.breastDescript(0) + " are painfully swollen with [target.milk], so much that they're much bigger than normal. The longer they stay like this, the more your lactation will slow.");
+			}
+			else
+			{
+				if(target.isMilkTank() && rand(2) == 0) output2(" <b>Your " + target.breastDescript(0) + " are so full that they might burst! They radiate a constant yet rhythmic pulse of pressure, a sign that you are quite the productive [target.milkNoun] factory!</b>");
+				else if(target.isMilkTank()) output2(" Despite the uncomfortable fullness, you are at ease - you know your enhanced [target.chestNoun] will never stop lactating, no matter what.");
+				else output2(" <b>Your " + target.breastDescript(0) + " are so full that they feel about to burst! Spending time like this is going to slow your milk production.</b>");
+			}
+			//Don't forget about the bras! Primarily when mentioning the slowing of milk production.
+			if(target.milkFullness > 150 && target.upperUndergarment.shortName != "")
+			{
+				if(target.upperUndergarment.shortName == "Bounty Bra" && target.isMilkTank()) output2(" The massaging vibrations eminating from your JoyCo maternity bra reminds you that you'll never stop lactating, but you wonder if it is really necessary since your lactation seems to be on an endless outflow.");
+				else if(target.upperUndergarment.shortName == "Bounty Bra") output2(" Luckily, the massaging vibrations emanating from your JoyCo maternity bra reminds you that you'll never stop lactating as long as you continue to wear the " + target.upperUndergarment.shortName + ".");
+				else output2(" Unfortunately, a bit of [target.milk] leaks out onto your " + target.upperUndergarment.description + "... Maybe you should invest in a maternity bra?");
+			}
+		}
+		if (target.breastRows[0].breastRating() >= 1) output2(" You could easily fill " + indefiniteArticle(target.breastCup(0)) + " bra.");
+	}
+	//many rows
+	else {
+		output2("You have " + num2Text(target.breastRows.length) + " rows of breasts");
+		if(target.biggestTitSize() < 1)
+		{
+			output2(", all");
+			if(target.tone >= 100)
+			{
+				if(target.thickness > 70) output2(" immense with " + target.mf("extremely pronounced","very pronounced") + " pectoral muscles");
+				else if(target.thickness >= 30) output2(" robust with " + target.mf("extremely pronounced","very pronounced") + " pectoral muscles");
+				else output2(" chisled with " + target.mf("extremely pronounced","very pronounced") + " pectoral muscles");
+			}
+			else if(target.tone > 70)
+			{
+				if(target.thickness > 70) output2(" broad with " + target.mf("well defined","well toned") + " pectoral muscles");
+				else if(target.thickness >= 30) output2(" healthy with " + target.mf("well defined","well toned") + " pectoral muscles");
+				else output2(" fit with " + target.mf("well defined","well toned") + " pectoral muscles");
+			}
+			else if(target.tone >= 30)
+			{
+				if(target.thickness > 70) output2(" thick with " + target.mf("toned","lightly toned") + " pectoral muscles");
+				else if(target.thickness >= 30) output2(" average with " + target.mf("toned","lightly toned") + " pectoral muscles");
+				else output2(" soft with " + target.mf("toned","lightly toned") + " pectoral muscles");
+			}
+			else
+			{
+				if(target.thickness > 70) output2(" wide and fairly " + target.mfn("masculine","feminine","masculine") + " in look");
+				else if(target.thickness >= 30) output2(" passable and fairly " + target.mfn("masculine","feminine","masculine") + " in look");
+				else output2(" flat and fairly " + target.mfn("masculine","feminine","masculine") + " in look");
+			}
+			output2(".");
+		}
+		else
+		{
+			output2(", the topmost");
+			if(target.breastRows[0].breasts == 2) output2(" pair");
+			else output2(" set");
+			output2(" starting at your chest.");
+		}
+		temp = 0;
+		while (temp < target.breastRows.length) {
+			// Feminine A-Cups
+			if(target.breastRows[temp].breastRating() >= 1 && target.breastRows[temp].breastRating() < 2 && target.mf("m","f") == "f")
+			{
+				if(temp == 0) output2(" Your top row of breasts are ");
+				else if(temp == (target.breastRows.length - 1)) output2(" Your bottom row of breasts are ");
+				else output2(" Your next row of breasts are ");
+				if(rand(3) == 0 && temp > 0) output2("bare hints, nothing more than " + num2Text(target.breastRows[0].breasts) + " teasing feminine rises below the ones above");
+				else if(rand(2) == 0) output2("tiny, cute mosquito bites, pert and sensitive");
+				else output2("A-cups, " + num2Text(target.breastRows[0].breasts) + " small, pert" + target.rawmfn(" trappy"," sporty","") + " boobs that almost vanish under anything thicker than spandex");
+				output2(", capped with ");
+			}
+			// Default
+			else
+			{
+				if(temp == 0) output2(" Your uppermost row houses ");
+				if(temp == 1) output2(" The second group holds ");
+				if(temp == 2) output2(" Your third batch contains ");
+				if(temp == 3) output2(" Your fourth set cradles ");
+				if(temp == 4) output2(" Your fifth has ");
+				if(target.breastRows[temp].breastRating() >= 1) output2(num2Text(target.breastRows[temp].breasts) + " " + target.breastDescript(temp) + ", capped with ");
+			}
+			//DESCRIBE NIPPLE NAU!
+			//Normal nips
+			if(target.breastRows[temp].nippleType == GLOBAL.NIPPLE_TYPE_DICK || target.breastRows[temp].nippleType == GLOBAL.NIPPLE_TYPE_NORMAL) { 
+				//One nipple
+				if(target.nipplesPerBreast == 1) {
+					output2(num2Text(target.nipplesPerBreast) + " " + int(target.nippleLength(temp)*10)/10 + "-inch " + target.nippleDescript(temp) + " ");
+					if(target.breastRows[temp].breastRating() < 1) output2("on each side.");
+					else output2("each.");
+				}
+				else {
+					output2(num2Text(target.nipplesPerBreast) + " " + int(target.nippleLength(temp)*10)/10 + "-inch " + plural(target.nippleDescript(temp)) + " ");
+					if(target.breastRows[temp].breastRating() < 1) output2("on each side.");
+					else output2("each.");
+				}
+				if(target.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_DICK) {
+					output2(" You can make " + num2Text(Math.round(target.nippleLength(temp) * target.dickNippleMultiplier * 10)/10) + "-inch " + target.nippleCocksDescript(true) + " slide out from behind the normal-looking areolae.");
+				}		
+			}
+			//Inverted type
+			else {
+				//One nipple
+				if(target.nipplesPerBreast == 1) {
+					output2(num2Text(target.nipplesPerBreast) + " " + target.nippleDescript(temp) + " ");
+					if(target.breastRows[temp].breastRating() < 1) output2("on each side.");
+					else output2("each.");
+				}
+				//Multi
+				else {
+					output2(num2Text(target.nipplesPerBreast) + " " + plural(target.nippleDescript(temp)) + " ");
+					if(target.breastRows[temp].breastRating() < 1) output2("on each side.");
+					else output2("each.");
+				}
+				if(target.breastRows[temp].nippleType == GLOBAL.NIPPLE_TYPE_FUCKABLE) {
+					output2(" They actually houses wet, slippery, secret entrances.");
+				}
+				else if(target.breastRows[temp].nippleType == GLOBAL.NIPPLE_TYPE_LIPPLES) {
+					output2(" Plump lips cap them off in place of nipples.");
+				}
+				else if(target.breastRows[temp].nippleType == GLOBAL.NIPPLE_TYPE_FLAT) {
+					output2(" There isn't any actual nub to the nipples - just flat areolae.");
+				}
+			}
+			if(target.breastRows[temp].breastRating() >= 1) output2(" They could easily fill " + indefiniteArticle(target.breastCup(temp)) + " bra.");
+			temp++;
+		}
+		//Done with tits. Move on.
+		//Lactation and breast cup final!
+		if (target.isLactating())
+		{
+			if(target.milkFullness < 50) output2(" Your [target.fullChest] are producing [target.milk] but are nowhere near full at the moment.");
+			else if(target.milkFullness < 75) output2(" Your [target.fullChest] have a noticable amount of [target.milk] inside them now. Before long, they'll start swelling.");
+			else if(target.milkFullness < 100) output2(" Your [target.fullChest] are fairly full of [target.milk] and noticeably swollen.");
+			else if(target.milkFullness < 150) output2(" Your [target.fullChest] are sore and sensitive from being so stuffed with [target.milk]. You should release the pressure soon.");
+			else if(target.milkFullness < 200)
+			{
+				if(target.isMilkTank() && rand(2) == 0) output2(" Your [target.fullChest] are incredibly swollen with [target.milk], so much that they're much bigger than normal. Your lactation shows no signs of slowing down in the slightest.");
+				else if(target.isMilkTank()) output2(" At least you are certain your enhanced [target.chestNoun] will never stop lactating, no matter what.");
+				else output2(" Your [target.fullChest] are painfully swollen with [target.milk], so much that they're much bigger than normal. The longer they stay like this, the more your lactation will slow.");
+			}
+			else
+			{
+				if(target.isMilkTank() && rand(2) == 0) output2(" <b>Your [target.fullChest] are so full that they might burst! They radiate a constant yet rhythmic pulse of pressure, a sign that you are quite the productive [target.milkNoun] factory!</b>");
+				else if(target.isMilkTank()) output2(" Despite the uncomfortable fullness, you are at ease - you know your enhanced [target.chestNoun] will never stop lactating, no matter what.");
+				else output2(" <b>Your [target.fullChest] are so full that they feel about to burst! Spending time like this is going to slow your milk production.</b>");
+			}
+			//Bra specials
+			if(target.milkFullness > 150 && target.upperUndergarment.shortName != "")
+			{
+				if(target.upperUndergarment.shortName == "Bounty Bra" && target.isMilkTank()) output2(" The massaging vibrations eminating from your JoyCo maternity bra reminds you that you'll never stop lactating, but you wonder if it is really necessary since your lactation seems to be on an endless outflow.");
+				else if(target.upperUndergarment.shortName == "Bounty Bra") output2(" Luckily, the massaging vibrations emanating from your JoyCo maternity bra reminds you that you'll never stop lactating as long as you continue to wear the " + target.upperUndergarment.shortName + ".");
+				else output2(" Unfortunately, a bit of [target.milk] leaks out onto your " + target.upperUndergarment.description + "... Maybe you should invest in a maternity bra?");
+			}
 		}
 	}
 }
