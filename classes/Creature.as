@@ -4204,10 +4204,10 @@ package classes {
 
 			//25% of the time, add an adjective.
 			if (rand(4) == 0) {
-				if (hasLegFlag(GLOBAL.FLAG_SMOOTH)) adjectives.push("smooth");
-				if (hasLegFlag(GLOBAL.FLAG_THICK)) adjectives.push("thick");
-				if (hasLegFlag(GLOBAL.FLAG_STICKY)) adjectives.push("sticky");
-				if (hasLegFlag(GLOBAL.FLAG_FLUFFY))
+				if (hasSkinFlag(GLOBAL.FLAG_SMOOTH) || hasLegFlag(GLOBAL.FLAG_SMOOTH)) adjectives.push("smooth");
+				if (hasSkinFlag(GLOBAL.FLAG_THICK)) adjectives.push("thick");
+				if (hasSkinFlag(GLOBAL.FLAG_STICKY)) adjectives.push("sticky");
+				if (hasSkinFlag(GLOBAL.FLAG_FLUFFY))
 				{
 					if (noun == "fur") adjectives.push("fluffy");
 					if (noun == "feathers") adjectives.push("downy");
