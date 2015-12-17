@@ -1126,6 +1126,7 @@ package classes {
 
 		public function breastsUnlocked(bRowIndex:int, newBreastCount:Number):Boolean
 		{
+			if (hasStatusEffect("Gel Body")) return false;
 			return true;
 		}
 		public function breastsLockedMessage():String
@@ -1136,6 +1137,7 @@ package classes {
 
 		public function nippleTypeUnlocked(bRowIndex:int, newNippleType:Number):Boolean
 		{
+			if (hasStatusEffect("Gel Body")) return false;
 			return true;
 		}
 		public function nippleTypeLockedMessage():String
@@ -1146,6 +1148,7 @@ package classes {
 
 		public function breastRatingUnlocked(bRowIndex:int, newBreastRating:Number):Boolean
 		{
+			if (hasStatusEffect("Gel Body")) return false;
 			return true;
 		}
 		public function breastRatingLockedMessage():String
@@ -1168,6 +1171,7 @@ package classes {
 		public var nipplesPerBreast: int = 1;
 		public function nipplesPerBreastUnlocked(newNipplesPerBreast:int):Boolean
 		{
+			if (hasStatusEffect("Gel Body")) return false;
 			return true;
 		}
 		public function nipplesPerBreastLockedMessage():String
@@ -4373,7 +4377,7 @@ package classes {
 			return (legCount >= 4 && (legType == GLOBAL.TYPE_DRIDER || legType == GLOBAL.TYPE_ARACHNID));
 		}
 		public function isGoo(): Boolean {
-			if (legType == GLOBAL.TYPE_GOOEY && hasLegFlag(GLOBAL.FLAG_AMORPHOUS)) return true;
+			if (legType == GLOBAL.TYPE_GOOEY && (legCount == 1 || hasLegFlag(GLOBAL.FLAG_AMORPHOUS))) return true;
 			return false;
 		}
 		public function isImmobilized(): Boolean {
@@ -7626,6 +7630,7 @@ package classes {
 		}
 		public function createBreastRowUnlocked(numRows:int = 1):Boolean
 		{
+			if (hasStatusEffect("Gel Body")) return false;
 			return true;
 		}
 		public function createBreastRowsLockedMessage():String
@@ -7733,6 +7738,7 @@ package classes {
 		public function removeBreastRowUnlocked(arraySpot:int = 0, totalRemoved:int = 1):Boolean
 		{
 			if (breastRows.length == 1 && hasStatusEffect("Mimbrane Boobs")) return false;
+			if (hasStatusEffect("Gel Body")) return false;
 			return true;
 		}
 		public function removeBreastRowLockedMessage():String
