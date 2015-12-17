@@ -1162,9 +1162,9 @@ public function boobStuff(target:Creature):void
 			}
 			// Masculine, High Tone, High Thickness
 			else if((target.mf("m","f") == "m") && target.tone >= 60 && target.thickness >= 60) {
-				if (rand(3) == 0) output2("You have a fuck-off six pack, bulging with heavy muscle");
-				else if (rand(2) == 0) output2("You’re ripped as hell, sporting the kind of muscle guys want and girls want around them");
-				else output2("You have remarkably well defined, heavyweight abs, rounded and beefy");
+				if (rand(3) == 0) output2("You have a fuck-off six pack, bulging with heavy muscle. Above it, you have a broad chest");
+				else if (rand(2) == 0) output2("You’re ripped as hell, sporting the kind of muscle guys want and girls want around them. Much can be said about your pecs");
+				else output2("You have remarkably well defined, heavyweight abs, rounded and beefy. Above it, you have a muscled chest");
 			}
 			// Masculine, Low Tone, High Thickness
 			else if((target.mf("m","f") == "m") && target.tone <= 30 && target.thickness >= 60) {
@@ -1174,8 +1174,8 @@ public function boobStuff(target:Creature):void
 			}
 			// Masculine/Feminine/Andro, High Tone, Low Thickness
 			else if(target.tone >= 60 && target.thickness <= 30) {
-				if (rand(3) == 0) output2(target.mf("You have a narrow, well defined but unostentatious six pack", "You have a flat, athlete’s chest, supple and thin"));
-				else if (rand(2) == 0) output2(target.mf("You have a sleek, tight featherweight’s six pack", "You have a no-nonsense flat chest, framed by rounded, subtle amounts of muscle"));
+				if (rand(3) == 0) output2(target.mf("You have a narrow, well defined but unostentatious six pack. Above it, you have a chiseled chest", "You have a flat, athlete’s chest, supple and thin"));
+				else if (rand(2) == 0) output2(target.mf("You have a sleek, tight featherweight’s six pack. Above it, you have a defined chest", "You have a no-nonsense flat chest, framed by rounded, subtle amounts of muscle"));
 				else output2(target.mf("You have a flat, athlete’s chest, wiry with muscle", "Your firm, washboard, modest pecs make you look teasingly sexually ambiguous"));
 			}
 			// Basic
