@@ -315,6 +315,7 @@
 			FLAG_LUBRICATED,
 			FLAG_SQUISHY,
 			FLAG_APHRODISIAC_LACED,
+			FLAG_GOOEY,
 		];
 		
 		public static const VALID_EAR_TYPES:Array = [
@@ -366,6 +367,7 @@
 			FLAG_SCALED,
 			FLAG_CHITINOUS,
 			FLAG_FEATHERED,
+			FLAG_GOOEY,
 		];
 		
 		public static const VALID_LEG_TYPES:Array = [
@@ -411,6 +413,7 @@
 			FLAG_SMOOTH,
 			FLAG_CHITINOUS,
 			FLAG_FEATHERED,
+			FLAG_GOOEY,
 		];
 		
 		public static const VALID_ANTENNAE_TYPES:Array = [
@@ -497,6 +500,7 @@
 			FLAG_SHEATHED,
 			FLAG_KNOTTED,
 			FLAG_RIBBED,
+			FLAG_GOOEY,
 		];
 		
 		public static const TAIL_GENITAL_NONE:int 	= 0;
