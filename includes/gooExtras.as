@@ -41,9 +41,10 @@ public function showZodee():void
 public function gooBiomassMax():Number
 {
 	if(flags["GALOMAX_DOSES"]  == 1) return 300;
-	if(flags["GALOMAX_DOSES"]  == 2) return 750;
-	if(flags["GALOMAX_DOSES"]  == 3) return 1500;
-	if(flags["GALOMAX_DOSES"]  == 4) return 10000;
+	else if(flags["GALOMAX_DOSES"]  == 2) return 750;
+	else if(flags["GALOMAX_DOSES"]  == 3) return 1500;
+	else if(flags["GALOMAX_DOSES"]  == 4) return 10000;
+	return 0;
 }
 
 public function gooBiomass(arg:Number = 0):Number
@@ -455,12 +456,12 @@ public function galoMaxTFProc():void
 		pc.skinTone = gooColor;
 		pc.furColor = gooColor;
 		pc.scaleColor = gooColor;
-		/*
+		
 		// Skin actually changes?
 		pc.skinType = GLOBAL.SKIN_TYPE_GOO;
 		pc.clearSkinFlags();
 		pc.addSkinFlag(GLOBAL.FLAG_SQUISHY);
-		//pc.addSkinFlag(GLOBAL.FLAG_LUBRICATED); // Maybe add this flag for the last dose?
+		pc.addSkinFlag(GLOBAL.FLAG_LUBRICATED);
 		// Gel-like legs? (legCount and genitalLocation() are preserved)
 		var legProperties:Array = [];
 		if(pc.legFlags.length > 0)
@@ -471,11 +472,10 @@ public function galoMaxTFProc():void
 				if (!InCollection(pc.legFlags[i], GLOBAL.FLAG_FURRED, GLOBAL.FLAG_SCALED, GLOBAL.FLAG_CHITINOUS, GLOBAL.FLAG_FEATHERED))
 					legProperties.push(pc.legFlags[i]);
 			}
+			pc.clearLegFlags();
+			pc.legFlags = legProperties;
 		}
 		pc.legType = GLOBAL.TYPE_GOOEY;
-		pc.clearLegFlags();
-		if(legProperties.length > 0) pc.legFlags = legProperties;
-		*/
 		pc.createStatusEffect("Gel Body");
 	}
 	// PLACEHOLDER - Failsafe, Overlimit, What do?
@@ -696,7 +696,7 @@ public function gooChestCustomizer():void
 	if(pc.nipplesPerBreast > 1) addGhostButton(6,"Remove Nip",gooRemoveNipples,undefined,"Remove Nipples","Remove a nipple from each of your breasts.\n\n<b>225 mLs Biomass Gain</b>");
 	else addDisabledGhostButton(6,"Remove Nip","Remove Nip","You cannot remove any more nipples. Breasts without even a single nip would like quite strange. Too strange for you.");
 	addGhostButton(7,"Widen Nips",widenGooNipples,undefined,"Widen Nipples","Widen the areola of your [pc.nipples].\n\n<b>100 mLs Biomass</b>");
-	if(pc.nippleWidthRatio >= 1) addGhostButton(8,"Narrow Nips",narrowARowOfNipsMenu,"Narrow Nipples","Make your nipples narrower.\n\n<b>75 mLs Biomass Gain</b>");
+	if(pc.nippleWidthRatio >= 1) addGhostButton(8,"Narrow Nips",narrowASpecificNipRow,undefined,"Narrow Nipples","Make your nipples narrower.\n\n<b>75 mLs Biomass Gain</b>");
 	else addDisabledGhostButton(8,"Narrow Nips","Narrow Nipples","You can't make your nipples any narrower.");
 
 	addGhostButton(10,"LengthenNips",lengthenARowOfNipsMenu,undefined,"Lengthen Nipples","Lengthen the tips of your [pc.nipples]");
@@ -721,7 +721,7 @@ public function widenGooNipples():void
 	addGhostButton(14,"Back",gooChestCustomizer);
 }
 //Actually narrow 'dem puppies
-public function narrowASpecificNipRow(x:int = 0):void
+public function narrowASpecificNipRow():void
 {
 	clearOutput2();
 	var totalNips:int = pc.totalNipples();
