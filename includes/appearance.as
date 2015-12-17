@@ -887,6 +887,7 @@ public function appearance(target:Creature):void
 			}
 			else
 			{
+				// Goo mound
 				if(target.hasLegFlag(GLOBAL.FLAG_AMORPHOUS))
 				{
 					output2(" In place of legs you have a shifting, amorphous blob. It splits apart just beneath your");
@@ -894,7 +895,14 @@ public function appearance(target:Creature):void
 					else output2(" “crotch”");
 					output2(" into " + num2Text(target.legCount) + " semi-solid limbs.");
 				}
-				else output2(" You have " + num2Text(target.legCount) + " semi-solid, gel-like leg-shaped limbs, capable of shifting and morphing when you will them to.");
+				// Gel legs
+				else
+				{
+					output2(" You have " + num2Text(target.legCount) + " semi-solid, gel-like limbs");
+					if(target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) output2(", shaped in a digitigrade stance and");
+					else if(target.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) output2(", shaped in a plantigrade stance and");
+					output2(" ending in " + target.feet() + ". They are capable of shifting and morphing when you will them to.");
+				}
 			}
 		}
 		else if(target.legType == GLOBAL.TYPE_FELINE) output2(" " + upperCase(num2Text(target.legCount)) + " digitigrade legs grow downwards from your waist, ending in soft, padded cat-paws.");
