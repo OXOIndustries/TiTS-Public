@@ -40,10 +40,10 @@ public function showZodee():void
 
 public function gooBiomassMax():Number
 {
-	if(flags["GALOMAX_DOSES"]  == 1) return 300;
-	else if(flags["GALOMAX_DOSES"]  == 2) return 750;
-	else if(flags["GALOMAX_DOSES"]  == 3) return 1500;
-	else if(flags["GALOMAX_DOSES"]  == 4) return 10000;
+	if(flags["GALOMAX_DOSES"] == 1) return 300;
+	else if(flags["GALOMAX_DOSES"] == 2) return 750;
+	else if(flags["GALOMAX_DOSES"] == 3) return 1500;
+	else if(flags["GALOMAX_DOSES"] == 4) return 10000;
 	return 0;
 }
 
@@ -55,7 +55,7 @@ public function gooBiomass(arg:Number = 0):Number
 	{
 		flags["GOO_BIOMASS"] += arg;
 		if(flags["GOO_BIOMASS"] < 0) flags["GOO_BIOMASS"] = 0;
-		else if(flags["GALOMAX_DOSES"]  > 0 && flags["GALOMAX_DOSES"]  <= 4)
+		else if(flags["GALOMAX_DOSES"] > 0 && flags["GALOMAX_DOSES"] <= 4)
 		{
 			if(flags["GOO_BIOMASS"] > gooBiomassMax()) flags["GOO_BIOMASS"] = gooBiomassMax();
 		}
@@ -462,12 +462,13 @@ public function galoMaxTFProc():void
 		pc.clearSkinFlags();
 		pc.addSkinFlag(GLOBAL.FLAG_SQUISHY);
 		pc.addSkinFlag(GLOBAL.FLAG_LUBRICATED);
+		var i: int = 0;
 		// Gel-like legs? (legCount and genitalLocation() are preserved)
 		var legProperties:Array = [];
 		if(pc.legFlags.length > 0)
 		{
 			// Strip skin/fur/scale flags for gel legs
-			for (var i: int = 0; i < pc.legFlags.length; i++)
+			for (i = 0; i < pc.legFlags.length; i++)
 			{
 				if (!InCollection(pc.legFlags[i], GLOBAL.FLAG_FURRED, GLOBAL.FLAG_SCALED, GLOBAL.FLAG_CHITINOUS, GLOBAL.FLAG_FEATHERED))
 					legProperties.push(pc.legFlags[i]);
@@ -476,6 +477,19 @@ public function galoMaxTFProc():void
 			pc.legFlags = legProperties;
 		}
 		pc.legType = GLOBAL.TYPE_GOOEY;
+		// Gel-arms!
+		var armProperties:Array = [];
+		if(pc.armFlags.length > 0)
+		{
+			for (i = 0; i < pc.armFlags.length; i++)
+			{
+				if (!InCollection(pc.armFlags[i], GLOBAL.FLAG_FURRED, GLOBAL.FLAG_SCALED, GLOBAL.FLAG_CHITINOUS, GLOBAL.FLAG_FEATHERED))
+					armProperties.push(pc.armFlags[i]);
+			}
+			pc.clearArmFlags();
+			pc.armFlags = armProperties;
+		}
+		pc.addArmFlag(GLOBAL.FLAG_GOOEY);
 		pc.createStatusEffect("Gel Body");
 	}
 	// PLACEHOLDER - Failsafe, Overlimit, What do?
@@ -520,7 +534,7 @@ public function showBiomass():void
 {
 	if(flags["GOO_BIOMASS"] == undefined || flags["GOO_BIOMASS"] < 0) flags["GOO_BIOMASS"] = 0;
 	output2("\n\n\tBiomass Reserve: <b>" + flags["GOO_BIOMASS"] + "</b>");
-	if(flags["GALOMAX_DOSES"]  >= 1 && flags["GALOMAX_DOSES"]  <= 4) output2(" / " + gooBiomassMax());
+	if(flags["GALOMAX_DOSES"] >= 1 && flags["GALOMAX_DOSES"] <= 4) output2(" / " + gooBiomassMax());
 	output2(" mLs");
 	if(pc.hasStatusEffect("Goo Vent")) {
 		output2("\n\tVenting: ");
