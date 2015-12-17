@@ -537,6 +537,7 @@
 			"Scales",
 			"Goo",
 			"Chitin",
+			"Feathers",
 		];
 				
 		//NIPPLETYPES
