@@ -41,9 +41,10 @@ public function showZodee():void
 public function gooBiomassMax():Number
 {
 	if(flags["GALOMAX_DOSES"]  == 1) return 300;
-	if(flags["GALOMAX_DOSES"]  == 2) return 750;
-	if(flags["GALOMAX_DOSES"]  == 3) return 1500;
-	if(flags["GALOMAX_DOSES"]  == 4) return 10000;
+	else if(flags["GALOMAX_DOSES"]  == 2) return 750;
+	else if(flags["GALOMAX_DOSES"]  == 3) return 1500;
+	else if(flags["GALOMAX_DOSES"]  == 4) return 10000;
+	return 0;
 }
 
 public function gooBiomass(arg:Number = 0):Number
@@ -455,12 +456,12 @@ public function galoMaxTFProc():void
 		pc.skinTone = gooColor;
 		pc.furColor = gooColor;
 		pc.scaleColor = gooColor;
-		/*
+		
 		// Skin actually changes?
 		pc.skinType = GLOBAL.SKIN_TYPE_GOO;
 		pc.clearSkinFlags();
 		pc.addSkinFlag(GLOBAL.FLAG_SQUISHY);
-		//pc.addSkinFlag(GLOBAL.FLAG_LUBRICATED); // Maybe add this flag for the last dose?
+		pc.addSkinFlag(GLOBAL.FLAG_LUBRICATED);
 		// Gel-like legs? (legCount and genitalLocation() are preserved)
 		var legProperties:Array = [];
 		if(pc.legFlags.length > 0)
@@ -471,11 +472,10 @@ public function galoMaxTFProc():void
 				if (!InCollection(pc.legFlags[i], GLOBAL.FLAG_FURRED, GLOBAL.FLAG_SCALED, GLOBAL.FLAG_CHITINOUS, GLOBAL.FLAG_FEATHERED))
 					legProperties.push(pc.legFlags[i]);
 			}
+			pc.clearLegFlags();
+			pc.legFlags = legProperties;
 		}
 		pc.legType = GLOBAL.TYPE_GOOEY;
-		pc.clearLegFlags();
-		if(legProperties.length > 0) pc.legFlags = legProperties;
-		*/
 		pc.createStatusEffect("Gel Body");
 	}
 	// PLACEHOLDER - Failsafe, Overlimit, What do?
@@ -600,7 +600,7 @@ public function shortenHairGoo():void
 	if(pc.hairLength < 0) pc.hairLength = 0;
 	clearGhostMenu();
 	addGhostButton(0,"Next",gooHairAdjustmenu);
-}	
+}
 
 //Style
 public function newGooStyle():void
@@ -695,9 +695,89 @@ public function gooChestCustomizer():void
 	else addDisabledGhostButton(5,"Add Nipples","Add Nipples","You don't think you could handle having any more nipples.");
 	if(pc.nipplesPerBreast > 1) addGhostButton(6,"Remove Nip",gooRemoveNipples,undefined,"Remove Nipples","Remove a nipple from each of your breasts.\n\n<b>225 mLs Biomass Gain</b>");
 	else addDisabledGhostButton(6,"Remove Nip","Remove Nip","You cannot remove any more nipples. Breasts without even a single nip would like quite strange. Too strange for you.");
+	addGhostButton(7,"Widen Nips",widenGooNipples,undefined,"Widen Nipples","Widen the areola of your [pc.nipples].\n\n<b>100 mLs Biomass</b>");
+	if(pc.nippleWidthRatio >= 1) addGhostButton(8,"Narrow Nips",narrowASpecificNipRow,undefined,"Narrow Nipples","Make your nipples narrower.\n\n<b>75 mLs Biomass Gain</b>");
+	else addDisabledGhostButton(8,"Narrow Nips","Narrow Nipples","You can't make your nipples any narrower.");
+
+	addGhostButton(10,"LengthenNips",lengthenARowOfNipsMenu,undefined,"Lengthen Nipples","Lengthen the tips of your [pc.nipples]");
+
 
 	addGhostButton(14,"Back",gooShiftMenu);
 }
+
+//Actually widen 'dem puppies
+public function widenGooNipples():void
+{
+	clearOutput2();
+	var totalNips:int = pc.totalNipples();
+	output2("You grab hold of the edges of ");
+	if(totalNips > 2) output2("two of ");
+	output2("your [pc.nipples] and pull, stretching the areolae wider. You gasp in mixed pleasure and pain, watching your malleable flesh adjust to its new shape. Your body's alien flexibility never ceases to amaze.");
+	if(totalNips > 2) output2(" You repeat the process until every single teat-topper is proportionally correct.");
+	if(pc.nippleWidth(x) <= 1) pc.nippleWidthRatio += 0.5;
+	else pc.nippleWidthRatio += 0.25;
+	gooBiomass(-100);
+	clearGhostMenu();
+	addGhostButton(14,"Back",gooChestCustomizer);
+}
+//Actually narrow 'dem puppies
+public function narrowASpecificNipRow():void
+{
+	clearOutput2();
+	var totalNips:int = pc.totalNipples();
+	output2("You grab hold of the edges of ");
+	if(totalNips > 2) output2("two of ");
+	output2("your [pc.nipples] and pinch, forcing the edges of the areolae inward. You gasp in mixed pleasure and pain, watching your malleable flesh adjust to its new shape. Your body's alien flexibility never ceases to amaze.");
+	if(totalNips > 2) output2(" You repeat the process until the whole set is appropriate matched.");
+	if(pc.nippleWidth(x) <= 1) pc.nippleWidthRatio -= 0.5;
+	else pc.nippleWidthRatio -= 0.25;
+	gooBiomass(+75);
+	clearGhostMenu();
+	addGhostButton(14,"Back",gooChestCustomizer);
+}
+
+//lengthen nips/shorten nips
+public function lengthenARowOfNipsMenu():void
+{
+	clearOutput2();
+	output2("Which row of nipples will you widen?");
+	boobStuff(pc);
+	output2("\n");
+	clearGhostMenu();
+	var boobCost:Number = 0;
+	//Try to force single boob reduction
+	if(pc.bRows() == 1)
+	{
+		//Let's do it.
+		lengthenASpecificNipRow(0);
+		return;
+	}
+	for(var x:int = 0; x < pc.bRows(); x++)
+	{
+		//Display costs
+		output2("\n" + (x+1) + ": [pc.breastCupSize " + x + "] - " + Math.round(pc.nippleWidth(x) * 10)/10 + " inches wide - <b>Biomass: </b>100");
+		if(gooBiomass() >= 100) addGhostButton(x,upperCase(num2Text(x+1)),lengthenASpecificNipRow,x,StringUtil.capitalize(num2Ordinal(x + 1)) + " Row","Widen the [pc.nipples] on this row.\n\n<b>100 mLs Biomass</b>");
+		else addDisabledGhostButton(x,upperCase(num2Text(x+1)),StringUtil.capitalize(num2Ordinal(x + 1)),"You don't have enough biomass for that.");
+	}
+	showBiomass();
+	addGhostButton(14,"Back",gooChestCustomizer);
+}
+public function lengthenASpecificNipRow(x:int = 0):void
+{
+	clearOutput2();
+	var totalNips:int = pc.breastRows[x].breasts * pc.nipplesPerBreast;
+	output2("You grab hold of ");
+	if(totalNips > 2) output2("two of ");
+	output2("your [pc.nipples " + x + "] and give them a tug. The mixture of pleasure and pain draws a gasp from your lips, and better still, when you let go, they retain the extra length.");
+	if(totalNips > 2) output2(" You repeat the process until the extras match up with the first batch.");
+	if(pc.nippleLength(x) <= 1) pc.nippleLengthRatio += 0.5;
+	else pc.nippleLengthRatio += 0.25;
+	gooBiomass(-100);
+	clearGhostMenu();
+	addGhostButton(14,"Back",gooChestCustomizer);
+}
+
+
 
 //300 biomass
 public function gooAddNipples():void
