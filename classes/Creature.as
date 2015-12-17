@@ -368,6 +368,7 @@ package classes {
 		public var scaleColor: String = "blue";
 		public function scaleColorUnlocked(newScaleColor:String):Boolean
 		{
+			if (hasStatusEffect("Gel Body")) return false;
 			return true;
 		}
 		public function scaleColorLockedMessage():String
@@ -378,6 +379,7 @@ package classes {
 		public var furColor: String = "brown";
 		public function furColorUnlocked(newFurColor:String):Boolean
 		{
+			if (hasStatusEffect("Gel Body")) return false;
 			return true;
 		}
 		public function furColorLockedMessage():String
@@ -389,6 +391,7 @@ package classes {
 		public var hairStyle:String = "null";
 		public function hairLengthUnlocked(newHairLength:Number):Boolean
 		{
+			if (hairType == GLOBAL.HAIR_TYPE_GOO && (skinType == GLOBAL.SKIN_TYPE_GOO || hasStatusEffect("Goo Vent"))) return false;
 			return true;
 		}
 		public function hairLengthLockedMessage():String
@@ -441,6 +444,7 @@ package classes {
 		public var skinAccent: String = "";
 		public function skinToneUnlocked(newSkinTone:String):Boolean
 		{
+			if (hasStatusEffect("Gel Body")) return false;
 			return true;
 		}
 		public function skinToneLockedMessage():String
@@ -4185,24 +4189,31 @@ package classes {
 			var output: String = "";
 			var temp:*;
 			var noun:String = "";
+			var adjectives:Array = [];
 			//Figure out if we're talking skin or fur.
 			if(hasLegFur()) noun += "fur";
 			else if(hasLegFlag(GLOBAL.FLAG_SCALED) || skinType == GLOBAL.SKIN_TYPE_SCALES) noun += "scales";
 			else if(hasLegFlag(GLOBAL.FLAG_CHITINOUS) || skinType == GLOBAL.SKIN_TYPE_CHITIN) noun += "chitin";
 			else if(hasLegFlag(GLOBAL.FLAG_AMORPHOUS) || skinType == GLOBAL.SKIN_TYPE_GOO) noun += "goo";
+			else if(hasLegFlag(GLOBAL.FLAG_FEATHERED)) noun += "feathers";
 			else noun += "skin";
 
 			//25% of the time, add an adjective.
 			if (rand(4) == 0) {
-				if (hasSkinFlag(GLOBAL.FLAG_SMOOTH)) output += "smooth";
-				else if (hasSkinFlag(GLOBAL.FLAG_THICK)) output += "thick";
-				else if (hasSkinFlag(GLOBAL.FLAG_STICKY)) output += "sticky";
-				else if (hasSkinFlag(GLOBAL.FLAG_FLUFFY) && skinType == GLOBAL.SKIN_TYPE_FUR) output += "fluffy";
+				if (hasLegFlag(GLOBAL.FLAG_SMOOTH)) adjectives.push("smooth");
+				if (hasLegFlag(GLOBAL.FLAG_THICK)) adjectives.push("thick");
+				if (hasLegFlag(GLOBAL.FLAG_STICKY)) adjectives.push("sticky");
+				if (hasLegFlag(GLOBAL.FLAG_FLUFFY))
+				{
+					if (noun == "fur") adjectives.push("fluffy");
+					if (noun == "feathers") adjectives.push("downy");
+				}
+				output += RandomInCollection(adjectives);
 			}
 			//25% of time, describe tone.
 			if (rand(4) == 0) {
 				if (output != "") output += ", ";
-				if (noun == "fur") output += furColor;
+				if (noun == "fur" || noun == "feathers") output += furColor;
 				else if (noun == "scales" || noun == "chitin") output += scaleColor;
 				else output += skinTone;
 			}
@@ -4215,17 +4226,23 @@ package classes {
 		public function skinFurScales(forceTone: Boolean = false, forceAdjective: Boolean = false, skin: Boolean = false): String {
 			var output: String = "";
 			var temp:*;
+			var adjectives:Array = [];
 			//33% of the time, add an adjective.
 			if (forceAdjective || rand(3) == 0) {
-				if (hasSkinFlag(GLOBAL.FLAG_SMOOTH)) output += "smooth";
-				else if (hasSkinFlag(GLOBAL.FLAG_THICK)) output += "thick";
-				else if (hasSkinFlag(GLOBAL.FLAG_STICKY)) output += "sticky";
-				else if (hasSkinFlag(GLOBAL.FLAG_FLUFFY) && !skin && skinType == GLOBAL.SKIN_TYPE_FUR) output += "fluffy";
+				if (hasSkinFlag(GLOBAL.FLAG_SMOOTH)) adjectives.push("smooth");
+				if (hasSkinFlag(GLOBAL.FLAG_THICK)) adjectives.push("thick");
+				if (hasSkinFlag(GLOBAL.FLAG_STICKY)) adjectives.push("sticky");
+				if (hasSkinFlag(GLOBAL.FLAG_FLUFFY) && !skin)
+				{
+					if (skinType == GLOBAL.SKIN_TYPE_FUR) adjectives.push("fluffy");
+					if (skinType == GLOBAL.SKIN_TYPE_FEATHERS) adjectives.push("downy");
+				}
+				output += RandomInCollection(adjectives);
 			}
 			//25% of time, describe skin tone.
 			if (forceTone || rand(4) == 0) {
 				if (output != "") output += ", ";
-				if (skinType == GLOBAL.SKIN_TYPE_FUR && !skin) output += furColor;
+				if ((skinType == GLOBAL.SKIN_TYPE_FUR || skinType == GLOBAL.SKIN_TYPE_FEATHERS) && !skin) output += furColor;
 				else if ((skinType == GLOBAL.SKIN_TYPE_SCALES || skinType == GLOBAL.SKIN_TYPE_CHITIN) && !skin) output += scaleColor;
 				else output += skinTone;
 			}
@@ -4288,8 +4305,8 @@ package classes {
 				else output += "membrane";
 			} else if (skinType == GLOBAL.SKIN_TYPE_FEATHERS) {
 				if (temp <= 7 || appearance) output += "feathers";
-				else if (temp <= 8) output += "fringe";
-				else output += "plume";
+				else if (temp <= 8) output += "fringes";
+				else output += "plumes";
 			}
 			return output;
 		}
@@ -4698,6 +4715,7 @@ package classes {
 					if (hasLegFlag(GLOBAL.FLAG_PREHENSILE)) adjectives.push("prehensile");
 					if (hasLegFlag(GLOBAL.FLAG_SMOOTH)) adjectives.push("smooth");
 					if (hasLegFlag(GLOBAL.FLAG_CHITINOUS)) adjectives.push("chitinous", "armored", "carapace-covered");
+					if (hasLegFlag(GLOBAL.FLAG_FEATHERED)) adjectives.push("feathered", "feathery");
 				}
 				//Random goes here!
 				if (adjectives.length > 0) output += RandomInCollection(adjectives) + " ";
