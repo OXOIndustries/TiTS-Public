@@ -462,22 +462,19 @@ public function galoMaxTFProc():void
 		pc.addSkinFlag(GLOBAL.FLAG_SQUISHY);
 		//pc.addSkinFlag(GLOBAL.FLAG_LUBRICATED); // Maybe add this flag for the last dose?
 		// Gel-like legs? (legCount and genitalLocation() are preserved)
-		if(pc.legCount > 1)
+		var legProperties:Array = [];
+		if(pc.legFlags.length > 0)
 		{
-			var legProperties:Array = [];
-			if(pc.legFlags.length > 0)
+			// Strip skin/fur/scale flags for gel legs
+			for (var i: int = 0; i < pc.legFlags.length; i++)
 			{
-				// Strip skin/fur/scale flags for gel legs
-				for (var i: int = 0; i < pc.legFlags.length; i++)
-				{
-					if (!InCollection(pc.legFlags[i], GLOBAL.FLAG_FURRED, GLOBAL.FLAG_SCALED, GLOBAL.FLAG_CHITINOUS, GLOBAL.FLAG_FEATHERED))
-						legProperties.push(pc.legFlags[i]);
-				}
+				if (!InCollection(pc.legFlags[i], GLOBAL.FLAG_FURRED, GLOBAL.FLAG_SCALED, GLOBAL.FLAG_CHITINOUS, GLOBAL.FLAG_FEATHERED))
+					legProperties.push(pc.legFlags[i]);
 			}
-			pc.legType = GLOBAL.TYPE_GOOEY;
-			pc.clearLegFlags();
-			if(legProperties.length > 0) pc.legFlags = legProperties;
 		}
+		pc.legType = GLOBAL.TYPE_GOOEY;
+		pc.clearLegFlags();
+		if(legProperties.length > 0) pc.legFlags = legProperties;
 		*/
 		pc.createStatusEffect("Gel Body");
 	}
