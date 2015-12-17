@@ -4163,13 +4163,13 @@ package classes {
 			if (part == "arm" || hasArmFlag(GLOBAL.FLAG_CHITINOUS))
 			{
 				if (!hasArmFlag(GLOBAL.FLAG_CHITINOUS)) return "null";
-				if (InCollection(tailType, GLOBAL.TYPE_MYR, GLOBAL.TYPE_LEITHAN)) return scaleColor;
+				if (InCollection(armType, GLOBAL.TYPE_MYR, GLOBAL.TYPE_LEITHAN)) return scaleColor;
 				return RandomInCollection(colors);
 			}
 			if (part == "leg" || hasLegFlag(GLOBAL.FLAG_CHITINOUS))
 			{
 				if (!hasLegFlag(GLOBAL.FLAG_CHITINOUS)) return "null";
-				if (InCollection(tailType, GLOBAL.TYPE_MYR)) return scaleColor;
+				if (InCollection(legType, GLOBAL.TYPE_MYR)) return scaleColor;
 				return RandomInCollection(colors);
 			}
 			if (part == "tail" || hasTailFlag(GLOBAL.FLAG_CHITINOUS))
