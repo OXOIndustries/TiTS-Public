@@ -3703,6 +3703,12 @@ package classes {
 				adjectives[adjectives.length] = "smooth";
 				adjectives[adjectives.length] = "sleek";
 			}
+			if(hasTongueFlag(GLOBAL.FLAG_GOOEY) && tongueType != GLOBAL.TYPE_GOOEY)
+			{
+				adjectives[adjectives.length] = "slimy";
+				adjectives[adjectives.length] = "slick";
+				adjectives[adjectives.length] = "gooey";
+			}
 			
 			//Show adjective 50% of the time
 			if(rand(2) == 0 && adjectives.length > 0) 
@@ -4500,6 +4506,8 @@ package classes {
 				adjectives.push("tapered", "conical");
 			if (hasTailFlag(GLOBAL.FLAG_FEATHERED))
 				adjectives.push("feathered", "feathery");
+			if (hasTailFlag(GLOBAL.FLAG_GOOEY))
+				adjectives.push("slimy", "slick", "gooey");
 			
 			//Show adjective 50% of the time
 			if (rand(2) == 0 && adjectives.length > 0) description = adjectives[rand(adjectives.length)] + " ";
@@ -4730,6 +4738,7 @@ package classes {
 					if (hasLegFlag(GLOBAL.FLAG_SMOOTH)) adjectives.push("smooth");
 					if (hasLegFlag(GLOBAL.FLAG_CHITINOUS)) adjectives.push("chitinous", "armored", "carapace-covered");
 					if (hasLegFlag(GLOBAL.FLAG_FEATHERED)) adjectives.push("feathered", "feathery");
+					if (hasLegFlag(GLOBAL.FLAG_GOOEY) && legType != GLOBAL.TYPE_GOOEY) adjectives.push("slimy", "slick", "gooey");
 				}
 				//Random goes here!
 				if (adjectives.length > 0) output += RandomInCollection(adjectives) + " ";
