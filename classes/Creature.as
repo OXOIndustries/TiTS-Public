@@ -4146,7 +4146,7 @@ package classes {
 		}
 		public function skinFurScalesColor():String
 		{
-			if(skinType == GLOBAL.SKIN_TYPE_FUR) return furColor;
+			if(skinType == GLOBAL.SKIN_TYPE_FUR || skinType == GLOBAL.SKIN_TYPE_FEATHERS) return furColor;
 			else if(skinType == GLOBAL.SKIN_TYPE_SCALES || skinType == GLOBAL.SKIN_TYPE_CHITIN) return scaleColor;
 			else return skinTone;
 		}
@@ -4256,11 +4256,9 @@ package classes {
 		{
 			return (skinType == GLOBAL.SKIN_TYPE_GOO);
 		}
-
 		public function hasFeathers():Boolean
 		{
-			return false;
-			//return (skinType == GLOBAL.SKIN_TYPE_SCALES);
+			return (skinType == GLOBAL.SKIN_TYPE_FEATHERS);
 		}
 		public function hasLegFur():Boolean
 		{
@@ -4288,6 +4286,10 @@ package classes {
 			} else if (skinType == GLOBAL.SKIN_TYPE_GOO) {
 				if (temp <= 7 || appearance) output += "goo";
 				else output += "membrane";
+			} else if (skinType == GLOBAL.SKIN_TYPE_FEATHERS) {
+				if (temp <= 7 || appearance) output += "feathers";
+				else if (temp <= 8) output += "fringe";
+				else output += "plume";
 			}
 			return output;
 		}
