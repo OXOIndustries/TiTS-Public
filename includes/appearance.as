@@ -618,7 +618,7 @@ public function appearance(target:Creature):void
 			output2(" From the waist down, you have an incredibly cute and cartoonish parody of a horse's body, with");
 			if(target.legCount == 2) output2(" both legs");
 			else output2(" all " + num2Text(target.legCount) + " legs");
-			output2(" ending in flat, rounded feet.");
+			output2(" ending in flat, rounded hooves.");
 		}
 		else if(target.legType == GLOBAL.TYPE_LIZAN && target.legCount == 6) output2(" From the waist down, you have a powerful, six-legged body that looks like a crossbreed of a lizard and a horse.");
 		else if(target.isTaur())
@@ -934,20 +934,28 @@ public function appearance(target:Creature):void
 				// Gel legs
 				else
 				{
-					output2(" You have " + num2Text(target.legCount) + " semi-solid, gel-like limbs");
-					if(target.hasLegFlag(GLOBAL.FLAG_PREHENSILE)) output2(", shaped into prehensile masses that bend and twist as you move");
-					else if(target.hasLegFlag(GLOBAL.FLAG_TENDRIL)) output2(", shaped into tendrils that wriggle about when you move");
+					if(target.isTaur()) output2(" Your legs are semi-solid, gel-like and end in " + target.feet());
 					else
 					{
-						if(target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) output2(", shaped into digitigrade legs and");
-						if(target.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) output2(", shaped into plantigrade legs and");
-						output2(" ending in " + target.feet() + "");
+						output2(" You have " + num2Text(target.legCount) + " semi-solid, gel-like limbs");
+						if(target.hasLegFlag(GLOBAL.FLAG_PREHENSILE)) output2(", shaped into prehensile masses that bend and twist as you move");
+						else if(target.hasLegFlag(GLOBAL.FLAG_TENDRIL)) output2(", shaped into tendrils that wriggle about when you move");
+						else
+						{
+							if(target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) output2(", shaped into digitigrade legs and");
+							if(target.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) output2(", shaped into plantigrade legs and");
+							output2(" ending in " + target.feet());
+						}
 					}
 					output2(". They are capable of shifting and morphing when you will them to.");
 				}
 			}
 		}
-		else if(target.legType == GLOBAL.TYPE_FELINE) output2(" " + upperCase(num2Text(target.legCount)) + " digitigrade legs grow downwards from your waist, ending in soft, padded cat-paws.");
+		else if(target.legType == GLOBAL.TYPE_FELINE)
+		{
+			if(target.isTaur()) output2(" Your digitigrade legs end in soft, padded cat-paws.");
+			else output2(" " + upperCase(num2Text(target.legCount)) + " digitigrade legs grow downwards from your waist, ending in soft, padded cat-paws.");
+		}
 		else if(target.legType == GLOBAL.TYPE_LIZAN)
 		{
 			if(target.legCount < 4) output2(" " + upperCase(num2Text(target.legCount)) + " digitigrade legs grow down from your " + target.hipDescript() + ", ending in clawed feet. There are three long toes on the front and a small hind-claw on the back.");
@@ -981,19 +989,38 @@ public function appearance(target:Creature):void
 		}
 		else if(target.legType == GLOBAL.TYPE_DRIDER) 
 		{
-			output2(" Where your legs would normally start you have grown the body of a spider, with " + num2Text(target.legCount) + " spindly legs that sprout from its sides.");
+			if(target.isTaur()) output2(" Your legs are long and spindly, sprouting outwards from your sides like a spider.");
+			else output2(" Where your legs would normally start you have grown the body of a spider, with " + num2Text(target.legCount) + " spindly legs that sprout from its sides.");
 		}
 		else if(target.legType == GLOBAL.TYPE_VULPINE) output2(" Your legs are crooked into high knees with hocks and long feet, like those of a fox; cute bulbous toes decorate the ends.");
-		else if(target.legType == GLOBAL.TYPE_DRACONIC) output2(" " + upperCase(num2Text(target.legCount)) + " human-like legs grow down from your " + target.hipDescript() + ", sheathed in scales and ending in clawed feet. There are three long toes on the front, and a small hind-claw on the back.");
+		else if(target.legType == GLOBAL.TYPE_DRACONIC)
+		{
+			if(target.isTaur()) output2(" Your human-like legs are sheathed in scales and end in clawed feet.");
+			else output2(" " + upperCase(num2Text(target.legCount)) + " human-like legs grow down from your " + target.hipDescript() + ", sheathed in scales and ending in clawed feet.");
+			output2(" There are three long toes on the front, and a small hind-claw on the back.");
+		}
 		else if(target.legType == GLOBAL.TYPE_KUITAN) output2(" Your legs, though covered in fur, are humanlike. Long feet on the ends bear equally long toes, and the pads on the bottoms are quite sensitive to the touch.");
-		else if (target.legType == GLOBAL.TYPE_PANDA) output2(" " + upperCase(num2Text(target.legCount)) + " digitigrade legs grow downwards from your waist, ending in fluffy panda-paws. You even have sharp-looking claws growing from the tips of your short toes.");
+		else if (target.legType == GLOBAL.TYPE_PANDA)
+		{
+			if(target.isTaur()) output2(" Your digitigrade legs end in fluffy panda-paws.");
+			else output2(" " + upperCase(num2Text(target.legCount)) + " digitigrade legs grow downwards from your waist, ending in fluffy panda-paws.");
+			output2(" You even have sharp-looking claws growing from the tips of your short toes.");
+		}
 		//Catch all (mostly there for Ovir feet)
 		else if (target.legType == GLOBAL.TYPE_OVIR)
 		{
-			if(target.skinType != GLOBAL.SKIN_TYPE_SCALES) output2(" Your " + num2Text(target.legCount) + " legs are curiously coated in a layer of scales but are otherwise normal, human-like limbs.");
-			else output2(" " + upperCase(num2Text(target.legCount)) + " scaled, plantigrade legs extend below your waist, ending in human-like feet.");
+			if(target.skinType != GLOBAL.SKIN_TYPE_SCALES)
+			{
+				if(target.isTaur()) output2(" Your legs are curiously coated in a layer of scales and end in human-like feet.");
+				else output2(" Your " + num2Text(target.legCount) + " legs are curiously coated in a layer of scales but are otherwise normal, human-like limbs.");
+			}
+			else
+			{
+				if(target.isTaur()) output2(" Your scaled, plantigrade legs end in human-like feet.");
+				else output2(" " + upperCase(num2Text(target.legCount)) + " scaled, plantigrade legs extend below your waist, ending in human-like feet.");
+			}
 		}
-
+		
 		// Mimbrane feet for applicable legTypes (any pair of humanoid legs with existing feet)!
 		if (target.isBiped() && target.hasFeet() && target.hasToes())
 		{
