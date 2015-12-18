@@ -4252,7 +4252,7 @@ package classes {
 					if (skinType == GLOBAL.SKIN_TYPE_FUR) adjectives.push("fluffy");
 					if (skinType == GLOBAL.SKIN_TYPE_FEATHERS) adjectives.push("downy");
 				}
-				output += RandomInCollection(adjectives);
+				if(adjectives.length > 0) output += RandomInCollection(adjectives);
 			}
 			//25% of time, describe skin tone.
 			if (forceTone || rand(4) == 0) {
