@@ -11700,8 +11700,8 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 			
 			output("\n\n<i>“Please, please "+ bessSexName() +", fuck me! I need to be pounded hard from behind like the naughty slut I am, I’ll do anything!”</i> You flush furiously, willing to debase yourself utterly for the gift of [bess.hisHer] [bess.cock] inside of you.");
 			
-			output("\n\n<i>“Present yourself then, "+ bessPCSexName() +", and maybe I’ll use you like the naughty little cum slut that you are.<i> You obediently present yourself and stick out your snatch, wiggling your butt all the while, desperate to entice your [bess.Mistress] to screw you absolutely senseless.");
-			if (pc.hasCock()) output(" At the same time [pc.eachCockNoun] begins to twitch with anticipation, eager to spill your [pc.cumVisc] [pc.cumNoun] all over the ground as you are shamelessly pounded from behind.");
+			output("\n\n<i>“Present yourself then, "+ bessPCSexName() +", and maybe I’ll use you like the naughty little cum slut that you are.”</i> You obediently present yourself and stick out your snatch, wiggling your butt all the while, desperate to entice your [bess.Mistress] to screw you absolutely senseless.");
+			if (pc.hasCock()) output(" At the same time [pc.eachCock] begins to twitch with anticipation, eager to spill your [pc.cumVisc] [pc.cumNoun] all over the ground as you are shamelessly pounded from behind.");
 		}
 		else
 		{
