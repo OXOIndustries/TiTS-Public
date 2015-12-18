@@ -510,6 +510,7 @@ public function revertGooBody(part:String = "all", consumeBiomass:Boolean = fals
 		pc.skinType = GLOBAL.SKIN_TYPE_GOO;
 		pc.clearSkinFlags();
 		pc.addSkinFlag(GLOBAL.FLAG_SQUISHY);
+		if(pc.statusEffectv1("Gel Body") >= 1) pc.addSkinFlag(GLOBAL.FLAG_LUBRICATED);
 		if(consumeBiomass) gooBiomass(-20);
 	}
 	// Goo mound!
@@ -518,7 +519,6 @@ public function revertGooBody(part:String = "all", consumeBiomass:Boolean = fals
 		pc.legCount = 1;
 		pc.clearLegFlags();
 		pc.addLegFlag(GLOBAL.FLAG_AMORPHOUS);
-		pc.addSkinFlag(GLOBAL.FLAG_LUBRICATED);
 		pc.legType = GLOBAL.TYPE_GOOEY;
 		pc.genitalSpot = 0;
 		pc.removeStatusEffect("Mimbrane Foot Left");
@@ -759,8 +759,58 @@ public function gooBodyCustomizer():void
 {
 	clearOutput2();
 	output2("Do you will your body to change anything?");
+	
 	// Print body stats here:
-	/* 9999 */
+	var i:int = 0;
+	output2("\n\n<b><u>Body</u></b>");
+	output2("\n<b>* Skin:</b>");
+	if(pc.skinFlags.length > 0)
+	{
+		for(i = 0; i < pc.skinFlags.length; i++)
+		{
+			output2(" " + GLOBAL.FLAG_NAMES[pc.skinFlags[i]] + ",");
+		}
+	}
+	output2(" " + GLOBAL.SKIN_TYPE_NAMES[pc.skinType]);
+	output2("\n<b>* Arms:</b> ");
+	if(pc.armFlags.length > 0)
+	{
+		for(i = 0; i < pc.armFlags.length; i++)
+		{
+			output2(" " + GLOBAL.FLAG_NAMES[pc.armFlags[i]] + ",");
+		}
+	}
+	output2(" " + GLOBAL.TYPE_NAMES[pc.armType]);
+	if(pc.legCount >= 2)
+	{
+		if(pc.legType == GLOBAL.TYPE_NAGA) output2("\n<b>* Lower Tails:</b>");
+		else output2("\n<b>* Legs:</b>");
+		output2(" " + pc.legCount + ",");
+	}
+	else output2("\n<b>* Lower Body:</b>");
+	if(pc.legFlags.length > 0)
+	{
+		for(i = 0; i < pc.legFlags.length; i++)
+		{
+			output2(" " + GLOBAL.FLAG_NAMES[pc.legFlags[i]] + ",");
+		}
+	}
+	output2(" " + GLOBAL.TYPE_NAMES[pc.legType]);
+	if(pc.tailCount > 0)
+	{
+		if(pc.tailCount == 1) output2("\n<b>* Tail:</b>");
+		else output2("\n<b>* Tails:</b>");
+		output2(" " + pc.tailCount + ",");
+		if(pc.tailFlags.length > 0)
+		{
+			for(i = 0; i < pc.tailFlags.length; i++)
+			{
+				output2(" " + GLOBAL.FLAG_NAMES[pc.tailFlags[i]] + ",");
+			}
+		}
+		output2(" " + GLOBAL.TYPE_NAMES[pc.tailType]);
+	}
+	
 	showBiomass();
 	clearGhostMenu();
 	
@@ -875,10 +925,10 @@ public function gooChestCustomizer():void
 	addGhostButton(4,"Nip Type",nippleTypeGooMenu,undefined,"Nip Type","Change what type of nipples you will have.");
 	if(pc.hasDickNipples()) 
 	{
-		if(gooBiomass() >= pc.totalNipples() * 25) addGhostButton(9,"DickNipType",dickNippleGooCustomizer,undefined,"Dick Nipple Type","Change the type of penis that your dick-nipples resemble.");
+		if(gooBiomass() >= pc.totalNipples() * 25) addGhostButton(9,"DickNipType",dickNippleGooCustomizer,undefined,"Dick Nipple Type","Change the type of penis that your dick-nipples resemble.\n\n<b>" + pc.totalNipples() * 25 + " mLs Biomass</b>");
 		else addDisabledGhostButton(9,"DickNipType","Dick Nipple Type","You don't have enough biomass to change what type of dick-nipples you're sporting.\n\n<b>" + pc.totalNipples() * 25 + " mLs Biomass</b>");
 	}
-	else addDisabledGhostButton(9,"DickNipType","Dick Nipple Type","You don't have any dick-nipples to customize.\n\n<b>" + pc.totalNipples() * 25 + " mLs Biomass</b>");
+	else addDisabledGhostButton(9,"DickNipType","Dick Nipple Type","You don't have any dick-nipples to customize.");
 	addGhostButton(14,"Back",gooShiftMenu);
 }
 
