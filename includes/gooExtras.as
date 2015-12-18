@@ -454,43 +454,7 @@ public function galoMaxTFProc():void
 		output("\n\n<b>Your whole body is gooey and gelatinous from head to toe. You’re pretty sure you can even reshape your chest as easily as your ever-slimy loins. One more dose ought to finish the job and let you be a gooey, ever-shifting mass");
 		if(celiseIsFollower()) output(", like Celise");
 		output(".</b>");
-		pc.skinTone = gooColor;
-		pc.furColor = gooColor;
-		pc.scaleColor = gooColor;
-		
-		// Skin actually changes?
-		pc.skinType = GLOBAL.SKIN_TYPE_GOO;
-		pc.clearSkinFlags();
-		pc.addSkinFlag(GLOBAL.FLAG_SQUISHY);
-		pc.addSkinFlag(GLOBAL.FLAG_LUBRICATED);
-		var i: int = 0;
-		// Gel-like legs? (legCount and genitalLocation() are preserved)
-		var legProperties:Array = [];
-		if(pc.legFlags.length > 0)
-		{
-			// Strip skin/fur/scale flags for gel legs
-			for (i = 0; i < pc.legFlags.length; i++)
-			{
-				if (!InCollection(pc.legFlags[i], GLOBAL.FLAG_FURRED, GLOBAL.FLAG_SCALED, GLOBAL.FLAG_CHITINOUS, GLOBAL.FLAG_FEATHERED))
-					legProperties.push(pc.legFlags[i]);
-			}
-			pc.clearLegFlags();
-			pc.legFlags = legProperties;
-		}
-		pc.legType = GLOBAL.TYPE_GOOEY;
-		// Gel-arms!
-		var armProperties:Array = [];
-		if(pc.armFlags.length > 0)
-		{
-			for (i = 0; i < pc.armFlags.length; i++)
-			{
-				if (!InCollection(pc.armFlags[i], GLOBAL.FLAG_FURRED, GLOBAL.FLAG_SCALED, GLOBAL.FLAG_CHITINOUS, GLOBAL.FLAG_FEATHERED))
-					armProperties.push(pc.armFlags[i]);
-			}
-			pc.clearArmFlags();
-			pc.armFlags = armProperties;
-		}
-		pc.addArmFlag(GLOBAL.FLAG_GOOEY);
+		revertGooBody();
 		pc.createStatusEffect("Gel Body");
 	}
 	else if(flags["GALOMAX_DOSES"] == 5)
@@ -506,9 +470,14 @@ public function galoMaxTFProc():void
 
 		pc.legCount = 1;
 		pc.clearLegFlags();
+		pc.addLegFlag(GLOBAL.FLAG_AMORPHOUS);
 		pc.legType = GLOBAL.TYPE_GOOEY;
+		pc.genitalSpot = 0;
 		//Set v1 of Gel Body to 1. Better than piling on more wasted status effects.
 		pc.addStatusValue("Gel Body",1,1);
+		//Mimbranes!
+		pc.removeStatusEffect("Mimbrane Foot Left");
+		pc.removeStatusEffect("Mimbrane Foot Right");
 	}
 	// PLACEHOLDER - Failsafe, Overlimit, What do?
 	// (Fill this in with your content if necessary!)
@@ -525,6 +494,89 @@ public function galoMaxTFProc():void
 			gooBiomass(1000);
 		}
 	}
+}
+//Goo Body transformations
+public function revertGooBody(part:String = "all", consumeBiomass:Boolean = false):void
+{
+	var i: int = 0;
+	if(part == "skin" || part == "all")
+	{
+		pc.skinTone = gooColor;
+		pc.furColor = gooColor;
+		pc.scaleColor = gooColor;
+		// Skin actually changes?
+		pc.skinType = GLOBAL.SKIN_TYPE_GOO;
+		pc.clearSkinFlags();
+		pc.addSkinFlag(GLOBAL.FLAG_SQUISHY);
+		pc.addSkinFlag(GLOBAL.FLAG_LUBRICATED);
+		if(consumeBiomass) gooBiomass(-20);
+	}
+	// Goo mound!
+	if(part == "mound" || (part == "all" && statusEffectv1("Gel Body") >= 1))
+	{
+		pc.legCount = 1;
+		pc.clearLegFlags();
+		pc.addLegFlag(GLOBAL.FLAG_AMORPHOUS);
+		pc.legType = GLOBAL.TYPE_GOOEY;
+		pc.genitalSpot = 0;
+		pc.removeStatusEffect("Mimbrane Foot Left");
+		pc.removeStatusEffect("Mimbrane Foot Right");
+		if(consumeBiomass) gooBiomass(-20);
+	}
+	// Gel-like legs? (legCount and genitalLocation() are preserved)
+	else if(part == "legs" || part == "all")
+	{
+		var legProperties:Array = [];
+		if(pc.legFlags.length > 0)
+		{
+			// Strip skin/fur/scale flags for gel legs
+			for (i = 0; i < pc.legFlags.length; i++)
+			{
+				if (!InCollection(pc.legFlags[i], GLOBAL.FLAG_FURRED, GLOBAL.FLAG_SCALED, GLOBAL.FLAG_CHITINOUS, GLOBAL.FLAG_FEATHERED))
+					legProperties.push(pc.legFlags[i]);
+			}
+			pc.clearLegFlags();
+			pc.legFlags = legProperties;
+		}
+		pc.legType = GLOBAL.TYPE_GOOEY;
+		if(consumeBiomass) gooBiomass(-20);
+	}
+	// Gel-arms!
+	if(part == "arms" || part == "all")
+	{
+		var armProperties:Array = [];
+		if(pc.armFlags.length > 0)
+		{
+			for (i = 0; i < pc.armFlags.length; i++)
+			{
+				if (!InCollection(pc.armFlags[i], GLOBAL.FLAG_FURRED, GLOBAL.FLAG_SCALED, GLOBAL.FLAG_CHITINOUS, GLOBAL.FLAG_FEATHERED))
+					armProperties.push(pc.armFlags[i]);
+			}
+			pc.clearArmFlags();
+			pc.armFlags = armProperties;
+		}
+		pc.addArmFlag(GLOBAL.FLAG_GOOEY);
+		if(consumeBiomass) gooBiomass(-20);
+	}
+	// Gel-tail! (number preserved)
+	if(pc.hasTail() && (part == "tail" || part == "all"))
+	{
+		var tailProperties:Array = [];
+		if(pc.tailFlags.length > 0)
+		{
+			for (i = 0; i < pc.tailFlags.length; i++)
+			{
+				if (!InCollection(pc.tailFlags[i], GLOBAL.FLAG_FURRED, GLOBAL.FLAG_FLUFFY, GLOBAL.FLAG_SCALED, GLOBAL.FLAG_CHITINOUS, GLOBAL.FLAG_FEATHERED))
+					tailProperties.push(pc.tailFlags[i]);
+			}
+			pc.clearTailFlags();
+			pc.tailFlags = tailProperties;
+		}
+		pc.addTailFlag(GLOBAL.FLAG_GOOEY);
+		if(consumeBiomass) gooBiomass(-20);
+	}
+	// Antennae and horns are probably ambiguous enough to remain unaffected.
+	// Genitals! (already covered automagically!)
 }
 
 //Goo Options submenu.
@@ -543,6 +595,8 @@ public function gooShiftMenu():void
 	else addDisabledGhostButton(1,"Locked","Locked","It takes three doses of GaloMax to unluck this option.");
 	if(pc.hasStatusEffect("Gel Body")) addGhostButton(2,"Chest",gooChestCustomizer);
 	else addDisabledGhostButton(2,"Locked","Locked","It takes four doses of GaloMax to unlock this option.");
+	if(pc.hasStatusEffect("Gel Body")) addGhostButton(3,"Body",gooBodyCustomizer);
+	else addDisabledGhostButton(3,"Locked","Locked","It takes four doses of GaloMax to unlock this option.");
 	if(pc.hasStatusEffect("Goo Vent")) addGhostButton(4,"ToggleVent",ventToggle,undefined,"Toggle Vent","Toggle on or off whether you would like to add excess biomass to your own orgasmic releases.");
 	else addDisabledGhostButton(4,"Locked","Locked","It takes two doses of GaloMax to unlock this option.");
 	addGhostButton(14, "Back", appearance, pc);
@@ -696,6 +750,86 @@ public function ventToggle():void
 	}
 	clearGhostMenu();
 	addGhostButton(0,"Next",gooShiftMenu);
+}
+
+//BODY
+public function gooBodyCustomizer():void
+{
+	clearOutput2();
+	output2("Do you will your body to change anything?");
+	// Print body stats here:
+	/* 9999 */
+	showBiomass();
+	clearGhostMenu();
+	
+	// General body shape:
+	/* Top row buttons (0 to 4) - maybe links to pc.tallness, pc.thickness, pc.buttRatingRaw, pc.hipRatingRaw menus... */
+	
+	// Bodypart fixans: (Primarily for things that got force changes--like Dr.Badger and Holiday events)
+	var nonGooPart:Number = 0;
+	if(pc.skinType != GLOBAL.SKIN_TYPE_GOO)
+	{
+		if(gooBiomass() >= 20) addGhostButton(5,"Revert Skin",revertGooBodyPart,"skin","Revert Skin","Revert your skin back to goo skin.\n\n<b>20 mLs Biomass</b>");
+		else addDisabledGhostButton(5,"Revert Skin","Revert Skin","You don't have enough biomass for that.\n\n<b>20 mLs Biomass</b>");
+		nonGooPart++;
+	}
+	else addDisabledGhostButton(5,"Revert Skin","Revert Skin","Your skin is already made of goo!");
+	if(pc.hasArmFlag(GLOBAL.FLAG_FURRED) || pc.hasArmFlag(GLOBAL.FLAG_SCALED) || pc.hasArmFlag(GLOBAL.FLAG_CHITINOUS) || pc.hasArmFlag(GLOBAL.FLAG_FEATHERED))
+	{
+		if(gooBiomass() >= 20) addGhostButton(6,"Revert Arms",revertGooBodyPart,"arms","Revert Arms","Revert your arms back to goo.\n\n<b>20 mLs Biomass</b>");
+		else addDisabledGhostButton(6,"Revert Arms","Revert Arms","You don't have enough biomass for that.\n\n<b>20 mLs Biomass</b>");
+		nonGooPart++;
+	}
+	else addDisabledGhostButton(6,"Revert Arms","Revert Arms","Your arms are already made of goo!");
+	if(pc.legType != GLOBAL.TYPE_GOOEY || pc.hasLegFlag(GLOBAL.FLAG_FURRED) || pc.hasLegFlag(GLOBAL.FLAG_SCALED) || pc.hasLegFlag(GLOBAL.FLAG_CHITINOUS) || pc.hasLegFlag(GLOBAL.FLAG_FEATHERED) || (statusEffectv1("Gel Body") >= 1 && !pc.hasLegFlag(GLOBAL.FLAG_AMORPHOUS)))
+	{
+		if(gooBiomass() >= 20)
+		{
+			if(statusEffectv1("Gel Body") >= 1) addGhostButton(7,"Revert Body",revertGooBodyPart,"mound","Revert Lower Body","Revert your lower body back to an amorphous goo mound.\n\n<b>20 mLs Biomass</b>");
+			else addGhostButton(7,"Revert Legs",revertGooBodyPart,"legs","Revert Lower Body","Revert your lower body back to goo.\n\n<b>20 mLs Biomass</b>");
+		}
+		else addDisabledGhostButton(7,"Revert Legs","Revert Lower Body","You don't have enough biomass for that.\n\n<b>20 mLs Biomass</b>");
+		nonGooPart++;
+	}
+	else addDisabledGhostButton(7,"Revert Legs","Revert Lower Body","Your lower body is already made of goo!");
+	if(pc.hasTail())
+	{
+		if(pc.hasArmFlag(GLOBAL.FLAG_FURRED) || pc.hasArmFlag(GLOBAL.FLAG_FLUFFY) || pc.hasArmFlag(GLOBAL.FLAG_SCALED) || pc.hasArmFlag(GLOBAL.FLAG_CHITINOUS) || pc.hasArmFlag(GLOBAL.FLAG_FEATHERED))
+		{
+			if(gooBiomass() >= 20) addGhostButton(8,"Revert Tail",revertGooBodyPart,"tail","Revert Tail","Revert [pc.eachTail] back to goo.\n\n<b>20 mLs Biomass</b>");
+			else addDisabledGhostButton(8,"Revert Tail","Revert Tail","You don't have enough biomass for that.\n\n<b>20 mLs Biomass</b>");
+			nonGooPart++;
+		}
+		else
+		{
+			if(tailCount == 1) addDisabledGhostButton(8,"Revert Tail","Revert Tail","Your tail is already made of goo!");
+			else addDisabledGhostButton(8,"Revert Tail","Revert Tail","Your tails are already made of goo!");
+		}
+	}
+	else addDisabledGhostButton(8,"Revert Tail","Revert Tail","You don’t have any tails to revert!");
+	if(nonGooPart > 1)
+	{
+		if(gooBiomass() >= (20 * nonGooPart)) addGhostButton(9,"Revert All",revertGooBodyPart,"all","Revert All","Revert almost every body part back to goo.\n\n<b>" + (20 * nonGooPart) + " mLs Biomass</b>");
+		else addDisabledGhostButton(9,"Revert All","Revert All","You don't have enough biomass for that.\n\n<b>" + (20 * nonGooPart) + " mLs Biomass</b>");
+	}
+	else addDisabledGhostButton(9,"Revert All","Revert All","You’ll need to have more than one body part that is able to revert in order to try this!");
+	
+	addGhostButton(14,"Back",gooShiftMenu);
+}
+public function revertGooBodyPart(part:String = "all"):void
+{
+	clearOutput2();
+	output2("With a few shifts of your biomass, you close your [pc.eyes] and concentrate, focusing on");
+	if(part == "all") output2(" your entire body");
+	else if(part == "skin") output2(" your [pc.skin]");
+	else if(part == "legs" || part == "mound") output2(" your [pc.legOrlegs]");
+	else if(part == "arms") output2(" your [pc.arms]");
+	else if(part == "tail") output2(" [pc.eachTail]");
+	else output2(" a bag of dicks");
+	output2(" and giving yourself a nice coating of slimy goo. After a moment, any anomalies that existed is no more. <b>You are feeling more gooey now!</b>");
+	revertGooBody(part, true);
+	clearGhostMenu();
+	addGhostButton(0,"Next",gooBodyCustomizer);
 }
 
 //CHEST

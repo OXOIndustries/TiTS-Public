@@ -619,12 +619,14 @@ package classes {
 		public function legTypeUnlocked(newLegType:Number):Boolean
 		{
 			if (newLegType != GLOBAL.TYPE_HUMAN && (hasStatusEffect("Mimbrane Foot Left") || hasStatusEffect("Mimbrane Foot Right"))) return false;
+			if (isGoo() && statusEffectv1("Gel Body") >= 1) return false;
 			return true;
 		}
 		public function legTypeLockedMessage():String
 		{
 			if ((hasStatusEffect("Mimbrane Foot Left") && !hasStatusEffect("Mimbrane Foot Right")) || (!hasStatusEffect("Mimbrane Foot Left") && hasStatusEffect("Mimbrane Foot Right"))) return "Suddenly your toes flex and dig, showing faint signs of your impending transformation. The appearance subsides, however, and you’re left with your " + foot() + ". With a heavy sigh, it would seem your Mimbrane refuses to give up the shape of your feet to whatever was in store for you before.";
 			if (hasStatusEffect("Mimbrane Foot Left") && hasStatusEffect("Mimbrane Foot Right")) return "Suddenly your toes flex and dig, showing faint signs of your impending transformation. The appearance subsides, however, and you’re left with your " + feet() + ". With a heavy sigh, it would seem your Mimbranes refuse to give up the shape of your feet to whatever was in store for you before.";
+			if (isGoo() && statusEffectv1("Gel Body") >= 1) return "Your gooey carriage suddenly tingles. A warmth bubbles up and quickly fizzles out, making you feel very much like a carbonated soft-drink.... It seems whatever tried to change didn’t have an effect on you.";
 			return "Despite the heat in your [pc.legOrLegs], nothing changes.";
 		}
 		
@@ -3582,49 +3584,61 @@ package classes {
 			switch (earType)
 			{
 				case GLOBAL.TYPE_CANINE:
-					adjectives = ["pointed", "ausar", "furry", "upraised", "anubis-like"];
+					adjectives = ["pointed", "ausar", "upraised", "anubis-like"];
+					if(skinType != GLOBAL.SKIN_TYPE_GOO) adjectives.push("furry");
 					break;
 				case GLOBAL.TYPE_EQUINE:
-					adjectives = ["equine", "horse-like", "furry", "bestial", "inhuman"];
+					adjectives = ["equine", "horse-like", "inhuman"];
+					if(skinType != GLOBAL.SKIN_TYPE_GOO) adjectives.push("furry", "bestial");
 					break;
 				case GLOBAL.TYPE_BOVINE:
-					adjectives = ["bovine", "cow-like", "floppy", "softly furred"];
+					adjectives = ["bovine", "cow-like", "floppy"];
+					if(skinType != GLOBAL.SKIN_TYPE_GOO) adjectives.push("softly furred");
 					break;
 				case GLOBAL.TYPE_FELINE:
-					adjectives = ["pointed", "feline", "cat-like", "furry", "cat-like"];
+					adjectives = ["pointed", "feline", "cat-like", "cat-like"];
+					if(skinType != GLOBAL.SKIN_TYPE_GOO) adjectives.push("furry");
 					break;
 				case GLOBAL.TYPE_LIZAN:
 					adjectives = ["reptilian", "small", "circular"];
 					break;
 				case GLOBAL.TYPE_LAPINE:
-					adjectives = ["bunny", "rabbit-like", "lapine", "furry", "floppy"];
+					adjectives = ["bunny", "rabbit-like", "lapine", "floppy"];
+					if(skinType != GLOBAL.SKIN_TYPE_GOO) adjectives.push("furry");
 					break;
 				case GLOBAL.TYPE_KANGAROO:
-					adjectives = ["kangaroo", "oval-shaped", "elliptical", "furry", "pointed"];
+					adjectives = ["kangaroo", "oval-shaped", "elliptical", "pointed"];
+					if(skinType != GLOBAL.SKIN_TYPE_GOO) adjectives.push("furry");
 					break;
 				case GLOBAL.TYPE_VULPINE:
-					adjectives = ["vulpine", "fox-like", "pointed", "furry", "triangular"];
+					adjectives = ["vulpine", "fox-like", "pointed", "triangular"];
+					if(skinType != GLOBAL.SKIN_TYPE_GOO) adjectives.push("furry");
 					break;
 				case GLOBAL.TYPE_DEMONIC:
 					adjectives = ["demonic", "demon-like", "pointy", "inhuman", "pointed"];
 					break;
 				case GLOBAL.TYPE_DRACONIC:
-					adjectives = ["draconic", "dragon-like", "fin-like", "fan-shaped", "beastial"];
+					adjectives = ["draconic", "dragon-like", "fin-like", "fan-shaped"];
+					if(skinType != GLOBAL.SKIN_TYPE_GOO) adjectives.push("beastial");
 					break;
 				case GLOBAL.TYPE_KUITAN:
-					adjectives = ["tanuki", "egg-shaped", "rounded", "furry", "beastial"];
+					adjectives = ["tanuki", "egg-shaped", "rounded"];
+					if(skinType != GLOBAL.SKIN_TYPE_GOO) adjectives.push("furry", "beastial");
 					break;
 				case GLOBAL.TYPE_MOUSE:
-					adjectives = ["mousey", "mouse-like", "rounded", "furry", "circular"];
+					adjectives = ["mousey", "mouse-like", "rounded", "circular"];
+					if(skinType != GLOBAL.SKIN_TYPE_GOO) adjectives.push("furry");
 					break;
 				case GLOBAL.TYPE_PANDA:
-					adjectives = ["panda", "bear-like", "rounded", "furry", "softly furred"];
+					adjectives = ["panda", "bear-like", "rounded"];
+					if(skinType != GLOBAL.SKIN_TYPE_GOO) adjectives.push("furry", "softly furred");
 					break;
 				case GLOBAL.TYPE_LEITHAN:
 					adjectives = ["leithan", "elven", "pointy", "inhuman", "pointed"];
 					break;
 				case GLOBAL.TYPE_RASKVEL:
-					adjectives = ["raskvel", "obscenely long", "oh-so sensitive", "smooth-scaled", "lengthy"];
+					adjectives = ["raskvel", "obscenely long", "oh-so sensitive", "lengthy"];
+					if(skinType != GLOBAL.SKIN_TYPE_GOO) adjectives.push("smooth-scaled");
 					break;
 				case GLOBAL.TYPE_SYLVAN:
 					adjectives = ["elven", "sensitive", "pointy", "elvish"];
@@ -3633,13 +3647,15 @@ package classes {
 					adjectives = ["pointy", "vanae", "fin-like", "inhuman"];
 					break;
 				case GLOBAL.TYPE_DEER:
-					adjectives = ["deer", "pointed", "oval-shaped", "pointy", "softly furred"];
+					adjectives = ["deer", "pointed", "oval-shaped", "pointy"];
+					if(skinType != GLOBAL.SKIN_TYPE_GOO) adjectives.push("softly furred");
 					break;
 				case GLOBAL.TYPE_GABILANI:
 					adjectives = ["gabilani", "pointy goblin", "long triangular", "sharp alien", "elven"];
 					break;
 			}
 			if (hasLongEars()) adjectives.push(num2Text(Math.round(earLength)) + "-inch long");
+			if (skinType == GLOBAL.SKIN_TYPE_GOO && rand(5) == 0) adjectives.push("gooey", "slimy", "slick");
 			//Pick an adjective about 75% of the time
 			if (rand(4) < 3 && adjectives.length > 0) description = adjectives[rand(adjectives.length)] + " ";
 			//Pick a noun.
@@ -4094,7 +4110,7 @@ package classes {
 			if (9999 == 0) adjectives.push("dotted");
 			if (9999 == 0) adjectives.push("slimy", "gooey");
 			if (9999 == 0) adjectives.push("chitinous", "armored");
-			if (9999 == 0) adjectives.push("scaley", "scaled");
+			if (9999 == 0) adjectives.push("scaly", "scaled");
 			if (9999 == 0) adjectives.push("furry", "furred");
 			if (9999 == 0) adjectives.push("smooth", "sleek");
 			if (9999 == 0) adjectives.push("alien");
@@ -4207,7 +4223,7 @@ package classes {
 			if(hasLegFur()) noun += "fur";
 			else if(hasLegFlag(GLOBAL.FLAG_SCALED) || skinType == GLOBAL.SKIN_TYPE_SCALES) noun += "scales";
 			else if(hasLegFlag(GLOBAL.FLAG_CHITINOUS) || skinType == GLOBAL.SKIN_TYPE_CHITIN) noun += "chitin";
-			else if(hasLegFlag(GLOBAL.FLAG_AMORPHOUS) || skinType == GLOBAL.SKIN_TYPE_GOO) noun += "goo";
+			else if(legType == GLOBAL.TYPE_GOOEY || skinType == GLOBAL.SKIN_TYPE_GOO) noun += "goo";
 			else if(hasLegFlag(GLOBAL.FLAG_FEATHERED)) noun += "feathers";
 			else noun += "skin";
 
@@ -4250,7 +4266,7 @@ package classes {
 					if (skinType == GLOBAL.SKIN_TYPE_FUR) adjectives.push("fluffy");
 					if (skinType == GLOBAL.SKIN_TYPE_FEATHERS) adjectives.push("downy");
 				}
-				output += RandomInCollection(adjectives);
+				if(adjectives.length > 0) output += RandomInCollection(adjectives);
 			}
 			//25% of time, describe skin tone.
 			if (forceTone || rand(4) == 0) {
@@ -4695,6 +4711,7 @@ package classes {
 			var adjectives:Array = [];
 			//SPECIAL CASES.
 			if (legType == GLOBAL.TYPE_SNAKE) return RandomInCollection(["snake tail", "snake tail", "snake tail", "snake tail", "flexible tail", "flexible tail", "coiled bottom half", "coiled bottom half", "tail", "prehensile tail"]);
+			else if(legType == GLOBAL.TYPE_GOOEY && hasLegFlag(GLOBAL.FLAG_PREHENSILE)) return RandomInCollection(["goo tail", "goo tail", "gel tail", "gel tail", "flexible tail", "flexible tail", "coiled bottom half", "coiled bottom half", "tail", "prehensile tail"]);
 			else if (legType == GLOBAL.TYPE_GOOEY && hasLegFlag(GLOBAL.FLAG_AMORPHOUS)) return RandomInCollection(["mound of goo", "gelatinous mound", "gooey base", "semi-solid mass"]);
 			//NORMAL CASES.
 			else
@@ -4751,8 +4768,8 @@ package classes {
 		
 		public function legNoun():String
 		{
-			if (legType == GLOBAL.TYPE_SNAKE) return "coil";
-			if (legType == GLOBAL.TYPE_GOOEY && hasLegFlag(GLOBAL.FLAG_AMORPHOUS)) return "goo mound";
+			if (legType == GLOBAL.TYPE_SNAKE || (legType == GLOBAL.TYPE_GOOEY && hasLegFlag(GLOBAL.FLAG_PREHENSILE))) return "coil";
+			if (legType == GLOBAL.TYPE_GOOEY && hasLegFlag(GLOBAL.FLAG_AMORPHOUS)) return "mound";
 			return "leg";
 		}
 		public function legsNoun():String
@@ -10354,10 +10371,12 @@ package classes {
 				adjectives.push("pointed","marsupial","tapered","curved");
 				nouns.push("kangaroo-cock","kangaroo-dick","kanga-cock");
 			} else if (type == GLOBAL.TYPE_DRACONIC) {
-				adjectives.push("dragon-like","segmented","pointed","knotted","mythic","draconic","tapered","scaly");
+				adjectives.push("dragon-like","segmented","pointed","knotted","mythic","draconic","tapered");
+				if (!cock.hasFlag(GLOBAL.FLAG_GOOEY) || skinType != GLOBAL.SKIN_TYPE_GOO) adjectives.push("scaly");
 				nouns.push("dragon-cock","dragon-dick","wyrm-cock");
 			} else if (type == GLOBAL.TYPE_BEE) {
-				adjectives.push("foreskin-covered","thick-skinned","fleshy","skin-shrouded","alien","vaguely human-like","smooth");
+				adjectives.push("foreskin-covered","alien","vaguely human-like","smooth");
+				if (!cock.hasFlag(GLOBAL.FLAG_GOOEY) || skinType != GLOBAL.SKIN_TYPE_GOO) adjectives.push("thick-skinned","fleshy","skin-shrouded");
 				nouns.push("zil-dick","zil-prick","zil-cock","wasp-cock");
 			} else if (type == GLOBAL.TYPE_KUITAN) {
 				adjectives.push("alien","bulgy","knot-lined","extra knotty","bestial","kui-tan","inhuman","exotic","knotted");

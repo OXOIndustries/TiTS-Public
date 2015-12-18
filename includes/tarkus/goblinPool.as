@@ -142,7 +142,7 @@ public function arbetzMainApproach():Boolean
 				processTime(5);
 				
 				clearMenu();
-				addButton(0, "Next", move, "225");
+				addButton(0, "Next", arbetzMainInitialOptions, -1);
 				return true;
 			}
 			
@@ -193,7 +193,7 @@ public function arbetzMainApproach():Boolean
 					clearMenu();
 					addButton(0, "Where?", arbetzMainInitialOptions, 0, "Where are you?", "Ask about this place.");
 					addButton(1, "Aid", arbetzMainInitialOptions, 1, "First Aid", "Ask for some help.");
-					addButton(14, "Leave", move, "225");
+					addButton(14, "Leave", arbetzMainInitialOptions, -1);
 					return true;
 				}
 				
@@ -246,10 +246,10 @@ public function arbetzMainInitialOptions(response:int = 0):void
 		clearMenu();
 		addButton(0, "Where?", arbetzMainInitialOptions, 0, "Where are you?", "Ask about this place.");
 		addDisabledButton(1, "Aid");
-		addButton(14, "Leave", move, "225");
+		addButton(14, "Leave", arbetzMainInitialOptions, -1);
 	}
 	// Where?
-	else
+	else if (response == 0)
 	{
 		showBust("UNA", "PETR", "GODI");
 		
@@ -266,6 +266,12 @@ public function arbetzMainInitialOptions(response:int = 0):void
 		
 		//standard options bar unlocked
 		arbetzMainMenu();
+	}
+	// Leave
+	else
+	{
+		flags["NAV_DISABLED"] = undefined;
+		move("225");
 	}
 }
 
@@ -1326,7 +1332,7 @@ public function arbetzPoolJUSTDOIT(sex:int = 0):void
 	output(", you begin to take off your [pc.gear], piece by piece.");
 	
 	// PC has any non-exposed, non-swimwear lower undergarment:
-	if (pc.isCrotchGarbed() && !pc.isCrotchExposed() && !isSwimsuit(pc.lowerUndergarment))
+	if (pc.hasLowerGarment() && !pc.isCrotchExposed() && !isSwimsuit(pc.lowerUndergarment))
 	{
 		output("\n\n<i>“Oh for...”</i> Una’s leer is broken with a snort of hysterical laughter buried into her suited arm when you take off your [pc.lowerGarments]. <i>“You never learned that less is more, did you dear?”</i> she sighs once she’s recovered, gazing down at");
 		if (pc.hasCock()) output(" [pc.eachCock]");
