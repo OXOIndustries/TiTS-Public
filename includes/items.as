@@ -286,6 +286,9 @@ public function buyItemGo(arg:ItemSlotClass):void {
 	
 	//Emmy magic!
 	if(shopkeep is Emmy) flags["PURCHASED_FROM_EMS"] = 1;
+	// Renamed from lootList so I can distinguish old vs new uses
+	var purchasedItems:Array = new Array();
+	purchasedItems[purchasedItems.length] = arg.makeCopy();
 	//Cheese shit for GaloMax
 	if(arg is GaloMax)
 	{
@@ -300,9 +303,6 @@ public function buyItemGo(arg:ItemSlotClass):void {
 			chars["SERA"].destroyItem(new GaloMax());
 		}
 	}
-	// Renamed from lootList so I can distinguish old vs new uses
-	var purchasedItems:Array = new Array();
-	purchasedItems[purchasedItems.length] = arg.makeCopy();
 	pc.credits -= price;
 	//Set everything to take us back to buyItem!
 	itemScreen = buyItem;
