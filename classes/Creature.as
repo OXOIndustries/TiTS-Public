@@ -4369,7 +4369,7 @@ package classes {
 			return true;
 		}
 		public function isNaga(): Boolean {
-			if (legType == GLOBAL.TYPE_NAGA) return true;
+			if (legCount == 1 && legType == GLOBAL.TYPE_NAGA) return true;
 			if (legType == GLOBAL.TYPE_GOOEY && hasLegFlag(GLOBAL.FLAG_PREHENSILE)) return true;
 			return false;
 		}
