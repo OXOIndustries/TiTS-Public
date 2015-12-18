@@ -4096,7 +4096,7 @@ package classes {
 			if (9999 == 0) adjectives.push("dotted");
 			if (9999 == 0) adjectives.push("slimy", "gooey");
 			if (9999 == 0) adjectives.push("chitinous", "armored");
-			if (9999 == 0) adjectives.push("scaley", "scaled");
+			if (9999 == 0) adjectives.push("scaly", "scaled");
 			if (9999 == 0) adjectives.push("furry", "furred");
 			if (9999 == 0) adjectives.push("smooth", "sleek");
 			if (9999 == 0) adjectives.push("alien");
@@ -4697,6 +4697,7 @@ package classes {
 			var adjectives:Array = [];
 			//SPECIAL CASES.
 			if (legType == GLOBAL.TYPE_SNAKE) return RandomInCollection(["snake tail", "snake tail", "snake tail", "snake tail", "flexible tail", "flexible tail", "coiled bottom half", "coiled bottom half", "tail", "prehensile tail"]);
+			else if(legType == GLOBAL.TYPE_GOOEY && hasLegFlag(GLOBAL.FLAG_PREHENSILE)) return RandomInCollection(["goo tail", "goo tail", "gel tail", "gel tail", "flexible tail", "flexible tail", "coiled bottom half", "coiled bottom half", "tail", "prehensile tail"]);
 			else if (legType == GLOBAL.TYPE_GOOEY && hasLegFlag(GLOBAL.FLAG_AMORPHOUS)) return RandomInCollection(["mound of goo", "gelatinous mound", "gooey base", "semi-solid mass"]);
 			//NORMAL CASES.
 			else
@@ -4753,8 +4754,8 @@ package classes {
 		
 		public function legNoun():String
 		{
-			if (legType == GLOBAL.TYPE_SNAKE) return "coil";
-			if (legType == GLOBAL.TYPE_GOOEY && hasLegFlag(GLOBAL.FLAG_AMORPHOUS)) return "goo mound";
+			if (legType == GLOBAL.TYPE_SNAKE || (legType == GLOBAL.TYPE_GOOEY && hasLegFlag(GLOBAL.FLAG_PREHENSILE))) return "coil";
+			if (legType == GLOBAL.TYPE_GOOEY && hasLegFlag(GLOBAL.FLAG_AMORPHOUS)) return "mound";
 			return "leg";
 		}
 		public function legsNoun():String
