@@ -142,7 +142,7 @@ public function arbetzMainApproach():Boolean
 				processTime(5);
 				
 				clearMenu();
-				addButton(0, "Next", move, "225");
+				addButton(0, "Next", arbetzMainInitialOptions, -1);
 				return true;
 			}
 			
@@ -193,7 +193,7 @@ public function arbetzMainApproach():Boolean
 					clearMenu();
 					addButton(0, "Where?", arbetzMainInitialOptions, 0, "Where are you?", "Ask about this place.");
 					addButton(1, "Aid", arbetzMainInitialOptions, 1, "First Aid", "Ask for some help.");
-					addButton(14, "Leave", move, "225");
+					addButton(14, "Leave", arbetzMainInitialOptions, -1);
 					return true;
 				}
 				
@@ -246,10 +246,10 @@ public function arbetzMainInitialOptions(response:int = 0):void
 		clearMenu();
 		addButton(0, "Where?", arbetzMainInitialOptions, 0, "Where are you?", "Ask about this place.");
 		addDisabledButton(1, "Aid");
-		addButton(14, "Leave", move, "225");
+		addButton(14, "Leave", arbetzMainInitialOptions, -1);
 	}
 	// Where?
-	else
+	else if (response == 0)
 	{
 		showBust("UNA", "PETR", "GODI");
 		
@@ -266,6 +266,12 @@ public function arbetzMainInitialOptions(response:int = 0):void
 		
 		//standard options bar unlocked
 		arbetzMainMenu();
+	}
+	// Leave
+	else
+	{
+		flags["NAV_DISABLED"] = undefined;
+		move("225");
 	}
 }
 
