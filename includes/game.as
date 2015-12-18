@@ -1330,7 +1330,7 @@ public function processTime(arg:int):void {
 	productionFactor *= 4;
 	
 	//Half time.
-	else if (pc.hasPerk("Ice Cold")) productionFactor /= 2;
+	if (pc.hasPerk("Ice Cold")) productionFactor /= 2;
 	
 	if (pc.hasStatusEffect("Leitha Charm"))
 	{
