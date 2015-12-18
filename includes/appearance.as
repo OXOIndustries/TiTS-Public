@@ -493,42 +493,75 @@ public function appearance(target:Creature):void
 			output2(" of sweat, signaling the exertion of your previous physical activities.");
 		}
 		//Wing arms
-		if(target.armType == GLOBAL.TYPE_AVIAN) output2(" Feathers hang off your arms from shoulder to wrist, giving them a slightly wing-like look.");
+		if(target.armType == GLOBAL.TYPE_AVIAN)
+		{
+			if(target.hasArmFlag(GLOBAL.FLAG_GOOEY)) output2(" Feather-shaped shingles of goo");
+			else output2(" Feathers");
+			output2(" hang off your arms from shoulder to wrist, giving them a slightly wing-like look.");
+		}
 		else if(target.armType == GLOBAL.TYPE_LEITHAN) 
 		{
-			output2(" Small claws protrude from the tips of your fingers in place of fingernails");
+			output2(" Small claws protrude from the tips of your");
+			if(target.hasArmFlag(GLOBAL.FLAG_GOOEY)) output2(" gooey");
+			output2(" fingers in place of fingernails");
 			if (target.hasArmFlag(GLOBAL.FLAG_CHITINOUS)) output2(", and your arms are covered from fingertip to elbow with a thick layer of chitinous plates");
 			else if (target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2(", and your arms are covered in scales up to the shoulders");
 			output2(".");
 		}
-		else if(target.armType == GLOBAL.TYPE_EQUINE) output2(" Hard, hoof-like tips have grown in place of fingernails, covering the end of each digit in shiny black. You can still feel through them all the same.")
+		else if(target.armType == GLOBAL.TYPE_EQUINE)
+		{
+			output2(" Hard, hoof-like tips have grown in place of fingernails, covering the end of each");
+			if(target.hasArmFlag(GLOBAL.FLAG_GOOEY)) output2(" gooey");
+			output2(" digit in shiny black. You can still feel through them all the same.")
+		}
 		else if(target.armType == GLOBAL.TYPE_CANINE) 
 		{
 			if(target.skinType != GLOBAL.SKIN_TYPE_FUR && target.hasArmFlag(GLOBAL.FLAG_FURRED)) output2(" A coat of " + target.furColor + " fur covers your arms, giving them a distinctly animalistic bent.");
 			output2(" Your fingers are tipped with short, canine claws as well, just like one of the ausar.");
 		}
-		else if(target.armType == GLOBAL.TYPE_DEMONIC) output2(" Your humanoid hands appear very demonic, tipped with sharp claws that seem to have replaced your fingernails.");
-		else if(target.armType == GLOBAL.TYPE_ARACHNID || target.armType == GLOBAL.TYPE_DRIDER || target.armType == GLOBAL.TYPE_BEE) output2(" Shining black exoskeleton covers your arms from the biceps down, resembling a pair of long black gloves from a distance.");
-		else if(target.armType == GLOBAL.TYPE_MYR) output2(" Shining " + target.scaleColor + " exoskeleton covers parts of arms in a gleaming patchwork.");
+		else if(target.armType == GLOBAL.TYPE_DEMONIC)
+		{
+			output2(" Your");
+			if(target.hasArmFlag(GLOBAL.FLAG_GOOEY)) output2(" gooey");
+			else output2(" humanoid");
+			output2(" hands appear very demonic, tipped with sharp claws that seem to have replaced your fingernails.");
+		}
+		else if(target.armType == GLOBAL.TYPE_ARACHNID || target.armType == GLOBAL.TYPE_DRIDER || target.armType == GLOBAL.TYPE_BEE)
+		{
+			if(target.hasArmFlag(GLOBAL.FLAG_GOOEY)) output2(" Shiny hardened " + target.scaleColor + " goo covers your arms from the biceps down, resembling a pair of long " + target.scaleColor + " gloves from a distance.");
+			else output2(" Shining black exoskeleton covers your arms from the biceps down, resembling a pair of long black gloves from a distance.");
+		}
+		else if(target.armType == GLOBAL.TYPE_MYR)
+		{
+			if(target.hasArmFlag(GLOBAL.FLAG_GOOEY)) output2(" Shiny hardened " + target.scaleColor + " goo");
+			else output2(" Shining " + target.scaleColor + " exoskeleton");
+			output2(" covers parts of your arms in a gleaming patchwork.");
+		}
 		else if(target.armType == GLOBAL.TYPE_FELINE) 
 		{
 			if(target.skinType != GLOBAL.SKIN_TYPE_FUR && target.hasArmFlag(GLOBAL.FLAG_FURRED)) output2(" A coat of " + target.furColor + " fur covers your arms, giving them a distinctly animalistic bent.");
-			output2(" Your hands are still largely human in shape and dexterity aside from the fairly feline claws that have replaced your fingernails.");
+			output2(" Your");
+			if(target.hasArmFlag(GLOBAL.FLAG_GOOEY)) output2(" gooey");
+			output2(" hands are still largely human in shape and dexterity aside from the fairly feline claws that have replaced your fingernails.");
 		}
 		else if(target.armType == GLOBAL.TYPE_PANDA) 
 		{
 			if(target.skinType != GLOBAL.SKIN_TYPE_FUR && target.hasArmFlag(GLOBAL.FLAG_FURRED)) output2(" A coat of " + target.furColor + " fur covers your arms, giving them a distinctly animalistic bent.");
-			output2(" Your fingers are thick and capped with bear-like claws but maintain their human opposability.");
+			output2(" Your");
+			if(target.hasArmFlag(GLOBAL.FLAG_GOOEY)) output2(" gooey");
+			output2(" fingers are thick and capped with bear-like claws but maintain their human opposability.");
 		}
 		else if(target.armType == GLOBAL.TYPE_KUITAN)
 		{
-			if(!target.hasFur()) output2(" Dark brown pads rest on the pads of each of your fingers. ");
+			if(target.hasArmFlag(GLOBAL.FLAG_GOOEY)) output2(" Your gooey arms end with gel-padded fingers.");
+			else if(!target.hasFur()) output2(" Dark brown pads rest on the pads of each of your fingers. ");
 			else output2(" A coat of " + target.furColor + " fur covers your arms below the shoulders, and your fingers are tipped with dark brown pads. ");
 			output2("They're softer and more supple than the finest leather.");
 		}
 		else if(target.armType == GLOBAL.TYPE_BADGER) 
 		{
-			if(target.skinType != GLOBAL.SKIN_TYPE_FUR && target.hasArmFlag(GLOBAL.FLAG_FURRED)) output2(" A coat of thick " + target.furColor + " fur covers your arms while claws tip your fingers.");
+			if(target.hasArmFlag(GLOBAL.FLAG_GOOEY)) output2(" Your gooey arms are tipped with clawed fingers.");
+			else if(target.skinType != GLOBAL.SKIN_TYPE_FUR && target.hasArmFlag(GLOBAL.FLAG_FURRED)) output2(" A coat of thick " + target.furColor + " fur covers your arms while claws tip your fingers.");
 			else output2(" Claws tip your fingers.");
 			output2(" These claws aren’t very long or sharp, and you get the feeling that the only thing they’re truly useful for is digging into someone’s skin emphatically while you’re fucking them roughly.");
 		}
@@ -585,7 +618,7 @@ public function appearance(target:Creature):void
 			output2(" From the waist down, you have an incredibly cute and cartoonish parody of a horse's body, with");
 			if(target.legCount == 2) output2(" both legs");
 			else output2(" all " + num2Text(target.legCount) + " legs");
-			output2(" ending in flat, rounded feet.");
+			output2(" ending in flat, rounded hooves.");
 		}
 		else if(target.legType == GLOBAL.TYPE_LIZAN && target.legCount == 6) output2(" From the waist down, you have a powerful, six-legged body that looks like a crossbreed of a lizard and a horse.");
 		else if(target.isTaur())
@@ -901,20 +934,28 @@ public function appearance(target:Creature):void
 				// Gel legs
 				else
 				{
-					output2(" You have " + num2Text(target.legCount) + " semi-solid, gel-like limbs");
-					if(target.hasLegFlag(GLOBAL.FLAG_PREHENSILE)) output2(", shaped into prehensile masses that bend and twist as you move");
-					else if(target.hasLegFlag(GLOBAL.FLAG_TENDRIL)) output2(", shaped into tendrils that wriggle about when you move");
+					if(target.isTaur()) output2(" Your legs are semi-solid, gel-like and end in " + target.feet());
 					else
 					{
-						if(target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) output2(", shaped into digitigrade legs and");
-						if(target.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) output2(", shaped into plantigrade legs and");
-						output2(" ending in " + target.feet() + "");
+						output2(" You have " + num2Text(target.legCount) + " semi-solid, gel-like limbs");
+						if(target.hasLegFlag(GLOBAL.FLAG_PREHENSILE)) output2(", shaped into prehensile masses that bend and twist as you move");
+						else if(target.hasLegFlag(GLOBAL.FLAG_TENDRIL)) output2(", shaped into tendrils that wriggle about when you move");
+						else
+						{
+							if(target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) output2(", shaped into digitigrade legs and");
+							if(target.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) output2(", shaped into plantigrade legs and");
+							output2(" ending in " + target.feet());
+						}
 					}
 					output2(". They are capable of shifting and morphing when you will them to.");
 				}
 			}
 		}
-		else if(target.legType == GLOBAL.TYPE_FELINE) output2(" " + upperCase(num2Text(target.legCount)) + " digitigrade legs grow downwards from your waist, ending in soft, padded cat-paws.");
+		else if(target.legType == GLOBAL.TYPE_FELINE)
+		{
+			if(target.isTaur()) output2(" Your digitigrade legs end in soft, padded cat-paws.");
+			else output2(" " + upperCase(num2Text(target.legCount)) + " digitigrade legs grow downwards from your waist, ending in soft, padded cat-paws.");
+		}
 		else if(target.legType == GLOBAL.TYPE_LIZAN)
 		{
 			if(target.legCount < 4) output2(" " + upperCase(num2Text(target.legCount)) + " digitigrade legs grow down from your " + target.hipDescript() + ", ending in clawed feet. There are three long toes on the front and a small hind-claw on the back.");
@@ -948,19 +989,38 @@ public function appearance(target:Creature):void
 		}
 		else if(target.legType == GLOBAL.TYPE_DRIDER) 
 		{
-			output2(" Where your legs would normally start you have grown the body of a spider, with " + num2Text(target.legCount) + " spindly legs that sprout from its sides.");
+			if(target.isTaur()) output2(" Your legs are long and spindly, sprouting outwards from your sides like a spider.");
+			else output2(" Where your legs would normally start you have grown the body of a spider, with " + num2Text(target.legCount) + " spindly legs that sprout from its sides.");
 		}
 		else if(target.legType == GLOBAL.TYPE_VULPINE) output2(" Your legs are crooked into high knees with hocks and long feet, like those of a fox; cute bulbous toes decorate the ends.");
-		else if(target.legType == GLOBAL.TYPE_DRACONIC) output2(" " + upperCase(num2Text(target.legCount)) + " human-like legs grow down from your " + target.hipDescript() + ", sheathed in scales and ending in clawed feet. There are three long toes on the front, and a small hind-claw on the back.");
+		else if(target.legType == GLOBAL.TYPE_DRACONIC)
+		{
+			if(target.isTaur()) output2(" Your human-like legs are sheathed in scales and end in clawed feet.");
+			else output2(" " + upperCase(num2Text(target.legCount)) + " human-like legs grow down from your " + target.hipDescript() + ", sheathed in scales and ending in clawed feet.");
+			output2(" There are three long toes on the front, and a small hind-claw on the back.");
+		}
 		else if(target.legType == GLOBAL.TYPE_KUITAN) output2(" Your legs, though covered in fur, are humanlike. Long feet on the ends bear equally long toes, and the pads on the bottoms are quite sensitive to the touch.");
-		else if (target.legType == GLOBAL.TYPE_PANDA) output2(" " + upperCase(num2Text(target.legCount)) + " digitigrade legs grow downwards from your waist, ending in fluffy panda-paws. You even have sharp-looking claws growing from the tips of your short toes.");
+		else if (target.legType == GLOBAL.TYPE_PANDA)
+		{
+			if(target.isTaur()) output2(" Your digitigrade legs end in fluffy panda-paws.");
+			else output2(" " + upperCase(num2Text(target.legCount)) + " digitigrade legs grow downwards from your waist, ending in fluffy panda-paws.");
+			output2(" You even have sharp-looking claws growing from the tips of your short toes.");
+		}
 		//Catch all (mostly there for Ovir feet)
 		else if (target.legType == GLOBAL.TYPE_OVIR)
 		{
-			if(target.skinType != GLOBAL.SKIN_TYPE_SCALES) output2(" Your " + num2Text(target.legCount) + " legs are curiously coated in a layer of scales but are otherwise normal, human-like limbs.");
-			else output2(" " + upperCase(num2Text(target.legCount)) + " scaled, plantigrade legs extend below your waist, ending in human-like feet.");
+			if(target.skinType != GLOBAL.SKIN_TYPE_SCALES)
+			{
+				if(target.isTaur()) output2(" Your legs are curiously coated in a layer of scales and end in human-like feet.");
+				else output2(" Your " + num2Text(target.legCount) + " legs are curiously coated in a layer of scales but are otherwise normal, human-like limbs.");
+			}
+			else
+			{
+				if(target.isTaur()) output2(" Your scaled, plantigrade legs end in human-like feet.");
+				else output2(" " + upperCase(num2Text(target.legCount)) + " scaled, plantigrade legs extend below your waist, ending in human-like feet.");
+			}
 		}
-
+		
 		// Mimbrane feet for applicable legTypes (any pair of humanoid legs with existing feet)!
 		if (target.isBiped() && target.hasFeet() && target.hasToes())
 		{

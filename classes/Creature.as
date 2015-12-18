@@ -3703,6 +3703,12 @@ package classes {
 				adjectives[adjectives.length] = "smooth";
 				adjectives[adjectives.length] = "sleek";
 			}
+			if(hasTongueFlag(GLOBAL.FLAG_GOOEY) && tongueType != GLOBAL.TYPE_GOOEY)
+			{
+				adjectives[adjectives.length] = "slimy";
+				adjectives[adjectives.length] = "slick";
+				adjectives[adjectives.length] = "gooey";
+			}
 			
 			//Show adjective 50% of the time
 			if(rand(2) == 0 && adjectives.length > 0) 
@@ -4171,18 +4177,21 @@ package classes {
 			if (part == "arm" || hasArmFlag(GLOBAL.FLAG_CHITINOUS))
 			{
 				if (!hasArmFlag(GLOBAL.FLAG_CHITINOUS)) return "null";
+				if (hasArmFlag(GLOBAL.FLAG_GOOEY)) return scaleColor;
 				if (InCollection(armType, GLOBAL.TYPE_MYR, GLOBAL.TYPE_LEITHAN)) return scaleColor;
 				return RandomInCollection(colors);
 			}
 			if (part == "leg" || hasLegFlag(GLOBAL.FLAG_CHITINOUS))
 			{
 				if (!hasLegFlag(GLOBAL.FLAG_CHITINOUS)) return "null";
+				if (hasLegFlag(GLOBAL.FLAG_GOOEY)) return scaleColor;
 				if (InCollection(legType, GLOBAL.TYPE_MYR)) return scaleColor;
 				return RandomInCollection(colors);
 			}
 			if (part == "tail" || hasTailFlag(GLOBAL.FLAG_CHITINOUS))
 			{
 				if (!hasTailFlag(GLOBAL.FLAG_CHITINOUS)) return "null";
+				if (hasTailFlag(GLOBAL.FLAG_GOOEY)) return scaleColor;
 				if (InCollection(tailType, GLOBAL.TYPE_MYR)) return scaleColor;
 				return RandomInCollection(colors);
 			}
@@ -4360,11 +4369,12 @@ package classes {
 			return true;
 		}
 		public function isNaga(): Boolean {
-			//if (legCount == 1 && legType == GLOBAL.TYPE_NAGA) return true;
-			if (legCount >= 1 && legType == GLOBAL.TYPE_NAGA) return true;
+			if (legType == GLOBAL.TYPE_NAGA) return true;
+			if (legType == GLOBAL.TYPE_GOOEY && hasLegFlag(GLOBAL.FLAG_PREHENSILE)) return true;
 			return false;
 		}
 		public function isTaur(): Boolean {
+			if (isGoo() || isNaga()) return false;
 			if (legCount == 4) return true;
 			if (legCount == 6) return true;
 			return false;
@@ -4497,6 +4507,8 @@ package classes {
 				adjectives.push("tapered", "conical");
 			if (hasTailFlag(GLOBAL.FLAG_FEATHERED))
 				adjectives.push("feathered", "feathery");
+			if (hasTailFlag(GLOBAL.FLAG_GOOEY))
+				adjectives.push("slimy", "slick", "gooey");
 			
 			//Show adjective 50% of the time
 			if (rand(2) == 0 && adjectives.length > 0) description = adjectives[rand(adjectives.length)] + " ";
@@ -4605,6 +4617,7 @@ package classes {
 			if (hasArmFlag(GLOBAL.FLAG_SCALED)) adjective.push("scaled", "scaly");
 			if (hasArmFlag(GLOBAL.FLAG_CHITINOUS)) adjective.push("chitinous", "armored");
 			if (hasArmFlag(GLOBAL.FLAG_FEATHERED)) adjective.push("feathered", "feathery");
+			if (hasArmFlag(GLOBAL.FLAG_GOOEY)) adjective.push("slimy", "slick", "gooey");
 			
 			// Build
 			if ((forceAdjective || rand(2) == 0) && adjective.length > 0) output += RandomInCollection(adjective);
@@ -4632,7 +4645,8 @@ package classes {
 				if (InCollection(armType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_BADGER, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_DEMONIC)) adjective.push("clawed");
 				if (InCollection(armType, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_BADGER, GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_PANDA)) adjective.push("bestial");
 				if (InCollection(armType, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_PANDA)) adjective.push("padded");
-				if (InCollection(armType, GLOBAL.TYPE_ARACHNID, GLOBAL.TYPE_DRIDER, GLOBAL.TYPE_BEE, GLOBAL.TYPE_LEITHAN)) adjective.push("chitinous");
+				if (hasArmFlag(GLOBAL.FLAG_GOOEY)) adjective.push("slimy", "slick", "gooey");
+				else if (InCollection(armType, GLOBAL.TYPE_ARACHNID, GLOBAL.TYPE_DRIDER, GLOBAL.TYPE_BEE, GLOBAL.TYPE_LEITHAN)) adjective.push("chitinous");
 			}
 			// Build
 			if (rand(2) == 0 && adjective.length > 0) output += RandomInCollection(adjective);
@@ -4652,8 +4666,9 @@ package classes {
 			{
 				if (InCollection(armType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_BADGER, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_DEMONIC)) adjective.push("clawed");
 				if (InCollection(armType, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_PANDA)) adjective.push("padded");
-				if (InCollection(armType, GLOBAL.TYPE_ARACHNID, GLOBAL.TYPE_DRIDER, GLOBAL.TYPE_BEE, GLOBAL.TYPE_LEITHAN)) adjective.push("chitinous");
 				if (InCollection(armType, GLOBAL.TYPE_EQUINE)) adjective.push("hoof-tipped");
+				if (hasArmFlag(GLOBAL.FLAG_GOOEY)) adjective.push("slimy", "slick", "gooey");
+				else if (InCollection(armType, GLOBAL.TYPE_ARACHNID, GLOBAL.TYPE_DRIDER, GLOBAL.TYPE_BEE, GLOBAL.TYPE_LEITHAN)) adjective.push("chitinous");
 			}
 			// Build
 			if (adjective.length > 0 && rand(2) == 0) output += RandomInCollection(adjective);
@@ -4724,6 +4739,7 @@ package classes {
 					if (hasLegFlag(GLOBAL.FLAG_SMOOTH)) adjectives.push("smooth");
 					if (hasLegFlag(GLOBAL.FLAG_CHITINOUS)) adjectives.push("chitinous", "armored", "carapace-covered");
 					if (hasLegFlag(GLOBAL.FLAG_FEATHERED)) adjectives.push("feathered", "feathery");
+					if (hasLegFlag(GLOBAL.FLAG_GOOEY) && legType != GLOBAL.TYPE_GOOEY) adjectives.push("slimy", "slick", "gooey");
 				}
 				//Random goes here!
 				if (adjectives.length > 0) output += RandomInCollection(adjectives) + " ";
