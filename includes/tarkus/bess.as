@@ -11586,7 +11586,7 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 			output("\n\n<i>“Yes, oh frag yes!”</i> You flush furiously with how much you’re crying out for a little bit of [bess.hisHer] [bess.cock] - or rather a lot of it - filling up your pussy.");
 			
 			output("\n\n<i>“Maybe you should get into position so I can give you your cream filling?”</i> [bess.name] suggests and you’re all too quick to comply. You present yourself and stick your dripping wet cunny out, wiggling your butt all the while, enticing [bess.himHer] to screw you absolutely senseless.");
-			if (pc.hasCock()) output(" At the same time [pc.oneCock] begins to twitch with anticipation, slapping against your [pc.belly].");
+			if (pc.hasCock()) output(" At the same time [pc.eachCock] begins to twitch with anticipation, slapping against your [pc.belly].");
 		}
 		else // analscene
 		{
@@ -11603,7 +11603,7 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 			output("\n\n<i>“Yes, oh frag yes!”</i> You flush furiously with how much you’re crying out for a little bit of [bess.hisHer] [bess.cock] - or rather a lot of it - in your ass.");
 			
 			output("\n\n<i>“Maybe you should get into position so I can give you your cream filling?”</i> [bess.name] suggests and you’re all too quick to comply. You present yourself and stick your rump out and wiggle it about, enticing [bess.himHer] to screw you absolutely senseless.");
-			if (pc.hasCock()) output(" At the same time [pc.oneCock] begins to twitch with anticipation, slapping against your [pc.belly].");
+			if (pc.hasCock()) output(" At the same time [pc.eachCock] begins to twitch with anticipation, slapping against your [pc.belly].");
 		}
 	}
 	else if (bessIsDom())
@@ -11701,7 +11701,7 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 			output("\n\n<i>“Please, please "+ bessSexName() +", fuck me! I need to be pounded hard from behind like the naughty slut I am, I’ll do anything!”</i> You flush furiously, willing to debase yourself utterly for the gift of [bess.hisHer] [bess.cock] inside of you.");
 			
 			output("\n\n<i>“Present yourself then, "+ bessPCSexName() +", and maybe I’ll use you like the naughty little cum slut that you are.”</i> You obediently present yourself and stick out your snatch, wiggling your butt all the while, desperate to entice your [bess.Mistress] to screw you absolutely senseless.");
-			if (pc.hasCock()) output(" At the same time [pc.oneCock] begins to twitch with anticipation, eager to spill your [pc.cumVisc] [pc.cumNoun] all over the ground as you are shamelessly pounded from behind.");
+			if (pc.hasCock()) output(" At the same time [pc.eachCock] begins to twitch with anticipation, eager to spill your [pc.cumVisc] [pc.cumNoun] all over the ground as you are shamelessly pounded from behind.");
 		}
 		else
 		{
@@ -11712,7 +11712,7 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 			output("\n\n<i>“Please, please "+ bessSexName() +", fuck me! I need to be pounded hard from behind like the naughty slut I am, I’ll do anything!”</i> You flush furiously, willing to debase yourself utterly for the gift of [bess.hisHer] [bess.cock].");
 			
 			output("\n\n<i>“Maybe you should get into position so I can give you your cream filling?”</i> [bess.name] suggests and you’re all too quick to comply. You present yourself and stick your rump out and wiggle it about, enticing [bess.himHer] to screw you absolutely senseless.");
-			if (pc.hasCock()) output(" At the same time [pc.oneCock] begins to twitch with anticipation, slapping against your [pc.belly].");
+			if (pc.hasCock()) output(" At the same time [pc.eachCock] begins to twitch with anticipation, slapping against your [pc.belly].");
 		}
 	}
 	else
@@ -11759,7 +11759,7 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 			output("\n\n<i>“Yes, "+ bessPCSexName() +"!”</i> [bess.name] flushes furiously, clearly eager to fill you up with [bess.hisHer] cock.");
 			
 			output("\n\nYou present yourself and stick your [pc.pussy "+ vagIdx +"], wiggling your ass all the while, enticing [bess.himHer] to screw you absolutely senseless.");
-			if (pc.hasCock()) output(" At the same time [pc.oneCock] begins to twitch with anticipation, slapping against your [pc.belly].");
+			if (pc.hasCock()) output(" At the same time [pc.eachCock] begins to twitch with anticipation, slapping against your [pc.belly].");
 		}
 		else
 		{
@@ -11776,7 +11776,7 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 			output("\n\n<i>“Yes, "+ bessPCSexName() +"!”</i> [bess.name] flushes furiously, clearly eager to fill the insides of your rump with [bess.hisHer] cock.");
 			
 			output("\n\nYou present yourself and stick your ass out, wiggling it all the while as you entice [bess.hisHer] to screw you absolutely senseless.");
-			if (pc.hasCock()) output(" At the same time [pc.oneCock] begins to twitch with anticipation, slapping against your [pc.belly].");
+			if (pc.hasCock()) output(" At the same time [pc.eachCock] begins to twitch with anticipation, slapping against your [pc.belly].");
 		}
 	}
 
