@@ -4374,6 +4374,7 @@ package classes {
 			return false;
 		}
 		public function isTaur(): Boolean {
+			if (isGoo() || isNaga()) return false;
 			if (legCount == 4) return true;
 			if (legCount == 6) return true;
 			return false;
