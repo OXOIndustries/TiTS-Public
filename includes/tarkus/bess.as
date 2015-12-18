@@ -1439,7 +1439,7 @@ public function bessAppearance():void
 		if(bess.hasVagina()) output("pussy and ");
 		output("ass. [bess.HisHer] lips are smeared with fresh spunk collected from the nearby natives. [bess.HisHer] eyes are unfocused, probably from being used day in and out as a synthetic cum dumpster.");
 	}
-	output("\n\n[bess.name] currently has a " + indefiniteArticle(bess.bellyDescript(true)) + ".");
+	output("\n\n[bess.name] currently has " + indefiniteArticle(bess.bellyDescript(true)) + ".");
 	if(!bess.isNude()) output(" [bess.HeShe] is currently wearing [bess.gear].");
 	else output(" [bess.HeShe] is currently nude.");
 	//if (bessKatana = true)
@@ -6126,7 +6126,7 @@ public function bessEvent0Leave():void
 	clearOutput();
 	bessHeader();
 
-	output("\n\nSeems like it’s something [bess.heShe] should do solo, so you leave [bess.himHer] be.");
+	output("Seems like it’s something [bess.heShe] should do solo, so you leave [bess.himHer] be.");
 
 	processTime(5);
 
@@ -6158,7 +6158,7 @@ public function bessEvent1():void
 	{
 		flags["BESS_EVENT_1_TIMES"]++;
 
-		output("\n\nOnce again, you’re sitting down and watching the holonews, when [bess.name] peeks through the door.");
+		output("Once again, you’re sitting down and watching the holonews, when [bess.name] peeks through the door.");
 
 		output("\n\n<i>“Hello, "+ bessPCName() +". Are you busy, or would you like some sexual relief?”</i> [bess.name] "+ bess.mf("politely", "coyly") +" asks. As a sex-bot, [bess.heShe]’s very diligent in [bess.hisHer] duties!");
 	}
