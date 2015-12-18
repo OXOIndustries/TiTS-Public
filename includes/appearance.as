@@ -290,14 +290,29 @@ public function appearance(target:Creature):void
 			else if(target.earType == GLOBAL.TYPE_CANINE) output2(" A pair of pointed ausar-like ears protrude from your skull, pointed and alert.");
 			else if(target.earType == GLOBAL.TYPE_BOVINE) output2(" A pair of round, floppy cow ears protrude from the sides of your skull.");
 			else if(target.earType == GLOBAL.TYPE_DRIDER) output2(" A pair of large pointy ears stick out from your skull.");
-			else if(target.earType == GLOBAL.TYPE_FELINE) output2(" A pair of cute, fuzzy cat-like ears have sprouted from the top of your skull.");
+			else if(target.earType == GLOBAL.TYPE_FELINE)
+			{
+				output2(" A pair of cute");
+				if(target.skinType != GLOBAL.SKIN_TYPE_GOO) output2(", fuzzy");
+				output2(" cat-like ears have sprouted from the top of your skull.");
+			}
 			else if(target.earType == GLOBAL.TYPE_LIZAN) output2(" A pair of rounded protrusions with small holes on the sides of your skull serve as your ears.");
 			else if(target.earType == GLOBAL.TYPE_LAPINE || target.earType == GLOBAL.TYPE_LEITHAN) output2(" A pair of floppy rabbit ears stick up from the top of your skull, flopping around as you walk.");
-			else if(target.earType == GLOBAL.TYPE_KANGAROO) output2(" A pair of long, furred kangaroo ears stick out from your skull at an angle.");
+			else if(target.earType == GLOBAL.TYPE_KANGAROO)
+			{
+				output2(" A pair of long");
+				if(target.skinType != GLOBAL.SKIN_TYPE_GOO) output2(", furred");
+				output2(" kangaroo ears stick out from your skull at an angle.");
+			}
 			else if(target.earType == GLOBAL.TYPE_VULPINE) output2(" A pair of large, adept fox ears sit high on your skull, always listening.");
 			else if(target.earType == GLOBAL.TYPE_DEER) output2(" A pair of pointed, oval-shaped ears poke out from the sides of your skull, flicking and flopping about, making you look very much like a deer.");
 			else if(target.earType == GLOBAL.TYPE_DRACONIC) output2(" A pair of rounded protrusions with small holes on the sides of your skull serve as your ears. Bony fins sprout behind them.");
-			else if(target.earType == GLOBAL.TYPE_KUITAN) output2(" A pair of vaguely egg-shaped, furry raccoon ears adorns your skull.");
+			else if(target.earType == GLOBAL.TYPE_KUITAN)
+			{
+				output2(" A pair of vaguely egg-shaped");
+				if(target.skinType != GLOBAL.SKIN_TYPE_GOO) output2(", furry");
+				output2(" raccoon ears adorns your skull.");
+			}
 			else if(target.earType == GLOBAL.TYPE_MOUSE) output2(" A pair of large, dish-shaped mouse ears tops your skull.");
 			else if(target.earType == GLOBAL.TYPE_VANAE) output2(" A pair of pointed, finned ears tops your skull.");
 			else if(target.earType == GLOBAL.TYPE_PANDA) output2(" A pair of rounded, panda-like ears protrude from your skull, " + target.mf("standing tall and proud","looking absolutely adorable") + ".");
@@ -342,14 +357,29 @@ public function appearance(target:Creature):void
 			else if(target.earType == GLOBAL.TYPE_CANINE) output2(" The " + target.hairDescript(true,true) + " on your head is overlapped by a pair of pointed dog ears.");
 			else if(target.earType == GLOBAL.TYPE_BOVINE) output2(" The " + target.hairDescript(true,true) + " on your head is parted by a pair of rounded cow ears that stick out sideways.");
 			else if(target.earType == GLOBAL.TYPE_DRIDER) output2(" The " + target.hairDescript(true,true) + " on your head is parted by a pair of cute pointed ears, bigger than your old human ones.");
-			else if(target.earType == GLOBAL.TYPE_FELINE) output2(" The " + target.hairDescript(true,true) + " on your head is parted by a pair of cute, fuzzy feline ears, sprouting from atop your head and pivoting towards any sudden noises.");
+			else if(target.earType == GLOBAL.TYPE_FELINE)
+			{
+				output2(" The " + target.hairDescript(true,true) + " on your head is parted by a pair of cute");
+				if(target.skinType != GLOBAL.SKIN_TYPE_GOO) output2(", fuzzy");
+				output2(" feline ears, sprouting from atop your head and pivoting towards any sudden noises.");
+			}
 			else if(target.earType == GLOBAL.TYPE_LIZAN) output2(" The " + target.hairDescript(true,true) + " atop your head makes it nigh-impossible to notice the two small rounded openings that are your ears.");
 			else if(target.earType == GLOBAL.TYPE_LAPINE || target.earType == GLOBAL.TYPE_LEITHAN) output2(" A pair of floppy rabbit ears stick up out of your " + target.hairDescript(true,true) + ", bouncing around as you walk.");
-			else if(target.earType == GLOBAL.TYPE_KANGAROO) output2(" The " + target.hairDescript(true,true) + " atop your head is parted by a pair of long, furred kangaroo ears that stick out at an angle.");
+			else if(target.earType == GLOBAL.TYPE_KANGAROO)
+			{
+				output2(" The " + target.hairDescript(true,true) + " atop your head is parted by a pair of long");
+				if(target.skinType != GLOBAL.SKIN_TYPE_GOO) output2(", furred");
+				output2(" kangaroo ears that stick out at an angle.");
+			}
 			else if(target.earType == GLOBAL.TYPE_VULPINE) output2(" The " + target.hairDescript(true,true) + " atop your head is parted by a pair of large, adept fox ears that always seem to be listening.");
 			else if(target.earType == GLOBAL.TYPE_DEER) output2(" The " + target.hairDescript(true,true) + " on your head is parted by a pair of rounded ears that point out sideways, flicking and flopping about, making you look very much like a deer.");
 			else if(target.earType == GLOBAL.TYPE_DRACONIC) output2(" The " + target.hairDescript(true,true) + " atop your head is parted by a pair of rounded protrusions with small holes on the sides of your head serve as your ears. Bony fins sprout behind them.");
-			else if(target.earType == GLOBAL.TYPE_KUITAN) output2(" The " + target.hairDescript(true,true) + " on your head parts around a pair of egg-shaped, furry raccoon ears.");
+			else if(target.earType == GLOBAL.TYPE_KUITAN)
+			{
+				output2(" The " + target.hairDescript(true,true) + " on your head parts around a pair of egg-shaped");
+				if(target.skinType != GLOBAL.SKIN_TYPE_GOO) output2(", furry");
+				output2(" raccoon ears.");
+			}
 			else if(target.earType == GLOBAL.TYPE_MOUSE) output2(" The " + target.hairDescript(true,true) + " atop your head is funneled between and around a pair of large, dish-shaped mouse ears that stick up prominently.");
 			else if(target.earType == GLOBAL.TYPE_VANAE) output2(" The " + target.hairDescript(true,true) + " atop your head is parted by a pair of pointed, fin-like ears, sensitive to the slightest sound.");
 			else if(target.earType == GLOBAL.TYPE_PANDA) output2(" The " + target.hairDescript(true,true) + " on your head is parted by a pair of round panda ears.");
