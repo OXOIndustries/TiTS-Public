@@ -9676,7 +9676,7 @@ public function bessEvent28PartII():void
 
 	if (pc.hasRangedWeapon() && pc.AQ() >= 50)
 	{
-		output("\n\nYou seize the chance to pull out your [pc.rangedWeapon] amongst all the confusion and shoot the ausar woman right in the skull. Her head");
+		output("\n\nYou seize the chance to pull out your [pc.rangedWeapon] amongst all the confusion and " + pc.rangedWeapon.attackVerb + " the ausar woman right in the skull. Her head");
 		if (pc.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_LUST_WEAPON))
 		{
 			if (pc.rangedWeapon.shortName == "SlutRay") output(" is instantly blasted with a deluge lustful thoughts.");
@@ -9693,7 +9693,7 @@ public function bessEvent28PartII():void
 	}
 	else if (pc.hasRangedWeapon())
 	{
-		output("\n\nYou seize the chance to pull out your [pc.rangedWeapon] amongst all the confusion and shoot the ausar woman - you miss her head but hit her right in the shoulder.");
+		output("\n\nYou seize the chance to pull out your [pc.rangedWeapon] amongst all the confusion and " + pc.rangedWeapon.attackVerb + " the ausar woman - you miss her head but hit her right in the shoulder.");
 		if (pc.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_LUST_WEAPON))
 		{
 			if (pc.rangedWeapon.shortName == "SlutRay") output(" Interrupted by a flood of lusty thoughts");
