@@ -115,8 +115,8 @@
 			else if (kGAMECLASS.userInterface.dataButton.isHighlighted)
 			{
 				kGAMECLASS.userInterface.dataButton.DeGlow();
-				//kGAMECLASS.userInterface.mainButtonsReset();
-				kGAMECLASS.userInterface.showPrimaryOutput();
+				//kGAMECLASS.userInterface.showPrimaryOutput();
+				kGAMECLASS.userInterface.backToPrimaryOutput();
 				
 				if (kGAMECLASS.pc.short == "uncreated")
 				{
