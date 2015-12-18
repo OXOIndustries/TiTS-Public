@@ -1332,7 +1332,7 @@ public function arbetzPoolJUSTDOIT(sex:int = 0):void
 	output(", you begin to take off your [pc.gear], piece by piece.");
 	
 	// PC has any non-exposed, non-swimwear lower undergarment:
-	if (pc.isCrotchGarbed() && !pc.isCrotchExposed() && !isSwimsuit(pc.lowerUndergarment))
+	if (pc.hasLowerGarment() && !pc.isCrotchExposed() && !isSwimsuit(pc.lowerUndergarment))
 	{
 		output("\n\n<i>“Oh for...”</i> Una’s leer is broken with a snort of hysterical laughter buried into her suited arm when you take off your [pc.lowerGarments]. <i>“You never learned that less is more, did you dear?”</i> she sighs once she’s recovered, gazing down at");
 		if (pc.hasCock()) output(" [pc.eachCock]");
