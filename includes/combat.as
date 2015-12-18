@@ -2,8 +2,6 @@
 {	
 	trace("AI CALL");
 	//Paralyze stops turns! AHHHH!
-	else if (aggressor is NyreaAlpha) alphaNyreaAI();
-	else if (aggressor is NyreaBeta) betaNyreaAI();
 	else if (aggressor is FrogGirl) frogGirlAI();
 	else if (aggressor is WetraHound) wetraHoundAI();
 	else if (aggressor is WetraxxelBrawler) wetraxxelBrawlerAI();
