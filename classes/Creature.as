@@ -3584,49 +3584,61 @@ package classes {
 			switch (earType)
 			{
 				case GLOBAL.TYPE_CANINE:
-					adjectives = ["pointed", "ausar", "furry", "upraised", "anubis-like"];
+					adjectives = ["pointed", "ausar", "upraised", "anubis-like"];
+					if(skinType != GLOBAL.SKIN_TYPE_GOO) adjectives.push("furry");
 					break;
 				case GLOBAL.TYPE_EQUINE:
-					adjectives = ["equine", "horse-like", "furry", "bestial", "inhuman"];
+					adjectives = ["equine", "horse-like", "inhuman"];
+					if(skinType != GLOBAL.SKIN_TYPE_GOO) adjectives.push("furry", "bestial");
 					break;
 				case GLOBAL.TYPE_BOVINE:
-					adjectives = ["bovine", "cow-like", "floppy", "softly furred"];
+					adjectives = ["bovine", "cow-like", "floppy"];
+					if(skinType != GLOBAL.SKIN_TYPE_GOO) adjectives.push("softly furred");
 					break;
 				case GLOBAL.TYPE_FELINE:
-					adjectives = ["pointed", "feline", "cat-like", "furry", "cat-like"];
+					adjectives = ["pointed", "feline", "cat-like", "cat-like"];
+					if(skinType != GLOBAL.SKIN_TYPE_GOO) adjectives.push("furry");
 					break;
 				case GLOBAL.TYPE_LIZAN:
 					adjectives = ["reptilian", "small", "circular"];
 					break;
 				case GLOBAL.TYPE_LAPINE:
-					adjectives = ["bunny", "rabbit-like", "lapine", "furry", "floppy"];
+					adjectives = ["bunny", "rabbit-like", "lapine", "floppy"];
+					if(skinType != GLOBAL.SKIN_TYPE_GOO) adjectives.push("furry");
 					break;
 				case GLOBAL.TYPE_KANGAROO:
-					adjectives = ["kangaroo", "oval-shaped", "elliptical", "furry", "pointed"];
+					adjectives = ["kangaroo", "oval-shaped", "elliptical", "pointed"];
+					if(skinType != GLOBAL.SKIN_TYPE_GOO) adjectives.push("furry");
 					break;
 				case GLOBAL.TYPE_VULPINE:
-					adjectives = ["vulpine", "fox-like", "pointed", "furry", "triangular"];
+					adjectives = ["vulpine", "fox-like", "pointed", "triangular"];
+					if(skinType != GLOBAL.SKIN_TYPE_GOO) adjectives.push("furry");
 					break;
 				case GLOBAL.TYPE_DEMONIC:
 					adjectives = ["demonic", "demon-like", "pointy", "inhuman", "pointed"];
 					break;
 				case GLOBAL.TYPE_DRACONIC:
-					adjectives = ["draconic", "dragon-like", "fin-like", "fan-shaped", "beastial"];
+					adjectives = ["draconic", "dragon-like", "fin-like", "fan-shaped"];
+					if(skinType != GLOBAL.SKIN_TYPE_GOO) adjectives.push("beastial");
 					break;
 				case GLOBAL.TYPE_KUITAN:
-					adjectives = ["tanuki", "egg-shaped", "rounded", "furry", "beastial"];
+					adjectives = ["tanuki", "egg-shaped", "rounded"];
+					if(skinType != GLOBAL.SKIN_TYPE_GOO) adjectives.push("furry", "beastial");
 					break;
 				case GLOBAL.TYPE_MOUSE:
-					adjectives = ["mousey", "mouse-like", "rounded", "furry", "circular"];
+					adjectives = ["mousey", "mouse-like", "rounded", "circular"];
+					if(skinType != GLOBAL.SKIN_TYPE_GOO) adjectives.push("furry");
 					break;
 				case GLOBAL.TYPE_PANDA:
-					adjectives = ["panda", "bear-like", "rounded", "furry", "softly furred"];
+					adjectives = ["panda", "bear-like", "rounded"];
+					if(skinType != GLOBAL.SKIN_TYPE_GOO) adjectives.push("furry", "softly furred");
 					break;
 				case GLOBAL.TYPE_LEITHAN:
 					adjectives = ["leithan", "elven", "pointy", "inhuman", "pointed"];
 					break;
 				case GLOBAL.TYPE_RASKVEL:
-					adjectives = ["raskvel", "obscenely long", "oh-so sensitive", "smooth-scaled", "lengthy"];
+					adjectives = ["raskvel", "obscenely long", "oh-so sensitive", "lengthy"];
+					if(skinType != GLOBAL.SKIN_TYPE_GOO) adjectives.push("smooth-scaled");
 					break;
 				case GLOBAL.TYPE_SYLVAN:
 					adjectives = ["elven", "sensitive", "pointy", "elvish"];
@@ -3635,13 +3647,15 @@ package classes {
 					adjectives = ["pointy", "vanae", "fin-like", "inhuman"];
 					break;
 				case GLOBAL.TYPE_DEER:
-					adjectives = ["deer", "pointed", "oval-shaped", "pointy", "softly furred"];
+					adjectives = ["deer", "pointed", "oval-shaped", "pointy"];
+					if(skinType != GLOBAL.SKIN_TYPE_GOO) adjectives.push("softly furred");
 					break;
 				case GLOBAL.TYPE_GABILANI:
 					adjectives = ["gabilani", "pointy goblin", "long triangular", "sharp alien", "elven"];
 					break;
 			}
 			if (hasLongEars()) adjectives.push(num2Text(Math.round(earLength)) + "-inch long");
+			if (skinType == GLOBAL.SKIN_TYPE_GOO && rand(5) == 0) adjectives.push("gooey", "slimy", "slick");
 			//Pick an adjective about 75% of the time
 			if (rand(4) < 3 && adjectives.length > 0) description = adjectives[rand(adjectives.length)] + " ";
 			//Pick a noun.
@@ -10357,10 +10371,12 @@ package classes {
 				adjectives.push("pointed","marsupial","tapered","curved");
 				nouns.push("kangaroo-cock","kangaroo-dick","kanga-cock");
 			} else if (type == GLOBAL.TYPE_DRACONIC) {
-				adjectives.push("dragon-like","segmented","pointed","knotted","mythic","draconic","tapered","scaly");
+				adjectives.push("dragon-like","segmented","pointed","knotted","mythic","draconic","tapered");
+				if (!cock.hasFlag(GLOBAL.FLAG_GOOEY) || skinType != GLOBAL.SKIN_TYPE_GOO) adjectives.push("scaly");
 				nouns.push("dragon-cock","dragon-dick","wyrm-cock");
 			} else if (type == GLOBAL.TYPE_BEE) {
-				adjectives.push("foreskin-covered","thick-skinned","fleshy","skin-shrouded","alien","vaguely human-like","smooth");
+				adjectives.push("foreskin-covered","alien","vaguely human-like","smooth");
+				if (!cock.hasFlag(GLOBAL.FLAG_GOOEY) || skinType != GLOBAL.SKIN_TYPE_GOO) adjectives.push("thick-skinned","fleshy","skin-shrouded");
 				nouns.push("zil-dick","zil-prick","zil-cock","wasp-cock");
 			} else if (type == GLOBAL.TYPE_KUITAN) {
 				adjectives.push("alien","bulgy","knot-lined","extra knotty","bestial","kui-tan","inhuman","exotic","knotted");
