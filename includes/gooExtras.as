@@ -511,8 +511,20 @@ public function revertGooBody(part:String = "all", consumeBiomass:Boolean = fals
 		pc.addSkinFlag(GLOBAL.FLAG_LUBRICATED);
 		if(consumeBiomass) gooBiomass(-20);
 	}
+	// Goo mound!
+	if(part == "mound" || (part == "all" && statusEffectv1("Gel Body") >= 1))
+	{
+		pc.legCount = 1;
+		pc.clearLegFlags();
+		pc.addLegFlag(GLOBAL.FLAG_AMORPHOUS);
+		pc.legType = GLOBAL.TYPE_GOOEY;
+		pc.genitalSpot = 0;
+		pc.removeStatusEffect("Mimbrane Foot Left");
+		pc.removeStatusEffect("Mimbrane Foot Right");
+		if(consumeBiomass) gooBiomass(-20);
+	}
 	// Gel-like legs? (legCount and genitalLocation() are preserved)
-	if(part == "legs" || part == "all")
+	else if(part == "legs" || part == "all")
 	{
 		var legProperties:Array = [];
 		if(pc.legFlags.length > 0)
@@ -769,9 +781,13 @@ public function gooBodyCustomizer():void
 		nonGooPart++;
 	}
 	else addDisabledGhostButton(6,"Revert Arms","Revert Arms","Your arms are already made of goo!");
-	if(pc.legType != GLOBAL.SKIN_TYPE_GOO || pc.hasLegFlag(GLOBAL.FLAG_FURRED) || pc.hasLegFlag(GLOBAL.FLAG_SCALED) || pc.hasLegFlag(GLOBAL.FLAG_CHITINOUS) || pc.hasLegFlag(GLOBAL.FLAG_FEATHERED))
+	if(pc.legType != GLOBAL.TYPE_GOOEY || pc.hasLegFlag(GLOBAL.FLAG_FURRED) || pc.hasLegFlag(GLOBAL.FLAG_SCALED) || pc.hasLegFlag(GLOBAL.FLAG_CHITINOUS) || pc.hasLegFlag(GLOBAL.FLAG_FEATHERED) || (statusEffectv1("Gel Body") >= 1 && !pc.hasLegFlag(GLOBAL.FLAG_AMORPHOUS)))
 	{
-		if(gooBiomass() >= 20) addGhostButton(7,"Revert Legs",revertGooBodyPart,"legs","Revert Lower Body","Revert your lower body back to goo.\n\n<b>20 mLs Biomass</b>");
+		if(gooBiomass() >= 20)
+		{
+			if(statusEffectv1("Gel Body") >= 1) addGhostButton(7,"Revert Body",revertGooBodyPart,"mound","Revert Lower Body","Revert your lower body back to an amorphous goo mound.\n\n<b>20 mLs Biomass</b>");
+			else addGhostButton(7,"Revert Legs",revertGooBodyPart,"legs","Revert Lower Body","Revert your lower body back to goo.\n\n<b>20 mLs Biomass</b>");
+		}
 		else addDisabledGhostButton(7,"Revert Legs","Revert Lower Body","You don't have enough biomass for that.\n\n<b>20 mLs Biomass</b>");
 		nonGooPart++;
 	}
@@ -806,7 +822,7 @@ public function revertGooBodyPart(part:String = "all"):void
 	output2("With a few shifts of your biomass, you close your [pc.eyes] and concentrate, focusing on");
 	if(part == "all") output2(" your entire body");
 	else if(part == "skin") output2(" your [pc.skin]");
-	else if(part == "legs") output2(" your [pc.legOrlegs]");
+	else if(part == "legs" || part == "mound") output2(" your [pc.legOrlegs]");
 	else if(part == "arms") output2(" your [pc.arms]");
 	else if(part == "tail") output2(" [pc.eachTail]");
 	else output2(" a bag of dicks");
