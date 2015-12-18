@@ -722,15 +722,36 @@ public function appearance(target:Creature):void
 		}
 		//TAILS
 		if(target.tailType == GLOBAL.TYPE_EQUINE) output2(" A long " + target.hairColor + " horsetail hangs from your " + target.buttDescript() + ", smooth and shiny.");
-		else if(target.tailType == GLOBAL.TYPE_CANINE) output2(" A fuzzy " + target.furColor + " dogtail sprouts just above your " + target.buttDescript() + ", wagging to and fro whenever you are happy.");
+		else if(target.tailType == GLOBAL.TYPE_CANINE)
+		{
+			output2(" A");
+			if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" gooey");
+			else output2(" fuzzy");
+			output2(" " + target.furColor + " dogtail sprouts just above your " + target.buttDescript() + ", wagging to and fro whenever you are happy.");
+		}
 		else if(target.tailType == GLOBAL.TYPE_DEMONIC) output2(" A narrow tail ending in a spaded tip curls down from your " + target.buttDescript() + ", wrapping around your " + target.leg() + " sensually at every opportunity.");
 		else if(target.tailType == GLOBAL.TYPE_BOVINE) 
 		{
-			if(target.tailCount == 1) output2(" A long cow tail with a puffy tip swishes back and forth as if swatting at flies.");
-			else output2(" " + upperCase(num2Text(target.tailCount)) + " long cow tails with puffy tips swish back and forth as if swatting at flies.");
+			if(target.tailCount == 1)
+			{
+				output2(" A long cow tail with a");
+				if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" voluminous");
+				else output2(" puffy");
+				output2(" tip swishes back and forth as if swatting at flies.");
+			}
+			else
+			{
+				output2(" " + upperCase(num2Text(target.tailCount)) + " long cow tails with");
+				if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" voluminous");
+				else output2(" puffy");
+				output2(" tips swish back and forth as if swatting at flies.");
+			}
 		}
 		else if(target.tailType == GLOBAL.TYPE_DRIDER || target.tailType == GLOBAL.TYPE_ARACHNID) {
-			output2(" A large, spherical spider-abdomen has grown out from your backside, covered in shiny black chitin. Though it's heavy and bobs with every motion, it doesn't seem to slow you down.");
+			output2(" A large, spherical spider-abdomen has grown out from your backside, covered in shiny");
+			if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" hardened " + target.scaleColor + " goo");
+			else output2(" black chitin");
+			output2(". Though it's heavy and bobs with every motion, it doesn't seem to slow you down.");
 			/*
 			if(target.tailVenom > 50 && target.tailVenom < 80) output2(" Your bulging arachnid posterior feels fairly full of webbing.");
 			if(target.tailVenom >= 80 && target.tailVenom < 100) output2(" Your arachnid rear bulges and feels very full of webbing.");
@@ -738,7 +759,10 @@ public function appearance(target:Creature):void
 			*/
 		}
 		else if(target.tailType == GLOBAL.TYPE_BEE) {
-			output2(" A large, insectile abdomen dangles from just above your backside, bobbing with its own weight as you shift. It is covered in hard black chitin and tipped with a needle-like stinger.");
+			output2(" A large, insectile abdomen dangles from just above your backside, bobbing with its own weight as you shift. It is covered in hard");
+			if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2("ened " + target.scaleColor + " goo");
+			else output2(" black chitin");
+			output2(" and tipped with a needle-like stinger.");
 			/*
 			if(target.tailVenom > 50 && target.tailVenom < 80) output2(" A single drop of poison hangs from your exposed stinger.");
 			if(target.tailVenom >= 80 && target.tailVenom < 100) output2(" Poisonous bee venom coats your stinger completely.");
@@ -746,51 +770,116 @@ public function appearance(target:Creature):void
 			*/
 		}
 		else if(target.tailType == GLOBAL.TYPE_MYR) {
-			output2(" A large, insectile abdomen dangles from just above your backside, bobbing with its own weight as you shift. It is covered in hard " + target.scaleColor + " chitin that is smooth to the touch.");
+			output2(" A large, insectile abdomen dangles from just above your backside, bobbing with its own weight as you shift. It is covered in hard");
+			if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2("ened " + target.scaleColor + " goo");
+			else output2(" " + target.scaleColor + " chitin");
+			output2(" that is smooth to the touch.");
 		}
 		else if(target.tailType == GLOBAL.TYPE_SHARK || target.tailType == GLOBAL.TYPE_SIREN) {
 			output2(" A long shark-tail trails down from your backside, swaying to and fro while giving you a dangerous air.");
 		}
 		else if(target.tailType == GLOBAL.TYPE_FELINE) {
-			if(target.tailCount == 1) output2(" A soft " + target.furColor + " cat-tail sprouts just above your " + target.buttDescript() + ", curling and twisting with every step to maintain perfect balance.");
-			else output2(" " + upperCase(num2Text(target.tailCount)) + " soft, " + target.furColor + " cat-tails sprout just above your " + target.buttDescript() + ", curling and twisting with every step to maintain perfect balance.");
+			if(target.tailCount == 1)
+			{
+				output2(" A");
+				if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" slimy");
+				else output2(" soft");
+				output2(" " + target.furColor + " cat-tail sprouts just above your " + target.buttDescript() + ", curling and twisting with every step to maintain perfect balance.");
+			}
+			else
+			{
+				output2(" " + upperCase(num2Text(target.tailCount)));
+				if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" slimy");
+				else output2(" soft");
+				output2(", " + target.furColor + " cat-tails sprout just above your " + target.buttDescript() + ", curling and twisting with every step to maintain perfect balance.");
+			}
 		}
 		else if(target.tailType == GLOBAL.TYPE_LIZAN) {
 			output2(" A tapered tail hangs down from just above your " + target.buttDescript() + ". It sways back and forth, assisting you with keeping your balance.");
 		}
-		else if(target.tailType == GLOBAL.TYPE_LAPINE) output2(" A short, soft bunny tail sprouts just above your " + target.buttDescript() + ", twitching constantly whenever you don't think about it.");
-		else if(target.tailType == GLOBAL.TYPE_AVIAN) output2(" A tail of feathers fans out from just above your " + target.buttDescript() + ", twitching instinctively to help guide you if you were to take flight.");
+		else if(target.tailType == GLOBAL.TYPE_LAPINE) {
+			output2(" A short,");
+			if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" slimy");
+			else output2(" soft");
+			output2(" bunny tail sprouts just above your " + target.buttDescript() + ", twitching constantly whenever you don't think about it.");
+		}
+		else if(target.tailType == GLOBAL.TYPE_AVIAN) {
+			output2(" A tail of");
+			if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" gooey");
+			output2(" feathers fans out from just above your " + target.buttDescript() + ", twitching instinctively to help guide you if you were to take flight.");
+		}
 		else if(target.tailType == GLOBAL.TYPE_KANGAROO) {
 			output2(" A conical, ");
-			if(target.skinType == GLOBAL.SKIN_TYPE_GOO && !target.hasTailFlag(GLOBAL.FLAG_FURRED)) output2("gooey, " + target.skinTone);
+			if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2("gooey, " + target.skinTone);
 			else output2("furry, " + target.furColor);
 			output2(" tail extends from your " + target.buttDescript() + ", bouncing up and down as you move and helping to counterbalance you.");
 		}
 		else if(target.tailType == GLOBAL.TYPE_VULPINE) {
-			if(target.tailCount == 1) output2(" A swishing, colorful fox's brush extends from your " + target.buttDescript() + ", curling around your body - the soft fur feels lovely.");
-			else output2(" " + upperCase(num2Text(target.tailCount)) + " swishing, colorful fox's tails extend from your " + target.buttDescript() + ", curling around your body - the soft fur feels lovely.");
+			if(target.tailCount == 1)
+			{
+				if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" A swishing fox tail extends from your " + target.buttDescript() + ", curling around your body, all slick and shiny.");
+				else output2(" A swishing, colorful fox's brush extends from your " + target.buttDescript() + ", curling around your body - the soft fur feels lovely.");
+			}
+			else
+			{
+				if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" " + upperCase(num2Text(target.tailCount)) + " swishing fox tails extend from your " + target.buttDescript() + ", curling around your body, all slick and shiny.");
+				else output2(" " + upperCase(num2Text(target.tailCount)) + " swishing, colorful fox's tails extend from your " + target.buttDescript() + ", curling around your body - the soft fur feels lovely.");
+			}
 		}
-		else if(target.tailType == GLOBAL.TYPE_DRACONIC) output2(" A thin, scaly, prehensile reptilian tail, almost as long as you are tall, swings behind you like a living bullwhip. Its tip menaces with spikes of bone, meant to deliver painful blows.");		
+		else if(target.tailType == GLOBAL.TYPE_DRACONIC) {
+			output2(" A thin,");
+			if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" gooey");
+			else output2(" scaly");
+			output2(", prehensile reptilian tail, almost as long as you are tall, swings behind you like a living bullwhip. Its tip menaces with spikes of bone, meant to deliver painful blows.");		
+		}
 		else if(target.tailType == GLOBAL.TYPE_KUITAN) 
 		{
 			if(target.furColor == "black") output2(" A solid-black kui-tan tail waves behind you.");
 			else output2(" A black-and-" + target.furColor + "-ringed kui-tan tail waves behind you.");
 		}
-		else if(target.tailType == GLOBAL.TYPE_DEER) output2(" A short tuft of deer tail sprouts just above your " + target.buttDescript() + ", sometimes twitching at the slightest movements.");
+		else if(target.tailType == GLOBAL.TYPE_DEER) {
+			output2(" A short");
+			if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" nub");
+			else output2(" tuft");
+			output2(" of deer tail sprouts just above your " + target.buttDescript() + ", sometimes twitching at the slightest movements.");
+		}
 		else if(target.tailType == GLOBAL.TYPE_MOUSE) output2(" A naked, " + target.skinTone + " mouse tail pokes from your butt, dragging on the ground and twitching occasionally.");
 		else if(target.tailType == GLOBAL.TYPE_CUNTSNAKE) {
 			if(target.tailCount <= 1) output2(" A sinuous, almost snake-like tail waves behind you, covered in " + target.skinFurScales() + " like the rest of you except at the tip. There, it terminates in " + indefiniteArticle(target.tailVaginaDescript()) + " that always seems to crave fresh sperm.");
 			else output2(" " + upperCase(num2Text(target.tailCount)) + " sinuous, almost snake-like tails wave behind you, covered in " + target.skinFurScales() + " like the rest of you except at the tip. There, they terminate in " + plural(target.tailVaginaDescript()) + " that always seem to crave fresh sperm.");
 		}
-		else if(target.tailType == GLOBAL.TYPE_PANDA) output2(" A short, soft panda tail sprouts just above your " + target.buttDescript() + ". It just kind of sits there, not doing much beyond being a furry little accent.");
+		else if(target.tailType == GLOBAL.TYPE_PANDA) {
+			if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" A short, slimy panda tail sprouts just above your " + target.buttDescript() + ". It just kind of sits there, not doing much beyond being a gooey little accent.");
+			else output2(" A short, soft panda tail sprouts just above your " + target.buttDescript() + ". It just kind of sits there, not doing much beyond being a furry little accent.");
+		}
 		else if(target.tailType == GLOBAL.TYPE_RASKVEL) {
-			if(target.tailCount == 1) output2(" A scaled " + target.scaleColor + " tail sprouts just above your " + target.buttDescript() + ", dangling behind you. Softer, lighter scales cover its bottom.");
-			else output2(" " + upperCase(num2Text(target.tailCount)) + " scaled " + target.scaleColor + " tails sprout just above your " + target.buttDescript() + ", their undersides covered with softer, lighter scales.");
+			if(target.tailCount == 1)
+			{
+				if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" A gooey reptilian " + target.scaleColor + " tail sprouts just above your " + target.buttDescript() + ", dangling behind you.");
+				else output2(" A scaled " + target.scaleColor + " tail sprouts just above your " + target.buttDescript() + ", dangling behind you. Softer, lighter scales cover its bottom.");
+			}
+			else
+			{
+				if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" " + upperCase(num2Text(target.tailCount)) + " gooey reptilian " + target.scaleColor + " tails sprout just above your " + target.buttDescript() + ", all dangling behind you.");
+				else output2(" " + upperCase(num2Text(target.tailCount)) + " scaled " + target.scaleColor + " tails sprout just above your " + target.buttDescript() + ", their undersides covered with softer, lighter scales.");
+			}
 		}
 		else if(target.tailType == GLOBAL.TYPE_BADGER) 
 		{
-			if(target.tailCount == 1) output2(" A little fluffy " + target.furColor + " tuft dangles atop your" + target.buttDescript() + ". It mischievously flicks back and forth from time to time.");
-			else output2(" " + upperCase(num2Text(target.tailCount)) + " fluffy little " + target.furColor + " tufts dangle atop your" + target.buttDescript() + ". They mischievously flick back and forth from time to time.");
+			if(target.tailCount == 1)
+			{
+				output2(" A little");
+				if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" slimy " + target.furColor + " nub");
+				else output2(" fluffy " + target.furColor + " tuft");
+				output2(" dangles atop your" + target.buttDescript() + ". It mischievously flicks back and forth from time to time.");
+			}
+			else
+			{
+				output2(" " + upperCase(num2Text(target.tailCount)));
+				if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" slimy little " + target.furColor + " nubs");
+				else output2(" fluffy little " + target.furColor + " tufts");
+				output2(" dangle atop your" + target.buttDescript() + ". They mischievously flick back and forth from time to time.");
+			}
 		}
 		else if(target.tailType == GLOBAL.TYPE_VANAE) 
 		{
@@ -800,7 +889,12 @@ public function appearance(target:Creature):void
 		else if(target.tailType == GLOBAL.TYPE_OVIR)
 		{
 			if(target.tailCount == 1) output2(" A thick, reptilian tail dangles behind you, swaying as a living counterbalance.");
-			else output2(upperCase(num2Text(target.tailCount)) + " thick, reptilian tails dangle behind you, swaying like living counterbalance. It's difficult to keep the thick appendages from idly squirming their scales against one another.");
+			else
+			{
+				output2(upperCase(num2Text(target.tailCount)) + " thick, reptilian tails dangle behind you, swaying like living counterbalance. It's difficult to keep the thick appendages from idly squirming");
+				if(!target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" their scales");
+				output2(" against one another.");
+			}
 		}
 		else if(target.tailType == GLOBAL.TYPE_COCKVINE)
 		{
