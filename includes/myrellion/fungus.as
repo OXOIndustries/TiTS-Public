@@ -813,6 +813,8 @@ public function gardenforkRoboAI():void
 {
 	showName("FIGHT:\nROGUE BOT");
 	if(foes[0].energy() >= 100) {
+		//Prevent it 'storing' a counter for a turn before unloading it.
+		foes[0].removeStatusEffect("Melee Counter");
 		fireStormBotGo();
 		return;
 	}

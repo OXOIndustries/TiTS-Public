@@ -44,6 +44,7 @@ public function gooBiomassMax():Number
 	else if(flags["GALOMAX_DOSES"] == 2) return 750;
 	else if(flags["GALOMAX_DOSES"] == 3) return 1500;
 	else if(flags["GALOMAX_DOSES"] == 4) return 10000;
+	else if(flags["GALOMAX_DOSES"] == 5) return 900000;
 	return 0;
 }
 
@@ -492,8 +493,25 @@ public function galoMaxTFProc():void
 		pc.addArmFlag(GLOBAL.FLAG_GOOEY);
 		pc.createStatusEffect("Gel Body");
 	}
+	else if(flags["GALOMAX_DOSES"] == 5)
+	{
+		output("You unexpectedly feel a little faint, your [pc.legOrLegs] wobbling uncontrollably. Attempting to hold yourself together you place your hands on your thighs and command the rebellious biomass to support you, only to have your hands sink <i>inside</i> your simulated musculature. It feels... good. Without thinking, you plunge into your elbows, squeezing and kneading your own goopy insides.");
+		output("\n\nThe ground rushes up at you when the last bits of rigidity fade away, but instead of hitting cold, hard ground, you bounce on a cushion off your own making, feeling your [pc.butt] sink halfway into the mound of jiggling goo. <b>You don't have ");
+		if(pc.legCount == 1) output("a [pc.leg]");
+		else output("[pc.legs]");
+		output(" anymore!</b> Instead, a large blob of slime cradles your form. It's even more comfortable than the highest quality beanbag chair, but far wetter.");
+		output("\n\nStraightening back up is a challenge. Your hips keep sliding back and forth through your bottom half, making it almost impossible to find your center of balance, and when you forget to think about it, that selfsame bottom half thins and spreads, lowering you dangerously. There's no other choice but to take your time and adjust to your new form. With practice, you learn to stay upright. Maintaining the cohesion of your drippy base becomes almost second nature, allowing you to slide around just as fast as you could walk.");
+		output("\n\nAnd it feels fantastic. Just sticking a hand inside yourself has you quivering in bliss. Scooping a handful of yourself out doesn't even hurt. It just feels weird, like that part of you has gone numb. Pushing it back into your returns everything to normal, or as close to normal gets <b>when your only mode of transportation is rolling along on a mound of slime.</b>");
+		output("\n\nGaloMax won't be much use to you now. You're almost indistinguishable from Galotians at a glance.");
+
+		pc.legCount = 1;
+		pc.clearLegFlags();
+		pc.legType = GLOBAL.TYPE_GOOEY;
+		//Set v1 of Gel Body to 1. Better than piling on more wasted status effects.
+		pc.addStatusValue("Gel Body",1,1);
+	}
 	// PLACEHOLDER - Failsafe, Overlimit, What do?
-	// 9999 (Fill this in with your content if necessary!)
+	// (Fill this in with your content if necessary!)
 	else
 	{
 		output("Oh...");
@@ -719,7 +737,64 @@ public function gooChestCustomizer():void
 	if(pc.nippleLengthRatio >= 1) addGhostButton(11,"Shorten Nips",shortenGooNips,undefined,"Shorten Nipples","Shorten the tips of your [pc.nipplesNoun].\n\n<b>75 mLs Biomass Gain</b>");
 	else addDisabledGhostButton(11,"Shorten Nips","Shorten Nipples","You cannot make your [pc.nipplesNoun] and shorter.\n\n<b>75 mLs Biomass Gain</b>");
 	addGhostButton(4,"Nip Type",nippleTypeGooMenu,undefined,"Nip Type","Change what type of nipples you will have.");
+	if(pc.hasDickNipples()) 
+	{
+		if(gooBiomass() >= pc.totalNipples() * 25) addGhostButton(9,"DickNipType",dickNippleGooCustomizer,undefined,"Dick Nipple Type","Change the type of penis that your dick-nipples resemble.");
+		else addDisabledGhostButton(9,"DickNipType","Dick Nipple Type","You don't have enough biomass to change what type of dick-nipples you're sporting.\n\n<b>" + pc.totalNipples() * 25 + " mLs Biomass</b>");
+	}
+	else addDisabledGhostButton(9,"DickNipType","Dick Nipple Type","You don't have any dick-nipples to customize.\n\n<b>" + pc.totalNipples() * 25 + " mLs Biomass</b>");
 	addGhostButton(14,"Back",gooShiftMenu);
+}
+
+public function dickNippleGooCustomizer():void
+{
+	clearOutput2();
+	output2("What type of dick-nipples would you like to have?")
+	boobStuff(pc);
+	showBiomass();
+	clearGhostMenu();
+	var cTypes:Array = [GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_SNAKE, GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_VULPINE];
+	// Unlockables
+	if(flags["MET_SERA"] != undefined)
+		cTypes.push(GLOBAL.TYPE_DEMONIC);
+	if(CodexManager.entryViewed("Venus Pitchers") || CodexManager.entryViewed("Cockvines"))
+		cTypes.push(GLOBAL.TYPE_TENTACLE);
+	if(CodexManager.entryViewed("Zil"))
+		cTypes.push(GLOBAL.TYPE_BEE);
+	if(CodexManager.entryViewed("Fanfir") || CodexManager.entryViewed("The Dragon's Hoard"))
+		cTypes.push(GLOBAL.TYPE_DRACONIC);
+	if(CodexManager.entryViewed("Gabilani"))
+		cTypes.push(GLOBAL.TYPE_GABILANI);
+	
+	var newType:Number = 0;
+	var btnName:String = "";
+	for(var x:int = 0; x < cTypes.length; x++)
+	{
+		newType = cTypes[x];
+		if(newType == GLOBAL.TYPE_HUMAN) btnName = "Terran";
+		else if(newType == GLOBAL.TYPE_SNAKE) btnName = "Snake-like";
+		else if(newType == GLOBAL.TYPE_BEE) btnName = "Zil";
+		else btnName = GLOBAL.TYPE_NAMES[newType];
+		if(pc.dickNippleType != newType) addGhostButton(x,btnName,actuallyCustomizeGooDickNipples,newType);
+		else addDisabledGhostButton(x,btnName,btnName,"Your dick-nipples are already this type.");
+	}
+	
+	addGhostButton(14,"Back",gooChestCustomizer);
+	
+}
+
+
+public function actuallyCustomizeGooDickNipples(arg:int = 0):void
+{
+	clearOutput2();
+	//HumanWang
+	//Horsecock
+	//Dogdick
+	//Catdick
+	//EVERYTHING ELSE
+	pc.dickNippleType = arg;
+	clearGhostMenu();
+	addGhostButton(0,"Next",gooChestCustomizer);
 }
 
 public function nippleTypeChangeCost(target:int = 0):Number
@@ -2181,4 +2256,75 @@ public function fixAllVags(nVagsToFix:Number = 0):void
 	}
 	clearGhostMenu();
 	addGhostButton(0,"Next",vaginaGooRootMenu);
+}
+
+public function gooCrotchUpdate():void
+{
+	var truantCocks:Array = [];
+	//Loop through and find truant cocks
+	for(var i:int = 0; i < pc.cockTotal(); i++)
+	{
+		//Not gooey? ADD IT ZE LIST.
+		if(!pc.hasCockFlag(GLOBAL.FLAG_GOOEY,i)) truantCocks.push(i);
+	}
+	if(truantCocks.length > 0)
+	{
+		//All cocks somehow de-goo'ed.
+		if(truantCocks.length == pc.cocks.length)
+		{
+			//Singledongs
+			if(pc.cockTotal() == 1) eventBuffer += "\n\nThe " + pc.cockColor() + " skin of your " + pc.simpleCockNoun(0) + " is vanishing into a slowly creeping wave " + gooColor() + " goo, losing cohesion in exchange for infinitely morphic possibilities. <b>Your penis is now gelatinous.</b>";
+			//Multischlongs
+			else eventBuffer += "\n\nThe skin of your " + pc.cocksDescript() + " tingles like mad as waves of translucent goo slowly replaces their skin, transforming them from fleshy wieners into semi-solid, shape-shifting pricks. <b>Your penises are now gelatinous.</b>";
+		}
+		//Just partial - PC MUST have multicocks for this.
+		else
+		{
+			eventBuffer += "\n\nYour gooey, ever-slick crotch spreads down the length";
+			if(truantCocks.length > 1) eventBuffer += "s of your rogue, solid dicks, transforming them into drippy, inexplicably jellied boners.";
+			else 
+			{
+				eventBuffer += " of your rock, solidified dick, transforming it to be just as drippy and jelly-like as";
+				if(pc.cockTotal() == 2) eventBuffer += " its brother.";
+				else eventBuffer += " its brothers.";
+			}
+			eventBuffer += " <b>All of your penises are now gelatinous.</b>"
+		}
+		for(i = 0; i < pc.cockTotal(); i++)
+		{
+			//Not gooey? ADD IT ZE LIST.
+			if(!pc.hasCockFlag(GLOBAL.FLAG_GOOEY,i)) pc.cocks[i].addFlag(GLOBAL.FLAG_GOOEY);
+			pc.cocks[i].cockColor = gooColor();
+		}
+	}
+
+	//LETS FIX SOME CUNTS
+	var truantVaginas:Array = [];
+	for(i = 0; i < pc.totalVaginas(); i++)
+	{
+		//Not gooey? ADD IT ZE LIST.
+		if(!pc.vaginas[i].hasFlag(GLOBAL.FLAG_GOOEY)) 
+		{
+			truantVaginas.push(i);
+			pc.vaginas[i].addFlag(GLOBAL.FLAG_GOOEY);
+			pc.vaginas[i].cockColor = gooColor();
+		}
+	}
+	if(truantVaginas.length > 0)
+	{
+		if(truantVaginas.length == pc.totalVaginas())
+		{
+			eventBuffer += "\n\nYou're getting incredibly wet";
+			if(pc.legCount > 1) eventBuffer += " between the [pc.legs]";
+			else eventBuffer += "... down there";
+			eventBuffer += ". Moisture seems to be dripping everywhere, transforming your puss";
+			if(pc.totalVaginas() == 1) eventBuffer += "y into a slipperier, gooier version of itself. <b>Your entire vagina has become semi-solid, like the rest of your crotch.";
+			else eventBuffer += "ies into slipperier, gooier versions of themselves. <b>All of your vaginas are now semi-solid, goo-cunts, just like the rest of your crotch.";
+		}
+		//Not matched. Therefore min 2 vags
+		else
+		{
+			eventBuffer += "\n\nUnsurprisingly, the slime that surrounds your multiple mounds trickles in, remaking the more solid flesh into an even wetter, slicker parody of itself. <b>All of your vaginas are made of goo.</b>";
+		}
+	}
 }

@@ -469,7 +469,7 @@ package classes.Items.Transformatives
 			
 			//Moderate chance that horns grow
 			//Diminishing returns past twelve inches
-			else if (target.hasHorns() && target.hornLength < 60 && rand(3) == 0 && changes < tChanges)
+			else if (target.hasHorns() && target.hornLength < 30 && rand(3) == 0 && changes < tChanges)
 			{
 				inchGained = 3;
 				if(target.hornLength > 6) inchGained = 2;

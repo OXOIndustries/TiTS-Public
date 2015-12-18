@@ -1622,6 +1622,8 @@ public function processTime(arg:int):void {
 				//Birth that shit on her own time if she holds it too long
 				if(flags["SHADE_INSEMINATION_COUNTER"] > 167) flags["SHADE_INSEMINATION_COUNTER"] = undefined;
 			}
+			//Goo PC updates and fixers:
+			if(pc.hasStatusEffect("Goo Crotch")) gooCrotchUpdate();
 
 			//Days ticks here!
 			if(hours >= 24) {
