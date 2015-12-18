@@ -115,123 +115,13 @@ public function frogGirlsEncounter():void
 	}
 }
 
-/*
-Combat Text:
-The short and sleek alien before you dodges about with practiced ease. Her " + foes[0].skinTone + " skin shines with a coating of lust inducing toxins. A grin crosses her features as she gazes at you with unrestrained need. Despite the soft appearance of her body, you can see toned muscle coiled beneath her pliant flesh. She’s ready to fight if it means getting {hasCock: into your pants/you out of the way).
-*/
-
-//Combat Events:
-public function frogGirlAI():void
-{
-	showFrogGirl();
-	var combatChoices:Array = new Array();
-	//Lick
-	//used for basic attack if the pc has no shields. deals moderate lust damage
-	if(pc.shields() < 1) combatChoices.push(getLickedBitch);
-	//Kick
-	//basic attack
-	else combatChoices.push(frogGirlKickAttackkkkkuuuuu);
-	//Show
-	//basic lust attack, only used on males
-	if(pc.hasCock()) combatChoices.push(frogGirlBasicLustAttack);
-	//Tongue lash
-	//special attack: deals lust damage if no shields
-	combatChoices.push(tongueLashAttack);
-	combatChoices[rand(combatChoices.length)]();
-}
-
-//Kick
-//basic attack
-public function frogGirlKickAttackkkkkuuuuu():void
-{
-	output("The frog girl kicks at you with a muscled leg.");
-	if(combatMiss(foes[0],pc)) output(" The kick grazes your arm, but her slippery skin negates any damage it would’ve done.");
-	else
-	{
-		output(" You take the hit, grunting at the force of her attack");
-		if(pc.shields() > 0) output(", though your shield flares brightly");
-		output(".");
-		
-		var damage:TypeCollection = foes[0].meleeDamage();
-		damageRand(damage, 15);
-		applyDamage(damage, foes[0], pc);
-	}
-	processCombat();
-}
-	
-//Show
-//basic lust attack, only used on males
-public function frogGirlBasicLustAttack():void
-{
-	output("The amorous amphibian turns on her heel, leaning over and spreading her cheeks to give you a perfect view of her glistening cunt. <i>“Theres no need to fight, you can have this for free,”</i> she says teasingly.");
-	if(pc.willpower()/2 + rand(20) + 1 >= 18) output("\nYou manage to ignore the spectacle, much to the kerokoras’ disappointment.");
-	else 
-	{
-		output("\nYou flush at her actions, shaking your head to clear the thoughts it brings up.");
-	}
-	processCombat();
-}
-
 //Tongue lash
 //special attack: deals lust damage if no shields
-public function tongueLashAttack():void
-{
-	output("The lusty frog girl licks across her body with her long tongue, moaning as the oral muscle slips over her netherlips. Without warning she lashes it at you, whipping it like a flail.");
-	var damage:TypeCollection;
-	//miss: 
-	if(combatMiss(foes[0],pc)) output("\nThe tongue flies by you, smashing into a tree and eliciting a pained gasp from its owner");
-	else 
-	{
-		output("\nThe tip of her tongue slams into you, ");
-		if(pc.shields() > 0) 
-		{
-			output("and you are staggered by the force of the blow hitting your shield");
-			
-			damage = foes[0].meleeDamage();
-			damage.addFlag(DamageFlag.ONLY_SHIELD);
-			damageRand(damage, 15);
-			var damageResult:DamageResult = calculateDamage(damage, foes[0], pc);
-			
-			if (pc.shieldsRaw > 0) output(". It holds.");
-			else output(". Your shield is breached!");
-			
-			outputDamage(damageResult);
-		}
-		else if(pc.hasArmor() && pc.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
-		{
-			output("and you are slimed by her toxic saliva. Luckily your [pc.armor] is airtight enough to prevent any of the fluid from seeping into your [pc.skin], but you definitely feel the impact of the hit.");
-			damage = foes[0].meleeDamage();
-			damageRand(damage, 5 + rand(5));
-			var damageResult2:DamageResult = calculateDamage(damage, foes[0], pc);
-			outputDamage(damageResult2);
-		}
-		else
-		{
-			output("and you feel the toxin in her saliva work its way into your body.");
-			var dr2:DamageResult = applyDamage(new TypeCollection( { tease: 10 + rand(10) } ), foes[0], pc, "suppress");
-			outputDamage(dr2);
-		}
-	}
-	processCombat();
-}
+
 
 //Lick
 //used for basic attack if the pc has no shields. deals moderate lust damage
-public function getLickedBitch():void
-{
-	output("The agile lady skirts up to you, attempting to give you a lick from waist to neck.");
-	if(combatMiss(foes[0],pc)) output(" You leap backwards, escaping her attack before she can pull it off.");
-	else if(pc.hasArmor() && pc.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
-	{
-		output(" Her tongue caresses you, but your are left unaffected thanks to the impermeability of your [pc.armor].");
-	}
-	else
-	{
-		output(" Her tongue caresses you, and you feel the lust inducing venom seep into your body.");
-		applyDamage(new TypeCollection( { tease: 6 + rand(6) } ), foes[0], pc, "minimal");
-	}
-	processCombat();
-}
+
 
 public function victoryAgainstTheFrogs():void
 {

@@ -15,6 +15,11 @@
 	import classes.GLOBAL;
 	import classes.CockClass;
 	
+	import classes.GameData.CombatAttacks;
+	import classes.GameData.CombatManager;
+	import classes.Engine.Combat.DamageTypes.*;
+	import classes.Engine.Combat.*; 
+	import classes.Engine.Interfaces.output;
 	
 	/**
 	 * ...

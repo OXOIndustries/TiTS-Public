@@ -6,6 +6,12 @@
 	import classes.kGAMECLASS;
 	import classes.rand;
 	
+	import classes.GameData.CombatAttacks;
+	import classes.GameData.CombatManager;
+	import classes.Engine.Combat.DamageTypes.*;
+	import classes.Engine.Combat.*; 
+	import classes.Engine.Interfaces.output;
+	
 	public class FrogGirl extends Creature
 	{
 		
@@ -219,6 +225,106 @@
 			kGAMECLASS.foes.push(combatFrog);
 			kGAMECLASS.showFrogGirl();
 			kGAMECLASS.setLocation("FIGHT:\nKEROKORAS", "PLANET: MHEN'GA", "SYSTEM: ARA ARA");
+		}
+		
+		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
+		{
+			var target:Creature = selectTarget(hostileCreatures);
+			if (target == null) return;
+			
+			var attacks:Array = [];
+			
+			if(target.shields() < 1) combatChoices.push(getLickedBitch);
+			//Kick
+			//basic attack
+			else combatChoices.push(frogGirlKickAttackkkkkuuuuu);
+			//Show
+			//basic lust attack, only used on males
+			if (target.hasCock()) combatChoices.push(frogGirlBasicLustAttack);
+			//Tongue lash
+			//special attack: deals lust damage if no shields
+			combatChoices.push(tongueLashAttack);
+			combatChoices[rand(combatChoices.length)](target);
+		}
+		
+		private function getLickedBitch(target:Creature):void
+		{
+			output("The agile lady skirts up to you, attempting to give you a lick from waist to neck.");
+			if(combatMiss(target, target)) output(" You leap backwards, escaping her attack before she can pull it off.");
+			else if(target.hasArmor() && target.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+			{
+				output(" Her tongue caresses you, but your are left unaffected thanks to the impermeability of your [pc.armor].");
+			}
+			else
+			{
+				output(" Her tongue caresses you, and you feel the lust inducing venom seep into your body.");
+				applyDamage(new TypeCollection( { tease: 6 + rand(6) } ), this, target, "minimal");
+			}
+		}
+		
+		private function frogGirlKickAttackkkkkuuuuu(target:Creature):void
+		{
+			output("The frog girl kicks at you with a muscled leg.");
+			if(combatMiss(this, target)) output(" The kick grazes your arm, but her slippery skin negates any damage it would’ve done.");
+			else
+			{
+				output(" You take the hit, grunting at the force of her attack");
+				if(target.shields() > 0) output(", though your shield flares brightly");
+				output(".");
+				
+				var damage:TypeCollection = meleeDamage();
+				applyDamage(damageRand(damage, 15), this, target);
+			}
+		}
+		
+		private function frogGirlBasicLustAttack(target:Creature):void
+		{
+			output("The amorous amphibian turns on her heel, leaning over and spreading her cheeks to give you a perfect view of her glistening cunt. <i>“Theres no need to fight, you can have this for free,”</i> she says teasingly.");
+			if (target.willpower()/2 + rand(20) + 1 >= 18) output("\nYou manage to ignore the spectacle, much to the kerokoras’ disappointment.");
+			else 
+			{
+				output("\nYou flush at her actions, shaking your head to clear the thoughts it brings up.");
+			}
+		}
+		
+		private function tongueLashAttack(target:Creature):void
+		{
+			output("The lusty frog girl licks across her body with her long tongue, moaning as the oral muscle slips over her netherlips. Without warning she lashes it at you, whipping it like a flail.");
+			var damage:TypeCollection;
+			//miss: 
+			if (combatMiss(this, target)) output("\nThe tongue flies by you, smashing into a tree and eliciting a pained gasp from its owner");
+			else 
+			{
+				output("\nThe tip of her tongue slams into you, ");
+				if(target.shields() > 0) 
+				{
+					output("and you are staggered by the force of the blow hitting your shield");
+					
+					damage = meleeDamage();
+					damage.addFlag(DamageFlag.ONLY_SHIELD);
+					damageRand(damage, 15);
+					var damageResult:DamageResult = calculateDamage(damage, this, target);
+					
+					if (target.shieldsRaw > 0) output(". It holds.");
+					else output(". Your shield is breached!");
+					
+					outputDamage(damageResult);
+				}
+				else if (target.hasArmor() && target.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+				{
+					output("and you are slimed by her toxic saliva. Luckily your [pc.armor] is airtight enough to prevent any of the fluid from seeping into your [pc.skin], but you definitely feel the impact of the hit.");
+					damage = meleeDamage();
+					damageRand(damage, 5 + rand(5));
+					var damageResult2:DamageResult = calculateDamage(damage, this, target);
+					outputDamage(damageResult2);
+				}
+				else
+				{
+					output("and you feel the toxin in her saliva work its way into your body.");
+					var dr2:DamageResult = applyDamage(new TypeCollection( { tease: 10 + rand(10) } ), this, target, "suppress");
+					outputDamage(dr2);
+				}
+			}
 		}
 	}
 }
