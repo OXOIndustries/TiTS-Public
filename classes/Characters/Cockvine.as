@@ -9,6 +9,11 @@
 	import classes.GLOBAL;
 	import classes.kGAMECLASS;
 	import classes.rand;
+	import classes.GameData.CombatAttacks;
+	import classes.GameData.CombatManager;
+	import classes.Engine.Combat.DamageTypes.*;
+	import classes.Engine.Combat.*; 
+	import classes.Engine.Interfaces.output;
 	
 	public class Cockvine extends Creature
 	{
@@ -190,6 +195,187 @@
 
 			kGAMECLASS.foes.push(combatVine);
 			kGAMECLASS.userInterface.showBust("ADULTCOCKVINE");
+		}
+		
+		public function adultCockvineCombatDescriptionExtension(target:Creature):void
+		{
+			if (!target.hasStatusEffect("Cockvine Grip")) return;
+
+			switch (target.statusEffectv1("Cockvine Grip"))
+			{
+				case 0:
+					output("\nYou have fought yourself clear almost to the lip of the cockvine’s nest. The relative light of the cavern is tantalizingly close...\n")
+					break;
+
+				case 1:
+					output("\nThe cockvine has a firm grip on your [pc.legOrLegs], making escape impossible. You have the use of your arms, at least.\n");
+					break;
+
+				case 2:
+					output("\nThe cockvine has pulled you deep into the pit and wrapped itself tightly around your torso and [pc.chest], sliding its wet, ropy warmth across your [pc.skin] as it crawls inexorably up your body. The heavy smell of it is overwhelming, dazing – you feel your muscles relaxing despite your terror.\n");
+					break;
+
+				case 3:
+					output("\nThe cockvine has you bound securely, your arms pulled away from your hot plant - slathered body. The feeling of arousal, hopelessness and doziness is getting steadily stronger and it’s getting increasingly difficult to force yourself to struggle...\n");
+					break;
+
+				default:
+					throw new Error("Unmatched Cockvine Description Extension: " + target.statusEffectv1("Cockvine Grip"));
+					break;
+			}
+		}
+		
+		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
+		{
+			var target:Creature = selectTarget(hostileCreatures);
+			if (target == null) return;
+			
+			adultCockvineCombatDescriptionExtension(target);
+			
+			if (!target.hasStatusEffect("Cockvine Grip"))
+			{
+				target.createStatusEffect("Cockvine Grip", 1, 0, 0, 0, false, "Constrict", "You're in the grip of a Cockvine!", true, 0);
+			}
+	
+			// Struggling will set v2 to 1 - things read weirdly if you struggle -> cocvine constricts straight away
+			if (target.statusEffectv1("Cockvine Grip") < 3 && target.statusEffectv2("Cockvine Grip") == 0) adultCockvineConstrictAttack(target);
+			else
+			{
+				var attacks:Array = [];
+
+				attacks.push(adultCockvineWhips);
+				attacks.push(adultCockvineMouthFuxAttack);
+				if (pc.hasCombatDrone()) attacks.push(adultCockvineMowThisAttack);
+				
+				attacks[rand(attacks.length)]();
+			}
+	
+			// Resolve various state changes that can happen and apply/remove/change appropriate status effects
+			
+			// Reset the struggle-indicator
+			if (target.statusEffectv2("Cockvine Grip") == 1)
+			{
+				target.setStatusValue("Cockvine Grip", 2, 0);
+			}
+	
+			// Trigger various effects based on grip-level
+			if (target.statusEffectv1("Cockvine Grip") == 0)
+			{
+				if (target.hasStatusEffect("Evasion Reduction")) target.removeStatusEffect("Evasion Reduction");
+				if (target.hasStatusEffect("Grappled")) target.removeStatusEffect("Grappled");
+			}
+			else
+			{
+				if (target.statusEffectv1("Cockvine Grip") == 1)
+				{
+					if (!target.hasStatusEffect("Evasion Reduction")) target.createStatusEffect("Evasion Reduction", 10, 0, 0, 0, true, "", "", true, 0);
+					else target.setStatusValue("Evasion Reduction", 1, 10);
+				}
+
+				if (target.statusEffectv1("Cockvine Grip") >= 2)
+				{
+					if (!target.hasStatusEffect("Evasion Reduction")) target.createStatusEffect("Evasion Reduction", 20, 0, 0, 0, true, "", "", true, 0);
+					else target.setStatusValue("Evasion Reduction", 1, 20);
+
+					target.energyRaw -= 5;
+					target.lustRaw += 2 + rand(target.libido() / 15);
+				}
+
+				if (target.statusEffectv1("Cockvine Grip") == 3)
+				{
+					target.createStatusEffect("Grappled", 1000, 0, 0, 0, true, "", "", true, 0);
+				}
+			}
+		}
+		
+		private function adultCockvineMowThisAttack(target:Creature):void
+		{
+			//Activates if attacked by drone. Disables drone for 3-5 turns if successful
+			output("\nIncensed by your drone’s attack, one of the tentacles reacts by swinging at it hard.");
+
+			if (rand(4) == 0)
+			{
+				output(" Your trusty drone darts nimbly out of the way.");
+			}
+			else
+			{
+				output(" With a nasty sounding crunch the cockvine connects, sending the light robot flying out of the crevice.");
+				target.createStatusEffect("Combat Drone Disabled", rand(5) + 1, 0, 0, 0, true, "", "", true, 0);
+			}
+		}
+		
+		private function adultCockvineMouthFuxAttack(target:Creature):void
+		{
+			//Lust rise if success
+			output("\nOne of the tentacles reaches for your face, implacably stretching towards the wet orifice it can sense there.");
+
+			if (target.hasArmor() && target.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
+			{
+				output(" Luckily, your airtight [pc.armor] protects you from the oral invasion!");
+			}
+			else if (combatMiss(this, target))
+			{
+				output(" You grit your teeth and manage to bat it away.");
+			}
+			else
+			{
+				output("\n\nYou struggle the best you can, but you cannot stop it pushing its dense, bulbous head into your mouth, invading it with its humid, verdant smell. Your cries of disgust turn into a muffled gargle when it tenses up and ejaculates a thick load of its white semen down your throat. Finding extra reserves of energy in response to this foul development you rip your head away, but the taste of it – heavy, sweet citrus, inescapably sexual – stays with you.");
+				output("\n\nYou groan woozily as heat rises to your skin and your heart beats faster with each passing second, seeming to pulse in time with the movement of the vines, plant pheromones flowing into your bloodstream.");
+				target.loadInMouth(this);
+				target.lust(3 + rand(5));
+			}
+		}
+		
+		private function adultCockvineWhips(target:Creature):void
+		{
+			output("\nThe movement of your own body translates into the surrounding vines where it seems to gather, the tentacles bunching and swaying back and forth until frenetic energy seizes them up, and they are whipping their bulbous heads into you with ropy, numbing force.\n");
+
+			createPerk("Multiple Attacks", 2 + rand(2), 0, 0, 0, "");
+			CombatAttacks.MeleeAttack(this, target);
+			removePerk("Multiple Attacks");
+			
+			output("\n");
+		}
+		
+		private function adultCockvineConstrictAttack(target:Creature):void
+		{
+			output("The cockvine coils its grasp around you from every angle, trying to bind you closer in its warm, wet clinch.");
+
+			if (rand(Math.max(target.RQ(), target.PQ())) <= 65)
+			{
+				output("\n\nYou grapple with it as best you can but whenever you fight off one tentacle another seizes the opportunity to grasp you tightly. You cannot prevent the thoughtless power of it drawing you further into the darkness.");
+
+				target.addStatusValue("Cockvine Grip", 1, 1);
+				
+				var damage:TypeCollection = new TypeCollection( { kinetic: 15 * (0.5 + (target.statusEffectv1("Cockvine Grip") / 2)) }, DamageFlag.CRUSHING);
+				damageRand(damage, 15);
+				
+				switch (target.statusEffectv1("Cockvine Grip"))
+				{
+					case 1:
+						output("\n\nYou bark in frustration as once again it takes a firm grip of your [pc.legOrLegs] and drags you away from the light.");
+						break;
+
+					case 2:
+						output("\n\nVines slide around your belly and [pc.chest], cosseting you in tight, wet heat as you futilely try to peel them off you. They seem to be sweating an oily substance which makes them difficult to hold onto. The heavy, green air fogging your lungs makes it very difficult to stay focused and struggling against it; it feels like the energy and will to fight is being kneaded out of you, leaving behind a pleasant emptiness.");
+						break;
+
+					case 3:
+						output("\n\nFeebly you try to swat away the tentacles blindly reaching for your hands, but you’re swaddled in cockvine at this point and you cannot stop it seizing first one wrist then the other, effectively pinioning you. Your breath comes heavy, drawing in more and more of the relaxing pheromone the plant is exuding. You’ve got to fight free whilst you still have the will and energy to do so!");
+						break;
+
+					default:
+						throw new Error("Unmatched Cockvine Grip Value in ConstrictAttack: " + target.statusEffectv1("Cockvine Grip"));
+						break;
+
+				}
+				
+				applyDamage(damage, this, target);
+			}
+			else
+			{
+				output("\n\nYou struggle and fight the thing like a trapped wolverine, writhing this way and that to stop it getting a better grip on your limbs, beating back the tentacles so that you have a window of opportunity for your next move.");
+			}
 		}
 	}
 }

@@ -22,6 +22,8 @@ package classes.GameData
 	 * 		the chain so its more "handled"), but I've probably missed some in places.
 	 * Forcibly clean up GooClones during the GooPrime fight if they get defeated rather
 	 * 		than allowing them to persist to the end of the fight in a defeated state.
+	 * Kara/Shade combat descriptions (function karaDesc())
+	 * adultCockvineGrenadesInEnclosedSpaces()
 	 */
 	
 	/**

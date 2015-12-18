@@ -2,9 +2,6 @@
 {	
 	trace("AI CALL");
 	//Paralyze stops turns! AHHHH!
-	else if (aggressor is Shade) shadeAI();
-	else if (aggressor is Kara) karaAI();
-	else if (aggressor is Cockvine) adultCockvineAI();
 	else if (aggressor is NyreaAlpha) alphaNyreaAI();
 	else if (aggressor is NyreaBeta) betaNyreaAI();
 	else if (aggressor is FrogGirl) frogGirlAI();
