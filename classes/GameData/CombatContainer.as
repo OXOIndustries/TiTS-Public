@@ -131,7 +131,8 @@ package classes.GameData
 			
 			if (hasEnemyOfClass(QueenOfTheDeep))
 			{
-				kGAMECLASS.queenOfTheDeepCombatMenuAddition();
+				addButton(13, "Surrender", kGAMECLASS.queenOfTheDeepSurrenderCombat, undefined, "Surrender", "Maybe you can still make it out of this alive. Throw down your weapons and surrender yourself to the lake monster. Maybe she'll go easy on you...");
+				if (pc.hasStatusEffect("Watered Down")) addButton(12, "Climb", kGAMECLASS.queenOfTheDeepClimb, undefined, "Climb", "If you're quick and careful, you might be able to evade the monster woman's deadly claws and legs long enough to climb up on her back. You'll definitely have an easier time of it up there, though getting there's going to be risky...");
 				return;
 			}
 			

@@ -527,16 +527,6 @@ public function keepFlirtingWithLash():void
 	addButton(0,"Next",startCombat,"Dr. Lash");
 }
 
-//Combat Stuff
-//output("\n\n");
-
-public function docLashAI():void
-{
-	output("<i>“Goodbye,”</i> the doctor bids.\n");
-	//6 shots
-	rangedAttack(foes[0],pc);
-}
-
 //Bad end
 //Lust somehow
 public function loseToDoctorLash():void

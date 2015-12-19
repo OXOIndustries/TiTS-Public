@@ -2,8 +2,6 @@
 {	
 	trace("AI CALL");
 	//Paralyze stops turns! AHHHH!
-	else if (aggressor is DoctorLash) docLashAI();
-	else if (aggressor is QueenOfTheDeep) queenOfTheDeepAI();
 	else if (aggressor is MyrGoldFemaleDeserter) myrDeserterAI(true);
 	else if (aggressor is MyrRedFemaleDeserter) myrDeserterAI(false);
 	else if (aggressor is NyreanPraetorians) praetorianAI();

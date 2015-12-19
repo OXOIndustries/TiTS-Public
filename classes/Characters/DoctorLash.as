@@ -7,6 +7,12 @@
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.kGAMECLASS;
 	
+	import classes.GameData.CombatAttacks;
+	import classes.GameData.CombatManager;
+	import classes.Engine.Combat.DamageTypes.*;
+	import classes.Engine.Combat.*; 
+	import classes.Engine.Interfaces.output;
+	
 	public class DoctorLash extends Creature
 	{	
 		//constructor
@@ -182,6 +188,15 @@
 			combatDane.setDefaultSexualPreferences();
 			
 			kGAMECLASS.foes.push(combatDane);
+		}
+		
+		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
+		{
+			var target:Creature = selectTarget(hostileCreatures);
+			if (target == null) return;
+			
+			output("<i>“Goodbye,”</i> the doctor bids.\n");
+			CombatAttacks.RangedAttack(this, target);
 		}
 	}
 }
