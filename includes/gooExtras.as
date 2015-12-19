@@ -56,7 +56,7 @@ public function gooBiomass(arg:Number = 0):Number
 	{
 		flags["GOO_BIOMASS"] += arg;
 		if(flags["GOO_BIOMASS"] < 0) flags["GOO_BIOMASS"] = 0;
-		else if(flags["GALOMAX_DOSES"] > 0 && flags["GALOMAX_DOSES"] <= 4)
+		else if(flags["GALOMAX_DOSES"] > 0 && flags["GALOMAX_DOSES"] <= 5)
 		{
 			if(flags["GOO_BIOMASS"] > gooBiomassMax()) flags["GOO_BIOMASS"] = gooBiomassMax();
 		}
@@ -608,7 +608,7 @@ public function showBiomass():void
 {
 	if(flags["GOO_BIOMASS"] == undefined || flags["GOO_BIOMASS"] < 0) flags["GOO_BIOMASS"] = 0;
 	output2("\n\n\tBiomass Reserve: <b>" + flags["GOO_BIOMASS"] + "</b>");
-	if(flags["GALOMAX_DOSES"] >= 1 && flags["GALOMAX_DOSES"] <= 4) output2(" / " + gooBiomassMax());
+	if(flags["GALOMAX_DOSES"] >= 1 && flags["GALOMAX_DOSES"] <= 5) output2(" / " + gooBiomassMax());
 	output2(" mLs");
 	if(pc.hasStatusEffect("Goo Vent")) {
 		output2("\n\tVenting: ");
