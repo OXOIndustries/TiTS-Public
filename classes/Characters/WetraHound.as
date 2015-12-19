@@ -167,11 +167,11 @@
 			if (!target.hasStatusEffect("Tripped")) attacks.push(wetraHoundPunch);
 			attacks.push(wetraHoundOverrun);
 
-			var hit:Boolean = attacks[rand(attacks.length)]();
+			var hit:Boolean = attacks[rand(attacks.length)](target);
 
 			if (hit && target.hasStatusEffect("Bleeding"))
 			{
-				wetraHoundRend();
+				wetraHoundRend(target);
 			}
 		}
 		

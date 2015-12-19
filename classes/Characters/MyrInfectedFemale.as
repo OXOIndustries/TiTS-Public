@@ -16,6 +16,12 @@
 	
 	import classes.GLOBAL;
 	
+	import classes.GameData.CombatAttacks;
+	import classes.GameData.CombatManager;
+	import classes.Engine.Combat.DamageTypes.*;
+	import classes.Engine.Combat.*; 
+	import classes.Engine.Interfaces.output;
+	
 	/**
 	 * ...
 	 * @author Gedan
@@ -209,6 +215,55 @@
 			kGAMECLASS.showName("FIGHT: INFECTED\nMYR FEMALE");
 			kGAMECLASS.showBust("MYR_INFECTED_FEMALE");
 			kGAMECLASS.foes.push(infectedMyr);
+		}
+		
+		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
+		{
+			var target:Creature = selectTarget(hostileCreatures);
+			if (target == null) return;
+			
+			if(target.lust() >= 50 && !hasStatusEffect("Used Resolve") && energy() >= 50) goddamnitNewMechanicsThatIdidntPrepareFor();
+			else if(HP()/HPMax() <= .5 && energy() >= 33) infectedMyrmedionHeal(target);
+			else infectedMyrmedionPaunch(target);
+		}
+		
+		private function infectedMyrmedionPaunch(target:Creature):void
+		{
+			output("The infected myr throws a punch at you, closing her eyes and hoping it hits.");
+			//miss: 
+			if (combatMiss(this, target)) output("\nYou dodge past her blow, pushing her forward once you’re behind her.");
+			//hit: 
+			else
+			{
+				output("\nHer blow lands, not hitting too hard, but with enough force to stagger you for a moment. ");
+				applyDamage(damageRand(meleeDamage(), 15), this, target);
+			}
+			energy(3);
+		}
+		
+		private function infectedMyrmedionHeal(target):void
+		{
+			output("The ghostly apparition leans down to her host, wrapping her in a hug and giving her a big kiss. She practically melts at its touch, and you notice the smaller cuts on her body healing. You can see her tongue being sucked into the transparent mushroom’s mouth. Part of this was obviously directed at you, and you feel ");
+			if(target.hasCock()) output("[pc.eachCock] harden");
+			else output("[pc.eachVagina] wetten");
+			output(" at the sight. ");
+
+			applyDamage(damageRand(new TypeCollection( { tease: 20 } ), 15), this, target);
+
+			HP(Math.round(HPMax() * .33));
+			energy(-33);
+		}
+		
+		private function goddamnitNewMechanicsThatIdidntPrepareFor():void
+		{
+			//(gains 100% lust resist and 50% dodge chance for 2 turns. used if the pc is above 50 lust.)
+			output("The mushroom apparition disolves into its host. She takes a deep breath and looks at you, her eyes full of renewed determination.");
+			createStatusEffect("Used Resolve");
+			createStatusEffect("Resolve",3,0,0,0,false,"DefenseUp","Temporarily immune to lust damage and much more likely to evade other attacks.",true,0);
+			energy(-50);
+			baseHPResistances.tease.resistanceValue += 100;
+			baseHPResistances.drug.resistanceValue += 50;
+			baseHPResistances.pheromone.resistanceValue += 50;
 		}
 		
 	}
