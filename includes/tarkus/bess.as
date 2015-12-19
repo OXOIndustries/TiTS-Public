@@ -3177,7 +3177,7 @@ public function setBessCockType(newType:int):void
 			}
 			else
 			{
-				output(" to have " + indefiniteArticle(GLOBAL.TYPE_NAMES[newType].toLower()) + "-shaped cock");
+				output(" to have " + indefiniteArticle(GLOBAL.TYPE_NAMES[newType].toLowerCase()) + "-shaped cock");
 				//bess.cocks[0].cType = newType;
 				bess.shiftCock(0, newType); // Use this to get the proper flags.
 			}
