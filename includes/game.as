@@ -2912,7 +2912,8 @@ public function statisticsScreen(showID:String = "All"):void
 		{
 			output2("\n<b><u>Sexploration</u></b>");
 			if(sleepingPartner != "") output2("\n<b>* Sleeping With: </b>" + sleepingPartner);
-			if(totalVirginitiesTaken > 0) output2("\n<b>* Virginities Claimed: </b>" + totalVirginitiesTaken);
+			if (totalVirginitiesTaken > 0) output2("\n<b>* Virginities Claimed: </b>" + totalVirginitiesTaken);
+			if (silly) output2("\n<b>* Fucks Given: </b> Zero");
 		}
 		
 		//Births header!
