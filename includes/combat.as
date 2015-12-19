@@ -2,8 +2,6 @@
 {	
 	trace("AI CALL");
 	//Paralyze stops turns! AHHHH!
-	else if (aggressor is NyreanPraetorians) praetorianAI();
-	else if (aggressor is Goocubator) gooCubatorAI();
 	else if (aggressor is SX1GroupPirates) sx1PirateGroupAI();
 	else if (aggressor is SX1Shotguard) sx1ShotguardAI();
 	else if (aggressor is SX1Techguard) sx1TechguardAI();
