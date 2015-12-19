@@ -12922,7 +12922,7 @@ public function bessEventMap(bChance:Boolean = false):void
 	
 	output("<i>This is the current map of your interactions with [bess.name].</i>");
 	
-	output2("\n\n" + blockHeader("[bess.name] Event Map", false));
+	output("\n\n" + blockHeader("[bess.name] Event Map", false));
 	output("\n<b><u>Progress</u></b>");
 	output("\n<b>* Status:</b>");
 	if (flags["BESS_JUST_A_SEXBOT"] == 1) output(" [bess.name] is just a sex box, Completed");
@@ -12934,7 +12934,7 @@ public function bessEventMap(bChance:Boolean = false):void
 		else output(" <i>In progress...</i>");
 		if (flags["BESS_EVENT_28"] != undefined) output(", Completed");
 	}
-	output2("\n<b>* Affection: </b>" + flags["BESS_AFFECTION"] + "%");
+	output("\n<b>* Affection: </b>" + bessAffection() + "%");
 	
 	var nTimer:Number = 0;
 	var iChance:int = 4;
