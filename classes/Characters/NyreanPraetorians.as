@@ -18,6 +18,11 @@
 	
 	import classes.GLOBAL;
 	
+	import classes.GameData.CombatAttacks;
+	import classes.GameData.CombatManager;
+	import classes.Engine.Combat.DamageTypes.*;
+	import classes.Engine.Combat.*; 
+	import classes.Engine.Interfaces.output;
 	
 	/**
 	 * ...
@@ -213,6 +218,99 @@
 			kGAMECLASS.showBust("PRAETORIAN","PRAETORIAN","PRAETORIAN");
 			kGAMECLASS.flags["FOUGHT_PRAETORIANS"] = 1;
 			kGAMECLASS.foes.push(nyrea);
+		}
+		
+		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
+		{
+			var target:Creature = selectTarget(hostileCreatures);
+			if (target == null) return;
+			
+			if(!hasStatusEffect("Evasion Boost") && energy() >= 20 && (rand(4) == 0 || HP() < 100)) spearWallGoooo();
+			else if(energy() >= 5 && rand(6) == 0) nyreanSpearButt(target);
+			else if(energy() >= 5 && rand(4) == 0) poisonBlade(target);
+			else if(energy() >= 10 && rand(3) == 0) nyreaGroupBackstabby(target);
+			else spearFlurryNyreaShit(target);
+		}
+		
+		private function spearFlurryNyreaShit(target:Creature):void
+		{
+			output("Several of the huntresses leap forward from one side, jabbing their spears at your chest.\n");
+			
+			for (var i:int = 0; i < 5; i++)
+			{
+				CombatAttacks.SingleMeleeAttackImpl(this, target, true);
+				output("\n");
+			}
+			//{You manage to dodge, block, and parry every attack they send your way! // You block and dodge most of the attacks, but a few still manage to get through, hammering you down. // You try to defend yourself, but most if not all of the strikes get through, battering you brutally.}
+		}
+		
+		private function nyreaGroupBackstabby(target:Creature):void
+		{
+			output("Several of the huntresses attack you for the front, jabbing and stabbing and pushing you back. As they do, though, you ");
+			if(combatMiss(this, target))
+			{
+				output("just barely notice another nyrea attempting to stab you in the back. You quickly spin around and shove her back, preventing the attack.");
+			}
+			else
+			{
+				output("fail to notice one of their sisters behind you grabbing a dagger and leaping to attack you, sinking the dagger into ");
+				if(target.shields() <= 0) output("you");
+				else output("your shields");
+				output(".");
+				//Hacky way to force backstab proc!
+				target.createStatusEffect("Blinded");
+				applyDamage(meleeDamage(), this, target, "melee");
+				target.removeStatusEffect("Blinded");
+			}
+			energy(-10);
+		}
+		
+		private function poisonBlade(target:Creature):void
+		{
+			output("One of the nyrea takes a pouch of some pulsating pink fungus from her belt and smears it all over the tip of her long spear. Once she’s done, the huntress leaps forward and lunges at you with her spear. ");
+			if(combatMiss(this, target))
+			{
+				output("You manage to grab her spear before it can hit you, and you quickly snap the head off, tossing the poison aside.");
+			}
+			else
+			{
+				output("You try and dodge, but her sisters give you no room to maneuver; you end up getting sliced by it! Hissing with pain, you recoil and grab your bloodied [pc.skinNoun]... and quickly begin to feel the poison boiling through you, making your body burn with unbidden arousal.");
+				applyDamage(new TypeCollection( { drug: 15, kinetic: meleeDamage() } ), this, target, "minimal");
+				//4 rounds of lust damage!
+				if(!target.hasStatusEffect("Aphro")) target.createStatusEffect("Aphro",5,4,0,0,false,"Icon_DrugVial","An aphrodisiac is in your blood, exciting you over time! It should fade quickly... unless you get redosed.",true,0);
+				else 
+				{
+					output(" <b>The chemical in your blood is getting stronger!</b>");
+					target.addStatusValue("Aphro",1,3);
+					target.setStatusValue("Aphro",2,4);
+				}
+			}
+			energy(-5);
+		}
+		
+		private function nyreanSpearButt(target:Creature):void
+		{
+			output("One of the nyrea spins her spear around before swinging the blunt end at you like a club.");
+			if(combatMiss(this, target)) output("\nYou dodge out of the way, narrowly avoiding a crushing blow.");
+			else 
+			{
+				output("\nYou don’t manage to dodge in time, and get a thunderous wallop on the head for your trouble! You stagger back, clutching your aching head.");
+				if(physique()/2 + rand(20) + 1 > target.physique()/2 + 10 && !target.hasStatusEffect("Stunned"))
+				{
+					output(" <b>You are stunned!</b>");
+					target.createStatusEffect("Stunned",2,0,0,0,false,"Stun","You cannot act until you recover!",true,0);
+				}
+				applyDamage(meleeDamage(), this, target, "melee");
+			}
+			energy(-5);
+		}
+		
+		private function spearWallGoooo():void
+		{
+			output("The huntresses form a tighter ring, shoulder to shoulder, and brace their spears against you. It’s almost impossible to move now, and <b>hitting the huntresses is going to be damn hard.</b>");
+			//+50% dodge vs ERRYTHING.
+			createStatusEffect("Evasion Boost",50,0,0,0,false,"Icon_DefUp","The nyrea have created a wall of spears, granting them a 50% evade chance!",true,4);
+			energy(-20);
 		}
 		
 	}
