@@ -1853,7 +1853,7 @@ public function honeyPotBump(cumShot:Boolean = false):void
 
 public function racialPerkUpdateCheck():void
 {
-	if(pc.hasPerk("'Nuki Nuts"))
+	if(pc.hasPerk("'Nuki Nuts") && pc.perkv2("'Nuki Nuts") != 1)
 	{
 		if(pc.nukiScore() < 3)
 		{
@@ -1886,7 +1886,9 @@ public function racialPerkUpdateCheck():void
 	{
 		if(!pc.hasVagina())
 		{
-			eventBuffer += "\n\nNo longer possessing a vagina, your body rapidly changes and you lose your fertility goddess-like build.";
+			eventBuffer += "\n\nNo longer possessing a vagina, your body tingles";
+			if((pc.perkv1("Fecund Figure") + pc.perkv2("Fecund Figure") + pc.perkv3("Fecund Figure")) > 0) eventBuffer += ", rapidly changing as you lose your fertility goddess-like build";
+			eventBuffer += ".";
 			eventBuffer += "\n\n(<b>Perk Lost: Fecund Figure</b>)";
 			pc.removePerk("Fecund Figure");
 		}
@@ -5546,7 +5548,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Streets of Gildenmere
-			if(flags["MET_ORRYX"] != undefined || 9999 == 0)
+			if(flags["MET_ORRYX"] != undefined)
 			{
 				output2("\n<b><u>Gildenmere</u></b>");
 				// Orryx, step right up ladies and gents!
@@ -5657,7 +5659,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Kressia, where all the gangstas chill
-			if(flags["LIEVE_INVITE"] != undefined || flags["MET_LIEVE"] != undefined || 9999 == 0)
+			if(flags["LIEVE_INVITE"] != undefined || flags["MET_LIEVE"] != undefined)
 			{
 				output2("\n<b><u>Kressia</u></b>");
 				// Lieve
@@ -6204,7 +6206,7 @@ public function displayEncounterLog(showID:String = "All"):void
 		var miscCount:int = 0;
 		
 		// Resources, rare elements, etc.
-		if(flags["OXONIUM_FOUND"] != undefined || 9999 == 0)
+		if(flags["OXONIUM_FOUND"] != undefined)
 		{
 			output2("\n<b><u>Resources</u></b>");
 			// Oxonium
@@ -6212,7 +6214,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			miscCount++;
 		}
 		// Super rare and weird TF items/sex toys - regular rare items/armor/weapons can be omitted
-		if(flags["SYNTHSHEATH_ACQUIRED"] != undefined || flags["SYNTHSHEATH_TWO_FOUND"] != undefined || flags["LOOTED_COCKBOX"] != undefined || 9999 == 0)
+		if(flags["SYNTHSHEATH_ACQUIRED"] != undefined || flags["SYNTHSHEATH_TWO_FOUND"] != undefined || flags["LOOTED_COCKBOX"] != undefined || flags["ZODEE_GALOQUEST"] != undefined)
 		{
 			output2("\n<b><u>Suspicious Items</u></b>");
 			// Big like Cock-Box!
@@ -6225,6 +6227,12 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["DONG_DESIGNER_MALFUNCTIONED"] != undefined) output2(", Has malfunctioned");
 				if(flags["DONG_DESIGNER_BACKWASHED"] != undefined) output2(", Has backwashed");
 				if(flags["DONG_DESIGNER_FLOODED"] != undefined) output2(", Has flooded");
+			}
+			// GALO SENGAN
+			if(flags["ZODEE_GALOQUEST"] != undefined)
+			{
+				output2("\n<b>* Xenogen Biotech, GaloMax Pill:</b> Acquired from Zo’dee");
+				if(flags["GALOMAX_DOSES"] != undefined) output2(", Used " + flags["GALOMAX_DOSES"] + " times");
 			}
 			// Horse wieners
 			if(flags["SYNTHSHEATH_ACQUIRED"] != undefined || flags["SYNTHSHEATH_TWO_FOUND"] != undefined)
@@ -6239,7 +6247,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			miscCount++;
 		}
 		// Illegal items... Penny's gonna getcha!
-		if(CodexManager.entryViewed("Dumbfuck") || CodexManager.entryViewed("Gush") || CodexManager.entryViewed("The Treatment") || flags["PENNY_THROBB_PURCHASE_UNLOCKED"] != undefined || flags["PENNY_THROBB_USES"] != undefined || flags["TIMES_THROBB_USED"] != undefined || 9999 == 0)
+		if(CodexManager.entryViewed("Dumbfuck") || CodexManager.entryViewed("Gush") || CodexManager.entryViewed("The Treatment") || flags["PENNY_THROBB_PURCHASE_UNLOCKED"] != undefined || flags["PENNY_THROBB_USES"] != undefined || flags["TIMES_THROBB_USED"] != undefined)
 		{
 			output2("\n<b><u>Illegal Items</u></b>");
 			// Dumbfuck
@@ -6283,7 +6291,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			miscCount++;
 		}
 		// Sexploration: The Sex Toys
-		if(flags["NIVAS_BIONAHOLE_USES"] != undefined || flags["SYRI_BIONAHOLE_USES"] != undefined || flags["TAMANI_HOLED"] != undefined || flags["GRAVCUFFS_USES"] != undefined || flags["HOVERHOLE_USES"] != undefined || 9999 == 0)
+		if(flags["NIVAS_BIONAHOLE_USES"] != undefined || flags["SYRI_BIONAHOLE_USES"] != undefined || flags["TAMANI_HOLED"] != undefined || flags["GRAVCUFFS_USES"] != undefined || flags["HOVERHOLE_USES"] != undefined)
 		{
 			output2("\n<b><u>Sex Toys</u></b>");
 			// BionaHoles
