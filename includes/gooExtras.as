@@ -216,6 +216,8 @@ public function galoMaxTFProc():void
 		output("\n\nNo other changes seem forthcoming. You’ll need another GaloMax to get any gooeyer.");
 		//Uncool hair colors are changed to green, blue, or some other standard goo color. Maybe consult codex to see what choices we have?
 		pc.hairColor = colorSelect;
+		if(pc.hairType == GLOBAL.HAIR_TYPE_TENTACLED) pc.hairStyle = "tentacle";
+		else pc.hairStyle = "null";
 		pc.hairType = GLOBAL.HAIR_TYPE_GOO;
 	}
 	//Dose 2
@@ -540,7 +542,7 @@ public function revertGooBody(part:String = "all", consumeBiomass:Boolean = fals
 			// Strip skin/fur/scale flags for gel legs
 			for (i = 0; i < pc.legFlags.length; i++)
 			{
-				if (!InCollection(pc.legFlags[i], GLOBAL.FLAG_FURRED, GLOBAL.FLAG_SCALED, GLOBAL.FLAG_CHITINOUS, GLOBAL.FLAG_FEATHERED))
+				if (!InCollection(pc.legFlags[i], GLOBAL.FLAG_FURRED, GLOBAL.FLAG_FLUFFY, GLOBAL.FLAG_SCALED, GLOBAL.FLAG_CHITINOUS, GLOBAL.FLAG_FEATHERED))
 					legProperties.push(pc.legFlags[i]);
 			}
 			pc.clearLegFlags();
@@ -557,7 +559,7 @@ public function revertGooBody(part:String = "all", consumeBiomass:Boolean = fals
 		{
 			for (i = 0; i < pc.armFlags.length; i++)
 			{
-				if (!InCollection(pc.armFlags[i], GLOBAL.FLAG_FURRED, GLOBAL.FLAG_SCALED, GLOBAL.FLAG_CHITINOUS, GLOBAL.FLAG_FEATHERED))
+				if (!InCollection(pc.armFlags[i], GLOBAL.FLAG_FURRED, GLOBAL.FLAG_FLUFFY, GLOBAL.FLAG_SCALED, GLOBAL.FLAG_CHITINOUS, GLOBAL.FLAG_FEATHERED))
 					armProperties.push(pc.armFlags[i]);
 			}
 			pc.clearArmFlags();
