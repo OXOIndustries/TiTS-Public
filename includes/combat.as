@@ -1579,7 +1579,7 @@ public function rangedAttack(attacker:Creature, target:Creature, specials:Array 
 		{
 			applyDamage(damage, attacker, target, "goovolver");
 		}
-		if ((attacker.rangedWeapon is SlutRay) || (attacker.rangedWeapon is SlutRayAdvanced))
+		else if ((attacker.rangedWeapon is SlutRay) || (attacker.rangedWeapon is SlutRayAdvanced))
 		{
 			applyDamage(damage, attacker, target, "slut ray");
 		}
