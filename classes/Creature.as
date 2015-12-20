@@ -4201,7 +4201,7 @@ package classes {
 			{
 				if (!hasLegFlag(GLOBAL.FLAG_CHITINOUS)) return "null";
 				if (hasLegFlag(GLOBAL.FLAG_GOOEY)) return scaleColor;
-				if (InCollection(legType, GLOBAL.TYPE_MYR)) return scaleColor;
+				if (InCollection(legType, GLOBAL.TYPE_MYR, GLOBAL.TYPE_GOOEY)) return scaleColor;
 				return RandomInCollection(colors);
 			}
 			if (part == "tail" || hasTailFlag(GLOBAL.FLAG_CHITINOUS))
@@ -7831,6 +7831,8 @@ package classes {
 			if (gooScore() >= 8) race = "galotian";
 			// MLP-morphs
 			if (legType == GLOBAL.TYPE_MLP) race = mlpRace();
+			// Amalgamations
+			if (race == "human" && humanScore() < 4) race = "alien hybrid";
 			
 			return race;
 		}
@@ -7885,6 +7887,20 @@ package classes {
 			if (race().indexOf("half-") != -1) return true;
 			if (race().indexOf("half ") != -1) return true;
 			return false;
+		}
+		public function humanScore(): int {
+			var counter: int = 0;
+			if (skinType == GLOBAL.SKIN_TYPE_SKIN) counter++;
+			if (armType == GLOBAL.TYPE_HUMAN && !hasArmFlag(GLOBAL.FLAG_GOOEY)) counter++;
+			if (legType == GLOBAL.TYPE_HUMAN && legCount == 2 && hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) counter++;
+			if (faceType == GLOBAL.TYPE_HUMAN) counter++;
+			if (earType == GLOBAL.TYPE_HUMAN) counter++;
+			if (eyeType == GLOBAL.TYPE_HUMAN) counter++;
+			if (hasHair() && hairType != GLOBAL.HAIR_TYPE_REGULAR) counter--;
+			if (hasTail()) counter--;
+			if (wingType != 0) counter--;
+			if (isGoo() || isTaur() || isNaga() || isDrider()) counter -= 2;
+			return counter;
 		}
 		public function ausarScore(): int {
 			var counter: int = 0;
