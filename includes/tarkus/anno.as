@@ -2511,7 +2511,7 @@ public function deck13ShieldControlFunc():Boolean
 		else addDisabledButton(0,"Shields","Shields","You've already enabled the shields.");
 		addButton(1, "Breach", deck13Breach);
 
-		if (flags["DECK13_SAMPLES_TAKEN"] == undefined || flags["DECK13_SAMPLES_TAKEN"] <= 3) addButton(2, "Goo Sample", deck13GooSample);
+		if (flags["DECK13_SAMPLES_TAKEN"] == undefined || flags["DECK13_SAMPLES_TAKEN"] < 3) addButton(2, "Goo Sample", deck13GooSample);
 		else addDisabledButton(2,"Goo Sample","Take Goo Sample","Looks like you’ve cleaned this place up of the excess goo.");
 		
 		if (flags["ANNO_NOVA_UPDATE"] == 1 && flags["ANNO_MISSION_OFFER"] == 3) addButton(5, "Make Goo", deck13MakeGoo);
