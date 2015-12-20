@@ -503,6 +503,12 @@ public function revertGooBody(part:String = "all", consumeBiomass:Boolean = fals
 	var gooTone:String = gooColor();
 	if(part == "skin" || part == "all")
 	{
+		if(pc.hairType != GLOBAL.HAIR_TYPE_GOO)
+		{
+			if(pc.hairType == GLOBAL.HAIR_TYPE_TENTACLED) pc.hairStyle = "tentacle";
+			else pc.hairStyle = "null";
+			pc.hairType = GLOBAL.HAIR_TYPE_GOO;
+		}
 		pc.skinTone = gooTone;
 		pc.furColor = gooTone;
 		pc.scaleColor = gooTone;
@@ -819,13 +825,13 @@ public function gooBodyCustomizer():void
 	
 	// Bodypart fixans: (Primarily for things that got force changes--like Dr.Badger and Holiday events)
 	var nonGooPart:Number = 0;
-	if(pc.skinType != GLOBAL.SKIN_TYPE_GOO)
+	if(pc.skinType != GLOBAL.SKIN_TYPE_GOO || pc.hairType != GLOBAL.HAIR_TYPE_GOO)
 	{
-		if(gooBiomass() >= 20) addGhostButton(5,"Revert Skin",revertGooBodyPart,"skin","Revert Skin","Revert your skin back to goo skin.\n\n<b>20 mLs Biomass</b>");
+		if(gooBiomass() >= 20) addGhostButton(5,"Revert Skin",revertGooBodyPart,"skin","Revert Skin and Hair","Revert your skin and hair back to goo.\n\n<b>20 mLs Biomass</b>");
 		else addDisabledGhostButton(5,"Revert Skin","Revert Skin","You don't have enough biomass for that.\n\n<b>20 mLs Biomass</b>");
 		nonGooPart++;
 	}
-	else addDisabledGhostButton(5,"Revert Skin","Revert Skin","Your skin is already made of goo!");
+	else addDisabledGhostButton(5,"Revert Skin","Revert Skin","Your skin and hair are already made of goo!");
 	if(pc.hasArmFlag(GLOBAL.FLAG_FURRED) || pc.hasArmFlag(GLOBAL.FLAG_SCALED) || pc.hasArmFlag(GLOBAL.FLAG_CHITINOUS) || pc.hasArmFlag(GLOBAL.FLAG_FEATHERED))
 	{
 		if(gooBiomass() >= 20) addGhostButton(6,"Revert Arms",revertGooBodyPart,"arms","Revert Arms","Revert your arms back to goo.\n\n<b>20 mLs Biomass</b>");
@@ -873,12 +879,18 @@ public function revertGooBodyPart(part:String = "all"):void
 	clearOutput2();
 	output2("With a few shifts of your biomass, you close your [pc.eyes] and concentrate, focusing on");
 	if(part == "all") output2(" your entire body");
-	else if(part == "skin") output2(" your [pc.skin]");
+	else if(part == "skin")
+	{
+		output2(" your");
+		if(pc.skinType != GLOBAL.SKIN_TYPE_GOO) output2(" [pc.skin]");
+		if(pc.skinType != GLOBAL.SKIN_TYPE_GOO && pc.hairType != GLOBAL.HAIR_TYPE_GOO) output2(" and");
+		if(pc.hairType != GLOBAL.HAIR_TYPE_GOO) output2(" [pc.hair]");
+	}
 	else if(part == "legs" || part == "mound") output2(" your [pc.legOrlegs]");
 	else if(part == "arms") output2(" your [pc.arms]");
 	else if(part == "tail") output2(" [pc.eachTail]");
 	else output2(" a bag of dicks");
-	output2(" and giving yourself a nice coating of slimy goo. After a moment, any anomalies that existed is no more. <b>You are feeling more gooey now!</b>");
+	output2(" and giving yourself a nice coating of slimy goo. After a moment, any anomaly that existed is no more. <b>You are feeling more gooey now!</b>");
 	revertGooBody(part, true);
 	clearGhostMenu();
 	addGhostButton(0,"Next",gooBodyCustomizer);
