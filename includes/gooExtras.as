@@ -730,9 +730,9 @@ public function newGooStyle():void
 public function gooStyle(arg:String):void
 {
 	clearOutput2();
-	output2("You use your Codex’s Holocam to check your appearance as your hair miraculously assumes the chosen shape. There’s a certain thrill in being able to alter your looks so effortlessly on your own, without something as barbaric as a pair of clippers of styling gel. You’re your own styling gel!");
+	output2("You use your Codex’s Holocam to check your appearance as your hair miraculously assumes the chosen shape. There’s a certain thrill in being able to alter your looks so effortlessly on your own, without something as barbaric as a pair of clippers or styling gel. You’re your own styling gel!");
 	pc.hairStyle = arg;
-	output2("\n\n<b>You have a new hairstyle: " + pc.hairStyle + "</b>");
+	output2("\n\n<b>You now have a new hairstyle: " + pc.hairStyle + "!</b>");
 	clearGhostMenu();
 	addGhostButton(0,"Next",gooHairAdjustmenu)
 }
