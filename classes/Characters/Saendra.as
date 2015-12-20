@@ -194,6 +194,153 @@ package classes.Characters
 			{
 				fallOfThePhoenixAI(alliedCreatures, hostileCreatures);
 			}
+			else if (CombatManager.hasEnemyOfClass(SX1GroupPirates))
+			{
+				expackAI(alliedCreatures, hostileCreatures);
+			}
+		}
+		
+		private function expackAI(alliedCreatures:Array, hostileCreatures:Array):void
+		{
+			if (hasStatusEffect("Blinded") || hasStatusEffect("Stunned")) return; // Shouldn't be required, adding it for debug
+			
+			var pc:Creature;
+			
+			for (var i:int = 0; i < alliedCreatures.length; i++)
+			{
+				if (alliedCreatures[i] is PlayerCharacter) pc = alliedCreatures[i] as Creature;
+			}
+			
+			var target:Creature = selectTarget(hostileCreatures);
+			if (target == null) return; // Early exits like this let us skip AI output
+			// Consider: Player always takes first turn, player defeats last enemy
+			// Remainder of combat round executes (ie helper AI runs)
+			
+			var sHackAvail:Boolean = !hasStatusEffect("Shield Hack Cooldown");
+			var sBoostAvail:Boolean = !hasStatusEffect("Shield Boost Cooldown");
+			var sDisarmAvail:Boolean = !hasStatusEffect("Disarm Cooldown") && !target.hasStatusEffect("Disarmed");
+			
+			var attacks:Array = [];
+			attacks.push( { v: x1HammerPistol, w: 40 } );
+			attacks.push( { v: x1LowBlow, w:20 } );
+			
+			if (target.shields() > 0 && sHackAvail) attacks.push( { v: x1ShieldHack, w: 25 } );
+			if (((shields() < 0.5 * shieldsMax()) || (pc.shields() < 0.5 * pc.shieldsMax())) && sBoostAvail) attacks.push( { v: x1ShieldBoost, w: 25 } );
+			if (sDisarmAvail) attacks.push( { v: x1DisarmingShot, w: 15 } );
+			
+			var selection:Function = weightedRand(attacks);
+			if (selection == x1ShieldBoost) selection(alliedCreatures);
+			else if (selection == x1ShieldHack) selection(target, hostileCreatures);
+			else selection(target);
+		}
+		
+		private function x1DisarmingShot(target:Creature):void
+		{
+			//Disarming Shot
+			output("Saendra takes careful aim with her Hammer pistol, aiming for ");
+			if (CombatManager.multipleEnemies()) output(" one of ");
+			output(target.a + target.short);
+			output("’s weapon. She squeezes off a shot");
+
+			if (rand(3) == 0)
+			{
+				output(" and the target's weapon goes flying to the ground in a shower of sparks! Damn, she's a deadshot!");
+				target.createStatusEffect("Disarmed",4,0,0,0,false,"Blocked","Cannot use normal melee or ranged attacks!",true,0);
+
+				applyDamage(new TypeCollection({kinetic: 7}), this, target, "minimal");
+			}
+			else
+			{
+				output(", but just barely misses.");
+			}
+
+			target.createStatusEffect("Disarm Cooldown", 4, 0, 0, 0, false);
+		}
+		
+		private function x1ShieldBooster(alliedCreatures:Array):void
+		{
+			// target will be the one with the worst current shield state
+			var target:Creature = null;
+			
+			for (var i:int = 0; i < alliedCreatures.length; i++)
+			{
+				if (target == null) target = alliedCreatures[i] as Creature;
+				else
+				{
+					var poss:Creature = alliedCreatures[i] as Creature;
+					
+					// If below the critical point
+					if (poss.shields() < 0.5 * poss.shieldsMax())
+					{
+						// If this possibles shield perc is worse than the currents, switch
+						if (poss.shields() / poss.shieldsMax() < target.shields() / target.shieldsMax())
+						{
+							target = poss;
+						}
+					}
+				}
+			}
+			
+			// Shield Booster
+			output("Saen waves her mechanical arm " + (target is PlayerCharacter ? "at you" : "over herself") + " and the metallic probe shoots out, jacking into " + (target is PlayerCharacter ? "your" : "her") + " shield generator. " + (target is PlayerCharacter ? "You breath" : "She breathes") + " a sigh of relief as " + (target is PlayerCharacter ? "your" : "her") + " shields are restored!");
+
+			target.shields(target.shieldsMax() * 0.25);
+			target.createStatusEffect("Shield Boost Cooldown", 5, 0, 0, 0, false);
+		}
+		
+		private function x1SaenShieldHack(target:Creature, hostileCreatures:Array):void
+		{
+			var damage:DamageResult = applyDamage(new TypeCollection({ electric: 15 }, DamageFlag.ONLY_SHIELD), this, target, "suppress");
+			// Valeria Shield Hack
+			output("Saendra taps on her wrist, yanking Valeria out of her digital hidey-hole and aiming the fluttery holo-avatar at");
+			if (CombatManager.multipleEnemies()) output(" one of ");
+			output(target.a + target.short + ". A concussive wave blasts from her target's shield belt as it's overloaded,");
+			if (CombatManager.multipleEnemies()) output(" a chain of energy shooting forth and connecting to his compatriots");
+			if (target.shields() <= 0) output(" completely");
+			else output(" nearly");
+			output(" burning out!");
+			outputDamage(damage);
+
+			createStatusEffect("Shield Hack Cooldown", 5, 0, 0, 0, false);
+			
+			for (var i:int = 0; i < hostileCreatures.length; i++)
+			{
+				var cTarget:Creature = hostileCreatures[i] as Creature;
+				if (cTarget != target)
+				{
+					applyDamage(new TypeCollection( { electric: 5 }, DamageFlag.ONLY_SHIELD), this, cTarget, "suppress");
+				}
+			}
+		}
+		
+		private function x1LowBlow(target:Creature):void
+		{
+			// Low Blow
+			if (CombatManager.multipleEnemies()) output("One of " + target.a);
+			else output(target.capitalA);
+			output(target.short + " gets a little too close to Saendra, and she responds by giving " + target.mf("him", "her") + " a swift kick in the groin!");
+			output(" " + target.mf("He", "She") + " takes doubles over in pain!");
+			applyDamage(new TypeCollection({ kinetic: 10 }), this, target, "minimal");
+		}
+		
+		private function x1HammerPistol(target:Creature):void
+		{
+			output("Saendra levels her Hammer pistol at ");
+			if (CombatManager.multipleEnemies()) output("one of ");
+			output(target.a + target.short + " and squeezes off a shot.");
+
+			var chance:Number = 3;
+			if (hasStatusEffect("Blinded")) chance = 6;
+
+			if (rand(chance) == 0)
+			{
+				output(" The shot goes wide!");
+			}
+			else
+			{
+				output(" The shot connects!");
+				applyDamage(new TypeCollection({ kinetic: 10 }), this, target, "minimal");
+			}
 		}
 		
 		private function fallOfThePhoenixAI(alliedCreatures:Array, hostileCreatures:Array):void

@@ -24,6 +24,10 @@ package classes.GameData
 	 * 		than allowing them to persist to the end of the fight in a defeated state.
 	 * Kara/Shade combat descriptions (function karaDesc())
 	 * adultCockvineGrenadesInEnclosedSpaces()
+	 * A shared repository for things like cooldown effects to tune combat
+	 * during group fights:
+	 * 		f.ex stopping a flashbang from being used too often when many
+	 * enemies can use the ability
 	 */
 	
 	/**
