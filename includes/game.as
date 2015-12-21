@@ -1691,6 +1691,8 @@ public function processTime(arg:int):void {
 				
 				tryProcSaendraXPackEmail();
 				
+				// Manes grow out!
+				if(pc.hasPerk("Mane") && pc.hairLength <= 3) maneHairGrow();
 				// Fecund Figure shape gain (Gains only while pregnant)
 				if(pc.hasPerk("Fecund Figure"))
 				{
@@ -1769,6 +1771,48 @@ public function processTime(arg:int):void {
 	flags["HYPNO_EFFECT_OUTPUT_DONE"] = undefined;
 	variableRoomUpdateCheck();
 	updatePCStats();
+}
+
+public function maneHairGrow():void
+{
+	eventBuffer += "\n\nYour scalp tingles and you";
+	if (pc.hairLength <= 0)
+	{
+		eventBuffer += " reach up to scratch it. Instead of [pc.skinFurScalesNoun], your fingers run across";
+		if(pc.hairType == GLOBAL.HAIR_TYPE_REGULAR)
+		{
+			eventBuffer += " patches of growing hair.";
+			pc.hairLength = 0.125;
+		}
+		else
+		{
+			eventBuffer += " a growing patch of tiny [pc.hairsNoun].";
+			pc.hairLength = 0.5;
+		}
+		eventBuffer += " <b>You now have [pc.hair]!</b>";
+	}
+	else
+	{
+		var hairGain:Number = 1 + rand(2);
+		if (pc.hairLength <= 2)
+		{
+			eventBuffer += " reach up to touch your short [pc.hairNoun]. <b>It seems longer than it did before, growing out about " + num2Text(hairGain) + " more inch";
+			if(hairGain != 1) eventBuffer += "es";
+			eventBuffer += ".</b>";
+		}
+		else
+		{
+			eventBuffer += " see your [pc.hairNoun] grow out, right in front of your [pc.eyes]. <b>Your hair has lengthened by " + num2Text(hairGain) + " inch";
+			if(hairGain != 1) eventBuffer += "es";
+			eventBuffer += "!</b>";
+		}
+		pc.hairLength = Math.round(hairLength + hairGain);
+	}
+	if(pc.hairStyle != "null" || pc.hairStyle != "tentacle")
+	{
+		eventBuffer += " It seems the growth has messed up your hairdo in the process... You might have to get it restyled later.";
+		pc.hairStyle = "null";
+	}
 }
 
 public function honeyPotCheck():void
