@@ -1,12 +1,18 @@
 import classes.Characters.PlayerCharacter;
 import flash.events.Event;
 import classes.GameData.MailManager;
+import classes.Cheats;
 
 
 // Illegal character input check
 public function hasIllegalInput(sText:String = ""):Boolean
 {
 	var r:RegExp = /[^\w .!?,;:@#$&()*-+=]/g; // Match anything that isn't a word or a space (\w == [A-z0-9])
+	// Cheat codes check
+	if(chars["PC"].short.length >= 1)
+	{
+		if(sText.indexOf("furfag") != -1) eventQueue.push(Cheats.infiniteItemUse);
+	}
 	return r.test(sText);
 }
 
