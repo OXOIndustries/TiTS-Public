@@ -230,7 +230,7 @@ public function syriPuppyslutmasUnderway():void
 		output("\n\n<i>“Hey, don’t hate on the underwear,”</i> she laughs, making her tail tickle your nose in return. <i>“I had to buy all new underwear after I got this...”</i> she waves a hand at her crotch. <i>“Was spilling out of my panties like you wouldn’t believe. Even the ones I had that still fit felt really fuckin’ awkward every time I popped a boner. And boxers just felt like I was flopping all over the place. Ugh. You’d think they’d make more girly underwear for chicks with dicks in this day and age.”</i>");
 	}
 	
-	output("\n\nSyri pops her suitcase open and bends over it, grumbling as she rustles through it. After a few moments, she produces as hanger with attached outfit and turns around to show it to you, holding it up in front of herself.");
+	output("\n\nSyri pops her suitcase open and bends over it, grumbling as she rustles through it. After a few moments, she produces a hanger with an attached outfit and turns around to show it to you, holding it up in front of herself.");
 	
 	output("\n\n<i>“A tux?”</i> you ask, cocking an eyebrow at the distinctly masculine choice of apparel.");
 	
