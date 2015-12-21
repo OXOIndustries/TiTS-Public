@@ -9341,7 +9341,11 @@ package classes {
 				}
 				if (descripted > 0) descript += " mane";
 				if (hairType == GLOBAL.HAIR_TYPE_FEATHERS) descript += " of feathers";
-				if (hairType == GLOBAL.HAIR_TYPE_GOO) descript += " of goo";
+				if (hairType == GLOBAL.HAIR_TYPE_GOO)
+				{
+					descript += " of goo";
+					if (hairStyle == "tentacle") descript += "-tentacles";
+				}
 				if (hairType == GLOBAL.HAIR_TYPE_TENTACLES) descript += " of tentacles";
 			}
 			//Not manes
@@ -9359,7 +9363,11 @@ package classes {
 					}
 				}
 				if (descripted > 0) descript += " ";
-				if (hairType == GLOBAL.HAIR_TYPE_TENTACLES || hairStyle == "tentacle") descript += "tentacle-hair";
+				if (hairType == GLOBAL.HAIR_TYPE_TENTACLES || hairStyle == "tentacle")
+				{
+					if (hairType == GLOBAL.HAIR_TYPE_GOO && descript.indexOf("goo") == -1) descript += "gooey ";
+					descript += "tentacle-hair";
+				}
 				else if (hairType == GLOBAL.HAIR_TYPE_FEATHERS) 
 				{
 					if(rand(2) == 0) descript += "plumage";
@@ -9390,7 +9398,7 @@ package classes {
 			}
 			//Not manes
 			else {
-				if (hairType == GLOBAL.HAIR_TYPE_TENTACLES && rand(2) == 0) descript += "tentacle-hair";
+				if ((hairType == GLOBAL.HAIR_TYPE_TENTACLES || hairStyle == "tentacle") && rand(2) == 0) descript += "tentacle-hair";
 				else if (hairType == GLOBAL.HAIR_TYPE_FEATHERS) 
 				{
 					if(rand(2) == 0) descript += "plumage";
@@ -9403,7 +9411,7 @@ package classes {
 		public function hairsNoun():String
 		{
 			var descript:String = "";
-			if (hairType == GLOBAL.HAIR_TYPE_TENTACLES) descript += "tentacles";
+			if (hairType == GLOBAL.HAIR_TYPE_TENTACLES || hairStyle == "tentacle") descript += "tentacles";
 			else if (hairType == GLOBAL.HAIR_TYPE_FEATHERS) descript += "feathers";
 			else if (hairType == GLOBAL.HAIR_TYPE_GOO) descript += "locks of goo";
 			else descript += "locks";
