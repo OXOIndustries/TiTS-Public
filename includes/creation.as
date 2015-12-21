@@ -11,7 +11,10 @@ public function hasIllegalInput(sText:String = ""):Boolean
 	// Cheat codes check
 	if(chars["PC"].short.length >= 1)
 	{
-		if(sText.indexOf("furfag") != -1) eventQueue.push(Cheats.infiniteItemUse);
+		if(sText == "furfag") eventQueue.push(Cheats.infiniteItemUse);
+		else if(sText == "idclev") eventQueue.push(Cheats.RoomTeleport);
+		else if(sText == "marcopolo") eventQueue.push(Cheats.exploreUnlock);
+		else if(sText == "motherlode") eventQueue.push(Cheats.XPToLevel);
 	}
 	return r.test(sText);
 }
