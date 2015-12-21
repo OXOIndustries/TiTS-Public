@@ -180,18 +180,18 @@ package classes.Characters
 			//The rate at which you produce milk. Scales from 0 to INFINITY.
 			this.milkRate = 0;
 			this.ass.wetnessRaw = 0;
+			
+			isUniqueInFight = true;
+			btnTargetText = "Mimbrane";
+			
+			tallness = 6 + rand(31);
+			
+			_isLoading = false;
 		}
 		
-		override public function prepForCombat():void
+		override public function get displayBust():String
 		{
-			var combatMimbrane:Mimbrane = this.makeCopy();
-			
-			kGAMECLASS.userInterface.showBust("MIMBRANE");
-			kGAMECLASS.setLocation("FIGHT:\nMIMBRANE", "PLANET: MHEN'GA", "SYSTEM: ARA ARA");
-			
-			combatMimbrane.tallness = 6 + rand(31);
-			CodexManager.unlockEntry("Mimbranes");
-			kGAMECLASS.foes.push(combatMimbrane);
+			return "MIMBRANE";
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void

@@ -1,10 +1,6 @@
 ﻿public function victoryRouting():void 
 {
 	hideNPCStats();
-	else if (foes[0] is Mimbrane)
-	{
-		defeatMimbrane();
-	}
 	else if(foes[0] is RaskvelFemale)
 	{
 		victoryVsRaskvel();
@@ -139,7 +135,6 @@
 public function defeatRouting():void 
 {
 	hideNPCStats();
-	else if (foes[0] is Mimbrane) beatUpByAFuckinDishcloth();
 	else if (foes[0] is RaskvelFemale) defeatRoutingForFemRasks();
 	else if (foes[0] is RaskvelMale) lossVsRaskGang();
 	else if (foes[0] is SexBot) loseToSexBotRouter();
@@ -280,9 +275,6 @@ public function startCombat(encounter:String):void
 {	
 	switch(encounter) 
 	{
-		case "mimbrane":
-			chars["MIMBRANE"].prepForCombat();
-			break;
 		case "RaskvelFemale":
 			chars["RASKVEL_FEMALE"].prepForCombat();
 			break;

@@ -2698,8 +2698,16 @@ public function encounterMimbrane():void
 		}
 	}
 	
+	CodexManager.unlockEntry("Mimbranes");
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(new Mimbrane());
+	CombatManager.victoryScene(defeatMimbrane);
+	CombatManager.lossScene(beatUpByAFuckinDishcloth);
+	CombatManager.displayLocation("MIMBRANE");
+	
 	clearMenu();
-	addButton(0, "Next", startCombat, "mimbrane");
+	addButton(0, "Next", CombatManager.beginCombat);
 }
 
 //Mimbrane Combat Attacks and Effects
@@ -3547,7 +3555,7 @@ public function letMimbraneGo():void
 	userInterface.showBust("MIMBRANE");
 	output("The battered rag disappears into the wilderness to tend to its wounds. It’ll be quite some time before it can pester a traveler again.\n\n");
 
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Kill it
@@ -3574,7 +3582,7 @@ public function killDatMimbrane():void
 	}
 	else output("\n\n");
 
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Use it as a masturbation aid - Cock
@@ -3649,7 +3657,7 @@ public function useDatMimbraneLikeACondom():void
 
 	//Lust increases two points an hour for 10 hours.
 	
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 
@@ -3667,7 +3675,7 @@ public function beatUpByAFuckinDishcloth():void
 		output("\n\nProdding you with great effort, the victorious Mimbrane attempts to break into your [pc.armor] several times but to no avail... Giving up, it leaves your defeated body in search of a more penetrable victim.");
 		
 		processTime(10 + rand(10));
-		genericLoss();
+		CombatManager.genericLoss();
 		return;
 	}
 	output("The air around you feels so dense, so thick. Humidity chokes you. It’s become so hard to breathe. You can’t stop panting. Deep, healing breaths elude you, leaving you to your hyperventilation.");
@@ -3731,7 +3739,7 @@ public function attachAMimbrane():void
 	processTime(10 + rand(10));
 	pc.orgasm();
 	
-	genericLoss();
+	CombatManager.genericLoss();
 }
 
 /*Trust Score
@@ -3979,7 +3987,7 @@ public function refuseFaceMimbrane():void
 	output("\n\nNormal. Normal’s burst back onto the scene. It’s a bit more of a shock this time. Your conqueror has vanished and your body is pre-savaged. You double check your head to make sure the parasite didn’t get on it. There aren’t any unusual bumps or sensations. The assumption was that the blink from rut to right was a byproduct of a Mimbrane latching onto you. Now you don’t know what to think again.");
 	output("\n\nThe question simmers while you gather your equipment and leave.\n\n");
 
-	genericLoss();
+	CombatManager.genericLoss();
 }
 
 public function acceptFaceMimbrane():void
@@ -4044,7 +4052,7 @@ public function acceptFaceMimbrane():void
 	output("\n\n");
 	createMimbraneEffect("Mimbrane Face");
 
-	genericLoss();
+	CombatManager.genericLoss();
 }
 
 //No Room for Mimbrane 
