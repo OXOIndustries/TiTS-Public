@@ -14,6 +14,15 @@
 	import classes.Items.Guns.LaserPistol;
 	
 	import classes.GLOBAL;
+	
+	import classes.Engine.Combat.*;
+	import classes.Engine.Combat.DamageTypes.*;
+	import classes.Engine.Interfaces.output;
+	import classes.GameData.CombatAttacks;
+	import classes.GameData.CombatManager;
+	
+	import classes.Engine.Utility.weightedRand;
+	import classes.Engine.Utility.rand;
 
 	/**
 	 * ...
@@ -217,6 +226,219 @@
 			kGAMECLASS.foes.push(nyrea);
 		}
 		
-	}
+		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
+		{
+			var target:Creature = selectTarget(hostileCreatures);
+			if (target == null) return;
+			
+			if(hasStatusEffect("Dane Grappled")) taivraGrappleBreak();
+			else if(rand(3) <= 1 || hasStatusEffect("Disarmed"))
+			{
+				if(rand(4) == 0) lustFungus();
+				else if(rand(2) == 0) taivraCockTease(target);
+				else tentacleCocks(target);
+			}
+			else
+			{
+				if(!target.hasStatusEffect("Blind")) pocketSandAttack(target);
+				else if(rand(2) == 0) taivraSpearSweep(target);
+				else strikeAndSlash(target);
+			}
+			//Special Combat Actions:
+			//Slavegasm
+			//Play at the end of each of Taivra’s turns when she has any Lust. Reduces her lust by 10.
+			if(lust() >= 10) taivraConstantLustReduction();
+			//Flurry Attack
+			//Taivra makes a Flurry attack after any turn!
+			else if(!hasStatusEffect("Dane Grappled")) taivraBonusAttackShit(target);
+			//COUSIN DOUCHEBAGGERY
+			//Play during Queen Taivra combat if Dane’s free. Cousin gets free and buggers off.
+			if(flags["FREED_DANE_FROM_TAIVRA"] == 1 && flags["RIVAL_GOT_MYR_COORDS_FIRST"] == undefined) cousinDouchebaggery();
+			if(kGAMECLASS.flags["FREED_DANE_FROM_TAIVRA"] == 1) daneTaivraAssistAI();
+		}
+		
+		// Daneshit
+		private function daneTaivraAssistAI():void
+		{
+			if(hasStatusEffect("Dane Grappled")) removeStatusEffect("Dane Grappled");
+			else if(rand(2) == 0) quadGripSpearStab();
+			//Wastes 1/4 of her turns!
+			else if(CombatManager.getRoundCount() % 4 == 0 ) daneGrappleTaivra();
+			else quadPummel();
+		}
+		
+		private function daneGrappleTaivra():void 
+		{
+			output("\n\nCharging forward, Dane tosses away a splintered spear. His arms come open, open-palmed and grabbing for Taivra!");
+			//Miss
+			if(combatMiss(kGAMECLASS.chars["DANE"], this)) output("\nShe twists out of the way of his four-armed grapple in the nick of time. The buff Ausar snickers, liberating a spear from the ground. <i>\"Speed alone cannot win a fight.\"</i>");
+			//Hit
+			else
+			{
+				output("\nTaivra tries to twist out of the way, but there's just so many hands grabbing for her at once. Her arms are pinned to her [pc.hips] by one pair while the other bear hugs her against his broad chest. <i>\"Now, [pc.name]! Hit her now!\"</i>");
+				output("\n<b>Taivra is grappled!</b>");
+				createStatusEffect("Dane Grappled",0,35,0,0,false,"Constrict","Taivra is pinned in a grapple.",true,0);
+			}
+		}
+		
+		private function taivraGrappleBreak():void
+		{
+			output("With a contemptuous sneer, Taivra breaks Dane's grip and boots him backward. He converts the momentum into a combat roll and comes up with a fresh spear in his hand.");
+		}
+		
+		private function quadGripSpearStab():void
+		{
+			output("\n\nDane secures a fresh spear from an insensate guard and strikes at the queen!");
+			if(rand(10) <= 1) output(" She dodges!");
+			else
+			{
+				output(" Much of it splinters from the impact.");
+				var damage:TypeCollection = new TypeCollection( { kinetic: 33/2 } )
+				damage.add(7);
+				damage.multiply(1.5);
+				damageRand(damage, 15);
+				applyDamage(damage, kGAMECLASS.chars["DANE"], this, "melee");
+			}
+		}
+		
+		private function quadPummel():void
+		{
+			output("\n\nDane moves like a boxer, delivering punch after punch to the Queen.");
+			for(var x:int = 0; x < 4; x++)
+			{
+				if(rand(10) <= 1) output("\nHe misses!");
+				else
+				{
+					output("\nHe connects!");
+					var damage:TypeCollection = new TypeCollection( { kinetic: 33/2 } )
+					damageRand(damage, 15);
+					applyDamage(damage, kGAMECLASS.chars["DANE"], this, "melee");
+				}
+			}
+		}
+		
+		private function taivraSpearSweep(target:Creature):void
+		{
+			output("Taivra swings her spear in a wide arc, savagely slashing at you");
+			if(flags["FREED_DANE_FROM_TAIVRA"] == 1) output(" and your companion");
+			output("! You ");
+			if(flags["FREED_DANE_FROM_TAIVRA"] == 1) output(" and Dane ");
+			else output("are");
+			if(combatMiss(this, target))
+			{
+				output(" able to dodge the strike.");
+			}
+			else
+			{
+				meleeWeapon.baseDamage.kinetic.damageValue += 20;
+				output(" struck by the sweeping spear!");
+				applyDamage(meleeDamage(), this, target, "melee");
+				meleeWeapon.baseDamage.kinetic.damageValue -= 20;
+			}
+			output(" The nyrean queen sneers, twirling the haft around herself is a buzzing ring that cuts the air.");
+		}
+		
+		private function strikeAndSlash(target:Creature):void
+		{
+			output("Taivra spins around, twirling her spear backwards before striking out at you. The butt of her spear ");
+			if(combatMiss(this, target)) output("comes crashing down at your head.\nYou barely sidestep it!");
+			else 
+			{
+				meleeWeapon.baseDamage.kinetic.damageValue -= 10;
+				output("comes crashing down on your head, hard.");
+				applyDamage(meleeDamage(), this, target, "melee");
+				meleeWeapon.baseDamage.kinetic.damageValue += 10;
+				if(physique()/2 + rand(20) + 1 > target.physique()/2 + 10 && !target.hasStatusEffect("Stunned"))
+				{
+					output(" <b>You are stunned!</b>");
+					target.createStatusEffect("Stunned",2,0,0,0,false,"Stun","You cannot act until you recover!",true,0);
+				}
+			}
+			output(" A moment later and she’s dancing around you, slashing at you with the sharp end.");
+			if(combatMiss(this, target)) output("\nYou barely dodge aside!");
+			else
+			{
+				applyDamage(meleeDamage(), this, target, "melee");
+			}
+		}
+		
+		private function taivraCockTease(target:Creature):void
+		{
+			output("The queen saunters forward, long, bare legs carrying her towards you with a lascivious smile on her face. One of her thumbs hooks into the leather strap holding up her chain bottom, and the garment slides down to reveal the throbbing length of her equine-like cock, drooling with moisture from its X-shaped slit.");
+			output("\n\n<i>“Come now,”</i> she purrs, stroking the shaft. <i>“Surrender now, and I’ll keep you as a favored pet. You’ve earned that much... perhaps I’ll even let you carry a clutch of my spawn.”</i>");
+			output("\n\n");
 
+			if(target.willpower()/2 + rand(20) + 1 >= 26) output("You shrug off the nyrea’s advances.");
+			else 
+			{
+				output("You have to admit, the idea is uncomfortably tempting...");
+				applyDamage(new TypeCollection( { tease: 18 } ), this, target, "minimal");
+			}
+			if(flags["FREED_DANE_FROM_TAIVRA"] == 1)
+			{
+				if(rand(2) == 0) output("\nDane seems oddly taken with the queen...");
+				else output("\nDane sneers at the queen’s offer, clearly not ready to be her next bottom bitch.");
+			}
+		}
+		
+		private function tentacleCocks(target:Creature):void
+		{
+			output("Swinging her hips like a whore on strut, Taivra runs her free hand along the lengths of several of her parasitic tentacle cocks. Her betas moan and squirm as the tails probing their sexes move and thrust. <i>“You know you want it,”</i> the queen teases, slapping her ass in a way that makes her taut cheeks and squirming tails quake.");
+			output("\n");
+			for(var x:int = 0; x < 4; x++)
+			{
+				if(target.willpower()/2 + rand(20) + 1 >= 26) output("\nYou shrug off the nyrea’s advances.");
+				else
+				{
+					output("\nGetting railed by a dozen tentacle cocks... now that’s something new!");
+					applyDamage(new TypeCollection( { tease: 5 } ), this, target, "minimal");
+				}
+			}
+		}
+		
+		private function lustFungus(target:Creature):void
+		{
+			output("Taivra grabs a vial of some pink fungal compound off her belt and hurls it at you.");
+			if(rangedCombatMiss(this, target)) output("\nYou dodge it, and the vial shatters harmlessly against the stone wall.");
+			else
+			{
+				output("\nThe vial shatters against your chest, bursting into a cloud of pink mist. You cough as the mist billows out, making your eyes water and flesh tingle. <b>You are surrounded by a cloud of lust-drug!</b>");
+				applyDamage(new TypeCollection( { drug: 6 } ), this, target, "minimal");
+				//4 rounds of lust damage!
+				if(!target.hasStatusEffect("Aphro Gas")) target.createStatusEffect("Aphro Gas",5,4,0,0,false,"Icon_LustUp","A cloud of aphrodisiac hangs in the air, turning you on as you breathe!",true,0);
+				else 
+				{
+					output(" <b>The chemical in your air is getting stronger!</b>");
+					target.addStatusValue("Aphro Gas",1,3);
+					target.setStatusValue("Aphro Gas",2,4);
+				}
+			}
+		}
+		
+		private function pocketSandAttack(target:Creature):void
+		{
+			output("Taivra grabs a sack from her belt and hurls it at you, letting the thing tumble open in a cascade of fine grains of powdered rock. You’re smashed right in the face with a hail of sand! <b>You’re blinded!</b>");
+			target.createStatusEffect("Blinded",2+rand(3),0,0,0,false,"Blind","Accuracy is reduced, and ranged attacks are far more likely to miss.",true,0);
+		}
+		
+		private function taivraConstantLustReduction():void
+		{
+			output("\n\nTaivra’s back arches and moans. You cock an eyebrow curiously, until you realize that one of her tentacle cocks is throbbing, squirting seed into one of her beta sluts. The queen gives a sated sigh, looking calmer and more collected even as her bottom bitch’s psuedo-cock erupts in a shower of juice and cum.");
+			lust(-10);
+		}
+
+		private function taivraBonusAttackShit(target:Creature):void
+		{
+			output("\n\nThe queen follows through with a quick jab at you, thrusting at your chest.");
+			CombatAttacks.SingleMeleeAttackImpl(this, target, true);
+		}
+		
+		private function cousinDouchebaggery():void
+		{
+			output("\n\nAs you’re engaged with Taivra, you notice movement in the shadows behind her throne. Between warding off spear-thrusts and keeping yourself out of Dane’s berzerker swings, it takes you a moment to realize what’s going on: your scumbag cousin’s gotten free, and [rival.heShe]’s trying to get to the probe! [rival.HeShe] must have picked the lock after Dane wrecked the guards.");
+			output("\n\nShit! You try and push forward to stop [rival.himHer], but the damn bug-queen almost spears you through the chest for your troubles. She forces you back with a flurry of strikes, refusing to let you anywhere near her throne... even as [rival.name] plants [rival.hisHer] hand on the scanner and activates it. DAMMIT!");
+			output("\n\nYou cousin flashes you a shit-eating grin as the probe’s coordinates download onto [rival.hisHer] Codex. " + kGAMECLASS.chars["RIVAL"].mf("Jack gives you a sarcastic salute","Jill blows you an over-acted kiss") + " before leaping off the back of the throne and scampering off. Looks like you’re getting left in the dust again...");
+			flags["RIVAL_GOT_MYR_COORDS_FIRST"] = 1;
+		}
+	}
 }
