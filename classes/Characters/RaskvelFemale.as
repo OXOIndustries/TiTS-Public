@@ -7,7 +7,7 @@
 	import classes.Items.Melee.RaskvelWrench;
 	import classes.Items.Transformatives.Ruskvel;
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
 	import classes.GameData.CodexManager;
 	import classes.Engine.Combat.DamageTypes.*;
 	
@@ -180,7 +180,43 @@
 			this.ass.wetnessRaw = 0;
 			this.ass.bonusCapacity += 15;
 			
+			isUniqueInFight = true;
+			btnTargetText = "Raskvel";
+			
+			randomise();
+			
 			this._isLoading = false;
+		}
+		
+		override public function get displayBust():String
+		{
+			return "RASKVEL_FEMALE";
+		}
+		
+		private function randomise():void
+		{
+			sexualPreferences.setRandomPrefs(4 + rand(3), 0);
+			
+			//Determine armor sizes
+			if (rand(2) == 0) 
+			{
+				long = "Dressed in a tattered shirt and fluttering skirt, the raskvel girl doesn't seem to have any sense of propriety. Her clothes are obviously there to keep her warm during her adventures - not to protect her modesty. Ears so long they hang down past her waist flutter around as she moves, weighted with gaudy piercings, many of them made from small gears or cogs. She wields a wrench almost as big as herself with surprising dexterity. That wrench is no ordinary wrench either, there's a cylindrical barrel down the handle and a trigger mechanism as well. It actually looks like a gun has been built into it! A much smaller looking pistol hangs from her hip.";
+				armor.longName = "tattered shirt and fluttering skirt";
+			}
+			else 
+			{
+				long = "Dressed in a crotch-less jumpsuit, the raskvel girl doesn't seem to have any sense of propriety. Her clothes are obviously there to keep her warm during her adventures - not to protect her modesty. Ears so long they hang down past her waist flutter around as she moves, weighted with gaudy piercings, many of them made from small gears or cogs. She wields a wrench almost as big as herself with surprising dexterity. That wrench is no ordinary wrench either, there's a cylindrical barrel down the handle and a trigger mechanism as well. It actually looks like a gun has been built into it! A much smaller looking pistol hangs from her hip.";
+				armor.longName = "crotch-less jumpsuit";
+			}
+			ass.loosenessRaw = rand(4) + 1;
+			vaginas[0].loosenessRaw = rand(4) + 1;
+			credits = 100+rand(100);
+
+			if (rand(10) == 0)
+			{
+				inventory.push(new RaskvelWrench());
+			}
+			else if(rand(8) <= 6) inventory.push(new Ruskvel());
 		}
 		
 		public function UpgradeVersion1(dataObject:Object):void
@@ -195,32 +231,7 @@
 		{
 			var combatRaskvelFemale:RaskvelFemale = this.makeCopy();
 			
-			kGAMECLASS.userInterface.showBust("RASKVEL_FEMALE");
-			kGAMECLASS.setLocation("FIGHT: FEM.\nRASKVEL", "PLANET: TARKUS", "SYSTEM: REDACTED");
-			combatRaskvelFemale.sexualPreferences.setRandomPrefs(4 + rand(3),0);
-			
-			//Determine armor sizes
-			if(rand(2) == 0) {
-				combatRaskvelFemale.long = "Dressed in a tattered shirt and fluttering skirt, the raskvel girl doesn't seem to have any sense of propriety. Her clothes are obviously there to keep her warm during her adventures - not to protect her modesty. Ears so long they hang down past her waist flutter around as she moves, weighted with gaudy piercings, many of them made from small gears or cogs. She wields a wrench almost as big as herself with surprising dexterity. That wrench is no ordinary wrench either, there's a cylindrical barrel down the handle and a trigger mechanism as well. It actually looks like a gun has been built into it! A much smaller looking pistol hangs from her hip.";
-				combatRaskvelFemale.armor.longName = "tattered shirt and fluttering skirt";
-			}
-			else 
-			{
-				combatRaskvelFemale.long = "Dressed in a crotch-less jumpsuit, the raskvel girl doesn't seem to have any sense of propriety. Her clothes are obviously there to keep her warm during her adventures - not to protect her modesty. Ears so long they hang down past her waist flutter around as she moves, weighted with gaudy piercings, many of them made from small gears or cogs. She wields a wrench almost as big as herself with surprising dexterity. That wrench is no ordinary wrench either, there's a cylindrical barrel down the handle and a trigger mechanism as well. It actually looks like a gun has been built into it! A much smaller looking pistol hangs from her hip.";
-				combatRaskvelFemale.armor.longName = "crotch-less jumpsuit";
-			}
-			combatRaskvelFemale.ass.loosenessRaw = rand(4) + 1;
-			combatRaskvelFemale.vaginas[0].loosenessRaw = rand(4) + 1;
-			combatRaskvelFemale.credits = 100+rand(100);
 
-			// Codex shit
-			CodexManager.unlockEntry("Raskvel");
-			if (rand(10) == 0)
-			{
-				combatRaskvelFemale.inventory.push(new RaskvelWrench());
-			}
-			else if(rand(8) <= 6) combatRaskvelFemale.inventory.push(new Ruskvel());
-			kGAMECLASS.foes.push(combatRaskvelFemale);
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void

@@ -1,4 +1,5 @@
-﻿import classes.Engine.Combat.DamageTypes.TypeCollection;
+﻿import classes.Characters.RaskvelFemale;
+import classes.Engine.Combat.DamageTypes.TypeCollection;
 //Hostile Female Raskvel Encounter
 //Armed with aphrodisiac dart-gun.
 //Crotchless Mechanic's Overalls/Tattered Shirt and Skirt
@@ -37,9 +38,21 @@ public function encounterHostileRaskvelFemale():void
 	}
 	//[FIght] [Pay] ["Pay"]
 	clearMenu();
-	addButton(0,"Fight",startCombat,"RaskvelFemale");
+	addButton(0,"Fight",fightFemRask);
 	addButton(1,"Pay",payDatRaskCunt);
 	addButton(2,"\"Pay\"",quotePayUnquoteFemRasks);
+}
+
+public function fightFemRask():void
+{
+	CodexManager.unlockEntry("Raskvel");
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(new RaskvelFemale());
+	CombatManager.victoryScene(victoryVsRaskvel);
+	CombatManager.lossScene(defeatRoutingForFemRasks);
+	CombatManager.displayLocation("RASKVEL (F)");
+	CombatManager.beginCombat();
 }
 
 public function payDatRaskCunt():void
@@ -123,7 +136,7 @@ public function victoryVsRaskvel():void
 		addDisabledButton(2,"RideHerFace");
 	}
 	output("\n\n");
-	addButton(14,"Leave",genericVictory);	
+	addButton(14,"Leave",CombatManager.genericVictory);	
 }
 
 //Doggie Style
@@ -236,7 +249,7 @@ public function raskVelBabeGetsDoggieStyled():void
 	knockUpRaskChance();
 	pc.orgasm();
 	processTime(5);
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Huge Dick Ear Jackoff?
@@ -274,7 +287,7 @@ public function hugeDickEarJackoff():void
 	output("\n\nYou smile as [pc.eachCock] slowly starts to sag, losing tumescence as you prepare to move on. The defeated alien girl is scooping your [pc.cum] off her face and into her swollen twat as you leave.\n\n");
 	processTime(20+rand(10));
 	pc.orgasm();
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Face Riding
@@ -348,7 +361,7 @@ public function faceRidingRaskvelLadies():void
 	processTime(25 + rand(5));
 	IncrementFlag("TIMES_RODE_RASKVEL_FACE");
 	pc.orgasm();
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //"Pay"
@@ -444,7 +457,7 @@ public function raskyNotInterestedInYerWeirdShit():void
 	output("\n\n");
 	
 	processTime(3+rand(7));
-	genericLoss();
+	CombatManager.genericLoss();
 }
 
 //Face-Sitting Footjobs
@@ -511,7 +524,7 @@ public function raskvelGirlsSitsIfTheyFits(combat:Boolean = false):void
 		//end combat
 		output("\n\n");
 		payRaskvel();
-		genericLoss();
+		CombatManager.genericLoss();
 	}
 	else
 	{
@@ -585,7 +598,7 @@ public function getRaskVelTailPegged(combat:Boolean = false):void
 	{
 		output("\n\n");
 		payRaskvel();
-		genericLoss();
+		CombatManager.genericLoss();
 	}
 	else
 	{
@@ -714,7 +727,7 @@ public function hugeDicksGetForceWorshippedByFemRaskvel():void
 	pc.orgasm();
 	output("\n\n");
 	payRaskvel();
-	genericLoss();
+	CombatManager.genericLoss();
 }
 
 //Get Pegged while Double Penetrating Her
@@ -825,7 +838,7 @@ public function getPeggedWhileDoublePenetrate():void
 	//Pass time and lose some cash!
 	payRaskvel();
 	output("\n\n");
-	genericLoss();
+	CombatManager.genericLoss();
 }
 
 public function payRaskvel():void
