@@ -1,4 +1,5 @@
-﻿import classes.Creature;
+﻿import classes.Characters.Naleen;
+import classes.Creature;
 import classes.Engine.Combat.DamageTypes.DamageResult;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
 import classes.Items.Toys.GravCuffs;
@@ -67,9 +68,15 @@ public function encounterNaleen():void {
 	}
 	
 	CodexManager.unlockEntry("Naleen");
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(new Naleen());
+	CombatManager.victoryScene(beatDatCatNaga);
+	CombatManager.lossScene(pcLosesToNaleenLiekABitch);
+	CombatManager.displayLocation("NALEEN");
 	
 	clearMenu();
-	addButton(0,"Next",startCombat,"naleen");
+	addButton(0,"Next", CombatManager.beginCombat);
 }
 
 //Naleen: Combat

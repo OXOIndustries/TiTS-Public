@@ -179,7 +179,15 @@
 
 			this.inventory.push(new NaleenNip());
 			
+			isUniqueInFight = true;
+			btnTargetText = "Naleen";
+			setDefaultSexualPreferences();
 			this._isLoading = false;
+		}
+		
+		override public function get displayBust():String
+		{
+			return "NALEEN";
 		}
 		
 		public function UpgradeVersion1(dataObject:Object):void
@@ -209,17 +217,6 @@
 			this.sexualPreferences.setPref(GLOBAL.SEXPREF_HYPER,			GLOBAL.REALLY_DISLIKES_SEXPREF);
 			this.sexualPreferences.setPref(GLOBAL.SEXPREF_TAILGENITALS,		GLOBAL.REALLY_DISLIKES_SEXPREF);
 			this.sexualPreferences.setPref(GLOBAL.SEXPREF_BALDNESS,			GLOBAL.KINDA_DISLIKES_SEXPREF);
-		}
-		
-		override public function prepForCombat():void
-		{
-			var combatNaleen:Naleen = this.makeCopy();
-			
-			kGAMECLASS.userInterface.showBust("NALEEN");
-			kGAMECLASS.setLocation("FIGHT:\nNALEEN", "PLANET: MHEN'GA", "SYSTEM: ARA ARA");
-			combatNaleen.setDefaultSexualPreferences();
-			
-			kGAMECLASS.foes.push(combatNaleen);
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void

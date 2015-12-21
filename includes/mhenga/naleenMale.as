@@ -1,5 +1,7 @@
-﻿import classes.Engine.Combat.DamageTypes.DamageResult;
+﻿import classes.Characters.NaleenMale;
+import classes.Engine.Combat.DamageTypes.DamageResult;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
+import classes.GameData.CombatManager;
 
 //First Time:
 public function naleenMaleEncounter():void
@@ -28,8 +30,16 @@ public function naleenMaleEncounter():void
 		output("\n\nYou ready yourself for combat!");
 		flags["TIMES_MET_MALE_NALEEN"]++;
 	}
+	
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(new NaleenMale());
+	CombatManager.victoryScene(defeatAMaleNaleen);
+	CombatManager.lossScene(loseToDudeleenRouter);
+	CombatManager.displayLocation("NALEEN MALE");
+	
 	clearMenu();
-	addButton(0,"Next",startCombat,"naleen male");
+	addButton(0,"Next", CombatManager.beginCombat);
 }
 
 /*

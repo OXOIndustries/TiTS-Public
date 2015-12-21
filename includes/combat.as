@@ -1,13 +1,6 @@
 ﻿public function victoryRouting():void 
 {
 	hideNPCStats();
-	else if(foes[0].short == "naleen") {
-		beatDatCatNaga();
-	}
-	else if(foes[0].short == "naleen male")
-	{
-		defeatAMaleNaleen();
-	}
 	else if(foes[0].short == "machina")
 	{
 		pushButtanOnMagicTedsFireRobot();
@@ -154,8 +147,6 @@
 public function defeatRouting():void 
 {
 	hideNPCStats();
-	else if (foes[0] is Naleen) pcLosesToNaleenLiekABitch();
-	else if (foes[0] is NaleenMale) loseToDudeleenRouter();
 	else if (foes[0] is CarlsRobot) ohShitLoseToRobot();
 	else if (foes[0] is Dane) loseToDane();
 	else if (foes[0] is Mimbrane) beatUpByAFuckinDishcloth();
@@ -299,12 +290,6 @@ public function startCombat(encounter:String):void
 {	
 	switch(encounter) 
 	{
-		case "naleen male":
-			chars["NALEEN_MALE"].prepForCombat();
-			break;
-		case "naleen":
-			chars["NALEEN"].prepForCombat();
-			break;
 		case "machina":
 			chars["MACHINA"].prepForCombat();
 			break;
