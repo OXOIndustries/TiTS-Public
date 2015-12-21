@@ -638,7 +638,10 @@ package classes.GameData
 		{
 			if (attacker is PlayerCharacter) output("Your");
 			else output(attacker.capitalA + possessive(attacker.short));
-			output(" drone repeatedly zaps " + target.a + target.short + ".");
+			output(" drone repeatedly zaps ");
+			if (target is PlayerCharacter) output("you");
+			else output(target.a + target.short);
+			output(".");
 			applyDamage(attacker.droneDamage(), attacker, target, "minimal");
 		}
 		

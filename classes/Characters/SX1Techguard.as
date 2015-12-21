@@ -9,6 +9,14 @@ package classes.Characters
 	import classes.rand;
 	import classes.VaginaClass;
 	
+	import classes.Engine.Combat.*;
+	import classes.Engine.Combat.DamageTypes.*;
+	import classes.Engine.Interfaces.output;
+	import classes.GameData.CombatAttacks;
+	import classes.GameData.CombatManager;
+	
+	import classes.Engine.Utility.weightedRand;
+	
 	//Low health, mid armor, heavy shields. Carries a rapid-fire, low-damage gun. Level 5.
 
 	public class SX1Techguard extends Creature
@@ -160,8 +168,9 @@ package classes.Characters
 			this.milkRate = 0;
 			this.ass.wetnessRaw = 0;
 			
-			this._isLoading = false;
-			this.createStatusEffect("Flee Disabled",0,0,0,0,true,"","",false,0);
+			_isLoading = false;
+			createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
+			createPerk("Attack Drone");
 		}
 		
 		override public function prepForCombat():void
@@ -174,6 +183,120 @@ package classes.Characters
 			kGAMECLASS.showName("FIGHT:\nPIRATE TECHIE");
 			
 			kGAMECLASS.foes.push(techie);
+		}
+		
+		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
+		{
+			var target:Creature = selectTarget(hostileCreatures);
+			if (target == null) return;
+			
+			// 1x per encounter, don't call it "Cooldown" to avoid auto-handling
+			if (shields() <= 0 && !hasStatusEffect("Shield Boost CD"))
+			{
+				shieldBoost();
+			}
+			else
+			{
+				var attacks:Array = [];
+
+				attacks.push( { v: machinePistol, w: 30 } );
+				if (!hasStatusEffect("Stun Cooldown") && energy() >= 20) attacks.push( { v: shockDart, w: 10 } );
+				attacks.push( { v: teaseAttack, w: (lust() / 2) } );
+
+				var selection = weightedRand(attacks);
+				if (selection == teaseAttack) selection(hostileCreatures);
+				else selection(target);
+			}
+			
+			// Drone handled automatically by the combat container process- just make sure the perk
+			// exists on the creature!
+		}
+		
+		private function teaseAttack(hostileCreatures:Array):void
+		{
+			var pc:Creature;
+			var saen:Creature;
+			
+			for (var i:int = 0; i < hostileCreatures.length; i++)
+			{
+				if (hostileCreatures[i] is PlayerCharacter) pc = hostileCreatures[i] as Creature;
+				if (hostileCreatures[i] is Saendra) saen = hostileCreatures[i] as Creature;
+			}
+			
+			output("<i>“Hey, come on,”</i> the tech says, pressing her back to the wall and zipping down the front of her flight suit, revealing the perky mounds of her tits. <i>“Why don’t you put those weapons down, huh? We can work something out...”</i> she groans, running a hand up her chest.");
+
+			if (pc.willpower() + rand(30) + 1 < 30)
+			{
+				output("\n\nAn subtle warmth builds in your crotch as you stare at the ausar womans pert breasts, transfixed by their succulent, pliant flesh forming so perfectly around the tips of her fingers....");
+				applyDamage(new TypeCollection( { tease: 10 * (pc.libido() / pc.libidoMax()) } ), this, pc, "minimal");
+				applyDamage(new TypeCollection( { tease: 10 * (saen.libido() / saen.libidoMax()) } ), this, saen, "suppress");
+			}
+			else
+			{
+				output("\n\nYou respond with a polite, and obviously fake, cough. The ausar womans sensual show ends as abruptly as it started. <i>“Hey, don’t stop now!”</i> You shoot a glare at Saen. <i>“What? I'm not going to turn down a free show.”</i> Touché.");
+				applyDamage(new TypeCollection( { tease: 2 } ), this, pc, "minimal");
+				applyDamage(new TypeCollection( { tease: 2 } ), this, saen, "suppress");
+			}
+		}
+		
+		private function shockDart(target:Creature):void
+		{
+			energy( -20);
+			output("The pirate tech fires a dart from a device on her wrist,");
+
+			if (rangedCombatMiss(this, target))
+			{
+				output(" though " + (target is PlayerCharacter ? "you're" : target.a + target.short + " is") + " able to duck out of the way.");
+			}
+			else
+			{
+				output(" hitting " + (target is PlayerCharacter ? "you" : target.a + target.short) + " in the shoulder. The darts instantly release an agonizing shock of electricity, making " + (target is PlayerCharacter ? "you" : target.mfn("him", "her", "it")) + " yelp in agony.");
+
+				applyDamage(new TypeCollection({ electric: 17 }), this, target, "minimal");
+
+				if (target.physique() + rand(25) + 1 < 35)
+				{
+					output(" The shock of it leaves " + (target is PlayerCharacter ? "you" : target.a + target.short) + " reeling -- <b>" + (target is PlayerCharacter ? "you're" : target.mfn("he's", "she's", "it's")) + " stunned!</b>");
+					target.createStatusEffect("Stunned", 3, 0, 0, 0, false, "Stun", "Cannot take action!", true, 0);
+				}
+			}
+			
+			createStatusEffect("Stun Cooldown", 5);
+		}
+		
+		private function machinePistol(target:Creature):void
+		{
+			output("The pirate tech sprays bullets at " + (target is PlayerCharacter ? "you" : target.a + target.short) + ", firing wildly from the hip!");
+
+			var numHits:int = 0;
+			for (var i:int = 0; i < 4; i++)
+			{
+				if (!rangedCombatMiss(this, target, -1, 0 - i))
+				{
+					numHits++;
+				}
+			}
+
+			if (numHits == 0) output(" All of her shots go wide!");
+			else
+			{
+				output(" " + num2Text(numHits) + " bullet");
+				if (numHits > 1) output("s");
+				output(" hit, drilling " + (target is PlayerCharacter ? "you" : target.a + target.short) + "!");
+
+				var damage:TypeCollection = rangedDamage();
+				damage.multiply(0.4 * numHits);
+
+				applyDamage(damage, this, target, "minimal");
+			}	
+		}
+		
+		private function shieldBoost():void
+		{
+			output("The pirate babe grabs the generator on her belt and pushes it into maximum overdrive, giving herself a few more seconds of shielding from your assault.");
+
+			shields(shieldsMax() * 0.5);
+			createStatusEffect("Shield Boost CD");
 		}
 	}
 }

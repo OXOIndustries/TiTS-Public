@@ -2,8 +2,6 @@
 {	
 	trace("AI CALL");
 	//Paralyze stops turns! AHHHH!
-	else if (aggressor is SX1Techguard) sx1TechguardAI();
-	else if (aggressor is Queensguard) queensguardAI();
 	else if (aggressor is Taivra) taivraAI();
 	else if (aggressor is Princess) princessAI();
 	else if (aggressor is GardeBot) gardenforkRoboAI();
