@@ -105,8 +105,16 @@ public function daneOmniExplanation():void {
 	output("\n\nDane focuses his attention entirely on you. His uppermost arms pull a pair of curved blades from harnesses on his back, thumbing activation studs on the hilts. The air suddenly fills with the smell of ozone. They're electrified! Down below, the lower arms grab a set of ancient-looking, chromed pistols from holsters. The ausar flexes. <i>\"A lot of people think an extra set of arms will give them an edge in a fight, and it will. But...\"</i> he pauses for effect, \"<i>Our brains aren't meant to control that many limbs. The ability to independently coordinate four or more arms exists in one thousandth of the population of two-armed races.\"</i> Dane's feet spread into a confident stance. <i>\"You're looking at one of them.\"</i>");
 	output("\n\nTwirling his blades while simultaneously cocking his guns, Dane whispers, <i>\"Prepare your anus.\"</i>");
 	//Start fight
+	
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(new Dane());
+	CombatManager.victoryScene(defeatDane);
+	CombatManager.lossScene(loseToDane);
+	CombatManager.displayLocation("DANE");
+	
 	clearMenu();
-	addButton(0,"Next",startCombat,"Dane");
+	addButton(0,"Next", CombatManager.beginCombat);
 }
 
 //Wait
@@ -132,7 +140,7 @@ public function defeatDane():void
 	output(" at the ship, but the armor is too thick. It disappears into the canopy, leaving you alone with your thoughts and the data-chit in the bush. A quick search turns it up, and as you'd expect, it has a set of coordinates on it.");
 	output("\n\nThere's still time. You can get to the next probe before your cousin, you're sure of it!\n\n");
 	flags["WHUPPED_DANES_ASS_ON_MHENGA"] = 1;
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Losses
@@ -230,5 +238,5 @@ public function daneFuckEpilogue():void {
 	output("You wake all alone, naked, sore, and leaking white cum. You're humiliated and debased, but the coordinates to the next planet in your father's chain are in a data-chit lying next to you. Maybe next time you'll have a better showing.\n\n");
 	flags["LOST_TO_DANE_ON_MHENGA"] = 1;
 	processTime(75+rand(10));
-	genericLoss();
+	CombatManager.genericLoss();
 }

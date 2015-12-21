@@ -177,8 +177,18 @@
 			this.inventory.push(new ShockBlade());
 			this.createPerk("Multiple Attacks",1,0,0,0,"");
 			this.createPerk("Multiple Shots",1,0,0,0,"");
-			this.createStatusEffect("Flee Disabled",0,0,0,0,true,"","",false,0);
-		}	
+			this.createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
+			
+			isUniqueInFight = true;
+			btnTargetText = "Dane";
+			setDefaultSexualPreferences();
+			_isLoading = false;
+		}
+		
+		override public function get displayBust():String
+		{
+			return "DANE";
+		}
 		
 		override public function setDefaultSexualPreferences():void
 		{
@@ -198,17 +208,6 @@
 			this.sexualPreferences.setPref(GLOBAL.SEXPREF_NARROW_HIPS,				GLOBAL.KINDA_DISLIKES_SEXPREF);
 			this.sexualPreferences.setPref(GLOBAL.SEXPREF_SMALL_BREASTS,			GLOBAL.KINDA_DISLIKES_SEXPREF);
 			this.sexualPreferences.setPref(GLOBAL.SEXPREF_SMALL_BUTTS,				GLOBAL.KINDA_DISLIKES_SEXPREF);
-		}
-		
-		override public function prepForCombat():void
-		{
-			var combatDane:Dane = this.makeCopy();
-			
-			kGAMECLASS.userInterface.showBust("DANE");
-			kGAMECLASS.setLocation("FIGHT:\nDANE", "PLANET: MHEN'GA", "SYSTEM: ARA ARA");
-			combatDane.setDefaultSexualPreferences();
-			
-			kGAMECLASS.foes.push(combatDane);
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void

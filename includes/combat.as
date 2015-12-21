@@ -1,10 +1,6 @@
 ﻿public function victoryRouting():void 
 {
 	hideNPCStats();
-	else if(foes[0].short == "Dane")
-	{
-		defeatDane();
-	}
 	else if (foes[0] is Mimbrane)
 	{
 		defeatMimbrane();
@@ -143,8 +139,6 @@
 public function defeatRouting():void 
 {
 	hideNPCStats();
-	else if (foes[0] is CarlsRobot) ohShitLoseToRobot();
-	else if (foes[0] is Dane) loseToDane();
 	else if (foes[0] is Mimbrane) beatUpByAFuckinDishcloth();
 	else if (foes[0] is RaskvelFemale) defeatRoutingForFemRasks();
 	else if (foes[0] is RaskvelMale) lossVsRaskGang();
@@ -286,9 +280,6 @@ public function startCombat(encounter:String):void
 {	
 	switch(encounter) 
 	{
-		case "Dane":
-			chars["DANE"].prepForCombat();
-			break;
 		case "mimbrane":
 			chars["MIMBRANE"].prepForCombat();
 			break;
