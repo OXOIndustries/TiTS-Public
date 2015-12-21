@@ -1,7 +1,7 @@
 package classes.GameData 
 {
 	import classes.Creature;
-	import fl.events.InteractionInputType;
+	import classes.kGAMECLASS;
 	/**
 	 * ...
 	 * @author Gedan
@@ -19,6 +19,15 @@ package classes.GameData
 		public static function newGroundCombat():void
 		{
 			combatContainer = new CombatContainer();
+			victoryCondition(ENTIRE_PARTY_DEFEATED);
+			lossCondition(SPECIFIC_TARGET_DEFEATED, kGAMECLASS.pc);
+		}
+		
+		public static function displayLocation(r:String, p:String = null, s:String = null):void
+		{
+			combatContainer.roomString = r;
+			combatContainer.planetString = p;
+			combatContainer.systemString = s;
 		}
 		
 		private static var _friendlyCharacters:Array;
@@ -58,7 +67,7 @@ package classes.GameData
 		public static const SURVIVE_WAVES:String = "survival";
 		public static const ESCAPE:String = "escape";
 		
-		public static function victoryCondition(condition:String, arg:Number = Number.NaN):void
+		public static function victoryCondition(condition:String, arg:* = undefined):void
 		{
 			combatContainer.victoryCondition = condition;
 			combatContainer.victoryArgument = arg;
@@ -69,7 +78,7 @@ package classes.GameData
 			combatContainer.victoryScene = func;
 		}
 		
-		public static function lossCondition(condition:String, arg:Number = Number.NaN):void
+		public static function lossCondition(condition:String, arg:* = undefined):void
 		{
 			combatContainer.lossCondition = condition;
 			combatContainer.lossArgument = arg;
@@ -117,9 +126,15 @@ package classes.GameData
 		{
 			return combatContainer.genericLoss;
 		}
+		public static function postCombat():void
+		{
+			combatContainer.doCombatCleanup();
+			combatContainer = null;
+		}
 		public static function abortCombat():void
 		{
-			combatContainer();
+			combatContainer.doCombatCleanup();
+			combatContainer = null;
 		}
 		public static function showCombatMenu():void
 		{

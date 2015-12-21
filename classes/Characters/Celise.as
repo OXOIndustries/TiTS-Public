@@ -10,12 +10,14 @@
 	import classes.Engine.Interfaces.output;
 	import classes.GameData.CodexManager;
 	
+	import classes.GameData.CombatManager;
+	
 	public class Celise extends Creature
 	{
 		//constructor
 		public function Celise()
 		{
-			this._latestVersion = 3;
+			this._latestVersion = 4;
 			this.version = this._latestVersion;
 			this._neverSerialize = true;
 			
@@ -168,6 +170,9 @@
 			this.milkRate = 1;
 			this.ass.wetnessRaw = 5;
 			
+			isUniqueInFight = true;
+			btnTargetText = "Celise";
+			
 			this._isLoading = false;
 		}
 		
@@ -190,20 +195,20 @@
 			delete d.bonusLustVuln;
 		}
 		
-		override public function prepForCombat():void
+		public function UpgradeVersion3(d:Object):void
 		{
-			var combatCelise:Celise = this.makeCopy();
-			
-			kGAMECLASS.userInterface.showBust("CELISE");
-			kGAMECLASS.setLocation("FIGHT:\nCELISE", "TAVROS STATION", "SYSTEM: KALAS");
-			combatCelise.sexualPreferences.setRandomPrefs(3 + rand(3));
-			
-			kGAMECLASS.foes.push(combatCelise);
+			d.isUniqueInFight = true;
+		}
+		
+		override public function get bustDisplay():String
+		{
+			return "CELISE";
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{
 			var target:Creature = selectTarget(hostileCreatures);
+			if (target == null) return;
 			
 			// round 1
 			if(CombatManager.getRoundCount() == 0) {

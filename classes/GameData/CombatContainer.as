@@ -68,6 +68,46 @@ package classes.GameData
 		// Local accessor to simplify coding throught this class
 		private function get pc():PlayerCharacter { return kGAMECLASS.pc; }
 		
+		public var roomString:String = null;
+		public var planetString:String = null;
+		public var systemString:String = null;
+		
+		public function displayFightLocation():void
+		{
+			var r:String = (roomString != null ? "FIGHT:\n" + roomString : null);
+			var p:String = planetString;
+			var s:String = systemString;
+			
+			kGAMECLASS.setLocation(r, p, s); // This should only override whats set, ie if planet is null it
+			// should inherit the currently set planet
+		}
+		
+		public static const NO_GROUP:String = "no_group";
+		public static const FRIENDLY_GROUP:String = "friendly_group";
+		public static const HOSTILE_GROUP:String = "hostile_group";
+		
+		public function displayBusts(group:String = NO_GROUP):void
+		{
+			
+			// Speical handle for ZILPACK- use ZIL, ZIL
+			
+			if (group == NO_GROUP)
+			{
+				// display enemy, probably will never change during combat itself
+			}
+			else
+			{
+				if (group == FRIENDLY_GROUP)
+				{
+					// show friendlies but only if the player has a companion, otherwise do nothing
+				}
+				else
+				{
+					// show hostiles
+				}
+			}
+		}
+		
 		/**
 		 * Hook function.
 		 * Any action that should be taken at the /end/ of a combat round, but before the
@@ -646,6 +686,8 @@ package classes.GameData
 		
 		public function showCombatMenu():void
 		{
+			displayFightLocation();
+			displayBusts();
 			removeAllButtonHighlights();
 			
 			if (!doneRoundActions())
@@ -2555,6 +2597,11 @@ package classes.GameData
 		protected var _hostiles:Array = null;
 		public var noImportProcess:Boolean = false;
 		
+		private function prepForCombat(target:Creature):void
+		{
+			target.droneTarget = null;
+		}
+		
 		public function setPlayerGroup(... args):void
 		{
 			if (args.length > 1)
@@ -2572,6 +2619,11 @@ package classes.GameData
 					_friendlies = [args[0]];
 				}
 			}
+			
+			for (var i:int = 0; i < _friendlies.length; i++)
+			{
+				prepForCombat(_friendlies[i]);
+			}
 		}
 		public function setEnemyGroup(... args):void
 		{
@@ -2587,7 +2639,7 @@ package classes.GameData
 				}
 				else if (args[0] is Creature)
 				{
-					_friendlies = [args[0]];
+					_hostiles = [args[0]];
 				}
 			}
 			
@@ -2595,19 +2647,21 @@ package classes.GameData
 			var appendNum:int = 0;
 			
 			for (var i:int = 0; i < _hostiles.length; i++)
-			{
-				if (!(_hostiles[i] is Creature)) throw new Error("Attempted to use a non-creature object in Ground Combat.");
+			{		
+				var t:Creature = _hostiles[i];
 				
 				// Append ident chars to creature names
-				if ((_hostiles[i] as Creature).isUniqueInFight == false)
+				if (t.isUniqueInFight == false)
 				{
-					_hostiles[i].short += " " + appends[appendNum];
-					_hostiles[i].long += " " + appends[appendNum];
-					_hostiles[i].btnTargetText += " " + appends[appendNum];
+					t.uniqueName = t.short + " " + appends[appendNum];
+					t.buttonText = t.btnTargetText + " " + appends[appendNum];
 					appendNum++;
 				}
-				
-				_hostiles[i].arrayIdx = i;
+				else
+				{
+					t.uniqueName = t.short;
+					t.buttonText = t.btnTargetText;
+				}
 			}
 			
 			userInterface().initHostilePartyBars();
@@ -2870,6 +2924,7 @@ package classes.GameData
 		
 		private function processFriendlyGroupActions():void
 		{
+			displayBusts(GROUP_FRIENDLY);
 			applyFriendlyActions();
 			updateStatusEffects(_friendlies);
 			updateCooldowns(_friendlies);
@@ -2963,6 +3018,7 @@ package classes.GameData
 				output("<b>Hostile party actions:</b>");
 			}
 			
+			displayBusts(HOSTILE_GROUP);
 			applyHostileActions();
 			updateStatusEffects(_hostiles);
 			updateCooldowns(_hostiles);

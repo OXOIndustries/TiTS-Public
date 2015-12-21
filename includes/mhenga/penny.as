@@ -1,6 +1,8 @@
-﻿import classes.Creature;
+﻿import classes.Characters.ZilPack;
+import classes.Creature;
 import classes.Engine.Combat.DamageTypes.DamageResult;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
+import classes.GameData.CombatManager;
 //ZIL_PROBLEM_DEALT_WITH
 
 /*Notes:
@@ -394,7 +396,14 @@ public function seriouslyFightTheZil():void {
 	output("\n\nThe fox-girl gives you an appraising look, and you nod, indicating you’re ready. She unlocks the cell door for you, guiding you in with a quick push. It slams shut behind you as soon as you’ve stumbled the whole way into the enclosure.");
 	output("\n\n<i>“Good luck,”</i>  Penny’s muffled voice encourages. She’s seating herself on a bench across the room. The wrappings around her chest have already begun to tent. Even through all that cloth, it’s easy to tell the aliens’ arousing aroma is having an effect on her, just as it is on you. You turn to regard the two bug-men, who are even now advancing on you with confident swaggers. Your gaze flicks down to behold their dripping genitalia, and you idly find yourself wondering what they would look like cumming helplessly beneath you. Right... you came here to defeat them.");
 	this.clearMenu();
+	
 	//Start combat
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(new ZilPack());
+	CombatManager.victoryScene(defeatZilPair);
+	CombatManager.lossScene(loseToZilPair);
+	
 	this.addButton(0,"Next",startCombat,"zilpack");
 }
 
@@ -485,7 +494,7 @@ public function finishLosingToZilYouLoser():void {
 	//Pass 30m
 	processTime(30);
 	flags["ZIL_PROBLEM_DEALT_WITH"] = 1;
-	combatOver();
+	CombatManager.genericLoss();
 }
 
 //Win to Zil Pair

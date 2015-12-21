@@ -161,9 +161,14 @@
 			this.milkRate = 0;
 			this.ass.wetnessRaw = 0;
 			
+			isUniqueInFight = true;
+			btnTargetText = "ZilPack";
+			sexualPreferences.setRandomPrefs(6, 2);
+			
 			this._isLoading = false;
 		}
 		
+		// This should be irrelevent, because the ZilPack shouldn't be getting saved...
 		public function UpgradeVersion1(dataObject:Object):void
 		{
 			if (dataObject.legFlags.length == 0)
@@ -172,15 +177,9 @@
 			}
 		}
 		
-		override public function prepForCombat():void
+		override public function get bustDisplay():String
 		{
-			var combatZilPack:ZilPack = this.makeCopy();
-			
-			kGAMECLASS.userInterface.showBust("ZIL", "ZIL");
-			kGAMECLASS.setLocation("FIGHT:\nTWO ZIL", "PLANET: MHEN'GA", "SYSTEM: ARA ARA");
-			combatZilPack.sexualPreferences.setRandomPrefs(6,2);
-			
-			kGAMECLASS.foes.push(combatZilPack);
+			return "ZILPACK";
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void

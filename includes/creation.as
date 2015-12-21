@@ -1,4 +1,5 @@
 import classes.Characters.PlayerCharacter;
+import classes.GameData.CombatManager;
 import flash.events.Event;
 import classes.GameData.MailManager;
 
@@ -1327,13 +1328,24 @@ public function openDoorToTutorialCombat():void {
 	output("\n\nShe lurches forward, and for a second, you fear you’ll be engulfed before you can react. A blue flash interrupts her pell-mell undulations, and your Dad’s face appears between you, suspended in the air. He explains, <i>“Celise here is a fairly simple girl with simple needs. Unfortunately, she doesn’t respect anyone until she feels they’ve earned it. You’re going to have to fight her if you want to get the keys to your new ship.”</i>");
 	output("\n\nDamnit, Dad!\n\n<b>It’s a fight!</b>");
 	clearMenu();
-	addButton(0,"Next",startCombat,"celise");
+	
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(celise);
+	// These are configured by default, but can be overriden after a call to newGroundCombat^
+	// CombatManager.victoryCondition(CombatManager.ENTIRE_PARTY_DEFEATED);
+	// CombatManager.lossCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, pc);
+	CombatManager.victoryScene(defeatCelise);
+	CombatManager.lossScene(function() { } ); // The loss scene MUST be set, this is just an end-run for celise.
+	CombatManager.entryScene(openDoorToTutorialCombat); // This is an optional thing, I figured it might be useful for things like "reset combat and do over" or whatever, or potentially to modify an in-progress fight.
+		
+	addButton(0, "Next", CombatManager.beginCombat);
 }
 
 //Win
-public function defeatCelise():void {
-	pc.removeStatusEffect("Round");
-	setLocation("VICTORY OVER\nCELISE","TAVROS STATION","SYSTEM: KALAS");
+public function defeatCelise():void
+{
+	clearOutput();
 	showCelise();
 	output("Celise groans, <i>“Come on, fuck me! Please? Don’t just... leave me like this! I need your juiiiiice!”</i> The last word comes out as a high-pitched, nearly orgasmic whine. Her masturbation gets faster and more lewd with every passing second.");
 	output("\n\nVictor’s hologram faces you and explains, <i>“If you’re seeing this, you learned how to disable Celise. Good work. The key is on the shelf next to the exit.”</i> He sighs and continues, <i>“Most things you run into won’t be nearly as easy to deal with. You’ll want to make sure to master the skills of your vocation and use them to the best of your ability. As you develop your abilities, you’ll find that many of them can be chained together to be more effective. Make sure you do that, or you’ll have a hard time beating some of the galaxy’s worst.”</i>");
@@ -1341,6 +1353,9 @@ public function defeatCelise():void {
 	output("\n\n<i>“If you give Celise what she wants now, you’ll probably earn her loyalty. That choice is up to you; I can’t make it for you. Galotians are a fiercely loyal people once they choose to follow someone, and though she has few marketable skills, it might be good to have a companion out there in the void. Whatever you choose, I’m sure you’ll do me proud.”</i> Victor smiles dryly. <i>“After all, I bet my legacy on it.”</i>");
 	output("\n\nThe recording winks off.");
 	output("\n\nWhat do you do with Celise? Ignore her, or feed her and take her on your crew?");
+	
+	CombatManager.genericVictory();
+	
 	clearMenu();
 	addButton(0,"Ignore Her",ignoreCelise);
 	addButton(1,"Feed Celise",takeCelise);

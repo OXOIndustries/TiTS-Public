@@ -67,7 +67,9 @@ package classes {
 				"droneTarget", 
 				"concentratedFireTarget",
 				"uniqueName",
-				"flags"
+				"flags",
+				"bustDisplay",
+				"buttonText"
 			);
 
 			cocks = new Array();
@@ -11273,16 +11275,9 @@ package classes {
 		 * Ensure that the function is overridden before calling this (or the error can be replaced with a "default" set
 		 * of possible sexprefs for ALL creatures.
 		 */
-		public function setDefaultSexualPreferences(): void {
+		public function setDefaultSexualPreferences(): void
+		{
 			throw new Error("Sexual preferences must be configured on a per-creature basis before this function should be called! Override the function signature in the child creature class.");
-		}
-
-		/**
-		 * Effectively an interface to define a method to "reset" a creature for combat; reset its health, energy or whatever,
-		 * and set whatever other game-system stuff we need for combat to be "ready"
-		 */
-		public function prepForCombat(): void {
-			throw new Error("Each creature must define its own method to prepare for combat!");
 		}
 		
 		/**
@@ -12327,5 +12322,18 @@ package classes {
 		public var isUniqueInFight:Boolean = false;
 		public var uniqueName:String = null; // Transient
 		public function get flags():Dictionary { return kGAMECLASS.flags; } // Transient
+		
+		/**
+		 * Return the name for the bust this character should display. This'll be used during combat, but also potentially
+		 * useful for other things. A getter function to support introspection to vary busts based on lust etc.
+		 */
+		public function get bustDisplay():String
+		{
+			return "";
+		}
+		
+		public var btnTargetText:String // Base text used for buttons
+		public var buttonText:String; // Transient version of ^ with a unique ID appended
+		
 	}
 }

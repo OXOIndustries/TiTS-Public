@@ -1,12 +1,6 @@
 ﻿public function victoryRouting():void 
 {
 	hideNPCStats();
-	if(foes[0].short == "Celise") {
-		defeatCelise();
-	}
-	else if(foes[0].short == "two zil") {
-		defeatZilPair();
-	}
 	else if(foes[0].short == "female zil") {
 		defeatHostileZil();
 	}
@@ -169,8 +163,6 @@
 public function defeatRouting():void 
 {
 	hideNPCStats();
-	if(foes[0].short == "BONERS") {}
-	else if (foes[0] is ZilPack) loseToZilPair();
 	else if (foes[0] is ZilMale) zilLossRouter();
 	else if (foes[0] is ZilFemale) girlZilLossRouter();
 	else if (foes[0] is CuntSnake) loseToCuntSnake();
@@ -233,23 +225,6 @@ public function defeatRouting():void
 		genericLoss();
 	}
 }
-
-public function stealthCombatEnd():void
-{
-	// Mimbranes could hook here to convert from the Combat version of their Venom attack to their Non-combat version?
-	// I think this is overall too complicated though, and just ignore the whole combat/noncombat distinction.
-	pc.removeStatusEffect("Round");
-	pc.clearCombatStatuses();
-}
-
-public function combatOver():void 
-{
-	pc.removeStatusEffect("Round");
-	pc.clearCombatStatuses();
-	this.clearMenu();
-	this.addButton(0,"Next",mainGameMenu);
-}
-
 
 public function getCombatPrizes(newScreen:Boolean = false):void 
 {
@@ -333,29 +308,9 @@ public function getCombatPrizes(newScreen:Boolean = false):void
 }
 
 public function startCombat(encounter:String):void 
-{
-	//Reset drone target before a fight!
-	flags["DRONE_TARGET"] = undefined;
-	combatStage = 0;
-	hideMinimap();
-	pc.removeStatusEffect("Round");
-	foes = new Array();
-	
-	// Refucktored somewhat, it's a little clearer than it was earlier. Any special stuff that has to
-	// happen prior to combat has been shifted into a method inside the specific creature classes.
-	
-	// This is kind of a midpoint along the road to properly supporting multi-enemy fights, and combat
-	// with persistent or semi-persistent characters. It's also cleaned up a lot of code sitting in
-	// global namespace where it doesn't really belong.
-	
+{	
 	switch(encounter) 
 	{
-		case "celise":
-			chars["CELISE"].prepForCombat();
-			break;
-		case "zilpack":
-			chars["ZILPACK"].prepForCombat();
-			break;
 		case "zil male":
 			chars["ZIL"].prepForCombat();
 			break;
