@@ -7,7 +7,15 @@
 	import classes.GLOBAL;
 	import classes.Items.Miscellaneous.*;
 	import classes.kGAMECLASS;
-	import classes.rand;
+	
+	import classes.Engine.Combat.*;
+	import classes.Engine.Combat.DamageTypes.*;
+	import classes.Engine.Interfaces.output;
+	import classes.GameData.CombatAttacks;
+	import classes.GameData.CombatManager;
+	
+	import classes.Engine.Utility.weightedRand;
+	import classes.Engine.Utility.rand;
 	
 	public class GardeBot extends Creature
 	{
@@ -198,6 +206,117 @@
 			combatMachina.setDefaultSexualPreferences();
 			combatMachina.createStatusEffect("Sporebutt",2,1,1,1);
 			kGAMECLASS.foes.push(combatMachina);
+		}
+		
+		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
+		{
+			var target:Creature = selectTarget(hostileCreatures);
+			if (target == null) return;
+			
+			if(energy() >= 100) {
+				fireStormBotGo(target);
+				return;
+			}
+			else if(hasStatusEffect("Melee Counter")) 
+			{
+				removeStatusEffect("Melee Counter");
+				titanSmashuBashu(target);
+				return;
+			}
+			else pressureStreamAttack(target);
+
+			energy(25);
+		}
+		
+		public function fireStormBotGo(target:Creature):void
+		{
+			if(!hasStatusEffect("Firestorm"))
+			{
+				output("The pilot flame billows larger as the construct prepares the ignite everything in your immediate vicinity. <b>Better move!</b>");
+				createStatusEffect("Firestorm", statusEffectv1("Sporebutt"), 0, 0, 0);
+			}
+			else
+			{
+				output("The construct unleashes a deadly tower of flame. All of the spores in its path are vanquished quickly by the inferno.");
+				//Miss! PC moved!
+				if(statusEffectv1("Firestorm") != statusEffectv1("Sporebutt"))
+				{
+					output("\nYou watch the fungi burn and wither. You’re running out of time to stop this thing.");
+				}
+				else
+				{
+					var damage:TypeCollection;
+					if(pcHasSporeShield()) 
+					{
+						output("\nThe fire blasts into you with great force, your spore shield burned away by its power.");
+						damage = damageRand(new TypeCollection( { burning: 100 } ), 15);
+						applyDamage(damage, this, target, "ranged");
+					}
+					else
+					{
+						output("\nThe torrent of flame bathes your unprotected form in a blazing inferno.");
+						damage = damageRand(new TypeCollection( { burning: 400 } ), 15);
+						applyDamage(damage, this, target, "ranged");
+					}
+				}
+				//REMOVE SHIELDING!
+				if(statusEffectv1("Firestorm") == 1) setStatusValue("Sporebutt",2,0);
+				else if (statusEffectv1("Firestorm") == 2) setStatusValue("Sporebutt",3,0);
+				else if (statusEffectv1("Firestorm") == 3) setStatusValue("Sporebutt",4,0);
+				removeStatusEffect("Firestorm");
+				energy(-100);
+			}
+		}
+
+		public function pcHasSporeShield():Boolean
+		{
+			if(statusEffectv1("Sporebutt") == 1 && statusEffectv2("Sporebutt") > 0) return true;
+			else if(statusEffectv1("Sporebutt") == 2 && statusEffectv3("Sporebutt") > 0) return true;
+			else if(statusEffectv1("Sporebutt") == 3 && statusEffectv4("Sporebutt") > 0) return true;
+			return false;
+		}
+		
+		private function titanSmashuBashu(target:Creature):void
+		{
+			output("The robot destroyer counters with its pneumatic hammer and releases it at you. Thousands of pounds of pressure aim to smash you into a messy pulp.");
+			var damage:TypeCollection;
+			if(rangedCombatMiss(this, target))
+			{
+				output("\nYou leap away from the hammer, but the explosion of cave floor catches you in the back. <b>It might best to avoid melee with this thing...</b>");
+				damage = damageRand(new TypeCollection( { kinetic: Math.round(target.HP()/4) } ), 15);
+				applyDamage(damage, this, target, "melee");
+			}
+			else
+			{
+				output("\nThe hammer is blocked by a shield created by the spores, but the impact still rocks your body.");
+				damage = damageRand(new TypeCollection( { kinetic: Math.round(target.HP()/2) } ), 15);
+				applyDamage(damage, this, target, "melee");
+				if(target.HP() >= 1) output(" You’re not sure how much more of that you can take. <b>It might best to avoid melee with this thing...</b>");
+			}
+		}
+		
+		private function pressureStreamAttack(target:Creature):void
+		{
+			output("The giant ‘bot aims its pilot fire at you, unleashing a gout of flames that flies through the cavern toward you.");
+			if(rangedCombatMiss(this, target)) output("\nThe flames miss you, burning some of the mushrooms at your feet to a crisp.");
+			else
+			{
+				output("The blast of flame hits you, ");
+				if(target.shields() > 0) output("splashing against your shield");
+				else 
+				{
+					output("burning you");
+					if(pcHasSporeShield()) output("before the spores neutralize the flames");
+				}
+				output(".");
+				//damage.
+				var damage:TypeCollection = damage();
+				//damage.add(foes[0].physique() / 2);
+				damage.multiply(1.4);
+				damage = roboShieldDamageReducer(damage);
+				damageRand(damage, 15);
+				applyDamage(damage, this, target, "ranged");
+			}
 		}
 	}
 }

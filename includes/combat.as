@@ -1,12 +1,4 @@
-﻿public function enemyAI(aggressor:Creature):void 
-{	
-	trace("AI CALL");
-	//Paralyze stops turns! AHHHH!
-	else if (aggressor is GardeBot) gardenforkRoboAI();
-	else if (aggressor is GooKnight) crystalGooAI();
-	else enemyAttack(aggressor);
-}
-public function victoryRouting():void 
+﻿public function victoryRouting():void 
 {
 	hideNPCStats();
 	if(foes[0].short == "Celise") {
