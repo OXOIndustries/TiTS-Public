@@ -1,10 +1,6 @@
 ﻿public function victoryRouting():void 
 {
 	hideNPCStats();
-	else if(foes[0] is SexBot)
-	{
-		defeatTheSexBot();
-	}
 	else if(foes[0] is GrayGoo)
 	{
 		pcDefeatsGrayGooInTheNameOfLove();
@@ -127,7 +123,6 @@
 public function defeatRouting():void 
 {
 	hideNPCStats();
-	else if (foes[0] is SexBot) loseToSexBotRouter();
 	else if (foes[0] is GrayGoo) loseToGrayGooRouter();
 	else if (foes[0] is LapinaraFemale) loseToFemaleLapinara();
 	else if (foes[0] is SydianMale) loseToSydianMaleRouter();
@@ -265,9 +260,6 @@ public function startCombat(encounter:String):void
 {	
 	switch(encounter) 
 	{
-		case "SexBot":
-			chars["SEXBOT"].prepForCombat();
-			break;
 		case "Gray Goo":
 			chars["GRAYGOO"].prepForCombat();
 			break;

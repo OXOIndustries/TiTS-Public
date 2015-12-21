@@ -174,23 +174,24 @@
 			this.ass.loosenessRaw = 2;
 			this.ass.bonusCapacity += 10;
 			
+			isUniqueInFight = true;
+			btnTargetText = "Sexbot";
+
+			randomise();
+			
 			this._isLoading = false;
 		}
-				
-		override public function prepForCombat():void
+		
+		override public function get displayBust():String
 		{
-			var combatSexbot:SexBot = this.makeCopy();
+			return mf("SEXBOT_MALE", "SEXBOT_FEMALE");
+		}
+		
+		private function randomise():void
+		{
+			sexualPreferences.setRandomPrefs(2 + rand(3));
+			credits = 200 + rand(200);
 			
-			kGAMECLASS.setLocation("FIGHT:\nSEXBOT", "PLANET: TARKUS", "SYSTEM: REDACTED");
-			combatSexbot.sexualPreferences.setRandomPrefs(2 + rand(3));
-			
-			//Determine armor sizes
-			combatSexbot.credits = 200+rand(200);
-
-			// Codex shit
-			CodexManager.unlockEntry("Sexbot");
-
-
 			//Male or female configuration
 			var manbot:Boolean = false;
 
@@ -214,29 +215,37 @@
 			//Female bot:
 			if(!manbot)
 			{
-				kGAMECLASS.userInterface.showBust("SEXBOT_FEMALE");
-				combatSexbot.long = "You are fighting a sexbot. It stands 6’ tall, made taller still by the high heels it has formed around its feet. The grey fibre cable which forms the core of its adaptable body is padded with silicone and plated by a sheer white latex coating, gleaming wetly as it moves and catches the light. It serves to highlight its alluring curves: its thick thighs and high, round bum, its thin waist and firm, D-cup boobs with their defined nipples almost believably bursting through its latex; it all combines to create a vision of impossible feminine perfection. Framed by its white, plastic bob cut its synthetic face is thin, calm, blandly beautiful, the smile curling its full lips small and confident. If it had tan skin and its eyes weren’t a backlit, flickering green it could have stepped fully formed from a lingerie advert. Entirely at odds to its calm, benign appearance, the four fibrous, flexible robo-tentacles the sexbot has sprouted out of its back circle their rubber-tipped grippers above its head, grabbing and clutching the air restlessly.";
-				combatSexbot.hipRatingRaw = 14;
-				combatSexbot.buttRatingRaw = 14;
-				combatSexbot.hairLength = 12;
-				combatSexbot.femininity = 100;
-				combatSexbot.breastRows[0].breastRatingRaw = 6;
-				combatSexbot.createVagina();
-				combatSexbot.vaginas[0].wetness(3,true);
-				combatSexbot.vaginas[0].looseness(2,true);
-				combatSexbot.vaginas[0].vaginaColor = "black";
+				long = "You are fighting a sexbot. It stands 6’ tall, made taller still by the high heels it has formed around its feet. The grey fibre cable which forms the core of its adaptable body is padded with silicone and plated by a sheer white latex coating, gleaming wetly as it moves and catches the light. It serves to highlight its alluring curves: its thick thighs and high, round bum, its thin waist and firm, D-cup boobs with their defined nipples almost believably bursting through its latex; it all combines to create a vision of impossible feminine perfection. Framed by its white, plastic bob cut its synthetic face is thin, calm, blandly beautiful, the smile curling its full lips small and confident. If it had tan skin and its eyes weren’t a backlit, flickering green it could have stepped fully formed from a lingerie advert. Entirely at odds to its calm, benign appearance, the four fibrous, flexible robo-tentacles the sexbot has sprouted out of its back circle their rubber-tipped grippers above its head, grabbing and clutching the air restlessly.";
+				hipRatingRaw = 14;
+				buttRatingRaw = 14;
+				hairLength = 12;
+				femininity = 100;
+				breastRows[0].breastRatingRaw = 6;
+				createVagina();
+				vaginas[0].wetness(3,true);
+				vaginas[0].looseness(2,true);
+				vaginas[0].vaginaColor = "black";
 			}
 			else
 			{
-				kGAMECLASS.userInterface.showBust("SEXBOT_MALE")
-				combatSexbot.long = "You are fighting a sexbot. It stands 6’ tall. The grey fibre cable which forms the core of its adaptable body is padded with silicone and plated by a sheer white latex coating, gleaming wetly as it moves and catches the light. It serves to highlight its fit, supple body: its ropey, hard-looking hips and waist, its pert bum and the slight suggestions of ripples and plateaus of muscle underneath its latex combine to create a vision of beguiling, skilfully understated masculinity. This subtlety is rather undermined by the thick, white 8 inch penis which swings bluntly between its swimmer’s thighs; it pulses occasionally with a warm, red light. Framed by its spiky, plastic haircut its synthetic face is defined, calm, blandly beautiful, the smile curling its full lips small and confident. If its skin was tan and its eyes weren’t a backlit, flickering green it could have stepped fully formed from a deodorant advert. Entirely at odds to its calm, benign appearance, the four fibrous, flexible robo-tentacles the sexbot has sprouted out of its back circle their rubber-tipped grippers above its head, grabbing and clutching the air restlessly.";
-				combatSexbot.createCock();
-				combatSexbot.cocks[0].cLength(9,true);
-				combatSexbot.hipRatingRaw = 2;
-				combatSexbot.buttRatingRaw = 2;
-				combatSexbot.hairLength = 2;
-				combatSexbot.femininity = 0;
+				long = "You are fighting a sexbot. It stands 6’ tall. The grey fibre cable which forms the core of its adaptable body is padded with silicone and plated by a sheer white latex coating, gleaming wetly as it moves and catches the light. It serves to highlight its fit, supple body: its ropey, hard-looking hips and waist, its pert bum and the slight suggestions of ripples and plateaus of muscle underneath its latex combine to create a vision of beguiling, skilfully understated masculinity. This subtlety is rather undermined by the thick, white 8 inch penis which swings bluntly between its swimmer’s thighs; it pulses occasionally with a warm, red light. Framed by its spiky, plastic haircut its synthetic face is defined, calm, blandly beautiful, the smile curling its full lips small and confident. If its skin was tan and its eyes weren’t a backlit, flickering green it could have stepped fully formed from a deodorant advert. Entirely at odds to its calm, benign appearance, the four fibrous, flexible robo-tentacles the sexbot has sprouted out of its back circle their rubber-tipped grippers above its head, grabbing and clutching the air restlessly.";
+				createCock();
+				cocks[0].cLength(9,true);
+				hipRatingRaw = 2;
+				buttRatingRaw = 2;
+				hairLength = 2;
+				femininity = 0;
 			}
+		}
+		
+		override public function prepForCombat():void
+		{
+			
+			kGAMECLASS.setLocation("FIGHT:\nSEXBOT", "PLANET: TARKUS", "SYSTEM: REDACTED");
+
+			// Codex shit
+			CodexManager.unlockEntry("Sexbot");
+
 			kGAMECLASS.foes.push(combatSexbot);
 		}
 		
