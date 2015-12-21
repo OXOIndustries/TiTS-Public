@@ -1,9 +1,6 @@
 ﻿public function victoryRouting():void 
 {
 	hideNPCStats();
-	else if(foes[0].short == "cunt snake") {
-		defeatACuntSnake();
-	}
 	else if(foes[0].short == "naleen") {
 		beatDatCatNaga();
 	}
@@ -157,7 +154,6 @@
 public function defeatRouting():void 
 {
 	hideNPCStats();
-	else if (foes[0] is CuntSnake) loseToCuntSnake();
 	else if (foes[0] is Naleen) pcLosesToNaleenLiekABitch();
 	else if (foes[0] is NaleenMale) loseToDudeleenRouter();
 	else if (foes[0] is CarlsRobot) ohShitLoseToRobot();
@@ -303,10 +299,6 @@ public function startCombat(encounter:String):void
 {	
 	switch(encounter) 
 	{
-			break;
-		case "cunt snake":
-			chars["CUNTSNAKE"].prepForCombat();
-			break;
 		case "naleen male":
 			chars["NALEEN_MALE"].prepForCombat();
 			break;

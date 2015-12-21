@@ -1,6 +1,8 @@
-﻿import classes.Creature;
+﻿import classes.Characters.CuntSnake;
+import classes.Creature;
 import classes.Engine.Combat.DamageTypes.DamageResult;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
+import classes.GameData.CombatManager;
 
 // Flags:
 // MET_CUNT_SNAKE                : TODO - FIXME
@@ -38,8 +40,15 @@ public function encounterCuntSnakeOnJungleLand():void {
 	// if we wanna do that.
 	CodexManager.unlockEntry("Cunt Snakes");
 	
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(new CuntSnake());
+	CombatManager.victoryScene(defeatACuntSnake);
+	CombatManager.lossScene(loseToCuntSnake);
+	CombatManager.displayLocation("CUNT SNAKE");
+	
 	clearMenu();
-	addButton(0,"Next",startCombat,"cunt snake");
+	addButton(0,"Next",CombatManager.beginCombat);
 }
 
 //*Combat Description

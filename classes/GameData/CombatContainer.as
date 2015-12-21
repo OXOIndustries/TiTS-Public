@@ -28,6 +28,7 @@ package classes.GameData
 	 * during group fights:
 	 * 		f.ex stopping a flashbang from being used too often when many
 	 * enemies can use the ability
+	 * Make sure parser-passthroughs are used appropriately (target and monster)
 	 */
 	
 	/**
