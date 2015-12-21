@@ -31,6 +31,15 @@ public function encounterDasGooGray():void
 	}
 	output("\n\nIt doesn't look like she'll take no for an answer!");
 	clearMenu();
+	
+	CodexManager.unlockEntry("Gray Goos");
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(new GrayGoo());
+	CombatManager.victoryScene(pcDefeatsGrayGooInTheNameOfLove);
+	CombatManager.lossScene(loseToGrayGooRouter);
+	CombatManager.displayLocation("GRAY GOO");
+	
 	addButton(0,"Next",startCombat,"Gray Goo");
 }
 

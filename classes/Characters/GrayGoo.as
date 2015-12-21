@@ -173,7 +173,17 @@
 			this.createStatusEffect("Disarm Immune");
 			this.createStatusEffect("Stun Immune");
 			
+			isUniqueInFight = true;
+			btnTargetText = "GrayGoo";
+			credits = 50 + rand(200);
+			sexualPreferences.setRandomPrefs(3 + rand(3));
+			
 			this._isLoading = false;
+		}
+		
+		override public function get displayBust():String
+		{
+			return "GRAY_GOO";
 		}
 		
 		public function UpgradeVersion1(dataObject:Object):void
@@ -182,29 +192,6 @@
 			{
 				dataObject.legFlags.push(GLOBAL.FLAG_PLANTIGRADE);
 			}
-		}
-				
-		override public function prepForCombat():void
-		{
-			var combatGrayGoo:GrayGoo = this.makeCopy();
-			
-			kGAMECLASS.userInterface.showBust("GRAY_GOO");
-			kGAMECLASS.userInterface.showName("FIGHT:\nGRAY GOO");
-			combatGrayGoo.sexualPreferences.setRandomPrefs(3 + rand(3));
-			
-			// Codex shit
-			CodexManager.unlockEntry("Gray Goos");
-			combatGrayGoo.credits = 50+rand(200);
-			/*if (rand(3) == 0)
-			{
-				combatGrayGoo.inventory.push(new ZilHoney());
-			}
-			else
-			{
-				combatGrayGoo.inventory.push(new ZilRation());
-			}*/
-			
-			kGAMECLASS.foes.push(combatGrayGoo);
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void

@@ -1,10 +1,6 @@
 ﻿public function victoryRouting():void 
 {
 	hideNPCStats();
-	else if(foes[0] is GrayGoo)
-	{
-		pcDefeatsGrayGooInTheNameOfLove();
-	}
 	else if(foes[0] is LapinaraFemale)
 	{
 		defeatDatLapinara();
@@ -123,7 +119,6 @@
 public function defeatRouting():void 
 {
 	hideNPCStats();
-	else if (foes[0] is GrayGoo) loseToGrayGooRouter();
 	else if (foes[0] is LapinaraFemale) loseToFemaleLapinara();
 	else if (foes[0] is SydianMale) loseToSydianMaleRouter();
 	else if (foes[0] is HandSoBot) pcLosesToHanSoSosBot();
@@ -139,9 +134,7 @@ public function defeatRouting():void
 	else if (foes[0] is GrayPrime) lossToGrayPrime();
 	else if (foes[0] is GigaGoo) loseToGigaGoo();
 	else if (foes[0] is Varmint) pcLosesToVarmint();
-	//PC + Kara Defeated
 	else if (foes[0] is Shade) loseWithKaraYouSlut()
-	//PC + Shade Defeated
 	else if (foes[0] is Kara) pcAndShadeDefeated();
 	else if (foes[0] is Cockvine)
 	{

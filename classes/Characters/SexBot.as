@@ -238,17 +238,6 @@
 			}
 		}
 		
-		override public function prepForCombat():void
-		{
-			
-			kGAMECLASS.setLocation("FIGHT:\nSEXBOT", "PLANET: TARKUS", "SYSTEM: REDACTED");
-
-			// Codex shit
-			CodexManager.unlockEntry("Sexbot");
-
-			kGAMECLASS.foes.push(combatSexbot);
-		}
-		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{
 			var target:Creature = selectTarget(hostileCreatures);
