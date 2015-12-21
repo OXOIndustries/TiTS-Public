@@ -172,7 +172,20 @@
 			this.ass.bonusCapacity += 15;
 			this.createStatusEffect("Disarm Immune");
 			
+			isUniqueInFight = true;
+			btnTargetText = "ZilFemale";
+			sexualPreferences.setRandomPrefs(5 + rand(3));
+			
+			if(rand(10) == 0) inventory.push(new PrimitiveBow());
+			else if (rand(3) == 0) inventory.push(new ZilHoney());
+			else inventory.push(new ZilRation());
+			
 			this._isLoading = false;
+		}
+		
+		override public function get displayBust():String
+		{
+			return "ZILFEMALE";
 		}
 		
 		public function UpgradeVersion1(dataObject:Object):void
@@ -185,49 +198,18 @@
 		
 		override public function setDefaultSexualPreferences():void
 		{
-			this.sexualPreferences.clearPrefs();
+			sexualPreferences.clearPrefs();
 			
-			//Zil Girl Likes
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_FEMININE,			GLOBAL.KINDA_LIKES_SEXPREF);
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_SMALL_BREASTS,	GLOBAL.KINDA_LIKES_SEXPREF);
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_COCKS,			GLOBAL.REALLY_LIKES_SEXPREF);
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_PUSSIES,			GLOBAL.KINDA_LIKES_SEXPREF);
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_BALLS,			GLOBAL.REALLY_LIKES_SEXPREF);
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_SMALL_MALEBITS,	GLOBAL.REALLY_LIKES_SEXPREF);
-
-			//Zil Girl Dislikes:
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_BREASTS,		GLOBAL.REALLY_DISLIKES_SEXPREF);
-			//this.sexualPreferences.setPref(GLOBAL.SEXPREF_SMALL_BREASTS,	GLOBAL.REALLY_DISLIKES_SEXPREF); // Guessing this is an error
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_GAPE,				GLOBAL.REALLY_DISLIKES_SEXPREF);
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_HYPER,			GLOBAL.KINDA_DISLIKES_SEXPREF);
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_LONG_HAIR,		GLOBAL.KINDA_DISLIKES_SEXPREF);
-		}
-		
-		override public function prepForCombat():void
-		{
-			var combatZilFemale:ZilFemale = this.makeCopy();
-			
-			kGAMECLASS.userInterface.showBust("ZILFEMALE");
-			kGAMECLASS.setLocation("FIGHT:\nFEMALE ZIL", "PLANET: MHEN'GA", "SYSTEM: ARA ARA");
-			combatZilFemale.sexualPreferences.setRandomPrefs(5 + rand(3));
-			
-			// Codex shit
-			CodexManager.unlockEntry("Zil");
-			
-			if(rand(10) == 0)
-			{
-				combatZilFemale.inventory.push(new PrimitiveBow());
-			}
-			else if (rand(3) == 0)
-			{
-				combatZilFemale.inventory.push(new ZilHoney());
-			}
-			else
-			{
-				combatZilFemale.inventory.push(new ZilRation());
-			}
-			
-			kGAMECLASS.foes.push(combatZilFemale);
+			sexualPreferences.setPref(GLOBAL.SEXPREF_FEMININE,		GLOBAL.KINDA_LIKES_SEXPREF);
+			sexualPreferences.setPref(GLOBAL.SEXPREF_SMALL_BREASTS,	GLOBAL.KINDA_LIKES_SEXPREF);
+			sexualPreferences.setPref(GLOBAL.SEXPREF_COCKS,			GLOBAL.REALLY_LIKES_SEXPREF);
+			sexualPreferences.setPref(GLOBAL.SEXPREF_PUSSIES,		GLOBAL.KINDA_LIKES_SEXPREF);
+			sexualPreferences.setPref(GLOBAL.SEXPREF_BALLS,			GLOBAL.REALLY_LIKES_SEXPREF);
+			sexualPreferences.setPref(GLOBAL.SEXPREF_SMALL_MALEBITS,GLOBAL.REALLY_LIKES_SEXPREF);
+			sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_BREASTS,	GLOBAL.REALLY_DISLIKES_SEXPREF);
+			sexualPreferences.setPref(GLOBAL.SEXPREF_GAPE,			GLOBAL.REALLY_DISLIKES_SEXPREF);
+			sexualPreferences.setPref(GLOBAL.SEXPREF_HYPER,			GLOBAL.KINDA_DISLIKES_SEXPREF);
+			sexualPreferences.setPref(GLOBAL.SEXPREF_LONG_HAIR,		GLOBAL.KINDA_DISLIKES_SEXPREF);
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void

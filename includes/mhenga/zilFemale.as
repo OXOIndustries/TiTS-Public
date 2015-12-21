@@ -1,6 +1,8 @@
-﻿import classes.Creature;
+﻿import classes.Characters.ZilFemale;
+import classes.Creature;
 import classes.Engine.Combat.DamageTypes.DamageResult;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
+import classes.GameData.CombatManager;
 
 // Flags:
 // FOUGHT_FEMZIL_LAST_TIME  : Last time you encountered the FemZil, you fought it rather then fucked it (?)
@@ -127,9 +129,23 @@ public function fightDatFriendlyFemzil():void {
 	else if(pc.tallness >= 72) output("<i>big </i>");
 	output("<i> " + pc.mfn("boy","girl","uh... dude") + "!”</i>  she cries, jumping back and readying her darts. It's a fight!");
 	clearMenu();
-	addButton(0,"Next",startCombat,"consensual femzil");
+	configFemZilFight(true);
+	addButton(0,"Next",CombatManager.beginCombat);
 }
 
+public function configFemZilFight(consensual:Boolean = false ):void
+{
+	var tZil:ZilFemale = new ZilFemale();
+	if (consensual) tZil.setDefaultSexualPreferences();
+	
+	CodexManager.unlockEntry("Zil");
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(tZil);
+	CombatManager.victoryScene(defeatHostileZil);
+	CombatManager.lossScene(girlZilLossRouter);
+	CombatManager.displayLocation("FEMALE ZIL");
+}
 
 //[Fight Her]
 public function fightHostileZil():void {
@@ -139,7 +155,8 @@ public function fightHostileZil():void {
 	userInterface.showName("FIGHT:\nZIL");
 	output("Though your body betrays you by moving a step closer to the wasp woman, you hold onto your wits enough to ready your defenses. Not a moment too soon, either, as the zil’s hand slides from her wet pussy to her belt and flings a pouch right at you. You react quickly enough to swat it aside, but any mask of friendliness the zil had is thrown away as well  - she clearly intends to take what she wants!");
 	clearMenu();
-	addButton(0,"Next",startCombat,"female zil");
+	configFemZilFight();
+	addButton(0,"Next",CombatManager.beginCombat);
 }
 
 //[Leave]
@@ -169,7 +186,8 @@ public function leaveHostileZil():void {
 			
 			output("\n\nHumming in irritation, she takes a step back as you ready your " + pc.meleeWeapon.longName + ".");
 			clearMenu();
-			addButton(0,"Next",startCombat,"female zil");
+			configFemZilFight();
+			addButton(0,"Next",CombatManager.beginCombat);
 		}
 		//fail - lust > 99 after penalty, go to loss
 		else {
@@ -195,7 +213,8 @@ public function leaveHostileZil():void {
 			}
 			output(", and you can’t do anything but stare at the slowly approaching wasp woman, imagining what perverted things she’ll do to you. As she reaches out and caresses your face, your mouth opens but makes no sound. She hums pleasantly, knowing she’ll get what she’s after.");
 			clearMenu();
-			addButton(0,"Next",startCombat,"female zil");
+			configFemZilFight();
+			addButton(0,"Next",CombatManager.beginCombat);
 		}
 	}
 }

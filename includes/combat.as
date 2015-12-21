@@ -1,9 +1,6 @@
 ﻿public function victoryRouting():void 
 {
 	hideNPCStats();
-	else if(foes[0].short == "female zil") {
-		defeatHostileZil();
-	}
 	else if(foes[0].short == "cunt snake") {
 		defeatACuntSnake();
 	}
@@ -160,7 +157,6 @@
 public function defeatRouting():void 
 {
 	hideNPCStats();
-	else if (foes[0] is ZilFemale) girlZilLossRouter();
 	else if (foes[0] is CuntSnake) loseToCuntSnake();
 	else if (foes[0] is Naleen) pcLosesToNaleenLiekABitch();
 	else if (foes[0] is NaleenMale) loseToDudeleenRouter();
@@ -307,10 +303,6 @@ public function startCombat(encounter:String):void
 {	
 	switch(encounter) 
 	{
-		case "consensual femzil":
-		case "female zil":
-			chars["ZILFEMALE"].prepForCombat();			
-			if (encounter == "consensual femzil") foes[0].setDefaultSexualPreferences(); // This call has to happen after prep, otherwise we'll wipe it out with random prefs.
 			break;
 		case "cunt snake":
 			chars["CUNTSNAKE"].prepForCombat();
