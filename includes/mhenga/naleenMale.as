@@ -1,20 +1,5 @@
 ﻿import classes.Engine.Combat.DamageTypes.DamageResult;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
-/*Intro
-Combat Description
-Attacks
-Normal Attack
-Constrict
-Pounce
-Victory
-Victory by HP
-Victory by Lust
-Ride Him
-Get Blown
-Defeat Sex
-Reverse Rape
-Intro
-*/
 
 //First Time:
 public function naleenMaleEncounter():void

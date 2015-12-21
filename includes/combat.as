@@ -4,9 +4,6 @@
 	else if(foes[0].short == "female zil") {
 		defeatHostileZil();
 	}
-	else if(foes[0].short == "zil male") {
-		winVsZil();
-	}
 	else if(foes[0].short == "cunt snake") {
 		defeatACuntSnake();
 	}
@@ -163,7 +160,6 @@
 public function defeatRouting():void 
 {
 	hideNPCStats();
-	else if (foes[0] is ZilMale) zilLossRouter();
 	else if (foes[0] is ZilFemale) girlZilLossRouter();
 	else if (foes[0] is CuntSnake) loseToCuntSnake();
 	else if (foes[0] is Naleen) pcLosesToNaleenLiekABitch();
@@ -311,9 +307,6 @@ public function startCombat(encounter:String):void
 {	
 	switch(encounter) 
 	{
-		case "zil male":
-			chars["ZIL"].prepForCombat();
-			break;
 		case "consensual femzil":
 		case "female zil":
 			chars["ZILFEMALE"].prepForCombat();			

@@ -403,14 +403,16 @@ public function seriouslyFightTheZil():void {
 	CombatManager.setHostileCharacters(new ZilPack());
 	CombatManager.victoryScene(defeatZilPair);
 	CombatManager.lossScene(loseToZilPair);
+	CombatManager.displayLocation("TWO ZIL");
 	
-	this.addButton(0,"Next",startCombat,"zilpack");
+	this.addButton(0, "Next", startCombat, "zilpack");
 }
 
 //Lose to Zil Pair
 //By Savin
 //Get fucked from both ends until the Zil sate themselves. Penny schlicks in the corner until they’re done, then she takes em down, actually converses with them. They say forcing sex with strangers is a cultural thing, penny says she’ll kill any that try that in town, and turns them loose to tell the rest of their people (by leading them out on leashes)
-public function loseToZilPair():void {
+public function loseToZilPair():void
+{
 	author("Savin");
 	
 	output("The onslaught of ");

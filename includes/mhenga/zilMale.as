@@ -1,6 +1,8 @@
-﻿import classes.Creature;
+﻿import classes.Characters.ZilMale;
+import classes.Creature;
 import classes.Engine.Combat.DamageTypes.DamageResult;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
+import classes.GameData.CombatManager;
 //Male Zil Encounter
 
 // Flags:
@@ -29,18 +31,17 @@ public function maleZilEncounter():void {
 		flags["ENCOUNTERED_ZIL"]++;
 	}
 	
+	CodexManager.unlockEntry("Zil");
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(new ZilMale());
+	CombatManager.victoryScene(winVsZil);
+	CombatManager.lossScene(zilLossRouter);
+	CombatManager.displayLocation("ZIL MALE");
+	
 	clearMenu();
-	addButton(0,"Next",startCombat,"zil male");
+	addButton(0,"Next",CombatManager.beginCombat);
 }
-
-/*
-Combat Description:
-	The male zil you're fighting would stand roughly {height} tall were he to touch the ground, but instead, he's supporting himself on rapidly fluttering wings, keeping his genitals at just the right height to waft his sweet musk in your direction. His only ‘armament’ is a {length}-inch penis with a tight, hairless sack underneath; he bears no weapon in his hand and no stinger. The zil's body is almost entirely covered on ebony carapace{, though some areas are striped in bright yellow{; he even has yellow irises}/even his shoulders}.
-Combat Techniques:
-	Miss Text: The zil zips out of the way with a swift contortion of his agile frame.
-	Block Text: The zil's chitinous armor deflects your attack.
-	AI: Utilizes lust attacks unless damaged. Then has physical probability of 2 * missing HP (50% HP = 100% physical attacks). Flurry of blows or facehump if PC is stunned. 50% chance of using harden when below 75% HP.
-*/
 
 //*Win Scenes:
 public function winVsZil():void {
@@ -102,7 +103,7 @@ public function winVsZil():void {
 		else if(pc.hasCock()) addDisabledButton(6,"Cuff&Fuck","Cuff & Fuck","You can cuff [monster.himHer] down, but you wouldn't be able to fit inside.");
 		else addDisabledButton(6,"Cuff&Fuck","Cuff & Fuck","You need a penis to make use of your grav-cuffs this way.");
 	}
-	addButton(14,"Leave",genericVictory);
+	addButton(14,"Leave",CombatManager.genericVictory);
 }
 
 //*Butt Fuck Him
