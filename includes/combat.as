@@ -1,10 +1,6 @@
 ﻿public function victoryRouting():void 
 {
 	hideNPCStats();
-	else if(foes[0].short == "machina")
-	{
-		pushButtanOnMagicTedsFireRobot();
-	}
 	else if(foes[0].short == "Dane")
 	{
 		defeatDane();
@@ -290,9 +286,6 @@ public function startCombat(encounter:String):void
 {	
 	switch(encounter) 
 	{
-		case "machina":
-			chars["MACHINA"].prepForCombat();
-			break;
 		case "Dane":
 			chars["DANE"].prepForCombat();
 			break;

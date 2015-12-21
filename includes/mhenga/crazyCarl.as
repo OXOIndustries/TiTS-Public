@@ -1,4 +1,5 @@
-﻿import classes.Creature;
+﻿import classes.Characters.CarlsRobot;
+import classes.Creature;
 import classes.Engine.Combat.DamageTypes.DamageResult;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
 import classes.Items.Guns.HammerPistol;
@@ -607,7 +608,14 @@ public function carlsEncounterStart():Boolean {
 
 public function fightMachina():void {
 	flags["JUNGLE_STEP"] = 0;
-	startCombat("machina");
+	
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(new CarlsRobot());
+	CombatManager.victoryScene(pushButtanOnMagicTedsFireRobot);
+	CombatManager.lossScene(ohShitLoseToRobot);
+	CombatManager.displayLocation("MACHINA");
+	CombatManager.beginCombat();
 }
 
 //Victory!
@@ -622,7 +630,7 @@ public function pushButtanOnMagicTedsFireRobot():void {
 	output("\n\nImmediately the robot chirps and you yank your hand away, preparing to go back to fighting. However, instead of aggression the machine lazily hovers itself upright, spins in place once and then continues upwards. You can only watch as it rises up past the trees and floats to off to the side - towards town, you realize. Looks like it’s going to what it considers home after you reset it.");
 	output("\n\n<b>Best speak with Carl when you get back.</b>\n\n");
 	flags["ROBOT_QUEST_COMPLETE"] = 1;
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Defeat, bad end...

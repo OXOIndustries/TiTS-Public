@@ -173,9 +173,17 @@
 			
 			this.createStatusEffect("Disarm Immune");
 			
+			isUniqueInFight = true;
+			btnTargetText = "Machina";
+			
 			this._isLoading = false;
-
 		}
+		
+		override public function get displayBust():String
+		{
+			return "MACHINA";
+		}
+		
 		public function UpgradeVersion1(dataObject:Object):void
 		{
 			if (dataObject.skinFlags.length == 0)
@@ -183,23 +191,7 @@
 				dataObject.skinFlags.push(GLOBAL.FLAG_FLUFFY);
 			}
 		}
-		
-		override public function setDefaultSexualPreferences():void
-		{
-			
-		}
-		
-		override public function prepForCombat():void
-		{
-			var combatMachina:CarlsRobot = this.makeCopy();
-			
-			//kGAMECLASS.userInterface.showBust("NALEEN_MALE");
-			kGAMECLASS.setLocation("FIGHT:\nMACHINA", "PLANET: MHEN'GA", "SYSTEM: ARA ARA");
-			combatMachina.setDefaultSexualPreferences();
-			
-			kGAMECLASS.foes.push(combatMachina);
-		}
-		
+				
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{
 			var target:Creature = selectTarget(hostileCreatures);
