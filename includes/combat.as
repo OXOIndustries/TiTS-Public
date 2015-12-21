@@ -2,7 +2,6 @@
 {	
 	trace("AI CALL");
 	//Paralyze stops turns! AHHHH!
-	else if (aggressor is Princess) princessAI();
 	else if (aggressor is GardeBot) gardenforkRoboAI();
 	else if (aggressor is GooKnight) crystalGooAI();
 	else enemyAttack(aggressor);
