@@ -391,11 +391,13 @@ package classes {
 		public var hairStyle:String = "null";
 		public function hairLengthUnlocked(newHairLength:Number):Boolean
 		{
+			if (hasPerk("Mane") && newHairLength <= 3) return false;
 			if (hairType == GLOBAL.HAIR_TYPE_GOO && (skinType == GLOBAL.SKIN_TYPE_GOO || hasStatusEffect("Goo Vent"))) return false;
 			return true;
 		}
 		public function hairLengthLockedMessage():String
 		{
+			if (hasPerk("Mane")) return "Your scalp briefly tingles, but your [pc.hair] refuses to change. It seems your mane can’t get any shorter!";
 			return "Your scalp briefly tingles, but your [pc.hair] remains unchanged.";
 		}
 
