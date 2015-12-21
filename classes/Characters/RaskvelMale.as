@@ -177,7 +177,28 @@
 			this.ass.loosenessRaw = 2;
 			this.ass.bonusCapacity += 35;
 			
+			isUniqueInFight = true;
+			btnTargetText = "Raskvel";
+			
+			randomise();
+			
 			this._isLoading = false;
+		}
+		
+		override public function get displayBust():String
+		{
+			return "RASKVEL_GANG";
+		}
+		
+		private function randomise():void 
+		{
+			sexualPreferences.setRandomPrefs(3 + rand(3));
+			long = "You are fighting the raskvel gang. The three red-scaled males, their big, rabbit-like ears and blunt tails swinging as they move, have you surrounded. The biggest one, a good four foot two, is brazenly naked and is using his fists and feet for weapons. The other two have harnesses around their waists and are swinging heavy wrenches. Though short, all three of them are pretty strongly built: tight, unostentatious muscle bulges underneath their smooth, rusty skin, particularly in their thick thighs.";
+			long += " Their dicks are hidden away in their genital slits, although their snug, pouch-like balls are clear to see.";
+			long += " They have jolly, lively faces, and they laugh and call to each other as they fight you, as if they’re not taking this particularly seriously. Their attacks, though, are very definitely serious.";
+
+			credits = 100+rand(200);	
+			if(rand(8) <= 6) combatRaskvelMale.inventory.push(new Ruskvel());
 		}
 		
 		public function UpgradeVersion1(dataObject:Object):void
@@ -186,32 +207,6 @@
 			{
 				dataObject.legFlags.push(GLOBAL.FLAG_PLANTIGRADE);
 			}
-		}
-		
-		override public function prepForCombat():void
-		{
-			var combatRaskvelMale:RaskvelMale = this.makeCopy();
-			
-			kGAMECLASS.userInterface.showBust("RASKVEL_MALE","RASKVEL_MALE","RASKVEL_MALE");
-			kGAMECLASS.setLocation("FIGHT: MALE\nRASKVEL", "PLANET: TARKUS", "SYSTEM: REDACTED");
-			combatRaskvelMale.sexualPreferences.setRandomPrefs(3 + rand(3));
-			
-			combatRaskvelMale.long = "You are fighting the raskvel gang. The three red-scaled males, their big, rabbit-like ears and blunt tails swinging as they move, have you surrounded. The biggest one, a good four foot two, is brazenly naked and is using his fists and feet for weapons. The other two have harnesses around their waists and are swinging heavy wrenches. Though short, all three of them are pretty strongly built: tight, unostentatious muscle bulges underneath their smooth, rusty skin, particularly in their thick thighs.";
-			combatRaskvelMale.long += " Their dicks are hidden away in their genital slits, although their snug, pouch-like balls are clear to see.";
-			combatRaskvelMale.long += " They have jolly, lively faces, and they laugh and call to each other as they fight you, as if they’re not taking this particularly seriously. Their attacks, though, are very definitely serious.";
-
-			//combatRaskvelMale.ass.loosenessRaw = rand(4) + 1;
-			//combatRaskvelMale.vaginas[0].loosenessRaw = rand(4) + 1;
-			combatRaskvelMale.credits = 100+rand(200);
-
-			// Codex shit - Disabled. Entry unlocks mid-greeting event.
-
-			/*if (rand(10) == 0)
-			{
-				combatRaskvelFemale.inventory.push(new RaskvelWrench());
-			}*/	
-			if(rand(8) <= 6) combatRaskvelMale.inventory.push(new Ruskvel());
-			kGAMECLASS.foes.push(combatRaskvelMale);
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void

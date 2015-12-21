@@ -1,10 +1,6 @@
 ﻿public function victoryRouting():void 
 {
 	hideNPCStats();
-	else if(foes[0] is RaskvelMale)
-	{
-		victoryVsRaskGang();
-	}
 	else if(foes[0] is SexBot)
 	{
 		defeatTheSexBot();
@@ -131,7 +127,6 @@
 public function defeatRouting():void 
 {
 	hideNPCStats();
-	else if (foes[0] is RaskvelMale) lossVsRaskGang();
 	else if (foes[0] is SexBot) loseToSexBotRouter();
 	else if (foes[0] is GrayGoo) loseToGrayGooRouter();
 	else if (foes[0] is LapinaraFemale) loseToFemaleLapinara();
@@ -270,9 +265,6 @@ public function startCombat(encounter:String):void
 {	
 	switch(encounter) 
 	{
-		case "RaskvelMale":
-			chars["RASKVEL_MALE"].prepForCombat();
-			break;
 		case "SexBot":
 			chars["SEXBOT"].prepForCombat();
 			break;

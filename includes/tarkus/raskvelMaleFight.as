@@ -1,4 +1,5 @@
-﻿import classes.Engine.Combat.DamageTypes.DamageResult;
+﻿import classes.Characters.RaskvelMale;
+import classes.Engine.Combat.DamageTypes.DamageResult;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
 //Plans/Ideas
 /**Three raskvel scavenging some junk. Possibly have a chance mechanic as to how they’re predisposed to you. They don’t care (low chance of that m8), they offer sexy times, they offer a gud deal on the junk, they want to get paid like the female.
@@ -154,7 +155,8 @@ public function noIDontWantFunRaskGang():void
 		processTime(1);
 		//[Go to combat]
 		clearMenu();
-		addButton(0,"Next",startCombat,"RaskvelMale");
+		configRaskGangFight();
+		addButton(0,"Next", CombatManager.beginCombat);
 	}
 	//They do take it as an answer
 	//40% if masculine/andro, 20% if feminine
@@ -167,6 +169,16 @@ public function noIDontWantFunRaskGang():void
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 	}
+}
+
+public function configRaskGangFight():void
+{
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(new RaskvelMale());
+	CombatManager.victoryScene(victoryVsRaskGang);
+	CombatManager.lossScene(lossVsRaskGang);
+	CombatManager.displayLocation("RASKVEL (M)");
 }
 
 //Yes
@@ -206,7 +218,8 @@ public function dontPayForSafePassageSlut():void
 	output("\n\nThe three of them skilfully clamber down from their junk and close in on you.");
 	//{go to fight}
 	clearMenu();
-	addButton(0,"Next",startCombat,"RaskvelMale");
+	configRaskGangFight();
+	addButton(0, "Next", CombatManager.beginCombat);
 }
 
 //Pay with Sex
@@ -674,7 +687,7 @@ public function victoryVsRaskGang():void
 		output("\n\nYou laugh quietly to yourself as you consider it.\n\n");
 	}
 	clearMenu();
-	addButton(14,"Leave",genericVictory);
+	addButton(14,"Leave",CombatManager.genericVictory);
 	//Red Riding
 	//Requires: Vagina
 	if(pc.hasVagina()) addButton(0,"Ride 'Em",redRidingRaskvel,undefined,"Ride 'Em","Put their dicks to use in your slit, where they belong. The foolish little creatures should've let you take the lead all along!");
@@ -1030,7 +1043,7 @@ public function raskMaleButtfuckery():void
 	processTime(45);
 	pc.orgasm();
 	output("\n\n");
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Red Riding
@@ -1311,7 +1324,7 @@ public function vaginaRaskStuffEpilogus(args:Array):void
 	output(" sway off, leaving your boy toys behind you in a discarded heap.\n\n");
 	processTime(22);
 	pc.orgasm();
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Loss Gangbang
@@ -1500,7 +1513,7 @@ public function loseToRaskvelAndGetGangBangued():void
 	output("\n\nWith that they turn back to their junk pile, happily nattering to one other as they leave you in a quivering, leaking pile in the dust.\n\n");
 	processTime(55);
 	pc.orgasm();
-	genericLoss();
+	CombatManager.genericLoss();
 }
 
 //Seduction
