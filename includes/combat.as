@@ -1,10 +1,6 @@
 ﻿public function victoryRouting():void 
 {
 	hideNPCStats();
-	else if(foes[0] is Kaska)
-	{
-		defeatKaska();
-	}
 	else if (foes[0] is MaidenVanae || foes[0] is HuntressVanae)
 	{
 		vanaePCVictory();
@@ -87,7 +83,6 @@
 public function defeatRouting():void 
 {
 	hideNPCStats();
-	else if (foes[0] is Kaska) defeatedByKaska();
 	else if (foes[0] is MaidenVanae) vanaeMaidenPCDefeat();
 	else if (foes[0] is HuntressVanae) vanaeHuntressPCDefeat();
 	else if (foes[0] is SecurityDroids) lossToSecurityDroid();
@@ -213,9 +208,6 @@ public function startCombat(encounter:String):void
 {	
 	switch(encounter) 
 	{
-		case "Kaska":
-			chars["KASKA"].prepForCombat();
-			break;
 		case "HUNTRESS_VANAE":
 			chars["HUNTRESS_VANAE"].prepForCombat();
 			break;

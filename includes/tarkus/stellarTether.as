@@ -851,7 +851,7 @@ public function pirateCaptainBossFightIntro():void
 	
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new CaptainKhorganMech());
+	CombatManager.setHostileCharacters(khorgan);
 	CombatManager.victoryScene(victoriousVsCaptainOrcButt);
 	CombatManager.lossScene(loseToCaptainKhorganBadEnd);
 	CombatManager.displayLocation("CAP. KHORGAN");
@@ -1406,7 +1406,15 @@ public function meetUpWithKaskaZeBossSloot():void
 	//Start combat
 	processTime(3);
 	clearMenu();
-	addButton(0,"Next",startCombat,"Kaska");
+	
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(kaska);
+	CombatManager.victoryScene(defeatKaska);
+	CombatManager.lossScene(defeatedByKaska);
+	CombatManager.displayLocation("KASKA");
+	
+	addButton(0,"Next", CombatManager.beginCombat);
 }
 
 //Do Nothing

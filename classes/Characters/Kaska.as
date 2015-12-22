@@ -20,7 +20,7 @@
 		{
 			this._latestVersion = 1;
 			this.version = _latestVersion;
-			this._neverSerialize = true;
+			this._neverSerialize = false;
 			
 			this.short = "Kaska";
 			this.originalRace = "Dzaan";
@@ -183,31 +183,38 @@
 			
 			this.createStatusEffect("Flee Disabled",0,0,0,0,true,"","",false,0);
 
+			isUniqueInFight = true;
+			btnTargetText = "Kaska";
+			
+			sexualPreferences.setPref(GLOBAL.SEXPREF_FEMININE,			GLOBAL.KINDA_LIKES_SEXPREF);
+			sexualPreferences.setPref(GLOBAL.SEXPREF_HERMAPHRODITE,	GLOBAL.KINDA_LIKES_SEXPREF);
+			sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_BUTTS,		GLOBAL.REALLY_LIKES_SEXPREF);
+			sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_BREASTS,		GLOBAL.KINDA_LIKES_SEXPREF);
+			sexualPreferences.setPref(GLOBAL.SEXPREF_WIDE_HIPS,		GLOBAL.KINDA_LIKES_SEXPREF);	
+			sexualPreferences.setPref(GLOBAL.SEXPREF_TAILS,			GLOBAL.KINDA_LIKES_SEXPREF);
+			sexualPreferences.setPref(GLOBAL.SEXPREF_TAILGENITALS,		GLOBAL.KINDA_LIKES_SEXPREF);
+			//KASKA Dislikes
+			sexualPreferences.setPref(GLOBAL.SEXPREF_SMALL_BREASTS,	GLOBAL.REALLY_DISLIKES_SEXPREF);
+			sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_MALEBITS,		GLOBAL.REALLY_DISLIKES_SEXPREF);
+			sexualPreferences.setPref(GLOBAL.SEXPREF_MULTIPLES,		GLOBAL.KINDA_DISLIKES_SEXPREF);
+			sexualPreferences.setPref(GLOBAL.SEXPREF_BALDNESS,			GLOBAL.KINDA_DISLIKES_SEXPREF);
+			sexualPreferences.setPref(GLOBAL.SEXPREF_HYPER,			GLOBAL.REALLY_DISLIKES_SEXPREF);
+			sexualPreferences.setPref(GLOBAL.SEXPREF_VAGINAL_DRYNESS,	GLOBAL.REALLY_DISLIKES_SEXPREF);
+			
 			this._isLoading = false;
 		}
+		
+		override public function get displayBust():String
+		{
+			return "KASKA";
+		}
+		
 		override public function prepForCombat():void
 		{
-			var combatKaska:Kaska = this.makeCopy();
 			
-			kGAMECLASS.userInterface.showBust("KASKA");
 			kGAMECLASS.setLocation("FIGHT:\nKASKA", "PLANET: TARKUS", "SYSTEM: REDACTED");
 			//KASKA Likes:
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_FEMININE,			GLOBAL.KINDA_LIKES_SEXPREF);
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_HERMAPHRODITE,	GLOBAL.KINDA_LIKES_SEXPREF);
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_BUTTS,		GLOBAL.REALLY_LIKES_SEXPREF);
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_BREASTS,		GLOBAL.KINDA_LIKES_SEXPREF);
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_WIDE_HIPS,		GLOBAL.KINDA_LIKES_SEXPREF);	
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_TAILS,			GLOBAL.KINDA_LIKES_SEXPREF);
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_TAILGENITALS,		GLOBAL.KINDA_LIKES_SEXPREF);
-			//KASKA Dislikes
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_SMALL_BREASTS,	GLOBAL.REALLY_DISLIKES_SEXPREF);
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_MALEBITS,		GLOBAL.REALLY_DISLIKES_SEXPREF);
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_MULTIPLES,		GLOBAL.KINDA_DISLIKES_SEXPREF);
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_BALDNESS,			GLOBAL.KINDA_DISLIKES_SEXPREF);
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_HYPER,			GLOBAL.REALLY_DISLIKES_SEXPREF);
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_VAGINAL_DRYNESS,	GLOBAL.REALLY_DISLIKES_SEXPREF);
-
-			kGAMECLASS.foes.push(combatKaska);
+			
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void

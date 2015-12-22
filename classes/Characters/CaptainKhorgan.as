@@ -191,11 +191,6 @@
 			return "CAPTAIN_KHORGAN";
 		}
 		
-		override public function prepForCombat():void
-		{
-			kGAMECLASS.setLocation("FIGHT: CAP'N\nKHORGAN", "PLANET: TARKUS", "SYSTEM: REDACTED");
-		}
-		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{
 			if(HP()/HPMax() * 100 < rand(100) - 30) gettingOffOnZePain(target);
