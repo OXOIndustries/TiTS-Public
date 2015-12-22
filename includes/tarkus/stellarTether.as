@@ -1,4 +1,5 @@
-﻿import classes.Characters.GunTurrets;
+﻿import classes.Characters.CaptainKhorganMech;
+import classes.Characters.GunTurrets;
 import classes.Characters.PlayerCharacter;
 import classes.Characters.RocketTurrets;
 import classes.Creature;
@@ -846,6 +847,14 @@ public function pirateCaptainBossFightIntro():void
 	flags["KHORGAN_LEFT_COVER"] = 100;
 	flags["KHORGAN_CENTER_COVER"] = 100;
 	flags["KHORGAN_RIGHT_COVER"] = 100;
+	
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(new CaptainKhorganMech());
+	CombatManager.victoryScene(victoriousVsCaptainOrcButt);
+	CombatManager.lossScene(loseToCaptainKhorganBadEnd);
+	CombatManager.displayLocation("CAP. KHORGAN");
+	
 	addButton(0,"Next",startCombat,"khorgan mechfight");
 }
 

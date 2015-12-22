@@ -1,10 +1,6 @@
 ﻿public function victoryRouting():void 
 {
 	hideNPCStats();
-	else if(foes[0] is CaptainKhorganMech)
-	{
-		victoriousVsCaptainOrcButt();
-	}
 	else if(foes[0] is CaptainKhorgan)
 	{
 		youBeatUpAnOrcWaytoGo();
@@ -95,7 +91,6 @@
 public function defeatRouting():void 
 {
 	hideNPCStats();
-	else if (foes[0] is CaptainKhorganMech) loseToCaptainKhorganBadEnd();
 	else if (foes[0] is CaptainKhorgan) loseToCaptainKhorganBadEnd();
 	else if (foes[0] is Kaska) defeatedByKaska();
 	else if (foes[0] is MaidenVanae) vanaeMaidenPCDefeat();
@@ -223,9 +218,6 @@ public function startCombat(encounter:String):void
 {	
 	switch(encounter) 
 	{
-		case "khorgan mechfight":
-			chars["CAPTAINKHORGANMECH"].prepForCombat();
-			break;
 		case "khorgan":
 			chars["CAPTAINKHORGAN"].prepForCombat();
 			break;

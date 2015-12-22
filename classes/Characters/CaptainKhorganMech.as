@@ -185,7 +185,15 @@
 			this.createStatusEffect("Flee Disabled",0,0,0,0,true,"","",false,0);
 			this.createStatusEffect("Disarm Immune");
 
+			isUniqueInFight = true;
+			btnTargetText = "Khorgan";
+			
 			this._isLoading = false;
+		}
+		
+		override public function get displayBust():String
+		{
+			return "CAPTAIN_KHORGAN";
 		}
 		
 		public function UpgradeVersion1(dataObject:Object):void
@@ -194,16 +202,6 @@
 			{
 				dataObject.legFlags.push(GLOBAL.FLAG_PLANTIGRADE);
 			}
-		}
-		override public function prepForCombat():void
-		{
-			var combatCaptainKhorganMech:CaptainKhorganMech = this.makeCopy();
-			
-			kGAMECLASS.userInterface.showBust("CAPTAIN_KHORGAN");
-			kGAMECLASS.setLocation("FIGHT: CAP'N\nKHORGAN", "PLANET: TARKUS", "SYSTEM: REDACTED");
-			//combatCaptainKhorganMech.sexualPreferences.setRandomPrefs(3 + rand(3));
-			
-			kGAMECLASS.foes.push(combatCaptainKhorganMech);
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
