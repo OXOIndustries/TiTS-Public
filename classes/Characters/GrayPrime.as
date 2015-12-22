@@ -164,18 +164,11 @@ package classes.Characters
 			this._isLoading = false;
 		}
 		
-		override public function prepForCombat():void
+		override public function get displayBust():String
 		{
-			var gooPrime:GrayPrime = this.makeCopy();
-			
-			kGAMECLASS.userInterface.showBust("GRAY_GOO_PRIME_2");
-			kGAMECLASS.userInterface.showName("FIGHT:\nGRAY PRIME");
-			
-			//combatGunTurrets.sexualPreferences.setRandomPrefs(2 + rand(3));
-			
-			kGAMECLASS.foes.push(gooPrime);
+			return "GRAY_GOO_PRIME_2";
 		}
-		
+				
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{
 			var pc:PlayerCharacter;

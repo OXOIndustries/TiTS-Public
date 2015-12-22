@@ -2344,8 +2344,15 @@ public function deck13ShieldControlFunc():Boolean
 		output("\n\nUh-oh. ");
 		grayGooDisplay();
 		clearMenu();
-		pc.createStatusEffect("Annoquest Helper AI", 0, 0, 0, 0, true, "", "", true, 0);
-		addButton(0, "Fight!", startCombat, "grayprime");
+		
+		CombatManager.newGroundCombat();
+		CombatManager.setFriendlyCharacters([pc, anno]);
+		CombatManager.setHostileCharacters(new GrayPrime());
+		CombatManager.victoryScene(victoryOverGrayPrime);
+		CombatManager.lossScene(lossToGrayPrime);
+		CombatManager.displayLocation("GRAY PRIME");
+		
+		addButton(0, "Fight!", CombatManager.beginCombat);
 		return true;
 	}
 	else
@@ -2488,51 +2495,6 @@ public function nameThaGooII():void
 	processTime(45+rand(15));
 
 	addButton(0, "Next", mainGameMenu);
-}
-
-public function grayPrimeAI():void
-{
-	//Basic combat routine: She focuses on her sword-swings at first. As she falls in HP or starts to build up lust, she'll proc Lust Clones and Tentacles more often, though still mostly relying on physical attacks.
-	grayGooDisplay();
-	if (pc.hasStatusEffect("Grappled"))
-	{
-		processCombat();
-		return;
-	}
-	
-	if (foes[0].hasStatusEffect("Grapple CD"))
-	{
-		foes[0].addStatusValue("Grapple CD", 1, -1);
-	}
-	
-	var attackChance:int = 33;
-	attackChance += ((foes[0].HP()/foes[0].HPMax()) * 50);
-	attackChance -= ((foes[0].lust()/foes[0].lustMax()) * 50);
-
-	if (foes[0].hasStatusEffect("AnnoGrapple"))
-	{
-		grayPrimeAnnoGrapple();
-	}
-	else if (pc.hasStatusEffect("Trip") && !foes[0].hasStatusEffect("Grapple CD"))
-	{
-		grayPrimeGooGrapple();
-	}
-	else if (rand(100) <= attackChance)
-	{
-		RandomInCollection(grayPrimeForcePunch, grayPrimeAttackAnno, grayPrimeGooSword)();
-	}
-	else
-	{
-		grayPrimeLustfulClones();
-	}
-
-	// Tag on the gooclone stuff after the main gray prime attack text.
-	if (foes[0].hasStatusEffect("Gooclones"))
-	{
-		grayPrimeCloneLustAttack();
-	}
-
-	processCombat();
 }
 
 public function grayPrimeEscapeGrapple():void

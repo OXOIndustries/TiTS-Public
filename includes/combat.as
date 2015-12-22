@@ -1,10 +1,6 @@
 ﻿public function victoryRouting():void 
 {
 	hideNPCStats();
-	else if (foes[0] is GrayPrime)
-	{
-		victoryOverGrayPrime();
-	}
 	else if (foes[0] is GigaGoo)
 	{
 		victoryOverGigaGoo();
@@ -75,7 +71,6 @@
 public function defeatRouting():void 
 {
 	hideNPCStats();
-	else if (foes[0] is GrayPrime) lossToGrayPrime();
 	else if (foes[0] is GigaGoo) loseToGigaGoo();
 	else if (foes[0] is Varmint) pcLosesToVarmint();
 	else if (foes[0] is Shade) loseWithKaraYouSlut()
@@ -197,9 +192,6 @@ public function startCombat(encounter:String):void
 {	
 	switch(encounter) 
 	{
-		case "grayprime":
-			chars["GRAYPRIME"].prepForCombat();
-			break;
 		case "gigagoo":
 			chars["GIGAGOO"].prepForCombat();
 			break;

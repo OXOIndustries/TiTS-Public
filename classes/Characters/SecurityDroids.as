@@ -6,7 +6,7 @@ package classes.Characters
 	import classes.Items.Guns.HammerPistol;
 	import classes.Items.Protection.JoyCoPremiumShield;
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
 	import classes.GameData.CodexManager;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	
