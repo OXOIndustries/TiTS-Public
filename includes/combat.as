@@ -1,10 +1,6 @@
 ﻿public function victoryRouting():void 
 {
 	hideNPCStats();
-	else if (foes[0] is Varmint)
-	{
-		pcVictoryVsVarmints();
-	}
 	else if(foes[0] is Shade)
 	{
 		// PC + Kara defeat Shade
@@ -67,7 +63,6 @@
 public function defeatRouting():void 
 {
 	hideNPCStats();
-	else if (foes[0] is Varmint) pcLosesToVarmint();
 	else if (foes[0] is Shade) loseWithKaraYouSlut()
 	else if (foes[0] is Kara) pcAndShadeDefeated();
 	else if (foes[0] is Cockvine)
@@ -187,9 +182,6 @@ public function startCombat(encounter:String):void
 {	
 	switch(encounter) 
 	{
-		case "varmint":
-			chars["VARMINT"].prepForCombat();
-			break;
 		case "Kara":
 			chars["KARA"].prepForCombat();
 			buildShadeAndKaraFight(false);

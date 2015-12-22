@@ -154,25 +154,20 @@ package classes.Characters
 			this.createStatusEffect("Force It Gender");
 			//this.createStatusEffect("Flee Disabled",0,0,0,0,true,"","",false,0);
 			
+			isUniqueInFight = true;
+			btnTargetText = "Varmint";
+			
 			this._isLoading = false;
-
+		}
+		
+		override public function get displayBust():String
+		{
+			return "VARMINT";
 		}
 		
 		override public function prepForCombat():void
 		{
-			var combatVarmint:Varmint = this.makeCopy();
-			
-			kGAMECLASS.userInterface.showBust("VARMINT");
 			kGAMECLASS.userInterface.showName("FIGHT:\nVARMINT");
-			
-			//combatVarmint.sexualPreferences.setRandomPrefs(2 + rand(3));
-			//LOOT!
-			//if (rand(3) == 0)
-			//{
-			//	combatVarmint.inventory.push(new ZilRation());
-			//}
-			
-			kGAMECLASS.foes.push(combatVarmint);
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void

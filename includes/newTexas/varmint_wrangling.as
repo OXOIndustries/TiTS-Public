@@ -1,4 +1,5 @@
-﻿import classes.Engine.Combat.DamageTypes.TypeCollection;
+﻿import classes.Characters.Varmint;
+import classes.Engine.Combat.DamageTypes.TypeCollection;
 import classes.Items.Miscellaneous.VarmintItem;
 import classes.Items.Miscellaneous.Silicone;
 
@@ -322,7 +323,15 @@ public function varmintProc():void
 	}
 	flags["MET_VARMINT"]++;
 	clearMenu();
-	addButton(0,"Next",startCombat,"varmint");
+	
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(new Varmint());
+	CombatManager.victoryScene(pcVictoryVsVarmints);
+	CombatManager.lossScene(pcLosesToVarmint);
+	CombatManager.displayLocation("VARMINT");
+	
+	addButton(0,"Next", CombatManager.beginCombat);
 }
 
 //Notes on the Encounter.
