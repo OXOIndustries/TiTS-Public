@@ -4,12 +4,14 @@ package classes.GameData
 	import classes.Creature;
 	import classes.GameData.Pregnancy.Handlers.CockvinePregnancy;
 	import classes.Items.Armor.GooArmor;
+	import classes.ItemSlotClass;
 	import classes.StorageClass;
 	import classes.Engine.Interfaces.*;
 	import classes.Characters.*;
 	import classes.kGAMECLASS;
 	import fl.events.SliderEventClickTarget;
 	import classes.Engine.Utility.possessive;
+	import classes.Engine.Utility.plural;
 	
 	/**
 	 * TODO:
@@ -2493,7 +2495,6 @@ package classes.GameData
 			if (playerVictoryCondition())
 			{
 				showCombatUI();
-				doCombatCleanup();
 				clearMenu();
 				addButton(0, "Victory", _victoryFunction);
 				return true;
@@ -2508,8 +2509,7 @@ package classes.GameData
 			genericVictory = function():void {
 				StatTracking.track("combat/wins");
 				getCombatPrizes();
-				clearMenu();
-				addButton(0, "Next", mainGameMenu);
+				doCombatCleanup();
 			}
 			
 			genericLoss = function():void {
@@ -2525,6 +2525,7 @@ package classes.GameData
 				}
 				else if (pc.level == 1 && (hasEnemyOfClass(NaleenMale) || hasEnemyOfClass(Naleen) || hasEnemyOfClass(HuntressVanae) || hasEnemyOfClass(MaidenVanae))) addButton(0, "Next", helpDumbPCsOut);
 				else this.addButton(0, "Next", mainGameMenu);
+				doCombatCleanup();
 			}
 		}
 		
@@ -2705,6 +2706,10 @@ package classes.GameData
 		
 		public function doCombatCleanup():void
 		{
+			kGAMECLASS.enemy = null;
+			kGAMECLASS.target = null;
+			kGAMECLASS.monster = null;
+			
 			doCleanup(_friendlies);
 		}
 		
@@ -3240,6 +3245,110 @@ package classes.GameData
 			}
 			return false;
 		}
+		
+		public function getCombatPrizes():void
+		{
+			var loot:Array = [];
+			var sumXP:int = 0;
+			var sumCredits:int = 0;
+			
+			var enemyNames:Object = { };
+			var numDistinct:int = 0;
+			
+			// Grab all the details from the collective hostiles
+			for (var i:int = 0; i < _hostiles.length; i++)
+			{
+				var t:Creature = _hostiles[i];
+				sumXP += t.XP();
+				sumCredits += t.credits;
+				
+				for (var ii:int = 0; ii < t.inventory.length; ii++)
+				{
+					var tt:ItemSlotClass = t.inventory[ii];
+					
+					if (tt.quantity > 0)
+					{
+						loot.push(tt.makeCopy());
+					}
+				}
+				
+				if (enemyNames[t.short] == undefined)
+				{
+					enemyNames[t.short] = 1;
+					numDistinct++;
+				}
+				else
+				{
+					enemyNames[t.short]++;
+				}
+			}
+			
+			pc.credits += sumCredits;
+			
+			// Add up XP, but don't permit the players current XP to overcap
+			if (sumXP + pc.XP() > pc.XPMax())
+			{
+				sumXP = pc.XPMax() - pc.XP();
+			}
+			
+			pc.XP(sumXP);
+			
+			// Emit some shit to state what the player got/did
+			
+			var numOutput:int = 0;
+			
+			output("\n\nYou defeated ");
+			foreach(var key:String in enemyNames)
+			{
+				if (enemyNames[key] > 1) output(String(enemyNames[key]) + "x " + plural(key));
+				output(key);
+				
+				if (numDistinct > 0) output(", ");
+				if (numOutput > 1 && numDistinct == 1) output("and ");
+				numDistinct--;
+				numOutput++;
+			}
+			output("!");
+			
+			if (sumXP > 0) output(" " + sumXP + " XP gained!");
+			else
+			{
+				output("\n<b>Maximum XP attained! You need to level up to continue to progress.</b>");
+				if(pc.level == 1) output("\n<b>Find a bed to sleep on in order to level up (like on your ship).</b>");
+			}
+	
+			//Monies!
+			if (sumCredits > 0) 
+			{
+				if(CombatManager.multipleEnemies()) output("\nThey had ");
+				else output(_hostiles[0].mfn("\nHe"," She", " It") + " had ");
+				output(String(sumCredits) + " credit");
+				if(sumCredits > 1) output("s");
+				output(" loaded on an anonymous credit chit that you appropriate.");
+			}
+			
+			clearMenu();
+	
+			if (loot.length > 0)
+			{
+				output("\nYou also found the following items:");
+				
+				for (var iii:int = 0; iii < loot.length; iii++)
+				{
+					output("\n" + loot[iii].quantity + "x " + loot[iii].longName);
+				}
+				
+				/*
+				itemScreen = mainGameMenu;
+				lootScreen = mainGameMenu;
+				useItemFunction = mainGameMenu;
+				*/
+				kGAMECLASS.itemCollect(loot);
+			}
+			else
+			{
+				addButton(0, "Next", kGAMECLASS.mainGameMenu);
+			}
+		}
 	}
-
 }
