@@ -1,5 +1,6 @@
 ﻿import classes.Characters.GrayPrime;
 import classes.Characters.PlayerCharacter;
+import classes.Characters.SecurityDroids;
 import classes.Creature;
 import classes.Engine.Combat.DamageTypes.DamageResult;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
@@ -1990,8 +1991,16 @@ public function deck13SecurityFunc():Boolean
 		output("\n\nBefore you can react, Anno squeezes the trigger of her sidearm. An almost silent crack echoes through the corridor, and one of the droids crumples to its knees. The others instantly start squeezing their triggers, hurling red bolts of energy downrange at you! ");
 
 		clearMenu();
-		pc.createStatusEffect("Annoquest Helper AI", 0, 0, 0, 0, true, "", "", true, 0);
-		addButton(0, "Fight!", startCombat, "securitydroids");
+		
+		CombatManager.newGroundCombat();
+		CombatManager.setFriendlyCharacters([pc, anno]);
+		CombatManager.setHostileCharacters([new SecurityDroids(), new SecurityDroids, new SecurityDroids()]);
+		CombatManager.victoryScene(victoryOverSecurityDroid);
+		CombatManager.lossScene(lossToSecurityDroid);
+		CombatManager.displayLocation("S. DROIDS");
+		CombatManager.encounterText("These security bots are old and outmoded, but that doesn't make them any less dangerous. They fearlessly march forward through all the fire you and Anno can pour at them, lighting up the corridor with laser fire as they advance over the shattered remains of their fallen comrades.");
+		
+		addButton(0, "Fight!", CombatManager.beginCombat);
 		return true;
 	}
 	else
@@ -2036,7 +2045,7 @@ public function victoryOverSecurityDroid():void
 	output("\n\n<i>“Yeah. We did,”</i> she says, not quite smiling. Anno pulls a fresh magazine out and reloads her handgun before tucking it away again.");
 	if (pc.IQ() >= 75 || pc.characterClass == GLOBAL.CLASS_MERCENARY) output(" For such a little gun, it sure seemed to pack a punch... and was suppressed, too. Might be worth a look some time.\n\n");
 
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 public function deck13ArmoryFunc():Boolean
@@ -2641,7 +2650,7 @@ public function victoryOverGrayPrime():void
 		
 		output("\n\n<i>“I don’t know,”</i> you say, helping her up. <i>“But I don’t think we’ve seen the last of it.”</i>\n\n");
 
-		genericVictory();
+		CombatManager.genericVictory();
 	}
 	// Lust victory
 	else if (foes[0].lust() >= foes[0].lustMax())
@@ -2659,7 +2668,7 @@ public function victoryOverGrayPrime():void
 		output("\n\n<i>“I don’t know,”</i> you say. <i>“But I don’t think we’ve seen the last of it.”</i>\n\n");
 
 		// [Room Menu Go]
-		genericVictory();
+		CombatManager.genericVictory();
 	}
 }
 
@@ -3345,7 +3354,7 @@ public function annoPostQuestSexytimes():void
 	else
 	{
 		output("\n\n");
-		genericVictory();
+		CombatManager.genericVictory();
 	}
 }
 
@@ -3369,7 +3378,7 @@ public function annoPostQuestSexytimesRefusedWhatAreYouGayOrSomethin():void
 	else
 	{
 		output("\n\n");
-		genericVictory();
+		CombatManager.genericVictory();
 	}
 }
 

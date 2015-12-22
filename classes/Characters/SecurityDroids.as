@@ -35,7 +35,7 @@ package classes.Characters
 			this.originalRace = "Automaton";
 			this.a = "the ";
 			this.capitalA = "The ";
-			this.long = "These security bots are old and outmoded, but that doesn't make them any less dangerous. They fearlessly march forward through all the fire you and Anno can pour at them, lighting up the corridor with laser fire as they advance over the shattered remains of their fallen comrades. ";
+			this.long = "";
 			this.customDodge = "Somehow, the drones manage to skirt out of the way of your fire.";
 			this.customBlock = "The hardened exterior of the drones absorbs your attack.";
 			this.plural = true;
@@ -152,9 +152,17 @@ package classes.Characters
 			
 			this.createStatusEffect("Disarm Immune");
 			this.createStatusEffect("Force It Gender");
-			this.createStatusEffect("Flee Disabled",0,0,0,0,true,"","",false,0);
+			this.createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
+			
+			isUniqueInFight = true;
+			btnTargetText = "Droid";
 			
 			this._isLoading = false;
+		}
+		
+		override public function get displayBust():String
+		{
+			return "DROID_SECURITY";
 		}
 		
 		override public function prepForCombat():void

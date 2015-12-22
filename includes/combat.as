@@ -1,10 +1,6 @@
 ﻿public function victoryRouting():void 
 {
 	hideNPCStats();
-	else if (foes[0] is SecurityDroids)
-	{
-		victoryOverSecurityDroid();
-	}
 	else if (foes[0] is GrayPrime)
 	{
 		victoryOverGrayPrime();
@@ -79,7 +75,6 @@
 public function defeatRouting():void 
 {
 	hideNPCStats();
-	else if (foes[0] is SecurityDroids) lossToSecurityDroid();
 	else if (foes[0] is GrayPrime) lossToGrayPrime();
 	else if (foes[0] is GigaGoo) loseToGigaGoo();
 	else if (foes[0] is Varmint) pcLosesToVarmint();
@@ -202,9 +197,6 @@ public function startCombat(encounter:String):void
 {	
 	switch(encounter) 
 	{
-		case "securitydroids":
-			chars["SECURITYDROIDS"].prepForCombat();
-			break;
 		case "grayprime":
 			chars["GRAYPRIME"].prepForCombat();
 			break;
