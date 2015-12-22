@@ -1,4 +1,5 @@
-﻿import classes.Engine.Combat.DamageTypes.TypeCollection;
+﻿import classes.Characters.HandSoBot;
+import classes.Engine.Combat.DamageTypes.TypeCollection;
 //Conspiracy Colenso
 //By Nonesuch
 
@@ -352,7 +353,18 @@ public function noTalkPlease():void
 	processTime(1);
 	//[go to fight]
 	clearMenu();
-	addButton(0,"Next",startCombat,"firewall");
+	configFirewallFight();
+	addButton(0,"Next", CombatManager.beginCombat);
+}
+
+private function configFirewallFight():void
+{
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(new HandSoBot());
+	CombatManager.victoryScene(pcWinsVsHanSoSosTool);
+	CombatManager.lossScene(pcLosesToHanSoSosBot);
+	CombatManager.displayLocation("FIREWALL");
 }
 
 //Yes 
@@ -391,7 +403,8 @@ public function pcIsGonnaEndHandSo():void
 	processTime(1);
 	//[go to fight]
 	clearMenu();
-	addButton(0,"Next",startCombat,"firewall");
+	configFirewallFight();
+	addButton(0, "Next", CombatManager.beginCombat);
 }
 
 //Go On 
@@ -429,7 +442,8 @@ public function noIWontBeYourBitchHandSo():void
 	processTime(1);
 	//[go to fight]
 	clearMenu();
-	addButton(0,"Next",startCombat,"firewall");
+	configFirewallFight();
+	addButton(0, "Next", CombatManager.beginCombat);
 }
 
 //Yes 
@@ -612,7 +626,7 @@ public function backAfterWreckingHanSoSosShit():void
 		flags["HAND_SOS_CONSOLE_EXPLODED"] = 1;
 		flags["SEXBOT_FACTORY_DISABLED"] = 1;
 		flags["SEXBOT_QUEST_STATUS"] = 2;
-		if(inCombat()) genericVictory();
+		if(inCombat()) CombatManager.genericVictory();
 		else
 		{
 			clearMenu();
@@ -623,7 +637,7 @@ public function backAfterWreckingHanSoSosShit():void
 	if(inCombat()) 
 	{
 		output("\n\n");
-		genericVictory();
+		CombatManager.genericVictory();
 	}
 	else
 	{
@@ -719,7 +733,7 @@ public function leftConsole():void
 			flags["HAND_SOS_CONSOLE_EXPLODED"] = 1;
 			flags["SEXBOT_FACTORY_DISABLED"] = 1;
 			flags["SEXBOT_QUEST_STATUS"] = 2;
-			if(inCombat()) genericVictory();
+			if(inCombat()) CombatManager.genericVictory();
 			else
 			{
 				clearMenu();

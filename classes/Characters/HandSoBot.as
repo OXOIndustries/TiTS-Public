@@ -183,22 +183,15 @@
 			
 			this.createStatusEffect("Disarm Immune");
 			
+			isUniqueInFight = true;
+			btnTargetText = "Firewall"
+			
 			this._isLoading = false;
+		}
 
-		}
-		override public function setDefaultSexualPreferences():void
+		override public function get displayBust():String
 		{
-			
-		}
-		override public function prepForCombat():void
-		{
-			var combatMachina:HandSoBot = this.makeCopy();
-			
-			kGAMECLASS.userInterface.showBust("FIREWALL_BATTLE");
-			kGAMECLASS.setLocation("FIGHT:\nFIREWALL", "PLANET: MHEN'GA", "SYSTEM: ARA ARA");
-			//combatMachina.setDefaultSexualPreferences();
-			
-			kGAMECLASS.foes.push(combatMachina);
+			return "FIREWALL_BATTLE";
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
@@ -213,7 +206,7 @@
 			else flameThrowerAttack(target);
 		}
 		
-		private function falmeThrowerAttack(target:Creature):void
+		private function flameThrowerAttack(target:Creature):void
 		{
 			output("A yellow bush within a black bush appears on the Firewall’s screen. It opens its gripper at you, allowing you to momentarily see the hollow nozzle at its centre – and then burning gas shoots out of it, a shockingly hot and blinding plume of exothermic destruction which rushes greedily out towards you.");
 			if (target.armor.shortName != "") output(" You cry out as the fire grabs at your " + pc.armor.longName + ", catching hold and lapping at it lustily.");

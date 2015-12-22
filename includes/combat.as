@@ -1,10 +1,6 @@
 ﻿public function victoryRouting():void 
 {
 	hideNPCStats();
-	else if(foes[0] is HandSoBot)
-	{
-		pcWinsVsHanSoSosTool();
-	}
 	else if (foes[0] is PhoenixPirates)
 	{
 		victoryOverPhoenixPirates();
@@ -111,7 +107,6 @@
 public function defeatRouting():void 
 {
 	hideNPCStats();
-	else if (foes[0] is HandSoBot) pcLosesToHanSoSosBot();
 	else if (foes[0] is PhoenixPirates) loseToPhoenixPirates();
 	else if (foes[0] is GunTurrets) tamtamBadEndPetPooch();
 	else if (foes[0] is RocketTurrets) pcLosesToRocketPods();
@@ -243,9 +238,6 @@ public function startCombat(encounter:String):void
 {	
 	switch(encounter) 
 	{
-		case "firewall":
-			chars["FIREWALL"].prepForCombat();
-			break;
 		case "phoenixpirates":
 			chars["PHOENIXPIRATES"].prepForCombat();
 			break;
