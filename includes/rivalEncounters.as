@@ -34,7 +34,7 @@ public function approachRivalOnMhenga():Boolean
 {
 	// Room Descriptions
 	var daneWins:Boolean = (flags["DIDNT_ENGAGE_RIVAL_ON_MHENGA"] != undefined || flags["LOST_TO_DANE_ON_MHENGA"] != undefined);
-	var probeOnMhenga:Boolean = (flags["MHENGA_PROBE_CASH_GOT"] == undefined && 9999 == 9999);
+	var probeOnMhenga:Boolean = (flags["MHENGA_PROBE_CASH_GOT"] == undefined && !daneWins);
 	if(probeOnMhenga) output("Buried halfway in a small crater of its own creation sits an oblong metal pod, perhaps ten feet long and three across. The surface is still glossy after its obviously hot reentry; you can see the way it blackened the ground and the plants around it. You immediately recognize it as one of the probes your father sent out - one of the keys to his fortune.");
 	else
 	{
@@ -202,7 +202,9 @@ public function daneOmniExplanation():void {
 public function letRivalGoOnMhenga():void {
 	clearOutput();
 	flags["DIDNT_ENGAGE_RIVAL_ON_MHENGA"] = 1;
-	output("You let [rival.em] go. There's no sense in wasting time with a fight when [rival.ey]'s already given you what you came for. Once [rival.ey]'s gone, you root around in the brush for a moment, ignoring the scratching branches to find the data-chit. It's a little scuffed and damp dirt is plastered all over it, but it looks okay. You stand and dust it off before connecting it to your codex. The data is all there: coordinates for another planet, presumably one with another probe. All you had to do was not let your pride get the better of you.");
+	output("<i>“Alright Dane, let’s get out of here already,”</i> [rival.name] shouts as [rival.ey] jumps into [rival.eir] ship, the engines ablaze. The loud sound of cranks can be heard and you turn to see a thick magnetic chain reeling into [rival.eir] craft... pulling your dad’s probe up with it!");
+	output("\n\n[rival.name] guffaws, <i>“You didn’t think I’d leave with just only the coordinates, did you? I’m gonna have a payday with this hunk o’ junk!”</i> Damnit, [rival.ey]’s trying to sap out as many credits as [rival.ey] can from you.");
+	output("\n\nYou ball your fists in protest, but ultimately decide to let [rival.em] go. There's no sense in wasting time with a fight when [rival.ey]'s already given you what you came for. Once [rival.ey]'s gone, you root around in the brush for a moment, ignoring the scratching branches to find the data-chit. It's a little scuffed and damp dirt is plastered all over it, but it looks okay. You stand and dust it off before connecting it to your codex. The data is all there: coordinates for another planet, presumably one with another probe. All you had to do was not let your pride get the better of you.");
 	output("\n\nYou'll just have to get to the next one before your cousin.");
 	processTime(10);
 	clearMenu();
@@ -431,7 +433,7 @@ public function loseToDane():void {
 //[Next]
 public function daneFuckEpilogue():void {
 	clearOutput();
-	output("You wake all alone, naked, sore, and leaking white cum. You're humiliated and debased, but the coordinates to the next planet in your father's chain are in a data-chit lying next to you. Maybe next time you'll have a better showing.\n\n");
+	output("You wake all alone, naked, sore, and leaking white cum. You're humiliated and debased - even the probe is missing, leaving behind a cold, empty crater - but the coordinates to the next planet in your father's chain are in a data-chit lying next to you. Maybe next time you'll have a better showing.\n\n");
 	flags["LOST_TO_DANE_ON_MHENGA"] = 1;
 	processTime(75+rand(10));
 	genericLoss();
