@@ -677,6 +677,16 @@ public function stepBackFromGloryHoles():void
 	addButton(0,"Next",startCombat,"Goocubator");
 }
 
+public function configureGoocubatorFight():void
+{
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(goocubator);
+	CombatManager.victoryScene(pcBeatsGoo);
+	CombatManager.lossScene(loseToRoyalIncuGoo);
+	CombatManager.displayLocation("GOO");
+}
+
 //[Use Gloryhole]
 //Well, that’s what it’s there for, right? Stick your dick right into the gloryhole and see what’s in store.
 public function useDatGloryhole():void
@@ -755,7 +765,8 @@ public function useDatGloryhole():void
 	processTime(20);
 	pc.orgasm();
 	clearMenu();
-	addButton(0,"Next",startCombat,"Goocubator");
+	configureGoocubatorFight();
+	addButton(0,"Next", CombatManager.beginCombat);
 }
 
 //PC Defeated by Guu: Absorbed and Incubated

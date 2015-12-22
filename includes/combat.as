@@ -1,7 +1,6 @@
 ﻿public function victoryRouting():void 
 {
 	hideNPCStats();
-	else if(foes[0] is Goocubator) pcBeatsGoo();
 	else if (foes[0] is SX1GroupPirates) sx1PirateGroupPCVictory();
 	else if (foes[0] is SX1Shotguard) sx1ShotguardPCVictory();
 	else if (foes[0] is SX1Techguard) sx1TechguardPCVictory();
@@ -16,7 +15,6 @@
 public function defeatRouting():void 
 {
 	hideNPCStats();
-	else if (foes[0] is Goocubator) loseToRoyalIncuGoo();
 	else if (foes[0] is SX1GroupPirates) sx1PirateGroupPCLoss();
 	else if (foes[0] is SX1Shotguard) sx1ShotguardPCLoss();
 	else if (foes[0] is SX1Techguard) sx1TechguardPCLoss();
@@ -117,9 +115,6 @@ public function startCombat(encounter:String):void
 {	
 	switch(encounter) 
 	{
-		case "Goocubator":
-			chars["GOOCUBATOR"].prepForCombat();
-			break;
 		case "SX1GROUPPIRATES":
 			chars["SX1GROUPPIRATES"].prepForCombat();
 			break;

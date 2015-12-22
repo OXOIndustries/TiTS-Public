@@ -174,23 +174,22 @@
 			this.createStatusEffect("Flee Disabled",0,0,0,0,true,"","",false,0);
 			this.createStatusEffect("Disarm Immune");
 			
+			isUniqueInFight = true;
+			btnTargetText = "Goocubator";
+			sexualPreferences.setRandomPrefs(7, 0);
+			long = "The crystal-armored goo-girl in front of you is a mass of green slime in the vague form of a nyrean woman, with oversized hips and a huge pair of glistening breasts that bounce around with every movement. Her body is covered with small flecks and plates of natural emerald crystal, but unlike most of her race, the vast majority of her crystal is concentrated around her hugely swollen belly, forming a perfect, smooth dome. Underneath the protective shell of crystal are what must be hundreds of white, fist-sized eggs, floating listlessly in their gooey womb.";
+			if (flags["CRYSTAL_GOO_GLORYHOLED"] == 1) 
+			{
+				long += " A misty cloud of [pc.cumColor] billows around the eggs, clinging to several of the outliers. If they weren’t fertilized already, then you’ve certainly got a few new kids on the way. The gooey incubator looks at you with wild eyes, her arms clutching her eggy belly protectively. Looks like this artificial momma will do anything to protect her clutch!";
+				lustRaw = 0;
+			}
+			
 			this._isLoading = false;
 		}
 		
-		override public function prepForCombat():void
+		override public function get displayBust():String
 		{
-			var combatGoo:Goocubator = this.makeCopy();
-			
-			kGAMECLASS.userInterface.showBust("GOOCUBATOR");
-			kGAMECLASS.showName("FIGHT:\nGOO");
-			combatGoo.sexualPreferences.setRandomPrefs(7,0);
-			combatGoo.long = "The crystal-armored goo-girl in front of you is a mass of green slime in the vague form of a nyrean woman, with oversized hips and a huge pair of glistening breasts that bounce around with every movement. Her body is covered with small flecks and plates of natural emerald crystal, but unlike most of her race, the vast majority of her crystal is concentrated around her hugely swollen belly, forming a perfect, smooth dome. Underneath the protective shell of crystal are what must be hundreds of white, fist-sized eggs, floating listlessly in their gooey womb.";
-			if(kGAMECLASS.flags["CRYSTAL_GOO_GLORYHOLED"] == 1) 
-			{
-				combatGoo.long += " A misty cloud of [pc.cumColor] billows around the eggs, clinging to several of the outliers. If they weren’t fertilized already, then you’ve certainly got a few new kids on the way. The gooey incubator looks at you with wild eyes, her arms clutching her eggy belly protectively. Looks like this artificial momma will do anything to protect her clutch!";
-				combatGoo.lustRaw = 0;
-			}
-			kGAMECLASS.foes.push(combatGoo);
+			return "GOOCUBATOR";
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void

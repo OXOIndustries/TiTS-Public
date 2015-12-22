@@ -1080,5 +1080,9 @@
 		{
 			return chars["DRLASH"];
 		}
+		public function get goocubator():Goocubator
+		{
+			return chars["GOOCUBATOR"];
+		}
 	}
 }
