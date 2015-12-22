@@ -994,7 +994,7 @@ public function lolaPoolApproach():void
 	
 	if(flags["MET_LOLA"] == undefined)
 	{
-		output("You wade over toward the naked cowgirl as she strokes her way across the pool. She doesn’t seem to notice your approach, so you time it so she bumps into you on her way. As soon as you two collide, she looks up, then flips herself over and stands, surprise clear on her round face.");
+		output("You enter the pool and wade over toward the naked cowgirl as she strokes her way across the pool. She doesn’t seem to notice your approach, so you time it so she bumps into you on her way. As soon as you two collide, she looks up, then flips herself over and stands, surprise clear on her round face.");
 		output("\n\n<i>“Oh, I’m sorry!”</i> she says, then gives you a long look up and down, her blue eyes wide. <i>“Hi there,”</i> she says, a smile spreading across her face. <i>“I’m Lola. Haven’t seen you here before, huh?”</i>");
 		output("\n\nLola’s only a little over five feet tall, but her hips would look wide on a woman twice her size; on her, they seem almost comically exaggerated. Her butt is appropriately bulbous, with curvy thighs beneath it. Soaked red hair trails down to her shoulders, clearly her natural color, if the little tuft above her pussy is any indication. Two short white horns peek out from among her locks, and her ears are cowlike and floppy. Her skin is pale, and she has the large boobs common among New Texans, with hard, pink nipples.");
 		output("\n\nYou introduce yourself to the bright-eyed cowgirl, and ask if she’s here working out, or if she just likes to swim.");
@@ -1043,12 +1043,13 @@ public function lolaPoolApproach():void
 		
 		// [Yep] Go to FloatFuck
 		// [Nope] Go to NoFloatFuck
-		addButton(0, "Yep", lolaPoolSex, "yep");
+		if (pc.lust() < 33) addDisabledButton(0, "Yep", "Yep", "You are not aroused enough for this.");
+		else addButton(0, "Yep", lolaPoolSex, "yep");
 		addButton(1, "Nope", lolaPoolSex, "nope");
 	}
 	else
 	{
-		output("You wade over to the wide-hipped cowgirl as she swims her laps. Remembering your first encounter, you pause where she’ll bump into you as she swims. When Lola’s pale shoulder rubs up against you, she looks up, then gives you a sweet smile as she stands.");
+		output("You enter the pool and wade over to the wide-hipped cowgirl as she swims her laps. Remembering your first encounter, you pause where she’ll bump into you as she swims. When Lola’s pale shoulder rubs up against you, she looks up, then gives you a sweet smile as she stands.");
 		output("\n\n<i>“Hi there, [pc.name],”</i> Lola says. Her cheeks turn pink, and she twirls one finger into her shoulder-length red hair. <i>“Good to see you. You just here to swim, or....”</i> She shakes her ample hips in your direction a few times, and giggles, and leaving no doubt at all what she’s asking.");
 		
 		// [Yep] Go to FloatFuck {requires penis or strap-on}
