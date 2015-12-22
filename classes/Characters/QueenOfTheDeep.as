@@ -191,20 +191,17 @@
 			createStatusEffect("Force Fem Gender");
 			this.createStatusEffect("Disarm Immune");
 			
+			isUniqueInFight = true;
+			btnTargetText = "Queen";
+			
+			sexualPreferences.setRandomPrefs(4 + rand(3), 2);
+			
 			this._isLoading = false;
 		}
-		override public function setDefaultSexualPreferences():void
+		
+		override public function get displayBust():String
 		{
-			this.sexualPreferences.setRandomPrefs(4 + rand(3), 2);
-		}
-		override public function prepForCombat():void
-		{
-			var t:QueenOfTheDeep = this.makeCopy();
-			t.setDefaultSexualPreferences();
-			kGAMECLASS.userInterface.showBust("QUEENOFTHEDEEP");
-			kGAMECLASS.userInterface.showName("FIGHT:\nDEEPS QUEEN");
-			
-			kGAMECLASS.foes.push(t);
+			return "QUEENOFTHEDEEP";
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void 

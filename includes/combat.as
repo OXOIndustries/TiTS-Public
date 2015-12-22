@@ -1,10 +1,6 @@
 ﻿public function victoryRouting():void 
 {
 	hideNPCStats();
-	else if (foes[0] is QueenOfTheDeep)
-	{
-		queenOfTheDeepPCVictory();
-	}
 	else if (foes[0] is MyrRedFemaleDeserter || foes[0] is MyrGoldFemaleDeserter)
 	{
 		winVsAntGrillDeserts();
@@ -25,7 +21,6 @@
 public function defeatRouting():void 
 {
 	hideNPCStats();
-	else if (foes[0] is QueenOfTheDeep) queenOfTheDeepPCLoss();
 	else if (foes[0] is MyrRedFemaleDeserter || foes[0] is MyrGoldFemaleDeserter) loseToAntGrillDeserts();
 	else if (foes[0] is NyreanPraetorians) loseToPraetorianNyreaGangbangu();
 	else if (foes[0] is Goocubator) loseToRoyalIncuGoo();
@@ -129,9 +124,6 @@ public function startCombat(encounter:String):void
 {	
 	switch(encounter) 
 	{
-		case "QueenOfTheDeep":
-			chars["QUEENOFTHEDEEP"].prepForCombat();
-			break;
 		case "Gold Deserter":
 			chars["GOLD_DESERTER"].prepForCombat();
 			break;

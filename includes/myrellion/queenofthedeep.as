@@ -1,3 +1,4 @@
+import classes.Characters.QueenOfTheDeep;
 import classes.Creature;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
 
@@ -75,7 +76,13 @@ public function queenOfTheDeepInitFight():void
 {
 	pc.createStatusEffect("Watered Down", 0, 0, 0, 0, false, "Icon_Slow", "You're submerged in water, and your movements are dramatically slowed because of it. While you're fighting in the lake, your Reflex is reduced!", true, 0);
 
-	startCombat("QueenOfTheDeep");
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(new QueenOfTheDeep());
+	CombatManager.victoryScene(queenOfTheDeepPCVictory);
+	CombatManager.lossScene(queenOfTheDeepPCLoss);
+	CombatManager.displayLocation("ZIL MALE");
+	CombatManager.beginCombat();
 }
 
 public function queenOfTheDeepPCLoss():void
@@ -553,7 +560,7 @@ public function queenOfTheDeepSurrenderIII(fromCombat:Boolean):void
 
 	if (fromCombat)
 	{
-		genericLoss();
+		CombatManager.genericLoss();
 	}
 	else
 	{
@@ -586,7 +593,7 @@ public function queenOfTheDeepPCVictory():void
 	clearOutput();
 	queenOfTheDeepHeader();
 
-	if (foes[0].HP() <= 0)
+	if (enemy.HP() <= 0)
 	{
 		output("With a shriek of agony, the titanic creature collapses, legs giving out under the strain of your attacks and dumping her into the dark water before you. <i>“Enough! Enough!”</i> she groans, <i>“I yield, star-walker. You are... much stronger than I imagined. Much stronger than any creature to enter my domain in many years...”</i>");
 	}
@@ -715,7 +722,7 @@ public function queenOfTheDeepCloacaFuck():void
 
 	processTime(45 + rand(15));
 
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 public function queenOfTheDeepGetEgged():void
@@ -911,7 +918,7 @@ public function queenOfTheDeepGetEggedII():void
 	
 	// permanent +wetness in holes filled, +10 Libido
 
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 public function queenOfTheDeepTakeBow():void
@@ -927,8 +934,8 @@ public function queenOfTheDeepTakeBow():void
 	
 	output("\n\nYou sling the bow over your shoulder and watch as the creature retreats, fading into the oppressive darkness. Something tells you that you won’t be seeing her again.");
 
-	foes[0].inventory.push(new QueensBow());
-	genericVictory();
+	enemy.inventory.push(new QueensBow());
+	CombatManager.genericVictory();
 }
 
 public function queenOfTheDeepHerStory():void
@@ -978,7 +985,7 @@ public function queenOfTheDeepLeave():void
 	
 	output("\n\nYou doubt you’ll see the monster again.");
 
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 public function queenLactationEvent():void
