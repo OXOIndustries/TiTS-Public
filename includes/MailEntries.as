@@ -114,6 +114,7 @@ public function configureMails():void
 	MailManager.addMailEntry("tanisarrows", "What’s better than letting loose arrows...?\n\nLetting loose arrows <b>that EXPLODE</b>.\n\n<i>Embedded to the message are a series of step-by-step instructional graphics on how to build explosive-tipped arrows.</i>\n\nHave at it!\n\nMhen’ga U.G.C. Scout Authority\n - Tanis", "Here you go!", "Tanisaran Alhelvan", "Tanis_Alhelvan@UGC.gov", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("saendraxpack1", "Hey, hero, are you anywhere near Tavros? Please say yes! If you are, I could really use a hand. I'm on Deck 92, up in the construction wing. Expect trouble. Hope I see you soon!\n\n<3", "Hey Hero", "Saendra en Illya", "FlyGirl@PhoenixCargo.net", quickPCTo, quickPCToAddress); 
 	MailManager.addMailEntry("emmy_apology", emmyApologyEmail,"Sorry!","Emmy Astarte","emmy_astarte@cmail.com",quickPCTo,quickPCToAddress);
+	MailManager.addMailEntry("emmy_gift_starter", emmyGiftStarterEmail,"Thinking of You!","Emmy Astarte","emmy_astarte@cmail.com",quickPCTo,quickPCToAddress);
 	MailManager.addMailEntry("the_masque", "Hey, where are you? I thought we agreed to meet up for The Masque? I keep trying to call you, but you’re not answering, so this is my last try. Dude, this shit is wicked. I’m gonna be on the west side of Craven city, but you’ve only got a few days left, so get your ass over here!\n\nWet & Waiting", "The Masque", "Wet & Waiting", "Wet.N.Waiting@GalLink.org", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("syribooks", "Hey, Steele\n\nHere are some books to jump start your reading adventure:\n\n<i>Below is a link to a download archive with numerous books by various authors, most notably: Rondell Ramus, Capser van Beck and Imono Flaest.</i>\n\nEnjoy!\n-Syri", "Read More.", "Syri Dorna", "BlastMaster@GalLink.org", quickPCTo, quickPCToAddress);
 }
@@ -227,6 +228,15 @@ public function xenogenBlowjobReminder():String
 public function emmyApologyEmail():String
 {
 	var ret:String = "Hey, " + pc.short + "!\n\nI hope I didn’t drive you off by turning into such a prude after getting you all worked up. I can’t help being so turned on all the time - I really can’t! You should see how bad I get when I’m watching a saucy holo. But that’s beside the point. I got you hot and bothered, and even after you were so nice to me, I acted like some kind of ice queen. I know, it’d be hard to imagine if you didn’t experience it firsthand.\n\nAnyway, I wanted to apologize for being so thoughtless. The truth is that I really like you, and I think I can bend my rules a little if you’re willing to put up with my hangups. A girl like me has gotta be careful she doesn’t turn into a rampant slut, ya know? Can’t do all my thinking with my junk.\n\nSo visit, and if you want, I’ll give you an oral apology with more tongue than you can handle ;)\n\nSincerely,\nEmmy";
+	return ret;
+}
+
+public function emmyGiftStarterEmail():String
+{
+	var ret:String = "Hey " + pc.short + "\n\nMy gear keeping you safe out there? It’d better. No infected myrellion is going to savage my " + pc.mf("boy","girl") + "friend, not while " + pc.mf("he","she") + "’s using KihaCorp kit!\n\nI just wanted to check in and let you know that I was thinking of you. This cute looking green rahn came in today with a pretty android boytoy at her side, and I didn’t even flirt with them once! Er... I <i>mostly</i> didn’t flirt with them. She had a top-shelf rack, even for a rahn, and I got the impression her companion was probably filled with aftermarket mods for the bedroom. But even when she smiled at me or groped my dick, I kept thinking back to you, like it was you that kept trying to invite me back to a ship for a romp in the dark.\n\nI promise I was good. I didn’t go with her, ";
+	if(flags["EMMY_POLY"] == 1) ret += "even though I could if I wanted to. I bet you’re getting all kinds of sex from those myr girls. Are their pussies as deep as everyone says?";
+	else ret += ".";
+	ret += " I didn’t even jack off myself or break out that dildo I got from Naughty Wyvern (on a whim) afterward, but while I was changing out of the third jumpsuit I soaked that day, I realized that we could probably get a little more serious, if you wanted. Come see me when you’re in the neighborhood.\n\nSloppy kisses,\nEmmy";
 	return ret;
 }
 
