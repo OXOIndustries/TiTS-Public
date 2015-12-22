@@ -168,21 +168,19 @@ package classes.Characters
 			this.milkRate = 0;
 			this.ass.wetnessRaw = 0;
 			
-			_isLoading = false;
 			createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
 			createPerk("Attack Drone");
+			
+			isUniqueInFight = true;
+			btnTargetText = "VoidTech";
+			sexualPreferences.setRandomPrefs(4, 2);
+			
+			_isLoading = false;
 		}
 		
-		override public function prepForCombat():void
+		override public function get displayBust():String
 		{
-			var techie:SX1Techguard = this.makeCopy();
-			
-			techie.sexualPreferences.setRandomPrefs(4, 2);
-			
-			kGAMECLASS.userInterface.showBust("TECHGUARD");
-			kGAMECLASS.showName("FIGHT:\nPIRATE TECHIE");
-			
-			kGAMECLASS.foes.push(techie);
+			return "TECHGUARD";
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void

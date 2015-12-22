@@ -1,9 +1,7 @@
 ﻿public function victoryRouting():void 
 {
 	hideNPCStats();
-	else if (foes[0] is SX1GroupPirates) sx1PirateGroupPCVictory();
-	else if (foes[0] is SX1Shotguard) sx1ShotguardPCVictory();
-	else if (foes[0] is SX1Techguard) sx1TechguardPCVictory();
+	else if (foes[0] is SX1Techguard) ();
 	else if (foes[0] is Queensguard) spankedQueensguardsAss();
 	else if (foes[0] is Taivra) whupTaivrasAss();
 	else if (foes[0] is Princess) beatUpPrincessYeSlut();
@@ -15,9 +13,6 @@
 public function defeatRouting():void 
 {
 	hideNPCStats();
-	else if (foes[0] is SX1GroupPirates) sx1PirateGroupPCLoss();
-	else if (foes[0] is SX1Shotguard) sx1ShotguardPCLoss();
-	else if (foes[0] is SX1Techguard) sx1TechguardPCLoss();
 	else if (foes[0] is Queensguard) loseToQueensTaivra();
 	else if (foes[0] is Taivra) loseToQueensTaivra();
 	else if (foes[0] is Princess) loseToPrincessYeGit();
@@ -115,15 +110,6 @@ public function startCombat(encounter:String):void
 {	
 	switch(encounter) 
 	{
-		case "SX1GROUPPIRATES":
-			chars["SX1GROUPPIRATES"].prepForCombat();
-			break;
-		case "SX1SHOTGUARD":
-			chars["SX1SHOTGUARD"].prepForCombat();
-			break;
-		case "SX1TECHGUARD":
-			chars["SX1TECHGUARD"].prepForCombat();
-			break;
 		case "Queensguard":
 			chars["QUEENSGUARD"].prepForCombat();
 			pc.createStatusEffect("Cage Distance",2,0,0,0,false,"Icon_RadioSignal","You're a good ways away from Dane and your cousin's cage. It'll take a lot of work to reposition yourself to break them out.",true,0);

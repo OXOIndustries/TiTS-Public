@@ -1,3 +1,6 @@
+import classes.Characters.SX1GroupPirates;
+import classes.Characters.SX1Shotguard;
+import classes.Characters.SX1Techguard;
 import classes.Creature;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
 /*
@@ -169,7 +172,14 @@ public function saendraX1LiftGo():void
 public function initsx1PirateGroupFight():void
 {
 	pc.createStatusEffect("Pitch Black", 0, 0, 0, 0, false, "Icon_Slow", "It’s pitch black here, making it almost impossible to see anything but for bursts of light accompanying weaponsfire.", true, 0);
-	startCombat("SX1GROUPPIRATES");
+	
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters([pc, saen]);
+	CombatManager.setHostileCharacters([new SX1GroupPirates(), new SX1GroupPirates(), new SX1GroupPirates(), new SX1GroupPirates()]);
+	CombatManager.victoryScene(sx1PirateGroupPCVictory);
+	CombatManager.lossScene(sx1PirateGroupPCLoss);
+	CombatManager.displayLocation("VOID PIRATES");
+	CombatManager.beginCombat();
 }
 
 public function sx1PirateGroupPCLoss():void
@@ -271,7 +281,7 @@ public function sx1PirateGroupPCVictory():void
 	flags["SAENDRA_XPACK1_TIMER"] = GetGameTimestamp();
 
 	// [Next] //Put PC back in elevator. Saendra returns to the bar as usual.
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 public function sx1TalkFriend():void
@@ -795,12 +805,16 @@ public function sx1DoorBreach():void
 
 public function sx1InitShotguardFight(wasFlashed:Boolean = false):void
 {
-	startCombat("SX1SHOTGUARD");
+	var tEnemy:Creature = new SX1Shotguard();
+	tEnemy.createStatusEffect("Blind", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0);
 	
-	if (wasFlashed)
-	{
-		foes[0].createStatusEffect("Blind",3,0,0,0,false,"Blind","Accuracy is reduced, and ranged attacks are far more likely to miss.",true,0);
-	}
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters([pc, saen]);
+	CombatManager.setHostileCharacters(tEnemy);
+	CombatManager.victoryScene(sx1ShotguardPCVictory);
+	CombatManager.lossScene(sx1ShotguardPCLoss);
+	CombatManager.displayLocation("ZIL MALE");
+	CombatManager.beginCombat();
 }
 
 public function sx1ShotguardPCVictory():void
@@ -876,7 +890,13 @@ public function sx1ShotguardPCLoss():void
 
 public function sx1InitTechguardFight():void
 {
-	startCombat("SX1TECHGUARD");
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters([pc, saen]);
+	CombatManager.setHostileCharacters(new SX1Techguard());
+	CombatManager.victoryScene(sx1TechguardPCVictory);
+	CombatManager.lossScene(sx1TechguardPCLoss);
+	CombatManager.displayLocation("VOID TECHIE");
+	CombatManager.beginCombat();
 }
 
 public function sx1TechguardPCVictory():void
@@ -946,7 +966,7 @@ public function sx1TechguardPCLossII():void
 	// {Return to Anon's. Saendra is missing.}
 	flags["SAENDRA_DISABLED"] = 1;
 
-	genericLoss();
+	CombatManager.genericLoss();
 }
 
 public function sx1RescueTheDude(fromCombat:Boolean = false):void
@@ -983,7 +1003,7 @@ public function sx1RescueTheDude(fromCombat:Boolean = false):void
 	//Key Item Added: Pirate Datapad
 	pc.createKeyItem("Pirate Datapad");
 
-	if (fromCombat) genericVictory();
+	if (fromCombat) CombatManager.genericVictory();
 	else
 	{
 		clearMenu();

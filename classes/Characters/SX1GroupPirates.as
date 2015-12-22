@@ -173,18 +173,17 @@ package classes.Characters
 			this.milkRate = 0;
 			this.ass.wetnessRaw = 0;
 			
+			createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
+			
+			isUniqueInFight = true;
+			btnTargetText = "VoidPirate";
+			
 			this._isLoading = false;
-			this.createStatusEffect("Flee Disabled",0,0,0,0,true,"","",false,0);
 		}
 		
-		override public function prepForCombat():void
+		override public function get displayBust():String
 		{
-			var gang:SX1GroupPirates = this.makeCopy();
-			
-			kGAMECLASS.userInterface.showBust("BLACKVOID", "BLACKVOID", "BLACKVOID", "BLACKVOID");
-			kGAMECLASS.showName("FIGHT:\nPIRATE GANG");
-			
-			kGAMECLASS.foes.push(gang);
+			return "BLACKVOID";
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void

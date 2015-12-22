@@ -170,21 +170,26 @@ package classes.Characters
 			this.milkRate = 0;
 			this.ass.wetnessRaw = 0;
 			
-			this._isLoading = false;
+			sexualPreferences.setRandomPrefs(4, 2);
 			
 			this.createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
 			this.createStatusEffect("Disarm Immune", 0, 0, 0, 0, true, "", "", false, 0);
+			
+			isUniqueInFight = true;
+			btnTargetText = "VoidPirate";
+			
+			this._isLoading = false;
+		}
+		
+		override public function get displayBust():String
+		{
+			return "BLACKVOID";
 		}
 		
 		override public function prepForCombat():void
 		{
 			var dude:SX1Shotguard = this.makeCopy();
-			dude.sexualPreferences.setRandomPrefs(4, 2);
-			
-			kGAMECLASS.userInterface.showBust("BLACKVOID");
-			kGAMECLASS.showName("FIGHT:\nSHOTGUN GUARD");
-			
-			kGAMECLASS.foes.push(dude);
+			dude.
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
