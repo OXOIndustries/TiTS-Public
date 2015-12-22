@@ -2516,6 +2516,7 @@ package classes {
 		
 		public function inSwimwear(strict:Boolean = false):Boolean
 		{
+			if(hasStatusEffect("Temporary Swimwear Cheat")) return true;
 			// Armor/Outfit check:
 			if (hasArmor() && armor.hasFlag(GLOBAL.ITEM_FLAG_SWIMWEAR))
 			{
