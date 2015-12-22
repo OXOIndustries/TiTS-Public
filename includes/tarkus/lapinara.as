@@ -35,10 +35,10 @@ public function encounterALapinara():void
 	CombatManager.setHostileCharacters(new LapinaraFemale());
 	CombatManager.victoryScene(defeatDatLapinara);
 	CombatManager.lossScene(loseToFemaleLapinara);
-	CombatManager.displayLocation("ZIL MALE");
+	CombatManager.displayLocation("LAPINARA (F)");
 	
 	clearMenu();
-	addButton(0,"Next",CombatManager.beginCombat);
+	addButton(0, "Next", CombatManager.beginCombat);
 }
 
 public function lapinaraBust():void

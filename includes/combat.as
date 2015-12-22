@@ -1,10 +1,6 @@
 ﻿public function victoryRouting():void 
 {
 	hideNPCStats();
-	else if(foes[0] is SydianMale)
-	{
-		beatUpARustMonster();
-	}
 	else if(foes[0] is HandSoBot)
 	{
 		pcWinsVsHanSoSosTool();
@@ -115,7 +111,6 @@
 public function defeatRouting():void 
 {
 	hideNPCStats();
-	else if (foes[0] is SydianMale) loseToSydianMaleRouter();
 	else if (foes[0] is HandSoBot) pcLosesToHanSoSosBot();
 	else if (foes[0] is PhoenixPirates) loseToPhoenixPirates();
 	else if (foes[0] is GunTurrets) tamtamBadEndPetPooch();
@@ -248,9 +243,6 @@ public function startCombat(encounter:String):void
 {	
 	switch(encounter) 
 	{
-		case "Sydian Male":
-			chars["SYDIANMALE"].prepForCombat();
-			break;
 		case "firewall":
 			chars["FIREWALL"].prepForCombat();
 			break;

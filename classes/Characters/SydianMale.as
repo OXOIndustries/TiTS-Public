@@ -163,29 +163,30 @@
 			this.ass.wetnessRaw = 0;
 			this.ass.bonusCapacity += 15
 			this.ass.loosenessRaw = 2;
-			//this.inventory.push(new ZilRation());
 
 			this.createStatusEffect("Disarm Immune");
+			
+			isUniqueInFight = true;
+			btnTargetText = "Sydian";
+			
+			randomise();
 			
 			this._isLoading = false;
 		}
 		
-		override public function prepForCombat():void
+		override public function get displayBust():String
 		{
-			var combatSydianMale:SydianMale = this.makeCopy();
-			
-			kGAMECLASS.userInterface.showBust("SYDIAN_MALE");
-			kGAMECLASS.userInterface.showName("FIGHT:\nSYDIAN MALE");
-			
-			CodexManager.unlockEntry("Sydians");
-			
-			combatSydianMale.sexualPreferences.setRandomPrefs(2 + rand(3));
-			combatSydianMale.cocks[0].cLengthRaw = 9 + rand(4);
-			if(rand(3) == 0) combatSydianMale.hairColor = "pale green";
-			else if(rand(2) == 0) combatSydianMale.hairColor = "fiery orange";
-			else combatSydianMale.hairColor = "blood-hued crimson";
-			combatSydianMale.long = "The figure you're facing stands almost seven feet tall, looking every bit the hulking brute. He - there's no way you could mistake him for any other gender - stands with an easy balance that can only have come from spending years climbing around the heaps and spires of his home planet. There isn't a single stitch of clothing or equipment to protect his modesty, only carapace-like plates that cover most of him. Two feelers twitch atop his head, each about eight inches long, and another four sprout from the end of his long, tapered tail. That limb is still looks thick enough to smart if he were to club you with it. His eyes are inky onyx spheres, though his hair is " + combatSydianMale.hairColor + ". A cock as orange as a terran sunset dangles between his legs, about " + combatSydianMale.cocks[0].cLength() + " inches long and covered with a peculiar coat of tiny, brush-like cilia.";
-			kGAMECLASS.foes.push(combatSydianMale);
+			return "SYDIAN_MALE";
+		}
+		
+		private function randomise():void
+		{
+			sexualPreferences.setRandomPrefs(2 + rand(3));
+			cocks[0].cLengthRaw = 9 + rand(4);
+			if(rand(3) == 0) hairColor = "pale green";
+			else if(rand(2) == 0) hairColor = "fiery orange";
+			else hairColor = "blood-hued crimson";
+			long = "The figure you're facing stands almost seven feet tall, looking every bit the hulking brute. He - there's no way you could mistake him for any other gender - stands with an easy balance that can only have come from spending years climbing around the heaps and spires of his home planet. There isn't a single stitch of clothing or equipment to protect his modesty, only carapace-like plates that cover most of him. Two feelers twitch atop his head, each about eight inches long, and another four sprout from the end of his long, tapered tail. That limb is still looks thick enough to smart if he were to club you with it. His eyes are inky onyx spheres, though his hair is " + hairColor + ". A cock as orange as a terran sunset dangles between his legs, about " + cocks[0].cLength() + " inches long and covered with a peculiar coat of tiny, brush-like cilia.";
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void

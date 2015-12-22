@@ -191,7 +191,6 @@
 		
 		private function randomise():void
 		{
-			kGAMECLASS.setLocation("FIGHT: FEM.\nLAPINARA", "PLANET: TARKUS", "SYSTEM: REDACTED");
 			sexualPreferences.setRandomPrefs(3 + rand(3));
 			tallness = 36 + rand(13);
 			//Hair
