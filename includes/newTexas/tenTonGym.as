@@ -230,8 +230,20 @@ public function swimmingPoolBonus():Boolean
 		addDisabledButton(1,"Swim Laps","Swim Laps","You’ll need to get yourself swim-ready before stepping into the pool.");
 		addDisabledButton(4,"Spa","Spa","You’ll need to get yourself ready before stepping into the spa.");
 	}
-	if(isSwimChanged) addButton(5,"Rinse",poolGetReady,0,"Rinse","Use the shower to rinse yourself off before leaving.");
-	else addButton(5,"GetReady",poolGetReady,1,"Get Ready","Get yourself swim-ready.");
+	if(isSwimChanged)
+	{
+		output("\n\n<b>You will need to rinse off and collect your belongings before leaving.</b>");
+		addButton(5,"Rinse",poolGetReady,0,"Rinse","Use the shower to rinse yourself off before leaving.");
+	}
+	else
+	{
+		if(!pc.inSwimwear(true) && !pc.isNude())
+		{
+			output("\n\n<b>You will need to be wearing a full set of swimwear or otherwise be naked to use the facilities.</b>");
+			if(pc.exhibitionism() < 66) output(" Temporary swimsuits are also available on racks nearby.");
+		}
+		addButton(5,"GetReady",poolGetReady,1,"Get Ready","Get yourself swim-ready.");
+	}
 	return false;
 }
 //Outfit Change/Reclaim
