@@ -1,14 +1,6 @@
 ﻿public function victoryRouting():void 
 {
 	hideNPCStats();
-	else if (foes[0] is Cockvine)
-	{
-		adultCockvinePCVictory();
-	}
-	else if (foes[0] is NyreaAlpha || foes[0] is NyreaBeta)
-	{
-		pcVictoryOverNyrea();
-	}
 	else if(foes[0] is FrogGirl)
 	{
 		victoryAgainstTheFrogs();
@@ -53,7 +45,6 @@
 public function defeatRouting():void 
 {
 	hideNPCStats();
-	else if (foes[0] is NyreaAlpha || foes[0] is NyreaBeta)	pcLossToNyrea();
 	else if (foes[0] is FrogGirl) loseAgainstTheFrogs();
 	else if (foes[0] is WetraHound) wetraHoundPCLoss();
 	else if (foes[0] is WetraxxelBrawler) wetraxxelBrawlerPCLoss();
@@ -163,15 +154,6 @@ public function startCombat(encounter:String):void
 {	
 	switch(encounter) 
 	{
-		case "Cockvine":
-			chars["COCKVINE"].prepForCombat();
-			break;
-		case "Nyrea Alpha":
-			chars["NYREA ALPHA"].prepForCombat();
-			break;
-		case "Nyrea Beta":
-			chars["NYREA BETA"].prepForCombat();
-			break;
 		case "wetrahound":
 			chars["WETRA HOUND"].prepForCombat();
 			break;

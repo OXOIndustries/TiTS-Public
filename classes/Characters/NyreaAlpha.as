@@ -188,31 +188,32 @@
 			(this.cocks[0] as CockClass).virgin = false;
 			this.cockVirgin = false;
 			
+			isUniqueInFight = true;
+			btnTargetText = "Nyrea";
+			
+			tallness = 68 + (rand(12) - 6);
+			rangedWeapon = new (RandomInCollection(EagleHandgun, HammerPistol, LaserPistol))();
+			
+			sexualPreferences.setPref(GLOBAL.SEXPREF_FEMININE,		GLOBAL.REALLY_LIKES_SEXPREF);
+			sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_BREASTS,		GLOBAL.REALLY_LIKES_SEXPREF);
+			sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_BUTTS,		GLOBAL.KINDA_LIKES_SEXPREF);
+			sexualPreferences.setPref(GLOBAL.SEXPREF_NEUTER,			GLOBAL.KINDA_DISLIKES_SEXPREF);
+			sexualPreferences.setPref(GLOBAL.SEXPREF_VAGINAL_WETNESS,	GLOBAL.KINDA_LIKES_SEXPREF);
+			sexualPreferences.setPref(GLOBAL.SEXPREF_MASCULINE,		GLOBAL.KINDA_LIKES_SEXPREF);
+			
+			if (rand(40) == 0) inventory.push(new Kirkite());
+			else if(rand(50) == 0) inventory.push(new Satyrite());
+			else if(rand(20) == 0) inventory.push(new Picardine());
+			else if (rand(20) == 0)	inventory.push(rangedWeapon.makeCopy());
+			else if (rand(20) == 0) inventory.push(meleeWeapon.makeCopy());
+			else if(rand(3) == 0) nyrea.inventory.push(new RedMyrVenom());
+			
 			this._isLoading = false;
 		}
 		
-		override public function prepForCombat():void
+		override public function get displayBust():String
 		{
-			var nyrea:NyreaAlpha = this.makeCopy();
-			
-			nyrea.tallness = 68 + (rand(12) - 6);
-			nyrea.rangedWeapon = new (RandomInCollection(EagleHandgun, HammerPistol, LaserPistol))();
-			
-			nyrea.sexualPreferences.setPref(GLOBAL.SEXPREF_FEMININE,		GLOBAL.REALLY_LIKES_SEXPREF);
-			nyrea.sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_BREASTS,		GLOBAL.REALLY_LIKES_SEXPREF);
-			nyrea.sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_BUTTS,		GLOBAL.KINDA_LIKES_SEXPREF);
-			nyrea.sexualPreferences.setPref(GLOBAL.SEXPREF_NEUTER,			GLOBAL.KINDA_DISLIKES_SEXPREF);
-			nyrea.sexualPreferences.setPref(GLOBAL.SEXPREF_VAGINAL_WETNESS,	GLOBAL.KINDA_LIKES_SEXPREF);
-			nyrea.sexualPreferences.setPref(GLOBAL.SEXPREF_MASCULINE,		GLOBAL.KINDA_LIKES_SEXPREF);
-			
-			if (rand(40) == 0) nyrea.inventory.push(new Kirkite());
-			else if(rand(50) == 0) nyrea.inventory.push(new Satyrite());
-			else if(rand(20) == 0) nyrea.inventory.push(new Picardine());
-			else if (rand(20) == 0)	nyrea.inventory.push(nyrea.rangedWeapon.makeCopy());
-			else if (rand(20) == 0) nyrea.inventory.push(nyrea.meleeWeapon.makeCopy());
-			else if(rand(3) == 0) nyrea.inventory.push(new RedMyrVenom());
-			kGAMECLASS.nyreaHeader(1,"FIGHT:");
-			kGAMECLASS.foes.push(nyrea);
+			return "NYREA_ALPHA";
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void

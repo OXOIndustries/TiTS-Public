@@ -182,32 +182,34 @@
 			(this.cocks[0] as CockClass).virgin = false;
 			this.cockVirgin = false;
 			
-			this._isLoading = false;
-		}
-		
-		override public function prepForCombat():void
-		{
-			var nyrea:NyreaBeta = this.makeCopy();
-			if (rand(20) == 0) nyrea.inventory.push(new Kirkite());
-			else if(rand(20) == 0) nyrea.inventory.push(new Satyrite());
-			else if(rand(3) == 0) nyrea.inventory.push(new RedMyrVenom());
-			nyrea.tallness = 60 + (rand(10) - 5);
+			isUniqueInFight = true;
+			btnTargetText = "Nyrea";
 			
-			nyrea.sexualPreferences.setPref(GLOBAL.SEXPREF_FEMININE,		GLOBAL.REALLY_LIKES_SEXPREF);
-			nyrea.sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_BREASTS,		GLOBAL.REALLY_LIKES_SEXPREF);
-			nyrea.sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_BUTTS,		GLOBAL.KINDA_LIKES_SEXPREF);
-			nyrea.sexualPreferences.setPref(GLOBAL.SEXPREF_NEUTER,			GLOBAL.KINDA_DISLIKES_SEXPREF);
-			nyrea.sexualPreferences.setPref(GLOBAL.SEXPREF_VAGINAL_WETNESS,	GLOBAL.KINDA_LIKES_SEXPREF);
-			nyrea.sexualPreferences.setPref(GLOBAL.SEXPREF_MASCULINE,		GLOBAL.KINDA_LIKES_SEXPREF);
+			if (rand(20) == 0) inventory.push(new Kirkite());
+			else if(rand(20) == 0) inventory.push(new Satyrite());
+			else if(rand(3) == 0) inventory.push(new RedMyrVenom());
+			tallness = 60 + (rand(10) - 5);
+			
+			sexualPreferences.setPref(GLOBAL.SEXPREF_FEMININE,		GLOBAL.REALLY_LIKES_SEXPREF);
+			sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_BREASTS,		GLOBAL.REALLY_LIKES_SEXPREF);
+			sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_BUTTS,		GLOBAL.KINDA_LIKES_SEXPREF);
+			sexualPreferences.setPref(GLOBAL.SEXPREF_NEUTER,			GLOBAL.KINDA_DISLIKES_SEXPREF);
+			sexualPreferences.setPref(GLOBAL.SEXPREF_VAGINAL_WETNESS,	GLOBAL.KINDA_LIKES_SEXPREF);
+			sexualPreferences.setPref(GLOBAL.SEXPREF_MASCULINE,		GLOBAL.KINDA_LIKES_SEXPREF);
 			
 			if (rand(20) == 0)
 			{
-				nyrea.inventory.push(nyrea.meleeWeapon.makeCopy());
+				inventory.push(meleeWeapon.makeCopy());
 			}
-			kGAMECLASS.nyreaHeader(2,"FIGHT:");
-			kGAMECLASS.foes.push(nyrea);
+			
+			this._isLoading = false;
 		}
 		
+		override public function get displayBust():String
+		{
+			return "NYREA_BETA";
+		}
+
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{
 			var target:Creature = selectTarget(hostileCreatures);
