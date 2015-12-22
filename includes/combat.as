@@ -1,10 +1,6 @@
 ﻿public function victoryRouting():void 
 {
 	hideNPCStats();
-	else if(foes[0] is LapinaraFemale)
-	{
-		defeatDatLapinara();
-	}
 	else if(foes[0] is SydianMale)
 	{
 		beatUpARustMonster();
@@ -119,7 +115,6 @@
 public function defeatRouting():void 
 {
 	hideNPCStats();
-	else if (foes[0] is LapinaraFemale) loseToFemaleLapinara();
 	else if (foes[0] is SydianMale) loseToSydianMaleRouter();
 	else if (foes[0] is HandSoBot) pcLosesToHanSoSosBot();
 	else if (foes[0] is PhoenixPirates) loseToPhoenixPirates();
@@ -253,12 +248,6 @@ public function startCombat(encounter:String):void
 {	
 	switch(encounter) 
 	{
-		case "Gray Goo":
-			chars["GRAYGOO"].prepForCombat();
-			break;
-		case "Lapinara Parasitic":
-			chars["LAPINARAFEMALE"].prepForCombat();
-			break;
 		case "Sydian Male":
 			chars["SYDIANMALE"].prepForCombat();
 			break;
