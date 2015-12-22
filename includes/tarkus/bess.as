@@ -12948,7 +12948,7 @@ public function bessEventMap(bChance:Boolean = false):void
 		{
 			nTimer = flags["BESS_EVENT_0"] + (12 * 60);
 			output("\n<b>* Next Event:</b> <i>Pending</i>");
-			if (nTimer <= GetGameTimestamp()) output(", after " + prettifyMinutes(GetGameTimestamp() - nTimer));
+			if (nTimer >= GetGameTimestamp()) output(", after " + prettifyMinutes(nTimer - GetGameTimestamp()));
 			output(" at 1/" + iChance + " chance");
 		}
 	}
@@ -12959,7 +12959,7 @@ public function bessEventMap(bChance:Boolean = false):void
 		{
 			nTimer = flags["BESS_EVENT_1"] + (1.5 * 24 * 60);
 			output("\n<b>* Next Event:</b> <i>Pending</i>");
-			if (nTimer <= GetGameTimestamp()) output(", after " + prettifyMinutes(GetGameTimestamp() - nTimer));
+			if (nTimer >= GetGameTimestamp()) output(", after " + prettifyMinutes(nTimer - GetGameTimestamp()));
 			output(" at 1/" + iChance + " chance");
 		}
 	}
@@ -12970,7 +12970,7 @@ public function bessEventMap(bChance:Boolean = false):void
 		{
 			nTimer = flags["BESS_EVENT_2"] + (24 * 60);
 			output("\n<b>* Next Event:</b> <i>Pending</i>");
-			if (nTimer <= GetGameTimestamp()) output(", after " + prettifyMinutes(GetGameTimestamp() - nTimer));
+			if (nTimer >= GetGameTimestamp()) output(", after " + prettifyMinutes(nTimer - GetGameTimestamp()));
 		}
 	}
 	if (flags["BESS_EVENT_3"] != undefined)
@@ -12980,7 +12980,7 @@ public function bessEventMap(bChance:Boolean = false):void
 		{
 			nTimer = flags["BESS_EVENT_3"] + (1.5 * 24 * 60);
 			output("\n<b>* Next Event:</b> <i>Pending</i>");
-			if (nTimer <= GetGameTimestamp()) output(", after " + prettifyMinutes(GetGameTimestamp() - nTimer));
+			if (nTimer >= GetGameTimestamp()) output(", after " + prettifyMinutes(nTimer - GetGameTimestamp()));
 			output(" at 1/" + iChance + " chance");
 		}
 	}
@@ -12991,7 +12991,7 @@ public function bessEventMap(bChance:Boolean = false):void
 		{
 			nTimer = flags["BESS_EVENT_4"] + (2 * 24 * 60);
 			output("\n<b>* Next Event:</b> <i>Pending</i>");
-			if (nTimer <= GetGameTimestamp()) output(", after " + prettifyMinutes(GetGameTimestamp() - nTimer));
+			if (nTimer >= GetGameTimestamp()) output(", after " + prettifyMinutes(nTimer - GetGameTimestamp()));
 			if (bessAffection() < 20) output(" at 20% affection");
 		}
 	}
@@ -13002,7 +13002,7 @@ public function bessEventMap(bChance:Boolean = false):void
 		{
 			nTimer = flags["BESS_EVENT_5"] + (2 * 24 * 60);
 			output("\n<b>* Next Event:</b> <i>Pending</i>");
-			if (nTimer <= GetGameTimestamp()) output(", after " + prettifyMinutes(GetGameTimestamp() - nTimer));
+			if (nTimer >= GetGameTimestamp()) output(", after " + prettifyMinutes(nTimer - GetGameTimestamp()));
 			output(" at 1/" + iChance + " chance");
 			if (bessAffection() < 30) output(" and 30% affection");
 		}
@@ -13014,7 +13014,7 @@ public function bessEventMap(bChance:Boolean = false):void
 		{
 			nTimer = flags["BESS_EVENT_6"] + (2 * 24 * 60);
 			output("\n<b>* Next Event:</b> <i>Pending</i>");
-			if (nTimer <= GetGameTimestamp()) output(", after " + prettifyMinutes(GetGameTimestamp() - nTimer));
+			if (nTimer >= GetGameTimestamp()) output(", after " + prettifyMinutes(nTimer - GetGameTimestamp()));
 			if (bessAffection() < 40) output(" at 40% affection");
 		}
 	}
@@ -13025,7 +13025,7 @@ public function bessEventMap(bChance:Boolean = false):void
 		{
 			nTimer = flags["BESS_EVENT_7"] + (2 * 24 * 60);
 			output("\n<b>* Next Event:</b> <i>Pending</i>");
-			if (nTimer <= GetGameTimestamp()) output(", after " + prettifyMinutes(GetGameTimestamp() - nTimer));
+			if (nTimer >= GetGameTimestamp()) output(", after " + prettifyMinutes(nTimer - GetGameTimestamp()));
 			if (bessAffection() < 50) output(" at 50% affection");
 			if (flags["BESS_EVENT_7_APOLOGY_NEEDED"] != undefined) output(", apology needed");
 		}
@@ -13037,7 +13037,7 @@ public function bessEventMap(bChance:Boolean = false):void
 		{
 			nTimer = flags["BESS_EVENT_8"] + (2 * 24 * 60);
 			output("\n<b>* Next Event:</b> <i>Pending</i>");
-			if (nTimer <= GetGameTimestamp()) output(", after " + prettifyMinutes(GetGameTimestamp() - nTimer));
+			if (nTimer >= GetGameTimestamp()) output(", after " + prettifyMinutes(nTimer - GetGameTimestamp()));
 			if (bessAffection() < 50) output(" at 50% affection");
 		}
 	}
@@ -13048,7 +13048,7 @@ public function bessEventMap(bChance:Boolean = false):void
 		{
 			nTimer = flags["BESS_EVENT_9"] + (1.5 * 24 * 60);
 			output("\n<b>* Next Event:</b> <i>Pending</i>");
-			if (nTimer <= GetGameTimestamp()) output(", after " + prettifyMinutes(GetGameTimestamp() - nTimer));
+			if (nTimer >= GetGameTimestamp()) output(", after " + prettifyMinutes(nTimer - GetGameTimestamp()));
 			output(" at 1/" + iChance + " chance");
 			if (bessAffection() < 50) output(" and 50% affection");
 		}
@@ -13062,7 +13062,7 @@ public function bessEventMap(bChance:Boolean = false):void
 			var e11Chance:int = iChance;
 			if (flags["BESS_EVENT_11_TIMES"] != undefined) e11Chance = iChance * 5;
 			output("\n<b>* Next Event:</b> <i>Pending</i>");
-			if (nTimer <= GetGameTimestamp()) output(", after " + prettifyMinutes(GetGameTimestamp() - nTimer));
+			if (nTimer >= GetGameTimestamp()) output(", after " + prettifyMinutes(nTimer - GetGameTimestamp()));
 			output(" at 1/" + e11Chance + " chance");
 			if (flags["VISITED_MYRELLION"] == undefined)
 			{
@@ -13079,7 +13079,7 @@ public function bessEventMap(bChance:Boolean = false):void
 		{
 			nTimer = flags["BESS_EVENT_11"] + (1.5 * 24 * 60);
 			output("\n<b>* Next Event:</b> <i>Pending</i>");
-			if (nTimer <= GetGameTimestamp()) output(", after " + prettifyMinutes(GetGameTimestamp() - nTimer));
+			if (nTimer >= GetGameTimestamp()) output(", after " + prettifyMinutes(nTimer - GetGameTimestamp()));
 			output(" at 1/" + Math.floor(iChance * 2.5) + " chance");
 			if (bessAffection() < 60) output(" and 60% affection");
 		}
@@ -13091,7 +13091,7 @@ public function bessEventMap(bChance:Boolean = false):void
 		{
 			nTimer = flags["BESS_EVENT_12"] + (1.5 * 24 * 60);
 			output("\n<b>* Next Event:</b> <i>Pending</i>");
-			if (nTimer <= GetGameTimestamp()) output(", after " + prettifyMinutes(GetGameTimestamp() - nTimer));
+			if (nTimer >= GetGameTimestamp()) output(", after " + prettifyMinutes(nTimer - GetGameTimestamp()));
 			output(" at 1/" + Math.floor(iChance * 2.5) + " chance");
 			if (bessAffection() < 60) output(" and 60% affection");
 		}
@@ -13103,7 +13103,7 @@ public function bessEventMap(bChance:Boolean = false):void
 		{
 			nTimer = flags["BESS_EVENT_13"] + (1.5 * 24 * 60);
 			output("\n<b>* Next Event:</b> <i>Pending</i>");
-			if (nTimer <= GetGameTimestamp()) output(", after " + prettifyMinutes(GetGameTimestamp() - nTimer));
+			if (nTimer >= GetGameTimestamp()) output(", after " + prettifyMinutes(nTimer - GetGameTimestamp()));
 			output(" at 1/" + iChance + " chance");
 			if (bessAffection() < 60) output(" and 60% affection");
 		}
@@ -13115,7 +13115,7 @@ public function bessEventMap(bChance:Boolean = false):void
 		{
 			nTimer = flags["BESS_EVENT_14"] + (1.5 * 24 * 60);
 			output("\n<b>* Next Event:</b> <i>Pending</i>");
-			if (nTimer <= GetGameTimestamp()) output(", after " + prettifyMinutes(GetGameTimestamp() - nTimer));
+			if (nTimer >= GetGameTimestamp()) output(", after " + prettifyMinutes(nTimer - GetGameTimestamp()));
 			output(" at 1/" + iChance + " chance");
 			if (bessAffection() < 60) output(" and 60% affection");
 		}
@@ -13130,7 +13130,7 @@ public function bessEventMap(bChance:Boolean = false):void
 			{
 				nTimer = flags["BESS_EVENT_15"] + (1.5 * 24 * 60);
 				output("\n<b>* Next Event:</b> <i>Pending</i>");
-				if (nTimer <= GetGameTimestamp()) output(", after " + prettifyMinutes(GetGameTimestamp() - nTimer));
+				if (nTimer >= GetGameTimestamp()) output(", after " + prettifyMinutes(nTimer - GetGameTimestamp()));
 				output(" at 1/" + iChance + " chance");
 				if (bessAffection() < 70) output(" and 70% affection");
 			}
@@ -13142,7 +13142,7 @@ public function bessEventMap(bChance:Boolean = false):void
 			{
 				nTimer = flags["BESS_EVENT_16"] + (1.5 * 24 * 60);
 				output("\n<b>* Next Event:</b> <i>Pending</i>");
-				if (nTimer <= GetGameTimestamp()) output(", after " + prettifyMinutes(GetGameTimestamp() - nTimer));
+				if (nTimer >= GetGameTimestamp()) output(", after " + prettifyMinutes(nTimer - GetGameTimestamp()));
 				output(" at 1/" + iChance + " chance");
 				if (bessAffection() < 70) output(" and 70% affection");
 			}
@@ -13154,7 +13154,7 @@ public function bessEventMap(bChance:Boolean = false):void
 			{
 				nTimer = flags["BESS_EVENT_17"] + (1.5 * 24 * 60);
 				output("\n<b>* Next Event:</b> <i>Pending</i>");
-				if (nTimer <= GetGameTimestamp()) output(", after " + prettifyMinutes(GetGameTimestamp() - nTimer));
+				if (nTimer >= GetGameTimestamp()) output(", after " + prettifyMinutes(nTimer - GetGameTimestamp()));
 				output(" at 1/" + iChance + " chance");
 				if (bessAffection() < 70) output(" and 70% affection");
 			}
@@ -13168,7 +13168,7 @@ public function bessEventMap(bChance:Boolean = false):void
 				var e19Chance:int = 1;
 				if (flags["BESS_EVENT_19_TIMES"] != undefined) e19Chance = Math.floor(iChance * 2.5);
 				output("\n<b>* Next Event:</b> <i>Pending</i>");
-				if (nTimer <= GetGameTimestamp()) output(", after " + prettifyMinutes(GetGameTimestamp() - nTimer));
+				if (nTimer >= GetGameTimestamp()) output(", after " + prettifyMinutes(nTimer - GetGameTimestamp()));
 				output(" at 1/" + e19Chance + " chance");
 				if (hours < 16) output(", at 16:00 or later");
 				if (bessAffection() < 70) output(" and 70% affection");
@@ -13193,7 +13193,7 @@ public function bessEventMap(bChance:Boolean = false):void
 			{
 				nTimer = flags["BESS_EVENT_21"] + (2 * 24 * 60);
 				output("\n<b>* Next Event:</b> <i>Pending</i>");
-				if (nTimer <= GetGameTimestamp()) output(", after " + prettifyMinutes(GetGameTimestamp() - nTimer));
+				if (nTimer >= GetGameTimestamp()) output(", after " + prettifyMinutes(nTimer - GetGameTimestamp()));
 				if (bessAffection() < 70) output(" and 70% affection");
 			}
 		}
@@ -13204,7 +13204,7 @@ public function bessEventMap(bChance:Boolean = false):void
 			{
 				nTimer = flags["BESS_EVENT_22"] + (2 * 24 * 60);
 				output("\n<b>* Next Event:</b> <i>Pending</i>");
-				if (nTimer <= GetGameTimestamp()) output(", after " + prettifyMinutes(GetGameTimestamp() - nTimer));
+				if (nTimer >= GetGameTimestamp()) output(", after " + prettifyMinutes(nTimer - GetGameTimestamp()));
 				output(" at 1/" + iChance + " chance");
 				if (flags["CREWMEMBER_SLEEP_WITH"] != "BESS") output(", [bess.name] as sleeping partner");
 				if (bessAffection() < 80) output(" and 80% affection");
@@ -13217,7 +13217,7 @@ public function bessEventMap(bChance:Boolean = false):void
 			{
 				nTimer = flags["BESS_EVENT_23"] + (2 * 24 * 60);
 				output("\n<b>* Next Event:</b> <i>Pending</i>");
-				if (nTimer <= GetGameTimestamp()) output(", after " + prettifyMinutes(GetGameTimestamp() - nTimer));
+				if (nTimer >= GetGameTimestamp()) output(", after " + prettifyMinutes(nTimer - GetGameTimestamp()));
 				output(" at 1/" + iChance + " chance");
 				if (flags["CREWMEMBER_SLEEP_WITH"] != "BESS") output(", [bess.name] as sleeping partner");
 				if (bessAffection() < 80) output(" and 80% affection");
@@ -13239,7 +13239,7 @@ public function bessEventMap(bChance:Boolean = false):void
 			{
 				nTimer = flags["BESS_EVENT_25"] + (3.5 * 24 * 60);
 				output("\n<b>* Next Event:</b> <i>Pending</i>");
-				if (nTimer <= GetGameTimestamp()) output(", after " + prettifyMinutes(GetGameTimestamp() - nTimer));
+				if (nTimer >= GetGameTimestamp()) output(", after " + prettifyMinutes(nTimer - GetGameTimestamp()));
 				output(" at 1/" + iChance + " chance");
 				if (bessAffection() < 80) output(" and 80% affection");
 				if (flags["BESS_EVENT_25_SPINOFF"] == 1) output(", [bess.name] is upset");
@@ -13252,7 +13252,7 @@ public function bessEventMap(bChance:Boolean = false):void
 			{
 				nTimer = flags["BESS_EVENT_26"] + (3.5 * 24 * 60);
 				output("\n<b>* Next Event:</b> <i>Pending</i>");
-				if (nTimer <= GetGameTimestamp()) output(", after " + prettifyMinutes(GetGameTimestamp() - nTimer));
+				if (nTimer >= GetGameTimestamp()) output(", after " + prettifyMinutes(nTimer - GetGameTimestamp()));
 				output(" at 1/" + iChance + " chance");
 				if (flags["CREWMEMBER_SLEEP_WITH"] != "BESS") output(", [bess.name] as sleeping partner");
 				if (flags["BESS_MORNING_EVENT_1"] == undefined) output(", [bess.name] asks about dreams");
@@ -13266,7 +13266,7 @@ public function bessEventMap(bChance:Boolean = false):void
 			{
 				nTimer = flags["BESS_EVENT_27"] + (3.5 * 24 * 60);
 				output(", next event");
-				if (nTimer <= GetGameTimestamp()) output(" after " + prettifyMinutes(GetGameTimestamp() - nTimer));
+				if (nTimer >= GetGameTimestamp()) output(", after " + prettifyMinutes(nTimer - GetGameTimestamp()));
 				output(" at 1/" + iChance + " chance");
 				if (shipLocation != "SHIP HANGAR" && shipLocation != "500")
 				{
@@ -13294,7 +13294,7 @@ public function bessEventMap(bChance:Boolean = false):void
 	}
 	
 	clearMenu();
-	if (!bChance) addButton(15, "Hint: Off", bessEventMap, true, "Hints", "Toggle hints on.");
-	else addButton(15, "Hint: On", bessEventMap, false, "Hints", "Toggle hints off.");
+	if (!bChance) addButton(0, "Hint: Off", bessEventMap, true, "Hints", "Toggle hints on.");
+	else addButton(0, "Hint: On", bessEventMap, false, "Hints", "Toggle hints off.");
 	addButton(14, "Back", bessFollowerMenu);
 }
