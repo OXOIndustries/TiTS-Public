@@ -162,24 +162,19 @@ package classes.Characters
 			this.createStatusEffect("Disarm Immune");
 			this.createStatusEffect("Stun Immune");
 			
+			isUniqueInFight = true;
+			btnTargetText = "GooKnight";
+			sexualPreferences.setRandomPrefs(2 + rand(3));
+			if(rand(2) == 0) gigaGoo.skinTone = "green";
+			else gigaGoo.skinTone = "blue";
+			long = "You’re fighting a ganraen knight. Her " + gigaGoo.skinTone + " armor shines in the dimly lit cave, reflecting the pale glow of the pulsing fungi that cover the walls. She holds a simply shaped shield and sword, though the blade looks a bit more like a sharpened slab. Strategically placed joints prevent the armor from slowing her swift movements.";
+			
 			this._isLoading = false;
 		}
 		
-		override public function prepForCombat():void
+		override public function get displayBust():String
 		{
-			var gigaGoo:GooKnight = this.makeCopy();
-			
-			kGAMECLASS.userInterface.showBust("CRYSTAL_GOO");
-			kGAMECLASS.userInterface.showName("FIGHT:\nGOO KNIGHT");
-			
-			gigaGoo.sexualPreferences.setRandomPrefs(2 + rand(3));
-
-			if(rand(2) == 0) gigaGoo.skinTone = "green";
-			else gigaGoo.skinTone = "blue";
-
-			gigaGoo.long = "You’re fighting a ganraen knight. Her " + gigaGoo.skinTone + " armor shines in the dimly lit cave, reflecting the pale glow of the pulsing fungi that cover the walls. She holds a simply shaped shield and sword, though the blade looks a bit more like a sharpened slab. Strategically placed joints prevent the armor from slowing her swift movements.";
-			
-			kGAMECLASS.foes.push(gigaGoo);
+			return "CRYSTAL_GOO";
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void

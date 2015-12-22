@@ -57,7 +57,7 @@ public function infectedMyrmedionShit():void
 	CombatManager.lossScene(loseToInfectedMyrYouSubbieSloot);
 	CombatManager.displayLocation("INFECT. MYR");
 	
-	addButton(0,"Next",startCombat,"infected myr");
+	addButton(0,"Next",CombatManager.beginCombat);
 }
 
 //Win text
@@ -400,7 +400,7 @@ public function maleInfectedMyrEncounter():void
 	//[fightshit]
 	clearMenu();
 	processTime(2);
-	startCombat("male infected myr");
+	//startCombat("male infected myr");
 }
 
 //14" DONGER! (ALABASTER!)
@@ -695,7 +695,7 @@ public function fuckYesPlantLadyIllSaveYou():void
 	CombatManager.lossScene(roboQueenFightPCLoss);
 	CombatManager.displayLocation("ROUGE BOT");
 	
-	addButton(0,"Next",startCombat,"GardeBot");
+	addButton(0,"Next",CombatManager.beginCombat);
 }
 
 //Combat

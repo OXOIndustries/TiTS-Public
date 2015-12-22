@@ -1,22 +1,4 @@
-﻿public function victoryRouting():void 
-{
-	hideNPCStats();
-	else if (foes[0] is GooKnight) beatUpCrystalGoo();
-	else genericVictory();
-}
-
-public function defeatRouting():void 
-{
-	hideNPCStats();
-	else if (foes[0] is GooKnight) gooKnightLossRouter();
-	else {
-		output("You lost! You rouse yourself after an hour and a half, quite bloodied.");
-		processTime(90);
-		genericLoss();
-	}
-}
-
-public function getCombatPrizes(newScreen:Boolean = false):void 
+﻿public function getCombatPrizes(newScreen:Boolean = false):void 
 {
 	if(newScreen) clearOutput();
 	
@@ -95,23 +77,6 @@ public function getCombatPrizes(newScreen:Boolean = false):void
 	else {
 		this.addButton(0,"Next",mainGameMenu);
 	}
-}
-
-public function startCombat(encounter:String):void 
-{	
-	switch(encounter) 
-	{
-		case "GooKnight":
-			chars["CRYSTALKNIGHT"].prepForCombat();
-			break;
-		default:
-			throw new Error("Tried to configure combat encounter for '" + encounter + "' but couldn't find an appropriate setup method!");
-			break;
-	}
-	combatMainMenu();
-	userInterface.resetNPCStats();
-	showNPCStats();
-	updateNPCStats();
 }
 
 public function leaveCombat():void
