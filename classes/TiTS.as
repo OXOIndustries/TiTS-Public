@@ -1076,5 +1076,9 @@
 		{
 			return chars["PETR"];
 		}
+		public function get docLash():DoctorLash
+		{
+			return chars["DRLASH"];
+		}
 	}
 }

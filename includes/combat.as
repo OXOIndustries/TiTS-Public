@@ -1,10 +1,6 @@
 ﻿public function victoryRouting():void 
 {
 	hideNPCStats();
-	else if(foes[0] is DoctorLash)
-	{
-		winVsDoctorLash();
-	}
 	else if (foes[0] is QueenOfTheDeep)
 	{
 		queenOfTheDeepPCVictory();
@@ -29,7 +25,6 @@
 public function defeatRouting():void 
 {
 	hideNPCStats();
-	else if (foes[0] is DoctorLash) loseToDoctorLash();
 	else if (foes[0] is QueenOfTheDeep) queenOfTheDeepPCLoss();
 	else if (foes[0] is MyrRedFemaleDeserter || foes[0] is MyrGoldFemaleDeserter) loseToAntGrillDeserts();
 	else if (foes[0] is NyreanPraetorians) loseToPraetorianNyreaGangbangu();
@@ -134,9 +129,6 @@ public function startCombat(encounter:String):void
 {	
 	switch(encounter) 
 	{
-		case "Dr. Lash":
-			chars["DRLASH"].prepForCombat();
-			break;
 		case "QueenOfTheDeep":
 			chars["QUEENOFTHEDEEP"].prepForCombat();
 			break;

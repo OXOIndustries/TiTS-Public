@@ -173,21 +173,18 @@
 			this.createPerk("Multiple Attacks",5,0,0,0,"");
 			this.createPerk("Multiple Shots",5,0,0,0,"");
 			this.createStatusEffect("Flee Disabled",0,0,0,0,true,"","",false,0);
-			createStatusEffect("Disarm Immune",0,0,0,0,true,"","",false,0);
-		}	
-		override public function setDefaultSexualPreferences():void
-		{
+			createStatusEffect("Disarm Immune", 0, 0, 0, 0, true, "", "", false, 0);
+			
+			isUniqueInFight = true;
+			btnTargetText = "Dr. Lash";
 			sexualPreferences.setRandomPrefs(0,1);
-		}
-		override public function prepForCombat():void
+			
+			_isLoading = false;
+		}	
+		
+		override public function get displayBust():String
 		{
-			var combatDane:DoctorLash = this.makeCopy();
-			
-			kGAMECLASS.userInterface.showBust("DR_LASH");
-			kGAMECLASS.showName("FIGHT:\nDR. LASH");
-			combatDane.setDefaultSexualPreferences();
-			
-			kGAMECLASS.foes.push(combatDane);
+			return "DR_LASH";
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
