@@ -1769,6 +1769,8 @@ public function processTime(arg:int):void {
 	if (!MailManager.isEntryUnlocked("bjreminder") && flags["NEVRIE_FIRST_DISCOUNT_DATE"] != undefined && days >= flags["NEVRIE_FIRST_DISCOUNT_DATE"] + 20) nevriBJMailGet();
 	//Emmy Mail
 	if (!MailManager.isEntryUnlocked("emmy_apology") && flags["EMMY_EMAIL_TIMER"] <= (GetGameTimestamp() - (24 * 60))) emmyMailGet();
+	//Emmy mail stage 2 START
+	if (!MailManager.isEntryUnlocked("emmy_gift_starter") && flags["EMMY_ORAL_TIMER"] <= (GetGameTimestamp() - (72 * 60))) emmyMailGet2();
 	//Saendra Mail
 	if (!MailManager.isEntryUnlocked("saendrathanks") && flags["FALL OF THE PHOENIX STATUS"] >= 1 && flags["SAENDRA_DISABLED"] != 1 && rooms[currentLocation].planet != "SHIP: PHOENIX" && currentLocation != "SHIP INTERIOR") saendraPhoenixMailGet();
 	//Anno Mail
@@ -1813,7 +1815,7 @@ public function maneHairGrow():void
 			if(hairGain != 1) eventBuffer += "es";
 			eventBuffer += "!</b>";
 		}
-		pc.hairLength = Math.round(hairLength + hairGain);
+		pc.hairLength = Math.round(pc.hairLength + hairGain);
 	}
 	if(pc.hairStyle != "null" || pc.hairStyle != "tentacle")
 	{

@@ -216,7 +216,7 @@ public function galoMaxTFProc():void
 		output("\n\nNo other changes seem forthcoming. You’ll need another GaloMax to get any gooeyer.");
 		//Uncool hair colors are changed to green, blue, or some other standard goo color. Maybe consult codex to see what choices we have?
 		pc.hairColor = colorSelect;
-		if(pc.hairType == GLOBAL.HAIR_TYPE_TENTACLED) pc.hairStyle = "tentacle";
+		if(pc.hairType == GLOBAL.HAIR_TYPE_TENTACLES) pc.hairStyle = "tentacle";
 		else pc.hairStyle = "null";
 		pc.hairType = GLOBAL.HAIR_TYPE_GOO;
 	}
@@ -507,7 +507,7 @@ public function revertGooBody(part:String = "all", consumeBiomass:Boolean = fals
 	{
 		if(pc.hairType != GLOBAL.HAIR_TYPE_GOO)
 		{
-			if(pc.hairType == GLOBAL.HAIR_TYPE_TENTACLED) pc.hairStyle = "tentacle";
+			if(pc.hairType == GLOBAL.HAIR_TYPE_TENTACLES) pc.hairStyle = "tentacle";
 			else pc.hairStyle = "null";
 			pc.hairType = GLOBAL.HAIR_TYPE_GOO;
 		}

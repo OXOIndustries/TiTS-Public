@@ -344,6 +344,10 @@ public function parseVKoCustomInputs():void
 {
 	var toParse:String = this.userInterface.textInput.text;
 	toParse = toParse.toLowerCase();
+
+	//Check for cheats
+	hasIllegalInput(toParse);
+	
 	//Incorrect Input
 	//Repeat "Custom Inputs" without the first sentence.
 	
