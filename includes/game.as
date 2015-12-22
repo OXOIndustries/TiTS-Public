@@ -3805,7 +3805,7 @@ public function displayQuestLog(showID:String = "All"):void
 					else output2(", Gave her a gemstone");
 				}
 				if(flags["EMMY_BANNED"] != undefined) output2(", Banned from her shop, Failed");
-				else if(flags["EMMY_QUEST"] >= 3) output2(", Completed");
+				else if(9999 == 0) output2(", Completed");
 				sideCount++;
 			}
 			// IrelliaQuest
