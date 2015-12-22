@@ -102,7 +102,7 @@ public function probeReclamationMhenga(response:int = 0):void
 		if(pc.isNice()) output("\n\n<i>“Greetings, was there trouble? I’ve been waiting for quite some time,”</i> you answer.");
 		else output("\n\n<i>“It’s about time, kid - what in the void took you so long?”</i> you retort.");
 		output(" <i>“... and ‘crew’? There’s only one of you.”</i>");
-		output("\n\nThe girl blushes slightly of embarrassment. <i>“I’m incredibly sorry about the delay - we tried to send you updates, but our messenger systems were corrupted by the humidity when we landed. That and Ringo was too afraid to land deep in the jungles--he’s still a pilot-in-training, fresh out of the academy, and he didn’t want to lose the bird on his first pickup run--so we landed at port. Another hour was eaten up when we entered because Maggie wanted to make sure everything checked out with the authorities before going in--she’s the supervisor on this run and she likes to do everything by the book. The thick jungle also made it impossible for us to enter as a party, so I was ordered to go in with this speeder to make the pickup while the others try to fix the comms.”</i>");
+		output("\n\nThe girl blushes slightly of embarrassment. <i>“I’m incredibly sorry about the delay - we tried to send you updates, but our messenger systems were corrupted by the humidity when we landed. That and Ringo was too afraid to land deep in the jungles--he’s still a pilot-in-training, fresh out of the academy, and he didn’t want to lose the bird on his first pickup run--so we landed at port. Another hour was eaten up when we entered because Maggie wanted to make sure everything checked out with the authorities before going in - she’s the supervisor on this run. The thick jungle also made it impossible for us to enter as a party, so I was ordered to go in with this speeder to make the pickup while the others try to fix the comms.”</i>");
 		output("\n\nYou accept her apology and take note of her crew’s novice-level experience.");
 		output("\n\nA green light flickers on the control panel, letting the courier know the anti-gravity tractor is primed and ready. She unravels a wire from the back of the bike and latches its hook onto one of the probe’s internal rails. Flipping a switch, the wire reels in and the tractor beam helps lift the pod from the soft earth. A few creaks sound as the bike’s back end tilts under the weight being lifted. With a metallic clink, the line stops and the probe is connected to the vehicle.");
 		output("\n\nThe young female kneels down and starts attaching some securing straps into place. As you help her with it, her hover bike’s onboard radio crackles to life with digital static.");
@@ -118,11 +118,11 @@ public function probeReclamationMhenga(response:int = 0):void
 		output("\n\n<i>“Ten-four, I’m 51 to you now.”</i>");
 		output("\n\n<i>“Roger that, good buddy.”</i>");
 		output("\n\nYou lightly chuckle at the radio chatter you just witnessed.");
-		output("\n\n<i>“Oh, I almost forgot,”</i> she says, whipping out her Codex. <i>“These old probes still have a bounty attached to them, so I have to make sure you get paid before I jet.”</i> She waves her device next to yours and it gives a positive beep, alerting you to a new deposit of <b>20,000 credits</b> into your bank account.");
+		output("\n\n<i>“Oh, I almost forgot,”</i> she says, whipping out her Codex. <i>“These old probes still have a bounty attached to them, so I have to make sure you get paid before I jet.”</i> She waves her device next to yours and it gives a positive beep, alerting you to a new deposit of <b>10,000 credits</b> into your bank account.");
 		output("\n\nYou thank the young woman, as she double-checks the straps. With everything secured, she dons her helmet, positions herself on the bike, releases the parking stand and revs up the engine, hovering along with the newly acquired load. Giving her two-finger salute again, she bids you farewell and blasts through the narrow jungle depths towards the exit with a load hum and the probe in tow.");
 		output("\n\nWhen she’s finally gone, you prepare your things and set out.");
 		
-		pc.credits += 20000;
+		pc.credits += 10000;
 		processTime(60);
 		restHeal();
 		flags["MHENGA_PROBE_CASH_GOT"] = 1;
