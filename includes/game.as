@@ -1090,8 +1090,8 @@ public function variableRoomUpdateCheck():void
 		rooms["SOUTH ESBETH 2"].northExit = "KELLY'S OFFICE";
 		rooms["BURT'S BACK END"].removeFlag(GLOBAL.NPC);
 		//Add back in icons.
-		if(!rooms["JULIAN'S OFFICE"].hasFlag(GLOBAL.NPC)) rooms["JULIAN'S OFFICE"].addFlag(GLOBAL.NPC);
-		if(!rooms["KELLY'S OFFICE"].hasFlag(GLOBAL.NPC)) rooms["KELLY'S OFFICE"].addFlag(GLOBAL.NPC);
+		rooms["JULIAN'S OFFICE"].addFlag(GLOBAL.NPC);
+		rooms["KELLY'S OFFICE"].addFlag(GLOBAL.NPC);
 	}
 	//Close shop: 
 	else
@@ -1101,22 +1101,22 @@ public function variableRoomUpdateCheck():void
 		rooms["KELLY'S OFFICE"].removeFlag(GLOBAL.NPC);
 		rooms["JULIAN'S OFFICE"].removeFlag(GLOBAL.NPC);
 		//Add Kelly icon in the bar
-		if(!rooms["BURT'S BACK END"].hasFlag(GLOBAL.NPC)) rooms["BURT'S BACK END"].addFlag(GLOBAL.NPC);
+		rooms["BURT'S BACK END"].addFlag(GLOBAL.NPC);
 	}
 	//Pitchers on Mhen'ga
 	if(flags["ROOM_80_PITCHER_MET"] == 1)
 	{
-		if(!rooms["OVERGROWN ROCK 12"].hasFlag(GLOBAL.PLANT_BULB)) rooms["OVERGROWN ROCK 12"].addFlag(GLOBAL.PLANT_BULB);
+		rooms["OVERGROWN ROCK 12"].addFlag(GLOBAL.PLANT_BULB);
 	}
 	else rooms["OVERGROWN ROCK 12"].removeFlag(GLOBAL.PLANT_BULB);
 	if(flags["ROOM_65_PITCHER_MET"] == 1)
 	{
-		if(!rooms["VINED JUNGLE 3"].hasFlag(GLOBAL.PLANT_BULB)) rooms["VINED JUNGLE 3"].addFlag(GLOBAL.PLANT_BULB);
+		rooms["VINED JUNGLE 3"].addFlag(GLOBAL.PLANT_BULB);
 	}
 	else rooms["VINED JUNGLE 3"].removeFlag(GLOBAL.PLANT_BULB);
 	if(flags["ROOM_61_PITCHER_MET"] == 1)
 	{
-		if(!rooms["DEEP JUNGLE 2"].hasFlag(GLOBAL.PLANT_BULB)) rooms["DEEP JUNGLE 2"].addFlag(GLOBAL.PLANT_BULB);
+		rooms["DEEP JUNGLE 2"].addFlag(GLOBAL.PLANT_BULB);
 	}
 	else rooms["DEEP JUNGLE 2"].removeFlag(GLOBAL.PLANT_BULB);
 	//Mhenga Probe
@@ -1195,8 +1195,8 @@ public function variableRoomUpdateCheck():void
 	// Arbetz Open:
 	if (arbetzActiveHours())
 	{
-		if (!rooms["ARBETZ MAIN"].hasFlag(GLOBAL.NPC)) rooms["ARBETZ MAIN"].addFlag(GLOBAL.NPC);
-		if (!rooms["ARBETZ POOL"].hasFlag(GLOBAL.OBJECTIVE)) rooms["ARBETZ POOL"].addFlag(GLOBAL.OBJECTIVE);
+		rooms["ARBETZ MAIN"].addFlag(GLOBAL.NPC);
+		rooms["ARBETZ POOL"].addFlag(GLOBAL.OBJECTIVE);
 	}
 	// Arbetz Closed:
 	else
@@ -1214,17 +1214,17 @@ public function variableRoomUpdateCheck():void
 	// Quenton Gym stuffs
 	if (pc.hasKeyItem("Ten Ton Gym Membership") || pc.hasStatusEffect("Gym Pass"))
 	{
-		if(!rooms["571"].hasFlag(GLOBAL.OBJECTIVE)) rooms["571"].addFlag(GLOBAL.OBJECTIVE);
-		if(!rooms["572"].hasFlag(GLOBAL.OBJECTIVE)) rooms["572"].addFlag(GLOBAL.OBJECTIVE);
-		if(!rooms["573"].hasFlag(GLOBAL.OBJECTIVE)) rooms["573"].addFlag(GLOBAL.OBJECTIVE);
-		if(!rooms["574"].hasFlag(GLOBAL.OBJECTIVE)) rooms["574"].addFlag(GLOBAL.OBJECTIVE);
+		rooms["571"].addFlag(GLOBAL.OBJECTIVE);
+		rooms["572"].addFlag(GLOBAL.OBJECTIVE);
+		rooms["573"].addFlag(GLOBAL.OBJECTIVE);
+		rooms["574"].addFlag(GLOBAL.OBJECTIVE);
 	}
 	else
 	{
-		if(rooms["571"].hasFlag(GLOBAL.OBJECTIVE)) rooms["571"].removeFlag(GLOBAL.OBJECTIVE);
-		if(rooms["572"].hasFlag(GLOBAL.OBJECTIVE)) rooms["572"].removeFlag(GLOBAL.OBJECTIVE);
-		if(rooms["573"].hasFlag(GLOBAL.OBJECTIVE)) rooms["573"].removeFlag(GLOBAL.OBJECTIVE);
-		if(rooms["574"].hasFlag(GLOBAL.OBJECTIVE)) rooms["574"].removeFlag(GLOBAL.OBJECTIVE);
+		rooms["571"].removeFlag(GLOBAL.OBJECTIVE);
+		rooms["572"].removeFlag(GLOBAL.OBJECTIVE);
+		rooms["573"].removeFlag(GLOBAL.OBJECTIVE);
+		rooms["574"].removeFlag(GLOBAL.OBJECTIVE);
 	}
 	
 	
@@ -1233,17 +1233,17 @@ public function variableRoomUpdateCheck():void
 	// Steph Myrellion shit
 	if (flags["STEPH_WATCHED"] == undefined)
 	{
-		if (rooms["1F22"].hasFlag(GLOBAL.NPC)) rooms["1F22"].removeFlag(GLOBAL.NPC);
+		rooms["1F22"].removeFlag(GLOBAL.NPC);
 	}
 	else
 	{
 		if (flags["STEPH_WORK_CHOICE"] == undefined)
 		{
-			if (!rooms["1F22"].hasFlag(GLOBAL.NPC)) rooms["1F22"].addFlag(GLOBAL.NPC);
+			rooms["1F22"].addFlag(GLOBAL.NPC);
 		}
 		else
 		{
-			if (rooms["1F22"].hasFlag(GLOBAL.NPC)) rooms["1F22"].removeFlag(GLOBAL.NPC);
+			rooms["1F22"].removeFlag(GLOBAL.NPC);
 		}
 	}
 	// Doc McAllister
@@ -1261,35 +1261,35 @@ public function variableRoomUpdateCheck():void
 	{
 		// Quest markers
 		//Added by JCup
-		if(flags["IRELLIA_QUEST_STATUS"] == 2 && (hours >= 17 && hours <= 18) && !rooms["708"].hasFlag(GLOBAL.OBJECTIVE)) rooms["708"].addFlag(GLOBAL.OBJECTIVE);
-		else if(rooms["708"].hasFlag(GLOBAL.OBJECTIVE)) rooms["708"].removeFlag(GLOBAL.OBJECTIVE);
-		if(flags["IRELLIA_QUEST_STATUS"] == 3 && hours >= 23 && !rooms["725"].hasFlag(GLOBAL.OBJECTIVE)) rooms["725"].addFlag(GLOBAL.OBJECTIVE);
-		else if(rooms["725"].hasFlag(GLOBAL.OBJECTIVE)) rooms["725"].removeFlag(GLOBAL.OBJECTIVE);
+		if(flags["IRELLIA_QUEST_STATUS"] == 2 && (hours >= 17 && hours <= 18)) rooms["708"].addFlag(GLOBAL.OBJECTIVE);
+		else rooms["708"].removeFlag(GLOBAL.OBJECTIVE);
+		if(flags["IRELLIA_QUEST_STATUS"] == 3 && hours >= 23) rooms["725"].addFlag(GLOBAL.OBJECTIVE);
+		else rooms["725"].removeFlag(GLOBAL.OBJECTIVE);
 
-		if(!rooms["746"].hasFlag(GLOBAL.NPC)) rooms["746"].addFlag(GLOBAL.NPC);
-		if(rooms["747"].hasFlag(GLOBAL.NPC)) rooms["747"].removeFlag(GLOBAL.NPC);
+		rooms["746"].addFlag(GLOBAL.NPC);
+		rooms["747"].removeFlag(GLOBAL.NPC);
 		rooms["746"].eastExit = "";
 	}
 	//IrelliaQuest complete: establish east/west link and move people token to Irellia's chambers
 	else
 	{
 		rooms["746"].eastExit = "747";
-		if(rooms["746"].hasFlag(GLOBAL.NPC)) rooms["746"].removeFlag(GLOBAL.NPC);
-		if(!rooms["747"].hasFlag(GLOBAL.NPC)) rooms["747"].addFlag(GLOBAL.NPC);
+		rooms["746"].removeFlag(GLOBAL.NPC);
+		rooms["747"].addFlag(GLOBAL.NPC);
 	}
 	//Nyrea gate should be open
 	if(nyreaDungeonGateOpen()) 
 	{
 		rooms["2G11"].westExit = "2E11";
 		if(nyreaDungeonFinished()) rooms["2G11"].removeFlag(GLOBAL.QUEST);
-		else if(!rooms["2G11"].hasFlag(GLOBAL.QUEST)) rooms["2G11"].addFlag(GLOBAL.QUEST);
+		else rooms["2G11"].addFlag(GLOBAL.QUEST);
 	}
 	//Nyrea gate should be closed
 	else 
 	{
 		rooms["2G11"].westExit = "";
-		if(!nyreaDungeonFinished() && !rooms["2G11"].hasFlag(GLOBAL.QUEST)) rooms["2G11"].addFlag(GLOBAL.QUEST);
-		else if(nyreaDungeonFinished()) rooms["2G11"].removeFlag(GLOBAL.QUEST);
+		if(!nyreaDungeonFinished()) rooms["2G11"].addFlag(GLOBAL.QUEST);
+		else rooms["2G11"].removeFlag(GLOBAL.QUEST);
 	}
 	//Other nyrea gate:
 	if(flags["UNLOCKED_TAIVRAS_GATE"] == undefined) rooms["2G15"].southExit = "";
@@ -1297,18 +1297,18 @@ public function variableRoomUpdateCheck():void
 	//Queensguard shit
 	if(queensguardAtFountain()) 
 	{
-		if(!rooms["2C13"].hasFlag(GLOBAL.NPC)) rooms["2C13"].addFlag(GLOBAL.NPC);
+		rooms["2C13"].addFlag(GLOBAL.NPC);
 	}
-	else if(rooms["2C13"].hasFlag(GLOBAL.NPC)) rooms["2C13"].removeFlag(GLOBAL.NPC);
+	else rooms["2C13"].removeFlag(GLOBAL.NPC);
 	//Fungus area open:
 	if(flags["FUNGUS_QUEEN_SAVED"] == undefined && flags["LET_FUNGUS_QUEEN_DIE"] == undefined)
 	{
 		rooms["2S11"].northExit = "2S9";
-		if(CodexManager.entryUnlocked("Myr Fungus") && !rooms["2S7"].hasFlag(GLOBAL.OBJECTIVE)) rooms["2S7"].addFlag(GLOBAL.OBJECTIVE);
+		if(CodexManager.entryUnlocked("Myr Fungus")) rooms["2S7"].addFlag(GLOBAL.OBJECTIVE);
 	}
 	else 
 	{
-		if(rooms["2S7"].hasFlag(GLOBAL.OBJECTIVE)) rooms["2S7"].removeFlag(GLOBAL.OBJECTIVE);
+		rooms["2S7"].removeFlag(GLOBAL.OBJECTIVE);
 		rooms["2S11"].northExit = "";
 	}
 	// Crystal Goo Silly Modes
