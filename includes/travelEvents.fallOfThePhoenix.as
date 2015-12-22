@@ -1,3 +1,4 @@
+import classes.Characters.PhoenixPirates;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
 import classes.Items.Melee.Rock;
 import classes.Items.Miscellaneous.EmptySlot;
@@ -408,8 +409,15 @@ public function phoenixCargo():Boolean
 // Not starting it directly so I can inject a status effect onto the player to handle the help from Sae
 public function startPhoenixPirateFight():void
 {
-	startCombat("phoenixpirates");
-	pc.createStatusEffect("Saendra Fights4Buttes", 0, 0, 0, 0, true, "", "", true, 0);
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters	([pc, saendra]);
+	CombatManager.setHostileCharacters	([new PhoenixPirates(), new PhoenixPirates(), new PhoenixPirates()]);
+	CombatManager.victoryScene(victoryOverPhoenixPirates);
+	CombatManager.lossScene(loseToPhoenixPirates);
+	CombatManager.displayLocation("VOID GANG");
+	CombatManager.encounterText("A gang of unruly, vicious-looking space toughs, these Black Void pirates are armed to the teeth with machine-pistols, rifles, shotguns, and everything in between. Ausar, humans, kaithrit girls, and even a Centaurin packing a gatling-laser make up their ranks. They’re all wearing skintight black space suits and peppering the cover around you with bullets.");
+	
+	CombatManager.beginCombat();
 }
 
 public function loseToPhoenixPirates():void 
@@ -458,7 +466,7 @@ public function loseToPhoenixPirates():void
 
 	output("\n\nYou sigh, rubbing your head and stumbling back to your bridge. Damn it.\n\n");
 
-	genericLoss();
+	CombatManager.genericLoss();
 }
 
 public function victoryOverPhoenixPirates():void
@@ -490,7 +498,7 @@ public function victoryOverPhoenixPirates():void
 
 	flags["FALL OF THE PHOENIX DEFEATED PIRATES"] = 1;
 
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 public function phoenixEngineering():void

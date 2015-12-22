@@ -1,10 +1,6 @@
 ﻿public function victoryRouting():void 
 {
 	hideNPCStats();
-	else if (foes[0] is PhoenixPirates)
-	{
-		victoryOverPhoenixPirates();
-	}
 	else if (foes[0] is GunTurrets)
 	{
 		tamtamGetsPunkedByPCs();
@@ -107,7 +103,6 @@
 public function defeatRouting():void 
 {
 	hideNPCStats();
-	else if (foes[0] is PhoenixPirates) loseToPhoenixPirates();
 	else if (foes[0] is GunTurrets) tamtamBadEndPetPooch();
 	else if (foes[0] is RocketTurrets) pcLosesToRocketPods();
 	else if (foes[0] is CaptainKhorganMech) loseToCaptainKhorganBadEnd();

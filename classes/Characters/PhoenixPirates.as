@@ -27,7 +27,7 @@ package classes.Characters
 			this.originalRace = "mixed";
 			this.a = "the ";
 			this.capitalA = "The ";
-			this.long = "A gang of unruly, vicious-looking space toughs, these Black Void pirates are armed to the teeth with machine-pistols, rifles, shotguns, and everything in between. Ausar, humans, kaithrit girls, and even a Centaurin packing a gatling-laser make up their ranks. They’re all wearing skintight black space suits and peppering the cover around you with bullets. ";
+			this.long = "";
 			this.customBlock = "The pirates armor deflects your attack with an alarming ease.";
 			this.plural = true;
 			isLustImmune = true;
@@ -164,18 +164,16 @@ package classes.Characters
 			this.milkRate = 0;
 			this.ass.wetnessRaw = 0;
 			
+			isUniqueInFight = false;
+			btnTargetText = "Pirate";
+			
 			this._isLoading = false;
 			this.createStatusEffect("Flee Disabled",0,0,0,0,true,"","",false,0);
 		}
 		
-		override public function prepForCombat():void
+		override public function get displayBust():String
 		{
-			var pGang:PhoenixPirates = this.makeCopy();
-			
-			kGAMECLASS.userInterface.showBust("BLACKVOID", "BLACKVOID", "BLACKVOID");
-			kGAMECLASS.setLocation("FIGHT: BLACK\nVOID GANG", "SHIP: PHOENIX", "SYSTEM: UNKNOWN");
-			
-			kGAMECLASS.foes.push(pGang);
+			return "BLACKVOID";
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void

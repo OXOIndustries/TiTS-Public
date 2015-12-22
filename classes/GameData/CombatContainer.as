@@ -83,6 +83,8 @@ package classes.GameData
 			// should inherit the currently set planet
 		}
 		
+		public var encounterText:String = null;
+		
 		public static const NO_GROUP:String = "no_group";
 		public static const FRIENDLY_GROUP:String = "friendly_group";
 		public static const HOSTILE_GROUP:String = "hostile_group";
@@ -2743,7 +2745,14 @@ package classes.GameData
 		
 		private function showCombatDescriptions():void
 		{
-			output("You're fighting " + num2Text(enemiesAlive()) + " hostiles.");
+			if (encounterText != null)
+			{
+				output(encounterText + "\n\n");
+			}
+			else if (_hostiles.length > 1)
+			{
+				output("You're fighting " + num2Text(enemiesAlive()) + " hostiles.");
+			}
 			
 			// TODO: I guess this would be the place to point out blindness or whatever.
 			for (var i:int = 0; i < _hostiles.length; i++)
@@ -2806,15 +2815,26 @@ package classes.GameData
 				}
 				
 				var pHealth:Number = target.HP() / target.HPMax();
-				var pShield:Number = target.shieldsRaw / target.shieldsMax();
+				var pShield:Number = target.shields() / target.shieldsMax();
+				var pLust:Number = target.lust() / target.lustMax();
 				
 				pHealth *= 100;
 				pShield *= 100;
+				pLust *= 100;
 				
 				var dHealth:int = Math.round(pHealth);
 				var dShield:int = Math.round(pShield);
+				var dLust:int = Math.round(pLust);
 				
-				output("\n\n" + target.long + " (<b>S: " + dShield + "% / H: " + dHealth + "%</b>)");
+				if (encounterText == null)
+				{
+					output("\n\n" + target.long + " (<b>S: " + dShield + "% / H: " + dHealth + "%</b>)");
+				}
+				else
+				{
+					// TODO Ideally, this needs to be reworked to some much shorter description element for multi-enemy fights. Playing it by ear until current results can be tested.
+					output("\n\n" + target.uniqueName + "(<b>S: " + dShield + "% / H: " + dHealth + "% / L: " + dLust + "%</b>)");
+				}
 			}
 		}
 		

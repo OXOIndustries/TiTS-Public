@@ -30,6 +30,11 @@ package classes.GameData
 			combatContainer.systemString = s;
 		}
 		
+		public static function encounterText(tText:String):void
+		{
+			combatContainer.encounterText = tText;
+		}
+		
 		private static var _friendlyCharacters:Array;
 		public static function setFriendlyCharacters(... args):void
 		{
