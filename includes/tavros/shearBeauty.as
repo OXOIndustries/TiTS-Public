@@ -501,7 +501,7 @@ public function ceriaHairStyleChoices():void
 	else addDisabledButton(2,"Pigtails","Pigtails","You already have a ponytail.");
 	//[Curls]
 	if(pc.hairStyle != "curls") addButton(3,"Curls",styleConfirmation,"curls","Curls","Get your hair styled into curls.");
-	else addDisabledButton(3,"Curls","Curlse","You already have your hair curled.");
+	else addDisabledButton(3,"Curls","Curls","You already have your hair curled.");
 	//[Braided]
 	if(pc.hairStyle != "braided" && pc.hairLength >= 5) addButton(4,"Braided",styleConfirmation,"braided","Braided","Get your hair styled into a braid.");
 	else if(pc.hairStyle != "braided") addDisabledButton(4,"Braided","Braided","Your hair isn't long enough to be braided.");
