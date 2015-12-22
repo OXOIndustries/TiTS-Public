@@ -21,7 +21,7 @@
 		{
 			this._latestVersion = 1;
 			this.version = this._latestVersion;
-			this._neverSerialize = true;
+			this._neverSerialize = false;
 			
 			this.short = "Kara";
 			this.originalRace = "kaithrit";
@@ -184,10 +184,6 @@
 			this.ass.loosenessRaw = 1;
 			this.ass.bonusCapacity = 100;
 			
-			this._isLoading = false;
-		}	
-		override public function setDefaultSexualPreferences():void
-		{
 			//LIKES
 			this.sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_MALEBITS,		GLOBAL.KINDA_LIKES_SEXPREF);
 			this.sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_BREASTS,		GLOBAL.KINDA_LIKES_SEXPREF);
@@ -200,17 +196,13 @@
 			this.sexualPreferences.setPref(GLOBAL.SEXPREF_VAGINAL_DRYNESS, 	GLOBAL.KINDA_DISLIKES_SEXPREF);
 			this.sexualPreferences.setPref(GLOBAL.SEXPREF_MASCULINE, 		GLOBAL.REALLY_DISLIKES_SEXPREF);
 			this.sexualPreferences.setPref(GLOBAL.SEXPREF_EXOTIC_BODYSHAPE, GLOBAL.REALLY_DISLIKES_SEXPREF);
+			
+			this._isLoading = false;
 		}
 		
-		override public function prepForCombat():void
+		override public function get displayBust():String
 		{
-			var combatKara:Kara = this.makeCopy();
-			
-			kGAMECLASS.userInterface.showBust("KARA","SHADE");
-			kGAMECLASS.userInterface.showName("FIGHT:\nKARA");
-			combatKara.setDefaultSexualPreferences();
-			
-			kGAMECLASS.foes.push(combatKara);
+			return "Kara";
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
@@ -259,6 +251,23 @@
 					chargeshot(target);
 				}
 			}
+			
+			updateDesc();
+		}
+		
+		private function updateDesc():void
+		{
+			var hostiles:Array = CombatManager.getHostileCharacters();
+			
+			if (hostiles.indexOf(this) == -1)
+			{
+				long = "Beside you stands Kara";
+			}
+			else
+			{
+				long = "You’re fighting Kara";
+			}
+			long += ", a mysterious kaithrit with cobalt locks and eerie eyes. Her cloak hangs loosely from her shoulders, revealing a skin-tight black shirt that hugs and accentuates her hefty E-cups. Her legs are mostly naked, barely covered by a lopsided half-skirt over one leg. In one hand, she’s carrying a compact plasma pistol, humming with energy and glowing with green light. Her off-hand grips the hilt of a hardlight blade back-handed, holding a flashing blade of purple force behind her.";
 		}
 		
 		private function stimboost(target:Creature):void

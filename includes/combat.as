@@ -1,16 +1,6 @@
 ﻿public function victoryRouting():void 
 {
 	hideNPCStats();
-	else if(foes[0] is Shade)
-	{
-		// PC + Kara defeat Shade
-		pcAndKaraBeatShade();
-	}
-	else if(foes[0] is Kara)
-	{
-		//PC + Shade defeat Kara
-		pcAndShadeBeatKara();
-	}
 	else if (foes[0] is Cockvine)
 	{
 		adultCockvinePCVictory();
@@ -63,8 +53,6 @@
 public function defeatRouting():void 
 {
 	hideNPCStats();
-	else if (foes[0] is Shade) loseWithKaraYouSlut()
-	else if (foes[0] is Kara) pcAndShadeDefeated();
 	else if (foes[0] is Cockvine)
 	{
 		if (pc.hasCock() || pc.hasVagina())
@@ -182,14 +170,6 @@ public function startCombat(encounter:String):void
 {	
 	switch(encounter) 
 	{
-		case "Kara":
-			chars["KARA"].prepForCombat();
-			buildShadeAndKaraFight(false);
-			break;
-		case "Shade":
-			chars["SHADE"].prepForCombat();
-			buildShadeAndKaraFight(true);
-			break;
 		case "Cockvine":
 			chars["COCKVINE"].prepForCombat();
 			break;

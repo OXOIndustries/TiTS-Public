@@ -177,13 +177,10 @@
 			this.ass.bonusCapacity = 100;
 			
 			this.inventory.push(new ArcCaster());
-
-			this._isLoading = false;
-		}
-		
-		override public function setDefaultSexualPreferences():void
-		{
-			//LIKES
+			
+			isUniqueInFight = true;
+			btnTargetText = "Shade";
+			
 			this.sexualPreferences.setPref(GLOBAL.SEXPREF_SMALL_MALEBITS,	GLOBAL.KINDA_LIKES_SEXPREF);
 			this.sexualPreferences.setPref(GLOBAL.SEXPREF_FEMININE, 		GLOBAL.KINDA_LIKES_SEXPREF);
 			this.sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_BREASTS,		GLOBAL.KINDA_LIKES_SEXPREF);
@@ -194,17 +191,13 @@
 			this.sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_MALEBITS, 	GLOBAL.KINDA_DISLIKES_SEXPREF);
 			this.sexualPreferences.setPref(GLOBAL.SEXPREF_NEUTER,			GLOBAL.KINDA_DISLIKES_SEXPREF);
 			this.sexualPreferences.setPref(GLOBAL.SEXPREF_EXOTIC_BODYSHAPE, GLOBAL.REALLY_DISLIKES_SEXPREF);
+
+			this._isLoading = false;
 		}
 		
-		override public function prepForCombat():void
+		override public function get displayBust():String
 		{
-			var combatShade:Shade = this.makeCopy();
-			
-			kGAMECLASS.userInterface.showBust("SHADE","KARA");
-			kGAMECLASS.userInterface.showName("FIGHT:\nSHADE");
-			combatShade.setDefaultSexualPreferences();
-			
-			kGAMECLASS.foes.push(combatShade);
+			return "SHADE";
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
@@ -244,6 +237,26 @@
 			}
 			
 			resistSwitch(bMaxResist);
+			
+			updateDesc();
+		}
+		
+		private function updateDesc():void
+		{
+			var hostiles:Array = CombatManager.getHostileCharacters();
+			
+			if (hostiles.indexOf(this) == -1)
+			{
+				long = "Beside you stands Shade";
+			}
+			else
+			{
+				long = "You’re fighting Shade";
+			}
+			
+			long += ", a kaithrit bounty hunter with silver hair and deadly glint in her eyes. She’s clad in a long duster decorated with lightning patterns, plus an armored vest beneath it. Her clothes part in the back, revealing a wriggling reptilian tail tipped with a human-looking pussy that drools a steady stream behind her. At her side, the kaithrit’s packing a";
+			if(rangedWeapon is HoldOutPistol) long += "bog standard holdout pistol. It’s not much to look at, but given your apparent immunity to lightning, it’s serving her better than the Arc Caster she was carrying.";
+			else long += "n Arc Caster, a powerful hand cannon that crackles with electricity.";
 		}
 		
 		private function disarmSwitch():void

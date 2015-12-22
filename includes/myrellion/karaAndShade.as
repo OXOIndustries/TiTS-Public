@@ -321,8 +321,16 @@ public function itsADealToBetrayKaraSloots():void
 	flags["BETRAYED_KARA"] = 2;
 	//[Fight!]
 	clearMenu();
-	addButton(0,"Next",startCombat,"Kara");
-	foes[0].HP(-15);
+	
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters([pc, shade]);
+	CombatManager.setHostileCharacters(kara);
+	CombatManager.victoryScene(pcAndShadeBeatKara);
+	CombatManager.lossScene(pcAndShadeDefeated);
+	CombatManager.displayLocation("KARA");
+	
+	addButton(0,"Next", CombatManager.beginCombat);
+	enemy.HP(-15);
 }
 
 //[Flirt]
@@ -449,7 +457,15 @@ public function karaAndPCVersusShadeFightIntroduction():void
 	output("You steel yourself and stand, ready to stand beside Kara.");
 	output("\n\n<i>“You brought friends?”</i> Shade spits, taking a step back and leveling the lightning gun at you. <i>“Big mistake, friend.”</i>");
 	clearMenu();
-	addButton(0,"Next",startCombat,"Shade");
+	
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters([pc, kara]);
+	CombatManager.setHostileCharacters(shade);
+	CombatManager.victoryScene(pcAndKaraBeatShade);
+	CombatManager.lossScene(loseWithKaraYouSlut);
+	CombatManager.displayLocation("SHADE");
+	
+	addButton(0,"Next", CombatManager.beginCombat);
 }
 
 //[No]
@@ -542,7 +558,15 @@ public function helpShadeOutLastChance():void
 	processTime(1);
 	flags["LAST_MINUTE_KARASHADE_HELPED:"] = "Shade";
 	clearMenu();
-	addButton(0,"Next",startCombat,"Kara");
+	
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters([pc, shade]);
+	CombatManager.setHostileCharacters(kara);
+	CombatManager.victoryScene(pcAndShadeBeatKara);
+	CombatManager.lossScene(pcAndShadeDefeated);
+	CombatManager.displayLocation("KARA");
+	
+	addButton(0,"Next", CombatManager.beginCombat);
 }
 
 //[Help Kara]
@@ -559,7 +583,15 @@ public function helpKaraOutLastChance():void
 	flags["LAST_MINUTE_KARASHADE_HELPED:"] = "Kara";
 	processTime(1);
 	clearMenu();
-	addButton(0,"Next",startCombat,"Shade");
+	
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters([pc, kara]);
+	CombatManager.setHostileCharacters(shade);
+	CombatManager.victoryScene(pcAndKaraBeatShade);
+	CombatManager.lossScene(loseWithKaraYouSlut);
+	CombatManager.displayLocation("SHADE");
+	
+	addButton(0,"Next", CombatManager.beginCombat);
 }
 
 public function karaQuestTurninNeeded():Boolean
@@ -569,8 +601,6 @@ public function karaQuestTurninNeeded():Boolean
 	if(flags["DISTRACTED_SHADE"] != undefined) return true;
 	return false;
 }
-
-
 
 //Quest Complete - Meet Kara in the Back Alley
 //Add [Kara] to the Back Alley room menu. 
@@ -592,101 +622,6 @@ public function meetUpWithKaraInTheBackAlley():void
 	addButton(0,"Next",mainGameMenu);
 }
 
-public function shadeAI():void
-{
-	//Stimulant Boost (Herself and Allies by 25%; 1/encounter)
-	if(((pc.HP() < 50 && rand(2) == 0) || pc.HP() < 25) && !foes[0].hasStatusEffect("Stimmed"))
-	{
-		karaStimulantBoost();
-		foes[0].createStatusEffect("Stimmed");
-	}
-	//Force Edge (High-damage melee attack, moderate cooldown)
-	else if(!foes[0].hasStatusEffect("Force Edge Cooldown") && rand(3) == 0)
-	{
-		karaHitsWivASwordChuck(foes[0]);
-		foes[0].createStatusEffect("Force Edge Cooldown");
-	}
-	//Kara’s Abilities
-	//Plasma Pistol (Basic Ranged)
-	else if(rand(3) <= 1) karaPlasmaShot(foes[0]);
-	//Charge Shot (150% damage, chance to inflict Burning for 2 turns. Lower acc. Quick cooldown.)
-	else karaDoesChargeShot(foes[0]);
-
-	buildShadeAndKaraFight(true);
-}
-
-public function karaAI():void
-{
-	if(foes[0].hasStatusEffect("Force Edge Cooldown") && rand(2) == 0)
-	{
-		foes[0].removeStatusEffect("Force Edge Cooldown");
-	}
-	//Stimulant Boost (Herself and Allies by 25%; 1/encounter)
-	if(((foes[0].HP() < 50 && rand(2) == 0) || foes[0].HP() < 25) && !foes[0].hasStatusEffect("Stimmed"))
-	{
-		karaStimulantBoost();
-		foes[0].createStatusEffect("Stimmed");
-	}
-	//Force Edge (High-damage melee attack, moderate cooldown)
-	else if(!foes[0].hasStatusEffect("Force Edge Cooldown") && rand(3) == 0)
-	{
-		karaHitsWivASwordChuck(pc);
-		foes[0].createStatusEffect("Force Edge Cooldown");
-	}
-	//Kara’s Abilities
-	//Plasma Pistol (Basic Ranged)
-	else if(rand(3) <= 1) karaPlasmaShot(pc);
-	//Charge Shot (150% damage, chance to inflict Burning for 2 turns. Lower acc. Quick cooldown.)
-	else karaDoesChargeShot(pc);
-
-	//Shade's AI in here:
-	output("\n\n");
-	//Arc Caster (Basic Ranged)
-	shadeUsesArcCaster(foes[0]);
-
-	buildShadeAndKaraFight();
-	processCombat();
-}
-
-//Fight! Shade vs Kara
-//PC can be fighting one or the other of them.
-//Should probably run this every round so the pistol can get updated.
-public function buildShadeAndKaraFight(helpingKara:Boolean = false):void
-{
-	showName("FIGHT:\nSHADE & KARA");
-	if(!helpingKara) showBust("KARA","SHADE");
-	else showBust("KARA","SHADE");
-	foes[0].long = "";
-	//Which gets talked about first?
-	if(helpingKara) 
-	{
-		shadeDesc(helpingKara);
-		foes[0].long += "\n\n";
-		karaDesc(helpingKara);
-	}
-	else 
-	{
-		karaDesc(helpingKara);
-		foes[0].long += "\n\n";
-		shadeDesc(helpingKara);
-	}	
-}
-
-public function shadeDesc(helpingKara:Boolean):void
-{
-	if(helpingKara) foes[0].long += "You’re fighting Shade";
-	else foes[0].long += "Beside you stands Shade";
-	foes[0].long += ", a kaithrit bounty hunter with silver hair and deadly glint in her eyes. She’s clad in a long duster decorated with lightning patterns, plus an armored vest beneath it. Her clothes part in the back, revealing a wriggling reptilian tail tipped with a human-looking pussy that drools a steady stream behind her. At her side, the kaithrit’s packing a";
-	if(helpingKara && foes[0].rangedWeapon is HoldOutPistol) foes[0].long += "bog standard holdout pistol. It’s not much to look at, but given your apparent immunity to lightning, it’s serving her better than the Arc Caster she was carrying.";
-	else foes[0].long += "n Arc Caster, a powerful hand cannon that crackles with electricity.";
-}
-public function karaDesc(helpingKara:Boolean):void
-{
-	if(!helpingKara) foes[0].long += "You’re fighting Kara";
-	else foes[0].long += "Beside you stands Kara";
-	foes[0].long += ", a mysterious kaithrit with cobalt locks and eerie eyes. Her cloak hangs loosely from her shoulders, revealing a skin-tight black shirt that hugs and accentuates her hefty E-cups. Her legs are mostly naked, barely covered by a lopsided half-skirt over one leg. In one hand, she’s carrying a compact plasma pistol, humming with energy and glowing with green light. Her off-hand grips the hilt of a hardlight blade back-handed, holding a flashing blade of purple force behind her.";
-}
-
 //Combat End
 // PC + Kara defeat Shade
 public function pcAndKaraBeatShade():void
@@ -704,7 +639,7 @@ public function pcAndKaraBeatShade():void
 	var map:* = mapper.generateMap(currentLocation);
 	userInterface.setMapData(map);
 	showName("SPACER'S\nROW");
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //PC + Shade defeat Kara
@@ -723,7 +658,7 @@ public function pcAndShadeBeatKara():void
 	var map:* = mapper.generateMap(currentLocation);
 	userInterface.setMapData(map);
 	showName("SPACER'S\nROW");
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //PC + Kara Defeated
@@ -744,7 +679,7 @@ public function loseWithKaraYouSlut():void
 	output("\n\nShe gives you a wink, pockets the chits, and saunters out of the bar, dragging Kara with her. You leave once you’re sure she’s gone, joining the crowd of people outside before the local security can get here.\n\n");
 	flags["LOST_TO_SHADE_WITH_KARA"] = 1;
 	processTime(2);
-	genericLoss();
+	CombatManager.genericLoss();
 }
 
 //PC + Shade Defeated

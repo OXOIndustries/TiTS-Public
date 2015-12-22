@@ -301,7 +301,6 @@ public function fuckCamsButt(camCame:Boolean = false):void
 	addButton(0,"Next",mainGameMenu);
 }
 
-//
 //Varmint Combat Encounter
 public function varmintProc():void
 {
