@@ -188,24 +188,18 @@
 			this.ass.bonusCapacity = 0;
 			
 			this.createStatusEffect("Disarm Immune");
+			createStatusEffect("Sporebutt", 2, 1, 1, 1);
+			
+			isUniqueInFight = true;
+			btnTargetText = "RougeBot";
 			
 			this._isLoading = false;
 
-		}		
-		override public function setDefaultSexualPreferences():void
-		{
-			
 		}
 		
-		override public function prepForCombat():void
+		override public function get displayBust():String
 		{
-			var combatMachina:GardeBot = this.makeCopy();
-			
-			//kGAMECLASS.userInterface.showBust("NALEEN_MALE");
-			kGAMECLASS.setLocation("FIGHT:\nROGUE BOT", "PLANET: MHEN'GA", "SYSTEM: ARA ARA");
-			combatMachina.setDefaultSexualPreferences();
-			combatMachina.createStatusEffect("Sporebutt",2,1,1,1);
-			kGAMECLASS.foes.push(combatMachina);
+			return "ROUGEBOT";
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void

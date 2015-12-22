@@ -1,7 +1,6 @@
 ﻿public function victoryRouting():void 
 {
 	hideNPCStats();
-	else if (foes[0] is GardeBot) beatUpConstructoBot();
 	else if (foes[0] is GooKnight) beatUpCrystalGoo();
 	else genericVictory();
 }
@@ -9,7 +8,6 @@
 public function defeatRouting():void 
 {
 	hideNPCStats();
-	else if (foes[0] is GardeBot) roboQueenFightPCLoss();
 	else if (foes[0] is GooKnight) gooKnightLossRouter();
 	else {
 		output("You lost! You rouse yourself after an hour and a half, quite bloodied.");
@@ -103,9 +101,6 @@ public function startCombat(encounter:String):void
 {	
 	switch(encounter) 
 	{
-		case "GardeBot":
-			chars["GARDEBOT"].prepForCombat();
-			break;
 		case "GooKnight":
 			chars["CRYSTALKNIGHT"].prepForCombat();
 			break;

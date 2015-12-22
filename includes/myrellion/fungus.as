@@ -1,4 +1,5 @@
-﻿import classes.Characters.MyrInfectedFemale;
+﻿import classes.Characters.GardeBot;
+import classes.Characters.MyrInfectedFemale;
 public function showInfectedMyr(nude:Boolean = false):void
 {
 	if(inCombat())
@@ -686,6 +687,14 @@ public function fuckYesPlantLadyIllSaveYou():void
 
 	processTime(5);
 	clearMenu();
+	
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(new GardeBot());
+	CombatManager.victoryScene(beatUpConstructoBot);
+	CombatManager.lossScene(roboQueenFightPCLoss);
+	CombatManager.displayLocation("ROUGE BOT");
+	
 	addButton(0,"Next",startCombat,"GardeBot");
 }
 
