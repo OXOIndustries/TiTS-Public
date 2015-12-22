@@ -720,7 +720,7 @@ public function newGooStyle():void
 	else addDisabledGhostButton(2,"Pigtails","Pigtails","You already have a ponytail.");
 	//[Curls]
 	if(pc.hairStyle != "curls") addGhostButton(3,"Curls",gooStyle,"curls","Curls","Style your hair into curls.");
-	else addDisabledGhostButton(3,"Curls","Curlse","You already have your hair curled.");
+	else addDisabledGhostButton(3,"Curls","Curls","You already have your hair curled.");
 	//[Braided]
 	if(pc.hairStyle != "braided" && pc.hairLength >= 5) addGhostButton(4,"Braided",gooStyle,"braided","Braided","Style your hair into a braid.");
 	else if(pc.hairStyle != "braided") addDisabledGhostButton(4,"Braided","Braided","Your hair isn't long enough to be braided.");
@@ -875,6 +875,8 @@ public function gooBodyCustomizer():void
 		else addDisabledGhostButton(9,"Revert All","Revert All","You don't have enough biomass for that.\n\n<b>" + (20 * nonGooPart) + " mLs Biomass</b>");
 	}
 	else addDisabledGhostButton(9,"Revert All","Revert All","You’ll need to have more than one body part that is able to revert in order to try this!");
+	if(pc.skinType == GLOBAL.SKIN_TYPE_GOO && pc.hairType == GLOBAL.HAIR_TYPE_GOO) addGhostButton(10,"Match Color",revertGooBodyColor,"menu","Match Colors","Force the color of your body or hair to match one another.");
+	else addDisabledGhostButton(10,"Match Color","Match Colors","You’ll need to have gooey skin and gooey hair in order to try this!");
 	
 	addGhostButton(14,"Back",gooShiftMenu);
 }
@@ -898,6 +900,139 @@ public function revertGooBodyPart(part:String = "all"):void
 	revertGooBody(part, true);
 	clearGhostMenu();
 	addGhostButton(0,"Next",gooBodyCustomizer);
+}
+public function revertGooBodyColor(part:String = "menu"):void
+{
+	clearOutput2();
+	var i:int = 0;
+	var mismatchedGenitals:int = 0;
+	if(pc.hasCock())
+	{
+		for(i = 0; i < pc.cockTotal(); i++)
+		{
+			if(!pc.hasCockFlag(GLOBAL.FLAG_GOOEY,i) && pc.cocks[i].cockColor != pc.skinTone) mismatchedGenitals++;
+		}
+	}
+	if(pc.hasVagina())
+	{
+		for(i = 0; i < pc.totalVaginas(); i++)
+		{
+			if(pc.vaginas[i].hasFlag(GLOBAL.FLAG_GOOEY) && pc.vaginas[i].vaginaColor != pc.skinTone) mismatchedGenitals++;
+		}
+	}
+	if(part == "menu")
+	{
+		output2("You flip open your Codex and");
+		if(pc.isBimbo() || pc.isBro()) output2(" compulsively snap a photo of yourself - of course, you can’t resist the urge to do that - who wouldn’t want to see a bod’ like yours, right? You then");
+		output2(" take a look at your gooey [pc.skinColor] skin");
+		if(pc.hasHair()) output2(" and [pc.hairColor] [pc.hairsNoun]");
+		output2(" and ponder for a bit.");
+		showBiomass();
+		clearGhostMenu();	
+		if(gooBiomass() >= 10 && pc.hairColor != pc.skinTone)
+		{
+			output2(" You can tell your colors are different, would you like to force them to match? You can colorize yourself to either match your [pc.hairColor] hair");
+			if(!pc.hasHair()) output2(", if it were visible that is,");
+			output2(" or your [pc.skinColor] skin.");
+			addGhostButton(0,"Hair",revertGooBodyColor,"hair","Hair","Shift your body color to match your hair color.\n\n<b>10 mLs Biomass</b>");
+			addGhostButton(1,"Body",revertGooBodyColor,"body","Body","Shift your hair color to match your body color.\n\n<b>10 mLs Biomass</b>");
+			else addDisabledGhostButton(2,"FixGenitals","Revert Genital Color","Your genital and body colors already match!");
+		}
+		else if(pc.hairColor != pc.skinTone)
+		{
+			output2(" You can tell your colors are different, but unfortunately, you don’t have enough biomass to do anything about it.");
+			addDisabledGhostButton(0,"Hair","Hair","You don’t have enough biomass for that.\n\n<b>10 mLs Biomass</b>");
+			addDisabledGhostButton(1,"Body","Body","You don’t have enough biomass for that.\n\n<b>10 mLs Biomass</b>");
+		}
+		else
+		{
+			addDisabledGhostButton(0,"Hair","Hair","Your hair and body colors already match!");
+			addDisabledGhostButton(1,"Body","Body","Your hair and body colors already match!");
+		}
+		if(mismatchedGenitals > 0)
+		{
+			output2(" Your genital colors seem to be off compared to the rest of your body.");
+			if(gooBiomass() >= 10) addGhostButton(2,"FixGenitals",revertGooGenitalColor,pc.skinTone,"Revert Genital Color","Shift your genital color to match your skin color.\n\n<b>10 mLs Biomass</b>");
+			else addDisabledGhostButton(2,"FixGenitals","Revert Genital Color","You don’t have enough biomass for that.\n\n<b>10 mLs Biomass</b>");
+		}
+		else
+		{
+			if(pc.hairColor == pc.skinTone) output2(" You might be able to shift your colors if they are ever mismatched.");
+			addDisabledGhostButton(2,"FixGenitals","Revert Genital Color","Your genital and body colors already match!");
+		}
+		addGhostButton(14,"Back",gooBodyCustomizer);
+	}
+	else if(part == "hair")
+	{
+		output2("With relative ease, you allow the pigmentation to flow from your head and down into your body.");
+		output2("\n\nSwirls of [pc.hairColor] trickle down, mixing then overrunning the [pc.skinColor] below. Not too soon after, you complete the color transformation and admire your changes. <b>Your body color now matches your hair color!</b>");
+		pc.skinTone = pc.hairColor;
+		pc.furColor = pc.hairColor;
+		pc.scaleColor = pc.hairColor;
+		gooBiomass(-10);
+		clearGhostMenu();
+		if(mismatchedGenitals > 0)
+		{
+			output2("\n\nTilting your codex to your nether region, you noticed the color is a bit off... Do you want to change to color of your gooey genitals to match as well?");
+			if(gooBiomass() >= 10) addGhostButton(0,"Yes",revertGooGenitalColor,pc.hairColor,"Yes","Shift your genital color to match your hair color.\n\n<b>10 mLs Biomass</b>");
+			else addDisabledGhostButton(0,"Yes","Yes","You don’t have enough biomass for that.\n\n<b>10 mLs Biomass</b>");
+			addGhostButton(1,"No",revertGooGenitalColor);
+		}
+		else addGhostButton(0,"Next",revertGooBodyColor,"menu");
+	}
+	else if(part == "body")
+	{
+		output2("Concentrating hard, you try to allow the pigmentation to climb from your body and up into your head.");
+		if(!pc.hasHair()) output2("\n\nNothing visibly changes, but you know that any new hair growth will turn out to be [pc.skinColor]-colored.");
+		else output2("\n\nWebs of [pc.skinColor] cast across your head, mingling then engulfing your gooey [pc.hairColor] hair. After a brief moment, you complete the color transformation and admire your changes.");
+		output2(" <b>Your hair color now matches your body color!</b>");
+		pc.hairColor = pc.skinTone;
+		gooBiomass(-10);
+		clearGhostMenu();
+		if(mismatchedGenitals > 0)
+		{
+			output2("\n\nTilting your codex to your nether region, you noticed the color is a bit off... Do you want to change to color of your gooey genitals to match as well?");
+			if(gooBiomass() >= 10) addGhostButton(0,"Yes",revertGooGenitalColor,pc.skinTone,"Yes","Shift your genital color to match your skin color.\n\n<b>10 mLs Biomass</b>");
+			else addDisabledGhostButton(0,"Yes","Yes","You don’t have enough biomass for that.\n\n<b>10 mLs Biomass</b>");
+			addGhostButton(1,"No",revertGooGenitalColor);
+		}
+		else addGhostButton(0,"Next",revertGooBodyColor,"menu");
+	}
+}
+public function revertGooGenitalColor(sColor:String = "null"):void
+{
+	clearOutput2();
+	var mismatchedGenitals:int = 0;
+	if(sColor == "null")
+	{
+		output2("Deciding to leave your genitals alone for now, you take a moment to survey the rest of your body one more time.");
+	}
+	else
+	{
+		if(pc.hasCock())
+		{
+			for(i = 0; i < pc.cockTotal(); i++)
+			{
+				if(!pc.hasCockFlag(GLOBAL.FLAG_GOOEY,i)) pc.cocks[i].cockColor = sColor;
+				mismatchedGenitals++;
+			}
+		}
+		if(pc.hasVagina())
+		{
+			for(i = 0; i < pc.totalVaginas(); i++)
+			{
+				if(pc.vaginas[i].hasFlag(GLOBAL.FLAG_GOOEY)) pc.vaginas[i].vaginaColor = sColor;
+				mismatchedGenitals++;
+			}
+		}
+		output2("Urging your biomass to move, you will yourself to shift the colors into your groin until");
+		if(mismatchedGenitals == 1) output2(" its");
+		else output2(" each");
+		output2(" slimy surface matches the rest of you. <b>Your gooey genitals are now " + sColor + "!</b>");
+		gooBiomass(-10);
+	}
+	clearGhostMenu();
+	addGhostButton(0,"Next",revertGooBodyColor,"menu");
 }
 
 //CHEST
@@ -1070,10 +1205,10 @@ public function nippleTypeGooMenu():void
 	//Dicknipples
 	if(canGooNippleChange(GLOBAL.NIPPLE_TYPE_DICK))
 	{
-		if(nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_DICK) <= gooBiomass()) addGhostButton(4,"DickNipples",nippleGooGetsTypeChanged,GLOBAL.NIPPLE_TYPE_DICK,"DickNipples","Change your nipples to be dick-nipples.\n\n<b>" + nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_DICK) + " mLs Biomass</b>");
-		else addDisabledGhostButton(4,"DickNipples","DickNipples","You don't have enough biomass to make all your nipples dick-nipples.\n\n<b>" + nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_DICK) + " mLs Biomass</b>");
+		if(nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_DICK) <= gooBiomass()) addGhostButton(4,"DickNipples",nippleGooGetsTypeChanged,GLOBAL.NIPPLE_TYPE_DICK,"Dick Nipples","Change your nipples to be dick-nipples.\n\n<b>" + nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_DICK) + " mLs Biomass</b>");
+		else addDisabledGhostButton(4,"DickNipples","Dick Nipples","You don't have enough biomass to make all your nipples dick-nipples.\n\n<b>" + nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_DICK) + " mLs Biomass</b>");
 	}
-	else addDisabledGhostButton(4,"DickNipples","DickNipples","All your nipples are already dick-nipples.\n\n<b>" + nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_DICK) + " mLs Biomass</b>");
+	else addDisabledGhostButton(4,"DickNipples","Dick Nipples","All your nipples are already dick-nipples.\n\n<b>" + nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_DICK) + " mLs Biomass</b>");
 	addGhostButton(14,"Back",gooChestCustomizer);
 }
 
@@ -1091,7 +1226,7 @@ public function nippleGooGetsTypeChanged(target:int):void
 	{
 		//Spend biobutts
 		gooBiomass(-1 * nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_INVERTED));
-		if(pc.hasFuckableNipples()) output("You close up the passages inside your [pc.nipples] and reform their normal tips, leaving them delightfully inverted. When you get horny enough, they'll be sure to pop back out.");
+		if(pc.hasFuckableNipples()) output2("You close up the passages inside your [pc.nipples] and reform their normal tips, leaving them delightfully inverted. When you get horny enough, they'll be sure to pop back out.");
 		else output2(pc.mf("Chuckling","Giggling") + " to yourself, you push your [pc.nipples] back into themselves, willing them to turn into simple 'innies.' Of course, when you get sufficiently horny, they'll pop right back out.");
 		output2(" <b>Aren't inverted nipples fun?</b>");
 	}
@@ -1262,8 +1397,8 @@ public function shrinkASpecificTitRow(arg:int = 0):void
 	else 
 	{
 		output2("There's barely any biomass fortifying your chest, but you drain it away all the same, ");
-		if(pc.breastRows[arg].breastRating() >= 2) output("minimizing the size of your tits. If you want to get rid of them entirely, you'll need to deal with whatever else is keeping them so swollen.");
-		else output("leaving you with a nice set of pectorals for your trouble.");
+		if(pc.breastRows[arg].breastRating() >= 2) output2("minimizing the size of your tits. If you want to get rid of them entirely, you'll need to deal with whatever else is keeping them so swollen.");
+		else output2("leaving you with a nice set of pectorals for your trouble.");
 	}
 	//Figure out refund amount.
 	var boobCost:Number = 0;
@@ -1521,7 +1656,7 @@ public function gooBallsMenu():void
 		addDisabledGhostButton(3,"Shrink Balls","Shrink Balls","You don't have any balls to shrink!");
 		addDisabledGhostButton(5,"Sack Options","Sack Options","If you had balls, you could use this button to make your nutsack pull up high and tight or swing low and free.");
 	}
-	addGhostButton(14,"Back",gooShiftMenu);
+	addGhostButton(14,"Back",gooCrotchCustomizer);
 }
 
 //Shrink Down Nuts
