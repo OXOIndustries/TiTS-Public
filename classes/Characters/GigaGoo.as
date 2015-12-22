@@ -162,21 +162,17 @@ package classes.Characters
 			this.createStatusEffect("Stun Immune");
 			this.createStatusEffect("Flee Disabled",0,0,0,0,true,"","",false,0);
 			
+			isUniqueInFight = true;
+			btnTargetText = "Gigagoo";
+			
 			this._isLoading = false;
 		}
 		
-		override public function prepForCombat():void
+		override public function get displayBust():String
 		{
-			var gigaGoo:GigaGoo = this.makeCopy();
-			
-			kGAMECLASS.userInterface.showBust("GRAY_GOO_GIGA");
-			kGAMECLASS.userInterface.showName("FIGHT:\nGIGA GOO");
-			
-			//combatGunTurrets.sexualPreferences.setRandomPrefs(2 + rand(3));
-			
-			kGAMECLASS.foes.push(gigaGoo);
+			return "GRAY_GOO_GIGA";
 		}
-		
+				
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{
 			var target:Creature = selectTarget(hostileCreatures);

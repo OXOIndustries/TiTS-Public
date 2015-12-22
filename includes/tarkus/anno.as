@@ -1,4 +1,5 @@
-﻿import classes.Characters.GrayPrime;
+﻿import classes.Characters.GigaGoo;
+import classes.Characters.GrayPrime;
 import classes.Characters.PlayerCharacter;
 import classes.Characters.SecurityDroids;
 import classes.Creature;
@@ -3113,9 +3114,14 @@ public function deck13DecisionStopHer():void
 	
 	output("\n\n<i>“HAVE A LITTLE TASTE OF WHAT KILLED US,”</i> the mammoth Nova booms, stomping towards the lift. You and Anno raise your weapons as the giga-goo closes in.");
 
-	clearMenu();
-	pc.createStatusEffect("Annoquest Helper AI", 0, 0, 0, 0, true, "", "", true, 0);
-	addButton(0, "Next", startCombat, "gigagoo")
+	clearMenu();	
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters([pc, anno]);
+	CombatManager.setHostileCharacters(new GigaGoo());
+	CombatManager.victoryScene(victoryOverGigaGoo);
+	CombatManager.lossScene(loseToGigaGoo);
+	CombatManager.displayLocation("GIGA GOO");
+	addButton(0, "Next", CombatManager.beginCombat)
 }
 
 public function loseToGigaGoo():void
