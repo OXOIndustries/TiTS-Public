@@ -1,7 +1,6 @@
 ﻿public function victoryRouting():void 
 {
 	hideNPCStats();
-	else if (foes[0] is Taivra) whupTaivrasAss();
 	else if (foes[0] is Princess) beatUpPrincessYeSlut();
 	else if (foes[0] is GardeBot) beatUpConstructoBot();
 	else if (foes[0] is GooKnight) beatUpCrystalGoo();
@@ -11,7 +10,6 @@
 public function defeatRouting():void 
 {
 	hideNPCStats();
-	else if (foes[0] is Taivra) loseToQueensTaivra();
 	else if (foes[0] is Princess) loseToPrincessYeGit();
 	else if (foes[0] is GardeBot) roboQueenFightPCLoss();
 	else if (foes[0] is GooKnight) gooKnightLossRouter();
@@ -107,10 +105,6 @@ public function startCombat(encounter:String):void
 {	
 	switch(encounter) 
 	{
-		case "Taivra":
-			if(flags["FREED_DANE_FROM_TAIVRA"] == 1) pc.removeStatusEffect("Cage Distance");
-			chars["TAIVRA"].prepForCombat();
-			break;
 		case "princess":
 			chars["PRINCESS"].prepForCombat();
 			break;

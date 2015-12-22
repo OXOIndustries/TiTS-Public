@@ -1,5 +1,6 @@
 import classes.Characters.NyreanPraetorians;
 import classes.Characters.Queensguard;
+import classes.Characters.Taivra;
 import classes.Creature;
 import classes.Items.Miscellaneous.GemSatchel;
 //flags["CRYSTAL_GOO_DEFEAT"] - 1 = HP, 2 = LUST, 3 = you fucked her after winning (or got egged)
@@ -1584,7 +1585,17 @@ public function spankedQueensguardsAss():void
 	if(flags["FREED_DANE_FROM_TAIVRA"] == 1) output("\n\n<i>“You won't get the chance!”</i> the over-sized ausar grunts.");
 	processTime(2);
 	clearMenu();
-	addButton(0,"Next",startCombat,"Taivra");
+	
+	if (flags["FREED_DANE_FROM_TAIVRA"] == 1) pc.removeStatusEffect("Cage Distance");
+	
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(taivra);
+	CombatManager.victoryScene(new Taivra());
+	CombatManager.lossScene(loseToQueensTaivra);
+	CombatManager.displayLocation("QUEEN TAIVRA");
+	
+	addButton(0,"Next",CombatManager.beginCombat);
 }
 
 //PC Defeats Taivra

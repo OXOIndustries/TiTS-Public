@@ -192,40 +192,42 @@
 			impregnationType = "RoyalEggPregnancy";
 			this.createStatusEffect("Flee Disabled",0,0,0,0,true,"","",false,0);
 			
+			isUniqueInFight = true;
+			btnTargetText = "Taivra";
+			
+			tallness = 68 + (rand(12) - 6);
+			rangedWeapon = new (RandomInCollection(EagleHandgun, HammerPistol, LaserPistol))();
+			
+			sexualPreferences.setPref(GLOBAL.SEXPREF_FEMININE,		GLOBAL.REALLY_LIKES_SEXPREF);
+			sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_BREASTS,		GLOBAL.REALLY_LIKES_SEXPREF);
+			sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_BUTTS,		GLOBAL.KINDA_LIKES_SEXPREF);
+			sexualPreferences.setPref(GLOBAL.SEXPREF_NEUTER,			GLOBAL.KINDA_DISLIKES_SEXPREF);
+			sexualPreferences.setPref(GLOBAL.SEXPREF_VAGINAL_WETNESS,	GLOBAL.KINDA_LIKES_SEXPREF);
+			sexualPreferences.setPref(GLOBAL.SEXPREF_MASCULINE,		GLOBAL.KINDA_LIKES_SEXPREF);
+			
+			inventory.push(new TaivrasSpear());
+			
+			long += "\n\nThe queen’s long black hair is tied into a tight ponytail behind her elfin ears, and her pitch-black eyes regard you with ";
+			if(flags["FREED_DANE_FROM_TAIVRA"] == 1) long += "cold contempt";
+			else long += "playful mirth, like a cat stalking her prey";
+			long += ". Her purple lips twist in a smile, and she twirls her towering longspear about herself in a series of flourishes and feints that would have impressed a core-world martial artist.";
+			if(flags["FREED_DANE_FROM_TAIVRA"] == 1) long += "\n\nDane, your cousin [rival.name]’s four-armed ausar bodyguard, is standing at your side. Though wounded by Queensguard, he’s still managing to stand - if only barely. He might not be at full strength, but it’s reassuring to have somebody watching your back.";
+			
 			this._isLoading = false;
 		}
 		
-		override public function prepForCombat():void
+		override public function get displayBust():String
 		{
-			var nyrea:Taivra = this.makeCopy();
-			
-			nyrea.tallness = 68 + (rand(12) - 6);
-			nyrea.rangedWeapon = new (RandomInCollection(EagleHandgun, HammerPistol, LaserPistol))();
-			
-			nyrea.sexualPreferences.setPref(GLOBAL.SEXPREF_FEMININE,		GLOBAL.REALLY_LIKES_SEXPREF);
-			nyrea.sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_BREASTS,		GLOBAL.REALLY_LIKES_SEXPREF);
-			nyrea.sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_BUTTS,		GLOBAL.KINDA_LIKES_SEXPREF);
-			nyrea.sexualPreferences.setPref(GLOBAL.SEXPREF_NEUTER,			GLOBAL.KINDA_DISLIKES_SEXPREF);
-			nyrea.sexualPreferences.setPref(GLOBAL.SEXPREF_VAGINAL_WETNESS,	GLOBAL.KINDA_LIKES_SEXPREF);
-			nyrea.sexualPreferences.setPref(GLOBAL.SEXPREF_MASCULINE,		GLOBAL.KINDA_LIKES_SEXPREF);
-			
-			nyrea.long += "\n\nThe queen’s long black hair is tied into a tight ponytail behind her elfin ears, and her pitch-black eyes regard you with ";
-			if(kGAMECLASS.flags["FREED_DANE_FROM_TAIVRA"] == 1) nyrea.long += "cold contempt";
-			else nyrea.long += "playful mirth, like a cat stalking her prey";
-			nyrea.long += ". Her purple lips twist in a smile, and she twirls her towering longspear about herself in a series of flourishes and feints that would have impressed a core-world martial artist.";
-			if(kGAMECLASS.flags["FREED_DANE_FROM_TAIVRA"] == 1) nyrea.long += "\n\nDane, your cousin [rival.name]’s four-armed ausar bodyguard, is standing at your side. Though wounded by Queensguard, he’s still managing to stand - if only barely. He might not be at full strength, but it’s reassuring to have somebody watching your back.";
-
-			nyrea.inventory.push(new TaivrasSpear());
-			//else if(rand(50) == 0) nyrea.inventory.push(new Satyrite());
-			//else if(rand(20) == 0) nyrea.inventory.push(new Picardine());
-			//else if (rand(20) == 0)	nyrea.inventory.push(nyrea.rangedWeapon.makeCopy());
-			//else if (rand(20) == 0) nyrea.inventory.push(nyrea.meleeWeapon.makeCopy());
-			kGAMECLASS.showName("FIGHT:\nQUEEN TAIVRA");
-			if(kGAMECLASS.flags["FREED_DANE_FROM_TAIVRA"] == 1) kGAMECLASS.showBust("TAIVRA","DANE");
-			else kGAMECLASS.showBust("TAIVRA");
-			kGAMECLASS.foes.push(nyrea);
+			if (flags["FREED_DANE_FROM_TAIVRA"] == 1)
+			{
+				return "TAIVRADANE";
+			}
+			else
+			{
+				return "TAIVRA";
+			}
 		}
-		
+			
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{
 			var target:Creature = selectTarget(hostileCreatures);
