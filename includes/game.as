@@ -1120,14 +1120,20 @@ public function variableRoomUpdateCheck():void
 	}
 	else rooms["DEEP JUNGLE 2"].removeFlag(GLOBAL.PLANT_BULB);
 	//Mhenga Probe
-	if(flags["MHENGA_PROBE_CASH_GOT"] == undefined)
+	if(flags["DIDNT_ENGAGE_RIVAL_ON_MHENGA"] == undefined && flags["FOUGHT_DANE_ON_MHENGA"] == undefined)
 	{
 		rooms["METAL POD 1"].roomName = "METAL\nPOD";
-		if(!rooms["METAL POD 1"].hasFlag(GLOBAL.OBJECTIVE)) rooms["METAL POD 1"].addFlag(GLOBAL.OBJECTIVE);
+		rooms["METAL POD 1"].addFlag(GLOBAL.QUEST);
+	}
+	else if(flags["MHENGA_PROBE_CASH_GOT"] == undefined && flags["WHUPPED_DANES_ASS_ON_MHENGA"] != undefined)
+	{
+		rooms["METAL POD 1"].roomName = "METAL\nPOD";
+		rooms["METAL POD 1"].addFlag(GLOBAL.OBJECTIVE);
 	}
 	else
 	{
 		rooms["METAL POD 1"].roomName = "SMALL\nCRATER";
+		rooms["METAL POD 1"].removeFlag(GLOBAL.QUEST);
 		rooms["METAL POD 1"].removeFlag(GLOBAL.OBJECTIVE);
 	}
 	
@@ -3790,15 +3796,16 @@ public function displayQuestLog(showID:String = "All"):void
 				}
 				if(flags["EMMY_QUEST"] >= 1)
 				{
-					if(flags["EMMY_EMAIL_TIMER"] != undefined && flags["EMMY_APOLOGIZED"] != undefined) output2(" Accepted her ‘oral apology’");
+					if(MailManager.isEntryViewed("emmy_apology") && flags["EMMY_APOLOGIZED"] != undefined) output2(" Accepted her ‘oral apology’");
 					else output2(" Gave her a flower");
 				}
 				if(flags["EMMY_QUEST"] >= 2)
 				{
-					output2(", <i>In progress...</i>");
+					if(MailManager.isEntryViewed("emmy_gift_starter") && flags["EMMY_QUEST"] == 2) output2(", <i>Gift her with a gem!</i>");
+					else output2(", Gave her a gemstone");
 				}
 				if(flags["EMMY_BANNED"] != undefined) output2(", Banned from her shop, Failed");
-				else if(9999 == 0) output2(", Completed");
+				else if(flags["EMMY_QUEST"] >= 3) output2(", Completed");
 				sideCount++;
 			}
 			// IrelliaQuest
