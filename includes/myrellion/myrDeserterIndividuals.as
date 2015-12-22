@@ -1,4 +1,8 @@
-﻿//Myr Deserter (Individual) Enemy Encounter
+﻿import classes.Characters.GardeBot;
+import classes.Characters.MyrGoldFemaleDeserter;
+import classes.Characters.MyrRedFemaleDeserter;
+import classes.Creature;
+//Myr Deserter (Individual) Enemy Encounter
 //Written by JimThermic
 
 //This is a two part project - there is a document for an individual deserter encounter and one for a group encounter. This document is for the individual encounter.
@@ -121,9 +125,10 @@ public function approachMyrDeserters():void
 public function combatBlurb(gold:Boolean = false):void
 {
 	author("Jim Thermic");
-	foes = new Array();
-	if(gold) chars["GOLD_DESERTER"].prepForCombat();
-	else chars["RED_DESERTER"].prepForCombat();
+	var tEnemy:Creature;
+	
+	if (gold) tEnemy = new MyrGoldFemaleDeserter();
+	else tEnemy = new MyrRedFemaleDeserter();
 	showDeserter(gold);
 	//First Time:
 	if((gold && flags["MET_GOLD_DESERTER"] == undefined) || (!gold && flags["MET_RED_DESERTER"] == undefined))
@@ -168,8 +173,36 @@ public function combatBlurb(gold:Boolean = false):void
 	}
 	output("\n\n<b>It’s a fight!</b>");
 	clearMenu();
-	if(gold) addButton(0,"Next",startCombat,"Gold Deserter");
-	else addButton(0,"Next",startCombat,"Red Deserter");
+	if (gold)
+	{
+		configureGoldDeserterFight(tEnemy);
+		addButton(0,"Next", CombatManager.beginCombat);
+	}
+	else
+	{
+		configureRedDeserterFight();
+		addButton(0,"Next", CombatManager.beginCombat);
+	}
+}
+
+public function configureGoldDeserterFight(tEnemy:Creature):void
+{
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(tEnemy);
+	CombatManager.victoryScene(winVsAntGrillDeserts);
+	CombatManager.lossScene(loseToAntGrillDeserts);
+	CombatManager.displayLocation(flags["KNOW_GOLD_MYR_NAME"] == undefined ? "GOLD DSTR" : "LYS");
+}
+
+public function configureRedDeserterFight(tEnemy:Creature):void
+{
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(tEnemy);
+	CombatManager.victoryScene(winVsAntGrillDeserts);
+	CombatManager.lossScene(loseToAntGrillDeserts);
+	CombatManager.displayLocation(flags["KNOW_RED_MYR_NAME"] == undefined ? "RED DSTR" : "BRIHA");
 }
 
 //Approach (Non-Combative) 

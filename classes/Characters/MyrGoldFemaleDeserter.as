@@ -195,36 +195,36 @@
 			this.vaginas[0].wetnessRaw = 2;
 			this.vaginas[0].loosenessRaw = 3;
 			
-			this.createPerk("Can Crit",0,0,0,0);
-			this._isLoading = false;
-		}
-		
-		override public function prepForCombat():void
-		{
-			var GoldMyr:MyrGoldFemaleDeserter = this.makeCopy();
+			isUniqueInFight = true;
+			btnTargetText = "Gold Myr";			
 			
-			GoldMyr.credits = rand(200);
-			if(rand(20) == 0) GoldMyr.inventory.push(new Kirkite());
-			else if(rand(20) == 0) GoldMyr.inventory.push(new Satyrite());
-			else if(rand(5) == 0) GoldMyr.inventory.push(new RedMyrVenom());		
-			this.sexualPreferences.setRandomPrefs(2 + rand(3),1);
-			//GoldMyr.sexualPreferences.setPref(GLOBAL.SEXPREF_FEMININE,	GLOBAL.REALLY_LIKES_SEXPREF);
+			credits = rand(200);
+			if(rand(20) == 0) inventory.push(new Kirkite());
+			else if(rand(20) == 0) inventory.push(new Satyrite());
+			else if(rand(5) == 0) inventory.push(new RedMyrVenom());		
+			sexualPreferences.setRandomPrefs(2 + rand(3), 1);
 			
-			kGAMECLASS.showName("FIGHT: GOLD\nDESERTER");
-			kGAMECLASS.showBust("MYR_GOLD_FEMALE_DESERTER");
-			if(kGAMECLASS.flags["KNOW_GOLD_MYR_NAME"] != undefined) 
+			if (flags["KNOW_GOLD_MYR_NAME"] != undefined)
 			{
 				short = "Lys";
 				a = "";
 				capitalA = "";
-				kGAMECLASS.showName("FIGHT:\nLYS");
 			}
-			kGAMECLASS.foes.push(GoldMyr);
+			
+			createPerk("Can Crit",0,0,0,0);
+			_isLoading = false;
 		}
+		
+		override public function get displayBust():String
+		{
+			return "MYR_GOLD_FEMALE_DESERTER";
+		}
+		
 		override public function isPregnant(x:int = 0):Boolean
 		{
 			return false;
 		}
+		
 		// Placeholder shit, sue me. Calling the ill excuse etc.
 		override public function bellyDescript(bForceSize:Boolean = false): String {
 			var sBuilder:String = "";

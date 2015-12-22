@@ -192,39 +192,40 @@
 			this.vaginas[0].type = GLOBAL.TYPE_INHUMAN;
 			this.vaginas[0].wetnessRaw = 2;
 			this.vaginas[0].loosenessRaw = 3;
-			this.createPerk("Can Crit",0,0,0,0);
-			this._isLoading = false;
-		}
-		
-		override public function prepForCombat():void
-		{
-			var RedMyr:MyrRedFemaleDeserter = this.makeCopy();
+			this.createPerk("Can Crit", 0, 0, 0, 0);
 			
-			RedMyr.credits = rand(200);
-			if (rand(20) == 0) RedMyr.inventory.push(new Kirkite());
-			else if(rand(20) == 0) RedMyr.inventory.push(new Satyrite());
-			else RedMyr.inventory.push(new RedMyrVenom());
+			isUniqueInFight = true;
+			btnTargetText = "Red Myr";
+			
+			credits = rand(200);
+			if (rand(20) == 0) inventory.push(new Kirkite());
+			else if(rand(20) == 0) inventory.push(new Satyrite());
+			else inventory.push(new RedMyrVenom());
 					
-			this.sexualPreferences.setRandomPrefs(2 + rand(3),1);
-			//RedMyr.sexualPreferences.setPref(GLOBAL.SEXPREF_FEMININE,	GLOBAL.REALLY_LIKES_SEXPREF);
+			sexualPreferences.setRandomPrefs(2 + rand(3),1);
 			
-			kGAMECLASS.showName("FIGHT: RED\nDESERTER");
-			kGAMECLASS.showBust("MYR_RED_FEMALE_DESERTER");
-			if(kGAMECLASS.flags["KNOW_RED_MYR_NAME"] != undefined) 
+			if (flags["KNOW_RED_MYR_NAME"] != undefined)
 			{
 				short = "Briha";
 				a = "";
 				capitalA = "";
-				kGAMECLASS.showName("FIGHT:\nBRIHA");
 			}
-			kGAMECLASS.foes.push(RedMyr);
+			
+			this._isLoading = false;
 		}
+		
+		override public function get displayBust():String
+		{
+			return "MYR_RED_FEMALE_DESERTER";
+		}
+		
 		override public function isPregnant(x:int = 0):Boolean
 		{
 			if(kGAMECLASS.flags["BRIHA_INCUBATION_TIMER"] != undefined) return true;
 			return false;
 		}
-		// Placeholder shit, sue me. Calling the ill excuse etc.
+		
+		
 		override public function bellyDescript(bForceSize:Boolean = false): String {
 			var sBuilder:String = "";
 

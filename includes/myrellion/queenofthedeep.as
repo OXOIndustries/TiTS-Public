@@ -81,7 +81,7 @@ public function queenOfTheDeepInitFight():void
 	CombatManager.setHostileCharacters(new QueenOfTheDeep());
 	CombatManager.victoryScene(queenOfTheDeepPCVictory);
 	CombatManager.lossScene(queenOfTheDeepPCLoss);
-	CombatManager.displayLocation("ZIL MALE");
+	CombatManager.displayLocation("DEEPS QUEEN");
 	CombatManager.beginCombat();
 }
 

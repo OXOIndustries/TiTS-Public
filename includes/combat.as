@@ -1,10 +1,6 @@
 ﻿public function victoryRouting():void 
 {
 	hideNPCStats();
-	else if (foes[0] is MyrRedFemaleDeserter || foes[0] is MyrGoldFemaleDeserter)
-	{
-		winVsAntGrillDeserts();
-	}
 	else if(foes[0] is NyreanPraetorians) spankDaShitOuttaPraetorians();
 	else if(foes[0] is Goocubator) pcBeatsGoo();
 	else if (foes[0] is SX1GroupPirates) sx1PirateGroupPCVictory();
@@ -21,7 +17,6 @@
 public function defeatRouting():void 
 {
 	hideNPCStats();
-	else if (foes[0] is MyrRedFemaleDeserter || foes[0] is MyrGoldFemaleDeserter) loseToAntGrillDeserts();
 	else if (foes[0] is NyreanPraetorians) loseToPraetorianNyreaGangbangu();
 	else if (foes[0] is Goocubator) loseToRoyalIncuGoo();
 	else if (foes[0] is SX1GroupPirates) sx1PirateGroupPCLoss();
@@ -124,12 +119,6 @@ public function startCombat(encounter:String):void
 {	
 	switch(encounter) 
 	{
-		case "Gold Deserter":
-			chars["GOLD_DESERTER"].prepForCombat();
-			break;
-		case "Red Deserter":
-			chars["RED_DESERTER"].prepForCombat();
-			break;
 		case "Nyrean Praetorians":
 			chars["NYREAN_PRAETORIANS"].prepForCombat();
 			break;
