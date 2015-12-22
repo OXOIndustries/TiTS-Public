@@ -1,3 +1,4 @@
+import classes.Characters.WetraxxelBrawler;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
 public function wetraxxelCaveEncounters():void
 {
@@ -66,7 +67,7 @@ public function wetraHoundPCVictory():void
 	flags["WETRAXXEL_ENCOUNTER_WEIGHT"] += 1;
 
 	clearMenu();
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 public function wetraHoundPCLoss():void
@@ -160,7 +161,15 @@ public function encounterWetraxxelBrawler():void
 
 	// StartCombat
 	clearMenu();
-	addButton(0, "Next", startCombat, "wetraxxelbrawler");
+	
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(new WetraxxelBrawler());
+	CombatManager.victoryScene(wetraxxelBrawlerPCVictory);
+	CombatManager.lossScene(wetraxxelBrawlerPCLoss);
+	CombatManager.displayLocation("WETRAXXEL");
+	
+	addButton(0, "Next", CombatManager.beginCombat);
 }
 
 public function wetraxxelBrawlerPCLoss():void
@@ -290,7 +299,7 @@ public function wetraxxelBrawlerPCLossPinnedAndFingeredII():void
 	currentLocation = "1X11";
 	flags["WETRAXXEL_SUBMISSION"] += 1;
 	clearMenu();
-	genericLoss();
+	CombatManager.genericLoss();
 }
 
 public function wetraxxelBrawlerPCLossButtfucking():void
@@ -317,7 +326,7 @@ public function wetraxxelBrawlerPCLossButtfucking():void
 	output("\n\nSure enough, a moment later you hear the wetraxxel ripping aside his loincloth, freeing the heavy package hidden behind it. He shifts his burly hips, swinging his insectile shaft up into the crack of your ass. You can immediately tell it’s utterly inhuman: the wetraxxel’s cock is covered from base to crown in small, uneven nubs, and its crown is split more than an inch deep, forming a v-like fork. It’s hard not to shiver as you feel three trickles of hot wetness brush your [pc.skinFurScales], hinting at three distinct cumslits adorning the brawler’s manhood.");
 	
 	output("\n\nSlowly but surely, the wetraxxel slides his huge member down through your crack until its two-pronged crown aligns with the still-gaping hole of your [pc.asshole]. A whimper escapes your lips as the two tips of his cock press into you, easily snagging the opened rim of your back door and spreading you open for the shaft that follows them.");
-	pc.buttChange(foes[0].biggestCockVolume(), true, true, false);
+	pc.buttChange(enemy.biggestCockVolume(), true, true, false);
 	
 	output("\n\nAs the wetraxxel’s hips start to move, you find yourself shoved up against the wall again, one of his arms firmly planting itself against the back of your shoulders. The other sinks into your [pc.butt], fingers squeezing and pulling at your cheeks. Between his strong hands and his thrusting hips, he keeps you spread wide open as his cock starts to spear you.");
 	
@@ -357,7 +366,7 @@ public function wetraxxelBrawlerPCLossButtfucking():void
 	currentLocation = "1X11";
 	flags["WETRAXXEL_SUBMISSION"] += 1;
 	clearMenu();
-	genericLoss();
+	CombatManager.genericLoss();
 }
 
 public function wetraxxelBrawlerPCLossTonguePolish():void
@@ -410,7 +419,7 @@ public function wetraxxelBrawlerPCLossTonguePolish():void
 	currentLocation = "1X11";
 	flags["WETRAXXEL_SUBMISSION"] += 1;
 	clearMenu();
-	genericLoss();
+	CombatManager.genericLoss();
 
 }
 
@@ -422,7 +431,7 @@ public function wetraxxelBrawlerPCVictory():void
 
 	//Beat dat brawler down. 
 
-	if (foes[0].lust() >= foes[0].lustMax())
+	if (enemy.lust() >= enemy.lustMax())
 	{
 		output("The wetraxxel’s simple loincloth is barely hanging on under the strain of his hardening alien cock. His breath grows heavy and fast, and his steps a little slower. The brawler’s eyes are wholly focused on your sensual movements - in the state he’s in, it’s all to easy for you to sidle on up close to him and, with a few caressing motions, have the brawler eating out of your hands. It’s easy to push him down onto his knees, completely at your mercy.");
 	}
@@ -448,7 +457,7 @@ public function wetraxxelBrawlerPCVictory():void
 	if (flags["WETRAXXEL_SUBMISSION"] >= 4) addButton(3, "Wank Him", wetraxxelBrawlerPCVictoryWankHim, undefined, "Wank Him", "Jerk the brawler off.");
 	else addDisabledButton(3, "Wank Him", "Wank Him", "The table is currently too heavily weighted in the brawlers favor...");
 
-	addButton(14,"Leave",genericVictory);
+	addButton(14,"Leave",CombatManager.genericVictory);
 }
 
 public function wetraxxelBrawlerPCVictoryFuckHisButt():void
@@ -553,8 +562,8 @@ public function wetraxxelBrawlerPCVictoryRideHim(useVag:Boolean = false):void
 	if (useVag) output(" cunt");
 	else output(" ass");
 	output(".");
-	if (useVag) pc.cuntChange(pc.biggestVaginaIndex(), foes[0].biggestCockVolume(), true, true, false);
-	else pc.buttChange(foes[0].biggestCockVolume(), true, true, false);
+	if (useVag) pc.cuntChange(pc.biggestVaginaIndex(), enemy.biggestCockVolume(), true, true, false);
+	else pc.buttChange(enemy.biggestCockVolume(), true, true, false);
 	
 	output("\n\nYou chew on your lip, trying to stifle a cry of pleasure as you sink down on the pillar of wetraxxel cockflesh. It’s an effort not to scream out, letting your voice echo through the corridors and announcing your ecstasy to the world. The wetraxxel makes that decision for you, grabbing your [pc.hips] and yanking you down on his rod: you can’t help but scream as he tries to ram feet of cockflesh into the straining");
 	if (useVag) output(" lips");
@@ -573,8 +582,8 @@ public function wetraxxelBrawlerPCVictoryRideHim(useVag:Boolean = false):void
 	output("Stretching your body to the limit, it doesn’t take long for the gut-straining alien cock to bring you agonizingly close to orgasm. Your motions become faster and faster, almost frenzied - your body becomes ever more hungry for the brawler’s cock, hammering down on his hips until you’re groping at your [pc.chest] and moaning loud enough to let anybody in the caves hear you for miles around.");
 	
 	output("\n\nThe wetraxxel joins you with a gruff grunt of pleasure, and a sudden flood of wet heat into your "+holeTag+" as he cums. With one final push, you take him as deep as you can and surrender yourself to pleasure, letting orgasm wash over you in tidal waves of ecstasy. Your "+holeTag+" clenches powerfully around the wetraxxel’s dick, milking his hot seed out with your every orgasmic motion.");
-	if (useVag) pc.loadInCunt(foes[0], pc.biggestVaginaIndex());
-	else pc.loadInAss(foes[0]);
+	if (useVag) pc.loadInCunt(enemy, pc.biggestVaginaIndex());
+	else pc.loadInAss(enemy);
 	
 	output("\n\nWhile you cum, you feel the brawler’s hands wrap around your hips, holding you steady until your climax has passed, and you slump down against his chest. You find your cheek resting against the lighter plates of the brawler’s abs while you catch your breath, letting the wetraxxel’s cock slowly wilt and slide out of you, leaving a sticky trail of seed that clings to your thighs. You slip off to sleep, held tight against the insectile brute’s chest");
 	if (flags["WETRAXXEL_SUBMISSION"] >= 6) output(", right where you belong...");
@@ -618,7 +627,7 @@ public function wetraxxelBrawlerPCVictoryWankHim():void
 	
 	output("\n\nThe wetraxxel’s voice comes as a low, graveley grunt that punctuates the silence. His back arches into you, and his cock swells with a sudden surge of seed. You have just enough time to brace for it before the brawler’s orgasm hits you like a tidal wave, flooding your belly with an unstoppable deluge of spunk. You’re forced to swallow as fast as you can to keep up with the torrent, feeling like your whole body is bloating as the apple-sized nuts between the wetraxxel’s legs completely empty into your gut.");
 	if (pc.bellyRating() >= 16) output(" And you thought your belly was straining before...");
-	pc.loadInMouth(foes[0]);
+	pc.loadInMouth(enemy);
 	
 	output("\n\nFinally, the huge bug-man’s orgasm abates. You slide off his cock like a well-used condom, flopping to the ground and drooling spunk from your [pc.lips]. Now that’s a meal you wouldn’t mind getting seconds of...");
 	
@@ -630,7 +639,7 @@ public function wetraxxelBrawlerPCVictoryWankHim():void
 	pc.orgasm();
 	if (flags["WETRAXXEL_SUBMISSION"] > 0) flags["WETRAXXEL_SUBMISSION"] -= 1;
 	clearMenu();
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 public function wetraxxelBrawlerBadEnd():void

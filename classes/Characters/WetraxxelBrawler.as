@@ -176,22 +176,16 @@
 
 			this.createStatusEffect("Disarm Immune");
 			
+			isUniqueInFight = true;
+			btnTargetText = "Wetraxxel";
+			sexualPreferences.setRandomPrefs(4 + rand(3),2);
+			
 			this._isLoading = false;
 		}
 		
-		override public function setDefaultSexualPreferences():void
+		override public function get displayBust():String
 		{
-			this.sexualPreferences.setRandomPrefs(4 + rand(3),2);
-		}
-		
-		override public function prepForCombat():void
-		{
-			var brawler:WetraxxelBrawler = this.makeCopy();
-			brawler.setDefaultSexualPreferences();
-			kGAMECLASS.userInterface.showBust("WETRAXXEL");
-			kGAMECLASS.userInterface.showName("FIGHT:\nWETRAXXEL");
-			
-			kGAMECLASS.foes.push(brawler);
+			return "WETRAXXEL";
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
