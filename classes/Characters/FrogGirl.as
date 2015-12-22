@@ -4,7 +4,7 @@
 	import classes.GLOBAL;
 	import classes.Items.Miscellaneous.*;
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
 	
 	import classes.GameData.CombatAttacks;
 	import classes.GameData.CombatManager;
@@ -179,52 +179,65 @@
 
 			//this.inventory.push(new NaleenNip());
 			
+			isUniqueInFight = true;
+			btnTargetText = "Froggirl";
+			
+			sexualPreferences.setRandomPrefs(4 + rand(3));
+			sexualPreferences.setPref(GLOBAL.SEXPREF_COCKS, GLOBAL.REALLY_LIKES_SEXPREF);
+			randomise();
+			updateDesc();
+			
 			this._isLoading = false;
 		}
 		
-		override public function setDefaultSexualPreferences():void
+		private function randomise():void
 		{
+			switch (rand(7))
+			{
+				case 0: skinTone = "orange and green"; break;
+				case 1: skinTone = "mottled brown"; break;
+				case 2: skinTone = "black and gold"; break;
+				case 3: skinTone = "black and blue"; break;
+				case 4: skinTone = "black and red"; break;
+				case 5: skinTone = "red and blue"; break;
+				case 6: skinTone = "black, blue, and yellow"; break;
+				default: skinTone = "gold"; break;
+			}
 			
-			this.sexualPreferences.setRandomPrefs(4 + rand(3));
-			//Special like:
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_COCKS,GLOBAL.REALLY_LIKES_SEXPREF);
+			lustRaw = 20 + rand(30);
+			tallness = 54 + rand(13);
+			
+			vaginas[0].clits = 1;
+			vaginas[0].wetnessRaw = 2 + rand(3);
+			vaginas[0].loosenessRaw = 1 + rand(4);
+			vaginas[0].bonusCapacity = 10;
+			vaginas[0].type = GLOBAL.TYPE_LIZAN;
+			vaginas[0].vaginaColor = skinTone;
+			ass.wetnessRaw = 0;
+			ass.loosenessRaw = 1 + rand(3);
+			ass.bonusCapacity = 10;
 		}
 		
-		override public function prepForCombat():void
+		private function updateDesc():void
 		{
-			var combatFrog:FrogGirl = this.makeCopy();
-			
-			combatFrog.setDefaultSexualPreferences();
-			
-			var colorSelect:int = rand(7);
-			if(colorSelect == 0) combatFrog.skinTone = "orange and green";
-			else if(colorSelect == 1) combatFrog.skinTone = "mottled brown";
-			else if(colorSelect == 2) combatFrog.skinTone = "black and gold";
-			else if(colorSelect == 3) combatFrog.skinTone = "black and blue";
-			else if(colorSelect == 4) combatFrog.skinTone = "black and red";
-			else if(colorSelect == 5) combatFrog.skinTone = "red and blue";
-			else if(colorSelect == 6) combatFrog.skinTone = "black, blue, and yellow";
-			else combatFrog.skinTone = "gold";
-
-			combatFrog.long = "The short and sleek alien before you dodges about with practiced ease. Her " + combatFrog.skinTone + " skin shines with a coating of lust inducing toxins. A grin crosses her features as she gazes at you with unrestrained need. Despite the soft appearance of her body, you can see toned muscle coiled beneath her pliant flesh. She’s ready to fight if it means getting ";
-			if(kGAMECLASS.pc.hasCock()) combatFrog.long += "into your pants";
-			else combatFrog.long += "you out of the way";
-			combatFrog.long += ".";
-			combatFrog.lustRaw = 20 + rand(30);
-			combatFrog.tallness = 54 + rand(13);
-
-			this.vaginas[0].clits = 1;
-			this.vaginas[0].wetnessRaw = 2 + rand(3);
-			this.vaginas[0].loosenessRaw = 1 + rand(4);
-			this.vaginas[0].bonusCapacity = 10;
-			this.vaginas[0].type = GLOBAL.TYPE_LIZAN;
-			this.vaginas[0].vaginaColor = combatFrog.skinTone;
-			this.ass.wetnessRaw = 0;
-			this.ass.loosenessRaw = 1 + rand(3);
-			this.ass.bonusCapacity = 10;
-			kGAMECLASS.foes.push(combatFrog);
-			kGAMECLASS.showFrogGirl();
-			kGAMECLASS.setLocation("FIGHT:\nKEROKORAS", "PLANET: MHEN'GA", "SYSTEM: ARA ARA");
+			long = "The short and sleek alien before you dodges about with practiced ease. Her " + skinTone + " skin shines with a coating of lust inducing toxins. A grin crosses her features as she gazes at you with unrestrained need. Despite the soft appearance of her body, you can see toned muscle coiled beneath her pliant flesh. She’s ready to fight if it means getting ";
+			if(kGAMECLASS.pc.hasCock()) long += "into your pants.";
+			else long += "you out of the way.";
+		}
+		
+		override public function get displayBust():String
+		{
+			switch (skinTone)
+			{
+				case "orange and green": return "FROG_4";
+				case "mottled brown": return "FROG_8";
+				case "black and gold": return "FROG_5";
+				case "black and blue": return "FROG_6";
+				case "black and red": return "FROG_2";
+				case "red and blue": return "FROG_1";
+				case "black, blue, and yellow": return "FROG_3";
+				default: return "FROG_7";
+			}
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void

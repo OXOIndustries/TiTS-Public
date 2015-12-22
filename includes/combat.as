@@ -1,10 +1,6 @@
 ﻿public function victoryRouting():void 
 {
 	hideNPCStats();
-	else if(foes[0] is FrogGirl)
-	{
-		victoryAgainstTheFrogs();
-	}
 	else if (foes[0] is WetraHound)
 	{
 		wetraHoundPCVictory();
@@ -41,7 +37,6 @@
 public function defeatRouting():void 
 {
 	hideNPCStats();
-	else if (foes[0] is FrogGirl) loseAgainstTheFrogs();
 	else if (foes[0] is WetraHound) wetraHoundPCLoss();
 	else if (foes[0] is MyrInfectedFemale) loseToInfectedMyrYouSubbieSloot();
 	else if (foes[0] is DoctorLash) loseToDoctorLash();
