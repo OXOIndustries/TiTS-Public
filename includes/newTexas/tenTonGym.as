@@ -984,7 +984,7 @@ public function lolaPoolApproach():void
 		else
 		{
 			output("\n\n<i>“Soooo....”</i> Lola says, then looks back up at you, a blush spreading across her cheeks. She reaches out and rests one hand on your [pc.hip], and seems to be waiting for your permission to move her hand in closer to your crotch. <i>“You got anything under there for me?”</i>");
-			if(pc.lowerUndergarment.hardLightEquipped || !pc.hasCock())
+			if(pc.lowerUndergarment.hardLightEquipped)
 			{
 				if(pc.hasCock()) output("\n\nYou shake your head, and tell Lola that while you have a penis, you are not planning on using it at the moment.");
 				else output("\n\nYou shake your head, and tell Lola that you don’t have the dong she’s looking for.");
@@ -997,12 +997,12 @@ public function lolaPoolApproach():void
 			}
 			else if(pc.hasCock())
 			{
-				output("\n\nYou take hold of Lola’s hand and move it over your [pc.crotch], letting her feel what you’ve got. Her eyes light up and she feels out your [pc.cock] through your swimsuit, her fingers stroking down your length to your [pc.cockHead].");
+				output("\n\nYou take hold of Lola’s hand and move it over your [pc.crotch], letting her feel what you’ve got. Her eyes light up as she feels out your [pc.cock] through your swimsuit, her fingers stroking down your length to your [pc.cockHead].");
 				output("\n\n<i>“Ooh, that feels like fun,”</i> she says. Her blush spreads from her cheeks down to her chest, turning the skin on her breasts the palest pink. <i>“Do you want to fuck me? Like, right now?”</i>");
 			}
 		}
 		
-		if(!pc.lowerUndergarment.hardLightEquipped || !pc.hasCock())
+		if(!pc.lowerUndergarment.hardLightEquipped && !pc.hasCock())
 		{
 			output("\n\nYou ask if she’s still up for whatever you two can do together. Fingers and lips and tongues can do a lot.");
 			output("\n\n<i>“Oh, but it’s not the same,”</i> Lola says, pouting a little. <i>“And I really like to be, you know–”</i> She thrusts her voluminous hips in your direction, sending a small wave crashing against you. <i>“–penetrated. Sorry, [pc.name].”</i>");
