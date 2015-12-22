@@ -1,7 +1,6 @@
 ﻿public function victoryRouting():void 
 {
 	hideNPCStats();
-	else if (foes[0] is Princess) beatUpPrincessYeSlut();
 	else if (foes[0] is GardeBot) beatUpConstructoBot();
 	else if (foes[0] is GooKnight) beatUpCrystalGoo();
 	else genericVictory();
@@ -10,7 +9,6 @@
 public function defeatRouting():void 
 {
 	hideNPCStats();
-	else if (foes[0] is Princess) loseToPrincessYeGit();
 	else if (foes[0] is GardeBot) roboQueenFightPCLoss();
 	else if (foes[0] is GooKnight) gooKnightLossRouter();
 	else {
@@ -105,9 +103,6 @@ public function startCombat(encounter:String):void
 {	
 	switch(encounter) 
 	{
-		case "princess":
-			chars["PRINCESS"].prepForCombat();
-			break;
 		case "GardeBot":
 			chars["GARDEBOT"].prepForCombat();
 			break;

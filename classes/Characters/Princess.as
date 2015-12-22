@@ -192,26 +192,20 @@
 			this.createStatusEffect("Flee Disabled",0,0,0,0,true,"","",false,0);
 			this.createStatusEffect("Disarm Immune");
 			
+			isUniqueInFight = true;
+			btnTargetText = "Princess";
+			
+			tallness = 68 + (rand(12) - 6);
+			rangedWeapon = new (RandomInCollection(EagleHandgun, HammerPistol, LaserPistol))();
+			sexualPreferences.setRandomPrefs(7, 1);
+			inventory.push(new ReaperArmamentsMarkIShield());
+			
 			this._isLoading = false;
 		}
 		
-		override public function prepForCombat():void
+		override public function get displayBust():String
 		{
-			var nyrea:Princess = this.makeCopy();
-			
-			nyrea.tallness = 68 + (rand(12) - 6);
-			nyrea.rangedWeapon = new (RandomInCollection(EagleHandgun, HammerPistol, LaserPistol))();
-			
-			nyrea.sexualPreferences.setRandomPrefs(7,1);
-
-			nyrea.inventory.push(new ReaperArmamentsMarkIShield());
-			//else if(rand(50) == 0) nyrea.inventory.push(new Satyrite());
-			//else if(rand(20) == 0) nyrea.inventory.push(new Picardine());
-			//else if (rand(20) == 0)	nyrea.inventory.push(nyrea.rangedWeapon.makeCopy());
-			//else if (rand(20) == 0) nyrea.inventory.push(nyrea.meleeWeapon.makeCopy());
-			kGAMECLASS.showName("FIGHT:\nPRINCESS");
-			kGAMECLASS.showBust("PRINCESS_BANDOLEER");
-			kGAMECLASS.foes.push(nyrea);
+			return "PRINCESS_BANDOLEER";
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void

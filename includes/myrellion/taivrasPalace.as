@@ -1,4 +1,5 @@
 import classes.Characters.NyreanPraetorians;
+import classes.Characters.Princess;
 import classes.Characters.Queensguard;
 import classes.Characters.Taivra;
 import classes.Creature;
@@ -3140,6 +3141,14 @@ public function resistPrincessYouSloot():void
 	output("\n\nFuck. You’ll have to fight this tart. Princess or not, she’s a nyrea. She can probably take some damage.");
 	processTime(3);
 	clearMenu();
+	
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(new Princess());
+	CombatManager.victoryScene(beatUpPrincessYeSlut);
+	CombatManager.lossScene(loseToPrincessYeGit);
+	CombatManager.displayLocation("PRINCESS");
+	
 	addButton(0,"Next",startCombat,"princess");
 }
 
