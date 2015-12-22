@@ -94,6 +94,7 @@ package classes.GameData
 			
 			// Speical handle for ZILPACK- use ZIL, ZIL
 			// ^ RASKVEL_GANG => RASKVEL_MALE x3
+			// ^ PRAETORIAN => PRAETORIAN x3
 			
 			if (group == NO_GROUP)
 			{

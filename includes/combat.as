@@ -1,7 +1,6 @@
 ﻿public function victoryRouting():void 
 {
 	hideNPCStats();
-	else if(foes[0] is NyreanPraetorians) spankDaShitOuttaPraetorians();
 	else if(foes[0] is Goocubator) pcBeatsGoo();
 	else if (foes[0] is SX1GroupPirates) sx1PirateGroupPCVictory();
 	else if (foes[0] is SX1Shotguard) sx1ShotguardPCVictory();
@@ -17,7 +16,6 @@
 public function defeatRouting():void 
 {
 	hideNPCStats();
-	else if (foes[0] is NyreanPraetorians) loseToPraetorianNyreaGangbangu();
 	else if (foes[0] is Goocubator) loseToRoyalIncuGoo();
 	else if (foes[0] is SX1GroupPirates) sx1PirateGroupPCLoss();
 	else if (foes[0] is SX1Shotguard) sx1ShotguardPCLoss();
@@ -119,9 +117,6 @@ public function startCombat(encounter:String):void
 {	
 	switch(encounter) 
 	{
-		case "Nyrean Praetorians":
-			chars["NYREAN_PRAETORIANS"].prepForCombat();
-			break;
 		case "Goocubator":
 			chars["GOOCUBATOR"].prepForCombat();
 			break;

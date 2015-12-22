@@ -1,3 +1,4 @@
+import classes.Characters.NyreanPraetorians;
 import classes.Creature;
 import classes.Items.Miscellaneous.GemSatchel;
 //flags["CRYSTAL_GOO_DEFEAT"] - 1 = HP, 2 = LUST, 3 = you fucked her after winning (or got egged)
@@ -6,7 +7,7 @@ public function showTaivra(nude:Boolean = false):void
 {
 	if (nude) showBust("TAIVRA_NUDE");
 	else showBust("TAIVRA");
-	if(!inCombat() || pc.HP() <= 0 || pc.lust() >= pc.lustMax() || foes[0].HP() <= 0 || foes[0].lust() >= foes[0].lustMax()) showName("QUEEN\nTAIVRA");
+	if(!inCombat() || pc.HP() <= 0 || pc.lust() >= pc.lustMax() || enemy.HP() <= 0 || enemy.lust() >= enemy.lustMax()) showName("QUEEN\nTAIVRA");
 	else 
 	{
 		showName("FIGHT:\nQUEEN TAIVRA");
@@ -115,12 +116,25 @@ public function taivrasPalaceSquareBonus():Boolean
 				output("\n\nThe queen’s bodyguard seems to have recovered and are prepared to fight you off again!");
 				//PC can’t advance past until they [Fight], which leads straight into another battle.
 				clearMenu();
-				addButton(0,"Fight",startCombat,"Nyrean Praetorians");
+				configurePraetorianFight();
+				addButton(0,"Fight",CombatManager.beginCombat);
 				return true;
 			}
 		}
 	}
 	return false;
+}
+
+public function configurePraetorianFight():void
+{
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(new NyreanPraetorians());
+	CombatManager.victoryScene(spankDaShitOuttaPraetorians);
+	CombatManager.lossScene(loseToPraetorianNyreaGangbangu);
+	CombatManager.displayLocation("NYREA GUARDS");
+	
+	flags["FOUGHT_PRAETORIANS"] = 1;
 }
 
 //[Approach]
@@ -156,7 +170,8 @@ public function attackDemAntBiyotches():void
 	processTime(1);
 	//[Fight!]
 	clearMenu();
-	addButton(0,"Next",startCombat,"Nyrean Praetorians");
+	configurePraetorianFight();
+	addButton(0,"Next",CombatManager.beginCombat);
 }
 
 //[Persuade]
@@ -288,7 +303,7 @@ public function loseToPraetorianNyreaGangbangu():void
 	output("\n\n<i>“For the queen!”</i> the huntress in front of you whispers, barely audible, before grabbing the back of your head and forcing her cock down your throat. Your eyes bulge, and your body stiffens as your mouth is battered by her feline spines, and the turgid ball of her animalistic knot presses against your lips. Your throat is straining hard around her dick, bulging brutally and throbbing hard enough to make you moan like a bitch in heat.");
 
 	output("\n\nBehind you, the other guard follows her example, pressing her hips forward against your exposed backside. You squeal, desperately trying to resist her anal assault, but ultimately succumbing to her strength: you feel your [pc.asshole] pop open with one final, brutal thrust, and then the nyrea is sliding into you, raking her nubby spines across your anal walls. Your gut bulges in response, straining to take the massive insertion. Around you, the other nyrea cheer and laugh, urging their sisters on with lurid shouts. All you can do is try and bear it, to endure the mix of pleasure and pain as you’re savagely violated.");
-	pc.buttChange(foes[0].cockVolume(0));
+	pc.buttChange(enemy.cockVolume(0));
 
 	output("\n\nThe other huntresses gathered around you close the circle, jacking themselves off and drooling their vibrantly-colored pre all over you. Hands start to grab and grope at you, slapping your [pc.butt] and pinching your [pc.nipples]. A couple of them grab your [pc.hands], forcing you to stroke their ovipositor-cocks while their sisters pound you from front and back. Your eyes roll back, succumbing to pleasure; there’s nothing you can do but try to endure.");
 
@@ -310,14 +325,12 @@ public function loseToPraetorianNyreaGangbangu():void
 	output("\n\nThe other huntresses murmur their agreement, and you feel hands grabbing your [pc.legs] and starting to drag you away.");
 
 	//3-4 loads in mouth and similar amount in butt?
-	pc.loadInAss(foes[0]);
-	pc.loadInAss(foes[0]);
-	pc.loadInAss(foes[0]);
-	pc.loadInAss(foes[0]);
-	pc.loadInMouth(foes[0]);
-	pc.loadInMouth(foes[0]);
-	pc.loadInMouth(foes[0]);
-	pc.loadInMouth(foes[0]);
+	
+	for (var i:int = 0; i < 4; i++)
+	{
+		pc.loadInAss(enemy);
+		pc.loadInMouth(enemy);
+	}
 	processTime(35);
 	pc.orgasm();
 	pc.orgasm();
@@ -344,7 +357,7 @@ public function loseToPraetorianNyreaPt2():void
 
 	output("\n\nYou groan and stagger back to your [pc.footOrFeet], thankful the nyrea left you your equipment. Gonna have to try again if you want to face your cousin and find the probe...\n\n");
 	//[Next] //To map
-	genericLoss();
+	CombatManager.genericLoss();
 }
 
 //PC Victory vs. Praetorian
@@ -358,7 +371,7 @@ public function spankDaShitOuttaPraetorians():void
 	flags["PRAETORIAN_RESPAWN"] = GetGameTimestamp();
 	variableRoomUpdateCheck();
 	//Back to map. Praetorian fight can’t occur again for several hours.
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 
@@ -788,7 +801,7 @@ public function loseToRoyalIncuGoo():void
 public function pcBeatsGoo():void
 {
 	author("Savin");
-	if(foes[0].HP() <= 0) 
+	if(enemy.HP() <= 0) 
 	{
 		flags["CRYSTAL_GOO_DEFEAT"] = 1;
 		output("<i>“Don’t hurt my eggs!”</i> the goo shrieks, curling into an almost literal ball around the crystal orb she’s formed around her belly. <i>“I-I won’t let you!”</i>");
@@ -827,7 +840,7 @@ public function pcBeatsGoo():void
 		addDisabledButton(1,"Get Egged","Get Egged","You aren't aroused enough to even consider this.");
 	}
 	if(pc.armor is GooArmor || pc.hasItemByName("Goo Armor",1)) addButton(14,"Leave",armorGooVictoryShits);
-	else addButton(14,"Leave",genericVictory);
+	else addButton(14,"Leave",CombatManager.genericVictory);
 }
 
 //Fuck Her
@@ -995,8 +1008,8 @@ public function getEggedByCrystalGoo():void
 		(pc as Creature).createStatusEffect("Goo Gloryholed", 0, 0, 0, 0, true, "", "", false, 0);
 	}
 	
-	if (bEmptyVagina) pc.loadInCunt(foes[0], holeIdx);
-	else pc.loadInAss(foes[0]);
+	if (bEmptyVagina) pc.loadInCunt(enemy, holeIdx);
+	else pc.loadInAss(enemy);
 	
 	processTime(16);
 	pc.orgasm();
@@ -1009,7 +1022,7 @@ public function gooVictoryPostGooCheck():void
 {
 	clearMenu();
 	if(pc.armor is GooArmor || pc.hasItemByName("Goo Armor",1)) addButton(0,"Next",armorGooVictoryShits);
-	else genericVictory();
+	else CombatManager.genericVictory();
 }
 
 //Post Goo-Battle: Nova Upgrade!
@@ -1055,7 +1068,7 @@ public function armorGooVictoryShits():void
 	}
 	processTime(6);
 	clearMenu();
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 /*
@@ -1458,7 +1471,7 @@ public function moveToCage():void
 	output("\n");
 	pc.addStatusValue("Cage Distance",1,-1);
 	trace("CAGE DISTANCE v1: " + pc.statusEffectv1("CAGE DISTANCE"));
-	if(foes[0] is Queensguard) queensguardLongUpdate();
+	if(enemy is Queensguard) queensguardLongUpdate();
 	processCombat();
 }
 
@@ -1469,7 +1482,7 @@ public function breakOutDane():void
 {
 	clearOutput();
 	author("Savin");
-	if(foes[0] is Queensguard)
+	if(enemy is Queensguard)
 	{
 		output("You’ve got a clear shot at Dane’s cage now, and the ausar knows it. <i>“Get me out of here!”</i> he growls, eyeing Queensguard dangerously. <i>“C’mon already!”</i>");
 		output("\n\nYou take aim at the lock and strike!");
@@ -1524,7 +1537,7 @@ public function spankedQueensguardsAss():void
 {
 	clearOutput();
 	author("Savin");
-	if(foes[0].HP() <= 0) 
+	if(enemy.HP() <= 0) 
 	{
 		output("With a groan of pain, Queensguard collapses to a knee, barely keeping herself upright with all her weight on her blade. She glowers up at you through the slit in her visor, panting hard and coughing up blood into the steel helm.");
 		output("\n\n<i>“What... what </i>are<i> you!?”</i> she stammers, trying and failing to stand again.");
@@ -1624,7 +1637,7 @@ public function leaveTaivraLikeABaws():void
 	output("\n\nTime to see what the next planet has in store!\n\n");
 	flags["BEAT_TAIVRA_TIMESTAMP"] = GetGameTimestamp();
 	processTime(5);
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Kill Taivra
@@ -1643,9 +1656,9 @@ public function killTaivraYouMonster():void
 	flags["KILLED_TAIVRA"] = 1;
 	flags["BEAT_TAIVRA_TIMESTAMP"] = GetGameTimestamp();
 	processTime(5);
-	foes[0].inventory.push(new ReaperArmamentsMarkIShield());
-	foes[0].inventory.push(new GemSatchel());
-	genericVictory();
+	enemy.inventory.push(new ReaperArmamentsMarkIShield());
+	enemy.inventory.push(new GemSatchel());
+	CombatManager.genericVictory();
 }
 
 //Fuck Taivra
@@ -1663,7 +1676,7 @@ public function fuckTaivra():void
 	output(". She gives you a darkly reproachful look over her shoulder, but does not resist as you decide just how to take your pent-up lusts out on the amazonian insect...");
 	processTime(4);
 	clearMenu();
-	if(pc.cockThatFits(foes[0].analCapacity()) >= 0 && pc.hasCock()) addButton(0,"FuckHerAss",fuckTaivrasAss,undefined,"Fuck Her Ass","Taivra’s already bent over, ass in the air. Grab your cock and thrust into her tight-looking ass!");
+	if(pc.cockThatFits(enemy.analCapacity()) >= 0 && pc.hasCock()) addButton(0,"FuckHerAss",fuckTaivrasAss,undefined,"Fuck Her Ass","Taivra’s already bent over, ass in the air. Grab your cock and thrust into her tight-looking ass!");
 	else addDisabledButton(0,"FuckHerAss","FuckHerAss","You must have an appropriately-sized phallus to do this.");
 	addButton(1,"Take Tentacles",takeTentaclesForTaivra,undefined,"Take Tentacles","Take Taivra’s tentacles in every hole. Get the most out of all those wriggling parasites attached to her hind end.");
 }
@@ -1681,7 +1694,7 @@ public function fuckTaivrasAss():void
 	else output("; then again, the idea of banging the queen in public, even for a good reason, makes your cheeks flush");
 	output(". Your free hand, meanwhile, hefts up [pc.oneCock] as you slip down behind Taivra, angling your member towards her behind.");
 
-	var x:int = pc.cockThatFits(foes[0].analCapacity());
+	var x:int = pc.cockThatFits(enemy.analCapacity());
 	if(x < 0) x = pc.smallestCockIndex();
 
 	output("\n\nYou pause just before pushing in, realizing that this high and mighty warrioress is probably not quite used to getting pounded from behind: she’ll be tight, of that you’re sure, but the idea of going at her ass without lube is less than exciting. Lucky you, Taivra has plenty of means of providing what you need.");
@@ -1763,7 +1776,7 @@ public function fuckTaivrasAss():void
 	pc.orgasm();
 	flags["FUCKED_TAIVRA"] = 1;
 	flags["BEAT_TAIVRA_TIMESTAMP"] = GetGameTimestamp();
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Take Tentacles
@@ -1830,7 +1843,7 @@ public function takeTentaclesForTaivra():void
 	flags["FUCKED_BY_TAIVRA"] = 1;
 	flags["BEAT_TAIVRA_TIMESTAMP"] = GetGameTimestamp();
 	//[Next]
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Subjugate
@@ -1861,7 +1874,7 @@ public function subjugateQueenTaivra():void
 	flags["BEAT_TAIVRA_TIMESTAMP"] = GetGameTimestamp();
 	//Should make queen nyreabuns ready to go immediately
 	flags["QUEENSGUARD_STAB_TIME"] = GetGameTimestamp() - (60 * 13);
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Bad Ends
@@ -1870,7 +1883,7 @@ public function loseToQueensTaivra():void
 {
 	author("Savin");
 	//Defeat by Queensguard Intro
-	if(foes[0] is Queensguard)
+	if(enemy is Queensguard)
 	{
 		output("You stagger back under the armored nyrea’s rain of blows, desperately dodging sword swipes and shield strikes until your [pc.foot] catches on an uneven stone and suddenly you’re falling back, screaming until your head cracks on the rocky floor. Your world spins, vision erupting in stars; your [pc.weapon] is kicked painfully from your hands by ruthless steel. When your vision clears, you see the lethal point of Queensguard’s blade leveled at your throat, a hair’s breadth from slicing you open.");
 		output("\n\n<i>“Yield,”</i> she growls from beneath her helm. <i>“Yield or die.”</i>");
@@ -3195,7 +3208,7 @@ public function beatUpPrincessYeSlut():void
 	showPrincess();
 	flags["PRINCESS_DEFEATED"] = 1;
 	//Lust, somehow	
-	if(foes[0].lust() >= foes[0].lustMax())
+	if(enemy.lust() >= enemy.lustMax())
 	{
 		output("The nyrean princess sways almost drunkenly, her knees quivering with need. One hand dips down to stroke her lube-leaking cock as she stares at you, wide-eyed with lust and amazement. <i>“How...? How are you so fucking hot?!”</i>");
 		output("\n\nShe drops to her knees, grunting like a beast and panting at the sight of you. Her other hand none-too-gently gropes her pliant breastflesh, kneading her healthy bosom with almost bruising enthusiasm. Her fingers twine about a pebbly, too-hard nipple as she arches her back in your direction. <i>“Please! F-f-fuck me! I’m yours!”</i>");
@@ -3216,7 +3229,7 @@ public function beatUpPrincessYeSlut():void
 	clearMenu();
 	if(pc.hasVagina()) addButton(0,"RideCowgirl",cowgirlDatBitch,undefined,"Ride Cowgirl","Ride her cow-girl style before letting the harem have their turn.");
 	else addDisabledButton(0,"RideCowgirl","Ride Cowgirl","You need a vagina in order to do this.");
-	if(pc.hasCock() && pc.cockThatFits(foes[0].analCapacity()) >= 0) addButton(1,"Buttfuck",buttFuckPrincessWhileSheFucks,undefined,"Buttfuck","Violate the princess the same way she planned to violate you.");
+	if(pc.hasCock() && pc.cockThatFits(enemy.analCapacity()) >= 0) addButton(1,"Buttfuck",buttFuckPrincessWhileSheFucks,undefined,"Buttfuck","Violate the princess the same way she planned to violate you.");
 	else addDisabledButton(1,"Buttfuck","Buttfuck","You need a penis that'll fit in her butt in order to do this.");
 	if(pc.hasCock() && pc.biggestCockLength() >= 36) addButton(2,"PolishJob",haremPolishjob,undefined,"PolishJob","You're way too big to fuck the princess")
 	addButton(14,"Leave",leavePrincess2Harem,undefined,"Leave","Leave her to the not-so-tender affections of her harem.");
@@ -3238,7 +3251,7 @@ public function leavePrincess2Harem():void
 	output("The moment you turn to leave the room, there is a flurry of movement from behind you. A dozen dickless nyrean ‘girls’ swarm your fallen foe, dragging her up into the bed. You spare a glance her way as they snap her arms and legs into the bondage equipment and fit a ring around her quivering dick. She looks like she wants to protest, but her lips barely manage a throaty, eager moan.");
 	output("\n\nThe sounds of vigorous sex start when you close the door. At least she has her harem for company.");
 	leavePrincessRoom();
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Cowgirl Dat Bitch & Make Out With Her Harem
@@ -3308,7 +3321,7 @@ public function cowgirlDatBitch():void
 	output("\n\nThe pleasure robs you of most of your higher faculties by the time you’ve taken three quarters of her inside you. Your eyelids drift closed, and your arms cross the space between your bodies in an instant, grabbing hold of the nyrea’s tremendous tits and giving them an eager, passionate squeeze. She gropes right back");
 	if(pc.biggestTitSize() < 1) output(", even though you’ve little more than [pc.nipples] for her to play with");
 	output(", turning the space between your sweating, rutting bodies into a lattice of searching arms and stimulating fingertips.");
-	pc.cuntChange(x,foes[0].cockVolume(0));
+	pc.cuntChange(x,enemy.cockVolume(0));
 	output("\n\nFuck, she’s got great tits! They’re so goddamn soft, with nary a blemish to be found. They seem almost virginal in their suppleness. Her nipples are like overripe, purple cherries, demanding to be licked and sucked. In a fit of lust-driven decision making, you lean down to do just that, letting the rest of her eight-inch, egg-laying cock sink deeply into your passage. Your eyes nearly cross from the pleasure, but you manage to seal your lips around a nipple all the same, tonguing it with such vigor that the princess squeals and shudders in delight. Her unbound breast jiggles in the most enticing way. If you weren’t squeezing your eyes closed from an overload of pleasure, it’d be nigh impossible to look away from the hypnotic sight.");
 	output("\n\nBallooning inside you, the nyrea’s knot turns a mere pussy-filling experience into a slit-stretching symphony of delight. You can’t really pull off for another downstroke, not with that bulging sphere of erectile tissue locking you in place, but you can swivel your hips, twisting your passage in little rings around its over-swollen dance partner. Incredibly thick wetness floods over the deepest parts of you as you rock back and forth on the princess’s flaring she-cock.");
 	output("\n\nShe’s cumming already!");
@@ -3321,7 +3334,7 @@ public function cowgirlDatBitch():void
 	output("\n\nYou scream like a banshee, twisting and thrashing against the eight-inch rod impaling your [pc.vagina " + x + "], helpless against the tide of orgasmic juice your alien lover floods you with and your own too-powerful bliss. Your can’t even manage to quell your quivering [pc.legOrLegs]. Instead, you continue to scream out your enjoyment to the princess’s entire harem, letting them know just how much you’ve enjoyed laying claim to their mistress.");
 	processTime(33);
 	pc.orgasm();
-	pc.loadInCunt(foes[0], x);
+	pc.loadInCunt(enemy, x);
 	flags["PRINCESS_DEFEATED"] = 2;
 	//[Next]
 	clearMenu();
@@ -3345,7 +3358,7 @@ public function princessCowgirlPt2():void
 	output("\n\nThe slave harem moves in the moment you leave their still-hard mistress, piling onto the bed with almost fanatical enthusiasm. Well... it’s not quite revenge, but at least they’re in charge for a change.\n\n");
 	processTime(15);
 	clearMenu();
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Buttfuck The Princess While She Fucks A Loyal Harem Whatever
@@ -3355,7 +3368,7 @@ public function buttFuckPrincessWhileSheFucks():void
 {
 	clearOutput();
 	showPrincess();
-	var x:int = pc.cockThatFits(foes[0].analCapacity());
+	var x:int = pc.cockThatFits(enemy.analCapacity());
 	if(x < 0) pc.smallestCockIndex();
 	//Low exhib
 	if(pc.exhibitionism() <= 33) output("The sight of so many harem slaves watching you use their mistress gives you pause, but then your arousal takes back over. They’re no strangers to wild, bedroom romps, and you’re finally going to get some relief for your aching hard [pc.cocksNounSimple " + x + "].");
@@ -3443,7 +3456,7 @@ public function buttFuckPrincessWhileSheFucks():void
 	pc.orgasm();
 	flags["TOOK_PRINCESS_BUTTGINITY"] = 1;
     flags["PRINCESS_DEFEATED"] = 3;
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Harem Polishjob + Princess Bukkake
@@ -3454,7 +3467,7 @@ public function haremPolishjob():void
 	//Get some help jacking your giant dong off on the princess.
 	output("Now that you’re both turned on, there’s only one problem: there’s no way in hell your [pc.cock " + x + "] will fit inside her.");
 	var x:int = pc.biggestCockIndex();
-	if(pc.biggestCockLength() > foes[0].tallness) output(" Hell, it’s bigger than she is!");
+	if(pc.biggestCockLength() > enemy.tallness) output(" Hell, it’s bigger than she is!");
 	output(" But where there’s a will, there’s a way.");
 	output("\n\n<i>“You there!”</i> you call, waving your arm at the assembled slaves. <i>“Get over here. Your mistress is going to need some help taking care of something she started.”</i> To emphasize exactly what you mean");
 	if(pc.isCrotchGarbed()) output(", you pull your [pc.lowerGarments] out of the way, revealing the sheer immensity of your phallic engorgement");
@@ -3558,7 +3571,7 @@ public function haremPolishjob():void
 	processTime(33);
 	pc.orgasm();
 	flags["PRINCESS_DEFEATED"] = 4;
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Generic Orgy Join
