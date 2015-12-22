@@ -1,4 +1,5 @@
 import classes.Characters.NyreanPraetorians;
+import classes.Characters.Queensguard;
 import classes.Creature;
 import classes.Items.Miscellaneous.GemSatchel;
 //flags["CRYSTAL_GOO_DEFEAT"] - 1 = HP, 2 = LUST, 3 = you fucked her after winning (or got egged)
@@ -1156,7 +1157,20 @@ public function startFightingQueenButt(plat190:Boolean = false):void
 	processTime(1);
 	//[Fight!]
 	clearMenu();
-	addButton(0,"Next",startCombat,"Queensguard");
+	configureQueensguardFight();
+	addButton(0, "Next", CombatManager.beginCombat);
+}
+
+public function configureQueensguardFight():void
+{
+	pc.createStatusEffect("Cage Distance", 2, 0, 0, 0, false, "Icon_RadioSignal", "You're a good ways away from Dane and your cousin's cage. It'll take a lot of work to reposition yourself to break them out.", true, 0);
+	
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(new Queensguard());
+	CombatManager.victoryScene(spankedQueensguardsAss);
+	CombatManager.lossScene(loseToQueensTaivra);
+	CombatManager.displayLocation("QUEENSGUARD");
 }
 
 //Rivals
@@ -1223,7 +1237,8 @@ public function talkOfPeace(plat190:Boolean = false):void
 		processTime(1);
 		//[Fight!]
 		clearMenu();
-		addButton(0,"Fight",startCombat,"Queensguard");
+		configureQueensguardFight();
+		addButton(0,"Fight",CombatManager.beginCombat);
 		return;
 	}
 }
@@ -1469,7 +1484,8 @@ public function badDealWithTaivra():void
 	output("\n\n<i>“Tear that bitch up!”</i> your cousin shouts, rattling [rival.hisHer] cage.");
 	processTime(2);
 	clearMenu();
-	addButton(0,"Next",startCombat,"Queensguard");
+	configureQueensguardFight();
+	addButton(0,"Next",CombatManager.beginCombat);
 }
 
 //Special Combat Actions

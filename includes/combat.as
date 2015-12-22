@@ -1,8 +1,6 @@
 ﻿public function victoryRouting():void 
 {
 	hideNPCStats();
-	else if (foes[0] is SX1Techguard) ();
-	else if (foes[0] is Queensguard) spankedQueensguardsAss();
 	else if (foes[0] is Taivra) whupTaivrasAss();
 	else if (foes[0] is Princess) beatUpPrincessYeSlut();
 	else if (foes[0] is GardeBot) beatUpConstructoBot();
@@ -13,7 +11,6 @@
 public function defeatRouting():void 
 {
 	hideNPCStats();
-	else if (foes[0] is Queensguard) loseToQueensTaivra();
 	else if (foes[0] is Taivra) loseToQueensTaivra();
 	else if (foes[0] is Princess) loseToPrincessYeGit();
 	else if (foes[0] is GardeBot) roboQueenFightPCLoss();
@@ -110,10 +107,6 @@ public function startCombat(encounter:String):void
 {	
 	switch(encounter) 
 	{
-		case "Queensguard":
-			chars["QUEENSGUARD"].prepForCombat();
-			pc.createStatusEffect("Cage Distance",2,0,0,0,false,"Icon_RadioSignal","You're a good ways away from Dane and your cousin's cage. It'll take a lot of work to reposition yourself to break them out.",true,0);
-			break;
 		case "Taivra":
 			if(flags["FREED_DANE_FROM_TAIVRA"] == 1) pc.removeStatusEffect("Cage Distance");
 			chars["TAIVRA"].prepForCombat();
