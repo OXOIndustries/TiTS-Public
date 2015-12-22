@@ -1815,7 +1815,7 @@ public function maneHairGrow():void
 			if(hairGain != 1) eventBuffer += "es";
 			eventBuffer += "!</b>";
 		}
-		pc.hairLength = Math.round(hairLength + hairGain);
+		pc.hairLength = Math.round(pc.hairLength + hairGain);
 	}
 	if(pc.hairStyle != "null" || pc.hairStyle != "tentacle")
 	{

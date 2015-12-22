@@ -86,7 +86,7 @@
 			kGAMECLASS.flags["UNLOCKED_JUNKYARD_PLANET"] = 1;
 			kGAMECLASS.flags["PLANET_3_UNLOCKED"] = 1;
 			kGAMECLASS.flags["NEW_TEXAS_COORDINATES_GAINED"] = 1;
-			kGAMECLASS.flags["HOLIDAY_OWEEN_ACTIVATED"] = GetGameTimestamp();
+			kGAMECLASS.flags["HOLIDAY_OWEEN_ACTIVATED"] = kGAMECLASS.GetGameTimestamp();
 		}
 		public static function toggleDebug():void
 		{
