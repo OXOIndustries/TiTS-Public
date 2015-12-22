@@ -1119,6 +1119,17 @@ public function variableRoomUpdateCheck():void
 		if(!rooms["DEEP JUNGLE 2"].hasFlag(GLOBAL.PLANT_BULB)) rooms["DEEP JUNGLE 2"].addFlag(GLOBAL.PLANT_BULB);
 	}
 	else rooms["DEEP JUNGLE 2"].removeFlag(GLOBAL.PLANT_BULB);
+	//Mhenga Probe
+	if(flags["MHENGA_PROBE_CASH_GOT"] == undefined)
+	{
+		rooms["METAL POD 1"].roomName = "METAL\nPOD";
+		if(!rooms["METAL POD 1"].hasFlag(GLOBAL.OBJECTIVE)) rooms["METAL POD 1"].addFlag(GLOBAL.OBJECTIVE);
+	}
+	else
+	{
+		rooms["METAL POD 1"].roomName = "SMALL\nCRATER";
+		rooms["METAL POD 1"].removeFlag(GLOBAL.OBJECTIVE);
+	}
 	
 	
 	/* TARKUS */
