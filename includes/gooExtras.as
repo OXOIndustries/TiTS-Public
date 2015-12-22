@@ -497,6 +497,8 @@ public function galoMaxTFProc():void
 			gooBiomass(1000);
 		}
 	}
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 //Goo Body transformations
 public function revertGooBody(part:String = "all", consumeBiomass:Boolean = false):void
