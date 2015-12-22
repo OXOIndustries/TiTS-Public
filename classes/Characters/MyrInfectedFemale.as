@@ -198,23 +198,19 @@
 			this.vaginas[0].wetnessRaw = 2;
 			this.vaginas[0].loosenessRaw = 3;
 			
+			credits = rand(200);
+			if (rand(20) == 0) inventory.push(new Kirkite());
+			else if(rand(20) == 0) inventory.push(new Satyrite());
+			else if(rand(2) == 0) inventory.push(new RedMyrVenom());		
+			sexualPreferences.setRandomPrefs(4 + rand(3),1);
+			sexualPreferences.setPref(GLOBAL.SEXPREF_FEMININE,	GLOBAL.REALLY_LIKES_SEXPREF);
+			
 			this._isLoading = false;
 		}
 		
-		override public function prepForCombat():void
+		override public function get displayBust():String
 		{
-			var infectedMyr:MyrInfectedFemale = this.makeCopy();
-			
-			infectedMyr.credits = rand(200);
-			if (rand(20) == 0) infectedMyr.inventory.push(new Kirkite());
-			else if(rand(20) == 0) infectedMyr.inventory.push(new Satyrite());
-			else if(rand(2) == 0) infectedMyr.inventory.push(new RedMyrVenom());		
-			this.sexualPreferences.setRandomPrefs(4 + rand(3),1);
-			infectedMyr.sexualPreferences.setPref(GLOBAL.SEXPREF_FEMININE,	GLOBAL.REALLY_LIKES_SEXPREF);
-			
-			kGAMECLASS.showName("FIGHT: INFECTED\nMYR FEMALE");
-			kGAMECLASS.showBust("MYR_INFECTED_FEMALE");
-			kGAMECLASS.foes.push(infectedMyr);
+			return "MYR_INFECTED_FEMALE";
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void

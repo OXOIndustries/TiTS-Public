@@ -1,10 +1,6 @@
 ﻿public function victoryRouting():void 
 {
 	hideNPCStats();
-	else if (foes[0] is MyrInfectedFemale)
-	{
-		winVsInfectedMyr();
-	}
 	else if(foes[0] is DoctorLash)
 	{
 		winVsDoctorLash();
@@ -33,7 +29,6 @@
 public function defeatRouting():void 
 {
 	hideNPCStats();
-	else if (foes[0] is MyrInfectedFemale) loseToInfectedMyrYouSubbieSloot();
 	else if (foes[0] is DoctorLash) loseToDoctorLash();
 	else if (foes[0] is QueenOfTheDeep) queenOfTheDeepPCLoss();
 	else if (foes[0] is MyrRedFemaleDeserter || foes[0] is MyrGoldFemaleDeserter) loseToAntGrillDeserts();
@@ -139,9 +134,6 @@ public function startCombat(encounter:String):void
 {	
 	switch(encounter) 
 	{
-		case "infected myr":
-			chars["INFECTED MYR FEMALE"].prepForCombat();
-			break;
 		case "Dr. Lash":
 			chars["DRLASH"].prepForCombat();
 			break;
