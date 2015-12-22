@@ -1280,7 +1280,7 @@ public function playerAttack(target:Creature):void
 		attack(pc, target,[0,1]);
 	}
 	//Myr venom shit!
-	if(pc.hasPerk("Myr Venom"))
+	if(pc.hasPerk("Myr Venom") && target.isLustImmune == false)
 	{
 		if(combatMiss(pc,target)) output("You can't manage to sneak in a bite!");
 		else
