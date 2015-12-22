@@ -48,7 +48,7 @@ public function winVsZil():void {
 	userInterface.showBust("ZIL");
 	userInterface.showName("MALE\nZIL");
 	//{HP:} 
-	if(foes[0].HP() <= 0)
+	if(enemy.HP() <= 0)
 	{
 		output("The zil gives one last feeble shudder as he struggles to remain upright, but the damage is simply too much. His wings cease their incessant buzzing and drop him straight onto his ass, causing him to wince in pain and discomfort. Looking up hesitantly, he slouches his shoulders in submission and admits, <i>“I'm yours, </i>");
 		if(pc.hasVagina()) output("<i>to breed</i>");

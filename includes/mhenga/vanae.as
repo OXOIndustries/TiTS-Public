@@ -137,21 +137,33 @@ public function encounterVanae(isHuntress:Boolean):void
 	clearMenu();
 	if (isHuntress)
 	{
-		addButton(0, "Next", startCombat, "HUNTRESS_VANAE");
+		configHuntressFight();
+		addButton(0, "Next", CombatManager.beginCombat);
 	}
 	else
 	{
-		addButton(0, "Next", startCombat, "MAIDEN_VANAE");
+		configMaidenFight();
+		addButton(0, "Next", CombatManager.beginCombat);
 	}
+}
+
+public function configMaidenFight():void
+{
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(new MaidenVanae());
+	CombatManager.victoryScene(vanaePCVictory);
+	CombatManager.lossScene(vanaeMaidenPCDefeat);
+	CombatManager.displayLocation("MAIDEN");
 }
 
 public function vanaeWaitWhilstGrappled():void
 {
 	// [Don't Struggle] 
 	output("You resign yourself, relaxing and enjoying her lube you up with her sensuous strokes. She senses your surrender and grins, enthusiastically rubbing her [monster.breasts] against you even more.");
-	if (foes[0] is MaidenVanae) output(" <i>“Nice! Now just lie back and relax, and I promise we'll have a good time - okay?”</i>");
+	if (enemy is MaidenVanae) output(" <i>“Nice! Now just lie back and relax, and I promise we'll have a good time - okay?”</i>");
 	else output(" <i>“...Mmm, I like it when they give in. That means we can get to the fun bit that much faster...”</i>");
-	applyDamage(new TypeCollection( { tease: 16 + rand(8) } ), foes[0], pc, "minimal");
+	applyDamage(new TypeCollection( { tease: 16 + rand(8) } ), enemy, pc, "minimal");
 }
 
 public function vanaeEscapeGrapple(escapeCause:String = ""):void
@@ -261,7 +273,7 @@ public function vanaeTFScene():void
 
 public function vanaeHeader(preName:String):void
 {
-	if (foes[0] is MaidenVanae)
+	if (enemy is MaidenVanae)
 	{
 		userInterface.showBust("VANAE_MAIDEN");
 		userInterface.showName(preName + "MAIDEN");
@@ -280,11 +292,11 @@ public function vanaePCVictory():void
 	vanaeHeader("VICTORY: VANAE\n");
 
 	// HP WIN
-	if (foes[0].HP() <= 1)
+	if (enemy.HP() <= 1)
 	{
 		output("You land the final blow on your opponent, sending her sprawling to the ground. She seems unable to continue the fight, coughing as she grabs her side. There is shock and fear written all over her face.");
 
-		if (foes[0] is HuntressVanae)
+		if (enemy is HuntressVanae)
 		{
 			output("\n\n<i>“W-what manner of");
 			if (pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" [pc.race]");
@@ -302,7 +314,7 @@ public function vanaePCVictory():void
 	}
 	else
 	{
-		if (foes[0] is HuntressVanae)
+		if (enemy is HuntressVanae)
 		{
 			output("The busty huntress can't take it any longer, letting out a sweet cry as she falls to the ground. All the while she's stroking her [monster.clits], gazing at you as she masturbates furiously.");
 
@@ -327,7 +339,7 @@ public function vanaePCVictory():void
 		output("\n\nDo you succumb to your darker, carnal desires and");
 		if (!pc.isAss()) output(" ask to");
 		output(" fuck the other-worldly");
-		if (foes[0] is HuntressVanae) output(" woman");
+		if (enemy is HuntressVanae) output(" woman");
 		else output(" maiden");
 		output("? Or do you just leave her be?");
 	}
@@ -341,7 +353,7 @@ public function vanaePCVictory():void
 
 	if (pc.lust() >= 33)
 	{
-		if (foes[0] is HuntressVanae)
+		if (enemy is HuntressVanae)
 		{
 			// Vaginal
 			if (pc.hasCock() && pc.cockThatFits(217) != -1 && pc.genitalSpot < 2) addButton(0, "Vaginal Sex", vanaeVictorySexIntro, "vaginal", "Vaginal Sex", "Fuck the huntresses pussy.");
@@ -409,8 +421,8 @@ public function vanaePCVictory():void
 			// [Vaginal Sex] [Tit Fuck] [Nipple Fuck] [Squirt & Jerk] [Cunnilingus] 
 			// [Sixty Nine - BJ] [Sixty Nine - Cunni] [Tenta Sex - Vag] [Tenta Sex - Anal] [Milk Bath]
 			var fitsInside:Boolean = false;
-			if(foes[0].hasVagina()) fitsInside = (pc.cockThatFits(foes[0].vaginalCapacity(0)) >= 0);
-			else fitsInside = (pc.cockThatFits(foes[0].analCapacity()) >= 0);
+			if(enemy.hasVagina()) fitsInside = (pc.cockThatFits(enemy.vaginalCapacity(0)) >= 0);
+			else fitsInside = (pc.cockThatFits(enemy.analCapacity()) >= 0);
 			if(pc.hasCock() && pc.hasItem(new GravCuffs()) && fitsInside) addButton(9,"Cuff&Fuck",cuffNFuck,undefined,"Cuff & Fuck","Use your grav-cuffs to pin down [monster.name] and have your way with [monster.hisHer] [pc.vagOrAssNoun]! Requires Grav-cuffs and a penis.");
 			else if(pc.hasCock() && pc.hasItem(new GravCuffs())) addDisabledButton(9,"Cuff&Fuck","Cuff & Fuck","You can cuff [monster.himHer] down, but you wouldn't be able to fit inside.");
 			else if(pc.hasItem(new GravCuffs())) addDisabledButton(9,"Cuff&Fuck","Cuff & Fuck","You need a penis to make use of your grav-cuffs this way.");
@@ -435,8 +447,8 @@ public function vanaePCVictory():void
 			if(pc.hasItem(new GravCuffs()))
 			{
 				var fitsInside2:Boolean = false;
-				if(foes[0].hasVagina()) fitsInside2 = (pc.cockThatFits(foes[0].vaginalCapacity(0)) >= 0);
-				else fitsInside2 = (pc.cockThatFits(foes[0].analCapacity()) >= 0);
+				if(enemy.hasVagina()) fitsInside2 = (pc.cockThatFits(enemy.vaginalCapacity(0)) >= 0);
+				else fitsInside2 = (pc.cockThatFits(enemy.analCapacity()) >= 0);
 				if(pc.hasCock() && fitsInside2) addButton(2,"Cuff&Fuck",cuffNFuck,undefined,"Cuff & Fuck","Use your grav-cuffs to pin down [monster.name] and have your way with [monster.hisHer] [pc.vagOrAssNoun]! Requires Grav-cuffs and a penis.");
 				else if(pc.hasCock()) addDisabledButton(2,"Cuff&Fuck","Cuff & Fuck","You can cuff [monster.himHer] down, but you wouldn't be able to fit inside.");
 				else addDisabledButton(2,"Cuff&Fuck","Cuff & Fuck","You need a penis to make use of your grav-cuffs this way.");
@@ -445,7 +457,7 @@ public function vanaePCVictory():void
 	}
 	else
 	{
-		if (foes[0] is HuntressVanae)
+		if (enemy is HuntressVanae)
 		{
 			// Vaginal
 			addDisabledButton(0, "Vaginal Sex");
@@ -482,7 +494,7 @@ public function noThanksTentaSlutImOut():void
 	output("\n\n");
 	
 	processTime(15 + rand(5));
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 public function vanaeVictorySexIntro(scene:String):void
@@ -497,7 +509,7 @@ public function vanaeVictorySexIntro(scene:String):void
 
 
 	// if (HP DEFEAT)
-	if (foes[0].HP() <= 1)
+	if (enemy.HP() <= 1)
 	{
 		if (pc.isNice())
 		{
@@ -512,7 +524,7 @@ public function vanaeVictorySexIntro(scene:String):void
 			output("\n\nThe [monster.hairColor] headed huntress appears completely floored. Instead of ending her life you are letting her live and, on top of that, politely asking to have sex with her. ");
 
 			// IF VANAE HUNTRESS
-			if (foes[0] is HuntressVanae)
+			if (enemy is HuntressVanae)
 			{
 				output("\n\n<i>“Y-you want to breed with me willingly, after I tried to attack you? Um... sure!”</i> Her cheeks flush. Suddenly she's acting quite coy. <i>“...");
 				if (pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" You're really strange, for a [pc.race]. You're quite different from others of your kind");
@@ -532,7 +544,7 @@ public function vanaeVictorySexIntro(scene:String):void
 		if (pc.isMischievous())
 		{
 			// IF VANAE MAIDEN
-			if (foes[0] is MaidenVanae)
+			if (enemy is MaidenVanae)
 			{
 				output("\n\nYou quip that it's still early, and there's plenty of time left to eat her. She giggles a little at the innuendo, clearly letting her guard down. In turn, you let down yours. You're pretty sure she's not going to try anything.");
 			}
@@ -548,7 +560,7 @@ public function vanaeVictorySexIntro(scene:String):void
 			output("\n\nYou give her a menacing stare and tell her you're not going to kill her, but she better make reparations for trying to brain you - sexually. And if she tries anything funny, you'll make damn sure she regrets it.");
 			
 			// IF VANAE HUNTRESS
-			if (foes[0] is HuntressVanae)
+			if (enemy is HuntressVanae)
 			{
 				output("\n\nThe violet headed huntress quivers as you stare at her. She seems glad that you're letting her live, but at the same time, terrified by the tone of your voice. <i>“Y-you want to breed with me willingly, after I tried to attack you, off-worlder? Um... sure! W-what would you like me to do?”</i>");
 			}
@@ -650,7 +662,7 @@ public function vanaeVictorySexIntro(scene:String):void
 		output(".");
 
 		// if Vanae Maiden & not 69 Cunni & not lust loss
-		if (foes[0] is MaidenVanae && scene != "69cunni")
+		if (enemy is MaidenVanae && scene != "69cunni")
 		{
 			output("\n\n<i>“I’ve never done that sort of thing before. So be patient with me, okay?”</i> she meekly requests, looking you up and down. She seems uncertain how to proceed, hindered by her lack of experience. ");
 		}
@@ -681,7 +693,7 @@ public function vanaeVictorySexIntro(scene:String):void
 			if (pc.hasCock() && pc.hasVagina() || pc.cocks.length > 1 || pc.vaginas.length > 1) output(" are");
 			else output(" is");
 			output(" exposed. Her [monster.lips] part with fervent anticipation, each breath heavy with");
-			if (foes[0] is MaidenVanae) output(" indescribable");
+			if (enemy is MaidenVanae) output(" indescribable");
 			else output(" carnal");
 			output(" longing.");
 		}
@@ -705,7 +717,7 @@ public function vanaeMaidenTakeVirginity():void
 	
 	
 	// Won fight
-	if (foes[0].lust() >= foes[0].lustMax() || foes[0].HP() <= 1)
+	if (enemy.lust() >= enemy.lustMax() || enemy.HP() <= 1)
 	{
 		clearOutput();
 		vanaeHeader("VICTORY: VANAE\n");
@@ -824,15 +836,15 @@ public function vanaeMaidenTakeVirginity():void
 	
 	output("\n\n");
 	
-	if (pcWonFight) genericVictory();
-	else genericLoss();
+	if (pcWonFight) CombatManager.genericVictory();
+	else CombatManager.genericLoss();
 }
 
 public function vanaeMaidenCunnilingus():void
 {
 	var pcWonFight:Boolean = false;
 	
-	if (foes[0].lust() >= foes[0].lustMax() || foes[0].HP() <= 1)
+	if (enemy.lust() >= enemy.lustMax() || enemy.HP() <= 1)
 	{
 		clearOutput();
 		vanaeHeader("VICTORY: VANAE\n");
@@ -903,8 +915,8 @@ public function vanaeMaidenCunnilingus():void
 	
 	processTime(30+rand(10));
 	
-	if (pcWonFight) genericVictory();
-	else genericLoss();
+	if (pcWonFight) CombatManager.genericVictory();
+	else CombatManager.genericLoss();
 }
 
 public function vanaeHuntressVaginalSex():void
@@ -1549,7 +1561,7 @@ public function vanaeHuntressPostVictoryScene():void
 	output("\n\n");
 	
 	processTime(5);
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 public function vanaeHuntressPCDefeat():void
@@ -1776,7 +1788,7 @@ public function vanaeHuntressPCDefeatCuntFux():void
 	processTime(75+rand(25));
 	IncrementFlag("VANAE_HUNTRESS_BRED");
 
-	genericLoss();
+	CombatManager.genericLoss();
 }
 
 public function vanaeHuntressPCDefeatMilkbath():void
@@ -1884,7 +1896,7 @@ public function vanaeHuntressPCDefeatMilkbath():void
 	if (flags["VANAE_MILKBATH_TIMES"] == undefined) flags["VANAE_MILKBATH_TIMES"] = 0;
 	flags["VANAE_MILKBATH_TIMES"]++;
 	output("\n\n");
-	genericLoss();
+	CombatManager.genericLoss();
 }
 
 public function vanaeHuntressPCDefeatSquirtNJerk():void
@@ -1957,7 +1969,7 @@ public function vanaeHuntressPCDefeatSquirtNJerk():void
 
 	processTime(90+rand(25));
 	output("\n\n");
-	genericLoss();
+	CombatManager.genericLoss();
 }
 
 public function vanaeHuntressPCDefeatTitfux():void
@@ -2045,7 +2057,7 @@ public function vanaeHuntressPCDefeatTitfux():void
 
 	processTime(90+rand(25));
 	output("\n\n");
-	genericLoss();
+	CombatManager.genericLoss();
 }
 
 public function vanaeHuntressPCDefeatCunnilingus():void
@@ -2112,7 +2124,7 @@ public function vanaeHuntressPCDefeatCunnilingus():void
 
 	processTime(90+rand(25));
 	output("\n\n");
-	genericLoss();
+	CombatManager.genericLoss();
 }
 
 public function vanaeHuntressPCDefeatTentafux():void
@@ -2279,7 +2291,7 @@ public function vanaeHuntressPCDefeatTentafux():void
 
 	processTime(90+rand(25));
 	output("\n\n");
-	genericLoss();
+	CombatManager.genericLoss();
 }
 
 public function vanaeMaidenPCDefeat():void

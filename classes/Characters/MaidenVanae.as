@@ -110,7 +110,6 @@ package classes.Characters
 			this.timesCum = 0;
 			this.minutesSinceCum = 9999;
 			
-			
 			this.tailType = GLOBAL.TYPE_VANAE;
 			this.tailCount = 0;
 			this.tailFlags = [];
@@ -122,11 +121,9 @@ package classes.Characters
 			this.hipRatingRaw = 5;
 			this.buttRatingRaw = 5;
 			
-			this._isLoading = false;
-		}
-		
-		override public function setDefaultSexualPreferences():void
-		{
+			isUniqueInFight = true;
+			btnTargetText = "Maiden";
+			
 			this.sexualPreferences.setPref(GLOBAL.SEXPREF_LACTATION, GLOBAL.REALLY_LIKES_SEXPREF);
 			this.sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_BREASTS, GLOBAL.REALLY_LIKES_SEXPREF);
 			this.sexualPreferences.setPref(GLOBAL.SEXPREF_SMALL_BREASTS, GLOBAL.KINDA_LIKES_SEXPREF);
@@ -134,21 +131,21 @@ package classes.Characters
 			this.sexualPreferences.setPref(GLOBAL.SEXPREF_HYPER, GLOBAL.KINDA_DISLIKES_SEXPREF);
 			this.sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_MALEBITS, GLOBAL.REALLY_LIKES_SEXPREF);
 			this.sexualPreferences.setPref(GLOBAL.SEXPREF_TAILGENITALS, GLOBAL.REALLY_DISLIKES_SEXPREF);
+			
+			if (rand(10) == 0) inventory.push(new VanaeSpear());
+			else if(rand(10) <= 6) inventory.push(new SkySap());
+			
+			this._isLoading = false;
+		}
+		
+		override public function get displayBust():String
+		{
+			return "MAIDEN_VANAE";
 		}
 		
 		override public function prepForCombat():void
 		{
-			var combatMaiden:MaidenVanae = this.makeCopy();
-			
-			kGAMECLASS.userInterface.showBust("MAIDEN_VANAE");
 			kGAMECLASS.setLocation("FIGHT: VANAE\nMAIDEN", "PLANET: MHEN'GA", "SYSTEM: ARA ARA");
-			combatMaiden.setDefaultSexualPreferences();
-			
-			// Small chance to get a spear
-			if (rand(10) == 0) combatMaiden.inventory.push(new VanaeSpear());
-			else if(rand(10) <= 6) combatMaiden.inventory.push(new SkySap());
-			
-			kGAMECLASS.foes.push(combatMaiden);
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
