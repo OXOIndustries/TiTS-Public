@@ -972,7 +972,7 @@ public function sneakByZeTurrets():void
 	output("\n\nOHGODTHAT'SALONGWAYDOWN! Up?! Whatever....");
 	output("\n\nYou try not to stare, even as your [pc.feet] dangle");
 	if(pc.legCount == 1) output("s");
-	output(" down ponderously below you, swaying over the blackness of space. You gulp, and swing them up, grinning widely when they snap into place thanks to the electromagnetic gear girding them. The experience is dizzying, but at least the turrets aren't targeting you. Whoever programmed them take into account the new paths that zero G would offer.");
+	output(" down ponderously below you, swaying over the blackness of space. You gulp, and swing them up, grinning widely when they snap into place thanks to the electromagnetic gear girding them. The experience is dizzying, but at least the turrets aren't targeting you. Whoever programmed them didn't take into account the new paths that zero G would offer.");
 
 	output("\n\nAfter a few moments' of stepping carefully, constantly worried the turrets will turn on you, you step over to a nearby console conveniently labeled \"defense turrets\" and flip the switch. No more of that.");
 	flags["ROCKET_PODS_SNEAKED"] = 1;
