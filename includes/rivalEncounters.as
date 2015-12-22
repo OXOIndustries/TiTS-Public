@@ -33,8 +33,16 @@ public function showDane(nude:Boolean = false):void
 public function approachRivalOnMhenga():Boolean 
 {
 	// Room Descriptions
-	if(flags["MHENGA_PROBE_CASH_GOT"] == undefined) output("Buried halfway in a small crater of its own creation sits an oblong metal pod, perhaps ten feet long and three across. The surface is still glossy after its obviously hot reentry; you can see the way it blackened the ground and the plants around it. You immediately recognize it as one of the probes your father sent out - one of the keys to his fortune.");
-	else output("A small, vacant, impact crater is located on the jungle floor, the ground blackened and plants uprooted around it. It distinctly marks the site of one of your father’s probes you had since dug up. The cavity now acts as a basin to collect rainforest water, turning it into a tiny lake.");
+	var daneWins:Boolean = (flags["DIDNT_ENGAGE_RIVAL_ON_MHENGA"] != undefined || flags["LOST_TO_DANE_ON_MHENGA"] != undefined);
+	var probeOnMhenga:Boolean = (flags["MHENGA_PROBE_CASH_GOT"] == undefined && 9999 == 9999);
+	if(probeOnMhenga) output("Buried halfway in a small crater of its own creation sits an oblong metal pod, perhaps ten feet long and three across. The surface is still glossy after its obviously hot reentry; you can see the way it blackened the ground and the plants around it. You immediately recognize it as one of the probes your father sent out - one of the keys to his fortune.");
+	else
+	{
+		output("A small, vacant, impact crater is located on the jungle floor, the ground blackened and plants uprooted around it. It distinctly marks the site of one of your father’s probes");
+		if(flags["MHENGA_PROBE_CASH_GOT"] != undefined) output(" you had since dug up");
+		else output(" - the one your cousin stole from you");
+		output(". The cavity now acts as a basin to collect rainforest water, turning it into a tiny lake.");
+	}
 	// Encounter
 	if(flags["UNLOCKED_JUNKYARD_PLANET"] == undefined)
 	{
@@ -53,7 +61,7 @@ public function approachRivalOnMhenga():Boolean
 	// Probe Options
 	else 
 	{
-		if(flags["MHENGA_PROBE_CASH_GOT"] == undefined)
+		if(probeOnMhenga)
 		{
 			output("\n\n<b>You’ve already gotten the data from this pod. It was a set of coordinates to");
 			if(flags["UNLOCKED_JUNKYARD_PLANET"] >= 2) output(" Tarkus");
