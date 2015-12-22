@@ -1,7 +1,9 @@
-﻿import classes.Characters.PlayerCharacter;
+﻿import classes.Characters.GunTurrets;
+import classes.Characters.PlayerCharacter;
 import classes.Creature;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
 import classes.Util.InCollection;
+import flash.sampler.NewObjectSample;
 //{If Dungeon not completed, add:}
 public function chasmfallBonusFunction():Boolean
 {
@@ -117,8 +119,16 @@ public function liftStationBonus():Boolean
 		output("\n\nDoesn't look like you're getting out of this one too easy.");
 		processTime(1);
 		//Start fight!
+		
+		CombatManager.newGroundCombat();
+		CombatManager.setFriendlyCharacters(pc);
+		CombatManager.setHostileCharacters(new GunTurrets());
+		CombatManager.victoryScene(tamtamGetsPunkedByPCs);
+		CombatManager.lossScene(tamtamBadEndPetPooch);
+		CombatManager.displayLocation("TURRETS");
+			
 		clearMenu();
-		addButton(0,"Next",startCombat,"auto-turrets");
+		addButton(0,"Next", CombatManager.beginCombat);
 		flags["FOUGHT_TAM"] = 1;
 		return true;
 	}
@@ -144,7 +154,7 @@ public function tamtamGetsPunkedByPCs():void
 	output("\n\n<i>\"NOOOO! TAM-WOLF!\"</i> Tam shrieks, rushing forward and grabbing the malfunctioning drone, cradling his head. <i>\"You... you monster! What did you do to my poor Tam-wolf?\"</i>");
 	output("\n\nBefore you can say a word, the remaining turrets -- what few are left -- open up, forcing you to dive into cover as the cat-girl retreats into the back room, dragging her attack drone and cursing up a storm at you. A few well-placed swings take out the last of the turrets, leaving you standing in the room amid a decimated army of drones and gun-turrets and a sea of shell casings. Your ears are ringing, but at least you're alive....");
 	output("\n\nNow to deal with the cat-girl....\n\n");
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Lift Station: Engineering Deck
@@ -264,7 +274,7 @@ public function stickItInZeCatgirlCoochWhileSheThinksYerKaska():void
 	output("\n\n<i>\"Still your favorite, right chief?\"</i> Tam giggles, rubbing her butt against the sheathed underside of your prick. <i>\"Double kaithrit tail-job... maybe I'll let you stick it in for a scratch between the ears?\"</i>");
 	output("\n\nHer cat ears perk up expectantly, tails squeezing hard around your shaft as encouragement until you finally reach up and give the puss what she wants. Tam purrs throatily as your fingers work through her bright pink hair, getting at that wonderfully sensitive spot right between her perky cat-ears. Her hips press back against your crotch, grinding up against you as her twin tails slowly release your rod, letting you enjoy the warm, wet feeling of her sex rubbing against your [pc.cock " + x + "], so close to penetration that any errant movement would send you deep into the cat-girl's eager box.");
 	output("\n\n<i>\"You're clear for landing, Kaska,\"</i> Tam purrs, wiggling her flared hips up your shaft, until the crown of your cock is kissing the lips of her pussy. Tam bits her lip, back arching as she purrs and moans, readying herself for you. You're more than happy to make up the difference: grabbing Tam's hips, you thrust in, one long, smooth motion until you're ");
-	if(pc.cockVolume(x) <= foes[0].vaginalCapacity(0)) output("buried to the hilt");
+	if(pc.cockVolume(x) <= enemy.vaginalCapacity(0)) output("buried to the hilt");
 	else output("able to see her gut distending from the sheer amount of cock being shoved into her");
 	output(". The chorus of moans Tam's been serenading you with breaks at that moment, her cute little groans turning into a long cry of pleasure as you finally fuck her.");
 	pc.cockChange();
@@ -423,7 +433,7 @@ public function tamtamBadEndPetPooch():void
 	showBust("TAMTAM","TAMWOLF");
 	showName("\nTAM-WOLF");
 	//If During phase 1:
-	if(!foes[0].hasStatusEffect("Phase 2"))
+	if(!enemy.hasStatusEffect("Phase 2"))
 	{
 		output("Under a withering hail of bullets, you find yourself thrown back as one makes hard contact, blasting through your shoulder. With a wail of agony, you stumble to the ground... and quickly see every gun in the room leveled at you. Well, that's it then. You throw your [pc.rangedWeapon] aside and raise your hands... wincing in pain from your wound. The cat-girl grins over the desk at you, and whistles loudly. Suddenly, a huge doberman-like robot lunges out of the dark at you, pinning you to the ground.");
 	}
@@ -792,7 +802,7 @@ public function sneakByZeTurrets():void
 public function pcBeatsRocketPods():void
 {
 	output("With a mighty KABOOM, the last rocket turret explodes in a hail of shrapnel and sparks. You heave a sigh of relief as silence again reigns in the rift. Can only spare a few moments to catch your breath, though, before you have to push on: there's a bomb that needs defusing!\n\n");
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //PC Loss vs Rocket Pods
@@ -1023,7 +1033,7 @@ public function youBeatUpAnOrcWaytoGo():void
 	showName("CAPTAIN\nKHORGAN");
 	currentLocation = "360";
 	//{if by Lust}
-	if(foes[0].lust() >= foes[0].lustMax())
+	if(enemy.lust() >= enemy.lustMax())
 	{
 		output("<i>\"Oh, fuck,\"</i> Captain Khorgan growls, the force cutlass falling out of her hand to clatter against the steel platform below. Her hands reach up, clutching at her breasts, tearing what remains of her corset and clothes off to get at the stiff teats beneath. <i>\"I can't.... Fuck it, Steele, you can have the damn detonator. Take it! Just fuck me, take me, throw me on the deck and pound me. I'm all yours, you fucking animal.\"</i>");
 	}
@@ -1068,7 +1078,7 @@ public function leaveDatThragginBootayBehind():void
 	showName("CAPTAIN\nKHORGAN");
 	output("<i>\"I don't think so,\"</i> you say, giving the captain the slightest push -- which in her state, is enough to topple her over. She gives a startled gasp as she collapses into a lusty heap on the ground, legs splayed and boobs jiggling. You take a moment to tie her hands together before, detonator in hand, you turn your back on the cursing, hot mass of greenskin behind you.\n\n");
 	if(!pc.hasKeyItem("Khorgan's Detonator")) pc.createKeyItem("Khorgan's Detonator",0,0,0,0);
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Dick Fuck
@@ -1079,7 +1089,7 @@ public function dickFuckDatThraggenCoochie():void
 	author("Savin");
 	showBust("CAPTAIN_KHORGAN_NUDE");
 	showName("CAPTAIN\nKHORGAN");
-	var x:int = pc.cockThatFits(foes[0].vaginalCapacity(0));
+	var x:int = pc.cockThatFits(enemy.vaginalCapacity(0));
 	if(x < 0) x = pc.smallestCockIndex();
 	flags["DICKFUCKED_CAPN_KHORGAN"] = 1;
 	//Combat defeat
@@ -1119,7 +1129,7 @@ public function dickFuckDatThraggenCoochie():void
 	if(inCombat()) 
 	{
 		output("\n\n");
-		genericVictory();
+		CombatManager.genericVictory();
 	}
 	else 
 	{
@@ -1197,7 +1207,7 @@ public function thraggenAreABunchOfGreenLesboSlutsGardefordToldMeSo():void
 	if(inCombat()) 
 	{
 		output("\n\n");
-		genericVictory();
+		CombatManager.genericVictory();
 	}
 	else 
 	{
@@ -1215,14 +1225,14 @@ public function loseToCaptainKhorganBadEnd():void
 	showBust("CAPTAIN_KHORGAN_NUDE");
 	showName("CAPTAIN\nKHORGAN");
 	//{if PC loses in the Swordfight, via lust:}
-	if(foes[0] is CaptainKhorgan && pc.lust() >= pc.lustMax())
+	if(enemy is CaptainKhorgan && pc.lust() >= pc.lustMax())
 	{
 		output("\n\nYour [pc.knees] buckle");
 		if(pc.legCount == 1) output("s");
 		output(" as the captain's sexual advances continue, her breasts all but falling out of her corset, her wide hips swaying hypnotically with every motion. Your loins burn with desire, making your grip on your weapon shakey, your palms sweating. Taking a step forward, the thraggen woman easily bats your weapon aside, and it clatters to the ground, slipping from your loose grasp. With an easy push, she send you onto your back and plants one of her boot on your chest, utterly asserting her dominance.");
 	}
 	//{if PC loses in the Swordfight, via damage:}
-	else if(foes[0] is CaptainKhorgan)
+	else if(enemy is CaptainKhorgan)
 	{
 		output("\n\nYou're losing ground. Even ignoring the sensual assault assailing your senses, the captain's still an amazing swordsman, and you're banged up after that fight against her mech. It's hard to keep standing, much less fighting. You can barely feel your hand by the time she easily bats your weapon from your hand... right before giving you a nasty right hook that plants you on the ground. With a smirk, the captain plants one of her boot on your chest, utterly asserting her dominance.");
 	}
@@ -1267,7 +1277,7 @@ public function loseToCaptainKhorganBadEnd():void
 	output("\n\nYou shudder at the thought, recoiling as the muscular, amazonian woman hovers her spunk-soaked foot over you, teasing, <i>\"If you're lucky, it will only be your seed you need to eat. Better me than my precious Tam, isn't it? She'd have you sucking every cock on the crew, if I know the crazy cat.\"</i> You hesitantly let your tongue poke out from your mouth, tracing along the bridge of her foot and lapping up your own cum. You shudder at the [pc.cumFlavor] taste of your own seed, but at the captain's insistence, you proceed, lapping up the cream you smeared on her supple skin.");
 	output("\n\nKhorgan coos appreciatively, her wandering hand shifting down from her breasts to her crotch, slipping into her pants, where a damp patch of excitement is steadily growing. <i>\"Good " + pc.mf("boy","girl") + ". That's it, learn your place. You're nothing more than my slave, now. A breeder. A personal fucktoy. But the way you creamed yourself, the way you'relicking up your own seed... I think you were made for it. All that strength, for nothing. No, for me... my use. My enjoyment.\"</i>");
 	output("\n\nYou recoil as the captain plants her foot back on the deck, now spotless, and hauls you up by the nape of your neck");
-	if(pc.tallness < foes[0].tallness) output(", leaving your [pc.feet] dangling beneath you");
+	if(pc.tallness < enemy.tallness) output(", leaving your [pc.feet] dangling beneath you");
 	output(". You stare into her fiery red eyes, and realize that this is your place now, your life. Nothing but the captain's personal stud.");
 	pc.orgasm();
 	pc.orgasm();
@@ -1439,7 +1449,7 @@ public function doNothingWhileTittyGrappled():void
 public function failToStruggleKaskaBoobs():void
 {
 	output("You try to struggle, but all you manage to do is squirm against the pillowy, chocolatey prison, rubbing against the pirate's slick skin in way that's undeniably pleasant. No matter how hard you try to deny it, your lips and nose are stuffed directly into cleavage. ");
-	applyDamage(new TypeCollection( { tease: 10 + rand(5) } ), foes[0], pc, "minimal");
+	applyDamage(new TypeCollection( { tease: 10 + rand(5) } ), enemy, pc, "minimal");
 	if(pc.lust() <= 50) output("It feels... good to rub against it.");
 	else if(pc.lust() <= 80) output("Damn, these tits are great! If you don't get out soon, things are going to get out of hand!");
 	else output("It feels to good to hold out any longer. You start licking and kissing with reckless abandon, letting your struggles to escape cease. Why fight the inevitable?");
@@ -1453,8 +1463,8 @@ public function pinchKaskaNipple():void
 	output("One of her leather-covered nipples brushes your cheek, giving you all the information you need to target it. You twist your torso slightly and free enough room for your arm to snake up into her cleavage. Then, your fingers find your target. It's hard and pebbly. You pinch. Gasping, Kaska drops you, staggering back and panting, her nipples even more visible through the thin xeno-leather corset. Her nipple felt nice between your fingers. Maybe you ought to let her grab you again?");
 	output("\n\nKaska merely pants and flushes. Did she enjoy the pinch that much?\n");
 	pc.removeStatusEffect("Grappled");
-	applyDamage(new TypeCollection( { tease: 4 + rand(3) } ), foes[0], pc, "minimal");
-	applyDamage(new TypeCollection( { tease: 7 + rand(3) } ), pc, foes[0], "minimal");
+	applyDamage(new TypeCollection( { tease: 4 + rand(3) } ), enemy, pc, "minimal");
+	applyDamage(new TypeCollection( { tease: 7 + rand(3) } ), pc, enemy, "minimal");
 	processCombat();
 }
 
@@ -1464,7 +1474,7 @@ public function defeatedByKaska():void
 	author("Fenoxo");
 	showBust("KASKA");
 	showName("\nKASKA");
-	if(foes[0].lust() < 50)
+	if(enemy.lust() < 50)
 	{
 		output("You collapse, or you would if you weren't in a weightless environ. Your body hangs bonelessly, tethered in place by the magnetic equipment you picked up from the elevator. Burn marks and wounds riddle your ailing form, and as your eyes drift closed, you hear one final, echoing sound. BLAM!");
 		badEnd();
@@ -1805,7 +1815,7 @@ public function defeatKaska():void
 	showBust("KASKA");
 	showName("\nKASKA");
 	//Lust
-	if(foes[0].lust() >= foes[0].lustMax())
+	if(enemy.lust() >= enemy.lustMax())
 	{
 		output("<i>\"By the stars...\"</i> Kaska groans before dropping to her knees and tugging on her dick. She's wantonly fucking herself at this point, only paying attention to you to fuel her masturbatory fantasy. Her vagina is curiously ignored but dripping.");
 		output("\n\nHer gun has floated off somewhere, but a blinking detonator is hanging from her hip. Kaska doesn't stop you from swiping it. It might come in handy for defusing the bomb.");
@@ -1846,7 +1856,7 @@ public function leaveKaskaPostCombat():void
 	showBust("KASKA");
 	showName("\nKASKA");
 	output("An overheated dickgirl isn't any problem of yours. You leave her panting on the deckplates, still stroking herself.\n\n");
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Unfucked Appearance
@@ -1964,7 +1974,7 @@ public function victoryKaskaDicksex():void
 	if(inCombat())
 	{
 		output("\n\n");
-		genericVictory();
+		CombatManager.genericVictory();
 	}
 	else
 	{
@@ -2069,7 +2079,7 @@ public function makeKaskaSuchYerCoochLikeABaws():void
 	if(inCombat())
 	{
 		output("\n\n");
-		genericVictory();
+		CombatManager.genericVictory();
 	}
 	else
 	{

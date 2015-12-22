@@ -146,22 +146,18 @@
 			
 			this.createStatusEffect("Disarm Immune");
 			this.createStatusEffect("Force It Gender");
-			this.createStatusEffect("Flee Disabled",0,0,0,0,true,"","",false,0);
+			this.createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
+			
+			isUniqueInFight = true;
+			btnTargetText = "Turrets";
 			
 			this._isLoading = false;
 
 		}
 		
-		override public function prepForCombat():void
+		override public function get displayBust():String
 		{
-			var combatGunTurrets:GunTurrets = this.makeCopy();
-			
-			kGAMECLASS.userInterface.showBust("TAM");
-			kGAMECLASS.userInterface.showName("FIGHT:\nTAM TURRETS");
-			
-			//combatGunTurrets.sexualPreferences.setRandomPrefs(2 + rand(3));
-			
-			kGAMECLASS.foes.push(combatGunTurrets);
+			return "TAM";
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void

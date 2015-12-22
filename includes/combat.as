@@ -1,10 +1,6 @@
 ﻿public function victoryRouting():void 
 {
 	hideNPCStats();
-	else if (foes[0] is GunTurrets)
-	{
-		tamtamGetsPunkedByPCs();
-	}
 	else if (foes[0] is RocketTurrets)
 	{
 		pcBeatsRocketPods();
@@ -103,7 +99,6 @@
 public function defeatRouting():void 
 {
 	hideNPCStats();
-	else if (foes[0] is GunTurrets) tamtamBadEndPetPooch();
 	else if (foes[0] is RocketTurrets) pcLosesToRocketPods();
 	else if (foes[0] is CaptainKhorganMech) loseToCaptainKhorganBadEnd();
 	else if (foes[0] is CaptainKhorgan) loseToCaptainKhorganBadEnd();
@@ -233,12 +228,6 @@ public function startCombat(encounter:String):void
 {	
 	switch(encounter) 
 	{
-		case "phoenixpirates":
-			chars["PHOENIXPIRATES"].prepForCombat();
-			break;
-		case "auto-turrets":
-			chars["AUTOTURRETS"].prepForCombat();
-			break;
 		case "rocket pods":
 			chars["ROCKETPODS"].prepForCombat();
 			break;
