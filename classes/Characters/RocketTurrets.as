@@ -154,19 +154,20 @@
 			this.createStatusEffect("Force It Gender");
 			this.createStatusEffect("Flee Disabled",0,0,0,0,true,"","",false,0);
 			
+			isUniqueInFight = true;
+			btnTargetText = "Turrets";
+			
 			this._isLoading = false;
+		}
+		
+		override public function get displayBust():String
+		{
+			return "TURRET";
 		}
 		
 		override public function prepForCombat():void
 		{
-			var combatGunTurrets:RocketTurrets = this.makeCopy();
-			
-			kGAMECLASS.userInterface.showBust("TURRET");
 			kGAMECLASS.userInterface.showName("FIGHT:\nR. PODS");
-			
-			//combatGunTurrets.sexualPreferences.setRandomPrefs(2 + rand(3));
-			
-			kGAMECLASS.foes.push(combatGunTurrets);
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void

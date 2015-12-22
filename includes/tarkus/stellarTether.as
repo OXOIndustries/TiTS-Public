@@ -1,5 +1,6 @@
 ﻿import classes.Characters.GunTurrets;
 import classes.Characters.PlayerCharacter;
+import classes.Characters.RocketTurrets;
 import classes.Creature;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
 import classes.Util.InCollection;
@@ -638,58 +639,16 @@ public function liftDownEvent():void
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
-
-/*Kost'oran Assssin Battle
-{Main Screen Turn On}
-You're fighting a kost'oran assassin!
-
-A towering, dark-skinned example of his species, the assassin looks like a veteran of many battles: his body is covered in obvious scars and old wounds, making him look almost patchwork. He's wearing lightweight, flexible ballistic armor that covers most of his vital spots, and a powerful jetpack is slung over his shoulders, giving him incredible mobility. The assassin is currently wielding a pair of long, curved steel swords: old school, but no less deadly today than they were three thousand years ago. <b>This man looks like a fanatic who would fight to the death -- yours or his!</b>
-
-Dual Weapon Rend
-//Two medium attacks. The first has a chance to sunder armor, but the second has lower accuracy. Awshit, complex!
-	Howling a warcry that echoes through the cabin, the assassin charges you, swinging his blades akimbo.
-	Hit 1: The assassin's first sword strike cuts into you{r [pc.armor]}{, sundering your defenses!}
-	Hit 2: {Taking advantage of the gap in your gear, the assassin's second strike hits home, bypassing your defenses!} {Making up for the first miss, the assassin's blade strikes true, tearing into you!}
-
-
-Jetpack Shoulder Check
-//One heavy attack, chance of knockdown
-	Charging up his jetpack, the kost'oran assassin lunges at you, using his jets to add tremendous force to the strike! You try to knock his blades away, but find yourself on the business end of a shoulder-charge.
-	Hit: His shoulder slams into your [pc.chest], throwing you back against the wall of the car. {You slump to the ground, knocked down by the overwhelming charge.}
-
-
-Headbutt!
-//Works just like the Merc ability!
-	The assassins leans back before whipping his head forward in a sudden headbutt!
-	Hit: The boney ridges atop his head make the brutal, dirty move all the more painful. You stagger back, clutching at your own [pc.face] in the aftermath. Fuck, that hurt{... and you're stunned, too}!
-
-
-Crescent Moon Kick
-//Light attack with a higher chance of stun
-	The assassin lunges at you, driving you back with a flurry of sword-strikes. Just as you think the onslaught's over, though, he keys his jetpack and flips backwards, using the pack to propel his feet upwards in a brutal crescent moon kick!
-	Hit: Oof! You're knocked back as his bone-encrusted feet connect with your chin, knocking you back against the wall. {The attack was so brutal that it stunned you!}
-
-PC is Defeated
-You stumble back, unable to hold out any longer. The kost'oran looms over you, knocking your {weapons and }equipment away with an almost contemptuous swipe of his blades. "Pathetic. How did that moronic cat manage to let </i>you<i> past her? I'll have words with her, soon. As for you..."
-
-With a flick of his wrist, the assassin draws his blade across your throat. You gasp, clutching at your neck, clawing at the wound as the assassin fires up his jetpack and departs, flying away. 
-
-<b>GAME OVER</b>
-
-PC is Victorious!
-	//Savin gets controversial, oh shit! Feel free to ignore this if you want to write sex for this fellow.
-	{if PC won by physical: Worn down by your assault, the kost'oran stumbles to a knee, barely staying upright thanks to his blades, now planted in the floor of the car.
-	{If PC won by Lust: His knees buckling and armor bulging at your sensual response to his attack, the assassin stumbles back, barely able to stand as you approach him, ready to take your reward from his body.} However, before you can properly disarm the defeated kost'oran, he looks up at you with a sudden, renewed fierceness -- and he presses a button on his jetpack. 
-
-"For Captain Khorgan!" he growls, grinning evilly. "My debt is finally repaid."
-
-The jetpack beeps loudly, growing in intensity. Oh, no... Instinct kicks in: you grab the assassin, twist around to the window, and push. He reacts too quickly to stop you, too worn out to put up a proper fight as you throw him out the window, taking his overcharging jetpack with him. A moment later, you hear the explosion far below you, and the whole of the cart rattles with the impact. You grab the side of the carriage, holding on as the shockwave rushes over you.
-
-There goes stealth.
-
-You press your back to the edge of the cart, and ride it the rest of the way down, ready for anything now... but surprisingly, there's no further threat until you hear the elevator clicking into place at the base of the walkway. */
-
-//Security Checkpoint / Rocket Pod Encounter
+	
+public function configRocketFight():void
+{
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(new RocketTurrets());
+	CombatManager.victoryScene(pcBeatsRocketPods);
+	CombatManager.lossScene(pcLosesToRocketPods);
+	CombatManager.displayLocation("TURRETS");
+}
 
 public function coreWalkWayBonus():Boolean
 {
@@ -709,7 +668,8 @@ public function coreWalkWayBonus():Boolean
 		output(" before they can target you. Unlike the crazy cat-girl's turrets topside, these are sleek and heavy looking, probably part of the installation's normal security. And if those barrels are anything to go by, they're probably loaded with micro-rockets rather than bullets - powerful enough to chew through a dropship or a freighter. You'll need to take these bastards down fast if you want any hope of fighting forward.");
 		//[Fight] [Lift] [Sneak By] [{if Tech Spec.: Hack Turrets}]
 		clearMenu();
-		addButton(0,"Fight",startCombat,"rocket pods");
+		configRocketFight();
+		addButton(0, "Fight", CombatManager.beginCombat);
 		if(pc.characterClass == GLOBAL.CLASS_SMUGGLER)
 		{
 			output("\n\nThis situation reminds you of the time you snuck by the guards on Antaris VII. Zero-G environs do open up some unconventional paths....");
@@ -762,7 +722,8 @@ public function hackTheRocketPodsOnTarkus():void
 		output("\n\nYou spend a few minutes tapping around in the security system, but someone's clearly been ramping up the anti-intruder countermeasures. You grit your teeth with effort, trying to pierce the security, but finding no backdoors or weak points to exploit. With a grunt of frustration, you toss your Codex back in your pack. Looks like it's the hard way.");
 		processTime(2);
 		clearMenu();
-		addButton(0,"Next",startCombat,"rocket pods");
+		configRocketFight();
+		addButton(0, "Next", CombatManager.beginCombat);
 	}
 	//{On Pass}
 	else

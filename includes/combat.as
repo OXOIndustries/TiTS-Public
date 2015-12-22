@@ -1,10 +1,6 @@
 ﻿public function victoryRouting():void 
 {
 	hideNPCStats();
-	else if (foes[0] is RocketTurrets)
-	{
-		pcBeatsRocketPods();
-	}
 	else if(foes[0] is CaptainKhorganMech)
 	{
 		victoriousVsCaptainOrcButt();
@@ -99,7 +95,6 @@
 public function defeatRouting():void 
 {
 	hideNPCStats();
-	else if (foes[0] is RocketTurrets) pcLosesToRocketPods();
 	else if (foes[0] is CaptainKhorganMech) loseToCaptainKhorganBadEnd();
 	else if (foes[0] is CaptainKhorgan) loseToCaptainKhorganBadEnd();
 	else if (foes[0] is Kaska) defeatedByKaska();
@@ -228,9 +223,6 @@ public function startCombat(encounter:String):void
 {	
 	switch(encounter) 
 	{
-		case "rocket pods":
-			chars["ROCKETPODS"].prepForCombat();
-			break;
 		case "khorgan mechfight":
 			chars["CAPTAINKHORGANMECH"].prepForCombat();
 			break;
