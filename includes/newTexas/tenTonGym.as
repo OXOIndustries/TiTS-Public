@@ -96,7 +96,7 @@ public function weightRoomBonusFunction():Boolean
 	//[Cowgirl] Go to Simone
 	/* 9999
 	if(flags["MET_SIMONE"] == undefined) addButton(3,"Cowgirl",simoneWorkoutApproach,undefined,"Cowgirl","A cowgirl can be seen lifting weights here.");
-	else addButton(3,"Lola",simoneWorkoutApproach,undefined,"Lola","Pump some iron with the competitive cowgirl.");
+	else addButton(3,"Simone",simoneWorkoutApproach,undefined,"Lola","Pump some iron with the competitive cowgirl.");
 	*/
 	//[To Entrance]
 	return false;
@@ -208,18 +208,82 @@ public function swimmingPoolBonus():Boolean
 	output("\n\nThis place seems more popular with the local cows than the other rooms, as there are groups of them swimming together. Many are clad in holstein-print swimsuits, while others – cow and bull alike – go naked. One naked cowgirl floats on her back, pink nipples pointing toward the ceiling, pushing herself along in a lazy backstroke.");
 	output("\n\nYou wonder why it doesn’t smell like chlorine; surely they can’t go without something to keep the pool clean, with this many people in it. You dip two fingers into the pool water to test it, and find it smooth, almost slippery, the sign of a synthetic decontaminant. That explains the unfamiliar smell, and it’s probably a safer choice here, as you’re sure more than a few people have had sex in this pool.");
 	output("\n\nA bubbling spa sits in one corner, big enough to hold fifteen to twenty people. It looks to be very popular; about a dozen cows and bulls sit in it, some on each others’ laps. You’re not sure if the motion in the water is entirely from the jets, or if there’s something going on beneath the bubbles. Probably both.");
-	//[Quick Swim] Go to Quick Swim {locked if PC has [Sore] debuff or doesn’t have 30 energy}
-	if(pc.energy() >= 30 && !pc.hasStatusEffect("Sore")) addButton(0,"Quick Swim",quickSwim,undefined,"Quick Swim","Take a swim in the pool. It'll burn fat and build muscle!");
-	else addDisabledButton(0,"Quick Swim","Quick Swim","You're too tired for that workout.");
-	//[Swim Laps] Go to Swim Laps {locked if PC has [Sore] debuff or doesn’t have 50 energy}
-	if(pc.energy() >= 50 && !pc.hasStatusEffect("Sore")) addButton(1,"Swim Laps",swimLapsAtZePool,undefined,"Swim Laps","Swim laps in the pool. It'll burn fat and build muscle but leave you tired as a dog.");
-	else addDisabledButton(1,"Swim Laps","Swim Laps","You're too tired for that workout.");
-	//[Spa] Go to Spa
-	addButton(4,"Spa",spaTimesFunStuff,undefined,"Spa","Relax in the spa and recover some energy.");
-	//[Swimmer] Go to Lola
-	if(flags["MET_LOLA"] == undefined) addButton(3,"Swimmer",lolaPoolApproach,undefined,"Swimmer","A naked cowgirl floats about here.");
-	else addButton(3,"Lola",lolaPoolApproach,undefined,"Lola","Have some floaty fun with the cowgirl.");
+	var isSwimChanged:Boolean = (pc.hasStatusEffect("Temporary Nudity Cheat") || pc.hasStatusEffect("Temporary Swimwear Cheat"));
+	if(pc.inSwimwear(true) || pc.isNude())
+	{
+		if(isSwimChanged) flags["NAV_DISABLED"] = NAV_WEST_DISABLE;
+		//[Quick Swim] Go to Quick Swim {locked if PC has [Sore] debuff or doesn’t have 30 energy}
+		if(pc.energy() >= 30 && !pc.hasStatusEffect("Sore")) addButton(0,"Quick Swim",quickSwim,undefined,"Quick Swim","Take a swim in the pool. It’ll burn fat and build muscle!");
+		else addDisabledButton(0,"Quick Swim","Quick Swim","You're too tired for that workout.");
+		//[Swim Laps] Go to Swim Laps {locked if PC has [Sore] debuff or doesn’t have 50 energy}
+		if(pc.energy() >= 50 && !pc.hasStatusEffect("Sore")) addButton(1,"Swim Laps",swimLapsAtZePool,undefined,"Swim Laps","Swim laps in the pool. It’ll burn fat and build muscle but leave you tired as a dog.");
+		else addDisabledButton(1,"Swim Laps","Swim Laps","You’re too tired for that workout.");
+		//[Spa] Go to Spa
+		addButton(4,"Spa",spaTimesFunStuff,undefined,"Spa","Relax in the spa and recover some energy.");
+		//[Swimmer] Go to Lola
+		if(flags["MET_LOLA"] == undefined) addButton(3,"Swimmer",lolaPoolApproach,undefined,"Swimmer","A naked cowgirl floats about here.");
+		else addButton(3,"Lola",lolaPoolApproach,undefined,"Lola","Have some floaty fun with the cowgirl.");
+	}
+	else
+	{
+		addDisabledButton(0,"Quick Swim","Quick Swim","You’ll need to get yourself swim-ready before stepping into the pool.");
+		addDisabledButton(1,"Swim Laps","Swim Laps","You’ll need to get yourself swim-ready before stepping into the pool.");
+		addDisabledButton(4,"Spa","Spa","You’ll need to get yourself ready before stepping into the spa.");
+	}
+	if(isSwimChanged)
+	{
+		output("\n\n<b>You will need to rinse off and collect your belongings before leaving.</b>");
+		addButton(5,"Rinse",poolGetReady,0,"Rinse","Use the shower to rinse yourself off before leaving.");
+	}
+	else
+	{
+		if(!pc.inSwimwear(true) && !pc.isNude())
+		{
+			output("\n\n<b>You will need to be wearing a full set of swimwear or otherwise be naked to use the facilities.</b>");
+			if(pc.exhibitionism() < 66) output(" Temporary swimsuits are also available on racks nearby.");
+		}
+		addButton(5,"GetReady",poolGetReady,1,"Get Ready","Get yourself swim-ready.");
+	}
 	return false;
+}
+//Outfit Change/Reclaim
+public function poolGetReady(response:int = 0):void
+{
+	clearOutput();
+	showName("THE\nPOOL");
+	if(response == 1)
+	{
+		author("Slab Bulkhead");
+		output("You ");
+		if(pc.exhibitionism() < 66)
+		{
+			if(pc.inSwimwear(true)) output("adjust your [pc.gear]");
+			else
+			{
+				output("don a swimsuit");
+				pc.createStatusEffect("Temporary Swimwear Cheat");
+			}
+		}
+		else if(!pc.isNude())
+		{
+			output("strip naked");
+			pc.createStatusEffect("Temporary Nudity Cheat");
+		}
+		else output("admire your already nude form");
+		output(" and prepare to step into the wet area of the pool.");
+	}
+	else if(response == 0)
+	{
+		output("You step underneath a nearby rinsing shower and yank on the chain. A spray of cold fresh water douses you, cleansing your body of any irritant you may have exposed yourself to.");
+		output("\n\nAfter the shower subsides, you towel yourself off and reclaim your [pc.gear].");
+		processTime(2);
+		pc.shower();
+		pc.removeStatusEffect("Temporary Swimwear Cheat");
+		pc.removeStatusEffect("Temporary Nudity Cheat");
+		flags["NAV_DISABLED"] = undefined;
+	}
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 //Quick Swim
@@ -228,15 +292,7 @@ public function quickSwim():void
 	clearOutput();
 	author("Slab Bulkhead");
 	showName("QUICK\nSWIM");
-	output("You ");
-	if(pc.exhibitionism() < 66)
-	{
-		if(pc.inSwimwear(true)) output("adjust your [pc.gear]");
-		else output("don a swimsuit");
-	}
-	else if(!pc.isNude()) output("strip naked");
-	else output("admire your already nude form");
-	output(" and step into the pool, taking a few minutes to get used to the water. The unusual smoothness feels good against your [pc.skinFurScalesNoun], almost sensual. The temperature is pretty much perfect, a little bit cold but nothing you can’t handle.");
+	output("You step into the pool, taking a few minutes to get used to the water. The unusual smoothness feels good against your [pc.skinFurScalesNoun], almost sensual. The temperature is pretty much perfect, a little bit cold but nothing you can’t handle.");
 	output("\n\nOnce the water’s past your waist, you plunge in and swim a few laps. It’s amazingly refreshing, and you turn on your back and float, letting your worries wash away with the water.");
 	output("\n\nAfter a few moments, you remind yourself that you’re here to work out, not drift away, and you push yourself a little through a few more laps. It’s a good workout, and leaves you feeling tired but energized.");
 	output("\n\nYou feel a little stronger and fitter after your swim.");
@@ -258,15 +314,7 @@ public function swimLapsAtZePool():void
 	clearOutput();
 	author("Slab Bulkhead");
 	showName("SWIM\nLAPS");
-	output("You ");
-	if(pc.exhibitionism() < 66)
-	{
-		if(pc.inSwimwear(true)) output("adjust your [pc.gear]");
-		else output("don a swimsuit");
-	}
-	else if(!pc.isNude()) output("strip naked");
-	else output("admire your already nude form");
-	output(" and plunge into the cool water headfirst, coming up with a spurting breath. You head for one of the lanes, and get right into swimming laps. It takes a few strokes for you to find your rhythm, but soon you’re coasting through the water with ease.");
+	output("You plunge into the cool water headfirst, coming up with a spurting breath. You head for one of the lanes, and get right into swimming laps. It takes a few strokes for you to find your rhythm, but soon you’re coasting through the water with ease.");
 	output("\n\nAfter a few laps, you swim up alongside the local cows who are also doing laps, and nod a quick greeting to them, then match their pace. They clearly do this a lot, and it’s a struggle at first, but you manage to stay with them for a while.");
 	output("\n\nSoon enough, your limbs start feeling heavy, and your once-smooth strokes start to stutter. You swim for the edge and pull yourself out, sore but satisfied.");
 	output("\n\nYou feel stronger and fitter after your swim.");
@@ -287,16 +335,8 @@ public function spaTimesFunStuff():void
 {
 	clearOutput();
 	author("Slab Bulkhead");
-	output("The spa is a welcome sight. You ");
-	if(pc.exhibitionism() < 66)
-	{
-		if(pc.inSwimwear(true)) output("adjust your [pc.gear]");
-		else output("don a swimsuit");
-	}
-	else if(!pc.isNude()) output("strip naked");
-	else output("admire your already nude form");
-	output(" and climb in.");
-
+	showName("THE\nSPA");
+	output("The spa is a welcome sight. You ready yourself and climb in.");
 	output("\n\nThe smooth water is just barely beneath too hot, but once you get used to it, you let out a deep sigh of relief. You find a place to relax among the bubbling jets, and let the warm water soothe away your aches and pains.");
 	output("\n\nAs you suspected before, not all the water’s motion is from the jets. There are several couples enjoying both the spa and each other, thrusting together in slow, lazy strokes. Pretty much what you’d expect for New Texas. Must be a great way to come down from a workout.");
 	output("\n\nAfter a while, you feel yourself starting to get too warm, and climb out. The air feels suddenly cold, a bit bracing but not uncomfortable. Time to find a towel.");
@@ -966,7 +1006,7 @@ public function lolaPoolApproach():void
 	
 	if(flags["MET_LOLA"] == undefined)
 	{
-		output("You wade over toward the naked cowgirl as she strokes her way across the pool. She doesn’t seem to notice your approach, so you time it so she bumps into you on her way. As soon as you two collide, she looks up, then flips herself over and stands, surprise clear on her round face.");
+		output("You enter the pool and wade over toward the naked cowgirl as she strokes her way across the pool. She doesn’t seem to notice your approach, so you time it so she bumps into you on her way. As soon as you two collide, she looks up, then flips herself over and stands, surprise clear on her round face.");
 		output("\n\n<i>“Oh, I’m sorry!”</i> she says, then gives you a long look up and down, her blue eyes wide. <i>“Hi there,”</i> she says, a smile spreading across her face. <i>“I’m Lola. Haven’t seen you here before, huh?”</i>");
 		output("\n\nLola’s only a little over five feet tall, but her hips would look wide on a woman twice her size; on her, they seem almost comically exaggerated. Her butt is appropriately bulbous, with curvy thighs beneath it. Soaked red hair trails down to her shoulders, clearly her natural color, if the little tuft above her pussy is any indication. Two short white horns peek out from among her locks, and her ears are cowlike and floppy. Her skin is pale, and she has the large boobs common among New Texans, with hard, pink nipples.");
 		output("\n\nYou introduce yourself to the bright-eyed cowgirl, and ask if she’s here working out, or if she just likes to swim.");
@@ -984,7 +1024,7 @@ public function lolaPoolApproach():void
 		else
 		{
 			output("\n\n<i>“Soooo....”</i> Lola says, then looks back up at you, a blush spreading across her cheeks. She reaches out and rests one hand on your [pc.hip], and seems to be waiting for your permission to move her hand in closer to your crotch. <i>“You got anything under there for me?”</i>");
-			if(pc.lowerUndergarment.hardLightEquipped || !pc.hasCock())
+			if(pc.lowerUndergarment.hardLightEquipped)
 			{
 				if(pc.hasCock()) output("\n\nYou shake your head, and tell Lola that while you have a penis, you are not planning on using it at the moment.");
 				else output("\n\nYou shake your head, and tell Lola that you don’t have the dong she’s looking for.");
@@ -997,12 +1037,12 @@ public function lolaPoolApproach():void
 			}
 			else if(pc.hasCock())
 			{
-				output("\n\nYou take hold of Lola’s hand and move it over your [pc.crotch], letting her feel what you’ve got. Her eyes light up and she feels out your [pc.cock] through your swimsuit, her fingers stroking down your length to your [pc.cockHead].");
+				output("\n\nYou take hold of Lola’s hand and move it over your [pc.crotch], letting her feel what you’ve got. Her eyes light up as she feels out your [pc.cock] through your swimsuit, her fingers stroking down your length to your [pc.cockHead].");
 				output("\n\n<i>“Ooh, that feels like fun,”</i> she says. Her blush spreads from her cheeks down to her chest, turning the skin on her breasts the palest pink. <i>“Do you want to fuck me? Like, right now?”</i>");
 			}
 		}
 		
-		if(!pc.lowerUndergarment.hardLightEquipped || !pc.hasCock())
+		if(!pc.lowerUndergarment.hardLightEquipped && !pc.hasCock())
 		{
 			output("\n\nYou ask if she’s still up for whatever you two can do together. Fingers and lips and tongues can do a lot.");
 			output("\n\n<i>“Oh, but it’s not the same,”</i> Lola says, pouting a little. <i>“And I really like to be, you know–”</i> She thrusts her voluminous hips in your direction, sending a small wave crashing against you. <i>“–penetrated. Sorry, [pc.name].”</i>");
@@ -1015,17 +1055,19 @@ public function lolaPoolApproach():void
 		
 		// [Yep] Go to FloatFuck
 		// [Nope] Go to NoFloatFuck
-		addButton(0, "Yep", lolaPoolSex, "yep");
+		if (pc.lust() < 33) addDisabledButton(0, "Yep", "Yep", "You are not aroused enough for this.");
+		else addButton(0, "Yep", lolaPoolSex, "yep");
 		addButton(1, "Nope", lolaPoolSex, "nope");
 	}
 	else
 	{
-		output("You wade over to the wide-hipped cowgirl as she swims her laps. Remembering your first encounter, you pause where she’ll bump into you as she swims. When Lola’s pale shoulder rubs up against you, she looks up, then gives you a sweet smile as she stands.");
+		output("You enter the pool and wade over to the wide-hipped cowgirl as she swims her laps. Remembering your first encounter, you pause where she’ll bump into you as she swims. When Lola’s pale shoulder rubs up against you, she looks up, then gives you a sweet smile as she stands.");
 		output("\n\n<i>“Hi there, [pc.name],”</i> Lola says. Her cheeks turn pink, and she twirls one finger into her shoulder-length red hair. <i>“Good to see you. You just here to swim, or....”</i> She shakes her ample hips in your direction a few times, and giggles, and leaving no doubt at all what she’s asking.");
 		
 		// [Yep] Go to FloatFuck {requires penis or strap-on}
 		// [Nope] Go to NoFloatFuck
-		if(pc.lowerUndergarment.hardLightEquipped || pc.hasCock()) addButton(0, "Yep", lolaPoolSex, "yep");
+		if (pc.lust() < 33) addDisabledButton(0, "Yep", "Yep", "You are not aroused enough for this.");
+		else if(pc.lowerUndergarment.hardLightEquipped || pc.hasCock()) addButton(0, "Yep", lolaPoolSex, "yep");
 		else addDisabledButton(0, "Yep", "Yep", "You don’t have the proper equipment to do this!");
 		addButton(1, "Nope", lolaPoolSex, "nope");
 	}

@@ -391,11 +391,13 @@ package classes {
 		public var hairStyle:String = "null";
 		public function hairLengthUnlocked(newHairLength:Number):Boolean
 		{
+			if (hasPerk("Mane") && newHairLength <= 3) return false;
 			if (hairType == GLOBAL.HAIR_TYPE_GOO && (skinType == GLOBAL.SKIN_TYPE_GOO || hasStatusEffect("Goo Vent"))) return false;
 			return true;
 		}
 		public function hairLengthLockedMessage():String
 		{
+			if (hasPerk("Mane")) return "Your scalp briefly tingles, but your [pc.hair] refuses to change. It seems your mane can’t get any shorter!";
 			return "Your scalp briefly tingles, but your [pc.hair] remains unchanged.";
 		}
 
@@ -2514,6 +2516,7 @@ package classes {
 		
 		public function inSwimwear(strict:Boolean = false):Boolean
 		{
+			if(hasStatusEffect("Temporary Swimwear Cheat")) return true;
 			// Armor/Outfit check:
 			if (hasArmor() && armor.hasFlag(GLOBAL.ITEM_FLAG_SWIMWEAR))
 			{
@@ -4201,7 +4204,7 @@ package classes {
 			{
 				if (!hasLegFlag(GLOBAL.FLAG_CHITINOUS)) return "null";
 				if (hasLegFlag(GLOBAL.FLAG_GOOEY)) return scaleColor;
-				if (InCollection(legType, GLOBAL.TYPE_MYR)) return scaleColor;
+				if (InCollection(legType, GLOBAL.TYPE_MYR, GLOBAL.TYPE_GOOEY)) return scaleColor;
 				return RandomInCollection(colors);
 			}
 			if (part == "tail" || hasTailFlag(GLOBAL.FLAG_CHITINOUS))
@@ -7831,6 +7834,8 @@ package classes {
 			if (gooScore() >= 8) race = "galotian";
 			// MLP-morphs
 			if (legType == GLOBAL.TYPE_MLP) race = mlpRace();
+			// Amalgamations
+			if (race == "human" && humanScore() < 4) race = "alien hybrid";
 			
 			return race;
 		}
@@ -7885,6 +7890,20 @@ package classes {
 			if (race().indexOf("half-") != -1) return true;
 			if (race().indexOf("half ") != -1) return true;
 			return false;
+		}
+		public function humanScore(): int {
+			var counter: int = 0;
+			if (skinType == GLOBAL.SKIN_TYPE_SKIN) counter++;
+			if (armType == GLOBAL.TYPE_HUMAN && !hasArmFlag(GLOBAL.FLAG_GOOEY)) counter++;
+			if (legType == GLOBAL.TYPE_HUMAN && legCount == 2 && hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) counter++;
+			if (faceType == GLOBAL.TYPE_HUMAN) counter++;
+			if (earType == GLOBAL.TYPE_HUMAN) counter++;
+			if (eyeType == GLOBAL.TYPE_HUMAN) counter++;
+			if (hasHair() && hairType != GLOBAL.HAIR_TYPE_REGULAR) counter--;
+			if (hasTail()) counter--;
+			if (wingType != 0) counter--;
+			if (isGoo() || isTaur() || isNaga() || isDrider()) counter -= 2;
+			return counter;
 		}
 		public function ausarScore(): int {
 			var counter: int = 0;
@@ -8024,9 +8043,9 @@ package classes {
 			if (faceType == GLOBAL.TYPE_EQUINE) counter++;
 			if (armType == GLOBAL.TYPE_EQUINE) counter++;
 			if (legType == GLOBAL.TYPE_EQUINE) counter++;
-			if (counter > 1 && hairType == GLOBAL.HAIR_TYPE_REGULAR && hasPerk("Mane")) counter++;
 			if (counter > 2 && cockTotal(GLOBAL.TYPE_EQUINE) > 0) counter++;
 			if (counter > 2 && vaginaTotal(GLOBAL.TYPE_EQUINE) > 0) counter++;
+			if (counter > 3 && hairType == GLOBAL.HAIR_TYPE_REGULAR && hasPerk("Mane")) counter++;
 			return counter;
 		}
 		public function myrScore(): int
@@ -9323,7 +9342,11 @@ package classes {
 				}
 				if (descripted > 0) descript += " mane";
 				if (hairType == GLOBAL.HAIR_TYPE_FEATHERS) descript += " of feathers";
-				if (hairType == GLOBAL.HAIR_TYPE_GOO) descript += " of goo";
+				if (hairType == GLOBAL.HAIR_TYPE_GOO)
+				{
+					descript += " of goo";
+					if (hairStyle == "tentacle") descript += "-tentacles";
+				}
 				if (hairType == GLOBAL.HAIR_TYPE_TENTACLES) descript += " of tentacles";
 			}
 			//Not manes
@@ -9341,7 +9364,11 @@ package classes {
 					}
 				}
 				if (descripted > 0) descript += " ";
-				if (hairType == GLOBAL.HAIR_TYPE_TENTACLES || hairStyle == "tentacle") descript += "tentacle-hair";
+				if (hairType == GLOBAL.HAIR_TYPE_TENTACLES || hairStyle == "tentacle")
+				{
+					if (hairType == GLOBAL.HAIR_TYPE_GOO && descript.indexOf("goo") == -1) descript += "gooey ";
+					descript += "tentacle-hair";
+				}
 				else if (hairType == GLOBAL.HAIR_TYPE_FEATHERS) 
 				{
 					if(rand(2) == 0) descript += "plumage";
@@ -9372,7 +9399,7 @@ package classes {
 			}
 			//Not manes
 			else {
-				if (hairType == GLOBAL.HAIR_TYPE_TENTACLES && rand(2) == 0) descript += "tentacle-hair";
+				if ((hairType == GLOBAL.HAIR_TYPE_TENTACLES || hairStyle == "tentacle") && rand(2) == 0) descript += "tentacle-hair";
 				else if (hairType == GLOBAL.HAIR_TYPE_FEATHERS) 
 				{
 					if(rand(2) == 0) descript += "plumage";
@@ -9385,7 +9412,7 @@ package classes {
 		public function hairsNoun():String
 		{
 			var descript:String = "";
-			if (hairType == GLOBAL.HAIR_TYPE_TENTACLES) descript += "tentacles";
+			if (hairType == GLOBAL.HAIR_TYPE_TENTACLES || hairStyle == "tentacle") descript += "tentacles";
 			else if (hairType == GLOBAL.HAIR_TYPE_FEATHERS) descript += "feathers";
 			else if (hairType == GLOBAL.HAIR_TYPE_GOO) descript += "locks of goo";
 			else descript += "locks";

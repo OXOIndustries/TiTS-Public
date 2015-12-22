@@ -160,7 +160,7 @@ package classes.Engine.Combat
 				else output(" doesn't");
 				output(" seem the least bit bothered by the miniature goo crawling over them.</b>\n");
 			}
-			if (special == "slut ray")
+			else if (special == "slut ray")
 			{
 				output("\n<b>");
 				if (target is PlayerCharacter) output("You don’t");
@@ -191,10 +191,10 @@ package classes.Engine.Combat
 			{
 				output(" A tiny " + (attacker.rangedWeapon as Goovolver).randGooColour() + " goo, vaguely female in shape, pops out and starts to crawl over " + target.mf("him", "her") + ", teasing " + target.mf("his", "her") + " most sensitive parts!");
 			}
-			if (special == "slut ray")
+			else if (special == "slut ray")
 			{
 				var lewdAdjective:String = "";
-				if(damageResult.wasCrit == true) lewdAdjective += RandomInCollection("awfully", "excessively", "extremely", "highly", "immensely", "intensely", "overly", "unusually", "very") + " ";
+				if(damageResult.wasCrit == true || damageResult.lustDamage >= 20) lewdAdjective += RandomInCollection("awfully", "excessively", "extremely", "highly", "immensely", "intensely", "overly", "unusually", "very") + " ";
 				lewdAdjective += RandomInCollection("alluring", "amorous", "carnal", "lewd", "obscene", "seductive", "sensual", "steamy", "suggestive");
 				
 				output("\n");

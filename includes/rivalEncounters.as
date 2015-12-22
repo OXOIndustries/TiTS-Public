@@ -32,6 +32,10 @@ public function showDane(nude:Boolean = false):void
 //Approach
 public function approachRivalOnMhenga():Boolean 
 {
+	// Room Descriptions
+	if(flags["MHENGA_PROBE_CASH_GOT"] == undefined) output("Buried halfway in a small crater of its own creation sits an oblong metal pod, perhaps ten feet long and three across. The surface is still glossy after its obviously hot reentry; you can see the way it blackened the ground and the plants around it. You immediately recognize it as one of the probes your father sent out - one of the keys to his fortune.");
+	else output("A small, vacant, impact crater is located on the jungle floor, the ground blackened and plants uprooted around it. It distinctly marks the site of one of your father’s probes you had since dug up. The cavity now acts as a basin to collect rainforest water, turning it into a tiny lake.");
+	// Encounter
 	if(flags["UNLOCKED_JUNKYARD_PLANET"] == undefined)
 	{
 		flags["UNLOCKED_JUNKYARD_PLANET"] = 1;
@@ -46,10 +50,87 @@ public function approachRivalOnMhenga():Boolean
 		addButton(4,"Wait",letRivalGoOnMhenga);
 		return true;
 	}
+	// Probe Options
 	else 
 	{
-		output("\n\n<b>You've already gotten the data from this pod. It was a set of coordinates to another planet, likely with its own pod.</b>");
+		if(flags["MHENGA_PROBE_CASH_GOT"] == undefined)
+		{
+			output("\n\n<b>You’ve already gotten the data from this pod. It was a set of coordinates to");
+			if(flags["UNLOCKED_JUNKYARD_PLANET"] >= 2) output(" Tarkus");
+			else output(" another planet");
+			if(flags["PLANET_3_UNLOCKED"] == undefined) output(", likely with its own pod");
+			output(".</b> You can probably call Steele Tech to come in and retrieve it.");
+			addButton(0,"Reclaim Pod",probeReclamationMhenga,0);
+		}
 		return false;
+	}
+}
+public function probeReclamationMhenga(response:int = 0):void
+{
+	clearOutput();
+	showName("STEELE\nTECH");
+	
+	if(response == 0)
+	{
+		output("With the data-less probe just sitting there, you decide it’s probably best to call in a pickup before you get complaints forwarded to you by Pyrite Industries if they happen to stumble upon it during construction. You flip out your Codex and dial Steele Tech for property retrieval. Communications tell you that they will dispatch a boat to your position as the probe’s signal is currently too weak to pinpoint. So with that, you wait.");
+		processTime(60);
+		clearMenu();
+		addButton(0,"Next",probeReclamationMhenga,1);
+	}
+	else if(response == 1)
+	{
+		output("And wait...");
+		processTime(60);
+		clearMenu();
+		addButton(0,"Next",probeReclamationMhenga,2);
+	}
+	else if(response == 2)
+	{
+		output("... and wait.");
+		processTime(60);
+		clearMenu();
+		addButton(0,"Next",probeReclamationMhenga,3);
+	}
+	else if(response == 3)
+	{
+		output("Over three-and-a-half hours pass and you start to wonder what is taking so long--but a mechanical humming noise breaks through the natural rainforest sounds, alerting you of an approaching hover bike.");
+		output("\n\nWhen the bike finally arrives, it lands next to the probe. The driver, clad in an armored Steele Tech suit and bio-helmet, steps off and props the vehicle to the parking position, then activates a towing device in the back. As the hydraulics hum and the tractor beam warm up, the person takes off their helmet to reveal a cocoa-toned young");
+		if(CodexManager.entryUnlocked("Dzaan")) output(" dzaan");
+		else output(" alien");
+		output(" female with bright violet eyes and platinum micro braids, tied up into a mid-ponytail. Her maroon-colored lips stretch into a brief smile as she deeply inhales.");
+		output("\n\n<i>“Pick-up crew at your service, " + pc.mf("Mr.","Ms.") + " Steele,”</i> she says, giving you a two-finger salute with her gloved fingers.");
+		if(pc.isNice()) output("\n\n<i>“Greetings, was there trouble? I’ve been waiting for quite some time,”</i> you answer.");
+		else output("\n\n<i>“It’s about time, kid - what in the void took you so long?”</i> you retort.");
+		output(" <i>“... and ‘crew’? There’s only one of you.”</i>");
+		output("\n\nThe girl blushes slightly of embarrassment. <i>“I’m incredibly sorry about the delay - we tried to send you updates, but our messenger systems were corrupted by the humidity when we landed. That and Ringo was too afraid to land deep in the jungles--he’s still a pilot-in-training, fresh out of the academy, and he didn’t want to lose the bird on his first pickup run--so we landed at port. Another hour was eaten up when we entered because Maggie wanted to make sure everything checked out with the authorities before going in--she’s the supervisor on this run and she likes to do everything by the book. The thick jungle also made it impossible for us to enter as a party, so I was ordered to go in with this speeder to make the pickup while the others try to fix the comms.”</i>");
+		output("\n\nYou accept her apology and take note of her crew’s novice-level experience.");
+		output("\n\nA green light flickers on the control panel, letting the courier know the anti-gravity tractor is primed and ready. She unravels a wire from the back of the bike and latches its hook onto one of the probe’s internal rails. Flipping a switch, the wire reels in and the tractor beam helps lift the pod from the soft earth. A few creaks sound as the bike’s back end tilts under the weight being lifted. With a metallic clink, the line stops and the probe is connected to the vehicle.");
+		output("\n\nThe young female kneels down and starts attaching some securing straps into place. As you help her with it, her hover bike’s onboard radio crackles to life with digital static.");
+		output("\n\n<i>“--two--eck... --you read?”</i> A male voice can be heard through the comm-link.");
+		output("\n\nThe girl’s ears and eyes perk up. She stretches herself across the bike, ass in the air, and taps the transmit button. <i>“Ten-nine, I can barely hear you, four-ten?”</i>");
+		output("\n\nA soft hush, then, <i>“Check, one-two. Check, Milly, do you copy?”</i>");
+		output("\n\n<i>“Five by five, Kitty Cat, over.”</i>");
+		output("\n\n<i>“Ten-four--</i>ugh<i>, and stop calling me that! What’s your 20?”</i>");
+		output("\n\n<i>“I have the package and I’m ready to return to the boat.”</i>");
+		output("\n\n<i>“Copy that. Give Steele a big hello for me, will ya?”</i>");
+		output("\n\nMilly looks over her rear and giggles, <i>“Ringo says hi.”</i> She then continues, <i>“Affirmative.”</i>");
+		output("\n\n<i>“Alright, the bird should be ready in ten. Get your butt over here if you want to make the next shipment.”</i>");
+		output("\n\n<i>“Ten-four, I’m 51 to you now.”</i>");
+		output("\n\n<i>“Roger that, good buddy.”</i>");
+		output("\n\nYou lightly chuckle at the radio chatter you just witnessed.");
+		output("\n\n<i>“Oh, I almost forgot,”</i> she says, whipping out her Codex. <i>“These old probes still have a bounty attached to them, so I have to make sure you get paid before I jet.”</i> She waves her device next to yours and it gives a positive beep, alerting you to a new deposit of <b>20,000 credits</b> into your bank account.");
+		output("\n\nYou thank the young woman, as she double-checks the straps. With everything secured, she dons her helmet, positions herself on the bike, releases the parking stand and revs up the engine, hovering along with the newly acquired load. Giving her two-finger salute again, she bids you farewell and blasts through the narrow jungle depths towards the exit with a load hum and the probe in tow.");
+		output("\n\nWhen she’s finally gone, you prepare your things and set out.");
+		
+		pc.credits += 20000;
+		processTime(60);
+		restHeal();
+		flags["MHENGA_PROBE_CASH_GOT"] = 1;
+		variableRoomUpdateCheck();
+		var map:* = mapper.generateMap(currentLocation);
+		userInterface.setMapData(map);
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
 	}
 }
 

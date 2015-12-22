@@ -22,7 +22,7 @@
 			this.originalRace = "naleen";
 			this.a = "the ";
 			this.capitalA = "The ";
-			this.long = "You're fighting a Naleen: a towering, serpentine predator from the waist down, supporting a beautiful and quite busty humanoid torso that bares a more than passing resemblance to a feline, with brilliant orange and black tiger stripes and perky feline ears. Her long, fiery hair is braided down her back, ending in a green  leaf-woven bow just above her wide hips and full ass. Despite a body that screams raw sexuality, the naleen's claws are razor sharp and pointed at you as she slithers around the battleground, ready to pounce with feline grace and reptilian power.";
+			this.long = "A towering, serpentine predator from the waist down, the naleen is supporting a beautiful and quite busty humanoid torso that bares a more than passing resemblance to a feline, with brilliant orange and black tiger stripes and perky feline ears. Her long, fiery hair is braided down her back, ending in a green  leaf-woven bow just above her wide hips and full ass. Despite a body that screams raw sexuality, the naleen's claws are razor sharp and pointed at you as she slithers around the battleground, ready to pounce with feline grace and reptilian power.";
 			this.customDodge = "The naleen slides out of the way of your attack, serpentine body stretching and contorting in ways far beyond human ability.";
 			this.customBlock = "The naleen girl catches your attack on her sharp claws, parrying the strike with feline grace.";
 			this.plural = false;

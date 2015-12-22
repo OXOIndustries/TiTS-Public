@@ -56,7 +56,7 @@ public function gooBiomass(arg:Number = 0):Number
 	{
 		flags["GOO_BIOMASS"] += arg;
 		if(flags["GOO_BIOMASS"] < 0) flags["GOO_BIOMASS"] = 0;
-		else if(flags["GALOMAX_DOSES"] > 0 && flags["GALOMAX_DOSES"] <= 4)
+		else if(flags["GALOMAX_DOSES"] > 0 && flags["GALOMAX_DOSES"] <= 5)
 		{
 			if(flags["GOO_BIOMASS"] > gooBiomassMax()) flags["GOO_BIOMASS"] = gooBiomassMax();
 		}
@@ -216,6 +216,8 @@ public function galoMaxTFProc():void
 		output("\n\nNo other changes seem forthcoming. You’ll need another GaloMax to get any gooeyer.");
 		//Uncool hair colors are changed to green, blue, or some other standard goo color. Maybe consult codex to see what choices we have?
 		pc.hairColor = colorSelect;
+		if(pc.hairType == GLOBAL.HAIR_TYPE_TENTACLED) pc.hairStyle = "tentacle";
+		else pc.hairStyle = "null";
 		pc.hairType = GLOBAL.HAIR_TYPE_GOO;
 	}
 	//Dose 2
@@ -503,6 +505,12 @@ public function revertGooBody(part:String = "all", consumeBiomass:Boolean = fals
 	var gooTone:String = gooColor();
 	if(part == "skin" || part == "all")
 	{
+		if(pc.hairType != GLOBAL.HAIR_TYPE_GOO)
+		{
+			if(pc.hairType == GLOBAL.HAIR_TYPE_TENTACLED) pc.hairStyle = "tentacle";
+			else pc.hairStyle = "null";
+			pc.hairType = GLOBAL.HAIR_TYPE_GOO;
+		}
 		pc.skinTone = gooTone;
 		pc.furColor = gooTone;
 		pc.scaleColor = gooTone;
@@ -510,6 +518,7 @@ public function revertGooBody(part:String = "all", consumeBiomass:Boolean = fals
 		pc.skinType = GLOBAL.SKIN_TYPE_GOO;
 		pc.clearSkinFlags();
 		pc.addSkinFlag(GLOBAL.FLAG_SQUISHY);
+		if(pc.statusEffectv1("Gel Body") >= 1) pc.addSkinFlag(GLOBAL.FLAG_LUBRICATED);
 		if(consumeBiomass) gooBiomass(-20);
 	}
 	// Goo mound!
@@ -518,7 +527,6 @@ public function revertGooBody(part:String = "all", consumeBiomass:Boolean = fals
 		pc.legCount = 1;
 		pc.clearLegFlags();
 		pc.addLegFlag(GLOBAL.FLAG_AMORPHOUS);
-		pc.addSkinFlag(GLOBAL.FLAG_LUBRICATED);
 		pc.legType = GLOBAL.TYPE_GOOEY;
 		pc.genitalSpot = 0;
 		pc.removeStatusEffect("Mimbrane Foot Left");
@@ -534,7 +542,7 @@ public function revertGooBody(part:String = "all", consumeBiomass:Boolean = fals
 			// Strip skin/fur/scale flags for gel legs
 			for (i = 0; i < pc.legFlags.length; i++)
 			{
-				if (!InCollection(pc.legFlags[i], GLOBAL.FLAG_FURRED, GLOBAL.FLAG_SCALED, GLOBAL.FLAG_CHITINOUS, GLOBAL.FLAG_FEATHERED))
+				if (!InCollection(pc.legFlags[i], GLOBAL.FLAG_FURRED, GLOBAL.FLAG_FLUFFY, GLOBAL.FLAG_SCALED, GLOBAL.FLAG_CHITINOUS, GLOBAL.FLAG_FEATHERED))
 					legProperties.push(pc.legFlags[i]);
 			}
 			pc.clearLegFlags();
@@ -551,7 +559,7 @@ public function revertGooBody(part:String = "all", consumeBiomass:Boolean = fals
 		{
 			for (i = 0; i < pc.armFlags.length; i++)
 			{
-				if (!InCollection(pc.armFlags[i], GLOBAL.FLAG_FURRED, GLOBAL.FLAG_SCALED, GLOBAL.FLAG_CHITINOUS, GLOBAL.FLAG_FEATHERED))
+				if (!InCollection(pc.armFlags[i], GLOBAL.FLAG_FURRED, GLOBAL.FLAG_FLUFFY, GLOBAL.FLAG_SCALED, GLOBAL.FLAG_CHITINOUS, GLOBAL.FLAG_FEATHERED))
 					armProperties.push(pc.armFlags[i]);
 			}
 			pc.clearArmFlags();
@@ -608,7 +616,7 @@ public function showBiomass():void
 {
 	if(flags["GOO_BIOMASS"] == undefined || flags["GOO_BIOMASS"] < 0) flags["GOO_BIOMASS"] = 0;
 	output2("\n\n\tBiomass Reserve: <b>" + flags["GOO_BIOMASS"] + "</b>");
-	if(flags["GALOMAX_DOSES"] >= 1 && flags["GALOMAX_DOSES"] <= 4) output2(" / " + gooBiomassMax());
+	if(flags["GALOMAX_DOSES"] >= 1 && flags["GALOMAX_DOSES"] <= 5) output2(" / " + gooBiomassMax());
 	output2(" mLs");
 	if(pc.hasStatusEffect("Goo Vent")) {
 		output2("\n\tVenting: ");
@@ -730,9 +738,9 @@ public function newGooStyle():void
 public function gooStyle(arg:String):void
 {
 	clearOutput2();
-	output2("You use your Codex’s Holocam to check your appearance as your hair miraculously assumes the chosen shape. There’s a certain thrill in being able to alter your looks so effortlessly on your own, without something as barbaric as a pair of clippers of styling gel. You’re your own styling gel!");
+	output2("You use your Codex’s Holocam to check your appearance as your hair miraculously assumes the chosen shape. There’s a certain thrill in being able to alter your looks so effortlessly on your own, without something as barbaric as a pair of clippers or styling gel. You’re your own styling gel!");
 	pc.hairStyle = arg;
-	output2("\n\n<b>You have a new hairstyle: " + pc.hairStyle + "</b>");
+	output2("\n\n<b>You now have a new hairstyle: " + pc.hairStyle + "!</b>");
 	clearGhostMenu();
 	addGhostButton(0,"Next",gooHairAdjustmenu)
 }
@@ -759,8 +767,58 @@ public function gooBodyCustomizer():void
 {
 	clearOutput2();
 	output2("Do you will your body to change anything?");
+	
 	// Print body stats here:
-	/* 9999 */
+	var i:int = 0;
+	output2("\n\n<b><u>Body</u></b>");
+	output2("\n<b>* Skin:</b>");
+	if(pc.skinFlags.length > 0)
+	{
+		for(i = 0; i < pc.skinFlags.length; i++)
+		{
+			output2(" " + GLOBAL.FLAG_NAMES[pc.skinFlags[i]] + ",");
+		}
+	}
+	output2(" " + GLOBAL.SKIN_TYPE_NAMES[pc.skinType]);
+	output2("\n<b>* Arms:</b> ");
+	if(pc.armFlags.length > 0)
+	{
+		for(i = 0; i < pc.armFlags.length; i++)
+		{
+			output2(" " + GLOBAL.FLAG_NAMES[pc.armFlags[i]] + ",");
+		}
+	}
+	output2(" " + GLOBAL.TYPE_NAMES[pc.armType]);
+	if(pc.legCount >= 2)
+	{
+		if(pc.legType == GLOBAL.TYPE_NAGA) output2("\n<b>* Lower Tails:</b>");
+		else output2("\n<b>* Legs:</b>");
+		output2(" " + pc.legCount + ",");
+	}
+	else output2("\n<b>* Lower Body:</b>");
+	if(pc.legFlags.length > 0)
+	{
+		for(i = 0; i < pc.legFlags.length; i++)
+		{
+			output2(" " + GLOBAL.FLAG_NAMES[pc.legFlags[i]] + ",");
+		}
+	}
+	output2(" " + GLOBAL.TYPE_NAMES[pc.legType]);
+	if(pc.tailCount > 0)
+	{
+		if(pc.tailCount == 1) output2("\n<b>* Tail:</b>");
+		else output2("\n<b>* Tails:</b>");
+		output2(" " + pc.tailCount + ",");
+		if(pc.tailFlags.length > 0)
+		{
+			for(i = 0; i < pc.tailFlags.length; i++)
+			{
+				output2(" " + GLOBAL.FLAG_NAMES[pc.tailFlags[i]] + ",");
+			}
+		}
+		output2(" " + GLOBAL.TYPE_NAMES[pc.tailType]);
+	}
+	
 	showBiomass();
 	clearGhostMenu();
 	
@@ -769,13 +827,13 @@ public function gooBodyCustomizer():void
 	
 	// Bodypart fixans: (Primarily for things that got force changes--like Dr.Badger and Holiday events)
 	var nonGooPart:Number = 0;
-	if(pc.skinType != GLOBAL.SKIN_TYPE_GOO)
+	if(pc.skinType != GLOBAL.SKIN_TYPE_GOO || pc.hairType != GLOBAL.HAIR_TYPE_GOO)
 	{
-		if(gooBiomass() >= 20) addGhostButton(5,"Revert Skin",revertGooBodyPart,"skin","Revert Skin","Revert your skin back to goo skin.\n\n<b>20 mLs Biomass</b>");
+		if(gooBiomass() >= 20) addGhostButton(5,"Revert Skin",revertGooBodyPart,"skin","Revert Skin and Hair","Revert your skin and hair back to goo.\n\n<b>20 mLs Biomass</b>");
 		else addDisabledGhostButton(5,"Revert Skin","Revert Skin","You don't have enough biomass for that.\n\n<b>20 mLs Biomass</b>");
 		nonGooPart++;
 	}
-	else addDisabledGhostButton(5,"Revert Skin","Revert Skin","Your skin is already made of goo!");
+	else addDisabledGhostButton(5,"Revert Skin","Revert Skin","Your skin and hair are already made of goo!");
 	if(pc.hasArmFlag(GLOBAL.FLAG_FURRED) || pc.hasArmFlag(GLOBAL.FLAG_SCALED) || pc.hasArmFlag(GLOBAL.FLAG_CHITINOUS) || pc.hasArmFlag(GLOBAL.FLAG_FEATHERED))
 	{
 		if(gooBiomass() >= 20) addGhostButton(6,"Revert Arms",revertGooBodyPart,"arms","Revert Arms","Revert your arms back to goo.\n\n<b>20 mLs Biomass</b>");
@@ -823,12 +881,18 @@ public function revertGooBodyPart(part:String = "all"):void
 	clearOutput2();
 	output2("With a few shifts of your biomass, you close your [pc.eyes] and concentrate, focusing on");
 	if(part == "all") output2(" your entire body");
-	else if(part == "skin") output2(" your [pc.skin]");
+	else if(part == "skin")
+	{
+		output2(" your");
+		if(pc.skinType != GLOBAL.SKIN_TYPE_GOO) output2(" [pc.skin]");
+		if(pc.skinType != GLOBAL.SKIN_TYPE_GOO && pc.hairType != GLOBAL.HAIR_TYPE_GOO) output2(" and");
+		if(pc.hairType != GLOBAL.HAIR_TYPE_GOO) output2(" [pc.hair]");
+	}
 	else if(part == "legs" || part == "mound") output2(" your [pc.legOrlegs]");
 	else if(part == "arms") output2(" your [pc.arms]");
 	else if(part == "tail") output2(" [pc.eachTail]");
 	else output2(" a bag of dicks");
-	output2(" and giving yourself a nice coating of slimy goo. After a moment, any anomalies that existed is no more. <b>You are feeling more gooey now!</b>");
+	output2(" and giving yourself a nice coating of slimy goo. After a moment, any anomaly that existed is no more. <b>You are feeling more gooey now!</b>");
 	revertGooBody(part, true);
 	clearGhostMenu();
 	addGhostButton(0,"Next",gooBodyCustomizer);
@@ -862,7 +926,7 @@ public function gooChestCustomizer():void
 	if(pc.nipplesPerBreast < 4) addGhostButton(5,"Add Nipples",gooAddNipples,undefined,"Add Nipples","Add another nipple to every breast.\n\n<b>300 mLs Biomass</b>");
 	else addDisabledGhostButton(5,"Add Nipples","Add Nipples","You don't think you could handle having any more nipples.");
 	if(pc.nipplesPerBreast > 1) addGhostButton(6,"Remove Nip",gooRemoveNipples,undefined,"Remove Nipples","Remove a nipple from each of your breasts.\n\n<b>225 mLs Biomass Gain</b>");
-	else addDisabledGhostButton(6,"Remove Nip","Remove Nip","You cannot remove any more nipples. Breasts without even a single nip would like quite strange. Too strange for you.\n\n<b>225 mLs Biomass Gain</b>");
+	else addDisabledGhostButton(6,"Remove Nip","Remove Nip","You cannot remove any more nipples. Breasts without even a single nip would look quite strange. Too strange, even for you.\n\n<b>225 mLs Biomass Gain</b>");
 	if(gooBiomass() >= 100) addGhostButton(7,"Widen Nips",widenGooNipples,undefined,"Widen Nipples","Widen the areola of your [pc.nipples].\n\n<b>100 mLs Biomass</b>");
 	else addDisabledGhostButton(7,"Widen Nips","Widen Nipples","You don't have enough biomass to widen your nipples.\n\n<b>100 mLs Biomass</b>");
 	if(pc.nippleWidthRatio >= 1) addGhostButton(8,"Narrow Nips",narrowGooNips,undefined,"Narrow Nipples","Make your nipples narrower.\n\n<b>75 mLs Biomass Gain</b>");
@@ -875,10 +939,10 @@ public function gooChestCustomizer():void
 	addGhostButton(4,"Nip Type",nippleTypeGooMenu,undefined,"Nip Type","Change what type of nipples you will have.");
 	if(pc.hasDickNipples()) 
 	{
-		if(gooBiomass() >= pc.totalNipples() * 25) addGhostButton(9,"DickNipType",dickNippleGooCustomizer,undefined,"Dick Nipple Type","Change the type of penis that your dick-nipples resemble.");
+		if(gooBiomass() >= pc.totalNipples() * 25) addGhostButton(9,"DickNipType",dickNippleGooCustomizer,undefined,"Dick Nipple Type","Change the type of penis that your dick-nipples resemble.\n\n<b>" + pc.totalNipples() * 25 + " mLs Biomass</b>");
 		else addDisabledGhostButton(9,"DickNipType","Dick Nipple Type","You don't have enough biomass to change what type of dick-nipples you're sporting.\n\n<b>" + pc.totalNipples() * 25 + " mLs Biomass</b>");
 	}
-	else addDisabledGhostButton(9,"DickNipType","Dick Nipple Type","You don't have any dick-nipples to customize.\n\n<b>" + pc.totalNipples() * 25 + " mLs Biomass</b>");
+	else addDisabledGhostButton(9,"DickNipType","Dick Nipple Type","You don't have any dick-nipples to customize.");
 	addGhostButton(14,"Back",gooShiftMenu);
 }
 
@@ -1148,6 +1212,7 @@ public function gooRemoveNipples():void
 	if(pc.nipplesPerBreast == 2) output2("Deciding double-nipples are better in your imagination than in real life, you glare the offending teats and watch them shrink away to nothing, leaving you with a single [pc.nipple] per breast once more.");
 	else if(pc.nipplesPerBreast == 3) output2("You close your eyes and gently touch your triple-nipples, pushing one part of the triumvirate down in order to leave you with doubled sets. Isn't being made of goo wonderful?");
 	else output2("You will your quad nipples away, diminishing a quarter of their over-sensitive size and leaving you with triple nips.");
+	pc.nipplesPerBreast--;
 	gooBiomass(225);
 	clearGhostMenu();
 	addGhostButton(0,"Next",gooChestCustomizer);

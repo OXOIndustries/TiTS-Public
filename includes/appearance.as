@@ -25,6 +25,7 @@ public function pcAppearance(e:MouseEvent = null):void
 public function appearance(target:Creature):void
 {
 	clearOutput2();
+	clearGhostMenu();
 	addGhostButton(14, "Back", pcAppearance);
 
 	// specific-access to get around variable shadowing
@@ -1042,8 +1043,11 @@ public function appearance(target:Creature):void
 				// Gel tail
 				if(target.hasLegFlag(GLOBAL.FLAG_PREHENSILE)) output2(" In place of legs you have a semi-solid, gel-like lower body, shaped into a prehensile mass that bends and twists as you move.");
 				// Goo moound
-				else output2(" In place of legs you have a shifting amorphous blob. Thankfully it's quite easy to propel yourself around on.");
-				if(target.hasArmor()) output2(" The lowest portions of your " + target.armor.longName + " float around inside you, bringing you no discomfort.");
+				else
+				{
+					output2(" In place of legs you have a shifting amorphous blob. Thankfully it's quite easy to propel yourself around on.");
+					if(target.hasArmor()) output2(" The lowest portions of your " + target.armor.longName + " float around inside you, bringing you no discomfort.");
+				}
 			}
 			else
 			{
@@ -1260,7 +1264,6 @@ public function appearance(target:Creature):void
 		//CROTCH STUFF!
 		crotchStuff(target);
 		
-		clearGhostMenu();
 		var btnIndex:int = 0;
 		addGhostButton(btnIndex++, "PrefGender", selectGenderPref, undefined, "Preferred Gender", "Indicate the gender you would prefer your character to be considered.");
 		//PC Goo'ed up?

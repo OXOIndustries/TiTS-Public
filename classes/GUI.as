@@ -363,19 +363,13 @@
 		 */
 		private function creditsHandler():void
 		{
-			//this.userInterface.hideMenus();
-			//clearOutput2();
-			//output2("\nThis is a placeholder. Keep your eye on the 'Scene by:\' box in the lower left corner of the UI for information on who wrote scenes as they appear. Thank you!");
-			//this.userInterface.clearGhostMenu();
-			//this.addGhostButton(0,"Back to Menu",mainMenu);
-			
 			/*
+			clearOutput2();
+			output2("\nThis is a placeholder. Keep your eye on the 'Scene by:\' box in the lower left corner of the UI for information on who wrote scenes as they appear. Thank you!");
+			
+			mainButtonsOnly();
 			clearGhostMenu();
-			if (kGAMECLASS.pc.short.length == 0)
-			{
-				mainButtonsOnly();
-				addGhostButton(4, "Back", showMainMenu);
-			}
+			if (kGAMECLASS.pc.short.length == 0) addGhostButton(4, "Back", showMainMenu);
 			else addGhostButton(4, "Back", backToPrimaryOutput);
 			*/
 			

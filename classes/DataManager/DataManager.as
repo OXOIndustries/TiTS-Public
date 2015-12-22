@@ -190,7 +190,6 @@
 			
 			kGAMECLASS.clearOutput2();
 			kGAMECLASS.userInterface.dataButton.Glow();
-			kGAMECLASS.userInterface.mainButtonsOnly();
 			
 			displayMessage += "You can ";
 			
@@ -204,6 +203,7 @@
 			kGAMECLASS.output2("\n\nTrials in Tainted Space uses a system to track the game version used to create a save file. Saves that require modifications to be compatible with the version of the game you are currently running will state “<b>REQUIRES UPGRADE</b>.”");
 			kGAMECLASS.output2("\n\n<b>YOUR SAVE DATA STILL EXISTS.</b> Trying to load a slot that “<b>REQUIRES UPGRADE</b>” will perform an automatic upgrade of the save data whilst it is being loaded. Once done, you are free to continue playing the game as normal.");
 			
+			kGAMECLASS.userInterface.mainButtonsOnly();
 			kGAMECLASS.userInterface.clearGhostMenu();
 			kGAMECLASS.addGhostButton(0, "Load", this.loadGameMenu, undefined, "Load Game", "Load game data.");
 			if (kGAMECLASS.canSaveAtCurrentLocation) kGAMECLASS.addGhostButton(1, "Save", this.saveGameMenu, undefined, "Save Game", "Save game data.");
@@ -227,7 +227,6 @@
 		{
 			clearOutput2();
 			kGAMECLASS.userInterface.dataButton.Glow();
-			kGAMECLASS.userInterface.mainButtonsOnly();
 			
 			var displayMessage:String = "";
 			displayMessage += "<b>Which slot would you like to delete?</b>\n";
@@ -250,6 +249,7 @@
 			}
 			
 			output2(displayMessage);
+			kGAMECLASS.userInterface.mainButtonsOnly();
 			addGhostButton(14, "Back", this.showDataMenu);
 		}
 		
@@ -257,10 +257,10 @@
 		{
 			clearOutput2();
 			kGAMECLASS.userInterface.dataButton.Glow();
-			kGAMECLASS.userInterface.mainButtonsOnly();
 			
 			output2("Are you sure you want to delete the savegame in slot " + String(slotNum) + "?");
 			
+			kGAMECLASS.userInterface.mainButtonsOnly();
 			clearGhostMenu();
 			addGhostButton(0, "No", deleteSaveMenu);
 			addGhostButton(4, "Yes", confirmDeleteSlot, slotNum);
@@ -270,7 +270,6 @@
 		{
 			clearOutput2();
 			kGAMECLASS.userInterface.dataButton.Glow();
-			kGAMECLASS.userInterface.mainButtonsOnly();
 			
 			var df:SharedObject = getSO(slotNum);
 			
@@ -279,6 +278,7 @@
 			
 			output2("Deleted!");
 			
+			kGAMECLASS.userInterface.mainButtonsOnly();
 			clearGhostMenu();
 			addGhostButton(0, "Next", showDataMenu);
 		}
@@ -289,7 +289,6 @@
 			{
 				clearOutput2();
 				kGAMECLASS.userInterface.dataButton.Glow();
-				kGAMECLASS.userInterface.mainButtonsOnly();
 				
 				var displayMessage:String = "";
 				displayMessage += "<b>Which slot would you like to delete?</b>\n";
@@ -309,6 +308,7 @@
 				}
 				
 				output2(displayMessage);
+				kGAMECLASS.userInterface.mainButtonsOnly();
 				addGhostButton(14, "Back", this.showDataMenu);
 			}
 			
@@ -316,10 +316,10 @@
 			{
 				clearOutput2();
 				kGAMECLASS.userInterface.dataButton.Glow();
-				kGAMECLASS.userInterface.mainButtonsOnly();
 				
 				output2("Are you sure you want to delete the save file " + tarFile.name + "?");
 				
+				kGAMECLASS.userInterface.mainButtonsOnly();
 				clearGhostMenu();
 				addGhostButton(0, "No", deleteFileMenu);
 				addGhostButton(4, "Yes", confirmDeleteFileSelected, tarFile);
@@ -329,12 +329,12 @@
 			{
 				clearOutput2();
 				kGAMECLASS.userInterface.dataButton.Glow();
-				kGAMECLASS.userInterface.mainButtonsOnly();
 				
 				tarFile.deleteFile();
 				
 				output2("Deleted!");
 				
+				kGAMECLASS.userInterface.mainButtonsOnly();
 				clearGhostMenu();
 				addGhostButton(0, "Next", showDataMenu);
 			}
@@ -347,7 +347,6 @@
 		{
 			kGAMECLASS.clearOutput2();
 			kGAMECLASS.userInterface.dataButton.Glow();
-			kGAMECLASS.userInterface.mainButtonsOnly();
 			
 			var displayMessage:String = "";
 			displayMessage += "<b>Which slot would you like to load?</b>\n";
@@ -370,6 +369,7 @@
 			
 			kGAMECLASS.output2(displayMessage);
 			kGAMECLASS.output2("\n");
+			kGAMECLASS.userInterface.mainButtonsOnly();
 			kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
 		}
 		
@@ -380,7 +380,6 @@
 		{
 			kGAMECLASS.clearOutput2();
 			kGAMECLASS.userInterface.dataButton.Glow();
-			kGAMECLASS.userInterface.mainButtonsOnly();
 			
 			// Switch to enabled save notes and override prompt
 			if (kGAMECLASS.gameOptions.saveNotesToggle == undefined) kGAMECLASS.gameOptions.saveNotesToggle = true;
@@ -413,6 +412,7 @@
 			
 			kGAMECLASS.output2(displayMessage);
 			kGAMECLASS.output2("\n\n");
+			kGAMECLASS.userInterface.mainButtonsOnly();
 			if (saveNoteEnabled) kGAMECLASS.addGhostButton(14, "Back", this.saveGameBackNotes);
 			else kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
 		}
@@ -422,7 +422,6 @@
 			kGAMECLASS.userInterface.currentPCNotes = kGAMECLASS.userInterface.textInput.text;
 			
 			kGAMECLASS.removeInput();
-			kGAMECLASS.userInterface.mainButtonsOnly();
 			
 			if(kGAMECLASS.hasIllegalInput(kGAMECLASS.userInterface.currentPCNotes))
 			{
@@ -435,6 +434,7 @@
 			}
 			
 			this.saveGameNextPrompt(slotNumber);
+			kGAMECLASS.userInterface.mainButtonsOnly();
 		}
 		// Display override prompt (if toggled)
 		private function saveGameNextPrompt(slotNumber:int):void
@@ -449,6 +449,7 @@
 				kGAMECLASS.clearOutput2();
 				kGAMECLASS.output2("A save file already exists in slot " + slotNumber + ", are you sure you want to overwrite this file?");
 				
+				kGAMECLASS.userInterface.mainButtonsOnly();
 				kGAMECLASS.userInterface.clearGhostMenu();
 				kGAMECLASS.addGhostButton(0, "No", this.saveGameMenu);
 				kGAMECLASS.addGhostButton(4, "Yes", this.saveGameData, slotNumber);
@@ -456,6 +457,7 @@
 			}
 			// New file/Overwrite!
 			this.saveGameData(slotNumber);
+			kGAMECLASS.userInterface.mainButtonsOnly();
 		}
 		private function saveGameBackNotes():void
 		{
@@ -524,9 +526,9 @@
 				
 				kGAMECLASS.clearOutput2();
 				kGAMECLASS.userInterface.dataButton.Glow();
-				kGAMECLASS.userInterface.mainButtonsOnly();
 				kGAMECLASS.output2("Save data verification failed. Please send the files 'broken_save.sol' and 'TiTs_" + slotNumber + ".sol' to Fenoxo or file a bug report!");
 				kGAMECLASS.output2("\n\n" + e.message);
+				kGAMECLASS.userInterface.mainButtonsOnly();
 				kGAMECLASS.userInterface.clearGhostMenu();
 				kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
 			}
@@ -556,8 +558,8 @@
 							
 							kGAMECLASS.clearOutput2();
 							kGAMECLASS.userInterface.dataButton.Glow();
-							kGAMECLASS.userInterface.mainButtonsOnly();
 							kGAMECLASS.output2("Please allocate more storage using the dialog displayed and then click retry.");
+							kGAMECLASS.userInterface.mainButtonsOnly();
 							kGAMECLASS.userInterface.clearGhostMenu();
 							kGAMECLASS.addGhostButton(0, "Retry", this.retrySave, [dataFile, dataBlob, slotNumber]);
 					
@@ -568,8 +570,8 @@
 							
 							kGAMECLASS.clearOutput2();
 							kGAMECLASS.userInterface.dataButton.Glow();
-							kGAMECLASS.userInterface.mainButtonsOnly();
 							kGAMECLASS.output2("Game saved to slot " + slotNumber + "!");
+							kGAMECLASS.userInterface.mainButtonsOnly();
 							kGAMECLASS.userInterface.clearGhostMenu();
 							kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
 					
@@ -590,8 +592,8 @@
 					
 					kGAMECLASS.clearOutput2();
 					kGAMECLASS.userInterface.dataButton.Glow();
-					kGAMECLASS.userInterface.mainButtonsOnly();
 					kGAMECLASS.output2("Game saved!");
+					kGAMECLASS.userInterface.mainButtonsOnly();
 					kGAMECLASS.userInterface.clearGhostMenu();
 					kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
 					
@@ -602,8 +604,8 @@
 					
 					kGAMECLASS.clearOutput2();
 					kGAMECLASS.userInterface.dataButton.Glow();
-					kGAMECLASS.userInterface.mainButtonsOnly();
 					kGAMECLASS.output2("Save failed. Presumably this is because not enough storage space is available for the save file to be created. Please try again.");
+					kGAMECLASS.userInterface.mainButtonsOnly();
 					kGAMECLASS.userInterface.clearGhostMenu();
 					kGAMECLASS.addGhostButton(0, "Back", this.showDataMenu);
 							
@@ -624,8 +626,8 @@
 			{
 				kGAMECLASS.clearOutput2();
 				kGAMECLASS.userInterface.dataButton.Glow();
-				kGAMECLASS.userInterface.mainButtonsOnly();
 				kGAMECLASS.output2("Game saved to slot " + slotNumber + "!");
+				kGAMECLASS.userInterface.mainButtonsOnly();
 				kGAMECLASS.userInterface.clearGhostMenu();
 				kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
 			}
@@ -633,8 +635,8 @@
 			{
 				kGAMECLASS.clearOutput2();
 				kGAMECLASS.userInterface.dataButton.Glow();
-				kGAMECLASS.userInterface.mainButtonsOnly();
 				kGAMECLASS.output2("Please allocate more storage using the dialog displayed and then click next.");
+				kGAMECLASS.userInterface.mainButtonsOnly();
 				kGAMECLASS.userInterface.clearGhostMenu();
 				kGAMECLASS.addGhostButton(0, "Retry", this.retrySave, [dataFile, dataBlob]);
 			}
@@ -661,9 +663,9 @@
 					
 					kGAMECLASS.clearOutput2();
 					kGAMECLASS.userInterface.dataButton.Glow();
-					kGAMECLASS.userInterface.mainButtonsOnly();
 					kGAMECLASS.output2("Save data could not be verified.");
 					kGAMECLASS.output2("\n\n" + e.message);
+					kGAMECLASS.userInterface.mainButtonsOnly();
 					kGAMECLASS.userInterface.clearGhostMenu();
 					kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
 				}
@@ -672,8 +674,8 @@
 				{
 					kGAMECLASS.clearOutput2();
 					kGAMECLASS.userInterface.dataButton.Glow();
-					kGAMECLASS.userInterface.mainButtonsOnly();
 					kGAMECLASS.output2("Attempting to save data to file...");
+					kGAMECLASS.userInterface.mainButtonsOnly();
 					
 					// Convert data into a byte array
 					var baDataBlob:ByteArray = new ByteArray();
@@ -688,8 +690,8 @@
 				{
 					kGAMECLASS.clearOutput2();
 					kGAMECLASS.userInterface.dataButton.Glow();
-					kGAMECLASS.userInterface.mainButtonsOnly();
 					kGAMECLASS.output2("Save data verification failed. Unable to save data, please try again.");
+					kGAMECLASS.userInterface.mainButtonsOnly();
 					kGAMECLASS.userInterface.clearGhostMenu();
 					kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
 				}
@@ -717,9 +719,9 @@
 					
 					kGAMECLASS.clearOutput2();
 					kGAMECLASS.userInterface.dataButton.Glow();
-					kGAMECLASS.userInterface.mainButtonsOnly();
 					kGAMECLASS.output2("Save data could not be verified.");
 					kGAMECLASS.output2("\n\n" + e.message);
+					kGAMECLASS.userInterface.mainButtonsOnly();
 					kGAMECLASS.userInterface.clearGhostMenu();
 					kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
 				}
@@ -728,7 +730,6 @@
 				{
 					kGAMECLASS.clearOutput2();
 					kGAMECLASS.userInterface.dataButton.Glow();
-					kGAMECLASS.userInterface.mainButtonsOnly();
 					kGAMECLASS.output2("Attempting to save data to file...");
 					
 					// Convert data into a byte array
@@ -753,13 +754,14 @@
 					{
 						kGAMECLASS.output2("\n\nError: " + e.message);
 					}
+					kGAMECLASS.userInterface.mainButtonsOnly();
 				}
 				else
 				{
 					kGAMECLASS.clearOutput2();
 					kGAMECLASS.userInterface.dataButton.Glow();
-					kGAMECLASS.userInterface.mainButtonsOnly();
 					kGAMECLASS.output2("Save data verification failed. Unable to save data, please try again.");
+					kGAMECLASS.userInterface.mainButtonsOnly();
 					kGAMECLASS.userInterface.clearGhostMenu();
 					kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
 				}
@@ -774,8 +776,8 @@
 				
 				kGAMECLASS.clearOutput2();
 				kGAMECLASS.userInterface.dataButton.Glow();
-				kGAMECLASS.userInterface.mainButtonsOnly();
 				kGAMECLASS.output2("Save complete.");
+				kGAMECLASS.userInterface.mainButtonsOnly();
 				kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
 			}
 		}
@@ -786,8 +788,8 @@
 			{
 				kGAMECLASS.clearOutput2();
 				kGAMECLASS.userInterface.dataButton.Glow();
-				kGAMECLASS.userInterface.mainButtonsOnly();
 				kGAMECLASS.output2("Save complete.");
+				kGAMECLASS.userInterface.mainButtonsOnly();
 				kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
 			}
 		}
@@ -798,8 +800,8 @@
 			{
 				kGAMECLASS.clearOutput2();
 				kGAMECLASS.userInterface.dataButton.Glow();
-				kGAMECLASS.userInterface.mainButtonsOnly();
 				kGAMECLASS.output2("Selected a file to load.");
+				kGAMECLASS.userInterface.mainButtonsOnly();
 				kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
 				
 				stickyFileRef = new FileReference();
@@ -814,7 +816,6 @@
 			{
 				kGAMECLASS.clearOutput2();
 				kGAMECLASS.userInterface.dataButton.Glow();
-				kGAMECLASS.userInterface.mainButtonsOnly();
 				kGAMECLASS.output2("Select a file to load:\n");
 				kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
 				
@@ -829,6 +830,7 @@
 					kGAMECLASS.output2("\n#" + i + " - " + files[i].name);
 					kGAMECLASS.addGhostButton(i + offset, "#" + i, loadFileSelected, files[i]);
 				}
+				kGAMECLASS.userInterface.mainButtonsOnly();
 				
 				//stickyFileRef.browseForOpen("Open"); // FUCK YOU FOREVER ANDROID YOU FUCKING STUPID FUCKING FUCKS.
 				//stickyFileRef.addEventListener(Event.SELECT, loadFileSelected);
@@ -844,8 +846,8 @@
 				
 				kGAMECLASS.clearOutput2();
 				kGAMECLASS.userInterface.dataButton.Glow();
-				kGAMECLASS.userInterface.mainButtonsOnly();
 				kGAMECLASS.output2("Attempting to load file...");
+				kGAMECLASS.userInterface.mainButtonsOnly();
 				
 				stickyFileRef.removeEventListener(Event.SELECT, loadFileSelected);
 				
@@ -863,7 +865,6 @@
 			{
 				kGAMECLASS.clearOutput2();
 				kGAMECLASS.userInterface.dataButton.Glow();
-				kGAMECLASS.userInterface.mainButtonsOnly();
 				kGAMECLASS.output2("Attempting to load file...");
 				
 				stickyFileStreamRef = new FileStream();
@@ -888,8 +889,8 @@
 				
 				kGAMECLASS.clearOutput2();
 				kGAMECLASS.userInterface.dataButton.Glow();
-				kGAMECLASS.userInterface.mainButtonsOnly();
 				kGAMECLASS.output2("Loading...");
+				kGAMECLASS.userInterface.mainButtonsOnly();
 				kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
 			}
 		}
@@ -902,7 +903,6 @@
 			
 				kGAMECLASS.clearOutput2();
 				kGAMECLASS.userInterface.dataButton.Glow();
-				kGAMECLASS.userInterface.mainButtonsOnly();
 				kGAMECLASS.output2("Got file, verifying...");
 				
 				var dataBlob:Object;
@@ -943,6 +943,7 @@
 				}
 				
 				kGAMECLASS.output2("Error: Could not load game data.");
+				kGAMECLASS.userInterface.mainButtonsOnly();
 				kGAMECLASS.userInterface.clearGhostMenu();
 				kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
 			}
@@ -952,8 +953,8 @@
 		{
 			kGAMECLASS.clearOutput2();
 			kGAMECLASS.userInterface.dataButton.Glow();
-			kGAMECLASS.userInterface.mainButtonsOnly();
 			kGAMECLASS.output2("Something went wrong.");
+			kGAMECLASS.userInterface.mainButtonsOnly();
 			kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
 		}
 		
@@ -1050,7 +1051,6 @@
 		{
 			kGAMECLASS.clearOutput2();
 			kGAMECLASS.userInterface.dataButton.Glow();
-			kGAMECLASS.userInterface.mainButtonsOnly();
 			
 			// Save the "last active slot" for autosave purposes within the DataManager properties
 			_lastManualDataSlot = slotNumber;
@@ -1130,6 +1130,7 @@
 				}
 				
 				kGAMECLASS.output2("Error: Could not load game data.");
+				kGAMECLASS.userInterface.mainButtonsOnly();
 				kGAMECLASS.userInterface.clearGhostMenu();
 				kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
 			}

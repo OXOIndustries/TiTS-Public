@@ -147,7 +147,7 @@ public function combatMainMenu():void
 	else if (pc.hasStatusEffect("Mimbrane Smother"))
 	{
 		clearMenu();
-		output("\n\n<b>You are being smothered by a Mimbrane!</b>");
+		output("\n<b>You are being smothered by a Mimbrane!</b>");
 		addButton(0, "Struggle", mimbraneStruggle);
 		if (pc.hasPerk("Static Burst"))
 		{
@@ -1579,7 +1579,7 @@ public function rangedAttack(attacker:Creature, target:Creature, specials:Array 
 		{
 			applyDamage(damage, attacker, target, "goovolver");
 		}
-		if ((attacker.rangedWeapon is SlutRay) || (attacker.rangedWeapon is SlutRayAdvanced))
+		else if ((attacker.rangedWeapon is SlutRay) || (attacker.rangedWeapon is SlutRayAdvanced))
 		{
 			applyDamage(damage, attacker, target, "slut ray");
 		}

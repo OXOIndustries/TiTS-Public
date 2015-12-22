@@ -3177,7 +3177,7 @@ public function setBessCockType(newType:int):void
 			}
 			else
 			{
-				output(" to have " + indefiniteArticle(GLOBAL.TYPE_NAMES[newType].toLower()) + "-shaped cock");
+				output(" to have " + indefiniteArticle(GLOBAL.TYPE_NAMES[newType].toLowerCase()) + "-shaped cock");
 				//bess.cocks[0].cType = newType;
 				bess.shiftCock(0, newType); // Use this to get the proper flags.
 			}
@@ -7588,7 +7588,7 @@ public function bessEvent11CrewType(crewType:uint):void
 	
 	output("\n\n<i>“...From now on, you’re the ship’s "+ bessCrewRole() +" and an official member of the crew. You’ll be getting a hundred credit wage a week; you can do whatever you want with your earnings.”</i> You tell [bess.name], relishing the look of utter surprise on [bess.hisHer] face.");
 	
-	output("\n\n<i>“This is connected to an account you can access nearly anywhere. I had to register it under my name - since galactic banks don’t recognise AI’s as life forms - but for all intents and purposes, it is yours.”</i>");
+	output("\n\n<i>“This is connected to an account you can access nearly anywhere. I had to register it under my name - since galactic banks don’t recognize AI’s as life forms - but for all intents and purposes, it is yours.”</i>");
 	
 	output("\n\n[bess.name] begins to do something you didn’t expect - [bess.hisHer] [bess.eyeColor] eyes begin welling with tears. You didn’t even think it was possible, but there’s definitely tears pouring down [bess.hisHer] cheeks. Suddenly, you’re enveloped in a tight hug - [bess.heShe] must have forgotten how much strength [bess.heShe] has because you’re finding it hard to breathe.");
 	
@@ -12922,7 +12922,7 @@ public function bessEventMap(bChance:Boolean = false):void
 	
 	output("<i>This is the current map of your interactions with [bess.name].</i>");
 	
-	output2("\n\n" + blockHeader("[bess.name] Event Map", false));
+	output("\n\n" + blockHeader("[bess.name] Event Map", false));
 	output("\n<b><u>Progress</u></b>");
 	output("\n<b>* Status:</b>");
 	if (flags["BESS_JUST_A_SEXBOT"] == 1) output(" [bess.name] is just a sex box, Completed");
@@ -12934,7 +12934,7 @@ public function bessEventMap(bChance:Boolean = false):void
 		else output(" <i>In progress...</i>");
 		if (flags["BESS_EVENT_28"] != undefined) output(", Completed");
 	}
-	output2("\n<b>* Affection: </b>" + flags["BESS_AFFECTION"] + "%");
+	output("\n<b>* Affection: </b>" + bessAffection() + "%");
 	
 	var nTimer:Number = 0;
 	var iChance:int = 4;

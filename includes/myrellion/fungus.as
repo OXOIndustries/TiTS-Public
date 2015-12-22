@@ -770,7 +770,7 @@ public function gardeBotCoverUpdate():void
 		output("\nYou’re to the right of the robot.");
 		if(foes[0].statusEffectv4("Sporebutt") > 0) output(" There’s enough intact spores and crystals in the area to shield you from much of its damage.");
 	}
-	output("\n");
+	output("\n\n");
 }
 
 public function gardeBotBonusButtons():void
@@ -837,12 +837,12 @@ public function pressureStreamAttack():void
 	if(rangedCombatMiss(foes[0], pc)) output("\nThe flames miss you, burning some of the mushrooms at your feet to a crisp.");
 	else
 	{
-		output("The blast of flame hits you, ");
-		if(pc.shields() > 0) output("splashing against your shield");
+		output("\nThe blast of flame hits you,");
+		if(pc.shields() > 0) output(" splashing against your shield");
 		else 
 		{
-			output("burning you");
-			if(pcHasSporeShield()) output("before the spores neutralize the flames");
+			output(" burning you");
+			if(pcHasSporeShield()) output(" before the spores neutralize the flames");
 		}
 		output(".");
 		//damage.

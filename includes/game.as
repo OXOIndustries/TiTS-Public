@@ -758,17 +758,13 @@ public function flyTo(arg:String):void {
 	else if(arg == "Tavros") {
 		shipLocation = "TAVROS HANGAR";
 		currentLocation = "TAVROS HANGAR";
-		output("You fly to Tavros");
-		output(" and step out of your ship.");
+		output("You fly to Tavros and step out of your ship.");
 	}
 	else if(arg == "Tarkus")
 	{
 		shipLocation = "201";
 		currentLocation = "201";
-		output("You slow your ship down as you near the orbit of your next destination, Tarkus. As you scale down past a third of the speed of light, the planet begins to come into view: surrounded by a dense field of asteroids loom the two sundered halves of the gabilani world. At first glance this appears to be a lifeless system, however, as the ships sensor suite comes online instruments alert you to extreme electromagnetic interference emanating from the planet below, suggesting a power source in the multi-petawatt range. The planet, or perhaps more accurately the rended halves of the former planet, is blatantly chained together with a massive space tether whose every link must be the size of a Terran cruiser! Surely it must have taken the resources of the entire system to erect such a technological marvel: No wonder new pioneers are so interested in this place.");
-		output("\n\nSlowly but surely, the ship picks through shards of rock that must have once been part of the planet's core and mantle. Further in however the field seems to largely consist of orbital debris rather than planetary ejecta: hulls of space ships and ruined clumps of satellites mashed together over centuries of disuse flit past you at thousands of kilometers per hour, making your approach difficult. More than once unidentified high velocity particles are intercepted by your shields, a grim reminder your ship is barely equipped to survive this landing. Finally you're through. The console to your front chirps as heat shields engage and you enter the upper atmosphere.");
-		output("\n\n For several minutes all you can hear is the hum of the shield generator as it works to deflect and absorb much of the heat created by drag and atmospheric compression as you descend. \n\n\ Finally the vibration subsides and your view is restored as the heat shields slide open, just in time for you to see yourself punch through a thick cloud layer that leaves a mask of water droplets at the edges of your cockpit window. Although still high above the planet, you make out the surface below as mostly red speckled with flecks of silver and gray. The sea resembles acrylic paints that have undergone mixing at the hands of an overzealous toddler; hideous black and green hues garishly reflect the harsh light of Tarkus's star KP0384128J");
-		output("\n\n Entry process winks green and your altitude control system switches to local ref. 300 kilometers out from the beacon you slow to a polite mach one in towards the impact site of the ancient and disintegrating capital ship you saw from orbit. The ship is surrounded by mechanical detritus from all sides and powdered with red dusts from a wasteland which stretches as far as your eye can see to the east. It rests on the shore of the strange shimmering black sea. The land here is little more than a junkyard, one more world ravished by the march of progress until it was little more than a skeleton. The dead land sends a chill down your spine while you wait for permission to land. As you vector to one of the dimly lit hangers you fly past an ancient QR code dating from the brief but colorful Information Age of Man that reads simply; NOVA. \"<i>Goddamn the ship is prehistoric!</i>\" you think as the Z14 eases into your appointed docking bay - a hastily spray-painted square on the deck, surrounded by other explorers' ships.");
+		landOnTarkus();
 	}
 	else if(arg == "New Texas") {
 		shipLocation = "500";
@@ -1123,6 +1119,17 @@ public function variableRoomUpdateCheck():void
 		if(!rooms["DEEP JUNGLE 2"].hasFlag(GLOBAL.PLANT_BULB)) rooms["DEEP JUNGLE 2"].addFlag(GLOBAL.PLANT_BULB);
 	}
 	else rooms["DEEP JUNGLE 2"].removeFlag(GLOBAL.PLANT_BULB);
+	//Mhenga Probe
+	if(flags["MHENGA_PROBE_CASH_GOT"] == undefined)
+	{
+		rooms["METAL POD 1"].roomName = "METAL\nPOD";
+		if(!rooms["METAL POD 1"].hasFlag(GLOBAL.OBJECTIVE)) rooms["METAL POD 1"].addFlag(GLOBAL.OBJECTIVE);
+	}
+	else
+	{
+		rooms["METAL POD 1"].roomName = "SMALL\nCRATER";
+		rooms["METAL POD 1"].removeFlag(GLOBAL.OBJECTIVE);
+	}
 	
 	
 	/* TARKUS */
@@ -1291,11 +1298,11 @@ public function variableRoomUpdateCheck():void
 	if(flags["FUNGUS_QUEEN_SAVED"] == undefined && flags["LET_FUNGUS_QUEEN_DIE"] == undefined)
 	{
 		rooms["2S11"].northExit = "2S9";
-		if(!rooms["2S9"].hasFlag(GLOBAL.OBJECTIVE)) rooms["2S9"].addFlag(GLOBAL.OBJECTIVE);
+		if(CodexManager.entryUnlocked("Myr Fungus") && !rooms["2S7"].hasFlag(GLOBAL.OBJECTIVE)) rooms["2S7"].addFlag(GLOBAL.OBJECTIVE);
 	}
 	else 
 	{
-		if(rooms["2S9"].hasFlag(GLOBAL.OBJECTIVE)) rooms["2S9"].removeFlag(GLOBAL.OBJECTIVE);
+		if(rooms["2S7"].hasFlag(GLOBAL.OBJECTIVE)) rooms["2S7"].removeFlag(GLOBAL.OBJECTIVE);
 		rooms["2S11"].northExit = "";
 	}
 	// Crystal Goo Silly Modes
@@ -1691,6 +1698,8 @@ public function processTime(arg:int):void {
 				
 				tryProcSaendraXPackEmail();
 				
+				// Manes grow out!
+				if(pc.hasPerk("Mane") && pc.hairLength <= 3) maneHairGrow();
 				// Fecund Figure shape gain (Gains only while pregnant)
 				if(pc.hasPerk("Fecund Figure"))
 				{
@@ -1771,6 +1780,48 @@ public function processTime(arg:int):void {
 	flags["HYPNO_EFFECT_OUTPUT_DONE"] = undefined;
 	variableRoomUpdateCheck();
 	updatePCStats();
+}
+
+public function maneHairGrow():void
+{
+	eventBuffer += "\n\nYour scalp tingles and you";
+	if (pc.hairLength <= 0)
+	{
+		eventBuffer += " reach up to scratch it. Instead of [pc.skinFurScalesNoun], your fingers run across";
+		if(pc.hairType == GLOBAL.HAIR_TYPE_REGULAR)
+		{
+			eventBuffer += " patches of growing hair.";
+			pc.hairLength = 0.125;
+		}
+		else
+		{
+			eventBuffer += " a growing patch of tiny [pc.hairsNoun].";
+			pc.hairLength = 0.5;
+		}
+		eventBuffer += " <b>You now have [pc.hair]!</b>";
+	}
+	else
+	{
+		var hairGain:Number = 1 + rand(2);
+		if (pc.hairLength <= 2)
+		{
+			eventBuffer += " reach up to touch your short [pc.hairNoun]. <b>It seems longer than it did before, growing out about " + num2Text(hairGain) + " more inch";
+			if(hairGain != 1) eventBuffer += "es";
+			eventBuffer += ".</b>";
+		}
+		else
+		{
+			eventBuffer += " see your [pc.hairNoun] grow out, right in front of your [pc.eyes]. <b>Your hair has lengthened by " + num2Text(hairGain) + " inch";
+			if(hairGain != 1) eventBuffer += "es";
+			eventBuffer += "!</b>";
+		}
+		pc.hairLength = Math.round(hairLength + hairGain);
+	}
+	if(pc.hairStyle != "null" || pc.hairStyle != "tentacle")
+	{
+		eventBuffer += " It seems the growth has messed up your hairdo in the process... You might have to get it restyled later.";
+		pc.hairStyle = "null";
+	}
 }
 
 public function honeyPotCheck():void
@@ -1855,7 +1906,7 @@ public function honeyPotBump(cumShot:Boolean = false):void
 
 public function racialPerkUpdateCheck():void
 {
-	if(pc.hasPerk("'Nuki Nuts"))
+	if(pc.hasPerk("'Nuki Nuts") && pc.perkv2("'Nuki Nuts") != 1)
 	{
 		if(pc.nukiScore() < 3)
 		{
@@ -1888,7 +1939,9 @@ public function racialPerkUpdateCheck():void
 	{
 		if(!pc.hasVagina())
 		{
-			eventBuffer += "\n\nNo longer possessing a vagina, your body rapidly changes and you lose your fertility goddess-like build.";
+			eventBuffer += "\n\nNo longer possessing a vagina, your body tingles";
+			if((pc.perkv1("Fecund Figure") + pc.perkv2("Fecund Figure") + pc.perkv3("Fecund Figure")) > 0) eventBuffer += ", rapidly changing as you lose your fertility goddess-like build";
+			eventBuffer += ".";
 			eventBuffer += "\n\n(<b>Perk Lost: Fecund Figure</b>)";
 			pc.removePerk("Fecund Figure");
 		}
@@ -5548,7 +5601,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Streets of Gildenmere
-			if(flags["MET_ORRYX"] != undefined || 9999 == 0)
+			if(flags["MET_ORRYX"] != undefined)
 			{
 				output2("\n<b><u>Gildenmere</u></b>");
 				// Orryx, step right up ladies and gents!
@@ -5659,7 +5712,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Kressia, where all the gangstas chill
-			if(flags["LIEVE_INVITE"] != undefined || flags["MET_LIEVE"] != undefined || 9999 == 0)
+			if(flags["LIEVE_INVITE"] != undefined || flags["MET_LIEVE"] != undefined)
 			{
 				output2("\n<b><u>Kressia</u></b>");
 				// Lieve
@@ -6206,7 +6259,7 @@ public function displayEncounterLog(showID:String = "All"):void
 		var miscCount:int = 0;
 		
 		// Resources, rare elements, etc.
-		if(flags["OXONIUM_FOUND"] != undefined || 9999 == 0)
+		if(flags["OXONIUM_FOUND"] != undefined)
 		{
 			output2("\n<b><u>Resources</u></b>");
 			// Oxonium
@@ -6214,7 +6267,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			miscCount++;
 		}
 		// Super rare and weird TF items/sex toys - regular rare items/armor/weapons can be omitted
-		if(flags["SYNTHSHEATH_ACQUIRED"] != undefined || flags["SYNTHSHEATH_TWO_FOUND"] != undefined || flags["LOOTED_COCKBOX"] != undefined || 9999 == 0)
+		if(flags["SYNTHSHEATH_ACQUIRED"] != undefined || flags["SYNTHSHEATH_TWO_FOUND"] != undefined || flags["LOOTED_COCKBOX"] != undefined || flags["ZODEE_GALOQUEST"] != undefined)
 		{
 			output2("\n<b><u>Suspicious Items</u></b>");
 			// Big like Cock-Box!
@@ -6227,6 +6280,12 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["DONG_DESIGNER_MALFUNCTIONED"] != undefined) output2(", Has malfunctioned");
 				if(flags["DONG_DESIGNER_BACKWASHED"] != undefined) output2(", Has backwashed");
 				if(flags["DONG_DESIGNER_FLOODED"] != undefined) output2(", Has flooded");
+			}
+			// GALO SENGAN
+			if(flags["ZODEE_GALOQUEST"] != undefined)
+			{
+				output2("\n<b>* Xenogen Biotech, GaloMax Pill:</b> Acquired from Zo’dee");
+				if(flags["GALOMAX_DOSES"] != undefined) output2(", Used " + flags["GALOMAX_DOSES"] + " times");
 			}
 			// Horse wieners
 			if(flags["SYNTHSHEATH_ACQUIRED"] != undefined || flags["SYNTHSHEATH_TWO_FOUND"] != undefined)
@@ -6241,7 +6300,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			miscCount++;
 		}
 		// Illegal items... Penny's gonna getcha!
-		if(CodexManager.entryViewed("Dumbfuck") || CodexManager.entryViewed("Gush") || CodexManager.entryViewed("The Treatment") || flags["PENNY_THROBB_PURCHASE_UNLOCKED"] != undefined || flags["PENNY_THROBB_USES"] != undefined || flags["TIMES_THROBB_USED"] != undefined || 9999 == 0)
+		if(CodexManager.entryViewed("Dumbfuck") || CodexManager.entryViewed("Gush") || CodexManager.entryViewed("The Treatment") || flags["PENNY_THROBB_PURCHASE_UNLOCKED"] != undefined || flags["PENNY_THROBB_USES"] != undefined || flags["TIMES_THROBB_USED"] != undefined)
 		{
 			output2("\n<b><u>Illegal Items</u></b>");
 			// Dumbfuck
@@ -6285,7 +6344,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			miscCount++;
 		}
 		// Sexploration: The Sex Toys
-		if(flags["NIVAS_BIONAHOLE_USES"] != undefined || flags["SYRI_BIONAHOLE_USES"] != undefined || flags["TAMANI_HOLED"] != undefined || flags["GRAVCUFFS_USES"] != undefined || flags["HOVERHOLE_USES"] != undefined || 9999 == 0)
+		if(flags["NIVAS_BIONAHOLE_USES"] != undefined || flags["SYRI_BIONAHOLE_USES"] != undefined || flags["TAMANI_HOLED"] != undefined || flags["GRAVCUFFS_USES"] != undefined || flags["HOVERHOLE_USES"] != undefined)
 		{
 			output2("\n<b><u>Sex Toys</u></b>");
 			// BionaHoles
