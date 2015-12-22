@@ -33,16 +33,8 @@ public function showDane(nude:Boolean = false):void
 public function approachRivalOnMhenga():Boolean 
 {
 	// Room Descriptions
-	if(flags["MHENGA_PROBE_CASH_GOT"] == undefined)
-	{
-		rooms["METAL POD 1"].roomName = "METAL\nPOD";
-		output("Buried halfway in a small crater of its own creation sits an oblong metal pod, perhaps ten feet long and three across. The surface is still glossy after its obviously hot reentry; you can see the way it blackened the ground and the plants around it. You immediately recognize it as one of the probes your father sent out - one of the keys to his fortune.");
-	}
-	else
-	{
-		rooms["METAL POD 1"].roomName = "SMALL\nCRATER";
-		output("A small, vacant, impact crater is located on the jungle floor, the ground blackened and plants uprooted around it. It distinctly marks the site of one of your father’s probes you had since dug up. The cavity now acts as a basin to collect rainforest water, turning it into a tiny lake.");
-	}
+	if(flags["MHENGA_PROBE_CASH_GOT"] == undefined) output("Buried halfway in a small crater of its own creation sits an oblong metal pod, perhaps ten feet long and three across. The surface is still glossy after its obviously hot reentry; you can see the way it blackened the ground and the plants around it. You immediately recognize it as one of the probes your father sent out - one of the keys to his fortune.");
+	else output("A small, vacant, impact crater is located on the jungle floor, the ground blackened and plants uprooted around it. It distinctly marks the site of one of your father’s probes you had since dug up. The cavity now acts as a basin to collect rainforest water, turning it into a tiny lake.");
 	// Encounter
 	if(flags["UNLOCKED_JUNKYARD_PLANET"] == undefined)
 	{
@@ -134,7 +126,9 @@ public function probeReclamationMhenga(response:int = 0):void
 		processTime(60);
 		restHeal();
 		flags["MHENGA_PROBE_CASH_GOT"] = 1;
-		
+		variableRoomUpdateCheck();
+		var map:* = mapper.generateMap(currentLocation);
+		userInterface.setMapData(map);
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 	}
