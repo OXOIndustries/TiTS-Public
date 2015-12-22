@@ -1358,7 +1358,7 @@ public function attack(attacker:Creature, target:Creature, specials:Array = unde
 	// Bonus evades from mimbrane feeties
 	else if (mimbraneFeetBonusEvade(target))
 	{
-		output("\nYou’re taken by surprise as your [pc.foot] suddenly acts on its own, right as you’re about be attacked. The action is intense enough to slide you right out of the face of danger. Seems your Mimbrane is even more attentive than you are!\n");
+		output("You’re taken by surprise as your [pc.foot] suddenly acts on its own, right as you’re about be attacked. The action is intense enough to slide you right out of the face of danger. Seems your Mimbrane is even more attentive than you are!\n");
 	}
 	//Attack connected!
 	else {
@@ -1467,7 +1467,7 @@ public function oldAttack(attacker:Creature, target:Creature, noProcess:Boolean 
 	// Bonus evades from mimbrane feeties
 	else if (mimbraneFeetBonusEvade(target))
 	{
-		output("\nYou’re taken by surprise as your [pc.foot] suddenly acts on its own, right as you’re about be attacked. The action is intense enough to slide you right out of the face of danger. Seems your Mimbrane is even more attentive than you are!\n");
+		output("You’re taken by surprise as your [pc.foot] suddenly acts on its own, right as you’re about be attacked. The action is intense enough to slide you right out of the face of danger. Seems your Mimbrane is even more attentive than you are!\n");
 	}
 	//Attack connected!
 	else {
