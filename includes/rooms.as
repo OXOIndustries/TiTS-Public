@@ -1317,7 +1317,7 @@ public function initializeRooms():void
 	//59. Dead End
 	rooms["METAL POD 1"] = new RoomClass(this);
 	rooms["METAL POD 1"].roomName = "METAL\nPOD";
-	rooms["METAL POD 1"].description = "Buried halfway in a small crater of its own creation sits an oblong metal pod, perhaps ten feet long and three across. The surface is still glossy after its obviously hot reentry; you can see the way it blackened the ground and the plants around it. You immediately recognize it as one of the probes your father sent out - one of the keys to his fortune.";
+	rooms["METAL POD 1"].description = "";
 	rooms["METAL POD 1"].planet = "PLANET: MHEN'GA";
 	rooms["METAL POD 1"].system = "SYSTEM: ARA ARA";
 	rooms["METAL POD 1"].northExit = "NARROW PATH 3";
