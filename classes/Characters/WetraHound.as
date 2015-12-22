@@ -142,20 +142,17 @@
 			this.createStatusEffect("Force It Gender");
 			//this.createStatusEffect("Flee Disabled",0,0,0,0,true,"","",false,0);
 			
+			isUniqueInFight = true;
+			btnTargetText = "WetraHound";
+			
 			this._isLoading = false;
-
 		}
 		
-		override public function prepForCombat():void
+		override public function get displayBust():String
 		{
-			var wetraHound:WetraHound = this.makeCopy();
-			
-			kGAMECLASS.userInterface.showBust("WETRAHOUND");
-			kGAMECLASS.userInterface.showName("FIGHT:\nWETRA HOUND");
-			
-			kGAMECLASS.foes.push(wetraHound);
+			return "WETRAHOUND";
 		}
-		
+				
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{
 			var target:Creature = selectTarget(hostileCreatures);

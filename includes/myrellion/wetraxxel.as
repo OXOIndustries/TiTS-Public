@@ -1,3 +1,4 @@
+import classes.Characters.WetraHound;
 import classes.Characters.WetraxxelBrawler;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
 public function wetraxxelCaveEncounters():void
@@ -43,7 +44,15 @@ public function encounterWetraHound():void
 	output("\n\nThe creature growls, opening its slavering maw into a bestial howl before charging at you!");
 
 	clearMenu();
-	addButton(0, "Next", startCombat, "wetrahound");
+	
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(new WetraHound());
+	CombatManager.victoryScene(wetraHoundPCVictory);
+	CombatManager.lossScene(wetraHoundPCLoss);
+	CombatManager.displayLocation("WETRA HOUND");
+	
+	addButton(0, "Next", CombatManager.beginCombat);
 }
 
 public function wetraHoundAnimalIntellect():void
@@ -159,7 +168,6 @@ public function encounterWetraxxelBrawler():void
 		}
 	}
 
-	// StartCombat
 	clearMenu();
 	
 	CombatManager.newGroundCombat();

@@ -1,10 +1,6 @@
 ﻿public function victoryRouting():void 
 {
 	hideNPCStats();
-	else if (foes[0] is WetraHound)
-	{
-		wetraHoundPCVictory();
-	}
 	else if (foes[0] is MyrInfectedFemale)
 	{
 		winVsInfectedMyr();
@@ -37,7 +33,6 @@
 public function defeatRouting():void 
 {
 	hideNPCStats();
-	else if (foes[0] is WetraHound) wetraHoundPCLoss();
 	else if (foes[0] is MyrInfectedFemale) loseToInfectedMyrYouSubbieSloot();
 	else if (foes[0] is DoctorLash) loseToDoctorLash();
 	else if (foes[0] is QueenOfTheDeep) queenOfTheDeepPCLoss();
@@ -144,9 +139,6 @@ public function startCombat(encounter:String):void
 {	
 	switch(encounter) 
 	{
-		case "wetrahound":
-			chars["WETRA HOUND"].prepForCombat();
-			break;
 		case "infected myr":
 			chars["INFECTED MYR FEMALE"].prepForCombat();
 			break;
