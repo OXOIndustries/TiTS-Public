@@ -1,4 +1,5 @@
-﻿import classes.Characters.CaptainKhorganMech;
+﻿import classes.Characters.CaptainKhorgan;
+import classes.Characters.CaptainKhorganMech;
 import classes.Characters.GunTurrets;
 import classes.Characters.PlayerCharacter;
 import classes.Characters.RocketTurrets;
@@ -949,13 +950,23 @@ public function victoriousVsCaptainOrcButt():void
 	output("From her pocket, she pulls a small remote, and glances at it. <i>\"Not much time left, Steele. Maybe you ought to start running... you might make it back to your ship, if you're lucky. Or maybe you'd rather get a ride out with me, hmm? Submit to me, and I guarantee you'll live. You might even like being my personal bitch....\"</i>");
 	pc.shields(pc.shieldsMax());
 	clearMenu();
-	addButton(0,"Fight",startCombat,"khorgan","Fight!","The captain's clearly not going down without a fight. Time to finish this.");
+	addButton(0,"Fight", configKhorganFight, "khorgan","Fight!","The captain's clearly not going down without a fight. Time to finish this.");
 	//{Go to Captain Fight: Part 2}
 	addButton(1,"Demand",demandSurrenderFromPirate,undefined,"Demand Surrender","She's desperate, you can hear it in her voice! Tell her to put HER weapon down, if she wants to get out of this.");
 	//{Tooltip: She's right. You don't have a chance...}
 	addButton(2,"Give Up",surrenderToCapnKhorgath,undefined,"Surrender","Surrender to the Captain. Why bother fighting?");
 }
 
+public function configKhorganFight():void
+{
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(new CaptainKhorgan());
+	CombatManager.victoryScene(youBeatUpAnOrcWaytoGo);
+	CombatManager.lossScene(loseToCaptainKhorganBadEnd);
+	CombatManager.displayLocation("CAP KHORGAN");
+	CombatManager.beginCombat();
+}
 
 //Demand Surrender
 public function demandSurrenderFromPirate():void
@@ -972,7 +983,7 @@ public function demandSurrenderFromPirate():void
 	processTime(1);
 	//[Fight!]
 	clearMenu();
-	addButton(0,"Fight",startCombat,"khorgan","Fight!","The captain's clearly not going down without a fight. Time to finish this.");
+	addButton(0,"Fight",configKhorganFight,"khorgan","Fight!","The captain's clearly not going down without a fight. Time to finish this.");
 }
 
 //Surrender Yourself

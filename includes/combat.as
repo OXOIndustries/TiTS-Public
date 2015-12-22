@@ -1,10 +1,6 @@
 ﻿public function victoryRouting():void 
 {
 	hideNPCStats();
-	else if(foes[0] is CaptainKhorgan)
-	{
-		youBeatUpAnOrcWaytoGo();
-	}
 	else if(foes[0] is Kaska)
 	{
 		defeatKaska();
@@ -91,7 +87,6 @@
 public function defeatRouting():void 
 {
 	hideNPCStats();
-	else if (foes[0] is CaptainKhorgan) loseToCaptainKhorganBadEnd();
 	else if (foes[0] is Kaska) defeatedByKaska();
 	else if (foes[0] is MaidenVanae) vanaeMaidenPCDefeat();
 	else if (foes[0] is HuntressVanae) vanaeHuntressPCDefeat();
@@ -218,9 +213,6 @@ public function startCombat(encounter:String):void
 {	
 	switch(encounter) 
 	{
-		case "khorgan":
-			chars["CAPTAINKHORGAN"].prepForCombat();
-			break;
 		case "Kaska":
 			chars["KASKA"].prepForCombat();
 			break;

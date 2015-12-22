@@ -19,7 +19,7 @@
 		{
 			this._latestVersion = 1;
 			this.version = _latestVersion;
-			this._neverSerialize = true;
+			this._neverSerialize = false;
 			
 			this.short = "Captain Khorgan";
 			this.originalRace = "Thraggen";
@@ -177,20 +177,23 @@
 			this.ass.wetnessRaw = 0;
 			this.ass.bonusCapacity += 15;
 			
-			this.createStatusEffect("Flee Disabled",0,0,0,0,true,"","",false,0);
+			this.createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
+			
+			isUniqueInFight = true;
+			btnTargetText = "Khorgan";
+			sexualPreferences.setRandomPrefs(3 + rand(3));
 
 			this._isLoading = false;
 		}
 		
+		override public function get displayBust():String
+		{
+			return "CAPTAIN_KHORGAN";
+		}
+		
 		override public function prepForCombat():void
 		{
-			var combatCaptainKhorgan:CaptainKhorgan = this.makeCopy();
-			
-			kGAMECLASS.userInterface.showBust("CAPTAIN_KHORGAN");
 			kGAMECLASS.setLocation("FIGHT: CAP'N\nKHORGAN", "PLANET: TARKUS", "SYSTEM: REDACTED");
-			combatCaptainKhorgan.sexualPreferences.setRandomPrefs(3 + rand(3));
-			
-			kGAMECLASS.foes.push(combatCaptainKhorgan);
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
