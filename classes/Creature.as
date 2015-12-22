@@ -7793,7 +7793,7 @@ package classes {
 			var rando: Number = 0;
 			var race:String = "human";
 			//Determine race type
-			if (horseScore() >= 2) race = "part horse-morph";
+			if (horseScore() >= 3) race = "part horse-morph";
 			if (ovirScore() >= 3 && race == "human") race = "half-ovir";
 			if (ausarScore() >= 2 && race == "human") race = "half-ausar"; // Fucking Ausar forever overriding other shit. EXTERMINATUS.
 			if (kaithritScore() >= 3 && race == "human") race = "half-kaithrit";
@@ -7802,7 +7802,7 @@ package classes {
 			if (raskvelScore() >= 2) race = "rask-morph";
 			if (bovineScore() >= 3) race = bovineRace(); // Cow-morphs
 			if (raskvelScore() >= 4) race = "raskvel-morph";
-			if (horseScore() >= 4) race = "horse-morph";
+			if (horseScore() >= 5) race = "horse-morph";
 			if (pandaScore() >= 4) race = "panda-morph";
 			if (ausarScore() >= 4) race = "ausar"
 			if (demonScore() >= 5) race = "demon-morph";
@@ -7822,7 +7822,7 @@ package classes {
 			// Human-morphs
 			if (race == "human" && cowScore() >= 4) race = mfn("cow-boy", "cow-girl", "hucow");
 			// Centaur-morphs
-			if (horseScore() >= 2 && isCentaur()) race = "horse-taur";
+			if (horseScore() >= 3 && isCentaur()) race = "horse-taur";
 			else if (bovineScore() >= 3 && isTaur()) race = rawmfn("bull", "cow", "bovine") + "-taur";
 			else if (race == "human" && isCentaur()) race = "centaur";
 			else if (isTaur()) race = taurRace(race); // Other taurs
