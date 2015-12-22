@@ -53,13 +53,6 @@
 public function defeatRouting():void 
 {
 	hideNPCStats();
-	else if (foes[0] is Cockvine)
-	{
-		if (pc.hasCock() || pc.hasVagina())
-			adultCockvinePCLoses();
-		else
-			adultCockvineHahaFuckYouGenderless(true);
-	}
 	else if (foes[0] is NyreaAlpha || foes[0] is NyreaBeta)	pcLossToNyrea();
 	else if (foes[0] is FrogGirl) loseAgainstTheFrogs();
 	else if (foes[0] is WetraHound) wetraHoundPCLoss();

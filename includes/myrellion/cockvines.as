@@ -1,5 +1,6 @@
 import classes.Characters.PlayerCharacter;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
+import classes.Characters.Cockvine;
 import classes.Items.Accessories.TamWolf;
 import classes.Items.Accessories.TamWolfDamaged;
 public function adultCockvineHeader():void
@@ -117,8 +118,24 @@ public function adultCockvineEncounter():void
 
 		(pc as PlayerCharacter).createStatusEffect("Cockvine Grip", 1, 0, 0, 0, false, "Constrict", "You're in the grip of a Cockvine!", true, 0);
 		clearMenu();
-		addButton(0, "Fight!", startCombat, "Cockvine");
+		
+		CombatManager.newGroundCombat();
+		CombatManager.setFriendlyCharacters(pc);
+		CombatManager.setHostileCharacters(new Cockvine());
+		CombatManager.victoryScene(adultCockvinePCVictory);
+		CombatManager.lossScene(cockvineLossRouter);
+		CombatManager.displayLocation("COCKVINE");
+	
+		addButton(0, "Fight!", CombatManager.beginCombat);
 	}
+}
+
+public function cockvineLossRouter():void
+{
+	if (pc.hasCock() || pc.hasVagina())
+		adultCockvinePCLoses();
+	else
+		adultCockvineHahaFuckYouGenderless(true);
 }
 
 public function adultCockvineGrenadesInEnclosedSpaces(damageValue:TypeCollection, pluralNades:Boolean = false, usedLauncher:Boolean = false, isLustGas:Boolean = false):void
@@ -402,7 +419,7 @@ public function adultCockvinePCVictory():void
 
 	output("\n\nYou are exhausted and covered in the creature’s disgusting slime – but are also feeling a tingle of endorphins for managing to beat the cockvine in its own lair. After you’ve rested a bit, you pick yourself up and carry on.\n\n");
 
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 public function adultCockvinePCEscapes():void
@@ -575,14 +592,14 @@ public function adultCockvinePCLoses():void
 
 	for (var i:int = 0; i < pc.vaginas.length; i++)
 	{
-		pc.loadInCunt(foes[0], i);
+		pc.loadInCunt(enemy, i);
 	}
-	pc.loadInAss(foes[0]);
-	pc.loadInMouth(foes[0]);
+	pc.loadInAss(enemy);
+	pc.loadInMouth(enemy);
 	pc.orgasm();
 
 	clearMenu();
-	genericLoss();
+	CombatManager.genericLoss();
 }
 
 public function adultCockvineHahaFuckYouGenderless(fromCombat:Boolean = true):void
@@ -626,7 +643,7 @@ public function adultCockvineHahaFuckYouGenderless(fromCombat:Boolean = true):vo
 
 	if (fromCombat)
 	{
-		genericLoss();
+		CombatManager.genericLoss();
 	}
 	else
 	{

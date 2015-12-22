@@ -186,15 +186,15 @@
 			(this.cocks[0] as CockClass).cLengthRaw = 8;
 			(this.cocks[0] as CockClass).cType = GLOBAL.TYPE_COCKVINE;
 			
+			isUniqueInFight = true;
+			btnTargetText = "Cockvine";
+			
 			this._isLoading = false;
 		}
-
-		override public function prepForCombat():void
+		
+		override public function get displayBust():String
 		{
-			var combatVine:Cockvine = this.makeCopy();
-
-			kGAMECLASS.foes.push(combatVine);
-			kGAMECLASS.userInterface.showBust("ADULTCOCKVINE");
+			return "ADULTCOCKVINE";
 		}
 		
 		public function adultCockvineCombatDescriptionExtension(target:Creature):void
