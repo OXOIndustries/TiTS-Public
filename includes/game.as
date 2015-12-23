@@ -1204,6 +1204,9 @@ public function variableRoomUpdateCheck():void
 		rooms["ARBETZ MAIN"].removeFlag(GLOBAL.NPC);
 		rooms["ARBETZ POOL"].removeFlag(GLOBAL.OBJECTIVE);
 	}
+	// Lane is away
+	if (flags["LANE_DISABLED"] == undefined) rooms["LANESSHOP"].addFlag(GLOBAL.NPC);
+	else rooms["LANESSHOP"].removeFlag(GLOBAL.NPC);
 	
 	
 	/* NEW TEXAS */
