@@ -1072,8 +1072,21 @@ public function giveEmmyAnItem(item:String):void
 	clearOutput();
 	showEmmy();
 	var emmyLoot:ItemSlotClass;
-	output("You present her with a kirkite gem.");
-	output("\n\nTaking the gem in hand, the pleased shopkeep exhales, <i>“You actually did it.”</i> Blinking tears of happiness from her eyes, Emmy pulls you into a tight hug. <i>“I... was worried that you wouldn’t even bother. Who needs to waste time getting baubles for a girl when she’s already {sucking you like a vacuum hose/licking you more frantically than a half-starved galotian}? But you did it.”</i> She slobbers a kiss across your cheek, dragging her tongue all the way to the bottom of your ear. <i>“You did it for me.”</i>");
+	output("You present her with a");
+	if(item == "Gem Sack")
+	{
+		output(" satchel of gems.");
+		output("\n\nOpening it up and taking a");
+	}
+	else
+	{
+		output(" " + item.toLowerCase() + " gem.");
+		output("\n\nTaking the");
+	}
+	output(" gem in hand, the pleased shopkeep exhales, <i>“You actually did it.”</i> Blinking tears of happiness from her eyes, Emmy pulls you into a tight hug. <i>“I... was worried that you wouldn’t even bother. Who needs to waste time getting baubles for a girl when she’s already ");
+	if(pc.hasCock()) output("sucking you like a vacuum hose");
+	else output("licking you more frantically than a half-starved galotian");
+	output("? But you did it.”</i> She slobbers a kiss across your cheek, dragging her tongue all the way to the bottom of your ear. <i>“You did it for me.”</i>");
 	output("\n\nThe jackaless breaks away to further inspect what you’ve given her.");
 
 	//Kirkite, no new PG
@@ -1093,6 +1106,7 @@ public function giveEmmyAnItem(item:String):void
 			emmyLoot = new EmmysLavaSaber();
 		}
 		output("”</i>");
+		pc.destroyItem(new Kirkite());
 	}
 	//Satyrite
 	else if(item == "Satyrite")
@@ -1117,6 +1131,7 @@ public function giveEmmyAnItem(item:String):void
 			output("<i>“You’ve probably seen a Jolthammer around the shop, but you haven’t seen </i>this<i> Jolthammer. I fiddled with the power source to try and boost the yield. It doesn’t always work, but when it does, the result is shocking.”</i> She giggles at her own pun. <i>“Just make sure not to touch the electric-ey end.”</i>");
 			emmyLoot = new EmmysJolthammer();
 		}
+		pc.destroyItem(new Satyrite());
 	}
 	//Picardine
 	else if(item == "Picardine")
@@ -1139,6 +1154,7 @@ public function giveEmmyAnItem(item:String):void
 			emmyLoot = new EmmysSalamanderRifle2();
 		}
 		output("”</i>");
+		pc.destroyItem(new Picardine());
 	}
 	//Gem Sack - UNF9999
 	//Unknown - Placeholder for future planet gems9999
@@ -1202,6 +1218,7 @@ public function emmyPicksOral():void
 	else
 	{
 		output("\n\n<b>Error, you got no junk.</b>");
+		addButton(0,"Next",emmyBJFinale);
 	}
 }
 
