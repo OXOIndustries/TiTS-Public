@@ -275,7 +275,7 @@ public function defeatDatLapinara():void
 	output("\n\n<i>“I’m... sorry for being so rough with you, okay? It’s just that my hormones go all crazy when I have eggs ready. I’d still like to fuck, if you feel up to it. I’ll even let you pick how we do it, I promise! Please?”</i>");
 	if(pc.lust() >= 33) output("\n\nThat does sound like a tempting offer. What will you do?");
 	else {
-		output("\n\nYou aren't any where near horny enough to even consider the offer.\n\n");
+		output("\n\nYou aren't anywhere near horny enough to even consider the offer.\n\n");
 		clearMenu();
 		addButton(14,"Leave",genericVictory);
 		return;
