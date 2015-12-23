@@ -215,6 +215,7 @@ public function appearance(target:Creature):void
 		else if(target.faceType == GLOBAL.TYPE_GABILANI) {
 			output2(" You have a narrow-jawed gabilani face");
 			if(target.skinType != GLOBAL.SKIN_TYPE_SKIN) output2(", covered in " + target.skinFurScales(true,true));
+			else output2(", covered with " + target.skinFurScales(true,true));
 			output2(", appearing almost goblinoid with alien facial features.");
 		}
 		
