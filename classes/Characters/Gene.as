@@ -6,7 +6,7 @@
 	import classes.Items.Transformatives.Bovinium;
 	import classes.Items.Transformatives.MinoCharge;
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
 	
 	public class Gene extends Creature
 	{

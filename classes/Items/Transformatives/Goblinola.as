@@ -14,6 +14,7 @@ package classes.Items.Transformatives
 	import classes.CockClass;
 	import classes.BreastRowClass;
 	import classes.VaginaClass;
+	import classes.Engine.Combat.inCombat;
 	
 	public class Goblinola extends ItemSlotClass
 	{
@@ -642,7 +643,7 @@ package classes.Items.Transformatives
 		//METHOD ACTING!
 		override public function useFunction(target:Creature, usingCreature:Creature = null):Boolean
 		{
-			kGAMECLASS.author("Nonesuch");
+			author("Nonesuch");
 			
 			var healing:int = 25;
 			if(target is PlayerCharacter)
@@ -682,7 +683,7 @@ package classes.Items.Transformatives
 			//Not the player!
 			else
 			{
-				if(kGAMECLASS.inCombat()) output("\n");
+				if(inCombat()) output("\n");
 				else clearOutput();
 				output(target.capitalA + target.short + " unwraps and eats the bar, revitalizing some of [target.hisHer] health! (<b>+" + healing + " HP</b>)");
 				target.HP(healing);

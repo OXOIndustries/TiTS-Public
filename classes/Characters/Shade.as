@@ -30,7 +30,7 @@
 			this.long = "";
 			this.customDodge = "Shade nimbly ducks aside!";
 			this.customBlock = "";
-			this.plural = false;
+			this.isPlural = false;
 			
 			this.meleeWeapon.attackVerb = "punch";
 			meleeWeapon.attackNoun = "punch";
@@ -195,14 +195,14 @@
 			this._isLoading = false;
 		}
 		
-		override public function get displayBust():String
+		override public function get bustDisplay():String
 		{
 			return "SHADE";
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{
-			var target:Creature = selectTarget(HostileCreatures);
+			var target:Creature = selectTarget(hostileCreatures);
 			if (target == null) return;
 			
 			var bMaxResist:Boolean = false;
@@ -210,7 +210,7 @@
 			disarmSwitch();
 			
 			// TODO check this actually fires
-			if (CombatManager.getCombatRound() == 0)
+			if (CombatManager.getRoundCount() == 0)
 			{
 				shootFirst(target);
 			}

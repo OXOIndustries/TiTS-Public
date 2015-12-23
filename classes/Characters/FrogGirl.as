@@ -30,7 +30,7 @@
 			this.long = "PLACEHOLDAH!";
 			this.customDodge = "The frog-girl twists out of the way on powerful legs.";
 			this.customBlock = "The frog-girl's skin proves remarkably durable!";
-			this.plural = false;
+			this.isPlural = false;
 			
 			meleeWeapon.baseDamage.kinetic.damageValue = 3;
 			meleeWeapon.attack = 2;
@@ -225,7 +225,7 @@
 			else long += "you out of the way.";
 		}
 		
-		override public function get displayBust():String
+		override public function get bustDisplay():String
 		{
 			switch (skinTone)
 			{
@@ -247,17 +247,17 @@
 			
 			var attacks:Array = [];
 			
-			if(target.shields() < 1) combatChoices.push(getLickedBitch);
+			if(target.shields() < 1) attacks.push(getLickedBitch);
 			//Kick
 			//basic attack
-			else combatChoices.push(frogGirlKickAttackkkkkuuuuu);
+			else attacks.push(frogGirlKickAttackkkkkuuuuu);
 			//Show
 			//basic lust attack, only used on males
-			if (target.hasCock()) combatChoices.push(frogGirlBasicLustAttack);
+			if (target.hasCock()) attacks.push(frogGirlBasicLustAttack);
 			//Tongue lash
 			//special attack: deals lust damage if no shields
-			combatChoices.push(tongueLashAttack);
-			combatChoices[rand(combatChoices.length)](target);
+			attacks.push(tongueLashAttack);
+			attacks[rand(attacks.length)](target);
 		}
 		
 		private function getLickedBitch(target:Creature):void

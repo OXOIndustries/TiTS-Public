@@ -117,7 +117,7 @@ package classes.Engine.Combat.DamageTypes
 			return false;
 		}
 		
-		public function getFlags():Array
+		public function getFlagsArray():Array
 		{
 			var a:Array = new Array();
 			for (var i:uint = 0; i < flagCollection.length; i++)

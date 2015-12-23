@@ -48,7 +48,7 @@
 			this.customDodge = "The seasoned soldier throws herself sideways. Your attack misses her by an inch and she deftly tumbles back to her feet.";
 			this.customBlock = "The female soldier brings up her bayonet blade and masterfully redirects your attack. You’ve been blocked!";
 
-			this.plural = false;
+			this.isPlural = false;
 			
 			shield = new EmptySlot();
 			meleeWeapon = new SurvivalAxe();
@@ -215,7 +215,7 @@
 			_isLoading = false;
 		}
 		
-		override public function get displayBust():String
+		override public function get bustDisplay():String
 		{
 			return "MYR_GOLD_FEMALE_DESERTER";
 		}
@@ -274,7 +274,7 @@
 			else if(energy() >= 33 && rand(4) == 0) grenadeThrow(target);
 			else if(rand(3) == 0) myrDeserterStrike(target);
 			else if(rand(2) == 0) myrDeserterBarrage(target);
-			else myrDeserterShot(gold);
+			else myrDeserterShot(target);
 		}
 		
 		private function myrDeserterShot(target:Creature):void

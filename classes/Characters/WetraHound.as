@@ -6,7 +6,7 @@
 	import classes.Items.Guns.HammerPistol;
 	import classes.Items.Miscellaneous.*
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
 	import classes.GameData.CodexManager;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	import classes.GameData.CombatAttacks;
@@ -33,7 +33,7 @@
 			this.long = "This huge, muscular creature has a slavering maw full of razor-sharp fangs, and walks on four legs in an almost gorilla-like gait. The hound's claws dig into the earth, clattering across the stone and echoing through the cavern. Glowing blue eyes look you over with a bestial, hungry intelligence.";
 			this.customDodge = "Claws scrabbling, the wetra slips away from your attack.";
 			this.customBlock = "The hounds thick hide soak up your attack.";
-			this.plural = false;
+			this.isPlural = false;
 			isLustImmune = true;
 			
 			this.meleeWeapon = new Fists();
@@ -148,7 +148,7 @@
 			this._isLoading = false;
 		}
 		
-		override public function get displayBust():String
+		override public function get bustDisplay():String
 		{
 			return "WETRAHOUND";
 		}
@@ -203,7 +203,7 @@
 			if (!combatMiss(this, target))
 			{
 				output(" tearing into your flesh");
-				applyDamage(damageRand(TypeCollection( { kinetic: 20 }, DamageFlag.PENETRATING), 10), this, target);
+				applyDamage(damageRand(new TypeCollection( { kinetic: 20 }, DamageFlag.PENETRATING), 10), this, target);
 			}
 			else
 			{

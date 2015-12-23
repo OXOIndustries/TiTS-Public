@@ -7,6 +7,7 @@
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
+	import classes.Engine.Combat.inCombat;
 	
 	public class SmallEgg extends ItemSlotClass
 	{
@@ -73,7 +74,7 @@
 			//Not player!
 			else
 			{
-				if(kGAMECLASS.inCombat()) kGAMECLASS.output("\n");
+				if(inCombat()) kGAMECLASS.output("\n");
 				else kGAMECLASS.clearOutput();
 				kGAMECLASS.output(target.capitalA + target.short + " eats a brightly-colored egg");
 				if(target.HP() < target.HPMax()) kGAMECLASS.output(" and instantly regains a little health! (<b>+" + healing + " HP</b>)");

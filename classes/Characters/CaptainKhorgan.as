@@ -4,7 +4,7 @@
 	import classes.GLOBAL;
 	import classes.Items.Protection.JoyCoPremiumShield;
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
 	import classes.GameData.CodexManager;
 	import classes.Engine.Combat.DamageTypes.*;
 	import classes.Engine.Combat.*;
@@ -27,7 +27,7 @@
 			this.capitalA = "";
 			this.long = "Captain Khorgan cuts a truly impressive figure: a towering, muscular thraggen woman with a lengthy braid of red hair trailing down her back. Her impressive bust is barely restrained by the tatters of her corset, threatening to spill free at any moment. In one hand, the captain is clutching a force cutlass, a shimmering blue hardlight blade more than capable of shearing through steel; with the other, she clutches the remote detonator for the planet-cracking bomb you've been sent to disarm. She's breathing hard, chest heaving: and not from exertion. Her stiff nipples are poking through the ruins of her corset, and you can see an ever-growing damp patch on her pants, as if she's getting off on the fight!";
 			this.customBlock = "She easily deflects your attack.";
-			this.plural = false;
+			this.isPlural = false;
 
 			//this.meleeWeapon = new RaskvelWrench();
 			
@@ -186,13 +186,16 @@
 			this._isLoading = false;
 		}
 		
-		override public function get displayBust():String
+		override public function get bustDisplay():String
 		{
 			return "CAPTAIN_KHORGAN";
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{
+			var target:Creature = selectTarget(hostileCreatures);
+			if (target == null) return;
+			
 			if(HP()/HPMax() * 100 < rand(100) - 30) gettingOffOnZePain(target);
 			else if(rand(4) == 0) captainCutlassAttk(target);
 			else if(rand(3) == 0) roundHouseKickFromCapn(target);

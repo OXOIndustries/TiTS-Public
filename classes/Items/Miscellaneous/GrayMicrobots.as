@@ -6,6 +6,7 @@
 	import classes.GLOBAL;
 	import classes.GameData.TooltipManager;
 	import classes.kGAMECLASS;
+	import classes.Engine.Combat.inCombat;
 	
 	/**
 	 * ...
@@ -91,7 +92,7 @@
 			{
 				healing = targetCreature.HPMax() - targetCreature.HP();
 			}
-			if (kGAMECLASS.inCombat()) targetCreature.createStatusEffect("Healed", 0, 0, 0, 0, true, "", "", true, 0);
+			if (inCombat()) targetCreature.createStatusEffect("Healed", 0, 0, 0, 0, true, "", "", true, 0);
 			targetCreature.HP(healing);
 			kGAMECLASS.output(" (<b>+" + healing + "</b>)\n");
 		}
@@ -105,7 +106,7 @@
 			{
 				healing = targetCreature.HPMax() - targetCreature.HP();
 			}
-			if (kGAMECLASS.inCombat()) targetCreature.createStatusEffect("Healed", 0, 0, 0, 0, true, "", "", true, 0);
+			if (inCombat()) targetCreature.createStatusEffect("Healed", 0, 0, 0, 0, true, "", "", true, 0);
 			targetCreature.HP(healing);
 			kGAMECLASS.output(" (<b>+" + healing + "</b>)\n");
 		}

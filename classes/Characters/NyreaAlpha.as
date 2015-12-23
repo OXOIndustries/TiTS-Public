@@ -47,7 +47,7 @@
 			
 			this.long = "This insectile woman looks like a black-armored amazon, tall and exceptionally buxom, with dark chitin plates covering her arms and legs, combining into an underbust corset of armor to protect her torso -- though conveniently leaving her big tits and groin exposed -- a groin which is sporting an impressive cock. Easily a foot long, her shaft is barely restrained by a padded chainmail bikini, though even partially covered you can see how thick and heavy it is. Even as one weapon draws your attention, the huntress moves with preternatural grace, circling you, probing at your defenses with her long, steel-tipped spear. Any hesitation, and weakness, and she'll be on you!";
 			
-			this.plural = false;
+			this.isPlural = false;
 			
 			this.shield = new DecentShield();
 			this.meleeWeapon = new NyreanSpear();
@@ -206,12 +206,12 @@
 			else if(rand(20) == 0) inventory.push(new Picardine());
 			else if (rand(20) == 0)	inventory.push(rangedWeapon.makeCopy());
 			else if (rand(20) == 0) inventory.push(meleeWeapon.makeCopy());
-			else if(rand(3) == 0) nyrea.inventory.push(new RedMyrVenom());
+			else if(rand(3) == 0) inventory.push(new RedMyrVenom());
 			
 			this._isLoading = false;
 		}
 		
-		override public function get displayBust():String
+		override public function get bustDisplay():String
 		{
 			return "NYREA_ALPHA";
 		}
@@ -260,7 +260,7 @@
 		
 		public function nyreaNetThrow(target:Creature):void
 		{
-			createStatusEffect("Net Cooldown", 5, 0, 0, true);
+			createStatusEffect("Net Cooldown", 5, 0, 0, 0, true);
 
 			output("Using her longspear to force some distance between you, the nyrea reaches into her pack and pulls out another hunting net. With a flick of her wrist, she hurls it at you.\n");
 
@@ -275,7 +275,7 @@
 			}
 		}
 		
-		public function nyreaPoledance(taget:Creature):void
+		public function nyreaPoledance(target:Creature):void
 		{
 			//Her preferred lust attack against males. 
 			output("The nyrea plants her spear in the ground, leaning heavily on the sturdy shaft, pressing it between her impressive rack. <i>“Like what you see?”</i> she giggles, voice suddenly sultry as she leans back from the haft, twisting around you give you a full view of her taut ass and long, chitinous legs. She bends over, rubbing her spear through her crack, smearing it with her psuedo-cock’s ample pre. <i>“Come off it already... put your weapons down...</i>");

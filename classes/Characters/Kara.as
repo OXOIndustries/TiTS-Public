@@ -30,7 +30,7 @@
 			this.long = "";
 			this.customDodge = "Kara nimbly ducks aside!";
 			this.customBlock = "";
-			this.plural = false;
+			this.isPlural = false;
 			
 			meleeWeapon.baseDamage.kinetic.damageValue = 6;
 			meleeWeapon.baseDamage.addFlag(DamageFlag.PENETRATING);
@@ -200,7 +200,7 @@
 			this._isLoading = false;
 		}
 		
-		override public function get displayBust():String
+		override public function get bustDisplay():String
 		{
 			return "Kara";
 		}
@@ -220,7 +220,7 @@
 				if ((c.HP() < 50 && rand(2) == 0) || c.HP() < 25)
 				{
 					if (stimTarget == null) stimTarget = c;
-					else if (stimTarget != PlayerCharacter) stimTarget = c;
+					else if (!(stimTarget is PlayerCharacter)) stimTarget = c;
 				}
 			}
 			

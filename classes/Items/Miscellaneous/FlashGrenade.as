@@ -7,6 +7,7 @@ package classes.Items.Miscellaneous
 	import classes.GameData.TooltipManager;
 	import classes.kGAMECLASS;
 	import classes.Engine.Combat.applyDamage;
+	import classes.Engine.Combat.inCombat;
 	
 	/**
 	 * ...
@@ -54,7 +55,7 @@ package classes.Items.Miscellaneous
 		
 		override public function useFunction(targetCreature:Creature, usingCreature:Creature = null):Boolean
 		{
-			if (!kGAMECLASS.inCombat())
+			if (!inCombat())
 			{
 				kGAMECLASS.clearOutput();
 				kGAMECLASS.output("Pulling the pin on a grenade without a target to throw it at would be pretty dumb now, wouldn't it?");
@@ -86,12 +87,12 @@ package classes.Items.Miscellaneous
 		
 		public function playerUsed(targetCreature:Creature, usingCreature:Creature):void
 		{
-			if (targetCreature.plural) kGAMECLASS.output("You throw a flashbang at one of " + targetCreature.a + targetCreature.short + "!");
+			if (targetCreature.isPlural) kGAMECLASS.output("You throw a flashbang at one of " + targetCreature.a + targetCreature.short + "!");
 			else kGAMECLASS.output("You throw a flashbang at " + targetCreature.a + targetCreature.short + "!");
 			
 			if (!targetCreature.hasStatusEffect("Blind"))
 			{
-				if (targetCreature.plural) kGAMECLASS.output("\n<b>" + targetCreature.capitalA + targetCreature.short + " are blinded by");
+				if (targetCreature.isPlural) kGAMECLASS.output("\n<b>" + targetCreature.capitalA + targetCreature.short + " are blinded by");
 				else kGAMECLASS.output("\n<b>" + targetCreature.capitalA + targetCreature.short + " is blinded by");
 				kGAMECLASS.output(" the luminous flashes.</b>");
 				

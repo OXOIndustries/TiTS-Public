@@ -8,7 +8,7 @@
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.GLOBAL;
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
 	import classes.GameData.CombatAttacks;
 	import classes.GameData.CombatManager;
 	import classes.Engine.Combat.DamageTypes.*;
@@ -33,7 +33,7 @@
 			this.long = "You are trapped by a cockvine. In the heavy darkness of its nest you can just about make out the rapacious plant creature’s limbs writhing busily over the rock and around you: dark green stems thick enough that you cannot get your hand fully around them, tipped with blunt, purple helmet-like heads, oozing white seed from their tips. They are attempting to draw you further downwards, towards the broad trunk of the thing, where it can secure you completely in its grasp. The harder you struggle the more vigorously they in turn seem to act, as if energized by your own movements. The tropical heat and smell of the creature is overwhelming - a heady, cloying herbal atmosphere which seems to permeate through your whole being, making you feel cloudy and limp.";
 			this.customDodge = "The cock vine sways aside at the last second!";
 			this.customBlock = "Your attack deflects off the cock vine's " + this.scaleColor + " scales!";
-			this.plural = false;
+			this.isPlural = false;
 			
 			isLustImmune = true;
 			
@@ -192,7 +192,7 @@
 			this._isLoading = false;
 		}
 		
-		override public function get displayBust():String
+		override public function get bustDisplay():String
 		{
 			return "ADULTCOCKVINE";
 		}
@@ -245,7 +245,7 @@
 
 				attacks.push(adultCockvineWhips);
 				attacks.push(adultCockvineMouthFuxAttack);
-				if (pc.hasCombatDrone()) attacks.push(adultCockvineMowThisAttack);
+				if (target.hasCombatDrone()) attacks.push(adultCockvineMowThisAttack);
 				
 				attacks[rand(attacks.length)]();
 			}

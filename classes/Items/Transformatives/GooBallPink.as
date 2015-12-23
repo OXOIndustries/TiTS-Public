@@ -60,7 +60,7 @@
 		override public function useFunction(target:Creature, usingCreature:Creature = null):Boolean
 		{
 			kGAMECLASS.clearOutput();
-			kGAMECLASS.author("Gardeford");
+			author("Gardeford");
 			if(target is PlayerCharacter) {
 				//pc is human
 				if(target.hairType != GLOBAL.HAIR_TYPE_GOO)

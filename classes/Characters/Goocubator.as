@@ -6,7 +6,7 @@
 	import classes.Items.Apparel.GooeyCoverings;
 	import classes.Items.Melee.GooeyPsuedopod;
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	import classes.GameData.CombatAttacks;
 	import classes.GameData.CombatManager;
@@ -28,7 +28,7 @@
 			this.a = "the ";
 			this.capitalA = "The ";
 			this.long = "";
-			this.plural = false;
+			this.isPlural = false;
 			this.meleeWeapon = new GooeyPsuedopod();
 			this.meleeWeapon.baseDamage.kinetic.damageValue = 20;
 			this.meleeWeapon.hasRandomProperties = true;
@@ -187,17 +187,17 @@
 			this._isLoading = false;
 		}
 		
-		override public function get displayBust():String
+		override public function get bustDisplay():String
 		{
 			return "GOOCUBATOR";
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{
-			var target:Creature = selecTarget(hostileCreatures);
+			var target:Creature = selectTarget(hostileCreatures);
 			if (target == null) return;
 			
-			if(!pc.hasStatusEffect("Grappled"))
+			if(!target.hasStatusEffect("Grappled"))
 			{
 				if(HP() < 150 && !hasStatusEffect("Goo Shield")) crystalShieldGoo(target);
 				else if(!target.hasStatusEffect("Blinded") && rand(6) == 0) gooSpitShit(target);

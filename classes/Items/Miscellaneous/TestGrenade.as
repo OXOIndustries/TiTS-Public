@@ -8,6 +8,7 @@ package classes.Items.Miscellaneous
 	import classes.kGAMECLASS;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	import classes.Engine.Combat.applyDamage;
+	import classes.Engine.Combat.inCombat;
 	
 	/**
 	 * ...
@@ -59,7 +60,7 @@ package classes.Items.Miscellaneous
 		
 		override public function useFunction(targetCreature:Creature, usingCreature:Creature = null):Boolean
 		{
-			if (!kGAMECLASS.inCombat())
+			if (!inCombat())
 			{
 				kGAMECLASS.clearOutput();
 				kGAMECLASS.output("Pulling the pin on a grenade without a target to throw it at would be pretty dumb now, wouldn't it?");

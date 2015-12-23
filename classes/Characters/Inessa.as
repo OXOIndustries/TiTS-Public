@@ -17,7 +17,7 @@
 	import classes.Items.Apparel.BunnyOutfit;
 	import classes.Items.Apparel.SchoolgirlOutfit;
 	import classes.Items.Accessories.Allure;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
 	
 	public class Inessa extends Creature
 	{

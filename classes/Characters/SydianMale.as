@@ -6,7 +6,7 @@
 	import classes.Items.Melee.Fists;
 	import classes.Items.Miscellaneous.*
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
 	import classes.GameData.CodexManager;
 	import classes.GameData.CombatAttacks;
 	import classes.GameData.CombatManager;
@@ -32,7 +32,7 @@
 			this.long = "Placeholder";
 			this.customDodge = "The sydian rolls aside in a remarkable display of agility for one with such a large frame.";
 			this.customBlock = "The alien's chitin deflects the attack.";
-			this.plural = false;
+			this.isPlural = false;
 			
 			this.meleeWeapon = new Fists();
 			
@@ -174,7 +174,7 @@
 			this._isLoading = false;
 		}
 		
-		override public function get displayBust():String
+		override public function get bustDisplay():String
 		{
 			return "SYDIAN_MALE";
 		}
@@ -201,13 +201,13 @@
 			{
 				if(hasStatusEffect("Hammer Punch Next"))
 				{
-					hammerPunch();
+					hammerAttack(target);
 					return;
 				}
 				if (hasStatusEffect("Tripped")) 
 				{
-					choices[choices.length] = hammerPunch;
-					choices[choices.length] = hammerPunch;
+					choices[choices.length] = hammerAttack;
+					choices[choices.length] = hammerAttack;
 				}
 				choices[choices.length] = sydianTackleAttack;
 				if(!target.hasStatusEffect("Tripped")) choices[choices.length] = CombatAttacks.TripAttack;
@@ -218,7 +218,7 @@
 			{
 				if(hasStatusEffect("Use Grope Next")) 
 				{
-					sydianMaleGropesYou();
+					sydianMaleGropesYou(target);
 					return;
 				}
 				if(lust() >= 60) 

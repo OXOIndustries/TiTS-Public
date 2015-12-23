@@ -14,6 +14,7 @@
 	import classes.GameData.CombatAttacks;
 	import classes.Engine.Utility.num2Text;
 	import classes.Engine.Interfaces.output;
+	import classes.Engine.Combat.*;
 	
 	public class ZilMale extends Creature
 	{
@@ -33,7 +34,7 @@
 			this.long = "OHGODFIXME";
 			this.customDodge = "The zil zips out of the way with a swift contortion of his agile frame.";
 			this.customBlock = "The zil's chitinous armor deflects your attack.";
-			this.plural = false;
+			this.isPlural = false;
 			this.meleeWeapon = new Fists();
 			
 			this.armor.longName = "chitinous plating";
@@ -187,7 +188,7 @@
 			}
 		}
 		
-		override public function get displayBust():String
+		override public function get bustDisplay():String
 		{
 			return "ZIL";
 		}
@@ -294,7 +295,7 @@
 			}
 		}
 		
-		private function zilFlyingSpinKickAttack(target:Creature):void
+		private function zilFlyingSpinKickSingle(target:Creature):void
 		{
 			output("An irritated snarl crosses the alien's smooth lips, and he launches himself towards you. His body pivots in mid-air, accelerated by his wings, and he snaps his heel out towards your face at the last second.");
 			if (combatMiss(this, target)) 

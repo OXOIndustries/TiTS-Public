@@ -23,7 +23,7 @@
 			this.long = "The venus pitcher is not a combat mob. Thus this should never be shown.";
 			this.customDodge = "";
 			this.customBlock = "";
-			this.plural = false;
+			this.isPlural = false;
 			
 			this.meleeWeapon = new Fists();
 			

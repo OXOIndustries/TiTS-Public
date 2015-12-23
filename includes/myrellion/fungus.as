@@ -745,13 +745,6 @@ public function gardeBotBonusButtons():void
 	}
 }
 
-//If shield is up, reduce by halfsies.
-public function roboShieldDamageReducer(arg:TypeCollection):TypeCollection
-{
-	if(pcHasSporeShield()) arg.multiply(.5);
-	return arg;
-}
-
 public function gardeBotMove(arg:int = 1):void
 {
 	enemy.setStatusValue("Sporebutt",1,arg);

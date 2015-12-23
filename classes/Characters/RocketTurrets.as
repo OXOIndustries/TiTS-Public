@@ -7,7 +7,7 @@
 	import classes.Items.Guns.HammerPistol;
 	import classes.Items.Protection.JoyCoPremiumShield;
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
 	import classes.GameData.CodexManager;
 	
 	import classes.GameData.CombatManager;
@@ -38,7 +38,7 @@
 			this.long = "Several sleek black turrets are arrayed before you across the walkway, the roof of the installation, and even some hover-plats floating around the walkway's side, tethered to the station. Any chance of stealth on this mission is long gone, now, as volleys of micro-rockets lock into barrels, ready to blast you to smithereens.";
 			this.customDodge = "Somehow, the turrets' swivelling moves them out of the way.";
 			this.customBlock = "The armor plates soak up your attack.";
-			this.plural = true;
+			this.isPlural = true;
 			isLustImmune = true;
 			
 			this.meleeWeapon = new Fists();
@@ -160,14 +160,9 @@
 			this._isLoading = false;
 		}
 		
-		override public function get displayBust():String
+		override public function get bustDisplay():String
 		{
 			return "TURRET";
-		}
-		
-		override public function prepForCombat():void
-		{
-			kGAMECLASS.userInterface.showName("FIGHT:\nR. PODS");
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
@@ -175,11 +170,11 @@
 			var target:Creature = selectTarget(hostileCreatures);
 			if (target == null) return;
 			
-			if(shields() == 0 && rand(2) == 0 && !hasStatusEffect("Shields Refilled")) shieldsUp(target);
-			else rocketPodRocketAttk();
+			if(shields() == 0 && rand(2) == 0 && !hasStatusEffect("Shields Refilled")) shieldsUp();
+			else rocketPodRocketAttk(target);
 		}
 		
-		private function rocketPodRocketAttk():void
+		private function rocketPodRocketAttk(target:Creature):void
 		{
 			//Count as one HEAVY physical attack, but has a low to-hit chance.
 			output("One of the micro-rocket turrets takes a bead on you, its laser targeter dancing across your chest for a moment before a loud <i>THUMP</i> echoes across the rift and a tiny warhead races toward you!");

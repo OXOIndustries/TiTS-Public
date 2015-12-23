@@ -164,7 +164,7 @@ package classes.Characters
 			this._isLoading = false;
 		}
 		
-		override public function get displayBust():String
+		override public function get bustDisplay():String
 		{
 			return "GRAY_GOO_PRIME_2";
 		}

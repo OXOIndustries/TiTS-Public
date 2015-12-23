@@ -7,7 +7,7 @@ package classes.Characters
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.GLOBAL;
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
 	import classes.GameData.CodexManager;
 	
 	import classes.GameData.CombatAttacks;
@@ -36,7 +36,7 @@ package classes.Characters
 			this.long = "A Mimbrane is flying around you, resembling a slick and smooth cloth at times. The parasite is incredibly thin, seeming less than a quarter of an inch in width. What it lacks in depth it makes up in diameter, though; it easily sizes up to around a couple square feet. The Mimbrane’s moist, oily skin occasionally glistens in the surrounding light, sometimes appearing slightly translucent as its stretches its lithe form.  The creature’s face is hard to make out a times, little more than two small eyeballs and a slightly protruding mouth that contrast somewhat to the rest of the beast’s uniform appearance.";
 			this.customDodge = "The Mimbrane’s light, agile form twists and contorts in the air, effortlessly dodging around your attack.";
 			this.customBlock = "You’re shocked to see the parasite’s form adapt to your attack. It’s as if you’re attacking a bedsheet in a wind tunnel.";
-			this.plural = false;
+			this.isPlural = false;
 			
 			isLustImmune = true;
 			
@@ -189,7 +189,7 @@ package classes.Characters
 			_isLoading = false;
 		}
 		
-		override public function get displayBust():String
+		override public function get bustDisplay():String
 		{
 			return "MIMBRANE";
 		}
@@ -354,7 +354,7 @@ package classes.Characters
 					}
 					else
 					{
-						target.setStatusValue("Mimbrane Lust Cloud", 1, pc.statusEffectv1("Mimbrane Lust Cloud"));
+						target.setStatusValue("Mimbrane Lust Cloud", 1, target.statusEffectv1("Mimbrane Lust Cloud"));
 						target.setStatusValue("Mimbrane Lust Cloud", 2, 3);
 					}
 				}

@@ -47,7 +47,7 @@
 			
 			this.long = "You’re facing down Queen Taivra, an alpha nyrea powerful enough to subjugate an entire city of her amazonian sisters. She stands nearly six feet tall, with pale yellow flesh left largely bare by her revealing armor - if you could call it that. She wears a bikini-style vest and bottom of padded chainmail, showing off her ample cleavage and her firm muscles and belly. Leather bracers and pauldrons adorn compliment her armor, and a blood red cape flows from her shoulders. A black Reaper shield belt hangs loosely from her hips, a trophy taken from an off-worlder, no doubt, and now adorned with fetishes and potion vials.";
 			
-			this.plural = false;
+			this.isPlural = false;
 			
 			this.shield = new ReaperArmamentsMarkIShield();
 			this.meleeWeapon = new TaivrasSpear();
@@ -216,7 +216,7 @@
 			this._isLoading = false;
 		}
 		
-		override public function get displayBust():String
+		override public function get bustDisplay():String
 		{
 			if (flags["FREED_DANE_FROM_TAIVRA"] == 1)
 			{
@@ -236,7 +236,7 @@
 			if(hasStatusEffect("Dane Grappled")) taivraGrappleBreak();
 			else if(rand(3) <= 1 || hasStatusEffect("Disarmed"))
 			{
-				if(rand(4) == 0) lustFungus();
+				if(rand(4) == 0) lustFungus(target);
 				else if(rand(2) == 0) taivraCockTease(target);
 				else tentacleCocks(target);
 			}

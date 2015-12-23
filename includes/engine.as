@@ -108,11 +108,6 @@ public function num2Text2(number:int):String {
 	return(returnVar);
 }
 
-public function author(arg:String):void 
-{
-	userInterface.author(arg);
-}
-
 /*
 // ORIGINAL
 public function upperCase(str:String):String {

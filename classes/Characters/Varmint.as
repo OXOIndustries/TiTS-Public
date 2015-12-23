@@ -7,7 +7,7 @@ package classes.Characters
 	import classes.Items.Guns.HammerPistol;
 	import classes.Items.Miscellaneous.*
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
 	import classes.GameData.CodexManager;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	import classes.GameData.CombatAttacks;
@@ -37,7 +37,7 @@ package classes.Characters
 			this.long = "This New Texan varmint is a big, blue creature near to the size of a burly Terran doberman, though its posture is more squat, and its frame is rippling with muscle. Its jaw is filled with razor-sharp teeth, slavering as it draws near to you, a hungry glint in its big green eyes. Several spikes coat the creature's flat head, including a pair that curl into horn-like protrusions around its head, almost ram-like.\n\nThe creature stalks towards you, clearly angered by your disturbing it. Those horns and teeth look like they could do some serious harm if you don't take it down quickly!";
 			this.customDodge = "Claws scrabbling, the varmint slips away from your attack.";
 			this.customBlock = "The armor plates soak up your attack.";
-			this.plural = false;
+			this.isPlural = false;
 			isLustImmune = true;
 			
 			this.meleeWeapon = new Fists();
@@ -160,14 +160,9 @@ package classes.Characters
 			this._isLoading = false;
 		}
 		
-		override public function get displayBust():String
+		override public function get bustDisplay():String
 		{
 			return "VARMINT";
-		}
-		
-		override public function prepForCombat():void
-		{
-			kGAMECLASS.userInterface.showName("FIGHT:\nVARMINT");
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void

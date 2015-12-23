@@ -8,7 +8,7 @@ package classes.Characters
 	import classes.Items.Apparel.FrillyBikiniTop;
 	import classes.Items.Apparel.FrillyBikiniBottom;
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
 	
 	public class Petr extends Creature
 	{

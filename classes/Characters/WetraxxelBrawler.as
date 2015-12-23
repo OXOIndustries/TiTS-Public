@@ -6,7 +6,7 @@
 	import classes.Items.Melee.Fists;
 	import classes.Items.Miscellaneous.*
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
 	import classes.GameData.CodexManager;
 	import classes.GameData.CombatAttacks;
 	import classes.GameData.CombatManager;
@@ -32,7 +32,7 @@
 			this.long = "The wetraxxel is a towering, insectile man -- easily ten feet tall, and covered in chitinous plates. A pair of small insectile feelers adorn his head, over small black eyes and a pair of slits for nostrils. His mouth is a four-part set of sharply fanged mandibles, which click quietly as his grunts and growls. He's monstrously broad-shouldered, with lighter-colored and more flexible plates on his chest; his gut is an off-white against the midnight black of his other chitin. His plated fists are raised to you in a classic boxing stance, ready to punch and block in equal measure.\n\nThe wetraxxal male's naked save for a simple loincloth which barely conceals a hefty-looking package, certainly sizable even for its owner's great height. ";
 			this.customDodge = "The wetraxxel brawler rolls aside in a remarkable display of agility for one with such a large frame.";
 			this.customBlock = "The alien's chitin deflects the attack.";
-			this.plural = false;
+			this.isPlural = false;
 			
 			baseHPResistances.drug.resistanceValue = 20.0;
 			baseHPResistances.tease.resistanceValue = 20.0;
@@ -183,7 +183,7 @@
 			this._isLoading = false;
 		}
 		
-		override public function get displayBust():String
+		override public function get bustDisplay():String
 		{
 			return "WETRAXXEL";
 		}
@@ -197,10 +197,10 @@
 
 			attacks.push(wetraxxelBrawlerOneTwoPunch);
 			attacks.push(wetraxxelBrawlerBodyslam);
-			if (pc.hasStatusEffect("Tripped")) attacks.push(wetraxxelBrawlerElbowDive);
-			if (!pc.hasStatusEffect("Tripped")) attacks.push(wetraxxelBrawlerSweepKick);
-			if (!pc.hasStatusEffect("Staggered")) attacks.push(wetraxxelBrawlerDropKick);
-			if (!pc.hasStatusEffect("Tripped")) attacks.push(wetraxxelBrawlerLariat);
+			if (target.hasStatusEffect("Tripped")) attacks.push(wetraxxelBrawlerElbowDive);
+			if (!target.hasStatusEffect("Tripped")) attacks.push(wetraxxelBrawlerSweepKick);
+			if (!target.hasStatusEffect("Staggered")) attacks.push(wetraxxelBrawlerDropKick);
+			if (!target.hasStatusEffect("Tripped")) attacks.push(wetraxxelBrawlerLariat);
 
 			attacks[rand(attacks.length)](target);
 		}

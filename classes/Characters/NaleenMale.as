@@ -4,16 +4,15 @@
 	import classes.GLOBAL;
 	import classes.Items.Miscellaneous.*;
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	import classes.Engine.Interfaces.output;
 	import classes.GameData.CombatAttacks;
 	import classes.GameData.CombatManager;
-	import classes.Engine.Combat.outputDamage;
-	import classes.Engine.Combat.applyDamage;
 	import classes.Engine.Combat.DamageTypes.DamageResult;
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
-	import classes.Engine.Combat.combatMiss;
+	import classes.Engine.Combat.*;
+	import classes.Engine.Interfaces.author;
 	
 	public class NaleenMale extends Creature
 	{
@@ -31,7 +30,7 @@
 			this.long = "You’re fighting a naleen: a towering, serpentine predator from the waist down, supporting a chiseled humanoid torso that bears more than a passing resemblance to a feline, with jet black fur and perky feline ears. His messy hair hangs loose down his shoulders, held by a headband of woven leaves. He scowls menacingly, baring his razor sharp claws at you as he studies you, his coils primed for a pounce the moment he catches an opening.";
 			this.customDodge = "The naleen slides out of the way of your attack, serpentine body coiling upon itself with serpentine speed.";
 			this.customBlock = "The naleen deflects your strikes with quick strikes of his own, effectively parrying your attack.";
-			this.plural = false;
+			this.isPlural = false;
 			
 			this.meleeWeapon.attackVerb = "swipe";
 			this.meleeWeapon.attackNoun = "claw";
@@ -189,7 +188,7 @@
 			this._isLoading = false;
 		}
 		
-		override public function get displayBust():String
+		override public function get bustDisplay():String
 		{
 			return "NALEEN_MALE";
 		}

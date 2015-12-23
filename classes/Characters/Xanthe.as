@@ -34,7 +34,7 @@
 			this.long = "";
 			this.customDodge = "";
 			this.customBlock = "";
-			this.plural = false;
+			this.isPlural = false;
 			
 			//Shopkeeper Jammle
 			this.inventory.push(new MeshShirt());

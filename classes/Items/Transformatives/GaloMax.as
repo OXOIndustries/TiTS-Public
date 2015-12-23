@@ -62,7 +62,7 @@
 		override public function useFunction(target:Creature, usingCreature:Creature = null):Boolean
 		{
 			kGAMECLASS.clearOutput();
-			kGAMECLASS.author("Fenoxo");
+			author("Fenoxo");
 			var pc:Creature = target;
 			if(target is PlayerCharacter) {
 				//Dose 1!

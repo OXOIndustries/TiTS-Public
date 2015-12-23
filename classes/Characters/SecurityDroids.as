@@ -38,7 +38,7 @@ package classes.Characters
 			this.long = "";
 			this.customDodge = "Somehow, the drones manage to skirt out of the way of your fire.";
 			this.customBlock = "The hardened exterior of the drones absorbs your attack.";
-			this.plural = true;
+			this.isPlural = true;
 			isLustImmune = true;
 			
 			this.meleeWeapon = new Fists();
@@ -160,21 +160,9 @@ package classes.Characters
 			this._isLoading = false;
 		}
 		
-		override public function get displayBust():String
+		override public function get bustDisplay():String
 		{
 			return "DROID_SECURITY";
-		}
-		
-		override public function prepForCombat():void
-		{
-			var combatGunTurrets:SecurityDroids = this.makeCopy();
-			
-			kGAMECLASS.userInterface.showBust("DROID_SECURITY","DROID_SECURITY","DROID_SECURITY");
-			kGAMECLASS.userInterface.showName("FIGHT:\nS. DROIDS");
-			
-			//combatGunTurrets.sexualPreferences.setRandomPrefs(2 + rand(3));
-			
-			kGAMECLASS.foes.push(combatGunTurrets);
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void

@@ -9,7 +9,7 @@ package classes.Characters
 	import classes.Items.Protection.DecentShield;
 	import classes.Items.Protection.JoyCoPremiumShield;
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
 	
 	import classes.Engine.Combat.*;
 	import classes.Engine.Combat.DamageTypes.*;
@@ -36,7 +36,7 @@ package classes.Characters
 			this.capitalA = "The ";
 			this.long = "The mercenary guard is a gruff, weathered human man with a long, faded-brown coat pulled over a ballistic vest -- enough armor for a corporate jackboot, but less than the assassins you fought upstairs. He's packing a pump-action shotgun and a bandolier full of grenades and other goodies.";
 			this.customBlock = "The mercs armor deflects your attack with an alarming ease.";
-			this.plural = false;
+			this.isPlural = false;
 			isLustImmune = false;
 			
 			this.meleeWeapon = new Fists();
@@ -181,15 +181,9 @@ package classes.Characters
 			this._isLoading = false;
 		}
 		
-		override public function get displayBust():String
+		override public function get bustDisplay():String
 		{
 			return "BLACKVOID";
-		}
-		
-		override public function prepForCombat():void
-		{
-			var dude:SX1Shotguard = this.makeCopy();
-			dude.
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void

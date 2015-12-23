@@ -17,6 +17,8 @@ package classes.Characters
 	import classes.GameData.CombatAttacks;
 	import classes.GameData.CombatManager;
 	
+	import classes.Engine.Utility.weightedRand;
+	
 	/**
 	 * Notes:
 	 * When/if piercing is implemented, she has a row of silver studs in her ears from base to tip (Fall of the Phoenix doc)
@@ -38,7 +40,7 @@ package classes.Characters
 			this.long = "";
 			this.customDodge = "Saen casually sidesteps out of the way.";
 			this.customBlock = "Obvious placeholder is obvious.";
-			this.plural = false;
+			this.isPlural = false;
 			
 			this.meleeWeapon = new MechaFist();
 			this.rangedWeapon = new HammerPistol();
@@ -172,9 +174,9 @@ package classes.Characters
 			this.refractoryRate = 10;
 		}
 		
-		override public function prepForCombat():void
+		override public function get bustDisplay():String
 		{
-			
+			return "SAENDRA";
 		}
 		
 		public function UpgradeVersion1(dataObject:Object):void
@@ -225,11 +227,11 @@ package classes.Characters
 			attacks.push( { v: x1LowBlow, w:20 } );
 			
 			if (target.shields() > 0 && sHackAvail) attacks.push( { v: x1ShieldHack, w: 25 } );
-			if (((shields() < 0.5 * shieldsMax()) || (pc.shields() < 0.5 * pc.shieldsMax())) && sBoostAvail) attacks.push( { v: x1ShieldBoost, w: 25 } );
+			if (((shields() < 0.5 * shieldsMax()) || (pc.shields() < 0.5 * pc.shieldsMax())) && sBoostAvail) attacks.push( { v: x1ShieldBooster, w: 25 } );
 			if (sDisarmAvail) attacks.push( { v: x1DisarmingShot, w: 15 } );
 			
 			var selection:Function = weightedRand(attacks);
-			if (selection == x1ShieldBoost) selection(alliedCreatures);
+			if (selection == x1ShieldBooster) selection(alliedCreatures);
 			else if (selection == x1ShieldHack) selection(target, hostileCreatures);
 			else selection(target);
 		}
@@ -288,7 +290,7 @@ package classes.Characters
 			target.createStatusEffect("Shield Boost Cooldown", 5, 0, 0, 0, false);
 		}
 		
-		private function x1SaenShieldHack(target:Creature, hostileCreatures:Array):void
+		private function x1ShieldHack(target:Creature, hostileCreatures:Array):void
 		{
 			var damage:DamageResult = applyDamage(new TypeCollection({ electric: 15 }, DamageFlag.ONLY_SHIELD), this, target, "suppress");
 			// Valeria Shield Hack

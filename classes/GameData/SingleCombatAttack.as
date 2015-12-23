@@ -1,6 +1,9 @@
 package classes.GameData 
 {
+	import classes.Characters.PlayerCharacter;
 	import classes.Creature;
+	import classes.kGAMECLASS;
+	
 	/**
 	 * ...
 	 * @author Gedan
@@ -89,20 +92,20 @@ package classes.GameData
 				
 				if ((!IsMeleeBased && !IsRangedBased) || (IsMeleeBased && IsRangedBased))
 				{
-					f = target.meleeWeapon.baseDamage.getFlags().slice(0, -1);
-					f.concat(target.rangedWeapon.baseDamage.getFlags().slice(0, -1));
+					f = target.meleeWeapon.baseDamage.getFlagsArray().slice(0, -1);
+					f.concat(target.rangedWeapon.baseDamage.getFlagsArray().slice(0, -1));
 				}
 				else if (IsMeleeBased && !IsRangedBased)
 				{
-					f = target.meleeWeapon.baseDamage.getFlags().slice(0, -1);
+					f = target.meleeWeapon.baseDamage.getFlagsArray().slice(0, -1);
 				}
 				else if (IsRangedBased && !IsMeleeBased)
 				{
-					f = target.rangedWeapon.baseDamage.getFlags().slice(0, -1);
+					f = target.rangedWeapon.baseDamage.getFlagsArray().slice(0, -1);
 				}
 				
 				var gotDamageFlag:Boolean = false;
-				for (var i:int = 0; i < df.length; df++)
+				for (var i:int = 0; i < df.length; i++)
 				{
 					if (RequiresDamageFlags.indexOf(df[i]) != -1) gotDamageFlag = true;
 				}
@@ -117,6 +120,12 @@ package classes.GameData
 		
 		public function execute(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
+			kGAMECLASS.setAttacker(attacker);
+			kGAMECLASS.setTarget(target);
+				
+			if (fGroup.indexOf(kGAMECLASS.pc) != -1) kGAMECLASS.setEnemy(target);
+			else kGAMECLASS.setEnemy(attacker);
+			
 			this.Implementor(fGroup, hGroup, attacker, target);
 			attacker.energy( -(attacker.CalculateEnergyCost(this)));
 		}

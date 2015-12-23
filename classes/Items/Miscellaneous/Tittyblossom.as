@@ -7,6 +7,7 @@
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
+	import classes.Engine.Interfaces.author;
 	
 	public class Tittyblossom extends ItemSlotClass
 	{
@@ -61,7 +62,7 @@
 			kGAMECLASS.clearOutput();
 			if(target is PlayerCharacter) {
 				//First use
-				kGAMECLASS.author("Various");
+				author("Various");
 				//Consume:
 				if(kGAMECLASS.flags["TAKEN_TITTYBLOSSOM"] == undefined) 
 				{
@@ -417,7 +418,7 @@
 					//{Proc if PC has high lust & grows D+ cups. Append to end of TF segment so it looks longer and more interesting.}
 					if(target.lust() >= 75)
 					{
-						kGAMECLASS.author("Savin");
+						author("Savin");
 						kGAMECLASS.output("\n\nThe sight of your gorgeous new bosom, combined with the still-burning heat radiating through your [pc.nipples] and loins soon lulls you into a daze, leaving your moaning and teasing yourself, fingers working away at your stiff teats. Oh, that's nice. Your [pc.knees] wobble");
 						if(target.legCount == 1) kGAMECLASS.output("s");
 						kGAMECLASS.output(" as you expand your play, hands roaming down the sheer swell of your nanomachine-enhanced bosom, kneading and caressing every new inch of boobflesh as you go.");
@@ -511,7 +512,7 @@
 						kGAMECLASS.output("!");
 						kGAMECLASS.output("\n\nIntrigued, you can’t help but explore this new asset. Reaching down, you spread your quivering quim - soaking your fingers in juices - and as you slip a digit in you almost instantaneously clench up in orgasm, racking your body with a sensation so great you barely avoid crumpling to the floor. It seems your new vagina is especially sensitive... and probably will be for a while until you get used to having it. As your hands slip out of your new, beautiful pussy, you think... perhaps you should enjoy the added sensitivity while it lasts.");
 						target.orgasm();
-						kGAMECLASS.author("Gruey");
+						author("Gruey");
 						target.lust(30+rand(20));
 						//{+LOTS of Lust}
 					}

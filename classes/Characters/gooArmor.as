@@ -5,7 +5,7 @@
 	import classes.Items.Miscellaneous.*;
 	import classes.Items.Transformatives.Bovinium;
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
 	
 	public class gooArmor extends Creature
 	{
@@ -23,7 +23,7 @@
 			this.long = "PLACE HOLDER!";
 			this.customDodge = "PLACE HOLDER!";
 			this.customBlock = "PLACE HOLDER!";
-			this.plural = false;
+			this.isPlural = false;
 			
 			this.meleeWeapon.attackVerb = "claw";
 			meleeWeapon.attackNoun = "claws";

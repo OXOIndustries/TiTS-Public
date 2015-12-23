@@ -11,7 +11,8 @@
 	import classes.GLOBAL;
 	import classes.Items.Miscellaneous.*;
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
+	import classes.Engine.Utility.possessive;
 	
 	public class CarlsRobot extends Creature
 	{
@@ -28,7 +29,7 @@
 			this.long = "The robot hovers in the air, spindly arms twitching and flicking in the air at every moment. Its steel-grey dome has lost its shine from both combat and the fatigue of the jungle, though it still looks fully operational and, at the moment, lethal. Each of its many tools are pointed at you, threateningly. You’re in for it now!";
 			this.customDodge = "The machina lazily lists to the side, causing your attack to go wayward!";
 			this.customBlock = "The machina’s thick plates cause the attack to glance off into the wilderness!";
-			this.plural = false;
+			this.isPlural = false;
 			
 			isLustImmune = true;
 			
@@ -179,7 +180,7 @@
 			this._isLoading = false;
 		}
 		
-		override public function get displayBust():String
+		override public function get bustDisplay():String
 		{
 			return "MACHINA";
 		}
@@ -197,7 +198,7 @@
 			var target:Creature = selectTarget(hostileCreatures);
 			if (target == null) return;
 			
-			if (HP() <= HPMax() * .1) suicideBullshit();
+			if (HP() <= HPMax() * .1) suicideBullshit(target);
 			else if(hasStatusEffect("Repair Queued") || (HP() < HPMax()/2 && rand(10) <= 2))
 			{
 				botRepairGo();	
@@ -233,7 +234,7 @@
 
 				if (damageResult.shieldDamage > 0)
 				{
-					if (pc.shieldsRaw > 0) output(" Your shield crackles but holds.");
+					if (target.shieldsRaw > 0) output(" Your shield crackles but holds.");
 					else output(" There is a concussive boom and tingling aftershock of energy as your shield is breached.");
 				}
 				
@@ -302,7 +303,7 @@
 					if (target.customDodge.length > 0) output(target.customDodge);
 					else output("You manage to avoid " + a + possessive(short) + " " + meleeWeapon.attackVerb + ".");
 				}
-				else if (mimbraneFeetBonusEvade(target))
+				else if (kGAMECLASS.mimbraneFeetBonusEvade(target))
 				{
 					output("\nYou’re taken by surprise as your [pc.foot] suddenly acts on its own, right as you’re about be attacked. The action is intense enough to slide you right out of the face of danger. Seems your Mimbrane is even more attentive than you are!\n");
 				}
@@ -319,9 +320,9 @@
 		private function machinaAttackNormal(target:Creature):void
 		{
 			output("The machine jerks towards you, zig-zagging unexpectedly as it closes in - one of the grasping appendages reaches out to club at you!\n");
-			foes[0].physique(5);
+			physique(5);
 			CombatAttacks.SingleMeleeAttackImpl(this, target, false);
-			foes[0].physique(-5);
+			physique(-5);
 		}
 	}
 }

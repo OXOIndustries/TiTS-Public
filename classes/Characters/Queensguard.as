@@ -44,7 +44,7 @@
 			
 			long = "You’re fighting Queensguard, the knightly nyrean warrior who stands between you and Queen Taivra - and the probe that makes up her throne. The warrior before you is clad from head to toe in heavy metal plates, like a medieval soldier’s, supplementing her natural chitin with forged steel. She carries a hefty kite-style shield, bearing the same crest as the tyrant she serves’, plus a glistening longsword that twirls about her with expert skill. Clearly the queen has chosen her personal guard well!\n\nYou can see Dane and [rival.name] in their cages, just behind the valiant knight. They’re both yelling and screaming, much to the disdain of their huntresses standing guard by the cages. <b>You’re too far away to try and break them out - and Queensguard is blocking any chance of shooting them out.</b>";
 			
-			this.plural = false;
+			this.isPlural = false;
 			
 			this.meleeWeapon = new NyreanSpear();
 			this.meleeWeapon.hasRandomProperties = true;
@@ -199,7 +199,7 @@
 			this._isLoading = false;
 		}
 		
-		override public function get displayBust():String
+		override public function get bustDisplay():String
 		{
 			return "QUEENSGUARD";
 		}
@@ -210,7 +210,7 @@
 			if (target == null) return;
 			
 			if(HP()/HPMax() < 0.6 && statusEffectv1("Fungaled") < 3) queensGuardFungalButts();
-			else if(lust() >= 75 && !hasStatusEffect("Focused")) queensGuardLust();
+			else if(lust() >= 75 && !hasStatusEffect("Focused")) queensGuardLust(target);
 			else if(rand(5) == 0 && !hasStatusEffect("Disarmed")) queensGuardThunderKick(target);
 			else if(rand(3) == 0 || hasStatusEffect("Disarmed")) queensguardShieldBash(target);
 			else if(!target.hasStatusEffect("Stunned") && rand(5) == 0) powerAttackQueensguard(target);
@@ -289,11 +289,11 @@
 			{
 				output("You try and block, but to no avail! Queensguard’s sword slams into you with bone-crushing force, throwing you back and leaving you reeling.");
 				var damage:TypeCollection = damage();
-				damage.add(foes[0].physique() / 2);
+				damage.add(physique() / 2);
 				damage.multiply(1.4);
 				damageRand(damage, 15);
 				applyDamage(damage, this, target, "melee");
-				if(foes[0].physique()/2 + rand(20) + 1 >= pc.physique()/2 + 10 && !target.hasStatusEffect("Stunned"))
+				if(physique()/2 + rand(20) + 1 >= target.physique()/2 + 10 && !target.hasStatusEffect("Stunned"))
 				{
 					output("\n<b>You’re stunned by the blow!</b>");
 					target.createStatusEffect("Stunned",1,0,0,0,false,"Stun","Cannot act for a turn.",true,0);
@@ -356,7 +356,7 @@
 					else
 					{
 						output(", knocking the wind out of you enough that the knight is easily able to strike you again, sending you flat on your back. <b>You’re knocked prone!</b>");
-						if(!target.hasStatusEffect("Tripped")) pc.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
+						if(!target.hasStatusEffect("Tripped")) target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
 					}
 				}
 				output("!");

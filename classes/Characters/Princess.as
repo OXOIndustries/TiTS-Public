@@ -48,7 +48,7 @@
 			
 			this.long = "The nyrean princess glares at you from across the room, her boytoys taking refuge in the shadowed recesses of the chamber. The citrine gems interwoven into her slender head-spikes have shifted with her clumsy attempts at combat so that they hang askew, less like a regal crown and more like a classless harlot’s glass jewelry. It is a sight that is nonetheless steeped in sexuality, even if it has been overlaid in bandoleers of red myrmedion drug-spit. You almost wish you had the time to admire how her heaving bust is just this side of too large for her frame, but if you’re going to get out of here without joining her harem, you’d best keep your eyes on the fight.";
 			
-			this.plural = false;
+			this.isPlural = false;
 			
 			this.shield = new EmptySlot();
 			this.meleeWeapon = new TaivrasSpear();
@@ -203,7 +203,7 @@
 			this._isLoading = false;
 		}
 		
-		override public function get displayBust():String
+		override public function get bustDisplay():String
 		{
 			return "PRINCESS_BANDOLEER";
 		}

@@ -4,7 +4,7 @@
 	import classes.GLOBAL;
 	import classes.Items.Transformatives.Sylvanol;
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
 	
 	public class Ceria extends Creature
 	{

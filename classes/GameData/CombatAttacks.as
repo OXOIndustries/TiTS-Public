@@ -1,6 +1,7 @@
 package classes.GameData 
 {
 	import classes.Characters.Celise;
+	import classes.Characters.GrayGoo;
 	import classes.Characters.Kaska;
 	import classes.Characters.PlayerCharacter;
 	import classes.Characters.RaskvelFemale;
@@ -10,13 +11,12 @@ package classes.GameData
 	import classes.Engine.Combat.DamageTypes.DamageResult;
 	import classes.GLOBAL;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
+	import classes.Items.Miscellaneous.GrayMicrobots;
 	import classes.kGAMECLASS;
-	import fl.events.InteractionInputType;
-	
+	import classes.Engine.Utility.*;
 	import classes.Engine.Interfaces.*;
 	import classes.Engine.Combat.*;
-	import classes.Engine.Combat.DamageTypes.TypeCollection;
-	import classes.Engine.Utility.rand;
+	import classes.Engine.Combat.DamageTypes.*;
 	
 	/**
 	 * Static library of combat attack implementations
@@ -38,6 +38,8 @@ package classes.GameData
 				
 				atks.push(atk);
 			}
+			
+			return atks;
 		}
 		
 		private static var o:CombatAttacks;
@@ -48,7 +50,7 @@ package classes.GameData
 			o = new CombatAttacks();
 		}
 		
-		private function CombatAttacks()
+		public function CombatAttacks()
 		{
 			// Headbutt
 			Headbutt = new SingleCombatAttack();
@@ -299,7 +301,7 @@ package classes.GameData
 			a.push(Grenade);
 			
 			// GasGren
-			GasGrenade = SingleCombatAttack();
+			GasGrenade = new SingleCombatAttack();
 			GasGrenade.ButtonName = "Gas Grenade";
 			GasGrenade.EnergyCost = 25;
 			GasGrenade.RequiresPerk = "Gas Grenade";
@@ -366,7 +368,7 @@ package classes.GameData
 			
 			WrenchAttack = new SingleCombatAttack();
 			WrenchAttack.IsMeleeBased = true;
-			WrenchAttach.Implementor = WrenchAttachImpl;
+			WrenchAttack.Implementor = WrenchAttachImpl;
 			
 			TripAttack = new SingleCombatAttack();
 			TripAttack.IsMeleeBased = true;
@@ -409,8 +411,8 @@ package classes.GameData
 			
 			// We made it here, the attack landed
 			
-			if (attacker is PlayerCharacter) output("You land a hit on " + target.a + target.short + " with your " + pc.rangedWeapon.longName + "!");
-			else if (attacker.plural) output(attacker.capitalA + attacker.short + " connect with their " + plural(attacker.rangedWeapon.longName) + "!");
+			if (attacker is PlayerCharacter) output("You land a hit on " + target.a + target.short + " with your " + attacker.rangedWeapon.longName + "!");
+			else if (attacker.isPlural) output(attacker.capitalA + attacker.short + " connect with their " + plural(attacker.rangedWeapon.longName) + "!");
 			else if (target is PlayerCharacter) output(attacker.capitalA + attacker.short + " hits you with " + attacker.mfn("his", "her", "its") + " " + attacker.rangedWeapon.longName + "!");
 			else output(attacker.capitalA + attacker.short + " connects with " + attacker.mfn("his", "her", "its") + " " + attacker.rangedWeapon.longName + "!");
 			
@@ -453,10 +455,10 @@ package classes.GameData
 				return false;
 			}
 			
-			if (target is ZilFemale) flags["HIT_A_ZILGIRL"] = 1;
+			if (target is ZilFemale) kGAMECLASS.flags["HIT_A_ZILGIRL"] = 1;
 			
 			if (attacker is PlayerCharacter) output("You land a hit on " + target.a + target.short + " with your " + attacker.meleeWeapon.longName + "!");
-			else if (attacker.plural) output(attacker.capitalA + attacker.short + " connects with their " + plural(attacker.meleeWeapon.longName) + "!");
+			else if (attacker.isPlural) output(attacker.capitalA + attacker.short + " connects with their " + plural(attacker.meleeWeapon.longName) + "!");
 			else if (target is PlayerCharacter) output(attacker.capitalA + attacker.short + " hits you with " + attacker.mfn("his", "her", "its") + " " + attacker.meleeWeapon.longName + "!");
 			else output(attacker.capitalA + attacker.short + " connects with " + attacker.mfn("his", "her", "its") + " " + attacker.meleeWeapon.longName + "!");
 			
@@ -574,7 +576,7 @@ package classes.GameData
 			for (var i:int = 0; i < totalSwings; i++)
 			{
 				var asFlurry:Boolean = false;
-				if (n != 0)
+				if (i != 0)
 				{
 					output("\n");
 					if (numFlurries > 0)
@@ -650,7 +652,7 @@ package classes.GameData
 			output("<i>\"Enemy detected, " + attacker.mf("master", "mistress") + " " + attacker.short + "! I will defend you!\"</i> Tam-wolf announces, leaping into the fray. He hits, biting ");
 			if (target is PlayerCharacter) output(" you!");
 			else output(target.a + target.short + ".");
-			applyDamage(attacker.DroneDamage(), pc, target, "minimal");
+			applyDamage(attacker.droneDamage(), attacker, target, "minimal");
 			if (attacker is PlayerCharacter) output(" Good boy!");
 		}
 		
@@ -664,7 +666,7 @@ package classes.GameData
 			else
 			{
 				output("<i>\"ENEMY DETECTED, MISTRESS TAM! I WILL DEFEND YOU,\"</i> Tam-wolf loudly announces as he lunges at " + target.a + target.short + ". He hits!");
-				applyDamage(attacker.DroneDamage(), attacker, target, "minimal");
+				applyDamage(attacker.droneDamage(), attacker, target, "minimal");
 				if (attacker is PlayerCharacter) output(" Good boy!");
 			}
 		}
@@ -676,7 +678,7 @@ package classes.GameData
 		//} endregion
 		
 		
-		public static const Headbutt:SingleCombatAttack;
+		public static var Headbutt:SingleCombatAttack;
 		public static function HeadbuttImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
 			if (attacker is PlayerCharacter)
@@ -719,7 +721,7 @@ package classes.GameData
 					if(target is PlayerCharacter) output("\n<b>You are stunned.</b>");
 					else
 					{
-						if (target.plural) output("\n<b>" + target.capitalA + target.short + " are stunned.</b>");
+						if (target.isPlural) output("\n<b>" + target.capitalA + target.short + " are stunned.</b>");
 						else output("\n<b>" + target.capitalA + target.short + " is stunned.</b>");
 					}
 					target.createStatusEffect("Stunned", 2, 0, 0, 0, false, "Stun", "Cannot act for a turn.", true, 0);
@@ -732,7 +734,7 @@ package classes.GameData
 			}
 		}
 		
-		public static const RapidFire:SingleCombatAttack;
+		public static var RapidFire:SingleCombatAttack;
 		private static function RapidFireImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
 			// Do regular attack (including multi-attack and additional flurry shots)
@@ -743,7 +745,7 @@ package classes.GameData
 			SingleRangedAttackImpl(attacker, target, true);
 		}
 		
-		public static const PowerStrike:SingleCombatAttack;
+		public static var PowerStrike:SingleCombatAttack;
 		private static function PowerStrikeImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
 			if (attacker.hasCombatDrone())
@@ -754,7 +756,7 @@ package classes.GameData
 			if (combatMiss(attacker, target))
 			{
 				if (target.customDodge.length > 0) output(target.customDodge);
-				else if (attacker is PlayerCharacter) output("You draw back your weapon and " + pc.meleeWeapon.attackVerb + " at " + target.a + target.short + ", but just can't connect.");
+				else if (attacker is PlayerCharacter) output("You draw back your weapon and " + attacker.meleeWeapon.attackVerb + " at " + target.a + target.short + ", but just can't connect.");
 				else if (target is PlayerCharacter) output(attacker.capitalA + attacker.short + " draws back their weapon and " + attacker.meleeWeapon.attackVerb + " at you, but just can't connect.");
 				else output(attacker.capitalA + attacker.short + " draws back their weapon and " + attacker.meleeWeapon.attackVerb + " at " + target.a + target.short +", but just can't connect.");
 				return;
@@ -772,13 +774,13 @@ package classes.GameData
 			else if (target is PlayerCharacter) output(attacker.capitalA + attacker.short + " draws back " + attacker.mfn("his", "her", "its") + " " + attacker.meleeWeapon.longName + " and lands a hit on you!");
 			else output(attacker.capitalA + attacker.short + " draws back " + attacker.mfn("his", "her", "its") + " " + attacker.meleeWeapon.longName + " and lands a hit on " + target.a + target.short + "!");
 			
-			var d:TypeCollection = new attacker.meleeDamage();
+			var d:TypeCollection = attacker.meleeDamage();
 			d.multiply(2);
 			damageRand(d, 15);
 			applyDamage(d, attacker, target);
 		}
 		
-		public static const TakeCover:SingleCombatAttack;
+		public static var TakeCover:SingleCombatAttack;
 		private static function TakeCoverImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
 			if (attacker is PlayerCharacter) output("You seek cover against ranged attacks.");
@@ -787,7 +789,7 @@ package classes.GameData
 			attacker.createStatusEffect("Taking Cover", 3, 0, 0, 0, false, "DefenseUp", "Taking cover! Ranged attacks will almost always miss!", true);
 		}
 		
-		public static const CarpetGrenades:SingleCombatAttack;
+		public static var CarpetGrenades:SingleCombatAttack;
 		private static function CarpetGrenadesImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
 			if (attacker is PlayerCharacter) output("You sling an array of microgrenades at everything in the area!");
@@ -805,7 +807,7 @@ package classes.GameData
 			}
 		}
 		
-		public static const DetonationCharge:SingleCombatAttack;
+		public static var DetonationCharge:SingleCombatAttack;
 		private static function DetonationChargeImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
 			if (attacker is PlayerCharacter) output("You toss a bundle of explosives in the direction of " + target.a + target.short + "!");
@@ -820,7 +822,7 @@ package classes.GameData
 			applyDamage(damage, attacker, target);
 		}
 		
-		public static const SecondWind:SingleCombatAttack;
+		public static var SecondWind:SingleCombatAttack;
 		private static function SecondWindImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
 			attacker.energy(Math.round(attacker.energyMax() / 2));
@@ -831,7 +833,7 @@ package classes.GameData
 			else output(attacker.capitalA + attacker.short + " visibly focuses for a moment, finding themselves a second wind!");
 		}
 		
-		public static const ParalyzingShock:SingleCombatAttack;
+		public static var ParalyzingShock:SingleCombatAttack;
 		private static function ParalyzingShockImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
 			if (target.hasStatusEffect("Paralyzed"))
@@ -858,23 +860,23 @@ package classes.GameData
 			}
 		}
 		
-		public static const Volley:SingleCombatAttack;
+		public static var Volley:SingleCombatAttack;
 		private static function VolleyImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
-			RangedAttackImpl(attacker, target);
+			RangedAttack(attacker, target);
 			SingleRangedAttackImpl(attacker, target, true);
 			
 			if (attacker.aim() / 2 + rand(20) + 1 >= target.reflexes() / 2 + 10 && !target.hasStatusEffect("Blinded") && attacker.hasRangedEnergyWeapon())
 			{
 				if (target is PlayerCharacter) output("\n<b>You are blinded by flashes from " + attacker.a + possessive(attacker.short) + " " + attacker.rangedWeapon.longName + ".</b>");
-				else if (attacker is PlayerCharacter) output("<b>" + target.capitalA + target.short + " is blinded by your " + possessive(pc.rangedWeapon.longName) + " flashes.</b>\n");
+				else if (attacker is PlayerCharacter) output("<b>" + target.capitalA + target.short + " is blinded by your " + possessive(attacker.rangedWeapon.longName) + " flashes.</b>\n");
 				else output("<b>" + target.capitalA + target.short + " is blinded by flashes from " + attacker.a + possessive(attacker.short) + " " + attacker.rangedWeapon.longName + ".</b>");
 				
 				target.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0);
 			}
 		}
 		
-		public static const Overcharge:SingleCombatAttack;
+		public static var Overcharge:SingleCombatAttack;
 		private static function OverchargeImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
 			if (!(attacker is PlayerCharacter))
@@ -919,7 +921,7 @@ package classes.GameData
 			}
 		}
 		
-		public static const DeflectorRegeneration:SingleCombatAttack;
+		public static var DeflectorRegeneration:SingleCombatAttack;
 		private static function DeflectorRegenerationImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
 			if (attacker is PlayerCharacter) output("You fiddle with your shield, tuning it to regenerate over the next few turns.");
@@ -928,7 +930,7 @@ package classes.GameData
 			attacker.createStatusEffect("Deflector Regeneration", 4, Math.ceil((attacker.intelligence() * 1.5 + rand(attacker.level) + attacker.shieldsMax() * 0.25) / 4), 0, 0, false, "DefenseUp", "Recovering shields every round.", true, 0);
 		}
 		
-		public static const PowerSurge:SingleCombatAttack;
+		public static var PowerSurge:SingleCombatAttack;
 		private static function PowerSurgeImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
 			if (attacker is PlayerCharacter) output("You channel a surge of power into your shield generator, instantly restoring a portion of the emitters lost energy.");
@@ -938,10 +940,10 @@ package classes.GameData
 			if (a + attacker.shields() > attacker.shieldsMax()) a = attacker.shieldsMax() - attacker.shields();
 			
 			attacker.shields(a);
-			output(" (" + amount + ")");
+			output(" (" + a + ")");
 		}
 		
-		public static const ThermalDisruptor:SingleCombatAttack;
+		public static var ThermalDisruptor:SingleCombatAttack;
 		private static function ThermalDisruptorImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
 			if (attacker is PlayerCharacter) output("Raising the disruptor, you unleash a wave of burning fire on " + target.a + target.short);
@@ -952,7 +954,7 @@ package classes.GameData
 			applyDamage(new TypeCollection( { burning: d } ), attacker, target, "minimal");
 		}
 		
-		public static const GravidicDisruptor:SingleCombatAttack;
+		public static var GravidicDisruptor:SingleCombatAttack;
 		private static function GravidicDisruptorImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
 			if (attacker is PlayerCharacter) output("Raising the disruptor, you unleash a targeted gravitic disruption on " + target.a + target.short);
@@ -963,7 +965,7 @@ package classes.GameData
 			applyDamage(new TypeCollection( { unresistablehp: d } ), attacker, target, "minimal");
 		}
 		
-		public static const ShieldHack:SingleCombatAttack;
+		public static var ShieldHack:SingleCombatAttack;
 		private static function ShieldHackImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
 			if (target.shields() <= 0)
@@ -997,7 +999,7 @@ package classes.GameData
 			outputDamage(dr);
 		}
 		
-		public static const WeaponHack:SingleCombatAttack;
+		public static var WeaponHack:SingleCombatAttack;
 		private static function WeaponHackImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
 			if (target.hasStatusEffect("Disarm Immune"))
@@ -1045,14 +1047,14 @@ package classes.GameData
 			
 			// Successful
 			
-			if (attacker is PlayerCharacter) output("You hack " + target.a + possessive(target.short) " weapon, disarming them.");
+			if (attacker is PlayerCharacter) output("You hack " + target.a + possessive(target.short) + " weapon, disarming them.");
 			else if (target is PlayerCharacter) output(attacker.capitalA + attacker.short + " hacks your weapon, disarming you temporarily!");
 			else output(attacker.capitalA + attacker.short + " hacks " + target.a + possessive(target.short) + " weapon, disarming " + target.mfn("him", "her", "it") + ".");
 			
 			target.createStatusEffect("Disarmed", 4 + rand(2), 0, 0, 0, false, "Blocked", "Cannot use normal melee or ranged attacks!", true, 0);
 		}
 		
-		public static const PocketSand:SingleCombatAttack;
+		public static var PocketSand:SingleCombatAttack;
 		private static function PocketSandImp(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
 			output("With a cry of <i>“Pocket sand!”</i> you produce a handful of sand and throw it at " + target.a + target.short + ".");
@@ -1069,7 +1071,7 @@ package classes.GameData
 			}
 		}
 		
-		public static const FlashGrenade:SingleCombatAttack;
+		public static var FlashGrenade:SingleCombatAttack;
 		private static function FlashGrenadeImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
 			if (attacker is PlayerCharacter) output("You produce one of your rechargeable flash grenades and huck it in the direction of " + target.a + target.short + ".");
@@ -1090,12 +1092,12 @@ package classes.GameData
 			}
 		}
 		
-		public static const LowBlow:SingleCombatAttack;
+		public static var LowBlow:SingleCombatAttack;
 		private static function LowBlowImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
 			if (attacker is PlayerCharacter) output("You swing low, aiming for a sensitive spot.");
 			else if (target is PlayerCharacter) output(attacker.capitalA + attacker.short + " swings low at you, aiming for a sensitive spot.");
-			else output(attacker.capitalA + attacker.short + " swings low at " target.a + target.short + ", aiming for a sensitive spot.");
+			else output(attacker.capitalA + attacker.short + " swings low at " + target.a + target.short + ", aiming for a sensitive spot.");
 			output("\n");
 			
 			if (combatMiss(attacker, target))
@@ -1112,7 +1114,7 @@ package classes.GameData
 			else
 			{
 				if (attacker is PlayerCharacter) output("You connect with your target!");
-				else if (target is PlayerCharacter) output(attacker.capitalA + attacker.possessive(short) + " strike connects with you!");
+				else if (target is PlayerCharacter) output(attacker.capitalA + possessive(attacker.short) + " strike connects with you!");
 				else output(attacker.capitalA + possessive(attacker.short) + " strike connects with " + target.a + target.short + "!");
 				
 				applyDamage(damageRand(new TypeCollection( { kinetic: attacker.physique() / 2 } ), 15), attacker, target, "minimal");
@@ -1149,7 +1151,7 @@ package classes.GameData
 			}
 		}
 		
-		public static const DisarmingShot:SingleCombatAttack;
+		public static var DisarmingShot:SingleCombatAttack;
 		private static function DisarmingShotImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
 			if (target.hasStatusEffect("Disarm Immune"))
@@ -1191,7 +1193,7 @@ package classes.GameData
 			target.createStatusEffect("Disarmed", 4, 0, 0, 0, false, "Blocked", "Cannot use normal melee or ranged attacks!", true, 0);
 		}
 		
-		public static const StealthFieldGenerator:SingleCombatAttack;
+		public static var StealthFieldGenerator:SingleCombatAttack;
 		private static function StealthFieldGeneratorImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
 			var rounds:int = 0;
@@ -1210,12 +1212,12 @@ package classes.GameData
 			attacker.createStatusEffect("Stealth Field Generator", rounds, 0, 0, 0, false, "Stealth Field", "Provides a massive bonus to evasion chances!", true, 0);
 		}
 		
-		public static const Grenade:SingleCombatAttack;
+		public static var Grenade:SingleCombatAttack;
 		private static function GrenadeImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
 			if (attacker is PlayerCharacter) output("Tossing an explosive in the general direction of your target, you unleash an explosive blast of heat on " + target.a + target.short + "!");
 			else if (target is PlayerCharacter) output(attacker.capitalA + attacker.short + " hucks a small device in your direction, unleashing an explosive blast scant inches from your body!");
-			else output(attacker.capitalA + attacker.shprt + " hucks a small device in " + target.a + possessive(target.short) + " direction, unleashing an explosive blast scant inches from " + target.mfn("his", "her", "its") + " form!");
+			else output(attacker.capitalA + attacker.short + " hucks a small device in " + target.a + possessive(target.short) + " direction, unleashing an explosive blast scant inches from " + target.mfn("his", "her", "its") + " form!");
 			
 			
 			var d:int = Math.round(7.5 + attacker.level * 2 + attacker.intelligence() / 2);
@@ -1226,7 +1228,7 @@ package classes.GameData
 			applyDamage(damage, attacker, target);
 		}
 		
-		public static const GasGrenade:SingleCombatAttack;
+		public static var GasGrenade:SingleCombatAttack;
 		private static function GasGrenadeImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
 			if (attacker is PlayerCharacter) output("Tossing a hissing grenade in the general direction of your target, you watch the gaseous stuff do its trick.");
@@ -1241,7 +1243,7 @@ package classes.GameData
 			applyDamage(damage, attacker, target, "minimal");
 		}
 		
-		public static const SmuggledStimulant:SingleCombatAttack;
+		public static var SmuggledStimulant:SingleCombatAttack;
 		private static function SmuggleStimulatImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
 			attacker.createStatusEffect("Used Smuggled Stimulant", 3, 0, 0, 0, true, "", "", true, 0);
@@ -1250,7 +1252,7 @@ package classes.GameData
 			else output(attacker.capitalA + attacker.short + " jams a small injector deep into their thigh, the stature visibly filling with energy!");
 		}
 		
-		public static const BurstOfEnergy:SingleCombatAttack;
+		public static var BurstOfEnergy:SingleCombatAttack;
 		private static function BurstOfEnergyImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
 			attacker.energy(60);
@@ -1260,7 +1262,7 @@ package classes.GameData
 			else output(attacker.capitalA + attacker.short + " visibly steels " + attacker.mfn("himself", "herself", "itself") + ", reaching deep and finding a reserve of energy!");
 		}
 		
-		public static const ConcussiveShot:SingleCombatAttack;
+		public static var ConcussiveShot:SingleCombatAttack;
 		private static function ConcussiveShotImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
 			if (attacker is PlayerCharacter) output("You nock one of your concussive arrows and draw your bowstring back, taking careful aim at the space just ahead of " + target.a + target.short + ".");
@@ -1270,7 +1272,7 @@ package classes.GameData
 			{
 				if (attacker is PlayerCharacter) output(" You let fly, but the arrow sails clean past your intended target.");
 			}
-			else if (pc.hasStatusEffect("Blind") && rand(10) > 0)
+			else if (attacker.hasStatusEffect("Blind") && rand(10) > 0)
 			{
 				if (attacker is PlayerCharacter) output(" Your blind <b>concussion shot</b> missed.");
 			}
@@ -1278,7 +1280,7 @@ package classes.GameData
 			{
 				if (attacker is PlayerCharacter) output(" You let fly, and a moment later, the arrow explodes in a shockwave of force");
 				
-				if (target.physique()/2 + rand(20) + 1 >= pc.aim()/2 + 10)
+				if (target.physique()/2 + rand(20) + 1 >= attacker.aim()/2 + 10)
 				{
 					output(" though " + target.a + target.short + " resists the blast. Your stun-shot failed!");
 				}
@@ -1298,13 +1300,54 @@ package classes.GameData
 			}
 		}
 		
-		public static const GoozookaAttack:SingleCombatAttack;
+		public static var GoozookaAttack:SingleCombatAttack;
 		private static function GoozookaAttackImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
+			attacker.destroyItem(new GrayMicrobots(), 1);
+	
+			output("You pull the goo launcher from over your shoulder and slam a vial of Gray Goo into the back. You brace yourself, sighting in on your target and flipping the ON switch. The launcher beeps, and you pull the trigger, sending a great big blob of gray goop hurtling toward your opponent!");
 			
+			if (rangedCombatMiss(attacker, target, 0))
+			{
+				// Missed
+				output("\n\nHowever the goo sample goes wide, splattering on the ground a little ways away. A moment later, a miniature gray googirl congeals from the mess, looks around, and starts hauling ass away from the fight. Whoops.");
+			}
+			else
+			{
+				var damage:TypeCollection;
+				var damageResult:DamageResult
+				
+				// Hit
+				if (target is GrayGoo)
+				{
+					output("\n\nAlthough you probably should have thought this plan through a little better before actioning it; firing Gray Goo samples <i>at a Gray Goo</i> might not have been the smartest choice. All you seem to have achieved is bolstering the strength of your foe!\n");
+					
+					var heal:Number = target.HPMax() * 0.2;
+					if (target.HP() + heal > target.HPMax()) heal = target.HPMax() - target.HP();
+					
+					damage = new TypeCollection( { tease: 5 } );
+					damageResult = applyDamage(damage, attacker, target, "suppress");
+					
+					output("The Gray Goo absorbs her smaller twin on contact.");
+					output(" (Heals " + heal + ")");
+					
+					target.HP(heal);
+				}
+				else
+				{
+					output("\n\nThe gray goo splatters across " + target.a + target.short + ", quickly congealing into a miniature googirl who quickly goes to work, attacking your enemy's most sensitive spots with gusto. ");
+				
+					damage = new TypeCollection( { tease: 33 } );
+					damageResult = applyDamage(damage, attacker, target, "suppress");
+					output("\n");
+					output(CombatContainer.teaseReactions(damageResult.lustDamage, target));
+				}
+				
+				outputDamage(damageResult);
+			}
 		}
 		
-		public static const WrenchAttack:SingleCombatAttack;
+		public static var WrenchAttack:SingleCombatAttack;
 		private static function WrenchAttachImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
 			//Charged attack!
@@ -1343,7 +1386,7 @@ package classes.GameData
 			}
 		}
 		
-		public static const TripAttack:SingleCombatAttack;
+		public static var TripAttack:SingleCombatAttack;
 		private static function TripAttackImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
 			output(attacker.capitalA + attacker.short + " tries to trip you! ");
@@ -1357,7 +1400,7 @@ package classes.GameData
 			}
 		}
 		
-		public static const AphrodisiacDarts:SingleCombatAttack;
+		public static var AphrodisiacDarts:SingleCombatAttack;
 		private static function AphrodisiacDartsImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
 			var damage:int = 0;
@@ -1402,11 +1445,11 @@ package classes.GameData
 						output("[pc.EachCock] pulsates as it fills with burgeoning tumescence.");
 						if(attacker is RaskvelFemale) output(" You find yourself wondering what it would be like to slip into her puffy, double-clitted box.");
 					}
-					else if(target.hasVagina()) output("[pc.EachVagina] grows sensitive and moist as you ponder the merits of fucking this fetching little lizard-" + foes[0].mf("man","woman") + ".");
-					else output("Your [pc.nipples] harden as you idly consider forcing " + foes[0].mf("him","her") + " to lick you while suckling on " + foes[0].mf("his reptilian tool.","her twin clits."));
+					else if(target.hasVagina()) output("[pc.EachVagina] grows sensitive and moist as you ponder the merits of fucking this fetching little lizard-" + attacker.mf("man","woman") + ".");
+					else output("Your [pc.nipples] harden as you idly consider forcing " + attacker.mf("him","her") + " to lick you while suckling on " + attacker.mf("his reptilian tool.","her twin clits."));
 				}
-				else if(target.lust() < 65) output("You groan out loud as the aphrodisiacs surges through your bloodstream, rousing you into a " + pc.rawmf("rut","heat") + " that you have have a hard time suppressing.");
-				else if(target.lust() < 75) output(pc.mf("Grunting","Whimpering") + " in anticipation of what is to come, you ball your hands into fists as you try to endure the rising need as it spreads through your body. It feels like your brain is oozing down into your crotch, fixating utterly on sex. You want to fuck right now. You NEED to fuck soon.");
+				else if(target.lust() < 65) output("You groan out loud as the aphrodisiacs surges through your bloodstream, rousing you into a " + target.rawmf("rut","heat") + " that you have have a hard time suppressing.");
+				else if(target.lust() < 75) output(target.mf("Grunting","Whimpering") + " in anticipation of what is to come, you ball your hands into fists as you try to endure the rising need as it spreads through your body. It feels like your brain is oozing down into your crotch, fixating utterly on sex. You want to fuck right now. You NEED to fuck soon.");
 				else if(target.lust() < 85) output("You stagger as the lust hits you, stirring your already aroused body to new heights of need. Your [pc.legs] tremble, and the desperate, animal need to copulate thrums through your quivering muscles, filling them with an artificial desire.");
 				else if(target.lust() < 95) 
 				{

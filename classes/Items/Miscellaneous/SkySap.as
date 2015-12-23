@@ -7,6 +7,7 @@
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
+	import classes.Engine.Interfaces.author;
 	import classes.Util.RandomInCollection;
 	
 	public class SkySap extends ItemSlotClass
@@ -65,7 +66,7 @@
 			kGAMECLASS.clearOutput();
 			if(target is PlayerCharacter) {
 				buff = "";
-				kGAMECLASS.author("JimThermic");
+				author("JimThermic");
 				kGAMECLASS.output("You take a deep breath and bring the bamboo-like container to your lips. The creamy liquid spills onto your tongue, and you're surprised how thick and rich it is. For a while you roll it around on your tongue, savouring the taste, before you finally swallow it.");
 				kGAMECLASS.processTime(2);
 				

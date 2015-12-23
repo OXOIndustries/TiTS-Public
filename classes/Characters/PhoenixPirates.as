@@ -6,7 +6,7 @@ package classes.Characters
 	import classes.Items.Melee.Fists;
 	import classes.Items.Protection.JoyCoPremiumShield;
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
 	
 	import classes.Engine.Combat.*;
 	import classes.Engine.Combat.DamageTypes.*;
@@ -29,7 +29,7 @@ package classes.Characters
 			this.capitalA = "The ";
 			this.long = "";
 			this.customBlock = "The pirates armor deflects your attack with an alarming ease.";
-			this.plural = true;
+			this.isPlural = true;
 			isLustImmune = true;
 			
 			this.meleeWeapon = new Fists();
@@ -171,7 +171,7 @@ package classes.Characters
 			this.createStatusEffect("Flee Disabled",0,0,0,0,true,"","",false,0);
 		}
 		
-		override public function get displayBust():String
+		override public function get bustDisplay():String
 		{
 			return "BLACKVOID";
 		}

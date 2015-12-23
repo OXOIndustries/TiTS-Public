@@ -11,11 +11,11 @@
 	import classes.Items.Melee.RaskvelWrench;
 	import classes.Items.Miscellaneous.*
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
 	import classes.GameData.CodexManager;
 	import classes.Engine.Combat.DamageTypes.*;
 	import classes.Engine.Combat.*;
-	import classes.Engine.Interfaces.output;
+	import classes.Engine.Interfaces.*;
 	import classes.GameData.CombatAttacks;
 	import classes.GameData.CombatManager;
 	
@@ -34,7 +34,7 @@
 			this.capitalA = "The ";
 			this.long = "";
 			this.customBlock = "Your attack fails to damage the 'bot.";
-			this.plural = false;
+			this.isPlural = false;
 			
 			isLustImmune = true;
 			
@@ -182,7 +182,7 @@
 			this._isLoading = false;
 		}
 		
-		override public function get displayBust():String
+		override public function get bustDisplay():String
 		{
 			return mf("SEXBOT_MALE", "SEXBOT_FEMALE");
 		}
@@ -274,7 +274,7 @@
 			if(shields() <= 0) choices[choices.length] = shieldRegeneration;
 			//Hack drone
 			//(Procs if PC has a drone)
-			if(target.hasPerk("Attack Drone") && target.shields() > 0 && !target.hasStatusEffect("Porno Hacked Drone") && !target.accessory is TamWolf && !pc.accessory is TamWolfDamaged) choices[choices.length] = getDroneHacked;
+			if(target.hasPerk("Attack Drone") && target.shields() > 0 && !target.hasStatusEffect("Porno Hacked Drone") && !target.accessory is TamWolf && !target.accessory is TamWolfDamaged) choices[choices.length] = getDroneHacked;
 			//Standard attack
 			choices[choices.length] = standardRobosexualAttack;
 			choices[choices.length] = standardRobosexualAttack;

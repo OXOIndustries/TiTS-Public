@@ -60,7 +60,7 @@
 		override public function useFunction(target:Creature, usingCreature:Creature = null):Boolean
 		{
 			kGAMECLASS.clearOutput();
-			kGAMECLASS.author("Couch");
+			author("Couch");
 			if(target is PlayerCharacter) {
 				kGAMECLASS.output("You take a look at the dial on the medipen and compare with the small instruction pamphlet. It looks like there’s six different settings available:\n\n");
 				kGAMECLASS.clearMenu();
@@ -660,7 +660,7 @@
 		{
 			clearOutput();
 			kGAMECLASS.showName("SYLVANOL\nAU FRANC");
-			kGAMECLASS.author("Couch");
+			author("Couch");
 			//Consumption Text
 			output("You apply the medipen to the base of your neck, as instructed, and feel the Sylvanol’s payload get to work.");
 			

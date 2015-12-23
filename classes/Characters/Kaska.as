@@ -10,8 +10,9 @@
 	import classes.GLOBAL;
 	import classes.Items.Protection.JoyCoPremiumShield;
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
 	import classes.GameData.CodexManager;
+	import classes.Engine.Utility.possessive;
 	
 	public class Kaska extends Creature
 	{
@@ -28,7 +29,7 @@
 			this.capitalA = "";
 			this.long = "Kaska is an imposing woman, standing seven and a half feet tall and toting a weapon bigger than a fair number of coreward races. Half her reddish purple hair is bound in tightly-cropped dreadlocks while the rest hangs over one bare shoulder. She'd cut an attractive, if oversized, figure in any number of drinking establishments if it wasn't for her aggressive, warlike expression. Then there's the matter of the seven inch python between her legs. It isn't even hard, and it already matches the average size of terran erections. She's unarmed save for a pair of armor plated shinguards. Tight leather wrappings cover her up elsewhere, covering up her nipples in a kind of obscene, faux modesty.";
 			this.customBlock = "She springs out of the way of your attack.";
-			this.plural = false;
+			this.isPlural = false;
 			
 			//this.meleeWeapon = new RaskvelWrench();
 			
@@ -204,19 +205,11 @@
 			this._isLoading = false;
 		}
 		
-		override public function get displayBust():String
+		override public function get bustDisplay():String
 		{
 			return "KASKA";
 		}
-		
-		override public function prepForCombat():void
-		{
 			
-			kGAMECLASS.setLocation("FIGHT:\nKASKA", "PLANET: TARKUS", "SYSTEM: REDACTED");
-			//KASKA Likes:
-			
-		}
-		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{
 			var target:Creature = selectTarget(hostileCreatures);
@@ -247,8 +240,8 @@
 				}
 				if(target.shields() > 0 && !hasStatusEffect("Disarmed"))
 				{
-					choices[choices.length] = shieldBustah;
-					choices[choices.length] = shieldBustah;
+					choices[choices.length] = shieldBusta;
+					choices[choices.length] = shieldBusta;
 				}
 				if(!hasStatusEffect("Disarmed"))
 				{
@@ -263,7 +256,7 @@
 			{
 				if(CombatManager.getRoundCount() % 5 == 0 && CombatManager.getRoundCount() != 0)
 				{
-					tittyGrapple();
+					tittyGrapple(target);
 					return;
 				}
 				choices[choices.length] = crateTeaseFromKaska;
@@ -316,7 +309,7 @@
 		{
 			output("Kaska looks visibly perturbed. She chews on her lip, looking you up and down over the sights on her gunbarrel before relaxing her posture. While her weapon drifts down, so too does her gaze, flicking across the expanse of her chest to take in the sight of now hardened nipples. Her brows knit when her eyes alight on the sight of her hard, throbbing cock jutting out from her crotch.");
 			output("\n\n<i>\"Oh... fuck it.\"</i> the aggressive pirate lets her machinegun drop. It bounces off the deck, clattering noisily before ricochetting into a crate thanks to the zero-G. <i>\"It looks like you get to live, assuming you can finish what you've started.\"</i>");
-			output("\n\nWith her hands freed, Kaska is able to take her length, now about ten inches, and rub it, milking a few drops of pre into her other palm without ever taking her eyes off you. She stops after a second and flicks a dollop your way. It slaps into your cheek. <i>\"I have missed having a harem. You can be my first " + pc.mf("\"wife\"","wife") + ".\"</i>");
+			output("\n\nWith her hands freed, Kaska is able to take her length, now about ten inches, and rub it, milking a few drops of pre into her other palm without ever taking her eyes off you. She stops after a second and flicks a dollop your way. It slaps into your cheek. <i>\"I have missed having a harem. You can be my first " + target.mf("\"wife\"","wife") + ".\"</i>");
 			createStatusEffect("Futa Lust",0,0,0,0);
 			//+5 lust each
 			applyDamage(new TypeCollection( { tease: 5 } ), this, target, "minimal");
@@ -353,7 +346,7 @@
 					if (target.customDodge.length > 0) output(target.customDodge);
 					else output("You manage to avoid " + a + possessive(short) + " " + rangedWeapon.attackNoun + ".");
 				}
-				else if (mimbraneFeetBonusEvade(target))
+				else if (kGAMECLASS.mimbraneFeetBonusEvade(target))
 				{
 					output("\nYou’re taken by surprise as your [pc.foot] suddenly acts on its own, right as you’re about be attacked. The action is intense enough to slide you right out of the face of danger. Seems your Mimbrane is even more attentive than you are!\n");
 				}

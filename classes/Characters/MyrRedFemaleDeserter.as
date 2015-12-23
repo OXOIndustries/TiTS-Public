@@ -47,7 +47,7 @@
 			this.long = "You’re facing off against an amber-haired ant-girl armed with a hatchet and a handgun. Given her desecrated Scarlet Federation uniform - her country, name, and rank patches are all torn off - she’s definitely a deserter.\n\nHer shirt is torn wide open in a very un-red like manner. Her pert, small breasts are on display, though there’s a bullet scar just to the side of her heart. There’s another scar over her right eye, which she seems unable to fully close.\n\nHanging from both her gently curving hips are hand grenades. They’re attached to her belt, ready to unclick and throw at a moment’s notice.";
 			this.customDodge = "The seasoned soldier throws herself sideways. Your attack misses her by an inch and she deftly tumbles back to her feet.";
 			this.customBlock = "The female soldier brings up her hatchet and deftly parries your attack. Throwing you off, she then twirls the hand-axe in her hand.";
-			this.plural = false;
+			this.isPlural = false;
 			
 			this.shield = new EmptySlot();
 			this.meleeWeapon = new SurvivalAxe();
@@ -214,7 +214,7 @@
 			this._isLoading = false;
 		}
 		
-		override public function get displayBust():String
+		override public function get bustDisplay():String
 		{
 			return "MYR_RED_FEMALE_DESERTER";
 		}

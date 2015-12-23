@@ -2,7 +2,7 @@ package classes.GameData
 {
 	import classes.Characters.PlayerCharacter;
 	import classes.Creature;
-	import classes.GameData.Pregnancy.Handlers.CockvinePregnancy;
+	import classes.Engine.Combat.DamageTypes.DamageResult;
 	import classes.Items.Armor.GooArmor;
 	import classes.ItemSlotClass;
 	import classes.StorageClass;
@@ -12,6 +12,8 @@ package classes.GameData
 	import fl.events.SliderEventClickTarget;
 	import classes.Engine.Utility.possessive;
 	import classes.Engine.Utility.plural;
+	import classes.Engine.Combat.DamageTypes.TypeCollection;
+	import classes.Engine.Combat.applyDamage;
 	
 	/**
 	 * TODO:
@@ -248,7 +250,7 @@ package classes.GameData
 				{
 					target.removeStatusEffect("Burning");
 					if (target is PlayerCharacter) output("<b>At last you manage to stifle the life out of the fire on your " + target.armor.longName + ". The smell of pork hangs in your nose. You try not to think about it.</b>");
-					else output("<b>" + target.capitalA + target.short + " manages to stifle the life out of the flames on their " + target.armor.longName "!</b>");
+					else output("<b>" + target.capitalA + target.short + " manages to stifle the life out of the flames on their " + target.armor.longName + "!</b>");
 				}
 				//Keep status!
 				else
@@ -611,7 +613,7 @@ package classes.GameData
 				if(target.getStatusMinutes("Evasion Boost") <= 0)
 				{
 					if (target.plural) output("<b>" + target.capitalA + target.short + " no longer have boosted evasion!</b>");
-					else if (target is PlayerCharacter("<b>Your limbs feel heavier, slower than they were a moment ago. Your boosted evasion has worn off!</b>");
+					else if (target is PlayerCharacter) output("<b>Your limbs feel heavier, slower than they were a moment ago. Your boosted evasion has worn off!</b>");
 					else output("<b>" + target.cappitalA + target.short + " no longer has boosted evasion!</b>");
 					target.removeStatusEffect("Evasion Boost");
 					output("\n");
@@ -688,8 +690,6 @@ package classes.GameData
 					outputDamage(dResult);
 				}
 			}
-		
-			// userInterface.playerStatusEffects = this.chars["PC"].statusEffects;	
 		}
 		
 		public function showCombatMenu():void
@@ -727,9 +727,9 @@ package classes.GameData
 		{
 			if (hasEnemyOfClass(Celise))
 			{
-				if (roundCounter == 1) addButton(0,"Attack",attackRouter,playerAttack);
-				else if (roundCounter == 2) addButton(1,upperCase(pc.rangedWeapon.attackVerb), attackRouter, playerRangedAttack);
-				else addButton(5,"Tease",attackRouter,tease);
+				if (roundCounter == 1) addButton(0, "Attack", selectSimpleAttack, CombatAttacks.MeleeAttack);
+				else if (roundCounter == 2) addButton(1, upperCase(pc.rangedWeapon.attackVerb), selectSimpleAttack, CombatAttacks.RangedAttack);
+				else addButton(5, "Tease", selectSimpleTarget, generateTeaseMenu);
 				return;
 			}
 			
@@ -1239,11 +1239,26 @@ package classes.GameData
 			}
 			
 			// Special shits
+			if (pc.hasKeyItem("Goozooka"))
+			{
+				if (!pc.hasItem(new GrayMicrobots()))
+				{
+					addDisabledButton(offset, "Goozooka", "Fire Goozooka", "You don't have any Gray Goo samples to use as ammunition for the Goozooka.");
+				}
+				else
+				{
+					if(pc.hasStatusEffect("Disarmed")) addDisabledButton(offset,"Goozooka","Goozooka","You cannot use a goozooka while disarmed.");
+					else addButton(offset, "Goozooka", selectTarget, CombatAttacks.GoozookaAttack, "Fire Goozooka", "Fire a Gray Goo at your enemy for the princely sum of a single sample of Gray Microbots.");
+				}
+				offset++;
+			}
+			
+			
 			if (pc.armor is GooArmor)
 			{
 				if (!pc.hasStatusEffect("Reduced Goo"))
 				{
-					addButton(bOff, "Goo Clone", kGAMECLASS.pcGooClone, undefined, "Goo Clone", "Have [goo.name] hop off and start teasing your enemy. Reduces your armor value, but inflicts lust over time.");
+					addButton(bOff, "Goo Clone", selectSimpleAttack, kGAMECLASS.pcGooClone, "Goo Clone", "Have [goo.name] hop off and start teasing your enemy. Reduces your armor value, but inflicts lust over time.");
 				}
 				else
 				{
@@ -1368,6 +1383,10 @@ package classes.GameData
 		{
 			clearOutput();
 			clearMenu();
+			
+			kGAMECLASS.setTarget(opts.tar);
+			kGAMECLASS.setAttacker(pc);
+			kGAMECLASS.setEnemy(opts.tar);
 			
 			opts.func(pc, opts.tar);
 			
@@ -2348,7 +2367,7 @@ package classes.GameData
 			if (attacker is PlayerCharacter) kGAMECLASS.playerMimbraneSpitAttack(target);
 		}
 		
-		private function teaseReactions(damage:Number, target:Creature):String 
+		public static function teaseReactions(damage:Number, target:Creature):String 
 		{
 			var buffer:String = "";
 			var textRands:Array = [];
@@ -2471,6 +2490,15 @@ package classes.GameData
 		{
 			if (playerLossCondition())
 			{
+				if (victoryCondition == CombatManager.SPECIFIC_TARGET_DEFEATED)
+				{
+					kGAMECLASS.setEnemy(victoryArgument);
+				}
+				else
+				{
+					kGAMECLASS.setEnemy(_hostiles[0]);
+				}
+				
 				showCombatUI();
 				doCombatCleanup();
 				clearMenu();
@@ -2481,6 +2509,15 @@ package classes.GameData
 			{
 				if (pc.hasStatusEffect("Naleen Venom") && (pc.physique() == 0 || pc.willpower() == 0))
 				{
+					if (victoryCondition == CombatManager.SPECIFIC_TARGET_DEFEATED)
+					{
+						kGAMECLASS.setEnemy(victoryArgument);
+					}
+					else
+					{
+						kGAMECLASS.setEnemy(_hostiles[0]);
+					}
+				
 					showCombatUI();
 					clearMenu();
 					addButton(0, "Defeat", _lossFunction);
@@ -2494,6 +2531,31 @@ package classes.GameData
 		{
 			if (playerVictoryCondition())
 			{
+				// TODO Here is where we could potentially need some indirection, depending
+				// on author intenent.
+				// Basically, we need kGAMECLASS.enemy to be valid before allowing
+				// _victoryFunction to execute, as this replaces foes[0].
+				// ERGO, for most scenes, kGAMECLASS.setEnemy(_hostiles[0]) will suffice,
+				// but some multi-enemy fights may want to offer the option to "select"
+				// a victim (or an 'attacker' as it were) somehow.
+				// _victoryFunction itself could handle this, but potentially enabling
+				// some level of menu selection to be configured as part of the 
+				// combatContainer itself could be useful.
+				
+				// FOR NOW, we'll just ensure enemy is set to _hostiles[0], and if anything
+				// different needs to happen, the individual _victoryFunctions will have
+				// to do what they want
+				
+				// If it is a 'special' target, assume that will be the enemy we care about
+				if (victoryCondition == CombatManager.SPECIFIC_TARGET_DEFEATED)
+				{
+					kGAMECLASS.enemy = victoryArgument;
+				}
+				else
+				{
+					kGAMECLASS.enemy = _hostiles[0];
+				}
+				
 				showCombatUI();
 				clearMenu();
 				addButton(0, "Victory", _victoryFunction);
@@ -2675,9 +2737,9 @@ package classes.GameData
 		}
 		
 		public var victoryCondition:String = CombatManager.ENTIRE_PARTY_DEFEATED;
-		public var victoryArgument:Number = Number.NaN;
+		public var victoryArgument:* = null;
 		public var lossCondition:String = CombatManager.ENTIRE_PARTY_DEFEATED;
-		public var lossArgument:Number = Number.NaN;
+		public var lossArgument:* = null;
 		
 		protected var _combatEffects:Object = { };
 		public function addCombatEffect(effect:StorageClass):void
@@ -2688,7 +2750,7 @@ package classes.GameData
 			}
 			else
 			{
-				throw new Error("CombatEffect \"" + effect.storageName "\" already exists.");
+				throw new Error("CombatEffect \"" + effect.storageName + "\" already exists.");
 			}
 		}
 		public function removeCombatEffect(effectName:String):void
@@ -2706,9 +2768,9 @@ package classes.GameData
 		
 		public function doCombatCleanup():void
 		{
-			kGAMECLASS.enemy = null;
-			kGAMECLASS.target = null;
-			kGAMECLASS.monster = null;
+			kGAMECLASS.setEnemy(null);
+			kGAMECLASS.setAttacker(null);
+			kGAMECLASS.setTarget(null);
 			
 			doCleanup(_friendlies);
 		}
@@ -3212,21 +3274,6 @@ package classes.GameData
 			return false;
 		}
 		
-		public function doCombatCleanup():void
-		{
-			doCleanup(_friendlies);
-		}
-		
-		private function doCleanup(group:Array):void
-		{
-			for (var i:int = 0; i < group.length; i++)
-			{
-				var target:Creature = group[i];
-				target.clearCombatStatuses();
-				target.alreadyDefeated = false;
-			}
-		}
-		
 		public function enemiesAlive():int
 		{
 			var num:int = 0;
@@ -3298,7 +3345,7 @@ package classes.GameData
 			var numOutput:int = 0;
 			
 			output("\n\nYou defeated ");
-			foreach(var key:String in enemyNames)
+			for (var key:String in enemyNames)
 			{
 				if (enemyNames[key] > 1) output(String(enemyNames[key]) + "x " + plural(key));
 				output(key);

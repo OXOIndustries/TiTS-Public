@@ -11,7 +11,7 @@ package classes.Characters
 	import classes.Items.Miscellaneous.EmptySlot;
 	import classes.Items.Protection.JoyCoPremiumShield;
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
 	import classes.GameData.CodexManager;
 	import classes.VaginaClass;
 	import classes.Engine.Combat.*;
@@ -42,7 +42,7 @@ package classes.Characters
 			this.long = "This glistening gray goo-girl isn't like her sisters. Tall, well-built, and realistically proportioned, she's almost human. The gray goo has modeled herself on a human woman, with a long ponytail and a hefty shirt-straining rack that bounces with every step she takes. She's even made clothes out of her goo: a knee-skirt and blouse over tall boots and stockings. Her shirt has a Bell-Isle/Grunmann patch stitched onto the shoulders, the field of stars on the logo rippling and shining as she moves. A sword of glistening goo extends seamlessly from her hand, cutting through the air with an audible <i>zing</i> as she advances.";
 			this.customDodge = "The goo's liquid flexibility allows it to handily avoid your attack.";
 			this.customBlock = "The goo's liquidity absorbs a great deal of punishment - without taking damage.";
-			this.plural = false;
+			this.isPlural = false;
 			
 			meleeWeapon = new GooeyPsuedopod();
 			meleeWeapon.attack = 2;
@@ -163,9 +163,9 @@ package classes.Characters
 			this._isLoading = false;
 		}
 		
-		override public function prepForCombat():void
+		override public function get bustDisplay():String
 		{
-
+			return "GOOCLONE";
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void

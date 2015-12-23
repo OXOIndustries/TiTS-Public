@@ -47,7 +47,7 @@
 			
 			this.long = "A squad of elite nyrean huntresses are circling around you, each carrying a long spear and wearing primitive banded armor over her chain bikini-wear. They’re each wearing a long cape around their shoulders, displaying a blood red sigil that looks like some combination of a woman and a tentacle monster. The guardswomen move with trained rigidity, attacking you from one side, then the other, probing your defenses. They don’t let up - somebody’s always jabbing at you with a spear or trying to grab you, making you defend from every direction at once!";
 			
-			this.plural = true;
+			this.isPlural = true;
 			
 			this.shield = new DecentShield();
 			this.meleeWeapon = new NyreanSpear();
@@ -209,7 +209,7 @@
 			this._isLoading = false;
 		}
 		
-		override public function get displayBust():String
+		override public function get bustDisplay():String
 		{
 			return "PRAETORIAN";
 		}

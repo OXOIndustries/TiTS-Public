@@ -33,7 +33,7 @@
 			this.long = "The giant construct shoots small gouts of flame at surrounding mushrooms whenever its focus is not taken by you. Its pneumatic hammer pulverizes the crystal structures, shattering them like glass depending on where it hits when near them. Getting close to it might be dangerous. You have a limited amount of time before it destroys everything in the room, and a limited amount of defensible space to use before it destroys the spores that protect you.";
 			this.customDodge = "The machine lazily lists to the side, causing your attack to go wayward!";
 			this.customBlock = "The machine’s thick plates cause the attack to glance off into a crystal!";
-			this.plural = false;
+			this.isPlural = false;
 			
 			isLustImmune = true;
 			
@@ -197,7 +197,7 @@
 
 		}
 		
-		override public function get displayBust():String
+		override public function get bustDisplay():String
 		{
 			return "ROUGEBOT";
 		}
@@ -311,6 +311,12 @@
 				damageRand(damage, 15);
 				applyDamage(damage, this, target, "ranged");
 			}
+		}
+		
+		public function roboShieldDamageReducer(arg:TypeCollection):TypeCollection
+		{
+			if(pcHasSporeShield()) arg.multiply(.5);
+			return arg;
 		}
 	}
 }

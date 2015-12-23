@@ -31,7 +31,7 @@
 			this.long = ""; // Implementation in prepForCombat
 			this.customBlock = "Somehow, the attack doesn't penetrate the lapinara's fur!";
 			this.customDodge = "The lapinara uses its small size to slip out of the way.";
-			this.plural = false;
+			this.isPlural = false;
 			
 			meleeWeapon.baseDamage.kinetic.damageValue = 2;
 			this.meleeWeapon.attack = 0;
@@ -205,7 +205,7 @@
 			credits = 25+rand(25);
 		}
 		
-		override public function get displayBust():String
+		override public function get bustDisplay():String
 		{
 			return (hairColor == "silver" ? "LAPINARA_2" : "LAPINARAFEMALE");
 		}

@@ -7,7 +7,7 @@ package classes.Characters
 	import classes.Items.Apparel.*;
 	import classes.Items.Melee.*;
 	import classes.Items.Guns.*;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
 	import classes.VaginaClass;
 	import classes.kGAMECLASS;
 	import classes.GameData.CombatAttacks;
@@ -39,7 +39,7 @@ package classes.Characters
 			this.customDodge = "The girlish vanae maiden gracefully dances out of the way of your attack, beautiful even in battle. These squid girls are hard to hit!";
 			this.customBlock = "The maiden brings her pointed spear up and parries your attack, redirecting your forceful strike instead of meeting it head on.";
 			
-			this.plural = false;
+			this.isPlural = false;
 			
 			this.meleeWeapon = new VanaeSpear();
 			this.rangedWeapon;
@@ -138,14 +138,9 @@ package classes.Characters
 			this._isLoading = false;
 		}
 		
-		override public function get displayBust():String
+		override public function get bustDisplay():String
 		{
 			return "MAIDEN_VANAE";
-		}
-		
-		override public function prepForCombat():void
-		{
-			kGAMECLASS.setLocation("FIGHT: VANAE\nMAIDEN", "PLANET: MHEN'GA", "SYSTEM: ARA ARA");
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void

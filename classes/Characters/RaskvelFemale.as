@@ -31,7 +31,7 @@
 			this.capitalA = "The ";
 			this.long = "Dressed in a [INSERT SHIT HERE], the raskvel girl doesn't seem to have any sense of propriety. Her clothes are obviously there to keep her warm during her adventures - not to protect her modesty. Ears so long they hang down past her waist flutter around as she moves, weighted with gaudy piercings, many of them made from small gears or cogs. She wields a wrench almost as big as herself with surprising dexterity. That wrench is no ordinary wrench either, there's a cylindrical barrel down the handle and a trigger mechanism as well. It actually looks like a gun has been built into it! A much smaller looking pistol hangs from her hip.";
 			this.customBlock = "The zil's chitinous armor deflects your attack.";
-			this.plural = false;
+			this.isPlural = false;
 			this.meleeWeapon = new RaskvelWrench();
 			
 			rangedWeapon.baseDamage.kinetic.damageValue = 10;
@@ -188,7 +188,7 @@
 			this._isLoading = false;
 		}
 		
-		override public function get displayBust():String
+		override public function get bustDisplay():String
 		{
 			return "RASKVEL_FEMALE";
 		}
@@ -227,13 +227,6 @@
 			}
 		}
 		
-		override public function prepForCombat():void
-		{
-			var combatRaskvelFemale:RaskvelFemale = this.makeCopy();
-			
-
-		}
-		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{
 			var target:Creature = selectTarget(hostileCreatures);
@@ -249,7 +242,7 @@
 			}
 			else
 			{
-				if(rand(4) == 0 && target.hasCock()) raskvelGirlsTeasingCockwielders();
+				if(rand(4) == 0 && target.hasCock()) raskvelGirlsTeasingCockwielders(target);
 				else if(rand(3) == 0) CombatAttacks.WrenchAttack.execute(alliedCreatures, hostileCreatures, this, target);
 				else if(rand(2) == 0) CombatAttacks.AphrodisiacDarts.execute(alliedCreatures, hostileCreatures, this, target);
 				else raskvelFemShotgun(target);

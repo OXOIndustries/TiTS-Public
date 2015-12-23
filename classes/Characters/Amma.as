@@ -25,7 +25,7 @@ package classes.Characters
 			this.long = "Placeholder";
 			this.customDodge = "Anno Don't Dodge Foo";
 			this.customBlock = "Obvious placeholder is obvious.";
-			this.plural = false;
+			this.isPlural = false;
 			
 			
 			this.meleeWeapon.attackVerb = "punch";

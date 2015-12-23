@@ -8,7 +8,7 @@
 	import classes.Items.Melee.RaskvelWrench;
 	import classes.Items.Transformatives.Ruskvel;
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
 	import classes.GameData.CodexManager;
 	import classes.Engine.Combat.DamageTypes.*;
 	import classes.GameData.CombatManager;
@@ -31,7 +31,7 @@
 			this.capitalA = "The ";
 			this.long = "Placeholdah";
 			this.customBlock = "The zil's chitinous armor deflects your attack.";
-			this.plural = true;
+			this.isPlural = true;
 			this.meleeWeapon = new RaskvelWrench();
 			
 			rangedWeapon.baseDamage.kinetic.damageValue = 10;
@@ -185,7 +185,7 @@
 			this._isLoading = false;
 		}
 		
-		override public function get displayBust():String
+		override public function get bustDisplay():String
 		{
 			return "RASKVEL_GANG";
 		}
@@ -198,7 +198,7 @@
 			long += " They have jolly, lively faces, and they laugh and call to each other as they fight you, as if they’re not taking this particularly seriously. Their attacks, though, are very definitely serious.";
 
 			credits = 100+rand(200);	
-			if(rand(8) <= 6) combatRaskvelMale.inventory.push(new Ruskvel());
+			if(rand(8) <= 6) inventory.push(new Ruskvel());
 		}
 		
 		public function UpgradeVersion1(dataObject:Object):void
@@ -214,7 +214,7 @@
 			var target:Creature = selectTarget(hostileCreatures);
 			if (target == null) return;
 			
-			if(target.hasStatusEffect("Tripped")) raskPileOnPC();
+			if(target.hasStatusEffect("Tripped")) raskPileOnPC(target);
 			else
 			{
 				var attackChoices:Array = new Array();

@@ -23,7 +23,7 @@
 			this.long = "uncreated";
 			this.customDodge = "uncreated";
 			this.customBlock = "uncreated";
-			this.plural = false;
+			this.isPlural = false;
 			
 			this.meleeWeapon = new Tonfas();
 			this.armor = new UGCUniform();

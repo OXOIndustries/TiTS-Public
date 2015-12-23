@@ -45,7 +45,7 @@
 			
 			this.long = "The short and dirty girl looks at you with wild eyes, her body covered only by tattered clothes that provide little coverage. Despite her dirtied appearance, her form looks healthy and fit. She circles you nervously, holding up her fists in a combat stance. Her issues seem more related to lust than any other malady, as indicated by the rigid length that juts from her legs. The shadowy apparition sits behind her, looking worried as she fights you, but otherwise seemingly unable to help her.";
 			
-			this.plural = false;
+			this.isPlural = false;
 			
 			this.shield = new EmptySlot();
 			this.meleeWeapon.attackVerb = "chitinous punch";
@@ -208,7 +208,7 @@
 			this._isLoading = false;
 		}
 		
-		override public function get displayBust():String
+		override public function get bustDisplay():String
 		{
 			return "MYR_INFECTED_FEMALE";
 		}

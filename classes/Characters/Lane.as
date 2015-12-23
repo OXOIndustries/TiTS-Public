@@ -19,7 +19,7 @@ package classes.Characters
 			this.long = "Lane";
 			this.customDodge = "Dodge Placeholder";
 			this.customBlock = "Block Placeholder";
-			this.plural = false;
+			this.isPlural = false;
 			
 			
 			this.meleeWeapon.attackVerb = "punch";

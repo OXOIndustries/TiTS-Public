@@ -7,12 +7,13 @@
 	import classes.Items.Melee.Fists;
 	import classes.Items.Miscellaneous.*
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
 	import classes.GameData.CodexManager;
 	import classes.Engine.Interfaces.output;
 	import classes.Engine.Combat.*;
 	import classes.GameData.CombatAttacks;
 	import classes.GameData.CombatManager;
+	import classes.Engine.Interfaces.author;
 	
 	public class GrayGoo extends Creature
 	{
@@ -30,7 +31,7 @@
 			this.long = "This goo-like creature is made of a writhing mass of nano-bots, trillions of the little things coalesced into the form of an almost comically-busty woman, with wide hips and thick thighs over long legs that seem to have trouble maintaining their shape, as her feet are constantly turning to an amorphous liquid on the ground as she walks. Her arms, too, are constantly shifting, turning into masses of thin tentacles or else reforming into the shape of various sex toys and restraints, some parts of her intelligence clearly over-eager to milk all the \"natural lube\" she can out of you! ";
 			this.customDodge = "The goo's body twists and morphs outlandishly to avoid your attack.";
 			this.customBlock = "The goo's remarkable composition somehow allows her to take your attack unharmed.";
-			this.plural = false;
+			this.isPlural = false;
 			this.meleeWeapon = new Fists();
 			
 			this.rangedWeapon.attack = 1;
@@ -181,7 +182,7 @@
 			this._isLoading = false;
 		}
 		
-		override public function get displayBust():String
+		override public function get bustDisplay():String
 		{
 			return "GRAY_GOO";
 		}

@@ -13,7 +13,7 @@
 	import classes.GLOBAL;
 	import classes.Items.Miscellaneous.*;
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
 	import classes.Items.Protection.DecentShield;
 	
 	public class HandSoBot extends Creature
@@ -32,7 +32,7 @@
 			this.long = "You are fighting the Firewall. It is a mighty, motley collection of heavy duty industrial tools welded together to form a hulking robot, at least eight feet in height. Its round, riveted torso combines with its long, piston-driven arms to give it a hunched, gorilla-like profile. In way of hands it has implacably strong crane grapnels, and its two feet are square and support-flapped, built to take any kind of weight. Its head is a square, blank screen, on which a red exclamation mark blinks interminably.";
 			this.customDodge = "The firewall's erratic motions somehow carry the lumbering hulk out of the way of your attack!";
 			this.customBlock = "The firewall’s thick plates cause the attack to glance off harmlessly.";
-			this.plural = false;
+			this.isPlural = false;
 			
 			isLustImmune = true;
 			
@@ -189,7 +189,7 @@
 			this._isLoading = false;
 		}
 
-		override public function get displayBust():String
+		override public function get bustDisplay():String
 		{
 			return "FIREWALL_BATTLE";
 		}
@@ -201,7 +201,7 @@
 			
 			if (rand(3) <= 1) CombatAttacks.MeleeAttack(this, target);
 			//Electropulse - shielded foes only
-			else if(pc.shields() > 0) electropulseAttack(target);
+			else if(target.shields() > 0) electropulseAttack(target);
 			//Flamethrower - unshielded only
 			else flameThrowerAttack(target);
 		}
@@ -209,7 +209,7 @@
 		private function flameThrowerAttack(target:Creature):void
 		{
 			output("A yellow bush within a black bush appears on the Firewall’s screen. It opens its gripper at you, allowing you to momentarily see the hollow nozzle at its centre – and then burning gas shoots out of it, a shockingly hot and blinding plume of exothermic destruction which rushes greedily out towards you.");
-			if (target.armor.shortName != "") output(" You cry out as the fire grabs at your " + pc.armor.longName + ", catching hold and lapping at it lustily.");
+			if (target.armor.shortName != "") output(" You cry out as the fire grabs at your " + target.armor.longName + ", catching hold and lapping at it lustily.");
 			if(flags["TASTED_THE_FLAME"] == undefined)
 			{
 				flags["TASTED_THE_FLAME"] = 1;

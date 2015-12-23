@@ -11,7 +11,7 @@ package classes.Characters
 	import classes.Items.Miscellaneous.EmptySlot;
 	import classes.Items.Protection.JoyCoPremiumShield;
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
 	import classes.GameData.CodexManager;
 	
 	import classes.Engine.Combat.*;
@@ -46,7 +46,7 @@ package classes.Characters
 			this.long = "";
 			this.customDodge = "The goo's liquid flexibility allows her to handily avoid your attack.";
 			this.customBlock = "The goo's liquidity absorbs a great deal of punishment - without taking damage.";
-			this.plural = false;
+			this.isPlural = false;
 			
 			baseHPResistances = new TypeCollection();
 			baseHPResistances.kinetic.resistanceValue = 10.0;
@@ -165,14 +165,14 @@ package classes.Characters
 			isUniqueInFight = true;
 			btnTargetText = "GooKnight";
 			sexualPreferences.setRandomPrefs(2 + rand(3));
-			if(rand(2) == 0) gigaGoo.skinTone = "green";
-			else gigaGoo.skinTone = "blue";
-			long = "You’re fighting a ganraen knight. Her " + gigaGoo.skinTone + " armor shines in the dimly lit cave, reflecting the pale glow of the pulsing fungi that cover the walls. She holds a simply shaped shield and sword, though the blade looks a bit more like a sharpened slab. Strategically placed joints prevent the armor from slowing her swift movements.";
+			if(rand(2) == 0) skinTone = "green";
+			else skinTone = "blue";
+			long = "You’re fighting a ganraen knight. Her " + skinTone + " armor shines in the dimly lit cave, reflecting the pale glow of the pulsing fungi that cover the walls. She holds a simply shaped shield and sword, though the blade looks a bit more like a sharpened slab. Strategically placed joints prevent the armor from slowing her swift movements.";
 			
 			this._isLoading = false;
 		}
 		
-		override public function get displayBust():String
+		override public function get bustDisplay():String
 		{
 			return "CRYSTAL_GOO";
 		}
@@ -233,9 +233,9 @@ package classes.Characters
 			if(lust() < 66) long += " You can’t see her face, but you hear labored breathing behind the helmet.";
 			else long += " The knight’s hands keep shying toward her sex, but are blocked by the armor that protects her.";
 			//{33% lust/66%/66% hp/33%} 
-			if(HP()/foes[0].HPMax() > .66) {}
+			if(HP()/HPMax() > .66) {}
 			else if(HP()/HPMax() > .33) long += " The knight’s armor has begun to fall apart, revealing small portions of her gooey interior.";
-			else foes[0].long += " A chestplate, helmet, and skirt are all that remain of the knight’s armor, leaving most of her " + skinTone + " goo visible.";
+			else long += " A chestplate, helmet, and skirt are all that remain of the knight’s armor, leaving most of her " + skinTone + " goo visible.";
 			if(HP()/HPMax() <= 0.66 && baseHPResistances.kinetic.resistanceValue == 50) 
 			{
 				output("\n\n<b>Her gooey shield has crumbled after your onslaught!</b>");

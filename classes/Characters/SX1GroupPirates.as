@@ -8,7 +8,8 @@ package classes.Characters
 	import classes.Items.Melee.ShockBlade;
 	import classes.Items.Protection.JoyCoPremiumShield;
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
+	import classes.Engine.Utility.weightedRand;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	import classes.GameData.CombatAttacks;
 	import classes.GameData.CombatManager;
@@ -32,7 +33,7 @@ package classes.Characters
 			this.capitalA = "The ";
 			this.long = "Several armed men in black-and-red heavy armor have stormed into the construction site, wildly firing machine pistols at you and your companion. It's almost impossible to see in here, except by the occasional muzzle flashes and showers of sparks as bullets slam into the metal bulkheads.\n\nNot far from you, Saen ducks into and out of cover, evading bursts of enemy fire and returning it as quick as she can.";
 			this.customBlock = "The pirates armor deflects your attack with an alarming ease.";
-			this.plural = true;
+			this.isPlural = true;
 			isLustImmune = true;
 			
 			this.meleeWeapon = new ShockBlade();
@@ -181,7 +182,7 @@ package classes.Characters
 			this._isLoading = false;
 		}
 		
-		override public function get displayBust():String
+		override public function get bustDisplay():String
 		{
 			return "BLACKVOID";
 		}
@@ -205,7 +206,7 @@ package classes.Characters
 			if (nadesAvail)
 			{
 				enemyAttacks.push({ v: groupFlashbang, 			w: 15 });
-				enemyAttacks.push({ v: smokeGrenade, 			w: 15 });
+				enemyAttacks.push({ v: sx1GroupSmokeGrenade,	w: 15 });
 				enemyAttacks.push({ v: concGrenade, 			w: 15 });
 			}
 

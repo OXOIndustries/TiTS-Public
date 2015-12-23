@@ -8,12 +8,12 @@
 	import classes.Items.Melee.Fists;
 	import classes.Items.Miscellaneous.*
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
 	import classes.GameData.CodexManager;
-	import classes.Engine.Interfaces.output;
+	import classes.Engine.Interfaces.*;
 	import classes.GameData.CombatManager;
 	import classes.GameData.CombatAttacks;
-	import classes.Engine.Combat.outputDamage;
+	import classes.Engine.Combat.*;
 	
 	public class ZilFemale extends Creature
 	{
@@ -31,7 +31,7 @@
 			this.long = "The female zil you're fighting stands just shy of 5'6, and is covered from head to toes in shiny black chitin. A downy fuzz falls from her head down to her shoulders, resembling curly blonde hair. She's got dozens of sharp darts on her belt, noticeably discolored with chemicals, and a number of glass vials at hand full of who-knows what. Worse, she's got a full bee-like abdomen behind her with a deadly-looking stinger. She moves with a liquid, feline grace, assuming a combat stance that leaves her crotch pointed at you to fill their air with lusty pheromones as her perky tits jut out at you, bobbing from side to side enticingly.";
 			this.customDodge = "The zil girl tumbles out of the way with a swift contortion.";
 			this.customBlock = "The zil's chitinous armor deflects your attack.";
-			this.plural = false;
+			this.isPlural = false;
 			this.meleeWeapon = new Fists();
 			
 			this.rangedWeapon.attack = 1;
@@ -183,7 +183,7 @@
 			this._isLoading = false;
 		}
 		
-		override public function get displayBust():String
+		override public function get bustDisplay():String
 		{
 			return "ZILFEMALE";
 		}
@@ -228,7 +228,7 @@
 			else if(rand(4) == 0) pheromoneFanFromZilFemale(target);
 			else if(rand(3) == 0) zilFemaleDartThrow(target);
 			else if(rand(2) == 0) flurryOfFemBlows(target);
-			else zilFemHarden();
+			else zilFemHarden(target);
 		}
 		
 		private function zilFemHarden(target:Creature):void

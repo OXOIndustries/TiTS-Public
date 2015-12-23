@@ -7,7 +7,7 @@
 	import classes.Items.Guns.HammerPistol;
 	import classes.Items.Miscellaneous.*
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
 	import classes.GameData.CodexManager;
 	import classes.Engine.Combat.DamageTypes.*;
 	import classes.Engine.Combat.*;
@@ -36,7 +36,7 @@
 			this.long = "A mass of turrets and floating drones have been set up like a firing squad in the foyer of the lift station, all barrels training on you. A rag-tag mix of makes and models, most of them look like they belong in antique tech shops - or scrap heaps. But that doesn't mean they're not dangerous: you're surrounded by a hail of lead every time you try and move, made worse as the cat-girl controlling them takes pot-shots at you between the incoming volleys.";
 			this.customDodge = "Somehow, the turrets' swivelling moves them out of the way.";
 			this.customBlock = "The armor plates soak up your attack.";
-			this.plural = true;
+			this.isPlural = true;
 			isLustImmune = true;
 			this.meleeWeapon = new Fists();
 			this.rangedWeapon.longName = "gun";
@@ -155,7 +155,7 @@
 
 		}
 		
-		override public function get displayBust():String
+		override public function get bustDisplay():String
 		{
 			return "TAM";
 		}
@@ -180,12 +180,12 @@
 			choices[choices.length] = laserSightShot;
 			choices[choices.length] = shootFasterAttack;
 			choices[choices.length] = thermalDisruptorFromTam;
-			if(foes[0].hasStatusEffect("Phase 2"))
+			if(hasStatusEffect("Phase 2"))
 			{
 				choices[choices.length] = tamwolfBiteGogogogogogo;
 				choices[choices.length] = tamwolfBiteGogogogogogo;
 				choices[choices.length] = tamwolfBiteGogogogogogo;
-				if(!pc.hasStatusEffect("Blind")) choices[choices.length] = tamwolfOilslick;
+				if(!target.hasStatusEffect("Blind")) choices[choices.length] = tamwolfOilslick;
 			}
 			choices[rand(choices.length)](target);
 		}
@@ -223,7 +223,7 @@
 			}
 		} 
 		
-		public function tamtamPhaseTwoLetsGo(target):void
+		public function tamtamPhaseTwoLetsGo(target:Creature):void
 		{
 			//{Play when the Turret Fight reaches half its normal health}
 			output("You're slowly tearing through the turrets. The foyer has certainly seen better days: it's littered with broken bits of machinery and destroyed turret husks, not to mention the walls riddled with bullet holes. Still, you're making progress, and the cat-girl behind the counter is starting to look awful nervous. Finally, she plants her hands on her (now that you look, surprisingly big) hips and scowls at you.");
@@ -232,7 +232,7 @@
 			if(target.characterClass != GLOBAL.CLASS_ENGINEER) output("some kind of crazy cyber dog");
 			else output("a canid-formed Fenris-class attack drone");
 			output(", complete with a razor claws and fangs.");
-			output("\n\n<i>\"Go get " + pc.mf("him","her") + ", Tam-wolf!\"</i> the cat-girl cheers, pumping a fist into the air.");
+			output("\n\n<i>\"Go get " + target.mf("him","her") + ", Tam-wolf!\"</i> the cat-girl cheers, pumping a fist into the air.");
 			output("\n\n<i>\"Yes, mistress Tam,\"</i> a synthesized robotic voice answers, following by a bass-heavy digital growl.");
 			
 			long = "A mass of turrets and floating drones have been set up like a firing squad in the foyer of the lift station, all barrels training on you. A rag-tag mix of makes and models, most of them look like they belong in antique tech shops -- or scrap heaps. But that doesn't mean they're not dangerous: you're surrounded by a hail of lead every time you try and move, made worse as the cat-girl controlling them takes pot-shots at you between the incoming volleys. Between you and the drones, making your life a lot tougher, is a powerfully built canine attack drone with razor-sharp fangs ready to tear into you!";
@@ -275,7 +275,7 @@
 			createStatusEffect("Turret Aimhacks",0,0,0,0,true,"","",true,0);
 		}
 		
-		private function turretVolleyAttackMotherFucker():void
+		private function turretVolleyAttackMotherFucker(target:Creature):void
 		{
 			output("You find yourself under a hail of gunfire, every turret in the room bearing down on you and firing full-auto, sacrificing accuracy for sheer volume of firepower. And it's working: duck and weave as you might, there's a stream of bullets crashing behind you, tearing into the walls with deafening force.\n");
 			

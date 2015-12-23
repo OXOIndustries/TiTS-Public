@@ -22,7 +22,7 @@
 			this.long = "Placeholder";
 			this.customDodge = "Syri Don't Dodge Foo";
 			this.customBlock = "Obvious placeholder is obvious.";
-			this.plural = false;
+			this.isPlural = false;
 			
 			this.meleeWeapon.attackVerb = "punch";
 			this.meleeWeapon.longName = "semi-solid fist";

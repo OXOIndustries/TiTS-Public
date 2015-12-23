@@ -29,7 +29,7 @@
 			this.long = "Doctor Lash is a six foot tall alien of indeterminate build; his labcoat conceals the bulk of his musculature. There’s no hiding his six arms - or the glowing weapons clutched in each of his long-fingered hands. His imperious gaze is channeled through a pair of glowing goggles, occasionally shifting to different colors as they cycle through various spectrums. There is not a shred of mercy upon his gray, unfeeling face.";
 			this.customDodge = "Dr. Lash twists aside with surprising ease.";
 			this.customBlock = "Obvious placeholder is obvious.";
-			this.plural = false;
+			this.isPlural = false;
 			
 			this.rangedWeapon = new PlasmaPistol();
 			this.rangedWeapon.hasRandomProperties = true;
@@ -182,7 +182,7 @@
 			_isLoading = false;
 		}	
 		
-		override public function get displayBust():String
+		override public function get bustDisplay():String
 		{
 			return "DR_LASH";
 		}

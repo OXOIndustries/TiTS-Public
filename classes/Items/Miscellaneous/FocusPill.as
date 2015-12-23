@@ -8,6 +8,7 @@
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
 	import classes.Engine.Interfaces.*;
+	import classes.Engine.Combat.inCombat;
 	
 	public class FocusPill extends ItemSlotClass
 	{
@@ -74,7 +75,7 @@
 			//Not player!
 			else
 			{
-				if(kGAMECLASS.inCombat()) output("\n");
+				if(inCombat()) output("\n");
 				else clearOutput();
 				output(target.capitalA + target.short + " swallows a focus pill to no effect.\n");
 			}

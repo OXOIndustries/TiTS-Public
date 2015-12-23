@@ -1,7 +1,7 @@
 package classes.GameData.Pregnancy 
 {
 	import classes.Creature;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
 	import classes.GLOBAL;
 	import classes.PregnancyData;
 	import classes.kGAMECLASS;

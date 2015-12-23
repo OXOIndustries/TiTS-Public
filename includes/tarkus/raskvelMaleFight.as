@@ -1525,8 +1525,8 @@ public function nopeGonnaFightCapn():void
 	clearOutput();
 	showRaskGang();
 	pc.createStatusEffect("Seduction Declined",0,0,0,0);
-	output("You'd rather show these brutes what you're made of than titillate them any farther.");
-	CombatManager.
+	output("You'd rather show these brutes what you're made of than titillate them any further.");
+	CombatManager.continueCombat();
 }
 
 public function seduceTheRaskvelAttackYaNerd():void

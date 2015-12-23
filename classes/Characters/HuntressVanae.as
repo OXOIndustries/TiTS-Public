@@ -7,7 +7,7 @@ package classes.Characters
 	import classes.Items.Apparel.*;
 	import classes.Items.Melee.*;
 	import classes.Items.Guns.*;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
 	import classes.VaginaClass;
 	import classes.kGAMECLASS;
 	
@@ -38,7 +38,7 @@ package classes.Characters
 			
 			this.customDodge = "The busty vanae huntress gracefully dances out of the way of your attack, beautiful even in battle. These squid girls are hard to hit!";
 			this.customBlock = "The huntress brings her pointed spear up and parries your attack, redirecting your forceful strike instead of meeting it head on.";
-			this.plural = false;
+			this.isPlural = false;
 			
 			this.meleeWeapon = new VanaeSpear();
 			this.rangedWeapon;
@@ -143,14 +143,9 @@ package classes.Characters
 			this._isLoading = false;
 		}
 		
-		override public function get displayBust():String
+		override public function get bustDisplay():String
 		{
 			return "HUNTRESS_VANAE";
-		}
-		
-		override public function prepForCombat():void
-		{
-			kGAMECLASS.setLocation("FIGHT: VANAE\nHUNTRESS", "PLANET: MHEN'GA", "SYSTEM: ARA ARA");
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void

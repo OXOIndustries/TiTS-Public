@@ -8,6 +8,7 @@
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
 	import classes.Engine.Interfaces.*;
+	import classes.Engine.Combat.inCombat;
 	
 	public class HoneyWine extends ItemSlotClass
 	{
@@ -65,7 +66,7 @@
 			//Not player!
 			else
 			{
-				if(kGAMECLASS.inCombat()) output("\n");
+				if(inCombat()) output("\n");
 				else clearOutput();
 				output(target.capitalA + target.short + " chugs down the wine, and looks a lot peppier afterward!\n");
 			}

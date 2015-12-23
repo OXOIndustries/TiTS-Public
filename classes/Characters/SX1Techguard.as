@@ -6,7 +6,7 @@ package classes.Characters
 	import classes.Items.Melee.Fists;
 	import classes.Items.Protection.JoyCoPremiumShield;
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
 	import classes.VaginaClass;
 	
 	import classes.Engine.Combat.*;
@@ -16,6 +16,7 @@ package classes.Characters
 	import classes.GameData.CombatManager;
 	
 	import classes.Engine.Utility.weightedRand;
+	import classes.Engine.Utility.num2Text;
 	
 	//Low health, mid armor, heavy shields. Carries a rapid-fire, low-damage gun. Level 5.
 
@@ -34,7 +35,7 @@ package classes.Characters
 			this.capitalA = "The ";
 			this.long = "You're fighting a pirate techie, an ausar woman in a flight suit with a machine pistol at her hip. She's got a shock of blonde hair, perky breasts under her suit, and a shield generator that's thrumming with overcharged energy.";
 			this.customBlock = "The pirates armor deflects your attack with an alarming ease.";
-			this.plural = false;
+			this.isPlural = false;
 			isLustImmune = false;
 			
 			this.meleeWeapon = new Fists();
@@ -169,7 +170,7 @@ package classes.Characters
 			this.ass.wetnessRaw = 0;
 			
 			createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
-			createPerk("Attack Drone");
+			createPerk("Attack Drone", 0, 0, 0, 0, "Attack Drone!");
 			
 			isUniqueInFight = true;
 			btnTargetText = "VoidTech";
@@ -178,7 +179,7 @@ package classes.Characters
 			_isLoading = false;
 		}
 		
-		override public function get displayBust():String
+		override public function get bustDisplay():String
 		{
 			return "TECHGUARD";
 		}

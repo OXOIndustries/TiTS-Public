@@ -4,16 +4,15 @@
 	import classes.GLOBAL;
 	import classes.Items.Miscellaneous.*;
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
-	import classes.Engine.Interfaces.output;
+	import classes.Engine.Interfaces.*;
 	import classes.GameData.CombatManager;
 	import classes.GameData.CombatAttacks;
 	import classes.Engine.Combat.DamageTypes.DamageResult;
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
-	import classes.Engine.Combat.outputDamage;
-	import classes.Engine.Combat.applyDamage;
-	import classes.Engine.Combat.combatMiss;
+	import classes.Engine.Combat.*;
+	import classes.Engine.Utility.possessive;
 	
 	public class Naleen extends Creature
 	{
@@ -30,7 +29,7 @@
 			this.long = "You're fighting a Naleen: a towering, serpentine predator from the waist down, supporting a beautiful and quite busty humanoid torso that bares a more than passing resemblance to a feline, with brilliant orange and black tiger stripes and perky feline ears. Her long, fiery hair is braided down her back, ending in a green  leaf-woven bow just above her wide hips and full ass. Despite a body that screams raw sexuality, the naleen's claws are razor sharp and pointed at you as she slithers around the battleground, ready to pounce with feline grace and reptilian power.";
 			this.customDodge = "The naleen slides out of the way of your attack, serpentine body stretching and contorting in ways far beyond human ability.";
 			this.customBlock = "The naleen girl catches your attack on her sharp claws, parrying the strike with feline grace.";
-			this.plural = false;
+			this.isPlural = false;
 			
 			this.meleeWeapon.attackVerb = "swipe";
 			this.meleeWeapon.attackNoun = "claw";
@@ -185,7 +184,7 @@
 			this._isLoading = false;
 		}
 		
-		override public function get displayBust():String
+		override public function get bustDisplay():String
 		{
 			return "NALEEN";
 		}
@@ -294,7 +293,7 @@
 			outputDamage(damageResult);
 		}
 		
-		private function naleeDoubleAttack(target:Creature):void
+		private function naleenDoubleAttack(target:Creature):void
 		{
 			author("Savin");
 			output("The naleen surges forward, lunging at you and swinging her razor-sharp claws right at your throat!\n");

@@ -8,6 +8,7 @@
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
 	import classes.Engine.Utility.num2Text;
+	import classes.Engine.Interfaces.author;
 	
 	public class ManUp extends ItemSlotClass
 	{
@@ -53,7 +54,7 @@
 			var choices:Array = new Array();
 			
 			kGAMECLASS.clearOutput();
-			kGAMECLASS.author("Lashcharge");
+			author("Lashcharge");
 			kGAMECLASS.showName("MANUP");
 			
 			if(target is PlayerCharacter) {
