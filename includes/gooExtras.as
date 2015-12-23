@@ -910,7 +910,7 @@ public function revertGooBodyColor(part:String = "menu"):void
 	{
 		for(i = 0; i < pc.cockTotal(); i++)
 		{
-			if(!pc.hasCockFlag(GLOBAL.FLAG_GOOEY,i) && pc.cocks[i].cockColor != pc.skinTone) mismatchedGenitals++;
+			if(pc.hasCockFlag(GLOBAL.FLAG_GOOEY,i) && pc.cocks[i].cockColor != pc.skinTone) mismatchedGenitals++;
 		}
 	}
 	if(pc.hasVagina())
@@ -1013,7 +1013,7 @@ public function revertGooGenitalColor(sColor:String = "null"):void
 		{
 			for(i = 0; i < pc.cockTotal(); i++)
 			{
-				if(!pc.hasCockFlag(GLOBAL.FLAG_GOOEY,i)) pc.cocks[i].cockColor = sColor;
+				if(pc.hasCockFlag(GLOBAL.FLAG_GOOEY,i)) pc.cocks[i].cockColor = sColor;
 				mismatchedGenitals++;
 			}
 		}
@@ -2631,7 +2631,7 @@ public function gooCrotchUpdate():void
 		for(i = 0; i < pc.cockTotal(); i++)
 		{
 			//Not gooey? ADD IT ZE LIST.
-			if(!pc.hasCockFlag(GLOBAL.FLAG_GOOEY,i)) pc.cocks[i].addFlag(GLOBAL.FLAG_GOOEY);
+			pc.cocks[i].addFlag(GLOBAL.FLAG_GOOEY);
 			pc.cocks[i].cockColor = gooColor();
 		}
 	}
