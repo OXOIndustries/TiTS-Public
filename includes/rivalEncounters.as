@@ -207,6 +207,9 @@ public function letRivalGoOnMhenga():void {
 	output("\n\nYou ball your fists in protest, but ultimately decide to let [rival.em] go. There's no sense in wasting time with a fight when [rival.ey]'s already given you what you came for. Once [rival.ey]'s gone, you root around in the brush for a moment, ignoring the scratching branches to find the data-chit. It's a little scuffed and damp dirt is plastered all over it, but it looks okay. You stand and dust it off before connecting it to your codex. The data is all there: coordinates for another planet, presumably one with another probe. All you had to do was not let your pride get the better of you.");
 	output("\n\nYou'll just have to get to the next one before your cousin.");
 	processTime(10);
+	variableRoomUpdateCheck();
+	var map:* = mapper.generateMap(currentLocation);
+	userInterface.setMapData(map);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -338,6 +341,9 @@ public function defeatDane():void
 	output(" at the ship, but the armor is too thick. It disappears into the canopy, leaving you alone with your thoughts and the data-chit in the bush. A quick search turns it up, and as you'd expect, it has a set of coordinates on it.");
 	output("\n\nThere's still time. You can get to the next probe before your cousin, you're sure of it!\n\n");
 	flags["WHUPPED_DANES_ASS_ON_MHENGA"] = 1;
+	variableRoomUpdateCheck();
+	var map:* = mapper.generateMap(currentLocation);
+	userInterface.setMapData(map);
 	genericVictory();
 }
 
@@ -436,5 +442,8 @@ public function daneFuckEpilogue():void {
 	output("You wake all alone, naked, sore, and leaking white cum. You're humiliated and debased - even the probe is missing, leaving behind a cold, empty crater - but the coordinates to the next planet in your father's chain are in a data-chit lying next to you. Maybe next time you'll have a better showing.\n\n");
 	flags["LOST_TO_DANE_ON_MHENGA"] = 1;
 	processTime(75+rand(10));
+	variableRoomUpdateCheck();
+	var map:* = mapper.generateMap(currentLocation);
+	userInterface.setMapData(map);
 	genericLoss();
 }
