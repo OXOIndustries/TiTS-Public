@@ -1072,18 +1072,23 @@ public function giveEmmyAnItem(item:String):void
 	clearOutput();
 	showEmmy();
 	var emmyLoot:ItemSlotClass;
-	output("You present her with a");
+	output("You present her with");
 	if(item == "Gem Sack")
 	{
-		output(" satchel of gems.");
-		output("\n\nOpening it up and taking a");
+		output(" a satchel of gems.");
+		output("\n\nOpening it up and taking a gem in hand");
+	}
+	else if(item == "Plat190")
+	{
+		output(" the bar of platinum 190.");
+		output("\n\nTaking the precious metal in hand and giving it a thorough examination");
 	}
 	else
 	{
-		output(" " + item.toLowerCase() + " gem.");
-		output("\n\nTaking the");
+		output(" a " + item.toLowerCase() + " gem.");
+		output("\n\nTaking the gem in hand");
 	}
-	output(" gem in hand, the pleased shopkeep exhales, <i>“You actually did it.”</i> Blinking tears of happiness from her eyes, Emmy pulls you into a tight hug. <i>“I... was worried that you wouldn’t even bother. Who needs to waste time getting baubles for a girl when she’s already ");
+	output(", the pleased shopkeep exhales, <i>“You actually did it.”</i> Blinking tears of happiness from her eyes, Emmy pulls you into a tight hug. <i>“I... was worried that you wouldn’t even bother. Who needs to waste time getting baubles for a girl when she’s already ");
 	if(pc.hasCock()) output("sucking you like a vacuum hose");
 	else output("licking you more frantically than a half-starved galotian");
 	output("? But you did it.”</i> She slobbers a kiss across your cheek, dragging her tongue all the way to the bottom of your ear. <i>“You did it for me.”</i>");
@@ -1218,7 +1223,7 @@ public function emmyPicksOral():void
 	else
 	{
 		output("\n\n<b>Error, you got no junk.</b>");
-		addButton(0,"Next",emmyBJFinale);
+		addButton(0,"Next",mainGameMenu);
 	}
 }
 
