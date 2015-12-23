@@ -595,6 +595,10 @@ public function visitLaneAfterDetoxing():void
 			clearMenu();
 			addButton(0, "Next", move, "287");
 		}
+		
+		variableRoomUpdateCheck();
+		var map:* = mapper.generateMap(currentLocation);
+		userInterface.setMapData(map);
 
 		return;
 	}
