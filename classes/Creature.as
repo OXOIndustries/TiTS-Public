@@ -1315,15 +1315,31 @@ package classes {
 				case "weaponStat":
 					buffer = getWeaponName(true);
 					break;
+				case "draw":
+					buffer = weaponActionReady(false, "stat", false);
+					break;
+				case "holster":
+					buffer = weaponActionRelax(false, "stat", false);
+					break;
+				case "drawing":
+					buffer = weaponActionReady(true, "stat", false);
+					break;
+				case "holstering":
+					buffer = weaponActionRelax(true, "stat", false);
+					break;
+				case "drawWeapon":
 				case "readyWeapon":
 					buffer = weaponActionReady(false, "stat");
 					break;
+				case "holsterWeapon":
 				case "relaxWeapon":
 					buffer = weaponActionRelax(false, "stat");
 					break;
+				case "drawingWeapon":
 				case "readyingWeapon":
 					buffer = weaponActionReady(true, "stat");
 					break;
+				case "holsteringWeapon":
 				case "relaxingWeapon":
 					buffer = weaponActionRelax(true, "stat");
 					break;
