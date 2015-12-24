@@ -2500,17 +2500,8 @@ public function statisticsScreen(showID:String = "All"):void
 		}
 		// Body
 		output2("\n<b><u>Body</u></b>");
-		output2("\n<b>* Tone: </b>" + pc.tone + "/100");
-		output2("\n<b>* Thickness: </b>" + pc.thickness + "/100");
-		/*var bodyGirth:Number = ((pc.tallness/3) * (1 + (pc.thickness)/100));
-		output2("\n<b>* Chest: </b>" + prettifyLength(bodyGirth + ((100 - pc.femininity)/10),-2));
-		if(pc.hasBreasts())
-		{
-			output2(", " + StringUtil.toTitleCase(pc.breastCup(pc.biggestTitRow())));
-			if(pc.breastRows[pc.biggestTitRow()].breasts != 1) output2("s");
-		}
-		output2("\n<b>* Waist: </b>" + prettifyLength(bodyGirth + pc.bellyRating(),-2));
-		output2("\n<b>* Hip: </b>" + prettifyLength(bodyGirth + pc.hipRating() + pc.buttRating(),-2));*/
+		output2("\n<b>* Tone: </b>" + pc.tone + "/" + pc.toneMax());
+		output2("\n<b>* Thickness: </b>" + pc.thickness + "/" + pc.thicknessMax());
 		output2("\n<b>* Skin:</b>");
 		if(pc.skinFlags.length > 0)
 		{
