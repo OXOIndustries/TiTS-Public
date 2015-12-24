@@ -773,6 +773,11 @@ public function gooBodyCustomizer():void
 	// Print body stats here:
 	var i:int = 0;
 	output2("\n\n<b><u>Body</u></b>");
+	output2("\n<b>* Height: </b>" + prettifyLength(pc.tallness));
+	output2("\n<b>* Tone: </b>" + pc.tone + " / " + pc.toneMax());
+	output2("\n<b>* Thickness: </b>" + pc.thickness + " / " + pc.thicknessMax());
+	output2("\n<b>* Hip Size: </b>" + formatFloat(pc.hipRating(), 3));
+	output2("\n<b>* Butt Size: </b>" + formatFloat(pc.buttRating(), 3));
 	output2("\n<b>* Skin:</b>");
 	if(pc.skinFlags.length > 0)
 	{
@@ -825,7 +830,20 @@ public function gooBodyCustomizer():void
 	clearGhostMenu();
 	
 	// General body shape:
-	/* Top row buttons (0 to 4) - maybe links to pc.tallness, pc.thickness, pc.buttRatingRaw, pc.hipRatingRaw menus... */
+	if(pc.statusEffectv1("Gel Body") >= 1)
+	{
+		addGhostButton(0,"Height",adjustGooBody,["height","menu"],"Height","Make adjustments to your height.");
+		addGhostButton(1,"Thickness",adjustGooBody,["thickness","menu"],"Thickness","Make adjustments to your thickness.");
+		addGhostButton(2,"Tone",adjustGooBody,["tone","menu"],"Tone","Make adjustments to your tone.");
+	}
+	else
+	{
+		addDisabledGhostButton(0,"Height","Height","It takes five doses of GaloMax to unlock this option.");
+		addDisabledGhostButton(1,"Thickness","Thickness","It takes five doses of GaloMax to unlock this option.");
+		addDisabledGhostButton(2,"Tone","Tone","It takes five doses of GaloMax to unlock this option.");
+	}
+	addGhostButton(3,"Hip Size",adjustGooBody,["hip size","menu"],"Hip Size","Make adjustments to your hip size.");
+	addGhostButton(4,"Butt Size",adjustGooBody,["butt size","menu"],"Butt Size","Make adjustments to your butt size.");
 	
 	// Bodypart fixans: (Primarily for things that got force changes--like Dr.Badger and Holiday events)
 	var nonGooPart:Number = 0;
@@ -879,6 +897,175 @@ public function gooBodyCustomizer():void
 	else addDisabledGhostButton(10,"Match Color","Match Colors","You’ll need to have gooey skin and gooey hair in order to try this!");
 	
 	addGhostButton(14,"Back",gooShiftMenu);
+}
+public function adjustGooBody(arg:Array):void
+{
+	var part:String = arg[0];
+	var desc:String = arg[1];
+	var cost:Number = 0;
+	var limitMax:Number = 100;
+	var limitMin:Number = 0;
+	clearGhostMenu();
+	if(desc == "menu")
+	{
+		clearOutput2();
+		output2("You take a look at your body’s shape, contemplating the changes you could make to it.");
+	}
+	else if(part == "height")
+	{
+		cost = 10;
+		limitMax = 144;
+		limitMin = 36;
+		if(desc == "increase" || desc == "decrease")
+		{
+			clearOutput2();
+			if(desc == "increase")
+			{
+				output2("You concentrate, bunching up some biomass to add an extra inch to your tallness.");
+				pc.tallness++;
+				if(pc.tallness > limitMax) pc.tallness = limitMax;
+				gooBiomass(-1 * cost);
+			}
+			else if(desc == "decrease")
+			{
+				output2("You relax, letting go of an inch of your height to become a little shorter.");
+				pc.tallness--;
+				if(pc.tallness < limitMin) pc.tallness = limitMin;
+				gooBiomass(cost * 0.75);
+			}
+			output2(" <b>You are now " + pc.displayTallness() + " tall.</b>");
+		}
+		output2("\n\n");
+		if(pc.tallness >= limitMax) addDisabledGhostButton(0,"Increase","Increase","It looks like you can’t get any taller than you are now!");
+		else if(gooBiomass() >= cost) addGhostButton(0,"Increase",adjustGooBody,[part,"increase"],"Increase","Add an inch to your height.\n\n<b>" + cost + " mLs Biomass</b>");
+		else addDisabledGhostButton(0,"Increase","Increase","You don’t have enough biomass for that.\n\n<b>" + cost + " mLs Biomass</b>");
+		if(pc.tallness <= limitMin) addDisabledGhostButton(1,"Decrease","Decrease","It looks like you can’t get any shorter than you are now!");
+		else addGhostButton(1,"Decrease",adjustGooBody,[part,"decrease"],"Decrease","Reduce your height by an inch.");
+	}
+	else if(part == "thickness")
+	{
+		cost = 10;
+		limitMax = 100;
+		limitMin = 0;
+		if(desc == "increase" || desc == "decrease")
+		{
+			clearOutput2();
+			if(desc == "increase")
+			{
+				output2("You concentrate, allowing your body and limbs fill with gooey biomass...");
+				pc.modThickness(1);
+				gooBiomass(-1 * cost);
+			}
+			else if(desc == "decrease")
+			{
+				output2("You relax, letting the biomass flow back into your reserves...");
+				pc.modThickness(-1);
+				gooBiomass(cost * 0.75);
+			}
+		}
+		output2("\n\n");
+		if(pc.thickness >= limitMax) addDisabledGhostButton(0,"Increase","Increase","It looks like you can’t get any thicker than you are now!");
+		else if(gooBiomass() >= cost) addGhostButton(0,"Increase",adjustGooBody,[part,"increase"],"Increase","Add a size to your thickness.\n\n<b>" + cost + " mLs Biomass</b>");
+		else addDisabledGhostButton(0,"Increase","Increase","You don’t have enough biomass for that.\n\n<b>" + cost + " mLs Biomass</b>");
+		if(pc.thickness <= limitMin) addDisabledGhostButton(1,"Decrease","Decrease","It looks like you can’t get any thinner than you are now!");
+		else addGhostButton(1,"Decrease",adjustGooBody,[part,"decrease"],"Decrease","Reduce your thickness by one size.");
+	}
+	else if(part == "tone")
+	{
+		cost = 10;
+		limitMax = 100;
+		limitMin = 0;
+		if(desc == "increase" || desc == "decrease")
+		{
+			clearOutput2();
+			if(desc == "increase")
+			{
+				output2("You concentrate, trying your best to tighten your body...");
+				if(pc.toneUnlocked(pc.tone + 1))
+				{
+					pc.modTone(1);
+					gooBiomass(-1 * cost);
+				}
+				else output2("\n\n<b>" + pc.toneLockedMessage() + "</b>");
+			}
+			else if(desc == "decrease")
+			{
+				output2("You relax, letting your body become more fluid...");
+				pc.modTone(-1);
+				gooBiomass(cost * 0.75);
+			}
+		}
+		output2("\n\n");
+		if(pc.tone >= limitMax) addDisabledGhostButton(0,"Increase","Increase","It looks like you can’t get any more solid than you are now!");
+		else if(gooBiomass() >= cost) addGhostButton(0,"Increase",adjustGooBody,[part,"increase"],"Increase","Add a level to your tone.\n\n<b>" + cost + " mLs Biomass</b>");
+		else addDisabledGhostButton(0,"Increase","Increase","You don’t have enough biomass for that.\n\n<b>" + cost + " mLs Biomass</b>");
+		if(pc.tone <= limitMin) addDisabledGhostButton(1,"Decrease","Decrease","It looks like you can’t get any more fluid than you are now!");
+		else addGhostButton(1,"Decrease",adjustGooBody,[part,"decrease"],"Decrease","Reduce your tone by one level.");
+	}
+	else if(part == "hip size")
+	{
+		cost = 10;
+		limitMax = 100;
+		limitMin = 0;
+		if(desc == "increase" || desc == "decrease")
+		{
+			clearOutput2();
+			if(desc == "increase")
+			{
+				output2("You concentrate, filling yourself up with biomass to increase the size to your hips.");
+				pc.hipRatingRaw++;
+				//if(pc.hipRatingRaw > limitMax) pc.hipRatingRaw = limitMax;
+				gooBiomass(-1 * cost);
+			}
+			else if(desc == "decrease")
+			{
+				output2("You relax, pulling in some biomass to decrease the size of your hips.");
+				pc.hipRatingRaw--;
+				if(pc.hipRatingRaw < limitMin) pc.hipRatingRaw = limitMin;
+				gooBiomass(cost * 0.75);
+			}
+			output2(" <b>You now have [pc.hips].</b>");
+			if(pc.hipRatingRaw <= limitMin && pc.hipRating() > limitMin) output2("\n\nYou realize that this is the smallest your hips can get. If you want them any smaller, you’ll have to remove whatever it is that is currently affecting their size.");
+		}
+		output2("\n\n");
+		addGhostButton(0,"Increase",adjustGooBody,[part,"increase"],"Increase","Add a size to your hips.\n\n<b>" + cost + " mLs Biomass</b>");
+		if(pc.hipRatingRaw <= limitMin) addDisabledGhostButton(1,"Decrease","Decrease","It looks like your hips can’t get any smaller than they are now!");
+		else addGhostButton(1,"Decrease",adjustGooBody,[part,"decrease"],"Decrease","Reduce your hips by one size.");
+	}
+	else if(part == "butt size")
+	{
+		cost = 10;
+		limitMax = 100;
+		limitMin = 0;
+		if(desc == "increase" || desc == "decrease")
+		{
+			clearOutput2();
+			if(desc == "increase")
+			{
+				output2("You concentrate, filling yourself up with biomass to increase the size to your ass.");
+				pc.buttRatingRaw++;
+				//if(pc.buttRatingRaw > limitMax) pc.buttRatingRaw = limitMax;
+				gooBiomass(-1 * cost);
+			}
+			else if(desc == "decrease")
+			{
+				output2("You relax, pulling in some biomass to decrease the size of your ass.");
+				pc.buttRatingRaw--;
+				if(pc.buttRatingRaw < limitMin) pc.buttRatingRaw = limitMin;
+				gooBiomass(cost * 0.75);
+			}
+			output2(" <b>You now have [pc.butts].</b>");
+			if(pc.buttRatingRaw <= limitMin && pc.buttRating() > limitMin) output2("\n\nYou realize that this is the smallest your butt can get. If you want it any smaller, you’ll have to remove whatever it is that is currently affecting its size.");
+		}
+		output2("\n\n");
+		addGhostButton(0,"Increase",adjustGooBody,[part,"increase"],"Increase","Add a size to your butt.\n\n<b>" + cost + " mLs Biomass</b>");
+		if(pc.buttRatingRaw <= limitMin) addDisabledGhostButton(1,"Decrease","Decrease","It looks like your butt can’t get any smaller than it is now!");
+		else addGhostButton(1,"Decrease",adjustGooBody,[part,"decrease"],"Decrease","Reduce your butt by one size.");
+	}
+	
+	output2("How would you like to change your " + part + "?");
+	
+	addGhostButton(14,"Back",gooBodyCustomizer);
 }
 public function revertGooBodyPart(part:String = "all"):void
 {
