@@ -335,7 +335,7 @@ package classes {
 		}
 
 		public var thickness: Number = 0;
-		public function thicknesseMin():Number
+		public function thicknessMin():Number
 		{
 			return 0;
 		}
