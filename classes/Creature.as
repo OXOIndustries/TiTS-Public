@@ -4194,7 +4194,7 @@ package classes {
 			var maxN: Number = toneMax();
 			
 			// Mods to caps
-			if(hasSkinFlag(GLOBAL.FLAG_SQUISHY) && change > 0 && (tone + change) > toneMax()) return "\n\nBeing naturally squishy, your body refuses to get more solid than it is now.";
+			if(hasSkinFlag(GLOBAL.FLAG_SQUISHY) && change > 0 && (tone + change) > maxN) return "\n\nBeing naturally squishy, your body refuses to get more solid than it is now.";
 			
 			//Check bounds
 			if (change != 0) 
