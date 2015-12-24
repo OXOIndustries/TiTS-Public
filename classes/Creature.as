@@ -335,6 +335,14 @@ package classes {
 		}
 
 		public var thickness: Number = 0;
+		public function thicknesseMin():Number
+		{
+			return 0;
+		}
+		public function thicknessMax():Number
+		{
+			return 100;
+		}
 		public function thicknessUnlocked(newThickness:Number):Boolean
 		{
 			return true;
@@ -345,9 +353,18 @@ package classes {
 		}
 
 		public var tone: Number = 0;
+		public function toneMin():Number
+		{
+			return 0;
+		}
+		public function toneMax():Number
+		{
+			if(hasSkinFlag(GLOBAL.FLAG_SQUISHY)) return 30;
+			return 100;
+		}
 		public function toneUnlocked(newTone:Number):Boolean
 		{
-			if(hasSkinFlag(GLOBAL.FLAG_SQUISHY) && newTone >= 30) return false;
+			if(hasSkinFlag(GLOBAL.FLAG_SQUISHY) && newTone >= toneMax()) return false;
 			return true;
 		}
 		public function toneLockedMessage():String
@@ -4148,8 +4165,8 @@ package classes {
 		public function modThickness(change: Number, display:Boolean = true): String 
 		{
 			var oldN: Number = thickness;
-			var minN: Number = 0;
-			var maxN: Number = 100;
+			var minN: Number = thicknessMin();
+			var maxN: Number = thicknessMax();
 			
 			// Mods to caps here
 			
@@ -4173,8 +4190,8 @@ package classes {
 		public function modTone(change: Number, display:Boolean = true): String 
 		{
 			var oldN: Number = tone;
-			var minN: Number = 0;
-			var maxN: Number = 100;
+			var minN: Number = toneMin();
+			var maxN: Number = toneMax();
 			
 			// Mods to caps
 			
