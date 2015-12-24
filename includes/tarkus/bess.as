@@ -1271,7 +1271,9 @@ public function approachFollowerBess():void
 		}
 		if (bess.bellyRating() >= 10)
 		{
-			output(" [bess.HisHer] [bess.belly] pushes pointedly against the insides of [bess.hisHer] [bess.armor] and is visibly straining the material.");
+			output(" [bess.HisHer] [bess.belly] pushes");
+			if (bess.bellyRating() >= 50) output(" pointedly");
+			output(" against the insides of [bess.hisHer] [bess.armor] and is visibly straining the material.");
 		}
 	}
 	else if(bess.bellyRating() >= 10)
@@ -1285,7 +1287,9 @@ public function approachFollowerBess():void
 		}
 		else
 		{
-			output(" pushes pointedly against the insides of [bess.hisHer] [bess.armor] and is visibly straining the material.");
+			output(" pushes");
+			if (bess.bellyRating() >= 50) output(" pointedly");
+			output(" against the insides of [bess.hisHer] [bess.armor] and is visibly straining the material.");
 		}
 	}
 
