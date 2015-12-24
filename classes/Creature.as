@@ -347,11 +347,13 @@ package classes {
 		public var tone: Number = 0;
 		public function toneUnlocked(newTone:Number):Boolean
 		{
+			if(hasSkinFlag(GLOBAL.FLAG_SQUISHY) && newTone >= 30) return false;
 			return true;
 		}
 		public function toneLockedMessage():String
 		{
-			return "Your twitch, feeling momentarily sore. Nothing seems to come of it.";
+			if(hasSkinFlag(GLOBAL.FLAG_SQUISHY)) return "You feel a slight soreness but nothing seems to come of it. Your squishy body makes it apparent that you can’t get any more tone than you are now!";
+			return "You twitch, feeling momentarily sore. Nothing seems to come of it.";
 		}
 
 		public var hairColor: String = "no";
