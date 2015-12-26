@@ -34,7 +34,7 @@ package classes.Characters
 			this.a = "the ";
 			this.capitalA = "The ";
 			
-			this.long = "Your opponent - a busty vanae huntress - almost appears as if she's dancing as she fights you. Her [monster.hair] and skirt, not to mention her sizable breasts, make her look incredibly feminine. The amazon's tentacles and body markings are [monster.hairColor] colored and bioluminescent.\n\nAs she swings her pointed spear around in her webbed hands, you can't help but notice her bare boobs bouncing about. Her inverted nipples are lactating a transparent, [monster.milkColor] goo. Meanwhile her [monster.tail] whips around as she ‘dances’, another weapon in the alien girl's natural arsenal.\n\nHer eyes are closed. It's always a little weird fighting someone who doesn't even look at you.";
+			this.long = "Your opponent - a busty vanae huntress - almost appears as if she's dancing as she fights you. Her [enemy.hair] and skirt, not to mention her sizable breasts, make her look incredibly feminine. The amazon's tentacles and body markings are [enemy.hairColor] colored and bioluminescent.\n\nAs she swings her pointed spear around in her webbed hands, you can't help but notice her bare boobs bouncing about. Her inverted nipples are lactating a transparent, [enemy.milkColor] goo. Meanwhile her [enemy.tail] whips around as she ‘dances’, another weapon in the alien girl's natural arsenal.\n\nHer eyes are closed. It's always a little weird fighting someone who doesn't even look at you.";
 			
 			this.customDodge = "The busty vanae huntress gracefully dances out of the way of your attack, beautiful even in battle. These squid girls are hard to hit!";
 			this.customBlock = "The huntress brings her pointed spear up and parries your attack, redirecting your forceful strike instead of meeting it head on.";
@@ -252,7 +252,7 @@ package classes.Characters
 			else
 			{
 				// [Hit & Stun]: 
-				output(" Her [monster.foot] connects with all the velocity of her wind up, striking your [pc.face] with incredible force. You see stars as you are knocked back, stunned by her blow. She's leading into a follow-up attack...");
+				output(" Her [enemy.foot] connects with all the velocity of her wind up, striking your [pc.face] with incredible force. You see stars as you are knocked back, stunned by her blow. She's leading into a follow-up attack...");
 				
 				var damage:TypeCollection = meleeDamage();
 				damage.add(12);
@@ -268,13 +268,13 @@ package classes.Characters
 			output("Suddenly, the");
 			if (this is MaidenVanae) output(" girlish");
 			else output(" busty");
-			output(" huntress grabs the sides of her [monster.breasts]. She squeezes them and squirts a stream of [monster.milk] at you.");
+			output(" huntress grabs the sides of her [enemy.breasts]. She squeezes them and squirts a stream of [enemy.milk] at you.");
 
 			// [Miss]: 
-			if (combatMiss(this, target)) output(" You dodge the [monster.milk] as it shoots past your [pc.ear]. She steadies her spear, moving back into her fighting stance.");
+			if (combatMiss(this, target)) output(" You dodge the [enemy.milk] as it shoots past your [pc.ear]. She steadies her spear, moving back into her fighting stance.");
 			else if(target.hasArmor() && target.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
 			{
-				output(" You are splattered with her [monster.milk]! Fortunately for you, your [pc.armor] is watertight and prevents any of the lust-inducing liquid to seep into it.");
+				output(" You are splattered with her [enemy.milk]! Fortunately for you, your [pc.armor] is watertight and prevents any of the lust-inducing liquid to seep into it.");
 			}
 			else
 			{
@@ -283,12 +283,12 @@ package classes.Characters
 				if (rand(100) > critChance)
 				{
 					// [Hit]: 
-					output(" You are splattered with her [monster.milk], unable to get it off. All of a sudden, your cheeks begin to flush and you start feeling quite aroused...");
+					output(" You are splattered with her [enemy.milk], unable to get it off. All of a sudden, your cheeks begin to flush and you start feeling quite aroused...");
 				}
 				else
 				{
 					// [Hit And Stun]: 
-					output(" You are splattered with her [monster.milk], unable to get it off. All of a sudden, your cheeks begin to flush and you lose control to your limbs, falling to the ground. She's leading into a follow-up attack...");
+					output(" You are splattered with her [enemy.milk], unable to get it off. All of a sudden, your cheeks begin to flush and you lose control to your limbs, falling to the ground. She's leading into a follow-up attack...");
 					target.createStatusEffect("Stunned", 2, 0, 0, 0, false, "Stun", "You are stunned and cannot move until you recover!", true, 0);
 				}
 				
@@ -315,7 +315,7 @@ package classes.Characters
 				else
 				{
 					// [Success/Don't Struggle]: 
-					output(" You can't shake her off you as she wraps around your lower body and [pc.hips], pulling herself flush against your [pc.skin]. Her [monster.breasts] are rubbing against you, coating you in her [monster.milk]...");
+					output(" You can't shake her off you as she wraps around your lower body and [pc.hips], pulling herself flush against your [pc.skin]. Her [enemy.breasts] are rubbing against you, coating you in her [enemy.milk]...");
 
 					output("\n\nYou can feel your cheeks begin to flush. All of a sudden you start to lose the ability to move your limbs, but not the ability to feel what's happening to them. And what is happening feels <i>good</i>...");
 
@@ -325,7 +325,7 @@ package classes.Characters
 			}
 			else
 			{
-				output("You are helpless as the vanae huntress rubs her [monster.breasts] up and down your body, smearing her wonderful breast milk all over your body. You feel like you're being lubed up by her");
+				output("You are helpless as the vanae huntress rubs her [enemy.breasts] up and down your body, smearing her wonderful breast milk all over your body. You feel like you're being lubed up by her");
 			if (this is MaidenVanae) output(" meager");
 			else output(" sizable");
 			output(" mounds, your [pc.groin] burning with arousal.");
@@ -337,7 +337,7 @@ package classes.Characters
 		{
 			// Effect: Small Damage if hit, trip if connect. Vanae always attempts either a grapple or a melee strike on a tripped opponent. Small crit chance.
 			
-			output("The lithe huntress dances up towards you, her [monster.hairColor], luminescent ‘skirt’ twirling about her body. Suddenly she crouches and her [monster.tail] sweeps at your [pc.feet] - it's a trip attack!");
+			output("The lithe huntress dances up towards you, her [enemy.hairColor], luminescent ‘skirt’ twirling about her body. Suddenly she crouches and her [enemy.tail] sweeps at your [pc.feet] - it's a trip attack!");
 
 			// [Miss]: 
 			if (combatMiss(this, target)) output(" You read her movements and avoid being tripped. She only succeeds at sweeping the ground with her sneaky strike.");

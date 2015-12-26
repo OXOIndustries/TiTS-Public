@@ -6,12 +6,13 @@
 	import classes.Creature;
 	import classes.GLOBAL;
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
 	import classes.GameData.CombatManager;
 	import classes.Engine.Utility.num2Text;
 	import classes.Util.RandomInCollection;
 	import classes.Engine.Combat.DamageTypes.DamageResult;
 	import classes.Engine.Combat.outputDamage;
+	import classes.Engine.Combat.*;
 	
 	public class CuntSnake extends Creature
 	{
@@ -33,7 +34,7 @@
 			this.long = "The green-hued cunt snake blends in well with vegetation. It has no visible eyes, though there are two sensory bulbs atop its head. The reptilian alien is somewhere around " + num2Text(Math.round(this.tallness/12)) + " feet in length and moves with such sinuous, unpredictable grace that it would be difficult to hit from long range, but the fangs seem to suggest you keep your distance. A moist, drooling pussy is visible at the end of its body. It often shifts to point it towards you so that you can see just how sopping wet the hole is.";
 			this.customDodge = "The cunt snake sways aside at the last second!";
 			this.customBlock = "Your attack deflects off the cunt snake's " + this.scaleColor + " scales!";
-			this.plural = false;
+			this.isPlural = false;
 			
 			isLustImmune = true;
 			
@@ -245,7 +246,7 @@
 			
 			if (target.hasCock() && rand(3) == 0) 
 			{
-				if(rand(4) == 0) paralyzingVenom();
+				if(rand(4) == 0) paralyzingVenom(target);
 				else aphrodisiacBite(target);	
 			}
 			if (CombatManager.getRoundCount() % 5 == 0) 
@@ -262,7 +263,7 @@
 			}
 			else if (rand(2) == 0) 
 			{
-				slapAttackFromCuntSnake(foes[0],pc);
+				slapAttackFromCuntSnake(target);
 			}
 			else 
 			{

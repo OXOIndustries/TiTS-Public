@@ -1578,7 +1578,7 @@ public function arbetzPetrBuy():void
 			output("\n");
 			price = getBuyPrice(chars["PETR"], chars["PETR"].inventory[x].basePrice);
 			if (price > pc.credits) output("<b>(Too Expensive)</b> ");
-			output(upperCase(chars["PETR"].inventory[x].description, false) + " - " + price + " credits.");
+			output(StringUtil.upperCase(chars["PETR"].inventory[x].description, false) + " - " + price + " credits.");
 			if (price <= pc.credits)
 			{
 				if (x <= 13) addItemButton(x, chars["PETR"].inventory[x], arbetzPetrBuyGo, chars["PETR"].inventory[x], null, null, chars["PETR"], pc);

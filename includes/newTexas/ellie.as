@@ -219,7 +219,7 @@ output("\n\n//Tooltip: This download code will allow you to access the story <i>
 
 
 output("\n\nStory: Gene Stealer");
-output("\n\n//Tooltip: This download code will allow you to access the story <i>The Gene Stealer</i>, a follow-up to <i>Talon Rogue</i>. In this story, Captain Entara’s adventures head to Tarkus and into the ruins of a starship inhabited by a terrible monster. ");
+output("\n\n//Tooltip: This download code will allow you to access the story <i>The Gene Stealer</i>, a follow-up to <i>Talon Rogue</i>. In this story, Captain Entara’s adventures head to Tarkus and into the ruins of a starship inhabited by a terrible enemy. ");
 
 
 output("\n\nRepeat Items");

@@ -69,6 +69,16 @@ package  classes
 			else nStr += value.substr(1);
 			return nStr;
 		}
+		
+		public static function upperCase(str:String, forceLower:Boolean = true):String
+		{
+			var f:String = str.substr(0, 1);
+			var rem:String = str.substr(1, str.length);
+			
+			if (forceLower) rem = rem.toLowerCase();
+			
+			return f.toUpperCase() + rem;
+		}
 	}
 
 }

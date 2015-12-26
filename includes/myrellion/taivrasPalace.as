@@ -677,7 +677,8 @@ public function stepBackFromGloryHoles():void
 
 	processTime(5);
 	clearMenu();
-	addButton(0,"Next",startCombat,"Goocubator");
+	configureGoocubatorFight();
+	addButton(0,"Next",CombatManager.beginCombat);
 }
 
 public function configureGoocubatorFight():void
@@ -1500,8 +1501,8 @@ public function moveToCage():void
 	output("\n");
 	pc.addStatusValue("Cage Distance",1,-1);
 	trace("CAGE DISTANCE v1: " + pc.statusEffectv1("CAGE DISTANCE"));
-	if(enemy is Queensguard) queensguardLongUpdate();
-	processCombat();
+	if (enemy is Queensguard) (enemy as Queensguard).queensguardLongUpdate(pc);
+	CombatManager.processCombat();
 }
 
 //At the 3rd square, can [Breakout]
@@ -1554,7 +1555,7 @@ public function breakOutDane():void
 		output("\n\nQueensguard valiantly struggles to her feet to interpose herself between her mistress and the near-rabid ausar, but she earns little more than a stunning backhand for her effort.\n\n<b>Together you can bring down the Queen!</b>\n");
 		flags["FREED_DANE_FROM_TAIVRA"] = 1;
 		pc.removeStatusEffect("Cage Distance");
-		processCombat();
+		CombatManager.processCombat();
 	}
 }
 
@@ -1591,8 +1592,8 @@ public function spankedQueensguardsAss():void
 	
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(taivra);
-	CombatManager.victoryScene(new Taivra());
+	CombatManager.setHostileCharacters(new Taivra());
+	CombatManager.victoryScene(whupTaivrasAss);
 	CombatManager.lossScene(loseToQueensTaivra);
 	CombatManager.displayLocation("QUEEN TAIVRA");
 	
@@ -3149,7 +3150,7 @@ public function resistPrincessYouSloot():void
 	CombatManager.lossScene(loseToPrincessYeGit);
 	CombatManager.displayLocation("PRINCESS");
 	
-	addButton(0,"Next",startCombat,"princess");
+	addButton(0,"Next",CombatManager.beginCombat);
 }
 
 public function loseToPrincessYeGit(willing:Boolean = false):void

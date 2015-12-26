@@ -41,7 +41,7 @@ public function keroSkinDetail(tEnemy:Creature = null):String
 public function showFrogGirl(tEnemy:Creature = null):void
 {
 	if (tEnemy == null) tEnemy = enemy;
-	showBust(tEnemy.displayBust)
+	showBust(tEnemy.bustDisplay)
 	if(inCombat()) showName("FIGHT:\nKEROKORAS")
 	else showName("\nKEROKORAS");
 }

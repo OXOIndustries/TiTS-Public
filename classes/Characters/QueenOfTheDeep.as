@@ -517,5 +517,10 @@
 			
 			applyDamage(damageRand(new TypeCollection( { kinetic: 10 }, DamageFlag.CRUSHING ), 10), this, target, "minimal");
 		}
+		
+		override public function getCombatDescriptionExtension():void
+		{
+			if (lust() >= 50) output("\n\nYou can see her breath quickening, her massive chest heaving with nipples as hard as diamonds. She looks almost ready to cum just from your confrontation...");
+		}
 	}
 }

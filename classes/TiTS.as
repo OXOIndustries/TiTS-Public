@@ -911,7 +911,7 @@
 		 * 
 		 * attacker is similar to target, but refers to the current attacker. It operates under the same assumptions. Note that these will always refer to the "user" of an ability (attacker) and the "focus" of that ability (target) _if a target is required_
 		 * 
-		 * enemy always refers to the creature deemed to be in opposition to the player. In instances on enemy-on-enemy ability usage (say, for a heal), then this will be the user of the ability itself. This is also used at the end of combat as a replacement to foes[0] in that it is means by which the victory or loss scenes can refer to a specific character that was involved in combat.
+		 * enemy always refers to the creature deemed to be in opposition to the player. In instances on enemy-on-enemy ability usage (say, for a heal), then this will be the user of the ability itself. This is also used at the end of combat as a replacement to enemy in that it is means by which the victory or loss scenes can refer to a specific character that was involved in combat.
 		 * 
 		 * Combined, these three aren't really required for the attack function implementations to work- the attacker and the target are always passed in as arguments. However, this is how the parser can access these characters, allowing parser tags to be used in a generic manner inside attack functions and such. SingleCombatAttacks will configure this during execution, but for "custom" NPC attacks, you'll have to set these... if you don't use the baseline selectTarget() function that the CombatAI functions use to randomly select a target. Another function exists to do this quickly; notifyTargetSelection().
 		 */
@@ -1013,7 +1013,7 @@
 		}
 		public function get vanae():Creature
 		{
-			return this.monster;
+			return this.enemy;
 		}
 		public function get vanaeMaiden():MaidenVanae
 		{
@@ -1083,6 +1083,10 @@
 		public function get goocubator():Goocubator
 		{
 			return chars["GOOCUBATOR"];
+		}
+		public function get kara():Kara
+		{
+			return chars["KARA"];
 		}
 	}
 }

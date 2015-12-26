@@ -11,16 +11,18 @@ public function showGooKeep():void
 }
 
 //Crystal goo knight encounter
+/*
 public function crystalGooFenBurps():void
 {
 	author("Gardeford");
 	showGardeGoo();
-	foes = new Array();
-	chars["CRYSTALKNIGHT"].prepForCombat();
+	
+	setEnemy(new CrystalKnight());
+
 	//load encounter to determine color, for reasons.
 	if(flags["MET_GOO_KNIGHT"] == undefined)
 	{
-		output("\n\nAs you wander through the damp caves, you hear someone running behind you. You turn just in time to dodge a sword that might’ve done some major damage. The [monster.skinTone] blade clangs into the stone floor, sending small chips flying in every direction. When you recover enough to examine the sword’s owner, you find it to be a tall knight wearing armor of similar color to its sword.");
+		output("\n\nAs you wander through the damp caves, you hear someone running behind you. You turn just in time to dodge a sword that might’ve done some major damage. The [enemy.skinTone] blade clangs into the stone floor, sending small chips flying in every direction. When you recover enough to examine the sword’s owner, you find it to be a tall knight wearing armor of similar color to its sword.");
 		if(!CodexManager.entryUnlocked("Ganrael"))
 		{
 			output(" Your codex beeps, alerting you that the knight is a ganrael, a species of goo-creature.");
@@ -37,8 +39,9 @@ public function crystalGooFenBurps():void
 		output("\n\nYou hear clanking on the rocks just in time to avoid a slash from a ganraen knight. It looks like you’re a popular choice for their attacks. You ready your weapons and prepare to fight.");
 	}
 	clearMenu();
-	addButton(0,"Next",startCombatLight);
+	//addButton(0,"Next",startCombatLight);
 }
+*/
 
 public function gooKnightLossRouter():void
 {
@@ -81,18 +84,18 @@ public function gooKnightLossScene():void
 		//make goo-cock
 		pc.createCock();
 		pc.cocks[0].cLengthRaw = 8;
-		pc.skinTone = foes[0].skinTone;
+		pc.skinTone = enemy.skinTone;
 		pc.skinType = GLOBAL.SKIN_TYPE_GOO;
 		fauxCock = true;
 	}
 	output(" When she finishes admiring her prize, her hands gently milk your [pc.cock], skillfully enough that you imagine you aren’t the first target of her lusts.");
 
-	output("\n\n<i>“That’s a good prince. Now what should we do first? I think a royal blowjob is in order, and maybe I’ll even use my tits!”</i> she says, her excitement increasing by the second. Her hand pistons so fast along your length that it loses coherency and becomes a slick tube of [monster.skinTone] goo. She pulls it back and waits for it to reform with an apologetic shrug. You sit in awe of her excitement. Didn’t you just lose a fight?");
+	output("\n\n<i>“That’s a good prince. Now what should we do first? I think a royal blowjob is in order, and maybe I’ll even use my tits!”</i> she says, her excitement increasing by the second. Her hand pistons so fast along your length that it loses coherency and becomes a slick tube of [enemy.skinTone] goo. She pulls it back and waits for it to reform with an apologetic shrug. You sit in awe of her excitement. Didn’t you just lose a fight?");
 	output("\n\n<i>“Sorry about that, I’m just super excited,”</i> she explains as she wraps her warm, gooey tits around your [pc.cock]. Their wetness serves as a natural lube as she rubs them all over your length, starting low and slowly rising till their bottoms are at your [pc.cockHead]. When your [pc.cocks] ");
 	if(pc.cockTotal() > 1) output("are");
 	else output("is");
 	output(" about to fall out");
-	output(" she lets her [monster.skinTone] breasts drop and encompass ");
+	output(" she lets her [enemy.skinTone] breasts drop and encompass ");
 	if(pc.cockTotal() == 1) output("it");
 	else output("them");
 	output(" in cozy liquid.");
@@ -124,7 +127,7 @@ public function gooKnightLossScene():void
 	output(" By now your ");
 	if(pc.cockTotal() == 1) output("[pc.cock] is");
 	else output("loins are");
-	output(" so hot that her body is starting to feel cool. She pinches her squishy nipples, pressing them so tight that you’re afraid they’ll fall apart in her fingers. Her solid [monster.skinTone] eyes droop into a dreamy glaze of lust.");
+	output(" so hot that her body is starting to feel cool. She pinches her squishy nipples, pressing them so tight that you’re afraid they’ll fall apart in her fingers. Her solid [enemy.skinTone] eyes droop into a dreamy glaze of lust.");
 
 	output("\n\nYou feel another wave of ecstasy building, and pull the eager knight’s face until your [pc.cock] is sunk so deeply into her throat that the [pc.cockHead] blurs in your vision. ");
 	if(!fauxCock || (pc.hasCock() && pc.hasVagina()))
@@ -138,7 +141,7 @@ public function gooKnightLossScene():void
 	else output("Another shot of the buzzer draws your [pc.girlCum] right up into her throat, giving her the meal she desires while she melts your mind with pleasure. Her long tongue zips out to lick your [pc.vaginas] and [pc.asshole]. By now the fake cock she’s given you is nearly as solid as the plates she was wearing for armor, and each touch affects the buzzer even more sensitively.");
 	output(" She pulls away from you, licking her lips and staring into your eyes. You doubt she sees anything but sex at the moment.");
 
-	output("\n\n<i>“N-now for the main event. A good prince makes their savior a princess,”</i> she says as she stands, straddling your hips before lowering herself onto your [pc.cock]. The viscous surface of her legs holds her fast to your [pc.skinFurScales] as the folds of her cunt run like silk over the underside of your shaft. She leans closer to you, so close that you can see the bubbles in her goo-formed body. When she gets close enough she kisses you, invading your mouth with her tongue as she finishes sheathing your [pc.cock] in her [monster.skinTone] cunt.");
+	output("\n\n<i>“N-now for the main event. A good prince makes their savior a princess,”</i> she says as she stands, straddling your hips before lowering herself onto your [pc.cock]. The viscous surface of her legs holds her fast to your [pc.skinFurScales] as the folds of her cunt run like silk over the underside of your shaft. She leans closer to you, so close that you can see the bubbles in her goo-formed body. When she gets close enough she kisses you, invading your mouth with her tongue as she finishes sheathing your [pc.cock] in her [enemy.skinTone] cunt.");
 	output("\n\nHer DD-cup’s mash against your [pc.chest] as she gyrates madly atop you. Were she human the motions might be more hurtful than pleasurrable, but her malleable insides follow and massage your [pc.cock] throughout her rapid fucking. The amount of stamina you’ve used up prevents you from doing anything but holding weakly to her hips as they bounce. As she moves faster your hands sink in an inch or two, stuck tight in her sticky body.");
 	if(pc.hasCock()) 
 	{
@@ -165,7 +168,7 @@ public function gooKnightLossScene():void
 	processTime(15);
 	pc.orgasm();
 	processTime(33);
-	genericLoss();
+	CombatManager.genericLoss();
 }
 
 //Genderless loss
@@ -202,18 +205,18 @@ public function genderlessLossToGooCrystals():void
 	else output("tickling your bare [pc.skinFurScalesNoun]");
 	output(".");
 
-	output("\n\nYou sigh as the sensations fill you with a tingling bliss, and gasp when a sharp prick on your arm takes it all away. The [monster.skinTone] knight gives you a sadistic grin, licking the blood that drips from the dagger. A small gash sits on your arm, not dangerous but still a bit painful. The warrior woman notices your bitter staring, and snickers at your discomfort.");
+	output("\n\nYou sigh as the sensations fill you with a tingling bliss, and gasp when a sharp prick on your arm takes it all away. The [enemy.skinTone] knight gives you a sadistic grin, licking the blood that drips from the dagger. A small gash sits on your arm, not dangerous but still a bit painful. The warrior woman notices your bitter staring, and snickers at your discomfort.");
 	output("\n\n<i>“Maybe if you get some real parts I’ll let you feel the full experience instead of a taste,”</i> she says with a teasing tone. She reforms the damage she took during the fight, leaving you lying there as she returns to the caves. Eventually you recover enough to retrieve your [pc.gear] and return to exploring the caves, only missing a few shreds of dignity.\n\n");
 	pc.lust(20);
 	processTime(35);
-	genericLoss();
+	CombatManager.genericLoss();
 }
 
 //Win menu options
 public function beatUpCrystalGoo():void
 {
 	output("The ganraen knight collapses from the pressure of the battle, ");
-	if(foes[0].HP() < 1) output("her armor mostly decimated by your concentrated attacks");
+	if(enemy.HP() < 1) output("her armor mostly decimated by your concentrated attacks");
 	else output("most of her armor slipping off as her body secretes lusty juices");
 	output(".\n\n");
 	clearMenu();
@@ -232,7 +235,7 @@ public function beatUpCrystalGoo():void
 		addDisabledButton(1,"Vag Fuck","Vagina Fuck","You aren’t turned on enough for that.");
 		addDisabledButton(2,"Centaur Ride","Centaur Ride","You aren’t turned on enough for that.");
 	}
-	addButton(14,"Leave",genericVictory);
+	addButton(14,"Leave",CombatManager.genericVictory);
 }
 
 //Male win
@@ -241,12 +244,12 @@ public function malesBeatGoo():void
 	clearOutput();
 	showGardeGoo();
 	author("Gardeford");
-	output("All that remains is a chestplate, a flimsy looking skirt, and her helmet. You walk proudly over to her, grinning as she tries to think of something to do. You pull the helmet carefully off her head, freeing a beautifully featured face sculpted from her goo body, along with [monster.hair]. Your codex mentioned that the ganraen sometimes shape themselves like humanoids.");
-	output("\n\nYou grasp the plate covering her chest, pulling it away with a slick pop. A pair of DD-cup breasts are freed by the action, their puffy nipples already beginning to harden from the sensation. The knight gasps in alarm, attempting to cover her boobs with both hands. Her attempts are in vain when they hit so hard that they sink deeply inside, leaving her chest free for you to play with. You squeeze the [monster.skinTone] tits, being sure to press more gently than she had. To your surprise she doesn’t have much of a reaction when you pinch her nipples near to flatness, and instead simply gives you a defiant smile.");
+	output("All that remains is a chestplate, a flimsy looking skirt, and her helmet. You walk proudly over to her, grinning as she tries to think of something to do. You pull the helmet carefully off her head, freeing a beautifully featured face sculpted from her goo body, along with [enemy.hair]. Your codex mentioned that the ganraen sometimes shape themselves like humanoids.");
+	output("\n\nYou grasp the plate covering her chest, pulling it away with a slick pop. A pair of DD-cup breasts are freed by the action, their puffy nipples already beginning to harden from the sensation. The knight gasps in alarm, attempting to cover her boobs with both hands. Her attempts are in vain when they hit so hard that they sink deeply inside, leaving her chest free for you to play with. You squeeze the [enemy.skinTone] tits, being sure to press more gently than she had. To your surprise she doesn’t have much of a reaction when you pinch her nipples near to flatness, and instead simply gives you a defiant smile.");
 	output("\n\n<i>“Ha! That won’t work on me. I concentrated all my pleasure receptors into my vagina!”</i> she says proudly, her face flushing a moment later as she realizes her mistake. You aren’t sure whether or not she can move her receptors quickly, but just in case you don’t give her the time. By the time the awareness of her slip appears on her face, your hands are sliding under her crystal skirt and over her gooey mons.");
 	output("\n\nAt your touch she goes as rigid as her semi-solid body will allow, letting out half a moan as all the pleasure buttons her body has available get pressed at once. Her hands retract from inside her and grip your arms for dear life, anchoring herself to something solid as the inside of her diamond hard skirt is plastered with sex juices. She continues to cum for what seems like minutes, but can’t be more than a few seconds, before collapsing into a breathless heap in front of you.");
 	output("\n\nYou gently pull the armored undergarment off of her, tossing it into a pile with her sword and chestplate. Her juices form a sticky web between her legs, and she tries to catch her breath while you survey her body. Now that she’s fully naked she looks just like a galotian imitating a human form.");
-	output("\n\nHer slippery thighs part easily as you pull them aside, revealing the sex soaked exterior of her pussy. The mimicked organ twitches needfully in the damp cave air, inviting you to plug it up. You ready your [pc.cockBiggest], rubbing the head between her squishy [monster.skinTone] lips. She stirs as your brushing brings her out of her orgasm induced stupor.");
+	output("\n\nHer slippery thighs part easily as you pull them aside, revealing the sex soaked exterior of her pussy. The mimicked organ twitches needfully in the damp cave air, inviting you to plug it up. You ready your [pc.cockBiggest], rubbing the head between her squishy [enemy.skinTone] lips. She stirs as your brushing brings her out of her orgasm induced stupor.");
 	output("\n\nYou line your [pc.cockHeadBiggest] up with her hole, pressing it gently forward to make sure its perfectly aligned before ramming in at full speed. ");
 	if(pc.cockTotal() > 1)
 	{
@@ -260,14 +263,14 @@ public function malesBeatGoo():void
 		else output("itself");
 		output(" in warmth. ")
 	}
-	output("You take her gooey lower lip in your mouth, sucking on it as she moans in pleasure. The [monster.skinTone] goo-girl tries to kiss your nose, but the trapped portion of her mouth makes it impossible to do anything more than lick haphazardly.");
+	output("You take her gooey lower lip in your mouth, sucking on it as she moans in pleasure. The [enemy.skinTone] goo-girl tries to kiss your nose, but the trapped portion of her mouth makes it impossible to do anything more than lick haphazardly.");
 	pc.cockChange();
 	output("\n\nYour [pc.cockBiggest] is enveloped in liquid pressure, milking along its surface with alien fervor. Whenever you pull back, the chaotically formed goo hardens to prevent your movement, only to melt back into jelly when you thrust back in. The girl’s knight roleplay has been given up completely, and she molds her body into your actions, mimicking them in reverse as she moans into your mouth.");
 	output("\n\nSuddenly the semiliquid lady jerks her head back, shouting in orgasm as her jellied flesh sticks to your [pc.skinFurScales]. As she cums her body becomes slightly more solid for a second, the outer layer of her hardening slightly. The event gives you an idea, and you continue to pound her toughening body.");
 	output("\n\nThe ganraen girl makes unintelligible attempts at speech as you give her no chance to rest. She cums again in rapid succession, your [pc.cockNounBiggest] rubbing her cluster of pleasure sensing nerves. A shudder runs through her body, and you feel part of her thigh solidify under your fingers. She gives a whimpering moan as she looks at her arm, seeing portions of it freeze into the diamond hard crystal that her armor was made of.");
-	output("\n\nYou focus your efforts, stroking her budding clit till it becomes as rigid as a gemstone. You kiss her neck, licking up to one of her squishy goo ears. A laugh escapes your lips as you go, prompted by your tongue leaving a trail of solidified [monster.skinTone] crystal in its wake. Despite her predicament, the hardening harlot can’t resist her baser urges.");
+	output("\n\nYou focus your efforts, stroking her budding clit till it becomes as rigid as a gemstone. You kiss her neck, licking up to one of her squishy goo ears. A laugh escapes your lips as you go, prompted by your tongue leaving a trail of solidified [enemy.skinTone] crystal in its wake. Despite her predicament, the hardening harlot can’t resist her baser urges.");
 	output("\n\nShe lathers the side of your face with kisses, even as her body slowly hardens. Whatever control centers decide how to form her plates seem to be gradually overridden by the ones that decide how hard she should be cumming. You wonder what both kinds of receptors would think of a hot injection of your seed.");
-	output("\n\nYou dont have to think for long. You join in the sensual moaning as your lust boils over the edge. [pc.EachCock] blows it’s load into her hungry form. You look down to see spurts of your [pc.cum] clouding the [monster.skinTone] insides. The lust drugged goo-girl’s limbs stretch and tense, fingers and toes splaying as she frantically searches for something to hold.");
+	output("\n\nYou dont have to think for long. You join in the sensual moaning as your lust boils over the edge. [pc.EachCock] blows it’s load into her hungry form. You look down to see spurts of your [pc.cum] clouding the [enemy.skinTone] insides. The lust drugged goo-girl’s limbs stretch and tense, fingers and toes splaying as she frantically searches for something to hold.");
 	output("\n\nHer efforts wind up being in vain, as a great shiver winds its way over her body. She lets out a final echoing moan that is cut off half way as her entire body solidifies into a crystal statue. Her cunt remains just liquid enough for you to pull away before it too hardens into a perfect crystalline imitation of a woman in orgasm.");
 	output("\n\nYou stare at the frozen beauty for a moment, wondering whether you should just leave her there or not.");
 	//pc nice/naughty: 
@@ -278,8 +281,8 @@ public function malesBeatGoo():void
 		output("\n\nAbout half a minute of chiseling has the outer shell cracking and falling apart. A shapeless puddle of goo coalesces in the center of the shattered pile. You wait for a moment, staring at the blob as it increases in size. To your surprise, a feminine arm extends from the mass, handing you a small clump of metallic material.");
 		output("\n\n<i>“Thanks for letting me out, you can have this pretty thing,”</i> she says shyly, her former personality gone with the body that accompanied it. You take the gel covered crystal, not sure if it will be worth anything, and head back to exploring. A quick scan reveals the stone to be a small colorful gemstone, not worth much of anything, but maybe the ganrael use them.");
 		//force crystal looot
-		if (rand(2) == 0) foes[0].inventory.push(new Kirkite());
-		else foes[0].inventory.push(new Satyrite());
+		if (rand(2) == 0) enemy.inventory.push(new Kirkite());
+		else enemy.inventory.push(new Satyrite());
 	}
 	//pc mean:
 	else
@@ -291,7 +294,7 @@ public function malesBeatGoo():void
 	processTime(65);
 	pc.orgasm();
 	output("\n\n");
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Female win
@@ -300,7 +303,7 @@ public function femaleCrystalGooWin():void
 	clearOutput();
 	showGardeGoo();
 	author("Gardeford");
-	output("All that remains is a chestplate, a flimsy looking skirt, and her helmet. You walk proudly over to her, grinning as she tries to think of something to do. You pull the helmet carefully off her head, freeing a beautifully featured face sculpted from her goo body, along with [monster.hair]. Your codex mentioned that the ganraen sometimes shape themselves like humanoids.");
+	output("All that remains is a chestplate, a flimsy looking skirt, and her helmet. You walk proudly over to her, grinning as she tries to think of something to do. You pull the helmet carefully off her head, freeing a beautifully featured face sculpted from her goo body, along with [enemy.hair]. Your codex mentioned that the ganraen sometimes shape themselves like humanoids.");
 	output("\n\nYou lean down, giving the battle-exhausted knight a sloppy kiss. Gripping her forearm with careful pressure, you guide her hand over your pelvis");
 	if(pc.hasCock()) output(", weaving around [pc.eachCock]");
 	output(" until her fingers reach your [pc.vagina]. Her gooey flesh is as cool as the cavern air against your mons, sending a chilled tingling sensation through your body.");
@@ -343,8 +346,8 @@ public function femaleCrystalGooWin():void
 	{
 		output("\n\nYou eventually find the pile, pulling her sword out and lugging it over to her solidified body. You heft it and bring the tip down like a pick-axe, repeating the process until the crystal plating cracks and chips away. Inside a blob of goo coalesces into its center cavity. You wait for a moment, staring at the blob as it increases in size. To your surprise, a feminine arm extends from the mass, handing you a small clump of metallic material.");
 		output("\n\n<i>“Thanks for letting me out, you can have this pretty thing,”</i> she says shyly, her former personality gone with the body that accompanied it. You take the gel covered metal, not sure if it will be worth anything, and head back to exploring. A quick scan reveals the stone to be a small colorful gemstone, not worth a ton, but maybe useful to someone.");
-		if (rand(2) == 0) foes[0].inventory.push(new Kirkite());
-		else foes[0].inventory.push(new Satyrite());
+		if (rand(2) == 0) enemy.inventory.push(new Kirkite());
+		else enemy.inventory.push(new Satyrite());
 	}
 	//pc mean: 
 	else output("\n\nYou find her gear, but decide that maybe you shouldn’t free her. She did attack you after all, and you remember something in the codex about them being able to melt their crystal over time. You gather your [pc.gear] and return to your cave spelunking, leaving the statue of a girl to wait.");
@@ -353,7 +356,7 @@ public function femaleCrystalGooWin():void
 	processTime(65);
 	pc.orgasm();
 	output("\n\n");
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Centaur ride special victory
@@ -363,15 +366,15 @@ public function centaurRideSpecialVictory():void
 	showGardeGoo();
 	author("Gardeford");
 	output("The ganraen knight staggers from the pressure of the battle, ");
-	if(foes[0].HP() < 1) output("her armor mostly decimated by your concentrated attacks");
+	if(enemy.HP() < 1) output("her armor mostly decimated by your concentrated attacks");
 	else output("most of her armor slipping off as her body secretes lusty juices");
-	output(". She manages to hold herself up with her sword, now clad in only a chestplate, her helmet, and a rapidly slipping plate-skirt. You canter over to your prey, circling the [monster.skinTone] warrior to get a better view of her body. Futile attempts to cover her assets go unnoticed as you examine her curves.");
+	output(". She manages to hold herself up with her sword, now clad in only a chestplate, her helmet, and a rapidly slipping plate-skirt. You canter over to your prey, circling the [enemy.skinTone] warrior to get a better view of her body. Futile attempts to cover her assets go unnoticed as you examine her curves.");
 	output("\n\nOnce you’re done you move in closer, extending your hand to the defeated warrior. She gives you a suspicious look, taking a step back while eyeing you through the slit of her helmet.");
 	output("\n\n<i>“Don’t be shy. Every knight needs a dashing steed, right?”</i> you ask, patting your rump invitingly.");
 	output("\n\nThe colorful ganraen is taken aback, standing dumbstruck for a moment before taking your hand. You pull her up till her gooey frame is seated comfortably on your tauric hindquarters, semiliquid thighs feeling pleasantly cool on your [pc.skinFurScales]. While she gets adjusted you begin to trot in circles, helping her get accustomed to the movement. To your surprise, the armored goo girl gives a sudden moan as you begin to move.");
 	output("\n\n<i>“W-wait! All my pleasure receptors are in my hips and pussy. Let me move some of them first, or it-it’ll-mmm. It feeelz too good,”</i> she begs as you move, her words becoming less coherent as she bounces atop your back. You gradually slow your trot, but just before you stop you pick up speed again, gracefully maneuvering through the cave tunnels. The surprised warrior’s legs clench instinctively around you, trying to maintain her hold as you cover ground.");
 	output("\n\nPleasurable moans greet your ears as the crystal plated goo girl struggles to maintain her consistency. She collapses against your back, hugging her arms around your [pc.chest] to hold on. Some of her armored plating slips away in the confusion, leaving her bare breasts to rub against your [pc.skinFurScales].");
-	output("\n\nThe cool tunnel air blowing on your working muscles makes the effort less strenuous, and the knight’s warm legs prevent it from cooling you down too quickly. Her plate-skirt manages to remain in place around her hips, but beads of liquid lust trail down your tauric hindquarters as her [monster.skinTone] goo-pussy is pressed against your flexing muscles.");
+	output("\n\nThe cool tunnel air blowing on your working muscles makes the effort less strenuous, and the knight’s warm legs prevent it from cooling you down too quickly. Her plate-skirt manages to remain in place around her hips, but beads of liquid lust trail down your tauric hindquarters as her [enemy.skinTone] goo-pussy is pressed against your flexing muscles.");
 	output("\n\n<i>“S-slow down! I’m about to c-cum!”</i> She shouts as you barrel through the caves, taking turns that bring you in a wide circle. Slowing down is the last thing on your mind as you bring the pleasure drunk warrior on a lustful journey through the tunnels. Your prisoner by proxy shudders, and you feel rivulets of sticky cum trickle down your sides.");
 	output("\n\nOnce your rider settles down you finally decide to slow it down, stopping around the same place you fought her in the first place. Giving the exhausted girl her cavalry training has left you well worked and still raring to go, and the runnels of lust dripping along your [pc.skinFurScales] only fuel your desire. The plate skirt slips over her hips as you help her off your back, and her legs give out as soon as your support is withdrawn.");
 	output("\n\nYou reach forward to pull off the crystalline helmet, figuring that since the rest of her clothes have fallen off you might as well finish the job. Underneath the armor she has a humanoid face, complete with a button nose and panting mouth. Droplets of goo fall from her makeshift hair, gradually being re-absorbed by her body after they hit the ground.");
@@ -403,7 +406,7 @@ public function centaurRideSpecialVictory():void
 		else output("between your legs, winding up circling your [pc.asshole].");
 
 		output("\n\nA jolt of sexual energy causes you to buck your hips, and you feel a rush of cold air on your [pc.cockHeadBiggest]. You lean over to find out what happened, only to see your member sticking out of the semisolid slut’s head. She doesn’t seem perturbed in the slightest, using the opportunity to suction her lips all the way to your [pc.sheathBiggest]. The rapid movement sends shudders through your legs, and you quiver for a moment before they buckle.");
-		output("\n\nAll of your weight falls atop the unsuspecting ganraen, causing a splash of [monster.skinTone] liquid. You try to stand, only to fall again as the jellied gladiator sucks even harder. She’s been reduced to a puddle beneath your tauric frame, but now she covers ");
+		output("\n\nAll of your weight falls atop the unsuspecting ganraen, causing a splash of [enemy.skinTone] liquid. You try to stand, only to fall again as the jellied gladiator sucks even harder. She’s been reduced to a puddle beneath your tauric frame, but now she covers ");
 		if(pc.cockTotal() > 1) output("the entirety of [pc.eachCock]");
 		else output("enough of your [pc.cockBiggest] to give it a full body massage");
 		output(". Every thrust into the engulfing blob brings an inexorable tide of euphoric contractions that numb your thoughts and dull your reason.");
@@ -418,7 +421,7 @@ public function centaurRideSpecialVictory():void
 		output("\n\nYou give one final thrust into the noisily slurping blob, your dick throbbing in the intense tightness before loosing a spurt of [pc.cum]. ");
 		if(pc.cumQ() < 50) output("A few more strings quickly follow, slightly less impressive in size, but still formidable");
 		else if(pc.cumQ() < 1000) output("A further gush of love juice swiftly follows, filling the cavity containing [pc.eachCock] with your seed");
-		else output("A veritable flood of seed follows it in gushing streams, painting the [monster.skinTone] blob a shade of [pc.cumColor] from inside to out");
+		else output("A veritable flood of seed follows it in gushing streams, painting the [enemy.skinTone] blob a shade of [pc.cumColor] from inside to out");
 		output(". Your entire body tenses, pushing the now solidified tendril out from between the cheeks of your [pc.butt] as your orgasm rushes through it.");
 		output("\n\nUpon the conclusion of your ardor induced spasms, you collapse sideways onto the cave floor. The squished goo-girl extends her body to catch you, lowering you onto a spongy pillow of soft gel as she reforms herself. She runs her fingers ");
 		if(pc.hasHair()) output("through your [pc.hair]");
@@ -432,25 +435,25 @@ public function centaurRideSpecialVictory():void
 		output("\n\nYou step forward as you spin around, positioning your [pc.vagina] directly above the goo knight’s face. Her simulated breaths quicken at the sight of your dripping sex, and you can practically feel her need caressing your body. A quick turn of your head reveals her staring at your hindquarters with an awed glaze over her eyes.");
 		output("\n\n<i>“Well? Stop looking and get to it! I don’t have all day to sit here while you stare and drool,”</i> you say, reaching back to spread your slick netherlips. The enraptured goo girl lifts herself up, burying her face in your backside. She laps at you with inhuman fervor, and you moan as her tongue explores your [pc.vagina].");
 		output("\n\nThe ganraen woman’s lips vibrate gently as they brush against your [pc.clit], and you feel your hips shudder unconsciously in response. A tongue wetter than any human’s works to cool your overheating insides, lapping at every part of your inner folds it can reach. You subconsciously back up into her face, trying to push her tongue even deeper inside.");
-		output("\n\nElectric pulses of pleasure run through your tauric half and up into your [pc.chest] as the alien beauty tries her best to oblige your needs. Your legs quiver and then buckle as your tired muscles are overloaded with pleasurable feelings, dropping your entire weight atop your partner. The [monster.skinTone] goo-girl’s body splashes apart as you land, but immediately begins to reform. As her shape reforms, warm tendrils of goo slip inside your body.");
+		output("\n\nElectric pulses of pleasure run through your tauric half and up into your [pc.chest] as the alien beauty tries her best to oblige your needs. Your legs quiver and then buckle as your tired muscles are overloaded with pleasurable feelings, dropping your entire weight atop your partner. The [enemy.skinTone] goo-girl’s body splashes apart as you land, but immediately begins to reform. As her shape reforms, warm tendrils of goo slip inside your body.");
 		output("\n\nThe vibrating glob that once made up the goo-girl’s humanoid face pistons into your body. Pleasurable pulsations echo in your core as the passionate puddle pumps herself through your [pc.vagina]. Your muscles futilely attempt to clench around the intruder, but her semi-liquid form resists even your tightest contractions.");
-		output("\n\nGradually, you feel the sloshing gel within you begin to solidify into a definite shape. A quick glance over your shoulder reveals a lusty smile from the ganraen’s newly reformed lips. She holds the end of a [monster.skinTone] dildo that she’s crafted as a perfect fit for your [pc.vagina]. The diamond hard rod finally gives you something to clench around, but the grinning knight moves it with no sign of straining.");
+		output("\n\nGradually, you feel the sloshing gel within you begin to solidify into a definite shape. A quick glance over your shoulder reveals a lusty smile from the ganraen’s newly reformed lips. She holds the end of a [enemy.skinTone] dildo that she’s crafted as a perfect fit for your [pc.vagina]. The diamond hard rod finally gives you something to clench around, but the grinning knight moves it with no sign of straining.");
 		output("\n\nThe shape hits all the right spots inside you, still not fully recovered from the assault of her tongue. Coo’s of happiness escape your lips as the now fully reformed goo-girl kisses both cheeks of your [pc.butt], gently nibbling at the [pc.skinFurScales] until she reaches the center. She gives you a wet, drawn out lick from the base of her gemstone dildo all the way to your [pc.asshole], continuing until ");
 		if(pc.tailCount == 0) output("she reaches your tailbone.");
 		else output("her face is buried beneath your [pc.tail].");
 
-		output("\n\nYou find yourself trying to stand involuntarily as your hind legs tense up, but quickly slip on the fuck-puddle beneath you and splash back down to the cave floor. The ganraen’s form swirls around, leaving one of her arms to work the sex-toy while she pulls your humanoid upper body into a hug. Through the haze of lust you attempt to kiss her, but your [pc.lips] miss hers each time, wetting themselves on her [monster.skinTone] face.");
+		output("\n\nYou find yourself trying to stand involuntarily as your hind legs tense up, but quickly slip on the fuck-puddle beneath you and splash back down to the cave floor. The ganraen’s form swirls around, leaving one of her arms to work the sex-toy while she pulls your humanoid upper body into a hug. Through the haze of lust you attempt to kiss her, but your [pc.lips] miss hers each time, wetting themselves on her [enemy.skinTone] face.");
 		output("\n\nShe giggles at your attempts, finally cupping your cheek and guiding you to success. Blissful electricity melts your defenses as her tongue explores your mouth. Your [pc.vagina] clenches tightly in orgasm,");
 		if(pc.totalVaginas() > 2) output(" its sisters spasming sympathetically as it attempts");
 		else output(" trying fruitlessly");
 		output(" to expel the crystalline cock. When the flood of ardor finally abates the goo-girl slowly retracts her dildo, easing it out of you inch by inch until it slides free.");
-		output("\n\nYour humanoid upper body falls into the knights waiting arms, and you let her warm body soothe your aching muscles while you recover. When you finally feel ready to stand you pull back, wiping yourself dry and shakily getting to your feet. You gather your [pc.gear] as the [monster.skinTone] ganraen reconstitutes herself into a more humanoid shape.");
+		output("\n\nYour humanoid upper body falls into the knights waiting arms, and you let her warm body soothe your aching muscles while you recover. When you finally feel ready to stand you pull back, wiping yourself dry and shakily getting to your feet. You gather your [pc.gear] as the [enemy.skinTone] ganraen reconstitutes herself into a more humanoid shape.");
 		output("\n\n<i>“Come back some time so we can play again,”</i> she says, steadily reforming her armor as she turns to leave for a different part of the caves. <i>“Maybe next time you won’t be so lucky”</i>");
 		output("\n\nYou laugh and return to exploring the caves, heading in a different direction than the semisolid fighter.\n\n");
 	}
 	processTime(55);
 	pc.orgasm();
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 /* GOO VILLAGE */

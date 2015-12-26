@@ -5,6 +5,7 @@ import classes.Characters.SecurityDroids;
 import classes.Creature;
 import classes.Engine.Combat.DamageTypes.DamageResult;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
+import classes.GameData.CombatManager;
 import classes.Items.Guns.Goovolver;
 import classes.Items.Miscellaneous.EmptySlot;
 import classes.Items.Miscellaneous.GrayMicrobots;
@@ -2552,7 +2553,7 @@ public function grayPrimeFailEscape():void
 			break;
 	}
 
-	applyDamage(new TypeCollection( { tease: 10 + rand(5) } ), foes[0], pc, "minimal");
+	applyDamage(new TypeCollection( { tease: 10 + rand(5) } ), attacker, pc, "minimal");
 }
 
 public function grayGooDisplay():void
@@ -2572,7 +2573,7 @@ public function grayGooDisplay():void
 public function victoryOverGrayPrime():void
 {
 	// HP Victory
-	if (foes[0].HP() <= 1 && (flags["GRAY_PRIME_DEFEATED_VIA_HP"] == undefined || flags["GRAY_PRIME_DEFEATED_VIA_HP"] < 2))
+	if (enemy.HP() <= 1 && (flags["GRAY_PRIME_DEFEATED_VIA_HP"] == undefined || flags["GRAY_PRIME_DEFEATED_VIA_HP"] < 2))
 	{
 		if (flags["GRAY_PRIME_DEFEATED_VIA_HP"] == undefined) flags["GRAY_PRIME_DEFEATED_VIA_HP"] = 0;
 		flags["GRAY_PRIME_DEFEATED_VIA_HP"]++;
@@ -2592,12 +2593,12 @@ public function victoryOverGrayPrime():void
 		output("\n\n<i>“Oh, shit.”</i>");
 
 		// {Goo returned to FULL HEALTH}
-		showNPCStats();
-		foes[0].HP(foes[0].HPMax());
+		enemy.HP(enemy.HPMax());
+		(enemy as Creature).alreadyDefeated = false;
 		clearMenu();
-		addButton(0, "Next", combatMainMenu);
+		addButton(0, "Next", CombatManager.continueCombat);
 	}
-	else if (foes[0].HP() <= 1 && flags["GRAY_PRIME_DEFEATED_VIA_HP"] == 2)
+	else if (enemy.HP() <= 1 && flags["GRAY_PRIME_DEFEATED_VIA_HP"] == 2)
 	{
 		clearOutput();
 		author("Savin");
@@ -2616,7 +2617,7 @@ public function victoryOverGrayPrime():void
 		CombatManager.genericVictory();
 	}
 	// Lust victory
-	else if (foes[0].lust() >= foes[0].lustMax())
+	else if (enemy.lust() >= enemy.lustMax())
 	{
 		clearOutput();
 		author("Savin");

@@ -354,7 +354,7 @@ package classes.GameData
 				return kGAMECLASS.pc.hasKeyItem("Goozooka");
 			}
 			GoozookaAttack.ExtendedAvailabilityCheck = function():Boolean {
-				return kGAMECLASS.pc.hasItem("Gray Microbots");
+				return kGAMECLASS.pc.hasItemByName("Gray Microbots");
 			}
 			GoozookaAttack.TooltipTitle = "Goozooka";
 			GoozookaAttack.TooltipBody = "Fire a Gray Goo at your enemy for the princely sum of a single sample of Gray Microbots.";
@@ -1369,7 +1369,7 @@ package classes.GameData
 				//Hit
 				else
 				{
-					//[foes[0].short][capital]
+					//[enemy.short][capital]
 					output(attacker.capitalA + attacker.short + " slams down her wrench in a heavy blow. It connects solidly, and your head is ringing from the brutal hit.");
 					//{Stun chance}
 					if (!target.hasStatusEffect("Stunned") && target.physique() + rand(20) + 1 < 40)

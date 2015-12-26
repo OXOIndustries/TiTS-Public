@@ -58,7 +58,7 @@ public function beatUpARustMonster():void
 	//Win by Lust:
 	else
 	{
-		output("Panting with lust, the sydian falls to his knees, stroking his [monster.cock]. As you approach, he looks up to you with lust addled eyes. <i>“Mhmm, I give up. " + pc.mf("","I don’t care that you’re girl. ") + "Do whatever you want with me,”</i> he says, licking his lips as he continues to shamelessly masturbate before you.\n\n");
+		output("Panting with lust, the sydian falls to his knees, stroking his [enemy.cock]. As you approach, he looks up to you with lust addled eyes. <i>“Mhmm, I give up. " + pc.mf("","I don’t care that you’re girl. ") + "Do whatever you want with me,”</i> he says, licking his lips as he continues to shamelessly masturbate before you.\n\n");
 	}
 	if(pc.lust() < 33) 
 	{

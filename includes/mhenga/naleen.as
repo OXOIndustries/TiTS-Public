@@ -121,7 +121,7 @@ public function naleenFucksBoysScene():void {
 	userInterface.showBust("NALEEN");
 	userInterface.showName("\nNALEEN");
 	author("Savin");
-	var x:int = pc.cockThatFits(foes[0].vaginalCapacity());
+	var x:int = pc.cockThatFits(enemy.vaginalCapacity());
 	if(x < 0) x = pc.smallestCockIndex();
 	output("You wonder about her idea of fun, but as if on cue, you feel a twitching");
 	if(pc.legCount > 1) output(" between");
@@ -197,7 +197,7 @@ public function naleenFucksBoysScene():void {
 	pc.orgasm();
 	processTime(120+rand(50));
 	naleenSexed(false);
-	genericLoss();
+	CombatManager.genericLoss();
 }
 
 //No Dick Version: Revenge of the Tail-pegging
@@ -258,7 +258,7 @@ public function ohNoNoCawkNaleenLoss():void {
 	output("\n\nThe naleen lets you off her when you try to stand, and shakily you collect your gear, all the while acutely aware of the serpentine feline staring at you, watching your every move with quiet lust before you can stagger away, [pc.vagOrAss " + x + "] agape and sore.\n\n");
 	pc.orgasm();
 	naleenSexed(false);
-	genericLoss();
+	CombatManager.genericLoss();
 }
 
 //PC Defeats Kitty-Naga
@@ -267,7 +267,7 @@ public function beatDatCatNaga():void {
 	userInterface.showBust("NALEEN");
 	userInterface.showName("\nNALEEN");
 	//{if by Physical damage:}
-	if(foes[0].HP() <= 0) output("Battered and beaten, the strange alien feline-naga collapses into the dirt. She shakily tries to pick herself up, but only serves to flop down on her side, staring up at you with wide, slitted eyes. <i>“So... you were strong enough after all. So very rare on this planet. Very well, off-worlder. What will you do with me, hmm? Perhaps I can offer you something; an apology for my attack, hmm? I have soooo many ways to make it up to you,”</i> she says with a light coo, a hand resting on her big hip, with her huge bosom bared to you, so soft and inviting.\n\n");
+	if(enemy.HP() <= 0) output("Battered and beaten, the strange alien feline-naga collapses into the dirt. She shakily tries to pick herself up, but only serves to flop down on her side, staring up at you with wide, slitted eyes. <i>“So... you were strong enough after all. So very rare on this planet. Very well, off-worlder. What will you do with me, hmm? Perhaps I can offer you something; an apology for my attack, hmm? I have soooo many ways to make it up to you,”</i> she says with a light coo, a hand resting on her big hip, with her huge bosom bared to you, so soft and inviting.\n\n");
 	//{if by Lust:}
 	else output("A master of carnal desire such as you is more than a match for such a lusty huntress. Panting heavily, the alien kitty-naga collapses to the ground, her desire clearly visible through the slick, parted folds of her sex. True to form, though, she shakily rights herself, resting on an elbow with her great big tits on enticing display as one hand dives toward her sex, starting to finger the wanton hole. <i>“You're so.... so sensual, so beautiful. I am at your mercy, off-worlder. My body is yours to command, and I do so hope you can forgive my attack... I have soooo many ways to make it up to you.”</i>\n\n");
 	
@@ -301,13 +301,13 @@ public function beatDatCatNaga():void {
 	if(pc.hasItem(new GravCuffs()) && pc.lust() >= 33)
 	{
 		var fitsInside:Boolean = false;
-		if(foes[0].hasVagina()) fitsInside = (pc.cockThatFits(foes[0].vaginalCapacity(0)) >= 0);
-		else fitsInside = (pc.cockThatFits(foes[0].analCapacity()) >= 0);
-		if(pc.hasCock() && fitsInside) addButton(5,"Cuff&Fuck",cuffNFuck,undefined,"Cuff & Fuck","Use your grav-cuffs to pin down [monster.name] and have your way with [monster.hisHer] [pc.vagOrAss]! Requires Grav-cuffs and a penis.");
-		else if(pc.hasCock()) addDisabledButton(5,"Cuff&Fuck","Cuff & Fuck","You can cuff [monster.himHer] down, but you wouldn't be able to fit inside.");
+		if(enemy.hasVagina()) fitsInside = (pc.cockThatFits(enemy.vaginalCapacity(0)) >= 0);
+		else fitsInside = (pc.cockThatFits(enemy.analCapacity()) >= 0);
+		if(pc.hasCock() && fitsInside) addButton(5,"Cuff&Fuck",cuffNFuck,undefined,"Cuff & Fuck","Use your grav-cuffs to pin down [enemy.name] and have your way with [enemy.hisHer] [pc.vagOrAss]! Requires Grav-cuffs and a penis.");
+		else if(pc.hasCock()) addDisabledButton(5,"Cuff&Fuck","Cuff & Fuck","You can cuff [enemy.himHer] down, but you wouldn't be able to fit inside.");
 		else addDisabledButton(5,"Cuff&Fuck","Cuff & Fuck","You need a penis to make use of your grav-cuffs this way.");
 	}
-	addButton(14,"Leave",genericVictory);
+	addButton(14,"Leave",CombatManager.genericVictory);
 }
 /*
 Sex Options:
@@ -365,7 +365,7 @@ public function naleenTitFuck():void {
 	processTime(20+rand(10));
 	naleenSexed();
 	pc.orgasm();
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Breastfeed
@@ -430,7 +430,7 @@ public function feedDatNaleenSumMilk():void {
 	pc.orgasm();
 	pc.milked(pc.milkFullness);
 	naleenSexed();
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Bend Her Over (+DP)
@@ -440,9 +440,9 @@ public function bendNaleenOver():void {
 	userInterface.showBust("NALEEN");
 	userInterface.showName("\nNALEEN");
 	author("Savin");
-	var x:int = pc.cockThatFits(foes[0].vaginalCapacity());
+	var x:int = pc.cockThatFits(enemy.vaginalCapacity());
 	if(x < 0) x = pc.smallestCockIndex();
-	var y:int = pc.cockThatFits2(foes[0].vaginalCapacity());
+	var y:int = pc.cockThatFits2(enemy.vaginalCapacity());
 	output("You move to straddle the prone kitty-naga, tearing your gear off and brandishing your [pc.cocks], letting your half-hard member");
 	if(pc.cockTotal() > 1) output("s");
 	output(" dangle over her wide-eyed face. She stares up at your ");
@@ -505,7 +505,7 @@ public function bendNaleenOver():void {
 	output(" so deep inside her that ");
 	var totalStuff:int = pc.cockVolume(x);
 	if(y >= 0) totalStuff += pc.cockVolume(y);
-	if(totalStuff > foes[0].vaginalCapacity()) output("her stomach bulges obscenely");
+	if(totalStuff > enemy.vaginalCapacity()) output("her stomach bulges obscenely");
 	else output("your groin presses deep into her cushiony tush");
 	output(". As speared on your cock");
 	if(y >= 0) output("s");
@@ -535,7 +535,7 @@ public function bendNaleenOver():void {
 	if(y >= 0) output("s");
 	output(" deep into her, ");
 	
-	if(totalStuff <= foes[0].vaginalCapacity()) output("crotch slamming into her jiggling ass");
+	if(totalStuff <= enemy.vaginalCapacity()) output("crotch slamming into her jiggling ass");
 	else {
 		output("massive erection");
 		if(y >= 0) output("s");
@@ -560,7 +560,7 @@ public function bendNaleenOver():void {
 	processTime(30+rand(5));
 	pc.orgasm();
 	naleenSexed();
-	genericVictory();
+	CombatManager.genericVictory();
 }
 //Tail-pegging
 //Requires at least a cunt or dick.
@@ -668,7 +668,7 @@ public function tailpeggingNaleenPartII():void {
 	author("Savin");
 	output("Your eyes flitter open, squinting in the darkness of the forest floor. You're acutely aware of the bed of snake surrounding you, gently shifting with the rise and fall of her steady, strong breath. You roll half-over on your pillow of boob-flesh, but find your huntress lover quite thoroughly asleep, eyes closed and mouth agape, snoring peacefully. You smile wanly, leaning over to kiss her before struggling to your [pc.feet], searching for your discarded gear. As you get ready to leave, you turn back just in time to see one of her brilliant green eyes quickly closing as she pretends to stay asleep, letting you go in peace.\n\n");
 	processTime(60+rand(40));
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Naleen Night-time Cuddles
@@ -800,7 +800,7 @@ public function pcGetsABlowjobThatTurnsIntoButtSmex():void
 	userInterface.showName("\nNALEEN");
 	author("Space");
 	output("You gaze down upon the ");
-	if(foes[0].HP() < 1) output("beaten");
+	if(enemy.HP() < 1) output("beaten");
 	else output("horny");
 	output(" naleen at your [pc.feet]. She is exuberantly feminine and outwardly defiant, even in defeat. She hisses at you softly, but it is obvious her actions are a mere ploy. Her skin, fur, and scales glisten with sweat, and you can see the droplets of her exhaustion slide down the ridges of her toned body. Further down the feline-serpent’s form, you see that her tanned, puffy lower-lips are glossed with a wet sheen. How fortunate that your own needs are presenting themselves equally strongly; perhaps this is what she wanted all along?");
 	output("\n\nYou ");
@@ -871,5 +871,5 @@ public function naleenReverseBJPart4():void
 	output("\n\nYou collapse to the ground, utterly drained and watch as the naleen pats her belly, seemingly satisfied. She glances at you before leaving, and her tail vanishes into the jungle. Weariness quickly overtakes you and you close your eyes to rest.\n\n");
 	processTime(20);
 	pc.orgasm();
-	genericVictory();
+	CombatManager.genericVictory();
 }

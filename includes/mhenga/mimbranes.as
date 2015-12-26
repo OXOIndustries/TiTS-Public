@@ -3,6 +3,7 @@ import classes.Characters.PlayerCharacter;
 import classes.Creature;
 import classes.Engine.Combat.DamageTypes.DamageResult;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
+import classes.GameData.CombatAttacks;
 /*
 
 Removal and Body Part Change Denial
@@ -2885,7 +2886,7 @@ public function playerMimbraneSpitAttack():void
 				else if (eligibleMimbranes[ii] == "Mimbrane Ass")
 				{
 					// Ass misfire
-					output("\nYour [pc.ass] interrupts your combat with a series of shakes and squeaks, begging for your attention. You rush to undo your [pc.armor], but the enthusiastic Mimbrane acts too soon. Your rear end spins you around and fires its prepared lust-charge before you can clear the airspace, causing the attack to be wasted and splattering you with its prurient payload. The " + foes[0].short + " can only look on in speechless shock, giving you time to recover.\n");
+					output("\nYour [pc.ass] interrupts your combat with a series of shakes and squeaks, begging for your attention. You rush to undo your [pc.armor], but the enthusiastic Mimbrane acts too soon. Your rear end spins you around and fires its prepared lust-charge before you can clear the airspace, causing the attack to be wasted and splattering you with its prurient payload. The " + enemy.short + " can only look on in speechless shock, giving you time to recover.\n");
 				}
 				else if (eligibleMimbranes[ii] == "Mimbrane Balls")
 				{
@@ -2931,11 +2932,11 @@ public function playerMimbraneSpitAttack():void
 					// Output text
 					if (eligibleMimbranes[ii] == "Mimbrane Cock")
 					{
-						output("\nYou’re about brought to your [pc.knees] by a tremendous buildup of pressure in your [pc.cock]. Unable to ignore it, you quickly undo your [pc.armor] to find out what’s wrong. Your Mimbrane-controlled member bursts free to fire a mighty blast of its concentrated liquid lust. The attack explodes all over the " + foes[0].short + ", hard enough to hit you with a little splash damage.")
+						output("\nYou’re about brought to your [pc.knees] by a tremendous buildup of pressure in your [pc.cock]. Unable to ignore it, you quickly undo your [pc.armor] to find out what’s wrong. Your Mimbrane-controlled member bursts free to fire a mighty blast of its concentrated liquid lust. The attack explodes all over the " + enemy.short + ", hard enough to hit you with a little splash damage.")
 					}
 					else if (eligibleMimbranes[ii] == "Mimbrane Pussy")
 					{
-						output("\nA tremendous buildup in your [pc.pussy] forces you to your [pc.knees]. You frantically undo your [pc.armor], surprised when your Mimbrane gash launches a powerful volley of concentrated liquid lust at your opponent. The attack explodes on contact, drenching the " + foes[0].short + " and hitting you with a little splash damage.");
+						output("\nA tremendous buildup in your [pc.pussy] forces you to your [pc.knees]. You frantically undo your [pc.armor], surprised when your Mimbrane gash launches a powerful volley of concentrated liquid lust at your opponent. The attack explodes on contact, drenching the " + enemy.short + " and hitting you with a little splash damage.");
 					}
 					else if (eligibleMimbranes[ii] == "Mimbrane Ass")
 					{
@@ -2943,7 +2944,7 @@ public function playerMimbraneSpitAttack():void
 					}
 					else if (eligibleMimbranes[ii] == "Mimbrane Balls")
 					{
-						output("\nYou feel an unordinary buildup of pressure on your [pc.balls] that doesn’t appear to be cum-related. You undo your [pc.armor] just in time for the Mimbrane-covered sack to burst free and launch an extra-powerful volley of liquid lust directly at your opponent. The attack explodes upon contact with the " + foes[0].short + ", hitting you with a little splash damage.");
+						output("\nYou feel an unordinary buildup of pressure on your [pc.balls] that doesn’t appear to be cum-related. You undo your [pc.armor] just in time for the Mimbrane-covered sack to burst free and launch an extra-powerful volley of liquid lust directly at your opponent. The attack explodes upon contact with the " + enemy.short + ", hitting you with a little splash damage.");
 					}
 					else if (eligibleMimbranes[ii] == "Mimbrane Boobs")
 					{
@@ -2951,11 +2952,11 @@ public function playerMimbraneSpitAttack():void
 					}
 					else if (eligibleMimbranes[ii].indexOf("Mimbrane Hand") != -1)
 					{
-						output("\nYour hand suddenly clenches into a fist and trembles uncontrollably. You try and figure out what’s going on when the Mimbrane extremity pushes away from you to face your opponent. Fingers flare and the parasite’s mouth bursts open, launching a powerfully potent blast of liquid lust at your opponent. The attack explodes upon contact with the " + foes[0].short + ", hitting you with a little splash damage.");
+						output("\nYour hand suddenly clenches into a fist and trembles uncontrollably. You try and figure out what’s going on when the Mimbrane extremity pushes away from you to face your opponent. Fingers flare and the parasite’s mouth bursts open, launching a powerfully potent blast of liquid lust at your opponent. The attack explodes upon contact with the " + enemy.short + ", hitting you with a little splash damage.");
 					}
 					else if (eligibleMimbranes[ii].indexOf("Mimbrane Foot") != -1)
 					{
-						output("\nYour toes are clenching, involuntarily trying to contain some unusual buildup of pressure. Unable to ignore it, you bring your [pc.foot] out to light, surprised when the Mimbrane extremity pushes towards your opponent! It launches a powerfully potent blast of liquid lust at your opponent. The attack explodes on contact with the " + foes[0].short + ", powerful enough to hit you with a little splash damage.");
+						output("\nYour toes are clenching, involuntarily trying to contain some unusual buildup of pressure. Unable to ignore it, you bring your [pc.foot] out to light, surprised when the Mimbrane extremity pushes towards your opponent! It launches a powerfully potent blast of liquid lust at your opponent. The attack explodes on contact with the " + enemy.short + ", powerful enough to hit you with a little splash damage.");
 					}
 					else if (eligibleMimbranes[ii] == "Mimbrane Face")
 					{
@@ -2963,7 +2964,7 @@ public function playerMimbraneSpitAttack():void
 					}
 					damage = new TypeCollection( { drug: 25 } );
 					damageRand(damage, 15);
-					applyDamage(damage, pc, foes[0]);
+					applyDamage(damage, pc, enemy);
 					output("\n");
 				}
 				// Regular attack
@@ -2977,31 +2978,31 @@ public function playerMimbraneSpitAttack():void
 					// Output text
 					if (eligibleMimbranes[ii] == "Mimbrane Cock")
 					{
-						output("\nAn unusual pressure builds in your [pc.cock]. You undo your [pc.armor], just in time for your Mimbrane-controlled member to fire a blast of concentrated sexual desire at the " +  foes[0].short + ".");
+						output("\nAn unusual pressure builds in your [pc.cock]. You undo your [pc.armor], just in time for your Mimbrane-controlled member to fire a blast of concentrated sexual desire at the " +  enemy.short + ".");
 					}
 					else if (eligibleMimbranes[ii] == "Mimbrane Pussy")
 					{
-						output("\nA bizarre pressure cloys away at your [pc.pussy], begging for you to investigate. Your hands fly back just as you undo your [pc.armor] taken by complete surprise when your Mimbrane-possessed snatch launches a heady blast of concentrated romance at the " +  foes[0].short + ".");
+						output("\nA bizarre pressure cloys away at your [pc.pussy], begging for you to investigate. Your hands fly back just as you undo your [pc.armor] taken by complete surprise when your Mimbrane-possessed snatch launches a heady blast of concentrated romance at the " +  enemy.short + ".");
 					}
 					else if (eligibleMimbranes[ii] == "Mimbrane Ass")
 					{
-						output("\nThe assault against the " +  foes[0].short + " slows as you’re distracted by quivering and squeaking escaping from your [pc.asshole]. You’re barely able to slip your [pc.armor] down before your [pc.ass] quickly swivels you 180 degrees to face your opponent. The excited Mimbrane can hardly contain itself, spreading your cheeks wide and launching a concentrated blast of oily lust from your pucker. The " +  foes[0].short + "’s bewilderment allows you time to regain your composure after the strange outburst.");
+						output("\nThe assault against the " +  enemy.short + " slows as you’re distracted by quivering and squeaking escaping from your [pc.asshole]. You’re barely able to slip your [pc.armor] down before your [pc.ass] quickly swivels you 180 degrees to face your opponent. The excited Mimbrane can hardly contain itself, spreading your cheeks wide and launching a concentrated blast of oily lust from your pucker. The " +  enemy.short + "’s bewilderment allows you time to regain your composure after the strange outburst.");
 					}
 					else if (eligibleMimbranes[ii] == "Mimbrane Balls")
 					{
-						output("\nYour [pc.balls] gains your attention, the Mimbrane chirping wildly. You undo your [pc.armor] just enough for your [pc.balls] to burst forth, showing you the parasite’s bloated mouth is primed and ready. It launches a ball of oily lust directly for the " +  foes[0].short + ".");
+						output("\nYour [pc.balls] gains your attention, the Mimbrane chirping wildly. You undo your [pc.armor] just enough for your [pc.balls] to burst forth, showing you the parasite’s bloated mouth is primed and ready. It launches a ball of oily lust directly for the " +  enemy.short + ".");
 					}
 					else if (eligibleMimbranes[ii] == "Mimbrane Boobs")
 					{
-						output("\nYou’re shocked when your [pc.chest] squeak and jiggle of their own accord. Clearly the Mimbrane fused to them has something to share with you, you figure. You open your [pc.armor], shocked when your puppies burst forth, [pc.nipples] blasting shots of concentrated desire straight at the " +  foes[0].short + ".");
+						output("\nYou’re shocked when your [pc.chest] squeak and jiggle of their own accord. Clearly the Mimbrane fused to them has something to share with you, you figure. You open your [pc.armor], shocked when your puppies burst forth, [pc.nipples] blasting shots of concentrated desire straight at the " +  enemy.short + ".");
 					}
 					else if (eligibleMimbranes[ii].indexOf("Mimbrane Hand") != -1)
 					{
-						output("\nYou’re taken aback when your hand begins to tremble, fingers jittering. You grab its weapon with your other hand before anything can go wrong. The Mimbrane’s face on the palm of your hand appears to be bulging, its mouth creating a large welt that only continues to grow. You only get another moment to stare at the oddity before the parasite thrusts your hand forward, launching its payload of thick, saturated lust at the " +  foes[0].short + ".");
+						output("\nYou’re taken aback when your hand begins to tremble, fingers jittering. You grab its weapon with your other hand before anything can go wrong. The Mimbrane’s face on the palm of your hand appears to be bulging, its mouth creating a large welt that only continues to grow. You only get another moment to stare at the oddity before the parasite thrusts your hand forward, launching its payload of thick, saturated lust at the " +  enemy.short + ".");
 					}
 					else if (eligibleMimbranes[ii].indexOf("Mimbrane Foot") != -1)
 					{
-						output("\nAn unusual pressure in your [pc.foot] distracts you from the fight, and involuntary wiggling of your toes grabs your full attention. You expose the Mimbrane-controlled appendage to the air just in time for it fire a concentrated mass of pure lust from its mouth at the " +  foes[0].short + ".");
+						output("\nAn unusual pressure in your [pc.foot] distracts you from the fight, and involuntary wiggling of your toes grabs your full attention. You expose the Mimbrane-controlled appendage to the air just in time for it fire a concentrated mass of pure lust from its mouth at the " +  enemy.short + ".");
 					}
 					else if (eligibleMimbranes[ii] == "Mimbrane Face")
 					{
@@ -3009,7 +3010,7 @@ public function playerMimbraneSpitAttack():void
 					}
 					damage = new TypeCollection( { drug: 15 } );
 					damageRand(damage, 15);
-					applyDamage(damage, pc, foes[0]);
+					applyDamage(damage, pc, enemy);
 					output("\n");
 				}
 			}
@@ -3093,7 +3094,7 @@ public function playerMimbraneCloudAttack():void
 				}
 				else if (eligibleMimbranes[ii] == "Mimbrane Ass")
 				{
-					output("\nThe fight gets harder to focus on the more sweaty and steamy your [pc.ass] gets, spurred on by its parasitic covering. It finally gets to be unbearable when the Mimbrane starts to quake and tremble with unrelenting pressure, clenching your [pc.asshole] tight and compressing your cheeks. You go for your [pc.armor] in an attempt to come to the parasite’s aid, but can hardly accomplish anything as it prematurely disperses its payload, smothering you in clouds of sweet, red lust. Low, apologetic squeaks can be heard from your rear as you escape the haze to focus on the " + foes[0].short + ".\n");
+					output("\nThe fight gets harder to focus on the more sweaty and steamy your [pc.ass] gets, spurred on by its parasitic covering. It finally gets to be unbearable when the Mimbrane starts to quake and tremble with unrelenting pressure, clenching your [pc.asshole] tight and compressing your cheeks. You go for your [pc.armor] in an attempt to come to the parasite’s aid, but can hardly accomplish anything as it prematurely disperses its payload, smothering you in clouds of sweet, red lust. Low, apologetic squeaks can be heard from your rear as you escape the haze to focus on the " + enemy.short + ".\n");
 				}
 				else if (eligibleMimbranes[ii] == "Mimbrane Balls")
 				{
@@ -3123,24 +3124,24 @@ public function playerMimbraneCloudAttack():void
 			{
 				if (mimbraneDebug) trace("Cloud attack successful!");
 				
-				applyCloudDebuff(foes[0]);
+				applyCloudDebuff(enemy);
 
 				// Output text
 				if (eligibleMimbranes[ii] == "Mimbrane Cock")
 				{
-					output("\nAn unusually high amount of humidity gathers in your [pc.armor], forcing you to undo it and investigate. Your Mimbrane-controlled [pc.cock] has worked up quite the sweat, producing a thick, noxious smog of concentrated lust. The parasite quickly fans it towards the bewildered " + foes[0].short + ".\n");
+					output("\nAn unusually high amount of humidity gathers in your [pc.armor], forcing you to undo it and investigate. Your Mimbrane-controlled [pc.cock] has worked up quite the sweat, producing a thick, noxious smog of concentrated lust. The parasite quickly fans it towards the bewildered " + enemy.short + ".\n");
 				}
 				else if (eligibleMimbranes[ii] == "Mimbrane Pussy")
 				{
-					output("\nYour fight falls back in your mind, replaced by the worry that your sopping [pc.pussy] may become an undiscovered swampland if you don’t air out the unusual perspiration. You’re shocked to find your Mimbrane-controlled vaginal walls exuding a deep red cloud of potent lust. The parasite quickly fans it towards the " + foes[0].short + " before you fall victim to its secretion.\n");
+					output("\nYour fight falls back in your mind, replaced by the worry that your sopping [pc.pussy] may become an undiscovered swampland if you don’t air out the unusual perspiration. You’re shocked to find your Mimbrane-controlled vaginal walls exuding a deep red cloud of potent lust. The parasite quickly fans it towards the " + enemy.short + " before you fall victim to its secretion.\n");
 				}
 				else if (eligibleMimbranes[ii] == "Mimbrane Ass")
 				{
-					output("\nThe sweltering, moist ambience encompassing your [pc.ass] is slinking its way forefront in your mind. It snaps into focus when your hind quarters tremble fiercely, low-pitched squeaks escaping your [pc.asshole]. The pressure forces you to involuntarily drop trou, allowing the Mimbrane to force you around and point its parasitic pucker directly at the " + foes[0].short + ". The enthusiastic creature unleashes a sweet, dense haze of pink passion directly at " + foes[0].mfn("him", "her", "it") + ". You quickly regain your composure, anxious to just move on.\n");
+					output("\nThe sweltering, moist ambience encompassing your [pc.ass] is slinking its way forefront in your mind. It snaps into focus when your hind quarters tremble fiercely, low-pitched squeaks escaping your [pc.asshole]. The pressure forces you to involuntarily drop trou, allowing the Mimbrane to force you around and point its parasitic pucker directly at the " + enemy.short + ". The enthusiastic creature unleashes a sweet, dense haze of pink passion directly at " + enemy.mfn("him", "her", "it") + ". You quickly regain your composure, anxious to just move on.\n");
 				}
 				else if (eligibleMimbranes[ii] == "Mimbrane Balls")
 				{
-					output("\nYour buildup of sweat and steam around your [pc.balls] starts to get to you, forcing you to try and air things out. You’re startled to see a thick red haze emanating from your parasitic sack. The Mimbrane gets to work, furiously swinging your [pc.balls] to force its secretion towards the " + foes[0].short + ".\n");
+					output("\nYour buildup of sweat and steam around your [pc.balls] starts to get to you, forcing you to try and air things out. You’re startled to see a thick red haze emanating from your parasitic sack. The Mimbrane gets to work, furiously swinging your [pc.balls] to force its secretion towards the " + enemy.short + ".\n");
 				}
 				else if (eligibleMimbranes[ii] == "Mimbrane Boobs")
 				{
@@ -3148,7 +3149,7 @@ public function playerMimbraneCloudAttack():void
 				}
 				else if (eligibleMimbranes[ii].indexOf("Mimbrane Hand") != -1)
 				{
-					output("\nA thick red haze forms around your sweaty hand. You distance yourself from it as far as possible. The Mimbrane-controlled appendage fans the potent cloud of carnal desire towards the " + foes[0].short + " before you can fall victim to it yourself.\n");
+					output("\nA thick red haze forms around your sweaty hand. You distance yourself from it as far as possible. The Mimbrane-controlled appendage fans the potent cloud of carnal desire towards the " + enemy.short + " before you can fall victim to it yourself.\n");
 				}
 				else if (eligibleMimbranes[ii].indexOf("Mimbrane Foot") != -1)
 				{
@@ -3203,7 +3204,7 @@ public function mimbraneCombatInterference():Boolean
 {
 	var i:int;
 	// Turn loss/effects from mutinious mimbranes
-	if (foes[0] is Mimbrane)
+	if (enemy is Mimbrane)
 	{
 		// 10% chance of mutiny from each attached mimbrane, ie actively working against the player. Going to chew through feed counter to do this too.
 
@@ -3249,17 +3250,17 @@ public function mimbraneCombatInterference():Boolean
 				else if (eligibleMimbranes[i] == "Mimbrane Pussy")
 				{
 					//Vagina Mimbranes
-					output("You find it difficult to concentrate on the " + foes[0].short + " as the moisture trapped in and around your [pc.pussy] becomes too much to bear. An absentminded gesture to undo your [pc.armor] is all the opening your parasitic pussy needs to gas you with its concoction of licentious intentions mixed into a potent crimson fog.");
+					output("You find it difficult to concentrate on the " + enemy.short + " as the moisture trapped in and around your [pc.pussy] becomes too much to bear. An absentminded gesture to undo your [pc.armor] is all the opening your parasitic pussy needs to gas you with its concoction of licentious intentions mixed into a potent crimson fog.");
 				}
 				else if (eligibleMimbranes[i] == "Mimbrane Ass")
 				{
 					//Ass Mimbranes
-					output("Your enthusiastic [pc.ass] is doing everything in the parasite’s power to throw you off kilter, soaking the seat of your [pc.armor] in oily sweat. The Mimbrane suddenly uses its perch to its advantage, spreading your cheeks wide and letting rip a noxious, nectarous volley of cloudy lust from your [pc.asshole]. You try and swear to the " + foes[0].short + " that it isn’t what it looks like, but are cut off as you’re forced to evacuate from your current position inside the dangerous smog.");
+					output("Your enthusiastic [pc.ass] is doing everything in the parasite’s power to throw you off kilter, soaking the seat of your [pc.armor] in oily sweat. The Mimbrane suddenly uses its perch to its advantage, spreading your cheeks wide and letting rip a noxious, nectarous volley of cloudy lust from your [pc.asshole]. You try and swear to the " + enemy.short + " that it isn’t what it looks like, but are cut off as you’re forced to evacuate from your current position inside the dangerous smog.");
 				}
 				else if (eligibleMimbranes[i] == "Mimbrane Balls")
 				{
 					//Scrotum Mimbranes
-					output("The rivalry against the " + foes[0].short + " halts as you’re distracted by rapid tensing and flailing of your [pc.balls]. The Mimbrane is thrashing your [pc.balls] about wildly, forcing you into your [pc.armor] to investigate. The moment you peek inside, the mutinous sack overwhelms you with a cloud of sexual desire.");
+					output("The rivalry against the " + enemy.short + " halts as you’re distracted by rapid tensing and flailing of your [pc.balls]. The Mimbrane is thrashing your [pc.balls] about wildly, forcing you into your [pc.armor] to investigate. The moment you peek inside, the mutinous sack overwhelms you with a cloud of sexual desire.");
 				}
 				else if (eligibleMimbranes[i] == "Mimbrane Boobs")
 				{
@@ -3319,11 +3320,11 @@ public function mimbraneCombatInterference():Boolean
 					}
 					else if (mimbraneEffects[i] == "Mimbrane Balls")
 					{
-						output("You find it difficult to continue your spat with the " + foes[0].short + ", unable to concentrate as your [pc.sack] gets even sweatier and sultrier every passing second. The Mimbranes encasing your [pc.balls] is doing its best trying to throw you off kilter.");
+						output("You find it difficult to continue your spat with the " + enemy.short + ", unable to concentrate as your [pc.sack] gets even sweatier and sultrier every passing second. The Mimbranes encasing your [pc.balls] is doing its best trying to throw you off kilter.");
 					}
 					else if (mimbraneEffects[i] == "Mimbrane Boobs")
 					{
-						output("You’re unable to keep pace with the " + foes[0].short + ", too paralyzed as your sweat-drenched breasts slink erotically from under your [pc.armor]. The parasite goes further by rubbing your [pc.nipples] against the inside of the garment, doing whatever it can to hinder you.");
+						output("You’re unable to keep pace with the " + enemy.short + ", too paralyzed as your sweat-drenched breasts slink erotically from under your [pc.armor]. The parasite goes further by rubbing your [pc.nipples] against the inside of the garment, doing whatever it can to hinder you.");
 					}
 					else if (mimbraneEffects[i].indexOf("Mimbrane Hand") != -1)
 					{
@@ -3331,7 +3332,7 @@ public function mimbraneCombatInterference():Boolean
 					}
 					else if (mimbraneEffects[i].indexOf("Mimbrane Foot") != -1)
 					{
-						output("It becomes difficult for you to continue fighting against the [monster.name], too distracted by your [pc.foot] soaking in sexual sweat and being lewdly controlled by its parasitic coating.");
+						output("It becomes difficult for you to continue fighting against the [enemy.name], too distracted by your [pc.foot] soaking in sexual sweat and being lewdly controlled by its parasitic coating.");
 					}
 					else if (mimbraneEffects[i] == "Mimbrane Face")
 					{
@@ -3474,7 +3475,7 @@ public function mimbraneHandBonusAttack(target:Creature):void
 		output("\nYou’re taken by surprise when your hand moves all on its own, quickly mimicking your previous attack. It seems as though the Mimbrane controlling it is eager to come to your aid!\n\n");
 
 		(pc as PlayerCharacter).createStatusEffect("Mimbrane Bonus Attack", 0, 0, 0, 0, true, "", "", true, 0);
-		attack(pc, target,[2]);
+		CombatAttacks.SingleMeleeAttackImpl(pc, target, false);
 		(pc as PlayerCharacter).removeStatusEffect("Mimbrane Bonus Attack");
 	}
 }
@@ -3483,7 +3484,7 @@ public function mimbraneFeetBonusEvade(target:Creature):Boolean
 {
 	var dodgeBonus:int = 0;
 
-	if (foes[0] is Mimbrane) return false;
+	if (enemy is Mimbrane) return false;
 	if (target != pc) return false;
 
 	if (target.hasStatusEffect("Mimbrane Foot Left") && target.statusEffectv2("Mimbrane Foot Left") <= 6)

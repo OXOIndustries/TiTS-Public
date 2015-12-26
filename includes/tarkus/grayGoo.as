@@ -1,5 +1,6 @@
 ﻿import classes.Characters.GrayGoo;
 import classes.Creature;
+import classes.GameData.CombatManager;
 //The Gray Goo
 //A TiTS Combat Encounter
 //By Savin: Age 12
@@ -40,7 +41,7 @@ public function encounterDasGooGray():void
 	CombatManager.lossScene(loseToGrayGooRouter);
 	CombatManager.displayLocation("GRAY GOO");
 	
-	addButton(0,"Next",startCombat,"Gray Goo");
+	addButton(0,"Next",CombatManager.beginCombat);
 }
 
 //[Do Nothing]
@@ -56,7 +57,7 @@ public function dontDoAnythingFromHardenAttack():void
 	
 	// TODO Peep a better way to handle this
 	// GetHostileOfType? Index override? By unique-name?
-	var hostiles:Array = CombatManager.getHostileCreatures();
+	var hostiles:Array = CombatManager.getHostileCharacters();
 	for (var i:int = 0; i < hostiles.length; i++)
 	{
 		if (hostiles[i] is GrayGoo)
@@ -90,7 +91,7 @@ public function quickieAfterGooHarden():void
 	}
 	pc.orgasm();
 	
-	var hostiles:Array = CombatManager.getHostileCreatures();
+	var hostiles:Array = CombatManager.getHostileCharacters();
 	for (var i:int = 0; i < hostiles.length; i++)
 	{
 		if (hostiles[i] is GrayGoo)
@@ -115,7 +116,7 @@ public function pcDefeatsGrayGooInTheNameOfLove():void
 	userInterface.showBust("GRAY_GOO");
 	userInterface.showName("DEFEATED:\nGRAY GOO");
 	output("Jiggling and deforming under the ");
-	if(foes[0].lust() > 99) output("teasing display of sensuality you're giving it");
+	if(enemy.lust() > 99) output("teasing display of sensuality you're giving it");
 	else output("brutal physical attacks you're slinging");
 	output(", the gray goo finally collapses into little more than a puddle of goop on the ground, only vaguely in humanoid shape. Looming over her - it - you could do just about anything. And it probably wouldn't even mind.\n\n");
 	
@@ -145,7 +146,7 @@ public function pcDefeatsGrayGooInTheNameOfLove():void
 		addDisabledButton(2,"MultiFuck");
 		addDisabledButton(3,"Catch: DP");
 	}
-	addButton(14,"Leave",genericVictory);
+	addButton(14,"Leave",CombatManager.genericVictory);
 }
 
 //Reprogram
@@ -170,7 +171,7 @@ public function reprogramGrayGoosForYerPleasure():void
 	if(pc.HP() < pc.maxHP()) addButton(0,"Heal Me",healMeGrayGooYoureMyOnlyHopeDotDotDot,undefined,"Heal Me","Have the goo woman user her microsurgeons to heal you.");
 	else addDisabledButton(0,"Heal Me");
 	addButton(1,"Take Sample",takeASampleOfTheGrayGoo,undefined,"Sample","Collect a sample of the mysterious woman for... science!");;
-	addButton(14,"Leave",genericVictory);
+	addButton(14,"Leave",CombatManager.genericVictory);
 }
 
 //Heal Me
@@ -186,7 +187,7 @@ public function healMeGrayGooYoureMyOnlyHopeDotDotDot():void {
 	output("\n\nThat's one less rape-monster on this planet. You do good work!\n\n");
 	pc.HP(50);
 	processTime(1);
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Take a Sample
@@ -202,7 +203,7 @@ public function takeASampleOfTheGrayGoo():void {
 
 	eventQueue[eventQueue.length] = getSomeGrayGoo;
 	processTime(1);
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 public function getSomeGrayGoo():void {
@@ -270,7 +271,7 @@ public function multiCockMayhem():void
 	pc.energy(-5);
 	processTime(20+rand(5));
 	pc.orgasm();
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Mutual Masturbation
@@ -325,7 +326,7 @@ public function mutualGooMasturbation():void
 	pc.orgasm();
 	pc.energy(-5);
 	processTime(20+rand(5));
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Divide and Conquer (Goo Splits in half, double-teams)
@@ -399,7 +400,7 @@ public function divideAndConquerGinasWithGoos():void
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //PC Defeat
@@ -508,7 +509,7 @@ public function pcDefeatByGooBitch():void
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
-	genericLoss();
+	CombatManager.genericLoss();
 }
 
 //PC Defeated
@@ -596,7 +597,7 @@ public function cockVariantForGrayGooKirbutashis():void
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
-	genericLoss();
+	CombatManager.genericLoss();
 }
 
 //Cunt Variant
@@ -657,5 +658,5 @@ public function gooGooEnvelopsCunts():void
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
-	genericLoss();
+	CombatManager.genericLoss();
 }

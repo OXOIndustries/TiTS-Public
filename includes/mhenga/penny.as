@@ -405,7 +405,7 @@ public function seriouslyFightTheZil():void {
 	CombatManager.lossScene(loseToZilPair);
 	CombatManager.displayLocation("TWO ZIL");
 	
-	this.addButton(0, "Next", startCombat, "zilpack");
+	this.addButton(0, "Next", CombatManager.beginCombat);
 }
 
 //Lose to Zil Pair
@@ -462,7 +462,7 @@ public function loseToZilpackPartTwoLoseHarder():void {
 	if (pc.hasVagina()) 
 	{
 		output("\n\nThe Yellowjack laughs in the police girl's face as he lowers your defenseless body down on his prick, spearing into your so-far untouched [pc.vagina]. <i>“We came to this town to breed, little girl. We'll talk, but first...”</i>  He pushes you down, making you support yourself on your arms, hands planted on the cold, cum-slick ground. Digging his fingers into your [pc.butt], the Zil soon has you humping up and down on his prick, taking his cock deep into your womb. You look helplessly up at Penny, but there's nothing she can do to save you now. Not without meeting the same fate.");
-		pc.cuntChange(0,foes[0].cockVolume(0));
+		pc.cuntChange(0,enemy.cockVolume(0));
 	}
 	//IF PC don't have a cunt: 
 	else
@@ -503,7 +503,7 @@ public function finishLosingToZilYouLoser():void {
 public function defeatZilPair():void {
 	clearOutput();
 	output("The zil slump over into a pile, ");
-	if (foes[0].HP() <= 0) 
+	if (enemy.HP() <= 0) 
 		output("no longer aroused and very much looking like the fight has been beaten out of them");
 	else 
 		output("sucking each other’s cocks idly while presenting their bottoms to you");
@@ -539,7 +539,7 @@ public function beatPennysZilPartII():void {
 	pc.libido(-.5);
 	//Pass 30m
 	processTime(30);
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Visit Penny Post Problem 1x

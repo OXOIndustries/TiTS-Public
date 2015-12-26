@@ -2,6 +2,8 @@ package classes.GameData
 {
 	import classes.Creature;
 	import classes.kGAMECLASS;
+	import classes.Engine.Interfaces.*;
+	
 	/**
 	 * ...
 	 * @author Gedan
@@ -80,7 +82,7 @@ package classes.GameData
 		
 		public static function victoryScene(func:Function):void
 		{
-			combatContainer.victoryScene = func;
+			combatContainer.victoryScene(func);
 		}
 		
 		public static function lossCondition(condition:String, arg:* = undefined):void
@@ -91,7 +93,7 @@ package classes.GameData
 		
 		public static function lossScene(func:Function):void
 		{
-			combatContainer.lossScene = func;
+			combatContainer.lossScene(func);
 		}
 		
 		public static function entryScene(func:Function):void
@@ -140,6 +142,8 @@ package classes.GameData
 		{
 			combatContainer.doCombatCleanup();
 			combatContainer = null;
+			clearMenu();
+			addButton(0, "Next", kGAMECLASS.mainGameMenu);
 		}
 		public static function showCombatMenu():void
 		{
@@ -172,10 +176,11 @@ package classes.GameData
 		{
 			if (combatContainer) combatContainer.endCombatRound();
 		}
-		public static function multipleEnemies():void
+		public static function multipleEnemies():Boolean
 		{
 			if (_hostileCharacters.length > 1) return true;
-			if ((_hostileCreatures[0] as Creature).plural) return true;
+			if ((_hostileCharacters[0] as Creature).isPlural) return true;
+			return false;
 		}
 		public static function hasEnemyOfClass(t:Class):Boolean
 		{

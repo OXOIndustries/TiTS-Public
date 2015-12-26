@@ -75,7 +75,7 @@ public function defeatAMaleNaleen():void {
 	showBust("NALEEN_MALE");
 	showName("NALEEN\nMALE");
 	//Victory by HP
-	if(foes[0].HP() <= 0) {
+	if(enemy.HP() <= 0) {
 		output("The naleen struggles to lift his torso from the ground, too beaten to do anything but glare defiantly at you as he tries to slither away.");
 		//if Kind:
 		if(pc.isNice()) output("\n\nYou watch him from a distance, putting your weapons away now that he’s beaten. A curious sight does catch your eye, though. His twin reptilian cocks are standing at half-mast; seems like he found the fight enjoyable. Maybe you should do something about that?");
@@ -116,7 +116,7 @@ public function leaveDefeatedDudeleen():void {
 	else output("You kick his tail away and tell him to scramble. You don’t have time to waste with wimps like him.\n\nThe naleen turns and slithers away as fast as he can, before you can change your mind.");
 	output("\n\n");
 	processTime(3);
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Ride Him
@@ -147,7 +147,7 @@ public function rideDudeleensWithAPussaaaaah():void {
 	output("\n\nHe huffs and turns to look away.");
 
 	output("\n\nDespite his reaction, you watch with amusement as you notice his soft-barbed dicks");
-	if(foes[0].HP() <= 0) output(" throbbing as a bead of pre begins to form on their twin tips.");
+	if(enemy.HP() <= 0) output(" throbbing as a bead of pre begins to form on their twin tips.");
 	else output(" throb in excitement as a large dollop of pre forms on their twinned tips, sliding down his lengths as he makes his excitement clear.");
 
 	//if Hard:
@@ -323,7 +323,7 @@ public function rideDudeleensWithAPussaaaaah():void {
 		output("\n\nYou roll him on his side and undo his bindings before giving him a soft pat on the head.");
 		output("\n\n<i>“Thank you...”</i>  he exhales in an exhausted whisper, momentarily opening his eyes to gaze at you.");
 		output("\n\nSatisfied, you don your [pc.gear] and leave him lying on the jungle floor.\n\n");
-		genericVictory();
+		CombatManager.genericVictory();
 		return;
 	}
 	//Hard
@@ -344,7 +344,7 @@ public function releaseNaleenAfterLadyWins():void {
 	output("You roll him on his side, undoing his bindings and leaving him to pass out on the ground.");
 	output("\n\nSatisfied for the moment, you don your [pc.gear] and leave him lying on the jungle floor.");
 	output("\n\n");
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //[=Leave=]
@@ -356,7 +356,7 @@ public function leaveTheDudeNaleenAfterLadyWins():void {
 	output("He’s a big kitty, he can take care of himself.");
 	output("\n\nYou put on your [pc.gear] and leave the naleen to fend for himself.");
 	output("\n\n");
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Get Blown
@@ -504,7 +504,7 @@ public function ignoreDasNaga():void {
 		output("You nod absently and clamber off of his chest, pulling him into a position where you can remove the vines binding his wrists. Gathering your gear, you turn and start heading off, leaving the now-free naleen behind you.");
 		output("\n\nBefore you are out of sight, though, curiosity prompts you to look back. The horny being is busily wiping off some of the semen he spilt down himself during your coupling, applying it to his own dicks as makeshift lube and jerking himself off furiously. You chuckle at the sight.");
 		output("\n\n");
-		genericVictory();
+		CombatManager.genericVictory();
 	}
 	//Hard:
 	else {
@@ -523,7 +523,7 @@ public function letThatNaleenBoyPussyGo():void {
 	output("You nod as you get off of him and roll him on his side so you can get to his bindings.");
 	output("\n\nYou’ve barely released him and the slut is already masturbating. The horny cat-snake wasted no time getting his paws around his peckers to pump himself to orgasm. Honestly, it’s kind of amusing, however you’ve no time to waste. You put on your [pc.gear] and leave the cat to his devices.");
 	output("\n\n");
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //[=Refuse=]
@@ -538,7 +538,7 @@ public function refuseToLetTheNaleenGo():void {
 	output("\n\nIf he didn’t want to wind up tied in the middle of the jungle he shouldn’t have challenged you. He’s a big kitty. You have no doubt he’ll find a way to release himself.");
 	output("\n\nYou chuckle as you step away from the cursing feline. He vainly tries to reach for his bindings with his claws, but in his current position this is more than a little difficult. Well, you got yours, so there’s no point in sticking around. You don your [pc.gear] and leave the thrashing cat-snake to his own devices.");
 	output("\n\n");
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 
@@ -580,7 +580,7 @@ public function handjobThatDudeleen():void {
 	output("\n\n");
 	processTime(30+rand(10));
 	pc.orgasm();
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //[=Ass=] 
@@ -668,7 +668,7 @@ public function getTakenInTheAssByDudeleen():void {
 	processTime(30+rand(10));
 	pc.orgasm();
 	pc.loadInAss(chars["NALEEN_MALE"]);
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //[=CuntTail=]
@@ -719,7 +719,7 @@ public function cuntailOnDudeleen():void {
 	processTime(30+rand(10));
 	pc.orgasm();
 	
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 
@@ -980,7 +980,7 @@ public function loseToDudeleenSex(tailIntro:Boolean = false):void {
 	//Loss message
 	output("\n\n");
 	processTime(30+rand(10));
-	genericLoss();
+	CombatManager.genericLoss();
 }
 
 //Reverse Rape
@@ -1102,7 +1102,7 @@ public function feedYourCuntTailWithDudeleen():void {
 	
 	output("\n\n");
 	processTime(30+rand(10));
-	genericLoss();
+	CombatManager.genericLoss();
 }
 
 
@@ -1290,7 +1290,7 @@ public function maleNaleenSucksPCOff():void
 	pc.loadInMouth(chars["NALEEN_MALE"]);
 	output("\n\n");
 	processTime(20+rand(3));
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 

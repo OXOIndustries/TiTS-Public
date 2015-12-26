@@ -1,12 +1,11 @@
 ﻿package classes.Characters
 {
 	import classes.Creature;
-	import classes.Engine.Combat.DamageTypes.DamageResult;
-	import classes.Engine.Combat.DamageTypes.TypeCollection;
+	import classes.Engine.Combat.DamageTypes.*;
 	import classes.GLOBAL;
 	import classes.Items.Melee.Fists;
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
 	import classes.GameData.CombatManager;
 	import classes.GameData.CombatAttacks;
 	import classes.Engine.Interfaces.output;
@@ -28,7 +27,7 @@
 			this.long = "There are two zil here, one on either side of you. Both are males, as determined by their exposed, dangling genitalia. Their wings flutter incessantly behind them; they can’t fly in the enclosed space, yet the wingbeats keep their genitals at just the right height to waft their sweet musk in your direction. Their penises are about six inches long with tight, hairless sacks underneath. As prisoners, they are without weapons, not even stingers that you would expect on such a wasp-like foe. They do have almost head-to-toe chitin to protect them, some black, some yellow.";
 			this.customDodge = "The two zil zip out of the way with a swift contortion of their agile frames.";
 			this.customBlock = "The two zil's chitinous armor deflects your attack.";
-			this.plural = true;
+			this.isPlural = true;
 			
 			this.meleeWeapon = new Fists();
 			

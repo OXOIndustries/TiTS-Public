@@ -9,7 +9,6 @@ import classes.Engine.Combat.DamageTypes.TypeCollection;
 //Finding a Lapinara:
 public function encounterALapinara():void
 {
-	foes = new Array();
 	author("WorldOfDrakan");
 	lapinaraBust();
 	//[First Encounter]
@@ -45,7 +44,7 @@ public function lapinaraBust():void
 {
 	if (enemy != null && enemy is LapinaraFemale)
 	{
-		userInterface.showBust(enemy.displayBust);
+		userInterface.showBust(enemy.bustDisplay);
 	}
 	else
 	{
@@ -130,7 +129,7 @@ public function loseToLapinaraAndGetEggplantedDudesAndNeuters():void
 	//No orgasm? +10 lust!
 	pc.lust(10+rand(3));
 	processTime(20+rand(4));
-	genericLoss();
+	CombatManager.genericLoss();
 }
 
 //(Female/Herm Variant)
@@ -185,7 +184,7 @@ public function loseToLapinaraAndGetEggplantedChicks():void
 	//No cums for pc. +10 lust. Poor PC.
 	pc.lust(10);
 	processTime(20+rand(4));
-	genericLoss();
+	CombatManager.genericLoss();
 }
 
 public function defeatDatLapinara():void
@@ -263,7 +262,7 @@ public function targetLapinaraSex(targetFunc:Function):void
 		for(var x:int = 0; x < pc.cockTotal(); x++)
 		{
 			output("\n<b>" + (x+1) + ":</b> " + pc.cockNoun2(pc.cocks[x], false, ""));
-			addButton(x,upperCase(num2Text((x+1))),targetFunc,x);
+			addButton(x,StringUtil.upperCase(num2Text((x+1))),targetFunc,x);
 		}
 	}
 }

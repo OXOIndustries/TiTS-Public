@@ -210,7 +210,7 @@ package classes.Characters
 		{
 			removeStatusEffect("Melee Counter");
 			//used after you attack sometimes. Deals 1.5 times the damage she took from your attack.
-			output("The [monster.skinTone] knight rebounds from your attack with a fierce counter.");
+			output("The [enemy.skinTone] knight rebounds from your attack with a fierce counter.");
 			if (combatMiss(this, target)) output("\nYou duck under her returned attack, narrowly avoiding the blade.");
 			else 
 			{

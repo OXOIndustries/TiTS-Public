@@ -705,7 +705,7 @@ public function fuckYesPlantLadyIllSaveYou():void
 (pc has 3 <i>“platforms”</i> to move between. pc can move then shoot, but not vice versa. These start out shielded and halve all damage received. Each use of firestorm removes this shield. If firestorm is used on an unshielded space it results in a loss for the pc. The boss is immune to adverse status effects and lust damage. It has no shields, but high hp.)
 */
 
-public function gardeBotCoverUpdate():void
+public function updateGardeBotCover():void
 {
 	if(enemy.statusEffectv1("Sporebutt") == 1) 
 	{
@@ -750,9 +750,9 @@ public function gardeBotMove(arg:int = 1):void
 	enemy.setStatusValue("Sporebutt",1,arg);
 	clearOutput();
 	output("You shift into a different section of the cavern");
-	if(pcHasSporeShield()) output(" where the spores can still protect you");
+	if (enemy is GardeBot && (enemy as GardeBot).pcHasSporeShield()) output(" where the spores can still protect you");
 	output(".\n");
-	processCombat();
+	CombatManager.processCombat();
 }
 
 //Loss

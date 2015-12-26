@@ -172,8 +172,8 @@ public function loseToDane():void {
 	if(pc.hasHair()) output("grabs your [pc.hair], yanking your head back");
 	else output("grabs the back of your neck, squeezing painfully hard");
 	output(", and says, <i>\"Loosen up slut. There's a lot more cock to go.\"</i> He pushes you partway off and pulls back down, matching his words with potent, cock-burying thrusts. This time, ");
-	if(pc.analCapacity() * .8 > foes[0].cockVolume(0)) output("your capacitive anus allows him inside, letting the knot pop right on in.");
-	else if(pc.analCapacity() * 1.2 > foes[0].cockVolume(0)) output("your anus stretches enough to let him inside, tingling from how taut it has been pulled.");
+	if(pc.analCapacity() * .8 > enemy.cockVolume(0)) output("your capacitive anus allows him inside, letting the knot pop right on in.");
+	else if(pc.analCapacity() * 1.2 > enemy.cockVolume(0)) output("your anus stretches enough to let him inside, tingling from how taut it has been pulled.");
 	else output("your anus stretches painfully open, pulled far beyond its normal capacity to allow him entrance.");
 	output(" Swollen, cum-filled nuts slap against you");
 	if(pc.balls > 0) output("r own");
@@ -182,7 +182,7 @@ public function loseToDane():void {
 	output(" The alien grunts and slaps your ass. Even taking a hand to do that, he's still holding you vice-tight. It's like his arms all over your body, everywhere at once, forcing you to submit to his anus-ravaging whims.");
 	if(pc.hasVagina()) output(" [pc.EachVagina] trickles lubricant at the thought. You manage to reach down to try and plug the leak with your fingers. It doesn't work. You just get wetter.");
 	//Buttchange
-	pc.buttChange(foes[0].cockVolume(0),true,true,false);
+	pc.buttChange(enemy.cockVolume(0),true,true,false);
 	output("\n\nThis time, Dane growls in satisfaction. <i>\"That's it, slut. Go ahead and take my dick.</i>\" He pops his knot out and back in, sending surprisingly pleasant sensations shivering up your spine. <i>\"Just relax and take it. Get used to it. We're just getting started, and I've got a lot more cock to fill you with.\"</i>");
 	output("\n\nWait, what? You try to look back over your shoulder at him to voice your question, but his hand holds you firm.");
 	output("\n\n<i>\"Eyes down, bitch. You don't get to look at me,\"</i> Dane commands. As an afterthought, he adds, <i>\"Never fucked somebody as spliced-up as me, have you?\"</i> He doesn't wait for an answer. <i>\"If you thought four arms was the extent of my modifications, you're sorely mistaken. The little bit of cock you've got inside you is just my tip.\"</i> Dane thrusts, pushing his knot up into your large intestine. Incredibly, you feel inches more of his phallus pounding into you behind it, the insertion made easy thanks to the reaming he's given you. <i>\"I got myself a proper tentacle cock with an ausar twist. It can reach out nine feet, and every six inches, there's another knot. I wonder how many I can push out into you?\"</i>");

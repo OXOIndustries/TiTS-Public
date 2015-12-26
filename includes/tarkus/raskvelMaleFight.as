@@ -1,6 +1,7 @@
 ﻿import classes.Characters.RaskvelMale;
 import classes.Engine.Combat.DamageTypes.DamageResult;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
+import classes.GameData.CombatManager;
 //Plans/Ideas
 /**Three raskvel scavenging some junk. Possibly have a chance mechanic as to how they’re predisposed to you. They don’t care (low chance of that m8), they offer sexy times, they offer a gud deal on the junk, they want to get paid like the female.
 
@@ -672,7 +673,7 @@ public function victoryVsRaskGang():void
 {
 	//Raskvel loss texts
 	//Via HP
-	if(foes[0].HP() < 1)
+	if(enemy.HP() < 1)
 	{
 		output("Your blow fells the big raskvel; he lands in a semi-comatose heap at your feet. The other two, all the laughter thoroughly thrashed out of them, take this as a sign to collapse as well, groaning surrender. You look down at the dusty pile of taut, burnished reptile muscle you’ve created, feeling rather satisfied.");
 		if(pc.lust() >= 33) output(" You wonder if you’re quite satisfied enough, though.\n\n");
@@ -694,7 +695,7 @@ public function victoryVsRaskGang():void
 	else addDisabledButton(0,"Ride 'Em","Ride 'Em","You need a vagina to ride 'em!");
 	//Buttfuckery
 	//Req: Cock that fits
-	if(pc.cockThatFits(foes[0].analCapacity()) >= 0 && pc.hasCock()) addButton(1,"Butt Fuck",raskMaleButtfuckery,undefined,"Butt Fuck","Give them a good reaming for inconveniencing you with their cute little butts.");
+	if(pc.cockThatFits(enemy.analCapacity()) >= 0 && pc.hasCock()) addButton(1,"Butt Fuck",raskMaleButtfuckery,undefined,"Butt Fuck","Give them a good reaming for inconveniencing you with their cute little butts.");
 	else addDisabledButton(1,"Butt Fuck","Butt Fuck","You need a dick that'll fit inside the raskvel in order to fuck their butts.");
 }
 public function lossVsRaskGang():void
@@ -760,18 +761,18 @@ public function consensualGangBang():void
 	if(pc.ass.wetness() > 1 || pc.ass.looseness() >= 3) output(" Not that your slutty, always-ready back passage needed it, but ");
 	else output(" Whether he meant to do it or not, ");
 	output("this makes his penetration of you much easier; he slides into your cum-oiled tunnel with ease, bucking his powerful hips into your [pc.butt] as he fills you. The one between your legs meanwhile has taken the opportunity to clamber up and mount you.");
-	pc.buttChange(foes[0].cockVolume(0),true,true,false);
+	pc.buttChange(enemy.cockVolume(0),true,true,false);
 
 	//ifVag:
 	if(pc.hasVagina()) 
 	{
 		output("\n\nWith a flat reptile stomach flapping eagerly against your face, you can’t quite see but can definitely can feel another raskvel plunging his own hot cock deep into your [pc.vagina], clutching your thighs and beginning to pump into you. The sensation of twin lizard pricks pushing into each other through your sensitive walls is unbearably good and you can’t help but give out a wet squeal around the one in your mouth, your pussy oozing excitement around the raskvel’s smooth, girthy, rubbing fuck.");
-		pc.cuntChange(0,foes[0].cockVolume(0),true,true,false);
+		pc.cuntChange(0,enemy.cockVolume(0),true,true,false);
 		//ifmultiVag:
 		if(pc.totalVaginas() > 1) 
 		{
 			output("\n\nYour pleasure becomes inhumanely delirious when a blunt, questing tail finds your [pc.vagina 1] and thrusts inside, the raskvel to whom it belongs chuckling to himself as you squirm around him.");
-			pc.cuntChange(1,foes[0].cockVolume(0),true,true,false);
+			pc.cuntChange(1,enemy.cockVolume(0),true,true,false);
 		}
 	}
 	//ifnoVagBUTcunttail: 
@@ -858,9 +859,9 @@ public function raskMaleButtfuckery():void
 	clearOutput();
 	showRaskGang();
 	userInterface.showBust("RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE");
-	var x:int = pc.cockThatFits(foes[0].analCapacity());
+	var x:int = pc.cockThatFits(enemy.analCapacity());
 	if(x < 0) x = pc.smallestCockIndex();
-	var y:int = pc.cockThatFits2(foes[0].analCapacity());
+	var y:int = pc.cockThatFits2(enemy.analCapacity());
 	//Just incase.
 	if(y == x) y = -1;
 	output("<i>“You!”</i> you say imperiously to the smallest one");
@@ -899,7 +900,7 @@ public function raskMaleButtfuckery():void
 		output(" when you spear into him deep, and the fact of his dense form and the amount of labour he evidently engages in means he’s a wonderful squeeze all the way down.");
 
 		output("\n\nIt’s a struggle to hold onto the urge to pile-drive into him, but you keep yourself responsive to his exertions, slowing down whenever it sounds and feels like he can’t take anymore, but continuously pushing his limit");
-		if(pc.cockVolume(x) <= foes[0].analCapacity()) output(" until you are happily giving him in every bulging inch, your [pc.hips] patting purposefully against his");
+		if(pc.cockVolume(x) <= enemy.analCapacity()) output(" until you are happily giving him in every bulging inch, your [pc.hips] patting purposefully against his");
 		output(". You snake a hand between his legs and begin to briskly run it up and down his purple seven inch cock, which is flopping well out of its slit. It takes suspiciously little time for it to be fully erect, hot and straining in your grip. You grin to yourself and begin to pick up the pace, pumping your hips strongly into the raskvel’s behind as you continue to generously coil him. There’s no question about it now: he doesn’t gasp in pain and in resistance to what you are doing, but in forced, physical delight. You lose yourself in the tight, oily crease you’re thrusting your maleness into, no longer limiting your thrusting, beating out a solid rhythm with your [pc.hips]");
 		if(pc.balls > 0) output(" and [pc.balls]");
 		output(" on the brawny butt you’re thoroughly buried in.");
@@ -934,7 +935,7 @@ public function raskMaleButtfuckery():void
 		if(pc.hasParasiteTail()) output(" parasitic tail");
 		else output(" [pc.tail]");
 		output(" pulling and biting at the strings of your subconscious, but you keep yourself responsive to their exertions, slowing down whenever it sounds and feels like they can’t take anymore, but otherwise determinedly pushing their limit");
-		if(pc.cockVolume(x) <= foes[0].analCapacity()) output(" until you are happily giving the one in front of you every bulging inch, your [pc.hips] patting purposefully against his");
+		if(pc.cockVolume(x) <= enemy.analCapacity()) output(" until you are happily giving the one in front of you every bulging inch, your [pc.hips] patting purposefully against his");
 		output(". You snake a hand between the big raskvel’s legs and begin to briskly run it up and down his purple seven inch cock, which is flopping well out of its slit. It takes suspiciously little time for it to be fully erect, hot and straining in your grip.\n\nYou grin to yourself and begin to pick up the pace, pumping your hips strongly into the reptilian’s behind as you continue to generously coil him. You can’t offer the same sort of service to the other one, but your tail seems to know what to do; without you directing it at all, it pulls back and drives into a pulpy spot in the raskvel’s walls over and over again which, given the way he clutches at the dirt and arches his back, gasping reactively, can only be his prostate.");
 
 		output("\n\nSatisfied that it’s deep pleasure rather than pain you’re pushing onto them you begin to lose yourself in the tight, oily creases you’re flexing your maleness into, no longer limiting your thrusting, beating out a solid rhythm with your [pc.hips]");
@@ -979,7 +980,7 @@ public function raskMaleButtfuckery():void
 		//>1 cock:
 		if(y >= 0) output("\n\nWhilst you sink your cock again and again into the big raskvel you keep one hand wrapped around the smallest one’s head, gently pushing him into your [pc.cock " + y + "], and the other on the medium one, still crouched to the side. You cup his ass cheeks and reach between his legs, teasing his cock well out of its pocket. You want to keep him involved in the action... and ensure he doesn’t go anywhere.");
 		output("\n\n<i>“You’re next, handsome!”</i> you sigh, squeezing your fingers through the ring of the middle one’s anus, testing and loosening him as you thrust ");
-		if(pc.cockVolume(x) > foes[0].analCapacity()) output("as much of your");
+		if(pc.cockVolume(x) > enemy.analCapacity()) output("as much of your");
 		else output("every inch of your");
 		output(" [pc.cock " + x + "] into his friend’s quaking tunnel as you can; he whimpers, the dirty <i>thwap thwap thwap</i> of your [pc.hips] on the bigger one’s butt translating into his own brawny flesh. Your intention to keep your thrusting slow and measured is lost in a red mist of lust as your ");
 		if(pc.balls == 1) output("ball tightens");
@@ -1017,7 +1018,7 @@ public function raskMaleButtfuckery():void
 		output("”</i> He looks away from your gaze but does manage a small, tremulous grin, and when you make your way over to him he gets back on his hands and knees without any encouragement. <i>“Good boy,”</i> you sigh, grasping his supple scales and parting his purple rose with your filthy, well-lubricated cock.");
 
 		output("\n\nYou go slower now, partly because you’ve already expended the real bite of your fervour and partly because of how willing this particular raskvel is. He gasps once when you slide into him, but he’s obviously considerably more used to this than the other two were, and he’s soon letting you holster ");
-		if(pc.cockVolume(x) > foes[0].analCapacity()) output("almost ");
+		if(pc.cockVolume(x) > enemy.analCapacity()) output("almost ");
 		output("all of your [pc.cock] in his rectum, your ");
 		if(pc.balls > 0) output("[pc.balls]");
 		else output("[pc.hips]");
@@ -1064,7 +1065,7 @@ public function redRidingRaskvel():void
 	}
 	userInterface.showBust("RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE");
 	output("<i>“On the floor,”</i> you say curtly to the largest one, <i>“and let’s see it. Now.”</i> The raskvel is clearly not used to this treatment; cheeks burgundy and with no idea where to put his eyes, he clumsily sits down and ");
-	if(foes[0].lust() >= 60) output("exposes the thick, purple erection you’ve caused to erupt out of his slender slit, curling his hand around it in an almost protective gesture");
+	if(enemy.lust() >= 60) output("exposes the thick, purple erection you’ve caused to erupt out of his slender slit, curling his hand around it in an almost protective gesture");
 	else output("slides his thick, purple, semi-erect erection out of his slender slit. Probably aware of what you want, he wraps his hand around and nervously rubs it, practically urging it to get harder quickly.");
 	output(" You smirk at the sight; the belligerent tech-savage prostrate in front of you, subdued, intimidated and yet still rock hard, waiting to be used. It’s pleasing, and you feel blood sink towards your groin, [pc.eachVagina] reacting warmly and wetly to the fact of your position of strength.");
 
@@ -1094,7 +1095,7 @@ public function redRidingRaskvel():void
 	output("\n\nYou hold his helpless eyes as you lift yourself up, tantalizing his needy cock-end with the entrance of your [pc.vagina " + x + "] for a moment, and then sit yourself down with a growl. ");
 	if(pc.vaginas[x].looseness() >= 4) output("Your capacious, man-eating cunt easily gloves him and aside from the intense satisfaction of taking his cock within you there’s the further sadistic knowledge that you’re really going to have to work him to get what you need.");
 	else output("You feel faintly dizzy with pleasure as his thick, lizard cock stretches and rubs your tight cunt all the way down, laced with triumph when your [pc.thighs] touch his again, absolutely stuffing you to the brim with obedient dick.");
-	pc.cuntChange(x,foes[0].cockVolume(0),true,true,false);
+	pc.cuntChange(x,enemy.cockVolume(0),true,true,false);
 	if(pc.totalVaginas() > 1)
 	{
 		output(" The medium one waits patiently for you to finish before going back to licking your");
@@ -1385,8 +1386,8 @@ public function loseToRaskvelAndGetGangBangued():void
 	}
 	output("\n\nThe biggest answers simply enough by taking hold of your [pc.hips] and unceremoniously driving his thick, purple prick into your [pc.vagOrAss]. You cry out in shock at the sudden, hot intrusion, but he evidently isn’t interested in your peace of mind in the slightest, immediately beginning to pick up a vigorous tempo, plumbing your depths with gusto. You are bumped and shaken forward into the medium sized one, who cusps his hand around your head almost comfortingly, introducing your face to his own gleaming, six inch dick, sharply erect and beading musky pre.");
 
-	if(pc.hasVagina()) pc.cuntChange(0,foes[0].cockVolume(0),true,true,false);
-	else pc.buttChange(foes[0].cockVolume(0),true,true,false);
+	if(pc.hasVagina()) pc.cuntChange(0,enemy.cockVolume(0),true,true,false);
+	else pc.buttChange(enemy.cockVolume(0),true,true,false);
 
 	output("\n\nBent over, weak with the arousal ");
 	if(aphrodisiaced) output("they have ");
@@ -1465,7 +1466,7 @@ public function loseToRaskvelAndGetGangBangued():void
 		output("\n\n<i>“Oh man, you never said [pc.heShe] had more than one of them!”</i> the raskvel at your back exclaims, his fingers tracing the outer lips of your [pc.vagina " + 1 + "]");
 		if(pc.hasClit()) output(" and caressing [pc.oneClit]");
 		output(". <i>“I LOVE aliens!”</i>\n\nYou moan as with one excited movement he thrusts into your wet hole deep, masses of nerves within your core firing in frothy response, your oversexed body delighting in the anticipation of getting another creamy, virile filling.");
-		pc.cuntChange(1,foes[0].cockVolume(0),true,true,false);
+		pc.cuntChange(1,enemy.cockVolume(0),true,true,false);
 	}
 
 	//1 Vagina: 
@@ -1569,7 +1570,7 @@ public function sneakAwayFromRaskvel():void
 	showRaskGang();
 	userInterface.showBust("RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE");
 	output("With all three of the raskvel entirely concerned with beating the hell out of each other, it’s easy for you to quietly take your leave. You giggle to yourself as you imagine the expression of whoever wins, once he realizes you’re no longer there.");
-	stealthCombatEnd();
+	CombatManager.abortCombat();
 	processTime(2);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -1664,7 +1665,7 @@ public function lickPussyRaskButt(raskWinner:String = "big"):void
 
 	processTime(17);
 	pc.orgasm();
-	stealthCombatEnd();
+	CombatManager.abortCombat();
 	processTime(2);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -1718,7 +1719,7 @@ public function feetLickingGoodTimes(raskWinner:String = "big"):void
 
 	processTime(17);
 	pc.orgasm();
-	stealthCombatEnd();
+	CombatManager.abortCombat();
 	processTime(2);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

@@ -70,7 +70,8 @@ package classes {
 				"flags",
 				"bustDisplay",
 				"buttonText",
-				"btnTargetText"
+				"btnTargetText",
+				"alreadyDefeated"
 			);
 
 			cocks = new Array();
@@ -12335,6 +12336,7 @@ package classes {
 		public var isUniqueInFight:Boolean = false;
 		public var uniqueName:String = null; // Transient
 		public function get flags():Dictionary { return kGAMECLASS.flags; } // Transient
+		public var alreadyDefeated:Boolean = false;
 		
 		/**
 		 * Return the name for the bust this character should display. This'll be used during combat, but also potentially
@@ -12343,6 +12345,11 @@ package classes {
 		public function get bustDisplay():String
 		{
 			return "";
+		}
+		
+		public function getCombatDescriptionExtension():void
+		{
+			// noop
 		}
 		
 		public var btnTargetText:String // Base text used for buttons

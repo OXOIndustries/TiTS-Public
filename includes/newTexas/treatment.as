@@ -922,7 +922,7 @@ public function treatmentHourProcs():void
 				else
 				{
 					eventBuffer += "\n\nYour [pc.tails] feel increasingly warm, moment to moment, and not from the ambient temperature either. The heat is internal, a calefaction that seems ready to set your posterior extremities alight with incredible energy. You twist around, concerned at first, but you smile lazily at what you find.";
-					eventBuffer += "\n\n" + upperCase(num2Text(pc.tailCount)) + " gently swinging, bovine tails hang behind you. The tips are poofing up, just as you'd expect";
+					eventBuffer += "\n\n" + StringUtil.upperCase(num2Text(pc.tailCount)) + " gently swinging, bovine tails hang behind you. The tips are poofing up, just as you'd expect";
 					if(!pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) eventBuffer += ", and a coat of fine fur is growing out over their lengths";
 					eventBuffer += ". In seconds, the warmth fades, leaving you with new, bovine butt ornaments. You can make them swing on command but little else. The best control you can manage is to make them curl up to swat at your butt, and that takes some serious flexing. At least they look good.";
 				}
@@ -1938,7 +1938,7 @@ public function treatmentHourProcs():void
 							eventBuffer += "into themselves, leaving the " + pc.cocks[targetDick].cockColor + " skin to bunch up around their bases. As you watch, the flesh darkens to a glistening black. You can practically taste the muskiness pouring off the mutating dickskin. No matter when you do, they vanish into what can only be described as rather equine-looking sheaths.";
 						}
 						eventBuffer += "\n\nYou can’t just sit here watching and waiting, and without a degree of unearned confidence, you gingerly probe your fingers around the cockholes, eventually sticking your pinky into the biggest one. It hits what feels like a flat, blunt-tipped member, shooting lightning bolts of pleasure up your spine. Between the sensitive, hidden meat and the fact that your sheaths themselves are still very responsive, you find your heartbeat speeding and something shifting within you.";
-						eventBuffer += "\n\n" + upperCase(pc.eachCock()) + " surges out of its sheath in unison with its identically ";
+						eventBuffer += "\n\n" + StringUtil.upperCase(pc.eachCock()) + " surges out of its sheath in unison with its identically ";
 						var tempColor2:String = "mottled";
 						if(rand(2) == 0) tempColor = "black";
 						eventBuffer += tempColor2 + " brothers, getting thicker, longer, and veinier by the minute. You can almost taste the pheromones pouring off your lengthened rods, and while you enjoy it, you bet it would have the cow-girls mewling in delight. You grab hold of the swelling dicks, one in each hand, and stroke, feeling the extra inches pour out of your sheaths. ";
@@ -2345,7 +2345,7 @@ public function treatmentHourProcs():void
 				else
 				{
 					eventBuffer += "\n\nYour [pc.tails] feel increasingly warm, moment to moment, and not from the ambient temperature either. The heat is internal, a calefaction that seems ready to set your posterior extremities alight with incredible energy. You twist around, concerned at first, but you smile lazily at what you find.";
-					eventBuffer += "\n\n" + upperCase(num2Text(pc.tailCount)) + " gently swinging, bovine tails hang behind you. The tips are poofing up, just as you'd expect";
+					eventBuffer += "\n\n" + StringUtil.upperCase(num2Text(pc.tailCount)) + " gently swinging, bovine tails hang behind you. The tips are poofing up, just as you'd expect";
 					if(!pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) eventBuffer += ", and a coat of fine fur is growing out over their lengths";
 					eventBuffer += ". In seconds, the warmth fades, leaving you with new, bovine butt ornaments. You can make them swing on command but little else. The best control you can manage is to make them curl up to swat at your butt, and that takes some serious flexing. At least they look good.";
 				}

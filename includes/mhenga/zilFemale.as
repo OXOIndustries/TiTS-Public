@@ -227,7 +227,7 @@ public function submitToFemzil():void {
 	userInterface.showBust("ZILFEMALE");
 	userInterface.showName("FEMALE\nZIL");
 	output("You smile and begin to deeply inhale her powerful scent, meeting her eyes as you let the overwhelming need start to overcome you.");
-	foes[0] = chars["ZILFEMALE"].makeCopy();
+	setEnemy(new ZilFemale());
 	girlZilLossRouter();
 }
 
@@ -653,14 +653,15 @@ public function zilFemaleTribbingEpilogue():void {
 	addButton(0,"Next",mainGameMenu);
 }
 
-public function girlZilLossRouter():void {
+public function girlZilLossRouter():void
+{
 	var choices:Array = new Array();
 	var select:int = 0;
 	choices[choices.length] = forceyFaceSittingFromFemzil;
 	//Ladies Get Forced to Suckle and Then Cunnilingate While Repeatedly Stung (DONE) (-F)(edited)
 	if(pc.hasVagina()) choices[choices.length] = forceCunnilstingus;
 	//Dudes Get Rode and Stang in the Taint repeatedly!? Maybe. [DONE] (-F) [edited]
-	if(pc.hasCock() && pc.cockThatFits(foes[0].vaginalCapacity()) >= 0) choices[choices.length] = dudesGetStangRoad;
+	if(pc.hasCock() && pc.cockThatFits(enemy.vaginalCapacity()) >= 0) choices[choices.length] = dudesGetStangRoad;
 	
 	choices[rand(choices.length)]();
 }
@@ -784,11 +785,13 @@ public function forceCunnilstingus():void {
 	if(rand(3) == 0) pc.orgasm();
 	//Some libido boostage here!
 	pc.slowStatGain("libido",3);
-	if(!inCombat()) {
+	if (!inCombat())
+	{
+		setEnemy(null);
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 	}
-	else genericLoss();
+	else CombatManager.genericLoss();
 }
 	
 //Dudes Get Rode and Stang in the Taint repeatedly!? Maybe. [DONE] (-F) [edited]
@@ -798,7 +801,7 @@ public function dudesGetStangRoad():void {
 	userInterface.showName("FEMALE\nZIL");
 	// clearOutput();
 	//Set x to appropriate wang
-	var x:int = pc.cockThatFits(foes[0].vaginalCapacity());
+	var x:int = pc.cockThatFits(enemy.vaginalCapacity());
 	if(x < 0) x = pc.smallestCockIndex();
 	//HP Lawse
 	if(pc.HP() <= 0) {
@@ -894,7 +897,7 @@ public function dudesGetStangRoad():void {
 	pc.cockChange();
 	
 	output("\n\n<i>“Give it all to me,”</i> the zil coos as her pussy ");
-	if(pc.cockVolume(x) <= foes[0].vaginalCapacity() * .5) output("contracts, vacuum-tight around your girth");
+	if(pc.cockVolume(x) <= enemy.vaginalCapacity() * .5) output("contracts, vacuum-tight around your girth");
 	else output("looks almost painfully stretched around your girth, so tight that it doesn't look like a single drop will slip out");
 	output(", the inner walls wringing around your expanding tip while you cum inside her. Whether your orgasm was brought on by the pervasive musk or the sensitivity-enhancing aphrodisiacs doesn't matter to you. What does matter is how glad you are that she slid down on you as you were starting to cum, all so that you could feel your [pc.cock " + x + "] ecstatically erupt inside the volcano of bliss that is her pussy.");
 	//Used to track cunt tail usage!
@@ -1027,11 +1030,13 @@ public function dudesGetStangRoad():void {
 	pc.orgasm();
 	//Raise libido .5 to 5 points depending on libido.
 	pc.slowStatGain("libido",3);
-	if(!inCombat()) {
+	if (!inCombat())
+	{
+		setEnemy(null);
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 	}
-	genericLoss();
+	CombatManager.genericLoss();
 }
 
 //Forcey Face Sitting [DONE][edited]
@@ -1124,11 +1129,13 @@ public function forceyFaceSittingFromFemzil():void {
 	pc.lust(1000);
 	processTime(60+rand(20));
 	pc.lust(-5);
-	if(!inCombat()) {
+	if (!inCombat()) 
+	{
+		setEnemy(null);
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 	}
-	genericLoss();
+	CombatManager.genericLoss();
 }
 
 //Win Menu
@@ -1137,7 +1144,7 @@ public function defeatHostileZil():void {
 	userInterface.showBust("ZILFEMALE");
 	userInterface.showName("FEMALE\nZIL");
 	//{HP}
-	if(foes[0].HP() <= 0) {
+	if(enemy.HP() <= 0) {
 		output("The zil girl collapses in the face of your superior prowess, face down, ass up, and panting heavily as she tries to recover from the hits she's taken. While her bulbous, stinger-tipped tail obscures her rear entrance and scented honeypot from view, you know they're still there.");
 		output("\n\nHer faint voice rouses you a second later when she faintly mumbles, <i>“You win, off-worlder. By custom, I am yours to " + pc.mf("seed","use") + ".”</i>");
 	}
@@ -1167,7 +1174,7 @@ public function defeatHostileZil():void {
 		addButton(2,"MeanClitFuck",numbPussyFuck,false);
 	}		
 	else addDisabledButton(2,"MeanClitFuck");
-	if(pc.hasCock() && pc.cockThatFits(foes[0].vaginalCapacity()) >= 0) {
+	if(pc.hasCock() && pc.cockThatFits(enemy.vaginalCapacity()) >= 0) {
 		output(" You could punish her with her toxins and fuck her with your dick too.");
 		addButton(3,"MeanCockFuk",numbPussyFuck);
 	}
@@ -1186,14 +1193,14 @@ public function defeatHostileZil():void {
 	if(pc.hasItem(new GravCuffs()) && pc.lust() >= 33)
 	{
 		var fitsInside:Boolean = false;
-		if(foes[0].hasVagina()) fitsInside = (pc.cockThatFits(foes[0].vaginalCapacity(0)) >= 0);
-		else fitsInside = (pc.cockThatFits(foes[0].analCapacity()) >= 0);
-		if(pc.hasCock() && fitsInside) addButton(5,"Cuff&Fuck",cuffNFuck,undefined,"Cuff & Fuck","Use your grav-cuffs to pin down [monster.name] and have your way with [monster.hisHer] [pc.vagOrAssNoun]! Requires Grav-cuffs and a penis.");
-		else if(pc.hasCock()) addDisabledButton(5,"Cuff&Fuck","Cuff & Fuck","You can cuff [monster.himHer] down, but you wouldn't be able to fit inside.");
+		if(enemy.hasVagina()) fitsInside = (pc.cockThatFits(enemy.vaginalCapacity(0)) >= 0);
+		else fitsInside = (pc.cockThatFits(enemy.analCapacity()) >= 0);
+		if(pc.hasCock() && fitsInside) addButton(5,"Cuff&Fuck",cuffNFuck,undefined,"Cuff & Fuck","Use your grav-cuffs to pin down [enemy.name] and have your way with [enemy.hisHer] [pc.vagOrAssNoun]! Requires Grav-cuffs and a penis.");
+		else if(pc.hasCock()) addDisabledButton(5,"Cuff&Fuck","Cuff & Fuck","You can cuff [enemy.himHer] down, but you wouldn't be able to fit inside.");
 		else addDisabledButton(5,"Cuff&Fuck","Cuff & Fuck","You need a penis to make use of your grav-cuffs this way.");
 	}
 	output("\n\n");
-	addButton(14,"Leave",genericVictory);
+	addButton(14,"Leave",CombatManager.genericVictory);
 }
 
 //Force Her To Lick YOUR Honeypot (DONE -F) (edited)
@@ -1206,7 +1213,7 @@ public function forceFemzilToLickYourHoneypot():void {
 	if(!pc.isNude()) output(" and remove your [pc.gear]");
 	else output(" and casually toss aside the few belongings you bothered to carry on your semi-nude body");
 	output(". She casts her gaze ");
-	if(foes[0].HP() <= 0) output("curiously");
+	if(enemy.HP() <= 0) output("curiously");
 	else output("eagerly");
 	output(" in your direction to try and see what you're doing - or what you plan to do to her. Not wanting to keep her waiting, you lean back, spreading your [pc.legOrLegs] a bit further to expose your [pc.vaginas], and tap at your increasingly puffy entrance.");
 	output("\n\n<i>“Here,”</i>  you command with authority. <i>“Lick. You can understand that, can't you?”</i>  You press your palm down against your mons");
@@ -1283,7 +1290,7 @@ public function forceFemzilToLickYourHoneypot():void {
 	
 	processTime(20+rand(10));
 	pc.orgasm();
-	genericVictory();
+	CombatManager.genericVictory();
 }
 	
 //Dose and Masturbate Her With Her Own Sex Drugs (open to all) - done Z
@@ -1294,7 +1301,7 @@ public function DoseAZilWithSexDrugsEvillyMustacheTwirling():void {
 	userInterface.showBust("ZILFEMALE");
 	userInterface.showName("FEMALE\nZIL");
 	output("Kneeling beside the zil, you roughly turn her over onto her backside. She looks at you with questioning eyes, but ");
-	if(foes[0].HP() <= 0) output("makes no move to resist.");
+	if(enemy.HP() <= 0) output("makes no move to resist.");
 	else output("her fingers continue to work her desperate cunt.");
 	output(" Less interested in fucking her than in fucking with her, you unfasten her belt and slip it free from her hips. With a kiss on her mons and two fingers of your own inside her, you absently work the humming zil’s pussy to keep her distracted while you browse her toys.");
 	
@@ -1330,23 +1337,23 @@ public function DoseAZilWithSexDrugsEvillyMustacheTwirling():void {
 	if(pc.personality > 100) pc.personality = 100;
 	//maybe find her again later for enslavings
 	processTime(20+rand(10));
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Numb Her Pussy (req. some form of dick or giant clit that will fit) - done Z
 //kind of evil
-//var x:int = pc.cockThatFits(foes[0].vaginalCapacity());
+//var x:int = pc.cockThatFits(enemy.vaginalCapacity());
 //if(x < 0 || pc.cockTotal() == 0) x = -1;
 public function numbPussyFuck(dick:Boolean = true):void {
 	clearOutput();
 	userInterface.showBust("ZILFEMALE");
 	userInterface.showName("FEMALE\nZIL");
 	output("The presumptuousness of this woman stops you in your tracks. The fact that she still assumes she’s entitled to sex after being ");
-	if(foes[0].HP() <= 0) output("beaten");
+	if(enemy.HP() <= 0) output("beaten");
 	else output("humiliated");
 	output(" by you incenses you, but your body thrums with pheromone-induced lust all the same and she smiles knowingly. At a loss to satisfy both your desires to fuck and to punish her, your eyes wander her prone form until they alight on her belt of toxins and darts.");
 	
-	var x:int = pc.cockThatFits(foes[0].vaginalCapacity());
+	var x:int = pc.cockThatFits(enemy.vaginalCapacity());
 	if(x < 0 || pc.cockTotal() == 0) x = -1;
 	if(!dick) x = -1
 	
@@ -1364,7 +1371,7 @@ public function numbPussyFuck(dick:Boolean = true):void {
 	output("\n\n<i>“What are you doing, off-worlder?!”</i>  she demands weakly, looking over her shoulder.");
 	
 	output("\n\nPushing her face into the dirt, your mouth spreads in a twisted grin. <i>“</i>");
-	if(foes[0].HP() <= 0) {
+	if(enemy.HP() <= 0) {
 		if(x >= 0) output("<i>Seeding</i>");
 		else output("<i>Using</i>");
 		output("<i> you, as is your custom.</i>");
@@ -1424,7 +1431,7 @@ public function numbPussyFuck(dick:Boolean = true):void {
 	if(pc.personality > 100) pc.personality = 100;
 	processTime(15+rand(10));
 	pc.orgasm();
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Smother Her In Dick [DONE](edited)
@@ -1505,5 +1512,5 @@ public function smotherDatBeeSlutInDickYo():void {
 	output("\n\nYou reluctantly separate yourself from your prize and prepare yourself to resume your journeys. She just lays there a while, breathing heavy with her eyes drifting closed toward a much-needed nap.\n\n");
 	processTime(20+rand(10));
 	pc.orgasm();
-	genericVictory();
+	CombatManager.genericVictory();
 }

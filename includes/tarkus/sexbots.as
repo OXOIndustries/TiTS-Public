@@ -218,12 +218,15 @@ public function defeatTheSexBot():void
 	}
 	
 	if((flags["SEXBOTS_SCANNED_FOR_COLENSO"] == undefined || flags["SEXBOTS_SCANNED_FOR_COLENSO"] < 4) && flags["SEXBOT_QUEST_STATUS"] == 1) addButton(4,"Scan",scanASexbot,undefined,"Scan","Scan the sexbot with the GPS triangulator Colenso provided.");
-	addButton(14,"Leave",genericVictory);
+	addButton(14,"Leave",CombatManager.genericVictory);
 }
 
 //Loss Scenes
-public function loseToSexBotRouter(cameFromMenu:Boolean = false, tSexBot:Creature):void
+public function loseToSexBotRouter(opts:Array ):void
 {
+	var cameFromMenu:Boolean = opts[0];
+	var tSexBot:Creature = opts[1];
+	
 	author("Nonesuch");
 	sexBotDisplay();
 	//Female Bot
@@ -911,7 +914,7 @@ public function dogEStyleWithSexBots():void
 
 public function sexBotDisplay():void
 {
-	userInterface.showBust(enemy.displayBust);
+	userInterface.showBust(enemy.bustDisplay);
 	userInterface.showName("\nSEXBOT");
 }
 

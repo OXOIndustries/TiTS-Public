@@ -279,7 +279,7 @@
 		{
 			//Her preferred lust attack against males. 
 			output("The nyrea plants her spear in the ground, leaning heavily on the sturdy shaft, pressing it between her impressive rack. <i>“Like what you see?”</i> she giggles, voice suddenly sultry as she leans back from the haft, twisting around you give you a full view of her taut ass and long, chitinous legs. She bends over, rubbing her spear through her crack, smearing it with her psuedo-cock’s ample pre. <i>“Come off it already... put your weapons down...</i>");
-			//if (foes[0] is NyreaBeta) output("<i> I promise you’ll be glad you did</i>");
+			//if (enemy is NyreaBeta) output("<i> I promise you’ll be glad you did</i>");
 			output("<i> You can’t win against a body like mine... I’m so above your class, offworlder. Just submit, like you know you want to</i>");
 			output("<i>.”</i>\n");
 

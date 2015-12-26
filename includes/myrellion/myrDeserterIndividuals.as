@@ -2,6 +2,7 @@
 import classes.Characters.MyrGoldFemaleDeserter;
 import classes.Characters.MyrRedFemaleDeserter;
 import classes.Creature;
+import classes.GameData.CombatManager;
 //Myr Deserter (Individual) Enemy Encounter
 //Written by JimThermic
 
@@ -23,7 +24,7 @@ Some of the deserter sex scenes are available on win OR loss. Sections of the se
 
 When the PC engages in sex from the non-hostile menu (After winning five or more fights), the 'Win' sections of text are used. To this end, the bracketed sex scene sections are labelled 'Win/Consent'.
 
-The Gold Myr is named Lys. The Red Myr is named Briha. Until the PC wins five fights against the respective Myr, they are known as 'red myr deserter' or 'gold myr deserter' for the purposes of [monster.name], changing to their respective names after five fights are won.
+The Gold Myr is named Lys. The Red Myr is named Briha. Until the PC wins five fights against the respective Myr, they are known as 'red myr deserter' or 'gold myr deserter' for the purposes of [enemy.name], changing to their respective names after five fights are won.
 
 There is pregnancy support for Briha, so the PC can knock her up. This extra content is explained in further detail below.
 
@@ -180,7 +181,7 @@ public function combatBlurb(gold:Boolean = false):void
 	}
 	else
 	{
-		configureRedDeserterFight();
+		configureRedDeserterFight(tEnemy);
 		addButton(0,"Next", CombatManager.beginCombat);
 	}
 }
@@ -213,15 +214,14 @@ public function configureRedDeserterFight(tEnemy:Creature):void
 public function approachMyrDesertersNonCombatShit(gold:Boolean = false):void
 {
 	//Load the ants in in case we need 'em
-	foes = new Array();
-	if(gold) chars["GOLD_DESERTER"].prepForCombat();
-	else chars["RED_DESERTER"].prepForCombat();
+	if (gold) setEnemy(new MyrGoldFemaleDeserter());
+	else setEnemy(new MyrRedFemaleDeserter());
 	showDeserter(gold);
 	author("Jim Thermic");
 	//Encounter is pregnant red myr deserter:
 	if(flags["BRIHA_INCUBATION_TIMER"] != undefined && !gold)
 	{
-		output("\n\nYou’re walking through the desolate and war-torn wasteland. Nearby, you spot a ragged looking red deserter. Under her partially torn uniform, she has a [monster.bellySize].");
+		output("\n\nYou’re walking through the desolate and war-torn wasteland. Nearby, you spot a ragged looking red deserter. Under her partially torn uniform, she has a [enemy.bellySize].");
 		if(flags["SEEN_RED_DESERTER_PREGGERS"] == undefined) output(" She’s pregnant?");
 		output("\n\nRaising a nail-chipped hand, ");
 		if(flags["KNOW_RED_MYR_NAME"] != undefined) output("Briha");
@@ -324,12 +324,20 @@ public function fightADumbShitAntWaifu(gold:Boolean = false):void
 	clearOutput();
 	showDeserter(gold);
 	author("Jim Thermic");
-	output("You pull out your [pc.weapon]. [monster.name] clicks her tongue. <i>“... Damn. Oh well, it was worth a try, right?”</i>");
+	output("You pull out your [pc.weapon]. [enemy.name] clicks her tongue. <i>“... Damn. Oh well, it was worth a try, right?”</i>");
 	output("\n\n<b>It’s a fight!</b>");
 	processTime(1);
 	clearMenu();
-	if(gold) addButton(0,"Next",startCombat,"Gold Deserter");
-	else addButton(0,"Next",startCombat,"Red Deserter");
+	
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(enemy);
+	CombatManager.victoryScene(winVsAntGrillDeserts);
+	CombatManager.lossScene(loseToAntGrillDeserts);
+	if (gold) CombatManager.displayLocation(flags["KNOW_GOLD_MYR_NAME"] == undefined ? "GOLD DSTR" : "LYS");
+	else CombatManager.displayLocation(flags["KNOW_RED_MYR_NAME"] == undefined ? "RED DSTR" : "BRIHA");
+	
+	addButton(0, "Next", CombatManager.beginCombat);
 }
 
 //Flee
@@ -338,7 +346,7 @@ public function runFromDatAntSloot(gold:Boolean = false):void
 	clearOutput();
 	showDeserter(gold);
 	author("Jim Thermic");
-	output("You decide to avoid dealing with [monster.name] altogether. As she stands there with a dumbfounded expression, you slip off.");
+	output("You decide to avoid dealing with [enemy.name] altogether. As she stands there with a dumbfounded expression, you slip off.");
 	processTime(2);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -350,7 +358,7 @@ public function talkToAntSloots(gold:Boolean = false):void
 	clearOutput();
 	showDeserter(gold);
 	author("Jim Thermic");
-	output("Since you’re not going to fight, you decide to sit down with [monster.name] and talk. What do you chat about?");
+	output("Since you’re not going to fight, you decide to sit down with [enemy.name] and talk. What do you chat about?");
 	processTime(1);
 	//[About Her] [Desertion] [Scars] [Leave]
 	addButton(0,"About Her",aboutAnAntSlootDeserter,gold,"About Her","Ask about her.");
@@ -370,7 +378,7 @@ public function sexWithAntGrills(gold:Boolean = false):void
 	//Dildo Screw (Red)
 	// Two variants - PC loss and PC Win/Consent version. For Red Only.
 	// Also a variant for the first time you get this scene, either loss or win/consent, where she introduces the dildo.
-	if(foes[0] is MyrRedFemaleDeserter) addButton(0,"DildoScrew",redDildoScrew,undefined,"Dildo Screw","Play with her and her dildo.");
+	if(enemy is MyrRedFemaleDeserter) addButton(0,"DildoScrew",redDildoScrew,undefined,"Dildo Screw","Play with her and her dildo.");
 	//Sit & Screw (Gold)
 	// Two variants - PC loss and PC Win/Consent version. For Gold Only.
 	// Also a variant for the first time you get this scene, either loss or win, where she introduces the strap on.
@@ -380,19 +388,19 @@ public function sexWithAntGrills(gold:Boolean = false):void
 	// PC must have a dick.
 	// Max capacity 16 inches.
 	// Max girth four inches.
-	if(pc.hasCock() && pc.cockThatFits(foes[0].vaginalCapacity(0)) >= 0) addButton(1,"DoggyStyle",doggieStyleWithMyrBitches,gold,"Doggy Style","Do her doggy style!");
+	if(pc.hasCock() && pc.cockThatFits(enemy.vaginalCapacity(0)) >= 0) addButton(1,"DoggyStyle",doggieStyleWithMyrBitches,gold,"Doggy Style","Do her doggy style!");
 	else if(pc.hasCock()) addDisabledButton(1,"DoggyStyle","DoggyStyle","You need a penis that will fit inside her for this scene.");
 	else addDisabledButton(1,"DoggyStyle","DoggyStyle","You can't do her doggie style without a dick of your own.");
 	//Cum Splurge (Red)
 	// Pc must have a cock.
 	// Not available on loss.
-	if(foes[0] is MyrRedFemaleDeserter)
+	if(enemy is MyrRedFemaleDeserter)
 	{
 		if(pc.hasCock()) addButton(3,"Cum Splurge",cumSplurgeForRedAntSloots,undefined,"Cum Splurge","Have the red myr give you a BJ. All that venom should make it interesting...");
 		else addDisabledButton(3,"Cum Splurge","Cum Splurge","You need a penis that fits inside her for this scene.");
 		//Anal Sex (Red)
 		// PC must have cock.
-		if(pc.hasCock() && pc.cockThatFits(foes[0].analCapacity()) >= 0) addButton(2,"Anal Sex",analRedButtStuffMcStuffinButts,undefined,"Anal Sex","Put it in her butt.");
+		if(pc.hasCock() && pc.cockThatFits(enemy.analCapacity()) >= 0) addButton(2,"Anal Sex",analRedButtStuffMcStuffinButts,undefined,"Anal Sex","Put it in her butt.");
 		else addDisabledButton(2,"Anal Sex","Anal Sex","You need a penis that will fit inside her for this scene.");
 	}
 	else 
@@ -401,7 +409,7 @@ public function sexWithAntGrills(gold:Boolean = false):void
 		addDisabledButton(2,"Anal Sex","Anal Sex","This scene is only available for the red myr.");
 	}
 	//Hand-Play (Gold)
-	if(foes[0] is MyrGoldFemaleDeserter)
+	if(enemy is MyrGoldFemaleDeserter)
 	{
 		// PC can be any gender.
 		// Not Available on PC loss
@@ -675,7 +683,7 @@ public function specialRedAntPreggosShitEvent():void
 public function loseToAntGrillDeserts():void
 {
 	author("Jim Thermic");
-	var gold:Boolean = (foes[0] is MyrGoldFemaleDeserter);
+	var gold:Boolean = (enemy is MyrGoldFemaleDeserter);
 	//HP Loss:
 	if(pc.HP() <= 0)
 	{
@@ -683,7 +691,7 @@ public function loseToAntGrillDeserts():void
 		if(!pc.hasStatusEffect("Trip")) output(" Suddenly you’re falling backward. You hit the ground and the air leaves your chest in a giant <i>“oof”</i>. All you’re able to do now is stare at the cavern roof, your limbs heavy and useless.");
 		else output(" You’re unable to lift your limbs to get off the ground - they’re heavy and useless.");
 
-		output("\n\nRather than leave you battered and bruised, the [monster.skinColor] skinned soldieress pulls out a first aid kit. She dutifully patches you up, bandaging and dressing your wounds. The salve she puts on it instantly numbs your ails.");
+		output("\n\nRather than leave you battered and bruised, the [enemy.skinColor] skinned soldieress pulls out a first aid kit. She dutifully patches you up, bandaging and dressing your wounds. The salve she puts on it instantly numbs your ails.");
 		//First time Fighting Her:
 		if(flags["LOST_TO_MYR_DESERTS"] == undefined)
 		{
@@ -715,21 +723,21 @@ public function loseToAntGrillDeserts():void
 public function winVsAntGrillDeserts():void
 {
 	clearOutput();
-	var gold:Boolean = (foes[0] is MyrGoldFemaleDeserter);
+	var gold:Boolean = (enemy is MyrGoldFemaleDeserter);
 	showDeserter(gold);
 	author("Jim Thermic");
 	//HP Loss:
-	if(foes[0].HP() <= 0)
+	if(enemy.HP() <= 0)
 	{
-		if(foes[0].short != "Briha" && foes[0].short != "Lys") output("The ");
-		output("[monster.name] falls to her knees, utterly spent. Her ");
+		if(enemy.short != "Briha" && enemy.short != "Lys") output("The ");
+		output("[enemy.name] falls to her knees, utterly spent. Her ");
 		if(gold) output("combat shotgun and service revolvers");
 		else output("hatchet and primitive pistol");
 		output(" slip out of her hands. There’s a series of whumphs as they hit the ground.");
 
 		output("\n\nThere’s not an ounce of fight left in her - her exhausted expression affirms her submission to your superior skill.");
 		
-		if((foes[0] is MyrRedFemaleDeserter && flags["RED_MYR_DESERTER_BEATEN"] == undefined) || (foes[0] is MyrGoldFemaleDeserter && flags["GOLD_MYR_DESERTER_BEATEN"] == undefined)) output("\n\n<i>“... Guess you weren’t such an easy mark after all.");
+		if((enemy is MyrRedFemaleDeserter && flags["RED_MYR_DESERTER_BEATEN"] == undefined) || (enemy is MyrGoldFemaleDeserter && flags["GOLD_MYR_DESERTER_BEATEN"] == undefined)) output("\n\n<i>“... Guess you weren’t such an easy mark after all.");
 		else output("<i>“... Guess it’s my turn after all.");
 		output(" My life is yours, soldier. What are you going to do with me?”</i> Her singularly black eyes");
 		if(!gold) output("- one partially closed -");
@@ -738,9 +746,9 @@ public function winVsAntGrillDeserts():void
 	//Lust Loss:
 	else
 	{
-		if(foes[0].short != "Briha" && foes[0].short != "Lys") output("The ");
-		output("[monster.name] falls to her knees and drops her weapons. Instead of picking them up, she feverishly touches herself. Her face is flushed as she lets out lewd little moans.");
-		output("\n\n<i>“... F-fuck-! I-I can’t stop!”</i> The [monster.skinColor] skinned deserter moans, <i>“It’s been far too long since I’ve had a good lay. Come on, soldier, h-have your way with me.”</i> She begs.");
+		if(enemy.short != "Briha" && enemy.short != "Lys") output("The ");
+		output("[enemy.name] falls to her knees and drops her weapons. Instead of picking them up, she feverishly touches herself. Her face is flushed as she lets out lewd little moans.");
+		output("\n\n<i>“... F-fuck-! I-I can’t stop!”</i> The [enemy.skinColor] skinned deserter moans, <i>“It’s been far too long since I’ve had a good lay. Come on, soldier, h-have your way with me.”</i> She begs.");
 		//Red
 		if(!gold) output("\n\nRaising her knees and hips, she lewdly displays the damp spot between her thighs. The fabric against her pussy is utterly soaked. It clings to her pussy lips, showing you her sinful contours.");
 	}
@@ -753,7 +761,7 @@ public function winVsAntGrillDeserts():void
 		//Dildo Screw (Red)
 		// Two variants - PC loss and PC Win/Consent version. For Red Only.
 		// Also a variant for the first time you get this scene, either loss or win/consent, where she introduces the dildo.
-		if(foes[0] is MyrRedFemaleDeserter) addButton(0,"DildoScrew",redDildoScrew,undefined,"Dildo Screw","Play with her and her dildo.");
+		if(enemy is MyrRedFemaleDeserter) addButton(0,"DildoScrew",redDildoScrew,undefined,"Dildo Screw","Play with her and her dildo.");
 		//Sit & Screw (Gold)
 		// Two variants - PC loss and PC Win/Consent version. For Gold Only.
 		// Also a variant for the first time you get this scene, either loss or win, where she introduces the strap on.
@@ -763,19 +771,19 @@ public function winVsAntGrillDeserts():void
 		// PC must have a dick.
 		// Max capacity 16 inches.
 		// Max girth four inches.
-		if(pc.hasCock() && pc.cockThatFits(foes[0].vaginalCapacity(0)) >= 0) addButton(1,"DoggyStyle",doggieStyleWithMyrBitches,gold,"Doggy Style","Do her doggy style!");
+		if(pc.hasCock() && pc.cockThatFits(enemy.vaginalCapacity(0)) >= 0) addButton(1,"DoggyStyle",doggieStyleWithMyrBitches,gold,"Doggy Style","Do her doggy style!");
 		else if(pc.hasCock()) addDisabledButton(1,"DoggyStyle","DoggyStyle","You need a penis that will fit inside her for this scene.");
 		else addDisabledButton(1,"DoggyStyle","DoggyStyle","You can't do her doggie style without a dick of your own.");
 		//Cum Splurge (Red)
 		// Pc must have a cock.
 		// Not available on loss.
-		if(foes[0] is MyrRedFemaleDeserter)
+		if(enemy is MyrRedFemaleDeserter)
 		{
 			if(pc.hasCock()) addButton(3,"Cum Splurge",cumSplurgeForRedAntSloots,undefined,"Cum Splurge","Have the red myr give you a BJ. All that venom should make it interesting...");
 			else addDisabledButton(3,"Cum Splurge","Cum Splurge","You need a penis that fits inside her for this scene.");
 			//Anal Sex (Red)
 			// PC must have cock.
-			if(pc.hasCock() && pc.cockThatFits(foes[0].analCapacity()) >= 0) addButton(2,"Anal Sex",analRedButtStuffMcStuffinButts,undefined,"Anal Sex","Put it in her butt.");
+			if(pc.hasCock() && pc.cockThatFits(enemy.analCapacity()) >= 0) addButton(2,"Anal Sex",analRedButtStuffMcStuffinButts,undefined,"Anal Sex","Put it in her butt.");
 			else addDisabledButton(2,"Anal Sex","Anal Sex","You need a penis that will fit inside her for this scene.");
 		}
 		else 
@@ -784,7 +792,7 @@ public function winVsAntGrillDeserts():void
 			addDisabledButton(2,"Anal Sex","Anal Sex","This scene is only available for the red myr.");
 		}
 		//Hand-Play (Gold)
-		if(foes[0] is MyrGoldFemaleDeserter)
+		if(enemy is MyrGoldFemaleDeserter)
 		{
 			// PC can be any gender.
 			// Not Available on PC loss
@@ -797,16 +805,16 @@ public function winVsAntGrillDeserts():void
 		if(pc.hasItem(new GravCuffs()) && pc.lust() >= 33)
 		{
 			var fitsInside:Boolean = false;
-			if(foes[0].hasVagina()) fitsInside = (pc.cockThatFits(foes[0].vaginalCapacity(0)) >= 0);
-			else fitsInside = (pc.cockThatFits(foes[0].analCapacity()) >= 0);
-			if(pc.hasCock() && fitsInside) addButton(5,"Cuff&Fuck",cuffNFuck,undefined,"Cuff & Fuck","Use your grav-cuffs to pin down [monster.name] and have your way with [monster.hisHer] [pc.vagOrAssNoun]! Requires Grav-cuffs and a penis.");
-			else if(pc.hasCock()) addDisabledButton(5,"Cuff&Fuck","Cuff & Fuck","You can cuff [monster.himHer] down, but you wouldn't be able to fit inside.");
+			if(enemy.hasVagina()) fitsInside = (pc.cockThatFits(enemy.vaginalCapacity(0)) >= 0);
+			else fitsInside = (pc.cockThatFits(enemy.analCapacity()) >= 0);
+			if(pc.hasCock() && fitsInside) addButton(5,"Cuff&Fuck",cuffNFuck,undefined,"Cuff & Fuck","Use your grav-cuffs to pin down [enemy.name] and have your way with [enemy.hisHer] [pc.vagOrAssNoun]! Requires Grav-cuffs and a penis.");
+			else if(pc.hasCock()) addDisabledButton(5,"Cuff&Fuck","Cuff & Fuck","You can cuff [enemy.himHer] down, but you wouldn't be able to fit inside.");
 			else addDisabledButton(5,"Cuff&Fuck","Cuff & Fuck","You need a penis to make use of your grav-cuffs this way.");
 		}
 	}
 	else
 	{
-		if(foes[0] is MyrRedFemaleDeserter) addDisabledButton(0,"DildoScrew","Dildo Screw","You're not turned enough for sex.");
+		if(enemy is MyrRedFemaleDeserter) addDisabledButton(0,"DildoScrew","Dildo Screw","You're not turned enough for sex.");
 		else addDisabledButton(0,"Sit'nScrew","Sit & Screw","You aren't turned on enough for this.");
 		addDisabledButton(1,"DoggyStyle","DoggyStyle","You aren't aroused enough for this.");
 		addDisabledButton(2,"Anal Sex","Anal Sex","You aren't aroused enough for this.");
@@ -819,7 +827,7 @@ public function winVsAntGrillDeserts():void
 public function genericVictoryLeaveMyr():void
 {
 	myrDeserterEpilogueShitTracker();
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Sex Scenes
@@ -834,13 +842,12 @@ public function handPlayForGoldWaifusInTraining():void
 	author("Jim Thermic");
 	if(!inCombat())
 	{
-		foes[0] = new MyrGoldFemaleDeserter();
-		foes[0].prepForCombat();
+		setEnemy(new MyrGoldFemaleDeserter());
 	}
 	showDeserter(true);
 	output("You ask ");
-	if(foes[0].short != "Lys") output("the ");
-	output("[monster.name] if she’ll pleasure you with all those hands of hers.");
+	if(enemy.short != "Lys") output("the ");
+	output("[enemy.name] if she’ll pleasure you with all those hands of hers.");
 
 	output("\n\n<i>“Of course I can,”</i> she saucily smiles.");
 	if(!pc.isNude()) output(" Putting one hand on her hips, she gestures with the others at your clothes. <i>“You’ll want to take those off, while I watch. I insist.”</i>");
@@ -854,23 +861,23 @@ public function handPlayForGoldWaifusInTraining():void
 	output("\n\nAs you lick your lips, the alieness saunters over, her sizable breasts jiggling about. <i>“... I think it’s better if I leave on my panties. Can’t have you getting too excited, now, can I?”</i>");
 
 	output("\n\n");
-	if(foes[0].short != "Lys") output("She");
+	if(enemy.short != "Lys") output("She");
 	else output("Lys");
 	output(" runs her finger along your cheek, a sultry smile on her face. You gulp and look down at her awesome cleavage and ring-pierced nipples. They’re so close, and so tuggable...");
 
 	output("\n\nBefore you can reach out to tease them, ");
-	if(foes[0].short != "Lys") output("the ");
-	output("[monster.name] wraps her arms around you. She pulls you close, pressing you against her plush breasts. With so many arms, you truly feel wrapped up by her. <i>“How does this feel? Nice?”</i>");
+	if(enemy.short != "Lys") output("the ");
+	output("[enemy.name] wraps her arms around you. She pulls you close, pressing you against her plush breasts. With so many arms, you truly feel wrapped up by her. <i>“How does this feel? Nice?”</i>");
 	output("\n\nYou nod and turn your head. Staring into her entrancingly black eyes, you both inch closer together at the same time. Your lips are achingly close. At last, they press together, and she lets out a happy noise. Parting your mouth, your wet tongues touch and wrestle as you make out with ");
-	if(foes[0].short != "Lys") output("the gold myr");
+	if(enemy.short != "Lys") output("the gold myr");
 	else output("Lys");
 	output(".");
 
 	output("\n\nAs you’re kissing her, two of her hands slide up to cup your cheeks and pull your face closer. Another hand teases down your naked spine, tracing up and down. You instinctively shiver with delight, relishing in the tantalising sensation as her tongue dances with yours. There’s so much going on at once, your senses feel like they’re overloading!");
 
 	output("\n\nYour lips part and ");
-	if(foes[0].short != "Lys") output("the ");
-	output("[monster.name] slowly kisses down your jaw and neck. You shiver with delight as she trails her way southward, making her way to your collarbone. She suckles on it, leaving little flushing marks.");
+	if(enemy.short != "Lys") output("the ");
+	output("[enemy.name] slowly kisses down your jaw and neck. You shiver with delight as she trails her way southward, making her way to your collarbone. She suckles on it, leaving little flushing marks.");
 	output("\n\nShe kisses down your body, plump breasts sliding down your [pc.skinFurScales]. Stopping face-first in front of your [pc.groin], she ");
 	if(pc.hasCock()) 
 	{
@@ -884,8 +891,8 @@ public function handPlayForGoldWaifusInTraining():void
 	}
 
 	output("\n\n");
-	if(foes[0].short != "Lys") output("The ");
-	output("[monster.name] masterfully teases your loins, ");
+	if(enemy.short != "Lys") output("The ");
+	output("[enemy.name] masterfully teases your loins, ");
 	if(pc.hasCock()) 
 	{
 		output("stroking and cupping your [pc.cockNounSimple]");
@@ -908,8 +915,8 @@ public function handPlayForGoldWaifusInTraining():void
 	output(".");
 
 	output("\n\nJust when there’s nothing left for her last hand to touch, you look down to see ");
-	if(foes[0].short != "Lys") output("the ");
-	output("[monster.name] cupping and teasing her voluptuous breasts. She looks up at you with a sensuous grin on her honey-hued lips, teasing her plump puppies as she ");
+	if(enemy.short != "Lys") output("the ");
+	output("[enemy.name] cupping and teasing her voluptuous breasts. She looks up at you with a sensuous grin on her honey-hued lips, teasing her plump puppies as she ");
 	if(pc.hasCock()) output("tugs and finger-fucks you");
 	else output("double finger-fucks you");
 	output(". Her delving digits brush your ");
@@ -941,14 +948,18 @@ public function handPlayForGoldWaifusInTraining():void
 	output(" completely clean. Pulling back, she looks so satisfied you half-expect her to purr.");
 
 	output("\n\n<i>“Well, that was fun - thank you for the meal,”</i> ");
-	if(foes[0].short != "Lys") output("the ");
-	output("[monster.name] grins, slipping her clothes back on. Once she’s done, she gives you a quick kiss, picks up her weapon, and saunters off onto the battlefield.\n\n");
+	if(enemy.short != "Lys") output("the ");
+	output("[enemy.name] grins, slipping her clothes back on. Once she’s done, she gives you a quick kiss, picks up her weapon, and saunters off onto the battlefield.\n\n");
 	myrDeserterEpilogueShitTracker();
 	processTime(22);
 	pc.orgasm();
-	if(inCombat()) genericVictory();
+	if (inCombat())
+	{
+		CombatManager.genericVictory();
+	}
 	else
 	{
+		setEnemy(null);
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 	}
@@ -963,15 +974,14 @@ public function analRedButtStuffMcStuffinButts():void
 	author("Jim Thermic");
 	if(!inCombat())
 	{
-		foes[0] = new MyrRedFemaleDeserter();
-		foes[0].prepForCombat();
+		setEnemy(new MyrRedFemaleDeserter());
 	}
 	showDeserter(false);
 	var x:int = pc.cockThatFits(chars["RED_DESERTER"]);
 	if(x < 0) x = pc.smallestCockIndex();
 	output("You stride up to ");
-	if(foes[0].short != "Briha") output("the ");
-	output("[monster.name], ");
+	if(enemy.short != "Briha") output("the ");
+	output("[enemy.name], ");
 	if(pc.HP() > 0 && pc.lust() < pc.lustMax() && inCombat()) output("pull her to her feet, ");
 	output("and turn her on the spot. Without warning, you you pull down her camo pants and underwear, and she lets out a cry of surprise.");
 
@@ -984,8 +994,8 @@ public function analRedButtStuffMcStuffinButts():void
 	output("\n\n<i>“M-more... my nipples,”</i> she huskily begs. You indulge her. Lightly pinching her puckered buds, she trembles in your arms, letting out little gasps and moans. As you roll them between your fingertips, she practically melts in your arms. The more excited she gets, the more she wiggles her backside against [pc.eachCock], stoking your lust and making you achingly stiff.");
 
 	output("\n\nYou order ");
-	if(foes[0].short != "Briha") output("the ");
-	output("[monster.name] to bend over, and she obediently does as you ask. Grabbing her gently curved hips in your hands, you press your [pc.cockHead " + x + "] between her taut buttocks.");
+	if(enemy.short != "Briha") output("the ");
+	output("[enemy.name] to bend over, and she obediently does as you ask. Grabbing her gently curved hips in your hands, you press your [pc.cockHead " + x + "] between her taut buttocks.");
 	if(flags["FUCKED_RED_DESERTBUTT"] == undefined)
 	{
 		output("\n\nShe lets out a squeal of protest when she realizes what you’re doing. <i>“W-w-w-what are you doing? N-not in </i>there<i>, that’s the wrong hole-!”</i>");
@@ -1010,13 +1020,13 @@ public function analRedButtStuffMcStuffinButts():void
 	pc.cockChange();
 
 	output("\n\nHolding her back against you, you suck on her neck and pinch her nipples. Her clinging insides ripple around your [pc.cock " + x + "]. Moaning into her shoulder, you can’t help but thrust upwards, using gravity to fully impale her on your turgid tool. This time ");
-	if(foes[0].short != "Briha") output("the ");
-	output("[monster.name] lets out a loud moan and trembles against you.");
+	if(enemy.short != "Briha") output("the ");
+	output("[enemy.name] lets out a loud moan and trembles against you.");
 
 	output("\n\nEnthused by her response, you slowly pull yourself around to her naughty pucker and slide back in. Soon you’re slapping your hips against her rippling ass, the air filled with your shared moans and the lewd slapping of flesh.");
 
 	output("\n\nFeeling her flex and wring your [pc.cock " + x + "] drives you into a lusty frenzy. You pinch and roughly tease her breasts, and ");
-	if(foes[0].short != "Briha") output("the female soldier");
+	if(enemy.short != "Briha") output("the female soldier");
 	else output("Briha");
 	output(" lets out a delighted cry. Her whole body quakes and she reaches up, clinging to your hands as she cums. Feeling her insides ripple and ring your throbbing tool pushes you over the brink, and you liberally unload your [pc.cum] inside of her tensed rectum.");
 
@@ -1035,9 +1045,10 @@ public function analRedButtStuffMcStuffinButts():void
 	myrDeserterEpilogueShitTracker();
 	processTime(15+rand(10));
 	pc.orgasm();
-	if(inCombat()) genericVictory();
+	if(inCombat()) CombatManager.genericVictory();
 	else
 	{
+		setEnemy(null);
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 	}
@@ -1052,12 +1063,11 @@ public function cumSplurgeForRedAntSloots():void
 	author("Jim Thermic");
 	if(!inCombat())
 	{
-		foes[0] = new MyrRedFemaleDeserter();
-		foes[0].prepForCombat();
+		setEnemy(new MyrRedFemaleDeserter());
 	}
 	showDeserter(false);
 	output("You ask ");
-	if(foes[0].short != "Briha") output("the raven-haired deserter");
+	if(enemy.short != "Briha") output("the raven-haired deserter");
 	else output("Briha");
 	output(" to go down on your [pc.cocks]. She puts a hand on her hip and quirks a brow.");
 
@@ -1082,7 +1092,7 @@ public function cumSplurgeForRedAntSloots():void
 	output("\n\n");
 	if(!pc.isNude()) output("You hastily strip off until you’re standing in the buff. Meanwhile, she takes it slow, slipping");
 	else output("Slowly, she slips");
-	output(" her torn combat fatigues. Underneath she wears a simple cotton black camisole and a matching thong. Her top barely covers her [monster.belly] and accentuates her well-rounded breasts.");
+	output(" her torn combat fatigues. Underneath she wears a simple cotton black camisole and a matching thong. Her top barely covers her [enemy.belly] and accentuates her well-rounded breasts.");
 
 	output("\n\nSeeing her in such a sexy yet simple outfit makes your [pc.cocks] stiffen. When she pulls off her top and bares her pert puppies, your [pc.cockHeads] ");
 	if(pc.cockTotal() == 1) output("is");
@@ -1106,7 +1116,7 @@ public function cumSplurgeForRedAntSloots():void
 	output(". Her hot breath washes over your sensitive skin, electrifying your senses. You let out a low, throaty groan. How can you be this aroused when she hasn’t even <i>touched</i> you yet?");
 
 	output("\n\nWith a lick of her lips and intensity in her alien eyes, ");
-	if(foes[0].short != "Briha") output("the female deserter");
+	if(enemy.short != "Briha") output("the female deserter");
 	else output("Briha");
 	output(" edges closer to [pc.oneCock]. She parts her scarred mouth and gives ");
 	if(pc.hasASheath() && pc.cockTotal() == 1) output("your [pc.sheath]");
@@ -1149,7 +1159,7 @@ public function cumSplurgeForRedAntSloots():void
 	output(" in your hands, you instead moan from the brushing of your fingertips against your [pc.cockColor] flesh.");
 
 	output("\n\n<i>“Oh, that won’t do - we’re not nearly finished yet,”</i> ");
-	if(foes[0].short == "Briha") output("Briha");
+	if(enemy.short == "Briha") output("Briha");
 	else output("She");
 	output(" purrs. You moan as the red-skinned woman crawls up to you on all fours, clad in nothing but a black thong.");
 
@@ -1177,8 +1187,8 @@ public function cumSplurgeForRedAntSloots():void
 	output("\n\n... After several orgasms, your entire body feels like lead. Your world spins and your [pc.cocks] ");
 	if(pc.balls > 0) output("and [pc.ballsNoun] ");
 	output("are filled with a hot, throbbing ache. Your loins are utterly [pc.cumNoun]-splattered. You can barely see ");
-	if(foes[0].short != "Briha") output("the ");
-	output("[monster.name]’s head roaming down at your hips.");
+	if(enemy.short != "Briha") output("the ");
+	output("[enemy.name]’s head roaming down at your hips.");
 
 	output("\n\nShe drags herself up your utterly sapped body. You tremble and groan as her soft breasts rub up your receptive chest, your loins twitching at the brush of her erect nipples. When she comes face to face with you, she’s wearing a mask of your [pc.cum]. You can smell it all over her - ");
 	if(chars["RED_DESERTER"].isPregnant()) output("the pregnant myr");
@@ -1186,7 +1196,7 @@ public function cumSplurgeForRedAntSloots():void
 	output(" is utterly marked with your scent.");
 
 	output("\n\n<i>“That was fun,”</i> ");
-	if(foes[0].short != "Briha") output("she");
+	if(enemy.short != "Briha") output("she");
 	else output("Briha");
 	output(" purrs and licks her lips. When she notices your eyes are rolled back, the soldier instinctively checks your pulse. <i>“... Whoops, did I go a little bit overboard?”</i>");
 
@@ -1194,8 +1204,8 @@ public function cumSplurgeForRedAntSloots():void
 	//If have won five or more fights:
 	if(flags["RED_MYR_DESERTER_BEATEN"] != undefined && flags["RED_MYR_DESERTER_BEATEN"] >= 5) 
 	{
-		if(foes[0].short != "Briha") output("The ");
-		output("[monster.name] lies on top of you, resting her pert breasts against your chest. Once she knows you’re okay, she gets dressed, kisses your cheek, and slips off.");
+		if(enemy.short != "Briha") output("The ");
+		output("[enemy.name] lies on top of you, resting her pert breasts against your chest. Once she knows you’re okay, she gets dressed, kisses your cheek, and slips off.");
 	}
 	output("\n\nIt takes at least an hour or two before you regain full motion, not to mention the time it takes you to clean up your messy loins. You’re still riding the euphoric high when you finish slipping on your gear. That really was something else!");
 
@@ -1211,9 +1221,10 @@ public function cumSplurgeForRedAntSloots():void
 	pc.orgasm();
 	pc.orgasm();
 	output("\n\n");
-	if(inCombat()) genericVictory();
+	if(inCombat()) CombatManager.genericVictory();
 	else
 	{
+		setEnemy(null);
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 	}
@@ -1228,29 +1239,31 @@ public function doggieStyleWithMyrBitches(gold:Boolean = false):void
 {
 	clearOutput();
 	author("Jim Thermic");
-	if(inCombat()) gold = (foes[0] is MyrGoldFemaleDeserter);
+	if (inCombat())
+	{
+		gold = CombatManager.hasEnemyOfClass(MyrGoldFemaleDeserter);
+	}
 	else
 	{
-		if(gold) foes[0] = new MyrGoldFemaleDeserter();
-		else foes[0] = new MyrRedFemaleDeserter();
-		foes[0].prepForCombat();
+		if (gold) setEnemy(new MyrGoldFemaleDeserter());
+		else setEnemy(new MyrRedFemaleDeserter());
 	}
 	showDeserter(gold);
 
-	var x:int = pc.cockThatFits(foes[0].vaginalCapacity(0));
+	var x:int = pc.cockThatFits(enemy.vaginalCapacity(0));
 	if(x < 0) x = pc.smallestCockIndex();
 
-	var DontKnowName:Boolean = (foes[0].short != "Lys" && foes[0].short != "Briha");
+	var DontKnowName:Boolean = (enemy.short != "Lys" && enemy.short != "Briha");
 
 	output("You stride up to ");
 	if(DontKnowName) output("the ");
-	output("[monster.name]. In an authoritative voice, you tell her to turn around, and lift her ");
+	output("[enemy.name]. In an authoritative voice, you tell her to turn around, and lift her ");
 	if(gold) output("abdomen");
 	else output("butt");
 	output(" in the air.");
 
-	output("\n\nBlushing furiously, the [monster.hairColor]-haired deserter does as you ask. She rolls on the spot");
-	if(foes[0].isPregnant()) output(" - though she’s careful of her [monster.belly] -");
+	output("\n\nBlushing furiously, the [enemy.hairColor]-haired deserter does as you ask. She rolls on the spot");
+	if(enemy.isPregnant()) output(" - though she’s careful of her [enemy.belly] -");
 	output(" and raises up her rear end.");
 	if(!gold) output(" With one swift movement, you pull down her trousers and underwear to her knees. Her glistening red snatch is exposed to your gaze, a perfect camel-toe peeking between her thighs.");
 	else output(" Her glistening gold egg-slit is exposed to your gaze, positioned at the back of her large antish ass.");
@@ -1264,7 +1277,7 @@ public function doggieStyleWithMyrBitches(gold:Boolean = false):void
 
 	output("\n\nYou can see ");
 	if(DontKnowName) output("the ");
-	output("[monster.name] peeking back at your turgid length");
+	output("[enemy.name] peeking back at your turgid length");
 	if(pc.cockTotal() > 1) output("s");
 	output(". Her ");
 	if(gold) output("alien abdomen");
@@ -1275,7 +1288,7 @@ public function doggieStyleWithMyrBitches(gold:Boolean = false):void
 	if(gold) output("sides of her golden rump");
 	else output("of her springy buttocks");
 	output(". ");
-	if(!gold && foes[0].isPregnant()) output("Your pregnant lover");
+	if(!gold && enemy.isPregnant()) output("Your pregnant lover");
 	else output("She");
 	output(" receptively pushes back into your hands. There’s a hot intensity in the air and your thoughts become drugged with lust - you want her, and you want her <i>now</i>.");
 
@@ -1287,17 +1300,17 @@ public function doggieStyleWithMyrBitches(gold:Boolean = false):void
 
 	output("\n\nAs your [pc.cockHead " + x + "] caresses her inner walls, ");
 	if(DontKnowName) output("the ");
-	output("[monster.name] croons with delight. She arches her back and presses needily against you.");
+	output("[enemy.name] croons with delight. She arches her back and presses needily against you.");
 
 	output("\n\nYou groan with delight as she wrings your [pc.cock " + x + "]. Her alien cunt feels so damn <i>good</i> squeezing around you. It’s all you can do not to blow your load. You firmly grab ");
 	if(DontKnowName) output("the ");
-	output("[monster.name]’s rump, holding on as her ");
+	output("[enemy.name]’s rump, holding on as her ");
 	if(gold) output("ovi-hole");
 	else output("pussy");
 	output(" milks your manhood.");
 
 	output("\n\n<i>“M-more! D-deeper!”</i> ");
-	if(foes[0].isPregnant()) output("The pregnant deserter");
+	if(enemy.isPregnant()) output("The pregnant deserter");
 	else output("She");
 	output(" begs. You slap your hips against her ");
 	if(gold) output("gigantic gold bottom");
@@ -1311,7 +1324,7 @@ public function doggieStyleWithMyrBitches(gold:Boolean = false):void
 	}
 	else output(" her taut thighs.");
 
-	output("\n\nWith a shrill cry, the [monster.hairColor]-haired ant-girl cums out of nowhere, convulsing wildly around your [pc.cock " + x + "]. She squeezes it hard as her hot juices flood down her narrow canal, spluttering against your [pc.cockHead " + x + "]. Your entire length is basted in her hot, sticky warmth. Your senses are utterly seized with unspeakable pleasure.");
+	output("\n\nWith a shrill cry, the [enemy.hairColor]-haired ant-girl cums out of nowhere, convulsing wildly around your [pc.cock " + x + "]. She squeezes it hard as her hot juices flood down her narrow canal, spluttering against your [pc.cockHead " + x + "]. Your entire length is basted in her hot, sticky warmth. Your senses are utterly seized with unspeakable pleasure.");
 	output("\n\nPushed over the edge, you grab and press your hips flush with her ");
 	if(gold) output("golden hindquarters");
 	else output("spasming ass");
@@ -1325,7 +1338,7 @@ public function doggieStyleWithMyrBitches(gold:Boolean = false):void
 	output(" snatch, filling it with your seed.");
 
 	//Red+NotPregnant: 
-	if(!gold && !foes[0].isPregnant()) output("\n\nDeep inside of her alien womb, your [pc.cumVisc] seed swims up and seeks her eggs, basting them in your [pc.cumColor] virility.");
+	if(!gold && !enemy.isPregnant()) output("\n\nDeep inside of her alien womb, your [pc.cumVisc] seed swims up and seeks her eggs, basting them in your [pc.cumColor] virility.");
 
 	//Knot:
 	if(pc.hasKnot(x)) output("\n\nAs you continuously cum inside of her, your [pc.knot " + x + "] swells inside of her, locking deep inside of her sloppy pussy. She lets out a cry of surprise as you lock with her, followed by a low, throaty moan. Heightening her pleasure, you gyrate your hips. The stirring and spurting of your [pc.cockHead " + x + "] inside of her [pc.cumNoun]-filled hole drives her to insensibility and reduces her to a babbling, pleasure-wrecked mess.");
@@ -1345,13 +1358,13 @@ public function doggieStyleWithMyrBitches(gold:Boolean = false):void
 
 	output("\n\nCrawling on her wobbly knees, ");
 	if(DontKnowName) output("the ");
-	output("[monster.name] turns around and grabs your sloppy [pc.cockNounSimple " + x + "]. Slowly and intimately, she licks it clean, not letting a single drop of your [pc.cumFlavor] [pc.cumNoun] go to waste.");
+	output("[enemy.name] turns around and grabs your sloppy [pc.cockNounSimple " + x + "]. Slowly and intimately, she licks it clean, not letting a single drop of your [pc.cumFlavor] [pc.cumNoun] go to waste.");
 
 	//Red/Briha:
 	if(!gold) 
 	{
 		output("\n\nAs ");
-		if(foes[0].isPregnant()) output("the pregnant myr’s");
+		if(enemy.isPregnant()) output("the pregnant myr’s");
 		else output("her");
 		output(" drug-like saliva washes over your spunk-covered staff, a euphoric haze grips you and won’t let go. Your [pc.cock " + x + "] stiffens once more and trembles. Letting out a sharp gasp, a tight pressure builds and coils in your loins. All it takes is a few more licks, and you’re spurting thick, [pc.cumVisc] ropes of [pc.cumNoun] all over her face and basting it in your seed.");
 		output("\n\nWith a satisfied smile, she looks up at you, her face utterly coated in [pc.cumColor]. She wipes off her cheeks, letting your gooey strings stick to her fingers. One by one, she sucks your [pc.cumFlavor] [pc.cumNoun] off her fingers, a look of fluttering ecstasy on her face.");
@@ -1373,7 +1386,7 @@ public function doggieStyleWithMyrBitches(gold:Boolean = false):void
 
 	output("”</i>\n\nWhen she can finally stand, ");
 	if(DontKnowName) output("the ");
-	output("[monster.name] gives you ");
+	output("[enemy.name] gives you ");
 	if(gold) output("a long goodbye kiss. As you’re swooning, she");
 	else output("a quick peck on the cheek. As you’re lightly swooning from her intoxicating saliva, she");
 	output(" slips off with her clothes in her arms.\n\n");
@@ -1384,9 +1397,10 @@ public function doggieStyleWithMyrBitches(gold:Boolean = false):void
 	knockUpRedBitchChance();
 
 	pc.orgasm();
-	if(inCombat()) genericVictory();
+	if(inCombat()) CombatManager.genericVictory();
 	else
 	{
+		setEnemy(null);
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 	}
@@ -1401,11 +1415,10 @@ public function redDildoScrew():void
 	author("Jim Thermic");
 	if(!inCombat())
 	{
-		foes[0] = new MyrRedFemaleDeserter();
-		foes[0].prepForCombat();
+		setEnemy(new MyrRedFemaleDeserter());
 	}
 	showDeserter(false);
-	var DontKnowName:Boolean = (foes[0].short != "Lys" && foes[0].short != "Briha");
+	var DontKnowName:Boolean = (enemy.short != "Lys" && enemy.short != "Briha");
 	var loss:Boolean = false;
 	//IF PC LOSS:
 	if(inCombat() && (pc.HP() <= 0 || pc.lust() >= pc.lustMax()))
@@ -1413,9 +1426,9 @@ public function redDildoScrew():void
 		loss = true;
 		output("From her kitpack, ");
 		if(DontKnowName) output("the ");
-		output("[monster.name]");
+		output("[enemy.name]");
 		output(" pulls out an imposing dildo, a full eight inches of veiny goodness. ");
-		if(foes[0].isPregnant()) output("Your pregnant lover");
+		if(enemy.isPregnant()) output("Your pregnant lover");
 		else output("She");
 		output(" straddles your waist, sitting on top of you, and touches it against the tip of your nose.");
 
@@ -1446,7 +1459,7 @@ public function redDildoScrew():void
 			output("\n\n<i>“... This? It’s standard issue for us girls in the trenches. I’ve spent many a happy night with the Private inside of me, both of us quivering away.”</i>");
 			output("\n\nYou ask ");
 			if(DontKnowName) output("the ");
-			output("[monster.name] if she could use it on you. She blinks her big black eyes, clearly surprised by your request. At the same time, she gulps, and a delighted flush travels across her cheeks.");
+			output("[enemy.name] if she could use it on you. She blinks her big black eyes, clearly surprised by your request. At the same time, she gulps, and a delighted flush travels across her cheeks.");
 			output("\n\n<i>“... Of course. I mean, I’m no stranger on using it on other" + pc.mf("s"," girls") + ",”</i> she smiles. The beautiful deserter gestures for you to lie back on the ground and you do so. She straddles your waist, sitting on top of you, and touches the toy against the tip of your nose.");
 			output("\n\nThere’s a clicking noise. The synthetic wang begins to wizz against your sensitive nose. It’s shaped like a dildo, but it’s actually a vibrator? Two separate motors - one in the tip and another in the base - wildly whir.");
 			output("\n\nDoes it look so thick because it’s right in front of your eyes, or is it <i>really</i>that big? A matching shiver courses through you, starting at your nose and ending at your [pc.toes].");
@@ -1457,7 +1470,7 @@ public function redDildoScrew():void
 		{
 			output("\n\nYou ask ");
 			if(DontKnowName) output("her ");
-			output("[monster.name] if she could use the Private on you. She shoots you a saucy grin, clearly happy with your request.");
+			output("[enemy.name] if she could use the Private on you. She shoots you a saucy grin, clearly happy with your request.");
 			output("\n\n<i>“... Of course. Lie back and I’ll whip him out,”</i> she smiles. The beautiful deserter gestures for you to lie back on the ground and you do so. She straddles your waist, sitting on top of you, and touches it against the tip of your nose.");
 			output("\n\nThere’s a clicking noise. The synthetic wang begins to wizz against your sensitive nose. The two separate motors - one in the tip and another in the base - wildly whir. A matching shiver courses through you, starting at your nose and ending at your [pc.toes].");
 		}
@@ -1471,7 +1484,7 @@ public function redDildoScrew():void
 
 	output("\n\n<i>“Oh, you like it-? Trust me, I’m getting </i>just<i> as much pleasure watching,”</i> ");
 	if(DontKnowName) output("the battle-beauty");
-	else output("[monster.name]");
+	else output("[enemy.name]");
 	output(" whispers. Running the throbbing tip against your cheek, you find yourself rising to rub against it like a cat, your eyes half-lidded from dizzy pleasure. Void, she hasn’t even stuck it in yet!");
 
 	output("\n\nDesperate for further heights of pleasure, you meekly lift your [pc.hips] in the air.");
@@ -1521,7 +1534,7 @@ public function redDildoScrew():void
 	{
 		output("<i>“Let’s get this out of the way, shall we-?”</i> ");
 		if(DontKnowName) output("The ");
-		output("[monster.name] whispers. She sensuously strips off your [pc.upperUndergarment] and");
+		output("[enemy.name] whispers. She sensuously strips off your [pc.upperUndergarment] and");
 	}
 	else output("Taking advantage of your toplessness, the deserter sensuously");
 	output(" kisses your [pc.chest]. Her soft lips tickle and brush your [pc.skinFurScales]. Your whole body prickles and feels ultra sensitive - every little touch feels deliciously electric and you tremble in delight. Is this the effect of her venom?");
@@ -1595,7 +1608,7 @@ public function redDildoScrew():void
 	else output("the deepest part of your rectum");
 	output(" and you let out a carnal cry, bucking backwards against it. ");
 	if(DontKnowName) output("The ");
-	output("[monster.name] pulls back, then plunges it deep into your ");
+	output("[enemy.name] pulls back, then plunges it deep into your ");
 	if(x >= 0) output("sloppy snatch");
 	else output("forbidden hole");
 	output(". An explosion of pleasure seizes your senses. Void, that feels so good! You arch your back in delight, panting like a dog, as drool drips down your chin. Animalistic delight seizes you, and soon you’re a slave to instinct, slapping your [pc.ass] back against her hand.");
@@ -1634,7 +1647,7 @@ public function redDildoScrew():void
 	{
 		output("\n\nSome time later, when you finally come to, you realize ");
 		if(DontKnowName) output("the ");
-		output("[monster.name] has already taken her leave. Shivering, you realize you’re covered in hickies.");
+		output("[enemy.name] has already taken her leave. Shivering, you realize you’re covered in hickies.");
 		if(pc.credits > 1)
 		{
 			output(" Not only that, you’ve lost some of your credits!");
@@ -1651,10 +1664,10 @@ public function redDildoScrew():void
 	{
 		output("\n\nSome time later, when you come to, you find ");
 		if(DontKnowName) output("the ");
-		output("[monster.name] nestled against your side. She looks up at you with one big, black eye and the other scarred one, peering through her messed up amber hair. Lightly, she grasps at your chest, nails teasing your [pc.skinFurScales].");
+		output("[enemy.name] nestled against your side. She looks up at you with one big, black eye and the other scarred one, peering through her messed up amber hair. Lightly, she grasps at your chest, nails teasing your [pc.skinFurScales].");
 		output("\n\n<i>“S-so, that was fun,”</i> she breathily states. You’re acutely aware of her pert, naked breasts pressing up against you. <i>“... Um, I guess I should get going? Hopefully I’ll see you around...”</i>");
 		output("\n\n");
-		if(foes[0].isPregnant()) output("The pregnant myr");
+		if(enemy.isPregnant()) output("The pregnant myr");
 		else output("She");
 		output(" kisses you on the cheek. You slightly swoon from her intoxicating venom, your eyelids fluttering. By the time you come down from your high, ");
 		if(DontKnowName) output("the deserter has");
@@ -1668,11 +1681,12 @@ public function redDildoScrew():void
 	pc.orgasm();
 	if(inCombat()) 
 	{
-		if(!loss) genericVictory();
-		else genericLoss();
+		if(!loss) CombatManager.genericVictory();
+		else CombatManager.genericLoss();
 	}
 	else
 	{
+		setEnemy(null);
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 	}
@@ -1687,11 +1701,10 @@ public function sitAndScrewGoldMyr():void
 	author("Jim Thermic");
 	if(!inCombat())
 	{
-		foes[0] = new MyrGoldFemaleDeserter();
-		foes[0].prepForCombat();
+		setEnemy(new MyrGoldFemaleDeserter());
 	}
 	showDeserter(true);
-	var DontKnowName:Boolean = (foes[0].short != "Lys" && foes[0].short != "Briha");
+	var DontKnowName:Boolean = (enemy.short != "Lys" && enemy.short != "Briha");
 	//IF PC LOSS:
 	var combatLoss:Boolean = (inCombat() && (pc.HP() <= 0 || pc.lust() >= pc.lustMax()));	
 
@@ -1710,7 +1723,7 @@ public function sitAndScrewGoldMyr():void
 
 		output("\n\nStriding up to you, ");
 		if(DontKnowName) output("the ");
-		output("[monster.name] brushes one of her bare feet against ");
+		output("[enemy.name] brushes one of her bare feet against ");
 		if(pc.hasCock()) output("the underside of [pc.oneCock]");
 		else if(pc.hasVagina()) output("[pc.oneVagina]");
 		else output("your loins");
@@ -1754,7 +1767,7 @@ public function sitAndScrewGoldMyr():void
 		{
 			output("You notice there’s a sizable lump in ");
 			if(DontKnowName) output("the ");
-			output("[monster.name] kitpack. Curious, you ask her what’s inside of it.");
+			output("[enemy.name] kitpack. Curious, you ask her what’s inside of it.");
 
 			output("\n\nThe raven-haired ant girl blushes and pulls out a strap-on dildo. It’s pretty impressive - ten inches of veiny goodness - and the same hue as a gold myr’s cock.");
 
@@ -1769,7 +1782,7 @@ public function sitAndScrewGoldMyr():void
 		{
 			output("Knowing that ");
 			if(DontKnowName) output("the ");
-			output("[monster.name] has a double-ended dildo in her knapsack, you ask her if you can use it with her.");
+			output("[enemy.name] has a double-ended dildo in her knapsack, you ask her if you can use it with her.");
 		}
 		output("\n\nShe blinks her big black eyes, clearly surprised by your request. At the same time, she gulps, and a delighted flush travels across her cheeks.");
 
@@ -1803,14 +1816,14 @@ public function sitAndScrewGoldMyr():void
 
 	output("\n\n<i>“I like this position - I can look down into your eyes as we fuck,”</i> ");
 	if(DontKnowName) output("the ");
-	output("[monster.name] giggles, touching your [pc.hair] with her fingers.");
+	output("[enemy.name] giggles, touching your [pc.hair] with her fingers.");
 
 	output("\n\nThe feeling is mutual - looking up from between her thighs, your world is filled with her massive mammaries and the golden hoops piercing her puckered nips. It’s a truly exquisite sight!");
 
 	var x:int = 0;
 	if(pc.hasCock()) 
 	{
-		x = pc.cockThatFits(foes[0].vaginalCapacity(0));
+		x = pc.cockThatFits(enemy.vaginalCapacity(0));
 		if(x < 0) x = pc.smallestCockIndex();
 	}
 	if(pc.hasGenitals()) 
@@ -1847,7 +1860,7 @@ public function sitAndScrewGoldMyr():void
 	}
 	output("\n\nAs you reach climax, a trembling intensity seizes your body. With a choked gasp, you thrust upwards with your [pc.hips]. Your cock-head presses right against ");
 	if(DontKnowName) output("the ");
-	output("[monster.name]’s deepest depths. Quivering and shaking, you wrap your arms around her thick thighs. You can’t hold out any longer - you’re going to cum!");
+	output("[enemy.name]’s deepest depths. Quivering and shaking, you wrap your arms around her thick thighs. You can’t hold out any longer - you’re going to cum!");
 
 	//GotCock:
 	if(pc.hasCock())
@@ -1871,7 +1884,7 @@ public function sitAndScrewGoldMyr():void
 	{
 		output("\n\nAfter you’re both finished, ");
 		if(DontKnowName) output("the ");
-		output("[monster.name] pulls herself off you. Her slick juices dribble all over your waist and you let out a pleasured sigh. After giving you a single kiss on the lips, she pulls the strap-on off your exhausted body, and stashes it back in her kitpack.");
+		output("[enemy.name] pulls herself off you. Her slick juices dribble all over your waist and you let out a pleasured sigh. After giving you a single kiss on the lips, she pulls the strap-on off your exhausted body, and stashes it back in her kitpack.");
 
 		output("\n\n<i>“I’d love to linger, but I really must get going,”</i> she informs you, an inflection of regret in her voice. However, after she’s done dressing, you’re pinned down once more");
 		if(pc.credits >= 2) output(" as she steals some of your credits - and you’re too spent to resist!");
@@ -1890,7 +1903,7 @@ public function sitAndScrewGoldMyr():void
 	{
 		output("\n\nAfter you’re both finished, ");
 		if(DontKnowName) output("the ");
-		output("[monster.name] pulls herself off you and rests against your chest. The pressing of her large, warm breasts, mixed with the cold contrast of her nipple rings, is incredibly pleasant. At the same time, ");
+		output("[enemy.name] pulls herself off you and rests against your chest. The pressing of her large, warm breasts, mixed with the cold contrast of her nipple rings, is incredibly pleasant. At the same time, ");
 		if(pc.hasCock()) output("your [pc.cum] runs down her thighs and drips onto your [pc.legOrLegs]");
 		else output("her girl cum dribbles down her legs and onto your [pc.skinFurScales].");
 
@@ -1902,10 +1915,11 @@ public function sitAndScrewGoldMyr():void
 	myrDeserterEpilogueShitTracker();
 	processTime(33);
 	pc.orgasm();
-	if(combatLoss) genericLoss();
-	else if(inCombat()) genericVictory();
+	if(combatLoss) CombatManager.genericLoss();
+	else if(inCombat()) CombatManager.genericVictory();
 	else
 	{
+		setEnemy(null);
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 	}
@@ -1913,7 +1927,7 @@ public function sitAndScrewGoldMyr():void
 
 public function knockUpRedBitchChance():void
 {
-	if(foes[0] is MyrRedFemaleDeserter && !foes[0].isPregnant())
+	if(enemy is MyrRedFemaleDeserter && !enemy.isPregnant())
 	{
 		var bonusChance:int = pc.cumQ()/ 50 + 10;
 		if(bonusChance > 25) bonusChance = 25;
@@ -1939,7 +1953,7 @@ public function myrDeserterEpilogueShitTracker():void
 		//WON!
 		if(pc.HP() > 0 && pc.lust() < pc.lustMax())
 		{
-			if(foes[0] is MyrRedFemaleDeserter)
+			if(enemy is MyrRedFemaleDeserter)
 			{
 				if(flags["RED_MYR_DESERTER_BEATEN"] == undefined) flags["RED_MYR_DESERTER_BEATEN"] = 0;
 				flags["RED_MYR_DESERTER_BEATEN"]++;
@@ -1953,7 +1967,7 @@ public function myrDeserterEpilogueShitTracker():void
 		//LOST
 		else
 		{
-			if(foes[0] is MyrRedFemaleDeserter)
+			if(enemy is MyrRedFemaleDeserter)
 			{
 				if(flags["RED_MYR_DESERTER_BEATEN"] == undefined) flags["RED_MYR_DESERTER_BEATEN"] = 0;
 				flags["RED_MYR_DESERTER_BEATEN"]--;

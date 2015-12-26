@@ -11,7 +11,7 @@ package classes.Characters
 	import classes.Items.Miscellaneous.EmptySlot;
 	import classes.Items.Protection.JoyCoPremiumShield;
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
 	import classes.GameData.CodexManager;
 	import classes.Engine.Combat.*;
 	import classes.Engine.Combat.DamageTypes.*;
@@ -41,7 +41,7 @@ package classes.Characters
 			this.long = "The gray goo gestalt calling itself Nova has taken on an entire vat of additional goo, expanding itself to monstrous proportions. She's having to lean over just to fit in the reactor compartment now, and each of her fists are easily bigger than you are. Her sword is the size of a truck, the blade resizing itself to slide through the open front of the elevator with ease. Her eyes burn with hate and anger as she swings and lunges at you, all too happy to take advantage of your confinement and trying to plunge you into the billowing cloud of poison gas below.";
 			this.customDodge = "The goos liquid flexibility allows it to handily avoid your attack.";
 			this.customBlock = "The goos liquidity absorbs a great deal of punishment - without taking damage.";
-			this.plural = true;
+			this.isPlural = true;
 			
 			baseHPResistances.drug.resistanceValue = 20.0;
 			baseHPResistances.pheromone.resistanceValue = 20.0;
@@ -184,8 +184,8 @@ package classes.Characters
 			}
 			else
 			{
-				if (CombatManager.getRoundCount() % 3 == 0) cageRattle();
-				else if (rand(4) == 0) swordThrust();
+				if (CombatManager.getRoundCount() % 3 == 0) cageRattle(hostileCreatures);
+				else if (rand(4) == 0) swordThrust(hostileCreatures);
 				else gooPunch(hostileCreatures);
 			}
 		}
@@ -257,7 +257,13 @@ package classes.Characters
 		{
 			output("\nNova’s sword swings back, her whole body leaning into the blow as she lunges forward to drive the sword straight through the open face of the lift!");
 
-			if (combatMiss(this, target, -1, 2))
+			var pc:Creature = null;
+			for (var i:int = 0; i < hostiles.length; i++)
+			{
+				if (hostiles[i] is PlayerCharacter) pc = hostiles[i] as Creature;
+			}
+			
+			if (combatMiss(this, pc, -1, 2))
 			{
 				output(" You and Anno duck apart, letting the sword plunge into the wall between the two of you. The rising elevator cart quickly cuts it off of the mass and lets it pour off the sides... only to reform a moment later.")
 			}

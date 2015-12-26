@@ -297,5 +297,10 @@ package classes.Characters
 			shields(shieldsMax() * 0.5);
 			createStatusEffect("Shield Boost CD");
 		}
+		
+		override public function getCombatDescriptionExtension():void
+		{
+			output("\n\nA small ball-shaped hover drone floats around her, spraying laser fire everywhere."); 
+		}
 	}
 }

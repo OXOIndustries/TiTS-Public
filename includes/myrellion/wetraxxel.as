@@ -526,7 +526,7 @@ public function wetraxxelBrawlerPCVictoryFuckHisButt():void
 	if (flags["WETRAXXEL_SUBMISSION"] > 0) flags["WETRAXXEL_SUBMISSION"] -= 1;
 	clearMenu();
 	output("\n\n");
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 public function wetraxxelBrawlerPCVictoryRideHim(useVag:Boolean = false):void
@@ -601,7 +601,7 @@ public function wetraxxelBrawlerPCVictoryRideHim(useVag:Boolean = false):void
 	pc.orgasm();
 	if (flags["WETRAXXEL_SUBMISSION"] > 0) flags["WETRAXXEL_SUBMISSION"] -= 1;
 	clearMenu();
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 public function wetraxxelBrawlerPCVictoryWankHim():void

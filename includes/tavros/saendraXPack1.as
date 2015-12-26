@@ -174,7 +174,7 @@ public function initsx1PirateGroupFight():void
 	pc.createStatusEffect("Pitch Black", 0, 0, 0, 0, false, "Icon_Slow", "It’s pitch black here, making it almost impossible to see anything but for bursts of light accompanying weaponsfire.", true, 0);
 	
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters([pc, saen]);
+	CombatManager.setFriendlyCharacters([pc, saendra]);
 	CombatManager.setHostileCharacters([new SX1GroupPirates(), new SX1GroupPirates(), new SX1GroupPirates(), new SX1GroupPirates()]);
 	CombatManager.victoryScene(sx1PirateGroupPCVictory);
 	CombatManager.lossScene(sx1PirateGroupPCLoss);
@@ -809,7 +809,7 @@ public function sx1InitShotguardFight(wasFlashed:Boolean = false):void
 	tEnemy.createStatusEffect("Blind", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0);
 	
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters([pc, saen]);
+	CombatManager.setFriendlyCharacters([pc, saendra]);
 	CombatManager.setHostileCharacters(tEnemy);
 	CombatManager.victoryScene(sx1ShotguardPCVictory);
 	CombatManager.lossScene(sx1ShotguardPCLoss);
@@ -891,7 +891,7 @@ public function sx1ShotguardPCLoss():void
 public function sx1InitTechguardFight():void
 {
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters([pc, saen]);
+	CombatManager.setFriendlyCharacters([pc, saendra]);
 	CombatManager.setHostileCharacters(new SX1Techguard());
 	CombatManager.victoryScene(sx1TechguardPCVictory);
 	CombatManager.lossScene(sx1TechguardPCLoss);

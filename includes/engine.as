@@ -47,8 +47,6 @@ public function clearOutput():void
 {
 	if (this.userInterface.imgString != null && this.userInterface.imgString.length > 0) this.userInterface.imgString = "";
 	this.userInterface.clearOutput();
-	
-	this.target = null;
 }
 
 public function output2(words:String, markdown:Boolean = false):void
@@ -60,8 +58,6 @@ public function output2(words:String, markdown:Boolean = false):void
 public function clearOutput2():void
 {
 	this.userInterface.clearOutput2();
-	
-	this.target = null;
 }
 
 public function outputCodex(words:String, markdown:Boolean = false):void
@@ -106,25 +102,6 @@ public function num2Text2(number:int):String {
 		returnVar = numWords[number];
 	}
 	return(returnVar);
-}
-
-/*
-// ORIGINAL
-public function upperCase(str:String):String {
-	var firstChar:String = str.substr(0,1);
-	var restOfString:String = str.substr(1,str.length);
-	return firstChar.toUpperCase()+restOfString.toLowerCase();
-}
-*/
-// NEW - No need to lowercase the rest of the string unless specified.
-public function upperCase(str:String, forceLower:Boolean = true):String
-{
-	var firstChar:String = str.substr(0,1);
-	var restOfString:String = str.substr(1, str.length);
-	
-	if(forceLower) restOfString = restOfString.toLowerCase();
-	
-	return firstChar.toUpperCase() + restOfString;
 }
 
 public function leftBarClear():void {
@@ -212,8 +189,6 @@ public function updatePCStats(setBars:Boolean = false):void
 	{
 		userInterface.levelUpButton.Deactivate();
 	}
-	
-	updateNPCStats();
 }
 public function timeText():String 
 {
@@ -243,51 +218,54 @@ public function resetNPCBarStates():void
 	userInterface.monsterEnergy.updateBar(0, 100, true);
 }
 
+/*
 public function updateNPCStats():void {
 	if(foes.length >= 1) {
-		userInterface.monsterShield.updateBar(foes[0].shields(),  foes[0].shieldsMax());
-		userInterface.monsterHP.updateBar(foes[0].HP(),       foes[0].HPMax());
-		userInterface.monsterLust.updateBar(foes[0].lust(),     foes[0].lustMax());
-		userInterface.monsterEnergy.updateBar(foes[0].energy(),   foes[0].energyMax());
+		userInterface.monsterShield.updateBar(enemy.shields(),  enemy.shieldsMax());
+		userInterface.monsterHP.updateBar(enemy.HP(),       enemy.HPMax());
+		userInterface.monsterLust.updateBar(enemy.lust(),     enemy.lustMax());
+		userInterface.monsterEnergy.updateBar(enemy.energy(),   enemy.energyMax());
 		
-		this.userInterface.monsterLevel.updateBar(String(foes[0].level));
-		this.userInterface.monsterRace.updateBar(StringUtil.toTitleCase(foes[0].originalRace));
+		this.userInterface.monsterLevel.updateBar(String(enemy.level));
+		this.userInterface.monsterRace.updateBar(StringUtil.toTitleCase(enemy.originalRace));
 		
 		var gText:String = "";
 		
-		if (foes[0].hasStatusEffect("Force It Gender"))
+		if (enemy.hasStatusEffect("Force It Gender"))
 		{
 			gText = "???";
 		}
-		else if (foes[0].hasStatusEffect("Force Fem Gender"))
+		else if (enemy.hasStatusEffect("Force Fem Gender"))
 		{
 			gText = "Female";
 		}
-		else if (foes[0].hasStatusEffect("Force Male Gender"))
+		else if (enemy.hasStatusEffect("Force Male Gender"))
 		{
 			gText = "Male";
 		}
-		else if (foes[0].hasStatusEffect("Force Herm Gender"))
+		else if (enemy.hasStatusEffect("Force Herm Gender"))
 		{
 			gText = "Herm";
 		}
-		else if (foes[0] is NyreaAlpha || foes[0] is NyreaBeta)
+		else if (enemy is NyreaAlpha || enemy is NyreaBeta)
 		{
 			gText = "Female???";
 		}
-		else if (foes[0].hasCock()) 
+		else if (enemy.hasCock()) 
 		{
-			if (foes[0].hasVagina()) gText = "Herm";
+			if (enemy.hasVagina()) gText = "Herm";
 			else gText = "Male";
 		}
-		else if (foes[0].hasVagina()) gText = "Female";
+		else if (enemy.hasVagina()) gText = "Female";
 		else gText = "???";
 		
 		this.userInterface.monsterSex.updateBar(gText);
 		
-		this.userInterface.monsterStatusEffects = foes[0].statusEffects;
+		this.userInterface.monsterStatusEffects = enemy.statusEffects;
 	}
 }
+*/
+
 public function updateStatBar(arg:MovieClip, value:* = undefined, max:* = undefined):void {
 	//if(title != "" && title is String) arg.masks.labels.text = title;
 	if(max != undefined) 

@@ -72,7 +72,7 @@ public function netLauncher():void
 	//(Tries to entangle the PC, being entangled means you can only wait or try to free yourself, it also gives a negative to your dodge. You can free yourself with either reflexes or physique.)
 	output("A small cannon opens up in her artificial arm, and she fires a net at you! ");
 	//Dodge: You manage to dive out of the net's path and it clatters to the ground behind you harmlessly.
-	if(rangedCombatMiss(foes[0],pc)) output("The goblin's aim is off, and while it brushes your body, it fails to entangle you.");
+	if(rangedCombatMiss(enemy,pc)) output("The goblin's aim is off, and while it brushes your body, it fails to entangle you.");
 	else
 	{
 		output("The net wraps around your body, leaving you tightly entangled. You need free yourself!");
@@ -91,7 +91,7 @@ public function goblinGassGrenade():void
 	//(Tries to poison the PC. A poisoned PC takes damage every turn of combat. She does not use this power once the PC has already been poisoned.)
 	output("She grabs a small metal tube off her belt and throws it at you. When it strikes the ground something inside shatters and green smoke billows out around you.\n");
 	//Dodge:
-	if(rangedCombatMiss(foes[0],pc)) output("You manage to hold your breath and dive out of the cloud, then turn back and face the goblin again.");
+	if(rangedCombatMiss(enemy,pc)) output("You manage to hold your breath and dive out of the cloud, then turn back and face the goblin again.");
 	//Wind/sonic defense: Your defenses easily blow away the deadly cloud of gas, leaving you unharmed.
 	else 
 	{
@@ -108,7 +108,7 @@ public function goblinNeedleGun():void
 	output("The gadgeteer draws a strange pistol, and fires an odd dart in your direction with a soft pop. ");
 	//Shield: 
 	if(pc.shields() > 0) output("Your kinetic shield easily stops the projectile before it can reach your body.");
-	else if(rangedCombatMiss(foes[0],pc))
+	else if(rangedCombatMiss(enemy,pc))
 	{
 		output("Thankfully her aim is off and it whizzes past your body harmlessly.");
 	}
@@ -132,7 +132,7 @@ public function stunStickGobboAttak():void
 	//(Damaging attack, which does extra damage to shields.
 	output("She suddenly lets out a cry and charges you with a strange bar with a rubber grip.");
 	//Miss:
-	if(rangedCombatMiss(foes[0],pc)) output("Her swings are poorly aimed and you easily avoid the odd weapon.");
+	if(rangedCombatMiss(enemy,pc)) output("Her swings are poorly aimed and you easily avoid the odd weapon.");
 	//Hit shields: 
 	else
 	{
@@ -183,7 +183,7 @@ public function stunStickGobboAttak():void
 public function defeatDasGobboSloot():void
 {
 	//if (defeated with damage)
-	if(foes[0].hp() < 1) output("The gadgeteer gives an abrupt squeak of pain, and falls backwards. She desperately tries to pull herself back up using her artificial arm, but falls back down after a moment. Too injured to continue fighting, she looks up at you with an indignant pout and asks you what happens next.");
+	if(enemy.hp() < 1) output("The gadgeteer gives an abrupt squeak of pain, and falls backwards. She desperately tries to pull herself back up using her artificial arm, but falls back down after a moment. Too injured to continue fighting, she looks up at you with an indignant pout and asks you what happens next.");
 	//if (defeated with lust)
 	else output("So overwhelmed by desire, the gadgeteer curses you for making her like this and drops to her knees. She yanks her apron to the side and sticks two of her fingers into her snatch, then gives you a pleading expression. Whether she's asking you to leave her, or to fuck her, is hard to say.");
 	//How are you going to have your way with her?
@@ -510,7 +510,7 @@ if (PC is feminine)
 
 You ask him if he's serious, surprised that's all he wants.
 
-\"<i>Yes damn it, I won, give me a prize!</i>\" He drops his pants, revealing his [monster.cockLength] inch long goblin cock, slowly becoming errect.
+\"<i>Yes damn it, I won, give me a prize!</i>\" He drops his pants, revealing his [enemy.cockLength] inch long goblin cock, slowly becoming errect.
 
 You're still having a hard time believing that losing hasn't resulted in something worse, but not giving this goblin boy a handjob could easily result in exactly that. Will you give him the handjob he wants?
 
@@ -579,7 +579,7 @@ if (PC has horns that are at least 2.5 inches long)
 	Taking a firm grip on the sides of your head, [no paragraph break]
 }
 
-the goblin boy positions himself in front of your face, dick inches from your lips. You grit your teeth to make sure he doesn't gain entrance, only for him to prick your cheek with something from one of his needle fingers. In a few seconds, your jaw relaxes, allowing the violation of your mouth to begin. Suddenly the full [monster.cockLength] inches of his green shaft with a double ringed bulbous tip is roughly shoved into your [pc.muzzleOrMouth], making you cough a few times in surprise.
+the goblin boy positions himself in front of your face, dick inches from your lips. You grit your teeth to make sure he doesn't gain entrance, only for him to prick your cheek with something from one of his needle fingers. In a few seconds, your jaw relaxes, allowing the violation of your mouth to begin. Suddenly the full [enemy.cockLength] inches of his green shaft with a double ringed bulbous tip is roughly shoved into your [pc.muzzleOrMouth], making you cough a few times in surprise.
 
 Of course, you're helpless to remove the intruder. He waits for a few moments for you to stop, before pumping his member in and out of your orifice, silencing any oral protests. He then pumps himself in and out of your limp jaw with gusto, pushing himself as far as he can down your throat. At the same time, his sack slaps across your tongue, bringing with it the taste of unwashed male genitals.
 

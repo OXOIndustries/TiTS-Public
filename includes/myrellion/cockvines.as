@@ -211,7 +211,7 @@ public function adultCockvineStruggleOverride():void
 	
 	pc.setStatusValue("Cockvine Grip", 2, 1);
 	
-	processCombat();
+	CombatManager.processCombat();
 }
 
 public function adultCockvineConsentacles():void
@@ -432,7 +432,7 @@ public function adultCockvinePCEscapes():void
 
 	output("\n\nYou take a single moment to pull in the blessedly cold, fresh air and then stumble away as fast as you can, the sound of enraged cockvine slapping heavily at the ground in search of its prize echoing off the stone walls close behind you.\n\n");
 
-	leaveCombat();
+	CombatManager.abortCombat();
 }
 
 public function adultCockvinePCLoses():void

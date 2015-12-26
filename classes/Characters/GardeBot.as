@@ -305,7 +305,7 @@
 				output(".");
 				//damage.
 				var damage:TypeCollection = damage();
-				//damage.add(foes[0].physique() / 2);
+				//damage.add(enemy.physique() / 2);
 				damage.multiply(1.4);
 				damage = roboShieldDamageReducer(damage);
 				damageRand(damage, 15);

@@ -109,7 +109,7 @@ public function combatUseItem(item:ItemSlotClass, targetCreature:Creature = null
 			{
 				// TODO: Show target selection interface
 				// Invoke menu, early return, call back to self
-				targetCreature = foes[0];
+				targetCreature = enemy;
 			}
 		}
 		
@@ -250,7 +250,7 @@ public function buyItem():void {
 			}
 			*/
 			if(temp > pc.credits) output("<b>(Too Expensive)</b> ");
-			output(upperCase(shopkeep.inventory[x].description, false) + " - " + temp + " credits.");
+			output(StringUtil.upperCase(shopkeep.inventory[x].description, false) + " - " + temp + " credits.");
 			trace("DISPLAYING SHIT");
 			if(temp <= pc.credits) {
 				trace("SHOWAN BUTANS: " + x);
@@ -313,7 +313,7 @@ public function sellItem():void {
 			trace("PC inventory being checked for possible sale.");
 			//Does the shopkeep buy this type?
 			if(shopkeep.buysType(pc.inventory[x].type)) {
-				output("\n" + upperCase(pc.inventory[x].description, false) + " - " + getSellPrice(shopkeep,pc.inventory[x].basePrice) + " credits.");
+				output("\n" + StringUtil.upperCase(pc.inventory[x].description, false) + " - " + getSellPrice(shopkeep,pc.inventory[x].basePrice) + " credits.");
 				if(x <= 13) this.addItemButton(x, pc.inventory[x], sellItemGo, pc.inventory[x], null, null, pc, shopkeep);
 				if (x > 13) this.addItemButton(x + 1, pc.inventory[x], sellItemGo, pc.inventory[x], null, null, pc, shopkeep);
 			}

@@ -1,6 +1,7 @@
 ﻿import classes.Characters.CaptainKhorgan;
 import classes.Characters.CaptainKhorganMech;
 import classes.Characters.GunTurrets;
+import classes.Characters.Kaska;
 import classes.Characters.PlayerCharacter;
 import classes.Characters.RocketTurrets;
 import classes.Creature;
@@ -851,15 +852,15 @@ public function pirateCaptainBossFightIntro():void
 	
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(khorgan);
+	CombatManager.setHostileCharacters(new CaptainKhorganMech());
 	CombatManager.victoryScene(victoriousVsCaptainOrcButt);
 	CombatManager.lossScene(loseToCaptainKhorganBadEnd);
 	CombatManager.displayLocation("CAP. KHORGAN");
 	
-	addButton(0,"Next",startCombat,"khorgan mechfight");
+	addButton(0,"Next", CombatManager.beginCombat);
 }
 
-public function coverUpdateDisplay():void
+public function updateKhorganMechCover():void
 {
 	var coverRemaining:Number = 0;
 	if(currentLocation == "KHORGAN_LEFT_COVER") coverRemaining = flags["KHORGAN_LEFT_COVER"];
@@ -908,7 +909,7 @@ public function moveRight():void
 	output("You sprint along to the next platform and whatever cover it has to offer!\n");
 	if(currentLocation == "KHORGAN_LEFT_COVER") currentLocation = "KHORGAN_CENTER_COVER";
 	else if(currentLocation == "KHORGAN_CENTER_COVER") currentLocation = "KHORGAN_RIGHT_COVER";
-	processCombat();
+	CombatManager.processCombat();
 }
 public function moveLeft():void
 {
@@ -916,7 +917,7 @@ public function moveLeft():void
 	output("You sprint along to the next platform and whatever cover it has to offer!\n");
 	if(currentLocation == "KHORGAN_RIGHT_COVER") currentLocation = "KHORGAN_CENTER_COVER";
 	else if(currentLocation == "KHORGAN_CENTER_COVER") currentLocation = "KHORGAN_LEFT_COVER";
-	processCombat();
+	CombatManager.processCombat();
 }
 
 //Missile Incoming!
@@ -1409,7 +1410,7 @@ public function meetUpWithKaskaZeBossSloot():void
 	
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(kaska);
+	CombatManager.setHostileCharacters(new Kaska());
 	CombatManager.victoryScene(defeatKaska);
 	CombatManager.lossScene(defeatedByKaska);
 	CombatManager.displayLocation("KASKA");
@@ -1454,7 +1455,7 @@ public function pinchKaskaNipple():void
 	pc.removeStatusEffect("Grappled");
 	applyDamage(new TypeCollection( { tease: 4 + rand(3) } ), enemy, pc, "minimal");
 	applyDamage(new TypeCollection( { tease: 7 + rand(3) } ), pc, enemy, "minimal");
-	processCombat();
+	CombatManager.processCombat();
 }
 
 //Defeated by Kaska: Not Turned On
