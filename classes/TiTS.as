@@ -417,9 +417,7 @@
 			this.configureCodex();
 			this.configureMails();
 			this.userInterface.showMainMenu();
-			this.userInterface.toggleBarTweens();
 			buildWTF();
-			this.userInterface.toggleBarTweens();
 		}
 		
 		private function buildWTF():void

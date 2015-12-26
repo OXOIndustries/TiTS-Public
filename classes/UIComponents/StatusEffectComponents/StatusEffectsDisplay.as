@@ -37,6 +37,8 @@
 		private var _tooltipSizeX:int = 350;
 		private var _tooltipSizeY:int = 250;
 		
+		private var _maxDisplayed:int = 50;
+		
 		public function get targetX():int { return _targetX; }
 		public function get targetY():int { return _targetY; }
 		public function get targetWidth():int { return _targetWidth; }
@@ -52,6 +54,8 @@
 		public function get childSizeY():int { return _childSizeY; }
 		public function get childSpacing():int { return _childSpacing; }
 		
+		public function get maxDisplayed():int { return _maxDisplayed; }
+		
 		public function set targetX(v:int):void { _targetX = v; }
 		public function set targetY(v:int):void { _targetY = v; }
 		public function set targetWidth(v:int):void { _targetWidth = v; }
@@ -66,6 +70,8 @@
 		public function set childSizeX(v:int):void { _childSizeX = v; }
 		public function set childSizeY(v:int):void { _childSizeY = v; }
 		public function set childSpacing(v:int):void { _childSpacing = v; }
+		
+		public function set maxDisplayed(v:int):void { _maxDisplayed = v; }
 		
 		public function set tooltipSizeX(v:int):void { _tooltipSizeX = v; }
 		public function set tooltipSizeY(v:int):void { _tooltipSizeY = v; }
@@ -297,13 +303,35 @@
 		private function RepositionChildren():void
 		{
 			var elem:int;
+			var perRow:int;
+			
+			var remWidth:Number = (targetWidth == 0 ? this.parent.width : targetWidth);
+			
+			// FIXME: This doesn't take into account initial position offsets etc.
+			// ie it assumes the first child will begin at 0,0 in the parent.
+			while (remWidth > 0)
+			{
+				remWidth -= (_childSizeX + childSpacing);
+				perRow++;
+				
+				if (remWidth < 0) perRow--;
+			}
+			
 			if (_childElements.length > 0)
 			{
 				for (elem = 0; elem < _childElements.length; elem++)			
 				{
-					_childElements[elem].x = Math.floor((elem % 5) * (_childSizeX + childSpacing));
-					_childElements[elem].y = Math.floor((Math.floor(elem / 5)) * (_childSizeY + childSpacing));
-					if (_childElements[elem].parent == null) this.addChild(_childElements[elem]);
+					if (elem >= _maxDisplayed)
+					{
+						_childElements[elem].visible = false;
+					}
+					else
+					{
+						_childElements[elem].visible = true;
+						_childElements[elem].x = Math.floor((elem % perRow) * (_childSizeX + childSpacing));
+						_childElements[elem].y = Math.floor((Math.floor(elem / perRow)) * (_childSizeY + childSpacing));
+						if (_childElements[elem].parent == null) this.addChild(_childElements[elem]);
+					}
 				}
 			}
 			

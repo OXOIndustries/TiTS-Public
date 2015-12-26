@@ -3,6 +3,7 @@ package classes.UIComponents
 	import classes.UIComponents.SideBarComponents.AdvancementBlock;
 	import classes.UIComponents.SideBarComponents.BigStatBlock;
 	import classes.UIComponents.SideBarComponents.CoreStatsBlock;
+	import classes.UIComponents.SideBarComponents.PlayerPartyBlock;
 	import classes.UIComponents.SideBarComponents.StatusEffectsBlock;
 	import classes.UIComponents.StatusEffectComponents.StatusEffectsDisplay;
 	import fl.transitions.Tween;
@@ -23,8 +24,6 @@ package classes.UIComponents
 	 */
 	public class RightSideBar extends Sprite
 	{
-		private var _doTween:Boolean;
-		
 		private var _nameText:TextField;
 		private var _nameTextUnderline:Sprite;
 		
@@ -32,6 +31,8 @@ package classes.UIComponents
 		private var _coreStatBlock:CoreStatsBlock;
 		private var _advancementBlock:AdvancementBlock;
 		private var _statusEffectDisplay:StatusEffectsBlock;
+		
+		private var _playerPartyBlock:PlayerPartyBlock;
 		
 		// All of the individual bars are broken out here, because *this* class is where I'd likely configure
 		// bindUtils.bindProperty things back out into the game data classes. On load, the load code
@@ -58,15 +59,14 @@ package classes.UIComponents
 		
 		public function get statusEffects():StatusEffectsDisplay { return _statusEffectDisplay.statusDisplay; }
 		
+		public function get playerPartyBlock():PlayerPartyBlock { return _playerPartyBlock; }
 		/**
 		 * Config for lazy init.
 		 * @param	doTween	Set the bar to tween in from offscreen during startup
 		 */
-		public function RightSideBar(doTween:Boolean = true) 
+		public function RightSideBar() 
 		{
-			_doTween = doTween;
-			
-			this.addEventListener(Event.ADDED_TO_STAGE, init);
+			addEventListener(Event.ADDED_TO_STAGE, init);
 		}
 		
 		/**
@@ -85,6 +85,10 @@ package classes.UIComponents
 			_combatStatBlock.y = _nameTextUnderline.y + _nameTextUnderline.height + 11; // These magic numbers equalise the padding between the last element in the bar, and the next block
 			this.addChild(_combatStatBlock);
 			
+			_playerPartyBlock = new PlayerPartyBlock();
+			_playerPartyBlock.y = _nameTextUnderline.y + _nameTextUnderline.height + 11;
+			addChild(_playerPartyBlock);
+			
 			_coreStatBlock = new CoreStatsBlock();
 			_coreStatBlock.y = Math.floor(_combatStatBlock.y + (_combatStatBlock.height));
 			this.addChild(_coreStatBlock);
@@ -96,24 +100,6 @@ package classes.UIComponents
 			_statusEffectDisplay = new StatusEffectsBlock();
 			_statusEffectDisplay.y = Math.floor(_advancementBlock.y + (_advancementBlock.height + 4));
 			this.addChild(_statusEffectDisplay);
-		}
-		
-		public function tweenIn():void
-		{
-			if (_doTween)
-			{
-				this.x = 1200;
-				var tw:Tween = new Tween(this, "x", Regular.easeOut, 1200, 1000, 25, false);
-				
-				tw.addEventListener(TweenEvent.MOTION_FINISH, moveToFinalPosition);
-				tw.addEventListener(TweenEvent.MOTION_STOP, moveToFinalPosition);
-				tw.addEventListener(TweenEvent.MOTION_CHANGE, moveToFinalPosition);
-			}
-		}
-		
-		public function moveToFinalPosition(e:Event):void
-		{
-			this.x = 1000;
 		}
 		
 		/**

@@ -120,6 +120,11 @@ package classes.UIComponents
 		public static var gForestRoomFlagColour:uint		= 0x3F704C; //Greenish
 		public static var gJungleRoomFlagColour:uint 		= 0x184925; //Darker/Greener!
 		
+		public static var gShieldColour:uint				= 0x00CCFF;
+		public static var gHPColour:uint					= 0x00CC2F;
+		public static var gLustColour:uint					= 0xDD597E;
+		public static var gEnergyColour:uint				= 0x754C24;
+		
 		// Font Faces
 		
 		// Lato "Regular"

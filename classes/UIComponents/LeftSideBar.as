@@ -1,6 +1,7 @@
 package classes.UIComponents 
 {
 	import classes.UIComponents.MiniMap.MiniMap;
+	import classes.UIComponents.SideBarComponents.EnemyPartyBlock;
 	import classes.UIComponents.SideBarComponents.LocationHeader;
 	import fl.transitions.Tween;
 	import fl.transitions.TweenEvent;
@@ -21,10 +22,9 @@ package classes.UIComponents
 	 */
 	public class LeftSideBar extends Sprite
 	{
-		private var _doTween:Boolean;
-		
 		private var _locationHeader:LocationHeader;
 		private var _enemyEncounterBlock:EnemyEncounterBlock;
+		private var _enemyPartyBlock:EnemyPartyBlock;
 		private var _miniMapBlock:MiniMapBlock;
 		private var _genInfoBlock:GeneralInfoBlock;
 		private var _menuButtonBlock:SideBarButtonBlock;
@@ -43,6 +43,8 @@ package classes.UIComponents
 		public function get encounterRace():StatBar { return _enemyEncounterBlock.raceBar; }
 		public function get encounterSex():StatBar { return _enemyEncounterBlock.sexBar; }
 		public function get encounterStatusEffects():StatusEffectsDisplay { return _enemyEncounterBlock.statusEffects; }
+		
+		public function get encounterPartyBlock():EnemyPartyBlock { return _enemyPartyBlock; }
 		
 		public function get timeText():TextField { return _genInfoBlock.time; }
 		public function get daysText():TextField { return _genInfoBlock.days; }
@@ -63,10 +65,8 @@ package classes.UIComponents
 		public function get generalInfoBlock():GeneralInfoBlock { return _genInfoBlock; }
 		public function get menuButtonBlock():SideBarButtonBlock { return _menuButtonBlock; }
 		
-		public function LeftSideBar(doTween:Boolean = true) 
-		{
-			_doTween = doTween;
-			
+		public function LeftSideBar() 
+		{			
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
 		}
 		
@@ -87,6 +87,10 @@ package classes.UIComponents
 			this.addChild(_enemyEncounterBlock);
 			_enemyEncounterBlock.y = _locationHeader.y + _locationHeader.height + 8;
 			
+			_enemyPartyBlock = new EnemyPartyBlock();
+			addChild(_enemyPartyBlock);
+			_enemyPartyBlock.y = _locationHeader.y + _locationHeader.height + 8;
+			
 			// Minimap container block
 			_miniMapBlock = new MiniMapBlock();
 			this.addChild(_miniMapBlock);
@@ -103,24 +107,9 @@ package classes.UIComponents
 			this.addChild(_menuButtonBlock);
 			_menuButtonBlock.y = _genInfoBlock.y + _genInfoBlock.height - 13;
 			_menuButtonBlock.x = 10;
-		}
-		
-		public function tweenIn():void
-		{
-			if (_doTween)
-			{
-				this.x = 0 - 200;
-				var tw:Tween = new Tween(this, "x", Regular.easeOut, 0 - 200, 0, 25, false);
-				
-				tw.addEventListener(TweenEvent.MOTION_CHANGE, moveToFinalPosition);
-				tw.addEventListener(TweenEvent.MOTION_FINISH, moveToFinalPosition);
-				tw.addEventListener(TweenEvent.MOTION_STOP, moveToFinalPosition);
-			}
-		}
-		
-		private function moveToFinalPosition(e:Event):void
-		{
-			this.x = 0;
+			
+			// TEMP SHIT
+			_genInfoBlock.visible = false;
 		}
 		
 		private function BuildBackground():void
@@ -138,7 +127,7 @@ package classes.UIComponents
 		{
 			_miniMapBlock.visible = false;
 			_genInfoBlock.visible = false;
-			_enemyEncounterBlock.visible = true;
+			//_enemyEncounterBlock.visible = false;
 		}
 		
 		public function ShowMiniMap():void
@@ -157,7 +146,7 @@ package classes.UIComponents
 		
 		public function HideStats():void
 		{
-			_enemyEncounterBlock.visible = false;
+			//_enemyEncounterBlock.visible = false;
 			_genInfoBlock.visible = true;
 		}
 		
