@@ -2892,9 +2892,7 @@ package classes.GameData
 		
 		public function showCombatUI():void
 		{
-			userInterface().showPlayerParty();
 			userInterface().setPlayerPartyData(_friendlies);
-			userInterface().showEnemyParty();
 			userInterface().setEnemyPartyData(_hostiles);
 		}
 		

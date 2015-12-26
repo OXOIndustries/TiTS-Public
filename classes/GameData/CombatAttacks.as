@@ -138,7 +138,7 @@ package classes.GameData
 			ParalyzingShock.RequiresClass = GLOBAL.CLASS_ENGINEER;
 			ParalyzingShock.TooltipTitle = "Paralyzing Shock";
 			ParalyzingShock.TooltipBody = "An ability with an intelligence-based chance to paralyze a single foe. Enemies with higher physique scores will be more likely to resist its effects!";
-			Volley.IsRangedBased = true;
+			ParalyzingShock.IsRangedBased = true;
 			ParalyzingShock.Implementor = ParalyzingShockImpl;
 			a.push(ParalyzingShock);
 			
