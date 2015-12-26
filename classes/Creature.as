@@ -7183,6 +7183,10 @@ package classes {
 		{
 			return (hasCock() || hasVagina());
 		}
+		public function isHerm():Boolean
+		{
+			return (hasCock() && hasVagina());
+		}
 		public function hasTail(tType:Number = 0): Boolean
 		{
 			if (tailCount > 0 && tailType != GLOBAL.TYPE_HUMAN)

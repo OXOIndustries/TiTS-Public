@@ -29,6 +29,11 @@ public function annoIsCrew():Boolean
 	if (flags["ANNO_CREWMEMBER"] == 1) return true;
 	return false;
 }
+public function annoRecruited():Boolean
+{
+	if (flags["ANNO_CREWMEMBER"] != undefined) return true;
+	return false;
+}
 
 // Annos recruitment process hasn't yet been completed
 public function annoNotRecruited():Boolean
