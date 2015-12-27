@@ -18,6 +18,11 @@ public function icedTeatsExteriorBonusFunc():Boolean
 	author("Lady Jenn");
 	output("\n\nTo the south, a colorful building boasts an illuminated signboard proudly displaying the title: Iced Teats Frozen Treats and Confectionery Company. Beneath it is the catch line: The number one supplier in female-based frozen sweets. All flavors harvested fresh from the breast, guaranteed safe for any humanoid or similar entity! Above all this is an image of a fetching pink skinned woman with bright crimson hair, dressed in barely enough clothing to contain her assets. She is reclined comfortably and holding a bowl of what appears to be ice cream, which is cleverly animated to cascade slowly through a number of appetizing colors.");
 	if(flags["MET_YAMMI"] == undefined) output("\n\nWell, maybe it’s worth checking out! After all, if anyone deserves a cool treat it’s a brave space explorer, risking life and limb day after day!");
+	if(flags["KAEDE_FUCKED"] != undefined && flags["KAEDE_FUCKED"] > 0 && flags["KAEDE_NT_ENCOUNTER"] == undefined)
+	{
+		kaedeThreeSomesOrSpawnOrSomethingCassTits();
+		return true;
+	}
 	return false;
 }
 
