@@ -5126,7 +5126,7 @@ package classes {
 				else sBuilder += " ";
 			}
 			//Pregnant Stuff - 25% chance (note there's a 25% chance of occurring with belly size for 50% total)
-			else if(isPregnant() && (rand(2) == 0 || bForceSize))
+			else if(isPregnant() && pregDescripts.length > 0 && (rand(2) == 0 || bForceSize))
 			{
 				sBuilder += pregDescripts[rand(pregDescripts.length)] + " ";
 			}
