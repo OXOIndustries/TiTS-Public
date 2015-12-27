@@ -6079,6 +6079,17 @@ public function displayEncounterLog(showID:String = "All"):void
 			if(flags["ANNOxKAEDE_INTRODUCED"] != undefined) output2(", Seen with Anno");
 			if(flags["PUPPYSLUTMAS_2014"] != undefined) output2(", Seen on Ausaril");
 			if(flags["KAEDE_MYRELLION_ENCOUNTER"] != undefined) output2(", Seen on Myrellion");
+			if(flags["KAEDE_NT_ENCOUNTER"] != undefined)
+			{
+				output2("\n<b>* Kaede, New Texas Encounter:</b>");
+				if(flags["HUNG_WITH_KAEDE_AFTER_MEETING_CASS"] != undefined) output2(" Hung out with her and Cass");
+				else if(flags["SEXED_CASS"] != undefined)
+				{
+					output2(" Sexed Cass");
+					if(flags["PUT_LOAD_IN_CASS"] != undefined) output2(" and came inside her");
+				}
+				else output2(" Met with her and Cass");
+			}
 			if(flags["KAEDE_FUCKED"] != undefined) output2("\n<b>* Kaede, Times Sexed: </b>" + flags["KAEDE_FUCKED"]);
 			roamCount++;
 		}
