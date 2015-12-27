@@ -917,6 +917,7 @@ public function wentDrinkingWithKaedeAfterMeetingCass():void
 	//[Next]
 	flags["HUNG_WITH_KAEDE_AFTER_MEETING_CASS"] = 1;
 	processTime(15);
+	restHeal();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1060,6 +1061,7 @@ public function inviteKaedeToCassFuck():void
 	output("\n\nWhich two choice offers on the table, which of your lascivious lovers do you choose to grace with your climax?");
 	processTime(17);
 	pc.lust(100);
+	IncrementFlag("KAEDE_FUCKED");
 	//[Kaede’s Ass] [Cass’s Cunt]
 	clearMenu();
 	addButton(0,"Kaede's Ass",cumInKaedesAssDuringCassThreesome,undefined,"Kaede's Ass","Bust your nut in Kaede’s asshole. Cass wasn’t kidding: this little ginger sweetheart’s got the kind of ass you can only dream about!");
