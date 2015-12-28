@@ -21,6 +21,11 @@ package classes.UIComponents.SideBarComponents
 		public function get lust():SingleCompressedStatBar { return _lustBar; }
 		public function get energy():SingleCompressedStatBar { return _energyBar; }
 		
+		public function set bustVisible(v:Boolean):void
+		{
+			shield.bustVisible = hp.bustVisible = lust.bustVisible = energy.bustVisible = v;
+		}
+		
 		public function CompressedStatBars() 
 		{
 			addEventListener(Event.ADDED_TO_STAGE, init);

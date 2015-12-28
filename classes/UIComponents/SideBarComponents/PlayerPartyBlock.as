@@ -31,6 +31,11 @@ package classes.UIComponents.SideBarComponents
 				_characterDisplays.push(t);
 				t.y = (i * t.height) + (3 * i);
 			}
+			
+			_characterDisplays[0].bustVisible = false;
+			_characterDisplays[1].setBust("MYR_RED_GUARD");
+			_characterDisplays[2].setBust("MYR_RED_GUARD");
+			_characterDisplays[3].setBust("MYR_RED_GUARD");
 		}
 		
 	}

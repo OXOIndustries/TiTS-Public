@@ -23,6 +23,28 @@ package classes.UIComponents.SideBarComponents
 		private var _valueDisplay:TextField;
 		private var _valueGlow:GlowFilter;
 		
+		private var _currentMaxWidth:Number;
+		
+		private var _currentValue:Number;
+		private var _targetValue:Number;
+		private var _maxValue:Number;
+		
+		private var _animSpeed:Number = 0.3;
+		
+		public function set bustVisible(v:Boolean):void
+		{
+			if (v == false)
+			{
+				_currentMaxWidth = 194;
+				_valueDisplay.width = 194;
+			}
+			else
+			{
+				_currentMaxWidth = 124;
+				_valueDisplay.width = 124;
+			}
+		}
+		
 		public function get labelText():String
 		{
 			return _labelBack.text;
@@ -35,17 +57,58 @@ package classes.UIComponents.SideBarComponents
 		
 		public function setValue(v:Number, max:Number):void
 		{
-			_valueDisplay.text = String(v);
-			_bar.width = _mask.width = Math.max(0, Math.min((124 / max) * v, 124));
+			_targetValue = v;
+			_maxValue = max;
+		}
+		
+		public function UpdateValueDisplay():void
+		{
+			_valueDisplay.text = String(Math.round(_currentValue));
+			_bar.width = _mask.width = Math.max(0, Math.min((_currentMaxWidth / _maxValue) * _currentValue, _currentMaxWidth));
 		}
 		
 		public function EndAnimation():void
 		{
-			// TODO
+			_currentValue = _targetValue;
+		}
+		
+		private function animateBar(e:Event):void
+		{
+			if (_currentValue != _targetValue)
+			{
+				if (_currentValue < _targetValue)
+				{
+					if (_currentValue + _animSpeed > _targetValue)
+					{
+						_currentValue = _targetValue;
+					}
+					else
+					{
+						_currentValue += _animSpeed;
+					}
+				}
+				else
+				{
+					if (_currentValue - _animSpeed < _targetValue)
+					{
+						_currentValue = _targetValue;
+					}
+					else
+					{
+						_currentValue -= _animSpeed;
+					}
+				}
+				
+				UpdateValueDisplay();
+			}
 		}
 		
 		public function SingleCompressedStatBar() 
 		{
+			_currentMaxWidth = 124;
+			_currentValue = 0;
+			_targetValue = 0;
+			_maxValue = 100;
 			addEventListener(Event.ADDED_TO_STAGE, init);
 		}
 		
@@ -53,6 +116,7 @@ package classes.UIComponents.SideBarComponents
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			Build();
+			addEventListener(Event.ENTER_FRAME, animateBar);
 		}
 		
 		private function Build():void

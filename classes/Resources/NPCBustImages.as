@@ -65,20 +65,20 @@
 			return null;
 		}
 		
-		private static function lookupBoundsInClass(bustName:String, targetClass:Object, nudeMode:Boolean):Class
+		private static function lookupBoundsInClass(bustName:String, targetClass:Object, nudeMode:Boolean):Rectangle
 		{
-			if ("Bounds_" + bustName in targetClass) return targetClass["Bust_" + bustName];
+			if ("Bounds_" + bustName in targetClass) return targetClass["Bounds_" + bustName];
 			
 			// If we're trying to find a nude version and we can't find it, look for a non-nude version
 			if (nudeMode == true)
 			{
-				if ("Bounds_" + bustName.split("_NUDE")[0] in targetClass) return targetClass["Bust_" + bustName.split("_NUDE")[0]];
+				if ("Bounds_" + bustName.split("_NUDE")[0] in targetClass) return targetClass["Bounds_" + bustName.split("_NUDE")[0]];
 			}
 			
 			// If we're trying to find the non-nude version and we can't find it...
 			if (nudeMode == false)
 			{
-				if ("Bounds_" + bustName + "_NUDE" in targetClass) return targetClass["Bust_" + bustName + "_NUDE"];
+				if ("Bounds_" + bustName + "_NUDE" in targetClass) return targetClass["Bounds_" + bustName + "_NUDE"];
 			}
 			
 			return null;

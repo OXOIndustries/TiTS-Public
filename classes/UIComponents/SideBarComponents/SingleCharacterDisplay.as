@@ -3,8 +3,12 @@ package classes.UIComponents.SideBarComponents
 	import classes.Creature;
 	import classes.StorageClass;
 	import classes.UIComponents.StatusEffectComponents.StatusEffectsDisplay;
+	import flash.display.Bitmap;
+	import flash.display.BitmapData;
+	import flash.display.Shape;
 	import flash.display.Sprite;
 	import flash.events.Event;
+	import flash.geom.Matrix;
 	import flash.geom.Rectangle;
 	import flash.text.TextField;
 	import classes.UIComponents.UIStyleSettings;
@@ -28,6 +32,26 @@ package classes.UIComponents.SideBarComponents
 		private var _loadedBustIdx:String;
 		private var _statBars:CompressedStatBars;
 		private var _statusEffects:StatusEffectsDisplay;
+		
+		private var _bustVisible:Boolean = true;
+		
+		public function set bustVisible(v:Boolean):void
+		{
+			if (v != _bustVisible)
+			{
+				_bustImage.visible = _statBars.bustVisible = v;
+				if (_leftAlign)
+				{
+					_bustImage.x = 0;
+					_statBars.x = _bustImage.x + _bustImage.width + 1;
+				}
+				else
+				{
+					_statBars.x = 5;
+					_bustImage.x = _statBars.x + _statBars.width + 1;
+				}
+			}
+		}
 		
 		/**
 		 * Update animates value changes from the current.
@@ -62,23 +86,49 @@ package classes.UIComponents.SideBarComponents
 		public function setBust(bustIdx:String):void
 		{
 			if (_loadedBustIdx && _loadedBustIdx == bustIdx) return; // already set, abort to avoid heavy pixel copies
+			_loadedBustIdx = bustIdx;
 			
-			var bounds:Rectangle;
+			// See if we can even get the bust
+			var bustT:Class = NPCBustImages.getBust(bustIdx);
+			
+			// No bust? Hide the element entirely and resize everything to fit
+			if (bustT == null)
+			{
+				bustVisible = false;
+				return;
+			}
+			
+			// We've got a bust, make sure the containing element is available
+			bustVisible = true;
 			
 			// Check to see if there IS an available configured bounds for this bust
-			bounds = NPCBustImages.getBounds(bustIdx);
+			var bounds:Rectangle = NPCBustImages.getBounds(bustIdx);
+			
+			// Clamp the bounds so that it'll jive with the area we're gonna display this thing at
+			
+			var bustObj:Bitmap = new bustT();
+			bustObj.smoothing = true;
 			
 			// If bounds IS available, we need to display a subportion of the bust image within the target
 			if (bounds != null)
 			{
-				
+				var region:Shape = new Shape();
+				region.graphics.beginBitmapFill(bustObj.bitmapData, new Matrix(1, 0, 0, 1, -bounds.x, -bounds.y), false, true);
+				region.graphics.drawRect(0, 0, bounds.width, bounds.height);
+				region.graphics.endFill();
+				_bustImage.removeChildren();
+				_bustImage.addChild(region);
+				region.x = region.y = 1;
 			}
 			// If bounds is null, display the whole image scaled to fit our target.
 			else
 			{
-				
+				bustObj.width = 68;
+				bustObj.height = 63;
+				_bustImage.removeChildren();
+				_bustImage.addChild(bustObj);
+				bustObj.x = bustObj.y = 1;
 			}
-			
 		}
 		
 		public function SingleCharacterDisplay(alignment:String = "left") 
