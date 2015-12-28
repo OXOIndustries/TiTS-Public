@@ -695,6 +695,57 @@ package classes.UIComponents
 			return UIStyleSettings._gSmallStatBarValueFormat;
 		}
 		
+		private static var _gCompressedStatBarBackTextFormat:TextFormat;
+		public static function get gCompressedStatBarBackTextFormat():TextFormat
+		{
+			if (UIStyleSettings._gCompressedStatBarBackTextFormat == null)
+			{
+				_gCompressedStatBarBackTextFormat = new TextFormat();
+				_gCompressedStatBarBackTextFormat.size = 18;
+				_gCompressedStatBarBackTextFormat.color = gBackgroundColour;
+				_gCompressedStatBarBackTextFormat.align = TextFormatAlign.LEFT;
+				_gCompressedStatBarBackTextFormat.leading = -5;
+				_gCompressedStatBarBackTextFormat.kerning = true;
+				_gCompressedStatBarBackTextFormat.bold = false;
+				_gCompressedStatBarBackTextFormat.font = "Univers UltraCondensed";
+			}
+			return UIStyleSettings._gCompressedStatBarBackTextFormat;
+		}
+		
+		private static var _gCompressedStatBarFrontTextFormat:TextFormat;
+		public static function get gCompressedStatBarFrontTextFormat():TextFormat
+		{
+			if (UIStyleSettings._gCompressedStatBarFrontTextFormat == null)
+			{
+				_gCompressedStatBarFrontTextFormat = new TextFormat();
+				_gCompressedStatBarFrontTextFormat.size = 18;
+				_gCompressedStatBarFrontTextFormat.color = gForegroundColour;
+				_gCompressedStatBarFrontTextFormat.align = TextFormatAlign.LEFT;
+				_gCompressedStatBarFrontTextFormat.leading = -5;
+				_gCompressedStatBarFrontTextFormat.kerning = true;
+				_gCompressedStatBarFrontTextFormat.font = "Univers UltraCondensed";
+			}
+			return UIStyleSettings._gCompressedStatBarFrontTextFormat;
+		}
+		
+		private static var _gCompressedStatBarValueTextFormat:TextFormat;
+		public static function get gCompressedStatBarValueTextFormat():TextFormat
+		{
+			if (UIStyleSettings._gCompressedStatBarValueTextFormat == null)
+			{
+				_gCompressedStatBarValueTextFormat = new TextFormat();
+				_gCompressedStatBarValueTextFormat.size = 15;
+				_gCompressedStatBarValueTextFormat.color = 0xFFFFFF;
+				_gCompressedStatBarValueTextFormat.align = TextFormatAlign.RIGHT;
+				_gCompressedStatBarValueTextFormat.leading = -3.5;
+				_gCompressedStatBarValueTextFormat.kerning = true;
+				_gCompressedStatBarValueTextFormat.bold = true;
+				_gCompressedStatBarValueTextFormat.font = "Lato";
+				
+			}
+			return UIStyleSettings._gCompressedStatBarValueTextFormat;
+		}
+		
 		private static var _gPerkHeaderLabelTextFormat:TextFormat;
 		public static function get gPerkHeaderLabelTextFormat():TextFormat
 		{

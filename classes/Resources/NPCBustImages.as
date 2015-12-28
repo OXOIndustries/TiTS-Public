@@ -2,6 +2,7 @@
 {
 	import classes.GameData.GameOptions;
 	import classes.kGAMECLASS;
+	import flash.geom.Rectangle;
 	import flash.utils.getDefinitionByName
 	import classes.Resources.Busts.*;
 	/**
@@ -41,6 +42,45 @@
 				if (tBust != null) return tBust;
 			}
 						
+			return null;
+		}
+		
+		public static function getBounds(bustName:String):Rectangle
+		{
+			var opts:GameOptions = kGAMECLASS.gameOptions;
+			if (opts.bustsEnabled == false) return null;
+			
+			var bounds:Rectangle;
+			var doNude:Boolean = false;
+			if (bustName.indexOf("_NUDE") != -1) doNude = true;
+			
+			bounds = lookupBoundsInClass(bustName, NPCBustImages.OVERRIDES, doNude);
+			if (bounds != null) return bounds;
+			
+			for (var i:int = 0; i < kGAMECLASS.gameOptions.bustPriority.length; i++)
+			{
+				bounds = lookupBoundsInClass(bustName, NPCBustImages[opts.bustPriority[i]], doNude);
+				if (bounds != null) return bounds;
+			}
+			return null;
+		}
+		
+		private static function lookupBoundsInClass(bustName:String, targetClass:Object, nudeMode:Boolean):Class
+		{
+			if ("Bounds_" + bustName in targetClass) return targetClass["Bust_" + bustName];
+			
+			// If we're trying to find a nude version and we can't find it, look for a non-nude version
+			if (nudeMode == true)
+			{
+				if ("Bounds_" + bustName.split("_NUDE")[0] in targetClass) return targetClass["Bust_" + bustName.split("_NUDE")[0]];
+			}
+			
+			// If we're trying to find the non-nude version and we can't find it...
+			if (nudeMode == false)
+			{
+				if ("Bounds_" + bustName + "_NUDE" in targetClass) return targetClass["Bust_" + bustName + "_NUDE"];
+			}
+			
 			return null;
 		}
 		

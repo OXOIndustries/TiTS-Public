@@ -5,9 +5,11 @@ package classes.UIComponents.SideBarComponents
 	import classes.UIComponents.StatusEffectComponents.StatusEffectsDisplay;
 	import flash.display.Sprite;
 	import flash.events.Event;
+	import flash.geom.Rectangle;
 	import flash.text.TextField;
 	import classes.UIComponents.UIStyleSettings;
 	import flash.text.AntiAliasType;
+	import classes.Resources.NPCBustImages;
 	/**
 	 * ...
 	 * @author Gedan
@@ -23,8 +25,61 @@ package classes.UIComponents.SideBarComponents
 		private var _nameUnderline:Sprite;
 		
 		private var _bustImage:Sprite;
+		private var _loadedBustIdx:String;
 		private var _statBars:CompressedStatBars;
 		private var _statusEffects:StatusEffectsDisplay;
+		
+		/**
+		 * Update animates value changes from the current.
+		 * @param	char
+		 */
+		public function UpdateFromCharacter(char:Creature):void
+		{
+			_nameHeader.text = (char.uniqueName && char.uniqueName.length > 0 ? char.uniqueName : char.short);
+			
+			_statBars.shield.setValue(char.shields(), char.shieldsMax());
+			_statBars.hp.setValue(char.HP(), char.HPMax());
+			_statBars.lust.setValue(char.lust(), char.lustMax());
+			_statBars.energy.setValue(char.energy(), char.energyMax());
+			_statusEffects.updateDisplay(char.statusEffects);
+			
+			setBust(char.bustDisplay);
+		}
+		
+		/**
+		 * Set sets initial values and then forcibly skips animations.
+		 * @param	char
+		 */
+		public function SetFromCharacter(char:Creature):void
+		{
+			UpdateFromCharacter(char);
+			_statBars.shield.EndAnimation();
+			_statBars.hp.EndAnimation();
+			_statBars.lust.EndAnimation();
+			_statBars.energy.EndAnimation();
+		}
+		
+		public function setBust(bustIdx:String):void
+		{
+			if (_loadedBustIdx && _loadedBustIdx == bustIdx) return; // already set, abort to avoid heavy pixel copies
+			
+			var bounds:Rectangle;
+			
+			// Check to see if there IS an available configured bounds for this bust
+			bounds = NPCBustImages.getBounds(bustIdx);
+			
+			// If bounds IS available, we need to display a subportion of the bust image within the target
+			if (bounds != null)
+			{
+				
+			}
+			// If bounds is null, display the whole image scaled to fit our target.
+			else
+			{
+				
+			}
+			
+		}
 		
 		public function SingleCharacterDisplay(alignment:String = "left") 
 		{
@@ -104,23 +159,6 @@ package classes.UIComponents.SideBarComponents
 			_statusEffects.childSpacing = 3;
 			_statusEffects.targetWidth = 200;
 			addChild(_statusEffects);
-			
-			// Testing shit for SEs
-			var effects:Array = []
-			
-			for (var i:int = 0; i < 10; i++)
-			{
-				var te:StorageClass = new StorageClass();
-				te.hidden = false;
-				te.iconName = "Icon_Confused";
-				te.minutesLeft = 60;
-				te.storageName = "Test Effect " + i;
-				te.tooltip = "This is a test effect.";
-				
-				effects.push(te);
-			}
-			
-			_statusEffects.updateDisplay(effects);
 		}
 	}
 
