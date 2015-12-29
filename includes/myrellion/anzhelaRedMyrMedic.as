@@ -14,7 +14,7 @@ public function showAnzhela(nude:Boolean = false):void
 public function hospitalShit():Boolean
 {
 	output("You’re standing in a busy looking hospital filled with white cotton beds and draw curtains. Busy medical staff bustle back and forth, taking patients charts, checking supplies, and administering pain relief. Even though the architecture is scarred by conflict like everywhere else, the smell of disinfectant lingers here, and everyone’s wearing sterile gloves.");
-	output("\n\nThere’s both red and gold myr patients here, being treated equally. A large banner hangs from the wall–white with a red lotus-looking flower. If you had to hazard a guess, it looks like the Scarlet Federation’s version of a Red Cross.");
+	output("\n\nThere are both red and gold myr patients here, being treated equally. A large banner hangs from the wall–white with a red lotus-looking flower. If you had to hazard a guess, it looks like the Scarlet Federation’s version of a Red Cross.");
 	//Met Anzhela:
 	if(flags["MET_ANZHELA"] != undefined) 
 	{
@@ -84,7 +84,7 @@ public function approachAnzhela():void
 		//Have Found Pod:
 		if(reclaimedProbeMyrellion()) output(", particularly with");
 		//Else Still Searching:
-		else (". I’d be careful about searching around these parts, though. There are");
+		else (". I’d be careful about searching around these parts, though. There’s");
 		output(" landmines all over, harmful spore plants, and nyrea running wild.”</i>");
 
 		output("\n\nAnzhela then gestures to her injured patients, some with swollen bellies and others wrapped in bandages. <i>“There’s beds to spare since the cease-fire, but I’d prefer not to see you get hurt, especially if you’ve come all this way to our planet.”</i>");
@@ -324,7 +324,7 @@ public function talkToAnzhelaAboutAddiction():void
 	output("\n\nYou ask her what policies she’s referring to. Solemnly, she puts down her cup, and clasps her hands on her lap.");
 	output("\n\n<i>“... Well, early on, High Command were looking for ways to capitalize on our knowledge of medicine to augment our troops. Back home, they cooked up a bunch of different steroids and performance enhancers, and had us dole them out to select groups of soldiers.”</i>");
 	output("\n\n<i>“At the time, the drugs seemed safe. Beneficial, even. But something that seems harmless can have very detrimental long term effects. For instance, one performance enhancer, Blaze, made our soldiers able to fight for three days straight and remain highly alert. The benefits to front-line soldiers were obvious.”</i>");
-	output("\n\n<i>“However, Blaze was also highly addictive. It made soldiers edgy and </i>too<i> alert. We stopped using it years ago, but we’re still picking up the pieces,”</i> she sighs. <i>“There’s still drugs we’re ordered to prescribe to soldiers.”</i>");
+	output("\n\n<i>“However, Blaze was also highly addictive. It made soldiers edgy and </i>too<i> alert. We stopped using it years ago, but we’re still picking up the pieces,”</i> she sighs. <i>“Yet, there’s drugs we’re ordered to prescribe to soldiers.”</i>");
 	output("\n\n<i>“A lot of them we don’t know the long term effects. Of course, the worst addiction by far is the one we endorse the most - ourselves.”</i>");
 	// Return to ‘Her Work’ Talk Menu.
 	processTime(4);
@@ -342,10 +342,10 @@ public function talkToAnzhelaAboutAlterants():void
 	output("\n\n<i>“Most of them are body enhancers, which increases muscle growth and physical strength - anything to give us an edge against the Golds.”</i>");
 	output("\n\nYou ask her why the army is liberally using the treatments. She mournfully smiles.");
 	output("\n\n<i>“... Because ‘if we don’t do it, the golds will’, of course. That, and a regular user of body enhancers can be a truly terrifying thing. With that many steroids coursing through them, they’re terrifyingly strong and fly into a rage at the brush of an antennae. It’s one of the reasons we have reinforced restraints on hand here.”</i>");
-	output("\n\nYou ask where these chemicals come from. Even though the Federation seems to have decent medical technology, having any kind of transformatives seems beyond them. After all, they’re still using powder rifles and bi-planes!");
-	output("\n\n<i>“Honestly? The whole thing is rather secretive,”</i> Anzhela honestly answers, a worried look on her face. <i>“Even though I administer the drugs, I only know very little about the whole thing,”</i> she shrugs, then continues, <i>“Rumor is that early in the war, there were rumors about facilities where transformative treatments were being tested on volunteers, some kind of project to create the ‘perfect myr soldier’. Word is the results were impressive, but nothing like the technology your peoples display.”</i>");
+	output("\n\nYou ask where these chemicals come from. Even though the Federation seems to have decent medical technology, having any kind of transformatives is probably beyond them. After all, they’re still using powder rifles and bi-planes!");
+	output("\n\n<i>“Honestly? The whole thing is rather secretive,”</i> Anzhela openly answers, a worried look on her face. <i>“Even though I administer the drugs, I only know very little about the whole thing,”</i> she shrugs, then continues, <i>“Rumor is that early in the war, there were stories about facilities where transformative treatments were being tested on volunteers, some kind of project to create the ‘perfect myr soldier’. Word is the results were impressive, but nothing like the technology your peoples display.”</i>");
 	// JimNote: Captain Antmerica! I’m leaving an opening for someone to have fun with this. :3
-	output("\n\n<i>“Apparently the offshoots of those experiments are the drugs we use today. The list of side effects is still hideously long, yet we’re still authorized–no, encouraged–to administer them. Rumor is that some company called ‘Xenogen’ slipped the Federation a ‘how-to’ guide on genetic manipulation in exchange for... </i>something<i>.”</i> She shrugs again and sips her scova. <i>“...Could be scuttlebutt, though, so make of that what you will.”</i>");
+	output("\n\n<i>“Apparently the offshoots of those experiments are the drugs we use today. The list of side effects is still hideously long, yet we’re still authorized – no, encouraged – to administer them. It’s said that some company called ‘Xenogen’ slipped the Federation a ‘how-to’ guide on genetic manipulation in exchange for... </i>something<i>.”</i> She shrugs again and sips her scova. <i>“...Could be scuttlebutt, though, so make of that what you will.”</i>");
 	// Return to ‘Her Work’ Talk Menu.
 	processTime(4);
 	clearMenu();
@@ -929,7 +929,7 @@ public function vaginalHikeNFuck():void
 
 	output("\n\nYou stay buried inside of her for a while and relish in her slick muscles twitching and squeezing your sensitive prick. After a little while you pull out of her sloppy slit. The female doctor looks gloriously ravaged - curly hair wild, skirt hiked up, collapsed face-first on the bed ");
 	if(cum >= 25) output("with [pc.cum] leaking from her well-fucked pussy ");
-	output("- there really is no more glorious sight.");
+	output("- there really is no more glorious a sight.");
 	if(cum >= 25 && cum < 3000) output(" Your spunk pools into her now stretched panties and stains them with your seed.");
 	if(cum >= 3000) output(" The moment she’s unplugged, streams of your spunk pour out of her parted pussy lips. Her lacy panties are utterly drenched as a pool spreads between her shaking lace-covered legs.");
 
