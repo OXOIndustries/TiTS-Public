@@ -112,7 +112,7 @@
 
 		[Embed(source = "../../../assets/images/npcs/jacques00/myr_red_guard.png", mimeType = "image/png")]
 		public var Bust_MYR_RED_GUARD:Class;
-		public var Bounds_MYR_RED_GUARD:Rectangle = new Rectangle(34, 10, 61, 63);
+		public var Bounds_MYR_RED_GUARD:Rectangle = new Rectangle(34, 10, 75, 75);
 		
 		[Embed(source = "../../../assets/images/npcs/jacques00/myr_red_guard_mask.png", mimeType = "image/png")]
 		public var Bust_MYR_RED_GUARD_MASK:Class;

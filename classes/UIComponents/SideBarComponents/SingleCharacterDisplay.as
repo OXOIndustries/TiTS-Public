@@ -9,6 +9,7 @@ package classes.UIComponents.SideBarComponents
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.geom.Matrix;
+	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import flash.text.TextField;
 	import classes.UIComponents.UIStyleSettings;
@@ -29,12 +30,13 @@ package classes.UIComponents.SideBarComponents
 		private var _nameUnderline:Sprite;
 		
 		private var _bustImage:Sprite;
+		private var _targetBustSize:Point = new Point(68, 63);
 		private var _loadedBustIdx:String;
 		private var _statBars:CompressedStatBars;
 		private var _statusEffects:StatusEffectsDisplay;
 		
 		private var _bustVisible:Boolean = true;
-		
+
 		public function set bustVisible(v:Boolean):void
 		{
 			if (v != _bustVisible)
@@ -119,6 +121,20 @@ package classes.UIComponents.SideBarComponents
 				_bustImage.removeChildren();
 				_bustImage.addChild(region);
 				region.x = region.y = 1;
+				
+				// Resize the element itself so it'll fit in the area we want
+				if (bounds.width != _targetBustSize.x || bounds.height != _targetBustSize.y)
+				{
+					var scaleX:Number = (_targetBustSize.x) / bounds.width;
+					var scaleY:Number = (_targetBustSize.y) / bounds.height;
+					
+					var tScale:Number = Math.min(scaleX, scaleY);
+					region.scaleX = region.scaleY = tScale;
+					
+					// Center it
+					region.x = ((_targetBustSize.x - region.width) / 2) + 1;
+					region.y = ((_targetBustSize.y - region.height) / 2) + 1;
+				}
 			}
 			// If bounds is null, display the whole image scaled to fit our target.
 			else
@@ -179,11 +195,11 @@ package classes.UIComponents.SideBarComponents
 			_bustImage = new Sprite();
 			
 			_bustImage.graphics.beginFill(UIStyleSettings.gHighlightColour);
-			_bustImage.graphics.drawRect(0, 0, 70, 65);
+			_bustImage.graphics.drawRect(0, 0, _targetBustSize.x + 2, _targetBustSize.y + 2);
 			_bustImage.graphics.endFill();
 			
 			_bustImage.graphics.beginFill(UIStyleSettings.gBackgroundColour);
-			_bustImage.graphics.drawRect(1, 1, 68, 63);
+			_bustImage.graphics.drawRect(1, 1, _targetBustSize.x, _targetBustSize.y);
 			_bustImage.graphics.endFill();
 			
 			_bustImage.y = _nameUnderline.y;
