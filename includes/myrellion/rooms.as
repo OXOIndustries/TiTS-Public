@@ -1387,11 +1387,26 @@ public function initializeMyrellionRooms():void
 	rooms["826"].planet = "PLANET: MYRELLION";
 	rooms["826"].westExit = "822";
 	rooms["826"].eastExit = "819";
+	rooms["826"].northExit = "KRESSIA MEDICAL";
 	rooms["826"].moveMinutes = 2;
 	rooms["826"].runOnEnter = kressiaBasicBonusBitches;
 	rooms["826"].addFlag(GLOBAL.INDOOR);
 	rooms["826"].addFlag(GLOBAL.PUBLIC);
 	rooms["826"].addFlag(GLOBAL.CAVE);
+
+	//Fallen Statue
+	rooms["KRESSIA MEDICAL"] = new RoomClass(this);
+	rooms["KRESSIA MEDICAL"].roomName = "KRESSIA\nMEDICAL";
+	rooms["KRESSIA MEDICAL"].description = "";
+	rooms["KRESSIA MEDICAL"].system = "SYSTEM: SINDATHU";
+	rooms["KRESSIA MEDICAL"].planet = "PLANET: MYRELLION";
+	rooms["KRESSIA MEDICAL"].westExit = "";
+	rooms["KRESSIA MEDICAL"].southExit = "826";
+	rooms["KRESSIA MEDICAL"].moveMinutes = 2;
+	rooms["KRESSIA MEDICAL"].runOnEnter = hospitalShit;
+	rooms["KRESSIA MEDICAL"].addFlag(GLOBAL.INDOOR);
+	rooms["KRESSIA MEDICAL"].addFlag(GLOBAL.PUBLIC);
+	rooms["KRESSIA MEDICAL"].addFlag(GLOBAL.NPC);
 
 	//827 - tradin' poast
 	rooms["827"] = new RoomClass(this);
