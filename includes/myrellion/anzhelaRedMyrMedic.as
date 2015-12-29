@@ -42,7 +42,7 @@ public function approachAnzhela():void
 	{
 		output("Asking around about who is in charge, you’re pointed to a tall, svelte myr woman who is examining a patient’s charts. It’s not hard to spot her from a distance. Her curly hair - tied up in a messy bun - is so red it’s positively rebellious.");
 		output("\n\nYou walk up just in time to hear the end of a conversation between the radically red-haired woman and the patient’s attending doctor.");
-		output("\n\n<i>“... She looks good. Discharge her with some ephacin for the nausea,”</i> the hospital administrator hands the attending the charts, then shoots the patient a brilliant smile,  <i>“Congratulations! Looks like you’re going to be getting out of here by the end of the day.”</i>");
+		output("\n\n<i>“... She looks good. Discharge her with some ephacin for the nausea,”</i> the hospital administrator hands the attending the charts, then shoots the patient a brilliant smile, <i>“Congratulations! Looks like you’re going to be getting out of here by the end of the day.”</i>");
 		output("\n\nAfter patting the patient’s hand, the head doctor strides in your direction. When she spots you, she stops in her tracks. She then pointedly tilts her half-frame glasses and shoots you a curious look.");
 		//if PC is red myr morph:
 		if(pc.race() == "red myr")
@@ -69,7 +69,7 @@ public function approachAnzhela():void
 			output("\n\n<i>“... Is that... an offworlder? Such interesting [pc.skinFurScalesColor] [pc.skinFurScalesNoun],”</i> she murmurs, though loud enough for you to hear.");
 		}
 		output("\n\nShe’s not the only one admiring the view. It’s hard not to notice her distinct womanly curves and magnificent stocking-clad legs. The straps of a garter belt travel up and disappear below her low-cut black skirt, and you feverishly fantasize about what wonders lie beneath.");
-		output("\n\nAs she crosses her arms, she presses up her pert C-cups, so well emphasised by her low cut top and framing black-lace bra. A stethoscope is hanging around her neck, both ends resting upon those brilliant swells.");
+		output("\n\nAs she crosses her arms, she presses up her pert C-cups, so well emphasized by her low cut top and framing black-lace bra. A stethoscope is hanging around her neck, both ends resting upon those brilliant swells.");
 		output("\n\nYou imagine there’s a tangible rise in her patients’ pulse rates whenever she leans over. Her long white lab coat covers half her body, adding to the mystery. The scarlet-haired doctor reaches out a gloved hand to warmly shake yours.");
 		output("\n\n<i>“Welcome to Kressia. I’m Anzhela, the chief medical officer overseeing this aid facility. Here for a check-up, or just got a desire to wander through the middle of a war zone?”</i> she jokes.");
 		output("\n\nFirst, you introduce yourself, then you explain why you’re here; that you’re ");
@@ -77,16 +77,15 @@ public function approachAnzhela():void
 		if(InCollection(pc.race(), "myr", "red myr", "gold myr", "orange myr")) output("actually an alien explorer");
 		else output("an explorer");
 		//Haven’t found pod:
-		if(flags["UVETO_UNLOCKED"] == undefined) output(" in search of a pod");
+		if(!reclaimedProbeMyrellion()) output(" in search of a pod");
 		else output(" who came looking for a pod");
 		output(" left on Myrellion by your late father. Anzhela attentively listens, even looking a little bit sympathetic at your loss.");
+		output("\n\n<i>“Ah, well, that makes sense. I can’t imagine anyone being out here if they could help it");
 		//Have Found Pod:
-		if(flags["UVETO_UNLOCKED"] == 1)
-		{
-			output("\n\n<i>“Ah, well, that makes sense. I can’t imagine anyone being out here if they could help it, particularly with landmines all over, harmful spore plants, and nyrea running wild. <i>“");
-		}
+		if(reclaimedProbeMyrellion()) output(", particularly with");
 		//Else Still Searching:
-		else output("\n\n<i>“Ah, well, that makes sense. I can’t imagine anyone being out here if they could help it.  I’d be careful about searching around these parts, though.  There’s landmines all over, harmful spore plants, and nyrea running wild.”</i>");
+		else (". I’d be careful about searching around these parts, though. There are");
+		output(" landmines all over, harmful spore plants, and nyrea running wild.”</i>");
 
 		output("\n\nAnzhela then gestures to her injured patients, some with swollen bellies and others wrapped in bandages. <i>“There’s beds to spare since the cease-fire, but I’d prefer not to see you get hurt, especially if you’ve come all this way to our planet.”</i>");
 
@@ -156,7 +155,7 @@ public function appearanceAnzhela():void
 	output("\n\nFurther down, her plush wine-red lips are difficult not to notice. Much like the alcoholic beverage they resemble, they hold the promise of subtle, mature flavor and intoxicating delights.");
 	output("\n\nLooking down, a black stethoscope hangs around her neck, both ends resting atop the swells of her C-cup breasts. Her low cut top is lightly undone, giving you a glimpse at her black lace bra and beautifully formed breasts.");
 	output("\n\nHer slender legs are covered by dark stockings with patterned lace lining. They’re clearly connected to a garter belt hidden under that dark, tightly fitting skirt of hers.");
-	output("\n\nShe wears a lab coat over her entire  ensemble with the marking of her rank - Chief Medical Officer - emblazoned on her chest. There are also patches and ribbons, the former declaring her specialities in combat medicine and psychiatry, the latter her veteran status.");
+	output("\n\nShe wears a lab coat over her entire ensemble with the marking of her rank - Chief Medical Officer - emblazoned on her chest. There are also patches and ribbons, the former declaring her specialities in combat medicine and psychiatry, the latter her veteran status.");
 	output("\n\nOn her arm is a patch with a red lotus and a pale backdrop. Written underneath is a motto: <i>“Caring Is Our Calling”</i>.");
 	anzhelaMenu();
 	addDisabledButton(0, "Appearance", "Appearance", "You just did that.");
@@ -283,7 +282,7 @@ public function painManagementAnzhela():void
 	output("\n\nThe chief doctor clicks her tongue and looks at you with a wistful smile. <i>“If only. Unfortunately, you off-worlders are a lot further along in medical science.”</i>");
 	output("\n\n<i>“We’re still sewing up wounds and hoping the body heals by itself, instead of regrowing or replacing limbs. Because of that, there’s residual pain that needs to be managed.”</i>");
 	output("\n\nYou ask how they manage that. After all, dealing with daily pain must be quite a chore.");
-	output("\n\n<i>“Usually we prescribe a lot of Rubalim, a synthesized version of our venom which numbs the patient and gives them a sense of euphoric bliss,”</i> she taps the side of her  cup, <i>“It lacks a lot of the side effects of undiluted venom, but it’s no less addictive.”</i>");
+	output("\n\n<i>“Usually we prescribe a lot of Rubalim, a synthesized version of our venom which numbs the patient and gives them a sense of euphoric bliss,”</i> she taps the side of her cup, <i>“It lacks a lot of the side effects of undiluted venom, but it’s no less addictive.”</i>");
 	output("\n\n<i>“Girls who habitually take it in the trenches call it ‘Ruby’.”</i>");
 	output("\n\nYou try to get your head around the idea of constant and perilous pain management, coming from a society where even critical injuries can be fixed up by a nursedroid. You state as much, sipping your scova.");
 	output("\n\n<i>“Hum, yes. Honestly, I’d love to learn more about off-world medicine, but it’s all part of the bartering process - or should I say negotiations - with your U.G.C ambassadors and this ‘Xenogen’.”</i>");
@@ -378,7 +377,7 @@ public function talkToAnzelaAboutFMarshal():void
 	clearOutput();
 	showAnzhela();
 	output("You observe that the CMO looked a little on edge at the mention of Field Marshal Sellera.");
-	output("\n\nAnzhella’s expression looks strained. She presses her fingers against the sides of her cracked cup.");
+	output("\n\nAnzhela’s expression looks strained. She presses her fingers against the sides of her cracked cup.");
 	output("\n\n<i>“The Field Marshal is - well-she has a lot of zeal. I have no doubt she spends every waking moment thinking about how to wipe the Gilden Republic off the face of the planet,”</i> she carefully states, <i>“... And probably every gold myr, as well.”</i>");
 	output("\n\n<i>“I’ve met her for some checkups. She’s got a lot of scars from seven years of non-stop war, not all of them visible on the surface.”</i>");
 	output("\n\nYou ask Anzhela if she dislikes the Field Marshal. Her brow furrows. It takes her a while to respond.");
@@ -424,7 +423,7 @@ public function talkToAnzhelaAboutHerPast():void
 	output("\n\nShe taps the side of her teacup. <i>“... It’s been a long series of events. I mean, I’m from Esarra, and we don’t have a lot of doctors that far north. It’s a small mining town where everyone knows each other.”</i>");
 	output("\n\n<i>“My mother was a doctor and my father a nurse - their practice was attached to our house. I grew up seeing the injured walk through our doors and my parents fix them up.”</i>");
 	output("\n\n<i>“It was like magic to me - seeing my parents make people better and put a smile back on their faces. Pretty easy to see why I wanted to become a doctor, right?”</i>");
-	output("\n\nAnzhella lets out a long sigh and looks up at the ceiling. <i>“... I aced my tests and went to the capital to study medicine. I wanted to be a non-military doctor, but then the war started just as I graduated.”</i>");
+	output("\n\nAnzhela lets out a long sigh and looks up at the ceiling. <i>“... I aced my tests and went to the capital to study medicine. I wanted to be a non-military doctor, but then the war started just as I graduated.”</i>");
 	output("\n\n<i>“Only ex-military got a say in what happened then. I remember being so angry about it - I decided to join SCARMED for two reasons. One was to treat the many war-wounded that would need my help.”</i>");
 	output("\n\n<i>“The second was to be able to vote. My parents, even though they were upstanding citizens valued by their community, could never vote or take public office simply because they weren’t veterans.”</i>");
 	output("\n\n<i>“Maybe... maybe if more people had been able to vote...”</i> the doctor shakes her head, <i>“Sorry. None of that matters now, right? We are where we are.”</i>");
@@ -831,7 +830,7 @@ public function cowgirlWithAnzhela():void
 	else output("both tear off your clothes");
 	output(", and within moments you’re both naked and falling into the bed behind you. Everything is a mess of glorious kisses, moans, and soft skin.");
 
-	output("\n\nWhen you look up, you realise you’ve been straddled by the scarlet haired doctor, her soft and shapely spheres gloriously bared to your eyes alone. With flushing cheeks, she grabs your hands in her own, guiding them upwards with feverish urgency. They slide up her taut belly until they’re tickling the bottom of her brazenly formed breasts, cupping them sensuously from below.");
+	output("\n\nWhen you look up, you realize you’ve been straddled by the scarlet haired doctor, her soft and shapely spheres gloriously bared to your eyes alone. With flushing cheeks, she grabs your hands in her own, guiding them upwards with feverish urgency. They slide up her taut belly until they’re tickling the bottom of her brazenly formed breasts, cupping them sensuously from below.");
 	output("\n\n<i>“Do you like them–?”</i> Anzhela asks, looking down through her long, dark lashes; a rare moment of self-consciousness from the typically composed doctor. You genuinely nod, totally enraptured with them. With a cheeky grin, you reach out and pinch her dusky nipples, just the slightest tug drawing a sensuous moan from her plush, wine-red lips. Her naked loins brush against yours, and though you haven’t seen them yet, you <i>feel</i> the exquisite brushing of her naked womanhood rubbing against your already stiff shaft.");
 	output("\n\nWith each excited wiggle, her petal-like folds brush against your underside, drenching them in her ever-increasing slickness.");
 	output("\n\nDriven by your insatiable carnal need, you slide your hands around and grab her perfectly round ass, pushing her ");
@@ -913,7 +912,7 @@ public function vaginalHikeNFuck():void
 	output("\n\nHappy to indulge, you groan and passionately bury your [pc.cockHead " + x + "] deep inside of her hot, squeezing depths. ");
 	var cum:Number = pc.cumQ();
 	if(cum < 25) output("Tiny little spurts of your broiling, [pc.cumVisc] spunk shoot against the entrance to her eagerly awaiting womb. Even though you don’t cum much, just feeling you twitch and flex inside of her sets your lover off; her whole body quakes and warm jets of girl cum pool inside of her netherlips. Your pulsing prick is quickly wrapped in a titillatingly thermal sensation and, once you’re finished shooting your load, her lady juice floods around yours against and into your dilated dick-slit, filling it with a delicious tickling warmth.");
-	else if(cum < 1000) output("Slickly spurting your warm, [pc.cumVisc] spunk inside of her, you batter it deep against the entrance to her eagerly awaiting womb. Having you liberally spill your baby-batter inside of her sets your lover off;  her whole body quakes and warm jets of girl cum pool inside of her netherlips. Her sweet juices mix with your [pc.cumNoun] and wrap your pulsing prick in a titillatingly thermal sensation.");
+	else if(cum < 1000) output("Slickly spurting your warm, [pc.cumVisc] spunk inside of her, you batter it deep against the entrance to her eagerly awaiting womb. Having you liberally spill your baby-batter inside of her sets your lover off; her whole body quakes and warm jets of girl cum pool inside of her netherlips. Her sweet juices mix with your [pc.cumNoun] and wrap your pulsing prick in a titillatingly thermal sensation.");
 	//LargeCums:
 	else output("You liberally unload gigantic jets of warm, [pc.cumVisc] spunk inside of her, not only battering it deep inside of her but quickly filling up her eagerly awaiting womb until her belly lightly swells as if she’s pregnant. Feeling the pressure of you packing her pussy and stomach with your [pc.cumNoun] sets your lover off; her whole body quakes as she clings to her expanding belly, stocking-wrapped thighs quaking and quivering with orgasmic delight.");
 
