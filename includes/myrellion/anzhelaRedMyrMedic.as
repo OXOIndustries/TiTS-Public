@@ -242,7 +242,7 @@ public function talkToAnzhelaAboutHerWork():void
 	if(flags["MET_LIEVE"] != undefined)
 	{
 		output("\n\nYou think of the actual scout you found with her pants down just outside of Kressia. Does she mean literally, or...?");
-		output("\n\nNoticing the perplexed gaze in your eyes, Anzhela laughs and waves her hand dismissively, <i>“Oh, no, not with their pants </i>actually<i> down-not normally! I mean, that HAS happened, but it’s an exception, not the rule. Mostly when two scouts are fooling around, or going somewhere for private time. Usually the wound to their pride - or their embarrassment - hurts more than the injury!”</i>");
+		output("\n\nNoticing the perplexed gaze in your eyes, Anzhela laughs and waves her hand dismissively, <i>“Oh, no, not with their pants </i>actually<i> down - not normally! I mean, that HAS happened, but it’s an exception, not the rule. Mostly when two scouts are fooling around, or going somewhere for private time. Usually the wound to their pride - or their embarrassment - hurts more than the injury!”</i>");
 	}
 	output("\n\n<i>“Most of my time is taken up with pain management from old injuries, treating shell shock and addiction, and lately, administering transformatives.”</i>");
 	processTime(3);
@@ -361,7 +361,7 @@ public function talkToAnzhelaAboutScarmed():void
 	output("\n\n<i>“Yes and no. SCARMED is the Federal Army’s healthcare organization, but not a Federal Army command,”</i> she explains between sips of her scova, <i>“We’re split into medical and nursing corps; a pretty simple setup, really.”</i>");
 	output("\n\n<i>“Under Surgeon-General Sasya, we’re assigned to different parts of the Federal Army. My chain of command is very different to the rank-and-file, though we all answer to the same people at the top. Though that’s changed a little since the new Field Marshal took command.”</i>");
 	output("\n\nAnzhela’s eyebrow twitches a little. Does she not like the current commander of Kressia’s armed forces?");
-	output("\n\n<i>“SCARMED has existed almost as long as the Federal Army itself. It’s not just made up of field medics and nurses; there’s also dentists, optometrists, psychiatrists, physical therapists, pharmacists, toxicologists, podiatrists-you name it.”</i>");
+	output("\n\n<i>“SCARMED has existed almost as long as the Federal Army itself. It’s not just made up of field medics and nurses; there’s also dentists, optometrists, psychiatrists, physical therapists, pharmacists, toxicologists, podiatrists - you name it.”</i>");
 	output("\n\n<i>“We’re as much for peace time as we are for war, though it’s hard to remember a time when we weren’t at war these days; either with the golds or the nyrea.”</i>");
 	// Topic unlocks ‘F. Marshal topic.
 	flags["ANZHELA_SCARMED_TALK"] = 1;
@@ -379,7 +379,7 @@ public function talkToAnzelaAboutFMarshal():void
 	showAnzhela();
 	output("You observe that the CMO looked a little on edge at the mention of Field Marshal Sellera.");
 	output("\n\nAnzhela’s expression looks strained. She presses her fingers against the sides of her cracked cup.");
-	output("\n\n<i>“The Field Marshal is - well-she has a lot of zeal. I have no doubt she spends every waking moment thinking about how to wipe the Gilden Republic off the face of the planet,”</i> she carefully states, <i>“... And probably every gold myr, as well.”</i>");
+	output("\n\n<i>“The Field Marshal is - well - she has a lot of zeal. I have no doubt she spends every waking moment thinking about how to wipe the Gilden Republic off the face of the planet,”</i> she carefully states, <i>“... And probably every gold myr, as well.”</i>");
 	output("\n\n<i>“I’ve met her for some checkups. She’s got a lot of scars from seven years of non-stop war, not all of them visible on the surface.”</i>");
 	output("\n\nYou ask Anzhela if she dislikes the Field Marshal. Her brow furrows. It takes her a while to respond.");
 	output("\n\n<i>“... I think she and I have learned different lessons from this war. Suffering can make you kind, or it can make you cruel. She’s a product of this war as much as anyone else.”</i>");
@@ -684,7 +684,7 @@ public function analExam():void
 
 	output("\n\n<i>“Now push like you’re making a movement, and then relax. It’ll help me get it deeper,”</i> Anzhela urges you.");
 
-	output("\n\nDeeper-it’s not deep already? You tremble and clench your inner muscles as instructed, then relax. As soon as you do, the cool speculum shoots further up your rectum and you let out a trembling gasp.");
+	output("\n\nDeeper - it’s not deep already? You tremble and clench your inner muscles as instructed, then relax. As soon as you do, the cool speculum shoots further up your rectum and you let out a trembling gasp.");
 
 	output("\n\nSlowly and with great precision, Anzhela eases the speculum open inside of your rectum. You feel impossibly stretched open and your ass feels like it’s positively gaping; probably because it is!");
 
@@ -911,7 +911,7 @@ public function vaginalHikeNFuck():void
 	output("\n\n<i>“Ahhh... your [pc.cockNoun " + x + "]... I love it,”</i> the bedraggled beauty deliriously moans. Like a wild beast, she bucks her bare butt back against your slapping hips and eagerly takes your [pc.cockHead " + x + "] deep inside of her velvety vise. Your mind is exquisitely blown every time her cunt contracts around your thrusting prick, squeezing and milking it eagerly for your [pc.cumVisc] prize.");
 	output("\n\nWith a sweet little moan, Anzhela creams herself around you. She squirts and squeezes as rivers of girl-juice liberally stream down her trembling, stocking clad thighs. As she constricts her warm, wet nethers around your [pc.sheath " + x + "], dribbles of hot pre-cum are forced down your urethra and sinfully squeezed out of your cock-hole.");
 	output("\n\nLike an artist’s brush, you paint Anzhela’s slippery passage with your [pc.cumNoun]-dipped prick, turning her dribbling muff into a soppy masterpiece. It’s not long before she’s stirred up into a frenzy once more. She lustily lifts her hips, allowing your [pc.cockHead " + x + "] to smear your seed even deeper.");
-	output("\n\n<i>“Cum... cum inside of me-I want to feel your hot cum spurting deep inside of me,”</i> the redhead doctor breathily begs. Hearing her desperate urging gets you wildly fired up and you pick up the pace, slapping your hips against her bare ass.");
+	output("\n\n<i>“Cum... cum inside of me - I want to feel your hot cum spurting deep inside of me,”</i> the redhead doctor breathily begs. Hearing her desperate urging gets you wildly fired up and you pick up the pace, slapping your hips against her bare ass.");
 	output("\n\nHappy to indulge, you groan and passionately bury your [pc.cockHead " + x + "] deep inside of her hot, squeezing depths. ");
 	var cum:Number = pc.cumQ();
 	if(cum < 25) output("Tiny little spurts of your broiling, [pc.cumVisc] spunk shoot against the entrance to her eagerly awaiting womb. Even though you don’t cum much, just feeling you twitch and flex inside of her sets your lover off; her whole body quakes and warm jets of girl cum pool inside of her netherlips. Your pulsing prick is quickly wrapped in a titillatingly thermal sensation and, once you’re finished shooting your load, her lady juice floods around yours against and into your dilated dick-slit, filling it with a delicious tickling warmth.");
