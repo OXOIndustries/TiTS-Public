@@ -3010,6 +3010,7 @@ public function statisticsScreen(showID:String = "All"):void
 		if(!chars["SAENDRA"].cockVirgin) totalVirginitiesTaken++;
 		if(flags["TOOK_DELILAHS_BUTTGINITY"] != undefined) totalVirginitiesTaken++;
 		if(flags["TOOK_PRINCESS_BUTTGINITY"] != undefined) totalVirginitiesTaken++;
+		if(flags["ANZHELA_ANALED"] != undefined) totalVirginitiesTaken++;
 		if(sleepingPartner != "" || totalVirginitiesTaken > 0)
 		{
 			output2("\n<b><u>Sexploration</u></b>");
@@ -5771,6 +5772,16 @@ public function displayEncounterLog(showID:String = "All"):void
 			{
 				output2("\n<b><u>Kressia Manor and Federation War Room</u></b>");
 				output2("\n<b>* Sellera:</b> Met her");
+				variousCount++;
+			}
+			// Anzhela
+			if(flags["MET_ANZHELA"] != undefined)
+			{
+				output2("\n<b><u>Kressia Medical Hospital</u></b>");
+				output2("\n<b>* Anzhela:</b> Met her");
+				if(flags["ANZHELA_TREATED"] != undefined) output2("\n<b>* Anzhela, Times Checked You for First-Aid:</b> " + flags["ANZHELA_TREATED"]);
+				if(flags["S_RELIEF_ANN"] != undefined && flags["S_RELIEF_ANN"] > 0) output2("\n<b>* Anzhela, Times Received Sexual Relief From:</b> " + flags["S_RELIEF_ANN"]);
+				if(flags["ANZHELA_ANALED"] != undefined) output2("\n<b>* Anzhela, Times Fucked Her Ass:</b> " + flags["ANZHELA_ANALED"]);
 				variousCount++;
 			}
 			// Survival Shop
