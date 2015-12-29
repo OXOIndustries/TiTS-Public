@@ -198,6 +198,7 @@
 		include "../includes/newTexas/zephyr.as";
 		
 		//Fourth planet
+		include "../includes/myrellion/anzhelaRedMyrMedic.as";
 		include "../includes/myrellion/asennia.as";
 		include "../includes/myrellion/bathHouse.as";
 		include "../includes/myrellion/cockvines.as";
@@ -329,7 +330,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.6.23";
+			version = "0.6.24";
 
 			//temporary nonsense variables.
 			temp = 0;
