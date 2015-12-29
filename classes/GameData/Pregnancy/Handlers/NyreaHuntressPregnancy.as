@@ -6,6 +6,7 @@ package classes.GameData.Pregnancy.Handlers
 	import classes.kGAMECLASS;
 	import classes.GameData.StatTracking;
 	import classes.GLOBAL;
+	import classes.Engine.Utility.rand;
 	
 	/**
 	 * This is effectively very similar to the Renvra pregnancy implementation, so I'm copypasting it over
@@ -73,7 +74,7 @@ package classes.GameData.Pregnancy.Handlers
 			if (kGAMECLASS.flags["RENVRA_EGGS_MESSAGE_WEIGHT"] == undefined) kGAMECLASS.flags["RENVRA_EGGS_MESSAGE_WEIGHT"] = 0;
 			kGAMECLASS.flags["RENVRA_EGGS_MESSAGE_WEIGHT"] += minutes;
 			
-			var kRoll:Number = kGAMECLASS.rand(360);
+			var kRoll:Number = rand(360);
 			var kChance:Number = kGAMECLASS.flags["RENVRA_EGGS_MESSAGE_WEIGHT"];
 			
 			if (kRoll < kChance)

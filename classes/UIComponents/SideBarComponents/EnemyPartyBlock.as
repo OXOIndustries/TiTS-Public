@@ -32,6 +32,22 @@ package classes.UIComponents.SideBarComponents
 				t.y = (i * t.height) + (3 * i);
 			}
 		}
+		
+		public function showForCreatures(chars:Array):void
+		{
+			for (var i:int = 0; i < _characterDisplays.length; i++)
+			{
+				if (i < chars.length)
+				{
+					_characterDisplays[i].UpdateFromCharacter(chars[i]);
+					_characterDisplays[i].visible = true;
+				}
+				else
+				{
+					_characterDisplays[i].visible = false;
+				}
+			}
+		}
 	}
 
 }

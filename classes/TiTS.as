@@ -491,6 +491,12 @@
 			if (!inCombat()) 
 			{
 				this.userInterface.showBust("none");
+				if (pc != null && pc.short != "Uncreated" && pc.short != "")
+				{
+					userInterface.showPlayerParty([pc]);
+					updatePCStats();
+					updateDisplays();
+				}
 			}
 			
 			if (evt.currentTarget.arg == undefined)
@@ -500,11 +506,6 @@
 			else
 			{
 				if (evt.currentTarget.func != null) evt.currentTarget.func(evt.currentTarget.arg);
-			}
-			
-			if (chars["PC"] != undefined)
-			{
-				updatePCStats();
 			}
 			
 			userInterface.updateTooltip((evt.currentTarget as DisplayObject));
@@ -713,13 +714,23 @@
 			var tFunc:Function = this.userInterface.buttonTray.getFunctionReferenceForIndex(arg);
 			var tArg:* = this.userInterface.buttonTray.getArgForIndex(arg);
 			
-			if (this.userInterface.PressButton(arg, inCombat()))
+			if (userInterface.PressButton(arg, inCombat()))
 			{
+				if (!inCombat()) userInterface.showPlayerParty([pc]); // Combat will handle this correctly
+				updateDisplays();
 				updatePCStats();
 			}
 			
 			// Then pass it into some code that will detect the failure state. If the state is triggered, use the args to figure out WHERE it happened.
 			jackJillDetector(btnName, tFunc, tArg);
+		}
+		
+		public function updateDisplays():void
+		{
+			
+			userInterface.time = timeAsText(hours, minutes);
+			userInterface.days = String(days);
+			userInterface.showSceneTag();
 		}
 
 		// New passthroughs to GUI to handle scroll event controls

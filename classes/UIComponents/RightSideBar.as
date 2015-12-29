@@ -1,5 +1,7 @@
 package classes.UIComponents 
 {
+	import classes.Characters.PlayerCharacter;
+	import classes.Creature;
 	import classes.UIComponents.SideBarComponents.AdvancementBlock;
 	import classes.UIComponents.SideBarComponents.BigStatBlock;
 	import classes.UIComponents.SideBarComponents.CoreStatsBlock;
@@ -41,25 +43,46 @@ package classes.UIComponents
 		// The idea is UI gets seperated from game logic entirely. All UI cares about is values in Creatures.
 		public function get nameText():TextField { return this._nameText; }
 		
-		public function get shieldBar():StatBar { return _combatStatBlock.shieldBar; }
-		public function get hpBar():StatBar { return _combatStatBlock.hpBar; }
-		public function get lustBar():StatBar { return _combatStatBlock.lustBar; }
-		public function get energyBar():StatBar { return _combatStatBlock.energyBar; }
-		
-		public function get physiqueBar():StatBar { return _coreStatBlock.physiqueBar; }
-		public function get reflexesBar():StatBar { return _coreStatBlock.reflexesBar; }
-		public function get aimBar():StatBar { return _coreStatBlock.aimBar; }
-		public function get intelligenceBar():StatBar { return _coreStatBlock.intelligenceBar; }
-		public function get willpowerBar():StatBar { return _coreStatBlock.willpowerBar; }
-		public function get libidoBar():StatBar { return _coreStatBlock.libidoBar; }
-		
-		public function get levelBar():StatBar { return _advancementBlock.levelBar; }
-		public function get xpBar():StatBar { return _advancementBlock.xpBar; }
-		public function get creditsBar():StatBar { return _advancementBlock.creditsBar; }
-		
 		public function get statusEffects():StatusEffectsDisplay { return _statusEffectDisplay.statusDisplay; }
 		
-		public function get playerPartyBlock():PlayerPartyBlock { return _playerPartyBlock; }
+		public function showPlayerParty(chars:Array, asInit:Boolean = false):void
+		{
+			if (chars.length == 1)
+			{
+				_combatStatBlock.visible = true;
+				_coreStatBlock.visible = true;
+				_statusEffectDisplay.visible = true;
+				_playerPartyBlock.visible = false;
+				
+				_combatStatBlock.showStatsForCreature(chars[0], asInit);
+				_coreStatBlock.showStatsForCreature(chars[0], asInit);
+				_advancementBlock.showStatsForCreature(chars[0], asInit);
+				_statusEffectDisplay.statusDisplay.updateDisplay(chars[0].statusEffects);
+			}
+			else
+			{
+				_combatStatBlock.visible = false;
+				_coreStatBlock.visible = false;
+				_statusEffectDisplay.visible = false;
+				_playerPartyBlock.visible = true;
+				
+				_playerPartyBlock.showForCreatures(chars);
+				
+				// grab pc
+				var pc:Creature = null;
+				for (var i:int = 0; i < chars.length; i++)
+				{
+					if (chars[i] is PlayerCharacter)
+					{
+						pc = chars[i];
+						break;
+					}
+				}
+				
+				_advancementBlock.showStatsForCreature(pc);
+			}
+		}
+		
 		/**
 		 * Config for lazy init.
 		 * @param	doTween	Set the bar to tween in from offscreen during startup
@@ -86,7 +109,7 @@ package classes.UIComponents
 			this.addChild(_combatStatBlock);
 			
 			_playerPartyBlock = new PlayerPartyBlock();
-			_playerPartyBlock.y = _nameTextUnderline.y + _nameTextUnderline.height + 11;
+			_playerPartyBlock.y = 4;
 			addChild(_playerPartyBlock);
 			
 			_coreStatBlock = new CoreStatsBlock();
@@ -155,6 +178,7 @@ package classes.UIComponents
 			_coreStatBlock.visible = false;
 			_advancementBlock.visible = false;
 			_statusEffectDisplay.visible = false;
+			_playerPartyBlock.visible = false;
 		}
 		
 		public function showItems():void

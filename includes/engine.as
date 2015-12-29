@@ -27,14 +27,6 @@ public function blockHeader(words:String, newLine:Boolean = true):String
 	return String("<span class='blockHeader'>" + words + "</span>\n");
 }
 
-
-/*
-MOST of this should be broken up into simple shim-functions that call the real, relevant function in userInterface:GUI
-I'm breaking it out into a separate class, and just manipulating those class variables for the moment
-once that's working, I can start piecemeal moving things to functions in GUI.
-
-*/
-
 //1: TEXT FUNCTIONS
 public function output(words:String, markdown:Boolean = false, parse:Boolean = true):void 
 {
@@ -69,17 +61,6 @@ public function clearOutputCodex():void
 {
 	this.userInterface.clearOutputCodex();
 }
-/*
-// HTML tag formatting wrappers, because lazy as fuck
-public function header(words:String):String
-{
-	return String("<span class='header'>" + words + "</span>\n");
-}
-
-public function blockHeader(words:String):String
-{
-	return String("<span class='blockHeader'>" + words + "</span>\n");
-}*/
 
 public function num2Text(number:Number):String {
 	var returnVar:String = null;
@@ -129,51 +110,9 @@ public function deglow():void
 {
 	this.userInterface.deglow()
 }
-public function resetBarStates():void
-{
-	userInterface.playerShields.updateBar(0, 100, true);
-	userInterface.playerHP.updateBar(0, 100, true);
-	userInterface.playerEnergy.updateBar(0, 100, true);
-	
-	userInterface.playerPhysique.updateBar(0, 5, true);
-	userInterface.playerReflexes.updateBar(0, 5, true);
-	userInterface.playerAim.updateBar(0, 5, true);
-	userInterface.playerIntelligence.updateBar(0, 5, true);
-	userInterface.playerWillpower.updateBar(0, 5, true);
-	userInterface.playerLibido.updateBar(0, 5, true);
-	userInterface.playerXP.updateBar(0, 500, true);
-	userInterface.playerLevel.updateBar(0, 8, true);
-	userInterface.playerCredits.updateBar(0, 500, true);
-}
-public function updatePCStats(setBars:Boolean = false):void 
-{
-	if (pc.short != "uncreated" && pc.short.length > 0)
-		this.userInterface.setGuiPlayerNameText(pc.short);
-	else
-		this.userInterface.setGuiPlayerNameText("");
 
-	userInterface.playerShields.updateBar(pc.shields(),pc.shieldsMax(), setBars);
-
-	userInterface.playerHP.updateBar(pc.HP(),pc.HPMax(), setBars);
-	userInterface.playerLust.updateBar(pc.lust(),pc.lustMax(), setBars);
-	userInterface.playerEnergy.updateBar(pc.energy(),pc.energyMax(), setBars);
-	
-	userInterface.playerPhysique.updateBar(pc.physique(),pc.physiqueMax(), setBars);	
-	userInterface.playerReflexes.updateBar(pc.reflexes(),pc.reflexesMax(), setBars);
-	userInterface.playerAim.updateBar(pc.aim(),pc.aimMax(), setBars);
-	userInterface.playerIntelligence.updateBar(pc.intelligence(),pc.intelligenceMax(), setBars);
-	userInterface.playerWillpower.updateBar(pc.willpower(),pc.willpowerMax(), setBars);
-	userInterface.playerLibido.updateBar(pc.libido(), pc.libidoMax(), setBars);
-	userInterface.playerXP.updateBar(pc.XP(), pc.XPMax(), setBars);
-	
-	userInterface.playerStatusEffects = this.chars["PC"].statusEffects;
-	userInterface.playerLevel.updateBar(pc.level, Number.NaN, setBars);
-	userInterface.playerCredits.updateBar(pc.credits, Number.NaN, setBars);
-	
-	userInterface.time = timeText();
-	userInterface.days = String(days);
-	userInterface.showSceneTag();
-	
+public function updatePCStats():void 
+{
 	if ((pc as PlayerCharacter).levelUpAvailable())
 	{
 		if (gameOverEvent == true || inSceneBlockSaving == true)
@@ -190,112 +129,21 @@ public function updatePCStats(setBars:Boolean = false):void
 		userInterface.levelUpButton.Deactivate();
 	}
 }
-public function timeText():String 
-{
-	var buffer:String = ""
-	
-	if (hours < 10)
-	{
-		buffer += "0";
-	}
-	
-	buffer += hours + ":";
-	
-	if (minutes < 10) 
-	{
-		buffer += "0";
-	}
-	
-	buffer += minutes;
-	return buffer;
-}
-
-public function resetNPCBarStates():void
-{
-	userInterface.monsterShield.updateBar(0, 100, true);
-	userInterface.monsterHP.updateBar(0, 100, true);
-	userInterface.monsterLust.updateBar(0, 100, true);
-	userInterface.monsterEnergy.updateBar(0, 100, true);
-}
-
-/*
-public function updateNPCStats():void {
-	if(foes.length >= 1) {
-		userInterface.monsterShield.updateBar(enemy.shields(),  enemy.shieldsMax());
-		userInterface.monsterHP.updateBar(enemy.HP(),       enemy.HPMax());
-		userInterface.monsterLust.updateBar(enemy.lust(),     enemy.lustMax());
-		userInterface.monsterEnergy.updateBar(enemy.energy(),   enemy.energyMax());
-		
-		this.userInterface.monsterLevel.updateBar(String(enemy.level));
-		this.userInterface.monsterRace.updateBar(StringUtil.toTitleCase(enemy.originalRace));
-		
-		var gText:String = "";
-		
-		if (enemy.hasStatusEffect("Force It Gender"))
-		{
-			gText = "???";
-		}
-		else if (enemy.hasStatusEffect("Force Fem Gender"))
-		{
-			gText = "Female";
-		}
-		else if (enemy.hasStatusEffect("Force Male Gender"))
-		{
-			gText = "Male";
-		}
-		else if (enemy.hasStatusEffect("Force Herm Gender"))
-		{
-			gText = "Herm";
-		}
-		else if (enemy is NyreaAlpha || enemy is NyreaBeta)
-		{
-			gText = "Female???";
-		}
-		else if (enemy.hasCock()) 
-		{
-			if (enemy.hasVagina()) gText = "Herm";
-			else gText = "Male";
-		}
-		else if (enemy.hasVagina()) gText = "Female";
-		else gText = "???";
-		
-		this.userInterface.monsterSex.updateBar(gText);
-		
-		this.userInterface.monsterStatusEffects = enemy.statusEffects;
-	}
-}
-*/
-
-public function updateStatBar(arg:MovieClip, value:* = undefined, max:* = undefined):void {
-	//if(title != "" && title is String) arg.masks.labels.text = title;
-	if(max != undefined) 
-		arg.setMax(max);
-	if(value != undefined && arg.visible == true) 
-	{
-		if(arg.getGoal() != value) 
-		{
-			arg.setGoal(value);
-			//trace("SETTING GOAL");
-		}
-	}
-}
 
 public function setLocation(title:String, planet:String = "Error Planet", system:String = "Error System"):void 
 {
 	userInterface.setLocation(title, planet, system);
 }
 
-//3. UTILITY FUNCTIONS
-public function rand(max:Number):Number
+public function clearList():void
 {
-	return int(Math.random()*max);
-}
-
-public function clearList():void {
 	list = new Array();
 }
+
 public var list:Array = new Array();
-public function addToList(arg:*):void {
+
+public function addToList(arg:*):void
+{
 	list[list.length] = arg;
 }
 public function formatList():String {
@@ -316,5 +164,3 @@ public function formatList():String {
 	list = new Array();
 	return stuff;	
 }
-
-//4. MOVEMENTS

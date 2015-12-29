@@ -15,6 +15,8 @@ package classes.UIComponents
 	import classes.UIComponents.SideBarComponents.SideBarButtonBlock;
 	import classes.UIComponents.StatusEffectComponents.StatusEffectsDisplay;
 	import classes.UIComponents.SideBarComponents.StatBar;
+	import classes.Engine.Combat.inCombat;
+	import classes.GameData.CombatManager;
 	
 	/**
 	 * ...
@@ -34,17 +36,6 @@ package classes.UIComponents
 		public function get systemText():TextField { return _locationHeader.systemText; }
 		
 		public function get miniMap():MiniMap { return _miniMapBlock.miniMap; }
-		
-		public function get encounterHp():StatBar { return _enemyEncounterBlock.hpBar; }
-		public function get encounterShield():StatBar { return _enemyEncounterBlock.shieldBar; }
-		public function get encounterLust():StatBar { return _enemyEncounterBlock.lustBar; }
-		public function get encounterEnergy():StatBar { return _enemyEncounterBlock.energyBar; }
-		public function get encounterLevel():StatBar { return _enemyEncounterBlock.levelBar; }
-		public function get encounterRace():StatBar { return _enemyEncounterBlock.raceBar; }
-		public function get encounterSex():StatBar { return _enemyEncounterBlock.sexBar; }
-		public function get encounterStatusEffects():StatusEffectsDisplay { return _enemyEncounterBlock.statusEffects; }
-		
-		public function get encounterPartyBlock():EnemyPartyBlock { return _enemyPartyBlock; }
 		
 		public function get timeText():TextField { return _genInfoBlock.time; }
 		public function get daysText():TextField { return _genInfoBlock.days; }
@@ -109,7 +100,7 @@ package classes.UIComponents
 			_menuButtonBlock.x = 10;
 			
 			// TEMP SHIT
-			_genInfoBlock.visible = false;
+			_genInfoBlock.visible = true;
 		}
 		
 		private function BuildBackground():void
@@ -127,7 +118,15 @@ package classes.UIComponents
 		{
 			_miniMapBlock.visible = false;
 			_genInfoBlock.visible = false;
-			//_enemyEncounterBlock.visible = false;
+			
+			if (inCombat())
+			{
+				var multi:Boolean = CombatManager.getHostileCharacters().length > 1;
+				
+				_enemyEncounterBlock.visible = !multi;
+				_enemyPartyBlock.visible = multi;
+			}
+			
 		}
 		
 		public function ShowMiniMap():void
@@ -142,11 +141,13 @@ package classes.UIComponents
 			}
 			if (_genInfoBlock) _genInfoBlock.visible = true;
 			_enemyEncounterBlock.visible = false;
+			_enemyPartyBlock.visible = false;
 		}
 		
 		public function HideStats():void
 		{
-			//_enemyEncounterBlock.visible = false;
+			_enemyEncounterBlock.visible = false;
+			_enemyPartyBlock.visible = false;
 			_genInfoBlock.visible = true;
 		}
 		
@@ -163,6 +164,26 @@ package classes.UIComponents
 		public function showLocation():void
 		{
 			this._locationHeader.showLocationText();
+		}
+		
+		public function showHostileParty(chars:Array):void
+		{
+			if (chars.length == 1)
+			{
+				_enemyPartyBlock.visible = false;
+				_enemyEncounterBlock.visible = true;
+				_genInfoBlock.visible = true;
+				
+				_enemyEncounterBlock.showStatsForCreature(chars[0]);
+			}
+			else
+			{
+				_enemyPartyBlock.visible = true;
+				_enemyEncounterBlock.visible = false;
+				_genInfoBlock.visible = false;
+				
+				_enemyPartyBlock.showForCreatures(chars);
+			}
 		}
 	}
 }

@@ -1082,8 +1082,7 @@
 			{
 				kGAMECLASS.userInterface.hideNPCStats();
 				kGAMECLASS.userInterface.showPCStats();
-				kGAMECLASS.resetBarStates();
-				kGAMECLASS.updatePCStats();
+				kGAMECLASS.userInterface.showPlayerParty([kGAMECLASS.pc], true);
 				kGAMECLASS.output2("Game loaded from 'TiTs_" + slotNumber + "'!");
 				executeGame();
 			}

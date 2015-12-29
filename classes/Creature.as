@@ -71,7 +71,8 @@ package classes {
 				"bustDisplay",
 				"buttonText",
 				"btnTargetText",
-				"alreadyDefeated"
+				"alreadyDefeated",
+				"shieldDisplayName"
 			);
 
 			cocks = new Array();
@@ -12336,7 +12337,8 @@ package classes {
 		public var isUniqueInFight:Boolean = false;
 		public var uniqueName:String = null; // Transient
 		public function get flags():Dictionary { return kGAMECLASS.flags; } // Transient
-		public var alreadyDefeated:Boolean = false;
+		public var alreadyDefeated:Boolean = false; // Transient
+		public var shieldDisplayName:String = "SHIELD"; // Transient
 		
 		/**
 		 * Return the name for the bust this character should display. This'll be used during combat, but also potentially

@@ -1,5 +1,6 @@
 package classes.UIComponents.SideBarComponents 
 {
+	import classes.Characters.PlayerCharacter;
 	import classes.Creature;
 	import classes.StorageClass;
 	import classes.UIComponents.StatusEffectComponents.StatusEffectsDisplay;
@@ -67,9 +68,14 @@ package classes.UIComponents.SideBarComponents
 			_statBars.hp.setValue(char.HP(), char.HPMax());
 			_statBars.lust.setValue(char.lust(), char.lustMax());
 			_statBars.energy.setValue(char.energy(), char.energyMax());
+			
 			_statusEffects.updateDisplay(char.statusEffects);
 			
-			setBust(char.bustDisplay);
+			if (char is PlayerCharacter) bustVisible = false
+			else if (char.bustDisplay.length > 0) setBust(char.bustDisplay);
+			else bustVisible = false;
+			
+			_statBars.shield.labelText = char.shieldDisplayName;
 		}
 		
 		/**

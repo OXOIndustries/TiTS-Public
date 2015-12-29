@@ -33,11 +33,22 @@ package classes.UIComponents.SideBarComponents
 			}
 			
 			_characterDisplays[0].bustVisible = false;
-			_characterDisplays[1].setBust("MYR_RED_GUARD");
-			_characterDisplays[2].setBust("MYR_RED_GUARD");
-			_characterDisplays[3].setBust("MYR_RED_GUARD");
 		}
 		
+		public function showForCreatures(chars:Array):void
+		{
+			for (var i:int = 0; i < _characterDisplays.length; i++)
+			{
+				if (i < chars.length)
+				{
+					_characterDisplays[i].UpdateFromCharacter(chars[i]);
+					_characterDisplays[i].visible = true;
+				}
+				else
+				{
+					_characterDisplays[i].visible = false;
+				}
+			}
+		}
 	}
-
 }

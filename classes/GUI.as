@@ -624,24 +624,6 @@
 		// Once all code uses that kind of UI value setting, we can work on inverting the process, and
 		// use data binding from UI element -> engine variable
 		
-		// Access methods to RSB items
-		public function get playerShields():StatBar { return _rightSideBar.shieldBar; }
-		public function get playerHP():StatBar { return _rightSideBar.hpBar; }
-		public function get playerLust():StatBar { return _rightSideBar.lustBar; }
-		public function get playerEnergy():StatBar { return _rightSideBar.energyBar; }
-		
-		public function get playerPhysique():StatBar { return _rightSideBar.physiqueBar; }
-		public function get playerReflexes():StatBar { return _rightSideBar.reflexesBar; }
-		public function get playerAim():StatBar { return _rightSideBar.aimBar; }
-		public function get playerIntelligence():StatBar { return _rightSideBar.intelligenceBar; }
-		public function get playerWillpower():StatBar { return _rightSideBar.willpowerBar; }
-		public function get playerLibido():StatBar { return _rightSideBar.libidoBar; }
-		
-		public function get playerLevel():StatBar { return _rightSideBar.levelBar; }
-		public function get playerXP():StatBar { return _rightSideBar.xpBar; }
-		public function get playerCredits():StatBar { return _rightSideBar.creditsBar; }
-		public function set playerStatusEffects(statusEffects:Array):void { _rightSideBar.statusEffects.updateDisplay(statusEffects); }
-		
 		// Access to LSB items
 		public function get roomText():String { return _leftSideBar.locationBlock.roomText.text; }
 		public function get planetText():String { return _leftSideBar.locationBlock.planetText.text; }
@@ -650,15 +632,6 @@
 		public function set roomText(v:String):void { _leftSideBar.locationBlock.roomText.text = v; }
 		public function set planetText(v:String):void { _leftSideBar.locationBlock.planetText.text = v; }
 		public function set systemText(v:String):void { _leftSideBar.locationBlock.systemText.text = v; }
-		
-		public function get monsterShield():StatBar { return _leftSideBar.encounterShield; }
-		public function get monsterHP():StatBar { return _leftSideBar.encounterHp; }
-		public function get monsterLust():StatBar { return _leftSideBar.encounterLust; }
-		public function get monsterEnergy():StatBar { return _leftSideBar.encounterEnergy; }
-		public function get monsterLevel():StatBar { return _leftSideBar.encounterLevel; }
-		public function get monsterRace():StatBar { return _leftSideBar.encounterRace; }
-		public function get monsterSex():StatBar { return _leftSideBar.encounterSex; }
-		public function set monsterStatusEffects(statusEffectsArray:Array):void { _leftSideBar.encounterStatusEffects.updateDisplay(statusEffectsArray); }
 		
 		public function get time():String { return _leftSideBar.timeText.text; }
 		public function set time(v:String):void { _leftSideBar.timeText.text = v; }
@@ -1230,6 +1203,16 @@
 			_leftSideBar.mailsButton.visible = false;
 			_leftSideBar.perksButton.visible = false;
 			_leftSideBar.levelUpButton.visible = false;
+		}
+		
+		public function showPlayerParty(chars:Array, asInit:Boolean = false):void
+		{
+			_rightSideBar.showPlayerParty(chars, asInit);
+		}
+		
+		public function showHostileParty(chars:Array, asInit:Boolean = false):void
+		{
+			_leftSideBar.showHostileParty(chars);
 		}
 		
 		public function hideTime():void 

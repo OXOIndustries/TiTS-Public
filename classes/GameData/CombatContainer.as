@@ -120,8 +120,8 @@ package classes.GameData
 		public function displayFightLocation():void
 		{
 			var r:String = (roomString != null ? "FIGHT:\n" + roomString : null);
-			var p:String = planetString;
-			var s:String = systemString;
+			var p:String = (planetString != null ? planetString : kGAMECLASS.userInterface.planetText);
+			var s:String = (systemString != null ? systemString : kGAMECLASS.userInterface.systemText);
 			
 			kGAMECLASS.setLocation(r, p, s); // This should only override whats set, ie if planet is null it
 			// should inherit the currently set planet
