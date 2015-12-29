@@ -132,7 +132,7 @@ public function anzhelaMenu():void
 	addButton(1, "Talk", talkToAnzhela,undefined,"Talk","Have a chat with Anzhela.");
 	addButton(2,"Checkup",giveMeACheckupAnn,undefined,"Checkup","Get checked out by Anzhela to make sure everything’s in working order.");
 	if(pc.lust() >= 33) addButton(3,"SexRelief",sReliefAnn,undefined,"Sexual Relief","Get some sexual relief. Doctor’s orders!");
-	else addDisabledButton(3,"SexRelief","Sexual Relief","You don't need any sexual relief at the moment.");
+	else addDisabledButton(3,"SexRelief","Sexual Relief","You don’t need any sexual relief at the moment.");
 	addButton(14, "Leave", mainGameMenu);
 }
 
@@ -142,7 +142,7 @@ public function backToAnzhelaMenuFromSex():void
 	showAnzhela();
 	output("Anzhela shrugs. <i>“Suit yourself.”</i>");
 	anzhelaMenu();
-	addDisabledButton(3,"SexRelief","SexRelief","If you wanted that, you shouldn't have changed your mind.");
+	addDisabledButton(3,"SexRelief","SexRelief","If you wanted that, you shouldn’t have changed your mind.");
 }
 
 //Appearance
@@ -181,6 +181,7 @@ public function talkToAnzhela():void
 		output("\n\nYou sip the scova, knowing your microsurgeons will protect you from the harms of drinking alien beverages. Despite its fiery look, it tastes a lot like cinnamon tea. You find your muscles unwinding as you drink some more");
 		if(!pc.isTaur()) output(", until you’re thoroughly slouched in your seat.");
 		processTime(2);
+		flags["ANZHELA_TALKS"] = 1;
 	}
 	//Repeat:
 	else
@@ -206,8 +207,8 @@ public function anzhelaTalkMenu():void
 	addButton(0,"Her Work",talkToAnzhelaAboutHerWork,undefined,"Her Work","Ask her about her work.");
 	addButton(1,"SCARMED",talkToAnzhelaAboutScarmed,undefined,"SCARMED","Ask her about the organization she belongs to.");
 	// Must have viewed Scarmed.
-	if(flags["ANZHELA_SCARMED_TALK"] == 1) addButton(2,"F.Marshal",talkToAnzelaAboutFMarshal,undefined,"F.Marshal","Ask her about her boss.");
-	else addDisabledButton(2,"Locked","Locked","You don't know enough to ask about this topic. Maybe talk about some other things first.");
+	if(flags["ANZHELA_SCARMED_TALK"] != undefined) addButton(2,"F.Marshal",talkToAnzelaAboutFMarshal,undefined,"F.Marshal","Ask her about her boss.");
+	else addDisabledButton(2,"Locked","Locked","You don’t know enough to ask about this topic. Maybe talk about some other things first.");
 	addButton(3,"Anzhela",talkToAnzhelaAboutAnzhela,undefined,"Anzhela","Ask her about herself.");
 	addButton(4,"Her Past",talkToAnzhelaAboutHerPast,undefined,"Her Past","Ask her about her past.");
 	addButton(5,"TrenchW",talkToAnzhelaAboutTrenchWives,undefined,"Trench Wives","Ask her about her opinion on trench wives.");
@@ -340,7 +341,7 @@ public function talkToAnzhelaAboutAlterants():void
 	output("\n\nAnzhela runs a finger around the rim of her cup, her lips pursed. <i>“... We’ve been receiving them from the war labs lately.. I’m meant to offer them to any soldier who wants them.”</i>");
 	output("\n\n<i>“Most of them are body enhancers, which increases muscle growth and physical strength - anything to give us an edge against the Golds.”</i>");
 	output("\n\nYou ask her why the army is liberally using the treatments. She mournfully smiles.");
-	output("\n\n<i>“... Because ‘if we don’t do it, the golds will’, of course. That, and a regular user of body enhancers can be a truly terrifying thing. With that many steroids coursing through them, they're terrifyingly strong and fly into a rage at the brush of an antennae. It’s one of the reasons we have reinforced restraints on hand here.”</i>");
+	output("\n\n<i>“... Because ‘if we don’t do it, the golds will’, of course. That, and a regular user of body enhancers can be a truly terrifying thing. With that many steroids coursing through them, they’re terrifyingly strong and fly into a rage at the brush of an antennae. It’s one of the reasons we have reinforced restraints on hand here.”</i>");
 	output("\n\nYou ask where these chemicals come from. Even though the Federation seems to have decent medical technology, having any kind of transformatives seems beyond them. After all, they’re still using powder rifles and bi-planes!");
 	output("\n\n<i>“Honestly? The whole thing is rather secretive,”</i> Anzhela honestly answers, a worried look on her face. <i>“Even though I administer the drugs, I only know very little about the whole thing,”</i> she shrugs, then continues, <i>“Rumor is that early in the war, there were rumors about facilities where transformative treatments were being tested on volunteers, some kind of project to create the ‘perfect myr soldier’. Word is the results were impressive, but nothing like the technology your peoples display.”</i>");
 	// JimNote: Captain Antmerica! I’m leaving an opening for someone to have fun with this. :3
@@ -469,7 +470,7 @@ public function leaveAnzhelasTalkMenu():void
 	else output("Next time I’ll have to get some food to go with the scova - at least, if I can procure some,”</i> Anzhela smiles, standing up herself.");
 	output(" She walks you to the door and ");
 	//AnzhelaQuestDone: 
-	//if(flags["placeholder"] != undefined) output("kisses your cheek before you depart.");
+	//if(flags["9999_placeholder"] != undefined) output("kisses your cheek before you depart.");
 	output("warmly shakes your hand before you depart.");
 
 	output("<i>“");
@@ -592,7 +593,7 @@ public function firstAidWithAnn():void
 		output("\n\n<i>“Absolutely no injuries whatsoever. I’m perfectly happy to have such a healthy patient, but why do I have the feeling you just wanted the attention of a pretty doctor, not to be patched up?”</i> There’s amusement in her voice.");
 		output("\n\nYou cough a little and sit up, grabbing your things. <i>“Well, it’s always good to get a regular check up,”</i> you utter.");
 	}
-	IncrementFlag("ANZHELA_TREATED")
+	IncrementFlag("ANZHELA_TREATED");
 	// Heal the PC fully!
 	// Increase lust by 10!
 	// Return to core Anzhela menu.
@@ -772,6 +773,7 @@ public function sReliefAnn():void
 		output("”</i>");
 
 		output("\n\nShe grabs one of your hands and slides it up her short black skirt. Your fingers make contact with an incredible heat, barely contained behind a thin layer of lace. Seems you’re not the only one worked up!");
+		flags["S_RELIEF_ANN"] = 0;
 	}
 	//Else / Not first time:
 	else
@@ -786,7 +788,7 @@ public function sReliefAnn():void
 		output(", sensuously suckling upon it. You moan in delight.");
 		output("\n\n<i>“The only question is, what to prescribe for your acute condition?”</i> she muses, nibbling your sensitive [pc.skinFurScalesNoun].");
 	}
-	IncrementFlag("S_RELIEF_ANN");
+	//IncrementFlag("S_RELIEF_ANN");
 	processTime(2);
 	clearMenu();
 	//[Hike&Fuck] [CowGirl]
@@ -794,7 +796,7 @@ public function sReliefAnn():void
 	if(pc.hasCock() && pc.cockThatFits(1000) >= 0)
 	{
 		addButton(0,"Hike&Fuck",hikeAndFuck,undefined,"Hike&Fuck","Bend her over, hike up her skirt and give her a taste of your [pc.cock]!");
-		if(pc.isTaur()) addDisabledButton(1,"Cowgirl","Cowgirl","Cowgirl isn't really a position that works with your tauric proportions.");
+		if(pc.isTaur()) addDisabledButton(1,"Cowgirl","Cowgirl","Cowgirl isn’t really a position that works with your tauric proportions.");
 		else addButton(1,"CowGirl",cowgirlWithAnzhela,undefined,"CowGirl","Fool around in one of the beds and see what pops up!");
 	}
 	else
@@ -811,7 +813,7 @@ public function sReliefAnn():void
 		}
 	}
 	addButton(2,"Strap-On",annStraponScene,undefined,"Strap-On","Ride her strap-on.");
-	addButton(4,"Back",backToAnzhelaMenuFromSex);
+	addButton(14,"Back",backToAnzhelaMenuFromSex);
 }
 
 //Sex Scenes
@@ -853,6 +855,7 @@ public function cowgirlWithAnzhela():void
 	// Scene end. Return to menu.
 	processTime(23);
 	pc.orgasm();
+	IncrementFlag("S_RELIEF_ANN");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -869,7 +872,7 @@ public function hikeAndFuck():void
 	output("\n\nAnzhela captures your lips with a hungry urgency. She slides her tongue between your parted lips. The doctor’s arms slide around your waist. Spreading her legs, she pulls you close and your hips rest against her stocking clad thighs.");
 	output("\n\nYou pull back and watch as her beautiful dark eyes widen and her plush lips part. <i>“W-why’d you stop?”</i> She breathily asks, and you grin. Her scarlet cheeks are flushed with arousal, and her breathing is hurried. The doctor needs you and she needs you <i>stat</i>.");
 	output("\n\nReaching around Anzhela’s waist, you seize her soft well-rounded myr ass, cupping and squeezing her pliable backside. Moaning in delight, she rubs her skirt-covered ass into your hands. <i>“...Too many clothes. ");
-	if(pc.isNude()) output("I'm");
+	if(pc.isNude()) output("I’m");
 	else output("We’re");
 	output(" wearing WAY too many clothes.”</i>");
 
@@ -943,6 +946,7 @@ public function vaginalHikeNFuck():void
 	// Scene end. Return to menu.
 	processTime(23);
 	pc.orgasm();
+	IncrementFlag("S_RELIEF_ANN");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1012,6 +1016,7 @@ public function anzhelaAnalSexHikeAndFuck():void
 	processTime(23);
 	pc.orgasm();
 	IncrementFlag("ANZHELA_ANALED");
+	IncrementFlag("S_RELIEF_ANN");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1074,6 +1079,7 @@ public function annStraponScene():void
 	// Scene end. Return to menu.
 	processTime(28);
 	pc.orgasm();
+	IncrementFlag("S_RELIEF_ANN");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
