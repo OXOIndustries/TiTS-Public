@@ -811,6 +811,7 @@ public function sReliefAnn():void
 			addDisabledButton(1, "Cowgirl", "Cowgirl", "You need a penis for this.");
 		}
 	}
+	addButton(2,"Strap-On",annStraponScene,undefined,"Strap-On","Ride her strap-on.");
 	addButton(4,"Back",backToAnzhelaMenuFromSex);
 }
 
@@ -1012,6 +1013,68 @@ public function anzhelaAnalSexHikeAndFuck():void
 	processTime(23);
 	pc.orgasm();
 	IncrementFlag("ANZHELA_ANALED");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Strap-on
+// No Reqs.
+public function annStraponScene():void
+{
+	clearOutput();
+	showAnzhela();
+	output("Grabbing both your hands in hers, Anzhela leads you over to one of the hospital beds. There’s an excited look in her eyes as you both slip behind the privacy curtain. When you get there, she slides her hands up her mini-skirt and slips her thumbs underneath her lacy panties. With a saucy little wiggle she slides them down her stocking-clad thighs, then kicks the bunched up fabric away. With her hem hiked up, you can see the telltale glistening of moisture along her pink pussy lips. Just looking at her is getting you incredibly ");
+	if(pc.hasCock()) output("stiff");
+	else if(pc.hasVagina()) output("wet");
+	else output("horny");
+	output("!");
+
+	output("\n\n<i>“How about we pull out one of my favorite toys? I’m sure it’ll be your favorite too,”</i> Anzhela sultrily purrs. After climbing up onto the soft bed and crawling along it–giving you a nice view of her dripping cameltoe–she pulls out something from a bedside drawer. She falls on her back against the pillows and laviciously spreads her legs, giving you a full-on view of her scarlet mound! It’s short lived as she straps a large, twelve-inch male myr cock over the top of it, fastening it securely at her hips. <i>“...So, care for a ride~?”</i>");
+
+	output("\n\nYou grin and");
+	if(pc.isCrotchGarbed()) output(", after stripping off,");
+	output(" climb onto the bed after her. With a little teasing show you lean over and lick her red, bulbous knob, keeping heated eye contact the entire while. She’s breathy with excitement. Your performance is getting her excited! Well, you’ve got a bit more to show her. Feeling a tingling in your stomach, you ");
+	if(pc.isTaur()) output("turn around, ");
+	output("lift yourself up and squat above her massive member, letting it hover above your bare buttocks. Your leg-muscles strain–along with your pucker–as you lower yourself onto her expansive knob. You groan as it stretches open your ring, it’s knotty thickness deliciously sliding inside of your rectum. Inch by inch, you slide her veiny length inside of your butt, letting her lady dick delve deeper inside of you. With a breathy sigh, you feel the skin of your thighs press flush with hers, her knob buried so deep you can almost feel it inside your belly!");
+	pc.buttChange(120);
+	output("\n\n<i>“All in?”</i> Anzhela huskily asks, rubbing her hands up your [pc.thighs]. You hazily nod, wiggling in her lap, relishing in the moment. She begins slapping up against your bare buttocks from below, fucking your needy ass. You groan as her thick knob rubs around deep inside of your butt and stirs you up. Your");
+	if(pc.hasCock()) 
+	{
+		output(" [pc.cocksNoun] harden");
+		if(pc.cockTotal() == 1) output("s");
+		output(" against your belly and your");
+	}
+	else if(pc.hasVagina()) 
+	{
+		output(" Your [pc.vaginas] wetten");
+		if(pc.totalVaginas() == 1) output("s");
+		output(" before her eyes and your");
+	}
+	output(" thighs quiver against hers, betraying your delight at being butt-fucked by the curly-haired doctor. You’re biting your lip and grinding in her lap like an animal, utterly drunk off the sensation of her length stirring around inside of you!");
+
+	//PC is not a taur:
+	if(!pc.isTaur()) output("\n\nHer hands reach up to tweak and tease your nipples as you bounce excitedly upon her cock. You shiver with pleasure as your nubs are tugged and rubbed by her fingers; it’s all you can do to stop yourself from moaning too loud! You bite your lower lip and roll your hips against hers, long and slow, massaging her tip as deep as you can inside your rectum. Your own hands reach for her breasts, squeezing and caressing them as your nubs and ass are teased.");
+	output("\n\nWith a loud unabashed cry, you cream yourself hard on her veiny length, ");
+	if(pc.hasCock()) output("shooting your [pc.cumNoun] all over your stomach");
+	if(pc.isHerm()) output(" and ");
+	if(pc.hasVagina())
+	{
+		//Squirter: 
+		if(pc.isSquirter()) output("squirting");
+		else output("gushing");
+		output(" your girl-juice all over ");
+		if(pc.isHerm()) output("hers");
+		else output("her belly");
+	}
+	if(!pc.hasGenitals()) output("experiencing a divine butt-induced orgasm");
+	output(". Everything goes white as you quiver and twitch on her lap");
+	if(!pc.isTaur()) output(", hands instinctively squeezing her bra-clad breasts as you cum");
+	output(". When your shivers subside, you lightly fall down on her and press yourself against her, panting heavily. You’re both deliciously sticky and clinging to each other–a deliciously intimate moment for you both. You can still feel her inside of you, even if it isn’t a real cock...");
+	output("\n\nAfter you’re both able to move once more, you both slip your things back on. There’s a flushed look of satisfaction on Anzhela’s face, even though you’re the one who came! <i>“I really liked watching you ride my cock. It was really exhilarating.”</i> The sexy doctor tells you, stashing the strapon away.");
+
+	// Scene end. Return to menu.
+	processTime(28);
+	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
