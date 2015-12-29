@@ -173,6 +173,7 @@ package classes.UIComponents
 				_enemyPartyBlock.visible = false;
 				_enemyEncounterBlock.visible = true;
 				_genInfoBlock.visible = true;
+				_miniMapBlock.visible = false;
 				
 				_enemyEncounterBlock.showStatsForCreature(chars[0]);
 			}
@@ -181,6 +182,7 @@ package classes.UIComponents
 				_enemyPartyBlock.visible = true;
 				_enemyEncounterBlock.visible = false;
 				_genInfoBlock.visible = false;
+				_miniMapBlock.visible = false;
 				
 				_enemyPartyBlock.showForCreatures(chars);
 			}

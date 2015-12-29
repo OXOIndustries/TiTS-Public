@@ -43,10 +43,12 @@ package classes.UIComponents.SideBarComponents
 			if (v != _bustVisible)
 			{
 				_bustImage.visible = _statBars.bustVisible = v;
+				
 				if (_leftAlign)
 				{
 					_bustImage.x = 0;
-					_statBars.x = _bustImage.x + _bustImage.width + 1;
+					if (v == true) _statBars.x = _bustImage.x + _bustImage.width + 1;
+					else _statBars.x = 0;
 				}
 				else
 				{

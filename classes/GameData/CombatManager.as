@@ -41,8 +41,13 @@ package classes.GameData
 		public static function setFriendlyCharacters(... args):void
 		{
 			if (args.length == 0) throw new Error("Invalid arguments");
-			combatContainer.setPlayerGroup(args);
-			_friendlyCharacters = args;
+			var param:Array;
+			
+			if (args[0] is Array) param = args[0];
+			else param = args;
+			
+			combatContainer.setPlayerGroup(param);
+			_friendlyCharacters = param;
 		}
 		public static function getFriendlyCharacters():Array
 		{
@@ -57,8 +62,13 @@ package classes.GameData
 		public static function setHostileCharacters(... args):void
 		{
 			if (args.length == 0) throw new Error("Invalid arguments");
-			combatContainer.setEnemyGroup(args);
-			_hostileCharacters = args;
+			
+			var param:Array;
+			if (args[0] is Array) param = args[0];
+			else param = args;
+			
+			combatContainer.setEnemyGroup(param);
+			_hostileCharacters = param;
 		}
 		public static function getHostileCharacters():Array
 		{

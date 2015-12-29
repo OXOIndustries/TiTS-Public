@@ -144,17 +144,38 @@ package classes.GameData
 			if (group == NO_GROUP)
 			{
 				// display enemy, probably will never change during combat itself
+				var bustIdx:String = (_hostiles[0] as Creature).bustDisplay;
+				
+				if (bustIdx == "ZILPACK") kGAMECLASS.showBust("ZIL", "ZIL");
+				else if (bustIdx == "RASKVEL_GANG") kGAMECLASS.showBust("RASKVEL_MALE", "RASKVEL_MALE", "RASKVEL_MALE");
+				else if (bustIdx == "PRAETORIAN") kGAMECLASS.showBust("PRAETORIAN", "PRAETORIAN", "PRAETORIAN");
+				else if (bustIdx == "TAIVRADANE") kGAMECLASS.showBust("TAIVRA", "DANE");
+				else kGAMECLASS.showBust(bustIdx);
 			}
 			else
 			{
-				if (group == FRIENDLY_GROUP)
+				var busts:Array;
+				
+				if (group == FRIENDLY_GROUP && _friendlies.length > 1)
 				{
 					// show friendlies but only if the player has a companion, otherwise do nothing
+					for (var i:int = 0; i < _friendlies.length; i++)
+					{
+						if (_friendlies[i] is PlayerCharacter) continue;
+						
+						busts.push(_friendlies[i].bustDisplay);
+					}
 				}
 				else
 				{
 					// show hostiles
+					for (var i:int = 0; i < _hostiles.length; i++)
+					{
+						busts.push(_hostiles[i].bustDisplay);
+					}
 				}
+				
+				kGAMECLASS.showBust(busts);
 			}
 		}
 		
@@ -2892,8 +2913,8 @@ package classes.GameData
 		
 		public function showCombatUI():void
 		{
-			userInterface().setPlayerPartyData(_friendlies);
-			userInterface().setEnemyPartyData(_hostiles);
+			userInterface().showPlayerParty(_friendlies);
+			userInterface().showHostileParty(_hostiles);
 		}
 		
 		private function showCombatDescriptions():void
@@ -3343,8 +3364,8 @@ package classes.GameData
 			}
 			else if (lossCondition == CombatManager.SPECIFIC_TARGET_DEFEATED)
 			{
-				if (isNaN(lossArgument)) throw new Error("Unique target for loss as a win condition, with no target defined.");
-				if (_friendlies[lossArgument].isDefeated()) return true;
+				if (lossArgument == null || _friendlies.indexOf(lossArgument) == -1) throw new Error("Unique target for loss as a win condition, with no target defined.");
+				if (lossArgument.isDefeated()) return true;
 				return false;
 			}
 			

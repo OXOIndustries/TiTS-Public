@@ -1,4 +1,9 @@
-﻿import classes.Characters.PlayerCharacter;
+﻿import classes.Characters.Anno;
+import classes.Characters.PlayerCharacter;
+import classes.Characters.Saendra;
+import classes.Characters.SX1GroupPirates;
+import classes.Characters.SX1Shotguard;
+import classes.Characters.SX1Techguard;
 import classes.Creature;
 import classes.Items.Accessories.LightningDuster;
 import classes.Items.Apparel.AtmaArmor;
@@ -248,11 +253,156 @@ public function debugMenusThree():void
 	clearOutput();
 	output("Debug combat room.");
 	
-	addButton(0, "Sydian", encounterMaleSydian);
-	addButton(1, "Kaska", meetUpWithKaskaZeBossSloot);
-	addButton(2, "Nyrea", encounterNyreaHuntress);
-	addButton(3, "Frog", frogGirlsEncounter);
-	// addButton(3, "SexBot", encounterASexBot);
+	addButton(0, "1v1", pcVsOneEnemy);
+	addButton(1, "1v2", pcVsTwoEnemies);
+	addButton(2, "2v1", pcPlusAnnoVsOneEnemy);
+	addButton(3, "2v2", pcPlusAnnoVsTwoEnemies);
+	addButton(4, "CLUSTER", maximumClusterfuck);
+}
+
+public function pcVsOneEnemy():void
+{
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(new SX1GroupPirates());
+	CombatManager.victoryScene(pcVsOneEnemyWin);
+	CombatManager.lossScene(pcVsOneEnemyLoss);
+	CombatManager.displayLocation("1V1 TEST");
+	
+	clearOutput();
+	output("1 vs 1 test fight!");
+	clearMenu();
+	addButton(0, "Next", CombatManager.beginCombat);
+}
+
+public function pcVsOneEnemyLoss():void
+{
+	clearOutput();
+	output("(1v1) You lost, wakka wakka.");
+	CombatManager.genericLoss();
+}
+
+public function pcVsOneEnemyWin():void
+{
+	clearOutput();
+	output("(1v1) You won, woo.");
+	CombatManager.genericVictory();
+}
+
+public function pcVsTwoEnemies():void
+{
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters([new SX1GroupPirates(), new SX1Techguard()]);
+	CombatManager.victoryScene(pcVsTwoEnemiesWin);
+	CombatManager.lossScene(pcVsTwoEnemiesLoss);
+	CombatManager.displayLocation("1V2 TEST");
+	
+	clearOutput();
+	output("1 vs 2 test fight!");
+	clearMenu();
+	addButton(0, "Next", CombatManager.beginCombat);
+}
+
+public function pcVsTwoEnemiesLoss():void
+{
+	clearOutput();
+	output("(1v2) You lost, wakka wakka.");
+	CombatManager.genericLoss();
+}
+
+public function pcVsTwoEnemiesWin():void
+{
+	clearOutput();
+	output("(1v2) You won, woo.");
+	CombatManager.genericVictory();
+}
+
+public function pcPlusAnnoVsOneEnemy():void
+{
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters([pc, new Anno()]);
+	CombatManager.setHostileCharacters(new SX1GroupPirates());
+	CombatManager.victoryScene(pcPlusAnnoV1Win);
+	CombatManager.lossScene(pcPlusAnnoV1Loss);
+	CombatManager.displayLocation("2V1 TEST");
+	
+	clearOutput();
+	output("2 vs 1 test fight!");
+	clearMenu();
+	addButton(0, "Next", CombatManager.beginCombat);
+}
+
+public function pcPlusAnnoV1Win():void
+{
+	clearOutput();
+	output("(2v1) You won, woo.");
+	CombatManager.genericVictory();
+}
+
+public function pcPlusAnnoV1Loss():void
+{
+	clearOutput();
+	output("(2v1) You lost, wakka wakka.");
+	CombatManager.genericLoss();
+}
+
+public function pcPlusAnnoVsTwoEnemies():void
+{
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters([pc, new Anno()]);
+	CombatManager.setHostileCharacters([new SX1GroupPirates(), new SX1Techguard()]);
+	CombatManager.victoryScene(pcPlusAnnoV2Win);
+	CombatManager.lossScene(pcPlusAnnoV2Loss);
+	CombatManager.displayLocation("2V2 TEST");
+	
+	clearOutput();
+	output("2 vs 2 test fight!");
+	clearMenu();
+	addButton(0, "Next", CombatManager.beginCombat);
+}
+
+public function pcPlusAnnoV2Win():void
+{
+	clearOutput();
+	output("(2v2) You won, woo.");
+	CombatManager.genericVictory();
+}
+
+public function pcPlusAnnoV2Loss():void
+{
+	clearOutput();
+	output("(2v2) You lost, wakka wakka.");
+	CombatManager.genericLoss();
+}
+
+public function maximumClusterfuck():void
+{
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters([pc, new Anno(), new Saendra()]);
+	CombatManager.setHostileCharacters([new SX1GroupPirates(), new SX1Techguard(), new SX1GroupPirates(), new SX1Shotguard()]);
+	CombatManager.victoryScene(fuckfuckfuckWin);
+	CombatManager.lossScene(fuckfuckfuckLoss);
+	CombatManager.displayLocation("WHARGBL");
+	
+	clearOutput();
+	output("WHARBL");
+	clearMenu();
+	addButton(0, "Next", CombatManager.beginCombat);
+}
+
+public function fuckfuckfuckWin():void
+{
+	clearOutput();
+	output("WHARGBL WIN");
+	CombatManager.genericVictory();
+}
+
+public function fuckfuckfuckLoss():void
+{
+	clearOutput();
+	output("WHARGBL LOSS");
+	CombatManager.genericLoss();
 }
 
 public function thisIsWhyWeCantHaveNiceThings():void

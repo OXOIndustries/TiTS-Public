@@ -29,7 +29,7 @@ package classes.UIComponents.SideBarComponents
 		private var _targetValue:Number;
 		private var _maxValue:Number;
 		
-		private var _animSpeed:Number = 0.3;
+		private var _animSpeed:Number = 3;
 		
 		public function set bustVisible(v:Boolean):void
 		{

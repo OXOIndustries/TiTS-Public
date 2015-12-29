@@ -1391,15 +1391,5 @@
 				module.mainTextField.styleSheet = cStyle;
 			}
 		}
-		
-		public function setPlayerPartyData(characters:Array):void
-		{
-			
-		}
-		
-		public function setEnemyPartyData(characters:Array):void
-		{
-			
-		}
 	}
 }
