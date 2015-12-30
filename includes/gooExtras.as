@@ -1012,7 +1012,7 @@ public function adjustGooBody(arg:Array):void
 			clearOutput2();
 			if(desc == "increase")
 			{
-				output2("You concentrate, filling yourself up with biomass to increase the size to your hips.");
+				output2("You concentrate, filling yourself up with biomass to increase the size of your hips.");
 				pc.hipRatingRaw++;
 				//if(pc.hipRatingRaw > limitMax) pc.hipRatingRaw = limitMax;
 				gooBiomass(-1 * cost);
@@ -1042,7 +1042,7 @@ public function adjustGooBody(arg:Array):void
 			clearOutput2();
 			if(desc == "increase")
 			{
-				output2("You concentrate, filling yourself up with biomass to increase the size to your ass.");
+				output2("You concentrate, filling yourself up with biomass to increase the size of your ass.");
 				pc.buttRatingRaw++;
 				//if(pc.buttRatingRaw > limitMax) pc.buttRatingRaw = limitMax;
 				gooBiomass(-1 * cost);
