@@ -1123,16 +1123,21 @@ public function variableRoomUpdateCheck():void
 	if(flags["DIDNT_ENGAGE_RIVAL_ON_MHENGA"] == undefined && flags["FOUGHT_DANE_ON_MHENGA"] == undefined)
 	{
 		rooms["METAL POD 1"].roomName = "METAL\nPOD";
+		rooms["METAL POD 1"].addFlag(GLOBAL.HAZARD);
 		rooms["METAL POD 1"].addFlag(GLOBAL.QUEST);
+		rooms["METAL POD 1"].removeFlag(GLOBAL.OBJECTIVE);
 	}
 	else if(flags["MHENGA_PROBE_CASH_GOT"] == undefined && flags["WHUPPED_DANES_ASS_ON_MHENGA"] != undefined)
 	{
 		rooms["METAL POD 1"].roomName = "METAL\nPOD";
+		rooms["METAL POD 1"].removeFlag(GLOBAL.HAZARD);
+		rooms["METAL POD 1"].removeFlag(GLOBAL.QUEST);
 		rooms["METAL POD 1"].addFlag(GLOBAL.OBJECTIVE);
 	}
 	else
 	{
 		rooms["METAL POD 1"].roomName = "SMALL\nCRATER";
+		rooms["METAL POD 1"].removeFlag(GLOBAL.HAZARD);
 		rooms["METAL POD 1"].removeFlag(GLOBAL.QUEST);
 		rooms["METAL POD 1"].removeFlag(GLOBAL.OBJECTIVE);
 	}
