@@ -2047,9 +2047,11 @@ public function annoFollowerFirstTimeOnMhengaPartII():void
 	if (haveFuckedAnno())
 	{
 		output(" Anno leans against you, her fluffy tail batting against your [pc.butt].");
-		if (flags["FUCKED_SYRI_COUNT"] != undefined) output(" Syri’s eyes widen noticeably as she realizes what’s going on.");
-	
-		output("\n\nShe recovers quickly, saying, ");
+		if (flags["FUCKED_SYRI_COUNT"] != undefined)
+		{
+			output(" Syri’s eyes widen noticeably as she realizes what’s going on.");
+			output("\n\nShe recovers quickly, saying, ");
+		}
 	}
 	else output("\n\n");
 	output("<i>“Good to hear. I’ve been worried about you,");
