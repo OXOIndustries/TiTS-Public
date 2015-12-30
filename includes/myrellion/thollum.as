@@ -1,4 +1,4 @@
-﻿
+﻿/*
 -glasses girls are dumb and I hate them
 -
 -NPC had earth-style clothes made based on clothing in an old Earth biographical vid she saw about a frontierswoman who was a doctor, a queen, and a medicine woman all at the same time
@@ -51,6 +51,7 @@ This long, wide hallway connects to several rooms that are unmistakably classroo
 
 {(time 2100-0559)The rooms are currently empty. All the myr are elsewhere. {(time 2200-0559)A guard approaches you politely. “Excuse me, but the school is restricted after lights out. I’ll need to show you back to the entrance.” }/(time 700-1159 or 1300-1759)Teachers and students are audible through the doors{(unlocked), Yarasta among them}. The children are surprisingly quiet for their lessons, considering there must be upwards of a thousand here. /(else)A few adults are in the rooms, working or taking quick meals, but the children are elsewhere. {(time 0600-0659 or 1900-2059 plus unlocked)Yarasta is among those that remain. }}
 //present ‘Yarasta’ button if unlocked and time 600-1159, 1300-1759, or 1900-2059; return PC to Thollum Foyer if time 2200-0559
+*/
 
 
 //Thollum Pass - for Lyralla’s menu
@@ -427,262 +428,354 @@ public function talkToYarasta():void
 		else output("<i>“I thought we’d to finish our talk,”</i> you announce.");
 
 		//(if 2100-2159)
-		if(hours == 21) output("\n\nThe skinny myr laughs. <i>“I feel like I’m a young girl again, sneaking " + pc.mf("a boy","a friend") + " into my room after curfew.”</i>");
-		output("\n\nYou stop and consider that. ");
-		if(pc.isBimbo()) output("<i>“You used to get people past all those guards? You’re, like, really smart.”</i>");
-		else if(pc.isMischievous()) output("<i>“If you could get by so many police, why pick an honest job?”</i>");
-		else output("<i>“Must have been hard, with all the guards.”</i>");
-
-		output("\n\n<i>“Not at all,”</i> she says, slipping into teacher mode with a finger poised in the air. <i>“While it’s true that there are a number of Gildenmere police now stationed at the thollums, this is a new change stemming from recent upheavals - before the war and the arrival of visitors from other worlds, the prefects and sumins kept order among the students.”</i>");
-
-		output("\n\n");
-		if(pc.isBimbo() || pc.libido() >= 70)
+		if(hours == 21) 
 		{
-			output("<i>“And");
-			if(pc.isBimbo()) output(", like, ");
-			else output("... ");
-			output("what did you <i>do</i> once you snuck your guest in?”</i> you ask, pruriently interested.");
+			output("\n\nThe skinny myr laughs. <i>“I feel like I’m a young girl again, sneaking " + pc.mf("a boy","a friend") + " into my room after curfew.”</i>");
+			output("\n\nYou stop and consider that. ");
+			if(pc.isBimbo()) output("<i>“You used to get people past all those guards? You’re, like, really smart.”</i>");
+			else if(pc.isMischievous()) output("<i>“If you could get by so many police, why pick an honest job?”</i>");
+			else output("<i>“Must have been hard, with all the guards.”</i>");
+
+			output("\n\n<i>“Not at all,”</i> she says, slipping into teacher mode with a finger poised in the air. <i>“While it’s true that there are a number of Gildenmere police now stationed at the thollums, this is a new change stemming from recent upheavals - before the war and the arrival of visitors from other worlds, the prefects and sumins kept order among the students.”</i>");
+
+			output("\n\n");
+			if(pc.isBimbo() || pc.libido() >= 70)
+			{
+				output("<i>“And");
+				if(pc.isBimbo()) output(", like, ");
+				else output("... ");
+				output("what did you <i>do</i> once you snuck your guest in?”</i> you ask, pruriently interested.");
+			}
+			output("<i>“Did you sneak in ‘guests’ a lot?”</i> you ask, laying emphasis on the ‘guests’.");
+
+			if(pc.isNude()) output("\n\n<i>“Nothing I could say would surprise you, I’m sure,”</i> Yarasta says, looking pointedly at your nakedness.");
+			else output("\n\n<i>“That’s personal,”</i> answers Yarasta, smiling so that you know she’s not offended.");
 		}
-		output("<i>“Did you sneak in ‘guests’ a lot?”</i> you ask, laying emphasis on the ‘guests’.");
-
-		if(pc.isNude()) output("\n\n<i>“Nothing I could say would surprise you, I’m sure,”</i> Yarasta says, looking pointedly at your nakedness.");
-		else output("\n\n<i>“That’s personal,”</i> answers Yarasta, smiling so that you know she’s not offended.");
+		//(other times)
+		else
+		{
+			output("\n\nThe myr prefect smiles. <i>“I do like an eager student"):
+			if(pc.isBimbo() || pc.isBro() || pc.libido() >= 70) output("... even if [pc.hisHer] interest is only physical,”</i> she replies, beckoning your eyes away from her figure.");
+			else output(",”</i> she replies.");
+			if(pc.isBimbo() || pc.isBro()) output("\n\n<i>“So, huh. You must like your job?”</i>");
+			else if(pc.isNice()) output("\n\n<i>“Do you get many?”</i>");
+			else output("\n\n<i>“Do you get them often enough to have a preference?”</i>");
+			output(" you ask, remembering some of the little hellraisers you saw on the tour.");
+			output("\n\n<i>“Oh, yes.”</i> Yarasta says. She gestures you over. <i>“Did you want to talk about something in particular?”</i>");
+			//goto talk options
+		}
 	}
-	//(other times)
-	else if()
+	//repeat
+	else output("The pretty prefect turns to face you with her body. <i>“Certainly. What do you want to talk about?”</i>");
+	//goto talk options
+	//9999
+}
+
+
+//The Thollum
+//tooltip: Talk about the Thollum.
+public function talkToYarastaAboutTheThollum():void
+{
+	clearOutput();
+	showYarasta();
+	if(flags["YARASTA_THOLLUM_TALKED"] == undefined)
 	{
-		output("\n\nThe myr prefect smiles. <i>“I do like an eager student{(highlib/bimbro)... even if [pc.hisHer] interest is only physical,”</i> she replies, beckoning your eyes away from her figure. /,”</i> she replies. }");
-
-output("\n\n{(bimbro)<i>“So, huh. You must like your job?”</i>/(nice)<i>“Do you get many?”</i>/(not nice)<i>“Do you get them often enough to have a preference?”</i>} you ask, remembering some of the little hellraisers you saw on the tour.");
-
-output("\n\n<i>“Oh, yes.”</i> Yarasta says. }She gestures you over. <i>“Did you want to talk about something in particular?”</i>");
-output("\n\n//goto talk options");
-
-output("\n\n//repeat");
-output("\n\nThe pretty prefect turns to face you with her body. <i>“Certainly. What do you want to talk about?”</i>");
-output("\n\n//goto talk options");
-
-
-output("\n\nThe Thollum");
-output("\n\n//tooltip: Talk about the Thollum.");
-
-output("\n\n{(first time bimbro)<i>“I saw some stuff on the tour but, like, I still can’t get over how many kids you have. Would you tell me more about the school?”</i> you ask.");
-
-output("\n\n<i>“You know I didn’t birth them, of course?”</i> she replies. You nod vigorously, and she continues, <i>“The children are indeed tiring, but rewarding. Most of the girls are very polite and obedient, but there are always some that disrupt the classes or resist authority. Usually I can get them in line with the group, but sometimes I lose whole half-days because the focus is gone. And then there are some that can only think about sex, like you.”</i>");
-
-output("\n\nYour attention snaps back from her smooth thighs, jarred into the conversation. The prefect laughs merrily.");
-output("\n\n/");
-output("\n\n(first time nice)<i>“Tell me more about the thollum,”</i> you request. <i>“I haven’t seen child-rearing like it anywhere else.”</i>");
-
-output("\n\n<i>“Why, because of the numbers?”</i> she asks. <i>“Controlling peer pressure is essential with a group of that size, as is maintaining a dominant position. I’m sure you know of the phenomenon where people in large groups lose the ability to go against the group’s decisions? The children have to know that they are unquestionably accountable to the adults, and the adults that they must be absolutely authoritarian toward the children, or else a child can usurp the leadership and it becomes a madhouse. It can be stressful.”</i>");
-
-output("\n\n<i>“So you have to be on watch all the time?”</i>");
-
-output("\n\n<i>“And sometimes lock the doors,”</i> she affirms. <i>“I dread field trips and work study, because it’s easy for a few girls to decide they don’t want to pay attention and wander off to shoplift or go drone-hunting. And do you suppose that when underaged myrmedions are caught ripping off Silken Serenity or sneaking into The Honey Nozzle and returned to us by the police, they’re the only ones in trouble?”</i>");
-output("\n\n/");
-output("\n\n(first time misch)<i>“I’d like to hear your perspective on the thollum. For instance, what’s it like overseeing your own private army?”</i> you ask.");
-
-output("\n\n<i>“A constant pain,”</i> answers Yarasta, with a tinkly laugh. <i>“How hard it is to keep them marching in step! And of course, just as you get the most restive little girls to finally trust you as a capable adult, they become hormonal teenagers and start rebelling for entirely different reasons.”</i>");
-
-output("\n\n<i>“Even with no males?”</i>");
-
-output("\n\nShe {(nude cock)glances at your [pc.cocks], then }shakes her head. <i>“Challenging the lead female is one of those things that young women do instinctively when they’re trying to find their place - I’ve raised girls so aggressive that I suspected they were queens who got false negatives on the test. Sometimes I wonder if maybe a drone wouldn’t have an easier time keeping them obedient. But then, they’d never learn anything even if they watched him all day.”</i>");
-output("\n\n/");
-output("\n\n(first time mean)<i>“Tell me about the thollum. How do you stand it?”</i> you ask.");
-
-output("\n\n<i>“Stand it? You mean, because of the children?”</i> replies Yarasta. <i>“Well, I’ll grant that no child is perfect, but on the whole, they’re quite polite and eager to learn. They rarely have a chance to become too distracted, since we keep them away from stores, outsiders, and especially drones.”</i>");
-
-output("\n\n<i>“Seeing no men is weird,”</i> you rejoin.");
-
-output("\n\n<i>“I suppose you’re accustomed to them. It’s widely regarded as a positive since our sex drives get quite high in adolescence. Although,”</i> she says, lost in academic mode, <i>“there was a breakaway school of education theory that proposed adding one drone to each class after puberty as an aide - thinking being, he could be brought in sparingly to derail arguments and used as incentive to lure the girls to perform better.”</i>");
-output("\n\n/");
-output("\n\n(repeat bimbro)<i>“So, like, I know we talked about it before, but could you go over the thollum again?”</i> you ask, feeling like you’re back in school.");
-
-output("\n\n<i>“Certainly,”</i> Yarasta answers.");
-output("\n\n/");
-output("\n\n(repeat other)<i>“Refresh me on the thollum,”</i> you say.");
-
-output("\n\n<i>“Very well,”</i> Yarasta replies.}");
-
-output("\n\nYarasta pauses here to wipe her glasses on her blouse as she plots out the important points of the subject in her head. <i>“The basic principle is that we prefects are assigned a group of girls and escort said girls from shortly after birth to productive adulthood - hence the colored vests and skirts with the easily-seen emblems, each for a specific prefect’s class. By being with them the entire time, we can see deficiencies and talents as they take shape. With help from the sumins, we are able to guide the girls toward careers that make the best of their individual abilities and personalities and give extra attention to any critical skills they lack. Once the girls graduate, we take up a new class fresh out of the nursery and begin again.”</i>");
-
-output("\n\n{(bimbro)You digest the explanation as best you can until you encounter an idea that you can’t get down your craw. <i>“Uh, does that mean you have to know, like... everything?”</i> /(else)You digest the explanation, your next question forming. <i>“So you yourself have to master the entire curriculum from infancy to adulthood? {Sounds demanding./(mean)Sounds like an absolute bore.}”</i> }");
-
-output("\n\nShe puts her glasses back on and smiles. <i>“I suppose. The skills required of me certainly change every year. Explaining basic addition to a hundred little cherub faces is more likely to test my skills at analogy and creative writing than my memorization and mathematical mind - and sometimes it feels like what I need most when dealing with teenagers is a red myr with drooling problems.”</i>");
-
-output("\n\n{(bimbro)<i>“Do you ever get totally stressed out?”</i> /(mean)<i>“Do you contemplate suicide often?”</i> /(else)<i>“Does the workload get to you?”</i> }");
-
-output("\n\n{(mean no bimbro)<i>“No!”</i> exclaims /”</i>No,”</i> says }Yarasta. <i>“I handle the workload quite well... as well as any of us.”</i>");
-
-output("\n\nSounds like there’s more there than she’s volunteering. Will you pry?");
-output("\n\n//unlock and present ‘Her Schedule’, ‘No’");
-
-
-output("\n\nNo");
-output("\n\n//tooltip: Abandon the current conversation.");
-
-output("\n\n<i>“Did you require anything else?”</i> Yarasta asks, demurely.");
-output("\n\n//to Yarasta menu buttons");
-
-
-output("\n\nHer Schedule");
-output("\n\n//unlocked after ‘The Thollum’");
-output("\n\n//tooltip: Talk about Yarasta’s daily regimen.");
-output("\n\n//tooltip disabled, locked: She’s only here to answer your professional inquiries - as far as she knows.");
-
-output("\n\n{(first time bim)<i>“Tell me s’more about you. Like, do you have a boyfriend? I mean, uh, a girlfriend?”</i> you ask{(shoulder-length+ hair), tossing your hair}.");
-
-output("\n\n<i>“Neither,”</i> replies Yarasta. <i>“Not formally, anyway.”</i>");
-
-output("\n\n<i>“So, like, why not? You could go see him whenever you needed to take a break and feel good.”</i> You squeeze your [pc.breasts] between your arms and lean forward, just to make sure she knows that by ‘feel good’, you mean ‘get fucked’.");
-output("\n\n/");
-output("\n\n{(first time bro)You examine the lines of Yarasta’s arms and legs through her clothes. ”</i>You look like you make time to hit the gym, at least. What’s your starting deadlift? ‘Bout eighty pounds?”</i>");
-
-output("\n\nShe looks lost. <i>“‘Dead lift’?”</i>");
-
-output("\n\n<i>“Yeah, you know. Deadlift. Or bench. You do work out?”</i>");
-
-output("\n\n<i>“Uh, no, I don’t think so,”</i> the prefect answers, unsure. <i>“Unless you count chasing and picking up children.”</i> She muses for a moment. <i>“I suppose some of them currently weigh around eighty Terran pounds.”</i>");
-
-output("\n\nYou nod. <i>“Right on.”</i>");
-output("\n\n/");
-output("\n\n(first nice)<i>“I’m interested in you. What do you do with your time?”</i> you ask, honestly.");
-output("\n\n/");
-output("\n\n(first other)<i>“So do you ever have any fun?”</i> you tease.");
-output("\n\n/");
-output("\n\n(repeat bimbro)<i>“Uh... when did you say your breaks were?”</i> you ask.");
-output("\n\n/");
-output("\n\n(repeat other)<i>“Tell me about your typical day again,”</i> you request. }");
-
-output("\n\nYarasta smiles - not a prim, instructor’s smile this time, but the happy grin of a girl who’s flattered someone’s taking an interest. <i>“I don’t have much free time,”</i> says the myr, smoothing her silken blouse over her petite breasts. <i>“Ten hours a day are spent with the girls, divided into two five-hour sessions. Three hours are allotted for three meals, breakfast, lunch, and dinner, though I usually grab them to go so I can work. Curfew is at 21:00, and I need to be in my room to catch any girls that try to sneak by. We’re supposed to use from curfew until we sleep for recreation and socializing, but if I can’t get the next day’s lesson ready in the two hours between evening meal and then, or if I had to issue paperwork, I have to take the materials back to my room and keep working.”</i>");
-
-output("\n\n{(bimbro)It takes you a while to visualize the clock. Yarasta decides to guess your response from your face and continue without you. /(nice)<i>“Does that happen often?”</i> /(misch)<i>“No fun allowed. Got it.”</i> /(mean)<i>“Holy shit, lady.”</i>}");
-
-output("\n\n<i>“Indeed. I’ve spend most of my recent nights looking at workbooks. Truthfully, there’s too much to do now. The classes are too large and there aren’t enough prefects... the best outcomes result from no more than one hundred fifty girls per class. Studies have been done. But the expedited breeding and the arrival of the refugees mean forcing more in, which hurts us and hurts the children. Though, with the war, there aren’t a lot of best outcomes left for us. Speaking of schedules....”</i> She glances at a timepiece. <i>“I’d love to hit the city and relax, but I have to take opportunities for fun as they come to me. Unfortunately, as much as I’m enjoying indulging your interest, I should probably wrap up. I’d be glad to speak again{(mean no bimbro), if you can watch your language}.”</i>");
-
-output("\n\nClearly she has no time to chase romance. Just as clearly, she likes your company. You wonder if you might qualify as an ‘opportunity’ - do you try flirting with her?");
-output("\n\n//unlocks ‘Sex’; offer choices ‘Flirt’, ‘No’");
-output("\n\n//’Flirt’ should use same tooltips and output as ‘Sex’");
-
-
-output("\n\nCurrent Events");
-output("\n\n//unlocked after 1 sex");
-output("\n\n//forks to different topics after intro");
-output("\n\n//tooltip: Ask her opinions on current events like the war and the U.G.C. landing. Warning: this will cause her to talk. A lot.");
-output("\n\n//tooltip disabled, locked: You definitely don’t know her well enough to discuss politics. Quickest way to lose a friend, and all that.");
-
-output("\n\n{(bim)<i>“So, like... uh... what do you think about stuff?”</i> you open, gesturing grandly with your hands to indicate ‘everything’.");
-
-output("\n\n<i>“To what are you referring?”</i> asks Yarasta. <i>“The war? The alien contact? The possibility of thermonuclear annihilation?”</i>");
-
-output("\n\n<i>“Yeah!”</i> you agree.");
-
-output("\n\nYarasta sighs and rubs her forehead.");
-output("\n\n/");
-output("\n\n(bro)<i>“So, like, hit me up with some knowledge,”</i> you open.");
-
-output("\n\n<i>“About?”</i> Yarasta challenges.");
-
-output("\n\n<i>“I dunno. Pretty crazy times, though, right? What, uh, what do you think?”</i>");
-
-output("\n\nShe laughs mirthfully with a ladylike hand over her mouth at your attempt to seem cosmopolitan.");
-output("\n\n/");
-output("\n\n(nice)<i>“I’m curious what you think of the recent developments around here.”</i>");
-
-output("\n\nYarasta’s glasses flash as she pushes them up, transforming her into her inner academic.");
-output("\n\n/");
-output("\n\n(misch/mean)<i>“Surely an armchair diplomat like you has some insights on recent developments,”</i> you goad, hoping for an interesting discussion.");
-
-output("\n\nYarasta turns toward you and folds her legs. <i>“As a matter of fact...”</i> }");
-
-output("\n\n//UGC branch - pick branch randomly or sequentially");
-output("\n\nYou shift to sit comfortably for the anticipated lecture.");
-
-output("\n\n<i>“I’ve been thinking a lot about the U.G.C. and their technology. Myrellion may not be the straight-forward assimilation into the galactic economy that everyone seems to assume.”</i> The pretty myr tucks her left two arms under the others and taps her fine cheekbones - a strange sight, since her two right index fingers tap in alternating rhythm. <i>“Of course, it would be nice if it were absorbed into the U.G.C. without incident and everyone could benefit according to their station. But consider some of the medical breakthroughs you take for granted. For example...”</i>");
-
-output("\n\nYou nod politely when she looks at you, and she continues, holding her hands palm-up to suggest an offering of knowledge. <i>“... we see already that Queen Irellia’s desire for more power has prompted a risky, untested gene manipulation that allows her to breed and lay simultaneously, an advantage which surely must have the other queens thinking. What if other such procedures are adapted? For instance, suppose next is introduced a treatment to turn any myrmedion into a functional hermaphrodite{ like yourself}? If we look past the cosmetic and recreational value of such a change, we see immediately that it offers the Scarlet Federation an enormous breeding advantage, as nearly half of their females are fertile by recent scholarly estimates. Within two decades of such an advance, they could outnumber us by a factor of five!”</i>");
-
-output("\n\nShe answers your {surprised/(mean)bemused} expression with a knowing glance. <i>“Conversely, suppose that the next advancement is a treatment that bestows fertility upon the infertile. This would help the Scarlet Federation, yes, but it would help the Republic even more.”</i> Yarasta clutches with her hands, as if grappling with metaphorical weights. <i>“Normal citizens like you, sorry, not you, but me, would be able to become queens with an outlay of capital, capable of producing hundreds or thousands of children yearly. In effect, the only remaining barriers to political power under the current system would be the treatment fee and the costs of excavating a territory, allowing any private citizen rich enough to sue the Republic’s ruling council for admission. The political climate would change, of necessity. I think a Terran word suits that scenario of citizen rule best: ‘democracy’.”</i>");
-
-output("\n\n{(high int){(bim)<i>“Um, more like plutocracy? Duh,”</i> /(else)<i>“Plutocracy,”</i> }you amend./(else)<i>“Uh-huh,”</i> you say, keeping the pace going. }");
-
-output("\n\n{(high int) Yarasta nods eagerly. }<i>“So, as we can see, either or both advancements could lead to a major imbalance of power among the myr,”</i> she concludes, proud of her little presentation.");
-
-output("\n\n<i>“But{, like,} what about the cease-fire?”</i> you point out{(misch/mean), mostly to play devil’s advocate}.");
-
-output("\n\nYarasta smiles a grim smile. <i>“I thought you might mention that. The cease-fire, even should it hold, is only binding while U.G.C. assets are here to enforce it and the powers are in balance. As soon as the economic situation on Myrellion stabilizes and the U.G.C.’s attention turns to the next discovered planet, there’s little to stop the first power to develop a major advantage from quietly ignoring the agreement and permanently removing the other, as long as the flow of goods and information isn’t interrupted.”</i>");
-
-output("\n\n{(bim)<i>“That’s sooo depressing!”</i> you exclaim, pursing your lip in a pout. /(bro)<i>“That’s so harsh,”</i> you reply. /(nice)<i>“You paint a bleak picture,”</i> you grumble. /(else)<i>“Sounds delightful,”</i> you say sarcastically. }");
-
-output("\n\nThe prefect snaps out of her lecturer’s trance and sheepishly folds her hands behind her head. <i>“Well, it might not happen like that. I could just be imagining outcomes that match my mood as of late,”</i> she considers.");
-output("\n\n//’Next’");
-
-output("\n\n<i>“Did you want something else?”</i>");
-output("\n\n//main Yarasta menu");
-
-output("\n\n//war branch");
-output("\n\nCued by her somewhat nervous demeanor, you lean in close.");
-
-output("\n\n<i>“I’ve been grappling with some concerns over the outcome of the war,”</i> she admits. <i>“Particularly the refugees.”</i>");
-
-output("\n\nYou vamp. <i>“Yeah?”</i>");
-
-output("\n\n<i>“Well, let me start by saying I strongly believe that we have a duty to help our sisters in their time of need,”</i> she says diplomatically. <i>“But in truth, the Kressian refugees and rescues have presented a problem that the Gilden Republic was not prepared to handle. Take the young girls, for example. Their birth queens in Kressia are lost, but the adopting queens can’t agree on jurisdiction. All the Gildenmere queens would like to foster the refugees since it would provide an instant boost to their numbers - yet until an agreement is reached, the girls aren’t actually protected under the auspices of </i>any<i> queen. Some citizens are hesitant to provide services, even essential services, to them, not knowing whom to bill. Fees that are charged to them don’t get paid, and collect interest... if they reach adulthood without being claimed by a queen’s family, they become personally liable for the debts that accrued while they were minors. Thankfully, the queens have at least agreed to add the girls to the collectively-funded thollums until the issue can be settled, instead of leaving them in limbo.”</i>");
-
-output("\n\n{(bimbro)<i>“Um... w/(else)W}hy not just split them up?”</i>");
-
-output("\n\nYarasta nods eagerly, glad to know you’re following. <i>“Yes, that’s the thinking. But the queens are hung up on the method of division. Some want the girls to be split evenly among the council, giving lesser queens a relative advantage. Others, particularly the most powerful, argue that each queen should take on refugees in proportion to her current holdings. This would maintain the current balance. The votes are, as yet, even.”</i>");
-
-output("\n\nShe pursues a different tangent. <i>“Trouble follows the adults, too. Because many of them arrived in Gildenmere partially or completely addicted to red myr venom, Kressian refugees are considered at high risk of becoming venom junkies, distributing venom, being sold in myrmedion trafficking, and associating with a degenerate underground pro-Federation movement that operates in these gray and black markets and has lately claimed responsibility for several terrorist attacks. This has caused a public backlash against them that affects even legal immigrants who have been in good standing for decades.”</i>");
-
-output("\n\nYarasta stops talking, studying you as she decides whether to delve further into the subject. After a moment, she resumes. <i>“Many refugees from Kressia’s now-closed thollums applied to join the staff here when they first arrived. To a myr, they were refused on the grounds of supposed pragamtism. The queens and the thollum administration both consider the risk of addicts and Federation apologists infiltrating the thollum staff to be too great. I can understand their argument. But with the many, many refugee children and the additional breeding, the number of girls in the thollums is now past what the prefects can handle - I can attest to that being the case here, too. Without accepting accredited teachers from Kressia, the only choices are to increase the class sizes or relax hiring standards, either of which will hurt the Republic far more in the long run than pro-red sentiment.”</i>");
-
-output("\n\nColor rises in her face as she concludes. <i>“It’s already happening, in fact! There are so many girls that we don’t have enough sumins to feed them all, so the teenagers with high honey production are being pulled from classes to spend half-days in the milking room. In effect, they’re trading a current problem for a future one, because these girls are missing the most crucial part of their educations - you can’t go anywhere professionally without good scores in your adult assessments! We can’t keep them here as sumins after graduation unless they score highly, so pulling them all but guarantees that they’re relegated to permanent careers in private sector food service.”</i>");
-
-output("\n\n<i>“That{(bim)‘s like, soo /(else) sounds }frustrating,”</i> you rejoin.");
-
-output("\n\nThe myr calms down and remembers where she is. <i>“Yes, sorry. It is, but that’s no cause to raise my voice.”</i>");
-output("\n\n/’Next’");
-
-output("\n\n<i>“Did you want something else?”</i>");
-output("\n\n//main Yarasta menu");
-
-
-output("\n\nHer Friend/Giala");
-output("\n\n//req time 1900-2159");
-output("\n\n//unlocked after 1 sex");
-output("\n\n//displays as ’Her Friend’ until chosen once, then ‘Giala’ thereafter");
-output("\n\n//tooltip: Get {her friend/Giala} involved in a three-way conversation before she can slip away again. Could lead to the loss of the ‘conversation’ part.");
-output("\n\n//tooltip disabled, locked and wrong time: Even if her friend were here, she’d just clear out to give you a chance to be alone with Yarasta and get intimate.");
-output("\n\n//tooltip disabled, locked: Her friend is already edging out the door to let you be alone and intimate with Yarasta. What a good wingman!");
-output("\n\n//tooltip disabled, wrong time: Giala’s not present. Talking to her would look pretty crazy.");
-
-output("\n\n//first time");
-output("\n\n{(bim)<i>“Hey, you can, like, stay. I mean, if you want?”</i> you tell her friend. <i>“And, um, talk with us.”</i> /(bro)<i>“Hey, it’s cool if you stay,”</i> you tell her friend. <i>“I mean, you seem cool and stuff.”</i> /(nice)<i>“Stay, won’t you?”</i> you ask the curvy woman. <i>“It’d be nice to meet Yarasta’s friend.”</i> /(misch)<i>“You move fast for a big girl,”</i> you say suddenly, surprising her friend mid-stride. <i>“Why not stay and chat? You scared of aliens?”</i> /(mean)You step in front of the door abruptly and accost her fleeing friend. <i>“Why don’t you have a seat? Just have a seat right over there.”</i> }");
-
-output("\n\nBoth she and Yarasta look at you curiously, then each other. The unknown woman sits back down demurely.");
-
-output("\n\n<i>“So, {like, }you two </i>are<i> friends, right?”</i> you inquire.");
-
-output("\n\nShe laughs. <i>“Yes, for quite some time now.”</i> The woman holds out a hand in a Terran gesture of greeting, performed slightly wrongly. <i>“I’m Giala Marsail.”</i>");
-
-output("\n\nYou take the hand as you look her over. She’s shorter than Yarasta, but far more voluptuous. Dark eyes peer from under sandy blonde hair that’s pulled back past her antennae in a low ponytail and slung forward. A little long-stemmed mushroom is the hair-tie, cutely arranged with the cap visible. She’s nude, and displaying such perfectly-formed F-cups that you suppose covering herself has never been a priority. Under her breasts is a girdle of chitin, enforcing an hourglass waist, but the jiggle of her booty is unrestrained and gives her a very fetching seat. Her cleavage is notable, especially as her girdle climbs halfway up her sides to highlight her best features. The shoulders and collar are bare, almost the opposite of Yarasta’s, but carapace covers her forearm from the elbow down and ends at her hands.");
-
-output("\n\n<i>“[pc.name],”</i> you say. <i>“{(bimbro)Um, w/W}hat do you do here?”</i>");
-
-output("\n\n<i>“I’m a sumin,”</i> she says. <i>“I help with watching the children during their leisure times, or grade papers, or tutor, or tidy up. Wherever I’m needed, so long as it doesn’t burn too many calories.”</i> She elaborates further, sparing you the need to ask, and cradles her gorgeous, golden breasts in her four hands. <i>“My main job is to make nutritious honey for the girls so they grow up healthy, but all I need to do for that is snack.”</i>");
-
-output("\n\n<i>“She’s basically my slave,”</i> says Yarasta. Giala laughs, giving you your first hint that they’re close enough to tease one another without fear.");
-
-output("\n\n<i>“Right,”</i> the shorter woman says. <i>“I do all the work and she takes the credit.”</i>");
-
-output("\n\n<i>“Is that so?”</i> you ask idly.");
-
-output("\n\n<i>“No, of course not,”</i> answers Yarasta, flicking a wrist to dismiss the notion. <i>“She helps me out often, but the lesson plans and examinations are by regulation always drawn up by the prefects. The sumins usually, not always, test lower in assessments. But they’re in the top percentile for honey production. Our positions could easily have been reversed.”</i>");
-
-output("\n\nGiala simplifies. <i>“The short of it is that I was assigned to the sumins instead of the prefects because my breasts fill up much faster than hers, which go about as quickly as a red’s since she’s always forgetting to eat.”</i>");
-
-output("\n\n<i>“Yes, well, it’s the burden of being an intellectual elite,”</i> Yarasta huffs. <i>“I’m smarter and therefore most suited to care for the girls, and they require constant attention.”</i>");
+		if(pc.isBimbo() || pc.isBro())
+		{
+			if(pc.isBimbo()) output("\n\n<i>“I saw some stuff on the tour but, like, I still can’t get over how many kids you have. This school is totally crazy! How does it even work?”</i> you ask.");
+			else output("\n\n<i>“I saw some stuff on the tour but, like, I still can’t get over how many kids you have. Would you tell me more about the school?”</i> you ask.");
+			output("\n\n<i>“You know I didn’t birth them, of course?”</i> she replies. You nod vigorously, and she continues, <i>“The children are indeed tiring, but rewarding. Most of the girls are very polite and obedient, but there are always some that disrupt the classes or resist authority. Usually I can get them in line with the group, but sometimes I lose whole half-days because the focus is gone. And then there are some that can only think about sex, like you.”</i>");
+			output("\n\nYour attention snaps back from her smooth thighs, jarred into the conversation. The prefect laughs merrily.");
+		}
+		else if(pc.isNice())
+		{
+			output("<i>“Tell me more about the thollum,”</i> you request. <i>“I haven’t seen child-rearing like it anywhere else.”</i>");
+			output("\n\n<i>“Why, because of the numbers?”</i> she asks. <i>“Controlling peer pressure is essential with a group of that size, as is maintaining a dominant position. I’m sure you know of the phenomenon where people in large groups lose the ability to go against the group’s decisions? The children have to know that they are unquestionably accountable to the adults, and the adults that they must be absolutely authoritarian toward the children, or else a child can usurp the leadership and it becomes a madhouse. It can be stressful.”</i>");
+			output("\n\n<i>“So you have to be on watch all the time?”</i>");
+			output("\n\n<i>“And sometimes lock the doors,”</i> she affirms. <i>“I dread field trips and work study, because it’s easy for a few girls to decide they don’t want to pay attention and wander off to shoplift or go drone-hunting. And do you suppose that when underaged myrmedions are caught ripping off Silken Serenity or sneaking into The Honey Nozzle and returned to us by the police, they’re the only ones in trouble?”</i>");
+		}
+		else if(pc.isMischievous())
+		{
+			output("<i>“I’d like to hear your perspective on the thollum. For instance, what’s it like overseeing your own private army?”</i> you ask.");
+			output("\n\n<i>“A constant pain,”</i> answers Yarasta, with a tinkly laugh. <i>“How hard it is to keep them marching in step! And of course, just as you get the most restive little girls to finally trust you as a capable adult, they become hormonal teenagers and start rebelling for entirely different reasons.”</i>");
+			output("\n\n<i>“Even with no males?”</i>");
+			output("\n\nShe ");
+			if(pc.isCrotchExposed() && pc.hasCock()) output("glances at your [pc.cocks], then ");
+			output("shakes her head. <i>“Challenging the lead female is one of those things that young women do instinctively when they’re trying to find their place - I’ve raised girls so aggressive that I suspected they were queens who got false negatives on the test. Sometimes I wonder if maybe a drone wouldn’t have an easier time keeping them obedient. But then, they’d never learn anything even if they watched him all day.”</i>");
+		}
+		else
+		{
+			output("<i>“Tell me about the thollum. How do you stand it?”</i> you ask.");
+			output("\n\n<i>“Stand it? You mean, because of the children?”</i> replies Yarasta. <i>“Well, I’ll grant that no child is perfect, but on the whole, they’re quite polite and eager to learn. They rarely have a chance to become too distracted, since we keep them away from stores, outsiders, and especially drones.”</i>");
+			output("\n\n<i>“Seeing no men is weird,”</i> you rejoin.");
+			output("\n\n<i>“I suppose you’re accustomed to them. It’s widely regarded as a positive since our sex drives get quite high in adolescence. Although,”</i> she says, lost in academic mode, <i>“there was a breakaway school of education theory that proposed adding one drone to each class after puberty as an aide - thinking being, he could be brought in sparingly to derail arguments and used as incentive to lure the girls to perform better.”</i>");
+		}
+	}
+	else
+	{
+		if(pc.isBimbo())
+		{
+			output("\n\n<i>“So, like, I know we talked about it before, but could you go over the thollum again?”</i> you ask, feeling like you’re back in school.");
+			output("\n\n<i>“Certainly,”</i> Yarasta answers.");
+		}
+		else
+		{
+			output("<i>“Refresh me on the thollum,”</i> you say.");
+			output("\n\n<i>“Very well,”</i> Yarasta replies.");
+		}
+	}
+	output("\n\nYarasta pauses here to wipe her glasses on her blouse as she plots out the important points of the subject in her head. <i>“The basic principle is that we prefects are assigned a group of girls and escort said girls from shortly after birth to productive adulthood - hence the colored vests and skirts with the easily-seen emblems, each for a specific prefect’s class. By being with them the entire time, we can see deficiencies and talents as they take shape. With help from the sumins, we are able to guide the girls toward careers that make the best of their individual abilities and personalities and give extra attention to any critical skills they lack. Once the girls graduate, we take up a new class fresh out of the nursery and begin again.”</i>");
+	output("\n\n");
+	if(pc.isBimbo())
+	{
+		output("You digest the explanation as best you can until you encounter an idea that you can’t get down your craw. <i>“Uh, does that mean you have to know, like... everything?”</i>");
+	}
+	else
+	{
+		output("You digest the explanation, your next question forming. <i>“So you yourself have to master the entire curriculum from infancy to adulthood? ");
+		if(!pc.isAss()) output("Sounds demanding.");
+		else output("Sounds like an absolute bore.");
+		output("”</i>");
+	}
+	output("\n\nShe puts her glasses back on and smiles. <i>“I suppose. The skills required of me certainly change every year. Explaining basic addition to a hundred little cherub faces is more likely to test my skills at analogy and creative writing than my memorization and mathematical mind - and sometimes it feels like what I need most when dealing with teenagers is a red myr with drooling problems.”</i>");
+	output("\n\n");
+	if(pc.isBimbo()) output("<i>“Do you ever get totally stressed out?”</i>");
+	else if(pc.isBro()) output("<i>\"Stressful, I bet.\"</i>");
+	else if(pc.isAss()) output("<i>“Do you contemplate suicide often?”</i>");
+	else output("<i>“Does the workload get to you?”</i>");
+	//(mean no bimbro)
+	if(!pc.isBimbo() && !pc.isBro() && pc.isAss()) output("<i>“No!”</i> exclaims ");
+	else output("<i>“No,”</i> says ");
+	output("Yarasta. <i>“I handle the workload quite well... as well as any of us.”</i>");
+	output("\n\nSounds like there’s more there than she’s volunteering. Will you pry?");
+	//unlock and present ‘Her Schedule’, ‘No’
+	processTime(17);
+	flags["YARASTA_THOLLUM_TALKED"] = 1;
+	clearMenu();
+	addButton(0,"Her Schedule",);
+	addButton(1,"No",abortYarastaPrying,undefined,"No","Abandon the current conversation.");
+}
+
+//No
+//tooltip: Abandon the current conversation.
+public function abortYarastaPrying():void
+{
+	clearOutput();
+	showYarasta();
+	output("<i>“Did you require anything else?”</i> Yarasta asks, demurely.");
+	//to Yarasta menu buttons
+	//9999
+}
+
+//Her Schedule
+//unlocked after ‘The Thollum’
+//tooltip: Talk about Yarasta’s daily regimen.
+//tooltip disabled, locked: She’s only here to answer your professional inquiries - as far as she knows.
+public function pryIntoYarastasSchedule():void
+{
+	clearOutput();
+	showYarasta();
+	if(flags["YARASTA_SCHEDULE_TALK"] == undefined)
+	{
+		if(pc.isBimbo()) 
+		{
+			output("<i>“Tell me s’more about you. Like, do you have a boyfriend? I mean, uh, a girlfriend?”</i> you ask");
+			if(pc.hairLength >= 10) output(", tossing your hair");
+			output(".");
+			output("\n\n<i>“Neither,”</i> replies Yarasta. <i>“Not formally, anyway.”</i>");
+			output("\n\n<i>“So, like, why not? You could go see him whenever you needed to take a break and feel good.”</i> You squeeze your [pc.breasts] between your arms and lean forward, just to make sure she knows that by ‘feel good’, you mean ‘get fucked’.");
+		}
+		//(first time bro)
+		else if(pc.isBro())
+		{
+			output("You examine the lines of Yarasta’s arms and legs through her clothes. <i>“You look like you make time to hit the gym, at least. What’s your starting deadlift? ‘Bout eighty pounds?”</i>");
+			output("\n\nShe looks lost. <i>“‘Dead lift’?”</i>");
+			output("\n\n<i>“Yeah, you know. Deadlift. Or bench. You do work out?”</i>");
+			output("\n\n<i>“Uh, no, I don’t think so,”</i> the prefect answers, unsure. <i>“Unless you count chasing and picking up children.”</i> She muses for a moment. <i>“I suppose some of them currently weigh around eighty Terran pounds.”</i>");
+			output("\n\nYou nod. <i>“Right on.”</i>");
+		}
+		else if(pc.isNice()) output("<i>“I’m interested in you. What do you do with your time?”</i> you ask, honestly.");
+		else output("<i>“So do you ever have any fun?”</i> you tease.");
+	}
+	else if(pc.isBimbo() || pc.isBro()) output("<i>“Uh... when did you say your breaks were?”</i> you ask.");
+	else output("<i>“Tell me about your typical day again,”</i> you request.");
+
+	output("\n\nYarasta smiles - not a prim, instructor’s smile this time, but the happy grin of a girl who’s flattered someone’s taking an interest. <i>“I don’t have much free time,”</i> says the myr, smoothing her silken blouse over her petite breasts. <i>“Ten hours a day are spent with the girls, divided into two five-hour sessions. Three hours are allotted for three meals, breakfast, lunch, and dinner, though I usually grab them to go so I can work. Curfew is at 21:00, and I need to be in my room to catch any girls that try to sneak by. We’re supposed to use from curfew until we sleep for recreation and socializing, but if I can’t get the next day’s lesson ready in the two hours between evening meal and then, or if I had to issue paperwork, I have to take the materials back to my room and keep working.”</i>");
+	//(bimbro)
+	if(pc.isBimbo()) output("\n\nIt takes you a while to visualize the clock. Yarasta decides to guess your response from your face and continue without you.");
+	//(nice)
+	else if(pc.isNice()) output("\n\n<i>“Does that happen often?”</i>");
+	//(misch)
+	else if(pc.isMischievous()) output("\n\n<i>“No fun allowed. Got it.”</i>");
+	//(mean)
+	else output("\n\n<i>“Holy shit, lady.”</i>");
+
+	output("\n\n<i>“Indeed. I’ve spend most of my recent nights looking at workbooks. Truthfully, there’s too much to do now. The classes are too large and there aren’t enough prefects... the best outcomes result from no more than one hundred fifty girls per class. Studies have been done. But the expedited breeding and the arrival of the refugees mean forcing more in, which hurts us and hurts the children. Though, with the war, there aren’t a lot of best outcomes left for us. Speaking of schedules....”</i> She glances at a timepiece. <i>“I’d love to hit the city and relax, but I have to take opportunities for fun as they come to me. Unfortunately, as much as I’m enjoying indulging your interest, I should probably wrap up. I’d be glad to speak again");
+	if(pc.isAss() && !pc.isBimbo()) output(", if you can watch your language");
+	output(".”</i>");
+
+	output("\n\nClearly she has no time to chase romance. Just as clearly, she likes your company. You wonder if you might qualify as an ‘opportunity’ - do you try flirting with her?");
+	//unlocks ‘Sex’; offer choices ‘Flirt’, ‘No’
+	//’Flirt’ should use same tooltips and output as ‘Sex’
+	processTime(19);
+	flags["YARASTA_SCHEDULE_TALK"] = 1;
+	clearMenu();
+	addButton(0,"Flirt",);
+	addButton(1,"No",);
+}
+
+//Current Events
+//unlocked after 1 sex
+//forks to different topics after intro
+//tooltip: Ask her opinions on current events like the war and the U.G.C. landing. Warning: this will cause her to talk. A lot.
+//tooltip disabled, locked: You definitely don’t know her well enough to discuss politics. Quickest way to lose a friend, and all that.
+public function currentEventsYarastaTalk():void
+{
+	clearOutput();
+	showYarasta();
+	if(pc.isBimbo())
+	{
+		output("<i>“So, like... uh... what do you think about stuff?”</i> you open, gesturing grandly with your hands to indicate ‘everything’.");
+		output("\n\n<i>“To what are you referring?”</i> asks Yarasta. <i>“The war? The alien contact? The possibility of thermonuclear annihilation?”</i>");
+		output("\n\n<i>“Yeah!”</i> you agree.");
+		output("\n\nYarasta sighs and rubs her forehead.");
+	}
+	else if(pc.isBro())
+	{
+		output("<i>“So, like, hit me up with some knowledge,”</i> you open.");
+		output("\n\n<i>“About?”</i> Yarasta challenges.");
+		output("\n\n<i>“I dunno. Pretty crazy times, though, right? What, uh, what do you think?”</i>");
+		output("\n\nShe laughs mirthfully with a ladylike hand over her mouth at your attempt to seem cosmopolitan.");
+	}
+	else if(pc.isNice())
+	{
+		output("<i>“I’m curious what you think of the recent developments around here.”</i>");
+		output("\n\nYarasta’s glasses flash as she pushes them up, transforming her into her inner academic.");
+	}
+	else
+	{
+		output("<i>“Surely an armchair diplomat like you has some insights on recent developments,”</i> you goad, hoping for an interesting discussion.");
+		output("\n\nYarasta turns toward you and folds her legs. <i>“As a matter of fact...”</i> }");
+	}
+	//UGC branch - pick branch randomly or sequentially
+	if(flags["YARASTA_EVENTS_TALK"] == undefined)
+	{
+		flags["YARASTA_EVENTS_TALK"] = 1;
+		output("\n\nYou shift to sit comfortably for the anticipated lecture.");
+		output("\n\n<i>“I’ve been thinking a lot about the U.G.C. and their technology. Myrellion may not be the straight-forward assimilation into the galactic economy that everyone seems to assume.”</i> The pretty myr tucks her left two arms under the others and taps her fine cheekbones - a strange sight, since her two right index fingers tap in alternating rhythm. <i>“Of course, it would be nice if it were absorbed into the U.G.C. without incident and everyone could benefit according to their station. But consider some of the medical breakthroughs you take for granted. For example...”</i>");
+		output("\n\nYou nod politely when she looks at you, and she continues, holding her hands palm-up to suggest an offering of knowledge. <i>“... we see already that Queen Irellia’s desire for more power has prompted a risky, untested gene manipulation that allows her to breed and lay simultaneously, an advantage which surely must have the other queens thinking. What if other such procedures are adapted? For instance, suppose next is introduced a treatment to turn any myrmedion into a functional hermaphrodite");
+		if(pc.isHerm()) output(" like yourself");
+		output("? If we look past the cosmetic and recreational value of such a change, we see immediately that it offers the Scarlet Federation an enormous breeding advantage, as nearly half of their females are fertile by recent scholarly estimates. Within two decades of such an advance, they could outnumber us by a factor of five!”</i>");
+		output("\n\nShe answers your ");
+		if(!pc.isAss()) output("surprised");
+		else output("bemused");
+		output(" expression with a knowing glance. <i>“Conversely, suppose that the next advancement is a treatment that bestows fertility upon the infertile. This would help the Scarlet Federation, yes, but it would help the Republic even more.”</i> Yarasta clutches with her hands, as if grappling with metaphorical weights. <i>“Normal citizens like you, sorry, not you, but me, would be able to become queens with an outlay of capital, capable of producing hundreds or thousands of children yearly. In effect, the only remaining barriers to political power under the current system would be the treatment fee and the costs of excavating a territory, allowing any private citizen rich enough to sue the Republic’s ruling council for admission. The political climate would change, of necessity. I think a Terran word suits that scenario of citizen rule best: ‘democracy’.”</i>");
+
+		if(pc.IQ() >= 75) 
+		{
+			if(pc.isBimbo()) output("\n\n<i>“Um, more like plutocracy? Duh,”</i> ");
+			else output("<i>“Plutocracy,”</i> ");
+			output("you amend.");
+		}
+		else output("\n\n<i>“Uh-huh,”</i> you say, keeping the pace going.");
+
+		if(pc.IQ() >= 75) output("\n\nYarasta nods eagerly. ");
+		else output("\n\n");
+		output("<i>“So, as we can see, either or both advancements could lead to a major imbalance of power among the myr,”</i> she concludes, proud of her little presentation.");
+
+		output("\n\n<i>“But");
+		if(pc.isBimbo()) output(", like,");
+		output(" what about the cease-fire?”</i> you point out");
+		if(!pc.isNice()) output(", mostly to play devil’s advocate");
+		output(".");
+
+		output("\n\nYarasta smiles a grim smile. <i>“I thought you might mention that. The cease-fire, even should it hold, is only binding while U.G.C. assets are here to enforce it and the powers are in balance. As soon as the economic situation on Myrellion stabilizes and the U.G.C.’s attention turns to the next discovered planet, there’s little to stop the first power to develop a major advantage from quietly ignoring the agreement and permanently removing the other, as long as the flow of goods and information isn’t interrupted.”</i>");
+		if(pc.isBimbo()) output("\n\n<i>“That’s sooo depressing!”</i> you exclaim, pursing your lip in a pout.");
+		else if(pc.isBro()) output("\n\n<i>“That’s so harsh,”</i> you reply.");
+		else if(pc.isNice()) output("\n\n<i>“You paint a bleak picture,”</i> you grumble.");
+		else output("\n\n<i>“Sounds delightful,”</i> you say sarcastically.");
+
+		output("\n\nThe prefect snaps out of her lecturer’s trance and sheepishly folds her hands behind her head. <i>“Well, it might not happen like that. I could just be imagining outcomes that match my mood as of late,”</i> she considers.");
+	}
+	//war branch
+	else
+	{
+		flags["YARASTA_EVENTS_TALK"] = undefined;
+		output("\n\nCued by her somewhat nervous demeanor, you lean in close.");
+		output("\n\n<i>“I’ve been grappling with some concerns over the outcome of the war,”</i> she admits. <i>“Particularly the refugees.”</i>");
+		output("\n\nYou vamp. <i>“Yeah?”</i>");
+		output("\n\n<i>“Well, let me start by saying I strongly believe that we have a duty to help our sisters in their time of need,”</i> she says diplomatically. <i>“But in truth, the Kressian refugees and rescues have presented a problem that the Gilden Republic was not prepared to handle. Take the young girls, for example. Their birth queens in Kressia are lost, but the adopting queens can’t agree on jurisdiction. All the Gildenmere queens would like to foster the refugees since it would provide an instant boost to their numbers - yet until an agreement is reached, the girls aren’t actually protected under the auspices of </i>any<i> queen. Some citizens are hesitant to provide services, even essential services, to them, not knowing whom to bill. Fees that are charged to them don’t get paid, and collect interest... if they reach adulthood without being claimed by a queen’s family, they become personally liable for the debts that accrued while they were minors. Thankfully, the queens have at least agreed to add the girls to the collectively-funded thollums until the issue can be settled, instead of leaving them in limbo.”</i>");
+		if(pc.isBimbo() || pc.isBro()) output("\n\n<i>“Um... w?");
+		else output("\n\n<i>“W");
+		output("hy not just split them up?”</i>");
+
+		output("\n\nYarasta nods eagerly, glad to know you’re following. <i>“Yes, that’s the thinking. But the queens are hung up on the method of division. Some want the girls to be split evenly among the council, giving lesser queens a relative advantage. Others, particularly the most powerful, argue that each queen should take on refugees in proportion to her current holdings. This would maintain the current balance. The votes are, as yet, even.”</i>");
+		output("\n\nShe pursues a different tangent. <i>“Trouble follows the adults, too. Because many of them arrived in Gildenmere partially or completely addicted to red myr venom, Kressian refugees are considered at high risk of becoming venom junkies, distributing venom, being sold in myrmedion trafficking, and associating with a degenerate underground pro-Federation movement that operates in these gray and black markets and has lately claimed responsibility for several terrorist attacks. This has caused a public backlash against them that affects even legal immigrants who have been in good standing for decades.”</i>");
+		output("\n\nYarasta stops talking, studying you as she decides whether to delve further into the subject. After a moment, she resumes. <i>“Many refugees from Kressia’s now-closed thollums applied to join the staff here when they first arrived. To a myr, they were refused on the grounds of supposed pragamtism. The queens and the thollum administration both consider the risk of addicts and Federation apologists infiltrating the thollum staff to be too great. I can understand their argument. But with the many, many refugee children and the additional breeding, the number of girls in the thollums is now past what the prefects can handle - I can attest to that being the case here, too. Without accepting accredited teachers from Kressia, the only choices are to increase the class sizes or relax hiring standards, either of which will hurt the Republic far more in the long run than pro-red sentiment.”</i>");
+		output("\n\nColor rises in her face as she concludes. <i>“It’s already happening, in fact! There are so many girls that we don’t have enough sumins to feed them all, so the teenagers with high honey production are being pulled from classes to spend half-days in the milking room. In effect, they’re trading a current problem for a future one, because these girls are missing the most crucial part of their educations - you can’t go anywhere professionally without good scores in your adult assessments! We can’t keep them here as sumins after graduation unless they score highly, so pulling them all but guarantees that they’re relegated to permanent careers in private sector food service.”</i>");
+		output("\n\n<i>“That");
+		if(pc.isBimbo()) output("‘s like, soo");
+		else output("sounds");
+		output(" frustrating,”</i> you rejoin.");
+		output("\n\nThe myr calms down and remembers where she is. <i>“Yes, sorry. It is, but that’s no cause to raise my voice.”</i>");
+	}
+	//’Next’
+	processTime(17);
+	clearMenu();
+	addButton(0,"Next",currentEventsTalkOutro);
+}
+
+public function currentEventsTalkOutro():void
+{
+	clearOutput();
+	showYarasta();
+	output("<i>“Did you want something else?”</i>");
+	//main Yarasta menu
+	//9999
+}
+
+//Her Friend/Giala
+//req time 1900-2159
+//unlocked after 1 sex
+//displays as ’Her Friend’ until chosen once, then ‘Giala’ thereafter
+//tooltip: Get {her friend/Giala} involved in a three-way conversation before she can slip away again. Could lead to the loss of the ‘conversation’ part.
+//tooltip disabled, locked and wrong time: Even if her friend were here, she’d just clear out to give you a chance to be alone with Yarasta and get intimate.
+//tooltip disabled, locked: Her friend is already edging out the door to let you be alone and intimate with Yarasta. What a good wingman!
+//tooltip disabled, wrong time: Giala’s not present. Talking to her would look pretty crazy.
+
+public function yarastasFriendGiala():void
+{
+	clearOutput();
+	showYarasta();
+	//first time
+	if(flags["MET_GIALA"] == undefined)
+	{
+		if(pc.isBimbo()) output("<i>“Hey, you can, like, stay. I mean, if you want?”</i> you tell her friend. <i>“And, um, talk with us.”</i>");
+		else if(pc.isBro()) output("<i>“Hey, it’s cool if you stay,”</i> you tell her friend. <i>“I mean, you seem cool and stuff.”</i>");
+		else if(pc.isNice()) output("<i>“Stay, won’t you?”</i> you ask the curvy woman. <i>“It’d be nice to meet Yarasta’s friend.”</i>");
+		else if(pc.isMischievous()) output("<i>“You move fast for a big girl,”</i> you say suddenly, surprising her friend mid-stride. <i>“Why not stay and chat? You scared of aliens?”</i>");
+		else output("You step in front of the door abruptly and accost her fleeing friend. <i>“Why don’t you have a seat? Just have a seat right over there.”</i>");
+
+		output("\n\nBoth she and Yarasta look at you curiously, then each other. The unknown woman sits back down demurely.");
+		output("\n\n<i>“So, ");
+		if(pc.isBimbo()) output("like, ");
+		output("you two </i>are<i> friends, right?”</i> you inquire.");
+
+		output("\n\nShe laughs. <i>“Yes, for quite some time now.”</i> The woman holds out a hand in a Terran gesture of greeting, performed slightly wrongly. <i>“I’m Giala Marsail.”</i>");
+
+		output("\n\nYou take the hand as you look her over. She’s shorter than Yarasta, but far more voluptuous. Dark eyes peer from under sandy blonde hair that’s pulled back past her antennae in a low ponytail and slung forward. A little long-stemmed mushroom is the hair-tie, cutely arranged with the cap visible. She’s nude, and displaying such perfectly-formed F-cups that you suppose covering herself has never been a priority. Under her breasts is a girdle of chitin, enforcing an hourglass waist, but the jiggle of her booty is unrestrained and gives her a very fetching seat. Her cleavage is notable, especially as her girdle climbs halfway up her sides to highlight her best features. The shoulders and collar are bare, almost the opposite of Yarasta’s, but carapace covers her forearm from the elbow down and ends at her hands.");
+		output("\n\n<i>“[pc.name],”</i> you say. <i>“");
+		if(pc.isBimbo()) output("Um, w");
+		else output("W");
+		output("hat do you do here?”</i>");
+
+		output("\n\n<i>“I’m a sumin,”</i> she says. <i>“I help with watching the children during their leisure times, or grade papers, or tutor, or tidy up. Wherever I’m needed, so long as it doesn’t burn too many calories.”</i> She elaborates further, sparing you the need to ask, and cradles her gorgeous, golden breasts in her four hands. <i>“My main job is to make nutritious honey for the girls so they grow up healthy, but all I need to do for that is snack.”</i>");
+		output("\n\n<i>“She’s basically my slave,”</i> says Yarasta. Giala laughs, giving you your first hint that they’re close enough to tease one another without fear.");
+		output("\n\n<i>“Right,”</i> the shorter woman says. <i>“I do all the work and she takes the credit.”</i>");
+		output("\n\n<i>“Is that so?”</i> you ask idly.");
+		output("\n\n<i>“No, of course not,”</i> answers Yarasta, flicking a wrist to dismiss the notion. <i>“She helps me out often, but the lesson plans and examinations are by regulation always drawn up by the prefects. The sumins usually, not always, test lower in assessments. But they’re in the top percentile for honey production. Our positions could easily have been reversed.”</i>");
+		output("\n\nGiala simplifies. <i>“The short of it is that I was assigned to the sumins instead of the prefects because my breasts fill up much faster than hers, which go about as quickly as a red’s since she’s always forgetting to eat.”</i>");
+		output("\n\n<i>“Yes, well, it’s the burden of being an intellectual elite,”</i> Yarasta huffs. <i>“I’m smarter and therefore most suited to care for the girls, and they require constant attention.”</i>");
 
 output("\n\n<i>“That’s not what your last test score said,”</i> retorts the sumin, playfully. <i>“As I recall, I got two more points than you.”</i>");
 
