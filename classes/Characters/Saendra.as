@@ -37,7 +37,7 @@ package classes.Characters
 			this.originalRace = "ausar-kaithrit halfbreed";
 			this.a = "";
 			this.capitalA = "";
-			this.long = "";
+			this.long = "Saendra lithely snakes out of cover from time to time, taking potshots at anything and everything she can sight quickly enough before ducking back to safety.";
 			this.customDodge = "Saen casually sidesteps out of the way.";
 			this.customBlock = "Obvious placeholder is obvious.";
 			this.isPlural = false;

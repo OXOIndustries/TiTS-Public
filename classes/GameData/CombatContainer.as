@@ -2919,27 +2919,28 @@ package classes.GameData
 		
 		private function showCombatDescriptions():void
 		{
+			showPlayerStatus();
+			
+			for (var i:int = 0; i < _friendlies.length; i++)
+			{
+				displayFriendlyStatus(_friendlies[i]);
+			}
+			
 			if (encounterText != null)
 			{
 				output(encounterText + "\n\n");
 			}
-			else if (_hostiles.length > 1)
+			else
 			{
-				output("You're fighting " + num2Text(enemiesAlive()) + " hostiles.");
+				if (_friendlies.length > 1) output("\n\nTogether, y");
+				else output("\n\nY");
+				output("ou're fighting " + num2Text(enemiesAlive()) + " hostiles:");
 			}
 			
 			// TODO: I guess this would be the place to point out blindness or whatever.
 			for (var i:int = 0; i < _hostiles.length; i++)
 			{
 				displayHostileStatus(_hostiles[i]);
-			}
-			
-			output("\n\n");
-			showPlayerStatus();
-			
-			for (var i:int = 0; i < _friendlies.length; i++)
-			{
-				displayFriendlyStatus(_friendlies[i]);
 			}
 		}
 		
@@ -2955,32 +2956,14 @@ package classes.GameData
 			
 			if (target.HP() <= 0)
 			{
-				output("\n\n<b>You've knocked the resistance out of " + target.a + target.short + ".</b>");
+				output("\n\n<b>You've knocked the resistance out of " + target.a + target.uniqueName + ".</b>");
 			}
 			else if (target.lust() >= target.lustMax())
 			{
-				output("\n\n<b>" + target.capitalA + target.short + ((target.isPlural == true) ? " are" : " is") + " too turned on to fight.</b>");
+				output("\n\n<b>" + target.capitalA + target.uniqueName + ((target.isPlural == true) ? " are" : " is") + " too turned on to fight.</b>");
 			}
 			else
 			{
-				// TODO Blinds had some effect on this...
-				if (target is QueenOfTheDeep && !pc.hasStatusEffect("Watered Down"))
-				{
-					output("\n<b>You're still clinging to the monster's topside, limiting her ability to fight you!</b>");
-					
-					if (target.lust() >= 50) output("\nYou can see her breath quickening, her massive chest heaving with nipples as hard as diamonds. She looks almost ready to cum just from your confrontation...\n");
-				}
-				else if (target is SX1Techguard && target.shields() > 0)
-				{
-					output("\nA small ball-shaped hover drone floats around her, spraying laser fire everywhere.");
-				}
-				
-				if (!(target is QueenOfTheDeep) && !(target is Cockvine))
-				{
-					target.getCombatDescriptionExtension();
-					showMonsterArousalFlavor(target);
-				}
-				
 				var pHealth:Number = target.HP() / target.HPMax();
 				var pShield:Number = target.shields() / target.shieldsMax();
 				var pLust:Number = target.lust() / target.lustMax();
@@ -2995,18 +2978,38 @@ package classes.GameData
 				
 				if (encounterText == null)
 				{
-					output("\n\n" + target.long + " (<b>S: " + dShield + "% / H: " + dHealth + "%</b>)");
+					output("\n\n<b>" + StringUtil.toTitleCase(target.uniqueName) + ":</b>\n" + target.long);
+					//  + " (<b>S: " + dShield + "% / H: " + dHealth + "% / L: " + dLust + "%</b>)"
 				}
 				else
 				{
-					// TODO Ideally, this needs to be reworked to some much shorter description element for multi-enemy fights. Playing it by ear until current results can be tested.
-					output("\n\n" + target.uniqueName + "(<b>S: " + dShield + "% / H: " + dHealth + "% / L: " + dLust + "%</b>)");
+					// TODO Ideally, this needs to be reworked to some much shorter description element for multi-enemy fights.
+					output("\n\n" + StringUtil.toTitleCase(target.uniqueName) + "(<b>S: " + dShield + "% / H: " + dHealth + "% / L: " + dLust + "%</b>)")
+				}
+				
+				// TODO Blinds had some effect on this...
+				if (target is QueenOfTheDeep && !pc.hasStatusEffect("Watered Down"))
+				{
+					output("\n<b>You're still clinging to the monster's topside, limiting her ability to fight you!</b>");
+					
+					if (target.lust() >= 50) output("\nYou can see her breath quickening, her massive chest heaving with nipples as hard as diamonds. She looks almost ready to cum just from your confrontation...\n");
+				}
+				
+				if (!(target is QueenOfTheDeep) && !(target is Cockvine))
+				{
+					target.getCombatDescriptionExtension();
+					showMonsterArousalFlavor(target);
 				}
 			}
 		}
 		
 		private function displayFriendlyStatus(target:Creature):void
 		{
+			if (target is PlayerCharacter)
+			{
+				return;
+			}
+				
 			if (target.HP() <= 0)
 			{
 				output("\n\n<b>" + target.capitalA + target.short + " is down and out for the count!</b>");
@@ -3026,7 +3029,8 @@ package classes.GameData
 				var dHealth:int = Math.round(pHealth);
 				var dShield:int = Math.round(pShield);
 				
-				output("\n\n" + target.long + " (<b>S: " + dShield + "% / H: " + dHealth + "%</b>)");
+
+				output("\n\n" + target.long); // + " (<b>S: " + dShield + "% / H: " + dHealth + "%</b>)");
 			}
 		}
 		
@@ -3041,6 +3045,18 @@ package classes.GameData
 			{
 				if (enemiesAlive() > 1 || _hostiles[0].plural) output("<b>Your enemies have turned you on too much to keep fighting. You give in....</b>");
 				else output("<b>" + _hostiles[0].capitalA + _hostiles[0].short + " has turned you on too much to keep fighting. You give in....</b>"); // TODO should be able to pick out a defined 'leader'
+			}
+			else
+			{
+				// TODO Some decent player status output
+				output("You perch behind cover wherever you can find it, ready to return fire");
+				if (_friendlies.length > 1)
+				{
+					output(" side-by-side with your");
+					if (_friendlies.length > 2) output(" allies");
+					else output(" companion");
+				}
+				output(".");
 			}
 			
 			kGAMECLASS.mutinousMimbranesCombat();

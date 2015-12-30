@@ -35,13 +35,13 @@ package classes.UIComponents.SideBarComponents
 		{
 			if (v == false)
 			{
-				_currentMaxWidth = 194;
-				_valueDisplay.width = 194;
+				_currentMaxWidth = 184;
+				_valueDisplay.width = 184;
 			}
 			else
 			{
-				_currentMaxWidth = 124;
-				_valueDisplay.width = 124;
+				_currentMaxWidth = 114;
+				_valueDisplay.width = 114;
 			}
 		}
 		
@@ -105,7 +105,7 @@ package classes.UIComponents.SideBarComponents
 		
 		public function SingleCompressedStatBar() 
 		{
-			_currentMaxWidth = 124;
+			_currentMaxWidth = 114;
 			_currentValue = 0;
 			_targetValue = 0;
 			_maxValue = 100;
@@ -149,7 +149,7 @@ package classes.UIComponents.SideBarComponents
 			_valueGlow.color = 0xFF0000;
 			
 			_valueDisplay = new TextField();
-			_valueDisplay.width = 124;
+			_valueDisplay.width = _currentMaxWidth;
 			_valueDisplay.height = 15;
 			_valueDisplay.x = 0;
 			_valueDisplay.y = -4;
@@ -167,7 +167,7 @@ package classes.UIComponents.SideBarComponents
 		{
 			var l:TextField = new TextField();
 			l.y = -5;
-			l.width = 124;
+			l.width = _currentMaxWidth;
 			l.height = 24;
 			l.defaultTextFormat = textFormat;
 			l.embedFonts = true;

@@ -193,6 +193,9 @@
 			
 			isUniqueInFight = true;
 			
+			this.shieldsRaw = this.shieldsMax();
+			this.HPRaw = this.HPMax();
+			
 			this._isLoading = false;
 		}
 		

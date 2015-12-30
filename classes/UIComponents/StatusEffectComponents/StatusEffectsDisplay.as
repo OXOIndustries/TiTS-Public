@@ -207,15 +207,21 @@
 		private function DisplayTooltip(activeObj:StatusEffectElement):void
 		{		
 			_tooltipElement.SetData(activeObj.displayName, activeObj.tooltipText, activeObj.iconType, activeObj.durationRemaining);
-			this.stage.addChild(_tooltipElement);
+			stage.addChild(_tooltipElement);
 			
 			var tPt:Point = this.localToGlobal(new Point(0, 0));
 			
 			// Horizontal position
-			_tooltipElement.x = (_rightAlign) ? tPt.x - (_tooltipElement.width + 35) : 215;
+			_tooltipElement.x = (_rightAlign) ? tPt.x - (_tooltipElement.width + 40) : 210;
 			
 			// Vertical position
-			_tooltipElement.y = 635 - _tooltipElement.height;
+			//_tooltipElement.y = 635 - _tooltipElement.height;
+			var elemPt:Point = activeObj.localToGlobal(new Point(0, 0));
+			_tooltipElement.y = elemPt.y;
+			
+			// Clamp Y
+			if (_tooltipElement.y < 10) _tooltipElement.y = 10;
+			if (_tooltipElement.y + _tooltipElement.height > 635) _tooltipElement.y = 635 - _tooltipElement.height;
 		}
 		
 		/**

@@ -1,6 +1,7 @@
 package classes.UIComponents 
 {
 	import classes.UIComponents.MiniMap.MiniMap;
+	import classes.UIComponents.SideBarComponents.CompressedLocationHeader;
 	import classes.UIComponents.SideBarComponents.EnemyPartyBlock;
 	import classes.UIComponents.SideBarComponents.LocationHeader;
 	import fl.transitions.Tween;
@@ -25,15 +26,20 @@ package classes.UIComponents
 	public class LeftSideBar extends Sprite
 	{
 		private var _locationHeader:LocationHeader;
+		private var _compressedLocationHeader:CompressedLocationHeader;
 		private var _enemyEncounterBlock:EnemyEncounterBlock;
 		private var _enemyPartyBlock:EnemyPartyBlock;
 		private var _miniMapBlock:MiniMapBlock;
 		private var _genInfoBlock:GeneralInfoBlock;
 		private var _menuButtonBlock:SideBarButtonBlock;
 		
-		public function get roomText():TextField { return _locationHeader.roomText; }
-		public function get planetText():TextField { return _locationHeader.planetText; }
-		public function get systemText():TextField { return _locationHeader.systemText; }
+		public function get roomText():String { return _locationHeader.roomText;  }
+		public function get planetText():String { return _locationHeader.planetText; }
+		public function get systemText():String { return _locationHeader.systemText; }
+		
+		public function set roomText(v:String):void { _compressedLocationHeader.roomText = _locationHeader.roomText = v; }
+		public function set planetText(v:String):void { _locationHeader.planetText = v; }
+		public function set systemText(v:String):void { _locationHeader.systemText = v ; }
 		
 		public function get miniMap():MiniMap { return _miniMapBlock.miniMap; }
 		
@@ -73,6 +79,9 @@ package classes.UIComponents
 			_locationHeader.x = 0;
 			_locationHeader.y = 0;
 			
+			_compressedLocationHeader = new CompressedLocationHeader();
+			addChild(_compressedLocationHeader);
+			
 			// The enemy encounter stats block
 			_enemyEncounterBlock = new EnemyEncounterBlock();
 			this.addChild(_enemyEncounterBlock);
@@ -80,7 +89,7 @@ package classes.UIComponents
 			
 			_enemyPartyBlock = new EnemyPartyBlock();
 			addChild(_enemyPartyBlock);
-			_enemyPartyBlock.y = _locationHeader.y + _locationHeader.height + 1;
+			_enemyPartyBlock.y = _compressedLocationHeader.y + _compressedLocationHeader.height + 1;
 			
 			// Minimap container block
 			_miniMapBlock = new MiniMapBlock();
@@ -101,6 +110,7 @@ package classes.UIComponents
 			
 			// TEMP SHIT
 			_genInfoBlock.visible = true;
+			_compressedLocationHeader.visible = false;
 		}
 		
 		private function BuildBackground():void
@@ -174,6 +184,8 @@ package classes.UIComponents
 				_enemyEncounterBlock.visible = true;
 				_genInfoBlock.visible = true;
 				_miniMapBlock.visible = false;
+				_compressedLocationHeader.visible = false;
+				_locationHeader.visible = true;
 				
 				_enemyEncounterBlock.showStatsForCreature(chars[0]);
 			}
@@ -183,6 +195,8 @@ package classes.UIComponents
 				_enemyEncounterBlock.visible = false;
 				_genInfoBlock.visible = false;
 				_miniMapBlock.visible = false;
+				_compressedLocationHeader.visible = true;
+				_locationHeader.visible = false;
 				
 				_enemyPartyBlock.showForCreatures(chars);
 			}

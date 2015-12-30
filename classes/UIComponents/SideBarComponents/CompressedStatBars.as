@@ -39,8 +39,6 @@ package classes.UIComponents.SideBarComponents
 		
 		private function Build():void
 		{
-			var wide:int = 124;
-			var high:int = 15;
 			var off:int = 1;
 			
 			_shieldBar = new SingleCompressedStatBar();

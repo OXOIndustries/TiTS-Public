@@ -29,7 +29,7 @@ package classes.UIComponents.SideBarComponents
 				var t:SingleCharacterDisplay = new SingleCharacterDisplay("left");
 				addChild(t);
 				_characterDisplays.push(t);
-				t.y = (i * t.height) + (3 * i);
+				t.y = (i * t.height) + (5 * i);
 			}
 		}
 		

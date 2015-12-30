@@ -27,9 +27,13 @@ package classes.UIComponents.SideBarComponents
 		private var _bustBackground:Sprite;
 		private var _bustOrderSet:Boolean;
 		
-		public function get roomText():TextField { return _roomText; }
-		public function get planetText():TextField { return _planetText; }
-		public function get systemText():TextField { return _systemText; }
+		public function get roomText():String { return _roomText.text; }
+		public function get planetText():String { return _planetText.text; }
+		public function get systemText():String { return _systemText.text; }
+		
+		public function set roomText(v:String):void { _roomText.text = v; }
+		public function set planetText(v:String):void { _planetText.text = v; }
+		public function set systemText(v:String):void { _systemText.text = v; }
 		
 		public function LocationHeader() 
 		{

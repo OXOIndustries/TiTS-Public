@@ -175,6 +175,20 @@ package classes.UIComponents
 			return UIStyleSettings._gStatBlockHeaderFormatter;
 		}
 		
+		private static var _gCompressedStatBlockNameFormatter:TextFormat;
+		public static function get gCompressedStatBlockNameFormatter():TextFormat
+		{
+			if (UIStyleSettings._gCompressedStatBlockNameFormatter == null)
+			{
+				_gCompressedStatBlockNameFormatter = new TextFormat();
+				_gCompressedStatBlockNameFormatter.size = 18;
+				_gCompressedStatBlockNameFormatter.color = 0xFFFFFF;
+				_gCompressedStatBlockNameFormatter.align = TextFormatAlign.LEFT;
+				_gCompressedStatBlockNameFormatter.font = "Univers UltraCondensed";
+			}
+			return _gCompressedStatBlockNameFormatter;
+		}
+		
 		private static var _gMailEntryUnreadFormatter:TextFormat;
 		public static function get gMailEntryUnreadFormatter():TextFormat
 		{

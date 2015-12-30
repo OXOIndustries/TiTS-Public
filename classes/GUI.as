@@ -625,13 +625,13 @@
 		// use data binding from UI element -> engine variable
 		
 		// Access to LSB items
-		public function get roomText():String { return _leftSideBar.locationBlock.roomText.text; }
-		public function get planetText():String { return _leftSideBar.locationBlock.planetText.text; }
-		public function get systemText():String { return _leftSideBar.locationBlock.systemText.text; }
+		public function get roomText():String { return _leftSideBar.roomText; }
+		public function get planetText():String { return _leftSideBar.planetText; }
+		public function get systemText():String { return _leftSideBar.systemText; }
 		
-		public function set roomText(v:String):void { _leftSideBar.locationBlock.roomText.text = v; }
-		public function set planetText(v:String):void { _leftSideBar.locationBlock.planetText.text = v; }
-		public function set systemText(v:String):void { _leftSideBar.locationBlock.systemText.text = v; }
+		public function set roomText(v:String):void { _leftSideBar.roomText = v; }
+		public function set planetText(v:String):void { _leftSideBar.planetText = v; }
+		public function set systemText(v:String):void { _leftSideBar.systemText = v; }
 		
 		public function get time():String { return _leftSideBar.timeText.text; }
 		public function set time(v:String):void { _leftSideBar.timeText.text = v; }
@@ -1194,9 +1194,7 @@
 		public function leftBarClear():void 
 		{
 			_leftSideBar.generalInfoBlock.HideScene();
-			_leftSideBar.roomText.visible = false;
-			_leftSideBar.planetText.visible = false;
-			_leftSideBar.systemText.visible = false;
+			_leftSideBar.hideLocation();
 			_leftSideBar.generalInfoBlock.HideTime();
 			_leftSideBar.quickSaveButton.visible = false;
 			_leftSideBar.dataButton.visible = false;

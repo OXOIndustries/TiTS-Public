@@ -56,7 +56,7 @@ package classes.UIComponents.SideBarComponents
 				}
 				else
 				{
-					_statBars.x = 5;
+					_statBars.x = 15;
 					_bustImage.x = _statBars.x + _statBars.width + 1;
 				}
 			}
@@ -68,7 +68,7 @@ package classes.UIComponents.SideBarComponents
 		 */
 		public function UpdateFromCharacter(char:Creature):void
 		{
-			_nameHeader.text = (char.uniqueName && char.uniqueName.length > 0 ? StringUtil.toTitleCase(char.uniqueName) : StringUtil.toTitleCase(char.short));
+			_nameHeader.text = (char.uniqueName && char.uniqueName.length > 0 ? char.uniqueName.toUpperCase() : char.short.toUpperCase());
 			
 			_statBars.shield.setValue(char.shields(), char.shieldsMax());
 			_statBars.hp.setValue(char.HP(), char.HPMax());
@@ -188,18 +188,18 @@ package classes.UIComponents.SideBarComponents
 			addChild(_elementBkg);
 			
 			_nameUnderline = new Sprite();
-			(_leftAlign) ? _nameUnderline.x = 0 : _nameUnderline.x = 10;
-			_nameUnderline.y = 14;
+			_nameUnderline.x = (_leftAlign ? 0 : 15);
+			_nameUnderline.y = 17;
 			_nameUnderline.graphics.beginFill(UIStyleSettings.gHighlightColour, 1);
-			_nameUnderline.graphics.drawRect(0, 0, 190, 1);
+			_nameUnderline.graphics.drawRect(0, 0, 187, 1);
 			_nameUnderline.graphics.endFill();			
 			addChild(_nameUnderline);
 			
 			_nameHeader = new TextField();
-			_nameHeader.x = 10;
+			_nameHeader.x = (_leftAlign ? 13 : 17);
 			_nameHeader.y = -3;
-			_nameHeader.width = 190;
-			_nameHeader.defaultTextFormat = UIStyleSettings.gStatBlockHeaderFormatter;
+			_nameHeader.width = 187;
+			_nameHeader.defaultTextFormat = UIStyleSettings.gCompressedStatBlockNameFormatter;
 			_nameHeader.embedFonts = true;
 			_nameHeader.antiAliasType = AntiAliasType.ADVANCED;
 			_nameHeader.text = "PLACEHOLDER";
@@ -227,20 +227,22 @@ package classes.UIComponents.SideBarComponents
 			
 			if (!_leftAlign)
 			{
-				_statBars.x = 5;
+				_statBars.x = 15;
 				_bustImage.x = _statBars.x + _statBars.width + 1;
 			}
 			
 			_statusEffectBkg = new Sprite();
 			_statusEffectBkg.graphics.beginFill(UIStyleSettings.gForegroundColour);
-			_statusEffectBkg.graphics.drawRoundRect(0, 0, 194, 29, 3, 3);
+			_statusEffectBkg.graphics.drawRoundRect(0, 0, 183, 29, 3, 3);
 			_statusEffectBkg.graphics.endFill();
-			_statusEffectBkg.y = _bustImage.y + _bustImage.height + 1;
-			_statusEffectBkg.x = (_leftAlign ? 1 : 3);
+			_statusEffectBkg.y = _bustImage.y + _bustImage.height + 2;
+			_statusEffectBkg.x = (_leftAlign ? 2 : 15);
 			addChild(_statusEffectBkg);
 			
+			// Don't like how this looks given the text is the same exact shade as the effect elements themselves.
+			/*
 			var statusElementText:TextField = new TextField();
-			statusElementText.width = 190;
+			statusElementText.width = 180;
 			statusElementText.height = 28;
 			statusElementText.y = -4;
 			statusElementText.defaultTextFormat = UIStyleSettings.gCompressedStatDisplayStatusEffectBackgroundTextFormat;
@@ -250,21 +252,20 @@ package classes.UIComponents.SideBarComponents
 			statusElementText.mouseEnabled = false;
 			statusElementText.mouseWheelEnabled = false;
 			_statusEffectBkg.addChild(statusElementText);
+			*/
 			
 			_statusEffects = new StatusEffectsDisplay(!_leftAlign);
-			_statusEffects.targetY = _bustImage.y + _bustImage.height + 3;
-			_statusEffects.targetX = (_leftAlign ? 2 : 5);
-			_statusEffects.maxDisplayed = 7;
+			_statusEffects.targetY = _bustImage.y + _bustImage.height + 4;
+			_statusEffects.targetX = (_leftAlign ? 6 : 17);
+			_statusEffects.maxDisplayed = 6;
 			_statusEffects.childSizeX = 25;
 			_statusEffects.childSizeY = 25;
-			_statusEffects.childSpacing = 3;
-			_statusEffects.targetWidth = 200;
-			addChild(_statusEffects);
-			
-			
+			_statusEffects.childSpacing = 5;
+			_statusEffects.targetWidth = 180;
+			addChild(_statusEffects);			
 			
 			_elementBkg.graphics.beginFill(UIStyleSettings.gBackgroundColour);
-			_elementBkg.graphics.drawRoundRect((_leftAlign ? -2 : 2), 0, this.width + (_leftAlign ? 0 : 2), this.height + 2, 3, 3);
+			_elementBkg.graphics.drawRoundRect((_leftAlign ? -3 : 11), 0, this.width + (_leftAlign ? -6 : 2), this.height + 2, 3, 3);
 			_elementBkg.graphics.endFill();
 		}
 		
