@@ -16,6 +16,7 @@ package classes.UIComponents.SideBarComponents
 	import classes.UIComponents.UIStyleSettings;
 	import flash.text.AntiAliasType;
 	import classes.Resources.NPCBustImages;
+	import classes.StringUtil;
 	/**
 	 * ...
 	 * @author Gedan
@@ -36,6 +37,9 @@ package classes.UIComponents.SideBarComponents
 		private var _statBars:CompressedStatBars;
 		private var _statusEffects:StatusEffectsDisplay;
 		
+		private var _statusEffectBkg:Sprite;
+		private var _elementBkg:Sprite;
+		
 		private var _bustVisible:Boolean = true;
 
 		public function set bustVisible(v:Boolean):void
@@ -48,7 +52,7 @@ package classes.UIComponents.SideBarComponents
 				{
 					_bustImage.x = 0;
 					if (v == true) _statBars.x = _bustImage.x + _bustImage.width + 1;
-					else _statBars.x = 0;
+					else _statBars.x = 1;
 				}
 				else
 				{
@@ -64,7 +68,7 @@ package classes.UIComponents.SideBarComponents
 		 */
 		public function UpdateFromCharacter(char:Creature):void
 		{
-			_nameHeader.text = (char.uniqueName && char.uniqueName.length > 0 ? char.uniqueName : char.short);
+			_nameHeader.text = (char.uniqueName && char.uniqueName.length > 0 ? StringUtil.toTitleCase(char.uniqueName) : StringUtil.toTitleCase(char.short));
 			
 			_statBars.shield.setValue(char.shields(), char.shieldsMax());
 			_statBars.hp.setValue(char.HP(), char.HPMax());
@@ -180,9 +184,12 @@ package classes.UIComponents.SideBarComponents
 		
 		private function Build():void
 		{
+			_elementBkg = new Sprite();
+			addChild(_elementBkg);
+			
 			_nameUnderline = new Sprite();
 			(_leftAlign) ? _nameUnderline.x = 0 : _nameUnderline.x = 10;
-			_nameUnderline.y = 17;
+			_nameUnderline.y = 14;
 			_nameUnderline.graphics.beginFill(UIStyleSettings.gHighlightColour, 1);
 			_nameUnderline.graphics.drawRect(0, 0, 190, 1);
 			_nameUnderline.graphics.endFill();			
@@ -190,7 +197,7 @@ package classes.UIComponents.SideBarComponents
 			
 			_nameHeader = new TextField();
 			_nameHeader.x = 10;
-			_nameHeader.y = 0;
+			_nameHeader.y = -3;
 			_nameHeader.width = 190;
 			_nameHeader.defaultTextFormat = UIStyleSettings.gStatBlockHeaderFormatter;
 			_nameHeader.embedFonts = true;
@@ -206,7 +213,7 @@ package classes.UIComponents.SideBarComponents
 			_bustImage.graphics.drawRect(0, 0, _targetBustSize.x + 2, _targetBustSize.y + 2);
 			_bustImage.graphics.endFill();
 			
-			_bustImage.graphics.beginFill(UIStyleSettings.gBackgroundColour);
+			_bustImage.graphics.beginFill(UIStyleSettings.gForegroundColour);
 			_bustImage.graphics.drawRect(1, 1, _targetBustSize.x, _targetBustSize.y);
 			_bustImage.graphics.endFill();
 			
@@ -224,8 +231,28 @@ package classes.UIComponents.SideBarComponents
 				_bustImage.x = _statBars.x + _statBars.width + 1;
 			}
 			
+			_statusEffectBkg = new Sprite();
+			_statusEffectBkg.graphics.beginFill(UIStyleSettings.gForegroundColour);
+			_statusEffectBkg.graphics.drawRoundRect(0, 0, 194, 29, 3, 3);
+			_statusEffectBkg.graphics.endFill();
+			_statusEffectBkg.y = _bustImage.y + _bustImage.height + 1;
+			_statusEffectBkg.x = (_leftAlign ? 1 : 3);
+			addChild(_statusEffectBkg);
+			
+			var statusElementText:TextField = new TextField();
+			statusElementText.width = 190;
+			statusElementText.height = 28;
+			statusElementText.y = -4;
+			statusElementText.defaultTextFormat = UIStyleSettings.gCompressedStatDisplayStatusEffectBackgroundTextFormat;
+			statusElementText.embedFonts = true;
+			statusElementText.antiAliasType = AntiAliasType.ADVANCED;
+			statusElementText.text = "STATUS EFFECTS";
+			statusElementText.mouseEnabled = false;
+			statusElementText.mouseWheelEnabled = false;
+			_statusEffectBkg.addChild(statusElementText);
+			
 			_statusEffects = new StatusEffectsDisplay(!_leftAlign);
-			_statusEffects.targetY = _bustImage.y + _bustImage.height + 1;
+			_statusEffects.targetY = _bustImage.y + _bustImage.height + 3;
 			_statusEffects.targetX = (_leftAlign ? 2 : 5);
 			_statusEffects.maxDisplayed = 7;
 			_statusEffects.childSizeX = 25;
@@ -233,6 +260,17 @@ package classes.UIComponents.SideBarComponents
 			_statusEffects.childSpacing = 3;
 			_statusEffects.targetWidth = 200;
 			addChild(_statusEffects);
+			
+			
+			
+			_elementBkg.graphics.beginFill(UIStyleSettings.gBackgroundColour);
+			_elementBkg.graphics.drawRoundRect((_leftAlign ? -2 : 2), 0, this.width + (_leftAlign ? 0 : 2), this.height + 2, 3, 3);
+			_elementBkg.graphics.endFill();
+		}
+		
+		override public function get height():Number
+		{
+			return super.height - 3;
 		}
 	}
 

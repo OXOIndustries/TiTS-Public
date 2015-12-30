@@ -80,7 +80,7 @@ package classes.UIComponents
 			
 			_enemyPartyBlock = new EnemyPartyBlock();
 			addChild(_enemyPartyBlock);
-			_enemyPartyBlock.y = _locationHeader.y + _locationHeader.height + 8;
+			_enemyPartyBlock.y = _locationHeader.y + _locationHeader.height + 1;
 			
 			// Minimap container block
 			_miniMapBlock = new MiniMapBlock();
@@ -96,7 +96,7 @@ package classes.UIComponents
 			// Menu button block
 			_menuButtonBlock = new SideBarButtonBlock();
 			this.addChild(_menuButtonBlock);
-			_menuButtonBlock.y = _genInfoBlock.y + _genInfoBlock.height - 13;
+			_menuButtonBlock.y = _genInfoBlock.y + _genInfoBlock.height - 12;
 			_menuButtonBlock.x = 10;
 			
 			// TEMP SHIT

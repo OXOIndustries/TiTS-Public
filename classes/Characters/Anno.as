@@ -191,6 +191,8 @@
 			this.vaginas[0].loosenessRaw = 1;
 			this.vaginas[0].bonusCapacity = 20;
 			
+			isUniqueInFight = true;
+			
 			this._isLoading = false;
 		}
 		

@@ -53,11 +53,15 @@ package classes.UIComponents
 				_coreStatBlock.visible = true;
 				_statusEffectDisplay.visible = true;
 				_playerPartyBlock.visible = false;
+				_nameText.visible = true;
+				_nameTextUnderline.visible = true;
+				_advancementBlock.visible = true; // Possibly, maybe, potentially, move this thing lower and anchor it to the bottom of the sidebar
 				
 				_combatStatBlock.showStatsForCreature(chars[0], asInit);
 				_coreStatBlock.showStatsForCreature(chars[0], asInit);
 				_advancementBlock.showStatsForCreature(chars[0], asInit);
 				_statusEffectDisplay.statusDisplay.updateDisplay(chars[0].statusEffects);
+				_nameText.text = chars[0].short;
 			}
 			else
 			{
@@ -65,6 +69,9 @@ package classes.UIComponents
 				_coreStatBlock.visible = false;
 				_statusEffectDisplay.visible = false;
 				_playerPartyBlock.visible = true;
+				_nameText.visible = false;
+				_nameTextUnderline.visible = false;
+				_advancementBlock.visible = false;
 				
 				_playerPartyBlock.showForCreatures(chars);
 				

@@ -18,6 +18,8 @@ package classes.Characters
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			this._isLoading = false;
+			
+			isUniqueInFight = true;
 		}
 		
 		// Level up stuff

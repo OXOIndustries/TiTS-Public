@@ -172,7 +172,7 @@ package classes.Characters
 			createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
 			createPerk("Attack Drone", 0, 0, 0, 0, "Attack Drone!");
 			
-			isUniqueInFight = true;
+			isUniqueInFight = false;
 			btnTargetText = "VoidTech";
 			sexualPreferences.setRandomPrefs(4, 2);
 			

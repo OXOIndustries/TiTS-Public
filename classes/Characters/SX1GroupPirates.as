@@ -176,7 +176,7 @@ package classes.Characters
 			
 			createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
 			
-			isUniqueInFight = true;
+			isUniqueInFight = false;
 			btnTargetText = "VoidPirate";
 			
 			this._isLoading = false;

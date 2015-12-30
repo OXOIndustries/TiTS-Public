@@ -2825,9 +2825,9 @@ package classes.GameData
 		private function makeCharacterUnique(target:Creature, asGroup:String):void
 		{
 			var appends:Array = ["A", "B", "C", "D", "E"];
-				
+			
 			// Append ident chars to creature names
-			if (target.isUniqueInFight == false)
+			if (target.isUniqueInFight == false && ((asGroup == HOSTILE_GROUP && _hostiles.length > 1) || (asGroup == FRIENDLY_GROUP && _friendlies.length > 1)))
 			{
 				var idx:int = (asGroup == FRIENDLY_GROUP ? _friendlyAppendNum : _hostileAppendNum);
 				target.uniqueName = target.short + " " + appends[idx];

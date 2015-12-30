@@ -142,6 +142,8 @@ package classes.Characters
 			this.minutesSinceCum = 3200;
 			this.timesCum = 487;
 			
+			isUniqueInFight = true;
+			
 			this._isLoading = false;
 		}
 		

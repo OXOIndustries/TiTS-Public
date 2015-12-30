@@ -702,7 +702,7 @@ package classes.UIComponents
 			{
 				_gCompressedStatBarBackTextFormat = new TextFormat();
 				_gCompressedStatBarBackTextFormat.size = 18;
-				_gCompressedStatBarBackTextFormat.color = gBackgroundColour;
+				_gCompressedStatBarBackTextFormat.color = 0xFFFFFF;
 				_gCompressedStatBarBackTextFormat.align = TextFormatAlign.LEFT;
 				_gCompressedStatBarBackTextFormat.leading = -5;
 				_gCompressedStatBarBackTextFormat.kerning = true;
@@ -719,7 +719,7 @@ package classes.UIComponents
 			{
 				_gCompressedStatBarFrontTextFormat = new TextFormat();
 				_gCompressedStatBarFrontTextFormat.size = 18;
-				_gCompressedStatBarFrontTextFormat.color = gForegroundColour;
+				_gCompressedStatBarFrontTextFormat.color = 0xFFFFFF;
 				_gCompressedStatBarFrontTextFormat.align = TextFormatAlign.LEFT;
 				_gCompressedStatBarFrontTextFormat.leading = -5;
 				_gCompressedStatBarFrontTextFormat.kerning = true;
@@ -744,6 +744,22 @@ package classes.UIComponents
 				
 			}
 			return UIStyleSettings._gCompressedStatBarValueTextFormat;
+		}
+		
+		private static var _gCompressedStatDisplayStatusEffectBackgroundTextFormat:TextFormat;
+		public static function get gCompressedStatDisplayStatusEffectBackgroundTextFormat():TextFormat
+		{
+			if (UIStyleSettings._gCompressedStatDisplayStatusEffectBackgroundTextFormat == null)
+			{
+				_gCompressedStatDisplayStatusEffectBackgroundTextFormat = new TextFormat();
+				_gCompressedStatDisplayStatusEffectBackgroundTextFormat.size = 30;
+				_gCompressedStatDisplayStatusEffectBackgroundTextFormat.color = gBackgroundColour;
+				_gCompressedStatDisplayStatusEffectBackgroundTextFormat.align = TextFormatAlign.RIGHT;
+				_gCompressedStatDisplayStatusEffectBackgroundTextFormat.leading = -5;
+				_gCompressedStatDisplayStatusEffectBackgroundTextFormat.kerning = true;
+				_gCompressedStatDisplayStatusEffectBackgroundTextFormat.font = "Univers UltraCondensed";
+			}
+			return _gCompressedStatDisplayStatusEffectBackgroundTextFormat;
 		}
 		
 		private static var _gPerkHeaderLabelTextFormat:TextFormat;

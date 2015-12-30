@@ -1,5 +1,6 @@
 ﻿package classes.Resources.Busts 
 {
+	import flash.geom.Rectangle;
 	/**
 	 * ...
 	 * @author Gedan
@@ -167,6 +168,7 @@
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/saendra.png", mimeType = "image/png")]
 		public var Bust_SAENDRA:Class;
+		public var Bounds_SAENDRA:Rectangle = new Rectangle(12, 4, 55, 63);
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/shade.png", mimeType = "image/png")]
 		public var Bust_SHADE:Class;
