@@ -34,6 +34,7 @@ package classes.Characters
 			this.originalRace = "human";
 			this.a = "the ";
 			this.capitalA = "The ";
+			//this.long = "The mercenary guard is a gruff, weathered human man with a long, faded-brown coat pulled over a ballistic vest -- enough armor for a corporate jackboot, but less than the assassins you fought upstairs. He's packing a pump-action shotgun and a bandolier full of grenades and other goodies.";
 			this.long = "A gruff, weathered human man with a long, faded-brown coat pulled over a ballistic vest. He's packing a pump-action shotgun and a bandolier full of grenades and other goodies.";
 			this.customBlock = "The mercs armor deflects your attack with an alarming ease.";
 			this.isPlural = false;
