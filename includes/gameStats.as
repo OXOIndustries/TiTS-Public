@@ -2823,8 +2823,8 @@ public function displayEncounterLog(showID:String = "All"):void
 				{
 					output2("\n<b>* Delilah:</b> Met her");
 					if(flags["TOOK_DELILAHS_BUTTGINITY"] != undefined) output2(", Took her anal virginity");
-					if(flags["TIMES_HAD_SEX_WITH_DELILAH_IN_SOME_WAY"] != undefined) output2("\n<b>* Delilah, Times Sexed: </b>" + flags["TIMES_HAD_SEX_WITH_DELILAH_IN_SOME_WAY"]);
-					if(flags["TIMES_ATE_DELILAH_OUT"] != undefined) output2("\n<b>* Delilah, Times Sat on Her Face: </b>" + flags["TIMES_ATE_DELILAH_OUT"]);
+					if(flags["TIMES_HAD_SEX_WITH_DELILAH_IN_SOME_WAY"] > 0) output2("\n<b>* Delilah, Times Sexed: </b>" + flags["TIMES_HAD_SEX_WITH_DELILAH_IN_SOME_WAY"]);
+					if(flags["TIMES_ATE_DELILAH_OUT"] > 0) output2("\n<b>* Delilah, Times Sat on Her Face: </b>" + flags["TIMES_ATE_DELILAH_OUT"]);
 				}
 				// Unknown waitress
 				if(flags["HAS_ORDERED_FOOD_AT_THE_MESS"] != undefined) output2("\n<b>* Waitress:</b> Ordered food from her, Food never received");
