@@ -107,8 +107,8 @@ package classes {
 		public var sellMarkup: Number = 1;
 		public var buyMarkdown: Number = 1;
 		public var keeperGreeting: String = "<i>“Hello and welcome to my shop. Take a gander and let me know if you see anything you like,”</i> " + a + short + " says with a smile.";
-		public var keeperBuy: String = "What would you like to buy?";
-		public var keeperSell: String = "What would you like to sell?";
+		public var keeperBuy: String = "What would you like to buy?\n";
+		public var keeperSell: String = "What would you like to sell?\n";
 
 		//Primary stats
 		private var _physiqueRaw: Number = 3;
