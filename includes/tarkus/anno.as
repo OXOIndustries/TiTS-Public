@@ -2,6 +2,8 @@
 import classes.Creature;
 import classes.Engine.Combat.DamageTypes.DamageResult;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
+import classes.Items.Apparel.AnnosBlouse;
+import classes.Items.Apparel.AnnosCatsuit;
 import classes.Items.Guns.Goovolver;
 import classes.Items.Miscellaneous.EmptySlot;
 import classes.Items.Miscellaneous.GrayMicrobots;
