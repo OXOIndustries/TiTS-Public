@@ -2,6 +2,7 @@
 {
 	import classes.Creature;
 	import classes.GLOBAL;
+	import classes.Items.Apparel.AnnosBlouse;
 	import classes.Items.Apparel.AnnosCatsuit;
 	import classes.Items.Apparel.TSTArmor;
 	import classes.Items.Guns.HammerCarbine;
