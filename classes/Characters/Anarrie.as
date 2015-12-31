@@ -2,19 +2,7 @@
 {
 	import classes.Creature;
 	import classes.GLOBAL;
-	import classes.Items.Apparel.AnnosCatsuit;
-	import classes.Items.Apparel.TSTArmor;
 	import classes.Items.Drinks.RedMyrVenom;
-	import classes.Items.Guns.HammerCarbine;
-	import classes.Items.Guns.LaserCarbine;
-	import classes.Items.Guns.Goovolver;
-	import classes.Items.Guns.ZKRifle;
-	import classes.Items.Miscellaneous.AusarTreats;
-	import classes.Items.Miscellaneous.EMPGrenade;
-	import classes.Items.Miscellaneous.GrayMicrobots;
-	import classes.Items.Miscellaneous.ACock;
-	import classes.Items.Miscellaneous.AHCock;
-	import classes.Items.Miscellaneous.ADCock;
 	import classes.Items.Accessories.Minesweeper;
 	import classes.Items.Armor.ChitinArmor;
 	import classes.Items.Guns.FlareGun;
@@ -31,7 +19,8 @@
 		{
 			this._latestVersion = 2;
 			this.version = this._latestVersion;
-			this._neverSerialize = false;
+			//this._neverSerialize = false;
+			_neverSerialize = true;
 			
 			inventory.push(new Minesweeper());
 			inventory.push(new ChitinArmor());
@@ -65,8 +54,6 @@
 			this.meleeWeapon.longName = "fist";
 			this.meleeWeapon.hasRandomProperties = true;
 			
-			this.rangedWeapon = new HammerCarbine();
-			
 			this.armor.longName = "coat";
 			this.armor.defense = 1;
 			this.armor.hasRandomProperties = true;
@@ -87,44 +74,44 @@
 			this.credits = 0;
 			
 			this.femininity = 80;
-			this.eyeType = 0;
-			this.eyeColor = "blue";
+			this.eyeType = GLOBAL.TYPE_MYR;
+			this.eyeColor = "black";
 			this.tallness = 70;
 			this.thickness = 40;
 			this.tone = 0;
-			this.hairColor = "white";
-			this.scaleColor = "ebony";
-			this.furColor = "white";
+			this.hairColor = "red";
+			this.scaleColor = "red";
+			this.furColor = "red";
 			this.hairLength = 32;
 			this.hairType = 0;
 			this.beardLength = 0;
 			this.beardStyle = 0;
-			this.skinType = GLOBAL.SKIN_TYPE_FUR;
+			this.skinType = GLOBAL.SKIN_TYPE_SKIN;
 			this.skinTone = "pale";
-			this.skinFlags = [GLOBAL.FLAG_FLUFFY];
+			this.skinFlags = new Array();
 			this.faceType = 0;
 			this.faceFlags = new Array();
 			this.tongueType = 0;
 			this.lipMod = 2;
-			this.earType = GLOBAL.TYPE_CANINE;
-			this.antennae = 0;
-			this.antennaeType = 0;
+			this.earType = GLOBAL.TYPE_SYLVAN;
+			this.antennae = 2;
+			this.antennaeType = GLOBAL.TYPE_MYR;
 			this.horns = 0;
 			this.hornType = 0;
-			this.armType = GLOBAL.TYPE_CANINE;
+			this.armType = GLOBAL.TYPE_MYR;
 			this.gills = false;
 			this.wingType = 0;
-			this.legType = GLOBAL.TYPE_CANINE;
+			this.legType = GLOBAL.TYPE_MYR;
 			this.legCount = 2;
-			this.legFlags = [GLOBAL.FLAG_PLANTIGRADE];
+			this.legFlags = [GLOBAL.FLAG_PLANTIGRADE,GLOBAL.FLAG_CHITINOUS];
 			//0 - Waist
 			//1 - Middle of a long tail. Defaults to waist on bipeds.
 			//2 - Between last legs or at end of long tail.
 			//3 - On underside of a tail, used for driders and the like, maybe?
 			this.genitalSpot = 0;
-			this.tailType = GLOBAL.TYPE_CANINE;
+			this.tailType = GLOBAL.TYPE_MYR;
 			this.tailCount = 1;
-			this.tailFlags = [GLOBAL.FLAG_FLUFFY];
+			this.tailFlags = [GLOBAL.FLAG_CHITINOUS];
 			//Used to set cunt or dick type for cunt/dick tails!
 			this.tailGenitalArg = 0;
 			//tailGenital:
@@ -183,7 +170,7 @@
 			this.pregnancyMultiplierRaw = 1;
 			
 			this.breastRows[0].breastRatingRaw = 5;
-			this.nippleColor = "pink";
+			this.nippleColor = "red";
 			this.milkMultiplier = 0;
 			this.milkType = GLOBAL.FLUID_TYPE_MILK;
 			//The rate at which you produce milk. Scales from 0 to INFINITY.
@@ -202,6 +189,11 @@
 		public function UpgradeVersion1(dataObject:Object):void
 		{
 			dataObject.inventory.push(new RedMyrVenom().getSaveObject());
+		}
+		public function UpgradeVersion2(dataObject:Object):void
+		{
+			dataObject.rangedWeapon = new EmptySlot();
+			dataObject._neverSerialize = true;
 		}
 	}
 }
