@@ -9062,7 +9062,7 @@ public function bessEvent21RelationshipResponse(response:String):void
 		if (response.indexOf("dom") != -1) output(" order you around, and you follow me about?”</i>");
 		else output(" follow you around and do whatever you say?”</i>");
 		
-		output("\n\nOnce [bess.heShe] calms down, [bess.heShe] gives the matter a little bit more thought. <i>“... I suppose I’m not entirely surprised. I can’t deny the idea has a certain... appeal to it.”</i> [bess.HeShe] pauses. <i>“... Alright, I’ll be your "+ bessLoverStatus() +". But only some of the time - we’ll scene, this isn’t a 24/7 arrangement. Doing that </i>full time<i> isn’t what I want. Are you okay with that?”</i>");
+		output("\n\nOnce [bess.heShe] calms down, [bess.heShe] gives the matter a little bit more thought. <i>“... I suppose I’m not entirely surprised. I can’t deny the idea has a certain... appeal to it.”</i> [bess.HeShe] pauses. <i>“... Alright, I’ll be your "+ bessLoverStatus() +". But only some of the time - we’ll see, this isn’t a 24/7 arrangement. Doing that </i>full time<i> isn’t what I want. Are you okay with that?”</i>");
 		
 		output("\n\nIf you say yes to [bess.name] being your "+ bessLoverStatus() +", [bess.heShe] will <b>always</b> be");
 		if (response.indexOf("dom") != -1) output(" dominant");
