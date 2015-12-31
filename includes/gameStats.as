@@ -3298,8 +3298,6 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["GENE_TALKED_TO"] == undefined) output2("\n<b>* Fanfir Man:</b>");
 				else output2("\n<b>* Gene:</b>");
 				output2(" Met him");
-				if(flags["GENE_FUCKED"] != undefined) output2(", Sexed him");
-				if(flags["GENE_BLOWJOB"] != undefined) output2(", Sucked his cock");
 				if(flags["GENE_BELLYRUBS_ENABLED"] != undefined) output2(", Rubbed his belly");
 				if(flags["GENE_SUBMISSION_LEVEL"] != undefined)
 				{
@@ -3307,6 +3305,8 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["GENE_SUBMISSION_LEVEL"] == -1) output2("Refused his advances completely");
 					else output2(flags["GENE_SUBMISSION_LEVEL"] + "/10");
 				}
+				if(flags["GENE_FUCKED"] != undefined) output2("\n<b>* Gene, Times Sexed: </b>" + flags["GENE_FUCKED"]);
+				if(flags["GENE_BLOWJOB"] != undefined) output2("\n<b>* Gene, Times Sucked His Cock: </b>" + flags["GENE_BLOWJOB"]);
 				if(flags["PURCHASED_GENES_GALO"] != undefined)
 				{
 					output2("\n<b>* Gene, Unique Sale:</b> GaloMax");
