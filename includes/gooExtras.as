@@ -913,7 +913,7 @@ public function adjustGooBody(arg:Array):void
 	}
 	else if(part == "height")
 	{
-		cost = 10;
+		cost = 20;
 		limitMax = 144;
 		limitMin = 36;
 		if(desc == "increase" || desc == "decrease")
@@ -944,9 +944,9 @@ public function adjustGooBody(arg:Array):void
 	}
 	else if(part == "thickness")
 	{
-		cost = 10;
-		limitMax = 100;
-		limitMin = 0;
+		cost = 20;
+		limitMax = pc.thicknessMax();
+		limitMin = pc.thicknessMin();
 		if(desc == "increase" || desc == "decrease")
 		{
 			clearOutput2();
@@ -972,9 +972,9 @@ public function adjustGooBody(arg:Array):void
 	}
 	else if(part == "tone")
 	{
-		cost = 10;
-		limitMax = 100;
-		limitMin = 0;
+		cost = 20;
+		limitMax = pc.toneMax();
+		limitMin = pc.toneMin();
 		if(desc == "increase" || desc == "decrease")
 		{
 			clearOutput2();
@@ -1004,7 +1004,7 @@ public function adjustGooBody(arg:Array):void
 	}
 	else if(part == "hip size")
 	{
-		cost = 10;
+		cost = 20;
 		limitMax = 100;
 		limitMin = 0;
 		if(desc == "increase" || desc == "decrease")
@@ -1034,7 +1034,7 @@ public function adjustGooBody(arg:Array):void
 	}
 	else if(part == "butt size")
 	{
-		cost = 10;
+		cost = 20;
 		limitMax = 100;
 		limitMin = 0;
 		if(desc == "increase" || desc == "decrease")
@@ -1123,7 +1123,6 @@ public function revertGooBodyColor(part:String = "menu"):void
 			output2(" or your [pc.skinColor] skin.");
 			addGhostButton(0,"Hair",revertGooBodyColor,"hair","Hair","Shift your body color to match your hair color.\n\n<b>10 mLs Biomass</b>");
 			addGhostButton(1,"Body",revertGooBodyColor,"body","Body","Shift your hair color to match your body color.\n\n<b>10 mLs Biomass</b>");
-			//else addDisabledGhostButton(2,"FixGenitals","Revert Genital Color","Your genital and body colors already match!");
 		}
 		else if(pc.hairColor != pc.skinTone)
 		{
