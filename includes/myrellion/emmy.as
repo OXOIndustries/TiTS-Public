@@ -1078,11 +1078,6 @@ public function giveEmmyAnItem(item:String):void
 		output(" a satchel of gems.");
 		output("\n\nOpening it up and taking a gem in hand");
 	}
-	else if(item == "Plat190")
-	{
-		output(" the bar of platinum 190.");
-		output("\n\nTaking the precious metal in hand and giving it a thorough examination");
-	}
 	else
 	{
 		output(" a " + item.toLowerCase() + " gem.");
