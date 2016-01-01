@@ -1123,7 +1123,7 @@ public function revertGooBodyColor(part:String = "menu"):void
 			output2(" or your [pc.skinColor] skin.");
 			addGhostButton(0,"Hair",revertGooBodyColor,"hair","Hair","Shift your body color to match your hair color.\n\n<b>10 mLs Biomass</b>");
 			addGhostButton(1,"Body",revertGooBodyColor,"body","Body","Shift your hair color to match your body color.\n\n<b>10 mLs Biomass</b>");
-			else addDisabledGhostButton(2,"FixGenitals","Revert Genital Color","Your genital and body colors already match!");
+			//else addDisabledGhostButton(2,"FixGenitals","Revert Genital Color","Your genital and body colors already match!");
 		}
 		else if(pc.hairColor != pc.skinTone)
 		{
@@ -1190,6 +1190,7 @@ public function revertGooGenitalColor(sColor:String = "null"):void
 {
 	clearOutput2();
 	var mismatchedGenitals:int = 0;
+	var i:int = 0;
 	if(sColor == "null")
 	{
 		output2("Deciding to leave your genitals alone for now, you take a moment to survey the rest of your body one more time.");
