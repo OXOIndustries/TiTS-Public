@@ -2725,7 +2725,7 @@ public function annoNovaUpdate(asFollower:Boolean = true):void
 	if (asFollower)
 	{
 		annoFollowerTalkMenu(false);
-		addDisabledButton(10, "Nova Update");
+		addDisabledButton(11, "Nova Update");
 	}
 	else
 	{
