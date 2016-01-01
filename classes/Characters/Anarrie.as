@@ -11,6 +11,7 @@
 	import classes.Items.Melee.SurvivalAxe;
 	import classes.Items.Apparel.ThermalUnderwear;
 	import classes.Items.Apparel.HoneypotBra;
+	import classes.Items.Miscellaneous.EmptySlot;
 	
 	public class Anarrie extends Creature
 	{
@@ -31,8 +32,6 @@
 			inventory.push(new HuntingRifle());
 			inventory.push(new MyrBow());
 			inventory.push(new RedMyrVenom());
-			//9999
-			
 			
 			this.typesBought[this.typesBought.length] = GLOBAL.ARMOR;
 			this.typesBought[this.typesBought.length] = GLOBAL.RANGED_WEAPON;
