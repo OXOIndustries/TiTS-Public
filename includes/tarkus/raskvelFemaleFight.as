@@ -114,7 +114,8 @@ public function victoryVsRaskvel():void
 			output(" Her face looks like it would fit nicely against your [pc.vaginas].");
 			addButton(2,"RideHerFace",faceRidingRaskvelLadies);
 		}
-		else {
+		else 
+		{
 			output(" If you had a pussy, you could ride her face. Sadly, you don't.");
 			addDisabledButton(2,"RideHerFace");
 		}
@@ -127,6 +128,7 @@ public function victoryVsRaskvel():void
 			else if(pc.hasCock()) addDisabledButton(3,"Cuff&Fuck","Cuff & Fuck","You can cuff [enemy.himHer] down, but you wouldn't be able to fit inside.");
 			else addDisabledButton(3,"Cuff&Fuck","Cuff & Fuck","You need a penis to make use of your grav-cuffs this way.");
 		}
+	}
 	else
 	{
 		output(" <b>You aren't turned on enough to engage in coitus with the alien babe.</b>");

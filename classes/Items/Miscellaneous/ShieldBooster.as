@@ -79,7 +79,7 @@
 				}
 				else
 				{
-					if(kGAMECLASS.inCombat()) kGAMECLASS.output("\n");
+					if(inCombat()) kGAMECLASS.output("\n");
 					else kGAMECLASS.clearOutput();
 					kGAMECLASS.output(targetCreature.capitalA + targetCreature.short + " pulls out a shield booster, but quickly puts it back.\n");
 				}

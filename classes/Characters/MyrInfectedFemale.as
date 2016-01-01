@@ -237,7 +237,7 @@
 			energy(3);
 		}
 		
-		private function infectedMyrmedionHeal(target):void
+		private function infectedMyrmedionHeal(target:Creature):void
 		{
 			output("The ghostly apparition leans down to her host, wrapping her in a hug and giving her a big kiss. She practically melts at its touch, and you notice the smaller cuts on her body healing. You can see her tongue being sucked into the transparent mushroom’s mouth. Part of this was obviously directed at you, and you feel ");
 			if(target.hasCock()) output("[pc.eachCock] harden");

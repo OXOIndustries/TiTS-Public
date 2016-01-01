@@ -206,7 +206,7 @@ package classes.Characters
 
 			var totalDamage:int = 0;
 
-			for (var i:int = 0; i < 7; i++)
+			for (i = 0; i < 7; i++)
 			{
 				var damage:TypeCollection = new TypeCollection( { kinetic: 5 } );
 				damageRand(damage, 15);
@@ -271,7 +271,7 @@ package classes.Characters
 			{
 				output(" You cry out in pain as the immense goo-sword strikes you, tearing through the ancient steel of the elevator cart with ease.");
 				
-				for (var i:int = 0; i < hostiles.length; i++)
+				for (i = 0; i < hostiles.length; i++)
 				{
 					var d:TypeCollection = meleeDamage();
 					d.add(reflexes() + 5);

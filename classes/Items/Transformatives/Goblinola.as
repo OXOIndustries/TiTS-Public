@@ -671,7 +671,7 @@ package classes.Items.Transformatives
 				clearOutput();
 				// Consuming:
 				output("You unwrap the goblinola and munch on the stuff.");
-				if(!kGAMECLASS.inCombat()) output(" There are some constants that hold true the galaxy over, and health snacks are one of them: It’s reasonably tasty, takes a while to chew and is vaguely unsatisfying.");
+				if(!inCombat()) output(" There are some constants that hold true the galaxy over, and health snacks are one of them: It’s reasonably tasty, takes a while to chew and is vaguely unsatisfying.");
 				output(" Your stomach is left a little unsettled.");
 				if (healing > 0) output(" (<b>+" + healing + " HP</b>)");
 				output("\n");

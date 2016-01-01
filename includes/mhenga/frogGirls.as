@@ -90,7 +90,7 @@ public function frogGirlsEncounter():void
 	else
 	{
 		//Repeat Encounter
-		output("\n\nA lusty resonant croak once again signals the appearance of a kerokoras woman, this one " + enemy.skinTone + " skinned.");
+		output("\n\nA lusty resonant croak once again signals the appearance of a kerokoras woman, this one " + tEnemy.skinTone + " skinned.");
 		if(!pc.hasCock()) output(" It sighs, apparently annoyed that you aren’t male.");
 		if(pc.lust() >= 33 && pc.hasCock()) 
 		{

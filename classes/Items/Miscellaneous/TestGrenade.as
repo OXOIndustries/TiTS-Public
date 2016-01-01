@@ -70,7 +70,7 @@ package classes.Items.Miscellaneous
 				}
 				else
 				{
-					if(kGAMECLASS.inCombat()) kGAMECLASS.output("\n");
+					if(inCombat()) kGAMECLASS.output("\n");
 					else kGAMECLASS.clearOutput();
 					kGAMECLASS.output(targetCreature.capitalA + targetCreature.short + " considers it unwise to use a grenade outside of combat.\n");
 					kGAMECLASS.output("\n");
@@ -88,7 +88,7 @@ package classes.Items.Miscellaneous
 				// Enemy used an item on the PC
 				else if (targetCreature == kGAMECLASS.pc && usingCreature != kGAMECLASS.pc)
 				{
-					if(kGAMECLASS.inCombat()) kGAMECLASS.output("\n");
+					if(inCombat()) kGAMECLASS.output("\n");
 					else kGAMECLASS.clearOutput();
 					npcUsed(targetCreature, usingCreature);
 				}

@@ -90,7 +90,7 @@ public function winVsZil():void {
 	if(pc.hasCock()) addButton(5,"Get BJ",getABJFromAManzil,undefined,"Get BJ","Get a BJ from the waspy male.");
 	else addDisabledButton(5,"Get BJ","Get BJ","Get a blowjob from the zil before you.");
 	//Cuff&Fuck
-	cuffNFuckButton(6, foes[0]);
+	cuffNFuckButton(6, enemy);
 	//Femzil prompt
 	if(pc.hasKeyItem("Capture Harness") && flags["CAPTURED_A_MALE_ZIL_FOR_DR_HASWELL"] == undefined) {
 		addButton(9,"Capture",useTheCaptureHarness);
@@ -1071,7 +1071,8 @@ public function zilSticksItInYourBoot():void {
 	userInterface.showBust("ZIL");
 	userInterface.showName("MALE\nZIL");
 	//(HP Loss) 
-	if(pc.HP() <= 0) {
+	if (pc.HP() <= 0) 
+	{
 		output("Staying upright has become a challenge you aren't fit to overcome anymore. This zil is just too strong for you. You catch yourself on your hands to maintain some semblance of control over your situation, casting a rebellious look at your alien aggressor. He chortles, tracing carapace-clad knuckles softly over your spine, his wings fluttering softly as he circles your semi-prone form. An exposed palm falls on your [pc.butt] and squeezes one supple cheek reassuringly, almost apologetically. You try to look up at him, and in that action is your undoing. A soft, cushy weight falls across your nose, drooling a little bit of honeyed fluid onto your cheek. Its musky, sweet scent fills your nostrils, making your head spin with its potent aroma.");
 		output("\n\nYou cross your eyes to look at it; the glistening, onyx skin filling your view with its supple, surging length. The thick zil-cock spurts a few thick globs of honey onto the bridge of your nose as you drink more deeply of his scent, and [pc.eachCock] ");
 		if(pc.lust() <= 60) output("hardens");
@@ -1089,7 +1090,8 @@ public function zilSticksItInYourBoot():void {
 		output(".");
 	}
 	//{Lust Induced Loss}
-	else {
+	else 
+	{
 		output("Shuddering as the scent of the alien aggressor overwhelms your feeble resistance, you fall down in an uncoordinated heap, one hand plunging into your equipment to strip it away. Your heart is hammering, each beat carrying the fevered lust deeper into your groin, inflating [pc.eachCock] to steel-hard rigidity. Pre-jism drips out in heavy droplets, spattering the ground underneath you in a mockery of jungle dew.");
 		output("\n\nThe zil flutters up curiously, his gaze flitting past yours as he admires the way your groin secretes evidence of your lust.");
 		output("\n\n<i>“");

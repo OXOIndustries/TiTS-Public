@@ -271,7 +271,7 @@
 			// Normally I'd just try and grab this through kGAMECLASS, but I'm doing
 			// this as a tester to ensure everything is getting where it needs
 			var pc:PlayerCharacter;
-			for (var i:int = 0; i < alliedCreatures.length; i++)
+			for (i = 0; i < alliedCreatures.length; i++)
 			{
 				if (alliedCreatures[i] is PlayerCharacter) pc = alliedCreatures[i] as PlayerCharacter;
 				break;

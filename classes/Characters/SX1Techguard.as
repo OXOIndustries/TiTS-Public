@@ -203,7 +203,7 @@ package classes.Characters
 				if (!hasStatusEffect("Stun Cooldown") && energy() >= 20) attacks.push( { v: shockDart, w: 10 } );
 				attacks.push( { v: teaseAttack, w: (lust() / 2) } );
 
-				var selection = weightedRand(attacks);
+				var selection:Function = weightedRand(attacks);
 				if (selection == teaseAttack) selection(hostileCreatures);
 				else selection(target);
 			}

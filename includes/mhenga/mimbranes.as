@@ -3250,7 +3250,7 @@ public function mimbraneCombatInterference():Boolean
 				else if (eligibleMimbranes[i] == "Mimbrane Pussy")
 				{
 					//Vagina Mimbranes
-					output("You find it difficult to concentrate on the " + enemy.short + " as the moisture trapped in and around your [pc.pussy] becomes too much to bear. An absentminded gesture to undo your [pc.armor] is all the opening your parasitic pussy needs to gas you with its concoction of licentious intentions mixed into a potent crimson fog.\n);
+					output("You find it difficult to concentrate on the " + enemy.short + " as the moisture trapped in and around your [pc.pussy] becomes too much to bear. An absentminded gesture to undo your [pc.armor] is all the opening your parasitic pussy needs to gas you with its concoction of licentious intentions mixed into a potent crimson fog.\n");
 				}
 				else if (eligibleMimbranes[i] == "Mimbrane Ass")
 				{

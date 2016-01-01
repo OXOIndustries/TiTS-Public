@@ -511,10 +511,10 @@ package classes.GameData
 				return;
 			}
 			
-			var numShots = 1;
+			var numShots:int = 1;
 			if (attacker.hasPerk("Multiple Shots")) numShots = attacker.perkv1("Multiple Shots");
 			
-			var numFlurries = 0;
+			var numFlurries:int = 0;
 			if (attacker.hasPerk("Second Shot")) numFlurries++;
 			
 			var totalShots:int = numShots + numFlurries;
@@ -593,7 +593,7 @@ package classes.GameData
 			{
 				var others:Array = CombatManager.getCreaturesGroup(target);
 				
-				for (var i:int = 0; i < others.length; i++)
+				for (i = 0; i < others.length; i++)
 				{
 					if (!others[i].isDefeated())
 					{

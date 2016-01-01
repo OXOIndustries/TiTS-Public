@@ -1345,7 +1345,7 @@ public function openDoorToTutorialCombat():void {
 	// CombatManager.victoryCondition(CombatManager.ENTIRE_PARTY_DEFEATED);
 	// CombatManager.lossCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, pc);
 	CombatManager.victoryScene(defeatCelise);
-	CombatManager.lossScene(function() { } ); // The loss scene MUST be set, this is just an end-run for celise.
+	CombatManager.lossScene(function():void { } ); // The loss scene MUST be set, this is just an end-run for celise.
 	CombatManager.entryScene(openDoorToTutorialCombat); // This is an optional thing, I figured it might be useful for things like "reset combat and do over" or whatever, or potentially to modify an in-progress fight.
 	CombatManager.displayLocation("CELISE");
 		

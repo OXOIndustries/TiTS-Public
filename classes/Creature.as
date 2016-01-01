@@ -2204,7 +2204,7 @@ package classes {
 		{
 			var desc:String = "";
 			var actions:Array = [];
-			var singular:Boolean = ((this is PlayerCharacter) || plural);
+			var singular:Boolean = ((this is PlayerCharacter) || isPlural);
 			var weaponName:String = getWeaponName();
 			
 			if (weapon == "stat")
@@ -2278,7 +2278,7 @@ package classes {
 			if (full)
 			{
 				if (this is PlayerCharacter) desc += " your " + weaponName;
-				else if (plural) desc += " their " + weaponName;
+				else if (isPlural) desc += " their " + weaponName;
 				else desc += " " + mfn("his", "her", "its") + " " + weaponName;
 			}
 			return desc;
@@ -2287,7 +2287,7 @@ package classes {
 		{
 			var desc:String = "";
 			var actions:Array = [];
-			var singular:Boolean = ((this is PlayerCharacter) || plural);
+			var singular:Boolean = ((this is PlayerCharacter) || isPlural);
 			var weaponName:String = getWeaponName();
 			
 			if (weapon == "stat")
@@ -2361,7 +2361,7 @@ package classes {
 			if (full)
 			{
 				if (this is PlayerCharacter) desc += " your " + weaponName;
-				else if (plural) desc += " their " + weaponName;
+				else if (isPlural) desc += " their " + weaponName;
 				else desc += " " + mfn("his", "her", "its") + " " + weaponName;
 			}
 			return desc;
@@ -4170,7 +4170,7 @@ package classes {
 		}
 		public function gillsDesc(): String
 		{
-			return pluralize(gillDesc());
+			return plural(gillDesc());
 		}
 		public function modThickness(change: Number, display:Boolean = true): String 
 		{

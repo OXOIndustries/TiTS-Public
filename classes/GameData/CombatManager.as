@@ -10,6 +10,13 @@ package classes.GameData
 	 */
 	public class CombatManager 
 	{
+		/**
+		 * Dump combat state entirely, but don't run any of the clean up mechanics- intended to reset state during new-game/load-game spool up.
+		 */
+		public static function TerminateCombat():void
+		{
+			combatContainer = null;
+		}
 		private static var combatContainer:CombatContainer = null;
 		
 		public static function get inCombat():Boolean
@@ -135,13 +142,15 @@ package classes.GameData
 			exec();
 		}
 		
-		public static function get genericVictory():Function
+		public static function genericVictory():void
 		{
-			return combatContainer.genericVictory;
+			combatContainer.genericVictory();
+			postCombat();
 		}
-		public static function get genericLoss():Function
+		public static function genericLoss():void
 		{
-			return combatContainer.genericLoss;
+			combatContainer.genericLoss();
+			postCombat();
 		}
 		public static function postCombat():void
 		{

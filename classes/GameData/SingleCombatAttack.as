@@ -78,7 +78,7 @@ package classes.GameData
 				}
 				
 				var gotItemFlag:Boolean = false;
-				for (var i:int = 0; i < f.length; i++)
+				for (i = 0; i < f.length; i++)
 				{
 					if (RequiresItemFlags.indexOf(f[i]) != -1) gotItemFlag = true;
 				}
@@ -105,7 +105,7 @@ package classes.GameData
 				}
 				
 				var gotDamageFlag:Boolean = false;
-				for (var i:int = 0; i < df.length; i++)
+				for (i = 0; i < df.length; i++)
 				{
 					if (RequiresDamageFlags.indexOf(df[i]) != -1) gotDamageFlag = true;
 				}

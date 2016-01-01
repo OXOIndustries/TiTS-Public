@@ -854,7 +854,7 @@ public function appearance(target:Creature):void
 			}
 			else
 			{
-				if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" " + upperCase(num2Text(target.tailCount)) + " swishing fox tails extend from your " + target.buttDescript() + ", curling around your body, all slick and shiny.");
+				if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" " + StringUtil.upperCase(num2Text(target.tailCount)) + " swishing fox tails extend from your " + target.buttDescript() + ", curling around your body, all slick and shiny.");
 				else output2(" " + StringUtil.upperCase(num2Text(target.tailCount)) + " swishing, colorful fox's tails extend from your " + target.buttDescript() + ", curling around your body - the soft fur feels lovely.");
 			}
 		}
@@ -892,7 +892,7 @@ public function appearance(target:Creature):void
 			}
 			else
 			{
-				if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" " + upperCase(num2Text(target.tailCount)) + " gooey reptilian " + target.scaleColor + " tails sprout just above your " + target.buttDescript() + ", all dangling behind you.");
+				if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" " + StringUtil.upperCase(num2Text(target.tailCount)) + " gooey reptilian " + target.scaleColor + " tails sprout just above your " + target.buttDescript() + ", all dangling behind you.");
 				else output2(" " + StringUtil.upperCase(num2Text(target.tailCount)) + " scaled " + target.scaleColor + " tails sprout just above your " + target.buttDescript() + ", their undersides covered with softer, lighter scales.");
 			}
 		}
@@ -931,7 +931,7 @@ public function appearance(target:Creature):void
 		else if(target.tailType == GLOBAL.TYPE_COCKVINE)
 		{
 			if(target.tailCount == 1) output2(" A writhing, sinuous appendage flows after you, bobbing and undulating with the slightest movement of your hips.");
-			else output2(upperCase(num2Text(target.tailCount)) + " writhing, sinuous appendages flow after you, all similar in appearance. Studying one of them, you see that it appears vine-like though very much alive and moving.");
+			else output2(StringUtil.upperCase(num2Text(target.tailCount)) + " writhing, sinuous appendages flow after you, all similar in appearance. Studying one of them, you see that it appears vine-like though very much alive and moving.");
 			
 			// Cockvine
 			if (target.tailGenitalArg == GLOBAL.TYPE_COCKVINE && !target.hasTailFlag(GLOBAL.FLAG_RIBBED))
@@ -1343,7 +1343,7 @@ public function appearance(target:Creature):void
 
 public function boobStuff(target:Creature):void
 {
-	kGAMECLASS.target = target;
+	setTarget(target);
 	var rando:int = 0;
 	output2("\n\n");
 	if(target.gills)
@@ -1616,11 +1616,12 @@ public function boobStuff(target:Creature):void
 			}
 		}
 	}
+	setTarget(null);
 }
 
 public function crotchStuff(target:Creature):void
 {
-	kGAMECLASS.target = target;
+	setTarget(target);
 	
 	var rando:int = 0;
 	if(target.hasGenitals()) {
@@ -1986,6 +1987,7 @@ public function crotchStuff(target:Creature):void
 			else output2(" with thick streams of lubricant oozing constantly from the orifice quite liberally.");
 		}
 	}
+	setTarget(null);
 }
 
 public function selectGenderPref():void
@@ -2044,7 +2046,7 @@ public function setGenderPref(pref:String):void
 
 public function dickBonusForAppearance(target:Creature, x:int = 0):void
 {
-	kGAMECLASS.target = target;
+	setTarget(target);
 	
 	trace("DICK FLAVOR FIRED!");
 	//Color shit
@@ -2186,11 +2188,12 @@ public function dickBonusForAppearance(target:Creature, x:int = 0):void
 		if(target.cockTotal() == 1) output2(" While phallic in shape, you are aware that your cock is capable of injecting more than just [target.cumNoun] into an orifice... namely eggs.");
 		else output2(" The phallus doubles as an egg-injecting organ.");
 	}
+	setTarget(null);
 }
 
 public function vaginaBonusForAppearance(target:Creature, x:int = 0, eachOne:Boolean = false):void
 {
-	kGAMECLASS.target = target;
+	setTarget(target);
 	
 	//Zil flavor!
 	if(target.vaginas[x].type == GLOBAL.TYPE_BEE && target.vaginas[x].vaginaColor == "black and gold") {
@@ -2237,4 +2240,5 @@ public function vaginaBonusForAppearance(target:Creature, x:int = 0, eachOne:Boo
 		if(!eachOne) output2(" The special muscles around your vagina are strong and powerful, making it possible to swallow any insertion without the need to push it in.");
 		else output2("\nThe special muscles around your talented vaginas are strong and powerful, making it possible to swallow insertions without the need of external forces to push them in.");
 	}
+	setTarget(null);
 }

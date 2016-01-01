@@ -203,7 +203,7 @@
 			else motorboatedByASpork(target);
 		}
 		
-		private function gettingOffOnZePain(target):void
+		private function gettingOffOnZePain(target:Creature):void
 		{
 			output("The captain heaves a heavy, husky sigh, her breathing less hard as it is a throaty panting. Putting some distance between the two of you, she cups one of her huge green tits through the sheer, tattered fabric of her corset, teasing the pert nipple beneath it. It's almost like the more you hurt her, the more excited she gets.");
 			output("\n\nGrinning she says, <i>\"Come on, Steele... still not too late to surrender. If you keep up the foreplay, though, I don't know what I might do...\"</i>");
@@ -212,7 +212,7 @@
 			target.lust(2);
 		}
 		
-		private function motorboatedByASpork(target):void
+		private function motorboatedByASpork(target:Creature):void
 		{
 			output("You find your guard battered down by a rapid-fire series of sword swipes, only for the captain to grab you by the shoulders and force your head into the gulf of her ample cleavage, burying your [pc.face] between her massive tits.");
 			//Success: 

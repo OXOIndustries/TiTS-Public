@@ -1126,10 +1126,13 @@ public function cuffNFuckButton(btnSlot:int = 0, sexedFoe:Creature = null):void
 		if(sexedFoe.hasVagina()) fitsInside = (pc.cockThatFits(sexedFoe.vaginalCapacity(0)) >= 0);
 		else fitsInside = (pc.cockThatFits(sexedFoe.analCapacity()) >= 0);
 		
-		if(sexedFoe != foes[0]) foes[0] = sexedFoe;
+		// I don't get what this was attempting to even do in the first place, but I'l working around it (due to Foes being gone)
+		//if(sexedFoe != foes[0]) foes[0] = sexedFoe;
 		
-		if(pc.hasCock() && fitsInside) addButton(btnSlot, "Cuff&Fuck", cuffNFuck, undefined, "Cuff & Fuck", "Use your grav-cuffs to pin down [monster.name] and have your way with [monster.hisHer] [pc.vagOrAss]! Requires Grav-cuffs and a penis.");
-		else if(pc.hasCock()) addDisabledButton(btnSlot, "Cuff&Fuck", "Cuff & Fuck", "You can cuff [monster.himHer] down, but you wouldn't be able to fit inside.");
+		setEnemy(sexedFoe); // This should already be set by the combat system, so really we're only setting it in cases where we got here outside of combat.
+		
+		if(pc.hasCock() && fitsInside) addButton(btnSlot, "Cuff&Fuck", cuffNFuck, undefined, "Cuff & Fuck", "Use your grav-cuffs to pin down [enemy.name] and have your way with [monster.hisHer] [pc.vagOrAss]! Requires Grav-cuffs and a penis.");
+		else if(pc.hasCock()) addDisabledButton(btnSlot, "Cuff&Fuck", "Cuff & Fuck", "You can cuff [enemy.himHer] down, but you wouldn't be able to fit inside.");
 		else addDisabledButton(btnSlot, "Cuff&Fuck", "Cuff & Fuck", "You need a penis to make use of your grav-cuffs this way.");
 	}
 }
@@ -1297,6 +1300,7 @@ public function cuffNFuck():void
 	}
 	else
 	{
+		setEnemy(null);
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 	}

@@ -7,6 +7,7 @@
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
+	import classes.Engine.Combat.inCombat;
 	
 	public class FungalExtract extends ItemSlotClass
 	{
@@ -69,7 +70,7 @@
 			// Enemy used an item
 			else if (target != kGAMECLASS.pc && usingCreature != kGAMECLASS.pc)
 			{
-				if(kGAMECLASS.inCombat()) kGAMECLASS.output("\n");
+				if(inCombat()) kGAMECLASS.output("\n");
 				else kGAMECLASS.clearOutput();
 				npcUsed(target, usingCreature);
 			}

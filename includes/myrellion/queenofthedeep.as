@@ -937,7 +937,6 @@ public function queenOfTheDeepTakeBow():void
 	
 	output("\n\nYou sling the bow over your shoulder and watch as the creature retreats, fading into the oppressive darkness. Something tells you that you won’t be seeing her again.");
 
-	genericVictory();
 	output("\n\n");
 	enemy.inventory.push(new QueensBow());
 	CombatManager.genericVictory();

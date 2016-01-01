@@ -241,7 +241,7 @@ public function pcLossToNyrea():void
 		
 		output("\n\nMore than the heft of her cock, you feel the soft barbs ringing her flare scraping along the insides of your [pc.asshole]. Your back arches like a whore’s, instinctively reacting to the alien sensation. Seeing your reaction, the huntress gives your [pc.butt] another slap, making you clench around the intruding pseudo-cock and driving its spines hard against your spasming walls. She digs into you inside and out, fingers sinking into your backside and spines grinding against your anal walls. The huntress doesn’t thrust or grind, just slides herself ever deeper inside you, her sheer size forcing your guts out of the way and stretching you out like a condom around her shaft.");
 		
-		pc.buttChange(foes[0].biggestCockVolume());
+		pc.buttChange(enemy.biggestCockVolume());
 		
 		output("\n\nLooks like she’s not as interested in fucking as much as she is in laying her eggs in you. The way she’s going, it isn’t long before the sensation of her prick sliding into you gives way to an immense pressure resting against your stretched-out hole: the nyrea’s knot. You gulp, finally giving in and looking at her over your shoulder. Her eyes are rolled back, long tongue lolling out of her mouth - totally consumed by pleasure. Completely on instinct, however, her hips press relentlessly against you, trying to brute force the knot inside you. There’s not much you can do about it, other than try not to scream as she starts to ramrod the knot into your [pc.asshole].");
 		
@@ -746,12 +746,12 @@ public function rideNyreaDick():void
 	else if (!useAss)
 	{
 		output(", massaging the full passage of your pussy. Her flared head batters against your cervix, reaching up to kiss it. You can’t help but shiver as her spiney cockhead reaches deep into you.");
-		pc.cuntChange(iWomb, foes[0].biggestCockVolume());
+		pc.cuntChange(iWomb, enemy.biggestCockVolume());
 	}
 	else
 	{
 		output(". Your ass stretches in the most pleasurable of ways around the huntress’s thick member, every bounce or shift of your [pc.hips] dragging those soft spines across your walls, driving you mad with pleasure.");
-		pc.buttChange(foes[0].biggestCockVolume());
+		pc.buttChange(enemy.biggestCockVolume());
 	}
 	
 	output("\n\nYou start to move your [pc.hips] more, bouncing on the nyrea’s cock as she cums, refusing to let her go soft on you. Lucky you, she might have a mighty dick, but the huntress has a girl’s refractory period - you’re able to ride her right through her orgasm, only increasing the pace until the alien warrior’s a blissed-out mess, moaning whorishly as you ride her into the ground. Every movement you make draws her fat knot closer to the");

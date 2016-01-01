@@ -1187,7 +1187,7 @@ public function defeatHostileZil():void {
 	}
 	else addDisabledButton(4,"HyperSmothr","Hyper Smother","You need an extremely large enough penis for this.");
 	//Cuff&Fuck
-	cuffNFuckButton(5, foes[0]);
+	cuffNFuckButton(5, enemy);
 	//Femzil prompt
 	if(pc.hasKeyItem("Capture Harness") && flags["CAPTURED_A_FEMALE_ZIL_FOR_DR_HASWELL"] == undefined) {
 		addButton(9,"Capture",useTheCaptureHarness);

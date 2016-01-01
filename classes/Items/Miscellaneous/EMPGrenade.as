@@ -10,6 +10,8 @@ package classes.Items.Miscellaneous
 	import classes.Engine.Combat.applyDamage;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	import classes.Engine.Combat.inCombat;
+	import classes.Engine.Interfaces.output;
+	import classes.Engine.Interfaces.clearOutput;
 	
 	/**
 	 * ...
@@ -66,15 +68,15 @@ package classes.Items.Miscellaneous
 				if(!kGAMECLASS.infiniteItems()) quantity++;
 				if (targetCreature == kGAMECLASS.pc)
 				{
-					kGAMECLASS.clearOutput();
-					kGAMECLASS.output("Pulling the pin on a grenade without a target to throw it at would be pretty dumb now, wouldn't it?\n");
+					clearOutput();
+					output("Pulling the pin on a grenade without a target to throw it at would be pretty dumb now, wouldn't it?\n");
 				}
 				else
 				{
-					if(kGAMECLASS.inCombat()) kGAMECLASS.output("\n");
-					else kGAMECLASS.clearOutput();
-					kGAMECLASS.output(targetCreature.capitalA + targetCreature.short + " considers it unwise to use a grenade outside of combat.\n");
-					kGAMECLASS.output("\n");
+					if(inCombat()) output("\n");
+					else clearOutput();
+					output(targetCreature.capitalA + targetCreature.short + " considers it unwise to use a grenade outside of combat.\n");
+					output("\n");
 				}
 				return false;
 			}
@@ -89,7 +91,7 @@ package classes.Items.Miscellaneous
 				// Enemy used an item on the PC
 				else if (targetCreature == kGAMECLASS.pc && usingCreature != kGAMECLASS.pc)
 				{
-					if(kGAMECLASS.inCombat()) kGAMECLASS.output("\n");
+					if(inCombat()) kGAMECLASS.output("\n");
 					else kGAMECLASS.clearOutput();
 					npcUsed(targetCreature, usingCreature);
 				}

@@ -27,7 +27,7 @@
 	import classes.GameData.StatTracking;
 	import classes.GameData.MailManager;
 	import flash.events.IOErrorEvent;
-	
+	import classes.GameData.CombatManager;
 	
 	import classes.Engine.Interfaces.*;
 	
@@ -1385,6 +1385,9 @@
 		 */
 		public function executeGame():void
 		{
+			// Clean up any lingering state in manager objects
+			CombatManager.TerminateCombat();
+			
 			//Purge out the event buffer so people can't buy something, load, and then get it.
 			kGAMECLASS.eventQueue = new Array();
 			kGAMECLASS.eventBuffer = "";

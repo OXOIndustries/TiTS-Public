@@ -454,6 +454,7 @@ public function vanaePCVictory():void
 				else addDisabledButton(2,"Cuff&Fuck","Cuff & Fuck","You need a penis to make use of your grav-cuffs this way.");
 			}
 		}
+	}
 	else
 	{
 		if (enemy is HuntressVanae)
