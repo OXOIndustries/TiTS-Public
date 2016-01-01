@@ -6,9 +6,14 @@
 	import classes.Items.Guns.HammerPistol;
 	import classes.Items.Miscellaneous.*
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
 	import classes.GameData.CodexManager;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
+	import classes.GameData.CombatAttacks;
+	import classes.GameData.CombatManager;
+	import classes.Engine.Combat.DamageTypes.*;
+	import classes.Engine.Combat.*; 
+	import classes.Engine.Interfaces.output;
 	
 	public class WetraHound extends Creature
 	{
@@ -28,7 +33,7 @@
 			this.long = "This huge, muscular creature has a slavering maw full of razor-sharp fangs, and walks on four legs in an almost gorilla-like gait. The hound's claws dig into the earth, clattering across the stone and echoing through the cavern. Glowing blue eyes look you over with a bestial, hungry intelligence.";
 			this.customDodge = "Claws scrabbling, the wetra slips away from your attack.";
 			this.customBlock = "The hounds thick hide soak up your attack.";
-			this.plural = false;
+			this.isPlural = false;
 			isLustImmune = true;
 			
 			this.meleeWeapon = new Fists();
@@ -137,18 +142,137 @@
 			this.createStatusEffect("Force It Gender");
 			//this.createStatusEffect("Flee Disabled",0,0,0,0,true,"","",false,0);
 			
+			isUniqueInFight = true;
+			btnTargetText = "WetraHound";
+			
 			this._isLoading = false;
-
 		}
 		
-		override public function prepForCombat():void
+		override public function get bustDisplay():String
 		{
-			var wetraHound:WetraHound = this.makeCopy();
+			return "WETRAHOUND";
+		}
+				
+		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
+		{
+			var target:Creature = selectTarget(hostileCreatures);
+			if (target == null) return;
 			
-			kGAMECLASS.userInterface.showBust("WETRAHOUND");
-			kGAMECLASS.userInterface.showName("FIGHT:\nWETRA HOUND");
-			
-			kGAMECLASS.foes.push(wetraHound);
+			var attacks:Array = [];
+
+			attacks.push(wetraHoundBite);
+			if (!target.hasStatusEffect("Tripped")) attacks.push(wetraHoundPunch);
+			attacks.push(wetraHoundOverrun);
+
+			var hit:Boolean = attacks[rand(attacks.length)](target);
+
+			if (hit && target.hasStatusEffect("Bleeding"))
+			{
+				wetraHoundRend(target);
+			}
+		}
+		
+		private function wetraHoundOverrun(target:Creature):Boolean
+		{
+			//Massive bludgeoning damage, low chance to hit unless knocked down already. 
+
+			output("The wetra hound bellows, a thunderous roar that echoes through the caverns, and charges at you at its full, loping speed.");
+
+			var missMod:Number = 5;
+			if (target.hasStatusEffect("Trip")) missMod = 1;
+
+			if (!combatMiss(target, target, -1, missMod))
+			{
+				output(" The beast slams into you head-first, its thick skull-plate acting like a battering ram that sends you flying against the cavern wall. You yelp in pain as the rib-cracking attack lands, and leaves you rolling in agony on the floor.");
+
+				applyDamage(damageRand(new TypeCollection( { kinetic: 20 } ), 20), this, target);
+				return true;
+			}
+			else
+			{
+				output(" You tumble out of the way as quick as you can, letting the hound's momentum carry it past you. Its head slams into a wall with what should have been lethal force... but the beast just shakes it off and whirls around, ready to keep fighting!");
+				return false;
+			}
+		}
+		
+		private function wetraHoundRend(target:Creature):void
+		{
+			//Gain a Flurry attack against bleeding targets. Add to any other attack:
+
+			output("The wetra hound leaps forward and rakes at you with its claws,");
+			if (!combatMiss(this, target))
+			{
+				output(" tearing into your flesh");
+				applyDamage(damageRand(new TypeCollection( { kinetic: 20 }, DamageFlag.PENETRATING), 10), this, target);
+			}
+			else
+			{
+				output(" narrowly missing you");
+			}
+		}
+		
+		private function wetraHoundPunch(target:Creature):Boolean
+		{
+			//Moderate bludgeoning damage, chance to knockdown. 
+
+			output("The wetra hound rises up onto its puny hind legs, bringings its meaty fists up and trying to sucker-punch you!");
+			if (!combatMiss(this, target))
+			{
+				output(" Pow, right in the kisser! You stagger back under the massive weight of the blow");
+				if (rand(target.reflexes() / 2) + target.reflexes() / 2 >= reflexes())
+				{
+					output(", and suddenly find yourself tripping on a rocky outcropping. <b>You're knocked prone</b>");
+					target.createStatusEffect("Trip", 0, 0, 0, 0, false, "Icon_Constrict", "You've been tripped!", true, 0);
+				}
+				output("!");
+
+				applyDamage(damageRand(new TypeCollection( { kinetic: 10 } ), 15), this, target);
+				return true;
+			}
+			else
+			{
+				output(" You put up your dukes and block the punch, deflecting the beast's mighty blow!");
+				return false;
+			}
+		}
+		
+		private function wetraHoundBite(target:Creature):Boolean
+		{
+			//Moderate piercing damage. Chance to inflict Bleeding (if shields are down only).
+
+			output("The wetra hound leaps forward, its fanged maw wide open. The creature slams into you, attempting to sink its dagger-like teeth into you.");
+			if (!combatMiss(this, target))
+			{
+				output(" The hound bites your arm, bringing its jaws down around you with crushing weight. You yelp in pain as its fangs sink into you!");
+				if (target.shields() <= 0)
+				{
+					/* Bleeding
+					v1 = stacks
+					v2 = remaining rounds
+					v3 = base damage
+					*/
+					if (target.hasStatusEffect("Bleeding"))
+					{
+						target.addStatusValue("Bleeding", 1, 1);
+						target.setStatusValue("Bleeding", 2, 3);
+					}
+					else
+					{
+						target.createStatusEffect("Bleeding", 1, 3, 15, 0, false, "Icon_Crying", "You've been savaged and are bleeding!", true, 0);
+					}
+
+					output(" When the creature pries itself off of you, you watch in horror as blood spurts from the wound. <b>You're bleeding!</b>");
+				}
+				var damage:TypeCollection = new TypeCollection( { kinetic: 15 }, DamageFlag.PENETRATING );
+				damageRand(damage, 15);
+				applyDamage(damage, this, target);
+				return true;
+			}
+			else
+			{
+				output(" You punch the bastard right in the nose, sending the beast tumbling back away just before it can bite into you!");
+				return false;
+			}
 		}
 	}
 }

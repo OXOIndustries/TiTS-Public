@@ -1,6 +1,8 @@
 package classes.UIComponents 
 {
 	import classes.UIComponents.MiniMap.MiniMap;
+	import classes.UIComponents.SideBarComponents.CompressedLocationHeader;
+	import classes.UIComponents.SideBarComponents.EnemyPartyBlock;
 	import classes.UIComponents.SideBarComponents.LocationHeader;
 	import fl.transitions.Tween;
 	import fl.transitions.TweenEvent;
@@ -14,6 +16,8 @@ package classes.UIComponents
 	import classes.UIComponents.SideBarComponents.SideBarButtonBlock;
 	import classes.UIComponents.StatusEffectComponents.StatusEffectsDisplay;
 	import classes.UIComponents.SideBarComponents.StatBar;
+	import classes.Engine.Combat.inCombat;
+	import classes.GameData.CombatManager;
 	
 	/**
 	 * ...
@@ -21,28 +25,23 @@ package classes.UIComponents
 	 */
 	public class LeftSideBar extends Sprite
 	{
-		private var _doTween:Boolean;
-		
 		private var _locationHeader:LocationHeader;
+		private var _compressedLocationHeader:CompressedLocationHeader;
 		private var _enemyEncounterBlock:EnemyEncounterBlock;
+		private var _enemyPartyBlock:EnemyPartyBlock;
 		private var _miniMapBlock:MiniMapBlock;
 		private var _genInfoBlock:GeneralInfoBlock;
 		private var _menuButtonBlock:SideBarButtonBlock;
 		
-		public function get roomText():TextField { return _locationHeader.roomText; }
-		public function get planetText():TextField { return _locationHeader.planetText; }
-		public function get systemText():TextField { return _locationHeader.systemText; }
+		public function get roomText():String { return _locationHeader.roomText;  }
+		public function get planetText():String { return _locationHeader.planetText; }
+		public function get systemText():String { return _locationHeader.systemText; }
+		
+		public function set roomText(v:String):void { _compressedLocationHeader.roomText = _locationHeader.roomText = v; }
+		public function set planetText(v:String):void { _locationHeader.planetText = v; }
+		public function set systemText(v:String):void { _locationHeader.systemText = v ; }
 		
 		public function get miniMap():MiniMap { return _miniMapBlock.miniMap; }
-		
-		public function get encounterHp():StatBar { return _enemyEncounterBlock.hpBar; }
-		public function get encounterShield():StatBar { return _enemyEncounterBlock.shieldBar; }
-		public function get encounterLust():StatBar { return _enemyEncounterBlock.lustBar; }
-		public function get encounterEnergy():StatBar { return _enemyEncounterBlock.energyBar; }
-		public function get encounterLevel():StatBar { return _enemyEncounterBlock.levelBar; }
-		public function get encounterRace():StatBar { return _enemyEncounterBlock.raceBar; }
-		public function get encounterSex():StatBar { return _enemyEncounterBlock.sexBar; }
-		public function get encounterStatusEffects():StatusEffectsDisplay { return _enemyEncounterBlock.statusEffects; }
 		
 		public function get timeText():TextField { return _genInfoBlock.time; }
 		public function get daysText():TextField { return _genInfoBlock.days; }
@@ -63,10 +62,8 @@ package classes.UIComponents
 		public function get generalInfoBlock():GeneralInfoBlock { return _genInfoBlock; }
 		public function get menuButtonBlock():SideBarButtonBlock { return _menuButtonBlock; }
 		
-		public function LeftSideBar(doTween:Boolean = true) 
-		{
-			_doTween = doTween;
-			
+		public function LeftSideBar() 
+		{			
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
 		}
 		
@@ -82,10 +79,17 @@ package classes.UIComponents
 			_locationHeader.x = 0;
 			_locationHeader.y = 0;
 			
+			_compressedLocationHeader = new CompressedLocationHeader();
+			addChild(_compressedLocationHeader);
+			
 			// The enemy encounter stats block
 			_enemyEncounterBlock = new EnemyEncounterBlock();
 			this.addChild(_enemyEncounterBlock);
 			_enemyEncounterBlock.y = _locationHeader.y + _locationHeader.height + 8;
+			
+			_enemyPartyBlock = new EnemyPartyBlock();
+			addChild(_enemyPartyBlock);
+			_enemyPartyBlock.y = _compressedLocationHeader.y + _compressedLocationHeader.height + 1;
 			
 			// Minimap container block
 			_miniMapBlock = new MiniMapBlock();
@@ -101,26 +105,12 @@ package classes.UIComponents
 			// Menu button block
 			_menuButtonBlock = new SideBarButtonBlock();
 			this.addChild(_menuButtonBlock);
-			_menuButtonBlock.y = _genInfoBlock.y + _genInfoBlock.height - 13;
+			_menuButtonBlock.y = _genInfoBlock.y + _genInfoBlock.height - 12;
 			_menuButtonBlock.x = 10;
-		}
-		
-		public function tweenIn():void
-		{
-			if (_doTween)
-			{
-				this.x = 0 - 200;
-				var tw:Tween = new Tween(this, "x", Regular.easeOut, 0 - 200, 0, 25, false);
-				
-				tw.addEventListener(TweenEvent.MOTION_CHANGE, moveToFinalPosition);
-				tw.addEventListener(TweenEvent.MOTION_FINISH, moveToFinalPosition);
-				tw.addEventListener(TweenEvent.MOTION_STOP, moveToFinalPosition);
-			}
-		}
-		
-		private function moveToFinalPosition(e:Event):void
-		{
-			this.x = 0;
+			
+			// TEMP SHIT
+			_genInfoBlock.visible = true;
+			_compressedLocationHeader.visible = false;
 		}
 		
 		private function BuildBackground():void
@@ -138,7 +128,15 @@ package classes.UIComponents
 		{
 			_miniMapBlock.visible = false;
 			_genInfoBlock.visible = false;
-			_enemyEncounterBlock.visible = true;
+			
+			if (inCombat())
+			{
+				var multi:Boolean = CombatManager.getHostileCharacters().length > 1;
+				
+				_enemyEncounterBlock.visible = !multi;
+				_enemyPartyBlock.visible = multi;
+			}
+			
 		}
 		
 		public function ShowMiniMap():void
@@ -153,11 +151,13 @@ package classes.UIComponents
 			}
 			if (_genInfoBlock) _genInfoBlock.visible = true;
 			_enemyEncounterBlock.visible = false;
+			_enemyPartyBlock.visible = false;
 		}
 		
 		public function HideStats():void
 		{
 			_enemyEncounterBlock.visible = false;
+			_enemyPartyBlock.visible = false;
 			_genInfoBlock.visible = true;
 		}
 		
@@ -174,6 +174,32 @@ package classes.UIComponents
 		public function showLocation():void
 		{
 			this._locationHeader.showLocationText();
+		}
+		
+		public function showHostileParty(chars:Array):void
+		{
+			if (chars.length == 1)
+			{
+				_enemyPartyBlock.visible = false;
+				_enemyEncounterBlock.visible = true;
+				_genInfoBlock.visible = true;
+				_miniMapBlock.visible = false;
+				_compressedLocationHeader.visible = false;
+				_locationHeader.visible = true;
+				
+				_enemyEncounterBlock.showStatsForCreature(chars[0]);
+			}
+			else
+			{
+				_enemyPartyBlock.visible = true;
+				_enemyEncounterBlock.visible = false;
+				_genInfoBlock.visible = false;
+				_miniMapBlock.visible = false;
+				_compressedLocationHeader.visible = true;
+				_locationHeader.visible = false;
+				
+				_enemyPartyBlock.showForCreatures(chars);
+			}
 		}
 	}
 }

@@ -1,4 +1,5 @@
-﻿import classes.Engine.Combat.DamageTypes.TypeCollection;
+﻿import classes.Characters.RaskvelFemale;
+import classes.Engine.Combat.DamageTypes.TypeCollection;
 //Hostile Female Raskvel Encounter
 //Armed with aphrodisiac dart-gun.
 //Crotchless Mechanic's Overalls/Tattered Shirt and Skirt
@@ -16,7 +17,7 @@ public function encounterHostileRaskvelFemale():void
 	{
 		flags["MET_FEMALE_RASKVEL"] = 1;
 		output("\n\nEmerging from behind a piece of wreckage, a short figure. The creature is perhaps four feet tall at most, couching a gigantic wrench on its shoulder and some kind of gun on its hip. It is dressed in a set of tattered mechanics overalls and little else, and as you look closer, you become aware of its undoubtedly feminine nature.");
-		output("\n\nThe crotch of the overalls girding this alien girl were torn away at some point in the past to expose her puffy sex. The outer lips are as swollen as a human woman's after being hooked to a vacuum pump for an hour, and purplish in hue. Two clits poke out from the bulging feminine genitalia, one in the front, one in the back. Her sex contrasts quite visibly with her " + foes[0].skinFurScales() + ", standing out in stark relief against the rest of her body, like some kind of erotic target. Her wide hips strain the waist of her garment, transforming her walk into an exaggerated sexual swivel, even though her top half is narrow and lithe, capped with small, pert breasts, B-cups at the most.");
+		output("\n\nThe crotch of the overalls girding this alien girl were torn away at some point in the past to expose her puffy sex. The outer lips are as swollen as a human woman's after being hooked to a vacuum pump for an hour, and purplish in hue. Two clits poke out from the bulging feminine genitalia, one in the front, one in the back. Her sex contrasts quite visibly with her " + enemy.skinFurScales() + ", standing out in stark relief against the rest of her body, like some kind of erotic target. Her wide hips strain the waist of her garment, transforming her walk into an exaggerated sexual swivel, even though her top half is narrow and lithe, capped with small, pert breasts, B-cups at the most.");
 		output("\n\nBeeping, your codex alerts you that this is a hostile female of the raskvel race just like the ones you met when you landed. It issues a quick summary: <i>The Raskvel are a race obsessed with fixing technology and breeding in equal measure. They are generally a very friendly race, but some are more than happy to turn to violence to secure a mate.</i> Looking back up at the approaching creature, you ready yourself.");
 		output("\n\nThe raskvel mechanic leans on her wrench as she considers you, her long, floppy ears dangling to her waist. \"<i>An off-worlder, huh?</i>\"");
 		output("\n\nYou nod.");
@@ -37,9 +38,21 @@ public function encounterHostileRaskvelFemale():void
 	}
 	//[FIght] [Pay] ["Pay"]
 	clearMenu();
-	addButton(0,"Fight",startCombat,"RaskvelFemale");
+	addButton(0,"Fight",fightFemRask);
 	addButton(1,"Pay",payDatRaskCunt);
 	addButton(2,"\"Pay\"",quotePayUnquoteFemRasks);
+}
+
+public function fightFemRask():void
+{
+	CodexManager.unlockEntry("Raskvel");
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(new RaskvelFemale());
+	CombatManager.victoryScene(victoryVsRaskvel);
+	CombatManager.lossScene(defeatRoutingForFemRasks);
+	CombatManager.displayLocation("RASKVEL (F)");
+	CombatManager.beginCombat();
 }
 
 public function payDatRaskCunt():void
@@ -54,219 +67,13 @@ public function payDatRaskCunt():void
 	addButton(0,"Next",mainGameMenu);
 }
 
-
-//Combat
-public function raskvelChickAI():void
-{
-	userInterface.showBust("RASKVEL_FEMALE");
-	userInterface.showName("RASKVEL\nFEMALE");
-	if(foes[0].hasStatusEffect("Disarmed"))
-	{
-		raskvelPunch();
-	}
-	else if(foes[0].hasStatusEffect("Wrench Charge")) 
-	{
-		enemyWrenchAttack();
-	}
-	else
-	{
-		if(rand(4) == 0 && pc.hasCock()) raskvelGirlsTeasingCockwielders();
-		else if(rand(3) == 0) enemyWrenchAttack();
-		else if(rand(2) == 0) enemyAphrodisiacDarts();
-		else raskvelFemShotgun();
-	}
-}
-
-public function raskvelPunch():void
-{
-	output("Unmoved by being disarmed, the petite raskvel balls her fists and charges you.");
-	if(rangedCombatMiss(foes[0], pc))
-	{
-		output("\nYou slide to the side of her clumsy swings.");
-	}
-	else
-	{
-		var damage:TypeCollection = new TypeCollection( { kinetic: (foes[0].physique() / 2)});
-		damageRand(damage, 15);
-		applyDamage(damage, foes[0], pc);
-	}
-	processCombat();
-}
-
-//Combat Attacks
-//Aphrodisiac darts!
-public function enemyAphrodisiacDarts():void
-{
-	var damage:int = 0;
-	var hit:Boolean = true;
-	//Hacky-ass solution for male raskvel. Will need tweaked if a proper mob ever uses the attack
-	if(foes[0] is RaskvelMale) output("<i>“Boo! Raaaaar!”</i> shouts the big raskvel, waving his arms at you. At the same time, one of the others pulls an injector gun from his belt and fires three needles at you near soundlessly.")
-	else output(foes[0].capitalA + foes[0].short + " pulls a gun off her hip, levels it, and pulls the trigger. The only reports are a trio of near-silent hisses as three injectors fly through the air toward you.");
-	//Blocked
-	if(pc.shields() > 0) 
-	{
-		output("\nThe needles break apart uselessly on contact with your defenses.");
-		hit = false;
-	}
-	//Miss (can't be completely dodged)
-	else if(rangedCombatMiss(foes[0], pc)) 
-	{
-		output("\nYou manage to avoid most of the projectiles, but one still impacts your arm, stinging you with a pinprick of pain. You yank it out, but it's payload is already spent, injected inside you.");
-		applyDamage(new TypeCollection( { tease: 3 + rand(3) } ), foes[0], pc, "minimal");
-	}
-	//Medium hit
-	else if(rangedCombatMiss(foes[0],pc))
-	{
-		output("\nTwo needles slam into your body, imparting bursts of searing pain when they penetrate your flesh. You yank them out in irritation, but whatever they contained is inside you now.");
-		applyDamage(new TypeCollection( { tease: 7 + rand(3) } ), foes[0], pc, "minimal");
-	}
-	//Full Hit
-	else
-	{
-		output("\nAll three needles hit you before you can react.");
-		applyDamage(new TypeCollection( { tease: 11 + rand(3) } ), foes[0], pc, "minimal");
-	}
-	//Reactions
-	if(hit)
-	{
-		output("\n\n");
-		if(pc.lust() < 33) output("An unwelcome heat suffuses your body as the chemicals do their work.");
-		else if(pc.lust() < 45) output("Your heart beats faster as you look at your foe's body." + foes[0].mf("","Her outfit seems a bit more revealing, and her movements seem more sexually enticing than ever before."));
-		else if(pc.lust() < 55) 
-		{
-			if(pc.hasCock()) 
-			{
-				output("[pc.EachCock] pulsates as it fills with burgeoning tumescence.");
-				if(foes[0] is RaskvelFemale) output(" You find yourself wondering what it would be like to slip into her puffy, double-clitted box.");
-			}
-			else if(pc.hasVagina()) output("[pc.EachVagina] grows sensitive and moist as you ponder the merits of fucking this fetching little lizard-" + foes[0].mf("man","woman") + ".");
-			else output("Your [pc.nipples] harden as you idly consider forcing " + foes[0].mf("him","her") + " to lick you while suckling on " + foes[0].mf("his reptilian tool.","her twin clits."));
-		}
-		else if(pc.lust() < 65) output("You groan out loud as the aphrodisiacs surges through your bloodstream, rousing you into a " + pc.rawmf("rut","heat") + " that you have have a hard time suppressing.");
-		else if(pc.lust() < 75) output(pc.mf("Grunting","Whimpering") + " in anticipation of what is to come, you ball your hands into fists as you try to endure the rising need as it spreads through your body. It feels like your brain is oozing down into your crotch, fixating utterly on sex. You want to fuck right now. You NEED to fuck soon.");
-		else if(pc.lust() < 85) output("You stagger as the lust hits you, stirring your already aroused body to new heights of need. Your [pc.legs] tremble, and the desperate, animal need to copulate thrums through your quivering muscles, filling them with an artificial desire.");
-		else if(pc.lust() < 95) 
-		{
-			output("The payload has its way with your aroused body as it rushes through your veins. It acts quickly, like other intravenious drugs, turning you on with each beat of your heart.");
-			if(pc.hasCock() || pc.hasVagina()) output(" Your genitals drip with need as y");
-			else output(" Y");
-			output("ou idly consider throwing the fight for a quick fuck.");
-		}
-		else output("You whimper as the drugs pour through your body and melt your resistance into a bubbling puddle of distilled fuck. Your body is hot, feverish even, and you lose the will to resist as the absolute need to tend to your state asserts itself.");
-	}
-	if(pc.lust() < pc.lustMax() && foes[0] is RaskvelMale)
-	{
-		if(seductionChance()) return;
-	}
-	processCombat();
-}
-
-//Wrenched
-public function enemyWrenchAttack():void
-{
-	//Charged attack!
-	if(!foes[0].hasStatusEffect("Wrench Charge"))
-	{
-		output(foes[0].capitalA + foes[0].short + " hefts her wrench up over her head, readying a powerful downward stroke. If you act quickly, you can interrupt her!");
-		foes[0].createStatusEffect("Wrench Charge",foes[0].HP(),0,0,0);
-	}
-	//Already charged, lets do this!
-	else
-	{
-		//Interrupted
-		if(foes[0].statusEffectv1("Wrench Charge") > foes[0].HP()) output(foes[0].capitalA + foes[0].short + " staggers, dropping her heavy weapon down from its striking posture. She looks less than pleased by this development!");
-		//Miss
-		else if(combatMiss(foes[0],pc))
-		{
-			output(foes[0].capitalA + foes[0].short + " brings her weapon down in a vicious two-handed strike but fails to connect!");
-		}
-		//Hit
-		else
-		{
-			//[foes[0].short][capital]
-			output(foes[0].capitalA + foes[0].short + " slams down her wrench in a heavy blow. It connects solidly, and your head is ringing from the brutal hit.");
-			//{Stun chance}
-			if (!pc.hasStatusEffect("Stunned") && pc.physique() + rand(20) + 1 < 40)
-			{
-				output("<b> The hit was hard enough to stun you!</b>");
-				pc.createStatusEffect("Stunned",1,0,0,0,false,"Stun","You are stunned and cannot move until you recover!",true,0);
-			}
-			var damage:TypeCollection = foes[0].meleeDamage();
-			damage.multiply(2);
-			damageRand(damage, 15);
-			applyDamage(damage, foes[0], pc);
-		}
-		foes[0].removeStatusEffect("Wrench Charge");
-	}
-	processCombat();
-}
-
-//Shotgunned
-public function raskvelFemShotgun():void
-{
-	output(foes[0].capitalA + foes[0].short + " presses a button on the side of her wrench, and you hear a shell slide home. A moment later she points it your way and pulls the trigger. Ka-BLAM! The report is loud enough to echo for miles.");
-	//Miss
-	if(rangedCombatMiss(foes[0],pc)) output(" The pellets fly wide.");
-	//Hit
-	else
-	{
-		output("\nYou are struck by the projectiles!");
-		var damage:TypeCollection = foes[0].rangedDamage();
-		damageRand(damage, 15);
-		applyDamage(damage, foes[0], pc);
-	}
-	processCombat();
-}
-
-//Tease (only vs males)
-public function raskvelGirlsTeasingCockwielders():void
-{
-	if(rand(4) == 0) 
-	{
-		output("The short female swivels to show you her rump, shaking it up and down to show off her puffed-up pussy and second clit from behind. She shakes and wobbles, bouncing her cheeks enticingly for your enjoyment while asking, \"<i>Come over here and give me some eggs, and we can forget all about this.</i>\"");
-		applyDamage(new TypeCollection( { tease: 7 + rand(3) } ), foes[0], pc, "minimal");
-	}
-	//#2
-	else if(rand(3) == 0)
-	{
-		output("Pulling down her top to expose her nipples, " + foes[0].a + foes[0].short + " asks, \"<i>Still want to fight? You could always pay me in sperm, you know.</i>\"");
-		applyDamage(new TypeCollection( { tease: 6 + rand(7) } ), foes[0], pc, "minimal");
-	}
-	//#3
-	else if(rand(2) == 0) 
-	{
-		output("The raskvel playfully scampers up and pivots, resting her butt against your crotch. She squeezes her surprisingly powerfully thighs to make her cushy little asscheeks wobble back and forth against");
-		if(!pc.isCrotchGarbed()) output(" [pc.oneCock]");
-		else output(" [pc.oneCock] through your [pc.lowerGarments]");
-		output(". \"<i>Come play, we can forget about the money.</i>\"");
-		applyDamage(new TypeCollection( { tease: 10 + rand(4) } ), foes[0], pc, "minimal");
-	}
-	//#4
-	else
-	{
-		output("Dropping her wrench, the little creature launches herself towards you, legs akimbo.");
-		//Miss
-		if(combatMiss(foes[0],pc)) output(" You step aside, forcing her to land hard and circle back to her weapon with a frown.");
-		//Hit
-		else
-		{
-			output(" Her trajectory carries her square into your face. The lizard-girl's hot cunt squishes up against your [pc.face] as her legs circle behind your neck, and she languidly grinds herself on your face while running her hands ");
-			if(pc.hasHair()) output("through your [pc.hair]");
-			else output("over your head");
-			output(". She detaches before you can think to get her off of you, leaving you with the taste of her femininity on your lips and the thought sex on your mind.");
-			applyDamage(new TypeCollection( { tease: 15 + rand(6) } ), foes[0], pc, "minimal");
-		}
-	}
-	processCombat();
-}
-
 //Victory vs Raskvel
 public function victoryVsRaskvel():void
 {
 	userInterface.showBust("RASKVEL_FEMALE");
 	userInterface.showName("DEFEATED: F.\nRASKVEL");
 	output("The extortive mechanic ");
-	if(foes[0].HP() < 1) output("tumbles head over heels, her wrench falling by the wayside. She hits the ground hard, panting and beaten before gasping, \"<i>You win. Jerk.</i>\" Her sex seems a bit puffier than before, and she's fallen in a pose that seems almost needlessly provocative. It's like she's still trying to tempt you with sex.");
+	if(enemy.HP() < 1) output("tumbles head over heels, her wrench falling by the wayside. She hits the ground hard, panting and beaten before gasping, \"<i>You win. Jerk.</i>\" Her sex seems a bit puffier than before, and she's fallen in a pose that seems almost needlessly provocative. It's like she's still trying to tempt you with sex.");
 	else output("drops to her knees, the wrench falling by the wayside. She whimpers as her fingers disappear into her sodden box. You can see the moisture glistening on the scales of her legs as she desperately frigs herself, not even caring as she slumps down onto her back.");
 	clearMenu();
 	if(pc.lust() >= 33)
@@ -274,7 +81,7 @@ public function victoryVsRaskvel():void
 		output("\n\nDo you do something sexual with her?");
 		if(pc.hasCock())
 		{
-			if(pc.cockThatFits(foes[0].vaginalCapacity()) >= 0) 
+			if(pc.cockThatFits(enemy.vaginalCapacity()) >= 0) 
 			{
 				addButton(0,"DoggyStyle",raskVelBabeGetsDoggieStyled);
 				output(" You could do her doggy style.");
@@ -285,7 +92,7 @@ public function victoryVsRaskvel():void
 				output(" You're too big to do her doggy style.");
 			}
 			//Huge Dick Ear Jackoff?
-			if(pc.cockVolume(pc.biggestCockIndex()) > foes[0].vaginalCapacity())
+			if(pc.cockVolume(pc.biggestCockIndex()) > enemy.vaginalCapacity())
 			{
 				addButton(1,"EarFap",hugeDickEarJackoff);
 				output(" You could put those big ears to work on your big dick.");
@@ -307,12 +114,20 @@ public function victoryVsRaskvel():void
 			output(" Her face looks like it would fit nicely against your [pc.vaginas].");
 			addButton(2,"RideHerFace",faceRidingRaskvelLadies);
 		}
-		else {
+		else 
+		{
 			output(" If you had a pussy, you could ride her face. Sadly, you don't.");
 			addDisabledButton(2,"RideHerFace");
 		}
-		//Cuff&Fuck
-		cuffNFuckButton(3, foes[0]);
+		if(pc.hasItem(new GravCuffs()) && pc.lust() >= 33)
+		{
+			var fitsInside:Boolean = false;
+			if(enemy.hasVagina()) fitsInside = (pc.cockThatFits(enemy.vaginalCapacity(0)) >= 0);
+			else fitsInside = (pc.cockThatFits(enemy.analCapacity()) >= 0);
+			if(pc.hasCock() && fitsInside) addButton(3,"Cuff&Fuck",cuffNFuck,undefined,"Cuff & Fuck","Use your grav-cuffs to pin down [enemy.name] and have your way with [enemy.hisHer] [pc.vagOrAssNoun]! Requires Grav-cuffs and a penis.");
+			else if(pc.hasCock()) addDisabledButton(3,"Cuff&Fuck","Cuff & Fuck","You can cuff [enemy.himHer] down, but you wouldn't be able to fit inside.");
+			else addDisabledButton(3,"Cuff&Fuck","Cuff & Fuck","You need a penis to make use of your grav-cuffs this way.");
+		}
 	}
 	else
 	{
@@ -322,7 +137,7 @@ public function victoryVsRaskvel():void
 		addDisabledButton(2,"RideHerFace");
 	}
 	output("\n\n");
-	addButton(14,"Leave",genericVictory);	
+	addButton(14,"Leave",CombatManager.genericVictory);	
 }
 
 //Doggie Style
@@ -332,10 +147,10 @@ public function raskVelBabeGetsDoggieStyled():void
 	clearOutput();
 	userInterface.showBust("RASKVEL_FEMALE_NUDE");
 	userInterface.showName("DEFEATED: F.\nRASKVEL");
-	var x:int = pc.cockThatFits(foes[0].vaginalCapacity());
+	var x:int = pc.cockThatFits(enemy.vaginalCapacity());
 	if(x < 0) x = pc.smallestCockIndex();
 	output("As you eye your ");
-	if(foes[0].HP() < 1) output("defeated");
+	if(enemy.HP() < 1) output("defeated");
 	else output("defeated");
 	output(" foe, your stiffening maleness");
 	if(pc.cockTotal() > 1) output("es");
@@ -347,7 +162,7 @@ public function raskVelBabeGetsDoggieStyled():void
 	output("\n\nThe scaley slut is so light that you can support her one handed ");
 	if(pc.isCrotchGarbed()) output("when you open your [pc.lowerGarments] and ");
 	output("align [pc.oneCock] with her slick opening. She ");
-	if(foes[0].HP() < 1) output("lies there in the dirt, looking back at you with a curiously, slowly brightening expression. One of her hands lifts up, tracing along her upside-down tummy towards her frontal clit.");
+	if(enemy.HP() < 1) output("lies there in the dirt, looking back at you with a curiously, slowly brightening expression. One of her hands lifts up, tracing along her upside-down tummy towards her frontal clit.");
 	else output("shudders in anticipation, removing her fingers to give you entrance, instead focusing entirely on her frontal clit.");
 
 	output("\n\nSeeing nothing but growing, eager assent on your once-foe, you rock your hips forward to place your [pc.cock " + x + "] against her plush, lube-oozing lips. Your [pc.cockHead " + x + "] spreads those plump vulvae like a curtain of oiled silk, slipping and sliding straight on past into the raskvel's almost virginally tight canal with the inexorable pressure of a horny " + pc.mf("male","herm") + ". Despite the clutching tightness of her inner walls, the small alien's pussy becomes more and more comfortable the further you slide into it. Instead of a hellishly tight vice, it moulds around your " + pc.cockDescript(x) + " into a warm, slick glove that could have been tailor-made for you.");
@@ -435,7 +250,7 @@ public function raskVelBabeGetsDoggieStyled():void
 	knockUpRaskChance();
 	pc.orgasm();
 	processTime(5);
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Huge Dick Ear Jackoff?
@@ -445,7 +260,7 @@ public function hugeDickEarJackoff():void
 	userInterface.showBust("RASKVEL_FEMALE_NUDE");
 	userInterface.showName("DEFEATED: F.\nRASKVEL");
 	output("The little mechanic is way to small to take you, even with hips as stacked as hers, so you decide on another way to quench the fiery heat she's stoked within you. She looks up at you ");
-	if(foes[0].HP() < 1) output("with an anxious expression that shifts into a lusty grin");
+	if(enemy.HP() < 1) output("with an anxious expression that shifts into a lusty grin");
 	else output("with whore-shaming quantities of lust pooling in her slitted eyes");
 	output(" as you ");
 	if(!pc.isCrotchGarbed()) output("stroke your burgeoning slab of cock");
@@ -459,7 +274,7 @@ public function hugeDickEarJackoff():void
 	output("\n\nShifting a bit further, you slide your hips up until you're seated next to your captive fuckpet, your iron-hard mast towering so high over her that it's shadow shades her face. You gather her ears together in your hands and smile down at her, wrapping them one at a time around your cock until you have two warm sleeves positioned at different points, perfect little handholds for you to squeeze and stroke with.");
 	output("\n\nThe horny little lizard-girl is already quivering from having her ears used so, and she softly pants, \"<i>N-no... don't be so... so lewd!</i>\" The last word is more of a feminine pleasure-squeal than a word. She licks her lips and stuffs three of her four fingers inside herself, groping her small, pert bosom with eager squeezes. Groaning, her eyelids flutter low, and she chews on her lower lip before cooing, \"<i>Go on, jack off with my ears. You've gotten me this wet already.</i>\" She pulls her hand away to show you how sopping-wet her pussy has become, and the squelching sound her emptying snatch makes as her digits departs is music to your ears. Webs of glittering girl-cum hang between her hand and her cooch for a brief moment before she pushes back inside herself, openly schlicking. \"<i>Ungh! Please, hurry up!</i>\"");
 	output("\n\nNearly snickering at her abrupt shift, you squeeze down on your two perfect cocksleeves and begin to pump, reveling in the gentle textures as they tickle along your [pc.cockBiggest], squeezing you nicely as you twitch bigger and harder inside them. Pre-cum wells out of your cumslit almost immediately, trickling down the underside of your cock to collect in the first velvety wrapping. The inside goes slick with the slippery addition, frothing around the edges as you pump up and down. Your fists work faster and faster, sometimes twisting back and forth to add another layer of sensation to the exotic masturbation.");
-	output("\n\nAt the same time, the " + foes[0].skinTone + "-skinned creature is busy losing herself in the sensations assaulting her delicate psyche. Her inner ears must be wonderfully sensitive from the way she twitches and shakes with each stroke, and by the time your pre is dripping down to the second nearly frictionless cockpump, she's cumming so hard her eyes are crossed and a six-inch purplish tongue is hanging down past her chin, twitching weakly as she keens through her bliss. She looks completely lost to lust, a sight that spurs you to stroke faster.");
+	output("\n\nAt the same time, the " + enemy.skinTone + "-skinned creature is busy losing herself in the sensations assaulting her delicate psyche. Her inner ears must be wonderfully sensitive from the way she twitches and shakes with each stroke, and by the time your pre is dripping down to the second nearly frictionless cockpump, she's cumming so hard her eyes are crossed and a six-inch purplish tongue is hanging down past her chin, twitching weakly as she keens through her bliss. She looks completely lost to lust, a sight that spurs you to stroke faster.");
 	output("\n\nYour pre-cum is bubbling out so quickly that it's almost a steady stream, and your [pc.cockBiggest] is swelling with tremendous need. You're going to blow soon; you can feel it inside you. Not wanting to waste the heavy load, you roll over to straddle the recovering raskvel, pinning her arms to her sides (and her hands inside her). She protests for a second until the feelings radiating down her ears and into her skull overwhelm her verbal capacity, shutting down that portion of her brain with bliss so exquisite that she's reduced to a babbling, cum-hungry mess. You pump your [pc.cockBiggest] faster and faster");
 	if(pc.cockTotal() == 2) output(", completely ignoring your other penis");
 	else if(pc.cockTotal() > 2) output(", completely ignoring your other penises");
@@ -473,7 +288,7 @@ public function hugeDickEarJackoff():void
 	output("\n\nYou smile as [pc.eachCock] slowly starts to sag, losing tumescence as you prepare to move on. The defeated alien girl is scooping your [pc.cum] off her face and into her swollen twat as you leave.\n\n");
 	processTime(20+rand(10));
 	pc.orgasm();
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Face Riding
@@ -484,7 +299,7 @@ public function faceRidingRaskvelLadies():void
 	userInterface.showBust("RASKVEL_FEMALE_NUDE");
 	userInterface.showName("DEFEATED: F.\nRASKVEL");
 	output("Tossing your equipment aside, you loom over the defeated raskvel, unashamedly letting your eyes play over her perky breasts, wide hips, lengthy tail, and cute, feather-topped head. ");
-	if(foes[0].HP() < 1) output("She looks on in trepidation, but at the site of your [pc.vaginas] looming overhead, the beginnings of a smile appears on her mouth. ");
+	if(enemy.HP() < 1) output("She looks on in trepidation, but at the site of your [pc.vaginas] looming overhead, the beginnings of a smile appears on her mouth. ");
 	output("Her tongue slips out of her mouth to play across her lips, giving you ");
 	if(flags["TIMES_RODE_RASKVEL_FACE"] != undefined) output("another good look at one");
 	else
@@ -547,7 +362,7 @@ public function faceRidingRaskvelLadies():void
 	processTime(25 + rand(5));
 	IncrementFlag("TIMES_RODE_RASKVEL_FACE");
 	pc.orgasm();
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //"Pay"
@@ -557,11 +372,11 @@ public function quotePayUnquoteFemRasks():void
 	userInterface.showBust("RASKVEL_FEMALE_NUDE");
 	userInterface.showName("RASKVEL\nFEMALE");
 	output("Well, you can always pay another way and hope she goes easy on your wallet....");
-	foes = new Array();
-	chars["RASKVEL_FEMALE"].prepForCombat();
-	trace("CHECKIN FER DICKFIT: " + pc.cockVolume(0) + " HOLEFIT: " + foes[0].vaginalCapacity() + " E SHORT: " + foes[0].short);
+	
+	setEnemy(new RaskvelFemale());
+	
 	//Dick Req
-	if(pc.hasCock() && pc.cockThatFits(foes[0].vaginalCapacity()) >= 0) raskvelGirlsSitsIfTheyFits();
+	if(pc.hasCock() && pc.cockThatFits(enemy.vaginalCapacity()) >= 0) raskvelGirlsSitsIfTheyFits();
 	else if(pc.hasCock()) hugeDicksGetForceWorshippedByFemRaskvel();
 	//Tail-pegging
 	//Nondix
@@ -576,7 +391,7 @@ public function defeatRoutingForFemRasks():void
 	
 	//Face-Sitting Footjobs
 	//Dick Req
-	if (pc.hasCock() && pc.cockThatFits(foes[0].vaginalCapacity()) >= 0) {
+	if (pc.hasCock() && pc.cockThatFits(enemy.vaginalCapacity()) >= 0) {
 		choices.push( { func: raskvelGirlsSitsIfTheyFits, arg: true } );
 	}
 	//Tail-pegging
@@ -586,14 +401,14 @@ public function defeatRoutingForFemRasks():void
 		choices.push( { func: getRaskVelTailPegged, arg: true } );
 	}
 	//Huge Dicks Get Dosed With Aphrodisiac While Being Forcefully Worshipped
-	if(pc.hasCock() && pc.biggestCockVolume() > foes[0].vaginalCapacity())
+	if(pc.hasCock() && pc.biggestCockVolume() > enemy.vaginalCapacity())
 	{
-		choices.push( { func: hugeDicksGetForceWorshippedByFemRaskvel, arg: undefined } );
+		choices.push( { func: hugeDicksGetForceWorshippedByFemRaskvel, arg: true } );
 	}
 	//Get Pegged while Double Penetrating Her
 	if (pc.cockTotal() > 1 && 
-		pc.cockThatFits(foes[0].vaginalCapacity()) >= 0 && 
-		pc.cockThatFits2(foes[0].vaginalCapacity()) >= 0
+		pc.cockThatFits(enemy.vaginalCapacity()) >= 0 && 
+		pc.cockThatFits2(enemy.vaginalCapacity()) >= 0
 	   )
 	{
 		choices.push( { func: getPeggedWhileDoublePenetrate, arg: undefined } );
@@ -643,7 +458,7 @@ public function raskyNotInterestedInYerWeirdShit():void
 	output("\n\n");
 	
 	processTime(3+rand(7));
-	genericLoss();
+	CombatManager.genericLoss();
 }
 
 //Face-Sitting Footjobs
@@ -675,7 +490,7 @@ public function raskvelGirlsSitsIfTheyFits(combat:Boolean = false):void
 		//charge money
 		payRaskvel();
 	}
-	output("\n\nThe raskvel leans down, her great big ears flopping onto your face as she pokes around at your gear, slowly stripping it off of your piece by piece. As she does so, she simply says, <i>\"They're sensitive,\"</i> but the command is clear and present. You reach up and grab the wide, rounded ends of her floppy ears, rolling the thin, svelte flesh between your fingers. Your captor barely stifles a little gasp, suddenly struggling to pull your [pc.lowerGarments] off as you tease her. <i>\"N-not so rough,\"</i> she snaps, giving you a harsh slap on the thigh. You wince, but the way her scales flush a darker " + foes[0].skinTone + " tells you you're on the right track. You work your way up from the rims, your fingertips brushing and teasing across the interior, marvelling at the softness and warmth of them. In response, her body shudders, breath quickening as the raskvel tosses the last of your kit aside. You've nearly worked your way to the bases, starting to roll the floppy ears in your hands by the time she's done, and she quickly pushes you back onto your back.");
+	output("\n\nThe raskvel leans down, her great big ears flopping onto your face as she pokes around at your gear, slowly stripping it off of your piece by piece. As she does so, she simply says, <i>\"They're sensitive,\"</i> but the command is clear and present. You reach up and grab the wide, rounded ends of her floppy ears, rolling the thin, svelte flesh between your fingers. Your captor barely stifles a little gasp, suddenly struggling to pull your [pc.lowerGarments] off as you tease her. <i>\"N-not so rough,\"</i> she snaps, giving you a harsh slap on the thigh. You wince, but the way her scales flush a darker " + enemy.skinTone + " tells you you're on the right track. You work your way up from the rims, your fingertips brushing and teasing across the interior, marvelling at the softness and warmth of them. In response, her body shudders, breath quickening as the raskvel tosses the last of your kit aside. You've nearly worked your way to the bases, starting to roll the floppy ears in your hands by the time she's done, and she quickly pushes you back onto your back.");
 	output("\n\n<i>\"D-don't even try to make me cum that easy!\"</i> she snaps, righting herself. You get a clear glimpse at her shamelessly displayed cunt, and smile to yourself as tiny beads of lubricant dribble down, sliding down her thighs to dribble onto your exposed [pc.cockBiggest]. Your member stiffens in response, and the raskvel's quick to grab it, squeezing your prick between her tiny, but surprisingly deft, fingers. She gives the rod a few languid strokes as she looks you over, her other fingers idly circling her cunt, flicking across her two alien clits.");
 	output("\n\n<i>\"Now... what should I do with a trespasser like you?\"</i> she teases, putting a finger to her chin in a mock pose of thought. Your eyes are glued to her twat, hovering so close to your own hardening [pc.cockBiggest] that you can feel the heat blossoming from her dripping sex. She sees what you're thinking all too clearly and giggles, sticking her long purple tongue out at you. <i>\"Oh, no, you did </i>not<i> fly a bajillion lightyears all the way out to </i>my<i> planet just to stick your dick in an alien pussy, did you? Well, you're mine now, so I'm going to show you how my people play!\"</i>");
 	output("\n\nShe says that with a certain primal hunger, eyes glinting as she scoots forward, knees pressing into the pits of your arms; her cunt hovers barely an inch from your chin, so aroused from the ear-wank that she's practically pouring her lube out onto your neck. A slight shift of her hips brings it right to your face, the lower clit pressing into your lip. It's a simple thing to suck it up, planting a kiss at its swollen head and sucking gently. The raskvel's reaction is priceless, she barely stiffles a little whimper as you suckle her clit, biting her lip as her skin flushes darker. She starts to try and rebuke you, fist balling for another swat, but you cut her off with a sharper suck, your tongue darting into her puffy sex to lap at the free-flowing juices. She gives a whine of pleasure, breath catching as your [pc.tongue] probes into her sodden sex.");
@@ -710,10 +525,11 @@ public function raskvelGirlsSitsIfTheyFits(combat:Boolean = false):void
 		//end combat
 		output("\n\n");
 		payRaskvel();
-		genericLoss();
+		CombatManager.genericLoss();
 	}
 	else
 	{
+		setEnemy(null);
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 	}
@@ -757,7 +573,7 @@ public function getRaskVelTailPegged(combat:Boolean = false):void
 	output("\n\nThe little raskven spends nearly a minute winding her way around your body, caressing and teasing your [pc.skinFurScales], reaching around to squeeze a [pc.nipple]");
 	if(pc.biggestTitSize() >= 1) output(" and cup a breast");
 	output(" before finally standing before you, a pair of fingers stretching her bi-clitted cunt wide, the stretchy sex already beading with anxious lubricant, awaiting a cock that'll never come. <i>\"Alright, if you wanna get off too, you better get me started,\"</i> she commands, presenting her pussy to your face, so close that her clits practically bump your chin and nose. It doesn't take anything more than that to get you working; the scent alone wafting from her snatch, the potent aroma of sex and desire, is enough to lure your tongue out to drag from clit to clit, lapping at the sweet secretions of her womanhood. The raskvel's entire body seems to quake at that first touch, her hands grabbing your hair to steady herself as your [pc.tongue] probes ahead, lapping up a bead of feminine slime before pushing past her feminine folds. She accomodates you easily; a twat made to take cocks and lay eggs isn't able to come down hard enough to stop your delving oral organ, only gently squeeze and massage it, slathering you in lube.");
-	output("\n\nThe raskvel slut moans and groans, her " + foes[0].skinTone + " scales darkening as you eat her out, hips slowly starting to grind against your face, bucking and squealing as your tongue goes deeper and deeper, her fingers digging through your hair. You take that as a sign of her enjoyment, licking harder, reaching deeper until she's practically cumming around your tongue, her fem-slime pouring out to poll between your hands. Just as she's on the verge, hips quaking and cunt spasming, the raskvel pushes herself off you, breathing hard, her tiny tits heaving as her knees quake.");
+	output("\n\nThe raskvel slut moans and groans, her " + enemy.skinTone + " scales darkening as you eat her out, hips slowly starting to grind against your face, bucking and squealing as your tongue goes deeper and deeper, her fingers digging through your hair. You take that as a sign of her enjoyment, licking harder, reaching deeper until she's practically cumming around your tongue, her fem-slime pouring out to poll between your hands. Just as she's on the verge, hips quaking and cunt spasming, the raskvel pushes herself off you, breathing hard, her tiny tits heaving as her knees quake.");
 	output("\n\n<i>\"T-that's enough!\"</i> she gasps, putting a hand to her chest, as if to calm her hammering heart. <i>\"I'm not gonna cum before you. No way!\"</i>");
 	output("\n\nSo haughty all of a sudden! Well, on your hands");
 	if(pc.hasKnees() || pc.isNaga()) output(" and [pc.knees]");
@@ -784,17 +600,18 @@ public function getRaskVelTailPegged(combat:Boolean = false):void
 	{
 		output("\n\n");
 		payRaskvel();
-		genericLoss();
+		CombatManager.genericLoss();
 	}
 	else
 	{
+		setEnemy(null);
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 	}
 }
 
 //Huge Dicks Get Dosed With Aphrodisiac While Being Forcefully Worshipped
-public function hugeDicksGetForceWorshippedByFemRaskvel():void
+public function hugeDicksGetForceWorshippedByFemRaskvel(fromCombat:Boolean = false):void
 {
 	userInterface.showBust("RASKVEL_FEMALE_NUDE");
 	userInterface.showName("LOST VS: F.\nRASKVEL");
@@ -913,7 +730,16 @@ public function hugeDicksGetForceWorshippedByFemRaskvel():void
 	pc.orgasm();
 	output("\n\n");
 	payRaskvel();
-	genericLoss();
+	if (fromCombat)
+	{
+		CombatManager.genericLoss();
+	}
+	else
+	{
+		setEnemy(null);
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
 }
 
 //Get Pegged while Double Penetrating Her
@@ -922,9 +748,9 @@ public function getPeggedWhileDoublePenetrate():void
 {	
 	userInterface.showBust("RASKVEL_FEMALE_NUDE");
 	userInterface.showName("LOST VS: F.\nRASKVEL");
-	var x:int = pc.cockThatFits(foes[0].vaginalCapacity());
+	var x:int = pc.cockThatFits(enemy.vaginalCapacity());
 	if(x < 0) x = pc.smallestCockIndex();
-	var y:int = pc.cockThatFits2(foes[0].vaginalCapacity());
+	var y:int = pc.cockThatFits2(enemy.vaginalCapacity());
 	if(y < 0) y = pc.smallestCockIndex2();
 	//HP: 
 	if(pc.HP() < 1)
@@ -1024,7 +850,7 @@ public function getPeggedWhileDoublePenetrate():void
 	//Pass time and lose some cash!
 	payRaskvel();
 	output("\n\n");
-	genericLoss();
+	CombatManager.genericLoss();
 }
 
 public function payRaskvel():void

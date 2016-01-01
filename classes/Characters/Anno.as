@@ -15,6 +15,13 @@
 	import classes.Items.Miscellaneous.ACock;
 	import classes.Items.Miscellaneous.AHCock;
 	import classes.Items.Miscellaneous.ADCock;
+	import classes.Items.Protection.DecentShield;
+	
+	import classes.Engine.Interfaces.output;
+	import classes.Engine.Combat.*;
+	import classes.Engine.Combat.DamageTypes.*;
+	import classes.GameData.CombatAttacks;
+	import classes.GameData.CombatManager;
 	
 	public class Anno extends Creature
 	{
@@ -45,10 +52,10 @@
 			this.originalRace = "ausar";
 			this.a = "";
 			this.capitalA = "";
-			this.long = "Placeholder";
+			this.long = "Anno’s crouched just over an arm’s length away, her compact holdout held close at a low-ready as she waits for an opportunity to fire. Her bushy tail is tucked in tight, ears lowered against her head as she moves from cover to cover, ducking around incoming attacks.";
 			this.customDodge = "Anno Don't Dodge Foo";
 			this.customBlock = "Obvious placeholder is obvious.";
-			this.plural = false;
+			this.isPlural = false;
 			
 			this.meleeWeapon.attackVerb = "punch";
 			this.meleeWeapon.attackNoun = "punch";
@@ -186,6 +193,13 @@
 			this.vaginas[0].loosenessRaw = 1;
 			this.vaginas[0].bonusCapacity = 20;
 			
+			isUniqueInFight = true;
+			
+			
+			shield = new DecentShield();
+			this.shieldsRaw = this.shieldsMax();
+			this.HPRaw = this.HPMax();
+			
 			this._isLoading = false;
 		}
 		
@@ -234,6 +248,119 @@
 			delete d.resistances;
 			delete d.lustVuln;
 			delete d.bonusLustVuln;
+		}
+		
+		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
+		{
+			var target:Creature;
+			var bSneak:Boolean = false;
+			
+			// More complex target selection to leverage some of Annos abilities
+			for (var i:int = 0; i < hostileCreatures.length; i++)
+			{
+				if (hostileCreatures[i].hasStatusEffect("Stunned") || hostileCreatures[i].hasStatusEffect("Blinded"))
+				{
+					target = hostileCreatures[i] as Creature;
+					bSneak = true;
+				}
+				break;
+			}
+			
+			if (target == null) target = selectTarget(hostileCreatures);
+			
+			// Normally I'd just try and grab this through kGAMECLASS, but I'm doing
+			// this as a tester to ensure everything is getting where it needs
+			var pc:PlayerCharacter;
+			for (i = 0; i < alliedCreatures.length; i++)
+			{
+				if (alliedCreatures[i] is PlayerCharacter) pc = alliedCreatures[i] as PlayerCharacter;
+				break;
+			}
+			
+			if (!hasStatusEffect("Sensor Link Cooldown") && rand(4) == 0) sensorLinkBuff(target, pc);
+			else if (pc.HP() / pc.HPMax() <= 0.5 && !hasStatusEffect("HP Boost Cooldown"))
+			{
+				hpBooster(pc);
+			}
+			else if (bSneak)
+			{
+				var bonusDamage:int = level * 2;
+				if (target.hasStatusEffect("Blinded") && target.hasStatusEffect("Stunned")) bonusDamage += level;
+				
+				regularAttack(bonusDamage, target);
+			}
+			else
+			{
+				regularAttack(0, target);
+			}
+		}
+		
+		public function grappleStruggle():void
+		{
+			if (CombatManager.hasEnemyOfClass(GrayPrime))
+			{
+				var chance:int = statusEffectv1("Grappled");
+				
+				output("Anno struggles against the gray goo's assault, trying to escape her death-grasp.");
+					
+				if (rand(3) <= chance)
+				{
+					// Slip a cooldown on the hostile
+					var hostiles:Array = CombatManager.getHostileCharacters();
+					var gPrime:GrayPrime = hostiles[0];
+					gPrime.createStatusEffect("Grapple Cooldown", 3);
+					
+					removeStatusEffect("Grappled");
+					output(" Anno finally brings her gun to bear and fires, pumping her entire magazine into the goo\’s tits. The gray body explodes in a rain of goop, only to reform a moment later across the room as Anno slams a new mag into her holdout. <i>“I’m fine, I’m fine!”</i> Anno groans, rubbing at her throat, now visibly bruising.");
+				}
+				else
+				{
+					addStatusValue("Grappled", 1, 1);
+				}
+			}
+		}
+		
+		private function sensorLinkBuff(target:Creature, pc:Creature):void
+		{
+			output("Anno levels her left wrist at");
+			if (CombatManager.multipleEnemies()) output(" one of");
+			else output(" the");
+			output(" " + target.short + " and taps a key on her tiny computer. A visible targeting reticle forms around your opponent");
+			if (CombatManager.multipleEnemies()) output("s");
+			output(", linking up with your own equipment in the process.\n<b>Accuracy increased!</b>");
+
+			pc.createStatusEffect("Sensor Link", 5, 0, 0, 0, false, "Radio", "Anno has linked her equipments targetting systems with yours, improving your combat accuracy.", true, 0);
+			pc.aimMod += 5;
+		}
+		
+		private function hpBooster(target:Creature):void
+		{
+			var hpGained:int = target.HPMax() * 0.1;
+			output("Anno runs up to you and passes her wrist computer over your shoulder, uploading an advanced program to your onboard microsurgeons. Your wounds start to knit together in no time! <b>Gained " + hpGained + " health!</b>");
+
+			target.HP(hpGained);
+
+			createStatusEffect("HP Boost Cooldown", 5, 0, 0, 0, true, "", "", true, 0);
+		}
+		
+		private function regularAttack(bonusDamage:int, target:Creature):void
+		{
+			output("Anno levels her holdout pistol and fires off a quick shot");
+
+			if (rangedCombatMiss(this, target)) output(", though she misses her target.");
+			else
+			{
+				output(", landing a solid hit");
+				if (CombatManager.hasEnemyOfClass(GrayPrime) || CombatManager.hasEnemyOfClass(GigaGoo)) output(" on the goo");
+				else output(" on " + target.a + target.uniqueName);
+				output("!");
+
+				if (bonusDamage > 0) output(" Her attack is super-effective while her target is incapacitated!");
+
+				var damage:TypeCollection = rangedDamage();
+				damage.add(bonusDamage);
+				applyDamage(damage, this, target, "minimal");
+			}
 		}
 	}
 }

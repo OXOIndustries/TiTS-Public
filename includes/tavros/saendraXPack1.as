@@ -1,3 +1,6 @@
+import classes.Characters.SX1GroupPirates;
+import classes.Characters.SX1Shotguard;
+import classes.Characters.SX1Techguard;
 import classes.Creature;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
 /*
@@ -170,226 +173,14 @@ public function saendraX1LiftGo():void
 public function initsx1PirateGroupFight():void
 {
 	pc.createStatusEffect("Pitch Black", 0, 0, 0, 0, false, "Icon_Slow", "It’s pitch black here, making it almost impossible to see anything but for bursts of light accompanying weaponsfire.", true, 0);
-	startCombat("SX1GROUPPIRATES");
-}
-
-public function sx1PirateGroupAI():void
-{
-	// saen AI
-	if (sx1SaendraAI()) output("\n\n");
-
-	var nadesAvail:Boolean = !UpdateStatusEffectCooldown(foes[0], "NadeCD");
-
-	// enemy AI
-	var enemyAttacks:Array = [];
-	enemyAttacks.push({ v: sx1GroupRangedAttack, 		w: 40 });
-	enemyAttacks.push({ v: sx1GroupMachinePistols, 		w: 40 });
-
-	if (nadesAvail)
-	{
-		enemyAttacks.push({ v: sx1GroupFlashbang, 		w: 15 });
-		enemyAttacks.push({ v: sx1GroupSmokeGrenade, 	w: 15 });
-		enemyAttacks.push({ v: sx1GroupConcGrenade, 	w: 15 });
-	}
-
-	weightedRand(enemyAttacks)();
-
-	processCombat();
-}
-
-public function sx1GroupRangedAttack():void
-{
-	rangedAttack(foes[0], pc, [2]);
-}
-
-public function sx1SaendraAI():Boolean
-{
-	var noAction:Boolean = false;
-
-	if (pc.hasStatusEffect("SaenBlind"))
-	{
-		pc.addStatusValue("SaenBlind", 1, -1);
-		if (pc.statusEffectv1("SaenBlind") <= 0)
-		{
-			pc.removeStatusEffect("SaenBlind");
-		}
-		else
-		{
-			noAction = true;
-		}
-	}
-
-	if (pc.hasStatusEffect("SaenStunned"))
-	{
-		pc.addStatusValue("SaenStunned", 1, -1);
-		if (pc.statusEffectv1("SaenStunned") <= 0)
-		{
-			pc.removeStatusEffect("SaenStunned");
-		}
-		else
-		{
-			noAction = true;
-		}
-	}
-
-	var sHackAvail:Boolean = !UpdateStatusEffectCooldown(pc, "SaenSHackCD");
-	var sBoostAvail:Boolean = !UpdateStatusEffectCooldown(pc, "SaenSBoostCD");
-	var sDisarmAvail:Boolean = !UpdateStatusEffectCooldown(pc, "SaenDisarmShotCD") && !foes[0].hasStatusEffect("Disarm Immune") && !foes[0].hasStatusEffect("PartialDisarm") && !foes[0].hasStatusEffect("Disarmed");
-
-	if (noAction) return false;
-
-	var attacks:Array = [];
-	attacks.push({ v: sx1SaenHammerPistol, w: 40 });
-	attacks.push({ v: sx1SaenLowBlow, w: 20 });
-	if (foes[0].shields() > 0 && sHackAvail) attacks.push({ v: sx1SaenShieldHack, w: 25 });
-	if (pc.shields() < pc.shieldsMax() && sBoostAvail) attacks.push({ v: sx1ShieldBooster, w: 25 });
-	if (sDisarmAvail) attacks.push({ v: sx1DisarmingShot, w: 15 });
-
-	weightedRand(attacks)();
-
-	return true;
-}
-
-public function sx1GroupMachinePistols():void
-{
-	//Machine Pistols
-	output("One of the assassins brings his machine pistol to bear, firing a burst of toward you!");
-	if (rangedCombatMiss(foes[0], pc, -1, 3))
-	{
-		output(" The burst misses!");
-	}
-	else
-	{
-		output(" The burst hits!");
-
-		applyDamage(new TypeCollection({ kinetic: 10 }), foes[0], pc, "minimal");
-	}
-}
-
-public function sx1GroupFlashbang():void
-{
-	// Flashbang
-	output("One of the assassins pulls another disk-like grenade from his belt and slides it across the deck, placing it between you and Saendra! The flashbang detonates with deafening force,");
-
-	if (rand(10) != 0)
-	{
-		output(" blinding you and Saendra");
-		pc.createStatusEffect("Blind", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0);
-		pc.createStatusEffect("SaenBlind", 3, 0, 0, 0, true, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0);
-	}
-	else
-	{
-		output(" blinding Saendra, though you manage to avoid any serious effect.");
-		pc.createStatusEffect("SaenBlind", 3, 0, 0, 0, true, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0);
-	}
-
-	foes[0].createStatusEffect("NadeCD", 5);
-}
-
-public function sx1GroupSmokeGrenade():void
-{
-	// Smoke Grenade
-	output("One of the assassins pulls a cylindrical grenade from his belt and hurls it between you and him. Smoke billows out of the grenade after a loud POP, making it almost impossible to see. <b>Aim reduced!</b>");
-	pc.createStatusEffect("Smoke Grenade", 3, 0, 0, 0, false, "Blind", "Ranged attacks are far more likely to miss.", true, 0);
-
-	foes[0].createStatusEffect("NadeCD", 5);
-}
-
-public function sx1GroupConcGrenade():void
-{
-	// Concussion Grenade
-	output("One of the assassins grabs a red grenade off of his belt and hurls it at you. A second later, the grenade detonates in a rib-crushing wave of kinetic force that nearly knocks you on your ass!");
-	var mul:Number;
-	if (pc.RQ() < rand(100)) mul = 2;
-	else mul = 1;
-
-	applyDamage(new TypeCollection({ kinetic: 12 * mul }), foes[0], pc, "minimal");
-
-	foes[0].createStatusEffect("NadeCD", 5);
-}
-
-// Saendra Abilities
-// Saen has the Smuggler "Aimed Shot" ability, and perks up to Level 5
-
-public function sx1SaenHammerPistol():void
-{
-	// Hammer Pistol
-	output("Saendra levels her Hammer pistol at ");
-	if (foes[0].plural == true) output("one of ");
-	output(foes[0].a + foes[0].short + " and squeezes off a shot.");
-
-	var chance:Number = 3;
-	if (pc.hasStatusEffect("SaenBlind")) chance = 6;
-
-	if (rand(chance) == 0)
-	{
-		output(" The shot goes wide!");
-	}
-	else
-	{
-		output(" The shot connects!");
-		applyDamage(new TypeCollection({ kinetic: 10 }), pc, foes[0], "minimal");
-	}
-}
-
-public function sx1SaenLowBlow():void
-{
-	// Low Blow
-	if (foes[0].plural) output("One of " + foes[0].a);
-	else output(foes[0].capitalA);
-	output(foes[0].short + " gets a little too close to Saendra, and she responds by giving " + foes[0].mf("him", "her") + " a swift kick in the groin!");
-	output(" " + foes[0].mf("He", "She") + " takes doubles over in pain!");
-	applyDamage(new TypeCollection({ kinetic: 10 }), pc, foes[0], "minimal");
-
-}
-
-public function sx1SaenShieldHack():void
-{
-	var damage:DamageResult = applyDamage(new TypeCollection({ electric: 15 }, DamageFlag.ONLY_SHIELD), pc, foes[0], "suppress");
-	// Valeria Shield Hack
-	output("Saendra taps on her wrist, yanking Valeria out of her digital hidey-hole and aiming the fluttery holo-avatar at");
-	if (foes[0].plural == true) output(" one of ");
-	output(foes[0].a + foes[0].short + ". A concussive wave blasts from her target's shield belt as it's overloaded,");
-	if (foes[0].plural == true) output(" a chain of energy shooting forth and connecting to his compatriots");
-	if (foes[0].shields() <= 0) output(" completely");
-	else output(" nearly");
-	output(" burning out!");
-	outputDamage(damage);
-
-	pc.createStatusEffect("SaenSHackCD", 5, 0, 0, 0, false);
-}
-
-public function sx1ShieldBooster():void
-{
-	// Shield Booster
-	output("Saen waves her mechanical arm at you and the metallic probe shoots out, jacking into your shield generator. You breath a sigh of relief as your shields are restored!");
-
-	pc.shields(pc.shieldsMax() * 0.25);
-	pc.createStatusEffect("SaenSBoostCD", 5, 0, 0, 0, false);
-}
-
-public function sx1DisarmingShot():void
-{
-	//Disarming Shot
-	output("Saendra takes careful aim with her Hammer pistol, aiming for ");
-	if (foes[0].plural == true) output(" one of ");
-	output(foes[0].a + foes[0].short);
-	output("’s weapon. She squeezes off a shot");
-
-	if (rand(3) == 0)
-	{
-		output(" and the target's weapon goes flying to the ground in a shower of sparks! Damn, she's a deadshot!");
-		if (foes[0].plural == true) foes[0].createStatusEffect("PartialDisarm", 2, 0, 0, 0, false);
-		else foes[0].createStatusEffect("Disarmed",4,0,0,0,false,"Blocked","Cannot use normal melee or ranged attacks!",true,0);
-
-		applyDamage(new TypeCollection({kinetic: 7}), pc, foes[0], "minimal");
-	}
-	else
-	{
-		output(", but just barely misses.");
-	}
-
-	pc.createStatusEffect("SaenDisarmShotCD", 4, 0, 0, 0, false);
+	
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters([pc, saendra]);
+	CombatManager.setHostileCharacters([new SX1GroupPirates(), new SX1GroupPirates(), new SX1GroupPirates(), new SX1GroupPirates()]);
+	CombatManager.victoryScene(sx1PirateGroupPCVictory);
+	CombatManager.lossScene(sx1PirateGroupPCLoss);
+	CombatManager.displayLocation("VOID PIRATES");
+	CombatManager.beginCombat();
 }
 
 public function sx1PirateGroupPCLoss():void
@@ -493,7 +284,7 @@ public function sx1PirateGroupPCVictory():void
 	flags["SAENDRA_XPACK1_TIMER"] = GetGameTimestamp();
 
 	// [Next] //Put PC back in elevator. Saendra returns to the bar as usual.
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 public function sx1TalkFriend():void
@@ -1023,139 +814,16 @@ public function sx1DoorBreach():void
 
 public function sx1InitShotguardFight(wasFlashed:Boolean = false):void
 {
-	startCombat("SX1SHOTGUARD");
+	var tEnemy:Creature = new SX1Shotguard();
+	tEnemy.createStatusEffect("Blind", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0);
 	
-	if (wasFlashed)
-	{
-		foes[0].createStatusEffect("Blind",3,0,0,0,false,"Blind","Accuracy is reduced, and ranged attacks are far more likely to miss.",true,0);
-	}
-}
-
-public function sx1ShotguardAI():void
-{
-	// inject saendras AI
-	if (sx1SaendraAI()) output("\n\n");
-
-	var blastAvail:Boolean = foes[0].energy() >= 20 && !foes[0].hasStatusEffect("Disarmed");
-	var netAvail:Boolean = UpdateStatusEffectCooldown(foes[0], "StunNetCD") && foes[0].energy() >= 10;
-	var zapAvail:Boolean = !pc.hasStatusEffect("Stunned") && foes[0].energy() >= 10;
-
-	var attacks:Array = [];
-	if (!foes[0].hasStatusEffect("Disarmed")) attacks.push({ v: sx1RangedAttack, w: 30 });
-	attacks.push({ v: sx1MeleeAttack, w: 10 });
-	if (!foes[0].hasStatusEffect("Disarmed")) attacks.push({ v: sx1ShotguardShotblast, w: 40 });
-	if (blastAvail) attacks.push({ v: sx1ShotguardSolidSlug, w: 25 });
-	if (netAvail) attacks.push({ v: sx1ShotguardRopeShot, w: 10 });
-	if (zapAvail) attacks.push({ v: sx1ShotguardStunBaton, w: 20 });
-
-	weightedRand(attacks)();
-
-	processCombat();
-}
-
-public function sx1RangedAttack():void
-{
-	rangedAttack(foes[0], pc);
-}
-
-public function sx1MeleeAttack():void
-{
-	attack(foes[0], pc);
-}
-
-public function sx1ShotguardShotblast():void
-{
-	// Shotgun Blast
-	// Deals light to moderate damage; always hits.
-
-	var numHits:int = 1;
-	for (var i:int = 0; i < 5; i++)
-	{
-		if (!rangedCombatMiss(foes[0], pc, -1)) numHits++;
-	}
-
-	var damage:TypeCollection = foes[0].rangedDamage();
-	damage.multiply(0.33 * numHits); // potentially double the damage of a base ranged shot
-
-	output("The pirate gunner fires off his shotgun, blasting you with a cone of hot lead!");
-	applyDamage(damage, foes[0], pc, "minimal");
-}
-
-public function sx1ShotguardSolidSlug():void
-{
-	// Solid Slug
-	// Deals heavy damage, but has a chance to miss
-
-	output("The pirate shoves a shell into the bottom of his shotgun and pumps it in. Grinning maliciously, he shoulders his gun and fires it at you, blasting you with a solid slug of lead as thick around as your thumb.");
-	
-	foes[0].energy(-20);
-
-	if (rangedCombatMiss(foes[0], pc))
-	{
-		output(" The shell misses, blasting a hole in the bulkhead!");
-	}
-	else
-	{
-		output(" The shell hits!");
-		var damage:TypeCollection = foes[0].rangedDamage();
-		damage.multiply(1.5);
-		applyDamage(damage, foes[0], pc, "minimal");
-	}
-}
-
-public function sx1ShotguardRopeShot():void
-{
-	// Rope Shot
-	// Shot that deals light Piercing damage and entangles the target. 
-
-	var tarChoice:Boolean = rand(2) == 0;
-
-	output("The pirate switches his finger to a second trigger and pulls it, shooting a rope and hook from a second barrel under his gun! The rope shot shoots towards");
-	if (tarChoice == true) output(" you,");
-	else output(" Saendra,");
-
-	if (rangedCombatMiss(foes[0], pc, -1, 2))
-	{
-		output(" but buries itself harmlessly in the wall.");
-	}
-	else
-	{
-		output(" swinging around and around until it binds"); 
-		if (tarChoice == false)
-		{
-			output(" her arms against her side. Saendra is");
-			pc.createStatusEffect("SaenStunned", 3);
-		}
-		else
-		{
-			output(" your arms to your side. You are");
-			pc.createStatusEffect("Grappled", 0, 30, 0, 0, false, "Constrict", "You're stuck in the pirates net!", true, 0);
-			// 9999 -- might need new grappletexts for this to make sense
-		}
-		output(" restrained!");
-	}
-
-	foes[0].createStatusEffect("StunNetCD", 5);
-	foes[0].energy(-10);
-}
-
-public function sx1ShotguardStunBaton():void
-{
-	// Stun Baton
-	//Light Electrical damage, high chance to stun
-
-	output("The pirate yanks a baton off his belt and lunges at you, fingering a button as he does so that causes the haft of it to erupt on a burst of electricity. Zap!");
-	if (!combatMiss(foes[0], pc))
-	{
-		output(" You take a shock right to the chest, zapping you!");
-		output(" <b>Worse, you're stunned!</b>");
-	}
-	else
-	{
-		output(" You just manage to duck under the swing, evading the pirate's attack!");
-	}
-
-	foes[0].energy(-10);
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters([pc, saendra]);
+	CombatManager.setHostileCharacters(tEnemy);
+	CombatManager.victoryScene(sx1ShotguardPCVictory);
+	CombatManager.lossScene(sx1ShotguardPCLoss);
+	CombatManager.displayLocation("ZIL MALE");
+	CombatManager.beginCombat();
 }
 
 public function sx1ShotguardPCVictory():void
@@ -1231,149 +899,13 @@ public function sx1ShotguardPCLoss():void
 
 public function sx1InitTechguardFight():void
 {
-	startCombat("SX1TECHGUARD");
-}
-
-public function sx1TechguardAI():void
-{
-	// inject Saendra AI
-	if (sx1SaendraAI()) output("\n\n");
-	
-	UpdateStatusEffectCooldown(foes[0], "StunCD");
-
-	if (foes[0].shields() <= 0 && !foes[0].hasStatusEffect("ShieldBoostCD"))
-	{
-		sx1TechguardShieldRecharge();
-	}
-	else
-	{
-		var attacks:Array = [];
-
-		attacks.push( { v: sx1TechguardMachinePistolBurst, w: 30 } );
-		if (!foes[0].hasStatusEffect("StunCD")) attacks.push( { v: sx1TechguardShockDart, w: 10 } );
-		attacks.push( { v: sx1TechguardTease, w: (foes[0].lust() / 2) } );
-
-		weightedRand(attacks)();
-	}
-	
-	if (foes[0].shields() > 0)
-	{
-		output("\n\n");
-		sx1TechguardDroneAttack();
-	}
-	
-	processCombat();
-}
-
-public function sx1TechguardMachinePistolBurst():void
-{
-	// Machine Pistol Burst
-	// Light damage, several attacks
-
-	output("The pirate tech sprays bullets at you, firing wildly from the hip!");
-
-	var numHits:int = 0;
-	for (var i:int = 0; i < 4; i++)
-	{
-		if (!rangedCombatMiss(foes[0], pc, -1, 0 - i))
-		{
-			numHits++;
-		}
-	}
-
-	if (numHits == 0) output(" All of her shots go wide!");
-	else
-	{
-		output(" " + num2Text(numHits) + " bullet");
-		if (numHits > 1) output("s");
-		output(" hit, drilling you!");
-
-		var damage:TypeCollection = foes[0].rangedDamage();
-		damage.multiply(0.4 * numHits);
-
-		applyDamage(damage, foes[0], pc, "minimal");
-	}
-}
-
-public function sx1TechguardShockDart():void
-{
-	// Shock Dart
-	// Light electrical damage, high Stun chance
-
-	output("The pirate tech fires a dart from a device on her wrist,");
-
-	if (rangedCombatMiss(foes[0], pc))
-	{
-		output(" though you're able to duck out of the way.");
-	}
-	else
-	{
-		output(" hitting you in the shoulder. The darts instantly release an agonizing shock of electricity, making you yelp in agony.");
-
-		applyDamage(new TypeCollection({ electric: 17 }), foes[0], pc, "minimal");
-
-		if (pc.physique() + rand(25) + 1 < 35)
-		{
-			output(" The shock of it leaves you reeling -- <b>you're stunned!</b>");
-			pc.createStatusEffect("Stunned", 3, 0, 0, 0, false, "Stun", "Cannot take action!", true, 0);
-		}
-	}
-	
-	foes[0].createStatusEffect("StunCD", 5);
-}
-
-public function sx1TechguardTease():void
-{
-	// Tease
-	//Basic lust attack
-
-	output("<i>“Hey, come on,”</i> the tech says, pressing her back to the wall and zipping down the front of her flight suit, revealing the perky mounds of her tits. <i>“Why don’t you put those weapons down, huh? We can work something out...”</i> she groans, running a hand up her chest.");
-
-	if (pc.willpower() + rand(30) + 1 < 30)
-	{
-		output("\n\nAn subtle warmth builds in your crotch as you stare at the ausar womans pert breasts, transfixed by their succulent, pliant flesh forming so perfectly around the tips of her fingers....");
-		applyDamage(new TypeCollection({ tease: 10 * (pc.libido() / pc.libidoMax()) }), foes[0], pc, "minimal");
-	}
-	else
-	{
-		output("\n\nYou respond with a polite, and obviously fake, cough. The ausar womans sensual show ends as abruptly as it started. <i>“Hey, don’t stop now!”</i> You shoot a glare at Saen. <i>“What? I'm not going to turn down a free show.”</i> Touché.");
-		applyDamage(new TypeCollection({ tease: 2 }), foes[0], pc, "minimal");
-	}
-}
-
-public function sx1TechguardDroneAttack():void
-{
-	// Drone Attack
-	// Light laser shot, so long as her shields are still up.
-	var bHit:Boolean = false;
-
-	output("The techie’s drone fires at you, scorching");
-	if (rangedCombatMiss(foes[0], pc, -1, 2))
-	{
-		bHit = true;
-		output(" the wall");
-	}
-	else
-	{
-		output(" you");
-	}
-
-	if (bHit)
-	{
-		output(" with it’s laser.");
-
-		applyDamage(new TypeCollection({ burning: 3 }), foes[0], pc, "minimal");
-	}
-}
-
-public function sx1TechguardShieldRecharge():void
-{
-	// Shield Recharge
-	//1/encounter. Recharge 50% shields.
-	output("The pirate babe grabs the generator on her belt and pushes it into maximum overdrive, giving herself a few more seconds of shielding from your assault.");
-
-	foes[0].shields(foes[0].shieldsMax() * 0.5);
-	foes[0].createStatusEffect("ShieldBoostCD");
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters([pc, saendra]);
+	CombatManager.setHostileCharacters(new SX1Techguard());
+	CombatManager.victoryScene(sx1TechguardPCVictory);
+	CombatManager.lossScene(sx1TechguardPCLoss);
+	CombatManager.displayLocation("VOID TECHIE");
+	CombatManager.beginCombat();
 }
 
 public function sx1TechguardPCVictory():void
@@ -1443,7 +975,7 @@ public function sx1TechguardPCLossII():void
 	// {Return to Anon's. Saendra is missing.}
 	flags["SAENDRA_DISABLED"] = 1;
 
-	genericLoss();
+	CombatManager.genericLoss();
 }
 
 public function sx1RescueTheDude(fromCombat:Boolean = false):void
@@ -1481,7 +1013,7 @@ public function sx1RescueTheDude(fromCombat:Boolean = false):void
 	//Key Item Added: Pirate Datapad
 	pc.createKeyItem("Pirate Datapad");
 
-	if (fromCombat) genericVictory();
+	if (fromCombat) CombatManager.genericVictory();
 	else
 	{
 		clearMenu();

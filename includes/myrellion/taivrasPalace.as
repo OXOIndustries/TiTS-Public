@@ -1,3 +1,7 @@
+import classes.Characters.NyreanPraetorians;
+import classes.Characters.Princess;
+import classes.Characters.Queensguard;
+import classes.Characters.Taivra;
 import classes.Creature;
 import classes.Items.Miscellaneous.GemSatchel;
 //flags["CRYSTAL_GOO_DEFEAT"] - 1 = HP, 2 = LUST, 3 = you fucked her after winning (or got egged)
@@ -6,7 +10,7 @@ public function showTaivra(nude:Boolean = false):void
 {
 	if (nude) showBust("TAIVRA_NUDE");
 	else showBust("TAIVRA");
-	if(!inCombat() || pc.HP() <= 0 || pc.lust() >= pc.lustMax() || foes[0].HP() <= 0 || foes[0].lust() >= foes[0].lustMax()) showName("QUEEN\nTAIVRA");
+	if(!inCombat() || pc.HP() <= 0 || pc.lust() >= pc.lustMax() || enemy.HP() <= 0 || enemy.lust() >= enemy.lustMax()) showName("QUEEN\nTAIVRA");
 	else 
 	{
 		showName("FIGHT:\nQUEEN TAIVRA");
@@ -115,12 +119,25 @@ public function taivrasPalaceSquareBonus():Boolean
 				output("\n\nThe queen’s bodyguard seems to have recovered and are prepared to fight you off again!");
 				//PC can’t advance past until they [Fight], which leads straight into another battle.
 				clearMenu();
-				addButton(0,"Fight",startCombat,"Nyrean Praetorians");
+				configurePraetorianFight();
+				addButton(0,"Fight",CombatManager.beginCombat);
 				return true;
 			}
 		}
 	}
 	return false;
+}
+
+public function configurePraetorianFight():void
+{
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(new NyreanPraetorians());
+	CombatManager.victoryScene(spankDaShitOuttaPraetorians);
+	CombatManager.lossScene(loseToPraetorianNyreaGangbangu);
+	CombatManager.displayLocation("NYREA GUARDS");
+	
+	flags["FOUGHT_PRAETORIANS"] = 1;
 }
 
 //[Approach]
@@ -156,7 +173,8 @@ public function attackDemAntBiyotches():void
 	processTime(1);
 	//[Fight!]
 	clearMenu();
-	addButton(0,"Next",startCombat,"Nyrean Praetorians");
+	configurePraetorianFight();
+	addButton(0,"Next",CombatManager.beginCombat);
 }
 
 //[Persuade]
@@ -263,116 +281,6 @@ public function offerTaivraGuardsPlat190():void
 	flags["PLAT190 USED AS NYREA BRIBE"] = 1;
 }
 
-//Spear Flurry
-//Several light Penetrating attacks.
-
-public function spearFlurryNyreaShit():void
-{
-	output("Several of the huntresses leap forward from one side, jabbing their spears at your chest.\n");
-	attack(foes[0],pc,[1,2]);
-	output("\n");
-	attack(foes[0],pc,[1,2]);
-	output("\n");
-	attack(foes[0],pc,[1,2]);
-	output("\n");
-	attack(foes[0],pc,[1,2]);
-	output("\n");
-	attack(foes[0],pc,[1,2]);
-	processCombat();
-	//{You manage to dodge, block, and parry every attack they send your way! // You block and dodge most of the attacks, but a few still manage to get through, hammering you down. // You try to defend yourself, but most if not all of the strikes get through, battering you brutally.}
-}
-
-//Backstab
-//One heavy Penetrating attack that inflicts a bleeding/some crippling condition
-public function nyreaGroupBackstabby():void
-{
-	output("Several of the huntresses attack you for the front, jabbing and stabbing and pushing you back. As they do, though, you ");
-	if(combatMiss(foes[0],pc))
-	{
-		output("just barely notice another nyrea attempting to stab you in the back. You quickly spin around and shove her back, preventing the attack.");
-	}
-	else
-	{
-		output("fail to notice one of their sisters behind you grabbing a dagger and leaping to attack you, sinking the dagger into ");
-		if(pc.shields() <= 0) output("you");
-		else output("your shields");
-		output(".");
-		//Hacky way to force backstab proc!
-		pc.createStatusEffect("Blind");
-		applyDamage(foes[0].meleeDamage(), foes[0], pc, "melee");
-		pc.removeStatusEffect("Blind");
-	}
-	foes[0].energy(-10);
-	processCombat();
-}
-
-//Posion Blade
-//Light Penetrating attack, moderate Lust (Chemical) damage. Shields must be down.
-public function poisonBlade():void
-{
-	output("One of the nyrea takes a pouch of some pulsating pink fungus from her belt and smears it all over the tip of her long spear. Once she’s done, the huntress leaps forward and lunges at you with her spear. ");
-	if(combatMiss(foes[0],pc))
-	{
-		output("You manage to grab her spear before it can hit you, and you quickly snap the head off, tossing the poison aside.");
-	}
-	else
-	{
-		output("You try and dodge, but her sisters give you no room to maneuver; you end up getting sliced by it! Hissing with pain, you recoil and grab your bloodied [pc.skinNoun]... and quickly begin to feel the poison boiling through you, making your body burn with unbidden arousal.");
-		applyDamage(new TypeCollection( { drug: 15, kinetic: foes[0].meleeDamage() } ), foes[0], pc, "minimal");
-		//4 rounds of lust damage!
-		if(!pc.hasStatusEffect("Aphro")) pc.createStatusEffect("Aphro",5,4,0,0,false,"Icon_DrugVial","An aphrodisiac is in your blood, exciting you over time! It should fade quickly... unless you get redosed.",true,0);
-		else 
-		{
-			output(" <b>The chemical in your blood is getting stronger!</b>");
-			pc.addStatusValue("Aphro",1,3);
-			pc.setStatusValue("Aphro",2,4);
-		}
-	}
-	foes[0].energy(-5);
-	processCombat();
-}
-
-//Spear Butt
-//Bonk with spear for moderate Bludgeon damage. Chance to stun.
-public function nyreanSpearButt():void
-{
-	output("One of the nyrea spins her spear around before swinging the blunt end at you like a club.");
-	if(combatMiss(foes[0],pc)) output("\nYou dodge out of the way, narrowly avoiding a crushing blow.");
-	else 
-	{
-		output("\nYou don’t manage to dodge in time, and get a thunderous wallop on the head for your trouble! You stagger back, clutching your aching head.");
-		if(foes[0].physique()/2 + rand(20) + 1 > pc.physique()/2 + 10 && !pc.hasStatusEffect("Stunned"))
-		{
-			output(" <b>You are stunned!</b>");
-			pc.createStatusEffect("Stunned",2,0,0,0,false,"Stun","You cannot act until you recover!",true,0);
-		}
-		applyDamage(foes[0].meleeDamage(), foes[0], pc, "melee");
-	}
-	foes[0].energy(-5);
-	processCombat();
-}
-
-//Spear Wall
-//Dramatically increases the Praetorians’ Dodge vs. Melee for a few turns
-public function spearWallGoooo():void
-{
-	output("The huntresses form a tighter ring, shoulder to shoulder, and brace their spears against you. It’s almost impossible to move now, and <b>hitting the huntresses is going to be damn hard.</b>");
-	//+50% dodge vs ERRYTHING.
-	foes[0].createStatusEffect("Evasion Boost",50,0,0,0,false,"Icon_DefUp","The nyrea have created a wall of spears, granting them a 50% evade chance!",true,4);
-	foes[0].energy(-20);
-	processCombat();
-}
-
-public function praetorianAI():void
-{
-	showPraetorians();
-	if(!foes[0].hasStatusEffect("Evasion Boost") && foes[0].energy() >= 20 && (rand(4) == 0 || foes[0].HP() < 100)) spearWallGoooo();
-	else if(foes[0].energy() >= 5 && rand(6) == 0) nyreanSpearButt();
-	else if(foes[0].energy() >= 5 && rand(4) == 0) poisonBlade();
-	else if(foes[0].energy() >= 10 && rand(3) == 0) nyreaGroupBackstabby();
-	else spearFlurryNyreaShit();
-}
-
 //PC Loses to the Praetorian
 //Not a bad end! Huntresses gang-bang you and dump you in town. Have to attempt Praetorian fight again. Lose some credits, of course.
 public function loseToPraetorianNyreaGangbangu():void
@@ -398,7 +306,7 @@ public function loseToPraetorianNyreaGangbangu():void
 	output("\n\n<i>“For the queen!”</i> the huntress in front of you whispers, barely audible, before grabbing the back of your head and forcing her cock down your throat. Your eyes bulge, and your body stiffens as your mouth is battered by her feline spines, and the turgid ball of her animalistic knot presses against your lips. Your throat is straining hard around her dick, bulging brutally and throbbing hard enough to make you moan like a bitch in heat.");
 
 	output("\n\nBehind you, the other guard follows her example, pressing her hips forward against your exposed backside. You squeal, desperately trying to resist her anal assault, but ultimately succumbing to her strength: you feel your [pc.asshole] pop open with one final, brutal thrust, and then the nyrea is sliding into you, raking her nubby spines across your anal walls. Your gut bulges in response, straining to take the massive insertion. Around you, the other nyrea cheer and laugh, urging their sisters on with lurid shouts. All you can do is try and bear it, to endure the mix of pleasure and pain as you’re savagely violated.");
-	pc.buttChange(foes[0].cockVolume(0));
+	pc.buttChange(enemy.cockVolume(0));
 
 	output("\n\nThe other huntresses gathered around you close the circle, jacking themselves off and drooling their vibrantly-colored pre all over you. Hands start to grab and grope at you, slapping your [pc.butt] and pinching your [pc.nipples]. A couple of them grab your [pc.hands], forcing you to stroke their ovipositor-cocks while their sisters pound you from front and back. Your eyes roll back, succumbing to pleasure; there’s nothing you can do but try to endure.");
 
@@ -420,14 +328,12 @@ public function loseToPraetorianNyreaGangbangu():void
 	output("\n\nThe other huntresses murmur their agreement, and you feel hands grabbing your [pc.legs] and starting to drag you away.");
 
 	//3-4 loads in mouth and similar amount in butt?
-	pc.loadInAss(foes[0]);
-	pc.loadInAss(foes[0]);
-	pc.loadInAss(foes[0]);
-	pc.loadInAss(foes[0]);
-	pc.loadInMouth(foes[0]);
-	pc.loadInMouth(foes[0]);
-	pc.loadInMouth(foes[0]);
-	pc.loadInMouth(foes[0]);
+	
+	for (var i:int = 0; i < 4; i++)
+	{
+		pc.loadInAss(enemy);
+		pc.loadInMouth(enemy);
+	}
 	processTime(35);
 	pc.orgasm();
 	pc.orgasm();
@@ -454,7 +360,7 @@ public function loseToPraetorianNyreaPt2():void
 
 	output("\n\nYou groan and stagger back to your [pc.footOrFeet], thankful the nyrea left you your equipment. Gonna have to try again if you want to face your cousin and find the probe...\n\n");
 	//[Next] //To map
-	genericLoss();
+	CombatManager.genericLoss();
 }
 
 //PC Victory vs. Praetorian
@@ -468,7 +374,7 @@ public function spankDaShitOuttaPraetorians():void
 	flags["PRAETORIAN_RESPAWN"] = GetGameTimestamp();
 	variableRoomUpdateCheck();
 	//Back to map. Praetorian fight can’t occur again for several hours.
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 
@@ -771,7 +677,18 @@ public function stepBackFromGloryHoles():void
 
 	processTime(5);
 	clearMenu();
-	addButton(0,"Next",startCombat,"Goocubator");
+	configureGoocubatorFight();
+	addButton(0,"Next",CombatManager.beginCombat);
+}
+
+public function configureGoocubatorFight():void
+{
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(goocubator);
+	CombatManager.victoryScene(pcBeatsGoo);
+	CombatManager.lossScene(loseToRoyalIncuGoo);
+	CombatManager.displayLocation("GOO");
 }
 
 //[Use Gloryhole]
@@ -852,173 +769,8 @@ public function useDatGloryhole():void
 	processTime(20);
 	pc.orgasm();
 	clearMenu();
-	addButton(0,"Next",startCombat,"Goocubator");
-}
-
-//Goo Incubator Fite
-//Crystal Goo is a primarily lust-based fight, though if the PC Gloryholed her, she’ll start with 0 Lust (like the PC will!). Like Celise, she’s highly resistant to physical damage (though not immune) but very vulnerable to Lust.
-//Rather than a HEALTH bar, she has an ARMOR bar: the battle ends if the PC can break her crystal shield. Crystal goo is, of course, fairly MIRRORED. She’s probably the weakest fight in the dungeon, maybe just Level 7.
-
-//Fight Text
-//You’re fighting a Crystal Goo Incubator!
-
-//The crystal-armored goo-girl in front of you is a mass of green slime in the vague form of a nyrean woman, with oversized hips and a huge pair of glistening breasts that bounce around with every movement. Her body is covered with small flecks and plates of natural emerald crystal, but unlike most of her race, the vast majority of her crystal is concentrated around her hugely swollen belly, forming a perfect, smooth dome. Underneath the protective shell of crystal are what must be hundreds of white, fist-sized eggs, floating listlessly in their gooey womb. {A misty cloud of [pc.cumColor] billows around the eggs, clinging to several of the outliers. If they weren’t fertilized already, then you’ve certainly (got a few new kids on the way // fixed that for most of them // inseminated every egg in that goo’s belly with your god-like load of cum)}. The gooey incubator looks at you with wild eyes, her arms clutching her eggy belly protectively. Looks like this artificial momma will do anything to protect her clutch!
-
-//Goo Abilities
-public function gooCubatorAI():void
-{
-	if(!pc.hasStatusEffect("Grappled"))
-	{
-		if(foes[0].HP() < 150 && !foes[0].hasStatusEffect("Goo Shield")) crystalShieldGoo();
-		else if(!pc.hasStatusEffect("Blind") && rand(6) == 0) gooSpitShit();
-		else if(rand(7) == 0) gooeyGrappleStuff();
-		else if(rand(4) == 0) bellyTeaseGOOO();
-		else if(rand(3) == 0) gooeyTentagrope();
-		else gooTendrilSlap();
-	}
-	else keepOnGropinOn();
-}
-
-//Goo Tendril Slap
-//Moderate bludgeoning attack
-public function gooTendrilSlap():void
-{
-	output("The goo-girl gives a shrill warcry and lunges at you, a thick tendril of goo forming from her shoulder and lashing at you.");
-	if(combatMiss(foes[0],pc)) output("\nYou manage to block the attack, deflecting the swing away.");
-	else
-	{
-		output("\nThe egg-laden woman catches you off-guard and smashes her gooey tentacle into your chest! The force of the blow leaves you reeling, and covered in wet slime.");
-		applyDamage(foes[0].meleeDamage(), foes[0], pc, "melee");
-	}
-	processCombat();
-}
-
-//Goo Slpit
-//Blinding attack. Only works if Shields are down.
-public function gooSpitShit():void
-{
-	output("The gooey incubator swings one of her arms at you, as fast as her heavily laden body will let her. Rather than strike at you directly, though, a clump of goop flings off of her body and hurtles towards you!");
-	if(pc.shields() > 0) output("\nThe goo splatters on your shields, drooling down to the ground like a bug caught on a windshield.");
-	else if(rangedCombatMiss(foes[0],pc)) output("\nThe goo splatters harmlessly on your chest. What was the point of that!?");
-	else
-	{
-		output("\nThe gooey blob beans you right in the face! You yelp in surprise as the warm slime splatters across your face, bathing everything in a weird green light - <b>you’re blinded by the goo</b>!");
-		pc.createStatusEffect("Blind",rand(3)+1,0,0,0,false,"Blind","You're blinded and cannot see! Accuracy is reduced, and ranged attacks are far more likely to miss.",true,0);
-	}
-	processCombat();
-}
-
-//Belly Tease
-//Lust attack. Way higher effect vs. PCs with cocks + high Virility
-public function bellyTeaseGOOO():void
-{
-	output("Your opponent bounces around you, moving with inhuman twists and turns that would break a creature with bones. But for her, it seems like she’s flowing around her crystal-clad belly, deforming and reforming every few moments in a myriad of ways that emphasize her hugely pregnant stomach. A pair of gooey arms wrap around it, fingers tracing over the perfectly smooth gemstone as her pseudo-hips thrust out beneath it.");
-	//If PC saves...
-	if(pc.willpower()/2 + rand(20) + 1 >= 18)
-	{
-		output("\nIs that supposed to turn you on?");
-	}
-	else if(!pc.hasCock())
-	{
-		output("\nYou find the alien display disquietingly erotic, an invitation to join with the gooey incubator and share in the joys of egg-swelling motherhood...");
-		applyDamage(new TypeCollection( { tease: 13 } ), foes[0], pc, "minimal");
-	}
-	//if cock + success:
-	else {
-		output("\nThe alien dance is alluring in the best of ways, inviting you to cover over and slide your cock ");
-		if(flags["CRYSTAL_GOO_GLORYHOLED"] == 1) output("back ");
-		output("into her gooey nethers and fertilize her massive store of nyrean eggs. Hundreds of them are floating inside her, begging for a cock to seed them. It’s hard to resist the urge to give her what she wants....");
-		applyDamage(new TypeCollection( { tease: 16 } ), foes[0], pc, "minimal");
-	}
-	processCombat();
-}
-
-//Gooey Tentacles
-//Several light lust attacks. Gropegropegrope.
-public function gooeyTentagrope():void
-{
-	output("The goo-girl reaches out with one of her arms, which breaks apart as it moves, becoming a dozen small, slender tendrils of viridian slime. You stumble back, but the goo’s reach seems unlimited, and she’s quickly rubbing her tentacles all over you, groping at your [pc.crotch], and smearing your [pc.chest] with slimy caresses.");
-	for(var x:int = 0; x < 4; x++)
-	{
-		if(pc.willpower()/2 + rand(20) + 1 >= 21) output("\nSomehow, you manage to grit your teeth and ignore her inhuman advances!");
-		else 
-		{
-			output("\nThe alien attention leaves your cheeks burning, and your whole body flushing with arousal. The things you could do to a gooey beauty like this...");
-			applyDamage(new TypeCollection( { tease: 4 } ), foes[0], pc, "minimal");	
-		}
-	}
-	processCombat();
-}
-
-//Partial Envelop
-//Goo wraps around PC, grappling them. If it lasts for 3 turns, the goo cums and loses a lot of lust.
-public function gooeyGrappleStuff():void
-{
-	output("<i>“Don’t fight me!”</i> the goo purrs, sliding towards you on her thick, legless lower body. Her belly bounces as she moves, hundreds of eggs gently rattling against the perfect crystal dome her arms are shielding. <i>“The queen will be SO MAD if you hurt her eggs... so why not, like, just stop already? I’ll let you play with me if you do...”</i> she offers, a seductive smile spreading on her emerald lips.");
-	output("\n\nBefore you can answer, the goo lunges forward, sliding past your defenses and splattering her lower body around your [pc.legs], molding her goop around you! Her arms slip around you, trying to completely pull you into her! ");
-	if(pc.reflexes()/2 + rand(20) + 1 >= foes[0].physique()/2 + 13)
-	{
-		output("\n\nYou push her back, forcing the goo-girl to give you some much-needed distance. She pouts, crossing her arms. <i>“You’re gonna regret this!”</i>");
-	}
-	else
-	{
-		output("\n\nYou try to push her back, but can’t find proper purchase! Before long, almost your entire body has been smothered in emerald slime - all that’s left is the crystal ball of the girl’s distended gut pressing against your [pc.belly], and her face just inches from yours. Her slime squirms and presses all around you, rubbing at your groin and ass and chest in all the right ways, with no sign of letting up! <b>You’re grappled!</b>");
-		applyDamage(new TypeCollection( { tease: 5 } ), foes[0], pc, "minimal");
-		foes[0].lust(3);
-		pc.createStatusEffect("Grappled",0,35,0,0,false,"Constrict","You're pinned in a grapple.",true,0);
-	}
-	processCombat();
-}
-
-//Continue Enveloping if PC doesn’t escape:
-public function keepOnGropinOn():void
-{
-	if(pc.statusEffectv4("Grappled") >= 3)
-	{
-		didntEscapeFromGooInThreeTurns();
-		return;
-	}
-	output("The goo girl is firmly affixed to you, rubbing her crystal belly against you like some sort of alien dry hump while the rest of her gooey body gropes at you, ");
-	if(pc.biggestTitSize() >= 1) output("squeezing your [pc.chest] and ");
-	output("slipping tendrils of goo around your crotch.");
-
-	output("\n\n<i>“This is soooo much better!”</i> she giggles, her voice fading into an unintelligible moan. She’s getting off on this - and she’s doing everything she can to make sure you do, too.");
-
-	if(pc.willpower()/2 + rand(20) + 1 >= 21) output("\nYou struggle as hard as you can, refusing to give in to your carnal desires!");
-	else
-	{
-		applyDamage(new TypeCollection( { tease: 5 } ), foes[0], pc, "minimal");
-		output("\nAnd it’s working! Pleasure rushes through you, making you pant and gasp as the gooey vixen massages your entire body.");
-	}
-	foes[0].lust(3);
-	//Stick rounds in #4
-	pc.addStatusValue("Grappled",4,1);
-	processCombat();
-}
-
-//PC Doesn’t Escape for 3 turns
-public function didntEscapeFromGooInThreeTurns():void
-{
-	output("Your attempts at escape seem completely useless, and your struggles only prove to excite the amorous goo-girl further. The more your limbs squirm in her sticky embrace, the louder her lusty moans become, and the more you see her bloated belly sway ponderously against your gut, rolling her huge clutch of eggs around. The feeling of all those eggs moving inside her must be maddeningly pleasurable, as her slimy exterior spurts moisture all over you [pc.chest].");
-	output("\n\n<i>“Gonna... gonna...”</i> she mewls, rubbing faster against you. <i>“Gonna...!”</i>");
-	output("\n\nShe can’t quite find the words to give voice to her ecstasy, and ends up settling on a high-pitched scream that reverberates off the stone walls. Her goo releases you, letting you tumble to the ground as she climaxes herself into a gooey, incoherent mess. Your eyes are drawn to the crystal dome around her belly, shielding her hundreds of pearly eggs from the rest of her body’s near-collapse into a formless pile of slime. The gemstone orb rolls around like a punted beachball on a bed of lube.");
-	output("\n\nShe only stays that way for a moment, though, before she reforms herself into a familiar form, hefting up her crystal belly and protectively shielding it back in her gut. <i>“Aww, you didn’t cum?”</i> she whines, looking horribly disappointed. <i>“Guess I’ll have to, like, try harder!”</i>");
-	foes[0].orgasm();
-	applyDamage(new TypeCollection( { tease: 5 } ), foes[0], pc, "minimal");
-	pc.removeStatusEffect("Grappled");
-	processCombat();
-}
-
-//Crystal Shield
-//Buffs physical defense for a few turns. Only used when at low HP
-public function crystalShieldGoo():void
-{
-	output("<i>“Oooww, you’re hurting me!?”</i> the goo whines, more in surprise than pain, it seems. <i>“Don’t you dare hurt my eggs!”</i>");
-	output("\n\nThe look of bubbly determination that she’s been sporting twists into a grimace of concentration. A few moments later, the various small flecks of crystal floating around her body start to move through her, coalescing around one of her arms. They become a crystelline buckler, held together by a viscous layer of goo. <i>“Never gonna get through this!”</i> she declares with a shake of her hips.");
-	foes[0].createStatusEffect("Goo Shield",0,0,0,0,false,"Icon_DefUp","With her crystal shield, the goo will be much tougher to drop through violent means!",true,0);
-	foes[0].armor.defense += 20;
-	foes[0].armor.hasRandomProperties = true;
-	processCombat();
+	configureGoocubatorFight();
+	addButton(0,"Next", CombatManager.beginCombat);
 }
 
 //PC Defeated by Guu: Absorbed and Incubated
@@ -1064,7 +816,7 @@ public function loseToRoyalIncuGoo():void
 public function pcBeatsGoo():void
 {
 	author("Savin");
-	if(foes[0].HP() <= 0) 
+	if(enemy.HP() <= 0) 
 	{
 		flags["CRYSTAL_GOO_DEFEAT"] = 1;
 		output("<i>“Don’t hurt my eggs!”</i> the goo shrieks, curling into an almost literal ball around the crystal orb she’s formed around her belly. <i>“I-I won’t let you!”</i>");
@@ -1103,7 +855,7 @@ public function pcBeatsGoo():void
 		addDisabledButton(1,"Get Egged","Get Egged","You aren't aroused enough to even consider this.");
 	}
 	if(pc.armor is GooArmor || pc.hasItemByName("Goo Armor",1)) addButton(14,"Leave",armorGooVictoryShits);
-	else addButton(14,"Leave",genericVictory);
+	else addButton(14,"Leave",CombatManager.genericVictory);
 }
 
 //Fuck Her
@@ -1271,8 +1023,8 @@ public function getEggedByCrystalGoo():void
 		(pc as Creature).createStatusEffect("Goo Gloryholed", 0, 0, 0, 0, true, "", "", false, 0);
 	}
 	
-	if (bEmptyVagina) pc.loadInCunt(foes[0], holeIdx);
-	else pc.loadInAss(foes[0]);
+	if (bEmptyVagina) pc.loadInCunt(enemy, holeIdx);
+	else pc.loadInAss(enemy);
 	
 	processTime(16);
 	pc.orgasm();
@@ -1285,7 +1037,7 @@ public function gooVictoryPostGooCheck():void
 {
 	clearMenu();
 	if(pc.armor is GooArmor || pc.hasItemByName("Goo Armor",1)) addButton(0,"Next",armorGooVictoryShits);
-	else genericVictory();
+	else CombatManager.genericVictory();
 }
 
 //Post Goo-Battle: Nova Upgrade!
@@ -1331,7 +1083,7 @@ public function armorGooVictoryShits():void
 	}
 	processTime(6);
 	clearMenu();
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 /*
@@ -1408,7 +1160,20 @@ public function startFightingQueenButt(plat190:Boolean = false):void
 	processTime(1);
 	//[Fight!]
 	clearMenu();
-	addButton(0,"Next",startCombat,"Queensguard");
+	configureQueensguardFight();
+	addButton(0, "Next", CombatManager.beginCombat);
+}
+
+public function configureQueensguardFight():void
+{
+	pc.createStatusEffect("Cage Distance", 2, 0, 0, 0, false, "Icon_RadioSignal", "You're a good ways away from Dane and your cousin's cage. It'll take a lot of work to reposition yourself to break them out.", true, 0);
+	
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(new Queensguard());
+	CombatManager.victoryScene(spankedQueensguardsAss);
+	CombatManager.lossScene(loseToQueensTaivra);
+	CombatManager.displayLocation("QUEENSGUARD");
 }
 
 //Rivals
@@ -1475,7 +1240,8 @@ public function talkOfPeace(plat190:Boolean = false):void
 		processTime(1);
 		//[Fight!]
 		clearMenu();
-		addButton(0,"Fight",startCombat,"Queensguard");
+		configureQueensguardFight();
+		addButton(0,"Fight",CombatManager.beginCombat);
 		return;
 	}
 }
@@ -1721,222 +1487,8 @@ public function badDealWithTaivra():void
 	output("\n\n<i>“Tear that bitch up!”</i> your cousin shouts, rattling [rival.hisHer] cage.");
 	processTime(2);
 	clearMenu();
-	addButton(0,"Next",startCombat,"Queensguard");
-}
-
-//Queensguard Fight
-//AI & Stats & Stuff:
-//Level 8. Queensguard is epic tank fucker. Super high armor, damage resistance vs. penetrating, has a chance to parry any melee attack made against her. Vulnerable to crushing and ranged damage. Probably has more Health than Taivra, even. Relatively low dodge, though. Basically, she just takes a kickin’ and keeps on tickin’. PC can free Dane to automatically down her, though!
-/*
-output("\n\nMaybe instead of a <i>“Shield”</i> meter she has an <i>“Armor”</i> meter or something!");
-
-output("\n\nPC can move 3 times to get to Dane, then has to attack the lock. Damgeval as %chance of breaking him out each turn. Queensguard can try and push you back (unless you’re a taur - too big to push!).");
-
-output("\n\nCombat Text:");
-output("\n\nYou’re fighting Queensguard, the knightly nyrean warrior who stands between you and Queen Taivra - and the probe that makes up her throne. The warrior before you is clad from head to toe in heavy metal plates, like a medieval soldier’s, supplementing her natural chitin with forged steel. She carries a hefty kite-style shield, bearing the same crest as the tyrant she serves’, plus a glistening longsword that twirls about her with expert skill. Clearly the queen has chosen her personal guard well!");
-
-output("\n\nYou can see Dane and [rival.name] in their cages, just behind the valiant knight. They’re both yelling and screaming, much to the disdain of their huntresses standing guard by the cages. <b>{You’re too far away to try and break them out - and Queensguard is blocking any chance of shooting them out // You’re about half way to Dane and [rival.name]’s cages now! // You’re close enough to bash the lock to Dane’s cage if you wanted. Maybe the big bastard could help you out!}</b>");
-*/
-
-public function queensguardLongUpdate():void
-{
-	foes[0].long = "You’re fighting Queensguard, the knightly nyrean warrior who stands between you and Queen Taivra - and the probe that makes up her throne. The warrior before you is clad from head to toe in heavy metal plates, like a medieval soldier’s, supplementing her natural chitin with forged steel. She carries a hefty kite-style shield, bearing the same crest as the tyrant she serves’, plus a glistening longsword that twirls about her with expert skill. Clearly the queen has chosen her personal guard well!";
-	foes[0].long += "\n\nYou can see Dane and [rival.name] in their cages, just behind the valiant knight. They’re both yelling and screaming, much to the disdain of their huntresses standing guard by the cages. <b>";
-	if(pc.statusEffectv1("Cage Distance") == 2) foes[0].long += "You’re too far away to try and break them out - and Queensguard is blocking any chance of shooting them out.";
-	else if(pc.statusEffectv1("Cage Distance") == 1) foes[0].long += "You’re about half way to Dane and [rival.name]’s cages now!";
-	else foes[0].long += "You’re close enough to bash the lock to Dane’s cage if you wanted. Maybe the big bastard could help you out!";
-	foes[0].long += "</b>";
-}
-
-/*New status:
-"Cage Distance" - v1 = distance from cage. 2 = other side, 1 = halfway, 0 = there.
-"You're a good ways away from Dane and your cousin's cage. It'll take a lot of work to reposition yourself to break them out."
-"You're about halfway to Dane's cage. One good move will put you alongside it."
-"You're right next to the cage! You can break out Dane (and your cousin) if you want a hand."
-*/
-
-public function queensguardAI():void
-{
-	//Use Fungal Extract
-	//When below 60% health. Effect as per item. Up to 3/encounter.
-	//if(!foes[0].hasStatusEffect("Fungaled");
-	if(foes[0].HP()/foes[0].HPMax() < .6 && foes[0].statusEffectv1("Fungaled") < 3) queensGuardFungalButts();
-	//Focus
-	//First time QG gets to Lust 75+. Reduce lust by 30.
-	else if(foes[0].lust() >= 75 && !foes[0].hasStatusEffect("Focused")) queensGuardLust();
-
-	//Thunder Kick
-	//Rare attack that staggers the PC, like a Wetraxxel.
-	else if(rand(5) == 0 && !foes[0].hasStatusEffect("Disarmed")) queensGuardThunderKick();
-
-	else if(rand(3) == 0 || foes[0].hasStatusEffect("Disarmed")) queensguardShieldBash();
-	//Power Attack
-	//Huge damage sword strike. Chance to stun.
-	else if(!pc.hasStatusEffect("Stunned") && rand(5) == 0) powerAttackQueensguard();
-	
-	//Slice and Dice
-	//Three moderate-damage attacks. Sword, shield, sword.
-	else sliceAndDiceQueenieGuardieRetardie();
-}
-
-public function queensguardWeaponToggle():void
-{
-	if(foes[0].meleeWeapon.longName == "shield")
-	{
-		foes[0].meleeWeapon.attackVerb = "slash";
-		foes[0].meleeWeapon.attackNoun = "slash";
-		foes[0].meleeWeapon.longName = "polished longsword";
-		foes[0].meleeWeapon.baseDamage.kinetic.damageValue = 4;
-	}
-	else
-	{
-		foes[0].meleeWeapon.attackVerb = "smack";
-		foes[0].meleeWeapon.attackNoun = "smack";
-		foes[0].meleeWeapon.longName = "shield";
-		foes[0].meleeWeapon.baseDamage.kinetic.damageValue = -4;
-	}
-}
-
-//Queensguard Abilities:
-//Shield Bash
-//Light crushing damage. Chance to knock back a square, or knock prone if at back of arena. Physique check to resist effect.
-public function queensguardShieldBash():void
-{
-	output("With a battle roar that reverberates off the stone walls, Queensguard charges forward shield-first, trying to slam the steel bulwark into you!");
-	if(combatMiss(foes[0],pc))
-	{
-		output("\nYou nimbly side-step the attack, letting the nyrean knight’s momentum carry her right past you!");
-	}
-	else
-	{
-		output("\nYou catch the sides of her shield, grunting with effort and pain as steel slams against your ");
-		if(!(pc.armor is EmptySlot)) output("[pc.armor]");
-		else output("bare [pc.skinFurScales]");
-		output(".");
-
-		output("The sheer weight of the impact");
-		if(pc.physique() + rand(20) + 1 >= foes[0].physique() + 10) output(" nearly staggers you");
-		else
-		{
-			if(pc.statusEffectv1("Cage Distance") < 2) 
-			{
-				output(", forcing you back");
-				pc.addStatusValue("Cage Distance",1,1);
-				queensguardLongUpdate();
-			}
-			else
-			{
-				output(", knocking the wind out of you enough that the knight is easily able to strike you again, sending you flat on your back. <b>You’re knocked prone!</b>");
-				if(!pc.hasStatusEffect("Trip")) pc.createStatusEffect("Trip", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
-			}
-		}
-		output("!");
-		//Swap in shield and back out to sword
-		queensguardWeaponToggle();
-		applyDamage(foes[0].meleeDamage(), foes[0], pc, "melee");
-		queensguardWeaponToggle();
-	}
-	processCombat();
-}
-
-//Slice and Dice
-//Three moderate-damage attacks. Sword, shield, sword.
-public function sliceAndDiceQueenieGuardieRetardie():void
-{
-	output("Queensguard charges you, swinging her blade in a wide arc. You ");
-	if(combatMiss(foes[0],pc)) output("parry it");
-	else
-	{
-		output("stagger back as it strikes you");
-		applyDamage(foes[0].meleeDamage(), foes[0], pc, "melee");
-	}
-	output(", only to ");
-	if(!combatMiss(foes[0],pc)) 
-	{
-		output("be slammed with her shield a moment later");
-		queensguardWeaponToggle();
-		applyDamage(foes[0].meleeDamage(), foes[0], pc, "melee");
-		queensguardWeaponToggle();
-	}
-	else output("have to dodge a shield swipe a second later");
-	output(". A third strike, with her sword again this time, follows up, lunging for your chest. You ");
-	if(combatMiss(foes[0],pc)) output("barely manage to dodge it");
-	else
-	{
-		output("yelp as the blade slams into you, leaving you reeling");
-		applyDamage(foes[0].meleeDamage(), foes[0], pc, "melee");
-	}
-	output("!");
-	processCombat();
-}
-
-//Power Attack
-//Huge damage sword strike. Chance to stun.
-public function powerAttackQueensguard():void
-{
-	output("The nyrean knight bellows out a warcry and leaps at you, sword held overhead for a brutal strike! ");
-	if(combatMiss(foes[0],pc))
-	{
-		output("You manage to dodge, avoiding what could very well have been a lethal blow!");
-	}
-	else
-	{
-		output("You try and block, but to no avail! Queensguard’s sword slams into you with bone-crushing force, throwing you back and leaving you reeling.");
-		var damage:TypeCollection = foes[0].damage();
-		damage.add(foes[0].physique() / 2);
-		damage.multiply(1.4);
-		damageRand(damage, 15);
-		applyDamage(damage, foes[0], pc, "melee");
-		if(foes[0].physique()/2 + rand(20) + 1 >= pc.physique()/2 + 10 && !pc.hasStatusEffect("Stunned"))
-		{
-			output("\n<b>You’re stunned by the blow!</b>");
-			pc.createStatusEffect("Stunned",1,0,0,0,false,"Stun","Cannot act for a turn.",true,0);
-		}
-	}
-	processCombat();
-}
-
-//Use Fungal Extract
-//When below 60% health. Effect as per item. Up to 3/encounter.
-//if(!foes[0].hasStatusEffect("Fungaled");
-public function queensGuardFungalButts():void
-{
-	output("Queensguard grabs a vial from her belt and pulls up her helm’s visor, just enough to knock back the soupy liquid within - and give you a hint of a scarred, but firmly feminine face underneath. (+50 HP)");
-	foes[0].HP(50);
-	if(!foes[0].hasStatusEffect("Fungaled")) foes[0].createStatusEffect("Fungaled",0,0,0,0);
-	else foes[0].addStatusValue("Fungaled",1,1);
-	processCombat();
-}
-
-//Thunder Kick
-//Rare attack that staggers the PC, like a Wetraxxel.
-public function queensGuardThunderKick():void
-{
-	output("Queensguard feints, drawing your defenses to her sword, only to kick you square in the gut. You stumble back, but she’s not done yet: the knight pirouettes and slams her shield into you, <b>leaving you staggered</b>.");
-	if (pc.hasStatusEffect("Staggered"))
-	{
-		pc.setStatusValue("Staggered", 1, 5);
-	}
-	else
-	{
-		pc.createStatusEffect("Staggered", 5, 0, 0, 0, false, "Icon_OffDown", "You're staggered, and your Aim and Reflexes have been reduced!", true, 0);
-	}
-	applyDamage(foes[0].meleeDamage(), foes[0], pc, "melee");
-	processCombat();
-}
-
-//Focus
-//First time QG gets to Lust 75+. Reduce lust by 30.
-public function queensGuardLust():void
-{
-	output("<i>“Calm yourself, dearest,”</i> Taivra murmurs from her throne, still fucking away at her harem with her bushel of tentacle cocks. <i>“Focus on the fight.”</i>");
-	output("\n\nQueensguard tries to nod, but you can see her breathing hard... see her knees quaking ever so slightly. She clearly wants what you’re selling!");
-	output("\n\n<i>“Beat this star-walker, my guardian, and I promise I will breed you. It’s been so many years, hasn’t it? Do you even remember what it’s like to feel your belly swelling with our young? Think of me, my dearest - don’t let your lusts wander from me now.”</i>");
-	output("\n\nThe Queensguard takes a deep breath to steady herself, turning her amethyst-colored eyes to you with renewed vigor.");
-	foes[0].lust(-30);
-	output(" (-30 Lust)");
-	foes[0].createStatusEffect("Focused",0,0,0,0);
-	processCombat();
+	configureQueensguardFight();
+	addButton(0,"Next",CombatManager.beginCombat);
 }
 
 //Special Combat Actions
@@ -1949,8 +1501,8 @@ public function moveToCage():void
 	output("\n");
 	pc.addStatusValue("Cage Distance",1,-1);
 	trace("CAGE DISTANCE v1: " + pc.statusEffectv1("CAGE DISTANCE"));
-	if(foes[0] is Queensguard) queensguardLongUpdate();
-	processCombat();
+	if (enemy is Queensguard) (enemy as Queensguard).queensguardLongUpdate(pc);
+	CombatManager.processCombat();
 }
 
 //At the 3rd square, can [Breakout]
@@ -1960,7 +1512,7 @@ public function breakOutDane():void
 {
 	clearOutput();
 	author("Savin");
-	if(foes[0] is Queensguard)
+	if(enemy is Queensguard)
 	{
 		output("You’ve got a clear shot at Dane’s cage now, and the ausar knows it. <i>“Get me out of here!”</i> he growls, eyeing Queensguard dangerously. <i>“C’mon already!”</i>");
 		output("\n\nYou take aim at the lock and strike!");
@@ -2003,7 +1555,7 @@ public function breakOutDane():void
 		output("\n\nQueensguard valiantly struggles to her feet to interpose herself between her mistress and the near-rabid ausar, but she earns little more than a stunning backhand for her effort.\n\n<b>Together you can bring down the Queen!</b>\n");
 		flags["FREED_DANE_FROM_TAIVRA"] = 1;
 		pc.removeStatusEffect("Cage Distance");
-		processCombat();
+		CombatManager.processCombat();
 	}
 }
 
@@ -2015,7 +1567,7 @@ public function spankedQueensguardsAss():void
 {
 	clearOutput();
 	author("Savin");
-	if(foes[0].HP() <= 0) 
+	if(enemy.HP() <= 0) 
 	{
 		output("With a groan of pain, Queensguard collapses to a knee, barely keeping herself upright with all her weight on her blade. She glowers up at you through the slit in her visor, panting hard and coughing up blood into the steel helm.");
 		output("\n\n<i>“What... what </i>are<i> you!?”</i> she stammers, trying and failing to stand again.");
@@ -2035,254 +1587,17 @@ public function spankedQueensguardsAss():void
 	if(flags["FREED_DANE_FROM_TAIVRA"] == 1) output("\n\n<i>“You won't get the chance!”</i> the over-sized ausar grunts.");
 	processTime(2);
 	clearMenu();
-	addButton(0,"Next",startCombat,"Taivra");
-}
-
-//Queen Taivra Fight
-//AI & Stats & Stuff
-//Queen Taivra fights with a mix of lust and physical abilities: maybe ⅔ lust, ⅓ physical. She has high health, a very high dodge chance, but relatively light armor. Also unlike queensguard, has very high shields. All of Taivra’s physical attacks have a chance to inflict Bleeding if they deal Health damage.
-
-//Combat Text
-//You’re facing down Queen Taivra, an alpha nyrea powerful enough to subjugate an entire city of her amazonian sisters. She stands nearly six feet tall, with pale yellow flesh left largely bare by her revealing armor - if you could call it that. She wears a bikini-style vest and bottom of padded chainmail, showing off her ample cleavage and her firm muscles and belly. Leather bracers and pauldrons adorn compliment her armor, and a blood red cape flows from her shoulders. A black Reaper shield belt hangs loosely from her hips, a trophy taken from an off-worlder, no doubt, and now adorned with fetishes and potion vials.
-
-//The queen’s long black hair is tied into a tight ponytail behind her elfin ears, and her pitch-black eyes regard you with {if w/ Dane: cold contempt. //else: playful mirth, like a cat stalking her prey}. Her purple lips twist in a smile, and she twirls her towering longspear about herself in a series of flourishes and feints that would have impressed a core-world martial artist.
-
-//{if Dane: Dane, your cousin [rival.name]’s four-armed ausar bodyguard, is standing at your side. Though wounded by Queensguard, he’s still managing to stand - if only barely. He might not be at full strength, but it’s reassuring to have somebody watching your back.}
-
-public function taivraAI():void
-{
-	showTaivra();
-	if(foes[0].hasStatusEffect("Dane Grappled")) taivraGrappleBreak();
-	else if(rand(3) <= 1 || foes[0].hasStatusEffect("Disarmed"))
-	{
-		if(rand(4) == 0) lustFungus();
-		else if(rand(2) == 0) taivraCockTease();
-		else tentacleCocks();
-	}
-	else
-	{
-		if(!pc.hasStatusEffect("Blind")) pocketSandAttack();
-		else if(rand(2) == 0) taivraSpearSweep();
-		else strikeAndSlash();
-	}
-	//Special Combat Actions:
-	//Slavegasm
-	//Play at the end of each of Taivra’s turns when she has any Lust. Reduces her lust by 10.
-	if(foes[0].lust() >= 10) taivraConstantLustReduction();
-	//Flurry Attack
-	//Taivra makes a Flurry attack after any turn!
-	else if(!foes[0].hasStatusEffect("Dane Grappled")) taivraBonusAttackShit();
-	//COUSIN DOUCHEBAGGERY
-	//Play during Queen Taivra combat if Dane’s free. Cousin gets free and buggers off.
-	if(flags["FREED_DANE_FROM_TAIVRA"] == 1 && flags["RIVAL_GOT_MYR_COORDS_FIRST"] == undefined) cousinDouchebaggery();
-	if(kGAMECLASS.flags["FREED_DANE_FROM_TAIVRA"] == 1) daneTaivraAssistAI();
-	processCombat();
-
-}
-
-//Dane Special
-public function daneTaivraAssistAI():void
-{
-	if(foes[0].hasStatusEffect("Dane Grappled")) foes[0].removeStatusEffect("Dane Grappled");
-	else if(rand(2) == 0) quadGripSpearStab();
-	//Wastes 1/4 of her turns!
-	else if(pc.statusEffectv1("Round") % 4 == 0 ) daneGrappleTaivra();
-	else quadPummel();
-}
-
-//Four-Armed Grapple
-public function daneGrappleTaivra():void {
-	output("\n\nCharging forward, Dane tosses away a splintered spear. His arms come open, open-palmed and grabbing for Taivra!");
-	//Miss
-	if(combatMiss(chars["DANE"],foes[0])) output("\nShe twists out of the way of his four-armed grapple in the nick of time. The buff Ausar snickers, liberating a spear from the ground. <i>\"Speed alone cannot win a fight.\"</i>");
-	//Hit
-	else
-	{
-		output("\nTaivra tries to twist out of the way, but there's just so many hands grabbing for her at once. Her arms are pinned to her [pc.hips] by one pair while the other bear hugs her against his broad chest. <i>\"Now, [pc.name]! Hit her now!\"</i>");
-		output("\n<b>Taivra is grappled!</b>");
-		foes[0].createStatusEffect("Dane Grappled",0,35,0,0,false,"Constrict","Taivra is pinned in a grapple.",true,0);
-	}
-}
-
-public function taivraGrappleBreak():void
-{
-	output("With a contemptuous sneer, Taivra breaks Dane's grip and boots him backward. He converts the momentum into a combat roll and comes up with a fresh spear in his hand.");
-}
-
-public function quadGripSpearStab():void
-{
-	output("\n\nDane secures a fresh spear from an insensate guard and strikes at the queen!");
-	if(rand(10) <= 1) output(" She dodges!");
-	else
-	{
-		output(" Much of it splinters from the impact.");
-		var damage:TypeCollection = new TypeCollection( { kinetic: 33/2 } )
-		damage.add(7);
-		damage.multiply(1.5);
-		damageRand(damage, 15);
-		applyDamage(damage, chars["DANE"], foes[0], "melee");
-	}
-}
-public function quadPummel():void
-{
-	output("\n\nDane moves like a boxer, delivering punch after punch to the Queen.");
-	for(var x:int = 0; x < 4; x++)
-	{
-		if(rand(10) <= 1) output("\nHe misses!");
-		else
-		{
-			output("\nHe connects!");
-			var damage:TypeCollection = new TypeCollection( { kinetic: 33/2 } )
-			damageRand(damage, 15);
-			applyDamage(damage, chars["DANE"], foes[0], "melee");
-		}
-	}
-}
-
-
-//Queen Taivra Abilities
-//Spear Sweep
-//Heavy slashing damage, hits both Dane and the PC
-public function taivraSpearSweep():void
-{
-	output("Taivra swings her spear in a wide arc, savagely slashing at you");
-	if(flags["FREED_DANE_FROM_TAIVRA"] == 1) output(" and your companion");
-	output("! You ");
-	if(flags["FREED_DANE_FROM_TAIVRA"] == 1) output(" and Dane ");
-	else output("are");
-	if(combatMiss(foes[0],pc))
-	{
-		output(" able to dodge the strike.");
-	}
-	else
-	{
-		foes[0].meleeWeapon.baseDamage.kinetic.damageValue += 20;
-		output(" struck by the sweeping spear!");
-		applyDamage(foes[0].meleeDamage(), foes[0], pc, "melee");
-		foes[0].meleeWeapon.baseDamage.kinetic.damageValue -= 20;
-	}
-	output(" The nyrean queen sneers, twirling the haft around herself is a buzzing ring that cuts the air.");
-}
-
-//Strike and Slash
-//Taivra hits with the butt of her spear for light Crushing + Stun chance, then a moderate spear attack.
-public function strikeAndSlash():void
-{
-	output("Taivra spins around, twirling her spear backwards before striking out at you. The butt of her spear ");
-	if(combatMiss(foes[0],pc)) output("comes crashing down at your head.\nYou barely sidestep it!");
-	else 
-	{
-		foes[0].meleeWeapon.baseDamage.kinetic.damageValue -= 10;
-		output("comes crashing down on your head, hard.");
-		applyDamage(foes[0].meleeDamage(), foes[0], pc, "melee");
-		foes[0].meleeWeapon.baseDamage.kinetic.damageValue += 10;
-		if(foes[0].physique()/2 + rand(20) + 1 > pc.physique()/2 + 10 && !pc.hasStatusEffect("Stunned"))
-		{
-			output(" <b>You are stunned!</b>");
-			pc.createStatusEffect("Stunned",2,0,0,0,false,"Stun","You cannot act until you recover!",true,0);
-		}
-	}
-	output(" A moment later and she’s dancing around you, slashing at you with the sharp end.");
-	if(combatMiss(foes[0],pc)) output("\nYou barely dodge aside!");
-	else
-	{
-		applyDamage(foes[0].meleeDamage(), foes[0], pc, "melee");
-	}
-}
-
-//Cocktease
-//Moderate lust attack
-public function taivraCockTease():void
-{
-	output("The queen saunters forward, long, bare legs carrying her towards you with a lascivious smile on her face. One of her thumbs hooks into the leather strap holding up her chain bottom, and the garment slides down to reveal the throbbing length of her equine-like cock, drooling with moisture from its X-shaped slit.");
-	output("\n\n<i>“Come now,”</i> she purrs, stroking the shaft. <i>“Surrender now, and I’ll keep you as a favored pet. You’ve earned that much... perhaps I’ll even let you carry a clutch of my spawn.”</i>");
-	output("\n\n");
-
-	if(pc.willpower()/2 + rand(20) + 1 >= 26) output("You shrug off the nyrea’s advances.");
-	else 
-	{
-		output("You have to admit, the idea is uncomfortably tempting...");
-		applyDamage(new TypeCollection( { tease: 18 } ), foes[0], pc, "minimal");
-	}
-	if(flags["FREED_DANE_FROM_TAIVRA"] == 1)
-	{
-		if(rand(2) == 0) output("\nDane seems oddly taken with the queen...");
-		else output("\nDane sneers at the queen’s offer, clearly not ready to be her next bottom bitch.");
-	}
-}
-
-//Tentacle Cocks
-//Several light tease attacks
-public function tentacleCocks():void
-{
-	output("Swinging her hips like a whore on strut, Taivra runs her free hand along the lengths of several of her parasitic tentacle cocks. Her betas moan and squirm as the tails probing their sexes move and thrust. <i>“You know you want it,”</i> the queen teases, slapping her ass in a way that makes her taut cheeks and squirming tails quake.");
-	output("\n");
-	for(var x:int = 0; x < 4; x++)
-	{
-		if(pc.willpower()/2 + rand(20) + 1 >= 26) output("\nYou shrug off the nyrea’s advances.");
-		else
-		{
-			output("\nGetting railed by a dozen tentacle cocks... now that’s something new!");
-			applyDamage(new TypeCollection( { tease: 5 } ), foes[0], pc, "minimal");
-		}
-	}
-}
-
-//Lust Fungus
-//Moderate lust-drug attack, deals lust over time for a couple rounds.
-public function lustFungus():void
-{
-	output("Taivra grabs a vial of some pink fungal compound off her belt and hurls it at you.");
-	if(rangedCombatMiss(foes[0],pc)) output("\nYou dodge it, and the vial shatters harmlessly against the stone wall.");
-	else
-	{
-		output("\nThe vial shatters against your chest, bursting into a cloud of pink mist. You cough as the mist billows out, making your eyes water and flesh tingle. <b>You are surrounded by a cloud of lust-drug!</b>");
-		applyDamage(new TypeCollection( { drug: 6 } ), foes[0], pc, "minimal");
-		//4 rounds of lust damage!
-		if(!pc.hasStatusEffect("Aphro Gas")) pc.createStatusEffect("Aphro Gas",5,4,0,0,false,"Icon_LustUp","A cloud of aphrodisiac hangs in the air, turning you on as you breathe!",true,0);
-		else 
-		{
-			output(" <b>The chemical in your air is getting stronger!</b>");
-			pc.addStatusValue("Aphro Gas",1,3);
-			pc.setStatusValue("Aphro Gas",2,4);
-		}
-	}
-}
-
-//Pocket Sand
-//Blinds PC if he fails a Reflex save.
-public function pocketSandAttack():void
-{
-	output("Taivra grabs a sack from her belt and hurls it at you, letting the thing tumble open in a cascade of fine grains of powdered rock. You’re smashed right in the face with a hail of sand! <b>You’re blinded!</b>");
-	pc.createStatusEffect("Blind",2+rand(3),0,0,0,false,"Blind","Accuracy is reduced, and ranged attacks are far more likely to miss.",true,0);
-}
-
-//Special Combat Actions:
-//Slavegasm
-//Play at the end of each of Taivra’s turns when she has any Lust. Reduces her lust by 10.
-public function taivraConstantLustReduction():void
-{
-	output("\n\nTaivra’s back arches and moans. You cock an eyebrow curiously, until you realize that one of her tentacle cocks is throbbing, squirting seed into one of her beta sluts. The queen gives a sated sigh, looking calmer and more collected even as her bottom bitch’s psuedo-cock erupts in a shower of juice and cum.");
-	foes[0].lust(-10);
-}
-
-//Flurry Attack
-//Taivra makes a Flurry attack after any turn!
-public function taivraBonusAttackShit():void
-{
-	output("\n\nThe queen follows through with a quick jab at you, thrusting at your chest.");
-	attack(foes[0],pc,[1,2]);
-}
-
-//COUSIN DOUCHEBAGGERY
-//Play during Queen Taivra combat if Dane’s free. Cousin gets free and buggers off.
-public function cousinDouchebaggery():void
-{
-	output("\n\nAs you’re engaged with Taivra, you notice movement in the shadows behind her throne. Between warding off spear-thrusts and keeping yourself out of Dane’s berzerker swings, it takes you a moment to realize what’s going on: your scumbag cousin’s gotten free, and [rival.heShe]’s trying to get to the probe! [rival.HeShe] must have picked the lock after Dane wrecked the guards.");
-	output("\n\nShit! You try and push forward to stop [rival.himHer], but the damn bug-queen almost spears you through the chest for your troubles. She forces you back with a flurry of strikes, refusing to let you anywhere near her throne... even as [rival.name] plants [rival.hisHer] hand on the scanner and activates it. DAMMIT!");
-	output("\n\nYou cousin flashes you a shit-eating grin as the probe’s coordinates download onto [rival.hisHer] Codex. " + chars["RIVAL"].mf("Jack gives you a sarcastic salute","Jill blows you an over-acted kiss") + " before leaping off the back of the throne and scampering off. Looks like you’re getting left in the dust again...");
-	flags["RIVAL_GOT_MYR_COORDS_FIRST"] = 1;
-	//[Next] //back to fitan
+	
+	if (flags["FREED_DANE_FROM_TAIVRA"] == 1) pc.removeStatusEffect("Cage Distance");
+	
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(new Taivra());
+	CombatManager.victoryScene(whupTaivrasAss);
+	CombatManager.lossScene(loseToQueensTaivra);
+	CombatManager.displayLocation("QUEEN TAIVRA");
+	
+	addButton(0,"Next",CombatManager.beginCombat);
 }
 
 //PC Defeats Taivra
@@ -2362,7 +1677,7 @@ public function leaveTaivraLikeABaws():void
 	output("\n\nTime to see what the next planet has in store!\n\n");
 	flags["BEAT_TAIVRA_TIMESTAMP"] = GetGameTimestamp();
 	processTime(5);
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Kill Taivra
@@ -2381,9 +1696,9 @@ public function killTaivraYouMonster():void
 	flags["KILLED_TAIVRA"] = 1;
 	flags["BEAT_TAIVRA_TIMESTAMP"] = GetGameTimestamp();
 	processTime(5);
-	foes[0].inventory.push(new ReaperArmamentsMarkIShield());
-	foes[0].inventory.push(new GemSatchel());
-	genericVictory();
+	enemy.inventory.push(new ReaperArmamentsMarkIShield());
+	enemy.inventory.push(new GemSatchel());
+	CombatManager.genericVictory();
 }
 
 //Fuck Taivra
@@ -2401,7 +1716,7 @@ public function fuckTaivra():void
 	output(". She gives you a darkly reproachful look over her shoulder, but does not resist as you decide just how to take your pent-up lusts out on the amazonian insect...");
 	processTime(4);
 	clearMenu();
-	if(pc.cockThatFits(foes[0].analCapacity()) >= 0 && pc.hasCock()) addButton(0,"FuckHerAss",fuckTaivrasAss,undefined,"Fuck Her Ass","Taivra’s already bent over, ass in the air. Grab your cock and thrust into her tight-looking ass!");
+	if(pc.cockThatFits(enemy.analCapacity()) >= 0 && pc.hasCock()) addButton(0,"FuckHerAss",fuckTaivrasAss,undefined,"Fuck Her Ass","Taivra’s already bent over, ass in the air. Grab your cock and thrust into her tight-looking ass!");
 	else addDisabledButton(0,"FuckHerAss","FuckHerAss","You must have an appropriately-sized phallus to do this.");
 	addButton(1,"Take Tentacles",takeTentaclesForTaivra,undefined,"Take Tentacles","Take Taivra’s tentacles in every hole. Get the most out of all those wriggling parasites attached to her hind end.");
 }
@@ -2419,7 +1734,7 @@ public function fuckTaivrasAss():void
 	else output("; then again, the idea of banging the queen in public, even for a good reason, makes your cheeks flush");
 	output(". Your free hand, meanwhile, hefts up [pc.oneCock] as you slip down behind Taivra, angling your member towards her behind.");
 
-	var x:int = pc.cockThatFits(foes[0].analCapacity());
+	var x:int = pc.cockThatFits(enemy.analCapacity());
 	if(x < 0) x = pc.smallestCockIndex();
 
 	output("\n\nYou pause just before pushing in, realizing that this high and mighty warrioress is probably not quite used to getting pounded from behind: she’ll be tight, of that you’re sure, but the idea of going at her ass without lube is less than exciting. Lucky you, Taivra has plenty of means of providing what you need.");
@@ -2501,7 +1816,7 @@ public function fuckTaivrasAss():void
 	pc.orgasm();
 	flags["FUCKED_TAIVRA"] = 1;
 	flags["BEAT_TAIVRA_TIMESTAMP"] = GetGameTimestamp();
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Take Tentacles
@@ -2568,7 +1883,7 @@ public function takeTentaclesForTaivra():void
 	flags["FUCKED_BY_TAIVRA"] = 1;
 	flags["BEAT_TAIVRA_TIMESTAMP"] = GetGameTimestamp();
 	//[Next]
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Subjugate
@@ -2599,7 +1914,7 @@ public function subjugateQueenTaivra():void
 	flags["BEAT_TAIVRA_TIMESTAMP"] = GetGameTimestamp();
 	//Should make queen nyreabuns ready to go immediately
 	flags["QUEENSGUARD_STAB_TIME"] = GetGameTimestamp() - (60 * 13);
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Bad Ends
@@ -2608,7 +1923,7 @@ public function loseToQueensTaivra():void
 {
 	author("Savin");
 	//Defeat by Queensguard Intro
-	if(foes[0] is Queensguard)
+	if(enemy is Queensguard)
 	{
 		output("You stagger back under the armored nyrea’s rain of blows, desperately dodging sword swipes and shield strikes until your [pc.foot] catches on an uneven stone and suddenly you’re falling back, screaming until your head cracks on the rocky floor. Your world spins, vision erupting in stars; your [pc.weapon] is kicked painfully from your hands by ruthless steel. When your vision clears, you see the lethal point of Queensguard’s blade leveled at your throat, a hair’s breadth from slicing you open.");
 		output("\n\n<i>“Yield,”</i> she growls from beneath her helm. <i>“Yield or die.”</i>");
@@ -3827,153 +3142,15 @@ public function resistPrincessYouSloot():void
 	output("\n\nFuck. You’ll have to fight this tart. Princess or not, she’s a nyrea. She can probably take some damage.");
 	processTime(3);
 	clearMenu();
-	addButton(0,"Next",startCombat,"princess");
-}
-
-//Mechanics
-//Princess lobs red myr drugspit at the PC. If her lust is raised high enough, she’ll bust an egg in a slave. If damaged enough, she’ll grab a shield from the bed.
-public function princessAI():void
-{
-	showPrincess();
-	if(foes[0].lust() >= 60) princessNutBuster();
-	else if(!(foes[0].shield is ReaperArmamentsMarkIShield) && foes[0].HP()/foes[0].HPMax() < .5) princessGetsAShield();
-	else vialGetsHockedAtPCFaaaace();
-}
-
-//Hock a vial
-public function vialGetsHockedAtPCFaaaace():void
-{
-	output("The nyrean princess lobs a vial of red-tinted myr-spit at you!");
-	//Dodge
-	if(rangedCombatMiss(foes[0],pc)) 
-	{
-		output("\nYou slip away from the clumsy projectile");
-		if(rand(3) == 0) output(", leaving it to shatter on the upraised arm of one of her harem slaves. The unfortunate creature’s eyes dilate until they look like inky saucers, and she slumps to the floor, her hips quivering weakly along the way.");
-		else if(rand(2) == 0) output(", letting it impact on a wall behind you. One of the harem slaves dives for it, crying out when she misses her chance to catch the drugged liquid in her mouth.");
-		else output(", allowing it to bounce off a cushion and into the chitinous palms of a grinning slave. You don’t get a chance to see what she does with it.");
-	}
-	//Impact
-	else
-	{
-		var damage:DamageResult = applyDamage(new TypeCollection({ drug: 10+rand(4) } ), foes[0], pc, "suppress");
-		output("\nDespite your attempts to avoid it, it ");
-		if(pc.shields() > 0) output("slips through your shield, too slow to be blocked, and ");
-		output("crashes into your upraised forearm. The thin glass shatters, you’re splattered in one of the more potent aphrodisiacs this side of the Milky Way.");
-		if(!(pc.armor is EmptySlot)) 
-		{
-			if(!pc.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT)) output(" Your [pc.armor] doesn’t do much to stop it either. The insidious stuff slips through cracks and seams with alarming ease. You doubt anything but an airtight suit could stop it.");
-			else 
-			{
-				output(" Your [pc.armor] handles the stuff with almost contemptuous ease, allowing the insidious fluid to drip down its airtight surface to the floor where it can’t trouble anything but rock.");
-				processCombat();
-				return;
-			}
-		}
-		//{Permeated armor or no armor:}
-		output(" Once it hits your [pc.skinFurScales], it soaks ");
-		if(!pc.hasFur() && !pc.hasScales()) output("in");
-		else output("into the [pc.skin] beneath");
-		output(" with alarming speed. Attempts to wipe it away just smear the crimson narcotic across your fingers, giving it another vector to worm its way into your system.");
-		//New PG. Lust reaction!
-		//0-10 Lust
-		if(pc.lust() <= 10) output("\n\nYou can feel your cheeks heating against your will, and it’s suddenly more difficult to pull your eyes from the bouncing nyrean royalty so close at hand.");
-		//11-20
-		else if(pc.lust() <= 20) output("\n\nWhy haven’t you noticed how cute the princess’s nose is before now? And her lips... her lips are magnificent – a work of art. You shake your head to clear the errant thoughts away.");
-		///21-30
-		else if(pc.lust() <= 30) output("\n\nThe princess’s breasts bounce in the most hypnotic way. You regretfully tug your eyes away, but they unerringly wind their way back to her purplish, jutting nipples. Did she spill some on herself, or is she getting off on this?");
-		//31 – 40
-		else if(pc.lust() <= 40) output("\n\nYou feel a stirring in your loins. At least if you end up giving in you’ll wind up enjoying whatever the princess does to you.");
-		//41-50
-		else if(pc.lust() <= 50) output("\n\nOooh, that felt... good. There’s no hiding your growing arousal anymore, not from the princess and certainly not from yourself. Your body wants her, wants her like a thirsty man craves a glass of water, or a man on a diet aches for a cheeseburger.");
-		//51-60
-		else if(pc.lust() <= 60) output("\n\nYour heart flutters with excitement and vulnerability. You can feel your muscles wanting to slacken, wanting to ease you into the princess’s arms. You fight the narcotic euphoria off with a grunt of irritation. You can’t take many more hits like that.");
-		//61-70
-		else if(pc.lust() <= 70) 
-		{
-			output("\n\nYou realize that you’ve started panting a moment later, but your body doesn’t seem to want to stop.");
-			if(pc.race() == "ausar" || pc.race() == "half-ausar" || pc.originalRace == "half-ausar") output(" Must be some kind of ausar instinct.");
-			output(" You’re horny, damnit, and there’s a nyrea right over there that’s willing to fuck you. All you have to do is submit to her, let her put a few eggs into you, then you can get relief. It’s quite tempting.");
-		}
-		//71-80
-		else if(pc.lust() <= 80) 
-		{
-			if(pc.hasCock() && pc.hasVagina()) output("\n\nGoddamn, having two sets of genitals has never felt more like a liability than at this very moment. Desires to fuck and <i>be fucked</i> battle over the hormones and endorphins flooding your bloodstream. You sway on your feet, painfully aware of just how easy it would be to kneel to the princess and satisfy it all, again and again and again...");
-			else if(pc.hasCock()) 
-			{
-				output("\n\nDamn, it feels less like you’ve got ");
-				if(pc.cockTotal() == 1) output("an erection");
-				else output("erections");
-				output(" and more like you’ve sprouted ");
-				if(pc.cockTotal() == 1) output("an aching length");
-				else output("aching lengths");
-				output(" of stone with ");
-				if(pc.cockTotal() == 1) output("a creamy center");
-				else output("creamy centers");
-				output(" just waiting to burst free.");
-			}
-			else if(pc.hasVagina()) 
-			{
-				output("\n\nFuck, you’re so warmed up that you feel less like you’ve got ");
-				if(pc.totalVaginas() == 1) output("a vagina");
-				else output("vaginas");
-				output(" between your legs and more like ");
-				if(pc.totalVaginas() == 1) output("a ");
-				output("hot spring");
-				if(pc.totalVaginas() > 1) output("s");
-				output(", bubbling with effervescent warmth that erodes your willpower as easily as grains of sand.");
-			}
-			else output("\n\nUgh, how can you be entirely without normal genitalia and yet so excited by the prospect of intercourse? Your [pc.asshole] clenches at the thought of the princess’s less-than-feminine member prying your sphincter open to deposit some eggs.");
-		}
-		//81-90
-		else if(pc.lust() <= 90)
-		{
-			output("\n\nYou whimper – actually whimper – with need. You don’t want to, but your body... your body needs to. Mere arousal doesn’t describe what you feel any longer. A white-hot inferno of passion rages within your breast, threatening to burn away your reason and replace it with a primal, pernicious desire to fuck, to procreate and revel in the act of giving over to pure, animal instinct.");
-		}
-		//Hit max?
-		else if(pc.lust() >= pc.lustMax())
-		{
-			output("\n\nNo more... you can’t handle anymore. Your venom-fueled ardor bursts through the levee of your restraint, and with a moan of unrepentant, animalistic desire, you give in.");
-		}
-		//91-100
-		else if(pc.lust() <= 100)
-		{
-			output("\n\n[pc.LegOrLegs] quaking, you struggle to stay upright and fight. Your body wants to sag down and present itself for a good fucking, whether by another member of the harem or the princess herself. You’re certain that a single, stray drop of that venom would push you over the edge at this point. If you don’t want to be a mewling fucktoy, you’ll have to act and act now.");
-		}
-		//101-110
-		else if(pc.lust() <= 110)
-		{
-			output("\n\nIf you were any normal person, the liquid, aphrodisiac-enhanced desire coursing through your veins would have you rutting with the horny, nyrean sluts surrounding you, but to you... to you, you’re just starting to enjoy yourself. Do you want to fuck so badly that it’s impossible to think of anything else? Sure. Do you want to cede control of the situation over to this stuck up bitch? No way, it doesn’t matter how languid your muscles are getting.");
-		}
-		//111+
-		else
-		{
-			output("\n\nYour [pc.skin] is so hot and so tender that every breeze, every swishing gush of air across your body sends sparks of ecstasy up your spine. Superhuman as your libido may be, there are limits to what the mortal mind can endure. Submitting would be so much easier....");
-		}
-		outputDamage(damage);
-	}
-	processCombat();
-}
-
-//Nutbusters - Princess relieves herself
-public function princessNutBuster():void
-{
-	output("The princess pants, her eyes wide and nipples hard. <i>“It’ll take more than that to beat me! Latiku! Attend!”</i> She gestures imperiously at her drooling, hard erection. Even the nubs around her flared crown look angry and inflamed, desperate for a fuck.");
-	output("\n\nOne of the slaves, her eyes gleaming with fanaticism, launches herself onto the royal nyrea and wraps her arms around the princess’s neck, her legs around her waist, and her folds around her pulsing, too-hard boner.");
-	output("\n\nA few powerful thrusts bounce the soft-bottomed slave into the air. She has to cling tightly to keep from being bucked off by the bitch’s vicious bounces. Her quavering moans leave you no doubt as to her enjoyment of the brief rut, and the traitorous slut even looks over her mistress’s shoulder at you, smiling as light purple cream begins to drip from between her thighs.");
-	output("\n\nThe princess shudders, then bodily tosses her submissive cum-receptacle across the room and onto the bed. Her face is flushed, but much of the tension has left her body. Fuck. So long as she can get off so quickly and so easily with her slaves, you won’t be able to beat her this way. <b>You’ll have to try a different tactic.</b>");
-	foes[0].lust(-100);
-	processCombat();
-}
-
-//Get a shield
-public function princessGetsAShield():void
-{
-	output("<i>“Ouch! Stop it! Don’t you know how much that hurts!”</i> The haughty royal reaches under her bed to pull out a sophisticated-looking device. Even by core standards, it looks like a substantial piece of tech, covered in traceries of glowing circuitry. She flicks it around her waist, allowing it to snap closed entirely on its own, guided by embedded electromagnets. A faint hum flickers into audibility, followed by the appearance of a near-invisible outline around princess.");
-	output("\n\nThat shield belt is going to make this more of a fight than you thought!");
-	output("\n\n<i>“Now, get on all fours, and I’ll make sure you get enough venom to love how I pay you back.”</i>");
-	foes[0].shield = new ReaperArmamentsMarkIShield();
-	foes[0].shields(foes[0].shieldsMax());
-	processCombat();
+	
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(new Princess());
+	CombatManager.victoryScene(beatUpPrincessYeSlut);
+	CombatManager.lossScene(loseToPrincessYeGit);
+	CombatManager.displayLocation("PRINCESS");
+	
+	addButton(0,"Next",CombatManager.beginCombat);
 }
 
 public function loseToPrincessYeGit(willing:Boolean = false):void
@@ -4079,7 +3256,7 @@ public function beatUpPrincessYeSlut():void
 	showPrincess();
 	flags["PRINCESS_DEFEATED"] = 1;
 	//Lust, somehow	
-	if(foes[0].lust() >= foes[0].lustMax())
+	if(enemy.lust() >= enemy.lustMax())
 	{
 		output("The nyrean princess sways almost drunkenly, her knees quivering with need. One hand dips down to stroke her lube-leaking cock as she stares at you, wide-eyed with lust and amazement. <i>“How...? How are you so fucking hot?!”</i>");
 		output("\n\nShe drops to her knees, grunting like a beast and panting at the sight of you. Her other hand none-too-gently gropes her pliant breastflesh, kneading her healthy bosom with almost bruising enthusiasm. Her fingers twine about a pebbly, too-hard nipple as she arches her back in your direction. <i>“Please! F-f-fuck me! I’m yours!”</i>");
@@ -4100,7 +3277,7 @@ public function beatUpPrincessYeSlut():void
 	clearMenu();
 	if(pc.hasVagina()) addButton(0,"RideCowgirl",cowgirlDatBitch,undefined,"Ride Cowgirl","Ride her cow-girl style before letting the harem have their turn.");
 	else addDisabledButton(0,"RideCowgirl","Ride Cowgirl","You need a vagina in order to do this.");
-	if(pc.hasCock() && pc.cockThatFits(foes[0].analCapacity()) >= 0) addButton(1,"Buttfuck",buttFuckPrincessWhileSheFucks,undefined,"Buttfuck","Violate the princess the same way she planned to violate you.");
+	if(pc.hasCock() && pc.cockThatFits(enemy.analCapacity()) >= 0) addButton(1,"Buttfuck",buttFuckPrincessWhileSheFucks,undefined,"Buttfuck","Violate the princess the same way she planned to violate you.");
 	else addDisabledButton(1,"Buttfuck","Buttfuck","You need a penis that'll fit in her butt in order to do this.");
 	if(pc.hasCock() && pc.biggestCockLength() >= 36) addButton(2,"PolishJob",haremPolishjob,undefined,"PolishJob","You're way too big to fuck the princess")
 	addButton(14,"Leave",leavePrincess2Harem,undefined,"Leave","Leave her to the not-so-tender affections of her harem.");
@@ -4122,7 +3299,7 @@ public function leavePrincess2Harem():void
 	output("The moment you turn to leave the room, there is a flurry of movement from behind you. A dozen dickless nyrean ‘girls’ swarm your fallen foe, dragging her up into the bed. You spare a glance her way as they snap her arms and legs into the bondage equipment and fit a ring around her quivering dick. She looks like she wants to protest, but her lips barely manage a throaty, eager moan.");
 	output("\n\nThe sounds of vigorous sex start when you close the door. At least she has her harem for company.\n\n");
 	leavePrincessRoom();
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Cowgirl Dat Bitch & Make Out With Her Harem
@@ -4192,7 +3369,7 @@ public function cowgirlDatBitch():void
 	output("\n\nThe pleasure robs you of most of your higher faculties by the time you’ve taken three quarters of her inside you. Your eyelids drift closed, and your arms cross the space between your bodies in an instant, grabbing hold of the nyrea’s tremendous tits and giving them an eager, passionate squeeze. She gropes right back");
 	if(pc.biggestTitSize() < 1) output(", even though you’ve little more than [pc.nipples] for her to play with");
 	output(", turning the space between your sweating, rutting bodies into a lattice of searching arms and stimulating fingertips.");
-	pc.cuntChange(x,foes[0].cockVolume(0));
+	pc.cuntChange(x,enemy.cockVolume(0));
 	output("\n\nFuck, she’s got great tits! They’re so goddamn soft, with nary a blemish to be found. They seem almost virginal in their suppleness. Her nipples are like overripe, purple cherries, demanding to be licked and sucked. In a fit of lust-driven decision making, you lean down to do just that, letting the rest of her eight-inch, egg-laying cock sink deeply into your passage. Your eyes nearly cross from the pleasure, but you manage to seal your lips around a nipple all the same, tonguing it with such vigor that the princess squeals and shudders in delight. Her unbound breast jiggles in the most enticing way. If you weren’t squeezing your eyes closed from an overload of pleasure, it’d be nigh impossible to look away from the hypnotic sight.");
 	output("\n\nBallooning inside you, the nyrea’s knot turns a mere pussy-filling experience into a slit-stretching symphony of delight. You can’t really pull off for another downstroke, not with that bulging sphere of erectile tissue locking you in place, but you can swivel your hips, twisting your passage in little rings around its over-swollen dance partner. Incredibly thick wetness floods over the deepest parts of you as you rock back and forth on the princess’s flaring she-cock.");
 	output("\n\nShe’s cumming already!");
@@ -4205,7 +3382,7 @@ public function cowgirlDatBitch():void
 	output("\n\nYou scream like a banshee, twisting and thrashing against the eight-inch rod impaling your [pc.vagina " + x + "], helpless against the tide of orgasmic juice your alien lover floods you with and your own too-powerful bliss. Your can’t even manage to quell your quivering [pc.legOrLegs]. Instead, you continue to scream out your enjoyment to the princess’s entire harem, letting them know just how much you’ve enjoyed laying claim to their mistress.");
 	processTime(33);
 	pc.orgasm();
-	pc.loadInCunt(foes[0], x);
+	pc.loadInCunt(enemy, x);
 	flags["PRINCESS_DEFEATED"] = 2;
 	//[Next]
 	clearMenu();
@@ -4229,7 +3406,7 @@ public function princessCowgirlPt2():void
 	output("\n\nThe slave harem moves in the moment you leave their still-hard mistress, piling onto the bed with almost fanatical enthusiasm. Well... it’s not quite revenge, but at least they’re in charge for a change.\n\n");
 	processTime(15);
 	clearMenu();
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Buttfuck The Princess While She Fucks A Loyal Harem Whatever
@@ -4239,7 +3416,7 @@ public function buttFuckPrincessWhileSheFucks():void
 {
 	clearOutput();
 	showPrincess();
-	var x:int = pc.cockThatFits(foes[0].analCapacity());
+	var x:int = pc.cockThatFits(enemy.analCapacity());
 	if(x < 0) pc.smallestCockIndex();
 	//Low exhib
 	if(pc.exhibitionism() <= 33) output("The sight of so many harem slaves watching you use their mistress gives you pause, but then your arousal takes back over. They’re no strangers to wild, bedroom romps, and you’re finally going to get some relief for your aching hard [pc.cocksNounSimple " + x + "].");
@@ -4327,7 +3504,7 @@ public function buttFuckPrincessWhileSheFucks():void
 	pc.orgasm();
 	flags["TOOK_PRINCESS_BUTTGINITY"] = 1;
     flags["PRINCESS_DEFEATED"] = 3;
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Harem Polishjob + Princess Bukkake
@@ -4338,7 +3515,7 @@ public function haremPolishjob():void
 	//Get some help jacking your giant dong off on the princess.
 	output("Now that you’re both turned on, there’s only one problem: there’s no way in hell your [pc.cock " + x + "] will fit inside her.");
 	var x:int = pc.biggestCockIndex();
-	if(pc.biggestCockLength() > foes[0].tallness) output(" Hell, it’s bigger than she is!");
+	if(pc.biggestCockLength() > enemy.tallness) output(" Hell, it’s bigger than she is!");
 	output(" But where there’s a will, there’s a way.");
 	output("\n\n<i>“You there!”</i> you call, waving your arm at the assembled slaves. <i>“Get over here. Your mistress is going to need some help taking care of something she started.”</i> To emphasize exactly what you mean");
 	if(pc.isCrotchGarbed()) output(", you pull your [pc.lowerGarments] out of the way, revealing the sheer immensity of your phallic engorgement");
@@ -4442,7 +3619,7 @@ public function haremPolishjob():void
 	processTime(33);
 	pc.orgasm();
 	flags["PRINCESS_DEFEATED"] = 4;
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Generic Orgy Join

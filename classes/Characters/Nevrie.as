@@ -7,7 +7,7 @@
 	import classes.Items.Transformatives.Bovinium;
 	import classes.Items.Transformatives.Nepeta;
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
 	
 	public class Nevrie extends Creature
 	{

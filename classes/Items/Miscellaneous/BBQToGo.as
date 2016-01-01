@@ -7,6 +7,7 @@
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
+	import classes.Engine.Combat.inCombat;
 	
 	public class BBQToGo extends ItemSlotClass
 	{
@@ -82,7 +83,7 @@
 				{
 					healing = target.energyMax() - target.energy();
 				}
-				if(kGAMECLASS.inCombat()) kGAMECLASS.output("\n");
+				if(inCombat()) kGAMECLASS.output("\n");
 				else kGAMECLASS.clearOutput();
 				kGAMECLASS.output(target.capitalA + target.short + " opens a BBQ To-Go box and wolfs down the contents, getting a");
 				if(healing > 0) kGAMECLASS.output(" quick energy boost. (<b>+" + healing + " Energy</b>)");

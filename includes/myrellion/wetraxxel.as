@@ -1,3 +1,5 @@
+import classes.Characters.WetraHound;
+import classes.Characters.WetraxxelBrawler;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
 public function wetraxxelCaveEncounters():void
 {
@@ -42,135 +44,15 @@ public function encounterWetraHound():void
 	output("\n\nThe creature growls, opening its slavering maw into a bestial howl before charging at you!");
 
 	clearMenu();
-	addButton(0, "Next", startCombat, "wetrahound");
-}
-
-public function wetraHoundAI():void
-{
-	var attacks:Array = [];
-
-	attacks.push(wetraHoundBite);
-	if (!pc.hasStatusEffect("Trip")) attacks.push(wetraHoundPunch);
-	attacks.push(wetraHoundOverrun);
-
-	var hit:Boolean = attacks[rand(attacks.length)]();
-
-	if (hit && pc.hasStatusEffect("Bleeding"))
-	{
-		wetraHoundRend();
-	}
-
-	processCombat();
-}
-
-public function wetraHoundBite():Boolean
-{
-	//Moderate piercing damage. Chance to inflict Bleeding (if shields are down only).
-
-	output("The wetra hound leaps forward, its fanged maw wide open. The creature slams into you, attempting to sink its dagger-like teeth into you.");
-	if (!combatMiss(foes[0], pc))
-	{
-		output(" The hound bites your arm, bringing its jaws down around you with crushing weight. You yelp in pain as its fangs sink into you!");
-		if (pc.shields() <= 0)
-		{
-			/* Bleeding
-			v1 = stacks
-			v2 = remaining rounds
-			v3 = base damage
-			*/
-			if (pc.hasStatusEffect("Bleeding"))
-			{
-				pc.addStatusValue("Bleeding", 1, 1);
-				pc.setStatusValue("Bleeding", 2, 3);
-			}
-			else
-			{
-				pc.createStatusEffect("Bleeding", 1, 3, 15, 0, false, "Icon_Crying", "You've been savaged and are bleeding!", true, 0);
-			}
-
-			output(" When the creature pries itself off of you, you watch in horror as blood spurts from the wound. <b>You're bleeding!</b>");
-		}
-		var damage:TypeCollection = new TypeCollection( { kinetic: 15 }, DamageFlag.PENETRATING );
-		damageRand(damage, 15);
-		applyDamage(damage, foes[0], pc);
-		return true;
-	}
-	else
-	{
-		output(" You punch the bastard right in the nose, sending the beast tumbling back away just before it can bite into you!");
-		return false;
-	}
-}
-
-public function wetraHoundPunch():Boolean
-{
-	//Moderate bludgeoning damage, chance to knockdown. 
-
-	output("The wetra hound rises up onto its puny hind legs, bringings its meaty fists up and trying to sucker-punch you!");
-	if (!combatMiss(foes[0], pc))
-	{
-		output(" Pow, right in the kisser! You stagger back under the massive weight of the blow");
-		if (rand(pc.reflexes() / 2) + pc.reflexes() / 2 >= foes[0].reflexes())
-		{
-			output(", and suddenly find yourself tripping on a rocky outcropping. <b>You're knocked prone</b>");
-			pc.createStatusEffect("Trip", 0, 0, 0, 0, false, "Icon_Constrict", "You've been tripped!", true, 0);
-		}
-		output("!");
-
-		var damage:TypeCollection = new TypeCollection( { kinetic: 10 } );
-		damageRand(damage, 15);
-		applyDamage(damage, foes[0], pc);
-		return true;
-	}
-	else
-	{
-		output(" You put up your dukes and block the punch, deflecting the beast's mighty blow!");
-		return false;
-	}
-}
-
-public function wetraHoundOverrun():Boolean
-{
-	//Massive bludgeoning damage, low chance to hit unless knocked down already. 
-
-	output("The wetra hound bellows, a thunderous roar that echoes through the caverns, and charges at you at its full, loping speed.");
-
-	var missMod:Number = 5;
-	if (pc.hasStatusEffect("Trip")) missMod = 1;
-
-	if (!combatMiss(foes[0], pc, -1, missMod))
-	{
-		output(" The beast slams into you head-first, its thick skull-plate acting like a battering ram that sends you flying against the cavern wall. You yelp in pain as the rib-cracking attack lands, and leaves you rolling in agony on the floor.");
-
-		var damage:TypeCollection = new TypeCollection( { kinetic: 20 } );
-		damageRand(damage, 20);
-		applyDamage(damage, foes[0], pc);
-		return true;
-	}
-	else
-	{
-		output(" You tumble out of the way as quick as you can, letting the hound's momentum carry it past you. Its head slams into a wall with what should have been lethal force... but the beast just shakes it off and whirls around, ready to keep fighting!");
-		return false;
-	}
-}
-
-public function wetraHoundRend():void
-{
-	//Gain a Flurry attack against bleeding targets. Add to any other attack:
-
-	output("The wetra hound leaps forward and rakes at you with its claws,");
-	if (!combatMiss(foes[0], pc))
-	{
-		output(" tearing into your flesh");
-
-		var damage:TypeCollection = new TypeCollection( { kinetic: 20 }, DamageFlag.PENETRATING);
-		damageRand(damage, 10);
-		applyDamage(damage, foes[0], pc);
-	}
-	else
-	{
-		output(" narrowly missing you");
-	}
+	
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(new WetraHound());
+	CombatManager.victoryScene(wetraHoundPCVictory);
+	CombatManager.lossScene(wetraHoundPCLoss);
+	CombatManager.displayLocation("WETRA HOUND");
+	
+	addButton(0, "Next", CombatManager.beginCombat);
 }
 
 public function wetraHoundAnimalIntellect():void
@@ -194,7 +76,7 @@ public function wetraHoundPCVictory():void
 	flags["WETRAXXEL_ENCOUNTER_WEIGHT"] += 1;
 
 	clearMenu();
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 public function wetraHoundPCLoss():void
@@ -286,165 +168,16 @@ public function encounterWetraxxelBrawler():void
 		}
 	}
 
-	// StartCombat
 	clearMenu();
-	addButton(0, "Next", startCombat, "wetraxxelbrawler");
-}
-
-public function wetraxxelBrawlerAI():void
-{
-	var attacks:Array = [];
-
-	attacks.push(wetraxxelBrawlerOneTwoPunch);
-	attacks.push(wetraxxelBrawlerBodyslam);
-	if (pc.hasStatusEffect("Trip")) attacks.push(wetraxxelBrawlerElbowDive);
-	if (!pc.hasStatusEffect("Trip")) attacks.push(wetraxxelBrawlerSweepKick);
-	if (!pc.hasStatusEffect("Staggered")) attacks.push(wetraxxelBrawlerDropKick);
-	if (!pc.hasStatusEffect("Trip")) attacks.push(wetraxxelBrawlerLariat);
-
-	attacks[rand(attacks.length)]();
-
-	processCombat();
-}
-
-public function wetraxxelBrawlerOneTwoPunch():void
-{
-	//Basic attack. Two moderate kinetic hits.
-
-	output("The wetraxxel lunges forward, keeping his guard up until the very last second. He strikes out with a quick jab, followed up by a brutal left hook!");
-
-	var numHits:uint = 0;
-	if (!combatMiss(foes[0], pc)) numHits++;
-	if (!combatMiss(foes[0], pc, -1, 2)) numHits++;
-
-	if (numHits == 1) output(" You stagger back under the force of the first blow, though you’re able to dodge the follow-up strike.");
-	else if (numHits == 2) output(" You’re thrown off balance by the force of the first punch, leaving you wide open for a thunderous blow that makes you see stars. You cry out in pain, staggering until you slump up against the cavern wall. Ouch!");
-	else output(" You nimbly duck out of the way, blocking and dodging his strikes.");
-
-	if (numHits > 0)
-	{
-		var damage:TypeCollection = new TypeCollection( { kinetic: numHits * 15 } );
-		damageRand(damage, 15);
-		applyDamage(damage, foes[0], pc);
-	}
-}
-
-public function wetraxxelBrawlerSweepKick():void
-{
-	//Strong kinetic attack. Chance to knock down. Taurs and nagas immune.
-
-	output("The brawler bug swings at you, making you duck back - and immediately follows up by ducking down and trying to sweep your [pc.legs] out from under you.");
-	if (combatMiss(foes[0], pc))
-	{
-		output(" You dodge the strike, leaping back out of the way.");
-	}
-	else
-	{
-		if (pc.isTaur() || pc.isNaga())
-		{
-			output(" His kick strikes you, hard, but due to your bestial anatomy, you’re hardly affected in any way but for a sharp sting from the impact. He hits like a truck!");
-		}
-		else
-		{
-			if (rand(pc.reflexes()) >= pc.reflexesMax() / 3)
-			{
-				output(" The kick takes you completely by surprise, momentarily throwing you off balance and almost tumbling to the ground. You grunt as you narrowly manage to stay upright.");
-			}
-			else
-			{
-				output(" The kick takes you completely by surprise, throwing you off your feet and sending you tumbling to the ground. You grunt as the wind’s knocked out of you, narrowly avoiding cracking your head on a sharp stone nearby. <b>You’re knocked down!</b>");
-				pc.createStatusEffect("Trip", 0, 0, 0, 0, false, "Icon_Constrict", "You've been tripped!", true, 0);
-			}
-		}
-
-		var damage:TypeCollection = new TypeCollection( { kinetic: 20 } );
-		damageRand(damage, 25);
-		applyDamage(damage, foes[0], pc);
-	}
-}
-
-public function wetraxxelBrawlerDropKick():void
-{
-	//Strong kinetic attack. Chance to Stagger on hit (reduces Reflexes and Aim for several turns)
-
-	output("The brawler takes a running start, hurling himself feet-first at you.");
-	if (combatMiss(foes[0], pc))
-	{
-		output(" You duck the attack, letting his weight carry him over your head and into the wall!");
-	}
-	else
-	{
-		output(" His feet slam into your [pc.chest], knocking the wind out of you and sending you stumbling back. It’s agony to catch your breath after that, and you find yourself clutching at your chest, wheezing painfully. <b>Your aim and reflexes are temporarily reduced</b> while you catch your breath.");
-
-		var damage:TypeCollection = new TypeCollection( { kinetic: 18 } );
-		damageRand(damage, 15);
-		applyDamage(damage, foes[0], pc);
-
-		if (pc.hasStatusEffect("Staggered"))
-		{
-			pc.setStatusValue("Staggered", 1, 5);
-		}
-		else
-		{
-			pc.createStatusEffect("Staggered", 5, 0, 0, 0, false, "Icon_OffDown", "You're staggered, and your Aim and Reflexes have been reduced!", true, 0);
-		}
-	}
-}
-
-public function wetraxxelBrawlerLariat():void
-{
-	//Low kinetic attack. Chance to knockdown.
-
-	output("The wetraxxel rushes at you, thrusting his arm out to the side and twisting his body, catching you in a clothesline!");
-	if (combatMiss(foes[0], pc, -1, 2))
-	{
-		output(" You manage to keep your footing, blocking the worst of the brawler’s strike.");
-	}
-	else
-	{
-		output(" His forearm catches you right on the chin, and the weight of the brawler’s body slams you into the ground. You feel the weight of the world slam into the back of your head, rattling you to your core. <b>You’re knocked down!</b>");
-		pc.createStatusEffect("Trip", 0, 0, 0, 0, false, "Icon_Constrict", "You've been tripped!", true, 0);
-		var damage:TypeCollection = new TypeCollection( { kinetic: 10 } );
-		damageRand(damage, 10);
-		applyDamage(damage, foes[0], pc);
-	}
-}
-
-public function wetraxxelBrawlerBodyslam():void
-{
-	//Strong kinetic attack.
-
-	output("The wetraxxel stomps his feet, pounds his chest, and comes rushing at you with a blood-curdling battle-roar. He tucks one of his shoulders and rushes at you, trying to slam into you with the whole weight of his body behind him!");
-	if (combatMiss(foes[0], pc, -1, 2))
-	{
-		output(" You side-step the incoming attack, letting the brawler’s charge carry him straight past you. He only just manages to slow himself down before slamming into a wall himself.");
-	}
-	else
-	{
-		output(" The brawler body-slams you at full force, crashing into your [pc.chest] with rib-cracking impact! You’ll be feeling that for days!");
-		var damage:TypeCollection = new TypeCollection( { kinetic: 18 } );
-		damageRand(damage, 20);
-		applyDamage(damage, foes[0], pc);
-	}
-}
-
-public function wetraxxelBrawlerElbowDive():void
-{
-	//Massive kinetic damage against knocked down PCs, chance to stun.
-
-	output("Looking down at you with a scowl, the wetraxxel cracks his knuckles and lumbers forward. You try and scramble back, but find him much swifter from this position. After a moment of self-assured leering, the wetraxxel lunges forward with a leap, and drops down elbow-first on you!");
-	if (combatMiss(foes[0], pc))
-	{
-		output(" You manage to twist out of the way, letting him elbow-drop the floor. Oof, that’s gotta hurt!");
-	}
-	else
-	{
-		output(" He drops down on you like a hammer, cracking his elbow right into your gut! You cry out as the massive blow connects, leaving your writhing in pain.");
-		
-		var damage:TypeCollection = new TypeCollection( { kinetic: 22 } );
-		damageRand(damage, 25);
-		applyDamage(damage, foes[0], pc);
-	}
+	
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(new WetraxxelBrawler());
+	CombatManager.victoryScene(wetraxxelBrawlerPCVictory);
+	CombatManager.lossScene(wetraxxelBrawlerPCLoss);
+	CombatManager.displayLocation("WETRAXXEL");
+	
+	addButton(0, "Next", CombatManager.beginCombat);
 }
 
 public function wetraxxelBrawlerPCLoss():void
@@ -574,7 +307,7 @@ public function wetraxxelBrawlerPCLossPinnedAndFingeredII():void
 	currentLocation = "1X11";
 	flags["WETRAXXEL_SUBMISSION"] += 1;
 	clearMenu();
-	genericLoss();
+	CombatManager.genericLoss();
 }
 
 public function wetraxxelBrawlerPCLossButtfucking():void
@@ -601,7 +334,7 @@ public function wetraxxelBrawlerPCLossButtfucking():void
 	output("\n\nSure enough, a moment later you hear the wetraxxel ripping aside his loincloth, freeing the heavy package hidden behind it. He shifts his burly hips, swinging his insectile shaft up into the crack of your ass. You can immediately tell it’s utterly inhuman: the wetraxxel’s cock is covered from base to crown in small, uneven nubs, and its crown is split more than an inch deep, forming a v-like fork. It’s hard not to shiver as you feel three trickles of hot wetness brush your [pc.skinFurScales], hinting at three distinct cumslits adorning the brawler’s manhood.");
 	
 	output("\n\nSlowly but surely, the wetraxxel slides his huge member down through your crack until its two-pronged crown aligns with the still-gaping hole of your [pc.asshole]. A whimper escapes your lips as the two tips of his cock press into you, easily snagging the opened rim of your back door and spreading you open for the shaft that follows them.");
-	pc.buttChange(foes[0].biggestCockVolume(), true, true, false);
+	pc.buttChange(enemy.biggestCockVolume(), true, true, false);
 	
 	output("\n\nAs the wetraxxel’s hips start to move, you find yourself shoved up against the wall again, one of his arms firmly planting itself against the back of your shoulders. The other sinks into your [pc.butt], fingers squeezing and pulling at your cheeks. Between his strong hands and his thrusting hips, he keeps you spread wide open as his cock starts to spear you.");
 	
@@ -641,7 +374,7 @@ public function wetraxxelBrawlerPCLossButtfucking():void
 	currentLocation = "1X11";
 	flags["WETRAXXEL_SUBMISSION"] += 1;
 	clearMenu();
-	genericLoss();
+	CombatManager.genericLoss();
 }
 
 public function wetraxxelBrawlerPCLossTonguePolish():void
@@ -694,7 +427,7 @@ public function wetraxxelBrawlerPCLossTonguePolish():void
 	currentLocation = "1X11";
 	flags["WETRAXXEL_SUBMISSION"] += 1;
 	clearMenu();
-	genericLoss();
+	CombatManager.genericLoss();
 
 }
 
@@ -706,7 +439,7 @@ public function wetraxxelBrawlerPCVictory():void
 
 	//Beat dat brawler down. 
 
-	if (foes[0].lust() >= foes[0].lustMax())
+	if (enemy.lust() >= enemy.lustMax())
 	{
 		output("The wetraxxel’s simple loincloth is barely hanging on under the strain of his hardening alien cock. His breath grows heavy and fast, and his steps a little slower. The brawler’s eyes are wholly focused on your sensual movements - in the state he’s in, it’s all to easy for you to sidle on up close to him and, with a few caressing motions, have the brawler eating out of your hands. It’s easy to push him down onto his knees, completely at your mercy.");
 	}
@@ -732,7 +465,7 @@ public function wetraxxelBrawlerPCVictory():void
 	if (flags["WETRAXXEL_SUBMISSION"] >= 4) addButton(3, "Wank Him", wetraxxelBrawlerPCVictoryWankHim, undefined, "Wank Him", "Jerk the brawler off.");
 	else addDisabledButton(3, "Wank Him", "Wank Him", "The table is currently too heavily weighted in the brawlers favor...");
 
-	addButton(14,"Leave",genericVictory);
+	addButton(14,"Leave",CombatManager.genericVictory);
 }
 
 public function wetraxxelBrawlerPCVictoryFuckHisButt():void
@@ -793,7 +526,7 @@ public function wetraxxelBrawlerPCVictoryFuckHisButt():void
 	if (flags["WETRAXXEL_SUBMISSION"] > 0) flags["WETRAXXEL_SUBMISSION"] -= 1;
 	clearMenu();
 	output("\n\n");
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 public function wetraxxelBrawlerPCVictoryRideHim(useVag:Boolean = false):void
@@ -837,8 +570,8 @@ public function wetraxxelBrawlerPCVictoryRideHim(useVag:Boolean = false):void
 	if (useVag) output(" cunt");
 	else output(" ass");
 	output(".");
-	if (useVag) pc.cuntChange(pc.biggestVaginaIndex(), foes[0].biggestCockVolume(), true, true, false);
-	else pc.buttChange(foes[0].biggestCockVolume(), true, true, false);
+	if (useVag) pc.cuntChange(pc.biggestVaginaIndex(), enemy.biggestCockVolume(), true, true, false);
+	else pc.buttChange(enemy.biggestCockVolume(), true, true, false);
 	
 	output("\n\nYou chew on your lip, trying to stifle a cry of pleasure as you sink down on the pillar of wetraxxel cockflesh. It’s an effort not to scream out, letting your voice echo through the corridors and announcing your ecstasy to the world. The wetraxxel makes that decision for you, grabbing your [pc.hips] and yanking you down on his rod: you can’t help but scream as he tries to ram feet of cockflesh into the straining");
 	if (useVag) output(" lips");
@@ -857,8 +590,8 @@ public function wetraxxelBrawlerPCVictoryRideHim(useVag:Boolean = false):void
 	output("Stretching your body to the limit, it doesn’t take long for the gut-straining alien cock to bring you agonizingly close to orgasm. Your motions become faster and faster, almost frenzied - your body becomes ever more hungry for the brawler’s cock, hammering down on his hips until you’re groping at your [pc.chest] and moaning loud enough to let anybody in the caves hear you for miles around.");
 	
 	output("\n\nThe wetraxxel joins you with a gruff grunt of pleasure, and a sudden flood of wet heat into your "+holeTag+" as he cums. With one final push, you take him as deep as you can and surrender yourself to pleasure, letting orgasm wash over you in tidal waves of ecstasy. Your "+holeTag+" clenches powerfully around the wetraxxel’s dick, milking his hot seed out with your every orgasmic motion.");
-	if (useVag) pc.loadInCunt(foes[0], pc.biggestVaginaIndex());
-	else pc.loadInAss(foes[0]);
+	if (useVag) pc.loadInCunt(enemy, pc.biggestVaginaIndex());
+	else pc.loadInAss(enemy);
 	
 	output("\n\nWhile you cum, you feel the brawler’s hands wrap around your hips, holding you steady until your climax has passed, and you slump down against his chest. You find your cheek resting against the lighter plates of the brawler’s abs while you catch your breath, letting the wetraxxel’s cock slowly wilt and slide out of you, leaving a sticky trail of seed that clings to your thighs. You slip off to sleep, held tight against the insectile brute’s chest");
 	if (flags["WETRAXXEL_SUBMISSION"] >= 6) output(", right where you belong...");
@@ -868,7 +601,7 @@ public function wetraxxelBrawlerPCVictoryRideHim(useVag:Boolean = false):void
 	pc.orgasm();
 	if (flags["WETRAXXEL_SUBMISSION"] > 0) flags["WETRAXXEL_SUBMISSION"] -= 1;
 	clearMenu();
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 public function wetraxxelBrawlerPCVictoryWankHim():void
@@ -902,7 +635,7 @@ public function wetraxxelBrawlerPCVictoryWankHim():void
 	
 	output("\n\nThe wetraxxel’s voice comes as a low, graveley grunt that punctuates the silence. His back arches into you, and his cock swells with a sudden surge of seed. You have just enough time to brace for it before the brawler’s orgasm hits you like a tidal wave, flooding your belly with an unstoppable deluge of spunk. You’re forced to swallow as fast as you can to keep up with the torrent, feeling like your whole body is bloating as the apple-sized nuts between the wetraxxel’s legs completely empty into your gut.");
 	if (pc.bellyRating() >= 16) output(" And you thought your belly was straining before...");
-	pc.loadInMouth(foes[0]);
+	pc.loadInMouth(enemy);
 	
 	output("\n\nFinally, the huge bug-man’s orgasm abates. You slide off his cock like a well-used condom, flopping to the ground and drooling spunk from your [pc.lips]. Now that’s a meal you wouldn’t mind getting seconds of...");
 	
@@ -914,7 +647,7 @@ public function wetraxxelBrawlerPCVictoryWankHim():void
 	pc.orgasm();
 	if (flags["WETRAXXEL_SUBMISSION"] > 0) flags["WETRAXXEL_SUBMISSION"] -= 1;
 	clearMenu();
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 public function wetraxxelBrawlerBadEnd():void

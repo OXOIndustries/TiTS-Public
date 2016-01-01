@@ -7,9 +7,14 @@
 	import classes.Items.Melee.RaskvelWrench;
 	import classes.Items.Transformatives.Ruskvel;
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
 	import classes.GameData.CodexManager;
-	import classes.Engine.Combat.DamageTypes.DamageFlag;
+	import classes.Engine.Combat.DamageTypes.*;
+	
+	import classes.Engine.Interfaces.output;
+	import classes.GameData.CombatAttacks;
+	import classes.GameData.CodexManager;
+	import classes.Engine.Combat.*;
 	
 	public class RaskvelFemale extends Creature
 	{
@@ -26,7 +31,7 @@
 			this.capitalA = "The ";
 			this.long = "Dressed in a [INSERT SHIT HERE], the raskvel girl doesn't seem to have any sense of propriety. Her clothes are obviously there to keep her warm during her adventures - not to protect her modesty. Ears so long they hang down past her waist flutter around as she moves, weighted with gaudy piercings, many of them made from small gears or cogs. She wields a wrench almost as big as herself with surprising dexterity. That wrench is no ordinary wrench either, there's a cylindrical barrel down the handle and a trigger mechanism as well. It actually looks like a gun has been built into it! A much smaller looking pistol hangs from her hip.";
 			this.customBlock = "The zil's chitinous armor deflects your attack.";
-			this.plural = false;
+			this.isPlural = false;
 			this.meleeWeapon = new RaskvelWrench();
 			
 			rangedWeapon.baseDamage.kinetic.damageValue = 10;
@@ -175,7 +180,43 @@
 			this.ass.wetnessRaw = 0;
 			this.ass.bonusCapacity += 15;
 			
+			isUniqueInFight = true;
+			btnTargetText = "Raskvel";
+			
+			randomise();
+			
 			this._isLoading = false;
+		}
+		
+		override public function get bustDisplay():String
+		{
+			return "RASKVEL_FEMALE";
+		}
+		
+		private function randomise():void
+		{
+			sexualPreferences.setRandomPrefs(4 + rand(3), 0);
+			
+			//Determine armor sizes
+			if (rand(2) == 0) 
+			{
+				long = "Dressed in a tattered shirt and fluttering skirt, the raskvel girl doesn't seem to have any sense of propriety. Her clothes are obviously there to keep her warm during her adventures - not to protect her modesty. Ears so long they hang down past her waist flutter around as she moves, weighted with gaudy piercings, many of them made from small gears or cogs. She wields a wrench almost as big as herself with surprising dexterity. That wrench is no ordinary wrench either, there's a cylindrical barrel down the handle and a trigger mechanism as well. It actually looks like a gun has been built into it! A much smaller looking pistol hangs from her hip.";
+				armor.longName = "tattered shirt and fluttering skirt";
+			}
+			else 
+			{
+				long = "Dressed in a crotch-less jumpsuit, the raskvel girl doesn't seem to have any sense of propriety. Her clothes are obviously there to keep her warm during her adventures - not to protect her modesty. Ears so long they hang down past her waist flutter around as she moves, weighted with gaudy piercings, many of them made from small gears or cogs. She wields a wrench almost as big as herself with surprising dexterity. That wrench is no ordinary wrench either, there's a cylindrical barrel down the handle and a trigger mechanism as well. It actually looks like a gun has been built into it! A much smaller looking pistol hangs from her hip.";
+				armor.longName = "crotch-less jumpsuit";
+			}
+			ass.loosenessRaw = rand(4) + 1;
+			vaginas[0].loosenessRaw = rand(4) + 1;
+			credits = 100+rand(100);
+
+			if (rand(10) == 0)
+			{
+				inventory.push(new RaskvelWrench());
+			}
+			else if(rand(8) <= 6) inventory.push(new Ruskvel());
 		}
 		
 		public function UpgradeVersion1(dataObject:Object):void
@@ -186,36 +227,96 @@
 			}
 		}
 		
-		override public function prepForCombat():void
+		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{
-			var combatRaskvelFemale:RaskvelFemale = this.makeCopy();
+			var target:Creature = selectTarget(hostileCreatures);
+			if (target == null) return;
 			
-			kGAMECLASS.userInterface.showBust("RASKVEL_FEMALE");
-			kGAMECLASS.setLocation("FIGHT: FEM.\nRASKVEL", "PLANET: TARKUS", "SYSTEM: REDACTED");
-			combatRaskvelFemale.sexualPreferences.setRandomPrefs(4 + rand(3),0);
-			
-			//Determine armor sizes
-			if(rand(2) == 0) {
-				combatRaskvelFemale.long = "Dressed in a tattered shirt and fluttering skirt, the raskvel girl doesn't seem to have any sense of propriety. Her clothes are obviously there to keep her warm during her adventures - not to protect her modesty. Ears so long they hang down past her waist flutter around as she moves, weighted with gaudy piercings, many of them made from small gears or cogs. She wields a wrench almost as big as herself with surprising dexterity. That wrench is no ordinary wrench either, there's a cylindrical barrel down the handle and a trigger mechanism as well. It actually looks like a gun has been built into it! A much smaller looking pistol hangs from her hip.";
-				combatRaskvelFemale.armor.longName = "tattered shirt and fluttering skirt";
-			}
-			else 
+			if(hasStatusEffect("Disarmed"))
 			{
-				combatRaskvelFemale.long = "Dressed in a crotch-less jumpsuit, the raskvel girl doesn't seem to have any sense of propriety. Her clothes are obviously there to keep her warm during her adventures - not to protect her modesty. Ears so long they hang down past her waist flutter around as she moves, weighted with gaudy piercings, many of them made from small gears or cogs. She wields a wrench almost as big as herself with surprising dexterity. That wrench is no ordinary wrench either, there's a cylindrical barrel down the handle and a trigger mechanism as well. It actually looks like a gun has been built into it! A much smaller looking pistol hangs from her hip.";
-				combatRaskvelFemale.armor.longName = "crotch-less jumpsuit";
+				raskvelPunch(target);
 			}
-			combatRaskvelFemale.ass.loosenessRaw = rand(4) + 1;
-			combatRaskvelFemale.vaginas[0].loosenessRaw = rand(4) + 1;
-			combatRaskvelFemale.credits = 100+rand(100);
-
-			// Codex shit
-			CodexManager.unlockEntry("Raskvel");
-			if (rand(10) == 0)
+			else if(hasStatusEffect("Wrench Charge")) 
 			{
-				combatRaskvelFemale.inventory.push(new RaskvelWrench());
+				CombatAttacks.WrenchAttack.execute(alliedCreatures, hostileCreatures, this, target);
 			}
-			else if(rand(8) <= 6) combatRaskvelFemale.inventory.push(new Ruskvel());
-			kGAMECLASS.foes.push(combatRaskvelFemale);
+			else
+			{
+				if(rand(4) == 0 && target.hasCock()) raskvelGirlsTeasingCockwielders(target);
+				else if(rand(3) == 0) CombatAttacks.WrenchAttack.execute(alliedCreatures, hostileCreatures, this, target);
+				else if(rand(2) == 0) CombatAttacks.AphrodisiacDarts.execute(alliedCreatures, hostileCreatures, this, target);
+				else raskvelFemShotgun(target);
+			}
+		}
+		
+		private function raskvelGirlsTeasingCockwielders(target:Creature):void
+		{
+			if(rand(4) == 0) 
+			{
+				output("The short female swivels to show you her rump, shaking it up and down to show off her puffed-up pussy and second clit from behind. She shakes and wobbles, bouncing her cheeks enticingly for your enjoyment while asking, \"<i>Come over here and give me some eggs, and we can forget all about this.</i>\"");
+				applyDamage(new TypeCollection( { tease: 7 + rand(3) } ), this, target, "minimal");
+			}
+			//#2
+			else if(rand(3) == 0)
+			{
+				output("Pulling down her top to expose her nipples, " + a + short + " asks, \"<i>Still want to fight? You could always pay me in sperm, you know.</i>\"");
+				applyDamage(new TypeCollection( { tease: 6 + rand(7) } ), this, target, "minimal");
+			}
+			//#3
+			else if(rand(2) == 0) 
+			{
+				output("The raskvel playfully scampers up and pivots, resting her butt against your crotch. She squeezes her surprisingly powerfully thighs to make her cushy little asscheeks wobble back and forth against");
+				if (!target.isCrotchGarbed()) output(" [pc.oneCock]");
+				else output(" [pc.oneCock] through your [pc.lowerGarments]");
+				output(". \"<i>Come play, we can forget about the money.</i>\"");
+				applyDamage(new TypeCollection( { tease: 10 + rand(4) } ), this, target, "minimal");
+			}
+			//#4
+			else
+			{
+				output("Dropping her wrench, the little creature launches herself towards you, legs akimbo.");
+				//Miss
+				if(combatMiss(this, target)) output(" You step aside, forcing her to land hard and circle back to her weapon with a frown.");
+				//Hit
+				else
+				{
+					output(" Her trajectory carries her square into your face. The lizard-girl's hot cunt squishes up against your [pc.face] as her legs circle behind your neck, and she languidly grinds herself on your face while running her hands ");
+					if(target.hasHair()) output("through your [pc.hair]");
+					else output("over your head");
+					output(". She detaches before you can think to get her off of you, leaving you with the taste of her femininity on your lips and the thought sex on your mind.");
+					applyDamage(new TypeCollection( { tease: 15 + rand(6) } ), this, target, "minimal");
+				}
+			}
+		}
+		
+		private function raskvelFemShotgun(target:Creature):void
+		{
+			output(capitalA + short + " presses a button on the side of her wrench, and you hear a shell slide home. A moment later she points it your way and pulls the trigger. Ka-BLAM! The report is loud enough to echo for miles.");
+			//Miss
+			if(rangedCombatMiss(this, target)) output(" The pellets fly wide.");
+			//Hit
+			else
+			{
+				output("\nYou are struck by the projectiles!");
+				var damage:TypeCollection = rangedDamage();
+				damageRand(damage, 15);
+				applyDamage(damage, this, target);
+			}
+		}
+		
+		private function raskvelPunch(target:Creature):void
+		{
+			output("Unmoved by being disarmed, the petite raskvel balls her fists and charges you.");
+			if(rangedCombatMiss(this, target))
+			{
+				output("\nYou slide to the side of her clumsy swings.");
+			}
+			else
+			{
+				var damage:TypeCollection = new TypeCollection( { kinetic: physique() / 2});
+				damageRand(damage, 15);
+				applyDamage(damage, this, target);
+			}
 		}
 	}
 }

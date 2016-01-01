@@ -7,6 +7,12 @@
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.kGAMECLASS;
 	
+	import classes.GameData.CombatAttacks;
+	import classes.GameData.CombatManager;
+	import classes.Engine.Combat.DamageTypes.*;
+	import classes.Engine.Combat.*; 
+	import classes.Engine.Interfaces.output;
+	
 	public class DoctorLash extends Creature
 	{	
 		//constructor
@@ -23,7 +29,7 @@
 			this.long = "Doctor Lash is a six foot tall alien of indeterminate build; his labcoat conceals the bulk of his musculature. There’s no hiding his six arms - or the glowing weapons clutched in each of his long-fingered hands. His imperious gaze is channeled through a pair of glowing goggles, occasionally shifting to different colors as they cycle through various spectrums. There is not a shred of mercy upon his gray, unfeeling face.";
 			this.customDodge = "Dr. Lash twists aside with surprising ease.";
 			this.customBlock = "Obvious placeholder is obvious.";
-			this.plural = false;
+			this.isPlural = false;
 			
 			this.rangedWeapon = new PlasmaPistol();
 			this.rangedWeapon.hasRandomProperties = true;
@@ -167,21 +173,27 @@
 			this.createPerk("Multiple Attacks",5,0,0,0,"");
 			this.createPerk("Multiple Shots",5,0,0,0,"");
 			this.createStatusEffect("Flee Disabled",0,0,0,0,true,"","",false,0);
-			createStatusEffect("Disarm Immune",0,0,0,0,true,"","",false,0);
-		}	
-		override public function setDefaultSexualPreferences():void
-		{
+			createStatusEffect("Disarm Immune", 0, 0, 0, 0, true, "", "", false, 0);
+			
+			isUniqueInFight = true;
+			btnTargetText = "Dr. Lash";
 			sexualPreferences.setRandomPrefs(0,1);
-		}
-		override public function prepForCombat():void
+			
+			_isLoading = false;
+		}	
+		
+		override public function get bustDisplay():String
 		{
-			var combatDane:DoctorLash = this.makeCopy();
+			return "DR_LASH";
+		}
+		
+		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
+		{
+			var target:Creature = selectTarget(hostileCreatures);
+			if (target == null) return;
 			
-			kGAMECLASS.userInterface.showBust("DR_LASH");
-			kGAMECLASS.showName("FIGHT:\nDR. LASH");
-			combatDane.setDefaultSexualPreferences();
-			
-			kGAMECLASS.foes.push(combatDane);
+			output("<i>“Goodbye,”</i> the doctor bids.\n");
+			CombatAttacks.RangedAttack(this, target);
 		}
 	}
 }

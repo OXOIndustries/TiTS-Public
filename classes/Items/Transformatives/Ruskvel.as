@@ -7,6 +7,7 @@
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
+	import classes.Engine.Interfaces.author;
 	
 	public class Ruskvel extends ItemSlotClass
 	{
@@ -73,7 +74,7 @@
 				if(pc.race() != "raskvel" && pc.race() != "rask-morph" && pc.race() != "raskvel-morph")
 				{
 					kGAMECLASS.output("You take a cautious bite out of the dumpling and make a face. How can something so rich be so bland at the same time? And what will finishing it do to your waistline? You suppose it gives you a reason to keep moving, at any rate. You can practically feel your heart beating faster as you polish off the rest of the pale, greasy stodge.");
-					kGAMECLASS.author("Nonesuch");
+					author("Nonesuch");
 					//HP GAINZ
 					//40% chance of 10% HP gain, 80% chance of 10 energy gain if not raskvel morph
 					//No, that's dumb. We do it Fen's way. Out of combat healing item, soz always helps.

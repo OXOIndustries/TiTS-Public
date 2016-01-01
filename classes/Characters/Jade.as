@@ -6,7 +6,7 @@
 	import classes.Items.Transformatives.OvirAce;
 	import classes.Items.Transformatives.OvirPositive;
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
 	
 	public class Jade extends Creature
 	{
@@ -24,7 +24,7 @@
 			this.long = "PLACE HOLDER!";
 			this.customDodge = "PLACE HOLDER!";
 			this.customBlock = "PLACE HOLDER!";
-			this.plural = false;
+			this.isPlural = false;
 			
 			this.meleeWeapon.attackVerb = "claw";
 			this.meleeWeapon.longName = "claws";

@@ -8,7 +8,7 @@
 	import classes.Items.Miscellaneous.Hoverboard;
 	import classes.Items.Apparel.Smartclothes;
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
 	import classes.GameData.CodexManager;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	
@@ -38,7 +38,7 @@
 			this.capitalA = "";
 			this.long = "PLACEHOLDER";
 			this.customBlock = "BLOOP";
-			this.plural = false;
+			this.isPlural = false;
 			this.meleeWeapon = new RaskvelWrench();
 			
 			rangedWeapon.baseDamage.kinetic.damageValue = 10;

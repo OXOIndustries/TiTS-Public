@@ -10,7 +10,7 @@
 	import classes.Items.Armor.NyreanChain;
 	import classes.Items.Accessories.MuskRepel;
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
 	
 	public class Seifyn extends Creature
 	{

@@ -1567,8 +1567,8 @@ public function gooShrinkBreastsMenu():void
 		else boobCost = (Math.round((boobsVolumeCheesed(pc.breastRows[x].breastRatingRaw) - boobsVolumeCheesed(pc.breastRows[x].breastRatingRaw-2)) * 0.75)) * pc.breastRows[x].breasts;
 		//Display costs
 		output2("\n" + (x+1) + ": [pc.breastCupSize " + x + "] - <b>Biomass Gain: </b>" + boobCost + " mLs");
-		if(pc.breastRows[0].breastRating() >= 1) addGhostButton(x,upperCase(num2Text(x+1)),shrinkASpecificTitRow,x,StringUtil.capitalize(num2Ordinal(x + 1)) + " Row","Shrink this row.\n\n<b>" + boobCost + " mLs Biomass Gain</b>");
-		else addDisabledGhostButton(x,upperCase(num2Text(x+1)),StringUtil.capitalize(num2Ordinal(x + 1)) + " Row","You can't make this row any smaller.");
+		if(pc.breastRows[0].breastRating() >= 1) addGhostButton(x,StringUtil.upperCase(num2Text(x+1)),shrinkASpecificTitRow,x,StringUtil.capitalize(num2Ordinal(x + 1)) + " Row","Shrink this row.\n\n<b>" + boobCost + " mLs Biomass Gain</b>");
+		else addDisabledGhostButton(x,StringUtil.upperCase(num2Text(x+1)),StringUtil.capitalize(num2Ordinal(x + 1)) + " Row","You can't make this row any smaller.");
 	}
 	showBiomass();
 	addGhostButton(14,"Back",gooChestCustomizer);
@@ -1636,8 +1636,8 @@ public function gooExpandBreastsMenu():void
 		boobCost = gooExpandBreastsCost(x);
 		//Display costs
 		output2("\n" + (x+1) + ": [pc.breastCupSize " + x + "] - <b>Biomass cost: </b>" + boobCost + " mLs");
-		if(gooBiomass() >= boobCost) addGhostButton(x,upperCase(num2Text(x+1)),expandASpecificTitRow,x,StringUtil.capitalize(num2Ordinal(x + 1)) + " Row","Enlarge this row.\n\n<b>" + boobCost + " mLs Biomass</b>");
-		else addDisabledGhostButton(x,upperCase(num2Text(x+1)),StringUtil.capitalize(num2Ordinal(x + 1)) + " Row","You don't have enough biomass to enlarge this row.\n\n<b>" + boobCost + " mLs Biomass</b>");
+		if(gooBiomass() >= boobCost) addGhostButton(x,StringUtil.upperCase(num2Text(x+1)),expandASpecificTitRow,x,StringUtil.capitalize(num2Ordinal(x + 1)) + " Row","Enlarge this row.\n\n<b>" + boobCost + " mLs Biomass</b>");
+		else addDisabledGhostButton(x,StringUtil.upperCase(num2Text(x+1)),StringUtil.capitalize(num2Ordinal(x + 1)) + " Row","You don't have enough biomass to enlarge this row.\n\n<b>" + boobCost + " mLs Biomass</b>");
 	}
 	showBiomass();
 	addGhostButton(14,"Back",gooChestCustomizer);
@@ -2034,12 +2034,12 @@ public function reshapeACaaaawk():void
 		if(pc.cocks[x].hasFlag(GLOBAL.FLAG_GOOEY))
 		{
 			output2("\n" + (x+1) + ": [pc.CockShape " + x + "]");
-			addGhostButton(x,upperCase(num2Text(x+1)),reshapeAGooCawkForReaaaaal,x,StringUtil.capitalize(num2Ordinal(x + 1)) + " Cock","Shift the shape of this penis.\n\n<b>100 mLs Biomass</b>");
+			addGhostButton(x,StringUtil.upperCase(num2Text(x+1)),reshapeAGooCawkForReaaaaal,x,StringUtil.capitalize(num2Ordinal(x + 1)) + " Cock","Shift the shape of this penis.\n\n<b>100 mLs Biomass</b>");
 		}
 		else
 		{
 			output2("\n" + (x+1) + ": [pc.CockShape " + x + "] - <b>Not goo</b>");
-			addDisabledGhostButton(x,upperCase(num2Text(x+1)),StringUtil.capitalize(num2Ordinal(x + 1)) + " Cock","This penis isn't made of goo.");	
+			addDisabledGhostButton(x,StringUtil.upperCase(num2Text(x+1)),StringUtil.capitalize(num2Ordinal(x + 1)) + " Cock","This penis isn't made of goo.");	
 		}
 	}
 	showBiomass();
@@ -2184,14 +2184,14 @@ public function removeGooCockRoot():void
 		if(pc.cocks[x].hasFlag(GLOBAL.FLAG_GOOEY))
 		{
 			output2("\n" + (x+1) + ": [pc.Cock " + x + "]");
-			if(!pc.removeCockUnlocked(x, 1)) addDisabledGhostButton(x,upperCase(num2Text(x+1)),StringUtil.capitalize(num2Ordinal(x + 1)) + " Cock","Something is preventing this penis from being removed.");
-			else addGhostButton(x,upperCase(num2Text(x+1)),removeDaChosenGooCock,x,StringUtil.capitalize(num2Ordinal(x + 1)) + " Cock","Remove this penis.");
+			if(!pc.removeCockUnlocked(x, 1)) addDisabledGhostButton(x,StringUtil.upperCase(num2Text(x+1)),StringUtil.capitalize(num2Ordinal(x + 1)) + " Cock","Something is preventing this penis from being removed.");
+			else addGhostButton(x,StringUtil.upperCase(num2Text(x+1)),removeDaChosenGooCock,x,StringUtil.capitalize(num2Ordinal(x + 1)) + " Cock","Remove this penis.");
 			
 		}
 		else
 		{
 			output2("\n" + (x+1) + ": [pc.Cock " + x + "] - <b>Not goo</b>");
-			addDisabledGhostButton(x,upperCase(num2Text(x+1)),StringUtil.capitalize(num2Ordinal(x + 1)) + " Cock","This penis isn't made of goo.");	
+			addDisabledGhostButton(x,StringUtil.upperCase(num2Text(x+1)),StringUtil.capitalize(num2Ordinal(x + 1)) + " Cock","This penis isn't made of goo.");	
 		}
 	}
 	showBiomass();
@@ -2256,12 +2256,12 @@ public function lengthenGooCock():void
 		{
 			cockCost = costGooCockLengthen(x, 2);
 			output2("\n" + (x+1) + ": [pc.Cock " + x + "]");
-			addGhostButton(x,upperCase(num2Text(x+1)),lengthenSelectedGooCock,x,StringUtil.capitalize(num2Ordinal(x + 1)) + " Cock","Lengthen this penis.\n\n<b>" + cockCost + " mLs Biomass</b>");
+			addGhostButton(x,StringUtil.upperCase(num2Text(x+1)),lengthenSelectedGooCock,x,StringUtil.capitalize(num2Ordinal(x + 1)) + " Cock","Lengthen this penis.\n\n<b>" + cockCost + " mLs Biomass</b>");
 		}
 		else
 		{
 			output2("\n" + (x+1) + ": [pc.Cock " + x + "] - <b>Not goo</b>");
-			addDisabledGhostButton(x,upperCase(num2Text(x+1)),StringUtil.capitalize(num2Ordinal(x + 1)) + " Cock","This penis isn't made of goo.");	
+			addDisabledGhostButton(x,StringUtil.upperCase(num2Text(x+1)),StringUtil.capitalize(num2Ordinal(x + 1)) + " Cock","This penis isn't made of goo.");	
 		}
 	}
 	showBiomass();
@@ -2310,12 +2310,12 @@ public function shortenADick():void
 		if(pc.cocks[x].hasFlag(GLOBAL.FLAG_GOOEY))
 		{
 			output2("\n" + (x+1) + ": [pc.Cock " + x + "]");
-			addGhostButton(x,upperCase(num2Text(x+1)),shortenSelectedCock,x,StringUtil.capitalize(num2Ordinal(x + 1)) + " Cock","Shorten this penis.");
+			addGhostButton(x,StringUtil.upperCase(num2Text(x+1)),shortenSelectedCock,x,StringUtil.capitalize(num2Ordinal(x + 1)) + " Cock","Shorten this penis.");
 		}
 		else
 		{
 			output2("\n" + (x+1) + ": [pc.Cock " + x + "] - <b>Not goo</b>");
-			addDisabledGhostButton(x,upperCase(num2Text(x+1)),StringUtil.capitalize(num2Ordinal(x + 1)) + " Cock","This penis isn't made of goo.");	
+			addDisabledGhostButton(x,StringUtil.upperCase(num2Text(x+1)),StringUtil.capitalize(num2Ordinal(x + 1)) + " Cock","This penis isn't made of goo.");	
 		}
 	}
 	showBiomass();
@@ -2428,7 +2428,7 @@ public function vaginaGooRootMenu():void
 			if(!pc.removeVaginaUnlocked(0, 1)) addDisabledGhostButton(5,"Remove Vag","Remove Vagina","Something is preventing your vagina from being removed.");
 			else if(pc.isPregnant(0)) addDisabledGhostButton(5,"Remove Vag","Remove Vagina","Your vagina is pregnant and cannot be removed.");
 			else addGhostButton(5,"Remove Vag",removeAVag,0,"Remove Vagina","Remove your vagina.");
-		}
+	}
 		else addDisabledGhostButton(5,"Remove Vag","Remove Vagina","Your vagina isn't made of goo and cannot be removed.");
 	}
 	else if(!pc.hasVagina()) addDisabledGhostButton(5,"Remove Vag","Remove Vag","You have no vagina to remove.");
@@ -2441,7 +2441,7 @@ public function vaginaGooRootMenu():void
 			if(!pc.removeVaginaUnlocked(0, 1)) addDisabledGhostButton(5,"Remove Vag 1","Remove First Vagina","Something is preventing this vagina from being removed.");
 			else if(pc.isPregnant(0)) addDisabledGhostButton(5,"Remove Vag 1","Remove First Vagina","Your first vagina is pregnant and cannot be removed.");
 			else addGhostButton(5,"Remove Vag 1",removeAVag,0,"Remove First Vagina","Remove your first vagina.");
-		}
+	}
 		else addDisabledGhostButton(5,"Remove Vag 1","Remove First Vagina","This vagina isn't made of goo and cannot be removed.");
 		if(pc.vaginas[1].hasFlag(GLOBAL.FLAG_GOOEY))
 		{
@@ -2459,20 +2459,20 @@ public function vaginaGooRootMenu():void
 			if(!pc.removeVaginaUnlocked(2, 1)) addDisabledGhostButton(7,"Remove Vag 3","Remove Third Vagina","Something is preventing this vagina from being removed.");
 			else if(pc.isPregnant(2)) addDisabledGhostButton(7,"Remove Vag 3","Remove Third Vagina","Your third vagina is pregnant and cannot be removed.");
 			else addGhostButton(7,"Remove Vag 3",removeAVag,2,"Remove Third Vagina","Remove your third vagina.");
-		}
+	}
 		else addDisabledGhostButton(7,"Remove Vag 3","Remove Third Vagina","This vagina isn't made of goo and cannot be removed.");
 	}
 	//else addDisabledGhostButton(7,"Remove Vag 3","Remove Third Vagina","You have no vagina to remove.");
 	
-	var numGooVags:Number = 0;
+		var numGooVags:Number = 0;
 	var numPregVags:Number = 0;
 	var numPregTotal:Number = pc.totalPregnancies();
 	if(pc.isPregnant(3)) numPregTotal--;
-	for(x = 0; x < pc.totalVaginas(); x++)
-	{
-		if(pc.vaginas[x].hasFlag(GLOBAL.FLAG_GOOEY)) numGooVags++;
+		for(x = 0; x < pc.totalVaginas(); x++)
+		{
+			if(pc.vaginas[x].hasFlag(GLOBAL.FLAG_GOOEY)) numGooVags++;
 		if(pc.isPregnant(x)) numPregVags++;
-	}
+		}
 	if(numPregTotal > pc.totalVaginas())
 	{
 		if(pc.totalVaginas() == 0) addGhostButton(8,"Fix Womb",fixAllVags,(numPregTotal - pc.totalVaginas()),"Fix Womb","You seem to have a pregnant womb and no vaginas... You should fix this before something goes horribly wrong!\n\n<b>500 mLs Biomass</b>");
@@ -2563,12 +2563,12 @@ public function addClitGooMenu():void
 		if(pc.vaginas[x].hasFlag(GLOBAL.FLAG_GOOEY))
 		{
 			output2("\n" + (x+1) + ": [pc.Vagina " + x + "] - " + pc.vaginas[x].clits + " clits");
-			addGhostButton(x,upperCase(num2Text(x+1)),addGooClitNau,x,StringUtil.capitalize(num2Ordinal(x + 1)) + " Vagina","Grow a clit for this vagina.\n\n<b>100 mLs Biomass</b>");
+			addGhostButton(x,StringUtil.upperCase(num2Text(x+1)),addGooClitNau,x,StringUtil.capitalize(num2Ordinal(x + 1)) + " Vagina","Grow a clit for this vagina.\n\n<b>100 mLs Biomass</b>");
 		}
 		else
 		{
 			output2("\n" + (x+1) + ": [pc.Vagina " + x + "] - <b>Not goo</b>");
-			addDisabledGhostButton(x,upperCase(num2Text(x+1)),upperCase(num2Text(x+1)),"This vagina isn't made of goo and cannot be morphed that way.");
+			addDisabledGhostButton(x,StringUtil.upperCase(num2Text(x+1)),StringUtil.upperCase(num2Text(x+1)),"This vagina isn't made of goo and cannot be morphed that way.");
 		}
 	}
 	addGhostButton(14,"Back",gooCrotchCustomizer);
@@ -2599,13 +2599,13 @@ public function removeGooClitVagSelector():void
 		if(pc.vaginas[x].hasFlag(GLOBAL.FLAG_GOOEY))
 		{
 			output2("\n" + (x+1) + ": [pc.Vagina " + x + "] - " + pc.vaginas[x].clits + " clits");
-			if(pc.vaginas[x].clits > 1) addGhostButton(x,upperCase(num2Text(x+1)),removingClitSurgeryGoo,x,StringUtil.capitalize(num2Ordinal(x + 1)) + " Vagina","Remove a clit for this vagina.");
-			else addDisabledGhostButton(x,upperCase(num2Text(x+1)),StringUtil.capitalize(num2Ordinal(x + 1)) + " Vagina","You cannot remove your last clit for this vagina. It just seems... wrong without it.");
+			if(pc.vaginas[x].clits > 1) addGhostButton(x,StringUtil.upperCase(num2Text(x+1)),removingClitSurgeryGoo,x,StringUtil.capitalize(num2Ordinal(x + 1)) + " Vagina","Remove a clit for this vagina.");
+			else addDisabledGhostButton(x,StringUtil.upperCase(num2Text(x+1)),StringUtil.capitalize(num2Ordinal(x + 1)) + " Vagina","You cannot remove your last clit for this vagina. It just seems... wrong without it.");
 		}
 		else
 		{
 			output2("\n" + (x+1) + ": [pc.Vagina " + x + "] - <b>Not goo</b>");
-			addDisabledGhostButton(x,upperCase(num2Text(x+1)),upperCase(num2Text(x+1)),"This vagina isn't made of goo and cannot be morphed that way.");
+			addDisabledGhostButton(x,StringUtil.upperCase(num2Text(x+1)),StringUtil.upperCase(num2Text(x+1)),"This vagina isn't made of goo and cannot be morphed that way.");
 		}
 	}
 	showBiomass();
@@ -2638,12 +2638,12 @@ public function shiftACuntYaCunt():void
 		if(pc.vaginas[x].hasFlag(GLOBAL.FLAG_GOOEY))
 		{
 			output2("\n" + (x+1) + ": [pc.Vagina " + x + "] - " + pc.vaginas[x].clits + " clits");
-			addGhostButton(x,upperCase(num2Text(x+1)),pickNewCuntType,x,StringUtil.capitalize(num2Ordinal(x + 1)) + " Vagina","Shift the shape of this vagina.\n\n<b>200 mLs Biomass</b>");
+			addGhostButton(x,StringUtil.upperCase(num2Text(x+1)),pickNewCuntType,x,StringUtil.capitalize(num2Ordinal(x + 1)) + " Vagina","Shift the shape of this vagina.\n\n<b>200 mLs Biomass</b>");
 		}
 		else
 		{
 			output2("\n" + (x+1) + ": [pc.Vagina " + x + "] - <b>Not goo</b>");
-			addDisabledGhostButton(x,upperCase(num2Text(x+1)),StringUtil.capitalize(num2Ordinal(x + 1)) + " Vagina","This vagina isn't made of goo and cannot be morphed.");
+			addDisabledGhostButton(x,StringUtil.upperCase(num2Text(x+1)),StringUtil.capitalize(num2Ordinal(x + 1)) + " Vagina","This vagina isn't made of goo and cannot be morphed.");
 		}
 	}
 	addGhostButton(14,"Back",vaginaGooRootMenu);

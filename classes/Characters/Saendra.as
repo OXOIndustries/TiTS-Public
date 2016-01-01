@@ -11,6 +11,14 @@ package classes.Characters
 	import classes.Items.Protection.JoyCoPremiumShield;
 	import classes.VaginaClass;
 	
+	import classes.Engine.Combat.*;
+	import classes.Engine.Combat.DamageTypes.*;
+	import classes.Engine.Interfaces.output;
+	import classes.GameData.CombatAttacks;
+	import classes.GameData.CombatManager;
+	
+	import classes.Engine.Utility.weightedRand;
+	
 	/**
 	 * Notes:
 	 * When/if piercing is implemented, she has a row of silver studs in her ears from base to tip (Fall of the Phoenix doc)
@@ -29,10 +37,12 @@ package classes.Characters
 			this.originalRace = "ausar-kaithrit halfbreed";
 			this.a = "";
 			this.capitalA = "";
-			this.long = "";
+			// old descript:
+			// long = "";
+			this.long = "Saendra lithely snakes out of cover from time to time, taking potshots at anything and everything she can sight quickly enough before ducking back to safety.";
 			this.customDodge = "Saen casually sidesteps out of the way.";
 			this.customBlock = "Obvious placeholder is obvious.";
-			this.plural = false;
+			this.isPlural = false;
 			
 			this.meleeWeapon = new MechaFist();
 			this.rangedWeapon = new HammerPistol();
@@ -134,6 +144,8 @@ package classes.Characters
 			this.minutesSinceCum = 3200;
 			this.timesCum = 487;
 			
+			isUniqueInFight = true;
+			
 			this._isLoading = false;
 		}
 		
@@ -166,6 +178,11 @@ package classes.Characters
 			this.refractoryRate = 10;
 		}
 		
+		override public function get bustDisplay():String
+		{
+			return "SAENDRA";
+		}
+		
 		public function UpgradeVersion1(dataObject:Object):void
 		{
 			// Clear out this shit and let the default constructor handle it.
@@ -175,6 +192,208 @@ package classes.Characters
 			delete dataObject.resistances;
 			delete dataObject.bonusResistances;
 			delete dataObject.bonusLustVuln;
+		}
+		
+		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
+		{
+			if (CombatManager.hasEnemyOfClass(PhoenixPirates))
+			{
+				fallOfThePhoenixAI(alliedCreatures, hostileCreatures);
+			}
+			else if (CombatManager.hasEnemyOfClass(SX1GroupPirates))
+			{
+				expackAI(alliedCreatures, hostileCreatures);
+			}
+		}
+		
+		private function expackAI(alliedCreatures:Array, hostileCreatures:Array):void
+		{
+			if (hasStatusEffect("Blinded") || hasStatusEffect("Stunned")) return; // Shouldn't be required, adding it for debug
+			
+			var pc:Creature;
+			
+			for (var i:int = 0; i < alliedCreatures.length; i++)
+			{
+				if (alliedCreatures[i] is PlayerCharacter) pc = alliedCreatures[i] as Creature;
+			}
+			
+			var target:Creature = selectTarget(hostileCreatures);
+			if (target == null) return; // Early exits like this let us skip AI output
+			// Consider: Player always takes first turn, player defeats last enemy
+			// Remainder of combat round executes (ie helper AI runs)
+			
+			var sHackAvail:Boolean = !hasStatusEffect("Shield Hack Cooldown");
+			var sBoostAvail:Boolean = !hasStatusEffect("Shield Boost Cooldown");
+			var sDisarmAvail:Boolean = !hasStatusEffect("Disarm Cooldown") && !target.hasStatusEffect("Disarmed");
+			
+			var attacks:Array = [];
+			attacks.push( { v: x1HammerPistol, w: 40 } );
+			attacks.push( { v: x1LowBlow, w:20 } );
+			
+			if (target.shields() > 0 && sHackAvail) attacks.push( { v: x1ShieldHack, w: 25 } );
+			if (((shields() < 0.5 * shieldsMax()) || (pc.shields() < 0.5 * pc.shieldsMax())) && sBoostAvail) attacks.push( { v: x1ShieldBooster, w: 25 } );
+			if (sDisarmAvail) attacks.push( { v: x1DisarmingShot, w: 15 } );
+			
+			var selection:Function = weightedRand(attacks);
+			if (selection == x1ShieldBooster) selection(alliedCreatures);
+			else if (selection == x1ShieldHack) selection(target, hostileCreatures);
+			else selection(target);
+		}
+		
+		private function x1DisarmingShot(target:Creature):void
+		{
+			//Disarming Shot
+			output("Saendra takes careful aim with her Hammer pistol, aiming for ");
+			if (CombatManager.multipleEnemies()) output(" one of ");
+			output(target.a + target.short);
+			output("’s weapon. She squeezes off a shot");
+
+			if (rand(3) == 0)
+			{
+				output(" and the target's weapon goes flying to the ground in a shower of sparks! Damn, she's a deadshot!");
+				target.createStatusEffect("Disarmed",4,0,0,0,false,"Blocked","Cannot use normal melee or ranged attacks!",true,0);
+
+				applyDamage(new TypeCollection({kinetic: 7}), this, target, "minimal");
+			}
+			else
+			{
+				output(", but just barely misses.");
+			}
+
+			target.createStatusEffect("Disarm Cooldown", 4, 0, 0, 0, false);
+		}
+		
+		private function x1ShieldBooster(alliedCreatures:Array):void
+		{
+			// target will be the one with the worst current shield state
+			var target:Creature = null;
+			
+			for (var i:int = 0; i < alliedCreatures.length; i++)
+			{
+				if (target == null) target = alliedCreatures[i] as Creature;
+				else
+				{
+					var poss:Creature = alliedCreatures[i] as Creature;
+					
+					// If below the critical point
+					if (poss.shields() < 0.5 * poss.shieldsMax())
+					{
+						// If this possibles shield perc is worse than the currents, switch
+						if (poss.shields() / poss.shieldsMax() < target.shields() / target.shieldsMax())
+						{
+							target = poss;
+						}
+					}
+				}
+			}
+			
+			// Shield Booster
+			output("Saen waves her mechanical arm " + (target is PlayerCharacter ? "at you" : "over herself") + " and the metallic probe shoots out, jacking into " + (target is PlayerCharacter ? "your" : "her") + " shield generator. " + (target is PlayerCharacter ? "You breath" : "She breathes") + " a sigh of relief as " + (target is PlayerCharacter ? "your" : "her") + " shields are restored!");
+
+			target.shields(target.shieldsMax() * 0.25);
+			target.createStatusEffect("Shield Boost Cooldown", 5, 0, 0, 0, false);
+		}
+		
+		private function x1ShieldHack(target:Creature, hostileCreatures:Array):void
+		{
+			var damage:DamageResult = applyDamage(new TypeCollection({ electric: 15 }, DamageFlag.ONLY_SHIELD), this, target, "suppress");
+			// Valeria Shield Hack
+			output("Saendra taps on her wrist, yanking Valeria out of her digital hidey-hole and aiming the fluttery holo-avatar at");
+			if (CombatManager.multipleEnemies()) output(" one of ");
+			output(target.a + target.short + ". A concussive wave blasts from her target's shield belt as it's overloaded,");
+			if (CombatManager.multipleEnemies()) output(" a chain of energy shooting forth and connecting to his compatriots");
+			if (target.shields() <= 0) output(" completely");
+			else output(" nearly");
+			output(" burning out!");
+			outputDamage(damage);
+
+			createStatusEffect("Shield Hack Cooldown", 5, 0, 0, 0, false);
+			
+			for (var i:int = 0; i < hostileCreatures.length; i++)
+			{
+				var cTarget:Creature = hostileCreatures[i] as Creature;
+				if (cTarget != target)
+				{
+					applyDamage(new TypeCollection( { electric: 5 }, DamageFlag.ONLY_SHIELD), this, cTarget, "suppress");
+				}
+			}
+		}
+		
+		private function x1LowBlow(target:Creature):void
+		{
+			// Low Blow
+			if (CombatManager.multipleEnemies()) output("One of " + target.a);
+			else output(target.capitalA);
+			output(target.short + " gets a little too close to Saendra, and she responds by giving " + target.mf("him", "her") + " a swift kick in the groin!");
+			output(" " + target.mf("He", "She") + " takes doubles over in pain!");
+			applyDamage(new TypeCollection({ kinetic: 10 }), this, target, "minimal");
+		}
+		
+		private function x1HammerPistol(target:Creature):void
+		{
+			output("Saendra levels her Hammer pistol at ");
+			if (CombatManager.multipleEnemies()) output("one of ");
+			output(target.a + target.short + " and squeezes off a shot.");
+
+			var chance:Number = 3;
+			if (hasStatusEffect("Blinded")) chance = 6;
+
+			if (rand(chance) == 0)
+			{
+				output(" The shot goes wide!");
+			}
+			else
+			{
+				output(" The shot connects!");
+				applyDamage(new TypeCollection({ kinetic: 10 }), this, target, "minimal");
+			}
+		}
+		
+		private function fallOfThePhoenixAI(alliedCreatures:Array, hostileCreatures:Array):void
+		{
+			var target:Creature = selectTarget(hostileCreatures);
+			if (target == null) return;
+			
+			if (rand(4) == 0) saendraDisarmingShot(target);
+			else saendraHammerPistol(target);
+		}
+		
+		private function saendraDisarmingShot(target:Creature):void
+		{
+			output("On the other side of the pirates, the wounded captain fires her Hammer pistol, ");
+
+			if (rand(5) == 0)
+			{
+				output(" though her shot goes wide!");
+			}
+			else
+			{
+				output(" blasting through one pirate’s gun and destroying it!");
+				
+				applyDamage(new TypeCollection( { kinetic: 5 }, DamageFlag.BULLET), this, target);
+
+				target.createStatusEffect("Disarmed", 2 + rand(2), 0, 0, 0, false, "Blocked", "Cannot use normal melee or ranged attacks!", true, 0);
+			}
+			
+			output("\n");
+		}
+		
+		private function saendraHammerPistol(target:Creature):void
+		{
+			output("On the other side of the pirates, the wounded captain fires her Hammer pistol, ");
+
+			// :effort: to rig up a special statblock for injured Saendra and make all this shit work based off of it.
+			if (rand(5) == 0)
+			{
+				output(" though her shot goes wide!");
+			}
+			else
+			{
+				output(" shooting one of the pirates square in the back!");
+				applyDamage(new TypeCollection( { kinetic: 10 }, DamageFlag.BULLET), this, target);
+			}
+			
+			output("\n");	
 		}
 	}
 

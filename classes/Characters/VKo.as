@@ -8,7 +8,7 @@
 	import classes.Items.Miscellaneous.MagicMilker;
 	import classes.Items.Miscellaneous.ShieldBooster;
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
 	
 	//Note: V-Ko's sexual statistics aren't set up yet.
 	public class VKo extends Creature
@@ -27,7 +27,7 @@
 			this.long = "PLACE HOLDER!";
 			this.customDodge = "PLACE HOLDER!";
 			this.customBlock = "PLACE HOLDER!";
-			this.plural = false;
+			this.isPlural = false;
 			
 			this.meleeWeapon.attackVerb = "claw";
 			this.meleeWeapon.longName = "claws";

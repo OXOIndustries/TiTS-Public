@@ -31,7 +31,7 @@ public function appearance(target:Creature):void
 	// specific-access to get around variable shadowing
 	// set it AFTER a call to clearOuput, as they null the underlying target variable, basically makes it obvious when something fucks up
 	// (there'll be a lot of parser errors, indicative of not actually setting the variable at all rather than using the wrong creature)
-	kGAMECLASS.target = target;
+	setTarget(target);
 
 	// now we can use [target.aspect] to refer to a variable creature.
 	
@@ -195,7 +195,7 @@ public function appearance(target:Creature):void
 		else if(target.faceType == GLOBAL.TYPE_LIZAN) {
 			if(target.skinType == GLOBAL.SKIN_TYPE_SKIN || target.skinType == GLOBAL.SKIN_TYPE_GOO) output2(" You have a face resembling that of a lizard, and with your toothy maw, you have quite a fearsome visage. The reptilian visage does look a little odd with just " + target.skin(true,true) + " and not a single scale.");
 			if(target.skinType == GLOBAL.SKIN_TYPE_FUR) output2(" You have a face resembling that of a lizard. Between the toothy maw, pointed snout, and the layer of " + target.skinFurScales(true,true) + " covering your face, you have quite the fearsome visage.");
-			if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2(" Your face is that of a lizard, complete with a toothy maw and pointed snout. " + upperCase(target.skinFurScales(true,true)) + " complete the look, making you look quite fearsome.");
+			if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2(" Your face is that of a lizard, complete with a toothy maw and pointed snout. " + StringUtil.upperCase(target.skinFurScales(true,true)) + " complete the look, making you look quite fearsome.");
 		}
 		else if(target.faceType == GLOBAL.TYPE_BADGER)
 		{
@@ -773,7 +773,7 @@ public function appearance(target:Creature):void
 			}
 			else
 			{
-				output2(" " + upperCase(num2Text(target.tailCount)) + " long cow tails with");
+				output2(" " + StringUtil.upperCase(num2Text(target.tailCount)) + " long cow tails with");
 				if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" voluminous");
 				else output2(" puffy");
 				output2(" tips swish back and forth as if swatting at flies.");
@@ -820,7 +820,7 @@ public function appearance(target:Creature):void
 			}
 			else
 			{
-				output2(" " + upperCase(num2Text(target.tailCount)));
+				output2(" " + StringUtil.upperCase(num2Text(target.tailCount)));
 				if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" slimy");
 				else output2(" soft");
 				output2(", " + target.furColor + " cat-tails sprout just above your " + target.buttDescript() + ", curling and twisting with every step to maintain perfect balance.");
@@ -854,8 +854,8 @@ public function appearance(target:Creature):void
 			}
 			else
 			{
-				if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" " + upperCase(num2Text(target.tailCount)) + " swishing fox tails extend from your " + target.buttDescript() + ", curling around your body, all slick and shiny.");
-				else output2(" " + upperCase(num2Text(target.tailCount)) + " swishing, colorful fox's tails extend from your " + target.buttDescript() + ", curling around your body - the soft fur feels lovely.");
+				if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" " + StringUtil.upperCase(num2Text(target.tailCount)) + " swishing fox tails extend from your " + target.buttDescript() + ", curling around your body, all slick and shiny.");
+				else output2(" " + StringUtil.upperCase(num2Text(target.tailCount)) + " swishing, colorful fox's tails extend from your " + target.buttDescript() + ", curling around your body - the soft fur feels lovely.");
 			}
 		}
 		else if(target.tailType == GLOBAL.TYPE_DRACONIC) {
@@ -878,7 +878,7 @@ public function appearance(target:Creature):void
 		else if(target.tailType == GLOBAL.TYPE_MOUSE) output2(" A naked, " + target.skinTone + " mouse tail pokes from your butt, dragging on the ground and twitching occasionally.");
 		else if(target.tailType == GLOBAL.TYPE_CUNTSNAKE) {
 			if(target.tailCount <= 1) output2(" A sinuous, almost snake-like tail waves behind you, covered in " + target.skinFurScales() + " like the rest of you except at the tip. There, it terminates in " + indefiniteArticle(target.tailVaginaDescript()) + " that always seems to crave fresh sperm.");
-			else output2(" " + upperCase(num2Text(target.tailCount)) + " sinuous, almost snake-like tails wave behind you, covered in " + target.skinFurScales() + " like the rest of you except at the tip. There, they terminate in " + plural(target.tailVaginaDescript()) + " that always seem to crave fresh sperm.");
+			else output2(" " + StringUtil.upperCase(num2Text(target.tailCount)) + " sinuous, almost snake-like tails wave behind you, covered in " + target.skinFurScales() + " like the rest of you except at the tip. There, they terminate in " + plural(target.tailVaginaDescript()) + " that always seem to crave fresh sperm.");
 		}
 		else if(target.tailType == GLOBAL.TYPE_PANDA) {
 			if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" A short, slimy panda tail sprouts just above your " + target.buttDescript() + ". It just kind of sits there, not doing much beyond being a gooey little accent.");
@@ -892,8 +892,8 @@ public function appearance(target:Creature):void
 			}
 			else
 			{
-				if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" " + upperCase(num2Text(target.tailCount)) + " gooey reptilian " + target.scaleColor + " tails sprout just above your " + target.buttDescript() + ", all dangling behind you.");
-				else output2(" " + upperCase(num2Text(target.tailCount)) + " scaled " + target.scaleColor + " tails sprout just above your " + target.buttDescript() + ", their undersides covered with softer, lighter scales.");
+				if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" " + StringUtil.upperCase(num2Text(target.tailCount)) + " gooey reptilian " + target.scaleColor + " tails sprout just above your " + target.buttDescript() + ", all dangling behind you.");
+				else output2(" " + StringUtil.upperCase(num2Text(target.tailCount)) + " scaled " + target.scaleColor + " tails sprout just above your " + target.buttDescript() + ", their undersides covered with softer, lighter scales.");
 			}
 		}
 		else if(target.tailType == GLOBAL.TYPE_BADGER) 
@@ -907,7 +907,7 @@ public function appearance(target:Creature):void
 			}
 			else
 			{
-				output2(" " + upperCase(num2Text(target.tailCount)));
+				output2(" " + StringUtil.upperCase(num2Text(target.tailCount)));
 				if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" slimy little " + target.furColor + " nubs");
 				else output2(" fluffy little " + target.furColor + " tufts");
 				output2(" dangle atop your" + target.buttDescript() + ". They mischievously flick back and forth from time to time.");
@@ -923,7 +923,7 @@ public function appearance(target:Creature):void
 			if(target.tailCount == 1) output2(" A thick, reptilian tail dangles behind you, swaying as a living counterbalance.");
 			else
 			{
-				output2(upperCase(num2Text(target.tailCount)) + " thick, reptilian tails dangle behind you, swaying like living counterbalance. It's difficult to keep the thick appendages from idly squirming");
+				output2(StringUtil.upperCase(num2Text(target.tailCount)) + " thick, reptilian tails dangle behind you, swaying like living counterbalance. It's difficult to keep the thick appendages from idly squirming");
 				if(!target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" their scales");
 				output2(" against one another.");
 			}
@@ -931,7 +931,7 @@ public function appearance(target:Creature):void
 		else if(target.tailType == GLOBAL.TYPE_COCKVINE)
 		{
 			if(target.tailCount == 1) output2(" A writhing, sinuous appendage flows after you, bobbing and undulating with the slightest movement of your hips.");
-			else output2(upperCase(num2Text(target.tailCount)) + " writhing, sinuous appendages flow after you, all similar in appearance. Studying one of them, you see that it appears vine-like though very much alive and moving.");
+			else output2(StringUtil.upperCase(num2Text(target.tailCount)) + " writhing, sinuous appendages flow after you, all similar in appearance. Studying one of them, you see that it appears vine-like though very much alive and moving.");
 			
 			// Cockvine
 			if (target.tailGenitalArg == GLOBAL.TYPE_COCKVINE && !target.hasTailFlag(GLOBAL.FLAG_RIBBED))
@@ -984,12 +984,12 @@ public function appearance(target:Creature):void
 		//legType notez!
 		if(target.legType == GLOBAL.TYPE_HUMAN)
 		{
-			if(target.legCount < 4) output2(" " + upperCase(num2Text(target.legCount)) + " normal human legs extend below your waist, ending in normal human feet.");
+			if(target.legCount < 4) output2(" " + StringUtil.upperCase(num2Text(target.legCount)) + " normal human legs extend below your waist, ending in normal human feet.");
 			else output2(" You have normal human legs that end in " + target.feet(true,true) + ".");
 		}
 		else if(target.legType == GLOBAL.TYPE_MYR)
 		{
-			if(target.legCount < 4) output2(" " + upperCase(num2Text(target.legCount)) + " human-like legs extend below your waist, covered in numerous chitin plates all the way to your feet.");
+			if(target.legCount < 4) output2(" " + StringUtil.upperCase(num2Text(target.legCount)) + " human-like legs extend below your waist, covered in numerous chitin plates all the way to your feet.");
 			else output2(" You have human-like legs that end in chitinous feet.");
 		}
 		else if(target.legType == GLOBAL.TYPE_EQUINE || target.legType == GLOBAL.TYPE_BOVINE) 
@@ -1002,7 +1002,7 @@ public function appearance(target:Creature):void
 		{
 			if (target.legCount < 4) 
 			{
-				output2(" " + upperCase(num2Text(target.legCount)));
+				output2(" " + StringUtil.upperCase(num2Text(target.legCount)));
 				if (target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) output2(" digitigrade");
 				else output2(" plantigrade");
 				output2(" legs grow downwards from your waist, ending in " + target.feet(true, true) + ".");
@@ -1083,16 +1083,16 @@ public function appearance(target:Creature):void
 		else if(target.legType == GLOBAL.TYPE_FELINE)
 		{
 			if(target.isTaur()) output2(" Your digitigrade legs end in soft, padded cat-paws.");
-			else output2(" " + upperCase(num2Text(target.legCount)) + " digitigrade legs grow downwards from your waist, ending in soft, padded cat-paws.");
+			else output2(" " + StringUtil.upperCase(num2Text(target.legCount)) + " digitigrade legs grow downwards from your waist, ending in soft, padded cat-paws.");
 		}
 		else if(target.legType == GLOBAL.TYPE_LIZAN)
 		{
-			if(target.legCount < 4) output2(" " + upperCase(num2Text(target.legCount)) + " digitigrade legs grow down from your " + target.hipDescript() + ", ending in clawed feet. There are three long toes on the front and a small hind-claw on the back.");
+			if(target.legCount < 4) output2(" " + StringUtil.upperCase(num2Text(target.legCount)) + " digitigrade legs grow down from your " + target.hipDescript() + ", ending in clawed feet. There are three long toes on the front and a small hind-claw on the back.");
 			else output2(" Your " + plural(target.leg(true)) + " end in clawed feet, tipped with three long toes and a small hind-claw on the back.");
 		}
 		else if(target.legType == GLOBAL.TYPE_RASKVEL)
 		{
-			if(target.legCount < 4) output2(" " + upperCase(num2Text(target.legCount)) + " plantigrade legs grow down from your " + target.hipDescript() + ", ending in clawed feet. There are four long toes tipping the humanoid soles.");
+			if(target.legCount < 4) output2(" " + StringUtil.upperCase(num2Text(target.legCount)) + " plantigrade legs grow down from your " + target.hipDescript() + ", ending in clawed feet. There are four long toes tipping the humanoid soles.");
 			else output2(" Your " + plural(target.leg(true)) + " end in clawed feet, tipped with four long toes at the front of the terran-like soles.");
 		}
 		else if(target.legType == GLOBAL.TYPE_LAPINE) 
@@ -1125,14 +1125,14 @@ public function appearance(target:Creature):void
 		else if(target.legType == GLOBAL.TYPE_DRACONIC)
 		{
 			if(target.isTaur()) output2(" Your human-like legs are sheathed in scales and end in clawed feet.");
-			else output2(" " + upperCase(num2Text(target.legCount)) + " human-like legs grow down from your " + target.hipDescript() + ", sheathed in scales and ending in clawed feet.");
+			else output2(" " + StringUtil.upperCase(num2Text(target.legCount)) + " human-like legs grow down from your " + target.hipDescript() + ", sheathed in scales and ending in clawed feet.");
 			output2(" There are three long toes on the front, and a small hind-claw on the back.");
 		}
 		else if(target.legType == GLOBAL.TYPE_KUITAN) output2(" Your legs, though covered in fur, are humanlike. Long feet on the ends bear equally long toes, and the pads on the bottoms are quite sensitive to the touch.");
 		else if (target.legType == GLOBAL.TYPE_PANDA)
 		{
 			if(target.isTaur()) output2(" Your digitigrade legs end in fluffy panda-paws.");
-			else output2(" " + upperCase(num2Text(target.legCount)) + " digitigrade legs grow downwards from your waist, ending in fluffy panda-paws.");
+			else output2(" " + StringUtil.upperCase(num2Text(target.legCount)) + " digitigrade legs grow downwards from your waist, ending in fluffy panda-paws.");
 			output2(" You even have sharp-looking claws growing from the tips of your short toes.");
 		}
 		//Catch all (mostly there for Ovir feet)
@@ -1146,7 +1146,7 @@ public function appearance(target:Creature):void
 			else
 			{
 				if(target.isTaur()) output2(" Your scaled, plantigrade legs end in human-like feet.");
-				else output2(" " + upperCase(num2Text(target.legCount)) + " scaled, plantigrade legs extend below your waist, ending in human-like feet.");
+				else output2(" " + StringUtil.upperCase(num2Text(target.legCount)) + " scaled, plantigrade legs extend below your waist, ending in human-like feet.");
 			}
 		}
 		
@@ -1337,11 +1337,13 @@ public function appearance(target:Creature):void
 			output2(" intelligent enough for some rudimentary communication....");
 		}
 	}
+	
+	setTarget(null);
 }
 
 public function boobStuff(target:Creature):void
 {
-	kGAMECLASS.target = target;
+	setTarget(target);
 	var rando:int = 0;
 	output2("\n\n");
 	if(target.gills)
@@ -1614,11 +1616,12 @@ public function boobStuff(target:Creature):void
 			}
 		}
 	}
+	setTarget(null);
 }
 
 public function crotchStuff(target:Creature):void
 {
-	kGAMECLASS.target = target;
+	setTarget(target);
 	
 	var rando:int = 0;
 	if(target.hasGenitals()) {
@@ -1984,6 +1987,7 @@ public function crotchStuff(target:Creature):void
 			else output2(" with thick streams of lubricant oozing constantly from the orifice quite liberally.");
 		}
 	}
+	setTarget(null);
 }
 
 public function selectGenderPref():void
@@ -2042,7 +2046,7 @@ public function setGenderPref(pref:String):void
 
 public function dickBonusForAppearance(target:Creature, x:int = 0):void
 {
-	kGAMECLASS.target = target;
+	setTarget(target);
 	
 	trace("DICK FLAVOR FIRED!");
 	//Color shit
@@ -2184,11 +2188,12 @@ public function dickBonusForAppearance(target:Creature, x:int = 0):void
 		if(target.cockTotal() == 1) output2(" While phallic in shape, you are aware that your cock is capable of injecting more than just [target.cumNoun] into an orifice... namely eggs.");
 		else output2(" The phallus doubles as an egg-injecting organ.");
 	}
+	setTarget(null);
 }
 
 public function vaginaBonusForAppearance(target:Creature, x:int = 0, eachOne:Boolean = false):void
 {
-	kGAMECLASS.target = target;
+	setTarget(target);
 	
 	//Zil flavor!
 	if(target.vaginas[x].type == GLOBAL.TYPE_BEE && target.vaginas[x].vaginaColor == "black and gold") {
@@ -2235,4 +2240,5 @@ public function vaginaBonusForAppearance(target:Creature, x:int = 0, eachOne:Boo
 		if(!eachOne) output2(" The special muscles around your vagina are strong and powerful, making it possible to swallow any insertion without the need to push it in.");
 		else output2("\nThe special muscles around your talented vaginas are strong and powerful, making it possible to swallow insertions without the need of external forces to push them in.");
 	}
+	setTarget(null);
 }

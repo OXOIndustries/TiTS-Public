@@ -14,6 +14,7 @@ package classes.Items.Transformatives
 	import classes.CockClass;
 	import classes.BreastRowClass;
 	import classes.VaginaClass;
+	import classes.Engine.Combat.inCombat;
 	
 	public class Goblinola extends ItemSlotClass
 	{
@@ -658,7 +659,7 @@ package classes.Items.Transformatives
 		//METHOD ACTING!
 		override public function useFunction(target:Creature, usingCreature:Creature = null):Boolean
 		{
-			kGAMECLASS.author("Nonesuch");
+			author("Nonesuch");
 			
 			var healing:int = 25;
 			if(target.HP() + healing > target.HPMax())
@@ -670,7 +671,7 @@ package classes.Items.Transformatives
 				clearOutput();
 				// Consuming:
 				output("You unwrap the goblinola and munch on the stuff.");
-				if(!kGAMECLASS.inCombat()) output(" There are some constants that hold true the galaxy over, and health snacks are one of them: It’s reasonably tasty, takes a while to chew and is vaguely unsatisfying.");
+				if(!inCombat()) output(" There are some constants that hold true the galaxy over, and health snacks are one of them: It’s reasonably tasty, takes a while to chew and is vaguely unsatisfying.");
 				output(" Your stomach is left a little unsettled.");
 				if (healing > 0) output(" (<b>+" + healing + " HP</b>)");
 				output("\n");
@@ -703,7 +704,7 @@ package classes.Items.Transformatives
 			//Not the player!
 			else
 			{
-				if(kGAMECLASS.inCombat()) output("\n");
+				if(inCombat()) output("\n");
 				else clearOutput();
 				output(target.capitalA + target.short + " unwraps and eats a Goblinola bar");
 				if (healing > 0) output(", revitalizing some of [target.hisHer] health! (<b>+" + healing + " HP</b>)");

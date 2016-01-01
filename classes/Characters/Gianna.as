@@ -8,7 +8,7 @@
 	import classes.Items.Melee.RaskvelWrench;
 	import classes.Items.Miscellaneous.*
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
 	import classes.GameData.CodexManager;
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
@@ -29,7 +29,7 @@
 			this.capitalA = "";
 			this.long = "";
 			this.customBlock = "Your attack fails to damage the 'bot.";
-			this.plural = false;
+			this.isPlural = false;
 			
 			this.meleeWeapon.attack = 5;
 			this.meleeWeapon.longName = "tentacle";

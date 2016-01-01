@@ -1,4 +1,6 @@
-﻿public function showInfectedMyr(nude:Boolean = false):void
+﻿import classes.Characters.GardeBot;
+import classes.Characters.MyrInfectedFemale;
+public function showInfectedMyr(nude:Boolean = false):void
 {
 	if(inCombat())
 	{
@@ -47,73 +49,16 @@ public function infectedMyrmedionShit():void
 		output("As you walk through the caves you hear someone shout from behind you. You turn to find an infected myr standing in a battle stance.");
 	}
 	clearMenu();
-	addButton(0,"Next",startCombat,"infected myr");
+	
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(new MyrInfectedFemale());
+	CombatManager.victoryScene(winVsInfectedMyr);
+	CombatManager.lossScene(loseToInfectedMyrYouSubbieSloot);
+	CombatManager.displayLocation("INFECT. MYR");
+	
+	addButton(0,"Next",CombatManager.beginCombat);
 }
-
-//Combat!
-//You are fighting an infected myrmedion!
-//The short and dirty girl looks at you with wild eyes, her body covered only by tattered clothes that provide little coverage. Despite her dirtied appearance, her form looks healthy and fit. She circles you nervously, holding up her fists in a combat stance. Her issues seem more related to lust than any other malady. The shadowy apparition sits behind her, looking worried as she fights you, but otherwise seemingly unable to help her.
-
-/*Routine
-The infected myr is not a very difficult fight, she deals low damage, simply trying to punch you as she struggles with her issues. Even when she wins she ends up losing, and the first lust attack used will stun her for one turn.
-*/
-
-
-//Punch
-public function infectedMyrmedionPaunch():void
-{
-	output("The infected myr throws a punch at you, closing her eyes and hoping it hits.");
-	//miss: 
-	if (combatMiss(foes[0], pc)) output("\nYou dodge past her blow, pushing her forward once you’re behind her.");
-	//hit: 
-	else
-	{
-		output("\nHer blow lands, not hitting too hard, but with enough force to stagger you for a moment. ");
-		applyDamage(damageRand(foes[0].meleeDamage(), 15), foes[0], pc);
-	}
-	foes[0].energy(3);
-	processCombat();
-}
-
-//Heal
-//(heals her for 20-30% of her hp, ¼ chance to use when injured. deals 20 or so lust damage)
-public function infectedMyrmedionHeal():void
-{
-	output("The ghostly apparition leans down to her host, wrapping her in a hug and giving her a big kiss. She practically melts at its touch, and you notice the smaller cuts on her body healing. You can see her tongue being sucked into the transparent mushroom’s mouth. Part of this was obviously directed at you, and you feel ");
-	if(pc.hasCock()) output("[pc.eachCock] harden");
-	else output("[pc.eachVagina] wetten");
-	output(" at the sight. ");
-
-	var damage:TypeCollection = new TypeCollection( { tease: 20 } );
-	damageRand(damage, 15);
-	applyDamage(damage, foes[0], pc);
-
-	foes[0].HP(Math.round(foes[0].HPMax() * .33));
-	foes[0].energy(-33);
-	processCombat();
-}
-
-//Resolve
-public function goddamnitNewMechanicsThatIdidntPrepareFor():void
-{
-	//(gains 100% lust resist and 50% dodge chance for 2 turns. used if the pc is above 50 lust.)
-	output("The mushroom apparition disolves into its host. She takes a deep breath and looks at you, her eyes full of renewed determination.");
-	foes[0].createStatusEffect("Used Resolve");
-	foes[0].createStatusEffect("Resolve",3,0,0,0,false,"DefenseUp","Temporarily immune to lust damage and much more likely to evade other attacks.",true,0);
-	foes[0].energy(-50);
-	foes[0].baseHPResistances.tease.resistanceValue += 100;
-	foes[0].baseHPResistances.drug.resistanceValue += 50;
-	foes[0].baseHPResistances.pheromone.resistanceValue += 50;
-	processCombat();
-}
-
-public function infectedMyrAI():void
-{
-	if(pc.lust() >= 50 && !foes[0].hasStatusEffect("Used Resolve") && foes[0].energy() >= 50) goddamnitNewMechanicsThatIdidntPrepareFor();
-	else if(foes[0].HP()/foes[0].HPMax() <= .5 && foes[0].energy() >= 33) infectedMyrmedionHeal();
-	else infectedMyrmedionPaunch();
-}
-
 
 //Win text
 public function winVsInfectedMyr():void
@@ -172,7 +117,7 @@ public function watchInfectedMyrVictoryScene():void
 	processTime(9);
 	pc.lust(20+rand(10));
 	//(lust+30)
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Red myr Compassion win
@@ -246,7 +191,7 @@ public function girlyCompassionVictoryWithInfectedMyr():void
 	processTime(22);
 	pc.orgasm();
 	pc.orgasm();
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Red femyr fuck/loss
@@ -295,7 +240,7 @@ public function infestedVictoryOrLossMaleScene(loss:Boolean = true):void
 	clearOutput();
 	showInfectedMyr(true);
 	author("Gardeford");
-	var x:int = pc.cockThatFits(foes[0].vaginalCapacity(0));
+	var x:int = pc.cockThatFits(enemy.vaginalCapacity(0));
 	//Dickfitz
 	if(x >= 0)
 	{
@@ -342,8 +287,8 @@ public function infestedVictoryOrLossMaleScene(loss:Boolean = true):void
 	output("\n\n");
 	processTime(19);
 	pc.orgasm();
-	if(!loss) genericVictory();
-	else genericLoss();
+	if(!loss) CombatManager.genericVictory();
+	else CombatManager.genericLoss();
 }
 
 //female
@@ -369,14 +314,14 @@ public function infectedMyrWinOrLossFuckForGirlTypes(loss:Boolean = true):void
 
 	output("\n\nFor now it doesn’t matter. You rub her body up to the chest, taking one of her pert C-cups in each hand. The overwhelmed myrmedion coos as you squeeze them, testing the firmness before you move on, rubbing her nipples in small circles with your thumbs and smiling as they harden under your attentions. Your companion recovers eventually, squeezing her handholds and brushing her fingers against your own [pc.nipples].");
 	output("\n\nHer knees press into your hips as she slowly slides her way into your [pc.vagina " + x + "], letting out a number of heavenly noises as she does so, and you feel the heat and hardness of her human-like member as it penetrates you. The needful ant-girl pushes till her dick ");
-	if(foes[0].cockVolume(0) <= pc.vaginalCapacity(x)) output("is totally enveloped in your folds");
+	if(enemy.cockVolume(0) <= pc.vaginalCapacity(x)) output("is totally enveloped in your folds");
 	else output("can’t move any deeper");
 	output(", still pushing but unable to go any further. When she pulls out, she remains just as slow, and as good as this must feel for her it’s not doing quite as much on your end.");
-	pc.cuntChange(x,foes[0].cockVolume(0));
+	pc.cuntChange(x,enemy.cockVolume(0));
 
 	output("\n\nAs soon as her porcelain-colored cock is nearly clear of you, you pull her back with force, slamming it into you with full speed. The unexpecting myr nearly goes limp, her hips seizing up as you clamp down on her length. You relocate your hands to her buttocks, prompting her to fuck you by pushing and pulling them. It takes a few repetitions, but she begins to shakily pound you.");
 	output("\n\nHer pace increases over time, eventually mounting as she collapses into your [pc.chest], her arms unable to support her as she humps madly into your depths. The shade of her mushroom companion cheers her on silently, watching with something akin to longing as the addled ant-girl has the time of her life. You ");
-	if(pc.tallness > foes[0].tallness + 8) output("hug her head tightly as she pumps her hips with abandon");
+	if(pc.tallness > enemy.tallness + 8) output("hug her head tightly as she pumps her hips with abandon");
 	else output("kiss and lick her chest as it bobs in front of you, your [pc.tongue] leaving wet spots on her pale skin");
 	output(".");
 	output("\n\nYou can feel her impending orgasm coming before it’s completely obvious, with her cock growing hotter and throbbing more often inside you, swelling as it prepares to fill you with fresh cream. You doubt the thought will occur to her based on her current lust-drunk stupor, but you tighten your hold on her to stop her from pulling out. The fuck-hungry futanari hardly notices, moaning as she loses the ability to hold it in for any longer.");
@@ -405,8 +350,8 @@ public function infectedMyrWinOrLossFuckForGirlTypes(loss:Boolean = true):void
 	//(pass 1 hr)(pc gets nastygerms)
 	processTime(50+rand(20));
 	pc.orgasm();
-	if(loss) genericLoss();
-	else genericVictory();
+	if(loss) CombatManager.genericLoss();
+	else CombatManager.genericVictory();
 }
 
 public function leaveDatSlutBitch():void
@@ -414,7 +359,7 @@ public function leaveDatSlutBitch():void
 	clearOutput();
 	showInfectedMyr(true);
 	output("You decide you’ll leave the infected girl alone for now, and shake yourself off as you head back to exploring the caves.\n\n");
-	genericVictory();
+	CombatManager.genericVictory();
 	processTime(5);
 }
 
@@ -455,7 +400,7 @@ public function maleInfectedMyrEncounter():void
 	//[fightshit]
 	clearMenu();
 	processTime(2);
-	startCombat("male infected myr");
+	//startCombat("male infected myr");
 }
 
 //14" DONGER! (ALABASTER!)
@@ -742,7 +687,15 @@ public function fuckYesPlantLadyIllSaveYou():void
 
 	processTime(5);
 	clearMenu();
-	addButton(0,"Next",startCombat,"GardeBot");
+	
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(new GardeBot());
+	CombatManager.victoryScene(beatUpConstructoBot);
+	CombatManager.lossScene(roboQueenFightPCLoss);
+	CombatManager.displayLocation("ROUGE BOT");
+	
+	addButton(0,"Next",CombatManager.beginCombat);
 }
 
 //Combat
@@ -752,35 +705,35 @@ public function fuckYesPlantLadyIllSaveYou():void
 (pc has 3 <i>“platforms”</i> to move between. pc can move then shoot, but not vice versa. These start out shielded and halve all damage received. Each use of firestorm removes this shield. If firestorm is used on an unshielded space it results in a loss for the pc. The boss is immune to adverse status effects and lust damage. It has no shields, but high hp.)
 */
 
-public function gardeBotCoverUpdate():void
+public function updateGardeBotCover():void
 {
-	if(foes[0].statusEffectv1("Sporebutt") == 1) 
+	if(enemy.statusEffectv1("Sporebutt") == 1) 
 	{
 		output("\nYou’re to the left of the robot.");
-		if(foes[0].statusEffectv2("Sporebutt") > 0) output(" There’s enough intact spores and crystals in the area to shield you from much of its damage.");
+		if(enemy.statusEffectv2("Sporebutt") > 0) output(" There’s enough intact spores and crystals in the area to shield you from much of its damage.");
 		
 	}
-	else if(foes[0].statusEffectv1("Sporebutt") == 2) 
+	else if(enemy.statusEffectv1("Sporebutt") == 2) 
 	{
 		output("\nYou’re positioned roughly in front of the robot.");
-		if(foes[0].statusEffectv3("Sporebutt") > 0) output(" There’s enough intact spores and crystals in the area to shield you from much of its damage.");
+		if(enemy.statusEffectv3("Sporebutt") > 0) output(" There’s enough intact spores and crystals in the area to shield you from much of its damage.");
 	}
 	else 
 	{
 		output("\nYou’re to the right of the robot.");
-		if(foes[0].statusEffectv4("Sporebutt") > 0) output(" There’s enough intact spores and crystals in the area to shield you from much of its damage.");
+		if(enemy.statusEffectv4("Sporebutt") > 0) output(" There’s enough intact spores and crystals in the area to shield you from much of its damage.");
 	}
 	output("\n\n");
 }
 
 public function gardeBotBonusButtons():void
 {
-	if(foes[0].statusEffectv1("Sporebutt") == 1) 
+	if(enemy.statusEffectv1("Sporebutt") == 1) 
 	{
 		addDisabledButton(10,"Left","Left","You can’t move any farther in that direction.");
 		addButton(12,"Right",gardeBotMove,2,"Right","Circle toward the cover to the right. Perhaps it will offer more protection.");
 	}
-	else if(foes[0].statusEffectv1("Sporebutt") == 2) 
+	else if(enemy.statusEffectv1("Sporebutt") == 2) 
 	{
 		addButton(10,"Left",gardeBotMove,1,"Left","Circle toward the cover to the left. Perhaps it will offer more protection.");
 		addButton(12,"Right",gardeBotMove,3,"Right","Circle toward the cover to the right. Perhaps it will offer more protection.");
@@ -792,141 +745,14 @@ public function gardeBotBonusButtons():void
 	}
 }
 
-//If shield is up, reduce by halfsies.
-public function roboShieldDamageReducer(arg:TypeCollection):TypeCollection
-{
-	if(pcHasSporeShield()) arg.multiply(.5);
-	return arg;
-}
-
 public function gardeBotMove(arg:int = 1):void
 {
-	foes[0].setStatusValue("Sporebutt",1,arg);
+	enemy.setStatusValue("Sporebutt",1,arg);
 	clearOutput();
 	output("You shift into a different section of the cavern");
-	if(pcHasSporeShield()) output(" where the spores can still protect you");
+	if (enemy is GardeBot && (enemy as GardeBot).pcHasSporeShield()) output(" where the spores can still protect you");
 	output(".\n");
-	processCombat();
-}
-
-public function gardenforkRoboAI():void
-{
-	showName("FIGHT:\nROGUE BOT");
-	if(foes[0].energy() >= 100) {
-		//Prevent it 'storing' a counter for a turn before unloading it.
-		foes[0].removeStatusEffect("Melee Counter");
-		fireStormBotGo();
-		return;
-	}
-	else if(foes[0].hasStatusEffect("Melee Counter")) 
-	{
-		foes[0].removeStatusEffect("Melee Counter");
-		titanSmashuBashu();
-		return;
-	}
-	else pressureStreamAttack();
-
-	foes[0].energy(25);
-}
-
-//Pressure stream
-//basic ranged attack, hits for incredibly low damage against shields, medium damage against armor.
-public function pressureStreamAttack():void
-{
-	output("The giant ‘bot aims its pilot fire at you, unleashing a gout of flames that flies through the cavern toward you.");
-	if(rangedCombatMiss(foes[0], pc)) output("\nThe flames miss you, burning some of the mushrooms at your feet to a crisp.");
-	else
-	{
-		output("\nThe blast of flame hits you,");
-		if(pc.shields() > 0) output(" splashing against your shield");
-		else 
-		{
-			output(" burning you");
-			if(pcHasSporeShield()) output(" before the spores neutralize the flames");
-		}
-		output(".");
-		//damage.
-		var damage:TypeCollection = foes[0].damage();
-		//damage.add(foes[0].physique() / 2);
-		damage.multiply(1.4);
-		damage = roboShieldDamageReducer(damage);
-		damageRand(damage, 15);
-		applyDamage(damage, foes[0], pc, "ranged");
-	}
-	processCombat();
-}
-
-//Titan smash
-//If the pc uses a melee attack and doesn’t move to a new square this attack will be used instead of pressure stream. Deals 50% of the pc’s max hp in damage before resistances are applied. dodging causes you to take half damage from the explosion of shattering rocks.
-public function titanSmashuBashu():void
-{
-	output("The robot destroyer counters with its pneumatic hammer and releases it at you. Thousands of pounds of pressure aim to smash you into a messy pulp.");
-	var damage:TypeCollection;
-	if(rangedCombatMiss(foes[0], pc))
-	{
-		output("\nYou leap away from the hammer, but the explosion of cave floor catches you in the back. <b>It might best to avoid melee with this thing...</b>");
-		damage = damageRand(new TypeCollection( { kinetic: Math.round(pc.HP()/4) } ), 15);
-		applyDamage(damage, foes[0], pc, "melee");
-	}
-	else
-	{
-		output("\nThe hammer is blocked by a shield created by the spores, but the impact still rocks your body.");
-		damage = damageRand(new TypeCollection( { kinetic: Math.round(pc.HP()/2) } ), 15);
-		applyDamage(damage, foes[0], pc, "melee");
-		if(pc.HP() >= 1) output(" You’re not sure how much more of that you can take. <b>It might best to avoid melee with this thing...</b>");
-	}
-	processCombat();
-}
-
-//Firestorm
-//used every 3 turns starting with the third turn. Deals immense fire damage. signalled by <i>“the construct is preparing to decimate this tile.”</i> shown on screen during your turn. Cannot be dodged if pc stays on the same tile, but the pc can move tiles once they see the warning. If the blast hits an empty tile the pc will get a free attack, but that space will lose its shielding, and if that space is hit while empty again the pc will lose the fight.
-public function fireStormBotGo():void
-{
-	if(!foes[0].hasStatusEffect("Firestorm"))
-	{
-		output("The pilot flame billows larger as the construct prepares the ignite everything in your immediate vicinity. <b>Better move!</b>");
-		foes[0].createStatusEffect("Firestorm", foes[0].statusEffectv1("Sporebutt"), 0, 0, 0);
-	}
-	else
-	{
-		output("The construct unleashes a deadly tower of flame. All of the spores in its path are vanquished quickly by the inferno.");
-		//Miss! PC moved!
-		if(foes[0].statusEffectv1("Firestorm") != foes[0].statusEffectv1("Sporebutt"))
-		{
-			output("\nYou watch the fungi burn and wither. You’re running out of time to stop this thing.");
-		}
-		else
-		{
-			var damage:TypeCollection;
-			if(pcHasSporeShield()) 
-			{
-				output("\nThe fire blasts into you with great force, your spore shield burned away by its power.");
-				damage = damageRand(new TypeCollection( { burning: 100 } ), 15);
-				applyDamage(damage, foes[0], pc, "ranged");
-			}
-			else
-			{
-				output("\nThe torrent of flame bathes your unprotected form in a blazing inferno.");
-				damage = damageRand(new TypeCollection( { burning: 400 } ), 15);
-				applyDamage(damage, foes[0], pc, "ranged");
-			}
-		}
-		//REMOVE SHIELDING!
-		if(foes[0].statusEffectv1("Firestorm") == 1) foes[0].setStatusValue("Sporebutt",2,0);
-		else if(foes[0].statusEffectv1("Firestorm") == 2) foes[0].setStatusValue("Sporebutt",3,0);
-		else if(foes[0].statusEffectv1("Firestorm") == 3) foes[0].setStatusValue("Sporebutt",4,0);
-		foes[0].removeStatusEffect("Firestorm");
-		foes[0].energy(-100);
-	}
-	processCombat();
-}
-
-public function pcHasSporeShield():Boolean
-{
-	if(foes[0].statusEffectv1("Sporebutt") == 1 && foes[0].statusEffectv2("Sporebutt") > 0) return true;
-	else if(foes[0].statusEffectv1("Sporebutt") == 2 && foes[0].statusEffectv3("Sporebutt") > 0) return true;
-	else if(foes[0].statusEffectv1("Sporebutt") == 3 && foes[0].statusEffectv4("Sporebutt") > 0) return true;
-	return false;
+	CombatManager.processCombat();
 }
 
 //Loss
@@ -957,7 +783,7 @@ public function beatUpConstructoBot():void
 	flags["FUNGUS_QUEEN_SAVED"] = 1;
 	currentLocation = "2S11";
 	variableRoomUpdateCheck();
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Pc fucks off

@@ -26,7 +26,7 @@
 			this.long = "";
 			this.customDodge = "PLACEHOLDAH";
 			this.customBlock = "Obvious placeholder is obvious.";
-			this.plural = false;
+			this.isPlural = false;
 			
 			//PLACEHOLDAH STATS & NO EQUIPPED SHIT
 			this.level = 1;

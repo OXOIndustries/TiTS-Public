@@ -1,4 +1,5 @@
-﻿//Dr. Lash
+﻿import classes.Characters.DoctorLash;
+//Dr. Lash
 //Believes sexuality and reproduction are a distraction from intelligent pursuits and the development of all sapient beings.
 
 /*Runs a clinic on Tarkus. Hates Doctor Badger and the Raskvel.
@@ -89,7 +90,18 @@ public function beSuperDumbAndGetLashFight():void
 	output("<i>“Fuck yes I am!”</i>");
 	output("\n\nThe scientist sighs heavily. <i>“Very well. Should you encounter an afterlife, do try and put in a good word for Doctor Lash.”</i>");
 	clearMenu();
-	addButton(0,"Next",startCombat,"Dr. Lash");
+	configDocLashFight();
+	addButton(0,"Next",CombatManager.beginCombat);
+}
+
+public function configDocLashFight():void
+{
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(new DoctorLash());
+	CombatManager.victoryScene(winVsDoctorLash);
+	CombatManager.lossScene(loseToDoctorLash);
+	CombatManager.displayLocation("DR. LASH");
 }
 
 //No
@@ -524,17 +536,8 @@ public function keepFlirtingWithLash():void
 	output("\n\nThe scientist sighs heavily. <i>“Should you encounter an afterlife, do try and put in a good word for Doctor Lash. Or don’t. It matters little.”</i>");
 	processTime(1);
 	clearMenu();
-	addButton(0,"Next",startCombat,"Dr. Lash");
-}
-
-//Combat Stuff
-//output("\n\n");
-
-public function docLashAI():void
-{
-	output("<i>“Goodbye,”</i> the doctor bids.\n");
-	//6 shots
-	rangedAttack(foes[0],pc);
+	configDocLashFight();
+	addButton(0, "Next", CombatManager.beginCombat);
 }
 
 //Bad end
@@ -553,6 +556,6 @@ public function winVsDoctorLash():void
 	showDrLash();
 	showName("\nVICTORY!");
 	output("Somehow, you defeated Doctor Lash. That's not something that's supposed to be able to be done yet, but you did it anyway. Good on you.\n\nSeeing as how the game isn't set up to handle this contingency, Dr. Lash will act like he's never met you.\n\n");
-	genericVictory();
+	CombatManager.genericVictory();
 }
 

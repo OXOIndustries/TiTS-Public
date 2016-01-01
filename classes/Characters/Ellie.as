@@ -17,7 +17,7 @@
 	import classes.Items.Miscellaneous.Treatment;
 	import classes.Items.Accessories.LightningDuster;
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
 	import classes.GameData.CodexManager;
 	
 	public class Ellie extends Creature
@@ -49,7 +49,7 @@
 			this.capitalA = "";
 			this.long = "PLACEHOLDER";
 			this.customBlock = "BLOOP";
-			this.plural = false;
+			this.isPlural = false;
 			//this.meleeWeapon = new RaskvelWrench();
 			
 			//this.rangedWeapon.damage = 10;

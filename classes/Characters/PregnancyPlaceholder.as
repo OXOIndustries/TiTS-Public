@@ -28,7 +28,7 @@ package classes.Characters
 			this.a = "";
 			this.capitalA = "";
 			this.long = "Pregnancy Placeholder";
-			this.plural = false;
+			this.isPlural = false;
 			
 			this.cocks = [];
 			this.createCock();

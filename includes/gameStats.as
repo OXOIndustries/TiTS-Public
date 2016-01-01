@@ -2934,7 +2934,7 @@ public function displayEncounterLog(showID:String = "All"):void
 						if(flags["BESS_CUMDUMP"] != undefined) output2(", Cumdump");
 						if(bessIsFollower())
 						{
-							if(flags["BESS_CREW_ROLE"] != undefined) output2(", " + upperCase(bessCrewRole()));
+							if(flags["BESS_CREW_ROLE"] != undefined) output2(", " + StringUtil.upperCase(bessCrewRole()));
 							else output2(", Own");
 							if(bessIsCrew()) output2(" (Onboard Ship)");
 							else if(flags["BESS_LOCATION"] == BESS_AT_TAVROS) output2(" (At Tavros Station)");

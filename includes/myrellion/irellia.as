@@ -869,7 +869,7 @@ public function ladyTimeSixtyNinesByFenbroxicoTheDestroyer():void
 	//Merge
 	output("\n\nMounting the royal myr is no easy task. She may be lying back on a chair, but she’s still twice the size of your average galactic citizen and sporting an abdomen thick enough to hold a dozen huge eggs. Those four nectar-filled canteloupes on her chest don’t help either, even if they are a cushy place for your [pc.belly] to rest. ");
 	if(pc.legCount >= 4) output("All");
-	else output(upperCase(num2Text(pc.legCount)));
+	else output(StringUtil.upperCase(num2Text(pc.legCount)));
 	output(" of her hands grab hold of your [pc.legOrLegs] to help you into position. The ease with which she’s able to drag you into place is a little alarming, but then her breath is brushing against your netherlips, a whispered promise of the contact to come.");
 	output("\n\nYour viewpoint fills with amber flesh as you’re moved into place, at last settling just above the ant queen’s glittering delta.");
 	if(pc.tallness < 70 || pc.isTaur()) output(" You don’t even want to imagine how she’s contorted herself to make the various parts line up. That chair must support some pretty varied positions.");

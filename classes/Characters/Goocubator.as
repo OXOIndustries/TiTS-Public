@@ -6,8 +6,13 @@
 	import classes.Items.Apparel.GooeyCoverings;
 	import classes.Items.Melee.GooeyPsuedopod;
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
+	import classes.GameData.CombatAttacks;
+	import classes.GameData.CombatManager;
+	import classes.Engine.Combat.DamageTypes.*;
+	import classes.Engine.Combat.*; 
+	import classes.Engine.Interfaces.output;
 	
 	public class Goocubator extends Creature
 	{
@@ -23,7 +28,7 @@
 			this.a = "the ";
 			this.capitalA = "The ";
 			this.long = "";
-			this.plural = false;
+			this.isPlural = false;
 			this.meleeWeapon = new GooeyPsuedopod();
 			this.meleeWeapon.baseDamage.kinetic.damageValue = 20;
 			this.meleeWeapon.hasRandomProperties = true;
@@ -169,23 +174,158 @@
 			this.createStatusEffect("Flee Disabled",0,0,0,0,true,"","",false,0);
 			this.createStatusEffect("Disarm Immune");
 			
+			isUniqueInFight = true;
+			btnTargetText = "Goocubator";
+			sexualPreferences.setRandomPrefs(7, 0);
+			long = "The crystal-armored goo-girl in front of you is a mass of green slime in the vague form of a nyrean woman, with oversized hips and a huge pair of glistening breasts that bounce around with every movement. Her body is covered with small flecks and plates of natural emerald crystal, but unlike most of her race, the vast majority of her crystal is concentrated around her hugely swollen belly, forming a perfect, smooth dome. Underneath the protective shell of crystal are what must be hundreds of white, fist-sized eggs, floating listlessly in their gooey womb.";
+			if (flags["CRYSTAL_GOO_GLORYHOLED"] == 1) 
+			{
+				long += " A misty cloud of [pc.cumColor] billows around the eggs, clinging to several of the outliers. If they weren’t fertilized already, then you’ve certainly got a few new kids on the way. The gooey incubator looks at you with wild eyes, her arms clutching her eggy belly protectively. Looks like this artificial momma will do anything to protect her clutch!";
+				lustRaw = 0;
+			}
+			
 			this._isLoading = false;
 		}
 		
-		override public function prepForCombat():void
+		override public function get bustDisplay():String
 		{
-			var combatGoo:Goocubator = this.makeCopy();
+			return "GOOCUBATOR";
+		}
+		
+		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
+		{
+			var target:Creature = selectTarget(hostileCreatures);
+			if (target == null) return;
 			
-			kGAMECLASS.userInterface.showBust("GOOCUBATOR");
-			kGAMECLASS.showName("FIGHT:\nGOO");
-			combatGoo.sexualPreferences.setRandomPrefs(7,0);
-			combatGoo.long = "The crystal-armored goo-girl in front of you is a mass of green slime in the vague form of a nyrean woman, with oversized hips and a huge pair of glistening breasts that bounce around with every movement. Her body is covered with small flecks and plates of natural emerald crystal, but unlike most of her race, the vast majority of her crystal is concentrated around her hugely swollen belly, forming a perfect, smooth dome. Underneath the protective shell of crystal are what must be hundreds of white, fist-sized eggs, floating listlessly in their gooey womb.";
-			if(kGAMECLASS.flags["CRYSTAL_GOO_GLORYHOLED"] == 1) 
+			if(!target.hasStatusEffect("Grappled"))
 			{
-				combatGoo.long += " A misty cloud of [pc.cumColor] billows around the eggs, clinging to several of the outliers. If they weren’t fertilized already, then you’ve certainly got a few new kids on the way. The gooey incubator looks at you with wild eyes, her arms clutching her eggy belly protectively. Looks like this artificial momma will do anything to protect her clutch!";
-				combatGoo.lustRaw = 0;
+				if(HP() < 150 && !hasStatusEffect("Goo Shield")) crystalShieldGoo(target);
+				else if(!target.hasStatusEffect("Blinded") && rand(6) == 0) gooSpitShit(target);
+				else if(rand(7) == 0) gooeyGrappleStuff(target);
+				else if(rand(4) == 0) bellyTeaseGOOO(target);
+				else if(rand(3) == 0) gooeyTentagrope(target);
+				else gooTendrilSlap(target);
 			}
-			kGAMECLASS.foes.push(combatGoo);
+			else keepOnGropinOn(target);
+		}
+		
+		private function crystalShieldGoo(target:Creature):void
+		{
+			output("<i>“Oooww, you’re hurting me!?”</i> the goo whines, more in surprise than pain, it seems. <i>“Don’t you dare hurt my eggs!”</i>");
+			output("\n\nThe look of bubbly determination that she’s been sporting twists into a grimace of concentration. A few moments later, the various small flecks of crystal floating around her body start to move through her, coalescing around one of her arms. They become a crystelline buckler, held together by a viscous layer of goo. <i>“Never gonna get through this!”</i> she declares with a shake of her hips.");
+			createStatusEffect("Goo Shield",0,0,0,0,false,"Icon_DefUp","With her crystal shield, the goo will be much tougher to drop through violent means!",true,0);
+			armor.defense += 20;
+		}
+
+		private function keepOnGropinOn(target:Creature):void
+		{
+			if(target.statusEffectv4("Grappled") >= 3)
+			{
+				didntEscapeFromGooInThreeTurns(target);
+				return;
+			}
+			output("The goo girl is firmly affixed to you, rubbing her crystal belly against you like some sort of alien dry hump while the rest of her gooey body gropes at you, ");
+			if(target.biggestTitSize() >= 1) output("squeezing your [pc.chest] and ");
+			output("slipping tendrils of goo around your crotch.");
+
+			output("\n\n<i>“This is soooo much better!”</i> she giggles, her voice fading into an unintelligible moan. She’s getting off on this - and she’s doing everything she can to make sure you do, too.");
+
+			if(target.willpower()/2 + rand(20) + 1 >= 21) output("\nYou struggle as hard as you can, refusing to give in to your carnal desires!");
+			else
+			{
+				applyDamage(new TypeCollection( { tease: 5 } ), this, target, "minimal");
+				output("\nAnd it’s working! Pleasure rushes through you, making you pant and gasp as the gooey vixen massages your entire body.");
+			}lust(3);
+			//Stick rounds in #4
+			target.addStatusValue("Grappled",4,1);
+		}
+		
+		private function didntEscapeFromGooInThreeTurns(target:Creature):void
+		{
+			output("Your attempts at escape seem completely useless, and your struggles only prove to excite the amorous goo-girl further. The more your limbs squirm in her sticky embrace, the louder her lusty moans become, and the more you see her bloated belly sway ponderously against your gut, rolling her huge clutch of eggs around. The feeling of all those eggs moving inside her must be maddeningly pleasurable, as her slimy exterior spurts moisture all over you [pc.chest].");
+			output("\n\n<i>“Gonna... gonna...”</i> she mewls, rubbing faster against you. <i>“Gonna...!”</i>");
+			output("\n\nShe can’t quite find the words to give voice to her ecstasy, and ends up settling on a high-pitched scream that reverberates off the stone walls. Her goo releases you, letting you tumble to the ground as she climaxes herself into a gooey, incoherent mess. Your eyes are drawn to the crystal dome around her belly, shielding her hundreds of pearly eggs from the rest of her body’s near-collapse into a formless pile of slime. The gemstone orb rolls around like a punted beachball on a bed of lube.");
+			output("\n\nShe only stays that way for a moment, though, before she reforms herself into a familiar form, hefting up her crystal belly and protectively shielding it back in her gut. <i>“Aww, you didn’t cum?”</i> she whines, looking horribly disappointed. <i>“Guess I’ll have to, like, try harder!”</i>");
+			orgasm();
+			applyDamage(new TypeCollection( { tease: 5 } ), this, target, "minimal");
+			target.removeStatusEffect("Grappled");
+		}
+		
+		private function gooeyGrappleStuff(target:Creature):void
+		{
+			output("<i>“Don’t fight me!”</i> the goo purrs, sliding towards you on her thick, legless lower body. Her belly bounces as she moves, hundreds of eggs gently rattling against the perfect crystal dome her arms are shielding. <i>“The queen will be SO MAD if you hurt her eggs... so why not, like, just stop already? I’ll let you play with me if you do...”</i> she offers, a seductive smile spreading on her emerald lips.");
+			output("\n\nBefore you can answer, the goo lunges forward, sliding past your defenses and splattering her lower body around your [pc.legs], molding her goop around you! Her arms slip around you, trying to completely pull you into her! ");
+			if(target.reflexes()/2 + rand(20) + 1 >= physique()/2 + 13)
+			{
+				output("\n\nYou push her back, forcing the goo-girl to give you some much-needed distance. She pouts, crossing her arms. <i>“You’re gonna regret this!”</i>");
+			}
+			else
+			{
+				output("\n\nYou try to push her back, but can’t find proper purchase! Before long, almost your entire body has been smothered in emerald slime - all that’s left is the crystal ball of the girl’s distended gut pressing against your [pc.belly], and her face just inches from yours. Her slime squirms and presses all around you, rubbing at your groin and ass and chest in all the right ways, with no sign of letting up! <b>You’re grappled!</b>");
+				applyDamage(new TypeCollection( { tease: 5 } ), this, target, "minimal");
+				lust(3);
+				target.createStatusEffect("Grappled",0,35,0,0,false,"Constrict","You're pinned in a grapple.",true,0);
+			}
+		}
+		
+		private function gooeyTentagrope(target:Creature):void
+		{
+			output("The goo-girl reaches out with one of her arms, which breaks apart as it moves, becoming a dozen small, slender tendrils of viridian slime. You stumble back, but the goo’s reach seems unlimited, and she’s quickly rubbing her tentacles all over you, groping at your [pc.crotch], and smearing your [pc.chest] with slimey caresses.");
+			for(var x:int = 0; x < 4; x++)
+			{
+				if(target.willpower()/2 + rand(20) + 1 >= 21) output("\nSomehow, you manage to grit your teeth and ignore her inhuman advances!");
+				else 
+				{
+					output("\nThe alien attention leaves your cheeks burning, and your whole body flushing with arousal. The things you could do to a gooey beauty like this...");
+					applyDamage(new TypeCollection( { tease: 4 } ), this, target, "minimal");	
+				}
+			}
+		}
+		
+		private function bellyTeaseGOOO(target:Creature):void
+		{
+			output("Your opponent bounces around you, moving with inhuman twists and turns that would break a creature with bones. But for her, it seems like she’s flowing around her crystal-clad belly, deforming and reforming every few moments in a myriad of ways that emphasize her hugely pregnant stomach. A pair of gooey arms wrap around it, fingers tracing over the perfectly smooth gemstone as her pseudo-hips thrust out beneath it.");
+			//If PC saves...
+			if(target.willpower()/2 + rand(20) + 1 >= 18)
+			{
+				output("\nIs that supposed to turn you on?");
+			}
+			else if(!target.hasCock())
+			{
+				output("\nYou find the alien display disquietingly erotic, an invitation to join with the gooey incubator and share in the joys of egg-swelling motherhood...");
+				applyDamage(new TypeCollection( { tease: 13 } ), this, target, "minimal");
+			}
+			//if cock + success:
+			else 
+			{
+				output("\nThe alien dance is alluring in the best of ways, inviting you to cover over and slide your cock ");
+				if(flags["CRYSTAL_GOO_GLORYHOLED"] == 1) output("back ");
+				output("into her gooey nethers and fertilize her massive store of nyrean eggs. Hundreds of them are floating inside her, begging for a cock to seed them. It’s hard to resist the urge to give her what she wants....");
+				applyDamage(new TypeCollection( { tease: 16 } ), this, target, "minimal");
+			}
+		}
+		
+		private function gooSpitShit(target:Creature):void
+		{
+			output("The gooey incubator swings one of her arms at you, as fast as her heavily laden body will let her. Rather than strike at you directly, though, a clump of goop flings off of her body and hurtles towards you!");
+			if(target.shields() > 0) output("\nThe goo splatters on your shields, drooling down to the ground like a bug caught on a windshield.");
+			else if(rangedCombatMiss(this, target)) output("\nThe goo splatters harmlessly on your chest. What was the point of that!?");
+			else
+			{
+				output("\nThe gooey blob beans you right in the face! You yelp in surprise as the warm slime splatters across your face, bathing everything in a weird green light - <b>you’re blinded by the goo</b>!");
+				target.createStatusEffect("Blinded",rand(3)+1,0,0,0,false,"Blind","You're blinded and cannot see! Accuracy is reduced, and ranged attacks are far more likely to miss.",true,0);
+			}
+		}
+		
+		private function gooTendrilSlap(target:Creature):void
+		{
+			output("The goo-girl gives a shrill warcry and lunges at you, a thick tendril of goo forming from her shoulder and lashing at you.");
+			if(combatMiss(this, target)) output("\nYou manage to block the attack, deflecting the swing away.");
+			else
+			{
+				output("\nThe egg-laden woman catches you off-guard and smashes her gooey tentacle into your chest! The force of the blow leaves you reeling, and covered in wet slime.");
+				applyDamage(meleeDamage(), this, target, "melee");
+			}
 		}
 	}
 }

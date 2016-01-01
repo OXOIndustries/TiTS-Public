@@ -1,5 +1,8 @@
 package classes.UIComponents.SideBarComponents 
 {
+	import classes.Characters.NyreaAlpha;
+	import classes.Characters.NyreaBeta;
+	import classes.Creature;
 	import classes.UIComponents.SideBarComponents.BigStatBlock;
 	import flash.display.Sprite;
 	import flash.events.Event;
@@ -7,6 +10,7 @@ package classes.UIComponents.SideBarComponents
 	import classes.UIComponents.UIStyleSettings;
 	import flash.text.AntiAliasType;
 	import classes.UIComponents.StatusEffectComponents.StatusEffectsDisplay;
+	import classes.StringUtil;
 	
 	/**
 	 * ...
@@ -88,6 +92,32 @@ package classes.UIComponents.SideBarComponents
 			_levelDisplay.resetBar();
 			_raceDisplay.resetBar();
 			_sexDisplay.resetBar();
+		}
+		
+		public function showStatsForCreature(char:Creature, asInit:Boolean = false):void
+		{
+			_statBlock.shieldBar.updateBar(char.shields(), char.shieldsMax(), asInit);
+			_statBlock.hpBar.updateBar(char.HP(), char.HPMax(), asInit);
+			_statBlock.lustBar.updateBar(char.lust(), char.lustMax(), asInit);
+			_statBlock.energyBar.updateBar(char.energy(), char.energyMax(), asInit);
+			_levelDisplay.updateBar(String(char.level), Number.NaN, asInit);
+			_raceDisplay.updateBar(StringUtil.toTitleCase(char.originalRace), Number.NaN, asInit);
+			
+			var genderText:String;
+			if (char.hasStatusEffect("Force it Gender")) genderText = "???";
+			else if (char.hasStatusEffect("Force Fem Gender")) genderText = "Female";
+			else if (char.hasStatusEffect("Force Male Gender")) genderText = "Male";
+			else if (char.hasStatusEffect("Force Herm Gender")) genderText = "Herm";
+			else if (char is NyreaAlpha || char is NyreaBeta) genderText = "Female???";
+			else if (char.hasCock())
+			{
+				if (char.hasVagina()) genderText = "Herm";
+				else genderText = "Male";
+			}
+			else if (char.hasVagina()) genderText = "Female";
+			else genderText = "???";
+			
+			_statusEffects.statusDisplay.updateDisplay(char.statusEffects);
 		}
 	}
 }

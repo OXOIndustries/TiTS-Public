@@ -1,5 +1,6 @@
 package classes.UIComponents.SideBarComponents 
 {
+	import classes.Creature;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.text.TextField;
@@ -113,6 +114,13 @@ package classes.UIComponents.SideBarComponents
 			_levelBar.resetBar();
 			_xpBar.resetBar();
 			_creditsBar.resetBar();
+		}
+		
+		public function showStatsForCreature(char:Creature, asInit:Boolean = false):void
+		{
+			_xpBar.updateBar(char.XP(), char.XPMax(), asInit);
+			_levelBar.updateBar(char.level, Number.NaN, asInit);
+			_creditsBar.updateBar(char.credits, Number.NaN, asInit);
 		}
 	}
 

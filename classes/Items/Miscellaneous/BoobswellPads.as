@@ -7,6 +7,7 @@
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
+	import classes.Engine.Interfaces.*;
 	
 	public class BoobswellPads extends ItemSlotClass
 	{
@@ -61,7 +62,7 @@
 			kGAMECLASS.clearOutput();
 			if(target is PlayerCharacter) {
 				//First use
-				kGAMECLASS.author("Savin");
+				author("Savin");
 				if(target.hasStatusEffect("Boobswell Pads"))
 				{
 					if(target.bRows() == 1) 

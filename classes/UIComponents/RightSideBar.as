@@ -1,8 +1,11 @@
 package classes.UIComponents 
 {
+	import classes.Characters.PlayerCharacter;
+	import classes.Creature;
 	import classes.UIComponents.SideBarComponents.AdvancementBlock;
 	import classes.UIComponents.SideBarComponents.BigStatBlock;
 	import classes.UIComponents.SideBarComponents.CoreStatsBlock;
+	import classes.UIComponents.SideBarComponents.PlayerPartyBlock;
 	import classes.UIComponents.SideBarComponents.StatusEffectsBlock;
 	import classes.UIComponents.StatusEffectComponents.StatusEffectsDisplay;
 	import fl.transitions.Tween;
@@ -23,8 +26,6 @@ package classes.UIComponents
 	 */
 	public class RightSideBar extends Sprite
 	{
-		private var _doTween:Boolean;
-		
 		private var _nameText:TextField;
 		private var _nameTextUnderline:Sprite;
 		
@@ -33,6 +34,8 @@ package classes.UIComponents
 		private var _advancementBlock:AdvancementBlock;
 		private var _statusEffectDisplay:StatusEffectsBlock;
 		
+		private var _playerPartyBlock:PlayerPartyBlock;
+		
 		// All of the individual bars are broken out here, because *this* class is where I'd likely configure
 		// bindUtils.bindProperty things back out into the game data classes. On load, the load code
 		// just sends the PC char to the UI, which passes it into RightSideBar, which configures the DataBinds
@@ -40,33 +43,60 @@ package classes.UIComponents
 		// The idea is UI gets seperated from game logic entirely. All UI cares about is values in Creatures.
 		public function get nameText():TextField { return this._nameText; }
 		
-		public function get shieldBar():StatBar { return _combatStatBlock.shieldBar; }
-		public function get hpBar():StatBar { return _combatStatBlock.hpBar; }
-		public function get lustBar():StatBar { return _combatStatBlock.lustBar; }
-		public function get energyBar():StatBar { return _combatStatBlock.energyBar; }
-		
-		public function get physiqueBar():StatBar { return _coreStatBlock.physiqueBar; }
-		public function get reflexesBar():StatBar { return _coreStatBlock.reflexesBar; }
-		public function get aimBar():StatBar { return _coreStatBlock.aimBar; }
-		public function get intelligenceBar():StatBar { return _coreStatBlock.intelligenceBar; }
-		public function get willpowerBar():StatBar { return _coreStatBlock.willpowerBar; }
-		public function get libidoBar():StatBar { return _coreStatBlock.libidoBar; }
-		
-		public function get levelBar():StatBar { return _advancementBlock.levelBar; }
-		public function get xpBar():StatBar { return _advancementBlock.xpBar; }
-		public function get creditsBar():StatBar { return _advancementBlock.creditsBar; }
-		
 		public function get statusEffects():StatusEffectsDisplay { return _statusEffectDisplay.statusDisplay; }
+		
+		public function showPlayerParty(chars:Array, asInit:Boolean = false):void
+		{
+			if (chars.length == 1)
+			{
+				_combatStatBlock.visible = true;
+				_coreStatBlock.visible = true;
+				_statusEffectDisplay.visible = true;
+				_playerPartyBlock.visible = false;
+				_nameText.visible = true;
+				_nameTextUnderline.visible = true;
+				_advancementBlock.visible = true; // Possibly, maybe, potentially, move this thing lower and anchor it to the bottom of the sidebar
+				
+				_combatStatBlock.showStatsForCreature(chars[0], asInit);
+				_coreStatBlock.showStatsForCreature(chars[0], asInit);
+				_advancementBlock.showStatsForCreature(chars[0], asInit);
+				_statusEffectDisplay.statusDisplay.updateDisplay(chars[0].statusEffects);
+				_nameText.text = chars[0].short;
+			}
+			else
+			{
+				_combatStatBlock.visible = false;
+				_coreStatBlock.visible = false;
+				_statusEffectDisplay.visible = false;
+				_playerPartyBlock.visible = true;
+				_nameText.visible = false;
+				_nameTextUnderline.visible = false;
+				_advancementBlock.visible = false;
+				
+				_playerPartyBlock.showForCreatures(chars);
+				
+				// grab pc
+				var pc:Creature = null;
+				for (var i:int = 0; i < chars.length; i++)
+				{
+					if (chars[i] is PlayerCharacter)
+					{
+						pc = chars[i];
+						break;
+					}
+				}
+				
+				_advancementBlock.showStatsForCreature(pc);
+			}
+		}
 		
 		/**
 		 * Config for lazy init.
 		 * @param	doTween	Set the bar to tween in from offscreen during startup
 		 */
-		public function RightSideBar(doTween:Boolean = true) 
+		public function RightSideBar() 
 		{
-			_doTween = doTween;
-			
-			this.addEventListener(Event.ADDED_TO_STAGE, init);
+			addEventListener(Event.ADDED_TO_STAGE, init);
 		}
 		
 		/**
@@ -85,6 +115,10 @@ package classes.UIComponents
 			_combatStatBlock.y = _nameTextUnderline.y + _nameTextUnderline.height + 11; // These magic numbers equalise the padding between the last element in the bar, and the next block
 			this.addChild(_combatStatBlock);
 			
+			_playerPartyBlock = new PlayerPartyBlock();
+			_playerPartyBlock.y = 4;
+			addChild(_playerPartyBlock);
+			
 			_coreStatBlock = new CoreStatsBlock();
 			_coreStatBlock.y = Math.floor(_combatStatBlock.y + (_combatStatBlock.height));
 			this.addChild(_coreStatBlock);
@@ -96,24 +130,6 @@ package classes.UIComponents
 			_statusEffectDisplay = new StatusEffectsBlock();
 			_statusEffectDisplay.y = Math.floor(_advancementBlock.y + (_advancementBlock.height + 4));
 			this.addChild(_statusEffectDisplay);
-		}
-		
-		public function tweenIn():void
-		{
-			if (_doTween)
-			{
-				this.x = 1200;
-				var tw:Tween = new Tween(this, "x", Regular.easeOut, 1200, 1000, 25, false);
-				
-				tw.addEventListener(TweenEvent.MOTION_FINISH, moveToFinalPosition);
-				tw.addEventListener(TweenEvent.MOTION_STOP, moveToFinalPosition);
-				tw.addEventListener(TweenEvent.MOTION_CHANGE, moveToFinalPosition);
-			}
-		}
-		
-		public function moveToFinalPosition(e:Event):void
-		{
-			this.x = 1000;
 		}
 		
 		/**
@@ -169,6 +185,7 @@ package classes.UIComponents
 			_coreStatBlock.visible = false;
 			_advancementBlock.visible = false;
 			_statusEffectDisplay.visible = false;
+			_playerPartyBlock.visible = false;
 		}
 		
 		public function showItems():void

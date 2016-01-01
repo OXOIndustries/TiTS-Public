@@ -2,14 +2,17 @@
 {
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
-	
+	import classes.GameData.CombatAttacks;
 	import classes.Creature;
 	import classes.GLOBAL;
 	import classes.kGAMECLASS;
-	import classes.rand;
-	
+	import classes.Engine.Utility.rand;
+	import classes.GameData.CombatManager;
 	import classes.Engine.Utility.num2Text;
 	import classes.Util.RandomInCollection;
+	import classes.Engine.Combat.DamageTypes.DamageResult;
+	import classes.Engine.Combat.outputDamage;
+	import classes.Engine.Combat.*;
 	
 	public class CuntSnake extends Creature
 	{
@@ -31,7 +34,7 @@
 			this.long = "The green-hued cunt snake blends in well with vegetation. It has no visible eyes, though there are two sensory bulbs atop its head. The reptilian alien is somewhere around " + num2Text(Math.round(this.tallness/12)) + " feet in length and moves with such sinuous, unpredictable grace that it would be difficult to hit from long range, but the fangs seem to suggest you keep your distance. A moist, drooling pussy is visible at the end of its body. It often shifts to point it towards you so that you can see just how sopping wet the hole is.";
 			this.customDodge = "The cunt snake sways aside at the last second!";
 			this.customBlock = "Your attack deflects off the cunt snake's " + this.scaleColor + " scales!";
-			this.plural = false;
+			this.isPlural = false;
 			
 			isLustImmune = true;
 			
@@ -167,7 +170,64 @@
 			this.createPerk("Ranged Immune",0,0,0,0);
 			this.createStatusEffect("Disarm Immune");
 			
+			isUniqueInFight = true;
+			btnTargetText = "Cuntsnake";
+			randomise();
+			
 			this._isLoading = false;
+		}
+		
+		private function randomise():void
+		{
+			tallness = 24 + rand(36);
+			scaleColor = "green";
+			long = "The green-hued cunt snake blends in well with vegetation. It has no visible eyes, though there are two sensory bulbs atop its head. The reptilian alien is somewhere around " + num2Text(Math.round(tallness/12)) + " feet in length and moves with such sinuous, unpredictable grace that it would be difficult to hit from long range, but the fangs seem to suggest you keep your distance. A ";
+			
+			if(rand(5) == 0) 
+			{
+				tailGenitalArg = GLOBAL.TYPE_HUMAN;
+				tailGenitalColor = "pink";
+				long += "<b>slippery, " + tailGenitalColor + " terran-like cunt</b>";
+			}
+			else if(rand(4) == 0) 
+			{
+				tailGenitalArg = GLOBAL.TYPE_EQUINE;
+				tailGenitalColor = RandomInCollection("pink", "black");
+				long += "<b>puffy, " + tailGenitalColor + " horse-like gash</b>";
+			}
+			else if(rand(3) == 0) 
+			{
+				tailGenitalArg = GLOBAL.TYPE_CANINE;
+				tailGenitalColor = "pink";
+				long += "<b>slippery, " + tailGenitalColor + " dog-like slit</b>";
+			}
+			else if(rand(2) == 0) 
+			{
+				tailGenitalArg = GLOBAL.TYPE_GOOEY;
+				if(rand(5) == 0) tailGenitalColor = "semi-transparent ";
+				else tailGenitalColor = "";
+				if(rand(10) == 0 && kGAMECLASS.pc.skinTone != "") tailGenitalColor = kGAMECLASS.pc.skinTone;
+				else tailGenitalColor += RandomInCollection("red", "orange", "yellow", "green", "blue", "purple", "white", "pink");
+				long += "<b>slippery slime creature's " + tailGenitalColor + " cunt</b>";
+			}
+			else 
+			{
+				tailGenitalArg = GLOBAL.TYPE_SIREN;
+				if(rand(5) == 0) tailGenitalColor = "luminous ";
+				else tailGenitalColor = "";
+				if(rand(10) == 0 && kGAMECLASS.pc.skinAccent != "") tailGenitalColor = kGAMECLASS.pc.skinAccent;
+				else tailGenitalColor += RandomInCollection("purple", "blue", "pink");
+				long += "<b>slick, " + tailGenitalColor + " cilia-filled tunnel</b>";
+			}	
+
+			long += " is visible at the end of its body. It often shifts to point it towards you so that you can see just how sopping wet the hole is.";
+			customDodge = "The cunt snake sways aside at the last second!";
+			customBlock = "Your attack deflects off the cunt snake's " + scaleColor + " scales!";
+		}
+		
+		override public function get bustDisplay():String
+		{
+			return "CUNTSNAKE";
 		}
 		
 		public function UpgradeVersion1(dataObject:Object):void
@@ -178,71 +238,198 @@
 			}
 		}
 		
-		// There's actually some WeirdShit™ going down here that we might have to go a different way to fix.
-		// Parser tags are looking at the "base" objects for data -- ie things in the chars[] array.
-		// We're making instance modifications to the base types, and moving them to foes[]... where the parser
-		// doesn't look to pull info from.
-		// ie, we should be modifying the base type in chars[], and then make a copy for foes[]
-		override public function prepForCombat():void
+		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{
-			var combatCSnake:CuntSnake = this.makeCopy();
-
-			kGAMECLASS.userInterface.showBust("CUNTSNAKE");
-			kGAMECLASS.setLocation("FIGHT:\nCUNT SNAKE", "PLANET: MHEN'GA", "SYSTEM: ARA ARA");
+			var target:Creature = selectTarget(hostileCreatures);
 			
-			combatCSnake.tallness = 24 + rand(36);
-			combatCSnake.scaleColor = "green";
-			combatCSnake.long = "The green-hued cunt snake blends in well with vegetation. It has no visible eyes, though there are two sensory bulbs atop its head. The reptilian alien is somewhere around " + num2Text(Math.round(combatCSnake.tallness/12)) + " feet in length and moves with such sinuous, unpredictable grace that it would be difficult to hit from long range, but the fangs seem to suggest you keep your distance. A ";
+			if (target == null) return;
 			
-			if(rand(5) == 0) 
+			if (target.hasCock() && rand(3) == 0) 
 			{
-				combatCSnake.tailGenitalArg = GLOBAL.TYPE_HUMAN;
-				combatCSnake.tailGenitalColor = "pink";
-				combatCSnake.long += "<b>slippery, " + combatCSnake.tailGenitalColor + " terran-like cunt</b>";
+				if(rand(4) == 0) paralyzingVenom(target);
+				else aphrodisiacBite(target);	
 			}
-			else if(rand(4) == 0) 
+			if (CombatManager.getRoundCount() % 5 == 0) 
 			{
-				combatCSnake.tailGenitalArg = GLOBAL.TYPE_EQUINE;
-				combatCSnake.tailGenitalColor = RandomInCollection("pink", "black");
-				combatCSnake.long += "<b>puffy, " + combatCSnake.tailGenitalColor + " horse-like gash</b>";
+				paralyzingVenom(target);
 			}
-			else if(rand(3) == 0) 
+			else if (rand(4) == 0) 
 			{
-				combatCSnake.tailGenitalArg = GLOBAL.TYPE_CANINE;
-				combatCSnake.tailGenitalColor = "pink";
-				combatCSnake.long += "<b>slippery, " + combatCSnake.tailGenitalColor + " dog-like slit</b>";
+				aphrodisiacBite(target);
 			}
-			else if(rand(2) == 0) 
+			else if (rand(3) == 0) 
 			{
-				combatCSnake.tailGenitalArg = GLOBAL.TYPE_GOOEY;
-				if(rand(5) == 0) combatCSnake.tailGenitalColor = "semi-transparent ";
-				else combatCSnake.tailGenitalColor = "";
-				if(rand(10) == 0 && kGAMECLASS.pc.skinTone != "") combatCSnake.tailGenitalColor = kGAMECLASS.pc.skinTone;
-				else combatCSnake.tailGenitalColor += RandomInCollection("red", "orange", "yellow", "green", "blue", "purple", "white", "pink");
-				combatCSnake.long += "<b>slippery slime creature's " + combatCSnake.tailGenitalColor + " cunt</b>";
+				NPCTripAttackGo(target);
+			}
+			else if (rand(2) == 0) 
+			{
+				slapAttackFromCuntSnake(target);
 			}
 			else 
 			{
-				combatCSnake.tailGenitalArg = GLOBAL.TYPE_SIREN;
-				if(rand(5) == 0) combatCSnake.tailGenitalColor = "luminous ";
-				else combatCSnake.tailGenitalColor = "";
-				if(rand(10) == 0 && kGAMECLASS.pc.skinAccent != "") combatCSnake.tailGenitalColor = kGAMECLASS.pc.skinAccent;
-				else combatCSnake.tailGenitalColor += RandomInCollection("purple", "blue", "pink");
-				combatCSnake.long += "<b>slick, " + combatCSnake.tailGenitalColor + " cilia-filled tunnel</b>";
-			}	
+				CombatAttacks.MeleeAttack(this, target);
+			}
+		}
+		
+		private function slapAttackFromCuntSnake(target:Creature):void
+		{
+			output("Coiling its body like a spring, the cunt snake launches its body towards you!");
 
-			combatCSnake.long += " is visible at the end of its body. It often shifts to point it towards you so that you can see just how sopping wet the hole is.";
-			combatCSnake.customDodge = "The cunt snake sways aside at the last second!";
-			combatCSnake.customBlock = "Your attack deflects off the cunt snake's " + combatCSnake.scaleColor + " scales!";
+			//{standard miss/block text}
+			if (combatMiss(this, target))
+			{
+				output(" It misses!");
+			}
+			//Blind miss
+			else if(hasStatusEffect("Blind") && rand(2) == 0) output(" It misses due to its blindness!");
+			//{hit} 
+			else
+			{
+				output(" It twists to slap at your [pc.face]");
+				
+				var damage:TypeCollection = new TypeCollection( { kinetic: 5 } );
+				damageRand(damage, 15);
+				var damageResult:DamageResult = calculateDamage(damage, this, target);
+				
+				if (damageResult.shieldDamage > 0)
+				{
+					if (target.shieldsRaw > 0) output(", bouncing off your shield with a loud 'snap'!");
+					else output(", breaching your shield.");
+				}
+				
+				if (damageResult.hpDamage > 0)
+				{
+					if (damageResult.shieldDamage > 0) output(" You're sent reeling from the impact while it flops onto the ground.");
+					else output(", sending you reeling from the impact while it flaps onto the ground.");
+					
+					if (!target.hasStatusEffect("Stunned") && target.physique() + rand(20) + 1 < 15)
+					{
+						output("<b> The hit was hard enough to stun you!</b>");
+						target.createStatusEffect("Stunned",1,0,0,0,false,"Stun","You are stunned and cannot move until you recover!",true,0);
+					}
+				}
+				
+				outputDamage(damageResult);
+			}
+		}
+		
+		private function NPCTripAttackGo(target:Creature):void
+		{
+			output("Your foe contorts its body inward and abruptly snaps its tail around like a whip, directed at your [pc.feet]! ");
+	//{standard miss/block text}
+			if (combatMiss(this, target))
+			{
+				output("It misses!");
+			}
+			//Blind miss
+			else if(hasStatusEffect("Blind") && rand(2) == 0) output("It misses due to its blindness!");
+			//{hit} 
+			else
+			{
+				output("Your [pc.legOrLegs]");
+				if(target.legCount == 1) output(" is");
+				else output(" are");
+				output(" swept out from beneath you and you land hard");
+				
+				var damage:TypeCollection = new TypeCollection( { kinetic: 5 } );
+				damageRand(damage, 15);
+				var damageResult:DamageResult = calculateDamage(damage, this, target);
+				
+				if (damageResult.shieldDamage > 0)
+				{
+					if (target.shieldsRaw > 0) output(", shield cushioning your impact.");
+					else output(", shattering your energy shield.");
+				}
+				
+				if (damageResult.hpDamage > 0)
+				{
+					output(" Your backside fares little better.");
+				}
+				
+				outputDamage(damageResult);
 
-			// What's all this shit for? Is i supposed to still be here after all the rand^ calls? It was in the initCSnake function so...
-			//combatCSnake.tailGenitalArg = GLOBAL.TYPE_HUMAN;
-			//if(rand(3) == 0) combatCSnake.tailGenitalArg = GLOBAL.TYPE_EQUINE;
-			//if(rand(3) == 0) combatCSnake.tailGenitalArg = GLOBAL.TYPE_CANINE;
-			//if(rand(3) == 0) combatCSnake.tailGenitalArg = GLOBAL.TYPE_GOOEY;
-			//if(rand(3) == 0) combatCSnake.tailGenitalArg = GLOBAL.TYPE_SIREN;
-
-			kGAMECLASS.foes.push(combatCSnake);
+				//If cock!
+				if (target.hasCock())
+				{
+					output("\n\nThe end of the snake loops around your waist and rubs against ");
+					if(!target.isCrotchGarbed()) output("your [pc.leg]");
+					else if(target.armor.shortName != "") output("the front of your [pc.armor]");
+					else output("the front of your [pc.lowerUndergarment]");
+					output(", trying to get at [pc.oneCock]. Moist secretions stain your crotch as you find yourself becoming unintentionally aroused by the contact.");
+					target.lust(3+rand(3));
+				}
+				//{not defeated}
+				output(" You roll aside and climb upright, feeling a little more sore");
+				if(target.hasCock()) output(" and horny");
+				output(" than before.");
+			}
+		}
+		
+		private function aphrodisiacBite(target:Creature):void
+		{
+			output("The snake coils up, then flashes out at you with mouth open and fangs exposed. ");
+			//{standard miss/block text}
+			if (combatMiss(this, target)) 
+			{
+				output(" It misses!");
+			}
+			//Blind miss
+			else if(hasStatusEffect("Blind") && rand(2) == 0) output("It misses due to its blindness!");
+			//{hit}
+			else 
+			{
+				output("Two spears of hot lust slip through your defenses and straight into your vulnerable veins. In a second, genitalia-engorging chemicals are pumped throughout your body. More and more of them spread through you as the snake injects artificial ardor straight into you.");
+				target.lust(10+rand(5));
+				if (target.lust() >= target.lustMax()) 
+				{
+					output("\n\nYou moan and lie back, ");
+					if(target.armor.shortName != "") output("digging into your [pc.armor]");
+					else if(target.lowerUndergarment.shortName != "") output("digging into your [pc.lowerUndergarment]");
+					else if(target.hasVagina()) output("digging into [pc.oneVagina]");
+					else if(target.hasCock()) output("grabbing your [pc.cock]");
+					else output("grabbing your [pc.nipples] in an attempt");
+					output(" to satisfy the urges welling up within you.");
+				}
+				//{not defeated}
+				else output("\n\nYou wriggle away as hard as you can, and the snake releases its grip on you. The holes its fangs left close up almost as soon as they emptied, leaving you sore and aroused.");
+			}
+		}
+		
+		private function paralyzingVenom(target:Creature):void
+		{
+			output("The snake coils up, then flashes out at you with mouth open and fangs exposed.");
+			//{standard miss/block text}
+			if (combatMiss(this, target)) 
+			{
+				output(" It misses!");
+			}
+			//Blind miss
+			else if(hasStatusEffect("Blind") && rand(2) == 0) output(" It misses due to its blindness!");
+			//{hit}
+			else 
+			{
+				if (target.shieldsRaw > 0) output(" It passes right through your shields, and i");
+				else output(" I");
+				output("ts attack lands, and you feel the needles sliding through your [pc.skin]. There is a moment of burning pain as the venom enters your bloodstream followed by the gentle deadness of numbed sensation.");
+				//{no save}
+				if (target.physique() + rand(20) + 1 < 15) 
+				{
+					if (target.hasStatusEffect("Paralyzed")) 
+					{
+						output(" <b>You're even more paralyzed than before!</b>");
+					}
+					else
+					{
+						output(" <b>After a second, you realize you've been paralyzed by the creature's bite!</b>");
+						target.createStatusEffect("Paralyzed",2,0,0,0,false,"Paralyze","You are paralyzed and cannot move until the venom wears off!",true,0);
+					}
+				}
+				//{resist/make save}
+				else 
+				{
+					output(" You yank it off before it can deposit its entire payload, rubbing the sore, rapidly healing spot on your arm in irritation.");
+				}
+			}
 		}
 	}
 }

@@ -1,7 +1,13 @@
-﻿import classes.Characters.PlayerCharacter;
+﻿import classes.Characters.CaptainKhorgan;
+import classes.Characters.CaptainKhorganMech;
+import classes.Characters.GunTurrets;
+import classes.Characters.Kaska;
+import classes.Characters.PlayerCharacter;
+import classes.Characters.RocketTurrets;
 import classes.Creature;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
 import classes.Util.InCollection;
+import flash.sampler.NewObjectSample;
 //{If Dungeon not completed, add:}
 public function chasmfallBonusFunction():Boolean
 {
@@ -117,8 +123,16 @@ public function liftStationBonus():Boolean
 		output("\n\nDoesn't look like you're getting out of this one too easy.");
 		processTime(1);
 		//Start fight!
+		
+		CombatManager.newGroundCombat();
+		CombatManager.setFriendlyCharacters(pc);
+		CombatManager.setHostileCharacters(new GunTurrets());
+		CombatManager.victoryScene(tamtamGetsPunkedByPCs);
+		CombatManager.lossScene(tamtamBadEndPetPooch);
+		CombatManager.displayLocation("TURRETS");
+			
 		clearMenu();
-		addButton(0,"Next",startCombat,"auto-turrets");
+		addButton(0,"Next", CombatManager.beginCombat);
 		flags["FOUGHT_TAM"] = 1;
 		return true;
 	}
@@ -135,199 +149,6 @@ public function liftStationBonus():Boolean
 	return false;
 }
 
-public function tamtamtamtamtamtamAI():void
-{
-	showBust("TAMTAM","TAMWOLF");
-	showName("FIGHT:\nTAM DRONES");
-	if(foes[0].hasStatusEffect("Turret Aimhacks"))
-	{
-		turretVolleyAttackMotherFucker();
-		return;
-	}
-	if(foes[0].HP()/foes[0].HPMax() < .5 && !foes[0].hasStatusEffect("Phase 2"))
-	{
-		tamtamPhaseTwoLetsGo();
-		return;
-	}
-	var choices:Array = new Array();
-	choices[choices.length] = turretVolleyAttackMotherFucker;
-	choices[choices.length] = laserSightShot;
-	choices[choices.length] = shootFasterAttack;
-	choices[choices.length] = thermalDisruptorFromTam;
-	if(foes[0].hasStatusEffect("Phase 2"))
-	{
-		choices[choices.length] = tamwolfBiteGogogogogogo;
-		choices[choices.length] = tamwolfBiteGogogogogogo;
-		choices[choices.length] = tamwolfBiteGogogogogogo;
-		if(!pc.hasStatusEffect("Blind")) choices[choices.length] = tamwolfOilslick;
-	}
-	choices[rand(choices.length)]();
-}
-
-//Tam Fight: Phase 1
-//Fight is immune to lust (Beep Boop)
-//Counts as a group, so AOE attacks are brutal
-//Great point to use EMP grenades!
-//You're fighting the auto-turrets! (Level: 4)
-//A mass of turrets and floating drones have been set up like a firing squad in the foyer of the lift station, all barrels training on you. A rag-tag mix of makes and models, most of them look like they belong in antique tech shops -- or scrap heaps. But that doesn't mean they're not dangerous: you're surrounded by a hail of lead every time you try and move, made worse as the cat-girl controlling them takes pot-shots at you between the incoming volleys. 
-
-//Volley Attack
-//LOTS of low-damage, low-accuracy kinetic attacks.
-public function turretVolleyAttackMotherFucker():void
-{
-	output("You find yourself under a hail of gunfire, every turret in the room bearing down on you and firing full-auto, sacrificing accuracy for sheer volume of firepower. And it's working: duck and weave as you might, there's a stream of bullets crashing behind you, tearing into the walls with deafening force.\n");
-	if(foes[0].hasStatusEffect("Turret Aimhacks"))
-	{
-		rangedAttack(foes[0],pc,[2]);
-		output("\n");
-		rangedAttack(foes[0],pc,[2]);
-		output("\n");
-		rangedAttack(foes[0],pc,[2]);
-		output("\n");
-		rangedAttack(foes[0],pc,[2]);
-		foes[0].removeStatusEffect("Turret Aimhacks");
-		processCombat();
-	}
-	//Hit: A turret hits you!
-	//Miss: Several bullets slam past you!
-	//Swing twice, shoot twice.
-	else
-	{
-		rangedAttack(foes[0],pc,[1,2]);
-		output("\n");
-		rangedAttack(foes[0],pc,[1,2]);
-		output("\n");
-		rangedAttack(foes[0],pc,[1,2]);
-		output("\n");
-		rangedAttack(foes[0],pc,[1,2]);
-		output("\n");
-		rangedAttack(foes[0],pc,[1,2]);
-		processCombat();
-	}
-}
-
-//Laser Sight Shot
-//One high-accuracy laser shot
-public function laserSightShot():void
-{
-	output("Ducking and weaving through the storm of bullets headed your way, you see the cat-girl standing stock still, a holographic scope appearing over the barrel of her laser pistol. <i>\"Heads up!\"</i> she grins, leveling the gun right at you.");
-	//Miss:
-	if(rangedCombatMiss(foes[0],pc))
-	{
-		output("\n\nShe squeezes the trigger, but just a second too late. You tumble to the side, the bolt crashing through the space you occupied a second before. A near miss -- very near.");
-	}
-	//Hit:
-	else
-	{
-		output("\n\nShe squeezes the trigger, and a bright bolt of laser fire slams right into you, nearly knocking you off your [pc.feet]! Damn, she's a deadeye!");
-		var damage:TypeCollection = foes[0].damage(false);
-		damage.add(foes[0].aim() / 2);
-		damage.multiply(2.2);
-		damageRand(damage, 15);
-		applyDamage(damage, foes[0], pc);
-	}
-	processCombat();
-}
-
-//Shoot Faster!
-//Tam buffs her drones: +Accuracy for Volley Attack next round.
-public function shootFasterAttack():void
-{
-	output("Amid the hail of incoming gunfire, you see the pink-haired cat-girl duck down behind the desk, fiddling with the holoband around her wrist. As she does so, laser sights appear beneath the turrets, all tracking towards you. Incoming!");
-	foes[0].createStatusEffect("Turret Aimhacks",0,0,0,0,true,"","",true,0);
-	processCombat();
-}
-
-//Bang Bang!
-//Tam launches a thermal disruptor!
-public function thermalDisruptorFromTam():void
-{
-	output("Out of the corner of your eye, you catch sight of the cat-girl loading a big shell into what looks like a wrist-launcher. Oh, shit.");
-	output("\n\n<i>\"Hope you didn't need your FACE!\"</i> she cheers, leveling her wrist at you and firing!");
-	//Miss:
-	if(rangedCombatMiss(foes[0],pc))
-	{
-		output("\n\nYou dive just in time as a disruptor shell goes over you, blasting a massive hole in the wall! <i>\"Oops!\"</i> she giggles, <i>\"Guess we're redecorating!\"</i>");
-	}
-	//Hit:
-	else
-	{
-		output("\n\nThe disruptor shot slams straight into you, burning at you in a conflagration of fire! ");
-		if(!pc.hasStatusEffect("Degraded Armor")) 
-		{
-			output("<b>The effectiveness of your armor is temporarily reduced!</b> ");
-			pc.createStatusEffect("Degraded Armor", 0, 0, 0, 0, false, "DefenseDown", "Your armor is temporarily degraded and will not provide any defensive benefit.", true, 0);
-		}
-		output("The cat-girl grins, blowing the smoke from her launcher's barrel. <i>\"Bam said the man! Feel free to surrender any time... I won't be too rough on you!\"</i>");
-		output("\n\nHer grin turns savage. <i>\"Just kidding! I like it rough!");
-		if(silly && foes[0].hasStatusEffect("Tamwolf Out")) output("\"ruff\"!");
-		output("\"</i>");
-		
-		var damage:TypeCollection = new TypeCollection( { burning: 18 } );
-		damageRand(damage, 15);
-		applyDamage(damage, foes[0], pc);
-	}
-	processCombat();
-}
-
-//Tam-Tam, Phase 2
-public function tamtamPhaseTwoLetsGo():void
-{
-	//{Play when the Turret Fight reaches half its normal health}
-	output("You're slowly tearing through the turrets. The foyer has certainly seen better days: it's littered with broken bits of machinery and destroyed turret husks, not to mention the walls riddled with bullet holes. Still, you're making progress, and the cat-girl behind the counter is starting to look awful nervous. Finally, she plants her hands on her (now that you look, surprisingly big) hips and scowls at you.");
-	output("\n\n<i>\"Look at what you did to my poor turrets! What did they ever do to you, huh!?\"</i> she shouts over the din of gunfire as her pets continue to fire at you. <i>\"Well fine! Boss said nobody gets past here, so I'll just have to use my SUPER SECRET WEAPON! Come on out, boy!\"</i>");
-	output("\n\nWhat!? You look up just in time to see the door behind the desk being bashed open and a huge, quadrupedal black form rush out. It leaps over the desk, skidding to a halt between you and the guns, barring a set of glittering metallic teeth. It looks like ");
-	if(pc.characterClass != GLOBAL.CLASS_ENGINEER) output("some kind of crazy cyber dog");
-	else output("a canid-formed Fenris-class attack drone");
-	output(", complete with a razor claws and fangs.");
-	output("\n\n<i>\"Go get " + pc.mf("him","her") + ", Tam-wolf!\"</i> the cat-girl cheers, pumping a fist into the air.");
-	output("\n\n<i>\"Yes, mistress Tam,\"</i> a synthesized robotic voice answers, following by a bass-heavy digital growl.");
-	foes[0].long = "A mass of turrets and floating drones have been set up like a firing squad in the foyer of the lift station, all barrels training on you. A rag-tag mix of makes and models, most of them look like they belong in antique tech shops -- or scrap heaps. But that doesn't mean they're not dangerous: you're surrounded by a hail of lead every time you try and move, made worse as the cat-girl controlling them takes pot-shots at you between the incoming volleys. Between you and the drones, making your life a lot tougher, is a powerfully built canine attack drone with razor-sharp fangs ready to tear into you!";
-	foes[0].short = "Tams and turrets";
-	foes[0].createStatusEffect("Phase 2",0,0,0,0,true,"","",true,0);
-	processCombat();
-}
-
-//New Attacks!
-//Tamwolf Bite
-//One powerful Piercing attack
-public function tamwolfBiteGogogogogogo():void
-{
-	output("The gunfire dies down, but just enough to give the great big robo-dog Tam-wolf a clear shot at you. With a fearsome digital growl, the cyberhound launches itself at you for a savage mauling!");
-	//Miss:
-	if(combatMiss(foes[0],pc)) output("\n\nYou dodge aside, letting the cyberhound's momentum carry him past you. Still, the drone makes a solid landing, skidding to a halt with teeth bared.");
-	//Hit:
-	else
-	{
-		output("\n\nYou get your arm up in time to block the bite, but wince in pain as the cybehound's fangs sink into ");
-		if(pc.armor.shortName == "") output("you");
-		else output("your [pc.armor]");
-		output(".");
-		
-		var damage:TypeCollection = foes[0].damage(true);
-		damage.add(foes[0].physique() / 2);
-		damageRand(damage, 15);
-		applyDamage(damage, foes[0], pc);
-	}
-	processCombat();
-} 
-	
-//Tamwolf Oil Slick (ew!)
-//Blind attack. Watch out!
-public function tamwolfOilslick():void
-{
-	output("Beneath the wall of turrets, the cyberhound Tam-wolf spins around, positioning his back to you and hiking a leg. Oh, for fuck's...");
-	//Miss:
-	if(rangedCombatMiss(foes[0],pc)) output("\n\nYou're able to get out of the way as a slick streak of machine oils squirts past you, splattering across the floor behind you. The drone-dog whines pitifully as his mistress, the <i>other</i> Tam, snaps, <i>\"Bad doggy! You made a mess!\"</i>");
-	//Hit:
-	else
-	{
-		output("\n\nYou try and cover your eyes, but too late! A streak of machine oil jets out of the drone dog, splattering across your face! <b>You are blinded!</b>");
-		pc.createStatusEffect("Blind",rand(3)+1,0,0,0,false,"Blind","You're blinded and cannot see! Accuracy is reduced, and ranged attacks are far more likely to miss.",true,0);
-	}
-	processCombat();
-}
-
 //Tam-Tam: Player Victory!
 public function tamtamGetsPunkedByPCs():void
 {
@@ -337,7 +158,7 @@ public function tamtamGetsPunkedByPCs():void
 	output("\n\n<i>\"NOOOO! TAM-WOLF!\"</i> Tam shrieks, rushing forward and grabbing the malfunctioning drone, cradling his head. <i>\"You... you monster! What did you do to my poor Tam-wolf?\"</i>");
 	output("\n\nBefore you can say a word, the remaining turrets -- what few are left -- open up, forcing you to dive into cover as the cat-girl retreats into the back room, dragging her attack drone and cursing up a storm at you. A few well-placed swings take out the last of the turrets, leaving you standing in the room amid a decimated army of drones and gun-turrets and a sea of shell casings. Your ears are ringing, but at least you're alive....");
 	output("\n\nNow to deal with the cat-girl....\n\n");
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Lift Station: Engineering Deck
@@ -457,7 +278,7 @@ public function stickItInZeCatgirlCoochWhileSheThinksYerKaska():void
 	output("\n\n<i>\"Still your favorite, right chief?\"</i> Tam giggles, rubbing her butt against the sheathed underside of your prick. <i>\"Double kaithrit tail-job... maybe I'll let you stick it in for a scratch between the ears?\"</i>");
 	output("\n\nHer cat ears perk up expectantly, tails squeezing hard around your shaft as encouragement until you finally reach up and give the puss what she wants. Tam purrs throatily as your fingers work through her bright pink hair, getting at that wonderfully sensitive spot right between her perky cat-ears. Her hips press back against your crotch, grinding up against you as her twin tails slowly release your rod, letting you enjoy the warm, wet feeling of her sex rubbing against your [pc.cock " + x + "], so close to penetration that any errant movement would send you deep into the cat-girl's eager box.");
 	output("\n\n<i>\"You're clear for landing, Kaska,\"</i> Tam purrs, wiggling her flared hips up your shaft, until the crown of your cock is kissing the lips of her pussy. Tam bits her lip, back arching as she purrs and moans, readying herself for you. You're more than happy to make up the difference: grabbing Tam's hips, you thrust in, one long, smooth motion until you're ");
-	if(pc.cockVolume(x) <= foes[0].vaginalCapacity(0)) output("buried to the hilt");
+	if(pc.cockVolume(x) <= enemy.vaginalCapacity(0)) output("buried to the hilt");
 	else output("able to see her gut distending from the sheer amount of cock being shoved into her");
 	output(". The chorus of moans Tam's been serenading you with breaks at that moment, her cute little groans turning into a long cry of pleasure as you finally fuck her.");
 	pc.cockChange();
@@ -616,7 +437,7 @@ public function tamtamBadEndPetPooch():void
 	showBust("TAMTAM","TAMWOLF");
 	showName("\nTAM-WOLF");
 	//If During phase 1:
-	if(!foes[0].hasStatusEffect("Phase 2"))
+	if(!enemy.hasStatusEffect("Phase 2"))
 	{
 		output("Under a withering hail of bullets, you find yourself thrown back as one makes hard contact, blasting through your shoulder. With a wail of agony, you stumble to the ground... and quickly see every gun in the room leveled at you. Well, that's it then. You throw your [pc.rangedWeapon] aside and raise your hands... wincing in pain from your wound. The cat-girl grins over the desk at you, and whistles loudly. Suddenly, a huge doberman-like robot lunges out of the dark at you, pinning you to the ground.");
 	}
@@ -821,58 +642,16 @@ public function liftDownEvent():void
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
-
-/*Kost'oran Assssin Battle
-{Main Screen Turn On}
-You're fighting a kost'oran assassin!
-
-A towering, dark-skinned example of his species, the assassin looks like a veteran of many battles: his body is covered in obvious scars and old wounds, making him look almost patchwork. He's wearing lightweight, flexible ballistic armor that covers most of his vital spots, and a powerful jetpack is slung over his shoulders, giving him incredible mobility. The assassin is currently wielding a pair of long, curved steel swords: old school, but no less deadly today than they were three thousand years ago. <b>This man looks like a fanatic who would fight to the death -- yours or his!</b>
-
-Dual Weapon Rend
-//Two medium attacks. The first has a chance to sunder armor, but the second has lower accuracy. Awshit, complex!
-	Howling a warcry that echoes through the cabin, the assassin charges you, swinging his blades akimbo.
-	Hit 1: The assassin's first sword strike cuts into you{r [pc.armor]}{, sundering your defenses!}
-	Hit 2: {Taking advantage of the gap in your gear, the assassin's second strike hits home, bypassing your defenses!} {Making up for the first miss, the assassin's blade strikes true, tearing into you!}
-
-
-Jetpack Shoulder Check
-//One heavy attack, chance of knockdown
-	Charging up his jetpack, the kost'oran assassin lunges at you, using his jets to add tremendous force to the strike! You try to knock his blades away, but find yourself on the business end of a shoulder-charge.
-	Hit: His shoulder slams into your [pc.chest], throwing you back against the wall of the car. {You slump to the ground, knocked down by the overwhelming charge.}
-
-
-Headbutt!
-//Works just like the Merc ability!
-	The assassins leans back before whipping his head forward in a sudden headbutt!
-	Hit: The boney ridges atop his head make the brutal, dirty move all the more painful. You stagger back, clutching at your own [pc.face] in the aftermath. Fuck, that hurt{... and you're stunned, too}!
-
-
-Crescent Moon Kick
-//Light attack with a higher chance of stun
-	The assassin lunges at you, driving you back with a flurry of sword-strikes. Just as you think the onslaught's over, though, he keys his jetpack and flips backwards, using the pack to propel his feet upwards in a brutal crescent moon kick!
-	Hit: Oof! You're knocked back as his bone-encrusted feet connect with your chin, knocking you back against the wall. {The attack was so brutal that it stunned you!}
-
-PC is Defeated
-You stumble back, unable to hold out any longer. The kost'oran looms over you, knocking your {weapons and }equipment away with an almost contemptuous swipe of his blades. "Pathetic. How did that moronic cat manage to let </i>you<i> past her? I'll have words with her, soon. As for you..."
-
-With a flick of his wrist, the assassin draws his blade across your throat. You gasp, clutching at your neck, clawing at the wound as the assassin fires up his jetpack and departs, flying away. 
-
-<b>GAME OVER</b>
-
-PC is Victorious!
-	//Savin gets controversial, oh shit! Feel free to ignore this if you want to write sex for this fellow.
-	{if PC won by physical: Worn down by your assault, the kost'oran stumbles to a knee, barely staying upright thanks to his blades, now planted in the floor of the car.
-	{If PC won by Lust: His knees buckling and armor bulging at your sensual response to his attack, the assassin stumbles back, barely able to stand as you approach him, ready to take your reward from his body.} However, before you can properly disarm the defeated kost'oran, he looks up at you with a sudden, renewed fierceness -- and he presses a button on his jetpack. 
-
-"For Captain Khorgan!" he growls, grinning evilly. "My debt is finally repaid."
-
-The jetpack beeps loudly, growing in intensity. Oh, no... Instinct kicks in: you grab the assassin, twist around to the window, and push. He reacts too quickly to stop you, too worn out to put up a proper fight as you throw him out the window, taking his overcharging jetpack with him. A moment later, you hear the explosion far below you, and the whole of the cart rattles with the impact. You grab the side of the carriage, holding on as the shockwave rushes over you.
-
-There goes stealth.
-
-You press your back to the edge of the cart, and ride it the rest of the way down, ready for anything now... but surprisingly, there's no further threat until you hear the elevator clicking into place at the base of the walkway. */
-
-//Security Checkpoint / Rocket Pod Encounter
+	
+public function configRocketFight():void
+{
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(new RocketTurrets());
+	CombatManager.victoryScene(pcBeatsRocketPods);
+	CombatManager.lossScene(pcLosesToRocketPods);
+	CombatManager.displayLocation("TURRETS");
+}
 
 public function coreWalkWayBonus():Boolean
 {
@@ -892,7 +671,8 @@ public function coreWalkWayBonus():Boolean
 		output(" before they can target you. Unlike the crazy cat-girl's turrets topside, these are sleek and heavy looking, probably part of the installation's normal security. And if those barrels are anything to go by, they're probably loaded with micro-rockets rather than bullets - powerful enough to chew through a dropship or a freighter. You'll need to take these bastards down fast if you want any hope of fighting forward.");
 		//[Fight] [Lift] [Sneak By] [{if Tech Spec.: Hack Turrets}]
 		clearMenu();
-		addButton(0,"Fight",startCombat,"rocket pods");
+		configRocketFight();
+		addButton(0, "Fight", CombatManager.beginCombat);
 		if(pc.characterClass == GLOBAL.CLASS_SMUGGLER)
 		{
 			output("\n\nThis situation reminds you of the time you snuck by the guards on Antaris VII. Zero-G environs do open up some unconventional paths....");
@@ -945,7 +725,8 @@ public function hackTheRocketPodsOnTarkus():void
 		output("\n\nYou spend a few minutes tapping around in the security system, but someone's clearly been ramping up the anti-intruder countermeasures. You grit your teeth with effort, trying to pierce the security, but finding no backdoors or weak points to exploit. With a grunt of frustration, you toss your Codex back in your pack. Looks like it's the hard way.");
 		processTime(2);
 		clearMenu();
-		addButton(0,"Next",startCombat,"rocket pods");
+		configRocketFight();
+		addButton(0, "Next", CombatManager.beginCombat);
 	}
 	//{On Pass}
 	else
@@ -981,52 +762,11 @@ public function sneakByZeTurrets():void
 	addButton(0,"Next",mainGameMenu);
 }
 
-//MAIN SCREEN TURN ON:
-//You're fighting a battery of rocket pods! (Level: 4)
-public function rocketPodAI():void
-{
-	author("Savin");
-	showName("ROCKET\nPODS");
-	if(foes[0].shields() == 0 && rand(2) == 0 && !foes[0].hasStatusEffect("Shields Refilled")) shieldsUp();
-	else rocketPodRocketAttk();
-}
-
-//Primary Attack: ROCKET (duh)
-public function rocketPodRocketAttk():void
-{
-	//Count as one HEAVY physical attack, but has a low to-hit chance.
-	output("One of the micro-rocket turrets takes a bead on you, its laser targeter dancing across your chest for a moment before a loud <i>THUMP</i> echoes across the rift and a tiny warhead races toward you!");
-	//Triple normal miss chance.
-	if(rangedCombatMiss(foes[0],pc) || rangedCombatMiss(foes[0],pc) || rangedCombatMiss(foes[0],pc))
-	{
-		output("\n\nYou tuck and roll under the rocket, dodging the blast!");
-	}
-	else
-	{
-		output("\n\nYou jump back just in time as the rocket slams into the walkway, blowing you off your [pc.feet] and sending you rocketing back! You slam into some crates, breaking your fall (and nearly your back). Lucky you still have all your limbs!");
-		
-		var damage:TypeCollection = new TypeCollection( { burning: 15 } );
-		damageRand(damage, 15);
-		applyDamage(damage, foes[0], pc);
-	}
-	processCombat();
-}
-
-//Ability 2: SHIELDS UP!
-public function shieldsUp():void
-{
-	//1 time per encounter, re-charges 50% of shields once they drop.
-	output("The rocket pods beep noisily at each other, stopping their barrage for a few moments. As they do so, you see the tell-tale flicker of a shield barrier going up. Shit!");
-	foes[0].shields(Math.round(foes[0].shieldsMax()/2));
-	foes[0].createStatusEffect("Shields Refilled",0,0,0,0);
-	processCombat();
-}
-
 //PC Victory vs Rocket Pods
 public function pcBeatsRocketPods():void
 {
 	output("With a mighty KABOOM, the last rocket turret explodes in a hail of shrapnel and sparks. You heave a sigh of relief as silence again reigns in the rift. Can only spare a few moments to catch your breath, though, before you have to push on: there's a bomb that needs defusing!\n\n");
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //PC Loss vs Rocket Pods
@@ -1109,142 +849,18 @@ public function pirateCaptainBossFightIntro():void
 	flags["KHORGAN_LEFT_COVER"] = 100;
 	flags["KHORGAN_CENTER_COVER"] = 100;
 	flags["KHORGAN_RIGHT_COVER"] = 100;
-	addButton(0,"Next",startCombat,"khorgan mechfight");
-}
-
-//How the fight should work: the mech suit's WAY too powerful for Steele to just take on straight up. Especially with that fuckhuge missile launcher on its back. Luckily, there's plenty of cover around in the three squares Steele can move between here, which should be displayed beneath Khorgan's description text as a %, which slowly deteriorates as she blasts the crates, boxes, and barriers on each platform. Maybe have each %pt be worth 2 points of damage, so having 100% cover absorbs 50% of damage coming your way, etc. Every so often, Khorgan will blast a cover spot with a missile, forcing you to relocate or take MASSIVE damage from it + have no cover. In her mechsuit, she's basically immune to LUST damage, and has heavy shields and armor besides. Seriously tough, even for level 5 PCs. FANTASIZE probably shouldn't work here, either.
-
-//% of cover = 2 HP.
-//% of cover = % chance cover will take the hit instead of PC.
-
-public function khorganSuitAI():void
-{
-	author("Savin");
-	showBust("CAPTAIN_KHORGAN");
-	showName("FIGHT: CAP'N\nKHORGAN");
-	//Update description for next round display.
-	foes[0].long = "Barely visible beneath tons of steel mech suit, the captain cuts an impressive figure: buxom, muscular, and fierce. Her every moment is precise and furious, as if her rage at your intrusion alone is enough to overwhelm you. What you can see of her dress screams \"party-shop pirate,\" with ruffles and a tricorn hat and everything. Even the suit she's wearing is outdated, an old civilian mining exoskeleton, the kind used for deep-depth ore drilling and excavation, probably a century old. But it's been heavily reinforced with makeshift armor plating, shield emitters, and weapon upgrades -- including a massive missile launcher strapped to its back, probably ripped off of a starfighter or freighter.";
-	var percent:int = foes[0].HP()/foes[0].HPMax() * 100;
-	//if the suit's taken little damage:
-	if(percent >= 66) foes[0].long += " This monstrosity could probably give a military suit a run for its money, and against you? Better bring your A-game, Steele!";
-	else if(percent >= 33) foes[0].long += " The mech's armor plates are starting to fall off, and smoke and sparks fly from damaged servos and circuits. Keep up the pressure!";
-	else foes[0].long += " The suit is smoking like cigar, shuddering with every moment as the captain struggles to keep it standing. Almost there!";
-
-	//Actual enemy AI function nau!
-
-	//Missile Incoming!
-	//Charged attack
-	//Every six rounds charges and fires the following round.
-	if(pc.statusEffectv1("Round") % 6 == 0 && pc.statusEffectv1("Round") != 0 || foes[0].hasStatusEffect("Missile Chargeup"))
-	{
-		missileIncoming();
-		return;
-	}
-	//Mining Laser Barrage
-	//Several medium-damage attacks
-	if(rand(2) == 0) miningLaserBarrage();
-	//Crate Throw
-	// Medium damage, chance to cause knockdown or stun or something
-	else if(rand(2) == 0) crateThrow();
-	//Mining Laser Charge Shot
-	//One MEGA attack, low accuracy
-	else miningLaserSuperShot();
-}
-
-
-//Mining Laser Barrage
-//Several medium-damage attacks
-public function miningLaserBarrage():void
-{
-	output("The captain levels her laser-armed arm at you, steadying the massive weapon with her off-hand as its six barrels spin up, glowing red as they prepare to blast you into oblivion! You have just enough time to dive into cover before the bolts of red-hot death start flying!\n");
-	var damage:TypeCollection;
-	var leftOverDamage:int = 0;
 	
-	for(var x:int = 3;x > 0;x--)
-	{
-		//Damage!
-		if(rangedCombatMiss(foes[0],pc))
-		{
-			output("\nYou find yourself screaming as a deafening, blistering-hot barrage soars overhead, melting through your cover and only just missing you through the stacks of crates around you.");
-			coverDamage(4);
-		}
-		else
-		{
-			output("\nEven cover isn't enough to save you as bolts burn through the boxes and crates, hammering into you like a thousand tiny suns.");
-			
-			damage = new TypeCollection( { burning: 10 } );
-			damageRand(damage, 15);
-			
-			//Leftover damage is what doesn't get eaten by cover.
-			leftOverDamage = damage.getTotal() - Math.round(damage.getTotal() * coverPercent());
-			
-			//Cover soaks up it's % in damage.
-			coverDamage(damage.getTotal() * coverPercent());
-			
-			//Figure out how much is left
-			damage = new TypeCollection( { burning: leftOverDamage } );
-			applyDamage(damage,foes[0],pc);
-		}
-	}
-	processCombat();
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(new CaptainKhorganMech());
+	CombatManager.victoryScene(victoriousVsCaptainOrcButt);
+	CombatManager.lossScene(loseToCaptainKhorganBadEnd);
+	CombatManager.displayLocation("CAP. KHORGAN");
+	
+	addButton(0,"Next", CombatManager.beginCombat);
 }
 
-public function coverPercent():Number
-{
-	if(currentLocation == "KHORGAN_LEFT_COVER")
-	{
-		return flags["KHORGAN_LEFT_COVER"]/100;
-	}
-	else if(currentLocation == "KHORGAN_CENTER_COVER")
-	{
-		return flags["KHORGAN_CENTER_COVER"]/100;
-	}
-	else if(currentLocation == "KHORGAN_RIGHT_COVER")
-	{
-		return flags["KHORGAN_RIGHT_COVER"]/100;
-	}
-	return 9000;
-}
-
-public function coverDamage(damage:int):void
-{
-	var coverNuked:Boolean = false;
-	var coverRemaining:Number = -1;
-	if(currentLocation == "KHORGAN_LEFT_COVER")
-	{
-		flags["KHORGAN_LEFT_COVER"] -= damage/2;
-		if(flags["KHORGAN_LEFT_COVER"] < 0) 
-		{
-			flags["KHORGAN_LEFT_COVER"] = 0;
-			coverNuked = true;
-		}
-		coverRemaining = flags["KHORGAN_LEFT_COVER"];
-	}
-	else if(currentLocation == "KHORGAN_CENTER_COVER")
-	{
-		flags["KHORGAN_CENTER_COVER"] -= damage/2;
-		if(flags["KHORGAN_CENTER_COVER"] < 0)
-		{
-			flags["KHORGAN_CENTER_COVER"] = 0;
-			coverNuked = true;
-		}
-		coverRemaining = flags["KHORGAN_CENTER_COVER"]
-	}
-	else if(currentLocation == "KHORGAN_RIGHT_COVER")
-	{
-		flags["KHORGAN_RIGHT_COVER"] -= damage/2;
-		if(flags["KHORGAN_RIGHT_COVER"] < 0) 
-		{
-			flags["KHORGAN_RIGHT_COVER"] = 0;
-			coverNuked = true;
-		}
-		coverRemaining = flags["KHORGAN_RIGHT_COVER"]
-	}
-	if(coverNuked) output(" <b>(Cover gone!)</b>");
-	else output(" (-" + damage/2 + "% Cover)");
-}
-
-public function coverUpdateDisplay():void
+public function updateKhorganMechCover():void
 {
 	var coverRemaining:Number = 0;
 	if(currentLocation == "KHORGAN_LEFT_COVER") coverRemaining = flags["KHORGAN_LEFT_COVER"];
@@ -1263,73 +879,11 @@ public function coverUpdateDisplay():void
 
 //Mining Laser Charge Shot
 //One MEGA attack, low accuracy
-public function miningLaserSuperShot():void
-{
-	output("With a roar of rage, the captain thrusts her laser-bearing arm forward and fires, one huge, continuous stream of laser fire that shears into the steel platform, tearing into what little cover you can find.");
-	if(rangedCombatMiss(foes[0],pc))
-	{
-		output("\n\nYou hurl yourself flat to the ground, getting as small as possible as the heavy blast tears through the platform around you.");
-		coverDamage(20);
-	}
-	//Hit:
-	else
-	{
-		output("\n\nYou try and run, but there's nowhere to hide from the death laser as it slams into you, throwing you to the deck as the captain concentrates fire on you, shearing into your ");
-		if(pc.shields() > 0) output("shields and ");
-		output("gear.");
-		
-		var damage:TypeCollection = new TypeCollection( { burning: 30 } );
-		damageRand(damage, 15);
-		
-		//Leftover damage is what doesn't get eaten by cover.
-		var leftOverDamage:Number = damage.getTotal() - Math.round(damage.getTotal() * coverPercent());
-		
-		//Cover soaks up it's % in damage.
-		coverDamage(damage.getTotal() * coverPercent());
-		
-		//Figure out how much is left
-		damage = new TypeCollection( { burning: leftOverDamage } );
-		applyDamage(damage,foes[0],pc);
-	}
-	processCombat();
-}
+
 
 //Crate Throw
 // Medium damage, chance to cause knockdown or stun or something
-public function crateThrow():void
-{
-	output("The captain stops her seemingly endless barrage of laser fire to stomp over and pick up a nearby crate, obviously quite full as her suit works hard to heft it up over her head. With a loud hydraulic hiss, the suit hurls the crate straight at you!");
-	//Miss:
-	if(rangedCombatMiss(foes[0],pc)) 
-	{
-		output("\n\nYou roll aside, barely ducking the steel box.");
-	}
-	//Hit
-	else
-	{
-		output("\n\nOHSHIT. You scream as the box slams into you with rib-cracking force, hurling you to the edge of the platform, where you only just catch yourself. With a grunt, you scramble back up onto the hover-plat");
-		if (!pc.hasStatusEffect("Stunned") && pc.physique() + rand(20) + 1 < 15)
-		{
-			pc.createStatusEffect("Stunned",1,0,0,0,false,"Stun","You are stunned and cannot move until you recover!",true,0);
-			output(", but find yourself STUNNED");
-		}
-		output(".");
-		
-		var damage:TypeCollection = new TypeCollection( { burning: 15 } );
-		damageRand(damage, 15);
-		
-		//Leftover damage is what doesn't get eaten by cover.
-		var leftOverDamage:Number = damage.getTotal() - Math.round(damage.getTotal() * coverPercent());
-		
-		//Cover soaks up it's % in damage.
-		coverDamage(damage.getTotal() * coverPercent());
-		
-		//Figure out how much is left
-		damage = new TypeCollection( { burning: leftOverDamage } );
-		applyDamage(damage,foes[0],pc);
-	}
-	processCombat();
-}
+
 
 public function khorganMechBonusMenu():void
 {
@@ -1355,7 +909,7 @@ public function moveRight():void
 	output("You sprint along to the next platform and whatever cover it has to offer!\n");
 	if(currentLocation == "KHORGAN_LEFT_COVER") currentLocation = "KHORGAN_CENTER_COVER";
 	else if(currentLocation == "KHORGAN_CENTER_COVER") currentLocation = "KHORGAN_RIGHT_COVER";
-	processCombat();
+	CombatManager.processCombat();
 }
 public function moveLeft():void
 {
@@ -1363,49 +917,10 @@ public function moveLeft():void
 	output("You sprint along to the next platform and whatever cover it has to offer!\n");
 	if(currentLocation == "KHORGAN_RIGHT_COVER") currentLocation = "KHORGAN_CENTER_COVER";
 	else if(currentLocation == "KHORGAN_CENTER_COVER") currentLocation = "KHORGAN_LEFT_COVER";
-	processCombat();
+	CombatManager.processCombat();
 }
 
 //Missile Incoming!
-public function missileIncoming():void
-{
-	//ULTRA HEAVY DAMAGE
-	//Turn 1: 
-	if(!foes[0].hasStatusEffect("Missile Chargeup"))
-	{
-		foes[0].createStatusEffect("Missile Chargeup",0,0,0,0);
-		output("<i>\"YOU WANT SOME!? GET SOME!\"</i> the captain shouts, bringing her suit down into a low crouch and bringing up the launcher on its back. Oh, shit. You cover your ears as the missile launches, hurtling straight up in the air.");
-		output("\n\n<b>MISSILE INCOMING.</b>");
-		flags["MISSILE_TARGET"] = currentLocation;
-	}
-	//Turn 3
-	else
-	{
-		foes[0].removeStatusEffect("Missile Chargeup");
-		//{if PC moved.}
-		if(flags["MISSILE_TARGET"] != currentLocation)
-		{
-			output("You hear a deafening KABLAM beside you, and a sudden shockwave of force throws you to the ground. You cough and splutter, waving dust out of your face as the blast zone clears. Damn, there's barely anything left of that platform anymore!");
-			//nuke cover at target!
-			flags[flags["MISSILE_TARGET"]] = 0;
-			output(" <b>(-100% Cover)</b>");
-		}
-		//{if PC didn't move. YA GOOF}
-		else
-		{
-			output("You look up just in time to see the warhead coming, a huge red tip bearing down on you. Fuck! You leap as far as you can, but barely dodge the initial blast, and are sent hurtling away with a body full of shrapnel, tearing into you as you're tossed about like a ragdoll.");
-			flags[flags["MISSILE_TARGET"]] = 0;
-			output(" <b>(-100% Cover)</b>");
-			
-			var damage:TypeCollection = new TypeCollection( { burning: 20 } );
-			damageRand(damage, 15);
-			
-			//Figure out how much is left
-			applyDamage(damage,foes[0],pc);
-		}
-	}
-	processCombat();
-}
 
 //Captain Phase 1: PC Victorious
 public function victoriousVsCaptainOrcButt():void
@@ -1436,13 +951,23 @@ public function victoriousVsCaptainOrcButt():void
 	output("From her pocket, she pulls a small remote, and glances at it. <i>\"Not much time left, Steele. Maybe you ought to start running... you might make it back to your ship, if you're lucky. Or maybe you'd rather get a ride out with me, hmm? Submit to me, and I guarantee you'll live. You might even like being my personal bitch....\"</i>");
 	pc.shields(pc.shieldsMax());
 	clearMenu();
-	addButton(0,"Fight",startCombat,"khorgan","Fight!","The captain's clearly not going down without a fight. Time to finish this.");
+	addButton(0,"Fight", configKhorganFight, "khorgan","Fight!","The captain's clearly not going down without a fight. Time to finish this.");
 	//{Go to Captain Fight: Part 2}
 	addButton(1,"Demand",demandSurrenderFromPirate,undefined,"Demand Surrender","She's desperate, you can hear it in her voice! Tell her to put HER weapon down, if she wants to get out of this.");
 	//{Tooltip: She's right. You don't have a chance...}
 	addButton(2,"Give Up",surrenderToCapnKhorgath,undefined,"Surrender","Surrender to the Captain. Why bother fighting?");
 }
 
+public function configKhorganFight():void
+{
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(new CaptainKhorgan());
+	CombatManager.victoryScene(youBeatUpAnOrcWaytoGo);
+	CombatManager.lossScene(loseToCaptainKhorganBadEnd);
+	CombatManager.displayLocation("CAP KHORGAN");
+	CombatManager.beginCombat();
+}
 
 //Demand Surrender
 public function demandSurrenderFromPirate():void
@@ -1459,7 +984,7 @@ public function demandSurrenderFromPirate():void
 	processTime(1);
 	//[Fight!]
 	clearMenu();
-	addButton(0,"Fight",startCombat,"khorgan","Fight!","The captain's clearly not going down without a fight. Time to finish this.");
+	addButton(0,"Fight",configKhorganFight,"khorgan","Fight!","The captain's clearly not going down without a fight. Time to finish this.");
 }
 
 //Surrender Yourself
@@ -1482,109 +1007,6 @@ Captain Boss Fight: Part 2
 //This part is a straight-up combat encounter. She focuses primarily on lust attacks in this form: she wants the PC as her brood slave, not dead. Captain has great physical defenses, but is vulnerable to LUST attacks. (ie, Reverse of last time)
 */
 
-public function actualKhorganAI():void
-{
-	author("Savin");
-	showBust("CAPTAIN_KHORGAN");
-	showName("FIGHT: CAP'N\nKHORGAN");
-	//She Gets off on it!?
-	//Chance of use increases as her HP falls. Restores some HP, but raises her lust. 
-	if(foes[0].HP()/foes[0].HPMax() * 100 < rand(100) - 30) gettingOffOnZePain();
-	else if(rand(4) == 0) captainCutlassAttk();
-	else if(rand(3) == 0) roundHouseKickFromCapn();
-	else if(rand(2) == 0) crotchFaceSmash();
-	else motorboatedByASpork();
-}
-
-//Cutlass Strike
-//Basic physical attack
-public function captainCutlassAttk():void
-{
-	output("The captain rushes at you, swinging her force cutlass in a brutal arc. You dodge the blow, but find another heading toward you almost immediately, trying to get through your still-staggered guard.");
-	//If Miss:
-	if(combatMiss(foes[0],pc)) output(" You deftly parry the strike!");
-	else 
-	{
-		output("\n\nThe strike connects! You wince in pain as the force blade leaves a gloaming cut across your chest.");
-		
-		var damage:TypeCollection = foes[0].meleeDamage();
-		damageRand(damage, 15);
-		applyDamage(damage, foes[0], pc);
-	}
-	processCombat();
-}
-
-//Roundhouse Kick
-//Physical, chance to knockdown
-public function roundHouseKickFromCapn():void
-{
-	output("You parry a few sword-strokes, but find yourself pushed back by the captain's unrelenting flurry of blows. Suddenly, one of her swings turns into a high feint, unbalancing you as she spins into a kick aimed right at your [pc.chest].");
-	//If Miss: 
-	if(combatMiss(foes[0],pc)) output("\n\nYou grab the captain's foot a hand's breadth from your chest, stopping her in her tracks. Her face contorts in surprise before you fling her back, leaving her rolling in the dust -- and giving you a moment to breathe.");
-	//If Hit:
-	else
-	{
-		output("\n\nYou grunt as the kick connects, throwing you back ");
-		if(!pc.hasStatusEffect("Trip") && pc.reflexes() + rand(20) + 1 < 25)
-		{
-			pc.createStatusEffect("Trip", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
-			output("onto your back!");
-		}
-		else output(".");
-		output(" Oof!");
-		
-		applyDamage(new TypeCollection( { kinetic: 4 } ), foes[0], pc);
-	}
-	processCombat();
-}
-
-//Crotch-Face-Smash
-//Heavy lust attack
-public function crotchFaceSmash():void
-{
-	output("Amid a flurry of sword-swings, Captain Khorgan reaches out, grabbing your head and forcing you to your [pc.knees] with a mighty grunt. You give a gasp as your [pc.face] is thrust into the growing damp patch on her crotch, put face to face with her burning battle-lust.");
-	//Success:
-	if(pc.willpower() + rand(20) + 1 < 20)
-	{
-		output("\n\nYou shudder as the potent, earthy smell of the captain's arousal washes over you, smearing across your face through the the fabric of her pants. You try to deny it, but there's a powerful heat starting to spread through your loins before she releases you.");
-		applyDamage(new TypeCollection( { tease: 15 } ), foes[0], pc, "minimal");
-	}
-	else 
-	{
-		output("\n\nYou hold your breath, trying not to think too hard around the overzealous thraggen warrior trying to pelvic-thrust you into submission. Finally, with a feral grunt, you shove the captain off and resume your battle stance.");
-		applyDamage(new TypeCollection( { tease: 2 } ), foes[0], pc, "minimal");
-	}
-	processCombat();
-}
-
-//Motorboat
-//Basic lust attack
-public function motorboatedByASpork():void
-{
-	output("You find your guard battered down by a rapid-fire series of sword swipes, only for the captain to grab you by the shoulders and force your head into the gulf of her ample cleavage, burying your [pc.face] between her massive tits.");
-	//Success: 
-	if(pc.willpower() + rand(20) + 1 < 25)
-	{
-		output("\n\nYou try to resist, but the sensation of being trapped in a jiggling sea of boobflesh is almost too good to fight back against. You only just keep yourself from grabbing Khorgan's tits and taking out your own mounting lust on those big, perfect green orbs.");
-		applyDamage(new TypeCollection( { tease: 7 + rand(3) } ), foes[0], pc, "minimal");
-	}
-	//Failure:
-	else output("\n\nYou shove the captain back before she can get too into rubbing you down with her tits, leaving her almost popping out of her corset as you try and recover your footing.");
-	processCombat();
-}
-
-//She Gets off on it!?
-//Chance of use increases as her HP falls. Restores some HP, but raises her lust. 
-public function gettingOffOnZePain():void
-{
-	output("The captain heaves a heavy, husky sigh, her breathing less hard as it is a throaty panting. Putting some distance between the two of you, she cups one of her huge green tits through the sheer, tattered fabric of her corset, teasing the pert nipple beneath it. It's almost like the more you hurt her, the more excited she gets.");
-	output("\n\nGrinning she says, <i>\"Come on, Steele... still not too late to surrender. If you keep up the foreplay, though, I don't know what I might do...\"</i>");
-	foes[0].HP(25);
-	foes[0].lust(5+rand(3));
-	pc.lust(2);
-	processCombat();
-}
-
 //Captain Fight Phase 2: PC Victorious
 public function youBeatUpAnOrcWaytoGo():void
 {
@@ -1593,7 +1015,7 @@ public function youBeatUpAnOrcWaytoGo():void
 	showName("CAPTAIN\nKHORGAN");
 	currentLocation = "360";
 	//{if by Lust}
-	if(foes[0].lust() >= foes[0].lustMax())
+	if(enemy.lust() >= enemy.lustMax())
 	{
 		output("<i>\"Oh, fuck,\"</i> Captain Khorgan growls, the force cutlass falling out of her hand to clatter against the steel platform below. Her hands reach up, clutching at her breasts, tearing what remains of her corset and clothes off to get at the stiff teats beneath. <i>\"I can't.... Fuck it, Steele, you can have the damn detonator. Take it! Just fuck me, take me, throw me on the deck and pound me. I'm all yours, you fucking animal.\"</i>");
 	}
@@ -1638,7 +1060,7 @@ public function leaveDatThragginBootayBehind():void
 	showName("CAPTAIN\nKHORGAN");
 	output("<i>\"I don't think so,\"</i> you say, giving the captain the slightest push -- which in her state, is enough to topple her over. She gives a startled gasp as she collapses into a lusty heap on the ground, legs splayed and boobs jiggling. You take a moment to tie her hands together before, detonator in hand, you turn your back on the cursing, hot mass of greenskin behind you.\n\n");
 	if(!pc.hasKeyItem("Khorgan's Detonator")) pc.createKeyItem("Khorgan's Detonator",0,0,0,0);
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Dick Fuck
@@ -1649,7 +1071,7 @@ public function dickFuckDatThraggenCoochie():void
 	author("Savin");
 	showBust("CAPTAIN_KHORGAN_NUDE");
 	showName("CAPTAIN\nKHORGAN");
-	var x:int = pc.cockThatFits(foes[0].vaginalCapacity(0));
+	var x:int = pc.cockThatFits(enemy.vaginalCapacity(0));
 	if(x < 0) x = pc.smallestCockIndex();
 	flags["DICKFUCKED_CAPN_KHORGAN"] = 1;
 	//Combat defeat
@@ -1689,7 +1111,7 @@ public function dickFuckDatThraggenCoochie():void
 	if(inCombat()) 
 	{
 		output("\n\n");
-		genericVictory();
+		CombatManager.genericVictory();
 	}
 	else 
 	{
@@ -1767,7 +1189,7 @@ public function thraggenAreABunchOfGreenLesboSlutsGardefordToldMeSo():void
 	if(inCombat()) 
 	{
 		output("\n\n");
-		genericVictory();
+		CombatManager.genericVictory();
 	}
 	else 
 	{
@@ -1785,14 +1207,14 @@ public function loseToCaptainKhorganBadEnd():void
 	showBust("CAPTAIN_KHORGAN_NUDE");
 	showName("CAPTAIN\nKHORGAN");
 	//{if PC loses in the Swordfight, via lust:}
-	if(foes[0] is CaptainKhorgan && pc.lust() >= pc.lustMax())
+	if(enemy is CaptainKhorgan && pc.lust() >= pc.lustMax())
 	{
 		output("\n\nYour [pc.knees] buckle");
 		if(pc.legCount == 1) output("s");
 		output(" as the captain's sexual advances continue, her breasts all but falling out of her corset, her wide hips swaying hypnotically with every motion. Your loins burn with desire, making your grip on your weapon shakey, your palms sweating. Taking a step forward, the thraggen woman easily bats your weapon aside, and it clatters to the ground, slipping from your loose grasp. With an easy push, she send you onto your back and plants one of her boot on your chest, utterly asserting her dominance.");
 	}
 	//{if PC loses in the Swordfight, via damage:}
-	else if(foes[0] is CaptainKhorgan)
+	else if(enemy is CaptainKhorgan)
 	{
 		output("\n\nYou're losing ground. Even ignoring the sensual assault assailing your senses, the captain's still an amazing swordsman, and you're banged up after that fight against her mech. It's hard to keep standing, much less fighting. You can barely feel your hand by the time she easily bats your weapon from your hand... right before giving you a nasty right hook that plants you on the ground. With a smirk, the captain plants one of her boot on your chest, utterly asserting her dominance.");
 	}
@@ -1837,7 +1259,7 @@ public function loseToCaptainKhorganBadEnd():void
 	output("\n\nYou shudder at the thought, recoiling as the muscular, amazonian woman hovers her spunk-soaked foot over you, teasing, <i>\"If you're lucky, it will only be your seed you need to eat. Better me than my precious Tam, isn't it? She'd have you sucking every cock on the crew, if I know the crazy cat.\"</i> You hesitantly let your tongue poke out from your mouth, tracing along the bridge of her foot and lapping up your own cum. You shudder at the [pc.cumFlavor] taste of your own seed, but at the captain's insistence, you proceed, lapping up the cream you smeared on her supple skin.");
 	output("\n\nKhorgan coos appreciatively, her wandering hand shifting down from her breasts to her crotch, slipping into her pants, where a damp patch of excitement is steadily growing. <i>\"Good " + pc.mf("boy","girl") + ". That's it, learn your place. You're nothing more than my slave, now. A breeder. A personal fucktoy. But the way you creamed yourself, the way you'relicking up your own seed... I think you were made for it. All that strength, for nothing. No, for me... my use. My enjoyment.\"</i>");
 	output("\n\nYou recoil as the captain plants her foot back on the deck, now spotless, and hauls you up by the nape of your neck");
-	if(pc.tallness < foes[0].tallness) output(", leaving your [pc.feet] dangling beneath you");
+	if(pc.tallness < enemy.tallness) output(", leaving your [pc.feet] dangling beneath you");
 	output(". You stare into her fiery red eyes, and realize that this is your place now, your life. Nothing but the captain's personal stud.");
 	pc.orgasm();
 	pc.orgasm();
@@ -1985,158 +1407,15 @@ public function meetUpWithKaskaZeBossSloot():void
 	//Start combat
 	processTime(3);
 	clearMenu();
-	addButton(0,"Next",startCombat,"Kaska");
-}
-
-/*KASKA FIGHT!
-Kaska will use her gun and some smuggler-like abilities until becoming aroused (40 lust). At this point, she'll switch to exclusively using tease style attacks.*/
-public function kaskaFightAI():void
-{
-	author("Fenoxo");
-	showBust("KASKA");
-	showName("FIGHT:\nKASKA");
-	if(pc.hasStatusEffect("Grappled"))
-	{
-		processCombat();
-		return;
-	}
-	//Switch to lust mode:
-	if(foes[0].lust() > 45 && !foes[0].hasStatusEffect("Futa Lust")) 
-	{
-		kaskaFutaLusts();
-		return;
-	}
-
-	var choices:Array = new Array();
-	//HP Shit
-	if(!foes[0].hasStatusEffect("Futa Lust"))
-	{
-		if(pc.statusEffectv1("Round") % 6 == 0 && pc.statusEffectv1("Round") != 0 && !foes[0].hasStatusEffect("Disarmed") && foes[0].energy() >= 20)
-		{
-			NPCDisarmingShot(foes[0]);
-			return;
-		}
-		if(!foes[0].hasStatusEffect("Stealth Field Generator") && rand(3) == 0 && foes[0].energy() >= 20)
-		{
-			NPCstealthFieldActivation(foes[0]);
-			return;
-		}
-		if(pc.shields() > 0 && !foes[0].hasStatusEffect("Disarmed"))
-		{
-			choices[choices.length] = shieldBustah;
-			choices[choices.length] = shieldBustah;
-		}
-		if(!foes[0].hasStatusEffect("Disarmed"))
-		{
-			choices[choices.length] = kaskaVolleyShot;
-			choices[choices.length] = NPCOvercharge;
-		}
-		if(!pc.hasStatusEffect("Blind")) choices[choices.length] = NPCFlashGrenade;
-
-	}
-	//Lust Shit
-	else
-	{
-		if(pc.statusEffectv1("Round") % 5 == 0 && pc.statusEffectv1("Round") != 0)
-		{
-			tittyGrapple();
-			return;
-		}
-		choices[choices.length] = crateTeaseFromKaska;
-		choices[choices.length] = futaSnuggleAttack;
-		if(!pc.hasStatusEffect("Disarmed")) choices[choices.length] = kaskaHighKick;
-	}
-	//Pick one
-	if(choices.length > 0) choices[rand(choices.length)]();
-	else enemyAttack(pc);
-}
-
-
-//Shield-Buster
-//Five shots from her laser with the intention of wrecking shields.
-public function shieldBustah():void
-{
-	output("Kaska flicks a switch the side of her gun, and the indicator lights on the bottom barrel dim. <i>\"Let's see how your shields like laser!\"</i> she cries.\n\n");
-	rangedAttack(foes[0],pc,[1,2]);
-	output("\n");
-	rangedAttack(foes[0],pc,[1,2]);
-	output("\n");
-	rangedAttack(foes[0],pc,[1,2]);
-	output("\n");
-	rangedAttack(foes[0],pc,[1,2]);
-	output("\n");
-	rangedAttack(foes[0],pc,[1,2]);
-	processCombat();
-}
-
-//Volley
-//Four shots from each gun with heightened miss chance.
-public function kaskaVolleyShot():void
-{
-	output("The scantily clad pirate lifts the butt of her gun to her shoulder, shifting to a two-handed grip before pulling down the trigger, spraying a huge volley of shots from both barrels at once. Glowing orange-red beams and bullets fill the air with a lethal rain.");
 	
-	// Ideally copypasta and run this twice.
-	var damage:TypeCollection = (foes[0] as Creature).damage(false);
-	damage.add(new TypeCollection( { burning: 1, electric: 1 } ));
-	damage.addFlag(DamageFlag.LASER);
-	damage.add(foes[0].aim() / 2);
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(new Kaska());
+	CombatManager.victoryScene(defeatKaska);
+	CombatManager.lossScene(defeatedByKaska);
+	CombatManager.displayLocation("KASKA");
 	
-	damage.kinetic.damageValue -= 3;
-	damage.burning.damageValue -= 3;
-	damage.electric.damageValue -= 3;
-	if (damage.kinetic.damageValue < 1) damage.kinetic.damageValue = 1;
-	if (damage.burning.damageValue < 1) damage.burning.damageValue = 1;
-	if (damage.electric.damageValue < 1) damage.electric.damageValue = 1;
-	
-	var attacks:uint = 4;
-	
-	for (var i:uint = 0; i < attacks; i++)
-	{
-		if (rangedCombatMiss(foes[0], pc))
-		{
-			output("You manage to avoid " + foes[0].a + possessive(foes[0].short) + " " + foes[0].rangedWeapon.attackNoun + ".");
-		}
-		else if (rand(100) <= 45 && !pc.isImmobilized())
-		{
-			if (pc.customDodge.length > 0) output(pc.customDodge);
-			else output("You manage to avoid " + foes[0].a + possessive(foes[0].short) + " " + foes[0].rangedWeapon.attackNoun + ".");
-		}
-		else if (mimbraneFeetBonusEvade(pc))
-		{
-			output("\nYou’re taken by surprise as your [pc.foot] suddenly acts on its own, right as you’re about be attacked. The action is intense enough to slide you right out of the face of danger. Seems your Mimbrane is even more attentive than you are!\n");
-		}
-		else
-		{
-			output(foes[0].capitalA + foes[0].short + " connects with " + foes[0].mfn("his", "her", "its") + " " + foes[0].rangedWeapon.longName + "!");
-			
-			applyDamage(damage, foes[0], pc, "ranged");
-		}
-		output("\n");
-	}
-	processCombat();
-}
-
-//Always used at 50% Lust.
-//Futa Lust
-//Toss aside the gun and approach the PC, and show engorging phallus or bend over to show bubble butt and hot, wet gash.
-public function kaskaFutaLusts():void
-{
-	output("Kaska looks visibly perturbed. She chews on her lip, looking you up and down over the sights on her gunbarrel before relaxing her posture. While her weapon drifts down, so too does her gaze, flicking across the expanse of her chest to take in the sight of now hardened nipples. Her brows knit when her eyes alight on the sight of her hard, throbbing cock jutting out from her crotch.");
-	output("\n\n<i>\"Oh... fuck it.\"</i> the aggressive pirate lets her machinegun drop. It bounces off the deck, clattering noisily before ricochetting into a crate thanks to the zero-G. <i>\"It looks like you get to live, assuming you can finish what you've started.\"</i>");
-	output("\n\nWith her hands freed, Kaska is able to take her length, now about ten inches, and rub it, milking a few drops of pre into her other palm without ever taking her eyes off you. She stops after a second and flicks a dollop your way. It slaps into your cheek. <i>\"I have missed having a harem. You can be my first " + pc.mf("\"wife\"","wife") + ".\"</i>");
-	foes[0].createStatusEffect("Futa Lust",0,0,0,0);
-	//+5 lust each
-	applyDamage(new TypeCollection( { tease: 5 } ), foes[0], pc, "minimal");
-	applyDamage(new TypeCollection( { tease: 5 } ), pc, foes[0], "suppress");
-	processCombat();
-}
-//Tittygrapple
-//Grapples the PC, forcing his or her head into her tits for multiround squishes.
-public function tittyGrapple():void
-{
-	output("Kaska tosses a metallic sphere the size of a golfball between you. It hisses, releasing a cloud of smoke. You hold your breath, fearing poison, only to have a pair of caramel-colored tits part the smoke, pressing against either side of your head. The owner of the cushy mounds wraps surprisingly strong arms around you, pinning you in the middle of her more than ample cleavage, limiting your senses' input to the sight, smell, taste, and feel of her bosom.\n\n<b>You are grappled!</b>");
-	pc.createStatusEffect("Grappled",0,30,0,0,false,"Constrict","You're pinned in a grapple.",true,0);
-	processCombat();
+	addButton(0,"Next", CombatManager.beginCombat);
 }
 
 //Do Nothing
@@ -2160,7 +1439,7 @@ public function doNothingWhileTittyGrappled():void
 public function failToStruggleKaskaBoobs():void
 {
 	output("You try to struggle, but all you manage to do is squirm against the pillowy, chocolatey prison, rubbing against the pirate's slick skin in way that's undeniably pleasant. No matter how hard you try to deny it, your lips and nose are stuffed directly into cleavage. ");
-	applyDamage(new TypeCollection( { tease: 10 + rand(5) } ), foes[0], pc, "minimal");
+	applyDamage(new TypeCollection( { tease: 10 + rand(5) } ), enemy, pc, "minimal");
 	if(pc.lust() <= 50) output("It feels... good to rub against it.");
 	else if(pc.lust() <= 80) output("Damn, these tits are great! If you don't get out soon, things are going to get out of hand!");
 	else output("It feels to good to hold out any longer. You start licking and kissing with reckless abandon, letting your struggles to escape cease. Why fight the inevitable?");
@@ -2174,42 +1453,9 @@ public function pinchKaskaNipple():void
 	output("One of her leather-covered nipples brushes your cheek, giving you all the information you need to target it. You twist your torso slightly and free enough room for your arm to snake up into her cleavage. Then, your fingers find your target. It's hard and pebbly. You pinch. Gasping, Kaska drops you, staggering back and panting, her nipples even more visible through the thin xeno-leather corset. Her nipple felt nice between your fingers. Maybe you ought to let her grab you again?");
 	output("\n\nKaska merely pants and flushes. Did she enjoy the pinch that much?\n");
 	pc.removeStatusEffect("Grappled");
-	applyDamage(new TypeCollection( { tease: 4 + rand(3) } ), foes[0], pc, "minimal");
-	applyDamage(new TypeCollection( { tease: 7 + rand(3) } ), pc, foes[0], "minimal");
-	processCombat();
-}
-//Crate Tease
-//Recline and splay legs on a nearby crate. Only used at very high lust as Kaska isn't normally that submissive about it.
-public function crateTeaseFromKaska():void
-{
-	output("Groaning, Kaska leans back against a crate. Her toned thighs flex once, quivering slightly as if fighting some unknown force, slicked with sweat that can't be explained away by the fight alone. Suddenly, the quivering stops, and the pirate's legs spread, lifting up off the ground entirely until they're in a perfect, suspended split. You can see the dusky, glistening lips of the woman's sex from underneath her swollen balls and dripping, erect phallus. Holding herself like that, Kaska curls her toes as if to beckon you forward. <i>\"You know you want it.\"</i>");
-	applyDamage(new TypeCollection( { tease: 8 + rand(10) } ), foes[0], pc, "minimal");
-	processCombat();
-}
-//Futasnuggle
-//Kaska gets in close and grinds herself against the PC along with an ear-lick.
-public function futaSnuggleAttack():void
-{
-	output("Kaska feigns a kick one way before reversing and coming up inside your guard. Her toned body wraps briefly around your own, ");
-	if(pc.armor.shortName == "") output("leaving you intimately aware of the feeling of her devilishly hot member grinding on your [pc.thigh]");
-	else output("leaving you intimately aware of the pressure of her dick on your [pc.armor]");
-	output(". She licks the lobe of your ear, whispering, <i>\"I could do things to you that no mere woman or man could dream of.\"</i>");
-	applyDamage(new TypeCollection( { tease: 9 + rand(5) } ), foes[0], pc, "minimal");
-	if(pc.lust() < pc.lustMax()) output("\n\nThe horny dick-girl doesn't bother resisting when you push her away, but her scent and warmth remain.");
-	else output("You're enjoying this far too much to push her away.");
-	processCombat();
-}
-
-//Highkick
-//Kaska kicks the PC's weapons away and then rests her heel on the PC's shoulder. Basically 1 round disarm + lust attack.
-public function kaskaHighKick():void
-{
-	output("Spinning like a top, Kaska launches kick after kick in your direction. You manage to dodge the first few, but the canny pirate had never planned on hurting you. The next two knock your [pc.meleeWeapon] and [pc.rangedWeapon] away. She slows, landing her heel on your shoulder while you're still reeling from the loss of your weapons, a pose that gives you a perfect, unobstructed view from her ankles to her thighs, to her exposed crotch. You can see her veins pulse with excitement - excitement for you!");
-	applyDamage(new TypeCollection( { tease: 3 + rand(4) } ), foes[0], pc, "minimal");
-	pc.createStatusEffect("Disarmed",3,0,0,0,false,"Blocked","Cannot use normal melee or ranged attacks!",true,0);
-	if(pc.lust() >= pc.lustMax()) output("\n\nIt's too much. You can't keep up the facade of fighting her any longer.");
-	else output("\n\nYou stumble back, more aroused by the view than you care to admit.");
-	processCombat();
+	applyDamage(new TypeCollection( { tease: 4 + rand(3) } ), enemy, pc, "minimal");
+	applyDamage(new TypeCollection( { tease: 7 + rand(3) } ), pc, enemy, "minimal");
+	CombatManager.processCombat();
 }
 
 //Defeated by Kaska: Not Turned On
@@ -2218,7 +1464,7 @@ public function defeatedByKaska():void
 	author("Fenoxo");
 	showBust("KASKA");
 	showName("\nKASKA");
-	if(foes[0].lust() < 50)
+	if(enemy.lust() < 50)
 	{
 		output("You collapse, or you would if you weren't in a weightless environ. Your body hangs bonelessly, tethered in place by the magnetic equipment you picked up from the elevator. Burn marks and wounds riddle your ailing form, and as your eyes drift closed, you hear one final, echoing sound. BLAM!");
 		badEnd();
@@ -2561,7 +1807,7 @@ public function defeatKaska():void
 	showBust("KASKA");
 	showName("\nKASKA");
 	//Lust
-	if(foes[0].lust() >= foes[0].lustMax())
+	if(enemy.lust() >= enemy.lustMax())
 	{
 		output("<i>\"By the stars...\"</i> Kaska groans before dropping to her knees and tugging on her dick. She's wantonly fucking herself at this point, only paying attention to you to fuel her masturbatory fantasy. Her vagina is curiously ignored but dripping.");
 		output("\n\nHer gun has floated off somewhere, but a blinking detonator is hanging from her hip. Kaska doesn't stop you from swiping it. It might come in handy for defusing the bomb.");
@@ -2602,7 +1848,7 @@ public function leaveKaskaPostCombat():void
 	showBust("KASKA");
 	showName("\nKASKA");
 	output("An overheated dickgirl isn't any problem of yours. You leave her panting on the deckplates, still stroking herself.\n\n");
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Unfucked Appearance
@@ -2720,7 +1966,7 @@ public function victoryKaskaDicksex():void
 	if(inCombat())
 	{
 		output("\n\n");
-		genericVictory();
+		CombatManager.genericVictory();
 	}
 	else
 	{
@@ -2825,7 +2071,7 @@ public function makeKaskaSuchYerCoochLikeABaws():void
 	if(inCombat())
 	{
 		output("\n\n");
-		genericVictory();
+		CombatManager.genericVictory();
 	}
 	else
 	{

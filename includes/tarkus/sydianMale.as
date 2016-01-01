@@ -1,4 +1,5 @@
-﻿import classes.Engine.Combat.DamageTypes.TypeCollection;
+﻿import classes.Characters.SydianMale;
+import classes.Engine.Combat.DamageTypes.TypeCollection;
 import classes.Items.Miscellaneous.NoItem;
 public function encounterMaleSydian():void
 {
@@ -30,188 +31,18 @@ public function encounterMaleSydian():void
 		output("\n\nA male sydian emerges from heap that he was rifling through and smiles at your approach, obviously intending to subdue you by force. You'll have to fight!");
 	}
 	flags["MET_SYDIAN_MALE"]++;
-	clearMenu();
-	addButton(0,"Next",startCombat,"Sydian Male");
-}
-
-//Combat Description
-//AI
-//Like zil, prioritizes lust attacks until damaged.
-public function sydianMaleAI():void
-{
-	userInterface.showName("FIGHT:\nSYDIAN MALE");
-	userInterface.showBust("SYDIAN_MALE");
-	var choices:Array = new Array();
-	choices[choices.length] = rustBroDegrade;
-	//HP Time!
-	if(((foes[0].HPMax() - foes[0].HP())/foes[0].HPMax()) * 200 > rand(100))
-	{
-		if(foes[0].hasStatusEffect("Hammer Punch Next"))
-		{
-			hammerPunch();
-			return;
-		}
-		if(foes[0].hasStatusEffect("Trip")) {
-			choices[choices.length] = hammerPunch;
-			choices[choices.length] = hammerPunch;
-		}
-		choices[choices.length] = sydianTackleAttack;
-		if(!pc.hasStatusEffect("Trip")) choices[choices.length] = tripAttack;
-		choices[choices.length] = bodySlamByBros;
-	}
-	//Nice guy
-	else
-	{
-		if(foes[0].hasStatusEffect("Use Grope Next")) 
-		{
-			sydianMaleGropesYou();
-			return;
-		}
-		if(foes[0].lust() >= 60) 
-		{
-			choices[choices.length] = sydianLickAttack;
-			choices[choices.length] = sydianLickAttack;
-		}
-		choices[choices.length] = sydianAntennaeTickle;
-	}
-	choices[rand(choices.length)]();
-}
-
-//Attacks
-
-//Degrade - ignores armor for the rest of combat
-public function rustBroDegrade():void
-{
-	output("The sydian artfully spins his tail at you, the multiple antennae at its tip pointed directly at you!");
-	if(combatMiss(foes[0],pc)) output(" You manage to hop back, and his tail only catches air!");
-	else
-	{
-		//Wearing armor!
-		if(pc.armor.shortName != "" && !pc.hasStatusEffect("Degraded Armor"))
-		{
-			output(" The strike doesn't hit hard to deal damage, but smear of your " + pc.armor.longName + ". <b>Your armor is degraded and will not provide any defense for the rest of this fight!</b>");
-			pc.createStatusEffect("Degraded Armor", 0, 0, 0, 0, false, "DefenseDown", "Your armor is temporarily degraded and will not provide any defensive benefit.", true, 0);
-		}
-		else
-		{
-			output(" The strike smacks cleanly into your [pc.skinFurScales], leaving a veneer of viscous goo behind. It rapidly wicks into your body, leaving your surfaces clean but your heart hammering with excitement. It's some kind of mild aphrodisiac!");
-			applyDamage(new TypeCollection( { tease: 5 + rand(5) } ), foes[0], pc, "minimal");
-		}
-		foes[0].createStatusEffect("Use Grope Next");
-	}
-	processCombat();	
-}
-
-//Grope - after degrade, deals lust damage
-public function sydianMaleGropesYou():void
-{
-	foes[0].removeStatusEffect("Use Grope Next");
-	output("The sydian barrels into you, but rather than trying to harm you, he's pawing at every bit of you that he can reach.");
-	if(pc.reflexes()/2 + rand(20) + 1 > foes[0].physique()) {
-		output(" You manage to slip out of his hold before he can excite you too much.");
-		applyDamage(new TypeCollection( { tease: 3 } ), foes[0], pc, "minimal");
-	}
-	else
-	{
-		output(" His big, thick fingers cup and squeeze, then explore and caress, manhandling you with enough precision to give away that this isn't the first time he's done this.");
-		applyDamage(new TypeCollection( { tease: 15 + rand(10) } ), foes[0], pc, "minimal");
-	}
-	processCombat();
-}
-
-//Antennae Tickle - raises lust, less damage than grope
-public function sydianAntennaeTickle():void
-{
-	output("Taking advantage of his size and strength, the male grabs you by the shoulders and leans into you, the foot long feelers on his head tickling wildly at you. You react with laughter and unnatural, budding arousal from his secretions.");
-	applyDamage(new TypeCollection( { tease: 10 + rand(5) } ), foes[0], pc, "minimal");
-	processCombat();
-}
-
-//Lick - high lust raise, only used if own lust is high
-public function sydianLickAttack():void
-{
-	output("So turned on that he's practically dripping, the big male thunders in close, grabbing one arm around your chest and hauling you up into the air. A bright orange tongue spools out of his maw, coiling this way and that, slick with his alien saliva.");
 	
-	if (pc.hasArmor() && pc.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
-	{
-		output(" He presses it to your face, unaware that the action is useless against your airtight [pc.armor]. While this display is not affecting you directly, you certainly can't ignore the thick mass of his boner pressing against your [pc.leg].");
-	}
-	else
-	{
-		output(" He presses it to the bottom of your chin before licking up your cheek and over your forehead. The contact is hotter than you care to admit, and you certainly can't ignore the thick mass of his boner pressing against your [pc.leg].");
-		applyDamage(new TypeCollection( { tease: 15 + rand(5) } ), foes[0], pc, "minimal");
-	}
-	processCombat();
+	CodexManager.unlockEntry("Sydians");
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(new SydianMale());
+	CombatManager.victoryScene(beatUpARustMonster);
+	CombatManager.lossScene(loseToSydianMaleRouter);
+	CombatManager.displayLocation("SYDIAN (M)");
+	
+	clearMenu();
+	addButton(0,"Next", CombatManager.beginCombat);
 }
-//Tackle
-//Does light damage, but if it hits, a heavy attack follows
-public function sydianTackleAttack():void
-{
-	output("The sydian lowers his shoulder and charges! ");
-	if(combatMiss(foes[0],pc)) output("You dive out of the way at the last second, avoiding it.");
-	else 
-	{
-		output("He connects, knocking you backwards and putting him in the perfect position for another blow.");
-		foes[0].createStatusEffect("Hammer Punch Next");
-		
-		applyDamage(new TypeCollection( { kinetic: 5 + rand(4) }, DamageFlag.CRUSHING), foes[0], pc);
-	}
-	processCombat();
-}
-
-//Trip
-//Gives penalties to attack and defense until PC spends a round on the stand action.
-public function tripAttack():void
-{
-	output(foes[0].capitalA + monster.short + " tries to trip you! ");
-	if(pc.reflexes()/2 + rand(20) + 1 >= foes[0].physique()/2 + 10) output("You neatly hop over the misguided attempt.");
-	else
-	{
-		output("You go down to the ground! <b>You're going to have a difficult time fighting from down here!</b>");
-		pc.createStatusEffect("Trip", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
-		
-		applyDamage(new TypeCollection( { kinetic: 1 } ), foes[0], pc);
-	}
-	processCombat();
-}
-
-//Hammer Punch
-//High damage, only used after trip or tackle
-public function hammerPunch():void
-{
-	output("The sydian follows through with a heavy punch!");
-	if(combatMiss(foes[0],pc) && !pc.hasStatusEffect("Trip"))
-	{
-		output(" Somehow you get out of the way, though his fist passes by closely enough for you to hear the wind off it.");
-	}
-	else
-	{
-		output(" He connects!");
-		var damage:TypeCollection = new TypeCollection( { kinetic: (15 + foes[0].physique() / 2) } );
-		damageRand(damage, 15);
-		applyDamage(damage, foes[0], pc);
-	}
-	foes[0].removeStatusEffect("Hammer Punch Next");
-	processCombat();
-}
-
-//Bodyslam
-public function bodySlamByBros():void
-{
-	if(combatMiss(foes[0],pc)) output("The injured sydian tries to grab hold of you, but he just can't manage to get you.");
-	else
-	{
-		output("The injured sydian grabs hold of you and lifts you off the ground! The whole world seems to spin on its axis, and then you're being slammed directly into the ground with bruising force.");
-		
-		if (pc.shields() > 0) output(" Not even your shields protect you!");
-		var damage:TypeCollection = new TypeCollection( { kinetic: 5 + (foes[0].physique() / 2) }, DamageFlag.BYPASS_SHIELD, DamageFlag.CRUSHING);
-		damageRand(damage, 15);
-		var damageResult:DamageResult = calculateDamage(damage, foes[0], pc);
-		outputDamage(damageResult);
-	}
-	processCombat();
-}
-
 
 //Win Menu
 public function beatUpARustMonster():void
@@ -219,7 +50,7 @@ public function beatUpARustMonster():void
 	userInterface.showName("DEFEATED:\nSYDIAN MALE");
 	author("LukaDoc");
 	//Win by HP:
-	if(foes[0].HP() < 1)
+	if(enemy.HP() < 1)
 	{
 		output("Unable to maintain his balance, the sydian falls to his knees. At your approach, he raises his hands in a defensive gesture. " + pc.mf("","<i>“Beaten by a girl, huh?\"</i> he sighs. ") + "<i>“Alright, you won. I surrender. To the victor go the spoils,”</i> he says, looking down in submission.\n\n");
 		//(Display sex options + Leave)
@@ -227,7 +58,7 @@ public function beatUpARustMonster():void
 	//Win by Lust:
 	else
 	{
-		output("Panting with lust, the sydian falls to his knees, stroking his [monster.cock]. As you approach, he looks up to you with lust addled eyes. <i>“Mhmm, I give up. " + pc.mf("","I don’t care that you’re girl. ") + "Do whatever you want with me,”</i> he says, licking his lips as he continues to shamelessly masturbate before you.\n\n");
+		output("Panting with lust, the sydian falls to his knees, stroking his [enemy.cock]. As you approach, he looks up to you with lust addled eyes. <i>“Mhmm, I give up. " + pc.mf("","I don’t care that you’re girl. ") + "Do whatever you want with me,”</i> he says, licking his lips as he continues to shamelessly masturbate before you.\n\n");
 	}
 	if(pc.lust() < 33) 
 	{
@@ -242,7 +73,7 @@ public function beatUpARustMonster():void
 	{
 		clearMenu();
 		//Dudes Buttfukk - Dick that fits in butt
-		if(pc.hasCock() && pc.cockThatFits(foes[0].analCapacity()) >= 0) addButton(0,"Pitch Anal",dudesButtFuckInATotallyNonGayWay,undefined,"Pitch Anal","Buttfuck the brute.");
+		if(pc.hasCock() && pc.cockThatFits(enemy.analCapacity()) >= 0) addButton(0,"Pitch Anal",dudesButtFuckInATotallyNonGayWay,undefined,"Pitch Anal","Buttfuck the brute.");
 		else addDisabledButton(0,"Pitch Anal","Pitch Anal","A phallus that will fit into the sydian is required for anal sex.");
 		//Chicks Go For A Ride
 		if(pc.hasVagina()) addButton(1,"Cowgirl",chicksRideASydian,undefined,"Cowgirl","Mount the brutish sydian and ride him, leaving no doubt that you're in charge.");
@@ -271,16 +102,16 @@ public function chooseToLeaveBeatenRustBro():void
 	//Kind:
 	if(pc.isNice() || pc.isMischievous()) 
 	{
-		if(foes[0].HP() < 1) output("<i>“Just go,”</i> you tell him, waving him off in dismissal.\n\n<i>“Um, thank you,”</i> he says, scuttering away.");
+		if(enemy.HP() < 1) output("<i>“Just go,”</i> you tell him, waving him off in dismissal.\n\n<i>“Um, thank you,”</i> he says, scuttering away.");
 		else output("<i>“Just finish your business and go,”</i> you tell him, waving him off in dismissal.\n\n<i>“Um, thank you,”</i> he says, still masturbating as you leave him behind.");
 	}
 	//Hard:
 	else {
-		if(foes[0].HP() < 1) output("Taking your " + pc.meleeWeapon.longName + " in hand, you promptly give the sydian a well deserved strike with the blunt side. He falls down on his face, butt raised for the pleasure of whatever predator decides to take the slut. That oughta teach him to mess with you.");
+		if(enemy.HP() < 1) output("Taking your " + pc.meleeWeapon.longName + " in hand, you promptly give the sydian a well deserved strike with the blunt side. He falls down on his face, butt raised for the pleasure of whatever predator decides to take the slut. That oughta teach him to mess with you.");
 		else output("Taking your " + pc.meleeWeapon.longName + " in hand, you promptly give the sydian a well deserved strike with the blunt side. He falls down on his face, butt raised for the pleasure of whatever predator decides to take the slut. That oughta teach him to mess with you.");
 	}
 	output("\n\n");
-	genericVictory();
+	CombatManager.genericVictory();
 }
 public function spankHPBeatenRustBro():void
 {
@@ -289,19 +120,19 @@ public function spankHPBeatenRustBro():void
 	userInterface.showName("DEFEATED:\nSYDIAN MALE");
 	userInterface.showBust("SYDIAN_MALE");
 	output("Pushing him down, you lift one of his legs and begin administering a well deserved spanking to the naughty critter. <i>“Bad boy!”</i> you exclaim as you wail on that butt until your hand’s imprinted on his sorry behind.");
-	if(foes[0].HP() < 1) output("\n\nThe sydian yelps in pain until eventually his yelps turn into lusty moans. You note his cock is erect and throbbing visibly when he starts moaning. So the slut’s enjoying this? What a perverted sydian.");
+	if(enemy.HP() < 1) output("\n\nThe sydian yelps in pain until eventually his yelps turn into lusty moans. You note his cock is erect and throbbing visibly when he starts moaning. So the slut’s enjoying this? What a perverted sydian.");
 	else output("\n\nThe sydian moans as you administer his punishment. It’s quite obvious he’s enjoying this. Quite the slut, this guy.");
 	output("\n\nSatisfied with the sydian’s punishment, you release his leg and leave him to rub at his sorry behind. <i>“Scram!”</i> you say authoritatively.");
 	output("\n\nThe sydian immediately scurries away, not bothering to look back");
-	if(foes[0].lust() >= foes[0].lustMax()) output(", a trail of his silvery pre tracing his path");
+	if(enemy.lust() >= enemy.lustMax()) output(", a trail of his silvery pre tracing his path");
 	output(".\n\n");
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Dudes Buttfukk
 public function dudesButtFuckInATotallyNonGayWay():void
 {
-	var x:int = pc.cockThatFits(foes[0].analCapacity());
+	var x:int = pc.cockThatFits(enemy.analCapacity());
 	if(x < 0) x = pc.smallestCockIndex();
 	clearOutput();
 	userInterface.showName("DEFEATED:\nSYDIAN MALE");
@@ -328,7 +159,7 @@ public function dudesButtFuckInATotallyNonGayWay():void
 	//Merge
 	output(" The captive sydian watches with a slow, sly smile of his own. Perhaps he secretly hoped it would come to this if he lost. It's certainly better than the more violent alternatives, that's for sure. Giving yourself a few firming pumps, you advance on the supine creature, your eyes tracing the sculpted curvature of his muscular frame down to his narrow hips and tight-looking ass.");
 	output("\n\nYou point at him, and looks back, confused");
-	if(foes[0].lust() >= foes[0].lustMax()) output(" but erect and drooling his silvery pre-cum");
+	if(enemy.lust() >= enemy.lustMax()) output(" but erect and drooling his silvery pre-cum");
 	else output(" but rapidly stiffening in response to the sight of your body");
 	output(". Sighing, you make a circular gesture with your fingertip - surely he can figure out that you want him on his hands and knees. How else would you vent the lusts he excited in your body? He seems to get it after a moment of consideration and climbs up, presenting his taut, armored ass for your inspection, a single crimson star visible in the shadow of his tail.");
 	output("\n\nHe actually backs up into you before you can get into position. What a greedy slut. Grabbing hold of his tail before he can slap you with it or its feelers, you lift it out of the way and deliver a quick slap to his ass. He shudders but stops his feverish, anal advances with a sigh.");
@@ -393,13 +224,13 @@ public function dudesButtFuckInATotallyNonGayWay():void
 	output("before closing his eyes in slumber. You suppose they won't do much about the stereotype of males sleeping after sex.\n\n");
 	processTime(20+rand(10));
 	pc.orgasm();	
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Chicks Go For A Ride
 public function chicksRideASydian():void
 {
-	var x:int = pc.cuntThatFits(foes[0].cockVolume(0));
+	var x:int = pc.cuntThatFits(enemy.cockVolume(0));
 	if(x < 0) x = rand(pc.totalVaginas());
 	clearOutput();
 	userInterface.showName("DEFEATED:\nSYDIAN MALE");
@@ -408,14 +239,14 @@ public function chicksRideASydian():void
 	if(flags["TIMES_TAKEN_RUST_BRO_IN_COOCH"] != undefined) output("fluttering cilia just waiting to stroke your canal?");
 	else output("who knows what kind of pleasurable quirks?");
 	output(" That's just what you needed. How fortunate one decided to present himself to you. Swaying your [pc.hips] back and forth, you advance on the ");
-	if(foes[0].lust() >= foes[0].lustMax()) output("distracted");
+	if(enemy.lust() >= enemy.lustMax()) output("distracted");
 	else output("momentarily downed");
 	output(" male");
 	if(!pc.isNude()) output(" and peel your [pc.gear] off as sensuously as possible.");
 	else output(" and let your hands play across your [pc.skin] as sensuously as possible.");
 	output(" You want him hard when you take you take him.");
 
-	if(foes[0].lust() >= foes[0].lustMax()) output("\n\nNot that you needed to bother with the enticement, he was already helplessly stroking himself off from your previous antics. All you did was make his jaw drop and his tongue loll.");
+	if(enemy.lust() >= enemy.lustMax()) output("\n\nNot that you needed to bother with the enticement, he was already helplessly stroking himself off from your previous antics. All you did was make his jaw drop and his tongue loll.");
 	else 
 	{
 		output("\n\nNot that much enticement was necessary, he firmed up nicely to the sight of your naked body and glistening womanhood");
@@ -438,14 +269,14 @@ public function chicksRideASydian():void
 	output("\n\nEasing yourself down, you grab hold of his fuzzy, orange prick. The thousands of little brushes that coat it wriggle and squirm against your hand, made sticky by the liquid-excitement he's leaking. You can't wait to have them inside you, squirming and rubbing along the inside of your tunnel, massaging pleasure into every square inch of nerve-packed skin. Trickles of moisture leak down your [pc.legOrLegs]. You don't really mind; the extra lubrication is just going to make this all the more pleasurable.");
 	output("\n\nThe turgid, alien cock's cilia flutter against your netherlips as the greater bulk of his mass parts them, wracking you with far more sensation than simple insertion alone should provide. Then again, most tools don't come with build-in stimulation functions. Your [pc.lips] open wider than their sisters down south as you moan and slip down, letting a half-dozen inches of thick, orange prick deep into your canal. Every bit of him is covered in those squirming tendrils, and the ones coming into contact with you kick lightning-fast, stroking your walls with hellishly distracting pleasure.");
 	//Cuntchange: half volume.
-	pc.cuntChange(x,foes[0].cockVolume(0)/2,true,true,false);
-	output("\n\nShuddering, you try to still your body's frantic desire for a deeper, more fulfilling fuck and ultimately fail. Your hips drop, impaling you all " + num2Text(Math.round(foes[0].cocks[0].cLength())) + " inches of hole-stretching, wall-massaging cunt-stuffer at once.");
-	if(pc.vaginalCapacity(x)/2 > foes[0].cockVolume(0)) output(" Silently, you wish he was a little bigger.");
-	else if(pc.vaginalCapacity(x)/1.5 > foes[0].cockVolume(0)) output(" Its slips into your capacitive slit like a hand into a tailored glove.");
-	else if(pc.vaginalCapacity(x) * .9 >= foes[0].cockVolume(0)) output(" It slips into your slit tightly but not tightly enough to be painful. If it wasn't for how wet you've gotten, you might not be enjoying this as much.");
+	pc.cuntChange(x,enemy.cockVolume(0)/2,true,true,false);
+	output("\n\nShuddering, you try to still your body's frantic desire for a deeper, more fulfilling fuck and ultimately fail. Your hips drop, impaling you all " + num2Text(Math.round(enemy.cocks[0].cLength())) + " inches of hole-stretching, wall-massaging cunt-stuffer at once.");
+	if(pc.vaginalCapacity(x)/2 > enemy.cockVolume(0)) output(" Silently, you wish he was a little bigger.");
+	else if(pc.vaginalCapacity(x)/1.5 > enemy.cockVolume(0)) output(" Its slips into your capacitive slit like a hand into a tailored glove.");
+	else if(pc.vaginalCapacity(x) * .9 >= enemy.cockVolume(0)) output(" It slips into your slit tightly but not tightly enough to be painful. If it wasn't for how wet you've gotten, you might not be enjoying this as much.");
 	else output(" It slips in with more than a little bit of pain, stretching your walls further apart than they were meant to go before pushing at your cervix like a battering ram. You hold still as your [pc.vagina " + x + "] adjusts to the oversized intrusion, thumping a fist at the chitinous brute's pecs until the fiery pain cools to warm pleasure.");
 	output(" His member's unique attributes all moving now, wriggling and slipping against your insides, feeling every nook and cranny.");
-	pc.cuntChange(x,foes[0].cockVolume(0),true,true,false);
+	pc.cuntChange(x,enemy.cockVolume(0),true,true,false);
 	output("\n\nThis moment, right here, right now, is the moment the sydian was waiting for - the moment when his tool sufficiently distracted you, the moment when your nervous system was too overwhelmed by cascades of sensation to function properly. He grabs you by the arms and pulls, dragging you down to his chest, your [pc.chest] pressed flat against him. His tongue lolls out to lick to against your cheek while he forcefully lifts his hips and begins bouncing you in place, fucking you like a ragdoll. There's no skill to it, just rough, animal fucking - one pair of hips slapping into another again and again.");
 	output("\n\nEyes crossed in ecstasy, you try not to let it show how much you're enjoying this or that you expected something like this to happen all along. Instead you focus on the rough plowing of your [pc.vagina " + x + "] and wrapping your arms around your stud's neck so that you can steady yourself against the rampant fuck and nuzzle into his neck at the same time. He growls, a powerful bass rumble that vibrates out of his throat more than his mouth but doesn't move to stop you. In fact, he licks your cheek with a long orange tongue, slobbering his affections as his dick grows thicker within you.");
 	output("\n\n<i>\"Not yet,\"</i> you manage to say without sounding like a moaning harlot. You reach back to find his balls, already slick with your [pc.girlCum], and grab him around the top of his sack, pinching tight around them and his shaft together. <i>\"Naughty boys don't get to cum unless they get mistress off. Go on,\"</i> you pant, <i>\"Harder.\"</i>");
@@ -497,8 +328,8 @@ public function takeRustBroCumInside(arg:int = 0):void
 	output("\n\nTrickles of silvery spooge leak around his length as he finishes. When you rise up off of him, those same trickles turn into fat globules of wasted spunk, but more than enough clings inside you to leave you sticky and sated.");
 	output("\n\nHe sits there leaking thin trails of excess spunk onto his belly while you gather your [pc.gear]. By the time you depart, he's asleep and gently stroking himself to what you can only assume are dreams of you.\n\n");
 	processTime(5);
-	pc.loadInCunt(chars["SYDIANMALE"],x);
-	genericVictory();
+	pc.loadInCunt(enemy,x);
+	CombatManager.genericVictory();
 }
 //Cum Outside
 public function takeRustBroCumOutside(arg:int = 0):void
@@ -512,7 +343,7 @@ public function takeRustBroCumOutside(arg:int = 0):void
 	output("\n\nAs if the sydian could do anything else! He tips his head back and closes his eyes. The pupils were already rolling back anyhow, and his tongue lolls from his mouth, slathering his cheek and neck in clear spittle. More importantly, his expanded boner's shape distends from the cum surging into it just before going off. Silver seed arcs up into the air, hanging in long, solid streams before splattering off his armored chest in long ropes. The alien's hips twitch, repeating the action again and again. You count six such ejaculations before you give up and just enjoy the show, watching him waste his cum for your benefit, his prick doing exactly what you want it to do.");
 	output("\n\nWhile he's still squirting and dribbling, you make to grab your [pc.gear]. The wastes wait for no one. Your codex and belongings secure, you turn back for one last look at your spent mate; he's already asleep, drooling while one of his hands slowly fondles his half-hard cock, obviously dreaming of you.\n\n");
 	processTime(5);
-	genericVictory();
+	CombatManager.genericVictory();
 }
 //Have a Drink on Me (Victory Blow the Sydian)
 //frogapus (threw in some snowballing, too. If it’s not your thing, feel free to drop it)
@@ -523,7 +354,7 @@ public function haveADrinkOnMeWithSnowBallsMrRustBro():void
 	userInterface.showBust("SYDIAN_MALE");
 	author("Frogapus");
 	output("The Sydian staggers back, collapsing against a nearby junk pile as he ");
-	if(foes[0].lust() >= foes[0].lustMax()) output("grips his massive cock, masturbating furiously.");
+	if(enemy.lust() >= enemy.lustMax()) output("grips his massive cock, masturbating furiously.");
 	else output("clutches at his wounds.");
 	output(" As he slowly sinks to the rubble-strewn ground, legs spreading, you get an idea.");
 	output("\n\nLicking your lips, you saunter towards the prone form of the rust monster.");
@@ -535,7 +366,7 @@ public function haveADrinkOnMeWithSnowBallsMrRustBro():void
 	if(!pc.isNaga()) output("your [pc.legs] straddling");
 	else output("your coils draped over");
 	output(" his broad tail. ");
-	if(foes[0].lust() >= foes[0].lustMax()) output("He hesitantly removes his large hand from his thick meat as you settle yourself down.");
+	if(enemy.lust() >= enemy.lustMax()) output("He hesitantly removes his large hand from his thick meat as you settle yourself down.");
 	else output("His cock immediately perks up at you settle your weight on him.");
 
 	output("\n\nYou touch a fingertip to the tip of his cock, watching it throb to full stiffness, delighting in the way the feathery surface of his shaft ripples out from your touch. The massive brute moans, leaning back against the junk pile, his hips bucking up slightly at your touch. You " + pc.mf("chuckle","giggle") + " at his sensitivity and decide to have some fun.");
@@ -571,9 +402,9 @@ public function haveADrinkOnMeWithSnowBallsMrRustBro():void
 	output("\n\nHis eyes struggle to open, and he lets out a muffled protest as your kiss forces his last load into his mouth. He would probably fight if he had any energy left. As it stands, he provides only a moment’s resistance before swallowing his own seed, delivered by your kiss, your tongue forcing it into his mouth, playing with his broad, thick tongue.");
 	output("\n\nWhen you break the kiss, he whimpers briefly before his eyes close, and he passes out, snoring immediately. You grin, rising from your seat on the rust monster, swaying a bit as you shake off the quaking rhythm you’ve been riding for the past half hour. As you leave, you take one last look, nodding in satisfaction at the cum-smeared hulk snoring gently in the junk pile.\n\n");
 	pc.lust(10+rand(10));
-	pc.loadInMouth(chars["SYDIANMALE"]);
+	pc.loadInMouth(enemy);
 	processTime(20+rand(5));
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 public function lazySavinToes():String
@@ -633,7 +464,7 @@ public function greatFootjerbSavin():void
 	output("\n\n<i>\"No. Not bad,\"</i> he sighs, head reclining back into his hands as his own wiggling tool retracts into the sea of spooge on his belly. You gather your [pc.gear] back up and leave him there, basking in the afterglow to contemplate his new experience.\n\n");
 	processTime(30+rand(5));
 	pc.orgasm();
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Hungry Hungry Tailgina
@@ -657,7 +488,7 @@ public function hungryhungryTailginasThirst():void
 		if(pc.tailCount == 1) output("a parasite");
 		else output("parasites");
 		output(". ");
-		if(foes[0].HP() < 1) output("His flagging erection stiffens in two rapid pulsations at the sight of such slick, promising depths, and an eager, almost too eager, smile crosses his face at the same time.");
+		if(enemy.HP() < 1) output("His flagging erection stiffens in two rapid pulsations at the sight of such slick, promising depths, and an eager, almost too eager, smile crosses his face at the same time.");
 		else output("His immensely tumescent length twitches back and forth at the sight, and an eager, almost too eager, smile crosses his features at the same time.");
 	}
 	//Hungry
@@ -673,7 +504,7 @@ public function hungryhungryTailginasThirst():void
 		output(" drooling entrance");
 		if(pc.tailCount > 1) output("s");
 		output(" while you look down at the prone sydian and ");
-		if(foes[0].HP() < 1) output("his rapidly stiffening member");
+		if(enemy.HP() < 1) output("his rapidly stiffening member");
 		else output("wonderfully throbbing, alien erection");
 		output(". The sight of such a hard cock right triggers a surge of pleasure from your [pc.tails]. You're going to feed, and feeding makes you feel good.");
 	}
@@ -722,7 +553,7 @@ public function hungryhungryTailginasThirst():void
 	else output("have");
 	output(" passed that information on. Doing its part, your body thrusts your tail down, smashing it practically flat against the sydian's armored abdomen to prevent even a single drop of sperm from escaping.");
 
-	output("\n\nThe " + foes[0].skinTone + "-hued alien begins grunting softly, one after another; he's cumming! You can feel the silvery spooge burst out of his over-engorged crown in thick lances, flooding your contracting cunt for the split-second before it's devoured, pulled deep inside you for use as a genetic catalyst. It's so warm too! You shudder and shake, finally climaxing");
+	output("\n\nThe " + enemy.skinTone + "-hued alien begins grunting softly, one after another; he's cumming! You can feel the silvery spooge burst out of his over-engorged crown in thick lances, flooding your contracting cunt for the split-second before it's devoured, pulled deep inside you for use as a genetic catalyst. It's so warm too! You shudder and shake, finally climaxing");
 	if(pc.hasCock()) output(", spewing [pc.cum] from your [pc.cocks] in rampant, unassisted orgasm");
 	output(".");
 	if(pc.tailCount > 1)
@@ -752,8 +583,8 @@ public function hungryhungryTailginasThirst():void
 	output("\n\nStaggering up panting, you stumble around drunkenly. That orgasm was more than powerful enough to count for two, and it's a little hard to control your muscles in the wake of such an experience. You'll have to make do. The wilds of Tarkus are no place to be unawares. Your now-slumbering foe is likely to find that out on his own.\n\n");
 	processTime(35+rand(5));
 	pc.orgasm();
-	genericVictory();
-	pc.loadInCuntTail(chars["SYDIANMALE"]);
+	CombatManager.genericVictory();
+	pc.loadInCuntTail(enemy);
 }
 
 public function loseToSydianMaleRouter():void
@@ -817,7 +648,7 @@ public function pcVagoosGetPlowedOpenByRustBrosAfterAphrodisiacs():void
 	output(". The brief, fluttering touches of his antennae are all the foreplay you're going to get. His cock presses against your cheeks, thicker and harder than you remember it being earlier. The cilia covering it are flat at the moment. You can feel them clinging wetly to his length, unmoving but still giving him a unique texture.");
 	output("\n\nThe sydian doesn't ask for permission, and you don't give it. He simply thrusts and takes while you yield before his might, spread bare to worship on the altar of his glorious orange cock, feeling it plunge deep into your folds as if belonged there. Rather than squeezing down to press his veins more firmly against your inner walls, you wind up feeling his cilia rise up against you, their tips feathery, like little brushes. They flit and flutter inside you whenever their owner bottoms out inside you, massaging starbursts of pleasure into your nerves, moving like one thousand little tongues.");
 	//Cunt change!
-	pc.cuntChange(x,foes[0].cockVolume(0),true,true,false);
+	pc.cuntChange(x,enemy.cockVolume(0),true,true,false);
 	output("\n\nHis squared, chitinous hips slap against your [pc.butt] with echo-birthing force, jolting you against an ancient deckplate");
 	if(pc.biggestTitSize() >= 4 || pc.buttRating() > 10)
 	{
@@ -846,10 +677,10 @@ public function pcVagoosGetPlowedOpenByRustBrosAfterAphrodisiacs():void
 	}
 	else output(", and your shield emitter is as damaged as it was before.");
 	output(" You'll have to go get it repaired at Novahome if you want your full shield capacity back.\n\n");
-	pc.loadInCunt(chars["SYDIANMALE"],x);
+	pc.loadInCunt(enemy,x);
 	processTime(35+rand(5));
 	pc.orgasm();
-	genericLoss();
+	CombatManager.genericLoss();
 }
 
 public function applyRustBroStatus():void
@@ -917,7 +748,7 @@ public function getPeggedToOrgasmByRustBro():void
 	output("\n\n<i>\"Please, I'm begging you, fuck my [pc.ass] and fill me to the hilt with your cock!\"</i> You discard whatever shame you have as you bitch yourself out to the mysterious alien man; you'd do anything to sate the burning desires coursing through your body at this point.");
 	output("\n\n<i>\"As you wish, my mate.\"</i> You swear you hear the seven foot male sydian chuckle triumphantly as he presses the head of his alien tool against your back door. It's a good thing you're well lubricated by his juices as he plunges his glorious orange cock right into your [pc.asshole], claiming it for himself.");
 	// Check buttginity.
-	pc.buttChange(foes[0].cockVolume(0),true,true,false);
+	pc.buttChange(enemy.cockVolume(0),true,true,false);
 	output("\n\nShockwaves of ecstasy course through your body and you shoot your load just from his insertion, spurting ");
 	if(pc.cumQ() >= 10) output("your [pc.cum]");
 	else output("tiny dribbles of [pc.cum]");
@@ -945,11 +776,11 @@ public function getPeggedToOrgasmByRustBro():void
 	}
 	else output(", and your shield emitter is as damaged as it was before.");
 	output(" You'll have to go get it repaired at Novahome if you want your full shield capacity back.\n\n");
-	pc.loadInAss(chars["SYDIANMALE"]);
+	pc.loadInAss(enemy);
 	processTime(90+rand(10));
 	// Five PC orgasms, one orgasm in the PC's ass by the Male Sydian.
 	pc.orgasm();
-	genericLoss();
+	CombatManager.genericLoss();
 }
 
 //Mouthful of Pennies (Male loss, Blowjob for the Rust Monster)
@@ -986,7 +817,7 @@ public function mouthfulOfPenniesByFrogalog():void
 	output("\n\nHe pats your head once, then leans back in his scrap-pile, beginning to snore almost immediately. Still woozy from the experience, you begin to obediently slurp at his absolutely soaked cock. With the sydian asleep, you have time to recover from the mind-bending ordeal his cock instigated. It’s not until you’ve nearly finished licking his cock clean that your head completely clears, and you realize that you should probably go.");
 	output("\n\nAs you gather your things and sneak away, you spy one of the Sydian’s eyes open, watching your clumsy escape. He snorts, but doesn’t seem interested in stopping you.\n\n");
 	pc.lust(40+rand(10));
-	pc.loadInMouth(chars["SYDIANMALE"]);
+	pc.loadInMouth(enemy);
 	processTime(40+rand(10));
-	genericLoss();
+	CombatManager.genericLoss();
 }

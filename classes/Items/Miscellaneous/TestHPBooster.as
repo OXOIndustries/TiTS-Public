@@ -7,6 +7,7 @@ package classes.Items.Miscellaneous
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
+	import classes.Engine.Combat.inCombat;
 	
 	public class TestHPBooster extends ItemSlotClass
 	{
@@ -84,7 +85,7 @@ package classes.Items.Miscellaneous
 			else
 			{
 				
-				if(kGAMECLASS.inCombat()) kGAMECLASS.output("\n");
+				if(inCombat()) kGAMECLASS.output("\n");
 				else kGAMECLASS.clearOutput();
 				if (usingCreature == target)
 				{

@@ -10,7 +10,7 @@
 	import classes.Items.Melee.CavalrySaber;
 	import classes.Items.Melee.MilitaryPick;
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
 	
 	public class MerchantQueen extends Creature
 	{

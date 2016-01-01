@@ -253,16 +253,16 @@ public function finalZilCaptureTurnInEpilogue():void {
 //Using the Capture Harness
 public function useTheCaptureHarness():void {
 	clearOutput();
-	output("You thumb the single activation switch on the capture harness and toss the suddenly beeping cube in the direction of your fallen foe. Halfway there, it unfurls into a mass of whip-like, black tentacles. Before you can finish blinking in surprise, the zil is completely enmeshed in a web of restraints. A small, red-blinking square on " + foes[0].mf("his","her") + " chest glows angrily, and you wonder just what you're supposed to do now.");
+	output("You thumb the single activation switch on the capture harness and toss the suddenly beeping cube in the direction of your fallen foe. Halfway there, it unfurls into a mass of whip-like, black tentacles. Before you can finish blinking in surprise, the zil is completely enmeshed in a web of restraints. A small, red-blinking square on " + enemy.mf("his","her") + " chest glows angrily, and you wonder just what you're supposed to do now.");
 	output("\n\nThat question is answered by the high-pitched whine of atmospheric engines. A sleek, metallic probe a little bigger than a jet-bike zips into the area and dangles a magnetic anchor, snapping it onto the square plate at the center of the harness. Looking very much like an insect in a spider's trap, the zil is reeled in closer. The probe extends a number of intricately worked \"legs\" to wrap around its acquisition and immediately zips off, leaving you alone with your thoughts.");
 	output("\n\nFive minutes later, your codex beeps. It looks like your bank account is one thousand credits richer.\n\n");
 	pc.credits += 1000;
 	processTime(6);
 	//NO LOOT! NO CREDITS!
-	foes[0].inventory = new Array();
-	foes[0].credits = 0;
+	enemy.inventory = new Array();
+	enemy.credits = 0;
 	pc.addHard(1);
-	if(foes[0].hasCock()) {
+	if(enemy.hasCock()) {
 		flags["CAPTURED_A_MALE_ZIL_FOR_DR_HASWELL"] = 1;
 		flags["LAST_ZIL_CAPTURED_FOR_HASWELL_SEX"] = 1;
 	}
@@ -272,5 +272,5 @@ public function useTheCaptureHarness():void {
 	}
 	pc.removeKeyItem("Capture Harness");
 	//Generic combat win!
-	genericVictory();
+	CombatManager.genericVictory();
 }

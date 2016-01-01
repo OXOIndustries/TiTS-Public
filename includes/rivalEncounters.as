@@ -194,8 +194,16 @@ public function daneOmniExplanation():void {
 	output("\n\nDane focuses his attention entirely on you. His uppermost arms pull a pair of curved blades from harnesses on his back, thumbing activation studs on the hilts. The air suddenly fills with the smell of ozone. They're electrified! Down below, the lower arms grab a set of ancient-looking, chromed pistols from holsters. The ausar flexes. <i>\"A lot of people think an extra set of arms will give them an edge in a fight, and it will. But...\"</i> he pauses for effect, \"<i>Our brains aren't meant to control that many limbs. The ability to independently coordinate four or more arms exists in one thousandth of the population of two-armed races.\"</i> Dane's feet spread into a confident stance. <i>\"You're looking at one of them.\"</i>");
 	output("\n\nTwirling his blades while simultaneously cocking his guns, Dane whispers, <i>\"Prepare your anus.\"</i>");
 	//Start fight
+	
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(new Dane());
+	CombatManager.victoryScene(defeatDane);
+	CombatManager.lossScene(loseToDane);
+	CombatManager.displayLocation("DANE");
+	
 	clearMenu();
-	addButton(0,"Next",startCombat,"Dane");
+	addButton(0,"Next", CombatManager.beginCombat);
 }
 
 //Wait
@@ -214,121 +222,6 @@ public function letRivalGoOnMhenga():void {
 	addButton(0,"Next",mainGameMenu);
 }
 
-//Dane Fight
-public function daneAI():void {
-	//Grappled PCs get molested
-	if(pc.hasStatusEffect("Grappled"))
-	{
-		if(pc.statusEffectv3("Grappled") == 0) daneCrotchSmother();
-		else daneLickitongue();
-	}
-	//Headbutt - every fifth round until out of energy
-	else if(pc.statusEffectv1("Round") % 5 == 0 && foes[0].energy() >= 25)
-	{
-		//As the PC attack
-		properHeadbutt(foes[0],pc);
-	}
-	else if(pc.statusEffectv1("Round") % 7 == 0)
-	{
-		daneGrappleAttack();
-	}
-	else if(rand(2) == 0 && foes[0].energy() >= 25)
-	{
-		daneCrossSlashAttack();
-		foes[0].energy(-25);
-	}
-	else daneQuadStrike();
-}
-
-//Attacks
-//Quad Strike
-public function daneQuadStrike():void {
-	//Swing twice, shoot twice.
-	rangedAttack(foes[0],pc,[1,2]);
-	output("\n");
-	rangedAttack(foes[0],pc,[1,2]);
-	output("\n");
-	attack(foes[0],pc,[1,2]);
-	output("\n");
-	attack(foes[0],pc,[1,2]);
-	processCombat();
-}
-
-//Four-Armed Grapple
-public function daneGrappleAttack():void {
-	output("Charging forward, Dane sheaths his weapons simultaneously. His arms come open, open-palmed and grabbing for you!");
-	//Miss
-	if(combatMiss(foes[0],pc)) output("\nYou twist out of the way of his four-armed grapple in the nick of time. The buff Ausar snickers, pulling his weapons once more. <i>\"Speed alone cannot win a fight.\"</i>");
-	//Hit
-	else
-	{
-		output("\nYou try to twist out of the way, but there's just so many hands grabbing for you at once. Your arms are pinned to your [pc.hips] by one pair while the other bear hugs you against his broad, armored chest.");
-		output("\n<b>You are grappled!</b>");
-		pc.createStatusEffect("Grappled",0,35,0,0,false,"Constrict","You're pinned in a grapple.",true,0);
-	}
-	processCombat();
-}
-
-//Crotch Smother
-//Grapple only. Moderate lust damage. Escaping grapple is essential.
-public function daneCrotchSmother():void {
-	output("Dane takes advantage of the grapple to flip you around, suspending you upside down at crotch level. One of his hands pulls open the bottom of his armor to expose his crotch; you can't tell which, he seems like he's all hands from your current position. A hard, red dog-cock is there, sticking out of a narrow slit. Meanwhile his hands roam over your body, busily fondling and rubbing. It feels and smells better than it has any right to.");
-	output("\n\n<i>\"Ready to give in yet? I've got something special to show you.\"</i>");
-	pc.lust(5+rand(7));
-	if(pc.lust() >= pc.lustMax()) output("\n\nYou nod, moaning in overwhelming lust.\n\nDane drops you. <i>\"Good " + pc.mfn("boy","girl","pet") + ".\"</i>");
-	pc.addStatusValue("Grappled",3,1);
-	processCombat();
-}
-
-//Lickitongue
-//Req's grapple, follows smother
-public function daneLickitongue():void {
-	if(pc.hasArmor() && pc.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT))
-	{
-		output("You feel something warm and wet rub and press against your [pc.crotch]. Dane's tongue tries to get at your nethers but your airtight [pc.armor] prevents that from happening.");
-	}
-	else
-	{
-		output("You feel something warm and wet ");
-		if(!pc.isNude()) output("worm past your [pc.lowerGarments] to ");
-		output("lick your [pc.crotch]. It flutters around expertly, ");
-		var choices:Array = new Array();
-	
-		if(pc.hasCock()) choices[choices.length] = 0;
-		if(pc.hasVagina()) choices[choices.length] = 1;
-		if(pc.balls > 0) choices[choices.length] = 2;
-		if(choices.length == 0) choices[choices.length] = 3;
-	
-		var select:int = choices[rand(choices.length)];
-		if(select == 0) output("paying special attention to [pc.oneCock]. It loops about it, tugging and sliding, forcing you to feel incredible pleasure.");
-		else if(select == 1) output("diving right into [pc.oneVagina]. Thrusting in and out, it slides and licks across every inner fold, driving you wild with desire.");
-		else if(select == 2) output("lovingly polishing your [pc.balls] before sliding over your taint to your [pc.asshole]. There, it busily rims you, sometimes even sliding an inch inside your asshole.");
-		else output("diving right into rimming your asshole. The thick intruder feels so wet and lewd that you can't help but offer up hot little pants of encouragement.");
-		output(" Dane's tongue feels amazing.");
-		pc.lust(20+rand(10));
-		if(pc.lust() >= pc.lustMax()) output("\n\nYou start begging him to fuck you, unable to hold back. Withdrawing that wonderful slab of flesh from your crotch, Dane drops you, laughing heartily. <i>\"So be it.\"</i>");
-	}
-	processCombat();
-}
-
-//Cross Slash
-public function daneCrossSlashAttack():void {
-	output("Dane reaches high with both swords and brings them down crossways simultaneously!");
-	//Miss
-	if(combatMiss(foes[0],pc)) output("\nYou duck under the swings.");
-	//Hit
-	else
-	{
-		output("\nThe blades hit you while crossed in a perfect 'x'!");
-		var damage:TypeCollection = foes[0].meleeDamage();
-		damage.multiply(3);
-		damageRand(damage, 15);
-		applyDamage(damage, foes[0], pc);
-	}
-	processCombat();
-}
-
-
 public function defeatDane():void
 {
 	clearOutput();
@@ -344,7 +237,7 @@ public function defeatDane():void
 	variableRoomUpdateCheck();
 	var map:* = mapper.generateMap(currentLocation);
 	userInterface.setMapData(map);
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Losses
@@ -376,8 +269,8 @@ public function loseToDane():void {
 	if(pc.hasHair()) output("grabs your [pc.hair], yanking your head back");
 	else output("grabs the back of your neck, squeezing painfully hard");
 	output(", and says, <i>\"Loosen up slut. There's a lot more cock to go.\"</i> He pushes you partway off and pulls back down, matching his words with potent, cock-burying thrusts. This time, ");
-	if(pc.analCapacity() * .8 > foes[0].cockVolume(0)) output("your capacitive anus allows him inside, letting the knot pop right on in.");
-	else if(pc.analCapacity() * 1.2 > foes[0].cockVolume(0)) output("your anus stretches enough to let him inside, tingling from how taut it has been pulled.");
+	if(pc.analCapacity() * .8 > enemy.cockVolume(0)) output("your capacitive anus allows him inside, letting the knot pop right on in.");
+	else if(pc.analCapacity() * 1.2 > enemy.cockVolume(0)) output("your anus stretches enough to let him inside, tingling from how taut it has been pulled.");
 	else output("your anus stretches painfully open, pulled far beyond its normal capacity to allow him entrance.");
 	output(" Swollen, cum-filled nuts slap against you");
 	if(pc.balls > 0) output("r own");
@@ -386,7 +279,7 @@ public function loseToDane():void {
 	output(" The alien grunts and slaps your ass. Even taking a hand to do that, he's still holding you vice-tight. It's like his arms all over your body, everywhere at once, forcing you to submit to his anus-ravaging whims.");
 	if(pc.hasVagina()) output(" [pc.EachVagina] trickles lubricant at the thought. You manage to reach down to try and plug the leak with your fingers. It doesn't work. You just get wetter.");
 	//Buttchange
-	pc.buttChange(foes[0].cockVolume(0),true,true,false);
+	pc.buttChange(enemy.cockVolume(0),true,true,false);
 	output("\n\nThis time, Dane growls in satisfaction. <i>\"That's it, slut. Go ahead and take my dick.</i>\" He pops his knot out and back in, sending surprisingly pleasant sensations shivering up your spine. <i>\"Just relax and take it. Get used to it. We're just getting started, and I've got a lot more cock to fill you with.\"</i>");
 	output("\n\nWait, what? You try to look back over your shoulder at him to voice your question, but his hand holds you firm.");
 	output("\n\n<i>\"Eyes down, bitch. You don't get to look at me,\"</i> Dane commands. As an afterthought, he adds, <i>\"Never fucked somebody as spliced-up as me, have you?\"</i> He doesn't wait for an answer. <i>\"If you thought four arms was the extent of my modifications, you're sorely mistaken. The little bit of cock you've got inside you is just my tip.\"</i> Dane thrusts, pushing his knot up into your large intestine. Incredibly, you feel inches more of his phallus pounding into you behind it, the insertion made easy thanks to the reaming he's given you. <i>\"I got myself a proper tentacle cock with an ausar twist. It can reach out nine feet, and every six inches, there's another knot. I wonder how many I can push out into you?\"</i>");
@@ -442,8 +335,8 @@ public function daneFuckEpilogue():void {
 	output("You wake all alone, naked, sore, and leaking white cum. You're humiliated and debased - even the probe is missing, leaving behind a cold, empty crater - but the coordinates to the next planet in your father's chain are in a data-chit lying next to you. Maybe next time you'll have a better showing.\n\n");
 	flags["LOST_TO_DANE_ON_MHENGA"] = 1;
 	processTime(75+rand(10));
+	CombatManager.genericLoss();
 	variableRoomUpdateCheck();
 	var map:* = mapper.generateMap(currentLocation);
 	userInterface.setMapData(map);
-	genericLoss();
 }

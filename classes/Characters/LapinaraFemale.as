@@ -7,8 +7,13 @@
 	import classes.Items.Melee.RaskvelWrench;
 	//import classes.Items.Miscellaneous.*
 	import classes.kGAMECLASS;
-	import classes.rand;
+	import classes.Engine.Utility.rand;
 	import classes.GameData.CodexManager;
+	import classes.GameData.CombatManager;
+	import classes.GameData.CombatAttacks;
+	import classes.Engine.Interfaces.output;
+	import classes.Engine.Combat.*;
+	import classes.Engine.Combat.DamageTypes.*;
 	
 	public class LapinaraFemale extends Creature
 	{
@@ -26,7 +31,7 @@
 			this.long = ""; // Implementation in prepForCombat
 			this.customBlock = "Somehow, the attack doesn't penetrate the lapinara's fur!";
 			this.customDodge = "The lapinara uses its small size to slip out of the way.";
-			this.plural = false;
+			this.isPlural = false;
 			
 			meleeWeapon.baseDamage.kinetic.damageValue = 2;
 			this.meleeWeapon.attack = 0;
@@ -177,37 +182,104 @@
 			this.ass.wetnessRaw = 0;
 			this.ass.bonusCapacity += 15;
 			
+			isUniqueInFight = true;
+			btnTargetText = "Lapinara";
+			randomise();
+			
 			this._isLoading = false;
 		}
 		
-		override public function prepForCombat():void
+		private function randomise():void
 		{
-			var combatLapinaraFemale:LapinaraFemale = this.makeCopy();
-			
-			kGAMECLASS.userInterface.showBust("LAPINARAFEMALE");
-			kGAMECLASS.setLocation("FIGHT: FEM.\nLAPINARA", "PLANET: TARKUS", "SYSTEM: REDACTED");
-			combatLapinaraFemale.sexualPreferences.setRandomPrefs(3 + rand(3));
-			
-			//Random height
-			combatLapinaraFemale.tallness = 36 + rand(13);
+			sexualPreferences.setRandomPrefs(3 + rand(3));
+			tallness = 36 + rand(13);
 			//Hair
-			if(rand(3) == 0) combatLapinaraFemale.hairColor = "white";
-			else if(rand(2) == 0) combatLapinaraFemale.hairColor = "silver";
-			else combatLapinaraFemale.hairColor = "gray";
-			combatLapinaraFemale.furColor = combatLapinaraFemale.hairColor;
+			if(rand(3) == 0) hairColor = "white";
+			else if(rand(2) == 0) hairColor = "silver";
+			else hairColor = "gray";
+			furColor = hairColor;
 			
-			combatLapinaraFemale.long = "You are fighting a lapinara. A typical example of the parasitic gender, according to your Codex, she stands at no more than " + combatLapinaraFemale.height() + " tall. From her head grows medium-length, wild " + combatLapinaraFemale.hairColor + " hair styled into a perm. A pair of metal-reinforced horns poke out from under her bangs. A long, whip-like tail hangs from above her ass, thrashing about menacingly. She wears a rather intimidating spiked gauntlet on each hand, her chest protected by a metal armor plate. There is a leather belt about her waist, holding an assortment of syringes at her side, likely drugs. She is unarmored from the waist down, her pseudopenis ovipositor standing at attention, faux testicles heavy and swollen with the eggs that they're holding."
-			combatLapinaraFemale.ass.loosenessRaw = rand(4) + 1;
-			combatLapinaraFemale.vaginas[0].loosenessRaw = rand(4) + 1;
-			combatLapinaraFemale.credits = 25+rand(25);
-
-			// Codex shit
-			CodexManager.unlockEntry("Lapinara");
-			/*if (rand(10) == 0)
+			long = "You are fighting a lapinara. A typical example of the parasitic gender, according to your Codex, she stands at no more than " + height() + " tall. From her head grows medium-length, wild " + hairColor + " hair styled into a perm. A pair of metal-reinforced horns poke out from under her bangs. A long, whip-like tail hangs from above her ass, thrashing about menacingly. She wears a rather intimidating spiked gauntlet on each hand, her chest protected by a metal armor plate. There is a leather belt about her waist, holding an assortment of syringes at her side, likely drugs. She is unarmored from the waist down, her pseudopenis ovipositor standing at attention, faux testicles heavy and swollen with the eggs that they're holding."
+			ass.loosenessRaw = rand(4) + 1;
+			vaginas[0].loosenessRaw = rand(4) + 1;
+			credits = 25+rand(25);
+		}
+		
+		override public function get bustDisplay():String
+		{
+			return (hairColor == "silver" ? "LAPINARA_2" : "LAPINARAFEMALE");
+		}
+		
+		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
+		{
+			var target:Creature = selectTarget(hostileCreatures);
+			if (target == null) return;
+			
+			if(rand(3) == 0) lapinaraHornCharge(target);
+			else if(rand(2) == 0) lapinaraFalconPunch(target);
+			else lapinaraBite(target);
+		}
+		
+		private function lapinaraHornCharge(target:Creature):void
+		{
+			if(combatMiss(this, target)) output("The lapinara charges at you. Thanks to your evasive skills, you manage to sidestep her attack. She stumbles slightly as she misses her target.");
+	//Hit (shield is down): 
+			else
 			{
-				combatLapinaraFemale.inventory.push(new RaskvelWrench());
-			}*/			
-			kGAMECLASS.foes.push(combatLapinaraFemale);
+				var damage:TypeCollection = meleeDamage();
+				damage.add(8);
+				damageRand(damage, 15);
+				
+				if(target.shields() > 0) 
+				{
+					output("The lapinara charges at you, ramming your shield.");
+					applyDamage(damage, this, target);
+				}
+				else
+				{
+					//Hit (backfire, rare; requires armor):
+					if (target.armor.defense > 0 && rand(3) == 0) 
+					{
+						output("The lapinara charges at you, ramming you. However, thanks to your protective armor, she is instead knocked aback, stunned.");
+						createStatusEffect("Stunned",1,0,0,0,false,"Stun","Cannot act for a turn.",true,0);
+					}
+					else 
+					{
+						output("The lapinara charges at you, ramming you, the painful impact briefly staggering you.");
+						applyDamage(damage, this, target);
+					}
+				}
+			}
+		}
+		
+		private function lapinaraFalconPunch(target:Creature):void
+		{
+			if(combatMiss(this, target)) output("The lapinara attempts to swing at you, but you deftly dodge and deflect every punch she sends your way.");
+			else {
+				if(target.shields() > 0) output("The lapinara punches, aiming for your gut, but instead connecting with your shield.");
+				else output("The lapinara delivers a swift blow to your gut, briefly doubling you over. Ow.");
+				
+				var damage:TypeCollection = meleeDamage();
+				damageRand(damage, 15);
+				applyDamage(damage, this, target);
+			}
+		}
+		
+		private function lapinaraBite(target:Creature):void
+		{
+			var damage:TypeCollection = new TypeCollection( { kinetic: 5 + (physique() / 2) }, DamageFlag.PENETRATING);
+	damageRand(damage, 15);
+	
+			//Dodge: 
+			if(combatMiss(this, target)) output("The lapinara lunges at you. Thanks to your evasive skills, you manage to sidestep her attack. She stumbles slightly as she misses her target.");
+			else
+			{
+				//Hit (shield is up): 
+				if(target.shields() > 0) output("The lapinara lunges forward, attempting to bite you. Instead, her powerful teeth connect with your shield. She jumps back, rubbing her mouth in pain.");
+				//Hit (shield is down):
+				else output("The lapinara lunges forward, grabbing ahold of your arm and painfully sinking her teeth into your flesh.");
+				applyDamage(damage, this, target);
+			}
 		}
 	}
 }

@@ -1,20 +1,7 @@
-﻿import classes.Engine.Combat.DamageTypes.DamageResult;
+﻿import classes.Characters.NaleenMale;
+import classes.Engine.Combat.DamageTypes.DamageResult;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
-/*Intro
-Combat Description
-Attacks
-Normal Attack
-Constrict
-Pounce
-Victory
-Victory by HP
-Victory by Lust
-Ride Him
-Get Blown
-Defeat Sex
-Reverse Rape
-Intro
-*/
+import classes.GameData.CombatManager;
 
 //First Time:
 public function naleenMaleEncounter():void
@@ -43,8 +30,16 @@ public function naleenMaleEncounter():void
 		output("\n\nYou ready yourself for combat!");
 		flags["TIMES_MET_MALE_NALEEN"]++;
 	}
+	
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(new NaleenMale());
+	CombatManager.victoryScene(defeatAMaleNaleen);
+	CombatManager.lossScene(loseToDudeleenRouter);
+	CombatManager.displayLocation("NALEEN MALE");
+	
 	clearMenu();
-	addButton(0,"Next",startCombat,"naleen male");
+	addButton(0,"Next", CombatManager.beginCombat);
 }
 
 /*
@@ -70,135 +65,9 @@ public function naleenMaleAI():void {
 	author("Lukadoc & QB");
 	showBust("NALEEN_MALE");
 	showName("FIGHT:\nNALEEN MALE");
-	if(pc.hasStatusEffect("Naleen Coiled"))
-	{
-		//Req's PC constricted.
-		if((foes[0].HP() >= foes[0].HPMax() * .7 && rand(3) <= 1) || foes[0].lust() >= 50) biteAttackDudeleen();
-		else naleenDudeConstrict();
-	}
-	else if(pc.statusEffectv1("Round") % 5 == 0) naleenDudeConstrict();
-	//If below 30% health, he’ll basically spam his pounce. 
-	else if(foes[0].HP() < foes[0].HPMax() * .3) dudeNaleenPounce();
-	//If below 60% health, he’ll start using his pounce attack with a low frequency.
-	else if(foes[0].HP() < foes[0].HPMax() * .6)
-	{
-		if(rand(3) == 0) dudeNaleenPounce();
-		else naleenDudeAttack();
-	}
-	//He will start out by using his claws and constrict move to attack, once he is below 75% of his health, he’ll also randomly poison the PC.
-	else
-	{
-		naleenDudeAttack();
-	}
+
 }
 
-//Normal Attack
-//instead of a double attack, this one uses a more powerful single blow.
-public function naleenDudeAttack():void {
-	output("The naleen quickly slithers your way, using his serpentine body to gain altitude and maul with a vicious downward strike!\n");
-	//{standard dodge/miss messages}
-	//Hit: You manage to fall in a defensive stance just in time, yelping in pain as you are forcibly struck by his razor-sharp claws.
-	attack(foes[0],pc);
-}
-
-
-//Constrict
-//Grapple, must struggle to escape. If the Naleen’s HP is <= 75%: Randomly apply a dose of poison. He will ONLY poison when you are held within his coils.
-public function naleenDudeConstrict():void {
-	author("Savin");
-	if(!pc.hasStatusEffect("Naleen Coiled"))
-	{
-		output("The naleen lunges at you, but you nimbly dodge the attack. However, before you can blink, you feel his leathery scales coursing across your body as he moves around you, squeezing tight! Your breath is knocked away, and in a moment you're seeing stars!");
-		
-		pc.createStatusEffect("Naleen Coiled",0,0,0,0,false,"Constrict","You're trapped in the naleen's coils!",true,0);
-	}
-	else
-	{
-		output("The naleen grins predatorily, constricting his lower half in a painful vice. You groan as well as you can under the pressure of his bone-crushing coils.");
-	}
-	
-	var damage:TypeCollection = damageRand(new TypeCollection( { kinetic: 5 + rand(5) } ), 15);
-	var damageResult:DamageResult = calculateDamage(damage, foes[0], pc, "dudeconstrict");
-	
-	if (damageResult.shieldDamage > 0)
-	{
-		if (damageResult.hpDamage == 0) output(" Your shield crackles but holds. ");
-		else output(" There is a concussive boom and tingling aftershock of energy as your shield is breached. ");
-	}
-	
-	if (damageResult.hpDamage > 0)
-	{
-		if (damageResult.shieldDamage == 0) output(" Your breath is taken away by a brutal squeezes, and in a moment you're seeing stars! ");
-	}
-	
-	outputDamage(damageResult);
-	
-	processCombat();
-}
-
-//Bite Attack (Paralytic Venom)
-//Low chance of use; increases with foe HP drop or if foe is constricted. 
-//REQ'S NO SHIELDS!
-public function biteAttackDudeleen():void {
-	author("Savin");
-	var attacker:Creature = foes[0];
-	output("His coils tighten ever so slightly, further immobilising you. With a menacing growl he exposes his fangs and ");
-	if(!pc.isChestGarbed()) output("bites the exposed skin near your shoulder");
-	else output("bites, punching through a thin spot in your [pc.upperGarment]");
-	output(". You yell as you feel his venom pumping into your bloodstream. Ceasing your struggle momentarily, your thoughts become hazy and your movements sluggish; suddenly the idea of surrendering to this powerful male’s coils doesn’t sound like such a bad idea....");
-	//Effect: Moderate Speed/Dex/Whatever drain. If reduced to 0, auto lose (as if by lust).
-	if(!pc.hasStatusEffect("Naleen Venom")) pc.createStatusEffect("Naleen Venom",0,0,0,0,false,"Poison","This venom reduces strength, aim, reflexes, and willpower! If you take in too much of it while fighting a naleen, you'll lose!",false,10);
-	pc.physiqueMod -= .5;
-	pc.aimMod -= .5;
-	pc.willpowerMod -= .5;
-	pc.reflexesMod -= .5;
-	pc.addStatusValue("Naleen Venom",1,.5);
-	pc.lust(10+rand(10));
-	if(pc.lust() >= pc.lustMax() || ((pc.physique() == 0 || pc.willpower() == 0) && pc.hasStatusEffect("Naleen Venom"))) output("\n\n<b>You're too doped up to care anymore. You give in.</b>");
-	processCombat();
-}
-	
-//Pounce
-//If PC is shielded, deal some damage to the Naleen too.
-//Deals Heavy Damage, is a bit easier to avoid than his claws.
-//Meant to hurt the PC’s health rather than their shields. Is there a way to amplify HP damage and reduce shield’s damage?
-public function dudeNaleenPounce():void 
-{
-	output("With a snarl ending in a hiss, he launches to the air. He strikes at you with claw and fang in a mighty pounce!");
-	
-	var damage:TypeCollection;
-	var damageResult:DamageResult;
-	
-	//Miss:
-	if(combatMiss(foes[0],pc))
-	{
-		output(" You quickly get out of his way as he impacts the ground where you were mere moments ago. You step back, narrowly avoiding his sweeping snake half as he uses his momentum in an attempt to trip you.");
-	}
-	//Hit Shield:
-	else if(pc.shieldsRaw > 0) 
-	{
-		output("You yelp as you are brought crashing down onto the ground. Luckily your shield seems to have taken the brunt of his blow. You push him off, watching as he flops on the ground with a pained yowl. He quickly gets back on his coils, though it seems like he didn’t get out of this unscathed.");
-		damage = new TypeCollection( { kinetic: 1 + rand(3) } );
-		damageResult = calculateDamage(damage, foes[0], pc, "pounce");
-		
-		if (damageResult.shieldDamage > 0 && damageResult.hpDamage == 0) output(" Your shield crackles but holds.");
-		else if (damageResult.shieldDamage > 0 && damageResult.hpDamage > 0) output(" There is a concussive boom and tingling aftershock of energy as your shield is breached.");
-		
-		outputDamage(damageResult);
-		
-		calculateDamage(new TypeCollection( { electric: 3 + rand(4) } ), pc, foes[0]);
-	}
-	//Hit HP for BIG DAMAGE!
-	else
-	{
-		damage = new TypeCollection( { kinetic: 10 + rand(5) } );
-		damageResult = calculateDamage(damage, foes[0], pc, "pounce");
-		
-		output("You yelp as you are brought crashing down onto the ground. Without shields to protect you, you are left to struggle against his slashing claws and bites. You eventually manage to push him off you, but not before taking significant damage.");
-		outputDamage(damageResult);
-	}
-	processCombat();
-}
 
 //Victory
 public function defeatAMaleNaleen():void {
@@ -206,7 +75,7 @@ public function defeatAMaleNaleen():void {
 	showBust("NALEEN_MALE");
 	showName("NALEEN\nMALE");
 	//Victory by HP
-	if(foes[0].HP() <= 0) {
+	if(enemy.HP() <= 0) {
 		output("The naleen struggles to lift his torso from the ground, too beaten to do anything but glare defiantly at you as he tries to slither away.");
 		//if Kind:
 		if(pc.isNice()) output("\n\nYou watch him from a distance, putting your weapons away now that he’s beaten. A curious sight does catch your eye, though. His twin reptilian cocks are standing at half-mast; seems like he found the fight enjoyable. Maybe you should do something about that?");
@@ -247,7 +116,7 @@ public function leaveDefeatedDudeleen():void {
 	else output("You kick his tail away and tell him to scramble. You don’t have time to waste with wimps like him.\n\nThe naleen turns and slithers away as fast as he can, before you can change your mind.");
 	output("\n\n");
 	processTime(3);
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Ride Him
@@ -278,7 +147,7 @@ public function rideDudeleensWithAPussaaaaah():void {
 	output("\n\nHe huffs and turns to look away.");
 
 	output("\n\nDespite his reaction, you watch with amusement as you notice his soft-barbed dicks");
-	if(foes[0].HP() <= 0) output(" throbbing as a bead of pre begins to form on their twin tips.");
+	if(enemy.HP() <= 0) output(" throbbing as a bead of pre begins to form on their twin tips.");
 	else output(" throb in excitement as a large dollop of pre forms on their twinned tips, sliding down his lengths as he makes his excitement clear.");
 
 	//if Hard:
@@ -454,7 +323,7 @@ public function rideDudeleensWithAPussaaaaah():void {
 		output("\n\nYou roll him on his side and undo his bindings before giving him a soft pat on the head.");
 		output("\n\n<i>“Thank you...”</i>  he exhales in an exhausted whisper, momentarily opening his eyes to gaze at you.");
 		output("\n\nSatisfied, you don your [pc.gear] and leave him lying on the jungle floor.\n\n");
-		genericVictory();
+		CombatManager.genericVictory();
 		return;
 	}
 	//Hard
@@ -475,7 +344,7 @@ public function releaseNaleenAfterLadyWins():void {
 	output("You roll him on his side, undoing his bindings and leaving him to pass out on the ground.");
 	output("\n\nSatisfied for the moment, you don your [pc.gear] and leave him lying on the jungle floor.");
 	output("\n\n");
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //[=Leave=]
@@ -487,7 +356,7 @@ public function leaveTheDudeNaleenAfterLadyWins():void {
 	output("He’s a big kitty, he can take care of himself.");
 	output("\n\nYou put on your [pc.gear] and leave the naleen to fend for himself.");
 	output("\n\n");
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //Get Blown
@@ -635,7 +504,7 @@ public function ignoreDasNaga():void {
 		output("You nod absently and clamber off of his chest, pulling him into a position where you can remove the vines binding his wrists. Gathering your gear, you turn and start heading off, leaving the now-free naleen behind you.");
 		output("\n\nBefore you are out of sight, though, curiosity prompts you to look back. The horny being is busily wiping off some of the semen he spilt down himself during your coupling, applying it to his own dicks as makeshift lube and jerking himself off furiously. You chuckle at the sight.");
 		output("\n\n");
-		genericVictory();
+		CombatManager.genericVictory();
 	}
 	//Hard:
 	else {
@@ -654,7 +523,7 @@ public function letThatNaleenBoyPussyGo():void {
 	output("You nod as you get off of him and roll him on his side so you can get to his bindings.");
 	output("\n\nYou’ve barely released him and the slut is already masturbating. The horny cat-snake wasted no time getting his paws around his peckers to pump himself to orgasm. Honestly, it’s kind of amusing, however you’ve no time to waste. You put on your [pc.gear] and leave the cat to his devices.");
 	output("\n\n");
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //[=Refuse=]
@@ -669,7 +538,7 @@ public function refuseToLetTheNaleenGo():void {
 	output("\n\nIf he didn’t want to wind up tied in the middle of the jungle he shouldn’t have challenged you. He’s a big kitty. You have no doubt he’ll find a way to release himself.");
 	output("\n\nYou chuckle as you step away from the cursing feline. He vainly tries to reach for his bindings with his claws, but in his current position this is more than a little difficult. Well, you got yours, so there’s no point in sticking around. You don your [pc.gear] and leave the thrashing cat-snake to his own devices.");
 	output("\n\n");
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 
@@ -711,7 +580,7 @@ public function handjobThatDudeleen():void {
 	output("\n\n");
 	processTime(30+rand(10));
 	pc.orgasm();
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //[=Ass=] 
@@ -799,7 +668,7 @@ public function getTakenInTheAssByDudeleen():void {
 	processTime(30+rand(10));
 	pc.orgasm();
 	pc.loadInAss(chars["NALEEN_MALE"]);
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 //[=CuntTail=]
@@ -850,7 +719,7 @@ public function cuntailOnDudeleen():void {
 	processTime(30+rand(10));
 	pc.orgasm();
 	
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 
@@ -1111,7 +980,7 @@ public function loseToDudeleenSex(tailIntro:Boolean = false):void {
 	//Loss message
 	output("\n\n");
 	processTime(30+rand(10));
-	genericLoss();
+	CombatManager.genericLoss();
 }
 
 //Reverse Rape
@@ -1233,7 +1102,7 @@ public function feedYourCuntTailWithDudeleen():void {
 	
 	output("\n\n");
 	processTime(30+rand(10));
-	genericLoss();
+	CombatManager.genericLoss();
 }
 
 
@@ -1421,7 +1290,7 @@ public function maleNaleenSucksPCOff():void
 	pc.loadInMouth(chars["NALEEN_MALE"]);
 	output("\n\n");
 	processTime(20+rand(3));
-	genericVictory();
+	CombatManager.genericVictory();
 }
 
 

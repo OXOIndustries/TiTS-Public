@@ -1,10 +1,11 @@
 package classes.Engine.Utility 
 {
+	import classes.StringUtil;
 	/**
 	 * ...
 	 * @author ...
 	 */
-	public function num2Text(number: Number): String 
+	public function num2Text(number:Number, capitalize:Boolean = false): String 
 	{
 		var returnVar: String = null;
 		var numWords:Array = new Array("zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten");
@@ -13,7 +14,17 @@ package classes.Engine.Utility
 		} else {
 			returnVar = numWords[number];
 		}
-		return (returnVar);
+		
+		if (capitalize)
+		{
+			return StringUtil.capitalize(returnVar);
+		}
+		else
+		{
+			return returnVar;
+		}
+		
+		
 	}
 
 }

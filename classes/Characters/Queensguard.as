@@ -4,6 +4,7 @@
 	import classes.Creature;
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.Items.Melee.NyreanSpear;
+	import classes.Items.Miscellaneous.EmptySlot;
 	import classes.Items.Protection.DecentShield;
 	import classes.Items.Armor.PolishedPlate;
 	import classes.ItemSlotClass;
@@ -12,6 +13,13 @@
 	
 	import classes.GLOBAL;
 	
+	import classes.Engine.Combat.*;
+	import classes.Engine.Combat.DamageTypes.*;
+	import classes.Engine.Interfaces.output;
+	import classes.GameData.CombatAttacks;
+	import classes.GameData.CombatManager;
+	
+	import classes.Engine.Utility.weightedRand;
 	
 	/**
 	 * ...
@@ -34,9 +42,9 @@
 			this.tallness = 72;
 			this.scaleColor = "green";
 			
-			this.long = "";
+			long = "You’re fighting Queensguard, the knightly nyrean warrior who stands between you and Queen Taivra - and the probe that makes up her throne. The warrior before you is clad from head to toe in heavy metal plates, like a medieval soldier’s, supplementing her natural chitin with forged steel. She carries a hefty kite-style shield, bearing the same crest as the tyrant she serves’, plus a glistening longsword that twirls about her with expert skill. Clearly the queen has chosen her personal guard well!\n\nYou can see Dane and [rival.name] in their cages, just behind the valiant knight. They’re both yelling and screaming, much to the disdain of their huntresses standing guard by the cages. <b>You’re too far away to try and break them out - and Queensguard is blocking any chance of shooting them out.</b>";
 			
-			this.plural = false;
+			this.isPlural = false;
 			
 			this.meleeWeapon = new NyreanSpear();
 			this.meleeWeapon.hasRandomProperties = true;
@@ -184,25 +192,179 @@
 			//this.createStatusEffect("Force Fem Gender");
 			this.createStatusEffect("Flee Disabled",0,0,0,0,true,"","",false,0);
 			
+			isUniqueInFight = true;
+			btnTargetText = "Queensguard";
+			sexualPreferences.setRandomPrefs(8, 2);
+			
 			this._isLoading = false;
 		}
 		
-		override public function prepForCombat():void
+		override public function get bustDisplay():String
 		{
-			var nyrea:Queensguard = this.makeCopy();
+			return "QUEENSGUARD";
+		}
+		
+		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
+		{
+			var target:Creature = selectTarget(hostileCreatures);
+			if (target == null) return;
 			
-			nyrea.sexualPreferences.setRandomPrefs(8,2);
-			
-			nyrea.long = "You’re fighting Queensguard, the knightly nyrean warrior who stands between you and Queen Taivra - and the probe that makes up her throne. The warrior before you is clad from head to toe in heavy metal plates, like a medieval soldier’s, supplementing her natural chitin with forged steel. She carries a hefty kite-style shield, bearing the same crest as the tyrant she serves’, plus a glistening longsword that twirls about her with expert skill. Clearly the queen has chosen her personal guard well!\n\nYou can see Dane and [rival.name] in their cages, just behind the valiant knight. They’re both yelling and screaming, much to the disdain of their huntresses standing guard by the cages. <b>You’re too far away to try and break them out - and Queensguard is blocking any chance of shooting them out.</b>";
+			if(HP()/HPMax() < 0.6 && statusEffectv1("Fungaled") < 3) queensGuardFungalButts();
+			else if(lust() >= 75 && !hasStatusEffect("Focused")) queensGuardLust(target);
+			else if(rand(5) == 0 && !hasStatusEffect("Disarmed")) queensGuardThunderKick(target);
+			else if(rand(3) == 0 || hasStatusEffect("Disarmed")) queensguardShieldBash(target);
+			else if(!target.hasStatusEffect("Stunned") && rand(5) == 0) powerAttackQueensguard(target);
+			else sliceAndDiceQueenieGuardieRetardie(target);
+		}
+		
+		public function queensguardLongUpdate(target:Creature):void
+		{
+			long = "You’re fighting Queensguard, the knightly nyrean warrior who stands between you and Queen Taivra - and the probe that makes up her throne. The warrior before you is clad from head to toe in heavy metal plates, like a medieval soldier’s, supplementing her natural chitin with forged steel. She carries a hefty kite-style shield, bearing the same crest as the tyrant she serves’, plus a glistening longsword that twirls about her with expert skill. Clearly the queen has chosen her personal guard well!";
+			long += "\n\nYou can see Dane and [rival.name] in their cages, just behind the valiant knight. They’re both yelling and screaming, much to the disdain of their huntresses standing guard by the cages. <b>";
+			if(target.statusEffectv1("Cage Distance") == 2) long += "You’re too far away to try and break them out - and Queensguard is blocking any chance of shooting them out.";
+			else if(target.statusEffectv1("Cage Distance") == 1) long += "You’re about half way to Dane and [rival.name]’s cages now!";
+			else long += "You’re close enough to bash the lock to Dane’s cage if you wanted. Maybe the big bastard could help you out!";
+			long += "</b>";
+		}
+		
+		private function weaponToggle(toShield:Boolean = false):void
+		{
+			if (toShield = false)
+			{
+				meleeWeapon.attackVerb = "slash";
+				meleeWeapon.attackNoun = "slash";
+				meleeWeapon.longName = "polished longsword";
+				meleeWeapon.baseDamage.kinetic.damageValue = 4;
+			}
+			else
+			{
+				meleeWeapon.attackVerb = "smack";
+				meleeWeapon.attackNoun = "smack";
+				meleeWeapon.longName = "shield";
+				meleeWeapon.baseDamage.kinetic.damageValue = -4;
+			}
+		}
+		
+		private function queensGuardLust(target:Creature):void
+		{
+			output("<i>“Calm yourself, dearest,”</i> Taivra murmurs from her throne, still fucking away at her harem with her bushel of tentacle cocks. <i>“Focus on the fight.”</i>");
+			output("\n\nQueensguard tries to nod, but you can see her breathing hard... see her knees quaking ever so slightly. She clearly wants what you’re selling!");
+			output("\n\n<i>“Beat this star-walker, my guardian, and I promise I will breed you. It’s been so many years, hasn’t it? Do you even remember what it’s like to feel your belly swelling with our young? Think of me, my dearest - don’t let your lusts wander from me now.”</i>");
+			output("\n\nThe Queensguard takes a deep breath to steady herself, turning her amethyst-colored eyes to you with renewed vigor.");
+			lust(-30);
+			output(" (-30 Lust)");
+			createStatusEffect("Focused",0,0,0,0);
+		}
+		
+		private function queensGuardThunderKick(target:Creature):void
+		{
+			output("Queensguard feints, drawing your defenses to her sword, only to kick you square in the gut. You stumble back, but she’s not done yet: the knight pirouettes and slams her shield into you, <b>leaving you staggered</b>.");
+			if (target.hasStatusEffect("Staggered"))
+			{
+				target.setStatusValue("Staggered", 1, 5);
+			}
+			else
+			{
+				target.createStatusEffect("Staggered", 5, 0, 0, 0, false, "Icon_OffDown", "You're staggered, and your Aim and Reflexes have been reduced!", true, 0);
+			}
+			applyDamage(meleeDamage(), this, target, "melee");
+		}
+		
+		private function queensGuardFungalButts():void
+		{
+			output("Queensguard grabs a vial from her belt and pulls up her helm’s visor, just enough to knock back the soupy liquid within - and give you a hint of a scarred, but firmly feminine face underneath. (+50 HP)");
+			HP(50);
+			if(!hasStatusEffect("Fungaled")) createStatusEffect("Fungaled",0,0,0,0);
+			else addStatusValue("Fungaled",1,1);
+		}
+		
+		private function powerAttackQueensguard(target:Creature):void
+		{
+			output("The nyrean knight bellows out a warcry and leaps at you, sword held overhead for a brutal strike! ");
+			if(combatMiss(this, target))
+			{
+				output("You manage to dodge, avoiding what could very well have been a lethal blow!");
+			}
+			else
+			{
+				output("You try and block, but to no avail! Queensguard’s sword slams into you with bone-crushing force, throwing you back and leaving you reeling.");
+				var damage:TypeCollection = damage();
+				damage.add(physique() / 2);
+				damage.multiply(1.4);
+				damageRand(damage, 15);
+				applyDamage(damage, this, target, "melee");
+				if(physique()/2 + rand(20) + 1 >= target.physique()/2 + 10 && !target.hasStatusEffect("Stunned"))
+				{
+					output("\n<b>You’re stunned by the blow!</b>");
+					target.createStatusEffect("Stunned",1,0,0,0,false,"Stun","Cannot act for a turn.",true,0);
+				}
+			}
+		}
+		
+		private function sliceAndDiceQueenieGuardieRetardie(target:Creature):void
+		{
+			output("Queensguard charges you, swinging her blade in a wide arc. You ");
+			if(combatMiss(this, target)) output("parry it");
+			else
+			{
+				output("stagger back as it strikes you");
+				applyDamage(meleeDamage(), this, target, "melee");
+			}
+			output(", only to ");
+			if(!combatMiss(this, target)) 
+			{
+				output("be slammed with her shield a moment later");
+				weaponToggle(true);
+				applyDamage(meleeDamage(), this, target, "melee");
+				weaponToggle(false);
+			}
+			else output("have to dodge a shield swipe a second later");
+			output(". A third strike, with her sword again this time, follows up, lunging for your chest. You ");
+			if(combatMiss(this, target)) output("barely manage to dodge it");
+			else
+			{
+				output("yelp as the blade slams into you, leaving you reeling");
+				applyDamage(meleeDamage(), this, target, "melee");
+			}
+			output("!");
+		}
+		
+		private function queensguardShieldBash(target:Creature):void
+		{
+			output("With a battle roar that reverberates off the stone walls, Queensguard charges forward shield-first, trying to slam the steel bulwark into you!");
+			if(combatMiss(this, target))
+			{
+				output("\nYou nimbly side-step the attack, letting the nyrean knight’s momentum carry her right past you!");
+			}
+			else
+			{
+				output("\nYou catch the sides of her shield, grunting with effort and pain as steel slams against your ");
+				if(!(target.armor is EmptySlot)) output("[pc.armor]");
+				else output("bare [pc.skinFurScales]");
+				output(".");
 
-			//if (rand(40) == 0) nyrea.inventory.push(new Kirkite());
-			//else if(rand(50) == 0) nyrea.inventory.push(new Satyrite());
-			//else if(rand(20) == 0) nyrea.inventory.push(new Picardine());
-			//else if (rand(20) == 0)	nyrea.inventory.push(nyrea.rangedWeapon.makeCopy());
-			//else if (rand(20) == 0) nyrea.inventory.push(nyrea.meleeWeapon.makeCopy());
-			kGAMECLASS.showName("FIGHT:\nQUEENSGUARD");
-			kGAMECLASS.showBust("QUEENSGUARD");
-			kGAMECLASS.foes.push(nyrea);
+				output("The sheer weight of the impact");
+				if(target.physique() + rand(20) + 1 >= physique() + 10) output(" nearly staggers you");
+				else
+				{
+					if(target.statusEffectv1("Cage Distance") < 2) 
+					{
+						output(", forcing you back");
+						target.addStatusValue("Cage Distance",1,1);
+						queensguardLongUpdate(target);
+					}
+					else
+					{
+						output(", knocking the wind out of you enough that the knight is easily able to strike you again, sending you flat on your back. <b>You’re knocked prone!</b>");
+						if(!target.hasStatusEffect("Tripped")) target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
+					}
+				}
+				output("!");
+				//Swap in shield and back out to sword
+				weaponToggle(true);
+				applyDamage(meleeDamage(), this, target, "melee");
+				weaponToggle(false);
+			}
 		}
 		
 	}

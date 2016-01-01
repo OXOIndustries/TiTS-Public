@@ -1,6 +1,6 @@
 package classes.Util 
 {
-	import classes.rand;
+	import classes.Engine.Utility.rand;
 	
 	/**
 	 * Return a random element from an array of many elements

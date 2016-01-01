@@ -7,6 +7,7 @@
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
+	import classes.Engine.Interfaces.*;
 	
 	public class MilkCaramelGushers extends ItemSlotClass
 	{
@@ -61,7 +62,7 @@
 			kGAMECLASS.clearOutput();
 			if(target is PlayerCharacter) {
 				//First use
-				kGAMECLASS.author("Savin");
+				author("Savin");
 				kGAMECLASS.output("You greedily unwrap the creamy brown candies and pop them into your mouth. It’s as sweet as you imagined, the taste thick and rich and... well, caramelly. You suck and lick at the thick, round candies, enjoying the taste and texture over several minutes as they slowly dissolve. As they do, the first trickles of nanomachines and hormone-laced sugar glide down your eager throat, and begin to work their magic inside of you.");
 				if(target.milkFullness >= 75) kGAMECLASS.output("\n\nYou feel a mild tingle in your already full chest and little else. Perhaps these things aren't very useful to someone already so full of [pc.milk].");
 				else

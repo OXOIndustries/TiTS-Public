@@ -1,5 +1,6 @@
 package classes.UIComponents.SideBarComponents 
 {
+	import classes.Creature;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.text.TextField;
@@ -126,6 +127,17 @@ package classes.UIComponents.SideBarComponents
 			_intelligenceBar.resetBar();
 			_willpowerBar.resetBar();
 			_libidoBar.resetBar();
+		}
+		
+		public function showStatsForCreature(char:Creature, asInit:Boolean = false):void
+		{
+			_physiqueBar.updateBar(char.physique(), char.physiqueMax(), asInit);
+			_reflexesBar.updateBar(char.reflexes(), char.reflexesMax(), asInit);
+			_aimBar.updateBar(char.aim(), char.aimMax(), asInit);
+			_intelligenceBar.updateBar(char.intelligence(), char.intelligenceMax(), asInit);
+			_willpowerBar.updateBar(char.willpower(), char.willpowerMax(), asInit);
+			_libidoBar.updateBar(char.libido(), char.libidoMax(), asInit);
+			
 		}
 	}
 
