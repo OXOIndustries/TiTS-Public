@@ -451,7 +451,7 @@ package classes.GameData
 			
 			if (target is PlayerCharacter && kGAMECLASS.mimbraneFeetBonusEvade(target))
 			{
-				output("\nYou’re taken by surprise as your [pc.foot] suddenly acts on its own, right as you’re about be attacked. The action is intense enough to slide you right out of the face of danger. Seems your Mimbrane is even more attentive than you are!\n");
+				output("You’re taken by surprise as your [pc.foot] suddenly acts on its own, right as you’re about be attacked. The action is intense enough to slide you right out of the face of danger. Seems your Mimbrane is even more attentive than you are!\n");
 				return false;
 			}
 			
