@@ -107,8 +107,8 @@ package classes {
 		public var sellMarkup: Number = 1;
 		public var buyMarkdown: Number = 1;
 		public var keeperGreeting: String = "<i>“Hello and welcome to my shop. Take a gander and let me know if you see anything you like,”</i> " + a + short + " says with a smile.";
-		public var keeperBuy: String = "What would you like to buy?";
-		public var keeperSell: String = "What would you like to sell?";
+		public var keeperBuy: String = "What would you like to buy?\n";
+		public var keeperSell: String = "What would you like to sell?\n";
 
 		//Primary stats
 		private var _physiqueRaw: Number = 3;
@@ -335,6 +335,14 @@ package classes {
 		}
 
 		public var thickness: Number = 0;
+		public function thicknessMin():Number
+		{
+			return 0;
+		}
+		public function thicknessMax():Number
+		{
+			return 100;
+		}
 		public function thicknessUnlocked(newThickness:Number):Boolean
 		{
 			return true;
@@ -345,13 +353,24 @@ package classes {
 		}
 
 		public var tone: Number = 0;
+		public function toneMin():Number
+		{
+			return 0;
+		}
+		public function toneMax():Number
+		{
+			if(hasSkinFlag(GLOBAL.FLAG_SQUISHY)) return 30;
+			return 100;
+		}
 		public function toneUnlocked(newTone:Number):Boolean
 		{
+			if(hasSkinFlag(GLOBAL.FLAG_SQUISHY) && newTone >= toneMax()) return false;
 			return true;
 		}
 		public function toneLockedMessage():String
 		{
-			return "Your twitch, feeling momentarily sore. Nothing seems to come of it.";
+			if(hasSkinFlag(GLOBAL.FLAG_SQUISHY)) return "You feel a slight soreness but nothing seems to come of it. Your squishy body makes it apparent that you can’t get any more tone than you are now!";
+			return "You twitch, feeling momentarily sore. Nothing seems to come of it.";
 		}
 
 		public var hairColor: String = "no";
@@ -1315,15 +1334,31 @@ package classes {
 				case "weaponStat":
 					buffer = getWeaponName(true);
 					break;
+				case "draw":
+					buffer = weaponActionReady(false, "stat", false);
+					break;
+				case "holster":
+					buffer = weaponActionRelax(false, "stat", false);
+					break;
+				case "drawing":
+					buffer = weaponActionReady(true, "stat", false);
+					break;
+				case "holstering":
+					buffer = weaponActionRelax(true, "stat", false);
+					break;
+				case "drawWeapon":
 				case "readyWeapon":
 					buffer = weaponActionReady(false, "stat");
 					break;
+				case "holsterWeapon":
 				case "relaxWeapon":
 					buffer = weaponActionRelax(false, "stat");
 					break;
+				case "drawingWeapon":
 				case "readyingWeapon":
 					buffer = weaponActionReady(true, "stat");
 					break;
+				case "holsteringWeapon":
 				case "relaxingWeapon":
 					buffer = weaponActionRelax(true, "stat");
 					break;
@@ -4130,8 +4165,8 @@ package classes {
 		public function modThickness(change: Number, display:Boolean = true): String 
 		{
 			var oldN: Number = thickness;
-			var minN: Number = 0;
-			var maxN: Number = 100;
+			var minN: Number = thicknessMin();
+			var maxN: Number = thicknessMax();
 			
 			// Mods to caps here
 			
@@ -4155,10 +4190,11 @@ package classes {
 		public function modTone(change: Number, display:Boolean = true): String 
 		{
 			var oldN: Number = tone;
-			var minN: Number = 0;
-			var maxN: Number = 100;
+			var minN: Number = toneMin();
+			var maxN: Number = toneMax();
 			
 			// Mods to caps
+			if(hasSkinFlag(GLOBAL.FLAG_SQUISHY) && change > 0 && (tone + change) > maxN) return "\n\nBeing naturally squishy, your body refuses to get more solid than it is now.";
 			
 			//Check bounds
 			if (change != 0) 
@@ -5090,7 +5126,7 @@ package classes {
 				else sBuilder += " ";
 			}
 			//Pregnant Stuff - 25% chance (note there's a 25% chance of occurring with belly size for 50% total)
-			else if(isPregnant() && (rand(2) == 0 || bForceSize))
+			else if(isPregnant() && pregDescripts.length > 0 && (rand(2) == 0 || bForceSize))
 			{
 				sBuilder += pregDescripts[rand(pregDescripts.length)] + " ";
 			}
@@ -7797,7 +7833,7 @@ package classes {
 			var rando: Number = 0;
 			var race:String = "human";
 			//Determine race type
-			if (horseScore() >= 2) race = "part horse-morph";
+			if (horseScore() >= 3) race = "part horse-morph";
 			if (ovirScore() >= 3 && race == "human") race = "half-ovir";
 			if (ausarScore() >= 2 && race == "human") race = "half-ausar"; // Fucking Ausar forever overriding other shit. EXTERMINATUS.
 			if (kaithritScore() >= 3 && race == "human") race = "half-kaithrit";
@@ -7806,7 +7842,7 @@ package classes {
 			if (raskvelScore() >= 2) race = "rask-morph";
 			if (bovineScore() >= 3) race = bovineRace(); // Cow-morphs
 			if (raskvelScore() >= 4) race = "raskvel-morph";
-			if (horseScore() >= 4) race = "horse-morph";
+			if (horseScore() >= 5) race = "horse-morph";
 			if (pandaScore() >= 4) race = "panda-morph";
 			if (ausarScore() >= 4) race = "ausar"
 			if (demonScore() >= 5) race = "demon-morph";
@@ -7826,7 +7862,7 @@ package classes {
 			// Human-morphs
 			if (race == "human" && cowScore() >= 4) race = mfn("cow-boy", "cow-girl", "hucow");
 			// Centaur-morphs
-			if (horseScore() >= 2 && isCentaur()) race = "horse-taur";
+			if (horseScore() >= 3 && isCentaur()) race = "horse-taur";
 			else if (bovineScore() >= 3 && isTaur()) race = rawmfn("bull", "cow", "bovine") + "-taur";
 			else if (race == "human" && isCentaur()) race = "centaur";
 			else if (isTaur()) race = taurRace(race); // Other taurs

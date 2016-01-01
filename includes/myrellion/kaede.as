@@ -756,15 +756,15 @@ public function kaedeThreeSomesOrSpawnOrSomethingCassTits():void
 	showKaedeAndCass();
 	flags["MET_CASS"] = 1;
 	flags["KAEDE_NT_ENCOUNTER"] = 1;
-	output("\n\nAs you’re heading down the long path through Tee’s Ranch, you cast a glance towards the colorful pillbox on the side of the road with its glowing neon Iced Teats sign. As you’re passing by, you see the door swing open, and a pair of red-headed beauties saunter out: one a busty, all-around voluptuous cow-girl crammed into a skin-tight jumpsuit that emphasizes her thick curves and jiggly assets, and giving her a noticeable, damp-looking camel-toe besides. You’d easily mistake her for any other New Texan cow-girl, if not for the pair of furry tails swishing behind her.");
-	output("\n\nThe other girl, holding the cow’s hand in one, and carrying a little pink cloth-wrapped bundle in the other, catches your attention even more. You recognize her after a second, thanks to the familiar huge wolf-ears peeking over her head and the fluffy red tail battering the ground behind her as she walks - it’s Kaede!");
-	output("\n\nShe notices you about the same time, and her tail goes from a steady pace to swishing a mile an hour behind her, and she waves eagerly. <i>“Hey, [pc.name]!”</i>");
+	output("\n\nAs you’re heading down the long path through Tee’s Ranch, you cast a glance towards the colorful pillbox on the side of the road with its glowing neon Iced Teats sign. As you’re passing by, you see the door swing open and a pair of red-headed beauties saunter out: One, a busty, all-around voluptuous cow-girl crammed into a skin-tight jumpsuit that emphasizes her thick curves and jiggly assets, giving her a noticeable, damp-looking camel-toe besides. You’d easily mistake her for any other New Texan cow-girl, if not for the pair of furry tails swishing behind her.");
+	output("\n\nThe other girl, holding the cow’s hand in one arm, and carrying a little pink cloth-wrapped bundle in the other, catches your attention even more. You recognize her after a second, thanks to the familiar huge wolf-ears peeking over her head and the fluffy red tail battering the ground behind her as she walks - it’s Kaede!");
+	output("\n\nShe notices you about the same time, her tail suddenly goes from a steady pace to swishing a mile an hour behind her, and she waves eagerly. <i>“Hey, [pc.name]!”</i>");
 	output("\n\nWhat’s she doing here, you wonder - and who’s the cow-girl she’s all friendly with? You wave back and head over, earning a big smile from both girls.");
 	output("\n\n<i>“Oh, is this, like, </i>the<i> [pc.name]?”</i> the cow-girl giggles excitedly, fluttering her eyelashes at you. <i>“Kaede won’t stop talking about you, captain. I think you’ve made an impression on my shy little slut-puppy!”</i>");
 	output("\n\n<i>“Shush!”</i> Kaede whines, flushing beet-red and tucking her ears down. <i>“Uh, h-hi [pc.name]. Good to see you.”</i>");
 	output("\n\nYou smile at the cow-girl’s <i>“slut-puppy,”</i> ");
 	if(pc.isMischievous()) output("and reach out to ruffle Kaede’s hair. <i>“Been talking about me, have you? ");
-	else output("and ruffle her hair. <i>“");
+	else output("and ruffle Kaede’s hair. <i>“");
 	output("Who’s your friend?”</i>");
 
 	output("\n\n<i>“I’m Cass,”</i> the part kaithrit, part cow answers, taking a jiggly step closer and giving you a lascivious wink. Now that she’s in arm’s reach, you ");
@@ -780,8 +780,9 @@ public function kaedeThreeSomesOrSpawnOrSomethingCassTits():void
 	output(" Seeing the way you start squirming, Cass wiggles her hips and presses her shoulders together in a way that pushes up her big, bovine udders. <i>“</i>Super<i> pleased to meet you!”</i>");
 
 	output("\n\nBefore you can decide on a response to her none-too-subtle display");
-	if((pc.isBro() || pc.isAss()) && pc.hasCock()) output(" at least, one that’s a little more nuanced than shoving her on her knees and giving her a taste of your [pc.cock]");
-	output(", you see the pink bundle in Kaede’s arms squirm around, and a sudden shrill cry pierces the otherwise placid quietude of the ");
+	if((pc.isBro() || pc.isAss()) && pc.hasCock()) output(" - at least, one that’s a little more nuanced than shoving her on her knees and giving her a taste of your [pc.cock] -");
+	else output(",");
+	output(" you see the pink bundle in Kaede’s arms squirm around, and a sudden shrill cry pierces the otherwise placid quietude of the ");
 	if(hours > 0 && hours < 12) output("morning");
 	else if(hours <= 5) output("afternoon");
 	else output("evening");
@@ -789,7 +790,7 @@ public function kaedeThreeSomesOrSpawnOrSomethingCassTits():void
 
 	output("\n\nKaede confirms you sudden suspicion, pulling the top hood of cloth down to reveal a tiny, pink head with a pair of tiny red wolf-ears perched on top of her thin layer of ginger hair. Kaede fusses at the baby, murmuring nonsense at her until the outburst abates, leaving the kid staring at you with huge, awestruck blue eyes while she sucks on her thumb. You catch sight of a single, slender tail wiggling around at the bottom of the bundle, a poof of red fur pluming from an otherwise feline-looking tail.");
 
-	output("\n\n<i>“Sorry about that!”</i> Kaede chuckles, turning her attention back to you. <i>“Somebody’s being really whiney today. Oh, speaking of which... this is Kayla.”</i>");
+	output("\n\n<i>“Sorry about that!”</i> Kaede chuckles, turning her attention back to you. <i>“Somebody’s being really whiny today. Oh, speaking of which... this is Kayla.”</i>");
 
 	output("\n\n<i>“Say ‘hi’ to [pc.name], Kayla!”</i> Cass giggles, bouncing over and taking one of what must be her - or rather <i>their</i> - daughter’s hand and getting her to wave at you.");
 
@@ -832,7 +833,7 @@ public function pleasureKaedeVisit():void
 {
 	clearOutput();
 	showKaedeAndCass();
-	output("<i>“Pleasure,”</i> you smile, drinking deep of the fuck-me aura radiating off of the kitty-cow. The way she smiles at your answer, something tells you it wouldn’t take much effort at all to get a little closer to her... maybe with Kaede at the same time.");
+	output("<i>“Pleasure,”</i> you smile, drinking deep of the fuck-me aura radiating off of the kitty-cow. By the way she smiles at your answer, something tells you it wouldn’t take much effort at all to get a little closer to her... maybe with Kaede at the same time.");
 	postBusinessPleasureKaedeVisit();
 }
 
@@ -874,7 +875,7 @@ public function hangOutWithKaede():void
 	if(flags["MET_HERMAN"] == undefined) output("what looks like take out BBQ");
 	else output("Chef Herman’s to-go box, with diet soda of course");
 	output(". <i>“Ugh. I thought I cleaned that up,”</i> Kaede murmurs to herself, walking straight past the mess in her living room and punching the door to her cabin. The bulkhead slides open with a pneumatic hiss, revealing a small chamber and an even smaller bed, surrounded by posters for video games and heavy metal bands.");
-	output("\n\n<i>“Coming?”</i> she asks, smiling at you over her shoulder and raising her tail invitingly. You follow her eagerly into her bedroom, stepping in just as Kaede’s hanging up her leather jacket and wiggling her tail out of her hole in her jeans. She lets out a relieved sigh, slipping the garment down and giving you a well-deserved look at her tight little butt, tightly hugged by her dark boxer briefs. Stipped down to her underpants and tanktop, Kaede fishes a big bottle of whiskey out of a cabinet and flops down onto the side of her bed, leaving plenty of room for you.");
+	output("\n\n<i>“Coming?”</i> she asks, smiling at you over her shoulder and raising her tail invitingly. You follow her eagerly into her bedroom, stepping in just as Kaede’s hanging up her leather jacket and wiggling her tail out of her hole in her jeans. She lets out a relieved sigh, slipping the garment down and giving you a well-deserved look at her tight little butt, tightly hugged by her dark boxer briefs. Stripped down to her underpants and tanktop, Kaede fishes out a big bottle of whiskey from a cabinet and flops down onto the side of her bed, leaving plenty of room for you.");
 	output("\n\nA few moments later and you’re leaning back against the bulkhead, sipping on a glass and letting your half-ausar lover snuggle against your [pc.chest]. <i>“Oh, I needed this,”</i> she murmurs, eyes drooping low. <i>“If I’d stayed with Cass much longer, I think I might’ve dropped from exhaustion. Maybe next time I’ll see if she can just drop Kayla off with me...”</i>");
 	output("\n\nSpeaking of which, you recall something about Kaede owning you a story...");
 	output("\n\n<i>“Right, right. I did say that,”</i> Kaede yawns. <i>“Let’s see... like I said, Cass and I grew up together. That was back before the Rush, when there weren’t nearly so many people on Tavros. Not a lot of kids, for sure, so we all sort of gravitated to one another. Especially us non-humans. Cass and I both wanted to grow up as spacers, just like our parents; we went to school together; Cass even went with me for my first Estrobloom battery when I hit my teens. We were close... I wanted to be closer, but I was so shy and awkward back then. Even more than I am now, if you can believe it.”</i>");
@@ -917,6 +918,7 @@ public function wentDrinkingWithKaedeAfterMeetingCass():void
 	//[Next]
 	flags["HUNG_WITH_KAEDE_AFTER_MEETING_CASS"] = 1;
 	processTime(15);
+	restHeal();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -956,7 +958,7 @@ public function meetCassWithKaede():void
 	output("\n\n<i>“I’m gonna go put Kayla down for that nap. Why don’t you two, uh... I’ll be back in a few minutes,”</i> she says, vanishing up the stairs with her daughter cradled in her arms.");
 	output("\n\nThe topless cowgirl rounds on you the moment Kaede’s out of sight, a lustful smile painted on her big, plump, rosy lips.");
 	output("\n\n<i>“So, you wanted to get to know me, huh?”</i> she grins, taking a long-legged step forward. <i>“Kaede’s had some good things to say about you, ya know. And I </i>know<i> she has good taste in " + pc.mf("boys","girls") + ".”</i>");
-	output("\n\nEver brings takes the cow-girl closer until her chest is almost pressing against ");
+	output("\n\nEach stride brings the cow-girl closer until her chest is almost pressing against ");
 	if(pc.biggestTitSize() < 8) output("you");
 	else output("your own huge rack");
 	output(", bathing you in the overwhelming aura of lust and feminine desire permeating the air around her. You take a deep breath of her amorous odor, and instantly find yourself ");
@@ -999,8 +1001,8 @@ public function cockVersionOfCaedeCassFuck():void
 		output("that’s a big dick! ");
 		if(pc.isTreated()) output("I love fucking you Treated bulls!");
 		else output("Are you sure you’re not Treated?");
+		output("”</i> she smiles, planting a hand on her belly to feel the bulge your cock is making inside her. <i>“Come on, shove it all in!”</i>");
 	}
-	output("”</i> she smiles, planting a hand on her belly to feel the bulge your cock is making inside her. <i>“Come on, shove it all in!”</i>");
 	output("\n\nYou’re more than happy to oblige, ramming your hips forward until the kitty-cow’s ");
 	if(pc.cocks[0].cLength() < 14) output("soaked up every inch of cockflesh");
 	else output("belly is bulging with the sheer volume of dick you’re giving her");
@@ -1040,7 +1042,7 @@ public function inviteKaedeToCassFuck():void
 	output("\n\nSuddenly, you feel a hand grab your [pc.cock] mid-thrust, yanking your dick out of Cass’s silky snatch and onto her soft belly, cooling in a pool of her fuck-juices. <i>“Oh, is that all?”</i> your kitty-cow lover purrs, giving you a firm swat on the butt. <i>“I bet [pc.name] here would, like, totally fuck you right in the butt! Haha! Don’t blush like that, I know you’re a dirty little back-door minx!”</i>");
 	output("\n\n<i>“Cass!”</i> Kaede snaps as you finally come up from breath from between the bimbo’s boobs. The halfbreed’s made the mistake of moving closer, within arm’s reach of her purring cum-dump. Cass’s hand is firmly locked in Kaede’s belt, fiddling with the buckle and refusing to let go. Finally, with a grunt of effort, Cass pulls her lover’s pants down around a painfully-hard red rocket, and yanks her down on the couch with the both of you.");
 	output("\n\nKaede yelps, Cass laughs, and you find yourself getting pushed onto your knees between Cass’s spread legs, looking right down at Kaede’s bare bottom. The cat-girl’s hands grab her bum, groping it hard enough to elicit a gasp, and spreads the cheeks wide for your inspection.");
-	output("\n\nYou gotta admit, Kaede’s got a <i>great</i> ass: perfectly round, flawlessly smooth, with just a hint of extra weight that makes it bounce around when her lover gives it a swat. Between her freckled cheeks rests a tight, dark ring of an asshole, tucked securely over a small pouch of balls that are busy swaying around while their owner squirms.");
+	output("\n\nYou’ve gotta admit, Kaede’s got a <i>great</i> ass: perfectly round, flawlessly smooth, with just a hint of extra weight that makes it bounce around when her lover gives it a swat. Between her freckled cheeks rests a tight, dark ring of an asshole, tucked securely over a small pouch of balls that are busy swaying around while their owner squirms.");
 	output("\n\n<i>“B-but-”</i> Kaede stammers, right up until Cass gives her a full-on french kiss, pulling her beloved puppy-slut into a soft, jiggling embrace.");
 	output("\n\n<i>“Butt. Right in the butt!”</i> Cass giggles, still spreading those cheeks wide for you. Chuckling to yourself, you let your [pc.cock] flop between Kaede’s vulnerable cheeks, trailing a glaze of Cass’s ample pussy-juices as it goes.");
 	output("\n\nThe kiss seems to have relaxed Kaede, at least enough that all you get is a whimper and a wiggle of her tail when you press your [pc.cockHead] against her backdoor.");
@@ -1052,7 +1054,7 @@ public function inviteKaedeToCassFuck():void
 	output("\n\nCass just giggles and reaches up under Kaede’s shirt, groping at a perky little boob. <i>“I know, sweetie. Now get back down here and drain a tit for me... I know that tight little sack of yours has soooo much more left inside.”</i>");
 	output("\n\n<i>“Gah!”</i> Kaede moans as you emphasize the cat-girl’s point by sliding your hips back in, burying yourself to the hilt in Kaede’s lush behind. <i>“C-can’t...”</i>");
 	output("\n\nCass shushes her, guiding Kaede’s head down until the puppy-slut obediently latches onto one of Cass’s big, milky nipples and starts to suck. Something tells you she’s going to need to keep her strength up for this!");
-	output("\n\nYou grab Kaede by the hips, pushing her and, by extension, Cass down flat against the couch, as tight together as they can be with Kaede’s pointed pecker probably an inch deep in her lover’s womb and her knot leaving her lips yawning wide open. Kaede’s tail curls over her own back, an act of absolute, instinctual submission as you take her from behind again and again. The whole couch creaks uneasily under your pounding hips, swaying back and forth as three bodies locked in ecstasy undulate against each other, desperate for more.");
+	output("\n\nYou grab Kaede by the hips, pushing her and, by extension, Cass down flat against the couch, as tightly together as they can be with Kaede’s pointed pecker probably an inch deep in her lover’s womb and her knot leaving her lips yawning wide open. Kaede’s tail curls over her own back, an act of absolute, instinctual submission as you take her from behind again and again. The whole couch creaks uneasily under your pounding hips, swaying back and forth as three bodies locked in ecstasy undulate against each other, desperate for more.");
 	output("\n\nYou vary your pace, mixing it up between long thrusts and period of short, fast hammer thrusts that leave Kaede gasping and panting, drooling milk everywhere. Cass keeps her face more or less locked between a pair of enormous needy tits, though, and most of her feedback to you is her hips pushing back against your cock, or her asshole contracting in rhythmic spasms of pleasure as you milk another trickle of orgasm out of the exhausted ausar... deep in Cass’s quim.");
 	output("\n\n<i>“That’s it, baby!”</i> Cass moans, rolling her head back against the arm of the couch. <i>“Don’t hold anything back... I want every last drop of my favorite puppy-stud’s cream. Pack me full of those little swimmers so I can get sooo pregnant again!”</i>");
 	output("\n\n<i>“Gluh!”</i> Kaede manages to squeak, just as you hilt yourself against her ass. You feel her clench hard again - another orgasm, right on the heels of the first! Her lover coos with delight, more than happy to take it deep inside. Kaede’s ass is in a non-stop look of squeezes and contractions, desperate attempts to alternatively repulse your thrusting member or take you ever deeper, making sure you’re grinding against her prostate with every motion. No wonder she’s just dumping load after load of cream inside Cass’s welcoming womb.");
@@ -1060,6 +1062,7 @@ public function inviteKaedeToCassFuck():void
 	output("\n\nWhich two choice offers on the table, which of your lascivious lovers do you choose to grace with your climax?");
 	processTime(17);
 	pc.lust(100);
+	IncrementFlag("KAEDE_FUCKED");
 	//[Kaede’s Ass] [Cass’s Cunt]
 	clearMenu();
 	addButton(0,"Kaede's Ass",cumInKaedesAssDuringCassThreesome,undefined,"Kaede's Ass","Bust your nut in Kaede’s asshole. Cass wasn’t kidding: this little ginger sweetheart’s got the kind of ass you can only dream about!");
@@ -1092,13 +1095,13 @@ public function cumInCassesCuntDuringKaedeThreesome():void
 	clearOutput();
 	showKaedeAndCass();
 	flags["PUT_LOAD_IN_CASS"] = 1;
-	output("<i>“Move that ass, Kaede!”</i> you grin, grabbing her by the butt and yanking her hips back. Kaede yelps in surprise as her knotted cock is unceremoniously unplugged from Cass’s sweet little slit, spraying a final wad of thin, watery spunk across the kitty-cow’s thighs from the sheer shock. You don’t bother to move Kaede any further, letting her keep resting atop Cass as you wipe your schlong off her butt and then drive it back home.");
-	output("\n\n<i>“Woah!”</i> Cass manages to gasp, before any thought of forming words is washed out of her mind with shockwaves of pleasure that make her mammoth mammaries bounce like balloons. It’s a whole lot wetter in here since the last time you thrust into Cass’s cooch, her already legendary dampness amplified by the better part of half an hour of uninterrupted fucking, and what must be a half-dozen loads from Kaede’s rapidly-diminishing stockpile of spunk.");
+	output("<i>“Move that ass, Kaede!”</i> you grin, grabbing her by the butt and yanking her hips back. Kaede yelps in surprise as her knotted cock is unceremoniously unplugged from Cass’s sweet little slit, spraying a final wad of thin, watery spunk across the kitty-cow’s thighs from the sheer shock. You don’t bother to move Kaede any further, allowing her to continue resting atop Cass as you wipe your schlong off her butt and then drive it back home.");
+	output("\n\n<i>“Woah!”</i> Cass manages to gasp, before any thought of forming words is washed out of her mind with shockwaves of pleasure that make her mammoth mammaries bounce like balloons. It’s a whole lot wetter in here since the last time you thrusted into Cass’s cooch, her already legendary dampness amplified by the better part of half an hour of uninterrupted fucking, and what must be a half-dozen loads from Kaede’s rapidly-diminishing stockpile of spunk.");
 	output("\n\nUsing Kaede’s hips like handlebars, you hammer away at Cass’s welcoming kitty until she’s shrieking, and your cock is swelling with a rush of seed. <i>“That’s it! Give it to me!”</i> the bovine beauty bellows, thrusting her crotch up to meet your pistoning shaft so that just as you’re ready to burst, your [pc.cockHead] is battering the mouth of her cervix. You deposit your mighty load of [pc.cumNoun] as close to her ready womb as you can manage, breeding the hungry cow just the way she wants to be.");
 	output("\n\n<i>“Ah!”</i> she gasps, flopping deflatedly against the seat of the couch, chest heaving and pussy clenching around your dick as you squirt out wad after wad of cum. <i>“Oh, Kaede, you really picked a winner this time...”</i>");
 	output("\n\n<i>“My dick,”</i> Kaede whines, <i>“So... empty...”</i>");
 	output("\n\nCass giggles and cups her lover’s cheeks, bringing her into a gentle kiss. <i>“Aw, there there. Why don’t you swing around so momma Cass can kiss it and make it all better... and maybe clean up the mess while you’re down there.”</i>");
-	output("\n\nEver the eager submissive, Kaede swivels around awkwardly atop her lover, planting her red rocket right in Cass’s face and nesting her cheeks against the cow’s thigh thighs. Slowly, gingerly, you pull yourself out of the sodden slit you’ve just bred, bopping Kaede in the nose with your [pc.cockHead]. Taking Cass’s request to mean cleaning <i>you</i> off too, Kaede opens wide and scarfs down your spent, softening cock. You shudder with overwhelming sensation - the same thing Kaede herself must be feeling from her own lover’s aftercare - but manage to stroke Kaede’s hair and tell her what a good girl she was until she’s gotten your prick shining and clean.");
+	output("\n\nEver the eager submissive, Kaede swivels around awkwardly atop her lover, planting her red rocket right in Cass’s face and nesting her cheeks against the cow’s thick thighs. Slowly, gingerly, you pull yourself out of the sodden slit you’ve just bred, bopping Kaede in the nose with your [pc.cockHead]. Taking Cass’s request to mean cleaning <i>you</i> off too, Kaede opens wide and scarfs down your spent, softening cock. You shudder with overwhelming sensation - the same thing Kaede herself must be feeling from her own lover’s aftercare - but manage to stroke Kaede’s hair and tell her what a good girl she was until she’s gotten your prick shining and clean.");
 	output("\n\n<i>“Yum,”</i> she murmurs breathily, eyes heavy with mounting exhaustion. <i>“You’ve got a really, really nice dick, [pc.name]. You should... unf... let me play with it more later...”</i>");
 	output("\n\n<i>“Greedy girl!”</i> Cass mumbles around a mouthful of cock. <i>“Not wrong, though...”</i>");
 	output("\n\nKaede yawns but, after a playful spank from Cass, buries her head in the cow-girl’s cooch and starts to lick up the sloppy, musky mess the two of you made down there.");
@@ -1117,10 +1120,10 @@ public function joinInCleaningUpCassKaedePostScene():void
 	clearOutput();
 	showKaedeAndCass();
 	output("Deciding that you can’t leave a job unfinished, you slink down to your [pc.knees] on the floor, leaning over the arm-rest to get your mouth right on level with Cass’s cooch.");
-	output("\"<i>W-what-”</i> Kaede starts, right until you give her a deep, long kiss... and scoop out a little of the cum she’s ready to swallow on your [pc.tongue], claiming a share of your mixed load for yourself. She murmurs a soft <i>“Oh. Ohhhh,”</i> and lets her eyes flit closed, enjoying the kiss while it lasts. When you break it, you give her a playful wink and lean in to Cass’s cum-slathered puss, dragging your [pc.tongue] between her thick labia and scooping up even more of Kaede’s cum.");
+	output("\n\n<i>“W-what-”</i> Kaede starts, right until you give her a deep, long kiss... and scoop out a little of the cum she’s ready to swallow on your [pc.tongue], claiming a share of your mixed load for yourself. She murmurs a soft <i>“Oh. Ohhhh,”</i> and lets her eyes flit closed, enjoying the kiss while it lasts. When you break it, you give her a playful wink and lean in to Cass’s cum-slathered puss, dragging your [pc.tongue] between her thick labia and scooping up even more of Kaede’s cum.");
 	output("\n\nSuch a gentle" + pc.mf("","wo") + "man!”</i> Cass, now apparently much more clear-headed, giggles. <i>“You’ve definitely got a keeper here, baby.”</i>");
 	output("\n\nKaede’s eyes widen, and she blushes an even darker shade of crimson. <i>“I don’t... I mean.. we...”</i>");
-	output("\n\n<i>\"Shush,”</i> you command, giving her another kiss before going back to work. She joins you after a moment, letting her tongue play around with yours until Cass arches her back and cries out a warning, just a little too late for the two of you to avoid a shower of fem-cum... and probably a good bit of your own cum, too, as your dual oral skills bring Cass to orgasm again. Laughing, you lick the mess off Kaede’s face, letting it turn into a final kiss before you rise.");
+	output("\n\n<i>“Shush,”</i> you command, giving her another kiss before going back to work. She joins you after a moment, letting her tongue play around with yours until Cass arches her back and cries out a warning, just a little too late for the two of you to avoid a shower of fem-cum... and probably a good bit of your own cum, too, as your dual oral skills bring Cass to orgasm again. Laughing, you lick the mess off Kaede’s face, letting it turn into a final kiss before you rise.");
 	processTime(3);
 	clearMenu();
 	addButton(0,"Next",postCassKaedeOrgasmEpilogue);
@@ -1155,7 +1158,7 @@ public function bustANutDuringCassKaedeThreesome():void
 	else output(", finally flopping back as your [pc.cumNoun] bastes her womb until you’re completely dry.");
 
 	output("\n\n<i>“Oh... wow!”</i> Cass moans when you’ve finally finished, slowly starting to soften inside her. <i>“You don’t know how much I needed that...”</i>");
-	output("\n\nSuddenly the delightfully bubbly tinge to her voice is gone. Just like Kaede said, you guess, Cass’s braid must be pretty much cum-fueled - and now that she’s gotten a recharge, you can see a distinct cunning in her eyes. You roll off of her, letting a little deluge of spent seed squirt out of her well-bred pussy, staining her thighs and the couch beneath her.");
+	output("\n\nSuddenly the delightfully bubbly tinge to her voice is gone. Just like Kaede said, you guess, Cass’s brain must be pretty much cum-fueled - and now that she’s gotten a recharge, you can see a distinct cunning in her eyes. You roll off of her, letting a little deluge of spent seed squirt out of her well-bred pussy, staining her thighs and the couch beneath her.");
 
 	output("\n\nYou start to try and get up, but find yourself being pulled back down into the valley between the kitty-cow’s tits. She gives you a fierce hug and an unbelievably tight squeeze around your [pc.cock], ending with a kiss on the cheek as she releases you from both her warm embraces. She sighs happily as you roll off the couch and start looking for your [pc.gear], watching your bare body with obvious appreciation.");
 	output("\n\n<i>“Thanks for covering for me,”</i> Kaede whispers, picking your discarded Codex up and handing it to you. <i>“With a performance like that, I think she’ll be alright for the rest of the day.”</i>");
@@ -1187,13 +1190,14 @@ public function vaginalCassKaedeThreesome():void
 	output("\n\nThe kitty-cow murmurs happily nonetheless, squeezing you between her thunderous thighs. <i>“I like your friend, Kaede!”</i> she purrs. <i>“[pc.HeShe]’s getting to know me reeeeeal well.”</i>");
 	output("\n\n<i>“Looks like it,”</i> her lover answers, squatting down beside you and giving you a sweet smile. <i>“You sure look awful good there, [pc.name].");
 	//Follower Anno:
-	if(annoRecruited()) output(" I can see why Anno just hoards you all to herself.”</i>");
-	else output(" Wouldn’t mind taking Cass’s place... some day.”</i>");
+	if(annoRecruited()) output(" I can see why Anno just hoards you all to herself.");
+	else output(" Wouldn’t mind taking Cass’s place... some day.");
+	output("”</i>");
 
 	output("\n\nYou flash her a wink, dragging your tongue through the cleft of Cass’s puss until you’re flicking her clit. A little droplet of pussyjuice hits Kaede in the face, making her snicker and recoil, giving you some space to keep focusing on her girlfriend.");
 	output("\n\nCass pouts, brushing her fingers on Kaede’s jeans. <i>“Aww, not joining us, sweetie? I bet [pc.name] here wouldn’t mind a little red rocket to play with down there, too!”</i>");
 	output("\n\n<i>“Uhh,”</i> the redhead grimaces. <i>“I, uh, I like to watch...”</i>");
-	output("\n\n<i>“Oooh, that’s sooo kinky! Why didn’t you tell me sooner, I - ahh! Right there, cutie! - I’d have totally invited you over when my crew was around... Next time, though! Let you </i>watch<i> while I ride a big throbbing dzaan cock till even those big, meaty balls are-”</i>");
+	output("\n\n<i>“Oooh, that’s sooo kinky! Why didn’t you tell me sooner, I - ahh! Right there, cutie! - I’d have totally invited you over when my crew was around... Next time, though! - let you </i>watch<i> while I ride a big throbbing dzaan cock till even those big, meaty balls are-”</i>");
 	output("\n\n<i>“Thanks Cass anyway enjoy yourself bye,”</i> Kaede babbles, looking positively flushed as she scampers off back upstairs. Sporting, you notice, a not-unnoticable bulge in her jeans.");
 	output("\n\nCass snickers and lets her hands fall to rest on her breasts, tugging at her oversized nipples. <i>“Poor thing. I... mmm, little deeper, honey... I shouldn’t have ridden her so hard this morning. She... ooh, getting close...”</i>");
 	output("\n\nCass’s almost-coherent thought trails back off into lusty moos of pleasure as you tongue-fuck her. The way her chest is heavy, leaking trickles of milk into her fingers, while her cunt clenches is ever more desperate ways to try and milk your phantom cock... you know she’s just about ready to hit her breaking point.");
@@ -1212,7 +1216,7 @@ public function girlsCassMeetingEpilogue():void
 	showKaedeAndCass();
 	//Pass +1d3 hours
 	//-25 Energy, add Sweaty condition
-	output("Cass’s final orgasm barely elicits a whimper from the sweaty, cum-drenched kitty. It’s taken many, many rounds of vigorous oral sex to get her this far, but finally the treated slut’s starting to wear out despite all that sexual stamina. Finally, with a heavy sigh of contentment, you feel Cass let out the last of her tension around your sore tongue in a strained trickle of fem-cum, adding to the veritable lake the two of you have made on her couch.");
+	output("Cass’s final orgasm barely elicits a whimper from the sweaty, cum-drenched kitty. It’s taken many, many rounds of vigorous oral sex to get her this far, but finally the treated slut’s starting to wear out despite all that sexual stamina. With a heavy sigh of contentment, you feel Cass let out the last of her tension around your sore tongue in a strained trickle of fem-cum, adding to the veritable lake the two of you have made on her couch.");
 	output("\n\nYou’re pretty sure it’s water-proof, at least.");
 	output("\n\nLeaving her insensate on the couch, you stagger up onto your [pc.feet] and collect the gear you’ve left scattered all over the floor. While you’re wearily re-equipping yourself, you hear Kaede coming back downstairs, tiptoeing around a now-sleeping Cass to give you a big kiss on the lips");
 	if(silly || pc.race() == "half-ausar" || pc.race() == "ausar") output(", which spirals into her spending a few moments licking your face clean of her lover’s juices");
@@ -1230,6 +1234,8 @@ public function girlsCassMeetingEpilogue():void
 	pc.girlCumInMouth();
 	pc.girlCumInMouth();
 	pc.girlCumInMouth();
+	pc.energy(-25);
+	sweatyDebuff(1);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

@@ -105,8 +105,8 @@ public function secondZodeeEncouonterForGaloMax():void
 	clearMenu();
 	addButton(2,"Nope",nopeZodeeIDontWantShit,undefined,"Nope","Turn down her offer and be on your way.");
 	addButton(0,"Help Her",helpZodeeWithHerEggProblem,undefined,"Help Her","Help her squeeze out some eggs for GaloMax.");
-	if(pc.credits >= 500) addButton(1,"Buy It",buyGaloMaxFromZodee,undefined,"Buy It","Offer to buy the GaloMax off her for 500 credits. That’s a good deal, right?\n\n<b>500 credits</b>");
-	else addDisabledButton(1,"Buy It","Buy It","You could offer to buy the GaloMax off her for 500 credits... if only you had the money for it.\n\n<b>500 credits</b>");
+	if(pc.credits >= 500) addButton(1,"Buy It",buyGaloMaxFromZodee,undefined,"Buy It","Offer to buy the GaloMax off her for 500 credits. That’s a good deal, right?\n\n<b>500 Credits</b>");
+	else addDisabledButton(1,"Buy It","Buy It","You could offer to buy the GaloMax off her for 500 credits... if only you had the money for it.\n\n<b>500 Credits</b>");
 }
 
 
@@ -497,6 +497,8 @@ public function galoMaxTFProc():void
 			gooBiomass(1000);
 		}
 	}
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 //Goo Body transformations
 public function revertGooBody(part:String = "all", consumeBiomass:Boolean = false):void
@@ -718,7 +720,7 @@ public function newGooStyle():void
 	else addDisabledGhostButton(2,"Pigtails","Pigtails","You already have a ponytail.");
 	//[Curls]
 	if(pc.hairStyle != "curls") addGhostButton(3,"Curls",gooStyle,"curls","Curls","Style your hair into curls.");
-	else addDisabledGhostButton(3,"Curls","Curlse","You already have your hair curled.");
+	else addDisabledGhostButton(3,"Curls","Curls","You already have your hair curled.");
 	//[Braided]
 	if(pc.hairStyle != "braided" && pc.hairLength >= 5) addGhostButton(4,"Braided",gooStyle,"braided","Braided","Style your hair into a braid.");
 	else if(pc.hairStyle != "braided") addDisabledGhostButton(4,"Braided","Braided","Your hair isn't long enough to be braided.");
@@ -771,6 +773,11 @@ public function gooBodyCustomizer():void
 	// Print body stats here:
 	var i:int = 0;
 	output2("\n\n<b><u>Body</u></b>");
+	output2("\n<b>* Height: </b>" + prettifyLength(pc.tallness));
+	output2("\n<b>* Tone: </b>" + pc.tone + " / " + pc.toneMax());
+	output2("\n<b>* Thickness: </b>" + pc.thickness + " / " + pc.thicknessMax());
+	output2("\n<b>* Hip Size: </b>" + formatFloat(pc.hipRating(), 3));
+	output2("\n<b>* Butt Size: </b>" + formatFloat(pc.buttRating(), 3));
 	output2("\n<b>* Skin:</b>");
 	if(pc.skinFlags.length > 0)
 	{
@@ -823,7 +830,20 @@ public function gooBodyCustomizer():void
 	clearGhostMenu();
 	
 	// General body shape:
-	/* Top row buttons (0 to 4) - maybe links to pc.tallness, pc.thickness, pc.buttRatingRaw, pc.hipRatingRaw menus... */
+	if(pc.statusEffectv1("Gel Body") >= 1)
+	{
+		addGhostButton(0,"Height",adjustGooBody,["height","menu"],"Height","Make adjustments to your height.");
+		addGhostButton(1,"Thickness",adjustGooBody,["thickness","menu"],"Thickness","Make adjustments to your thickness.");
+		addGhostButton(2,"Tone",adjustGooBody,["tone","menu"],"Tone","Make adjustments to your tone.");
+	}
+	else
+	{
+		addDisabledGhostButton(0,"Height","Height","It takes five doses of GaloMax to unlock this option.");
+		addDisabledGhostButton(1,"Thickness","Thickness","It takes five doses of GaloMax to unlock this option.");
+		addDisabledGhostButton(2,"Tone","Tone","It takes five doses of GaloMax to unlock this option.");
+	}
+	addGhostButton(3,"Hip Size",adjustGooBody,["hip size","menu"],"Hip Size","Make adjustments to your hip size.");
+	addGhostButton(4,"Butt Size",adjustGooBody,["butt size","menu"],"Butt Size","Make adjustments to your butt size.");
 	
 	// Bodypart fixans: (Primarily for things that got force changes--like Dr.Badger and Holiday events)
 	var nonGooPart:Number = 0;
@@ -873,8 +893,179 @@ public function gooBodyCustomizer():void
 		else addDisabledGhostButton(9,"Revert All","Revert All","You don't have enough biomass for that.\n\n<b>" + (20 * nonGooPart) + " mLs Biomass</b>");
 	}
 	else addDisabledGhostButton(9,"Revert All","Revert All","You’ll need to have more than one body part that is able to revert in order to try this!");
+	if(pc.skinType == GLOBAL.SKIN_TYPE_GOO && pc.hairType == GLOBAL.HAIR_TYPE_GOO) addGhostButton(10,"Match Color",revertGooBodyColor,"menu","Match Colors","Force the color of your body or hair to match one another.");
+	else addDisabledGhostButton(10,"Match Color","Match Colors","You’ll need to have gooey skin and gooey hair in order to try this!");
 	
 	addGhostButton(14,"Back",gooShiftMenu);
+}
+public function adjustGooBody(arg:Array):void
+{
+	var part:String = arg[0];
+	var desc:String = arg[1];
+	var cost:Number = 0;
+	var limitMax:Number = 100;
+	var limitMin:Number = 0;
+	clearGhostMenu();
+	if(desc == "menu")
+	{
+		clearOutput2();
+		output2("You take a look at your body’s shape, contemplating the changes you could make to it.");
+	}
+	else if(part == "height")
+	{
+		cost = 10;
+		limitMax = 144;
+		limitMin = 36;
+		if(desc == "increase" || desc == "decrease")
+		{
+			clearOutput2();
+			if(desc == "increase")
+			{
+				output2("You concentrate, bunching up some biomass to add an extra inch to your tallness.");
+				pc.tallness++;
+				if(pc.tallness > limitMax) pc.tallness = limitMax;
+				gooBiomass(-1 * cost);
+			}
+			else if(desc == "decrease")
+			{
+				output2("You relax, letting go of an inch of your height to become a little shorter.");
+				pc.tallness--;
+				if(pc.tallness < limitMin) pc.tallness = limitMin;
+				gooBiomass(cost * 0.75);
+			}
+			output2(" <b>You are now " + pc.displayTallness() + " tall.</b>");
+		}
+		output2("\n\n");
+		if(pc.tallness >= limitMax) addDisabledGhostButton(0,"Increase","Increase","It looks like you can’t get any taller than you are now!");
+		else if(gooBiomass() >= cost) addGhostButton(0,"Increase",adjustGooBody,[part,"increase"],"Increase","Add an inch to your height.\n\n<b>" + cost + " mLs Biomass</b>");
+		else addDisabledGhostButton(0,"Increase","Increase","You don’t have enough biomass for that.\n\n<b>" + cost + " mLs Biomass</b>");
+		if(pc.tallness <= limitMin) addDisabledGhostButton(1,"Decrease","Decrease","It looks like you can’t get any shorter than you are now!");
+		else addGhostButton(1,"Decrease",adjustGooBody,[part,"decrease"],"Decrease","Reduce your height by an inch.");
+	}
+	else if(part == "thickness")
+	{
+		cost = 10;
+		limitMax = 100;
+		limitMin = 0;
+		if(desc == "increase" || desc == "decrease")
+		{
+			clearOutput2();
+			if(desc == "increase")
+			{
+				output2("You concentrate, allowing your body and limbs fill with gooey biomass...");
+				pc.modThickness(1);
+				gooBiomass(-1 * cost);
+			}
+			else if(desc == "decrease")
+			{
+				output2("You relax, letting the biomass flow back into your reserves...");
+				pc.modThickness(-1);
+				gooBiomass(cost * 0.75);
+			}
+		}
+		output2("\n\n");
+		if(pc.thickness >= limitMax) addDisabledGhostButton(0,"Increase","Increase","It looks like you can’t get any thicker than you are now!");
+		else if(gooBiomass() >= cost) addGhostButton(0,"Increase",adjustGooBody,[part,"increase"],"Increase","Add a size to your thickness.\n\n<b>" + cost + " mLs Biomass</b>");
+		else addDisabledGhostButton(0,"Increase","Increase","You don’t have enough biomass for that.\n\n<b>" + cost + " mLs Biomass</b>");
+		if(pc.thickness <= limitMin) addDisabledGhostButton(1,"Decrease","Decrease","It looks like you can’t get any thinner than you are now!");
+		else addGhostButton(1,"Decrease",adjustGooBody,[part,"decrease"],"Decrease","Reduce your thickness by one size.");
+	}
+	else if(part == "tone")
+	{
+		cost = 10;
+		limitMax = 100;
+		limitMin = 0;
+		if(desc == "increase" || desc == "decrease")
+		{
+			clearOutput2();
+			if(desc == "increase")
+			{
+				output2("You concentrate, trying your best to tighten your body...");
+				if(pc.toneUnlocked(pc.tone + 1))
+				{
+					pc.modTone(1);
+					gooBiomass(-1 * cost);
+				}
+				else output2("\n\n<b>" + pc.toneLockedMessage() + "</b>");
+			}
+			else if(desc == "decrease")
+			{
+				output2("You relax, letting your body become more fluid...");
+				pc.modTone(-1);
+				gooBiomass(cost * 0.75);
+			}
+		}
+		output2("\n\n");
+		if(pc.tone >= limitMax) addDisabledGhostButton(0,"Increase","Increase","It looks like you can’t get any more solid than you are now!");
+		else if(gooBiomass() >= cost) addGhostButton(0,"Increase",adjustGooBody,[part,"increase"],"Increase","Add a level to your tone.\n\n<b>" + cost + " mLs Biomass</b>");
+		else addDisabledGhostButton(0,"Increase","Increase","You don’t have enough biomass for that.\n\n<b>" + cost + " mLs Biomass</b>");
+		if(pc.tone <= limitMin) addDisabledGhostButton(1,"Decrease","Decrease","It looks like you can’t get any more fluid than you are now!");
+		else addGhostButton(1,"Decrease",adjustGooBody,[part,"decrease"],"Decrease","Reduce your tone by one level.");
+	}
+	else if(part == "hip size")
+	{
+		cost = 10;
+		limitMax = 100;
+		limitMin = 0;
+		if(desc == "increase" || desc == "decrease")
+		{
+			clearOutput2();
+			if(desc == "increase")
+			{
+				output2("You concentrate, filling yourself up with biomass to increase the size of your hips.");
+				pc.hipRatingRaw++;
+				//if(pc.hipRatingRaw > limitMax) pc.hipRatingRaw = limitMax;
+				gooBiomass(-1 * cost);
+			}
+			else if(desc == "decrease")
+			{
+				output2("You relax, pulling in some biomass to decrease the size of your hips.");
+				pc.hipRatingRaw--;
+				if(pc.hipRatingRaw < limitMin) pc.hipRatingRaw = limitMin;
+				gooBiomass(cost * 0.75);
+			}
+			output2(" <b>You now have [pc.hips].</b>");
+			if(pc.hipRatingRaw <= limitMin && pc.hipRating() > limitMin) output2("\n\nYou realize that this is the smallest your hips can get. If you want them any smaller, you’ll have to remove whatever it is that is currently affecting their size.");
+		}
+		output2("\n\n");
+		addGhostButton(0,"Increase",adjustGooBody,[part,"increase"],"Increase","Add a size to your hips.\n\n<b>" + cost + " mLs Biomass</b>");
+		if(pc.hipRatingRaw <= limitMin) addDisabledGhostButton(1,"Decrease","Decrease","It looks like your hips can’t get any smaller than they are now!");
+		else addGhostButton(1,"Decrease",adjustGooBody,[part,"decrease"],"Decrease","Reduce your hips by one size.");
+	}
+	else if(part == "butt size")
+	{
+		cost = 10;
+		limitMax = 100;
+		limitMin = 0;
+		if(desc == "increase" || desc == "decrease")
+		{
+			clearOutput2();
+			if(desc == "increase")
+			{
+				output2("You concentrate, filling yourself up with biomass to increase the size of your ass.");
+				pc.buttRatingRaw++;
+				//if(pc.buttRatingRaw > limitMax) pc.buttRatingRaw = limitMax;
+				gooBiomass(-1 * cost);
+			}
+			else if(desc == "decrease")
+			{
+				output2("You relax, pulling in some biomass to decrease the size of your ass.");
+				pc.buttRatingRaw--;
+				if(pc.buttRatingRaw < limitMin) pc.buttRatingRaw = limitMin;
+				gooBiomass(cost * 0.75);
+			}
+			output2(" <b>You now have [pc.butts].</b>");
+			if(pc.buttRatingRaw <= limitMin && pc.buttRating() > limitMin) output2("\n\nYou realize that this is the smallest your butt can get. If you want it any smaller, you’ll have to remove whatever it is that is currently affecting its size.");
+		}
+		output2("\n\n");
+		addGhostButton(0,"Increase",adjustGooBody,[part,"increase"],"Increase","Add a size to your butt.\n\n<b>" + cost + " mLs Biomass</b>");
+		if(pc.buttRatingRaw <= limitMin) addDisabledGhostButton(1,"Decrease","Decrease","It looks like your butt can’t get any smaller than it is now!");
+		else addGhostButton(1,"Decrease",adjustGooBody,[part,"decrease"],"Decrease","Reduce your butt by one size.");
+	}
+	
+	output2("How would you like to change your " + part + "?");
+	
+	addGhostButton(14,"Back",gooBodyCustomizer);
 }
 public function revertGooBodyPart(part:String = "all"):void
 {
@@ -896,6 +1087,139 @@ public function revertGooBodyPart(part:String = "all"):void
 	revertGooBody(part, true);
 	clearGhostMenu();
 	addGhostButton(0,"Next",gooBodyCustomizer);
+}
+public function revertGooBodyColor(part:String = "menu"):void
+{
+	clearOutput2();
+	var i:int = 0;
+	var mismatchedGenitals:int = 0;
+	if(pc.hasCock())
+	{
+		for(i = 0; i < pc.cockTotal(); i++)
+		{
+			if(pc.hasCockFlag(GLOBAL.FLAG_GOOEY,i) && pc.cocks[i].cockColor != pc.skinTone) mismatchedGenitals++;
+		}
+	}
+	if(pc.hasVagina())
+	{
+		for(i = 0; i < pc.totalVaginas(); i++)
+		{
+			if(pc.vaginas[i].hasFlag(GLOBAL.FLAG_GOOEY) && pc.vaginas[i].vaginaColor != pc.skinTone) mismatchedGenitals++;
+		}
+	}
+	if(part == "menu")
+	{
+		output2("You flip open your Codex and");
+		if(pc.isBimbo() || pc.isBro()) output2(" compulsively snap a photo of yourself - of course, you can’t resist the urge to do that - who wouldn’t want to see a bod’ like yours, right? You then");
+		output2(" take a look at your gooey [pc.skinColor] skin");
+		if(pc.hasHair()) output2(" and [pc.hairColor] [pc.hairsNoun]");
+		output2(" and ponder for a bit.");
+		showBiomass();
+		clearGhostMenu();	
+		if(gooBiomass() >= 10 && pc.hairColor != pc.skinTone)
+		{
+			output2(" You can tell your colors are different, would you like to force them to match? You can colorize yourself to either match your [pc.hairColor] hair");
+			if(!pc.hasHair()) output2(", if it were visible that is,");
+			output2(" or your [pc.skinColor] skin.");
+			addGhostButton(0,"Hair",revertGooBodyColor,"hair","Hair","Shift your body color to match your hair color.\n\n<b>10 mLs Biomass</b>");
+			addGhostButton(1,"Body",revertGooBodyColor,"body","Body","Shift your hair color to match your body color.\n\n<b>10 mLs Biomass</b>");
+			else addDisabledGhostButton(2,"FixGenitals","Revert Genital Color","Your genital and body colors already match!");
+		}
+		else if(pc.hairColor != pc.skinTone)
+		{
+			output2(" You can tell your colors are different, but unfortunately, you don’t have enough biomass to do anything about it.");
+			addDisabledGhostButton(0,"Hair","Hair","You don’t have enough biomass for that.\n\n<b>10 mLs Biomass</b>");
+			addDisabledGhostButton(1,"Body","Body","You don’t have enough biomass for that.\n\n<b>10 mLs Biomass</b>");
+		}
+		else
+		{
+			addDisabledGhostButton(0,"Hair","Hair","Your hair and body colors already match!");
+			addDisabledGhostButton(1,"Body","Body","Your hair and body colors already match!");
+		}
+		if(mismatchedGenitals > 0)
+		{
+			output2(" Your genital colors seem to be off compared to the rest of your body.");
+			if(gooBiomass() >= 10) addGhostButton(2,"FixGenitals",revertGooGenitalColor,pc.skinTone,"Revert Genital Color","Shift your genital color to match your skin color.\n\n<b>10 mLs Biomass</b>");
+			else addDisabledGhostButton(2,"FixGenitals","Revert Genital Color","You don’t have enough biomass for that.\n\n<b>10 mLs Biomass</b>");
+		}
+		else
+		{
+			if(pc.hairColor == pc.skinTone) output2(" You might be able to shift your colors if they are ever mismatched.");
+			addDisabledGhostButton(2,"FixGenitals","Revert Genital Color","Your genital and body colors already match!");
+		}
+		addGhostButton(14,"Back",gooBodyCustomizer);
+	}
+	else if(part == "hair")
+	{
+		output2("With relative ease, you allow the pigmentation to flow from your head and down into your body.");
+		output2("\n\nSwirls of [pc.hairColor] trickle down, mixing then overrunning the [pc.skinColor] below. Not too soon after, you complete the color transformation and admire your changes. <b>Your body color now matches your hair color!</b>");
+		pc.skinTone = pc.hairColor;
+		pc.furColor = pc.hairColor;
+		pc.scaleColor = pc.hairColor;
+		gooBiomass(-10);
+		clearGhostMenu();
+		if(mismatchedGenitals > 0)
+		{
+			output2("\n\nTilting your codex to your nether region, you noticed the color is a bit off... Do you want to change to color of your gooey genitals to match as well?");
+			if(gooBiomass() >= 10) addGhostButton(0,"Yes",revertGooGenitalColor,pc.hairColor,"Yes","Shift your genital color to match your hair color.\n\n<b>10 mLs Biomass</b>");
+			else addDisabledGhostButton(0,"Yes","Yes","You don’t have enough biomass for that.\n\n<b>10 mLs Biomass</b>");
+			addGhostButton(1,"No",revertGooGenitalColor);
+		}
+		else addGhostButton(0,"Next",revertGooBodyColor,"menu");
+	}
+	else if(part == "body")
+	{
+		output2("Concentrating hard, you try to allow the pigmentation to climb from your body and up into your head.");
+		if(!pc.hasHair()) output2("\n\nNothing visibly changes, but you know that any new hair growth will turn out to be [pc.skinColor]-colored.");
+		else output2("\n\nWebs of [pc.skinColor] cast across your head, mingling then engulfing your gooey [pc.hairColor] hair. After a brief moment, you complete the color transformation and admire your changes.");
+		output2(" <b>Your hair color now matches your body color!</b>");
+		pc.hairColor = pc.skinTone;
+		gooBiomass(-10);
+		clearGhostMenu();
+		if(mismatchedGenitals > 0)
+		{
+			output2("\n\nTilting your codex to your nether region, you noticed the color is a bit off... Do you want to change to color of your gooey genitals to match as well?");
+			if(gooBiomass() >= 10) addGhostButton(0,"Yes",revertGooGenitalColor,pc.skinTone,"Yes","Shift your genital color to match your skin color.\n\n<b>10 mLs Biomass</b>");
+			else addDisabledGhostButton(0,"Yes","Yes","You don’t have enough biomass for that.\n\n<b>10 mLs Biomass</b>");
+			addGhostButton(1,"No",revertGooGenitalColor);
+		}
+		else addGhostButton(0,"Next",revertGooBodyColor,"menu");
+	}
+}
+public function revertGooGenitalColor(sColor:String = "null"):void
+{
+	clearOutput2();
+	var mismatchedGenitals:int = 0;
+	if(sColor == "null")
+	{
+		output2("Deciding to leave your genitals alone for now, you take a moment to survey the rest of your body one more time.");
+	}
+	else
+	{
+		if(pc.hasCock())
+		{
+			for(i = 0; i < pc.cockTotal(); i++)
+			{
+				if(pc.hasCockFlag(GLOBAL.FLAG_GOOEY,i)) pc.cocks[i].cockColor = sColor;
+				mismatchedGenitals++;
+			}
+		}
+		if(pc.hasVagina())
+		{
+			for(i = 0; i < pc.totalVaginas(); i++)
+			{
+				if(pc.vaginas[i].hasFlag(GLOBAL.FLAG_GOOEY)) pc.vaginas[i].vaginaColor = sColor;
+				mismatchedGenitals++;
+			}
+		}
+		output2("Urging your biomass to move, you will yourself to shift the colors into your groin until");
+		if(mismatchedGenitals == 1) output2(" its");
+		else output2(" each");
+		output2(" slimy surface matches the rest of you. <b>Your gooey genitals are now " + sColor + "!</b>");
+		gooBiomass(-10);
+	}
+	clearGhostMenu();
+	addGhostButton(0,"Next",revertGooBodyColor,"menu");
 }
 
 //CHEST
@@ -1068,10 +1392,10 @@ public function nippleTypeGooMenu():void
 	//Dicknipples
 	if(canGooNippleChange(GLOBAL.NIPPLE_TYPE_DICK))
 	{
-		if(nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_DICK) <= gooBiomass()) addGhostButton(4,"DickNipples",nippleGooGetsTypeChanged,GLOBAL.NIPPLE_TYPE_DICK,"DickNipples","Change your nipples to be dick-nipples.\n\n<b>" + nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_DICK) + " mLs Biomass</b>");
-		else addDisabledGhostButton(4,"DickNipples","DickNipples","You don't have enough biomass to make all your nipples dick-nipples.\n\n<b>" + nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_DICK) + " mLs Biomass</b>");
+		if(nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_DICK) <= gooBiomass()) addGhostButton(4,"DickNipples",nippleGooGetsTypeChanged,GLOBAL.NIPPLE_TYPE_DICK,"Dick Nipples","Change your nipples to be dick-nipples.\n\n<b>" + nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_DICK) + " mLs Biomass</b>");
+		else addDisabledGhostButton(4,"DickNipples","Dick Nipples","You don't have enough biomass to make all your nipples dick-nipples.\n\n<b>" + nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_DICK) + " mLs Biomass</b>");
 	}
-	else addDisabledGhostButton(4,"DickNipples","DickNipples","All your nipples are already dick-nipples.\n\n<b>" + nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_DICK) + " mLs Biomass</b>");
+	else addDisabledGhostButton(4,"DickNipples","Dick Nipples","All your nipples are already dick-nipples.\n\n<b>" + nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_DICK) + " mLs Biomass</b>");
 	addGhostButton(14,"Back",gooChestCustomizer);
 }
 
@@ -1089,7 +1413,7 @@ public function nippleGooGetsTypeChanged(target:int):void
 	{
 		//Spend biobutts
 		gooBiomass(-1 * nippleTypeChangeCost(GLOBAL.NIPPLE_TYPE_INVERTED));
-		if(pc.hasFuckableNipples()) output("You close up the passages inside your [pc.nipples] and reform their normal tips, leaving them delightfully inverted. When you get horny enough, they'll be sure to pop back out.");
+		if(pc.hasFuckableNipples()) output2("You close up the passages inside your [pc.nipples] and reform their normal tips, leaving them delightfully inverted. When you get horny enough, they'll be sure to pop back out.");
 		else output2(pc.mf("Chuckling","Giggling") + " to yourself, you push your [pc.nipples] back into themselves, willing them to turn into simple 'innies.' Of course, when you get sufficiently horny, they'll pop right back out.");
 		output2(" <b>Aren't inverted nipples fun?</b>");
 	}
@@ -1260,8 +1584,8 @@ public function shrinkASpecificTitRow(arg:int = 0):void
 	else 
 	{
 		output2("There's barely any biomass fortifying your chest, but you drain it away all the same, ");
-		if(pc.breastRows[arg].breastRating() >= 2) output("minimizing the size of your tits. If you want to get rid of them entirely, you'll need to deal with whatever else is keeping them so swollen.");
-		else output("leaving you with a nice set of pectorals for your trouble.");
+		if(pc.breastRows[arg].breastRating() >= 2) output2("minimizing the size of your tits. If you want to get rid of them entirely, you'll need to deal with whatever else is keeping them so swollen.");
+		else output2("leaving you with a nice set of pectorals for your trouble.");
 	}
 	//Figure out refund amount.
 	var boobCost:Number = 0;
@@ -1519,7 +1843,7 @@ public function gooBallsMenu():void
 		addDisabledGhostButton(3,"Shrink Balls","Shrink Balls","You don't have any balls to shrink!");
 		addDisabledGhostButton(5,"Sack Options","Sack Options","If you had balls, you could use this button to make your nutsack pull up high and tight or swing low and free.");
 	}
-	addGhostButton(14,"Back",gooShiftMenu);
+	addGhostButton(14,"Back",gooCrotchCustomizer);
 }
 
 //Shrink Down Nuts
@@ -2494,7 +2818,7 @@ public function gooCrotchUpdate():void
 		for(i = 0; i < pc.cockTotal(); i++)
 		{
 			//Not gooey? ADD IT ZE LIST.
-			if(!pc.hasCockFlag(GLOBAL.FLAG_GOOEY,i)) pc.cocks[i].addFlag(GLOBAL.FLAG_GOOEY);
+			pc.cocks[i].addFlag(GLOBAL.FLAG_GOOEY);
 			pc.cocks[i].cockColor = gooColor();
 		}
 	}

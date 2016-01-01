@@ -479,7 +479,7 @@ public function girlsGetZeAntGurlSexWithLilianaNotLyrallaNoTheyreTotallyDifferen
 	else output("across your bare head");
 	output(".");
 
-	output("\n\nYou pause, breaking the mood for a moment to ask why she doesn’t lactate honey like other gold myr. She looks a bit put down, telling you that it isn’t just her. She explains quickly that most myr who end up with a cup size smaller than C dont lactate. Not wanting to be a total downer to her mood, you give her a smile before continuing to suck the puffy nips. If theres no sweet honey to be had you’ll have to work them extra hard to make up for it.");
+	output("\n\nYou pause, breaking the mood for a moment to ask why she doesn’t lactate honey like other gold myr. She looks a bit put down, telling you that it isn’t just her. She explains quickly that most myr who end up with a cup size smaller than C don’t lactate. Not wanting to be a total downer to her mood, you give her a smile before continuing to suck the puffy nips. If theres no sweet honey to be had you’ll have to work them extra hard to make up for it.");
 
 	output("\n\nAfter a moment you transition, licking up her chest and neck, over her chin and all the way into a kiss. You guide ");
 	if(lilianaArms() >= 4) output("one of her lower hands");

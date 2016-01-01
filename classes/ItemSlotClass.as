@@ -213,9 +213,12 @@
 						fList += GLOBAL.ITEM_FLAG_NAMES[itemFlags[i]];
 					}
 				}
-				if(!short) compareString += "\n\n";
-				else compareString += "\n";
-				if(fList.length > 0) compareString += "Special Flags:\n" + fList;
+				if(fList.length > 0)
+				{
+					if(!short) compareString += "\n\n";
+					else compareString += "\n";
+					compareString += "Special Flags:\n" + fList;
+				}
 			}
 			
 			// Item value -- this is going to be a bit of a shit. I can't easily figure out what "mode" a button is at this point, so this code doesn't know if we're buying or selling,

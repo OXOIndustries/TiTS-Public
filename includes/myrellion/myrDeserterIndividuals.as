@@ -188,8 +188,12 @@ public function approachMyrDesertersNonCombatShit(gold:Boolean = false):void
 	//Encounter is pregnant red myr deserter:
 	if(flags["BRIHA_INCUBATION_TIMER"] != undefined && !gold)
 	{
-		output("\n\nYou’re walking through the desolate and war-torn wasteland. Nearby, you spot a ragged looking red deserter. Under her partially torn uniform, she has a [monster.bellySize].");
-		if(flags["SEEN_RED_DESERTER_PREGGERS"] == undefined) output(" She’s pregnant?");
+		output("\n\nYou’re walking through the desolate and war-torn wasteland. Nearby, you spot a ragged looking red deserter.");
+		if(foes[0].bellyRating() >= 10)
+		{
+			output(" Under her partially torn uniform, she has " + indefiniteArticle(monster.bellyDescript(true)) + ".");
+			if(flags["SEEN_RED_DESERTER_PREGGERS"] == undefined) output(" She’s pregnant?");
+		}
 		output("\n\nRaising a nail-chipped hand, ");
 		if(flags["KNOW_RED_MYR_NAME"] != undefined) output("Briha");
 		else output("the amber-haired ant-girl");

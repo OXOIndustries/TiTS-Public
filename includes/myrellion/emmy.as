@@ -1072,8 +1072,21 @@ public function giveEmmyAnItem(item:String):void
 	clearOutput();
 	showEmmy();
 	var emmyLoot:ItemSlotClass;
-	output("You present her with a kirkite gem.");
-	output("\n\nTaking the gem in hand, the pleased shopkeep exhales, <i>“You actually did it.”</i> Blinking tears of happiness from her eyes, Emmy pulls you into a tight hug. <i>“I... was worried that you wouldn’t even bother. Who needs to waste time getting baubles for a girl when she’s already {sucking you like a vacuum hose/licking you more frantically than a half-starved galotian}? But you did it.”</i> She slobbers a kiss across your cheek, dragging her tongue all the way to the bottom of your ear. <i>“You did it for me.”</i>");
+	output("You present her with");
+	if(item == "Gem Sack")
+	{
+		output(" a satchel of gems.");
+		output("\n\nOpening it up and taking a gem in hand");
+	}
+	else
+	{
+		output(" a " + item.toLowerCase() + " gem.");
+		output("\n\nTaking the gem in hand");
+	}
+	output(", the pleased shopkeep exhales, <i>“You actually did it.”</i> Blinking tears of happiness from her eyes, Emmy pulls you into a tight hug. <i>“I... was worried that you wouldn’t even bother. Who needs to waste time getting baubles for a girl when she’s already ");
+	if(pc.hasCock()) output("sucking you like a vacuum hose");
+	else output("licking you more frantically than a half-starved galotian");
+	output("? But you did it.”</i> She slobbers a kiss across your cheek, dragging her tongue all the way to the bottom of your ear. <i>“You did it for me.”</i>");
 	output("\n\nThe jackaless breaks away to further inspect what you’ve given her.");
 
 	//Kirkite, no new PG
@@ -1093,6 +1106,7 @@ public function giveEmmyAnItem(item:String):void
 			emmyLoot = new EmmysLavaSaber();
 		}
 		output("”</i>");
+		pc.destroyItem(new Kirkite());
 	}
 	//Satyrite
 	else if(item == "Satyrite")
@@ -1117,6 +1131,7 @@ public function giveEmmyAnItem(item:String):void
 			output("<i>“You’ve probably seen a Jolthammer around the shop, but you haven’t seen </i>this<i> Jolthammer. I fiddled with the power source to try and boost the yield. It doesn’t always work, but when it does, the result is shocking.”</i> She giggles at her own pun. <i>“Just make sure not to touch the electric-ey end.”</i>");
 			emmyLoot = new EmmysJolthammer();
 		}
+		pc.destroyItem(new Satyrite());
 	}
 	//Picardine
 	else if(item == "Picardine")
@@ -1139,6 +1154,7 @@ public function giveEmmyAnItem(item:String):void
 			emmyLoot = new EmmysSalamanderRifle2();
 		}
 		output("”</i>");
+		pc.destroyItem(new Picardine());
 	}
 	//Gem Sack - UNF9999
 	//Unknown - Placeholder for future planet gems9999
@@ -1202,6 +1218,7 @@ public function emmyPicksOral():void
 	else
 	{
 		output("\n\n<b>Error, you got no junk.</b>");
+		addButton(0,"Next",mainGameMenu);
 	}
 }
 
@@ -1495,11 +1512,14 @@ public function suckEmmysCockDuring69():void
 		if(pc.tailCount > 1) output(", your tail curled gently around her neck");
 		else if(pc.isGoo()) output(", your gooey base spreading over her hair, encapsulating every strand");
 	}
-	else output(", your [pc.knees] on either side of her twitching ears");
+	else output("your [pc.knees] on either side of her twitching ears");
 	output(". <i>“I wasn’t sure that you woul-”</i>");
 
-	output("\n\nYou angle her leaking tip up and suck it into your mouth, wrapping your [pc.lips] around it in order to offer proper suction. Unsurprisingly, Emmy’s words trail off into incoherent babbles, and her cock surges another inch upwards, humping against your tongue with the speed of its engorgement. Just how big can she get? You ease down, pulling another three inches into your maw, savoring the salty flavor of her pulsing flesh. Emmy’s whole body quivers when you sweep your tongue from side to side. She can’t help but tremble spill blobs of pre into your mouth.");
-	output("\n\nLetting her length slip free isn’t something you particularly relish{; cocks deserved to be sucked, you know? B/, b}ut you’ve got to make sure that she’ll return the favor before you lose yourself in the gentle back-and-forth motion of a leisurely blowjob. <i>“");
+	output("\n\nYou angle her leaking tip up and suck it into your mouth, wrapping your [pc.lips] around it in order to offer proper suction. Unsurprisingly, Emmy’s words trail off into incoherent babbles, and her cock surges another inch upwards, humping against your tongue with the speed of its engorgement. Just how big can she get? You ease down, pulling another three inches into your maw, savoring the salty flavor of her pulsing flesh. Emmy’s whole body quivers when you sweep your tongue from side to side. She can’t help but tremble while spilling blobs of pre into your mouth.");
+	output("\n\nLetting her length slip free isn’t something you particularly relish");
+	if(pc.isBimbo()) output("; cocks deserved to be sucked, you know? B");
+	else output(", b");
+	output("ut you’ve got to make sure that she’ll return the favor before you lose yourself in the gentle back-and-forth motion of a leisurely blowjob. <i>“");
 	if(pc.isBimbo()) 
 	{
 		if(pc.hasCock() && pc.hasVagina()) output("Are you gonna suck me or eat out my pussy? They’re both super delic-deli... uhm, tasty!");
@@ -1611,7 +1631,7 @@ public function emmy69MiddleOfScene(youSuck:int):void
 	//Brojob!
 	else
 	{
-		output("\n\nWrapping one hand around Emmy’s knot, you give it a firm squeeze, then slide it deeper. You do more than merely suck and squeeze, sliding your fingers all over the sensitive bulb of flesh at her base. Her sheath can’t even escape, not when you slide your pinky into the forgotten folds to rub the hyper-sensitive flesh beneath. The jackaless cries out at that, spurting huge, salt-tinted blob of pre-cum into your mouth. It’s all you can do to swallow it, but at least her balls are bobbing and pulsating, on the edge of eruption. Her ability to edge you evaporates in the furnace of her own unspent need.");
+		output("\n\nWrapping one hand around Emmy’s knot, you give it a firm squeeze, then slide it deeper. You do more than merely suck and squeeze, sliding your fingers all over the sensitive bulb of flesh at her base. Her sheath can’t even escape, not when you slide your pinky into the forgotten folds to rub the hyper-sensitive flesh beneath. The jackaless cries out at that, spurting huge, salt-tinted blobs of pre-cum into your mouth. It’s all you can do to swallow it, but at least her balls are bobbing and pulsating, on the edge of eruption. Her ability to edge you evaporates in the furnace of her own unspent need.");
 	}
 	processTime(10);
 	pc.lust(100);
@@ -1639,9 +1659,9 @@ public function emmy69OrgasmTime(args:Array):void
 	//Cawks!
 	else
 	{
-		output("Waves of orgasmic ecstasy roll through your [pc.cock " + x + "], borne on Emmy’s greedily slobbering maw. It figures that a girl who masturbates by sucking herself off would be a fucking pro at giving blowjobs. Her lush, pre-slathered lips seal tight around the midpoint of your shaft and bathe you in bliss, sliding back and forth with feverish need. You can hear the lurid squelches of her fucking her mouth with your cock all the way from between her legs. It sounds almost as good as it feels, and when she bottoms out, stopping to ");
-		if(pc.balls == 0) output("slide her tongue all over your captive cock");
-		else output("to slide her tongue out to lap at your [pc.balls]");
+		output("Waves of orgasmic ecstasy roll through your [pc.cock " + x + "], borne on Emmy’s greedily slobbering maw. It figures that a girl who masturbates by sucking herself off would be a fucking pro at giving blowjobs. Her lush, pre-slathered lips seal tight around the midpoint of your shaft and bathe you in bliss, sliding back and forth with feverish need. You can hear the lurid squelches of her fucking her mouth with your cock all the way from between her legs. It sounds almost as good as it feels, and when she bottoms out, stopping to slide her tongue");
+		if(pc.balls == 0) output(" all over your captive cock");
+		else output(" out to lap at your [pc.balls]");
 		if(pc.cocks[x].cLength() > 12) output(", her neck bulging from how much she’s forced down her throat");
 		output(".");
 		output("\n\nPleasure draws every muscle in your body taut. White spots dance behind your eyes, and your world explodes. Your [pc.hips] thrust powerfully forward, and you feel the wonderful, blessed relief of ejaculation, like a white-hot bar of bliss blasting out of you and into the heavens - or Emmy’s mouth. They may as well be one at the same thing to you.");
@@ -1756,7 +1776,7 @@ public function emmyCockSlobber():void
 	if(!pc.isBimbo()) output(" You struggle not to choke as you feel her swell up even larger inside your mouth.");
 	else output(" You struggle not to cum as you feel her swell up even larger in your mouth. It’s so hard not to lose yourself in her pleasure, but if you’re going to bring her off properly, you can’t cum your brains out yet, not even while she flattens your uvula against the roof of your mouth.");
 
-	output("\n\nYou gulp and wriggle against her, and she squeals happily, enjoying fucking her way down your throat, leaking more into your mouth. At the first taste of her, your pause, and you gulp, your neck squeezing against the head of her tasty prong. You’re rewarded with a happy sigh from Emmy and a heavy spurt of fluid, thick enough to be the full orgasm of a lesser creature.");
+	output("\n\nYou gulp and wriggle against her, and she squeals happily, enjoying fucking her way down your throat, leaking more into your mouth. At the first taste of her, you pause, and you gulp, your neck squeezing against the head of her tasty prong. You’re rewarded with a happy sigh from Emmy and a heavy spurt of fluid, thick enough to be the full orgasm of a lesser creature.");
 
 	output("\n\nShe releases her hold on your hair, and you slide back, just enough to get resituated, and swirl the tip of your tongue around the head of her cock. She gives your hair a gentle tug and you respond obediently, running your lips down her length, sucking noisily on her member. Once you reach the base, you get another happy gush of pre down the back of your throat. You slide back up, moaning around her shaft in hungry delight, while she does the same, alternating between fucking your face like it’s her own personal sex-toy and watching you service her meat.");
 
@@ -1819,7 +1839,7 @@ public function eatOutEmmysVagYouPoorPussyAddictedSod():void
 	else output("Emmy, if you’re going to shoot that thing off, try not to hit me with it. I’m trying to focus here.");
 	output("”</i> You shove her still-spurting cock up into her cleavage. Even if she doesn’t get the idea, they ought to keep it from spraying everywhere.");
 	output("\n\nNow, back to the main course. You seal your mouth around her entrance, clit and all, fluttering your tongue up one side, around her clit in a slow circle, and then down the other. She’s still cumming of course, squirming and gushing slutty juices straight into your mouth. You get to gulp down three or four mouthfuls before her climax winds its way down, but you’re not satisfied with one dick-distracted orgasm.");
-	output("\n\nWhile she’s still super-sensitive from the last, you lance your tongue back inside your, sucking rhythmically with your lips. The insides of her walls squeeze down around your writhing muscle");
+	output("\n\nWhile she’s still super-sensitive from the last, you lance your tongue back inside, sucking rhythmically with your lips. The insides of her walls squeeze down around your writhing muscle");
 	if(pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output(", particularly when it reaches unnaturally deep into her to probe at the entrance to her womb");
 	output(". Sadly, she’s no longer gasping and moaning quite so cutely. Something’s muffling her screams of pleasure; she’s taken your advice, it seems.");
 	output("\n\nYou intensify your cunt-eating, sucking harder, licking faster, and being sure to bathe her in feverish kisses whenever you stop to catch your breath. Emmy whines, muffled, and her balls clench in your palm. You thrust two fingers into her channel to replace your tongue, then redirect your oral organ’s caresses onto her behemoth of a clit, flicking your tongue across it, stimulating her past the breaking point.");

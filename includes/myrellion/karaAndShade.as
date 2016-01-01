@@ -2007,7 +2007,7 @@ public function shadeBoobWorship():void
 	if (pc.isNice()) output("Definitely!”</i> you grin, giving her a playful squeeze.");
 	else if (pc.isMischievous())
 	{
-		output("You better believe it!”</i> you says with a playful grin, pinching the nipple you’ve got your hand on until she sucks in a sharp breath");
+		output("You better believe it!”</i> you say with a playful grin, pinching the nipple you’ve got your hand on until she sucks in a sharp breath");
 		if (shade.canLactate()) output(" and squirts a bit of moisture onto your fingers");
 		output(".");
 	}

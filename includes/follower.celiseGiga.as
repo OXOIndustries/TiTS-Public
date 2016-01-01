@@ -87,8 +87,9 @@ public function gigaCeliseFeedRouter():void
 	else addDisabledButton(1,"Cunt Feed","Cunt Feed","You need a vagina for this scene.");	
 	//Goo pc’s fun
 	//(requires pc to have goo body) && genitals
-	if(pc.isGoo()) addButton(2,"Goo Fun",gooPCsAreFun,undefined,"Goo Fun","Have some gooey fun with Celise. Since you're both goo-creatures, it should be a slippery-wet mess!");
-	else addDisabledButton(2,"Goo Fun","Goo Fun","You have to be some kind of goo creature, like Celise, for this scene.");
+	if(pc.isGoo() && pc.hasGenitals()) addButton(2,"Goo Fun",gooPCsAreFun,undefined,"Goo Fun","Have some gooey fun with Celise. Since you're both goo-creatures, it should be a slippery-wet mess!");
+	else if(pc.hasGenitals()) addDisabledButton(2,"Goo Fun","Goo Fun","You have to be some kind of goo creature, like Celise, for this scene.");
+	else addDisabledButton(2,"Goo Fun","Goo Fun","You have to have genitals for this scene.");
 	addButton(14,"Back",gigaCeliseRepeatApproach);
 }
 

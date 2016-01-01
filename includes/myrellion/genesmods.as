@@ -894,6 +894,8 @@ public function genesModsBlowjob():void
 		pc.lust(33);
 	}
 	processTime(29);
+	IncrementFlag("GENE_BLOWJOB");
+	IncrementFlag("GENE_FUCKED");
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -984,6 +986,7 @@ public function genesModsFrot():void
 	}
 	processTime(27);
 	pc.orgasm();
+	IncrementFlag("GENE_FUCKED");
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -1294,6 +1297,7 @@ public function genesModsLickedOut():void
 	}
 	processTime(20);
 	pc.orgasm();
+	IncrementFlag("GENE_FUCKED");
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -1440,6 +1444,7 @@ public function genesModsOverCounter():void
 	pc.loadInCunt(chars["GENE"],x);
 	processTime(24);
 	pc.orgasm();
+	IncrementFlag("GENE_FUCKED");
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }

@@ -194,7 +194,7 @@ package classes.Engine.Combat
 			else if (special == "slut ray")
 			{
 				var lewdAdjective:String = "";
-				if(damageResult.wasCrit == true || damageResult.lustDamage >= 20) lewdAdjective += RandomInCollection("awfully", "excessively", "extremely", "highly", "immensely", "intensely", "overly", "unusually", "very") + " ";
+				if(damageResult.wasCrit == true || damageResult.lustDamage > 25) lewdAdjective += RandomInCollection("awfully", "excessively", "extremely", "highly", "immensely", "intensely", "overly", "unusually", "very") + " ";
 				lewdAdjective += RandomInCollection("alluring", "amorous", "carnal", "lewd", "obscene", "seductive", "sensual", "steamy", "suggestive");
 				
 				output("\n");

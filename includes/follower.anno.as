@@ -1,4 +1,6 @@
 ﻿import classes.Items.Apparel.SteeleTechSuit;
+import classes.Items.Apparel.AnnosBlouse;
+import classes.Items.Apparel.AnnosCatsuit;
 import classes.Items.Armor.GooArmor;
 import classes.Items.Guns.Goovolver;
 import classes.Items.Miscellaneous.AusarTreats;
@@ -1797,7 +1799,7 @@ public function annoFollowerSpecialGear():void
 		if (pc.hasKeyItem("Goozooka")) addDisabledButton(1, "Gray Goo", "Gray Microbots", "You've already wrangled an upgraded version of the Goovolver out of Anno.");
 	}
 
-	addButton(14, "Back", annoFollowerMenu);
+	addButton(14, "Back", annoFollowerTalkMenu, false);
 }
 
 public function annoFollowerSpecialGearHerGun():void
@@ -2047,9 +2049,11 @@ public function annoFollowerFirstTimeOnMhengaPartII():void
 	if (haveFuckedAnno())
 	{
 		output(" Anno leans against you, her fluffy tail batting against your [pc.butt].");
-		if (flags["FUCKED_SYRI_COUNT"] != undefined) output(" Syri’s eyes widen noticeably as she realizes what’s going on.");
-	
-		output("\n\nShe recovers quickly, saying, ");
+		if (flags["FUCKED_SYRI_COUNT"] != undefined)
+		{
+			output(" Syri’s eyes widen noticeably as she realizes what’s going on.");
+			output("\n\nShe recovers quickly, saying, ");
+		}
 	}
 	else output("\n\n");
 	output("<i>“Good to hear. I’ve been worried about you,");
@@ -2110,7 +2114,7 @@ public function annoFollowerAppearance():void
 	}
 	//else annoFollowerHeader();
 
-	addDisabledButton(10, "Appearance");
+	addDisabledButton(5, "Appearance");
 }
 
 public function annoxKaedeFollowerMeeting():void
@@ -2518,7 +2522,7 @@ public function annoStraponMods():void
 	processTime(7);
 	pc.lust(4);
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	addButton(0,"Next",annoFollowerMenu);
 }
 
 //Anno 'Tribrator' Sex Scene
@@ -2584,7 +2588,6 @@ public function annosTriberatorGatorMatorHater():void
 		if(flags["ANNO_TRIBERATOR_USED"] == undefined) output("<i>“Oh really? I’d love a helping hand...”</i>");
 		else output("<i>“Fantastic! Let’s get </i>these<i> out of the way then...”</i>");
 		output(" she grins. Standing up, she begins to slowly unbutton her fine blouse. Her brazenly formed breasts are slowly exposed, starting with her considerable cleavage. It’s even more impressive considering she’s not even wearing a bra!");
-
 		output("\n\nWhen the last button comes undone, her plump tits spill free of their confines and jiggle deliciously before your eyes. It’s hard to ever get sick of those dusky areolae and big, sensitive nipples. She tosses away the flimsy top and bends over to strip off her tight-fitting jeans.  As the smoking hot ausar slides them down, she wildly wiggles her shapely hips, soon revealing her utter disregard for <i>any</i> kind of underwear.");
 	}
 	//Else (Anno Catsuit):
