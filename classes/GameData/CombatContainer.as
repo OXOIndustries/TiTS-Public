@@ -814,7 +814,7 @@ package classes.GameData
 				}
 				else if (pc.hasStatusEffect("Mimbrane Smother"))
 				{
-					output("\n\n<b>You are being smothered by a Mimbrane!</b>");
+					output("\n<b>You are being smothered by a Mimbrane!</b>");
 				}
 				else
 				{
