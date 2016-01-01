@@ -21,6 +21,8 @@ package classes.GameData
 	import classes.StringUtil;
 	import classes.Items.Miscellaneous.*;
 	import classes.Engine.Utility.num2Text;
+	import flash.utils.getQualifiedClassName;
+	import flash.utils.getDefinitionByName;
 	
 	/**
 	 * TODO:
@@ -154,7 +156,7 @@ package classes.GameData
 			}
 			else
 			{
-				var busts:Array;
+				var busts:Array = [];
 				
 				if (group == FRIENDLY_GROUP && _friendlies.length > 1)
 				{
@@ -163,7 +165,7 @@ package classes.GameData
 					{
 						if (_friendlies[i] is PlayerCharacter) continue;
 						
-						busts.push(_friendlies[i].bustDisplay);
+						busts.push((_friendlies[i] as Creature).bustDisplay);
 					}
 				}
 				else
@@ -171,7 +173,7 @@ package classes.GameData
 					// show hostiles
 					for (var i:int = 0; i < _hostiles.length; i++)
 					{
-						busts.push(_hostiles[i].bustDisplay);
+						busts.push((_hostiles[i] as Creature).bustDisplay);
 					}
 				}
 				
@@ -279,7 +281,7 @@ package classes.GameData
 				}
 				else
 				{
-					output("<b>" + target.capitalA + possessive(target.short) + " shield powers back up at one quarter power!</b>\n");
+					output("<b>" + target.capitalA + possessive(target.uniqueName) + " shield powers back up at one quarter power!</b>\n");
 				}
 				pc.shields(Math.round(pc.shieldsMax()/4));
 				pc.createStatusEffect("Used Shield Regen",0,0,0,0,true,"","",true,0);
@@ -293,13 +295,13 @@ package classes.GameData
 				if (target.hasStatusEffect("Stunned") && rand(4) == 0)
 				{
 					if (target is PlayerCharacter) output("<b>You shake off your stun! You're unstoppable!</b>\n");
-					else output("<b>" + target.capitalA + target.short + " shakes off their stun!</b>\n");
+					else output("<b>" + target.capitalA + target.uniqueName + " shakes off their stun!</b>\n");
 					target.removeStatusEffect("Stunned");
 				}
 				if (target.hasStatusEffect("Paralyzed") && rand(4) == 0)
 				{
 					if (target is PlayerCharacter) output("<b>You shake off the paralysis! You're unstoppable!</b>\n");
-					else output("<b>" + target.capitalA + target.short + " shakes off the paralysis!</b>\n");
+					else output("<b>" + target.capitalA + target.uniqueName + " shakes off the paralysis!</b>\n");
 					target.removeStatusEffect("Paralyzed");
 				}
 			}
@@ -311,13 +313,13 @@ package classes.GameData
 				{
 					target.removeStatusEffect("Burning");
 					if (target is PlayerCharacter) output("<b>At last you manage to stifle the life out of the fire on your " + target.armor.longName + ". The smell of pork hangs in your nose. You try not to think about it.</b>");
-					else output("<b>" + target.capitalA + target.short + " manages to stifle the life out of the flames on their " + target.armor.longName + "!</b>");
+					else output("<b>" + target.capitalA + target.uniqueName + " manages to stifle the life out of the flames on their " + target.armor.longName + "!</b>");
 				}
 				//Keep status!
 				else
 				{
 					if (target is PlayerCharacter) output("<b>You desperately slap at your body, trying to extinguish the flames that have taken to your " + target.armor.longName + " but it stubbornly clings to you, blackening and bubbling everything it touches. It burns!</b>");
-					else output("<b>" + target.capitalA + target.short + " desperately slaps at their body, trying to extingquish the flames licking at their " + target.armor.longName + " to no avail!</b>");
+					else output("<b>" + target.capitalA + target.uniqueName + " desperately slaps at their body, trying to extingquish the flames licking at their " + target.armor.longName + " to no avail!</b>");
 					applyDamage(new TypeCollection( { burning: target.statusEffectv2("Burning") } ), null, target);
 				}
 				output("\n");
@@ -330,13 +332,13 @@ package classes.GameData
 				if (target.statusEffectv2("Aphro") == 0)
 				{
 					if (target is PlayerCharacter) output("<b>The aphrodisiac in your bloodstream has faded!</b>");
-					else output("<b>The aphrodisiac in " + target.capitalA + possessive(target.short) + " bloodstream has faded!</b>");
+					else output("<b>The aphrodisiac in " + target.capitalA + possessive(target.uniqueName) + " bloodstream has faded!</b>");
 					target.removeStatusEffect("Aphro");
 				}
 				else
 				{
 					if (target is PlayerCharacter) output("<b>The aphrodisiac in your bloodstream continues to excite your body!</b>");
-					else output("<b>The aphrodisiac in " + target.capitalA + possessive(target.short) + " bloodstream continues to excite " + target.mfn("him", "her", "it") + "!</b>");
+					else output("<b>The aphrodisiac in " + target.capitalA + possessive(target.uniqueName) + " bloodstream continues to excite " + target.mfn("him", "her", "it") + "!</b>");
 					applyDamage(new TypeCollection( { drug: target.statusEffectv1("Aphro") } ), null, target);
 				}
 				output("\n");
@@ -354,7 +356,7 @@ package classes.GameData
 				else
 				{
 					if (target is PlayerCharacter) output("<b>The cloud of aphrodisiac continues to excite your body!</b>");
-					else output("<b>The cloud of aphrodisiac continues to linger around " + target.a + target.short + "!</b>");
+					else output("<b>The cloud of aphrodisiac continues to linger around " + target.a + target.uniqueName + "!</b>");
 					applyDamage(new TypeCollection( { drug: target.statusEffectv1("Aphro Gas") } ), null, target);
 				}
 				output("\n");
@@ -378,7 +380,7 @@ package classes.GameData
 				}
 				else
 				{
-					output("<b>Flames slowly lick at " + target.a + target.short + ",");
+					output("<b>Flames slowly lick at " + target.a + target.uniqueName + ",");
 					if (target.statusEffectv1("Burn") > 1)
 					{
 						target.addStatusValue("Burn", 1, -1);
@@ -397,7 +399,7 @@ package classes.GameData
 			if (target.hasStatusEffect("Bleeding"))
 			{
 				if (target is PlayerCharacter) output("<b>Your wounds continue to take their toll on your body;");
-				else output("<b>" + target.capitalA + possessive(target.short) + " wounds continue to take a toll on their body;");
+				else output("<b>" + target.capitalA + possessive(target.uniqueName) + " wounds continue to take a toll on their body;");
 				if (target.statusEffectv2("Bleeding") >= 1)
 				{
 					target.addStatusValue("Bleeding", 2, -1);
@@ -420,13 +422,13 @@ package classes.GameData
 				{
 					target.addStatusValue("Staggered", 1, -1);
 					if (target is PlayerCharacter) output("<b>You're still reeling from the force of the blows to which you've been subjected.</b>");
-					else output("<b>" + target.capitalA + target.short + " is still reeling from the force of the blows to which they've been subject!</b>");
+					else output("<b>" + target.capitalA + target.uniqueName + " is still reeling from the force of the blows to which they've been subject!</b>");
 				}
 				else
 				{
 					target.removeStatusEffect("Staggered");
 					if (target is PlayerCharacter) output("<b>You finally shake away the stars from your vision, your [pc.feet] planted on the floor firmly once again.</b>");
-					else output("<b>" + target.capitalA + target.short + " finally shakes away the cobwebs, their " + target.feet() + " planted firmly on the floor once again.</b>");
+					else output("<b>" + target.capitalA + target.uniqueName + " finally shakes away the cobwebs, their " + target.feet() + " planted firmly on the floor once again.</b>");
 				}
 				output("\n");
 			}
@@ -449,7 +451,7 @@ package classes.GameData
 				if(target.hasPerk("Leap Up"))
 				{
 					if (target is PlayerCharacter) output("<b>You roll up onto your [pc.feet] immediately thanks to your quick reflexes.</b>\n");
-					else output("<b>" + target.capitalA + target.short + " jumps back onto their " + target.feet() + " almost immediately!</b>\n");
+					else output("<b>" + target.capitalA + target.uniqueName + " jumps back onto their " + target.feet() + " almost immediately!</b>\n");
 					target.removeStatusEffect("Tripped");
 				}
 			}
@@ -461,21 +463,21 @@ package classes.GameData
 				{
 					target.removeStatusEffect("Blinded");
 					if (target is PlayerCharacter) output("<b>You can see again!</b>\n");
-					else if (target.isPlural) output("<b>" + target.capitalA + target.short + " are no longer blinded!</b>\n");
-					else output("<b>" + target.capitalA + target.short + " is no longer blinded!</b>\n");
+					else if (target.isPlural) output("<b>" + target.capitalA + target.uniqueName + " are no longer blinded!</b>\n");
+					else output("<b>" + target.capitalA + target.uniqueName + " is no longer blind!</b>\n");
 				}
 				else if (target.hasPerk("Sharp Eyes") && target.statusEffectv1("Blinded") <= 1) 
 				{
 					target.removeStatusEffect("Blinded");
 					if (target is PlayerCharacter) output("<b>You can see again!</b>\n");
-					else if (target.isPlural) output("<b>" + target.capitalA + target.short + " are no longer blinded!</b>\n");
-					else output("<b>" + target.capitalA + target.short + " is no longer blinded!</b>\n");
+					else if (target.isPlural) output("<b>" + target.capitalA + target.uniqueName + " are no longer blinded!</b>\n");
+					else output("<b>" + target.capitalA + target.uniqueName + " is no longer blind!</b>\n");
 				}
 				else
 				{
 					if (target is PlayerCharacter) output("<b>You are blind!</b>\n");
-					if (target.isPlural) output("<b>" + target.capitalA + target.short + " are blinded.</b>\n");
-					else output("<b>" + target.capitalA + target.short + " is blinded.</b>\n");
+					else if (target.isPlural) output("<b>" + target.capitalA + target.uniqueName + " are blind.</b>\n");
+					else output("<b>" + target.capitalA + target.uniqueName + " is blind.</b>\n");
 				}
 			}
 	
@@ -491,7 +493,7 @@ package classes.GameData
 				{
 					target.removeStatusEffect("Smoke Grenade");
 					if (target is PlayerCharacter) output("<b>You can see again!</b>\n");
-					else output("<b>" + target.capitalA + target.short + " looks a little more confident in their aim!</b>\n");
+					else output("<b>" + target.capitalA + target.uniqueName + " looks a little more confident in their aim!</b>\n");
 				}
 			}
 	
@@ -502,12 +504,12 @@ package classes.GameData
 				{
 					target.removeStatusEffect("Paralyzed");
 					if (target is PlayerCharacter) output("<b>The paralytic venom wears off, and you are able to move once more.</b>\n");
-					else output("<b>The paralysis affecting " + target.a + target.short + " seems to wear off, motion returning to " + target.mfn("his", "her", "its") + " limbs!</b>\n");
+					else output("<b>The paralysis affecting " + target.a + target.uniqueName + " seems to wear off, motion returning to " + target.mfn("his", "her", "its") + " limbs!</b>\n");
 				}
 				else
 				{
 					if (target is PlayerCharacter) output("<b>You're paralyzed and unable to move!</b>\n");
-					else output("<b>" + target.capitalA + target.short + " is paralyzed and unable to move!</b>\n");
+					else output("<b>" + target.capitalA + target.uniqueName + " is paralyzed and unable to move!</b>\n");
 				}
 			}
 	
@@ -517,13 +519,13 @@ package classes.GameData
 				if(target.statusEffectv1("Stealth Field Generator") <= 0)
 				{
 					if (target is PlayerCharacter) output("<b>Your stealth field generator collapses.</b>\n");
-					else output("<b>" + target.capitalA + possessive(target.short) + " stealth drops abruptly!</b>\n");
+					else output("<b>" + target.capitalA + possessive(target.uniqueName) + " stealth drops abruptly!</b>\n");
 					target.removeStatusEffect("Stealth Field Generator");
 				}
 				else 
 				{
 					if (target is PlayerCharacter) output("<b>You are practically invisible thanks to your stealth field generator.</b>\n");
-					else output("<b>" + target.capitalA + target.short + " is practically invisible thanks to their stealth field generator.</b>\n");
+					else output("<b>" + target.capitalA + target.uniqueName + " is practically invisible thanks to their stealth field generator.</b>\n");
 				}
 			}
 	
@@ -534,12 +536,12 @@ package classes.GameData
 				{
 					target.removeStatusEffect("Taking Cover");
 					if (target is PlayerCharacter) output("<b>You are no longer taking cover!</b>\n");
-					else output("<b>" + target.capitalA + target.short + " is no longer taking cover!</b>\n");
+					else output("<b>" + target.capitalA + target.uniqueName + " is no longer taking cover!</b>\n");
 				}
 				else 
 				{
 					if (target is PlayerCharacter) output("<b>Your enemies will have a hard time hitting you behind your cover!</b>\n");
-					else output("<b>You'll have a hard time hitting " + target.a + target.short + " with them hiding behind cover!</b>\n");
+					else output("<b>You'll have a hard time hitting " + target.a + target.uniqueName + " with them hiding behind cover!</b>\n");
 				}
 			}
 	
@@ -551,13 +553,13 @@ package classes.GameData
 				if(temp > 0) 
 				{
 					if (target is PlayerCharacter) output("<b>You recover " + temp + " points of shielding.</b>\n");
-					else output("<b>" + target.capitalA + target.short + " recovers " + temp + " points of shielding!</b>\n");
+					else output("<b>" + target.capitalA + target.uniqueName + " recovers " + temp + " points of shielding!</b>\n");
 					target.shields(temp);
 				}
 				if(target.statusEffectv1("Deflector Regeneration") <= 0)
 				{
 					if (target is PlayerCharacter) output("<b>Your shields are no longer regenerating!</b>\n");
-					else output("<b>" + target.capitalA + possessive(target.short) + " shields are no longer regenerating!</b>\n");
+					else output("<b>" + target.capitalA + possessive(target.uniqueName) + " shields are no longer regenerating!</b>\n");
 					target.removeStatusEffect("Deflector Regeneration");
 				}
 			}
@@ -567,7 +569,7 @@ package classes.GameData
 				target.addStatusValue("Used Smuggled Stimulant",1,-1);
 				target.energy(25);
 				if (target is PlayerCharacter) output("<b>A rush of energy fills you as the smuggled stimulant affects you.</b>\n");
-				else output("<b>" + target.capitalA + target.short + " is filled with a sudden rush of energy!</b>\n");
+				else output("<b>" + target.capitalA + target.uniqueName + " is filled with a sudden rush of energy!</b>\n");
 			}
 	
 			if (target.hasStatusEffect("Porno Hacked Drone"))
@@ -578,14 +580,14 @@ package classes.GameData
 					if(target.statusEffectv1("Porno Hacked Drone") <= 0)
 					{
 						if (target is PlayerCharacter) output("<b>With a grinding click the porn beaming out of your drone snuffs out, finally getting the better of the sexbot’s hacking routine, and returns to your side.</b>\n");
-						else output("<b>" + target.capitalA + possessive(target.short) + " drone whirrs slightly, the porn beaming from it snuffing out in short order. Having finally managed to expel the rouge instructions hacked into the thing, it returns to its owners side.</b>\n");
+						else output("<b>" + target.capitalA + possessive(target.uniqueName) + " drone whirrs slightly, the porn beaming from it snuffing out in short order. Having finally managed to expel the rouge instructions hacked into the thing, it returns to its owners side.</b>\n");
 						target.removeStatusEffect("Porno Hacked Drone");
 					}
 					else
 					{
 						//Combat blurb:
 						if (target is PlayerCharacter) output("<b>Your hacked drone continues to fly into your line of sight and near your ear no matter how many times you slap it away, inundating your senses with garish, shifting and teasing smut.</b>\n");
-						else output("<b>" + target.capitalA + possessive(target.short) + " hacked drone continues to fly around them, projecting a series of ever lewder smutty visuals directly at " + target.mfn("him", "her", "it") + "!</b>\n");
+						else output("<b>" + target.capitalA + possessive(target.uniqueName) + " hacked drone continues to fly around them, projecting a series of ever lewder smutty visuals directly at " + target.mfn("him", "her", "it") + "!</b>\n");
 						target.lust(4);
 					}
 				}
@@ -620,14 +622,14 @@ package classes.GameData
 				{
 					target.removeStatusEffect("Disarmed");
 					if (target is PlayerCharacter) output("<b>You are no longer disarmed!</b>\n");
-					else if (target.isPlural) output("<b>" + target.capitalA + target.short + " are no longer disarmed!</b>\n");
-					else output("<b>" + target.capitalA + target.short + " is no longer disarmed!</b>\n");
+					else if (target.isPlural) output("<b>" + target.capitalA + target.uniqueName + " are no longer disarmed!</b>\n");
+					else output("<b>" + target.capitalA + target.uniqueName + " is no longer disarmed!</b>\n");
 				}
 				else 
 				{
 					if (target is PlayerCharacter) output("<b>You are disarmed and cannot use weapon based attacks.</b>\n");
-					else if (target.isPlural) output("<b>" + target.capitalA + target.short + " are disarmed.</b>\n");
-					else output("<b>" + target.capitalA + target.short + " is disarmed.</b>\n");
+					else if (target.isPlural) output("<b>" + target.capitalA + target.uniqueName + " are disarmed.</b>\n");
+					else output("<b>" + target.capitalA + target.uniqueName + " is disarmed.</b>\n");
 				}
 			}
 	
@@ -640,7 +642,7 @@ package classes.GameData
 					if (target.hasCombatDrone())
 					{
 						if (target is PlayerCharacter) output("<b>There’s a familiar and welcome sound of whirring servos above you. Your righted drone moves back down to your side to aid you.</b>\n");
-						else output("<b>A telling hum returns to the battlefield. " + target.capitalA + possessive(target.short) + " combat drone returns to the fold!</b>\n");
+						else output("<b>A telling hum returns to the battlefield. " + target.capitalA + possessive(target.uniqueName) + " combat drone returns to the fold!</b>\n");
 					}
 				}
 			}
@@ -655,7 +657,7 @@ package classes.GameData
 					target.removeStatusEffect("Sensor Link");
 					target.aimMod -= 5;
 					if (target is PlayerCharacter) output("<b>Your equipments connection to Anno's wanes as combat draws on, your improved accuracy diminishing.</b>\n");
-					else output("<b>" + target.capitalA + possessive(target.short) + " equipment interlink wanes, the extra assistance diminishing!</b>\n");
+					else output("<b>" + target.capitalA + possessive(target.uniqueName) + " equipment interlink wanes, the extra assistance diminishing!</b>\n");
 				}
 			}
 	
@@ -673,9 +675,9 @@ package classes.GameData
 				target.addStatusMinutes("Evasion Boost",-1);
 				if(target.getStatusMinutes("Evasion Boost") <= 0)
 				{
-					if (target.isPlural) output("<b>" + target.capitalA + target.short + " no longer have boosted evasion!</b>");
+					if (target.isPlural) output("<b>" + target.capitalA + target.uniqueName + " no longer have boosted evasion!</b>");
 					else if (target is PlayerCharacter) output("<b>Your limbs feel heavier, slower than they were a moment ago. Your boosted evasion has worn off!</b>");
-					else output("<b>" + target.capitalA + target.short + " no longer has boosted evasion!</b>");
+					else output("<b>" + target.capitalA + target.uniqueName + " no longer has boosted evasion!</b>");
 					target.removeStatusEffect("Evasion Boost");
 					output("\n");
 				}
@@ -687,14 +689,14 @@ package classes.GameData
 				if (target.statusEffectv1("Resolve") <= 0)
 				{
 					target.removeStatusEffect("Resolve");
-					output("<b>" + target.capitalA + target.short + " is no longer resolved!</b>\n");
+					output("<b>" + target.capitalA + target.uniqueName + " is no longer resolved!</b>\n");
 					target.baseHPResistances.tease.resistanceValue -= 100;
 					target.baseHPResistances.drug.resistanceValue -= 50;
 					target.baseHPResistances.pheromone.resistanceValue -= 50;
 				}
 				else
 				{
-					output("<b>" + target.capitalA + target.short + " has a resolved, steely look in " + target.mfn("his","her","its") + " eyes!</b>\n");
+					output("<b>" + target.capitalA + target.uniqueName + " has a resolved, steely look in " + target.mfn("his","her","its") + " eyes!</b>\n");
 				}
 			}
 		
@@ -736,14 +738,14 @@ package classes.GameData
 					var dResult:DamageResult = applyDamage(lDamage, pc, target, "suppress");
 				}
 				
-				output("[goo.name] dances around, flashing plenty of tits and ass for " + target.a + target.short + ".");
+				output("[goo.name] dances around, flashing plenty of tits and ass for " + target.a + target.uniqueName + ".");
 				if (lFailed || (dResult && (dResult.lustDamage <= 0 || dResult.lustResisted)))
 				{
-					output(" " + target.capitalA + target.short + " looks on, clearly unimpressed.\n");
+					output(" " + target.capitalA + target.uniqueName + " looks on, clearly unimpressed.\n");
 				}
 				else
 				{
-					output(" " + target.capitalA + target.short + " stares mesmerized at [goo.name]'s dance, flushing with lust.\n");
+					output(" " + target.capitalA + target.uniqueName + " stares mesmerized at [goo.name]'s dance, flushing with lust.\n");
 				}
 				
 				if (!lFailed)
@@ -967,7 +969,7 @@ package classes.GameData
 		{
 			if (target.hasStatusEffect("Tripped"))
 			{
-				output(target.capitalA + target.short + " lifts themselves from the floor and gets their feet back under " + target.mfn("him", "her", "it") + "self.");
+				output(target.capitalA + target.uniqueName + " lifts themselves from the floor and gets their feet back under " + target.mfn("him", "her", "it") + "self.");
 				target.removeStatusEffect("Tripped");
 			}
 		}
@@ -1120,8 +1122,8 @@ package classes.GameData
 				{
 					target.removeStatusEffect("Stunned");
 					if (target is PlayerCharacter) output("You manage to recover your wits and adopt a fighting stance!\n");
-					else if (!target.isPlural) output(target.capitalA + target.short + " manages to recover " + target.mfn("his","her","its") + " wits and adopt a fighting stance!");
-					else output(target.capitalA + target.short + " manage to recover their wits and adopt a fighting stance!");
+					else if (!target.isPlural) output(target.capitalA + target.uniqueName + " manages to recover " + target.mfn("his","her","its") + " wits and adopt a fighting stance!");
+					else output(target.capitalA + target.uniqueName + " manage to recover their wits and adopt a fighting stance!");
 				}
 				else
 				{
@@ -1130,8 +1132,8 @@ package classes.GameData
 					{
 						if (!target.hasStatusEffect("Lust Stunned"))
 						{
-							if (!target.isPlural) output(target.capitalA + target.short + " is still too stunned to act!");
-							else output(target.capitalA + target.short + " are still too stunned to act!");
+							if (!target.isPlural) output(target.capitalA + target.uniqueName + " is still too stunned to act!");
+							else output(target.capitalA + target.uniqueName + " are still too stunned to act!");
 						}
 						else
 						{
@@ -1394,7 +1396,8 @@ package classes.GameData
 			{
 				if (!_hostiles[i].isDefeated())
 				{
-					addButton(bOff, _hostiles[i].uniqueName, executeAttack, { attack: atk, tar: _hostiles[i] } );
+					addButton(bOff, (_hostiles[i] as Creature).buttonText, executeAttack, { attack: atk, tar: _hostiles[i] } );
+					bOff++;
 				}
 			}
 			
@@ -1450,7 +1453,8 @@ package classes.GameData
 			{
 				if (!_hostiles[i].isDefeated())
 				{
-					addButton(bOff, _hostiles[i].uniqueName, executeSimpleAttack, { func:f, tar: _hostiles[i] } );
+					addButton(bOff, (_hostiles[i] as Creature).buttonText, executeSimpleAttack, { func:f, tar: _hostiles[i] } );
+					bOff++;
 				}
 			}
 			
@@ -1572,7 +1576,7 @@ package classes.GameData
 			//75+
 			if(select == 0)
 			{
-				output("Turning away at an opportune moment, you slip down your clothes and reach back, slapping your [pc.butt] into a bounce before shaking it for " + target.a + target.short + ". Your technique has grown impeccable, and you bounce your [pc.butt] masterfully, even reaching back and spreading your cheeks, giving " + target.a + target.short + " an excellent view of your [pc.asshole]");
+				output("Turning away at an opportune moment, you slip down your clothes and reach back, slapping your [pc.butt] into a bounce before shaking it for " + target.a + target.uniqueName + ". Your technique has grown impeccable, and you bounce your [pc.butt] masterfully, even reaching back and spreading your cheeks, giving " + target.a + target.uniqueName + " an excellent view of your [pc.asshole]");
 				if(pc.hasVagina() && pc.balls > 0) output(" and [pc.vaginas] and [pc.balls]");
 				else if(pc.hasVagina()) output(" and [pc.vaginas]");
 				else if(pc.balls > 0) output(" and [pc.balls]");
@@ -1588,7 +1592,7 @@ package classes.GameData
 			else output(" Y");
 			output("ou begin to shake your [pc.butt], bouncing ");
 				if(pc.lowerUndergarment.shortName != "") output("in your [pc.lowerUndergarment] ");
-				output("and tempting " + target.a + target.short + " with your ");
+				output("and tempting " + target.a + target.uniqueName + " with your ");
 				if(pc.lowerUndergarment.shortName != "") output("unseen ");
 				output("goods. Your ass shaking has gotten faster and more tasteful with all of that practice, and you rock your [pc.butt] as best as you can to show that off.");
 			}
@@ -1748,13 +1752,13 @@ package classes.GameData
 					//If Breasts Tease >=75 Lactating.
 					if(pc.milkFullness >= 75)
 					{
-						output("Drawing your hands sensuously up your [pc.belly], you cup your milky tits, giving one a firm squeeze as you let out a low, lusty moan. With " + target.a + target.short + "’s gaze firmly captured, you pull away your [pc.upperGarments], releasing your [pc.fullChest] to the world, the fresh air blowing across your [pc.nipples]. You aren’t done teasing yet; a delicious idea slips into your devious mind.");
+						output("Drawing your hands sensuously up your [pc.belly], you cup your milky tits, giving one a firm squeeze as you let out a low, lusty moan. With " + target.a + target.uniqueName + "’s gaze firmly captured, you pull away your [pc.upperGarments], releasing your [pc.fullChest] to the world, the fresh air blowing across your [pc.nipples]. You aren’t done teasing yet; a delicious idea slips into your devious mind.");
 						output("\n\nGrabbing both of your exposed melons, you jiggle them, causing a hypnotizing earthquake of mammary delight while taking care to pinch your nipples. The stimulation is just enough to get you started. Your [pc.milk] flows out as you begin to rub it into your [pc.skinFurScales], the [pc.milkColor] liquid soaking into your [pc.chest]. It takes you a tremendous effort to stop yourself and cover your jugs up again. Licking your fingers clean with an <i>Mmmmm...</i> for show, you ready yourself, noting that you’ll have to clean up a little later.");
 					}
 					//If Breast tease <75 Lactating.
 					else
 					{
-						output("Fumbling with your [pc.upperGarments] you release your [pc.chest], letting your bounty free with an enticing jiggle. You can feel " + target.a + target.short + "s eyes on you, running over your [pc.chest], and you take advantage of that, swaying your shoulders to set off all kinds of pleasant jiggles. It’s not until you feel your [pc.milk] start to dribble out of your [pc.nipples] that you realize just what you’ve done. Reaching up, you grab the swells of your [pc.chest] to put them away, but you only succeed in coating yourself in your [pc.milk]. You can’t help but feel a little embarrassed and maybe a little aroused as you tuck your [pc.fullChest] away.");
+						output("Fumbling with your [pc.upperGarments] you release your [pc.chest], letting your bounty free with an enticing jiggle. You can feel " + target.a + target.uniqueName + "s eyes on you, running over your [pc.chest], and you take advantage of that, swaying your shoulders to set off all kinds of pleasant jiggles. It’s not until you feel your [pc.milk] start to dribble out of your [pc.nipples] that you realize just what you’ve done. Reaching up, you grab the swells of your [pc.chest] to put them away, but you only succeed in coating yourself in your [pc.milk]. You can’t help but feel a little embarrassed and maybe a little aroused as you tuck your [pc.fullChest] away.");
 					}
 				}
 				else if(select == 1)
@@ -2009,8 +2013,8 @@ package classes.GameData
 					else output("sexy ");
 					output("body turn you on?\"</i>  ");
 				}
-				if(target.isPlural) output(possessive(target.capitalA + target.short) + " gazes are riveted on your groin as you run your fingers up and down your folds seductively.");
-				else output(possessive(target.capitalA + target.short)  + "'s gaze is riveted on your groin as you run your fingers up and down your folds seductively.");
+				if(target.isPlural) output(possessive(target.capitalA + target.uniqueName) + " gazes are riveted on your groin as you run your fingers up and down your folds seductively.");
+				else output(possessive(target.capitalA + target.uniqueName)  + "'s gaze is riveted on your groin as you run your fingers up and down your folds seductively.");
 				if(pc.hasClit())
 				{
 					if(pc.clitLength > 3) output(" You smile as [pc.eachClit] swells out from the folds and stands proudly, begging to be touched.");
@@ -2374,7 +2378,7 @@ package classes.GameData
 				}
 				else if(target.isLustImmune == true) 
 				{
-					output("\n<b>" + target.capitalA + target.short + " </b>");
+					output("\n<b>" + target.capitalA + target.uniqueName  + " </b>");
 					if(target.isPlural) output("<b>don't</b>");
 					else output("<b>doesn't</b>");
 					output("<b> seem to care to care for your erotically-charged display. (0)</b>\n");
@@ -2399,7 +2403,7 @@ package classes.GameData
 					teaseSkillUp(teaseType);
 				}
 				else {
-					output("\n" + target.capitalA + target.short + " ");
+					output("\n" + target.capitalA + target.uniqueName  + " ");
 					if(target.isPlural) output("resist");
 					else output("resists");
 					output(" your erotically charged display... this time. (0)\n");
@@ -2426,8 +2430,8 @@ package classes.GameData
 				output("\n");
 				if(teaseType == "squirt") 
 				{
-					if(target.isPlural) output(target.capitalA + target.short + " are splattered with your [pc.milk], unable to get it off. All of a sudden, their faces begin to flush, and they look quite aroused.");
-					else output(target.capitalA + target.short + " is splattered with your [pc.milk], unable to get it off. All of a sudden, " + target.mfn("his","her","its") + " " + target.face() + " begins to flush, and " + target.mfn("he","she","it") + " looks quite aroused.");
+					if(target.isPlural) output(target.capitalA + target.uniqueName  + " are splattered with your [pc.milk], unable to get it off. All of a sudden, their faces begin to flush, and they look quite aroused.");
+					else output(target.capitalA + target.uniqueName  + " is splattered with your [pc.milk], unable to get it off. All of a sudden, " + target.mfn("his","her","its") + " " + target.face() + " begins to flush, and " + target.mfn("he","she","it") + " looks quite aroused.");
 				}
 				else output(teaseReactions(damage,target));
 				target.lust(damage);
@@ -2487,20 +2491,20 @@ package classes.GameData
 				else buffer = "The wispy amazon parts her thighs and begins to stroke her twin clits to your lewd display, unable to stop herself. A few seconds later she jerks her webbed back, flushing wildly.";
 			}
 			else if (target.isPlural) {
-				if (damage == 0) buffer = target.capitalA + target.short + " seem unimpressed.";
-				else if (damage < 4) buffer = target.capitalA + target.short + " look intrigued by what they see.";
-				else if (damage < 10) buffer = target.capitalA + target.short + " definitely seem to be enjoying the show.";
-				else if (damage < 15) buffer = target.capitalA + target.short + " openly stroke themselves as they watch you.";
-				else if (damage < 20) buffer = target.capitalA + target.short + " flush hotly with desire, their eyes filled with longing.";
-				else buffer = target.capitalA + target.short + " lick their lips in anticipation, their hands idly stroking their bodies.";
+				if (damage == 0) buffer = target.capitalA + target.uniqueName  + " seem unimpressed.";
+				else if (damage < 4) buffer = target.capitalA + target.uniqueName + " look intrigued by what they see.";
+				else if (damage < 10) buffer = target.capitalA + target.uniqueName + " definitely seem to be enjoying the show.";
+				else if (damage < 15) buffer = target.capitalA + target.uniqueName + " openly stroke themselves as they watch you.";
+				else if (damage < 20) buffer = target.capitalA + target.uniqueName + " flush hotly with desire, their eyes filled with longing.";
+				else buffer = target.capitalA + target.uniqueName + " lick their lips in anticipation, their hands idly stroking their bodies.";
 			}
 			else {
-				if (damage == 0) buffer = target.capitalA + target.short + " seems unimpressed.";
-				else if (damage < 4) buffer = target.capitalA + target.short + " looks a little intrigued by what " + target.mf("he","she") + " sees.";
-				else if (damage < 10) buffer = target.capitalA + target.short + " definitely seems to be enjoying the show.";
-				else if (damage < 15) buffer = target.capitalA + target.short + " openly touches " + target.mfn("him","her","it") + "self as " + target.mfn("he","she","it") + " watches you.";
-				else if (damage < 20) buffer = target.capitalA + target.short + " flushes hotly with desire, " + target.mfn("his","her","its") + " eyes filled with longing.";
-				else buffer = target.capitalA + target.short + " licks " + target.mfn("his","her","its") + " lips in anticipation, " + target.mfn("his","her","its") + " hands idly stroking " + target.mfn("his","her","its") + " own body.";
+				if (damage == 0) buffer = target.capitalA + target.uniqueName + " seems unimpressed.";
+				else if (damage < 4) buffer = target.capitalA + target.uniqueName + " looks a little intrigued by what " + target.mf("he","she") + " sees.";
+				else if (damage < 10) buffer = target.capitalA + target.uniqueName + " definitely seems to be enjoying the show.";
+				else if (damage < 15) buffer = target.capitalA + target.uniqueName + " openly touches " + target.mfn("him","her","it") + "self as " + target.mfn("he","she","it") + " watches you.";
+				else if (damage < 20) buffer = target.capitalA + target.uniqueName + " flushes hotly with desire, " + target.mfn("his","her","its") + " eyes filled with longing.";
+				else buffer = target.capitalA + target.uniqueName + " licks " + target.mfn("his","her","its") + " lips in anticipation, " + target.mfn("his","her","its") + " hands idly stroking " + target.mfn("his","her","its") + " own body.";
 			}
 			return buffer;
 		}
@@ -2522,7 +2526,7 @@ package classes.GameData
 				return;
 			}
 			
-			output("You try to get a feel for " + possessive(target.a + target.short) + " likes and dislikes!\n");
+			output("You try to get a feel for " + possessive(target.a + target.uniqueName) + " likes and dislikes!\n");
 			if(target.isLustImmune) output("You don't think sexuality can win this fight!\n");
 			var buffer:String = "";
 			var PCBonus:Number = pc.intelligence()/2 + pc.libido()/20;
@@ -2818,23 +2822,34 @@ package classes.GameData
 			
 			showCombatUI(); // force an update
 		}
-				
-		private var _friendlyAppendNum:int = 0;
-		private var _hostileAppendNum:int = 0;
 		
 		private function makeCharacterUnique(target:Creature, asGroup:String):void
 		{
 			var appends:Array = ["A", "B", "C", "D", "E"];
 			
-			// Append ident chars to creature names
-			if (target.isUniqueInFight == false && ((asGroup == HOSTILE_GROUP && _hostiles.length > 1) || (asGroup == FRIENDLY_GROUP && _friendlies.length > 1)))
+			var thisIndex:int = 0;
+			var hasSameType:Boolean = false;
+			var tType:Class = Class(getDefinitionByName(getQualifiedClassName(target)));
+			var collection:Array = (asGroup == HOSTILE_GROUP ? _hostiles : _friendlies);
+			
+			var currIndex:int = 0;
+			for (var i:int = 0; i < collection.length; i++)
 			{
-				var idx:int = (asGroup == FRIENDLY_GROUP ? _friendlyAppendNum : _hostileAppendNum);
-				target.uniqueName = target.short + " " + appends[idx];
-				target.buttonText = target.btnTargetText + " " + appends[idx];
-				
-				if (asGroup == FRIENDLY_GROUP) _friendlyAppendNum++;
-				else _hostileAppendNum++;
+				if (collection[i] == target)
+				{
+					thisIndex = currIndex; // Subtype index of this type in the collection for target creature
+				}
+				else if (collection[i] is tType)
+				{
+					hasSameType = true;
+					currIndex++;
+				}
+			}
+			
+			if (hasSameType)
+			{
+				target.uniqueName = target.short + " " + appends[thisIndex];
+				target.buttonText = target.btnTargetText + " " + appends[thisIndex];
 			}
 			else
 			{
@@ -3012,11 +3027,11 @@ package classes.GameData
 				
 			if (target.HP() <= 0)
 			{
-				output("\n\n<b>" + target.capitalA + target.short + " is down and out for the count!</b>");
+				output("\n\n<b>" + target.capitalA + target.uniqueName + " is down and out for the count!</b>");
 			}
 			else if (target.lust() >= target.lustMax())
 			{
-				output("\n\n<b>" + target.capitalA + target.short + ((target.isPlural == true) ? " are" : " is") + " too turned on to fight.</b>");
+				output("\n\n<b>" + target.capitalA + target.uniqueName + ((target.isPlural == true) ? " are" : " is") + " too turned on to fight.</b>");
 			}
 			else
 			{
@@ -3039,12 +3054,12 @@ package classes.GameData
 			if (pc.lust() >= pc.lustMax())
 			{
 				if (enemiesAlive() > 1 || _hostiles[0].plural) output("<b>Your enemies have knocked you off your " + pc.feet() + "!</b>");
-				else output("<b>" + _hostiles[0].capitalA + _hostiles[0].short + " has knocked you off your " + pc.feet() + "</b>");
+				else output("<b>" + _hostiles[0].capitalA + _hostiles[0].uniqueName + " has knocked you off your " + pc.feet() + "</b>");
 			}
 			else if (pc.HP() <= 0)
 			{
 				if (enemiesAlive() > 1 || _hostiles[0].plural) output("<b>Your enemies have turned you on too much to keep fighting. You give in....</b>");
-				else output("<b>" + _hostiles[0].capitalA + _hostiles[0].short + " has turned you on too much to keep fighting. You give in....</b>"); // TODO should be able to pick out a defined 'leader'
+				else output("<b>" + _hostiles[0].capitalA + _hostiles[0].uniqueName + " has turned you on too much to keep fighting. You give in....</b>"); // TODO should be able to pick out a defined 'leader'
 			}
 			else
 			{
@@ -3071,32 +3086,32 @@ package classes.GameData
 			}
 			else if (target.isPlural)
 			{
-				if(target.lust() < 60) output(target.capitalA + possessive(target.short) + " skins remain flushed with the beginnings of arousal.");
-				else if(target.lust() < 70) output(target.capitalA + possessive(target.short) + " eyes constantly dart over your most sexual parts, betraying their lust.");
+				if(target.lust() < 60) output(target.capitalA + possessive(target.uniqueName) + " skins remain flushed with the beginnings of arousal.");
+				else if(target.lust() < 70) output(target.capitalA + possessive(target.uniqueName) + " eyes constantly dart over your most sexual parts, betraying their lust.");
 				else if (target.lust() < 85)
 				{
-					if(target.hasCock()) output(target.capitalA + target.short + " are having trouble moving due to the rigid protrusions in their groins.");
-					if(target.hasVagina()) output(target.capitalA + target.short + " are obviously turned on; you can smell their arousal in the air.");
+					if(target.hasCock()) output(target.capitalA + target.uniqueName + " are having trouble moving due to the rigid protrusions in their groins.");
+					if(target.hasVagina()) output(target.capitalA + target.uniqueName + " are obviously turned on; you can smell their arousal in the air.");
 				}
 				else
 				{
-					if(target.hasCock()) output(target.capitalA + target.short + " are panting and softly whining, each movement seeming to make their bulges more pronounced.  You don't think they can hold out much longer.");
-					if(target.hasVagina()) output(target.capitalA + possessive(target.short) + " " + plural(target.vaginaDescript()) + " are practically soaked with their lustful secretions.");
+					if(target.hasCock()) output(target.capitalA + target.uniqueName + " are panting and softly whining, each movement seeming to make their bulges more pronounced.  You don't think they can hold out much longer.");
+					if(target.hasVagina()) output(target.capitalA + possessive(target.uniqueName) + " " + plural(target.vaginaDescript()) + " are practically soaked with their lustful secretions.");
 				}
 			}
 			else
 			{
-				if(target.lust() < 60) output(target.capitalA + possessive(target.short) + " " + target.skin() + " remains flushed with the beginnings of arousal.");
-				else if(target.lust() < 70) output(target.capitalA + possessive(target.short) + " eyes constantly dart over your most sexual parts, betraying " + target.mfn("his","her","its") + " lust.");
+				if(target.lust() < 60) output(target.capitalA + possessive(target.uniqueName) + " " + target.skin() + " remains flushed with the beginnings of arousal.");
+				else if(target.lust() < 70) output(target.capitalA + possessive(target.uniqueName) + " eyes constantly dart over your most sexual parts, betraying " + target.mfn("his","her","its") + " lust.");
 				else if (target.lust() < 85)
 				{
-					if(target.hasCock()) output(target.capitalA + target.short + " is having trouble moving due to the rigid protrusion in " + target.mfn("his","her","its") + " groin.");
-					if(target.hasVagina()) output(target.capitalA + target.short + " is obviously turned on, you can smell " + target.mfn("his","her","its") + " arousal in the air.");
+					if(target.hasCock()) output(target.capitalA + target.uniqueName + " is having trouble moving due to the rigid protrusion in " + target.mfn("his","her","its") + " groin.");
+					if(target.hasVagina()) output(target.capitalA + target.uniqueName + " is obviously turned on, you can smell " + target.mfn("his","her","its") + " arousal in the air.");
 				}
 				else
 				{
-					if(target.hasCock()) output(target.capitalA + target.short + " is panting and softly whining, each movement seeming to make " + target.mfn("his","her","its") + " bulge more pronounced.  You don't think " + target.mfn("he","she","it") + " can hold out much longer.");
-					if(target.hasVagina()) output(target.capitalA + possessive(target.short) + " " + target.vaginaDescript() + " is practically soaked with " + target.mfn("his","her","its") + " lustful secretions.  ");
+					if(target.hasCock()) output(target.capitalA + target.uniqueName + " is panting and softly whining, each movement seeming to make " + target.mfn("his","her","its") + " bulge more pronounced.  You don't think " + target.mfn("he","she","it") + " can hold out much longer.");
+					if(target.hasVagina()) output(target.capitalA + possessive(target.uniqueName) + " " + target.vaginaDescript() + " is practically soaked with " + target.mfn("his","her","its") + " lustful secretions.  ");
 				}
 			}
 			output("\n");
@@ -3119,9 +3134,10 @@ package classes.GameData
 			if (droneUser.hasCombatDrone() && droneUser.droneTarget != null)
 			{
 				var target:Creature = droneUser.droneTarget;
-				if (target.HP() > 0 && target.lust() < target.lustMax())
+				if (!target.isDefeated())
 				{
 					// TODO: Route this through the actual drone the droneUser has equipped to redirect to different atk implementors.
+					output("\n");
 					CombatAttacks.DroneAttack(droneUser, target);
 				}
 			}
@@ -3141,13 +3157,13 @@ package classes.GameData
 				if (_hostiles[i].isDefeated() && _hostiles[i].alreadyDefeated == false)
 				{
 					_hostiles[i].alreadyDefeated = true;
-					output("\n\n" + _hostiles[i].capitalA + _hostiles[i].short + " falls to the ground,");
+					output("\n\n" + _hostiles[i].capitalA + _hostiles[i].uniqueName + " falls to the ground,");
 					if (_hostiles[i].HP() <= 0) output(" defeated.");
 					else output(" stricken with lust.");
 				}
 				else if (_hostiles[i].isDefeated() && _hostiles[i].alreadyDefeated == true)
 				{
-					output("\n\n" + _hostiles[i].capitalA + _hostiles[i].short + " lies on the ground, defeated.");
+					output("\n\n" + _hostiles[i].capitalA + _hostiles[i].uniqueName + " lies on the ground, defeated.");
 				}
 			}
 			
@@ -3177,14 +3193,15 @@ package classes.GameData
 			{
 				var target:Creature = _friendlies[i];
 				
-				if (target.isDefeated())
+				if (target is PlayerCharacter) continue;
+				if (target.isDefeated()) continue; // TODO maybe allow the combatAI method to handle this- allows for a certain degree of cheese in encounter impl.
+				
+				output("\n\n");
+				
+				if (target.hasStatusEffect("Paralyzed"))
 				{
-					continue;
-				}
-				else if (target.hasStatusEffect("Paralyzed"))
-				{
-					if (target.isPlural) output("<b>" + target.capitalA + target.short + " are still paralyzed.</b>");
-					else output("<b>" + target.capitalA + target.short + " is still paralyzed.</b>");
+					if (target.isPlural) output("<b>" + target.capitalA + target.uniqueName + " are still paralyzed.</b>");
+					else output("<b>" + target.capitalA + target.uniqueName + " is still paralyzed.</b>");
 					target.addStatusValue("Paralyzed", 1, -1);
 					
 					if (target.statusEffectv1("Paralyzed"))
@@ -3237,7 +3254,7 @@ package classes.GameData
 				{
 					_friendlies[i].alreadyDefeated = true;
 					if (_friendlies[i] is PlayerCharacter) output("\n\nYou fall to the ground,");
-					else output("\n\n" + _friendlies[i].capitalA + _friendlies[i].short + " falls to the ground,");
+					else output("\n\n" + _friendlies[i].capitalA + _friendlies[i].uniqueName + " falls to the ground,");
 					if (_friendlies[i].HP() <= 0) output(" defeated.");
 					else output(" stricken with lust.");
 				}
@@ -3279,7 +3296,10 @@ package classes.GameData
 				var target:Creature = _hostiles[i];
 				
 				if (target.isDefeated()) continue;
-				else if (target.hasStatusEffect("Grappled"))
+				
+				output("\n\n");
+				
+				if (target.hasStatusEffect("Grappled"))
 				{
 					doStruggleRecover(target);
 				}
@@ -3402,7 +3422,7 @@ package classes.GameData
 		{
 			for (var i:int = 0; i < _hostiles.length; i++)
 			{
-				if (_hostiles is classT) return true;
+				if (_hostiles[i] is classT) return true;
 			}
 			return false;
 		}

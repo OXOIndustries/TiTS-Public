@@ -14,6 +14,7 @@
 	import classes.Items.Miscellaneous.ACock;
 	import classes.Items.Miscellaneous.AHCock;
 	import classes.Items.Miscellaneous.ADCock;
+	import classes.Items.Protection.DecentShield;
 	
 	import classes.Engine.Interfaces.output;
 	import classes.Engine.Combat.*;
@@ -193,6 +194,8 @@
 			
 			isUniqueInFight = true;
 			
+			
+			shield = new DecentShield();
 			this.shieldsRaw = this.shieldsMax();
 			this.HPRaw = this.HPMax();
 			
@@ -278,7 +281,7 @@
 			{
 				hpBooster(pc);
 			}
-			if (bSneak)
+			else if (bSneak)
 			{
 				var bonusDamage:int = level * 2;
 				if (target.hasStatusEffect("Blinded") && target.hasStatusEffect("Stunned")) bonusDamage += level;
@@ -307,25 +310,23 @@
 					gPrime.createStatusEffect("Grapple Cooldown", 3);
 					
 					removeStatusEffect("Grappled");
-					output(" Anno finally brings her gun to bear and fires, pumping her entire magazine into the goo\’s tits. The gray body explodes in a rain of goop, only to reform a moment later across the room as Anno slams a new mag into her holdout. <i>“I’m fine, I’m fine!”</i> Anno groans, rubbing at her throat, now visibly bruising.\n");
+					output(" Anno finally brings her gun to bear and fires, pumping her entire magazine into the goo\’s tits. The gray body explodes in a rain of goop, only to reform a moment later across the room as Anno slams a new mag into her holdout. <i>“I’m fine, I’m fine!”</i> Anno groans, rubbing at her throat, now visibly bruising.");
 				}
 				else
 				{
 					addStatusValue("Grappled", 1, 1);
 				}
-				
-				output("\n");
 			}
 		}
 		
 		private function sensorLinkBuff(target:Creature, pc:Creature):void
 		{
-			output("\nAnno levels her left wrist at");
+			output("Anno levels her left wrist at");
 			if (CombatManager.multipleEnemies()) output(" one of");
 			else output(" the");
 			output(" " + target.short + " and taps a key on her tiny computer. A visible targeting reticle forms around your opponent");
 			if (CombatManager.multipleEnemies()) output("s");
-			output(", linking up with your own equipment in the process.\n<b>Accuracy increased!</b>\n");
+			output(", linking up with your own equipment in the process.\n<b>Accuracy increased!</b>");
 
 			pc.createStatusEffect("Sensor Link", 5, 0, 0, 0, false, "Radio", "Anno has linked her equipments targetting systems with yours, improving your combat accuracy.", true, 0);
 			pc.aimMod += 5;
@@ -334,7 +335,7 @@
 		private function hpBooster(target:Creature):void
 		{
 			var hpGained:int = target.HPMax() * 0.1;
-			output("\nAnno runs up to you and passes her wrist computer over your shoulder, uploading an advanced program to your onboard microsurgeons. Your wounds start to knit together in no time! <b>Gained " + hpGained + " health!</b>");
+			output("Anno runs up to you and passes her wrist computer over your shoulder, uploading an advanced program to your onboard microsurgeons. Your wounds start to knit together in no time! <b>Gained " + hpGained + " health!</b>");
 
 			target.HP(hpGained);
 
@@ -343,22 +344,22 @@
 		
 		private function regularAttack(bonusDamage:int, target:Creature):void
 		{
-			output("\nAnno levels her holdout pistol and fires off a quick shot");
+			output("Anno levels her holdout pistol and fires off a quick shot");
 
 			if (rangedCombatMiss(this, target)) output(", though she misses her target.");
 			else
 			{
 				output(", landing a solid hit");
 				if (CombatManager.hasEnemyOfClass(GrayPrime) || CombatManager.hasEnemyOfClass(GigaGoo)) output(" on the goo");
-				else output(" on one");
+				else output(" on " + target.a + target.uniqueName);
 				output("!");
 
 				if (bonusDamage > 0) output(" Her attack is super-effective while her target is incapacitated!");
 
-				applyDamage(new TypeCollection( { kinetic: rangedDamage() + bonusDamage } ), this, target);
+				var damage:TypeCollection = rangedDamage();
+				damage.add(bonusDamage);
+				applyDamage(damage, this, target, "minimal");
 			}
-			
-			output("\n");
 		}
 	}
 }

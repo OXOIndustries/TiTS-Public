@@ -180,11 +180,6 @@ package classes.Characters
 			isUniqueInFight = false;
 			btnTargetText = "VoidPirate";
 			
-			for (var i:int = 0; i < 7; i++)
-			{
-				createStatusEffect("Test Effect " + (i + 1), 0, 0, 0, 0, false, "Icon_OffDown", "A Test Effect™.", false, 30);
-			}
-			
 			this._isLoading = false;
 		}
 		
@@ -261,7 +256,7 @@ package classes.Characters
 			
 			if (blindedPC && blindedSaen)
 			{
-				output(" blinding you and Saendra");
+				output(" blinding you and Saendra.");
 				pc.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0);
 				saen.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0);
 			}

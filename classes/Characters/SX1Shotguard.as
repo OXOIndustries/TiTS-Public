@@ -177,7 +177,7 @@ package classes.Characters
 			this.createStatusEffect("Disarm Immune", 0, 0, 0, 0, true, "", "", false, 0);
 			
 			isUniqueInFight = false;
-			btnTargetText = "VoidPirate";
+			btnTargetText = "VoidMerc";
 			
 			this._isLoading = false;
 		}
@@ -222,7 +222,7 @@ package classes.Characters
 			// Stun Baton
 			//Light Electrical damage, high chance to stun
 
-			output("The pirate yanks a baton off his belt and lunges at "+ (target is PlayerCharacter ? "you" : target.a + target.short) +", fingering a button as he does so that causes the haft of it to erupt on a burst of electricity. Zap!");
+			output("The pirate yanks a baton off his belt and lunges at "+ (target is PlayerCharacter ? "you" : target.a + target.short) +", fingering a button as he does so, causing the haft of it to erupt in a burst of electricity. Zap!");
 			if (!combatMiss(this, target))
 			{
 				if (target is PlayerCharacter)

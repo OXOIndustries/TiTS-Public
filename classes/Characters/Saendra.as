@@ -360,7 +360,7 @@ package classes.Characters
 		
 		private function saendraDisarmingShot(target:Creature):void
 		{
-			output("\nOn the other side of the pirates, the wounded captain fires her Hammer pistol, ");
+			output("On the other side of the pirates, the wounded captain fires her Hammer pistol, ");
 
 			if (rand(5) == 0)
 			{
@@ -380,7 +380,7 @@ package classes.Characters
 		
 		private function saendraHammerPistol(target:Creature):void
 		{
-			output("\nOn the other side of the pirates, the wounded captain fires her Hammer pistol, ");
+			output("On the other side of the pirates, the wounded captain fires her Hammer pistol, ");
 
 			// :effort: to rig up a special statblock for injured Saendra and make all this shit work based off of it.
 			if (rand(5) == 0)

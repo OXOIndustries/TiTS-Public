@@ -387,34 +387,34 @@ package classes.GameData
 			if (rangedCombatMiss(attacker, target))
 			{
 				if (target.customDodge.length > 0) output(target.customDodge);
-				else if (attacker is PlayerCharacter) output("You " + attacker.rangedWeapon.attackVerb + " at " + target.a + target.short + " with your " + attacker.rangedWeapon.longName + ", but just can't connect.");
-				else if (target is PlayerCharacter) output("You manage to avoid " + attacker.a + possessive(attacker.short) + " " + attacker.rangedWeapon.attackNoun + ".");
-				else output(target.capitalA + target.short + " manages to avoid " + attacker.a + possessive(attacker.short) + " " + attacker.rangedWeapon.attackNoun + ".");
+				else if (attacker is PlayerCharacter) output("You " + attacker.rangedWeapon.attackVerb + " at " + target.a + target.uniqueName + " with your " + attacker.rangedWeapon.longName + ", but just can't connect.");
+				else if (target is PlayerCharacter) output("You manage to avoid " + attacker.a + possessive(attacker.uniqueName) + " " + attacker.rangedWeapon.attackNoun + ".");
+				else output(target.capitalA + target.uniqueName + " manages to avoid " + attacker.a + possessive(attacker.uniqueName) + " " + attacker.rangedWeapon.attackNoun + ".");
 				return false;
 			}
 			
 			if ((attacker.hasStatusEffect("Blinded") || attacker.hasStatusEffect("Smoke Grenade")) && rand(4) > 0)
 			{
 				if (attacker is PlayerCharacter) output("Your blind-fired shot doesn't manage to connect.");
-				else output(attacker.capitalA + possessive(attacker.short) + " blind "+ attacker.rangedWeapon.attackNoun +" fails to connect!");
+				else output(attacker.capitalA + possessive(attacker.uniqueName) + " blind "+ attacker.rangedWeapon.attackNoun +" fails to connect!");
 				return false;
 			}
 			
 			if (asFlurry && rand(100) <= 45 && !target.isImmobilized() && !attacker.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_EFFECT_FLURRYBONUS))
 			{
 				if (target.customDodge.length > 0) output(target.customDodge); 
-				else if (attacker is PlayerCharacter) output("You " + attacker.rangedWeapon.attackVerb + " at " + target.a + target.short + " with your " + attacker.rangedWeapon.longName + ", but just can't connect.");
-				else if (target is PlayerCharacter) output("You manage to avoid " + attacker.a + possessive(attacker.short) + " " + attacker.rangedWeapon.attackNoun + ".");
-				else output(target.capitalA + target.short + " manages to avoid " + attacker.a + possessive(attacker.short) + " " + attacker.rangedWeapon.attackNoun + ".");
+				else if (attacker is PlayerCharacter) output("You " + attacker.rangedWeapon.attackVerb + " at " + target.a + target.uniqueName + " with your " + attacker.rangedWeapon.longName + ", but just can't connect.");
+				else if (target is PlayerCharacter) output("You manage to avoid " + attacker.a + possessive(attacker.uniqueName) + " " + attacker.rangedWeapon.attackNoun + ".");
+				else output(target.capitalA + target.uniqueName + " manages to avoid " + attacker.a + possessive(attacker.uniqueName) + " " + attacker.rangedWeapon.attackNoun + ".");
 				return false;
 			}
 			
 			// We made it here, the attack landed
 			
-			if (attacker is PlayerCharacter) output("You land a hit on " + target.a + target.short + " with your " + attacker.rangedWeapon.longName + "!");
-			else if (attacker.isPlural) output(attacker.capitalA + attacker.short + " connect with their " + plural(attacker.rangedWeapon.longName) + "!");
-			else if (target is PlayerCharacter) output(attacker.capitalA + attacker.short + " hits you with " + attacker.mfn("his", "her", "its") + " " + attacker.rangedWeapon.longName + "!");
-			else output(attacker.capitalA + attacker.short + " connects with " + attacker.mfn("his", "her", "its") + " " + attacker.rangedWeapon.longName + "!");
+			if (attacker is PlayerCharacter) output("You land a hit on " + target.a + target.uniqueName + " with your " + attacker.rangedWeapon.longName + "!");
+			else if (attacker.isPlural) output(attacker.capitalA + attacker.uniqueName + " connect with their " + plural(attacker.rangedWeapon.longName) + "!");
+			else if (target is PlayerCharacter) output(attacker.capitalA + attacker.uniqueName + " hits you with " + attacker.mfn("his", "her", "its") + " " + attacker.rangedWeapon.longName + "!");
+			else output(attacker.capitalA + attacker.uniqueName + " connects with " + attacker.mfn("his", "her", "its") + " " + attacker.rangedWeapon.longName + "!");
 			
 			var damage:TypeCollection = attacker.rangedDamage();
 			damageRand(damage, 15);
@@ -427,25 +427,25 @@ package classes.GameData
 			if (combatMiss(attacker, target))
 			{
 				if (target.customDodge.length > 1) output(target.customDodge);
-				else if (attacker is PlayerCharacter) output("You " + attacker.meleeWeapon.attackVerb + " at " + target.a + target.short + " with your " + attacker.meleeWeapon.longName + ", but just can't connect.");
-				else if (target is PlayerCharacter) output("You manage to avoid " + attacker.a + possessive(attacker.short) + " " + attacker.meleeWeapon.attackNoun + ".");
-				else output(target.capitalA + target.short + " manages to avoid " + attacker.a + possessive(attacker.short) + " " + attacker.meleeWeapon.attackNoun + ".");
+				else if (attacker is PlayerCharacter) output("You " + attacker.meleeWeapon.attackVerb + " at " + target.a + target.uniqueName + " with your " + attacker.meleeWeapon.longName + ", but just can't connect.");
+				else if (target is PlayerCharacter) output("You manage to avoid " + attacker.a + possessive(attacker.uniqueName) + " " + attacker.meleeWeapon.attackNoun + ".");
+				else output(target.capitalA + target.uniqueName + " manages to avoid " + attacker.a + possessive(attacker.uniqueName) + " " + attacker.meleeWeapon.attackNoun + ".");
 				return false;
 			}
 			
 			if ((attacker.hasStatusEffect("Blind") || attacker.hasStatusEffect("Smoke Grenade")) && rand(2) > 0)
 			{
 				if (attacker is PlayerCharacter) output("Your blind strike doesn't manage to connect.");
-				else output(attacker.capitalA + possessive(attacker.short) + " blind " + attacker.meleeWeapon.attackNoun + " fails to connect!");
+				else output(attacker.capitalA + possessive(attacker.uniqueName) + " blind " + attacker.meleeWeapon.attackNoun + " fails to connect!");
 				return false;
 			}
 			
 			if (asFlurry && rand(100) <= 45 && !target.isImmobilized() && !attacker.meleeWeapon.hasFlag(GLOBAL.ITEM_FLAG_EFFECT_FLURRYBONUS))
 			{
 				if (target.customDodge.length > 0) output(target.customDodge); 
-				else if (attacker is PlayerCharacter) output("You " + attacker.meleeWeapon.attackVerb + " at " + target.a + target.short + " with your " + attacker.meleeWeapon.longName + ", but just can't connect.");
-				else if (target is PlayerCharacter) output("You manage to avoid " + attacker.a + possessive(attacker.short) + " " + attacker.meleeWeapon.attackNoun + ".");
-				else output(target.capitalA + target.short + " manages to avoid " + attacker.a + possessive(attacker.short) + " " + attacker.meleeWeapon.attackNoun + ".");
+				else if (attacker is PlayerCharacter) output("You " + attacker.meleeWeapon.attackVerb + " at " + target.a + target.uniqueName + " with your " + attacker.meleeWeapon.longName + ", but just can't connect.");
+				else if (target is PlayerCharacter) output("You manage to avoid " + attacker.a + possessive(attacker.uniqueName) + " " + attacker.meleeWeapon.attackNoun + ".");
+				else output(target.capitalA + target.uniqueName + " manages to avoid " + attacker.a + possessive(attacker.uniqueName) + " " + attacker.meleeWeapon.attackNoun + ".");
 				return false;
 			}
 			
@@ -457,10 +457,10 @@ package classes.GameData
 			
 			if (target is ZilFemale) kGAMECLASS.flags["HIT_A_ZILGIRL"] = 1;
 			
-			if (attacker is PlayerCharacter) output("You land a hit on " + target.a + target.short + " with your " + attacker.meleeWeapon.longName + "!");
-			else if (attacker.isPlural) output(attacker.capitalA + attacker.short + " connects with their " + plural(attacker.meleeWeapon.longName) + "!");
-			else if (target is PlayerCharacter) output(attacker.capitalA + attacker.short + " hits you with " + attacker.mfn("his", "her", "its") + " " + attacker.meleeWeapon.longName + "!");
-			else output(attacker.capitalA + attacker.short + " connects with " + attacker.mfn("his", "her", "its") + " " + attacker.meleeWeapon.longName + "!");
+			if (attacker is PlayerCharacter) output("You land a hit on " + target.a + target.uniqueName + " with your " + attacker.meleeWeapon.longName + "!");
+			else if (attacker.isPlural) output(attacker.capitalA + attacker.uniqueName + " connects with their " + plural(attacker.meleeWeapon.longName) + "!");
+			else if (target is PlayerCharacter) output(attacker.capitalA + attacker.uniqueName + " hits you with " + attacker.mfn("his", "her", "its") + " " + attacker.meleeWeapon.longName + "!");
+			else output(attacker.capitalA + attacker.uniqueName + " connects with " + attacker.mfn("his", "her", "its") + " " + attacker.meleeWeapon.longName + "!");
 			
 			var d:TypeCollection = attacker.meleeDamage();
 			damageRand(d, 15);
@@ -494,14 +494,14 @@ package classes.GameData
 			if (attacker.hasStatusEffect("Disarmed"))
 			{
 				if (attacker is PlayerCharacter) output("You try to attack until you remember that you’ve been disarmed!");
-				else output(attacker.capitalA + attacker.short + " scrabbles about, trying to find " + attacker.mfn("his", "her", "its") + " missing weapon.");
+				else output(attacker.capitalA + attacker.uniqueName + " scrabbles about, trying to find " + attacker.mfn("his", "her", "its") + " missing weapon.");
 				return;
 			}
 			
 			if (attacker.hasStatusEffect("Gunlock"))
 			{
 				if (attacker is PlayerCharacter) output("Your " + attacker.rangedWeapon.longName + " is currently disabled and unable to be used!");
-				else output(attacker.capitalA + attacker.short + " + fiddles fruitlessly with " + attacker.mfn("his", "her", "its") + " disabled weapon.");
+				else output(attacker.capitalA + attacker.uniqueName + " + fiddles fruitlessly with " + attacker.mfn("his", "her", "its") + " disabled weapon.");
 			}
 			
 			if (attacker.hasPerk("Shoot First") && !attacker.hasStatusEffect("Multiple Shots") && CombatManager.getRoundCount() == 0 && attacker.rangedWeapon.attackImplementor == null)
@@ -555,7 +555,7 @@ package classes.GameData
 			if (attacker.hasStatusEffect("Disarmed"))
 			{
 				if (attacker is PlayerCharacter) output("You try to attack until you remember you got disarmed!");
-				else output(attacker.capitalA + attacker.short + " scrabbles about, trying to find " + attacker.mfn("his", "her", "its") + " missing weapon.");
+				else output(attacker.capitalA + attacker.uniqueName + " scrabbles about, trying to find " + attacker.mfn("his", "her", "its") + " missing weapon.");
 				return;
 			}
 			
@@ -607,14 +607,14 @@ package classes.GameData
 				if (combatMiss(attacker, target))
 				{
 					if (attacker is PlayerCharacter) output("You can't manage to sneak in a bite!");
-					else if (target is PlayerCharacter) output("You narrowly avoid " + attacker.a + possessive(attacker.short) + " lunging bite!");
-					else output(target.capitalA + target.short + " narrowly avoids " + attacker.a + possessive(attacker.short) + " lunging bite!");
+					else if (target is PlayerCharacter) output("You narrowly avoid " + attacker.a + possessive(attacker.uniqueName) + " lunging bite!");
+					else output(target.capitalA + target.uniqueName + " narrowly avoids " + attacker.a + possessive(attacker.uniqueName) + " lunging bite!");
 				}
 				else
 				{
 					if (attacker is PlayerCharacter) output("To finish off your attack, you lean in and deliver a surprise bite, injecting a healthy dose of your red myrmedion venom!");
-					else if (target is PlayerCharacter) output("A spike of pain lances through your arm as " + attacker.a + attacker.short + " clamps their jaws around your bicep, venom quickly coursing through your veins!");
-					else output(target.capitalA + target.short + " " + target.mfn("growls", "squeals", "grunts") + " aloud as " + attacker.a + attacker.short + " clamps their jaws around a limb!");
+					else if (target is PlayerCharacter) output("A spike of pain lances through your arm as " + attacker.a + attacker.uniqueName + " clamps their jaws around your bicep, venom quickly coursing through your veins!");
+					else output(target.capitalA + target.uniqueName + " " + target.mfn("growls", "squeals", "grunts") + " aloud as " + attacker.a + attacker.uniqueName + " clamps their jaws around a limb!");
 					
 					applyDamage(new TypeCollection( { tease: 3 + rand(3) } ), attacker, target, "minimal");
 				}
@@ -639,19 +639,19 @@ package classes.GameData
 		public static function DroneAttack(attacker:Creature, target:Creature):void
 		{
 			if (attacker is PlayerCharacter) output("Your");
-			else output(attacker.capitalA + possessive(attacker.short));
+			else output(attacker.capitalA + possessive(attacker.uniqueName));
 			output(" drone repeatedly zaps ");
 			if (target is PlayerCharacter) output("you");
-			else output(target.a + target.short);
+			else output(target.a + target.uniqueName);
 			output(".");
 			applyDamage(attacker.droneDamage(), attacker, target, "minimal");
 		}
 		
 		public static function TamwolfAttack(attacker:Creature, target:Creature):void
 		{
-			output("<i>\"Enemy detected, " + attacker.mf("master", "mistress") + " " + attacker.short + "! I will defend you!\"</i> Tam-wolf announces, leaping into the fray. He hits, biting ");
+			output("<i>\"Enemy detected, " + attacker.mf("master", "mistress") + " " + attacker.uniqueName + "! I will defend you!\"</i> Tam-wolf announces, leaping into the fray. He hits, biting ");
 			if (target is PlayerCharacter) output(" you!");
-			else output(target.a + target.short + ".");
+			else output(target.a + target.uniqueName + ".");
 			applyDamage(attacker.droneDamage(), attacker, target, "minimal");
 			if (attacker is PlayerCharacter) output(" Good boy!");
 		}
@@ -660,12 +660,12 @@ package classes.GameData
 		{
 			if (rand(10) <= 2)
 			{
-				output("Tam-wolf leaps forward at " + target.a + target.short + "... but his bum leg catches, and he goes tumbling into the ground. Dammit, Tam-wolf!");
+				output("Tam-wolf leaps forward at " + target.a + target.uniqueName + "... but his bum leg catches, and he goes tumbling into the ground. Dammit, Tam-wolf!");
 			}
 			//Attack!
 			else
 			{
-				output("<i>\"ENEMY DETECTED, MISTRESS TAM! I WILL DEFEND YOU,\"</i> Tam-wolf loudly announces as he lunges at " + target.a + target.short + ". He hits!");
+				output("<i>\"ENEMY DETECTED, MISTRESS TAM! I WILL DEFEND YOU,\"</i> Tam-wolf loudly announces as he lunges at " + target.a + target.uniqueName + ". He hits!");
 				applyDamage(attacker.droneDamage(), attacker, target, "minimal");
 				if (attacker is PlayerCharacter) output(" Good boy!");
 			}
@@ -687,7 +687,7 @@ package classes.GameData
 			}
 			else
 			{
-				output(attacker.capitalA + attacker.short + " leans back before whipping " + attacker.mfn("his","her","its") + " head forward in a sudden headbutt.\n");
+				output(attacker.capitalA + attacker.uniqueName + " leans back before whipping " + attacker.mfn("his","her","its") + " head forward in a sudden headbutt.\n");
 			}
 	
 			if (combatMiss(attacker, target))
@@ -721,8 +721,8 @@ package classes.GameData
 					if(target is PlayerCharacter) output("\n<b>You are stunned.</b>");
 					else
 					{
-						if (target.isPlural) output("\n<b>" + target.capitalA + target.short + " are stunned.</b>");
-						else output("\n<b>" + target.capitalA + target.short + " is stunned.</b>");
+						if (target.isPlural) output("\n<b>" + target.capitalA + target.uniqueName + " are stunned.</b>");
+						else output("\n<b>" + target.capitalA + target.uniqueName + " is stunned.</b>");
 					}
 					target.createStatusEffect("Stunned", 2, 0, 0, 0, false, "Stun", "Cannot act for a turn.", true, 0);
 				}
@@ -756,23 +756,23 @@ package classes.GameData
 			if (combatMiss(attacker, target))
 			{
 				if (target.customDodge.length > 0) output(target.customDodge);
-				else if (attacker is PlayerCharacter) output("You draw back your weapon and " + attacker.meleeWeapon.attackVerb + " at " + target.a + target.short + ", but just can't connect.");
-				else if (target is PlayerCharacter) output(attacker.capitalA + attacker.short + " draws back their weapon and " + attacker.meleeWeapon.attackVerb + " at you, but just can't connect.");
-				else output(attacker.capitalA + attacker.short + " draws back their weapon and " + attacker.meleeWeapon.attackVerb + " at " + target.a + target.short +", but just can't connect.");
+				else if (attacker is PlayerCharacter) output("You draw back your weapon and " + attacker.meleeWeapon.attackVerb + " at " + target.a + target.uniqueName + ", but just can't connect.");
+				else if (target is PlayerCharacter) output(attacker.capitalA + attacker.uniqueName + " draws back their weapon and " + attacker.meleeWeapon.attackVerb + " at you, but just can't connect.");
+				else output(attacker.capitalA + attacker.uniqueName + " draws back their weapon and " + attacker.meleeWeapon.attackVerb + " at " + target.a + target.uniqueName +", but just can't connect.");
 				return;
 			}
 			
 			if (attacker.hasStatusEffect("Blinded") && rand(10) > 0)
 			{
 				if (attacker is PlayerCharacter) output("Your blind power strike missed.");
-				else output(attacker.capitalA + possessive(attacker.short) + " blind power strike missed.");
+				else output(attacker.capitalA + possessive(attacker.uniqueName) + " blind power strike missed.");
 				
 				return;
 			}
 			
-			if (attacker is PlayerCharacter) output("You draw back your " + attacker.meleeWeapon.longName + " and land a hit on " + target.a + target.short + "!");
-			else if (target is PlayerCharacter) output(attacker.capitalA + attacker.short + " draws back " + attacker.mfn("his", "her", "its") + " " + attacker.meleeWeapon.longName + " and lands a hit on you!");
-			else output(attacker.capitalA + attacker.short + " draws back " + attacker.mfn("his", "her", "its") + " " + attacker.meleeWeapon.longName + " and lands a hit on " + target.a + target.short + "!");
+			if (attacker is PlayerCharacter) output("You draw back your " + attacker.meleeWeapon.longName + " and land a hit on " + target.a + target.uniqueName + "!");
+			else if (target is PlayerCharacter) output(attacker.capitalA + attacker.uniqueName + " draws back " + attacker.mfn("his", "her", "its") + " " + attacker.meleeWeapon.longName + " and lands a hit on you!");
+			else output(attacker.capitalA + attacker.uniqueName + " draws back " + attacker.mfn("his", "her", "its") + " " + attacker.meleeWeapon.longName + " and lands a hit on " + target.a + target.uniqueName + "!");
 			
 			var d:TypeCollection = attacker.meleeDamage();
 			d.multiply(2);
@@ -784,7 +784,7 @@ package classes.GameData
 		private static function TakeCoverImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
 			if (attacker is PlayerCharacter) output("You seek cover against ranged attacks.");
-			else output(attacker.capitalA + attacker.short + " hunkers behind cover, defending themselves against ranged attacks!");
+			else output(attacker.capitalA + attacker.uniqueName + " hunkers behind cover, defending themselves against ranged attacks!");
 			
 			attacker.createStatusEffect("Taking Cover", 3, 0, 0, 0, false, "DefenseUp", "Taking cover! Ranged attacks will almost always miss!", true);
 		}
@@ -793,7 +793,7 @@ package classes.GameData
 		private static function CarpetGrenadesImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
 			if (attacker is PlayerCharacter) output("You sling an array of microgrenades at everything in the area!");
-			else output(attacker.capitalA + attacker.short + " throws out an array of microgrenades!");
+			else output(attacker.capitalA + attacker.uniqueName + " throws out an array of microgrenades!");
 			
 			var d:int = 10 + (attacker.level * 2.5) + (attacker.intelligence() / 1.5);
 			var damage:TypeCollection = new TypeCollection( { burning: d } );
@@ -802,7 +802,7 @@ package classes.GameData
 			
 			for (var x:int = 0; x < hGroup.length; x++)
 			{
-				output("\n" + hGroup[x].capitalA + hGroup[x].short + " is caught in the explosion!");
+				output("\n" + hGroup[x].capitalA + hGroup[x].uniqueName + " is caught in the explosion!");
 				applyDamage(damageRand(damage, 15), attacker, hGroup[x], "minimal");
 			}
 		}
@@ -810,9 +810,9 @@ package classes.GameData
 		public static var DetonationCharge:SingleCombatAttack;
 		private static function DetonationChargeImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
-			if (attacker is PlayerCharacter) output("You toss a bundle of explosives in the direction of " + target.a + target.short + "!");
-			else if (target is PlayerCharacter) output(attacker.capitalA + attacker.short + " throws a bundle of explosives in your direction!");
-			else output(attacker.capitalA + attacker.short + " throws a bundle of explosives in " + target.a + possessive(target.short) + " direction!");
+			if (attacker is PlayerCharacter) output("You toss a bundle of explosives in the direction of " + target.a + target.uniqueName + "!");
+			else if (target is PlayerCharacter) output(attacker.capitalA + attacker.uniqueName + " throws a bundle of explosives in your direction!");
+			else output(attacker.capitalA + attacker.uniqueName + " throws a bundle of explosives in " + target.a + possessive(target.uniqueName) + " direction!");
 			
 			var d:int = 15 + (attacker.level * 4) + attacker.intelligence();
 			var damage:TypeCollection = damageRand(new TypeCollection( { burning: d } ), 15);
@@ -830,7 +830,7 @@ package classes.GameData
 			attacker.createStatusEffect("Used Second Wind", 0, 0, 0, 0, true, "", "", true, 0);
 			
 			if (attacker is PlayerCharacter) output("You draw on your innermost reserves of strength, taking a second wind!");
-			else output(attacker.capitalA + attacker.short + " visibly focuses for a moment, finding themselves a second wind!");
+			else output(attacker.capitalA + attacker.uniqueName + " visibly focuses for a moment, finding themselves a second wind!");
 		}
 		
 		public static var ParalyzingShock:SingleCombatAttack;
@@ -839,19 +839,19 @@ package classes.GameData
 			if (target.hasStatusEffect("Paralyzed"))
 			{
 				if (target is PlayerCharacter) output("You're already paralyzed!");
-				else output(target.capitalA + target.short + " is already paralyzed!");
+				else output(target.capitalA + target.uniqueName + " is already paralyzed!");
 				return;
 			}
 			
-			if (attacker is PlayerCharacter) output("You launch a paralyzing shock at " + target.a + target.short + "!");
-			else if (target is PlayerCharacter) output(attacker.capitalA + attacker.short + " fires a paralyzing shock at you!");
-			else output(attacker.capitalA + attacker.short + " fires a paralyzing shock at " + target.a + target.short + "!");
+			if (attacker is PlayerCharacter) output("You launch a paralyzing shock at " + target.a + target.uniqueName + "!");
+			else if (target is PlayerCharacter) output(attacker.capitalA + attacker.uniqueName + " fires a paralyzing shock at you!");
+			else output(attacker.capitalA + attacker.uniqueName + " fires a paralyzing shock at " + target.a + target.uniqueName + "!");
 			
 			if (attacker.intelligence() / 2 + rand(20) + 1 >= target.physique() / 2 + 10)
 			{
 				output("\nThe effect is immediate! ");
 				if (target is PlayerCharacter) output(" You shudder and stop, temporarily paralyzed!");
-				else output(target.capitalA + target.short + " shudders and stops, temporarily paralyzed.");
+				else output(target.capitalA + target.uniqueName + " shudders and stops, temporarily paralyzed.");
 				target.createStatusEffect("Paralyzed", 2 + rand(2), 0, 0, 0, false, "Paralyze", "Cannot act!", true, 0);
 			}
 			else
@@ -868,9 +868,9 @@ package classes.GameData
 			
 			if (attacker.aim() / 2 + rand(20) + 1 >= target.reflexes() / 2 + 10 && !target.hasStatusEffect("Blinded") && attacker.hasRangedEnergyWeapon())
 			{
-				if (target is PlayerCharacter) output("\n<b>You are blinded by flashes from " + attacker.a + possessive(attacker.short) + " " + attacker.rangedWeapon.longName + ".</b>");
-				else if (attacker is PlayerCharacter) output("<b>" + target.capitalA + target.short + " is blinded by your " + possessive(attacker.rangedWeapon.longName) + " flashes.</b>\n");
-				else output("<b>" + target.capitalA + target.short + " is blinded by flashes from " + attacker.a + possessive(attacker.short) + " " + attacker.rangedWeapon.longName + ".</b>");
+				if (target is PlayerCharacter) output("\n<b>You are blinded by flashes from " + attacker.a + possessive(attacker.uniqueName) + " " + attacker.rangedWeapon.longName + ".</b>");
+				else if (attacker is PlayerCharacter) output("<b>" + target.capitalA + target.uniqueName + " is blinded by your " + possessive(attacker.rangedWeapon.longName) + " flashes.</b>\n");
+				else output("<b>" + target.capitalA + target.uniqueName + " is blinded by flashes from " + attacker.a + possessive(attacker.uniqueName) + " " + attacker.rangedWeapon.longName + ".</b>");
 				
 				target.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0);
 			}
@@ -881,28 +881,28 @@ package classes.GameData
 		{
 			if (!(attacker is PlayerCharacter))
 			{
-				output(attacker.capitalA + attacker.short + " smiles as a high-pitched emanates from " + attacker.mfn("his", "her", "its") + " " + attacker.rangedWeapon.longName + "!");
+				output(attacker.capitalA + attacker.uniqueName + " smiles as a high-pitched emanates from " + attacker.mfn("his", "her", "its") + " " + attacker.rangedWeapon.longName + "!");
 			}
 			
 			if (rangedCombatMiss(attacker, target))
 			{
 				if (target.customDodge.length > 0) output(target.customDodge);
-				else if (attacker is PlayerCharacter) output("You overcharge your weapon and " + attacker.rangedWeapon.attackVerb + " at " + target.a + target.short + ", but just can't connect.");
+				else if (attacker is PlayerCharacter) output("You overcharge your weapon and " + attacker.rangedWeapon.attackVerb + " at " + target.a + target.uniqueName + ", but just can't connect.");
 				else if (target is PlayerCharacter) output(" You manage to avoid the overcharged " + attacker.rangedWeapon.attackNoun + ".");
-				else output(" " + target.capitalA + target.short + " manages to avoid the overcharged " + attacker.rangedWeapon.attackNoun + ".");
+				else output(" " + target.capitalA + target.uniqueName + " manages to avoid the overcharged " + attacker.rangedWeapon.attackNoun + ".");
 				return;
 			}
 			
 			if ((attacker.hasStatusEffect("Blinded") || attacker.hasStatusEffect("Smoke Grenade")) && rand(10) > 0)
 			{
 				if (attacker is PlayerCharacter) output("Your blind-fired, overcharged shot missed!");
-				else if (target is PlayerCharacter) output(attacker.capitalA + possessive(attacker.short) + " blind-fired, overcharged shot misses you!");
-				else output(attacker.capitalA + possessive(attacker.short) + " blind-fired, overcharge shot narrowly avoids hitting anything!");
+				else if (target is PlayerCharacter) output(attacker.capitalA + possessive(attacker.uniqueName) + " blind-fired, overcharged shot misses you!");
+				else output(attacker.capitalA + possessive(attacker.uniqueName) + " blind-fired, overcharge shot narrowly avoids hitting anything!");
 				return;
 			}
 			
-			if (attacker is PlayerCharacter) output("You overcharge your " + attacker.rangedWeapon.longName + " and land a hit on " + target.a + target.short + "!");
-			else output(" " + attacker.capitalA + attacker.short + " connects with " + attacker.mfn("his", "her", "its") + " overcharged " + attacker.rangedWeapon.attackNoun + "!");
+			if (attacker is PlayerCharacter) output("You overcharge your " + attacker.rangedWeapon.longName + " and land a hit on " + target.a + target.uniqueName + "!");
+			else output(" " + attacker.capitalA + attacker.uniqueName + " connects with " + attacker.mfn("his", "her", "its") + " overcharged " + attacker.rangedWeapon.attackNoun + "!");
 			
 			var d:TypeCollection = attacker.rangedDamage();
 			
@@ -916,7 +916,7 @@ package classes.GameData
 			{
 				output("\n");
 				if (target is PlayerCharacter) output("<b>You are stunned!</b>");
-				else output("<b>" + target.capitalA + target.short + " is stunned!</b>");
+				else output("<b>" + target.capitalA + target.uniqueName + " is stunned!</b>");
 				target.createStatusEffect("Stunned", 1, 0, 0, 0, false, "Stun", "Cannot act for a turn.", true, 0);
 			}
 		}
@@ -925,7 +925,7 @@ package classes.GameData
 		private static function DeflectorRegenerationImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
 			if (attacker is PlayerCharacter) output("You fiddle with your shield, tuning it to regenerate over the next few turns.");
-			else output(attacker.capitalA + attacker.short + " leans down to fiddle with their shield generator. The field responds, visibly bolstering as the emitters work harder to replenish the depleted field.");
+			else output(attacker.capitalA + attacker.uniqueName + " leans down to fiddle with their shield generator. The field responds, visibly bolstering as the emitters work harder to replenish the depleted field.");
 			
 			attacker.createStatusEffect("Deflector Regeneration", 4, Math.ceil((attacker.intelligence() * 1.5 + rand(attacker.level) + attacker.shieldsMax() * 0.25) / 4), 0, 0, false, "DefenseUp", "Recovering shields every round.", true, 0);
 		}
@@ -934,7 +934,7 @@ package classes.GameData
 		private static function PowerSurgeImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
 			if (attacker is PlayerCharacter) output("You channel a surge of power into your shield generator, instantly restoring a portion of the emitters lost energy.");
-			else output(attacker.capitalA + attacker.short + " channels a surge of power into " + attacker.mfn("his", "her", "its") + " shield generator, instantly restoring a portion of the lost energy.");
+			else output(attacker.capitalA + attacker.uniqueName + " channels a surge of power into " + attacker.mfn("his", "her", "its") + " shield generator, instantly restoring a portion of the lost energy.");
 			
 			var a:int = Math.ceil(attacker.intelligence() * 1.5 + rand(attacker.level) + attacker.shieldsMax() * 0.25);
 			if (a + attacker.shields() > attacker.shieldsMax()) a = attacker.shieldsMax() - attacker.shields();
@@ -946,9 +946,9 @@ package classes.GameData
 		public static var ThermalDisruptor:SingleCombatAttack;
 		private static function ThermalDisruptorImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
-			if (attacker is PlayerCharacter) output("Raising the disruptor, you unleash a wave of burning fire on " + target.a + target.short);
-			else if (target is PlayerCharacter) output(attacker.capitalA + attacker.short + " spins a long device around from their back, levelling it squarely in your direction. In the blink of an eye it unleashes a wave of burning fire directly at you!");
-			else output(attacker.capitalA + attacker.short + " spins a long device around from their back, levelling it at " + target.a + target.short + ", unleashing a wave of burning fire!");
+			if (attacker is PlayerCharacter) output("Raising the disruptor, you unleash a wave of burning fire on " + target.a + target.uniqueName);
+			else if (target is PlayerCharacter) output(attacker.capitalA + attacker.uniqueName + " spins a long device around from their back, levelling it squarely in your direction. In the blink of an eye it unleashes a wave of burning fire directly at you!");
+			else output(attacker.capitalA + attacker.uniqueName + " spins a long device around from their back, levelling it at " + target.a + target.uniqueName + ", unleashing a wave of burning fire!");
 			
 			var d:int = Math.round(20 + attacker.level * 4 + attacker.intelligence());
 			applyDamage(new TypeCollection( { burning: d } ), attacker, target, "minimal");
@@ -957,9 +957,9 @@ package classes.GameData
 		public static var GravidicDisruptor:SingleCombatAttack;
 		private static function GravidicDisruptorImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
-			if (attacker is PlayerCharacter) output("Raising the disruptor, you unleash a targeted gravitic disruption on " + target.a + target.short);
-			else if (target is PlayerCharacter) output(attacker.capitalA + attacker.short + " spins a long device around from their back, levelling it squarely in your direction. Your limbs suddenly feel heavy, a crushing weight bearing down on you from all sides!");
-			else output(attacker.capitalA + attacker.short + " spins a long device around from their back, levelling it at " + target.a + target.short + ", unleashing a targeted gravitic disruption in " + target.mfn("his", "her", "its") + " direction!");
+			if (attacker is PlayerCharacter) output("Raising the disruptor, you unleash a targeted gravitic disruption on " + target.a + target.uniqueName);
+			else if (target is PlayerCharacter) output(attacker.capitalA + attacker.uniqueName + " spins a long device around from their back, levelling it squarely in your direction. Your limbs suddenly feel heavy, a crushing weight bearing down on you from all sides!");
+			else output(attacker.capitalA + attacker.uniqueName + " spins a long device around from their back, levelling it at " + target.a + target.uniqueName + ", unleashing a targeted gravitic disruption in " + target.mfn("his", "her", "its") + " direction!");
 			
 			var d:int = Math.round(15 + attacker.level * 2.5 + attacker.intelligence() / 1.5);
 			applyDamage(new TypeCollection( { unresistablehp: d } ), attacker, target, "minimal");
@@ -970,15 +970,15 @@ package classes.GameData
 		{
 			if (target.shields() <= 0)
 			{
-				if (attacker is PlayerCharacter) output("You attempt to hack the nonexistent shield protecting " + target.a + target.short + "! It doesn't work - <b>there's no shield there.</b>");
-				else if (target is PlayerCharacter) output(attacker.capitalA + attacker.short + " attempts to hack your shield! It doesn't work - <b>there's no shield there.</b>");
-				else output(attacker.capitalA + attacker.short + " attempts to hack " + target.capitalA + possessive(target.short) + " shield! It doesn't work - <b>there's no shield there.</b>");
+				if (attacker is PlayerCharacter) output("You attempt to hack the nonexistent shield protecting " + target.a + target.uniqueName + "! It doesn't work - <b>there's no shield there.</b>");
+				else if (target is PlayerCharacter) output(attacker.capitalA + attacker.uniqueName + " attempts to hack your shield! It doesn't work - <b>there's no shield there.</b>");
+				else output(attacker.capitalA + attacker.uniqueName + " attempts to hack " + target.capitalA + possessive(target.uniqueName) + " shield! It doesn't work - <b>there's no shield there.</b>");
 				return;
 			}
 			
-			if (attacker is PlayerCharacter) output("You attempt to wirelessly hack the shield protecting " + target.a + target.short + "!");
-			else if (target is PlayerCharacter) output(attacker.capitalA + attacker.short + " attempts to wirelessly hack your shield!");
-			else output(attacker.capitalA + attacker.short + " attempts to wirelessly hack the shield protecting " + target.a + target.short + "!");
+			if (attacker is PlayerCharacter) output("You attempt to wirelessly hack the shield protecting " + target.a + target.uniqueName + "!");
+			else if (target is PlayerCharacter) output(attacker.capitalA + attacker.uniqueName + " attempts to wirelessly hack your shield!");
+			else output(attacker.capitalA + attacker.uniqueName + " attempts to wirelessly hack the shield protecting " + target.a + target.uniqueName + "!");
 			
 			var d:TypeCollection = damageRand(new TypeCollection( { electric: Math.round(25 + attacker.level * 2.5 + attacker.intelligence() / 1.5) } ), 15);
 			d.addFlag(DamageFlag.ONLY_SHIELD);
@@ -988,12 +988,12 @@ package classes.GameData
 			if (target.shields() > 0)
 			{
 				if (target is PlayerCharacter) output(" Your shield crackles but holds.");
-				else output(" " + target.capitalA + target.short + " crackles but holds.");
+				else output(" " + target.capitalA + target.uniqueName + " crackles but holds.");
 			}
 			else
 			{
 				if (target is PlayerCharacter) output(" There is a concussive boom and a tingling aftershock of energy as your shield is breached.");
-				else output(" There is a concussive boom and a tingling aftershock of energy as " + target.a + possessive(target.short) + " shield is breached.");
+				else output(" There is a concussive boom and a tingling aftershock of energy as " + target.a + possessive(target.uniqueName) + " shield is breached.");
 			}
 			
 			outputDamage(dr);
@@ -1004,25 +1004,25 @@ package classes.GameData
 		{
 			if (target.hasStatusEffect("Disarm Immune"))
 			{
-				if (attacker is PlayerCharacter) output("You try to hack " + target.a + possessive(target.short) + " weapon but can't. <b>It's physically impossible!</b>");
-				else if (target is PlayerCharacter) output(attacker.capitalA + attacker.short + " tries to hack your weapon but can't!");
-				else output(attacker.capitalA + attacker.short + " tries to hack " + target.a + possessive(target.short) + " weapon but can't. <b>It's physically impossible!</b>");
+				if (attacker is PlayerCharacter) output("You try to hack " + target.a + possessive(target.uniqueName) + " weapon but can't. <b>It's physically impossible!</b>");
+				else if (target is PlayerCharacter) output(attacker.capitalA + attacker.uniqueName + " tries to hack your weapon but can't!");
+				else output(attacker.capitalA + attacker.uniqueName + " tries to hack " + target.a + possessive(target.uniqueName) + " weapon but can't. <b>It's physically impossible!</b>");
 				return;
 			}
 			
 			if (target.hasStatusEffect("Disarmed"))
 			{
-				if (attacker is PlayerCharacter) output("You try to hack " + target.a + possessive(target.short) + " weapon but can't. <b>You've already hacked it!</b>");
-				else if (target is PlayerCharacter) output(attacker.capitalA + attacker.short + " tries to hack your weapon but can't!");
-				else output(attacker.capitalA + attacker.short + " tries to hack " + target.a + possessive(target.short) + " weapon but can't. <b>It's already been hacked!</b>");
+				if (attacker is PlayerCharacter) output("You try to hack " + target.a + possessive(target.uniqueName) + " weapon but can't. <b>You've already hacked it!</b>");
+				else if (target is PlayerCharacter) output(attacker.capitalA + attacker.uniqueName + " tries to hack your weapon but can't!");
+				else output(attacker.capitalA + attacker.uniqueName + " tries to hack " + target.a + possessive(target.uniqueName) + " weapon but can't. <b>It's already been hacked!</b>");
 				return;
 			}
 			
 			if (!target.hasEnergyWeapon())
 			{
-				if (attacker is PlayerCharacter) output("You try to hack " + target.a + possessive(target.short) + " weapon but " + target.mfn("he", "she", "it") + " has no energy weapons to shut down!");
-				else if (target is PlayerCharacter) output(attacker.capitalA + attacker.short + " tries to hack your weapon but you don't have an energy weapon for them to shut down!");
-				else output(attacker.capitalA + attacker.short + " tries to hack " + target.a + possessive(target.short) + " weapon but " + target.mfn("he", "she", "it") + " has no energy weapons to shut down!");
+				if (attacker is PlayerCharacter) output("You try to hack " + target.a + possessive(target.uniqueName) + " weapon but " + target.mfn("he", "she", "it") + " has no energy weapons to shut down!");
+				else if (target is PlayerCharacter) output(attacker.capitalA + attacker.uniqueName + " tries to hack your weapon but you don't have an energy weapon for them to shut down!");
+				else output(attacker.capitalA + attacker.uniqueName + " tries to hack " + target.a + possessive(target.uniqueName) + " weapon but " + target.mfn("he", "she", "it") + " has no energy weapons to shut down!");
 				return;				
 			}
 			
@@ -1030,26 +1030,26 @@ package classes.GameData
 			{
 				if (attacker is PlayerCharacter)
 				{
-					output("You try to hack " + target.a + possessive(target.short) + " weapon, but they're too smart and too quick!");
+					output("You try to hack " + target.a + possessive(target.uniqueName) + " weapon, but they're too smart and too quick!");
 					if (attacker.intelligence() > target.intelligence() - 5) output(".. this time.");
 				}
 				else if (target is PlayerCharacter)
 				{
-					output(attacker.capitalA + attacker.short + " tries to hack your weapon, but you're quick to defend against the remote intrusion.");
+					output(attacker.capitalA + attacker.uniqueName + " tries to hack your weapon, but you're quick to defend against the remote intrusion.");
 					if (attacker.intelligence() > target.intelligence() - 5) output(".. this time.");
 				}
 				else
 				{
-					output(attacker.capitalA + attacker.short + " tries to hack " + target.a + possessive(target.short) + " weapon, but they react quickly and defend against the attack!");
+					output(attacker.capitalA + attacker.uniqueName + " tries to hack " + target.a + possessive(target.uniqueName) + " weapon, but they react quickly and defend against the attack!");
 				}
 				return;
 			}
 			
 			// Successful
 			
-			if (attacker is PlayerCharacter) output("You hack " + target.a + possessive(target.short) + " weapon, disarming them.");
-			else if (target is PlayerCharacter) output(attacker.capitalA + attacker.short + " hacks your weapon, disarming you temporarily!");
-			else output(attacker.capitalA + attacker.short + " hacks " + target.a + possessive(target.short) + " weapon, disarming " + target.mfn("him", "her", "it") + ".");
+			if (attacker is PlayerCharacter) output("You hack " + target.a + possessive(target.uniqueName) + " weapon, disarming them.");
+			else if (target is PlayerCharacter) output(attacker.capitalA + attacker.uniqueName + " hacks your weapon, disarming you temporarily!");
+			else output(attacker.capitalA + attacker.uniqueName + " hacks " + target.a + possessive(target.uniqueName) + " weapon, disarming " + target.mfn("him", "her", "it") + ".");
 			
 			target.createStatusEffect("Disarmed", 4 + rand(2), 0, 0, 0, false, "Blocked", "Cannot use normal melee or ranged attacks!", true, 0);
 		}
@@ -1057,38 +1057,38 @@ package classes.GameData
 		public static var PocketSand:SingleCombatAttack;
 		private static function PocketSandImp(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
-			output("With a cry of <i>“Pocket sand!”</i> you produce a handful of sand and throw it at " + target.a + target.short + ".");
+			output("With a cry of <i>“Pocket sand!”</i> you produce a handful of sand and throw it at " + target.a + target.uniqueName + ".");
 			
 			if (attacker.aim() / 2 + rand(20) + 6 >= target.reflexes() / 2 + 10 && !target.hasStatusEffect("Blinded"))
 			{
 				target.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0);
 				
-				output("\n<b>" + target.capitalA + target.short + " is blinded by the coarse granules.</b>");
+				output("\n<b>" + target.capitalA + target.uniqueName + " is blinded by the coarse granules.</b>");
 			}
 			else
 			{
-				output("\n" + target.capitalA + target.short + " manages to keep away from the blinding particles.");
+				output("\n" + target.capitalA + target.uniqueName + " manages to keep away from the blinding particles.");
 			}
 		}
 		
 		public static var FlashGrenade:SingleCombatAttack;
 		private static function FlashGrenadeImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
-			if (attacker is PlayerCharacter) output("You produce one of your rechargeable flash grenades and huck it in the direction of " + target.a + target.short + ".");
-			else if (target is PlayerCharacter) output(attacker.capitalA + attacker.short + " produces a flash grenade and hucks it in your direction!");
-			else output(attacker.capitalA + attacker.short + " produces a flash grenade and hucks it in the direction of " + target.a + target.short + "!");
+			if (attacker is PlayerCharacter) output("You produce one of your rechargeable flash grenades and huck it in the direction of " + target.a + target.uniqueName + ".");
+			else if (target is PlayerCharacter) output(attacker.capitalA + attacker.uniqueName + " produces a flash grenade and hucks it in your direction!");
+			else output(attacker.capitalA + attacker.uniqueName + " produces a flash grenade and hucks it in the direction of " + target.a + target.uniqueName + "!");
 			
 			if (attacker.aim() / 2 + rand(20) + 6 >= target.reflexes() / 2 + 10 && !target.hasStatusEffect("Blinded"))
 			{
 				target.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0);
 				
 				if (target is PlayerCharacter) output("\n<b>You're blinded by the luminous flashes.</b>");
-				else output("\n<b>" + target.capitalA + target.short + " is blinded by the luminous flashes.</b>");
+				else output("\n<b>" + target.capitalA + target.uniqueName + " is blinded by the luminous flashes.</b>");
 			}
 			else
 			{
 				if (target is PlayerCharacter) output("\nYou manage to avoid the blinding projectile.");
-				else output("\n" + target.capitalA + target.short + " manages to avoid the blinding projectile.");
+				else output("\n" + target.capitalA + target.uniqueName + " manages to avoid the blinding projectile.");
 			}
 		}
 		
@@ -1096,8 +1096,8 @@ package classes.GameData
 		private static function LowBlowImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
 			if (attacker is PlayerCharacter) output("You swing low, aiming for a sensitive spot.");
-			else if (target is PlayerCharacter) output(attacker.capitalA + attacker.short + " swings low at you, aiming for a sensitive spot.");
-			else output(attacker.capitalA + attacker.short + " swings low at " + target.a + target.short + ", aiming for a sensitive spot.");
+			else if (target is PlayerCharacter) output(attacker.capitalA + attacker.uniqueName + " swings low at you, aiming for a sensitive spot.");
+			else output(attacker.capitalA + attacker.uniqueName + " swings low at " + target.a + target.uniqueName + ", aiming for a sensitive spot.");
 			output("\n");
 			
 			if (combatMiss(attacker, target))
@@ -1109,13 +1109,13 @@ package classes.GameData
 			else if (attacker.hasStatusEffect("Blinded") && rand(2) > 0)
 			{
 				if (attacker is PlayerCharacter) output("Your blind strike fails to connect.");
-				else output(attacker.capitalA + possessive(attacker.short) + " blind strike fails to connect.");
+				else output(attacker.capitalA + possessive(attacker.uniqueName) + " blind strike fails to connect.");
 			}
 			else
 			{
 				if (attacker is PlayerCharacter) output("You connect with your target!");
-				else if (target is PlayerCharacter) output(attacker.capitalA + possessive(attacker.short) + " strike connects with you!");
-				else output(attacker.capitalA + possessive(attacker.short) + " strike connects with " + target.a + target.short + "!");
+				else if (target is PlayerCharacter) output(attacker.capitalA + possessive(attacker.uniqueName) + " strike connects with you!");
+				else output(attacker.capitalA + possessive(attacker.uniqueName) + " strike connects with " + target.a + target.uniqueName + "!");
 				
 				applyDamage(damageRand(new TypeCollection( { kinetic: attacker.physique() / 2 } ), 15), attacker, target, "minimal");
 				
@@ -1134,7 +1134,7 @@ package classes.GameData
 						}
 						else
 						{
-							output("\n<b>" + target.capitalA + target.short + " is stunned.</b>");
+							output("\n<b>" + target.capitalA + target.uniqueName + " is stunned.</b>");
 						}
 						
 						target.createStatusEffect("Stunned", 2 + rand(2), 0, 0, 0, false, "Stun", "Cannot act for a while.", true, 0);
@@ -1156,39 +1156,39 @@ package classes.GameData
 		{
 			if (target.hasStatusEffect("Disarm Immune"))
 			{
-				if (attacker is PlayerCharacter) output("You try to disarm " + target.a + target.short + " but can't. <b>It's physically impossible!</b>");
-				else if (target is PlayerCharacter) output(attacker.capitalA + attacker.short + " tries to disarm you but can't!");
-				else output(attacker.capitalA + attacker.short + " tries to disarm " + target.a + target.short + " but can't. <b>It's physically impossible!</b>");
+				if (attacker is PlayerCharacter) output("You try to disarm " + target.a + target.uniqueName + " but can't. <b>It's physically impossible!</b>");
+				else if (target is PlayerCharacter) output(attacker.capitalA + attacker.uniqueName + " tries to disarm you but can't!");
+				else output(attacker.capitalA + attacker.uniqueName + " tries to disarm " + target.a + target.uniqueName + " but can't. <b>It's physically impossible!</b>");
 				return;
 			}
 			
 			if (target.hasStatusEffect("Disarmed"))
 			{
-				if (attacker is PlayerCharacter) output("You try to disarm " + target.a + target.short + " but can't. <b>They've already been disarmed!</b>");
-				else if (target is PlayerCharacter) output(attacker.capitalA + attacker.short + " tries to disarm you but can't!");
-				else output(attacker.capitalA + attacker.short + " tries to disarm " + target.a + target.short + " but can't. <b>They've already been disarmed!</b>");
+				if (attacker is PlayerCharacter) output("You try to disarm " + target.a + target.uniqueName + " but can't. <b>They've already been disarmed!</b>");
+				else if (target is PlayerCharacter) output(attacker.capitalA + attacker.uniqueName + " tries to disarm you but can't!");
+				else output(attacker.capitalA + attacker.uniqueName + " tries to disarm " + target.a + target.uniqueName + " but can't. <b>They've already been disarmed!</b>");
 				return;
 			}
 			
 			if (rangedCombatMiss(attacker, target))
 			{
-				if (attacker is PlayerCharacter) output("You try to disarm " + target.a + target.short + " but miss.");
-				else if (target is PlayerCharacter) output(attacker.capitalA + attacker.short + " tries to disarm you but they narrowly miss the opportunity!");
-				else output(attacker.capitalA + attacker.short + " tries to disarm " + target.a + target.short + " but they miss the shot!");
+				if (attacker is PlayerCharacter) output("You try to disarm " + target.a + target.uniqueName + " but miss.");
+				else if (target is PlayerCharacter) output(attacker.capitalA + attacker.uniqueName + " tries to disarm you but they narrowly miss the opportunity!");
+				else output(attacker.capitalA + attacker.uniqueName + " tries to disarm " + target.a + target.uniqueName + " but they miss the shot!");
 				return;
 			}
 			
 			if ((attacker.hasStatusEffect("Blinded") || attacker.hasStatusEffect("Smoke Grenade")) && rand(10) > 0)
 			{
 				if (attacker is PlayerCharacter) output("Your blind-fired shot fails to connect.");
-				else output(attacker.capitalA + possessive(attacker.short) + " blind-fired shot fails to connect.");
+				else output(attacker.capitalA + possessive(attacker.uniqueName) + " blind-fired shot fails to connect.");
 				return;
 			}
 			
 			// Hits
-			if (attacker is PlayerCharacter) output("You land a crack shot on " + target.a + possessive(target.short) + " weapon, disarming them.");
-			else if (target is PlayerCharacter) output(attacker.capitalA + attacker.short + " shoots your weapons away with well-placed shots!");
-			else output(attacker.capitalA + attacker.short + " shoots " + target.a + possessive(attacker.short) + " weapons away with well-placed shots!");
+			if (attacker is PlayerCharacter) output("You land a crack shot on " + target.a + possessive(target.uniqueName) + " weapon, disarming them.");
+			else if (target is PlayerCharacter) output(attacker.capitalA + attacker.uniqueName + " shoots your weapons away with well-placed shots!");
+			else output(attacker.capitalA + attacker.uniqueName + " shoots " + target.a + possessive(attacker.uniqueName) + " weapons away with well-placed shots!");
 			
 			target.createStatusEffect("Disarmed", 4, 0, 0, 0, false, "Blocked", "Cannot use normal melee or ranged attacks!", true, 0);
 		}
@@ -1205,7 +1205,7 @@ package classes.GameData
 			}
 			else
 			{
-				output(attacker.capitalA + attacker.short + " activates a stealth field generator, fading into nigh-invisibility.");
+				output(attacker.capitalA + attacker.uniqueName + " activates a stealth field generator, fading into nigh-invisibility.");
 				rounds = 3;
 			}
 			
@@ -1215,9 +1215,9 @@ package classes.GameData
 		public static var Grenade:SingleCombatAttack;
 		private static function GrenadeImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
-			if (attacker is PlayerCharacter) output("Tossing an explosive in the general direction of your target, you unleash an explosive blast of heat on " + target.a + target.short + "!");
-			else if (target is PlayerCharacter) output(attacker.capitalA + attacker.short + " hucks a small device in your direction, unleashing an explosive blast scant inches from your body!");
-			else output(attacker.capitalA + attacker.short + " hucks a small device in " + target.a + possessive(target.short) + " direction, unleashing an explosive blast scant inches from " + target.mfn("his", "her", "its") + " form!");
+			if (attacker is PlayerCharacter) output("Tossing an explosive in the general direction of your target, you unleash an explosive blast of heat on " + target.a + target.uniqueName + "!");
+			else if (target is PlayerCharacter) output(attacker.capitalA + attacker.uniqueName + " hucks a small device in your direction, unleashing an explosive blast scant inches from your body!");
+			else output(attacker.capitalA + attacker.uniqueName + " hucks a small device in " + target.a + possessive(target.uniqueName) + " direction, unleashing an explosive blast scant inches from " + target.mfn("his", "her", "its") + " form!");
 			
 			
 			var d:int = Math.round(7.5 + attacker.level * 2 + attacker.intelligence() / 2);
@@ -1232,8 +1232,8 @@ package classes.GameData
 		private static function GasGrenadeImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
 			if (attacker is PlayerCharacter) output("Tossing a hissing grenade in the general direction of your target, you watch the gaseous stuff do its trick.");
-			else if (target is PlayerCharacter) output(attacker.capitalA + attacker.short + " tosses a small device in your direction, great clouds of thick, gaseous vapour pouring from within its body.");
-			else output(attacker.capitalA + attacker.short + " tosses a small device in " + target.a + possessive(target.short) + " direction, a thick trail of gasous vapour hanging heavily in the air to demark the arcing path taken.");
+			else if (target is PlayerCharacter) output(attacker.capitalA + attacker.uniqueName + " tosses a small device in your direction, great clouds of thick, gaseous vapour pouring from within its body.");
+			else output(attacker.capitalA + attacker.uniqueName + " tosses a small device in " + target.a + possessive(target.uniqueName) + " direction, a thick trail of gasous vapour hanging heavily in the air to demark the arcing path taken.");
 			
 			var d:int = 14 + attacker.level * 2;
 			var damage:TypeCollection = damageRand(new TypeCollection( { drug: d } ), 15);
@@ -1249,7 +1249,7 @@ package classes.GameData
 			attacker.createStatusEffect("Used Smuggled Stimulant", 3, 0, 0, 0, true, "", "", true, 0);
 			
 			if (attacker is PlayerCharacter) output("You inject yourself with a smuggled stimulant.");
-			else output(attacker.capitalA + attacker.short + " jams a small injector deep into their thigh, the stature visibly filling with energy!");
+			else output(attacker.capitalA + attacker.uniqueName + " jams a small injector deep into their thigh, the stature visibly filling with energy!");
 		}
 		
 		public static var BurstOfEnergy:SingleCombatAttack;
@@ -1259,13 +1259,13 @@ package classes.GameData
 			attacker.createStatusEffect("Used Burst of Energy", 0, 0, 0, 0, true, "", "", true, 0);
 			
 			if (attacker is PlayerCharacter) output("You dig deep and find a reserve of energy from deep within yourself!\n");
-			else output(attacker.capitalA + attacker.short + " visibly steels " + attacker.mfn("himself", "herself", "itself") + ", reaching deep and finding a reserve of energy!");
+			else output(attacker.capitalA + attacker.uniqueName + " visibly steels " + attacker.mfn("himself", "herself", "itself") + ", reaching deep and finding a reserve of energy!");
 		}
 		
 		public static var ConcussiveShot:SingleCombatAttack;
 		private static function ConcussiveShotImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
-			if (attacker is PlayerCharacter) output("You nock one of your concussive arrows and draw your bowstring back, taking careful aim at the space just ahead of " + target.a + target.short + ".");
+			if (attacker is PlayerCharacter) output("You nock one of your concussive arrows and draw your bowstring back, taking careful aim at the space just ahead of " + target.a + target.uniqueName + ".");
 			else throw new Error("Concussive Shot does not support a non-player attacker!");
 			
 			if (rangedCombatMiss(attacker, target, 0))
@@ -1282,7 +1282,7 @@ package classes.GameData
 				
 				if (target.physique()/2 + rand(20) + 1 >= attacker.aim()/2 + 10)
 				{
-					output(" though " + target.a + target.short + " resists the blast. Your stun-shot failed!");
+					output(" though " + target.a + target.uniqueName + " resists the blast. Your stun-shot failed!");
 				}
 				else
 				{
@@ -1335,7 +1335,7 @@ package classes.GameData
 				}
 				else
 				{
-					output("\n\nThe gray goo splatters across " + target.a + target.short + ", quickly congealing into a miniature googirl who quickly goes to work, attacking your enemy's most sensitive spots with gusto. ");
+					output("\n\nThe gray goo splatters across " + target.a + target.uniqueName + ", quickly congealing into a miniature googirl who quickly goes to work, attacking your enemy's most sensitive spots with gusto. ");
 				
 					damage = new TypeCollection( { tease: 33 } );
 					damageResult = applyDamage(damage, attacker, target, "suppress");
@@ -1353,24 +1353,24 @@ package classes.GameData
 			//Charged attack!
 			if(!attacker.hasStatusEffect("Wrench Charge"))
 			{
-				output(attacker.capitalA + attacker.short + " hefts her wrench up over her head, readying a powerful downward stroke. If you act quickly, you can interrupt her!");
+				output(attacker.capitalA + attacker.uniqueName + " hefts her wrench up over her head, readying a powerful downward stroke. If you act quickly, you can interrupt her!");
 				attacker.createStatusEffect("Wrench Charge", attacker.HP(),0,0,0);
 			}
 			//Already charged, lets do this!
 			else
 			{
 				//Interrupted
-				if(attacker.statusEffectv1("Wrench Charge") > attacker.HP()) output(attacker.capitalA + attacker.short + " staggers, dropping her heavy weapon down from its striking posture. She looks less than pleased by this development!");
+				if(attacker.statusEffectv1("Wrench Charge") > attacker.HP()) output(attacker.capitalA + attacker.uniqueName + " staggers, dropping her heavy weapon down from its striking posture. She looks less than pleased by this development!");
 				//Miss
 				else if(combatMiss(attacker, target))
 				{
-					output(attacker.capitalA + attacker.short + " brings her weapon down in a vicious two-handed strike but fails to connect!");
+					output(attacker.capitalA + attacker.uniqueName + " brings her weapon down in a vicious two-handed strike but fails to connect!");
 				}
 				//Hit
 				else
 				{
 					//[enemy.short][capital]
-					output(attacker.capitalA + attacker.short + " slams down her wrench in a heavy blow. It connects solidly, and your head is ringing from the brutal hit.");
+					output(attacker.capitalA + attacker.uniqueName + " slams down her wrench in a heavy blow. It connects solidly, and your head is ringing from the brutal hit.");
 					//{Stun chance}
 					if (!target.hasStatusEffect("Stunned") && target.physique() + rand(20) + 1 < 40)
 					{
@@ -1389,7 +1389,7 @@ package classes.GameData
 		public static var TripAttack:SingleCombatAttack;
 		private static function TripAttackImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
-			output(attacker.capitalA + attacker.short + " tries to trip you! ");
+			output(attacker.capitalA + attacker.uniqueName + " tries to trip you! ");
 			if (target.reflexes()/2 + rand(20) + 1 >= attacker.physique()/2 + 10) output("You neatly hop over the misguided attempt.");
 			else
 			{
@@ -1407,7 +1407,7 @@ package classes.GameData
 			var hit:Boolean = true;
 			//Hacky-ass solution for male raskvel. Will need tweaked if a proper mob ever uses the attack
 			if(attacker is RaskvelMale) output("<i>“Boo! Raaaaar!”</i> shouts the big raskvel, waving his arms at you. At the same time, one of the others pulls an injector gun from his belt and fires three needles at you near soundlessly.")
-			else output(attacker.capitalA + attacker.short + " pulls a gun off her hip, levels it, and pulls the trigger. The only reports are a trio of near-silent hisses as three injectors fly through the air toward you.");
+			else output(attacker.capitalA + attacker.uniqueName + " pulls a gun off her hip, levels it, and pulls the trigger. The only reports are a trio of near-silent hisses as three injectors fly through the air toward you.");
 			//Blocked
 			if(target.shields() > 0) 
 			{

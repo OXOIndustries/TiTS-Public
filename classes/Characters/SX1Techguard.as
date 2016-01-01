@@ -280,9 +280,11 @@ package classes.Characters
 			if (numHits == 0) output(" All of her shots go wide!");
 			else
 			{
-				output(" " + num2Text(numHits) + " bullet");
+				output(" " + num2Text(numHits, true) + " bullet");
 				if (numHits > 1) output("s");
-				output(" hit, drilling " + (target is PlayerCharacter ? "you" : target.a + target.short) + "!");
+				output(" hit");
+				if (numHits == 1) output("s");
+				output(", drilling " + (target is PlayerCharacter ? "you" : target.a + target.short) + "!");
 
 				var damage:TypeCollection = rangedDamage();
 				damage.multiply(0.4 * numHits);
