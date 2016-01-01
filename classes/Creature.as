@@ -5022,19 +5022,19 @@ package classes {
 				{
 					sizeDescripts[sizeDescripts.length] = "ripped";
 					sizeDescripts[sizeDescripts.length] = "chiseled";
-					//sizeDescripts[sizeDescripts.length] = "rock-hard";
+					sizeDescripts[sizeDescripts.length] = "rock-hard";
 					sizeDescripts[sizeDescripts.length] = "washboard";
 					sizeDescripts[sizeDescripts.length] = "ab-lined";
-					//sizeDescripts[sizeDescripts.length] = "well-toned";
+					sizeDescripts[sizeDescripts.length] = "well-toned";
 				}
 				if(tone >= 50)
 				{
-					//sizeDescripts[sizeDescripts.length] = "toned";
+					sizeDescripts[sizeDescripts.length] = "toned";
 					sizeDescripts[sizeDescripts.length] = "sculpted";
 				}
 				else if(tone >= 30)
 				{
-					//sizeDescripts[sizeDescripts.length] = "lightly-toned";
+					sizeDescripts[sizeDescripts.length] = "lightly-toned";
 					sizeDescripts[sizeDescripts.length] = "tight";
 				}
 				if(tone < 50)
