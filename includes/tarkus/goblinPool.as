@@ -1252,6 +1252,7 @@ public function arbetzPoolOptions(response:int = 0):void
 		processTime(2);
 		
 		//Pool area unlocked, "Petr" added to front desk options, “Pool Area” removed from front desk options
+		output("\n\n<b>You’ve bought an Arbetz Travel Agency Premium Klub membership card which allows you access to the pool area.</b>");
 		pc.credits -= 5000;
 		pc.createKeyItem("Arbetz Travel Agency Membership", 0, 0, 0, 0, "");
 		flags["PETR_UNLOCKED"] = 1;
@@ -1398,6 +1399,7 @@ public function arbetzPoolJUSTDOIT(sex:int = 0):void
 	output(", but hey, free pool. That’s what matters here.");
 	
 	//Pool area unlocked, "Petr" added to front desk options, “Pool Area” removed from front desk options
+	output("\n\n<b>You’ve earned an Arbetz Travel Agency Premium Klub membership card which allows you access to the pool area.</b>");
 	pc.createKeyItem("Arbetz Travel Agency Membership", 0, 0, 0, 0, "");
 	flags["PETR_UNLOCKED"] = 1;
 	
