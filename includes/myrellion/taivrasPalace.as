@@ -725,7 +725,7 @@ public function useDatGloryhole():void
 
 	output("\n\nThe stone is cold, but it’s smooth and wet, the remnants of what could be years of sexual excess and lube smeared across the tunnel. You only need to endure the rocky gloryhole for a moment, though, before your [pc.cock] slides into the green substance waiting on the other side. Whatever it is, it’s delightfully warm and stickily wet, just like ");
 	if(celiseIsCrew()) output("fucking Celise");
-	else output("sliding your tool into a bowl of heated-up yoghurt");
+	else output("sliding your tool into a bowl of heated-up yogurt");
 	output(". The voice on the other side makes a delighted squeal, and you’re treated to a faint sucking sensation around your member, like the substance is drawing you in.");
 
 	output("\n\nIs that a goo-girl on the other side? It has to be, you tell yourself");
@@ -867,7 +867,7 @@ public function pcFuckDatGooWivCockVictory():void
 	author("Savin");
 	flags["CRYSTAL_GOO_DEFEAT"] = 3;
 	output("With the goo-girl lying in a defeated, jiggling heap on the ground, completely at your mercy... your mind starts to wander. How could you take advantage of this wriggling heap of a broodmare? As you think over the many, many options her alien body presents, you start to peel off your [pc.gear]. The goo’s big, purple eyes roll towards you, looking up from her cowering. Her arms are still wrapped protectively around her crystal belly, but you see her gaze settle on your [pc.cockBiggest] with a look of abject hunger in her eyes. Looks like ");
-	if(flags["CRYSTAL_GOO_GLORYHOLED"] != 1) output("she wants what you’re packing, even if her queen might take offense");
+	if(flags["CRYSTAL_GOO_GLORYHOLED"] == undefined) output("she wants what you’re packing, even if her queen might take offense");
 	else output("she enjoyed round one. Now to see if she’s ready for round two...");
 
 	output("\n\nGiving her a lascivious grin, you sashay over to the cowering goo. As you move, your hand wraps around your ");
@@ -2436,7 +2436,7 @@ public function useRepeatGloryhole():void
 
 	output("\n\nThe stone is cold, but it’s smooth and wet, the remnants of what could be years of sexual excess and lube smeared across the tunnel. You only need to endure the rocky gloryhole for a moment, though, before your [pc.cock] slides into the green substance waiting on the other side. Whatever it is, it’s delightfully warm and stickily wet, just like ");
 	if(celiseIsCrew()) output("fucking Celise");
-	else output("sliding your tool into a bowl of heated-up yoghurt");
+	else output("sliding your tool into a bowl of heated-up yogurt");
 	output(". The voice on the other side makes a delighted squeal, and you’re treated to a faint sucking sensation around your member, like the substance is drawing you in.");
 
 	output("\n\n");
@@ -2482,11 +2482,27 @@ public function useRepeatGloryhole():void
 	output("!”</i> the girl calls out from inside her compartment, making series of wet squelches as she adjusts to the extra fluid floating inside her. <i>“Mmm, I love the taste of your ");
 	if(flags["CRYSTAL_GOO_GLORYHOLED"] == undefined) output("new ");
 	output("cum! Gimme some more, like, real soon, okay?”</i>");
-
-	output("\n\nYou’re sure you will. For now, though, there’s a big, soft bed calling your name. You dry yourself off and crawl in, content to bask in the afterglow for a while...");
+	
+	// First time!
+	if(flags["CRYSTAL_GOO_GLORYHOLED"] == undefined)
+	{
+		output(" There is a slight pause, and then an emerald blob peeks out from the hole, forming itself into a human-like head with big elfin ears and an expression of intense suspicion.");
+		output("\n\n<i>“Heyyy... you’re not the queen!”</i> she yelps, her purple eyes glaring at you. <i>“Nobody’s allowed to use the queen’s goo but Taivra!”</i>");
+		output("\n\nHer gooey mass attempts to make its way toward you as you try your best to explain. Suddenly she freezes before completely grabbing your [pc.foot]. Taivra is standing behind you in a commanding stance.");
+		output("\n\n<i>“My, my. It seems I have forgotten to introduce you to my pet,”</i> the queen says. Kneeling down, she gives the goo girl a pat. <i>“This is Beryl, my personal incubator - she tends to be a bit overprotective of my eggs, but I wouldn't want it any other way...”</i>");
+		output("\n\nHer loyal “pet” responds with a bubbly smile.");
+		output("\n\n<i>“And this,”</i> Taivra directs the goo’s attention to you, <i>“is [pc.fullName], the new Nyrean Royal of the palace. [pc.HeShe] is allowed full access to my chambers, </i>including<i> my little pets.”</i> Looking at your slime-slicked cock, the queen smiles. <i>“Although it seems like you two were getting along just fine earlier.”</i>");
+		output("\n\n<i>“Ohhh, okay! I’m sorry if I, like, scared you and stuff, [pc.name]!”</i> Beryl apologizes.");
+		output("\n\nYou accept her apology, nodding with whatever energy you have left in you. Beryl then disappears into her home behind the gloryhole, lightly giggling as she goes.");
+		output("\n\n<i>“Here,”</i> Taivra tosses you a towel from her royal drawer, <i>“Feel free to use my bed to rest in. I’ve trained her all too well so I know it will be wise thing to do.”</i>");
+		output("\n\nAs she leaves the room, you follow her advice by drying yourself off and crawling into her big, soft bed to bask in the afterglow for a while...");
+	}
+	else output("\n\nYou’re sure you will. For now, though, there’s a big, soft bed calling your name. You dry yourself off and crawl in, content to bask in the afterglow for a while...");
+	
 	//[Next] //Pass ~1 hour
 	processTime(60);
 	pc.orgasm();
+	IncrementFlag("CRYSTAL_GOO_GLORYHOLED");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
