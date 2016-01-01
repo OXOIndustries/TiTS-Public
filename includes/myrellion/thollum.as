@@ -283,7 +283,7 @@ public function tourPartTwo():void
 		output(" The classes are full right now, packed with girls in color-coded vests and skirts trying to learn.");
 	}
 	else output(" The girls are absent right now; only a few adults linger in the halls and classrooms.");
-	output("”</i>These are the classrooms, as I’m sure is obvious. I’m equally sure you know what a classroom is,”</i> says your escort, dryly. <i>“Girls without other responsibilities, such as the garden alcoves, do their learning here.”</i>");
+	output("\n\n<i>“These are the classrooms, as I’m sure is obvious. I’m equally sure you know what a classroom is,”</i> says your escort, dryly. <i>“Girls without other responsibilities, such as the garden alcoves, do their learning here.”</i>");
 
 	//if first encounter and time 0600-0659 or 1900-2059
 	if(flags["THOLLUM_TOURED"] == undefined && (hours == 6 || (hours == 19 && hours < 21))) 
@@ -406,7 +406,12 @@ public function yarastaAppearance():void
 	output("\n\nHer eyes are a rare gray morph of the usual myr compound eye. They peer through silver half-frame glasses which rest on the bridge of her nose with dignity. When asked, she’ll claim that her eyesight is no worse than any myr’s and that she only uses the glasses to watch her students from a greater distance. But the only way to test that assertion would be to steal the specs, and she never lets them out of her sight, so to speak.");
 
 	//(only if 1900-2159 and Giala unlocked)
-	if(hours >= 19 && hours < 22) output("\n\nHer friend Giala is also here, a shorter, <i>much</i> more filled-out sumin who regards you with dark-but-friendly eyes. Unlike Yarasta, she wears no clothes, and you can hardly fault her for showing off such perfect, honey-stuffed F-cups. Chitin girdles her waist and pelvis, nicely disguising any chub from all the food she eats to keep her nectar flowing; the black material even reaches partway up her ribcage on each side, pressing against her sideboobs and ensuring her cleavage is always turned to maximum.\n\nCarapace covers her arms from the elbows down but stops at her hands, in a fingerless glove style. Her legs are less armored, allowing her jiggly butt to, well, jiggle quite a lot - her plates do, however, come up to mid-thigh, completing the burlesque look. Of course, she has a big juicy abdomen and the obligate antennae sticking from her sandy blonde hair, which is pulled into a low, rakishly-slung ponytail and tied with a little long-stemmed mushroom.");
+	if(hours >= 19 && hours < 22)
+	{
+		output("\n\nHer friend");
+		if(9999 == 0) output(" Giala");
+		output(" is also here, a shorter, <i>much</i> more filled-out sumin who regards you with dark-but-friendly eyes. Unlike Yarasta, she wears no clothes, and you can hardly fault her for showing off such perfect, honey-stuffed F-cups. Chitin girdles her waist and pelvis, nicely disguising any chub from all the food she eats to keep her nectar flowing; the black material even reaches partway up her ribcage on each side, pressing against her sideboobs and ensuring her cleavage is always turned to maximum.\n\nCarapace covers her arms from the elbows down but stops at her hands, in a fingerless glove style. Her legs are less armored, allowing her jiggly butt to, well, jiggle quite a lot - her plates do, however, come up to mid-thigh, completing the burlesque look. Of course, she has a big juicy abdomen and the obligate antennae sticking from her sandy blonde hair, which is pulled into a low, rakishly-slung ponytail and tied with a little long-stemmed mushroom.");
+	}
 	//present Yarasta options
 
 }
@@ -444,7 +449,7 @@ public function talkToYarasta():void
 				output("<i>“And");
 				if(pc.isBimbo()) output(", like, ");
 				else output("... ");
-				output("what did you <i>do</i> once you snuck your guest in?”</i> you ask, pruriently interested.");
+				output("what did you <i>do</i> once you snuck your guest in?”</i> you ask, pruriently interested. ");
 			}
 			output("<i>“Did you sneak in ‘guests’ a lot?”</i> you ask, laying emphasis on the ‘guests’.");
 
@@ -482,8 +487,8 @@ public function talkToYarastaAboutTheThollum():void
 	{
 		if(pc.isBimbo() || pc.isBro())
 		{
-			if(pc.isBimbo()) output("\n\n<i>“I saw some stuff on the tour but, like, I still can’t get over how many kids you have. This school is totally crazy! How does it even work?”</i> you ask.");
-			else output("\n\n<i>“I saw some stuff on the tour but, like, I still can’t get over how many kids you have. Would you tell me more about the school?”</i> you ask.");
+			if(pc.isBimbo()) output("<i>“I saw some stuff on the tour but, like, I still can’t get over how many kids you have. This school is totally crazy! How does it even work?”</i> you ask.");
+			else output("<i>“I saw some stuff on the tour but, like, I still can’t get over how many kids you have. Would you tell me more about the school?”</i> you ask.");
 			output("\n\n<i>“You know I didn’t birth them, of course?”</i> she replies. You nod vigorously, and she continues, <i>“The children are indeed tiring, but rewarding. Most of the girls are very polite and obedient, but there are always some that disrupt the classes or resist authority. Usually I can get them in line with the group, but sometimes I lose whole half-days because the focus is gone. And then there are some that can only think about sex, like you.”</i>");
 			output("\n\nYour attention snaps back from her smooth thighs, jarred into the conversation. The prefect laughs merrily.");
 		}
@@ -515,7 +520,7 @@ public function talkToYarastaAboutTheThollum():void
 	{
 		if(pc.isBimbo())
 		{
-			output("\n\n<i>“So, like, I know we talked about it before, but could you go over the thollum again?”</i> you ask, feeling like you’re back in school.");
+			output("<i>“So, like, I know we talked about it before, but could you go over the thollum again?”</i> you ask, feeling like you’re back in school.");
 			output("\n\n<i>“Certainly,”</i> Yarasta answers.");
 		}
 		else
