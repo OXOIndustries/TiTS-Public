@@ -50,6 +50,7 @@
 			return false;
 		}
 		public function addFlag(arg:int):void {
+			if(hasFlag(arg)) return;
 			roomFlags[roomFlags.length] = arg;
 		}
 		public function removeFlag(arg:int):void {

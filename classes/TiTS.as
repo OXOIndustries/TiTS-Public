@@ -93,6 +93,7 @@
 		include "../includes/debug.as";
 		include "../includes/engine.as";
 		include "../includes/game.as";
+		include "../includes/gameStats.as";
 		include "../includes/gooExtras.as";
 		include "../includes/lightsOut.as";
 		include "../includes/items.as";
@@ -198,6 +199,7 @@
 		include "../includes/newTexas/zephyr.as";
 		
 		//Fourth planet
+		include "../includes/myrellion/anzhelaRedMyrMedic.as";
 		include "../includes/myrellion/asennia.as";
 		include "../includes/myrellion/bathHouse.as";
 		include "../includes/myrellion/cockvines.as";
@@ -328,7 +330,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.6.19";
+			version = "0.6.24";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -662,6 +664,8 @@
 		
 		public function levelUpHandler(e:Event = null):void
 		{
+			if ((pc as PlayerCharacter).short.length == 0) return;
+			
 			if (!this.userInterface.levelUpButton.isActive) return;
 			
 			if (!this.userInterface.levelUpButton.isHighlighted)

@@ -286,15 +286,23 @@ public function buyItemGo(arg:ItemSlotClass):void {
 	
 	//Emmy magic!
 	if(shopkeep is Emmy) flags["PURCHASED_FROM_EMS"] = 1;
-	//Cheese shit for GaloMax
-	if(arg is GaloMax)
-	{
-		if(shopkeep is Gene) flags["PURCHASED_GENES_GALO"] = 1;
-		else if(shopkeep is Sera) flags["PURCHASED_SERAS_GALO"] = 1;
-	}
 	// Renamed from lootList so I can distinguish old vs new uses
 	var purchasedItems:Array = new Array();
 	purchasedItems[purchasedItems.length] = arg.makeCopy();
+	//Cheese shit for GaloMax
+	if(arg is GaloMax)
+	{
+		if(shopkeep is Gene) 
+		{
+			flags["PURCHASED_GENES_GALO"] = 1;
+			chars["GENE"].destroyItem(new GaloMax());
+		}
+		else if(shopkeep is Sera) 
+		{
+			flags["PURCHASED_SERAS_GALO"] = 1;
+			chars["SERA"].destroyItem(new GaloMax());
+		}
+	}
 	pc.credits -= price;
 	//Set everything to take us back to buyItem!
 	itemScreen = buyItem;
@@ -664,6 +672,18 @@ public function equipItem(arg:ItemSlotClass):void {
 	}
 }
 
+public function isSameItem(itemA:ItemSlotClass, itemB:ItemSlotClass):Boolean
+{
+	if (itemA.hasRandomProperties == false && itemB.hasRandomProperties == false && itemA.shortName == itemB.shortName) return true;
+	if (itemA.hasRandomProperties == true || itemB.hasRandomProperties == true)
+	{
+		// Add any other specific checks here!
+		if(itemA.longName == itemB.longName) return true;
+	}
+	// Nothing matches!
+	return false;
+}
+
 public function itemCollect(newLootList:Array, clearScreen:Boolean = false):void 
 {
 	
@@ -681,14 +701,8 @@ public function itemCollect(newLootList:Array, clearScreen:Boolean = false):void
 		var iSlot:ItemSlotClass = target.inventory[i] as ItemSlotClass;
 		
 		// Check if same item && space in stack
-		var isSameItem:Boolean = false;
-		if
-		(	(tItem.hasRandomProperties == false && tItem.shortName == iSlot.shortName)
-		||	(tItem.hasRandomProperties == true && tItem.longName == iSlot.longName)
-		)	isSameItem = true;
-		
 		//if (iSlot.shortName == tItem.shortName && iSlot.quantity < iSlot.stackSize)
-		if (isSameItem && iSlot.quantity < iSlot.stackSize)
+		if (isSameItem(tItem, iSlot) && iSlot.quantity < iSlot.stackSize)
 		{
 			// Check if 100% merge will go past max stack
 			if (iSlot.quantity + tItem.quantity > iSlot.stackSize)
@@ -723,6 +737,7 @@ public function itemCollect(newLootList:Array, clearScreen:Boolean = false):void
 		this.addButton(1,"Discard", discardItem, newLootList);
 		//Hacky fix. If you hit useLoot with stuff that has its own submenus, it'll overwrite the submenu with the loot info for the next item. For instance, if you loot a hand cannon and a spear, then equip the hand cannon, your old ZK rifle will vanish into the ether while the game jumps over it to the spear.
 		if ((newLootList.length >= 2)) addDisabledButton(2,"Use","Use","You cannot use an item while there are more items in the loot queue.");
+		else if ((newLootList[0] as ItemSlotClass).hasFlag(GLOBAL.NOT_CONSUMED_BY_DEFAULT)) addDisabledButton(2,"Use","Use","You cannot use this item with a full inventory.");
 		else if ((newLootList[0] as ItemSlotClass).isUsable == true) this.addButton(2,"Use", useLoot, newLootList);
 	}
 	else
@@ -1023,7 +1038,8 @@ public function storeItem(args:Array):void
 		for (var i:int = 0; i < pc.ShipStorageInventory.length; i++)
 		{
 			var sItem:ItemSlotClass = pc.ShipStorageInventory[i] as ItemSlotClass;
-			if (sItem.shortName == item.shortName && sItem.quantity < sItem.stackSize)
+			//if (sItem.shortName == item.shortName && sItem.quantity < sItem.stackSize)
+			if (isSameItem(sItem, item) && sItem.quantity < sItem.stackSize)
 			{
 				if (sItem.quantity + item.quantity <= sItem.stackSize)
 				{
@@ -1106,7 +1122,8 @@ public function takeItem(args:Array):void
 		for (var i:int = 0; i < pc.inventory.length; i++)
 		{
 			var sItem:ItemSlotClass = pc.inventory[i] as ItemSlotClass;
-			if (sItem.shortName == item.shortName && sItem.quantity < sItem.stackSize)
+			//if (sItem.shortName == item.shortName && sItem.quantity < sItem.stackSize)
+			if (isSameItem(sItem, item) &&  sItem.quantity < sItem.stackSize)
 			{
 				if (sItem.quantity + item.quantity <= sItem.stackSize)
 				{

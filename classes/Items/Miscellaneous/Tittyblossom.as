@@ -25,12 +25,12 @@
 			this.shortName = "Tittyblossom";
 			
 			//Regular name
-			this.longName = "popsicle labelled 'Tittyblossom'";
+			this.longName = "popsicle labeled 'Tittyblossom'";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a popsicle labelled 'Tittyblossom'";
+			this.description = "a popsicle labeled 'Tittyblossom'";
 			
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "Marketed as \"Estrobloom Plus\" but better known colloquially as \"Tittyblossom,\" this hormone package is an enhanced version of the popular feminizing product Estrobloom. Packed with micromachines and stimulants to promote rapid breast growth in addition to standard feminization, Tittyblossom is a smash hit among those looking to enhance their feminine side.";
@@ -377,7 +377,7 @@
 					if(kGAMECLASS.silly) kGAMECLASS.output("No matter how much of a viking you once were, now y");
 					else kGAMECLASS.output("Y");
 					kGAMECLASS.output("ou no longer have a beard!</b>");
-					target.beardLength = 0;
+					target.removeBeard();
 				}
 				//Growing TiTS
 				//{PC has a flat chest / tiny lil' moobs; always append as the last TF}

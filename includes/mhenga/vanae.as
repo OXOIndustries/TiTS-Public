@@ -454,7 +454,6 @@ public function vanaePCVictory():void
 				else addDisabledButton(2,"Cuff&Fuck","Cuff & Fuck","You need a penis to make use of your grav-cuffs this way.");
 			}
 		}
-	}
 	else
 	{
 		if (enemy is HuntressVanae)
@@ -1490,7 +1489,7 @@ public function vanaeHuntressMilkBath():void
 		if (pc.zilScore() < 4 && pc.naleenScore() < 5) output(" , off-worlder");
 		output(".”</i> The alien huntress informs you, all the while squirting more milk onto your already slickened body. <i>“...And because you've been so good, I'll be nice, and touch you a little.”</i>");
 
-		output("\n\nShe reaches out with a single toe and strokes your slimey loins. The tiniest touch causes your lower body to seize up with pleasure. A few strokes and you're already unloading more of your spunk, letting it splash wildly against the underside of her [enemy.foot]. You moan and beg for more; her drug enhanced touch more intense than anything you've ever experienced.");
+		output("\n\nShe reaches out with a single toe and strokes your slimy loins. The tiniest touch causes your lower body to seize up with pleasure. A few strokes and you're already unloading more of your spunk, letting it splash wildly against the underside of her [enemy.foot]. You moan and beg for more; her drug enhanced touch more intense than anything you've ever experienced.");
 
 		output("\n\n<i>“You want more,");
 		if (pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" [pc.race]");
@@ -1849,7 +1848,7 @@ public function vanaeHuntressPCDefeatMilkbath():void
 		if (pc.zilScore() < 4 && pc.naleenScore() < 5) output(", off-worlder");
 		output(".”</i> The alien huntress informs you, all the while squirting more milk onto your already slickened body. <i>“...And because you've been so good, I'll be nice, and touch you a little.”</i>");
 
-		output("\n\nShe reaches out with a single toe and strokes your slimey loins. The tiniest touch causes your lower body to seize up with pleasure. A few strokes and you're already unloading more of your spunk, letting it splash wildly against the underside of her [enemy.foot]. You moan and beg for more; her drug enhanced touch more intense than anything you've ever experienced.");
+		output("\n\nShe reaches out with a single toe and strokes your slimy loins. The tiniest touch causes your lower body to seize up with pleasure. A few strokes and you're already unloading more of your spunk, letting it splash wildly against the underside of her [enemy.foot]. You moan and beg for more; her drug enhanced touch more intense than anything you've ever experienced.");
 
 		output("\n\n<i>“You want more,");
 		if (pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" [pc.race]");

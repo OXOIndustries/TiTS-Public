@@ -501,7 +501,7 @@ public function ceriaHairStyleChoices():void
 	else addDisabledButton(2,"Pigtails","Pigtails","You already have a ponytail.");
 	//[Curls]
 	if(pc.hairStyle != "curls") addButton(3,"Curls",styleConfirmation,"curls","Curls","Get your hair styled into curls.");
-	else addDisabledButton(3,"Curls","Curlse","You already have your hair curled.");
+	else addDisabledButton(3,"Curls","Curls","You already have your hair curled.");
 	//[Braided]
 	if(pc.hairStyle != "braided" && pc.hairLength >= 5) addButton(4,"Braided",styleConfirmation,"braided","Braided","Get your hair styled into a braid.");
 	else if(pc.hairStyle != "braided") addDisabledButton(4,"Braided","Braided","Your hair isn't long enough to be braided.");
@@ -526,13 +526,13 @@ public function styleConfirmation(hStyle:String = ""):void
 	clearOutput();
 	showCeria();
 	author("Couch");
-	output("<i>“Okay, so you want your hair ");
-	if(hStyle == "ponytail") output("in a ");
-	else if(hStyle == "pigtails") output("in ");
-	else if(hStyle == "curls") output("in ");
-	else if(hStyle == "braided") output("in a ");
-	else if(hStyle == "afro") output("in an ");
-	else if(hStyle == "mohawk") output("in a ");
+	output("<i>“Okay, so you want your hair");
+	if(hStyle == "ponytail") output(" in a ");
+	else if(hStyle == "pigtails") output(" in ");
+	else if(hStyle == "curls") output(" in ");
+	else if(hStyle == "braided") output(" ");
+	else if(hStyle == "afro") output(" worn as an ");
+	else if(hStyle == "mohawk") output(" done up as a ");
 	output(hStyle + "? That’ll be 1200 credits.”</i>");
 	processTime(1);
 	//[OK] Go to Styling

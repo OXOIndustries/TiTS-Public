@@ -10,7 +10,7 @@
 		//constructor
 		public function Stockings()
 		{
-			this._latestVersion = 1;
+			this._latestVersion = 2;
 
 			this.quantity = 1;
 			this.stackSize = 1;
@@ -46,6 +46,12 @@
 			this.fortification = 0;
 			
 			this.version = _latestVersion;
+		}
+		
+		public function UpgradeVersion1(d:Object):void
+		{
+			d.basePrice = 850;
+			d.sexiness = 2;
 		}
 	}
 }

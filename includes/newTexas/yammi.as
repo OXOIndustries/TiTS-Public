@@ -4,9 +4,13 @@
 //Since Yammi can be removed from the shop later, making this so I only have to change stuff once.
 public function yammiShopDisplay():void
 {
+	showYammi();
+	author("Lady Jenn");
+}
+public function showYammi(nude:Boolean = false):void
+{
 	showName("\nYAMMI");
 	showBust("YAMMI");
-	author("Lady Jenn");
 }
 
 public function icedTeatsExteriorBonusFunc():Boolean
@@ -14,6 +18,11 @@ public function icedTeatsExteriorBonusFunc():Boolean
 	author("Lady Jenn");
 	output("\n\nTo the south, a colorful building boasts an illuminated signboard proudly displaying the title: Iced Teats Frozen Treats and Confectionery Company. Beneath it is the catch line: The number one supplier in female-based frozen sweets. All flavors harvested fresh from the breast, guaranteed safe for any humanoid or similar entity! Above all this is an image of a fetching pink skinned woman with bright crimson hair, dressed in barely enough clothing to contain her assets. She is reclined comfortably and holding a bowl of what appears to be ice cream, which is cleverly animated to cascade slowly through a number of appetizing colors.");
 	if(flags["MET_YAMMI"] == undefined) output("\n\nWell, maybe it’s worth checking out! After all, if anyone deserves a cool treat it’s a brave space explorer, risking life and limb day after day!");
+	if(flags["KAEDE_FUCKED"] != undefined && flags["KAEDE_FUCKED"] > 0 && flags["KAEDE_NT_ENCOUNTER"] == undefined)
+	{
+		kaedeThreeSomesOrSpawnOrSomethingCassTits();
+		return true;
+	}
 	return false;
 }
 
@@ -81,6 +90,23 @@ public function questionsForYammi():void
 	addButton(14,"Back",yammiRepeatMenu,false);
 }
 
+// Ice Cream scoops
+public function getIceCreamContainer(iType:int = 0, sSize:String = ""):PregnancyPlaceholder
+{
+	var iSize:Number = 0;
+	if (sSize == "cone") iSize = 5;
+	if (sSize == "bowl") iSize = 15;
+	if (sSize == "feast") iSize = 50;
+	
+	var ppIceCream:PregnancyPlaceholder = new PregnancyPlaceholder();
+	ppIceCream.breastRows[0].breasts = 1;
+	ppIceCream.breastRows[0].breastRatingRaw = iSize;
+	ppIceCream.milkType = iType;
+	ppIceCream.milkMultiplier = 100;
+	ppIceCream.milkFullness = 100;
+	return ppIceCream;
+}
+
 //Choose ‘Cone’
 public function orderAYammiCone():void
 {
@@ -138,14 +164,14 @@ public function gewinFruit(servingType:String = "cone"):void
 	{
 		if(flags["HAD_GEWINFRUIT"] == undefined)
 		{
-			output("You’ve heard of Gewinfruit. They’re supposed to be very rich in flavor, so you decide to try it while it’s just a cone-full. The grey-skinned woman inside looks a touch on the weary side as you set your cone in the holder. She must be one of the popular ones!");
+			output("You’ve heard of Gewinfruit. They’re supposed to be very rich in flavor, so you decide to try it while it’s just a cone-full. The gray-skinned woman inside looks a touch on the weary side as you set your cone in the holder. She must be one of the popular ones!");
 			output("\n\nWhen you pull the lever, she closes her eyes slowly. It takes a couple seconds, but the machine quick-freezes and whips her fresh breast-juice into a kiwi-green ice cream. You can feel the vibration of the machine as it works pumps and motors inside, then your cone is full, leaving her visibly sighing and looking disappointed.");
 			output("\n\nThe ice cream is very savory, and you take your time to finish it. It feels like it fills you more than maybe it should.");
 		}
 		//Repeat Cone
 		else
 		{
-			output("You decide the Gewinfruit was worth a second go. The grey skinned dispenser girl watches you approach and you almost hear a groan. Clearly she gets a lot of small time cones and not as many bowls as she would like. While you sympathize, you’re only here for a treat. The cone is slow to fill again, proving her continued popularity. You leave her somewhat disappointed again, but enjoy your savory green ice cream anyways.");
+			output("You decide the Gewinfruit was worth a second go. The gray skinned dispenser girl watches you approach and you almost hear a groan. Clearly she gets a lot of small time cones and not as many bowls as she would like. While you sympathize, you’re only here for a treat. The cone is slow to fill again, proving her continued popularity. You leave her somewhat disappointed again, but enjoy your savory green ice cream anyways.");
 		}
 	}
 	//Bowl/Feast
@@ -153,7 +179,7 @@ public function gewinFruit(servingType:String = "cone"):void
 	{
 		if(flags["HAD_GEWINFRUIT"] == undefined)
 		{
-			output("Gewinfruit, you have been told, are quite flavor-rich. This sounds right up your alley! You set the bowl in place to fill, and the grey-skinned woman inside the machine perks up. She had looked a bit weary, probably a popular flavor, but the prospect of certain pleasure has her attention.");
+			output("Gewinfruit, you have been told, are quite flavor-rich. This sounds right up your alley! You set the bowl in place to fill, and the gray-skinned woman inside the machine perks up. She had looked a bit weary, probably a popular flavor, but the prospect of certain pleasure has her attention.");
 			output("\n\nYou pull the lever, and her eyes close as the machinery hums to life. For several seconds you watch her squirm in her casing, then the machine begins to fill your bowl with freshly pumped, frozen, and whipped ice cream in a curious kiwi-green color. As your bowl fills with ice cream, her face continues to darken, until her eyes suddenly snap open in a look of sexual bliss you know well. It takes a couple seconds after that to finish filling your bowl.");
 			output("\n\nYou stroll away, trying the first spoonful and finding a savory taste to your snack. This looks like something you’re going to enjoy, and it turns out to be pretty filling.");
 		}
@@ -179,6 +205,7 @@ public function gewinFruit(servingType:String = "cone"):void
 		processTime(12);
 		pc.HP(50);
 	}
+	pc.milkInMouth(getIceCreamContainer(GLOBAL.FLUID_TYPE_MILK, servingType));
 	clearMenu();
 	addButton(0,"Next",yammiRepeatMenu,true);
 }
@@ -234,6 +261,7 @@ public function getYokto(servingType:String = "cone"):void
 		pc.HP(25);
 		pc.energy(25);
 	}
+	pc.milkInMouth(getIceCreamContainer(GLOBAL.FLUID_TYPE_MILK, servingType));
 	clearMenu();
 	addButton(0,"Next",yammiRepeatMenu,true);
 }
@@ -248,7 +276,7 @@ public function blitzaberryCone(servingType:String = "cone"):void
 	{
 		if(flags["HAD_BLITZABERRY"] == undefined)
 		{
-			output("You remember Blitzaberries... you had some way back, and you remember the sugar rush fondly! It’s still a bit odd to imagine a connection between the small dark berries and the chalk-white, grey haired woman inside the machine, but you hope for the best. The woman almost appears to be napping as you approach.");
+			output("You remember Blitzaberries... you had some way back, and you remember the sugar rush fondly! It’s still a bit odd to imagine a connection between the small dark berries and the chalk-white, gray haired woman inside the machine, but you hope for the best. The woman almost appears to be napping as you approach.");
 			output("\n\nYour cone sits in the holder, and the dark purple ice cream begins to flow. The woman’s expression hardly changes from the meditative expression she wore when you arrived. Even as you walk away, there’s no reaction. Must be nice to be able to do that with your tits in a literal vice, you decide.");
 			output("\n\nThe cone surprises you by tasting exactly like fresh Blitzaberries! They’re so sickeningly sweet you almost can’t eat it, but fond childhood memories push you to devour the whole cone in only a handful of bites. In a few minutes you’re shaking slightly and suddenly want to do ANYTHING to burn off some energy!");
 		}
@@ -260,7 +288,7 @@ public function blitzaberryCone(servingType:String = "cone"):void
 	{
 		if(flags["HAD_BLITZABERRY"] == undefined)
 		{
-			output("When it comes to sugar rushes, you’ve never had anything like a Blitzaberry. You had them when you were much younger and you still recall them with fondness. The chalk-white skinned woman inside the machine has grey hair, neither of which exactly screams ‘blitzaberry’ to you since they’re very small and dark, but you’re sure she must be the right one... maybe?");
+			output("When it comes to sugar rushes, you’ve never had anything like a Blitzaberry. You had them when you were much younger and you still recall them with fondness. The chalk-white skinned woman inside the machine has gray hair, neither of which exactly screams ‘blitzaberry’ to you since they’re very small and dark, but you’re sure she must be the right one... maybe?");
 			output("\n\nYou set your bowl in place, noting her oddly serene and sleepy expression. When you crank the handle, the machine buzzes to life, and dark purple ice cream begins to steadily fill it up. Her expression hardly moves until almost the exact point that you release the handle, then she suddenly opens her eyes and reaches physical nirvana. As her expression changes to a dreamy one, you try a spoonful of your snack.");
 			output("\n\nHey, they nailed it! Just as sweet as you remember, and by the time you’ve finished the bowl you’ll know it’s just as sugary too, since your spoon will be rattling around even when you’re trying to hold still. Ah, sugar!");
 		}
@@ -283,6 +311,7 @@ public function blitzaberryCone(servingType:String = "cone"):void
 		processTime(12);
 		pc.energy(75);
 	}
+	pc.milkInMouth(getIceCreamContainer(GLOBAL.FLUID_TYPE_MILK, servingType));
 	clearMenu();
 	addButton(0,"Next",yammiRepeatMenu,true);
 }
@@ -341,6 +370,7 @@ public function strawberryIcedCream(servingType:String = "cone"):void
 		pc.HP(25);
 		pc.energy(25);
 	}
+	pc.milkInMouth(getIceCreamContainer(GLOBAL.FLUID_TYPE_STRAWBERRY_MILK, servingType));
 	clearMenu();
 	addButton(0,"Next",yammiRepeatMenu,true);
 }
@@ -393,6 +423,7 @@ public function JumbijumbiCream(servingType:String = "cone"):void
 		pc.HP(9);
 		pc.energy(9);
 	}
+	pc.milkInMouth(getIceCreamContainer(GLOBAL.FLUID_TYPE_MILK, servingType));
 	clearMenu();
 	addButton(0,"Next",yammiRepeatMenu,true);
 }
@@ -448,6 +479,7 @@ public function darginutIcedCream(servingType:String = "cone"):void
 		pc.HP(40);
 		pc.energy(20);
 	}
+	pc.milkInMouth(getIceCreamContainer(GLOBAL.FLUID_TYPE_MILK, servingType));
 	clearMenu();
 	addButton(0,"Next",yammiRepeatMenu,true);
 }
@@ -506,6 +538,7 @@ public function chocolateIcedCream(servingType:String = "cone"):void
 		pc.HP(25);
 		pc.energy(25);
 	}
+	pc.milkInMouth(getIceCreamContainer(GLOBAL.FLUID_TYPE_CHOCOLATE_MILK, servingType));
 	clearMenu();
 	addButton(0,"Next",yammiRepeatMenu,true);
 }
@@ -564,6 +597,7 @@ public function flameberksIcedCream(servingType:String = "cone"):void
 		pc.HP(9);
 		pc.energy(9);
 	}
+	pc.milkInMouth(getIceCreamContainer(GLOBAL.FLUID_TYPE_MILK, servingType));
 	clearMenu();
 	addButton(0,"Next",yammiRepeatMenu,true);
 }

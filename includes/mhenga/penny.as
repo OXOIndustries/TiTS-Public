@@ -3447,12 +3447,12 @@ public function whineToPennyCauseYerABitch():void
 	if(penny.hasCock() && flags["PENNY_IS_A_CUMSLUT"] == undefined) output("still-moist ");
 	output("fingers fly across her keyboard, filling out the police report for you. She grunts and shakes her head from time to time, especially when you mention the badgerfication ray, and she asks you a few questions about the doctor’s weapons and the way she grabbed you. When you’ve answered her questions to her satisfaction, Penny hits a submit button on her screen and puts a reassuring hand on yours.");
 	output("\n\n<i>“Alright, I’ve forwarded your report to the Tarkus Peacekeeper. They’ll make sure this ‘doctor’ is taken care of,”</i> ");
-	if(flags["PENNY_IS_A_CUMSLUT"] == undefined) output("your lover growls. If you didn’t know better, you’d say it might have been protectively");
+	if(flags["SEXED_PENNY"] != undefined) output("your lover growls. If you didn’t know better, you’d say it might have been protectively");
 	else output("Penny says with surety");
 	output(". You nod appreciatively, and tell her you’ll feel a lot better about Tarkus with her gone.");
 
 	output("\n\n<i>“No problem, ");
-	if(flags["SEXED_PENNY"] != undefined) output("[pc.name]");
+	if(flags["SEXED_PENNY"] == undefined) output("[pc.name]");
 	else output("my mate");
 	output(", though I gotta admit, I would’ve killed for one of those rays a few years ago.”</i> Penny muses. <i>“Is there anything else you’d like to take care of while you’re here?");
 	if(flags["SEXED_PENNY"] != undefined)

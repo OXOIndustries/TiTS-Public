@@ -27,7 +27,7 @@ package classes.Items.Transformatives
 
 			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
 
-			description = "a medipen labelled as containing ‘Ovir Positive’";
+			description = "a medipen labeled as containing ‘Ovir Positive’";
 
 			tooltip = "Ovir Positive is the perfect treatment for those who want to be ovir, but don't want to worry about pesky things like pills. Contained in this medipen are thousands of gene-altering microsurgeons with extended program buffers. Whether you're an ausar, rahn or anything in between, you'll come out with a whole new look on life. An ovir look.";
 

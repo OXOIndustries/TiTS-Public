@@ -61,12 +61,16 @@
 		override public function useFunction(target:Creature, usingCreature:Creature = null):Boolean
 		{
 			var healing:int = 10;
+			if(target.HP() + healing > target.HPMax())
+			{
+				healing = target.HPMax() - target.HP();
+			}
 			if(target is PlayerCharacter)
 			{
 				kGAMECLASS.clearOutput();
 				//Usage text:
 				kGAMECLASS.output("You chomp down on the delicious, almost sugary egg.");
-				if(target.HP() < target.HPMax()) kGAMECLASS.output(" You feel better almost immediately! (<b>+" + healing + " HP</b>)");
+				if(healing > 0) kGAMECLASS.output(" You feel better almost immediately! (<b>+" + healing + " HP</b>)");
 				else kGAMECLASS.output(" Nothing changes except for the taste in your mouth.");
 				target.HP(healing);
 				kGAMECLASS.output("\n");
@@ -77,7 +81,7 @@
 				if(inCombat()) kGAMECLASS.output("\n");
 				else kGAMECLASS.clearOutput();
 				kGAMECLASS.output(target.capitalA + target.short + " eats a brightly-colored egg");
-				if(target.HP() < target.HPMax()) kGAMECLASS.output(" and instantly regains a little health! (<b>+" + healing + " HP</b>)");
+				if(healing > 0) kGAMECLASS.output(" and instantly regains a little health! (<b>+" + healing + " HP</b>)");
 				else kGAMECLASS.output(" to no effect.");
 				target.HP(healing);
 				kGAMECLASS.output("\n");

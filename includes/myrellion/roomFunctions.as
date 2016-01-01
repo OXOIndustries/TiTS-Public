@@ -519,7 +519,8 @@ public function noManzLandBonus():Boolean
 		//Build possible encounters
 		if(CodexManager.entryUnlocked("Cockvines")) choices[choices.length] = adultCockvineEncounter;
 		choices[choices.length] = cockvineSeedlingEncounter;
-		choices[choices.length] = encounterNyreaBeta;
+		if (flags["KILLED_TAIVRA"] != undefined && rand(3) != 0) choices[choices.length] = encounterNyreaBeta;
+		else choices[choices.length] = encounterNyreaBeta;
 		choices[choices.length] = approachMyrDeserters;
 		choices[choices.length] = approachMyrDeserters;
 		if(flags["ZODEE_GALOQUEST"] == undefined) choices.push(zodeeGivesFirstGalomax);
@@ -738,8 +739,16 @@ public function DeepCavesBonus():Boolean
 		flags["NO_MANS_STEP"] = 0;
 		
 		//Build possible encounters
-		choices[choices.length] = encounterNyreaAlpha;
-		choices[choices.length] = encounterNyreaBeta;
+		if(flags["KILLED_TAIVRA"] != undefined)
+		{
+			if(rand(10) == 0) choices[choices.length] = encounterNyreaAlpha;
+			if(rand(4) == 0) choices[choices.length] = encounterNyreaBeta;
+		}
+		else
+		{
+			choices[choices.length] = encounterNyreaAlpha;
+			choices[choices.length] = encounterNyreaBeta;
+		}
 		if(flags["LET_FUNGUS_QUEEN_DIE"] != undefined) 
 		{
 			choices[choices.length] = infectedMyrmedionShit;

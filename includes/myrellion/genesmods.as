@@ -255,7 +255,7 @@ public function geneAppearance():void
 	
 	output("\n\nFacially Gene looks human enough - albeit a very large human, with horn plating his lips and chin. He has full, broad, straight nosed, shaven features that would not look out of place in some classical Persian epic. It would have to be one with a lot of jokes in it, because he never seems far from breaking out into a big, toothy grin, behind which a long, purple tongue is always waiting to wag. He has a mane of brown hair and yellow, hawkish eyes. Adder-like black squares pattern his heavily corded neck and shoulders.");
 	
-	output("\n\nIncongruous to his bestial, fleshy frame are his grey, synthetic, four fingered arms, connected to him via a harness around his lower torso. These are usually folded primly on the counter, and obviously allow the fanfir to do manual tasks he’d otherwise struggle with. He moves and gestures with them as easily as if they were his own.");
+	output("\n\nIncongruous to his bestial, fleshy frame are his gray, synthetic, four fingered arms, connected to him via a harness around his lower torso. These are usually folded primly on the counter, and obviously allow the fanfir to do manual tasks he’d otherwise struggle with. He moves and gestures with them as easily as if they were his own.");
 	
 	output("\n\nHis carapace bottoms have a suggestively large codpiece.");
 	if (flags["GENE_FUCKED"] == undefined) output(" You’d guess, from the size of the rest of him, he packs pretty heavily.");
@@ -388,7 +388,7 @@ public function genesModsTalkModsII():void
 	clearOutput();
 	geneHeader();
 
-	output("<i>“Your arms, though.”</i> you point at Gene’s two grey, synthetic arms, shadowed under his bulk. <i>“Why haven’t you simply grown a pair?”</i>");
+	output("<i>“Your arms, though.”</i> you point at Gene’s two gray, synthetic arms, shadowed under his bulk. <i>“Why haven’t you simply grown a pair?”</i>");
 	
 	output("\n\n<i>“An incisive enquiry,”</i> rejoins the fanfir, stepping closer to let the hot liquid of his voice fill your ears. <i>“Why indeed would a mutationist, who relies upon being able to palpably demonstrate his prowess, rely upon robotics? There are two reasons, [pc.short] Steele. The first, and this concern most fanfir share, is that a second pair of limbs rather impinges one’s ability to fly. In order for us to fly outside of our own world, you see, we need a second, anti-gravity harness. Whilst this synthetic aid may be easily shucked off and replaced with the other, a permanent set of arms places undue strain on it, and simply makes the business of flying clumsier besides. So the question is: do you sacrifice the occasional fleeting wonder that can be found in the air of alien worlds, the inexpressible delight of flight, for eternal manual dexterity?”</i> He spreads his wings like a giant fan and bellows the answer at you. <i>“No, no and NO!”</i>");
 	
@@ -894,6 +894,8 @@ public function genesModsBlowjob():void
 		pc.lust(33);
 	}
 	processTime(29);
+	IncrementFlag("GENE_BLOWJOB");
+	IncrementFlag("GENE_FUCKED");
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -984,6 +986,7 @@ public function genesModsFrot():void
 	}
 	processTime(27);
 	pc.orgasm();
+	IncrementFlag("GENE_FUCKED");
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -1294,6 +1297,7 @@ public function genesModsLickedOut():void
 	}
 	processTime(20);
 	pc.orgasm();
+	IncrementFlag("GENE_FUCKED");
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -1324,7 +1328,7 @@ public function genesModsOverCounter():void
 		output("\n\n<i>“Ah, there it is: the perfect timbre,”</i> he smiles at you proudly. <i>“Shamelessly slutty, yet earnestly polite.”</i>");
 	}
 
-	output("\n\nGene lowers you down and flips you over with strong, careful sweeps of his claws, shifting himself forward as he does, the great shadow of his form looming over you, the cool, earthy smell of him in your nostrils. You shudder as you feel the swell of his chest touch you between the shoulder-blades; the sheer weight of him could easily keep you pinned here, naked with your [pc.butt] in the air, if he so wished. You bite your lip as grey, warm digits caress and test the slick folds of your [pc.vagina " + x + "]; the hot, oak-like girth of his fanfir cock rides up between your buttocks, the ribs of its underside brushing over your [pc.asshole].");
+	output("\n\nGene lowers you down and flips you over with strong, careful sweeps of his claws, shifting himself forward as he does, the great shadow of his form looming over you, the cool, earthy smell of him in your nostrils. You shudder as you feel the swell of his chest touch you between the shoulder-blades; the sheer weight of him could easily keep you pinned here, naked with your [pc.butt] in the air, if he so wished. You bite your lip as gray, warm digits caress and test the slick folds of your [pc.vagina " + x + "]; the hot, oak-like girth of his fanfir cock rides up between your buttocks, the ribs of its underside brushing over your [pc.asshole].");
 
 	if (pc.biggestVaginalCapacity() <= geneCockVolume())
 	{
@@ -1440,6 +1444,7 @@ public function genesModsOverCounter():void
 	pc.loadInCunt(chars["GENE"],x);
 	processTime(24);
 	pc.orgasm();
+	IncrementFlag("GENE_FUCKED");
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }

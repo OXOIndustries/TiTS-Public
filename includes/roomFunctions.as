@@ -514,12 +514,7 @@ public function bonusFunction213():Boolean
 
 public function novaShipHangarElevator():Boolean
 {
-	if (flags["TARKUS_DESTROYED"] != undefined && flags["DECK13_SHIELDS_ON"] != 1)
-	{
-		output("\n\nYou step up to the elevator and press the call button. The doors don’t respond.");
-		output("\n\nHm. The shaft must have been destroyed when the planet blew up, sealing the doors indefinitely....");
-	}
-	else if (flags["DECK13_COMPLETE"] == undefined)
+	if (flags["DECK13_COMPLETE"] == undefined)
 	{
 		output("\n\nYou step up to the elevator and press the call button. Immediately, the doors slide open, but no car comes.");
 	}
@@ -532,14 +527,15 @@ public function novaShipHangarElevator():Boolean
 
 public function novaMainDeckElevator():Boolean
 {
-	/*if (flags["DECK13_COMPLETE"] == undefined)
+	if (flags["TARKUS_DESTROYED"] != undefined && flags["DECK13_SHIELDS_ON"] != 1)
 	{
-		output("\n\nYou step up to the elevator and press the call button. Immediately, the doors slide open, but no car comes.");
-	}*/
-	//else
-	//{
-		addButton(0, "Elevator", novaElevatorControlPanel);
-	//}
+		output("\n\nYou step up to the elevator and press the call button. The doors don’t respond.");
+		output("\n\nHm. The shaft must have been destroyed when the planet blew up, sealing the doors indefinitely....");
+		
+		return false;
+	}
+	
+	addButton(0, "Elevator", novaElevatorControlPanel);
 	
 	return false;
 }

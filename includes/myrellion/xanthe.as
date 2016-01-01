@@ -5,7 +5,7 @@
 //Resource Images
 // None of these exactly resemble the Siel, but many have certain aspects that have been incorporated into them. The first two pictures were the largest inspiration.
 //http://31.media.tumblr.com/6d0d17b86daa8081fc0412c3da30fba2/tumblr_naooxoNR0q1tqn35to1_r1_1280.png - This is the primary inspiration pic for the siel. The hips, legs, and feet are dead on (except for body color). Their body is more caterpillar like and has two more legs.
-//https://www.dropbox.com/s/vbb8ln8r9le1iqs/1406507618788.jpg - Siel have this kind of stomach (though not as long) and these kind of prolegs (The hooks), though differently colored (Blackish grey). Thier body is also broken up a bit like this.
+//https://www.dropbox.com/s/vbb8ln8r9le1iqs/1406507618788.jpg - Siel have this kind of stomach (though not as long) and these kind of prolegs (The hooks), though differently colored (Blackish gray). Thier body is also broken up a bit like this.
 //http://i.ytimg.com/vi/Zc2OqegzO6Y/hqdefault.jpg - Xanthe's eyes look like this. Most siel have this kind of 'black rim' that bleeds inwards, and an intense color that bleeds back in the other direction.
 
 //Xanthe And The Silken Serenity (Overview)
@@ -17,7 +17,7 @@ Appearance:
 Midnight blue hair and electric blue eyes.
 Collarbone or shoulder length wavy hair. 
 Dark blue nipples.
-Blue-grey skin
+Blue-gray skin
 Distinctively high cheekbones and full, pouting lips. Womanly features.
 Black lacy bra and panties, black stockings with a lacy trim on all eight legs (See first reference pic). Garter belt and garters.
 Front siel cock and back siel pussy. Can be changed.
@@ -331,7 +331,7 @@ Golden nipple tassels (+2 Sexiness) - 1000 Creds
 Four leaf clover nipple tassels (+2 Sexiness) - 1000 Creds
 Flower shaped nipple tassels (+2 Sexiness) - 1000 Creds
 Star shaped nipple tassels (+2 Sexiness) - 1000 Creds
-Jewelled nipple tassels (+2 Sexiness) - 1000 Creds
+Jeweled nipple tassels (+2 Sexiness) - 1000 Creds
 Black nipple tassels (+2 Sexiness) - 1000 Creds
 */
 
@@ -351,7 +351,7 @@ public function enterTheSilkenSerenityWhyDidWashHaveToDie():Boolean
 		output("\n\nWandering into the maze built entirely from fashion items, you soon lose sight of the entrance. Just when you think you’re going to need to find a map or a signpost, you hear a husky voice speak out from behind you.");
 		output("\n\n<i>\"Hello, my dear...”</i> The sudden utterance, along with its incredibly close proximity to your back, almost causes you to leap right out of your [pc.skinFurScalesNoun].");
 		output("\n\nYou instinctively spin round. Your eyes are immediately met with a pair of electric blues staring straight back at you. They are shaped like exploding stars; pale azure exploding within the black rims of an iris. You take a step back, and they come into perspective.");
-		output("\n\nThe eyes, and the voice, belong to a mysterious looking woman with dusky blue-grey skin. Her face is smooth, feminine, and replete with high cheekbones. There is a playful smile on her full, pouting lips. It’s clear that she quite enjoyed sneaking up on you.");
+		output("\n\nThe eyes, and the voice, belong to a mysterious looking woman with dusky blue-gray skin. Her face is smooth, feminine, and replete with high cheekbones. There is a playful smile on her full, pouting lips. It’s clear that she quite enjoyed sneaking up on you.");
 		output("\n\n<i>\"Don’t worry. I don’t bite. Much,”</i> she teases. You soak in her appearance. Two antennae are sticking out of her head, and sweep back like insectoid rabbit ears. They’re protruding from a full head of wavy, midnight blue hair that tumbles down to her collarbones. There are slit like gills on either side of her neck.");
 		output("\n\nLooking down, you notice her eye-poppingly large breasts are only <i>barely</i> contained by a black lace bra. Teasing you again, she crosses her arms underneath her plump udders. She pushes her arms upwards, and her assets threaten to spill deliciously out of their lacy confines...");
 		//[Stare] [Don’t Stare] * Ditz always stares.
@@ -1545,7 +1545,11 @@ public function leftTeasedForEver(x:int = 0):void
 		if(pc.cumQ() < 5) output("tiny splatterings");
 		else if(pc.cumQ() < 50) output("thick sticky ropes");
 		else if(pc.cumQ() < 2500) output("gloriously thick ropes");
-		else output("gooey gallons");
+		else
+		{
+			if(pc.cumType != GLOBAL.FLUID_TYPE_SPECIAL_GOO) output("gooey ");
+			output("gallons");
+		}
 		output(" of your [pc.cum] all over the floor");
 	}
 	if(pc.hasVagina() && pc.hasCock()) output(". Your");
@@ -1983,86 +1987,6 @@ this.evasion = 2;
 this.fortification = 0;
 this.bonusResistances = new Array(0.1, 0.1, 0.1, 0, 0, 0, 0, 0);
 
-Revealing Female Armor
-public function FemaleFantasyArmor()
-this.quantity = 1;
-this.stackSize = 1;
-this.type = GLOBAL.ARMOR;
-this.shortName = "FemFantasyArmor";
-this.longName = "revealing plate armor";
-this.description = "a revealing set of plate armor";
-this.tooltip = "This set of fantasy style armor seems to leave a lot of areas exposed. While it completely covers one's arms and legs in fanciful fetish armor, it barely covers anywhere else. You recognise it is the heroine's outfit from the 'Perky Paladin' series.
-
-The chest piece - if it can be called that - resembles a metallic bra that pushes the breasts up and together, resulting in impressive cleavage. Sheer, see-through fabric hangs down from the bra and flares out in a rather stylish 'negligee' fashion.
-
-Further down the nethers are protected only by a snug pair of armored underwear that barely covers the buttocks. Even more sheer fabric hangs from both the front and rear in an incredibly ornamental fashion, yet it fails to hide or protect anything at all.";
-this.basePrice = 3000;
-this.attack = 0;
-this.damage = 0;
-this.damageType = GLOBAL.PIERCING;
-this.defense = 2;
-this.shieldDefense = 0;
-this.shields = 0;
-this.sexiness = 5;
-this.critBonus = 0;
-this.evasion = 2;
-this.fortification = 0;
-this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
-
-Revealing Male Armor
-public function MaleFantasyArmor()
-this.quantity = 1;
-this.stackSize = 1;
-this.type = GLOBAL.ARMOR;
-this.shortName = "MaleFantasyArmor";
-this.longName = "revealing plate armor";
-this.description = "a revealing set of plate armor";
-this.tooltip = "This set of fantasy style armor seems to leave a lot of areas exposed. While it completely covers one's arms and legs in fanciful fetish armor, it barely covers anywhere else. You recognise it is the hero's outfit from the 'Randy Crusade' series.
-
-There's a set of chains that drape over the chest and connect to a solitary fearsome looking shoulder guard. Other than that there's no upper body covering or armor.
-
-Further down the loins are 'protected' by an incredibly tight pair of black shiny shorts with a zip in front. Given the ample amount of armor for the limbs, it seems rather pointedly exposed. What an obvious weak spot!";
-this.basePrice = 3000;
-this.attack = 0;
-this.damage = 0;
-this.damageType = GLOBAL.PIERCING;
-this.defense = 2;
-this.shieldDefense = 0;
-this.shields = 0;
-this.sexiness = 5;
-this.critBonus = 0;
-this.evasion = 2;
-this.fortification = 0;
-this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
-
-
-Transparent Zipsuit
-public function TransparentZipsuit()
-this.quantity = 1;
-this.stackSize = 1;
-this.type = GLOBAL.ARMOR;
-this.shortName = "TransparentZipsuit";
-this.longName = "transparent zipsuit";
-this.description = "a sexy transparent zipsuit";
-this.tooltip = "This completely transparent body suit leaves very little to the imagination. From the neck downward it covers the body in a plastic sheen, hiding the nipples and genitals with well-placed zips. 
-
-The main zip starts just above the crotch, runs between the thighs and up the spine to the neckline. Meanwhile two others start at and cover the nipples, unzipping out and under the arms. There are also zips down the sides of the arms and legs.
-
-Despite the fact it is incredibly revealing, it is actually made of a transparent siel silk and fracton weave. It is actually more protective than most stock standard armor. However, its incredibly supple texture rubs the body and makes the wearer more prone to arousal.";
-this.bonusLustVuln = 0.2;
-this.basePrice = 5000;
-this.attack = 0;
-this.damage = 0;
-this.damageType = GLOBAL.PIERCING;
-this.defense = 5;
-this.shieldDefense = 0;
-this.shields = 0;
-this.sexiness = 10;
-this.critBonus = 0;
-this.evasion = 0;
-this.fortification = 0;
-this.bonusResistances = new Array(0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1);
-
 
 
 Clothing Items
@@ -2085,96 +2009,6 @@ this.defense = 0;
 this.shieldDefense = 0;
 this.shields = 0;
 this.sexiness = 2;
-this.critBonus = 0;
-this.evasion = 0;
-this.fortification = 0;
-this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
-
-Top And Skirt
-public function TopAndSkirt()
-this.quantity = 1;
-this.stackSize = 1;
-this.type = GLOBAL.ARMOR;
-this.shortName = "Top&Skirt";
-this.longName = "cute top and skirt";
-this.description = "a cute top and skirt";
-this.tooltip = "This is a cute top that looks comfortable to wear, accompanied by a short chic skirt. Because it's made of finely woven siel silk, it's also incredibly soft on the skin.";
-this.basePrice = 800;
-this.attack = 0;
-this.damage = 0;
-this.damageType = GLOBAL.PIERCING;
-this.defense = 0;
-this.shieldDefense = 0;
-this.shields = 0;
-this.sexiness = 2;
-this.critBonus = 0;
-this.evasion = 0;
-this.fortification = 0;
-this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
-
-Business Clothes
-public function BusinessClothes()
-this.quantity = 1;
-this.stackSize = 1;
-this.type = GLOBAL.ARMOR;
-this.shortName = "BusinessClothes";
-this.longName = "business clothes";
-this.description = "a set of high-powered business clothes";
-this.tooltip = "These business clothes are perfect for any high-powered corporate function. They're also perfect for someone aiming to make their way up the food chain.";
-this.basePrice = 800;
-this.attack = 0;
-this.damage = 0;
-this.damageType = GLOBAL.PIERCING;
-this.defense = 0;
-this.shieldDefense = 0;
-this.shields = 0;
-this.sexiness = 2;
-this.critBonus = 0;
-this.evasion = 0;
-this.fortification = 0;
-this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
-
-
-Librarian Outfit
-public function LibrarianOutfit()
-this.quantity = 1;
-this.stackSize = 1;
-this.type = GLOBAL.ARMOR;
-this.shortName = "LibrarianOutfit";
-this.longName = "librarian outfit";
-this.description = "a librarian outfit";
-this.tooltip = "This ensemble consists of a long sleeve shirt, cardigan, and knee length shirt. It rides the line between conservative and sexy; which side it falls on seems to rely on how many buttons you have done up.";
-this.basePrice = 1000;
-this.attack = 0;
-this.damage = 0;
-this.damageType = GLOBAL.PIERCING;
-this.defense = 0;
-this.shieldDefense = 0;
-this.shields = 0;
-this.sexiness = 5;
-this.critBonus = 0;
-this.evasion = 0;
-this.fortification = 0;
-this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
-
-
-Latex Bodysuit
-public function LatexBodysuit()
-this.quantity = 1;
-this.stackSize = 1;
-this.type = GLOBAL.ARMOR;
-this.shortName = "LatexBodysuit";
-this.longName = "latex bodysuit";
-this.description = "a shiny, full-body latex bodysuit";
-this.tooltip = "This snug fitting full-body latex bodysuit leaves nothing up to the imagination. It is also very shiny. There is a zipper starting at the neck and ending just above the crotch.";
-this.basePrice = 1000;
-this.attack = 0;
-this.damage = 0;
-this.damageType = GLOBAL.PIERCING;
-this.defense = 0;
-this.shieldDefense = 0;
-this.shields = 0;
-this.sexiness = 5;
 this.critBonus = 0;
 this.evasion = 0;
 this.fortification = 0;
@@ -2317,120 +2151,6 @@ this.fortification = 0;
 this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
 
 
-Maid Outfit
-// HNNNGG my favorite outfit in the entire fucking world.
-public function Maid()
-this.quantity = 1;
-this.stackSize = 1;
-this.type = GLOBAL.ARMOR;
-this.shortName = "MaidOutfit";
-this.longName = "maid outfit";
-this.description = "a frilly French maid outfit";
-this.tooltip = "A sexy French maid outfit, the staple diet of cosplay fetishists everywhere. Every inch of this outfit is lined with frills, from the headpiece to the puffed out skirt. Made from the finest siel silk.";
-this.basePrice = 1000;
-this.attack = 0;
-this.damage = 0;
-this.damageType = GLOBAL.PIERCING;
-this.defense = 0;
-this.shieldDefense = 0;
-this.shields = 0;
-this.sexiness = 5;
-this.critBonus = 0;
-this.evasion = 0;
-this.fortification = 0;
-this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
-
-Butler Outfit
-public function Butler()
-this.quantity = 1;
-this.stackSize = 1;
-this.type = GLOBAL.ARMOR;
-this.shortName = "ButlerOutfit";
-this.longName = "butler outfit";
-this.description = "a suave butler outfit";
-this.tooltip = "This butler outfit is straight out an anglophile fantasy book. From the black coat tails to meticulously white gloves, this outfit could not be mistaken for anything else. Made from the finest siel silk.";
-this.basePrice = 1000;
-this.attack = 0;
-this.damage = 0;
-this.damageType = GLOBAL.PIERCING;
-this.defense = 0;
-this.shieldDefense = 0;
-this.shields = 0;
-this.sexiness = 5;
-this.critBonus = 0;
-this.evasion = 0;
-this.fortification = 0;
-this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
-
-Nurse Outfit
-public function Nurse()
-this.quantity = 1;
-this.stackSize = 1;
-this.type = GLOBAL.ARMOR;
-this.shortName = "NurseOutfit";
-this.longName = "nurse outfit";
-this.description = "a tight fitting nurse outfit";
-this.tooltip = "A sexy white and red nurse outfit. It hugs the body and barely covers the crotch, designed to emphasise any natural assets a wearer may have. It comes complete with a nurse's cap, stethoscope, and frilly stockings. Made from siel silk.";
-this.basePrice = 1000;
-this.attack = 0;
-this.damage = 0;
-this.damageType = GLOBAL.PIERCING;
-this.defense = 0;
-this.shieldDefense = 0;
-this.shields = 0;
-this.sexiness = 5;
-this.critBonus = 0;
-this.evasion = 0;
-this.fortification = 0;
-this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
-
-Male Doctor Outfit
-// Could be worn by either sex, really.
-public function MaleDoctorOutfit()
-this.quantity = 1;
-this.stackSize = 1;
-this.type = GLOBAL.ARMOR;
-this.shortName = "MaleDocOutfit";
-this.longName = "doctor's coat and pants";
-this.description = "a white doctor's coat and pants";
-this.tooltip = "This outfit could be considered professional, except for the fact it lacks a shirt. It consists of a long white doctor's jacket, slacks, stethoscope and name badge. It could be buttoned up, but the omitted item seems quite intentional.";
-this.basePrice = 1000;
-this.attack = 0;
-this.damage = 0;
-this.damageType = GLOBAL.PIERCING;
-this.defense = 0;
-this.shieldDefense = 0;
-this.shields = 0;
-this.sexiness = 5;
-this.critBonus = 0;
-this.evasion = 0;
-this.fortification = 0;
-this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
-
-
-Female Doctor Outfit
-public function FemaleDoctorOutfit()
-this.quantity = 1;
-this.stackSize = 1;
-this.type = GLOBAL.ARMOR;
-this.shortName = "FemDocOutfit";
-this.longName = "doctor's coat and skirt";
-this.description = " a white doctor's coat, tank top, and skirt";
-this.tooltip = "The only part of this outfit that isn't revealing is the long white doctor's jacket. Underneath is a tight fitting tank top, short skirt, and stockings. It also comes with a stethoscope and name badge."; 
-this.basePrice = 1000;
-this.attack = 0;
-this.damage = 0;
-this.damageType = GLOBAL.PIERCING;
-this.defense = 0;
-this.shieldDefense = 0;
-this.shields = 0;
-this.sexiness = 5;
-this.critBonus = 0;
-this.evasion = 0;
-this.fortification = 0;
-this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
-
-
 Miko Outfit
 
 public function Miko()
@@ -2520,163 +2240,6 @@ this.evasion = 0;
 this.fortification = 0;
 this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
 
-
-
-
-Schoolgirl Outfit
-public function Schoolgirl()
-this.quantity = 1;
-this.stackSize = 1;
-this.type = GLOBAL.ARMOR;
-this.shortName = "SchoolgirlOutfit";
-this.longName = "schoolgirl outfit";
-this.description = " a sexy schoolgirl outfit";
-this.tooltip = "This is a highly fetishized western school girl outfit. It consists of an incredibly tight white blouse, short tartan skirt and low hanging tie. Nobody would ever mistake this for a real school outfit!";
-this.basePrice = 1000;
-this.attack = 0;
-this.damage = 0;
-this.damageType = GLOBAL.PIERCING;
-this.defense = 0;
-this.shieldDefense = 0;
-this.shields = 0;
-this.sexiness = 5;
-this.critBonus = 0;
-this.evasion = 0;
-this.fortification = 0;
-this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
-Schoolboy Outfit
-public function Schoolboy()
-this.quantity = 1;
-this.stackSize = 1;
-this.type = GLOBAL.ARMOR;
-this.shortName = "SchoolboyOutfit";
-this.longName = "schoolboy outfit";
-this.description = " a sexy schoolboy outfit";
-this.tooltip = "This is a highly fetishized western school boy outfit. It consists of a tight private school blazer, small cap, and seriously small shorts. There are also high socks and polished shoes, as well as a neat looking tie.";
-this.basePrice = 1000;
-this.attack = 0;
-this.damage = 0;
-this.damageType = GLOBAL.PIERCING;
-this.defense = 0;
-this.shieldDefense = 0;
-this.shields = 0;
-this.sexiness = 5;
-this.critBonus = 0;
-this.evasion = 0;
-this.fortification = 0;
-this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
-
-Cheerleader Uniform
-public function Cheerleader()
-this.quantity = 1;
-this.stackSize = 1;
-this.type = GLOBAL.ARMOR;
-this.shortName = "CheerleaderUniform";
-this.longName = "cheerleader uniform";
-this.description = " a cheerleader uniform";
-this.tooltip = "An incredibly sexy cheerleader uniform. It consists of a tight colorful top, short pleated skirt, and pom-poms!";
-this.basePrice = 1000;
-this.attack = 0;
-this.damage = 0;
-this.damageType = GLOBAL.PIERCING;
-this.defense = 0;
-this.shieldDefense = 0;
-this.shields = 0;
-this.sexiness = 5;
-this.critBonus = 0;
-this.evasion = 0;
-this.fortification = 0;
-this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
-
-Waitress Uniform
-public function Waitress()
-this.quantity = 1;
-this.stackSize = 1;
-this.type = GLOBAL.ARMOR;
-this.shortName = "WaitressUniform";
-this.longName = "skimpy waitress uniform";
-this.description = " a skimpy waitress uniform";
-this.tooltip = "A skimpy, highly fetishized waitress outfit. It consists of an underbust corset, frilly short-sleeved top, mid-thigh length skirt, and half apron. It comes with stockings and a garter belt.";
-this.basePrice = 1000;
-this.attack = 0;
-this.damage = 0;
-this.damageType = GLOBAL.PIERCING;
-this.defense = 0;
-this.shieldDefense = 0;
-this.shields = 0;
-this.sexiness = 5;
-this.critBonus = 0;
-this.evasion = 0;
-this.fortification = 0;
-this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
-
-Bunny Outfit
-public function BunnyOutfit()
-this.quantity = 1;
-this.stackSize = 1;
-this.type = GLOBAL.ARMOR;
-this.shortName = "BunnyOutfit";
-this.longName = "one-piece bunny outfit";
-this.description = " a one-piece bunny outfit";
-this.tooltip = "This is a "HumpHard Bunny" outfit. It's not a full bunny outfit - there's only satin ears and a fluffy tail. The rest of the outfit is hardly furry; a strapless one-piece bikini, black pantyhose, high heels, a collar with bow tie, and cuffs with cuff links. Wear it and be a HumpHard Bunny!";
-this.basePrice = 1000;
-this.attack = 0;
-this.damage = 0;
-this.damageType = GLOBAL.PIERCING;
-this.defense = 0;
-this.shieldDefense = 0;
-this.shields = 0;
-this.sexiness = 5;
-this.critBonus = 0;
-this.evasion = 0;
-this.fortification = 0;
-this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
-
-
-Military Outfit
-public function MilitaryOutfit()
-this.quantity = 1;
-this.stackSize = 1;
-this.type = GLOBAL.ARMOR;
-this.shortName = "MilitaryOutfit";
-this.longName = "military outfit";
-this.description = " a military issue tank top and pants";
-this.tooltip = "This military outfit is reminiscent of those worn on Earth in the 20th century. It consists of a tank top, bullet chain sling, and baggy camo pants. The top is quite tight and deliberately accentuates any natural assets. A defensive layer of nanofibers has been woven into the entire outfit.";
-this.basePrice = 1000;
-this.attack = 0;
-this.damage = 0;
-this.damageType = GLOBAL.PIERCING;
-this.defense = 2;
-this.shieldDefense = 0;
-this.shields = 0;
-this.sexiness = 2;
-this.critBonus = 0;
-this.evasion = 0;
-this.fortification = 0;
-this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
-
-Space Pirate Outfit
-public function SpacePirate()
-this.quantity = 1;
-this.stackSize = 1;
-this.type = GLOBAL.ARMOR;
-this.shortName = "S.PirateOutfit";
-this.longName = "space pirate outfit";
-this.description = " a space pirate outfit made mostly of leather";
-this.tooltip = "This is a space pirate outfit consisting of a lot of tight black leather. There's also a lot of tough looking patches with badass insignias. Great for any rebel with or without a cause. This outfit possesses a defensive layer of nanofibers.";
-this.basePrice = 1000;
-this.attack = 0;
-this.damage = 0;
-this.damageType = GLOBAL.PIERCING;
-this.defense = 2;
-this.shieldDefense = 0;
-this.shields = 0;
-this.sexiness = 2;
-this.critBonus = 0;
-this.evasion = 0;
-this.fortification = 0;
-this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
-
 Goth-Lolita Outfit
 public function GothLolita()
 this.quantity = 1;
@@ -2686,73 +2249,6 @@ this.shortName = "GothLolita";
 this.longName = "goth lolita outfit";
 this.description = " a frilly goth lolita outfit";
 this.tooltip = " This is a gothic lolita outfit. It consists of a very frilly black dress with white lace woven through the seams. There are lots of ribbons attached. Best worn with lots of makeup.";
-this.basePrice = 1000;
-this.attack = 0;
-this.damage = 0;
-this.damageType = GLOBAL.PIERCING;
-this.defense = 0;
-this.shieldDefense = 0;
-this.shields = 0;
-this.sexiness = 5;
-this.critBonus = 0;
-this.evasion = 0;
-this.fortification = 0;
-this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
-
-Tank-Top & Mini Skirt
-public function TankTopAndMini()
-this.quantity = 1;
-this.stackSize = 1;
-this.type = GLOBAL.ARMOR;
-this.shortName = "TankTopMini";
-this.longName = "tight tank top and mini skirt";
-this.description = " A tight tank top and mini skirt with suspenders";
-this.tooltip = " The signature outfit of a heroine from "Final Fucktacy 7". It consists of an incredibly tight white top, black miniskirt, and asset pressing suspenders. Wearing this fills you with fighting spirit.";
-this.basePrice = 1500;
-this.attack = 2;
-this.damage = 0;
-this.damageType = GLOBAL.PIERCING;
-this.defense = 0;
-this.shieldDefense = 0;
-this.shields = 0;
-this.sexiness = 5;
-this.critBonus = 0;
-this.evasion = 0;
-this.fortification = 0;
-this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
-
-
-Leather Strap Harness 
-public function LeatherStrapHarness()
-this.quantity = 1;
-this.stackSize = 1;
-this.type = GLOBAL.ARMOR;
-this.shortName = "LeatherHarness";
-this.longName = "leather strap harness";
-this.description = "A bdsm leather strap harness";
-this.tooltip = "A bdsm outfit made entirely from straps and metal rings, starting at a collar and ending at the groin. The straps are connected to make diamond shaped patterns with gaps in the middle. In this outfit the chest or breasts are totally exposed.";
-this.basePrice = 1000;
-this.attack = 0;
-this.damage = 0;
-this.damageType = GLOBAL.PIERCING;
-this.defense = 0;
-this.shieldDefense = 0;
-this.shields = 0;
-this.sexiness = 5;
-this.critBonus = 0;
-this.evasion = 0;
-this.fortification = 0;
-this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
-
-Little Black Dress
-public function LittleBlackDress()
-this.quantity = 1;
-this.stackSize = 1;
-this.type = GLOBAL.ARMOR;
-this.shortName = "LittleBlackDress";
-this.longName = "little black dress";
-this.description = "A little black dress";
-this.tooltip = "This is a revealing black dress that has a low neckline and short skirt, the hem reaching down to the mid thigh. It shows a lot, but not everything.";
 this.basePrice = 1000;
 this.attack = 0;
 this.damage = 0;
@@ -2802,29 +2298,6 @@ this.shortName = "Frilly Bra";
 this.longName = "frilly bra";
 this.description = "frilly bra";
 this.tooltip = "This frilly bra is made of ultra elastic siel silk that breathes well. Perfect for showcasing one's assets.";
-this.basePrice = 700;
-this.attack = 0;
-this.damage = 0;
-this.damageType = GLOBAL.PIERCING;
-this.defense = 0;
-this.shieldDefense = 0;
-this.shields = 0;
-this.sexiness = 1;
-this.critBonus = 0;
-this.evasion = 0;
-this.fortification = 0;
-this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
-
-
-Girly Bra
-public function GirlyBra()
-this.quantity = 1;
-this.stackSize = 1;
-this.type = GLOBAL.UPPER_UNDERGARMENT;
-this.shortName = "Girly Bra";
-this.longName = "girly bra";
-this.description = "girly pink bra";
-this.tooltip = "You couldn't get a bra much more girly than this. It's pink, lace frilled, and littered with cute little bows.";
 this.basePrice = 700;
 this.attack = 0;
 this.damage = 0;
@@ -2996,28 +2469,6 @@ this.evasion = 0;
 this.fortification = 0;
 this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
 
-Mesh Shirt
-public function MeshShirt()
-this.quantity = 1;
-this.stackSize = 1;
-this.type = GLOBAL.UPPER_UNDERGARMENT;
-this.shortName = "Mesh Shirt";
-this.longName = "mesh shirt";
-this.description = "a sexy mesh shirt";
-this.tooltip = "This mesh shirt covers very little of the upper body. It instead gives it a sexy tint and brazenly exposes the wearer's chest and nipples, regardless of gender.";
-this.basePrice = 700;
-this.attack = 0;
-this.damage = 0;
-this.damageType = GLOBAL.PIERCING;
-this.defense = 0;
-this.shieldDefense = 0;
-this.shields = 0;
-this.sexiness = 1;
-this.critBonus = 0;
-this.evasion = 0;
-this.fortification = 0;
-this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
-
 Patriotic Bra
 // 'Murica.
 public function PatrioticBra()
@@ -3041,28 +2492,6 @@ this.evasion = 0;
 this.fortification = 0;
 this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
 
-
-Skull Pattern Bra
-public function SkullBra()
-this.quantity = 1;
-this.stackSize = 1;
-this.type = GLOBAL.UPPER_UNDERGARMENT;
-this.shortName = "Skull Bra";
-this.longName = "skull patterned bra";
-this.description = "A skull patterned bra";
-this.tooltip = "These are the perfect bra for when you want to make a statement, but at the same time, you're not wearing a top. Made of black fabric and littered with white skulls.";
-this.basePrice = 1000;
-this.attack = 0;
-this.damage = 0;
-this.damageType = GLOBAL.PIERCING;
-this.defense = 0;
-this.shieldDefense = 0;
-this.shields = 0;
-this.sexiness = 1;
-this.critBonus = 0;
-this.evasion = 0;
-this.fortification = 0;
-this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
 
 Nipple Tassels (Underwear Top Slot)
 
@@ -3198,15 +2627,15 @@ this.evasion = 0;
 this.fortification = 0;
 this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
 
-Jewelled Nipple Tassels
-public function JewelledNippleTassels()
+Jeweled Nipple Tassels
+public function JeweledNippleTassels()
 this.quantity = 1;
 this.stackSize = 1;
 this.type = GLOBAL.UPPER_UNDERGARMENT;
-this.shortName = "JewlledTassels";
+this.shortName = "JewledTassels";
 this.longName = "jeweled nipple tassels";
-this.description = "a set of jewelled nipple tassels";
-this.tooltip = "A set of jewelled nipple tassels to attach to your chest. For bringing attention to all the right places.";
+this.description = "a set of jeweled nipple tassels";
+this.tooltip = "A set of jeweled nipple tassels to attach to your chest. For bringing attention to all the right places.";
 this.basePrice = 1000;
 this.attack = 0;
 this.damage = 0;
@@ -3279,28 +2708,6 @@ this.shortName = "Frilly Panties";
 this.longName = "frilly panties";
 this.description = "A pair of frilly panties";
 this.tooltip = "These frilly panties are made of ultra elastic siel silk that breathes well. Very sexy when worn.";.";
-this.basePrice = 700;
-this.attack = 0;
-this.damage = 0;
-this.damageType = GLOBAL.PIERCING;
-this.defense = 0;
-this.shieldDefense = 0;
-this.shields = 0;
-this.sexiness = 1;
-this.critBonus = 0;
-this.evasion = 0;
-this.fortification = 0;
-this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
-
-Girly Panties
-public function GirlyPanties()
-this.quantity = 1;
-this.stackSize = 1;
-this.type = GLOBAL.LOWER_UNDERGARMENT;
-this.shortName = "Girly Panties";
-this.longName = "girly panties";
-this.description = "A pair of girly pink panties";
-this.tooltip = "You couldn't get panties much more girly than these. They're pink, lace frilled, and littered with cute little bows.";.";
 this.basePrice = 700;
 this.attack = 0;
 this.damage = 0;
@@ -3520,27 +2927,6 @@ this.critBonus = 0;
 this.evasion = 0;
 this.fortification = 0;
 this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
-C-String
-public function CString()
-this.quantity = 1;
-this.stackSize = 1;
-this.type = GLOBAL.LOWER_UNDERGARMENT;
-this.shortName = "C-String";
-this.longName = "C-String";
-this.description = "A skimpy C-string";
-this.tooltip = "This C-string underwear covers almost nothing at all! It is as narrow as a G-string, but without the supporting "string" around the wearer's hips line. All that is left is a sideways C-shaped piece between the legs. This "underwear" is often worn with pasties or nipple tassels.";
-this.basePrice = 1000;
-this.attack = 0;
-this.damage = 0;
-this.damageType = GLOBAL.PIERCING;
-this.defense = 0;
-this.shieldDefense = 0;
-this.shields = 0;
-this.sexiness = 2;
-this.critBonus = 0;
-this.evasion = 0;
-this.fortification = 0;
-this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
 
 Black Silk Boxers
 public function BlackSilkBoxers()
@@ -3607,28 +2993,6 @@ this.critBonus = 0;
 this.evasion = 0;
 this.fortification = 0;
 this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
-
-Zip Pouch Jock Strap
-public function ZipPouchJockStrap()
-this.quantity = 1;
-this.stackSize = 1;
-this.type = GLOBAL.LOWER_UNDERGARMENT;
-this.shortName = "Zip Pouch Jock";
-this.longName = "zip pouch jock strap";
-this.description = "A sexy zip pouch jock strap";
-this.tooltip = "This jock strap is all kinds of alluring, made of black fabric and designed to hug one's junk and show it off. Running along the groin is a zip designed to entice potential onlookers. When wearing this garment the wearer's ass is brazenly exposed.;
-this.basePrice = 1000;
-this.attack = 0;
-this.damage = 0;
-this.damageType = GLOBAL.PIERCING;
-this.defense = 0;
-this.shieldDefense = 0;
-this.shields = 0;
-this.sexiness = 1;
-this.critBonus = 0;
-this.evasion = 0;
-this.fortification = 0;
-this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
 //
 
 
@@ -3660,7 +3024,7 @@ Gossamer
 
 New Pussy Type: Siel Pussy
 
-Colors: Steel Blue / Blue-grey / Dusky Blue.
+Colors: Steel Blue / Blue-gray / Dusky Blue.
 
 Adjective List Below:
 Y-lipped

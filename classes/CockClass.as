@@ -38,6 +38,12 @@
 			}
 		}
 		
+		//Cock length - flaccid
+		public function cLengthFlaccid():Number
+		{
+			return cLength() * flaccidMultiplier;
+		}
+		
 		//Cock thickness 
 		public var cThicknessRatioRaw:Number = 1;
 		public var cThicknessRatioMod:Number = 0;
@@ -114,7 +120,7 @@
 		//EFFECTIVE PENETRATION VOLUME - Not true size, counts other bits.
 		public function effectiveVolume():Number {
 			var temp:Number = volume();
-			if(hasFlag(GLOBAL.FLAG_LUBRICATED)) temp *= .75;
+			if(hasFlag(GLOBAL.FLAG_LUBRICATED) || hasFlag(GLOBAL.FLAG_GOOEY)) temp *= .75;
 			if(hasFlag(GLOBAL.FLAG_STICKY)) temp *= 1.25;
 			return Math.round(temp * 100) / 100;
 		}

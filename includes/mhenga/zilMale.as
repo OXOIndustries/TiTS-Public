@@ -88,7 +88,9 @@ public function winVsZil():void {
 	else addDisabledButton(4,"Tail Peg","Tail Peg","You'll need a tailcock to peg the zil with it.");
 
 	if(pc.hasCock()) addButton(5,"Get BJ",getABJFromAManzil,undefined,"Get BJ","Get a BJ from the waspy male.");
-	else addDisabledButton(5,"Get BJ","Get BJ","Get a blowjob from the zil before you.,");
+	else addDisabledButton(5,"Get BJ","Get BJ","Get a blowjob from the zil before you.");
+	//Cuff&Fuck
+	cuffNFuckButton(6, foes[0]);
 	//Femzil prompt
 	if(pc.hasKeyItem("Capture Harness") && flags["CAPTURED_A_MALE_ZIL_FOR_DR_HASWELL"] == undefined) {
 		addButton(9,"Capture",useTheCaptureHarness);
@@ -513,13 +515,16 @@ public function alkahestsForeskinOralPlay():void {
 	//(Menu to pick which organ to come with)
 	output("\n\nHow do you cum?");
 	clearMenu();
-	if(pc.hasCock()) addButton(0,"Dick",foreskinWorshipCumWithDick);
+	if(pc.hasCock())
+	{
 	if(pc.cockTotal() > 1) addButton(0,"Dicks",foreskinWorshipCumWithDick);
-	if(!pc.hasCock()) addDisabledButton(0,"Dick");
+		else addButton(0,"Dick",foreskinWorshipCumWithDick);
+	}
+	else addDisabledButton(0,"Dick","Dick","You need a penis for this.");
 	if(pc.hasVagina()) addButton(1,"Pussy",foreskinWorshipWithPussyCum);
-	else addDisabledButton(1,"Pussy");
+	else addDisabledButton(1,"Pussy","Pussy","You need a vagina for this.");
 	if(pc.hasDickNipples()) addButton(2,"DickNipples",foreskinWorshipWithNippleCocks);
-	else addDisabledButton(2,"DickNipples");
+	else addDisabledButton(2,"DickNipples","Dick Nipples","You need dick nipples for this.");
 }
 
 //{IF DICK}
@@ -1185,14 +1190,14 @@ public function theZilPretendToBeHelia():void {
 	output("\n\nThe flying wasp-man nods graciously as he comes back around behind you, squeezing your [pc.butt] affectionately");
 	if(pc.isNaga()) output(" before flipping you over to have access to your vagina");
 	output(". His sheathed prong slides across your " + pc.skinFurScales() + " eagerly, barely exposing his tip, leaking his masculine pre-honey across your eager flesh. You ache to have him inside you, but you're little more than a spectator in this play. A literal and figurative honey-pot is brought closer, so close that it blocks most of the surroundings from your view, filling the air with the lusty aroma that has your head swimming. A tuft of neatly trimmed hair sits above it, covered in droplets of accumulated ardor, and underneath you see inky pussy, its lips puffy and ever-so-sightly parted by the bud of her clit.");
-	output("\n\nSome unseen signal passes between your waspy lovers, and press their hips in on you from both sides as one. The taste of a lovely, wondrous pussy on your lips wars with the sensation of being suddenly stuffed from behind with a throbbing, dominant cock. The member drips and dribbles a bit of pre-emptive payload to smooth it's passage as it burrows into your [pc.vagOrAss]. The honey suspended in the surprisingly soft pubic hair above the female's cleft smears across your nose, assisting you deeper into your lusty fugue, and your mouth dumbly falls open, the tongue extending of its own volition to taste the marvelous flavor the wasp-woman has to offer.");
+	output("\n\nSome unseen signal passes between your waspy lovers, and they press their hips in on you from both sides as one. The taste of a lovely, wondrous pussy on your lips wars with the sensation of being suddenly stuffed from behind with a throbbing, dominant cock. The member drips and dribbles a bit of pre-emptive payload to smooth its passage as it burrows into your [pc.vagOrAss]. The honey suspended in the surprisingly soft pubic hair above the female's cleft smears across your nose, assisting you deeper into your lusty fugue, and your mouth dumbly falls open, the tongue extending of its own volition to taste the marvelous flavor the wasp-woman has to offer.");
 	var x:int = pc.cuntThatFits(enemy.cockVolume(0));
 	if(x < 0) x = rand(pc.vaginaTotal());
 	//{stretch}
 	if(!pc.hasVagina()) pc.buttChange(enemy.cockVolume(0),true,true,false);
 	else pc.cuntChange(x,enemy.cockVolume(0),true,true,false);
 	output("\n\nSmooth armor compresses your [pc.butt] when the foreskin-wrapped dick bottoms out, the zil's smooth, hairless sack rubbing against you for a moment before he draws back and begins to fuck your [pc.vagOrAss] slowly, almost languidly.");
-	output("\n\n<i>“Oh, this is nice,”</i> he admits. His sack seems to grow a little bit bigger against your body as his constantly leaking pre turns your innards into a slippery mess. The slow friction gradually increases as the zil begins to pump faster and faster, locking eyes with his opposite across your submissive, conquered frame. His dick grows a hair thicker and plumper; his hips thrust faster, and you know a messy, gooey climax is is close at hand for the bug-man.");
+	output("\n\n<i>“Oh, this is nice,”</i> he admits. His sack seems to grow a little bit bigger against your body as his constantly leaking pre turns your innards into a slippery mess. The slow friction gradually increases as the zil begins to pump faster and faster, locking eyes with his opposite across your submissive, conquered frame. His dick grows a hair thicker and plumper; his hips thrust faster, and you know a messy, gooey climax is close at hand for the bug-man.");
 	output("\n\nThe female bites her lips and shudders while your tongue polishes her clit, gathering every drop of her hot honey, sliding deeper into her folds where it can properly tickle the rest of her nerve endings. You dole out cunnilingus with no thought but eagerness for the taste in your mouth, instinctively improving your technique whenever you discover something that gets you a fresh dribble of her juices. Her legs are quaking lustily around your head as she rides you towards a much-needed cum. If your mouth weren't muff-deep in cunt, a dopey smile would be visible on it.");
 	//{Vagina}
 	if(pc.hasVagina()) {
@@ -1200,7 +1205,7 @@ public function theZilPretendToBeHelia():void {
 		if(pc.hasClit()) output("[pc.EachClit] is throbbing, beaded with honeyed moisture and your own secretions. ");
 		output("The dick inside you is sliding perfectly through you while your tunnel flutters around with unadulterated pleasure, spurred on by the scents locking your body into a breeding frenzy.");
 		if(pc.hasPregnancy()) output(" Were your womb empty, you're sure you could feel your eggs descending, hungry for fertilization.");
-		output(" A needy whimper slips out around the quim stuffing your gob, and find yourself cumming, creaming messily about the modest alien-cock inside you. The honey-spewing dong is just what you needed to get off, and you wiggle your [pc.butt] at the alien as you convulse around him, milking him with slow squeezes while you ");
+		output(" A needy whimper slips out around the quim stuffing your gob, and you find yourself cumming, creaming messily about the modest alien-cock inside you. The honey-spewing dong is just what you needed to get off, and you wiggle your [pc.butt] at the alien as you convulse around him, milking him with slow squeezes while you ");
 		if(!pc.isSquirter()) output("drip with love.");
 		else output("spray your love across him.");
 		if(pc.vaginaTotal() > 1) {
@@ -1235,7 +1240,7 @@ public function theZilPretendToBeHelia():void {
 				if(pc.cumQ() <= 10000) output("[pc.legOrLegs]");
 				else if(pc.cumQ() <= 20000) output("elbow");
 				else output("[pc.chest]");
-				output(" would worry you if you brain wasn't single mindedly occupied with breeding.");
+				output(" would worry you if your brain wasn't single-mindedly occupied with breeding.");
 			}
 		}
 	}

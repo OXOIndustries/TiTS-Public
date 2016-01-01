@@ -366,17 +366,18 @@ package classes.GameData
 			{
 				if (target is PlayerCharacter)
 				{
-					output("<b>The flames slowly lick at you,</b>");
+					output("<b>The flames slowly lick at you,");
 					if(target.statusEffectv1("Burn") > 1) 
 					{
 						target.addStatusValue("Burn",1,-1);
-						output("<b> resisting any attempt to put them out.</b>");
+						output(" resisting any attempt to put them out.");
 					}
 					else 
 					{
 						target.removeStatusEffect("Burn");
-						output("<b> refusing to go out until they've done their foul work.</b>");
+						output("<b> refusing to go out until they've done their foul work.");
 					}
+					output("</b>");
 				}
 				else
 				{
@@ -384,13 +385,14 @@ package classes.GameData
 					if (target.statusEffectv1("Burn") > 1)
 					{
 						target.addStatusValue("Burn", 1, -1);
-						output(" resisting any attempt to put them out.</b>");
+						output(" resisting any attempt to put them out.");
 					}
 					else
 					{
 						target.removeStatusEffect("Burn");
-						output(" refusing to go out until they've done their foul work.</b>");
+						output(" refusing to go out until they've done their foul work.");
 					}
+					output("</b>");
 				}
 				applyDamage(new TypeCollection( { burning: 3 + rand(4) } ), null, target);
 				output("\n");
@@ -2456,7 +2458,16 @@ package classes.GameData
 			
 			var buffer:String = "";
 			var textRands:Array = [];
-			if (target is HuntressVanae)
+			if (target is PlayerCharacter)
+			{
+				if (damage == 0) buffer = "You seem unimpressed.";
+				else if (damage < 4) buffer = "You look a little intrigued by what you see.";
+		 		else if (damage < 10) buffer = "You definitely seem to be enjoying the show.";
+		 		else if (damage < 15) buffer = "You openly touch yourself as you watch lustfully.";
+		 		else if (damage < 20) buffer = "You flush hotly with desire, your eyes filled with longing.";
+		 		else buffer = "You lick your lips in anticipation, your hands idly stroking your own body.";
+			}
+			else if (target is HuntressVanae)
 			{
 				if (damage == 0)
 				{

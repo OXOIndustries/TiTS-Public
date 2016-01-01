@@ -107,6 +107,9 @@
 		/*ALT [Embed(source = "../../../assets/images/npcs/shou_puppy/fungal_myr.png", mimeType = "image/png")]
 		public var Bust_MYR_INFECTED_FEMALE:Class;*/
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/fungal_myr_queen_spores.png", mimeType = "image/png")]
+		public var Bust_MYR_INFECTED_QUEEN:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/gianna.png", mimeType = "image/png")]
 		public var Bust_GIANNA_NUDE:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/gianna_med.png", mimeType = "image/png")]

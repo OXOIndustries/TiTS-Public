@@ -62,6 +62,12 @@ public function showBrothelLady(nude:Boolean = false):void
 	if(!nude) userInterface.showBust("BORING_MISTRESS");
 	else userInterface.showBust("BORING_MISTRESS_NUDE");
 }
+public function getKatPregContainer():PregnancyPlaceholder
+{
+	var ppKat:PregnancyPlaceholder = new PregnancyPlaceholder();
+	if (!ppKat.hasVagina()) ppKat.createVagina();
+	return ppKat;
+}
 
 //Ovir Girl/Ovir ‘Girl’
 //’Ovir ‘Girl’ button name and smarty choice buttons below require governing stat to be >= 80% of cap (high because Tavros is early-game) OR 40 raw value, whichever is least; else button displays as ‘Ovir Girl’ (without any quotes)
@@ -781,6 +787,7 @@ public function brothelTurnTrixLicensedWhore(service:String = "none"):void
 	clearOutput();
 	showBrothelLady();
 	author("Nonesuch");
+	var ppKat:PregnancyPlaceholder = getKatPregContainer();
 	var totalEarnings:Number = 0;
 	var baseEarnings:Number = 0;
 	
@@ -798,6 +805,8 @@ public function brothelTurnTrixLicensedWhore(service:String = "none"):void
 		if(hours < 15) output("morning");
 		else output("evening");
 		output(".”</i> You get up wiping your mouth, and wait for her to zip herself back up before splitting the earnings with her.");
+		pc.girlCumInMouth(ppKat);
+		pc.lust(10);
 	}
 	// Vag
 	if(service == "vagina")
@@ -811,6 +820,8 @@ public function brothelTurnTrixLicensedWhore(service:String = "none"):void
 		if(hours < 15) output("morning");
 		else output("evening");
 		output(".”</i> You get up wiping your mouth, and wait for her to zip herself back up before splitting the earnings with her.");
+		pc.girlCumInMouth(ppKat);
+		pc.lust(10);
 	}
 	// Everything
 	else if(service == "all")
@@ -827,6 +838,8 @@ public function brothelTurnTrixLicensedWhore(service:String = "none"):void
 		if(hours < 15) output("morning");
 		else output("evening");
 		output(".”</i> You get up wiping your mouth, and wait for her to zip herself back up before splitting the earnings with her.");
+		pc.girlCumInMouth(ppKat);
+		pc.lust(10);
 	}
 	
 	totalEarnings = brothelWhorePayment(baseEarnings);
@@ -1046,9 +1059,10 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 			pp.cocks[0].addFlag(GLOBAL.FLAG_BLUNT);
 			if(!InCollection(2, scenesIndex) && pc.vaginalCapacity(x) >= pp.cockVolume(0) && scenesLimit > 0 && rand(scenesTotal) == 0)
 			{
-				output("\n\nA particularly huge alien is delighted to discover your voluminous twat is capable of taking his 3-foot long blunt breeding prong, and you spend an eye-crossing ten minutes riding him to a womb-swelling high. You have to waddle to the bathroom and release a full gallon of purple cum from your [pc.vagina " + x + "] afterwards.");
-				processTime(10);
+				output("\n\nA particularly huge alien is delighted to discover your voluminous twat is capable of taking his 3-foot long blunt breeding prong, and you spend an eye-crossing ten minutes riding him to a womb-swelling high.");
 				pc.cuntChange(x, pp.cockVolume(0));
+				output(" You have to waddle to the bathroom and release a full gallon of purple cum from your [pc.vagina " + x + "] afterwards.");
+				processTime(10);
 				pc.loadInCunt(pp, x);
 				pc.loadInCunt(pp, x);
 				pc.loadInCunt(pp, x);

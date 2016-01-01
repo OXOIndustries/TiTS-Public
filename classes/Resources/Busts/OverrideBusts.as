@@ -13,7 +13,10 @@
 		/**/
 		//[Embed(source = "../../../assets/images/npcs/gianna.png", mimeType = "image/png")]
 		//public var Bust_GIANNA:Class;
-			
+		
+		//Placeholder for futurestuff [Embed(source = "../../../assets/images/npcs/jacques00/nehzara.png", mimeType = "image/png")]
+		//.public var Bust_ANZHELA:Class;
+
 		[Embed(source = "../../../assets/images/npcs/jacques00/dally.png", mimeType = "image/png")]
 		public var Bust_DALLY:Class;
 		[Embed(source = "../../../assets/images/npcs/jacques00/dally_nude.png", mimeType = "image/png")]

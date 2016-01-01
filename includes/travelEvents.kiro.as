@@ -220,7 +220,7 @@ public function playWingmanWithKiro():void
 	//Nice
 	if(pc.isNice()) output("<i>“As horny as you are? You could use someone to help release all that pressure, and I’m not exactly keen on being turned into a creme-puff or getting hosed down right this minute.”</i>");
 	//Mischievious
-	else if(pc.isMischievous()) output("<i>“Sure. It’ll be a real kick getting to help pick a person to gift a few stretched orifices too.”</i>");
+	else if(pc.isMischievous()) output("<i>“Sure. It’ll be a real kick getting to help pick a person to gift a few stretched orifices to.”</i>");
 	//Jackass
 	else 
 	{
@@ -1061,9 +1061,7 @@ public function kiroBallsSexMenu():void
 	if(pc.hasCock()) addButton(1,"Balljob",balljobFromKiro,undefined,"Balljob","Stick your cock between those oversized balls and squeeze out an orgasm - maybe for both of you.");
 	else addDisabledButton(1,"Balljob","Balljob","You need a penis to get a balljob from Kiro.");
 	addButton(2,"Catch Anal",bodyBloatingButtObliteratingBowelBasting,undefined,"Catch Anal","One way or another, Kiro's going to fill you up.");
-
-
-
+	
 	addButton(5,"Invite",inviteAFriendForKiroPlays,undefined,"Invite","Invite a friend to play with you and Kiro...");
 	addButton(14,"Back",kiroMenu);
 }
@@ -1092,12 +1090,17 @@ public function kiroSexMenu():void
 	else addDisabledButton(2,"2xMilker","2xMilker","You need a penis to participate in this scene.");
 	addButton(3,"Hand Milk",manualMilkingFromSavin,undefined,"Hand Milk","Hand milk Kiro, and she doesn't lactate...");
 	//PUSSY PUMPIN~
-	if(kiroTrust() >= 66)
+	if(9999 == 9999)
 	{
-		if(pc.hasCock() || pc.hasVagina()) addButton(4,"PussyPump",treatedPussPumps,undefined,"PussyPump","Give Kiro's pussy a thorough pumping up with the SukMastr 2000 you bought. She could spare to give her feminine side a little extra attention. <b>Enabled by default until the item is actually made available.</b>");//9999
-		else addDisabledButton(4,"PussyPump","PussyPump","You need a penis or vagina (in the usual location) to deal with the consequences of pumping up Kiro's pussy.");
+		if(kiroTrust() >= 66)
+		{
+			if(pc.hasCock() && (pc.cockThatFits(kiro.vaginalCapacity(0)) < 0 && pc.biggestCockLength() < 20) && !pc.hasVagina()) addDisabledButton(4,"PussyPump","PussyPump","You need a penis of a specific size or a vagina (in the usual location) to deal with the consequences of pumping up Kiro's pussy.");
+			else if(pc.hasGenitals()) addButton(4,"PussyPump",treatedPussPumps,undefined,"PussyPump","Give Kiro's pussy a thorough pumping up with the SukMastr 2000 you bought. She could spare to give her feminine side a little extra attention. <b>Enabled by default until the item is actually made available.</b>");//9999
+			else addDisabledButton(4,"PussyPump","PussyPump","You need a penis or vagina (in the usual location) to deal with the consequences of pumping up Kiro's pussy.");
+		}
+		else addDisabledButton(4,"PussyPump","PussyPump","Kiro doesn't trust you nearly enough for that.");
 	}
-	else addDisabledButton(4,"PussyPump","PussyPump","Kiro doesn't trust you nearly enough for that.");
+	else addDisabledButton(4,"PussyPump","PussyPump","You need a valid device for pumping up Kiro's pussy.");
 	//THREESOMES~
 	addButton(5,"Invite",inviteAFriendForKiroPlays,undefined,"Invite","Invite a friend to play with you and Kiro...");
 	addButton(14,"Back",kiroMenu);
@@ -1120,7 +1123,8 @@ public function takeKirosVirginity():void
 		output("\n\nDamn. Well, she’d probably let you put it in her butt.");
 		//Sex menu, no text.
 		processTime(2);
-		kiroSexMenu();
+		if(kiro.ballDiameter() <= 14) kiroSexMenu();
+		else kiroBallsSexMenu();
 		return;
 	}
 	//High Trust
@@ -2191,7 +2195,7 @@ public function inviteAFriendForKiroPlays():void
 	clearOutput();
 	showKiro();
 	
-	var nFriends:Number = 0;
+	var nFriends:int = 0;
 	
 	//[Holiday?] [Saendra][Reaha] [Literally Every other NPC. Hey ZilGirl, come fly with us!]
 	processTime(1);
@@ -2199,10 +2203,11 @@ public function inviteAFriendForKiroPlays():void
 	// Celise
 	if(flags["RECRUITED_CELISE"] != undefined)
 	{
-		if(!celiseIsCrew()) addDisabledButton(0,"Celise","Celise","Celise isn't aboard your ship for this to work.");
-		else if(kiroTrust() < 80) addDisabledButton(0,"Celise","Celise","Kiro doesn't trust you enough to try this.");
-		else if(kiro.ballDiameter() <= 7) addDisabledButton(0,"Celise","Celise","Kiro doesn't look bloated enough. You should probably wait until she's really backed up before trying this.");
-		else addButton(0,"Celise",celiseKiroFunSekritShit,undefined,"Celise","Invite Kiro to meet with Celise.");
+		if(!celiseIsCrew()) addDisabledButton(nFriends,"Celise","Celise","Celise isn't aboard your ship for this to work.");
+		else if(flags["GIGACELISE"] == undefined) addDisabledButton(nFriends,"Celise","Celise","Celise should probably be in her giga-goo form for this.");
+		else if(kiroTrust() < 80) addDisabledButton(nFriends,"Celise","Celise","Kiro doesn't trust you enough to try this.");
+		else if(kiro.ballDiameter() <= 7) addDisabledButton(nFriends,"Celise","Celise","Kiro doesn't look bloated enough. You should probably wait until she's really backed up before trying this.");
+		else addButton(nFriends,"Celise",celiseKiroFunSekritShit,undefined,"Celise","Invite Kiro to meet with Celise.");
 		nFriends++;
 	}
 	// Saendra
@@ -2210,18 +2215,19 @@ public function inviteAFriendForKiroPlays():void
 	{
 		if(flags["SAEN MET AT THE BAR"] != undefined)
 		{
-			if(rooms[currentLocation].planet != "TAVROS STATION") addDisabledButton(1,"Saendra","Saendra","Saendra isn't anywhere near this location. You'd have to catch Kiro on Tavros Station to have Saendra within easy reach.");
-			else if(pc.hasCock()) addButton(1,"Saendra",inviteSaenForKiroFilling,undefined,"Saendra","Invite Saendra over for a ball-draining good time.");
-			else addDisabledButton(1,"Saendra","Saendra","This scene requires a penis to participate in.");
+			if(rooms[currentLocation].planet != "TAVROS STATION") addDisabledButton(nFriends,"Saendra","Saendra","Saendra isn't anywhere near this location. You'd have to catch Kiro on Tavros Station to have Saendra within easy reach.");
+			else if(pc.hasCock()) addButton(nFriends,"Saendra",inviteSaenForKiroFilling,undefined,"Saendra","Invite Saendra over for a ball-draining good time.");
+			else addDisabledButton(nFriends,"Saendra","Saendra","This scene requires a penis to participate in.");
 		}
-		else addDisabledButton(1,"Saendra","Locked","You don't know Saendra well enough to invite her.");
+		else addDisabledButton(nFriends,"Saendra","Locked","You don't know Saendra well enough to invite her.");
 		nFriends++;
 	}
 	
 	if(nFriends > 0) output("A sly smile creeps up the side of your lips and blossoms into a full blown grin. You press a finger to the Tanuki’s small, black nose and tell her to give you just a minute. She barks out an angry protest, gesturing broadly as if to remind you that she’s ready to go. <i>“You’d better not leave me hanging, you cock-tease,”</i> she complains, her half-hard shaft throbbing between her legs. <i>“I don’t want a repeat of that milker accident!”</i> You tweak one of her round, fluffy ears and give her a wink as you throw a robe over your body and step towards the door. Just a minute, you promise.");
-	else output("Unfortunately, you don't know any available friends to invite...");
+	else output("Unfortunately, you don't know of any available friends to invite...");
 	
-	addButton(14,"Back",kiroSexMenu);
+	if(kiro.ballDiameter() <= 14) addButton(14,"Back",kiroSexMenu);
+	else addButton(14,"Back",kiroBallsSexMenu);
 }
 
 public function inviteSaenForKiroFilling():void
@@ -2546,7 +2552,7 @@ public function giveKiroSomeRelief():void
 	if(kiro.ballDiameter() > 14) output(" As big as they are, it’s definitely a need. The poor girl just isn’t taking taking care of herself.");
 	output("\n\nHer sheath is just about level with your nose, and there’s no disguising its musky, oddly masculine aroma. It hasn’t disgorged its phallic cargo just yet, but the supple flesh is pulsating gently with every accelerating beat of your companion’s heart. You can see the soft folds of her sensitive skin slowly expanding before your eyes. The scent of her long-hidden, anxious cock thickens in the table’s ill-ventilated confines with the engorgement of the alien pirate’s eager genitals, and you’ve got a front row seat.");
 	output("\n\n<i>\"Last chance to back out,\”</i> Kiro whispers.");
-	output("\n\nYou can see a blunt, rounded distention in her sheath, and it’s clear the time for backing out as long since passed. It’s time to lick your lips, open wide, and give your lover a treat. Nuzzling your cheek against her soft skin, you heft her [kiro.balls] in your hands, rolling the heavy, liquid-filled masses back and forth gently. An exquisitely pleased sigh finds it way down from somewhere high above. You smile and rub a little more firmly. Twisting your head, you nibble gently at the edges of Kiro’s sheath before pressing yourself wholly into it.");
+	output("\n\nYou can see a blunt, rounded distention in her sheath, and it’s clear the time for backing out has long since passed. It’s time to lick your lips, open wide, and give your lover a treat. Nuzzling your cheek against her soft skin, you heft her [kiro.balls] in your hands, rolling the heavy, liquid-filled masses back and forth gently. An exquisitely pleased sigh finds it way down from somewhere high above. You smile and rub a little more firmly. Twisting your head, you nibble gently at the edges of Kiro’s sheath before pressing yourself wholly into it.");
 	output("\n\nKiro’s thighs twitch on either side of you. She gasps in delight, and her tail thumps noisily against her seatcushion. <i>\"It’s coming!\”</i>");
 	output("\n\nYou have just enough time to lick around the inside of her pheromone-laden, flesh tube before her cock makes its appearance, driving your [pc.tongue] back into your mouth with steady but uncompromising force. And why shouldn’t it? It’s a big, thick cock, and it <b>needs</b> to cum. Your mouth is merely the temple dedicated to its pleasure. You open wide, and the thick, warm length pours into you, still soft but growing firmer with every passing second, rolling across your tongue with its salty, tangy flavor, thickening in your mouth until it’s impossible not to feel the veins rising against your [pc.lips].");
 	output("\n\nIt’s impossible to tell, increasingly full of cock as you are, but your hands feel subtly fuller than a few moments ago. You let your mouth hang open, [pc.tongue] flat as you let yourself become her sheath, and heft the weight, comparing. Her balls are heavier... but softer too, more... liquid. You gently squeeze and marvel at just how much give the fleshy orb has. Human biology may not produce cum entirely from its testes, but you’re holding proof of a kui-tan difference in your hands - a difference that’s getting heavier and squishier the longer you handle it. Kiro’s nuts have gone into overdrive. If you don’t empty them, you’re not sure she’ll be able to walk out of here later.");

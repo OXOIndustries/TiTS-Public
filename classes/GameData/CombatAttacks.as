@@ -602,7 +602,7 @@ package classes.GameData
 				}
 			}
 			
-			if (attacker.hasPerk("Myr Venom"))
+			if (attacker.hasPerk("Myr Venom") && target.isLustImmune == false)
 			{
 				if (combatMiss(attacker, target))
 				{

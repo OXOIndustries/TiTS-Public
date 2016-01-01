@@ -66,7 +66,22 @@
 					if(inCombat()) kGAMECLASS.output("\n");
 					else kGAMECLASS.clearOutput();
 					kGAMECLASS.output(targetCreature.capitalA + targetCreature.short + " can't use a shield booster without a shield generator!\n");
-					kGAMECLASS.output("\n");
+				}
+				return false;
+			}
+			else if (targetCreature.shields() >= targetCreature.shieldsMax())
+			{
+				if(!kGAMECLASS.infiniteItems()) quantity++;
+				if (targetCreature == kGAMECLASS.pc)
+				{
+					kGAMECLASS.clearOutput();
+					kGAMECLASS.output("You probably shouldn't use a shield booster while having full shields... You might overload something.\n");
+				}
+				else
+				{
+					if(kGAMECLASS.inCombat()) kGAMECLASS.output("\n");
+					else kGAMECLASS.clearOutput();
+					kGAMECLASS.output(targetCreature.capitalA + targetCreature.short + " pulls out a shield booster, but quickly puts it back.\n");
 				}
 				return false;
 			}
@@ -83,7 +98,6 @@
 					if(inCombat()) kGAMECLASS.output("\n");
 					else kGAMECLASS.clearOutput();
 					kGAMECLASS.output(targetCreature.capitalA + targetCreature.short + " cannot use another shield booster--doing so will risk destroying " + targetCreature.mfn("his","her","its") + " shield generator.\n");
-					kGAMECLASS.output("\n");
 				}
 				return false;
 			}
@@ -113,29 +127,29 @@
 		public function playerUsed(targetCreature:Creature, usingCreature:Creature):void
 		{
 			kGAMECLASS.output("You press the booster to the charge port on your shield generator and hear the telltale hum of rapidly discharging electrical energy. After a second, the booster beeps and blinks red before dying completely.");
-			//{Restores moderate HP}
 			var healing:int = 40;
-			if(targetCreature.shields() + 40 > targetCreature.shieldsMax())
+			if(targetCreature.shields() + healing > targetCreature.shieldsMax())
 			{
 				healing = targetCreature.shieldsMax() - targetCreature.shields();
 			}
 			if (inCombat()) targetCreature.createStatusEffect("Shield Boosted", 0, 0, 0, 0, true, "", "", true, 0);
 			targetCreature.shields(healing);
-			kGAMECLASS.output(" (<b>+" + healing + "</b>)\n");
+			if(healing > 0) kGAMECLASS.output(" (<b>+" + healing + " Shields</b>)");
+			kGAMECLASS.output("\n");
 		}
 		
 		public function npcUsed(targetCreature:Creature, usingCreature:Creature):void
 		{
 			kGAMECLASS.output(usingCreature.capitalA + usingCreature.short + " uses a shield booster!");
-			//{Restores moderate HP}
 			var healing:int = 40;
-			if(targetCreature.shields() + 40 > targetCreature.shieldsMax())
+			if(targetCreature.shields() + healing > targetCreature.shieldsMax())
 			{
 				healing = targetCreature.shieldsMax() - targetCreature.shields();
 			}
 			if (inCombat()) targetCreature.createStatusEffect("Shield Boosted", 0, 0, 0, 0, true, "", "", true, 0);
 			targetCreature.shields(healing);
-			kGAMECLASS.output(" (<b>+" + healing + "</b>)\n");
+			if(healing > 0) kGAMECLASS.output(" (<b>+" + healing + " Shields</b>)");
+			kGAMECLASS.output("\n");
 		}
 	}
 }

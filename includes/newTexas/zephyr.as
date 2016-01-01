@@ -46,7 +46,7 @@ public function getZephyrPregContainer():PregnancyPlaceholder
 	ppZephyr.milkFullness = 100;
 	if(!ppZephyr.hasCock()) ppZephyr.createCock();
 	ppZephyr.shiftCock(0, GLOBAL.TYPE_CANINE);
-	ppZephyr.cocks[0].cLength = 9;
+	ppZephyr.cocks[0].cLengthRaw = 9;
 	ppZephyr.cocks[0].flaccidMultiplier = .6;
 	return ppZephyr;
 }
@@ -511,7 +511,7 @@ public function getFuckedByZephyrIV():void
 	output(", stuffed full of the cow’s gene-modded jism.");
 	
 	output("\n\nZephyr holds you there for what feels like hours, pinned beneath her, slowly filling, expanding from the pressure of her endless, liquid load. She whispers perverse promises in your ear once it finally dies down");
-	if(!pc.isTreated()) output(", promising that you can have her dick every day if you take the Treatment and immigrate, no matter what kind of " + pc.rawmfn("cow","bull","person") + " you come out as.");
+	if(!pc.isTreated()) output(", promising that you can have her dick every day if you take the Treatment and immigrate, no matter what kind of " + pc.rawmfn("bull","cow","person") + " you come out as.");
 	else output(", promising to knot you until you’re addicted to her cock unable to cum without feeling her signature swelling down below.");
 	
 	var ppZephyr:PregnancyPlaceholder = getZephyrPregContainer();

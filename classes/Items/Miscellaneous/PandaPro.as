@@ -27,7 +27,7 @@
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a simple medipen labelled as 'Panda Pro'";
+			this.description = "a simple medipen labeled as 'Panda Pro'";
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "Panda Pro is the treatment for those who want to gain the whole panda look in a short period of time. Contained in an injectable medipen, its bevy of gene-reprogramming microsurgeons packing extended program buffers are sure to give any user the fuzzier, softer look they've always wanted. Xenogen Biotech does not refund or cover funeral expenses for dissatisfied users.";
 			

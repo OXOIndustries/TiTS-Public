@@ -55,10 +55,18 @@
 		{
 			if (targetCreature.hasStatusEffect("Healed"))
 			{
-				kGAMECLASS.clearOutput();
-				if (targetCreature == kGAMECLASS.pc) kGAMECLASS.output("Using suppliments to heal yourself will only work once per fight. No body can handle the metabolic strain of downing multiple regenerative items in such quick succession.\n");
-				else kGAMECLASS.output(targetCreature.capitalA + targetCreature.short + " has already used a vial of gray goo during this fight so drinking it again could be dangerous!\n");
 				if(!kGAMECLASS.infiniteItems()) quantity++;
+				if (targetCreature == kGAMECLASS.pc)
+				{
+					kGAMECLASS.clearOutput();
+					kGAMECLASS.output("Using suppliments to heal yourself will only work once per fight. No body can handle the metabolic strain of downing multiple regenerative items in such quick succession.\n");
+				}
+				else
+				{
+					if(kGAMECLASS.inCombat()) kGAMECLASS.output("\n");
+					else kGAMECLASS.clearOutput();
+					kGAMECLASS.output(targetCreature.capitalA + targetCreature.short + " has already used a vial of gray goo during this fight so drinking it again could be dangerous!\n");
+				}
 				return false;
 			}
 			else
@@ -72,7 +80,8 @@
 				// Enemy used an item on the PC
 				else if (targetCreature != kGAMECLASS.pc && usingCreature != kGAMECLASS.pc)
 				{
-					kGAMECLASS.output("\n");
+					if(kGAMECLASS.inCombat()) kGAMECLASS.output("\n");
+					else kGAMECLASS.clearOutput();
 					npcUsed(targetCreature, usingCreature);
 				}
 				else
@@ -85,30 +94,34 @@
 		
 		public function playerUsed(targetCreature:Creature, usingCreature:Creature):void
 		{
-			kGAMECLASS.output("Bottoms up! You pop the cork on your vial and down the reprogrammed healer bots. You give a little shudder as they go to work, patching up any injuries they come across.");
+			kGAMECLASS.output("Bottoms up! You pop the cork on your vial and down the reprogrammed healer bots.");
 			//{Restores moderate HP}
 			var healing:int = 40;
-			if(targetCreature.HP() + 40 > targetCreature.HPMax())
+			if(targetCreature.HP() + healing > targetCreature.HPMax())
 			{
 				healing = targetCreature.HPMax() - targetCreature.HP();
 			}
 			if (inCombat()) targetCreature.createStatusEffect("Healed", 0, 0, 0, 0, true, "", "", true, 0);
 			targetCreature.HP(healing);
-			kGAMECLASS.output(" (<b>+" + healing + "</b>)\n");
+			if(healing > 0) kGAMECLASS.output(" You give a little shudder as they go to work, patching up any injuries they come across. (<b>+" + healing + " HP</b>)");
+			else kGAMECLASS.output(" There is a slight gurgling in your belly but the item seems to have no effect.");
+			kGAMECLASS.output("\n");
 		}
 		
 		public function npcUsed(targetCreature:Creature, usingCreature:Creature):void
 		{
-			kGAMECLASS.output(usingCreature.capitalA + usingCreature.short + " pulls a vial of silvery-looking goo and downs it! " + usingCreature.mfn("He","She","It") + " appears to be invigorated by the strange draft.");
+			kGAMECLASS.output(usingCreature.capitalA + usingCreature.short + " pulls a vial of silvery-looking goo and downs it!");
 			//{Restores moderate HP}
 			var healing:int = 40;
-			if(targetCreature.HP() + 40 > targetCreature.HPMax())
+			if(targetCreature.HP() + healing > targetCreature.HPMax())
 			{
 				healing = targetCreature.HPMax() - targetCreature.HP();
 			}
 			if (inCombat()) targetCreature.createStatusEffect("Healed", 0, 0, 0, 0, true, "", "", true, 0);
 			targetCreature.HP(healing);
-			kGAMECLASS.output(" (<b>+" + healing + "</b>)\n");
+			if(healing > 0) kGAMECLASS.output(" " + usingCreature.mfn("He","She","It") + " appears to be invigorated by the strange draft. (<b>+" + healing + " HP</b>)");
+			else kGAMECLASS.output(" However, the item has no effect.");
+			kGAMECLASS.output("\n");
 		}
 	}
 }

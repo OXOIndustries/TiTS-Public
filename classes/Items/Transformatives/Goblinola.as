@@ -50,6 +50,11 @@ package classes.Items.Transformatives
 		{
 			return int(Math.random() * max);
 		}
+		// Elven Ear check:
+		private function hasElvenEars(target:Creature):Boolean
+		{
+			return InCollection(target.earType, GLOBAL.TYPE_SYLVAN, GLOBAL.TYPE_GABILANI);
+		}
 		// Physical Changes
 		private function minorGoblinMutations(target:Creature):void
 		{
@@ -64,7 +69,7 @@ package classes.Items.Transformatives
 			if(target.skinType != GLOBAL.SKIN_TYPE_SKIN || !InCollection(target.skinTone, "green", "lime", "emerald", "aqua", "pale blue", "turquoise", "yellow", "amber", "topaz"))
 				TFList[TFList.length] = 1;
 			//#2 Goblin ears: Requires non-elven ears.
-			if(target.earType != GLOBAL.TYPE_SYLVAN || target.earType != GLOBAL.TYPE_GABILANI)
+			if(!hasElvenEars(target))
 				TFList[TFList.length] = 2;
 			//#3 Goblin hair: Requires non-black hair.
 			if(target.hairType == GLOBAL.HAIR_TYPE_REGULAR && !InCollection(target.hairColor, "black", "onyx", "jet-black"))
@@ -73,7 +78,7 @@ package classes.Items.Transformatives
 			if(target.eyeType != GLOBAL.TYPE_GABILANI)
 				TFList[TFList.length] = 4;
 			//#5 Goblin face: Requires non-goblin face, goblin eyes, and elven ears.
-			if(!target.hasStatusEffect("Gabilani Face Change") && target.faceType != GLOBAL.TYPE_GABILANI && target.eyeType == GLOBAL.TYPE_GABILANI && (target.earType == GLOBAL.TYPE_SYLVAN || target.earType == GLOBAL.TYPE_GABILANI))
+			if(!target.hasStatusEffect("Gabilani Face Change") && target.faceType != GLOBAL.TYPE_GABILANI && target.eyeType == GLOBAL.TYPE_GABILANI && hasElvenEars(target))
 			{
 				TFList[TFList.length] = 5;
 			}
@@ -91,7 +96,7 @@ package classes.Items.Transformatives
 				TFList[TFList.length] = 7;
 			}
 			//#8 Change legs and feet to humanoid: Requires non-humanoid legs and either goblin ears or goblin eyes. Legs become normal human legs. Advances time by 20 minutes when it triggers.
-			if((target.legType != GLOBAL.TYPE_HUMAN || !target.isBiped()) && (target.eyeType == GLOBAL.TYPE_GABILANI || target.earType == GLOBAL.TYPE_SYLVAN || target.earType == GLOBAL.TYPE_GABILANI))
+			if((target.legType != GLOBAL.TYPE_HUMAN || !target.isBiped()) && (target.eyeType == GLOBAL.TYPE_GABILANI || hasElvenEars(target)))
 				TFList[TFList.length] = 8;
 			//#9 Change arms to human: Requires non-human arms and humanoid legs.
 			if((target.armType != GLOBAL.TYPE_HUMAN) && target.legType == GLOBAL.TYPE_HUMAN && target.isBiped())
@@ -126,12 +131,17 @@ package classes.Items.Transformatives
 					{
 						target.skinTone = newSkinTone;
 						// Transformation text (human texture):
-						if(target.skinType == GLOBAL.SKIN_TYPE_SKIN) kGAMECLASS.eventBuffer += "You notice something odd about your skin and find, much to your surprise, that your flesh tone has changed! <b>You now have [pc.skinColor] colored skin.</b>";
+						if(target.skinType == GLOBAL.SKIN_TYPE_SKIN)
+						{
+							kGAMECLASS.eventBuffer += "You notice something odd about your skin and find, much to your surprise, that your flesh tone has changed! <b>You now have [pc.skinColor] colored skin.</b>";
+						}
 						// Transformation text (non-human texture):
-						else kGAMECLASS.eventBuffer += "You touch your face in a moment of idle contemplation, and find that it feels very different than usual. You check your reflection in and see that not only has your skin’s texture changed to something much more in line with what a human’s normally is, it’s also turned an unusual [pc.skinColor] color. <b>You now have [pc.skinColor] human skin!</b>";
-						
-						target.skinType = GLOBAL.SKIN_TYPE_SKIN;
-						target.clearSkinFlags();
+						else
+						{
+							kGAMECLASS.eventBuffer += "You touch your face in a moment of idle contemplation, and find that it feels very different than usual. You check your reflection in and see that not only has your skin’s texture changed to something much more in line with what a human’s normally is, it’s also turned an unusual [pc.skinColor] color. <b>You now have [pc.skinColor] human skin!</b>";
+							target.skinType = GLOBAL.SKIN_TYPE_SKIN;
+							target.clearSkinFlags();
+						}
 					}
 					else
 					{
@@ -146,6 +156,7 @@ package classes.Items.Transformatives
 						// Transformation text:
 						kGAMECLASS.eventBuffer += "Your ears have been bothering you for a bit now. You give them a another scratch a discover that they’ve reshaped themselves! <b>You now have long pointy gabilani ears!</b>";
 						target.earType = GLOBAL.TYPE_GABILANI;
+						target.earLength = 2 + rand(3);
 					}
 					else
 					{
@@ -347,6 +358,7 @@ package classes.Items.Transformatives
 		//#5b Goblin face: Stage two happens 30 minutes after stage 1 ends, and the face type only changes when stage 2 triggers.
 		public function itemGoblinFaceTFGo(target:Creature):void
 		{
+			kGAMECLASS.eventBuffer += "\n\n<u>The goblinola bar has an effect....</u>";
 			// Transformation text (stage 2):
 			kGAMECLASS.eventBuffer += "Finally the pain in your face subsides, and you take a deep breath. You check to see what the damage is and find that your face has restructured itself. Your nose has grown longer and pointier, while your jaw has narrowed a fair bit giving your face a more angular appearance not unlike that of an upside down triangle. <b>You now have a gabilani face!</b>";
 			// Actual face type change
@@ -354,6 +366,8 @@ package classes.Items.Transformatives
 			target.clearFaceFlags();
 			target.addFaceFlag(GLOBAL.FLAG_ANGULAR);
 			target.removeStatusEffect("Gabilani Face Change");
+			clearMenu();
+			addButton(0,"Next",kGAMECLASS.mainGameMenu);
 		}
 		// Sexual and Stat Changes and Perks
 		private function majorGoblinMutations(target:Creature):void
@@ -374,10 +388,10 @@ package classes.Items.Transformatives
 			//#2 Goblin vagina: Requires at least one non-goblin vagina.
 			if(target.totalVaginas(GLOBAL.TYPE_GABILANI) < target.vaginas.length)
 				TFList[TFList.length] = 2;
-			//#3 Goblin cum: Requires non-oily grey cum and at least one goblin dick.
+			//#3 Goblin cum: Requires non-oily gray cum and at least one goblin dick.
 			if(target.hasCock(GLOBAL.TYPE_GABILANI) && target.cumType != GLOBAL.FLUID_TYPE_GABILANI_CUM)
 				TFList[TFList.length] = 3;
-			//#4 Goblin girlcum: Requires non-oily grey girlcum, and at least one goblin vagina.
+			//#4 Goblin girlcum: Requires non-oily gray girlcum, and at least one goblin vagina.
 			if(target.hasVaginaType(GLOBAL.TYPE_GABILANI) && target.girlCumType != GLOBAL.FLUID_TYPE_GABILANI_GIRLCUM)
 				TFList[TFList.length] = 4;
 			//#5 Intelligence increase towards 85%
@@ -478,8 +492,9 @@ package classes.Items.Transformatives
 						// Increase capacity but also increase tightness.
 						if(target.vaginas[n].loosenessRaw > 1) target.vaginas[n].loosenessRaw -= 1;
 						if(target.vaginas[n].loosenessRaw < 0.5) target.vaginas[n].loosenessRaw = 0.5;
-						if(target.vaginas[n].bonusCapacity < 2000) target.vaginas[n].bonusCapacity = 2000;
-						else target.vaginas[n].bonusCapacity += 500;
+						if(target.vaginas[n].minLooseness > 0.5) target.vaginas[n].minLooseness = 0.5;
+						if(target.vaginas[n].bonusCapacity < 200) target.vaginas[n].bonusCapacity = 200;
+						else target.vaginas[n].bonusCapacity += 50;
 						target.lust(10 + rand(20));
 					}
 					else
@@ -487,7 +502,7 @@ package classes.Items.Transformatives
 						kGAMECLASS.eventBuffer += target.vaginaTypeLockedMessage();
 					}
 				}
-				//#3 Goblin cum: Cum changes to oily grey cum.
+				//#3 Goblin cum: Cum changes to oily gray cum.
 				else if(select == 3)
 				{
 					if(target.cumTypeUnlocked(GLOBAL.FLUID_TYPE_GABILANI_CUM))
@@ -511,7 +526,7 @@ package classes.Items.Transformatives
 					if(target.girlCumTypeUnlocked(GLOBAL.FLUID_TYPE_GABILANI_GIRLCUM))
 					{
 						// Transformation text:
-						kGAMECLASS.eventBuffer += "The muscles of your alien pussy quiver pleasantly and you feel an incredible urge to fill them with whatever is at hand, which ends up being exactly what you stick in there. After fingering yourself to orgasm, you check your fingers and discover they’re covered in a very oily grey liquid, very different from your usual discharge. <b>You now have gabilani girlcum!</b>";
+						kGAMECLASS.eventBuffer += "The muscles of your alien pussy quiver pleasantly and you feel an incredible urge to fill them with whatever is at hand, which ends up being exactly what you stick in there. After fingering yourself to orgasm, you check your fingers and discover they’re covered in a very oily gray liquid, very different from your usual discharge. <b>You now have gabilani girlcum!</b>";
 						
 						target.girlCumType = GLOBAL.FLUID_TYPE_GABILANI_GIRLCUM;
 						target.orgasm();
@@ -529,14 +544,14 @@ package classes.Items.Transformatives
 					// > 60% Intel:
 					else kGAMECLASS.eventBuffer += "A headache pulses behind your brow as your brain rewires itself slightly. You see yet more layers of information splitting off everything you observe; the immediate impulses coursing through your mind is how you might exploit it, how you might grasp your realizations and do something fantastical with it before anyone else does. It’s an awesome and more than slightly eerie sensation.";
 					
-					target.intelligence(2);
+					target.slowStatGain("intelligence", 2);
 				}
 				//#6 Reflexes increase towards 60%
 				else if(select == 6)
 				{
 					kGAMECLASS.eventBuffer += "Your movements feel jerkier, as if your joints were acting up. As your perception adapts, though, you realize that in actuality you are now reacting and moving slightly faster.";
 					
-					target.reflexes(2);
+					target.slowStatGain("reflexes", 2);
 				}
 				//#7 Physique decrease towards 30%
 				else if(select == 7)
@@ -551,20 +566,23 @@ package classes.Items.Transformatives
 				//#8 Fertility increase/Libido increase towards 80%
 				else if(select == 8)
 				{
-					kGAMECLASS.eventBuffer += "You " + target.mf("growl","purr") + " with enjoyment as liquid heat sinks down from your tummy to your groin,";
-					if(target.balls > 0)
+					kGAMECLASS.eventBuffer += "You " + target.mf("growl","purr") + " with enjoyment as liquid heat sinks down from your tummy to your groin";
+					var virilityChange:Boolean = false;
+					if(target.balls > 0 && target.cumQualityRaw < 3)
 					{
-						kGAMECLASS.eventBuffer += " your [pc.balls] swelling in gratification";
-						target.cumQualityRaw += 1;
+						kGAMECLASS.eventBuffer += ", your [pc.balls] swelling in gratification";
+						target.cumQualityRaw += 0.01;
+						virilityChange = true;
+						if(target.hasVagina() && target.fertilityRaw < 3) kGAMECLASS.eventBuffer += " and";
 					}
-					if(target.balls > 0 && target.hasVagina()) kGAMECLASS.eventBuffer += " and";
-					if(target.hasVagina())
+					if(target.hasVagina() && target.fertilityRaw < 3)
 					{
+						if(!virilityChange) kGAMECLASS.eventBuffer += ",";
 						kGAMECLASS.eventBuffer += " [pc.eachVagina] moistening with anticipatory need";
-						target.fertilityRaw += 1;
+						target.fertilityRaw += 0.01;
 					}
-					kGAMECLASS.eventBuffer += ". An increasingly tigrish and prickly urge to breed is stealing over you.";
-					
+					kGAMECLASS.eventBuffer += ". An increasingly tigerish and prickly urge to breed is stealing over you.";
+					target.slowStatGain("libido", 2);
 					//Lust increase
 					target.lust(30 + rand(50));
 				}
@@ -636,8 +654,6 @@ package classes.Items.Transformatives
 		public function itemEndGoblinTF():void
 		{
 			itemGoblinTF(true);
-			clearMenu();
-			addButton(0,"Next",kGAMECLASS.mainGameMenu);
 		}
 		
 		//METHOD ACTING!
@@ -646,11 +662,18 @@ package classes.Items.Transformatives
 			author("Nonesuch");
 			
 			var healing:int = 25;
+			if(target.HP() + healing > target.HPMax())
+			{
+				healing = target.HPMax() - target.HP();
+			}
 			if(target is PlayerCharacter)
 			{
 				clearOutput();
 				// Consuming:
-				output("You unwrap the goblinola and munch on the stuff. There are some constants that hold true the galaxy over, and health snacks are one of them: It’s reasonably tasty, takes a while to chew and is vaguely unsatisfying. Your stomach is left a little unsettled. (<b>+" + healing + " HP</b>)");
+				output("You unwrap the goblinola and munch on the stuff.");
+				if(!kGAMECLASS.inCombat()) output(" There are some constants that hold true the galaxy over, and health snacks are one of them: It’s reasonably tasty, takes a while to chew and is vaguely unsatisfying.");
+				output(" Your stomach is left a little unsettled.");
+				if (healing > 0) output(" (<b>+" + healing + " HP</b>)");
 				output("\n");
 				
 				// Immediate effects: The player gains some health.
@@ -668,7 +691,7 @@ package classes.Items.Transformatives
 					target.setStatusValue("Goblinola Bar", 1, timerStamp);
 					target.setStatusMinutes("Goblinola Bar", timerStamp);
 					// Increase chance for major TFs!
-					if(target.statusEffectv2("Goblinola Bar") < 4) target.addStatusValue("Goblinola Bar",2,1);
+					if(target.statusEffectv2("Goblinola Bar") < 4) target.addStatusValue("Goblinola Bar", 2, 1);
 				}
 				else
 				{
@@ -677,15 +700,15 @@ package classes.Items.Transformatives
 					// v2: Number of major transformations
 					target.createStatusEffect("Goblinola Bar", timerStamp, 1, 0, 0, false, "Icon_Poison", "Your stomach is a little unsettled by the health bar you ate...", false, timerStamp);
 				}
-				
-				return true;
 			}
 			//Not the player!
 			else
 			{
 				if(inCombat()) output("\n");
 				else clearOutput();
-				output(target.capitalA + target.short + " unwraps and eats the bar, revitalizing some of [target.hisHer] health! (<b>+" + healing + " HP</b>)");
+				output(target.capitalA + target.short + " unwraps and eats a Goblinola bar");
+				if (healing > 0) output(", revitalizing some of [target.hisHer] health! (<b>+" + healing + " HP</b>)");
+				else output(" but to no effect.");
 				target.HP(healing);
 				output("\n");
 			}

@@ -16,10 +16,16 @@
 			
 		}
 		
-		public static function OutputStuff():void
+		public static function OutputStuff(light:Boolean = false):void
 		{
 			kGAMECLASS.clearOutput();
 			kGAMECLASS.output("Cheat Activated!\n");
+			
+			if(!light)
+			{
+				kGAMECLASS.clearMenu();
+				kGAMECLASS.addButton(0, "Next", kGAMECLASS.mainGameMenu);
+			}
 		}
 		
 		public static function GiveZilRations():void
@@ -29,8 +35,7 @@
 				return;
 			}
 			
-			Cheats.OutputStuff();
-			
+			Cheats.OutputStuff(true);
 			var lootArray:Array = new Array();
 			var loot:ZilRation = new ZilRation();
 			loot.quantity = 5;
@@ -52,6 +57,11 @@
 		
 		public static function infiniteItemUse():void
 		{
+			if (kGAMECLASS.pc.short == "uncreated" || kGAMECLASS.pc.short.length == 0)
+			{
+				return;
+			}
+			
 			Cheats.OutputStuff();
 			if(kGAMECLASS.flags["INFINITE_ITEMS"] == undefined)
 			{
@@ -66,14 +76,25 @@
 		}
 		public static function exploreUnlock():void
 		{
+			if (kGAMECLASS.pc.short == "uncreated" || kGAMECLASS.pc.short.length == 0)
+			{
+				return;
+			}
+			
 			Cheats.OutputStuff();
 			kGAMECLASS.output("\n<b>All locations have been unlocked.</b>");
 			kGAMECLASS.flags["UNLOCKED_JUNKYARD_PLANET"] = 1;
 			kGAMECLASS.flags["PLANET_3_UNLOCKED"] = 1;
 			kGAMECLASS.flags["NEW_TEXAS_COORDINATES_GAINED"] = 1;
+			kGAMECLASS.flags["HOLIDAY_OWEEN_ACTIVATED"] = kGAMECLASS.GetGameTimestamp();
 		}
 		public static function toggleDebug():void
 		{
+			if (kGAMECLASS.pc.short == "uncreated" || kGAMECLASS.pc.short.length == 0)
+			{
+				return;
+			}
+			
 			Cheats.OutputStuff();
 			if(!kGAMECLASS.debug)
 			{
@@ -93,7 +114,7 @@
 				return;
 			}
 			
-			Cheats.OutputStuff();
+			Cheats.OutputStuff(true);
 			
 			kGAMECLASS.output("\nGimme a room name to TP to cheater!");
 			kGAMECLASS.displayInput();
@@ -109,7 +130,7 @@
 				return;
 			}
 			
-			Cheats.OutputStuff();
+			Cheats.OutputStuff(true);
 			
 			kGAMECLASS.output("\nGive a target scene function name to execute.");
 			kGAMECLASS.displayInput();

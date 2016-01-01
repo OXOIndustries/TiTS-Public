@@ -753,7 +753,7 @@ public function sneakByZeTurrets():void
 	output("\n\nOHGODTHAT'SALONGWAYDOWN! Up?! Whatever....");
 	output("\n\nYou try not to stare, even as your [pc.feet] dangle");
 	if(pc.legCount == 1) output("s");
-	output(" down ponderously below you, swaying over the blackness of space. You gulp, and swing them up, grinning widely when they snap into place thanks to the electromagnetic gear girding them. The experience is dizzying, but at least the turrets aren't targeting you. Whoever programmed them take into account the new paths that zero G would offer.");
+	output(" down ponderously below you, swaying over the blackness of space. You gulp, and swing them up, grinning widely when they snap into place thanks to the electromagnetic gear girding them. The experience is dizzying, but at least the turrets aren't targeting you. Whoever programmed them didn't take into account the new paths that zero G would offer.");
 
 	output("\n\nAfter a few moments' of stepping carefully, constantly worried the turrets will turn on you, you step over to a nearby console conveniently labeled \"defense turrets\" and flip the switch. No more of that.");
 	flags["ROCKET_PODS_SNEAKED"] = 1;
@@ -1672,7 +1672,9 @@ public function kaskaBadEndPartDues():void
 		else if(pc.wetness(x) < 4) output("runnels");
 		else output("torrents");
 		output(" of [pc.girlCum] deepen the puddle below. Kaska cums for what feels like ages, more than long enough for you to ride out two orgasms and be feeling aftershocks from the second by the time she stops out.");
-		output("\n\nYour crotch is gooey... sticky with spent lust and totally, completely satiated.");
+		output("\n\nYour crotch is gooey");
+		if(pc.hasStatusEffect("Goo Crotch")) output("... uh, more so than usual");
+		output("... sticky with spent lust and totally, completely satiated.");
 		if(pc.hasCock()) 
 		{
 			output(" You were so into it that you didn't even notice your [pc.cocks] firing off onto your ");
@@ -2392,7 +2394,7 @@ public function shekkaMidDeal():void
 	output("\n\n<i>\"Well, this baby's hotter than fusion core rod,\"</i> the short-statured alien chirps. She runs a hand along the gleaming metal. <i>\"The deal's off, tough stuff. We're going to do this raskvel style. Each of you make me an offer. The first one to make me an offer I won't say no to - or to go so high that the other gives up - wins.\"</i> Shekka seems a little wistful. <i>\"We used to do this at swap meets all the time, before Novahome.\"</i>");
 	output("\n\nSighing, [rival.name] opens up before you have a chance to check your credit balance. <i>\"15,000, as we discussed.\"</i>");
 	output("\n\nShekka turns back to you, <i>\"");
-	if(flags["TIMES_SEXED_SHEKKA"] != 0) output("You can do better than that, right, tiger?");
+	if(flags["TIMES_SEXED_SHEKKA"] != undefined) output("You can do better than that, right, tiger?");
 	else output("Got anything better?");
 	output("\"</i>");
 	processTime(2);
@@ -2438,7 +2440,7 @@ public function bid16k():void
 	showBust("RIVAL","SHEKKA");
 	output("<i>\"16,000,\"</i> you announce.");
 	//Fucked Shekka
-	if(flags["TIMES_SEXED_SHEKKA"] != undefined && flags["TIMES_SEXED_SHEKKA"] != 0)
+	if(flags["TIMES_SEXED_SHEKKA"] != undefined)
 	{
 		output("\n\nShekka smiles radiantly and turns towards you. <i>\"I can't turn down an offer like that.\"</i> She graces you with a sly wink, sure to hide it from your cousin. <i>\"16,000 is more than I've made in a long time.\"</i>");
 		output("\n\n[rival.name] sniffs angrily and turns on [rival.his] heel. <i>\"You clearly have some relationship with this... this... creature. 16,000 was barely within her asking price before.\"</i> [rival.He] snaps his fingers. <i>\"Dane, we're leaving. Have [pc.name]'s ship tracked. We'll get the next one.\"</i>");
@@ -2475,7 +2477,7 @@ public function bidVariable(arg:Number = 20000):void
 	output("<i>\"" + arg + "\"</i> you announce.");
 	output("\n\nShekka peeps, mouse-like, and claps her hands across her mouth. The pressure of her excitement instead chooses to vent by making her tail wag, and it clangs noisily against the metal of the probe. <i>\"Really!?\"</i> she gasps. <i>\"You win. I can fix so many things on Novahome with all that cash!\"</i>");
 	//Sexed:
-	if(flags["TIMES_SEXED_SHEKKA"] != 0)
+	if(flags["TIMES_SEXED_SHEKKA"] != undefined)
 	{
 		output(" The exuberant raskvel hugs");
 		if(pc.tallness >= 84) output(" your [pc.legOrLegs]");
@@ -2578,7 +2580,7 @@ public function giveTheProbeToShekkaForNuttin():void
 	output("\"</i>");
 	output("\n\nShekka deadpans, <i>\"You're pulling my tail, right?\"</i>");
 	output("\n\n<i>\"Nah, I don't need it.\"</i>");
-	if(flags["TIMES_SEXED_SHEKKA"] != 0) output("\n\nThe raskvel's ears jingle jubilantly as she throws herself against you, hugging you tightly. <i>\"You're the best, [pc.name]. I hope you're as good to the folks on the next planet as you've been here.\"</i>");
+	if(flags["TIMES_SEXED_SHEKKA"] != undefined) output("\n\nThe raskvel's ears jingle jubilantly as she throws herself against you, hugging you tightly. <i>\"You're the best, [pc.name]. I hope you're as good to the folks on the next planet as you've been here.\"</i>");
 	else output("Quietly, the raskvel answers, <i>\"I don't know what to say, [pc.name]. This means a lot to me. The credits will go a long way towards helping my people, I promise you that.\"</i>");
 	output("\n\nYou make ready to go on your way, ");
 	if(pc.isNice()) output("ruffling her feathery hair. <i>\"Happy to help.\"</i>");

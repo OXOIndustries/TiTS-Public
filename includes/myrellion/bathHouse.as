@@ -729,7 +729,7 @@ public function treasureHunt():void
 			if(pc.thickness >= 70) output(", wide");
 			output(" expanse of your chest before moving to your washboard abs. <i>“Oh, my,”</i> she exclaims. <i>“So very masculine.”</i>");
 		}
-		else if(pc.tone <= 30)
+		else if(pc.tone <= 30 && pc.thickness >= 70)
 		{
 			output("the soft ripples of your doughy body and stomach. <i>“A well-fed physique,”</i> she smiles. <i>“Many servants and laborers jump to do your bidding, yes?”</i>");
 		}

@@ -6,6 +6,8 @@ import classes.Creature;
 import classes.Engine.Combat.DamageTypes.DamageResult;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
 import classes.GameData.CombatManager;
+import classes.Items.Apparel.AnnosBlouse;
+import classes.Items.Apparel.AnnosCatsuit;
 import classes.Items.Guns.Goovolver;
 import classes.Items.Miscellaneous.EmptySlot;
 import classes.Items.Miscellaneous.GrayMicrobots;
@@ -243,7 +245,7 @@ public function annoMainMenu():void
 	addButton(5,"Appearance",annoAppearance,undefined,"Appearance","Review what Anno's entire body looks like.");
 	if(pc.hasStatusEffect("Rusted Emitters")) addButton(4,"Fix Emit.",repairMyRustBroInjuryAnno,undefined,"Fix Emit.","See if Anno can possibly fix your sydian-damaged shield emitters.");
 	else addDisabledButton(4,"Fix Emit.","Fix Emit.","Your shield emitters are totally undamaged. Don't worry about it.");
-	if(flags["SEEN_ANNO_BUY_MENU"] != undefined) addButton(4,"Test Drive",testDriveArmorsForShit);
+	if(flags["SEEN_ANNO_BUY_MENU"] != undefined) addButton(9,"Test Drive",testDriveArmorsForShit);
 
 	if(pcHasJunkPrize() && flags["ANNO_SCRAP_DISABLED"] == undefined) addButton(6,"Sell Prize",tryToSellAnnoSomeRaskScrapGuv,undefined,"Sell Prize","Try to sell off the sweet loot you bought from the gang of raskvel males.");
 	else addDisabledButton(6,"Sell Prize","Sell Prize","This merchant isn't interested in whatever you're considering to be a prize.");
@@ -566,7 +568,7 @@ public function petPlayForAnnoAfterCheating():void
 
 	output("\n\nOut the door you go, into the crowded bazaar-like halls of Novahome. Dozens of raskvel push and shove their way around you, living currents of foot-traffic surging this way and that. You take care to keep your puppy safe, making sure she doesn't get stepped on - although given the raskvel's diminutive size and Anno's impressive six feet, even on all fours she's still almost as big as one of the feathery scamps.");
 
-	output("\n\nOf course, not every raskvel just walks around you. As you make your way down the corridor, more than a few daring raskvel reach out and grab a piece of your pooch, slapping her ass or groping one of her (by raskvel standards, absolutely huge) mammaries. Anno growls dangerously at them, even snapping her sharp teeth at the first one to go after her breasts, but there's simply too many wanderring hands trying to \"pet\" the cute puppy at your heels for her to keep up with.");
+	output("\n\nOf course, not every raskvel just walks around you. As you make your way down the corridor, more than a few daring raskvel reach out and grab a piece of your pooch, slapping her ass or groping one of her (by raskvel standards, absolutely huge) mammaries. Anno growls dangerously at them, even snapping her sharp teeth at the first one to go after her breasts, but there's simply too many wandering hands trying to \"pet\" the cute puppy at your heels for her to keep up with.");
 
 	output("\n\nWhen she nearly bites a raskvel, you give her a sharp rap on the top of the head, barking <i>\"Bad! No biting!\"</i> Anno whines and whimpers, but complies with her master's command, allowing the locals to feel her up to their hearts' content. Just as you suspected, you're soon trailing a trickle of feminine excitement behind you as Anno's lust wells, unable to hide her lifting tail or heaving chest as diminutive hands grope and caress her body.");
 
@@ -590,7 +592,7 @@ public function takeYourPetBackToTheShop():void
 
 	output("\n\n<i>\"Good girl,\"</i> you say, praising her with a few head pats. Still blushing and oh-so-very wet after her public excursion, Anno's tail pries itself out from her crotch and wiggles happily at the praise. You sit yourself down, inviting your pup to jump up onto your lap. She clambers up on her knees, hands and chin resting on your [pc.chest] expectantly. You run a hand through her snowy hair, scratching just hard enough to make her tail leap up in excitement. Grinning to yourself, you give the slutty ausar-dog a few minutes of affectionate play, rubbing and squeezing all over her eager body until her hips and tail are both wagging madly, and she's even barking happily as you scratch between her ears or giving her a belly rub that moves a little higher to her ample chest.");
 
-	output("\n\nShe gives a little squeal as your fingers run over her pert nipples, making you stop and play with the perky mounds for a while, kneading and caressing their supple curves until you can see the moisture beading up between Anno's legs again. Good girl. You keep on few a few long, pleasant minutes until your fingers are sore from petting. By then, Anno's staring dreamily off into the distance, practically ready for a nap. You pick your puppy up and set her down on the counter, reminding her that she's a good girl as you collect your things and get ready to leave.");
+	output("\n\nShe gives a little squeal as your fingers run over her pert nipples, making you stop and play with the perky mounds for a while, kneading and caressing their supple curves until you can see the moisture beading up between Anno's legs again. Good girl. You keep on for a few long, pleasant minutes until your fingers are sore from petting. By then, Anno's staring dreamily off into the distance, practically ready for a nap. You pick your puppy up and set her down on the counter, reminding her that she's a good girl as you collect your things and get ready to leave.");
 	processTime(5);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -602,7 +604,7 @@ public function publicUsePuppyAnno():void
 	clearOutput();
 	author("Savin");
 	showAnno(true);
-	output("Anno might try to deny it, but she certainly seems to be enjoying the attention. Her body's already reacting so sweetly to the touches of the many raskvel men interested in her, wet and ready and eager to fuck. You give a sharp whistle to Anno and command her to sit. She does so, falling onto her knees and staring up expectantly at you.");
+	output("Anno might try to deny it, but she certainly seems to be enjoying the attention. Her body's already reacting so sweetly to the touches of the many raskvel men interested in her, wet, ready and eager to fuck. You give a sharp whistle to Anno and command her to sit. She does so, falling onto her knees and staring up expectantly at you.");
 
 	output("\n\n<i>\"Good girl. Stay.\"</i>");
 
@@ -742,7 +744,7 @@ public function annoTalkMenu():void
 	{
 		if (pc.hasItem(new GrayMicrobots()))
 		{
-			addButton(5, "Gray Goo", beginTheGoozookeningHas, undefined, "Gray Goo", "Ask Anno about the samples you've collected from some Grey Goos.");
+			addButton(5, "Gray Goo", beginTheGoozookeningHas, undefined, "Gray Goo", "Ask Anno about the samples you've collected from some Gray Goos.");
 		}
 		else
 		{
@@ -915,7 +917,7 @@ public function novaHomeTalk():void
 	{
 		output("<i>\"So, what do you think of Nova?\"</i> you ask, gesturing out the shop front to the derelict spaceship around you.");
 		output("\n\n<i>\"Honestly? Scares the hell out of me,\"</i> Anno says, matter-of-factly. <i>\"The decks creak, pipes and wires break all the time... I'm amazed we have power. And more amazed that when we do, the reactor doesn't go nuclear. I wouldn't be surprised if I wake up one morning as a pile of ash. And that's on a good day.\"</i>");
-		output("\n\nAnno shudders. <i>\"Sorry to be a downer, boss. It's not the worst gig in the world: at least I'm not stationed on Galotia or something. Still, this ship's seen better days, even putting aside the crash. I'm not sure if the Nova got shot down or just fell into the planet's gravity well, but this place is </i>ancient<i>, and I don't use the word lightly. I'm still poking around, doing some research on it. I know its human, but I couldn't extranet search up a trace of it. At least, from before the rushers found it. No departure records, no crew manifest, no record of who owned it... I've turned up something about a Bell-Isle-stroke-Grunmann company from the robo-goo-things outside after I net-hacked a few of them, but other than that... nothing. Every computer onboard is either slagged or wiped, and I can't recover anything. The only databanks I've come across are deadlocked. I tried connecting to the reactor's computer, and got my rig fried for my trouble.\"</i>");
+		output("\n\nAnno shudders. <i>\"Sorry to be a downer, boss. It's not the worst gig in the world: at least I'm not stationed on Galotia or something. Still, this ship's seen better days, even putting aside the crash. I'm not sure if the Nova got shot down or just fell into the planet's gravity well, but this place is </i>ancient<i>, and I don't use the word lightly. I'm still poking around, doing some research on it. I know it’s human, but I couldn't extranet search up a trace of it. At least, from before the rushers found it. No departure records, no crew manifest, no record of who owned it... I've turned up something about a Bell-Isle-stroke-Grunmann company from the robo-goo-things outside after I net-hacked a few of them, but other than that... nothing. Every computer onboard is either slagged or wiped, and I can't recover anything. The only databanks I've come across are deadlocked. I tried connecting to the reactor's computer, and got my rig fried for my trouble.\"</i>");
 		output("\n\n<i>\"Something's seriously wrong with this ship,\"</i> she concludes. And quieter, she adds, <i>\"When my computer burnt out, I heard... God, it was like the wails of the damned. This place is a tomb.\"</i>");
 		output("\n\n<i>\"Woah.\"</i>");
 		output("\n\n<i>\"Yeah,\"</i> Anno sighs. <i>\"It's like something out of a horror movie, but so far we're just in the tense part, before the jump scares. There's even been some disappearances, you know? That Shekel girl or whatever across the way's been screaming about it, just about starting a riot... but she's not wrong. I don't think its slavers, though. The pioneers woke this ship up when they landed, and now?\"</i>");
@@ -963,7 +965,7 @@ public function talkToSyriAboutTheLocals():void
 		output("<i>\"So, what can you tell me about the locals?\"</i>");
 		output("\n\n<i>\"Who, the raskvel? Heh, I guess that's about all that's left of the old world, huh? Everybody else... God. Shit, I don't even know anybody in Nova except the bartender and that stone-cold dominatrix lady that runs the Mess.\"</i>");
 		output("\n\n<i>\"Well. Tell me about Tarkus-that-was, then,\"</i> you suggest. <i>\"There used to be lots of critters running around.\"</i>");
-		output("\n\nAnno shrugs. <i>\"Yeah. I can do that. First thing to know: there were a lot of different species on Tarkus. Really, that's the trend this Rush, with multi-species planets. Normally you only get one dominant race per world, like on Terra or Ausaril; here, you had several equally powerful, prominent races sharing the world. The only reason Tarkus seemed like the Planet of the Rask is because they were the ones holding onto Novahome when the pioneers opened the gate up, and of course they landed on the creepy human ghost ship.\"</i>");
+		output("\n\nAnno shrugs. <i>\"Yeah. I can do that. First thing to know: there were a lot of different species on Tarkus. Really, that's the trend the Rush, with multi-species planets. Normally you only get one dominant race per world, like on Terra or Ausaril; here, you had several equally powerful, prominent races sharing the world. The only reason Tarkus seemed like the Planet of the Rask is because they were the ones holding onto Novahome when the pioneers opened the gate up, and of course they landed on the creepy human ghost ship.\"</i>");
 		output("\n\n<i>\"That could be because Tarkus was actually a hybrid planet made up of several fragments. I don't know if the different races were natives to the different worlds of Tarkus, if they came here by colonization, or what, but it's strange.\"</i> She pauses a moment for breath, then grins, <i>\"I was just about to query some publishers about writing a book before... before the subject pool got a whole lot smaller.\"</i>");
 		output("\n\nShe sighs sadly. <i>\"Anyway, the most important actual races are the sydians and the raskvel. Sydians are pretty interesting: they rip apart metal and eat it, thanks to some kind of chemical on their feelers. Plus they have biological aphrodisiacs in their spit. I think? Could be cum; need to research more. Possibly hands-on, if you know what I mean. Either way, I'm sure Xenogen is going to love getting their dirty hands on some... specimens... to dissect. They also have big dicks and big, bulging muscles, not to mention an adversity to clothes... which, as a lady who likes the D, is a pretty big bonus. They're eye candy of the highest order. There's even a fairly good population left aboard the ship, still. Not a breeding pool, though... I think these sydians will be the last, or close to it.\"</i>");
 		output("\n\n<i>\"Then there's the raskvel. They're cute as buttons, but their average I.Q. seems to be about fish, give or take trout. Some are clever repairmen, and I have to admit, they did a miracle restoring this ship of theirs to be mostly-kind-of spaceworthy, but... they just seem kind of doe-eyed, you know? They're the kind of aliens I want to have stuffed animals of and cuddle, not have a conversation with. And they smell like dirt and leather. The ones here in Novahome are pretty tame, and the real asshole ones that'd attack you all got spaced, so... I guess that takes care of the aggressive part of the gene pool.\"</i>");
@@ -971,7 +973,7 @@ public function talkToSyriAboutTheLocals():void
 		if(pc.hasCock()) output("grab a rask and bend her over something");
 		else output("bend over and hike your clothes");
 		output("; they'll take care of the rest. As a race, they're obsessed with eggs and rutting, which makes sense when they can just get stepped on by sydians. Outbreed and outlast.\"</i>");
-		output("\n\nAfter a moment of thought, Anno adds, <i>\"I don't think any other races made it off Tarkus. Not in enough numbers, anyway. Still some of the more harmless grey goo and goblins around, but not many.\"</i>");
+		output("\n\nAfter a moment of thought, Anno adds, <i>\"I don't think any other races made it off Tarkus. Not in enough numbers, anyway. Still some of the more harmless gray goo and goblins around, but not many.\"</i>");
 	}
 	processTime(10);
 	annoTalkMenu();
@@ -990,7 +992,7 @@ public function anyoneSpecial():void
 	output("You ask Anno if there's anyone special in her life. She laughs, <i>\"What're you, trying to sell me the Good Book or something?\"</i>");
 	output("\n\nYou cock an eyebrow at her. <i>\"Sorry. Uh, well... kind of? I've got a girlfriend, Kaede, but we're kind of in an on-again-off-again sort of place right now. Plus we've always been in an open relationship, so don't worry... I'm not out of your reach yet, " + pc.mf("Mr.","Ms.") + " Steele!\"</i> she teases, giving you a wink.");
 	output("\n\nYou follow up, asking her to tell you about the special lady.");
-	output("\n\n<i>\"Kaede? Oh, I met her while I was doing grad work at Ausaril Tech. Go jackals! I was a few years older than her, but we hit it off... dated for a couple years till she had to withdraw. She was actually through here just a few weeks ago, helping me with some things: we had a run-in with some mercs and raskvel. Fun times. Anyway, she's a freighter captain, independent. Cute, nerdy, with curves in all the right places... plus a big dick, which is, you know, pretty great.");
+	output("\n\n<i>\"Kaede? Oh, I met her while I was doing grad work at Ausaril Tech. Go Jackals! I was a few years older than her, but we hit it off... dated for a couple years ‘til she had to withdraw. She was actually through here just a few weeks ago, helping me with some things: we had a run-in with some mercs and raskvel. Fun times. Anyway, she's a freighter captain, independent. Cute, nerdy, with curves in all the right places... plus a big dick, which is, you know, pretty great.");
 	processTime(2);
 	if(pc.hasCock())
 	{
@@ -1038,7 +1040,7 @@ public function intoGirlsAnno():void
 	author("Savin");
 	showAnno();
 	output("<i>\"So, you're into girls?\"</i> you tease, weight shifting to subtly emphasizing your own feminine form.");
-	output("\n\nAnno grins. <i>\"Guys, girls, and everything in between. I mean, in this day and age it's hard to limit yourself like that. Heck, my </i>parents<i> switched genders for a year or two. 'It'll be fun,' they said. 'We're just playing,' they said. So yeah, I like girl just plenty...\"</i>");
+	output("\n\nAnno grins. <i>\"Guys, girls, and everything in between. I mean, in this day and age it's hard to limit yourself like that. Heck, my </i>parents<i> switched genders for a year or two. 'It'll be fun,' they said. 'We're just playing,' they said. So yeah, I like girls just plenty...\"</i>");
 	output("\n\n<i>\"So, why do you ask?\"</i> she teases, pressing herself close. <i>\"Thinking about asking little ol' me out?\"</i>");
 	output("\n\nThat sounded a little more serious than you expected...");
 	processTime(1);
@@ -1237,12 +1239,12 @@ public function fuckAnnoAfterBeeJay():void
 
 	output("\n\nFaster this time, you thrust back into Anno's still-gaping pussy. She gives a sharp moan as your [pc.hips] slap into her, leaving her ass bouncing with the impact and your [pc.cock " + x + "] buried back into that wonderful hole of hers, surrounded by spasming muscles as she recovers from the potent thrust. Again and again you thrust into her, working yourself up to a steady rhythm of pussy-pounding, occasionally punctuating your peaks with a sharp slap on Anno's jiggling butt or reaching up to cup one of her bouncing breasts, squeezing her stiff nips until she's screaming for more.");
 
-	output("\n\nThanks to your recent orgasm and the minutes of pussy-eating that preceded your penetration, you're soon greeted by the howling cries of Anno's impending climax. You grin, slapping her cheeks and burying yourself deep inside your lover as she screams her pleasure, echoing in the store and down the corridors; her pussy clenches down hard, milking your [pc.cock " + x + "] for all its worth as she cums and cums, going crazy around your thrusting cock.");
+	output("\n\nThanks to your recent orgasm and the minutes of pussy-eating that preceded your penetration, you're soon greeted by the howling cries of Anno's impending climax. You grin, slapping her cheeks and burying yourself deep inside your lover as she screams her pleasure, echoing in the store and down the corridors; her pussy clenches down hard, milking your [pc.cock " + x + "] for all it’s worth as she cums and cums, going crazy around your thrusting cock.");
 
 	//if PC has a knot:
 	if(pc.hasKnot(x))
 	{
-		output("\n\nWhile she's at the peak of her pleasure, you decide its time for the main course. With one last, mighty thrust of your hips, you slam the turgid ball of your [pc.knot " + x + "] into the sodden delta of Anno's drooling, orgasming sex. Her cries of pleasure crescendo into a high-pitched scream of shock and mind-wracking ecstasy as her cooch is forced open by your thick canid member. Your thrust pins Anno to the desk, spreading her legs and sex apart as you sink yourself into her, tying the two of you together.");
+		output("\n\nWhile she's at the peak of her pleasure, you decide it’s time for the main course. With one last, mighty thrust of your hips, you slam the turgid ball of your [pc.knot " + x + "] into the sodden delta of Anno's drooling, orgasming sex. Her cries of pleasure crescendo into a high-pitched scream of shock and mind-wracking ecstasy as her cooch is forced open by your thick canid member. Your thrust pins Anno to the desk, spreading her legs and sex apart as you sink yourself into her, tying the two of you together.");
 	}
 	output("\n\nThanks to the wild, milking motions of Anno's cunt, you can feel your own orgasm rushing up to follow hers. You push your prick as deep inside your lover as you can, letting her still-spasming muscles do the work for you, squeezing and caressing your cock, slathering it with hot juices trapped inside her wanton hole by the thick cock spearing her, unable to escape. Your orgasm hits you like a hammer, giving you just enough time to let loose a feral roar of pleasure as a thick wad of cum surges up your [pc.cock " + x + "], blasting into the trap of the tightly bound sheath around it. You grunt and groan with the spasms, hips bucking against Anno's red-flushed ass as your load works itself out, eased along by Anno's own squirming walls.");
 
@@ -1468,7 +1470,7 @@ public function cumWithAnnoOnTop():void
 	addButton(0,"Next",mainGameMenu);
 }
 
-// {PC Must have a Grey Goo Sample on-hand}
+// {PC Must have a Gray Goo Sample on-hand}
 public function beginTheGoozookeningHas():void
 {
 	clearOutput();
@@ -1480,7 +1482,7 @@ public function beginTheGoozookeningHas():void
 	output("\n\nYou pull out the vial of gray goo you extracted from one of the lusty mecha-babes and hand it over to Anno. <i>\"Think you could do something with this?\"</i>");
 	output("\n\n<i>\"Gray goo?\"</i> she asks quizzically, looking the sample over. <i>\"Uh... I can burn it for you. I think I've got an incinerator unit around here somewhere...\"</i>");
 	output("\n\n<i>\"Something </i>useful<i>,</i>\"</i> you correct, planting a defensive hand on the sample before she can toss it in the furnace.");
-	output("\n\nShe shrugs. <i>\"Oh. Well... let me think. Uh, I guess I could try and refactor a goo-launcher to shoot grey goo. Would need to build a custom AI-reset in, something to reprogram the sample into crawling up something's cooch when you fire it. Plus I'd have to rebuild the magazine well, or just kajigger it to fire right from the vial. Tell you what, boss: gimme a goo-gun - I sell them, but can't give it to you for free, sorry - and a thousand credits for spare parts and I could probably whip something together.\"</i>");
+	output("\n\nShe shrugs. <i>\"Oh. Well... let me think. Uh, I guess I could try and refactor a goo-launcher to shoot gray goo. Would need to build a custom AI-reset in, something to reprogram the sample into crawling up something's cooch when you fire it. Plus I'd have to rebuild the magazine well, or just kajigger it to fire right from the vial. Tell you what, boss: gimme a goo-gun - I sell them, but can't give it to you for free, sorry - and a thousand credits for spare parts and I could probably whip something together.\"</i>");
 
 	processTime(1);
 	
@@ -1776,7 +1778,7 @@ public function holdOnAnno():void
 	showAnno();
 	output("<i>\"Keep your chin up, Anno,\"</i> you say, patting the miserable scientist between her big, fluffy ears. <i>\"You've got a job to do.\"</i>");
 	output("\n\n<i>\"Ugh. I know,\"</i> Anno sighs, but still nuzzles her head up against your palm. <i>\"I'm just scared, boss. We lost some people when the boat went orbital. Lost that little bat kid. A fuckin' kid, [pc.name]. I swear to God I heard her getting sucked out when we lost atmosphere.\"</i> She shudders. <i>\"I don't want to be next. This clanker is barely holding together. I mean, it crashed for a reason, right?\"</i>");
-	output("\n\n<i>\"Shit. Nevermind me, boss. I'm a big girl, I'll take care of myself. Anyway, you came here for something, or just to check on me?\"</i>");
+	output("\n\n<i>\"Shit. Never mind me, boss. I'm a big girl, I'll take care of myself. Anyway, you came here for something, or just to check on me?\"</i>");
 	processTime(1);
 	annoMainMenu();
 }
@@ -2157,7 +2159,7 @@ public function deck13BoostAnno():void
 	
 	output("\n\nA moment passes. A long moment. ");
 	
-	output("\n\nJust as you’re starting to get worried, yet hear a loud CLICK from the door, followed by loud rusty squeal as the old door slides open. Behind it, Anno’s beaming. <i>“Fuck yeah! Teamwork!”</i> she cheers, following up her exclamation with a high five.");
+	output("\n\nJust as you’re starting to get worried, you hear a loud CLICK from the door, followed by loud rusty squeal as the old door slides open. Behind it, Anno’s beaming. <i>“Fuck yeah! Teamwork!”</i> she cheers, following up her exclamation with a high five.");
 
 	deck13ArmoryEntry();
 }
@@ -2370,7 +2372,8 @@ public function deck13ShieldControlFunc():Boolean
 		else addDisabledButton(0,"Shields","Shields","You've already enabled the shields.");
 		addButton(1, "Breach", deck13Breach);
 
-		if (flags["DECK13_SAMPLES_TAKEN"] < 3) addButton(1, "Goo Sample", deck13GooSample);
+		if (flags["DECK13_SAMPLES_TAKEN"] == undefined || flags["DECK13_SAMPLES_TAKEN"] < 3) addButton(2, "Goo Sample", deck13GooSample);
+		else addDisabledButton(2,"Goo Sample","Take Goo Sample","Looks like you’ve cleaned this place up of the excess goo.");
 		
 		if (flags["ANNO_NOVA_UPDATE"] == 1 && flags["ANNO_MISSION_OFFER"] == 3) addButton(5, "Make Goo", deck13MakeGoo);
 
@@ -2388,7 +2391,9 @@ public function deck13MakeGoo():void
 	
 	output("\n\nPoke. Nothing again.");
 	
-	output("\n\nYou grumble and pull your Codex out, hoping your device can sync with the goo cannister. You flip the Codex on and search for nearby networks. Again, nothing close enough to be the goo. Shit. You drop down to a [pc.knee] and start looking for an old-school data port. Sure enough, there’s one hidden underneath the console. You pull a universal cable from your Codex, and thankfully manage to slot it into the port. The Codex takes over from there, booting up the ancient computer and interfacing for you. The Bell-Isle/Grunmann logo appears, followed by a button-press command prompt, which the Codex translates onto its touch screen. That’s better. You tap through a few commands, instructing the machine to print you out a great big pile of gray goo.");
+	output("\n\nYou grumble and pull your Codex out, hoping your device can sync with the goo cannister. You flip the Codex on and search for nearby networks. Again, nothing close enough to be the goo. Shit. You drop down");
+	if (pc.hasKnees()) output(" to a [pc.knee]");
+	output(" and start looking for an old-school data port. Sure enough, there’s one hidden underneath the console. You pull a universal cable from your Codex, and thankfully manage to slot it into the port. The Codex takes over from there, booting up the ancient computer and interfacing for you. The Bell-Isle/Grunmann logo appears, followed by a button-press command prompt, which the Codex translates onto its touch screen. That’s better. You tap through a few commands, instructing the machine to print you out a great big pile of gray goo.");
 	
 	output("\n\nThe device hums to life and starts working, squirting out goo like ice cream from its spigot. You watch as it squirts and thrums, depositing gallons of murky silvery goop onto the deck, looking more like a puddle than a person for now. A few seconds later, though, the vat shuts off, and the goo starts squirming and re-shaping itself. It only takes a moment for the big gray blob to turn into a big, bouncy gray girl. She looks just like the creatures");
 	if (flags["TARKUS_DESTROYED"] != undefined) output(" once");
@@ -2685,7 +2690,7 @@ public function lossToGrayPrime():void
 	if (pc.hasVagina()) output("s");
 	output(".");
 	
-	output("\n\nSlowly, the tentacles heft you and Anno through the air, moving your restrained limbs like puppets’ as you go - which only serves to drive the hole-filling tendrils deeper as you’re dragged through a hatch, into the reactor bay. The reactor is thrumming noisily, surrounded by servers and hard-drives and computers that look like they’ve been ripped right out of the ship, or else harvested from the junkyard outside. You don’t have more than a moment to look at them, though, before your gaze is forcefully turned toward a huge vat at the edge of the chamber. ");
+	output("\n\nSlowly, the tentacles heft you and Anno through the air, moving your restrained limbs like puppets as you go - which only serves to drive the hole-filling tendrils deeper as you’re dragged through a hatch, into the reactor bay. The reactor is thrumming noisily, surrounded by servers and hard-drives and computers that look like they’ve been ripped right out of the ship, or else harvested from the junkyard outside. You don’t have more than a moment to look at them, though, before your gaze is forcefully turned toward a huge vat at the edge of the chamber. ");
 	
 	output("\n\nA vat filled to the brim with gray goo. ");
 	
@@ -2867,7 +2872,7 @@ public function deck13GrayPrimeTalkCrew():void
 	
 	output("\n\n<i>“Maybe. But that doesn’t explain... well,”</i> Anno says, looking the gray woman up and down.");
 	
-	output("\n\nThe goo shrugs. <i>“We had an experimental tech with us. Courtesy of these bastards,”</i> she indicates the Bell-Isle/Grunmann patch on her shoulder. <i>“These little gray nanobots. Every one of us had an injection of them, supposed to keep us healthy and working when we got to... wherever we were going. They were also supposed to keep us </i>mentally<i> healthy, and that’s what got us. Every one of us died with a lace of grey bots copying our brains, just enough to fill a syringe. That was all that was left of us. But when this old bucket crashed, we woke up all the same.”</i>");
+	output("\n\nThe goo shrugs. <i>“We had an experimental tech with us. Courtesy of these bastards,”</i> she indicates the Bell-Isle/Grunmann patch on her shoulder. <i>“These little gray nanobots. Every one of us had an injection of them, supposed to keep us healthy and working when we got to... wherever we were going. They were also supposed to keep us </i>mentally<i> healthy, and that’s what got us. Every one of us died with a lace of gray bots copying our brains, just enough to fill a syringe. That was all that was left of us. But when this old bucket crashed, we woke up all the same.”</i>");
 	
 	output("\n\n<i>“Oh my god,”</i> Anno breathes.");
 	
@@ -3270,7 +3275,7 @@ public function annoPostQuestSexytimes():void
 	else
 	// Cuntcommander Variant
 	{
-		output("\n\nAnno breathes out while she shimmies down, her chest rocking with an exhalation that lands hot and humid across your bare sex. You shiver with delight when the rush of warm air brushes across the water-slick lips of your [pc.cunt]. Slowly, she brings her cheek in to rest against your thigh, hands resting on your [pc.hips] to steady your body. You need it, too: you only notice how you’re shivering in anticipation when you’re suddenly stopped and forced to hold still in Anno’s firm grasp. ");
+		output("\n\nAnno breathes out while she shimmies down, her chest rocking with an exhalation that lands hot and humid across your bare sex. You shiver with delight when the rush of warm air brushes across the water-slicked lips of your [pc.cunt]. Slowly, she brings her cheek in to rest against your thigh, hands resting on your [pc.hips] to steady your body. You need it, too: you only notice how you’re shivering in anticipation when you’re suddenly stopped and forced to hold still in Anno’s firm grasp. ");
 		
 		output("\n\nWith tantalizing slowness, Anno lets her tongue loll out, the tip just grazing your thigh before making its way across the mound of your vulva and brushing along to just the crest of your clit before breaking off and starting again: damn tease! You stifle a moan as she does it again, this time just flicking across the lip of your buzzer’s hood to send an electric shock of pleasure through you that sets every nerve afire with desire. Your hand drifts instinctively to the wet mess of snowy hair atop Anno’s head, trying to guide her in; she resists for now, instead content to tickle and tease your thigh and lips while never quite making full contact. ");
 		
@@ -3300,7 +3305,7 @@ public function annoPostQuestSexytimes():void
 	
 	output("\n\nAnno gasps and moans as you tongue-fuck your way into her, worming your way through her lips and into the slick, eager passage beyond them. Her walls squeeze around you, instinctively repelling you at first, but then seeming to urge you in deeper as you drive against them. You give the lusty slut everything you have to give, pushing in deep and lavishing her squirming walls with oral affection. You’re rewarded with Anno’s cute moans and an ever-increasing flow of her sweet nectar, beads of it rolling across your tongue and nose only to vanish into the running water. As you lick through the valley of her womanhood, Anno’s back slowly begins to arch. Her whole body slinks down the slick wall of the stall, bending over to let you delve ever deeper into her sex. ");
 	
-	output("\n\n<i>“Ah... I think we’re going to need </i>another<i> shower after this,”</i> Anno remarks with a grin, rocking her hips back against you and giving you a facefull of wet ass on top of everything. You give her big cheeks a playful squeeze, holding her back before you drown in her slippery backside. Anno coos happily as the new angle brings you deeper inside her, and even moreso when you let one of your hands slip from her behind to venture up between her legs and tease your fingertips across the bud of her stiff little clitty. Now <i>that</i> gets her going: a few minutes of that and her moans are reaching an ever-higher pitch. The movements of her hips become more desperate, frantic for your every touch. Her juices practically pour across your [pc.tongue] as her body prepares for a thick, knotty ausar cock that isn’t coming. You lap up every drop you can, sending waves of palpable pleasure through Anno’s quivering body until she’s practically a puddle of fuck on the shower floor that’s barely able to keep herself upright. ");
+	output("\n\n<i>“Ah... I think we’re going to need </i>another<i> shower after this,”</i> Anno remarks with a grin, rocking her hips back against you and giving you a faceful of wet ass on top of everything. You give her big cheeks a playful squeeze, holding her back before you drown in her slippery backside. Anno coos happily as the new angle brings you deeper inside her, and even more so when you let one of your hands slip from her behind to venture up between her legs and tease your fingertips across the bud of her stiff little clitty. Now <i>that</i> gets her going: a few minutes of that and her moans are reaching an ever-higher pitch. The movements of her hips become more desperate, frantic for your every touch. Her juices practically pour across your [pc.tongue] as her body prepares for a thick, knotty ausar cock that isn’t coming. You lap up every drop you can, sending waves of palpable pleasure through Anno’s quivering body until she’s practically a puddle of fuck on the shower floor that’s barely able to keep herself upright. ");
 	
 	output("\n\n<i>“Just a... just a little more, boss,”</i> Anno whines, slumping against the stall wall and cupping a breast while trying to wring out every bit of stimulation she can before she utterly succumbs to you. It isn’t long until she does: a few more moments pass before a sudden shiver takes her, starting with a vicious clamp around your tongue as her muscles contract and continuing with a hard squeeze once the first waves of orgasm pass through her. You keep licking all through it, giving the ausar a steady stream of consistent motions to ground herself on as she rides though a wet, hot climax that ends with her panting and gasping for breath, giggling all the while as you tease at her most sensitive spots. ");
 	
@@ -3362,8 +3367,6 @@ public function annoxKaedeNotRecruitedMeeting():void
 
 	if (!hasMetKaede())
 	{
-		flags["ANNOxKAEDE_INTRODUCED"] = 1;
-
 		output("When you step into the shop, you notice that for once, there’s actually someone in the Steele Tech outpost other than you and the playful ausar who runs the place. A red-haired girl with perky wolf-ears is leaning over the counter, a fluffy red tail swishing just under her black leather jacket. Anno’s sitting up beside the register, legs crossed and one hand running through the thick mane of her snowy hair as she laughs gaily. The redhead smirks, clearly pleased. Both sets of perky ausar ears twitch as you step into the shop, though, and the pair turn towards you. ");
 		
 		output("\n\n<i>“Oh, hey Boss!”</i> Anno beams, hopping back behind the counter. <i>“You haven’t met Kaede here, have you?”</i> ");
@@ -3403,10 +3406,10 @@ public function annoxKaedeNotRecruitedMeeting():void
 		output("\n\n<i>“Hey there, "+ pc.mf("Mr.", "Miss.") +" Steele,”</i> Kaede says, giving you a friendly smile. ");
 		
 		output("\n\n<i>“Kaede and I were just catching up... though I wouldn’t mind closing up shop for a little reunion. if you know what I mean.”</i> Kaede blushes as Anno leans over the counter, nibbling on one of her big, red ears. <i>“Especially if you’d like to join us, [pc.name].”</i>");
+	}
 		
 		IncrementFlag("ANNOxKAEDE_INTRODUCED");
-	}
-
+	
 	pc.createStatusEffect("ST Tarkus Closed", 0, 0, 0, 0, true, "", "", false, 60);
 	// [Fuck Them (req: cock)] [Service Kaede] [Watch Them] [Leave] (ST outpost locked for an hour)
 	clearMenu();
@@ -3488,7 +3491,7 @@ public function annoxKaedeFuckThem(inShop:Boolean = true):void
 	output("\n\n<i>“Mmmm. Oh, that’s what I live for,”</i> Anno moans as she revels in your masculine musk. Her tongue lolls out on instinct, wrapping around your shaft just ahead of Kaede’s plunging lips, wetting the path for her cockhungry lover. You rest your hands between two pairs of perky wolf-ears, guiding your lovers onward towards your base, watching Kaede’s throat bulge as she");
 	if (pc.biggestCockLength() <= 8) output(" deepthroats your cock");
 	else if (!silly) output(" struggles to take every inch of your hefty member");
-	else output(" takes as much of your ogre-cock as she possibly can, leaving the rest up the Anno");
+	else output(" takes as much of your ogre-cock as she possibly can, leaving the rest up to Anno");
 	output(". Her snowy-haired partner lavishes every inch of cock not buried in her mouth");
 	if (pc.balls > 0) output(" before working her way down, fingers tracing up your thigh and towards your heavy sack. You shudder as Anno’s fingers and lips meet there, her long tongue slurping along your tender flesh as she cups and squeezes your nads");
 	output(".");

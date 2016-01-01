@@ -14,10 +14,13 @@ package classes.GameData
 			bustsEnabled = true;
 			bustFallbacks = true;
 			easyMode = false;
+			sillyMode = false;
 			debugMode = false;
 			fontSize = 18;
 			combineDamageValueOutput = false;
 			colourDamageValueOutput = true;
+			saveNotesToggle = true;
+			overwriteToggle = true;
 		}
 		
 		public function setBustPriority(artist:String, priority:int):void
@@ -83,6 +86,8 @@ package classes.GameData
 		
 		public var combineDamageValueOutput:Boolean;
 		public var colourDamageValueOutput:Boolean;
+		public var saveNotesToggle:Boolean;
+		public var overwriteToggle:Boolean;
 		
 	}
 

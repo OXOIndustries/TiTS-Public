@@ -1,6 +1,8 @@
 ﻿import classes.Creature;
 import classes.GameData.CombatManager;
 import classes.Items.Apparel.SteeleTechSuit;
+import classes.Items.Apparel.AnnosBlouse;
+import classes.Items.Apparel.AnnosCatsuit;
 import classes.Items.Armor.GooArmor;
 import classes.Items.Guns.Goovolver;
 import classes.Items.Miscellaneous.AusarTreats;
@@ -29,6 +31,11 @@ ANNOxKAEDE_INTRODUCED : PC has been introduced by Anno to Kaede
 public function annoIsCrew():Boolean
 {
 	if (flags["ANNO_CREWMEMBER"] == 1) return true;
+	return false;
+}
+public function annoRecruited():Boolean
+{
+	if (flags["ANNO_CREWMEMBER"] != undefined) return true;
 	return false;
 }
 
@@ -1751,7 +1758,7 @@ public function annoFollowerShowerSex():void
 	
 	output("\n\nAnno gasps and moans as you tongue-fuck your way into her, worming your way through her lips and into the slick, eager passage beyond them. Her walls squeeze around you, instinctively repelling you at first, but then seeming to urge you in deeper as you drive against them. You give the lusty slut everything you have to give, pushing in deep and lavishing her squirming walls with oral affection. You’re rewarded with Anno’s cute moans and an ever-increasing flow of her sweet nectar, beads of it rolling across your tongue and nose only to vanish into the running water. As you lick through the valley of her womanhood, Anno’s back slowly begins to arch. Her whole body slinks down the slick wall of the stall, bending over to let you delve ever deeper into her sex. ");
 	
-	output("\n\n<i>“Ah... I think we’re going to need </i>another<i> shower after this,”</i> Anno remarks with a grin, rocking her hips back against you and giving you a faceful of wet ass on top of everything. You give her big cheeks a playful squeeze, holding her back before you drown in her slippery backside. Anno coos happily as the new angle brings you deeper inside her, and even moreso when you let one of your hands slip from her behind to venture up between her legs and tease your fingertips across the bud of her stiff little clitty. Now <i>that</i> gets her going: a few minutes of that and her moans are reaching an ever-higher pitch. The movements of her hips become more desperate, frantic for your every touch. Her juices practically pour across your [pc.tongue] as her body prepares for a thick, knotty ausar cock that isn’t coming. You lap up every drop you can, sending waves of palpable pleasure through Anno’s quivering body until she’s practically a puddle of fuck on the shower floor that’s barely able to keep herself upright. ");
+	output("\n\n<i>“Ah... I think we’re going to need </i>another<i> shower after this,”</i> Anno remarks with a grin, rocking her hips back against you and giving you a faceful of wet ass on top of everything. You give her big cheeks a playful squeeze, holding her back before you drown in her slippery backside. Anno coos happily as the new angle brings you deeper inside her, and even more so when you let one of your hands slip from her behind to venture up between her legs and tease your fingertips across the bud of her stiff little clitty. Now <i>that</i> gets her going: a few minutes of that and her moans are reaching an ever-higher pitch. The movements of her hips become more desperate, frantic for your every touch. Her juices practically pour across your [pc.tongue] as her body prepares for a thick, knotty ausar cock that isn’t coming. You lap up every drop you can, sending waves of palpable pleasure through Anno’s quivering body until she’s practically a puddle of fuck on the shower floor that’s barely able to keep herself upright. ");
 
 	anno.orgasm();
 	
@@ -1794,7 +1801,7 @@ public function annoFollowerSpecialGear():void
 		if (pc.hasKeyItem("Goozooka")) addDisabledButton(1, "Gray Goo", "Gray Microbots", "You've already wrangled an upgraded version of the Goovolver out of Anno.");
 	}
 
-	addButton(14, "Back", annoFollowerMenu);
+	addButton(14, "Back", annoFollowerTalkMenu, false);
 }
 
 public function annoFollowerSpecialGearHerGun():void
@@ -1837,7 +1844,7 @@ public function annoFollowerSpecialGearGrayGoo():void
 	
 	output("\n\n<i>“Something </i>useful<i>,”</i> you correct, planting a defensive hand on the sample before she can toss it in the freezer. ");
 	
-	output("\n\nShe shrugs. <i>“Oh. Well... let me think. Uh, I guess I could try and refactor a goo-launcher to shoot grey goo. Would need to build a custom AI-reset in, something to reprogram the sample into crawling up something’s cooch when you fire it. Plus I’d have to rebuild the barrel, or just kajigger it to fire right from the vial. Tell you what, boss: gimme a goo-gun - I sell them, but can’t give it to you for free, sorry - and a thousand credits for spare parts and I could probably whip something together.");
+	output("\n\nShe shrugs. <i>“Oh. Well... let me think. Uh, I guess I could try and refactor a goo-launcher to shoot gray goo. Would need to build a custom AI-reset in, something to reprogram the sample into crawling up something’s cooch when you fire it. Plus I’d have to rebuild the barrel, or just kajigger it to fire right from the vial. Tell you what, boss: gimme a goo-gun - I sell them, but can’t give it to you for free, sorry - and a thousand credits for spare parts and I could probably whip something together.");
 
 	processTime(1);
 
@@ -2044,9 +2051,11 @@ public function annoFollowerFirstTimeOnMhengaPartII():void
 	if (haveFuckedAnno())
 	{
 		output(" Anno leans against you, her fluffy tail batting against your [pc.butt].");
-		if (flags["FUCKED_SYRI_COUNT"] != undefined) output(" Syri’s eyes widen noticeably as she realizes what’s going on.");
-	
-		output("\n\nShe recovers quickly, saying, ");
+		if (flags["FUCKED_SYRI_COUNT"] != undefined)
+		{
+			output(" Syri’s eyes widen noticeably as she realizes what’s going on.");
+			output("\n\nShe recovers quickly, saying, ");
+		}
 	}
 	else output("\n\n");
 	output("<i>“Good to hear. I’ve been worried about you,");
@@ -2107,7 +2116,7 @@ public function annoFollowerAppearance():void
 	}
 	//else annoFollowerHeader();
 
-	addDisabledButton(10, "Appearance");
+	addDisabledButton(5, "Appearance");
 }
 
 public function annoxKaedeFollowerMeeting():void
@@ -2118,10 +2127,8 @@ public function annoxKaedeFollowerMeeting():void
 	showBust("ANNO", "KAEDE");
 
 	// {First Time}
-	if (flags["ANNOxKAEDE_INTRODUCED"] == undefined)
+	if (!hasMetKaede())
 	{
-		flags["ANNOxKAEDE_INTRODUCED"] = 1;
-
 		output("Over the din of dozens of murmuring voices in Anon’s, you hear a loud, <i>“HEY! [pc.name], over here!”</i> ");
 	
 		output("\n\nLooking over the bar, you see Anno sitting in a booth with another ausar - a red-headed girl wearing a black leather jacket. The other woman turns in the booth, big blue eyes regarding you as your lover waves you over. ");
@@ -2151,7 +2158,9 @@ public function annoxKaedeFollowerMeeting():void
 		
 		output("\n\n<i>“What do you say we get out of here, huh boss? I’ve got a rent-by-the-hour down the way... and a cute little piece of ass to split between us.”</i>");
 	}
-
+	
+	IncrementFlag("ANNOxKAEDE_INTRODUCED");
+	
 	annoxKaedeAnonsBarMenu();
 }
 
@@ -2515,7 +2524,7 @@ public function annoStraponMods():void
 	processTime(7);
 	pc.lust(4);
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	addButton(0,"Next",annoFollowerMenu);
 }
 
 //Anno 'Tribrator' Sex Scene
@@ -2581,7 +2590,6 @@ public function annosTriberatorGatorMatorHater():void
 		if(flags["ANNO_TRIBERATOR_USED"] == undefined) output("<i>“Oh really? I’d love a helping hand...”</i>");
 		else output("<i>“Fantastic! Let’s get </i>these<i> out of the way then...”</i>");
 		output(" she grins. Standing up, she begins to slowly unbutton her fine blouse. Her brazenly formed breasts are slowly exposed, starting with her considerable cleavage. It’s even more impressive considering she’s not even wearing a bra!");
-
 		output("\n\nWhen the last button comes undone, her plump tits spill free of their confines and jiggle deliciously before your eyes. It’s hard to ever get sick of those dusky areolae and big, sensitive nipples. She tosses away the flimsy top and bends over to strip off her tight-fitting jeans.  As the smoking hot ausar slides them down, she wildly wiggles her shapely hips, soon revealing her utter disregard for <i>any</i> kind of underwear.");
 	}
 	//Else (Anno Catsuit):
@@ -2753,8 +2761,11 @@ public function grayGooArrivesAtShip():void
 	
 	processTime(10+rand(5));
 	
+	output("\n\n<b>You");
+	
 	if(!(pc.armor is EmptySlot))
 	{
+		output(" have swapped your [pc.armor] and");
 		eventQueue.push(function():void {
 			clearOutput();
 			clearMenu();
@@ -2765,9 +2776,21 @@ public function grayGooArrivesAtShip():void
 	}
 	else pc.armor = new GooArmor();
 	
+	output(" are now wearing [goo.name] as armor!</b>");
+	
 	clearMenu();
-	addButton(0, "Goo Dicks", gooDickFap, undefined, "Goo Dicks", "Have [goo.name] fill all of your holes and fuck you.");
-	if (pc.hasCock()) addButton(1, "GooSleeve", grayGooCockSleeve, undefined, "Goo Cocksleeve", "Have [goo.name] jack you off.");
+	if(pc.lust() >= 33)
+	{
+		addButton(0, "Goo Dicks", gooDickFap, undefined, "Goo Dicks", "Have [goo.name] fill all of your holes and fuck you.");
+		if (pc.hasCock()) addButton(1, "GooSleeve", grayGooCockSleeve, undefined, "Goo Cocksleeve", "Have [goo.name] jack you off.");
+		else addDisabledButton(1, "GooSleeve", "Goo Cocksleeve", "You don't have the proper anatomy for that...")
+	}
+	else
+	{
+		addDisabledButton(0, "Goo Dicks", "Goo Dicks", "You're not horny enough for that...\n\n<i>(You can access this later in the Masturbate menu while wearing [goo.name].)</i>")
+		if (pc.hasCock()) addDisabledButton(1, "GooSleeve", "Goo Cocksleeve", "You're not horny enough for that...\n\n<i>(You can access this later in the Masturbate menu while wearing [goo.name].)</i>")
+		else addDisabledButton(1, "GooSleeve", "Goo Cocksleeve", "You don't have the proper anatomy for that...")
+	}
 	addButton(2, "No Sex", gooFapNope, undefined, "No Sex", "You are not in the mood to sex [goo.name] at this time.");
 }
 

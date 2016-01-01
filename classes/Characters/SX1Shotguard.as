@@ -229,7 +229,7 @@ package classes.Characters
 				{
 					output(" You take a shock right to the chest, zapping you! <b>Worse, you're stunned!</b>");
 				}
-				else output(" " + target.capitalA + target.short + " takes a short right to the chest! <b>" + target.mfn("He", "She", "It") + " looks a little unsteady on their feet!</b>");
+				else output(" " + target.capitalA + target.short + " takes a shock right to the chest! <b>" + target.mfn("He", "She", "It") + " looks a little unsteady on their feet!</b>");
 				
 				target.createStatusEffect("Stunned", 1);
 			}

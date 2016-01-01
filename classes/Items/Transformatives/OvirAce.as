@@ -90,7 +90,7 @@ package classes.Items.Transformatives
 						{
 							// 9999 - prob vary more based on beardlength but whatevs
 							output(" You take stock of your visage with delicate touches, noticing a lack of the bristly, abrasive facial hair that used to adorn your face.");
-							target.beardLength = 0;
+							target.removeBeard();
 						}
 					}
 					//If androgynous/feminine face
@@ -551,8 +551,8 @@ package classes.Items.Transformatives
 				changes++;
 			}
 
-			//Change eye color (green, blue, yellow, red, grey), and make reptilian.
-			var eyeColors:Array = ["green", "blue", "yellow", "red", "grey"];
+			//Change eye color (green, blue, yellow, red, gray), and make reptilian.
+			var eyeColors:Array = ["green", "blue", "yellow", "red", "gray"];
 			var tEyeColor:String = RandomInCollection(eyeColors);
 			var tfEyeColor:Boolean = (!InCollection(target.eyeColor, eyeColors) && target.eyeColorUnlocked(tEyeColor));
 			var tfEyeType:Boolean = (target.eyeType != GLOBAL.TYPE_SNAKE && target.eyeTypeUnlocked(GLOBAL.TYPE_SNAKE));

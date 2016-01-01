@@ -255,7 +255,8 @@
 			
 			if (_availableModules["MainMenu"].visible == true)
 			{
-				showPrimaryOutput();
+				//showPrimaryOutput();
+				backToPrimaryOutput();
 			}
 			else
 			{
@@ -343,7 +344,6 @@
 			(buttons[0] as MainMenuButton).func = titsClassPtr.creationRouter;
 			
 			(buttons[3] as MainMenuButton).visible = false;
-			
 		}
 		
 		private function showOptions():void
@@ -357,11 +357,15 @@
 		 */
 		private function creditsHandler():void
 		{
-			//this.userInterface.hideMenus();
-			//clearOutput2();
-			//output2("\nThis is a placeholder. Keep your eye on the 'Scene by:\' box in the lower left corner of the UI for information on who wrote scenes as they appear. Thank you!");
-			//this.userInterface.clearGhostMenu();
-			//this.addGhostButton(0,"Back to Menu",mainMenu);
+			/*
+			clearOutput2();
+			output2("\nThis is a placeholder. Keep your eye on the 'Scene by:\' box in the lower left corner of the UI for information on who wrote scenes as they appear. Thank you!");
+			
+			mainButtonsOnly();
+			clearGhostMenu();
+			if (kGAMECLASS.pc.short.length == 0) addGhostButton(4, "Back", showMainMenu);
+			else addGhostButton(4, "Back", backToPrimaryOutput);
+			*/
 			
 			trace("Placeholder method handler whilst we build a content module to contain credits details. Sorry :(");
 		}
@@ -510,7 +514,13 @@
 				throw new Error("Couldn't find module \"" + module + "\"");
 			}
 			
-			// Update some button states			
+			// Update some button states
+			updateLevelUp();
+		}
+		
+		// LeveUp button
+		public function updateLevelUp():void
+		{
 			if ((classes.kGAMECLASS.pc as PlayerCharacter).levelUpAvailable())
 			{
 				if (titsClassPtr.gameOverEvent == true || titsClassPtr.inSceneBlockSaving == true)
@@ -546,16 +556,27 @@
 			_buttonTray.buttonPagePrev.Deactivate();
 			_buttonTray.textPageNext.Deactivate();
 			_buttonTray.textPagePrev.Deactivate();
+			
+			// Disable all but the relevant side buttons
+			mainButtonsOnly();
 		}
 		
 		public function showOptionsModule():void
 		{
 			this.showModule("Options");
 			(_currentModule as OptionsModule).updateDisplay();
+			mainButtonsOnly();
 			clearGhostMenu();
 			
 			if (kGAMECLASS.pc.short.length == 0) addGhostButton(4, "Back", showMainMenu);
-			else addGhostButton(4, "Back", showPrimaryOutput);
+			//else addGhostButton(4, "Back", showPrimaryOutput);
+			else addGhostButton(4, "Back", backToPrimaryOutput);
+		}
+		
+		public function backToPrimaryOutput():void
+		{
+			mainButtonsReset();
+			showPrimaryOutput();
 		}
 		
 		// Interaction bullshit for the main menu
@@ -1114,7 +1135,11 @@
 		
 		public function perksOn():void
 		{
-			_leftSideBar.perksButton.Activate();
+			if (!(classes.kGAMECLASS.pc as PlayerCharacter) || (classes.kGAMECLASS.pc as PlayerCharacter).hasStatusEffect("In Creation"))
+			{
+				_leftSideBar.perksButton.Deactivate();
+			}
+			else _leftSideBar.perksButton.Activate();
 		}
 		
 		public function messengerOff():void
@@ -1124,7 +1149,11 @@
 		
 		public function messengerOn():void
 		{
-			_leftSideBar.mailsButton.Activate();
+			if (!(classes.kGAMECLASS.pc as PlayerCharacter) || (classes.kGAMECLASS.pc as PlayerCharacter).hasStatusEffect("In Creation"))
+			{
+				_leftSideBar.mailsButton.Deactivate();
+			}
+			else _leftSideBar.mailsButton.Activate();
 		}
 		
 		public function appearanceOn():void 
@@ -1149,7 +1178,7 @@
 		
 		public function levelUpOn():void 
 		{
-			_leftSideBar.levelUpButton.Activate();
+			updateLevelUp();
 		}
 		
 		public function levelUpOff():void 
@@ -1184,6 +1213,25 @@
 			perksOff();
 			messengerOff();
 			*/
+		}
+		
+		public function mainButtonsOnly():void 
+		{
+			mainMenuButtonOn();
+			dataOn();
+			appearanceOff();
+			messengerOff();
+			perksOff();
+			levelUpOff();
+		}
+		public function mainButtonsReset():void 
+		{
+			mainMenuButtonOn();
+			dataOn();
+			appearanceOn();
+			messengerOn();
+			perksOn();
+			levelUpOn();
 		}
 		
 		public function hideData():void 

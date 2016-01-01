@@ -2,12 +2,21 @@ import classes.Characters.PlayerCharacter;
 import classes.GameData.CombatManager;
 import flash.events.Event;
 import classes.GameData.MailManager;
+import classes.Cheats;
 
 
 // Illegal character input check
 public function hasIllegalInput(sText:String = ""):Boolean
 {
 	var r:RegExp = /[^\w .!?,;:@#$&()*-+=]/g; // Match anything that isn't a word or a space (\w == [A-z0-9])
+	// Cheat codes check
+	if(chars["PC"].short.length >= 1)
+	{
+		if(sText == "furfag") eventQueue.push(Cheats.infiniteItemUse);
+		else if(sText == "idclev") eventQueue.push(Cheats.RoomTeleport);
+		else if(sText == "marcopolo") eventQueue.push(Cheats.exploreUnlock);
+		else if(sText == "motherlode") eventQueue.push(Cheats.XPToLevel);
+	}
 	return r.test(sText);
 }
 

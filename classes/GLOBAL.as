@@ -288,6 +288,7 @@
 			TYPE_BEE,
 			TYPE_MYR,
 			TYPE_GABILANI,
+			TYPE_DEMONIC,
 		];
 		
 		public static const VALID_TONGUE_TYPES:Array = [
@@ -314,6 +315,7 @@
 			FLAG_LUBRICATED,
 			FLAG_SQUISHY,
 			FLAG_APHRODISIAC_LACED,
+			FLAG_GOOEY,
 		];
 		
 		public static const VALID_EAR_TYPES:Array = [
@@ -327,6 +329,7 @@
 			TYPE_KANGAROO,
 			TYPE_DEER,
 			TYPE_VULPINE,
+			TYPE_DEMONIC,
 			TYPE_DRACONIC,
 			TYPE_KUITAN,
 			TYPE_MOUSE,
@@ -354,6 +357,7 @@
 			TYPE_KUITAN,
 			TYPE_OVIR,
 			TYPE_MYR,
+			TYPE_DEMONIC,
 		];
 
 		public static const VALID_ARM_FLAGS:Array = [
@@ -363,6 +367,7 @@
 			FLAG_SCALED,
 			FLAG_CHITINOUS,
 			FLAG_FEATHERED,
+			FLAG_GOOEY,
 		];
 		
 		public static const VALID_LEG_TYPES:Array = [
@@ -407,6 +412,8 @@
 			FLAG_PREHENSILE,
 			FLAG_SMOOTH,
 			FLAG_CHITINOUS,
+			FLAG_FEATHERED,
+			FLAG_GOOEY,
 		];
 		
 		public static const VALID_ANTENNAE_TYPES:Array = [
@@ -489,10 +496,12 @@
 			FLAG_THICK,
 			FLAG_STINGER_TIPPED,
 			FLAG_CHITINOUS,
+			FLAG_FEATHERED,
 			FLAG_FLARED,
 			FLAG_SHEATHED,
 			FLAG_KNOTTED,
 			FLAG_RIBBED,
+			FLAG_GOOEY,
 		];
 		
 		public static const TAIL_GENITAL_NONE:int 	= 0;
@@ -526,6 +535,7 @@
 		public static const SKIN_TYPE_SCALES:int                                 = 2;
 		public static const SKIN_TYPE_GOO:int                                    = 3;
 		public static const SKIN_TYPE_CHITIN:int                                 = 4;
+		public static const SKIN_TYPE_FEATHERS:int                               = 5;
 		
 		public static const SKIN_TYPE_NAMES:Array = [
 			"Skin",
@@ -533,6 +543,7 @@
 			"Scales",
 			"Goo",
 			"Chitin",
+			"Feathers",
 		];
 				
 		//NIPPLETYPES
@@ -626,6 +637,7 @@
 			FLUID_TYPE_VANILLA,
 			FLUID_TYPE_NYREA_CUM,
 			FLUID_TYPE_GABILANI_CUM,
+			FLUID_TYPE_SPECIAL_GOO,
 		];
 		
 		public static const VALID_GIRLCUM_TYPES:Array = [
@@ -635,6 +647,7 @@
 			FLUID_TYPE_STRAWBERRY_MILK,
 			FLUID_TYPE_VANILLA,
 			FLUID_TYPE_GABILANI_GIRLCUM,
+			FLUID_TYPE_SPECIAL_GOO,
 		];
 		
 		public static const VALID_MILK_TYPES:Array = [
@@ -845,6 +858,7 @@
 		public static const ITEM_FLAG_AIRTIGHT:int 						= 4; // Used for space suits and the like.
 		public static const ITEM_FLAG_SWIMWEAR:int				= 5; // Used specifically for swimming attire.
 		public static const ITEM_FLAG_EXPOSE_FULL:int				= 6; // Used specifically for attire that exposes nipples/breasts and genitals/asshole to the elements.
+		public static const ITEM_FLAG_LUST_WEAPON:int				= 7; // Used specifically for lust-exclusive weapons (that don't do physical damage).
 		
 		public static const ITEM_FLAG_NAMES:Array = [
 			"Bow Weapon",
@@ -854,6 +868,7 @@
 			"Airtight",
 			"Swimwear",
 			"Fully Exposed",
+			"Lust Weapon",
 		];
 		
 		/**
