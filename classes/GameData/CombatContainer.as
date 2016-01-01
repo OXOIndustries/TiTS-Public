@@ -372,7 +372,7 @@ package classes.GameData
 					else 
 					{
 						target.removeStatusEffect("Burn");
-						output("<b> refusing to go out until they've done their foul work.");
+						output(" refusing to go out until they've done their foul work.");
 					}
 					output("</b>");
 				}
