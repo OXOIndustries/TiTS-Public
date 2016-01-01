@@ -1218,8 +1218,8 @@ public function appearance(target:Creature):void
 		//Display belly size
 		if (tempBelly <= 5)
 		{
-			if(target.tone >= 75) output2("Your [target.belly] is rock-hard, shaped by a good diet, steady conditioning, or both.");
-			else if(target.tone >= 50) output2("Your [target.belly] is fairly well-toned.");
+			if(target.tone >= 75) output2("Your " + RandomInCollection("belly", "midriff", "middle", "six pack") + " is rock-hard, shaped by a good diet, steady conditioning, or both.");
+			else if(target.tone >= 50) output2("Your " + RandomInCollection("belly", "midriff", "middle", "six pack") + " is fairly well-toned.");
 			else output2("Your [target.belly] is nice and smooth.");
 		}
 		else if (tempBelly <= 10) output2("Your [target.belly] is fairly average in appearance.");
