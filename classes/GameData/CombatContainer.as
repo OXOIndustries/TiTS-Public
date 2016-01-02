@@ -795,7 +795,19 @@ package classes.GameData
 			{
 				if (roundCounter == 1) addButton(0, "Attack", selectSimpleAttack, CombatAttacks.MeleeAttack);
 				else if (roundCounter == 2) addButton(1, StringUtil.upperCase(pc.rangedWeapon.attackVerb), selectSimpleAttack, CombatAttacks.RangedAttack);
-				else addButton(5, "Tease", selectSimpleTarget, generateTeaseMenu);
+				else
+				{
+					if (pc.biggestTitSize() > 2) addButton(5, "Tease", function():void {
+						clearOutput();
+						chestTeaseText(_hostiles[0]);
+						processCombat();
+					});
+					else addButton(5, "Tease", function():void {
+						clearOutput();
+						crotchTeaseText(_hostiles[0]);
+						processCombat();
+					});
+				}
 				return;
 			}
 			
@@ -1383,7 +1395,6 @@ package classes.GameData
 				clearMenu();
 				
 				atk.execute(_friendlies, _hostiles, pc, t);
-				processCombat();
 			}
 		}
 		
@@ -1444,7 +1455,6 @@ package classes.GameData
 				clearMenu();
 				
 				executeSimpleAttack( { func: f, tar: t } );
-				processCombat();
 			}
 		}
 		
@@ -2597,7 +2607,8 @@ package classes.GameData
 					kGAMECLASS.setEnemy(_hostiles[0]);
 				}
 				
-				showCombatUI();
+				userInterface().hideNPCStats();
+				userInterface().showPlayerParty([pc]);
 				output("\n\n");
 				clearMenu();
 				addButton(0, "Defeat", _lossFunction);
@@ -2616,7 +2627,8 @@ package classes.GameData
 						kGAMECLASS.setEnemy(_hostiles[0]);
 					}
 				
-					showCombatUI();
+					userInterface().hideNPCStats();
+					userInterface().showPlayerParty([pc]);
 					output("\n\n");
 					clearMenu();
 					addButton(0, "Defeat", _lossFunction);
@@ -2655,7 +2667,8 @@ package classes.GameData
 					kGAMECLASS.setEnemy(_hostiles[0]);
 				}
 				
-				showCombatUI();
+				userInterface().hideNPCStats();
+				userInterface().showPlayerParty([pc]);
 				output("\n\n");
 				clearMenu();
 				addButton(0, "Victory", _victoryFunction);
@@ -2666,7 +2679,7 @@ package classes.GameData
 		
 		public function CombatContainer()
 		{ 
-			_roundCounter = 0;
+			_roundCounter = 1;
 			
 			genericVictory = function():void {
 				StatTracking.track("combat/wins");
@@ -2978,9 +2991,13 @@ package classes.GameData
 		{
 			if (target is Celise)
 			{
-				if(roundCounter == 1) output("\nVictor instructs, <i>“<b>Try and strike her, " + pc.short + ". Use a melee attack.</b>”</i>\n");
-			else if(roundCounter == 2) output("\n<i>“Some foes are more vulnerable to ranged attacks than melee attacks or vice versa. <b>Why don’t you try using your gun?</b> Don’t worry, it won’t kill her.”</i> Victor suggests.\n");
-			else if(roundCounter == 3) output("\n<i>“Didn’t work, did it? Celise’s race does pretty well against kinetic damage. Thermal weapons would work, but you don’t have any of those. You’ve still got one more weapon that galotians can’t handle - sexual allure. They’re something of a sexual predator, but their libidos are so high that teasing them back often turns them on to the point where they masturbate into a puddle of quivering sex.”</i> Victor chuckles. <i>“<b>Go ahead, try teasing her.</b> Fighting aliens is about using the right types of attacks in the right situations.”</i>\n");
+				output("\n");
+				output(target.long);
+				showMonsterArousalFlavor(target);
+				
+				if(roundCounter == 1) output("\n\nVictor instructs, <i>“<b>Try and strike her, " + pc.short + ". Use a melee attack.</b>”</i>\n");
+			else if(roundCounter == 2) output("\n\n<i>“Some foes are more vulnerable to ranged attacks than melee attacks or vice versa. <b>Why don’t you try using your gun?</b> Don’t worry, it won’t kill her.”</i> Victor suggests.\n");
+			else if(roundCounter == 3) output("\n\n<i>“Didn’t work, did it? Celise’s race does pretty well against kinetic damage. Thermal weapons would work, but you don’t have any of those. You’ve still got one more weapon that galotians can’t handle - sexual allure. They’re something of a sexual predator, but their libidos are so high that teasing them back often turns them on to the point where they masturbate into a puddle of quivering sex.”</i> Victor chuckles. <i>“<b>Go ahead, try teasing her.</b> Fighting aliens is about using the right types of attacks in the right situations.”</i>\n");
 				return;
 			}
 			
@@ -2993,28 +3010,18 @@ package classes.GameData
 				output("\n\n<b>" + target.capitalA + target.uniqueName + ((target.isPlural == true) ? " are" : " is") + " too turned on to fight.</b>");
 			}
 			else
-			{
-				var pHealth:Number = target.HP() / target.HPMax();
-				var pShield:Number = target.shields() / target.shieldsMax();
-				var pLust:Number = target.lust() / target.lustMax();
-				
-				pHealth *= 100;
-				pShield *= 100;
-				pLust *= 100;
-				
-				var dHealth:int = Math.round(pHealth);
-				var dShield:int = Math.round(pShield);
-				var dLust:int = Math.round(pLust);
-				
+			{				
 				if (encounterText == null)
 				{
+					if (_hostiles.length == 1 && _friendlies.length == 1)
+					{
+						output("\n");
+						output(target.long);
+					}
+					else
+					{
 					output("\n\n<b>" + StringUtil.toTitleCase(target.uniqueName) + ":</b>\n" + target.long);
-					//  + " (<b>S: " + dShield + "% / H: " + dHealth + "% / L: " + dLust + "%</b>)"
-				}
-				else
-				{
-					// TODO Ideally, this needs to be reworked to some much shorter description element for multi-enemy fights.
-					output("\n\n" + StringUtil.toTitleCase(target.uniqueName) + "(<b>S: " + dShield + "% / H: " + dHealth + "% / L: " + dLust + "%</b>)")
+					}
 				}
 				
 				// TODO Blinds had some effect on this...
@@ -3022,7 +3029,7 @@ package classes.GameData
 				{
 					output("\n<b>You're still clinging to the monster's topside, limiting her ability to fight you!</b>");
 					
-					if (target.lust() >= 50) output("\nYou can see her breath quickening, her massive chest heaving with nipples as hard as diamonds. She looks almost ready to cum just from your confrontation...\n");
+					if (target.lust() >= 50) output("\nYou can see her breath quickening, her massive chest heaving with nipples as hard as diamonds. She looks almost ready to cum just from your confrontation...");
 				}
 				
 				if (!(target is QueenOfTheDeep) && !(target is Cockvine))
@@ -3076,6 +3083,10 @@ package classes.GameData
 				if (enemiesAlive() > 1 || _hostiles[0].plural) output("<b>Your enemies have turned you on too much to keep fighting. You give in....</b>");
 				else output("<b>" + _hostiles[0].capitalA + _hostiles[0].uniqueName + " has turned you on too much to keep fighting. You give in....</b>"); // TODO should be able to pick out a defined 'leader'
 			}
+			else if (_hostiles.length == 1 && _friendlies.length == 1)
+			{
+				output("<b>You’re fighting " + _hostiles[0].a + _hostiles[0].uniqueName + ".</b>");
+			}
 			else
 			{
 				// TODO Some decent player status output
@@ -3101,35 +3112,34 @@ package classes.GameData
 			}
 			else if (target.isPlural)
 			{
-				if(target.lust() < 60) output(target.capitalA + possessive(target.uniqueName) + " skins remain flushed with the beginnings of arousal.");
-				else if(target.lust() < 70) output(target.capitalA + possessive(target.uniqueName) + " eyes constantly dart over your most sexual parts, betraying their lust.");
+				if(target.lust() < 60) output("\n" + target.capitalA + possessive(target.uniqueName) + " skins remain flushed with the beginnings of arousal.");
+				else if(target.lust() < 70) output("\n" + target.capitalA + possessive(target.uniqueName) + " eyes constantly dart over your most sexual parts, betraying their lust.");
 				else if (target.lust() < 85)
 				{
-					if(target.hasCock()) output(target.capitalA + target.uniqueName + " are having trouble moving due to the rigid protrusions in their groins.");
-					if(target.hasVagina()) output(target.capitalA + target.uniqueName + " are obviously turned on; you can smell their arousal in the air.");
+					if(target.hasCock()) output("\n" + target.capitalA + target.uniqueName + " are having trouble moving due to the rigid protrusions in their groins.");
+					if(target.hasVagina()) output("\n" + target.capitalA + target.uniqueName + " are obviously turned on; you can smell their arousal in the air.");
 				}
 				else
 				{
-					if(target.hasCock()) output(target.capitalA + target.uniqueName + " are panting and softly whining, each movement seeming to make their bulges more pronounced.  You don't think they can hold out much longer.");
-					if(target.hasVagina()) output(target.capitalA + possessive(target.uniqueName) + " " + plural(target.vaginaDescript()) + " are practically soaked with their lustful secretions.");
+					if(target.hasCock()) output("\n" + target.capitalA + target.uniqueName + " are panting and softly whining, each movement seeming to make their bulges more pronounced.  You don't think they can hold out much longer.");
+					if(target.hasVagina()) output("\n" + target.capitalA + possessive(target.uniqueName) + " " + plural(target.vaginaDescript()) + " are practically soaked with their lustful secretions.");
 				}
 			}
 			else
 			{
-				if(target.lust() < 60) output(target.capitalA + possessive(target.uniqueName) + " " + target.skin() + " remains flushed with the beginnings of arousal.");
-				else if(target.lust() < 70) output(target.capitalA + possessive(target.uniqueName) + " eyes constantly dart over your most sexual parts, betraying " + target.mfn("his","her","its") + " lust.");
+				if(target.lust() < 60) output("\n" + target.capitalA + possessive(target.uniqueName) + " " + target.skin() + " remains flushed with the beginnings of arousal.");
+				else if(target.lust() < 70) output("\n" + target.capitalA + possessive(target.uniqueName) + " eyes constantly dart over your most sexual parts, betraying " + target.mfn("his","her","its") + " lust.");
 				else if (target.lust() < 85)
 				{
-					if(target.hasCock()) output(target.capitalA + target.uniqueName + " is having trouble moving due to the rigid protrusion in " + target.mfn("his","her","its") + " groin.");
-					if(target.hasVagina()) output(target.capitalA + target.uniqueName + " is obviously turned on, you can smell " + target.mfn("his","her","its") + " arousal in the air.");
+					if(target.hasCock()) output("\n" + target.capitalA + target.uniqueName + " is having trouble moving due to the rigid protrusion in " + target.mfn("his","her","its") + " groin.");
+					if(target.hasVagina()) output("\n" + target.capitalA + target.uniqueName + " is obviously turned on, you can smell " + target.mfn("his","her","its") + " arousal in the air.");
 				}
 				else
 				{
-					if(target.hasCock()) output(target.capitalA + target.uniqueName + " is panting and softly whining, each movement seeming to make " + target.mfn("his","her","its") + " bulge more pronounced.  You don't think " + target.mfn("he","she","it") + " can hold out much longer.");
-					if(target.hasVagina()) output(target.capitalA + possessive(target.uniqueName) + " " + target.vaginaDescript() + " is practically soaked with " + target.mfn("his","her","its") + " lustful secretions.  ");
+					if(target.hasCock()) output("\n" + target.capitalA + target.uniqueName + " is panting and softly whining, each movement seeming to make " + target.mfn("his","her","its") + " bulge more pronounced.  You don't think " + target.mfn("he","she","it") + " can hold out much longer.");
+					if(target.hasVagina()) output("\n" + target.capitalA + possessive(target.uniqueName) + " " + target.vaginaDescript() + " is practically soaked with " + target.mfn("his","her","its") + " lustful secretions.  ");
 				}
 			}
-			output("\n");
 		}
 		
 		public function processCombat():void

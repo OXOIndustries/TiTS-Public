@@ -211,7 +211,7 @@
 			if (target == null) return;
 			
 			// round 1
-			if(CombatManager.getRoundCount() == 0) {
+			if(CombatManager.getRoundCount() == 1) {
 				output("Well, that didn’t work! She seems completely immune to normal physical attacks.");
 				output("\n\n<i>“Hehe, that tickles!”</i> Celise giggles, <i>“Are you sure you want to listen to that old fuddy duddy instead of letting me </i>");
 				if(target.hasCock()) output("<i>wrap myself around your " + target.cocksDescript() + "</i>");

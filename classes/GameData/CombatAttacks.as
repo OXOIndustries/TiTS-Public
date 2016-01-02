@@ -548,7 +548,7 @@ package classes.GameData
 			
 			if (target is Celise)
 			{
-				output(target.customDodge);
+				output(target.customBlock);
 				return;
 			}
 			

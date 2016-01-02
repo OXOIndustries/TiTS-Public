@@ -134,7 +134,8 @@
 				{
 					if (_ignoredFields.length > 0)
 					{
-						if (_ignoredFields.indexOf(accs.@name) == -1)
+						var tProp:String = accs.@name;
+						if (_ignoredFields.indexOf(tProp) == -1)
 						{
 							dataObject[accs.@name] = this[accs.@name];
 						}
