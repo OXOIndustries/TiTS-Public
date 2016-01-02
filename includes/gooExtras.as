@@ -1093,18 +1093,19 @@ public function revertGooBodyColor(part:String = "menu"):void
 	clearOutput2();
 	var i:int = 0;
 	var mismatchedGenitals:int = 0;
+	var sColor:String = pc.skinFurScalesColor();
 	if(pc.hasCock())
 	{
 		for(i = 0; i < pc.cockTotal(); i++)
 		{
-			if(pc.hasCockFlag(GLOBAL.FLAG_GOOEY,i) && pc.cocks[i].cockColor != pc.skinTone) mismatchedGenitals++;
+			if(pc.hasCockFlag(GLOBAL.FLAG_GOOEY,i) && pc.cocks[i].cockColor != sColor) mismatchedGenitals++;
 		}
 	}
 	if(pc.hasVagina())
 	{
 		for(i = 0; i < pc.totalVaginas(); i++)
 		{
-			if(pc.vaginas[i].hasFlag(GLOBAL.FLAG_GOOEY) && pc.vaginas[i].vaginaColor != pc.skinTone) mismatchedGenitals++;
+			if(pc.vaginas[i].hasFlag(GLOBAL.FLAG_GOOEY) && pc.vaginas[i].vaginaColor != sColor) mismatchedGenitals++;
 		}
 	}
 	if(part == "menu")
@@ -1122,23 +1123,23 @@ public function revertGooBodyColor(part:String = "menu"):void
 			if(!pc.hasHair()) output2(", if it were visible that is,");
 			output2(" or your [pc.skinColor] skin.");
 			addGhostButton(0,"Hair",revertGooBodyColor,"hair","Hair","Shift your body color to match your [pc.hairColor] hair.\n\n<b>10 mLs Biomass</b>");
-			addGhostButton(1,"Body",revertGooBodyColor,"body","Body","Shift your hair color to match your [pc.skinColor] body.\n\n<b>10 mLs Biomass</b>");
+			addGhostButton(1,"Skin",revertGooBodyColor,"skin","Skin","Shift your hair color to match your [pc.skinColor] skin.\n\n<b>10 mLs Biomass</b>");
 		}
 		else if(pc.hairColor != pc.skinTone)
 		{
 			output2(" You can tell your colors are different, but unfortunately, you don’t have enough biomass to do anything about it.");
 			addDisabledGhostButton(0,"Hair","Hair","You don’t have enough biomass for that.\n\n<b>10 mLs Biomass</b>");
-			addDisabledGhostButton(1,"Body","Body","You don’t have enough biomass for that.\n\n<b>10 mLs Biomass</b>");
+			addDisabledGhostButton(1,"Skin","Skin","You don’t have enough biomass for that.\n\n<b>10 mLs Biomass</b>");
 		}
 		else
 		{
 			addDisabledGhostButton(0,"Hair","Hair","Your hair and body colors already match!");
-			addDisabledGhostButton(1,"Body","Body","Your hair and body colors already match!");
+			addDisabledGhostButton(1,"Skin","Skin","Your hair and skin colors already match!");
 		}
 		if(mismatchedGenitals > 0)
 		{
 			output2(" Your genital colors seem to be off compared to the rest of your body.");
-			if(gooBiomass() >= 10) addGhostButton(2,"FixGenitals",revertGooGenitalColor,pc.skinFurScalesColor(),"Revert Genital Color","Shift your genital color to match your [pc.skinFurScalesColor] skin.\n\n<b>10 mLs Biomass</b>");
+			if(gooBiomass() >= 10) addGhostButton(2,"FixGenitals",revertGooGenitalColor,sColor,"Revert Genital Color","Shift your genital color to match your " + sColor + " body.\n\n<b>10 mLs Biomass</b>");
 			else addDisabledGhostButton(2,"FixGenitals","Revert Genital Color","You don’t have enough biomass for that.\n\n<b>10 mLs Biomass</b>");
 		}
 		else
@@ -1160,25 +1161,25 @@ public function revertGooBodyColor(part:String = "menu"):void
 		if(mismatchedGenitals > 0)
 		{
 			output2("\n\nTilting your codex to your nether region, you noticed the color is a bit off... Do you want to change to color of your gooey genitals to match as well?");
-			if(gooBiomass() >= 10) addGhostButton(0,"Yes",revertGooGenitalColor,pc.hairColor,"Yes","Shift your genital color to match your hair color.\n\n<b>10 mLs Biomass</b>");
+			if(gooBiomass() >= 10) addGhostButton(0,"Yes",revertGooGenitalColor,pc.hairColor,"Yes","Shift your genital color to match your [pc.hairColor] hair.\n\n<b>10 mLs Biomass</b>");
 			else addDisabledGhostButton(0,"Yes","Yes","You don’t have enough biomass for that.\n\n<b>10 mLs Biomass</b>");
 			addGhostButton(1,"No",revertGooGenitalColor);
 		}
 		else addGhostButton(0,"Next",revertGooBodyColor,"menu");
 	}
-	else if(part == "body")
+	else if(part == "skin")
 	{
 		output2("Concentrating hard, you try to allow the pigmentation to climb from your body and up into your head.");
 		if(!pc.hasHair()) output2("\n\nNothing visibly changes, but you know that any new hair growth will turn out to be [pc.skinColor]-colored.");
 		else output2("\n\nWebs of [pc.skinColor] cast across your head, mingling then engulfing your gooey [pc.hairColor] hair. After a brief moment, you complete the color transformation and admire your changes.");
-		output2(" <b>Your hair color now matches your body color!</b>");
+		output2(" <b>Your hair color now matches your skin color!</b>");
 		pc.hairColor = pc.skinTone;
 		gooBiomass(-10);
 		clearGhostMenu();
 		if(mismatchedGenitals > 0)
 		{
 			output2("\n\nTilting your codex to your nether region, you noticed the color is a bit off... Do you want to change to color of your gooey genitals to match as well?");
-			if(gooBiomass() >= 10) addGhostButton(0,"Yes",revertGooGenitalColor,pc.skinTone,"Yes","Shift your genital color to match your skin color.\n\n<b>10 mLs Biomass</b>");
+			if(gooBiomass() >= 10) addGhostButton(0,"Yes",revertGooGenitalColor,pc.skinTone,"Yes","Shift your genital color to match your [pc.skinColor] skin.\n\n<b>10 mLs Biomass</b>");
 			else addDisabledGhostButton(0,"Yes","Yes","You don’t have enough biomass for that.\n\n<b>10 mLs Biomass</b>");
 			addGhostButton(1,"No",revertGooGenitalColor);
 		}
