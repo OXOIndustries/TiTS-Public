@@ -1121,8 +1121,8 @@ public function revertGooBodyColor(part:String = "menu"):void
 			output2(" You can tell your colors are different, would you like to force them to match? You can colorize yourself to either match your [pc.hairColor] hair");
 			if(!pc.hasHair()) output2(", if it were visible that is,");
 			output2(" or your [pc.skinColor] skin.");
-			addGhostButton(0,"Hair",revertGooBodyColor,"hair","Hair","Shift your body color to match your hair color.\n\n<b>10 mLs Biomass</b>");
-			addGhostButton(1,"Body",revertGooBodyColor,"body","Body","Shift your hair color to match your body color.\n\n<b>10 mLs Biomass</b>");
+			addGhostButton(0,"Hair",revertGooBodyColor,"hair","Hair","Shift your body color to match your [pc.hairColor] hair.\n\n<b>10 mLs Biomass</b>");
+			addGhostButton(1,"Body",revertGooBodyColor,"body","Body","Shift your hair color to match your [pc.skinColor] body.\n\n<b>10 mLs Biomass</b>");
 		}
 		else if(pc.hairColor != pc.skinTone)
 		{
@@ -1138,7 +1138,7 @@ public function revertGooBodyColor(part:String = "menu"):void
 		if(mismatchedGenitals > 0)
 		{
 			output2(" Your genital colors seem to be off compared to the rest of your body.");
-			if(gooBiomass() >= 10) addGhostButton(2,"FixGenitals",revertGooGenitalColor,pc.skinTone,"Revert Genital Color","Shift your genital color to match your skin color.\n\n<b>10 mLs Biomass</b>");
+			if(gooBiomass() >= 10) addGhostButton(2,"FixGenitals",revertGooGenitalColor,pc.skinFurScalesColor(),"Revert Genital Color","Shift your genital color to match your [pc.skinFurScalesColor] skin.\n\n<b>10 mLs Biomass</b>");
 			else addDisabledGhostButton(2,"FixGenitals","Revert Genital Color","You don’t have enough biomass for that.\n\n<b>10 mLs Biomass</b>");
 		}
 		else
