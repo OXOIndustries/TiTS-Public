@@ -3162,7 +3162,7 @@ package classes.GameData
 				if (!target.isDefeated())
 				{
 					// TODO: Route this through the actual drone the droneUser has equipped to redirect to different atk implementors.
-					output("\n");
+					output("\n\n");
 					CombatAttacks.DroneAttack(droneUser, target);
 				}
 			}
