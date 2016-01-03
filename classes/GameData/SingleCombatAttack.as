@@ -92,16 +92,16 @@ package classes.GameData
 				
 				if ((!IsMeleeBased && !IsRangedBased) || (IsMeleeBased && IsRangedBased))
 				{
-					f = target.meleeWeapon.baseDamage.getFlagsArray().slice(0, -1);
-					f.concat(target.rangedWeapon.baseDamage.getFlagsArray().slice(0, -1));
+					df = target.meleeWeapon.baseDamage.getFlagsArray().slice(0, -1);
+					df.concat(target.rangedWeapon.baseDamage.getFlagsArray().slice(0, -1));
 				}
 				else if (IsMeleeBased && !IsRangedBased)
 				{
-					f = target.meleeWeapon.baseDamage.getFlagsArray().slice(0, -1);
+					df = target.meleeWeapon.baseDamage.getFlagsArray().slice(0, -1);
 				}
 				else if (IsRangedBased && !IsMeleeBased)
 				{
-					f = target.rangedWeapon.baseDamage.getFlagsArray().slice(0, -1);
+					df = target.rangedWeapon.baseDamage.getFlagsArray().slice(0, -1);
 				}
 				
 				var gotDamageFlag:Boolean = false;

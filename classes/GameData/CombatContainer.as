@@ -791,6 +791,7 @@ package classes.GameData
 		 */
 		private function generateCombatMenu():void
 		{
+			clearMenu();
 			if (hasEnemyOfClass(Celise))
 			{
 				if (roundCounter == 1) addButton(0, "Attack", selectSimpleAttack, CombatAttacks.MeleeAttack);
