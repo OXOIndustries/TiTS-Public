@@ -51,6 +51,8 @@ package classes.Items.Guns
 			this.fortification = 0;
 
 			this.version = _latestVersion;
+			
+			attackImplementor = CombatAttacks.SlutRayAttackImpl;
 		}
 	}
 }
